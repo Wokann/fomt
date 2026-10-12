@@ -2120,7 +2120,7 @@ func_0801140C:
     adds r6, r4, r0
     adds r0, r6, #0
     adds r1, r5, #0
-    bl func_0809ABD8
+    bl AddMoneyToAccount
     ldr r0, .Ljp_08011434 @ =0x000034C5
     adds r4, r4, r0
     ldrb r0, [r4]
@@ -2128,7 +2128,7 @@ func_0801140C:
     beq .Ljp_0801141E
     adds r0, r6, #0
     adds r1, r5, #0
-    bl func_0809ABD8
+    bl AddMoneyToAccount
     movs r0, #0
     strb r0, [r4]
 .Ljp_0801141E:
@@ -25540,7 +25540,7 @@ func_0801140C: @ 0x0801140C
     adds r6, r4, r0
     adds r0, r6, #0
     adds r1, r5, #0
-    bl func_0809ABD8
+    bl AddMoneyToAccount
     ldr r0, .L08011454 @ =0x000034C5
     adds r4, r4, r0
     ldrb r0, [r4]
@@ -25548,7 +25548,7 @@ func_0801140C: @ 0x0801140C
     beq .L0801143E
     adds r0, r6, #0
     adds r1, r5, #0
-    bl func_0809ABD8
+    bl AddMoneyToAccount
     movs r0, #0
     strb r0, [r4]
 .L0801143E:

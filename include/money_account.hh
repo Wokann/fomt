@@ -98,6 +98,8 @@ struct MoneyAccount {
     u32 max_expense_08;
     u32 max_income_FC;
     u32 max_expense_FC;
+
+    u32 GetBalance() const { return balance; }
 };
 
 typedef char MoneyAccountRecordSizeCheck[sizeof(MoneyAccountRecord) == 8 ? 1 : -1];
@@ -108,7 +110,8 @@ typedef char MoneyAccountMaximaCheck[offsetof(MoneyAccount, max_income_08) == 0x
 
 EXTERN_C
 
-MoneyAccount * InitializeMoneyAccount(MoneyAccount * account) SECTION(".text.money_account_init");
+MoneyAccount * InitializeMoneyAccount(MoneyAccount * account) SECTION(".text.money_account_update");
+void AddMoneyToAccount(MoneyAccount * account, u32 amount) SECTION(".text.money_account_update");
 bool SubtractMoneyFromAccount(MoneyAccount * account, u32 amount) SECTION(".text.money_account_update");
 void AppendMoneyAccountRecord30(MoneyAccount * account) SECTION(".text.money_account_update");
 MoneyAccountRecord const * GetMoneyAccountRecord30(MoneyAccount const * account, u32 index);

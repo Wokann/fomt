@@ -14749,7 +14749,7 @@ func_080274B0: @ 0x080274B0
     ldr r0, [r6, #0x34]
     ldr r2, .Ljp_0802752C @ =0x00001AA8
     adds r0, r0, r2
-    bl func_0809ABD8
+    bl AddMoneyToAccount
     adds r0, r6, #0
     adds r0, #0x88
     movs r5, #0
@@ -49405,7 +49405,7 @@ func_0802771C: @ 0x0802771C
     ldr r0, [r6, #0x34]
     ldr r2, .L08027798 @ =0x00001AA8
     adds r0, r0, r2
-    bl func_0809ABD8
+    bl AddMoneyToAccount
     adds r0, r6, #0
     adds r0, #0x88
     movs r5, #0

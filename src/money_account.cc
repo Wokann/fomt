@@ -21,6 +21,26 @@ MoneyAccount * InitializeMoneyAccount(MoneyAccount * account)
     return account;
 }
 
+void AddMoneyToAccount(MoneyAccount * account, u32 amount)
+{
+    if (account->history_FC.Empty())
+        account->history_FC.Append(MoneyAccountRecord());
+    if (account->history_08.Empty())
+        account->history_08.Append(MoneyAccountRecord());
+
+    u32 old_balance = account->GetBalance();
+    account->balance = old_balance + LimitedAmount(1000000000u - old_balance, amount);
+    if (account->balance > 99999999)
+        account->unk_04_1 = 1;
+
+    MoneyAccountRecord & record30 = account->history_08.Last();
+    MoneyAccountRecord & record4 = account->history_FC.Last();
+    record30.income += LimitedAmount(1000000000u - record30.income, amount);
+    record4.income += LimitedAmount(1000000000u - record4.income, amount);
+    if (record30.income > 99999)
+        account->unk_04_0 = 1;
+}
+
 bool SubtractMoneyFromAccount(MoneyAccount * account, u32 amount)
 {
     // Native callers also get an empty record when a purchase is rejected.

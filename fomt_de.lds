@@ -303,8 +303,6 @@ SECTIONS
         . = 0x781E4; /* DE ROM 0x080781E4, town-map continuation. */
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after_de_tail);
-        src/money_account.o(.text.money_account_init);
-        asm/code_0803EE94.o(.text.money_account_methods);
         src/money_account.o(.text.money_account_update);
         asm/code_0803EE94.o(.text.money_account_history);
         src/money_account.o(.text);

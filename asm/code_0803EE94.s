@@ -84986,7 +84986,7 @@ sub_0807BD78:
     ldr r2, .Ljp_poultry_state_case_8_storage_offset
     adds r0, r0, r2
     ldr r1, [sp, #0x88]
-    bl func_0809ABD8
+    bl AddMoneyToAccount
     adds r0, r7, #0
     bl func_080C8550
     ldr r0, [r7, #8]
@@ -121488,135 +121488,6 @@ func_0809AB08:
     bx r1
     .align 2, 0
 .Ljp_0809A5C0: .4byte 0x00000A06
-    .section .text.money_account_methods
-    .global func_0809ABD8
-    .thumb_func
-func_0809ABD8:
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    adds r3, r0, #0
-    adds r5, r1, #0
-    adds r4, r3, #0
-    adds r4, #0xFC
-    movs r0, #0
-    ldr r1, [r4]
-    cmp r1, #0
-    bne .Ljp_0809A626
-    movs r0, #1
-.Ljp_0809A626:
-    cmp r0, #0
-    beq .Ljp_0809A64C
-    movs r0, #0
-    str r0, [sp]
-    str r0, [sp, #4]
-    cmp r1, #3
-    bhi .Ljp_0809A64C
-    lsls r0, r1, #3
-    adds r0, #4
-    adds r2, r4, r0
-    cmp r2, #0
-    beq .Ljp_0809A646
-    ldr r0, [sp]
-    ldr r1, [sp, #4]
-    str r0, [r2]
-    str r1, [r2, #4]
-.Ljp_0809A646:
-    ldr r0, [r4]
-    adds r0, #1
-    str r0, [r4]
-.Ljp_0809A64C:
-    movs r0, #0
-    ldr r1, [r3, #8]
-    adds r4, r3, #0
-    adds r4, #8
-    cmp r1, #0
-    bne .Ljp_0809A65A
-    movs r0, #1
-.Ljp_0809A65A:
-    cmp r0, #0
-    beq .Ljp_0809A680
-    movs r0, #0
-    str r0, [sp, #8]
-    str r0, [sp, #0xC]
-    cmp r1, #0x1D
-    bhi .Ljp_0809A680
-    lsls r0, r1, #3
-    adds r0, #4
-    adds r2, r4, r0
-    cmp r2, #0
-    beq .Ljp_0809A67A
-    ldr r0, [sp, #8]
-    ldr r1, [sp, #0xC]
-    str r0, [r2]
-    str r1, [r2, #4]
-.Ljp_0809A67A:
-    ldr r0, [r3, #8]
-    adds r0, #1
-    str r0, [r3, #8]
-.Ljp_0809A680:
-    ldr r0, [r3]
-    adds r1, r0, #0
-    ldr r6, .Ljp_0809A6EC
-    subs r0, r6, r1
-    cmp r0, r5
-    bls .Ljp_0809A68E
-    adds r0, r5, #0
-.Ljp_0809A68E:
-    adds r1, r1, r0
-    str r1, [r3]
-    ldr r0, .Ljp_0809A6F0
-    cmp r1, r0
-    bls .Ljp_0809A6A0
-    ldrb r0, [r3, #4]
-    movs r1, #2
-    orrs r0, r1
-    strb r0, [r3, #4]
-.Ljp_0809A6A0:
-    ldr r0, [r3, #8]
-    subs r0, #1
-    lsls r0, r0, #3
-    adds r0, #4
-    adds r4, r4, r0
-    adds r1, r3, #0
-    adds r1, #0xFC
-    ldr r0, [r1]
-    subs r0, #1
-    lsls r0, r0, #3
-    adds r0, #4
-    adds r1, r1, r0
-    ldr r2, [r4]
-    subs r0, r6, r2
-    cmp r0, r5
-    bls .Ljp_0809A6C2
-    adds r0, r5, #0
-.Ljp_0809A6C2:
-    adds r0, r2, r0
-    str r0, [r4]
-    ldr r2, [r1]
-    subs r0, r6, r2
-    cmp r0, r5
-    bls .Ljp_0809A6D0
-    adds r0, r5, #0
-.Ljp_0809A6D0:
-    adds r0, r2, r0
-    str r0, [r1]
-    ldr r1, [r4]
-    ldr r0, .Ljp_0809A6F4
-    cmp r1, r0
-    bls .Ljp_0809A6E4
-    ldrb r0, [r3, #4]
-    movs r1, #1
-    orrs r0, r1
-    strb r0, [r3, #4]
-.Ljp_0809A6E4:
-    add sp, #0x10
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_0809A6EC: .4byte 0x3B9ACA00
-.Ljp_0809A6F0: .4byte 0x05F5E0FF
-.Ljp_0809A6F4: .4byte 0x0001869F
     .section .text.money_account_history
     .global UpdateMoneyAccountRecordHistory
     .thumb_func
@@ -128308,7 +128179,7 @@ func_0803F8DC: @ 0x0803F8DC
 	ldr r0, [r0]
 	ldr r3, .L08042E00 @ =0x00001AA8
 	adds r0, r0, r3
-	bl func_0809ABD8
+	bl AddMoneyToAccount
 	bl .L08045572
 	.align 2, 0
 .L08042E00: .4byte 0x00001AA8
@@ -243437,7 +243308,7 @@ sub_0807C194: @ 0x0807C194
 	ldr r2, .L0807CFC4 @ =0x00001AA8
 	adds r0, r0, r2
 	ldr r1, [sp, #0x88]
-	bl func_0809ABD8
+	bl AddMoneyToAccount
 	adds r0, r7, #0
 	bl func_080C8550
 	ldr r0, [r7, #8]
@@ -264508,7 +264379,7 @@ sub_08087710: @ 0x08087710
 	ldr r2, .L080880B0 @ =0x00001AA8
 	adds r0, r0, r2
 	ldr r1, [r4, #4]
-	bl func_0809ABD8
+	bl AddMoneyToAccount
 	adds r0, r7, #0
 	bl func_080C8550
 	ldr r0, [r7, #8]
@@ -301073,135 +300944,6 @@ func_0809AB08: @ 0x0809AB08
 	bx r1
 	.align 2, 0
 .L0809AB88: .4byte 0x00000A06
-
-    .section .text.money_account_methods
-	thumb_func_start func_0809ABD8
-func_0809ABD8: @ 0x0809ABD8
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	adds r3, r0, #0
-	adds r5, r1, #0
-	adds r4, r3, #0
-	adds r4, #0xfc
-	movs r0, #0
-	ldr r1, [r4]
-	cmp r1, #0
-	bne .L0809ABEE
-	movs r0, #1
-.L0809ABEE:
-	cmp r0, #0
-	beq .L0809AC14
-	movs r0, #0
-	str r0, [sp]
-	str r0, [sp, #4]
-	cmp r1, #3
-	bhi .L0809AC14
-	lsls r0, r1, #3
-	adds r0, #4
-	adds r2, r4, r0
-	cmp r2, #0
-	beq .L0809AC0E
-	ldr r0, [sp]
-	ldr r1, [sp, #4]
-	str r0, [r2]
-	str r1, [r2, #4]
-.L0809AC0E:
-	ldr r0, [r4]
-	adds r0, #1
-	str r0, [r4]
-.L0809AC14:
-	movs r0, #0
-	ldr r1, [r3, #8]
-	adds r4, r3, #0
-	adds r4, #8
-	cmp r1, #0
-	bne .L0809AC22
-	movs r0, #1
-.L0809AC22:
-	cmp r0, #0
-	beq .L0809AC48
-	movs r0, #0
-	str r0, [sp, #8]
-	str r0, [sp, #0xc]
-	cmp r1, #0x1d
-	bhi .L0809AC48
-	lsls r0, r1, #3
-	adds r0, #4
-	adds r2, r4, r0
-	cmp r2, #0
-	beq .L0809AC42
-	ldr r0, [sp, #8]
-	ldr r1, [sp, #0xc]
-	str r0, [r2]
-	str r1, [r2, #4]
-.L0809AC42:
-	ldr r0, [r3, #8]
-	adds r0, #1
-	str r0, [r3, #8]
-.L0809AC48:
-	ldr r0, [r3]
-	adds r1, r0, #0
-	ldr r6, .L0809ACB4 @ =0x3B9ACA00
-	subs r0, r6, r1
-	cmp r0, r5
-	bls .L0809AC56
-	adds r0, r5, #0
-.L0809AC56:
-	adds r1, r1, r0
-	str r1, [r3]
-	ldr r0, .L0809ACB8 @ =0x05F5E0FF
-	cmp r1, r0
-	bls .L0809AC68
-	ldrb r0, [r3, #4]
-	movs r1, #2
-	orrs r0, r1
-	strb r0, [r3, #4]
-.L0809AC68:
-	ldr r0, [r3, #8]
-	subs r0, #1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r4, r4, r0
-	adds r1, r3, #0
-	adds r1, #0xfc
-	ldr r0, [r1]
-	subs r0, #1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	ldr r2, [r4]
-	subs r0, r6, r2
-	cmp r0, r5
-	bls .L0809AC8A
-	adds r0, r5, #0
-.L0809AC8A:
-	adds r0, r2, r0
-	str r0, [r4]
-	ldr r2, [r1]
-	subs r0, r6, r2
-	cmp r0, r5
-	bls .L0809AC98
-	adds r0, r5, #0
-.L0809AC98:
-	adds r0, r2, r0
-	str r0, [r1]
-	ldr r1, [r4]
-	ldr r0, .L0809ACBC @ =0x0001869F
-	cmp r1, r0
-	bls .L0809ACAC
-	ldrb r0, [r3, #4]
-	movs r1, #1
-	orrs r0, r1
-	strb r0, [r3, #4]
-.L0809ACAC:
-	add sp, #0x10
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0809ACB4: .4byte 0x3B9ACA00
-.L0809ACB8: .4byte 0x05F5E0FF
-.L0809ACBC: .4byte 0x0001869F
 
     .section .text.money_account_history
 	thumb_func_start UpdateMoneyAccountRecordHistory

@@ -350,8 +350,6 @@ SECTIONS
         . = 0x77E74; asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
         . = 0x78670; asm/code_0803EE94.o(.text.func_08078670);
         . = 0x786A0; asm/code_0803EE94.o(.text.func_080786A0);
-        src/money_account.o(.text.money_account_init);
-        asm/code_0803EE94.o(.text.money_account_methods);
         src/money_account.o(.text.money_account_update);
         asm/code_0803EE94.o(.text.money_account_history);
         src/money_account.o(.text);
