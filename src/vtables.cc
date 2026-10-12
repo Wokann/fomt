@@ -32,12 +32,6 @@ struct RawVTableWithOffsetAnd66Entries {
 };
 
 extern void __pure_virtual(void);
-extern void func_0804EE1C(void);
-extern void func_0804EE30(void);
-extern void func_0804EE64(void);
-extern void func_0804EE88(void);
-extern void func_0804EE9C(void);
-extern void func_0804EEBC(void);
 extern void func_0804EEFC(void);
 extern void func_0804F19C(void);
 extern void func_08069D84(void);
@@ -394,12 +388,6 @@ extern void func_08092604(void);
 extern void func_08092690(void);
 extern void func_080931E0(void);
 extern void func_08093220(void);
-extern void func_0804EDA0(void);
-extern void func_0804EE1C(void);
-extern void func_0804EE88(void);
-extern void func_0804EE9C(void);
-extern void func_0804EEBC(void);
-extern void func_0804EEDC(void);
 extern void func_080E1018(void);
 extern void func_080E1024(void);
 extern void func_080E1030(void);
@@ -4720,22 +4708,27 @@ extern RawVTableFunction const __vt_12ScriptEngine[]
 #endif
     };
 
-// Seven adjacent two-method dispatch tables.  Their physical code addresses
-// differ by region, but these two tables use the same logical entry points.
+// Seven adjacent two-method dispatch tables. JP has the single-tile and
+// 2x2 decimal commands; overseas ROMs also insert the 1x2 variant between them.
 extern RawVTableFunction const vtable_unk_080E7838[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
-        func_0804EE9C,
-        func_0804EE88,
+        reinterpret_cast<RawVTableFunction>(RunFontTilemapSingleTileDecimalCommand),
+        reinterpret_cast<RawVTableFunction>(DestroyFontTilemapSingleTileDecimalCommand),
     };
 
 extern RawVTableFunction const vtable_unk_080E7848[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
-        func_0804EEBC,
-        func_0804EE1C,
+#if defined(REGION_JP)
+        reinterpret_cast<RawVTableFunction>(RunFontTilemapDecimalCommand),
+        reinterpret_cast<RawVTableFunction>(DestroyFontTilemapDecimalCommand),
+#else
+        reinterpret_cast<RawVTableFunction>(RunFontTilemapTallDecimalCommand),
+        reinterpret_cast<RawVTableFunction>(DestroyFontTilemapTallDecimalCommand),
+#endif
     };
 
 extern RawVTableFunction const vtable_unk_080E7858[]
@@ -4746,8 +4739,8 @@ extern RawVTableFunction const vtable_unk_080E7858[]
         func_0804EEFC,
         reinterpret_cast<RawVTableFunction>(DestroyUnkFontDrawObject),
 #else
-        func_0804EEDC,
-        func_0804EDA0,
+        reinterpret_cast<RawVTableFunction>(RunFontTilemapDecimalCommand),
+        reinterpret_cast<RawVTableFunction>(DestroyFontTilemapDecimalCommand),
 #endif
     };
 

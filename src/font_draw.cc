@@ -1,4 +1,5 @@
 #include "font.hh"
+#include "hardware_linked_list.hh"
 
 #include "gbasvc.h"
 
@@ -409,11 +410,10 @@ void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
 UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
     u32 unk_0c, u16 unk_12, u32 unk_14, u32 unk_18, u16 unk_10,
     u32 unk_1c) SECTION(".text.font_draw_after");
-void DestroyUnkFontDrawObject(UnkFontDrawObject * object)
+void DestroyUnkFontDrawObject(UnkFontDrawObject * object, u32 flags)
     SECTION(".text.font_draw_after");
 
 extern void const * const vtable_unk_080E7868[];
-extern void func_080098AC(void * object);
 
 // Copy a complete packed 4bpp tile buffer. The low and high halves of size
 // are its tile width and height respectively.
@@ -511,17 +511,14 @@ UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
     return object;
 }
 
-void DestroyUnkFontDrawObject(UnkFontDrawObject * object)
+void DestroyUnkFontDrawObject(UnkFontDrawObject * object, u32 flags)
 {
 #if defined(REGION_JP)
-    register void const * vtable asm("r2") = vtable_unk_080E7858;
+    object->vtable = vtable_unk_080E7858;
 #else
-    register void const * vtable asm("r2") = vtable_unk_080E7868;
+    object->vtable = vtable_unk_080E7868;
 #endif
-
-    __asm__ volatile ("" : "+r"(vtable));
-    object->vtable = vtable;
-    func_080098AC(object);
+    func_080098AC(object, flags);
 }
 
 EXTERN_C_END

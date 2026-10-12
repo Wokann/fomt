@@ -1,4 +1,5 @@
 #include "font.hh"
+#include "hardware_linked_list.hh"
 #include "ui_state.hh"
 
 #include <string.h>
@@ -158,6 +159,116 @@ FontTilemapDecimalCommand * InitializeFontTilemapDecimalCommand(
     object->palette = palette;
     object->row_stride = row_stride;
     return object;
+}
+
+void DestroyFontTilemapDecimalCommand(FontTilemapDecimalCommand * object, u32 flags)
+{
+#if defined(REGION_JP)
+    object->vtable = vtable_unk_080E7848;
+#else
+    object->vtable = vtable_unk_080E7858;
+#endif
+    func_080098AC(object, flags);
+}
+
+#if !defined(REGION_JP)
+void DrawDecimalTo1x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
+    u32 palette, u32 row_stride)
+{
+    u32 first_tile = static_cast<u16>(base_tile);
+    u16 palette_index = palette;
+    u16 * cursor = right_tile;
+    u32 attributes = palette_index << 12;
+    do {
+        u32 quotient = value / 10;
+        u32 tile = first_tile + (value - quotient * 10) * 2;
+        cursor[0] = attributes | tile;
+        cursor[row_stride] = (tile + 1) | attributes;
+        value = quotient;
+        cursor--;
+    } while (value != 0);
+}
+
+FontTilemapDecimalCommand * InitializeFontTilemapTallDecimalCommand(
+    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
+    u16 base_tile, u16 palette, u32 row_stride)
+{
+    object->unk_00 = nullptr;
+    object->unk_04 = nullptr;
+    object->vtable = vtable_unk_080E7848;
+    object->value = value;
+    object->right_tile = right_tile;
+    object->base_tile = base_tile;
+    object->palette = palette;
+    object->row_stride = row_stride;
+    return object;
+}
+
+void DestroyFontTilemapTallDecimalCommand(FontTilemapDecimalCommand * object, u32 flags)
+{
+    object->vtable = vtable_unk_080E7848;
+    func_080098AC(object, flags);
+}
+#endif
+
+void DrawDecimalToTilemap(u32 value, u16 * right_tile, u32 base_tile,
+    u32 palette, u32 row_stride)
+{
+    u32 first_tile = static_cast<u16>(base_tile);
+    u16 palette_index = palette;
+    u16 * cursor = right_tile;
+    u32 attributes = palette_index << 12;
+    do {
+        u32 quotient = value / 10;
+        u32 tile = first_tile + (value - quotient * 10);
+        cursor[0] = tile | attributes;
+        value = quotient;
+        cursor--;
+    } while (value != 0);
+}
+
+FontTilemapDecimalCommand * InitializeFontTilemapSingleTileDecimalCommand(
+    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
+    u16 base_tile, u16 palette, u32 row_stride)
+{
+    object->unk_00 = nullptr;
+    object->unk_04 = nullptr;
+    object->vtable = vtable_unk_080E7838;
+    object->value = value;
+    object->right_tile = right_tile;
+    object->base_tile = base_tile;
+    object->palette = palette;
+    object->row_stride = row_stride;
+    return object;
+}
+
+void DestroyFontTilemapSingleTileDecimalCommand(FontTilemapDecimalCommand * object, u32 flags)
+{
+    object->vtable = vtable_unk_080E7838;
+    func_080098AC(object, flags);
+}
+
+u32 RunFontTilemapSingleTileDecimalCommand(FontTilemapDecimalCommand * object)
+{
+    DrawDecimalToTilemap(object->value, object->right_tile, object->base_tile,
+        object->palette, object->row_stride);
+    return 0;
+}
+
+#if !defined(REGION_JP)
+u32 RunFontTilemapTallDecimalCommand(FontTilemapDecimalCommand * object)
+{
+    DrawDecimalTo1x2Tilemap(object->value, object->right_tile, object->base_tile,
+        object->palette, object->row_stride);
+    return 0;
+}
+#endif
+
+u32 RunFontTilemapDecimalCommand(FontTilemapDecimalCommand * object)
+{
+    DrawDecimalTo2x2Tilemap(object->value, object->right_tile, object->base_tile,
+        object->palette, object->row_stride);
+    return 0;
 }
 
 void FormatUnsignedDecimal(u32 value, char * output)

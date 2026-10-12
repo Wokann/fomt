@@ -34,6 +34,7 @@ void DrawDecimalTo2x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
 // The metadata entries and native callbacks are not invoked through this
 // opaque table type. Only their actual table addresses are used here.
 typedef void (*FontTilemapDecimalVTableFunction)(void);
+extern FontTilemapDecimalVTableFunction const vtable_unk_080E7838[];
 extern FontTilemapDecimalVTableFunction const vtable_unk_080E7848[];
 extern FontTilemapDecimalVTableFunction const vtable_unk_080E7858[];
 
@@ -58,6 +59,38 @@ typedef char FontTilemapDecimalCommandRowStrideCheck[offsetof(FontTilemapDecimal
 FontTilemapDecimalCommand * InitializeFontTilemapDecimalCommand(
     FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
     u16 base_tile, u16 palette, u32 row_stride) SECTION(".text.font_decimal");
+
+void DestroyFontTilemapDecimalCommand(FontTilemapDecimalCommand * object,
+    u32 flags) SECTION(".text.font_decimal");
+
+// The overseas ROMs also have a one-column, two-row digit variant.
+#if !defined(REGION_JP)
+void DrawDecimalTo1x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
+    u32 palette, u32 row_stride) SECTION(".text.font_decimal");
+FontTilemapDecimalCommand * InitializeFontTilemapTallDecimalCommand(
+    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
+    u16 base_tile, u16 palette, u32 row_stride) SECTION(".text.font_decimal");
+void DestroyFontTilemapTallDecimalCommand(FontTilemapDecimalCommand * object,
+    u32 flags) SECTION(".text.font_decimal");
+#endif
+
+// Single-tile digits use the same native field layout. row_stride is kept
+// for the command ABI but this renderer writes only one row.
+void DrawDecimalToTilemap(u32 value, u16 * right_tile, u32 base_tile,
+    u32 palette, u32 row_stride) SECTION(".text.font_decimal");
+FontTilemapDecimalCommand * InitializeFontTilemapSingleTileDecimalCommand(
+    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
+    u16 base_tile, u16 palette, u32 row_stride) SECTION(".text.font_decimal");
+void DestroyFontTilemapSingleTileDecimalCommand(FontTilemapDecimalCommand * object,
+    u32 flags) SECTION(".text.font_decimal");
+u32 RunFontTilemapSingleTileDecimalCommand(FontTilemapDecimalCommand * object)
+    SECTION(".text.font_decimal");
+#if !defined(REGION_JP)
+u32 RunFontTilemapTallDecimalCommand(FontTilemapDecimalCommand * object)
+    SECTION(".text.font_decimal");
+#endif
+u32 RunFontTilemapDecimalCommand(FontTilemapDecimalCommand * object)
+    SECTION(".text.font_decimal");
 
 // Writes an unsigned 32-bit value as ASCII decimal followed by a terminator.
 // The caller provides space for up to ten digits and the terminator.
@@ -107,7 +140,7 @@ void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
 UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
     u32 unk_0c, u16 unk_12, u32 unk_14, u32 unk_18, u16 unk_10,
     u32 unk_1c);
-void DestroyUnkFontDrawObject(UnkFontDrawObject * object);
+void DestroyUnkFontDrawObject(UnkFontDrawObject * object, u32 flags);
 void DrawStringTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
     u8 const *string);
 void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,

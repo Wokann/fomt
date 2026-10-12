@@ -80982,7 +80982,7 @@ func_080CA8B4:
     str r4, [sp]
     movs r2, #0x24
     movs r3, #0
-    bl func_0804EE30
+    bl DrawDecimalToTilemap
     ldr r0, [r6, #0x18]
     ldr r0, [r0, #0x1c]
     ldr r1, [r6, #0xc]
@@ -81179,7 +81179,7 @@ func_080CA98C:
     str r4, [sp]
     movs r2, #0x24
     movs r3, #0
-    bl func_0804EE30
+    bl DrawDecimalToTilemap
     ldr r0, [r5, #0x18]
     ldr r1, [r0, #0x1c]
     ldr r0, [r5, #0xc]
@@ -86860,7 +86860,7 @@ func_080CE510: @ 0x080CDD20
 	mov r1, r8
 	mov r2, sb
 	adds r3, r5, #0
-	bl func_0804EE64
+	bl InitializeFontTilemapSingleTileDecimalCommand
 	adds r4, r0, #0
 	adds r0, r7, #0
 	adds r0, #0xc0
@@ -177165,7 +177165,7 @@ func_080C8550: @ 0x080C8550
 	str r2, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804EDB4
+	bl DrawDecimalTo1x2Tilemap
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -181914,7 +181914,7 @@ func_080CA8B4: @ 0x080CA8B4
 	str r4, [sp]
 	movs r2, #0x24
 	movs r3, #0
-	bl func_0804EE30
+	bl DrawDecimalToTilemap
 	ldr r0, [r6, #0x18]
 	ldr r0, [r0, #0x1c]
 	ldr r1, [r6, #0xc]
@@ -182096,7 +182096,7 @@ func_080CA98C: @ 0x080CA98C
 	str r4, [sp]
 	movs r2, #0x24
 	movs r3, #0
-	bl func_0804EE30
+	bl DrawDecimalToTilemap
 	ldr r0, [r5, #0x18]
 	ldr r1, [r0, #0x1c]
 	ldr r0, [r5, #0xc]
@@ -182110,7 +182110,7 @@ func_080CA98C: @ 0x080CA98C
 	str r4, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804EDB4
+	bl DrawDecimalTo1x2Tilemap
 	ldr r0, [r5, #0x18]
 	ldr r0, [r0, #0x1c]
 	movs r1, #0xc
@@ -182195,7 +182195,7 @@ func_080CAAF4: @ 0x080CAAF4
 	str r2, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804EDB4
+	bl DrawDecimalTo1x2Tilemap
 	ldr r0, [r5, #0x18]
 	ldr r0, [r0, #0x1c]
 	movs r1, #0xc
@@ -182663,7 +182663,7 @@ func_080CAEEC: @ 0x080CAEEC
 	mov r1, r8
 	mov r2, sb
 	adds r3, r5, #0
-	bl func_0804EE64
+	bl InitializeFontTilemapSingleTileDecimalCommand
 	adds r4, r0, #0
 	ldr r0, [r7, #8]
 	str r0, [sp, #0xc]
@@ -189752,7 +189752,7 @@ func_080CE510: @ 0x080CE510
 	mov r1, r8
 	mov r2, sb
 	adds r3, r5, #0
-	bl func_0804EE64
+	bl InitializeFontTilemapSingleTileDecimalCommand
 	adds r4, r0, #0
 	adds r0, r7, #0
 	adds r0, #0xc0
