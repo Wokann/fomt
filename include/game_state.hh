@@ -2,6 +2,8 @@
 #define GAME_STATE_HH
 
 #include "prelude.h"
+#include "farm.hh"
+#include "time_of_day.hh"
 
 struct SramAccess;
 
@@ -20,15 +22,22 @@ struct GameDisplayOptions {
 
 typedef char GameDisplayOptionsSizeCheck[sizeof(GameDisplayOptions) == 4 ? 1 : -1];
 
-// Only the display options and total allocation size are recovered here.
-// The remaining save-image fields retain explicit unknown storage.
+// The initializer, copy constructor and save-summary reader agree on these
+// member offsets. Unknown ranges remain explicit storage; the native save
+// initializer/copy/cleanup bodies have not yet been recovered as C++.
 struct GameStateSaveImage {
-    u8 unk_0000[0x2210];
+    u8 unk_0000[0x10];
+    GameCalendar calendar;
+    Farm farm;
+    u8 unk_1AA8[0x768];
     GameDisplayOptions display_options;
     u8 unk_2214[0x12E0];
 };
 
 typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
+typedef char GameStateSaveImageCalendarCheck[offsetof(GameStateSaveImage, calendar) == 0x10 ? 1 : -1];
+typedef char GameStateSaveImageFarmCheck[offsetof(GameStateSaveImage, farm) == 0x14 ? 1 : -1];
+typedef char GameStateSaveImageAfterFarmCheck[offsetof(GameStateSaveImage, unk_1AA8) == 0x1AA8 ? 1 : -1];
 typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
 
 EXTERN_C

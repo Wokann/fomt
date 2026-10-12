@@ -350,10 +350,10 @@ bool func_08003F9C(struct NewGameMenuCore * core)
 bool func_080040A0(struct NewGameMenuCore * core)
     SECTION(".text.new_game_menu_update");
 
-// Formats one runtime save-summary buffer; the source image's full layout
-// and the formatter body still remain unresolved assembly.
+// Formats one runtime save-summary buffer from the save image. Calendar and
+// farm members are recovered; the formatter body still remains assembly.
 void func_08003788(struct NewGameMenuCore * core,
-    NewGameMenuSaveSlotStatus & output, void const * snapshot);
+    NewGameMenuSaveSlotStatus & output, GameStateSaveImage const * snapshot);
 
 // Initialize the supplied storage and consume the transition pointer word.
 // This explicit pointer-reference view preserves the native ownership ABI;

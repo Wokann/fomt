@@ -20,18 +20,26 @@ struct TimeOfDayTransition
     u8 value;
 };
 
-// The callers pass a pointer to this original calendar/time record.  The first
-// byte's meaning is still unconfirmed.
-struct Unk_0800E324
+// Stored at +0x10 in the save image. The first byte encodes the year as
+// seven times its high five bits plus its low three bits; the following
+// fields are the packed date and clock used by the calendar consumers.
+struct GameCalendar
 {
-    u8 unk_00;
+    u8 year_remainder : 3;
+    u8 year_quotient : 5;
     GameDate date;
     GameTime time;
+
+    u32 GetYear() const { return year_quotient * 7 + year_remainder; }
 };
+
+typedef char GameCalendarSizeCheck[sizeof(GameCalendar) == 4 ? 1 : -1];
+typedef char GameCalendarDateCheck[offsetof(GameCalendar, date) == 1 ? 1 : -1];
+typedef char GameCalendarTimeCheck[offsetof(GameCalendar, time) == 2 ? 1 : -1];
 
 extern "C" char const * func_0800E2E4(Season season);
 extern "C" char const * func_0800E304(unsigned int week_day);
-extern "C" u32 func_0800E324(Unk_0800E324 const & arg_0);
+extern "C" u32 func_0800E324(GameCalendar const & arg_0);
 
 extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Morning[];
 extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Afternoon[];

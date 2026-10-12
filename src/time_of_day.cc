@@ -24,7 +24,7 @@ extern "C" char const * func_0800E304(unsigned int week_day)
     return gText_Calendar_None;
 }
 
-extern "C" u32 func_0800E324(Unk_0800E324 const & arg_0)
+extern "C" u32 func_0800E324(GameCalendar const & arg_0)
 {
     GameDate const & date = arg_0.date;
     GameTime const & time = arg_0.time;
