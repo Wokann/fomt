@@ -26,11 +26,10 @@ u32 func_08000664(void *destination)
     u32 limit;
 
     for (index = 0; index <= 7; index++)
-        bytes[index] |= 0xFF;
+        bytes[index] = 0xFF;
 
     offset = 0;
     limit = 0x8000;
-    __asm__ volatile ("" : "+r"(limit));
     do
     {
         func_080006A4(destination, offset, bytes, 8);
@@ -70,28 +69,18 @@ u32 func_080006A4(void *destination, u32 offset, void const *source, u32 size)
 
 u32 func_080006E4(void *unused, void *destination, u32 offset, u32 size)
 {
-    register void *destination_register asm("r5");
-    register u32 offset_register asm("r4");
-    register u32 size_register asm("r2");
-
-    destination_register = destination;
-    offset_register = offset;
-    size_register = size;
-    __asm__ volatile ("" : "+r"(size_register));
     gUnk_03000400 = 0;
-    if (size_register == 0)
+    if (size == 0)
         return 0;
 
-    ReadSramFast((u8 const *)(0x0E000000 | offset_register), destination_register, size_register);
+    ReadSramFast((u8 const *)(0x0E000000 | offset), destination, size);
     return 1;
 }
 
 u32 func_08000714(u8 const *context, void (*handler)(void))
 {
-    register u32 flags asm("r0") = context[4];
-    register u32 mask asm("r2") = 3;
-    __asm__ volatile ("" : "+r"(flags));
-    __asm__ volatile ("" : "+r"(mask));
+    u32 flags = context[4];
+    u32 mask = 3;
     return func_080D100C((flags & mask) + 3, handler);
 }
 
