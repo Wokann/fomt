@@ -193,8 +193,10 @@ struct NewGameIdentityScene {
     NewGameIdentityCore * core;
 };
 
-// Each name-input sprite has four still-unresolved control bytes before its
-// native eight-byte OAM record. The initializer clears only the OAM record.
+// Each name-input sprite has four control bytes before its native OAM record.
+// Sprite 0 uses bytes 0/1 for keyboard column/row; sprite 1 uses byte 0 for
+// the name-slot caret. The remaining bytes retain their unknown meanings.
+// The initializer clears only the OAM record.
 struct NewGameNameInputSpriteState {
     u8 unk_00[4];
     HardwareSpriteOamRecord attributes;
@@ -433,7 +435,9 @@ void func_0800637C(NewGameNameInputCore * core);
 void func_080064E8(NewGameNameInputCore * core);
 void func_08006858(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_submit_sprites");
-void func_080068CC(NewGameNameInputCore * core);
+// Position both cursors and select the keyboard-cell or bottom-button shape.
+void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
+    SECTION(".text.new_game_name_input_cursor_sprites");
 // Insert the selected keyboard character and advance the fixed name-slot caret.
 void InsertNameInputCharacter(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_insert_character");

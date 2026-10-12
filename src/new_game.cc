@@ -631,7 +631,7 @@ SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
     {
         func_080088B8(reinterpret_cast<void * const *>(core));
         ProcessNameInputKeys(core);
-        func_080068CC(core);
+        UpdateNameInputCursorSprites(core);
         func_0800637C(core);
         func_080064E8(core);
         func_08006858(core);
@@ -737,6 +737,47 @@ void func_08006858(NewGameNameInputCore * core)
                 reinterpret_cast<u16 const *>(&core->sprites[1].attributes)[2];
             buffer->sprite_count = count + 1;
         }
+    }
+}
+
+void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
+{
+#if defined(REGION_JP)
+    core->sprites[1].attributes.x = core->sprites[1].unk_00[0] * 16 + 0x90;
+#else
+    core->sprites[1].attributes.x = core->sprites[1].unk_00[0] * 8 + 0x90;
+#endif
+    core->sprites[1].attributes.y = 8;
+
+#if defined(REGION_DE)
+    if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 6) {
+#else
+    if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 5) {
+#endif
+        core->sprites[0].attributes.x = static_cast<i8>(core->sprites[0].unk_00[0]) * 16;
+        core->sprites[0].attributes.y = static_cast<i8>(core->sprites[0].unk_00[1]) * 16 + 0x20;
+#if defined(REGION_JP)
+        core->sprites[0].attributes.size = 1;
+        core->sprites[0].attributes.shape = 0;
+#else
+        core->sprites[0].attributes.size = 0;
+        core->sprites[0].attributes.shape = 2;
+#endif
+    } else {
+        u8 group = 0;
+        u8 column = core->sprites[0].unk_00[0];
+        while (column > 4) {
+            column -= 5;
+            group++;
+        }
+        core->sprites[0].attributes.x = group * 80 + 0x18;
+#if defined(REGION_DE)
+        core->sprites[0].attributes.y = 0x90;
+#else
+        core->sprites[0].attributes.y = 0x88;
+#endif
+        core->sprites[0].attributes.size = 2;
+        core->sprites[0].attributes.shape = 1;
     }
 }
 
