@@ -412,7 +412,6 @@ UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
 void DestroyUnkFontDrawObject(UnkFontDrawObject * object)
     SECTION(".text.font_draw_after");
 
-extern void const * const vtable_unk_080E7858[];
 extern void const * const vtable_unk_080E7868[];
 extern void func_080098AC(void * object);
 

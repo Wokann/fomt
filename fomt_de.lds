@@ -237,8 +237,8 @@ SECTIONS
         src/font_draw.o(.text);
         . = 0x4E8C8; src/font_draw.o(.text.font_draw_after);
         asm/code_0803EE94.o(.text.font_draw_after);
-        src/font.o(.text.font_full_width_decimal);
-        asm/code_0803EE94.o(.text.font_full_width_decimal_after);
+        src/font.o(.text.font_decimal);
+        asm/code_0803EE94.o(.text.font_decimal_after);
         . = 0x502F4; /* DE ROM 0x080502F4, nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
         . = 0x50308; /* DE ROM 0x08050308, nonzero UI-state clearer. */

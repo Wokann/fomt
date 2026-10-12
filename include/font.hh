@@ -17,12 +17,47 @@ i32 DrawCharacterGlyph(void *destination, i32 character);
 // truncates to that many characters. Width must fit the original twelve-byte
 // work buffers; output needs two bytes per resulting character plus the NUL.
 void FormatFullWidthDecimal(i32 value, char * output, u32 width)
-    SECTION(".text.font_full_width_decimal");
+    SECTION(".text.font_decimal");
 
 // Native signed ASCII formatter. A nonzero width pads or truncates the
 // magnitude before prepending the sign; zero selects its actual digit count.
-// The existing assembly implementation retains the original buffer limits.
-void FormatSignedDecimal(i32 value, char * output, u32 width);
+// The twelve-byte work buffer and the original extreme-input behavior remain.
+void FormatSignedDecimal(i32 value, char * output, u32 width)
+    SECTION(".text.font_decimal");
+
+// Draws decimal digits from right to left, using four consecutive tiles per
+// digit. right_tile points to the upper-right tile of the final digit;
+// row_stride counts u16 entries, and palette occupies the tilemap's high bits.
+void DrawDecimalTo2x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
+    u32 palette, u32 row_stride) SECTION(".text.font_decimal");
+
+// The metadata entries and native callbacks are not invoked through this
+// opaque table type. Only their actual table addresses are used here.
+typedef void (*FontTilemapDecimalVTableFunction)(void);
+extern FontTilemapDecimalVTableFunction const vtable_unk_080E7848[];
+extern FontTilemapDecimalVTableFunction const vtable_unk_080E7858[];
+
+typedef struct FontTilemapDecimalCommand {
+    void * unk_00;
+    void * unk_04;
+    FontTilemapDecimalVTableFunction const * vtable;
+    u32 value;
+    u16 * right_tile;
+    u16 base_tile;
+    u16 palette;
+    u32 row_stride;
+} FontTilemapDecimalCommand;
+
+typedef char FontTilemapDecimalCommandSizeCheck[sizeof(FontTilemapDecimalCommand) == 0x1C ? 1 : -1];
+typedef char FontTilemapDecimalCommandValueCheck[offsetof(FontTilemapDecimalCommand, value) == 0x0C ? 1 : -1];
+typedef char FontTilemapDecimalCommandDestinationCheck[offsetof(FontTilemapDecimalCommand, right_tile) == 0x10 ? 1 : -1];
+typedef char FontTilemapDecimalCommandBaseTileCheck[offsetof(FontTilemapDecimalCommand, base_tile) == 0x14 ? 1 : -1];
+typedef char FontTilemapDecimalCommandPaletteCheck[offsetof(FontTilemapDecimalCommand, palette) == 0x16 ? 1 : -1];
+typedef char FontTilemapDecimalCommandRowStrideCheck[offsetof(FontTilemapDecimalCommand, row_stride) == 0x18 ? 1 : -1];
+
+FontTilemapDecimalCommand * InitializeFontTilemapDecimalCommand(
+    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
+    u16 base_tile, u16 palette, u32 row_stride) SECTION(".text.font_decimal");
 
 // Writes an unsigned 32-bit value as ASCII decimal followed by a terminator.
 // The caller provides space for up to ten digits and the terminator.

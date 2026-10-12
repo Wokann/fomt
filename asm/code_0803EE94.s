@@ -4595,168 +4595,8 @@ func_0804EA94:
     .byte 0x10, 0x47, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x01, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0xFE
     .byte 0x00, 0xFC, 0xFF, 0xFF, 0xFF, 0x0F, 0xFF, 0xFF, 0xFF, 0xF3, 0xFF, 0xFF, 0xFF, 0x3F, 0xFF, 0xFF
     .byte 0xFF, 0xFF, 0xFF, 0x3F
-    .section .text.font_full_width_decimal_after
-    .global FormatSignedDecimal
-    .thumb_func
-FormatSignedDecimal: @ 0x0804EAAC
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    sub sp, #0xc
-    adds r7, r1, #0
-    mov r8, r2
-    lsrs r1, r0, #0x1f
-    mov sb, r1
-    movs r4, #0
-    adds r5, r0, #0
-    cmp r5, #0
-    bge .Ljp_0804EAC8
-    rsbs r5, r5, #0
-.Ljp_0804EAC8:
-    movs r6, #1
-.Ljp_0804EACA:
-    add r4, sp
-    adds r0, r5, #0
-    movs r1, #0xa
-    bl __modsi3
-    adds r0, #0x30
-    strb r0, [r4]
-    adds r4, r6, #0
-    adds r0, r5, #0
-    movs r1, #0xa
-    bl __divsi3
-    adds r5, r0, #0
-    cmp r5, #0
-    ble .Ljp_0804EAF0
-    adds r0, r4, #1
-    adds r6, r0, #0
-    cmp r6, #0xa
-    bls .Ljp_0804EACA
-.Ljp_0804EAF0:
-    mov r2, r8
-    cmp r2, #0
-    beq .Ljp_0804EB10
-    cmp r8, r4
-    bhs .Ljp_0804EAFE
-    mov r4, r8
-    b .Ljp_0804EB10
-.Ljp_0804EAFE:
-    cmp r8, r4
-    bls .Ljp_0804EB10
-    movs r1, #0x20
-.Ljp_0804EB04:
-    mov r2, sp
-    adds r0, r2, r4
-    strb r1, [r0]
-    adds r4, #1
-    cmp r8, r4
-    bhi .Ljp_0804EB04
-.Ljp_0804EB10:
-    mov r0, sb
-    cmp r0, #0
-    beq .Ljp_0804EB20
-    mov r2, sp
-    adds r1, r2, r4
-    movs r0, #0x2d
-    strb r0, [r1]
-    adds r4, #1
-.Ljp_0804EB20:
-    subs r4, #1
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r4, r0
-    beq .Ljp_0804EB3C
-    adds r1, r0, #0
-.Ljp_0804EB2C:
-    mov r2, sp
-    adds r0, r2, r4
-    ldrb r0, [r0]
-    strb r0, [r7]
-    adds r7, #1
-    subs r4, #1
-    cmp r4, r1
-    bne .Ljp_0804EB2C
-.Ljp_0804EB3C:
-    movs r0, #0
-    strb r0, [r7]
-    add sp, #0xc
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
+    .section .text.font_decimal_after
 
-    .global func_0804ED28
-    .thumb_func
-func_0804ED28: @ 0x0804EB50
-    push {r4, r5, r6, r7, lr}
-    adds r4, r0, #0
-    lsls r2, r2, #0x10
-    lsrs r7, r2, #0x10
-    lsls r3, r3, #0x10
-    adds r5, r1, #0
-    lsrs r6, r3, #4
-.Ljp_0804EB5E:
-    adds r0, r4, #0
-    movs r1, #0xa
-    bl __udivsi3
-    lsls r2, r0, #2
-    adds r2, r2, r0
-    lsls r2, r2, #1
-    subs r2, r4, r2
-    lsls r2, r2, #2
-    adds r2, r7, r2
-    adds r1, r2, #1
-    orrs r1, r6
-    strh r1, [r5]
-    subs r3, r5, #2
-    adds r1, r6, #0
-    orrs r1, r2
-    strh r1, [r3]
-    ldr r1, [sp, #0x14]
-    lsls r3, r1, #1
-    adds r3, r3, r5
-    adds r1, r2, #3
-    orrs r1, r6
-    strh r1, [r3]
-    subs r3, #2
-    adds r2, #2
-    orrs r2, r6
-    strh r2, [r3]
-    adds r4, r0, #0
-    subs r5, #4
-    cmp r4, #0
-    bne .Ljp_0804EB5E
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_0804EBA4:
-    push {r4, r5, r6, lr}
-    ldr r5, [sp, #0x10]
-    ldr r6, [sp, #0x14]
-    movs r4, #0
-    str r4, [r0]
-    str r4, [r0, #4]
-    ldr r4, .Ljp_0804EBC4
-    str r4, [r0, #8]
-    str r1, [r0, #0xc]
-    str r2, [r0, #0x10]
-    strh r3, [r0, #0x14]
-    strh r5, [r0, #0x16]
-    str r6, [r0, #0x18]
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_0804EBC4: .4byte vtable_unk_080E7848
-
-    @ The four adjacent JP raw ranges contain the same six virtual-object
-    @ entries as the ordinary regions.  Keep their common logical names even
-    @ though JP places them at earlier physical addresses.
     .global func_0804EE1C
     .thumb_func
 func_0804EE1C: @ 0x0804EBC8
@@ -4864,7 +4704,7 @@ func_0804EEBC: @ 0x0804EC68
     ldr r0, [r0, #0x18]
     str r0, [sp]
     adds r0, r4, #0
-    bl func_0804ED28
+    bl DrawDecimalTo2x2Tilemap
     movs r0, #0
     add sp, #4
     pop {r4}
@@ -27480,7 +27320,7 @@ func_0805FF14:
 	movs r5, #0x20
 	str r5, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0x1cc]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r4
@@ -30006,7 +29846,7 @@ sub_08061E00:
 	movs r4, #0x20
 	str r4, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r7, [sp, #0x1cc]
 	ldr r0, [r7, #0x18]
 	adds r0, r0, r5
@@ -30189,7 +30029,7 @@ sub_08061E00:
 	movs r4, #0x20
 	str r4, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0x1cc]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r5
@@ -30381,7 +30221,7 @@ sub_08061E00:
 	movs r4, #0x20
 	str r4, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r7, [sp, #0x1cc]
 	ldr r0, [r7, #0x18]
 	adds r0, r0, r5
@@ -30564,7 +30404,7 @@ sub_08061E00:
 	movs r4, #0x20
 	str r4, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0x1cc]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r5
@@ -30751,7 +30591,7 @@ sub_08061E00:
 	movs r4, #0x20
 	str r4, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0x1cc]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r5
@@ -30952,7 +30792,7 @@ sub_08061E00:
 	movs r4, #0x20
 	str r4, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r7, [sp, #0x1cc]
 	ldr r0, [r7, #0x18]
 	adds r0, r0, r5
@@ -31136,7 +30976,7 @@ sub_08061E00:
 	movs r4, #0x20
 	str r4, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r7, [sp, #0x1cc]
 	ldr r0, [r7, #0x18]
 	adds r0, r0, r5
@@ -33871,7 +33711,7 @@ func_08063EB8:
 	lsls r2, r2, #1
 	str r5, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r4, #0x18]
 	adds r0, r0, r7
 	adds r0, #0x36
@@ -33982,7 +33822,7 @@ func_08063EB8:
 	str r5, [sp]
 	adds r0, r4, #0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r4, [sp, #0x4c]
 	ldr r0, [r4, #0x18]
 	adds r0, r0, r6
@@ -38507,7 +38347,7 @@ sub_08065B14:
 	lsls r2, r2, #1
 	str r5, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0xf4]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r4
@@ -42009,7 +41849,7 @@ func_0806644C:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0xf8]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r4
@@ -42103,7 +41943,7 @@ func_0806644C:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r2, [sp, #0xf8]
 	ldr r1, [r2, #0x18]
 	add r1, sb
@@ -42113,7 +41953,7 @@ func_0806644C:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0xf8]
 	ldr r0, [r3, #0x18]
 	add r0, sl
@@ -42314,7 +42154,7 @@ func_0806644C:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0xf8]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r4
@@ -42865,7 +42705,7 @@ func_0806644C:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r2, [sp, #0xf8]
 	ldr r1, [r2, #0x18]
 	adds r1, r1, r7
@@ -42876,7 +42716,7 @@ func_0806644C:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r4, [sp, #0xf8]
 	ldr r0, [r4, #0x18]
 	adds r0, r0, r6
@@ -45755,7 +45595,7 @@ func_08068344:
 	str r5, [sp]
 	adds r1, r4, #0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r4, [sp, #0xc0]
 	ldr r0, [r4, #0x18]
 	b .Ljp_phys_080698E2
@@ -46094,7 +45934,7 @@ func_08068344:
 	str r5, [sp]
 	adds r1, r4, #0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0xc0]
 	ldr r0, [r3, #0x18]
 .Ljp_phys_080698E2:
@@ -46222,7 +46062,7 @@ func_08068344:
 	str r5, [sp]
 	adds r1, r4, #0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0xc0]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r6
@@ -50060,7 +49900,7 @@ func_0806A1F4:
 	str r6, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	add r0, sl
@@ -50172,7 +50012,7 @@ func_0806A1F4:
 	adds r0, r4, #0
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r5
@@ -50533,7 +50373,7 @@ func_0806A1F4:
 	str r2, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	add r0, sl
@@ -50645,7 +50485,7 @@ func_0806A1F4:
 	adds r0, r4, #0
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r5
@@ -51008,7 +50848,7 @@ func_0806A1F4:
 	str r2, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	add r0, sl
@@ -51120,7 +50960,7 @@ func_0806A1F4:
 	adds r0, r4, #0
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r5
@@ -61622,7 +61462,7 @@ func_08070DE4:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r7, [sp, #0xd4]
 	ldr r0, [r7, #0x18]
 	adds r0, r0, r4
@@ -63578,7 +63418,7 @@ func_080713B8:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0x10c]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -63609,7 +63449,7 @@ func_080713B8:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0x10c]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r5
@@ -63652,7 +63492,7 @@ func_080713B8:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0x108]
 	cmp r3, #7
 	bgt .Ljp_08071ED8
@@ -65693,7 +65533,7 @@ func_080722DC:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x18]
 	adds r0, r0, r4
 	adds r0, #0x34
@@ -65745,7 +65585,7 @@ func_080722DC:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x18]
 	adds r0, r0, r4
 	adds r0, #0x34
@@ -65797,7 +65637,7 @@ func_080722DC:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r5, #0x18]
 	adds r0, r0, r4
 	adds r0, #0x34
@@ -65862,7 +65702,7 @@ func_080722DC:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	movs r7, #0x19
 	adds r0, r5, #0
 	movs r1, #0x64
@@ -65891,7 +65731,7 @@ func_080722DC:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	movs r7, #0x13
 .Ljp_08072F8E:
 	adds r0, r5, #0
@@ -65924,7 +65764,7 @@ func_080722DC:
 	movs r2, #0x90
 	lsls r2, r2, #1
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 .Ljp_08072FD2:
 	ldr r4, [sp, #0x20c]
 	adds r4, #3
@@ -66800,7 +66640,7 @@ func_080722DC:
 	movs r0, #1
 	mov r2, r8
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0x208]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r5
@@ -66851,7 +66691,7 @@ func_080722DC:
 	str r4, [sp]
 	mov r2, r8
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -66874,7 +66714,7 @@ func_080722DC:
 	movs r0, #1
 	mov r2, r8
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0x208]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r5
@@ -66922,7 +66762,7 @@ func_080722DC:
 	str r4, [sp]
 	mov r2, r8
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -66945,7 +66785,7 @@ func_080722DC:
 	movs r0, #1
 	mov r2, r8
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0x208]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r5
@@ -66993,7 +66833,7 @@ func_080722DC:
 	str r4, [sp]
 	mov r2, r8
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -67016,7 +66856,7 @@ func_080722DC:
 	movs r0, #1
 	mov r2, r8
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r1, [sp, #0x208]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r5
@@ -67064,7 +66904,7 @@ func_080722DC:
 	str r4, [sp]
 	mov r2, r8
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -69576,7 +69416,7 @@ func_080722DC:
 	lsls r2, r2, #1
 	str r5, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r7, [sp, #0x208]
 	ldr r0, [r7, #0x18]
 	adds r0, r0, r4
@@ -69984,7 +69824,7 @@ func_080722DC:
 	lsls r2, r2, #1
 	str r5, [sp]
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r4
@@ -70071,7 +69911,7 @@ func_080722DC:
 	str r4, [sp]
 	adds r0, r6, #0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	movs r7, #0x16
 .Ljp_08074EDA:
 	mov r0, sb
@@ -70109,7 +69949,7 @@ func_080722DC:
 	str r4, [sp]
 	adds r0, r6, #0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	subs r7, #2
 .Ljp_08074F2A:
 	mov r0, sb
@@ -70145,7 +69985,7 @@ func_080722DC:
 	str r4, [sp]
 	adds r0, r6, #0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 .Ljp_08074F74:
 	add sp, #8
 	pop {r3, r4, r5}
@@ -81798,7 +81638,7 @@ func_0807AD2C: @ 0x0807AD2C
 	str r7, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r6, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r4
@@ -86126,7 +85966,7 @@ func_0807CD80: @ 0x0807CD80
 	str r3, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r4
@@ -87242,7 +87082,7 @@ func_0807DE3C: @ 0x0807D9A4
 	str r6, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r4
@@ -88219,7 +88059,7 @@ func_0807E0C0: @ 0x0807E0C0
 	str r3, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r4
@@ -89559,7 +89399,7 @@ func_0807EAF8:
 	str r3, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r4
@@ -90380,7 +90220,7 @@ func_0807F250:
     str r2, [sp]
     movs r2, #0xa0
     movs r3, #0
-    bl func_0804ED28
+    bl DrawDecimalTo2x2Tilemap
     ldr r0, [r7, #0x1c]
     ldr r0, [r0, #0x18]
     adds r0, r0, r4
@@ -90962,7 +90802,7 @@ func_080800A8:
 	str r3, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r4
@@ -92191,7 +92031,7 @@ func_080809E0:
 	str r3, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r4
@@ -93816,7 +93656,7 @@ func_08081734:
 	str r3, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r4
@@ -95028,7 +94868,7 @@ func_0808268C:
 	str r5, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r6, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r4
@@ -97991,7 +97831,7 @@ func_080837DC: @ 0x080837DC
 	str r3, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r5
@@ -99094,7 +98934,7 @@ func_080851B8:
 	str r7, [sp]
 	movs r2, #0xa0
 	movs r3, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	ldr r0, [r6, #0x1c]
 	ldr r0, [r0, #0x18]
 	adds r0, r0, r4
@@ -150597,162 +150437,7 @@ func_0804EA94: @ 0x0804EA94
 .L0804EB58: .4byte 0xFFFFF3FF
 .L0804EB5C: .4byte 0xFFFF3FFF
 .L0804EB60: .4byte 0x3FFFFFFF
-    .section .text.font_full_width_decimal_after
-	thumb_func_start FormatSignedDecimal
-FormatSignedDecimal: @ 0x0804EC84
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #0xc
-	adds r7, r1, #0
-	mov r8, r2
-	lsrs r1, r0, #0x1f
-	mov sb, r1
-	movs r4, #0
-	adds r5, r0, #0
-	cmp r5, #0
-	bge .L0804ECA0
-	rsbs r5, r5, #0
-.L0804ECA0:
-	movs r6, #1
-.L0804ECA2:
-	add r4, sp
-	adds r0, r5, #0
-	movs r1, #0xa
-	bl __modsi3
-	adds r0, #0x30
-	strb r0, [r4]
-	adds r4, r6, #0
-	adds r0, r5, #0
-	movs r1, #0xa
-	bl __divsi3
-	adds r5, r0, #0
-	cmp r5, #0
-	ble .L0804ECC8
-	adds r0, r4, #1
-	adds r6, r0, #0
-	cmp r6, #0xa
-	bls .L0804ECA2
-.L0804ECC8:
-	mov r2, r8
-	cmp r2, #0
-	beq .L0804ECE8
-	cmp r8, r4
-	bhs .L0804ECD6
-	mov r4, r8
-	b .L0804ECE8
-.L0804ECD6:
-	cmp r8, r4
-	bls .L0804ECE8
-	movs r1, #0x20
-.L0804ECDC:
-	mov r2, sp
-	adds r0, r2, r4
-	strb r1, [r0]
-	adds r4, #1
-	cmp r8, r4
-	bhi .L0804ECDC
-.L0804ECE8:
-	mov r0, sb
-	cmp r0, #0
-	beq .L0804ECF8
-	mov r2, sp
-	adds r1, r2, r4
-	movs r0, #0x2d
-	strb r0, [r1]
-	adds r4, #1
-.L0804ECF8:
-	subs r4, #1
-	movs r0, #1
-	rsbs r0, r0, #0
-	cmp r4, r0
-	beq .L0804ED14
-	adds r1, r0, #0
-.L0804ED04:
-	mov r2, sp
-	adds r0, r2, r4
-	ldrb r0, [r0]
-	strb r0, [r7]
-	adds r7, #1
-	subs r4, #1
-	cmp r4, r1
-	bne .L0804ED04
-.L0804ED14:
-	movs r0, #0
-	strb r0, [r7]
-	add sp, #0xc
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_0804ED28
-func_0804ED28: @ 0x0804ED28
-	push {r4, r5, r6, r7, lr}
-	adds r4, r0, #0
-	lsls r2, r2, #0x10
-	lsrs r7, r2, #0x10
-	lsls r3, r3, #0x10
-	adds r5, r1, #0
-	lsrs r6, r3, #4
-.L0804ED36:
-	adds r0, r4, #0
-	movs r1, #0xa
-	bl __udivsi3
-	lsls r2, r0, #2
-	adds r2, r2, r0
-	lsls r2, r2, #1
-	subs r2, r4, r2
-	lsls r2, r2, #2
-	adds r2, r7, r2
-	adds r1, r2, #1
-	orrs r1, r6
-	strh r1, [r5]
-	subs r3, r5, #2
-	adds r1, r6, #0
-	orrs r1, r2
-	strh r1, [r3]
-	ldr r1, [sp, #0x14]
-	lsls r3, r1, #1
-	adds r3, r3, r5
-	adds r1, r2, #3
-	orrs r1, r6
-	strh r1, [r3]
-	subs r3, #2
-	adds r2, #2
-	orrs r2, r6
-	strh r2, [r3]
-	adds r4, r0, #0
-	subs r5, #4
-	cmp r4, #0
-	bne .L0804ED36
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0804ED7C:
-	push {r4, r5, r6, lr}
-	ldr r5, [sp, #0x10]
-	ldr r6, [sp, #0x14]
-	movs r4, #0
-	str r4, [r0]
-	str r4, [r0, #4]
-	ldr r4, .L0804ED9C
-	str r4, [r0, #8]
-	str r1, [r0, #0xc]
-	str r2, [r0, #0x10]
-	strh r3, [r0, #0x14]
-	strh r5, [r0, #0x16]
-	str r6, [r0, #0x18]
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0804ED9C: .4byte vtable_unk_080E7858
+    .section .text.font_decimal_after
 
 	thumb_func_start func_0804EDA0
 func_0804EDA0: @ 0x0804EDA0
@@ -150926,7 +150611,7 @@ func_0804EEDC: @ 0x0804EEDC
 	ldr r0, [r0, #0x18]
 	str r0, [sp]
 	adds r0, r4, #0
-	bl func_0804ED28
+	bl DrawDecimalTo2x2Tilemap
 	movs r0, #0
 	add sp, #4
 	pop {r4}

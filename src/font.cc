@@ -93,6 +93,73 @@ void FormatFullWidthDecimal(i32 value, char * output, u32 width)
     *output = '\0';
 }
 
+void FormatSignedDecimal(i32 value, char * output, u32 width)
+{
+    char reversed[12];
+    bool negative = value < 0;
+    u32 count = 0;
+    i32 remaining = value;
+    if (remaining < 0)
+        remaining = -remaining;
+
+    do {
+        reversed[count++] = remaining % 10 + '0';
+        remaining /= 10;
+    } while (remaining > 0 && count + 1 <= 10);
+
+    if (width != 0) {
+        if (width < count)
+            count = width;
+        else {
+            for (; width > count; count++)
+                reversed[count] = ' ';
+        }
+    }
+    if (negative)
+        reversed[count++] = '-';
+    for (count--; count != 0xFFFFFFFF; count--)
+        *output++ = reversed[count];
+    *output = '\0';
+}
+
+void DrawDecimalTo2x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
+    u32 palette, u32 row_stride)
+{
+    u32 first_tile = static_cast<u16>(base_tile);
+    u16 palette_index = palette;
+    u16 * cursor = right_tile;
+    u32 attributes = palette_index << 12;
+    do {
+        u32 quotient = value / 10;
+        u32 tile = first_tile + (value - quotient * 10) * 4;
+        cursor[0] = (tile + 1) | attributes;
+        cursor[-1] = attributes | tile;
+        cursor[row_stride] = (tile + 3) | attributes;
+        cursor[row_stride - 1] = (tile + 2) | attributes;
+        value = quotient;
+        cursor -= 2;
+    } while (value != 0);
+}
+
+FontTilemapDecimalCommand * InitializeFontTilemapDecimalCommand(
+    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
+    u16 base_tile, u16 palette, u32 row_stride)
+{
+    object->unk_00 = nullptr;
+    object->unk_04 = nullptr;
+#if defined(REGION_JP)
+    object->vtable = vtable_unk_080E7848;
+#else
+    object->vtable = vtable_unk_080E7858;
+#endif
+    object->value = value;
+    object->right_tile = right_tile;
+    object->base_tile = base_tile;
+    object->palette = palette;
+    object->row_stride = row_stride;
+    return object;
+}
+
 void FormatUnsignedDecimal(u32 value, char * output)
 {
     char * end = output + 1;

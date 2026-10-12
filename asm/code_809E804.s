@@ -77703,7 +77703,7 @@ func_080C8550:
     str r2, [sp]
     movs r2, #0xa0
     movs r3, #0
-    bl func_0804ED28
+    bl DrawDecimalTo2x2Tilemap
     add sp, #4
     pop {r4, r5}
     pop {r0}
@@ -81193,7 +81193,7 @@ func_080CA98C:
     str r4, [sp]
     movs r2, #0xa0
     movs r3, #0
-    bl func_0804ED28
+    bl DrawDecimalTo2x2Tilemap
     ldr r0, [r5, #0x18]
     ldr r0, [r0, #0x1c]
     movs r1, #0xc
@@ -81277,7 +81277,7 @@ func_080CAAF4:
     str r2, [sp]
     movs r2, #0xa0
     movs r3, #0
-    bl func_0804ED28
+    bl DrawDecimalTo2x2Tilemap
     ldr r0, [r5, #0x18]
     ldr r0, [r0, #0x1c]
     movs r1, #0xc
