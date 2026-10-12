@@ -438,6 +438,9 @@ void func_08006858(NewGameNameInputCore * core)
 // Position both cursors and select the keyboard-cell or bottom-button shape.
 void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_cursor_sprites");
+// Move the keyboard selection with wrapping and last-row/bottom-button rules.
+void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
+    SECTION(".text.new_game_name_input_keyboard_cursor");
 // Insert the selected keyboard character and advance the fixed name-slot caret.
 void InsertNameInputCharacter(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_insert_character");
@@ -449,11 +452,6 @@ void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
 // Reject names made entirely of placeholders and spaces, without changing name.
 bool NormalizeNameInput(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_normalization");
-#if defined(REGION_JP)
-void func_080068D4(NewGameNameInputCore * core);
-#else
-void func_080069F4(NewGameNameInputCore * core);
-#endif
 void ProcessNameInputKeys(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_keys");
 void func_08006ED8(NewGameNameInputCore * core)

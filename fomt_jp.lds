@@ -107,7 +107,7 @@ SECTIONS
         asm/new_game.o(.text.new_game_name_input_after_reset);
         src/new_game.o(.text.new_game_name_input_submit_sprites);
         src/new_game.o(.text.new_game_name_input_cursor_sprites);
-        asm/new_game.o(.text.new_game_name_input_after_cursor_sprites);
+        src/new_game.o(.text.new_game_name_input_keyboard_cursor);
         src/new_game.o(.text.new_game_name_input_insert_character);
         src/new_game.o(.text.new_game_name_input_erase_character);
         src/new_game.o(.text.new_game_name_input_normalization);

@@ -781,6 +781,112 @@ void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
     }
 }
 
+void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
+{
+#if defined(REGION_DE)
+    int const last_character_row = 6;
+    int const bottom_row = 7;
+    int const last_column = 4;
+#else
+    int const last_character_row = 5;
+    int const bottom_row = 6;
+#if !defined(REGION_JP)
+    int const last_column = 12;
+#endif
+#endif
+    u32 input = func_080088D4(reinterpret_cast<void * const *>(core));
+    u32 up = input & 0x40;
+    if (static_cast<u8>(up)) {
+        func_08008B6C(&core->music_players[1], 0xCB);
+        core->sprites[0].unk_00[1]--;
+        if (static_cast<i8>(core->sprites[0].unk_00[1]) < 0) {
+            core->sprites[0].unk_00[1] = bottom_row;
+#if !defined(REGION_JP)
+            core->sprites[0].unk_00[0] = 12;
+#endif
+        }
+        if (static_cast<i8>(core->sprites[0].unk_00[1]) == last_character_row) {
+#if defined(REGION_JP)
+            int last_column = core->keyboard_page == 2 ? 12 : 9;
+#endif
+            if (static_cast<i8>(core->sprites[0].unk_00[0]) > last_column)
+                core->sprites[0].unk_00[1]--;
+        }
+    } else {
+        u32 down = input & 0x80;
+        if (static_cast<u8>(down)) {
+            func_08008B6C(&core->music_players[1], 0xCB);
+            core->sprites[0].unk_00[1]++;
+            if (static_cast<i8>(core->sprites[0].unk_00[1]) > bottom_row)
+                core->sprites[0].unk_00[1] = 0;
+            if (static_cast<i8>(core->sprites[0].unk_00[1]) == last_character_row) {
+#if defined(REGION_JP)
+                int last_column = core->keyboard_page == 2 ? 12 : 9;
+#endif
+                if (static_cast<i8>(core->sprites[0].unk_00[0]) > last_column)
+                    core->sprites[0].unk_00[1]++;
+            }
+#if !defined(REGION_JP)
+            if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row)
+                core->sprites[0].unk_00[0] = 12;
+#endif
+        } else if (input & 0x10) {
+            func_08008B6C(&core->music_players[1], 0xCB);
+            if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row) {
+#if defined(REGION_JP)
+                if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4)
+                    core->sprites[0].unk_00[0] = 7;
+                else if (static_cast<i8>(core->sprites[0].unk_00[0]) > 9)
+                    core->sprites[0].unk_00[0] = 2;
+                else
+                    core->sprites[0].unk_00[0] = 12;
+#else
+                core->sprites[0].unk_00[0] = 12;
+#endif
+            } else {
+                core->sprites[0].unk_00[0]++;
+                if (static_cast<i8>(core->sprites[0].unk_00[1]) == last_character_row) {
+#if defined(REGION_JP)
+                    int last_column = core->keyboard_page == 2 ? 12 : 9;
+#endif
+#if defined(REGION_US) || defined(REGION_EU)
+                    u32 column = core->sprites[0].unk_00[0];
+                    if (static_cast<i8>(column) > last_column)
+#else
+                    if (static_cast<i8>(core->sprites[0].unk_00[0]) > last_column)
+#endif
+                        core->sprites[0].unk_00[0] = 0;
+                } else if (static_cast<i8>(core->sprites[0].unk_00[0]) > 14)
+                    core->sprites[0].unk_00[0] = 0;
+            }
+        } else if (input & 0x20) {
+            func_08008B6C(&core->music_players[1], 0xCB);
+            if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row) {
+#if defined(REGION_JP)
+                if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4)
+                    core->sprites[0].unk_00[0] = 12;
+                else if (static_cast<i8>(core->sprites[0].unk_00[0]) > 9)
+                    core->sprites[0].unk_00[0] = 7;
+                else
+                    core->sprites[0].unk_00[0] = 2;
+#else
+                core->sprites[0].unk_00[0] = 12;
+#endif
+            } else {
+                core->sprites[0].unk_00[0]--;
+                if (static_cast<i8>(core->sprites[0].unk_00[1]) == last_character_row) {
+#if defined(REGION_JP)
+                    int last_column = core->keyboard_page == 2 ? 12 : 9;
+#endif
+                    if (static_cast<i8>(core->sprites[0].unk_00[0]) < 0)
+                        core->sprites[0].unk_00[0] = last_column;
+                } else if (static_cast<i8>(core->sprites[0].unk_00[0]) < 0)
+                    core->sprites[0].unk_00[0] = 14;
+            }
+        }
+    }
+}
+
 void InsertNameInputCharacter(NewGameNameInputCore * core)
 {
     char character[2];
@@ -906,11 +1012,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
 {
     if (core->unk_463c != 0)
         return;
-#if defined(REGION_JP)
-    func_080068D4(core);
-#else
-    func_080069F4(core);
-#endif
+    MoveNameInputKeyboardCursor(core);
     u32 input = func_080088D4(reinterpret_cast<void * const *>(core));
     if (reinterpret_cast<u8 const *>(&input)[0] & 1) {
 #if defined(REGION_DE)
