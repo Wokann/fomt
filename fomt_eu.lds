@@ -236,6 +236,8 @@ SECTIONS
         src/font_draw.o(.text);
         . = 0x4E9E4; src/font_draw.o(.text.font_draw_after);
         asm/code_0803EE94.o(.text.font_draw_after);
+        src/font.o(.text.font_full_width_decimal);
+        asm/code_0803EE94.o(.text.font_full_width_decimal_after);
         . = 0x50410; /* JP/US-shared nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
         . = 0x50424; /* JP/US-shared nonzero UI-state clearer. */

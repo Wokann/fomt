@@ -404,13 +404,13 @@ i32 DrawCharacterGlyphTo2DGfxBufferExtUnaligned(u32 size, void *buffer,
 void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
     SECTION(".text.font_draw_after");
 void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
-    u32 height, u32 palette, u32 row_stride) asm("func_0804E9F4")
+    u32 height, u32 palette, u32 row_stride)
     SECTION(".text.font_draw_after");
 UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
     u32 unk_0c, u16 unk_12, u32 unk_14, u32 unk_18, u16 unk_10,
-    u32 unk_1c) asm("func_0804EA58") SECTION(".text.font_draw_after");
+    u32 unk_1c) SECTION(".text.font_draw_after");
 void DestroyUnkFontDrawObject(UnkFontDrawObject * object)
-    asm("func_0804EA80") SECTION(".text.font_draw_after");
+    SECTION(".text.font_draw_after");
 
 extern void const * const vtable_unk_080E7858[];
 extern void const * const vtable_unk_080E7868[];
@@ -524,10 +524,5 @@ void DestroyUnkFontDrawObject(UnkFontDrawObject * object)
     object->vtable = vtable;
     func_080098AC(object);
 }
-
-#if defined(REGION_JP)
-// The JP virtual table stores the destructor's distinct original entry label.
-void func_0804E8A8(UnkFontDrawObject * object) ALIAS(func_0804EA80);
-#endif
 
 EXTERN_C_END

@@ -4981,7 +4981,7 @@ func_08012AA4:
     adds r0, r2, #0
     mov r1, sp
     movs r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     adds r4, #0xb0
     ldr r0, [r4]
     adds r1, r5, #0
@@ -5014,7 +5014,7 @@ func_08012ADC:
     adds r0, r2, #0
     mov r1, sp
     adds r2, r3, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     adds r4, #0xb0
     ldr r0, [r4]
     adds r1, r5, #0
@@ -28395,7 +28395,7 @@ func_08012AA4: @ 0x08012AA4
     adds r0, r2, #0
     mov r1, sp
     movs r2, #0
-    bl func_0804EC84
+    bl FormatSignedDecimal
     adds r4, #0xb0
     ldr r0, [r4]
     adds r1, r5, #0
@@ -28426,7 +28426,7 @@ func_08012ADC: @ 0x08012ADC
     adds r0, r2, #0
     mov r1, sp
     adds r2, r3, #0
-    bl func_0804EC84
+    bl FormatSignedDecimal
     adds r4, #0xb0
     ldr r0, [r4]
     adds r1, r5, #0

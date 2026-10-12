@@ -285,7 +285,7 @@ enum
 };
 
 // These native objects physically precede the layout-position table.  The
-// full-width decimal formatter func_0804E98C reads two encoded bytes from
+// full-width decimal formatter FormatFullWidthDecimal reads two encoded bytes from
 // each three-byte digit row, or from the space/hyphen strings.  Its checked
 // ASCII index uses (DigitRows - '0' * 3) + character * 3; the terminator is
 // not copied.  Existing names still describe the verified physical layout.

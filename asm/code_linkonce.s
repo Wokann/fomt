@@ -35771,6 +35771,7 @@ func_080E0EF0:
     bx r0
     .byte 0x00, 0x00
     .section .text.code_080E0F48, "ax", %progbits
+    .align 2, 0
 
     .global func_080E0F48
     .thumb_func
@@ -41231,14 +41232,14 @@ func_080E36D8:
     ldrsb r0, [r3, r0]
     adds r1, #2
     movs r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     b .Lauto_080E37D8
     .Lauto_080E37CC:
     movs r0, #4
     ldrsb r0, [r3, r0]
     mov r1, sp
     movs r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     .Lauto_080E37D8:
     add r5, sp, #0x20
     mov r0, sp
@@ -43700,6 +43701,7 @@ func_080E0EF0: @ 0x080E0EF0
 	.align 2, 0
 
     .section .text.code_080E0F48, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E0F48
 func_080E0F48: @ 0x080E0F48
@@ -44429,7 +44431,7 @@ func_080E14B8: @ 0x080E14B8
 	ldr r0, [r3, #0x14]
 	mov r1, sp
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r5, sp, #8
 	mov r0, sp
 	bl strlen
@@ -50227,14 +50229,14 @@ func_080E3F40: @ 0x080E3F40
 	ldrsb r0, [r3, r0]
 	adds r1, #2
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	b .L080E4040
 .L080E4034:
 	movs r0, #4
 	ldrsb r0, [r3, r0]
 	mov r1, sp
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 .L080E4040:
 	add r5, sp, #0x20
 	mov r0, sp

@@ -33130,7 +33130,7 @@ func_080AE2CC:
 	ldrb r0, [r0]
 	add r1, sp, #0x10
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	ldr r1, .Ljp_080AE40C @ =0x05000240
 	movs r3, #0xf8
 	lsls r3, r3, #2
@@ -37112,7 +37112,7 @@ func_080B0140:
 	ldrb r0, [r5]
 	add r1, sp, #0xC
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	ldrb r0, [r5]
 	cmp r0, #9
 	bhi .Ljp_080B01A6
@@ -39634,7 +39634,7 @@ func_080B1584: @ 0x080B1584
 	ldrb r0, [r0]
 	add r1, sp, #0xc
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	add r0, sp, #0x14
 	ldr r4, .Ljp_080B1650 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix
 	adds r1, r4, #0
@@ -40556,7 +40556,7 @@ func_080B1B48: @ 0x080B1B48
 	movs r0, #0
 	ldr r1, [sp, #0x110]
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	movs r6, #0
 	mov sb, r6
 	ldr r7, [sp, #0x110]
@@ -42309,7 +42309,7 @@ func_080B1B48: @ 0x080B1B48
 	ldr r0, [r4]
 	ldr r1, [sp, #0x110]
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	ldr r1, [sp, #0xf8]
 	lsls r4, r1, #6
 	adds r0, r4, r1
@@ -42583,7 +42583,7 @@ func_080B1B48: @ 0x080B1B48
 	str r0, [r1]
 	ldr r1, [sp, #0x110]
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	mov r5, sb
 	lsls r4, r5, #6
 	adds r0, r4, r5
@@ -62900,7 +62900,7 @@ func_080BCEC8:
     ldrb r0, [r0]
     add r1, sp, #0x10
     movs r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     ldr r1, [pc, #0xd8]
     movs r3, #0xf8
     lsls r3, r3, #2
@@ -66969,7 +66969,7 @@ func_080BF764:
     movs r0, #0
     add r1, sp, #0x28
     movs r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     ldr r6, [sp, #0xc8]
     lsls r4, r6, #6
     adds r0, r4, r6
@@ -67860,7 +67860,7 @@ func_080BF764:
     ldr r0, [r4]
     add r1, sp, #0x28
     movs r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     ldr r1, [sp, #0xdc]
     lsls r4, r1, #6
     adds r0, r4, r1
@@ -68131,7 +68131,7 @@ func_080BF764:
     str r0, [r1]
     add r1, sp, #0x28
     movs r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     ldr r5, [sp, #0xc8]
     lsls r4, r5, #6
     adds r0, r4, r5
@@ -70075,7 +70075,7 @@ func_080C14C8:
     ldrb r0, [r0]
     add r1, sp, #0x10
     movs r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     ldr r1, [pc, #0xd8]
     movs r3, #0xf8
     lsls r3, r3, #2
@@ -80967,7 +80967,7 @@ func_080CA8B4:
     movs r1, #0x2e
     movs r2, #1
     movs r3, #1
-    bl func_0804E9F4
+    bl Fill2DGfxTilemapRect
     ldr r0, [r6, #0x18]
     ldr r1, [r0, #0x1c]
     ldr r0, [r6, #0xc]
@@ -80998,7 +80998,7 @@ func_080CA8B4:
     movs r1, #0x30
     movs r2, #1
     movs r3, #1
-    bl func_0804E9F4
+    bl Fill2DGfxTilemapRect
     ldr r0, [r6, #0x18]
     ldr r0, [r0, #0x1c]
     ldr r1, [r6, #0xc]
@@ -81014,7 +81014,7 @@ func_080CA8B4:
     movs r1, #0x2f
     movs r2, #1
     movs r3, #1
-    bl func_0804E9F4
+    bl Fill2DGfxTilemapRect
     ldr r0, [r6, #0x18]
     ldr r0, [r0, #0x1c]
     movs r4, #0xc
@@ -86792,7 +86792,7 @@ func_080CE480: @ 0x080CDC90
 	mov r1, r8
 	adds r2, r5, #0
 	mov r3, sb
-	bl func_0804EA58
+	bl InitializeUnkFontDrawObject
 	adds r4, r0, #0
 	mov r0, sl
 	adds r0, #0xc0
@@ -124184,7 +124184,7 @@ func_080AE894: @ 0x080AE894
 	ldrb r0, [r0]
 	add r1, sp, #0x10
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r1, .L080AE9D4 @ =0x05000240
 	movs r3, #0xf8
 	lsls r3, r3, #2
@@ -128166,7 +128166,7 @@ func_080B0708: @ 0x080B0708
 	ldrb r0, [r5]
 	add r1, sp, #0xc
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldrb r0, [r5]
 	cmp r0, #9
 	bhi .L080B0764
@@ -130680,7 +130680,7 @@ func_080B1B40: @ 0x080B1B40
 	ldrb r0, [r0]
 	add r1, sp, #0xc
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r0, sp, #0x10
 	ldr r4, .L080B1C18 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix
 	adds r1, r4, #0
@@ -131609,7 +131609,7 @@ func_080B2114: @ 0x080B2114
 	movs r0, #0
 	ldr r1, [sp, #0x110]
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	movs r6, #0
 	mov sb, r6
 	ldr r7, [sp, #0x110]
@@ -133362,7 +133362,7 @@ func_080B2114: @ 0x080B2114
 	ldr r0, [r4]
 	ldr r1, [sp, #0x110]
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r1, [sp, #0xf8]
 	lsls r4, r1, #6
 	adds r0, r4, r1
@@ -133636,7 +133636,7 @@ func_080B2114: @ 0x080B2114
 	str r0, [r1]
 	ldr r1, [sp, #0x110]
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	mov r5, sb
 	lsls r4, r5, #6
 	adds r0, r4, r5
@@ -153968,7 +153968,7 @@ func_080BD064: @ 0x080BD064
 	ldrb r0, [r0]
 	add r1, sp, #0x10
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r1, .L080BD198 @ =0x05000240
 	movs r3, #0xf8
 	lsls r3, r3, #2
@@ -156966,7 +156966,7 @@ func_080BE728: @ 0x080BE728
 	ldrb r0, [r5]
 	add r1, sp, #0xc
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldrb r0, [r5]
 	cmp r0, #9
 	bhi .L080BE786
@@ -158176,7 +158176,7 @@ func_080BF0EC: @ 0x080BF0EC
 	ldrb r0, [r0]
 	add r1, sp, #0xc
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r0, sp, #0x10
 	ldr r4, .L080BF1CC @ =gText_HarvestSpriteMiniGame_Harvest_ScorePrefix
 	adds r1, r4, #0
@@ -159765,7 +159765,7 @@ func_080BF764: @ 0x080BF764
 	movs r0, #0
 	add r1, sp, #0x28
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r6, [sp, #0xc8]
 	lsls r4, r6, #6
 	adds r0, r4, r6
@@ -160685,7 +160685,7 @@ func_080BF764: @ 0x080BF764
 	ldr r0, [r4]
 	add r1, sp, #0x28
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r1, [sp, #0xdc]
 	lsls r4, r1, #6
 	adds r0, r4, r1
@@ -160958,7 +160958,7 @@ func_080BF764: @ 0x080BF764
 	str r0, [r1]
 	add r1, sp, #0x28
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r5, [sp, #0xc8]
 	lsls r4, r5, #6
 	adds r0, r4, r5
@@ -162976,7 +162976,7 @@ func_080C16D4: @ 0x080C16D4
 	ldrb r0, [r0]
 	add r1, sp, #0x10
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r1, .L080C1808 @ =0x05000240
 	movs r3, #0xf8
 	lsls r3, r3, #2
@@ -167448,7 +167448,7 @@ func_080C38E4: @ 0x080C38E4
 	ldrb r0, [r5]
 	add r1, sp, #0xc
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldrb r0, [r5]
 	cmp r0, #9
 	bhi .L080C3942
@@ -170382,7 +170382,7 @@ func_080C516C: @ 0x080C516C
 	ldrb r0, [r0]
 	add r1, sp, #0xc
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r0, sp, #0x10
 	ldr r4, .L080C5254 @ =gText_HarvestSpriteMiniGame_Watering_ScorePrefix
 	adds r1, r4, #0
@@ -170482,7 +170482,7 @@ func_080C516C: @ 0x080C516C
 	ldrb r0, [r0]
 	add r1, sp, #0xc
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r0, sp, #0x10
 	ldr r5, .L080C5254 @ =gText_HarvestSpriteMiniGame_Watering_ScorePrefix
 	adds r1, r5, #0
@@ -172251,7 +172251,7 @@ func_080C5A6C: @ 0x080C5A6C
 	strb r0, [r1]
 	add r1, sp, #0xc
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	movs r4, #4
 	movs r5, #2
 	add r0, sp, #0x40
@@ -173043,7 +173043,7 @@ func_080C608C: @ 0x080C608C
 	movs r0, #0
 	add r1, sp, #0x30
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r6, [sp, #0xf4]
 	lsls r4, r6, #6
 	adds r0, r4, r6
@@ -174734,7 +174734,7 @@ func_080C608C: @ 0x080C608C
 	ldr r0, [r0]
 	add r1, sp, #0x30
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r6, [sp, #0x104]
 	lsls r4, r6, #6
 	adds r0, r4, r6
@@ -175008,7 +175008,7 @@ func_080C608C: @ 0x080C608C
 	str r0, [r1]
 	add r1, sp, #0x30
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r5, [sp, #0xf4]
 	lsls r4, r5, #6
 	adds r0, r4, r5
@@ -177337,7 +177337,7 @@ func_080C85A0: @ 0x080C85A0
 	add r1, sp, #0x14
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	ldr r0, [sp, #0x130]
 	adds r1, r5, #0
 	movs r2, #0x40
@@ -177584,7 +177584,7 @@ func_080C85A0: @ 0x080C85A0
 	str r1, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
 	bl func_080C8550
 	adds r0, r7, #0
@@ -181899,7 +181899,7 @@ func_080CA8B4: @ 0x080CA8B4
 	movs r1, #0x2e
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [r6, #0x18]
 	ldr r1, [r0, #0x1c]
 	ldr r0, [r6, #0xc]
@@ -181930,7 +181930,7 @@ func_080CA8B4: @ 0x080CA8B4
 	movs r1, #0x2f
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [r6, #0x18]
 	ldr r0, [r0, #0x1c]
 	movs r4, #0xc
@@ -182596,7 +182596,7 @@ func_080CAE60: @ 0x080CAE60
 	mov r1, r8
 	adds r2, r5, #0
 	mov r3, sb
-	bl func_0804EA58
+	bl InitializeUnkFontDrawObject
 	adds r4, r0, #0
 	mov r1, sl
 	ldr r0, [r1, #8]
@@ -189684,7 +189684,7 @@ func_080CE480: @ 0x080CE480
 	mov r1, r8
 	adds r2, r5, #0
 	mov r3, sb
-	bl func_0804EA58
+	bl InitializeUnkFontDrawObject
 	adds r4, r0, #0
 	mov r0, sl
 	adds r0, #0xc0
@@ -191285,15 +191285,15 @@ func_080CF05C: @ 0x080CF05C
 	adds r0, r5, #0
 	mov r1, sp
 	movs r2, #3
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r1, sp, #8
 	adds r0, r6, #0
 	movs r2, #3
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r1, sp, #0x10
 	adds r0, r4, #0
 	movs r2, #3
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r0, .L080CF2A0 @ =gText_ToolStatus_GemOfTruth
 	mov r8, r0
 	adds r0, r7, #0
@@ -191533,7 +191533,7 @@ func_080CF05C: @ 0x080CF05C
 	bl func_0800E958
 	mov r1, sp
 	movs r2, #0xa
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r0, .L080CF33C @ =gText_ToolStatus_PedometerLabel
 	mov r8, r0
 	adds r0, r7, #0
@@ -191833,7 +191833,7 @@ func_080CF05C: @ 0x080CF05C
 	bl func_0800E94C
 	mov r1, sp
 	movs r2, #3
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	adds r0, r7, #0
 	bl strlen
 	adds r6, r7, r0
@@ -191896,7 +191896,7 @@ func_080CF05C: @ 0x080CF05C
 	bl func_0800E94C
 	mov r1, sp
 	movs r2, #3
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	adds r0, r4, #0
 	bl GetDesc__C4Tool
 	mov r8, r0
@@ -192328,7 +192328,7 @@ func_080CF67C: @ 0x080CF67C
 	bl func_0800FFD0
 	add r1, sp, #4
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r0, .L080CFA2C @ =gText_ItemStatus_BasketDescription
 	mov r8, r0
 	adds r0, r6, #0

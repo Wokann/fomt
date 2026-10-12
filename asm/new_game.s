@@ -51,7 +51,7 @@ func_08003788:
     ldr	r0, [r0, #0]
     mov	r1, sp
     movs	r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     adds	r0, r6, #0
     bl strlen
     adds	r7, r6, r0
@@ -158,7 +158,7 @@ func_08003788:
     adds	r0, #1
     mov	r1, sp
     movs	r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     adds	r0, r6, #0
     bl strlen
     adds	r7, r6, r0
@@ -1770,7 +1770,7 @@ func_08004EFC:
     adds r0, #1
     mov r1, sb
     movs r2, #2
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     lsls r0, r7, #0x1e
     lsrs r0, r0, #0x1e
     bl func_0800E2E4
@@ -3756,7 +3756,7 @@ func_08003788: @ 0x08003788
     ldr r0, [r0]
     mov r1, sp
     movs r2, #0
-    bl func_0804EC84
+    bl FormatSignedDecimal
     ldr r2, .L08003B24 @ =gText_NewGameStatus_YearSuffix
     mov r8, r2
     adds r0, r6, #0
@@ -3865,7 +3865,7 @@ func_08003788: @ 0x08003788
     adds r0, #1
     mov r1, sp
     movs r2, #0
-    bl func_0804EC84
+    bl FormatSignedDecimal
     ldr r2, .L08003B2C @ =gText_NewGameStatus_DaySuffix
     mov r8, r2
     adds r0, r6, #0
@@ -5484,7 +5484,7 @@ func_08004EFC: @ 0x08004EFC
     adds r0, #1
     mov r1, sb
     movs r2, #2
-    bl func_0804EC84
+    bl FormatSignedDecimal
     mov r1, r8
     lsls r0, r1, #0x1e
     lsrs r0, r0, #0x1e

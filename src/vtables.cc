@@ -2,6 +2,7 @@
 #include "intro_scene.hh"
 #include "new_game.hh"
 #include "hardware_bootstrap.hh"
+#include "font.hh"
 
 EXTERN_C
 
@@ -53,7 +54,6 @@ extern void method_0803EFD8__13AScriptEngine(void);
 #if defined(REGION_JP)
 extern void func_0803EB3C(void);
 extern void func_0803F550(void);
-extern void func_0804E8A8(void);
 extern void func_0804EEEC(void);
 extern void func_080E07B8(void);
 extern void func_080E07C4(void);
@@ -363,7 +363,6 @@ extern void func_080E3C50(void);
 extern void func_080AC528(void);
 #else
 extern void func_0803F8DC(void);
-extern void func_0804EA80(void);
 extern void func_08082144(void);
 extern void func_08082184(void);
 extern void func_08082250(void);
@@ -4745,7 +4744,7 @@ extern RawVTableFunction const vtable_unk_080E7858[]
         nullptr,
 #if defined(REGION_JP)
         func_0804EEFC,
-        func_0804E8A8,
+        reinterpret_cast<RawVTableFunction>(DestroyUnkFontDrawObject),
 #else
         func_0804EEDC,
         func_0804EDA0,
@@ -4761,7 +4760,7 @@ extern RawVTableFunction const vtable_unk_080E7868[]
         func_080E07B8,
 #else
         func_0804EEFC,
-        func_0804EA80,
+        reinterpret_cast<RawVTableFunction>(DestroyUnkFontDrawObject),
 #endif
     };
 

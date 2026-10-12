@@ -4595,171 +4595,10 @@ func_0804EA94:
     .byte 0x10, 0x47, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x01, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0xFE
     .byte 0x00, 0xFC, 0xFF, 0xFF, 0xFF, 0x0F, 0xFF, 0xFF, 0xFF, 0xF3, 0xFF, 0xFF, 0xFF, 0x3F, 0xFF, 0xFF
     .byte 0xFF, 0xFF, 0xFF, 0x3F
-    .global func_0804E98C
+    .section .text.font_full_width_decimal_after
+    .global FormatSignedDecimal
     .thumb_func
-func_0804E98C:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    sub sp, #0x1c
-    adds r6, r0, #0
-    mov sb, r1
-    adds r7, r2, #0
-    cmp r7, #0
-    beq .Lfull_width_automatic_width
-    movs r0, #0
-    mov sl, r0
-    cmp r6, #0
-    bge .Lfull_width_unsigned_value
-    rsbs r6, r6, #0
-    movs r1, #1
-    mov sl, r1
-    .Lfull_width_unsigned_value:
-    movs r5, #0
-    mov r0, sp
-    adds r0, r0, r7
-    str r0, [sp, #0x18]
-    cmp r5, r7
-    bhs .Lfull_width_check_sign
-    add r1, sp, #0xc
-    mov r8, r1
-    .Lfull_width_write_digit:
-    mov r0, r8
-    adds r4, r0, r5
-    adds r0, r6, #0
-    movs r1, #0xa
-    bl __modsi3
-    adds r0, #0x30
-    strb r0, [r4]
-    adds r0, r6, #0
-    movs r1, #0xa
-    bl __divsi3
-    adds r6, r0, #0
-    cmp r6, #0
-    bne .Lfull_width_more_digits
-    adds r5, #1
-    cmp r5, r7
-    bhs .Lfull_width_check_sign
-    mov r4, r8
-    movs r1, #0x20
-    .Lfull_width_pad_spaces:
-    adds r0, r4, r5
-    strb r1, [r0]
-    adds r5, #1
-    cmp r5, r7
-    blo .Lfull_width_pad_spaces
-    b .Lfull_width_check_sign
-    .Lfull_width_more_digits:
-    adds r5, #1
-    cmp r5, r7
-    blo .Lfull_width_write_digit
-    .Lfull_width_check_sign:
-    mov r1, sl
-    cmp r1, #0
-    beq .Lfull_width_reverse
-    add r0, sp, #0xc
-    adds r0, r0, r5
-    movs r1, #0x2d
-    strb r1, [r0]
-    .Lfull_width_reverse:
-    movs r2, #0
-    cmp r2, r7
-    bhs .Lfull_width_fixed_terminator
-    add r3, sp, #0xc
-    mov r0, sp
-    subs r0, #1
-    adds r1, r7, r0
-    .Lfull_width_reverse_character:
-    adds r0, r3, r2
-    ldrb r0, [r0]
-    strb r0, [r1]
-    subs r1, #1
-    adds r2, #1
-    cmp r2, r7
-    blo .Lfull_width_reverse_character
-    .Lfull_width_fixed_terminator:
-    movs r0, #0
-    ldr r6, [sp, #0x18]
-    strb r0, [r6]
-    b .Lfull_width_convert
-    .Lfull_width_automatic_width:
-    adds r2, r6, #0
-    mov r1, sp
-    cmp r2, #0
-    bge .Lfull_width_unsigned_decimal
-    movs r0, #0x2d
-    strb r0, [r1]
-    adds r1, #1
-    rsbs r2, r2, #0
-    .Lfull_width_unsigned_decimal:
-    adds r0, r2, #0
-    bl FormatUnsignedDecimal
-    mov r0, sp
-    strb r7, [r0, #0xa]
-    .Lfull_width_convert:
-    mov r2, sp
-    ldr r5, .Lfull_width_digit_base
-    ldr r4, .Lfull_width_space
-    ldr r3, .Lfull_width_hyphen
-    b .Lfull_width_next_character
-.Lfull_width_digit_base:
-    @ The loop uses the checked ASCII byte, not (byte - '0'), as its index.
-    @ Each digit row has two encoded bytes and its own string terminator.
-    .4byte gUnk_PreUiTextLayoutDigitRows - ('0' * 3)
-.Lfull_width_space:
-    .4byte gUnk_PreUiTextLayoutFullWidthSpace
-.Lfull_width_hyphen:
-    .4byte gUnk_PreUiTextLayoutFullWidthHyphen
-.Lfull_width_copy_character:
-    ldrb r0, [r1]
-    mov r6, sb
-    strb r0, [r6]
-    ldrb r0, [r1, #1]
-    strb r0, [r6, #1]
-    movs r0, #2
-    add sb, r0
-    adds r2, #1
-.Lfull_width_next_character:
-    ldrb r1, [r2]
-    cmp r1, #0
-    beq .Lfull_width_done
-    adds r0, r1, #0
-    subs r0, #0x30
-    lsls r0, #0x18
-    lsrs r0, #0x18
-    cmp r0, #9
-    bhi .Lfull_width_non_digit
-    lsls r0, r1, #1
-    adds r0, r0, r1
-    adds r1, r0, r5
-    b .Lfull_width_copy_character
-.Lfull_width_non_digit:
-    cmp r1, #0x20
-    bne .Lfull_width_check_hyphen
-    adds r1, r4, #0
-    b .Lfull_width_copy_character
-.Lfull_width_check_hyphen:
-    cmp r1, #0x2d
-    bne .Lfull_width_done
-    adds r1, r3, #0
-    b .Lfull_width_copy_character
-.Lfull_width_done:
-    movs r0, #0
-    mov r1, sb
-    strb r0, [r1]
-    add sp, #0x1c
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .global func_0804EC84
-    .thumb_func
-func_0804EC84: @ 0x0804EAAC
+FormatSignedDecimal: @ 0x0804EAAC
     push {r4, r5, r6, r7, lr}
     mov r7, sb
     mov r6, r8
@@ -5045,7 +4884,7 @@ func_0804EEFC: @ 0x0804EC88
     ldr r0, [r0, #0x1c]
     str r0, [sp, #4]
     adds r0, r5, #0
-    bl func_0804E9F4
+    bl Fill2DGfxTilemapRect
     movs r0, #0
     add sp, #8
     pop {r4, r5}
@@ -5172,7 +5011,7 @@ func_0804ED38: @ 0x0804ED38
     mov r3, sb
     str r3, [sp]
     movs r3, #0
-    bl func_0804E4AC
+    bl DrawCharacterGlyphTo2DGfxBuffer
     adds r2, r0, #0
     subs r0, r2, #1
     cmp r0, #1
@@ -27653,7 +27492,7 @@ func_0805FF14:
 	str r5, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x210]
 	str r3, [sp, #0x1d0]
 	lsls r0, r3, #3
@@ -28012,7 +27851,7 @@ func_0805FF14:
 	str r6, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x1c4]
 	ldr r7, .L08061658 @ =0x0000058C
 	adds r4, r5, r7
@@ -28036,7 +27875,7 @@ func_0805FF14:
 	str r6, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L080615CA:
 	ldr r0, [r4]
 	adds r0, r0, r5
@@ -28064,7 +27903,7 @@ func_0805FF14:
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -28604,7 +28443,7 @@ func_0805FF14:
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa
 	add r4, sp, #0x124
 	str r0, [r4]
@@ -28643,7 +28482,7 @@ func_0805FF14:
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -29051,7 +28890,7 @@ func_0805FF14:
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa
 	add r4, sp, #0x144
 	str r0, [r4]
@@ -29090,7 +28929,7 @@ func_0805FF14:
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -29290,7 +29129,7 @@ sub_08061E00:
 	str r2, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L08061F64:
 	movs r4, #0xc
 	movs r5, #2
@@ -29479,7 +29318,7 @@ sub_08061E00:
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa
 	add r4, sp, #0x164
 	str r0, [r4]
@@ -29523,7 +29362,7 @@ sub_08061E00:
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -29758,7 +29597,7 @@ sub_08061E00:
 	str r2, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L080622EC:
 	movs r4, #0xc
 	movs r5, #2
@@ -29944,7 +29783,7 @@ sub_08061E00:
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa
 	add r4, sp, #0x184
 	str r0, [r4]
@@ -29983,7 +29822,7 @@ sub_08061E00:
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -30179,7 +30018,7 @@ sub_08061E00:
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0x94
 	mov r3, sl
 	str r0, [r3, #4]
@@ -30362,7 +30201,7 @@ sub_08061E00:
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r3, r7, #0
 	adds r3, #3
 	str r3, [sp, #0x1d0]
@@ -30554,7 +30393,7 @@ sub_08061E00:
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0x94
 	mov r3, sl
 	str r0, [r3, #4]
@@ -30737,7 +30576,7 @@ sub_08061E00:
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r3, r7, #0
 	adds r3, #3
 	str r3, [sp, #0x1d0]
@@ -30924,7 +30763,7 @@ sub_08061E00:
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r3, r7, #0
 	adds r3, #3
 	str r3, [sp, #0x1d0]
@@ -31125,7 +30964,7 @@ sub_08061E00:
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	add r3, sp, #0x21c
 	ldrh r4, [r3]
 	mov r3, sl
@@ -31309,7 +31148,7 @@ sub_08061E00:
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x210]
 	lsls r1, r3, #0x13
 	asrs r1, r1, #0x10
@@ -33793,7 +33632,7 @@ func_08063EB8:
 	movs r1, #0x74
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_08063D7C:
 	ldr r0, [sp, #0x44]
 	bl func_08063E64
@@ -33816,7 +33655,7 @@ func_08063EB8:
 	movs r1, #0x78
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -33855,7 +33694,7 @@ func_08063EB8:
 	adds r1, r4, #0
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r0, #0xc0
 	lsls r0, r0, #0x13
@@ -34018,7 +33857,7 @@ func_08063EB8:
 	adds r0, r4, #0
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0x44]
 	bl GetAge__C6Animal
 	movs r1, #0x78
@@ -34041,7 +33880,7 @@ func_08063EB8:
 	movs r1, #0x6c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r5, #0
 	ldr r0, [sp, #0x3c]
 	ldr r1, .Ljp_08063F90
@@ -34130,7 +33969,7 @@ func_08063EB8:
 	str r5, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #0x19
 	lsrs r4, r4, #0x1b
 	adds r4, #1
@@ -34154,7 +33993,7 @@ func_08063EB8:
 	movs r1, #0x70
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	add sp, #0x6c
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -37960,7 +37799,7 @@ sub_08065B14:
 	adds r1, r4, #0
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r0, #0xc0
 	lsls r0, r0, #0x13
@@ -38156,7 +37995,7 @@ sub_08065B14:
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -38183,7 +38022,7 @@ sub_08065B14:
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xfc]
 	movs r1, #1
 	bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
@@ -38218,7 +38057,7 @@ sub_08065B14:
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r5, #1
 .Ljp_phys_08065DA2:
@@ -38252,7 +38091,7 @@ sub_08065B14:
 	adds r0, r3, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #1
 	cmp r5, #9
 	bgt .Ljp_phys_08065E16
@@ -38275,7 +38114,7 @@ sub_08065B14:
 	lsrs r1, r6, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 	cmp r5, #9
@@ -38321,7 +38160,7 @@ sub_08065B14:
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xfc]
 	movs r1, #0
 	bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
@@ -38353,7 +38192,7 @@ sub_08065B14:
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r5, #1
 .Ljp_phys_08065EAE:
@@ -38387,7 +38226,7 @@ sub_08065B14:
 	adds r0, r3, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #1
 	cmp r5, #9
 	bgt .Ljp_phys_08065F22
@@ -38410,7 +38249,7 @@ sub_08065B14:
 	lsrs r1, r6, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 	cmp r5, #9
@@ -38456,7 +38295,7 @@ sub_08065B14:
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xfc]
 	movs r1, #2
 	bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
@@ -38488,7 +38327,7 @@ sub_08065B14:
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r5, #1
 .Ljp_phys_08065FBA:
@@ -38522,7 +38361,7 @@ sub_08065B14:
 	adds r0, r3, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #1
 	cmp r5, #9
 	bgt .Ljp_phys_0806602E
@@ -38545,7 +38384,7 @@ sub_08065B14:
 	lsrs r1, r6, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 	cmp r5, #9
@@ -38590,7 +38429,7 @@ sub_08065B14:
 	str r5, [sp, #4]
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xfc]
 	bl GetCurrentTask__C13HarvestSprite
 	adds r2, r0, #0
@@ -38647,7 +38486,7 @@ sub_08065B14:
 	movs r2, #2
 .Ljp_phys_080660E2:
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r4
@@ -38657,7 +38496,7 @@ sub_08065B14:
 	str r5, [sp, #4]
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xfc]
 	bl GetWorkDaysLeft__C13HarvestSprite
 	ldr r2, [sp, #0xf4]
@@ -38678,7 +38517,7 @@ sub_08065B14:
 	str r5, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	b .Ljp_phys_0806614A
 .Ljp_phys_08066130:
 	ldr r4, [sp, #0xf4]
@@ -38692,7 +38531,7 @@ sub_08065B14:
 	str r5, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_phys_0806614A:
 	ldr r0, [sp, #0x148]
 	mov r8, r0
@@ -42184,7 +42023,7 @@ func_0806644C:
 	str r6, [sp, #4]
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0xf8]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r4
@@ -42198,7 +42037,7 @@ func_0806644C:
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [sp, #0xf8]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r4
@@ -42209,7 +42048,7 @@ func_0806644C:
 	str r6, [sp, #4]
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0xfc]
 	adds r3, #3
 	ldr r4, [sp, #0xf8]
@@ -42224,7 +42063,7 @@ func_0806644C:
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r7, [sp, #0xfc]
 	adds r7, #5
 	ldr r0, [r4, #0x18]
@@ -42240,7 +42079,7 @@ func_0806644C:
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0xf4]
 	ldr r7, .Ljp_phys_08067C10
 	adds r5, r4, r7
@@ -42287,7 +42126,7 @@ func_0806644C:
 	adds r1, r4, #0
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [sp, #0xf8]
 	ldr r0, [r1, #0x18]
 	add r0, sb
@@ -42297,7 +42136,7 @@ func_0806644C:
 	adds r1, r4, #0
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0xfc]
 	adds r2, #8
 	str r2, [sp, #0xfc]
@@ -42340,7 +42179,7 @@ func_0806644C:
 	str r5, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0xf4]
 	ldr r6, .Ljp_phys_08067C10
 	adds r0, r3, r6
@@ -42400,7 +42239,7 @@ func_0806644C:
 	str r5, [sp, #4]
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r7, [sp, #0xf8]
 	ldr r0, [r7, #0x18]
 	adds r0, r0, r4
@@ -42411,7 +42250,7 @@ func_0806644C:
 	str r5, [sp, #4]
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0xfc]
 	adds r3, #2
 	str r3, [sp, #0xfc]
@@ -42487,7 +42326,7 @@ func_0806644C:
 	lsrs r1, r1, #0x10
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0x40
 	str r0, [sp, #0xc]
 	add r0, sp, #8
@@ -42622,7 +42461,7 @@ func_0806644C:
 	lsls r1, r1, #1
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	cmp r5, #0x64
 	ble .Ljp_phys_08067E38
 	ldr r0, [sp, #0xf8]
@@ -42707,7 +42546,7 @@ func_0806644C:
 	movs r1, #0x88
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #1
 .Ljp_phys_08067EB8:
 	adds r1, r4, #0
@@ -42758,7 +42597,7 @@ func_0806644C:
 .Ljp_phys_08067F0E:
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #1
 	cmp r6, #9
 	ble .Ljp_phys_08067EF2
@@ -42792,7 +42631,7 @@ func_0806644C:
 	lsls r1, r1, #1
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xf8]
 	ldr r1, [r0, #0x18]
 	adds r1, r1, r4
@@ -42836,7 +42675,7 @@ func_0806644C:
 	movs r1, #0x91
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r6, #1
 .Ljp_phys_08067FBE:
@@ -42871,7 +42710,7 @@ func_0806644C:
 	adds r0, r3, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #1
 	cmp r6, #9
 	bgt .Ljp_phys_08068030
@@ -42892,7 +42731,7 @@ func_0806644C:
 	movs r1, #0x89
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r6, #1
 	cmp r6, #9
@@ -42980,7 +42819,7 @@ func_0806644C:
 	str r5, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [sp, #0xf8]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r6
@@ -42991,7 +42830,7 @@ func_0806644C:
 	lsrs r1, r2, #0x10
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0xf8]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r7
@@ -43002,7 +42841,7 @@ func_0806644C:
 	lsrs r1, r4, #0x10
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x114]
 	ldr r0, [r5]
 	ldr r1, .Ljp_phys_080681D0
@@ -43051,7 +42890,7 @@ func_0806644C:
 	adds r1, r4, #0
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0xf8]
 	ldr r0, [r2, #0x18]
 	adds r0, r0, r7
@@ -43062,7 +42901,7 @@ func_0806644C:
 	adds r1, r4, #0
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r4, #0xa0
 	lsls r4, r4, #1
 	adds r7, r7, r4
@@ -45693,7 +45532,7 @@ func_08068344:
 	lsrs r1, r3, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r7, #1
 	cmp r7, #0xe
@@ -45781,7 +45620,7 @@ func_08068344:
 	lsrs r1, r2, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r7, #1
 	cmp r7, r5
@@ -45807,7 +45646,7 @@ func_08068344:
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r7, #1
 	cmp r7, #0xe
 	bhi .Ljp_phys_0806959E
@@ -45830,7 +45669,7 @@ func_08068344:
 	lsrs r1, r2, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r7, #1
 	cmp r7, #0xe
@@ -45960,7 +45799,7 @@ func_08068344:
 	lsrs r1, r3, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r7, #1
 	lsrs r0, r6, #3
@@ -45987,7 +45826,7 @@ func_08068344:
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r7, #1
 	cmp r7, #0xe
 	bhi .Ljp_phys_08069704
@@ -46010,7 +45849,7 @@ func_08068344:
 	lsrs r1, r2, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r7, #1
 	cmp r7, #0xe
@@ -46123,7 +45962,7 @@ func_08068344:
 	lsrs r1, r3, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r7, #1
 	lsrs r0, r6, #3
@@ -46150,7 +45989,7 @@ func_08068344:
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r7, #1
 	cmp r7, #0xe
 	bhi .Ljp_phys_08069844
@@ -46173,7 +46012,7 @@ func_08068344:
 	lsrs r1, r2, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r7, #1
 	cmp r7, #0xe
@@ -46267,7 +46106,7 @@ func_08068344:
 	movs r2, #2
 .Ljp_phys_080698EE:
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	b .Ljp_phys_080699F6
 	.align 2, 0
 .Ljp_phys_080698F8:
@@ -46301,7 +46140,7 @@ func_08068344:
 	lsrs r1, r3, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r7, #1
 	lsrs r0, r6, #3
@@ -46330,7 +46169,7 @@ func_08068344:
 	adds r1, r6, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r7, #1
 	cmp r7, #0xe
 	bhi .Ljp_phys_080699A8
@@ -46353,7 +46192,7 @@ func_08068344:
 	lsrs r1, r2, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r7, #1
 	cmp r7, #0xe
@@ -46393,7 +46232,7 @@ func_08068344:
 	str r5, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_phys_080699F6:
 	ldr r0, .Ljp_phys_08069A84
 	ldr r2, [sp, #0xd4]
@@ -46413,7 +46252,7 @@ func_08068344:
 	str r6, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, .Ljp_phys_08069A88
 	ldr r7, [sp, #0xd4]
 	cmp r7, r0
@@ -46427,7 +46266,7 @@ func_08068344:
 	str r6, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, .Ljp_phys_08069A8C
 	cmp r7, r0
 	bls .Ljp_phys_08069A74
@@ -46440,7 +46279,7 @@ func_08068344:
 	str r6, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, .Ljp_phys_08069A90
 	cmp r7, r0
 	bne .Ljp_phys_08069A74
@@ -46453,7 +46292,7 @@ func_08068344:
 	str r6, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_phys_08069A74:
 	ldr r4, [sp, #0xe8]
 	ldr r5, [sp, #0xc8]
@@ -47383,7 +47222,7 @@ func_0806A1F4:
 	add r1, sp, #0x18
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	ldr r0, [sp, #0x2f4]
 	adds r1, r5, #0
 	movs r2, #0x80
@@ -50011,7 +49850,7 @@ func_0806A1F4:
 	lsrs r1, r1, #0x10
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_0806B522:
 	movs r4, #0
 	ldr r0, [sp, #0x268]
@@ -50070,7 +49909,7 @@ func_0806A1F4:
 	lsrs r1, r1, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #1
 .Ljp_0806B598:
 	mov r0, sb
@@ -50149,7 +49988,7 @@ func_0806A1F4:
 	adds r1, r4, #0
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r3, #0xc0
 	lsls r3, r3, #0x13
@@ -50209,7 +50048,7 @@ func_0806A1F4:
 	adds r0, r5, #0
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	movs r1, #0x78
@@ -50232,7 +50071,7 @@ func_0806A1F4:
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	adds r4, r0, #0
@@ -50321,7 +50160,7 @@ func_0806A1F4:
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #0x19
 	lsrs r4, r4, #0x1b
 	adds r4, #1
@@ -50345,7 +50184,7 @@ func_0806A1F4:
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x2dc]
 	str r4, [sp, #0x26c]
 .Ljp_0806B7D4:
@@ -50542,7 +50381,7 @@ func_0806A1F4:
 	lsrs r1, r1, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #1
 .Ljp_0806B94C:
 	mov r0, sb
@@ -50620,7 +50459,7 @@ func_0806A1F4:
 	adds r1, r4, #0
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r0, #0xc0
 	lsls r0, r0, #0x13
@@ -50681,7 +50520,7 @@ func_0806A1F4:
 	adds r0, r5, #0
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	movs r1, #0x78
@@ -50706,7 +50545,7 @@ func_0806A1F4:
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	adds r4, r0, #0
@@ -50794,7 +50633,7 @@ func_0806A1F4:
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #0x19
 	lsrs r4, r4, #0x1b
 	adds r4, #1
@@ -50818,7 +50657,7 @@ func_0806A1F4:
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x2e0]
 	str r4, [sp, #0x270]
 .Ljp_0806BB8A:
@@ -51017,7 +50856,7 @@ func_0806A1F4:
 	lsrs r1, r1, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #1
 .Ljp_0806BD08:
 	mov r0, sb
@@ -51095,7 +50934,7 @@ func_0806A1F4:
 	adds r1, r4, #0
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r0, #0xc0
 	lsls r0, r0, #0x13
@@ -51156,7 +50995,7 @@ func_0806A1F4:
 	adds r0, r5, #0
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	movs r1, #0x78
@@ -51181,7 +51020,7 @@ func_0806A1F4:
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	adds r4, r0, #0
@@ -51269,7 +51108,7 @@ func_0806A1F4:
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #0x19
 	lsrs r4, r4, #0x1b
 	adds r4, #1
@@ -51293,7 +51132,7 @@ func_0806A1F4:
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x2e4]
 	str r4, [sp, #0x274]
 .Ljp_0806BF46:
@@ -55747,7 +55586,7 @@ func_0806DB38:
 	add r1, sp, #0x14
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	adds r0, r7, #0
 	adds r0, #0x18
 	ldr r1, [r0, #4]
@@ -61597,7 +61436,7 @@ func_08070DE4:
 	adds r1, r4, #0
 	movs r2, #0x14
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r7, #0xc0
 	lsls r7, r7, #0x13
@@ -61794,7 +61633,7 @@ func_08070DE4:
 	movs r1, #0x38
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0x104]
 	str r0, [sp, #0xd8]
 	ldr r1, [sp, #0xfc]
@@ -63357,7 +63196,7 @@ func_080713B8:
 	movs r1, #0x38
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r3, r8
 	lsls r3, r3, #3
 	str r3, [sp, #0x15c]
@@ -63543,7 +63382,7 @@ func_080713B8:
 	adds r1, r4, #0
 	movs r2, #0x14
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r2, #0xc0
 	lsls r2, r2, #0x13
@@ -63715,7 +63554,7 @@ func_080713B8:
 	movs r1, #0x40
 	movs r2, #0xa
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x114]
 	ldr r0, [r4]
 	movs r7, #0xb2
@@ -63750,7 +63589,7 @@ func_080713B8:
 	movs r1, #0x64
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r7, #0x12
 .Ljp_08071E36:
 	adds r0, r4, #0
@@ -63782,7 +63621,7 @@ func_080713B8:
 	movs r1, #0x60
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_08071E78:
 	ldr r3, [sp, #0x10c]
 	ldr r0, [r3, #0x18]
@@ -63797,7 +63636,7 @@ func_080713B8:
 	movs r1, #0x54
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r6, [sp, #0x114]
 	ldr r0, [r6]
 	movs r1, #0xb2
@@ -63826,7 +63665,7 @@ func_080713B8:
 	movs r1, #0x6c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	b .Ljp_08071EEE
 .Ljp_08071ED8:
 	ldr r1, [sp, #0x10c]
@@ -63838,7 +63677,7 @@ func_080713B8:
 	movs r1, #0x5c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_08071EEE:
 	ldr r2, [sp, #0x158]
 	mov r8, r2
@@ -65809,7 +65648,7 @@ func_080722DC:
 	str r4, [sp, #4]
 	movs r2, #0x1a
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -65840,7 +65679,7 @@ func_080722DC:
 	str r3, [sp, #4]
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r6, .Ljp_08073048
 	add r6, sb
 	ldr r0, [r6]
@@ -65865,7 +65704,7 @@ func_080722DC:
 	movs r1, #0x38
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r7, [sp, #0x20c]
 	adds r7, #2
 	str r7, [sp, #0x20c]
@@ -65894,7 +65733,7 @@ func_080722DC:
 	str r3, [sp, #4]
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [r6]
 	bl func_08010F14
 	ldr r7, [sp, #0x208]
@@ -65917,7 +65756,7 @@ func_080722DC:
 	movs r1, #0x38
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r7, [sp, #0x20c]
 	adds r7, #2
 	str r7, [sp, #0x20c]
@@ -65946,7 +65785,7 @@ func_080722DC:
 	str r3, [sp, #4]
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [r6]
 	bl func_08010F1C
 	ldr r5, [sp, #0x208]
@@ -65968,7 +65807,7 @@ func_080722DC:
 	movs r1, #0x38
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0x20c]
 	adds r2, #2
 	str r2, [sp, #0x20c]
@@ -65991,7 +65830,7 @@ func_080722DC:
 	str r7, [sp, #4]
 	movs r2, #0xa
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [r6]
 	ldr r6, .Ljp_08073054
 	adds r0, r0, r6
@@ -66013,7 +65852,7 @@ func_080722DC:
 	movs r1, #0x40
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [r7, #0x18]
 	adds r1, r1, r4
 	adds r1, #0x30
@@ -66042,7 +65881,7 @@ func_080722DC:
 	movs r1, #0x40
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [r7, #0x18]
 	adds r1, r1, r4
 	adds r1, #0x30
@@ -66073,7 +65912,7 @@ func_080722DC:
 	movs r1, #0x3c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [r6, #0x18]
 	adds r1, r1, r4
 	subs r0, r7, #1
@@ -66946,7 +66785,7 @@ func_080722DC:
 	str r4, [sp, #4]
 	movs r2, #0x1a
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x2d8]
 	str r3, [sp, #0x20c]
 	ldr r5, [sp, #0x208]
@@ -66971,7 +66810,7 @@ func_080722DC:
 	movs r1, #0x68
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0x208]
 	ldr r0, [r2, #0x18]
 	adds r0, r0, r5
@@ -66982,7 +66821,7 @@ func_080722DC:
 	lsls r1, r1, #2
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -66993,7 +66832,7 @@ func_080722DC:
 	lsls r1, r1, #2
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -67022,7 +66861,7 @@ func_080722DC:
 	movs r1, #0x4c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -67045,7 +66884,7 @@ func_080722DC:
 	movs r1, #0x68
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0x208]
 	ldr r0, [r2, #0x18]
 	adds r0, r0, r5
@@ -67056,7 +66895,7 @@ func_080722DC:
 	lsls r1, r1, #2
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -67067,7 +66906,7 @@ func_080722DC:
 	lsls r1, r1, #2
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -67093,7 +66932,7 @@ func_080722DC:
 	movs r1, #0x4c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -67116,7 +66955,7 @@ func_080722DC:
 	movs r1, #0x60
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0x208]
 	ldr r0, [r2, #0x18]
 	adds r0, r0, r5
@@ -67127,7 +66966,7 @@ func_080722DC:
 	lsls r1, r1, #2
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -67138,7 +66977,7 @@ func_080722DC:
 	lsls r1, r1, #2
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -67164,7 +67003,7 @@ func_080722DC:
 	movs r1, #0x4c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -67187,7 +67026,7 @@ func_080722DC:
 	movs r1, #0x60
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0x208]
 	ldr r0, [r2, #0x18]
 	adds r0, r0, r5
@@ -67198,7 +67037,7 @@ func_080722DC:
 	lsls r1, r1, #2
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -67209,7 +67048,7 @@ func_080722DC:
 	lsls r1, r1, #2
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -67235,7 +67074,7 @@ func_080722DC:
 	movs r1, #0x4c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x20c]
 	adds r4, #3
 	str r4, [sp, #0x20c]
@@ -68418,7 +68257,7 @@ func_080722DC:
 	str r2, [sp, #4]
 	movs r2, #0x1a
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	str r5, [sp, #0x20c]
 .Ljp_0807412E:
@@ -68447,7 +68286,7 @@ func_080722DC:
 	movs r1, #0x50
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x20c]
 	lsls r2, r3, #3
 	ldr r3, .Ljp_08074200
@@ -68662,7 +68501,7 @@ func_080722DC:
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x2d8]
 	str r3, [sp, #0x20c]
 	ldr r0, .Ljp_080743F4
@@ -68705,7 +68544,7 @@ func_080722DC:
 	movs r1, #0x54
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x20c]
 	lsls r2, r3, #3
 	ldr r3, .Ljp_080743F8
@@ -68920,7 +68759,7 @@ func_080722DC:
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x2d8]
 	str r3, [sp, #0x20c]
 	ldr r0, .Ljp_080745EC
@@ -68963,7 +68802,7 @@ func_080722DC:
 	movs r1, #0x58
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x20c]
 	lsls r2, r3, #3
 	ldr r3, .Ljp_080745F0
@@ -69178,7 +69017,7 @@ func_080722DC:
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x2d8]
 	str r3, [sp, #0x20c]
 	ldr r0, .Ljp_08074770
@@ -69710,7 +69549,7 @@ func_080722DC:
 	str r5, [sp, #4]
 	movs r2, #0x1a
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x20c]
 	adds r4, #2
 	str r4, [sp, #0x20c]
@@ -69724,7 +69563,7 @@ func_080722DC:
 	movs r1, #0x6c
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [r7]
 	ldr r2, .Ljp_08074B8C
 	adds r0, r0, r2
@@ -69747,7 +69586,7 @@ func_080722DC:
 	movs r1, #0x74
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0x20c]
 	adds r0, #3
 	str r0, [sp, #0x20c]
@@ -70103,7 +69942,7 @@ func_080722DC:
 	str r5, [sp, #4]
 	movs r2, #0x18
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x18]
 	add r0, sp, #0x200
 	ldr r3, [r4, #0xc]
@@ -70155,7 +69994,7 @@ func_080722DC:
 	movs r1, #0x78
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x20c]
 	adds r4, #3
 	str r4, [sp, #0x20c]
@@ -70222,7 +70061,7 @@ func_080722DC:
 	movs r1, #0x68
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, r8
 	ldr r1, [r0, #0x18]
 	adds r1, r1, r5
@@ -70258,7 +70097,7 @@ func_080722DC:
 	movs r1, #0x60
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, r8
 	ldr r1, [r0, #0x18]
 	adds r1, r1, r5
@@ -70294,7 +70133,7 @@ func_080722DC:
 	movs r1, #0x5c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, r8
 	ldr r1, [r0, #0x18]
 	adds r1, r1, r5
@@ -71781,7 +71620,7 @@ func_08075E7C:
 	movs r1, #1
 	movs r2, #0x16
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
 	bl func_08008918
 	add r2, sp, #0xc
@@ -71831,7 +71670,7 @@ func_08075E7C:
 	add r1, sp, #0x14
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E4AC
+	bl DrawCharacterGlyphTo2DGfxBuffer
 	ldr r0, [sp, #0xdc]
 	adds r1, r5, #0
 	movs r2, #0x80
@@ -79078,7 +78917,7 @@ func_08079A64:
 	add r1, sp, #0x30
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	movs r3, #0x82
 	lsls r3, r3, #4
 	adds r0, r4, r3
@@ -79742,7 +79581,7 @@ func_08079F8C:
 	str r1, [sp, #8]
 	add r1, sp, #0x34
 	movs r2, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	movs r0, #0x82
 	lsls r0, r0, #4
 	add r0, sb
@@ -81941,7 +81780,7 @@ func_0807AD2C: @ 0x0807AD2C
 	str r7, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r0, r0, r6
@@ -81970,7 +81809,7 @@ func_0807AD2C: @ 0x0807AD2C
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_0807AF20:
 	ldr r2, [sp, #0xd8]
 	adds r2, #2
@@ -82351,7 +82190,7 @@ func_0807AF54: @ 0x0807AF54
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, r8
 	bl func_08008910
 	adds r6, r0, #0
@@ -82668,7 +82507,7 @@ func_0807AF54: @ 0x0807AF54
 	lsrs r1, r6, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 .Ljp_poultry_shop_B444:
@@ -82969,7 +82808,7 @@ func_0807B4C4: @ 0x0807B4C4
 	adds r0, r6, #0
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	ldr r6, .Ljp_poultry_status_B738 @ =0x00002234
 	add r6, r8
 	adds r0, r6, #0
@@ -83203,7 +83042,7 @@ func_0807B4C4: @ 0x0807B4C4
 	adds r0, #1
 	add r1, sp, #0x14
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	ldr r6, .Ljp_poultry_status_BA00 @ =0x00002234
 	add r6, r8
 	ldr r0, .Ljp_poultry_status_BA08 @ =gText_PoultryShop_StatusSpacer
@@ -83316,7 +83155,7 @@ func_0807B4C4: @ 0x0807B4C4
 	adds r0, r6, #0
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	ldr r6, .Ljp_poultry_status_BA00 @ =0x00002234
 	add r6, r8
 	adds r0, r6, #0
@@ -83990,7 +83829,7 @@ sub_0807BD78:
     bl GetStoredBushelCount__C4Coop
     add r1, sp, #0x30
     movs r2, #7
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     add r5, sp, #0x7c
     ldr r1, [sp, #0x10]
     adds r0, r5, #0
@@ -84286,7 +84125,7 @@ sub_0807BD78:
     adds r0, r0, r4
     add r1, sp, #0x24
     movs r2, #7
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     mov r5, sp
     adds r5, #0x7f
     ldr r1, [sp, #0x10]
@@ -84806,7 +84645,7 @@ sub_0807BD78:
     mov r8, r3
     mov r1, r8
     movs r2, #0
-    bl func_0804E98C
+    bl FormatFullWidthDecimal
     adds r0, r4, #0
     bl strlen
     adds r5, r4, r0
@@ -86299,7 +86138,7 @@ func_0807CD80: @ 0x0807CD80
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #2
 	add sl, r0
 	adds r5, #4
@@ -86540,7 +86379,7 @@ func_0807CD80: @ 0x0807CD80
 	adds r0, r0, r4
 	add r1, sp, #0xa4
 	movs r2, #7
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	ldr r0, [r7, #8]
 	ldr r4, .Ljp_0807D408 @ =0x00001AA8
 	adds r0, r0, r4
@@ -87414,7 +87253,7 @@ func_0807DE3C: @ 0x0807D9A4
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
 	bl func_08008918
 	movs r1, #0x3f
@@ -87562,7 +87401,7 @@ func_0807DE3C: @ 0x0807D9A4
 	add r0, r8
 	add r1, sp, #0xa4
 	movs r2, #7
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	add r5, sp, #0xb4
 	mov r2, sl
 	ldr r1, [r2]
@@ -88392,7 +88231,7 @@ func_0807E0C0: @ 0x0807E0C0
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #2
 	add sl, r0
 	adds r5, #4
@@ -88629,7 +88468,7 @@ func_0807E0C0: @ 0x0807E0C0
 	adds r0, r0, r2
 	adds r1, r4, #0
 	movs r2, #7
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	ldr r0, [r7, #8]
 	ldr r3, .Ljp_0807E538 @ =0x00001AA8
 	adds r0, r0, r3
@@ -89732,7 +89571,7 @@ func_0807EAF8:
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xe0]
 	adds r0, #2
 	str r0, [sp, #0xe0]
@@ -90553,7 +90392,7 @@ func_0807F250:
     movs r1, #0x20
     movs r2, #2
     movs r3, #2
-    bl func_0804E9F4
+    bl Fill2DGfxTilemapRect
     movs r4, #2
     add sl, r4
     adds r6, #4
@@ -91135,7 +90974,7 @@ func_080800A8:
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #2
 	add sl, r0
 	adds r5, #4
@@ -91451,7 +91290,7 @@ func_080800A8:
 	add r0, sb
 	adds r1, r4, #0
 	movs r2, #7
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	add r5, sp, #0xb4
 	mov r2, r8
 	ldr r1, [r2]
@@ -92363,7 +92202,7 @@ func_080809E0:
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0x134]
 	adds r0, #2
 	str r0, [sp, #0x134]
@@ -92866,7 +92705,7 @@ func_08080CC4:
 	add r0, r8
 	add r1, sp, #8
 	movs r2, #7
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	mov r5, sp
 	adds r5, #0x21
 	ldr r1, [sp, #0x18]
@@ -93989,7 +93828,7 @@ func_08081734:
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xe0]
 	adds r0, #2
 	str r0, [sp, #0xe0]
@@ -95092,7 +94931,7 @@ func_0808234C:
 	str r2, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, .Ljp_08082200 @ =vtable_unk_080E5A28
 	str r0, [sp, #8]
 	add sp, #0xe0
@@ -95200,7 +95039,7 @@ func_0808268C:
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0x44]
 	adds r0, #2
 	str r0, [sp, #0x58]
@@ -95452,7 +95291,7 @@ func_0808268C:
 	str r5, [sp, #4]
 	movs r2, #0x18
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	b .Ljp_080824BE
 .Ljp_080824A0:
 	ldr r0, [r6, #0x1c]
@@ -95468,7 +95307,7 @@ func_0808268C:
 	str r4, [sp, #4]
 	movs r2, #0x18
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_080824BE:
 	ldr r0, [sp, #0x18]
 	cmp r0, #1
@@ -98164,7 +98003,7 @@ func_080837DC: @ 0x080837DC
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r6, [sp, #0xe0]
 	ldr r0, [r6]
 	cmp r0, #0
@@ -98256,7 +98095,7 @@ func_080837DC: @ 0x080837DC
 	str r4, [sp, #4]
 	movs r2, #0x12
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_08083B92:
 	adds r5, #0x80
 	movs r6, #2
@@ -98364,7 +98203,7 @@ func_08084050: @ 0x08083BC8
 	str r2, [sp, #4]
 	movs r2, #0x12
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r7, #2
 	adds r4, #0x24
 	subs r5, #1
@@ -99237,7 +99076,7 @@ func_080851B8:
 	str r7, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r0, r0, r6
@@ -99266,7 +99105,7 @@ func_080851B8:
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .Ljp_080853B0:
 	ldr r2, [sp, #0xd8]
 	adds r2, #2
@@ -99733,7 +99572,7 @@ func_0808586C:
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
 	bl func_08008910
 	adds r5, r0, #0
@@ -100064,7 +99903,7 @@ func_0808586C:
 	lsrs r1, r6, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 .Ljp_080859A2:
@@ -100098,7 +99937,7 @@ func_0808586C:
 	str r1, [sp, #4]
 	lsrs r1, r6, #0x10
 	movs r2, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 .Ljp_080859E6:
@@ -100441,7 +100280,7 @@ func_08085F08:
 	adds r0, r6, #0
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -100701,7 +100540,7 @@ func_08085F08:
 	adds r0, #1
 	add r1, sp, #0x14
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -100787,7 +100626,7 @@ func_08085F08:
 	adds r0, r6, #0
 	add r1, sp, #0x14
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -100951,7 +100790,7 @@ func_08085F08:
 	adds r0, r6, #0
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -101211,7 +101050,7 @@ func_08085F08:
 	adds r0, #1
 	add r1, sp, #0x14
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -101298,7 +101137,7 @@ func_08085F08:
 	adds r0, r6, #0
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E98C
+	bl FormatFullWidthDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -150758,171 +150597,9 @@ func_0804EA94: @ 0x0804EA94
 .L0804EB58: .4byte 0xFFFFF3FF
 .L0804EB5C: .4byte 0xFFFF3FFF
 .L0804EB60: .4byte 0x3FFFFFFF
-	.global func_0804E98C
-	.thumb_func
-func_0804E98C:
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0x1c
-	adds r6, r0, #0
-	mov sb, r1
-	adds r7, r2, #0
-	cmp r7, #0
-	beq .Lfull_width_automatic_width
-	movs r0, #0
-	mov sl, r0
-	cmp r6, #0
-	bge .Lfull_width_unsigned_value
-	rsbs r6, r6, #0
-	movs r1, #1
-	mov sl, r1
-	.Lfull_width_unsigned_value:
-	movs r5, #0
-	mov r0, sp
-	adds r0, r0, r7
-	str r0, [sp, #0x18]
-	cmp r5, r7
-	bhs .Lfull_width_check_sign
-	add r1, sp, #0xc
-	mov r8, r1
-	.Lfull_width_write_digit:
-	mov r0, r8
-	adds r4, r0, r5
-	adds r0, r6, #0
-	movs r1, #0xa
-	bl __modsi3
-	adds r0, #0x30
-	strb r0, [r4]
-	adds r0, r6, #0
-	movs r1, #0xa
-	bl __divsi3
-	adds r6, r0, #0
-	cmp r6, #0
-	bne .Lfull_width_more_digits
-	adds r5, #1
-	cmp r5, r7
-	bhs .Lfull_width_check_sign
-	mov r4, r8
-	movs r1, #0x20
-	.Lfull_width_pad_spaces:
-	adds r0, r4, r5
-	strb r1, [r0]
-	adds r5, #1
-	cmp r5, r7
-	blo .Lfull_width_pad_spaces
-	b .Lfull_width_check_sign
-	.Lfull_width_more_digits:
-	adds r5, #1
-	cmp r5, r7
-	blo .Lfull_width_write_digit
-	.Lfull_width_check_sign:
-	mov r1, sl
-	cmp r1, #0
-	beq .Lfull_width_reverse
-	add r0, sp, #0xc
-	adds r0, r0, r5
-	movs r1, #0x2d
-	strb r1, [r0]
-	.Lfull_width_reverse:
-	movs r2, #0
-	cmp r2, r7
-	bhs .Lfull_width_fixed_terminator
-	add r3, sp, #0xc
-	mov r0, sp
-	subs r0, #1
-	adds r1, r7, r0
-	.Lfull_width_reverse_character:
-	adds r0, r3, r2
-	ldrb r0, [r0]
-	strb r0, [r1]
-	subs r1, #1
-	adds r2, #1
-	cmp r2, r7
-	blo .Lfull_width_reverse_character
-	.Lfull_width_fixed_terminator:
-	movs r0, #0
-	ldr r6, [sp, #0x18]
-	strb r0, [r6]
-	b .Lfull_width_convert
-	.Lfull_width_automatic_width:
-	adds r2, r6, #0
-	mov r1, sp
-	cmp r2, #0
-	bge .Lfull_width_unsigned_decimal
-	movs r0, #0x2d
-	strb r0, [r1]
-	adds r1, #1
-	rsbs r2, r2, #0
-	.Lfull_width_unsigned_decimal:
-	adds r0, r2, #0
-	bl FormatUnsignedDecimal
-	mov r0, sp
-	strb r7, [r0, #0xa]
-	.Lfull_width_convert:
-	mov r2, sp
-	ldr r5, .Lfull_width_digit_base
-	ldr r4, .Lfull_width_space
-	ldr r3, .Lfull_width_hyphen
-	b .Lfull_width_next_character
-.Lfull_width_digit_base:
-	@ The loop uses the checked ASCII byte, not (byte - '0'), as its index.
-	@ Each digit row has two encoded bytes and its own string terminator.
-	.4byte gUnk_PreUiTextLayoutDigitRows - ('0' * 3)
-.Lfull_width_space:
-	.4byte gUnk_PreUiTextLayoutFullWidthSpace
-.Lfull_width_hyphen:
-	.4byte gUnk_PreUiTextLayoutFullWidthHyphen
-.Lfull_width_copy_character:
-	ldrb r0, [r1]
-	mov r6, sb
-	strb r0, [r6]
-	ldrb r0, [r1, #1]
-	strb r0, [r6, #1]
-	movs r0, #2
-	add sb, r0
-	adds r2, #1
-.Lfull_width_next_character:
-	ldrb r1, [r2]
-	cmp r1, #0
-	beq .Lfull_width_done
-	adds r0, r1, #0
-	subs r0, #0x30
-	lsls r0, #0x18
-	lsrs r0, #0x18
-	cmp r0, #9
-	bhi .Lfull_width_non_digit
-	lsls r0, r1, #1
-	adds r0, r0, r1
-	adds r1, r0, r5
-	b .Lfull_width_copy_character
-.Lfull_width_non_digit:
-	cmp r1, #0x20
-	bne .Lfull_width_check_hyphen
-	adds r1, r4, #0
-	b .Lfull_width_copy_character
-.Lfull_width_check_hyphen:
-	cmp r1, #0x2d
-	bne .Lfull_width_done
-	adds r1, r3, #0
-	b .Lfull_width_copy_character
-.Lfull_width_done:
-	movs r0, #0
-	mov r1, sb
-	strb r0, [r1]
-	add sp, #0x1c
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0804EC84
-func_0804EC84: @ 0x0804EC84
+    .section .text.font_full_width_decimal_after
+	thumb_func_start FormatSignedDecimal
+FormatSignedDecimal: @ 0x0804EC84
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -151269,7 +150946,7 @@ func_0804EEFC: @ 0x0804EEFC
 	ldr r0, [r0, #0x1c]
 	str r0, [sp, #4]
 	adds r0, r5, #0
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0
 	add sp, #8
 	pop {r4, r5}
@@ -151393,7 +151070,7 @@ func_0804EFAC: @ 0x0804EFAC
 	mov r3, sb
 	str r3, [sp]
 	movs r3, #0
-	bl func_0804E4AC
+	bl DrawCharacterGlyphTo2DGfxBuffer
 	adds r2, r0, #0
 	subs r0, r2, #1
 	cmp r0, #1
@@ -155788,7 +155465,7 @@ func_080516F0: @ 0x080516F0
 	add r1, sp, #0x14
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	ldr r3, .L080519FC @ =0x00000A4C
 	add r3, sp
 	ldr r0, [r3]
@@ -172271,7 +171948,7 @@ func_08059C94: @ 0x08059C94
 	add r1, sp, #0x50
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	movs r3, #0xc2
 	lsls r3, r3, #3
 	adds r0, r7, r3
@@ -179746,7 +179423,7 @@ func_0805D9C0: @ 0x0805D9C0
 	add r1, sp, #0x14
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
 	bl GetHardwareSharedStateTileIndex
@@ -186378,7 +186055,7 @@ func_0805FF14: @ 0x0805FF14
 	str r5, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x210]
 	str r3, [sp, #0x1d0]
 	lsls r0, r3, #3
@@ -186737,7 +186414,7 @@ func_0805FF14: @ 0x0805FF14
 	str r6, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x1c4]
 	ldr r7, .L08061658 @ =0x0000058C
 	adds r4, r5, r7
@@ -186761,7 +186438,7 @@ func_0805FF14: @ 0x0805FF14
 	str r6, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L080615CA:
 	ldr r0, [r4]
 	adds r0, r0, r5
@@ -186789,7 +186466,7 @@ func_0805FF14: @ 0x0805FF14
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -187329,7 +187006,7 @@ func_0805FF14: @ 0x0805FF14
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa
 	add r4, sp, #0x124
 	str r0, [r4]
@@ -187368,7 +187045,7 @@ func_0805FF14: @ 0x0805FF14
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -187776,7 +187453,7 @@ func_0805FF14: @ 0x0805FF14
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa
 	add r4, sp, #0x144
 	str r0, [r4]
@@ -187815,7 +187492,7 @@ func_0805FF14: @ 0x0805FF14
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -188015,7 +187692,7 @@ sub_08061E00: @ 0x08061E00
 	str r2, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L08061F64:
 	movs r4, #0xc
 	movs r5, #2
@@ -188204,7 +187881,7 @@ sub_08061E00: @ 0x08061E00
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa
 	add r4, sp, #0x164
 	str r0, [r4]
@@ -188248,7 +187925,7 @@ sub_08061E00: @ 0x08061E00
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -188483,7 +188160,7 @@ sub_08061E00: @ 0x08061E00
 	str r2, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L080622EC:
 	movs r4, #0xc
 	movs r5, #2
@@ -188669,7 +188346,7 @@ sub_08061E00: @ 0x08061E00
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa
 	add r4, sp, #0x184
 	str r0, [r4]
@@ -188708,7 +188385,7 @@ sub_08061E00: @ 0x08061E00
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -188904,7 +188581,7 @@ sub_08061E00: @ 0x08061E00
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0x94
 	mov r3, sl
 	str r0, [r3, #4]
@@ -189087,7 +188764,7 @@ sub_08061E00: @ 0x08061E00
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r3, r7, #0
 	adds r3, #3
 	str r3, [sp, #0x1d0]
@@ -189279,7 +188956,7 @@ sub_08061E00: @ 0x08061E00
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0x94
 	mov r3, sl
 	str r0, [r3, #4]
@@ -189462,7 +189139,7 @@ sub_08061E00: @ 0x08061E00
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r3, r7, #0
 	adds r3, #3
 	str r3, [sp, #0x1d0]
@@ -189649,7 +189326,7 @@ sub_08061E00: @ 0x08061E00
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r3, r7, #0
 	adds r3, #3
 	str r3, [sp, #0x1d0]
@@ -189850,7 +189527,7 @@ sub_08061E00: @ 0x08061E00
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	add r3, sp, #0x21c
 	ldrh r4, [r3]
 	mov r3, sl
@@ -190034,7 +189711,7 @@ sub_08061E00: @ 0x08061E00
 	str r4, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x210]
 	lsls r1, r3, #0x13
 	asrs r1, r1, #0x10
@@ -192486,7 +192163,7 @@ func_08063EB8: @ 0x08063EB8
 	movs r1, #0xa0
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L08064044:
 	ldr r0, [sp, #0x44]
 	bl func_08063E64
@@ -192509,7 +192186,7 @@ func_08063EB8: @ 0x08063EB8
 	movs r1, #0xa4
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -192548,7 +192225,7 @@ func_08063EB8: @ 0x08063EB8
 	adds r1, r4, #0
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r0, #0xc0
 	lsls r0, r0, #0x13
@@ -192711,7 +192388,7 @@ func_08063EB8: @ 0x08063EB8
 	adds r0, r4, #0
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0x44]
 	bl GetAge__C6Animal
 	movs r1, #0x78
@@ -192734,7 +192411,7 @@ func_08063EB8: @ 0x08063EB8
 	movs r1, #0x98
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r5, #0
 	ldr r0, [sp, #0x3c]
 	ldr r1, .L08064258 @ =0x0000058C
@@ -192825,7 +192502,7 @@ func_08063EB8: @ 0x08063EB8
 	str r5, [sp, #4]
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #0x19
 	lsrs r4, r4, #0x1b
 	adds r4, #1
@@ -192849,7 +192526,7 @@ func_08063EB8: @ 0x08063EB8
 	movs r1, #0x9c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	add sp, #0x6c
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -196642,7 +196319,7 @@ sub_08065B14: @ 0x08065B14
 	adds r1, r4, #0
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r0, #0xc0
 	lsls r0, r0, #0x13
@@ -196835,7 +196512,7 @@ sub_08065B14: @ 0x08065B14
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r4, #1
 	cmp r4, r6
@@ -196862,7 +196539,7 @@ sub_08065B14: @ 0x08065B14
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xfc]
 	movs r1, #1
 	bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
@@ -196895,7 +196572,7 @@ sub_08065B14: @ 0x08065B14
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r5, #1
 .L08066072:
@@ -196929,7 +196606,7 @@ sub_08065B14: @ 0x08065B14
 	adds r0, r3, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #1
 	cmp r5, #9
 	bgt .L080660E6
@@ -196952,7 +196629,7 @@ sub_08065B14: @ 0x08065B14
 	lsrs r1, r6, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 	cmp r5, #9
@@ -196998,7 +196675,7 @@ sub_08065B14: @ 0x08065B14
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xfc]
 	movs r1, #0
 	bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
@@ -197030,7 +196707,7 @@ sub_08065B14: @ 0x08065B14
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r5, #1
 .L0806617E:
@@ -197064,7 +196741,7 @@ sub_08065B14: @ 0x08065B14
 	adds r0, r3, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #1
 	cmp r5, #9
 	bgt .L080661F2
@@ -197087,7 +196764,7 @@ sub_08065B14: @ 0x08065B14
 	lsrs r1, r6, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 	cmp r5, #9
@@ -197133,7 +196810,7 @@ sub_08065B14: @ 0x08065B14
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xfc]
 	movs r1, #2
 	bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
@@ -197165,7 +196842,7 @@ sub_08065B14: @ 0x08065B14
 	lsrs r1, r7, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r5, #1
 .L0806628A:
@@ -197199,7 +196876,7 @@ sub_08065B14: @ 0x08065B14
 	adds r0, r3, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #1
 	cmp r5, #9
 	bgt .L080662FE
@@ -197222,7 +196899,7 @@ sub_08065B14: @ 0x08065B14
 	lsrs r1, r6, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 	cmp r5, #9
@@ -197271,7 +196948,7 @@ sub_08065B14: @ 0x08065B14
 	movs r2, #8
 	.endif
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xfc]
 	bl GetCurrentTask__C13HarvestSprite
 	adds r2, r0, #0
@@ -197327,7 +197004,7 @@ sub_08065B14: @ 0x08065B14
 	movs r2, #2
 .L080663B2:
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r4
@@ -197341,7 +197018,7 @@ sub_08065B14: @ 0x08065B14
 	movs r2, #4
 	.endif
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xfc]
 	bl GetWorkDaysLeft__C13HarvestSprite
 	ldr r2, [sp, #0xf4]
@@ -197362,7 +197039,7 @@ sub_08065B14: @ 0x08065B14
 	str r5, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	b .L0806641A
 .L08066400:
 	ldr r4, [sp, #0xf4]
@@ -197376,7 +197053,7 @@ sub_08065B14: @ 0x08065B14
 	str r5, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L0806641A:
 	ldr r0, [sp, #0x148]
 	mov r8, r0
@@ -200657,7 +200334,7 @@ func_0806644C: @ 0x0806644C
 	str r6, [sp, #4]
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [sp, #0xec]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r4
@@ -200674,7 +200351,7 @@ func_0806644C: @ 0x0806644C
 	str r6, [sp, #4]
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0xf0]
 	adds r4, #3
 	ldr r5, [sp, #0xec]
@@ -200689,7 +200366,7 @@ func_0806644C: @ 0x0806644C
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0xf0]
 	adds r3, #5
 	ldr r0, [r5, #0x18]
@@ -200703,7 +200380,7 @@ func_0806644C: @ 0x0806644C
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xe8]
 	ldr r1, .L08067D80 @ =0x0000058C
 	adds r5, r0, r1
@@ -200750,7 +200427,7 @@ func_0806644C: @ 0x0806644C
 	adds r1, r4, #0
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [sp, #0xec]
 	ldr r0, [r1, #0x18]
 	add r0, r8
@@ -200760,7 +200437,7 @@ func_0806644C: @ 0x0806644C
 	adds r1, r4, #0
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0xf0]
 	adds r2, #8
 	str r2, [sp, #0xf0]
@@ -200803,7 +200480,7 @@ func_0806644C: @ 0x0806644C
 	str r5, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0xe8]
 	ldr r6, .L08067D80 @ =0x0000058C
 	adds r0, r3, r6
@@ -200861,7 +200538,7 @@ func_0806644C: @ 0x0806644C
 	str r4, [sp, #4]
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r7, [sp, #0xec]
 	ldr r0, [r7, #0x18]
 	adds r0, r0, r6
@@ -200876,7 +200553,7 @@ func_0806644C: @ 0x0806644C
 	str r4, [sp, #4]
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0xf0]
 	adds r3, #2
 	str r3, [sp, #0xf0]
@@ -200952,7 +200629,7 @@ func_0806644C: @ 0x0806644C
 	lsrs r1, r1, #0x10
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0x40
 	str r0, [sp, #0xc]
 	add r0, sp, #8
@@ -201087,7 +200764,7 @@ func_0806644C: @ 0x0806644C
 	lsls r1, r1, #1
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	cmp r5, #0x64
 	ble .L08067FA4
 	ldr r0, [sp, #0xec]
@@ -201165,7 +200842,7 @@ func_0806644C: @ 0x0806644C
 	movs r1, #0xa4
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #1
 .L08068024:
 	adds r1, r4, #0
@@ -201216,7 +200893,7 @@ func_0806644C: @ 0x0806644C
 .L0806807A:
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #1
 	cmp r6, #9
 	ble .L0806805E
@@ -201250,7 +200927,7 @@ func_0806644C: @ 0x0806644C
 	lsls r1, r1, #1
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xec]
 	ldr r1, [r0, #0x18]
 	adds r1, r1, r4
@@ -201292,7 +200969,7 @@ func_0806644C: @ 0x0806644C
 	movs r1, #0xad
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r6, #1
 .L0806812A:
@@ -201327,7 +201004,7 @@ func_0806644C: @ 0x0806644C
 	adds r0, r3, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #1
 	cmp r6, #9
 	bgt .L0806819C
@@ -201348,7 +201025,7 @@ func_0806644C: @ 0x0806644C
 	movs r1, #0xa5
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r6, #1
 	cmp r6, #9
@@ -201438,7 +201115,7 @@ func_0806644C: @ 0x0806644C
 	str r5, [sp, #4]
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [sp, #0xec]
 	ldr r0, [r1, #0x18]
 	adds r0, r0, r6
@@ -201449,7 +201126,7 @@ func_0806644C: @ 0x0806644C
 	lsrs r1, r2, #0x10
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0xec]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r7
@@ -201460,7 +201137,7 @@ func_0806644C: @ 0x0806644C
 	lsrs r1, r4, #0x10
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x108]
 	ldr r0, [r5]
 	ldr r1, .L08068340 @ =0x00001AA8
@@ -201509,7 +201186,7 @@ func_0806644C: @ 0x0806644C
 	adds r1, r4, #0
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0xec]
 	ldr r0, [r2, #0x18]
 	adds r0, r0, r7
@@ -201520,7 +201197,7 @@ func_0806644C: @ 0x0806644C
 	adds r1, r4, #0
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r4, #0xa0
 	lsls r4, r4, #1
 	adds r7, r7, r4
@@ -204119,7 +203796,7 @@ func_08068344: @ 0x08068344
 	lsrs r1, r3, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r7, #1
 	cmp r7, #0xe
@@ -204206,7 +203883,7 @@ func_08068344: @ 0x08068344
 	lsrs r1, r2, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r7, #1
 	cmp r7, r6
@@ -204232,7 +203909,7 @@ func_08068344: @ 0x08068344
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r7, #1
 	cmp r7, #0xe
 	bhi .L0806970E
@@ -204255,7 +203932,7 @@ func_08068344: @ 0x08068344
 	lsrs r1, r2, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r7, #1
 	cmp r7, #0xe
@@ -204381,7 +204058,7 @@ func_08068344: @ 0x08068344
 	lsrs r1, r3, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r7, #1
 	lsrs r0, r4, #3
@@ -204408,7 +204085,7 @@ func_08068344: @ 0x08068344
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r7, #1
 	cmp r7, #0xe
 	bhi .L08069874
@@ -204431,7 +204108,7 @@ func_08068344: @ 0x08068344
 	lsrs r1, r2, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r7, #1
 	cmp r7, #0xe
@@ -204543,7 +204220,7 @@ func_08068344: @ 0x08068344
 	lsrs r1, r3, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r7, #1
 	lsrs r0, r4, #3
@@ -204570,7 +204247,7 @@ func_08068344: @ 0x08068344
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r7, #1
 	cmp r7, #0xe
 	bhi .L080699B4
@@ -204593,7 +204270,7 @@ func_08068344: @ 0x08068344
 	lsrs r1, r2, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r7, #1
 	cmp r7, #0xe
@@ -204686,7 +204363,7 @@ func_08068344: @ 0x08068344
 	movs r2, #2
 .L08069A5E:
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	b .L08069B62
 	.align 2, 0
 .L08069A68: .4byte 0xFFFFE890
@@ -204719,7 +204396,7 @@ func_08068344: @ 0x08068344
 	lsrs r1, r3, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	adds r7, #1
 	lsrs r0, r4, #3
@@ -204746,7 +204423,7 @@ func_08068344: @ 0x08068344
 	str r2, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r7, #1
 	cmp r7, #0xe
 	bhi .L08069B14
@@ -204769,7 +204446,7 @@ func_08068344: @ 0x08068344
 	lsrs r1, r2, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r6, #2
 	adds r7, #1
 	cmp r7, #0xe
@@ -204809,7 +204486,7 @@ func_08068344: @ 0x08068344
 	str r5, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L08069B62:
 	ldr r0, .L08069BF0 @ =0x0000176F
 	ldr r2, [sp, #0xd4]
@@ -204829,7 +204506,7 @@ func_08068344: @ 0x08068344
 	str r6, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, .L08069BF4 @ =0x0000464F
 	ldr r7, [sp, #0xd4]
 	cmp r7, r0
@@ -204843,7 +204520,7 @@ func_08068344: @ 0x08068344
 	str r6, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, .L08069BF8 @ =0x00008C9F
 	cmp r7, r0
 	bls .L08069BE0
@@ -204856,7 +204533,7 @@ func_08068344: @ 0x08068344
 	str r6, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, .L08069BFC @ =0x0000FFFF
 	cmp r7, r0
 	bne .L08069BE0
@@ -204869,7 +204546,7 @@ func_08068344: @ 0x08068344
 	str r6, [sp, #4]
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L08069BE0:
 	ldr r4, [sp, #0xe8]
 	ldr r5, [sp, #0xc8]
@@ -205771,7 +205448,7 @@ func_0806A1F4: @ 0x0806A1F4
 	add r1, sp, #0x18
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	ldr r0, [sp, #0x2b0]
 	adds r1, r5, #0
 	movs r2, #0x40
@@ -208393,7 +208070,7 @@ func_0806A1F4: @ 0x0806A1F4
 	lsrs r1, r1, #0x10
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L0806B6C2:
 	movs r4, #0
 	ldr r0, [sp, #0x228]
@@ -208450,7 +208127,7 @@ func_0806A1F4: @ 0x0806A1F4
 	lsrs r1, r1, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #1
 .L0806B738:
 	mov r0, sb
@@ -208529,7 +208206,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r1, r4, #0
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r3, #0xc0
 	lsls r3, r3, #0x13
@@ -208589,7 +208266,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r0, r5, #0
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	movs r1, #0x78
@@ -208612,7 +208289,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	adds r4, r0, #0
@@ -208704,7 +208381,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #4]
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #0x19
 	lsrs r4, r4, #0x1b
 	adds r4, #1
@@ -208728,7 +208405,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x290]
 	str r4, [sp, #0x22c]
 .L0806B97A:
@@ -208883,7 +208560,7 @@ func_0806A1F4: @ 0x0806A1F4
 	lsrs r1, r1, #0x10
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L0806BAAA:
 	movs r5, #0
 	ldr r6, [sp, #0x228]
@@ -208940,7 +208617,7 @@ func_0806A1F4: @ 0x0806A1F4
 	lsrs r1, r1, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #1
 .L0806BB20:
 	mov r0, sb
@@ -209018,7 +208695,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r1, r4, #0
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r3, #0xc0
 	lsls r3, r3, #0x13
@@ -209078,7 +208755,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r0, r5, #0
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	movs r1, #0x78
@@ -209101,7 +208778,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	adds r4, r0, #0
@@ -209193,7 +208870,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #4]
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #0x19
 	lsrs r4, r4, #0x1b
 	adds r4, #1
@@ -209217,7 +208894,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x294]
 	str r4, [sp, #0x230]
 .L0806BD62:
@@ -209373,7 +209050,7 @@ func_0806A1F4: @ 0x0806A1F4
 	lsrs r1, r1, #0x10
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L0806BE9A:
 	movs r5, #0
 	ldr r6, [sp, #0x228]
@@ -209430,7 +209107,7 @@ func_0806A1F4: @ 0x0806A1F4
 	lsrs r1, r1, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #1
 .L0806BF10:
 	mov r0, sb
@@ -209508,7 +209185,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r1, r4, #0
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r3, #0xc0
 	lsls r3, r3, #0x13
@@ -209568,7 +209245,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r0, r5, #0
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	movs r1, #0x78
@@ -209591,7 +209268,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, sb
 	bl GetAge__C6Animal
 	adds r4, r0, #0
@@ -209683,7 +209360,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #4]
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #0x19
 	lsrs r4, r4, #0x1b
 	adds r4, #1
@@ -209707,7 +209384,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x298]
 	str r4, [sp, #0x234]
 .L0806C152:
@@ -214271,7 +213948,7 @@ func_0806E234: @ 0x0806E234
 	add r1, sp, #0x14
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
 	bl GetHardwareSharedStateTileIndex
@@ -220213,7 +219890,7 @@ func_08070DE4: @ 0x08070DE4
 	adds r1, r4, #0
 	movs r2, #0x14
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r7, #0xc0
 	lsls r7, r7, #0x13
@@ -220408,7 +220085,7 @@ func_08070DE4: @ 0x08070DE4
 	movs r1, #0x38
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0x104]
 	str r0, [sp, #0xd8]
 	ldr r1, [sp, #0xfc]
@@ -222183,7 +221860,7 @@ func_080713B8: @ 0x080713B8
 	movs r1, #0x38
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r3, r8
 	lsls r3, r3, #3
 	.ifdef REGION_DE
@@ -222405,7 +222082,7 @@ func_080713B8: @ 0x080713B8
 	adds r1, r4, #0
 	movs r2, #0x14
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	lsls r4, r4, #5
 	movs r2, #0xc0
 	lsls r2, r2, #0x13
@@ -222582,7 +222259,7 @@ func_080713B8: @ 0x080713B8
 	movs r2, #0xc
 	.endif
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x114]
 	ldr r0, [r4]
 	movs r7, #0xb2
@@ -222621,7 +222298,7 @@ func_080713B8: @ 0x080713B8
 	.endif
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r7, #0x12
 .L080721DE:
 	adds r0, r4, #0
@@ -222657,7 +222334,7 @@ func_080713B8: @ 0x080713B8
 	.endif
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L08072220:
 	ldr r3, [sp, #0x10c]
 	ldr r0, [r3, #0x18]
@@ -222681,7 +222358,7 @@ func_080713B8: @ 0x080713B8
 	movs r2, #8
 	.endif
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r6, [sp, #0x114]
 	ldr r0, [r6]
 	movs r1, #0xb2
@@ -222718,7 +222395,7 @@ func_080713B8: @ 0x080713B8
 	.endif
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	b .L08072296
 .L08072280:
 	ldr r1, [sp, #0x10c]
@@ -222739,7 +222416,7 @@ func_080713B8: @ 0x080713B8
 	movs r2, #4
 	.endif
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L08072296:
 	.ifdef REGION_DE
 	ldr r2, [sp, #0x158]
@@ -224805,7 +224482,7 @@ func_080722DC: @ 0x080722DC
 	str r4, [sp, #4]
 	movs r2, #0x1a
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -224836,7 +224513,7 @@ func_080722DC: @ 0x080722DC
 	str r3, [sp, #4]
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r6, .L080733F4 @ =0x0000058C
 	add r6, sb
 	ldr r0, [r6]
@@ -224861,7 +224538,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x38
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r7, [sp, #0x20c]
 	adds r7, #2
 	str r7, [sp, #0x20c]
@@ -224890,7 +224567,7 @@ func_080722DC: @ 0x080722DC
 	str r3, [sp, #4]
 	movs r2, #0x10
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [r6]
 	bl func_08010F0C
 	ldr r7, [sp, #0x208]
@@ -224913,7 +224590,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x38
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r7, [sp, #0x20c]
 	adds r7, #2
 	str r7, [sp, #0x20c]
@@ -224946,7 +224623,7 @@ func_080722DC: @ 0x080722DC
 	movs r2, #8
 	.endif
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [r6]
 	bl func_08010F1C
 	ldr r5, [sp, #0x208]
@@ -224968,7 +224645,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x38
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0x20c]
 	adds r2, #2
 	str r2, [sp, #0x20c]
@@ -224995,7 +224672,7 @@ func_080722DC: @ 0x080722DC
 	str r7, [sp, #4]
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [r6]
 	ldr r6, .L08073400 @ =0x00001C9C
 	adds r0, r0, r6
@@ -225017,7 +224694,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x40
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [r7, #0x18]
 	adds r1, r1, r4
 	adds r1, #0x30
@@ -225046,7 +224723,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x40
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [r7, #0x18]
 	adds r1, r1, r4
 	adds r1, #0x30
@@ -225077,7 +224754,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x3c
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r1, [r6, #0x18]
 	adds r1, r1, r4
 	subs r0, r7, #1
@@ -226014,7 +225691,7 @@ func_080722DC: @ 0x080722DC
 	str r4, [sp, #4]
 	movs r2, #0x1a
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x2d8]
 	str r3, [sp, #0x20c]
 	ldr r5, [sp, #0x208]
@@ -226039,7 +225716,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x88
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0x208]
 	ldr r0, [r2, #0x18]
 	adds r0, r0, r5
@@ -226058,7 +225735,7 @@ func_080722DC: @ 0x080722DC
 	movs r2, #8
 	.endif
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -226077,7 +225754,7 @@ func_080722DC: @ 0x080722DC
 	lsls r1, r1, #2
 	movs r2, #0xe
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -226106,7 +225783,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x50
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -226129,7 +225806,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x88
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0x208]
 	ldr r0, [r2, #0x18]
 	adds r0, r0, r5
@@ -226148,7 +225825,7 @@ func_080722DC: @ 0x080722DC
 	movs r2, #8
 	.endif
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -226167,7 +225844,7 @@ func_080722DC: @ 0x080722DC
 	lsls r1, r1, #2
 	movs r2, #0xe
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -226193,7 +225870,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x50
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -226216,7 +225893,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x84
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0x208]
 	ldr r0, [r2, #0x18]
 	adds r0, r0, r5
@@ -226235,7 +225912,7 @@ func_080722DC: @ 0x080722DC
 	movs r2, #8
 	.endif
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -226254,7 +225931,7 @@ func_080722DC: @ 0x080722DC
 	lsls r1, r1, #2
 	movs r2, #0xe
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -226280,7 +225957,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x50
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -226303,7 +225980,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x84
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r2, [sp, #0x208]
 	ldr r0, [r2, #0x18]
 	adds r0, r0, r5
@@ -226322,7 +225999,7 @@ func_080722DC: @ 0x080722DC
 	movs r2, #8
 	.endif
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x208]
 	ldr r0, [r3, #0x18]
 	adds r0, r0, r5
@@ -226341,7 +226018,7 @@ func_080722DC: @ 0x080722DC
 	lsls r1, r1, #2
 	movs r2, #0xe
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r5, [sp, #0x20c]
 	adds r5, #2
 	str r5, [sp, #0x20c]
@@ -226367,7 +226044,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x50
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x20c]
 	adds r4, #3
 	str r4, [sp, #0x20c]
@@ -227625,7 +227302,7 @@ func_080722DC: @ 0x080722DC
 	str r2, [sp, #4]
 	movs r2, #0x1a
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r5, #2
 	str r5, [sp, #0x20c]
 .L080744E6:
@@ -227654,7 +227331,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x54
 	movs r2, #8
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x20c]
 	lsls r2, r3, #3
 	ldr r3, .L080745B8 @ =gUnk_0875268C
@@ -227873,7 +227550,7 @@ func_080722DC: @ 0x080722DC
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x2d8]
 	str r3, [sp, #0x20c]
 	ldr r0, .L080747AC @ =0x0000058C
@@ -227916,7 +227593,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x64
 	movs r2, #4
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x20c]
 	lsls r2, r3, #3
 	ldr r3, .L080747B0 @ =gUnk_08751B4C
@@ -228135,7 +227812,7 @@ func_080722DC: @ 0x080722DC
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x2d8]
 	str r3, [sp, #0x20c]
 	ldr r0, .L080749A4 @ =0x0000058C
@@ -228178,7 +227855,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x6c
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x20c]
 	lsls r2, r3, #3
 	ldr r3, .L080749A8 @ =gUnk_0875320C
@@ -228397,7 +228074,7 @@ func_080722DC: @ 0x080722DC
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r3, [sp, #0x2d8]
 	str r3, [sp, #0x20c]
 	ldr r0, .L08074B28 @ =0x0000058C
@@ -228960,7 +228637,7 @@ func_080722DC: @ 0x080722DC
 	str r4, [sp, #4]
 	movs r2, #0x1a
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r7, [sp, #0x20c]
 	adds r7, #2
 	ldr r0, [r5]
@@ -228986,7 +228663,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0x94
 	movs r2, #0x14
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, r7, #0
 	adds r4, #3
 	str r4, [sp, #0x20c]
@@ -229361,7 +229038,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [sp, #4]
 	movs r2, #0x18
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x18]
 	add r0, sp, #0x200
 	ldr r3, [r4, #0xc]
@@ -229413,7 +229090,7 @@ func_080722DC: @ 0x080722DC
 	movs r1, #0xbc
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r4, [sp, #0x20c]
 	adds r4, #3
 	str r4, [sp, #0x20c]
@@ -229478,7 +229155,7 @@ func_08075220: @ 0x08075220
 	movs r1, #0x88
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, r8
 	ldr r1, [r0, #0x18]
 	adds r1, r1, r5
@@ -229514,7 +229191,7 @@ func_08075220: @ 0x08075220
 	movs r1, #0x84
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, r8
 	ldr r1, [r0, #0x18]
 	adds r1, r1, r5
@@ -229549,7 +229226,7 @@ func_08075220: @ 0x08075220
 	movs r1, #0x78
 	movs r2, #6
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, r8
 	ldr r1, [r0, #0x18]
 	adds r1, r1, r5
@@ -231245,7 +230922,7 @@ func_08075E7C: @ 0x08075E7C
 	movs r1, #1
 	movs r2, #0x16
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
 	bl func_08008918
 	add r2, sp, #0xc
@@ -231295,7 +230972,7 @@ func_08075E7C: @ 0x08075E7C
 	add r1, sp, #0x14
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E4AC
+	bl DrawCharacterGlyphTo2DGfxBuffer
 	mov r0, r8
 	adds r1, r5, #0
 	movs r2, #0x40
@@ -238533,7 +238210,7 @@ func_08079A64: @ 0x08079A64
 	str r7, [sp, #8]
 	add r1, sp, #0x30
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	movs r3, #0x82
 	lsls r3, r3, #4
 	adds r0, r5, r3
@@ -239179,7 +238856,7 @@ func_08079F8C: @ 0x08079F8C
 	add r1, sp, #0x34
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	movs r0, #0x82
 	lsls r0, r0, #4
 	add r0, sb
@@ -241294,7 +240971,7 @@ func_0807B188: @ 0x0807B188
 	str r7, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r0, r0, r6
@@ -241323,7 +241000,7 @@ func_0807B188: @ 0x0807B188
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L0807B37C:
 	ldr r2, [sp, #0xd8]
 	adds r2, #2
@@ -241702,7 +241379,7 @@ func_0807B3B0: @ 0x0807B3B0
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	mov r0, r8
 	bl func_08008910
 	adds r6, r0, #0
@@ -242019,7 +241696,7 @@ func_0807B3B0: @ 0x0807B3B0
 	lsrs r1, r6, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 .L0807B8A0:
@@ -242318,7 +241995,7 @@ func_0807B920: @ 0x0807B920
 	adds r0, r6, #0
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r6, .L0807BB94 @ =0x00002234
 	add r6, r8
 	adds r0, r6, #0
@@ -242552,7 +242229,7 @@ func_0807B920: @ 0x0807B920
 	adds r0, #1
 	add r1, sp, #0x14
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r6, .L0807BE5C @ =0x00002234
 	add r6, r8
 	ldr r0, .L0807BE64 @ =gText_PoultryShop_StatusSpacer
@@ -242665,7 +242342,7 @@ func_0807B920: @ 0x0807B920
 	adds r0, r6, #0
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r6, .L0807BE5C @ =0x00002234
 	add r6, r8
 	adds r0, r6, #0
@@ -243333,7 +243010,7 @@ sub_0807C194: @ 0x0807C194
 	bl GetStoredBushelCount__C4Coop
 	add r1, sp, #0x30
 	movs r2, #7
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r5, sp, #0x7c
 	ldr r1, [sp, #0x10]
 	adds r0, r5, #0
@@ -243629,7 +243306,7 @@ sub_0807C194: @ 0x0807C194
 	adds r0, r0, r4
 	add r1, sp, #0x24
 	movs r2, #7
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	mov r5, sp
 	adds r5, #0x7f
 	ldr r1, [sp, #0x10]
@@ -244149,7 +243826,7 @@ sub_0807C194: @ 0x0807C194
 	ldr r0, [r0]
 	add r1, sp, #0x24
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r3, .L0807CAFC @ =gText_PoultryShop_PricePromptPrefix
 	mov sb, r3
 	adds r0, r4, #0
@@ -245594,7 +245271,7 @@ func_0807D218: @ 0x0807D218
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #2
 	add sl, r0
 	adds r5, #4
@@ -245835,7 +245512,7 @@ func_0807D218: @ 0x0807D218
 	adds r0, r0, r4
 	add r1, sp, #0xa4
 	movs r2, #7
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r0, [r7, #8]
 	ldr r4, .L0807D8A0 @ =0x00001AA8
 	adds r0, r0, r4
@@ -246685,7 +246362,7 @@ func_0807DE3C: @ 0x0807DE3C
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
 	bl func_08008918
 	movs r1, #0x3f
@@ -246833,7 +246510,7 @@ func_0807DE3C: @ 0x0807DE3C
 	add r0, r8
 	add r1, sp, #0xa4
 	movs r2, #7
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r5, sp, #0xb4
 	mov r2, sl
 	ldr r1, [r2]
@@ -247656,7 +247333,7 @@ func_0807E558: @ 0x0807E558
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #2
 	add sl, r0
 	adds r5, #4
@@ -247893,7 +247570,7 @@ func_0807E558: @ 0x0807E558
 	adds r0, r0, r2
 	adds r1, r4, #0
 	movs r2, #7
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r0, [r7, #8]
 	ldr r3, .L0807E9D0 @ =0x00001AA8
 	adds r0, r0, r3
@@ -248987,7 +248664,7 @@ func_0807EF90: @ 0x0807EF90
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xe0]
 	adds r0, #2
 	str r0, [sp, #0xe0]
@@ -249782,7 +249459,7 @@ func_0807F6E8: @ 0x0807F6E8
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r4, #2
 	add sl, r4
 	adds r6, #4
@@ -250401,7 +250078,7 @@ func_0807F8C8: @ 0x0807F8C8
 	adds r0, r0, r5
 	add r1, sp, #8
 	movs r2, #7
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	b .L0807FDFA
 	.align 2, 0
 .L0807FD88: .4byte 0x00001C34
@@ -251553,7 +251230,7 @@ func_08080540: @ 0x08080540
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #2
 	add sl, r0
 	adds r5, #4
@@ -251857,7 +251534,7 @@ func_08080540: @ 0x08080540
 	add r0, sb
 	adds r1, r4, #0
 	movs r2, #7
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r5, sp, #0xb4
 	mov r2, r8
 	ldr r1, [r2]
@@ -252760,7 +252437,7 @@ func_08080E68: @ 0x08080E68
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0x134]
 	adds r0, #2
 	str r0, [sp, #0x134]
@@ -253264,7 +252941,7 @@ func_0808114C: @ 0x0808114C
 	add r0, r8
 	add r1, sp, #8
 	movs r2, #7
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	mov r5, sp
 	adds r5, #0x21
 	ldr r1, [sp, #0x18]
@@ -254382,7 +254059,7 @@ func_08081BBC: @ 0x08081BBC
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0xe0]
 	adds r0, #2
 	str r0, [sp, #0xe0]
@@ -255479,7 +255156,7 @@ func_0808234C: @ 0x0808234C
 	str r2, [sp, #4]
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, .L08082688 @ =vtable_unk_080E5A28
 	str r0, [sp, #8]
 	add sp, #0xe0
@@ -255585,7 +255262,7 @@ func_0808268C: @ 0x0808268C
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r0, [sp, #0x44]
 	adds r0, #2
 	str r0, [sp, #0x58]
@@ -255837,7 +255514,7 @@ func_0808268C: @ 0x0808268C
 	str r5, [sp, #4]
 	movs r2, #0x18
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	b .L08082946
 .L08082928:
 	ldr r0, [r6, #0x1c]
@@ -255853,7 +255530,7 @@ func_0808268C: @ 0x0808268C
 	str r4, [sp, #4]
 	movs r2, #0x18
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L08082946:
 	ldr r0, [sp, #0x18]
 	cmp r0, #1
@@ -258542,7 +258219,7 @@ func_08083C64: @ 0x08083C64
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	ldr r6, [sp, #0xe0]
 	ldr r0, [r6]
 	cmp r0, #0
@@ -258634,7 +258311,7 @@ func_08083C64: @ 0x08083C64
 	str r4, [sp, #4]
 	movs r2, #0x12
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L0808401A:
 	adds r5, #0x80
 	movs r6, #2
@@ -258742,7 +258419,7 @@ func_08084050: @ 0x08084050
 	str r2, [sp, #4]
 	movs r2, #0x12
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r7, #2
 	adds r4, #0x24
 	subs r5, #1
@@ -259306,7 +258983,7 @@ func_08084228: @ 0x08084228
 	.byte 0x02, 0x20, 0x08, 0x60, 0xB0, 0x68, 0x14, 0x30
 	bl GetUnk10__C4Farm
 	.byte 0x0D, 0xA9, 0x07, 0x22
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	.byte 0x12, 0x4D, 0x70, 0x19, 0x4F, 0x46, 0x07, 0x70, 0x07, 0x1C, 0x11, 0x48, 0x82, 0x46, 0x38, 0x1C
 	bl strlen
 	.byte 0x39, 0x18, 0x88, 0x46, 0x63, 0x21, 0x0D, 0x1A
@@ -259371,7 +259048,7 @@ func_08084228: @ 0x08084228
 	bl GetAmountOf__C5ShelfUi
 	.byte 0x07, 0x1C, 0x43, 0x46, 0xE8, 0x18, 0xC0, 0x19, 0x0D, 0xA9
 	.byte 0x07, 0x22
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	.byte 0x3D, 0x4C, 0x30, 0x19, 0x00, 0x25, 0xAA, 0x46, 0x57, 0x46
 	.byte 0x07, 0x70, 0x07, 0x1C, 0x3A, 0x48, 0x81, 0x46, 0x38, 0x1C
 	bl strlen
@@ -260943,7 +260620,7 @@ func_08085640: @ 0x08085640
 	str r7, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r0, r0, r6
@@ -260972,7 +260649,7 @@ func_08085640: @ 0x08085640
 	movs r1, #0x20
 	movs r2, #2
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 .L08085838:
 	ldr r2, [sp, #0xd8]
 	adds r2, #2
@@ -261439,7 +261116,7 @@ func_0808586C: @ 0x0808586C
 	str r2, [sp, #4]
 	movs r2, #0xc
 	movs r3, #2
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
 	bl func_08008910
 	adds r5, r0, #0
@@ -261770,7 +261447,7 @@ func_0808586C: @ 0x0808586C
 	lsrs r1, r6, #0x10
 	movs r2, #1
 	movs r3, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 .L08085E2A:
@@ -261804,7 +261481,7 @@ func_0808586C: @ 0x0808586C
 	str r1, [sp, #4]
 	lsrs r1, r6, #0x10
 	movs r2, #1
-	bl func_0804E9F4
+	bl Fill2DGfxTilemapRect
 	adds r4, #2
 	adds r5, #1
 .L08085E6E:
@@ -262147,7 +261824,7 @@ func_08085F08: @ 0x08085F08
 	adds r0, r6, #0
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -262407,7 +262084,7 @@ func_08085F08: @ 0x08085F08
 	adds r0, #1
 	add r1, sp, #0x14
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -262493,7 +262170,7 @@ func_08085F08: @ 0x08085F08
 	adds r0, r6, #0
 	add r1, sp, #0x14
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -262657,7 +262334,7 @@ func_08085F08: @ 0x08085F08
 	adds r0, r6, #0
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -262917,7 +262594,7 @@ func_08085F08: @ 0x08085F08
 	adds r0, #1
 	add r1, sp, #0x14
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -263004,7 +262681,7 @@ func_08085F08: @ 0x08085F08
 	adds r0, r6, #0
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	mov r0, sb
 	add r0, sl
 	lsls r0, r0, #2
@@ -263953,7 +263630,7 @@ sub_08086DFA: @ 0x08086DFA
 	bl GetStoredBushelCount__C4Barn
 	add r1, sp, #0x30
 	movs r2, #7
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	add r5, sp, #0x8c
 	ldr r1, [sp, #0x10]
 	adds r0, r5, #0
@@ -264231,7 +263908,7 @@ sub_08086DFA: @ 0x08086DFA
 	adds r0, r0, r4
 	add r1, sp, #0x24
 	movs r2, #7
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	mov r5, sp
 	adds r5, #0x8f
 	ldr r1, [sp, #0x10]
@@ -264916,7 +264593,7 @@ sub_08087710: @ 0x08087710
 	ldr r0, [r0]
 	add r1, sp, #0x24
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	ldr r3, .L08087894 @ =gText_LivestockShop_PricePromptPrefix
 	mov sb, r3
 	adds r0, r4, #0
@@ -284785,7 +284462,7 @@ func_0809152C: @ 0x0809152C
 	ldr r0, [sp, #0x44]
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	movs r2, #0x8c
 	lsls r2, r2, #1
 	adds r2, r2, r7
@@ -284875,7 +284552,7 @@ func_0809152C: @ 0x0809152C
 	mov r5, sl
 	adds r1, r5, #0
 	movs r2, #0
-	bl func_0804EC84
+	bl FormatSignedDecimal
 	movs r1, #0x8c
 	lsls r1, r1, #1
 	adds r4, r7, r1
@@ -297256,7 +296933,7 @@ func_0809800C: @ 0x0809800C
 	add r1, sp, #0x54
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	movs r0, #0xc0
 	lsls r0, r0, #2
 	add r0, sl
@@ -298761,7 +298438,7 @@ func_08098CE8: @ 0x08098CE8
 	add r1, sp, #0x50
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	movs r0, #0xc0
 	lsls r0, r0, #2
 	add r0, r8
@@ -300070,7 +299747,7 @@ func_0809964C: @ 0x0809964C
 	add r1, sp, #0x54
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E5AC
+	bl DrawCharacterGlyphTo2DGfxBufferExt
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r0, r7, r3
