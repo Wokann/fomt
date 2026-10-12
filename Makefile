@@ -354,8 +354,9 @@ $(BUILD_DIR)/src/libc_string.o: CC1 := $(OLD_CC1)
 $(BUILD_DIR)/src/libc_string.o: CFLAGS += -fno-builtin
 
 # The original SRAM library's RAM-copy loops and literal pools match at -O1.
-# Keep all six functions in physical order in the same ordinary C object.
-$(BUILD_DIR)/src/libsram.o: CFLAGS := $(filter-out -O2,$(CFLAGS)) -O1
+# Keep its SDK identification and compiler-generated address constants together
+# in default .rodata, as well as all six functions in physical .text order.
+$(BUILD_DIR)/src/libsram.o: CFLAGS := $(filter-out -O2 -fdata-sections,$(CFLAGS)) -O1
 
 clean:
 	@echo "RM $(ROM) $(ELF) $(MAP) $(BUILD_DIR)"

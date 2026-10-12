@@ -882,6 +882,8 @@ SECTIONS
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
         . = ABSOLUTE(0x084E2E74); data/scripts/scripts.o(.rodata.mary_scripts);
         . = ABSOLUTE(0x0871DDD4); asm/data/data_0813B288.o(.rodata.mary_scripts_tail);
+        src/libsram.o(.rodata);
+        asm/data/data_0813B288.o(.rodata.after_sram);
     } > ROM = 0xFF
 
     .iwram : ALIGN(4)

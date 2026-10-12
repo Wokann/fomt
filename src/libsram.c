@@ -1,6 +1,10 @@
 #include "libsram.h"
 #include "gbaio.h"
 
+// SDK identification, not localized game text. The following four function
+// address constants are emitted naturally by the RAM-copy implementations.
+char const gSramLibraryVersion[] = "SRAM_V113";
+
 void ReadSramFast_Core(u8 const *source, u8 *destination, u32 size)
 {
     u32 remaining = size - 1;

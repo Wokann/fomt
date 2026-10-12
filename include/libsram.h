@@ -5,6 +5,8 @@
 
 EXTERN_C
 
+extern char const gSramLibraryVersion[];
+
 // Read and verify copy their core routines to RAM before accessing SRAM.
 void ReadSramFast_Core(u8 const *source, u8 *destination, u32 size);
 void ReadSramFast(u8 const *source, u8 *destination, u32 size);
