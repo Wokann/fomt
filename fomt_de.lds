@@ -303,6 +303,10 @@ SECTIONS
         . = 0x781E4; /* DE ROM 0x080781E4, town-map continuation. */
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after_de_tail);
+        src/money_account.o(.text.money_account_init);
+        asm/code_0803EE94.o(.text.money_account_methods);
+        src/money_account.o(.text);
+        asm/code_0803EE94.o(.text.money_account_maxima);
 
         /* DE places the shared actor constructor group after a 0x4C-byte
            regional code fragment in the preceding raw block.  Keep this

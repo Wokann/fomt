@@ -4,6 +4,7 @@
 #include "prelude.h"
 #include "farm.hh"
 #include "time_of_day.hh"
+#include "money_account.hh"
 
 struct SramAccess;
 
@@ -29,7 +30,8 @@ struct GameStateSaveImage {
     u8 unk_0000[0x10];
     GameCalendar calendar;
     Farm farm;
-    u8 unk_1AA8[0x768];
+    MoneyAccount money_account;
+    u8 unk_1BD8[0x638];
     GameDisplayOptions display_options;
     u8 unk_2214[0x12E0];
 };
@@ -37,7 +39,8 @@ struct GameStateSaveImage {
 typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
 typedef char GameStateSaveImageCalendarCheck[offsetof(GameStateSaveImage, calendar) == 0x10 ? 1 : -1];
 typedef char GameStateSaveImageFarmCheck[offsetof(GameStateSaveImage, farm) == 0x14 ? 1 : -1];
-typedef char GameStateSaveImageAfterFarmCheck[offsetof(GameStateSaveImage, unk_1AA8) == 0x1AA8 ? 1 : -1];
+typedef char GameStateSaveImageMoneyCheck[offsetof(GameStateSaveImage, money_account) == 0x1AA8 ? 1 : -1];
+typedef char GameStateSaveImageAfterMoneyCheck[offsetof(GameStateSaveImage, unk_1BD8) == 0x1BD8 ? 1 : -1];
 typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
 
 EXTERN_C

@@ -298,6 +298,10 @@ SECTIONS
         . = 0x782C4; /* JP/US-shared town-map cursor hit test. */
         src/town_map_data.o(.text.town_map_hotspot_contains);
         . = 0x782EC; asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
+        src/money_account.o(.text.money_account_init);
+        asm/code_0803EE94.o(.text.money_account_methods);
+        src/money_account.o(.text);
+        asm/code_0803EE94.o(.text.money_account_maxima);
 
         src/actor.o(.text);
         src/animal.o(.text);

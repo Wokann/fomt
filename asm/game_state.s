@@ -117,7 +117,7 @@ func_08010358:
     ldr r1, [sp, #0x48]
     ldr r2, .Ljp_080105E0 @ =0x00001AA8
     adds r0, r1, r2
-    bl func_0809AB8C
+    bl InitializeMoneyAccount
     ldr r3, [sp, #0x48]
     ldr r1, .Ljp_080105E4 @ =0x00001BD8
     adds r0, r3, r1
@@ -2070,7 +2070,7 @@ func_08010F54:
     bne .Ljp_080113A4
     ldr r1, .Ljp_080113A0 @ =0x00001AA8
     adds r0, r6, r1
-    bl func_0809A8A4
+    bl UpdateMoneyAccountRecordHistory
     b .Ljp_080113AC
     .align 2, 0
 .Ljp_080113A0: .4byte 0x00001AA8
@@ -2485,7 +2485,7 @@ func_08011650:
     bl __4FarmPCc
     ldr r1, .Ljp_08011858 @ =0x00001AA8
     adds r0, r7, r1
-    bl func_0809AB8C
+    bl InitializeMoneyAccount
     ldr r2, .Ljp_0801185C @ =0x00001BD8
     adds r0, r7, r2
     mov r1, sp
@@ -23537,7 +23537,7 @@ func_08010358: @ 0x08010358
     ldr r1, [sp, #0x48]
     ldr r2, .L08010600 @ =0x00001AA8
     adds r0, r1, r2
-    bl func_0809AB8C
+    bl InitializeMoneyAccount
     ldr r3, [sp, #0x48]
     ldr r1, .L08010604 @ =0x00001BD8
     adds r0, r3, r1
@@ -25490,7 +25490,7 @@ func_08010F54: @ 0x08010F54
     bne .L080113C4
     ldr r1, .L080113C0 @ =0x00001AA8
     adds r0, r6, r1
-    bl func_0809AE6C
+    bl UpdateMoneyAccountRecordHistory
     b .L080113CC
     .align 2, 0
 .L080113C0: .4byte 0x00001AA8
@@ -25904,7 +25904,7 @@ func_08011650: @ 0x08011650
     bl __4FarmPCc
     ldr r1, .L08011878 @ =0x00001AA8
     adds r0, r7, r1
-    bl func_0809AB8C
+    bl InitializeMoneyAccount
     ldr r2, .L0801187C @ =0x00001BD8
     adds r0, r7, r2
     mov r1, sp
