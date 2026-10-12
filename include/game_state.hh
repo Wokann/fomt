@@ -69,6 +69,14 @@ typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display
 typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
 typedef char GameStateSaveImageAfterShoppingCheck[offsetof(GameStateSaveImage, unk_2C80) == 0x2C80 ? 1 : -1];
 
+// The upper word records the failed write stage; these are stage IDs, not
+// independent bits. The lower word carries the SRAM service's error flags.
+enum GameStateSaveWriteErrorStage {
+    GAME_STATE_SAVE_WRITE_SIZE_ERROR = 1 << 16,
+    GAME_STATE_SAVE_WRITE_IMAGE_ERROR = 2 << 16,
+    GAME_STATE_SAVE_WRITE_CHECKSUM_ERROR = 3 << 16
+};
+
 EXTERN_C
 
 // The save initializer stores this nonzero random value at +0x21CC. Its
@@ -97,7 +105,7 @@ u32 GetSaveImageRecordSize();
 
 // Writes the original save image and its checksum at the selected SRAM
 // offset. Zero denotes success; nonzero values carry the SRAM error flags.
-u32 func_080115B0(void const * snapshot, struct SramAccess * access, u32 offset);
+u32 WriteGameStateSaveImage(void const * snapshot, struct SramAccess * access, u32 offset);
 
 // Initializes and reads a save image into the supplied allocation. The
 // status output is zero on success; the complete image layout is unresolved.

@@ -1,5 +1,7 @@
 #include "game_state.hh"
 #include "unknown_types.hh"
+#include "sram_proxy.hh"
+#include "sram_proxy_2.hh"
 #include <stdlib.h>
 
 u32 GetNonzeroRandomValue()
@@ -81,6 +83,38 @@ u32 CalculateSaveImageChecksum(u8 const * data, u32 count)
 u32 GetSaveImageRecordSize()
 {
     return sizeof(GameStateSaveImage) + 2 * sizeof(u32);
+}
+
+u32 WriteGameStateSaveImage(void const * image, SramAccess * access, u32 offset)
+{
+    u32 const record_offset = offset;
+    u32 const size = sizeof(GameStateSaveImage);
+    u32 error;
+    u32 stage;
+    u32 checksum;
+
+    if (static_cast<u8>(func_080006A4(access, offset, &size, sizeof(size))) == 0) {
+        error = gUnk_03000400;
+        stage = GAME_STATE_SAVE_WRITE_SIZE_ERROR;
+        goto failed;
+    }
+
+    offset += sizeof(size);
+    if (static_cast<u8>(func_080006A4(access, offset, image, size)) == 0) {
+        error = gUnk_03000400;
+        stage = GAME_STATE_SAVE_WRITE_IMAGE_ERROR;
+        goto failed;
+    }
+
+    offset = record_offset + sizeof(size) + sizeof(GameStateSaveImage);
+    checksum = CalculateSaveImageChecksum(static_cast<u8 const *>(image), size);
+    if (static_cast<u8>(func_080006A4(access, offset, &checksum, sizeof(checksum))) != 0)
+        return 0;
+
+    error = gUnk_03000400;
+    stage = GAME_STATE_SAVE_WRITE_CHECKSUM_ERROR;
+failed:
+    return error | stage;
 }
 
 // Calendar text begins this physical rodata block.

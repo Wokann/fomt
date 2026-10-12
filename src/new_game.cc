@@ -150,7 +150,7 @@ bool func_08003F9C(NewGameMenuCore * core)
         u32 attempts = 3;
         do {
             InterruptGuard guard(0x1000);
-            if (func_080115B0(core->unk_08, &core->sram, offset) == 0) {
+            if (WriteGameStateSaveImage(core->unk_08, &core->sram, offset) == 0) {
                 func_08003788(core, core->save_slot_status[slot],
                     static_cast<GameStateSaveImage *>(core->unk_08));
                 func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
