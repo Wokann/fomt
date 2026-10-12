@@ -353,7 +353,6 @@ SECTIONS
         src/money_account.o(.text.money_account_init);
         asm/code_0803EE94.o(.text.money_account_methods);
         src/money_account.o(.text);
-        asm/code_0803EE94.o(.text.money_account_maxima);
 
         . = 0x9AB3C; /* JP ROM 0x0809AB3C, independently matched */
 

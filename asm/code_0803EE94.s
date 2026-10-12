@@ -66570,7 +66570,7 @@ func_080722DC:
 	ldr r0, [r7]
 	ldr r7, .Ljp_080738F0
 	adds r0, r0, r7
-	bl func_0809B05C
+	bl GetMoneyAccountMaximumIncome30
 	ldr r2, [sp, #0x208]
 	ldr r1, [r2, #0x18]
 	lsls r5, r5, #6
@@ -66641,7 +66641,7 @@ func_080722DC:
 	mov r1, sl
 	ldr r0, [r1]
 	adds r0, r0, r7
-	bl func_0809B084
+	bl GetMoneyAccountMaximumExpense30
 	ldr r2, [sp, #0x208]
 	ldr r1, [r2, #0x18]
 	lsls r5, r5, #6
@@ -66712,7 +66712,7 @@ func_080722DC:
 	mov r1, sl
 	ldr r0, [r1]
 	adds r0, r0, r7
-	bl func_0809B0B0
+	bl GetMoneyAccountMaximumIncome4
 	ldr r2, [sp, #0x208]
 	ldr r1, [r2, #0x18]
 	lsls r5, r5, #6
@@ -66783,7 +66783,7 @@ func_080722DC:
 	mov r1, sl
 	ldr r0, [r1]
 	adds r0, r0, r7
-	bl func_0809B0D8
+	bl GetMoneyAccountMaximumExpense4
 	ldr r2, [sp, #0x208]
 	ldr r1, [r2, #0x18]
 	lsls r5, r5, #6
@@ -122097,114 +122097,6 @@ UpdateMoneyAccountRecordHistory:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .section .text.money_account_maxima
-	.global func_0809B05C
-	.thumb_func
-func_0809B05C:
-	push {lr}
-	adds r2, r0, #0
-	adds r1, r2, #0
-	adds r1, #8
-	ldr r0, [r2, #8]
-	subs r0, #1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	movs r0, #0x90
-	lsls r0, r0, #1
-	adds r3, r2, r0
-	ldr r2, [r3]
-	ldr r0, [r1]
-	cmp r2, r0
-	blo .Ljp_0809AAB6
-	adds r1, r3, #0
-.Ljp_0809AAB6:
-	ldr r0, [r1]
-	pop {r1}
-	bx r1
-	.global func_0809B084
-	.thumb_func
-func_0809B084:
-	push {lr}
-	adds r2, r0, #0
-	adds r1, r2, #0
-	adds r1, #8
-	ldr r0, [r2, #8]
-	subs r0, #1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	movs r0, #0x92
-	lsls r0, r0, #1
-	adds r3, r2, r0
-	ldr r2, [r3]
-	ldr r0, [r1, #4]
-	adds r1, #4
-	cmp r2, r0
-	blo .Ljp_0809AAE0
-	adds r1, r3, #0
-.Ljp_0809AAE0:
-	ldr r0, [r1]
-	pop {r1}
-	bx r1
-	.align 2, 0
-	.global func_0809B0B0
-	.thumb_func
-func_0809B0B0:
-	push {lr}
-	adds r2, r0, #0
-	adds r1, r2, #0
-	adds r1, #0xfc
-	ldr r0, [r1]
-	subs r0, #1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	movs r0, #0x94
-	lsls r0, r0, #1
-	adds r3, r2, r0
-	ldr r2, [r3]
-	ldr r0, [r1]
-	cmp r2, r0
-	blo .Ljp_0809AB0A
-	adds r1, r3, #0
-.Ljp_0809AB0A:
-	ldr r0, [r1]
-	pop {r1}
-	bx r1
-	.global func_0809B0D8
-	.thumb_func
-func_0809B0D8:
-	push {lr}
-	adds r2, r0, #0
-	adds r1, r2, #0
-	adds r1, #0xfc
-	ldr r0, [r1]
-	subs r0, #1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	movs r0, #0x96
-	lsls r0, r0, #1
-	adds r3, r2, r0
-	ldr r2, [r3]
-	ldr r0, [r1, #4]
-	adds r1, #4
-	cmp r2, r0
-	blo .Ljp_0809AB34
-	adds r1, r3, #0
-.Ljp_0809AB34:
-	ldr r0, [r1]
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-
-
-
-
-
-
     .else
 
     .INCLUDE "asm/macro.inc"
@@ -225077,7 +224969,7 @@ func_080722DC: @ 0x080722DC
 	ldr r0, [r7]
 	ldr r7, .L08073C9C @ =0x00001AA8
 	adds r0, r0, r7
-	bl func_0809B05C
+	bl GetMoneyAccountMaximumIncome30
 	ldr r2, [sp, #0x208]
 	ldr r1, [r2, #0x18]
 	lsls r5, r5, #6
@@ -225164,7 +225056,7 @@ func_080722DC: @ 0x080722DC
 	mov r1, sl
 	ldr r0, [r1]
 	adds r0, r0, r7
-	bl func_0809B084
+	bl GetMoneyAccountMaximumExpense30
 	ldr r2, [sp, #0x208]
 	ldr r1, [r2, #0x18]
 	lsls r5, r5, #6
@@ -225251,7 +225143,7 @@ func_080722DC: @ 0x080722DC
 	mov r1, sl
 	ldr r0, [r1]
 	adds r0, r0, r7
-	bl func_0809B0B0
+	bl GetMoneyAccountMaximumIncome4
 	ldr r2, [sp, #0x208]
 	ldr r1, [r2, #0x18]
 	lsls r5, r5, #6
@@ -225338,7 +225230,7 @@ func_080722DC: @ 0x080722DC
 	mov r1, sl
 	ldr r0, [r1]
 	adds r0, r0, r7
-	bl func_0809B0D8
+	bl GetMoneyAccountMaximumExpense4
 	ldr r2, [sp, #0x208]
 	ldr r1, [r2, #0x18]
 	lsls r5, r5, #6
@@ -302029,108 +301921,5 @@ UpdateMoneyAccountRecordHistory: @ 0x0809AE6C
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-
-    .section .text.money_account_maxima
-	thumb_func_start func_0809B05C
-func_0809B05C: @ 0x0809B05C
-	push {lr}
-	adds r2, r0, #0
-	adds r1, r2, #0
-	adds r1, #8
-	ldr r0, [r2, #8]
-	subs r0, #1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	movs r0, #0x90
-	lsls r0, r0, #1
-	adds r3, r2, r0
-	ldr r2, [r3]
-	ldr r0, [r1]
-	cmp r2, r0
-	blo .L0809B07E
-	adds r1, r3, #0
-.L0809B07E:
-	ldr r0, [r1]
-	pop {r1}
-	bx r1
-
-	thumb_func_start func_0809B084
-func_0809B084: @ 0x0809B084
-	push {lr}
-	adds r2, r0, #0
-	adds r1, r2, #0
-	adds r1, #8
-	ldr r0, [r2, #8]
-	subs r0, #1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	movs r0, #0x92
-	lsls r0, r0, #1
-	adds r3, r2, r0
-	ldr r2, [r3]
-	ldr r0, [r1, #4]
-	adds r1, #4
-	cmp r2, r0
-	blo .L0809B0A8
-	adds r1, r3, #0
-.L0809B0A8:
-	ldr r0, [r1]
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-	thumb_func_start func_0809B0B0
-func_0809B0B0: @ 0x0809B0B0
-	push {lr}
-	adds r2, r0, #0
-	adds r1, r2, #0
-	adds r1, #0xfc
-	ldr r0, [r1]
-	subs r0, #1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	movs r0, #0x94
-	lsls r0, r0, #1
-	adds r3, r2, r0
-	ldr r2, [r3]
-	ldr r0, [r1]
-	cmp r2, r0
-	blo .L0809B0D2
-	adds r1, r3, #0
-.L0809B0D2:
-	ldr r0, [r1]
-	pop {r1}
-	bx r1
-
-	thumb_func_start func_0809B0D8
-func_0809B0D8: @ 0x0809B0D8
-	push {lr}
-	adds r2, r0, #0
-	adds r1, r2, #0
-	adds r1, #0xfc
-	ldr r0, [r1]
-	subs r0, #1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	movs r0, #0x96
-	lsls r0, r0, #1
-	adds r3, r2, r0
-	ldr r2, [r3]
-	ldr r0, [r1, #4]
-	adds r1, #4
-	cmp r2, r0
-	blo .L0809B0FC
-	adds r1, r3, #0
-.L0809B0FC:
-	ldr r0, [r1]
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-    @ Direct physical entry referenced by a recovered dispatch table.
 
     .endif

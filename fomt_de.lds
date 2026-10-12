@@ -306,7 +306,6 @@ SECTIONS
         src/money_account.o(.text.money_account_init);
         asm/code_0803EE94.o(.text.money_account_methods);
         src/money_account.o(.text);
-        asm/code_0803EE94.o(.text.money_account_maxima);
 
         /* DE places the shared actor constructor group after a 0x4C-byte
            regional code fragment in the preceding raw block.  Keep this

@@ -301,7 +301,6 @@ SECTIONS
         src/money_account.o(.text.money_account_init);
         asm/code_0803EE94.o(.text.money_account_methods);
         src/money_account.o(.text);
-        asm/code_0803EE94.o(.text.money_account_maxima);
 
         src/actor.o(.text);
         src/animal.o(.text);

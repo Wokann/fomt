@@ -23,6 +23,18 @@ struct MoneyAccountHistory {
             return records;
         return records + (count - (index + 1));
     }
+
+    // The original maximum readers require a nonempty history. Initialization
+    // and the record update routines establish that invariant.
+    MoneyAccountRecord const & Last() const
+    {
+        return (*this)[count - 1];
+    }
+
+    MoneyAccountRecord const & operator[](u32 index) const
+    {
+        return records[index];
+    }
 };
 
 struct MoneyAccount {
@@ -50,6 +62,10 @@ EXTERN_C
 MoneyAccount * InitializeMoneyAccount(MoneyAccount * account) SECTION(".text.money_account_init");
 MoneyAccountRecord const * GetMoneyAccountRecord30(MoneyAccount const * account, u32 index);
 MoneyAccountRecord const * GetMoneyAccountRecord4(MoneyAccount const * account, u32 index);
+u32 GetMoneyAccountMaximumIncome30(MoneyAccount const * account);
+u32 GetMoneyAccountMaximumExpense30(MoneyAccount const * account);
+u32 GetMoneyAccountMaximumIncome4(MoneyAccount const * account);
+u32 GetMoneyAccountMaximumExpense4(MoneyAccount const * account);
 
 // Still implemented by the original assembly: update the recorded maxima,
 // append a zero record to history_FC and reset history_08 to one zero record.

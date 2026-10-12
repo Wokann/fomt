@@ -24,3 +24,35 @@ MoneyAccountRecord const * GetMoneyAccountRecord4(MoneyAccount const * account, 
 {
     return account->history_FC.GetRecord(index);
 }
+
+u32 GetMoneyAccountMaximumIncome30(MoneyAccount const * account)
+{
+    u32 const & current = account->history_08.Last().income;
+    u32 const & maximum = account->max_income_08;
+    u32 const & result = maximum < current ? current : maximum;
+    return result;
+}
+
+u32 GetMoneyAccountMaximumExpense30(MoneyAccount const * account)
+{
+    u32 const & current = account->history_08.Last().expense;
+    u32 const & maximum = account->max_expense_08;
+    u32 const & result = maximum < current ? current : maximum;
+    return result;
+}
+
+u32 GetMoneyAccountMaximumIncome4(MoneyAccount const * account)
+{
+    u32 const & current = account->history_FC.Last().income;
+    u32 const & maximum = account->max_income_FC;
+    u32 const & result = maximum < current ? current : maximum;
+    return result;
+}
+
+u32 GetMoneyAccountMaximumExpense4(MoneyAccount const * account)
+{
+    u32 const & current = account->history_FC.Last().expense;
+    u32 const & maximum = account->max_expense_FC;
+    u32 const & result = maximum < current ? current : maximum;
+    return result;
+}
