@@ -152,10 +152,8 @@ return_result:
 // high half.
 void Clear2DGfxBuffer(u32 size, void *buffer, u32 color)
 {
-    // These bindings reproduce the original leaf-frame register allocation;
-    // they are C++ register bindings, not inline assembly.
-    register u32 color_word asm("r3") = color & 0xF;
-    register u32 temporary asm("r2");
+    u32 color_word = color & 0xF;
+    u32 temporary;
 
     temporary = color_word << 4;
     color_word |= temporary;
@@ -308,11 +306,9 @@ void Clear2DGfxBufferRect(u32 size, void *buffer, u32 x, u32 y, u32 width,
 void DrawStringTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
     u8 const *string)
 {
-    // These long-lived values use the original callee-saved registers. This
-    // is a register binding only, not inline assembly.
-    register u8 const *current asm("r6") = string;
+    u8 const *current = string;
     i32 maximum_x = (size << 16) >> 13;
-    register i32 character asm("r5") = 0;
+    i32 character = 0;
     u8 byte = *current;
 
     while (byte != 0 && (u32)x < (u32)maximum_x) {
@@ -321,25 +317,22 @@ void DrawStringTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
         character |= byte;
         glyph_width = DrawCharacterGlyphTo2DGfxBuffer(size, buffer, x, y,
             character);
-        if (glyph_width == 1)
-            goto render_single_width;
-        if (glyph_width < 1)
-            goto advance_character;
-        if (glyph_width == 2)
-            goto render_double_width;
-        return;
+        switch (glyph_width) {
+        case 1:
+            character = 0;
+            x += 8;
+            break;
+        case 0:
+            break;
+        case 2:
+            character = 0;
+            x += 16;
+            break;
+        default:
+            return;
+        }
 
-render_single_width:
-        character = 0;
-        x += 8;
-        goto advance_character;
-
-render_double_width:
-        character = 0;
-        x += 16;
-
-advance_character:
-    current++;
+        current++;
         byte = *current;
         character <<= 8;
     }
@@ -350,11 +343,9 @@ advance_character:
 void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
     u8 const *string, i32 foreground, i32 background)
 {
-    // Match the ordinary walker: keep the byte cursor and accumulated code
-    // in the original callee-saved registers across the compositor call.
-    register u8 const *current asm("r6") = string;
+    u8 const *current = string;
     i32 maximum_x = (size << 16) >> 13;
-    register i32 character asm("r5") = 0;
+    i32 character = 0;
     u8 byte = *current;
 
     while (byte != 0 && (u32)x < (u32)maximum_x) {
@@ -363,24 +354,21 @@ void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
         character |= byte;
         glyph_width = DrawCharacterGlyphTo2DGfxBufferExt(size, buffer, x, y,
             character, foreground, background);
-        if (glyph_width == 1)
-            goto render_single_width;
-        if (glyph_width < 1)
-            goto advance_character;
-        if (glyph_width == 2)
-            goto render_double_width;
-        return;
+        switch (glyph_width) {
+        case 1:
+            character = 0;
+            x += 8;
+            break;
+        case 0:
+            break;
+        case 2:
+            character = 0;
+            x += 16;
+            break;
+        default:
+            return;
+        }
 
-render_single_width:
-        character = 0;
-        x += 8;
-        goto advance_character;
-
-render_double_width:
-        character = 0;
-        x += 16;
-
-advance_character:
         current++;
         byte = *current;
         character <<= 8;
@@ -434,61 +422,17 @@ void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
 void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
     u32 height, u32 palette, u32 row_stride)
 {
-    // These are ordinary C++ register bindings. The empty constraints below
-    // preserve their lifetimes for the legacy compiler without emitting code.
-    register u16 *write_pointer asm("r4");
-    register u32 next_tile asm("r5");
-    register u16 *row_pointer asm("r6");
-    register u32 row asm("r1");
-    register u32 column_count asm("r12");
-    register u32 row_count asm("r8");
-    register u32 row_stride_bytes asm("r9");
-    register u32 palette_value asm("r10");
-    register u32 palette_input asm("r0");
-    register u32 tile_input asm("r1");
+    u16 tile = first_tile;
+    u16 palette_value = palette;
+    u16 *row_pointer = destination;
 
-    write_pointer = destination;
-    column_count = width;
-    row_count = height;
-    tile_input = first_tile;
-    palette_input = palette;
-    next_tile = static_cast<u16>(tile_input);
-    palette_input <<= 16;
-    __asm__ volatile ("" : "+r"(palette_input));
-    palette_input >>= 16;
-    palette_value = palette_input;
-    row_pointer = write_pointer;
-    row = 0;
+    for (u32 row = 0; row < height; ++row) {
+        for (u32 column = 0; column < width; ++column)
+            *destination++ = tile++ | (palette_value << 12);
 
-    if (row >= row_count)
-        return;
-
-    row_stride_bytes = row_stride * sizeof(*destination);
-    do {
-        register u32 column asm("r2") = 0;
-        u32 next_row = row + 1;
-
-        __asm__ volatile ("" : "+r"(row));
-        __asm__ volatile ("" : "+r"(next_row));
-        if (column < column_count) {
-            register u32 tile_attribute asm("r3") = palette_value << 12;
-
-            do {
-                u32 current_tile = next_tile;
-                register u32 incremented_tile asm("r0") = current_tile + 1;
-
-                next_tile = static_cast<u16>(incremented_tile);
-                *write_pointer++ = current_tile | tile_attribute;
-                column++;
-            } while (column < column_count);
-        }
-
-        __asm__ volatile ("" : "+r"(row_pointer));
-        row_pointer = reinterpret_cast<u16 *>(reinterpret_cast<u8 *>(row_pointer)
-            + row_stride_bytes);
-        write_pointer = row_pointer;
-        row = next_row;
-    } while (row < row_count);
+        row_pointer += row_stride;
+        destination = row_pointer;
+    }
 }
 
 UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
