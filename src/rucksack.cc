@@ -1,4 +1,31 @@
 #include "rucksack.hh"
+#include <memory>
+
+template <typename T>
+inline Rucksack::Slots<T>::Slots(u32 size, T const & value)
+    : m_size(0)
+{
+    std::uninitialized_fill_n(reinterpret_cast<T *>(m_data), size, value);
+    m_size = size;
+}
+
+template <typename T>
+T Rucksack::Slots<T>::push_back(T value)
+{
+    T result((*this)[0]);
+    std::copy(begin() + 1, end(), begin());
+    (*this)[size() - 1] = value;
+    return result;
+}
+
+template <typename T>
+T Rucksack::Slots<T>::push_front(T value)
+{
+    T result((*this)[m_size - 1]);
+    std::copy_backward(begin(), end() - 1, end());
+    (*this)[0] = value;
+    return result;
+}
 
 Rucksack::Rucksack()
     : items(2, RucksackItem()), tools(2, ToolStack())
@@ -63,7 +90,7 @@ u32 Rucksack::GetFirstFreeItemSlot() const
 
 u32 Rucksack::GetLastFreeItemSlot() const
 {
-    typedef FixedVec<RucksackItem, 8>::const_reverse_iterator It;
+    typedef Slots<RucksackItem>::const_reverse_iterator It;
 
     u32 idx = items.size() - 1;
 
@@ -198,7 +225,7 @@ u32 Rucksack::GetFirstFreeToolSlot() const
 
 u32 Rucksack::GetLastFreeToolSlot() const
 {
-    typedef FixedVec<ToolStack, 8>::const_reverse_iterator It;
+    typedef Slots<ToolStack>::const_reverse_iterator It;
 
     int idx = tools.size() - 1;
 
@@ -297,7 +324,7 @@ void NAKED Rucksack::Upgrade()
      * https://decomp.me/scratch/05Wq0
      * https://decomp.me/scratch/LzhAW */
 
-    // The actual nonmatching part is the inlined FixedVec::resize, which may come up again
+    // The native slot-resize implementation remains unmatched.
 
     asm_unified("\
         push {r4, r5, r6, r7, lr}\n\
@@ -678,7 +705,7 @@ RucksackItem Rucksack::CycleItemFront(RucksackItem item)
 
 u32 Rucksack::AddAmountOfFood(u32 food_id, u32 amount)
 {
-    typedef FixedVec<RucksackItem, 8>::iterator It;
+    typedef Slots<RucksackItem>::iterator It;
 
     if ((int)food_id >= ITEM_FOOD_NONE)
         return amount;
@@ -700,7 +727,7 @@ u32 Rucksack::AddAmountOfFood(u32 food_id, u32 amount)
 
 u32 Rucksack::AddAmountOfArticle(u32 article_id, u32 amount)
 {
-    typedef FixedVec<RucksackItem, 8>::iterator It;
+    typedef Slots<RucksackItem>::iterator It;
 
     if ((int)article_id >= ITEM_ARTICLE_NONE)
         return amount;
@@ -749,7 +776,7 @@ ToolStack Rucksack::CycleToolFront(ToolStack tool_stack)
 
 u32 Rucksack::AddAmountOfTool(u32 tool_id, u32 amount)
 {
-    typedef FixedVec<ToolStack, 8>::iterator It;
+    typedef Slots<ToolStack>::iterator It;
 
     if ((int)tool_id >= ITEM_TOOL_NONE)
         return amount;

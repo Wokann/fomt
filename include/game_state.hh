@@ -3,6 +3,9 @@
 
 #include "prelude.h"
 #include "farm.hh"
+#include "farmer.hh"
+#include "dog.hh"
+#include "more_items.hh"
 #include "time_of_day.hh"
 #include "money_account.hh"
 
@@ -31,7 +34,10 @@ struct GameStateSaveImage {
     GameCalendar calendar;
     Farm farm;
     MoneyAccount money_account;
-    u8 unk_1BD8[0x638];
+    Farmer farmer;
+    Dog dog;
+    MoreItems more_items;
+    u8 unk_1CCC[0x544];
     GameDisplayOptions display_options;
     u8 unk_2214[0x12E0];
 };
@@ -40,7 +46,10 @@ typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 
 typedef char GameStateSaveImageCalendarCheck[offsetof(GameStateSaveImage, calendar) == 0x10 ? 1 : -1];
 typedef char GameStateSaveImageFarmCheck[offsetof(GameStateSaveImage, farm) == 0x14 ? 1 : -1];
 typedef char GameStateSaveImageMoneyCheck[offsetof(GameStateSaveImage, money_account) == 0x1AA8 ? 1 : -1];
-typedef char GameStateSaveImageAfterMoneyCheck[offsetof(GameStateSaveImage, unk_1BD8) == 0x1BD8 ? 1 : -1];
+typedef char GameStateSaveImageFarmerCheck[offsetof(GameStateSaveImage, farmer) == 0x1BD8 ? 1 : -1];
+typedef char GameStateSaveImageDogCheck[offsetof(GameStateSaveImage, dog) == 0x1C70 ? 1 : -1];
+typedef char GameStateSaveImageMoreItemsCheck[offsetof(GameStateSaveImage, more_items) == 0x1CA0 ? 1 : -1];
+typedef char GameStateSaveImageAfterMoreItemsCheck[offsetof(GameStateSaveImage, unk_1CCC) == 0x1CCC ? 1 : -1];
 typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
 
 EXTERN_C
