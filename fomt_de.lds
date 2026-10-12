@@ -305,6 +305,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after_de_tail);
         src/money_account.o(.text.money_account_init);
         asm/code_0803EE94.o(.text.money_account_methods);
+        src/money_account.o(.text.money_account_update);
+        asm/code_0803EE94.o(.text.money_account_history);
         src/money_account.o(.text);
 
         /* DE places the shared actor constructor group after a 0x4C-byte

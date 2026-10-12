@@ -2077,7 +2077,7 @@ func_08010F54:
 .Ljp_080113A4:
     ldr r5, .Ljp_080113E0 @ =0x00001AA8
     adds r0, r6, r5
-    bl func_0809ADA8
+    bl AppendMoneyAccountRecord30
 .Ljp_080113AC:
     ldr r1, .Ljp_080113E4 @ =0x000034C8
     adds r0, r6, r1
@@ -25497,7 +25497,7 @@ func_08010F54: @ 0x08010F54
 .L080113C4:
     ldr r5, .L08011400 @ =0x00001AA8
     adds r0, r6, r5
-    bl func_0809ADA8
+    bl AppendMoneyAccountRecord30
 .L080113CC:
     ldr r1, .L08011404 @ =0x000034C8
     adds r0, r6, r1

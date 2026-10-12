@@ -352,6 +352,8 @@ SECTIONS
         . = 0x786A0; asm/code_0803EE94.o(.text.func_080786A0);
         src/money_account.o(.text.money_account_init);
         asm/code_0803EE94.o(.text.money_account_methods);
+        src/money_account.o(.text.money_account_update);
+        asm/code_0803EE94.o(.text.money_account_history);
         src/money_account.o(.text);
 
         . = 0x9AB3C; /* JP ROM 0x0809AB3C, independently matched */
