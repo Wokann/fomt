@@ -434,7 +434,6 @@ SECTIONS
         src/m4a_1.o(.text);
         src/m4a.o(.text);
         asm/code_lib_syscall.o(.text);
-        asm/code_lib_sram.o(.text);
         src/libsram.o(.text);
         *libgcc.a:_call_via_rX.o(.text);
         src/libc_string.o(.text);
