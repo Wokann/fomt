@@ -19,6 +19,70 @@ void InitializeGameDisplayOptions(GameDisplayOptions * options)
     options->show_nameplate = 1;
 }
 
+void InitializeTVShoppingOrderState(TVShoppingOrderState * state)
+{
+    state->selection = TV_SHOPPING_ITEM_NONE;
+    state->pending_item = TV_SHOPPING_ITEM_NONE;
+    state->countdown = 0;
+}
+
+u32 GetTVShoppingSelection(TVShoppingOrderState const * state)
+{
+    return state->selection;
+}
+
+u32 GetTVShoppingPendingItem(TVShoppingOrderState const * state)
+{
+    return state->pending_item;
+}
+
+bool IsTVShoppingDeliveryReady(TVShoppingOrderState const * state)
+{
+    return state->pending_item != TV_SHOPPING_ITEM_NONE && state->countdown == 0;
+}
+
+void SetTVShoppingSelection(TVShoppingOrderState * state, u32 item)
+{
+    state->selection = item;
+}
+
+void ConfirmTVShoppingOrder(TVShoppingOrderState * state)
+{
+    state->pending_item = state->selection;
+    state->countdown = 2;
+}
+
+void CompleteTVShoppingDelivery(TVShoppingOrderState * state)
+{
+    if (state->pending_item == state->selection)
+        state->selection = TV_SHOPPING_ITEM_NONE;
+    state->pending_item = TV_SHOPPING_ITEM_NONE;
+}
+
+void UpdateTVShoppingDeliveryCountdown(TVShoppingOrderState * state)
+{
+    if (state->selection != TV_SHOPPING_ITEM_NONE &&
+        state->pending_item != TV_SHOPPING_ITEM_NONE && state->countdown != 0)
+        --state->countdown;
+}
+
+u32 CalculateSaveImageChecksum(u8 const * data, u32 count)
+{
+    u32 sum = 0;
+    if (data != nullptr && count != 0) {
+        u8 const * cursor = data;
+        do {
+            sum += *cursor++;
+        } while (--count != 0);
+    }
+    return sum;
+}
+
+u32 GetSaveImageRecordSize()
+{
+    return sizeof(GameStateSaveImage) + 2 * sizeof(u32);
+}
+
 // Calendar text begins this physical rodata block.
 #include FOMT_TEXT_INCLUDE(game_state_1.cc)
 

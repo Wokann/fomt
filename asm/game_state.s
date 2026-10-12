@@ -257,7 +257,7 @@ func_08010358:
     ldr r2, [sp, #0x48]
     ldr r3, .Ljp_08010620 @ =0x00002C74
     adds r0, r2, r3
-    bl func_08011510
+    bl InitializeTVShoppingOrderState
     ldr r6, [sp, #0x48]
     movs r1, #0xb2
     lsls r1, r1, #6
@@ -1831,7 +1831,7 @@ func_08010F54:
     bl DayUpdate__3Dog
     ldr r1, .Ljp_080111F0 @ =0x00002C74
     adds r0, r6, r1
-    bl func_08011568
+    bl UpdateTVShoppingDeliveryCountdown
     ldr r0, .Ljp_080111F4 @ =0x00001CD4
     adds r4, r6, r0
     ldr r1, .Ljp_080111F8 @ =0x0000214C
@@ -2234,117 +2234,6 @@ func_080114C8:
     bx r1
     .align 2, 0
     .section .text.game_state_after_display_options
-    .global func_08011510
-    .thumb_func
-func_08011510:
-    movs r1, #0x10
-    str r1, [r0]
-    str r1, [r0, #4]
-    movs r1, #0
-    strb r1, [r0, #8]
-    bx lr
-    .global func_0801151C
-    .thumb_func
-func_0801151C:
-    ldr r0, [r0]
-    bx lr
-    .global func_08011520
-    .thumb_func
-func_08011520:
-    ldr r0, [r0, #4]
-    bx lr
-    .global func_08011524
-    .thumb_func
-func_08011524:
-    push {lr}
-    adds r1, r0, #0
-    movs r2, #0
-    ldr r0, [r1, #4]
-    cmp r0, #0x10
-    beq .Ljp_08011518
-    ldrb r0, [r1, #8]
-    cmp r0, #0
-    bne .Ljp_08011518
-    movs r2, #1
-.Ljp_08011518:
-    adds r0, r2, #0
-    pop {r1}
-    bx r1
-    .align 2, 0
-    .global func_08011540
-    .thumb_func
-func_08011540:
-    str r1, [r0]
-    bx lr
-    .global func_08011544
-    .thumb_func
-func_08011544:
-    ldr r1, [r0]
-    str r1, [r0, #4]
-    movs r1, #2
-    strb r1, [r0, #8]
-    bx lr
-    .align 2, 0
-    .global func_08011550
-    .thumb_func
-func_08011550:
-    push {lr}
-    adds r2, r0, #0
-    ldr r1, [r2, #4]
-    ldr r0, [r2]
-    cmp r1, r0
-    bne .Ljp_08011540
-    movs r0, #0x10
-    str r0, [r2]
-.Ljp_08011540:
-    movs r0, #0x10
-    str r0, [r2, #4]
-    pop {r0}
-    bx r0
-    .global func_08011568
-    .thumb_func
-func_08011568:
-    push {lr}
-    adds r1, r0, #0
-    ldr r0, [r1]
-    cmp r0, #0x10
-    beq .Ljp_08011562
-    ldr r0, [r1, #4]
-    cmp r0, #0x10
-    beq .Ljp_08011562
-    ldrb r0, [r1, #8]
-    cmp r0, #0
-    beq .Ljp_08011562
-    subs r0, #1
-    strb r0, [r1, #8]
-.Ljp_08011562:
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    .global func_08011588
-    .thumb_func
-func_08011588:
-    push {lr}
-    movs r3, #0
-    cmp r0, #0
-    beq .Ljp_08011582
-    cmp r1, #0
-    beq .Ljp_08011582
-    adds r2, r0, #0
-.Ljp_08011576:
-    ldrb r0, [r2]
-    adds r3, r3, r0
-    adds r2, #1
-    subs r1, #1
-    cmp r1, #0
-    bne .Ljp_08011576
-.Ljp_08011582:
-    adds r0, r3, #0
-    pop {r1}
-    bx r1
-
-    .byte 0x00, 0x48, 0x70, 0x47, 0xFC, 0x34, 0x00, 0x00
 
     .global func_080115B0
     .thumb_func
@@ -2397,7 +2286,7 @@ func_080115B0:
     add r4, r8
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_08011588
+    bl CalculateSaveImageChecksum
     str r0, [sp, #4]
     add r2, sp, #4
     adds r0, r5, #0
@@ -2622,7 +2511,7 @@ func_08011650:
     bne .Ljp_080117AC
     ldr r3, .Ljp_08011898 @ =0x00002C74
     adds r0, r7, r3
-    bl func_08011510
+    bl InitializeTVShoppingOrderState
     movs r1, #0xb2
     lsls r1, r1, #6
     adds r0, r7, r1
@@ -2737,7 +2626,7 @@ func_08011650:
 .Ljp_080118E0:
     adds r0, r7, #0
     adds r1, r4, #0
-    bl func_08011588
+    bl CalculateSaveImageChecksum
     ldr r1, [sp, #0x10]
     cmp r0, r1
     beq .Ljp_080118FE
@@ -23666,7 +23555,7 @@ func_08010358: @ 0x08010358
     ldr r2, [sp, #0x48]
     ldr r3, .L08010640 @ =0x00002C74
     adds r0, r2, r3
-    bl func_08011510
+    bl InitializeTVShoppingOrderState
     ldr r6, [sp, #0x48]
     movs r1, #0xb2
     lsls r1, r1, #6
@@ -25240,7 +25129,7 @@ func_08010F54: @ 0x08010F54
     bl DayUpdate__3Dog
     ldr r1, .L08011210 @ =0x00002C74
     adds r0, r6, r1
-    bl func_08011568
+    bl UpdateTVShoppingDeliveryCountdown
     ldr r0, .L08011214 @ =0x00001CD4
     adds r4, r6, r0
     ldr r1, .L08011218 @ =0x0000214C
@@ -25645,116 +25534,6 @@ func_080114C8: @ 0x080114C8
 
     .section .text.game_state_after_display_options
 
-    thumb_func_start func_08011510
-func_08011510: @ 0x08011510
-    movs r1, #0x10
-    str r1, [r0]
-    str r1, [r0, #4]
-    movs r1, #0
-    strb r1, [r0, #8]
-    bx lr
-
-    thumb_func_start func_0801151C
-func_0801151C: @ 0x0801151C
-    ldr r0, [r0]
-    bx lr
-
-    thumb_func_start func_08011520
-func_08011520: @ 0x08011520
-    ldr r0, [r0, #4]
-    bx lr
-
-    thumb_func_start func_08011524
-func_08011524: @ 0x08011524
-    push {lr}
-    adds r1, r0, #0
-    movs r2, #0
-    ldr r0, [r1, #4]
-    cmp r0, #0x10
-    beq .L08011538
-    ldrb r0, [r1, #8]
-    cmp r0, #0
-    bne .L08011538
-    movs r2, #1
-.L08011538:
-    adds r0, r2, #0
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_08011540
-func_08011540: @ 0x08011540
-    str r1, [r0]
-    bx lr
-
-    thumb_func_start func_08011544
-func_08011544: @ 0x08011544
-    ldr r1, [r0]
-    str r1, [r0, #4]
-    movs r1, #2
-    strb r1, [r0, #8]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_08011550
-func_08011550: @ 0x08011550
-    push {lr}
-    adds r2, r0, #0
-    ldr r1, [r2, #4]
-    ldr r0, [r2]
-    cmp r1, r0
-    bne .L08011560
-    movs r0, #0x10
-    str r0, [r2]
-.L08011560:
-    movs r0, #0x10
-    str r0, [r2, #4]
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_08011568
-func_08011568: @ 0x08011568
-    push {lr}
-    adds r1, r0, #0
-    ldr r0, [r1]
-    cmp r0, #0x10
-    beq .L08011582
-    ldr r0, [r1, #4]
-    cmp r0, #0x10
-    beq .L08011582
-    ldrb r0, [r1, #8]
-    cmp r0, #0
-    beq .L08011582
-    subs r0, #1
-    strb r0, [r1, #8]
-.L08011582:
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_08011588
-func_08011588: @ 0x08011588
-    push {lr}
-    movs r3, #0
-    cmp r0, #0
-    beq .L080115A2
-    cmp r1, #0
-    beq .L080115A2
-    adds r2, r0, #0
-.L08011596:
-    ldrb r0, [r2]
-    adds r3, r3, r0
-    adds r2, #1
-    subs r1, #1
-    cmp r1, #0
-    bne .L08011596
-.L080115A2:
-    adds r0, r3, #0
-    pop {r1}
-    bx r1
-.L080115A8:
-    .byte 0x00, 0x48, 0x70, 0x47, 0xFC, 0x34, 0x00, 0x00
-
     thumb_func_start func_080115B0
 func_080115B0: @ 0x080115B0
     push {r4, r5, r6, r7, lr}
@@ -25805,7 +25584,7 @@ func_080115B0: @ 0x080115B0
     add r4, r8
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_08011588
+    bl CalculateSaveImageChecksum
     str r0, [sp, #4]
     add r2, sp, #4
     adds r0, r5, #0
@@ -26030,7 +25809,7 @@ func_08011650: @ 0x08011650
     bne .L080117CC
     ldr r3, .L080118B8 @ =0x00002C74
     adds r0, r7, r3
-    bl func_08011510
+    bl InitializeTVShoppingOrderState
     movs r1, #0xb2
     lsls r1, r1, #6
     adds r0, r7, r1
@@ -26145,7 +25924,7 @@ func_08011650: @ 0x08011650
 .L08011900:
     adds r0, r7, #0
     adds r1, r4, #0
-    bl func_08011588
+    bl CalculateSaveImageChecksum
     ldr r1, [sp, #0x10]
     cmp r0, r1
     beq .L0801191E

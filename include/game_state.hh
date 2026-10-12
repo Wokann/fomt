@@ -26,6 +26,19 @@ struct GameDisplayOptions {
 
 typedef char GameDisplayOptionsSizeCheck[sizeof(GameDisplayOptions) == 4 ? 1 : -1];
 
+// Saved at +0x2C74. IDs are raw words: the original setter does not validate
+// them. The countdown starts at two, but delivery also depends on the game's
+// update and event-priority paths, not an unconditional two-day guarantee.
+struct TVShoppingOrderState {
+    u32 selection;
+    u32 pending_item;
+    u8 countdown;
+};
+
+typedef char TVShoppingOrderStateSizeCheck[sizeof(TVShoppingOrderState) == 12 ? 1 : -1];
+typedef char TVShoppingOrderPendingCheck[offsetof(TVShoppingOrderState, pending_item) == 4 ? 1 : -1];
+typedef char TVShoppingOrderCountdownCheck[offsetof(TVShoppingOrderState, countdown) == 8 ? 1 : -1];
+
 // The initializer, copy constructor and save-summary reader agree on these
 // member offsets. Unknown ranges remain explicit storage; the native save
 // initializer/copy/cleanup bodies have not yet been recovered as C++.
@@ -39,7 +52,9 @@ struct GameStateSaveImage {
     MoreItems more_items;
     u8 unk_1CCC[0x544];
     GameDisplayOptions display_options;
-    u8 unk_2214[0x12E0];
+    u8 unk_2214[0xA60];
+    TVShoppingOrderState tv_shopping;
+    u8 unk_2C80[0x874];
 };
 
 typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
@@ -51,6 +66,8 @@ typedef char GameStateSaveImageDogCheck[offsetof(GameStateSaveImage, dog) == 0x1
 typedef char GameStateSaveImageMoreItemsCheck[offsetof(GameStateSaveImage, more_items) == 0x1CA0 ? 1 : -1];
 typedef char GameStateSaveImageAfterMoreItemsCheck[offsetof(GameStateSaveImage, unk_1CCC) == 0x1CCC ? 1 : -1];
 typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
+typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
+typedef char GameStateSaveImageAfterShoppingCheck[offsetof(GameStateSaveImage, unk_2C80) == 0x2C80 ? 1 : -1];
 
 EXTERN_C
 
@@ -59,6 +76,24 @@ EXTERN_C
 u32 GetNonzeroRandomValue();
 
 void InitializeGameDisplayOptions(struct GameDisplayOptions * options);
+
+void InitializeTVShoppingOrderState(struct TVShoppingOrderState * state);
+u32 GetTVShoppingSelection(struct TVShoppingOrderState const * state);
+u32 GetTVShoppingPendingItem(struct TVShoppingOrderState const * state);
+bool IsTVShoppingDeliveryReady(struct TVShoppingOrderState const * state);
+// Raw assignment, including NONE or out-of-range IDs. Clearing selection can
+// stall a pending order's countdown; it does not cancel that pending order.
+void SetTVShoppingSelection(struct TVShoppingOrderState * state, u32 item);
+// Copies selection and resets the countdown; no eligibility/price check.
+void ConfirmTVShoppingOrder(struct TVShoppingOrderState * state);
+// Preserve a changed selection and the countdown; always clear pending_item.
+void CompleteTVShoppingDelivery(struct TVShoppingOrderState * state);
+void UpdateTVShoppingDeliveryCountdown(struct TVShoppingOrderState * state);
+
+// Unsigned byte sum modulo 2^32; a null pointer or zero count returns zero.
+u32 CalculateSaveImageChecksum(u8 const * data, u32 count);
+// A serialized record has a size word, the image, and a checksum word.
+u32 GetSaveImageRecordSize();
 
 // Writes the original save image and its checksum at the selected SRAM
 // offset. Zero denotes success; nonzero values carry the SRAM error flags.

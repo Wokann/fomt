@@ -194,6 +194,7 @@ SECTIONS
         src/game_state.o(.text.GetNonzeroRandomValue);
         asm/game_state.o(.text);
         src/game_state.o(.text.InitializeGameDisplayOptions);
+        src/game_state.o(.text.*);
         asm/game_state.o(.text.game_state_after_display_options);
         . = 0x1FB0C; /* JP ROM 0x0801FB0C, independently matched */
         src/entity.o(.text);

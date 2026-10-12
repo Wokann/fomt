@@ -155,6 +155,7 @@ SECTIONS
         src/game_state.o(.text.GetNonzeroRandomValue);
         asm/game_state.o(.text);
         src/game_state.o(.text.InitializeGameDisplayOptions);
+        src/game_state.o(.text.*);
         asm/game_state.o(.text.game_state_after_display_options);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
