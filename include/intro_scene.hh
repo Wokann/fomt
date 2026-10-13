@@ -17,10 +17,11 @@ struct IntroSceneUnpackedResources
 
 struct IntroSceneResourceFlags
 {
-    // The loop sign-tests bit 2. A signed one-bit field is zero or -1;
-    // the other bits keep their unknown meaning rather than guessed names.
-    u8 unk_0 : 2;
-    i8 unk_2 : 1;
+    // Returned by UpdateIndexedResourceHandle. The loop sign-tests bit 2:
+    // a signed one-bit field is zero or -1 without changing the stored bit.
+    u8 entry_advanced : 1;
+    u8 group_changed : 1;
+    i8 wrapped : 1;
     u8 unk_3 : 5;
 };
 

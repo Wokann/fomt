@@ -14123,7 +14123,7 @@ func_080DD3D4:
     bne .Lauto_080DCBAC
     adds r0, r4, #0
     adds r0, #0x30
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls r0, r0, #0x1e
     cmp r0, #0
     bge .Lauto_080DCBB0
@@ -14245,7 +14245,7 @@ func_080DD460:
     bne .Lauto_080DCC8C
     adds r0, r4, #0
     adds r0, #0x30
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls r0, r0, #0x1e
     cmp r0, #0
     bge .Lauto_080DCC90
@@ -14927,7 +14927,7 @@ func_080DD9CC:
     bne .Lauto_080DD3C0
     adds r0, r5, #0
     adds r0, #0x30
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls r0, r0, #0x1e
     cmp r0, #0
     bge .Lauto_080DD3C4
@@ -28243,7 +28243,7 @@ func_080DD3D4: @ 0x080DD3D4
 	bne .L080DD3F8
 	adds r0, r4, #0
 	adds r0, #0x30
-	bl func_0805E8F0
+	bl UpdateIndexedResourceHandle
 	lsls r0, r0, #0x1e
 	cmp r0, #0
 	bge .L080DD3FC
@@ -28373,7 +28373,7 @@ func_080DD460: @ 0x080DD460
 	bne .L080DD4D8
 	adds r0, r4, #0
 	adds r0, #0x30
-	bl func_0805E8F0
+	bl UpdateIndexedResourceHandle
 	lsls r0, r0, #0x1e
 	cmp r0, #0
 	bge .L080DD4DC
@@ -29360,7 +29360,7 @@ func_080DD9CC: @ 0x080DD9CC
 	bne .L080DDC0C
 	adds r0, r5, #0
 	adds r0, #0x30
-	bl func_0805E8F0
+	bl UpdateIndexedResourceHandle
 	lsls r0, r0, #0x1e
 	cmp r0, #0
 	bge .L080DDC10
@@ -29678,7 +29678,7 @@ func_080DDC78: @ 0x080DDC78
 	bne .L080DDE58
 	adds r0, r6, #0
 	adds r0, #0x30
-	bl func_0805E8F0
+	bl UpdateIndexedResourceHandle
 	lsls r0, r0, #0x1e
 	cmp r0, #0
 	bge .L080DDE5C

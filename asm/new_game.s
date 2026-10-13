@@ -802,7 +802,7 @@ func_08004570:
     adds	r4, r6, #0
     adds	r4, #100
     adds	r0, r4, #0
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls	r0, r0, #30
     cmp	r0, #0
     bge.n .Ljp_08004762
@@ -4510,7 +4510,7 @@ func_08004570: @ 0x08004570
     adds r4, r6, #0
     adds r4, #0x64
     adds r0, r4, #0
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls r0, r0, #0x1e
     cmp r0, #0
     bge .L0800474A

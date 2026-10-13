@@ -1471,38 +1471,38 @@ func_080024E0:
     adds	r4, r7, r3
     ldr r1, .Ljp_080028E4
     adds	r0, r7, r1
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str	r0, [r4, #0]
     ldr r2, .Ljp_080028E8
     adds	r4, r7, r2
     ldr r3, .Ljp_080028EC
     adds	r0, r7, r3
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str	r0, [r4, #0]
     ldr r0, .Ljp_080028F0
     adds	r4, r7, r0
     ldr r1, .Ljp_080028F4
     adds	r0, r7, r1
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str	r0, [r4, #0]
     ldr r2, .Ljp_080028F8
     adds	r4, r7, r2
     movs	r3, #214	@ 0xd6
     lsls	r3, r3, #7
     adds	r0, r7, r3
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str	r0, [r4, #0]
     ldr r0, .Ljp_080028FC
     adds	r4, r7, r0
     ldr r1, .Ljp_08002900
     adds	r0, r7, r1
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str	r0, [r4, #0]
     ldr r2, .Ljp_08002904
     adds	r4, r7, r2
     ldr r3, .Ljp_08002908
     adds	r0, r7, r3
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str	r0, [r4, #0]
     ldr r4, .Ljp_0800290C
     adds	r4, r4, r7
@@ -1584,7 +1584,7 @@ func_080024E0:
     ldr r6, .Ljp_08002924
     adds	r5, r7, r6
     adds	r0, r5, #0
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str	r0, [r4, #0]
     ldr	r1, [r5, #0]
     ldr	r3, [r1, #0]
@@ -1654,7 +1654,7 @@ func_080024E0:
     lsls	r0, r0, #7
     adds	r5, r7, r0
     adds	r0, r5, #0
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str	r0, [r4, #0]
     ldr	r1, [r5, #0]
     ldr	r3, [r1, #0]
@@ -1714,7 +1714,7 @@ func_080024E0:
     ldr r5, .Ljp_0800293C
     adds	r4, r7, r5
     adds	r0, r4, #0
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     ldr	r1, [r4, #0]
     ldr	r3, [r1, #0]
     ldrh	r2, [r4, #12]
@@ -4906,38 +4906,38 @@ func_080024E0: @ 0x080024E0
     adds r4, r7, r3
     ldr r1, .L080028E4 @ =0x00006AA0
     adds r0, r7, r1
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str r0, [r4]
     ldr r2, .L080028E8 @ =0x00006AD4
     adds r4, r7, r2
     ldr r3, .L080028EC @ =0x00006AC0
     adds r0, r7, r3
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str r0, [r4]
     ldr r0, .L080028F0 @ =0x00006AF4
     adds r4, r7, r0
     ldr r1, .L080028F4 @ =0x00006AE0
     adds r0, r7, r1
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str r0, [r4]
     ldr r2, .L080028F8 @ =0x00006B14
     adds r4, r7, r2
     movs r3, #0xd6
     lsls r3, r3, #7
     adds r0, r7, r3
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str r0, [r4]
     ldr r0, .L080028FC @ =0x00006B34
     adds r4, r7, r0
     ldr r1, .L08002900 @ =0x00006B20
     adds r0, r7, r1
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str r0, [r4]
     ldr r2, .L08002904 @ =0x00006B54
     adds r4, r7, r2
     ldr r3, .L08002908 @ =0x00006B40
     adds r0, r7, r3
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str r0, [r4]
     ldr r4, .L0800290C @ =0x00006C6D
     adds r4, r4, r7
@@ -5019,7 +5019,7 @@ func_080024E0: @ 0x080024E0
     ldr r6, .L08002924 @ =0x00006BE0
     adds r5, r7, r6
     adds r0, r5, #0
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str r0, [r4]
     ldr r1, [r5]
     ldr r3, [r1]
@@ -5089,7 +5089,7 @@ func_080024E0: @ 0x080024E0
     lsls r0, r0, #7
     adds r5, r7, r0
     adds r0, r5, #0
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     str r0, [r4]
     ldr r1, [r5]
     ldr r3, [r1]
@@ -5149,7 +5149,7 @@ func_080024E0: @ 0x080024E0
     ldr r5, .L0800293C @ =0x00006C40
     adds r4, r7, r5
     adds r0, r4, #0
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     ldr r1, [r4]
     ldr r3, [r1]
     ldrh r2, [r4, #0xc]

@@ -298,7 +298,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             }
             break;
         case 6:
-            if (core->resources[0].flags.unk_2 < 0)
+            if (core->resources[0].flags.wrapped < 0)
             {
                 ResolveIndexedResourceHandle(&core->resources[0].handle, 0x195);
                 right_state = left_state = 1;
@@ -478,7 +478,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             break;
         }
 
-        if (reset_pending && core->resources[0].flags.unk_2 < 0)
+        if (reset_pending && core->resources[0].flags.wrapped < 0)
         {
             ResolveIndexedResourceHandle(&core->resources[0].handle, 0x192);
             reset_pending = false;
@@ -492,11 +492,11 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             sound_state = 2;
             break;
         case 2:
-            if (core->resources[1].flags.unk_2 < 0)
+            if (core->resources[1].flags.wrapped < 0)
                 func_08008B88(core->music_players + 1, 0xA9);
             break;
         case 3:
-            if (core->resources[1].flags.unk_2 < 0)
+            if (core->resources[1].flags.wrapped < 0)
             {
                 ResolveIndexedResourceHandle(&core->resources[1].handle, 0x338);
                 sound_state = 0;
@@ -602,7 +602,7 @@ static inline u32 GetIntroScenePaletteIndex(IntroSceneHardwarePoolHandle & state
 static inline IndexedResourceGroupResult LoadIntroSceneResourceGroup(IndexedResourceHandle const & handle)
 {
     return handle.resource->vtable->get_group_data(handle.resource,
-        handle.resolved_resource[handle.current_entry_index].unknown_00);
+        handle.resolved_resource[handle.current_entry_index].group_index);
 }
 
 void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)

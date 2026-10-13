@@ -8,7 +8,8 @@ struct IndexedResourceProvider;
 
 struct IndexedResourceEntry
 {
-    u16 unknown_00;
+    // Passed to the provider's GetGroupData slot by sprite consumers.
+    u16 group_index;
     u16 metric;
 };
 
@@ -181,6 +182,18 @@ typedef char IndexedResourceGroupResolverOffsetCheck[offsetof(IndexedResourcePro
 typedef char IndexedResourceSpriteMatrixSizeCheck[sizeof(IndexedResourceSpriteMatrix) == 8 ? 1 : -1];
 
 EXTERN_C
+
+// The first update reports GROUP_CHANGED and clears the initialized byte.
+// A zero metric stops traversal; the other bits describe the whole update,
+// including any boundary crossed while consuming more than one entry.
+enum IndexedResourceUpdateFlag
+{
+    INDEXED_RESOURCE_ENTRY_ADVANCED = 1,
+    INDEXED_RESOURCE_GROUP_CHANGED = 2,
+    INDEXED_RESOURCE_WRAPPED = 4,
+};
+
+u32 UpdateIndexedResourceHandle(IndexedResourceHandle *);
 
 // Direct declarations of the existing constructor ABI, for owners whose
 // remaining lifecycle is still supplied by the original assembly routines.

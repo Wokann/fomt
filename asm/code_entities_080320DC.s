@@ -274,7 +274,7 @@ func_0803260C:
     bne .Ljp_080323C4
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls	r0, r0, #30
     cmp	r0, #0
     bge .Ljp_080323C8
@@ -302,7 +302,7 @@ func_0803260C:
     bne .Ljp_080323FE
     adds	r0, r4, #0
     adds	r0, #112	@ 0x70
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     adds	r2, r0, #0
     lsls	r0, r2, #30
     cmp	r0, #0
@@ -4984,7 +4984,7 @@ func_08034AA0:
     bne .Ljp_08034866
     adds	r0, r4, #0
     adds	r0, #180	@ 0xb4
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls	r0, r0, #30
     cmp	r0, #0
     bge .Ljp_0803486A
@@ -5502,7 +5502,7 @@ func_0803260C:
     bne .Leu_08032644
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls	r0, r0, #30
     cmp	r0, #0
     bge .Leu_08032648
@@ -5530,7 +5530,7 @@ func_0803260C:
     bne .Leu_0803267E
     adds	r0, r4, #0
     adds	r0, #112	@ 0x70
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     adds	r2, r0, #0
     lsls	r0, r2, #30
     cmp	r0, #0
@@ -9323,7 +9323,7 @@ func_08034AA0:
     bne .Leu_08034AE6
     adds	r0, r4, #0
     adds	r0, #180	@ 0xb4
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls	r0, r0, #30
     cmp	r0, #0
     bge .Leu_08034AEA
@@ -9842,7 +9842,7 @@ func_0803260C:
     bne .Lde_08032544
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls	r0, r0, #30
     cmp	r0, #0
     bge .Lde_08032548
@@ -9870,7 +9870,7 @@ func_0803260C:
     bne .Lde_0803257E
     adds	r0, r4, #0
     adds	r0, #112	@ 0x70
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     adds	r2, r0, #0
     lsls	r0, r2, #30
     cmp	r0, #0
@@ -13663,7 +13663,7 @@ func_08034AA0:
     bne .Lde_080349E6
     adds	r0, r4, #0
     adds	r0, #180	@ 0xb4
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls	r0, r0, #30
     cmp	r0, #0
     bge .Lde_080349EA
@@ -14181,7 +14181,7 @@ func_0803260C:
     bne .Lus_08032630
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls	r0, r0, #30
     cmp	r0, #0
     bge .Lus_08032634
@@ -14209,7 +14209,7 @@ func_0803260C:
     bne .Lus_0803266A
     adds	r0, r4, #0
     adds	r0, #112	@ 0x70
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     adds	r2, r0, #0
     lsls	r0, r2, #30
     cmp	r0, #0
@@ -18109,7 +18109,7 @@ func_08034AA0:
     bne .Lus_08034AD2
     adds	r0, r4, #0
     adds	r0, #180	@ 0xb4
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls	r0, r0, #30
     cmp	r0, #0
     bge .Lus_08034AD6

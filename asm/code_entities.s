@@ -22335,7 +22335,7 @@ func_0802B148:
     bne .Ljp_0802B1A4
     adds r0, r5, #0
     adds r0, #0xb4
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls r0, r0, #0x1e
     cmp r0, #0
     bge .Ljp_0802B1A8
@@ -22366,7 +22366,7 @@ func_0802B148:
     bne .Ljp_0802B1E0
     adds r0, r4, #0
     str r2, [sp]
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     adds r1, r0, #0
     lsls r0, r1, #0x1e
     ldr r2, [sp]
@@ -23900,7 +23900,7 @@ func_0802BD34:
     bne .Ljp_0802BD6E
     adds r0, r4, #0
     adds r0, #0xb4
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls r0, r0, #0x1e
     cmp r0, #0
     bge .Ljp_0802BD72
@@ -56982,7 +56982,7 @@ func_0802B3B4: @ 0x0802B3B4
     bne .L0802B410
     adds r0, r5, #0
     adds r0, #0xb4
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls r0, r0, #0x1e
     cmp r0, #0
     bge .L0802B414
@@ -57013,7 +57013,7 @@ func_0802B3B4: @ 0x0802B3B4
     bne .L0802B44C
     adds r0, r4, #0
     str r2, [sp]
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     adds r1, r0, #0
     lsls r0, r1, #0x1e
     ldr r2, [sp]
@@ -58540,7 +58540,7 @@ func_0802BFA0: @ 0x0802BFA0
     bne .L0802BFDA
     adds r0, r4, #0
     adds r0, #0xb4
-    bl func_0805E8F0
+    bl UpdateIndexedResourceHandle
     lsls r0, r0, #0x1e
     cmp r0, #0
     bge .L0802BFDE
