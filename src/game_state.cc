@@ -67,7 +67,7 @@ GameStateSaveImage::GameStateSaveImage(char const * farm_name, char const * play
       unk_13(0), unk_18(0), unk_25(0), unk_31(false), unk_32(false),
       clock(GameCalendar(1, GameDate(SEASON_SPRING, BoundDayIndex(DAY_30 - 1, DAY_01 - 1) + 1), GameTime(6, 0))),
       farm(farm_name), farmer(player_name, birthday), dog(dog_name), ball_location(MAP_NONE, 0, 0),
-      link_record(GetNonzeroRandomValue()), actor_unknown_34C4(0), actor_unknown_34C5(0)
+      link_record(GetNonzeroRandomValue()), actor_unknown_34C4(0), shooting_star_shipping_bonus(0)
 {
     dog.AddAffection(50);
     for (u32 i = 0; i < 10; ++i) PutInitialItem(farm.field, 0x1F);
@@ -120,6 +120,52 @@ void GameStateSaveImage::SetFlag0() { flag_0 = true; }
 void GameStateSaveImage::SetFlag1() { flag_1 = true; }
 void GameStateSaveImage::SetFlag2() { flag_2 = true; }
 void GameStateSaveImage::SetFlag3() { flag_3 = true; }
+
+bool GameStateSaveImage::CollectShippingRevenue()
+{
+    u32 value = farm.shipping_bin.GetValueShipped();
+    AddMoneyToAccount(&money_account, value);
+    // The shooting-star wish doubles this settlement, even if it is zero.
+    // Consume the pending bonus here; do not change product prices.
+    if (shooting_star_shipping_bonus != 0) {
+        AddMoneyToAccount(&money_account, value);
+        shooting_star_shipping_bonus = 0;
+    }
+    farm.shipping_bin.ResetValueShipped();
+    return value != 0;
+}
+
+void GameStateSaveImage::SetFlag4() { flag_4 = true; }
+
+bool GameStateSaveImage::UpdateUnknown13(u32 value)
+{
+    if (value > 99) value = 99;
+    if (unk_13 < value) {
+        unk_13 = value;
+        return true;
+    }
+    return false;
+}
+
+bool GameStateSaveImage::UpdateUnknown18(u32 value)
+{
+    if (value > 99) value = 99;
+    if (unk_18 < value) {
+        unk_18 = value;
+        return true;
+    }
+    return false;
+}
+
+bool GameStateSaveImage::UpdateUnknown25(u32 value)
+{
+    if (value > 99) value = 99;
+    if (unk_25 < value) {
+        unk_25 = value;
+        return true;
+    }
+    return false;
+}
 
 void InitializeGameDisplayOptions(GameDisplayOptions * options)
 {

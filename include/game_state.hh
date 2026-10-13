@@ -142,6 +142,14 @@ struct GameStateSaveImage {
     void SetFlag1();
     void SetFlag2();
     void SetFlag3();
+    // Consume one shipping total and any pending one-settlement bonus.
+    bool CollectShippingRevenue();
+    void SetFlag4();
+    // Native updates bound the argument at 99 before comparing, then store
+    // only the field's original five, seven or six bits. Do not widen them.
+    bool UpdateUnknown13(u32 value);
+    bool UpdateUnknown18(u32 value);
+    bool UpdateUnknown25(u32 value);
 
     // Verified by initialization, the native bit readers and setters. The
     // flags and three bounded fields are not assigned gameplay names yet.
@@ -180,7 +188,7 @@ struct GameStateSaveImage {
     ActorStateSlots actor_slots;
     GameStateActorRecord actor_records[3];
     u8 actor_unknown_34C4;
-    u8 actor_unknown_34C5;
+    u8 shooting_star_shipping_bonus;
     // The native initializer places this member at the next word boundary.
     // The two bytes after the preceding flags are padding, not array data.
     FieldItemState field_items ALIGN(4);
@@ -216,7 +224,7 @@ typedef char GameStateSaveImageActorGridCheck[offsetof(GameStateSaveImage, actor
 typedef char GameStateSaveImageActorStateCheck[offsetof(GameStateSaveImage, actor_slots) == 0x3480 ? 1 : -1];
 typedef char GameStateSaveImageActorRecordsCheck[offsetof(GameStateSaveImage, actor_records) == 0x3494 ? 1 : -1];
 typedef char GameStateSaveImageActorUnknown44Check[offsetof(GameStateSaveImage, actor_unknown_34C4) == 0x34C4 ? 1 : -1];
-typedef char GameStateSaveImageActorUnknown45Check[offsetof(GameStateSaveImage, actor_unknown_34C5) == 0x34C5 ? 1 : -1];
+typedef char GameStateSaveImageShippingBonusCheck[offsetof(GameStateSaveImage, shooting_star_shipping_bonus) == 0x34C5 ? 1 : -1];
 typedef char GameStateSaveImageFieldItemsCheck[offsetof(GameStateSaveImage, field_items) == 0x34C8 ? 1 : -1];
 typedef char GameStateSaveImageTailWordCheck[offsetof(GameStateSaveImage, unk_34D8) == 0x34D8 ? 1 : -1];
 typedef char GameStateSaveImageTailActorCheck[offsetof(GameStateSaveImage, unk_34DC) == 0x34DC ? 1 : -1];

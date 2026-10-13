@@ -4569,7 +4569,7 @@ func_080A3900: @ 0x080A3338
 	bl func_080B3C84
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl func_08011498
+	bl UpdateUnknown18__18GameStateSaveImageUi
 	ldr r0, [r5, #4]
 	mov r1, r8
 	str r1, [r5, #4]
@@ -4693,7 +4693,7 @@ func_080A39FC: @ 0x080A3434
 	bl func_080C07AC
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl func_08011464
+	bl UpdateUnknown13__18GameStateSaveImageUi
 	ldr r0, [r5, #4]
 	mov r1, r8
 	str r1, [r5, #4]
@@ -4817,7 +4817,7 @@ func_080A3AF8: @ 0x080A3530
 	bl func_080C7930
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl func_080114C8
+	bl UpdateUnknown25__18GameStateSaveImageUi
 	ldr r0, [r5, #4]
 	mov r1, r8
 	str r1, [r5, #4]
@@ -90109,7 +90109,7 @@ func_080A3900: @ 0x080A3900
 	bl func_080B3C84
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl func_08011498
+	bl UpdateUnknown18__18GameStateSaveImageUi
 	ldr r0, [r5, #4]
 	mov r1, r8
 	str r1, [r5, #4]
@@ -90232,7 +90232,7 @@ func_080A39FC: @ 0x080A39FC
 	bl func_080C0D80
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl func_08011464
+	bl UpdateUnknown13__18GameStateSaveImageUi
 	ldr r0, [r5, #4]
 	mov r1, r8
 	str r1, [r5, #4]
@@ -90355,7 +90355,7 @@ func_080A3AF8: @ 0x080A3AF8
 	bl func_080C7F0C
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl func_080114C8
+	bl UpdateUnknown25__18GameStateSaveImageUi
 	ldr r0, [r5, #4]
 	mov r1, r8
 	str r1, [r5, #4]

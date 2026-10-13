@@ -586,144 +586,6 @@ func_08010F54:
 .Ljp_080113E0: .4byte 0x00001AA8
 .Ljp_080113E4: .4byte 0x000034C8
 .Ljp_080113E8: .4byte 0x000034DC
-    .global func_0801140C
-    .thumb_func
-func_0801140C:
-    push {r4, r5, r6, r7, lr}
-    adds r4, r0, #0
-    adds r7, r4, #0
-    adds r7, #0x54
-    adds r0, r7, #0
-    bl GetValueShipped__C11ShippingBin
-    adds r5, r0, #0
-    ldr r0, .Ljp_08011430 @ =0x00001AA8
-    adds r6, r4, r0
-    adds r0, r6, #0
-    adds r1, r5, #0
-    bl AddMoneyToAccount
-    ldr r0, .Ljp_08011434 @ =0x000034C5
-    adds r4, r4, r0
-    ldrb r0, [r4]
-    cmp r0, #0
-    beq .Ljp_0801141E
-    adds r0, r6, #0
-    adds r1, r5, #0
-    bl AddMoneyToAccount
-    movs r0, #0
-    strb r0, [r4]
-.Ljp_0801141E:
-    adds r0, r7, #0
-    bl ResetValueShipped__11ShippingBin
-    rsbs r0, r5, #0
-    orrs r0, r5
-    lsrs r0, r0, #0x1f
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_08011430: .4byte 0x00001AA8
-.Ljp_08011434: .4byte 0x000034C5
-    .global func_08011458
-    .thumb_func
-func_08011458:
-    ldrb r1, [r0]
-    movs r2, #0x10
-    orrs r1, r2
-    strb r1, [r0]
-    bx lr
-    .align 2, 0
-    .global func_08011464
-    .thumb_func
-func_08011464:
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r2, r1, #0
-    cmp r2, #0x63
-    bls .Ljp_08011450
-    movs r2, #0x63
-.Ljp_08011450:
-    ldr r3, [r4]
-    lsls r0, r3, #0xe
-    lsrs r0, r0, #0x1b
-    cmp r0, r2
-    blo .Ljp_0801145E
-    movs r0, #0
-    b .Ljp_0801146E
-.Ljp_0801145E:
-    movs r1, #0x1f
-    ands r1, r2
-    lsls r1, r1, #0xd
-    ldr r0, .Ljp_08011474 @ =0xFFFC1FFF
-    ands r0, r3
-    orrs r0, r1
-    str r0, [r4]
-    movs r0, #1
-.Ljp_0801146E:
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_08011474: .4byte 0xFFFC1FFF
-    .global func_08011498
-    .thumb_func
-func_08011498:
-    push {lr}
-    adds r3, r0, #0
-    cmp r1, #0x63
-    bls .Ljp_08011482
-    movs r1, #0x63
-.Ljp_08011482:
-    ldrh r2, [r3, #2]
-    lsls r0, r2, #0x17
-    lsrs r0, r0, #0x19
-    cmp r0, r1
-    blo .Ljp_08011490
-    movs r0, #0
-    b .Ljp_080114A0
-.Ljp_08011490:
-    movs r0, #0x7f
-    ands r1, r0
-    lsls r1, r1, #2
-    ldr r0, .Ljp_080114A4 @ =0xFFFFFE03
-    ands r0, r2
-    orrs r0, r1
-    strh r0, [r3, #2]
-    movs r0, #1
-.Ljp_080114A0:
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_080114A4: .4byte 0xFFFFFE03
-    .global func_080114C8
-    .thumb_func
-func_080114C8:
-    push {lr}
-    adds r3, r0, #0
-    cmp r1, #0x63
-    bls .Ljp_080114B2
-    movs r1, #0x63
-.Ljp_080114B2:
-    ldrb r2, [r3, #3]
-    lsls r0, r2, #0x19
-    lsrs r0, r0, #0x1a
-    cmp r0, r1
-    blo .Ljp_080114C0
-    movs r0, #0
-    b .Ljp_080114D2
-.Ljp_080114C0:
-    movs r0, #0x3f
-    ands r1, r0
-    lsls r1, r1, #1
-    movs r0, #0x7f
-    rsbs r0, r0, #0
-    ands r0, r2
-    orrs r0, r1
-    strb r0, [r3, #3]
-    movs r0, #1
-.Ljp_080114D2:
-    pop {r1}
-    bx r1
-    .align 2, 0
     .section .text.game_state_after_display_options
 
     .global func_08011650
@@ -19647,7 +19509,7 @@ func_0801DCD4:
     bl GetValueShipped__C11ShippingBin
     adds r6, r0, #0
     ldr r0, [r5]
-    bl func_0801140C
+    bl CollectShippingRevenue__18GameStateSaveImage
     ldr r1, [r4]
     movs r0, #0xa0
     lsls r0, r0, #1
@@ -20866,7 +20728,8 @@ func_0801EE00:
     .byte 0x06, 0xDC, 0x00, 0x28, 0x62, 0xD0, 0x73, 0xE0, 0xFF, 0x03, 0x00, 0x00, 0x20, 0x68, 0xEE, 0xE7
     .byte 0x04, 0x28, 0x02, 0xD0, 0x06, 0x28, 0x17, 0xD0, 0x6A, 0xE0, 0x38, 0x1C, 0xF0, 0xF7, 0x08, 0xFA
     .byte 0x00, 0x28, 0x65, 0xD1, 0x03, 0xA8, 0x39, 0x1C, 0xF0, 0xF7, 0x06, 0xFA, 0x03, 0xA8, 0xEF, 0xF7
-    .byte 0x0B, 0xF8, 0xA0, 0x28, 0x5C, 0xD1, 0x03, 0x48, 0x50, 0x44, 0x00, 0x68, 0xF2, 0xF7, 0xD6, 0xFB
+    .byte 0x0B, 0xF8, 0xA0, 0x28, 0x5C, 0xD1, 0x03, 0x48, 0x50, 0x44, 0x00, 0x68
+    bl SetFlag4__18GameStateSaveImage
     .byte 0x56, 0xE0, 0x00, 0x00, 0x38, 0x10, 0x00, 0x00, 0x00, 0x25, 0x38, 0x1C, 0xF0, 0xF7, 0xF0, 0xF9
     .byte 0x00, 0x28, 0x13, 0xD1, 0x03, 0xA8, 0x39, 0x1C, 0xF0, 0xF7, 0xEE, 0xF9, 0x03, 0xA8, 0xEE, 0xF7
     .byte 0xF3, 0xFF, 0x0E, 0x28, 0x0A, 0xDD, 0x04, 0xAC, 0x20, 0x1C, 0x39, 0x1C, 0xF0, 0xF7, 0xE4, 0xF9
@@ -22316,144 +22179,6 @@ func_08010F54: @ 0x08010F54
 .L08011400: .4byte 0x00001AA8
 .L08011404: .4byte 0x000034C8
 .L08011408: .4byte 0x000034DC
-
-    thumb_func_start func_0801140C
-func_0801140C: @ 0x0801140C
-    push {r4, r5, r6, r7, lr}
-    adds r4, r0, #0
-    adds r7, r4, #0
-    adds r7, #0x54
-    adds r0, r7, #0
-    bl GetValueShipped__C11ShippingBin
-    adds r5, r0, #0
-    ldr r0, .L08011450 @ =0x00001AA8
-    adds r6, r4, r0
-    adds r0, r6, #0
-    adds r1, r5, #0
-    bl AddMoneyToAccount
-    ldr r0, .L08011454 @ =0x000034C5
-    adds r4, r4, r0
-    ldrb r0, [r4]
-    cmp r0, #0
-    beq .L0801143E
-    adds r0, r6, #0
-    adds r1, r5, #0
-    bl AddMoneyToAccount
-    movs r0, #0
-    strb r0, [r4]
-.L0801143E:
-    adds r0, r7, #0
-    bl ResetValueShipped__11ShippingBin
-    rsbs r0, r5, #0
-    orrs r0, r5
-    lsrs r0, r0, #0x1f
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08011450: .4byte 0x00001AA8
-.L08011454: .4byte 0x000034C5
-
-    thumb_func_start func_08011458
-func_08011458: @ 0x08011458
-    ldrb r1, [r0]
-    movs r2, #0x10
-    orrs r1, r2
-    strb r1, [r0]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_08011464
-func_08011464: @ 0x08011464
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r2, r1, #0
-    cmp r2, #0x63
-    bls .L08011470
-    movs r2, #0x63
-.L08011470:
-    ldr r3, [r4]
-    lsls r0, r3, #0xe
-    lsrs r0, r0, #0x1b
-    cmp r0, r2
-    blo .L0801147E
-    movs r0, #0
-    b .L0801148E
-.L0801147E:
-    movs r1, #0x1f
-    ands r1, r2
-    lsls r1, r1, #0xd
-    ldr r0, .L08011494 @ =0xFFFC1FFF
-    ands r0, r3
-    orrs r0, r1
-    str r0, [r4]
-    movs r0, #1
-.L0801148E:
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08011494: .4byte 0xFFFC1FFF
-
-    thumb_func_start func_08011498
-func_08011498: @ 0x08011498
-    push {lr}
-    adds r3, r0, #0
-    cmp r1, #0x63
-    bls .L080114A2
-    movs r1, #0x63
-.L080114A2:
-    ldrh r2, [r3, #2]
-    lsls r0, r2, #0x17
-    lsrs r0, r0, #0x19
-    cmp r0, r1
-    blo .L080114B0
-    movs r0, #0
-    b .L080114C0
-.L080114B0:
-    movs r0, #0x7f
-    ands r1, r0
-    lsls r1, r1, #2
-    ldr r0, .L080114C4 @ =0xFFFFFE03
-    ands r0, r2
-    orrs r0, r1
-    strh r0, [r3, #2]
-    movs r0, #1
-.L080114C0:
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L080114C4: .4byte 0xFFFFFE03
-
-    thumb_func_start func_080114C8
-func_080114C8: @ 0x080114C8
-    push {lr}
-    adds r3, r0, #0
-    cmp r1, #0x63
-    bls .L080114D2
-    movs r1, #0x63
-.L080114D2:
-    ldrb r2, [r3, #3]
-    lsls r0, r2, #0x19
-    lsrs r0, r0, #0x1a
-    cmp r0, r1
-    blo .L080114E0
-    movs r0, #0
-    b .L080114F2
-.L080114E0:
-    movs r0, #0x3f
-    ands r1, r0
-    lsls r1, r1, #1
-    movs r0, #0x7f
-    rsbs r0, r0, #0
-    ands r0, r2
-    orrs r0, r1
-    strb r0, [r3, #3]
-    movs r0, #1
-.L080114F2:
-    pop {r1}
-    bx r1
-    .align 2, 0
 
     .section .text.game_state_after_display_options
 
@@ -44602,7 +44327,7 @@ func_0801DCD4: @ 0x0801DCD4
     bl GetValueShipped__C11ShippingBin
     adds r6, r0, #0
     ldr r0, [r5]
-    bl func_0801140C
+    bl CollectShippingRevenue__18GameStateSaveImage
     ldr r1, [r4]
     movs r0, #0xa0
     lsls r0, r0, #1
@@ -46294,7 +46019,7 @@ func_0801EE00: @ 0x0801EE00
     ldr r0, .L0801EEFC @ =0x00001038
     add r0, sl
     ldr r0, [r0]
-    bl func_08011458
+    bl SetFlag4__18GameStateSaveImage
     b .L0801EFA8
     .align 2, 0
 .L0801EEFC: .4byte 0x00001038
