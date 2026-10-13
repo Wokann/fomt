@@ -10,8 +10,9 @@
 
 The installer checks out [notyourav/agbcc] at
 `1caa6becde5e4676b59c31c74d68f45ced79557c`, applies
-`tools/agbcp-asm-destructors.patch`, then runs its ordinary build and install
-scripts. The patch is also preserved in the sibling compiler repository's
+`tools/agbcp-asm-destructors.patch` and `tools/agbcc-long-calls.patch`, then
+runs its ordinary build and install scripts. The destructor patch is also
+preserved in the sibling compiler repository's
 local `codex/cp-asm-destructors` branch at
 `52840e5535c8975649c1b767f77d82d057b3dbe5`; that branch is not published and
 is not required by the installer.
@@ -32,6 +33,22 @@ The compiler-only regression rebuilt all four existing game versions and
 preserved their full ROM bytes, symbol addresses and all 825 allocated-object
 signatures before the new destructor declarations were adopted.
 
+### Individual far-call declarations
+
+The second patch adds the GNU `long_call` function-declaration attribute to
+the Thumb C and C++ backends. It uses the existing indirect interworking call
+path only for a marked declaration, leaving ordinary near calls and the
+project's optimization flags unchanged. This permits calls from ROM to ARM
+code in IWRAM without fixed-register variables or empty assembly barriers.
+It does not provide a new function-pointer type attribute or test game names
+or addresses. The existing `-mlong-calls` file-wide option still works.
+
+`tests/long-call.c`, its small mixed-mode entry and linker script, and
+`tests/README.long-calls.md` are included in the patch. The same source is
+executed as C and C++ under `qemu-arm`, checking far scalar/void/structure
+returns together with unchanged direct near calls. Test addresses deliberately
+exceed Thumb BL range and have no connection to the game's ROM layout.
+
 To compare a build with the recorded original SHA-1, run in WSL:
 
 ```sh
@@ -43,11 +60,18 @@ make -j4 GAME_REGION=DE GAME_REVISION=0 compare
 
 ### 中文说明
 
-安装脚本固定上述 `cp` 基准提交，应用仓库内的通用 C++ 前端补丁，
-然后正常构建并安装；不依赖尚未发布的本地编译器分支。旧前端会
+安装脚本固定上述 `cp` 基准提交，应用仓库内的通用 C++ 析构补丁及
+Thumb 函数声明远调用补丁，然后正常构建并安装；不依赖尚未发布的
+本地编译器分支。旧前端会
 因析构函数改用汇编符号名而漏掉自动析构，必须使用修正后的版本。
 修复保留源语言中的析构身份，不判断游戏地址，也不加入编译后指令
 修补。两个前端的析构执行回归及四版本既有工程完整比对均通过。
+
+`long_call` 属性只影响被标记的函数声明，使用现有的间接跨模式
+调用，普通近调用和优化选项不变；因此 ROM 里的 C 函数可以正常
+调用 IWRAM ARM 入口，无需固定寄存器或空汇编。不判断游戏函数名
+或地址，也不新增函数指针类型属性。独立混合 ARM/Thumb 测试以
+C、C++ 执行，覆盖标量、void、结构体返回及普通近调用。
 
 [notyourav/agbcc]: https://github.com/notyourav/agbcc
 

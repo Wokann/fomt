@@ -281,7 +281,7 @@ $(GUIDE_GENERATED_SOURCE): $(GUIDE_COLLECTION_MANIFEST) $(GUIDE_PAGE_SOURCES) $(
 $(BUILD_DIR)/src/reference_guide.d: $(GUIDE_GENERATED_SOURCE)
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $(BUILD_DIR)/src/reference_guide.o
 
-$(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/reference_guide.d $(TEXT_TOOLS) charmap.txt
+$(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/reference_guide.d $(TEXT_TOOLS) charmap.txt $(CC1PLUS)
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
 
@@ -292,7 +292,7 @@ $(REGION_TEXT_ORDINARY_DEPS): $(BUILD_DIR)/data/text/%.d: data/text/$(TEXT_REGIO
 	@mkdir -p $(dir $@)
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/data/text/$*.o
 
-$(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt
+$(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt $(CC1PLUS)
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
 
@@ -315,7 +315,7 @@ $(BUILD_DIR)/%.d: %.c
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/$*.o
 
 # C object
-$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt
+$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt $(CC1)
 	@echo "CC $<"
 	$(call FOMT_COMPILE_C,)
 
@@ -325,7 +325,7 @@ $(BUILD_DIR)/%.d: %.cc
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/$*.o
 
 # C++ object
-$(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt
+$(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt $(CC1PLUS)
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
 
@@ -347,6 +347,7 @@ $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 
 # overrides for matching
 $(BUILD_DIR)/src/m4a.o: CC1 := $(OLD_CC1)
+$(BUILD_DIR)/src/m4a.o: $(OLD_CC1)
 
 # Interworking and SRAM wrappers interrupt runs of ordinary C in the ROM.
 $(BUILD_DIR)/src/interrupt.o $(BUILD_DIR)/src/sram_proxy_2.o: CFLAGS += -ffunction-sections

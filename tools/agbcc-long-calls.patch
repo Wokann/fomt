@@ -1,0 +1,398 @@
+diff --git a/gcc/thumb.c b/gcc/thumb.c
+--- a/gcc/thumb.c
++++ b/gcc/thumb.c
+@@ -1523,7 +1523,24 @@
+     if (is_attribute_p("naked", attr))
+         return TREE_CODE(decl) == FUNCTION_DECL;
+ 
++    if (is_attribute_p("long_call", attr))
++        return TREE_CODE(decl) == FUNCTION_DECL;
++
+     return 0;
++}
++
++/* A per-declaration far call uses the same indirect-call machinery as
++   -mlong-calls, without changing other calls in the translation unit. */
++void
++thumb_encode_section_info(tree decl)
++{
++    if (TREE_CODE(decl) == FUNCTION_DECL)
++    {
++        rtx address = XEXP(DECL_RTL(decl), 0);
++        if (GET_CODE(address) == SYMBOL_REF)
++            SYMBOL_REF_FLAG(address) =
++                lookup_attribute("long_call", DECL_MACHINE_ATTRIBUTES(decl)) != NULL_TREE;
++    }
+ }
+ 
+ /* s_register_operand is the same as register_operand, but it doesn't accept
+diff --git a/gcc/thumb.h b/gcc/thumb.h
+--- a/gcc/thumb.h
++++ b/gcc/thumb.h
+@@ -1090,4 +1090,8 @@
+ extern int thumb_return_in_memory(tree);
+ extern void thumb_override_options();
+ extern int arm_valid_machine_decl_attribute(tree, tree, tree, tree);
++extern void thumb_encode_section_info(tree);
+ extern int s_register_operand(rtx, enum machine_mode);
++
++#define ENCODE_SECTION_INFO(DECL) thumb_encode_section_info(DECL)
++#define REDO_SECTION_INFO_P(DECL) (TREE_CODE(DECL) == FUNCTION_DECL)
+diff --git a/gcc/thumb.md b/gcc/thumb.md
+--- a/gcc/thumb.md
++++ b/gcc/thumb.md
+@@ -990,7 +990,10 @@
+   ""
+   "
+ {
+-  if (TARGET_LONG_CALLS && GET_CODE (XEXP (operands[0], 0)) != REG)
++  if ((TARGET_LONG_CALLS
++       || (GET_CODE (XEXP (operands[0], 0)) == SYMBOL_REF
++           && SYMBOL_REF_FLAG (XEXP (operands[0], 0))))
++      && GET_CODE (XEXP (operands[0], 0)) != REG)
+     XEXP (operands[0], 0) = force_reg (Pmode, XEXP (operands[0], 0));
+ }")
+ 
+@@ -1008,7 +1011,10 @@
+   ""
+   "
+ {
+-  if (TARGET_LONG_CALLS && GET_CODE (XEXP (operands[1], 0)) != REG)
++  if ((TARGET_LONG_CALLS
++       || (GET_CODE (XEXP (operands[1], 0)) == SYMBOL_REF
++           && SYMBOL_REF_FLAG (XEXP (operands[1], 0))))
++      && GET_CODE (XEXP (operands[1], 0)) != REG)
+     XEXP (operands[1], 0) = force_reg (Pmode, XEXP (operands[1], 0));
+ }")
+ 
+@@ -1024,7 +1030,8 @@
+ (define_insn "*call_insn"
+   [(call (mem:SI (match_operand:SI 0 "" "i"))
+ 	 (match_operand:SI 1 "" ""))]
+-  "! TARGET_LONG_CALLS && GET_CODE (operands[0]) == SYMBOL_REF"
++  "! TARGET_LONG_CALLS && GET_CODE (operands[0]) == SYMBOL_REF
++   && ! SYMBOL_REF_FLAG (operands[0])"
+   "bl\\t%a0"
+ [(set_attr "length" "4")])
+ 
+@@ -1032,7 +1039,8 @@
+   [(set (match_operand 0 "s_register_operand" "=l")
+ 	(call (mem:SI (match_operand 1 "" "i"))
+ 	      (match_operand 2 "" "")))]
+-  "! TARGET_LONG_CALLS && GET_CODE (operands[1]) == SYMBOL_REF"
++  "! TARGET_LONG_CALLS && GET_CODE (operands[1]) == SYMBOL_REF
++   && ! SYMBOL_REF_FLAG (operands[1])"
+   "bl\\t%a1"
+ [(set_attr "length" "4")])
+ 
+diff --git a/g++/config/arm/thumb.c b/g++/config/arm/thumb.c
+--- a/g++/config/arm/thumb.c
++++ b/g++/config/arm/thumb.c
+@@ -2109,6 +2109,9 @@
+   if (args != NULL_TREE)
+     return 0;
+ 
++  if (is_attribute_p ("long_call", attr))
++    return TREE_CODE (decl) == FUNCTION_DECL;
++
+   if (is_attribute_p ("naked", attr))
+     return TREE_CODE (decl) == FUNCTION_DECL;
+   
+@@ -2119,6 +2122,21 @@
+ }
+ #endif /* THUMB_PE */
+ /* END CYGNUS LOCAL nickc/thumb-pe */
++
++/* Mark only explicitly requested far calls. The instruction selection is
++   otherwise identical to the original Thumb backend. */
++void
++thumb_encode_section_info (decl)
++     tree decl;
++{
++  if (TREE_CODE (decl) == FUNCTION_DECL)
++    {
++      rtx address = XEXP (DECL_RTL (decl), 0);
++      if (GET_CODE (address) == SYMBOL_REF)
++        SYMBOL_REF_FLAG (address) =
++          lookup_attribute ("long_call", DECL_MACHINE_ATTRIBUTES (decl)) != NULL_TREE;
++    }
++}
+ 
+ /* s_register_operand is the same as register_operand, but it doesn't accept
+    (SUBREG (MEM)...).
+diff --git a/g++/config/arm/thumb.h b/g++/config/arm/thumb.h
+--- a/g++/config/arm/thumb.h
++++ b/g++/config/arm/thumb.h
+@@ -1202,3 +1202,9 @@
+ extern int    far_jump_used_p();
+ extern int    is_called_in_ARM_mode ();
+ 
++#ifndef THUMB_PE
++extern void thumb_encode_section_info ();
++#define ENCODE_SECTION_INFO(DECL) thumb_encode_section_info (DECL)
++#define REDO_SECTION_INFO_P(DECL) (TREE_CODE (DECL) == FUNCTION_DECL)
++#endif
++
+diff --git a/g++/config/arm/thumb.md b/g++/config/arm/thumb.md
+--- a/g++/config/arm/thumb.md
++++ b/g++/config/arm/thumb.md
+@@ -1007,7 +1007,10 @@
+   ""
+   "
+ {
+-  if (TARGET_LONG_CALLS && GET_CODE (XEXP (operands[0], 0)) != REG)
++  if ((TARGET_LONG_CALLS
++       || (GET_CODE (XEXP (operands[0], 0)) == SYMBOL_REF
++           && SYMBOL_REF_FLAG (XEXP (operands[0], 0))))
++      && GET_CODE (XEXP (operands[0], 0)) != REG)
+     XEXP (operands[0], 0) = force_reg (Pmode, XEXP (operands[0], 0));
+ }")
+ 
+@@ -1036,7 +1039,10 @@
+   ""
+   "
+ {
+-  if (TARGET_LONG_CALLS && GET_CODE (XEXP (operands[1], 0)) != REG)
++  if ((TARGET_LONG_CALLS
++       || (GET_CODE (XEXP (operands[1], 0)) == SYMBOL_REF
++           && SYMBOL_REF_FLAG (XEXP (operands[1], 0))))
++      && GET_CODE (XEXP (operands[1], 0)) != REG)
+     XEXP (operands[1], 0) = force_reg (Pmode, XEXP (operands[1], 0));
+ }")
+ 
+@@ -1061,7 +1067,8 @@
+ (define_insn "*call_insn"
+   [(call (mem:SI (match_operand:SI 0 "" "i"))
+ 	 (match_operand:SI 1 "" ""))]
+-  "! TARGET_LONG_CALLS && GET_CODE (operands[0]) == SYMBOL_REF"
++  "! TARGET_LONG_CALLS && GET_CODE (operands[0]) == SYMBOL_REF
++   && ! SYMBOL_REF_FLAG (operands[0])"
+   "bl\\t%a0"
+ [(set_attr "length" "4")])
+ 
+@@ -1069,7 +1076,8 @@
+   [(set (match_operand 0 "s_register_operand" "=l")
+ 	(call (mem:SI (match_operand 1 "" "i"))
+ 	      (match_operand 2 "" "")))]
+-  "! TARGET_LONG_CALLS && GET_CODE (operands[1]) == SYMBOL_REF"
++  "! TARGET_LONG_CALLS && GET_CODE (operands[1]) == SYMBOL_REF
++   && ! SYMBOL_REF_FLAG (operands[1])"
+   "bl\\t%a1"
+ [(set_attr "length" "4")])
+ 
+diff --git a/tests/long-call.c b/tests/long-call.c
+new file mode 100644
+--- /dev/null
++++ b/tests/long-call.c
+@@ -0,0 +1,50 @@
++/* Run as either ordinary C or C++, with no file-wide long-call option. */
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++struct Pair { int first; int second; };
++extern int far_value(int);
++extern int far_value(int) __attribute__((long_call));
++extern int far_value(int);
++extern void far_sink(int) __attribute__((long_call));
++extern struct Pair far_pair(int) __attribute__((long_call));
++extern int near_value(int);
++extern void near_sink(int);
++extern volatile int far_seen;
++extern volatile int near_seen;
++
++int mixed_value(int input)
++{
++    return near_value(far_value(input)) + 1;
++}
++
++void mixed_sink(int input)
++{
++    far_sink(input);
++    near_sink(input + 1);
++}
++
++int pair_value(int input)
++{
++    struct Pair value = far_pair(input);
++    return value.first + value.second;
++}
++
++void __gccmain(void) {}
++
++int main(void)
++{
++    if (mixed_value(5) != 37)
++        return 1;
++    mixed_sink(9);
++    if (far_seen != 9 || near_seen != 10)
++        return 2;
++    if (pair_value(4) != 11)
++        return 3;
++    return 0;
++}
++
++#ifdef __cplusplus
++}
++#endif
+diff --git a/tests/long-call-start.s b/tests/long-call-start.s
+new file mode 100644
+--- /dev/null
++++ b/tests/long-call-start.s
+@@ -0,0 +1,82 @@
++.syntax unified
++.arm
++.section .text.start
++.global _start
++_start:
++    ldr r3, =main
++    mov lr, pc
++    bx r3
++    mov r7, #1
++    svc #0
++
++.thumb
++.section .text.near
++.thumb_func
++.global near_value
++near_value:
++    movs r1, #3
++    muls r0, r1
++    bx lr
++.thumb_func
++.global near_sink
++near_sink:
++    ldr r1, =near_seen
++    str r0, [r1]
++    bx lr
++.thumb_func
++.global _call_via_r1
++_call_via_r1:
++    bx r1
++.thumb_func
++.global _call_via_r2
++_call_via_r2:
++    bx r2
++.thumb_func
++.global _call_via_r3
++_call_via_r3:
++    bx r3
++.thumb_func
++.global memcpy
++memcpy:
++    push {r4, lr}
++    movs r3, r0
++    cmp r2, #0
++    beq .Lcopy_done
++.Lcopy:
++    ldrb r4, [r1]
++    strb r4, [r3]
++    adds r1, #1
++    adds r3, #1
++    subs r2, #1
++    bne .Lcopy
++.Lcopy_done:
++    pop {r4}
++    pop {r1}
++    bx r1
++
++.arm
++.section .text.far
++.global far_value
++.type far_value, %function
++far_value:
++    add r0, r0, #7
++    bx lr
++.global far_sink
++.type far_sink, %function
++far_sink:
++    ldr r1, =far_seen
++    str r0, [r1]
++    bx lr
++.global far_pair
++.type far_pair, %function
++far_pair:
++    str r1, [r0]
++    add r1, r1, #3
++    str r1, [r0, #4]
++    bx lr
++
++.data
++.global far_seen
++far_seen: .word 0
++.global near_seen
++near_seen: .word 0
+diff --git a/tests/long-call.lds b/tests/long-call.lds
+new file mode 100644
+--- /dev/null
++++ b/tests/long-call.lds
+@@ -0,0 +1,8 @@
++ENTRY(_start)
++SECTIONS
++{
++    .far 0x800000 : { *(.text.far) }
++    .text 0x10000 : { *(.text.start) *(.text.near) *(.text) *(.text.*) }
++    .data : { *(.data) }
++    .bss : { *(.bss) *(COMMON) }
++}
+diff --git a/tests/README.long-calls.md b/tests/README.long-calls.md
+new file mode 100644
+--- /dev/null
++++ b/tests/README.long-calls.md
+@@ -0,0 +1,56 @@
++# Per-declaration Thumb long calls
++
++The Thumb C and C++ backends already support `-mlong-calls` for an entire
++translation unit. This correction also accepts `__attribute__((long_call))`
++on a function declaration. Only references to that declaration use the
++existing indirect interworking path; unmarked functions keep their direct
++calls and original instruction selection. No symbol name or address is tested.
++
++The marker is retained on the function's RTL symbol, including redeclarations,
++and consulted by both void and value-returning call expansion. This is a
++declaration attribute, not a new function-pointer type attribute. The ARM
++callee's actual ELF symbol supplies its address and mode; no alias, fixed
++register, instruction rewrite, or file-wide flag is needed.
++
++`long-call.c` is compiled once as C and once as C++. `long-call-start.s`
++provides near Thumb callees and far ARM callees. `long-call.lds` deliberately
++separates the latter by more than a Thumb BL's range. The executable checks
++scalar, void and two-word structure returns together with unaffected near
++calls. After a normal `./build.sh`, run with `arm-none-eabi` binutils and
++`qemu-arm`:
++
++```sh
++tmpdir=$(mktemp -d)
++arm-none-eabi-as -mcpu=arm7tdmi tests/long-call-start.s -o "$tmpdir/start.o"
++arm-none-eabi-cpp -x c -P tests/long-call.c -o "$tmpdir/c.i"
++./agbcc -O2 -mthumb-interwork -Werror -o "$tmpdir/c.s" < "$tmpdir/c.i"
++arm-none-eabi-cpp -x c++ -P tests/long-call.c -o "$tmpdir/cpp.i"
++./agbcp -quiet -fno-exceptions -fno-rtti -fvtable-thunks \
++    -O2 -mthumb-interwork -Werror -o "$tmpdir/cpp.s" < "$tmpdir/cpp.i"
++for mode in c cpp; do
++    arm-none-eabi-as -mcpu=arm7tdmi "$tmpdir/$mode.s" -o "$tmpdir/$mode.o"
++    arm-none-eabi-objdump -dr "$tmpdir/$mode.o"
++    arm-none-eabi-ld -T tests/long-call.lds "$tmpdir/start.o" \
++        "$tmpdir/$mode.o" -o "$tmpdir/$mode.elf"
++    qemu-arm "$tmpdir/$mode.elf" || exit "$?"
++done
++```
++
++Both executions must return zero. Each `far_*` target must have an ABS32
++relocation, not a THM_CALL relocation; `near_value` and `near_sink` must still
++have THM_CALL relocations. The original toolchain rejects this attribute under
++`-Werror`; removing it cannot link these out-of-range direct calls.
++
++## 中文说明
++
++两套 Thumb 前端原有全文件 `-mlong-calls`，现补充函数声明上的
++`long_call` 属性，只改变被标记声明的调用，未标记的近调用保持
++原有指令选择。属性随函数 RTL 符号保留，并在 void 与有返回值的
++调用展开时使用；支持函数声明，不声称新增函数指针类型属性。
++没有判断符号名或地址，也不使用别名、固定寄存器、指令修补或
++全文件优化选项。ARM 入口的真实 ELF 符号提供地址和执行模式。
++
++上述同一测试分别以 C、C++ 编译，实际调用近处 Thumb 函数和远处
++ARM 函数，检查标量、void、两字结构体返回及普通近调用。链接位置
++仅属于独立测试，用于保证远处确实超出 Thumb BL 范围，不是任何
++游戏地址。两次执行都应返回零，重定位类型须符合上面的检查。
