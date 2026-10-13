@@ -150,7 +150,7 @@ func_08010358:
     strh r3, [r1, #4]
     ldr r3, .Ljp_080105F4 @ =0x00001CD4
     adds r0, r7, r3
-    bl func_0809EEE8
+    bl __13NpcCollection
     ldr r1, .Ljp_080105F8 @ =0x0000214C
     adds r0, r7, r1
     bl __14GameEventState
@@ -2332,7 +2332,7 @@ func_08011650:
     strh r3, [r1, #4]
     ldr r1, .Ljp_0801186C @ =0x00001CD4
     adds r0, r7, r1
-    bl func_0809EEE8
+    bl __13NpcCollection
     ldr r2, .Ljp_08011870 @ =0x0000214C
     adds r0, r7, r2
     bl __14GameEventState
@@ -23373,7 +23373,7 @@ func_08010358: @ 0x08010358
     strh r3, [r1, #4]
     ldr r3, .L08010614 @ =0x00001CD4
     adds r0, r7, r3
-    bl func_0809EEE8
+    bl __13NpcCollection
     ldr r1, .L08010618 @ =0x0000214C
     adds r0, r7, r1
     bl __14GameEventState
@@ -25555,7 +25555,7 @@ func_08011650: @ 0x08011650
     strh r3, [r1, #4]
     ldr r1, .L0801188C @ =0x00001CD4
     adds r0, r7, r1
-    bl func_0809EEE8
+    bl __13NpcCollection
     ldr r2, .L08011890 @ =0x0000214C
     adds r0, r7, r2
     bl __14GameEventState

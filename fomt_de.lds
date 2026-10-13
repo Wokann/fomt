@@ -430,6 +430,7 @@ SECTIONS
         src/gotz.o(.text);
         src/saibara.o(.text);
         src/van.o(.text);
+        src/npc_collection.o(.text);
         asm/code_809E804.o(.text.npc_after_child);
         src/npc_locations.o(.text);
         asm/code_809E804.o(.text.npc_locations_after);
