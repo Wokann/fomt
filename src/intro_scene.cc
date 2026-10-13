@@ -584,7 +584,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
         func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(1, core->unk_6D30);
         func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(2, core->unk_6D30);
         func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(3, core->unk_6D30);
-        func_080024E0(core);
+        RenderIntroSceneFrame(core);
     } while (!finished);
     return confirmed;
 }

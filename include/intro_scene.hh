@@ -192,7 +192,9 @@ void StartIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_
 void func_08000F5C(IntroSceneCore * core);
 int RunIntroSceneSequence(IntroSceneCore * core) SECTION(".text.intro_scene_core_sequence");
 void func_080019D8(IntroSceneCore * core);
-void func_080024E0(IntroSceneCore * core);
+// Update resource playback, refresh changed OBJ data through the DMA queue,
+// and submit the opening scene's sprites. JP also submits resource 9.
+void RenderIntroSceneFrame(IntroSceneCore * core);
 void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
     SECTION(".text.intro_scene_sprite_submission");
 void func_0805E99C(HardwareSpriteBufferState * buffer, HardwareSpriteOamRecord const * descriptors,
