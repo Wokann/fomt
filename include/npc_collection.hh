@@ -7,6 +7,7 @@
 #include "harvest_sprite.hh"
 #include "npc_locations.hh"
 #include "saibara.hh"
+#include "time_of_day.hh"
 #include "van.hh"
 
 // Eight saved preset positions, distinct from each character's own location.
@@ -46,6 +47,8 @@ struct ALIGN(4) WeddingDate
     GameDate date;
 
     WeddingDate() : encoded_year(0), date(SEASON_SPRING, 0) {}
+
+    u32 GetYear() const { return EncodedGameYear(encoded_year).GetYear(); }
 };
 
 typedef char WeddingDateSizeCheck[sizeof(WeddingDate) == 4 ? 1 : -1];

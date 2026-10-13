@@ -20,6 +20,26 @@ struct TimeOfDayTransition
     u8 value;
 };
 
+// The calendar and wedding records share this one-byte year encoding.
+// Keep their stored byte unchanged; use this view only while decoding it.
+// All eight bits belong to the year, including the otherwise-unused low
+// value 7. Native readers clamp the decoded value separately when needed.
+struct PACKED EncodedGameYear
+{
+    union PACKED {
+        u8 encoded;
+        struct PACKED {
+            u8 remainder : 3;
+            u8 quotient : 5;
+        } digits;
+    };
+
+    explicit EncodedGameYear(u8 value) : encoded(value) {}
+    u32 GetYear() const { return digits.quotient * 7 + digits.remainder; }
+};
+
+typedef char EncodedGameYearSizeCheck[sizeof(EncodedGameYear) == 1 ? 1 : -1];
+
 // Stored at +0x10 in the save image. The first byte encodes the year as
 // seven times its high five bits plus its low three bits; the following
 // fields are the packed date and clock used by the calendar consumers.
@@ -32,7 +52,7 @@ struct GameCalendar
     GameCalendar(u32 year, GameDate const & date, GameTime time)
         : encoded_year((year / 7 << 3) | (year % 7)), date(date), time(time) {}
 
-    u32 GetYear() const { return (encoded_year >> 3) * 7 + (encoded_year & 7); }
+    u32 GetYear() const { return EncodedGameYear(encoded_year).GetYear(); }
 };
 
 typedef char GameCalendarSizeCheck[sizeof(GameCalendar) == 4 ? 1 : -1];
