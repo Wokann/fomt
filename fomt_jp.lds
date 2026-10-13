@@ -474,6 +474,8 @@ SECTIONS
         asm/code_809E804.o(.text.npc_after_child);
         src/npc_collection.o(.text.GetPartnerCharacterId__C13NpcCollection .text.GetSpouseCharacterId__C13NpcCollection .text.IsMarried__C13NpcCollection);
         asm/code_809E804.o(.text.npc_after_partner_queries);
+        src/npc_collection.o(.text.SetWeddingDate__13NpcCollectionRC11WeddingDate .text.GetWeddingDate__C13NpcCollection);
+        asm/code_809E804.o(.text.npc_after_wedding_date);
         src/npc_locations.o(.text);
         src/field_item_data.o(.text);
         asm/code_809E804.o(.text.field_item_after);

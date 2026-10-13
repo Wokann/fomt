@@ -1,55 +1,55 @@
 #include "npc_collection.hh"
 
-static inline ActorLocation InitialNpcLocation(Location const & position)
+static inline ActorLocation InitialNpcLocation()
 {
-    return ActorLocation(position, FACING_DOWN);
+    return ActorLocation(Location(MAP_NONE, 0, 0), FACING_DOWN);
 }
 
 NpcCollection::NpcCollection()
     : unk_00_0(0), unk_00_6(0), unk_01_5(0), unk_02_5(false),
       unk_02_6(0), has_child(false), unk_03_2(0),
-      unk_2C(0), unk_2D_0(0), unk_2D_2(0),
-      lillia(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      rick(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      popuri(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      barley(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      may(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      saibara(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      gray(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      duke(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      manna(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      basil(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      anna(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      mary(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      thomas(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      harris(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      ellen(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      stu(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      jeff(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      sasha(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      karen(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      doctor(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      elli(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      carter(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      cliff(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      doug(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      ann(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      kai(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      gotz(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      zack(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      won(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      gourmet(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      harvest_goddess(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      kappa(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      van(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      lou(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      staid(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      nappy(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      bold(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      chef(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      aqua(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      hoggy(InitialNpcLocation(Location(MAP_NONE, 0, 0))),
-      timid(InitialNpcLocation(Location(MAP_NONE, 0, 0)))
+      wedding_date(),
+      lillia(InitialNpcLocation()),
+      rick(InitialNpcLocation()),
+      popuri(InitialNpcLocation()),
+      barley(InitialNpcLocation()),
+      may(InitialNpcLocation()),
+      saibara(InitialNpcLocation()),
+      gray(InitialNpcLocation()),
+      duke(InitialNpcLocation()),
+      manna(InitialNpcLocation()),
+      basil(InitialNpcLocation()),
+      anna(InitialNpcLocation()),
+      mary(InitialNpcLocation()),
+      thomas(InitialNpcLocation()),
+      harris(InitialNpcLocation()),
+      ellen(InitialNpcLocation()),
+      stu(InitialNpcLocation()),
+      jeff(InitialNpcLocation()),
+      sasha(InitialNpcLocation()),
+      karen(InitialNpcLocation()),
+      doctor(InitialNpcLocation()),
+      elli(InitialNpcLocation()),
+      carter(InitialNpcLocation()),
+      cliff(InitialNpcLocation()),
+      doug(InitialNpcLocation()),
+      ann(InitialNpcLocation()),
+      kai(InitialNpcLocation()),
+      gotz(InitialNpcLocation()),
+      zack(InitialNpcLocation()),
+      won(InitialNpcLocation()),
+      gourmet(InitialNpcLocation()),
+      harvest_goddess(InitialNpcLocation()),
+      kappa(InitialNpcLocation()),
+      van(InitialNpcLocation()),
+      lou(InitialNpcLocation()),
+      staid(InitialNpcLocation()),
+      nappy(InitialNpcLocation()),
+      bold(InitialNpcLocation()),
+      chef(InitialNpcLocation()),
+      aqua(InitialNpcLocation()),
+      hoggy(InitialNpcLocation()),
+      timid(InitialNpcLocation())
 {
     days_since_pregnancy_event = 0;
     unk_474 = 0;
@@ -81,4 +81,14 @@ u32 NpcCollection::GetSpouseCharacterId() const
 bool NpcCollection::IsMarried() const
 {
     return GetSpouseCharacterId() != 0;
+}
+
+void NpcCollection::SetWeddingDate(WeddingDate const & date)
+{
+    wedding_date = date;
+}
+
+WeddingDate const & NpcCollection::GetWeddingDate() const
+{
+    return wedding_date;
 }

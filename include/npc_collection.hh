@@ -49,6 +49,20 @@ struct NpcCollectionUnk438
     u32 unk_04;
 };
 
+// The wedding-date readers use the same year encoding as GameCalendar and
+// the zero-based packed date. The native setter copies one aligned word;
+// the final two bytes are padding, not a verified clock or another field.
+struct ALIGN(4) WeddingDate
+{
+    u8 encoded_year;
+    GameDate date;
+
+    WeddingDate() : encoded_year(0), date(SEASON_SPRING, 0) {}
+};
+
+typedef char WeddingDateSizeCheck[sizeof(WeddingDate) == 4 ? 1 : -1];
+typedef char WeddingDateDateCheck[offsetof(WeddingDate, date) == 1 ? 1 : -1];
+
 // Saved at GameStateSaveImage +0x1CD4. The character-ID resolver independently
 // verifies these named members; construction order follows physical storage.
 struct NpcCollection
@@ -61,6 +75,9 @@ struct NpcCollection
     u32 GetSpouseCharacterId() const;
     bool IsMarried() const;
 
+    void SetWeddingDate(WeddingDate const & date);
+    WeddingDate const & GetWeddingDate() const;
+
     /* +000 */ u32 unk_00_0 : 6;
     /* +000 */ u32 unk_00_6 : 7;
     /* +001 */ u32 unk_01_5 : 8;
@@ -70,10 +87,7 @@ struct NpcCollection
     /* +003 */ u32 unk_03_2 : 3;
     /* +003 */ u32 : 3;
     /* +004 */ Child child;
-    /* +02C */ u8 unk_2C;
-    /* +02D */ u8 unk_2D_0 : 2;
-    /* +02D */ u8 unk_2D_2 : 5;
-    /* +02D */ u8 : 1;
+    /* +02C */ WeddingDate wedding_date;
     /* +030 */ NpcCollectionLocations locations;
     /* +070 */ Npc lillia;
     /* +084 */ Npc rick;
@@ -125,6 +139,7 @@ typedef char NpcCollectionLocationsSizeCheck[sizeof(NpcCollectionLocations) == 0
 typedef char NpcCollectionUnk438SizeCheck[sizeof(NpcCollectionUnk438) == 8 ? 1 : -1];
 typedef char NpcCollectionSizeCheck[sizeof(NpcCollection) == 0x478 ? 1 : -1];
 typedef char NpcCollectionChildCheck[offsetof(NpcCollection, child) == 4 ? 1 : -1];
+typedef char NpcCollectionWeddingDateCheck[offsetof(NpcCollection, wedding_date) == 0x2C ? 1 : -1];
 typedef char NpcCollectionLocationsCheck[offsetof(NpcCollection, locations) == 0x30 ? 1 : -1];
 typedef char NpcCollectionLilliaCheck[offsetof(NpcCollection, lillia) == 0x70 ? 1 : -1];
 typedef char NpcCollectionSaibaraCheck[offsetof(NpcCollection, saibara) == 0xD8 ? 1 : -1];

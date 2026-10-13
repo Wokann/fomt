@@ -2880,18 +2880,7 @@ func_080A0B18: @ 0x080A0550
 .Ljp_080A146C: .4byte 0x000009C4
 .Ljp_080A1470: .4byte 0xFFFFFE3F
 .Ljp_080A1474: .4byte gUnk_BacheloretteLoveThresholds05
-    .global func_080A1478
-    .thumb_func
-func_080A1478: @ 0x080A0EB0
-	ldr r1, [r1]
-	str r1, [r0, #0x2c]
-	bx lr
-	.align 2, 0
-    .global func_080A1480
-    .thumb_func
-func_080A1480: @ 0x080A0EB8
-	adds r0, #0x2c
-	bx lr
+    .section .text.npc_after_wedding_date
     .global func_080A1484
     .thumb_func
 func_080A1484: @ 0x080A0EBC
@@ -3917,7 +3906,7 @@ func_080A220C: @ 0x080A1C44
 	ldr r0, [r7, #8]
 	ldr r1, .Ljp_080A2568 @ =0x00001CD4
 	adds r0, r0, r1
-	bl func_080A1480
+	bl GetWeddingDate__C13NpcCollection
 	adds r4, r0, #0
 	movs r3, #0xc8
 	str r3, [sp, #0x18]
@@ -90310,17 +90299,7 @@ func_080A0B18: @ 0x080A0B18
 .L080A1470: .4byte 0xFFFFFE3F
 .L080A1474: .4byte gUnk_BacheloretteLoveThresholds05
 
-	thumb_func_start func_080A1478
-func_080A1478: @ 0x080A1478
-	ldr r1, [r1]
-	str r1, [r0, #0x2c]
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_080A1480
-func_080A1480: @ 0x080A1480
-	adds r0, #0x2c
-	bx lr
+    .section .text.npc_after_wedding_date
 
 	thumb_func_start func_080A1484
 func_080A1484: @ 0x080A1484
@@ -91345,7 +91324,7 @@ func_080A220C: @ 0x080A220C
 	ldr r0, [r7, #8]
 	ldr r1, .L080A2568 @ =0x00001CD4
 	adds r0, r0, r1
-	bl func_080A1480
+	bl GetWeddingDate__C13NpcCollection
 	adds r4, r0, #0
 	movs r3, #0xc8
 	str r3, [sp, #0x18]

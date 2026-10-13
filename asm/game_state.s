@@ -95,7 +95,7 @@ func_08010F54:
     cmp r0, #0
     bne .Ljp_08011036
     adds r0, r4, #0
-    bl func_080A1480
+    bl GetWeddingDate__C13NpcCollection
     adds r4, r0, #0
     mov ip, r4
     movs r3, #0xc8
@@ -21815,7 +21815,7 @@ func_08010F54: @ 0x08010F54
     cmp r0, #0
     bne .L08011056
     adds r0, r4, #0
-    bl func_080A1480
+    bl GetWeddingDate__C13NpcCollection
     adds r4, r0, #0
     mov ip, r4
     movs r3, #0xc8
