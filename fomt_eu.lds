@@ -418,6 +418,8 @@ SECTIONS
         src/child.o(.text);
         . = 0x9EB7C; /* Remaining NPC state code. */
         asm/code_809E804.o(.text.npc_after_child);
+        src/npc_locations.o(.text);
+        asm/code_809E804.o(.text.npc_locations_after);
         . = 0xA46C8;
         src/map_data.o(.text.get_map_data);
         . = 0xA46DC;

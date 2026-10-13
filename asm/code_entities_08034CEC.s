@@ -4611,7 +4611,7 @@ func_08037568:
     lsls	r1, r1, #30
     lsrs	r1, r1, #30
     mov	r0, sp
-    bl func_080A17A0
+    bl InitializeSouthTownNpcLocation1__FP13ActorLocationUi
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -4829,7 +4829,7 @@ func_08037714:
     lsls	r1, r1, #30
     lsrs	r1, r1, #30
     mov	r0, sp
-    bl func_080A1890
+    bl InitializeSouthTownNpcLocation2__FP13ActorLocationUi
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -4990,7 +4990,7 @@ func_080378B8:
     sub	sp, #8
     adds	r4, r0, #0
     mov	r0, sp
-    bl func_080A198C
+    bl InitializeYodelRanchHouseNpcLocation__FP13ActorLocation
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -5150,7 +5150,7 @@ func_08037A04:
     sub	sp, #8
     adds	r4, r0, #0
     mov	r0, sp
-    bl func_080A19EC
+    bl InitializeInnSecondFloorNpcLocation__FP13ActorLocation
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -15436,7 +15436,7 @@ func_08037568:
     lsls	r1, r1, #30
     lsrs	r1, r1, #30
     mov	r0, sp
-    bl func_080A17A0
+    bl InitializeSouthTownNpcLocation1__FP13ActorLocationUi
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -15654,7 +15654,7 @@ func_08037714:
     lsls	r1, r1, #30
     lsrs	r1, r1, #30
     mov	r0, sp
-    bl func_080A1890
+    bl InitializeSouthTownNpcLocation2__FP13ActorLocationUi
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -15815,7 +15815,7 @@ func_080378B8:
     sub	sp, #8
     adds	r4, r0, #0
     mov	r0, sp
-    bl func_080A198C
+    bl InitializeYodelRanchHouseNpcLocation__FP13ActorLocation
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -15975,7 +15975,7 @@ func_08037A04:
     sub	sp, #8
     adds	r4, r0, #0
     mov	r0, sp
-    bl func_080A19EC
+    bl InitializeInnSecondFloorNpcLocation__FP13ActorLocation
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -26492,7 +26492,7 @@ func_08037568:
     lsls	r1, r1, #30
     lsrs	r1, r1, #30
     mov	r0, sp
-    bl func_080A17A0
+    bl InitializeSouthTownNpcLocation1__FP13ActorLocationUi
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -26710,7 +26710,7 @@ func_08037714:
     lsls	r1, r1, #30
     lsrs	r1, r1, #30
     mov	r0, sp
-    bl func_080A1890
+    bl InitializeSouthTownNpcLocation2__FP13ActorLocationUi
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -26871,7 +26871,7 @@ func_080378B8:
     sub	sp, #8
     adds	r4, r0, #0
     mov	r0, sp
-    bl func_080A198C
+    bl InitializeYodelRanchHouseNpcLocation__FP13ActorLocation
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -27031,7 +27031,7 @@ func_08037A04:
     sub	sp, #8
     adds	r4, r0, #0
     mov	r0, sp
-    bl func_080A19EC
+    bl InitializeInnSecondFloorNpcLocation__FP13ActorLocation
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -37547,7 +37547,7 @@ func_08037568:
     lsls	r1, r1, #30
     lsrs	r1, r1, #30
     mov	r0, sp
-    bl func_080A17A0
+    bl InitializeSouthTownNpcLocation1__FP13ActorLocationUi
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -37765,7 +37765,7 @@ func_08037714:
     lsls	r1, r1, #30
     lsrs	r1, r1, #30
     mov	r0, sp
-    bl func_080A1890
+    bl InitializeSouthTownNpcLocation2__FP13ActorLocationUi
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -37926,7 +37926,7 @@ func_080378B8:
     sub	sp, #8
     adds	r4, r0, #0
     mov	r0, sp
-    bl func_080A198C
+    bl InitializeYodelRanchHouseNpcLocation__FP13ActorLocation
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -38086,7 +38086,7 @@ func_08037A04:
     sub	sp, #8
     adds	r4, r0, #0
     mov	r0, sp
-    bl func_080A19EC
+    bl InitializeInnSecondFloorNpcLocation__FP13ActorLocation
     adds	r0, r4, #0
     mov	r1, sp
     bl SetLocation__12AActorEntityRC13ActorLocation
