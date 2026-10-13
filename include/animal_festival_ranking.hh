@@ -18,6 +18,15 @@ typedef char AnimalFestivalRankingEntryScoreCheck[offsetof(AnimalFestivalRanking
 // including old records not yet replaced; it does not clear storage first.
 struct AnimalFestivalOpponents
 {
+    AnimalFestivalOpponents()
+    {
+        AnimalFestivalRankingEntry * entry = entries;
+        for (int remaining = 9; remaining != -1; ++entry, --remaining) {
+            entry->animal_index = 0;
+            entry->score = 0;
+        }
+    }
+
     void Generate(u32 gauge_limit);
 
     AnimalFestivalRankingEntry entries[10];

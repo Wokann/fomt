@@ -26,7 +26,7 @@ struct FieldPlot
 
     int GetUnk2() const { return unk_00_02; }
 
-    int GetUnk8() const { return unk_00_08; }
+    u8 GetUnk8() const { return unk_00_08; }
 
     u32 GetUnk11() const { return unk_00_11; }
 

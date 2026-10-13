@@ -190,9 +190,7 @@ SECTIONS
         src/game_scene.o(.text);
         asm/game_scene.o(.text.game_scene_post);
         . = 0x10328; /* JP ROM 0x08010328, bounded by game_scene and entity */
-        src/game_state.o(.text.GetNonzeroRandomValue);
-        asm/game_state.o(.text);
-        src/game_state.o(.text.*__C18GameStateSaveImage .text.*__18GameStateSaveImage);
+        src/game_state.o(.text.GetNonzeroRandomValue .text.__18GameStateSaveImagePCcT1G8GameDateT1 .text.*__C18GameStateSaveImage .text.*__18GameStateSaveImage);
         asm/game_state.o(.text.game_state_after_startup_accessors);
         src/game_state.o(.text.InitializeGameDisplayOptions);
         src/game_state.o(.text.*);

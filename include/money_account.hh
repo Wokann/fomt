@@ -87,6 +87,8 @@ struct MoneyAccountHistory {
 };
 
 struct MoneyAccount {
+    MoneyAccount();
+
     u32 balance;
     u8 unk_04_0 : 1;
     u8 unk_04_1 : 1;
@@ -126,5 +128,7 @@ u32 GetMoneyAccountMaximumExpense4(MoneyAccount const * account);
 void UpdateMoneyAccountRecordHistory(MoneyAccount * account);
 
 EXTERN_C_END
+
+inline MoneyAccount::MoneyAccount() { InitializeMoneyAccount(this); }
 
 #endif // MONEY_ACCOUNT_HH

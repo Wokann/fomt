@@ -39,6 +39,8 @@ typedef char GameDisplayOptionsSizeCheck[sizeof(GameDisplayOptions) == 4 ? 1 : -
 // them. The countdown starts at two, but delivery also depends on the game's
 // update and event-priority paths, not an unconditional two-day guarantee.
 struct TVShoppingOrderState {
+    TVShoppingOrderState();
+
     u32 selection;
     u32 pending_item;
     u8 countdown;
@@ -52,6 +54,12 @@ typedef char TVShoppingOrderCountdownCheck[offsetof(TVShoppingOrderState, countd
 // bitmaps separate; initialization and copying confirm their actual sizes.
 // The two words and three name slots have no further verified roles yet.
 struct GameStateLinkRecord {
+    GameStateLinkRecord(u32 value) : unk_00(value), unk_04(0)
+    {
+        fill_n_inl(received_milestones, 8, 0);
+        fill_n_inl(local_milestones, 4, 0);
+    }
+
     u32 unk_00;
     u32 unk_04;
     u8 received_milestones[8];
@@ -71,6 +79,8 @@ typedef char GameStateLinkRecordName34Check[offsetof(GameStateLinkRecord, name_3
 // Three 16-byte records follow ActorStateSlots in the saved actor state.
 // Initialization clears only each record's low nibble, not the other words.
 struct GameStateActorRecord {
+    GameStateActorRecord() : unk_00_low(0) {}
+
     u32 unk_00_low : 4;
     u32 unk_00_high : 28;
     u32 unk_04[3];
@@ -79,26 +89,46 @@ struct GameStateActorRecord {
 typedef char GameStateActorRecordSizeCheck[sizeof(GameStateActorRecord) == 0x10 ? 1 : -1];
 typedef char GameStateActorRecordWordsCheck[offsetof(GameStateActorRecord, unk_04) == 4 ? 1 : -1];
 
-// Saved at +0x3480. Natural word alignment leaves two bytes after the slots
-// and two after the final byte fields; neither gap is semantic array data.
-struct GameStateActorState {
-    ActorStateSlots slots;
-    GameStateActorRecord records[3];
-    u8 unk_44;
-    u8 unk_45;
+// The saved clock has two still-unknown words followed by the calendar.
+struct GameStateClock {
+    u32 unk_00, unk_04;
+    GameCalendar calendar;
+    GameStateClock(GameCalendar const & value)
+        : unk_00(0), unk_04(0), calendar(value) {}
 };
+typedef char GameStateClockSizeCheck[sizeof(GameStateClock) == 12 ? 1 : -1];
 
-typedef char GameStateActorStateSizeCheck[sizeof(GameStateActorState) == 0x48 ? 1 : -1];
-typedef char GameStateActorStateSlotsCheck[sizeof(ActorStateSlots) == 0x14 ? 1 : -1];
-typedef char GameStateActorStateSlotsDataEndCheck[offsetof(ActorStateSlots, unk_0C) + sizeof(((ActorStateSlots *) 0)->unk_0C) == 0x12 ? 1 : -1];
-typedef char GameStateActorStateRecordsCheck[offsetof(GameStateActorState, records) == 0x14 ? 1 : -1];
-typedef char GameStateActorStateUnknown44Check[offsetof(GameStateActorState, unk_44) == 0x44 ? 1 : -1];
-typedef char GameStateActorStateUnknown45Check[offsetof(GameStateActorState, unk_45) == 0x45 ? 1 : -1];
+// Only the low 24 bits of the final word are initialized. The preceding
+// eleven words and the high byte retain the native uninitialized storage.
+struct GameStateUnknown2C1C {
+    u32 unk_00[11];
+    u32 unk_2C_00 : 2;
+    u32 unk_2C_02 : 17;
+    bool unk_2C_19 : 1;
+    bool unk_2C_20 : 1;
+    bool unk_2C_21 : 1;
+    bool unk_2C_22 : 1;
+    bool unk_2C_23 : 1;
+    u32 unk_2C_24 : 8;
+    GameStateUnknown2C1C() : unk_2C_00(3), unk_2C_02(0),
+        unk_2C_19(false), unk_2C_20(false), unk_2C_21(false),
+        unk_2C_22(false), unk_2C_23(false) {}
+};
+typedef char GameStateUnknown2C1CSizeCheck[sizeof(GameStateUnknown2C1C) == 0x30 ? 1 : -1];
+
+extern "C" void func_0809C4E4(u32 &);
+struct GameStateUnknown34D8 {
+    u32 value;
+    GameStateUnknown34D8() { func_0809C4E4(value); }
+};
+typedef char GameStateUnknown34D8SizeCheck[sizeof(GameStateUnknown34D8) == 4 ? 1 : -1];
 
 // The initializer, copy constructor and save-summary reader agree on these
-// member offsets. Unknown ranges remain explicit storage; the native save
-// initializer/copy/cleanup bodies have not yet been recovered as C++.
+// member offsets. Unknown fields keep offset names. Initialization is recovered;
+// native copy/cleanup bodies have not yet been recovered as C++.
 struct GameStateSaveImage {
+    GameStateSaveImage(char const *, char const *, GameDate, char const *);
+
     bool GetFlag0() const;
     bool GetFlag1() const;
     bool GetFlag2() const;
@@ -127,9 +157,7 @@ struct GameStateSaveImage {
     /* bit 31 */ bool unk_31 : 1;
     /* bit 32 */ bool unk_32 : 1;
     u8 unk_05[3];
-    u32 unk_08;
-    u32 unk_0C;
-    GameCalendar calendar;
+    GameStateClock clock;
     Farm farm;
     MoneyAccount money_account;
     Farmer farmer;
@@ -144,23 +172,27 @@ struct GameStateSaveImage {
     GameStateLinkRecord link_record;
     GameDisplayOptions display_options;
     CookingRecipeInventory cooking_recipes;
-    u8 unk_2C1C[0x2C];
-    u32 unk_2C48;
+    GameStateUnknown2C1C unk_2C1C;
     AnimalFestivalOpponents animal_festival_opponents;
     TVShoppingOrderState tv_shopping;
     FishingRecords fishing_records;
     ActorStateGrid actor_state_grid;
-    GameStateActorState actor_state;
-    FieldItemState field_items;
-    u32 unk_34D8;
+    ActorStateSlots actor_slots;
+    GameStateActorRecord actor_records[3];
+    u8 actor_unknown_34C4;
+    u8 actor_unknown_34C5;
+    // The native initializer places this member at the next word boundary.
+    // The two bytes after the preceding flags are padding, not array data.
+    FieldItemState field_items ALIGN(4);
+    GameStateUnknown34D8 unk_34D8;
     Unk_Actor_0809BFE8 unk_34DC;
 };
 
 typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
 typedef char GameStateSaveImageUnknown05Check[offsetof(GameStateSaveImage, unk_05) == 5 ? 1 : -1];
-typedef char GameStateSaveImageUnknown08Check[offsetof(GameStateSaveImage, unk_08) == 8 ? 1 : -1];
-typedef char GameStateSaveImageUnknown0CCheck[offsetof(GameStateSaveImage, unk_0C) == 12 ? 1 : -1];
-typedef char GameStateSaveImageCalendarCheck[offsetof(GameStateSaveImage, calendar) == 0x10 ? 1 : -1];
+typedef char GameStateSaveImageUnknown08Check[offsetof(GameStateSaveImage, clock) == 8 ? 1 : -1];
+typedef char GameStateSaveImageUnknown0CCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, unk_04) == 12 ? 1 : -1];
+typedef char GameStateSaveImageCalendarCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, calendar) == 0x10 ? 1 : -1];
 typedef char GameStateSaveImageFarmCheck[offsetof(GameStateSaveImage, farm) == 0x14 ? 1 : -1];
 typedef char GameStateSaveImageMoneyCheck[offsetof(GameStateSaveImage, money_account) == 0x1AA8 ? 1 : -1];
 typedef char GameStateSaveImageFarmerCheck[offsetof(GameStateSaveImage, farmer) == 0x1BD8 ? 1 : -1];
@@ -176,15 +208,15 @@ typedef char GameStateSaveImageLocalMilestonesCheck[offsetof(GameStateSaveImage,
 typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
 typedef char GameStateSaveImageCookingCheck[offsetof(GameStateSaveImage, cooking_recipes) == 0x2214 ? 1 : -1];
 typedef char GameStateSaveImageAfterCookingCheck[offsetof(GameStateSaveImage, unk_2C1C) == 0x2C1C ? 1 : -1];
-typedef char GameStateSaveImageUnknown2C48Check[offsetof(GameStateSaveImage, unk_2C48) == 0x2C48 ? 1 : -1];
+typedef char GameStateSaveImageUnknown2C48Check[offsetof(GameStateSaveImage, unk_2C1C) + sizeof(((GameStateUnknown2C1C *) 0)->unk_00) == 0x2C48 ? 1 : -1];
 typedef char GameStateSaveImageAnimalFestivalOpponentsCheck[offsetof(GameStateSaveImage, animal_festival_opponents) == 0x2C4C ? 1 : -1];
 typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
 typedef char GameStateSaveImageFishingRecordsCheck[offsetof(GameStateSaveImage, fishing_records) == 0x2C80 ? 1 : -1];
 typedef char GameStateSaveImageActorGridCheck[offsetof(GameStateSaveImage, actor_state_grid) == 0x2E58 ? 1 : -1];
-typedef char GameStateSaveImageActorStateCheck[offsetof(GameStateSaveImage, actor_state) == 0x3480 ? 1 : -1];
-typedef char GameStateSaveImageActorRecordsCheck[offsetof(GameStateSaveImage, actor_state) + offsetof(GameStateActorState, records) == 0x3494 ? 1 : -1];
-typedef char GameStateSaveImageActorUnknown44Check[offsetof(GameStateSaveImage, actor_state) + offsetof(GameStateActorState, unk_44) == 0x34C4 ? 1 : -1];
-typedef char GameStateSaveImageActorUnknown45Check[offsetof(GameStateSaveImage, actor_state) + offsetof(GameStateActorState, unk_45) == 0x34C5 ? 1 : -1];
+typedef char GameStateSaveImageActorStateCheck[offsetof(GameStateSaveImage, actor_slots) == 0x3480 ? 1 : -1];
+typedef char GameStateSaveImageActorRecordsCheck[offsetof(GameStateSaveImage, actor_records) == 0x3494 ? 1 : -1];
+typedef char GameStateSaveImageActorUnknown44Check[offsetof(GameStateSaveImage, actor_unknown_34C4) == 0x34C4 ? 1 : -1];
+typedef char GameStateSaveImageActorUnknown45Check[offsetof(GameStateSaveImage, actor_unknown_34C5) == 0x34C5 ? 1 : -1];
 typedef char GameStateSaveImageFieldItemsCheck[offsetof(GameStateSaveImage, field_items) == 0x34C8 ? 1 : -1];
 typedef char GameStateSaveImageTailWordCheck[offsetof(GameStateSaveImage, unk_34D8) == 0x34D8 ? 1 : -1];
 typedef char GameStateSaveImageTailActorCheck[offsetof(GameStateSaveImage, unk_34DC) == 0x34DC ? 1 : -1];
@@ -242,6 +274,8 @@ inline GameDisplayOptions::GameDisplayOptions()
 {
     InitializeGameDisplayOptions(this);
 }
+
+inline TVShoppingOrderState::TVShoppingOrderState() { InitializeTVShoppingOrderState(this); }
 
 #if defined(REGION_JP)
 extern char const gText_Calendar_SeasonNames[4][3];

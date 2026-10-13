@@ -13,6 +13,71 @@ u32 GetNonzeroRandomValue()
     return value;
 }
 
+static inline u32 const & BoundDayIndex(u32 const & limit, u32 const & index)
+{
+    return index < limit ? index : limit;
+}
+
+// Startup placement requires all plots to be unoccupied and empty, unlike
+// the weather-update placement path. Try at most 100 random coordinates.
+static inline bool FindInitialSpot(Field<43, 25> const & field, u8 footprint_width, i32 (&pos)[2]) {
+    bool big = footprint_width == 2;
+    for (u32 attempt = 0; attempt < 100; ++attempt) {
+        int x, y;
+        if (big) {
+            x = static_cast<u32>(rand()) % 42;
+            y = static_cast<u32>(rand()) % 24;
+        } else {
+            x = static_cast<u32>(rand()) % 43;
+            y = static_cast<u32>(rand()) % 25;
+        }
+        if (field.PlotAt(x, y).method_0800A78C()) continue;
+        if (big) {
+            if (field.PlotAt(x + 1, y).method_0800A78C()) continue;
+            if (field.PlotAt(x, y + 1).method_0800A78C()) continue;
+            if (field.PlotAt(x + 1, y + 1).method_0800A78C()) continue;
+        }
+        if (field.PlotAt(x, y).GetUnk8() != 0) continue;
+        if (big) {
+            if (field.PlotAt(x + 1, y).GetUnk8() != 0) continue;
+            if (field.PlotAt(x, y + 1).GetUnk8() != 0) continue;
+            if (field.PlotAt(x + 1, y + 1).GetUnk8() != 0) continue;
+        }
+        pos[0] = x;
+        pos[1] = y;
+        return true;
+    }
+    return false;
+}
+static inline void PutInitialItem(Field<43, 25> & field, int id) {
+    i32 pos[2];
+    bool found = FindInitialSpot(field, id > 0x1A ? 2 : 1, pos);
+    if (found) {
+        field.PlotAt(pos[0], pos[1]).method_0800A134(id, 8);
+        if (id > 0x1A) {
+            field.PlotAt(pos[0] + 1, pos[1]).method_0800A134(id + 1, 8);
+            field.PlotAt(pos[0], pos[1] + 1).method_0800A134(id + 2, 8);
+            field.PlotAt(pos[0] + 1, pos[1] + 1).method_0800A134(id + 3, 8);
+        }
+    }
+}
+GameStateSaveImage::GameStateSaveImage(char const * farm_name, char const * player_name,
+    GameDate birthday, char const * dog_name)
+    : flag_0(false), flag_1(false), flag_2(false), flag_3(false), flag_4(false),
+      unk_13(0), unk_18(0), unk_25(0), unk_31(false), unk_32(false),
+      clock(GameCalendar(1, GameDate(SEASON_SPRING, BoundDayIndex(DAY_30 - 1, DAY_01 - 1) + 1), GameTime(6, 0))),
+      farm(farm_name), farmer(player_name, birthday), dog(dog_name), ball_location(MAP_NONE, 0, 0),
+      link_record(GetNonzeroRandomValue()), actor_unknown_34C4(0), actor_unknown_34C5(0)
+{
+    dog.AddAffection(50);
+    for (u32 i = 0; i < 10; ++i) PutInitialItem(farm.field, 0x1F);
+    for (u32 i = 0; i < 5; ++i) PutInitialItem(farm.field, 0x23);
+    for (u32 i = 0; i < 10; ++i) PutInitialItem(farm.field, 0x1B);
+    for (u32 i = 0; i < 300; ++i) PutInitialItem(farm.field, 0x15);
+    for (u32 i = 0; i < 50; ++i) PutInitialItem(farm.field, 0x16);
+    for (u32 i = 0; i < 50; ++i) PutInitialItem(farm.field, 0x17);
+}
+
 bool GameStateSaveImage::GetFlag0() const { return flag_0; }
 bool GameStateSaveImage::GetFlag1() const { return flag_1; }
 bool GameStateSaveImage::GetFlag2() const { return flag_2; }

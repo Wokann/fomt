@@ -245,7 +245,7 @@ func_08010158:
     adds r1, r5, #0
     adds r2, r6, #0
     mov r3, r8
-    bl func_08010358
+    bl __18GameStateSaveImagePCcT1G8GameDateT1
     adds r1, r0, #0
     str r1, [r7, #4]
     adds r0, r7, #0
@@ -574,7 +574,7 @@ func_08010158: @ 0x08010158
     adds r1, r5, #0
     adds r2, r6, #0
     mov r3, r8
-    bl func_08010358
+    bl __18GameStateSaveImagePCcT1G8GameDateT1
     adds r1, r0, #0
     str r1, [r7, #4]
     adds r0, r7, #0

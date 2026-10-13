@@ -338,11 +338,11 @@ u32 FieldPlot::method_0800A33C(int arg_1)
 
 u32 FieldPlot::method_0800A3C8()
 {
-    if (GetUnk8() != 0)
+    if (static_cast<int>(unk_00_08) != 0)
     {
         if (GetUnk2() == 0x14)
         {
-            if (GetUnk8() == 5)
+            if (static_cast<int>(unk_00_08) == 5)
             {
                 unk_00_08 = 7;
                 unk_00_0C = 0;
@@ -355,7 +355,7 @@ u32 FieldPlot::method_0800A3C8()
 
             if (u0 == 1 || u0 == 2)
             {
-                if (GetUnk8() == 6 || GetUnk8() == 2 || GetUnk8() == 3 || GetUnk8() == 4 || GetUnk8() == 5)
+                if (static_cast<int>(unk_00_08) == 6 || static_cast<int>(unk_00_08) == 2 || static_cast<int>(unk_00_08) == 3 || static_cast<int>(unk_00_08) == 4 || static_cast<int>(unk_00_08) == 5)
                 {
                     unk_00_08 = 0;
                     return 2;
@@ -1076,15 +1076,15 @@ Unk_Something const * FieldPlot::method_0800AF5C(FieldPlot const * arg_1, FieldP
     Unk_Something const * ip = gFieldPlotTypeDefinitions[GetUnk2()].render_variants;
     fu8 r4 = UINT8_MAX;
 
-    if (GetUnk8() == 0)
+    if (static_cast<int>(unk_00_08) == 0)
         return &gUnk_086D6458;
 
-    if (GetUnk8() == 1)
+    if (static_cast<int>(unk_00_08) == 1)
         return &gUnk_086D6608;
 
     if (GetUnk2() != 0x14)
     {
-        switch (GetUnk8())
+        switch (static_cast<int>(unk_00_08))
         {
             case 2:
                 r4 = gFieldPlotTypeDefinitions[GetUnk2()].state_2_variant_index;
@@ -1115,13 +1115,13 @@ Unk_Something const * FieldPlot::method_0800AF5C(FieldPlot const * arg_1, FieldP
                 break;
         }
     }
-    else if (GetUnk8() == 0x07)
+    else if (static_cast<int>(unk_00_08) == 0x07)
     {
         r4 = 0x0C;
     }
     else
     {
-        switch (GetUnk8())
+        switch (static_cast<int>(unk_00_08))
         {
             case 0x03:
                 r4 = 0;
@@ -1136,16 +1136,16 @@ Unk_Something const * FieldPlot::method_0800AF5C(FieldPlot const * arg_1, FieldP
                 break;
         }
 
-        if ((arg_1 == nullptr || arg_1->GetUnk2() != 0x14 || arg_1->GetUnk8() == 7 || arg_1->GetUnk8() < GetUnk8()))
+        if ((arg_1 == nullptr || arg_1->GetUnk2() != 0x14 || static_cast<int>(arg_1->unk_00_08) == 7 || static_cast<int>(arg_1->unk_00_08) < static_cast<int>(unk_00_08)))
         {
-            if (!(arg_2 == nullptr || arg_2->GetUnk2() != 0x14 || arg_2->GetUnk8() == 7 || arg_2->GetUnk8() < GetUnk8()))
+            if (!(arg_2 == nullptr || arg_2->GetUnk2() != 0x14 || static_cast<int>(arg_2->unk_00_08) == 7 || static_cast<int>(arg_2->unk_00_08) < static_cast<int>(unk_00_08)))
             {
                 r4 = r4 + 1;
             }
         }
         else
         {
-            if (arg_2 == nullptr || arg_2->GetUnk2() != 0x14 || arg_2->GetUnk8() == 7 || arg_2->GetUnk8() < GetUnk8())
+            if (arg_2 == nullptr || arg_2->GetUnk2() != 0x14 || static_cast<int>(arg_2->unk_00_08) == 7 || static_cast<int>(arg_2->unk_00_08) < static_cast<int>(unk_00_08))
             {
                 r4 = r4 + 2;
             }

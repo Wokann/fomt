@@ -199,16 +199,27 @@ struct PACKED GameDate
     /* bit 0 */ Season season : 2;
     /* bit 2 */ u8 day : 5;
 
+    GameDate() {}
+    // Explicit construction stores the supplied packed day field.
+    GameDate(Season season, u32 day)
+        : season(season), day(day) {}
+
     Season GetSeason() const { return season; }
     unsigned int GetDay() const { return day; }
 };
 
 struct PACKED ALIGN(2) GameTime
 {
-    /* bit 0 */ u16 clock_hour : 5;
-    /* bit 5 */ u16 clock_minute : 6;
+    /* bit 0 */ u8 clock_hour : 5;
+    /* bit 5 */ u8 clock_minute : 6;
+
+    GameTime() {}
+    GameTime(u8 hour, u8 minute) : clock_hour(hour), clock_minute(minute) {}
 
     unsigned int GetHour() const { return clock_hour; }
 };
+
+typedef char GameDateSizeCheck[sizeof(GameDate) == 1 ? 1 : -1];
+typedef char GameTimeSizeCheck[sizeof(GameTime) == 2 ? 1 : -1];
 
 #endif // UNKNOWN_TYPES_HH
