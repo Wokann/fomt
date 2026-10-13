@@ -1907,7 +1907,7 @@ func_0809DA00:
 .Ljp_0809D54E:
     ldr r1, .Ljp_0809D58C
     adds	r0, r6, r1
-    bl func_0809ED04
+    bl HasCollectedAllMystrileTools__C7Saibara
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_0809D55E
@@ -4301,7 +4301,7 @@ func_0809DA00: @ 0x0809DA00
 .L0809DB16:
     ldr r1, .L0809DB54 @ =0x00001DAC
     adds r0, r6, r1
-    bl func_0809ED04
+    bl HasCollectedAllMystrileTools__C7Saibara
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0809DB26

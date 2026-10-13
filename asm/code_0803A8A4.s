@@ -8903,11 +8903,11 @@ func_0803E8B8:
     ldr r0, .Ljp_0803E914
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_0809ECD8
+    bl GetOrder__C7Saibara
     cmp	r0, #0
     beq .Ljp_0803E918
     adds	r0, r4, #0
-    bl func_0809ECE0
+    bl IsOrderComplete__C7Saibara
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_0803E918
@@ -8959,16 +8959,16 @@ func_0803E934:
     ldr r0, .Ljp_0803E99C
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_0809EB68
+    bl GetConstruction__C4Gotz
     cmp	r0, #0
     beq .Ljp_0803EA18
     adds	r0, r4, #0
-    bl func_0809EB70
+    bl IsConstructionComplete__C4Gotz
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_0803EA18
     adds	r0, r4, #0
-    bl func_0809EB8C
+    bl IsConstructionOrderedToday__C4Gotz
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_0803EA18
@@ -8976,7 +8976,7 @@ func_0803E934:
     cmp	r0, #1
     bls .Ljp_0803EA18
     adds	r0, r4, #0
-    bl func_0809EB68
+    bl GetConstruction__C4Gotz
     cmp	r0, #13
     bhi .Ljp_0803EA18
     lsls	r0, r0, #2
@@ -17979,11 +17979,11 @@ func_0803EC44:
     ldr r0, .Leu_0803ECB4
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_0809ECD8
+    bl GetOrder__C7Saibara
     cmp	r0, #0
     beq .Leu_0803ECB8
     adds	r0, r4, #0
-    bl func_0809ECE0
+    bl IsOrderComplete__C7Saibara
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Leu_0803ECB8
@@ -18035,16 +18035,16 @@ func_0803ECC0:
     ldr r0, .Leu_0803ED3C
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_0809EB68
+    bl GetConstruction__C4Gotz
     cmp	r0, #0
     beq .Leu_0803EDB8
     adds	r0, r4, #0
-    bl func_0809EB70
+    bl IsConstructionComplete__C4Gotz
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Leu_0803EDB8
     adds	r0, r4, #0
-    bl func_0809EB8C
+    bl IsConstructionOrderedToday__C4Gotz
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Leu_0803EDB8
@@ -18052,7 +18052,7 @@ func_0803ECC0:
     cmp	r0, #1
     bls .Leu_0803EDB8
     adds	r0, r4, #0
-    bl func_0809EB68
+    bl GetConstruction__C4Gotz
     cmp	r0, #13
     bhi .Leu_0803EDB8
     lsls	r0, r0, #2
@@ -27017,11 +27017,11 @@ func_0803EC44:
     ldr r0, .Lde_0803EB98
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_0809ECD8
+    bl GetOrder__C7Saibara
     cmp	r0, #0
     beq .Lde_0803EB9C
     adds	r0, r4, #0
-    bl func_0809ECE0
+    bl IsOrderComplete__C7Saibara
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lde_0803EB9C
@@ -27073,16 +27073,16 @@ func_0803ECC0:
     ldr r0, .Lde_0803EC20
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_0809EB68
+    bl GetConstruction__C4Gotz
     cmp	r0, #0
     beq .Lde_0803EC9C
     adds	r0, r4, #0
-    bl func_0809EB70
+    bl IsConstructionComplete__C4Gotz
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lde_0803EC9C
     adds	r0, r4, #0
-    bl func_0809EB8C
+    bl IsConstructionOrderedToday__C4Gotz
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lde_0803EC9C
@@ -27090,7 +27090,7 @@ func_0803ECC0:
     cmp	r0, #1
     bls .Lde_0803EC9C
     adds	r0, r4, #0
-    bl func_0809EB68
+    bl GetConstruction__C4Gotz
     cmp	r0, #13
     bhi .Lde_0803EC9C
     lsls	r0, r0, #2
@@ -36075,11 +36075,11 @@ func_0803EC44:
     ldr r0, .Lus_0803ECA0
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_0809ECD8
+    bl GetOrder__C7Saibara
     cmp	r0, #0
     beq .Lus_0803ECA4
     adds	r0, r4, #0
-    bl func_0809ECE0
+    bl IsOrderComplete__C7Saibara
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lus_0803ECA4
@@ -36131,16 +36131,16 @@ func_0803ECC0:
     ldr r0, .Lus_0803ED28
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_0809EB68
+    bl GetConstruction__C4Gotz
     cmp	r0, #0
     beq .Lus_0803EDA4
     adds	r0, r4, #0
-    bl func_0809EB70
+    bl IsConstructionComplete__C4Gotz
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lus_0803EDA4
     adds	r0, r4, #0
-    bl func_0809EB8C
+    bl IsConstructionOrderedToday__C4Gotz
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lus_0803EDA4
@@ -36148,7 +36148,7 @@ func_0803ECC0:
     cmp	r0, #1
     bls .Lus_0803EDA4
     adds	r0, r4, #0
-    bl func_0809EB68
+    bl GetConstruction__C4Gotz
     cmp	r0, #13
     bhi .Lus_0803EDA4
     lsls	r0, r0, #2

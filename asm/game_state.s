@@ -1848,14 +1848,14 @@ func_08010F54:
     ldr r1, .Ljp_080111FC @ =0x00001F64
     adds r4, r6, r1
     adds r0, r4, #0
-    bl func_0809EB70
+    bl IsConstructionComplete__C4Gotz
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080111CA
     b .Ljp_08011308
 .Ljp_080111CA:
     adds r0, r4, #0
-    bl func_0809EB68
+    bl GetConstruction__C4Gotz
     cmp r0, #0xd
     bls .Ljp_080111D6
     b .Ljp_080112F8
@@ -1986,23 +1986,23 @@ func_08010F54:
 .Ljp_080112F8:
     ldr r5, .Ljp_08011304 @ =0x00001F64
     adds r0, r6, r5
-    bl func_0809EBD4
+    bl FinishConstruction__4Gotz
     b .Ljp_0801130E
     .align 2, 0
 .Ljp_08011304: .4byte 0x00001F64
 .Ljp_08011308:
     adds r0, r4, #0
-    bl func_0809EC48
+    bl UpdateConstructionWorksite__4Gotz
 .Ljp_0801130E:
     ldr r0, .Ljp_08011334 @ =0x00001DAC
     adds r4, r6, r0
     adds r0, r4, #0
-    bl func_0809ECE0
+    bl IsOrderComplete__C7Saibara
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0801138A
     adds r0, r4, #0
-    bl func_0809ECD8
+    bl GetOrder__C7Saibara
     cmp r0, #0x24
     beq .Ljp_08011358
     cmp r0, #0x24
@@ -25071,14 +25071,14 @@ func_08010F54: @ 0x08010F54
     ldr r1, .L0801121C @ =0x00001F64
     adds r4, r6, r1
     adds r0, r4, #0
-    bl func_0809EB70
+    bl IsConstructionComplete__C4Gotz
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080111EA
     b .L08011328
 .L080111EA:
     adds r0, r4, #0
-    bl func_0809EB68
+    bl GetConstruction__C4Gotz
     cmp r0, #0xd
     bls .L080111F6
     b .L08011318
@@ -25209,23 +25209,23 @@ func_08010F54: @ 0x08010F54
 .L08011318:
     ldr r5, .L08011324 @ =0x00001F64
     adds r0, r6, r5
-    bl func_0809EBD4
+    bl FinishConstruction__4Gotz
     b .L0801132E
     .align 2, 0
 .L08011324: .4byte 0x00001F64
 .L08011328:
     adds r0, r4, #0
-    bl func_0809EC48
+    bl UpdateConstructionWorksite__4Gotz
 .L0801132E:
     ldr r0, .L08011354 @ =0x00001DAC
     adds r4, r6, r0
     adds r0, r4, #0
-    bl func_0809ECE0
+    bl IsOrderComplete__C7Saibara
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080113AA
     adds r0, r4, #0
-    bl func_0809ECD8
+    bl GetOrder__C7Saibara
     cmp r0, #0x24
     beq .L08011378
     cmp r0, #0x24

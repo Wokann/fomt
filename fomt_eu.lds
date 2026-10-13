@@ -416,7 +416,10 @@ SECTIONS
         asm/code_809E804.o(.text);
         . = 0x9E9E8; /* Child constructors, birthday, age and walking state. */
         src/child.o(.text);
-        . = 0x9EB7C; /* Remaining NPC state code. */
+        . = 0x9EB7C; /* Gotz, Saibara and Van saved state. */
+        src/gotz.o(.text);
+        src/saibara.o(.text);
+        src/van.o(.text);
         asm/code_809E804.o(.text.npc_after_child);
         src/npc_locations.o(.text);
         asm/code_809E804.o(.text.npc_locations_after);
