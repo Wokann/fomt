@@ -1298,7 +1298,7 @@ func_080A06B0: @ 0x080A00E8
 	b .L080A0870
 .L080A0774:
 	adds r0, r2, #0
-	bl func_080A0A04
+	bl GetChild__13NpcCollection
 	b .L080A0870
 .L080A077C:
 	adds r0, r2, #0
@@ -1663,22 +1663,7 @@ func_080A03D4: @ 0x080A03D4
 	bx r1
 	.align 2, 0
 .Ljp_080A0438: .4byte 0x00000414
-    .global func_080A0A04
-    .thumb_func
-func_080A0A04: @ 0x080A043C
-	push {lr}
-	adds r1, r0, #0
-	ldrb r0, [r1, #3]
-	lsls r0, r0, #0x1e
-	movs r2, #0
-	cmp r0, #0
-	bge .L080A0A14
-	adds r2, r1, #4
-.L080A0A14:
-	adds r0, r2, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.npc_after_child_query
     .global func_080A0A1C
     .thumb_func
 func_080A0A1C: @ 0x080A0454
@@ -7046,7 +7031,7 @@ func_080A3CF4: @ 0x080A372C
 	ldr r0, [r5, #8]
 	ldr r1, .Ljp_080A3E24 @ =0x00001CD4
 	adds r0, r0, r1
-	bl func_080A0A04
+	bl GetChild__13NpcCollection
 	adds r4, r0, #0
 	cmp r4, #0
 	beq .Ljp_080A3E56
@@ -88716,7 +88701,7 @@ func_080A06B0: @ 0x080A06B0
 	b .L080A0870
 .L080A0774:
 	adds r0, r2, #0
-	bl func_080A0A04
+	bl GetChild__13NpcCollection
 	b .L080A0870
 .L080A077C:
 	adds r0, r2, #0
@@ -89082,22 +89067,7 @@ func_080A099C: @ 0x080A099C
 	.align 2, 0
 .L080A0A00: .4byte 0x00000414
 
-	thumb_func_start func_080A0A04
-func_080A0A04: @ 0x080A0A04
-	push {lr}
-	adds r1, r0, #0
-	ldrb r0, [r1, #3]
-	lsls r0, r0, #0x1e
-	movs r2, #0
-	cmp r0, #0
-	bge .L080A0A14
-	adds r2, r1, #4
-.L080A0A14:
-	adds r0, r2, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
-
+    .section .text.npc_after_child_query
 	thumb_func_start func_080A0A1C
 func_080A0A1C: @ 0x080A0A1C
 	push {r4, lr}
@@ -94451,7 +94421,7 @@ func_080A3CF4: @ 0x080A3CF4
 	ldr r0, [r5, #8]
 	ldr r1, .L080A3E24 @ =0x00001CD4
 	adds r0, r0, r1
-	bl func_080A0A04
+	bl GetChild__13NpcCollection
 	adds r4, r0, #0
 	cmp r4, #0
 	beq .L080A3E56

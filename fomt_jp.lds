@@ -272,6 +272,7 @@ SECTIONS
         . = 0x3C2E0; /* JP ROM 0x0803C54C, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803C54C);
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
+        src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
         asm/code_0803A8A4.o(.text.npc_schedule_after);
         . = 0x3E080; /* JP counterpart of shared schedule gate func_0803E40C. */
         src/code_0803E40C.o(.text);
@@ -476,6 +477,8 @@ SECTIONS
         asm/code_809E804.o(.text.npc_after_child);
         src/npc_collection.o(.text.GetPartnerCharacterId__C13NpcCollection .text.GetSpouseCharacterId__C13NpcCollection .text.IsMarried__C13NpcCollection);
         asm/code_809E804.o(.text.npc_after_partner_queries);
+        src/npc_collection.o(.text.GetChild__13NpcCollection);
+        asm/code_809E804.o(.text.npc_after_child_query);
         src/npc_collection.o(.text.SetWeddingDate__13NpcCollectionRC11WeddingDate .text.GetWeddingDate__C13NpcCollection);
         asm/code_809E804.o(.text.npc_after_wedding_date);
         src/npc_locations.o(.text);
@@ -824,8 +827,8 @@ SECTIONS
         src/common_ui.o(.rodata);
         FILL(0x00);
         src/data_schedules.o(.rodata);
-        /* Entity UI resource-selector data follows schedule data. */
-        . = ALIGN(4); src/entity_ui_resource_selector.o(.rodata);
+        /* Other NPC schedule records follow the individually declared schedules. */
+        . = ALIGN(4); src/npc_schedule_data.o(.rodata);
         . = ABSOLUTE(0x080F8230); data/scripts/script_table.o(.rodata.mary_script_table);
         /* Source-owned localization island; raw static resources are its upper bound. */
         . = ABSOLUTE(0x080F96F4); src/script_engine.o(.rodata);

@@ -65,6 +65,8 @@ typedef char WeddingDateDateCheck[offsetof(WeddingDate, date) == 1 ? 1 : -1];
 
 // Saved at GameStateSaveImage +0x1CD4. The character-ID resolver independently
 // verifies these named members; construction order follows physical storage.
+struct GameStateSaveImage;
+
 struct NpcCollection
 {
     NpcCollection();
@@ -74,6 +76,9 @@ struct NpcCollection
     u32 GetPartnerCharacterId() const;
     u32 GetSpouseCharacterId() const;
     bool IsMarried() const;
+
+    Child * GetChild();
+    void InitializeSchedules(GameStateSaveImage const & state);
 
     void SetWeddingDate(WeddingDate const & date);
     WeddingDate const & GetWeddingDate() const;

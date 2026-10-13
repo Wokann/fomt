@@ -225,6 +225,7 @@ SECTIONS
         . = 0x3C460; /* DE ROM 0x0803C460, remaining raw control code. */
         asm/code_0803A8A4.o(.text.code_0803C54C);
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
+        src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
         asm/code_0803A8A4.o(.text.npc_schedule_after);
         . = 0x3E304; /* DE ROM 0x0803E304, Lou/Ruby Sunday schedule gate. */
         src/code_0803E40C.o(.text);
@@ -418,6 +419,8 @@ SECTIONS
         asm/code_809E804.o(.text.npc_after_child);
         src/npc_collection.o(.text.GetPartnerCharacterId__C13NpcCollection .text.GetSpouseCharacterId__C13NpcCollection .text.IsMarried__C13NpcCollection);
         asm/code_809E804.o(.text.npc_after_partner_queries);
+        src/npc_collection.o(.text.GetChild__13NpcCollection);
+        asm/code_809E804.o(.text.npc_after_child_query);
         src/npc_collection.o(.text.SetWeddingDate__13NpcCollectionRC11WeddingDate .text.GetWeddingDate__C13NpcCollection);
         asm/code_809E804.o(.text.npc_after_wedding_date);
         src/npc_locations.o(.text);
@@ -749,8 +752,8 @@ SECTIONS
         . = ABSOLUTE(0x080F1E5C); src/common_ui.o(.rodata);
         FILL(0x00);
         . = ABSOLUTE(0x080F1F68); src/data_schedules.o(.rodata);
-        /* Entity UI resource-selector data follows schedule data. */
-        . = ALIGN(4); src/entity_ui_resource_selector.o(.rodata);
+        /* Other NPC schedule records follow the individually declared schedules. */
+        . = ALIGN(4); src/npc_schedule_data.o(.rodata);
         . = ABSOLUTE(0x080F8EBC); data/scripts/script_table.o(.rodata.mary_script_table);
         /* The ordinary source block bounds the preceding Mary script table. */
         . = ABSOLUTE(0x080FA380); src/script_engine.o(.rodata);

@@ -49,6 +49,16 @@ struct ScheduleInfo
     Schedule const * const * schedules;
 };
 
+// Target ABI layout used by both the existing individual records and the
+// contiguous NPC schedule storage blocks. Path kind is the thirteenth flag bit.
+typedef char PathInfoSizeCheck[sizeof(PathInfo) == 12 ? 1 : -1];
+typedef char PathInfoStartXCheck[offsetof(PathInfo, x_start) == 6 ? 1 : -1];
+typedef char PathInfoStartYCheck[offsetof(PathInfo, y_start) == 8 ? 1 : -1];
+typedef char ScheduleEntrySizeCheck[sizeof(ScheduleEntry) == 8 ? 1 : -1];
+typedef char ScheduleEntryPathCheck[offsetof(ScheduleEntry, path) == 4 ? 1 : -1];
+typedef char ScheduleSizeCheck[sizeof(Schedule) == 8 ? 1 : -1];
+typedef char ScheduleInfoSizeCheck[sizeof(ScheduleInfo) == 12 ? 1 : -1];
+
 // These C++ runtime strings are physically interleaved with the schedule data.
 extern char const gCppRuntimeBadAlloc_DataSchedules[];
 #if defined(REGION_JP)
