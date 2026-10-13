@@ -12,9 +12,9 @@
 
 
     .section .text.game_state_after_startup_accessors
-    .global func_08010F54
+    .global DayUpdate__18GameStateSaveImage
     .thumb_func
-func_08010F54:
+DayUpdate__18GameStateSaveImage:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -70,7 +70,7 @@ func_08010F54:
     mov r1, sb
     lsls r0, r1, #0x1e
     lsrs r3, r0, #0x1e
-    ldr r4, .Ljp_080110CC @ =gUnk_080F0566
+    ldr r4, .Ljp_080110CC @ =gMandatorySunnyCalendarDates
 .Ljp_08010FA2:
     adds r0, r2, r4
     ldrb r1, [r0]
@@ -219,7 +219,7 @@ func_08010F54:
     movs r0, #0
     b .Ljp_0801114A
     .align 2, 0
-.Ljp_080110CC: .4byte gUnk_080F0566
+.Ljp_080110CC: .4byte gMandatorySunnyCalendarDates
 .Ljp_080110D0: .4byte 0x00001CD4
 .Ljp_080110D4: .4byte 0x00001D6C
 .Ljp_080110D8: .4byte 0x00001E28
@@ -7454,7 +7454,7 @@ func_08014AF8:
     adds r4, r5, #0
     adds r4, #0x8c
     ldr r0, [r4]
-    bl func_08010F54
+    bl DayUpdate__18GameStateSaveImage
     adds r6, r5, #0
     adds r6, #0xa8
     ldr r1, [r4]
@@ -21606,8 +21606,8 @@ func_0801FD6C:
 
 
     .section .text.game_state_after_startup_accessors
-    thumb_func_start func_08010F54
-func_08010F54: @ 0x08010F54
+    thumb_func_start DayUpdate__18GameStateSaveImage
+DayUpdate__18GameStateSaveImage: @ US 0x08010F54
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -21663,7 +21663,7 @@ func_08010F54: @ 0x08010F54
     mov r1, sb
     lsls r0, r1, #0x1e
     lsrs r3, r0, #0x1e
-    ldr r4, .L080110EC @ =gUnk_080F0566
+    ldr r4, .L080110EC @ =gMandatorySunnyCalendarDates
 .L08010FC2:
     adds r0, r2, r4
     ldrb r1, [r0]
@@ -21812,7 +21812,7 @@ func_08010F54: @ 0x08010F54
     movs r0, #0
     b .L0801116A
     .align 2, 0
-.L080110EC: .4byte gUnk_080F0566
+.L080110EC: .4byte gMandatorySunnyCalendarDates
 .L080110F0: .4byte 0x00001CD4
 .L080110F4: .4byte 0x00001D6C
 .L080110F8: .4byte 0x00001E28
@@ -28966,7 +28966,7 @@ func_08014AF8: @ 0x08014AF8
     adds r4, r5, #0
     adds r4, #0x8c
     ldr r0, [r4]
-    bl func_08010F54
+    bl DayUpdate__18GameStateSaveImage
     adds r6, r5, #0
     adds r6, #0xa8
     ldr r1, [r4]

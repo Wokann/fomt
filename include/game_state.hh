@@ -129,6 +129,10 @@ typedef char GameStateUnknown34D8SizeCheck[sizeof(GameStateUnknown34D8) == 4 ? 1
 struct GameStateSaveImage {
     GameStateSaveImage(char const *, char const *, GameDate, char const *);
 
+    // Update tomorrow's weather and the farm/NPC/order state for the current
+    // calendar day. This does not itself advance the saved calendar date.
+    void DayUpdate();
+
     bool GetFlag0() const;
     bool GetFlag1() const;
     bool GetFlag2() const;
@@ -300,8 +304,10 @@ extern char const gCppRuntimeError_CalendarTrailer[];
 extern char const gText_CalendarTrailerFallbackNone[];
 extern char const gCppRuntimeBadAlloc_CalendarTrailer02[];
 
-// func_08010F54 scans the first 25 entries as packed season/day values.
-extern u8 const gUnk_080F0566[];
+// DayUpdate forces sunny weather on these packed one-based day/season dates.
+// These are not the zero-based saved GameDate entries. The following byte
+// before the aligned runtime text is padding, not another date or sentinel.
+extern u8 const gMandatorySunnyCalendarDates[];
 extern char const gCppRuntimeBadAlloc_GameState[];
 
 #endif // GAME_STATE_HH

@@ -274,9 +274,9 @@ failed:
 // Calendar text begins this physical rodata block.
 #include FOMT_TEXT_INCLUDE(game_state_1.cc)
 
-// func_08010F54 scans the first 25 packed season/day entries.  The final
-// zero is present in the original bytes but is outside that scan.
-u8 const gUnk_080F0566[] ALIGN(1) = {
+// DayUpdate compares tomorrow with these 25 one-based calendar dates before
+// choosing random weather. The next object's alignment supplies the gap.
+u8 const gMandatorySunnyCalendarDates[] ALIGN(1) = {
     SEASON_SPRING | DAY_01 << 2,
     SEASON_SPRING | DAY_17 << 2,
     SEASON_SPRING | DAY_18 << 2,
@@ -302,7 +302,6 @@ u8 const gUnk_080F0566[] ALIGN(1) = {
     SEASON_WINTER | DAY_14 << 2,
     SEASON_WINTER | DAY_24 << 2,
     SEASON_WINTER | DAY_30 << 2,
-    0,
 };
 
 // The final regional text fragment follows the native byte table.
