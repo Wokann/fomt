@@ -2854,7 +2854,7 @@ func_08033928:
     add	r4, sp, #12
     adds	r0, r4, #0
     adds	r1, r6, #0
-    bl func_0809E804
+    bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
     adds	r0, r7, #0
     adds	r1, r4, #0
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -3700,7 +3700,7 @@ func_08033B94:
     adds	r0, #48	@ 0x30
     ldrb	r1, [r0, #0]
     add	r0, sp, #8
-    bl func_0809E804
+    bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
     adds	r0, r7, #0
     add	r1, sp, #8
     bl SetLocation__12AActorEntityRC13ActorLocation
@@ -7743,8 +7743,9 @@ func_08033928:
     .4byte 0xE0177805
 .Leu_080339EC:
     .4byte 0x1C20AC03
-    .4byte 0xF06A1C31
-    .4byte 0x1C38FF1F
+    adds r1, r6, #0
+    bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
+    adds r0, r7, #0
     .4byte 0xF7FE1C21
     .4byte 0xE00DFB99
 .Leu_08033A00:
@@ -8314,7 +8315,7 @@ func_08033B94:
     .4byte 0xFB98F06A
     .4byte 0x30301C38
     .4byte 0xA8027801
-    .4byte 0xFBB0F06A
+    bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
     .4byte 0xA9021C38
     .4byte 0xF82AF7FE
     .4byte 0x30201C38
@@ -12081,8 +12082,9 @@ func_08033928:
     .4byte 0xE0177805
 .Lde_080338EC:
     .4byte 0x1C20AC03
-    .4byte 0xF06A1C31
-    .4byte 0x1C38FF37
+    adds r1, r6, #0
+    bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
+    adds r0, r7, #0
     .4byte 0xF7FE1C21
     .4byte 0xE00DFB99
 .Lde_08033900:
@@ -12652,7 +12654,7 @@ func_08033B94:
     .4byte 0xFBB0F06A
     .4byte 0x30301C38
     .4byte 0xA8027801
-    .4byte 0xFBC8F06A
+    bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
     .4byte 0xA9021C38
     .4byte 0xF82AF7FE
     .4byte 0x30201C38
@@ -16526,8 +16528,9 @@ func_08033928:
     .4byte 0xE0177805
 .Lus_080339D8:
     .4byte 0x1C20AC03
-    .4byte 0xF06A1C31
-    .4byte 0x1C38FF11
+    adds r1, r6, #0
+    bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
+    adds r0, r7, #0
     .4byte 0xF7FE1C21
     .4byte 0xE00DFB99
 .Lus_080339EC:
@@ -17097,7 +17100,7 @@ func_08033B94:
     .4byte 0xFB8AF06A
     .4byte 0x30301C38
     .4byte 0xA8027801
-    .4byte 0xFBA2F06A
+    bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
     .4byte 0xA9021C38
     .4byte 0xF82AF7FE
     .4byte 0x30201C38

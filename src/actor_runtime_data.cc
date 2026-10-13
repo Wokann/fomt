@@ -252,14 +252,14 @@ extern "C" u8 const gUnk_0810400C[][10] = {
 
 #include FOMT_TEXT_INCLUDE(actor_runtime_data.cc)
 
-// func_0809E804 treats these as seven four-byte records and reads their bytes
-// individually; they are not ROM pointers.
-extern "C" u8 const gUnk_081040EC[][4] ALIGN(4) = {
-    { 0xC8, 0x68, 0x02, 0x00 },
-    { 0x50, 0x60, 0x00, 0x00 },
-    { 0xA0, 0x60, 0x00, 0x00 },
-    { 0x28, 0x70, 0x03, 0x00 },
-    { 0xC4, 0xA8, 0x02, 0x00 },
-    { 0xC8, 0x98, 0x02, 0x00 },
-    { 0x28, 0x98, 0x03, 0x00 },
+// Positions inside MAP_HARVEST_SPRITES_HUT, in the native sprite-slot order.
+// Each record's trailing byte is supplied by its four-byte type alignment.
+extern "C" HarvestSpriteHutPosition const gHarvestSpriteHutPositions[7] = {
+    { 200, 104, FACING_LEFT },
+    { 80, 96, FACING_DOWN },
+    { 160, 96, FACING_DOWN },
+    { 40, 112, FACING_RIGHT },
+    { 196, 168, FACING_LEFT },
+    { 200, 152, FACING_LEFT },
+    { 40, 152, FACING_RIGHT },
 };

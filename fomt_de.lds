@@ -407,7 +407,6 @@ SECTIONS
         src/bachelorette.o(.text);
         src/harvest_sprite.o(.text);
 
-        . = 0x9E764; /* DE ROM 0x0809E764, shared NPC helper block. */
         asm/code_809E804.o(.text);
         . = 0x9E918; /* Child constructors, birthday, age and walking state. */
         src/child.o(.text);

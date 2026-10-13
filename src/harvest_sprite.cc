@@ -1,4 +1,5 @@
 #include "harvest_sprite.hh"
+#include "actor_runtime_data.hh"
 
 #include <cstdlib>
 
@@ -266,4 +267,22 @@ void HarvestSprite::method_0809E7F0(UnkBarnAnimal2C const * param)
 void HarvestSprite::method_0809E7FC()
 {
     unk_1C = 5;
+}
+
+ActorLocation * InitializeHarvestSpriteHutLocation(ActorLocation * location, u32 slot)
+{
+    // Only the six-byte position and facing are assigned. As in the other
+    // native location initializers, destination padding is left untouched.
+    if (slot < 7) {
+        HarvestSpriteHutPosition const * positions = gHarvestSpriteHutPositions;
+        HarvestSpriteHutPosition const & entry = *(positions + slot);
+        Location position(MAP_HARVEST_SPRITES_HUT, entry.x, entry.y);
+        u8 facing = entry.facing;
+        *static_cast<Location *>(location) = position;
+        location->facing = facing;
+    } else {
+        *static_cast<Location *>(location) = Location(MAP_HARVEST_SPRITES_HUT, 0, 0);
+        location->facing = FACING_DOWN;
+    }
+    return location;
 }

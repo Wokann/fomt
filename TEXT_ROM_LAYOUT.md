@@ -23,6 +23,34 @@ JP 已将逐主题旧锚点合并为两片连续可变区域：`0x080E7A40`–`0
 - `[Mary 脚本表]`：Mary 生成的脚本入口指针表；它与脚本本体由 Mary 单独维护，只记录该表的连续边界。
 - `[填充]`：链接映射中实际存在的 `*fill*` 字节，显示字节值。
 
+## 精灵小屋位置表：恢复真实记录，不改变物理布局
+
+`src/actor_runtime_data.cc`／`include/actor_runtime_data.hh` 的
+原七项四字节数组恢复为实际 `HarvestSpriteHutPosition` 类型，
+直接定义 `gHarvestSpriteHutPositions[7]`。三字节分别为 X、Y、
+朝向，第四字节由真实类型对齐提供；采用已有朝向常量，不
+伪造语义或保留旧名别名。表仍位于该宿主最后的运行时文本
+之后，所有文本 include、字节、顺序和相邻模块地址不变。
+
+| 区域 | 位置表的连续半开区间 |
+| --- | --- |
+| JP | `0x08103BE0–0x08103BFC` |
+| US | `0x081040EC–0x08104108` |
+| EU | `0x08104144–0x08104160` |
+| DE | `0x08104B44–0x08104B60` |
+
+实际消费者 `InitializeHarvestSpriteHutLocation` 在既有精灵
+源文件恢复为四区共同 C++，每区 224 字节。全 ROM 核对表的
+28 个字节地址，只有已恢复的表符号重定位；九处入调用每区
+均为符号 BL，包含海外原指令字中的六处调用。无新增文本
+文件、只读子节、本地化岛或固定地址。
+
+四版 WSL `-j4 compare`、完整 ROM 逐字节／SHA-1、裸编译
+通道和 4160 组真实位置初始化单元测试通过；只读宿主全部
+分配段、对齐及重定位不变，840 个正常对象中其余 828 个
+对象不变。测试执行原 `memcpy`，不替换游戏叶函数，但并非
+完整日更新或游戏测试；代码范围与验证限制见代码布局同主题。
+
 ## NPC 日程分派：纠正日程数据归属，不改变物理布局
 
 `NpcCollection::InitializeSchedules`／`GetChild` 在既有集合
@@ -630,7 +658,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x081032C2`–`0x081032C3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081032C4`–`0x08103601` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/jp/fishing_results_data_1.cc`、`data/text/jp/fishing_results_data_2.cc` | 59 条文本（`0x081032C4`–`0x0810350B`）<br>`gFishingRecordNames`（59 项，`0x0810350C`–`0x081035F7`；每项为命名文本重定位）<br>尾部 `bad_alloc`（`0x081035F8`–`0x08103601`）；汇编通过真实 `FishingRecords::GetName` 读取表符号 |
 | `0x08103602`–`0x08103603` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103604`–`0x08103BFB` | `src/actor_runtime_data.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`<br>`data/text/jp/actor_runtime_data.cc` | `gUnk_08103B10`、`gUnk_08103B38`、`gUnk_08103C3C`、`gUnk_08103C74`、`gUnk_08103F84`、`gUnk_08103F98`、`gUnk_08103FE4`、`gUnk_0810400C`<br>尾部 `bad_alloc`（`0x08103BD4`–`0x08103BDD`，4 字节对齐）<br>`gUnk_081040EC`（7×4 字节）；所有已知汇编读取均为符号引用 |
+| `0x08103604`–`0x08103BFB` | `src/actor_runtime_data.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`<br>`data/text/jp/actor_runtime_data.cc` | `gUnk_08103B10`、`gUnk_08103B38`、`gUnk_08103C3C`、`gUnk_08103C74`、`gUnk_08103F84`、`gUnk_08103F98`、`gUnk_08103FE4`、`gUnk_0810400C`<br>尾部 `bad_alloc`（`0x08103BD4`–`0x08103BDD`，4 字节对齐）<br>`gHarvestSpriteHutPositions`（7×4 字节；X、Y、朝向及类型尾对齐）；实际消费者为共同 C++，所有地址引用均为表符号重定位 |
 | `0x08103BFC`–`0x08103BFC` | `src/character_names_empty.o(.rodata)` | [嵌入文本] | `src/character_names_empty.cc`、`include/character_names_empty.hh`<br>`data/text/jp/character_names_empty.cc` | `gText_CharacterName_Empty`；`gCharacterNameEntries` 和三处汇编均为该符号的直接引用；后续姓名表被 `bachelorette` 数据隔开 |
 | `0x08103BFD`–`0x08103C1A` | `src/bachelorette.o(.rodata)` | [数据] | `src/bachelorette.cc`、`include/bachelorette.hh` | `gUnk_BacheloretteLoveThresholds00`–`gUnk_BacheloretteLoveThresholds05`（各 5 字节）；所有已知汇编读取均为对应符号引用 |
 | `0x08103C1B`–`0x08103C1B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
@@ -2464,7 +2492,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08103786`–`0x08103787` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103788`–`0x08103B0D` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/us/fishing_results_data_1.cc`、`data/text/us/fishing_results_data_2.cc` | 58 条文本（`0x08103788`–`0x08103A17`）<br>`gFishingRecordNames`（59 项，`0x08103A18`–`0x08103B03`；每项为命名文本重定位，记录 37 复用记录 22 的文本）<br>尾部 `bad_alloc`（`0x08103B04`–`0x08103B0D`）；汇编通过真实 `FishingRecords::GetName` 读取表符号 |
 | `0x08103B0E`–`0x08103B0F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103B10`–`0x08104107` | `src/actor_runtime_data.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`<br>`data/text/us/actor_runtime_data.cc` | `gUnk_08103B10`、`gUnk_08103B38`、`gUnk_08103C3C`、`gUnk_08103C74`、`gUnk_08103F84`、`gUnk_08103F98`、`gUnk_08103FE4`、`gUnk_0810400C`<br>尾部 `bad_alloc`（`0x081040E0`–`0x081040E9`，4 字节对齐）<br>`gUnk_081040EC`（7×4 字节）；所有已知汇编读取均为符号引用 |
+| `0x08103B10`–`0x08104107` | `src/actor_runtime_data.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`<br>`data/text/us/actor_runtime_data.cc` | `gUnk_08103B10`、`gUnk_08103B38`、`gUnk_08103C3C`、`gUnk_08103C74`、`gUnk_08103F84`、`gUnk_08103F98`、`gUnk_08103FE4`、`gUnk_0810400C`<br>尾部 `bad_alloc`（`0x081040E0`–`0x081040E9`，4 字节对齐）<br>`gHarvestSpriteHutPositions`（7×4 字节；X、Y、朝向及类型尾对齐）；实际消费者为共同 C++，所有地址引用均为表符号重定位 |
 | `0x08104108`–`0x08104108` | `src/character_names_empty.o(.rodata)` | [嵌入文本] | `src/character_names_empty.cc`、`include/character_names_empty.hh`<br>`data/text/us/character_names_empty.cc` | `gText_CharacterName_Empty`；`gCharacterNameEntries` 和三处汇编均为该符号的直接引用；后续姓名表被 `bachelorette` 数据隔开 |
 | `0x08104109`–`0x08104126` | `src/bachelorette.o(.rodata)` | [数据] | `src/bachelorette.cc`、`include/bachelorette.hh` | `gUnk_BacheloretteLoveThresholds00`–`gUnk_BacheloretteLoveThresholds05`（各 5 字节）；所有已知汇编读取均为对应符号引用 |
 | `0x08104127`–`0x08104127` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |

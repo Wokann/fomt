@@ -172,4 +172,7 @@ struct HarvestSprite : public Npc
     /* +20 */ UnkBarnAnimal2C unk_20;
 };
 
+// Slots outside the seven native hut positions use (0, 0), facing down.
+ActorLocation * InitializeHarvestSpriteHutLocation(ActorLocation * location, u32 slot);
+
 #endif // HARVEST_SPRITE_HH
