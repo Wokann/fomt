@@ -87359,7 +87359,7 @@ func_0807DE3C: @ 0x0807D9A4
 	ldr r2, .Ljp_0807DE8C @ =0x00001CD4
 	adds r0, r0, r2
 	adds r1, r6, #0
-	bl func_080A0A54
+	bl AddUnk00_6__13NpcCollectionUi
 	ldr r0, [r7, #8]
 	ldr r3, .Ljp_0807DE90 @ =0x00001AA8
 	adds r0, r0, r3
@@ -89640,7 +89640,7 @@ func_0807EAF8:
 	ldr r6, .Ljp_0807F07C
 	adds r0, r0, r6
 	movs r1, #1
-	bl func_080A0A1C
+	bl AddUnk00_0__13NpcCollectionUi
 .Ljp_0807F03E:
 	ldr r0, [r7, #8]
 	ldr r1, .Ljp_0807F080
@@ -114479,7 +114479,7 @@ func_08092CD0:
 	ldr r1, .Ljp_0809282C @ =0x00001CD4
 	adds r0, r0, r1
 	movs r1, #1
-	bl func_080A0A54
+	bl AddUnk00_6__13NpcCollectionUi
 	add sp, #4
 	pop {r4, r5, r6}
 	pop {r0}
@@ -245180,7 +245180,7 @@ func_0807DE3C: @ 0x0807DE3C
 	ldr r2, .L0807E324 @ =0x00001CD4
 	adds r0, r0, r2
 	adds r1, r6, #0
-	bl func_080A0A54
+	bl AddUnk00_6__13NpcCollectionUi
 	ldr r0, [r7, #8]
 	ldr r3, .L0807E328 @ =0x00001AA8
 	adds r0, r0, r3
@@ -247435,7 +247435,7 @@ func_0807EF90: @ 0x0807EF90
 	ldr r6, .L0807F514 @ =0x00001CD4
 	adds r0, r0, r6
 	movs r1, #1
-	bl func_080A0A1C
+	bl AddUnk00_0__13NpcCollectionUi
 .L0807F4D6:
 	ldr r0, [r7, #8]
 	ldr r1, .L0807F518 @ =0x00001AA8
@@ -284474,7 +284474,7 @@ func_08092CD0: @ 0x08092CD0
 	ldr r1, .L08092D60 @ =0x00001CD4
 	adds r0, r0, r1
 	movs r1, #1
-	bl func_080A0A54
+	bl AddUnk00_6__13NpcCollectionUi
 	add sp, #4
 	pop {r4, r5, r6}
 	pop {r0}

@@ -77,6 +77,19 @@ struct NpcCollection
     bool IsMarried() const;
 
     Child * GetChild();
+
+    // Preserve native unsigned addition and the individual field ceilings.
+    // The counter meanings are not established; do not infer them from size.
+    void AddUnk00_0(u32 amount);
+    void AddUnk00_6(u32 amount);
+    void IncrementUnk01_5OncePerDay();
+
+    // South-town slots 1 and 2 select their entries; all other values use 0.
+    ActorLocation * GetSouthTownNpcLocation1(u32 slot);
+    ActorLocation * GetSouthTownNpcLocation2(u32 slot);
+    ActorLocation * GetYodelRanchHouseNpcLocation();
+    ActorLocation * GetInnSecondFloorNpcLocation();
+
     void InitializeSchedules(GameStateSaveImage const & state);
 
     void SetWeddingDate(WeddingDate const & date);

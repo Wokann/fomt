@@ -8135,7 +8135,7 @@ func_080D7F9C:
     ldr r0, [r0]
     ldr r4, [pc, #0x1c]
     adds r0, r0, r4
-    bl func_080A0A90
+    bl IncrementUnk01_5OncePerDay__13NpcCollection
     .Lauto_080D78D8:
     movs r1, #0
     mov r0, sl
@@ -18113,7 +18113,7 @@ func_080D7F9C: @ 0x080D7F9C
 	ldr r0, [r0]
 	ldr r4, .L080D8138 @ =0x00001CD4
 	adds r0, r0, r4
-	bl func_080A0A90
+	bl IncrementUnk01_5OncePerDay__13NpcCollection
 .L080D8120:
 	movs r1, #0
 	mov r0, sl

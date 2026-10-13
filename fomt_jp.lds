@@ -478,7 +478,8 @@ SECTIONS
         asm/code_809E804.o(.text.npc_after_partner_queries);
         src/npc_collection.o(.text.GetNpc__13NpcCollectionUi .text.GetBachelorette__13NpcCollectionUi .text.GetHarvestSpriteByCharacterId__13NpcCollectionUi .text.GetHarvestSpriteByIndex__13NpcCollectionUi);
         src/npc_collection.o(.text.GetChild__13NpcCollection);
-        asm/code_809E804.o(.text.npc_after_child_query);
+        src/npc_collection.o(.text.AddUnk00_0__13NpcCollectionUi .text.AddUnk00_6__13NpcCollectionUi .text.IncrementUnk01_5OncePerDay__13NpcCollection .text.GetSouthTownNpcLocation1__13NpcCollectionUi .text.GetSouthTownNpcLocation2__13NpcCollectionUi .text.GetYodelRanchHouseNpcLocation__13NpcCollection .text.GetInnSecondFloorNpcLocation__13NpcCollection);
+        asm/code_809E804.o(.text.npc_daily_update);
         src/npc_collection.o(.text.SetWeddingDate__13NpcCollectionRC11WeddingDate .text.GetWeddingDate__C13NpcCollection);
         asm/code_809E804.o(.text.npc_after_wedding_date);
         src/npc_locations.o(.text);

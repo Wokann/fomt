@@ -2,6 +2,8 @@
 #include "data_schedules.hh"
 #include "npc_schedule_data.hh"
 
+#include <algorithm>
+
 static inline ActorLocation InitialNpcLocation()
 {
     return ActorLocation(Location(MAP_NONE, 0, 0), FACING_DOWN);
@@ -189,6 +191,54 @@ u32 NpcCollection::GetSpouseCharacterId() const
 bool NpcCollection::IsMarried() const
 {
     return GetSpouseCharacterId() != 0;
+}
+
+void NpcCollection::AddUnk00_0(u32 amount)
+{
+    unk_00_0 = std::min(unk_00_0 + amount, 63u);
+}
+
+void NpcCollection::AddUnk00_6(u32 amount)
+{
+    unk_00_6 = std::min(unk_00_6 + amount, 127u);
+}
+
+void NpcCollection::IncrementUnk01_5OncePerDay()
+{
+    if (!unk_02_5) {
+        unk_01_5 = std::min(unk_01_5 + 1, 255u);
+        unk_02_5 = true;
+    }
+}
+
+ActorLocation * NpcCollection::GetSouthTownNpcLocation1(u32 slot)
+{
+    switch (slot) {
+    case 0:
+    default: return &locations.south_town_1_0;
+    case 1: return &locations.south_town_1_1;
+    case 2: return &locations.south_town_1_2;
+    }
+}
+
+ActorLocation * NpcCollection::GetSouthTownNpcLocation2(u32 slot)
+{
+    switch (slot) {
+    case 0:
+    default: return &locations.south_town_2_0;
+    case 1: return &locations.south_town_2_1;
+    case 2: return &locations.south_town_2_2;
+    }
+}
+
+ActorLocation * NpcCollection::GetYodelRanchHouseNpcLocation()
+{
+    return &locations.yodel_ranch_house;
+}
+
+ActorLocation * NpcCollection::GetInnSecondFloorNpcLocation()
+{
+    return &locations.inn_second_floor;
 }
 
 void NpcCollection::SetWeddingDate(WeddingDate const & date)
