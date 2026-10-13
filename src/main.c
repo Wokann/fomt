@@ -75,7 +75,7 @@ void AgbMain(void)
 
 void func_08000240(void)
 {
-    register volatile u16 *dma asm("r1");
+    volatile u16 *dma;
 
     func_08000528(0xFFFF);
     REG_DISPCNT = 0x80;
@@ -99,7 +99,7 @@ void func_08000240(void)
     (void)dma[5];
 
     {
-        register volatile u16 *dma3 asm("r0");
+        volatile u16 *dma3;
 
         dma3 = (volatile u16 *)&REG_DMA3SAD;
         dma3[5] &= 0xC5FF;
