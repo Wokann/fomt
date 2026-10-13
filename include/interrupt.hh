@@ -5,6 +5,10 @@
 
 EXTERN_C
 
+// The ROM-facing packed-mask entry executes ARM code in IWRAM. Request the
+// ordinary indirect interworking call, rather than an out-of-range Thumb BL.
+u16 func_03000A1C(u32 value) __attribute__((long_call));
+
 void func_080004C4(void);
 u16 func_080004F4(u32 value);
 u16 func_0800050C(u16 value);

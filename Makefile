@@ -349,8 +349,8 @@ $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 $(BUILD_DIR)/src/m4a.o: CC1 := $(OLD_CC1)
 $(BUILD_DIR)/src/m4a.o: $(OLD_CC1)
 
-# Interworking and SRAM wrappers interrupt runs of ordinary C in the ROM.
-$(BUILD_DIR)/src/interrupt.o $(BUILD_DIR)/src/sram_proxy_2.o: CFLAGS += -ffunction-sections
+# The unmatched SRAM write wrapper sits between runs of ordinary C in the ROM.
+$(BUILD_DIR)/src/sram_proxy_2.o: CFLAGS += -ffunction-sections
 
 # The two recovered state helpers bracket still-unmatched saved-image code.
 # Use compiler-owned function sections, not source section attributes.

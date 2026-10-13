@@ -17,10 +17,20 @@ void func_080004C4(void)
         func_080D100C(index, 0);
 }
 
+u16 func_080004F4(u32 value)
+{
+    return func_03000A1C(value << 16);
+}
+
 u16 func_0800050C(u16 value)
 {
     REG_IF = value;
     return func_080004F4(value);
+}
+
+u16 func_08000528(u16 value)
+{
+    return func_03000A1C(value);
 }
 
 u16 func_08000540(u32 index, u16 value)
