@@ -1000,144 +1000,7 @@ func_080A03B8: @ 0x0809FDF0
 	.align 2, 0
 .L080A0418: .4byte 0xFFFFFC00
 
-    .global func_080A041C
-    .thumb_func
-func_080A041C: @ 0x0809FE54
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, #0x98
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bls .L080A042E
-	movs r0, #3
-	b .L080A048A
-.L080A042E:
-	movs r1, #0xaa
-	lsls r1, r1, #1
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bls .L080A0440
-	movs r0, #0xc
-	b .L080A048A
-.L080A0440:
-	movs r1, #0xf2
-	lsls r1, r1, #1
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bls .L080A0452
-	movs r0, #0x13
-	b .L080A048A
-.L080A0452:
-	movs r1, #0x84
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bls .L080A0464
-	movs r0, #0x15
-	b .L080A048A
-.L080A0464:
-	movs r1, #0x99
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bls .L080A0476
-	movs r0, #0x19
-	b .L080A048A
-.L080A0476:
-	movs r1, #0xb9
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bhi .L080A0488
-	movs r0, #0
-	b .L080A048A
-.L080A0488:
-	movs r0, #0x1f
-.L080A048A:
-	pop {r4}
-	pop {r1}
-	bx r1
-
-    .global func_080A0490
-    .thumb_func
-func_080A0490: @ 0x0809FEC8
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, #0x98
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bls .L080A04A2
-	movs r0, #3
-	b .L080A04FE
-.L080A04A2:
-	movs r1, #0xaa
-	lsls r1, r1, #1
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bls .L080A04B4
-	movs r0, #0xc
-	b .L080A04FE
-.L080A04B4:
-	movs r1, #0xf2
-	lsls r1, r1, #1
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bls .L080A04C6
-	movs r0, #0x13
-	b .L080A04FE
-.L080A04C6:
-	movs r1, #0x84
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bls .L080A04D8
-	movs r0, #0x15
-	b .L080A04FE
-.L080A04D8:
-	movs r1, #0x99
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bls .L080A04EA
-	movs r0, #0x19
-	b .L080A04FE
-.L080A04EA:
-	movs r1, #0xb9
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bhi .L080A04FC
-	movs r0, #0
-	b .L080A04FE
-.L080A04FC:
-	movs r0, #0x1f
-.L080A04FE:
-	pop {r4}
-	pop {r1}
-	bx r1
-
-    .global func_080A0504
-    .thumb_func
-func_080A0504: @ 0x0809FF3C
-	push {lr}
-	bl func_080A0490
-	adds r1, r0, #0
-	rsbs r0, r1, #0
-	orrs r0, r1
-	lsrs r0, r0, #0x1f
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.npc_after_partner_queries
 
     .global func_080A0518
     .thumb_func
@@ -1993,7 +1856,7 @@ func_080A0B18: @ 0x080A0550
 	ands r0, r1
 	strb r0, [r7, #2]
 	adds r0, r7, #0
-	bl func_080A0490
+	bl GetSpouseCharacterId__C13NpcCollection
 	mov sb, r0
 	rsbs r0, r0, #0
 	mov r1, sb
@@ -4027,7 +3890,7 @@ func_080A220C: @ 0x080A1C44
 	ldr r0, [r7, #8]
 	ldr r1, .Ljp_080A2514 @ =0x00001CD4
 	adds r0, r0, r1
-	bl func_080A041C
+	bl GetPartnerCharacterId__C13NpcCollection
 	cmp r0, #0
 	bne .Ljp_080A251C
 	movs r2, #0xf3
@@ -4821,7 +4684,7 @@ func_080A2940: @ 0x080A2378
 	ldr r0, .Ljp_080A2B60 @ =0x00001CD4
 	adds r4, r4, r0
 	adds r0, r4, #0
-	bl func_080A041C
+	bl GetPartnerCharacterId__C13NpcCollection
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl func_0809FE3C
@@ -21018,12 +20881,12 @@ func_080AA328: @ 080AA328
 	ldr r1, .Ljp_map_080AA3A4 @ =0x00001CD4
 	adds r7, r0, r1
 	adds r0, r7, #0
-	bl func_080A0504
+	bl IsMarried__C13NpcCollection
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .Ljp_map_080AA3EE
 	adds r0, r7, #0
-	bl func_080A041C
+	bl GetPartnerCharacterId__C13NpcCollection
 	cmp r0, #0
 	bne .Ljp_map_080AA3EE
 	ldr r0, [r5]
@@ -88576,141 +88439,7 @@ func_080A03B8: @ 0x080A03B8
 	.align 2, 0
 .L080A0418: .4byte 0xFFFFFC00
 
-	thumb_func_start func_080A041C
-func_080A041C: @ 0x080A041C
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, #0x98
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bls .L080A042E
-	movs r0, #3
-	b .L080A048A
-.L080A042E:
-	movs r1, #0xaa
-	lsls r1, r1, #1
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bls .L080A0440
-	movs r0, #0xc
-	b .L080A048A
-.L080A0440:
-	movs r1, #0xf2
-	lsls r1, r1, #1
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bls .L080A0452
-	movs r0, #0x13
-	b .L080A048A
-.L080A0452:
-	movs r1, #0x84
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bls .L080A0464
-	movs r0, #0x15
-	b .L080A048A
-.L080A0464:
-	movs r1, #0x99
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bls .L080A0476
-	movs r0, #0x19
-	b .L080A048A
-.L080A0476:
-	movs r1, #0xb9
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #4
-	bhi .L080A0488
-	movs r0, #0
-	b .L080A048A
-.L080A0488:
-	movs r0, #0x1f
-.L080A048A:
-	pop {r4}
-	pop {r1}
-	bx r1
-
-	thumb_func_start func_080A0490
-func_080A0490: @ 0x080A0490
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, #0x98
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bls .L080A04A2
-	movs r0, #3
-	b .L080A04FE
-.L080A04A2:
-	movs r1, #0xaa
-	lsls r1, r1, #1
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bls .L080A04B4
-	movs r0, #0xc
-	b .L080A04FE
-.L080A04B4:
-	movs r1, #0xf2
-	lsls r1, r1, #1
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bls .L080A04C6
-	movs r0, #0x13
-	b .L080A04FE
-.L080A04C6:
-	movs r1, #0x84
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bls .L080A04D8
-	movs r0, #0x15
-	b .L080A04FE
-.L080A04D8:
-	movs r1, #0x99
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bls .L080A04EA
-	movs r0, #0x19
-	b .L080A04FE
-.L080A04EA:
-	movs r1, #0xb9
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	bl GetPlayerEventCount__C12Bachelorette
-	cmp r0, #5
-	bhi .L080A04FC
-	movs r0, #0
-	b .L080A04FE
-.L080A04FC:
-	movs r0, #0x1f
-.L080A04FE:
-	pop {r4}
-	pop {r1}
-	bx r1
-
-	thumb_func_start func_080A0504
-func_080A0504: @ 0x080A0504
-	push {lr}
-	bl func_080A0490
-	adds r1, r0, #0
-	rsbs r0, r1, #0
-	orrs r0, r1
-	lsrs r0, r0, #0x1f
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.npc_after_partner_queries
 
 	thumb_func_start func_080A0518
 func_080A0518: @ 0x080A0518
@@ -89556,7 +89285,7 @@ func_080A0B18: @ 0x080A0B18
 	ands r0, r1
 	strb r0, [r7, #2]
 	adds r0, r7, #0
-	bl func_080A0490
+	bl GetSpouseCharacterId__C13NpcCollection
 	mov sb, r0
 	rsbs r0, r0, #0
 	mov r1, sb
@@ -91589,7 +91318,7 @@ func_080A220C: @ 0x080A220C
 	ldr r0, [r7, #8]
 	ldr r1, .L080A2514 @ =0x00001CD4
 	adds r0, r0, r1
-	bl func_080A041C
+	bl GetPartnerCharacterId__C13NpcCollection
 	cmp r0, #0
 	bne .L080A251C
 	movs r2, #0xf3
@@ -92381,7 +92110,7 @@ func_080A2940: @ 0x080A2940
 	ldr r0, .L080A2B60 @ =0x00001CD4
 	adds r4, r4, r0
 	adds r0, r4, #0
-	bl func_080A041C
+	bl GetPartnerCharacterId__C13NpcCollection
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl func_0809FE3C
@@ -108509,12 +108238,12 @@ func_080AA8F0: @ 0x080AA8F0
 	ldr r1, .L080AA96C @ =0x00001CD4
 	adds r7, r0, r1
 	adds r0, r7, #0
-	bl func_080A0504
+	bl IsMarried__C13NpcCollection
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080AA9B6
 	adds r0, r7, #0
-	bl func_080A041C
+	bl GetPartnerCharacterId__C13NpcCollection
 	cmp r0, #0
 	bne .L080AA9B6
 	ldr r0, [r5]

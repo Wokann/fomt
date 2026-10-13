@@ -55,6 +55,12 @@ struct NpcCollection
 {
     NpcCollection();
 
+    // Preserve the native candidate priority and the two distinct event counts.
+    // A zero result means no matching candidate, not CHARACTER_PLAYER.
+    u32 GetPartnerCharacterId() const;
+    u32 GetSpouseCharacterId() const;
+    bool IsMarried() const;
+
     /* +000 */ u32 unk_00_0 : 6;
     /* +000 */ u32 unk_00_6 : 7;
     /* +001 */ u32 unk_01_5 : 8;

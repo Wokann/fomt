@@ -55,3 +55,30 @@ NpcCollection::NpcCollection()
     unk_474 = 0;
     // The remaining state bits, child walking bit and object padding are not cleared.
 }
+
+u32 NpcCollection::GetPartnerCharacterId() const
+{
+    if (popuri.GetPlayerEventCount() > 4) return CHARACTER_POPURI;
+    if (mary.GetPlayerEventCount() > 4) return CHARACTER_MARY;
+    if (karen.GetPlayerEventCount() > 4) return CHARACTER_KAREN;
+    if (elli.GetPlayerEventCount() > 4) return CHARACTER_ELLI;
+    if (ann.GetPlayerEventCount() > 4) return CHARACTER_ANN;
+    if (harvest_goddess.GetPlayerEventCount() > 4) return CHARACTER_HARVEST_GODDESS;
+    return 0;
+}
+
+u32 NpcCollection::GetSpouseCharacterId() const
+{
+    if (popuri.GetPlayerEventCount() > 5) return CHARACTER_POPURI;
+    if (mary.GetPlayerEventCount() > 5) return CHARACTER_MARY;
+    if (karen.GetPlayerEventCount() > 5) return CHARACTER_KAREN;
+    if (elli.GetPlayerEventCount() > 5) return CHARACTER_ELLI;
+    if (ann.GetPlayerEventCount() > 5) return CHARACTER_ANN;
+    if (harvest_goddess.GetPlayerEventCount() > 5) return CHARACTER_HARVEST_GODDESS;
+    return 0;
+}
+
+bool NpcCollection::IsMarried() const
+{
+    return GetSpouseCharacterId() != 0;
+}

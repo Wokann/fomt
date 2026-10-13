@@ -355,6 +355,9 @@ $(BUILD_DIR)/src/game_state.o: CXXFLAGS += -ffunction-sections
 # Grid methods are interleaved with unrecovered actor routines in the ROM.
 $(BUILD_DIR)/src/actor_state.o: CXXFLAGS += -ffunction-sections
 
+# The NPC constructor and partner queries occupy separate native code runs.
+$(BUILD_DIR)/src/npc_collection.o: CXXFLAGS += -ffunction-sections
+
 # The original newlib string routines use the older C compiler with interwork.
 # Keep the ordinary C channel, including its generic zero-filled text tail.
 $(BUILD_DIR)/src/libc_string.o: CC1 := $(OLD_CC1)

@@ -1184,7 +1184,7 @@ func_08035C04:
     ldr r1, .Ljp_080359E4
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #3
     bne .Ljp_08035A28
     ldrh	r0, [r4, #4]
@@ -1786,7 +1786,7 @@ func_08036084:
     ldr r1, .Ljp_08035E64
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #12
     bne .Ljp_08035EA8
     ldrh	r0, [r4, #4]
@@ -2276,7 +2276,7 @@ func_08036430:
     ldr r1, .Ljp_08036210
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #19
     bne .Ljp_08036254
     ldrh	r0, [r4, #4]
@@ -2487,7 +2487,7 @@ func_080365CC:
     ldr r1, .Ljp_080363AC
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #21
     bne .Ljp_080363F0
     ldrh	r0, [r4, #4]
@@ -2914,7 +2914,7 @@ func_08036900:
     ldr r1, .Ljp_080366EC
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #25
     bne .Ljp_08036734
     ldrh	r0, [r4, #4]
@@ -11982,7 +11982,7 @@ func_08035C04:
     ldr r1, .Leu_08035C64
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #3
     bne .Leu_08035CA8
     ldrh	r0, [r4, #4]
@@ -12584,7 +12584,7 @@ func_08036084:
     ldr r1, .Leu_080360E4
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #12
     bne .Leu_08036128
     ldrh	r0, [r4, #4]
@@ -13074,7 +13074,7 @@ func_08036430:
     ldr r1, .Leu_08036490
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #19
     bne .Leu_080364D4
     ldrh	r0, [r4, #4]
@@ -13285,7 +13285,7 @@ func_080365CC:
     ldr r1, .Leu_0803662C
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #21
     bne .Leu_08036670
     ldrh	r0, [r4, #4]
@@ -13712,7 +13712,7 @@ func_08036900:
     ldr r1, .Leu_0803696C
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #25
     bne .Leu_080369B4
     ldrh	r0, [r4, #4]
@@ -23038,7 +23038,7 @@ func_08035C04:
     ldr r1, .Lde_08035B64
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #3
     bne .Lde_08035BA8
     ldrh	r0, [r4, #4]
@@ -23640,7 +23640,7 @@ func_08036084:
     ldr r1, .Lde_08035FE4
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #12
     bne .Lde_08036028
     ldrh	r0, [r4, #4]
@@ -24130,7 +24130,7 @@ func_08036430:
     ldr r1, .Lde_08036390
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #19
     bne .Lde_080363D4
     ldrh	r0, [r4, #4]
@@ -24341,7 +24341,7 @@ func_080365CC:
     ldr r1, .Lde_0803652C
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #21
     bne .Lde_08036570
     ldrh	r0, [r4, #4]
@@ -24768,7 +24768,7 @@ func_08036900:
     ldr r1, .Lde_0803686C
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #25
     bne .Lde_080368B4
     ldrh	r0, [r4, #4]
@@ -34093,7 +34093,7 @@ func_08035C04:
     ldr r1, .Lus_08035C50
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #3
     bne .Lus_08035C94
     ldrh	r0, [r4, #4]
@@ -34695,7 +34695,7 @@ func_08036084:
     ldr r1, .Lus_080360D0
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #12
     bne .Lus_08036114
     ldrh	r0, [r4, #4]
@@ -35185,7 +35185,7 @@ func_08036430:
     ldr r1, .Lus_0803647C
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #19
     bne .Lus_080364C0
     ldrh	r0, [r4, #4]
@@ -35396,7 +35396,7 @@ func_080365CC:
     ldr r1, .Lus_08036618
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #21
     bne .Lus_0803665C
     ldrh	r0, [r4, #4]
@@ -35823,7 +35823,7 @@ func_08036900:
     ldr r1, .Lus_08036958
     adds	r6, r5, r1
     adds	r0, r6, #0
-    bl func_080A0490
+    bl GetSpouseCharacterId__C13NpcCollection
     cmp	r0, #25
     bne .Lus_080369A0
     ldrh	r0, [r4, #4]

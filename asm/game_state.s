@@ -91,7 +91,7 @@ func_08010F54:
     ldr r1, .Ljp_080110D0 @ =0x00001CD4
     adds r4, r6, r1
     adds r0, r4, #0
-    bl func_080A041C
+    bl GetPartnerCharacterId__C13NpcCollection
     cmp r0, #0
     bne .Ljp_08011036
     adds r0, r4, #0
@@ -21811,7 +21811,7 @@ func_08010F54: @ 0x08010F54
     ldr r1, .L080110F0 @ =0x00001CD4
     adds r4, r6, r1
     adds r0, r4, #0
-    bl func_080A041C
+    bl GetPartnerCharacterId__C13NpcCollection
     cmp r0, #0
     bne .L08011056
     adds r0, r4, #0

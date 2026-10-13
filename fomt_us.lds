@@ -402,8 +402,10 @@ SECTIONS
         src/gotz.o(.text);
         src/saibara.o(.text);
         src/van.o(.text);
-        src/npc_collection.o(.text);
+        src/npc_collection.o(.text.__13NpcCollection);
         asm/code_809E804.o(.text.npc_after_child);
+        src/npc_collection.o(.text.GetPartnerCharacterId__C13NpcCollection .text.GetSpouseCharacterId__C13NpcCollection .text.IsMarried__C13NpcCollection);
+        asm/code_809E804.o(.text.npc_after_partner_queries);
         src/npc_locations.o(.text);
         src/field_item_data.o(.text);
         asm/code_809E804.o(.text.field_item_after);
