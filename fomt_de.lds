@@ -260,10 +260,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.ui_state_helpers_after);
         src/ui_state.o(.text.ui_state_selection);
         asm/code_0803EE94.o(.text.ui_state_selection_after);
-        . = 0x521D0; /* DE ROM 0x080521D0, animal-festival ranking entry copy. */
-        src/animal_festival_ranking.o(.text.copy_animal_festival_ranking_entry);
-        . = 0x521E0; /* DE ROM 0x080521E0, animal-festival ranking entry setter. */
-        src/animal_festival_ranking.o(.text.set_animal_festival_ranking_entry);
+        src/animal_festival_ranking.o(.text);
         . = 0x521F0; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
         . = 0x5E5C4; /* DE ROM 0x0805E5C4, indexed resource-archive constructor. */
         src/resource_handle.o(.text.indexed_resource_archive_constructor);

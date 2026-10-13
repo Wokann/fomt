@@ -15,6 +15,7 @@
 #include "field_item_data.hh"
 #include "actor_runtime_data.hh"
 #include "fishing_results_data.hh"
+#include "animal_festival_ranking.hh"
 
 struct SramAccess;
 
@@ -86,13 +87,18 @@ struct GameStateSaveImage {
     Farmer farmer;
     Dog dog;
     MoreItems more_items;
-    u8 unk_1CCC[8];
+    // Dropping ITEM_ARTICLE_BALL saves an AEntity's six-byte Location here;
+    // mine generation and the town map read it when the ball is not carried
+    // or shelved. The following two bytes are natural alignment padding.
+    Location ball_location;
     NpcCollection npcs;
     GameEventState event_state;
     u8 unk_21CC[0x44];
     GameDisplayOptions display_options;
     CookingRecipeInventory cooking_recipes;
-    u8 unk_2C1C[0x58];
+    u8 unk_2C1C[0x2C];
+    u32 unk_2C48;
+    AnimalFestivalOpponents animal_festival_opponents;
     TVShoppingOrderState tv_shopping;
     FishingRecords fishing_records;
     ActorStateGrid actor_state_grid;
@@ -112,7 +118,7 @@ typedef char GameStateSaveImageMoneyCheck[offsetof(GameStateSaveImage, money_acc
 typedef char GameStateSaveImageFarmerCheck[offsetof(GameStateSaveImage, farmer) == 0x1BD8 ? 1 : -1];
 typedef char GameStateSaveImageDogCheck[offsetof(GameStateSaveImage, dog) == 0x1C70 ? 1 : -1];
 typedef char GameStateSaveImageMoreItemsCheck[offsetof(GameStateSaveImage, more_items) == 0x1CA0 ? 1 : -1];
-typedef char GameStateSaveImageAfterMoreItemsCheck[offsetof(GameStateSaveImage, unk_1CCC) == 0x1CCC ? 1 : -1];
+typedef char GameStateSaveImageBallLocationCheck[offsetof(GameStateSaveImage, ball_location) == 0x1CCC ? 1 : -1];
 typedef char GameStateSaveImageNpcCollectionCheck[offsetof(GameStateSaveImage, npcs) == 0x1CD4 ? 1 : -1];
 typedef char GameStateSaveImageChildCheck[offsetof(GameStateSaveImage, npcs) + offsetof(NpcCollection, child) == 0x1CD8 ? 1 : -1];
 typedef char GameStateSaveImageEventStateCheck[offsetof(GameStateSaveImage, event_state) == 0x214C ? 1 : -1];
@@ -120,6 +126,8 @@ typedef char GameStateSaveImageAfterEventsCheck[offsetof(GameStateSaveImage, unk
 typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
 typedef char GameStateSaveImageCookingCheck[offsetof(GameStateSaveImage, cooking_recipes) == 0x2214 ? 1 : -1];
 typedef char GameStateSaveImageAfterCookingCheck[offsetof(GameStateSaveImage, unk_2C1C) == 0x2C1C ? 1 : -1];
+typedef char GameStateSaveImageUnknown2C48Check[offsetof(GameStateSaveImage, unk_2C48) == 0x2C48 ? 1 : -1];
+typedef char GameStateSaveImageAnimalFestivalOpponentsCheck[offsetof(GameStateSaveImage, animal_festival_opponents) == 0x2C4C ? 1 : -1];
 typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
 typedef char GameStateSaveImageFishingRecordsCheck[offsetof(GameStateSaveImage, fishing_records) == 0x2C80 ? 1 : -1];
 typedef char GameStateSaveImageActorGridCheck[offsetof(GameStateSaveImage, actor_state_grid) == 0x2E58 ? 1 : -1];

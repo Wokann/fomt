@@ -3,8 +3,9 @@
 
 #include "prelude.h"
 
-// The score-table axes remain native-code work; the storage order is exact.
-extern u16 const gAnimalFestivalRankingScoreTable[];
+// Ten gauge-limit tiers, each with ten NPC opponent base scores. The native
+// rows cover gauge-limit values 0..250; the original lookup is unchecked.
+extern u16 const gAnimalFestivalRankingScoreTable[10][10];
 extern char const gCppRuntimeBadAlloc_AnimalFestivalRankingScoreData[];
 
 // These native-code tables are kept flat until their axes are decompiled.

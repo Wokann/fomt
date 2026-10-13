@@ -33,6 +33,10 @@ struct ActorLocation : public Location
     /* +06 */ u8 facing;
 };
 
+typedef char LocationSizeCheck[sizeof(Location) == 6 ? 1 : -1];
+typedef char ActorLocationSizeCheck[sizeof(ActorLocation) == 8 ? 1 : -1];
+typedef char ActorLocationFacingCheck[offsetof(ActorLocation, facing) == 6 ? 1 : -1];
+
 struct Actor
 {
     Actor(ActorLocation const & location);
