@@ -3132,7 +3132,7 @@ func_08033B94:
     bl SetLocation__7AEntityUiii
     add	r1, sp, #72	@ 0x48
     mov	r0, r8
-    bl method_0809E7D0__13HarvestSprite
+    bl method_0809E7D0__13HarvestSpritePCv
     movs	r3, #128	@ 0x80
     lsls	r3, r3, #8
     adds	r0, r7, #0
@@ -3695,7 +3695,7 @@ func_08033B94:
     bl TaskDayUpdate__13HarvestSprite
     add	r1, sp, #144	@ 0x90
     mov	r0, r8
-    bl method_0809E7C8__13HarvestSprite
+    bl method_0809E7C8__13HarvestSpritePCv
     adds	r0, r7, #0
     adds	r0, #48	@ 0x30
     ldrb	r1, [r0, #0]
@@ -4862,7 +4862,7 @@ func_08034940:
     bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [r5, #52]	@ 0x34
     add	r1, sp, #8
-    bl method_0809E7FC__13HarvestSprite
+    bl method_0809E7FC__13HarvestSpritePCv
     movs	r2, #10
     ldrsh	r1, [r5, r2]
     movs	r0, #180	@ 0xb4
@@ -8021,7 +8021,7 @@ func_08033B94:
     bl SetLocation__7AEntityUiii
     add	r1, sp, #72	@ 0x48
     mov	r0, r8
-    bl method_0809E7D0__13HarvestSprite
+    bl method_0809E7D0__13HarvestSpritePCv
     movs	r3, #128	@ 0x80
     lsls	r3, r3, #8
     adds	r0, r7, #0
@@ -8313,7 +8313,7 @@ func_08033B94:
     .4byte 0x4640DC34
     .4byte 0xFB66F06A
     .4byte 0x4640A924
-    .4byte 0xFB98F06A
+    bl method_0809E7C8__13HarvestSpritePCv
     .4byte 0x30301C38
     .4byte 0xA8027801
     bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
@@ -9201,7 +9201,7 @@ func_08034940:
     bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [r5, #52]	@ 0x34
     add	r1, sp, #8
-    bl method_0809E7FC__13HarvestSprite
+    bl method_0809E7FC__13HarvestSpritePCv
     movs	r2, #10
     ldrsh	r1, [r5, r2]
     movs	r0, #180	@ 0xb4
@@ -12361,7 +12361,7 @@ func_08033B94:
     bl SetLocation__7AEntityUiii
     add	r1, sp, #72	@ 0x48
     mov	r0, r8
-    bl method_0809E7D0__13HarvestSprite
+    bl method_0809E7D0__13HarvestSpritePCv
     movs	r3, #128	@ 0x80
     lsls	r3, r3, #8
     adds	r0, r7, #0
@@ -12653,7 +12653,7 @@ func_08033B94:
     .4byte 0x4640DC34
     .4byte 0xFB7EF06A
     .4byte 0x4640A924
-    .4byte 0xFBB0F06A
+    bl method_0809E7C8__13HarvestSpritePCv
     .4byte 0x30301C38
     .4byte 0xA8027801
     bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
@@ -13541,7 +13541,7 @@ func_08034940:
     bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [r5, #52]	@ 0x34
     add	r1, sp, #8
-    bl method_0809E7FC__13HarvestSprite
+    bl method_0809E7FC__13HarvestSpritePCv
     movs	r2, #10
     ldrsh	r1, [r5, r2]
     movs	r0, #180	@ 0xb4
@@ -16807,7 +16807,7 @@ func_08033B94:
     bl SetLocation__7AEntityUiii
     add	r1, sp, #72	@ 0x48
     mov	r0, r8
-    bl method_0809E7D0__13HarvestSprite
+    bl method_0809E7D0__13HarvestSpritePCv
     movs	r3, #128	@ 0x80
     lsls	r3, r3, #8
     adds	r0, r7, #0
@@ -17099,7 +17099,7 @@ func_08033B94:
     .4byte 0x4640DC34
     .4byte 0xFB58F06A
     .4byte 0x4640A924
-    .4byte 0xFB8AF06A
+    bl method_0809E7C8__13HarvestSpritePCv
     .4byte 0x30301C38
     .4byte 0xA8027801
     bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
@@ -17987,7 +17987,7 @@ func_08034940:
     bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [r5, #52]	@ 0x34
     add	r1, sp, #8
-    bl method_0809E7FC__13HarvestSprite
+    bl method_0809E7FC__13HarvestSpritePCv
     movs	r2, #10
     ldrsh	r1, [r5, r2]
     movs	r0, #180	@ 0xb4

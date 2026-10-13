@@ -182,12 +182,14 @@ struct HarvestSprite : public Npc
     void SetPlayedMinigame(Task task, bool succeeded);
     void TaskDayUpdate(void);
     void DayUpdate(void);
-    void method_0809E7C8(void);
-    void method_0809E7D0(void);
+    // Native callers pass opaque stack data. These setters do not read it;
+    // retain the pointer ABI without guessing the original tag type.
+    void method_0809E7C8(void const * unk_data);
+    void method_0809E7D0(void const * unk_data);
     void method_0809E7D8(UnkBarnAnimal2C const * param);
     void method_0809E7E4(UnkBarnAnimal2C const * param);
     void method_0809E7F0(UnkBarnAnimal2C const * param);
-    void method_0809E7FC(void);
+    void method_0809E7FC(void const * unk_data);
 
     /* +14 */ u8 task_exp[3];
     /* +17 */ u8 minigame_exp[3];

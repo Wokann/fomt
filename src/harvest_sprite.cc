@@ -236,12 +236,12 @@ void HarvestSprite::DayUpdate()
     played_minigame = false;
 }
 
-void HarvestSprite::method_0809E7C8()
+void HarvestSprite::method_0809E7C8(void const *)
 {
     unk_1C = 0;
 }
 
-void HarvestSprite::method_0809E7D0()
+void HarvestSprite::method_0809E7D0(void const *)
 {
     unk_1C = 1;
 }
@@ -264,7 +264,7 @@ void HarvestSprite::method_0809E7F0(UnkBarnAnimal2C const * param)
     unk_1C = 4;
 }
 
-void HarvestSprite::method_0809E7FC()
+void HarvestSprite::method_0809E7FC(void const *)
 {
     unk_1C = 5;
 }

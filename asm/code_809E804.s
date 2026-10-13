@@ -1333,7 +1333,7 @@ func_080A0B18: @ 0x080A0550
 	str r6, [sp, #8]
 	add r1, sp, #8
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	movs r2, #0x87
 	lsls r2, r2, #3
 	adds r5, r7, r2
@@ -1354,7 +1354,7 @@ func_080A0B18: @ 0x080A0550
 	str r6, [sp, #0xc]
 	add r1, sp, #0xc
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #1
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -1372,7 +1372,7 @@ func_080A0B18: @ 0x080A0550
 	str r6, [sp, #0x10]
 	add r1, sp, #0x10
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #2
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -1390,7 +1390,7 @@ func_080A0B18: @ 0x080A0550
 	str r6, [sp, #0x14]
 	add r1, sp, #0x14
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #3
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -1408,7 +1408,7 @@ func_080A0B18: @ 0x080A0550
 	str r6, [sp, #0x18]
 	add r1, sp, #0x18
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #4
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -1426,7 +1426,7 @@ func_080A0B18: @ 0x080A0550
 	str r6, [sp, #0x1c]
 	add r1, sp, #0x1c
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #5
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -1443,7 +1443,7 @@ func_080A0B18: @ 0x080A0550
 	str r6, [sp, #0x20]
 	add r1, sp, #0x20
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #6
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -87925,7 +87925,7 @@ func_080A0B18: @ 0x080A0B18
 	str r6, [sp, #8]
 	add r1, sp, #8
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	movs r2, #0x87
 	lsls r2, r2, #3
 	adds r5, r7, r2
@@ -87946,7 +87946,7 @@ func_080A0B18: @ 0x080A0B18
 	str r6, [sp, #0xc]
 	add r1, sp, #0xc
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #1
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -87964,7 +87964,7 @@ func_080A0B18: @ 0x080A0B18
 	str r6, [sp, #0x10]
 	add r1, sp, #0x10
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #2
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -87982,7 +87982,7 @@ func_080A0B18: @ 0x080A0B18
 	str r6, [sp, #0x14]
 	add r1, sp, #0x14
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #3
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -88000,7 +88000,7 @@ func_080A0B18: @ 0x080A0B18
 	str r6, [sp, #0x18]
 	add r1, sp, #0x18
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #4
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -88018,7 +88018,7 @@ func_080A0B18: @ 0x080A0B18
 	str r6, [sp, #0x1c]
 	add r1, sp, #0x1c
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #5
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
@@ -88035,7 +88035,7 @@ func_080A0B18: @ 0x080A0B18
 	str r6, [sp, #0x20]
 	add r1, sp, #0x20
 	adds r0, r4, #0
-	bl method_0809E7C8__13HarvestSprite
+	bl method_0809E7C8__13HarvestSpritePCv
 	adds r0, r5, #0
 	movs r1, #6
 	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
