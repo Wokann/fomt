@@ -2859,7 +2859,7 @@ func_080127A0:
     beq .Ljp_08012710
     ldr r3, .Ljp_080126B4 @ =0x00001CD4
     adds r0, r2, r3
-    bl func_080A0878
+    bl GetBachelorette__13NpcCollectionUi
     cmp r0, #0
     beq .Ljp_08012710
     bl GetLove__C12Bachelorette
@@ -24581,7 +24581,7 @@ func_080127A0: @ 0x080127A0
     beq .L08012840
     ldr r3, .L080127E4 @ =0x00001CD4
     adds r0, r2, r3
-    bl func_080A0878
+    bl GetBachelorette__13NpcCollectionUi
     cmp r0, #0
     beq .L08012840
     bl GetLove__C12Bachelorette

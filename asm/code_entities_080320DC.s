@@ -2801,7 +2801,7 @@ func_08033928:
     strb	r6, [r0, #0]
     adds	r0, r4, #0
     adds	r1, r6, #0
-    bl func_080A03D4
+    bl GetHarvestSpriteByIndex__13NpcCollectionUi
     str	r0, [r7, #52]	@ 0x34
     movs	r0, #135	@ 0x87
     lsls	r0, r0, #3
@@ -7696,7 +7696,7 @@ func_08033928:
     strb	r6, [r0, #0]
     adds	r0, r4, #0
     adds	r1, r6, #0
-    bl func_080A099C
+    bl GetHarvestSpriteByIndex__13NpcCollectionUi
     str	r0, [r7, #52]	@ 0x34
     movs	r0, #135	@ 0x87
     lsls	r0, r0, #3
@@ -12036,7 +12036,7 @@ func_08033928:
     strb	r6, [r0, #0]
     adds	r0, r4, #0
     adds	r1, r6, #0
-    bl func_080A099C
+    bl GetHarvestSpriteByIndex__13NpcCollectionUi
     str	r0, [r7, #52]	@ 0x34
     movs	r0, #135	@ 0x87
     lsls	r0, r0, #3
@@ -16482,7 +16482,7 @@ func_08033928:
     strb	r6, [r0, #0]
     adds	r0, r4, #0
     adds	r1, r6, #0
-    bl func_080A099C
+    bl GetHarvestSpriteByIndex__13NpcCollectionUi
     str	r0, [r7, #52]	@ 0x34
     movs	r0, #135	@ 0x87
     lsls	r0, r0, #3

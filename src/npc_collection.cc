@@ -58,6 +58,112 @@ NpcCollection::NpcCollection()
     // The remaining state bits, child walking bit and object padding are not cleared.
 }
 
+Npc * NpcCollection::GetNpc(u32 character_id)
+{
+    switch (character_id) {
+    default: return nullptr;
+    case CHARACTER_CHILD: return GetChild();
+    case CHARACTER_LILLIA: return &lillia;
+    case CHARACTER_RICK: return &rick;
+    case CHARACTER_POPURI: return &popuri;
+    case CHARACTER_BARLEY: return &barley;
+    case CHARACTER_MAY: return &may;
+    case CHARACTER_SAIBARA: return &saibara;
+    case CHARACTER_GRAY: return &gray;
+    case CHARACTER_DUKE: return &duke;
+    case CHARACTER_MANNA: return &manna;
+    case CHARACTER_BASIL: return &basil;
+    case CHARACTER_ANNA: return &anna;
+    case CHARACTER_MARY: return &mary;
+    case CHARACTER_THOMAS: return &thomas;
+    case CHARACTER_HARRIS: return &harris;
+    case CHARACTER_ELLEN: return &ellen;
+    case CHARACTER_STU: return &stu;
+    case CHARACTER_JEFF: return &jeff;
+    case CHARACTER_SASHA: return &sasha;
+    case CHARACTER_KAREN: return &karen;
+    case CHARACTER_DOCTOR: return &doctor;
+    case CHARACTER_ELLI: return &elli;
+    case CHARACTER_CARTER: return &carter;
+    case CHARACTER_CLIFF: return &cliff;
+    case CHARACTER_DOUG: return &doug;
+    case CHARACTER_ANN: return &ann;
+    case CHARACTER_KAI: return &kai;
+    case CHARACTER_GOTZ: return &gotz;
+    case CHARACTER_ZACK: return &zack;
+    case CHARACTER_WON: return &won;
+    case CHARACTER_GOURMET: return &gourmet;
+    case CHARACTER_HARVEST_GODDESS: return &harvest_goddess;
+    case CHARACTER_KAPPA: return &kappa;
+    case CHARACTER_VAN: return &van;
+    case CHARACTER_LOU_OR_RUBY: return &lou;
+    case CHARACTER_STAID: return &staid;
+    case CHARACTER_NAPPY: return &nappy;
+    case CHARACTER_BOLD: return &bold;
+    case CHARACTER_CHEF: return &chef;
+    case CHARACTER_AQUA: return &aqua;
+    case CHARACTER_HOGGY: return &hoggy;
+    case CHARACTER_TIMID: return &timid;
+    }
+}
+
+Bachelorette * NpcCollection::GetBachelorette(u32 character_id)
+{
+    switch (character_id) {
+    default: return nullptr;
+    case CHARACTER_POPURI: return &popuri;
+    case CHARACTER_MARY: return &mary;
+    case CHARACTER_KAREN: return &karen;
+    case CHARACTER_ELLI: return &elli;
+    case CHARACTER_ANN: return &ann;
+    case CHARACTER_HARVEST_GODDESS: return &harvest_goddess;
+    }
+}
+
+HarvestSprite * NpcCollection::GetHarvestSpriteByCharacterId(u32 character_id)
+{
+    switch (character_id) {
+    default: return nullptr;
+    case CHARACTER_STAID: return &staid;
+    case CHARACTER_NAPPY: return &nappy;
+    case CHARACTER_BOLD: return &bold;
+    case CHARACTER_CHEF: return &chef;
+    case CHARACTER_AQUA: return &aqua;
+    case CHARACTER_HOGGY: return &hoggy;
+    case CHARACTER_TIMID: return &timid;
+    }
+}
+
+HarvestSprite * NpcCollection::GetHarvestSpriteByIndex(u32 index)
+{
+    switch (index) {
+    default: return nullptr;
+    case 0: return &staid;
+    case 1: return &nappy;
+    case 2: return &bold;
+    case 3: return &chef;
+    case 4: return &aqua;
+    case 5: return &hoggy;
+    case 6: return &timid;
+    }
+}
+
+#if defined(REGION_JP)
+HarvestSprite const * NpcCollection::GetHarvestSpriteByIndex(u32 index) const
+{
+    switch (index) {
+    default: return nullptr;
+    case 0: return &staid;
+    case 1: return &nappy;
+    case 2: return &bold;
+    case 3: return &chef;
+    case 4: return &aqua;
+    case 5: return &hoggy;
+    case 6: return &timid;
+    }
+}
+#endif
+
 u32 NpcCollection::GetPartnerCharacterId() const
 {
     if (popuri.GetPlayerEventCount() > 4) return CHARACTER_POPURI;

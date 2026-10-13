@@ -59,6 +59,17 @@ struct NpcCollection
 {
     NpcCollection();
 
+    // IDs are the canonical Mary character IDs. Unsupported IDs return null;
+    // the child is available only when has_child is set. Sprite slots are 0-6.
+    Npc * GetNpc(u32 character_id);
+    Bachelorette * GetBachelorette(u32 character_id);
+    HarvestSprite * GetHarvestSpriteByCharacterId(u32 character_id);
+    HarvestSprite * GetHarvestSpriteByIndex(u32 index);
+#if defined(REGION_JP)
+    // JP emits a separate read-only slot lookup used by minigame queries.
+    HarvestSprite const * GetHarvestSpriteByIndex(u32 index) const;
+#endif
+
     // Preserve the native candidate priority and the two distinct event counts.
     // A zero result means no matching candidate, not CHARACTER_PLAYER.
     u32 GetPartnerCharacterId() const;
