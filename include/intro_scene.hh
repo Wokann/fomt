@@ -45,27 +45,14 @@ struct IntroSceneHardwarePoolHandle
     u32 handle;
 };
 
-// Parameters consumed by the sprite renderer at func_0805E99C. The two
-// positions are signed halfwords; palette/tile offsets are added to each
-// descriptor's OAM attributes. Object mode and mosaic are the actual OAM
-// attr0 bits 10-11 and 12; mosaic is distinct from attr0's color-depth bit 13.
-struct IntroSceneSpriteParameters
+// The intro keeps its current group after the common 28-byte draw prefix.
+// The sprite renderer only receives that prefix, not these group ranges.
+struct IntroSceneSpriteParameters : IndexedResourceSpriteParameters
 {
-    i16 x;
-    i16 y;
-    u16 palette_offset;
-    u16 tile_offset;
-    u16 priority;
-    u32 object_mode;
-    u8 flips;
-    u8 affine_index;
-    u32 affine_mode;
-    u8 mosaic;
     IndexedResourceGroupResult group;
 
     IntroSceneSpriteParameters()
-        : x(0), y(0), palette_offset(0), tile_offset(0), priority(0),
-          object_mode(0), flips(0), affine_index(0), affine_mode(0), mosaic(0),
+        : IndexedResourceSpriteParameters(),
           group(0, 0, 0, 0, 0, 0, 0, 0) {}
 };
 
@@ -197,8 +184,6 @@ void func_080019D8(IntroSceneCore * core);
 void RenderIntroSceneFrame(IntroSceneCore * core);
 void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
     SECTION(".text.intro_scene_sprite_submission");
-void func_0805E99C(HardwareSpriteBufferState * buffer, HardwareSpriteOamRecord const * descriptors,
-    u32 count, IntroSceneSpriteParameters const * parameters);
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
 void DestroyGameIntroScene(GameIntroScene * scene, int flags);
 SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene);

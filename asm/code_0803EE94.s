@@ -6777,7 +6777,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 .Ljp_0804FC96:
     ldr r0, [sp, #0x78]
     adds r3, r4, #0
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
 .Ljp_0804FC9E:
     movs r2, #0xf2
     lsls r2, r2, #1
@@ -6931,7 +6931,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 .Ljp_0804FDC4:
     ldr r0, [sp, #0x78]
     adds r3, r6, #0
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
 .Ljp_0804FDCC:
     movs r4, #0xf8
     lsls r4, r4, #1
@@ -9549,7 +9549,7 @@ func_08051B00:
     .Lauto_08051D1A:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     .Lauto_08051D22:
     ldr r5, [pc, #0xec]
     adds r0, r7, r5
@@ -9798,7 +9798,7 @@ func_08051B00:
     .Lauto_08051F02:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     .Lauto_08051F0A:
     add sp, #0x74
     pop {r3, r4, r5}
@@ -12832,7 +12832,7 @@ func_080558C4:
     .Lauto_0805595A:
     adds r0, r3, #0
     add r3, sp, #4
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     .Lauto_08055962:
     ldr r7, [pc, #0x38]
     adds r0, r6, r7
@@ -13979,7 +13979,7 @@ func_080558C4:
     .Lauto_080561CA:
     adds r0, r3, #0
     add r3, sp, #4
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     .Lauto_080561D2:
     adds r0, r6, #0
     bl func_08057B84
@@ -14072,7 +14072,7 @@ func_080558C4:
     .Lauto_08056290:
     adds r0, r3, #0
     add r3, sp, #4
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     ldr r5, [pc, #0x2a4]
     adds r0, r6, r5
     ldrb r0, [r0]
@@ -15375,7 +15375,7 @@ func_08057D34:
     .Lauto_08057B50:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     add sp, #0x3c
     pop {r3}
     mov r8, r3
@@ -18285,7 +18285,7 @@ func_0805A6E4:
     .Lauto_0805A5C6:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     .Lauto_0805A5CE:
     movs r6, #0
     movs r1, #0xd7
@@ -18364,7 +18364,7 @@ func_0805A6E4:
     .Lauto_0805A66C:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     adds r6, #1
     cmp r6, #3
     ble .Lauto_0805A5E8
@@ -19911,7 +19911,7 @@ func_0805A6E4:
     .Lauto_0805BA50:
     adds r0, r3, #0
     add r3, sp, #4
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     .Lauto_0805BA58:
     ldr r1, [pc, #0x17c]
     adds r0, r5, r1
@@ -20007,7 +20007,7 @@ func_0805A6E4:
     .Lauto_0805BB18:
     adds r0, r3, #0
     add r3, sp, #4
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     movs r0, #0x18
     add r8, r0
     movs r1, #1
@@ -20367,7 +20367,7 @@ func_0805A6E4:
     .Lauto_0805BE06:
     adds r0, r3, #0
     add r3, sp, #4
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     mov r1, sb
     adds r0, r5, r1
     ldr r2, [pc, #0xc8]
@@ -20453,7 +20453,7 @@ func_0805A6E4:
     ldrh r2, [r7, #0x24]
     .Lauto_0805BEBE:
     add r3, sp, #4
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     .Lauto_0805BEC4:
     mov r0, sl
     cmp r0, #1
@@ -22108,9 +22108,9 @@ UpdateIndexedResourceHandle:
     pop {r1}
     bx r1
     .align 2, 0
-    .global func_0805E99C
+    .global DrawIndexedResourceSprites
     .thumb_func
-func_0805E99C:
+DrawIndexedResourceSprites:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -52678,7 +52678,7 @@ func_0806A1F4:
 	ldrh r2, [r6, #4]
 .Ljp_0806CD02:
 	mov r3, sl
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	adds r6, r0, #0
@@ -52929,7 +52929,7 @@ func_0806A1F4:
 	ldrh r2, [r4, #4]
 .Ljp_0806CEE4:
 	mov r3, sl
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	adds r6, r0, #0
@@ -53164,7 +53164,7 @@ func_0806A1F4:
 	ldrh r2, [r6, #4]
 .Ljp_0806D0A6:
 	mov r3, sl
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	adds r6, r0, #0
@@ -71746,7 +71746,7 @@ func_0807628C: @ 0x08075EEC
 	ldrh r2, [r5, #4]
 .Ljp_08075FB8:
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	ldr r1, [sp, #0x24]
@@ -72004,7 +72004,7 @@ func_0807628C: @ 0x08075EEC
 .Ljp_080761A4:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	ldr r1, [sp, #0x54]
@@ -72212,7 +72212,7 @@ func_0807628C: @ 0x08075EEC
 .Ljp_0807632C:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	ldr r1, [sp, #0x74]
@@ -72423,7 +72423,7 @@ func_0807628C: @ 0x08075EEC
 .Ljp_080764BA:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	ldr r1, [sp, #0x74]
@@ -80663,7 +80663,7 @@ func_0807A98C:
 .Ljp_library_selection_0807A84C:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .Ljp_library_selection_0807A854:
 	ldr r0, .Ljp_library_selection_0807A944
 	add r0, r8
@@ -80918,7 +80918,7 @@ func_0807A98C:
 .Ljp_library_selection_0807AA38:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .Ljp_library_selection_0807AA40:
 	ldr r0, .Ljp_library_selection_0807AB08
 	add r0, r8
@@ -81004,7 +81004,7 @@ func_0807A98C:
 .Ljp_library_selection_0807AAEE:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .Ljp_library_selection_0807AAF6:
 	add sp, #0x80
 	pop {r3, r4, r5}
@@ -120569,7 +120569,7 @@ func_08099E18:
 .Ljp_08099EF6:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     add sp, #0x5c
     pop {r4, r5, r6}
     pop {r0}
@@ -151535,7 +151535,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 .L0804FF0A:
 	ldr r0, [sp, #0x78]
 	adds r3, r4, #0
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0804FF12:
 	movs r2, #0xf2
 	lsls r2, r2, #1
@@ -151689,7 +151689,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 .L08050038:
 	ldr r0, [sp, #0x78]
 	adds r3, r6, #0
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08050040:
 	movs r4, #0xf8
 	lsls r4, r4, #1
@@ -154813,7 +154813,7 @@ func_08051D70: @ 0x08051D70
 .L08051F8A:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08051F92:
 	ldr r5, .L08052080 @ =0x000008B8
 	adds r0, r7, r5
@@ -155064,7 +155064,7 @@ func_08051D70: @ 0x08051D70
 .L08052172:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805217A:
 	add sp, #0x74
 	pop {r3, r4, r5}
@@ -161979,7 +161979,7 @@ func_080558C4: @ 0x080558C4
 .L08055BCA:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08055BD2:
 	ldr r7, .L08055C0C @ =0x0000225C
 	adds r0, r6, r7
@@ -163136,7 +163136,7 @@ func_080558C4: @ 0x080558C4
 .L0805643A:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 
 	non_word_aligned_thumb_func_start sub_08056442
 sub_08056442: @ 0x08056442
@@ -163231,7 +163231,7 @@ sub_08056442: @ 0x08056442
 .L08056500:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	ldr r5, .L080567B0 @ =0x00002324
 	adds r0, r6, r5
 	ldrb r0, [r0]
@@ -163348,7 +163348,7 @@ sub_08056442: @ 0x08056442
 .L080565F2:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	movs r1, #0xb8
 	lsls r1, r1, #2
 	adds r4, r6, r1
@@ -163422,7 +163422,7 @@ sub_08056442: @ 0x08056442
 	ldrh r2, [r4, #0x24]
 .L08056694:
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805669A:
 	adds r7, #4
 	ldr r0, [sp, #0xf8]
@@ -164299,7 +164299,7 @@ sub_08056442: @ 0x08056442
 .L08056D1E:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08056D26:
 	movs r5, #0x8e
 	lsls r5, r5, #2
@@ -164559,7 +164559,7 @@ sub_08056442: @ 0x08056442
 .L08056F1A:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	ldr r5, .L08057034 @ =0x0000042C
 	adds r0, r6, r5
 	ldrb r0, [r0]
@@ -164829,7 +164829,7 @@ sub_08056442: @ 0x08056442
 .L0805712E:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08057136:
 	ldr r5, .L0805724C @ =0x00000464
 	adds r0, r6, r5
@@ -165104,7 +165104,7 @@ sub_08056442: @ 0x08056442
 .L0805734E:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08057356:
 	movs r5, #0xef
 	lsls r5, r5, #2
@@ -165373,7 +165373,7 @@ sub_08056442: @ 0x08056442
 .L0805755A:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08057562:
 	movs r5, #0xd3
 	lsls r5, r5, #2
@@ -165642,7 +165642,7 @@ sub_08056442: @ 0x08056442
 .L08057766:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805776E:
 	ldr r7, .L080579A0 @ =0x00002330
 	adds r5, r6, r7
@@ -165728,7 +165728,7 @@ sub_08056442: @ 0x08056442
 .L0805781C:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08057824:
 	movs r0, #0xb8
 	lsls r0, r0, #2
@@ -165820,7 +165820,7 @@ sub_08056442: @ 0x08056442
 .L080578DE:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	movs r1, #0xd3
 	lsls r1, r1, #2
 	adds r0, r6, r1
@@ -165899,7 +165899,7 @@ sub_08056442: @ 0x08056442
 	ldrh r2, [r3, #0x24]
 .L0805798A:
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08057990:
 	add sp, #0x128
 	pop {r3, r4, r5}
@@ -166433,7 +166433,7 @@ func_08057D34: @ 0x08057D34
 .L08057DC0:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	add sp, #0x3c
 	pop {r3}
 	mov r8, r3
@@ -171479,7 +171479,7 @@ func_0805A744: @ 0x0805A744
 .L0805A852:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805A85A:
 	movs r6, #0
 	movs r1, #0xd7
@@ -171558,7 +171558,7 @@ func_0805A744: @ 0x0805A744
 .L0805A8F8:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r6, #1
 	cmp r6, #3
 	ble .L0805A874
@@ -174072,7 +174072,7 @@ func_0805BC34: @ 0x0805BC34
 .L0805BD08:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805BD10:
 	ldr r1, .L0805BE90 @ =0x000013EC
 	adds r0, r5, r1
@@ -174168,7 +174168,7 @@ func_0805BC34: @ 0x0805BC34
 .L0805BDD0:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	movs r0, #0x18
 	add r8, r0
 	movs r1, #1
@@ -174537,7 +174537,7 @@ func_0805BC34: @ 0x0805BC34
 .L0805C0BE:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	mov r1, sb
 	adds r0, r5, r1
 	ldr r2, .L0805C194 @ =0x0000144E
@@ -174623,7 +174623,7 @@ func_0805BC34: @ 0x0805BC34
 	ldrh r2, [r7, #0x24]
 .L0805C176:
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805C17C:
 	mov r0, sl
 	cmp r0, #1
@@ -175035,7 +175035,7 @@ func_0805BC34: @ 0x0805BC34
 	ldrh r2, [r6, #0x24]
 .L0805C49C:
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805C4A2:
 	movs r7, #0xb1
 	lsls r7, r7, #3
@@ -175122,7 +175122,7 @@ func_0805BC34: @ 0x0805BC34
 .L0805C550:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	ldr r1, [sp, #0x88]
 	mov sl, r1
 	cmp r1, #0
@@ -175211,7 +175211,7 @@ func_0805BC34: @ 0x0805BC34
 .L0805C606:
 	adds r0, r3, #0
 	add r3, sp, #4
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805C60E:
 	movs r6, #1
 	add sl, r6
@@ -178510,7 +178510,7 @@ func_0805DFC4: @ 0x0805DFC4
 .L0805E0C0:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805E0C8:
 	movs r5, #0xa6
 	lsls r5, r5, #1
@@ -178772,7 +178772,7 @@ func_0805DFC4: @ 0x0805DFC4
 .L0805E2C0:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805E2C8:
 	movs r1, #0xa6
 	lsls r1, r1, #1
@@ -179025,7 +179025,7 @@ func_0805DFC4: @ 0x0805DFC4
 .L0805E4AA:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0805E4B2:
 	ldr r1, .L0805E5E8 @ =0xFFFFFCFF
 	ldr r0, [sp, #0x6c]
@@ -179389,8 +179389,8 @@ UpdateIndexedResourceHandle: @ 0x0805E8F0
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_0805E99C
-func_0805E99C: @ 0x0805E99C
+	thumb_func_start DrawIndexedResourceSprites
+DrawIndexedResourceSprites: @ 0x0805E99C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -209577,7 +209577,7 @@ sub_0806C492: @ 0x0806C492
 	ldrh r2, [r6, #4]
 .L0806CF08:
 	mov r3, sl
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	adds r6, r0, #0
@@ -209820,7 +209820,7 @@ sub_0806C492: @ 0x0806C492
 	ldrh r2, [r4, #4]
 .L0806D0E6:
 	mov r3, sl
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	adds r6, r0, #0
@@ -210053,7 +210053,7 @@ sub_0806C492: @ 0x0806C492
 	ldrh r2, [r6, #4]
 .L0806D2A8:
 	mov r3, sl
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	adds r6, r0, #0
@@ -229739,7 +229739,7 @@ func_0807628C: @ 0x0807628C
 	ldrh r2, [r5, #4]
 .L08076358:
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	ldr r1, [sp, #0x24]
@@ -229997,7 +229997,7 @@ func_0807628C: @ 0x0807628C
 .L08076544:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	ldr r1, [sp, #0x54]
@@ -230205,7 +230205,7 @@ func_0807628C: @ 0x0807628C
 .L080766CC:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	ldr r1, [sp, #0x74]
@@ -230416,7 +230416,7 @@ func_0807628C: @ 0x0807628C
 .L0807685A:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
 	bl func_08008910
 	ldr r1, [sp, #0x74]
@@ -238621,7 +238621,7 @@ func_0807A98C: @ 0x0807A98C
 .L0807ACA8:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0807ACB0:
 	ldr r0, .L0807ADA0 @ =0x00000844
 	add r0, r8
@@ -238871,7 +238871,7 @@ func_0807A98C: @ 0x0807A98C
 .L0807AE94:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0807AE9C:
 	ldr r0, .L0807AF64 @ =0x0000080C
 	add r0, r8
@@ -238957,7 +238957,7 @@ func_0807A98C: @ 0x0807A98C
 .L0807AF4A:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0807AF52:
 	add sp, #0x80
 	pop {r3, r4, r5}
@@ -295972,7 +295972,7 @@ func_080983E8: @ 0x080983E8
 .L080987E4:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	movs r5, #0xe0
 	lsls r5, r5, #1
 	add r5, r8
@@ -296217,7 +296217,7 @@ func_080983E8: @ 0x080983E8
 .L080989BE:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	mov r0, r8
 	bl func_0809A3E0
 	add sp, #0x90
@@ -297428,7 +297428,7 @@ func_08099144: @ 0x08099144
 .L08099392:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L0809939A:
 	adds r2, r4, #0
 	cmp r2, #6
@@ -297462,7 +297462,7 @@ func_08099144: @ 0x08099144
 .L080993D6:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L080993DE:
 	ldr r5, [sp, #0x74]
 	cmp r5, #1
@@ -297498,7 +297498,7 @@ func_08099144: @ 0x08099144
 .L0809941C:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08099424:
 	adds r2, r4, #0
 	cmp r2, #7
@@ -297774,7 +297774,7 @@ func_08099144: @ 0x08099144
 .L0809962C:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08099634:
 	adds r4, #1
 	cmp r4, #4
@@ -298948,7 +298948,7 @@ func_08099ACC: @ 0x08099ACC
 .L08099FA0:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08099FA8:
 	ldr r2, .L0809A0EC @ =0x00002B90
 	adds r1, r7, r2
@@ -298982,7 +298982,7 @@ func_08099ACC: @ 0x08099ACC
 .L08099FE4:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 .L08099FEC:
 	adds r6, r4, #0
 	cmp r6, #7
@@ -299240,7 +299240,7 @@ func_08099ACC: @ 0x08099ACC
 .L0809A1DE:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	movs r6, #0x8c
 	lsls r6, r6, #2
 	adds r5, r7, r6
@@ -299491,7 +299491,7 @@ func_08099ACC: @ 0x08099ACC
 .L0809A3C6:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	add sp, #0x98
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -299612,7 +299612,7 @@ func_0809A3E0: @ 0x0809A3E0
 .L0809A4BE:
 	adds r0, r3, #0
 	mov r3, sp
-	bl func_0805E99C
+	bl DrawIndexedResourceSprites
 	add sp, #0x5c
 	pop {r4, r5, r6}
 	pop {r0}

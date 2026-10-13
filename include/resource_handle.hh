@@ -49,6 +49,37 @@ struct IndexedResourceSpriteMatrix
     i16 pd;
 };
 
+// Native sprite-submit parameters occupy 28 bytes. The renderer does not
+// consume the resource-group storage that some callers keep after this prefix.
+// Positions are signed pixel offsets; tile and palette offsets wrap in OAM.
+struct IndexedResourceSpriteParameters
+{
+    i16 x;
+    i16 y;
+    u16 palette_offset;
+    u16 tile_offset;
+    u16 priority;
+    u32 object_mode;
+    u8 flips;
+    u8 affine_index;
+    u32 affine_mode;
+    u8 mosaic;
+
+    IndexedResourceSpriteParameters()
+        : x(0), y(0), palette_offset(0), tile_offset(0), priority(0),
+          object_mode(0), flips(0), affine_index(0), affine_mode(0), mosaic(0) {}
+};
+
+typedef char IndexedResourceSpriteParametersSizeCheck[sizeof(IndexedResourceSpriteParameters) == 28 ? 1 : -1];
+typedef char IndexedResourceSpritePaletteOffsetCheck[offsetof(IndexedResourceSpriteParameters, palette_offset) == 4 ? 1 : -1];
+typedef char IndexedResourceSpriteTileOffsetCheck[offsetof(IndexedResourceSpriteParameters, tile_offset) == 6 ? 1 : -1];
+typedef char IndexedResourceSpritePriorityOffsetCheck[offsetof(IndexedResourceSpriteParameters, priority) == 8 ? 1 : -1];
+typedef char IndexedResourceSpriteObjectModeOffsetCheck[offsetof(IndexedResourceSpriteParameters, object_mode) == 12 ? 1 : -1];
+typedef char IndexedResourceSpriteFlipsOffsetCheck[offsetof(IndexedResourceSpriteParameters, flips) == 16 ? 1 : -1];
+typedef char IndexedResourceSpriteAffineIndexOffsetCheck[offsetof(IndexedResourceSpriteParameters, affine_index) == 17 ? 1 : -1];
+typedef char IndexedResourceSpriteAffineModeOffsetCheck[offsetof(IndexedResourceSpriteParameters, affine_mode) == 20 ? 1 : -1];
+typedef char IndexedResourceSpriteMosaicOffsetCheck[offsetof(IndexedResourceSpriteParameters, mosaic) == 24 ? 1 : -1];
+
 struct IndexedResourceDescriptor8Range
 {
     IndexedResourceArchiveDescriptor8 * Data() const { return data; }
@@ -194,6 +225,11 @@ enum IndexedResourceUpdateFlag
 };
 
 u32 UpdateIndexedResourceHandle(IndexedResourceHandle *);
+
+// Non-affine sprites are clipped to the screen; affine records use the
+// selected OAM matrix. Copy attributes only, preserving matrix coefficients.
+void DrawIndexedResourceSprites(HardwareSpriteBufferState *, HardwareSpriteOamRecord const *,
+    u32 count, IndexedResourceSpriteParameters const *);
 
 // Direct declarations of the existing constructor ABI, for owners whose
 // remaining lifecycle is still supplied by the original assembly routines.

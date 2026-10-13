@@ -2819,7 +2819,7 @@ RenderIntroSceneFrame:
 .L08002618:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     ldr r5, .L08002920 @ =0x00006BF4
     adds r4, r7, r5
     ldr r6, .L08002924 @ =0x00006BE0
@@ -2883,7 +2883,7 @@ RenderIntroSceneFrame:
     ldrh r2, [r3, #0x20]
 .L080026A6:
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     mov r4, sl
     movs r0, #0
     ldrsb r0, [r4, r0]
@@ -2950,7 +2950,7 @@ RenderIntroSceneFrame:
     ldrh r2, [r3, #0x20]
 .L08002738:
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
 .L0800273E:
     ldr r5, .L0800293C @ =0x00006C40
     adds r4, r7, r5
@@ -3012,7 +3012,7 @@ RenderIntroSceneFrame:
 .L080027BC:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
 .L080027C4:
     ldr r6, .L0800294C @ =0x00006BA0
     adds r4, r7, r6
@@ -3068,7 +3068,7 @@ RenderIntroSceneFrame:
 .L08002830:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     ldr r5, .L08002954 @ =0x00006D32
     adds r0, r7, r5
     movs r1, #0
@@ -3209,7 +3209,7 @@ RenderIntroSceneFrame:
 .Lintro_frame_affine_sprite_count:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     .else
     mov r1, sp
     movs r0, #1
@@ -3496,7 +3496,7 @@ RenderIntroSceneFrame:
 .L08002B9A:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     mov r0, sp
     movs r5, #0
     ldrsh r1, [r0, r5]
@@ -3743,7 +3743,7 @@ RenderIntroSceneFrame:
 .L08002D80:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     mov r0, sp
     movs r5, #0
     ldrsh r1, [r0, r5]
@@ -4002,7 +4002,7 @@ RenderIntroSceneFrame:
 .L08002F80:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     mov r0, sp
     ldrh r0, [r0, #2]
     cmp r0, #0x94
@@ -4034,7 +4034,7 @@ RenderIntroSceneFrame:
     ldrh r2, [r4, #0x20]
 .L08002FC4:
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     mov r0, sp
     ldrh r0, [r0, #2]
     cmp r0, #0x94
@@ -4292,7 +4292,7 @@ RenderIntroSceneFrame:
 .L080031C2:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     mov r0, sp
     movs r5, #0
     ldrsh r1, [r0, r5]
@@ -4541,7 +4541,7 @@ RenderIntroSceneFrame:
 .L080033AC:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     mov r0, sp
     movs r5, #0
     ldrsh r1, [r0, r5]
@@ -4788,7 +4788,7 @@ RenderIntroSceneFrame:
 .L08003594:
     adds r0, r3, #0
     mov r3, sp
-    bl func_0805E99C
+    bl DrawIndexedResourceSprites
     mov r0, sp
     movs r2, #0
     ldrsh r1, [r0, r2]
