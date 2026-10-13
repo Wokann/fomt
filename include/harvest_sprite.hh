@@ -6,6 +6,32 @@
 #include "npc.hh"
 #include "unknown_types.hh"
 
+// Shared reservations used when selecting the seven sprites' work targets.
+// Kind 1/2 use the first two payload bytes as a field-plot coordinate pair;
+// the other comparable kinds use one target index. The rest remains opaque.
+// Construction clears only the kind; all other storage keeps its old contents.
+struct HarvestSpriteWorkTarget
+{
+    HarvestSpriteWorkTarget() { kind = 0; }
+
+    u32 kind : 4;
+    u32 : 4;
+    u8 payload[7];
+};
+
+typedef char HarvestSpriteWorkTargetSizeCheck[sizeof(HarvestSpriteWorkTarget) == 8 ? 1 : -1];
+typedef char HarvestSpriteWorkTargetPayloadCheck[offsetof(HarvestSpriteWorkTarget, payload) == 1 ? 1 : -1];
+
+bool operator==(HarvestSpriteWorkTarget const & left, HarvestSpriteWorkTarget const & right);
+bool HasHarvestSpriteWorkTarget(HarvestSpriteWorkTarget const * targets, HarvestSpriteWorkTarget const & value);
+void SetHarvestSpriteWorkTarget(HarvestSpriteWorkTarget * targets, u32 slot, HarvestSpriteWorkTarget const & value);
+void ClearHarvestSpriteWorkTarget(HarvestSpriteWorkTarget * targets, u32 slot);
+
+// The native bounded search is still assembly; it returns end when not found.
+extern "C" HarvestSpriteWorkTarget const * FindHarvestSpriteWorkTarget(
+    HarvestSpriteWorkTarget const * first, HarvestSpriteWorkTarget const * end,
+    HarvestSpriteWorkTarget const & value);
+
 extern u8 const gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues[5];
 extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues[4];
 extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0[3];

@@ -37,18 +37,6 @@ inline NpcCollectionLocations::NpcCollectionLocations()
     InitializeInnSecondFloorNpcLocation(&inn_second_floor);
 }
 
-// The native initializer only clears the low nibble of each eight-byte record.
-// All other bits and the second word retain their previous storage contents.
-// The meaning of this seven-record array has not yet been established.
-struct NpcCollectionUnk438
-{
-    NpcCollectionUnk438() { unk_00 = 0; }
-
-    u32 unk_00 : 4;
-    u32 : 28;
-    u32 unk_04;
-};
-
 // The wedding-date readers use the same year encoding as GameCalendar and
 // the zero-based packed date. The native setter copies one aligned word;
 // the final two bytes are padding, not a verified clock or another field.
@@ -135,13 +123,12 @@ struct NpcCollection
     /* +3CC */ HarvestSprite aqua;
     /* +3F0 */ HarvestSprite hoggy;
     /* +414 */ HarvestSprite timid;
-    /* +438 */ NpcCollectionUnk438 unk_438[7];
+    /* +438 */ HarvestSpriteWorkTarget work_targets[7];
     /* +470 */ u32 days_since_pregnancy_event;
     /* +474 */ u8 unk_474;
 };
 
 typedef char NpcCollectionLocationsSizeCheck[sizeof(NpcCollectionLocations) == 0x40 ? 1 : -1];
-typedef char NpcCollectionUnk438SizeCheck[sizeof(NpcCollectionUnk438) == 8 ? 1 : -1];
 typedef char NpcCollectionSizeCheck[sizeof(NpcCollection) == 0x478 ? 1 : -1];
 typedef char NpcCollectionChildCheck[offsetof(NpcCollection, child) == 4 ? 1 : -1];
 typedef char NpcCollectionWeddingDateCheck[offsetof(NpcCollection, wedding_date) == 0x2C ? 1 : -1];
@@ -151,7 +138,7 @@ typedef char NpcCollectionSaibaraCheck[offsetof(NpcCollection, saibara) == 0xD8 
 typedef char NpcCollectionGotzCheck[offsetof(NpcCollection, gotz) == 0x290 ? 1 : -1];
 typedef char NpcCollectionVanCheck[offsetof(NpcCollection, van) == 0x310 ? 1 : -1];
 typedef char NpcCollectionSpritesCheck[offsetof(NpcCollection, staid) == 0x33C ? 1 : -1];
-typedef char NpcCollectionUnk438Check[offsetof(NpcCollection, unk_438) == 0x438 ? 1 : -1];
+typedef char NpcCollectionWorkTargetsCheck[offsetof(NpcCollection, work_targets) == 0x438 ? 1 : -1];
 typedef char NpcCollectionPregnancyCounterCheck[offsetof(NpcCollection, days_since_pregnancy_event) == 0x470 ? 1 : -1];
 typedef char NpcCollectionLastByteCheck[offsetof(NpcCollection, unk_474) == 0x474 ? 1 : -1];
 

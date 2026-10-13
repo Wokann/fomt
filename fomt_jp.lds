@@ -464,7 +464,6 @@ SECTIONS
         . = 0x9E060; /* JP ROM 0x0809E060, independently matched */
         src/harvest_sprite.o(.text);
 
-        asm/code_809E804.o(.text);
         . = 0x9E3F0; /* Child constructors, birthday, age and walking state. */
         src/child.o(.text);
         . = 0x9E584; /* Gotz, Saibara and Van saved state. */

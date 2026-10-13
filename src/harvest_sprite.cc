@@ -286,3 +286,47 @@ ActorLocation * InitializeHarvestSpriteHutLocation(ActorLocation * location, u32
     }
     return location;
 }
+
+bool operator==(HarvestSpriteWorkTarget const & left, HarvestSpriteWorkTarget const & right)
+{
+    u32 kind = left.kind;
+    if (kind != right.kind)
+        return false;
+    switch (kind) {
+    case 0:
+        return true;
+    case 1:
+    case 2:
+        // The encoded coordinate pair occupies bits 8-23 of the first word.
+        return (*reinterpret_cast<u32 const *>(&left) & 0x00FFFF00)
+            == (*reinterpret_cast<u32 const *>(&right) & 0x00FFFF00);
+    case 3:
+    case 4:
+    case 6:
+    case 7:
+    case 8:
+        return left.payload[0] == right.payload[0];
+    default:
+        // Preserve the native non-equality of kind 5 and out-of-range kinds.
+        return false;
+    }
+}
+
+bool HasHarvestSpriteWorkTarget(HarvestSpriteWorkTarget const * targets, HarvestSpriteWorkTarget const & value)
+{
+    HarvestSpriteWorkTarget const * end = targets + 7;
+    return FindHarvestSpriteWorkTarget(targets, end, value) != end;
+}
+
+void SetHarvestSpriteWorkTarget(HarvestSpriteWorkTarget * targets, u32 slot, HarvestSpriteWorkTarget const & value)
+{
+    // Native callers provide the slot; no bounds clamp is performed here.
+    targets[slot] = value;
+}
+
+void ClearHarvestSpriteWorkTarget(HarvestSpriteWorkTarget * targets, u32 slot)
+{
+    // This assigns a new empty record, not an in-place clear of just the nibble.
+    // Uninitialized payload/spare bits therefore follow the native temporary.
+    targets[slot] = HarvestSpriteWorkTarget();
+}

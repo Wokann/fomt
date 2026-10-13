@@ -41022,9 +41022,9 @@ func_080E3E28:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .global func_080E3E9C
+    .global FindHarvestSpriteWorkTarget
     .thumb_func
-func_080E3E9C:
+FindHarvestSpriteWorkTarget:
     push {r4, r5, r6, r7, lr}
     adds r7, r1, #0
     adds r6, r2, #0
@@ -41036,28 +41036,28 @@ func_080E3E9C:
     .Lauto_080E3644:
     adds r0, r4, #0
     adds r1, r6, #0
-    bl func_0809E8E4
+    bl __eq__FRC23HarvestSpriteWorkTargetT0
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Lauto_080E36CC
     adds r4, #8
     adds r0, r4, #0
     adds r1, r6, #0
-    bl func_0809E8E4
+    bl __eq__FRC23HarvestSpriteWorkTargetT0
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Lauto_080E36CC
     adds r4, #8
     adds r0, r4, #0
     adds r1, r6, #0
-    bl func_0809E8E4
+    bl __eq__FRC23HarvestSpriteWorkTargetT0
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Lauto_080E36CC
     adds r4, #8
     adds r0, r4, #0
     adds r1, r6, #0
-    bl func_0809E8E4
+    bl __eq__FRC23HarvestSpriteWorkTargetT0
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Lauto_080E36CC
@@ -41078,7 +41078,7 @@ func_080E3E9C:
     bne .Lauto_080E36D0
     adds r0, r4, #0
     adds r1, r6, #0
-    bl func_0809E8E4
+    bl __eq__FRC23HarvestSpriteWorkTargetT0
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Lauto_080E36CC
@@ -41086,7 +41086,7 @@ func_080E3E9C:
     .Lauto_080E36AE:
     adds r0, r4, #0
     adds r1, r6, #0
-    bl func_0809E8E4
+    bl __eq__FRC23HarvestSpriteWorkTargetT0
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Lauto_080E36CC
@@ -41094,7 +41094,7 @@ func_080E3E9C:
     .Lauto_080E36BE:
     adds r0, r4, #0
     adds r1, r6, #0
-    bl func_0809E8E4
+    bl __eq__FRC23HarvestSpriteWorkTargetT0
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Lauto_080E36D0
@@ -50004,8 +50004,8 @@ func_080E3E28: @ 0x080E3E28
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080E3E9C
-func_080E3E9C: @ 0x080E3E9C
+	thumb_func_start FindHarvestSpriteWorkTarget
+FindHarvestSpriteWorkTarget: @ 0x080E3E9C
 	push {r4, r5, r6, r7, lr}
 	adds r7, r1, #0
 	adds r6, r2, #0
@@ -50017,28 +50017,28 @@ func_080E3E9C: @ 0x080E3E9C
 .L080E3EAC:
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl func_0809E8E4
+	bl __eq__FRC23HarvestSpriteWorkTargetT0
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080E3F34
 	adds r4, #8
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl func_0809E8E4
+	bl __eq__FRC23HarvestSpriteWorkTargetT0
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080E3F34
 	adds r4, #8
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl func_0809E8E4
+	bl __eq__FRC23HarvestSpriteWorkTargetT0
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080E3F34
 	adds r4, #8
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl func_0809E8E4
+	bl __eq__FRC23HarvestSpriteWorkTargetT0
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080E3F34
@@ -50059,7 +50059,7 @@ func_080E3E9C: @ 0x080E3E9C
 	bne .L080E3F38
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl func_0809E8E4
+	bl __eq__FRC23HarvestSpriteWorkTargetT0
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080E3F34
@@ -50067,7 +50067,7 @@ func_080E3E9C: @ 0x080E3E9C
 .L080E3F16:
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl func_0809E8E4
+	bl __eq__FRC23HarvestSpriteWorkTargetT0
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080E3F34
@@ -50075,7 +50075,7 @@ func_080E3E9C: @ 0x080E3E9C
 .L080E3F26:
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl func_0809E8E4
+	bl __eq__FRC23HarvestSpriteWorkTargetT0
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080E3F38

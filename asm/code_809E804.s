@@ -12,126 +12,8 @@
     .thumb
 
 
-    @ NPC runtime helpers.  JP keeps the same logical entry points as the
-    @ ordinary regions, but locates this contiguous run at 0x0809E23C.
-
-    .global func_0809E8E4
-    .thumb_func
-func_0809E8E4: @ 0x0809E31C
-    push {r4, lr}
-    adds r2, r0, #0
-    adds r4, r1, #0
-    ldrb r1, [r2]
-    lsls r1, r1, #0x1c
-    ldrb r0, [r4]
-    lsls r0, r0, #0x1c
-    lsrs r3, r1, #0x1c
-    cmp r1, r0
-    bne .Ljp_0809E960
-    cmp r3, #8
-    bhi .Ljp_0809E960
-    lsls r0, r3, #2
-    ldr r1, .Ljp_0809E908
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.Ljp_0809E908: .4byte .Ljp_0809E90C
-.Ljp_0809E90C:
-    .4byte .Ljp_0809E930
-    .4byte .Ljp_0809E934
-    .4byte .Ljp_0809E934
-    .4byte .Ljp_0809E950
-    .4byte .Ljp_0809E950
-    .4byte .Ljp_0809E960
-    .4byte .Ljp_0809E950
-    .4byte .Ljp_0809E950
-    .4byte .Ljp_0809E950
-.Ljp_0809E930:
-    movs r0, #1
-    b .Ljp_0809E962
-.Ljp_0809E934:
-    movs r3, #0
-    ldr r0, [r2]
-    ldr r2, .Ljp_0809E94C
-    ands r0, r2
-    ldr r1, [r4]
-    ands r1, r2
-    cmp r0, r1
-    bne .Ljp_0809E946
-    movs r3, #1
-.Ljp_0809E946:
-    adds r0, r3, #0
-    b .Ljp_0809E962
-    .align 2, 0
-.Ljp_0809E94C: .4byte 0x00FFFF00
-.Ljp_0809E950:
-    movs r1, #0
-    ldrb r0, [r2, #1]
-    ldrb r4, [r4, #1]
-    cmp r0, r4
-    bne .Ljp_0809E95C
-    movs r1, #1
-.Ljp_0809E95C:
-    adds r0, r1, #0
-    b .Ljp_0809E962
-.Ljp_0809E960:
-    movs r0, #0
-.Ljp_0809E962:
-    pop {r4}
-    pop {r1}
-    bx r1
-
-    .global func_0809E968
-    .thumb_func
-func_0809E968: @ 0x0809E3A0
-    push {r4, lr}
-    adds r2, r1, #0
-    adds r4, r0, #0
-    adds r4, #0x38
-    adds r1, r4, #0
-    bl func_080E3E9C
-    adds r1, r0, #0
-    eors r1, r4
-    rsbs r0, r1, #0
-    orrs r0, r1
-    lsrs r0, r0, #0x1f
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    .global func_0809E988
-    .thumb_func
-func_0809E988: @ 0x0809E3C0
-    lsls r1, r1, #3
-    adds r1, r1, r0
-    ldm r2!, {r0, r3}
-    stm r1!, {r0, r3}
-    bx lr
-    .align 2, 0
-
-    .global func_0809E994
-    .thumb_func
-func_0809E994: @ 0x0809E3CC
-    push {r4, lr}
-    sub sp, #8
-    lsls r1, r1, #3
-    mov r4, sp
-    ldrb r3, [r4]
-    movs r2, #0x10
-    rsbs r2, r2, #0
-    ands r2, r3
-    strb r2, [r4]
-    adds r1, r1, r0
-    mov r0, sp
-    ldm r0!, {r2, r3}
-    stm r1!, {r2, r3}
-    add sp, #8
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
+    @ The earlier runtime helpers are recovered in src/harvest_sprite.cc.
+    @ Later unrecovered NPC helper runs retain their physical order.
 
     .section .text.npc_after_child
 
@@ -2100,7 +1982,7 @@ func_080A0B18: @ 0x080A0550
 	adds r5, r7, r2
 	adds r0, r5, #0
 	movs r1, #0
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	movs r3, #0xd8
 	lsls r3, r3, #2
 	adds r4, r7, r3
@@ -2118,7 +2000,7 @@ func_080A0B18: @ 0x080A0550
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #1
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	movs r0, #0xe1
 	lsls r0, r0, #2
 	adds r4, r7, r0
@@ -2136,7 +2018,7 @@ func_080A0B18: @ 0x080A0550
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #2
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	movs r1, #0xea
 	lsls r1, r1, #2
 	adds r4, r7, r1
@@ -2154,7 +2036,7 @@ func_080A0B18: @ 0x080A0550
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #3
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	movs r2, #0xf3
 	lsls r2, r2, #2
 	adds r4, r7, r2
@@ -2172,7 +2054,7 @@ func_080A0B18: @ 0x080A0550
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	movs r3, #0xfc
 	lsls r3, r3, #2
 	adds r4, r7, r3
@@ -2190,7 +2072,7 @@ func_080A0B18: @ 0x080A0550
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #5
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	ldr r0, .Ljp_080A10FC @ =0x00000414
 	adds r4, r7, r0
 	adds r0, r4, #0
@@ -2207,7 +2089,7 @@ func_080A0B18: @ 0x080A0550
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #6
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	mov r2, sl
 	ldrb r1, [r2, #0x1b]
 	lsrs r1, r1, #7
@@ -87328,120 +87210,6 @@ func_080D101C:
     .SYNTAX UNIFIED
 
 
-	thumb_func_start func_0809E8E4
-func_0809E8E4: @ 0x0809E8E4
-	push {r4, lr}
-	adds r2, r0, #0
-	adds r4, r1, #0
-	ldrb r1, [r2]
-	lsls r1, r1, #0x1c
-	ldrb r0, [r4]
-	lsls r0, r0, #0x1c
-	lsrs r3, r1, #0x1c
-	cmp r1, r0
-	bne .L0809E960
-	cmp r3, #8
-	bhi .L0809E960
-	lsls r0, r3, #2
-	ldr r1, .L0809E908 @ =.L0809E90C
-	adds r0, r0, r1
-	ldr r0, [r0]
-	mov pc, r0
-	.align 2, 0
-.L0809E908: .4byte .L0809E90C
-.L0809E90C: @ jump table
-	.4byte .L0809E930 @ case 0
-	.4byte .L0809E934 @ case 1
-	.4byte .L0809E934 @ case 2
-	.4byte .L0809E950 @ case 3
-	.4byte .L0809E950 @ case 4
-	.4byte .L0809E960 @ case 5
-	.4byte .L0809E950 @ case 6
-	.4byte .L0809E950 @ case 7
-	.4byte .L0809E950 @ case 8
-.L0809E930:
-	movs r0, #1
-	b .L0809E962
-.L0809E934:
-	movs r3, #0
-	ldr r0, [r2]
-	ldr r2, .L0809E94C @ =0x00FFFF00
-	ands r0, r2
-	ldr r1, [r4]
-	ands r1, r2
-	cmp r0, r1
-	bne .L0809E946
-	movs r3, #1
-.L0809E946:
-	adds r0, r3, #0
-	b .L0809E962
-	.align 2, 0
-.L0809E94C: .4byte 0x00FFFF00
-.L0809E950:
-	movs r1, #0
-	ldrb r0, [r2, #1]
-	ldrb r4, [r4, #1]
-	cmp r0, r4
-	bne .L0809E95C
-	movs r1, #1
-.L0809E95C:
-	adds r0, r1, #0
-	b .L0809E962
-.L0809E960:
-	movs r0, #0
-.L0809E962:
-	pop {r4}
-	pop {r1}
-	bx r1
-
-	thumb_func_start func_0809E968
-func_0809E968: @ 0x0809E968
-	push {r4, lr}
-	adds r2, r1, #0
-	adds r4, r0, #0
-	adds r4, #0x38
-	adds r1, r4, #0
-	bl func_080E3E9C
-	adds r1, r0, #0
-	eors r1, r4
-	rsbs r0, r1, #0
-	orrs r0, r1
-	lsrs r0, r0, #0x1f
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-	thumb_func_start func_0809E988
-func_0809E988: @ 0x0809E988
-	lsls r1, r1, #3
-	adds r1, r1, r0
-	ldm r2!, {r0, r3}
-	stm r1!, {r0, r3}
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_0809E994
-func_0809E994: @ 0x0809E994
-	push {r4, lr}
-	sub sp, #8
-	lsls r1, r1, #3
-	mov r4, sp
-	ldrb r3, [r4]
-	movs r2, #0x10
-	rsbs r2, r2, #0
-	ands r2, r3
-	strb r2, [r4]
-	adds r1, r1, r0
-	mov r0, sp
-	ldm r0!, {r2, r3}
-	stm r1!, {r2, r3}
-	add sp, #8
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
     .section .text.npc_after_child
 
 	thumb_func_start func_0809FE3C
@@ -89391,7 +89159,7 @@ func_080A0B18: @ 0x080A0B18
 	adds r5, r7, r2
 	adds r0, r5, #0
 	movs r1, #0
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	movs r3, #0xd8
 	lsls r3, r3, #2
 	adds r4, r7, r3
@@ -89409,7 +89177,7 @@ func_080A0B18: @ 0x080A0B18
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #1
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	movs r0, #0xe1
 	lsls r0, r0, #2
 	adds r4, r7, r0
@@ -89427,7 +89195,7 @@ func_080A0B18: @ 0x080A0B18
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #2
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	movs r1, #0xea
 	lsls r1, r1, #2
 	adds r4, r7, r1
@@ -89445,7 +89213,7 @@ func_080A0B18: @ 0x080A0B18
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #3
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	movs r2, #0xf3
 	lsls r2, r2, #2
 	adds r4, r7, r2
@@ -89463,7 +89231,7 @@ func_080A0B18: @ 0x080A0B18
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	movs r3, #0xfc
 	lsls r3, r3, #2
 	adds r4, r7, r3
@@ -89481,7 +89249,7 @@ func_080A0B18: @ 0x080A0B18
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #5
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	ldr r0, .L080A10FC @ =0x00000414
 	adds r4, r7, r0
 	adds r0, r4, #0
@@ -89498,7 +89266,7 @@ func_080A0B18: @ 0x080A0B18
 	bl method_0809E7C8__13HarvestSprite
 	adds r0, r5, #0
 	movs r1, #6
-	bl func_0809E994
+	bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
 	mov r2, sl
 	ldrb r1, [r2, #0x1b]
 	lsrs r1, r1, #7

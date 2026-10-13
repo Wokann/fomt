@@ -1123,7 +1123,7 @@ func_08032BB4:
     strb	r6, [r4, #1]
     ldr	r0, [sp, #112]	@ 0x70
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_08032A34
@@ -1601,7 +1601,7 @@ func_08032BB4:
     strb	r0, [r4, #1]
     ldr	r0, [sp, #112]	@ 0x70
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_08032DCE
@@ -1679,7 +1679,7 @@ func_08032BB4:
     strb	r0, [r4, #1]
     ldr	r0, [sp, #112]	@ 0x70
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_08032E68
@@ -1892,7 +1892,7 @@ func_080330F4:
     strb	r3, [r4, #2]
     ldr	r0, [sp, #144]	@ 0x90
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_08033006
@@ -1989,7 +1989,7 @@ func_080330F4:
     ldr	r0, [sp, #144]	@ 0x90
     adds	r1, r4, #0
     str	r2, [sp, #104]	@ 0x68
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     ldr	r2, [sp, #104]	@ 0x68
     cmp	r0, #0
@@ -3971,7 +3971,7 @@ func_08034260:
     adds	r1, #48	@ 0x30
     ldrb	r1, [r1, #0]
     add	r2, sp, #8
-    bl func_0809E988
+    bl SetHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUiRC23HarvestSpriteWorkTarget
     ldr r1, .Ljp_08034068
     ldr	r0, [sp, #24]
     ands	r0, r1
@@ -4081,7 +4081,7 @@ func_0803436C:
     ldmia	r1!, {r4, r5}
     stmia	r2!, {r4, r5}
     ldrb	r1, [r3, #0]
-    bl func_0809E994
+    bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [sp, #36]	@ 0x24
     ldr	r1, [r0, #60]	@ 0x3c
     mov	r0, sp
@@ -4859,7 +4859,7 @@ func_08034940:
     adds	r1, r5, #0
     adds	r1, #48	@ 0x30
     ldrb	r1, [r1, #0]
-    bl func_0809E994
+    bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [r5, #52]	@ 0x34
     add	r1, sp, #8
     bl method_0809E7FC__13HarvestSprite
@@ -6245,7 +6245,7 @@ func_08032BB4:
     strb	r6, [r4, #1]
     ldr	r0, [sp, #112]	@ 0x70
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Leu_08032CB4
@@ -6677,8 +6677,9 @@ func_08032BB4:
     .4byte 0x70204308
     .4byte 0x38361C30
     .4byte 0x981C7060
-    .4byte 0xF06B1C21
-    .4byte 0x0600FCAD
+    adds r1, r4, #0
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
+    lsls r0, r0, #24
     .4byte 0xD1042800
     .4byte 0x1C204669
     .4byte 0xC10CC80C
@@ -6716,7 +6717,7 @@ func_08032BB4:
     .4byte 0x1C287020
     .4byte 0x7060384C
     .4byte 0x1C21981C
-    .4byte 0xFC60F06B
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     .4byte 0x28000600
     .4byte 0x4669D104
     .4byte 0xC80C1C20
@@ -6916,7 +6917,7 @@ func_080330F4:
     strb	r3, [r4, #2]
     ldr	r0, [sp, #144]	@ 0x90
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Leu_08033286
@@ -7013,7 +7014,7 @@ func_080330F4:
     ldr	r0, [sp, #144]	@ 0x90
     adds	r1, r4, #0
     str	r2, [sp, #104]	@ 0x68
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     ldr	r2, [sp, #104]	@ 0x68
     cmp	r0, #0
@@ -8565,7 +8566,7 @@ func_08034260:
     adds	r1, #48	@ 0x30
     ldrb	r1, [r1, #0]
     add	r2, sp, #8
-    bl func_0809E988
+    bl SetHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUiRC23HarvestSpriteWorkTarget
     ldr r1, .Leu_080342E8
     ldr	r0, [sp, #24]
     ands	r0, r1
@@ -8675,7 +8676,7 @@ func_0803436C:
     ldmia	r1!, {r4, r5}
     stmia	r2!, {r4, r5}
     ldrb	r1, [r3, #0]
-    bl func_0809E994
+    bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [sp, #36]	@ 0x24
     ldr	r1, [r0, #60]	@ 0x3c
     mov	r0, sp
@@ -9197,7 +9198,7 @@ func_08034940:
     adds	r1, r5, #0
     adds	r1, #48	@ 0x30
     ldrb	r1, [r1, #0]
-    bl func_0809E994
+    bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [r5, #52]	@ 0x34
     add	r1, sp, #8
     bl method_0809E7FC__13HarvestSprite
@@ -10584,7 +10585,7 @@ func_08032BB4:
     strb	r6, [r4, #1]
     ldr	r0, [sp, #112]	@ 0x70
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lde_08032BB4
@@ -11016,8 +11017,9 @@ func_08032BB4:
     .4byte 0x70204308
     .4byte 0x38361C30
     .4byte 0x981C7060
-    .4byte 0xF06B1C21
-    .4byte 0x0600FCC5
+    adds r1, r4, #0
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
+    lsls r0, r0, #24
     .4byte 0xD1042800
     .4byte 0x1C204669
     .4byte 0xC10CC80C
@@ -11055,7 +11057,7 @@ func_08032BB4:
     .4byte 0x1C287020
     .4byte 0x7060384C
     .4byte 0x1C21981C
-    .4byte 0xFC78F06B
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     .4byte 0x28000600
     .4byte 0x4669D104
     .4byte 0xC80C1C20
@@ -11255,7 +11257,7 @@ func_080330F4:
     strb	r3, [r4, #2]
     ldr	r0, [sp, #144]	@ 0x90
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lde_08033186
@@ -11352,7 +11354,7 @@ func_080330F4:
     ldr	r0, [sp, #144]	@ 0x90
     adds	r1, r4, #0
     str	r2, [sp, #104]	@ 0x68
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     ldr	r2, [sp, #104]	@ 0x68
     cmp	r0, #0
@@ -12904,7 +12906,7 @@ func_08034260:
     adds	r1, #48	@ 0x30
     ldrb	r1, [r1, #0]
     add	r2, sp, #8
-    bl func_0809E988
+    bl SetHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUiRC23HarvestSpriteWorkTarget
     ldr r1, .Lde_080341E8
     ldr	r0, [sp, #24]
     ands	r0, r1
@@ -13014,7 +13016,7 @@ func_0803436C:
     ldmia	r1!, {r4, r5}
     stmia	r2!, {r4, r5}
     ldrb	r1, [r3, #0]
-    bl func_0809E994
+    bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [sp, #36]	@ 0x24
     ldr	r1, [r0, #60]	@ 0x3c
     mov	r0, sp
@@ -13536,7 +13538,7 @@ func_08034940:
     adds	r1, r5, #0
     adds	r1, #48	@ 0x30
     ldrb	r1, [r1, #0]
-    bl func_0809E994
+    bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [r5, #52]	@ 0x34
     add	r1, sp, #8
     bl method_0809E7FC__13HarvestSprite
@@ -14922,7 +14924,7 @@ func_08032BB4:
     strb	r6, [r4, #1]
     ldr	r0, [sp, #112]	@ 0x70
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lus_08032CA0
@@ -15400,7 +15402,7 @@ func_08032BB4:
     strb	r0, [r4, #1]
     ldr	r0, [sp, #112]	@ 0x70
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lus_0803303A
@@ -15478,7 +15480,7 @@ func_08032BB4:
     strb	r0, [r4, #1]
     ldr	r0, [sp, #112]	@ 0x70
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lus_080330D4
@@ -15691,7 +15693,7 @@ func_080330F4:
     strb	r3, [r4, #2]
     ldr	r0, [sp, #144]	@ 0x90
     adds	r1, r4, #0
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lus_08033272
@@ -15788,7 +15790,7 @@ func_080330F4:
     ldr	r0, [sp, #144]	@ 0x90
     adds	r1, r4, #0
     str	r2, [sp, #104]	@ 0x68
-    bl func_0809E968
+    bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls	r0, r0, #24
     ldr	r2, [sp, #104]	@ 0x68
     cmp	r0, #0
@@ -17350,7 +17352,7 @@ func_08034260:
     adds	r1, #48	@ 0x30
     ldrb	r1, [r1, #0]
     add	r2, sp, #8
-    bl func_0809E988
+    bl SetHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUiRC23HarvestSpriteWorkTarget
     ldr r1, .Lus_080342D4
     ldr	r0, [sp, #24]
     ands	r0, r1
@@ -17460,7 +17462,7 @@ func_0803436C:
     ldmia	r1!, {r4, r5}
     stmia	r2!, {r4, r5}
     ldrb	r1, [r3, #0]
-    bl func_0809E994
+    bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [sp, #36]	@ 0x24
     ldr	r1, [r0, #60]	@ 0x3c
     mov	r0, sp
@@ -17982,7 +17984,7 @@ func_08034940:
     adds	r1, r5, #0
     adds	r1, #48	@ 0x30
     ldrb	r1, [r1, #0]
-    bl func_0809E994
+    bl ClearHarvestSpriteWorkTarget__FP23HarvestSpriteWorkTargetUi
     ldr	r0, [r5, #52]	@ 0x34
     add	r1, sp, #8
     bl method_0809E7FC__13HarvestSprite
