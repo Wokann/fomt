@@ -23,7 +23,7 @@ ActorLocation Npc::GetLocation() const
     return location;
 }
 
-u8 Npc::GetFriendship() const
+u32 Npc::GetFriendship() const
 {
     return friendship;
 }

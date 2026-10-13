@@ -54,6 +54,10 @@ typedef char WeddingDateDateCheck[offsetof(WeddingDate, date) == 1 ? 1 : -1];
 // Saved at GameStateSaveImage +0x1CD4. The character-ID resolver independently
 // verifies these named members; construction order follows physical storage.
 struct GameStateSaveImage;
+struct GameStateClock;
+struct GameEventState;
+struct Farmer;
+struct Farm;
 
 struct NpcCollection
 {
@@ -91,6 +95,9 @@ struct NpcCollection
     ActorLocation * GetInnSecondFloorNpcLocation();
 
     void InitializeSchedules(GameStateSaveImage const & state);
+
+    void DayUpdate(GameStateClock const & clock, GameEventState const & events,
+        Farmer const & farmer, Farm const & farm);
 
     void SetWeddingDate(WeddingDate const & date);
     WeddingDate const & GetWeddingDate() const;

@@ -1,8 +1,10 @@
 #include "npc_collection.hh"
+#include "game_state.hh"
 #include "data_schedules.hh"
 #include "npc_schedule_data.hh"
 
 #include <algorithm>
+#include <stdlib.h>
 
 static inline ActorLocation InitialNpcLocation()
 {
@@ -239,6 +241,192 @@ ActorLocation * NpcCollection::GetYodelRanchHouseNpcLocation()
 ActorLocation * NpcCollection::GetInnSecondFloorNpcLocation()
 {
     return &locations.inn_second_floor;
+}
+
+static inline void ResetHarvestSpriteForDay(HarvestSprite & sprite, u32 slot)
+{
+    sprite.DayUpdate();
+    ActorLocation location;
+    InitializeHarvestSpriteHutLocation(&location, slot);
+    sprite.SetLocation(location);
+    // Preserve the native zero-initialized opaque argument to the state setter.
+    u32 unk_data = 0;
+    sprite.method_0809E7C8(&unk_data);
+}
+
+void NpcCollection::DayUpdate(GameStateClock const & clock, GameEventState const & events,
+    Farmer const & farmer, Farm const & farm)
+{
+    unk_02_5 = false;
+    u32 spouse = GetSpouseCharacterId();
+    bool married = spouse != 0;
+    lillia.DayUpdate(rand() % 100);
+    rick.DayUpdate(rand() % 100);
+    if (popuri.GetRivalEventCount() <= 4 || clock.calendar.date.season == SEASON_SUMMER)
+        popuri.DayUpdate(married, rand() % 100);
+    barley.DayUpdate(rand() % 100);
+    may.DayUpdate(rand() % 100);
+    saibara.DayUpdate();
+    gray.DayUpdate(rand() % 100);
+    duke.DayUpdate(rand() % 100);
+    manna.DayUpdate(rand() % 100);
+    basil.DayUpdate(rand() % 100);
+    anna.DayUpdate(rand() % 100);
+    mary.DayUpdate(married, rand() % 100);
+    thomas.DayUpdate(rand() % 100);
+    harris.DayUpdate(rand() % 100);
+    ellen.DayUpdate(rand() % 100);
+    stu.DayUpdate(rand() % 100);
+    jeff.DayUpdate(rand() % 100);
+    sasha.DayUpdate(rand() % 100);
+    karen.DayUpdate(married, rand() % 100);
+    doctor.DayUpdate(rand() % 100);
+    elli.DayUpdate(married, rand() % 100);
+    carter.DayUpdate(rand() % 100);
+    cliff.DayUpdate(rand() % 100);
+    doug.DayUpdate(rand() % 100);
+    ann.DayUpdate(married, rand() % 100);
+    if (clock.calendar.date.season == SEASON_SUMMER) {
+        // Preserve the original second addition when Kai's friendship increases.
+        u32 old_friendship = kai.GetFriendship();
+        kai.DayUpdate(rand() % 100);
+        if (kai.GetFriendship() > old_friendship)
+            kai.AddFriendship(kai.GetFriendship() - old_friendship);
+    }
+    gotz.DayUpdate();
+    zack.DayUpdate(rand() % 100);
+    won.DayUpdate(rand() % 100);
+    gourmet.DayUpdate(rand() % 100);
+    harvest_goddess.DayUpdate(married, rand() % 100);
+    kappa.DayUpdate(rand() % 100);
+    if (events.van_introduction_event_state == 2)
+        van.Npc::DayUpdate(rand() % 100);
+    if (events.lou_or_ruby_introduction_event_state == 2)
+        lou.DayUpdate(rand() % 100);
+    if (has_child)
+        child.DayUpdate();
+
+    ResetHarvestSpriteForDay(staid, 0);
+    ClearHarvestSpriteWorkTarget(work_targets, 0);
+    ResetHarvestSpriteForDay(nappy, 1);
+    ClearHarvestSpriteWorkTarget(work_targets, 1);
+    ResetHarvestSpriteForDay(bold, 2);
+    ClearHarvestSpriteWorkTarget(work_targets, 2);
+    ResetHarvestSpriteForDay(chef, 3);
+    ClearHarvestSpriteWorkTarget(work_targets, 3);
+    ResetHarvestSpriteForDay(aqua, 4);
+    ClearHarvestSpriteWorkTarget(work_targets, 4);
+    ResetHarvestSpriteForDay(hoggy, 5);
+    ClearHarvestSpriteWorkTarget(work_targets, 5);
+    ResetHarvestSpriteForDay(timid, 6);
+    ClearHarvestSpriteWorkTarget(work_targets, 6);
+
+    if (events.popuri_pregnancy_event_state == 2 || events.ann_pregnancy_event_state == 2
+        || events.elli_pregnancy_event_state == 2 || events.karen_pregnancy_event_state == 2
+        || events.mary_pregnancy_event_state == 2 || events.harvest_goddess_pregnancy_event_state == 2) {
+        // The native check is equality, not a clamp for larger saved values.
+        if (days_since_pregnancy_event != 60)
+            ++days_since_pregnancy_event;
+    }
+
+    if (popuri.method_0809E4BC() <= 4 && (!married || spouse == CHARACTER_POPURI)) {
+        if (farm.coop.CountChickens() == 8) {
+            u32 affection = 0;
+            for (u32 slot = 0; slot < 8; ++slot) {
+                Chicken const * chicken = farm.coop.GetChicken(slot);
+                if (chicken != nullptr)
+                    affection += chicken->GetAffection();
+            }
+            affection /= 8;
+            while (popuri.method_0809E4BC() <= 4
+                && affection >= gUnk_BacheloretteLoveThresholds00[popuri.method_0809E4BC()]) {
+                popuri.AddLove(2500);
+                popuri.method_0809E550();
+            }
+        }
+    }
+    if (mary.method_0809E4BC() <= 4 && (!married || spouse == CHARACTER_MARY)) {
+        u32 value = unk_01_5;
+        while (mary.method_0809E4BC() <= 4
+            && value >= gUnk_BacheloretteLoveThresholds01[mary.method_0809E4BC()]) {
+            mary.AddLove(2500);
+            mary.method_0809E550();
+        }
+    }
+    if (karen.method_0809E4BC() <= 4 && (!married || spouse == CHARACTER_KAREN)) {
+        u32 value = unk_00_6;
+        while (karen.method_0809E4BC() <= 4
+            && value >= gUnk_BacheloretteLoveThresholds02[karen.method_0809E4BC()]) {
+            karen.AddLove(2500);
+            karen.method_0809E550();
+        }
+    }
+    if (elli.method_0809E4BC() <= 4 && (!married || spouse == CHARACTER_ELLI)) {
+        u32 value = func_0800E970(farmer);
+        while (elli.method_0809E4BC() <= 4
+            && value >= gUnk_BacheloretteLoveThresholds03[elli.method_0809E4BC()]) {
+            elli.AddLove(2500);
+            elli.method_0809E550();
+        }
+    }
+    if (ann.method_0809E4BC() <= 4 && (!married || spouse == CHARACTER_ANN)) {
+        u32 value = unk_00_0;
+        while (ann.method_0809E4BC() <= 4
+            && value >= gUnk_BacheloretteLoveThresholds04[ann.method_0809E4BC()]) {
+            ann.AddLove(2500);
+            ann.method_0809E550();
+        }
+    }
+
+    if (unk_02_6 <= 4) {
+        u32 friendship = 0;
+        u32 count = 0;
+        for (u32 id = 0; id <= CHARACTER_TIMID; ++id) {
+            switch (id) {
+            case CHARACTER_CLIFF:
+            case CHARACTER_KAI:
+            case CHARACTER_GOURMET:
+            case CHARACTER_VAN:
+            case CHARACTER_LOU_OR_RUBY:
+            case CHARACTER_CHILD:
+                break;
+            default:
+                Npc * npc = GetNpc(id);
+                if (npc != nullptr) {
+                    friendship += npc->GetFriendship();
+                    ++count;
+                }
+                break;
+            }
+        }
+        u32 average = friendship / count;
+        while (unk_02_6 <= 4 && average >= gUnk_BacheloretteLoveThresholds05[unk_02_6]) {
+            if (!married || spouse == CHARACTER_POPURI) popuri.AddLove(2500);
+            if (!married || spouse == CHARACTER_MARY) mary.AddLove(2500);
+            if (!married || spouse == CHARACTER_KAREN) karen.AddLove(2500);
+            if (!married || spouse == CHARACTER_ELLI) elli.AddLove(2500);
+            if (!married || spouse == CHARACTER_ANN) ann.AddLove(2500);
+            if (!married || spouse == CHARACTER_HARVEST_GODDESS) harvest_goddess.AddLove(2500);
+            ++unk_02_6;
+        }
+    }
+    ActorLocation location;
+    InitializeSouthTownNpcLocation1(&location, 0);
+    locations.south_town_1_0 = location;
+    InitializeSouthTownNpcLocation1(&location, 1);
+    locations.south_town_1_1 = location;
+    InitializeSouthTownNpcLocation1(&location, 2);
+    locations.south_town_1_2 = location;
+    InitializeSouthTownNpcLocation2(&location, 0);
+    locations.south_town_2_0 = location;
+    InitializeSouthTownNpcLocation2(&location, 1);
+    locations.south_town_2_1 = location;
+    InitializeSouthTownNpcLocation2(&location, 2);
+    locations.south_town_2_2 = location;
+    InitializeYodelRanchHouseNpcLocation(&location);
+    locations.yodel_ranch_house = location;
+    InitializeInnSecondFloorNpcLocation(&location);
+    locations.inn_second_floor = location;
 }
 
 void NpcCollection::SetWeddingDate(WeddingDate const & date)

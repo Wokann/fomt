@@ -332,7 +332,7 @@ func_08010F54:
     adds r0, r4, #0
     ldr r1, [sp, #0x14]
     adds r3, r5, #0
-    bl func_080A0B18
+    bl DayUpdate__13NpcCollectionRC14GameStateClockRC14GameEventStateRC6FarmerRC4Farm
     adds r0, r4, #0
     adds r1, r6, #0
     bl InitializeSchedules__13NpcCollectionRC18GameStateSaveImage
@@ -22062,7 +22062,7 @@ func_08010F54: @ 0x08010F54
     adds r0, r4, #0
     ldr r1, [sp, #0x14]
     adds r3, r5, #0
-    bl func_080A0B18
+    bl DayUpdate__13NpcCollectionRC14GameStateClockRC14GameEventStateRC6FarmerRC4Farm
     adds r0, r4, #0
     adds r1, r6, #0
     bl InitializeSchedules__13NpcCollectionRC18GameStateSaveImage

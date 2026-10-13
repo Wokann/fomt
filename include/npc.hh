@@ -14,7 +14,8 @@ struct Npc
     Npc(ActorLocation const & location);
 
     ActorLocation GetLocation() const;
-    u8 GetFriendship() const;
+    // Native callers consume a full-width result; storage remains eight bits.
+    u32 GetFriendship() const;
     u32 GetDaysSinceLastSpoken() const;
     bool HasBeenGiftedToday() const;
     bool HasBeenSpokenToToday() const;

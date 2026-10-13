@@ -2,8 +2,8 @@
 
 #include <stdlib.h> // rand
 
-// Each row is indexed by the capped five-stage counter used by the native
-// bachelorette update.  The surrounding conditions are not all decoded yet.
+// Each row is indexed by the five-stage counter in NpcCollection::DayUpdate.
+// Keep the unknown saved-counter meanings distinct from the verified callers.
 u8 const gUnk_BacheloretteLoveThresholds00[] = {
     0x96, 0xB4, 0xD2, 0xE6, 0xFF,
 };

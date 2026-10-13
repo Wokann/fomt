@@ -5,8 +5,8 @@
 
 #include "npc.hh"
 
-// Six five-stage threshold rows consumed by the still-native bachelorette
-// update path.  The individual gameplay conditions have not all been decoded.
+// Six five-stage threshold rows consumed by NpcCollection::DayUpdate.
+// The meanings of its three saved unk counters are not yet established.
 extern u8 const gUnk_BacheloretteLoveThresholds00[];
 extern u8 const gUnk_BacheloretteLoveThresholds01[];
 extern u8 const gUnk_BacheloretteLoveThresholds02[];
