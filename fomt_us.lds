@@ -223,6 +223,8 @@ SECTIONS
         src/code_0803C540.o(.text);
         . = 0x3C54C; /* US ROM 0x0803C54C, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803C54C);
+        src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
+        asm/code_0803A8A4.o(.text.npc_schedule_after);
         . = 0x3E40C; /* US ROM shared Lou/Ruby Sunday schedule gate. */
         src/code_0803E40C.o(.text);
         . = 0x3E448; /* US ROM 0x0803E448, remaining raw control code */
@@ -391,7 +393,7 @@ SECTIONS
         src/actor_state.o(.text.func_0809E1A4);
         . = 0x9E1B4; /* US ROM 0x0809E1B4, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809E1B4);
-        src/npc.o(.text);
+        src/npc.o(.text .text.*);
         src/bachelorette.o(.text);
         src/harvest_sprite.o(.text);
 

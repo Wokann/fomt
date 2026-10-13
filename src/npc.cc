@@ -1,4 +1,5 @@
 #include "npc.hh"
+#include "data_schedules.hh"
 
 Npc::Npc(ActorLocation const & a_location)
 {
@@ -132,4 +133,28 @@ void Npc::DayUpdate(u32 arg_00)
     spoken_today = false;
     spoken_just_now = false;
     gifted_today = false;
+}
+
+void Npc::InitializeSchedule(ScheduleInfo const & info, void const * context)
+{
+    u32 selected = info.select_schedule(context);
+    PathInfo const * path = nullptr;
+    // Preserve all four native null/empty checks. num_schedules is not used
+    // as a bound here; the selector supplies the index, without clamping it.
+    if (info.schedules != nullptr) {
+        Schedule const * schedule = info.schedules[selected];
+        if (schedule != nullptr && schedule->num_time_entries != 0
+            && schedule->time_entries != nullptr)
+            path = schedule->time_entries[0].path;
+    }
+    ActorLocation initial = path != nullptr
+        ? ActorLocation(Location(path->location_start, path->x_start, path->y_start), path->facing_start)
+        : ActorLocation(Location(MAP_NONE, 0, 0), FACING_DOWN);
+    SetLocation(initial);
+    // The selected index is saved in five bits; the other route cursors
+    // are reset. Their individual roles remain unclassified.
+    unk_0C_0 = selected;
+    unk_0C_5 = 0;
+    unk_0D_2 = 0;
+    unk_0D_7 = 0;
 }

@@ -271,6 +271,8 @@ SECTIONS
         src/code_0803C540.o(.text);
         . = 0x3C2E0; /* JP ROM 0x0803C54C, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803C54C);
+        src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
+        asm/code_0803A8A4.o(.text.npc_schedule_after);
         . = 0x3E080; /* JP counterpart of shared schedule gate func_0803E40C. */
         src/code_0803E40C.o(.text);
         . = 0x3E0BC; /* JP ROM 0x0803E448, remaining raw control code */
@@ -455,7 +457,7 @@ SECTIONS
         . = 0x9DBEC; /* JP ROM 0x0809E1B4, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809E1B4);
         . = 0x9DD0C; /* JP ROM 0x0809DD0C, independently matched */
-        src/npc.o(.text);
+        src/npc.o(.text .text.*);
         . = 0x9DE90; /* JP ROM 0x0809DE90, independently matched */
         src/bachelorette.o(.text);
         . = 0x9E060; /* JP ROM 0x0809E060, independently matched */

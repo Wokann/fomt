@@ -7,6 +7,8 @@
 
 u16 const NO_ANIM = static_cast<u16>(-1);
 
+struct ScheduleInfo;
+
 struct Npc
 {
     Npc(ActorLocation const & location);
@@ -26,6 +28,7 @@ struct Npc
     void SetGifted();
     void SetChangedLocation();
     void DayUpdate(u32 arg_00);
+    void InitializeSchedule(ScheduleInfo const & info, void const * context);
 
     /* +00 */ ActorLocation location;
     /* +08 */ u32 friendship : 8;

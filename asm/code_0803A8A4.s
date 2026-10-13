@@ -5925,182 +5925,7 @@ func_0803D644:
     bx	r1
 .Ljp_0803D2F8:
     .4byte gUnk_080F1A66
-    .global func_0803D688
-    .thumb_func
-func_0803D688:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #24
-    adds	r7, r0, #0
-    adds	r4, r1, #0
-    adds	r0, r2, #0
-    ldr	r1, [r4, #0]
-    bl _call_via_r1
-    mov	sl, r0
-    movs	r0, #0
-    mov	ip, r0
-    ldr	r1, [r4, #8]
-    cmp	r1, #0
-    beq .Ljp_0803D33C
-    mov	r2, sl
-    lsls	r0, r2, #2
-    adds	r0, r0, r1
-    ldr	r1, [r0, #0]
-    cmp	r1, #0
-    beq .Ljp_0803D33C
-    ldrh	r0, [r1, #0]
-    cmp	r0, #0
-    beq .Ljp_0803D33C
-    ldr	r0, [r1, #4]
-    cmp	r0, #0
-    beq .Ljp_0803D33C
-    ldr	r0, [r0, #4]
-    mov	ip, r0
-.Ljp_0803D33C:
-    mov	r0, ip
-    cmp	r0, #0
-    beq .Ljp_0803D3C4
-    ldrh	r2, [r0, #10]
-    lsls	r2, r2, #22
-    movs	r1, #6
-    ldrsh	r6, [r0, r1]
-    movs	r1, #8
-    ldrsh	r0, [r0, r1]
-    mov	r8, r0
-    add	r1, sp, #8
-    lsrs	r2, r2, #22
-    ldrh	r3, [r1, #0]
-    ldr r4, .Ljp_0803D3C0
-    adds	r0, r4, #0
-    ands	r0, r3
-    orrs	r0, r2
-    strh	r0, [r1, #0]
-    lsls	r6, r6, #16
-    lsrs	r2, r6, #16
-    movs	r0, #63	@ 0x3f
-    mov	r9, r0
-    ands	r2, r0
-    lsls	r2, r2, #2
-    ldrb	r5, [r1, #1]
-    movs	r3, #3
-    adds	r0, r3, #0
-    ands	r0, r5
-    orrs	r0, r2
-    strb	r0, [r1, #1]
-    lsrs	r6, r6, #22
-    ldrh	r2, [r1, #2]
-    adds	r0, r4, #0
-    ands	r0, r2
-    orrs	r0, r6
-    strh	r0, [r1, #2]
-    mov	r2, r8
-    lsls	r2, r2, #16
-    mov	r8, r2
-    lsrs	r0, r2, #16
-    mov	r2, r9
-    ands	r0, r2
-    lsls	r0, r0, #2
-    ldrb	r2, [r1, #3]
-    ands	r3, r2
-    orrs	r3, r0
-    strb	r3, [r1, #3]
-    mov	r0, r8
-    lsrs	r0, r0, #22
-    mov	r8, r0
-    ldrh	r0, [r1, #4]
-    ands	r4, r0
-    mov	r2, r8
-    orrs	r4, r2
-    strh	r4, [r1, #4]
-    mov	r0, ip
-    ldrb	r4, [r0, #11]
-    lsls	r4, r4, #28
-    lsrs	r4, r4, #30
-    mov	r5, sp
-    mov	r0, sp
-    movs	r2, #6
-    bl memcpy
-    strb	r4, [r5, #6]
-    b .Ljp_0803D402
-.Ljp_0803D3C0:
-    .4byte 0xFFFFFC00
-.Ljp_0803D3C4:
-    add	r1, sp, #16
-    movs	r4, #141	@ 0x8d
-    lsls	r4, r4, #2
-    ldrh	r2, [r1, #0]
-    ldr r3, .Ljp_0803D44C
-    adds	r0, r3, #0
-    ands	r0, r2
-    orrs	r0, r4
-    strh	r0, [r1, #0]
-    movs	r5, #0
-    ldrb	r4, [r1, #1]
-    movs	r2, #3
-    adds	r0, r2, #0
-    ands	r0, r4
-    strb	r0, [r1, #1]
-    ldrh	r4, [r1, #2]
-    adds	r0, r3, #0
-    ands	r0, r4
-    strh	r0, [r1, #2]
-    ldrb	r0, [r1, #3]
-    ands	r2, r0
-    strb	r2, [r1, #3]
-    ldrh	r0, [r1, #4]
-    ands	r3, r0
-    strh	r3, [r1, #4]
-    mov	r4, sp
-    mov	r0, sp
-    movs	r2, #6
-    bl memcpy
-    strb	r5, [r4, #6]
-.Ljp_0803D402:
-    adds	r0, r7, #0
-    mov	r1, sp
-    bl SetLocation__3NpcRC13ActorLocation
-    movs	r0, #31
-    mov	r1, sl
-    ands	r1, r0
-    mov	sl, r1
-    ldrb	r1, [r7, #12]
-    movs	r0, #32
-    negs	r0, r0
-    ands	r0, r1
-    mov	r2, sl
-    orrs	r0, r2
-    strb	r0, [r7, #12]
-    ldrh	r1, [r7, #12]
-    ldr r0, .Ljp_0803D450
-    ands	r0, r1
-    strh	r0, [r7, #12]
-    ldrb	r1, [r7, #13]
-    movs	r0, #125	@ 0x7d
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r7, #13]
-    ldr	r0, [r7, #12]
-    ldr r1, .Ljp_0803D454
-    ands	r0, r1
-    str	r0, [r7, #12]
-    add	sp, #24
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Ljp_0803D44C:
-    .4byte 0xFFFFFC00
-.Ljp_0803D450:
-    .4byte 0xFFFFFC1F
-.Ljp_0803D454:
-    .4byte 0xFE007FFF
+    .section .text.npc_schedule_after
     .global func_0803D7E4
     .thumb_func
 func_0803D7E4:
@@ -6110,188 +5935,188 @@ func_0803D7E4:
     adds	r0, #112	@ 0x70
     ldr r1, .Ljp_0803D618
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #132	@ 0x84
     ldr r1, .Ljp_0803D61C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #152	@ 0x98
     ldr r1, .Ljp_0803D620
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #176	@ 0xb0
     ldr r1, .Ljp_0803D624
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #196	@ 0xc4
     ldr r1, .Ljp_0803D628
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #216	@ 0xd8
     ldr r1, .Ljp_0803D62C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #240	@ 0xf0
     ldr r1, .Ljp_0803D630
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #130	@ 0x82
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D634
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #140	@ 0x8c
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D638
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #150	@ 0x96
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D63C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #160	@ 0xa0
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D640
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #170	@ 0xaa
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D644
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #182	@ 0xb6
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D648
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #192	@ 0xc0
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D64C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #202	@ 0xca
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D650
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #212	@ 0xd4
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D654
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #222	@ 0xde
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D658
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #232	@ 0xe8
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D65C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #242	@ 0xf2
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D660
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #254	@ 0xfe
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D664
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #132	@ 0x84
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D668
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #138	@ 0x8a
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D66C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #143	@ 0x8f
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D670
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #148	@ 0x94
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D674
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #153	@ 0x99
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D678
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #159	@ 0x9f
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D67C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #164	@ 0xa4
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D680
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #170	@ 0xaa
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D684
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #175	@ 0xaf
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D688
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #196	@ 0xc4
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D68C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #202	@ 0xca
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Ljp_0803D690
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     bl func_080A0A04
     cmp	r0, #0
     beq .Ljp_0803D612
     ldr r1, .Ljp_0803D694
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
 .Ljp_0803D612:
     pop	{r4, r5}
     pop	{r0}
@@ -15023,182 +14848,7 @@ func_0803D644:
     bx	r1
 .Leu_0803D698:
     .4byte gUnk_080F1A66
-    .global func_0803D688
-    .thumb_func
-func_0803D688:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #24
-    adds	r7, r0, #0
-    adds	r4, r1, #0
-    adds	r0, r2, #0
-    ldr	r1, [r4, #0]
-    bl _call_via_r1
-    mov	sl, r0
-    movs	r0, #0
-    mov	ip, r0
-    ldr	r1, [r4, #8]
-    cmp	r1, #0
-    beq .Leu_0803D6DC
-    mov	r2, sl
-    lsls	r0, r2, #2
-    adds	r0, r0, r1
-    ldr	r1, [r0, #0]
-    cmp	r1, #0
-    beq .Leu_0803D6DC
-    ldrh	r0, [r1, #0]
-    cmp	r0, #0
-    beq .Leu_0803D6DC
-    ldr	r0, [r1, #4]
-    cmp	r0, #0
-    beq .Leu_0803D6DC
-    ldr	r0, [r0, #4]
-    mov	ip, r0
-.Leu_0803D6DC:
-    mov	r0, ip
-    cmp	r0, #0
-    beq .Leu_0803D764
-    ldrh	r2, [r0, #10]
-    lsls	r2, r2, #22
-    movs	r1, #6
-    ldrsh	r6, [r0, r1]
-    movs	r1, #8
-    ldrsh	r0, [r0, r1]
-    mov	r8, r0
-    add	r1, sp, #8
-    lsrs	r2, r2, #22
-    ldrh	r3, [r1, #0]
-    ldr r4, .Leu_0803D760
-    adds	r0, r4, #0
-    ands	r0, r3
-    orrs	r0, r2
-    strh	r0, [r1, #0]
-    lsls	r6, r6, #16
-    lsrs	r2, r6, #16
-    movs	r0, #63	@ 0x3f
-    mov	r9, r0
-    ands	r2, r0
-    lsls	r2, r2, #2
-    ldrb	r5, [r1, #1]
-    movs	r3, #3
-    adds	r0, r3, #0
-    ands	r0, r5
-    orrs	r0, r2
-    strb	r0, [r1, #1]
-    lsrs	r6, r6, #22
-    ldrh	r2, [r1, #2]
-    adds	r0, r4, #0
-    ands	r0, r2
-    orrs	r0, r6
-    strh	r0, [r1, #2]
-    mov	r2, r8
-    lsls	r2, r2, #16
-    mov	r8, r2
-    lsrs	r0, r2, #16
-    mov	r2, r9
-    ands	r0, r2
-    lsls	r0, r0, #2
-    ldrb	r2, [r1, #3]
-    ands	r3, r2
-    orrs	r3, r0
-    strb	r3, [r1, #3]
-    mov	r0, r8
-    lsrs	r0, r0, #22
-    mov	r8, r0
-    ldrh	r0, [r1, #4]
-    ands	r4, r0
-    mov	r2, r8
-    orrs	r4, r2
-    strh	r4, [r1, #4]
-    mov	r0, ip
-    ldrb	r4, [r0, #11]
-    lsls	r4, r4, #28
-    lsrs	r4, r4, #30
-    mov	r5, sp
-    mov	r0, sp
-    movs	r2, #6
-    bl memcpy
-    strb	r4, [r5, #6]
-    b .Leu_0803D7A2
-.Leu_0803D760:
-    .4byte 0xFFFFFC00
-.Leu_0803D764:
-    add	r1, sp, #16
-    movs	r4, #141	@ 0x8d
-    lsls	r4, r4, #2
-    ldrh	r2, [r1, #0]
-    ldr r3, .Leu_0803D7EC
-    adds	r0, r3, #0
-    ands	r0, r2
-    orrs	r0, r4
-    strh	r0, [r1, #0]
-    movs	r5, #0
-    ldrb	r4, [r1, #1]
-    movs	r2, #3
-    adds	r0, r2, #0
-    ands	r0, r4
-    strb	r0, [r1, #1]
-    ldrh	r4, [r1, #2]
-    adds	r0, r3, #0
-    ands	r0, r4
-    strh	r0, [r1, #2]
-    ldrb	r0, [r1, #3]
-    ands	r2, r0
-    strb	r2, [r1, #3]
-    ldrh	r0, [r1, #4]
-    ands	r3, r0
-    strh	r3, [r1, #4]
-    mov	r4, sp
-    mov	r0, sp
-    movs	r2, #6
-    bl memcpy
-    strb	r5, [r4, #6]
-.Leu_0803D7A2:
-    adds	r0, r7, #0
-    mov	r1, sp
-    bl SetLocation__3NpcRC13ActorLocation
-    movs	r0, #31
-    mov	r1, sl
-    ands	r1, r0
-    mov	sl, r1
-    ldrb	r1, [r7, #12]
-    movs	r0, #32
-    negs	r0, r0
-    ands	r0, r1
-    mov	r2, sl
-    orrs	r0, r2
-    strb	r0, [r7, #12]
-    ldrh	r1, [r7, #12]
-    ldr r0, .Leu_0803D7F0
-    ands	r0, r1
-    strh	r0, [r7, #12]
-    ldrb	r1, [r7, #13]
-    movs	r0, #125	@ 0x7d
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r7, #13]
-    ldr	r0, [r7, #12]
-    ldr r1, .Leu_0803D7F4
-    ands	r0, r1
-    str	r0, [r7, #12]
-    add	sp, #24
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Leu_0803D7EC:
-    .4byte 0xFFFFFC00
-.Leu_0803D7F0:
-    .4byte 0xFFFFFC1F
-.Leu_0803D7F4:
-    .4byte 0xFE007FFF
+    .section .text.npc_schedule_after
     .global func_0803D7E4
     .thumb_func
 func_0803D7E4:
@@ -15208,188 +14858,188 @@ func_0803D7E4:
     adds	r0, #112	@ 0x70
     ldr r1, .Leu_0803D9B8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #132	@ 0x84
     ldr r1, .Leu_0803D9BC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #152	@ 0x98
     ldr r1, .Leu_0803D9C0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #176	@ 0xb0
     ldr r1, .Leu_0803D9C4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #196	@ 0xc4
     ldr r1, .Leu_0803D9C8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #216	@ 0xd8
     ldr r1, .Leu_0803D9CC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #240	@ 0xf0
     ldr r1, .Leu_0803D9D0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #130	@ 0x82
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9D4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #140	@ 0x8c
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9D8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #150	@ 0x96
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9DC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #160	@ 0xa0
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9E0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #170	@ 0xaa
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9E4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #182	@ 0xb6
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9E8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #192	@ 0xc0
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9EC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #202	@ 0xca
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9F0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #212	@ 0xd4
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9F4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #222	@ 0xde
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9F8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #232	@ 0xe8
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803D9FC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #242	@ 0xf2
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA00
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #254	@ 0xfe
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA04
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #132	@ 0x84
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA08
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #138	@ 0x8a
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA0C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #143	@ 0x8f
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA10
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #148	@ 0x94
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA14
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #153	@ 0x99
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA18
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #159	@ 0x9f
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA1C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #164	@ 0xa4
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA20
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #170	@ 0xaa
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA24
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #175	@ 0xaf
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA28
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #196	@ 0xc4
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA2C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #202	@ 0xca
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Leu_0803DA30
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     bl func_080A0A04
     cmp	r0, #0
     beq .Leu_0803D9B2
     ldr r1, .Leu_0803DA34
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
 .Leu_0803D9B2:
     pop	{r4, r5}
     pop	{r0}
@@ -24061,182 +23711,7 @@ func_0803D644:
     bx	r1
 .Lde_0803D57C:
     .4byte gUnk_080F1A66
-    .global func_0803D688
-    .thumb_func
-func_0803D688:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #24
-    adds	r7, r0, #0
-    adds	r4, r1, #0
-    adds	r0, r2, #0
-    ldr	r1, [r4, #0]
-    bl _call_via_r1
-    mov	sl, r0
-    movs	r0, #0
-    mov	ip, r0
-    ldr	r1, [r4, #8]
-    cmp	r1, #0
-    beq .Lde_0803D5C0
-    mov	r2, sl
-    lsls	r0, r2, #2
-    adds	r0, r0, r1
-    ldr	r1, [r0, #0]
-    cmp	r1, #0
-    beq .Lde_0803D5C0
-    ldrh	r0, [r1, #0]
-    cmp	r0, #0
-    beq .Lde_0803D5C0
-    ldr	r0, [r1, #4]
-    cmp	r0, #0
-    beq .Lde_0803D5C0
-    ldr	r0, [r0, #4]
-    mov	ip, r0
-.Lde_0803D5C0:
-    mov	r0, ip
-    cmp	r0, #0
-    beq .Lde_0803D648
-    ldrh	r2, [r0, #10]
-    lsls	r2, r2, #22
-    movs	r1, #6
-    ldrsh	r6, [r0, r1]
-    movs	r1, #8
-    ldrsh	r0, [r0, r1]
-    mov	r8, r0
-    add	r1, sp, #8
-    lsrs	r2, r2, #22
-    ldrh	r3, [r1, #0]
-    ldr r4, .Lde_0803D644
-    adds	r0, r4, #0
-    ands	r0, r3
-    orrs	r0, r2
-    strh	r0, [r1, #0]
-    lsls	r6, r6, #16
-    lsrs	r2, r6, #16
-    movs	r0, #63	@ 0x3f
-    mov	r9, r0
-    ands	r2, r0
-    lsls	r2, r2, #2
-    ldrb	r5, [r1, #1]
-    movs	r3, #3
-    adds	r0, r3, #0
-    ands	r0, r5
-    orrs	r0, r2
-    strb	r0, [r1, #1]
-    lsrs	r6, r6, #22
-    ldrh	r2, [r1, #2]
-    adds	r0, r4, #0
-    ands	r0, r2
-    orrs	r0, r6
-    strh	r0, [r1, #2]
-    mov	r2, r8
-    lsls	r2, r2, #16
-    mov	r8, r2
-    lsrs	r0, r2, #16
-    mov	r2, r9
-    ands	r0, r2
-    lsls	r0, r0, #2
-    ldrb	r2, [r1, #3]
-    ands	r3, r2
-    orrs	r3, r0
-    strb	r3, [r1, #3]
-    mov	r0, r8
-    lsrs	r0, r0, #22
-    mov	r8, r0
-    ldrh	r0, [r1, #4]
-    ands	r4, r0
-    mov	r2, r8
-    orrs	r4, r2
-    strh	r4, [r1, #4]
-    mov	r0, ip
-    ldrb	r4, [r0, #11]
-    lsls	r4, r4, #28
-    lsrs	r4, r4, #30
-    mov	r5, sp
-    mov	r0, sp
-    movs	r2, #6
-    bl memcpy
-    strb	r4, [r5, #6]
-    b .Lde_0803D686
-.Lde_0803D644:
-    .4byte 0xFFFFFC00
-.Lde_0803D648:
-    add	r1, sp, #16
-    movs	r4, #141	@ 0x8d
-    lsls	r4, r4, #2
-    ldrh	r2, [r1, #0]
-    ldr r3, .Lde_0803D6D0
-    adds	r0, r3, #0
-    ands	r0, r2
-    orrs	r0, r4
-    strh	r0, [r1, #0]
-    movs	r5, #0
-    ldrb	r4, [r1, #1]
-    movs	r2, #3
-    adds	r0, r2, #0
-    ands	r0, r4
-    strb	r0, [r1, #1]
-    ldrh	r4, [r1, #2]
-    adds	r0, r3, #0
-    ands	r0, r4
-    strh	r0, [r1, #2]
-    ldrb	r0, [r1, #3]
-    ands	r2, r0
-    strb	r2, [r1, #3]
-    ldrh	r0, [r1, #4]
-    ands	r3, r0
-    strh	r3, [r1, #4]
-    mov	r4, sp
-    mov	r0, sp
-    movs	r2, #6
-    bl memcpy
-    strb	r5, [r4, #6]
-.Lde_0803D686:
-    adds	r0, r7, #0
-    mov	r1, sp
-    bl SetLocation__3NpcRC13ActorLocation
-    movs	r0, #31
-    mov	r1, sl
-    ands	r1, r0
-    mov	sl, r1
-    ldrb	r1, [r7, #12]
-    movs	r0, #32
-    negs	r0, r0
-    ands	r0, r1
-    mov	r2, sl
-    orrs	r0, r2
-    strb	r0, [r7, #12]
-    ldrh	r1, [r7, #12]
-    ldr r0, .Lde_0803D6D4
-    ands	r0, r1
-    strh	r0, [r7, #12]
-    ldrb	r1, [r7, #13]
-    movs	r0, #125	@ 0x7d
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r7, #13]
-    ldr	r0, [r7, #12]
-    ldr r1, .Lde_0803D6D8
-    ands	r0, r1
-    str	r0, [r7, #12]
-    add	sp, #24
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Lde_0803D6D0:
-    .4byte 0xFFFFFC00
-.Lde_0803D6D4:
-    .4byte 0xFFFFFC1F
-.Lde_0803D6D8:
-    .4byte 0xFE007FFF
+    .section .text.npc_schedule_after
     .global func_0803D7E4
     .thumb_func
 func_0803D7E4:
@@ -24246,188 +23721,188 @@ func_0803D7E4:
     adds	r0, #112	@ 0x70
     ldr r1, .Lde_0803D89C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #132	@ 0x84
     ldr r1, .Lde_0803D8A0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #152	@ 0x98
     ldr r1, .Lde_0803D8A4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #176	@ 0xb0
     ldr r1, .Lde_0803D8A8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #196	@ 0xc4
     ldr r1, .Lde_0803D8AC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #216	@ 0xd8
     ldr r1, .Lde_0803D8B0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #240	@ 0xf0
     ldr r1, .Lde_0803D8B4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #130	@ 0x82
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8B8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #140	@ 0x8c
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8BC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #150	@ 0x96
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8C0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #160	@ 0xa0
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8C4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #170	@ 0xaa
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8C8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #182	@ 0xb6
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8CC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #192	@ 0xc0
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8D0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #202	@ 0xca
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8D4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #212	@ 0xd4
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8D8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #222	@ 0xde
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8DC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #232	@ 0xe8
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8E0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #242	@ 0xf2
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8E4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #254	@ 0xfe
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8E8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #132	@ 0x84
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8EC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #138	@ 0x8a
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8F0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #143	@ 0x8f
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8F4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #148	@ 0x94
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8F8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #153	@ 0x99
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D8FC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #159	@ 0x9f
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D900
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #164	@ 0xa4
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D904
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #170	@ 0xaa
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D908
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #175	@ 0xaf
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D90C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #196	@ 0xc4
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D910
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #202	@ 0xca
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lde_0803D914
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     bl func_080A0A04
     cmp	r0, #0
     beq .Lde_0803D896
     ldr r1, .Lde_0803D918
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
 .Lde_0803D896:
     pop	{r4, r5}
     pop	{r0}
@@ -33119,182 +32594,7 @@ func_0803D644:
     bx	r1
 .Lus_0803D684:
     .4byte gUnk_080F1A66
-    .global func_0803D688
-    .thumb_func
-func_0803D688:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #24
-    adds	r7, r0, #0
-    adds	r4, r1, #0
-    adds	r0, r2, #0
-    ldr	r1, [r4, #0]
-    bl _call_via_r1
-    mov	sl, r0
-    movs	r0, #0
-    mov	ip, r0
-    ldr	r1, [r4, #8]
-    cmp	r1, #0
-    beq .Lus_0803D6C8
-    mov	r2, sl
-    lsls	r0, r2, #2
-    adds	r0, r0, r1
-    ldr	r1, [r0, #0]
-    cmp	r1, #0
-    beq .Lus_0803D6C8
-    ldrh	r0, [r1, #0]
-    cmp	r0, #0
-    beq .Lus_0803D6C8
-    ldr	r0, [r1, #4]
-    cmp	r0, #0
-    beq .Lus_0803D6C8
-    ldr	r0, [r0, #4]
-    mov	ip, r0
-.Lus_0803D6C8:
-    mov	r0, ip
-    cmp	r0, #0
-    beq .Lus_0803D750
-    ldrh	r2, [r0, #10]
-    lsls	r2, r2, #22
-    movs	r1, #6
-    ldrsh	r6, [r0, r1]
-    movs	r1, #8
-    ldrsh	r0, [r0, r1]
-    mov	r8, r0
-    add	r1, sp, #8
-    lsrs	r2, r2, #22
-    ldrh	r3, [r1, #0]
-    ldr r4, .Lus_0803D74C
-    adds	r0, r4, #0
-    ands	r0, r3
-    orrs	r0, r2
-    strh	r0, [r1, #0]
-    lsls	r6, r6, #16
-    lsrs	r2, r6, #16
-    movs	r0, #63	@ 0x3f
-    mov	r9, r0
-    ands	r2, r0
-    lsls	r2, r2, #2
-    ldrb	r5, [r1, #1]
-    movs	r3, #3
-    adds	r0, r3, #0
-    ands	r0, r5
-    orrs	r0, r2
-    strb	r0, [r1, #1]
-    lsrs	r6, r6, #22
-    ldrh	r2, [r1, #2]
-    adds	r0, r4, #0
-    ands	r0, r2
-    orrs	r0, r6
-    strh	r0, [r1, #2]
-    mov	r2, r8
-    lsls	r2, r2, #16
-    mov	r8, r2
-    lsrs	r0, r2, #16
-    mov	r2, r9
-    ands	r0, r2
-    lsls	r0, r0, #2
-    ldrb	r2, [r1, #3]
-    ands	r3, r2
-    orrs	r3, r0
-    strb	r3, [r1, #3]
-    mov	r0, r8
-    lsrs	r0, r0, #22
-    mov	r8, r0
-    ldrh	r0, [r1, #4]
-    ands	r4, r0
-    mov	r2, r8
-    orrs	r4, r2
-    strh	r4, [r1, #4]
-    mov	r0, ip
-    ldrb	r4, [r0, #11]
-    lsls	r4, r4, #28
-    lsrs	r4, r4, #30
-    mov	r5, sp
-    mov	r0, sp
-    movs	r2, #6
-    bl memcpy
-    strb	r4, [r5, #6]
-    b .Lus_0803D78E
-.Lus_0803D74C:
-    .4byte 0xFFFFFC00
-.Lus_0803D750:
-    add	r1, sp, #16
-    movs	r4, #141	@ 0x8d
-    lsls	r4, r4, #2
-    ldrh	r2, [r1, #0]
-    ldr r3, .Lus_0803D7D8
-    adds	r0, r3, #0
-    ands	r0, r2
-    orrs	r0, r4
-    strh	r0, [r1, #0]
-    movs	r5, #0
-    ldrb	r4, [r1, #1]
-    movs	r2, #3
-    adds	r0, r2, #0
-    ands	r0, r4
-    strb	r0, [r1, #1]
-    ldrh	r4, [r1, #2]
-    adds	r0, r3, #0
-    ands	r0, r4
-    strh	r0, [r1, #2]
-    ldrb	r0, [r1, #3]
-    ands	r2, r0
-    strb	r2, [r1, #3]
-    ldrh	r0, [r1, #4]
-    ands	r3, r0
-    strh	r3, [r1, #4]
-    mov	r4, sp
-    mov	r0, sp
-    movs	r2, #6
-    bl memcpy
-    strb	r5, [r4, #6]
-.Lus_0803D78E:
-    adds	r0, r7, #0
-    mov	r1, sp
-    bl SetLocation__3NpcRC13ActorLocation
-    movs	r0, #31
-    mov	r1, sl
-    ands	r1, r0
-    mov	sl, r1
-    ldrb	r1, [r7, #12]
-    movs	r0, #32
-    negs	r0, r0
-    ands	r0, r1
-    mov	r2, sl
-    orrs	r0, r2
-    strb	r0, [r7, #12]
-    ldrh	r1, [r7, #12]
-    ldr r0, .Lus_0803D7DC
-    ands	r0, r1
-    strh	r0, [r7, #12]
-    ldrb	r1, [r7, #13]
-    movs	r0, #125	@ 0x7d
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r7, #13]
-    ldr	r0, [r7, #12]
-    ldr r1, .Lus_0803D7E0
-    ands	r0, r1
-    str	r0, [r7, #12]
-    add	sp, #24
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Lus_0803D7D8:
-    .4byte 0xFFFFFC00
-.Lus_0803D7DC:
-    .4byte 0xFFFFFC1F
-.Lus_0803D7E0:
-    .4byte 0xFE007FFF
+    .section .text.npc_schedule_after
     .global func_0803D7E4
     .thumb_func
 func_0803D7E4:
@@ -33304,188 +32604,188 @@ func_0803D7E4:
     adds	r0, #112	@ 0x70
     ldr r1, .Lus_0803D9A4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #132	@ 0x84
     ldr r1, .Lus_0803D9A8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #152	@ 0x98
     ldr r1, .Lus_0803D9AC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #176	@ 0xb0
     ldr r1, .Lus_0803D9B0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #196	@ 0xc4
     ldr r1, .Lus_0803D9B4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #216	@ 0xd8
     ldr r1, .Lus_0803D9B8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     adds	r0, #240	@ 0xf0
     ldr r1, .Lus_0803D9BC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #130	@ 0x82
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9C0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #140	@ 0x8c
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9C4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #150	@ 0x96
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9C8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #160	@ 0xa0
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9CC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #170	@ 0xaa
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9D0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #182	@ 0xb6
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9D4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #192	@ 0xc0
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9D8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #202	@ 0xca
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9DC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #212	@ 0xd4
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9E0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #222	@ 0xde
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9E4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #232	@ 0xe8
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9E8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #242	@ 0xf2
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9EC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #254	@ 0xfe
     lsls	r1, r1, #1
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9F0
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #132	@ 0x84
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9F4
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #138	@ 0x8a
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9F8
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #143	@ 0x8f
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803D9FC
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #148	@ 0x94
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803DA00
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #153	@ 0x99
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803DA04
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #159	@ 0x9f
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803DA08
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #164	@ 0xa4
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803DA0C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #170	@ 0xaa
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803DA10
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #175	@ 0xaf
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803DA14
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #196	@ 0xc4
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803DA18
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     movs	r1, #202	@ 0xca
     lsls	r1, r1, #2
     adds	r0, r4, r1
     ldr r1, .Lus_0803DA1C
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
     adds	r0, r4, #0
     bl func_080A0A04
     cmp	r0, #0
     beq .Lus_0803D99E
     ldr r1, .Lus_0803DA20
     adds	r2, r5, #0
-    bl func_0803D688
+    bl InitializeSchedule__3NpcRC12ScheduleInfoPCv
 .Lus_0803D99E:
     pop	{r4, r5}
     pop	{r0}
