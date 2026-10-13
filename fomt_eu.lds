@@ -55,7 +55,11 @@ SECTIONS
         src/crt0.o(.rom_header);
         src/main.o(.text);
         src/sram_proxy_1.o(.text);
-        src/interrupt.o(.text);
+        src/interrupt.o(.text.func_080004C4);
+        asm/interrupt.o(.text.interrupt_enable);
+        src/interrupt.o(.text.func_0800050C);
+        asm/interrupt.o(.text.interrupt_disable);
+        src/interrupt.o(.text.func_08000540 .text.func_08000554 .text.func_08000568 .text.func_0800057C .text.func_08000580 .text.func_08000584 .text.func_08000590);
         src/new.o(.text);
         src/pure_virtual.o(.text);
         src/sram_proxy_2.o(.text.func_0800063C .text.func_08000640 .text.func_08000664);

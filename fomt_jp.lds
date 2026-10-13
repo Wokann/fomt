@@ -67,7 +67,11 @@ SECTIONS
         . = 0x2E0; /* JP ROM 0x080002E0, independently matched */
         src/sram_proxy_1.o(.text);
         . = 0x4C4; /* JP ROM 0x080004C4, independently matched */
-        src/interrupt.o(.text);
+        src/interrupt.o(.text.func_080004C4);
+        asm/interrupt.o(.text.interrupt_enable);
+        src/interrupt.o(.text.func_0800050C);
+        asm/interrupt.o(.text.interrupt_disable);
+        src/interrupt.o(.text.func_08000540 .text.func_08000554 .text.func_08000568 .text.func_0800057C .text.func_08000580 .text.func_08000584 .text.func_08000590);
         . = 0x59C; /* JP ROM 0x0800059C, independently matched */
         src/new.o(.text);
         src/pure_virtual.o(.text);
