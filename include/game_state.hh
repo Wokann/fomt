@@ -12,6 +12,8 @@
 #include "cooking_recipe_inventory_data.hh"
 #include "event_state.hh"
 #include "npc_collection.hh"
+#include "field_item_data.hh"
+#include "actor_runtime_data.hh"
 
 struct SramAccess;
 
@@ -64,7 +66,10 @@ struct GameStateSaveImage {
     TVShoppingOrderState tv_shopping;
     u8 unk_2C80[0x1D8];
     ActorStateGrid actor_state_grid;
-    u8 unk_3480[0x74];
+    u8 unk_3480[0x48];
+    FieldItemState field_items;
+    u32 unk_34D8;
+    Unk_Actor_0809BFE8 unk_34DC;
 };
 
 typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
@@ -86,6 +91,9 @@ typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_sho
 typedef char GameStateSaveImageAfterShoppingCheck[offsetof(GameStateSaveImage, unk_2C80) == 0x2C80 ? 1 : -1];
 typedef char GameStateSaveImageActorGridCheck[offsetof(GameStateSaveImage, actor_state_grid) == 0x2E58 ? 1 : -1];
 typedef char GameStateSaveImageAfterActorGridCheck[offsetof(GameStateSaveImage, unk_3480) == 0x3480 ? 1 : -1];
+typedef char GameStateSaveImageFieldItemsCheck[offsetof(GameStateSaveImage, field_items) == 0x34C8 ? 1 : -1];
+typedef char GameStateSaveImageTailWordCheck[offsetof(GameStateSaveImage, unk_34D8) == 0x34D8 ? 1 : -1];
+typedef char GameStateSaveImageTailActorCheck[offsetof(GameStateSaveImage, unk_34DC) == 0x34DC ? 1 : -1];
 
 // The upper word records the failed write stage; these are stage IDs, not
 // independent bits. The lower word carries the SRAM service's error flags.

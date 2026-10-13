@@ -422,7 +422,8 @@ SECTIONS
         src/npc_collection.o(.text);
         asm/code_809E804.o(.text.npc_after_child);
         src/npc_locations.o(.text);
-        asm/code_809E804.o(.text.npc_locations_after);
+        src/field_item_data.o(.text);
+        asm/code_809E804.o(.text.field_item_after);
         . = 0xA46C8;
         src/map_data.o(.text.get_map_data);
         . = 0xA46DC;

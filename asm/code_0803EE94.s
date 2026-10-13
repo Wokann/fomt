@@ -60037,14 +60037,14 @@ func_080701BC:
 	mov r0, r8
 	adds r1, r4, #0
 	movs r2, #2
-	bl func_080A1ED4
+	bl IsAvailable__C14FieldItemStateUii
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080705BC
 	add r0, sp, #0xc
 	mov r1, r8
 	adds r2, r4, #0
-	bl func_080A1CBC
+	bl GetRecord__C14FieldItemStateUi
 	ldr r1, [sp, #0x10]
 	movs r0, #8
 	ldrsh r2, [r5, r0]
@@ -217309,14 +217309,14 @@ func_080701BC: @ 0x080701BC
 	mov r0, r8
 	adds r1, r4, #0
 	movs r2, #2
-	bl func_080A1ED4
+	bl IsAvailable__C14FieldItemStateUii
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L08070960
 	add r0, sp, #0xc
 	mov r1, r8
 	adds r2, r4, #0
-	bl func_080A1CBC
+	bl GetRecord__C14FieldItemStateUi
 	ldr r1, [sp, #0x10]
 	movs r0, #8
 	ldrsh r2, [r5, r0]
