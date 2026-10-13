@@ -9088,7 +9088,7 @@ func_08024814:
     bl GetLocation__C7AEntity
     adds r0, r4, #0
     mov r1, sp
-    bl func_08010014
+    bl SetLocation__9MoreItemsRC8Location
 .Ljp_080248FE:
     ldr r0, .Ljp_0802492C @ =__vt_7AEntity
     str r0, [r5, #0x14]
@@ -15371,7 +15371,7 @@ func_08027990: @ 0x08027990
     movs r2, #0xe5
     lsls r2, r2, #5
     adds r0, r0, r2
-    bl func_0800FFD0
+    bl GetSize__C9MoreItems
     cmp r0, #0
     bne .Ljp_080279D0
     b .Ljp_08027F16
@@ -15380,13 +15380,13 @@ func_08027990: @ 0x08027990
     movs r3, #0xe5
     lsls r3, r3, #5
     adds r0, r0, r3
-    bl func_0800FFD4
+    bl Begin__9MoreItems
     adds r4, r0, #0
     ldr r0, [r6, #0x34]
     movs r1, #0xe5
     lsls r1, r1, #5
     adds r0, r0, r1
-    bl func_0800FFD8
+    bl End__9MoreItems
     adds r5, r0, #0
     adds r7, r6, #0
     adds r7, #0x88
@@ -15418,7 +15418,7 @@ func_08027990: @ 0x08027990
     movs r3, #0xe5
     lsls r3, r3, #5
     adds r0, r0, r3
-    bl func_08010024
+    bl Clear__9MoreItems
     movs r0, #0
     mov r8, r0
     str r0, [r7, #4]
@@ -28679,7 +28679,7 @@ func_0802DE90:
     bl _call_via_r2
     adds r5, r0, #0
     ldr r0, [r5, #0x18]
-    bl func_0800FFD0
+    bl GetSize__C9MoreItems
     movs r1, #0
     cmp r0, #0x1e
     bne .Ljp_0802E34A
@@ -31044,7 +31044,7 @@ func_0802EE80: @ 0x0802EE80
     orrs r5, r2
     strh r5, [r6, #4]
     mov r1, sp
-    bl func_08010014
+    bl SetLocation__9MoreItemsRC8Location
     mov r2, sl
     ldr r0, [r2]
     ldr r1, [r0]
@@ -43769,7 +43769,7 @@ func_08024A80: @ 0x08024A80
     bl GetLocation__C7AEntity
     adds r0, r4, #0
     mov r1, sp
-    bl func_08010014
+    bl SetLocation__9MoreItemsRC8Location
 .L08024B6A:
     ldr r0, .L08024B98 @ =__vt_7AEntity
     str r0, [r5, #0x14]
@@ -50027,7 +50027,7 @@ func_08027BFC: @ 0x08027BFC
     movs r2, #0xe5
     lsls r2, r2, #5
     adds r0, r0, r2
-    bl func_0800FFD0
+    bl GetSize__C9MoreItems
     cmp r0, #0
     bne .L08027C3C
     b .L08028182
@@ -50036,13 +50036,13 @@ func_08027BFC: @ 0x08027BFC
     movs r3, #0xe5
     lsls r3, r3, #5
     adds r0, r0, r3
-    bl func_0800FFD4
+    bl Begin__9MoreItems
     adds r4, r0, #0
     ldr r0, [r6, #0x34]
     movs r1, #0xe5
     lsls r1, r1, #5
     adds r0, r0, r1
-    bl func_0800FFD8
+    bl End__9MoreItems
     adds r5, r0, #0
     adds r7, r6, #0
     adds r7, #0x88
@@ -50074,7 +50074,7 @@ func_08027BFC: @ 0x08027BFC
     movs r3, #0xe5
     lsls r3, r3, #5
     adds r0, r0, r3
-    bl func_08010024
+    bl Clear__9MoreItems
     movs r0, #0
     mov r8, r0
     str r0, [r7, #4]
@@ -63302,7 +63302,7 @@ func_0802E0FC: @ 0x0802E0FC
     bl _call_via_r2
     adds r5, r0, #0
     ldr r0, [r5, #0x18]
-    bl func_0800FFD0
+    bl GetSize__C9MoreItems
     movs r1, #0
     cmp r0, #0x1e
     bne .L0802E5B6
@@ -65665,7 +65665,7 @@ func_0802F0EC: @ 0x0802F0EC
     orrs r5, r2
     strh r5, [r6, #4]
     mov r1, sp
-    bl func_08010014
+    bl SetLocation__9MoreItemsRC8Location
     mov r2, sl
     ldr r0, [r2]
     ldr r1, [r0]

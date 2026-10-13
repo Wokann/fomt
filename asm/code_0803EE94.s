@@ -59417,7 +59417,7 @@ func_080701BC:
 	lsls r0, r0, #5
 	adds r1, r1, r0
 	add r0, sp, #0xc
-	bl func_0800FFE0
+	bl GetLocation__C9MoreItems
 	ldrh r1, [r6]
 	lsls r1, r1, #0x16
 	lsrs r1, r1, #0x16
@@ -76590,7 +76590,7 @@ func_0807865C: @ 0x0807865C
 	lsls r2, r2, #5
 	adds r1, r1, r2
 	add r0, sp, #0x2c
-	bl func_0800FFE0
+	bl GetLocation__C9MoreItems
 	adds r0, r7, #0
 	add r1, sp, #0x2c
 	movs r2, #3
@@ -216709,7 +216709,7 @@ func_080701BC: @ 0x080701BC
 	lsls r0, r0, #5
 	adds r1, r1, r0
 	add r0, sp, #0xc
-	bl func_0800FFE0
+	bl GetLocation__C9MoreItems
 	ldrh r1, [r6]
 	lsls r1, r1, #0x16
 	lsrs r1, r1, #0x16
@@ -234720,7 +234720,7 @@ func_0807865C: @ 0x0807865C
 	lsls r2, r2, #5
 	adds r1, r1, r2
 	add r0, sp, #0x2c
-	bl func_0800FFE0
+	bl GetLocation__C9MoreItems
 	adds r0, r7, #0
 	add r1, sp, #0x2c
 	movs r2, #3

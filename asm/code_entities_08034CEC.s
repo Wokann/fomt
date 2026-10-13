@@ -5629,7 +5629,7 @@ func_08037E18:
     adds	r6, r2, #0
     mov	r0, sp
     adds	r1, r6, #0
-    bl func_0800FFE0
+    bl GetLocation__C9MoreItems
     adds	r0, r4, #0
     adds	r1, r5, #0
     mov	r2, sp
@@ -5659,7 +5659,7 @@ func_08037E48:
     bl GetLocation__C7AEntity
     adds	r0, r4, #0
     mov	r1, sp
-    bl func_08010014
+    bl SetLocation__9MoreItemsRC8Location
     ldr r0, .Ljp_08037C2C
     str	r0, [r5, #20]
     ldr	r1, [r5, #16]
@@ -5707,7 +5707,7 @@ func_08037EB4:
     adds	r4, r0, #0
     ldr	r0, [r4, #24]
     ldrb	r1, [r1, #0]
-    bl func_0800FFF4
+    bl PushBack__9MoreItemsUi
     ldr	r0, [r4, #16]
     cmp	r0, #0
     beq .Ljp_08037C5E
@@ -8007,7 +8007,7 @@ func_080390D0:
     .4byte 0x80C23205
     .4byte 0x00004770
     .4byte 0x6980B500
-    .4byte 0xF87CF7D7
+    bl GetSize__C9MoreItems
     .4byte 0x281E2100
     .4byte 0x2101D100
     .4byte 0xBC021C08
@@ -16515,7 +16515,7 @@ func_08037E18:
     adds	r6, r2, #0
     mov	r0, sp
     adds	r1, r6, #0
-    bl func_0800FFE0
+    bl GetLocation__C9MoreItems
     adds	r0, r4, #0
     adds	r1, r5, #0
     mov	r2, sp
@@ -16545,7 +16545,7 @@ func_08037E48:
     bl GetLocation__C7AEntity
     adds	r0, r4, #0
     mov	r1, sp
-    bl func_08010014
+    bl SetLocation__9MoreItemsRC8Location
     ldr r0, .Leu_08037EAC
     str	r0, [r5, #20]
     ldr	r1, [r5, #16]
@@ -16593,7 +16593,7 @@ func_08037EB4:
     adds	r4, r0, #0
     ldr	r0, [r4, #24]
     ldrb	r1, [r1, #0]
-    bl func_0800FFF4
+    bl PushBack__9MoreItemsUi
     ldr	r0, [r4, #16]
     cmp	r0, #0
     beq .Leu_08037EDE
@@ -18909,7 +18909,7 @@ func_080390D0:
     .align 2, 0
     push	{lr}
     ldr	r0, [r0, #24]
-    bl func_0800FFD0
+    bl GetSize__C9MoreItems
     movs	r1, #0
     cmp	r0, #30
     bne .Leu_08039140
@@ -27571,7 +27571,7 @@ func_08037E18:
     adds	r6, r2, #0
     mov	r0, sp
     adds	r1, r6, #0
-    bl func_0800FFE0
+    bl GetLocation__C9MoreItems
     adds	r0, r4, #0
     adds	r1, r5, #0
     mov	r2, sp
@@ -27601,7 +27601,7 @@ func_08037E48:
     bl GetLocation__C7AEntity
     adds	r0, r4, #0
     mov	r1, sp
-    bl func_08010014
+    bl SetLocation__9MoreItemsRC8Location
     ldr r0, .Lde_08037DAC
     str	r0, [r5, #20]
     ldr	r1, [r5, #16]
@@ -27649,7 +27649,7 @@ func_08037EB4:
     adds	r4, r0, #0
     ldr	r0, [r4, #24]
     ldrb	r1, [r1, #0]
-    bl func_0800FFF4
+    bl PushBack__9MoreItemsUi
     ldr	r0, [r4, #16]
     cmp	r0, #0
     beq .Lde_08037DDE
@@ -29965,7 +29965,7 @@ func_080390D0:
     .align 2, 0
     push	{lr}
     ldr	r0, [r0, #24]
-    bl func_0800FFD0
+    bl GetSize__C9MoreItems
     movs	r1, #0
     cmp	r0, #30
     bne .Lde_08039040
@@ -38626,7 +38626,7 @@ func_08037E18:
     adds	r6, r2, #0
     mov	r0, sp
     adds	r1, r6, #0
-    bl func_0800FFE0
+    bl GetLocation__C9MoreItems
     adds	r0, r4, #0
     adds	r1, r5, #0
     mov	r2, sp
@@ -38656,7 +38656,7 @@ func_08037E48:
     bl GetLocation__C7AEntity
     adds	r0, r4, #0
     mov	r1, sp
-    bl func_08010014
+    bl SetLocation__9MoreItemsRC8Location
     ldr r0, .Lus_08037E98
     str	r0, [r5, #20]
     ldr	r1, [r5, #16]
@@ -38704,7 +38704,7 @@ func_08037EB4:
     adds	r4, r0, #0
     ldr	r0, [r4, #24]
     ldrb	r1, [r1, #0]
-    bl func_0800FFF4
+    bl PushBack__9MoreItemsUi
     ldr	r0, [r4, #16]
     cmp	r0, #0
     beq .Lus_08037ECA
@@ -41020,7 +41020,7 @@ func_080390D0:
     .align 2, 0
     push	{lr}
     ldr	r0, [r0, #24]
-    bl func_0800FFD0
+    bl GetSize__C9MoreItems
     movs	r1, #0
     cmp	r0, #30
     bne .Lus_0803912C

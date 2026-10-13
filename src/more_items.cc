@@ -2,37 +2,41 @@
 
 #include <new>
 
-u32 func_0800FFD0(MoreItems const * self)
+MoreItems::MoreItems() : size(0), location(MAP_NONE, 0, 0)
 {
-    return self->size;
 }
 
-u8 * func_0800FFD4(MoreItems * self)
+u32 MoreItems::GetSize() const
 {
-    return self->data;
+    return size;
 }
 
-u8 * func_0800FFD8(MoreItems * self)
+u8 * MoreItems::Begin()
 {
-    return self->data + self->size;
+    return data;
 }
 
-MoreItemsState func_0800FFE0(MoreItems const * self)
+u8 * MoreItems::End()
 {
-    return self->unk_24;
+    return data + size;
 }
 
-void func_0800FFF4(MoreItems * self, u32 value)
+Location MoreItems::GetLocation() const
 {
-    if (self->size < ARRAY_COUNT(self->data))
+    return location;
+}
+
+void MoreItems::PushBack(u32 value)
+{
+    if (size < ARRAY_COUNT(data))
     {
-        u8 * destination = (u8 *)self + (offsetof(MoreItems, data) + self->size);
+        u8 * destination = (u8 *)this + (offsetof(MoreItems, data) + size);
         new (destination) u8(value);
-        self->size++;
+        size++;
     }
 }
 
-void func_08010014(MoreItems * self, MoreItemsState const & value)
+void MoreItems::SetLocation(Location const & value)
 {
-    self->unk_24 = value;
+    location = value;
 }
