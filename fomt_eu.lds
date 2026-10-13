@@ -414,10 +414,10 @@ SECTIONS
         src/harvest_sprite.o(.text);
 
         asm/code_809E804.o(.text);
-        . = 0x9EAFC; /* US ROM 0x0809EACC, shared NPC runtime fields. */
-        src/npc_runtime_data.o(.text);
-        . = 0x9EB28; /* US ROM 0x0809EAF8, remaining raw NPC runtime code. */
-        asm/code_809E804.o(.text.npc_runtime_data_after);
+        . = 0x9E9E8; /* Child constructors, birthday, age and walking state. */
+        src/child.o(.text);
+        . = 0x9EB7C; /* Remaining NPC state code. */
+        asm/code_809E804.o(.text.npc_after_child);
         . = 0xA46C8;
         src/map_data.o(.text.get_map_data);
         . = 0xA46DC;

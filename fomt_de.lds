@@ -424,10 +424,10 @@ SECTIONS
 
         . = 0x9E764; /* DE ROM 0x0809E764, shared NPC helper block. */
         asm/code_809E804.o(.text);
-        . = 0x9EA2C; /* DE ROM 0x0809EA2C, NPC runtime fields. */
-        src/npc_runtime_data.o(.text);
-        . = 0x9EA58; /* DE ROM 0x0809EA58, remaining NPC runtime code. */
-        asm/code_809E804.o(.text.npc_runtime_data_after);
+        . = 0x9E918; /* Child constructors, birthday, age and walking state. */
+        src/child.o(.text);
+        . = 0x9EAAC; /* Remaining NPC state code. */
+        asm/code_809E804.o(.text.npc_after_child);
         . = 0xA45F8; /* DE ROM 0x080A45F8, map-data accessor. */
         src/map_data.o(.text.get_map_data);
         . = 0xA460C; /* DE ROM 0x080A460C, remaining map-data code. */

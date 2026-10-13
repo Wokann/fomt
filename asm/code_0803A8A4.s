@@ -1929,7 +1929,7 @@ func_0803B4DC:
     ldr r1, .Ljp_0803B388
     adds	r0, r0, r1
     bl func_080A0384
-    bl func_0809EACC
+    bl GetName__5Child
     adds	r5, r0, #0
     b .Ljp_0803B406
     .align 2, 0
@@ -6734,7 +6734,7 @@ func_0803DCB4:
     bne .Ljp_0803D93E
     b .Ljp_0803DA52
 .Ljp_0803D93E:
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bls .Ljp_0803D948
     b .Ljp_0803DA4E
@@ -10916,7 +10916,7 @@ func_0803B4DC:
     ldr r1, .Leu_0803B608
     adds	r0, r0, r1
     bl func_080A0384
-    bl func_0809EACC
+    bl GetName__5Child
     adds	r5, r0, #0
     b .Leu_0803B686
     .align 2, 0
@@ -15832,7 +15832,7 @@ func_0803DCB4:
     bne .Leu_0803DCDE
     b .Leu_0803DDF2
 .Leu_0803DCDE:
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bls .Leu_0803DCE8
     b .Leu_0803DDEE
@@ -19975,7 +19975,7 @@ func_0803B4DC:
     ldr r1, .Lde_0803B508
     adds	r0, r0, r1
     bl func_080A0384
-    bl func_0809EACC
+    bl GetName__5Child
     adds	r5, r0, #0
     b .Lde_0803B586
     .align 2, 0
@@ -24870,7 +24870,7 @@ func_0803DCB4:
     bne .Lde_0803DBC2
     b .Lde_0803DCD6
 .Lde_0803DBC2:
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bls .Lde_0803DBCC
     b .Lde_0803DCD2
@@ -29012,7 +29012,7 @@ func_0803B4DC:
     ldr r1, .Lus_0803B5F4
     adds	r0, r0, r1
     bl func_080A0384
-    bl func_0809EACC
+    bl GetName__5Child
     adds	r5, r0, #0
     b .Lus_0803B672
     .align 2, 0
@@ -33928,7 +33928,7 @@ func_0803DCB4:
     bne .Lus_0803DCCA
     b .Lus_0803DDDE
 .Lus_0803DCCA:
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bls .Lus_0803DCD4
     b .Lus_0803DDDA

@@ -11,6 +11,7 @@
 #include "actor_state.hh"
 #include "cooking_recipe_inventory_data.hh"
 #include "event_state.hh"
+#include "child.hh"
 
 struct SramAccess;
 
@@ -53,7 +54,9 @@ struct GameStateSaveImage {
     Farmer farmer;
     Dog dog;
     MoreItems more_items;
-    u8 unk_1CCC[0x480];
+    u8 unk_1CCC[0x0C];
+    Child child;
+    u8 unk_1D00[0x44C];
     GameEventState event_state;
     u8 unk_21CC[0x44];
     GameDisplayOptions display_options;
@@ -73,6 +76,8 @@ typedef char GameStateSaveImageFarmerCheck[offsetof(GameStateSaveImage, farmer) 
 typedef char GameStateSaveImageDogCheck[offsetof(GameStateSaveImage, dog) == 0x1C70 ? 1 : -1];
 typedef char GameStateSaveImageMoreItemsCheck[offsetof(GameStateSaveImage, more_items) == 0x1CA0 ? 1 : -1];
 typedef char GameStateSaveImageAfterMoreItemsCheck[offsetof(GameStateSaveImage, unk_1CCC) == 0x1CCC ? 1 : -1];
+typedef char GameStateSaveImageChildCheck[offsetof(GameStateSaveImage, child) == 0x1CD8 ? 1 : -1];
+typedef char GameStateSaveImageAfterChildCheck[offsetof(GameStateSaveImage, unk_1D00) == 0x1D00 ? 1 : -1];
 typedef char GameStateSaveImageEventStateCheck[offsetof(GameStateSaveImage, event_state) == 0x214C ? 1 : -1];
 typedef char GameStateSaveImageAfterEventsCheck[offsetof(GameStateSaveImage, unk_21CC) == 0x21CC ? 1 : -1];
 typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];

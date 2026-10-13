@@ -482,10 +482,10 @@ SECTIONS
         . = 0x9E23C; /* JP ROM 0x0809E23C, independently matched */
 
         asm/code_809E804.o(.text);
-        . = 0x9E504; /* JP counterpart of shared NPC runtime fields. */
-        src/npc_runtime_data.o(.text);
-        . = 0x9E530; /* JP ROM 0x0809E530, remaining raw NPC runtime code. */
-        asm/code_809E804.o(.text.npc_runtime_data_after);
+        . = 0x9E3F0; /* Child constructors, birthday, age and walking state. */
+        src/child.o(.text);
+        . = 0x9E584; /* Remaining NPC state code. */
+        asm/code_809E804.o(.text.npc_after_child);
         . = 0xA40D0;
         src/map_data.o(.text.get_map_data);
         . = 0xA40E4;

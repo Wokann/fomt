@@ -1221,7 +1221,7 @@ func_08035C04:
     bl func_080A0384
     cmp	r0, #0
     beq .Ljp_08035A28
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Ljp_08035A28
     ldr	r0, [r4, #0]
@@ -1823,7 +1823,7 @@ func_08036084:
     bl func_080A0384
     cmp	r0, #0
     beq .Ljp_08035EA8
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Ljp_08035EA8
     ldr	r0, [r4, #0]
@@ -2313,7 +2313,7 @@ func_08036430:
     bl func_080A0384
     cmp	r0, #0
     beq .Ljp_08036254
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Ljp_08036254
     ldr	r0, [r4, #0]
@@ -2524,7 +2524,7 @@ func_080365CC:
     bl func_080A0384
     cmp	r0, #0
     beq .Ljp_080363F0
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Ljp_080363F0
     ldr	r0, [r4, #0]
@@ -2959,7 +2959,7 @@ func_08036900:
     bl func_080A0384
     cmp	r0, #0
     beq .Ljp_08036734
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Ljp_08036734
     ldr	r0, [r4, #0]
@@ -3647,7 +3647,7 @@ func_08036E70:
     beq .Ljp_08036C74
     ldr r5, .Ljp_08036C38
     ldr r7, .Ljp_08036C3C
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Ljp_08036C40
     adds	r0, r4, #0
@@ -3675,7 +3675,7 @@ func_08036E70:
     .4byte 0x00000277
 .Ljp_08036C54:
     adds	r0, r6, #0
-    bl func_0809EAE0
+    bl CanWalk__C5Child
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_08036C64
@@ -3729,7 +3729,7 @@ func_08036F0C:
     adds	r0, r5, #0
     bl func_08036E70
     adds	r0, r4, #0
-    bl func_0809EAE0
+    bl CanWalk__C5Child
     lsls	r0, r0, #24
     movs	r4, #1
     cmp	r0, #0
@@ -3776,7 +3776,7 @@ func_08036F68:
     bl func_080A0384
     cmp	r0, #0
     beq .Ljp_08036D86
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Ljp_08036D86
     adds	r0, r4, #0
@@ -12019,7 +12019,7 @@ func_08035C04:
     bl func_080A0384
     cmp	r0, #0
     beq .Leu_08035CA8
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Leu_08035CA8
     ldr	r0, [r4, #0]
@@ -12621,7 +12621,7 @@ func_08036084:
     bl func_080A0384
     cmp	r0, #0
     beq .Leu_08036128
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Leu_08036128
     ldr	r0, [r4, #0]
@@ -13111,7 +13111,7 @@ func_08036430:
     bl func_080A0384
     cmp	r0, #0
     beq .Leu_080364D4
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Leu_080364D4
     ldr	r0, [r4, #0]
@@ -13322,7 +13322,7 @@ func_080365CC:
     bl func_080A0384
     cmp	r0, #0
     beq .Leu_08036670
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Leu_08036670
     ldr	r0, [r4, #0]
@@ -13757,7 +13757,7 @@ func_08036900:
     bl func_080A0384
     cmp	r0, #0
     beq .Leu_080369B4
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Leu_080369B4
     ldr	r0, [r4, #0]
@@ -14445,7 +14445,7 @@ func_08036E70:
     beq .Leu_08036EF4
     ldr r5, .Leu_08036EB8
     ldr r7, .Leu_08036EBC
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Leu_08036EC0
     adds	r0, r4, #0
@@ -14473,7 +14473,7 @@ func_08036E70:
     .4byte 0x00000277
 .Leu_08036ED4:
     adds	r0, r6, #0
-    bl func_0809EAE0
+    bl CanWalk__C5Child
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Leu_08036EE4
@@ -14527,7 +14527,7 @@ func_08036F0C:
     adds	r0, r5, #0
     bl func_08036E70
     adds	r0, r4, #0
-    bl func_0809EAE0
+    bl CanWalk__C5Child
     lsls	r0, r0, #24
     movs	r4, #1
     cmp	r0, #0
@@ -14574,7 +14574,7 @@ func_08036F68:
     bl func_080A0384
     cmp	r0, #0
     beq .Leu_08037006
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Leu_08037006
     adds	r0, r4, #0
@@ -23075,7 +23075,7 @@ func_08035C04:
     bl func_080A0384
     cmp	r0, #0
     beq .Lde_08035BA8
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lde_08035BA8
     ldr	r0, [r4, #0]
@@ -23677,7 +23677,7 @@ func_08036084:
     bl func_080A0384
     cmp	r0, #0
     beq .Lde_08036028
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lde_08036028
     ldr	r0, [r4, #0]
@@ -24167,7 +24167,7 @@ func_08036430:
     bl func_080A0384
     cmp	r0, #0
     beq .Lde_080363D4
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lde_080363D4
     ldr	r0, [r4, #0]
@@ -24378,7 +24378,7 @@ func_080365CC:
     bl func_080A0384
     cmp	r0, #0
     beq .Lde_08036570
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lde_08036570
     ldr	r0, [r4, #0]
@@ -24813,7 +24813,7 @@ func_08036900:
     bl func_080A0384
     cmp	r0, #0
     beq .Lde_080368B4
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lde_080368B4
     ldr	r0, [r4, #0]
@@ -25501,7 +25501,7 @@ func_08036E70:
     beq .Lde_08036DF4
     ldr r5, .Lde_08036DB8
     ldr r7, .Lde_08036DBC
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lde_08036DC0
     adds	r0, r4, #0
@@ -25529,7 +25529,7 @@ func_08036E70:
     .4byte 0x00000277
 .Lde_08036DD4:
     adds	r0, r6, #0
-    bl func_0809EAE0
+    bl CanWalk__C5Child
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lde_08036DE4
@@ -25583,7 +25583,7 @@ func_08036F0C:
     adds	r0, r5, #0
     bl func_08036E70
     adds	r0, r4, #0
-    bl func_0809EAE0
+    bl CanWalk__C5Child
     lsls	r0, r0, #24
     movs	r4, #1
     cmp	r0, #0
@@ -25630,7 +25630,7 @@ func_08036F68:
     bl func_080A0384
     cmp	r0, #0
     beq .Lde_08036F06
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lde_08036F06
     adds	r0, r4, #0
@@ -34130,7 +34130,7 @@ func_08035C04:
     bl func_080A0384
     cmp	r0, #0
     beq .Lus_08035C94
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lus_08035C94
     ldr	r0, [r4, #0]
@@ -34732,7 +34732,7 @@ func_08036084:
     bl func_080A0384
     cmp	r0, #0
     beq .Lus_08036114
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lus_08036114
     ldr	r0, [r4, #0]
@@ -35222,7 +35222,7 @@ func_08036430:
     bl func_080A0384
     cmp	r0, #0
     beq .Lus_080364C0
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lus_080364C0
     ldr	r0, [r4, #0]
@@ -35433,7 +35433,7 @@ func_080365CC:
     bl func_080A0384
     cmp	r0, #0
     beq .Lus_0803665C
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lus_0803665C
     ldr	r0, [r4, #0]
@@ -35868,7 +35868,7 @@ func_08036900:
     bl func_080A0384
     cmp	r0, #0
     beq .Lus_080369A0
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lus_080369A0
     ldr	r0, [r4, #0]
@@ -36556,7 +36556,7 @@ func_08036E70:
     beq .Lus_08036EE0
     ldr r5, .Lus_08036EA4
     ldr r7, .Lus_08036EA8
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lus_08036EAC
     adds	r0, r4, #0
@@ -36584,7 +36584,7 @@ func_08036E70:
     .4byte 0x00000277
 .Lus_08036EC0:
     adds	r0, r6, #0
-    bl func_0809EAE0
+    bl CanWalk__C5Child
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lus_08036ED0
@@ -36638,7 +36638,7 @@ func_08036F0C:
     adds	r0, r5, #0
     bl func_08036E70
     adds	r0, r4, #0
-    bl func_0809EAE0
+    bl CanWalk__C5Child
     lsls	r0, r0, #24
     movs	r4, #1
     cmp	r0, #0
@@ -36685,7 +36685,7 @@ func_08036F68:
     bl func_080A0384
     cmp	r0, #0
     beq .Lus_08036FF2
-    bl func_0809EAD8
+    bl GetAgeDays__C5Child
     cmp	r0, #59	@ 0x3b
     bhi .Lus_08036FF2
     adds	r0, r4, #0

@@ -246,194 +246,7 @@ func_0809E994: @ 0x0809E3CC
     bx r0
     .align 2, 0
 
-    .global func_0809E9B8
-    .thumb_func
-func_0809E9B8: @ 0x0809E3F0
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #0x10
-    adds r7, r0, #0
-    add r1, sp, #8
-    movs r4, #0x1d
-    ldrh r2, [r1]
-    ldr r3, .Ljp_0809EA64
-    adds r0, r3, #0
-    ands r0, r2
-    orrs r0, r4
-    strh r0, [r1]
-    movs r6, #0x90
-    ldrb r4, [r1, #1]
-    movs r2, #3
-    adds r0, r2, #0
-    ands r0, r4
-    orrs r0, r6
-    strb r0, [r1, #1]
-    movs r5, #1
-    ldrh r4, [r1, #2]
-    adds r0, r3, #0
-    ands r0, r4
-    orrs r0, r5
-    strh r0, [r1, #2]
-    ldrb r0, [r1, #3]
-    ands r2, r0
-    orrs r2, r6
-    strb r2, [r1, #3]
-    ldrh r0, [r1, #4]
-    ands r3, r0
-    orrs r3, r5
-    strh r3, [r1, #4]
-    mov r4, sp
-    movs r0, #0
-    mov r8, r0
-    mov r0, sp
-    movs r2, #6
-    bl memcpy
-    mov r1, r8
-    strb r1, [r4, #6]
-    adds r0, r7, #0
-    mov r1, sp
-    bl __3NpcRC13ActorLocation
-    adds r5, r7, #0
-    adds r5, #0x14
-    ldr r6, .Ljp_0809EA68
-    adds r0, r6, #0
-    bl strlen
-    adds r4, r0, #0
-    cmp r4, #0xc
-    bls .Ljp_0809EA2A
-    movs r4, #0xc
-.Ljp_0809EA2A:
-    adds r0, r5, #0
-    adds r1, r6, #0
-    adds r2, r4, #0
-    bl memcpy
-    adds r0, r5, r4
-    mov r1, r8
-    strb r1, [r0]
-    adds r2, r7, #0
-    adds r2, #0x24
-    ldrb r1, [r2]
-    movs r0, #4
-    rsbs r0, r0, #0
-    ands r0, r1
-    movs r1, #0x7d
-    rsbs r1, r1, #0
-    ands r0, r1
-    strb r0, [r2]
-    adds r0, r7, #0
-    adds r0, #0x25
-    mov r1, r8
-    strb r1, [r0]
-    adds r0, r7, #0
-    add sp, #0x10
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_0809EA64: .4byte 0xFFFFFC00
-.Ljp_0809EA68: .4byte gText_CharacterName_Empty
-
-    .global func_0809EA6C
-    .thumb_func
-func_0809EA6C: @ 0x0809E4A4
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    adds r5, r0, #0
-    mov r8, r1
-    adds r1, r2, #0
-    bl __3NpcRC13ActorLocation
-    adds r6, r5, #0
-    adds r6, #0x14
-    ldr r7, .Ljp_0809EAC8
-    adds r0, r7, #0
-    bl strlen
-    adds r4, r0, #0
-    cmp r4, #0xc
-    bls .Ljp_0809EA90
-    movs r4, #0xc
-.Ljp_0809EA90:
-    adds r0, r6, #0
-    adds r1, r7, #0
-    adds r2, r4, #0
-    bl memcpy
-    adds r1, r6, r4
-    movs r0, #0
-    strb r0, [r1]
-    adds r1, r5, #0
-    adds r1, #0x24
-    mov r2, r8
-    ldrb r0, [r2]
-    strb r0, [r1]
-    adds r1, #1
-    movs r0, #0
-    strb r0, [r1]
-    adds r2, r5, #0
-    adds r2, #0x26
-    ldrb r1, [r2]
-    subs r0, #2
-    ands r0, r1
-    strb r0, [r2]
-    adds r0, r5, #0
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_0809EAC8: .4byte gText_CharacterName_Empty
-    .section .text.npc_runtime_data_after
-    @ Adjacent NPC location-state helpers and accessors.  Every executable
-    @ entry in this contiguous run is emitted as direct Thumb code.
-    .global func_0809EAF8
-    .thumb_func
-func_0809EAF8: @ 0x0809E530
-    push {r4, lr}
-    adds r4, r0, #0
-    bl rand
-    movs r1, #0x64
-    bl __modsi3
-    adds r1, r0, #0
-    adds r0, r4, #0
-    bl DayUpdate__3NpcUi
-    adds r4, #0x25
-    ldrb r0, [r4]
-    cmp r0, #0xfe
-    bhi .Ljp_0809E552
-    adds r0, #1
-    strb r0, [r4]
-.Ljp_0809E552:
-    pop {r4}
-    pop {r0}
-    bx r0
-
-    .global func_0809EB20
-    .thumb_func
-func_0809EB20: @ 0x0809E558
-    push {r4, r5, r6, lr}
-    adds r5, r1, #0
-    adds r6, r0, #0
-    adds r6, #0x14
-    adds r0, r5, #0
-    bl strlen
-    adds r4, r0, #0
-    cmp r4, #0xc
-    bls .Ljp_0809E56E
-    movs r4, #0xc
-.Ljp_0809E56E:
-    adds r0, r6, #0
-    adds r1, r5, #0
-    adds r2, r4, #0
-    bl memcpy
-    adds r1, r6, r4
-    movs r0, #0
-    strb r0, [r1]
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
+    .section .text.npc_after_child
 
     .global func_0809EB4C
     .thumb_func
@@ -1003,7 +816,7 @@ func_0809EEE8: @ 0x0809E920
 	ands r0, r1
 	strb r0, [r7, #3]
 	adds r0, r7, #4
-	bl func_0809E9B8
+	bl __5Child
 	adds r1, r7, #0
 	adds r1, #0x2c
 	movs r0, #0
@@ -2812,7 +2625,7 @@ func_0809FE3C: @ 0x0809F874
     cmp r1, #0x23
     bne .Ljp_0809F89C
     adds r0, #4
-    bl func_0809EACC
+    bl GetName__5Child
     b .Ljp_0809F8A4
 .Ljp_0809F89C:
     ldr r0, .Ljp_0809F8A8
@@ -2979,7 +2792,7 @@ func_0809FE74: @ 0x0809F8AC
 .L0809FFD8: .4byte gCharacterNameEntries
 .L0809FFDC:
 	adds r0, r4, #4
-	bl func_0809EAD0
+	bl GetBirthdayCode__C5Child
 	b .L080A001C
 .L0809FFE4:
 	lsls r0, r3, #3
@@ -3871,7 +3684,7 @@ func_080A05E8: @ 0x080A0020
 	mov r0, sp
 	mov r1, sb
 	adds r2, r4, #0
-	bl func_0809EA6C
+	bl __5ChildRC8GameDateRC13ActorLocation
 	adds r1, r7, #4
 	mov r0, sp
 	ldm r0!, {r2, r3, r4}
@@ -4885,7 +4698,7 @@ func_080A0B18: @ 0x080A0550
 	cmp r0, #0
 	bge .Ljp_080A0EBC
 	adds r0, r7, #4
-	bl func_0809EAF8
+	bl DayUpdate__5Child
 .Ljp_080A0EBC:
 	movs r1, #0xcf
 	lsls r1, r1, #2
@@ -10851,7 +10664,7 @@ func_080A3CF4: @ 0x080A372C
 	bl func_08007110
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl func_0809EB20
+	bl SetName__5ChildPCc
 	b .Ljp_080A3E56
 	.align 2, 0
 .Ljp_080A3E24: .4byte 0x00001CD4
@@ -91477,190 +91290,7 @@ func_0809E994: @ 0x0809E994
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_0809E9B8
-func_0809E9B8: @ 0x0809E9B8
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x10
-	adds r7, r0, #0
-	add r1, sp, #8
-	movs r4, #0x1d
-	ldrh r2, [r1]
-	ldr r3, .L0809EA64 @ =0xFFFFFC00
-	adds r0, r3, #0
-	ands r0, r2
-	orrs r0, r4
-	strh r0, [r1]
-	movs r6, #0x90
-	ldrb r4, [r1, #1]
-	movs r2, #3
-	adds r0, r2, #0
-	ands r0, r4
-	orrs r0, r6
-	strb r0, [r1, #1]
-	movs r5, #1
-	ldrh r4, [r1, #2]
-	adds r0, r3, #0
-	ands r0, r4
-	orrs r0, r5
-	strh r0, [r1, #2]
-	ldrb r0, [r1, #3]
-	ands r2, r0
-	orrs r2, r6
-	strb r2, [r1, #3]
-	ldrh r0, [r1, #4]
-	ands r3, r0
-	orrs r3, r5
-	strh r3, [r1, #4]
-	mov r4, sp
-	movs r0, #0
-	mov r8, r0
-	mov r0, sp
-	movs r2, #6
-	bl memcpy
-	mov r1, r8
-	strb r1, [r4, #6]
-	adds r0, r7, #0
-	mov r1, sp
-	bl __3NpcRC13ActorLocation
-	adds r5, r7, #0
-	adds r5, #0x14
-	ldr r6, .L0809EA68 @ =gText_CharacterName_Empty
-	adds r0, r6, #0
-	bl strlen
-	adds r4, r0, #0
-	cmp r4, #0xc
-	bls .L0809EA2A
-	movs r4, #0xc
-.L0809EA2A:
-	adds r0, r5, #0
-	adds r1, r6, #0
-	adds r2, r4, #0
-	bl memcpy
-	adds r0, r5, r4
-	mov r1, r8
-	strb r1, [r0]
-	adds r2, r7, #0
-	adds r2, #0x24
-	ldrb r1, [r2]
-	movs r0, #4
-	rsbs r0, r0, #0
-	ands r0, r1
-	movs r1, #0x7d
-	rsbs r1, r1, #0
-	ands r0, r1
-	strb r0, [r2]
-	adds r0, r7, #0
-	adds r0, #0x25
-	mov r1, r8
-	strb r1, [r0]
-	adds r0, r7, #0
-	add sp, #0x10
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0809EA64: .4byte 0xFFFFFC00
-.L0809EA68: .4byte gText_CharacterName_Empty
-
-	thumb_func_start func_0809EA6C
-func_0809EA6C: @ 0x0809EA6C
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	adds r5, r0, #0
-	mov r8, r1
-	adds r1, r2, #0
-	bl __3NpcRC13ActorLocation
-	adds r6, r5, #0
-	adds r6, #0x14
-	ldr r7, .L0809EAC8 @ =gText_CharacterName_Empty
-	adds r0, r7, #0
-	bl strlen
-	adds r4, r0, #0
-	cmp r4, #0xc
-	bls .L0809EA90
-	movs r4, #0xc
-.L0809EA90:
-	adds r0, r6, #0
-	adds r1, r7, #0
-	adds r2, r4, #0
-	bl memcpy
-	adds r1, r6, r4
-	movs r0, #0
-	strb r0, [r1]
-	adds r1, r5, #0
-	adds r1, #0x24
-	mov r2, r8
-	ldrb r0, [r2]
-	strb r0, [r1]
-	adds r1, #1
-	movs r0, #0
-	strb r0, [r1]
-	adds r2, r5, #0
-	adds r2, #0x26
-	ldrb r1, [r2]
-	subs r0, #2
-	ands r0, r1
-	strb r0, [r2]
-	adds r0, r5, #0
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0809EAC8: .4byte gText_CharacterName_Empty
-
-	.section .text.npc_runtime_data_after
-
-	thumb_func_start func_0809EAF8
-func_0809EAF8: @ 0x0809EAF8
-	push {r4, lr}
-	adds r4, r0, #0
-	bl rand
-	movs r1, #0x64
-	bl __modsi3
-	adds r1, r0, #0
-	adds r0, r4, #0
-	bl DayUpdate__3NpcUi
-	adds r4, #0x25
-	ldrb r0, [r4]
-	cmp r0, #0xfe
-	bhi .L0809EB1A
-	adds r0, #1
-	strb r0, [r4]
-.L0809EB1A:
-	pop {r4}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0809EB20
-func_0809EB20: @ 0x0809EB20
-	push {r4, r5, r6, lr}
-	adds r5, r1, #0
-	adds r6, r0, #0
-	adds r6, #0x14
-	adds r0, r5, #0
-	bl strlen
-	adds r4, r0, #0
-	cmp r4, #0xc
-	bls .L0809EB36
-	movs r4, #0xc
-.L0809EB36:
-	adds r0, r6, #0
-	adds r1, r5, #0
-	adds r2, r4, #0
-	bl memcpy
-	adds r1, r6, r4
-	movs r0, #0
-	strb r0, [r1]
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
+    .section .text.npc_after_child
 
 	thumb_func_start func_0809EB4C
 func_0809EB4C: @ 0x0809EB4C
@@ -92214,7 +91844,7 @@ func_0809EEE8: @ 0x0809EEE8
 	ands r0, r1
 	strb r0, [r7, #3]
 	adds r0, r7, #4
-	bl func_0809E9B8
+	bl __5Child
 	adds r1, r7, #0
 	adds r1, #0x2c
 	movs r0, #0
@@ -94022,7 +93652,7 @@ func_0809FE3C: @ 0x0809FE3C
 	cmp r1, #0x23
 	bne .L0809FE64
 	adds r0, #4
-	bl func_0809EACC
+	bl GetName__5Child
 	b .L0809FE6C
 .L0809FE64:
 	ldr r0, .L0809FE70 @ =gCharacterNameEntries
@@ -94189,7 +93819,7 @@ func_0809FE74: @ 0x0809FE74
 .L0809FFD8: .4byte gCharacterNameEntries
 .L0809FFDC:
 	adds r0, r4, #4
-	bl func_0809EAD0
+	bl GetBirthdayCode__C5Child
 	b .L080A001C
 .L0809FFE4:
 	lsls r0, r3, #3
@@ -95061,7 +94691,7 @@ func_080A05E8: @ 0x080A05E8
 	mov r0, sp
 	mov r1, sb
 	adds r2, r4, #0
-	bl func_0809EA6C
+	bl __5ChildRC8GameDateRC13ActorLocation
 	adds r1, r7, #4
 	mov r0, sp
 	ldm r0!, {r2, r3, r4}
@@ -96075,7 +95705,7 @@ func_080A0B18: @ 0x080A0B18
 	cmp r0, #0
 	bge .L080A0EBC
 	adds r0, r7, #4
-	bl func_0809EAF8
+	bl DayUpdate__5Child
 .L080A0EBC:
 	movs r1, #0xcf
 	lsls r1, r1, #2
@@ -102027,7 +101657,7 @@ func_080A3CF4: @ 0x080A3CF4
 	bl func_08007110
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl func_0809EB20
+	bl SetName__5ChildPCc
 	b .L080A3E56
 	.align 2, 0
 .L080A3E24: .4byte 0x00001CD4
