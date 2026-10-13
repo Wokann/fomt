@@ -27,9 +27,9 @@ bool HasHarvestSpriteWorkTarget(HarvestSpriteWorkTarget const * targets, Harvest
 void SetHarvestSpriteWorkTarget(HarvestSpriteWorkTarget * targets, u32 slot, HarvestSpriteWorkTarget const & value);
 void ClearHarvestSpriteWorkTarget(HarvestSpriteWorkTarget * targets, u32 slot);
 
-// The native bounded search is still assembly; it returns end when not found.
+// Search [begin, end); return the first matching work target, or end.
 extern "C" HarvestSpriteWorkTarget const * FindHarvestSpriteWorkTarget(
-    HarvestSpriteWorkTarget const * first, HarvestSpriteWorkTarget const * end,
+    HarvestSpriteWorkTarget const * begin, HarvestSpriteWorkTarget const * end,
     HarvestSpriteWorkTarget const & value);
 
 extern u8 const gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues[5];

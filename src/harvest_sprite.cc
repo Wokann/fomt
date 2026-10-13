@@ -330,3 +330,37 @@ void ClearHarvestSpriteWorkTarget(HarvestSpriteWorkTarget * targets, u32 slot)
     // Uninitialized payload/spare bits therefore follow the native temporary.
     targets[slot] = HarvestSpriteWorkTarget();
 }
+
+extern "C" HarvestSpriteWorkTarget const * FindHarvestSpriteWorkTarget(
+    HarvestSpriteWorkTarget const * begin, HarvestSpriteWorkTarget const * end,
+    HarvestSpriteWorkTarget const & value)
+{
+    // The native search uses the old STL's four-element scan, followed by
+    // fallthrough cases for the remaining elements. Return the first match.
+    HarvestSpriteWorkTarget const * first = begin;
+    ptrdiff_t blocks = (end - first) >> 2;
+    for (; blocks > 0; --blocks) {
+        if (*first == value) return first;
+        ++first;
+        if (*first == value) return first;
+        ++first;
+        if (*first == value) return first;
+        ++first;
+        if (*first == value) return first;
+        ++first;
+    }
+    switch (end - first) {
+    case 3:
+        if (*first == value) return first;
+        ++first;
+    case 2:
+        if (*first == value) return first;
+        ++first;
+    case 1:
+        if (*first == value) return first;
+        ++first;
+    case 0:
+    default:
+        return end;
+    }
+}

@@ -462,7 +462,7 @@ SECTIONS
         . = 0x9DE90; /* JP ROM 0x0809DE90, independently matched */
         src/bachelorette.o(.text);
         . = 0x9E060; /* JP ROM 0x0809E060, independently matched */
-        src/harvest_sprite.o(.text);
+        src/harvest_sprite.o(.text .text.*__*);
 
         . = 0x9E3F0; /* Child constructors, birthday, age and walking state. */
         src/child.o(.text);
@@ -542,6 +542,8 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080E0EF0);
         src/font.o(.text.font_unsigned_decimal);
         asm/code_linkonce.o(.text.code_080E0F48);
+        src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);
+        asm/code_linkonce.o(.text.sprite_work_target_search_after);
 
     } > ROM = 0xFF
 

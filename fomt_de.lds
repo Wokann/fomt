@@ -405,7 +405,7 @@ SECTIONS
         asm/code_actor_0809BFE8.o(.text.code_actor_0809E1B4);
         src/npc.o(.text .text.*);
         src/bachelorette.o(.text);
-        src/harvest_sprite.o(.text);
+        src/harvest_sprite.o(.text .text.*__*);
 
         . = 0x9E918; /* Child constructors, birthday, age and walking state. */
         src/child.o(.text);
@@ -474,6 +474,8 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080E0EF0);
         src/font.o(.text.font_unsigned_decimal);
         asm/code_linkonce.o(.text.code_080E0F48);
+        src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);
+        asm/code_linkonce.o(.text.sprite_work_target_search_after);
 
     } > ROM = 0xFF
 
