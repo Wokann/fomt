@@ -7972,7 +7972,7 @@ func_080A3F4C: @ 0x080A3984
 	cmp r0, #0
 	bne .Ljp_080A4456
 	mov r0, sb
-	bl func_08010F04
+	bl GetFlag4__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .Ljp_080A445A
@@ -12776,7 +12776,7 @@ func_080A6098: @ 0x080A6098
 .Ljp_080A6964:
 	mov r1, sb
 	ldr r0, [r1]
-	bl func_08010E58
+	bl GetFlag2__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .Ljp_080A6976
@@ -12792,7 +12792,7 @@ func_080A6098: @ 0x080A6098
 .Ljp_080A6988:
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08010E58
+	bl GetFlag2__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .Ljp_080A699A
@@ -13064,7 +13064,7 @@ func_080A6098: @ 0x080A6098
 .Ljp_080A6BD4:
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08010E50
+	bl GetFlag1__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .Ljp_080A6BE6
@@ -13077,7 +13077,7 @@ func_080A6098: @ 0x080A6098
 .Ljp_080A6BF0:
 	mov r3, sb
 	ldr r0, [r3]
-	bl func_08010E50
+	bl GetFlag1__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .Ljp_080A6C02
@@ -14092,7 +14092,7 @@ func_080A6098: @ 0x080A6098
 .Ljp_080A7428:
 	mov r3, sb
 	ldr r0, [r3]
-	bl func_08010E48
+	bl GetFlag0__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A746E
@@ -14112,7 +14112,7 @@ func_080A6098: @ 0x080A6098
 	bl func_080A5610
 	mov r1, sb
 	ldr r0, [r1]
-	bl func_08010E48
+	bl GetFlag0__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A746E
@@ -95519,7 +95519,7 @@ func_080A3F4C: @ 0x080A3F4C
 	cmp r0, #0
 	bne .L080A4456
 	mov r0, sb
-	bl func_08010F04
+	bl GetFlag4__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080A445A
@@ -100277,7 +100277,7 @@ func_080A6660: @ 0x080A6660
 .L080A6964:
 	mov r1, sb
 	ldr r0, [r1]
-	bl func_08010E58
+	bl GetFlag2__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080A6976
@@ -100293,7 +100293,7 @@ func_080A6660: @ 0x080A6660
 .L080A6988:
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08010E58
+	bl GetFlag2__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080A699A
@@ -100565,7 +100565,7 @@ func_080A6660: @ 0x080A6660
 .L080A6BD4:
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08010E50
+	bl GetFlag1__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080A6BE6
@@ -100578,7 +100578,7 @@ func_080A6660: @ 0x080A6660
 .L080A6BF0:
 	mov r3, sb
 	ldr r0, [r3]
-	bl func_08010E50
+	bl GetFlag1__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne .L080A6C02
@@ -101593,7 +101593,7 @@ func_080A6660: @ 0x080A6660
 .L080A7428:
 	mov r3, sb
 	ldr r0, [r3]
-	bl func_08010E48
+	bl GetFlag0__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A746E
@@ -101613,7 +101613,7 @@ func_080A6660: @ 0x080A6660
 	bl func_080A5BD8
 	mov r1, sb
 	ldr r0, [r1]
-	bl func_08010E48
+	bl GetFlag0__C18GameStateSaveImage
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A746E

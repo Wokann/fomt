@@ -49,7 +49,36 @@ typedef char TVShoppingOrderCountdownCheck[offsetof(TVShoppingOrderState, countd
 // member offsets. Unknown ranges remain explicit storage; the native save
 // initializer/copy/cleanup bodies have not yet been recovered as C++.
 struct GameStateSaveImage {
-    u8 unk_0000[0x10];
+    bool GetFlag0() const;
+    bool GetFlag1() const;
+    bool GetFlag2() const;
+    bool GetFlag3() const;
+    bool AllAnimalsHaveHighAffection() const;
+    bool GetFlag4() const;
+    u32 GetUnknown13() const;
+    u32 GetUnknown18() const;
+    u32 GetUnknown25() const;
+    void SetFlag0();
+    void SetFlag1();
+    void SetFlag2();
+    void SetFlag3();
+
+    // Verified by initialization, the native bit readers and setters. The
+    // flags and three bounded fields are not assigned gameplay names yet.
+    /* bit 00 */ bool flag_0 : 1;
+    /* bit 01 */ bool flag_1 : 1;
+    /* bit 02 */ bool flag_2 : 1;
+    /* bit 03 */ bool flag_3 : 1;
+    /* bit 04 */ bool flag_4 : 1;
+    /* bit 05 */ u32 unk_5 : 8;
+    /* bit 13 */ u32 unk_13 : 5;
+    /* bit 18 */ u16 unk_18 : 7;
+    /* bit 25 */ u8 unk_25 : 6;
+    /* bit 31 */ bool unk_31 : 1;
+    /* bit 32 */ bool unk_32 : 1;
+    u8 unk_05[3];
+    u32 unk_08;
+    u32 unk_0C;
     GameCalendar calendar;
     Farm farm;
     MoneyAccount money_account;
@@ -73,6 +102,9 @@ struct GameStateSaveImage {
 };
 
 typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
+typedef char GameStateSaveImageUnknown05Check[offsetof(GameStateSaveImage, unk_05) == 5 ? 1 : -1];
+typedef char GameStateSaveImageUnknown08Check[offsetof(GameStateSaveImage, unk_08) == 8 ? 1 : -1];
+typedef char GameStateSaveImageUnknown0CCheck[offsetof(GameStateSaveImage, unk_0C) == 12 ? 1 : -1];
 typedef char GameStateSaveImageCalendarCheck[offsetof(GameStateSaveImage, calendar) == 0x10 ? 1 : -1];
 typedef char GameStateSaveImageFarmCheck[offsetof(GameStateSaveImage, farm) == 0x14 ? 1 : -1];
 typedef char GameStateSaveImageMoneyCheck[offsetof(GameStateSaveImage, money_account) == 0x1AA8 ? 1 : -1];

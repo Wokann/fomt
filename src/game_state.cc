@@ -13,6 +13,49 @@ u32 GetNonzeroRandomValue()
     return value;
 }
 
+bool GameStateSaveImage::GetFlag0() const { return flag_0; }
+bool GameStateSaveImage::GetFlag1() const { return flag_1; }
+bool GameStateSaveImage::GetFlag2() const { return flag_2; }
+bool GameStateSaveImage::GetFlag3() const { return flag_3; }
+
+// Every present animal must have affection >= 200. Missing horse, chicken,
+// cow or sheep slots are ignored; the dog is always checked. Do not return
+// early: the native routine visits every slot even after a failed check.
+bool GameStateSaveImage::AllAnimalsHaveHighAffection() const
+{
+    bool result = true;
+    if (dog.GetAffection() < 200)
+        result = false;
+
+    Horse const * horse = farm.GetHorse();
+    if (horse != nullptr && horse->GetAffection() < 200)
+        result = false;
+
+    for (u32 i = 0; i < farm.coop.GetCapacity(); ++i) {
+        Chicken const * chicken = farm.coop.GetChicken(i);
+        if (chicken != nullptr && chicken->GetAffection() < 200)
+            result = false;
+    }
+
+    for (u32 i = 0; i < farm.barn.GetCapacity(); ++i) {
+        Animal const * animal = farm.barn.GetCow(i);
+        if (animal == nullptr)
+            animal = farm.barn.GetSheep(i);
+        if (animal != nullptr && animal->GetAffection() < 200)
+            result = false;
+    }
+    return result;
+}
+
+bool GameStateSaveImage::GetFlag4() const { return flag_4; }
+u32 GameStateSaveImage::GetUnknown13() const { return unk_13; }
+u32 GameStateSaveImage::GetUnknown18() const { return unk_18; }
+u32 GameStateSaveImage::GetUnknown25() const { return unk_25; }
+void GameStateSaveImage::SetFlag0() { flag_0 = true; }
+void GameStateSaveImage::SetFlag1() { flag_1 = true; }
+void GameStateSaveImage::SetFlag2() { flag_2 = true; }
+void GameStateSaveImage::SetFlag3() { flag_3 = true; }
+
 void InitializeGameDisplayOptions(GameDisplayOptions * options)
 {
     options->control_scheme = 0;

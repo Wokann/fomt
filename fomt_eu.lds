@@ -153,6 +153,8 @@ SECTIONS
         asm/game_scene.o(.text.game_scene_post);
         src/game_state.o(.text.GetNonzeroRandomValue);
         asm/game_state.o(.text);
+        src/game_state.o(.text.*__C18GameStateSaveImage .text.*__18GameStateSaveImage);
+        asm/game_state.o(.text.game_state_after_startup_accessors);
         src/game_state.o(.text.InitializeGameDisplayOptions);
         src/game_state.o(.text.*);
         asm/game_state.o(.text.game_state_after_display_options);
