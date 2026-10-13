@@ -5,6 +5,30 @@
 
 #include "fomt_constants.hh"
 
+// Saved at GameStateSaveImage +0x2C80. The first eight record IDs are
+// non-fish catches; the completion and total-count queries start at ID 8.
+struct FishingRecord {
+    u32 count;
+    u32 maximum_size; // Centimetres, as used by the fishing-record screen.
+};
+
+struct FishingRecords {
+    FishingRecords();
+    bool RegisterCatch(u32 index, u32 size);
+    bool HasCaughtEveryFishSpecies() const;
+    u32 GetTotalFishCaught() const;
+    u32 GetCatchCount(u32 index) const;
+    u32 GetMaximumSize(u32 index) const;
+    u32 GetUnknownRecordValue(u32 index) const;
+    char const * GetName(u32 index) const;
+
+    FishingRecord records[FISHING_RECORD_COUNT];
+};
+
+typedef char FishingRecordSizeCheck[sizeof(FishingRecord) == 8 ? 1 : -1];
+typedef char FishingRecordMaximumCheck[offsetof(FishingRecord, maximum_size) == 4 ? 1 : -1];
+typedef char FishingRecordsSizeCheck[sizeof(FishingRecords) == 0x1D8 ? 1 : -1];
+
 extern char const gText_FishingRecord_PirateFortune[];
 extern char const gText_FishingRecord_FossilOfFish[];
 extern char const gText_FishingRecord_PowerBerry[];
@@ -66,7 +90,6 @@ extern char const gText_FishingRecord_Coelacanth[];
 extern char const gText_FishingRecord_Squid[];
 
 extern char const * const gFishingRecordNames[FISHING_RECORD_COUNT];
-extern "C" char const * func_0809CE7C(u32 unused, u32 index);
 extern char const gCppRuntimeBadAlloc_FishingResultsTrailer[];
 
 #endif // FISHING_RESULTS_DATA_HH

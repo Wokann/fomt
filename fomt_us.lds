@@ -355,22 +355,8 @@ SECTIONS
         src/code_actor_0809C5EC.o(.text);
         . = 0x9C5F4; /* Event-variable registrations, romance marker and packed save state. */
         src/event_state.o(.text);
-        . = 0x9CD78; /* US ROM 0x0809CD78, clear tracked counters */
-        src/code_actor_0809CD78.o(.text);
-        . = 0x9CD98; /* US ROM 0x0809CD98, update count and maximum */
-        src/code_actor_0809CD98.o(.text);
-        . = 0x9CDCC; /* US ROM 0x0809CDCC, test tracked counts */
-        src/code_actor_0809CDCC.o(.text);
-        . = 0x9CDEC; /* US ROM 0x0809CDEC, sum tracked counts */
-        src/code_actor_0809CDEC.o(.text);
-        . = 0x9CE1C; /* US ROM 0x0809CE1C, get record count */
-        src/code_actor_0809CE1C.o(.text);
-        . = 0x9CE24; /* US ROM 0x0809CE24, get record maximum */
-        src/code_actor_0809CE24.o(.text);
-        . = 0x9CE30; /* US ROM 0x0809CE30, map six input codes */
-        src/code_actor_0809CE30.o(.text);
-        . = 0x9CE7C; /* US ROM 0x0809CE7C, get fishing-record name */
-        src/code_actor_0809CE7C.o(.text);
+        . = 0x9CD78; /* Fishing-record storage and queries. */
+        src/fishing_results_data.o(.text);
         . = 0x9CE8C; /* US ROM 0x0809CE8C, remaining raw actor code */
         src/actor_state.o(.text.__14ActorStateGrid);
         asm/code_actor_0809BFE8.o(.text.code_actor_0809CF34);

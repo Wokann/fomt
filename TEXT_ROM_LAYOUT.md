@@ -23,6 +23,20 @@ JP 已将逐主题旧锚点合并为两片连续可变区域：`0x080E7A40`–`0
 - `[Mary 脚本表]`：Mary 生成的脚本入口指针表；它与脚本本体由 Mary 单独维护，只记录该表的连续边界。
 - `[填充]`：链接映射中实际存在的 `*fill*` 字节，显示字节值。
 
+## 钓鱼记录的代码与名称表
+
+八个已有地址命名 C++ 接口归并为实际 `FishingRecords`，代码、
+名称和 59 项 `gFishingRecordNames` 表统一由既有
+`src/fishing_results_data.cc`／同名 `.hh` 维护。两个区域文本
+include 仍分别位于名称表的前后，不合并跨越表的文本，不修改
+原顺序、地区复用关系、`.rodata` 字节或本地化范围。保存映像
+`+0x2C80` 的实际 59 项记录不是新增 ROM 数组。四区各 26 个
+入调用均为符号重定位，JP 两处旧字节 BL 已移除，八个旧入口
+不保留别名。四版完整 ROM、默认编译和 776536 组原／新代码
+执行对比通过，另址链接后的名称表也按真实指针正确读取。
+具体保存布局、边界及未确认映射值见代码布局的“钓鱼图鉴的
+真实记录类型”；这是已有 C++ 的类型恢复，不重复计算进度。
+
 ## 存档启动位域的代码与数据
 
 保存映像的启动位域访问器与动物亲密度检查统一进入既有
@@ -480,7 +494,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x0810319C`–`0x081031FB` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo`；三个日更新调用均为对应对象的直接符号引用 |
 | `0x081031FC`–`0x081032C1` | `src/actor_state.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_state.cc`、`include/actor_state.hh`<br>`data/text/{jp,us,eu,de}/actor_state_1.cc`、`data/text/{jp,us,eu,de}/actor_state_2.cc` | `gActorStateMaxValues`（6 项）<br>前置 `bad_alloc`<br>`gActorDataSelectionEntries`（14 项；28 个 `gFieldRenderRectDescriptors + index` 重定位）<br>尾部 `bad_alloc`；已知汇编调用均为符号引用 |
 | `0x081032C2`–`0x081032C3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081032C4`–`0x08103601` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/jp/fishing_results_data_1.cc`、`data/text/jp/fishing_results_data_2.cc` | 59 条文本（`0x081032C4`–`0x0810350B`）<br>`gFishingRecordNames`（59 项，`0x0810350C`–`0x081035F7`；每项为命名文本重定位）<br>尾部 `bad_alloc`（`0x081035F8`–`0x08103601`）；汇编只调用 `func_0809CE7C`，后者直接引用表符号 |
+| `0x081032C4`–`0x08103601` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/jp/fishing_results_data_1.cc`、`data/text/jp/fishing_results_data_2.cc` | 59 条文本（`0x081032C4`–`0x0810350B`）<br>`gFishingRecordNames`（59 项，`0x0810350C`–`0x081035F7`；每项为命名文本重定位）<br>尾部 `bad_alloc`（`0x081035F8`–`0x08103601`）；汇编通过真实 `FishingRecords::GetName` 读取表符号 |
 | `0x08103602`–`0x08103603` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103604`–`0x08103BFB` | `src/actor_runtime_data.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`<br>`data/text/jp/actor_runtime_data.cc` | `gUnk_08103B10`、`gUnk_08103B38`、`gUnk_08103C3C`、`gUnk_08103C74`、`gUnk_08103F84`、`gUnk_08103F98`、`gUnk_08103FE4`、`gUnk_0810400C`<br>尾部 `bad_alloc`（`0x08103BD4`–`0x08103BDD`，4 字节对齐）<br>`gUnk_081040EC`（7×4 字节）；所有已知汇编读取均为符号引用 |
 | `0x08103BFC`–`0x08103BFC` | `src/character_names_empty.o(.rodata)` | [嵌入文本] | `src/character_names_empty.cc`、`include/character_names_empty.hh`<br>`data/text/jp/character_names_empty.cc` | `gText_CharacterName_Empty`；`gCharacterNameEntries` 和三处汇编均为该符号的直接引用；后续姓名表被 `bachelorette` 数据隔开 |
@@ -2314,7 +2328,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08103660`–`0x081036BF` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo`；三个日更新调用均为对应对象的直接符号引用 |
 | `0x081036C0`–`0x08103785` | `src/actor_state.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_state.cc`、`include/actor_state.hh`<br>`data/text/{jp,us,eu,de}/actor_state_1.cc`、`data/text/{jp,us,eu,de}/actor_state_2.cc` | `gActorStateMaxValues`（6 项）<br>前置 `bad_alloc`<br>`gActorDataSelectionEntries`（14 项；28 个 `gFieldRenderRectDescriptors + index` 重定位）<br>尾部 `bad_alloc`；已知汇编调用均为符号引用 |
 | `0x08103786`–`0x08103787` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103788`–`0x08103B0D` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/us/fishing_results_data_1.cc`、`data/text/us/fishing_results_data_2.cc` | 58 条文本（`0x08103788`–`0x08103A17`）<br>`gFishingRecordNames`（59 项，`0x08103A18`–`0x08103B03`；每项为命名文本重定位，记录 37 复用记录 22 的文本）<br>尾部 `bad_alloc`（`0x08103B04`–`0x08103B0D`）；汇编只调用 `func_0809CE7C`，后者直接引用表符号 |
+| `0x08103788`–`0x08103B0D` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/us/fishing_results_data_1.cc`、`data/text/us/fishing_results_data_2.cc` | 58 条文本（`0x08103788`–`0x08103A17`）<br>`gFishingRecordNames`（59 项，`0x08103A18`–`0x08103B03`；每项为命名文本重定位，记录 37 复用记录 22 的文本）<br>尾部 `bad_alloc`（`0x08103B04`–`0x08103B0D`）；汇编通过真实 `FishingRecords::GetName` 读取表符号 |
 | `0x08103B0E`–`0x08103B0F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103B10`–`0x08104107` | `src/actor_runtime_data.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`<br>`data/text/us/actor_runtime_data.cc` | `gUnk_08103B10`、`gUnk_08103B38`、`gUnk_08103C3C`、`gUnk_08103C74`、`gUnk_08103F84`、`gUnk_08103F98`、`gUnk_08103FE4`、`gUnk_0810400C`<br>尾部 `bad_alloc`（`0x081040E0`–`0x081040E9`，4 字节对齐）<br>`gUnk_081040EC`（7×4 字节）；所有已知汇编读取均为符号引用 |
 | `0x08104108`–`0x08104108` | `src/character_names_empty.o(.rodata)` | [嵌入文本] | `src/character_names_empty.cc`、`include/character_names_empty.hh`<br>`data/text/us/character_names_empty.cc` | `gText_CharacterName_Empty`；`gCharacterNameEntries` 和三处汇编均为该符号的直接引用；后续姓名表被 `bachelorette` 数据隔开 |

@@ -262,7 +262,7 @@ func_08010358:
     movs r1, #0xb2
     lsls r1, r1, #6
     adds r0, r6, r1
-    bl func_0809CD78
+    bl __14FishingRecords
     ldr r2, .Ljp_08010624 @ =0x00002E58
     adds r0, r6, r2
     bl __14ActorStateGrid
@@ -2263,7 +2263,7 @@ func_08011650:
     movs r1, #0xb2
     lsls r1, r1, #6
     adds r0, r7, r1
-    bl func_0809CD78
+    bl __14FishingRecords
     ldr r2, .Ljp_0801189C @ =0x00002E58
     adds r0, r7, r2
     bl __14ActorStateGrid
@@ -23319,7 +23319,7 @@ func_08010358: @ 0x08010358
     movs r1, #0xb2
     lsls r1, r1, #6
     adds r0, r6, r1
-    bl func_0809CD78
+    bl __14FishingRecords
     ldr r2, .L08010644 @ =0x00002E58
     adds r0, r6, r2
     bl __14ActorStateGrid
@@ -25320,7 +25320,7 @@ func_08011650: @ 0x08011650
     movs r1, #0xb2
     lsls r1, r1, #6
     adds r0, r7, r1
-    bl func_0809CD78
+    bl __14FishingRecords
     ldr r2, .L080118BC @ =0x00002E58
     adds r0, r7, r2
     bl __14ActorStateGrid

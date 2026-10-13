@@ -2,6 +2,70 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的连续模块。地址以各地区基准 ROM 的物理地址为准；一个模块即使在原始布局中被已编译的 C/C++ 输入节穿插，也仍由同一个源文件维护。
 
+## 存档初始化依赖：钓鱼图鉴的真实记录类型
+
+此前分散在八个 `code_actor_0809C*.cc` 中的 276 字节 C++，现按
+实际调用和存档布局统一为 `FishingRecords`，进入已有
+`src/fishing_results_data.cc`／`include/fishing_results_data.hh`。
+旧 `CounterAndMaximum` 头及八个地址命名小文件移除；本条是已有
+C++ 的真实类型恢复与归并，不重复计为新增高级语言字节。
+不增加源文件、section 属性、编译特例、内嵌汇编或兼容别名。
+
+| 区域 | 代码物理半开区间 | 后续内容 |
+| --- | --- | --- |
+| JP | `0x0809C7B0–0x0809C8C4` | `ActorStateGrid` 构造 |
+| US | `0x0809CD78–0x0809CE8C` | `ActorStateGrid` 构造 |
+| EU | `0x0809CDA8–0x0809CEBC` | `ActorStateGrid` 构造 |
+| DE | `0x0809CCD8–0x0809CDEC` | `ActorStateGrid` 构造 |
+
+| 原入口（US 地址标识） | `FishingRecords` 实际接口 | 字节数 |
+| --- | --- | ---: |
+| `func_0809CD78` | 构造 | 32 |
+| `func_0809CD98` | `RegisterCatch` | 52 |
+| `func_0809CDCC` | `HasCaughtEveryFishSpecies` | 32 |
+| `func_0809CDEC` | `GetTotalFishCaught` | 48 |
+| `func_0809CE1C` | `GetCatchCount` | 8 |
+| `func_0809CE24` | `GetMaximumSize` | 12 |
+| `func_0809CE30` | `GetUnknownRecordValue` | 76 |
+| `func_0809CE7C` | `GetName` | 16 |
+
+`GameStateSaveImage +0x2C80` 直接使用该实际类型：59 项记录各含
+32 位捕获数及最大尺寸，合计 `0x1D8` 字节。最大尺寸按记录画面
+的厘米单位保存；构造清空全部记录。Mary 的前八个 ID 为非鱼
+钓获物，完成度和总数只统计 ID 8–58。常量继续使用已有 Mary
+常量表，不新建另一套编号。结构大小、字段偏移、后续成员和
+整份 `0x34F4` 存档大小均有静态检查。
+
+登记钓获始终更新计数，上限为十亿；只有新尺寸大于旧最大尺寸
+才更新最大尺寸并返回真。总数保留原来的逐项 32 位加法及随后
+的十亿上限，不改成 64 位或猜测性修正。原接口不检查索引，
+名称直接读取既有 `gFishingRecordNames[index]`，不复制文本。
+六种鱼王映射值的实际资源含义尚未确认，接口仍保留 `Unknown`
+名称，不凭画面位置猜名。
+
+上述钓鱼总数和完成度判断与 Mary 的 FoMT 原生审核交叉核对：
+[鱼类总数与里程碑](docs/mary-native-audit/runtime/fish_total_and_mythic_milestone_bit.md)、
+[设施、出货和钓鱼完成度判断](docs/mary-native-audit/completion/facility_shipping_and_fishing_predicates.md)。
+具体字节、字段和调用关系仍以四版原 ROM 为直接证据，不将其他
+游戏版本的结构或结论移入 FoMT。
+
+每份 LDS 将原八条代码对象合并为一个
+`src/fishing_results_data.o(.text)`，只保留块的既有起点和后续
+未恢复内容的起点；`.rodata` 仍按原文本／名称表／尾部文本顺序
+链接一次。四区各 26 个入调用均为 `R_ARM_THM_CALL`，合计 104
+个。JP 两处旧字节 BL 已拆为符号调用；旧入口、兼容别名和未
+链接的重复汇编均清除。全 ROM 扫描没有入口绝对指针候选。
+
+四版 WSL `make -j4 GAME_REGION=<区域> compare`、整 ROM 字节
+及 SHA-1 校验通过；其他全局符号地址与全部 `.rodata` 不变。
+普通 agbcp→as 的 276 字节及重定位与正式对象一致，不依赖函数
+特设补正。QEMU 将原版和另址链接的正式代码／名称数据独立
+执行对比，四区各 194134 组，合计 776536 组／1553072 次调用；
+覆盖构造保护区、全部 59 个索引、计数上限、尺寸边界、非鱼
+项目排除、32 位溢出行为及区域名称复用。这不是完整游戏测试。
+完整 `func_08010358` 初始化入口仍为汇编，本条不把它计入
+已完成的 C++。
+
 ## 存档初始化依赖：启动位域与动物亲密度检查
 
 原 `func_08010E48–func_08010F54` 的十三个连续接口恢复为

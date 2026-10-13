@@ -14,6 +14,7 @@
 #include "npc_collection.hh"
 #include "field_item_data.hh"
 #include "actor_runtime_data.hh"
+#include "fishing_results_data.hh"
 
 struct SramAccess;
 
@@ -93,7 +94,7 @@ struct GameStateSaveImage {
     CookingRecipeInventory cooking_recipes;
     u8 unk_2C1C[0x58];
     TVShoppingOrderState tv_shopping;
-    u8 unk_2C80[0x1D8];
+    FishingRecords fishing_records;
     ActorStateGrid actor_state_grid;
     u8 unk_3480[0x48];
     FieldItemState field_items;
@@ -120,7 +121,7 @@ typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display
 typedef char GameStateSaveImageCookingCheck[offsetof(GameStateSaveImage, cooking_recipes) == 0x2214 ? 1 : -1];
 typedef char GameStateSaveImageAfterCookingCheck[offsetof(GameStateSaveImage, unk_2C1C) == 0x2C1C ? 1 : -1];
 typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
-typedef char GameStateSaveImageAfterShoppingCheck[offsetof(GameStateSaveImage, unk_2C80) == 0x2C80 ? 1 : -1];
+typedef char GameStateSaveImageFishingRecordsCheck[offsetof(GameStateSaveImage, fishing_records) == 0x2C80 ? 1 : -1];
 typedef char GameStateSaveImageActorGridCheck[offsetof(GameStateSaveImage, actor_state_grid) == 0x2E58 ? 1 : -1];
 typedef char GameStateSaveImageAfterActorGridCheck[offsetof(GameStateSaveImage, unk_3480) == 0x3480 ? 1 : -1];
 typedef char GameStateSaveImageFieldItemsCheck[offsetof(GameStateSaveImage, field_items) == 0x34C8 ? 1 : -1];

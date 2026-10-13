@@ -423,70 +423,6 @@ func_0809C510:
     .section .text.code_actor_0809C5EC
     .Lcode_actor_0809C5EC:
 
-    .section .text.code_actor_0809CD78
-
-    .section .text.code_actor_0809CD98
-    .Lcode_actor_0809CD98:
-
-    .section .text.code_actor_0809CDCC
-    .Lcode_actor_0809CDCC:
-
-    .section .text.code_actor_0809CDEC
-    .Lcode_actor_0809CDEC:
-
-    .section .text.code_actor_0809CE1C
-    .Lcode_actor_0809CE1C:
-
-    .section .text.code_actor_0809CE24
-    .Lcode_actor_0809CE24:
-
-    .section .text.code_actor_0809CE30
-    .align 2, 0
-    .Lcode_actor_0809CE30:
-    push	{lr}
-    adds	r0, r1, #0
-    subs	r0, #53	@ 0x35
-    cmp	r0, #5
-    bhi .Ljp_0809C898
-    lsls	r0, r0, #2
-    ldr r1, .Ljp_0809C87C
-    adds	r0, r0, r1
-    ldr	r0, [r0, #0]
-    mov	pc, r0
-.Ljp_0809C87C:
-    .4byte .Ljp_0809C880
-.Ljp_0809C880:
-    .4byte .Ljp_0809C898
-    .4byte .Ljp_0809C89C
-    .4byte .Ljp_0809C8A0
-    .4byte .Ljp_0809C8A4
-    .4byte .Ljp_0809C8A8
-    .4byte .Ljp_0809C8AC
-.Ljp_0809C898:
-    movs	r0, #252	@ 0xfc
-    b .Ljp_0809C8AE
-.Ljp_0809C89C:
-    movs	r0, #249	@ 0xf9
-    b .Ljp_0809C8AE
-.Ljp_0809C8A0:
-    movs	r0, #254	@ 0xfe
-    b .Ljp_0809C8AE
-.Ljp_0809C8A4:
-    movs	r0, #253	@ 0xfd
-    b .Ljp_0809C8AE
-.Ljp_0809C8A8:
-    movs	r0, #250	@ 0xfa
-    b .Ljp_0809C8AE
-.Ljp_0809C8AC:
-    movs	r0, #251	@ 0xfb
-.Ljp_0809C8AE:
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-
-    .section .text.code_actor_0809CE7C
-    .Lcode_actor_0809CE7C:
-
     .section .text.code_actor_0809CF34
     .align 2, 0
     .global func_0809CF34
@@ -2873,31 +2809,6 @@ func_0809C510: @ 0x0809C510
 
     .section .text.code_actor_0809C5EC
 .L0809C5EC:
-
-    .section .text.code_actor_0809CD78
-
-    .section .text.code_actor_0809CD98
-.L0809CD98:
-
-    .section .text.code_actor_0809CDCC
-.L0809CDCC:
-
-    .section .text.code_actor_0809CDEC
-.L0809CDEC:
-
-    .section .text.code_actor_0809CE1C
-.L0809CE1C:
-
-    .section .text.code_actor_0809CE24
-.L0809CE24:
-
-    .section .text.code_actor_0809CE30
-.L0809CE30:
-    .section .text.code_actor_0809CE30
-.L0809CE30:
-
-    .section .text.code_actor_0809CE7C
-.L0809CE7C:
 
     .section .text.code_actor_0809CF34
     .align 2, 0

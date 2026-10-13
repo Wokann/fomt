@@ -1058,9 +1058,13 @@ func_0803F8DC:
     .byte 0x00, 0x06, 0x04, 0x0E, 0x2A, 0x1C, 0x24, 0x32, 0xDA, 0x23, 0x5B, 0x00, 0xE9, 0x18, 0x02, 0xF0
     .byte 0xBD, 0xFB, 0xD4, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x54, 0x30, 0xC8, 0xF7, 0xF9, 0xFB
     .byte 0x00, 0x06, 0x04, 0x0E, 0x02, 0xF0, 0xAD, 0xFB, 0xD4, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68
-    .byte 0xB2, 0x22, 0x92, 0x01, 0x80, 0x18, 0x59, 0xF0, 0x18, 0xFF, 0x00, 0x06, 0x04, 0x0E, 0x2A, 0x1C
+    .byte 0xB2, 0x22, 0x92, 0x01, 0x80, 0x18
+    bl HasCaughtEveryFishSpecies__C14FishingRecords
+    .byte 0x00, 0x06, 0x04, 0x0E, 0x2A, 0x1C
     .byte 0x24, 0x32, 0xDA, 0x23, 0x5B, 0x00, 0xE9, 0x18, 0x02, 0xF0, 0xA0, 0xFB, 0xD4, 0x24, 0xA4, 0x00
-    .byte 0x28, 0x19, 0x00, 0x68, 0xB2, 0x26, 0xB6, 0x01, 0x80, 0x19, 0x59, 0xF0, 0x16, 0xFF, 0x04, 0x1C
+    .byte 0x28, 0x19, 0x00, 0x68, 0xB2, 0x26, 0xB6, 0x01, 0x80, 0x19
+    bl GetTotalFishCaught__C14FishingRecords
+    .byte 0x04, 0x1C
     .byte 0x2A, 0x1C, 0x24, 0x32, 0xDA, 0x20, 0x40, 0x00, 0x29, 0x18, 0x02, 0xF0, 0x8F, 0xFB, 0xD4, 0x21
     .byte 0x89, 0x00, 0x68, 0x18, 0x00, 0x68
     bl GetFlag3__C18GameStateSaveImage
@@ -62738,7 +62742,7 @@ func_080713B8:
 	lsls r4, r4, #6
 	adds r0, r0, r4
 	adds r1, r6, #0
-	bl func_0809CE1C
+	bl GetCatchCount__C14FishingRecordsUi
 	ldr r1, [sp, #0x108]
 	adds r1, #1
 	str r1, [sp, #0x150]
@@ -62760,7 +62764,7 @@ func_080713B8:
 	ldr r0, [r7]
 	adds r0, r0, r4
 	ldr r1, [sp, #0x108]
-	bl func_0809CE30
+	bl GetUnknownRecordValue__C14FishingRecordsUi
 	adds r2, r0, #0
 	lsls r2, r2, #0x10
 	lsrs r2, r2, #0x10
@@ -63024,7 +63028,7 @@ func_080713B8:
 	lsls r4, r4, #6
 	adds r0, r0, r4
 	ldr r1, [sp, #0x110]
-	bl func_0809CE7C
+	bl GetName__C14FishingRecordsUi
 	adds r5, r0, #0
 	bl strlen
 	adds r4, r0, #0
@@ -63339,7 +63343,7 @@ func_080713B8:
 	lsls r7, r7, #6
 	adds r0, r0, r7
 	ldr r1, [sp, #0x110]
-	bl func_0809CE24
+	bl GetMaximumSize__C14FishingRecordsUi
 	adds r4, r0, #0
 	cmp r4, #0
 	beq .Ljp_08071E78
@@ -63421,7 +63425,7 @@ func_080713B8:
 	lsls r1, r1, #6
 	adds r0, r0, r1
 	ldr r1, [sp, #0x110]
-	bl func_0809CE1C
+	bl GetCatchCount__C14FishingRecordsUi
 	ldr r2, [sp, #0x10c]
 	ldr r1, [r2, #0x18]
 	adds r1, r1, r4
@@ -127845,7 +127849,7 @@ func_0803F8DC: @ 0x0803F8DC
 	movs r2, #0xb2
 	lsls r2, r2, #6
 	adds r0, r0, r2
-	bl func_0809CDCC
+	bl HasCaughtEveryFishSpecies__C14FishingRecords
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
 	adds r2, r5, #0
@@ -127862,7 +127866,7 @@ func_0803F8DC: @ 0x0803F8DC
 	movs r6, #0xb2
 	lsls r6, r6, #6
 	adds r0, r0, r6
-	bl func_0809CDEC
+	bl GetTotalFishCaught__C14FishingRecords
 	adds r4, r0, #0
 	adds r2, r5, #0
 	adds r2, #0x24
@@ -220168,7 +220172,7 @@ func_080713B8: @ 0x080713B8
 	lsls r4, r4, #6
 	adds r0, r0, r4
 	adds r1, r6, #0
-	bl func_0809CE1C
+	bl GetCatchCount__C14FishingRecordsUi
 	ldr r1, [sp, #0x108]
 	adds r1, #1
 	.ifdef REGION_DE
@@ -220194,7 +220198,7 @@ func_080713B8: @ 0x080713B8
 	ldr r0, [r7]
 	adds r0, r0, r4
 	ldr r1, [sp, #0x108]
-	bl func_0809CE30
+	bl GetUnknownRecordValue__C14FishingRecordsUi
 	adds r2, r0, #0
 	lsls r2, r2, #0x10
 	lsrs r2, r2, #0x10
@@ -220515,7 +220519,7 @@ func_080713B8: @ 0x080713B8
 	lsls r4, r4, #6
 	adds r0, r0, r4
 	ldr r1, [sp, #0x110]
-	bl func_0809CE7C
+	bl GetName__C14FishingRecordsUi
 	adds r5, r0, #0
 	bl strlen
 	adds r4, r0, #0
@@ -220843,7 +220847,7 @@ func_080713B8: @ 0x080713B8
 	lsls r7, r7, #6
 	adds r0, r0, r7
 	ldr r1, [sp, #0x110]
-	bl func_0809CE24
+	bl GetMaximumSize__C14FishingRecordsUi
 	adds r4, r0, #0
 	cmp r4, #0
 	beq .L08072220
@@ -220942,7 +220946,7 @@ func_080713B8: @ 0x080713B8
 	lsls r1, r1, #6
 	adds r0, r0, r1
 	ldr r1, [sp, #0x110]
-	bl func_0809CE1C
+	bl GetCatchCount__C14FishingRecordsUi
 	ldr r2, [sp, #0x10c]
 	ldr r1, [r2, #0x18]
 	adds r1, r1, r4
