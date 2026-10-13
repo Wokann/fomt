@@ -361,20 +361,8 @@ SECTIONS
         src/code_actor_0809C5D0.o(.text);
         . = 0x9C54C; /* DE ROM 0x0809C54C, clear flag word */
         src/code_actor_0809C5EC.o(.text);
-        . = 0x9C554; /* DE ROM 0x0809C554, test flag word */
-        src/code_actor_0809C5F4.o(.text);
-        . = 0x9C560; /* DE ROM 0x0809C560, register event-state variable */
-        src/code_actor_0809C600.o(.text);
-        . = 0x9C5A4; /* DE ROM 0x0809C5A4, remaining raw actor code */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809C644);
-        . = 0x9C5F4; /* DE ROM 0x0809C5F4, compare selected u16 */
-        src/code_actor_0809C694.o(.text);
-        . = 0x9C60C; /* DE ROM 0x0809C60C, set selected u16 */
-        src/code_actor_0809C6AC.o(.text);
-        . = 0x9C610; /* DE ROM 0x0809C610, reset selected u16 */
-        src/code_actor_0809C6B0.o(.text);
-        . = 0x9C61C; /* DE ROM 0x0809C61C, remaining raw actor code */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809C6BC);
+        . = 0x9C554; /* Event-variable registrations, romance marker and packed save state. */
+        src/event_state.o(.text);
         . = 0x9CCD8; /* DE ROM 0x0809CCD8, clear tracked counters */
         src/code_actor_0809CD78.o(.text);
         . = 0x9CCF8; /* DE ROM 0x0809CCF8, update count and maximum */
