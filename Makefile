@@ -45,6 +45,7 @@ endif
 
 CC1      := tools/agbcc/bin/agbcc$(EXE)
 CC1PLUS  := tools/agbcc/bin/agbcp$(EXE)
+ARM_CC1PLUS := tools/agbcc/bin/agbcp_arm$(EXE)
 HOSTCC ?= cc
 
 OLD_CC1  := tools/agbcc/bin/old_agbcc$(EXE)
@@ -346,6 +347,14 @@ $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 	@$(AS) $(ASFLAGS) $< -o $@
 
 # overrides for matching
+# IWRAM sorting is native ARM code, not Thumb. Use the installed ARM frontend
+# through the ordinary C++ channel. Its frameless ARM output matches the
+# original ABI; this old frontend rejects -fhex-asm and warns about debug
+# information without a frame pointer, so omit only those two compiler options.
+$(BUILD_DIR)/src/iwram_sort.o: CC1PLUS := $(ARM_CC1PLUS)
+$(BUILD_DIR)/src/iwram_sort.o: CXXFLAGS := $(filter-out -g -fhex-asm,$(CXXFLAGS)) -fomit-frame-pointer -mcpu=arm7tdmi
+$(BUILD_DIR)/src/iwram_sort.o: $(ARM_CC1PLUS)
+
 $(BUILD_DIR)/src/m4a.o: CC1 := $(OLD_CC1)
 $(BUILD_DIR)/src/m4a.o: $(OLD_CC1)
 

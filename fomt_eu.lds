@@ -877,6 +877,8 @@ SECTIONS
     .iwram : ALIGN(4)
     {
         asm/code_iwram.o(.iwram);
+        src/iwram_sort.o(.text);
+        asm/code_iwram.o(.iwram.after_sort);
     } > IWRAM AT> ROM = 0xFF
 
     __iwram_vma     = ADDR(.iwram);

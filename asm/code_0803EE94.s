@@ -117930,7 +117930,7 @@ func_08094A3C:
     bx r0
     .align 2, 0
 .Ljp_0809458C: .4byte 0x00000814
-.Ljp_08094590: .4byte func_03000C08
+.Ljp_08094590: .4byte SortUnsignedWords
 
     .global func_08094594
     .thumb_func
@@ -288341,7 +288341,7 @@ func_08094A3C: @ 0x08094A3C
 	adds r5, r1, r0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	ldr r2, .L08094ABC @ =func_03000C08
+	ldr r2, .L08094ABC @ =SortUnsignedWords
 	bl _call_via_r2
 	adds r6, #1
 	cmp r4, r5
@@ -288385,7 +288385,7 @@ func_08094A3C: @ 0x08094A3C
 	bx r0
 	.align 2, 0
 .L08094AB8: .4byte 0x00000814
-.L08094ABC: .4byte func_03000C08
+.L08094ABC: .4byte SortUnsignedWords
 
 	thumb_func_start func_08094AC0
 func_08094AC0: @ 0x08094AC0
