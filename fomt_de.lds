@@ -888,6 +888,8 @@ SECTIONS
     .iwram : ALIGN(4)
     {
         asm/code_iwram.o(.iwram);
+        src/hardware_oam_state.o(.rodata);
+        asm/code_iwram.o(.iwram.after_dimensions);
         src/iwram_sort.o(.text);
         asm/code_iwram.o(.iwram.after_sort);
     } > IWRAM AT> ROM = 0xFF

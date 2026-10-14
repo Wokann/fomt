@@ -2,6 +2,14 @@
 #include "hardware_display_output.hh"
 #include "gbasvc.h"
 
+// A distinct initialized IWRAM data run, before the grouped sprite renderer.
+// Its halfword lookup requires two-byte alignment, not per-record sections.
+struct HardwareSpriteDimensions const gHardwareSpriteDimensions[3][4] ALIGN(2) = {
+    { { 8, 8 }, { 16, 16 }, { 32, 32 }, { 64, 64 } },
+    { { 16, 8 }, { 32, 8 }, { 32, 16 }, { 64, 32 } },
+    { { 8, 16 }, { 8, 32 }, { 16, 32 }, { 32, 64 } },
+};
+
 void func_08009834(void * object)
 {
     struct HardwareSpriteBufferState * buffer = (struct HardwareSpriteBufferState *)object;

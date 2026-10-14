@@ -28,8 +28,11 @@ func_03000490:
     .global __new_handler
     .type __new_handler, object
 __new_handler:
-    .byte 0x00, 0x00, 0x00, 0x00, 0x08, 0x08, 0x10, 0x10, 0x20, 0x20, 0x40, 0x40, 0x10, 0x08, 0x20, 0x08
-    .byte 0x20, 0x10, 0x40, 0x20, 0x08, 0x10, 0x08, 0x20, 0x10, 0x20, 0x20, 0x40
+    .4byte 0
+    .size __new_handler, . - __new_handler
+
+    .section .iwram.after_dimensions, "awx"
+    .align 2, 0
 
     .global func_030004DC
     .type func_030004DC, function
@@ -81,7 +84,7 @@ func_030004DC:
     lsr r3, r2, #0x1e
     and r2, r2, #0xc000
     lsr r2, r2, #0xb
-    ldr r1, [pc, #0x16c]
+    ldr r1, .LIwramSpriteDimensions
     orr r2, r2, r3, lsl #1
     ldrh r2, [r1, r2]
     and r3, r2, #0xff
@@ -179,7 +182,8 @@ func_030004DC:
     .Lauto_030006FC:
     ldr r0, [sp, #8]
     b .Lauto_03000708
-    .byte 0xC4, 0x04, 0x00, 0x03
+.LIwramSpriteDimensions:
+    .4byte gHardwareSpriteDimensions
     .Lauto_03000708:
     add sp, sp, #0x34
     pop {r4, r5, r6, r7, r8, sb, sl, lr}
