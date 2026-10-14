@@ -45,9 +45,8 @@ extern void func_080E0F48(void);
 extern void func_080E0F90(void);
 extern void func_080E0EF0(void);
 extern void method_0803EFD8__13AScriptEngine(void);
+extern void OnCall__12ScriptEnginei(void);
 #if defined(REGION_JP)
-extern void func_0803EB3C(void);
-extern void func_0803F550(void);
 extern void func_0804EEEC(void);
 extern void func_080E07B8(void);
 extern void func_080E07C4(void);
@@ -356,7 +355,6 @@ extern void func_080A8FDC(void);
 extern void func_080E3C50(void);
 extern void func_080AC528(void);
 #else
-extern void func_0803F8DC(void);
 extern void func_08082144(void);
 extern void func_08082184(void);
 extern void func_08082250(void);
@@ -4680,32 +4678,15 @@ extern RawVTableFunction const vtable_unk_080E77E0[]
         func_0803D4D8,
     };
 
-#if defined(REGION_JP)
-// The JP Script Engine code is still retained as a raw code range, but this
-// ABI table has the same five logical slots as the compiled US table.
-extern RawVTableFunction const __vt_13AScriptEngine[]
-    SECTION(".rodata.vtable_ascript_engine") = {
-        nullptr,
-        nullptr,
-        func_0803EB3C,
-        method_0803EFD8__13AScriptEngine,
-        __pure_virtual,
-    };
-#endif
-
 // The base Script Engine table follows the AScriptEngine table in both ROMs.
-// JP keeps its implementation code raw, but all five ABI slots are known.
+// The game-specific callback still has a native assembly implementation.
 extern RawVTableFunction const __vt_12ScriptEngine[]
     SECTION(".rodata.vtable_script_engine") = {
         nullptr,
         nullptr,
         func_080E0EF0,
         method_0803EFD8__13AScriptEngine,
-#if defined(REGION_JP)
-        func_0803F550,
-#else
-        func_0803F8DC,
-#endif
+        OnCall__12ScriptEnginei,
     };
 
 // Seven adjacent two-method dispatch tables. JP has the single-tile and

@@ -110,7 +110,7 @@ func_08010158:
     adds r0, r4, #0
     adds r0, #8
     movs r1, #2
-    bl func_0803EB3C
+    bl _._13AScriptEngine
     ldr r0, [r4, #4]
     cmp r0, #0
     beq .Ljp_0801016A

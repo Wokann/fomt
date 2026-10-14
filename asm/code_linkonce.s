@@ -17096,7 +17096,7 @@ func_080E0908:
     adds r0, r4, #0
     adds r0, #0xc
     movs r1, #0
-    bl func_0803EB3C
+    bl _._13AScriptEngine
     adds r0, r4, #4
     movs r1, #0
     bl func_080086BC
@@ -35766,7 +35766,7 @@ func_080E0E80: @ 0x080E0E80
     .thumb_func
 func_080E0EF0:
     push {lr}
-    bl func_0803EB3C
+    bl _._13AScriptEngine
     pop {r0}
     bx r0
     .byte 0x00, 0x00

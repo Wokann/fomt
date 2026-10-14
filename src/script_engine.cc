@@ -1,16 +1,5 @@
 #include "script_engine.hh"
 
-#if defined(REGION_JP)
-/*
- * Byte-exact JP assembly stays in this module.  As matching functions are
- * recovered, keep shared definitions outside the regional guard and retain
- * only genuinely version-specific definitions inside it.
- */
-asm(
-    "    .include \"asm/script_engine_jp.inc\"\n"
-);
-#else
-
 #include <string.h> // memset, memcpy
 #include <algorithm>
 
@@ -26,28 +15,15 @@ bool AScriptEngine::Load(void const * script_data)
 {
     // TODO: constants
 
-    struct ScriptHead
-    {
-        u32 riff_magic;
-        u32 length;
-        u32 scr_magic;
-    };
-
-    struct ChunkHead
-    {
-        u32 magic;
-        u32 length;
-    };
-
     if (script_data == nullptr)
         return false;
 
     unsigned char const * script = reinterpret_cast<unsigned char const *>(script_data);
 
-    ScriptHead head;
-    memcpy(&head, script, sizeof(ScriptHead));
+    ScriptRiffHeader head;
+    memcpy(&head, script, sizeof(ScriptRiffHeader));
 
-    u32 offset = sizeof(ScriptHead);
+    u32 offset = sizeof(ScriptRiffHeader);
 
     // 'RIFF' & 'SCR '
     if (head.riff_magic == 0x46464952 && head.scr_magic == 0x20524353)
@@ -58,10 +34,10 @@ bool AScriptEngine::Load(void const * script_data)
 
         while (offset <= length)
         {
-            ChunkHead chunk;
-            memcpy(&chunk, script + offset, sizeof(ChunkHead));
+            ScriptChunkHeader chunk;
+            memcpy(&chunk, script + offset, sizeof(ScriptChunkHeader));
 
-            offset = offset + sizeof(ChunkHead);
+            offset = offset + sizeof(ScriptChunkHeader);
 
             if (chunk.magic == 0x45444F43) // 'CODE'
             {
@@ -658,8 +634,6 @@ void ScriptEngine::Push(i32 value)
     stack.Push(value);
 }
 
-// next up: int OnCall(int id);
-
-#endif // REGION_JP
+// The game-specific OnCall dispatch remains in asm/code_0803EE94.s.
 
 #include FOMT_TEXT_INCLUDE(script_engine.cc)

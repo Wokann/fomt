@@ -283,7 +283,6 @@ SECTIONS
         asm/code_0803A8A4.o(.text.code_0803E448);
         . = 0x3EB08; /* JP ROM 0x0803EB08, independently matched */
         src/script_engine.o(.text);
-        . = 0x3F704; /* JP ROM 0x0803F704, independently matched */
         asm/code_0803EE94.o(.text);
         . = 0x4E2D4; /* JP ordinary 2D glyph compositor. */
         asm/font_draw.o(.text.font_draw_normal);
@@ -675,7 +674,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_77a4);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_77d0);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_77e0);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_ascript_engine);
+        *(.gnu.linkonce.d.__vt_13AScriptEngine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine_adjacent);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7928);
