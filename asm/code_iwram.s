@@ -190,12 +190,9 @@ func_030004DC:
     bx lr
 
     .global DrawGlyph2Tile
-    .global func_03000714
     .type DrawGlyph2Tile, function
-    .type func_03000714, function
     .arm
 DrawGlyph2Tile:
-func_03000714:
     @ r0 is a 24-byte, 16-pixel-wide 1bpp glyph; r1 is the 16x16-tile
     @ scratch buffer. Each source row becomes 4bpp pixels plus its shadow.
     push {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -287,12 +284,9 @@ func_03000714:
     bx lr
 
     .global DrawGlyph1Tile
-    .global func_0300085C
     .type DrawGlyph1Tile, function
-    .type func_0300085C, function
     .arm
 DrawGlyph1Tile:
-func_0300085C:
     @ r0 is a 12-byte, 8-pixel-wide 1bpp glyph; r1 is the same scratch
     @ buffer. The right-hand tile receives the generated shadow pixels.
     push {r4, r5, r6, r7, r8, lr}

@@ -7,6 +7,11 @@
 extern "C" {
 #endif
 
+// These native glyph expanders run in ARM IWRAM. Thumb callers use the
+// compiler's normal interworking long call to their real entry points.
+void DrawGlyph2Tile(u8 const *glyph, void *destination) __attribute__((long_call));
+void DrawGlyph1Tile(u8 const *glyph, void *destination) __attribute__((long_call));
+
 // Converts one Shift-JIS two-byte code to the index used by the font's
 // double-width glyph map. Returns -1 for a code outside that map.
 i32 GetShiftJisGlyphMapIndex(i32 character);

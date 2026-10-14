@@ -237,12 +237,20 @@ SECTIONS
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
         . = 0x4E3A4; /* DE ROM 0x0804E3A4, ordinary 2D glyph compositor. */
-        src/font_draw.o(.text.font_draw_normal);
+        asm/font_draw.o(.text.font_draw_normal);
         . = 0x4E4A4; /* DE ROM 0x0804E4A4, extended palette glyph compositor. */
-        src/font_draw_ext.o(.text);
+        asm/font_draw.o(.text.font_draw_ext);
         . = 0x4E698; /* DE ROM 0x0804E698, tile-buffer fillers and renderer. */
-        src/font_draw.o(.text);
-        . = 0x4E8C8; src/font_draw.o(.text.font_draw_after);
+        src/font_draw.o(.text.Clear2DGfxBuffer);
+        asm/font_draw.o(.text.font_draw_clear_rectangle);
+        src/font_draw.o(.text.DrawStringTo2DGfxBuffer);
+        src/font_draw.o(.text.DrawStringTo2DGfxBufferExt);
+        src/font_draw.o(.text.DrawCharacterGlyphTo2DGfxBufferUnaligned);
+        src/font_draw.o(.text.DrawCharacterGlyphTo2DGfxBufferExtUnaligned);
+        . = 0x4E8C8; src/font_draw.o(.text.Copy2DGfxBuffer);
+        src/font_draw.o(.text.Fill2DGfxTilemapRect);
+        src/font_draw.o(.text.InitializeUnkFontDrawObject);
+        src/font_draw.o(.text.DestroyUnkFontDrawObject);
         asm/code_0803EE94.o(.text.font_draw_after);
         src/font.o(.text.font_decimal);
         asm/code_0803EE94.o(.text.font_decimal_after);

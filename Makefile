@@ -358,6 +358,10 @@ $(BUILD_DIR)/src/iwram_sort.o: $(ARM_CC1PLUS)
 $(BUILD_DIR)/src/m4a.o: CC1 := $(OLD_CC1)
 $(BUILD_DIR)/src/m4a.o: $(OLD_CC1)
 
+# Matched font-buffer helpers surround still-unmatched native compositors.
+# The linker orders compiler-owned function sections around their assembly.
+$(BUILD_DIR)/src/font_draw.o: CXXFLAGS += -ffunction-sections
+
 # The unmatched SRAM write wrapper sits between runs of ordinary C in the ROM.
 $(BUILD_DIR)/src/sram_proxy_2.o: CFLAGS += -ffunction-sections
 
