@@ -77,7 +77,7 @@ struct GameSceneState {
     u32 unk_A0[2];
     GameObject * game_object;
     GameSceneTalkWindowOwner talk_window;
-    u32 unk_B0;
+    ScriptTextVariableStore * text_variables;
     GameSceneUiComponentOwner time_window;
     GameSceneUiComponentOwner pause_menu_selector;
     MusicPlayer * bgm_player;
@@ -130,6 +130,13 @@ struct GameScene : AScene {
     void TalkClearPortrait();
     void TalkShowHeartIndicator(u32 id);
     void TalkHideHeartIndicator();
+    void TalkPromptChoices(char const * prompt, char const * first, char const * second,
+        char const * third, char const * fourth);
+    void TalkChoices(char const * first, char const * second, char const * third,
+        char const * fourth, char const * fifth, char const * sixth);
+    void TextVariableSetNumber(u32 slot, i32 value);
+    void TextVariableSetString(u32 slot, char const * text);
+    void TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width);
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];
@@ -146,7 +153,7 @@ typedef char GameSceneStateSaveCheck[offsetof(GameSceneState, save) == 0x8C ? 1 
 typedef char GameSceneStateScriptStateCheck[offsetof(GameSceneState, script_state) == 0x9C ? 1 : -1];
 typedef char GameSceneStateGameObjectCheck[offsetof(GameSceneState, game_object) == 0xA8 ? 1 : -1];
 typedef char GameSceneStateTalkWindowCheck[offsetof(GameSceneState, talk_window) == 0xAC ? 1 : -1];
-typedef char GameSceneStateTalkContextCheck[offsetof(GameSceneState, unk_B0) == 0xB0 ? 1 : -1];
+typedef char GameSceneStateTalkContextCheck[offsetof(GameSceneState, text_variables) == 0xB0 ? 1 : -1];
 typedef char GameSceneStateTimeWindowCheck[offsetof(GameSceneState, time_window) == 0xB4 ? 1 : -1];
 typedef char GameSceneStateMenuSelectorCheck[offsetof(GameSceneState, pause_menu_selector) == 0xB8 ? 1 : -1];
 typedef char GameSceneStateBgmPlayerCheck[offsetof(GameSceneState, bgm_player) == 0xBC ? 1 : -1];
@@ -172,6 +179,10 @@ u8 * func_0801014C(void);
 void func_080D7F08(GameSceneState * state);
 void func_080D7F9C(GameSceneState * state, u32 id, u32 map, i32 x, i32 y,
     u32 facing);
+
+// Native text-variable storage keeps its original byte-based truncation.
+// The scene wrappers do not add a slot check or width clamp.
+void func_0803B6B8(ScriptTextVariableStore * variables, u32 slot, char const * text);
 
 // Native per-window cleanup helpers used by the close transition.
 void func_080D7F60(GameSceneState * state);

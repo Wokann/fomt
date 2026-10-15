@@ -12,6 +12,7 @@ struct HardwareStateOwner;
 struct HardwareResource;
 struct HardwareResourceEntry;
 struct MusicPlayer;
+struct ScriptTextVariableStore;
 
 // Verified views of the state fields consumed by the native UI adapters.
 struct UiObjectState
@@ -272,9 +273,14 @@ void func_08050D74(void * const * object) SECTION(".text.ui_state_adapters");
 void * func_08050DF0(void * const * object) SECTION(".text.ui_state_adapters");
 void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
     u32 arg_r3) SECTION(".text.ui_state_adapters");
-void func_08050E30(void * const * object, u32 arg_r1, u32 arg_r2,
-    u32 arg_r3, u32 arg_sp0, u32 arg_sp1, u32 arg_sp2)
-    SECTION(".text.ui_state_adapters");
+// Selection rows are encoded text pointers, not integer IDs. Both adapters
+// receive the same substitution context as the dialogue message renderer.
+void func_08050E0C(UiStateOwner const * object, char const * first, char const * second,
+    char const * third, char const * fourth, char const * fifth, char const * sixth,
+    ScriptTextVariableStore * variables) SECTION(".text.ui_state_adapters");
+void func_08050E30(UiStateOwner const * object, char const * prompt, char const * first,
+    char const * second, char const * third, char const * fourth,
+    ScriptTextVariableStore * variables) SECTION(".text.ui_state_adapters");
 void func_08050E50(void * const * object, u32 arg_r1)
     SECTION(".text.ui_state_adapters");
 void func_08050E5C(void * const * object)

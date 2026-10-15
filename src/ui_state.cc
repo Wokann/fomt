@@ -88,10 +88,6 @@ EC u8 func_08050DD8(void * const * object)
     SECTION(".text.ui_state_adapters");
 EC u8 func_08050DE4(void * const * object)
     SECTION(".text.ui_state_adapters");
-EC void func_08050E0C(void * const * object, u32 arg_r1, u32 arg_r2,
-    u32 arg_r3, u32 arg_sp0, u32 arg_sp1, u32 arg_sp2, u32 arg_sp3)
-    SECTION(".text.ui_state_adapters");
-
 EC void func_0805039C(void * object);
 EC void func_080503E4(void * object);
 EC void func_08050424(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3);
@@ -191,18 +187,22 @@ u8 const * const gUiSharedTiles = gUnk_UiSharedResourceData_000;
 u32 const gUiSharedTileByteCount = 0x120;
 u8 const * const gUiSharedPalette = gUnk_UiSharedResourceData_001;
 
-EC void func_08050E0C(void * const * object, u32 arg_r1, u32 arg_r2,
-    u32 arg_r3, u32 arg_sp0, u32 arg_sp1, u32 arg_sp2, u32 arg_sp3)
+EC void func_08050E0C(UiStateOwner const * object, char const * first, char const * second,
+    char const * third, char const * fourth, char const * fifth, char const * sixth,
+    ScriptTextVariableStore * variables)
 {
-    func_08050478(*object, arg_r1, arg_r2, arg_r3, arg_sp0, arg_sp1,
-        arg_sp2, arg_sp3);
+    func_08050478(object->value, reinterpret_cast<u32>(first), reinterpret_cast<u32>(second),
+        reinterpret_cast<u32>(third), reinterpret_cast<u32>(fourth), reinterpret_cast<u32>(fifth),
+        reinterpret_cast<u32>(sixth), reinterpret_cast<u32>(variables));
 }
 
-EC void func_08050E30(void * const * object, u32 arg_r1, u32 arg_r2,
-    u32 arg_r3, u32 arg_sp0, u32 arg_sp1, u32 arg_sp2)
+EC void func_08050E30(UiStateOwner const * object, char const * prompt, char const * first,
+    char const * second, char const * third, char const * fourth,
+    ScriptTextVariableStore * variables)
 {
-    func_08050664(*object, arg_r1, arg_r2, arg_r3, arg_sp0, arg_sp1,
-        arg_sp2);
+    func_08050664(object->value, reinterpret_cast<u32>(prompt), reinterpret_cast<u32>(first),
+        reinterpret_cast<u32>(second), reinterpret_cast<u32>(third), reinterpret_cast<u32>(fourth),
+        reinterpret_cast<u32>(variables));
 }
 
 EC void func_08050E50(void * const * object, u32 arg_r1)

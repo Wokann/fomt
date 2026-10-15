@@ -164,6 +164,8 @@ SECTIONS
         asm/game_state.o(.text.game_scene_entity_commands_after);
         src/game_scene.o(.text.Talk*__9GameScene*);
         asm/game_state.o(.text.game_scene_talk_commands_after);
+        src/game_scene.o(.text.TextVariable*__9GameScene*);
+        asm/game_state.o(.text.game_scene_text_variable_commands_after);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
         asm/code_entities.o(.text);

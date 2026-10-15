@@ -5,6 +5,7 @@
 #include "fomt_constants.hh"
 #include "hardware_music_player.hh"
 #include "hardware_song.hh"
+#include "font.hh"
 
 static inline void StartSceneSong(MusicPlayer ** player, i32 mode, u16 song_id)
 {
@@ -283,7 +284,7 @@ void GameScene::TalkMessage(char const * text, u32 rate)
     GameSceneState * current = state;
     if (current->talk_window.Get() != nullptr) {
         func_08050DC8(reinterpret_cast<void * const *>(current->talk_window.Get()),
-            reinterpret_cast<u32>(text), static_cast<u16>(rate), current->unk_B0);
+            reinterpret_cast<u32>(text), static_cast<u16>(rate), reinterpret_cast<u32>(current->text_variables));
         current->script_state = 0x10;
     }
 }
@@ -293,7 +294,7 @@ void GameScene::TalkTelevisionMessage(char const * text)
     GameSceneState * current = state;
     if (current->talk_window.Get() != nullptr) {
         func_08050DC8(reinterpret_cast<void * const *>(current->talk_window.Get()),
-            reinterpret_cast<u32>(text), 0x40, current->unk_B0);
+            reinterpret_cast<u32>(text), 0x40, reinterpret_cast<u32>(current->text_variables));
         // Television uses a separate completion state, not slow dialogue.
         current->script_state = 0x11;
     }
@@ -366,4 +367,95 @@ void GameScene::TalkHideHeartIndicator()
     UiStateOwner * window = state->talk_window.Get();
     if (window != nullptr)
         func_08050E8C(reinterpret_cast<void * const *>(window));
+}
+
+void GameScene::TalkPromptChoices(char const * prompt, char const * first, char const * second,
+    char const * third, char const * fourth)
+{
+    GameSceneState * current = state;
+    // A missing optional row terminates the list, even if later rows exist.
+    if (current->talk_window.Get() != nullptr && first != nullptr && second != nullptr) {
+        if (third == nullptr) {
+            ScriptTextVariableStore * variables = current->text_variables;
+            func_08050E30(current->talk_window.Get(),
+                prompt, first, second,
+                0, 0, variables);
+        } else if (fourth == nullptr) {
+            ScriptTextVariableStore * variables = current->text_variables;
+            func_08050E30(current->talk_window.Get(),
+                prompt, first, second,
+                third, 0, variables);
+        } else {
+            ScriptTextVariableStore * variables = current->text_variables;
+            func_08050E30(current->talk_window.Get(),
+                prompt, first, second,
+                third, fourth, variables);
+        }
+        current->script_state = 0x14;
+    }
+}
+
+void GameScene::TalkChoices(char const * first, char const * second, char const * third,
+    char const * fourth, char const * fifth, char const * sixth)
+{
+    GameSceneState * current = state;
+    // A missing optional row terminates the list, even if later rows exist.
+    if (current->talk_window.Get() != nullptr && first != nullptr && second != nullptr) {
+        if (third == nullptr) {
+            ScriptTextVariableStore * variables = current->text_variables;
+            func_08050E0C(current->talk_window.Get(), first,
+                second, 0, 0, 0, 0, variables);
+        } else if (fourth == nullptr) {
+            ScriptTextVariableStore * variables = current->text_variables;
+            func_08050E0C(current->talk_window.Get(), first,
+                second, third, 0, 0, 0, variables);
+        } else if (fifth == nullptr) {
+            ScriptTextVariableStore * variables = current->text_variables;
+            func_08050E0C(current->talk_window.Get(), first,
+                second, third, fourth,
+                0, 0, variables);
+        } else if (sixth == nullptr) {
+            ScriptTextVariableStore * variables = current->text_variables;
+            func_08050E0C(current->talk_window.Get(), first,
+                second, third, fourth,
+                fifth, 0, variables);
+        } else {
+            ScriptTextVariableStore * variables = current->text_variables;
+            func_08050E0C(current->talk_window.Get(), first,
+                second, third, fourth,
+                fifth, sixth, variables);
+        }
+        current->script_state = 0x14;
+    }
+}
+
+void GameScene::TextVariableSetNumber(u32 slot, i32 value)
+{
+    GameSceneState * current = state;
+    // Preserve the native temporary and regional formatter, without a new clamp.
+    char text[52];
+#if defined(REGION_JP)
+    FormatFullWidthDecimal(value, text, 0);
+#else
+    FormatSignedDecimal(value, text, 0);
+#endif
+    func_0803B6B8(current->text_variables, slot, text);
+}
+
+void GameScene::TextVariableSetString(u32 slot, char const * text)
+{
+    func_0803B6B8(state->text_variables, slot, text);
+}
+
+void GameScene::TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width)
+{
+    GameSceneState * current = state;
+    // Preserve the native temporary and regional formatter, without a new clamp.
+    char text[52];
+#if defined(REGION_JP)
+    FormatFullWidthDecimal(value, text, width);
+#else
+    FormatSignedDecimal(value, text, width);
+#endif
+    func_0803B6B8(current->text_variables, slot, text);
 }

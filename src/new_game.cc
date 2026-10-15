@@ -492,10 +492,9 @@ void func_08005800(NewGameIdentityCore * core)
             func_08050D74(reinterpret_cast<void * const *>(core->ui_state));
             break;
         case 1:
-            func_08050E30(reinterpret_cast<void * const *>(core->ui_state),
-                reinterpret_cast<u32>(gText_NewGameIdentity_Confirm),
-                reinterpret_cast<u32>(gText_NewGameIdentity_Yes),
-                reinterpret_cast<u32>(gText_NewGameIdentity_No), 0, 0, 0);
+            func_08050E30(core->ui_state,
+                gText_NewGameIdentity_Confirm, gText_NewGameIdentity_Yes,
+                gText_NewGameIdentity_No, nullptr, nullptr, nullptr);
             break;
         case 6:
             // This form reads the adapter's address-sized result as a choice.
@@ -1154,10 +1153,9 @@ void func_08006ED8(NewGameNameInputCore * core)
                 break;
             case 1:
                 if (core->unk_463c == 1) {
-                    func_08050E30(reinterpret_cast<void * const *>(core->ui_state),
-                        reinterpret_cast<u32>(gText_NewGameNameEntry_Confirm),
-                        reinterpret_cast<u32>(gText_NewGameNameEntry_Yes),
-                        reinterpret_cast<u32>(gText_NewGameNameEntry_No), 0, 0, 0);
+                    func_08050E30(core->ui_state,
+                        gText_NewGameNameEntry_Confirm, gText_NewGameNameEntry_Yes,
+                        gText_NewGameNameEntry_No, nullptr, nullptr, nullptr);
                 }
                 break;
             case 4:
