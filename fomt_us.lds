@@ -151,7 +151,7 @@ SECTIONS
         src/more_items.o(.text);
         asm/more_items.o(.text);
         asm/game_scene.o(.text);
-        src/game_scene.o(.text);
+        src/game_scene.o(.text.func_08010*);
         asm/game_scene.o(.text.game_scene_post);
         src/game_state.o(.text.GetNonzeroRandomValue .text.__18GameStateSaveImagePCcT1G8GameDateT1 .text.Get*__C18GameStateSaveImage .text.AllAnimalsHaveHighAffection__C18GameStateSaveImage .text.SetFlag[0-3]__18GameStateSaveImage);
         asm/game_state.o(.text.game_state_after_startup_accessors);
@@ -159,6 +159,8 @@ SECTIONS
         src/game_state.o(.text.InitializeGameDisplayOptions);
         src/game_state.o(.text.*);
         asm/game_state.o(.text.game_state_after_display_options);
+        src/game_scene.o(.text.*__9GameScene*);
+        asm/game_state.o(.text.game_scene_entity_commands_after);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
         asm/code_entities.o(.text);

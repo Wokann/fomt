@@ -90,6 +90,8 @@ struct UnkMap
 };
 
 // TODO: move elsewhere
+struct AActorEntity;
+
 struct GameObject
 {
     virtual ~GameObject();
@@ -106,7 +108,7 @@ struct GameObject
     virtual UnkMap vfunc_34(u32 map_id);
     virtual void vfunc_38();
     virtual void vfunc_3C();
-    virtual void vfunc_40();
+    virtual AActorEntity * GetActorEntity(u32 id);
     virtual void vfunc_44();
     virtual void vfunc_48();
     virtual void vfunc_4C();

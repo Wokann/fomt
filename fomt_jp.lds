@@ -189,7 +189,7 @@ SECTIONS
         asm/more_items.o(.text);
         . = 0x1002C; /* JP ROM 0x0801002C, independently matched */
         asm/game_scene.o(.text);
-        src/game_scene.o(.text);
+        src/game_scene.o(.text.func_08010*);
         asm/game_scene.o(.text.game_scene_post);
         . = 0x10328; /* JP ROM 0x08010328, bounded by game_scene and entity */
         src/game_state.o(.text.GetNonzeroRandomValue .text.__18GameStateSaveImagePCcT1G8GameDateT1 .text.Get*__C18GameStateSaveImage .text.AllAnimalsHaveHighAffection__C18GameStateSaveImage .text.SetFlag[0-3]__18GameStateSaveImage);
@@ -198,6 +198,8 @@ SECTIONS
         src/game_state.o(.text.InitializeGameDisplayOptions);
         src/game_state.o(.text.*);
         asm/game_state.o(.text.game_state_after_display_options);
+        src/game_scene.o(.text.*__9GameScene*);
+        asm/game_state.o(.text.game_scene_entity_commands_after);
         . = 0x1FB0C; /* JP ROM 0x0801FB0C, independently matched */
         src/entity.o(.text);
         . = 0x1FDAC; /* JP ROM 0x0801FDAC, independently matched */

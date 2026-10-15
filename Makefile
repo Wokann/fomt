@@ -360,6 +360,9 @@ $(BUILD_DIR)/src/sram_proxy_2.o: CFLAGS += -ffunction-sections
 # Use compiler-owned function sections, not source section attributes.
 $(BUILD_DIR)/src/game_state.o: CXXFLAGS += -ffunction-sections
 
+# Scene accessors and entity commands occupy separate native code runs.
+$(BUILD_DIR)/src/game_scene.o: CXXFLAGS += -ffunction-sections
+
 # Grid methods are interleaved with unrecovered actor routines in the ROM.
 $(BUILD_DIR)/src/actor_state.o: CXXFLAGS += -ffunction-sections
 

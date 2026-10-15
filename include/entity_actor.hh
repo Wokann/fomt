@@ -29,7 +29,7 @@ struct AActorEntity : public AEntity
     /* +18 */ u32 x_speed_q16;
     /* +1C */ u32 y_speed_q16;
     /* +20 */ u8 facing;
-    /* +21 */ u8 unk_21;
+    /* +21 */ u8 unk_21; // Default OBJ priority; rendering uses its low two bits.
     /* +22 */ u16 anim_id;
     /* +24 */ u16 unk_24;
     /* +26 */ u16 unk_26;
@@ -37,5 +37,12 @@ struct AActorEntity : public AEntity
     /* +2C */ u16 unk_2C;
     /* +2E */ u8 unk_2E;
 };
+
+// These native movement commands take an integer target and raw Q16.16
+// speed. A new axis command replaces the actor's previous movement command.
+EXTERN_C
+void func_08032308(AActorEntity & self, u32 target, i32 speed_q16);
+void func_0803233C(AActorEntity & self, u32 target, i32 speed_q16);
+EXTERN_C_END
 
 #endif // ENTITY_ACTOR_HH
