@@ -43,6 +43,9 @@ struct AActorEntity : public AEntity
 EXTERN_C
 void func_08032308(AActorEntity & self, u32 target, i32 speed_q16);
 void func_0803233C(AActorEntity & self, u32 target, i32 speed_q16);
+void func_08032384(AActorEntity & self, u32 effect, bool persistent);
+void func_080323C8(AActorEntity & self);
+void func_080323E0(AActorEntity & self, u32 profile);
 EXTERN_C_END
 
 #endif // ENTITY_ACTOR_HH

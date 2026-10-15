@@ -24,6 +24,7 @@ struct GameSceneState {
 struct GameScene : AScene {
     GameSceneState * state;
 
+    void SetEntityPosition(u32 id, i32 x, i32 y, u32 facing);
     i32 GetEntityX(u32 id);
     i32 GetEntityY(u32 id);
     void SetEntityFacing(u32 id, u32 facing);
@@ -34,6 +35,15 @@ struct GameScene : AScene {
     void MoveEntityYTo(u32 id, u32 target, i32 speed_q16);
     void WaitForEntityMovement(u32 id);
     void SetEntityAnim(u32 id, u32 animation);
+    void NoOp014(i32 unused_value);
+    void HideEntity(u32 id);
+    void OffsetEntityPosition(u32 id, i32 delta_x, i32 delta_y);
+    void StartEntityEffect(u32 id, u32 effect, u32 persistent);
+    void StopEntityEffect(u32 id);
+    void SetEntityAuxRenderProfile(u32 id, u32 profile);
+    void ChangeMap(u32 map, i32 x, i32 y);
+    void PanCameraTo(i32 x, i32 y, u32 speed);
+    void WaitForCameraMovement();
 };
 
 typedef char GameSceneStateSizeCheck[sizeof(GameSceneState) == 0xF8 ? 1 : -1];
@@ -55,6 +65,11 @@ u8 * func_08010128(void);
 u8 * func_08010138(void);
 u32 func_08010148(void);
 u8 * func_0801014C(void);
+
+// The native post-map-change state callback remains in assembly.
+void func_080D7F08(GameSceneState * state);
+void func_080D7F9C(GameSceneState * state, u32 id, u32 map, i32 x, i32 y,
+    u32 facing);
 
 EXTERN_C_END
 

@@ -81,6 +81,11 @@ struct EntityUiCallbackState
     u8 value_30;
 };
 
+// Forward the native selector and two coordinate values to the entity's
+// visual resource controller. The selector's meaning remains unconfirmed.
+extern "C" void func_08033B84(EntityUiCallbackState * state, u32 value,
+                               u32 arg_1, u32 arg_2);
+
 struct EntityUiHarvestSpriteState : public AEntity
 {
     EntityUiHarvestSpriteState(GameObject * game_object, Location const & location)

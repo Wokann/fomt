@@ -91,6 +91,7 @@ struct UnkMap
 
 // TODO: move elsewhere
 struct AActorEntity;
+struct Location;
 
 struct GameObject
 {
@@ -101,8 +102,8 @@ struct GameObject
     virtual void vfunc_18();
     virtual void vfunc_1C();
     virtual void vfunc_20();
-    virtual void vfunc_24();
-    virtual void vfunc_28();
+    virtual void PanCameraTo(i32 x, i32 y, u32 speed);
+    virtual bool IsCameraMovementComplete();
     virtual i32 vfunc_2C(u32 map_id); // ok: get map width
     virtual i32 vfunc_30(u32 map_id); // ok: get map height
     virtual UnkMap vfunc_34(u32 map_id);
@@ -119,6 +120,25 @@ struct GameObject
     virtual void vfunc_60();
     virtual void vfunc_64();
     virtual void * vfunc_68(); // TODO: return type: get map actor sprite
+    virtual void vfunc_6C();
+    virtual void vfunc_70();
+    virtual void vfunc_74();
+    virtual void vfunc_78();
+    virtual void vfunc_7C();
+    virtual void vfunc_80();
+    virtual void vfunc_84();
+    virtual void vfunc_88();
+    virtual void vfunc_8C();
+    virtual void vfunc_90();
+    virtual void vfunc_94();
+    virtual void vfunc_98();
+    virtual void vfunc_9C();
+    virtual void vfunc_A0();
+    virtual void vfunc_A4();
+    virtual void vfunc_A8();
+    virtual void vfunc_AC();
+    virtual void vfunc_B0();
+    virtual void ChangeMap(Location const & location, bool unk);
 
     /* +00 */ // vtable
 };

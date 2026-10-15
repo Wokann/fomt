@@ -472,8 +472,6 @@ extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
                                EntityUiHarvestSpriteEntry const * entries);
 
 extern "C" void ResolveIndexedResourceHandle(void * handle, u32 index);
-extern "C" void func_08033B84(EntityUiCallbackState * state, u32 value,
-                               u32 arg_1, u32 arg_2);
 extern "C" void func_080324BC(EntityUiConstructorState * state, void * arg_1,
                                u32 arg_2, u32 arg_3, u32 arg_4, u32 arg_5,
                                u32 arg_6, bool arg_7);
