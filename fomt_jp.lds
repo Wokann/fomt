@@ -261,9 +261,7 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_get_pointer_10);
         . = 0x349E0; /* Continue the surrounding entity-UI ROM block. */
         src/entity_ui.o(.text.entity_ui_dispatch_value_30);
-        . = 0x349F8; /* Continue the surrounding entity-UI ROM block. */
-        asm/code_entities_080320DC.o(.text.entity_ui_resource_setup_after);
-        . = 0x34A80; /* JP ROM 0x08034A80, independently matched */
+        . = 0x349F8; /* NPC schedule query and entity methods. */
         src/npc_entity.o(.text);
         . = 0x35114; /* JP ROM 0x08035114, independently matched */
         asm/code_entities_08034CEC.o(.text);

@@ -1,8 +1,6 @@
 #include "npc_entity.hh"
 #include "npc.hh"
-
-EC void func_08034F00(ANpcEntity * self, int arg_unk_1);
-EC void func_08035380(ANpcEntity & self);
+#include "data_schedules.hh"
 
 static inline void TMP_ChangeAnim(ANpcEntity & self, u32 new_anim_id)
 {
@@ -17,11 +15,36 @@ static inline u32 TMP_GetAnim(ANpcEntity & self)
     return self.anim_id;
 }
 
+EC bool func_08034C64(void const * context, GameTime const & time)
+{
+#if defined(REGION_JP)
+    ScheduleInfo const & info = gUnk_080F221C;
+#else
+    ScheduleInfo const & info = gUnk_080F29C0;
+#endif
+    Schedule const * schedule = info.schedules[info.select_schedule(context)];
+    if (schedule != nullptr) {
+        i32 hour = time.clock_hour - 6;
+        if (hour < 0)
+            hour += 24;
+        u32 minute = hour * 60 + time.clock_minute;
+        ScheduleEntry const * first = schedule->time_entries;
+        u32 index = FindScheduleEntryUpperBound(first, first + schedule->num_time_entries,
+            minute, 0, 0) - first - 1;
+        if (index < schedule->num_time_entries) {
+            PathInfo const * path = schedule->time_entries[index].path;
+            if (path != nullptr)
+                return path->location_start != MAP_FARMHOUSE;
+        }
+    }
+    return false;
+}
+
 ANpcEntity::ANpcEntity(GameObject * game_object, Npc * npc, u32 arg_3, void const * arg_4, u32 anim_id, u32 arg_6, u32 arg_7)
     : AActorEntity(game_object, npc->GetLocation(), 2, npc->anim_id == NO_ANIM ? anim_id : npc->anim_id),
       npc(npc),
       unk_34(arg_3),
-      unk_38(reinterpret_cast<UnkNpcSchedule const *>(arg_4)),
+      schedule_info(static_cast<ScheduleInfo const *>(arg_4)),
       unk_3C(npc->unk_0C_0),
       unk_3D(npc->unk_0C_5),
       unk_3E(npc->unk_0D_2),
@@ -55,7 +78,7 @@ ANpcEntity::~ANpcEntity()
         npc->anim_id = NO_ANIM;
     }
 
-    if (unk_38 != nullptr)
+    if (schedule_info != nullptr)
     {
         npc->unk_0C_0 = unk_3C;
         npc->unk_0C_5 = unk_3D;
@@ -187,7 +210,7 @@ EC NAKED void func_08034F00(ANpcEntity * self, int unk_arg_1)
         str r5, [sp]\n\
         adds r0, r4, #0\n\
         movs r3, #0\n\
-        bl func_080D7ECC\n\
+        bl FindScheduleEntryUpperBound\n\
         subs r0, r0, r4\n\
         asrs r0, r0, #3\n\
         subs r0, #1\n\

@@ -7921,9 +7921,9 @@ func_080D7E64:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .global func_080D7ECC
+    .global FindScheduleEntryUpperBound
     .thumb_func
-func_080D7ECC:
+FindScheduleEntryUpperBound:
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     subs r1, r1, r4
@@ -16978,8 +16978,8 @@ func_080D7E64: @ 0x080D7E64
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080D7ECC
-func_080D7ECC: @ 0x080D7ECC
+	thumb_func_start FindScheduleEntryUpperBound
+FindScheduleEntryUpperBound: @ 0x080D7ECC
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	subs r1, r1, r4

@@ -217,8 +217,7 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_get_pointer_10);
         . = 0x34B60; /* DE ROM 0x08034B60, entity-UI value dispatcher. */
         src/entity_ui.o(.text.entity_ui_dispatch_value_30);
-        . = 0x34B78; /* DE ROM 0x08034B78, entity-UI continuation. */
-        asm/code_entities_080320DC.o(.text.entity_ui_resource_setup_after);
+        . = 0x34B78; /* NPC schedule query and entity methods. */
         src/npc_entity.o(.text);
         asm/code_entities_08034CEC.o(.text);
 
