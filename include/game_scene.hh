@@ -843,21 +843,20 @@ u8 * func_08010138(void);
 u32 func_08010148(void);
 ScriptEngine * func_0801014C(void);
 
-// The native post-map-change state callback remains in assembly.
+// Recovered state callbacks retain address names where semantics are unresolved.
 void func_080D7F08(GameSceneState * state);
+void func_080D7F3C(GameSceneState * state);
+void func_080D7F60(GameSceneState * state);
+void func_080D7F74(GameSceneState * state);
+void func_080D7F88(GameSceneState * state);
+
+// This entity-position update helper still remains in native code.
 void func_080D7F9C(GameSceneState * state, u32 id, u32 map, i32 x, i32 y,
     u32 facing);
 
 // Native text-variable storage keeps its original byte-based truncation.
 // The scene wrappers do not add a slot check or width clamp.
 void func_0803B6B8(ScriptTextVariableStore * variables, u32 slot, char const * text);
-
-void func_080D7F3C(GameSceneState * state);
-
-// Native per-window cleanup helpers used by the close transition.
-void func_080D7F60(GameSceneState * state);
-void func_080D7F74(GameSceneState * state);
-void func_080D7F88(GameSceneState * state);
 
 // The native scene runner still owns the underlying update loop.
 SceneTransitionOwner sub_080D8178(GameSceneState * state);

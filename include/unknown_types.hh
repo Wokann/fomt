@@ -166,6 +166,8 @@ struct GameObject
     virtual void vfunc_114();
     virtual void SetTelevisionProgram(MaryTelevisionProgramId program);
     virtual void EndTelevisionProgram();
+    virtual void vfunc_120();
+    virtual void vfunc_124();
 
     /* +00 */ // vtable
 };

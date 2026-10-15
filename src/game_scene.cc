@@ -4,6 +4,7 @@
 #include "hardware_blend.hh"
 #include "game_state.hh"
 #include "entity_actor.hh"
+#include "npc_entity.hh"
 #include "entity_ui.hh"
 #include "fomt_constants.hh"
 #include "hardware_music_player.hh"
@@ -695,6 +696,43 @@ void GameScene::EnableScriptedNpcControl()
 void GameScene::DisableScriptedNpcControl()
 {
     state->save->scripted_npc_control = 0;
+}
+
+EC void func_080D7F08(GameSceneState * state)
+{
+    for (u32 id = ENTITY_LILLIA; id <= ENTITY_CHILD; ++id) {
+        GameObject * & game_object = state->game_object;
+        ANpcEntity * entity = static_cast<ANpcEntity *>(game_object->GetActorEntity(id));
+        if (entity != nullptr)
+            entity->vfunc_3C(3);
+    }
+}
+
+EC void func_080D7F3C(GameSceneState * state)
+{
+    state->game_object->vfunc_124();
+    state->script_state = 2;
+}
+
+EC void func_080D7F60(GameSceneState * state)
+{
+    UiStateOwner * window = state->talk_window.Get();
+    if (window != nullptr)
+        func_08050E8C(reinterpret_cast<void * const *>(window));
+}
+
+EC void func_080D7F74(GameSceneState * state)
+{
+    UiStateOwner * window = state->talk_window.Get();
+    if (window != nullptr)
+        func_08050E5C(reinterpret_cast<void * const *>(window));
+}
+
+EC void func_080D7F88(GameSceneState * state)
+{
+    UiStateOwner * window = state->talk_window.Get();
+    if (window != nullptr)
+        func_08050E74(reinterpret_cast<void * const *>(window));
 }
 
 SceneOwner CalendarTransition::CreateScene()

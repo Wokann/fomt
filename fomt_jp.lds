@@ -570,6 +570,8 @@ SECTIONS
         *(.gnu.linkonce.t.push_front__Q28Rucksackt5Slots1Z9ToolStackG9ToolStack);
         . = 0xD761C; /* JP ROM 0x080D761C, direct function match */
         asm/code_linkonce.o(.text.code_080D7CFC);
+        src/game_scene.o(.text.func_080D7F*);
+        asm/code_linkonce.o(.text.game_scene_state_callbacks_after);
         src/game_scene.o(.text.CreateScene__18CalendarTransition);
         asm/code_linkonce.o(.text.scene_calendar_after);
         src/game_scene.o(.text.CreateScene__19ToolChestTransition);
