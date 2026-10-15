@@ -2,6 +2,71 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的连续模块。地址以各地区基准 ROM 的物理地址为准；一个模块即使在原始布局中被已编译的 C/C++ 输入节穿插，也仍由同一个源文件维护。
 
+## `src/game_scene.cc`：十八项连续场景动作与控制命令
+
+紧接六个菜单准备／恢复回调，将下列连续原生成员成组恢复为
+四区共用 C++。表中为半开区间，每区新增 596 字节／18 项，
+包含原有对齐；没有仅将 JP 的调用改为汇编而保留其他区域为 C++。
+
+| 区域 | 连续物理范围 |
+| --- | --- |
+| JP | `0x08013F98`–`0x080141EC` |
+| US | `0x080140C4`–`0x08014318` |
+| EU | `0x080140D8`–`0x0801432C` |
+| DE | `0x080140E4`–`0x08014338` |
+
+按源码及 ROM 顺序，依次为：
+
+| 成员组 | 项数 | 字节／区 |
+| --- | ---: | ---: |
+| `RefreshBarnFeedTrough`、`RefreshChickenFeedTrough`、`StartShipmentBoxDepositAnimation` | 3 | 72 |
+| `IsPlayerRidingHorse`、`TryShipPlayerHeldItem`、`SetPlayerHeldItem`、`GivePlayerBasket`、`ThrowPlayerHeldItem`、`UsePlayerHeldItem`、`ClearPlayerHeldItem` | 7 | 296 |
+| `RemoveRecordPlayerAlbum`、`SwapRecordPlayerAlbum` | 2 | 48 |
+| `SetEntityEventScript`、`ClearEntityEventScript` | 2 | 84 |
+| `SetTelevisionProgram`、`EndTelevisionProgram` | 2 | 56 |
+| `EnableScriptedNpcControl`、`DisableScriptedNpcControl` | 2 | 40 |
+
+命名和参数由各区真实 VM→原生调用、现有 FoMT callable 声明，
+[手持物动作核查](docs/mary-native-audit/player/held_item_actions_and_tools.md)、
+[出货箱动画核查](docs/mary-native-audit/player/shipment_box_deposit_animation.md)
+及 [电视调用核查](docs/mary-native-audit/ui/television_callables.md) 交叉确定。
+四种食品／物品设置路径实际构造 `RucksackItem` 并传其引用，另传
+单字节包装标志；不是把任意整数伪装成指针。成功出货、拿起物品、
+拿篮子、投掷及使用动作保留原来的 `0x19` 等待状态；单独的出货箱
+动画只分派 `GameObject` 的 `+0x80` 回调，不修改库存、金额或等待状态。
+饲料槽命令只刷新地图，储存位由 VM 先设置；仍原样转交索引，没有
+擅自新增边界检查。唱片机原生实现最终取 `Article::GetId`，因此两项
+接口采用现有 `MaryItemArticleId`，不是返回 `ArticleStack` 或文本指针。
+
+`GameScenePlayerActor` 仅描述这些命令使用的玩家虚接口前缀，放在
+同名 `include/game_scene.hh`，不分配此不完整视图，也不推断完整玩家
+大小。未核实的中间虚函数槽仍保留未知名称；具体玩家动作、构造和
+析构继续留在原生代码，不计入本次恢复量。场景控制器沿用已有
+`GameObject` 接口，电视分派正确使用 `+0x118/+0x11C`；没有手工索引
+虚表、固定寄存器、汇编别名或编译后指令改写。实体的 `+0x38`
+声明命名为 `SetEventScript`；实际基类默认回调及 NPC 覆盖实现仍由
+原有符号化原生虚表选择。`GameStateSaveImage::scripted_npc_control`
+复用已确认的 `+0x34C4` 字节，保持原先零初始化；此事件模式也影响
+玩家体力／疲劳动作路径，不能理解为只影响 NPC。
+
+JP／海外重复汇编定义已移除，每区 21 处 VM 调用全部直接重定位到
+实际 C++ 成员，包括 JP 原始字节中的调用。四区全 ROM 入口地址字
+扫描无额外引用，可执行区 Thumb 入分支扫描也只发现这 21 处入口
+调用，没有其他短分支或跳入成员内部的调用。LDS 按现有三个源码
+运行区选择编译器函数节，在尚未恢复的早段开启命令之后连续接入
+本组及前述六个回调，不增加固定地址或源 section 属性。
+
+四区 WSL `-j4 compare`、完整 ROM 字节、原版 SHA-1 及全部原全局
+地址校验通过，全部场景代码和重定位与绕过文本预处理的直接
+`agbcp` 输出一致。其余对象完全不变（JP 207 个，US/EU/DE 各
+208 个）；另两个对象仅更新被 LDS 丢弃的重复虚表中的接口声明名，
+已逐项验证这两个重复表未进入 ROM，原生实际表及回调地址不变。
+标准 `<new>` 的未引用常量仍仅有已丢弃的段末对齐差异。
+
+场景文件累计覆盖 4944 字节／90 个成员；对话开启成员和前面的
+商店／住宅开启链仍未匹配，本次没有将试验原型、额外分配检查或
+不匹配的结构复制写入工程。Mary 脚本、文本、图形及正式工具未改。
+
 ## `src/game_scene.cc`：六项模态菜单准备与恢复回调
 
 按 [模态菜单槽位核查](docs/mary-native-audit/ui/modal_menu_transition_hooks.md)、

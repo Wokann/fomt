@@ -191,7 +191,8 @@ struct GameStateSaveImage {
     ActorStateGrid actor_state_grid;
     ActorStateSlots actor_slots;
     GameStateActorRecord actor_records[3];
-    u8 actor_unknown_34C4;
+    // Event-control mode also gates player stamina/fatigue action paths.
+    u8 scripted_npc_control;
     u8 shooting_star_shipping_bonus;
     // The native initializer places this member at the next word boundary.
     // The two bytes after the preceding flags are padding, not array data.
@@ -227,7 +228,7 @@ typedef char GameStateSaveImageFishingRecordsCheck[offsetof(GameStateSaveImage, 
 typedef char GameStateSaveImageActorGridCheck[offsetof(GameStateSaveImage, actor_state_grid) == 0x2E58 ? 1 : -1];
 typedef char GameStateSaveImageActorStateCheck[offsetof(GameStateSaveImage, actor_slots) == 0x3480 ? 1 : -1];
 typedef char GameStateSaveImageActorRecordsCheck[offsetof(GameStateSaveImage, actor_records) == 0x3494 ? 1 : -1];
-typedef char GameStateSaveImageActorUnknown44Check[offsetof(GameStateSaveImage, actor_unknown_34C4) == 0x34C4 ? 1 : -1];
+typedef char GameStateSaveImageScriptedNpcControlCheck[offsetof(GameStateSaveImage, scripted_npc_control) == 0x34C4 ? 1 : -1];
 typedef char GameStateSaveImageShippingBonusCheck[offsetof(GameStateSaveImage, shooting_star_shipping_bonus) == 0x34C5 ? 1 : -1];
 typedef char GameStateSaveImageFieldItemsCheck[offsetof(GameStateSaveImage, field_items) == 0x34C8 ? 1 : -1];
 typedef char GameStateSaveImageTailWordCheck[offsetof(GameStateSaveImage, unk_34D8) == 0x34D8 ? 1 : -1];

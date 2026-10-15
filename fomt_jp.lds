@@ -200,11 +200,21 @@ SECTIONS
         asm/game_state.o(.text.game_state_after_display_options);
         /* Keep the recovered member runs around the native opener and menus.
          * Patterns in one input selector keep the object's section order. */
-        src/game_scene.o(.text.[!CFPQRTW]*__9GameScene* .text.ChangeMap__9GameScene* .text.WaitFor*__9GameScene* .text.P[al]*__9GameScene* .text.Run__9GameScene*);
+        src/game_scene.o(
+            .text.Run__9GameScene* .text.GetEntity*__9GameScene*
+            .text.SetEntityA*__9GameScene* .text.SetEntityFacing__9GameScene*
+            .text.SetEntityPosition__9GameScene* .text.SetEntitySpritePriority__9GameScene*
+            .text.MoveEntity*__9GameScene* .text.WaitFor*__9GameScene*
+            .text.NoOp*__9GameScene* .text.HideEntity__9GameScene* .text.OffsetEntityPosition__9GameScene*
+            .text.StartEntityEffect__9GameScene* .text.Stop*__9GameScene*
+            .text.ChangeMap__9GameScene* .text.P[al]*__9GameScene*);
         asm/game_state.o(.text.game_scene_entity_commands_after);
-        src/game_scene.o(.text.[!PR]*__9GameScene*);
+        src/game_scene.o(
+            .text.Talk*__9GameScene* .text.FadeScreen__9GameScene*
+            .text.TextVariable*__9GameScene* .text.CallScript__9GameScene*
+            .text.QueueScript__9GameScene* .text.WaitFrames__9GameScene*);
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
-        src/game_scene.o(.text.Prepare*__9GameScene* .text.RestoreAfter*__9GameScene*);
+        src/game_scene.o(.text.*__9GameScene*);
         asm/game_state.o(.text.game_scene_menu_hooks_after);
         . = 0x1FB0C; /* JP ROM 0x0801FB0C, independently matched */
         src/entity.o(.text);

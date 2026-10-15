@@ -3,13 +3,31 @@
 
 #include "prelude.h"
 #include "scene.hh"
+#include "entity_actor.hh"
 #include "ui_state.hh"
 #include "hardware_display_output.hh"
 #include "script_engine.hh"
 #include "fomt_constants.hh"
 #include <new>
 
-struct AActorEntity;
+// Only the player virtual interface used by these scene commands is modeled.
+// The complete player payload, construction, and action implementations remain
+// native. This prefix is never allocated or used to infer the complete size.
+struct RucksackItem;
+struct GameScenePlayerActor : AActorEntity {
+    /* vt+3C */ virtual void vfunc_3C();
+    /* vt+40 */ virtual bool IsRidingHorse();
+    /* vt+44 */ virtual void vfunc_44();
+    /* vt+48 */ virtual bool TryShipHeldItem();
+    /* vt+4C */ virtual void ThrowHeldItem();
+    /* vt+50 */ virtual void UseHeldItem();
+    /* vt+54 */ virtual void ClearHeldItem();
+    /* vt+58 */ virtual void vfunc_58();
+    /* vt+5C */ virtual void SetHeldItem(RucksackItem const & item, bool wrapped);
+    /* vt+60 */ virtual void GiveBasket();
+private:
+    GameScenePlayerActor();
+};
 struct GameObject;
 struct GameStateSaveImage;
 struct MusicPlayer;
@@ -659,6 +677,24 @@ struct GameScene : AScene {
     void RestoreAfterCookingMenu();
     void PrepareRecipeMenuTransition();
     void RestoreAfterRecipeMenu();
+    void RefreshBarnFeedTrough(MaryBarnFeedTroughIndex trough);
+    void RefreshChickenFeedTrough(MaryChickenCoopFeedTroughIndex trough);
+    void StartShipmentBoxDepositAnimation();
+    bool IsPlayerRidingHorse();
+    bool TryShipPlayerHeldItem();
+    bool SetPlayerHeldItem(RucksackItem const & item, bool wrapped);
+    bool GivePlayerBasket();
+    void ThrowPlayerHeldItem();
+    void UsePlayerHeldItem();
+    void ClearPlayerHeldItem();
+    MaryItemArticleId RemoveRecordPlayerAlbum();
+    MaryItemArticleId SwapRecordPlayerAlbum(MaryItemArticleId article);
+    void SetEntityEventScript(u32 entity_id, MaryScriptId script_id);
+    void ClearEntityEventScript(u32 entity_id);
+    void SetTelevisionProgram(MaryTelevisionProgramId program);
+    void EndTelevisionProgram();
+    void EnableScriptedNpcControl();
+    void DisableScriptedNpcControl();
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];

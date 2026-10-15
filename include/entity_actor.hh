@@ -17,7 +17,7 @@ struct AActorEntity : public AEntity
     AActorEntity(GameObject * game_object, ActorLocation const & location, u32 arg_2, u32 arg_3);
 
     /* vt+34 */ virtual u32 vfunc_34();
-    /* vt+38 */ virtual void vfunc_38(u32 unk_arg_1);
+    /* vt+38 */ virtual void SetEventScript(MaryScriptId script_id);
 
     void SetLocation(ActorLocation const & location);
     ActorLocation GetLocation() const;

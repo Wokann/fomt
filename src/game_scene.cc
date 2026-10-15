@@ -572,6 +572,123 @@ void GameScene::RestoreAfterRecipeMenu()
     state->game_object->RestoreAfterRecipeMenu();
 }
 
+// These calls refresh map tiles after the caller updates feed storage.
+// The native path forwards the original index without another bounds check.
+void GameScene::RefreshBarnFeedTrough(MaryBarnFeedTroughIndex trough)
+{
+    state->game_object->RefreshBarnFeedTrough(trough);
+}
+
+void GameScene::RefreshChickenFeedTrough(MaryChickenCoopFeedTroughIndex trough)
+{
+    state->game_object->RefreshChickenFeedTrough(trough);
+}
+
+void GameScene::StartShipmentBoxDepositAnimation()
+{
+    state->game_object->StartShipmentBoxDepositAnimation();
+}
+
+// ENTITY_PLAYER is required here, unlike the nullable arbitrary-entity calls.
+bool GameScene::IsPlayerRidingHorse()
+{
+    return static_cast<GameScenePlayerActor *>(state->game_object->GetActorEntity(ENTITY_PLAYER))->IsRidingHorse();
+}
+
+bool GameScene::TryShipPlayerHeldItem()
+{
+    GameSceneState * current = state;
+    bool result;
+    if (static_cast<GameScenePlayerActor *>(current->game_object->GetActorEntity(ENTITY_PLAYER))->TryShipHeldItem()) {
+        current->script_state = 0x19;
+        result = true;
+    } else {
+        result = false;
+    }
+    return result;
+}
+
+// All four food/article VM paths pass a real RucksackItem by reference;
+// wrapped selects the common action path, not a second inventory object.
+bool GameScene::SetPlayerHeldItem(RucksackItem const & item, bool wrapped)
+{
+    GameSceneState * current = state;
+    static_cast<GameScenePlayerActor *>(current->game_object->GetActorEntity(ENTITY_PLAYER))->SetHeldItem(item, wrapped);
+    current->script_state = 0x19;
+    return true;
+}
+
+bool GameScene::GivePlayerBasket()
+{
+    GameSceneState * current = state;
+    static_cast<GameScenePlayerActor *>(current->game_object->GetActorEntity(ENTITY_PLAYER))->GiveBasket();
+    current->script_state = 0x19;
+    return true;
+}
+
+void GameScene::ThrowPlayerHeldItem()
+{
+    GameSceneState * current = state;
+    static_cast<GameScenePlayerActor *>(current->game_object->GetActorEntity(ENTITY_PLAYER))->ThrowHeldItem();
+    current->script_state = 0x19;
+}
+
+void GameScene::UsePlayerHeldItem()
+{
+    GameSceneState * current = state;
+    static_cast<GameScenePlayerActor *>(current->game_object->GetActorEntity(ENTITY_PLAYER))->UseHeldItem();
+    current->script_state = 0x19;
+}
+
+void GameScene::ClearPlayerHeldItem()
+{
+    static_cast<GameScenePlayerActor *>(state->game_object->GetActorEntity(ENTITY_PLAYER))->ClearHeldItem();
+}
+
+MaryItemArticleId GameScene::RemoveRecordPlayerAlbum()
+{
+    return state->game_object->RemoveRecordPlayerAlbum();
+}
+
+MaryItemArticleId GameScene::SwapRecordPlayerAlbum(MaryItemArticleId article)
+{
+    return state->game_object->SwapRecordPlayerAlbum(article);
+}
+
+void GameScene::SetEntityEventScript(u32 entity_id, MaryScriptId script_id)
+{
+    AActorEntity * entity = state->game_object->GetActorEntity(entity_id);
+    if (entity != nullptr)
+        entity->SetEventScript(script_id);
+}
+
+void GameScene::ClearEntityEventScript(u32 entity_id)
+{
+    AActorEntity * entity = state->game_object->GetActorEntity(entity_id);
+    if (entity != nullptr)
+        entity->SetEventScript(0);
+}
+
+void GameScene::SetTelevisionProgram(MaryTelevisionProgramId program)
+{
+    state->game_object->SetTelevisionProgram(program);
+}
+
+void GameScene::EndTelevisionProgram()
+{
+    state->game_object->EndTelevisionProgram();
+}
+
+void GameScene::EnableScriptedNpcControl()
+{
+    state->save->scripted_npc_control = 1;
+}
+
+void GameScene::DisableScriptedNpcControl()
+{
+    state->save->scripted_npc_control = 0;
+}
+
 SceneOwner CalendarTransition::CreateScene()
 {
     SceneTransition * next = continuation.release();

@@ -67,7 +67,7 @@ GameStateSaveImage::GameStateSaveImage(char const * farm_name, char const * play
       unk_13(0), unk_18(0), unk_25(0), unk_31(false), unk_32(false),
       clock(GameCalendar(1, GameDate(SEASON_SPRING, BoundDayIndex(DAY_30 - 1, DAY_01 - 1) + 1), GameTime(6, 0))),
       farm(farm_name), farmer(player_name, birthday), dog(dog_name), ball_location(MAP_NONE, 0, 0),
-      link_record(GetNonzeroRandomValue()), actor_unknown_34C4(0), shooting_star_shipping_bonus(0)
+      link_record(GetNonzeroRandomValue()), scripted_npc_control(0), shooting_star_shipping_bonus(0)
 {
     dog.AddAffection(50);
     for (u32 i = 0; i < 10; ++i) PutInitialItem(farm.field, 0x1F);
