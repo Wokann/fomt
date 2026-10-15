@@ -126,12 +126,12 @@ struct GameObject
     virtual void vfunc_78();
     virtual void vfunc_7C();
     virtual void vfunc_80();
-    virtual void vfunc_84();
-    virtual void vfunc_88();
-    virtual void vfunc_8C();
-    virtual void vfunc_90();
-    virtual void vfunc_94();
-    virtual void vfunc_98();
+    virtual void PrepareClockMenuTransition();
+    virtual void RestoreAfterClockMenu();
+    virtual void PrepareCookingMenuTransition();
+    virtual void RestoreAfterCookingMenu();
+    virtual void PrepareRecipeMenuTransition();
+    virtual void RestoreAfterRecipeMenu();
     virtual void vfunc_9C();
     virtual void vfunc_A0();
     virtual void vfunc_A4();

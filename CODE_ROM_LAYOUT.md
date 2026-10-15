@@ -2,6 +2,50 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的连续模块。地址以各地区基准 ROM 的物理地址为准；一个模块即使在原始布局中被已编译的 C/C++ 输入节穿插，也仍由同一个源文件维护。
 
+## `src/game_scene.cc`：六项模态菜单准备与恢复回调
+
+按 [模态菜单槽位核查](docs/mary-native-audit/ui/modal_menu_transition_hooks.md)、
+FoMT callable 清单及四区真实 VM 调用链，将以下六个连续成员恢复为
+共用 C++，顺序与 ROM 一致。每项每区 24 字节（含原有对齐），
+合计 144 字节；虚表槽属于当前 `GameObject` 场景控制器，不是
+菜单工厂，也不表示这些回调的具体实现已经恢复。
+
+| `GameScene` 成员 | `GameObject` 虚表偏移 |
+| --- | ---: |
+| `PrepareClockMenuTransition` | `0x84` |
+| `RestoreAfterClockMenu` | `0x88` |
+| `PrepareCookingMenuTransition` | `0x8C` |
+| `RestoreAfterCookingMenu` | `0x90` |
+| `PrepareRecipeMenuTransition` | `0x94` |
+| `RestoreAfterRecipeMenu` | `0x98` |
+
+| 区域 | 连续物理范围（半开区间） |
+| --- | --- |
+| JP | `0x08013F08`–`0x08013F98` |
+| US | `0x08014034`–`0x080140C4` |
+| EU | `0x08014048`–`0x080140D8` |
+| DE | `0x08014054`–`0x080140E4` |
+
+实现直接调用 `state->game_object` 的具名虚成员，未手工索引虚表，
+没有固定寄存器、汇编别名或编译后指令补正。场景成员声明仍在
+同名 `include/game_scene.hh`；六个已证实的控制器接口在其原有
+`include/unknown_types.hh` 定义中同步命名，没有增设文件或类型。
+JP 和海外两套旧汇编定义均已移除，每区六处 VM 调用均直接引用
+实际 C++ 成员；JP 对应的六个原始字节 `BL` 已转换为符号调用。
+全 ROM 扫描没有发现这六个入口的额外地址字引用。
+
+LDS 在尚未恢复的早段菜单开启代码之后接入此连续 C++ 组，再接
+余下原生代码；只使用编译器函数节维持实际顺序，不新增固定地址
+或源码 section 属性。四区 WSL `-j4 compare`、完整 ROM 字节和
+原版 SHA-1 均通过，所有原全局地址不变。其余对象保持不变
+（JP 209 个，US/EU/DE 各 210 个）；场景对象的代码及重定位与
+绕过文本预处理的直接 `agbcp` 输出一致。标准 `<new>` 留下的
+未引用 `bad_alloc` 常量仍被链接丢弃，仅有段末对齐差异。
+
+场景文件累计覆盖 4348 字节／72 个成员；未匹配的对话开启成员、
+早段菜单开启命令和具体 UI 核心仍如实保留原生代码。Mary 脚本、
+文本、图形资源及正式工具未修改。
+
 ## `src/game_scene.cc`：四项非均匀布局场景工厂
 
 将约德尔牧场、养鸡场、锻冶屋及 `OpenClock` 对应的四个

@@ -542,6 +542,36 @@ void GameScene::WaitFrames(i32 frames)
     current->script_state = 0x15;
 }
 
+void GameScene::PrepareClockMenuTransition()
+{
+    state->game_object->PrepareClockMenuTransition();
+}
+
+void GameScene::RestoreAfterClockMenu()
+{
+    state->game_object->RestoreAfterClockMenu();
+}
+
+void GameScene::PrepareCookingMenuTransition()
+{
+    state->game_object->PrepareCookingMenuTransition();
+}
+
+void GameScene::RestoreAfterCookingMenu()
+{
+    state->game_object->RestoreAfterCookingMenu();
+}
+
+void GameScene::PrepareRecipeMenuTransition()
+{
+    state->game_object->PrepareRecipeMenuTransition();
+}
+
+void GameScene::RestoreAfterRecipeMenu()
+{
+    state->game_object->RestoreAfterRecipeMenu();
+}
+
 SceneOwner CalendarTransition::CreateScene()
 {
     SceneTransition * next = continuation.release();

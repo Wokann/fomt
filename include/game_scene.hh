@@ -653,6 +653,12 @@ struct GameScene : AScene {
     void CallScript(i32 script_id, i32 context_value);
     void QueueScript(GameSceneScriptRequest const & request, i32 queue_kind);
     void WaitFrames(i32 frames);
+    void PrepareClockMenuTransition();
+    void RestoreAfterClockMenu();
+    void PrepareCookingMenuTransition();
+    void RestoreAfterCookingMenu();
+    void PrepareRecipeMenuTransition();
+    void RestoreAfterRecipeMenu();
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];
