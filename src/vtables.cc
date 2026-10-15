@@ -845,10 +845,10 @@ extern void func_080DBC0C(void);
 extern void func_080DBC50(void);
 extern void CreateScene__22GiftWrappingTransition(void);
 extern void func_080DBCC0(void);
-extern void func_080DBCE8(void);
+extern void CreateScene__24YodelRanchShopTransition(void);
 extern void func_080DB4E4(void);
 extern void func_080DBD30(void);
-extern void func_080DBD58(void);
+extern void CreateScene__25PoultryFarmShopTransition(void);
 extern void func_080DBDA0(void);
 extern void CreateScene__20WineryShopTransition(void);
 extern void func_080DBE10(void);
@@ -862,14 +862,14 @@ extern void CreateScene__23CarpenterShopTransition(void);
 extern void func_080DBFD0(void);
 extern void CreateScene__20ClinicShopTransition(void);
 extern void func_080DC040(void);
-extern void func_080DC068(void);
+extern void CreateScene__24BlacksmithShopTransition(void);
 extern void func_080DC0C0(void);
 extern void CreateScene__29SupermarketPurchaseTransition(void);
 extern void func_080DC130(void);
 extern void CreateScene__21SupermarketTransition(void);
 extern void func_080DC1A0(void);
 extern void func_080DC1C8(void);
-extern void func_080DC1D4(void);
+extern void CreateScene__15ClockTransition(void);
 extern void func_080DC21C(void);
 extern void CreateScene__17ReturnToGameScene(void);
 extern void func_080DC288(void);
@@ -1285,14 +1285,14 @@ extern RawVTableFunction const vtable_unk_080E5D94[] = {
 #else
     func_080DBD30,
 #endif
-    func_080DBCE8,
+    CreateScene__24YodelRanchShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DA4[] = {
     nullptr,
     nullptr,
     func_080DBDA0,
-    func_080DBD58,
+    CreateScene__25PoultryFarmShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DB4[] = {
@@ -1341,7 +1341,7 @@ extern RawVTableFunction const vtable_unk_080E5E14[] = {
     nullptr,
     nullptr,
     func_080DC0C0,
-    func_080DC068,
+    CreateScene__24BlacksmithShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E24[] = {
@@ -1369,7 +1369,7 @@ extern RawVTableFunction const vtable_unk_080E5E54[] = {
     nullptr,
     nullptr,
     func_080DC21C,
-    func_080DC1D4,
+    CreateScene__15ClockTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E64[] = {

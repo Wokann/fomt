@@ -1,4 +1,5 @@
 #include "game_scene.hh"
+#include "new_game.hh"
 #include <new>
 #include "hardware_blend.hh"
 #include "game_state.hh"
@@ -609,6 +610,26 @@ SceneOwner GiftWrappingTransition::CreateScene()
 #endif
 }
 
+SceneOwner YodelRanchShopTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(loc_08087CA8(::operator new(sizeof(YodelRanchShopScene)), &next, save, unk_0C));
+#else
+    return SceneOwner(func_08088168(::operator new(sizeof(YodelRanchShopScene)), &next, save, unk_0C));
+#endif
+}
+
+SceneOwner PoultryFarmShopTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(func_0807CBD8(::operator new(sizeof(PoultryFarmShopScene)), &next, save, unk_0C));
+#else
+    return SceneOwner(func_0807D070(::operator new(sizeof(PoultryFarmShopScene)), &next, save, unk_0C));
+#endif
+}
+
 SceneOwner WineryShopTransition::CreateScene()
 {
     SceneTransition * next = continuation.release();
@@ -671,6 +692,12 @@ SceneOwner ClinicShopTransition::CreateScene()
 
 // These late scene factories stay in native ROM order. Returning a temporary
 // owner preserves the original two-word ownership-transfer ABI.
+SceneOwner BlacksmithShopTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+    return SceneOwner(func_08083A7C(::operator new(sizeof(BlacksmithShopScene)), &next, save, unk_1C, unk_0C, unk_10, unk_14, unk_18));
+}
+
 SceneOwner SupermarketPurchaseTransition::CreateScene()
 {
     SceneTransition * next = continuation.release();
@@ -691,6 +718,13 @@ SceneOwner SupermarketTransition::CreateScene()
 #else
     return SceneOwner(func_0807DD38(::operator new(sizeof(SupermarketScene)), &next, save));
 #endif
+}
+
+SceneOwner ClockTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+    return SceneOwner(func_08004B94(::operator new(sizeof(NewGameMenuScene)), save,
+        next));
 }
 
 SceneOwner ReturnToGameScene::CreateScene()

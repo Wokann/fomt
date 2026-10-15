@@ -364,7 +364,9 @@ NewGameMenuCore * func_080041DC(NewGameMenuCore * core, void * state,
 SceneTransitionOwner func_08004570(struct NewGameMenuCore * core);
 AScene * func_08004B58(void * object)
     SECTION(".text.new_game_scene_lifecycle");
-AScene * func_08004B94(void * object, void * state, SceneTransitionOwner continuation)
+// This native entry consumes and clears a caller-provided pointer slot.
+// Residual-input cleanup belongs to the callee, as in the core entry.
+AScene * func_08004B94(void * object, void * state, SceneTransition *& continuation)
     SECTION(".text.new_game_scene_lifecycle");
 
 extern NewGameSceneVTableFunction const vtable_unk_080E5A3C[];

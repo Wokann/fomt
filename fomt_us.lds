@@ -496,6 +496,10 @@ SECTIONS
         asm/code_linkonce.o(.text.scene_special_merchant_shop_after);
         src/game_scene.o(.text.CreateScene__22GiftWrappingTransition);
         asm/code_linkonce.o(.text.scene_gift_wrapping_after);
+        src/game_scene.o(.text.CreateScene__24YodelRanchShopTransition);
+        asm/code_linkonce.o(.text.scene_yodel_ranch_shop_after);
+        src/game_scene.o(.text.CreateScene__25PoultryFarmShopTransition);
+        asm/code_linkonce.o(.text.scene_poultry_farm_shop_after);
         src/game_scene.o(.text.CreateScene__20WineryShopTransition);
         asm/code_linkonce.o(.text.scene_winery_shop_after);
         src/game_scene.o(.text.CreateScene__17InnShopTransition);
@@ -508,10 +512,14 @@ SECTIONS
         asm/code_linkonce.o(.text.scene_carpenter_shop_after);
         src/game_scene.o(.text.CreateScene__20ClinicShopTransition);
         asm/code_linkonce.o(.text.scene_clinic_shop_after);
+        src/game_scene.o(.text.CreateScene__24BlacksmithShopTransition);
+        asm/code_linkonce.o(.text.scene_blacksmith_shop_after);
         src/game_scene.o(.text.CreateScene__29SupermarketPurchaseTransition);
         asm/code_linkonce.o(.text.scene_supermarket_purchase_after);
         src/game_scene.o(.text.CreateScene__21SupermarketTransition);
         asm/code_linkonce.o(.text.scene_supermarket_after);
+        src/game_scene.o(.text.CreateScene__15ClockTransition);
+        asm/code_linkonce.o(.text.scene_clock_after);
         src/game_scene.o(.text.CreateScene__17ReturnToGameScene);
         asm/code_linkonce.o(.text.scene_return_after);
         *(.gnu.linkonce.t.__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01);

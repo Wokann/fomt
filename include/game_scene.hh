@@ -491,6 +491,87 @@ typedef char ClinicShopSceneCoreCheck[offsetof(ClinicShopScene, core) == 4 ? 1 :
 typedef char ClinicShopSceneContinuationCheck[offsetof(ClinicShopScene, continuation) == 8 ? 1 : -1];
 typedef char ClinicShopTransitionSizeCheck[sizeof(ClinicShopTransition) == 12 ? 1 : -1];
 
+// Verified nonuniform scene layouts; unknown scalar semantics stay unnamed.
+struct YodelRanchShopSceneCore;
+struct YodelRanchShopScene : AScene {
+    virtual ~YodelRanchShopScene();
+    virtual SceneTransitionOwner Run();
+    YodelRanchShopSceneCore * core;
+    SceneTransitionOwner continuation;
+    u32 unk_0C;
+    GameStateSaveImage * save;
+};
+
+struct YodelRanchShopTransition : SceneTransition {
+    virtual ~YodelRanchShopTransition();
+    virtual SceneOwner CreateScene();
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+    u32 unk_0C;
+};
+typedef char YodelRanchShopSceneSizeCheck[sizeof(YodelRanchShopScene) == 20 ? 1 : -1];
+typedef char YodelRanchShopSceneSaveCheck[offsetof(YodelRanchShopScene, save) == 16 ? 1 : -1];
+typedef char YodelRanchShopTransitionSizeCheck[sizeof(YodelRanchShopTransition) == 16 ? 1 : -1];
+
+struct PoultryFarmShopSceneCore;
+struct PoultryFarmShopScene : AScene {
+    virtual ~PoultryFarmShopScene();
+    virtual SceneTransitionOwner Run();
+    PoultryFarmShopSceneCore * core;
+    SceneTransitionOwner continuation;
+    u32 unk_0C;
+    GameStateSaveImage * save;
+};
+
+struct PoultryFarmShopTransition : SceneTransition {
+    virtual ~PoultryFarmShopTransition();
+    virtual SceneOwner CreateScene();
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+    u32 unk_0C;
+};
+typedef char PoultryFarmShopSceneSizeCheck[sizeof(PoultryFarmShopScene) == 20 ? 1 : -1];
+typedef char PoultryFarmShopSceneSaveCheck[offsetof(PoultryFarmShopScene, save) == 16 ? 1 : -1];
+typedef char PoultryFarmShopTransitionSizeCheck[sizeof(PoultryFarmShopTransition) == 16 ? 1 : -1];
+
+struct BlacksmithShopSceneCore;
+struct BlacksmithShopScene : AScene {
+    virtual ~BlacksmithShopScene();
+    virtual SceneTransitionOwner Run();
+    BlacksmithShopSceneCore * core;
+    SceneTransitionOwner continuation;
+    u32 unk_0C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    GameStateSaveImage * save;
+};
+
+struct BlacksmithShopTransition : SceneTransition {
+    virtual ~BlacksmithShopTransition();
+    virtual SceneOwner CreateScene();
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+    u32 unk_0C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u8 unk_1C;
+};
+typedef char BlacksmithShopSceneSizeCheck[sizeof(BlacksmithShopScene) == 32 ? 1 : -1];
+typedef char BlacksmithShopSceneSaveCheck[offsetof(BlacksmithShopScene, save) == 28 ? 1 : -1];
+typedef char BlacksmithShopTransitionSizeCheck[sizeof(BlacksmithShopTransition) == 32 ? 1 : -1];
+typedef char BlacksmithShopTransitionByteCheck[offsetof(BlacksmithShopTransition, unk_1C) == 28 ? 1 : -1];
+
+struct ClockTransition : SceneTransition {
+    virtual ~ClockTransition();
+    virtual SceneOwner CreateScene();
+    GameStateSaveImage * save;
+    SceneTransitionOwner continuation;
+};
+typedef char ClockTransitionSizeCheck[sizeof(ClockTransition) == 12 ? 1 : -1];
+typedef char ClockTransitionOwnerCheck[offsetof(ClockTransition, continuation) == 8 ? 1 : -1];
+
 // The native constructor allocates 0xF8 bytes and places its vptr at +0xF4.
 // The display shadow at +0x10 is constructed as HardwareDisplayState.
 // Other fields are typed only where native construction or use proves them.
@@ -694,6 +775,18 @@ ClinicShopScene * func_0807E97C(void *, SceneTransition **, GameStateSaveImage *
 #else
 ClinicShopScene * func_0807EE14(void *, SceneTransition **, GameStateSaveImage *);
 #endif
+
+#if defined(REGION_JP)
+YodelRanchShopScene * loc_08087CA8(void *, SceneTransition **, GameStateSaveImage *, u32);
+#else
+YodelRanchShopScene * func_08088168(void *, SceneTransition **, GameStateSaveImage *, u32);
+#endif
+#if defined(REGION_JP)
+PoultryFarmShopScene * func_0807CBD8(void *, SceneTransition **, GameStateSaveImage *, u32);
+#else
+PoultryFarmShopScene * func_0807D070(void *, SceneTransition **, GameStateSaveImage *, u32);
+#endif
+BlacksmithShopScene * func_08083A7C(void *, SceneTransition **, GameStateSaveImage *, u8, u32, u32, u32, u32);
 
 // The global controller and its subobjects are not yet fully recovered.
 extern u8 * gUnk_0300040C;

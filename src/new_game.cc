@@ -354,14 +354,24 @@ AScene * func_08004B58(void * object)
     return reinterpret_cast<AScene *>(scene);
 }
 
-AScene * func_08004B94(void * object, void * state, SceneTransitionOwner continuation)
+// Move out of the native input slot before constructing the menu core.
+static inline SceneTransition * TakeMenuContinuation(SceneTransition *& source)
+{
+    SceneTransition * value = source;
+    source = nullptr;
+    return value;
+}
+
+AScene * func_08004B94(void * object, void * state, SceneTransition *& continuation)
 {
     NewGameMenuScene * scene = static_cast<NewGameMenuScene *>(object);
     scene->vtable = vtable_unk_080E5A68;
-    SceneTransition * next = continuation.release();
+    SceneTransition * next = TakeMenuContinuation(continuation);
     scene->core = func_080041DC(
         static_cast<NewGameMenuCore *>(::operator new(sizeof(NewGameMenuCore))),
         state, next);
+    // Preserve native cleanup even when the consumed slot is null.
+    delete continuation;
     return reinterpret_cast<AScene *>(scene);
 }
 

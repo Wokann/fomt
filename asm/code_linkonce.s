@@ -11105,43 +11105,8 @@ func_080DBCC0:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DBCE8
-    .thumb_func
-func_080DBCE8:
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    adds r6, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    movs r5, #0
-    str r5, [r4, #4]
-    str r0, [sp, #4]
-    movs r0, #0x14
-    bl __builtin_new
-    add r1, sp, #4
-    ldr r2, [r4, #8]
-    ldr r3, [r4, #0xc]
-    bl loc_08087CA8
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r5, [r1]
-    str r0, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DB4DA
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DB4DA:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
+    .section .text.scene_yodel_ranch_shop_after, "ax", %progbits
+
     .global func_080DB4E4
     .thumb_func
 func_080DB4E4:
@@ -11164,43 +11129,8 @@ func_080DB4E4:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DBD58
-    .thumb_func
-func_080DBD58:
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    adds r6, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    movs r5, #0
-    str r5, [r4, #4]
-    str r0, [sp, #4]
-    movs r0, #0x14
-    bl __builtin_new
-    add r1, sp, #4
-    ldr r2, [r4, #8]
-    ldr r3, [r4, #0xc]
-    bl func_0807CBD8
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r5, [r1]
-    str r0, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DB54A
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DB54A:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
+    .section .text.scene_poultry_farm_shop_after, "ax", %progbits
+
     .global func_080DBDA0
     .thumb_func
 func_080DBDA0:
@@ -11367,51 +11297,8 @@ func_080DC040:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DC068
-    .thumb_func
-func_080DC068:
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x20
-    adds r7, r0, #0
-    adds r5, r1, #0
-    ldr r0, [r5, #4]
-    movs r6, #0
-    str r6, [r5, #4]
-    str r0, [sp, #0x14]
-    movs r0, #0x20
-    bl __builtin_new
-    add r1, sp, #0x14
-    ldr r2, [r5, #8]
-    ldrb r3, [r5, #0x1c]
-    ldr r4, [r5, #0xc]
-    str r4, [sp]
-    ldr r4, [r5, #0x10]
-    str r4, [sp, #4]
-    ldr r4, [r5, #0x14]
-    str r4, [sp, #8]
-    ldr r4, [r5, #0x18]
-    str r4, [sp, #0xc]
-    bl func_08083A7C
-    str r0, [sp, #0x10]
-    add r1, sp, #0x10
-    str r1, [sp, #0x18]
-    str r0, [sp, #0x1c]
-    str r6, [r1]
-    str r0, [r7]
-    ldr r1, [sp, #0x10]
-    cmp r1, #0
-    beq .Lauto_080DB86A
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DB86A:
-    adds r0, r7, #0
-    add sp, #0x20
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
+    .section .text.scene_blacksmith_shop_after, "ax", %progbits
+
     .global func_080DC0C0
     .thumb_func
 func_080DC0C0:
@@ -11490,43 +11377,8 @@ func_080DC1C8:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DC1D4
-    .thumb_func
-func_080DC1D4:
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    adds r6, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #8]
-    movs r5, #0
-    str r5, [r4, #8]
-    str r0, [sp, #4]
-    movs r0, #8
-    bl __builtin_new
-    ldr r1, [r4, #4]
-    add r2, sp, #4
-    bl func_08004B94
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r5, [r1]
-    str r0, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DB9C4
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DB9C4:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
+    .section .text.scene_clock_after, "ax", %progbits
+
     .global func_080DC21C
     .thumb_func
 func_080DC21C:
@@ -24472,42 +24324,7 @@ func_080DBCC0: @ 0x080DBCC0
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DBCE8
-func_080DBCE8: @ 0x080DBCE8
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	adds r6, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	movs r5, #0
-	str r5, [r4, #4]
-	str r0, [sp, #4]
-	movs r0, #0x14
-	bl __builtin_new
-	add r1, sp, #4
-	ldr r2, [r4, #8]
-	ldr r3, [r4, #0xc]
-	bl func_08088168
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r5, [r1]
-	str r0, [r6]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080DBD26
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DBD26:
-	adds r0, r6, #0
-	add sp, #0x10
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
+    .section .text.scene_yodel_ranch_shop_after, "ax", %progbits
 
 	thumb_func_start func_080DBD30
 func_080DBD30: @ 0x080DBD30
@@ -24531,42 +24348,7 @@ func_080DBD30: @ 0x080DBD30
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DBD58
-func_080DBD58: @ 0x080DBD58
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	adds r6, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	movs r5, #0
-	str r5, [r4, #4]
-	str r0, [sp, #4]
-	movs r0, #0x14
-	bl __builtin_new
-	add r1, sp, #4
-	ldr r2, [r4, #8]
-	ldr r3, [r4, #0xc]
-	bl func_0807D070
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r5, [r1]
-	str r0, [r6]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080DBD96
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DBD96:
-	adds r0, r6, #0
-	add sp, #0x10
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
+    .section .text.scene_poultry_farm_shop_after, "ax", %progbits
 
 	thumb_func_start func_080DBDA0
 func_080DBDA0: @ 0x080DBDA0
@@ -24734,50 +24516,7 @@ func_080DC040: @ 0x080DC040
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DC068
-func_080DC068: @ 0x080DC068
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x20
-	adds r7, r0, #0
-	adds r5, r1, #0
-	ldr r0, [r5, #4]
-	movs r6, #0
-	str r6, [r5, #4]
-	str r0, [sp, #0x14]
-	movs r0, #0x20
-	bl __builtin_new
-	add r1, sp, #0x14
-	ldr r2, [r5, #8]
-	ldrb r3, [r5, #0x1c]
-	ldr r4, [r5, #0xc]
-	str r4, [sp]
-	ldr r4, [r5, #0x10]
-	str r4, [sp, #4]
-	ldr r4, [r5, #0x14]
-	str r4, [sp, #8]
-	ldr r4, [r5, #0x18]
-	str r4, [sp, #0xc]
-	bl func_08083A7C
-	str r0, [sp, #0x10]
-	add r1, sp, #0x10
-	str r1, [sp, #0x18]
-	str r0, [sp, #0x1c]
-	str r6, [r1]
-	str r0, [r7]
-	ldr r1, [sp, #0x10]
-	cmp r1, #0
-	beq .L080DC0B6
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DC0B6:
-	adds r0, r7, #0
-	add sp, #0x20
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
+    .section .text.scene_blacksmith_shop_after, "ax", %progbits
 
 	thumb_func_start func_080DC0C0
 func_080DC0C0: @ 0x080DC0C0
@@ -24857,42 +24596,7 @@ func_080DC1C8: @ 0x080DC1C8
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DC1D4
-func_080DC1D4: @ 0x080DC1D4
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	adds r6, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #8]
-	movs r5, #0
-	str r5, [r4, #8]
-	str r0, [sp, #4]
-	movs r0, #8
-	bl __builtin_new
-	ldr r1, [r4, #4]
-	add r2, sp, #4
-	bl func_08004B94
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r5, [r1]
-	str r0, [r6]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080DC210
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DC210:
-	adds r0, r6, #0
-	add sp, #0x10
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.scene_clock_after, "ax", %progbits
 
 	thumb_func_start func_080DC21C
 func_080DC21C: @ 0x080DC21C
