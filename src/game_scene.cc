@@ -1,4 +1,5 @@
 #include "game_scene.hh"
+#include <new>
 #include "hardware_blend.hh"
 #include "game_state.hh"
 #include "entity_actor.hh"
@@ -56,9 +57,11 @@ u8 * func_08010104(void)
     return gUnk_0300040C + 0x4DC;
 }
 
-u8 * func_08010118(void)
+GameSceneScriptQueue<2> * func_08010118(void)
 {
-    return gUnk_0300040C + 0x378;
+    GameSceneScriptControllerPrefix * controller =
+        reinterpret_cast<GameSceneScriptControllerPrefix *>(gUnk_0300040C);
+    return &controller->queue_0;
 }
 
 u8 * func_08010128(void)
@@ -76,9 +79,11 @@ u32 func_08010148(void)
     return 25;
 }
 
-u8 * func_0801014C(void)
+ScriptEngine * func_0801014C(void)
 {
-    return gUnk_0300040C + 8;
+    GameSceneScriptControllerPrefix * controller =
+        reinterpret_cast<GameSceneScriptControllerPrefix *>(gUnk_0300040C);
+    return &controller->script_engine;
 }
 
 SceneTransitionOwner GameScene::Run()
@@ -505,4 +510,33 @@ void GameScene::TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width)
     FormatSignedDecimal(value, text, width);
 #endif
     func_0803B6B8(current->text_variables, slot, text);
+}
+
+void GameScene::CallScript(i32 script_id, i32 context_value)
+{
+    GameSceneState * current = state;
+    GameSceneScriptControllerPrefix * controller =
+        reinterpret_cast<GameSceneScriptControllerPrefix *>(gUnk_0300040C);
+    controller->script_engine.LoadById(script_id, context_value);
+    func_080D7F3C(current);
+}
+
+void GameScene::QueueScript(GameSceneScriptRequest const & request, i32 queue_kind)
+{
+    GameSceneScriptControllerPrefix * controller =
+        reinterpret_cast<GameSceneScriptControllerPrefix *>(gUnk_0300040C);
+    GameSceneScriptQueue<2> & first = controller->queue_0;
+    switch (queue_kind) {
+    case 0: first.Push(request); break;
+    case 1: controller->queue_1.Push(request); break;
+    case 2: controller->queue_2.Push(request); break;
+    }
+}
+
+void GameScene::WaitFrames(i32 frames)
+{
+    GameSceneState * current = state;
+    // Retain only the low halfword. Zero is not an immediate completion.
+    current->wait_frames = frames;
+    current->script_state = 0x15;
 }

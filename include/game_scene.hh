@@ -5,6 +5,8 @@
 #include "scene.hh"
 #include "ui_state.hh"
 #include "hardware_display_output.hh"
+#include "script_engine.hh"
+#include <new>
 
 struct AActorEntity;
 struct GameObject;
@@ -66,6 +68,47 @@ struct GameSceneSongPlayerPool {
     MusicPlayer *** capacity_end;
 };
 
+// Each pending request is passed unchanged to LoadById(id, context).
+struct GameSceneScriptRequest {
+    i32 script_id;
+    i32 context_value;
+};
+
+template <u32 Capacity>
+struct GameSceneScriptQueue {
+    u32 count;
+    GameSceneScriptRequest entries[Capacity];
+
+    GameSceneScriptRequest * End() { return &entries[count]; }
+
+    // Native insertion drops a full queue; it does not grow or overwrite it.
+    void Push(GameSceneScriptRequest const & request)
+    {
+        if (count < Capacity) {
+            new (End()) GameSceneScriptRequest(request);
+            ++count;
+        }
+    }
+};
+
+// Only the verified controller prefix through its three queues is modeled.
+// The native owner, fields outside this prefix and lifecycle stay in assembly.
+struct GameSceneScriptControllerPrefix {
+    u8 unk_00[8];
+    ScriptEngine script_engine;
+    u8 unk_364[0x14];
+    GameSceneScriptQueue<2> queue_0;
+    GameSceneScriptQueue<40> queue_1;
+    GameSceneScriptQueue<1> queue_2;
+};
+
+typedef char GameSceneScriptRequestSizeCheck[sizeof(GameSceneScriptRequest) == 8 ? 1 : -1];
+typedef char GameSceneControllerEngineCheck[offsetof(GameSceneScriptControllerPrefix, script_engine) == 8 ? 1 : -1];
+typedef char GameSceneControllerQueue0Check[offsetof(GameSceneScriptControllerPrefix, queue_0) == 0x378 ? 1 : -1];
+typedef char GameSceneControllerQueue1Check[offsetof(GameSceneScriptControllerPrefix, queue_1) == 0x38C ? 1 : -1];
+typedef char GameSceneControllerQueue2Check[offsetof(GameSceneScriptControllerPrefix, queue_2) == 0x4D0 ? 1 : -1];
+typedef char GameSceneControllerPrefixSizeCheck[sizeof(GameSceneScriptControllerPrefix) == 0x4DC ? 1 : -1];
+
 // The native constructor allocates 0xF8 bytes and places its vptr at +0xF4.
 // The display shadow at +0x10 is constructed as HardwareDisplayState.
 // Other fields are typed only where native construction or use proves them.
@@ -86,7 +129,8 @@ struct GameSceneState {
     MusicPlayer * bgm_player;
     u8 unk_C0[0x10];
     GameSceneSongPlayerPool song_players;
-    u8 unk_E0[4];
+    u16 wait_frames;
+    u16 unk_E2;
     AActorEntity * waiting_entity;
     u8 unk_E8;
     u8 unk_E9;
@@ -143,6 +187,9 @@ struct GameScene : AScene {
     void TextVariableSetNumber(u32 slot, i32 value);
     void TextVariableSetString(u32 slot, char const * text);
     void TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width);
+    void CallScript(i32 script_id, i32 context_value);
+    void QueueScript(GameSceneScriptRequest const & request, i32 queue_kind);
+    void WaitFrames(i32 frames);
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];
@@ -169,6 +216,7 @@ typedef char GameSceneStateTimeWindowCheck[offsetof(GameSceneState, time_window)
 typedef char GameSceneStateMenuSelectorCheck[offsetof(GameSceneState, pause_menu_selector) == 0xB8 ? 1 : -1];
 typedef char GameSceneStateBgmPlayerCheck[offsetof(GameSceneState, bgm_player) == 0xBC ? 1 : -1];
 typedef char GameSceneStateSongPlayersCheck[offsetof(GameSceneState, song_players) == 0xD0 ? 1 : -1];
+typedef char GameSceneStateWaitFramesCheck[offsetof(GameSceneState, wait_frames) == 0xE0 ? 1 : -1];
 typedef char GameSceneStateWaitingEntityCheck[offsetof(GameSceneState, waiting_entity) == 0xE4 ? 1 : -1];
 typedef char GameSceneSizeCheck[sizeof(GameScene) == 8 ? 1 : -1];
 typedef char GameSceneStatePointerCheck[offsetof(GameScene, state) == 4 ? 1 : -1];
@@ -180,11 +228,11 @@ extern u8 * gUnk_0300040C;
 
 u8 * func_080100F0(void);
 u8 * func_08010104(void);
-u8 * func_08010118(void);
+GameSceneScriptQueue<2> * func_08010118(void);
 u8 * func_08010128(void);
 u8 * func_08010138(void);
 u32 func_08010148(void);
-u8 * func_0801014C(void);
+ScriptEngine * func_0801014C(void);
 
 // The native post-map-change state callback remains in assembly.
 void func_080D7F08(GameSceneState * state);
@@ -194,6 +242,8 @@ void func_080D7F9C(GameSceneState * state, u32 id, u32 map, i32 x, i32 y,
 // Native text-variable storage keeps its original byte-based truncation.
 // The scene wrappers do not add a slot check or width clamp.
 void func_0803B6B8(ScriptTextVariableStore * variables, u32 slot, char const * text);
+
+void func_080D7F3C(GameSceneState * state);
 
 // Native per-window cleanup helpers used by the close transition.
 void func_080D7F60(GameSceneState * state);

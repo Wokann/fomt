@@ -603,20 +603,20 @@ ScriptEngine::ScriptEngine(void * arg_r1)
 {
     unk_350 = arg_r1;
     unk_354 = nullptr;
-    unk_358 = 0;
+    event_context = 0;
 }
 
 ScriptEngine::ScriptEngine(void * arg_r1, void * arg_r2)
 {
     unk_350 = arg_r1;
     unk_354 = arg_r2;
-    unk_358 = 0;
+    event_context = 0;
 }
 
-void ScriptEngine::LoadById(int id, int arg_r2)
+void ScriptEngine::LoadById(int id, int context_value)
 {
     Load(gMaryScriptTable[id]);
-    unk_358 = arg_r2;
+    event_context = context_value;
 }
 
 void ScriptEngine::SetUnk(void * unk)

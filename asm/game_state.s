@@ -1775,113 +1775,6 @@ func_080124D0:
 
     .section .text.game_scene_text_variable_commands_after, "ax", %progbits
 
-    .global func_08012B04
-    .thumb_func
-func_08012B04:
-    push {r4, lr}
-    ldr r4, [r0, #4]
-    ldr r0, .Ljp_080129F0 @ =gUnk_0300040C
-    ldr r0, [r0]
-    adds r0, #8
-    bl LoadById__12ScriptEngineii
-    adds r0, r4, #0
-    bl func_080D7F3C
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_080129F0: .4byte gUnk_0300040C
-
-    .global func_08012B24
-    .thumb_func
-func_08012B24:
-    push {r4, lr}
-    ldr r0, .Ljp_08012A10 @ =gUnk_0300040C
-    ldr r3, [r0]
-    movs r0, #0xde
-    lsls r0, r0, #2
-    adds r4, r3, r0
-    cmp r2, #1
-    beq .Ljp_08012A3A
-    cmp r2, #1
-    bgt .Ljp_08012A14
-    cmp r2, #0
-    beq .Ljp_08012A1A
-    b .Ljp_08012A70
-    .align 2, 0
-.Ljp_08012A10: .4byte gUnk_0300040C
-.Ljp_08012A14:
-    cmp r2, #2
-    beq .Ljp_08012A4E
-    b .Ljp_08012A70
-.Ljp_08012A1A:
-    ldr r0, [r4]
-    cmp r0, #1
-    bhi .Ljp_08012A70
-    lsls r0, r0, #3
-    adds r0, #4
-    adds r2, r4, r0
-    cmp r2, #0
-    beq .Ljp_08012A32
-    ldr r0, [r1]
-    ldr r1, [r1, #4]
-    str r0, [r2]
-    str r1, [r2, #4]
-.Ljp_08012A32:
-    ldr r0, [r4]
-    adds r0, #1
-    str r0, [r4]
-    b .Ljp_08012A70
-.Ljp_08012A3A:
-    movs r0, #0xe3
-    lsls r0, r0, #2
-    adds r2, r3, r0
-    ldr r0, [r2]
-    cmp r0, #0x27
-    bhi .Ljp_08012A70
-    lsls r0, r0, #3
-    adds r0, #4
-    adds r3, r2, r0
-    b .Ljp_08012A5E
-.Ljp_08012A4E:
-    movs r0, #0x9a
-    lsls r0, r0, #3
-    adds r2, r3, r0
-    ldr r0, [r2]
-    cmp r0, #0
-    bne .Ljp_08012A70
-    ldr r0, .Ljp_08012A78 @ =0x000004D4
-    adds r3, r3, r0
-.Ljp_08012A5E:
-    cmp r3, #0
-    beq .Ljp_08012A6A
-    ldr r0, [r1]
-    ldr r1, [r1, #4]
-    str r0, [r3]
-    str r1, [r3, #4]
-.Ljp_08012A6A:
-    ldr r0, [r2]
-    adds r0, #1
-    str r0, [r2]
-.Ljp_08012A70:
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08012A78: .4byte 0x000004D4
-
-    .global func_08012BAC
-    .thumb_func
-func_08012BAC:
-    ldr r0, [r0, #4]
-    adds r2, r0, #0
-    adds r2, #0xe0
-    strh r1, [r2]
-    adds r0, #0x9c
-    movs r1, #0x15
-    str r1, [r0]
-    bx lr
-
     .global func_08012BBC
     .thumb_func
 func_08012BBC:
@@ -17825,7 +17718,7 @@ func_0801D9A8:
     ldr r3, [pc, #0xc]
     adds r0, r0, r3
     ldr r0, [r0]
-    bl func_08012B24
+    bl QueueScript__9GameSceneRC22GameSceneScriptRequesti
     pop {r0}
     bx r0
     .byte 0x54, 0x10, 0x00, 0x00
@@ -22003,110 +21896,6 @@ func_080124D0: @ 0x080124D0
     .align 2, 0
 
     .section .text.game_scene_text_variable_commands_after, "ax", %progbits
-
-    thumb_func_start func_08012B04
-func_08012B04: @ 0x08012B04
-    push {r4, lr}
-    ldr r4, [r0, #4]
-    ldr r0, .L08012B20 @ =gUnk_0300040C
-    ldr r0, [r0]
-    adds r0, #8
-    bl LoadById__12ScriptEngineii
-    adds r0, r4, #0
-    bl func_080D7F3C
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012B20: .4byte gUnk_0300040C
-
-    thumb_func_start func_08012B24
-func_08012B24: @ 0x08012B24
-    push {r4, lr}
-    ldr r0, .L08012B40 @ =gUnk_0300040C
-    ldr r3, [r0]
-    movs r0, #0xde
-    lsls r0, r0, #2
-    adds r4, r3, r0
-    cmp r2, #1
-    beq .L08012B6A
-    cmp r2, #1
-    bgt .L08012B44
-    cmp r2, #0
-    beq .L08012B4A
-    b .L08012BA0
-    .align 2, 0
-.L08012B40: .4byte gUnk_0300040C
-.L08012B44:
-    cmp r2, #2
-    beq .L08012B7E
-    b .L08012BA0
-.L08012B4A:
-    ldr r0, [r4]
-    cmp r0, #1
-    bhi .L08012BA0
-    lsls r0, r0, #3
-    adds r0, #4
-    adds r2, r4, r0
-    cmp r2, #0
-    beq .L08012B62
-    ldr r0, [r1]
-    ldr r1, [r1, #4]
-    str r0, [r2]
-    str r1, [r2, #4]
-.L08012B62:
-    ldr r0, [r4]
-    adds r0, #1
-    str r0, [r4]
-    b .L08012BA0
-.L08012B6A:
-    movs r0, #0xe3
-    lsls r0, r0, #2
-    adds r2, r3, r0
-    ldr r0, [r2]
-    cmp r0, #0x27
-    bhi .L08012BA0
-    lsls r0, r0, #3
-    adds r0, #4
-    adds r3, r2, r0
-    b .L08012B8E
-.L08012B7E:
-    movs r0, #0x9a
-    lsls r0, r0, #3
-    adds r2, r3, r0
-    ldr r0, [r2]
-    cmp r0, #0
-    bne .L08012BA0
-    ldr r0, .L08012BA8 @ =0x000004D4
-    adds r3, r3, r0
-.L08012B8E:
-    cmp r3, #0
-    beq .L08012B9A
-    ldr r0, [r1]
-    ldr r1, [r1, #4]
-    str r0, [r3]
-    str r1, [r3, #4]
-.L08012B9A:
-    ldr r0, [r2]
-    adds r0, #1
-    str r0, [r2]
-.L08012BA0:
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012BA8: .4byte 0x000004D4
-
-    thumb_func_start func_08012BAC
-func_08012BAC: @ 0x08012BAC
-    ldr r0, [r0, #4]
-    adds r2, r0, #0
-    adds r2, #0xe0
-    strh r1, [r2]
-    adds r0, #0x9c
-    movs r1, #0x15
-    str r1, [r0]
-    bx lr
 
     thumb_func_start func_08012BBC
 func_08012BBC: @ 0x08012BBC
@@ -41268,7 +41057,7 @@ func_0801D9A8: @ 0x0801D9A8
     ldr r3, .L0801D9B8 @ =0x00001054
     adds r0, r0, r3
     ldr r0, [r0]
-    bl func_08012B24
+    bl QueueScript__9GameSceneRC22GameSceneScriptRequesti
     pop {r0}
     bx r0
     .align 2, 0

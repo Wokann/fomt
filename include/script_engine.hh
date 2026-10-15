@@ -122,7 +122,7 @@ struct ScriptEngine : public AScriptEngine
     // Its game-specific command bodies remain in asm/code_0803EE94.s.
     int OnCall(int id);
 
-    void LoadById(int id, int arg_r2);
+    void LoadById(int id, int context_value);
     void SetUnk(void * unk);
     void ClearUnk();
     void Push(i32 value);
@@ -131,7 +131,11 @@ struct ScriptEngine : public AScriptEngine
 
     /* +350 */ void * unk_350;
     /* +354 */ void * unk_354;
-    /* +358 */ i32 unk_358;
+    // Raw event-specific integer: shipping value, product ID, etc.
+    /* +358 */ i32 event_context;
 };
+
+typedef char ScriptEngineEventContextOffsetCheck[offsetof(ScriptEngine, event_context) == 0x358 ? 1 : -1];
+typedef char ScriptEngineSizeCheck[sizeof(ScriptEngine) == 0x35C ? 1 : -1];
 
 #endif // SCRIPT_ENGINE_HH

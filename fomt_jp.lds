@@ -198,10 +198,11 @@ SECTIONS
         src/game_state.o(.text.InitializeGameDisplayOptions);
         src/game_state.o(.text.*);
         asm/game_state.o(.text.game_state_after_display_options);
-        /* Keep the native opener before the recovered dialogue/fade run. */
-        src/game_scene.o(.text.[!FT]*__9GameScene*);
+        /* Native opener separates two source-ordered member runs.
+         * Patterns in one input selector keep the object's section order. */
+        src/game_scene.o(.text.[!CFQTW]*__9GameScene* .text.ChangeMap__9GameScene* .text.WaitFor*__9GameScene*);
         asm/game_state.o(.text.game_scene_entity_commands_after);
-        src/game_scene.o(.text.[FT]*__9GameScene*);
+        src/game_scene.o(.text.*__9GameScene*);
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
         . = 0x1FB0C; /* JP ROM 0x0801FB0C, independently matched */
         src/entity.o(.text);
