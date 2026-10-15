@@ -218,7 +218,7 @@ SECTIONS
         . = 0x34B60; /* DE ROM 0x08034B60, entity-UI value dispatcher. */
         src/entity_ui.o(.text.entity_ui_dispatch_value_30);
         . = 0x34B78; /* NPC schedule query and entity methods. */
-        src/npc_entity.o(.text);
+        src/npc_entity.o(.text.func_08034C64 .text.*ANpcEntity* .text.func_08034E* .text.func_08034F00);
         asm/code_entities_08034CEC.o(.text);
 
         . = 0x3A7B8; /* DE ROM 0x0803A7B8, remaining raw control code. */
@@ -501,6 +501,7 @@ SECTIONS
         *(.gnu.linkonce.t.push_back__Q28Rucksackt5Slots1Z9ToolStackG9ToolStack);
         *(.gnu.linkonce.t.push_front__Q28Rucksackt5Slots1Z9ToolStackG9ToolStack);
         asm/code_linkonce.o(.text.code_080D7CFC);
+        src/npc_entity.o(.text.FindScheduleEntryUpperBound);
         src/game_scene.o(.text.func_080D7F*);
         asm/code_linkonce.o(.text.game_scene_state_callbacks_after);
         src/game_scene.o(.text.CreateScene__18CalendarTransition);
@@ -545,6 +546,8 @@ SECTIONS
         asm/code_linkonce.o(.text.scene_clock_after);
         src/game_scene.o(.text.CreateScene__17ReturnToGameScene);
         asm/code_linkonce.o(.text.scene_return_after);
+        src/npc_entity.o(.text.FindTimedPathPointUpperBound);
+        asm/code_linkonce.o(.text.npc_timed_path_search_after);
         *(.gnu.linkonce.t.__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01);
         asm/code_linkonce.o(.text.code_080E0EF0);
         src/font.o(.text.font_unsigned_decimal);

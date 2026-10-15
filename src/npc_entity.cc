@@ -1,6 +1,7 @@
 #include "npc_entity.hh"
 #include "npc.hh"
 #include "data_schedules.hh"
+#include <iterator>
 
 static inline void TMP_ChangeAnim(ANpcEntity & self, u32 new_anim_id)
 {
@@ -759,4 +760,45 @@ EC NAKED void func_08034F00(ANpcEntity * self, int unk_arg_1)
         pop {r0}\n\
         bx r0\n\
     ");
+}
+
+static inline bool IsBeforePathEntry(u32 const & minute, ScheduleEntry const & entry)
+{
+    return minute < entry.time;
+}
+
+static inline bool IsBeforePathEntry(u32 const & minute, PathPointA const & point)
+{
+    return minute < point.instant;
+}
+
+template <typename Entry>
+static inline Entry const * FindPathEntryUpperBound(Entry const * first,
+    Entry const * last, u32 const & minute)
+{
+    ptrdiff_t length = last - first;
+    while (length > 0) {
+        ptrdiff_t half = length >> 1;
+        Entry const * middle = first;
+        std::advance(middle, half);
+        if (IsBeforePathEntry(minute, *middle))
+            length = half;
+        else {
+            first = middle + 1;
+            length = length - half - 1;
+        }
+    }
+    return first;
+}
+
+EC ScheduleEntry const * FindScheduleEntryUpperBound(ScheduleEntry const * first,
+    ScheduleEntry const * last, u32 const & minute, u32, u32)
+{
+    return FindPathEntryUpperBound(first, last, minute);
+}
+
+EC PathPointA const * FindTimedPathPointUpperBound(PathPointA const * first,
+    PathPointA const * last, u32 const & minute, u32, u32)
+{
+    return FindPathEntryUpperBound(first, last, minute);
 }

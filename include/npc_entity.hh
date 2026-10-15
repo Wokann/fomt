@@ -34,7 +34,7 @@ typedef char NpcEntityScheduleCheck[offsetof(ANpcEntity, schedule_info) == 0x38 
 
 EXTERN_C
 
-// This still-native search returns the first entry strictly later than minute.
+// Return the first entry strictly later than minute.
 // Both existing callers pass zero in r3 and the first stack argument;
 // the implementation does not read either word. Their meanings are unknown.
 ScheduleEntry const * FindScheduleEntryUpperBound(ScheduleEntry const * first,

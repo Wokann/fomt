@@ -372,6 +372,9 @@ $(BUILD_DIR)/src/npc_collection.o: CXXFLAGS += -ffunction-sections
 # Schedule initialization precedes the existing contiguous NPC method run.
 $(BUILD_DIR)/src/npc.o: CXXFLAGS += -ffunction-sections
 
+# Path searches occupy their original late-code positions, after NPC methods.
+$(BUILD_DIR)/src/npc_entity.o: CXXFLAGS += -ffunction-sections
+
 # The bounded work-target search occupies the original library-code run.
 $(BUILD_DIR)/src/harvest_sprite.o: CXXFLAGS += -ffunction-sections
 

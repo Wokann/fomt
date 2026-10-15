@@ -7921,44 +7921,6 @@ func_080D7E64:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .global FindScheduleEntryUpperBound
-    .thumb_func
-FindScheduleEntryUpperBound:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    subs r1, r1, r4
-    asrs r1, r1, #3
-    cmp r1, #0
-    ble .Lauto_080D76B6
-    ldr r5, [r2]
-    .Lauto_080D7692:
-    asrs r3, r1, #1
-    lsls r0, r3, #3
-    adds r0, r4, r0
-    movs r2, #0
-    ldrh r6, [r0]
-    cmp r5, r6
-    bhs .Lauto_080D76A2
-    movs r2, #1
-    .Lauto_080D76A2:
-    cmp r2, #0
-    beq .Lauto_080D76AA
-    adds r1, r3, #0
-    b .Lauto_080D76B2
-    .Lauto_080D76AA:
-    adds r4, r0, #0
-    adds r4, #8
-    subs r0, r1, r3
-    subs r1, r0, #1
-    .Lauto_080D76B2:
-    cmp r1, #0
-    bgt .Lauto_080D7692
-    .Lauto_080D76B6:
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
     .section .text.game_scene_state_callbacks_after, "ax", %progbits
 
     .global func_080D7F9C
@@ -12179,44 +12141,8 @@ func_080DC0E0:
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0x20, 0x5A, 0x0E, 0x08
-    .global FindTimedPathPointUpperBound
-    .thumb_func
-FindTimedPathPointUpperBound:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    subs r1, r1, r4
-    asrs r1, r1, #3
-    cmp r1, #0
-    ble .Lauto_080DC152
-    ldr r5, [r2]
-    .Lauto_080DC12E:
-    asrs r3, r1, #1
-    lsls r0, r3, #3
-    adds r0, r4, r0
-    movs r2, #0
-    ldrh r6, [r0]
-    cmp r5, r6
-    bhs .Lauto_080DC13E
-    movs r2, #1
-    .Lauto_080DC13E:
-    cmp r2, #0
-    beq .Lauto_080DC146
-    adds r1, r3, #0
-    b .Lauto_080DC14E
-    .Lauto_080DC146:
-    adds r4, r0, #0
-    adds r4, #8
-    subs r0, r1, r3
-    subs r1, r0, #1
-    .Lauto_080DC14E:
-    cmp r1, #0
-    bgt .Lauto_080DC12E
-    .Lauto_080DC152:
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
+    .section .text.npc_timed_path_search_after, "ax", %progbits
+
     .global func_080DC9A8
     .thumb_func
 func_080DC9A8:
@@ -16977,44 +16903,6 @@ func_080D7E64: @ 0x080D7E64
 	pop {r4, r5}
 	pop {r0}
 	bx r0
-
-	thumb_func_start FindScheduleEntryUpperBound
-FindScheduleEntryUpperBound: @ 0x080D7ECC
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	subs r1, r1, r4
-	asrs r1, r1, #3
-	cmp r1, #0
-	ble .L080D7EFE
-	ldr r5, [r2]
-.L080D7EDA:
-	asrs r3, r1, #1
-	lsls r0, r3, #3
-	adds r0, r4, r0
-	movs r2, #0
-	ldrh r6, [r0]
-	cmp r5, r6
-	bhs .L080D7EEA
-	movs r2, #1
-.L080D7EEA:
-	cmp r2, #0
-	beq .L080D7EF2
-	adds r1, r3, #0
-	b .L080D7EFA
-.L080D7EF2:
-	adds r4, r0, #0
-	adds r4, #8
-	subs r0, r1, r3
-	subs r1, r0, #1
-.L080D7EFA:
-	cmp r1, #0
-	bgt .L080D7EDA
-.L080D7EFE:
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
 
     .section .text.game_scene_state_callbacks_after, "ax", %progbits
 
@@ -25203,43 +25091,8 @@ func_080DC92C:
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 	.4byte vtable_unk_080E65E0
 
-	thumb_func_start FindTimedPathPointUpperBound
-FindTimedPathPointUpperBound: @ 0x080DC96C
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	subs r1, r1, r4
-	asrs r1, r1, #3
-	cmp r1, #0
-	ble .L080DC99E
-	ldr r5, [r2]
-.L080DC97A:
-	asrs r3, r1, #1
-	lsls r0, r3, #3
-	adds r0, r4, r0
-	movs r2, #0
-	ldrh r6, [r0]
-	cmp r5, r6
-	bhs .L080DC98A
-	movs r2, #1
-.L080DC98A:
-	cmp r2, #0
-	beq .L080DC992
-	adds r1, r3, #0
-	b .L080DC99A
-.L080DC992:
-	adds r4, r0, #0
-	adds r4, #8
-	subs r0, r1, r3
-	subs r1, r0, #1
-.L080DC99A:
-	cmp r1, #0
-	bgt .L080DC97A
-.L080DC99E:
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.npc_timed_path_search_after, "ax", %progbits
+
 .L080DC9A8:
 	.global func_080DC9A8
 	.thumb_func
