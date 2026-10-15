@@ -37,6 +37,11 @@ u8 * func_0801014C(void)
     return gUnk_0300040C + 8;
 }
 
+SceneTransitionOwner GameScene::Run()
+{
+    return sub_080D8178(state);
+}
+
 void GameScene::SetEntityPosition(u32 id, i32 x, i32 y, u32 facing)
 {
     GameSceneState * current = state;

@@ -1636,39 +1636,6 @@ func_08011FE8:
 .Ljp_08011EF0: .4byte vtable_unk_080E5E64
 .Ljp_08011EF4: .4byte gUnk_0300040C
 
-    .global func_08012028
-    .thumb_func
-func_08012028:
-    push {r4, lr}
-    sub sp, #0xc
-    adds r4, r0, #0
-    ldr r1, [r1, #4]
-    mov r0, sp
-    bl sub_080D8178
-    ldr r2, [sp]
-    mov r0, sp
-    str r0, [sp, #4]
-    str r2, [sp, #8]
-    adds r1, r0, #0
-    movs r0, #0
-    str r0, [r1]
-    str r2, [r4]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Ljp_08011F28
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08011F28:
-    adds r0, r4, #0
-    add sp, #0xc
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-
     .section .text.game_scene_entity_commands_after, "ax", %progbits
 
     .global func_080123CC
@@ -22764,38 +22731,6 @@ func_08011FE8: @ 0x08011FE8
     .align 2, 0
 .L08012020: .4byte vtable_unk_080E5E64
 .L08012024: .4byte gUnk_0300040C
-
-    thumb_func_start func_08012028
-func_08012028: @ 0x08012028
-    push {r4, lr}
-    sub sp, #0xc
-    adds r4, r0, #0
-    ldr r1, [r1, #4]
-    mov r0, sp
-    bl sub_080D8178
-    ldr r2, [sp]
-    mov r0, sp
-    str r0, [sp, #4]
-    str r2, [sp, #8]
-    adds r1, r0, #0
-    movs r0, #0
-    str r0, [r1]
-    str r2, [r4]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .L08012058
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08012058:
-    adds r0, r4, #0
-    add sp, #0xc
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
 
     .section .text.game_scene_entity_commands_after, "ax", %progbits
 

@@ -699,7 +699,7 @@ extern void func_08009674(void);
 extern void func_0801004C(void);
 extern void func_08010158(void);
 extern void func_08011FE8(void);
-extern void func_08012028(void);
+extern void Run__9GameScene(void);
 extern void func_080179CC(void);
 extern void func_08017C30(void);
 extern void func_080182C8(void);
@@ -1376,7 +1376,7 @@ extern RawVTableFunction const vtable_unk_080E5E64[] = {
     nullptr,
     nullptr,
     func_08011FE8,
-    func_08012028,
+    Run__9GameScene,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E74[] = {

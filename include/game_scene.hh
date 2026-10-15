@@ -22,6 +22,9 @@ struct GameSceneState {
 };
 
 struct GameScene : AScene {
+    virtual ~GameScene();
+    virtual SceneTransitionOwner Run();
+
     GameSceneState * state;
 
     void SetEntityPosition(u32 id, i32 x, i32 y, u32 facing);
@@ -70,6 +73,9 @@ u8 * func_0801014C(void);
 void func_080D7F08(GameSceneState * state);
 void func_080D7F9C(GameSceneState * state, u32 id, u32 map, i32 x, i32 y,
     u32 facing);
+
+// The native scene runner still owns the underlying update loop.
+SceneTransitionOwner sub_080D8178(GameSceneState * state);
 
 EXTERN_C_END
 
