@@ -34,7 +34,7 @@ func_0801004C:
     bl __builtin_new
     ldr r1, [r5, #4]
     adds r2, r4, #0
-    bl func_08011DC4
+    bl __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest
     adds r5, r0, #0
     ldr r1, [sp, #4]
     adds r6, r4, #0
@@ -369,7 +369,7 @@ func_0801004C: @ 0x0801004C
     bl __builtin_new
     ldr r1, [r5, #4]
     adds r2, r4, #0
-    bl func_08011DC4
+    bl __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest
     adds r5, r0, #0
     ldr r1, [sp, #4]
     adds r6, r4, #0

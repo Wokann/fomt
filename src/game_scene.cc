@@ -87,6 +87,14 @@ ScriptEngine * func_0801014C(void)
     return &controller->script_engine;
 }
 
+GameScene::~GameScene()
+{
+    GameSceneScriptControllerPrefix * controller =
+        reinterpret_cast<GameSceneScriptControllerPrefix *>(gUnk_0300040C);
+    controller->script_engine.ClearUnk();
+    delete state;
+}
+
 SceneTransitionOwner GameScene::Run()
 {
     return sub_080D8178(state);
@@ -876,5 +884,5 @@ SceneOwner ClockTransition::CreateScene()
 
 SceneOwner ReturnToGameScene::CreateScene()
 {
-    return SceneOwner(func_08011DC4(::operator new(sizeof(GameScene)), save, &request));
+    return SceneOwner(new GameScene(save, request));
 }

@@ -10015,7 +10015,7 @@ func_080DB238:
     bl __builtin_new
     ldr r1, [r5, #0xc]
     mov r2, sp
-    bl func_08011DC4
+    bl __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest
     str r0, [sp, #0xc]
     str r4, [sp, #0x18]
     str r0, [sp, #0x1c]
@@ -23431,7 +23431,7 @@ func_080DB238: @ 0x080DB238
 	bl __builtin_new
 	ldr r1, [r5, #0xc]
 	mov r2, sp
-	bl func_08011DC4
+	bl __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest
 	str r0, [sp, #0xc]
 	str r4, [sp, #0x18]
 	str r0, [sp, #0x1c]

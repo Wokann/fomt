@@ -698,7 +698,8 @@ extern void func_08009638(void);
 extern void func_08009674(void);
 extern void func_0801004C(void);
 extern void func_08010158(void);
-extern void func_08011FE8(void);
+// Direct binding to the compiler's legacy destructor symbol, not an alias body.
+extern void destructor_GameScene(void) asm("_._9GameScene");
 extern void Run__9GameScene(void);
 extern void func_080179CC(void);
 extern void func_08017C30(void);
@@ -1372,10 +1373,10 @@ extern RawVTableFunction const vtable_unk_080E5E54[] = {
     CreateScene__15ClockTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5E64[] = {
+extern RawVTableFunction const __vt_9GameScene[] = {
     nullptr,
     nullptr,
-    func_08011FE8,
+    destructor_GameScene,
     Run__9GameScene,
 };
 

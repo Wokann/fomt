@@ -620,6 +620,11 @@ struct GameSceneState {
 };
 
 struct GameScene : AScene {
+    // The regional constructors still have native assembly implementations.
+    GameScene(GameStateSaveImage * image, GameSceneResumeRequest const & request);
+#if !defined(REGION_JP)
+    explicit GameScene(GameStateSaveImage * image);
+#endif
     virtual ~GameScene();
     virtual SceneTransitionOwner Run();
 
@@ -730,10 +735,7 @@ typedef char GameSceneStatePointerCheck[offsetof(GameScene, state) == 4 ? 1 : -1
 
 EXTERN_C
 
-// Native construction ABI: the scene factories pass the original allocation
-// and the continuation address. Each shop constructor consumes *continuation.
-GameScene * func_08011DC4(void * object, GameStateSaveImage * save,
-    GameSceneResumeRequest const * request);
+// Native shop construction ABI: each constructor consumes *continuation.
 #if defined(REGION_JP)
 SupermarketScene * func_0807D8A0(void * object, SceneTransition ** continuation,
     GameStateSaveImage * save);

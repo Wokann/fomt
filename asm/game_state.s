@@ -1476,9 +1476,9 @@ func_08011CD8:
 .Ljp_08011D98: .4byte gHardwareDmaQueueCommandVTable
 .Ljp_08011D9C: .4byte vtable_unk_080E5BB4
 .Ljp_08011DA0: .4byte vtable_unk_080E5BD8
-    .global func_08011DC4
+    .global __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest
     .thumb_func
-func_08011DC4:
+__9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest:
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -1486,7 +1486,7 @@ func_08011DC4:
     adds r6, r0, #0
     mov r8, r1
     adds r5, r2, #0
-    ldr r0, .Ljp_08011EA0 @ =vtable_unk_080E5E64
+    ldr r0, .Ljp_08011EA0 @ =__vt_9GameScene
     str r0, [r6]
     movs r0, #0xf8
     bl __builtin_new
@@ -1597,45 +1597,12 @@ func_08011DC4:
     pop {r1}
     bx r1
     .align 2, 0
-.Ljp_08011EA0: .4byte vtable_unk_080E5E64
+.Ljp_08011EA0: .4byte __vt_9GameScene
 .Ljp_08011EA4: .4byte vtable_unk_080E5C08
 .Ljp_08011EA8: .4byte vtable_unk_080E5BB4
 .Ljp_08011EAC: .4byte vtable_unk_080E5BD8
 .Ljp_08011EB0: .4byte 0x04000004
 .Ljp_08011EB4: .4byte gUnk_0300040C
-    .global func_08011FE8
-    .thumb_func
-func_08011FE8:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_08011EF0 @ =vtable_unk_080E5E64
-    str r0, [r4]
-    ldr r0, .Ljp_08011EF4 @ =gUnk_0300040C
-    ldr r0, [r0]
-    adds r0, #8
-    bl ClearUnk__12ScriptEngine
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_08011EE2
-    adds r0, r1, #0
-    adds r0, #0xf4
-    ldr r0, [r0]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08011EE2:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08011EF0: .4byte vtable_unk_080E5E64
-.Ljp_08011EF4: .4byte gUnk_0300040C
-
     .section .text.game_scene_entity_commands_after, "ax", %progbits
 
     .global func_080124D0
@@ -21126,8 +21093,8 @@ func_08011CD8: @ 0x08011CD8
 .L08011DBC: .4byte vtable_unk_080E5BB4
 .L08011DC0: .4byte vtable_unk_080E5BD8
 
-    thumb_func_start func_08011DC4
-func_08011DC4: @ 0x08011DC4
+    thumb_func_start __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest
+__9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest: @ 0x08011DC4
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -21135,7 +21102,7 @@ func_08011DC4: @ 0x08011DC4
     adds r6, r0, #0
     mov r8, r1
     adds r5, r2, #0
-    ldr r0, .L08011EC0 @ =vtable_unk_080E5E64
+    ldr r0, .L08011EC0 @ =__vt_9GameScene
     str r0, [r6]
     movs r0, #0xf8
     bl __builtin_new
@@ -21246,13 +21213,16 @@ func_08011DC4: @ 0x08011DC4
     pop {r1}
     bx r1
     .align 2, 0
-.L08011EC0: .4byte vtable_unk_080E5E64
+.L08011EC0: .4byte __vt_9GameScene
 .L08011EC4: .4byte vtable_unk_080E5C08
 .L08011EC8: .4byte vtable_unk_080E5BB4
 .L08011ECC: .4byte vtable_unk_080E5BD8
 .L08011ED0: .4byte 0x04000004
 .L08011ED4: .4byte gUnk_0300040C
-.L08011ED8:
+    @ Overseas-only overload: the local request initializes only kind = 2.
+    .global __9GameSceneP18GameStateSaveImage
+    .thumb_func
+__9GameSceneP18GameStateSaveImage:
     .byte 0xF0, 0xB5, 0x85, 0xB0, 0x05, 0x1C, 0x0E, 0x1C
     .byte 0x3B, 0x48, 0x28, 0x60, 0xF8, 0x20
     bl __builtin_new
@@ -21283,44 +21253,12 @@ func_08011DC4: @ 0x08011DC4
     .byte 0xB8, 0x82, 0x0B, 0x49, 0x08, 0x80, 0x6F, 0x60, 0x0A, 0x48, 0x00, 0x68, 0x08, 0x30, 0x29, 0x1C
     bl SetUnk__12ScriptEnginePv
     .byte 0x28, 0x1C, 0x05, 0xB0, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
-    .4byte vtable_unk_080E5E64
+    .4byte __vt_9GameScene
     .4byte vtable_unk_080E5C08
     .4byte vtable_unk_080E5BB4
     .4byte vtable_unk_080E5BD8
     .4byte 0x04000004
     .4byte gUnk_0300040C
-
-    thumb_func_start func_08011FE8
-func_08011FE8: @ 0x08011FE8
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .L08012020 @ =vtable_unk_080E5E64
-    str r0, [r4]
-    ldr r0, .L08012024 @ =gUnk_0300040C
-    ldr r0, [r0]
-    adds r0, #8
-    bl ClearUnk__12ScriptEngine
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .L08012012
-    adds r0, r1, #0
-    adds r0, #0xf4
-    ldr r0, [r0]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08012012:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012020: .4byte vtable_unk_080E5E64
-.L08012024: .4byte gUnk_0300040C
 
     .section .text.game_scene_entity_commands_after, "ax", %progbits
 
