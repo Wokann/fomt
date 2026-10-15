@@ -6,16 +6,39 @@
 
 struct AActorEntity;
 struct GameObject;
+struct MusicPlayer;
+
+struct GameSceneBgmSettings {
+    u16 tempo;
+    u16 volume;
+    i16 pitch;
+    i8 pan;
+    u8 modulation_depth;
+    u8 lfo_speed;
+};
+
+// Entries point to the scene's MusicPlayer pointer wrappers, not directly
+// to m4a players. The allocation paths place capacity_end at +0x0C.
+struct GameSceneSongPlayerPool {
+    MusicPlayer *** begin;
+    MusicPlayer *** end;
+    u32 unk_08;
+    MusicPlayer *** capacity_end;
+};
 
 // The native constructor allocates 0xF8 bytes and places its vptr at +0xF4.
-// Only fields used by the recovered entity commands are named here; the
+// Only fields used by the recovered commands are named here; the
 // other state remains opaque rather than acquiring speculative meanings.
 struct GameSceneState {
     u8 unk_00[0x9C];
     u32 script_state;
     u32 unk_A0[2];
     GameObject * game_object;
-    u8 unk_AC[0x38];
+    u8 unk_AC[0x10];
+    MusicPlayer * bgm_player;
+    u8 unk_C0[0x10];
+    GameSceneSongPlayerPool song_players;
+    u8 unk_E0[4];
     AActorEntity * waiting_entity;
     u8 unk_E8[0xC];
     virtual ~GameSceneState();
@@ -47,11 +70,22 @@ struct GameScene : AScene {
     void ChangeMap(u32 map, i32 x, i32 y);
     void PanCameraTo(i32 x, i32 y, u32 speed);
     void WaitForCameraMovement();
+    void PlayBGM(i32 mode, u32 sequence, GameSceneBgmSettings const & settings);
+    void StopBGM();
+    void PlaySong(i32 mode, u32 sequence);
+    void StopAllSongs();
 };
 
+typedef char GameSceneBgmSettingsSizeCheck[sizeof(GameSceneBgmSettings) == 12 ? 1 : -1];
+typedef char GameSceneBgmSettingsPitchCheck[offsetof(GameSceneBgmSettings, pitch) == 4 ? 1 : -1];
+typedef char GameSceneBgmSettingsLfoCheck[offsetof(GameSceneBgmSettings, lfo_speed) == 8 ? 1 : -1];
+typedef char GameSceneSongPlayerPoolSizeCheck[sizeof(GameSceneSongPlayerPool) == 16 ? 1 : -1];
+typedef char GameSceneSongPlayerPoolCapacityCheck[offsetof(GameSceneSongPlayerPool, capacity_end) == 12 ? 1 : -1];
 typedef char GameSceneStateSizeCheck[sizeof(GameSceneState) == 0xF8 ? 1 : -1];
 typedef char GameSceneStateScriptStateCheck[offsetof(GameSceneState, script_state) == 0x9C ? 1 : -1];
 typedef char GameSceneStateGameObjectCheck[offsetof(GameSceneState, game_object) == 0xA8 ? 1 : -1];
+typedef char GameSceneStateBgmPlayerCheck[offsetof(GameSceneState, bgm_player) == 0xBC ? 1 : -1];
+typedef char GameSceneStateSongPlayersCheck[offsetof(GameSceneState, song_players) == 0xD0 ? 1 : -1];
 typedef char GameSceneStateWaitingEntityCheck[offsetof(GameSceneState, waiting_entity) == 0xE4 ? 1 : -1];
 typedef char GameSceneSizeCheck[sizeof(GameScene) == 8 ? 1 : -1];
 typedef char GameSceneStatePointerCheck[offsetof(GameScene, state) == 4 ? 1 : -1];

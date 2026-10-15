@@ -1,6 +1,47 @@
 #include "game_scene.hh"
 #include "entity_actor.hh"
 #include "entity_ui.hh"
+#include "fomt_constants.hh"
+#include "hardware_music_player.hh"
+#include "hardware_song.hh"
+
+static inline void StartSceneSong(MusicPlayer ** player, i32 mode, u16 song_id)
+{
+    switch (mode) {
+    case AUDIO_START:
+        func_08008B6C(player, song_id);
+        break;
+    case AUDIO_START_WEAK:
+        func_08008B88(player, song_id);
+        break;
+    case AUDIO_START_OR_CONTINUE:
+        func_08008BB0(player, song_id);
+        break;
+    }
+}
+
+static inline MusicPlayer ** FindAvailableSceneSongPlayer(GameSceneSongPlayerPool & pool)
+{
+    MusicPlayer *** it = pool.begin;
+    MusicPlayer *** end = pool.end;
+    for (; it != end; ++it) {
+        if (static_cast<u8>(func_08008CD0(*it)) == 0)
+            return *it;
+    }
+    // The native path assumes a nonempty pool and reuses its final entry.
+    return *(end - 1);
+}
+
+static inline void ApplySceneBgmSettings(GameSceneBgmSettings const & settings, MusicPlayer ** player)
+{
+    func_08008CC4(player);
+    func_08008C28(player, settings.tempo);
+    func_08008C38(player, settings.volume, 0xFFFF);
+    func_08008C54(player, settings.pitch, 0xFFFF);
+    func_08008C70(player, settings.pan, 0xFFFF);
+    func_08008C8C(player, settings.modulation_depth, 0xFFFF);
+    func_08008CA8(player, settings.lfo_speed, 0xFFFF);
+}
 
 u8 * func_080100F0(void)
 {
@@ -190,4 +231,27 @@ void GameScene::WaitForCameraMovement()
     GameSceneState * current = state;
     if (!current->game_object->IsCameraMovementComplete())
         current->script_state = 0x17;
+}
+
+void GameScene::PlayBGM(i32 mode, u32 sequence, GameSceneBgmSettings const & settings)
+{
+    GameSceneState * current = state;
+    StartSceneSong(&current->bgm_player, mode, static_cast<u16>(sequence));
+    ApplySceneBgmSettings(settings, &current->bgm_player);
+}
+
+void GameScene::StopBGM()
+{
+    func_08008BE0(&state->bgm_player);
+}
+
+void GameScene::PlaySong(i32 mode, u32 sequence)
+{
+    MusicPlayer ** player = FindAvailableSceneSongPlayer(state->song_players);
+    StartSceneSong(player, mode, static_cast<u16>(sequence));
+}
+
+void GameScene::StopAllSongs()
+{
+    func_08008DE8();
 }
