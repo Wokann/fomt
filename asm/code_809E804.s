@@ -6363,7 +6363,7 @@ func_080A47B4: @ 0x080A41EC
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r0, #1
 	ands r0, r7
 	cmp r0, #0
@@ -20207,7 +20207,7 @@ func_080AAA00: @ 080AAA00
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	cmp r5, r4
 	bne .Ljp_map_080AACBC
 .Ljp_map_080AACD2:
@@ -20307,7 +20307,7 @@ func_080AAD1C: @ 080AAD1C
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	cmp r7, r4
 	bne .Ljp_map_080AAD78
 .Ljp_map_080AAD8E:
@@ -40900,31 +40900,31 @@ func_080B469C: @ 0x080B40D0
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x2c
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x28]
 	add r0, sp, #0x24
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x24
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x20]
 	add r0, sp, #0x1c
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x1c
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x18]
 	add r0, sp, #0x14
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x14
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	add sp, #0xb8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -44798,37 +44798,37 @@ func_080B5824: @ 0x080B5258
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x58
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x54]
 	add r0, sp, #0x50
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x50
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x4c]
 	add r0, sp, #0x48
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x48
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x44]
 	add r0, sp, #0x40
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x40
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x3c]
 	add r0, sp, #0x38
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x38
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x34]
 	add r0, sp, #0x30
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x30
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	add sp, #0x1a4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -47399,37 +47399,37 @@ func_080B7648: @ 0x080B707C
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x28
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x24]
 	add r0, sp, #0x20
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x20
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x1c]
 	add r0, sp, #0x18
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x18
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x14]
 	add r0, sp, #0x10
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x10
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0xc]
 	add r0, sp, #8
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #8
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #4]
 	mov r0, sp
 	bl ReleaseHardwareSharedStateHandle
 	mov r0, sp
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	add sp, #0xc0
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -48387,31 +48387,31 @@ func_080B888C: @ 0x080B82C0
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x2c
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x28]
 	add r0, sp, #0x24
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x24
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x20]
 	add r0, sp, #0x1c
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x1c
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x18]
 	add r0, sp, #0x14
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x14
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	add sp, #0x68
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -56274,13 +56274,13 @@ func_080BC288: @ 0x080BBCBC
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #8
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #4]
 	mov r0, sp
 	bl ReleaseHardwareSharedStateHandle
 	mov r0, sp
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r5, [sp, #0x88]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
@@ -71801,7 +71801,7 @@ func_080C8360:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     cmp r6, r4
     bne .Lauto_080C7E08
     .Lauto_080C7E1E:
@@ -71822,7 +71822,7 @@ func_080C8360:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     movs r2, #0xe3
     lsls r2, r2, #2
     adds r4, r5, r2
@@ -71831,7 +71831,7 @@ func_080C8360:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     movs r0, #0xe1
     lsls r0, r0, #2
     adds r4, r5, r0
@@ -71849,7 +71849,7 @@ func_080C8360:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     movs r2, #0xdd
     lsls r2, r2, #2
     adds r4, r5, r2
@@ -71858,7 +71858,7 @@ func_080C8360:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     movs r0, #0xdb
     lsls r0, r0, #2
     adds r4, r5, r0
@@ -71876,7 +71876,7 @@ func_080C8360:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     movs r2, #0xd7
     lsls r2, r2, #2
     adds r4, r5, r2
@@ -71894,7 +71894,7 @@ func_080C8360:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     movs r1, #0xd2
     lsls r1, r1, #2
     adds r0, r5, r1
@@ -81013,14 +81013,14 @@ func_080CE3DC: @ 0x080CDBEC
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	adds r4, r5, #4
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r0, #1
 	ands r0, r6
 	cmp r0, #0
@@ -91890,7 +91890,7 @@ func_080A47B4: @ 0x080A47B4
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r0, #1
 	ands r0, r7
 	cmp r0, #0
@@ -105672,7 +105672,7 @@ func_080AAFC8: @ 0x080AAFC8
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	cmp r5, r4
 	bne .L080AB284
 .L080AB29A:
@@ -105771,7 +105771,7 @@ func_080AB2E4: @ 0x080AB2E4
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	cmp r7, r4
 	bne .L080AB340
 .L080AB356:
@@ -126298,31 +126298,31 @@ func_080B469C: @ 0x080B469C
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x2c
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x28]
 	add r0, sp, #0x24
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x24
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x20]
 	add r0, sp, #0x1c
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x1c
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x18]
 	add r0, sp, #0x14
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x14
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	add sp, #0xb8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -130193,37 +130193,37 @@ func_080B5824: @ 0x080B5824
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x58
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x54]
 	add r0, sp, #0x50
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x50
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x4c]
 	add r0, sp, #0x48
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x48
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x44]
 	add r0, sp, #0x40
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x40
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x3c]
 	add r0, sp, #0x38
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x38
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x34]
 	add r0, sp, #0x30
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x30
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	add sp, #0x1a4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -132791,37 +132791,37 @@ func_080B7648: @ 0x080B7648
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x28
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x24]
 	add r0, sp, #0x20
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x20
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x1c]
 	add r0, sp, #0x18
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x18
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x14]
 	add r0, sp, #0x10
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x10
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0xc]
 	add r0, sp, #8
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #8
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #4]
 	mov r0, sp
 	bl ReleaseHardwareSharedStateHandle
 	mov r0, sp
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	add sp, #0xc0
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -133776,31 +133776,31 @@ func_080B888C: @ 0x080B888C
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x2c
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x28]
 	add r0, sp, #0x24
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x24
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x20]
 	add r0, sp, #0x1c
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x1c
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x18]
 	add r0, sp, #0x14
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0x14
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	add sp, #0x68
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -141630,13 +141630,13 @@ func_080BC288: @ 0x080BC288
 	bl ReleaseHardwareSharedStateHandle
 	add r0, sp, #8
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [sp, #4]
 	mov r0, sp
 	bl ReleaseHardwareSharedStateHandle
 	mov r0, sp
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r5, [sp, #0x88]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
@@ -165617,7 +165617,7 @@ func_080C8360: @ 0x080C8360
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	cmp r6, r4
 	bne .L080C83E4
 .L080C83FA:
@@ -165638,7 +165638,7 @@ func_080C8360: @ 0x080C8360
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r2, #0xe3
 	lsls r2, r2, #2
 	adds r4, r5, r2
@@ -165647,7 +165647,7 @@ func_080C8360: @ 0x080C8360
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r0, #0xe1
 	lsls r0, r0, #2
 	adds r4, r5, r0
@@ -165665,7 +165665,7 @@ func_080C8360: @ 0x080C8360
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r2, #0xdd
 	lsls r2, r2, #2
 	adds r4, r5, r2
@@ -165674,7 +165674,7 @@ func_080C8360: @ 0x080C8360
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r0, #0xdb
 	lsls r0, r0, #2
 	adds r4, r5, r0
@@ -165692,7 +165692,7 @@ func_080C8360: @ 0x080C8360
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r2, #0xd7
 	lsls r2, r2, #2
 	adds r4, r5, r2
@@ -165710,7 +165710,7 @@ func_080C8360: @ 0x080C8360
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r1, #0xd2
 	lsls r1, r1, #2
 	adds r0, r5, r1
@@ -178263,14 +178263,14 @@ func_080CE3DC: @ 0x080CE3DC
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	adds r4, r5, #4
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r0, #1
 	ands r0, r6
 	cmp r0, #0

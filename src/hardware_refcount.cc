@@ -8,14 +8,13 @@ EXTERN_C
 void __builtin_delete(void *);
 EXTERN_C_END
 
-void * func_080079D0(void * owner)
+HardwareSharedStateOwner::HardwareSharedStateOwner(HardwareSharedStateOwner const &)
 {
     // The adjacent release routine frees the shared state at zero owners.
     ++gUnk_03000408->reference_count;
-    return owner;
 }
 
-void func_080079E8(void * owner, u32 flags)
+HardwareSharedStateOwner::~HardwareSharedStateOwner()
 {
     HardwareSharedState * state = gUnk_03000408;
     u32 * refcount = &state->reference_count;
@@ -26,8 +25,6 @@ void func_080079E8(void * owner, u32 flags)
             __builtin_delete(state);
         gUnk_03000408 = (HardwareSharedState *)remaining;
     }
-    if (flags & 1)
-        __builtin_delete(owner);
 }
 
 u32 AllocateHardwareSharedStateHandle(void *, u32 size_shift)

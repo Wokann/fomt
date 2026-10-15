@@ -75,8 +75,7 @@ HardwareStateOwner::~HardwareStateOwner()
             entry = group->start;
             if (entry != end) {
                 do {
-                    ReleaseHardwareSharedStateHandle(entry, entry->handle);
-                    func_080079E8(entry, 2);
+                    entry->~HardwareStateEntry();
                     ++entry;
                 } while (entry != end);
             }

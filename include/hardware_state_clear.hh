@@ -10,7 +10,6 @@ struct HardwareStateEntry {
 #ifdef __cplusplus
     HardwareStateEntry()
     {
-        func_08007874(this);
         handle = 0;
     }
 
@@ -26,20 +25,17 @@ struct HardwareStateEntry {
 
     HardwareStateEntry(u32 size_shift)
     {
-        func_08007874(this);
         handle = AllocateHardwareSharedStateHandle(this, size_shift);
     }
 
     HardwareStateEntry(HardwareStateEntry const & value)
     {
-        func_08007874(this);
         handle = RetainHardwareSharedStateHandle(this, value.handle);
     }
 
     ~HardwareStateEntry()
     {
         ReleaseHardwareSharedStateHandle(this, handle);
-        func_080079E8(this, 2);
     }
 #endif
 };

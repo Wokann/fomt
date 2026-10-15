@@ -6275,7 +6275,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     ldr r0, [r5]
     bl __builtin_delete
     cmp r6, r5
@@ -6317,7 +6317,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     bl ReleaseHardwareSharedStateHandle
     mov r0, sp
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     ldr r1, [r4, #4]
     rsbs r0, r1, #0
     orrs r0, r1
@@ -6624,7 +6624,7 @@ _._14UiStatePayload: @ 0x0804F428
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     movs r1, #0xc8
     lsls r1, r1, #1
     adds r0, r6, r1
@@ -6680,7 +6680,7 @@ _._14UiStatePayload: @ 0x0804F428
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     subs r4, #8
     ldr r1, [r4, #4]
     adds r0, r4, #0
@@ -71426,7 +71426,7 @@ func_0807532C:
     .Lauto_08075416:
     adds r0, r5, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     adds r0, r5, #0
     bl __builtin_delete
     .Lauto_08075424:
@@ -105333,7 +105333,7 @@ func_0808A09C:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     adds r0, r5, #0
     bl __builtin_delete
     .Lauto_0808A20A:
@@ -105368,7 +105368,7 @@ func_0808A09C:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     ldr r0, [pc, #0xb8]
     str r0, [r5, #4]
     adds r0, r5, #0
@@ -107929,7 +107929,7 @@ func_0808BC14:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     adds r0, r5, #0
     bl __builtin_delete
     .Lauto_0808BD34:
@@ -107962,7 +107962,7 @@ func_0808BC14:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     ldr r0, [pc, #0xb8]
     str r0, [r5, #4]
     adds r0, r5, #0
@@ -109392,7 +109392,7 @@ func_0808E23C:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     adds r0, r5, #0
     bl __builtin_delete
     .Lauto_0808E3AA:
@@ -109427,7 +109427,7 @@ func_0808E23C:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     ldr r0, [pc, #0xb8]
     str r0, [r5, #4]
     adds r0, r5, #0
@@ -112808,7 +112808,7 @@ func_08090960:
     bl ReleaseHardwareSharedStateHandle
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     adds	r0, r5, #0
     bl __builtin_delete
 .Ljp_0809060E:
@@ -112843,7 +112843,7 @@ func_08090960:
     bl ReleaseHardwareSharedStateHandle
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     ldr	r0, .Ljp_08090710
     str	r0, [r5, #4]
     adds	r0, r5, #0
@@ -113412,7 +113412,7 @@ func_08090F58:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     ldr r0, .Ljp_08090B08 @ =vtable_unk_080E5A28
     str r0, [r5, #4]
     adds r0, r5, #0
@@ -114057,7 +114057,7 @@ func_0809106C:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     adds r0, r5, #0
     bl __builtin_delete
     .Lauto_080911A8:
@@ -114090,7 +114090,7 @@ func_0809106C:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     ldr r0, [pc, #0x138]
     str r0, [r5, #4]
     adds r0, r5, #0
@@ -114126,7 +114126,7 @@ func_0809106C:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     ldr r0, [pc, #0xe4]
     str r0, [r5, #4]
     adds r0, r5, #0
@@ -115511,7 +115511,7 @@ func_08092D64:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     adds r0, r5, #0
     bl __builtin_delete
     .Lauto_08092968:
@@ -115544,7 +115544,7 @@ func_08092D64:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
-    bl func_080079E8
+    bl _._24HardwareSharedStateOwner
     ldr r0, [pc, #0xc0]
     str r0, [r5, #4]
     adds r0, r5, #0
@@ -151037,7 +151037,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r0, [r5]
 	bl __builtin_delete
 	cmp r6, r5
@@ -151079,7 +151079,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	bl ReleaseHardwareSharedStateHandle
 	mov r0, sp
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r1, [r4, #4]
 	rsbs r0, r1, #0
 	orrs r0, r1
@@ -151382,7 +151382,7 @@ _._14UiStatePayload: @ 0x0804F69C
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	movs r1, #0xc8
 	lsls r1, r1, #1
 	adds r0, r6, r1
@@ -151438,7 +151438,7 @@ _._14UiStatePayload: @ 0x0804F69C
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
@@ -229221,7 +229221,7 @@ func_080756D0: @ 0x080756D0
 .L080757BA:
 	adds r0, r5, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	adds r0, r5, #0
 	bl __builtin_delete
 .L080757C8:
@@ -269678,7 +269678,7 @@ func_0808A55C: @ 0x0808A55C
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	adds r0, r5, #0
 	bl __builtin_delete
 .L0808A6CA:
@@ -269713,7 +269713,7 @@ func_0808A55C: @ 0x0808A55C
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r0, .L0808A7D0 @ =vtable_unk_080E5A28
 	str r0, [r5, #4]
 	adds r0, r5, #0
@@ -272846,7 +272846,7 @@ func_0808C0BC: @ 0x0808C0BC
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	adds r0, r5, #0
 	bl __builtin_delete
 .L0808C1F4:
@@ -272879,7 +272879,7 @@ func_0808C0BC: @ 0x0808C0BC
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r0, .L0808C2F8 @ =vtable_unk_080E5A28
 	str r0, [r5, #4]
 	adds r0, r5, #0
@@ -277263,7 +277263,7 @@ func_0808E6FC: @ 0x0808E6FC
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	adds r0, r5, #0
 	bl __builtin_delete
 .L0808E86A:
@@ -277298,7 +277298,7 @@ func_0808E6FC: @ 0x0808E6FC
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r0, .L0808E970 @ =vtable_unk_080E5A28
 	str r0, [r5, #4]
 	adds r0, r5, #0
@@ -281173,7 +281173,7 @@ func_08090960: @ 0x08090960
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	adds r0, r5, #0
 	bl __builtin_delete
 .L08090ACE:
@@ -281208,7 +281208,7 @@ func_08090960: @ 0x08090960
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r0, .L08090BD0 @ =vtable_unk_080E5A28
 	str r0, [r5, #4]
 	adds r0, r5, #0
@@ -281766,7 +281766,7 @@ func_08090F58: @ 0x08090F58
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r0, .L08090FC8 @ =vtable_unk_080E5A28
 	str r0, [r5, #4]
 	adds r0, r5, #0
@@ -282580,7 +282580,7 @@ func_0809152C: @ 0x0809152C
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	adds r0, r5, #0
 	bl __builtin_delete
 .L08091668:
@@ -282613,7 +282613,7 @@ func_0809152C: @ 0x0809152C
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r0, .L080917EC @ =vtable_unk_080E5A28
 	str r0, [r5, #4]
 	adds r0, r5, #0
@@ -282649,7 +282649,7 @@ func_0809152C: @ 0x0809152C
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r0, .L080917EC @ =vtable_unk_080E5A28
 	str r0, [r5, #4]
 	adds r0, r5, #0
@@ -285505,7 +285505,7 @@ func_08092D64: @ 0x08092D64
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	adds r0, r5, #0
 	bl __builtin_delete
 .L08092E9C:
@@ -285538,7 +285538,7 @@ func_08092D64: @ 0x08092D64
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080079E8
+	bl _._24HardwareSharedStateOwner
 	ldr r0, .L08092FA8 @ =vtable_unk_080E5A28
 	str r0, [r5, #4]
 	adds r0, r5, #0

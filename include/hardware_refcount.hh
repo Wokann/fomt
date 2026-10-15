@@ -9,6 +9,9 @@
 struct HardwareSharedStateOwner {
     u32 unk_00;
 #ifdef __cplusplus
+    HardwareSharedStateOwner() asm("func_08007874");
+    HardwareSharedStateOwner(HardwareSharedStateOwner const &);
+    ~HardwareSharedStateOwner();
     void Reserve(u32 first, u32 count) asm("func_08007A28");
 #endif
 };
@@ -158,6 +161,7 @@ typedef struct HardwareSharedState {
 #endif
 } HardwareSharedState;
 
+typedef char HardwareSharedStateOwnerSizeCheck[sizeof(struct HardwareSharedStateOwner) == 4 ? 1 : -1];
 typedef char HardwareSharedStateHandleSizeCheck[sizeof(HardwareSharedStateHandle) == 4 ? 1 : -1];
 typedef char HardwareSharedStateEntrySizeCheck[sizeof(HardwareSharedStateEntry) == 8 ? 1 : -1];
 typedef char HardwareSharedStateEntryRefcountCheck[offsetof(HardwareSharedStateEntry, data.params.reference_count) == 2 ? 1 : -1];
@@ -182,10 +186,9 @@ EXTERN_C
 
 extern HardwareSharedState * gUnk_03000408;
 
-// Retain the shared hardware state and return the supplied owner unchanged.
-void * func_08007874(void * owner); // Constructs the shared state if needed.
-void * func_080079D0(void * owner);
-void func_080079E8(void * owner, u32 flags);
+// The default constructor remains in assembly. Raw-storage initialization
+// sites use the same entry without invoking an enclosing C++ constructor.
+void * func_08007874(void * owner);
 
 // Allocate a 2^size_shift tile range and a generation-checked slot handle.
 // A failed slot allocation returns the tile range and yields the zero handle.
