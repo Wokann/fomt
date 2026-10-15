@@ -2,6 +2,65 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的连续模块。地址以各地区基准 ROM 的物理地址为准；一个模块即使在原始布局中被已编译的 C/C++ 输入节穿插，也仍由同一个源文件维护。
 
+## `src/game_scene.cc`：十四项商店与住宅界面工厂
+
+按前述场景开启链的真实虚表和具体构造器，将下列十四个
+`CreateScene` 虚成员成组恢复为四区共用的普通 C++。每项每区
+72 字节，本次合计 1008 字节／区。表中为半开区间，行顺序
+就是实际 ROM 工厂顺序，不按脚本 callable 编号重排。
+
+| 场景切换类型 | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| `CalendarTransition` | `0x080DAE80`–`0x080DAEC8` | `0x080DB6CC`–`0x080DB714` | `0x080DB718`–`0x080DB760` | `0x080DB630`–`0x080DB678` |
+| `ToolChestTransition` | `0x080DAEF0`–`0x080DAF38` | `0x080DB73C`–`0x080DB784` | `0x080DB788`–`0x080DB7D0` | `0x080DB6A0`–`0x080DB6E8` |
+| `RefrigeratorTransition` | `0x080DAF60`–`0x080DAFA8` | `0x080DB7AC`–`0x080DB7F4` | `0x080DB7F8`–`0x080DB840` | `0x080DB710`–`0x080DB758` |
+| `ShelfTransition` | `0x080DAFD0`–`0x080DB018` | `0x080DB81C`–`0x080DB864` | `0x080DB868`–`0x080DB8B0` | `0x080DB780`–`0x080DB7C8` |
+| `CookingTransition` | `0x080DB270`–`0x080DB2B8` | `0x080DBABC`–`0x080DBB04` | `0x080DBB08`–`0x080DBB50` | `0x080DBA20`–`0x080DBA68` |
+| `ReferencePageTransition` | `0x080DB2E0`–`0x080DB328` | `0x080DBB2C`–`0x080DBB74` | `0x080DBB78`–`0x080DBBC0` | `0x080DBA90`–`0x080DBAD8` |
+| `SpecialMerchantShopTransition` | `0x080DB350`–`0x080DB398` | `0x080DBB9C`–`0x080DBBE4` | `0x080DBBE8`–`0x080DBC30` | `0x080DBB00`–`0x080DBB48` |
+| `GiftWrappingTransition` | `0x080DB42C`–`0x080DB474` | `0x080DBC78`–`0x080DBCC0` | `0x080DBCC4`–`0x080DBD0C` | `0x080DBBDC`–`0x080DBC24` |
+| `WineryShopTransition` | `0x080DB57C`–`0x080DB5C4` | `0x080DBDC8`–`0x080DBE10` | `0x080DBE14`–`0x080DBE5C` | `0x080DBD2C`–`0x080DBD74` |
+| `InnShopTransition` | `0x080DB5EC`–`0x080DB634` | `0x080DBE38`–`0x080DBE80` | `0x080DBE84`–`0x080DBECC` | `0x080DBD9C`–`0x080DBDE4` |
+| `BeachCafeShopTransition` | `0x080DB65C`–`0x080DB6A4` | `0x080DBEA8`–`0x080DBEF0` | `0x080DBEF4`–`0x080DBF3C` | `0x080DBE0C`–`0x080DBE54` |
+| `WonShopTransition` | `0x080DB6CC`–`0x080DB714` | `0x080DBF18`–`0x080DBF60` | `0x080DBF64`–`0x080DBFAC` | `0x080DBE7C`–`0x080DBEC4` |
+| `CarpenterShopTransition` | `0x080DB73C`–`0x080DB784` | `0x080DBF88`–`0x080DBFD0` | `0x080DBFD4`–`0x080DC01C` | `0x080DBEEC`–`0x080DBF34` |
+| `ClinicShopTransition` | `0x080DB7AC`–`0x080DB7F4` | `0x080DBFF8`–`0x080DC040` | `0x080DC044`–`0x080DC08C` | `0x080DBF5C`–`0x080DBFA4` |
+
+名称由 [商店槽位核查](docs/mary-native-audit/ui/shop_callable_slots.md)、
+[住宅及资料页槽位核查](docs/mary-native-audit/ui/reference_and_farmhouse_ui_slots.md)、
+现有 FoMT callable 清单及实际 VM→场景命令→虚表→构造器调用
+共同确认。十四种具体场景在各区均验证为十二字节：`AScene`
+前缀、`+4` 的 UI 核心和 `+8` 的续场景所有者。所有工厂都先
+释放自身续场景，再将其地址交给原生构造器消费；分配使用实际
+场景类型的 `sizeof`，不以任意占位字节数组伪装结构。
+
+`ReferencePageTransition` 同时服务单页、书籍列表和信件列表，
+保留 `+0x0C` 的四字节页面参数，不能误换成信件 ID。料理及
+菜谱也共用一个工厂，但真实 `+0x0C` 是单字节 `recipe_list`：
+两种开启路径分别写 0、1，原生构造器以低八位转交核心。源码
+保留此字段及十六字节切换对象，不漏参或将其误并成无差异调用。
+
+新增类型和外部构造声明均在同名 `include/game_scene.hh`，成员
+定义仍位于 `src/game_scene.cc`，按原物理顺序放在已有三个晚段
+工厂之前。没有增加源文件、生成器或工具链补正；相同原生符号
+的调用直接共用，仅确实不同的 JP 原生入口使用区域条件。十四
+处旧汇编定义及两版重复代码被移除，原虚表直接引用新成员，
+没有 `.set` 别名、硬编码地址、固定寄存器或指令输出改写。
+LDS 只在原本尚未恢复的析构／其他代码间隔处插入编译器函数节，
+不增加固定地址或源 section 属性。
+
+四区 WSL `-j4 compare`、全 ROM 字节、原版 SHA-1 均通过；
+每区十四处入口地址字均与虚表符号重定位一一对应，无额外直接
+`BL` 入调用。其余 210 个对象不变，全部原全局地址不变，全部
+代码及重定位与绕过预处理的直接 `agbcp` 输出一致。唯一直编译
+对象差异仍为已丢弃、无引用的标准 `bad_alloc` 常量段末两个零。
+
+本项只计算工厂：具体 UI 核心、析构及尚未匹配的早段开启命令
+仍如实保留原生代码，不计作完整界面已反编译。场景文件累计
+覆盖为 3900 字节／62 个成员，其中晚段工厂为 1220 字节／17
+个；早段两个连续 C++ 运行区及其间 284 字节原汇编的状态未变。
+Mary 脚本、文本、图形资源和正式构建工具均未修改。
+
 ## `src/game_scene.cc`：超市场景工厂及返回游戏场景
 
 沿后续商店开启入口的依赖链，先将原 `func_080DC0E8`、

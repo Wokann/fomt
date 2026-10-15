@@ -817,13 +817,13 @@ extern void func_080DB5E0(void);
 extern void func_080DB630(void);
 extern void func_080DB658(void);
 extern void func_080DB6A4(void);
-extern void func_080DB6CC(void);
+extern void CreateScene__18CalendarTransition(void);
 extern void func_080DB714(void);
-extern void func_080DB73C(void);
+extern void CreateScene__19ToolChestTransition(void);
 extern void func_080DB784(void);
-extern void func_080DB7AC(void);
+extern void CreateScene__22RefrigeratorTransition(void);
 extern void func_080DB7F4(void);
-extern void func_080DB81C(void);
+extern void CreateScene__15ShelfTransition(void);
 extern void func_080DB864(void);
 extern void func_080DB88C(void);
 extern void func_080DB8D4(void);
@@ -835,32 +835,32 @@ extern void func_080DB9DC(void);
 extern void func_080DBA24(void);
 extern void func_080DBA4C(void);
 extern void func_080DBA94(void);
-extern void func_080DBABC(void);
+extern void CreateScene__17CookingTransition(void);
 extern void func_080DBB04(void);
-extern void func_080DBB2C(void);
+extern void CreateScene__23ReferencePageTransition(void);
 extern void func_080DBB74(void);
-extern void func_080DBB9C(void);
+extern void CreateScene__29SpecialMerchantShopTransition(void);
 extern void func_080DBBE4(void);
 extern void func_080DBC0C(void);
 extern void func_080DBC50(void);
-extern void func_080DBC78(void);
+extern void CreateScene__22GiftWrappingTransition(void);
 extern void func_080DBCC0(void);
 extern void func_080DBCE8(void);
 extern void func_080DB4E4(void);
 extern void func_080DBD30(void);
 extern void func_080DBD58(void);
 extern void func_080DBDA0(void);
-extern void func_080DBDC8(void);
+extern void CreateScene__20WineryShopTransition(void);
 extern void func_080DBE10(void);
-extern void func_080DBE38(void);
+extern void CreateScene__17InnShopTransition(void);
 extern void func_080DBE80(void);
-extern void func_080DBEA8(void);
+extern void CreateScene__23BeachCafeShopTransition(void);
 extern void func_080DBEF0(void);
-extern void func_080DBF18(void);
+extern void CreateScene__17WonShopTransition(void);
 extern void func_080DBF60(void);
-extern void func_080DBF88(void);
+extern void CreateScene__23CarpenterShopTransition(void);
 extern void func_080DBFD0(void);
-extern void func_080DBFF8(void);
+extern void CreateScene__20ClinicShopTransition(void);
 extern void func_080DC040(void);
 extern void func_080DC068(void);
 extern void func_080DC0C0(void);
@@ -1183,28 +1183,28 @@ extern RawVTableFunction const vtable_unk_080E5CB4[] = {
     nullptr,
     nullptr,
     func_080DB714,
-    func_080DB6CC,
+    CreateScene__18CalendarTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5CC4[] = {
     nullptr,
     nullptr,
     func_080DB784,
-    func_080DB73C,
+    CreateScene__19ToolChestTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5CD4[] = {
     nullptr,
     nullptr,
     func_080DB7F4,
-    func_080DB7AC,
+    CreateScene__22RefrigeratorTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5CE4[] = {
     nullptr,
     nullptr,
     func_080DB864,
-    func_080DB81C,
+    CreateScene__15ShelfTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5CF4[] = {
@@ -1246,21 +1246,21 @@ extern RawVTableFunction const vtable_unk_080E5D44[] = {
     nullptr,
     nullptr,
     func_080DBB04,
-    func_080DBABC,
+    CreateScene__17CookingTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5D54[] = {
     nullptr,
     nullptr,
     func_080DBB74,
-    func_080DBB2C,
+    CreateScene__23ReferencePageTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5D64[] = {
     nullptr,
     nullptr,
     func_080DBBE4,
-    func_080DBB9C,
+    CreateScene__29SpecialMerchantShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5D74[] = {
@@ -1274,7 +1274,7 @@ extern RawVTableFunction const vtable_unk_080E5D84[] = {
     nullptr,
     nullptr,
     func_080DBCC0,
-    func_080DBC78,
+    CreateScene__22GiftWrappingTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5D94[] = {
@@ -1299,42 +1299,42 @@ extern RawVTableFunction const vtable_unk_080E5DB4[] = {
     nullptr,
     nullptr,
     func_080DBE10,
-    func_080DBDC8,
+    CreateScene__20WineryShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DC4[] = {
     nullptr,
     nullptr,
     func_080DBE80,
-    func_080DBE38,
+    CreateScene__17InnShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DD4[] = {
     nullptr,
     nullptr,
     func_080DBEF0,
-    func_080DBEA8,
+    CreateScene__23BeachCafeShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DE4[] = {
     nullptr,
     nullptr,
     func_080DBF60,
-    func_080DBF18,
+    CreateScene__17WonShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DF4[] = {
     nullptr,
     nullptr,
     func_080DBFD0,
-    func_080DBF88,
+    CreateScene__23CarpenterShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E04[] = {
     nullptr,
     nullptr,
     func_080DC040,
-    func_080DBFF8,
+    CreateScene__20ClinicShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E14[] = {

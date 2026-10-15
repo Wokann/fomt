@@ -541,6 +541,134 @@ void GameScene::WaitFrames(i32 frames)
     current->script_state = 0x15;
 }
 
+SceneOwner CalendarTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+    return SceneOwner(func_080A3744(::operator new(sizeof(CalendarScene)), &next, save));
+}
+
+SceneOwner ToolChestTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(loc_0808A678(::operator new(sizeof(ToolChestScene)), &next, save));
+#else
+    return SceneOwner(func_0808AB38(::operator new(sizeof(ToolChestScene)), &next, save));
+#endif
+}
+
+SceneOwner RefrigeratorTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(loc_0808E818(::operator new(sizeof(RefrigeratorScene)), &next, save));
+#else
+    return SceneOwner(func_0808ECD8(::operator new(sizeof(RefrigeratorScene)), &next, save));
+#endif
+}
+
+SceneOwner ShelfTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+    return SceneOwner(func_08090E54(::operator new(sizeof(ShelfScene)), &next, save));
+}
+
+SceneOwner CookingTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(func_08099F0C(::operator new(sizeof(CookingScene)), &next, save, recipe_list));
+#else
+    return SceneOwner(func_0809A4D4(::operator new(sizeof(CookingScene)), &next, save, recipe_list));
+#endif
+}
+
+SceneOwner ReferencePageTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+    return SceneOwner(func_0807B038(::operator new(sizeof(ReferencePageScene)), &next, save, page_id));
+}
+
+SceneOwner SpecialMerchantShopTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(func_080815B8(::operator new(sizeof(SpecialMerchantShopScene)), &next, save));
+#else
+    return SceneOwner(func_08081A40(::operator new(sizeof(SpecialMerchantShopScene)), &next, save));
+#endif
+}
+
+SceneOwner GiftWrappingTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(loc_08092C7C(::operator new(sizeof(GiftWrappingScene)), &next, save));
+#else
+    return SceneOwner(func_080931B0(::operator new(sizeof(GiftWrappingScene)), &next, save));
+#endif
+}
+
+SceneOwner WineryShopTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(func_0808090C(::operator new(sizeof(WineryShopScene)), &next, save));
+#else
+    return SceneOwner(func_08080D94(::operator new(sizeof(WineryShopScene)), &next, save));
+#endif
+}
+
+SceneOwner InnShopTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(func_0807F0E8(::operator new(sizeof(InnShopScene)), &next, save));
+#else
+    return SceneOwner(func_0807F580(::operator new(sizeof(InnShopScene)), &next, save));
+#endif
+}
+
+SceneOwner BeachCafeShopTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(func_08081C8C(::operator new(sizeof(BeachCafeShopScene)), &next, save));
+#else
+    return SceneOwner(func_08082114(::operator new(sizeof(BeachCafeShopScene)), &next, save));
+#endif
+}
+
+SceneOwner WonShopTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(loc_0807FFC4(::operator new(sizeof(WonShopScene)), &next, save));
+#else
+    return SceneOwner(func_0808045C(::operator new(sizeof(WonShopScene)), &next, save));
+#endif
+}
+
+SceneOwner CarpenterShopTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(loc_0808506C(::operator new(sizeof(CarpenterShopScene)), &next, save));
+#else
+    return SceneOwner(func_080854F4(::operator new(sizeof(CarpenterShopScene)), &next, save));
+#endif
+}
+
+SceneOwner ClinicShopTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(func_0807E97C(::operator new(sizeof(ClinicShopScene)), &next, save));
+#else
+    return SceneOwner(func_0807EE14(::operator new(sizeof(ClinicShopScene)), &next, save));
+#endif
+}
+
 // These late scene factories stay in native ROM order. Returning a temporary
 // owner preserves the original two-word ownership-transfer ABI.
 SceneOwner SupermarketPurchaseTransition::CreateScene()

@@ -180,6 +180,317 @@ typedef char SupermarketTransitionSizeCheck[sizeof(SupermarketTransition) == 12 
 typedef char ReturnToGameSceneSizeCheck[sizeof(ReturnToGameScene) == 20 ? 1 : -1];
 typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) == 8 ? 1 : -1];
 
+// Verified modal scene wrappers and transitions, in native factory order.
+struct CalendarSceneCore;
+struct CalendarScene : AScene {
+    virtual ~CalendarScene();
+    virtual SceneTransitionOwner Run();
+
+    CalendarSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct CalendarTransition : SceneTransition {
+    virtual ~CalendarTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char CalendarSceneSizeCheck[sizeof(CalendarScene) == 12 ? 1 : -1];
+typedef char CalendarSceneCoreCheck[offsetof(CalendarScene, core) == 4 ? 1 : -1];
+typedef char CalendarSceneContinuationCheck[offsetof(CalendarScene, continuation) == 8 ? 1 : -1];
+typedef char CalendarTransitionSizeCheck[sizeof(CalendarTransition) == 12 ? 1 : -1];
+
+struct ToolChestSceneCore;
+struct ToolChestScene : AScene {
+    virtual ~ToolChestScene();
+    virtual SceneTransitionOwner Run();
+
+    ToolChestSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct ToolChestTransition : SceneTransition {
+    virtual ~ToolChestTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char ToolChestSceneSizeCheck[sizeof(ToolChestScene) == 12 ? 1 : -1];
+typedef char ToolChestSceneCoreCheck[offsetof(ToolChestScene, core) == 4 ? 1 : -1];
+typedef char ToolChestSceneContinuationCheck[offsetof(ToolChestScene, continuation) == 8 ? 1 : -1];
+typedef char ToolChestTransitionSizeCheck[sizeof(ToolChestTransition) == 12 ? 1 : -1];
+
+struct RefrigeratorSceneCore;
+struct RefrigeratorScene : AScene {
+    virtual ~RefrigeratorScene();
+    virtual SceneTransitionOwner Run();
+
+    RefrigeratorSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct RefrigeratorTransition : SceneTransition {
+    virtual ~RefrigeratorTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char RefrigeratorSceneSizeCheck[sizeof(RefrigeratorScene) == 12 ? 1 : -1];
+typedef char RefrigeratorSceneCoreCheck[offsetof(RefrigeratorScene, core) == 4 ? 1 : -1];
+typedef char RefrigeratorSceneContinuationCheck[offsetof(RefrigeratorScene, continuation) == 8 ? 1 : -1];
+typedef char RefrigeratorTransitionSizeCheck[sizeof(RefrigeratorTransition) == 12 ? 1 : -1];
+
+struct ShelfSceneCore;
+struct ShelfScene : AScene {
+    virtual ~ShelfScene();
+    virtual SceneTransitionOwner Run();
+
+    ShelfSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct ShelfTransition : SceneTransition {
+    virtual ~ShelfTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char ShelfSceneSizeCheck[sizeof(ShelfScene) == 12 ? 1 : -1];
+typedef char ShelfSceneCoreCheck[offsetof(ShelfScene, core) == 4 ? 1 : -1];
+typedef char ShelfSceneContinuationCheck[offsetof(ShelfScene, continuation) == 8 ? 1 : -1];
+typedef char ShelfTransitionSizeCheck[sizeof(ShelfTransition) == 12 ? 1 : -1];
+
+struct CookingSceneCore;
+struct CookingScene : AScene {
+    virtual ~CookingScene();
+    virtual SceneTransitionOwner Run();
+
+    CookingSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct CookingTransition : SceneTransition {
+    virtual ~CookingTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+    u8 recipe_list;
+};
+
+typedef char CookingSceneSizeCheck[sizeof(CookingScene) == 12 ? 1 : -1];
+typedef char CookingSceneCoreCheck[offsetof(CookingScene, core) == 4 ? 1 : -1];
+typedef char CookingSceneContinuationCheck[offsetof(CookingScene, continuation) == 8 ? 1 : -1];
+typedef char CookingTransitionSizeCheck[sizeof(CookingTransition) == 16 ? 1 : -1];
+
+struct ReferencePageSceneCore;
+struct ReferencePageScene : AScene {
+    virtual ~ReferencePageScene();
+    virtual SceneTransitionOwner Run();
+
+    ReferencePageSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct ReferencePageTransition : SceneTransition {
+    virtual ~ReferencePageTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+    i32 page_id;
+};
+
+typedef char ReferencePageSceneSizeCheck[sizeof(ReferencePageScene) == 12 ? 1 : -1];
+typedef char ReferencePageSceneCoreCheck[offsetof(ReferencePageScene, core) == 4 ? 1 : -1];
+typedef char ReferencePageSceneContinuationCheck[offsetof(ReferencePageScene, continuation) == 8 ? 1 : -1];
+typedef char ReferencePageTransitionSizeCheck[sizeof(ReferencePageTransition) == 16 ? 1 : -1];
+
+struct SpecialMerchantShopSceneCore;
+struct SpecialMerchantShopScene : AScene {
+    virtual ~SpecialMerchantShopScene();
+    virtual SceneTransitionOwner Run();
+
+    SpecialMerchantShopSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct SpecialMerchantShopTransition : SceneTransition {
+    virtual ~SpecialMerchantShopTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char SpecialMerchantShopSceneSizeCheck[sizeof(SpecialMerchantShopScene) == 12 ? 1 : -1];
+typedef char SpecialMerchantShopSceneCoreCheck[offsetof(SpecialMerchantShopScene, core) == 4 ? 1 : -1];
+typedef char SpecialMerchantShopSceneContinuationCheck[offsetof(SpecialMerchantShopScene, continuation) == 8 ? 1 : -1];
+typedef char SpecialMerchantShopTransitionSizeCheck[sizeof(SpecialMerchantShopTransition) == 12 ? 1 : -1];
+
+struct GiftWrappingSceneCore;
+struct GiftWrappingScene : AScene {
+    virtual ~GiftWrappingScene();
+    virtual SceneTransitionOwner Run();
+
+    GiftWrappingSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct GiftWrappingTransition : SceneTransition {
+    virtual ~GiftWrappingTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char GiftWrappingSceneSizeCheck[sizeof(GiftWrappingScene) == 12 ? 1 : -1];
+typedef char GiftWrappingSceneCoreCheck[offsetof(GiftWrappingScene, core) == 4 ? 1 : -1];
+typedef char GiftWrappingSceneContinuationCheck[offsetof(GiftWrappingScene, continuation) == 8 ? 1 : -1];
+typedef char GiftWrappingTransitionSizeCheck[sizeof(GiftWrappingTransition) == 12 ? 1 : -1];
+
+struct WineryShopSceneCore;
+struct WineryShopScene : AScene {
+    virtual ~WineryShopScene();
+    virtual SceneTransitionOwner Run();
+
+    WineryShopSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct WineryShopTransition : SceneTransition {
+    virtual ~WineryShopTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char WineryShopSceneSizeCheck[sizeof(WineryShopScene) == 12 ? 1 : -1];
+typedef char WineryShopSceneCoreCheck[offsetof(WineryShopScene, core) == 4 ? 1 : -1];
+typedef char WineryShopSceneContinuationCheck[offsetof(WineryShopScene, continuation) == 8 ? 1 : -1];
+typedef char WineryShopTransitionSizeCheck[sizeof(WineryShopTransition) == 12 ? 1 : -1];
+
+struct InnShopSceneCore;
+struct InnShopScene : AScene {
+    virtual ~InnShopScene();
+    virtual SceneTransitionOwner Run();
+
+    InnShopSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct InnShopTransition : SceneTransition {
+    virtual ~InnShopTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char InnShopSceneSizeCheck[sizeof(InnShopScene) == 12 ? 1 : -1];
+typedef char InnShopSceneCoreCheck[offsetof(InnShopScene, core) == 4 ? 1 : -1];
+typedef char InnShopSceneContinuationCheck[offsetof(InnShopScene, continuation) == 8 ? 1 : -1];
+typedef char InnShopTransitionSizeCheck[sizeof(InnShopTransition) == 12 ? 1 : -1];
+
+struct BeachCafeShopSceneCore;
+struct BeachCafeShopScene : AScene {
+    virtual ~BeachCafeShopScene();
+    virtual SceneTransitionOwner Run();
+
+    BeachCafeShopSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct BeachCafeShopTransition : SceneTransition {
+    virtual ~BeachCafeShopTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char BeachCafeShopSceneSizeCheck[sizeof(BeachCafeShopScene) == 12 ? 1 : -1];
+typedef char BeachCafeShopSceneCoreCheck[offsetof(BeachCafeShopScene, core) == 4 ? 1 : -1];
+typedef char BeachCafeShopSceneContinuationCheck[offsetof(BeachCafeShopScene, continuation) == 8 ? 1 : -1];
+typedef char BeachCafeShopTransitionSizeCheck[sizeof(BeachCafeShopTransition) == 12 ? 1 : -1];
+
+struct WonShopSceneCore;
+struct WonShopScene : AScene {
+    virtual ~WonShopScene();
+    virtual SceneTransitionOwner Run();
+
+    WonShopSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct WonShopTransition : SceneTransition {
+    virtual ~WonShopTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char WonShopSceneSizeCheck[sizeof(WonShopScene) == 12 ? 1 : -1];
+typedef char WonShopSceneCoreCheck[offsetof(WonShopScene, core) == 4 ? 1 : -1];
+typedef char WonShopSceneContinuationCheck[offsetof(WonShopScene, continuation) == 8 ? 1 : -1];
+typedef char WonShopTransitionSizeCheck[sizeof(WonShopTransition) == 12 ? 1 : -1];
+
+struct CarpenterShopSceneCore;
+struct CarpenterShopScene : AScene {
+    virtual ~CarpenterShopScene();
+    virtual SceneTransitionOwner Run();
+
+    CarpenterShopSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct CarpenterShopTransition : SceneTransition {
+    virtual ~CarpenterShopTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char CarpenterShopSceneSizeCheck[sizeof(CarpenterShopScene) == 12 ? 1 : -1];
+typedef char CarpenterShopSceneCoreCheck[offsetof(CarpenterShopScene, core) == 4 ? 1 : -1];
+typedef char CarpenterShopSceneContinuationCheck[offsetof(CarpenterShopScene, continuation) == 8 ? 1 : -1];
+typedef char CarpenterShopTransitionSizeCheck[sizeof(CarpenterShopTransition) == 12 ? 1 : -1];
+
+struct ClinicShopSceneCore;
+struct ClinicShopScene : AScene {
+    virtual ~ClinicShopScene();
+    virtual SceneTransitionOwner Run();
+
+    ClinicShopSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct ClinicShopTransition : SceneTransition {
+    virtual ~ClinicShopTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+typedef char ClinicShopSceneSizeCheck[sizeof(ClinicShopScene) == 12 ? 1 : -1];
+typedef char ClinicShopSceneCoreCheck[offsetof(ClinicShopScene, core) == 4 ? 1 : -1];
+typedef char ClinicShopSceneContinuationCheck[offsetof(ClinicShopScene, continuation) == 8 ? 1 : -1];
+typedef char ClinicShopTransitionSizeCheck[sizeof(ClinicShopTransition) == 12 ? 1 : -1];
+
 // The native constructor allocates 0xF8 bytes and places its vptr at +0xF4.
 // The display shadow at +0x10 is constructed as HardwareDisplayState.
 // Other fields are typed only where native construction or use proves them.
@@ -310,6 +621,78 @@ SupermarketScene * func_0807DD38(void * object, SceneTransition ** continuation,
     GameStateSaveImage * save);
 SupermarketPurchaseScene * func_0807E438(void * object, SceneTransition ** continuation,
     GameStateSaveImage * save, MarySupermarketItemId item_id);
+#endif
+
+CalendarScene * func_080A3744(void *, SceneTransition **, GameStateSaveImage *);
+
+#if defined(REGION_JP)
+ToolChestScene * loc_0808A678(void *, SceneTransition **, GameStateSaveImage *);
+#else
+ToolChestScene * func_0808AB38(void *, SceneTransition **, GameStateSaveImage *);
+#endif
+
+#if defined(REGION_JP)
+RefrigeratorScene * loc_0808E818(void *, SceneTransition **, GameStateSaveImage *);
+#else
+RefrigeratorScene * func_0808ECD8(void *, SceneTransition **, GameStateSaveImage *);
+#endif
+
+ShelfScene * func_08090E54(void *, SceneTransition **, GameStateSaveImage *);
+
+#if defined(REGION_JP)
+CookingScene * func_08099F0C(void *, SceneTransition **, GameStateSaveImage *, u8);
+#else
+CookingScene * func_0809A4D4(void *, SceneTransition **, GameStateSaveImage *, u8);
+#endif
+
+ReferencePageScene * func_0807B038(void *, SceneTransition **, GameStateSaveImage *, i32);
+
+#if defined(REGION_JP)
+SpecialMerchantShopScene * func_080815B8(void *, SceneTransition **, GameStateSaveImage *);
+#else
+SpecialMerchantShopScene * func_08081A40(void *, SceneTransition **, GameStateSaveImage *);
+#endif
+
+#if defined(REGION_JP)
+GiftWrappingScene * loc_08092C7C(void *, SceneTransition **, GameStateSaveImage *);
+#else
+GiftWrappingScene * func_080931B0(void *, SceneTransition **, GameStateSaveImage *);
+#endif
+
+#if defined(REGION_JP)
+WineryShopScene * func_0808090C(void *, SceneTransition **, GameStateSaveImage *);
+#else
+WineryShopScene * func_08080D94(void *, SceneTransition **, GameStateSaveImage *);
+#endif
+
+#if defined(REGION_JP)
+InnShopScene * func_0807F0E8(void *, SceneTransition **, GameStateSaveImage *);
+#else
+InnShopScene * func_0807F580(void *, SceneTransition **, GameStateSaveImage *);
+#endif
+
+#if defined(REGION_JP)
+BeachCafeShopScene * func_08081C8C(void *, SceneTransition **, GameStateSaveImage *);
+#else
+BeachCafeShopScene * func_08082114(void *, SceneTransition **, GameStateSaveImage *);
+#endif
+
+#if defined(REGION_JP)
+WonShopScene * loc_0807FFC4(void *, SceneTransition **, GameStateSaveImage *);
+#else
+WonShopScene * func_0808045C(void *, SceneTransition **, GameStateSaveImage *);
+#endif
+
+#if defined(REGION_JP)
+CarpenterShopScene * loc_0808506C(void *, SceneTransition **, GameStateSaveImage *);
+#else
+CarpenterShopScene * func_080854F4(void *, SceneTransition **, GameStateSaveImage *);
+#endif
+
+#if defined(REGION_JP)
+ClinicShopScene * func_0807E97C(void *, SceneTransition **, GameStateSaveImage *);
+#else
+ClinicShopScene * func_0807EE14(void *, SceneTransition **, GameStateSaveImage *);
 #endif
 
 // The global controller and its subobjects are not yet fully recovered.
