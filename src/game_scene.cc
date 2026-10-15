@@ -540,3 +540,32 @@ void GameScene::WaitFrames(i32 frames)
     current->wait_frames = frames;
     current->script_state = 0x15;
 }
+
+// These late scene factories stay in native ROM order. Returning a temporary
+// owner preserves the original two-word ownership-transfer ABI.
+SceneOwner SupermarketPurchaseTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(func_0807DFA0(::operator new(sizeof(SupermarketPurchaseScene)),
+        &next, save, item_id));
+#else
+    return SceneOwner(func_0807E438(::operator new(sizeof(SupermarketPurchaseScene)),
+        &next, save, item_id));
+#endif
+}
+
+SceneOwner SupermarketTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(func_0807D8A0(::operator new(sizeof(SupermarketScene)), &next, save));
+#else
+    return SceneOwner(func_0807DD38(::operator new(sizeof(SupermarketScene)), &next, save));
+#endif
+}
+
+SceneOwner ReturnToGameScene::CreateScene()
+{
+    return SceneOwner(func_08011DC4(::operator new(sizeof(GameScene)), save, &request));
+}

@@ -6,6 +6,7 @@
 #include "ui_state.hh"
 #include "hardware_display_output.hh"
 #include "script_engine.hh"
+#include "fomt_constants.hh"
 #include <new>
 
 struct AActorEntity;
@@ -109,6 +110,76 @@ typedef char GameSceneControllerQueue1Check[offsetof(GameSceneScriptControllerPr
 typedef char GameSceneControllerQueue2Check[offsetof(GameSceneScriptControllerPrefix, queue_2) == 0x4D0 ? 1 : -1];
 typedef char GameSceneControllerPrefixSizeCheck[sizeof(GameSceneScriptControllerPrefix) == 0x4DC ? 1 : -1];
 
+// The return transition and the native GameScene constructor copy this whole
+// three-word record. Only its first word is initialized by the shop commands;
+// the remaining payload is not assumed to be zero or given guessed meanings.
+struct GameSceneResumeRequest {
+    i32 kind;
+    u8 unk_04[8];
+};
+
+struct SupermarketSceneCore;
+struct SupermarketPurchaseSceneCore;
+
+// These two native scene constructors create an owned UI core at +4 and
+// consume the continuation at +8. Their UI cores and lifecycle remain native.
+struct SupermarketScene : AScene {
+    virtual ~SupermarketScene();
+    virtual SceneTransitionOwner Run();
+
+    SupermarketSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+struct SupermarketPurchaseScene : AScene {
+    virtual ~SupermarketPurchaseScene();
+    virtual SceneTransitionOwner Run();
+
+    SupermarketPurchaseSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+// Native destructors remain the first virtuals in these classes. Their
+// existing ROM tables now call the recovered CreateScene members directly;
+// no duplicate compiler vtables or aliases are introduced.
+struct SupermarketPurchaseTransition : SceneTransition {
+    virtual ~SupermarketPurchaseTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+    MarySupermarketItemId item_id;
+};
+
+struct SupermarketTransition : SceneTransition {
+    virtual ~SupermarketTransition();
+    virtual SceneOwner CreateScene();
+
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+};
+
+struct ReturnToGameScene : SceneTransition {
+    virtual ~ReturnToGameScene();
+    virtual SceneOwner CreateScene();
+
+    GameStateSaveImage * save;
+    GameSceneResumeRequest request;
+};
+
+typedef char GameSceneResumeRequestSizeCheck[sizeof(GameSceneResumeRequest) == 12 ? 1 : -1];
+typedef char SupermarketSceneSizeCheck[sizeof(SupermarketScene) == 12 ? 1 : -1];
+typedef char SupermarketSceneCoreCheck[offsetof(SupermarketScene, core) == 4 ? 1 : -1];
+typedef char SupermarketSceneContinuationCheck[offsetof(SupermarketScene, continuation) == 8 ? 1 : -1];
+typedef char SupermarketPurchaseSceneSizeCheck[sizeof(SupermarketPurchaseScene) == 12 ? 1 : -1];
+typedef char SupermarketPurchaseSceneCoreCheck[offsetof(SupermarketPurchaseScene, core) == 4 ? 1 : -1];
+typedef char SupermarketPurchaseSceneContinuationCheck[offsetof(SupermarketPurchaseScene, continuation) == 8 ? 1 : -1];
+typedef char SupermarketPurchaseTransitionSizeCheck[sizeof(SupermarketPurchaseTransition) == 16 ? 1 : -1];
+typedef char SupermarketPurchaseTransitionItemCheck[offsetof(SupermarketPurchaseTransition, item_id) == 12 ? 1 : -1];
+typedef char SupermarketTransitionSizeCheck[sizeof(SupermarketTransition) == 12 ? 1 : -1];
+typedef char ReturnToGameSceneSizeCheck[sizeof(ReturnToGameScene) == 20 ? 1 : -1];
+typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) == 8 ? 1 : -1];
+
 // The native constructor allocates 0xF8 bytes and places its vptr at +0xF4.
 // The display shadow at +0x10 is constructed as HardwareDisplayState.
 // Other fields are typed only where native construction or use proves them.
@@ -117,10 +188,10 @@ struct GameSceneState {
     HardwareDisplayState display;
     u8 unk_68[0x24];
     GameStateSaveImage * save;
-    u8 unk_90[0xC];
+    GameSceneResumeRequest resume_request;
     u32 script_state;
     HardwareBlendController * screen_blend;
-    u32 unk_A4;
+    SceneTransitionOwner pending_transition;
     GameObject * game_object;
     GameSceneTalkWindowOwner talk_window;
     ScriptTextVariableStore * text_variables;
@@ -208,7 +279,9 @@ typedef char GameSceneStateScreenBlendCheck[offsetof(GameSceneState, screen_blen
 typedef char GameSceneStateFadeByteE8Check[offsetof(GameSceneState, unk_E8) == 0xE8 ? 1 : -1];
 typedef char GameSceneStateFadeByteE9Check[offsetof(GameSceneState, unk_E9) == 0xE9 ? 1 : -1];
 typedef char GameSceneStateSaveCheck[offsetof(GameSceneState, save) == 0x8C ? 1 : -1];
+typedef char GameSceneStateResumeRequestCheck[offsetof(GameSceneState, resume_request) == 0x90 ? 1 : -1];
 typedef char GameSceneStateScriptStateCheck[offsetof(GameSceneState, script_state) == 0x9C ? 1 : -1];
+typedef char GameSceneStatePendingTransitionCheck[offsetof(GameSceneState, pending_transition) == 0xA4 ? 1 : -1];
 typedef char GameSceneStateGameObjectCheck[offsetof(GameSceneState, game_object) == 0xA8 ? 1 : -1];
 typedef char GameSceneStateTalkWindowCheck[offsetof(GameSceneState, talk_window) == 0xAC ? 1 : -1];
 typedef char GameSceneStateTalkContextCheck[offsetof(GameSceneState, text_variables) == 0xB0 ? 1 : -1];
@@ -222,6 +295,22 @@ typedef char GameSceneSizeCheck[sizeof(GameScene) == 8 ? 1 : -1];
 typedef char GameSceneStatePointerCheck[offsetof(GameScene, state) == 4 ? 1 : -1];
 
 EXTERN_C
+
+// Native construction ABI: the scene factories pass the original allocation
+// and the continuation address. Each shop constructor consumes *continuation.
+GameScene * func_08011DC4(void * object, GameStateSaveImage * save,
+    GameSceneResumeRequest const * request);
+#if defined(REGION_JP)
+SupermarketScene * func_0807D8A0(void * object, SceneTransition ** continuation,
+    GameStateSaveImage * save);
+SupermarketPurchaseScene * func_0807DFA0(void * object, SceneTransition ** continuation,
+    GameStateSaveImage * save, MarySupermarketItemId item_id);
+#else
+SupermarketScene * func_0807DD38(void * object, SceneTransition ** continuation,
+    GameStateSaveImage * save);
+SupermarketPurchaseScene * func_0807E438(void * object, SceneTransition ** continuation,
+    GameStateSaveImage * save, MarySupermarketItemId item_id);
+#endif
 
 // The global controller and its subobjects are not yet fully recovered.
 extern u8 * gUnk_0300040C;

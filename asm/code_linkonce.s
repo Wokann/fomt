@@ -11924,43 +11924,8 @@ func_080DC0C0:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DC0E8
-    .thumb_func
-func_080DC0E8:
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    adds r6, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    movs r5, #0
-    str r5, [r4, #4]
-    str r0, [sp, #4]
-    movs r0, #0xc
-    bl __builtin_new
-    add r1, sp, #4
-    ldr r2, [r4, #8]
-    ldr r3, [r4, #0xc]
-    bl func_0807DFA0
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r5, [r1]
-    str r0, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DB8DA
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DB8DA:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
+    .section .text.scene_supermarket_purchase_after, "ax", %progbits
+
     .global func_080DC130
     .thumb_func
 func_080DC130:
@@ -11983,43 +11948,8 @@ func_080DC130:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DC158
-    .thumb_func
-func_080DC158:
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    adds r6, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    movs r5, #0
-    str r5, [r4, #4]
-    str r0, [sp, #4]
-    movs r0, #0xc
-    bl __builtin_new
-    add r1, sp, #4
-    ldr r2, [r4, #8]
-    bl func_0807D8A0
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r5, [r1]
-    str r0, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DB948
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DB948:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
+    .section .text.scene_supermarket_after, "ax", %progbits
+
     .global func_080DC1A0
     .thumb_func
 func_080DC1A0:
@@ -12109,41 +12039,8 @@ func_080DC21C:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DC244
-    .thumb_func
-func_080DC244:
-    push {r4, r5, lr}
-    sub sp, #0xc
-    adds r5, r0, #0
-    adds r4, r1, #0
-    movs r0, #8
-    bl __builtin_new
-    ldr r1, [r4, #4]
-    adds r4, #8
-    adds r2, r4, #0
-    bl func_08011DC4
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #4]
-    str r0, [sp, #8]
-    adds r2, r1, #0
-    movs r1, #0
-    str r1, [r2]
-    str r0, [r5]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DBA32
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DBA32:
-    adds r0, r5, #0
-    add sp, #0xc
-    pop {r4, r5}
-    pop {r1}
-    bx r1
+    .section .text.scene_return_after, "ax", %progbits
+
     .global func_080DC288
     .thumb_func
 func_080DC288:
@@ -25884,42 +25781,7 @@ func_080DC0C0: @ 0x080DC0C0
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DC0E8
-func_080DC0E8: @ 0x080DC0E8
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	adds r6, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	movs r5, #0
-	str r5, [r4, #4]
-	str r0, [sp, #4]
-	movs r0, #0xc
-	bl __builtin_new
-	add r1, sp, #4
-	ldr r2, [r4, #8]
-	ldr r3, [r4, #0xc]
-	bl func_0807E438
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r5, [r1]
-	str r0, [r6]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080DC126
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DC126:
-	adds r0, r6, #0
-	add sp, #0x10
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
+    .section .text.scene_supermarket_purchase_after, "ax", %progbits
 
 	thumb_func_start func_080DC130
 func_080DC130: @ 0x080DC130
@@ -25943,42 +25805,7 @@ func_080DC130: @ 0x080DC130
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DC158
-func_080DC158: @ 0x080DC158
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	adds r6, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	movs r5, #0
-	str r5, [r4, #4]
-	str r0, [sp, #4]
-	movs r0, #0xc
-	bl __builtin_new
-	add r1, sp, #4
-	ldr r2, [r4, #8]
-	bl func_0807DD38
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r5, [r1]
-	str r0, [r6]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080DC194
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DC194:
-	adds r0, r6, #0
-	add sp, #0x10
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.scene_supermarket_after, "ax", %progbits
 
 	thumb_func_start func_080DC1A0
 func_080DC1A0: @ 0x080DC1A0
@@ -26069,40 +25896,7 @@ func_080DC21C: @ 0x080DC21C
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DC244
-func_080DC244: @ 0x080DC244
-	push {r4, r5, lr}
-	sub sp, #0xc
-	adds r5, r0, #0
-	adds r4, r1, #0
-	movs r0, #8
-	bl __builtin_new
-	ldr r1, [r4, #4]
-	adds r4, #8
-	adds r2, r4, #0
-	bl func_08011DC4
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	adds r2, r1, #0
-	movs r1, #0
-	str r1, [r2]
-	str r0, [r5]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080DC27E
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DC27E:
-	adds r0, r5, #0
-	add sp, #0xc
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.scene_return_after, "ax", %progbits
 
 	thumb_func_start func_080DC288
 func_080DC288: @ 0x080DC288

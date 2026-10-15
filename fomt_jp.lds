@@ -557,6 +557,12 @@ SECTIONS
         *(.gnu.linkonce.t.push_front__Q28Rucksackt5Slots1Z9ToolStackG9ToolStack);
         . = 0xD761C; /* JP ROM 0x080D761C, direct function match */
         asm/code_linkonce.o(.text.code_080D7CFC);
+        src/game_scene.o(.text.CreateScene__29SupermarketPurchaseTransition);
+        asm/code_linkonce.o(.text.scene_supermarket_purchase_after);
+        src/game_scene.o(.text.CreateScene__21SupermarketTransition);
+        asm/code_linkonce.o(.text.scene_supermarket_after);
+        src/game_scene.o(.text.CreateScene__17ReturnToGameScene);
+        asm/code_linkonce.o(.text.scene_return_after);
         *(.gnu.linkonce.t.__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01);
         . = 0xE0690; /* JP ROM 0x080E0690, independently matched */
         asm/code_linkonce.o(.text.code_080E0EF0);

@@ -864,14 +864,14 @@ extern void func_080DBFF8(void);
 extern void func_080DC040(void);
 extern void func_080DC068(void);
 extern void func_080DC0C0(void);
-extern void func_080DC0E8(void);
+extern void CreateScene__29SupermarketPurchaseTransition(void);
 extern void func_080DC130(void);
-extern void func_080DC158(void);
+extern void CreateScene__21SupermarketTransition(void);
 extern void func_080DC1A0(void);
 extern void func_080DC1C8(void);
 extern void func_080DC1D4(void);
 extern void func_080DC21C(void);
-extern void func_080DC244(void);
+extern void CreateScene__17ReturnToGameScene(void);
 extern void func_080DC288(void);
 extern void func_080DC3A0(void);
 extern void func_080DC404(void);
@@ -1348,14 +1348,14 @@ extern RawVTableFunction const vtable_unk_080E5E24[] = {
     nullptr,
     nullptr,
     func_080DC130,
-    func_080DC0E8,
+    CreateScene__29SupermarketPurchaseTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E34[] = {
     nullptr,
     nullptr,
     func_080DC1A0,
-    func_080DC158,
+    CreateScene__21SupermarketTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E44[] = {
@@ -1383,7 +1383,7 @@ extern RawVTableFunction const vtable_unk_080E5E74[] = {
     nullptr,
     nullptr,
     func_080DC288,
-    func_080DC244,
+    CreateScene__17ReturnToGameScene,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E84[] = {
