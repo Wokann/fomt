@@ -238,13 +238,15 @@ static inline NewGameMenuSpriteAttributes const & MenuSpriteAttributes(
 static inline void SetInitialChoices(NewGameMenuCore * core,
     GameDisplayOptions const & options)
 {
+    // The selector stores byte-valued choices; keep boolean extraction in
+    // that width before inverting the display options.
     core->choices[2] = options.control_scheme == 1;
     func_08003DF0(core, 2, MenuSpriteAttributes(core->option_attributes));
-    core->choices[3] = !options.show_clock;
+    core->choices[3] = !static_cast<u8>(options.show_clock);
     func_08003DF0(core, 3, MenuSpriteAttributes(core->option_attributes));
-    core->choices[4] = !options.show_portrait;
+    core->choices[4] = !static_cast<u8>(options.show_portrait);
     func_08003DF0(core, 4, MenuSpriteAttributes(core->option_attributes));
-    core->choices[5] = !options.show_nameplate;
+    core->choices[5] = !static_cast<u8>(options.show_nameplate);
     func_08003DF0(core, 5, MenuSpriteAttributes(core->option_attributes));
 }
 

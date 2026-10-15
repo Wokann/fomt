@@ -1,4 +1,5 @@
 #include "game_scene.hh"
+#include "game_state.hh"
 #include "entity_actor.hh"
 #include "entity_ui.hh"
 #include "fomt_constants.hh"
@@ -254,4 +255,115 @@ void GameScene::PlaySong(i32 mode, u32 sequence)
 void GameScene::StopAllSongs()
 {
     func_08008DE8();
+}
+
+void GameScene::TalkResetUi()
+{
+    GameSceneState * current = state;
+    current->time_window = nullptr;
+    current->pause_menu_selector = nullptr;
+    current->talk_window = nullptr;
+    current->flags_10 &= ~0x0100;
+}
+
+void GameScene::TalkClose()
+{
+    GameSceneState * current = state;
+    if (current->talk_window.Get() != nullptr) {
+        func_08050D74(reinterpret_cast<void * const *>(current->talk_window.Get()));
+        func_080D7F88(current);
+        func_080D7F74(current);
+        func_080D7F60(current);
+        current->script_state = 0x0F;
+    }
+}
+
+void GameScene::TalkMessage(char const * text, u32 rate)
+{
+    GameSceneState * current = state;
+    if (current->talk_window.Get() != nullptr) {
+        func_08050DC8(reinterpret_cast<void * const *>(current->talk_window.Get()),
+            reinterpret_cast<u32>(text), static_cast<u16>(rate), current->unk_B0);
+        current->script_state = 0x10;
+    }
+}
+
+void GameScene::TalkTelevisionMessage(char const * text)
+{
+    GameSceneState * current = state;
+    if (current->talk_window.Get() != nullptr) {
+        func_08050DC8(reinterpret_cast<void * const *>(current->talk_window.Get()),
+            reinterpret_cast<u32>(text), 0x40, current->unk_B0);
+        // Television uses a separate completion state, not slow dialogue.
+        current->script_state = 0x11;
+    }
+}
+
+void GameScene::TalkSetNameplateCharacter(u32 id)
+{
+    GameSceneState * current = state;
+    UiStateOwner * window = current->talk_window.Get();
+    if (window != nullptr && current->save->display_options.show_nameplate) {
+        char const * name = func_0809FE3C(&current->save->npcs, id);
+        func_08050E68(reinterpret_cast<void * const *>(window), name);
+    }
+}
+
+void GameScene::TalkSetNameplateText(char const * text)
+{
+    GameSceneState * current = state;
+    UiStateOwner * window = current->talk_window.Get();
+    if (window != nullptr && current->save->display_options.show_nameplate)
+        func_08050E68(reinterpret_cast<void * const *>(window), text);
+}
+
+void GameScene::TalkClearNameplate()
+{
+    UiStateOwner * window = state->talk_window.Get();
+    if (window != nullptr)
+        func_08050E74(reinterpret_cast<void * const *>(window));
+}
+
+void GameScene::TalkSetPortrait(u32 id)
+{
+    GameSceneState * current = state;
+    UiStateOwner * window = current->talk_window.Get();
+    if (window != nullptr && current->save->display_options.show_portrait)
+        func_08050E50(reinterpret_cast<void * const *>(window), id);
+}
+
+void GameScene::TalkClearPortrait()
+{
+    UiStateOwner * window = state->talk_window.Get();
+    if (window != nullptr)
+        func_08050E5C(reinterpret_cast<void * const *>(window));
+}
+
+void GameScene::TalkShowHeartIndicator(u32 id)
+{
+    GameSceneState * current = state;
+    if (current->talk_window.Get() != nullptr &&
+        current->save->display_options.show_portrait &&
+        id != CHARACTER_HARVEST_GODDESS) {
+        Bachelorette * girl = current->save->npcs.GetBachelorette(id);
+        if (girl != nullptr) {
+            u32 love = girl->GetLove();
+            u32 heart;
+            if (love >= LOVE_HEART_RED_MIN) heart = 6;
+            else if (love >= LOVE_HEART_ORANGE_MIN) heart = 5;
+            else if (love >= LOVE_HEART_YELLOW_MIN) heart = 4;
+            else if (love >= LOVE_HEART_GREEN_MIN) heart = 3;
+            else if (love >= LOVE_HEART_BLUE_MIN) heart = 2;
+            else if (love >= LOVE_HEART_PURPLE_MIN) heart = 1;
+            else heart = 0;
+            func_08050E80(reinterpret_cast<void * const *>(current->talk_window.Get()), heart);
+        }
+    }
+}
+
+void GameScene::TalkHideHeartIndicator()
+{
+    UiStateOwner * window = state->talk_window.Get();
+    if (window != nullptr)
+        func_08050E8C(reinterpret_cast<void * const *>(window));
 }

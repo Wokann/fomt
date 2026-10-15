@@ -275,6 +275,18 @@ void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
 void func_08050E30(void * const * object, u32 arg_r1, u32 arg_r2,
     u32 arg_r3, u32 arg_sp0, u32 arg_sp1, u32 arg_sp2)
     SECTION(".text.ui_state_adapters");
+void func_08050E50(void * const * object, u32 arg_r1)
+    SECTION(".text.ui_state_adapters");
+void func_08050E5C(void * const * object)
+    SECTION(".text.ui_state_adapters");
+void func_08050E68(void * const * object, char const * text)
+    SECTION(".text.ui_state_adapters");
+void func_08050E74(void * const * object)
+    SECTION(".text.ui_state_adapters");
+void func_08050E80(void * const * object, u32 arg_r1)
+    SECTION(".text.ui_state_adapters");
+void func_08050E8C(void * const * object)
+    SECTION(".text.ui_state_adapters");
 
 EXTERN_C_END
 

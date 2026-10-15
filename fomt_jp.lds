@@ -198,8 +198,11 @@ SECTIONS
         src/game_state.o(.text.InitializeGameDisplayOptions);
         src/game_state.o(.text.*);
         asm/game_state.o(.text.game_state_after_display_options);
-        src/game_scene.o(.text.*__9GameScene*);
+        /* Keep the native opener between earlier members and the Talk group. */
+        src/game_scene.o(.text.[!T]*__9GameScene*);
         asm/game_state.o(.text.game_scene_entity_commands_after);
+        src/game_scene.o(.text.Talk*__9GameScene*);
+        asm/game_state.o(.text.game_scene_talk_commands_after);
         . = 0x1FB0C; /* JP ROM 0x0801FB0C, independently matched */
         src/entity.o(.text);
         . = 0x1FDAC; /* JP ROM 0x0801FDAC, independently matched */

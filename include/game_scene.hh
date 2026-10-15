@@ -3,10 +3,48 @@
 
 #include "prelude.h"
 #include "scene.hh"
+#include "ui_state.hh"
 
 struct AActorEntity;
 struct GameObject;
+struct GameStateSaveImage;
 struct MusicPlayer;
+
+// Only the shared destruction prefix is recovered. The concrete Time Window
+// and pause-menu selector payloads and their destructors remain native.
+struct GameSceneUiComponent {
+    u32 unk_00;
+    virtual ~GameSceneUiComponent();
+};
+
+struct GameSceneUiComponentOwner {
+    GameSceneUiComponent * value;
+
+    GameSceneUiComponentOwner() : value(nullptr) {}
+    ~GameSceneUiComponentOwner() { delete value; }
+    GameSceneUiComponentOwner & operator=(GameSceneUiComponent * next)
+    {
+        if (next != value)
+            delete value;
+        value = next;
+        return *this;
+    }
+};
+
+struct GameSceneTalkWindowOwner {
+    UiStateOwner * value;
+
+    GameSceneTalkWindowOwner() : value(nullptr) {}
+    ~GameSceneTalkWindowOwner() { delete value; }
+    UiStateOwner * Get() const { return value; }
+    GameSceneTalkWindowOwner & operator=(UiStateOwner * next)
+    {
+        if (next != value)
+            delete value;
+        value = next;
+        return *this;
+    }
+};
 
 struct GameSceneBgmSettings {
     u16 tempo;
@@ -30,11 +68,18 @@ struct GameSceneSongPlayerPool {
 // Only fields used by the recovered commands are named here; the
 // other state remains opaque rather than acquiring speculative meanings.
 struct GameSceneState {
-    u8 unk_00[0x9C];
+    u8 unk_00[0x10];
+    u16 flags_10;
+    u8 unk_12[0x7A];
+    GameStateSaveImage * save;
+    u8 unk_90[0xC];
     u32 script_state;
     u32 unk_A0[2];
     GameObject * game_object;
-    u8 unk_AC[0x10];
+    GameSceneTalkWindowOwner talk_window;
+    u32 unk_B0;
+    GameSceneUiComponentOwner time_window;
+    GameSceneUiComponentOwner pause_menu_selector;
     MusicPlayer * bgm_player;
     u8 unk_C0[0x10];
     GameSceneSongPlayerPool song_players;
@@ -74,16 +119,36 @@ struct GameScene : AScene {
     void StopBGM();
     void PlaySong(i32 mode, u32 sequence);
     void StopAllSongs();
+    void TalkResetUi();
+    void TalkClose();
+    void TalkMessage(char const * text, u32 rate);
+    void TalkTelevisionMessage(char const * text);
+    void TalkSetNameplateCharacter(u32 id);
+    void TalkSetNameplateText(char const * text);
+    void TalkClearNameplate();
+    void TalkSetPortrait(u32 id);
+    void TalkClearPortrait();
+    void TalkShowHeartIndicator(u32 id);
+    void TalkHideHeartIndicator();
 };
 
+typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];
+typedef char GameSceneUiComponentOwnerSizeCheck[sizeof(GameSceneUiComponentOwner) == 4 ? 1 : -1];
+typedef char GameSceneTalkWindowOwnerSizeCheck[sizeof(GameSceneTalkWindowOwner) == 4 ? 1 : -1];
 typedef char GameSceneBgmSettingsSizeCheck[sizeof(GameSceneBgmSettings) == 12 ? 1 : -1];
 typedef char GameSceneBgmSettingsPitchCheck[offsetof(GameSceneBgmSettings, pitch) == 4 ? 1 : -1];
 typedef char GameSceneBgmSettingsLfoCheck[offsetof(GameSceneBgmSettings, lfo_speed) == 8 ? 1 : -1];
 typedef char GameSceneSongPlayerPoolSizeCheck[sizeof(GameSceneSongPlayerPool) == 16 ? 1 : -1];
 typedef char GameSceneSongPlayerPoolCapacityCheck[offsetof(GameSceneSongPlayerPool, capacity_end) == 12 ? 1 : -1];
 typedef char GameSceneStateSizeCheck[sizeof(GameSceneState) == 0xF8 ? 1 : -1];
+typedef char GameSceneStateFlagsCheck[offsetof(GameSceneState, flags_10) == 0x10 ? 1 : -1];
+typedef char GameSceneStateSaveCheck[offsetof(GameSceneState, save) == 0x8C ? 1 : -1];
 typedef char GameSceneStateScriptStateCheck[offsetof(GameSceneState, script_state) == 0x9C ? 1 : -1];
 typedef char GameSceneStateGameObjectCheck[offsetof(GameSceneState, game_object) == 0xA8 ? 1 : -1];
+typedef char GameSceneStateTalkWindowCheck[offsetof(GameSceneState, talk_window) == 0xAC ? 1 : -1];
+typedef char GameSceneStateTalkContextCheck[offsetof(GameSceneState, unk_B0) == 0xB0 ? 1 : -1];
+typedef char GameSceneStateTimeWindowCheck[offsetof(GameSceneState, time_window) == 0xB4 ? 1 : -1];
+typedef char GameSceneStateMenuSelectorCheck[offsetof(GameSceneState, pause_menu_selector) == 0xB8 ? 1 : -1];
 typedef char GameSceneStateBgmPlayerCheck[offsetof(GameSceneState, bgm_player) == 0xBC ? 1 : -1];
 typedef char GameSceneStateSongPlayersCheck[offsetof(GameSceneState, song_players) == 0xD0 ? 1 : -1];
 typedef char GameSceneStateWaitingEntityCheck[offsetof(GameSceneState, waiting_entity) == 0xE4 ? 1 : -1];
@@ -107,6 +172,11 @@ u8 * func_0801014C(void);
 void func_080D7F08(GameSceneState * state);
 void func_080D7F9C(GameSceneState * state, u32 id, u32 map, i32 x, i32 y,
     u32 facing);
+
+// Native per-window cleanup helpers used by the close transition.
+void func_080D7F60(GameSceneState * state);
+void func_080D7F74(GameSceneState * state);
+void func_080D7F88(GameSceneState * state);
 
 // The native scene runner still owns the underlying update loop.
 SceneTransitionOwner sub_080D8178(GameSceneState * state);

@@ -27,9 +27,9 @@ struct GameDisplayOptions {
     GameDisplayOptions();
 
     u32 control_scheme : 1; // 0: D-pad walks / R runs; 1: D-pad runs / R walks.
-    u8 show_clock : 1;
-    u8 show_portrait : 1;
-    u8 show_nameplate : 1;
+    bool show_clock : 1;
+    bool show_portrait : 1;
+    bool show_nameplate : 1;
     u32 unk_4 : 28;
 };
 

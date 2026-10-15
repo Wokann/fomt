@@ -176,4 +176,7 @@ typedef char NpcCollectionWorkTargetsCheck[offsetof(NpcCollection, work_targets)
 typedef char NpcCollectionPregnancyCounterCheck[offsetof(NpcCollection, days_since_pregnancy_event) == 0x470 ? 1 : -1];
 typedef char NpcCollectionLastByteCheck[offsetof(NpcCollection, unk_474) == 0x474 ? 1 : -1];
 
+// Native character-name resolver; its dispatch body remains in assembly.
+extern "C" char const * func_0809FE3C(NpcCollection * collection, u32 character_id);
+
 #endif // NPC_COLLECTION_HH

@@ -159,8 +159,11 @@ SECTIONS
         src/game_state.o(.text.InitializeGameDisplayOptions);
         src/game_state.o(.text.*);
         asm/game_state.o(.text.game_state_after_display_options);
-        src/game_scene.o(.text.*__9GameScene*);
+        /* Keep the native opener between earlier members and the Talk group. */
+        src/game_scene.o(.text.[!T]*__9GameScene*);
         asm/game_state.o(.text.game_scene_entity_commands_after);
+        src/game_scene.o(.text.Talk*__9GameScene*);
+        asm/game_state.o(.text.game_scene_talk_commands_after);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
         asm/code_entities.o(.text);
