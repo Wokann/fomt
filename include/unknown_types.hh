@@ -92,6 +92,7 @@ struct UnkMap
 // TODO: move elsewhere
 struct AActorEntity;
 struct Location;
+struct GameStateClock;
 
 struct GameObject
 {
@@ -168,6 +169,16 @@ struct GameObject
     virtual void EndTelevisionProgram();
     virtual void vfunc_120();
     virtual void vfunc_124();
+    // Unrecovered entries preserve the native slot order; their call ABIs
+    // are not established. GetClock is verified through the concrete table.
+    virtual void vfunc_128();
+    virtual void vfunc_12C();
+    virtual void vfunc_130();
+    virtual void vfunc_134();
+    virtual void vfunc_138();
+    virtual void vfunc_13C();
+    virtual void vfunc_140();
+    virtual GameStateClock const * GetClock() = 0;
 
     /* +00 */ // vtable
 };

@@ -6,6 +6,7 @@
 struct Npc;
 struct ScheduleInfo;
 struct ScheduleEntry;
+struct PathPointA;
 
 struct ANpcEntity : public AActorEntity
 {
@@ -38,6 +39,11 @@ EXTERN_C
 // the implementation does not read either word. Their meanings are unknown.
 ScheduleEntry const * FindScheduleEntryUpperBound(ScheduleEntry const * first,
     ScheduleEntry const * last, u32 const & minute, u32 unk_r3, u32 unk_stack);
+
+// Same upper-bound rule for the timed path's relative-minute entries.
+// The trailing words are likewise zero at the native caller and unread.
+PathPointA const * FindTimedPathPointUpperBound(PathPointA const * first,
+    PathPointA const * last, u32 const & elapsed_minute, u32 unk_r3, u32 unk_stack);
 
 // Test whether the selected schedule's current path starts outside the farmhouse.
 // The character associated with this particular descriptor is not yet named.

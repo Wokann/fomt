@@ -12,7 +12,8 @@ struct PathPointA
 
 struct PathPointB
 {
-    u16 coord;
+    // Native movement reads this map-space coordinate with LDRSH.
+    i16 coord;
     u16 speed;
     u16 unk_04; /* duration? */
     u16 facing : 2;
@@ -51,6 +52,11 @@ struct ScheduleInfo
 
 // Target ABI layout used by both the existing individual records and the
 // contiguous NPC schedule storage blocks. Path kind is the thirteenth flag bit.
+typedef char PathPointASizeCheck[sizeof(PathPointA) == 8 ? 1 : -1];
+typedef char PathPointACoordCheck[offsetof(PathPointA, coord) == 2 ? 1 : -1];
+typedef char PathPointBSizeCheck[sizeof(PathPointB) == 8 ? 1 : -1];
+typedef char PathPointBSpeedCheck[offsetof(PathPointB, speed) == 2 ? 1 : -1];
+typedef char PathPointBUnknown04Check[offsetof(PathPointB, unk_04) == 4 ? 1 : -1];
 typedef char PathInfoSizeCheck[sizeof(PathInfo) == 12 ? 1 : -1];
 typedef char PathInfoStartXCheck[offsetof(PathInfo, x_start) == 6 ? 1 : -1];
 typedef char PathInfoStartYCheck[offsetof(PathInfo, y_start) == 8 ? 1 : -1];

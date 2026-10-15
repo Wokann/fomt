@@ -12179,9 +12179,9 @@ func_080DC0E0:
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0x20, 0x5A, 0x0E, 0x08
-    .global func_080DC96C
+    .global FindTimedPathPointUpperBound
     .thumb_func
-func_080DC96C:
+FindTimedPathPointUpperBound:
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     subs r1, r1, r4
@@ -25203,8 +25203,8 @@ func_080DC92C:
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 	.4byte vtable_unk_080E65E0
 
-	thumb_func_start func_080DC96C
-func_080DC96C: @ 0x080DC96C
+	thumb_func_start FindTimedPathPointUpperBound
+FindTimedPathPointUpperBound: @ 0x080DC96C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	subs r1, r1, r4

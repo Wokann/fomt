@@ -293,7 +293,7 @@ EC NAKED void func_08034F00(ANpcEntity * self, int unk_arg_1)
         str r3, [sp]\n\
         adds r0, r4, #0\n\
         movs r3, #0\n\
-        bl func_080DC96C\n\
+        bl FindTimedPathPointUpperBound\n\
         subs r0, r0, r4\n\
         asrs r0, r0, #3\n\
         mov r4, sb\n\
