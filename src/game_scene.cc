@@ -1,4 +1,5 @@
 #include "game_scene.hh"
+#include "hardware_blend.hh"
 #include "game_state.hh"
 #include "entity_actor.hh"
 #include "entity_ui.hh"
@@ -264,7 +265,7 @@ void GameScene::TalkResetUi()
     current->time_window = nullptr;
     current->pause_menu_selector = nullptr;
     current->talk_window = nullptr;
-    current->flags_10 &= ~0x0100;
+    current->display.control.dispcnt &= ~0x0100;
 }
 
 void GameScene::TalkClose()
@@ -426,6 +427,52 @@ void GameScene::TalkChoices(char const * first, char const * second, char const 
                 fifth, sixth, variables);
         }
         current->script_state = 0x14;
+    }
+}
+
+void GameScene::FadeScreen(u32 style, i32 speed, bool fade_out, bool call_scene_hook)
+{
+    GameSceneState * current = state;
+    u32 mode, mosaic;
+    switch (style) {
+    case SCREEN_FADE_STYLE_BLACK: mode = 2; mosaic = 0; break;
+    case SCREEN_FADE_STYLE_WHITE: mode = 1; mosaic = 0; break;
+    case SCREEN_FADE_STYLE_BLACK_MOSAIC: mode = 2; mosaic = 1; break;
+    case SCREEN_FADE_STYLE_WHITE_MOSAIC: mode = 1; mosaic = 1; break;
+    case SCREEN_FADE_STYLE_MOSAIC: mode = 0; mosaic = 1; break;
+    default: return;
+    }
+    i16 step;
+    switch (speed) {
+    case SCREEN_FADE_SPEED_FAST: step = 0x1112; break;
+    case SCREEN_FADE_SPEED_NORMAL: step = 0x0889; break;
+    case SCREEN_FADE_SPEED_SLOW: step = 0x0444; break;
+    default: return;
+    }
+    // Start the original direction-specific controller and wait state.
+    if (fade_out != 0) {
+        func_08009378(current->screen_blend, step, mode, mosaic);
+        current->script_state = 0x12;
+        current->unk_E8 = 0;
+        current->unk_E9 = mode == 2;
+    } else {
+        // The third callable uses this same path but suppresses the hook.
+        if (call_scene_hook != 0)
+            current->game_object->vfunc_B8();
+        func_0800934C(current->screen_blend, step, mode, mosaic);
+        current->script_state = 0x13;
+        current->unk_E8 = fade_out;
+        current->unk_E9 = mode == 2;
+        // Keep native halfword writes: these are the DISPCNT and BLDCNT
+        // shadows, not an unrelated scene flag word or a 32-bit update.
+        WriteHardwareDisplayHalfword(current->display.control.dispcnt,
+            ReadHardwareDisplayHalfword(current->display.control.dispcnt) | 0x0E00);
+        if (mode == 1)
+            WriteHardwareDisplayHalfword(current->display.blend_control,
+                ReadHardwareDisplayHalfword(current->display.blend_control) | 0x0080);
+        else
+            WriteHardwareDisplayHalfword(current->display.blend_control,
+                ReadHardwareDisplayHalfword(current->display.blend_control) | 0x00C0);
     }
 }
 

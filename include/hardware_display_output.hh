@@ -38,7 +38,11 @@ struct HardwareDisplayRegisterValue {
 #endif
 
 struct HardwareDisplayState {
-    u32 control;
+    // Full-word initialization and halfword DISPCNT updates are both native.
+    union {
+        u32 word;
+        u16 dispcnt;
+    } control;
     u16 status;
     u8 unk_06[2];
     u16 background_control[4];
@@ -70,6 +74,8 @@ struct HardwareDisplayState {
 };
 
 typedef char HardwareDisplayState_size_check[(sizeof(struct HardwareDisplayState) == 0x58) ? 1 : -1];
+typedef char HardwareDisplayState_control_offset_check[(offsetof(struct HardwareDisplayState, control) == 0) ? 1 : -1];
+
 typedef char HardwareDisplayState_background_control_offset_check[(offsetof(struct HardwareDisplayState, background_control) == 0x08) ? 1 : -1];
 typedef char HardwareDisplayState_background_scroll_offset_check[(offsetof(struct HardwareDisplayState, background_scroll) == 0x10) ? 1 : -1];
 typedef char HardwareDisplayState_mosaic_offset_check[(offsetof(struct HardwareDisplayState, mosaic) == 0x4C) ? 1 : -1];

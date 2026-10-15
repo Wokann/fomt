@@ -139,6 +139,7 @@ struct GameObject
     virtual void vfunc_AC();
     virtual void vfunc_B0();
     virtual void ChangeMap(Location const & location, bool unk);
+    virtual void vfunc_B8();
 
     /* +00 */ // vtable
 };

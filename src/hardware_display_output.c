@@ -7,7 +7,7 @@ struct HardwareDisplayState * func_080096B0(struct HardwareDisplayState * object
 {
     volatile u16 zero = 0;
     CpuSet((void const *)&zero, object, 0x0100002B);
-    object->control = 0x80;
+    object->control.word = 0x80;
     {
         u16 clear = 0;
         u16 identity = 0x100;

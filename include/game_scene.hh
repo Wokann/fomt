@@ -4,11 +4,13 @@
 #include "prelude.h"
 #include "scene.hh"
 #include "ui_state.hh"
+#include "hardware_display_output.hh"
 
 struct AActorEntity;
 struct GameObject;
 struct GameStateSaveImage;
 struct MusicPlayer;
+struct HardwareBlendController;
 
 // Only the shared destruction prefix is recovered. The concrete Time Window
 // and pause-menu selector payloads and their destructors remain native.
@@ -65,16 +67,17 @@ struct GameSceneSongPlayerPool {
 };
 
 // The native constructor allocates 0xF8 bytes and places its vptr at +0xF4.
-// Only fields used by the recovered commands are named here; the
-// other state remains opaque rather than acquiring speculative meanings.
+// The display shadow at +0x10 is constructed as HardwareDisplayState.
+// Other fields are typed only where native construction or use proves them.
 struct GameSceneState {
     u8 unk_00[0x10];
-    u16 flags_10;
-    u8 unk_12[0x7A];
+    HardwareDisplayState display;
+    u8 unk_68[0x24];
     GameStateSaveImage * save;
     u8 unk_90[0xC];
     u32 script_state;
-    u32 unk_A0[2];
+    HardwareBlendController * screen_blend;
+    u32 unk_A4;
     GameObject * game_object;
     GameSceneTalkWindowOwner talk_window;
     ScriptTextVariableStore * text_variables;
@@ -85,7 +88,9 @@ struct GameSceneState {
     GameSceneSongPlayerPool song_players;
     u8 unk_E0[4];
     AActorEntity * waiting_entity;
-    u8 unk_E8[0xC];
+    u8 unk_E8;
+    u8 unk_E9;
+    u8 unk_EA[0xA];
     virtual ~GameSceneState();
 };
 
@@ -134,6 +139,7 @@ struct GameScene : AScene {
         char const * third, char const * fourth);
     void TalkChoices(char const * first, char const * second, char const * third,
         char const * fourth, char const * fifth, char const * sixth);
+    void FadeScreen(u32 style, i32 speed, bool fade_out, bool call_scene_hook);
     void TextVariableSetNumber(u32 slot, i32 value);
     void TextVariableSetString(u32 slot, char const * text);
     void TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width);
@@ -148,7 +154,12 @@ typedef char GameSceneBgmSettingsLfoCheck[offsetof(GameSceneBgmSettings, lfo_spe
 typedef char GameSceneSongPlayerPoolSizeCheck[sizeof(GameSceneSongPlayerPool) == 16 ? 1 : -1];
 typedef char GameSceneSongPlayerPoolCapacityCheck[offsetof(GameSceneSongPlayerPool, capacity_end) == 12 ? 1 : -1];
 typedef char GameSceneStateSizeCheck[sizeof(GameSceneState) == 0xF8 ? 1 : -1];
-typedef char GameSceneStateFlagsCheck[offsetof(GameSceneState, flags_10) == 0x10 ? 1 : -1];
+typedef char GameSceneStateDisplayCheck[offsetof(GameSceneState, display) == 0x10 ? 1 : -1];
+typedef char GameSceneStateBlendControlCheck[offsetof(GameSceneState, display) +
+    offsetof(HardwareDisplayState, blend_control) == 0x60 ? 1 : -1];
+typedef char GameSceneStateScreenBlendCheck[offsetof(GameSceneState, screen_blend) == 0xA0 ? 1 : -1];
+typedef char GameSceneStateFadeByteE8Check[offsetof(GameSceneState, unk_E8) == 0xE8 ? 1 : -1];
+typedef char GameSceneStateFadeByteE9Check[offsetof(GameSceneState, unk_E9) == 0xE9 ? 1 : -1];
 typedef char GameSceneStateSaveCheck[offsetof(GameSceneState, save) == 0x8C ? 1 : -1];
 typedef char GameSceneStateScriptStateCheck[offsetof(GameSceneState, script_state) == 0x9C ? 1 : -1];
 typedef char GameSceneStateGameObjectCheck[offsetof(GameSceneState, game_object) == 0xA8 ? 1 : -1];
