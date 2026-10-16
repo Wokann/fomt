@@ -55,6 +55,18 @@ union GameSceneCameraCoordinate {
     } parts;
 };
 
+struct MapTilePatchAnimationState {
+    u8 frame;
+    bool update_pending;
+    u8 elapsed_frames;
+    void Tick(FarmHouseTilePatchAnimationDescriptor const & animation);
+    void ResetFrame();
+};
+
+typedef char MapTilePatchAnimationPendingCheck[offsetof(MapTilePatchAnimationState, update_pending) == 1 ? 1 : -1];
+typedef char MapTilePatchAnimationElapsedCheck[offsetof(MapTilePatchAnimationState, elapsed_frames) == 2 ? 1 : -1];
+typedef char MapTilePatchAnimationStateSizeCheck[sizeof(MapTilePatchAnimationState) == 4 ? 1 : -1];
+
 // Only the verified map/camera prefix is modeled, not the complete object.
 // The move routine writes per-frame Q16.16 steps and a frame countdown.
 struct GameSceneWorldMapPrefix {
@@ -69,7 +81,7 @@ struct GameSceneWorldMapPrefix {
     bool time_palette_changed;
     u8 unk_2B;
     FieldRenderTileAttributes * tile_attributes;
-    u8 unk_30[0x28];
+    MapTilePatchAnimationState layout_animations[10];
     u8 unk_58;
     u8 unk_59[0x2B];
     i32 step_x_q16;
@@ -88,18 +100,6 @@ private:
     GameSceneWorldMapPrefix();
 };
 
-struct MapTilePatchAnimationState {
-    u8 frame;
-    bool update_pending;
-    u8 elapsed_frames;
-    void Tick(FarmHouseTilePatchAnimationDescriptor const & animation);
-    void ResetFrame();
-};
-
-typedef char MapTilePatchAnimationPendingCheck[offsetof(MapTilePatchAnimationState, update_pending) == 1 ? 1 : -1];
-typedef char MapTilePatchAnimationElapsedCheck[offsetof(MapTilePatchAnimationState, elapsed_frames) == 2 ? 1 : -1];
-typedef char MapTilePatchAnimationStateSizeCheck[sizeof(MapTilePatchAnimationState) == 4 ? 1 : -1];
-
 // The native saved-map constructor calls the base constructor, replaces its
 // vtable at +0x90, then stores the save pointer at +0x94 and this flag at +0x98.
 // The allocation is 0xBC bytes. The runtime member at +0x9C remains
@@ -114,6 +114,9 @@ struct GameSceneSavedMapPrefix : GameSceneWorldMapPrefix {
 private:
     GameSceneSavedMapPrefix();
 };
+
+typedef char GameSceneMapLayoutAnimationsCheck[offsetof(GameSceneWorldMapPrefix, layout_animations) == 0x30 ? 1 : -1];
+typedef char GameSceneMapLayoutAnimationsSizeCheck[sizeof(((GameSceneWorldMapPrefix *) 0)->layout_animations) == 0x28 ? 1 : -1];
 
 // These are palette buffers, distinct from the three map tile grids.
 typedef char GameSceneMapTimePaletteBuffersCheck[offsetof(GameSceneWorldMapPrefix, time_palette_buffers) == 0x1C ? 1 : -1];
@@ -1291,8 +1294,8 @@ void QueueMapTilePatch(GameSceneWorldMapPrefix * map,
 void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queue,
     HardwareDisplayState & display, void * unk);
 void ResetSavedMapTileAnimationFrames(GameSceneSavedMapPrefix * map);
-// These base lifecycle methods still use their actual native entries.
-void func_080A4BEC(GameSceneWorldMapPrefix * map);
+// The shared base update is C++; the regional reset entries remain native.
+void UpdateWorldMap(GameSceneWorldMapPrefix * map);
 #if defined(REGION_JP)
 void func_080A5198(GameSceneWorldMapPrefix * map);
 #else

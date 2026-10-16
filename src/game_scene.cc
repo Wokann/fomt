@@ -1693,6 +1693,59 @@ EC void func_0801FD6C(GameSceneWorldPrefix & world, i32 x, i32 y)
     func_080A5960(world.data.map.value, x, y);
 }
 
+EC void UpdateWorldMap(GameSceneWorldMapPrefix * map)
+{
+    if (map->movement_frames != 0) {
+        map->x.q16 += map->step_x_q16;
+        map->y.q16 += map->step_y_q16;
+        --map->movement_frames;
+        map->view_changed = true;
+    }
+    // These are layout indices, not the logical MAP_* identifiers.
+    switch (map->map_data_id) {
+    case 14:
+        map->layout_animations[4].Tick(gMapLayoutTileAnimation8);
+        map->layout_animations[5].Tick(gMapLayoutTileAnimation9);
+        map->layout_animations[6].Tick(gMapLayoutTileAnimation10);
+        break;
+    case 15:
+        map->layout_animations[4].Tick(gMapLayoutTileAnimation11);
+        map->layout_animations[5].Tick(gMapLayoutTileAnimation12);
+        map->layout_animations[6].Tick(gMapLayoutTileAnimation13);
+        break;
+    case 60:
+        map->layout_animations[8].Tick(gMapLayoutTileAnimation17);
+        break;
+    case 31:
+        map->layout_animations[9].Tick(gMapLayoutTileAnimation15);
+        break;
+    case 8:
+        map->layout_animations[7].Tick(gMapLayoutTileAnimation14);
+        break;
+    case 9:
+        map->layout_animations[7].Tick(gMapLayoutTileAnimation16);
+        break;
+    case 6:
+        map->layout_animations[2].Tick(gMapLayoutTileAnimation4);
+        map->layout_animations[3].Tick(gMapLayoutTileAnimation5);
+        break;
+    case 7:
+        map->layout_animations[2].Tick(gMapLayoutTileAnimation6);
+        map->layout_animations[3].Tick(gMapLayoutTileAnimation7);
+        break;
+    case 0:
+    case 62:
+    case 63:
+        map->layout_animations[0].Tick(gMapLayoutTileAnimation0);
+        map->layout_animations[1].Tick(gMapLayoutTileAnimation2);
+        break;
+    case 1:
+        map->layout_animations[0].Tick(gMapLayoutTileAnimation1);
+        map->layout_animations[1].Tick(gMapLayoutTileAnimation3);
+        break;
+    }
+}
+
 EC Vec2 func_080A58EC(GameSceneWorldMapPrefix const * map, i32 x, i32 y)
 {
     i32 old_x = map->x.parts.integer;
@@ -2075,7 +2128,7 @@ EC i32 GetWorldMapViewX(GameSceneWorldMapPrefix const * map)
 
 EC void UpdateSavedMapTileAnimationTimers(GameSceneSavedMapPrefix * map)
 {
-    func_080A4BEC(map);
+    UpdateWorldMap(map);
     GameStateSaveImage * save = map->save;
     if (map->map == MAP_ROSE_SQUARE
         && save->event_state.harvest_festival_active == FESTIVAL_PHASE_INITIAL) {
@@ -2114,11 +2167,11 @@ EC void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queu
             map->unk_98 = false;
             if (map->save->farm.farm_house.HasStocking()) {
                 if (map->save->farm.farm_house.GetStockingArticleId() == ITEM_ARTICLE_NONE)
-                    QueueMapTilePatch(map, gFarmHouseTilePatchData.group0[6], 1, queue);
+                    QueueMapTilePatch(map, gMapTilePatch6, 1, queue);
                 else
-                    QueueMapTilePatch(map, gFarmHouseTilePatchData.group0[6], 2, queue);
+                    QueueMapTilePatch(map, gMapTilePatch6, 2, queue);
             } else {
-                QueueMapTilePatch(map, gFarmHouseTilePatchData.group0[6], 0, queue);
+                QueueMapTilePatch(map, gMapTilePatch6, 0, queue);
             }
         }
         break;

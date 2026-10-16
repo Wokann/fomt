@@ -495,6 +495,8 @@ SECTIONS
         asm/code_809E804.o(.text.game_scene_sprite_base_after);
         src/game_scene.o(.text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib);
         asm/code_809E804.o(.text.game_scene_indexed_sprite_after);
+        src/game_scene.o(.text.UpdateWorldMap);
+        asm/code_809E804.o(.text.game_map_after_update);
         src/game_scene.o(.text.func_080A58EC .text.func_080A5960 .text.func_080A59BC .text.func_080A5A9C);
         asm/code_809E804.o(.text.game_map_after_camera_query);
         src/game_scene.o(.text.ApplyMapTilePatch);

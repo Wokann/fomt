@@ -6,6 +6,8 @@
 
 EXTERN_C
 
+extern void UpdateWorldMap(void);
+
 extern void DrawSavedWorldMap(void);
 
 extern void SelectDefaultWorldMapData(void);
@@ -346,7 +348,6 @@ extern void func_080E3980(void);
 extern void func_080E39A8(void);
 extern void func_080A3CF4(void);
 extern void func_080A4B6C(void);
-extern void func_080A4BEC(void);
 extern void func_080A4F50(void);
 extern void func_080A5670(void);
 extern void func_080A5198(void);
@@ -640,7 +641,6 @@ extern void func_080A37A8(void);
 extern void func_080E4210(void);
 extern void func_080A3CF4(void);
 extern void func_080A4B6C(void);
-extern void func_080A4BEC(void);
 extern void func_080A4F50(void);
 extern void func_080A5760(void);
 extern void func_080A5670(void);
@@ -6985,7 +6985,7 @@ extern RawVTableFunction const vtable_unk_080E82D8[]
     SECTION(".rodata.vtable_82d8") = {
         nullptr,
         func_080A4B6C,
-        func_080A4BEC,
+        UpdateWorldMap,
     };
 #endif
 
@@ -7002,7 +7002,7 @@ extern RawVTableFunction const vtable_unk_080E82E4[]
         nullptr,
         nullptr,
         func_080A4B6C,
-        func_080A4BEC,
+        UpdateWorldMap,
         func_080A4F50,
         func_080A5760,
 #endif
@@ -7865,7 +7865,7 @@ extern RawVTableFunction const vtable_unk_080E85DC[]
 #if defined(REGION_JP)
         nullptr,
         func_080E4E00,
-        func_080A4BEC,
+        UpdateWorldMap,
 #else
         nullptr,
         nullptr,
@@ -7898,7 +7898,7 @@ extern RawVTableFunction const vtable_unk_080E85E8[]
         nullptr,
         nullptr,
         func_080E59C0,
-        func_080A4BEC,
+        UpdateWorldMap,
         func_080A4F50,
         func_080A5760,
         SelectDefaultWorldMapData,

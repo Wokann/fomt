@@ -12,6 +12,9 @@ struct FarmHouseTilePatchDescriptor
     u8 const * frame_data;
 };
 
+typedef char MapTilePatchDescriptorSizeCheck[sizeof(FarmHouseTilePatchDescriptor) == 8 ? 1 : -1];
+typedef char MapTilePatchDescriptorSourceCheck[offsetof(FarmHouseTilePatchDescriptor, frame_data) == 4 ? 1 : -1];
+
 // The native frame stream begins with two halfwords; tile bytes follow.
 struct MapTilePatchFrameHeader {
     u16 tiles_per_frame;
@@ -34,18 +37,36 @@ typedef char MapTilePatchAnimationPrefixCheck[offsetof(FarmHouseTilePatchAnimati
 typedef char MapTilePatchAnimationDescriptorSizeCheck[sizeof(FarmHouseTilePatchAnimationDescriptor) == 12 ? 1 : -1];
 typedef char MapTilePatchAnimationDurationCheck[offsetof(FarmHouseTilePatchAnimationDescriptor, frame_duration) == 8 ? 1 : -1];
 
-// The numeric group names deliberately describe only the four physically
-// contiguous ROM groups.  The still-native callers do not prove a stronger
-// gameplay-specific subdivision yet.
-struct FarmHouseTilePatchData
-{
-    FarmHouseTilePatchDescriptor group0[7];
-    FarmHouseTilePatchAnimationDescriptor animation_group0[4];
-    FarmHouseTilePatchDescriptor group1[3];
-    FarmHouseTilePatchAnimationDescriptor animation_group1[14];
-};
-
-extern FarmHouseTilePatchData const gFarmHouseTilePatchData;
+// Each native consumer addresses these records independently. Numbered
+// names preserve physical order without guessing their visual roles.
+extern FarmHouseTilePatchDescriptor const gMapTilePatch0;
+extern FarmHouseTilePatchDescriptor const gMapTilePatch1;
+extern FarmHouseTilePatchDescriptor const gMapTilePatch2;
+extern FarmHouseTilePatchDescriptor const gMapTilePatch3;
+extern FarmHouseTilePatchDescriptor const gMapTilePatch4;
+extern FarmHouseTilePatchDescriptor const gMapTilePatch5;
+extern FarmHouseTilePatchDescriptor const gMapTilePatch6;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation0;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation1;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation2;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation3;
+extern FarmHouseTilePatchDescriptor const gMapTilePatch7;
+extern FarmHouseTilePatchDescriptor const gMapTilePatch8;
+extern FarmHouseTilePatchDescriptor const gMapTilePatch9;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation4;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation5;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation6;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation7;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation8;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation9;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation10;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation11;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation12;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation13;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation14;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation15;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation16;
+extern FarmHouseTilePatchAnimationDescriptor const gMapLayoutTileAnimation17;
 
 // These contiguous records follow gFarmHouseVisualDescriptors in ROM.
 // Native drawing and timer updates address them independently, not through
