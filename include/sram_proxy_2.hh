@@ -5,6 +5,9 @@
 
 EXTERN_C
 
+// The error/status word and one-time initialization flag belong to the SRAM
+// service, not to the unknown per-caller context storage below.
+extern u16 gUnk_03000400;
 extern u8 gUnk_03000402;
 
 void func_0800063C(void);
@@ -24,10 +27,7 @@ struct SramAccess
 {
     u32 unk_00[2];
 #ifdef __cplusplus
-    SramAccess()
-    {
-        func_08000640(this);
-    }
+    SramAccess() asm("func_08000640");
 #endif
 };
 

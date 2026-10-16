@@ -1,6 +1,5 @@
 #include "game_state.hh"
 #include "unknown_types.hh"
-#include "sram_proxy.hh"
 #include "sram_proxy_2.hh"
 #include <stdlib.h>
 

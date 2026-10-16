@@ -35,8 +35,7 @@ SECTIONS
     {
         . = ALIGN(4); src/m4a.o(.bss);
         . = ALIGN(4);
-        . = 0x000400; gUnk_03000400 = .;
-        . = 0x000402; gUnk_03000402 = .;
+        . = 0x000400; src/sram_proxy_2.o(.bss);
         . = 0x000404; src/hardware.o(.bss COMMON);
         . = 0x000408; src/hardware_refcount.o(.bss COMMON);
         . = 0x00040C; gUnk_0300040C = .;

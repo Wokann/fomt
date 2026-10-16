@@ -1,20 +1,22 @@
-#include "sram_proxy.hh"
 #include "sram_proxy_2.hh"
 #include "libsram.h"
 #include "interrupt.hh"
+
+// Shared by the SRAM access contexts; startup zeroes this ordinary BSS.
+u16 gUnk_03000400;
+u8 gUnk_03000402;
 
 void func_0800063C(void)
 {
 }
 
-void *func_08000640(void *source)
+SramAccess::SramAccess()
 {
     if (gUnk_03000402 == 0)
     {
         gUnk_03000402 = 1;
         gUnk_03000400 = 0;
     }
-    return source;
 }
 
 u32 func_08000664(void *destination)
@@ -44,7 +46,7 @@ u32 func_080006E4(void *unused, void *destination, u32 offset, u32 size)
     if (size == 0)
         return 0;
 
-    ReadSramFast((u8 const *)(0x0E000000 | offset), destination, size);
+    ReadSramFast((u8 const *)(0x0E000000 | offset), static_cast<u8 *>(destination), size);
     return 1;
 }
 
