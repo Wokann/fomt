@@ -369,6 +369,9 @@ $(BUILD_DIR)/src/actor_state.o: CXXFLAGS += -ffunction-sections
 # The static table accessor and terrain query retain their native code positions.
 $(BUILD_DIR)/src/map_data.o: CXXFLAGS += -ffunction-sections
 
+# Calendar helpers and the transition lookup occupy separate native code runs.
+$(BUILD_DIR)/src/time_of_day.o: CXXFLAGS += -ffunction-sections
+
 # The NPC constructor and partner queries occupy separate native code runs.
 $(BUILD_DIR)/src/npc_collection.o: CXXFLAGS += -ffunction-sections
 

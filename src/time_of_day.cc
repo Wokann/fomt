@@ -39,6 +39,23 @@ extern "C" u32 func_0800E324(GameCalendar const & arg_0)
     return date.GetSeason();
 }
 
+EC u32 GetTimeOfDayTransitionValue(u8 hour, u8 minute, u32 season, TimeOfDayPeriod period)
+{
+    TimeOfDayTransition const * it = gTimeOfDayTransitionTables[season][period];
+    u16 now = hour * 60 + minute;
+    u32 value = 0;
+    u16 start_minute = it->start_minute;
+    for (;;) {
+        if (start_minute == 0xFFFF)
+            return value;
+        if (start_minute > now)
+            return value;
+        value = it->value;
+        ++it;
+        start_minute = it->start_minute;
+    }
+}
+
 TimeOfDayTransition const * const gTimeOfDayTransitionTables[NUM_SEASONS][TIME_OF_DAY_PERIOD_COUNT] = {
     {
         gTimeOfDayTransitionRecords_Spring_Morning,

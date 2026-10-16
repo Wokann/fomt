@@ -62,6 +62,7 @@ typedef char GameCalendarTimeCheck[offsetof(GameCalendar, time) == 2 ? 1 : -1];
 extern "C" char const * func_0800E2E4(Season season);
 extern "C" char const * func_0800E304(unsigned int week_day);
 extern "C" u32 func_0800E324(GameCalendar const & arg_0);
+extern "C" u32 GetTimeOfDayTransitionValue(u8 hour, u8 minute, u32 season, TimeOfDayPeriod period);
 
 extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Morning[];
 extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Afternoon[];

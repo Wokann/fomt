@@ -142,7 +142,7 @@ SECTIONS
         src/coop.o(.text);
         src/barn.o(.text);
         src/item.o(.text);
-        src/time_of_day.o(.text);
+        src/time_of_day.o(.text.func_0800E2E4 .text.func_0800E304 .text.func_0800E324);
         src/farmer.o(.text);
         src/rucksack_item.o(.text);
         src/held_item.o(.text);
@@ -486,6 +486,7 @@ SECTIONS
         src/npc_locations.o(.text);
         src/field_item_data.o(.text);
         asm/code_809E804.o(.text.field_item_after);
+        src/time_of_day.o(.text.GetTimeOfDayTransitionValue);
         . = 0xA45F8; /* DE ROM 0x080A45F8, map-data accessor. */
         src/map_data.o(.text.GetMapData);
         . = 0xA460C; /* DE ROM 0x080A460C, remaining map-data code. */

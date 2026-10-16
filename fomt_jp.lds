@@ -174,7 +174,7 @@ SECTIONS
         . = 0xDB0C; /* JP ROM 0x0800DB0C, independently matched */
         src/item.o(.text);
         . = 0xE2C4; /* JP ROM 0x0800E2C4, independently matched */
-        src/time_of_day.o(.text);
+        src/time_of_day.o(.text.func_0800E2E4 .text.func_0800E304 .text.func_0800E324);
         . = 0xE334; /* JP ROM 0x0800E334, independently matched */
         src/farmer.o(.text);
         . = 0xEFCC; /* JP ROM 0x0800EFCC, independently matched */
@@ -544,6 +544,7 @@ SECTIONS
         src/npc_locations.o(.text);
         src/field_item_data.o(.text);
         asm/code_809E804.o(.text.field_item_after);
+        src/time_of_day.o(.text.GetTimeOfDayTransitionValue);
         . = 0xA40D0;
         src/map_data.o(.text.GetMapData);
         . = 0xA40E4;
