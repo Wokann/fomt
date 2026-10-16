@@ -447,10 +447,10 @@ gRandomSeed:
     .arm
     .align 2, 0
 
-    .global func_03000C2C
-    .type func_03000C2C, function
+    .global BlendRgb5PaletteBank
+    .type BlendRgb5PaletteBank, function
     .arm
-func_03000C2C:
+BlendRgb5PaletteBank:
     push {r4, r5, r6, r7, r8, sb, sl, fp, lr}
     and sb, r3, #0x1f
     add r8, sb, #1

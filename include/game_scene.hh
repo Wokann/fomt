@@ -63,7 +63,7 @@ struct GameSceneWorldMapPrefix {
     u16 * tile_layers[3];
     u16 * time_palette_buffers[3];
     u8 unk_28;
-    bool camera_changed;
+    bool view_changed;
     bool time_palette_changed;
     u8 unk_2B;
     FieldRenderTileAttributes * tile_attributes;
@@ -78,8 +78,8 @@ struct GameSceneWorldMapPrefix {
     virtual void vfunc_10();
     virtual void vfunc_14();
     virtual void vfunc_18();
-    virtual void vfunc_1C();
-    virtual void vfunc_20();
+    virtual void LoadTiles();
+    virtual void LoadTilemaps();
     virtual void LoadTimeOfDayPalette(i32 period, u32 buffer_index);
 
 private:
@@ -350,7 +350,7 @@ typedef char GameSceneMapTileAttributesCheck[offsetof(GameSceneWorldMapPrefix, t
 
 typedef char GameSceneMapUnk58Check[offsetof(GameSceneWorldMapPrefix, unk_58) == 0x58 ? 1 : -1];
 
-typedef char GameSceneCameraChangedCheck[offsetof(GameSceneWorldMapPrefix, camera_changed) == 0x29 ? 1 : -1];
+typedef char GameSceneMapViewChangedCheck[offsetof(GameSceneWorldMapPrefix, view_changed) == 0x29 ? 1 : -1];
 typedef char GameSceneCameraStepXCheck[offsetof(GameSceneWorldMapPrefix, step_x_q16) == 0x84 ? 1 : -1];
 typedef char GameSceneCameraStepYCheck[offsetof(GameSceneWorldMapPrefix, step_y_q16) == 0x88 ? 1 : -1];
 typedef char GameSceneCameraFramesCheck[offsetof(GameSceneWorldMapPrefix, movement_frames) == 0x8C ? 1 : -1];
@@ -1261,6 +1261,8 @@ void func_080AA89C(GameSceneWorldMapPrefix * map);
 void func_080AA8BC(GameSceneWorldMapPrefix * map);
 void func_080AA8DC(GameSceneSavedMapPrefix * map);
 void Unpack(u8 const * source, void * destination);
+void LoadWorldMapTilemaps(GameSceneWorldMapPrefix & map);
+void LoadWorldMapTiles(GameSceneWorldMapPrefix & map);
 void SetWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period);
 void LoadWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period, u32 buffer_index);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,

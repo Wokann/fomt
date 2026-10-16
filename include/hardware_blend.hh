@@ -3,6 +3,15 @@
 
 #include "hardware_display_output.hh"
 
+// The ARM bank mixer reads only these ten bits. Each stored factor is
+// one less than its actual weight (1..32); channels are divided by 32.
+struct Rgb5BlendWeights {
+    u32 first : 5;
+    u32 second : 5;
+};
+
+typedef char Rgb5BlendWeightsSizeCheck[sizeof(struct Rgb5BlendWeights) == 4 ? 1 : -1];
+
 struct HardwareBlendState {
     // Null selects the hardware registers instead of a display-state shadow.
     struct HardwareDisplayState * display;
@@ -26,6 +35,9 @@ typedef char HardwareBlendState_size_check[(sizeof(struct HardwareBlendState) ==
 typedef char HardwareBlendState_progress_offset_check[(offsetof(struct HardwareBlendState, progress) == 0x0E) ? 1 : -1];
 
 EXTERN_C
+
+void BlendRgb5PaletteBank(u16 * destination, u16 const * first, u16 const * second,
+    struct Rgb5BlendWeights weights) __attribute__((long_call));
 
 struct HardwareBlendController * func_08009300(struct HardwareBlendController * controller, struct HardwareDisplayState * display);
 void func_08009324(struct HardwareBlendController * controller, u32 flags);

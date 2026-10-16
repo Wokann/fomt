@@ -44,7 +44,9 @@ extern "C" {
 
 struct MapData
 {
-    void const * compressed_layers[6];
+    u8 const * tiles;
+    u8 const * palettes[2];
+    u8 const * tilemaps[3];
     void const * terrain_data;
     void const * terrain_map;
     u16 width;
@@ -54,6 +56,8 @@ struct MapData
 };
 
 typedef char MapDataSizeCheck[sizeof(MapData) == 0x28 ? 1 : -1];
+typedef char MapDataPalettesCheck[offsetof(MapData, palettes) == 4 ? 1 : -1];
+typedef char MapDataTilemapsCheck[offsetof(MapData, tilemaps) == 0xC ? 1 : -1];
 typedef char MapDataWidthCheck[offsetof(MapData, width) == 0x20 ? 1 : -1];
 typedef char MapDataHeightCheck[offsetof(MapData, height) == 0x22 ? 1 : -1];
 

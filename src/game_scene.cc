@@ -2,6 +2,7 @@
 #include "new_game.hh"
 #include <new>
 #include "hardware_blend.hh"
+#include "hardware_dma.hh"
 #include "game_state.hh"
 #include "field_item_data.hh"
 #include "field_render_rect_descriptors.hh"
@@ -1712,12 +1713,12 @@ EC void func_080A5960(GameSceneWorldMapPrefix * map, i32 x, i32 y)
     target = func_080A58EC(map, x, y);
     Vec2 const & position = target;
     if (map->x.parts.integer != position.x) {
-        map->camera_changed = true;
+        map->view_changed = true;
         map->x.q16 = position.x << 16;
     }
     i32 current_y = map->y.parts.integer;
     if (current_y != position.y) {
-        map->camera_changed = true;
+        map->view_changed = true;
         map->y.q16 = position.y << 16;
     }
 }
@@ -1783,6 +1784,21 @@ EC void ApplyMapTilePatch(GameSceneWorldMapPrefix * map,
     }
 }
 
+EC void LoadWorldMapTilemaps(GameSceneWorldMapPrefix & map)
+{
+    MapData const * data = GetMapData(map.map_data_id);
+    u32 layer = 0;
+    u16 ** destination = map.tile_layers;
+    for (; layer < 3; ++destination, ++layer) {
+        u8 const * source = data->tilemaps[layer];
+        if (source != nullptr)
+            Unpack(source, *destination);
+        else
+            func_08008EB8(0x03FF03FF, *destination, static_cast<u32>(data->width) * (data->height << 1));
+    }
+    map.view_changed = true;
+}
+
 EC void SetWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period)
 {
     switch (period) {
@@ -1812,17 +1828,23 @@ EC void LoadWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period,
     MapData const * data = GetMapData(map.map_data_id);
     // The native loader first decodes the default palette even when the
     // selected period will decode that same resource again below.
-    Unpack(static_cast<u8 const *>(data->compressed_layers[1]), map.time_palette_buffers[buffer_index]);
+    Unpack(data->palettes[0], map.time_palette_buffers[buffer_index]);
     switch (period) {
     case TIME_OF_DAY_PERIOD_MORNING:
     case TIME_OF_DAY_PERIOD_AFTERNOON:
     case TIME_OF_DAY_PERIOD_EVENING:
-        Unpack(static_cast<u8 const *>(data->compressed_layers[1]), map.time_palette_buffers[buffer_index]);
+        Unpack(data->palettes[0], map.time_palette_buffers[buffer_index]);
         break;
     case TIME_OF_DAY_PERIOD_NIGHT:
-        Unpack(static_cast<u8 const *>(data->compressed_layers[2]), map.time_palette_buffers[buffer_index]);
+        Unpack(data->palettes[1], map.time_palette_buffers[buffer_index]);
         break;
     }
+}
+
+EC void LoadWorldMapTiles(GameSceneWorldMapPrefix & map)
+{
+    MapData const * data = GetMapData(map.map_data_id);
+    Unpack(data->tiles, reinterpret_cast<void *>(0x06000000));
 }
 
 EC void func_080A601C(GameSceneWorldMapPrefix * map)
@@ -1847,7 +1869,7 @@ EC void RefreshCoopFeedTrough(GameSceneWorldMapPrefix * map, u32 index)
         break;
     }
     }
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080A6138(GameSceneWorldMapPrefix * map)
@@ -1863,7 +1885,7 @@ EC void func_080A6138(GameSceneWorldMapPrefix * map)
         ApplyMapTilePatch(map, gFieldRenderRectDescriptors[14], 0x36, 0xF);
         break;
     }
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080A6194(GameSceneWorldMapPrefix * map)
@@ -1879,7 +1901,7 @@ EC void func_080A6194(GameSceneWorldMapPrefix * map)
         ApplyMapTilePatch(map, gFieldRenderRectDescriptors[15], 0x36, 0xF);
         break;
     }
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080A61F0(GameSceneWorldMapPrefix * map)
@@ -1892,7 +1914,7 @@ EC void func_080A61F0(GameSceneWorldMapPrefix * map)
         ApplyMapTilePatch(map, gFieldRenderRectDescriptors[16], 0x13, 3);
         break;
     }
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080A6234(GameSceneWorldMapPrefix * map)
@@ -1905,7 +1927,7 @@ EC void func_080A6234(GameSceneWorldMapPrefix * map)
         ApplyMapTilePatch(map, gFieldRenderRectDescriptors[17], 0x13, 3);
         break;
     }
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080A6278(GameSceneWorldMapPrefix * map)
@@ -1918,7 +1940,7 @@ EC void func_080A6278(GameSceneWorldMapPrefix * map)
         ApplyMapTilePatch(map, gFieldRenderRectDescriptors[18], 0x17, 2);
         break;
     }
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080A62BC(GameSceneWorldMapPrefix * map)
@@ -1931,7 +1953,7 @@ EC void func_080A62BC(GameSceneWorldMapPrefix * map)
         ApplyMapTilePatch(map, gFieldRenderRectDescriptors[19], 0x17, 2);
         break;
     }
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080A6300(GameSceneWorldMapPrefix * map)
@@ -1949,7 +1971,7 @@ EC void func_080A6300(GameSceneWorldMapPrefix * map)
     default:
         return;
     }
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080A635C(GameSceneWorldMapPrefix * map)
@@ -1967,7 +1989,7 @@ EC void func_080A635C(GameSceneWorldMapPrefix * map)
     default:
         return;
     }
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk)
@@ -1985,7 +2007,7 @@ EC void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk)
     default:
         return;
     }
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,
@@ -1996,13 +2018,13 @@ EC void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,
     if (ground != nullptr) {
         memcpy(map->tile_layers[0] + x + y * width, ground, 4);
         memcpy(map->tile_layers[0] + x + (y + 1) * width, ground + 2, 4);
-        map->camera_changed = true;
+        map->view_changed = true;
     }
     if (render_data != nullptr) {
         memcpy(map->tile_layers[2] + x + (y - 1) * width, render_data->tiles[0], 4);
         memcpy(map->tile_layers[1] + x + y * width, render_data->tiles[1], 4);
         memcpy(map->tile_layers[1] + x + (y + 1) * width, render_data->tiles[2], 4);
-        map->camera_changed = true;
+        map->view_changed = true;
     }
     map->tile_attributes[x + y * width].unk_00_00 =
         map->tile_attributes[x + 1 + y * width].unk_00_00 =
@@ -2020,19 +2042,19 @@ EC void func_080AA850(GameSceneSavedMapPrefix * map, u32 index)
     FieldRenderPatchPlacement placement = SelectMapFlagPatch(
         map->save->unk_34D8.value, index, season == SEASON_WINTER);
     ApplyMapTilePatch(map, *placement.patch, placement.x, placement.y);
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080AA89C(GameSceneWorldMapPrefix * map)
 {
     ApplyMapTilePatch(map, gFieldRenderRectDescriptors[48], 0x21, 0x14);
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080AA8BC(GameSceneWorldMapPrefix * map)
 {
     ApplyMapTilePatch(map, gFieldRenderRectDescriptors[48], 0x21, 0x17);
-    map->camera_changed = true;
+    map->view_changed = true;
 }
 
 EC void func_080AA8DC(GameSceneSavedMapPrefix * map)

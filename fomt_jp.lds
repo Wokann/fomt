@@ -556,9 +556,10 @@ SECTIONS
         src/game_scene.o(.text.func_080A58EC .text.func_080A5960 .text.func_080A59BC .text.func_080A5A9C);
         asm/code_809E804.o(.text.game_map_after_camera_query);
         src/game_scene.o(.text.ApplyMapTilePatch);
-        asm/code_809E804.o(.text.game_map_after_tile_patch);
-        src/game_scene.o(.text.SetWorldMapTimeOfDayPalette .text.LoadWorldMapTimeOfDayPalette);
+        src/game_scene.o(.text.LoadWorldMapTilemaps .text.SetWorldMapTimeOfDayPalette .text.LoadWorldMapTimeOfDayPalette);
         asm/code_809E804.o(.text.game_map_time_palette_after);
+        src/game_scene.o(.text.LoadWorldMapTiles);
+        asm/code_809E804.o(.text.game_map_after_tiles);
         src/game_scene.o(.text.func_080A601C .text.RefreshCoopFeedTrough);
         asm/code_809E804.o(.text.game_map_barn_feed);
         src/game_scene.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC .text.func_080A6300 .text.func_080A635C .text.func_080A63B8);

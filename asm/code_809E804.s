@@ -8231,54 +8231,6 @@ func_080A54E8: @ 0x080A54E8
 	pop {r0}
 	bx r0
 
-    .section .text.game_map_after_tile_patch, "ax", %progbits
-    .align 2, 0
-
-    .global func_080A56F8
-    .thumb_func
-func_080A56F8: @ 0x080A56F8
-	push {r4, r5, r6, r7, lr}
-	adds r7, r0, #0
-	ldr r0, [r7, #4]
-	bl GetMapData
-	adds r5, r0, #0
-	movs r6, #0
-	adds r4, r7, #0
-	adds r4, #0x10
-.Ljp_080A5CD2:
-	lsls r1, r6, #2
-	adds r0, r5, #0
-	adds r0, #0xc
-	adds r0, r0, r1
-	ldr r0, [r0]
-	cmp r0, #0
-	beq .Ljp_080A5CE8
-	ldr r1, [r4]
-	bl Unpack
-	b .Ljp_080A5CF8
-.Ljp_080A5CE8:
-	ldr r1, [r4]
-	ldrh r2, [r5, #0x20]
-	ldrh r0, [r5, #0x22]
-	lsls r0, r0, #1
-	muls r2, r0, r2
-	ldr r0, .Ljp_080A5D10 @ =0x03FF03FF
-	bl func_08008EB8
-.Ljp_080A5CF8:
-	adds r4, #4
-	adds r6, #1
-	cmp r6, #2
-	bls .Ljp_080A5CD2
-	adds r1, r7, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A5D10: .4byte 0x03FF03FF
-
     .section .text.game_map_time_palette_after, "ax", %progbits
     .align 2, 0
 
@@ -8336,7 +8288,7 @@ func_080A5834: @ 0x080A5834
 	adds r1, r7, #0
 	mov r2, r8
 	adds r3, r5, #0
-	ldr r4, .Ljp_080A5E9C @ =func_03000C2C
+	ldr r4, .Ljp_080A5E9C @ =BlendRgb5PaletteBank
 	bl _call_via_r4
 	movs r0, #0x20
 	add r8, r0
@@ -8363,21 +8315,11 @@ func_080A5834: @ 0x080A5834
 .Ljp_080A5E90: .4byte 0xFFFFFF00
 .Ljp_080A5E94: .4byte 0xFFFFFC1F
 .Ljp_080A5E98: .4byte 0xFFFF0000
-.Ljp_080A5E9C: .4byte func_03000C2C
+.Ljp_080A5E9C: .4byte BlendRgb5PaletteBank
 
-    .global func_080A58D8
-    .thumb_func
-func_080A58D8: @ 0x080A58D8
-	push {lr}
-	ldr r0, [r0, #4]
-	bl GetMapData
-	ldr r0, [r0]
-	movs r1, #0xc0
-	lsls r1, r1, #0x13
-	bl Unpack
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.game_map_after_tiles, "ax", %progbits
+    .align 2, 0
+
     .global func_080A5EB8
     .thumb_func
 func_080A5EB8: @ 0x080A58F0
@@ -9001,7 +8943,7 @@ func_080A6098: @ 0x080A6098
 	push {r5, r6, r7}
 	sub sp, #0x2c
 	mov r8, r0
-	bl func_080A56F8
+	bl LoadWorldMapTilemaps
 	mov r0, r8
 	adds r0, #0x94
 	ldr r0, [r0]
@@ -10677,7 +10619,7 @@ func_080A6EC4: @ 0x080A6EC4
 	sub sp, #0x1c4
 	str r0, [sp, #0x190]
 	adds r7, r1, #0
-	bl func_080A58D8
+	bl LoadWorldMapTiles
 	ldr r0, [sp, #0x190]
 	adds r0, #0x94
 	ldr r0, [r0]
@@ -15461,7 +15403,7 @@ func_080A8FDC: @ 0x080A8FDC
 	movs r2, #0x90
 	lsls r2, r2, #1
 	adds r4, r0, r2
-	ldr r5, .Ljp_map_080A9310 @ =func_03000C2C
+	ldr r5, .Ljp_map_080A9310 @ =BlendRgb5PaletteBank
 .Ljp_map_080A92EA:
 	mov r0, sl
 	ldr r3, [r0]
@@ -15478,7 +15420,7 @@ func_080A8FDC: @ 0x080A8FDC
 .Ljp_map_080A9304: .4byte gUnk_0841EC5C
 .Ljp_map_080A9308: .4byte 0xFFFFFC1F
 .Ljp_map_080A930C: .4byte 0x000014A5
-.Ljp_map_080A9310: .4byte func_03000C2C
+.Ljp_map_080A9310: .4byte BlendRgb5PaletteBank
 .Ljp_map_080A9314:
 	ldr r0, .Ljp_map_080A9394 @ =gUnk_0845D654
 	mov r1, sb
@@ -15533,7 +15475,7 @@ func_080A8FDC: @ 0x080A8FDC
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r4, r0, r1
-	ldr r6, .Ljp_map_080A93A0 @ =func_03000C2C
+	ldr r6, .Ljp_map_080A93A0 @ =BlendRgb5PaletteBank
 .Ljp_map_080A937C:
 	mov r2, sl
 	ldr r3, [r2]
@@ -15550,7 +15492,7 @@ func_080A8FDC: @ 0x080A8FDC
 .Ljp_map_080A9394: .4byte gUnk_0845D654
 .Ljp_map_080A9398: .4byte 0xFFFFFC1F
 .Ljp_map_080A939C: .4byte 0x000014A5
-.Ljp_map_080A93A0: .4byte func_03000C2C
+.Ljp_map_080A93A0: .4byte BlendRgb5PaletteBank
 .Ljp_map_080A93A4:
 	ldr r3, [sp, #0xd8]
 	cmp r3, #3
@@ -16794,7 +16736,7 @@ func_080A9CA8: @ 0x080A9CA8
 .Ljp_map_080A9D6C:
 	movs r5, #0
 	adds r4, r0, #0
-	ldr r7, .Ljp_map_080A9D90 @ =func_03000C2C
+	ldr r7, .Ljp_map_080A9D90 @ =BlendRgb5PaletteBank
 .Ljp_map_080A9D72:
 	ldr r3, [r6]
 	adds r0, r4, #0
@@ -16809,7 +16751,7 @@ func_080A9CA8: @ 0x080A9CA8
 	.align 2, 0
 .Ljp_map_080A9D88: .4byte 0xFFFFFC1F
 .Ljp_map_080A9D8C: .4byte 0x000031AE
-.Ljp_map_080A9D90: .4byte func_03000C2C
+.Ljp_map_080A9D90: .4byte BlendRgb5PaletteBank
 .Ljp_map_080A9D94:
 	mov r0, r8
 	cmp r0, #0
@@ -16862,7 +16804,7 @@ func_080A9CA8: @ 0x080A9CA8
 .Ljp_map_080A9DEE:
 	movs r5, #0
 	adds r4, r0, #0
-	ldr r7, .Ljp_map_080A9E10 @ =func_03000C2C
+	ldr r7, .Ljp_map_080A9E10 @ =BlendRgb5PaletteBank
 .Ljp_map_080A9DF4:
 	mov r0, r8
 	ldr r3, [r0]
@@ -16877,7 +16819,7 @@ func_080A9CA8: @ 0x080A9CA8
 	b .Ljp_map_080A9E72
 	.align 2, 0
 .Ljp_map_080A9E0C: .4byte 0xFFFFFC1F
-.Ljp_map_080A9E10: .4byte func_03000C2C
+.Ljp_map_080A9E10: .4byte BlendRgb5PaletteBank
 .Ljp_map_080A9E14:
 	mov r1, sb
 	lsls r0, r1, #2
@@ -16916,7 +16858,7 @@ func_080A9CA8: @ 0x080A9CA8
 .Ljp_map_080A9E56:
 	movs r5, #0
 	adds r4, r3, #0
-	ldr r7, .Ljp_map_080A9E8C @ =func_03000C2C
+	ldr r7, .Ljp_map_080A9E8C @ =BlendRgb5PaletteBank
 .Ljp_map_080A9E5C:
 	mov r0, r8
 	ldr r3, [r0]
@@ -16942,7 +16884,7 @@ func_080A9CA8: @ 0x080A9CA8
 	b .Ljp_map_080A9F5A
 	.align 2, 0
 .Ljp_map_080A9E88: .4byte 0xFFFFFC1F
-.Ljp_map_080A9E8C: .4byte func_03000C2C
+.Ljp_map_080A9E8C: .4byte BlendRgb5PaletteBank
 .Ljp_map_080A9E90:
 	mov r1, sl
 	cmp r1, #2
@@ -16985,7 +16927,7 @@ func_080A9CA8: @ 0x080A9CA8
 .Ljp_map_080A9ED8:
 	movs r5, #0
 	adds r4, r0, #0
-	ldr r6, .Ljp_map_080A9EFC @ =func_03000C2C
+	ldr r6, .Ljp_map_080A9EFC @ =BlendRgb5PaletteBank
 .Ljp_map_080A9EDE:
 	ldr r3, [r7]
 	adds r0, r4, #0
@@ -17000,7 +16942,7 @@ func_080A9CA8: @ 0x080A9CA8
 	.align 2, 0
 .Ljp_map_080A9EF4: .4byte 0xFFFFFC1F
 .Ljp_map_080A9EF8: .4byte 0x000003DF
-.Ljp_map_080A9EFC: .4byte func_03000C2C
+.Ljp_map_080A9EFC: .4byte BlendRgb5PaletteBank
 .Ljp_map_080A9F00:
 	mov r1, sb
 	lsls r0, r1, #2
@@ -17038,7 +16980,7 @@ func_080A9CA8: @ 0x080A9CA8
 .Ljp_map_080A9F40:
 	movs r5, #0
 	adds r4, r0, #0
-	ldr r6, .Ljp_map_080A9F74 @ =func_03000C2C
+	ldr r6, .Ljp_map_080A9F74 @ =BlendRgb5PaletteBank
 .Ljp_map_080A9F46:
 	ldr r3, [r7]
 	adds r0, r4, #0
@@ -17061,7 +17003,7 @@ func_080A9CA8: @ 0x080A9CA8
 	.align 2, 0
 .Ljp_map_080A9F6C: .4byte 0xFFFFFC1F
 .Ljp_map_080A9F70: .4byte 0x0000559F
-.Ljp_map_080A9F74: .4byte func_03000C2C
+.Ljp_map_080A9F74: .4byte BlendRgb5PaletteBank
 
     .global func_080A9F78
     .thumb_func
@@ -81273,7 +81215,7 @@ func_080CF430:
     push {r5, r6, r7}
     sub sp, #0xc
     str r0, [sp, #4]
-    bl func_080A56F8
+    bl LoadWorldMapTilemaps
     ldr r1, [sp, #4]
     ldr r0, [r1, #4]
     cmp r0, #0x3e
@@ -81387,7 +81329,7 @@ func_080CF500:
     sub sp, #0x24
     adds r4, r0, #0
     adds r5, r1, #0
-    bl func_080A58D8
+    bl LoadWorldMapTiles
     ldr r0, [r4, #4]
     cmp r0, #0x3e
     beq .Lauto_080CF51C
@@ -91991,53 +91933,6 @@ func_080A5AB0: @ 0x080A5AB0
 	pop {r0}
 	bx r0
 
-    .section .text.game_map_after_tile_patch, "ax", %progbits
-    .align 2, 0
-
-	thumb_func_start func_080A5CC0
-func_080A5CC0: @ 0x080A5CC0
-	push {r4, r5, r6, r7, lr}
-	adds r7, r0, #0
-	ldr r0, [r7, #4]
-	bl GetMapData
-	adds r5, r0, #0
-	movs r6, #0
-	adds r4, r7, #0
-	adds r4, #0x10
-.L080A5CD2:
-	lsls r1, r6, #2
-	adds r0, r5, #0
-	adds r0, #0xc
-	adds r0, r0, r1
-	ldr r0, [r0]
-	cmp r0, #0
-	beq .L080A5CE8
-	ldr r1, [r4]
-	bl Unpack
-	b .L080A5CF8
-.L080A5CE8:
-	ldr r1, [r4]
-	ldrh r2, [r5, #0x20]
-	ldrh r0, [r5, #0x22]
-	lsls r0, r0, #1
-	muls r2, r0, r2
-	ldr r0, .L080A5D10 @ =0x03FF03FF
-	bl func_08008EB8
-.L080A5CF8:
-	adds r4, #4
-	adds r6, #1
-	cmp r6, #2
-	bls .L080A5CD2
-	adds r1, r7, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A5D10: .4byte 0x03FF03FF
-
     .section .text.game_map_time_palette_after, "ax", %progbits
     .align 2, 0
 
@@ -92094,7 +91989,7 @@ func_080A5DFC: @ 0x080A5DFC
 	adds r1, r7, #0
 	mov r2, r8
 	adds r3, r5, #0
-	ldr r4, .L080A5E9C @ =func_03000C2C
+	ldr r4, .L080A5E9C @ =BlendRgb5PaletteBank
 	bl _call_via_r4
 	movs r0, #0x20
 	add r8, r0
@@ -92121,20 +92016,10 @@ func_080A5DFC: @ 0x080A5DFC
 .L080A5E90: .4byte 0xFFFFFF00
 .L080A5E94: .4byte 0xFFFFFC1F
 .L080A5E98: .4byte 0xFFFF0000
-.L080A5E9C: .4byte func_03000C2C
+.L080A5E9C: .4byte BlendRgb5PaletteBank
 
-	thumb_func_start func_080A5EA0
-func_080A5EA0: @ 0x080A5EA0
-	push {lr}
-	ldr r0, [r0, #4]
-	bl GetMapData
-	ldr r0, [r0]
-	movs r1, #0xc0
-	lsls r1, r1, #0x13
-	bl Unpack
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.game_map_after_tiles, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080A5EB8
 func_080A5EB8: @ 0x080A5EB8
@@ -92750,7 +92635,7 @@ func_080A6660: @ 0x080A6660
 	push {r5, r6, r7}
 	sub sp, #0x2c
 	mov r8, r0
-	bl func_080A5CC0
+	bl LoadWorldMapTilemaps
 	mov r0, r8
 	adds r0, #0x94
 	ldr r0, [r0]
@@ -94426,7 +94311,7 @@ func_080A748C: @ 0x080A748C
 	sub sp, #0x1c4
 	str r0, [sp, #0x190]
 	adds r7, r1, #0
-	bl func_080A5EA0
+	bl LoadWorldMapTiles
 	ldr r0, [sp, #0x190]
 	adds r0, #0x94
 	ldr r0, [r0]
@@ -99208,7 +99093,7 @@ func_080A95A4: @ 0x080A95A4
 	movs r2, #0x90
 	lsls r2, r2, #1
 	adds r4, r0, r2
-	ldr r5, .L080A98D8 @ =func_03000C2C
+	ldr r5, .L080A98D8 @ =BlendRgb5PaletteBank
 .L080A98B2:
 	mov r0, sl
 	ldr r3, [r0]
@@ -99225,7 +99110,7 @@ func_080A95A4: @ 0x080A95A4
 .L080A98CC: .4byte gUnk_08698B00
 .L080A98D0: .4byte 0xFFFFFC1F
 .L080A98D4: .4byte 0x000014A5
-.L080A98D8: .4byte func_03000C2C
+.L080A98D8: .4byte BlendRgb5PaletteBank
 .L080A98DC:
 	ldr r0, .L080A995C @ =gUnk_086D74F8
 	mov r1, sb
@@ -99280,7 +99165,7 @@ func_080A95A4: @ 0x080A95A4
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r4, r0, r1
-	ldr r6, .L080A9968 @ =func_03000C2C
+	ldr r6, .L080A9968 @ =BlendRgb5PaletteBank
 .L080A9944:
 	mov r2, sl
 	ldr r3, [r2]
@@ -99297,7 +99182,7 @@ func_080A95A4: @ 0x080A95A4
 .L080A995C: .4byte gUnk_086D74F8
 .L080A9960: .4byte 0xFFFFFC1F
 .L080A9964: .4byte 0x000014A5
-.L080A9968: .4byte func_03000C2C
+.L080A9968: .4byte BlendRgb5PaletteBank
 .L080A996C:
 	ldr r3, [sp, #0xd8]
 	cmp r3, #3
@@ -100540,7 +100425,7 @@ func_080AA270: @ 0x080AA270
 .L080AA334:
 	movs r5, #0
 	adds r4, r0, #0
-	ldr r7, .L080AA358 @ =func_03000C2C
+	ldr r7, .L080AA358 @ =BlendRgb5PaletteBank
 .L080AA33A:
 	ldr r3, [r6]
 	adds r0, r4, #0
@@ -100555,7 +100440,7 @@ func_080AA270: @ 0x080AA270
 	.align 2, 0
 .L080AA350: .4byte 0xFFFFFC1F
 .L080AA354: .4byte 0x000031AE
-.L080AA358: .4byte func_03000C2C
+.L080AA358: .4byte BlendRgb5PaletteBank
 .L080AA35C:
 	mov r0, r8
 	cmp r0, #0
@@ -100608,7 +100493,7 @@ func_080AA270: @ 0x080AA270
 .L080AA3B6:
 	movs r5, #0
 	adds r4, r0, #0
-	ldr r7, .L080AA3D8 @ =func_03000C2C
+	ldr r7, .L080AA3D8 @ =BlendRgb5PaletteBank
 .L080AA3BC:
 	mov r0, r8
 	ldr r3, [r0]
@@ -100623,7 +100508,7 @@ func_080AA270: @ 0x080AA270
 	b .L080AA43A
 	.align 2, 0
 .L080AA3D4: .4byte 0xFFFFFC1F
-.L080AA3D8: .4byte func_03000C2C
+.L080AA3D8: .4byte BlendRgb5PaletteBank
 .L080AA3DC:
 	mov r1, sb
 	lsls r0, r1, #2
@@ -100662,7 +100547,7 @@ func_080AA270: @ 0x080AA270
 .L080AA41E:
 	movs r5, #0
 	adds r4, r3, #0
-	ldr r7, .L080AA454 @ =func_03000C2C
+	ldr r7, .L080AA454 @ =BlendRgb5PaletteBank
 .L080AA424:
 	mov r0, r8
 	ldr r3, [r0]
@@ -100688,7 +100573,7 @@ func_080AA270: @ 0x080AA270
 	b .L080AA522
 	.align 2, 0
 .L080AA450: .4byte 0xFFFFFC1F
-.L080AA454: .4byte func_03000C2C
+.L080AA454: .4byte BlendRgb5PaletteBank
 .L080AA458:
 	mov r1, sl
 	cmp r1, #2
@@ -100731,7 +100616,7 @@ func_080AA270: @ 0x080AA270
 .L080AA4A0:
 	movs r5, #0
 	adds r4, r0, #0
-	ldr r6, .L080AA4C4 @ =func_03000C2C
+	ldr r6, .L080AA4C4 @ =BlendRgb5PaletteBank
 .L080AA4A6:
 	ldr r3, [r7]
 	adds r0, r4, #0
@@ -100746,7 +100631,7 @@ func_080AA270: @ 0x080AA270
 	.align 2, 0
 .L080AA4BC: .4byte 0xFFFFFC1F
 .L080AA4C0: .4byte 0x000003DF
-.L080AA4C4: .4byte func_03000C2C
+.L080AA4C4: .4byte BlendRgb5PaletteBank
 .L080AA4C8:
 	mov r1, sb
 	lsls r0, r1, #2
@@ -100784,7 +100669,7 @@ func_080AA270: @ 0x080AA270
 .L080AA508:
 	movs r5, #0
 	adds r4, r0, #0
-	ldr r6, .L080AA53C @ =func_03000C2C
+	ldr r6, .L080AA53C @ =BlendRgb5PaletteBank
 .L080AA50E:
 	ldr r3, [r7]
 	adds r0, r4, #0
@@ -100807,7 +100692,7 @@ func_080AA270: @ 0x080AA270
 	.align 2, 0
 .L080AA534: .4byte 0xFFFFFC1F
 .L080AA538: .4byte 0x0000559F
-.L080AA53C: .4byte func_03000C2C
+.L080AA53C: .4byte BlendRgb5PaletteBank
 
 	thumb_func_start func_080AA540
 func_080AA540: @ 0x080AA540
@@ -177774,7 +177659,7 @@ func_080CFBAC: @ 0x080CFBAC
 	push {r5, r6, r7}
 	sub sp, #0xc
 	str r0, [sp, #4]
-	bl func_080A5CC0
+	bl LoadWorldMapTilemaps
 	ldr r1, [sp, #4]
 	ldr r0, [r1, #4]
 	cmp r0, #0x3e
@@ -177888,7 +177773,7 @@ func_080CFC7C: @ 0x080CFC7C
 	sub sp, #0x24
 	adds r4, r0, #0
 	adds r5, r1, #0
-	bl func_080A5EA0
+	bl LoadWorldMapTiles
 	ldr r0, [r4, #4]
 	cmp r0, #0x3e
 	beq .L080CFC98

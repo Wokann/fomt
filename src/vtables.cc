@@ -6,6 +6,10 @@
 
 EXTERN_C
 
+extern void LoadWorldMapTiles(void);
+
+extern void LoadWorldMapTilemaps(void);
+
 extern void LoadWorldMapTimeOfDayPalette(void);
 
 // These early C++ ABI tables have two null metadata slots followed by opaque
@@ -341,8 +345,6 @@ extern void func_080A4F50(void);
 extern void func_080A5670(void);
 extern void func_080A5198(void);
 extern void func_080A5E58(void);
-extern void func_080A58D8(void);
-extern void func_080A56F8(void);
 extern void func_080E39D0(void);
 extern void func_080E3B50(void);
 extern void func_080A5EF0(void);
@@ -640,8 +642,6 @@ extern void func_080A4BEC(void);
 extern void func_080A4F50(void);
 extern void func_080A5760(void);
 extern void func_080A6420(void);
-extern void func_080A5EA0(void);
-extern void func_080A5CC0(void);
 extern void func_080A5670(void);
 extern void func_080E4238(void);
 extern void func_080E43B8(void);
@@ -6997,8 +6997,8 @@ extern RawVTableFunction const vtable_unk_080E82E4[]
         func_080A4F50,
         func_080A5198,
         func_080A5E58,
-        func_080A58D8,
-        func_080A56F8,
+        LoadWorldMapTiles,
+        LoadWorldMapTilemaps,
         LoadWorldMapTimeOfDayPalette,
 #else
         nullptr,
@@ -7019,8 +7019,8 @@ extern RawVTableFunction const vtable_unk_080E82FC[]
         func_080E39D0,
 #else
         func_080A6420,
-        func_080A5EA0,
-        func_080A5CC0,
+        LoadWorldMapTiles,
+        LoadWorldMapTilemaps,
         LoadWorldMapTimeOfDayPalette,
 #endif
     };
