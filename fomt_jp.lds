@@ -230,7 +230,7 @@ SECTIONS
             .text.PickUpFieldItemAtLocation .text.func_0801D7B0 .text.func_0801D88C
             .text.func_0801D8CC .text.func_0801D948 .text.func_0801D9A8
             .text.func_0801D9BC .text.func_0801DB44 .text.func_0801DB58
-            .text.func_0801DC24 .text.func_0801DCA8);
+            .text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue);
         asm/game_state.o(.text.game_scene_item_actions_after);
         src/game_scene.o(.text.func_0801FB* .text.func_0801FC* .text.func_0801FD*);
         . = 0x1FB0C; /* JP ROM 0x0801FB0C, independently matched */

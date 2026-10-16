@@ -8,6 +8,15 @@
 #include "npc_entity.hh"
 #include "entity_ui.hh"
 #include "fomt_constants.hh"
+#if defined(REGION_JP)
+#include "data/scripts/jp/fomt_scripts.mary.h"
+#elif defined(REGION_US)
+#include "data/scripts/us/fomt_scripts.mary.h"
+#elif defined(REGION_EU)
+#include "data/scripts/eu/fomt_scripts.mary.h"
+#else
+#include "data/scripts/de/fomt_scripts.mary.h"
+#endif
 #include "hardware_music_player.hh"
 #include "hardware_song.hh"
 #include "font.hh"
@@ -1203,9 +1212,9 @@ EC void func_0801D948(GameSceneWorldPrefix & world)
 }
 
 EC void func_0801D9A8(GameSceneWorldPrefix & world,
-    GameSceneScriptRequest const & request, i32 delay)
+    GameSceneScriptRequest const & request, i32 queue_kind)
 {
-    world.scene->QueueScript(request, delay);
+    world.scene->QueueScript(request, queue_kind);
 }
 
 EC u32 func_0801D9BC(GameSceneWorldPrefix & world)
@@ -1316,6 +1325,14 @@ EC void func_0801DC24(GameSceneWorldPrefix & world, u32 index)
 EC void func_0801DCA8(GameSceneWorldPrefix & world)
 {
     world.unk_1058 = nullptr;
+}
+
+EC void CollectDailyShippingRevenue(GameSceneWorldPrefix & world)
+{
+    i32 value = world.save->farm.shipping_bin.GetValueShipped();
+    world.save->CollectShippingRevenue();
+    world.QueueScript(GameSceneScriptRequest(
+        EventScript_FarmEvent_Zack_DailyShippingPickup, value), 1);
 }
 
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()

@@ -392,6 +392,10 @@ struct GameSceneSongPlayerPool {
 
 // Each pending request is passed unchanged to LoadById(id, context).
 struct GameSceneScriptRequest {
+    GameSceneScriptRequest() {}
+    GameSceneScriptRequest(i32 script, i32 context)
+        : script_id(script), context_value(context) {}
+
     i32 script_id;
     i32 context_value;
 };
@@ -1167,12 +1171,13 @@ u32 func_0801D88C(GameSceneWorldPrefix & world, Location const & location,
 void func_0801D8CC(GameSceneWorldPrefix & world);
 void func_0801D948(GameSceneWorldPrefix & world);
 void func_0801D9A8(GameSceneWorldPrefix & world,
-    GameSceneScriptRequest const & request, i32 delay);
+    GameSceneScriptRequest const & request, i32 queue_kind);
 u32 func_0801D9BC(GameSceneWorldPrefix & world);
 GameSceneSongPlayerPool & func_0801DB44(GameSceneWorldPrefix & world);
 void func_0801DB58(GameSceneWorldPrefix & world);
 void func_0801DC24(GameSceneWorldPrefix & world, u32 index);
 void func_0801DCA8(GameSceneWorldPrefix & world);
+void CollectDailyShippingRevenue(GameSceneWorldPrefix & world);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
 void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,

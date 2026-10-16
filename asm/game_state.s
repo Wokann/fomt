@@ -16212,37 +16212,6 @@ func_0801D23C:
     .section .text.game_scene_item_actions_after, "ax", %progbits
     .align 2, 0
 
-    .global func_0801DCD4
-    .thumb_func
-func_0801DCD4:
-    push {r4, r5, r6, lr}
-    sub sp, #8
-    adds r4, r0, #0
-    ldr r0, [pc, #0x34]
-    adds r5, r4, r0
-    ldr r0, [r5]
-    adds r0, #0x54
-    bl GetValueShipped__C11ShippingBin
-    adds r6, r0, #0
-    ldr r0, [r5]
-    bl CollectShippingRevenue__18GameStateSaveImage
-    ldr r1, [r4]
-    movs r0, #0xa0
-    lsls r0, r0, #1
-    adds r1, r1, r0
-    ldr r0, [pc, #0x1c]
-    str r0, [sp]
-    str r6, [sp, #4]
-    ldr r3, [r1]
-    adds r0, r4, #0
-    mov r1, sp
-    movs r2, #1
-    bl _call_via_r3
-    add sp, #8
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .byte 0x38, 0x10, 0x00, 0x00, 0xDB, 0x03, 0x00, 0x00
     .global func_0801DD18
     .thumb_func
 func_0801DD18:
@@ -37581,39 +37550,6 @@ func_0801D23C:
     .byte 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
     .section .text.game_scene_item_actions_after, "ax", %progbits
     .align 2, 0
-
-    thumb_func_start func_0801DCD4
-func_0801DCD4: @ 0x0801DCD4
-    push {r4, r5, r6, lr}
-    sub sp, #8
-    adds r4, r0, #0
-    ldr r0, .L0801DD10 @ =0x00001038
-    adds r5, r4, r0
-    ldr r0, [r5]
-    adds r0, #0x54
-    bl GetValueShipped__C11ShippingBin
-    adds r6, r0, #0
-    ldr r0, [r5]
-    bl CollectShippingRevenue__18GameStateSaveImage
-    ldr r1, [r4]
-    movs r0, #0xa0
-    lsls r0, r0, #1
-    adds r1, r1, r0
-    ldr r0, .L0801DD14 @ =0x000003DB
-    str r0, [sp]
-    str r6, [sp, #4]
-    ldr r3, [r1]
-    adds r0, r4, #0
-    mov r1, sp
-    movs r2, #1
-    bl _call_via_r3
-    add sp, #8
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0801DD10: .4byte 0x00001038
-.L0801DD14: .4byte 0x000003DB
 
     thumb_func_start func_0801DD18
 func_0801DD18: @ 0x0801DD18

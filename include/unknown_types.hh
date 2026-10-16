@@ -79,6 +79,7 @@ struct AActorEntity;
 struct Location;
 struct GameStateClock;
 struct IndexedResourceArchive;
+struct GameSceneScriptRequest;
 
 struct GameObject
 {
@@ -163,7 +164,7 @@ struct GameObject
     virtual void vfunc_134();
     virtual void vfunc_138();
     virtual void vfunc_13C();
-    virtual void vfunc_140();
+    virtual void QueueScript(GameSceneScriptRequest const & request, i32 queue_kind);
     virtual GameStateClock const * GetClock() = 0;
 
     /* +00 */ // vtable

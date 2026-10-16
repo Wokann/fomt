@@ -1,7 +1,21 @@
+#ifndef FOMT_SCRIPTS_MARY_H
+#define FOMT_SCRIPTS_MARY_H
+
+/* One ordered list supplies the Mary script table and C/C++ script IDs.
+ * Mary keeps its null table entry; C/C++ gives that index a valid name.
+ *
+ * 同一有序清单同时提供 Mary 脚本表和 C/C++ 脚本编号。
+ * Mary 保留空指针首项，C/C++ 为该编号提供合法名称。
+ */
 #if defined(MARY_C)
 mary_script_table
 {
     /* 0x0000 */ NULL,
+#else
+enum
+{
+    /* 0x0000 */ EventScript_None = 0,
+#endif
     /* 0x0001 */ EventScript_FarmEvent_Livestock_PregnancyNotice,
     /* 0x0002 */ EventScript_FarmEvent_Livestock_SicknessRecoveryNotice,
     /* 0x0003 */ EventScript_LocationInteraction_ShowNothingHappenedMessage,
@@ -1331,4 +1345,5 @@ mary_script_table
     /* 0x052F */ EventScript_1327,
     /* 0x0530 */ EventScript_1328,
 };
+
 #endif

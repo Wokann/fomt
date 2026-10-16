@@ -766,7 +766,7 @@ extern void func_0801DE48(void);
 extern void func_0801DEB4(void);
 extern void func_0801DDCC(void);
 extern void func_0801DDF8(void);
-extern void func_0801DCD4(void);
+extern void CollectDailyShippingRevenue(void);
 extern void func_0801DC24(void);
 extern void func_0801DCA8(void);
 extern void func_08019F38(void);
@@ -1483,7 +1483,7 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801DEB4,
     func_0801DDCC,
     func_0801DDF8,
-    func_0801DCD4,
+    CollectDailyShippingRevenue,
     func_0801DC24,
     func_0801DCA8,
     func_08019F38,
