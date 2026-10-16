@@ -78,6 +78,7 @@ struct UnkMap
 struct AActorEntity;
 struct Location;
 struct GameStateClock;
+struct IndexedResourceArchive;
 
 struct GameObject
 {
@@ -94,23 +95,23 @@ struct GameObject
     virtual i32 vfunc_30(u32 map_id); // ok: get map height
     virtual UnkMap vfunc_34(u32 map_id);
     virtual void vfunc_38();
-    virtual void vfunc_3C();
+    virtual void vfunc_3C(u32 index);
     virtual AActorEntity * GetActorEntity(u32 id);
-    virtual void vfunc_44();
+    virtual AActorEntity * vfunc_44(u32 index);
     virtual void vfunc_48();
-    virtual void vfunc_4C();
-    virtual void vfunc_50();
+    virtual void vfunc_4C(u32 index);
+    virtual i32 GetSpritePaletteBank(u32 index);
     virtual void vfunc_54();
-    virtual void vfunc_58();
-    virtual void vfunc_5C();
-    virtual void vfunc_60();
-    virtual void vfunc_64();
-    virtual void * vfunc_68(); // TODO: return type: get map actor sprite
-    virtual void vfunc_6C();
-    virtual void vfunc_70();
-    virtual void vfunc_74();
-    virtual void vfunc_78();
-    virtual void vfunc_7C();
+    virtual void * vfunc_58();
+    virtual IndexedResourceArchive * vfunc_5C();
+    virtual IndexedResourceArchive * vfunc_60();
+    virtual IndexedResourceArchive * vfunc_64();
+    virtual IndexedResourceArchive * vfunc_68(); // actor-animation archive
+    virtual IndexedResourceArchive * vfunc_6C();
+    virtual IndexedResourceArchive * vfunc_70();
+    virtual IndexedResourceArchive * vfunc_74();
+    virtual IndexedResourceArchive * vfunc_78();
+    virtual IndexedResourceArchive * vfunc_7C();
     virtual void StartShipmentBoxDepositAnimation();
     virtual void PrepareClockMenuTransition();
     virtual void RestoreAfterClockMenu();

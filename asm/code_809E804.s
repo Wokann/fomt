@@ -23112,9 +23112,9 @@ func_080AC294: @ 080AC294
 .Ljp_map_080AC398: .4byte 0x00001024
 .Ljp_map_080AC39C: .4byte vtable_unk_080E5A28
 .Ljp_map_080AC3A0: .4byte 0x00000DAC
-    .global func_080AC3A4
+    .global func_080AC96C
     .thumb_func
-func_080AC3A4: @ 080AC3A4
+func_080AC96C: @ 080AC3A4
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -25426,7 +25426,7 @@ func_080AD534:
     cmp r2, #0
     bge .Ljp_entity_080AD554
     adds r0, r3, #0
-    bl func_080AC3A4
+    bl func_080AC96C
     adds r2, r0, #0
     adds r0, #0x10
     strb r0, [r4]

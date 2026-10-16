@@ -9,6 +9,8 @@
 #include "script_engine.hh"
 #include "fomt_constants.hh"
 #include "utility/vec2.hh"
+#include "resource_handle.hh"
+#include "hardware_resource.hh"
 #include <new>
 
 // Only the player virtual interface used by these scene commands is modeled.
@@ -59,13 +61,67 @@ struct GameSceneWorldMapPrefix {
     u32 movement_frames;
 };
 
+// The native palette cache has 22 resource records and 13 retained banks.
+// Keep the remaining record bytes and flags opaque until their users are recovered.
+struct GameScenePaletteResource {
+    u8 unk_00[0x80];
+    i8 palette_slot;
+    u8 unk_81;
+    u8 unk_82;
+    u8 unk_83;
+};
+
+struct GameScenePaletteSlot {
+    HardwareResourceEntry allocation;
+    u8 palette_bank;
+    i8 resource_index;
+    u8 unk_0A;
+    u8 unk_0B;
+};
+
+struct GameScenePaletteCache {
+    u8 encoded_palette_banks[32];
+    GameScenePaletteResource resources[22];
+    GameScenePaletteSlot slots[13];
+    u8 used_slots;
+    u8 unk_C15[3];
+};
+
+typedef char GameScenePaletteResourceSizeCheck[sizeof(GameScenePaletteResource) == 132 ? 1 : -1];
+typedef char GameScenePaletteSlotSizeCheck[sizeof(GameScenePaletteSlot) == 12 ? 1 : -1];
+typedef char GameScenePaletteCacheSlotsCheck[offsetof(GameScenePaletteCache,slots) == 0xB78 ? 1 : -1];
+typedef char GameScenePaletteCacheCountCheck[offsetof(GameScenePaletteCache,used_slots) == 0xC14 ? 1 : -1];
+typedef char GameScenePaletteCacheSizeCheck[sizeof(GameScenePaletteCache) == 0xC18 ? 1 : -1];
+
+EC void func_0803B0A8(void * object, int flags);
+
+// The concrete pointee is still native; preserve its direct destruction ABI.
+struct GameSceneWorldUnkOwner {
+    void * value;
+    GameSceneWorldUnkOwner & operator=(void * next)
+    {
+        if (next != value) {
+            if (value != nullptr)
+                func_0803B0A8(value, 3);
+        }
+        value = next;
+        return *this;
+    }
+};
+
 // This native GameObject keeps 100 entity slots. Its unrecovered payload
 // stays opaque; this prefix is never allocated or treated as its full size.
 struct GameSceneWorldPrefix : GameObject {
     GameSceneWorldMapPrefix * map;
     AActorEntity * entities[100];
-    u8 unk_198[0xEA0];
+    u32 unk_198;
+    GameScenePaletteCache palette_cache;
+    IndexedResourceArchive archives[13];
+    void * unk_1024;
+    u8 unk_1028[0x10];
     GameStateSaveImage * save;
+    u8 unk_103C[0x40];
+    GameSceneWorldUnkOwner unk_107C;
 };
 
 typedef char GameSceneCameraCoordinateSizeCheck[sizeof(GameSceneCameraCoordinate) == 4 ? 1 : -1];
@@ -80,6 +136,12 @@ typedef char GameSceneCameraStepYCheck[offsetof(GameSceneWorldMapPrefix, step_y_
 typedef char GameSceneCameraFramesCheck[offsetof(GameSceneWorldMapPrefix, movement_frames) == 0x8C ? 1 : -1];
 typedef char GameSceneWorldMapCheck[offsetof(GameSceneWorldPrefix, map) == 4 ? 1 : -1];
 typedef char GameSceneWorldEntitiesCheck[offsetof(GameSceneWorldPrefix, entities) == 8 ? 1 : -1];
+typedef char GameSceneWorldPaletteCacheCheck[offsetof(GameSceneWorldPrefix, palette_cache) == 0x19C ? 1 : -1];
+typedef char GameSceneWorldArchiveSizeCheck[sizeof(IndexedResourceArchive) == 0x30 ? 1 : -1];
+typedef char GameSceneWorldArchivesCheck[offsetof(GameSceneWorldPrefix, archives) == 0xDB4 ? 1 : -1];
+typedef char GameSceneWorldUnknownObjectCheck[offsetof(GameSceneWorldPrefix, unk_1024) == 0x1024 ? 1 : -1];
+typedef char GameSceneWorldUnkOwnerSizeCheck[sizeof(GameSceneWorldUnkOwner) == 4 ? 1 : -1];
+typedef char GameSceneWorldUnkOwnerCheck[offsetof(GameSceneWorldPrefix, unk_107C) == 0x107C ? 1 : -1];
 typedef char GameSceneWorldSaveCheck[offsetof(GameSceneWorldPrefix, save) == 0x1038 ? 1 : -1];
 
 // Only the shared destruction prefix is recovered. The concrete Time Window
@@ -894,6 +956,29 @@ ScriptEngine * func_0801014C(void);
 
 // Recovered native world callbacks. The duplicate slot readers retain
 // separate entries; neither adds bounds checking absent from the original.
+IndexedResourceArchive * func_0801FBDC(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FBE8(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FBF4(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FC00(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FC0C(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FC18(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FC24(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FC30(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FC3C(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FC48(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FC54(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FC60(GameSceneWorldPrefix & world);
+IndexedResourceArchive * func_0801FC6C(GameSceneWorldPrefix & world);
+void func_0801FC78(GameSceneWorldPrefix & world);
+GameSceneWorldMapPrefix * func_0801FC9C(GameSceneWorldPrefix & world);
+GameSceneWorldMapPrefix * func_0801FCA0(GameSceneWorldPrefix & world);
+i32 func_0801FCB4(GameSceneWorldPrefix & world, u32 index);
+void func_0801FCDC(GameSceneWorldPrefix & world, u32 index);
+void * func_0801FD30(GameSceneWorldPrefix & world);
+
+// The bank allocator still has its original native implementation.
+i32 func_080AC96C(GameScenePaletteCache * cache, u32 index);
+
 GameStateClock const * func_0801FCA4(GameSceneWorldPrefix const & world);
 AActorEntity * func_0801FCF4(GameSceneWorldPrefix const & world, u32 index);
 AActorEntity * func_0801FD00(GameSceneWorldPrefix & world, u32 index);

@@ -177,11 +177,7 @@ SECTIONS
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
         src/game_scene.o(.text.*__9GameScene*);
         asm/game_state.o(.text.game_scene_menu_hooks_after);
-        src/game_scene.o(.text.func_0801FCA4);
-        asm/game_state.o(.text.game_world_after_clock);
-        src/game_scene.o(.text.func_0801FCF4 .text.func_0801FD00 .text.func_0801FD0C);
-        asm/game_state.o(.text.game_world_after_entities);
-        src/game_scene.o(.text.func_0801FD3C .text.func_0801FD48 .text.func_0801FD50 .text.func_0801FD58 .text.func_0801FD60 .text.func_0801FD6C);
+        src/game_scene.o(.text.func_0801FB* .text.func_0801FC* .text.func_0801FD*);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
         asm/code_entities.o(.text);

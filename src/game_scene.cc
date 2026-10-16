@@ -700,9 +700,106 @@ void GameScene::DisableScriptedNpcControl()
     state->save->scripted_npc_control = 0;
 }
 
+EC IndexedResourceArchive * func_0801FBDC(GameSceneWorldPrefix & world)
+{
+    return &world.archives[12];
+}
+
+EC IndexedResourceArchive * func_0801FBE8(GameSceneWorldPrefix & world)
+{
+    return &world.archives[11];
+}
+
+EC IndexedResourceArchive * func_0801FBF4(GameSceneWorldPrefix & world)
+{
+    return &world.archives[10];
+}
+
+EC IndexedResourceArchive * func_0801FC00(GameSceneWorldPrefix & world)
+{
+    return &world.archives[9];
+}
+
+EC IndexedResourceArchive * func_0801FC0C(GameSceneWorldPrefix & world)
+{
+    return &world.archives[8];
+}
+
+EC IndexedResourceArchive * func_0801FC18(GameSceneWorldPrefix & world)
+{
+    return &world.archives[7];
+}
+
+EC IndexedResourceArchive * func_0801FC24(GameSceneWorldPrefix & world)
+{
+    return &world.archives[6];
+}
+
+EC IndexedResourceArchive * func_0801FC30(GameSceneWorldPrefix & world)
+{
+    return &world.archives[5];
+}
+
+EC IndexedResourceArchive * func_0801FC3C(GameSceneWorldPrefix & world)
+{
+    return &world.archives[4];
+}
+
+EC IndexedResourceArchive * func_0801FC48(GameSceneWorldPrefix & world)
+{
+    return &world.archives[3];
+}
+
+EC IndexedResourceArchive * func_0801FC54(GameSceneWorldPrefix & world)
+{
+    return &world.archives[2];
+}
+
+EC IndexedResourceArchive * func_0801FC60(GameSceneWorldPrefix & world)
+{
+    return &world.archives[1];
+}
+
+EC IndexedResourceArchive * func_0801FC6C(GameSceneWorldPrefix & world)
+{
+    return &world.archives[0];
+}
+
+EC void func_0801FC78(GameSceneWorldPrefix & world)
+{
+    world.unk_107C = nullptr;
+}
+
+EC GameSceneWorldMapPrefix * func_0801FC9C(GameSceneWorldPrefix & world)
+{
+    return world.map;
+}
+
+EC GameSceneWorldMapPrefix * func_0801FCA0(GameSceneWorldPrefix & world)
+{
+    return world.map;
+}
+
 EC GameStateClock const * func_0801FCA4(GameSceneWorldPrefix const & world)
 {
     return &world.save->clock;
+}
+
+EC i32 func_0801FCB4(GameSceneWorldPrefix & world, u32 index)
+{
+    GameScenePaletteCache & cache = world.palette_cache;
+    u8 & encoded = cache.encoded_palette_banks[index];
+    i32 bank = encoded - 16;
+    if (bank < 0) {
+        bank = func_080AC96C(&cache, index);
+        encoded = bank + 16;
+    }
+    return bank;
+}
+
+EC void func_0801FCDC(GameSceneWorldPrefix & world, u32 index)
+{
+    world.palette_cache.resources[index].unk_81 = 0;
 }
 
 EC AActorEntity * func_0801FCF4(GameSceneWorldPrefix const & world, u32 index)
@@ -727,6 +824,11 @@ EC void func_0801FD0C(GameSceneWorldPrefix & world, u32 index)
         delete *entity;
         *entity = nullptr;
     }
+}
+
+EC void * func_0801FD30(GameSceneWorldPrefix & world)
+{
+    return world.unk_1024;
 }
 
 EC bool func_0801FD3C(GameSceneWorldPrefix const & world)
