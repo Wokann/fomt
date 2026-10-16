@@ -379,11 +379,11 @@ func_03000958:
     bne .Lauto_0300097C
     b .Lauto_030009FC
     .Lauto_03000994:
-    ldr r1, [pc, #0x74]
+    ldr r1, .LInterruptEnableMasks
     ldrh r1, [r1, ip]
     and r1, r1, r3
     orr r1, r1, r0, lsl #16
-    ldr r3, [pc, #0x68]
+    ldr r3, .LInterruptHandlers
     ldr r3, [r3, ip, lsl #1]
     cmp r3, #0x8000000
     orrhs r1, r1, #0x2000
@@ -411,7 +411,11 @@ func_03000958:
     msr spsr_fc, r0
     strb r1, [r2, #8]
     bx lr
-    .byte 0x30, 0x04, 0x00, 0x03, 0x50, 0x04, 0x00, 0x03, 0xF8, 0x7F, 0x00, 0x03
+.LInterruptEnableMasks:
+    .4byte gInterruptEnableMasks
+.LInterruptHandlers:
+    .4byte gInterruptHandlers
+    .4byte 0x03007FF8
 
     .global func_03000A1C
     .type func_03000A1C, function

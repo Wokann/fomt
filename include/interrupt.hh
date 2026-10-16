@@ -5,6 +5,17 @@
 
 EXTERN_C
 
+typedef void (*InterruptHandler)(void);
+
+// Each IRQ slot has a nesting-enable mask and a callback. The ARM dispatcher
+// intersects this mask with IE before invoking the corresponding callback.
+extern u16 gInterruptEnableMasks[16];
+extern InterruptHandler gInterruptHandlers[16];
+
+// Exchange one slot without adding bounds checks absent from the original.
+InterruptHandler func_080D100C(u32 index, InterruptHandler handler);
+u16 func_080D101C(u32 index, u16 value);
+
 // The ROM-facing packed-mask entry executes ARM code in IWRAM. Request the
 // ordinary indirect interworking call, rather than an out-of-range Thumb BL.
 u16 func_03000A1C(u32 value) __attribute__((long_call));

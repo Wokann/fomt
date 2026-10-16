@@ -2,9 +2,10 @@
 #include "gbaio.h"
 #include "gbasvc.h"
 
+u16 gInterruptEnableMasks[16];
+InterruptHandler gInterruptHandlers[16];
+
 extern void func_03000958(void);
-extern void func_080D100C(u32 index, void (*handler)(void));
-extern u16 func_080D101C(u32 index, u16 value);
 extern void *__builtin_new(u32 size);
 extern void __builtin_delete(void *pointer);
 

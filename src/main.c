@@ -7,7 +7,6 @@
 
 struct GameIntroScene;
 
-extern void func_080D100C(u32 index, void (*handler)(void));
 extern void func_03000490(void);
 extern void func_08008AFC(void);
 extern void func_08008980(void *manager);

@@ -85253,24 +85253,25 @@ sub_080D0FDC: @ 0x080D0794
     .global func_080D100C
     .thumb_func
 func_080D100C: @ 0x080D07C4
-	ldr r2, .L080D07D0 @ =gUnk_03000450
+	ldr r2, .L080D07D0 @ =gInterruptHandlers
 	lsls r0, r0, #2
 	adds r2, r2, r0
 	ldr r0, [r2]
 	str r1, [r2]
 	bx lr
 	.align 2, 0
-.L080D07D0: .4byte gUnk_03000450
+.L080D07D0: .4byte gInterruptHandlers
     .global func_080D101C
     .thumb_func
 func_080D101C:
-    ldr r2, [pc, #8]
+    ldr r2, .LInterruptEnableMasksJp
     lsls r0, r0, #1
     adds r2, r2, r0
     ldrh r0, [r2]
     strh r1, [r2]
     bx lr
-    .byte 0x30, 0x04, 0x00, 0x03
+.LInterruptEnableMasksJp:
+    .4byte gInterruptEnableMasks
     .else
 
     .INCLUDE "asm/macro.inc"
@@ -183326,25 +183327,25 @@ sub_080D0FDC: @ 0x080D0FDC
 
 	thumb_func_start func_080D100C
 func_080D100C: @ 0x080D100C
-	ldr r2, .L080D1018 @ =gUnk_03000450
+	ldr r2, .L080D1018 @ =gInterruptHandlers
 	lsls r0, r0, #2
 	adds r2, r2, r0
 	ldr r0, [r2]
 	str r1, [r2]
 	bx lr
 	.align 2, 0
-.L080D1018: .4byte gUnk_03000450
+.L080D1018: .4byte gInterruptHandlers
 
 	thumb_func_start func_080D101C
 func_080D101C: @ 0x080D101C
-	ldr r2, .L080D1028 @ =gUnk_03000430
+	ldr r2, .L080D1028 @ =gInterruptEnableMasks
 	lsls r0, r0, #1
 	adds r2, r2, r0
 	ldrh r0, [r2]
 	strh r1, [r2]
 	bx lr
 	.align 2, 0
-.L080D1028: .4byte gUnk_03000430
+.L080D1028: .4byte gInterruptEnableMasks
 
     .endif
 
