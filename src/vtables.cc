@@ -782,9 +782,6 @@ extern void func_0801EE00(void);
 extern void func_0801F924(void);
 extern void func_0801C550(void);
 extern void func_0801C69C(void);
-extern void func_080D7B2C(void);
-extern void func_080D7B38(void);
-extern void func_080D7B44(void);
 extern void func_080DB0EC(void);
 extern void func_080DB1E4(void);
 extern void func_080DB238(void);
@@ -1002,14 +999,14 @@ extern RawVTableFunction const vtable_unk_080E5B60[] = {
     nullptr,
     nullptr,
     func_08008B18,
-    func_080D7B2C,
+    reinterpret_cast<RawVTableFunction>(func_080D7B2C),
 };
 
 extern RawVTableFunction const vtable_unk_080E5B70[] = {
     nullptr,
     nullptr,
     func_08008B0C,
-    func_080D7B38,
+    reinterpret_cast<RawVTableFunction>(func_080D7B38),
 };
 
 extern RawVTableFunction const vtable_unk_080E5B80[] = {
@@ -1047,7 +1044,7 @@ extern RawVTableFunction const vtable_unk_080E5BD8[] = {
     nullptr,
     nullptr,
     reinterpret_cast<RawVTableFunction>(func_080098D8),
-    func_080D7B44,
+    reinterpret_cast<RawVTableFunction>(func_080D7B44),
 };
 
 extern RawVTableFunction const vtable_unk_080E5BE8[] = {

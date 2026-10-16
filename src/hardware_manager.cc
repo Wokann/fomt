@@ -176,3 +176,18 @@ void func_080D7B04(HardwareManagerPreviousBinding * binding, u32 flags)
     if (flags & 1)
         __builtin_delete(binding);
 }
+
+void func_080D7B2C(HardwareLinkBase * link, u32 flags)
+{
+    func_080098AC(link, flags);
+}
+
+void func_080D7B38(HardwareLinkBase * link, u32 flags)
+{
+    func_080098AC(link, flags);
+}
+
+void func_080D7B44(HardwareLink * link, u32 flags)
+{
+    func_080098AC(link, flags);
+}

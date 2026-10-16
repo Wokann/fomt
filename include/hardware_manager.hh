@@ -117,6 +117,14 @@ void func_080D7AD4(struct HardwareManagerCommandGroup * group, u32 flags)
 void func_080D7B04(struct HardwareManagerPreviousBinding * binding, u32 flags)
     SECTION(".text.hardware_manager_binding_cleanup");
 
+// Distinct cleanup entries for the sound-main, sound-VSync and sentinel nodes.
+void func_080D7B2C(struct HardwareLinkBase * link, u32 flags)
+    SECTION(".text.hardware_manager_cleanup_after");
+void func_080D7B38(struct HardwareLinkBase * link, u32 flags)
+    SECTION(".text.hardware_manager_cleanup_after");
+void func_080D7B44(struct HardwareLink * link, u32 flags)
+    SECTION(".text.hardware_manager_cleanup_after");
+
 EXTERN_C_END
 
 #endif // HARDWARE_MANAGER_HH

@@ -551,7 +551,7 @@ SECTIONS
         asm/code_linkonce.o(.text.hardware_manager_vblank_after);
         src/hardware_manager.o(.text.hardware_manager_vblank_after);
         src/hardware_manager.o(.text.hardware_manager_binding_cleanup);
-        asm/code_linkonce.o(.text.hardware_manager_cleanup_after);
+        src/hardware_manager.o(.text.hardware_manager_cleanup_after);
         *(.gnu.linkonce.t.__as__5SheepRC5Sheep);
         *(.gnu.linkonce.t.__as__3CowRC3Cow);
         *(.gnu.linkonce.t.__as__9LivestockRC9Livestock);

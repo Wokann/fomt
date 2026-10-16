@@ -6078,33 +6078,6 @@ func_080D7944:
     .4byte vtable_unk_080E5B3C
     .4byte vtable_unk_080E5B54
     .4byte gUnk_03000410
-    .section .text.hardware_manager_cleanup_after, "ax", %progbits
-    .align 2, 0
-
-    .global func_080D7B2C
-    .thumb_func
-func_080D7B2C:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .global func_080D7B38
-    .thumb_func
-func_080D7B38:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .global func_080D7B44
-    .thumb_func
-func_080D7B44:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
 
 
 
@@ -7176,32 +7149,6 @@ func_080D7944: @ 0x080D7944
 .L080D7984: .4byte vtable_unk_080E5B3C
 .L080D7988: .4byte vtable_unk_080E5B54
 .L080D798C: .4byte gUnk_03000410
-    .section .text.hardware_manager_cleanup_after, "ax", %progbits
-    .align 2, 0
-
-	thumb_func_start func_080D7B2C
-func_080D7B2C: @ 0x080D7B2C
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D7B38
-func_080D7B38: @ 0x080D7B38
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D7B44
-func_080D7B44: @ 0x080D7B44
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
 
     .endif
 	.section ".text.code_080D7CFC"
