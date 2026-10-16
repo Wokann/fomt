@@ -182,8 +182,8 @@ static inline SceneTransition * CreateLoadedMenuSaveTransition(NewGameLoadedSave
 
 static inline void SetMenuContinuation(SceneTransitionOwner & owner, SceneTransition * next)
 {
-    if (next != owner.value)
-        delete owner.value;
+    if (next != owner.get())
+        delete owner.get();
     owner.value = next;
 }
 

@@ -17,7 +17,7 @@ void func_08000728(void *destination, u16 flag);
 
 EXTERN_C_END
 
-// MainBootFrame and the name-entry core both reserve two words for this
+// The startup local and the name-entry core both reserve two words for this
 // access context. Its constructor initializes the shared SRAM service;
 // the contents of the context itself remain unknown here.
 struct SramAccess

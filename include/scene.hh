@@ -8,34 +8,34 @@ struct SceneTransition;
 struct SceneOwner;
 struct SceneTransitionOwner;
 
-// SceneMain's temporary owner conversions materialize these two-word records.
-// They are scene-specific ABI types, not operations on the generic SmartPtr.
+// The two-word conversion record holds a reference to the erased pointer slot
+// and a cached typed value. Clearing the source does not discard that value.
+// These are scene ownership types, not operations on the generic SmartPtr.
 struct SceneOwnerTransfer
 {
-    SceneOwner * source;
+    void * & source;
     AScene * value;
 
-    SceneOwnerTransfer(SceneOwner * owner, AScene * scene)
+    SceneOwnerTransfer(void * & owner, AScene * scene)
         : source(owner), value(scene) {}
-    AScene * release();
+    AScene * release() const;
 };
 
 struct SceneTransitionOwnerTransfer
 {
-    SceneTransitionOwner * source;
+    void * & source;
     SceneTransition * value;
 
-    SceneTransitionOwnerTransfer(SceneTransitionOwner * owner, SceneTransition * transition)
+    SceneTransitionOwnerTransfer(void * & owner, SceneTransition * transition)
         : source(owner), value(transition) {}
-    SceneTransition * release();
+    SceneTransition * release() const;
 };
 
-// Both owners occupy one word. Their two-word transfer descriptors are
-// consumed by the receiving owner; unrelated pointer wrappers do not share
-// these scene-specific ownership operations.
+// Each owner stores one erased pointer word and exposes a typed interface.
+// The transfer record refers to this word, not to the surrounding owner.
 struct SceneOwner
 {
-    AScene * value;
+    void * value;
 
     explicit SceneOwner(AScene * scene = nullptr) : value(scene) {}
     SceneOwner(SceneOwner & other) : value(other.release()) {}
@@ -44,43 +44,41 @@ struct SceneOwner
 
     SceneOwner & operator=(SceneOwner & other);
     SceneOwner & operator=(AScene * scene);
-    AScene * get() const { return value; }
-    AScene * operator->() const { return value; }
+    AScene * get() const { return static_cast<AScene *>(value); }
+    AScene * operator->() const { return static_cast<AScene *>(value); }
     AScene * release()
     {
-        AScene * scene = value;
+        AScene * scene = static_cast<AScene *>(value);
         value = nullptr;
         return scene;
     }
     void reset(AScene * scene = nullptr);
     operator SceneOwnerTransfer()
     {
-        return SceneOwnerTransfer(this, value);
+        return SceneOwnerTransfer(value, static_cast<AScene *>(value));
     }
 };
 
 struct SceneTransitionOwner
 {
-    SceneTransition * value;
+    void * value;
 
     explicit SceneTransitionOwner(SceneTransition * transition = nullptr) : value(transition) {}
     SceneTransitionOwner(SceneTransitionOwner & other) : value(other.release()) {}
     SceneTransitionOwner(SceneTransitionOwnerTransfer transfer);
     ~SceneTransitionOwner();
 
-    SceneTransition * get() const { return value; }
-    SceneTransition * operator->() const { return value; }
+    SceneTransition * get() const { return static_cast<SceneTransition *>(value); }
+    SceneTransition * operator->() const { return static_cast<SceneTransition *>(value); }
     SceneTransition * release()
     {
-        SceneTransition * transition = value;
+        SceneTransition * transition = static_cast<SceneTransition *>(value);
         value = nullptr;
         return transition;
     }
     operator SceneTransitionOwnerTransfer()
     {
-        // The descriptor is consumed by the receiving owner, which captures
-        // its pointer before clearing the source owner.
-        return SceneTransitionOwnerTransfer(this, value);
+        return SceneTransitionOwnerTransfer(value, static_cast<SceneTransition *>(value));
     }
 };
 
@@ -97,13 +95,12 @@ struct SceneTransition
     virtual SceneOwner CreateScene() = 0;
 };
 
-inline SceneOwner::~SceneOwner() { delete value; }
+inline SceneOwner::~SceneOwner() { delete static_cast<AScene *>(value); }
 
-inline AScene * SceneOwnerTransfer::release()
+inline AScene * SceneOwnerTransfer::release() const
 {
-    AScene * scene = value;
-    source->value = nullptr;
-    return scene;
+    source = nullptr;
+    return value;
 }
 
 inline SceneOwner::SceneOwner(SceneOwnerTransfer transfer)
@@ -113,7 +110,7 @@ inline SceneOwner & SceneOwner::operator=(SceneOwner & other)
 {
     AScene * scene = other.release();
     if (scene != value)
-        delete value;
+        delete static_cast<AScene *>(value);
     value = scene;
     return *this;
 }
@@ -121,7 +118,7 @@ inline SceneOwner & SceneOwner::operator=(SceneOwner & other)
 inline SceneOwner & SceneOwner::operator=(AScene * scene)
 {
     if (scene != value)
-        delete value;
+        delete static_cast<AScene *>(value);
     value = scene;
     return *this;
 }
@@ -130,22 +127,28 @@ inline void SceneOwner::reset(AScene * scene)
 {
     if (value != scene)
     {
-        delete value;
+        delete static_cast<AScene *>(value);
         value = scene;
     }
 }
 
-inline SceneTransitionOwner::~SceneTransitionOwner() { delete value; }
+inline SceneTransitionOwner::~SceneTransitionOwner() { delete static_cast<SceneTransition *>(value); }
 
-inline SceneTransition * SceneTransitionOwnerTransfer::release()
+inline SceneTransition * SceneTransitionOwnerTransfer::release() const
 {
-    SceneTransition * transition = value;
-    source->value = nullptr;
-    return transition;
+    source = nullptr;
+    return value;
 }
 
 inline SceneTransitionOwner::SceneTransitionOwner(SceneTransitionOwnerTransfer transfer)
     : value(transfer.release()) {}
+
+typedef char SceneOwnerSizeCheck[sizeof(SceneOwner) == 4 ? 1 : -1];
+typedef char SceneTransitionOwnerSizeCheck[sizeof(SceneTransitionOwner) == 4 ? 1 : -1];
+typedef char SceneOwnerTransferSizeCheck[sizeof(SceneOwnerTransfer) == 8 ? 1 : -1];
+typedef char SceneTransitionOwnerTransferSizeCheck[sizeof(SceneTransitionOwnerTransfer) == 8 ? 1 : -1];
+typedef char SceneOwnerTransferValueOffsetCheck[offsetof(SceneOwnerTransfer, value) == 4 ? 1 : -1];
+typedef char SceneTransitionOwnerTransferValueOffsetCheck[offsetof(SceneTransitionOwnerTransfer, value) == 4 ? 1 : -1];
 
 extern "C" void SceneMain(SceneOwner scene);
 

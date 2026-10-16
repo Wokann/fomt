@@ -71,6 +71,7 @@ struct HardwareManagerOwner {
     struct HardwareManagerState * state;
 #ifdef __cplusplus
     HardwareManagerOwner() asm("func_08008980");
+    ~HardwareManagerOwner() asm("func_08008A68");
 #endif
 };
 
