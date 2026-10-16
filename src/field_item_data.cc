@@ -205,6 +205,121 @@ u32 FieldItemState::GetResourceValue(u32 index) const
     return value;
 }
 
+void FieldItemState::DecreaseResourceValue(u32 index, i32 amount)
+{
+    if (index > 0x5F)
+    {
+        switch (index)
+        {
+        case 0x60: {
+            i32 value = resource_60 - amount;
+            if (value < 0)
+                value = 0;
+            resource_60 = value;
+            break;
+        }
+        case 0x61: {
+            i32 value = resource_61 - amount;
+            if (value < 0)
+                value = 0;
+            resource_61 = value;
+            break;
+        }
+        case 0x62: {
+            i32 value = resource_62 - amount;
+            if (value < 0)
+                value = 0;
+            resource_62 = value;
+            break;
+        }
+        case 0x63: {
+            i32 value = resource_63 - amount;
+            if (value < 0)
+                value = 0;
+            resource_63 = value;
+            break;
+        }
+        case 0x64: {
+            i32 value = resource_64 - amount;
+            if (value < 0)
+                value = 0;
+            resource_64 = value;
+            break;
+        }
+        case 0x65: {
+            i32 value = resource_65 - amount;
+            if (value < 0)
+                value = 0;
+            resource_65 = value;
+            break;
+        }
+        case 0x66: {
+            i32 value = resource_66 - amount;
+            if (value < 0)
+                value = 0;
+            resource_66 = value;
+            break;
+        }
+        case 0x67: {
+            i32 value = resource_67 - amount;
+            if (value < 0)
+                value = 0;
+            resource_67 = value;
+            break;
+        }
+        case 0x68: {
+            i32 value = resource_68 - amount;
+            if (value < 0)
+                value = 0;
+            resource_68 = value;
+            break;
+        }
+        case 0x69: {
+            i32 value = resource_69 - amount;
+            if (value < 0)
+                value = 0;
+            resource_69 = value;
+            break;
+        }
+        case 0x6A: {
+            i32 value = resource_6A - amount;
+            if (value < 0)
+                value = 0;
+            resource_6A = value;
+            break;
+        }
+        case 0x6B: {
+            i32 value = resource_6B - amount;
+            if (value < 0)
+                value = 0;
+            resource_6B = value;
+            break;
+        }
+        case 0x6C: {
+            i32 value = resource_6C - amount;
+            if (value < 0)
+                value = 0;
+            resource_6C = value;
+            break;
+        }
+        case 0x6D: {
+            i32 value = resource_6D - amount;
+            if (value < 0)
+                value = 0;
+            resource_6D = value;
+            break;
+        }
+        case 0x6E: {
+            i32 value = resource_6E - amount;
+            if (value < 0)
+                value = 0;
+            resource_6E = value;
+            break;
+        }
+        }
+    }
+}
+
 // Records 0x00-0x5F follow the spring/summer/fall/winter ranges.
 // Find also scans the shared trailing range 0x60-0x73.
 FieldItemRecord const gFieldItemRecords[] = {

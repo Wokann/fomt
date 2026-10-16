@@ -10396,7 +10396,7 @@ func_08016D38:
     beq .Lauto_080172D6
     adds r0, r6, #0
     adds r1, r7, #0
-    bl func_080A1FC4
+    bl DecreaseResourceValue__14FieldItemStateUii
     ldr r0, [r5]
     cmp r0, #0x12
     beq .Lauto_080172D6
@@ -29727,7 +29727,7 @@ func_080174C8: @ 0x080174C8
     beq .L08017542
     adds r0, r6, #0
     adds r1, r7, #0
-    bl func_080A1FC4
+    bl DecreaseResourceValue__14FieldItemStateUii
     ldr r0, [r5]
     cmp r0, #0x12
     beq .L08017542
