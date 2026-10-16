@@ -546,7 +546,7 @@ SECTIONS
         src/hardware_bootstrap.o(.text.hardware_frame_commands);
         asm/code_linkonce.o(.text.hardware_dma_command);
         src/hardware_bootstrap.o(.text.hardware_frame_command_cleanup);
-        asm/code_linkonce.o(.text.hardware_frame_commands_after);
+        src/hardware_interrupt_guard.o(.text.hardware_frame_commands_after);
         src/hardware_manager.o(.text.hardware_manager_vblank_binding);
         asm/code_linkonce.o(.text.hardware_manager_vblank_after);
         src/hardware_manager.o(.text.hardware_manager_binding_cleanup);

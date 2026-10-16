@@ -41,4 +41,18 @@ void func_08009674(struct HardwareLinkedList * list, struct HardwareLinkedList *
     func_080099D4(list, other);
 }
 
+void func_080D788C(struct HardwareLinkedList * list)
+{
+    InterruptGuard guard(1);
+    func_08009984(list);
+}
+
+void func_080D78BC(struct HardwareLinkedList * list, u32 flags)
+{
+    list->vtable = (void **)vtable_unk_080E5B90;
+    // This retained cleanup calls the original clear entry, not its copy.
+    func_0800956C(list);
+    func_080098DC(list, flags);
+}
+
 EXTERN_C_END

@@ -6039,14 +6039,6 @@ RunHardwareDmaQueueCommand:
     pop {r1}
     bx r1
     .byte 0x00, 0x00
-    .section .text.hardware_frame_commands_after, "ax", %progbits
-    .align 2, 0
-    .byte 0x70, 0xB5, 0x81, 0xB0, 0x06, 0x1C, 0x6D, 0x46, 0x01, 0x24, 0x01, 0x20, 0x29, 0xF7
-    .byte 0x6A, 0xFA, 0x04, 0x40, 0x2C, 0x80, 0x30, 0x1C, 0x32, 0xF7, 0x97, 0xFC, 0x69, 0x46, 0x08, 0x88
-    .byte 0x00, 0x28, 0x01, 0xD0, 0x29, 0xF7, 0x45, 0xFA, 0x01, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .byte 0x00, 0x00, 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x06, 0x48, 0xA0, 0x60, 0x20, 0x1C, 0x32, 0xF7
-    .byte 0x78, 0xFA, 0x20, 0x1C, 0x29, 0x1C, 0x32, 0xF7, 0x2C, 0xFC, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .byte 0x00, 0x00, 0xD0, 0x4F, 0x0E, 0x08
     .section .text.hardware_manager_vblank_after, "ax", %progbits
     .align 2, 0
 
@@ -7177,49 +7169,6 @@ RunHardwareDmaQueueCommand: @ 0x080D782C
 	pop {r1}
 	bx r1
 	.align 2, 0
-
-    .section .text.hardware_frame_commands_after, "ax", %progbits
-    .align 2, 0
-.L080D788C:
-	push {r4, r5, r6, lr}
-	sub sp, #4
-	adds r6, r0, #0
-	mov r5, sp
-	movs r4, #1
-	movs r0, #1
-	bl func_08000528
-	ands r4, r0
-	strh r4, [r5]
-	adds r0, r6, #0
-	bl func_08009984
-	mov r1, sp
-	ldrh r0, [r1]
-	cmp r0, #0
-	beq .L080D78B2
-	bl func_080004F4
-.L080D78B2:
-	add sp, #4
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-.L080D78BC:
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L080D78DC
-	str r0, [r4, #8]
-	adds r0, r4, #0
-	bl func_0800956C
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl func_080098DC
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080D78DC: .4byte vtable_unk_080E5B90
 
     .section .text.hardware_manager_vblank_after, "ax", %progbits
     .align 2, 0
