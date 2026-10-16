@@ -159,7 +159,10 @@ FarmHouseVisualDescriptor const gFarmHouseVisualDescriptors[7] = {
     },
 };
 
-FarmHouseTilePatchAnimationDescriptor const gFarmHouseTilePatchAnimations[2] = {
-    { 0x0200, gUnk_FarmHouseTilePatchAnimationResource_000, 0x000C },
-    { 0x0212, gUnk_FarmHouseTilePatchAnimationResource_001, 0x0008 },
+FarmHouseTilePatchAnimationDescriptor const gMapTilePatchAnimation0 = {
+    0x0200, gUnk_FarmHouseTilePatchAnimationResource_000, 12,
+};
+
+FarmHouseTilePatchAnimationDescriptor const gMapTilePatchAnimation1 = {
+    0x0212, gUnk_FarmHouseTilePatchAnimationResource_001, 8,
 };

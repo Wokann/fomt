@@ -8510,69 +8510,6 @@ func_080A607C: @ 0x080A5AB4
     .section .text.game_map_after_patch_dispatchers, "ax", %progbits
     .align 2, 0
 
-    .global func_080A5E58
-    .thumb_func
-func_080A5E58: @ 0x080A5E58
-	push {lr}
-	sub sp, #4
-	ldr r0, [r0]
-	movs r1, #0
-	str r1, [sp]
-	movs r1, #1
-	movs r2, #0
-	movs r3, #0
-	bl SelectMapDataId
-	add sp, #4
-	pop {r1}
-	bx r1
-	.align 2, 0
-    .global func_080A5E74
-    .thumb_func
-func_080A5E74: @ 0x080A5E74
-	push {r4, r5, r6, lr}
-	adds r6, r0, #0
-	adds r4, r1, #0
-	adds r5, r2, #0
-	ldr r0, [r6, #4]
-	bl GetMapData
-	ldrh r0, [r0, #0x20]
-	muls r0, r5
-	adds r4, r4, r0
-	lsls r4, r4, #2
-	ldr r0, [r6, #0x2c]
-	adds r0, r0, r4
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-
-    .global func_080A5E94
-    .thumb_func
-func_080A5E94: @ 0x080A5E94
-	ldr r0, [r0, #4]
-	bx lr
-
-    .global func_080A5E98
-    .thumb_func
-func_080A5E98: @ 0x080A5E98
-	ldr r0, [r0]
-	bx lr
-
-    .global func_080A5E9C
-    .thumb_func
-func_080A5E9C: @ 0x080A5E9C
-	movs r1, #0xe
-	ldrsh r0, [r0, r1]
-	bx lr
-	.align 2, 0
-
-    .global func_080A5EA4
-    .thumb_func
-func_080A5EA4: @ 0x080A5EA4
-	movs r1, #0xa
-	ldrsh r0, [r0, r1]
-	bx lr
-	.align 2, 0
-
     .global func_080A6474
     .thumb_func
 func_080A6474: @ 0x080A5EAC
@@ -8608,61 +8545,8 @@ func_080A6474: @ 0x080A5EAC
 	.align 2, 0
 .Ljp_080A64B4: .4byte vtable_unk_080E830C
 
-    .global func_080A5EF0
-    .thumb_func
-func_080A5EF0: @ 0x080A5EF0
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	bl func_080A4BEC
-	adds r0, r4, #0
-	adds r0, #0x94
-	ldr r1, [r0]
-	ldr r0, [r4]
-	cmp r0, #6
-	bne .Ljp_080A6510
-	ldr r2, .Ljp_080A6518 @ =0x000021A0
-	adds r0, r1, r2
-	ldrb r0, [r0]
-	lsls r0, r0, #0x1e
-	lsrs r3, r0, #0x1e
-	cmp r3, #1
-	bne .Ljp_080A6510
-	adds r2, r4, #0
-	adds r2, #0xb4
-	ldr r1, .Ljp_080A651C @ =gFarmHouseTilePatchAnimations
-	ldrb r0, [r2, #2]
-	adds r0, #1
-	movs r6, #0
-	strb r0, [r2, #2]
-	movs r5, #0xff
-	lsls r0, r0, #0x18
-	lsrs r0, r0, #0x18
-	ldrh r1, [r1, #8]
-	cmp r0, r1
-	blo .Ljp_080A64F8
-	strb r6, [r2, #2]
-	strb r3, [r2, #1]
-.Ljp_080A64F8:
-	adds r2, r4, #0
-	adds r2, #0xb8
-	ldr r1, .Ljp_080A6520 @ =gFarmHouseTilePatchAnimations + 0x0C
-	ldrb r0, [r2, #2]
-	adds r0, #1
-	strb r0, [r2, #2]
-	ands r0, r5
-	ldrh r1, [r1, #8]
-	cmp r0, r1
-	blo .Ljp_080A6510
-	strb r6, [r2, #2]
-	strb r3, [r2, #1]
-.Ljp_080A6510:
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A6518: .4byte 0x000021A0
-.Ljp_080A651C: .4byte gFarmHouseTilePatchAnimations
-.Ljp_080A6520: .4byte gFarmHouseTilePatchAnimations + 0x0C
+    .section .text.game_map_saved_draw, "ax", %progbits
+    .align 2, 0
 
     .global func_080A5F5C
     .thumb_func
@@ -8736,7 +8620,7 @@ func_080A5F5C: @ 0x080A5F5C
 	bne .Ljp_080A662A
 	adds r4, r5, #0
 	adds r4, #0xb4
-	ldr r7, .Ljp_080A6638 @ =gFarmHouseTilePatchAnimations
+	ldr r7, .Ljp_080A6638 @ =gMapTilePatchAnimation0
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .Ljp_080A65EC
@@ -8768,7 +8652,7 @@ func_080A5F5C: @ 0x080A5F5C
 .Ljp_080A65EC:
 	adds r4, r5, #0
 	adds r4, #0xb8
-	ldr r7, .Ljp_080A663C @ =gFarmHouseTilePatchAnimations + 0x0C
+	ldr r7, .Ljp_080A663C @ =gMapTilePatchAnimation1
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .Ljp_080A662A
@@ -8805,27 +8689,11 @@ func_080A5F5C: @ 0x080A5F5C
 	bx r0
 	.align 2, 0
 .Ljp_080A6634: .4byte 0x000021A0
-.Ljp_080A6638: .4byte gFarmHouseTilePatchAnimations
-.Ljp_080A663C: .4byte gFarmHouseTilePatchAnimations + 0x0C
+.Ljp_080A6638: .4byte gMapTilePatchAnimation0
+.Ljp_080A663C: .4byte gMapTilePatchAnimation1
 
-    .global func_080A6078
-    .thumb_func
-func_080A6078: @ 0x080A6078
-	push {r4, lr}
-	adds r4, r0, #0
-	bl func_080A5198
-	adds r1, r4, #0
-	adds r1, #0xb4
-	movs r0, #0
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	adds r4, #0xb8
-	strb r0, [r4]
-	strb r0, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.game_map_after_animation_reset, "ax", %progbits
+    .align 2, 0
 
     .global func_080A6098
     .thumb_func
@@ -92103,68 +91971,6 @@ func_080A607C: @ 0x080A607C
     .section .text.game_map_after_patch_dispatchers, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080A6420
-func_080A6420: @ 0x080A6420
-	push {lr}
-	sub sp, #4
-	ldr r0, [r0]
-	movs r1, #0
-	str r1, [sp]
-	movs r1, #1
-	movs r2, #0
-	movs r3, #0
-	bl SelectMapDataId
-	add sp, #4
-	pop {r1}
-	bx r1
-	.align 2, 0
-    .global func_080A643C
-    .thumb_func
-func_080A643C: @ 0x080A643C
-	push {r4, r5, r6, lr}
-	adds r6, r0, #0
-	adds r4, r1, #0
-	adds r5, r2, #0
-	ldr r0, [r6, #4]
-	bl GetMapData
-	ldrh r0, [r0, #0x20]
-	muls r0, r5
-	adds r4, r4, r0
-	lsls r4, r4, #2
-	ldr r0, [r6, #0x2c]
-	adds r0, r0, r4
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-
-    .global func_080A645C
-    .thumb_func
-func_080A645C: @ 0x080A645C
-	ldr r0, [r0, #4]
-	bx lr
-
-    .global func_080A6460
-    .thumb_func
-func_080A6460: @ 0x080A6460
-	ldr r0, [r0]
-	bx lr
-
-    .global func_080A6464
-    .thumb_func
-func_080A6464: @ 0x080A6464
-	movs r1, #0xe
-	ldrsh r0, [r0, r1]
-	bx lr
-	.align 2, 0
-
-    .global func_080A646C
-    .thumb_func
-func_080A646C: @ 0x080A646C
-	movs r1, #0xa
-	ldrsh r0, [r0, r1]
-	bx lr
-	.align 2, 0
-
 	thumb_func_start func_080A6474
 func_080A6474: @ 0x080A6474
 	push {r4, r5, lr}
@@ -92199,60 +92005,8 @@ func_080A6474: @ 0x080A6474
 	.align 2, 0
 .L080A64B4: .4byte vtable_unk_080E831C
 
-	thumb_func_start func_080A64B8
-func_080A64B8: @ 0x080A64B8
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	bl func_080A4BEC
-	adds r0, r4, #0
-	adds r0, #0x94
-	ldr r1, [r0]
-	ldr r0, [r4]
-	cmp r0, #6
-	bne .L080A6510
-	ldr r2, .L080A6518 @ =0x000021A0
-	adds r0, r1, r2
-	ldrb r0, [r0]
-	lsls r0, r0, #0x1e
-	lsrs r3, r0, #0x1e
-	cmp r3, #1
-	bne .L080A6510
-	adds r2, r4, #0
-	adds r2, #0xb4
-	ldr r1, .L080A651C @ =gFarmHouseTilePatchAnimations
-	ldrb r0, [r2, #2]
-	adds r0, #1
-	movs r6, #0
-	strb r0, [r2, #2]
-	movs r5, #0xff
-	lsls r0, r0, #0x18
-	lsrs r0, r0, #0x18
-	ldrh r1, [r1, #8]
-	cmp r0, r1
-	blo .L080A64F8
-	strb r6, [r2, #2]
-	strb r3, [r2, #1]
-.L080A64F8:
-	adds r2, r4, #0
-	adds r2, #0xb8
-	ldr r1, .L080A6520 @ =gFarmHouseTilePatchAnimations + 0x0C
-	ldrb r0, [r2, #2]
-	adds r0, #1
-	strb r0, [r2, #2]
-	ands r0, r5
-	ldrh r1, [r1, #8]
-	cmp r0, r1
-	blo .L080A6510
-	strb r6, [r2, #2]
-	strb r3, [r2, #1]
-.L080A6510:
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A6518: .4byte 0x000021A0
-.L080A651C: .4byte gFarmHouseTilePatchAnimations
-.L080A6520: .4byte gFarmHouseTilePatchAnimations + 0x0C
+    .section .text.game_map_saved_draw, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080A6524
 func_080A6524: @ 0x080A6524
@@ -92325,7 +92079,7 @@ func_080A6524: @ 0x080A6524
 	bne .L080A662A
 	adds r4, r5, #0
 	adds r4, #0xb4
-	ldr r7, .L080A6638 @ =gFarmHouseTilePatchAnimations
+	ldr r7, .L080A6638 @ =gMapTilePatchAnimation0
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A65EC
@@ -92357,7 +92111,7 @@ func_080A6524: @ 0x080A6524
 .L080A65EC:
 	adds r4, r5, #0
 	adds r4, #0xb8
-	ldr r7, .L080A663C @ =gFarmHouseTilePatchAnimations + 0x0C
+	ldr r7, .L080A663C @ =gMapTilePatchAnimation1
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A662A
@@ -92394,26 +92148,11 @@ func_080A6524: @ 0x080A6524
 	bx r0
 	.align 2, 0
 .L080A6634: .4byte 0x000021A0
-.L080A6638: .4byte gFarmHouseTilePatchAnimations
-.L080A663C: .4byte gFarmHouseTilePatchAnimations + 0x0C
+.L080A6638: .4byte gMapTilePatchAnimation0
+.L080A663C: .4byte gMapTilePatchAnimation1
 
-	thumb_func_start func_080A6640
-func_080A6640: @ 0x080A6640
-	push {r4, lr}
-	adds r4, r0, #0
-	bl func_080A5760
-	adds r1, r4, #0
-	adds r1, #0xb4
-	movs r0, #0
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	adds r4, #0xb8
-	strb r0, [r4]
-	strb r0, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.game_map_after_animation_reset, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080A6660
 func_080A6660: @ 0x080A6660

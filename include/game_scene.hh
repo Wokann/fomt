@@ -13,6 +13,7 @@
 #include "hardware_resource.hh"
 #include "hardware_state_clear.hh"
 #include "time_of_day.hh"
+#include "field_render_farm_house_data.hh"
 #include <new>
 
 // Only the player virtual interface used by these scene commands is modeled.
@@ -77,7 +78,7 @@ struct GameSceneWorldMapPrefix {
     virtual void vfunc_0C();
     virtual void vfunc_10();
     virtual void vfunc_14();
-    virtual void vfunc_18();
+    virtual u32 SelectMapData();
     virtual void LoadTiles();
     virtual void LoadTilemaps();
     virtual void LoadTimeOfDayPalette(i32 period, u32 buffer_index);
@@ -86,13 +87,28 @@ private:
     GameSceneWorldMapPrefix();
 };
 
+struct MapTilePatchAnimationState {
+    u8 frame;
+    bool update_pending;
+    u8 elapsed_frames;
+    void Tick(FarmHouseTilePatchAnimationDescriptor const & animation);
+    void ResetFrame();
+};
+
+typedef char MapTilePatchAnimationPendingCheck[offsetof(MapTilePatchAnimationState, update_pending) == 1 ? 1 : -1];
+typedef char MapTilePatchAnimationElapsedCheck[offsetof(MapTilePatchAnimationState, elapsed_frames) == 2 ? 1 : -1];
+typedef char MapTilePatchAnimationStateSizeCheck[sizeof(MapTilePatchAnimationState) == 4 ? 1 : -1];
+
 // The native saved-map constructor calls the base constructor, replaces its
 // vtable at +0x90, then stores the save pointer at +0x94 and this flag at +0x98.
-// The complete allocation is 0xBC bytes; only the verified derived prefix is
-// modeled here. Never allocate it or infer the native size from this view.
+// The allocation is 0xBC bytes. The runtime member at +0x9C remains
+// opaque; the two verified animation states begin at +0xB4 and +0xB8.
+// This borrowed view is never allocated or used to infer a native class size.
 struct GameSceneSavedMapPrefix : GameSceneWorldMapPrefix {
     GameStateSaveImage * save;
     bool unk_98;
+    u8 unk_9C[0x18] ALIGN(4);
+    MapTilePatchAnimationState tile_animations[2];
 
 private:
     GameSceneSavedMapPrefix();
@@ -104,7 +120,9 @@ typedef char GameSceneMapTimePaletteChangedCheck[offsetof(GameSceneWorldMapPrefi
 
 typedef char GameSceneSavedMapSaveCheck[offsetof(GameSceneSavedMapPrefix, save) == 0x94 ? 1 : -1];
 typedef char GameSceneSavedMapFlagCheck[offsetof(GameSceneSavedMapPrefix, unk_98) == 0x98 ? 1 : -1];
-typedef char GameSceneSavedMapPrefixSizeCheck[sizeof(GameSceneSavedMapPrefix) == 0x9C ? 1 : -1];
+typedef char GameSceneSavedMapOpaqueMemberCheck[offsetof(GameSceneSavedMapPrefix, unk_9C) == 0x9C ? 1 : -1];
+typedef char GameSceneSavedMapAnimationsCheck[offsetof(GameSceneSavedMapPrefix, tile_animations) == 0xB4 ? 1 : -1];
+typedef char GameSceneSavedMapPrefixSizeCheck[sizeof(GameSceneSavedMapPrefix) == 0xBC ? 1 : -1];
 
 // The native palette cache has 22 resource records and 13 retained banks.
 // Keep the remaining record bytes and flags opaque until their users are recovered.
@@ -1256,6 +1274,21 @@ void func_080A62BC(GameSceneWorldMapPrefix * map);
 void func_080A6300(GameSceneWorldMapPrefix * map);
 void func_080A635C(GameSceneWorldMapPrefix * map);
 void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk);
+u32 SelectDefaultWorldMapData(GameSceneWorldMapPrefix const * map);
+FieldRenderTileAttributes * GetWorldMapTileAttributes(GameSceneWorldMapPrefix * map, u32 x, u32 y);
+u32 GetWorldMapDataId(GameSceneWorldMapPrefix const * map);
+u32 GetWorldMapId(GameSceneWorldMapPrefix const * map);
+i32 GetWorldMapViewY(GameSceneWorldMapPrefix const * map);
+i32 GetWorldMapViewX(GameSceneWorldMapPrefix const * map);
+void UpdateSavedMapTileAnimationTimers(GameSceneSavedMapPrefix * map);
+void ResetSavedMapTileAnimationFrames(GameSceneSavedMapPrefix * map);
+// These base lifecycle methods still use their actual native entries.
+void func_080A4BEC(GameSceneWorldMapPrefix * map);
+#if defined(REGION_JP)
+void func_080A5198(GameSceneWorldMapPrefix * map);
+#else
+void func_080A5760(GameSceneWorldMapPrefix * map);
+#endif
 void func_080AA850(GameSceneSavedMapPrefix * map, u32 index);
 void func_080AA89C(GameSceneWorldMapPrefix * map);
 void func_080AA8BC(GameSceneWorldMapPrefix * map);
@@ -1373,5 +1406,19 @@ typedef char GameSceneSpriteBasePaletteIndicesCheck[offsetof(GameSceneSpriteBase
 typedef char GameSceneIndexedSpriteSizeCheck[sizeof(GameSceneIndexedSprite) == 0x40 ? 1 : -1];
 typedef char GameSceneIndexedSpriteHandleCheck[offsetof(GameSceneIndexedSprite, handle) == 0x28 ? 1 : -1];
 typedef char GameSceneIndexedSpriteFlagsCheck[offsetof(GameSceneIndexedSprite, unk_3C) == 0x3C ? 1 : -1];
+
+inline void MapTilePatchAnimationState::Tick(FarmHouseTilePatchAnimationDescriptor const & animation)
+{
+    if (++elapsed_frames >= animation.frame_duration) {
+        elapsed_frames = 0;
+        update_pending = true;
+    }
+}
+
+inline void MapTilePatchAnimationState::ResetFrame()
+{
+    frame = 0;
+    update_pending = false;
+}
 
 #endif // GAME_SCENE_HH

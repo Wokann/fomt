@@ -6,6 +6,7 @@
 #include "game_state.hh"
 #include "field_item_data.hh"
 #include "field_render_rect_descriptors.hh"
+#include "field_render_farm_house_data.hh"
 #include "field_render_resource_data.hh"
 #include "actor_state.hh"
 #include "entity_actor.hh"
@@ -2038,6 +2039,60 @@ EC void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk)
         return;
     }
     map->view_changed = true;
+}
+
+EC u32 SelectDefaultWorldMapData(GameSceneWorldMapPrefix const * map)
+{
+    return SelectMapDataId(map->map, SEASON_SUMMER, 0, 0, 0);
+}
+
+EC FieldRenderTileAttributes * GetWorldMapTileAttributes(GameSceneWorldMapPrefix * map,
+    u32 x, u32 y)
+{
+    u32 width = GetMapData(map->map_data_id)->width;
+    return &map->tile_attributes[x + y * width];
+}
+
+EC u32 GetWorldMapDataId(GameSceneWorldMapPrefix const * map)
+{
+    return map->map_data_id;
+}
+
+EC u32 GetWorldMapId(GameSceneWorldMapPrefix const * map)
+{
+    return map->map;
+}
+
+EC i32 GetWorldMapViewY(GameSceneWorldMapPrefix const * map)
+{
+    return map->y.parts.integer;
+}
+
+EC i32 GetWorldMapViewX(GameSceneWorldMapPrefix const * map)
+{
+    return map->x.parts.integer;
+}
+
+EC void UpdateSavedMapTileAnimationTimers(GameSceneSavedMapPrefix * map)
+{
+    func_080A4BEC(map);
+    GameStateSaveImage * save = map->save;
+    if (map->map == MAP_ROSE_SQUARE
+        && save->event_state.harvest_festival_active == FESTIVAL_PHASE_INITIAL) {
+        map->tile_animations[0].Tick(gMapTilePatchAnimation0);
+        map->tile_animations[1].Tick(gMapTilePatchAnimation1);
+    }
+}
+
+EC void ResetSavedMapTileAnimationFrames(GameSceneSavedMapPrefix * map)
+{
+#if defined(REGION_JP)
+    func_080A5198(map);
+#else
+    func_080A5760(map);
+#endif
+    map->tile_animations[0].ResetFrame();
+    map->tile_animations[1].ResetFrame();
 }
 
 EC void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,

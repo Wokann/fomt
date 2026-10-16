@@ -355,7 +355,7 @@ GameEventState::GameEventState()
     music_festival_player_performance_accepted = 0;
     music_festival_active = 0;
     harvest_festival_invitation_event_state = 0;
-    harvest_festival_active = 0;
+    harvest_festival_active = FESTIVAL_PHASE_INACTIVE;
     harvest_festival_contributed_ingredient_accepted = 0;
     harvest_festival_session_phase = 0;
     unknown_022 = 0;

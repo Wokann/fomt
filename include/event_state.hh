@@ -2,6 +2,7 @@
 #define EVENT_STATE_HH
 
 #include "prelude.h"
+#include "fomt_constants.hh"
 
 // Saved at +0x214C. Packed members follow the actual VarGet/VarSet
 // storage order and use the canonical fomt_constants.mary.h names.
@@ -313,7 +314,7 @@ struct GameEventState {
     bool music_festival_player_performance_accepted : 1;
     u32 music_festival_active : 2;
     u32 harvest_festival_invitation_event_state : 2;
-    u32 harvest_festival_active : 2;
+    MaryFestivalActivityPhase harvest_festival_active : 2;
     bool harvest_festival_contributed_ingredient_accepted : 1;
     bool harvest_festival_session_phase : 1;
     bool unknown_022 : 1;

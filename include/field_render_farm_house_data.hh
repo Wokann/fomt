@@ -12,14 +12,18 @@ struct FarmHouseTilePatchDescriptor
     u8 const * frame_data;
 };
 
-// Callers additionally read frame_count at +0x08.  As above, both the
-// pointer alignment and tail alignment are natural structure padding.
+// Native timers compare elapsed updates against frame_duration at +0x08.
+// The animation frame count is read from frame_data, not from this field.
+// Pointer alignment and tail alignment are natural structure padding.
 struct FarmHouseTilePatchAnimationDescriptor
 {
     u16 destination_tile;
     u8 const * frame_data;
-    u16 frame_count;
+    u16 frame_duration;
 };
+
+typedef char MapTilePatchAnimationDescriptorSizeCheck[sizeof(FarmHouseTilePatchAnimationDescriptor) == 12 ? 1 : -1];
+typedef char MapTilePatchAnimationDurationCheck[offsetof(FarmHouseTilePatchAnimationDescriptor, frame_duration) == 8 ? 1 : -1];
 
 // The numeric group names deliberately describe only the four physically
 // contiguous ROM groups.  The still-native callers do not prove a stronger
@@ -34,11 +38,11 @@ struct FarmHouseTilePatchData
 
 extern FarmHouseTilePatchData const gFarmHouseTilePatchData;
 
-// These are the two contiguous animation descriptors following
-// gFarmHouseVisualDescriptors in ROM.  Their neutral table name deliberately
-// avoids assigning a stronger gameplay role before the neighboring raw data
-// has been recovered.
-extern FarmHouseTilePatchAnimationDescriptor const gFarmHouseTilePatchAnimations[2];
+// These contiguous records follow gFarmHouseVisualDescriptors in ROM.
+// Native drawing and timer updates address them independently, not through
+// an indexed table. Keep neutral names until their visual roles are known.
+extern FarmHouseTilePatchAnimationDescriptor const gMapTilePatchAnimation0;
+extern FarmHouseTilePatchAnimationDescriptor const gMapTilePatchAnimation1;
 
 // These records start with the exact 0x18-byte tile-patch layout consumed by
 // func_080A5BD8.  Native setup also passes unk_18 to Unpack and derives a VRAM

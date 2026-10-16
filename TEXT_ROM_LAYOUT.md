@@ -23,6 +23,24 @@ JP 已将逐主题旧锚点合并为两片连续可变区域：`0x080E7A40`–`0
 - `[Mary 脚本表]`：Mary 生成的脚本入口指针表；它与脚本本体由 Mary 单独维护，只记录该表的连续边界。
 - `[填充]`：链接映射中实际存在的 `*fill*` 字节，显示字节值。
 
+## 地图动画计时 C++：独立描述符与文本地址不变
+
+地图元数据接口及保存地图动画计时／复位已进入四版共用的
+`game_scene` 源码，本批每版八个函数、224 字节。保存地图状态
+按原生 `+0xB4/+0xB8` 建模，收获祭阶段使用现有 Mary 枚举；
+仍保留未知运行时成员、基类更新与绘制汇编，不虚报 C++ 进度。
+
+原便利数组 `gFarmHouseTilePatchAnimations` 改为两个真实定义
+`gMapTilePatchAnimation0/1`，每个 12 字节，依源码顺序保持
+原来 24 字节及资源重定位。独立记录仍属于同一
+`field_render_farm_house_data.o(.rodata)`；没有手写 section、
+汇编别名或固定偏移修补。四版记录地址见 `CODE_ROM_LAYOUT.md`。
+每版四处描述符指针和四处函数指针均已核实符号引用。
+
+四版 WSL `-j4` 完整 ROM 字节与 SHA-1 一致，原有全局地址、
+文本、指南、脚本及本地化岛边界不变。数据校验逐个保留同名
+ELF 输入节，未按 `.rodata` 名称覆盖；本文地址表无需移动。
+
 ## 世界地表判定 C++：布局、世界虚表及文本地址不变
 
 世界判定入口与海滩三层图块筛选已进入四版共用的 `game_scene`
@@ -870,7 +888,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | EU | `0x08105760`–`0x08105F33` | `src/time_of_day.o(.rodata)` | `src/time_of_day.cc`、`include/time_of_day.hh`；4×4 总表的 16 项均直接重定位到 16 张命名季节/时段转换记录表 | `gTimeOfDayTransitionTables`、16 张季节/时段转换记录表 |
 | EU | `0x08105F34`–`0x08106983` | `src/map_data.o(.rodata)` | `src/map_data.cc`、`include/map_data.hh`；66×40 字节 `MapData` 表，518 个非空资源字段均为原始资产标签的直接重定位 | `gMapData` |
 | EU | `0x08106984`–`0x08107133` | `src/field_render_rect_descriptors.o(.rodata)` | `src/field_render_rect_descriptors.cc`、`include/field_render_rect_descriptors.hh`；82×24 字节描述符，270 个非空资源字段均为原始资产标签的直接重定位 | `gFieldRenderRectDescriptors` |
-| EU | `0x08107134`–`0x081073A7` | `src/field_render_farm_house_data.o(.rodata)` | `src/field_render_farm_house_data.cc`、`include/field_render_farm_house_data.hh`；`0x128` 字节补丁表、`0x134` 字节视觉表和 `0x18` 字节动画表按物理顺序连续排列，75 个资源字段均为直接重定位 | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations` |
+| EU | `0x08107134`–`0x081073A7` | `src/field_render_farm_house_data.o(.rodata)` | `src/field_render_farm_house_data.cc`、`include/field_render_farm_house_data.hh`；`0x128` 字节补丁表、`0x134` 字节视觉表及两份各 12 字节的独立动画描述符按物理顺序连续排列，75 个资源字段均为直接重定位 | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gMapTilePatchAnimation0`、`gMapTilePatchAnimation1` |
 | EU | `0x081073A8`–`0x0810748E` | `src/field_render_resource_data.o(.rodata)` | `src/field_render_resource_data.cc`、`include/field_render_resource_data.hh`、`data/text/eu/field_render_resource_data_1.cc`、`data/text/eu/field_render_resource_data_2.cc` | 原始资源标签、3 条运行时文本、并行表、参数表和三组三字节样式表均按源码物理顺序自然排列；未标号零字节归入相邻原始对象，不导出伪填充数组，也不使用专用布局宏 |
 | EU | `0x08107490`–`0x081074A7` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | EU | `0x081074A8`–`0x08107607` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/eu/field_render_runtime_data_1.cc`、`data/text/eu/field_render_runtime_data_2.cc`、`data/text/eu/field_render_runtime_data_3.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本均按源码顺序排列；所有外部访问均为符号重定位，季节范围仅以直写 packed 属性维持 ROM 的每项 2 字节布局 |
@@ -960,7 +978,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | DE | `0x0810612C`–`0x081068FF` | `src/time_of_day.o(.rodata)` | `src/time_of_day.cc`、`include/time_of_day.hh`；4×4 总表的 16 项均直接重定位到 16 张命名季节/时段转换记录表 | `gTimeOfDayTransitionTables`、16 张季节/时段转换记录表 |
 | DE | `0x08106900`–`0x0810734F` | `src/map_data.o(.rodata)` | `src/map_data.cc`、`include/map_data.hh`；66×40 字节 `MapData` 表，518 个非空资源字段均为原始资产标签的直接重定位 | `gMapData` |
 | DE | `0x08107350`–`0x08107AFF` | `src/field_render_rect_descriptors.o(.rodata)` | `src/field_render_rect_descriptors.cc`、`include/field_render_rect_descriptors.hh`；82×24 字节描述符，270 个非空资源字段均为原始资产标签的直接重定位 | `gFieldRenderRectDescriptors` |
-| DE | `0x08107B00`–`0x08107D73` | `src/field_render_farm_house_data.o(.rodata)` | `src/field_render_farm_house_data.cc`、`include/field_render_farm_house_data.hh`；`0x128` 字节补丁表、`0x134` 字节视觉表和 `0x18` 字节动画表按物理顺序连续排列，75 个资源字段均为直接重定位 | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations` |
+| DE | `0x08107B00`–`0x08107D73` | `src/field_render_farm_house_data.o(.rodata)` | `src/field_render_farm_house_data.cc`、`include/field_render_farm_house_data.hh`；`0x128` 字节补丁表、`0x134` 字节视觉表及两份各 12 字节的独立动画描述符按物理顺序连续排列，75 个资源字段均为直接重定位 | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gMapTilePatchAnimation0`、`gMapTilePatchAnimation1` |
 | DE | `0x08107D74`–`0x08107E5A` | `src/field_render_resource_data.o(.rodata)` | `src/field_render_resource_data.cc`、`include/field_render_resource_data.hh`、`data/text/de/field_render_resource_data_1.cc`、`data/text/de/field_render_resource_data_2.cc` | 原始资源标签、3 条运行时文本、并行表、参数表和三组三字节样式表均按源码物理顺序自然排列；未标号零字节归入相邻原始对象，不导出伪填充数组，也不使用专用布局宏 |
 | DE | `0x08107E5C`–`0x08107E73` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | DE | `0x08107E74`–`0x08107FD3` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/de/field_render_runtime_data_1.cc`、`data/text/de/field_render_runtime_data_2.cc`、`data/text/de/field_render_runtime_data_3.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本均按源码顺序排列；所有外部访问均为符号重定位，季节范围仅以直写 packed 属性维持 ROM 的每项 2 字节布局 |
@@ -1105,7 +1123,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08105290`–`0x08105A23` | `src/time_of_day.o(.rodata)` | [数据] | `src/time_of_day.cc`<br>`include/time_of_day.hh` | `gTimeOfDayTransitionRecords_Spring_Morning`, `gTimeOfDayTransitionRecords_Spring_Afternoon`, `gTimeOfDayTransitionRecords_Spring_Evening`, `gTimeOfDayTransitionRecords_Spring_Night`, `gTimeOfDayTransitionRecords_Summer_Morning`, `gTimeOfDayTransitionRecords_Summer_Afternoon`, … +10；总表逐项直接引用这些真实对象 |
 | `0x08105A24`–`0x08106473` | `src/map_data.o(.rodata)` | [数据] | `src/map_data.cc`<br>`include/map_data.hh` | `gMapData`（66×40 字节；518 个非空资源字段均为 `R_ARM_ABS32` 原始资产标签重定位，空字段直接为 `nullptr`） |
 | `0x08106474`–`0x08106C23` | `src/field_render_rect_descriptors.o(.rodata)` | [数据] | `src/field_render_rect_descriptors.cc`<br>`include/field_render_rect_descriptors.hh` | `gFieldRenderRectDescriptors`（82×24 字节；270 个非空资源字段均为 `R_ARM_ABS32` 原始资产标签重定位；汇编通过表符号加真实数组元素偏移访问） |
-| `0x08106C24`–`0x08106E97` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`（`0x128`）→ `gFarmHouseVisualDescriptors`（`0x134`）→ `gFarmHouseTilePatchAnimations`（`0x18`）；75 个 `R_ARM_ABS32` 资源重定位，汇编引用均为真实对象符号加结构内偏移 |
+| `0x08106C24`–`0x08106E97` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`（`0x128`）→ `gFarmHouseVisualDescriptors`（`0x134`）→ `gMapTilePatchAnimation0` → `gMapTilePatchAnimation1`（各 12 字节）；75 个 `R_ARM_ABS32` 资源重定位，动画记录通过各自的真实符号引用，其他结构通过符号加结构内偏移引用 |
 | `0x08106E98`–`0x08106EA3` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`、`gUnk_FieldRenderResource_159`；后者包含至下一命名对象前的 4 个未标号 `00` |
 | `0x08106EA4`–`0x08106EB7` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_177`、`gUnk_FieldRenderResource_178`；后者包含至下一命名对象前的 12 个未标号 `00` |
 | `0x08106EB8`–`0x08106ECD` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/jp/field_render_resource_data_1.cc` | 运行时字符串 `2` 项 |
@@ -2939,7 +2957,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08105748`–`0x08105EDB` | `src/time_of_day.o(.rodata)` | [数据] | `src/time_of_day.cc`<br>`include/time_of_day.hh` | `gTimeOfDayTransitionRecords_Spring_Morning`, `gTimeOfDayTransitionRecords_Spring_Afternoon`, `gTimeOfDayTransitionRecords_Spring_Evening`, `gTimeOfDayTransitionRecords_Spring_Night`, `gTimeOfDayTransitionRecords_Summer_Morning`, `gTimeOfDayTransitionRecords_Summer_Afternoon`, … +10；总表逐项直接引用这些真实对象 |
 | `0x08105EDC`–`0x0810692B` | `src/map_data.o(.rodata)` | [数据] | `src/map_data.cc`<br>`include/map_data.hh` | `gMapData`（66×40 字节；518 个非空资源字段均为 `R_ARM_ABS32` 原始资产标签重定位，空字段直接为 `nullptr`） |
 | `0x0810692C`–`0x081070DB` | `src/field_render_rect_descriptors.o(.rodata)` | [数据] | `src/field_render_rect_descriptors.cc`<br>`include/field_render_rect_descriptors.hh` | `gFieldRenderRectDescriptors`（82×24 字节；270 个非空资源字段均为 `R_ARM_ABS32` 原始资产标签重定位；汇编通过表符号加真实数组元素偏移访问） |
-| `0x081070DC`–`0x0810734F` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`（`0x128`）→ `gFarmHouseVisualDescriptors`（`0x134`）→ `gFarmHouseTilePatchAnimations`（`0x18`）；75 个 `R_ARM_ABS32` 资源重定位，汇编引用均为真实对象符号加结构内偏移 |
+| `0x081070DC`–`0x0810734F` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`（`0x128`）→ `gFarmHouseVisualDescriptors`（`0x134`）→ `gMapTilePatchAnimation0` → `gMapTilePatchAnimation1`（各 12 字节）；75 个 `R_ARM_ABS32` 资源重定位，动画记录通过各自的真实符号引用，其他结构通过符号加结构内偏移引用 |
 | `0x08107350`–`0x0810735B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`、`gUnk_FieldRenderResource_159`；后者包含至下一命名对象前的 4 个未标号 `00` |
 | `0x0810735C`–`0x0810736F` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_177`、`gUnk_FieldRenderResource_178`；后者包含至下一命名对象前的 12 个未标号 `00` |
 | `0x08107370`–`0x08107385` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/us/field_render_resource_data_1.cc` | 运行时字符串 `2` 项 |
