@@ -10,13 +10,11 @@ struct HardwareResourceEntry {
 
     HardwareResourceEntry()
     {
-        func_08007128(this);
         handle = AllocateHardwarePoolHandle(this);
     }
 
     HardwareResourceEntry(HardwareResourceEntry const & value)
     {
-        func_08007128(this);
         handle = func_0800745C(this, value.handle);
     }
 

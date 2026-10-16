@@ -97,7 +97,7 @@ IntroSceneCore * ConstructIntroSceneCore(void * object)
     InitializeIntroSceneResourceState(&core->resources[13], small, 0);
     InitializeIntroSceneHardwareStateReservation(&core->state_reservation, 0, 0x300);
     func_08007128(&core->pool_reservation);
-    func_080071BC(&core->pool_reservation, 9, 7);
+    core->pool_reservation.Reserve(9, 7);
     InitializeIntroSceneHardwareStateHandle(&core->state_handle_6C78, 4);
     InitializeIntroSceneHardwarePoolHandle(&core->pool_handle_6C80);
     InitializeIntroSceneHardwareStateHandle(&core->state_handle_6C88, 4);

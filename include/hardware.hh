@@ -7,10 +7,17 @@
 // the global owner count rather than reading fields from the receiver.
 struct HardwarePoolOwner
 {
+    HardwarePoolOwner() asm("func_08007128");
+    HardwarePoolOwner(HardwarePoolOwner const &) asm("func_08007174");
     ~HardwarePoolOwner();
+    void Reserve(unsigned int from, unsigned int count) asm("func_080071BC");
 };
 
+typedef char HardwarePoolOwnerSizeCheck[sizeof(HardwarePoolOwner) == 4 ? 1 : -1];
+
 EXTERN_C
+// ABI declarations for still-native callers. These name the actual members
+// above, not separate wrappers or storage aliases.
 void * func_08007128(void * self);
 void * func_08007174(void * self, void const * other);
 void func_080071BC(void * self, unsigned int from, unsigned int count);

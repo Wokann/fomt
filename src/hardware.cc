@@ -2,7 +2,7 @@
 
 Unk_hardware_03000404 * gUnk_03000404;
 
-EC void * func_08007128(void * self)
+HardwarePoolOwner::HardwarePoolOwner()
 {
     if (gUnk_03000404 == nullptr)
     {
@@ -11,14 +11,12 @@ EC void * func_08007128(void * self)
 
     gUnk_03000404->unk_4C++;
 
-    return self;
 }
 
-EC void * func_08007174(void * self, void const * other)
+HardwarePoolOwner::HardwarePoolOwner(HardwarePoolOwner const &)
 {
     gUnk_03000404->unk_4C++;
 
-    return self;
 }
 
 HardwarePoolOwner::~HardwarePoolOwner()
@@ -34,12 +32,8 @@ HardwarePoolOwner::~HardwarePoolOwner()
     }
 }
 
-EC void func_080071BC(void * self, unsigned int from, unsigned int count)
+void HardwarePoolOwner::Reserve(unsigned int from, unsigned int count)
 {
-    // https://decomp.me/scratch/e4deE (solved, but messy)
-
-    (void)self;
-
     Unk_hardware_03000404 * h = gUnk_03000404;
 
     if (h->unk_51 != 0)
