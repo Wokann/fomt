@@ -366,6 +366,9 @@ $(BUILD_DIR)/src/game_scene.o: CXXFLAGS += -ffunction-sections
 # Grid methods are interleaved with unrecovered actor routines in the ROM.
 $(BUILD_DIR)/src/actor_state.o: CXXFLAGS += -ffunction-sections
 
+# The static table accessor and terrain query retain their native code positions.
+$(BUILD_DIR)/src/map_data.o: CXXFLAGS += -ffunction-sections
+
 # The NPC constructor and partner queries occupy separate native code runs.
 $(BUILD_DIR)/src/npc_collection.o: CXXFLAGS += -ffunction-sections
 

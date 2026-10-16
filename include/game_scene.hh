@@ -267,7 +267,8 @@ struct GameSceneWorldPrefix : GameObject {
 
     GameSceneWorldData data;
     GameStateSaveImage * save;
-    u8 unk_103C[0x18];
+    u8 unk_103C[0x14];
+    FieldRenderTileAttributes * farm_tile_attributes;
     GameScene * scene;
     SmartPtr<GameSceneIndexedSprite> unk_1058;
     u8 unk_105C[0x20];
@@ -311,6 +312,8 @@ typedef char GameSceneFieldItemToolRejectedCheck[offsetof(GameSceneFieldItemTool
 typedef char GameSceneWorldUnk1080EntrySizeCheck[sizeof(GameSceneWorldUnk1080Entry) == 12 ? 1 : -1];
 typedef char GameSceneWorldUnk1080TileXCheck[offsetof(GameSceneWorldUnk1080Entry, tile_x) == 4 ? 1 : -1];
 typedef char GameSceneWorldUnk1080TailCheck[offsetof(GameSceneWorldUnk1080Entry, unk_08) == 8 ? 1 : -1];
+typedef char GameSceneWorldFarmTerrainCheck[offsetof(GameSceneWorldPrefix, farm_tile_attributes) == 0x1050 ? 1 : -1];
+
 typedef char GameSceneWorldSceneCheck[offsetof(GameSceneWorldPrefix, scene) == 0x1054 ? 1 : -1];
 typedef char GameSceneWorldSpriteCheck[offsetof(GameSceneWorldPrefix, unk_1058) == 0x1058 ? 1 : -1];
 typedef char GameSceneWorldUnk105CCheck[offsetof(GameSceneWorldPrefix, unk_105C) == 0x105C ? 1 : -1];
@@ -1245,6 +1248,7 @@ void func_080AA8BC(GameSceneWorldMapPrefix * map);
 void func_080AA8DC(GameSceneSavedMapPrefix * map);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
+MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id);
 void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,
     FieldPlot const * plot, FieldPlotRenderData const * render_data);
 

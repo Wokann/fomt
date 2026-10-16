@@ -710,7 +710,7 @@ extern void func_0801FD60(void);
 extern void func_0801FD3C(void);
 extern void func_08019F7C(void);
 extern void func_08019FE8(void);
-extern void func_0801A054(void);
+extern void GetWorldMapTerrain(void);
 extern void func_0801A8E0(void);
 extern void func_0801FD0C(void);
 extern void func_0801FD00(void);
@@ -1427,7 +1427,7 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801FD3C,
     func_08019F7C,
     func_08019FE8,
-    func_0801A054,
+    GetWorldMapTerrain,
     func_0801A8E0,
     func_0801FD0C,
     func_0801FD00,

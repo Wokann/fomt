@@ -1,20 +1,7 @@
 #ifndef FIELD_RENDER_RECT_DESCRIPTORS_HH
 #define FIELD_RENDER_RECT_DESCRIPTORS_HH
 
-#include "field.hh"
-
-// Rectangle patches copy all four bytes; field-plot updates write only
-// bit 0 of the first halfword and bits 1..15 of the second halfword.
-// Their meanings and the untouched bits remain unknown.
-struct FieldRenderTileAttributes
-{
-    bool unk_00_00 : 1;
-    u32 unk_00_01 : 15;
-    u16 unk_02_00 : 1;
-    u16 unk_02_01 : 15;
-};
-
-typedef char FieldRenderTileAttributesSizeCheck[sizeof(FieldRenderTileAttributes) == 4 ? 1 : -1];
+#include "map_data.hh"
 
 struct FieldRenderRectDescriptor
 {

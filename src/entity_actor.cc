@@ -4,11 +4,6 @@
 
 extern "C" void ResolveIndexedResourceHandle(SpriteAnimator * self, u32 anim_id);
 extern "C" u32 func_08032090(void * sprite, u32 anim_id); // Sprite
-#if defined(REGION_JP)
-extern "C" bool func_080ABAA8(UnkMap & unk, Box const & box);
-#else
-extern "C" bool func_080AC070(UnkMap & unk, Box const & box);
-#endif
 
 AActorEntity::AActorEntity(GameObject * game_object, ActorLocation const & location, u32 arg_2, u32 anim_id)
     : AEntity(game_object, location), x_speed_q16(0), y_speed_q16(0), facing(location.facing), unk_21(arg_2)
@@ -105,13 +100,9 @@ void AActorEntity::method_08032208()
     Box box_a = UnkMapBox(GetBox());
     Box & box = box_a;
 
-    UnkMap unk = go->vfunc_34(map);
+    MapTerrainView terrain = go->GetMapTerrain(map);
 
-#if defined(REGION_JP)
-    if (func_080ABAA8(unk, box) || !func_080ABAA8(unk, box.Moved(x_diff, y_diff)))
-#else
-    if (func_080AC070(unk, box) || !func_080AC070(unk, box.Moved(x_diff, y_diff)))
-#endif
+    if (IsMapTerrainBoxBlocked(terrain, box) || !IsMapTerrainBoxBlocked(terrain, box.Moved(x_diff, y_diff)))
     {
         x_q16 = x_new_q16;
         y_q16 = y_new_q16;

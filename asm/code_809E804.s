@@ -8846,7 +8846,7 @@ func_080A5E58: @ 0x080A5E58
 	movs r1, #1
 	movs r2, #0
 	movs r3, #0
-	bl func_0803A638
+	bl SelectMapDataId
 	add sp, #4
 	pop {r1}
 	bx r1
@@ -18301,7 +18301,7 @@ func_080AA974: @ 080AA974
 	mov r1, sb
 	mov r2, r8
 	adds r3, r5, #0
-	bl func_0803A638
+	bl SelectMapDataId
 	add sp, #4
 	pop {r3, r4}
 	mov r8, r3
@@ -19562,7 +19562,7 @@ func_080AB294: @ 080AB294
 	strh r3, [r2, #6]
 	mov r0, r8
 	adds r1, r2, #0
-	bl func_080ABAA8
+	bl IsMapTerrainBoxBlocked
 	adds r1, r0, #0
 	movs r0, #1
 	eors r1, r0
@@ -19624,7 +19624,7 @@ func_080AB308: @ 080AB308
 	strh r3, [r2, #6]
 	mov r0, r8
 	adds r1, r2, #0
-	bl func_080ABAA8
+	bl IsMapTerrainBoxBlocked
 	adds r1, r0, #0
 	movs r0, #1
 	eors r1, r0
@@ -19689,7 +19689,7 @@ func_080AB380: @ 080AB380
 	strh r6, [r3, #6]
 	mov r0, r8
 	adds r1, r3, #0
-	bl func_080ABAA8
+	bl IsMapTerrainBoxBlocked
 	adds r1, r0, #0
 	movs r0, #1
 	eors r1, r0
@@ -19753,7 +19753,7 @@ func_080AB3FC: @ 080AB3FC
 	strh r6, [r3, #6]
 	mov r0, r8
 	adds r1, r3, #0
-	bl func_080ABAA8
+	bl IsMapTerrainBoxBlocked
 	adds r1, r0, #0
 	movs r0, #1
 	eors r1, r0
@@ -20647,107 +20647,9 @@ func_080AB890: @ 080AB890
 	pop {r1}
 	bx r1
 	.align 2, 0
-    .global func_080ABAA8
-    .thumb_func
-func_080ABAA8: @ 080ABAA8
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #4
-	adds r2, r0, #0
-	ldrh r0, [r1]
-	lsls r0, r0, #0x10
-	asrs r0, r0, #0x13
-	str r0, [sp]
-	movs r3, #4
-	ldrsh r0, [r1, r3]
-	adds r0, #7
-	asrs r0, r0, #3
-	mov r8, r0
-	ldrh r0, [r1, #2]
-	lsls r0, r0, #0x10
-	asrs r3, r0, #0x13
-	movs r4, #6
-	ldrsh r0, [r1, r4]
-	adds r0, #7
-	asrs r0, r0, #3
-	mov sl, r0
-	ldr r7, [r2]
-	ldrh r0, [r2, #8]
-	mov sb, r0
-	cmp r7, #0
-	beq .Ljp_map_080ABB48
-	ldr r1, [sp]
-	cmp r1, #0
-	blt .Ljp_map_080ABB48
-	cmp r8, sb
-	bhi .Ljp_map_080ABB48
-	cmp r3, #0
-	blt .Ljp_map_080ABB48
-	ldrh r4, [r2, #0xa]
-	cmp sl, r4
-	bgt .Ljp_map_080ABB48
-	ldr r2, [r2, #4]
-	mov ip, r2
-	adds r6, r3, #0
-	cmp r6, sl
-	bge .Ljp_map_080ABB44
-	mov r5, sb
-	muls r5, r6, r5
-.Ljp_map_080ABB04:
-	ldr r2, [sp]
-	cmp r2, r8
-	bge .Ljp_map_080ABB3C
-	adds r0, r2, r5
-	lsls r4, r0, #2
-	mov r1, ip
-	adds r0, r5, r1
-	adds r3, r2, r0
-.Ljp_map_080ABB14:
-	mov r0, ip
-	cmp r0, #0
-	beq .Ljp_map_080ABB22
-	ldrb r0, [r3]
-	lsls r0, r0, #2
-	adds r0, r7, r0
-	b .Ljp_map_080ABB24
-.Ljp_map_080ABB22:
-	adds r0, r7, r4
-.Ljp_map_080ABB24:
-	ldr r1, [r0]
-	lsls r0, r1, #0x1f
-	cmp r0, #0
-	bne .Ljp_map_080ABB48
-	lsls r0, r1, #0x1e
-	cmp r0, #0
-	blt .Ljp_map_080ABB48
-	adds r4, #4
-	adds r3, #1
-	adds r2, #1
-	cmp r2, r8
-	blt .Ljp_map_080ABB14
-.Ljp_map_080ABB3C:
-	add r5, sb
-	adds r6, #1
-	cmp r6, sl
-	blt .Ljp_map_080ABB04
-.Ljp_map_080ABB44:
-	movs r0, #0
-	b .Ljp_map_080ABB4A
-.Ljp_map_080ABB48:
-	movs r0, #1
-.Ljp_map_080ABB4A:
-	add sp, #4
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.game_map_after_terrain_query, "ax", %progbits
+    .align 2, 0
+
     .global func_080ABB5C
     .thumb_func
 func_080ABB5C: @ 080ABB5C
@@ -23557,7 +23459,7 @@ func_080AD0D4:
 	movs r1, #1
 	movs r2, #0
 	movs r3, #0
-	bl func_0803A638
+	bl SelectMapDataId
 .Ljp_entity_080AD116:
 	bl GetMapData
 	ldrh r6, [r0, #0x20]
@@ -24100,7 +24002,7 @@ func_080AD4BC:
     movs r1, #1
     movs r2, #0
     movs r3, #0
-    bl func_0803A638
+    bl SelectMapDataId
     bl GetMapData
     ldrh r0, [r0, #0x22]
     lsls r0, r0, #3
@@ -24120,7 +24022,7 @@ func_080AD4E0:
     movs r1, #1
     movs r2, #0
     movs r3, #0
-    bl func_0803A638
+    bl SelectMapDataId
     bl GetMapData
     ldrh r0, [r0, #0x20]
     lsls r0, r0, #3
@@ -92856,7 +92758,7 @@ func_080A6420: @ 0x080A6420
 	movs r1, #1
 	movs r2, #0
 	movs r3, #0
-	bl func_0803A8A4
+	bl SelectMapDataId
 	add sp, #4
 	pop {r1}
 	bx r1
@@ -102293,7 +102195,7 @@ func_080AAF3C: @ 0x080AAF3C
 	mov r1, sb
 	mov r2, r8
 	adds r3, r5, #0
-	bl func_0803A8A4
+	bl SelectMapDataId
 	add sp, #4
 	pop {r3, r4}
 	mov r8, r3
@@ -103549,7 +103451,7 @@ func_080AB85C: @ 0x080AB85C
 	strh r3, [r2, #6]
 	mov r0, r8
 	adds r1, r2, #0
-	bl func_080AC070
+	bl IsMapTerrainBoxBlocked
 	adds r1, r0, #0
 	movs r0, #1
 	eors r1, r0
@@ -103611,7 +103513,7 @@ func_080AB8D0: @ 0x080AB8D0
 	strh r3, [r2, #6]
 	mov r0, r8
 	adds r1, r2, #0
-	bl func_080AC070
+	bl IsMapTerrainBoxBlocked
 	adds r1, r0, #0
 	movs r0, #1
 	eors r1, r0
@@ -103676,7 +103578,7 @@ func_080AB948: @ 0x080AB948
 	strh r6, [r3, #6]
 	mov r0, r8
 	adds r1, r3, #0
-	bl func_080AC070
+	bl IsMapTerrainBoxBlocked
 	adds r1, r0, #0
 	movs r0, #1
 	eors r1, r0
@@ -103740,7 +103642,7 @@ func_080AB9C4: @ 0x080AB9C4
 	strh r6, [r3, #6]
 	mov r0, r8
 	adds r1, r3, #0
-	bl func_080AC070
+	bl IsMapTerrainBoxBlocked
 	adds r1, r0, #0
 	movs r0, #1
 	eors r1, r0
@@ -104635,106 +104537,8 @@ func_080ABE58: @ 0x080ABE58
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080AC070
-func_080AC070: @ 0x080AC070
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #4
-	adds r2, r0, #0
-	ldrh r0, [r1]
-	lsls r0, r0, #0x10
-	asrs r0, r0, #0x13
-	str r0, [sp]
-	movs r3, #4
-	ldrsh r0, [r1, r3]
-	adds r0, #7
-	asrs r0, r0, #3
-	mov r8, r0
-	ldrh r0, [r1, #2]
-	lsls r0, r0, #0x10
-	asrs r3, r0, #0x13
-	movs r4, #6
-	ldrsh r0, [r1, r4]
-	adds r0, #7
-	asrs r0, r0, #3
-	mov sl, r0
-	ldr r7, [r2]
-	ldrh r0, [r2, #8]
-	mov sb, r0
-	cmp r7, #0
-	beq .L080AC110
-	ldr r1, [sp]
-	cmp r1, #0
-	blt .L080AC110
-	cmp r8, sb
-	bhi .L080AC110
-	cmp r3, #0
-	blt .L080AC110
-	ldrh r4, [r2, #0xa]
-	cmp sl, r4
-	bgt .L080AC110
-	ldr r2, [r2, #4]
-	mov ip, r2
-	adds r6, r3, #0
-	cmp r6, sl
-	bge .L080AC10C
-	mov r5, sb
-	muls r5, r6, r5
-.L080AC0CC:
-	ldr r2, [sp]
-	cmp r2, r8
-	bge .L080AC104
-	adds r0, r2, r5
-	lsls r4, r0, #2
-	mov r1, ip
-	adds r0, r5, r1
-	adds r3, r2, r0
-.L080AC0DC:
-	mov r0, ip
-	cmp r0, #0
-	beq .L080AC0EA
-	ldrb r0, [r3]
-	lsls r0, r0, #2
-	adds r0, r7, r0
-	b .L080AC0EC
-.L080AC0EA:
-	adds r0, r7, r4
-.L080AC0EC:
-	ldr r1, [r0]
-	lsls r0, r1, #0x1f
-	cmp r0, #0
-	bne .L080AC110
-	lsls r0, r1, #0x1e
-	cmp r0, #0
-	blt .L080AC110
-	adds r4, #4
-	adds r3, #1
-	adds r2, #1
-	cmp r2, r8
-	blt .L080AC0DC
-.L080AC104:
-	add r5, sb
-	adds r6, #1
-	cmp r6, sl
-	blt .L080AC0CC
-.L080AC10C:
-	movs r0, #0
-	b .L080AC112
-.L080AC110:
-	movs r0, #1
-.L080AC112:
-	add sp, #4
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.game_map_after_terrain_query, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080AC124
 func_080AC124: @ 0x080AC124
@@ -107543,7 +107347,7 @@ func_080AD69C: @ 0x080AD69C
 	movs r1, #1
 	movs r2, #0
 	movs r3, #0
-	bl func_0803A8A4
+	bl SelectMapDataId
 .L080AD6DE:
 	bl GetMapData
 	ldrh r6, [r0, #0x20]
@@ -108068,7 +107872,7 @@ func_080ADA84: @ 0x080ADA84
 	movs r1, #1
 	movs r2, #0
 	movs r3, #0
-	bl func_0803A8A4
+	bl SelectMapDataId
 	bl GetMapData
 	ldrh r0, [r0, #0x22]
 	lsls r0, r0, #3
@@ -108087,7 +107891,7 @@ func_080ADAA8: @ 0x080ADAA8
 	movs r1, #1
 	movs r2, #0
 	movs r3, #0
-	bl func_0803A8A4
+	bl SelectMapDataId
 	bl GetMapData
 	ldrh r0, [r0, #0x20]
 	lsls r0, r0, #3

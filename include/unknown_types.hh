@@ -48,14 +48,6 @@ struct Box
     Box Moved(i32 x, i32 y) const { return Box(x1, y1, x2, y2, x, y); }
 };
 
-struct TerrainInfo
-{
-    // bit 0 is 1 if this is a solid tile
-    // somewhere between bit 1 and 17 is some warp info
-    // bits 17 onward (unknown end) are a interaction script ID
-    STRUCT_PAD(0x00, 0x04);
-};
-
 // TODO: rename
 // TODO: move elsewhere
 struct UnkMapBox : public Box
@@ -64,14 +56,6 @@ struct UnkMapBox : public Box
         : Box(box)
     {
     }
-};
-
-// TODO: rename
-// TODO: move elsewhere
-struct UnkMap
-{
-    /* +00 */ u16 unk_00, unk_02, unk_04, unk_06;
-    /* +08 */ u32 unk_08;
 };
 
 // TODO: move elsewhere
@@ -94,7 +78,7 @@ struct GameObject
     virtual bool IsCameraMovementComplete();
     virtual i32 vfunc_2C(u32 map_id); // ok: get map width
     virtual i32 vfunc_30(u32 map_id); // ok: get map height
-    virtual UnkMap vfunc_34(u32 map_id);
+    virtual MapTerrainView GetMapTerrain(u32 map_id);
     virtual void vfunc_38();
     virtual void vfunc_3C(u32 index);
     virtual AActorEntity * GetActorEntity(u32 id);

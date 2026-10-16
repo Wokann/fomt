@@ -153,9 +153,9 @@ func_0803A8A4:
     .align 2, 0
     ldr	r0, [r0, #0]
     bx	lr
-    .global func_0803A638
+    .global SelectMapDataId
     .thumb_func
-func_0803A638:
+SelectMapDataId:
     push	{r4, r5, r6, lr}
     adds	r5, r0, #0
     adds	r4, r1, #0
@@ -8546,9 +8546,9 @@ func_0803EAC4:
     .thumb
     .align 2, 0
 
-    .global func_0803A8A4
+    .global SelectMapDataId
     .thumb_func
-func_0803A8A4:
+SelectMapDataId:
     push	{r4, r5, r6, lr}
     adds	r5, r0, #0
     adds	r4, r1, #0
@@ -16964,9 +16964,9 @@ func_0803EE50:
     .thumb
     .align 2, 0
 
-    .global func_0803A8A4
+    .global SelectMapDataId
     .thumb_func
-func_0803A8A4:
+SelectMapDataId:
     push	{r4, r5, r6, lr}
     adds	r5, r0, #0
     adds	r4, r1, #0
@@ -25360,9 +25360,9 @@ func_0803EE50:
     .thumb
     .align 2, 0
 
-    .global func_0803A8A4
+    .global SelectMapDataId
     .thumb_func
-func_0803A8A4:
+SelectMapDataId:
     push	{r4, r5, r6, lr}
     adds	r5, r0, #0
     adds	r4, r1, #0

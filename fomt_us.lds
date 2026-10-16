@@ -181,6 +181,8 @@ SECTIONS
         asm/game_state.o(.text.game_scene_song_players_after);
         src/game_scene.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
+        src/game_scene.o(.text.GetWorldMapTerrain);
+        asm/game_state.o(.text.game_scene_after_map_terrain);
         src/game_scene.o(.text.func_0801B5C0);
         asm/game_state.o(.text.game_scene_palette_resource_selector_after);
         src/game_scene.o(.text.TryGetFarmPlotAtLocation);
@@ -474,7 +476,7 @@ SECTIONS
         src/field_item_data.o(.text);
         asm/code_809E804.o(.text.field_item_after);
         . = 0xA4698;
-        src/map_data.o(.text.get_map_data);
+        src/map_data.o(.text.GetMapData);
         . = 0xA46AC;
         asm/code_809E804.o(.text.get_map_data_after);
         src/game_scene.o(.text._._19GameSceneSpriteBase);
@@ -491,6 +493,8 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_after_patch_dispatchers);
         src/game_scene.o(.text.RefreshFieldPlotTiles .text.func_080AA850 .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
         asm/code_809E804.o(.text.game_map_after_flag_updates);
+        src/map_data.o(.text.IsMapTerrainBoxBlocked);
+        asm/code_809E804.o(.text.game_map_after_terrain_query);
         . = 0xD0CD4; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);
         . = 0xD0EBC; /* Remaining font support code. */

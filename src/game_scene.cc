@@ -821,6 +821,42 @@ failure:
     return false;
 }
 
+EC MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id)
+{
+    if (map_id > MAP_LAKE_MINE_FLOOR_255)
+        return MapTerrainView(nullptr, 0, 0);
+    u32 current_map = world.data.map.value->map;
+    if (map_id == MAP_FARM && current_map != MAP_FARM)
+        return MapTerrainView(world.farm_tile_attributes, 128, 88);
+
+    u32 data_id;
+    if (current_map == map_id) {
+        data_id = world.data.map.value->map_data_id;
+    } else {
+        u32 season = func_0800E324(world.save->clock.calendar);
+        u32 house = world.save->farm.farm_house.GetUpgradeLevel();
+        u32 coop = world.save->farm.coop.GetUpgradeLevel();
+        u32 barn = world.save->farm.barn.GetUpgradeLevel();
+        data_id = SelectMapDataId(map_id, season, house, coop, barn);
+    }
+    MapData const * data = GetMapData(data_id);
+    u32 width = data->width;
+    u32 height = data->height;
+    FieldRenderTileAttributes const * attributes;
+    u8 const * indices;
+    if (current_map == map_id) {
+        GameSceneWorldMapPrefix * active = world.data.map.value;
+        // The native branch performs this lookup even though its result is unused.
+        GetMapData(active->map_data_id);
+        indices = nullptr;
+        attributes = active->tile_attributes;
+    } else {
+        indices = static_cast<u8 const *>(data->terrain_map);
+        attributes = static_cast<FieldRenderTileAttributes const *>(data->terrain_data);
+    }
+    return MapTerrainView(attributes, indices, width, height);
+}
+
 EC u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind)
 {
     switch (kind) {

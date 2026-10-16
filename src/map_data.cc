@@ -1,5 +1,6 @@
 #include "map_data.hh"
 #include "static_resources.hh"
+#include "unknown_types.hh"
 
 extern "C" {
 
@@ -945,9 +946,29 @@ MapData const gMapData[MAP_DATA_COUNT] = {
 }
 
 extern "C" MapData const * GetMapData(u32 map_id)
-    __attribute__((section(".text.get_map_data")));
-
-extern "C" MapData const * GetMapData(u32 map_id)
 {
     return gMapData + map_id;
+}
+
+extern "C" bool IsMapTerrainBoxBlocked(MapTerrainView const & map, Box const & box)
+{
+    i32 left = box.x1 >> 3;
+    i32 right = (box.x2 + 7) >> 3;
+    i32 top = box.y1 >> 3;
+    i32 bottom = (box.y2 + 7) >> 3;
+    FieldRenderTileAttributes const * attributes = map.attributes;
+    u32 width = map.width;
+    if (attributes != nullptr && left >= 0 && right <= width && top >= 0 && bottom <= map.height) {
+        u8 const * indices = map.indices;
+        for (i32 y = top; y < bottom; ++y) {
+            for (i32 x = left; x < right; ++x) {
+                FieldRenderTileAttributes const & tile = attributes[indices != nullptr
+                    ? indices[x + y * width] : x + y * width];
+                if (tile.unk_00_00 || tile.unk_00_01)
+                    return true;
+            }
+        }
+        return false;
+    }
+    return true;
 }

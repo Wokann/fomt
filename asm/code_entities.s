@@ -2587,7 +2587,7 @@ func_08021054:
     bl _call_via_r2
     adds r0, r7, #0
     adds r1, r4, #0
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08021122
@@ -8566,7 +8566,7 @@ func_080244B8:
     adds r6, r2, #0
     adds r0, r1, #0
     adds r1, r6, #0
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     lsrs r0, r0, #0x18
     cmp r0, #0
@@ -8617,7 +8617,7 @@ func_080244B8:
     strh r4, [r2, #6]
     ldr r0, [sp, #0x40]
     mov r1, sp
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -8647,7 +8647,7 @@ func_080244B8:
     adds r2, r3, r2
     strh r2, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -8677,7 +8677,7 @@ func_080244B8:
     strh r2, [r1, #4]
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r3, #1
     eors r0, r3
     lsls r0, r0, #0x18
@@ -8706,7 +8706,7 @@ func_080244B8:
     strh r2, [r1, #4]
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r3, #1
     eors r0, r3
     lsls r0, r0, #0x18
@@ -8735,7 +8735,7 @@ func_080244B8:
     add r4, sb
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r3, #1
     eors r0, r3
     lsls r0, r0, #0x18
@@ -8765,7 +8765,7 @@ func_080244B8:
     adds r4, r5, r4
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -8796,7 +8796,7 @@ func_080244B8:
     adds r4, r0, r4
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -8826,7 +8826,7 @@ func_080244B8:
     adds r4, r0, r4
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -9602,7 +9602,7 @@ func_08024A64:
     adds r0, r4, #0
     ldr r3, [r1, #0x34]
     mov r1, r8
-    @ 08024EFE bl [func_0801A054]
+    @ 08024EFE bl [GetWorldMapTerrain]
     bl _call_via_r3
     mov ip, r4
     movs r6, #0
@@ -10019,7 +10019,7 @@ func_08024F90: @ 0x080251FC
     strh r0, [r4, #4]
     mov r0, r8
     mov r1, sp
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08024FCE
@@ -10062,7 +10062,7 @@ func_08024FDC: @ 0x08025248
     strh r0, [r4, #6]
     mov r0, r8
     mov r1, sp
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802501A
@@ -10179,7 +10179,7 @@ func_08025028: @ 0x08025294
     strh r6, [r1, #6]
 .Ljp_080250E0:
     mov r0, ip
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -10458,7 +10458,7 @@ func_08025100: @ 0x0802536C
     adds r2, r2, r5
     strh r2, [r1, #6]
     mov r0, sl
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -10496,7 +10496,7 @@ func_08025100: @ 0x0802536C
     strh r2, [r1, #4]
     strh r5, [r1, #6]
     mov r0, sl
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -10537,7 +10537,7 @@ func_08025100: @ 0x0802536C
     mov r0, ip
     strh r0, [r1, #6]
     mov r0, sl
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -10582,7 +10582,7 @@ func_08025100: @ 0x0802536C
     adds r0, r0, r5
     strh r0, [r1, #6]
     mov r0, sl
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -21080,7 +21080,7 @@ func_0802A574: @ 0x0802A574
     adds r0, r7, #5
     strh r0, [r1, #6]
     adds r0, r5, #0
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     movs r1, #1
     cmp r0, #0
@@ -21668,7 +21668,7 @@ func_0802AC38: @ 0x0802AC38
     add r4, sp, #0x14
     mov r0, sp
     adds r1, r4, #0
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802AC76
@@ -26001,7 +26001,7 @@ func_0802CB60:
     add r4, sp, #0x44
     mov r0, sp
     adds r1, r4, #0
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802CE2C
@@ -26037,7 +26037,7 @@ func_0802CB60:
     adds r4, r6, r4
     strh r4, [r1, #6]
     mov r0, sp
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -28403,7 +28403,7 @@ func_0802DE90:
     add r6, sp, #0x44
     mov r0, r8
     adds r1, r6, #0
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     movs r2, #1
     mov sl, r2
     mov r3, sl
@@ -28435,7 +28435,7 @@ func_0802DE90:
     adds r0, r4, #5
     strh r0, [r1, #6]
     mov r0, r8
-    bl func_080ABAA8
+    bl IsMapTerrainBoxBlocked
     mov r1, sl
     eors r0, r1
     lsls r0, r0, #0x18
@@ -38949,7 +38949,7 @@ func_080212C0: @ 0x080212C0
     bl _call_via_r2
     adds r0, r7, #0
     adds r1, r4, #0
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802138E
@@ -43249,7 +43249,7 @@ func_08024724: @ 0x08024724
     adds r6, r2, #0
     adds r0, r1, #0
     adds r1, r6, #0
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     lsrs r0, r0, #0x18
     cmp r0, #0
@@ -43300,7 +43300,7 @@ func_08024724: @ 0x08024724
     strh r4, [r2, #6]
     ldr r0, [sp, #0x40]
     mov r1, sp
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -43330,7 +43330,7 @@ func_08024724: @ 0x08024724
     adds r2, r3, r2
     strh r2, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -43360,7 +43360,7 @@ func_08024724: @ 0x08024724
     strh r2, [r1, #4]
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r3, #1
     eors r0, r3
     lsls r0, r0, #0x18
@@ -43389,7 +43389,7 @@ func_08024724: @ 0x08024724
     strh r2, [r1, #4]
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r3, #1
     eors r0, r3
     lsls r0, r0, #0x18
@@ -43418,7 +43418,7 @@ func_08024724: @ 0x08024724
     add r4, sb
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r3, #1
     eors r0, r3
     lsls r0, r0, #0x18
@@ -43448,7 +43448,7 @@ func_08024724: @ 0x08024724
     adds r4, r5, r4
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -43479,7 +43479,7 @@ func_08024724: @ 0x08024724
     adds r4, r0, r4
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -43509,7 +43509,7 @@ func_08024724: @ 0x08024724
     adds r4, r0, r4
     strh r4, [r1, #6]
     ldr r0, [sp, #0x40]
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -44277,7 +44277,7 @@ func_08024CD0: @ 0x08024CD0
     adds r0, r4, #0
     ldr r3, [r1, #0x34]
     mov r1, r8
-    @ 08024EFE bl [func_0801A054]
+    @ 08024EFE bl [GetWorldMapTerrain]
     bl _call_via_r3
     mov ip, r4
     movs r6, #0
@@ -44692,7 +44692,7 @@ func_080251FC: @ 0x080251FC
     strh r0, [r4, #4]
     mov r0, r8
     mov r1, sp
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802523A
@@ -44734,7 +44734,7 @@ func_08025248: @ 0x08025248
     strh r0, [r4, #6]
     mov r0, r8
     mov r1, sp
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08025286
@@ -44850,7 +44850,7 @@ func_08025294: @ 0x08025294
     strh r6, [r1, #6]
 .L0802534C:
     mov r0, ip
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -45128,7 +45128,7 @@ func_0802536C: @ 0x0802536C
     adds r2, r2, r5
     strh r2, [r1, #6]
     mov r0, sl
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -45166,7 +45166,7 @@ func_0802536C: @ 0x0802536C
     strh r2, [r1, #4]
     strh r5, [r1, #6]
     mov r0, sl
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -45207,7 +45207,7 @@ func_0802536C: @ 0x0802536C
     mov r0, ip
     strh r0, [r1, #6]
     mov r0, sl
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -45252,7 +45252,7 @@ func_0802536C: @ 0x0802536C
     adds r0, r0, r5
     strh r0, [r1, #6]
     mov r0, sl
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -55733,7 +55733,7 @@ func_0802A7E0: @ 0x0802A7E0
     adds r0, r7, #5
     strh r0, [r1, #6]
     adds r0, r5, #0
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     movs r1, #1
     cmp r0, #0
@@ -56316,7 +56316,7 @@ func_0802AEA4: @ 0x0802AEA4
     add r4, sp, #0x14
     mov r0, sp
     adds r1, r4, #0
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802AEE2
@@ -60632,7 +60632,7 @@ func_0802CDCC: @ 0x0802CDCC
     add r4, sp, #0x44
     mov r0, sp
     adds r1, r4, #0
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802D098
@@ -60668,7 +60668,7 @@ func_0802CDCC: @ 0x0802CDCC
     adds r4, r6, r4
     strh r4, [r1, #6]
     mov r0, sp
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r1, #1
     eors r0, r1
     lsls r0, r0, #0x18
@@ -63026,7 +63026,7 @@ func_0802E0FC: @ 0x0802E0FC
     add r6, sp, #0x44
     mov r0, r8
     adds r1, r6, #0
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     movs r2, #1
     mov sl, r2
     mov r3, sl
@@ -63058,7 +63058,7 @@ func_0802E0FC: @ 0x0802E0FC
     adds r0, r4, #5
     strh r0, [r1, #6]
     mov r0, r8
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     mov r1, sl
     eors r0, r1
     lsls r0, r0, #0x18

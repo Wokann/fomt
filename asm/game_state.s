@@ -13742,7 +13742,7 @@ func_08019F7C:
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_0803A638
+    bl SelectMapDataId
     bl GetMapData
     ldrh r0, [r0, #0x20]
     lsls r0, r0, #3
@@ -13792,7 +13792,7 @@ func_08019FE8:
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_0803A638
+    bl SelectMapDataId
     bl GetMapData
     ldrh r0, [r0, #0x22]
     lsls r0, r0, #3
@@ -13805,121 +13805,9 @@ func_08019FE8:
     bx r1
     .byte 0x38, 0x10, 0x00, 0x00
 
-    .global func_0801A054
-    .thumb_func
-func_0801A054:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    sub sp, #8
-    adds r7, r0, #0
-    mov sl, r1
-    mov sb, r2
-    ldr r0, [pc, #0x10]
-    cmp sb, r0
-    bls .Lauto_08019E10
-    movs r0, #0
-    str r0, [r7]
-    str r0, [r7, #4]
-    strh r0, [r7, #8]
-    strh r0, [r7, #0xa]
-    b .Lauto_08019EBC
-    .byte 0x33, 0x02, 0x00, 0x00
-    .Lauto_08019E10:
-    mov r1, sl
-    ldr r0, [r1, #4]
-    ldr r1, [r0]
-    str r1, [sp, #4]
-    mov r1, sb
-    cmp r1, #2
-    bne .Lauto_08019E40
-    ldr r1, [sp, #4]
-    cmp r1, #2
-    beq .Lauto_08019E40
-    ldr r0, [pc, #0x14]
-    add r0, sl
-    ldr r0, [r0]
-    movs r1, #0x80
-    movs r2, #0x58
-    str r0, [r7]
-    movs r0, #0
-    str r0, [r7, #4]
-    strh r1, [r7, #8]
-    strh r2, [r7, #0xa]
-    b .Lauto_08019EBC
-    .byte 0x00, 0x00, 0x50, 0x10, 0x00, 0x00
-    .Lauto_08019E40:
-    ldr r1, [sp, #4]
-    cmp r1, sb
-    bne .Lauto_08019E4A
-    ldr r0, [r0, #4]
-    b .Lauto_08019E8E
-    .Lauto_08019E4A:
-    ldr r4, [pc, #0x60]
-    add r4, sl
-    ldr r0, [r4]
-    adds r0, #0x10
-    bl func_0800E324
-    mov r8, r0
-    ldr r0, [r4]
-    movs r1, #0xfa
-    lsls r1, r1, #1
-    adds r0, r0, r1
-    bl GetUpgradeLevel__C9FarmHouse
-    adds r6, r0, #0
-    ldr r0, [r4]
-    movs r1, #0x82
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    bl GetUpgradeLevel__C4Coop
-    adds r5, r0, #0
-    ldr r0, [r4]
-    movs r1, #0xbe
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    bl GetUpgradeLevel__C4Barn
-    str r0, [sp]
-    mov r0, sb
-    mov r1, r8
-    adds r2, r6, #0
-    adds r3, r5, #0
-    bl func_0803A638
-    .Lauto_08019E8E:
-    bl GetMapData
-    ldrh r5, [r0, #0x20]
-    ldrh r6, [r0, #0x22]
-    ldr r1, [sp, #4]
-    cmp r1, sb
-    bne .Lauto_08019EB0
-    mov r0, sl
-    ldr r4, [r0, #4]
-    ldr r0, [r4, #4]
-    bl GetMapData
-    movs r1, #0
-    ldr r0, [r4, #0x2c]
-    b .Lauto_08019EB4
-    .byte 0x38, 0x10, 0x00, 0x00
-    .Lauto_08019EB0:
-    ldr r1, [r0, #0x1c]
-    ldr r0, [r0, #0x18]
-    .Lauto_08019EB4:
-    str r0, [r7]
-    str r1, [r7, #4]
-    strh r5, [r7, #8]
-    strh r6, [r7, #0xa]
-    .Lauto_08019EBC:
-    adds r0, r7, #0
-    add sp, #8
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
+    .section .text.game_scene_after_map_terrain, "ax", %progbits
+    .align 2, 0
+
     .global loc_08019ED0
     .thumb_func
     loc_08019ED0:
@@ -16521,7 +16409,8 @@ func_0801E084:
     .byte 0x00, 0x00, 0x02, 0x2A, 0x1D, 0xD1, 0x01, 0xAB, 0x10, 0x99, 0x0C, 0x4A, 0x88, 0x18, 0x00, 0x68
     .byte 0x80, 0x21, 0x58, 0x22, 0x01, 0x90, 0x00, 0x20, 0x02, 0x90, 0x19, 0x81, 0x5A, 0x81, 0x79, 0x69
     .byte 0x08, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x39, 0x1C, 0xB5, 0xF0, 0xA1, 0xF8, 0x01, 0xA8, 0x21, 0x1C
-    .byte 0x8D, 0xF0, 0x8B, 0xFD, 0x00, 0x06, 0x00, 0x28, 0x4B, 0xD0, 0x4E, 0xE0, 0x00, 0x00, 0x50, 0x10
+    bl IsMapTerrainBoxBlocked
+    .byte 0x00, 0x06, 0x00, 0x28, 0x4B, 0xD0, 0x4E, 0xE0, 0x00, 0x00, 0x50, 0x10
     .byte 0x00, 0x00, 0x01, 0xAB, 0x00, 0x20, 0x80, 0x46, 0x29, 0x49, 0x08, 0x1C, 0x02, 0x40, 0x19, 0x88
     .byte 0x28, 0x4C, 0x20, 0x1C, 0x08, 0x40, 0x10, 0x43, 0x18, 0x80, 0x59, 0x78, 0x03, 0x22, 0x10, 0x1C
     .byte 0x08, 0x40, 0x58, 0x70, 0x59, 0x88, 0x20, 0x1C, 0x08, 0x40, 0x58, 0x80, 0xD8, 0x78, 0x02, 0x40
@@ -16530,7 +16419,9 @@ func_0801E084:
     .byte 0x40, 0x68, 0x86, 0xF0, 0x6E, 0xF8, 0x05, 0x8C, 0x46, 0x8C, 0x10, 0x98, 0x44, 0x68, 0x60, 0x68
     .byte 0x86, 0xF0, 0x67, 0xF8, 0xE0, 0x6A, 0x01, 0xA9, 0x01, 0x90, 0x42, 0x46, 0x02, 0x92, 0x0D, 0x81
     .byte 0x4E, 0x81, 0x79, 0x69, 0x0A, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x39, 0x1C, 0xB5, 0xF0, 0x57, 0xF8
-    .byte 0x01, 0xA8, 0x21, 0x1C, 0x8D, 0xF0, 0x41, 0xFD, 0x00, 0x06, 0x00, 0x28, 0x01, 0xD0, 0x01, 0x23
+    .byte 0x01, 0xA8, 0x21, 0x1C
+    bl IsMapTerrainBoxBlocked
+    .byte 0x00, 0x06, 0x00, 0x28, 0x01, 0xD0, 0x01, 0x23
     .byte 0x9A, 0x46
     .Lauto_0801E030:
     mov r0, sl
@@ -16666,7 +16557,8 @@ func_0801E084:
     .byte 0x4C, 0xE5, 0x01, 0x08, 0x4C, 0xE5, 0x01, 0x08, 0x4C, 0xE5, 0x01, 0x08, 0x4C, 0xE5, 0x01, 0x08
     .byte 0x4C, 0xE5, 0x01, 0x08, 0x4C, 0xE5, 0x01, 0x08, 0xA8, 0x88, 0x1D, 0x28, 0x0F, 0xD1, 0x69, 0x69
     .byte 0x03, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x29, 0x1C, 0xB4, 0xF0, 0xB6, 0xFD, 0x68, 0x46, 0x21, 0x1C
-    .byte 0x8D, 0xF0, 0xA0, 0xFA, 0x00, 0x06, 0x00, 0x28, 0x01, 0xD0, 0x01, 0x21, 0x89, 0x46, 0x48, 0x46
+    bl IsMapTerrainBoxBlocked
+    .byte 0x00, 0x06, 0x00, 0x28, 0x01, 0xD0, 0x01, 0x21, 0x89, 0x46, 0x48, 0x46
     .byte 0x00, 0x28, 0x00, 0xD1, 0x81, 0xE0, 0x30, 0x1C, 0x2B, 0x38, 0x28, 0x28, 0x58, 0xD8, 0x80, 0x00
     .byte 0x01, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x90, 0xE5, 0x01, 0x08, 0x34, 0xE6, 0x01, 0x08
     .byte 0x34, 0xE6, 0x01, 0x08, 0x34, 0xE6, 0x01, 0x08, 0x34, 0xE6, 0x01, 0x08, 0x34, 0xE6, 0x01, 0x08
@@ -34028,7 +33920,7 @@ func_08019F7C: @ 0x08019F7C
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_0803A8A4
+    bl SelectMapDataId
     bl GetMapData
     ldrh r0, [r0, #0x20]
     lsls r0, r0, #3
@@ -34079,7 +33971,7 @@ func_08019FE8: @ 0x08019FE8
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_0803A8A4
+    bl SelectMapDataId
     bl GetMapData
     ldrh r0, [r0, #0x22]
     lsls r0, r0, #3
@@ -34093,122 +33985,7 @@ func_08019FE8: @ 0x08019FE8
     .align 2, 0
 .L0801A050: .4byte 0x00001038
 
-    thumb_func_start func_0801A054
-func_0801A054: @ 0x0801A054
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    sub sp, #8
-    adds r7, r0, #0
-    mov sl, r1
-    mov sb, r2
-    ldr r0, .L0801A078 @ =0x00000233
-    cmp sb, r0
-    bls .L0801A07C
-    movs r0, #0
-    str r0, [r7]
-    str r0, [r7, #4]
-    strh r0, [r7, #8]
-    strh r0, [r7, #0xa]
-    b .L0801A128
-    .align 2, 0
-.L0801A078: .4byte 0x00000233
-.L0801A07C:
-    mov r1, sl
-    ldr r0, [r1, #4]
-    ldr r1, [r0]
-    str r1, [sp, #4]
-    mov r1, sb
-    cmp r1, #2
-    bne .L0801A0AC
-    ldr r1, [sp, #4]
-    cmp r1, #2
-    beq .L0801A0AC
-    ldr r0, .L0801A0A8 @ =0x00001050
-    add r0, sl
-    ldr r0, [r0]
-    movs r1, #0x80
-    movs r2, #0x58
-    str r0, [r7]
-    movs r0, #0
-    str r0, [r7, #4]
-    strh r1, [r7, #8]
-    strh r2, [r7, #0xa]
-    b .L0801A128
-    .align 2, 0
-.L0801A0A8: .4byte 0x00001050
-.L0801A0AC:
-    ldr r1, [sp, #4]
-    cmp r1, sb
-    bne .L0801A0B6
-    ldr r0, [r0, #4]
-    b .L0801A0FA
-.L0801A0B6:
-    ldr r4, .L0801A118 @ =0x00001038
-    add r4, sl
-    ldr r0, [r4]
-    adds r0, #0x10
-    bl func_0800E324
-    mov r8, r0
-    ldr r0, [r4]
-    movs r1, #0xfa
-    lsls r1, r1, #1
-    adds r0, r0, r1
-    bl GetUpgradeLevel__C9FarmHouse
-    adds r6, r0, #0
-    ldr r0, [r4]
-    movs r1, #0x82
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    bl GetUpgradeLevel__C4Coop
-    adds r5, r0, #0
-    ldr r0, [r4]
-    movs r1, #0xbe
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    bl GetUpgradeLevel__C4Barn
-    str r0, [sp]
-    mov r0, sb
-    mov r1, r8
-    adds r2, r6, #0
-    adds r3, r5, #0
-    bl func_0803A8A4
-.L0801A0FA:
-    bl GetMapData
-    ldrh r5, [r0, #0x20]
-    ldrh r6, [r0, #0x22]
-    ldr r1, [sp, #4]
-    cmp r1, sb
-    bne .L0801A11C
-    mov r0, sl
-    ldr r4, [r0, #4]
-    ldr r0, [r4, #4]
-    bl GetMapData
-    movs r1, #0
-    ldr r0, [r4, #0x2c]
-    b .L0801A120
-    .align 2, 0
-.L0801A118: .4byte 0x00001038
-.L0801A11C:
-    ldr r1, [r0, #0x1c]
-    ldr r0, [r0, #0x18]
-.L0801A120:
-    str r0, [r7]
-    str r1, [r7, #4]
-    strh r5, [r7, #8]
-    strh r6, [r7, #0xa]
-.L0801A128:
-    adds r0, r7, #0
-    add sp, #8
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
+    .section .text.game_scene_after_map_terrain, "ax", %progbits
     .align 2, 0
 
     thumb_func_start func_0801A13C
@@ -37650,7 +37427,7 @@ func_0801E084:
     .byte 0x39, 0x1C
     bl _call_via_r2
     .byte 0x01, 0xA8, 0x21, 0x1C
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     .byte 0x00, 0x06
     .byte 0x00, 0x28, 0x4B, 0xD0, 0x4E, 0xE0, 0x00, 0x00, 0x50, 0x10, 0x00, 0x00, 0x01, 0xAB, 0x00, 0x20
     .byte 0x80, 0x46, 0x29, 0x49, 0x08, 0x1C, 0x02, 0x40, 0x19, 0x88, 0x28, 0x4C, 0x20, 0x1C, 0x08, 0x40
@@ -37667,7 +37444,7 @@ func_0801E084:
     .byte 0x20, 0x1C, 0xCA, 0x68, 0x39, 0x1C
     bl _call_via_r2
     .byte 0x01, 0xA8, 0x21, 0x1C
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     .byte 0x00, 0x06, 0x00, 0x28, 0x01, 0xD0, 0x01, 0x23, 0x9A, 0x46
 .L0801E29C:
     .byte 0x50, 0x46, 0x00, 0x28
@@ -37933,7 +37710,7 @@ func_0801E67C: @ 0x0801E67C
     bl _call_via_r2
     mov r0, sp
     adds r1, r4, #0
-    bl func_080AC070
+    bl IsMapTerrainBoxBlocked
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0801E7DE
