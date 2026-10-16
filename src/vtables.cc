@@ -6,6 +6,8 @@
 
 EXTERN_C
 
+extern void DrawSavedWorldMap(void);
+
 extern void SelectDefaultWorldMapData(void);
 extern void UpdateSavedMapTileAnimationTimers(void);
 extern void ResetSavedMapTileAnimationFrames(void);
@@ -350,7 +352,6 @@ extern void func_080A5670(void);
 extern void func_080A5198(void);
 extern void func_080E39D0(void);
 extern void func_080E3B50(void);
-extern void func_080A5F5C(void);
 extern void func_080AA974(void);
 extern void func_080A6EC4(void);
 extern void func_080A6098(void);
@@ -645,7 +646,6 @@ extern void func_080A5760(void);
 extern void func_080A5670(void);
 extern void func_080E4238(void);
 extern void func_080E43B8(void);
-extern void func_080A6524(void);
 extern void func_080AAF3C(void);
 extern void func_080A748C(void);
 extern void func_080A6660(void);
@@ -7039,7 +7039,7 @@ extern RawVTableFunction const vtable_unk_080E830C[]
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E831C[]
     SECTION(".rodata.vtable_831c") = {
-        func_080A5F5C,
+        DrawSavedWorldMap,
         ResetSavedMapTileAnimationFrames,
         func_080AA974,
         func_080A6EC4,
@@ -7063,7 +7063,7 @@ extern RawVTableFunction const vtable_unk_080E831C[]
         nullptr,
         func_080E43B8,
         UpdateSavedMapTileAnimationTimers,
-        func_080A6524,
+        DrawSavedWorldMap,
         ResetSavedMapTileAnimationFrames,
         func_080AAF3C,
         func_080A748C,

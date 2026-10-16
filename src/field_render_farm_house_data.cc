@@ -79,10 +79,10 @@ FarmHouseTilePatchData const gFarmHouseTilePatchData = {
         { 0x0000, gUnk_FarmHouseTilePatchResource_006 },
     },
     {
-        { 0x003D, gUnk_FarmHouseTilePatchResource_007, 0x0010 },
-        { 0x003D, gUnk_FarmHouseTilePatchResource_008, 0x0010 },
-        { 0x002F, gUnk_FarmHouseTilePatchResource_009, 0x0008 },
-        { 0x002F, gUnk_FarmHouseTilePatchResource_010, 0x0008 },
+        { { 0x003D, gUnk_FarmHouseTilePatchResource_007 }, 0x0010 },
+        { { 0x003D, gUnk_FarmHouseTilePatchResource_008 }, 0x0010 },
+        { { 0x002F, gUnk_FarmHouseTilePatchResource_009 }, 0x0008 },
+        { { 0x002F, gUnk_FarmHouseTilePatchResource_010 }, 0x0008 },
     },
     {
         { 0x0090, gUnk_FarmHouseTilePatchResource_011 },
@@ -90,20 +90,20 @@ FarmHouseTilePatchData const gFarmHouseTilePatchData = {
         { 0x0000, gUnk_FarmHouseTilePatchResource_013 },
     },
     {
-        { 0x0000, gUnk_FarmHouseTilePatchResource_014, 0x000A },
-        { 0x0010, gUnk_FarmHouseTilePatchResource_015, 0x000A },
-        { 0x0000, gUnk_FarmHouseTilePatchResource_016, 0x000A },
-        { 0x0010, gUnk_FarmHouseTilePatchResource_017, 0x000A },
-        { 0x0025, gUnk_FarmHouseTilePatchResource_018, 0x000A },
-        { 0x0010, gUnk_FarmHouseTilePatchResource_019, 0x000A },
-        { 0x0039, gUnk_FarmHouseTilePatchResource_020, 0x000A },
-        { 0x0025, gUnk_FarmHouseTilePatchResource_021, 0x000A },
-        { 0x0010, gUnk_FarmHouseTilePatchResource_022, 0x000A },
-        { 0x0039, gUnk_FarmHouseTilePatchResource_023, 0x000A },
-        { 0x0000, gUnk_FarmHouseTilePatchResource_024, 0x001E },
-        { 0x001E, gUnk_FarmHouseTilePatchResource_025, 0x0007 },
-        { 0x0000, gUnk_FarmHouseTilePatchResource_026, 0x001E },
-        { 0x0000, gUnk_FarmHouseTilePatchResource_027, 0x000A },
+        { { 0x0000, gUnk_FarmHouseTilePatchResource_014 }, 0x000A },
+        { { 0x0010, gUnk_FarmHouseTilePatchResource_015 }, 0x000A },
+        { { 0x0000, gUnk_FarmHouseTilePatchResource_016 }, 0x000A },
+        { { 0x0010, gUnk_FarmHouseTilePatchResource_017 }, 0x000A },
+        { { 0x0025, gUnk_FarmHouseTilePatchResource_018 }, 0x000A },
+        { { 0x0010, gUnk_FarmHouseTilePatchResource_019 }, 0x000A },
+        { { 0x0039, gUnk_FarmHouseTilePatchResource_020 }, 0x000A },
+        { { 0x0025, gUnk_FarmHouseTilePatchResource_021 }, 0x000A },
+        { { 0x0010, gUnk_FarmHouseTilePatchResource_022 }, 0x000A },
+        { { 0x0039, gUnk_FarmHouseTilePatchResource_023 }, 0x000A },
+        { { 0x0000, gUnk_FarmHouseTilePatchResource_024 }, 0x001E },
+        { { 0x001E, gUnk_FarmHouseTilePatchResource_025 }, 0x0007 },
+        { { 0x0000, gUnk_FarmHouseTilePatchResource_026 }, 0x001E },
+        { { 0x0000, gUnk_FarmHouseTilePatchResource_027 }, 0x000A },
     },
 };
 
@@ -160,9 +160,9 @@ FarmHouseVisualDescriptor const gFarmHouseVisualDescriptors[7] = {
 };
 
 FarmHouseTilePatchAnimationDescriptor const gMapTilePatchAnimation0 = {
-    0x0200, gUnk_FarmHouseTilePatchAnimationResource_000, 12,
+    { 0x0200, gUnk_FarmHouseTilePatchAnimationResource_000 }, 12,
 };
 
 FarmHouseTilePatchAnimationDescriptor const gMapTilePatchAnimation1 = {
-    0x0212, gUnk_FarmHouseTilePatchAnimationResource_001, 8,
+    { 0x0212, gUnk_FarmHouseTilePatchAnimationResource_001 }, 8,
 };

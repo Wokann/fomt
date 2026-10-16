@@ -7312,7 +7312,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -7341,7 +7341,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -7379,7 +7379,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -7408,7 +7408,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -7474,7 +7474,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -7511,7 +7511,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -7551,7 +7551,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	movs r2, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	b .Ljp_080A5520
 	.align 2, 0
 .Ljp_080A550C: .4byte gFarmHouseTilePatchData + 0x068
@@ -7562,7 +7562,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	movs r2, #1
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 .Ljp_080A5520:
 	adds r4, r6, #0
 	adds r4, #0x30
@@ -7576,7 +7576,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -7617,7 +7617,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	movs r2, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	b .Ljp_080A55A4
 	.align 2, 0
 .Ljp_080A5590: .4byte gFarmHouseTilePatchData + 0x070
@@ -7628,7 +7628,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	movs r2, #1
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 .Ljp_080A55A4:
 	adds r4, r6, #0
 	adds r4, #0x30
@@ -7642,7 +7642,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -7672,7 +7672,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -7709,7 +7709,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	movs r2, #0
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 	b .Ljp_080A565C
 	.align 2, 0
 .Ljp_080A5648: .4byte gFarmHouseTilePatchData + 0x078
@@ -7720,7 +7720,7 @@ func_080A4F50: @ 0x080A4988
 	adds r0, r6, #0
 	movs r2, #1
 	mov r3, sl
-    bl func_080A54E8
+    bl QueueMapTilePatch
 .Ljp_080A565C:
 	add sp, #0x5c
 	pop {r3, r4, r5}
@@ -8064,9 +8064,9 @@ func_080A5198: @ 0x080A5198
     .section .text.game_map_after_camera_query, "ax", %progbits
     .align 2, 0
 
-    .global func_080A54E8
+    .global QueueMapTilePatch
     .thumb_func
-func_080A54E8: @ 0x080A54E8
+QueueMapTilePatch: @ 0x080A54E8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -8544,153 +8544,6 @@ func_080A6474: @ 0x080A5EAC
 	bx r1
 	.align 2, 0
 .Ljp_080A64B4: .4byte vtable_unk_080E830C
-
-    .section .text.game_map_saved_draw, "ax", %progbits
-    .align 2, 0
-
-    .global func_080A5F5C
-    .thumb_func
-func_080A5F5C: @ 0x080A5F5C
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	adds r5, r0, #0
-	adds r6, r1, #0
-	bl func_080A4F50
-	adds r4, r5, #0
-	adds r4, #0x94
-	ldr r0, [r4]
-	ldr r1, [r5]
-	cmp r1, #6
-	beq .Ljp_080A65A0
-	cmp r1, #0x1d
-	bne .Ljp_080A662A
-	adds r1, r5, #0
-	adds r1, #0x98
-	ldrb r0, [r1]
-	cmp r0, #0
-	beq .Ljp_080A662A
-	movs r0, #0
-	strb r0, [r1]
-	ldr r0, [r4]
-	movs r1, #0xfa
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	bl HasStocking__C9FarmHouse
-	lsls r0, r0, #0x18
-	cmp r0, #0
-	beq .Ljp_080A658C
-	ldr r0, [r4]
-	movs r1, #0xfa
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	bl GetStockingArticleId__C9FarmHouse
-	cmp r0, #0x5f
-	bne .Ljp_080A6580
-	ldr r1, .Ljp_080A657C @ =gFarmHouseTilePatchData + 0x030
-	adds r0, r5, #0
-	movs r2, #1
-	b .Ljp_080A6592
-	.align 2, 0
-.Ljp_080A657C: .4byte gFarmHouseTilePatchData + 0x030
-.Ljp_080A6580:
-	ldr r1, .Ljp_080A6588 @ =gFarmHouseTilePatchData + 0x030
-	adds r0, r5, #0
-	movs r2, #2
-	b .Ljp_080A6592
-	.align 2, 0
-.Ljp_080A6588: .4byte gFarmHouseTilePatchData + 0x030
-.Ljp_080A658C:
-	ldr r1, .Ljp_080A659C @ =gFarmHouseTilePatchData + 0x030
-	adds r0, r5, #0
-	movs r2, #0
-.Ljp_080A6592:
-	adds r3, r6, #0
-	bl func_080A54E8
-	b .Ljp_080A662A
-	.align 2, 0
-.Ljp_080A659C: .4byte gFarmHouseTilePatchData + 0x030
-.Ljp_080A65A0:
-	ldr r1, .Ljp_080A6634 @ =0x000021A0
-	adds r0, r0, r1
-	ldrb r0, [r0]
-	lsls r0, r0, #0x1e
-	lsrs r0, r0, #0x1e
-	cmp r0, #1
-	bne .Ljp_080A662A
-	adds r4, r5, #0
-	adds r4, #0xb4
-	ldr r7, .Ljp_080A6638 @ =gMapTilePatchAnimation0
-	ldrb r0, [r4, #1]
-	cmp r0, #0
-	beq .Ljp_080A65EC
-	movs r0, #0
-	mov r8, r0
-	mov r1, r8
-	strb r1, [r4, #1]
-	ldrb r2, [r4]
-	adds r0, r5, #0
-	adds r1, r7, #0
-	adds r3, r6, #0
-	bl func_080A54E8
-	ldr r0, [r7, #4]
-	ldrh r1, [r0, #2]
-	movs r2, #0
-	ldrb r0, [r4]
-	adds r0, #1
-	strb r0, [r4]
-	lsls r0, r0, #0x18
-	lsrs r0, r0, #0x18
-	cmp r0, r1
-	bne .Ljp_080A65E4
-	movs r2, #1
-.Ljp_080A65E4:
-	cmp r2, #0
-	beq .Ljp_080A65EC
-	mov r0, r8
-	strb r0, [r4]
-.Ljp_080A65EC:
-	adds r4, r5, #0
-	adds r4, #0xb8
-	ldr r7, .Ljp_080A663C @ =gMapTilePatchAnimation1
-	ldrb r0, [r4, #1]
-	cmp r0, #0
-	beq .Ljp_080A662A
-	movs r1, #0
-	mov r8, r1
-	mov r0, r8
-	strb r0, [r4, #1]
-	ldrb r2, [r4]
-	adds r0, r5, #0
-	adds r1, r7, #0
-	adds r3, r6, #0
-	bl func_080A54E8
-	ldr r0, [r7, #4]
-	ldrh r1, [r0, #2]
-	movs r2, #0
-	ldrb r0, [r4]
-	adds r0, #1
-	strb r0, [r4]
-	lsls r0, r0, #0x18
-	lsrs r0, r0, #0x18
-	cmp r0, r1
-	bne .Ljp_080A6622
-	movs r2, #1
-.Ljp_080A6622:
-	cmp r2, #0
-	beq .Ljp_080A662A
-	mov r1, r8
-	strb r1, [r4]
-.Ljp_080A662A:
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A6634: .4byte 0x000021A0
-.Ljp_080A6638: .4byte gMapTilePatchAnimation0
-.Ljp_080A663C: .4byte gMapTilePatchAnimation1
 
     .section .text.game_map_after_animation_reset, "ax", %progbits
     .align 2, 0
@@ -12554,7 +12407,7 @@ func_080A6EC4: @ 0x080A6EC4
 	ldr r0, [sp, #0x190]
 	movs r2, #0
 	adds r3, r7, #0
-	bl func_080A54E8
+	bl QueueMapTilePatch
 	ldr r4, .Ljp_map_080A8060 @ =gFarmHouseTilePatchData + 0x000
 	ldr r2, [sp, #0x1b0]
 	ldr r0, [r2]
@@ -12566,7 +12419,7 @@ func_080A6EC4: @ 0x080A6EC4
 	ldr r0, [sp, #0x190]
 	adds r1, r4, #0
 	adds r3, r7, #0
-	bl func_080A54E8
+	bl QueueMapTilePatch
 	movs r3, #6
 	mov sb, r3
 	add r6, sp, #0x30
@@ -12645,7 +12498,7 @@ func_080A6EC4: @ 0x080A6EC4
 	ldr r0, [sp, #0x190]
 	adds r1, r4, #0
 	adds r3, r7, #0
-	bl func_080A54E8
+	bl QueueMapTilePatch
 	movs r3, #7
 	mov sb, r3
 	add r6, sp, #0x30
@@ -12886,7 +12739,7 @@ func_080A6EC4: @ 0x080A6EC4
 	ldr r0, [sp, #0x190]
 	movs r2, #0
 	adds r3, r7, #0
-	bl func_080A54E8
+	bl QueueMapTilePatch
 	ldr r4, .Ljp_map_080A8314 @ =gFarmHouseTilePatchData + 0x008
 	ldr r1, [sp, #0x1b0]
 	ldr r0, [r1]
@@ -12898,7 +12751,7 @@ func_080A6EC4: @ 0x080A6EC4
 	ldr r0, [sp, #0x190]
 	adds r1, r4, #0
 	adds r3, r7, #0
-	bl func_080A54E8
+	bl QueueMapTilePatch
 	movs r2, #6
 	mov sb, r2
 	add r6, sp, #0x30
@@ -12977,7 +12830,7 @@ func_080A6EC4: @ 0x080A6EC4
 	ldr r0, [sp, #0x190]
 	adds r1, r4, #0
 	adds r3, r7, #0
-	bl func_080A54E8
+	bl QueueMapTilePatch
 	movs r3, #7
 	mov sb, r3
 	add r6, sp, #0x30
@@ -13057,7 +12910,7 @@ func_080A6EC4: @ 0x080A6EC4
 	ldr r0, [sp, #0x190]
 	adds r1, r4, #0
 	adds r3, r7, #0
-	bl func_080A54E8
+	bl QueueMapTilePatch
 	bl .Ljp_map_080A8C5C
 	.align 2, 0
 .Ljp_map_080A8310: .4byte gFarmHouseTilePatchData + 0x070
@@ -14340,7 +14193,7 @@ func_080A8B5A: @ 0x080A8B5A
 	ldr r0, [sp, #0x190]
 	movs r2, #0
 	adds r3, r7, #0
-	bl func_080A54E8
+	bl QueueMapTilePatch
 	ldr r2, [sp, #0x190]
 	adds r2, #0x9c
 	str r2, [sp, #0x1b4]
@@ -90779,7 +90632,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -90808,7 +90661,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -90846,7 +90699,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -90875,7 +90728,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -90941,7 +90794,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -90978,7 +90831,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -91018,7 +90871,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	movs r2, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	b .L080A5520
 	.align 2, 0
 .L080A550C: .4byte gFarmHouseTilePatchData + 0x068
@@ -91029,7 +90882,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	movs r2, #1
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 .L080A5520:
 	adds r4, r6, #0
 	adds r4, #0x30
@@ -91043,7 +90896,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -91084,7 +90937,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	movs r2, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	b .L080A55A4
 	.align 2, 0
 .L080A5590: .4byte gFarmHouseTilePatchData + 0x070
@@ -91095,7 +90948,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	movs r2, #1
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 .L080A55A4:
 	adds r4, r6, #0
 	adds r4, #0x30
@@ -91109,7 +90962,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -91139,7 +90992,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r0, [r5, #4]
 	ldrh r1, [r0, #2]
 	movs r2, #0
@@ -91176,7 +91029,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	movs r2, #0
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	b .L080A565C
 	.align 2, 0
 .L080A5648: .4byte gFarmHouseTilePatchData + 0x078
@@ -91187,7 +91040,7 @@ func_080A4F50: @ 0x080A4F50
 	adds r0, r6, #0
 	movs r2, #1
 	mov r3, sl
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 .L080A565C:
 	add sp, #0x5c
 	pop {r3, r4, r5}
@@ -91529,8 +91382,8 @@ func_080A5760: @ 0x080A5760
     .align 2, 0
 
 
-	thumb_func_start func_080A5AB0
-func_080A5AB0: @ 0x080A5AB0
+	thumb_func_start QueueMapTilePatch
+QueueMapTilePatch: @ 0x080A5AB0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -92004,152 +91857,6 @@ func_080A6474: @ 0x080A6474
 	bx r1
 	.align 2, 0
 .L080A64B4: .4byte vtable_unk_080E831C
-
-    .section .text.game_map_saved_draw, "ax", %progbits
-    .align 2, 0
-
-	thumb_func_start func_080A6524
-func_080A6524: @ 0x080A6524
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	adds r5, r0, #0
-	adds r6, r1, #0
-	bl func_080A4F50
-	adds r4, r5, #0
-	adds r4, #0x94
-	ldr r0, [r4]
-	ldr r1, [r5]
-	cmp r1, #6
-	beq .L080A65A0
-	cmp r1, #0x1d
-	bne .L080A662A
-	adds r1, r5, #0
-	adds r1, #0x98
-	ldrb r0, [r1]
-	cmp r0, #0
-	beq .L080A662A
-	movs r0, #0
-	strb r0, [r1]
-	ldr r0, [r4]
-	movs r1, #0xfa
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	bl HasStocking__C9FarmHouse
-	lsls r0, r0, #0x18
-	cmp r0, #0
-	beq .L080A658C
-	ldr r0, [r4]
-	movs r1, #0xfa
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	bl GetStockingArticleId__C9FarmHouse
-	cmp r0, #0x5f
-	bne .L080A6580
-	ldr r1, .L080A657C @ =gFarmHouseTilePatchData + 0x030
-	adds r0, r5, #0
-	movs r2, #1
-	b .L080A6592
-	.align 2, 0
-.L080A657C: .4byte gFarmHouseTilePatchData + 0x030
-.L080A6580:
-	ldr r1, .L080A6588 @ =gFarmHouseTilePatchData + 0x030
-	adds r0, r5, #0
-	movs r2, #2
-	b .L080A6592
-	.align 2, 0
-.L080A6588: .4byte gFarmHouseTilePatchData + 0x030
-.L080A658C:
-	ldr r1, .L080A659C @ =gFarmHouseTilePatchData + 0x030
-	adds r0, r5, #0
-	movs r2, #0
-.L080A6592:
-	adds r3, r6, #0
-	bl func_080A5AB0
-	b .L080A662A
-	.align 2, 0
-.L080A659C: .4byte gFarmHouseTilePatchData + 0x030
-.L080A65A0:
-	ldr r1, .L080A6634 @ =0x000021A0
-	adds r0, r0, r1
-	ldrb r0, [r0]
-	lsls r0, r0, #0x1e
-	lsrs r0, r0, #0x1e
-	cmp r0, #1
-	bne .L080A662A
-	adds r4, r5, #0
-	adds r4, #0xb4
-	ldr r7, .L080A6638 @ =gMapTilePatchAnimation0
-	ldrb r0, [r4, #1]
-	cmp r0, #0
-	beq .L080A65EC
-	movs r0, #0
-	mov r8, r0
-	mov r1, r8
-	strb r1, [r4, #1]
-	ldrb r2, [r4]
-	adds r0, r5, #0
-	adds r1, r7, #0
-	adds r3, r6, #0
-	bl func_080A5AB0
-	ldr r0, [r7, #4]
-	ldrh r1, [r0, #2]
-	movs r2, #0
-	ldrb r0, [r4]
-	adds r0, #1
-	strb r0, [r4]
-	lsls r0, r0, #0x18
-	lsrs r0, r0, #0x18
-	cmp r0, r1
-	bne .L080A65E4
-	movs r2, #1
-.L080A65E4:
-	cmp r2, #0
-	beq .L080A65EC
-	mov r0, r8
-	strb r0, [r4]
-.L080A65EC:
-	adds r4, r5, #0
-	adds r4, #0xb8
-	ldr r7, .L080A663C @ =gMapTilePatchAnimation1
-	ldrb r0, [r4, #1]
-	cmp r0, #0
-	beq .L080A662A
-	movs r1, #0
-	mov r8, r1
-	mov r0, r8
-	strb r0, [r4, #1]
-	ldrb r2, [r4]
-	adds r0, r5, #0
-	adds r1, r7, #0
-	adds r3, r6, #0
-	bl func_080A5AB0
-	ldr r0, [r7, #4]
-	ldrh r1, [r0, #2]
-	movs r2, #0
-	ldrb r0, [r4]
-	adds r0, #1
-	strb r0, [r4]
-	lsls r0, r0, #0x18
-	lsrs r0, r0, #0x18
-	cmp r0, r1
-	bne .L080A6622
-	movs r2, #1
-.L080A6622:
-	cmp r2, #0
-	beq .L080A662A
-	mov r1, r8
-	strb r1, [r4]
-.L080A662A:
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A6634: .4byte 0x000021A0
-.L080A6638: .4byte gMapTilePatchAnimation0
-.L080A663C: .4byte gMapTilePatchAnimation1
 
     .section .text.game_map_after_animation_reset, "ax", %progbits
     .align 2, 0
@@ -96012,7 +95719,7 @@ func_080A748C: @ 0x080A748C
 	ldr r0, [sp, #0x190]
 	movs r2, #0
 	adds r3, r7, #0
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r4, .L080A8628 @ =gFarmHouseTilePatchData + 0x000
 	ldr r2, [sp, #0x1b0]
 	ldr r0, [r2]
@@ -96024,7 +95731,7 @@ func_080A748C: @ 0x080A748C
 	ldr r0, [sp, #0x190]
 	adds r1, r4, #0
 	adds r3, r7, #0
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	movs r3, #6
 	mov sb, r3
 	add r6, sp, #0x30
@@ -96103,7 +95810,7 @@ func_080A748C: @ 0x080A748C
 	ldr r0, [sp, #0x190]
 	adds r1, r4, #0
 	adds r3, r7, #0
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	movs r3, #7
 	mov sb, r3
 	add r6, sp, #0x30
@@ -96344,7 +96051,7 @@ func_080A748C: @ 0x080A748C
 	ldr r0, [sp, #0x190]
 	movs r2, #0
 	adds r3, r7, #0
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r4, .L080A88DC @ =gFarmHouseTilePatchData + 0x008
 	ldr r1, [sp, #0x1b0]
 	ldr r0, [r1]
@@ -96356,7 +96063,7 @@ func_080A748C: @ 0x080A748C
 	ldr r0, [sp, #0x190]
 	adds r1, r4, #0
 	adds r3, r7, #0
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	movs r2, #6
 	mov sb, r2
 	add r6, sp, #0x30
@@ -96435,7 +96142,7 @@ func_080A748C: @ 0x080A748C
 	ldr r0, [sp, #0x190]
 	adds r1, r4, #0
 	adds r3, r7, #0
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	movs r3, #7
 	mov sb, r3
 	add r6, sp, #0x30
@@ -96515,7 +96222,7 @@ func_080A748C: @ 0x080A748C
 	ldr r0, [sp, #0x190]
 	adds r1, r4, #0
 	adds r3, r7, #0
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	bl .L080A9224
 	.align 2, 0
 .L080A88D8: .4byte gFarmHouseTilePatchData + 0x070
@@ -97797,7 +97504,7 @@ sub_080A9122: @ 0x080A9122
 	ldr r0, [sp, #0x190]
 	movs r2, #0
 	adds r3, r7, #0
-	bl func_080A5AB0
+	bl QueueMapTilePatch
 	ldr r2, [sp, #0x190]
 	adds r2, #0x9c
 	str r2, [sp, #0x1b4]

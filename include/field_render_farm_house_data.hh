@@ -3,7 +3,7 @@
 
 #include "field_render_rect_descriptors.hh"
 
-// func_080A5AB0 reads the destination tile and source pointer from these
+// QueueMapTilePatch reads the destination tile and source pointer from these
 // records.  The two bytes after destination_tile are compiler alignment for
 // the pointer, not an independently meaningful ROM field.
 struct FarmHouseTilePatchDescriptor
@@ -12,16 +12,25 @@ struct FarmHouseTilePatchDescriptor
     u8 const * frame_data;
 };
 
+// The native frame stream begins with two halfwords; tile bytes follow.
+struct MapTilePatchFrameHeader {
+    u16 tiles_per_frame;
+    u16 frame_count;
+};
+
+typedef char MapTilePatchFrameHeaderSizeCheck[sizeof(MapTilePatchFrameHeader) == 4 ? 1 : -1];
+typedef char MapTilePatchFrameCountCheck[offsetof(MapTilePatchFrameHeader, frame_count) == 2 ? 1 : -1];
+
 // Native timers compare elapsed updates against frame_duration at +0x08.
 // The animation frame count is read from frame_data, not from this field.
 // Pointer alignment and tail alignment are natural structure padding.
 struct FarmHouseTilePatchAnimationDescriptor
 {
-    u16 destination_tile;
-    u8 const * frame_data;
+    FarmHouseTilePatchDescriptor patch;
     u16 frame_duration;
 };
 
+typedef char MapTilePatchAnimationPrefixCheck[offsetof(FarmHouseTilePatchAnimationDescriptor, patch) == 0 ? 1 : -1];
 typedef char MapTilePatchAnimationDescriptorSizeCheck[sizeof(FarmHouseTilePatchAnimationDescriptor) == 12 ? 1 : -1];
 typedef char MapTilePatchAnimationDurationCheck[offsetof(FarmHouseTilePatchAnimationDescriptor, frame_duration) == 8 ? 1 : -1];
 

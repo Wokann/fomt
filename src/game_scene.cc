@@ -2084,6 +2084,53 @@ EC void UpdateSavedMapTileAnimationTimers(GameSceneSavedMapPrefix * map)
     }
 }
 
+static inline bool AdvanceMapAnimationFrame(MapTilePatchAnimationState & state, u32 count)
+{
+    return ++state.frame == count;
+}
+
+static inline void QueueMapAnimationFrame(MapTilePatchAnimationState & state,
+    GameSceneWorldMapPrefix * map, FarmHouseTilePatchAnimationDescriptor const & animation,
+    HardwareDmaQueue & queue)
+{
+    if (state.update_pending) {
+        state.update_pending = false;
+        QueueMapTilePatch(map, animation.patch, state.frame, queue);
+        MapTilePatchFrameHeader const * frames =
+            reinterpret_cast<MapTilePatchFrameHeader const *>(animation.patch.frame_data);
+        if (AdvanceMapAnimationFrame(state, frames->frame_count))
+            state.frame = 0;
+    }
+}
+
+EC void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queue,
+    HardwareDisplayState & display, void * unk)
+{
+    func_080A4F50(map, queue, display, unk);
+    GameStateSaveImage * save = map->save;
+    switch (map->map) {
+    case MAP_FARMHOUSE:
+        if (map->unk_98) {
+            map->unk_98 = false;
+            if (map->save->farm.farm_house.HasStocking()) {
+                if (map->save->farm.farm_house.GetStockingArticleId() == ITEM_ARTICLE_NONE)
+                    QueueMapTilePatch(map, gFarmHouseTilePatchData.group0[6], 1, queue);
+                else
+                    QueueMapTilePatch(map, gFarmHouseTilePatchData.group0[6], 2, queue);
+            } else {
+                QueueMapTilePatch(map, gFarmHouseTilePatchData.group0[6], 0, queue);
+            }
+        }
+        break;
+    case MAP_ROSE_SQUARE:
+        if (save->event_state.harvest_festival_active == FESTIVAL_PHASE_INITIAL) {
+            QueueMapAnimationFrame(map->tile_animations[0], map, gMapTilePatchAnimation0, queue);
+            QueueMapAnimationFrame(map->tile_animations[1], map, gMapTilePatchAnimation1, queue);
+        }
+        break;
+    }
+}
+
 EC void ResetSavedMapTileAnimationFrames(GameSceneSavedMapPrefix * map)
 {
 #if defined(REGION_JP)

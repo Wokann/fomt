@@ -43,6 +43,7 @@ struct GameSceneIndexedSprite;
 struct HardwareBlendController;
 struct FieldRenderRectDescriptor;
 struct FieldRenderTileAttributes;
+struct HardwareDmaQueue;
 
 // The map controller stores Q16.16 camera coordinates. Native integer
 // readers sign-extend their high halfwords; movement writes the whole word.
@@ -1281,6 +1282,14 @@ u32 GetWorldMapId(GameSceneWorldMapPrefix const * map);
 i32 GetWorldMapViewY(GameSceneWorldMapPrefix const * map);
 i32 GetWorldMapViewX(GameSceneWorldMapPrefix const * map);
 void UpdateSavedMapTileAnimationTimers(GameSceneSavedMapPrefix * map);
+// The base draw implementation remains native. Keep its fourth argument
+// opaque until that consumer interface is recovered.
+void func_080A4F50(GameSceneWorldMapPrefix * map, HardwareDmaQueue & queue,
+    HardwareDisplayState & display, void * unk);
+void QueueMapTilePatch(GameSceneWorldMapPrefix * map,
+    FarmHouseTilePatchDescriptor const & patch, u32 frame, HardwareDmaQueue & queue);
+void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queue,
+    HardwareDisplayState & display, void * unk);
 void ResetSavedMapTileAnimationFrames(GameSceneSavedMapPrefix * map);
 // These base lifecycle methods still use their actual native entries.
 void func_080A4BEC(GameSceneWorldMapPrefix * map);

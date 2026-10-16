@@ -508,7 +508,7 @@ SECTIONS
         src/game_scene.o(.text.SelectDefaultWorldMapData .text.GetWorldMapTileAttributes .text.GetWorldMapDataId .text.GetWorldMapId .text.GetWorldMapViewY .text.GetWorldMapViewX);
         asm/code_809E804.o(.text.game_map_after_patch_dispatchers);
         src/game_scene.o(.text.UpdateSavedMapTileAnimationTimers);
-        asm/code_809E804.o(.text.game_map_saved_draw);
+        src/game_scene.o(.text.DrawSavedWorldMap);
         src/game_scene.o(.text.ResetSavedMapTileAnimationFrames);
         asm/code_809E804.o(.text.game_map_after_animation_reset);
         src/game_scene.o(.text.RefreshFieldPlotTiles .text.func_080AA850 .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
