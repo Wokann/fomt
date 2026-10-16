@@ -1,10 +1,9 @@
 #include "field_render_farm_house_data.hh"
 #include "static_resources.hh"
 
-// These source payloads remain in the regional asset container.  The tables
-// below keep real relocations to those raw resources rather than embedding ROM
-// addresses in this C++ object.  Every symbol denotes the payload start in all
-// regions; EU archive headers remain in the raw asset stream before labels.
+// Resource symbols are defined at the actual regional source boundaries.
+// These tables keep real relocations to them; generated tiles, palettes and
+// tilemaps remain direct graphics build inputs.
 extern u8 const gUnk_FarmHouseTilePatchResource_000[];
 extern u8 const gUnk_FarmHouseTilePatchResource_001[];
 extern u8 const gUnk_FarmHouseTilePatchResource_002[];

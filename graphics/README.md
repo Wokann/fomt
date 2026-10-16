@@ -284,10 +284,15 @@ The misleading aggregate file is retired; see `maps/README.md` and
 
 `map_state_templates/shared/map_state_tilemap_templates.bin` remains a
 separate native data container. The map-state type selects data read as
-16-bit BG tilemap entries; individual record ownership is not yet fully
-resolved. Its source is still included at the original positions, retaining
-the DE labels around bounded pieces. It has no ROM-template build input or
-post-link patch. The original aggregate ranges are recorded below; the first
+16-bit BG tilemap entries, but this does not establish the format of the
+whole container: it also holds independently referenced tile-patch frame
+resources. Individual record ownership is not yet fully resolved. Its source
+is included in contiguous bounded pieces at the original positions in all
+four regions, with actual labels at the 61 audited FarmHouse/FieldRender
+resource boundaries, not container-start offset aliases. The same native
+bytes remain authoritative pending structured extraction. It has no
+ROM-template build input or post-link patch. The original aggregate ranges
+are recorded below; the first
 row is historical, not an assertion that its entire range is one table:
 
 | Source | JP | US | EU | DE | Size |

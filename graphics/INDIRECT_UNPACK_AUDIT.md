@@ -89,7 +89,7 @@ The second container remains native data pending its own record audit.
 | Native source | JP range | US range | EU range | DE range | Proven consumer format |
 | --- | ---: | ---: | ---: | ---: | --- |
 | Former `map_state_palette_templates.bin` aggregate | `0x45D654..0x462520` | `0x6D74F8..0x6DC3C4` | `0x6D7554..0x6DC420` | `0x45E594..0x463460` | `func_080A8FDC` proves a selected `0x60`-byte copy, not the format of the whole range; the following 25 streams are MapData visual inputs. |
-| `map_state_tilemap_templates.bin` | `0x464950..0x470E38` | `0x6DE7F4..0x6EACDC` | `0x6DE850..0x6EAD38` | `0x465890..0x471D78` | `func_080AA400` selects the table for map-state type `0x0F` and reads it as 16-bit BG tilemap entries. |
+| `map_state_tilemap_templates.bin` | `0x464950..0x470E38` | `0x6DE7F4..0x6EACDC` | `0x6DE850..0x6EAD38` | `0x465890..0x471D78` | `func_080AA400` proves selected 16-bit BG tilemap entries, not one table covering the whole range. The container also holds tile-patch frame resources; 61 independently referenced FarmHouse/FieldRender boundaries now have actual source labels in all four regions. |
 
 The palette prefix and remaining tilemap container are not promoted to guessed
 PNG layouts: their consumers do not establish every entry's palette ownership
