@@ -6,6 +6,8 @@
 
 EXTERN_C
 
+extern void LoadWorldMapTimeOfDayPalette(void);
+
 // These early C++ ABI tables have two null metadata slots followed by opaque
 // function targets. The functions are not called through these declarations;
 // their no-argument types retain only the original pointer relocations.
@@ -341,7 +343,6 @@ extern void func_080A5198(void);
 extern void func_080A5E58(void);
 extern void func_080A58D8(void);
 extern void func_080A56F8(void);
-extern void func_080A57F0(void);
 extern void func_080E39D0(void);
 extern void func_080E3B50(void);
 extern void func_080A5EF0(void);
@@ -641,7 +642,6 @@ extern void func_080A5760(void);
 extern void func_080A6420(void);
 extern void func_080A5EA0(void);
 extern void func_080A5CC0(void);
-extern void func_080A5DB8(void);
 extern void func_080A5670(void);
 extern void func_080E4238(void);
 extern void func_080E43B8(void);
@@ -6999,7 +6999,7 @@ extern RawVTableFunction const vtable_unk_080E82E4[]
         func_080A5E58,
         func_080A58D8,
         func_080A56F8,
-        func_080A57F0,
+        LoadWorldMapTimeOfDayPalette,
 #else
         nullptr,
         nullptr,
@@ -7021,7 +7021,7 @@ extern RawVTableFunction const vtable_unk_080E82FC[]
         func_080A6420,
         func_080A5EA0,
         func_080A5CC0,
-        func_080A5DB8,
+        LoadWorldMapTimeOfDayPalette,
 #endif
     };
 

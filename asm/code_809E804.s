@@ -8010,7 +8010,7 @@ func_080A5198: @ 0x080A5198
 	bl _call_via_r1
 	adds r0, r4, #0
 	ldr r1, [sp, #4]
-	bl func_080A5D14
+	bl SetWorldMapTimeOfDayPalette
 	adds r0, r4, #0
 	ldr r1, [sp, #8]
 	ldr r2, [sp, #0xc]
@@ -8279,128 +8279,8 @@ func_080A56F8: @ 0x080A56F8
 	.align 2, 0
 .Ljp_080A5D10: .4byte 0x03FF03FF
 
-    .global func_080A5D14
-    .thumb_func
-func_080A5D14: @ 0x080A574C
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	cmp r1, #1
-	beq .Ljp_080A5D66
-	cmp r1, #1
-	bgt .Ljp_080A5D26
-	cmp r1, #0
-	beq .Ljp_080A5D4A
-	b .Ljp_080A5DA8
-.Ljp_080A5D26:
-	cmp r1, #2
-	beq .Ljp_080A5D88
-	cmp r1, #3
-	bne .Ljp_080A5DA8
-	adds r4, r5, #0
-	adds r4, #0x90
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #3
-	movs r2, #0
-	bl _call_via_r3
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #0
-	b .Ljp_080A5D80
-.Ljp_080A5D4A:
-	adds r4, r5, #0
-	adds r4, #0x90
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #0
-	movs r2, #0
-	bl _call_via_r3
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #1
-	b .Ljp_080A5D80
-.Ljp_080A5D66:
-	adds r4, r5, #0
-	adds r4, #0x90
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #1
-	movs r2, #0
-	bl _call_via_r3
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #2
-.Ljp_080A5D80:
-	movs r2, #1
-	bl _call_via_r3
-	b .Ljp_080A5DA8
-.Ljp_080A5D88:
-	adds r4, r5, #0
-	adds r4, #0x90
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #2
-	movs r2, #0
-	bl _call_via_r3
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #3
-	movs r2, #1
-	bl _call_via_r3
-.Ljp_080A5DA8:
-	adds r1, r5, #0
-	adds r1, #0x2a
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-    .global func_080A57F0
-    .thumb_func
-func_080A57F0: @ 0x080A57F0
-	push {r4, r5, r6, r7, lr}
-	adds r4, r0, #0
-	adds r7, r1, #0
-	adds r5, r2, #0
-	ldr r0, [r4, #4]
-	bl GetMapData
-	adds r6, r0, #0
-	ldr r0, [r6, #4]
-	lsls r5, r5, #2
-	adds r4, #0x1c
-	adds r4, r4, r5
-	ldr r1, [r4]
-	bl Unpack
-	cmp r7, #0
-	blt .Ljp_080A5DF6
-	cmp r7, #2
-	ble .Ljp_080A5DE4
-	cmp r7, #3
-	beq .Ljp_080A5DEE
-	b .Ljp_080A5DF6
-.Ljp_080A5DE4:
-	ldr r0, [r6, #4]
-	ldr r1, [r4]
-	bl Unpack
-	b .Ljp_080A5DF6
-.Ljp_080A5DEE:
-	ldr r0, [r6, #8]
-	ldr r1, [r4]
-	bl Unpack
-.Ljp_080A5DF6:
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
+    .section .text.game_map_time_palette_after, "ax", %progbits
+    .align 2, 0
 
     .global func_080A5834
     .thumb_func
@@ -91890,7 +91770,7 @@ func_080A5760: @ 0x080A5760
 	bl _call_via_r1
 	adds r0, r4, #0
 	ldr r1, [sp, #4]
-	bl func_080A5D14
+	bl SetWorldMapTimeOfDayPalette
 	adds r0, r4, #0
 	ldr r1, [sp, #8]
 	ldr r2, [sp, #0xc]
@@ -92158,126 +92038,8 @@ func_080A5CC0: @ 0x080A5CC0
 	.align 2, 0
 .L080A5D10: .4byte 0x03FF03FF
 
-	thumb_func_start func_080A5D14
-func_080A5D14: @ 0x080A5D14
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	cmp r1, #1
-	beq .L080A5D66
-	cmp r1, #1
-	bgt .L080A5D26
-	cmp r1, #0
-	beq .L080A5D4A
-	b .L080A5DA8
-.L080A5D26:
-	cmp r1, #2
-	beq .L080A5D88
-	cmp r1, #3
-	bne .L080A5DA8
-	adds r4, r5, #0
-	adds r4, #0x90
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #3
-	movs r2, #0
-	bl _call_via_r3
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #0
-	b .L080A5D80
-.L080A5D4A:
-	adds r4, r5, #0
-	adds r4, #0x90
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #0
-	movs r2, #0
-	bl _call_via_r3
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #1
-	b .L080A5D80
-.L080A5D66:
-	adds r4, r5, #0
-	adds r4, #0x90
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #1
-	movs r2, #0
-	bl _call_via_r3
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #2
-.L080A5D80:
-	movs r2, #1
-	bl _call_via_r3
-	b .L080A5DA8
-.L080A5D88:
-	adds r4, r5, #0
-	adds r4, #0x90
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #2
-	movs r2, #0
-	bl _call_via_r3
-	ldr r0, [r4]
-	ldr r3, [r0, #0x24]
-	adds r0, r5, #0
-	movs r1, #3
-	movs r2, #1
-	bl _call_via_r3
-.L080A5DA8:
-	adds r1, r5, #0
-	adds r1, #0x2a
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080A5DB8
-func_080A5DB8: @ 0x080A5DB8
-	push {r4, r5, r6, r7, lr}
-	adds r4, r0, #0
-	adds r7, r1, #0
-	adds r5, r2, #0
-	ldr r0, [r4, #4]
-	bl GetMapData
-	adds r6, r0, #0
-	ldr r0, [r6, #4]
-	lsls r5, r5, #2
-	adds r4, #0x1c
-	adds r4, r4, r5
-	ldr r1, [r4]
-	bl Unpack
-	cmp r7, #0
-	blt .L080A5DF6
-	cmp r7, #2
-	ble .L080A5DE4
-	cmp r7, #3
-	beq .L080A5DEE
-	b .L080A5DF6
-.L080A5DE4:
-	ldr r0, [r6, #4]
-	ldr r1, [r4]
-	bl Unpack
-	b .L080A5DF6
-.L080A5DEE:
-	ldr r0, [r6, #8]
-	ldr r1, [r4]
-	bl Unpack
-.L080A5DF6:
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
+    .section .text.game_map_time_palette_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080A5DFC
 func_080A5DFC: @ 0x080A5DFC

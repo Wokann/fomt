@@ -61,9 +61,11 @@ struct GameSceneWorldMapPrefix {
     GameSceneCameraCoordinate x;
     GameSceneCameraCoordinate y;
     u16 * tile_layers[3];
-    u8 unk_1C[0xD];
+    u16 * time_palette_buffers[3];
+    u8 unk_28;
     bool camera_changed;
-    u8 unk_2A[2];
+    bool time_palette_changed;
+    u8 unk_2B;
     FieldRenderTileAttributes * tile_attributes;
     u8 unk_30[0x28];
     u8 unk_58;
@@ -72,6 +74,13 @@ struct GameSceneWorldMapPrefix {
     i32 step_y_q16;
     u32 movement_frames;
     virtual ~GameSceneWorldMapPrefix();
+    virtual void vfunc_0C();
+    virtual void vfunc_10();
+    virtual void vfunc_14();
+    virtual void vfunc_18();
+    virtual void vfunc_1C();
+    virtual void vfunc_20();
+    virtual void LoadTimeOfDayPalette(i32 period, u32 buffer_index);
 
 private:
     GameSceneWorldMapPrefix();
@@ -88,6 +97,10 @@ struct GameSceneSavedMapPrefix : GameSceneWorldMapPrefix {
 private:
     GameSceneSavedMapPrefix();
 };
+
+// These are palette buffers, distinct from the three map tile grids.
+typedef char GameSceneMapTimePaletteBuffersCheck[offsetof(GameSceneWorldMapPrefix, time_palette_buffers) == 0x1C ? 1 : -1];
+typedef char GameSceneMapTimePaletteChangedCheck[offsetof(GameSceneWorldMapPrefix, time_palette_changed) == 0x2A ? 1 : -1];
 
 typedef char GameSceneSavedMapSaveCheck[offsetof(GameSceneSavedMapPrefix, save) == 0x94 ? 1 : -1];
 typedef char GameSceneSavedMapFlagCheck[offsetof(GameSceneSavedMapPrefix, unk_98) == 0x98 ? 1 : -1];
@@ -1247,6 +1260,9 @@ void func_080AA850(GameSceneSavedMapPrefix * map, u32 index);
 void func_080AA89C(GameSceneWorldMapPrefix * map);
 void func_080AA8BC(GameSceneWorldMapPrefix * map);
 void func_080AA8DC(GameSceneSavedMapPrefix * map);
+void Unpack(u8 const * source, void * destination);
+void SetWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period);
+void LoadWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period, u32 buffer_index);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
 i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map);

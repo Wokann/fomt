@@ -1783,6 +1783,48 @@ EC void ApplyMapTilePatch(GameSceneWorldMapPrefix * map,
     }
 }
 
+EC void SetWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period)
+{
+    switch (period) {
+    case TIME_OF_DAY_PERIOD_NIGHT:
+        map.LoadTimeOfDayPalette(TIME_OF_DAY_PERIOD_NIGHT, 0);
+        map.LoadTimeOfDayPalette(TIME_OF_DAY_PERIOD_MORNING, 1);
+        break;
+    case TIME_OF_DAY_PERIOD_MORNING:
+        map.LoadTimeOfDayPalette(TIME_OF_DAY_PERIOD_MORNING, 0);
+        map.LoadTimeOfDayPalette(TIME_OF_DAY_PERIOD_AFTERNOON, 1);
+        break;
+    case TIME_OF_DAY_PERIOD_AFTERNOON:
+        map.LoadTimeOfDayPalette(TIME_OF_DAY_PERIOD_AFTERNOON, 0);
+        map.LoadTimeOfDayPalette(TIME_OF_DAY_PERIOD_EVENING, 1);
+        break;
+    case TIME_OF_DAY_PERIOD_EVENING:
+        map.LoadTimeOfDayPalette(TIME_OF_DAY_PERIOD_EVENING, 0);
+        map.LoadTimeOfDayPalette(TIME_OF_DAY_PERIOD_NIGHT, 1);
+        break;
+    }
+    map.time_palette_changed = true;
+}
+
+EC void LoadWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period,
+    u32 buffer_index)
+{
+    MapData const * data = GetMapData(map.map_data_id);
+    // The native loader first decodes the default palette even when the
+    // selected period will decode that same resource again below.
+    Unpack(static_cast<u8 const *>(data->compressed_layers[1]), map.time_palette_buffers[buffer_index]);
+    switch (period) {
+    case TIME_OF_DAY_PERIOD_MORNING:
+    case TIME_OF_DAY_PERIOD_AFTERNOON:
+    case TIME_OF_DAY_PERIOD_EVENING:
+        Unpack(static_cast<u8 const *>(data->compressed_layers[1]), map.time_palette_buffers[buffer_index]);
+        break;
+    case TIME_OF_DAY_PERIOD_NIGHT:
+        Unpack(static_cast<u8 const *>(data->compressed_layers[2]), map.time_palette_buffers[buffer_index]);
+        break;
+    }
+}
+
 EC void func_080A601C(GameSceneWorldMapPrefix * map)
 {
     map->unk_58 = 0x14;
