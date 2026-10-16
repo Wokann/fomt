@@ -2,16 +2,57 @@
 #define HARDWARE_MANAGER_HH
 
 #include "prelude.h"
+#include "hardware_linked_list.hh"
+#include "interrupt.hh"
 
-// The constructor allocates 0x6C bytes.  The nested objects at +0x0C,
-// +0x28, +0x34 and +0x50 still need their full types established.
+struct HardwareManagerVBlankBinding;
+
+// The eight-byte subobject restores the previous binding when destroyed.
+// Its original table is separate from the enclosing binding's table.
+struct HardwareManagerPreviousBinding {
+    struct HardwareManagerVBlankBinding * previous;
+    HardwareLinkVirtualFunction const * vtable;
+};
+
+// Save the previous VBlank callback and enable bit while this manager owns
+// IRQ slot zero. The halfword's following two bytes are natural padding.
+struct HardwareManagerVBlankBinding {
+    struct HardwareLinkedList * commands;
+    u16 enabled;
+    struct HardwareManagerPreviousBinding previous;
+    InterruptHandler previous_handler;
+    HardwareLinkVirtualFunction const * vtable;
+#ifdef __cplusplus
+    HardwareManagerVBlankBinding(HardwareLinkedList * const & list)
+        asm("func_080D78F8") SECTION(".text.hardware_manager_vblank_binding");
+    // Native cleanup also restores the previous callback and IRQ enable bit.
+    ~HardwareManagerVBlankBinding() asm("func_080D7944");
+#endif
+};
+
+typedef char HardwareManagerPreviousBinding_size_check[
+    sizeof(struct HardwareManagerPreviousBinding) == 8 ? 1 : -1];
+typedef char HardwareManagerVBlankBinding_size_check[
+    sizeof(struct HardwareManagerVBlankBinding) == 0x18 ? 1 : -1];
+typedef char HardwareManagerVBlankBinding_previous_offset_check[
+    offsetof(struct HardwareManagerVBlankBinding, previous) == 8 ? 1 : -1];
+typedef char HardwareManagerVBlankBinding_handler_offset_check[
+    offsetof(struct HardwareManagerVBlankBinding, previous_handler) == 0x10 ? 1 : -1];
+typedef char HardwareManagerVBlankBinding_vtable_offset_check[
+    offsetof(struct HardwareManagerVBlankBinding, vtable) == 0x14 ? 1 : -1];
+
+// The constructor allocates 0x6C bytes. The earlier nodes and lists still
+// need their full types established; the VBlank binding starts at +0x50.
 struct HardwareManagerState {
-    u8 unk_00[0x68];
+    u8 unk_00[0x50];
+    struct HardwareManagerVBlankBinding vblank;
     u8 unk_68;
     u8 unk_69[3];
 };
 
 typedef char HardwareManagerState_size_check[sizeof(struct HardwareManagerState) == 0x6C ? 1 : -1];
+typedef char HardwareManagerState_vblank_offset_check[
+    offsetof(struct HardwareManagerState, vblank) == 0x50 ? 1 : -1];
 
 struct HardwareManagerOwner {
     struct HardwareManagerState * state;
@@ -22,8 +63,15 @@ struct HardwareManagerOwner {
 
 EXTERN_C
 
+extern struct HardwareManagerVBlankBinding * gUnk_03000410;
+
 struct HardwareManagerOwner * func_08008980(struct HardwareManagerOwner * owner);
 void func_08008A68(struct HardwareManagerOwner * owner, u32 flags);
+void func_080D78E0(void) SECTION(".text.hardware_manager_vblank_binding");
+struct HardwareManagerVBlankBinding * func_080D78F8(
+    struct HardwareManagerVBlankBinding * binding, struct HardwareLinkedList * const * list);
+// This original destructor entry remains explicit Thumb assembly.
+void func_080D7944(struct HardwareManagerVBlankBinding * binding, u32 flags);
 
 EXTERN_C_END
 

@@ -6335,50 +6335,9 @@ RunHardwareDmaQueueCommand:
     .byte 0x00, 0x00, 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x06, 0x48, 0xA0, 0x60, 0x20, 0x1C, 0x32, 0xF7
     .byte 0x78, 0xFA, 0x20, 0x1C, 0x29, 0x1C, 0x32, 0xF7, 0x2C, 0xFC, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
     .byte 0x00, 0x00, 0xD0, 0x4F, 0x0E, 0x08
-    .global func_080D78E0
-    .thumb_func
-func_080D78E0:
-    push {lr}
-    ldr r0, [pc, #0x10]
-    ldr r0, [r0]
-    ldr r0, [r0]
-    ldr r1, [r0, #8]
-    ldr r1, [r1, #8]
-    bl _call_via_r1
-    pop {r0}
-    bx r0
-    .byte 0x10, 0x04, 0x00, 0x03
-    .global func_080D78F8
-    .thumb_func
-func_080D78F8:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    ldr r0, [pc, #0x34]
-    str r0, [r5, #0x14]
-    ldr r0, [r1]
-    str r0, [r5]
-    movs r4, #1
-    movs r0, #1
-    bl func_08000528
-    ands r4, r0
-    strh r4, [r5, #4]
-    ldr r0, [pc, #0x24]
-    ldr r1, [r0]
-    str r5, [r0]
-    str r1, [r5, #8]
-    ldr r0, [pc, #0x20]
-    str r0, [r5, #0xc]
-    ldr r1, [pc, #0x20]
-    movs r0, #0
-    bl func_080D100C
-    str r0, [r5, #0x10]
-    movs r0, #1
-    bl func_0800050C
-    adds r0, r5, #0
-    pop {r4, r5}
-    pop {r1}
-    bx r1
-    .byte 0x7C, 0x4F, 0x0E, 0x08, 0x10, 0x04, 0x00, 0x03, 0x88, 0x4F, 0x0E, 0x08, 0x99, 0x70, 0x0D, 0x08
+    .section .text.hardware_manager_vblank_after, "ax", %progbits
+    .align 2, 0
+
     .global func_080D7944
     .thumb_func
 func_080D7944:
@@ -7608,54 +7567,8 @@ RunHardwareDmaQueueCommand: @ 0x080D782C
 	.align 2, 0
 .L080D78DC: .4byte vtable_unk_080E5B90
 
-	thumb_func_start func_080D78E0
-func_080D78E0: @ 0x080D78E0
-	push {lr}
-	ldr r0, .L080D78F4 @ =gUnk_03000410
-	ldr r0, [r0]
-	ldr r0, [r0]
-	ldr r1, [r0, #8]
-	ldr r1, [r1, #8]
-	bl _call_via_r1
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080D78F4: .4byte gUnk_03000410
-
-	thumb_func_start func_080D78F8
-func_080D78F8: @ 0x080D78F8
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	ldr r0, .L080D7934 @ =vtable_unk_080E5B3C
-	str r0, [r5, #0x14]
-	ldr r0, [r1]
-	str r0, [r5]
-	movs r4, #1
-	movs r0, #1
-	bl func_08000528
-	ands r4, r0
-	strh r4, [r5, #4]
-	ldr r0, .L080D7938 @ =gUnk_03000410
-	ldr r1, [r0]
-	str r5, [r0]
-	str r1, [r5, #8]
-	ldr r0, .L080D793C @ =vtable_unk_080E5B48
-	str r0, [r5, #0xc]
-	ldr r1, .L080D7940 @ =func_080D78E0
-	movs r0, #0
-	bl func_080D100C
-	str r0, [r5, #0x10]
-	movs r0, #1
-	bl func_0800050C
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080D7934: .4byte vtable_unk_080E5B3C
-.L080D7938: .4byte gUnk_03000410
-.L080D793C: .4byte vtable_unk_080E5B48
-.L080D7940: .4byte func_080D78E0
+    .section .text.hardware_manager_vblank_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080D7944
 func_080D7944: @ 0x080D7944

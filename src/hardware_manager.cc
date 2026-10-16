@@ -9,8 +9,8 @@ extern void * vtable_unk_080E5B18[];
 extern void * vtable_unk_080E5B70[];
 extern void * vtable_unk_080E5B90[];
 extern void * vtable_unk_080E5B60[];
-extern void * func_080D78F8(void * object, void * value);
-extern void func_080D7944(void * object, u32 flags);
+extern HardwareLinkVirtualFunction const vtable_unk_080E5B3C[];
+extern HardwareLinkVirtualFunction const vtable_unk_080E5B48[];
 extern void * __builtin_new(u32 size);
 extern void __builtin_delete(void * object);
 EXTERN_C_END
@@ -54,8 +54,9 @@ struct HardwareManagerOwner * func_08008980(struct HardwareManagerOwner * owner)
     *(void **)(second + 0x14) = second_sentinel;
     *(void **)(second + 0x08) = vtable_unk_080E5B90;
 
-    u8 * resource = state + 0x50;
-    void * second_pointer = second;
+    HardwareManagerVBlankBinding * resource =
+        &reinterpret_cast<HardwareManagerState *>(state)->vblank;
+    HardwareLinkedList * second_pointer = reinterpret_cast<HardwareLinkedList *>(second);
     func_080D78F8(resource, &second_pointer);
     *(void **)(second + 0x30) = vtable_unk_080E5B0C;
     *(void **)(second + 0x08) = vtable_unk_080E5B18;
@@ -82,7 +83,7 @@ void func_08008A68(struct HardwareManagerOwner * owner, u32 flags)
         u8 * secondary = state + 0x34;
         *(void **)(secondary + 0x30) = vtable_unk_080E5B0C;
         *(void **)(secondary + 8) = vtable_unk_080E5B18;
-        func_080D7944(state + 0x50, 0);
+        func_080D7944(&reinterpret_cast<HardwareManagerState *>(state)->vblank, 0);
         func_0800959C((struct HardwareBlendObject *)secondary, 2);
         func_080098AC(state + 0x28, 2);
         func_0800959C((struct HardwareBlendObject *)(state + 0x0C), 2);
@@ -91,4 +92,25 @@ void func_08008A68(struct HardwareManagerOwner * owner, u32 flags)
     }
     if (flags & 1)
         __builtin_delete(owner);
+}
+
+void func_080D78E0(void)
+{
+    HardwareLinkedList * commands = gUnk_03000410->commands;
+    typedef u32 (*Run)(HardwareLinkedList *);
+    reinterpret_cast<Run *>(commands->vtable)[2](commands);
+}
+
+HardwareManagerVBlankBinding::HardwareManagerVBlankBinding(HardwareLinkedList * const & list)
+{
+    vtable = vtable_unk_080E5B3C;
+    commands = list;
+    u32 mask = 1;
+    enabled = mask & func_08000528(1);
+    HardwareManagerVBlankBinding * old_binding = gUnk_03000410;
+    gUnk_03000410 = this;
+    previous.previous = old_binding;
+    previous.vtable = vtable_unk_080E5B48;
+    previous_handler = func_080D100C(0, func_080D78E0);
+    func_0800050C(1);
 }
