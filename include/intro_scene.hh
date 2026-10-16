@@ -30,8 +30,9 @@ struct IntroSceneResourceState
 {
     IndexedResourceHandle handle;
     IntroSceneResourceFlags flags;
-    i32 unk_18;
-    i32 unk_1C;
+    // Signed 16.16 pixel coordinates; drawing reads the signed upper half.
+    i32 x;
+    i32 y;
 };
 
 struct IntroSceneHardwareStateHandle : HardwareSharedStateOwner
@@ -154,8 +155,8 @@ typedef char IntroSceneCoreStartupHoldOffsetCheck[(offsetof(IntroSceneCore, star
 typedef char IntroSceneCoreStartupPhaseOffsetCheck[(offsetof(IntroSceneCore, startup_phase) == 0x6D32) ? 1 : -1];
 typedef char IntroSceneResourceStateSizeCheck[(sizeof(IntroSceneResourceState) == 0x20) ? 1 : -1];
 typedef char IntroSceneResourceFlagsOffsetCheck[(offsetof(IntroSceneResourceState, flags) == 0x14) ? 1 : -1];
-typedef char IntroSceneResourceXOffsetCheck[(offsetof(IntroSceneResourceState, unk_18) == 0x18) ? 1 : -1];
-typedef char IntroSceneResourceYOffsetCheck[(offsetof(IntroSceneResourceState, unk_1C) == 0x1C) ? 1 : -1];
+typedef char IntroSceneResourceXOffsetCheck[(offsetof(IntroSceneResourceState, x) == 0x18) ? 1 : -1];
+typedef char IntroSceneResourceYOffsetCheck[(offsetof(IntroSceneResourceState, y) == 0x1C) ? 1 : -1];
 typedef char IntroSceneCoreField6C60OffsetCheck[(offsetof(IntroSceneCore, unk_6C60) == 0x6C60) ? 1 : -1];
 typedef char IntroSceneCoreField6C60WidthCheck[(sizeof(((IntroSceneCore *)0)->unk_6C60) == 2) ? 1 : -1];
 typedef char IntroSceneCoreUnknown6C62OffsetCheck[(offsetof(IntroSceneCore, unk_6C62) == 0x6C62) ? 1 : -1];
@@ -205,7 +206,8 @@ void DestroyIntroSceneCore(IntroSceneCore * core, int flags) SECTION(".text.intr
 void StartIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_startup");
 void func_08000F5C(IntroSceneCore * core);
 int RunIntroSceneSequence(IntroSceneCore * core) SECTION(".text.intro_scene_core_sequence");
-void func_080019D8(IntroSceneCore * core);
+// Native resource upload/setup; a full C++ replacement is not yet matched.
+void InitializeIntroSceneSequenceResources(IntroSceneCore * core);
 // Update resource playback, refresh changed OBJ data through the DMA queue,
 // and submit the opening scene's sprites. JP also submits resource 9.
 void RenderIntroSceneFrame(IntroSceneCore * core);

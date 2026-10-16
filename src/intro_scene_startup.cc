@@ -2,8 +2,8 @@
 
 EXTERN_C
 
-// func_08001A90 unpacks these four payloads before the later Intro Scene
-// sequence. The raw resource bytes retain region-specific labels in the
+// InitializeIntroSceneSequenceResources unpacks these four payloads for
+// the opening sequence. The raw resource bytes retain region-specific labels in the
 // asset container; this table preserves their original relocation order.
 u8 const * const gIntroSceneStartupUnpackSources[] = {
     gUnk_IntroSceneStartupUnpackSource_000,

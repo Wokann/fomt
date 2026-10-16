@@ -36,8 +36,8 @@ static inline void InitializeIntroSceneResourceState(
 {
     ConstructIndexedResourceHandle(&state->handle,
         reinterpret_cast<IndexedResourceProvider *>(archive), index, 0x100);
-    state->unk_18 = 0;
-    state->unk_1C = 0;
+    state->x = 0;
+    state->y = 0;
 }
 
 static inline void InitializeIntroSceneHardwareStateHandle(
@@ -262,7 +262,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
 int RunIntroSceneSequence(IntroSceneCore * core)
 {
     func_08008724(reinterpret_cast<HardwareBootstrap *>(core));
-    func_080019D8(core);
+    InitializeIntroSceneSequenceResources(core);
     func_08008918(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
     HardwareBlendOwner owner(new HardwareBlendObject(
         func_08008918(reinterpret_cast<void * const *>(core))));
@@ -308,10 +308,10 @@ int RunIntroSceneSequence(IntroSceneCore * core)
         case 4:
             if (static_cast<i16>(--core->unk_6D30) < 0)
                 core->unk_6D30 = 0;
-            core->resources[0].unk_18 -= 0xB000;
-            if (core->resources[0].unk_18 <= 0x6FFFFF)
-                core->resources[0].unk_18 = 0x700000;
-            if (static_cast<i16>(core->unk_6D30) == 0 && core->resources[0].unk_18 == 0x700000)
+            core->resources[0].x -= 0xB000;
+            if (core->resources[0].x <= 0x6FFFFF)
+                core->resources[0].x = 0x700000;
+            if (static_cast<i16>(core->unk_6D30) == 0 && core->resources[0].x == 0x700000)
             {
                 ResolveIndexedResourceHandle(&core->resources[0].handle, 0x194);
                 core->startup_hold_frames = 90;
@@ -345,13 +345,13 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             }
             break;
         case 7:
-            core->resources[1].unk_18 -= 0x14000;
-            if (core->resources[1].unk_18 <= 0x800000)
+            core->resources[1].x -= 0x14000;
+            if (core->resources[1].x <= 0x800000)
             {
                 core->startup_hold_frames = 60;
                 ResolveIndexedResourceHandle(&core->resources[0].handle, 0x1C2);
                 sound_state = 1;
-                core->resources[1].unk_18 = 0x800000;
+                core->resources[1].x = 0x800000;
                 core->startup_phase = 8;
             }
             break;
@@ -360,10 +360,10 @@ int RunIntroSceneSequence(IntroSceneCore * core)
                 core->startup_phase = 9;
             break;
         case 9:
-            core->resources[8].unk_1C += 0x18000;
-            if (core->resources[8].unk_1C >= 0)
+            core->resources[8].y += 0x18000;
+            if (core->resources[8].y >= 0)
             {
-                core->resources[8].unk_1C = 0;
+                core->resources[8].y = 0;
                 core->unk_6C6C = 1;
                 reset_pending = true;
                 sound_state = 3;
@@ -381,15 +381,15 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             break;
         case 11:
             core->unk_6D30 = 0;
-            core->resources[0].unk_18 = 0x700000;
+            core->resources[0].x = 0x700000;
             ResolveIndexedResourceHandle(&core->resources[0].handle, 0x192);
             ResolveIndexedResourceHandle(&core->resources[1].handle, 0x338);
-            core->resources[1].unk_18 = 0x800000;
+            core->resources[1].x = 0x800000;
             reset_pending = false;
             sound_state = 0;
             right_state = left_state = 2;
             core->unk_6C6C = 9;
-            core->resources[8].unk_1C = 0;
+            core->resources[8].y = 0;
             core->unk_6C64 = 0x100;
             core->unk_6C6A = 0x100;
             skipped = true;
@@ -402,26 +402,26 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             {
                 core->unk_6C6D = 1;
                 core->continuation = 0;
-                core->resources[10].unk_18 = 0x500000;
+                core->resources[10].x = 0x500000;
 #if defined(REGION_JP)
                 ResolveIndexedResourceHandle(&core->resources[10].handle, 3);
 #else
                 ResolveIndexedResourceHandle(&core->resources[10].handle, 2);
 #endif
-                core->resources[13].unk_18 = 0x500000;
+                core->resources[13].x = 0x500000;
             }
             else
             {
                 core->unk_6C6D = 2;
                 core->continuation = 1;
-                core->resources[10].unk_18 = 0x180000;
-                core->resources[11].unk_18 = 0x880000;
+                core->resources[10].x = 0x180000;
+                core->resources[11].x = 0x880000;
 #if defined(REGION_JP)
                 ResolveIndexedResourceHandle(&core->resources[11].handle, 6);
 #else
                 ResolveIndexedResourceHandle(&core->resources[11].handle, 5);
 #endif
-                core->resources[13].unk_18 = 0x880000;
+                core->resources[13].x = 0x880000;
             }
             core->startup_hold_frames = 0x924;
             core->startup_phase = 13;
@@ -447,7 +447,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
                         ResolveIndexedResourceHandle(&core->resources[10].handle, 2);
                         ResolveIndexedResourceHandle(&core->resources[11].handle, 4);
 #endif
-                        core->resources[13].unk_18 = 0x180000;
+                        core->resources[13].x = 0x180000;
                     }
                     else
                     {
@@ -458,7 +458,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
                         ResolveIndexedResourceHandle(&core->resources[10].handle, 1);
                         ResolveIndexedResourceHandle(&core->resources[11].handle, 5);
 #endif
-                        core->resources[13].unk_18 = 0x880000;
+                        core->resources[13].x = 0x880000;
                     }
                     core->startup_hold_frames = 0x708;
                     func_08008B6C(core->music_players + 1, 0xCB);
@@ -546,15 +546,15 @@ int RunIntroSceneSequence(IntroSceneCore * core)
         switch (left_state)
         {
         case 1:
-            if (core->resources[3].unk_18 > 0xBC0000)
+            if (core->resources[3].x > 0xBC0000)
             {
-                core->resources[3].unk_18 -= 0x6000;
+                core->resources[3].x -= 0x6000;
                 break;
             }
             // Reaching the target enters the same finalization as state 2.
         case 2:
             ResolveIndexedResourceHandle(&core->resources[3].handle, 0x2B6);
-            core->resources[3].unk_18 = 0xBC0000;
+            core->resources[3].x = 0xBC0000;
             left_state = 0;
             break;
         }
@@ -562,15 +562,15 @@ int RunIntroSceneSequence(IntroSceneCore * core)
         switch (right_state)
         {
         case 1:
-            if (core->resources[4].unk_18 <= 0x3FFFFF)
+            if (core->resources[4].x <= 0x3FFFFF)
             {
-                core->resources[4].unk_18 += 0x8000;
+                core->resources[4].x += 0x8000;
                 break;
             }
             // Reaching the target enters the same finalization as state 2.
         case 2:
             ResolveIndexedResourceHandle(&core->resources[4].handle, 0x928);
-            core->resources[4].unk_18 = 0x400000;
+            core->resources[4].x = 0x400000;
             right_state = 0;
             break;
         }
@@ -578,27 +578,27 @@ int RunIntroSceneSequence(IntroSceneCore * core)
         switch (core->unk_6C6C)
         {
         case 1:
-            core->resources[5].unk_1C += 0x10000;
-            core->resources[6].unk_1C = core->resources[5].unk_1C;
-            core->resources[5].unk_18 -= 0x10000;
-            core->resources[6].unk_18 += 0x10000;
-            if (core->resources[5].unk_1C > 0x5FFFFF)
+            core->resources[5].y += 0x10000;
+            core->resources[6].y = core->resources[5].y;
+            core->resources[5].x -= 0x10000;
+            core->resources[6].x += 0x10000;
+            if (core->resources[5].y > 0x5FFFFF)
                 core->unk_6C6C = 2;
             break;
         case 2:
-            core->resources[5].unk_1C += 0x10000;
-            core->resources[6].unk_1C = core->resources[5].unk_1C;
-            core->resources[5].unk_18 += 0x10000;
-            core->resources[6].unk_18 -= 0x10000;
-            if (core->resources[5].unk_1C <= 0x93FFFF)
+            core->resources[5].y += 0x10000;
+            core->resources[6].y = core->resources[5].y;
+            core->resources[5].x += 0x10000;
+            core->resources[6].x -= 0x10000;
+            if (core->resources[5].y <= 0x93FFFF)
                 break;
             core->unk_6C6C = 3;
             // Start the hold immediately when this movement completes.
         case 3:
         case 9:
-            core->resources[5].unk_18 = 0x1C0000;
-            core->resources[6].unk_18 = 0xD40000;
-            core->resources[6].unk_1C = core->resources[5].unk_1C = 0x940000;
+            core->resources[5].x = 0x1C0000;
+            core->resources[6].x = 0xD40000;
+            core->resources[6].y = core->resources[5].y = 0x940000;
             if (core->unk_6C6C == 3)
                 countdown = 30;
             else
