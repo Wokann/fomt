@@ -501,168 +501,6 @@ func_0803A638:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803AB30
-    .thumb_func
-func_0803AB30:
-    .global func_0803CD4C
-    .thumb_func
-func_0803CD4C:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #48	@ 0x30
-    mov	r9, r0
-    mov	sl, r1
-    mov	r6, r9
-    stmia	r6!, {r1}
-    movs	r7, #2
-    add	r0, sp, #32
-    mov	r8, r0
-    mov	r1, sp
-    adds	r1, #36	@ 0x24
-    str	r1, [sp, #44]	@ 0x2c
-    movs	r5, #0
-    adds	r4, r6, #0
-.Ljp_0803A8E8:
-    str	r5, [r4, #0]
-    strh	r5, [r4, #4]
-    str	r5, [r4, #8]
-    strh	r5, [r4, #12]
-    str	r5, [r4, #16]
-    strh	r5, [r4, #20]
-    str	r5, [r4, #24]
-    strh	r5, [r4, #28]
-    adds	r0, r6, #0
-    adds	r0, #32
-    bl func_08007874
-    str	r5, [r4, #36]	@ 0x24
-    adds	r4, #44	@ 0x2c
-    adds	r6, #44	@ 0x2c
-    subs	r7, #1
-    movs	r0, #1
-    negs	r0, r0
-    cmp	r7, r0
-    bne .Ljp_0803A8E8
-    mov	r6, r9
-    adds	r6, #136	@ 0x88
-    movs	r0, #0
-    str	r0, [r6, #0]
-    mov	r0, r9
-    adds	r0, #156	@ 0x9c
-    movs	r4, #1
-    strb	r4, [r0, #0]
-    mov	r2, sl
-    ldr	r0, [r2, #0]
-    ldr	r2, [r0, #72]	@ 0x48
-    mov	r0, sl
-    movs	r1, #15
-    bl _call_via_r2
-    mov	r3, r8
-    strb	r0, [r3, #0]
-    adds	r5, r6, #0
-    ldr	r2, [r5, #0]
-    cmp	r4, r2
-    bls .Ljp_0803A95E
-    mov	r0, r9
-    adds	r0, #140	@ 0x8c
-    adds	r2, #4
-    adds	r2, r5, r2
-    ldrb	r1, [r3, #0]
-    subs	r2, r2, r0
-    bl memset
-    ldr	r2, [r5, #0]
-    adds	r0, r2, #4
-    adds	r0, r5, r0
-    add	r1, sp, #32
-    ldrb	r1, [r1, #0]
-    subs	r2, r4, r2
-    bl memset
-    str	r4, [r5, #0]
-    b .Ljp_0803A97E
-.Ljp_0803A95E:
-    mov	r0, r9
-    adds	r0, #140	@ 0x8c
-    mov	r4, r9
-    adds	r4, #141	@ 0x8d
-    mov	r2, r8
-    ldrb	r1, [r2, #0]
-    subs	r2, r4, r0
-    bl memset
-    ldr	r0, [r5, #0]
-    adds	r0, #4
-    adds	r0, r5, r0
-    subs	r0, r0, r4
-    ldr	r1, [r6, #0]
-    subs	r1, r1, r0
-    str	r1, [r6, #0]
-.Ljp_0803A97E:
-    mov	r3, sl
-    ldr	r0, [r3, #0]
-    ldr	r1, [r0, #104]	@ 0x68
-    mov	r0, sl
-    bl _call_via_r1
-    mov	r8, r0
-    movs	r7, #0
-.Ljp_0803A98E:
-    movs	r0, #44	@ 0x2c
-    adds	r6, r7, #0
-    muls	r6, r0
-    add	r6, r9
-    adds	r4, r6, #4
-    ldr r0, .Ljp_0803AA08
-    adds	r2, r7, r0
-    mov	r1, r8
-    ldr	r5, [r1, #0]
-    ldr	r0, [sp, #44]	@ 0x2c
-    ldr	r3, [r5, #12]
-    bl _call_via_r3
-    ldr	r0, [sp, #36]	@ 0x24
-    ldrh	r2, [r0, #0]
-    mov	r0, sp
-    ldr	r3, [r5, #16]
-    mov	r1, r8
-    bl _call_via_r3
-    mov	r0, sp
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    mov	r0, sp
-    ldmia	r0!, {r1, r2, r3}
-    stmia	r4!, {r1, r2, r3}
-    ldmia	r0!, {r1, r2, r3}
-    stmia	r4!, {r1, r2, r3}
-    ldmia	r0!, {r2, r3}
-    stmia	r4!, {r2, r3}
-    adds	r4, r6, #0
-    adds	r4, #36	@ 0x24
-    ldr	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl AllocateHardwareSharedStateHandle
-    adds	r1, r0, #0
-    str	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
-    strh	r0, [r6, #44]	@ 0x2c
-    adds	r7, #1
-    cmp	r7, #2
-    bls .Ljp_0803A98E
-    mov	r0, r9
-    add	sp, #48	@ 0x30
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Ljp_0803AA08:
-    .4byte 0x0000091A
     .section .text.world_sprite_groups_after_destructor
 
     .global func_0803AA6C
@@ -9007,165 +8845,6 @@ func_0803A8A4:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803AB30
-    .thumb_func
-func_0803AB30:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #48	@ 0x30
-    mov	r9, r0
-    mov	sl, r1
-    mov	r6, r9
-    stmia	r6!, {r1}
-    movs	r7, #2
-    add	r0, sp, #32
-    mov	r8, r0
-    mov	r1, sp
-    adds	r1, #36	@ 0x24
-    str	r1, [sp, #44]	@ 0x2c
-    movs	r5, #0
-    adds	r4, r6, #0
-.Leu_0803AB68:
-    str	r5, [r4, #0]
-    strh	r5, [r4, #4]
-    str	r5, [r4, #8]
-    strh	r5, [r4, #12]
-    str	r5, [r4, #16]
-    strh	r5, [r4, #20]
-    str	r5, [r4, #24]
-    strh	r5, [r4, #28]
-    adds	r0, r6, #0
-    adds	r0, #32
-    bl func_08007874
-    str	r5, [r4, #36]	@ 0x24
-    adds	r4, #44	@ 0x2c
-    adds	r6, #44	@ 0x2c
-    subs	r7, #1
-    movs	r0, #1
-    negs	r0, r0
-    cmp	r7, r0
-    bne .Leu_0803AB68
-    mov	r6, r9
-    adds	r6, #136	@ 0x88
-    movs	r0, #0
-    str	r0, [r6, #0]
-    mov	r0, r9
-    adds	r0, #156	@ 0x9c
-    movs	r4, #1
-    strb	r4, [r0, #0]
-    mov	r2, sl
-    ldr	r0, [r2, #0]
-    ldr	r2, [r0, #72]	@ 0x48
-    mov	r0, sl
-    movs	r1, #15
-    bl _call_via_r2
-    mov	r3, r8
-    strb	r0, [r3, #0]
-    adds	r5, r6, #0
-    ldr	r2, [r5, #0]
-    cmp	r4, r2
-    bls .Leu_0803ABDE
-    mov	r0, r9
-    adds	r0, #140	@ 0x8c
-    adds	r2, #4
-    adds	r2, r5, r2
-    ldrb	r1, [r3, #0]
-    subs	r2, r2, r0
-    bl memset
-    ldr	r2, [r5, #0]
-    adds	r0, r2, #4
-    adds	r0, r5, r0
-    add	r1, sp, #32
-    ldrb	r1, [r1, #0]
-    subs	r2, r4, r2
-    bl memset
-    str	r4, [r5, #0]
-    b .Leu_0803ABFE
-.Leu_0803ABDE:
-    mov	r0, r9
-    adds	r0, #140	@ 0x8c
-    mov	r4, r9
-    adds	r4, #141	@ 0x8d
-    mov	r2, r8
-    ldrb	r1, [r2, #0]
-    subs	r2, r4, r0
-    bl memset
-    ldr	r0, [r5, #0]
-    adds	r0, #4
-    adds	r0, r5, r0
-    subs	r0, r0, r4
-    ldr	r1, [r6, #0]
-    subs	r1, r1, r0
-    str	r1, [r6, #0]
-.Leu_0803ABFE:
-    mov	r3, sl
-    ldr	r0, [r3, #0]
-    ldr	r1, [r0, #104]	@ 0x68
-    mov	r0, sl
-    bl _call_via_r1
-    mov	r8, r0
-    movs	r7, #0
-.Leu_0803AC0E:
-    movs	r0, #44	@ 0x2c
-    adds	r6, r7, #0
-    muls	r6, r0
-    add	r6, r9
-    adds	r4, r6, #4
-    ldr r0, .Leu_0803AC88
-    adds	r2, r7, r0
-    mov	r1, r8
-    ldr	r5, [r1, #0]
-    ldr	r0, [sp, #44]	@ 0x2c
-    ldr	r3, [r5, #12]
-    bl _call_via_r3
-    ldr	r0, [sp, #36]	@ 0x24
-    ldrh	r2, [r0, #0]
-    mov	r0, sp
-    ldr	r3, [r5, #16]
-    mov	r1, r8
-    bl _call_via_r3
-    mov	r0, sp
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    mov	r0, sp
-    ldmia	r0!, {r1, r2, r3}
-    stmia	r4!, {r1, r2, r3}
-    ldmia	r0!, {r1, r2, r3}
-    stmia	r4!, {r1, r2, r3}
-    ldmia	r0!, {r2, r3}
-    stmia	r4!, {r2, r3}
-    adds	r4, r6, #0
-    adds	r4, #36	@ 0x24
-    ldr	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl AllocateHardwareSharedStateHandle
-    adds	r1, r0, #0
-    str	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
-    strh	r0, [r6, #44]	@ 0x2c
-    adds	r7, #1
-    cmp	r7, #2
-    bls .Leu_0803AC0E
-    mov	r0, r9
-    add	sp, #48	@ 0x30
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Leu_0803AC88:
-    .4byte 0x0000091A
     .section .text.world_sprite_groups_after_destructor
 
     .global func_0803ACD8
@@ -17584,165 +17263,6 @@ func_0803A8A4:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803AB30
-    .thumb_func
-func_0803AB30:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #48	@ 0x30
-    mov	r9, r0
-    mov	sl, r1
-    mov	r6, r9
-    stmia	r6!, {r1}
-    movs	r7, #2
-    add	r0, sp, #32
-    mov	r8, r0
-    mov	r1, sp
-    adds	r1, #36	@ 0x24
-    str	r1, [sp, #44]	@ 0x2c
-    movs	r5, #0
-    adds	r4, r6, #0
-.Lde_0803AA68:
-    str	r5, [r4, #0]
-    strh	r5, [r4, #4]
-    str	r5, [r4, #8]
-    strh	r5, [r4, #12]
-    str	r5, [r4, #16]
-    strh	r5, [r4, #20]
-    str	r5, [r4, #24]
-    strh	r5, [r4, #28]
-    adds	r0, r6, #0
-    adds	r0, #32
-    bl func_08007874
-    str	r5, [r4, #36]	@ 0x24
-    adds	r4, #44	@ 0x2c
-    adds	r6, #44	@ 0x2c
-    subs	r7, #1
-    movs	r0, #1
-    negs	r0, r0
-    cmp	r7, r0
-    bne .Lde_0803AA68
-    mov	r6, r9
-    adds	r6, #136	@ 0x88
-    movs	r0, #0
-    str	r0, [r6, #0]
-    mov	r0, r9
-    adds	r0, #156	@ 0x9c
-    movs	r4, #1
-    strb	r4, [r0, #0]
-    mov	r2, sl
-    ldr	r0, [r2, #0]
-    ldr	r2, [r0, #72]	@ 0x48
-    mov	r0, sl
-    movs	r1, #15
-    bl _call_via_r2
-    mov	r3, r8
-    strb	r0, [r3, #0]
-    adds	r5, r6, #0
-    ldr	r2, [r5, #0]
-    cmp	r4, r2
-    bls .Lde_0803AADE
-    mov	r0, r9
-    adds	r0, #140	@ 0x8c
-    adds	r2, #4
-    adds	r2, r5, r2
-    ldrb	r1, [r3, #0]
-    subs	r2, r2, r0
-    bl memset
-    ldr	r2, [r5, #0]
-    adds	r0, r2, #4
-    adds	r0, r5, r0
-    add	r1, sp, #32
-    ldrb	r1, [r1, #0]
-    subs	r2, r4, r2
-    bl memset
-    str	r4, [r5, #0]
-    b .Lde_0803AAFE
-.Lde_0803AADE:
-    mov	r0, r9
-    adds	r0, #140	@ 0x8c
-    mov	r4, r9
-    adds	r4, #141	@ 0x8d
-    mov	r2, r8
-    ldrb	r1, [r2, #0]
-    subs	r2, r4, r0
-    bl memset
-    ldr	r0, [r5, #0]
-    adds	r0, #4
-    adds	r0, r5, r0
-    subs	r0, r0, r4
-    ldr	r1, [r6, #0]
-    subs	r1, r1, r0
-    str	r1, [r6, #0]
-.Lde_0803AAFE:
-    mov	r3, sl
-    ldr	r0, [r3, #0]
-    ldr	r1, [r0, #104]	@ 0x68
-    mov	r0, sl
-    bl _call_via_r1
-    mov	r8, r0
-    movs	r7, #0
-.Lde_0803AB0E:
-    movs	r0, #44	@ 0x2c
-    adds	r6, r7, #0
-    muls	r6, r0
-    add	r6, r9
-    adds	r4, r6, #4
-    ldr r0, .Lde_0803AB88
-    adds	r2, r7, r0
-    mov	r1, r8
-    ldr	r5, [r1, #0]
-    ldr	r0, [sp, #44]	@ 0x2c
-    ldr	r3, [r5, #12]
-    bl _call_via_r3
-    ldr	r0, [sp, #36]	@ 0x24
-    ldrh	r2, [r0, #0]
-    mov	r0, sp
-    ldr	r3, [r5, #16]
-    mov	r1, r8
-    bl _call_via_r3
-    mov	r0, sp
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    mov	r0, sp
-    ldmia	r0!, {r1, r2, r3}
-    stmia	r4!, {r1, r2, r3}
-    ldmia	r0!, {r1, r2, r3}
-    stmia	r4!, {r1, r2, r3}
-    ldmia	r0!, {r2, r3}
-    stmia	r4!, {r2, r3}
-    adds	r4, r6, #0
-    adds	r4, #36	@ 0x24
-    ldr	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl AllocateHardwareSharedStateHandle
-    adds	r1, r0, #0
-    str	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
-    strh	r0, [r6, #44]	@ 0x2c
-    adds	r7, #1
-    cmp	r7, #2
-    bls .Lde_0803AB0E
-    mov	r0, r9
-    add	sp, #48	@ 0x30
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Lde_0803AB88:
-    .4byte 0x0000091A
     .section .text.world_sprite_groups_after_destructor
 
     .global func_0803ACD8
@@ -26139,165 +25659,6 @@ func_0803A8A4:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803AB30
-    .thumb_func
-func_0803AB30:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #48	@ 0x30
-    mov	r9, r0
-    mov	sl, r1
-    mov	r6, r9
-    stmia	r6!, {r1}
-    movs	r7, #2
-    add	r0, sp, #32
-    mov	r8, r0
-    mov	r1, sp
-    adds	r1, #36	@ 0x24
-    str	r1, [sp, #44]	@ 0x2c
-    movs	r5, #0
-    adds	r4, r6, #0
-.Lus_0803AB54:
-    str	r5, [r4, #0]
-    strh	r5, [r4, #4]
-    str	r5, [r4, #8]
-    strh	r5, [r4, #12]
-    str	r5, [r4, #16]
-    strh	r5, [r4, #20]
-    str	r5, [r4, #24]
-    strh	r5, [r4, #28]
-    adds	r0, r6, #0
-    adds	r0, #32
-    bl func_08007874
-    str	r5, [r4, #36]	@ 0x24
-    adds	r4, #44	@ 0x2c
-    adds	r6, #44	@ 0x2c
-    subs	r7, #1
-    movs	r0, #1
-    negs	r0, r0
-    cmp	r7, r0
-    bne .Lus_0803AB54
-    mov	r6, r9
-    adds	r6, #136	@ 0x88
-    movs	r0, #0
-    str	r0, [r6, #0]
-    mov	r0, r9
-    adds	r0, #156	@ 0x9c
-    movs	r4, #1
-    strb	r4, [r0, #0]
-    mov	r2, sl
-    ldr	r0, [r2, #0]
-    ldr	r2, [r0, #72]	@ 0x48
-    mov	r0, sl
-    movs	r1, #15
-    bl _call_via_r2
-    mov	r3, r8
-    strb	r0, [r3, #0]
-    adds	r5, r6, #0
-    ldr	r2, [r5, #0]
-    cmp	r4, r2
-    bls .Lus_0803ABCA
-    mov	r0, r9
-    adds	r0, #140	@ 0x8c
-    adds	r2, #4
-    adds	r2, r5, r2
-    ldrb	r1, [r3, #0]
-    subs	r2, r2, r0
-    bl memset
-    ldr	r2, [r5, #0]
-    adds	r0, r2, #4
-    adds	r0, r5, r0
-    add	r1, sp, #32
-    ldrb	r1, [r1, #0]
-    subs	r2, r4, r2
-    bl memset
-    str	r4, [r5, #0]
-    b .Lus_0803ABEA
-.Lus_0803ABCA:
-    mov	r0, r9
-    adds	r0, #140	@ 0x8c
-    mov	r4, r9
-    adds	r4, #141	@ 0x8d
-    mov	r2, r8
-    ldrb	r1, [r2, #0]
-    subs	r2, r4, r0
-    bl memset
-    ldr	r0, [r5, #0]
-    adds	r0, #4
-    adds	r0, r5, r0
-    subs	r0, r0, r4
-    ldr	r1, [r6, #0]
-    subs	r1, r1, r0
-    str	r1, [r6, #0]
-.Lus_0803ABEA:
-    mov	r3, sl
-    ldr	r0, [r3, #0]
-    ldr	r1, [r0, #104]	@ 0x68
-    mov	r0, sl
-    bl _call_via_r1
-    mov	r8, r0
-    movs	r7, #0
-.Lus_0803ABFA:
-    movs	r0, #44	@ 0x2c
-    adds	r6, r7, #0
-    muls	r6, r0
-    add	r6, r9
-    adds	r4, r6, #4
-    ldr r0, .Lus_0803AC74
-    adds	r2, r7, r0
-    mov	r1, r8
-    ldr	r5, [r1, #0]
-    ldr	r0, [sp, #44]	@ 0x2c
-    ldr	r3, [r5, #12]
-    bl _call_via_r3
-    ldr	r0, [sp, #36]	@ 0x24
-    ldrh	r2, [r0, #0]
-    mov	r0, sp
-    ldr	r3, [r5, #16]
-    mov	r1, r8
-    bl _call_via_r3
-    mov	r0, sp
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    mov	r0, sp
-    ldmia	r0!, {r1, r2, r3}
-    stmia	r4!, {r1, r2, r3}
-    ldmia	r0!, {r1, r2, r3}
-    stmia	r4!, {r1, r2, r3}
-    ldmia	r0!, {r2, r3}
-    stmia	r4!, {r2, r3}
-    adds	r4, r6, #0
-    adds	r4, #36	@ 0x24
-    ldr	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl AllocateHardwareSharedStateHandle
-    adds	r1, r0, #0
-    str	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
-    strh	r0, [r6, #44]	@ 0x2c
-    adds	r7, #1
-    cmp	r7, #2
-    bls .Lus_0803ABFA
-    mov	r0, r9
-    add	sp, #48	@ 0x30
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Lus_0803AC74:
-    .4byte 0x0000091A
     .section .text.world_sprite_groups_after_destructor
 
     .global func_0803ACD8
@@ -34412,3 +33773,170 @@ func_0803EE50:
     .endif
     .endif
     .endif
+
+
+    @ One native constructor body shared by all four ROM regions.
+    @ The C++ trial is not byte-matched; keep genuine Thumb instructions.
+    .section .text.world_sprite_groups_constructor, "ax", %progbits
+    .syntax unified
+    .thumb
+    .align 2, 0
+    .global __21GameSceneWorldUnk1020P10GameObject
+    .thumb_func
+__21GameSceneWorldUnk1020P10GameObject:
+    push	{r4, r5, r6, r7, lr}
+    mov	r7, sl
+    mov	r6, r9
+    mov	r5, r8
+    push	{r5, r6, r7}
+    sub	sp, #48	@ 0x30
+    mov	r9, r0
+    mov	sl, r1
+    mov	r6, r9
+    stmia	r6!, {r1}
+    movs	r7, #2
+    add	r0, sp, #32
+    mov	r8, r0
+    mov	r1, sp
+    adds	r1, #36	@ 0x24
+    str	r1, [sp, #44]	@ 0x2c
+    movs	r5, #0
+    adds	r4, r6, #0
+.Lworld_sprite_constructor_0:
+    str	r5, [r4, #0]
+    strh	r5, [r4, #4]
+    str	r5, [r4, #8]
+    strh	r5, [r4, #12]
+    str	r5, [r4, #16]
+    strh	r5, [r4, #20]
+    str	r5, [r4, #24]
+    strh	r5, [r4, #28]
+    adds	r0, r6, #0
+    adds	r0, #32
+    bl func_08007874
+    str	r5, [r4, #36]	@ 0x24
+    adds	r4, #44	@ 0x2c
+    adds	r6, #44	@ 0x2c
+    subs	r7, #1
+    movs	r0, #1
+    negs	r0, r0
+    cmp	r7, r0
+    bne .Lworld_sprite_constructor_0
+    mov	r6, r9
+    adds	r6, #136	@ 0x88
+    movs	r0, #0
+    str	r0, [r6, #0]
+    mov	r0, r9
+    adds	r0, #156	@ 0x9c
+    movs	r4, #1
+    strb	r4, [r0, #0]
+    mov	r2, sl
+    ldr	r0, [r2, #0]
+    ldr	r2, [r0, #72]	@ 0x48
+    mov	r0, sl
+    movs	r1, #15
+    bl _call_via_r2
+    mov	r3, r8
+    strb	r0, [r3, #0]
+    adds	r5, r6, #0
+    ldr	r2, [r5, #0]
+    cmp	r4, r2
+    bls .Lworld_sprite_constructor_1
+    mov	r0, r9
+    adds	r0, #140	@ 0x8c
+    adds	r2, #4
+    adds	r2, r5, r2
+    ldrb	r1, [r3, #0]
+    subs	r2, r2, r0
+    bl memset
+    ldr	r2, [r5, #0]
+    adds	r0, r2, #4
+    adds	r0, r5, r0
+    add	r1, sp, #32
+    ldrb	r1, [r1, #0]
+    subs	r2, r4, r2
+    bl memset
+    str	r4, [r5, #0]
+    b .Lworld_sprite_constructor_2
+.Lworld_sprite_constructor_1:
+    mov	r0, r9
+    adds	r0, #140	@ 0x8c
+    mov	r4, r9
+    adds	r4, #141	@ 0x8d
+    mov	r2, r8
+    ldrb	r1, [r2, #0]
+    subs	r2, r4, r0
+    bl memset
+    ldr	r0, [r5, #0]
+    adds	r0, #4
+    adds	r0, r5, r0
+    subs	r0, r0, r4
+    ldr	r1, [r6, #0]
+    subs	r1, r1, r0
+    str	r1, [r6, #0]
+.Lworld_sprite_constructor_2:
+    mov	r3, sl
+    ldr	r0, [r3, #0]
+    ldr	r1, [r0, #104]	@ 0x68
+    mov	r0, sl
+    bl _call_via_r1
+    mov	r8, r0
+    movs	r7, #0
+.Lworld_sprite_constructor_3:
+    movs	r0, #44	@ 0x2c
+    adds	r6, r7, #0
+    muls	r6, r0
+    add	r6, r9
+    adds	r4, r6, #4
+    ldr r0, .Lworld_sprite_constructor_4
+    adds	r2, r7, r0
+    mov	r1, r8
+    ldr	r5, [r1, #0]
+    ldr	r0, [sp, #44]	@ 0x2c
+    ldr	r3, [r5, #12]
+    bl _call_via_r3
+    ldr	r0, [sp, #36]	@ 0x24
+    ldrh	r2, [r0, #0]
+    mov	r0, sp
+    ldr	r3, [r5, #16]
+    mov	r1, r8
+    bl _call_via_r3
+    mov	r0, sp
+    mov	r1, sp
+    movs	r2, #32
+    bl memcpy
+    mov	r0, sp
+    ldmia	r0!, {r1, r2, r3}
+    stmia	r4!, {r1, r2, r3}
+    ldmia	r0!, {r1, r2, r3}
+    stmia	r4!, {r1, r2, r3}
+    ldmia	r0!, {r2, r3}
+    stmia	r4!, {r2, r3}
+    adds	r4, r6, #0
+    adds	r4, #36	@ 0x24
+    ldr	r1, [r4, #4]
+    adds	r0, r4, #0
+    bl ReleaseHardwareSharedStateHandle
+    adds	r0, r4, #0
+    movs	r1, #2
+    bl AllocateHardwareSharedStateHandle
+    adds	r1, r0, #0
+    str	r1, [r4, #4]
+    adds	r0, r4, #0
+    bl GetHardwareSharedStateTileIndex
+    strh	r0, [r6, #44]	@ 0x2c
+    adds	r7, #1
+    cmp	r7, #2
+    bls .Lworld_sprite_constructor_3
+    mov	r0, r9
+    add	sp, #48	@ 0x30
+    pop	{r3, r4, r5}
+    mov	r8, r3
+    mov	r9, r4
+    mov	sl, r5
+    pop	{r4, r5, r6, r7}
+    pop	{r1}
+    bx	r1
+    .align 2, 0
+.Lworld_sprite_constructor_4:
+    .4byte 0x0000091A

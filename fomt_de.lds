@@ -227,6 +227,7 @@ SECTIONS
 
         . = 0x3A7B8; /* DE ROM 0x0803A7B8, remaining raw control code. */
         asm/code_0803A8A4.o(.text);
+        asm/code_0803A8A4.o(.text.world_sprite_groups_constructor);
         src/game_scene.o(.text._._21GameSceneWorldUnk1020);
         asm/code_0803A8A4.o(.text.world_sprite_groups_after_destructor);
         . = 0x3BCF8; /* DE ROM 0x0803BCF8, set a u16 pair. */

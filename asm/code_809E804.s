@@ -23232,7 +23232,7 @@ func_080AC424: @ 080AC424
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
-	bl func_0803AB30
+	bl __21GameSceneWorldUnk1020P10GameObject
 	ldr r1, .Ljp_map_080AC520 @ =0x00001024
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -24484,7 +24484,7 @@ func_080ACDE8:
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
-	bl func_0803AB30
+	bl __21GameSceneWorldUnk1020P10GameObject
 	ldr r1, .Ljp_entity_080ACECC @ =0x00001024
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -108455,7 +108455,7 @@ func_080AC9EC: @ 0x080AC9EC
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
-	bl func_0803AB30
+	bl __21GameSceneWorldUnk1020P10GameObject
 	ldr r1, .L080ACAE8 @ =0x00001024
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -109706,7 +109706,7 @@ func_080AD3B0: @ 0x080AD3B0
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
-	bl func_0803AB30
+	bl __21GameSceneWorldUnk1020P10GameObject
 	ldr r1, .L080AD494 @ =0x00001024
 	adds r5, r6, r1
 	adds r4, r0, #0

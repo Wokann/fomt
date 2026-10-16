@@ -98,7 +98,7 @@ struct GameObject
     virtual void vfunc_3C(u32 index);
     virtual AActorEntity * GetActorEntity(u32 id);
     virtual AActorEntity * vfunc_44(u32 index);
-    virtual void vfunc_48();
+    virtual u32 vfunc_48(u32 index);
     virtual void vfunc_4C(u32 index);
     virtual i32 GetSpritePaletteBank(u32 index);
     virtual void vfunc_54();

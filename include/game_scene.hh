@@ -171,10 +171,9 @@ struct GameSceneWorldUnk1020 {
     GameSceneWorldUnk1020Indices indices;
     u8 unk_9C;
 
+    // The shared native constructor implements this real C++ ABI.
+    explicit GameSceneWorldUnk1020(GameObject * source);
     ~GameSceneWorldUnk1020();
-
-private:
-    GameSceneWorldUnk1020();
 };
 
 typedef char GameSceneWorldUnk1020EntrySizeCheck[sizeof(GameSceneWorldUnk1020Entry) == 44 ? 1 : -1];
