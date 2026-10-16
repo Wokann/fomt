@@ -34,6 +34,7 @@ private:
     GameScenePlayerActor();
 };
 struct GameObject;
+struct GameScene;
 struct GameStateSaveImage;
 struct MusicPlayer;
 struct HardwareBlendController;
@@ -239,7 +240,9 @@ struct GameSceneWorldUnk1080Entry {
 struct GameSceneWorldPrefix : GameObject {
     GameSceneWorldData data;
     GameStateSaveImage * save;
-    u8 unk_103C[0x40];
+    u8 unk_103C[0x18];
+    GameScene * scene;
+    u8 unk_1058[0x24];
     GameSceneWorldUnkOwner unk_107C;
     GameSceneWorldUnk1080Entry unk_1080[4];
 };
@@ -280,6 +283,8 @@ typedef char GameSceneFieldItemToolRejectedCheck[offsetof(GameSceneFieldItemTool
 typedef char GameSceneWorldUnk1080EntrySizeCheck[sizeof(GameSceneWorldUnk1080Entry) == 12 ? 1 : -1];
 typedef char GameSceneWorldUnk1080TileXCheck[offsetof(GameSceneWorldUnk1080Entry, tile_x) == 4 ? 1 : -1];
 typedef char GameSceneWorldUnk1080TailCheck[offsetof(GameSceneWorldUnk1080Entry, unk_08) == 8 ? 1 : -1];
+typedef char GameSceneWorldSceneCheck[offsetof(GameSceneWorldPrefix, scene) == 0x1054 ? 1 : -1];
+
 typedef char GameSceneWorldUnk1080Check[offsetof(GameSceneWorldPrefix, unk_1080) == 0x1080 ? 1 : -1];
 
 typedef char GameSceneFarmPlotLocationSizeCheck[sizeof(GameSceneFarmPlotLocation) == 12 ? 1 : -1];
@@ -1147,6 +1152,10 @@ void func_0801D7B0(GameSceneWorldPrefix & world, Location const & location,
     Article const & article);
 u32 func_0801D88C(GameSceneWorldPrefix & world, Location const & location,
     Article const & article);
+void func_0801D8CC(GameSceneWorldPrefix & world);
+void func_0801D948(GameSceneWorldPrefix & world);
+void func_0801D9A8(GameSceneWorldPrefix & world,
+    GameSceneScriptRequest const & request, i32 delay);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
 void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,

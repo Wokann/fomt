@@ -1158,6 +1158,48 @@ EC u32 func_0801D88C(GameSceneWorldPrefix & world, Location const & location,
     return 2;
 }
 
+EC void func_0801D8CC(GameSceneWorldPrefix & world)
+{
+    world.unk_103C[0] = 1;
+    if (world.save->scripted_npc_control) {
+        // The original control path still notifies every actor here.
+        AActorEntity ** it = world.data.entities;
+        AActorEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
+        for (; it != end; ++it) {
+            if (*it != nullptr)
+                (*it)->vfunc_20();
+        }
+    } else {
+        AActorEntity ** it = world.data.entities;
+        AActorEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
+        for (; it != end; ++it) {
+            if (*it != nullptr)
+                (*it)->vfunc_20();
+        }
+    }
+}
+
+EC void func_0801D948(GameSceneWorldPrefix & world)
+{
+    world.unk_103C[0] = 0;
+    if (world.save->scripted_npc_control) {
+        world.data.entities[0]->vfunc_24();
+    } else {
+        AActorEntity ** it = world.data.entities;
+        AActorEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
+        for (; it != end; ++it) {
+            if (*it != nullptr)
+                (*it)->vfunc_24();
+        }
+    }
+}
+
+EC void func_0801D9A8(GameSceneWorldPrefix & world,
+    GameSceneScriptRequest const & request, i32 delay)
+{
+    world.scene->QueueScript(request, delay);
+}
+
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
 {
     // Match native cleanup: release the first index, then destroy all three
