@@ -66,8 +66,8 @@ extern MapData const gMapData[MAP_DATA_COUNT];
 
 MapData const * GetMapData(u32 map_id);
 
-// The selector remains native; all regions use the same actual symbol.
-u32 SelectMapDataId(u32 map, u32 season, u32 house, u32 coop, u32 barn);
+// Logical map IDs select one of the regional MapData records.
+u32 SelectMapDataId(i32 map, u32 season, u32 house, u32 coop, u32 barn);
 bool IsMapTerrainBoxBlocked(MapTerrainView const & map, Box const & box);
 
 }

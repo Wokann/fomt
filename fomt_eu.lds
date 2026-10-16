@@ -246,7 +246,7 @@ SECTIONS
         src/npc_entity.o(.text.func_08035A48 .text.func_08035AE0);
         asm/code_entities_08034CEC.o(.text.npc_characters_after);
 
-        asm/code_0803A8A4.o(.text);
+        src/map_data.o(.text.SelectMapDataId);
         asm/code_0803A8A4.o(.text.world_sprite_groups_constructor);
         src/game_scene.o(.text._._21GameSceneWorldUnk1020);
         asm/code_0803A8A4.o(.text.world_sprite_groups_after_destructor);
