@@ -16,9 +16,11 @@ extern void * __builtin_new(u32 size);
 extern void __builtin_delete(void * object);
 EXTERN_C_END
 
-struct HardwareManagerOwner * func_08008980(struct HardwareManagerOwner * owner)
+HardwareManagerOwner::HardwareManagerOwner()
 {
-    u8 * state = (u8 *)__builtin_new(0x6C);
+    // The node subclasses are still partial ABI views. Keep their verified
+    // construction writes rather than inserting speculative constructors.
+    u8 * state = (u8 *)__builtin_new(sizeof(HardwareManagerState));
     u32 zero = 0;
     *(u32 *)(state + 0x00) = zero;
     *(u32 *)(state + 0x04) = zero;
@@ -73,29 +75,25 @@ struct HardwareManagerOwner * func_08008980(struct HardwareManagerOwner * owner)
         reinterpret_cast<HardwareLink *>(first));
     func_080095C0(reinterpret_cast<HardwareLinkedList *>(second),
         reinterpret_cast<HardwareLink *>(link));
-    owner->state = (struct HardwareManagerState *)state;
-    return owner;
+    this->state = reinterpret_cast<HardwareManagerState *>(state);
 }
 
-void func_08008A68(struct HardwareManagerOwner * owner, u32 flags)
+HardwareManagerOwner::~HardwareManagerOwner()
 {
-    u8 * state = (u8 *)owner->state;
-    if (state != 0) {
-        if (state[0x68] != 0)
+    HardwareManagerState * object = state;
+    if (object != 0) {
+        if (object->unk_68 != 0)
             func_08008D90();
-
-        u8 * secondary = state + 0x34;
-        *(void **)(secondary + 0x30) = vtable_unk_080E5B0C;
-        *(void **)(secondary + 8) = vtable_unk_080E5B18;
-        func_080D7944(&reinterpret_cast<HardwareManagerState *>(state)->command_group.vblank, 0);
-        func_0800959C(reinterpret_cast<HardwareLinkedList *>(secondary), 2);
-        func_080098AC(state + 0x28, 2);
-        func_0800959C(reinterpret_cast<HardwareLinkedList *>(state + 0x0C), 2);
-        func_080098AC(state, 2);
-        __builtin_delete(state);
+        HardwareManagerCommandGroup * group = &object->command_group;
+        group->vblank.vtable = reinterpret_cast<HardwareLinkVirtualFunction const *>(vtable_unk_080E5B0C);
+        group->commands.vtable = vtable_unk_080E5B18;
+        func_080D7944(&group->vblank, 0);
+        func_0800959C(&group->commands, 2);
+        func_080098AC(&object->unk_28, 2);
+        func_0800959C(&object->unk_0C, 2);
+        func_080098AC(&object->unk_00, 2);
+        __builtin_delete(object);
     }
-    if (flags & 1)
-        __builtin_delete(owner);
 }
 
 void func_080D78E0(void)

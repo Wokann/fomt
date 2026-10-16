@@ -53,16 +53,26 @@ typedef char HardwareManagerCommandGroup_size_check[
 typedef char HardwareManagerCommandGroup_vblank_offset_check[
     offsetof(struct HardwareManagerCommandGroup, vblank) == 0x1C ? 1 : -1];
 
-// The constructor allocates 0x6C bytes. The earlier nodes and lists still
-// need their full types established; the second command group is at +0x34.
+// Verified link/list storage, not a claim that the command-node subclasses
+// have been recovered. Their distinct native tables remain explicit.
 struct HardwareManagerState {
-    u8 unk_00[0x34];
+    struct HardwareLinkBase unk_00;
+    struct HardwareLinkedList unk_0C;
+    struct HardwareLinkBase unk_28;
     struct HardwareManagerCommandGroup command_group;
     u8 unk_68;
     u8 unk_69[3];
 };
 
 typedef char HardwareManagerState_size_check[sizeof(struct HardwareManagerState) == 0x6C ? 1 : -1];
+typedef char HardwareManagerState_first_list_offset_check[
+    offsetof(struct HardwareManagerState, unk_0C) == 0x0C ? 1 : -1];
+typedef char HardwareManagerState_link_offset_check[
+    offsetof(struct HardwareManagerState, unk_28) == 0x28 ? 1 : -1];
+typedef char HardwareManagerState_group_offset_check[
+    offsetof(struct HardwareManagerState, command_group) == 0x34 ? 1 : -1];
+typedef char HardwareManagerState_flag_offset_check[
+    offsetof(struct HardwareManagerState, unk_68) == 0x68 ? 1 : -1];
 typedef char HardwareManagerState_vblank_offset_check[
     offsetof(struct HardwareManagerState, command_group) +
     offsetof(struct HardwareManagerCommandGroup, vblank) == 0x50 ? 1 : -1];
