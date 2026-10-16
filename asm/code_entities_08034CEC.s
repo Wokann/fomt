@@ -763,66 +763,9 @@ func_08035380:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08035908
-    .thumb_func
-func_08035908:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    adds	r0, #68	@ 0x44
-    ldrh	r6, [r0, #0]
-    cmp	r5, r6
-    beq .Ljp_080356CE
-    strh	r5, [r0, #0]
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Ljp_080356CE
-    ldrh	r0, [r4, #34]	@ 0x22
-    cmp	r0, r6
-    bne .Ljp_080356CE
-    cmp	r0, r5
-    beq .Ljp_080356CE
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl SetAnim__12AActorEntityUi
-.Ljp_080356CE:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .global func_08035940
-    .thumb_func
-func_08035940:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    adds	r0, #70	@ 0x46
-    ldrh	r6, [r0, #0]
-    cmp	r5, r6
-    beq .Ljp_08035706
-    strh	r5, [r0, #0]
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Ljp_08035706
-    ldrh	r0, [r4, #34]	@ 0x22
-    cmp	r0, r6
-    bne .Ljp_08035706
-    cmp	r0, r5
-    beq .Ljp_08035706
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl SetAnim__12AActorEntityUi
-.Ljp_08035706:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
+    .section .text.npc_schedule_transition_query, "ax", %progbits
+    .align 2, 0
+
     .global func_08035978
     .thumb_func
 func_08035978:
@@ -934,102 +877,9 @@ func_08035978:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_08035A48
-    .thumb_func
-func_08035A48:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r3, r1, #0
-    ldrh	r1, [r4, #4]
-    ldrh	r0, [r3, #0]
-    lsls	r0, r0, #22
-    lsrs	r0, r0, #22
-    cmp	r1, r0
-    bne .Ljp_0803586A
-    movs	r0, #10
-    ldrsh	r2, [r4, r0]
-    ldrb	r1, [r3, #1]
-    lsrs	r1, r1, #2
-    ldrh	r0, [r3, #2]
-    ldr r5, .Ljp_08035870
-    ands	r0, r5
-    lsls	r0, r0, #6
-    orrs	r0, r1
-    lsls	r0, r0, #16
-    asrs	r0, r0, #16
-    subs	r0, r0, r2
-    cmp	r0, #0
-    bge .Ljp_0803580C
-    negs	r0, r0
-.Ljp_0803580C:
-    cmp	r0, #151	@ 0x97
-    bgt .Ljp_0803586A
-    movs	r0, #14
-    ldrsh	r2, [r4, r0]
-    ldrb	r1, [r3, #3]
-    lsrs	r1, r1, #2
-    ldrh	r0, [r3, #4]
-    ands	r0, r5
-    lsls	r0, r0, #6
-    orrs	r0, r1
-    lsls	r0, r0, #16
-    asrs	r0, r0, #16
-    subs	r0, r0, r2
-    cmp	r0, #0
-    bge .Ljp_0803582C
-    negs	r0, r0
-.Ljp_0803582C:
-    cmp	r0, #111	@ 0x6f
-    bgt .Ljp_0803586A
-    adds	r0, r4, #0
-    bl func_08035978
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Ljp_0803586A
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Ljp_0803586A
-    adds	r0, r4, #0
-    movs	r1, #2
-    movs	r2, #0
-    bl func_08032384
-    adds	r1, r4, #0
-    adds	r1, #63	@ 0x3f
-    movs	r0, #120	@ 0x78
-    strb	r0, [r1, #0]
-    ldr	r0, [r4, #20]
-    ldr	r2, [r0, #60]	@ 0x3c
-    adds	r0, r4, #0
-    movs	r1, #1
-    bl _call_via_r2
-.Ljp_0803586A:
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-.Ljp_08035870:
-    .4byte 0x000003FF
-    .global func_08035AE0
-    .thumb_func
-func_08035AE0:
-    push	{lr}
-    adds	r1, r0, #0
-    movs	r2, #0
-    ldrh	r0, [r1, #4]
-    cmp	r0, #29
-    bne .Ljp_0803588A
-    movs	r3, #14
-    ldrsh	r0, [r1, r3]
-    cmp	r0, #55	@ 0x37
-    bgt .Ljp_0803588A
-    movs	r2, #1
-.Ljp_0803588A:
-    adds	r0, r2, #0
-    pop	{r1}
-    bx	r1
+    .section .text.npc_characters_after, "ax", %progbits
+    .align 2, 0
+
     .global func_08035AFC
     .thumb_func
 func_08035AFC:
@@ -11561,66 +11411,9 @@ func_08035380:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08035908
-    .thumb_func
-func_08035908:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    adds	r0, #68	@ 0x44
-    ldrh	r6, [r0, #0]
-    cmp	r5, r6
-    beq .Leu_0803594E
-    strh	r5, [r0, #0]
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Leu_0803594E
-    ldrh	r0, [r4, #34]	@ 0x22
-    cmp	r0, r6
-    bne .Leu_0803594E
-    cmp	r0, r5
-    beq .Leu_0803594E
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl SetAnim__12AActorEntityUi
-.Leu_0803594E:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .global func_08035940
-    .thumb_func
-func_08035940:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    adds	r0, #70	@ 0x46
-    ldrh	r6, [r0, #0]
-    cmp	r5, r6
-    beq .Leu_08035986
-    strh	r5, [r0, #0]
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Leu_08035986
-    ldrh	r0, [r4, #34]	@ 0x22
-    cmp	r0, r6
-    bne .Leu_08035986
-    cmp	r0, r5
-    beq .Leu_08035986
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl SetAnim__12AActorEntityUi
-.Leu_08035986:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
+    .section .text.npc_schedule_transition_query, "ax", %progbits
+    .align 2, 0
+
     .global func_08035978
     .thumb_func
 func_08035978:
@@ -11732,102 +11525,9 @@ func_08035978:
     pop	{r1}
     bx	r1
     movs	r0, r0
-    .global func_08035A48
-    .thumb_func
-func_08035A48:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r3, r1, #0
-    ldrh	r1, [r4, #4]
-    ldrh	r0, [r3, #0]
-    lsls	r0, r0, #22
-    lsrs	r0, r0, #22
-    cmp	r1, r0
-    bne .Leu_08035AEA
-    movs	r0, #10
-    ldrsh	r2, [r4, r0]
-    ldrb	r1, [r3, #1]
-    lsrs	r1, r1, #2
-    ldrh	r0, [r3, #2]
-    ldr r5, .Leu_08035AF0
-    ands	r0, r5
-    lsls	r0, r0, #6
-    orrs	r0, r1
-    lsls	r0, r0, #16
-    asrs	r0, r0, #16
-    subs	r0, r0, r2
-    cmp	r0, #0
-    bge .Leu_08035A8C
-    negs	r0, r0
-.Leu_08035A8C:
-    cmp	r0, #151	@ 0x97
-    bgt .Leu_08035AEA
-    movs	r0, #14
-    ldrsh	r2, [r4, r0]
-    ldrb	r1, [r3, #3]
-    lsrs	r1, r1, #2
-    ldrh	r0, [r3, #4]
-    ands	r0, r5
-    lsls	r0, r0, #6
-    orrs	r0, r1
-    lsls	r0, r0, #16
-    asrs	r0, r0, #16
-    subs	r0, r0, r2
-    cmp	r0, #0
-    bge .Leu_08035AAC
-    negs	r0, r0
-.Leu_08035AAC:
-    cmp	r0, #111	@ 0x6f
-    bgt .Leu_08035AEA
-    adds	r0, r4, #0
-    bl func_08035978
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Leu_08035AEA
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Leu_08035AEA
-    adds	r0, r4, #0
-    movs	r1, #2
-    movs	r2, #0
-    bl func_08032384
-    adds	r1, r4, #0
-    adds	r1, #63	@ 0x3f
-    movs	r0, #120	@ 0x78
-    strb	r0, [r1, #0]
-    ldr	r0, [r4, #20]
-    ldr	r2, [r0, #60]	@ 0x3c
-    adds	r0, r4, #0
-    movs	r1, #1
-    bl _call_via_r2
-.Leu_08035AEA:
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-.Leu_08035AF0:
-    .4byte 0x000003FF
-    .global func_08035AE0
-    .thumb_func
-func_08035AE0:
-    push	{lr}
-    adds	r1, r0, #0
-    movs	r2, #0
-    ldrh	r0, [r1, #4]
-    cmp	r0, #29
-    bne .Leu_08035B0A
-    movs	r3, #14
-    ldrsh	r0, [r1, r3]
-    cmp	r0, #55	@ 0x37
-    bgt .Leu_08035B0A
-    movs	r2, #1
-.Leu_08035B0A:
-    adds	r0, r2, #0
-    pop	{r1}
-    bx	r1
+    .section .text.npc_characters_after, "ax", %progbits
+    .align 2, 0
+
     .global func_08035AFC
     .thumb_func
 func_08035AFC:
@@ -22617,66 +22317,9 @@ func_08035380:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08035908
-    .thumb_func
-func_08035908:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    adds	r0, #68	@ 0x44
-    ldrh	r6, [r0, #0]
-    cmp	r5, r6
-    beq .Lde_0803584E
-    strh	r5, [r0, #0]
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Lde_0803584E
-    ldrh	r0, [r4, #34]	@ 0x22
-    cmp	r0, r6
-    bne .Lde_0803584E
-    cmp	r0, r5
-    beq .Lde_0803584E
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl SetAnim__12AActorEntityUi
-.Lde_0803584E:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .global func_08035940
-    .thumb_func
-func_08035940:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    adds	r0, #70	@ 0x46
-    ldrh	r6, [r0, #0]
-    cmp	r5, r6
-    beq .Lde_08035886
-    strh	r5, [r0, #0]
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Lde_08035886
-    ldrh	r0, [r4, #34]	@ 0x22
-    cmp	r0, r6
-    bne .Lde_08035886
-    cmp	r0, r5
-    beq .Lde_08035886
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl SetAnim__12AActorEntityUi
-.Lde_08035886:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
+    .section .text.npc_schedule_transition_query, "ax", %progbits
+    .align 2, 0
+
     .global func_08035978
     .thumb_func
 func_08035978:
@@ -22788,102 +22431,9 @@ func_08035978:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_08035A48
-    .thumb_func
-func_08035A48:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r3, r1, #0
-    ldrh	r1, [r4, #4]
-    ldrh	r0, [r3, #0]
-    lsls	r0, r0, #22
-    lsrs	r0, r0, #22
-    cmp	r1, r0
-    bne .Lde_080359EA
-    movs	r0, #10
-    ldrsh	r2, [r4, r0]
-    ldrb	r1, [r3, #1]
-    lsrs	r1, r1, #2
-    ldrh	r0, [r3, #2]
-    ldr r5, .Lde_080359F0
-    ands	r0, r5
-    lsls	r0, r0, #6
-    orrs	r0, r1
-    lsls	r0, r0, #16
-    asrs	r0, r0, #16
-    subs	r0, r0, r2
-    cmp	r0, #0
-    bge .Lde_0803598C
-    negs	r0, r0
-.Lde_0803598C:
-    cmp	r0, #151	@ 0x97
-    bgt .Lde_080359EA
-    movs	r0, #14
-    ldrsh	r2, [r4, r0]
-    ldrb	r1, [r3, #3]
-    lsrs	r1, r1, #2
-    ldrh	r0, [r3, #4]
-    ands	r0, r5
-    lsls	r0, r0, #6
-    orrs	r0, r1
-    lsls	r0, r0, #16
-    asrs	r0, r0, #16
-    subs	r0, r0, r2
-    cmp	r0, #0
-    bge .Lde_080359AC
-    negs	r0, r0
-.Lde_080359AC:
-    cmp	r0, #111	@ 0x6f
-    bgt .Lde_080359EA
-    adds	r0, r4, #0
-    bl func_08035978
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Lde_080359EA
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Lde_080359EA
-    adds	r0, r4, #0
-    movs	r1, #2
-    movs	r2, #0
-    bl func_08032384
-    adds	r1, r4, #0
-    adds	r1, #63	@ 0x3f
-    movs	r0, #120	@ 0x78
-    strb	r0, [r1, #0]
-    ldr	r0, [r4, #20]
-    ldr	r2, [r0, #60]	@ 0x3c
-    adds	r0, r4, #0
-    movs	r1, #1
-    bl _call_via_r2
-.Lde_080359EA:
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-.Lde_080359F0:
-    .4byte 0x000003FF
-    .global func_08035AE0
-    .thumb_func
-func_08035AE0:
-    push	{lr}
-    adds	r1, r0, #0
-    movs	r2, #0
-    ldrh	r0, [r1, #4]
-    cmp	r0, #29
-    bne .Lde_08035A0A
-    movs	r3, #14
-    ldrsh	r0, [r1, r3]
-    cmp	r0, #55	@ 0x37
-    bgt .Lde_08035A0A
-    movs	r2, #1
-.Lde_08035A0A:
-    adds	r0, r2, #0
-    pop	{r1}
-    bx	r1
+    .section .text.npc_characters_after, "ax", %progbits
+    .align 2, 0
+
     .global func_08035AFC
     .thumb_func
 func_08035AFC:
@@ -33672,66 +33222,9 @@ func_08035380:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08035908
-    .thumb_func
-func_08035908:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    adds	r0, #68	@ 0x44
-    ldrh	r6, [r0, #0]
-    cmp	r5, r6
-    beq .Lus_0803593A
-    strh	r5, [r0, #0]
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Lus_0803593A
-    ldrh	r0, [r4, #34]	@ 0x22
-    cmp	r0, r6
-    bne .Lus_0803593A
-    cmp	r0, r5
-    beq .Lus_0803593A
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl SetAnim__12AActorEntityUi
-.Lus_0803593A:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .global func_08035940
-    .thumb_func
-func_08035940:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    adds	r0, #70	@ 0x46
-    ldrh	r6, [r0, #0]
-    cmp	r5, r6
-    beq .Lus_08035972
-    strh	r5, [r0, #0]
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Lus_08035972
-    ldrh	r0, [r4, #34]	@ 0x22
-    cmp	r0, r6
-    bne .Lus_08035972
-    cmp	r0, r5
-    beq .Lus_08035972
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl SetAnim__12AActorEntityUi
-.Lus_08035972:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
+    .section .text.npc_schedule_transition_query, "ax", %progbits
+    .align 2, 0
+
     .global func_08035978
     .thumb_func
 func_08035978:
@@ -33843,102 +33336,9 @@ func_08035978:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_08035A48
-    .thumb_func
-func_08035A48:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r3, r1, #0
-    ldrh	r1, [r4, #4]
-    ldrh	r0, [r3, #0]
-    lsls	r0, r0, #22
-    lsrs	r0, r0, #22
-    cmp	r1, r0
-    bne .Lus_08035AD6
-    movs	r0, #10
-    ldrsh	r2, [r4, r0]
-    ldrb	r1, [r3, #1]
-    lsrs	r1, r1, #2
-    ldrh	r0, [r3, #2]
-    ldr r5, .Lus_08035ADC
-    ands	r0, r5
-    lsls	r0, r0, #6
-    orrs	r0, r1
-    lsls	r0, r0, #16
-    asrs	r0, r0, #16
-    subs	r0, r0, r2
-    cmp	r0, #0
-    bge .Lus_08035A78
-    negs	r0, r0
-.Lus_08035A78:
-    cmp	r0, #151	@ 0x97
-    bgt .Lus_08035AD6
-    movs	r0, #14
-    ldrsh	r2, [r4, r0]
-    ldrb	r1, [r3, #3]
-    lsrs	r1, r1, #2
-    ldrh	r0, [r3, #4]
-    ands	r0, r5
-    lsls	r0, r0, #6
-    orrs	r0, r1
-    lsls	r0, r0, #16
-    asrs	r0, r0, #16
-    subs	r0, r0, r2
-    cmp	r0, #0
-    bge .Lus_08035A98
-    negs	r0, r0
-.Lus_08035A98:
-    cmp	r0, #111	@ 0x6f
-    bgt .Lus_08035AD6
-    adds	r0, r4, #0
-    bl func_08035978
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Lus_08035AD6
-    ldr	r0, [r4, #20]
-    ldr	r1, [r0, #40]	@ 0x28
-    adds	r0, r4, #0
-    bl _call_via_r1
-    lsls	r0, r0, #24
-    cmp	r0, #0
-    bne .Lus_08035AD6
-    adds	r0, r4, #0
-    movs	r1, #2
-    movs	r2, #0
-    bl func_08032384
-    adds	r1, r4, #0
-    adds	r1, #63	@ 0x3f
-    movs	r0, #120	@ 0x78
-    strb	r0, [r1, #0]
-    ldr	r0, [r4, #20]
-    ldr	r2, [r0, #60]	@ 0x3c
-    adds	r0, r4, #0
-    movs	r1, #1
-    bl _call_via_r2
-.Lus_08035AD6:
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-.Lus_08035ADC:
-    .4byte 0x000003FF
-    .global func_08035AE0
-    .thumb_func
-func_08035AE0:
-    push	{lr}
-    adds	r1, r0, #0
-    movs	r2, #0
-    ldrh	r0, [r1, #4]
-    cmp	r0, #29
-    bne .Lus_08035AF6
-    movs	r3, #14
-    ldrsh	r0, [r1, r3]
-    cmp	r0, #55	@ 0x37
-    bgt .Lus_08035AF6
-    movs	r2, #1
-.Lus_08035AF6:
-    adds	r0, r2, #0
-    pop	{r1}
-    bx	r1
+    .section .text.npc_characters_after, "ax", %progbits
+    .align 2, 0
+
     .global func_08035AFC
     .thumb_func
 func_08035AFC:

@@ -220,6 +220,10 @@ SECTIONS
         . = 0x34C78; /* NPC schedule query and entity methods. */
         src/npc_entity.o(.text.func_08034C64 .text.*ANpcEntity* .text.func_08034E* .text.func_08034F00);
         asm/code_entities_08034CEC.o(.text);
+        src/npc_entity.o(.text.func_08035908 .text.func_08035940);
+        asm/code_entities_08034CEC.o(.text.npc_schedule_transition_query);
+        src/npc_entity.o(.text.func_08035A48 .text.func_08035AE0);
+        asm/code_entities_08034CEC.o(.text.npc_characters_after);
 
         asm/code_0803A8A4.o(.text);
         . = 0x3BDF8; /* US ROM 0x0803BDE4, set a u16 pair */

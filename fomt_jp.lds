@@ -265,6 +265,10 @@ SECTIONS
         src/npc_entity.o(.text.func_08034C64 .text.*ANpcEntity* .text.func_08034E* .text.func_08034F00);
         . = 0x35114; /* JP ROM 0x08035114, independently matched */
         asm/code_entities_08034CEC.o(.text);
+        src/npc_entity.o(.text.func_08035908 .text.func_08035940);
+        asm/code_entities_08034CEC.o(.text.npc_schedule_transition_query);
+        src/npc_entity.o(.text.func_08035A48 .text.func_08035AE0);
+        asm/code_entities_08034CEC.o(.text.npc_characters_after);
 
         . = 0x3A518; /* JP ROM 0x0803A518, independently matched */
 

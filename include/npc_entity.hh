@@ -24,8 +24,8 @@ struct ANpcEntity : public AActorEntity
     /* +3F */ u8 unk_3F; /* is frozen? */
     /* +40 */ u16 unk_40;
     /* +42 */ u16 unk_42;
-    /* +44 */ u16 unk_44; /* moving anim? */
-    /* +46 */ u16 unk_46; /* frozen anim? */
+    /* +44 */ u16 unk_44; /* default/idle animation */
+    /* +46 */ u16 unk_46; /* walking animation */
 };
 
 typedef char NpcEntitySizeCheck[sizeof(ANpcEntity) == 0x48 ? 1 : -1];
@@ -56,6 +56,20 @@ u32 func_08034EE0(ANpcEntity & self);
 void func_08034EF8(ANpcEntity & self, u32 unk_arg_1);
 void func_08034F00(ANpcEntity * self, int unk_arg_1);
 void func_08035380(ANpcEntity & self);
+
+// Replace a configured animation; update the live animation only while it
+// still uses the previous value and vfunc_28 is false. Inputs remain u32;
+// only the stored configuration truncates to the native halfword.
+void func_08035908(ANpcEntity & self, u32 animation);
+void func_08035940(ANpcEntity & self, u32 animation);
+
+// Still-native predicate: timed-path counter or the following schedule time.
+bool func_08035978(ANpcEntity & self);
+
+// Pause a nearby NPC only when the native path predicate and vfunc_28 allow it.
+void func_08035A48(ANpcEntity & self, Location const & other);
+// The original animation selector distinguishes the farmhouse strip at Y <= 55.
+bool func_08035AE0(ANpcEntity & self);
 
 EXTERN_C_END
 

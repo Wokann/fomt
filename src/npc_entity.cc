@@ -762,6 +762,62 @@ EC NAKED void func_08034F00(ANpcEntity * self, int unk_arg_1)
     ");
 }
 
+EC void func_08035908(ANpcEntity & self, u32 animation)
+{
+    u32 old_animation = self.unk_44;
+    if (animation != old_animation) {
+        self.unk_44 = animation;
+        if (!self.vfunc_28() && self.anim_id == old_animation) {
+            if (self.anim_id != animation)
+                self.SetAnim(animation);
+        }
+    }
+}
+
+EC void func_08035940(ANpcEntity & self, u32 animation)
+{
+    u32 old_animation = self.unk_46;
+    if (animation != old_animation) {
+        self.unk_46 = animation;
+        if (!self.vfunc_28() && self.anim_id == old_animation) {
+            if (self.anim_id != animation)
+                self.SetAnim(animation);
+        }
+    }
+}
+
+EC void func_08035A48(ANpcEntity & self, Location const & other)
+{
+    u32 map = self.location_map;
+    if (map != other.map)
+        return;
+    i32 x = self.x_q16 >> 16;
+    i32 dx = other.x - x;
+    if (dx < 0)
+        dx = -dx;
+    if (dx > 151)
+        return;
+    i32 y = self.y_q16 >> 16;
+    i32 dy = other.y - y;
+    if (dy < 0)
+        dy = -dy;
+    if (dy > 111)
+        return;
+    if (!func_08035978(self) && !self.vfunc_28()) {
+        func_08032384(self, ENTITY_EMOTE_EXCLAMATION, false);
+        self.unk_3F = 120;
+        self.vfunc_3C(1);
+    }
+}
+
+EC bool func_08035AE0(ANpcEntity & self)
+{
+    bool result = false;
+    if (self.location_map == MAP_FARMHOUSE && (self.y_q16 >> 16) <= 55)
+        result = true;
+    return result;
+}
+
 static inline bool IsBeforePathEntry(u32 const & minute, ScheduleEntry const & entry)
 {
     return minute < entry.time;
