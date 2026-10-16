@@ -2,25 +2,7 @@
 	.INCLUDE "asm/macro.inc"
 	.SYNTAX UNIFIED
 
-	.section ".text.intro_scene_core_after_cleanup"
-
-	thumb_func_start func_080D3ED4
-func_080D3ED4: @ 0x080D3ED4
-	push {lr}
-	adds r2, r0, #0
-	ldr r0, .L080D3EF0 @ =vtable_unk_080E5A28
-	str r0, [r2]
-	movs r0, #1
-	ands r0, r1
-	cmp r0, #0
-	beq .L080D3EEA
-	adds r0, r2, #0
-	bl __builtin_delete
-.L080D3EEA:
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080D3EF0: .4byte vtable_unk_080E5A28
+	.section ".text.intro_scene_after_provider_cleanup"
 
 	thumb_func_start func_080D3EF4
 func_080D3EF4: @ 0x080D3EF4

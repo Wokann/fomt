@@ -13,7 +13,6 @@
 EXTERN_C
 
 void Unpack(u8 const * source, void * destination);
-extern IndexedResourceProviderVTable vtable_unk_080E5A28;
 
 EXTERN_C_END
 

@@ -123,17 +123,19 @@ struct IndexedResourceGroupResult
 
 typedef IndexedResourceResult (*IndexedResourceResolver)(IndexedResourceProvider *, u32);
 typedef IndexedResourceGroupResult (*IndexedResourceGroupResolver)(IndexedResourceProvider const *, u32);
+typedef void (*IndexedResourceDestroyer)(IndexedResourceProvider *, int);
 
 struct IndexedResourceProviderVTable
 {
-    u8 unknown_00[0x0C];
+    u8 unknown_00[8];
+    IndexedResourceDestroyer destroy;
     IndexedResourceResolver resolve;
     IndexedResourceGroupResolver get_group_data;
 };
 
 struct IndexedResourceProvider
 {
-    IndexedResourceProviderVTable * vtable;
+    IndexedResourceProviderVTable const * vtable;
 };
 
 struct IndexedResourceArchiveEntry
@@ -159,7 +161,7 @@ struct IndexedResourceArchive
     IndexedResourceArchive(u8 const * data)
         SECTION(".text.indexed_resource_archive_constructor");
 
-    IndexedResourceProviderVTable * vtable;
+    IndexedResourceProviderVTable const * vtable;
     IndexedResourceArchiveEntry * entry_descriptors;
     IndexedResourceArchiveGroupDescriptor * group_descriptors;
     HardwareSpriteOamRecord * sprite_descriptors;
@@ -210,9 +212,16 @@ typedef char IndexedResourceGroupFourthOffsetCheck[offsetof(IndexedResourceGroup
 typedef char IndexedResourceGroupFifthOffsetCheck[offsetof(IndexedResourceGroupResult, fifth) == 16 ? 1 : -1];
 typedef char IndexedResourceGroupSixthOffsetCheck[offsetof(IndexedResourceGroupResult, sixth) == 24 ? 1 : -1];
 typedef char IndexedResourceGroupResolverOffsetCheck[offsetof(IndexedResourceProviderVTable, get_group_data) == 0x10 ? 1 : -1];
+typedef char IndexedResourceDestroyerOffsetCheck[offsetof(IndexedResourceProviderVTable, destroy) == 8 ? 1 : -1];
+typedef char IndexedResourceResolverOffsetCheck[offsetof(IndexedResourceProviderVTable, resolve) == 12 ? 1 : -1];
+typedef char IndexedResourceProviderVTableSizeCheck[sizeof(IndexedResourceProviderVTable) == 20 ? 1 : -1];
 typedef char IndexedResourceSpriteMatrixSizeCheck[sizeof(IndexedResourceSpriteMatrix) == 8 ? 1 : -1];
 
 EXTERN_C
+
+extern IndexedResourceProviderVTable const vtable_unk_080E5A28;
+void DestroyIndexedResourceProvider(IndexedResourceProvider * provider, int flags)
+    SECTION(".text.indexed_resource_provider_cleanup");
 
 // The first update reports GROUP_CHANGED and clears the initialized byte.
 // A zero metric stops traversal; the other bits describe the whole update,

@@ -1,5 +1,25 @@
 #include "resource_handle.hh"
 
+EXTERN_C
+void __builtin_delete(void *);
+void __pure_virtual(void);
+EXTERN_C_END
+
+// The two resolver slots are pure virtual in this provider-base table.
+extern IndexedResourceProviderVTable const vtable_unk_080E5A28 = {
+    { 0 },
+    DestroyIndexedResourceProvider,
+    reinterpret_cast<IndexedResourceResolver>(__pure_virtual),
+    reinterpret_cast<IndexedResourceGroupResolver>(__pure_virtual),
+};
+
+void DestroyIndexedResourceProvider(IndexedResourceProvider * provider, int flags)
+{
+    provider->vtable = &vtable_unk_080E5A28;
+    if (flags & 1)
+        __builtin_delete(provider);
+}
+
 #if defined(REGION_JP)
 extern "C" char vtable_unk_080E79B8;
 #else
@@ -9,9 +29,9 @@ extern "C" char vtable_unk_080E79C8;
 IndexedResourceArchive::IndexedResourceArchive(u8 const * data)
 {
 #if defined(REGION_JP)
-    vtable = (IndexedResourceProviderVTable *)&vtable_unk_080E79B8;
+    vtable = reinterpret_cast<IndexedResourceProviderVTable const *>(&vtable_unk_080E79B8);
 #else
-    vtable = (IndexedResourceProviderVTable *)&vtable_unk_080E79C8;
+    vtable = reinterpret_cast<IndexedResourceProviderVTable const *>(&vtable_unk_080E79C8);
 #endif
 
     if (data != 0)

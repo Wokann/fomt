@@ -600,7 +600,8 @@ SECTIONS
         *(.gnu.linkonce.t._._19IntroMenuTransition);
         *(.gnu.linkonce.t._._24IntroNameEntryTransition);
         src/intro_scene.o(.text.intro_scene_core_cleanup);
-        asm/code_linkonce.o(.text.intro_scene_core_after_cleanup);
+        src/resource_handle.o(.text.indexed_resource_provider_cleanup);
+        asm/code_linkonce.o(.text.intro_scene_after_provider_cleanup);
         src/intro_scene.o(.text.intro_scene_factory);
         asm/code_linkonce.o(.text.intro_scene_after_factory);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
@@ -702,6 +703,7 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_24IntroNameEntryTransition);
         . = ALIGN(4); src/intro_scene.o(.rodata);
         src/intro_scene.o(.gnu.linkonce.d.__vt_14GameIntroScene);
+        src/resource_handle.o(.rodata);
         src/vtables.o(.rodata);
         *(.gnu.linkonce.d.__vt_7AEntity);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6284);
