@@ -135,15 +135,7 @@ func_080D3EF4: @ 0x080D3EF4
 .L080D3FFC: .4byte 0x00000524
 .L080D4000: .4byte gUnk_0300040C
 
-	.section .text.intro_scene_after_factory, "ax", %progbits
-	.align 2, 0
-
-	thumb_func_start func_080D4040
-func_080D4040: @ 0x080D4040
-	push {lr}
-	bl _._15SceneTransition
-	pop {r0}
-	bx r0
+	.section .text.intro_scene_after_transition, "ax", %progbits
 	.align 2, 0
 
 	thumb_func_start func_080D404C

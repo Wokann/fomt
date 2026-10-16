@@ -1,4 +1,5 @@
 #include "new_game.hh"
+#include "intro_scene.hh"
 #include "new_game_data.hh"
 #include "game_state.hh"
 #include "hardware_bootstrap.hh"
@@ -335,19 +336,11 @@ NewGameMenuCore * func_080041DC(NewGameMenuCore * core, void * state,
     return core;
 }
 
-static inline SceneTransition * CreateMenuIntroContinuation()
-{
-    NewGameSceneVTableFunction const ** object =
-        static_cast<NewGameSceneVTableFunction const **>(::operator new(sizeof(SceneTransition)));
-    *object = vtable_unk_080E5A3C;
-    return reinterpret_cast<SceneTransition *>(object);
-}
-
 AScene * func_08004B58(void * object)
 {
     NewGameMenuScene * scene = static_cast<NewGameMenuScene *>(object);
     scene->vtable = vtable_unk_080E5A68;
-    SceneTransition * continuation = CreateMenuIntroContinuation();
+    SceneTransition * continuation = new MenuIntroTransition;
     scene->core = func_080041DC(
         static_cast<NewGameMenuCore *>(::operator new(sizeof(NewGameMenuCore))),
         nullptr, continuation);

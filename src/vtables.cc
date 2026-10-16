@@ -676,7 +676,6 @@ extern void func_080E10F8(void);
 extern void func_080E1128(void);
 extern void func_080E1148(void);
 extern void func_080D3EF4(void);
-extern void func_080D4040(void);
 extern void func_080D404C(void);
 extern void func_080D406C(void);
 extern void func_08004C68(void);
@@ -877,13 +876,6 @@ extern void func_080DC5B4(void);
 extern void func_080DC5D4(void);
 extern void func_080D6C58(void);
 extern void func_080D6D8C(void);
-
-extern RawVTableFunction const vtable_unk_080E5A3C[] = {
-    nullptr,
-    nullptr,
-    func_080D4040,
-    reinterpret_cast<RawVTableFunction>(CreateIntroScene),
-};
 
 extern RawVTableFunction const vtable_unk_080E5A4C[] = {
     nullptr,

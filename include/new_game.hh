@@ -369,7 +369,6 @@ AScene * func_08004B58(void * object)
 AScene * func_08004B94(void * object, void * state, SceneTransition *& continuation)
     SECTION(".text.new_game_scene_lifecycle");
 
-extern NewGameSceneVTableFunction const vtable_unk_080E5A3C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A4C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A68[];

@@ -187,6 +187,13 @@ struct IntroMenuTransition : SceneTransition
     virtual SceneOwner CreateScene() SECTION(".text.intro_scene_transitions");
 };
 
+struct MenuIntroTransition : SceneTransition
+{
+    virtual SceneOwner CreateScene() asm("CreateIntroScene") SECTION(".text.intro_scene_factory");
+};
+
+typedef char MenuIntroTransitionSizeCheck[sizeof(MenuIntroTransition) == 4 ? 1 : -1];
+
 EXTERN_C
 
 extern IntroSceneCoreVTable const vtable_unk_080E5A0C;
@@ -207,7 +214,6 @@ void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
 void DestroyGameIntroScene(GameIntroScene * scene, int flags);
 SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene);
-SceneOwner CreateIntroScene(SceneTransition * transition) SECTION(".text.intro_scene_factory");
 SceneTransitionOwner RunIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_run");
 
 EXTERN_C_END

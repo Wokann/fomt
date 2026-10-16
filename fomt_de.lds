@@ -537,7 +537,8 @@ SECTIONS
         src/resource_handle.o(.text.indexed_resource_provider_cleanup);
         asm/code_linkonce.o(.text.intro_scene_after_provider_cleanup);
         src/intro_scene.o(.text.intro_scene_factory);
-        asm/code_linkonce.o(.text.intro_scene_after_factory);
+        src/intro_scene.o(.gnu.linkonce.t._._19MenuIntroTransition);
+        asm/code_linkonce.o(.text.intro_scene_after_transition);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         asm/code_linkonce.o(.text.code_080D68C0);
         src/hardware.o(.text.hardware_free_list);
@@ -634,6 +635,7 @@ SECTIONS
         . = ALIGN(4); src/intro_scene.o(.rodata);
         src/intro_scene.o(.gnu.linkonce.d.__vt_14GameIntroScene);
         src/resource_handle.o(.rodata);
+        src/intro_scene.o(.gnu.linkonce.d.__vt_19MenuIntroTransition);
         src/vtables.o(.rodata);
         *(.gnu.linkonce.d.__vt_7AEntity);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6284);

@@ -687,7 +687,7 @@ SceneOwner IntroMenuTransition::CreateScene()
     return SceneOwner(func_08004B58(::operator new(8)));
 }
 
-SceneOwner CreateIntroScene(SceneTransition *)
+SceneOwner MenuIntroTransition::CreateScene()
 {
     return SceneOwner(new GameIntroScene);
 }
