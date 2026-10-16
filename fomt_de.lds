@@ -177,6 +177,8 @@ SECTIONS
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
         src/game_scene.o(.text.*__9GameScene*);
         asm/game_state.o(.text.game_scene_menu_hooks_after);
+        src/game_scene.o(.text.func_0801B5C0);
+        asm/game_state.o(.text.game_scene_palette_resource_selector_after);
         src/game_scene.o(.text.func_0801FB* .text.func_0801FC* .text.func_0801FD*);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);

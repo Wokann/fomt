@@ -90,6 +90,8 @@ struct GameScenePaletteCache {
     GameScenePaletteSlot slots[13];
     u8 used_slots;
     u8 unk_C15;
+
+    u32 ResourceCount() const { return ARRAY_COUNT(resources); }
 };
 
 typedef char GameScenePaletteResourceSizeCheck[sizeof(GameScenePaletteResource) == 132 ? 1 : -1];
@@ -1071,6 +1073,8 @@ u8 * func_08010128(void);
 u8 * func_08010138(void);
 u32 func_08010148(void);
 ScriptEngine * func_0801014C(void);
+
+u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind);
 
 // Recovered native world callbacks. The duplicate slot readers retain
 // separate entries; neither adds bounds checking absent from the original.

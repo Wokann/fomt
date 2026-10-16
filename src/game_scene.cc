@@ -700,6 +700,217 @@ void GameScene::DisableScriptedNpcControl()
     state->save->scripted_npc_control = 0;
 }
 
+EC u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind)
+{
+    switch (kind) {
+    case 0: return 0;
+    case 1:
+    case 2:
+    case 4: return 1;
+    case 3:
+    case 5: return 2;
+    case 14: return 3;
+    case 15:
+    case 16:
+    case 17:
+    case 18: return 4;
+    case 6:
+    case 7:
+    case 8:
+    case 26: return 5;
+    }
+
+    u32 first = 6;
+    switch (world.vfunc_14()) {
+    case MAP_FARM:
+        switch (kind) {
+        case 9:
+        case 10:
+        case 11: return 6;
+        case 12: return 10;
+        case 13: return 11;
+        case 19:
+        case 21:
+        case 22: return 7;
+        case 20:
+        case 23:
+        case 25: return 8;
+        case 24: return 9;
+        default: first = 12;
+        }
+        break;
+    case MAP_HARVEST_SPRITES_HUT:
+        switch (kind) {
+        case 19:
+        case 21:
+        case 22: return 6;
+        case 20:
+        case 23:
+        case 25: return 7;
+        case 24: return 8;
+        default: first = 9;
+        }
+        break;
+    case MAP_BARN:
+        switch (kind) {
+        case 9:
+        case 10:
+        case 11: return 6;
+        case 12: return 10;
+        case 19:
+        case 21:
+        case 22: return 7;
+        case 20:
+        case 23:
+        case 25: return 8;
+        case 24: return 9;
+        default: first = 11;
+        }
+        break;
+    case MAP_CHICKEN_COOP:
+        switch (kind) {
+        case 9:
+        case 10:
+        case 11: return 6;
+        case 19:
+        case 21:
+        case 22: return 7;
+        case 20:
+        case 23:
+        case 25: return 8;
+        case 24: return 9;
+        default: first = 10;
+        }
+        break;
+    case MAP_HORSE_STABLE:
+        switch (kind) {
+        case 9:
+        case 10:
+        case 11: return 6;
+        case 13: return 7;
+        default: first = 8;
+        }
+        break;
+    case MAP_FARMHOUSE:
+        switch (kind) {
+        case 9:
+        case 10:
+        case 11: return 6;
+        default: first = 7;
+        }
+        break;
+    case MAP_SOUTH_SIDE_TOWN:
+        switch (kind) {
+        case 9:
+        case 10:
+        case 11: return 6;
+        case 12: return 7;
+        case 31: return 8;
+        default: first = 9;
+        }
+        break;
+    case MAP_MOTHERS_HILL_SUMMIT: {
+        if (kind == 29)
+            return 6;
+        first = 7;
+        u32 wish_state = world.save->event_state.shooting_star_wish_event_state;
+        if (wish_state == 1) {
+            if (kind == 28)
+                return 7;
+            first = 8;
+        }
+        break;
+    }
+    case MAP_CHURCH:
+        if (world.save->event_state.IsActiveRomanceEvent(VAR_HARVEST_GODDESS_WEDDING_AND_NICKNAME_EVENT_STATE)) {
+            switch (kind) {
+            case 19:
+            case 21:
+            case 22: return 6;
+            case 20:
+            case 23:
+            case 25: return 7;
+            case 24: return 8;
+            default: first = 9;
+            }
+        }
+        break;
+    case MAP_MOTHERS_HILL_MIDDLE:
+        if (kind == 30)
+            return 6;
+        first = 7;
+        break;
+    case MAP_KAI_RESTAURANT: {
+        GameEventState const & events = world.save->event_state;
+        u32 cafe_state = events.popuri_brings_customers_to_kais_beach_cafe_event_state;
+        if (cafe_state == 1) {
+            switch (kind) {
+            case 19:
+            case 21:
+            case 22: return 6;
+            case 20:
+            case 23:
+            case 25: return 7;
+            case 24: return 8;
+            default: first = 9;
+            }
+        }
+        break;
+    }
+    case MAP_ROSE_SQUARE:
+        if (kind == 32)
+            return 6;
+        first = 7;
+        break;
+    case MAP_MINERAL_BEACH:
+    case MAP_FOREST:
+    case MAP_BEHIND_CHURCH:
+    case MAP_NORTH_SIDE_TOWN:
+    case MAP_POULTRY_FARM_HOUSE_1F:
+    case MAP_POULTRY_FARM_HOUSE_2F:
+    case MAP_ZACK_HOUSE:
+    case MAP_ELLEN_HOUSE:
+    case MAP_SUPERMARKET:
+    case MAP_SUPERMARKET_BACK_ROOM:
+    case MAP_MOUNTAIN_COTTAGE:
+    case MAP_MINERAL_CLINIC_1F:
+    case MAP_MINERAL_CLINIC_2F:
+    case MAP_INN_1F:
+    case MAP_INN_BACK_ROOM:
+    case MAP_INN_2F:
+    case MAP_LIBRARY_1F:
+    case MAP_LIBRARY_2F:
+    case MAP_BASIL_HOUSE_1F:
+    case MAP_BASIL_HOUSE_2F:
+    case MAP_MAYOR_HOUSE:
+    case MAP_AJA_WINERY_1F:
+    case MAP_AJA_WINERY_2F:
+    case MAP_AJA_WINERY_STORAGE_1F:
+    case MAP_AJA_WINERY_STORAGE_B1F:
+    case MAP_BEACH_HOUSE:
+    case MAP_BLACKSMITH:
+    case MAP_TOWN_COTTAGE:
+    case MAP_GOTZ_HOUSE:
+    case MAP_YODEL_RANCH_HOUSE_1F:
+    case MAP_YODEL_RANCH_HOUSE_2F:
+    case MAP_LAKE_MINE_ENTRANCE:
+    case MAP_MOTHERS_HILL_SUMMIT_CLEAR:
+    case MAP_MOTHERS_HILL_SUMMIT_RAIN:
+    case MAP_MOTHERS_HILL_SUMMIT_SNOW:
+    case MAP_TUTORIAL_FIELD:
+        break;
+    }
+    GameScenePaletteCache & cache = world.data.palette_cache;
+    for (u32 index = first; index < cache.ResourceCount(); ++index) {
+        GameScenePaletteResource & resource = cache.resources[index];
+        if (resource.unk_81 == 0) {
+            resource.unk_81 = 1;
+            return index;
+        }
+    }
+    return ARRAY_COUNT(cache.resources) - 1;
+}
+
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
 {
     // Match native cleanup: release the first index, then destroy all three
