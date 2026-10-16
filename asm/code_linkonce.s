@@ -39968,7 +39968,7 @@ func_080E3C50:
     adds r4, r1, #0
     adds r0, r5, #4
     movs r1, #2
-    bl func_080AC294
+    bl _._18GameSceneWorldData
     ldr r0, [pc, #0x18]
     str r0, [r5]
     movs r0, #1
@@ -48880,11 +48880,7 @@ func_080E44B8: @ 0x080E44B8
 	adds r4, r1, #0
 	adds r0, r5, #4
 	movs r1, #2
-	.ifdef REGION_JP
-	bl func_080AC294
-	.else
-	bl func_080AC85C
-	.endif
+	bl _._18GameSceneWorldData
 	ldr r0, .L080E44E0 @ =vtable_unk_080E61A0
 	str r0, [r5]
 	movs r0, #1

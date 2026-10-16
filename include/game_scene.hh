@@ -59,13 +59,17 @@ struct GameSceneWorldMapPrefix {
     i32 step_x_q16;
     i32 step_y_q16;
     u32 movement_frames;
+    virtual ~GameSceneWorldMapPrefix();
+
+private:
+    GameSceneWorldMapPrefix();
 };
 
 // The native palette cache has 22 resource records and 13 retained banks.
 // Keep the remaining record bytes and flags opaque until their users are recovered.
 struct GameScenePaletteResource {
     u8 unk_00[0x80];
-    i8 palette_slot;
+    i8 palette_slot : 8;
     u8 unk_81;
     u8 unk_82;
     u8 unk_83;
@@ -84,10 +88,11 @@ struct GameScenePaletteCache {
     GameScenePaletteResource resources[22];
     GameScenePaletteSlot slots[13];
     u8 used_slots;
-    u8 unk_C15[3];
+    u8 unk_C15;
 };
 
 typedef char GameScenePaletteResourceSizeCheck[sizeof(GameScenePaletteResource) == 132 ? 1 : -1];
+typedef char GameScenePaletteResourceFlagOffsetCheck[offsetof(GameScenePaletteResource, unk_81) == 0x81 ? 1 : -1];
 typedef char GameScenePaletteSlotSizeCheck[sizeof(GameScenePaletteSlot) == 12 ? 1 : -1];
 typedef char GameScenePaletteCacheSlotsCheck[offsetof(GameScenePaletteCache,slots) == 0xB78 ? 1 : -1];
 typedef char GameScenePaletteCacheCountCheck[offsetof(GameScenePaletteCache,used_slots) == 0xC14 ? 1 : -1];
@@ -109,16 +114,79 @@ struct GameSceneWorldUnkOwner {
     }
 };
 
-// This native GameObject keeps 100 entity slots. Its unrecovered payload
-// stays opaque; this prefix is never allocated or treated as its full size.
-struct GameSceneWorldPrefix : GameObject {
-    GameSceneWorldMapPrefix * map;
+// This one-word owner is passed by value to the native data constructor.
+// Transfer clears the source slot; destruction uses the map's real virtual ABI.
+struct GameSceneWorldMapOwner {
+    GameSceneWorldMapPrefix * value;
+
+    explicit GameSceneWorldMapOwner(GameSceneWorldMapPrefix * input) : value(input) {}
+    GameSceneWorldMapPrefix * Release()
+    {
+        GameSceneWorldMapPrefix * result = value;
+        value = nullptr;
+        return result;
+    }
+    GameSceneWorldMapOwner(GameSceneWorldMapOwner & source) : value(source.Release()) {}
+    ~GameSceneWorldMapOwner() { delete value; }
+
+private:
+    GameSceneWorldMapOwner & operator=(GameSceneWorldMapOwner const &);
+};
+
+// Only the virtual-destruction prefix is known. Never allocate this view.
+struct GameSceneWorldUnkObject {
+    u8 unk_00[0x24];
+    virtual ~GameSceneWorldUnkObject();
+
+private:
+    GameSceneWorldUnkObject();
+};
+
+struct GameSceneWorldUnk1028 {
+    GameSceneWorldUnkObject * value;
+    Vec2 unk_04;
+    u8 unk_08;
+    u8 unk_09;
+};
+
+// The native constructor receives this member at world+4, not the complete
+// world object. Each archive has its own source and reverse-order destruction.
+// The constructor and destructor bodies remain native assembly under their
+// real C++ ABI names; declaring them does not count as C++ code recovery.
+struct GameSceneWorldData {
+    GameSceneWorldMapOwner map;
     AActorEntity * entities[100];
-    u32 unk_198;
+    u32 unk_194;
     GameScenePaletteCache palette_cache;
-    IndexedResourceArchive archives[13];
+    IndexedResourceArchive actor_archive;
+    IndexedResourceArchive unk_DE0;
+    IndexedResourceArchive unk_E10;
+    IndexedResourceArchive unk_E40;
+    IndexedResourceArchive unk_E70;
+    IndexedResourceArchive unk_EA0;
+    IndexedResourceArchive unk_ED0;
+    IndexedResourceArchive unk_F00;
+    IndexedResourceArchive unk_F30;
+    IndexedResourceArchive unk_F60;
+    IndexedResourceArchive unk_F90;
+    IndexedResourceArchive unk_FC0;
+    IndexedResourceArchive unk_FF0;
+    void * unk_1020;
     void * unk_1024;
-    u8 unk_1028[0x10];
+    GameSceneWorldUnk1028 unk_1028;
+
+    GameSceneWorldData(GameSceneWorldMapOwner source);
+    ~GameSceneWorldData();
+
+private:
+    GameSceneWorldData(GameSceneWorldData const &);
+    GameSceneWorldData & operator=(GameSceneWorldData const &);
+};
+
+// Only the verified prefix of the enclosing GameObject is modeled. It is
+// never allocated or used to infer the full size of a native world subclass.
+struct GameSceneWorldPrefix : GameObject {
+    GameSceneWorldData data;
     GameStateSaveImage * save;
     u8 unk_103C[0x40];
     GameSceneWorldUnkOwner unk_107C;
@@ -134,12 +202,26 @@ typedef char GameSceneCameraChangedCheck[offsetof(GameSceneWorldMapPrefix, camer
 typedef char GameSceneCameraStepXCheck[offsetof(GameSceneWorldMapPrefix, step_x_q16) == 0x84 ? 1 : -1];
 typedef char GameSceneCameraStepYCheck[offsetof(GameSceneWorldMapPrefix, step_y_q16) == 0x88 ? 1 : -1];
 typedef char GameSceneCameraFramesCheck[offsetof(GameSceneWorldMapPrefix, movement_frames) == 0x8C ? 1 : -1];
-typedef char GameSceneWorldMapCheck[offsetof(GameSceneWorldPrefix, map) == 4 ? 1 : -1];
-typedef char GameSceneWorldEntitiesCheck[offsetof(GameSceneWorldPrefix, entities) == 8 ? 1 : -1];
-typedef char GameSceneWorldPaletteCacheCheck[offsetof(GameSceneWorldPrefix, palette_cache) == 0x19C ? 1 : -1];
+typedef char GameSceneWorldMapPrefixSizeCheck[sizeof(GameSceneWorldMapPrefix) == 0x94 ? 1 : -1];
+typedef char GameSceneWorldMapOwnerSizeCheck[sizeof(GameSceneWorldMapOwner) == 4 ? 1 : -1];
+typedef char GameSceneWorldUnkObjectPrefixSizeCheck[sizeof(GameSceneWorldUnkObject) == 0x28 ? 1 : -1];
+typedef char GameSceneWorldUnkRecordSizeCheck[sizeof(GameSceneWorldUnk1028) == 12 ? 1 : -1];
+typedef char GameSceneWorldUnkRecordPointCheck[offsetof(GameSceneWorldUnk1028, unk_04) == 4 ? 1 : -1];
+typedef char GameSceneWorldUnkRecordFlagCheck[offsetof(GameSceneWorldUnk1028, unk_09) == 9 ? 1 : -1];
+typedef char GameSceneWorldDataEntitiesCheck[offsetof(GameSceneWorldData, entities) == 4 ? 1 : -1];
+typedef char GameSceneWorldDataPaletteCacheCheck[offsetof(GameSceneWorldData, palette_cache) == 0x198 ? 1 : -1];
 typedef char GameSceneWorldArchiveSizeCheck[sizeof(IndexedResourceArchive) == 0x30 ? 1 : -1];
-typedef char GameSceneWorldArchivesCheck[offsetof(GameSceneWorldPrefix, archives) == 0xDB4 ? 1 : -1];
-typedef char GameSceneWorldUnknownObjectCheck[offsetof(GameSceneWorldPrefix, unk_1024) == 0x1024 ? 1 : -1];
+typedef char GameSceneWorldDataActorArchiveCheck[offsetof(GameSceneWorldData, actor_archive) == 0xDB0 ? 1 : -1];
+typedef char GameSceneWorldDataLastArchiveCheck[offsetof(GameSceneWorldData, unk_FF0) == 0xFF0 ? 1 : -1];
+typedef char GameSceneWorldDataUnknownObjectCheck[offsetof(GameSceneWorldData, unk_1020) == 0x1020 ? 1 : -1];
+typedef char GameSceneWorldDataUnkRecordCheck[offsetof(GameSceneWorldData, unk_1028) == 0x1028 ? 1 : -1];
+typedef char GameSceneWorldDataSizeCheck[sizeof(GameSceneWorldData) == 0x1034 ? 1 : -1];
+typedef char GameSceneWorldDataCheck[offsetof(GameSceneWorldPrefix, data) == 4 ? 1 : -1];
+typedef char GameSceneWorldMapCheck[offsetof(GameSceneWorldPrefix, data.map.value) == 4 ? 1 : -1];
+typedef char GameSceneWorldEntitiesCheck[offsetof(GameSceneWorldPrefix, data.entities) == 8 ? 1 : -1];
+typedef char GameSceneWorldPaletteCacheCheck[offsetof(GameSceneWorldPrefix, data.palette_cache) == 0x19C ? 1 : -1];
+typedef char GameSceneWorldActorArchiveCheck[offsetof(GameSceneWorldPrefix, data.actor_archive) == 0xDB4 ? 1 : -1];
+typedef char GameSceneWorldUnknownObjectCheck[offsetof(GameSceneWorldPrefix, data.unk_1020) == 0x1024 ? 1 : -1];
 typedef char GameSceneWorldUnkOwnerSizeCheck[sizeof(GameSceneWorldUnkOwner) == 4 ? 1 : -1];
 typedef char GameSceneWorldUnkOwnerCheck[offsetof(GameSceneWorldPrefix, unk_107C) == 0x107C ? 1 : -1];
 typedef char GameSceneWorldSaveCheck[offsetof(GameSceneWorldPrefix, save) == 0x1038 ? 1 : -1];

@@ -22758,9 +22758,9 @@ func_080AC008: @ 080AC008
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-    .global func_080AC0AC
+    .global __18GameSceneWorldDataG22GameSceneWorldMapOwner
     .thumb_func
-func_080AC0AC: @ 080AC0AC
+__18GameSceneWorldDataG22GameSceneWorldMapOwner: @ 080AC0AC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -22975,9 +22975,9 @@ func_080AC0AC: @ 080AC0AC
 .Ljp_map_080AC288: .4byte gUnk_084ABF08
 .Ljp_map_080AC28C: .4byte gUnk_08479108
 .Ljp_map_080AC290: .4byte 0x00001028
-    .global func_080AC294
+    .global _._18GameSceneWorldData
     .thumb_func
-func_080AC294: @ 080AC294
+_._18GameSceneWorldData: @ 080AC294
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r7, r1, #0
@@ -23199,7 +23199,7 @@ func_080AC424: @ 080AC424
 	str r1, [r7]
 	str r2, [sp, #4]
 	add r1, sp, #4
-	bl func_080AC0AC
+	bl __18GameSceneWorldDataG22GameSceneWorldMapOwner
 	ldr r0, [r6, #4]
 	add r1, sp, #8
 	movs r5, #0x30
@@ -107982,8 +107982,8 @@ func_080AC5D0: @ 0x080AC5D0
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080AC674
-func_080AC674: @ 0x080AC674
+	thumb_func_start __18GameSceneWorldDataG22GameSceneWorldMapOwner
+__18GameSceneWorldDataG22GameSceneWorldMapOwner: @ 0x080AC674
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -108199,8 +108199,8 @@ func_080AC674: @ 0x080AC674
 .L080AC854: .4byte gUnk_086F2FAC
 .L080AC858: .4byte 0x00001028
 
-	thumb_func_start func_080AC85C
-func_080AC85C: @ 0x080AC85C
+	thumb_func_start _._18GameSceneWorldData
+_._18GameSceneWorldData: @ 0x080AC85C
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r7, r1, #0
@@ -108422,7 +108422,7 @@ func_080AC9EC: @ 0x080AC9EC
 	str r1, [r7]
 	str r2, [sp, #4]
 	add r1, sp, #4
-	bl func_080AC674
+	bl __18GameSceneWorldDataG22GameSceneWorldMapOwner
 	ldr r0, [r6, #4]
 	add r1, sp, #8
 	movs r5, #0x30

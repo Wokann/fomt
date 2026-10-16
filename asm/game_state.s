@@ -10495,7 +10495,7 @@ func_08017348:
     str r3, [r2]
     str r1, [sp, #4]
     add r1, sp, #4
-    bl func_080AC0AC
+    bl __18GameSceneWorldDataG22GameSceneWorldMapOwner
     ldr r0, [pc, #0x250]
     adds r0, r0, r7
     mov r8, r0
@@ -10821,7 +10821,7 @@ func_080179CC:
     .Lauto_0801794A:
     adds r0, r7, #0
     movs r1, #2
-    bl func_080AC294
+    bl _._18GameSceneWorldData
     ldr r0, [pc, #0x3c]
     str r0, [r6]
     movs r0, #1
@@ -30593,7 +30593,7 @@ func_080175B4: @ 0x080175B4
     str r3, [r2]
     str r1, [sp, #4]
     add r1, sp, #4
-    bl func_080AC674
+    bl __18GameSceneWorldDataG22GameSceneWorldMapOwner
     ldr r0, .L0801783C @ =0x00001038
     adds r0, r0, r7
     mov r8, r0
@@ -31302,7 +31302,7 @@ func_080179CC: @ 0x080179CC
 .L08017BB6:
     adds r0, r7, #0
     movs r1, #2
-    bl func_080AC85C
+    bl _._18GameSceneWorldData
     ldr r0, .L08017BFC @ =vtable_unk_080E61A0
     str r0, [r6]
     movs r0, #1

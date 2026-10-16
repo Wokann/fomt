@@ -702,67 +702,67 @@ void GameScene::DisableScriptedNpcControl()
 
 EC IndexedResourceArchive * func_0801FBDC(GameSceneWorldPrefix & world)
 {
-    return &world.archives[12];
+    return &world.data.unk_FF0;
 }
 
 EC IndexedResourceArchive * func_0801FBE8(GameSceneWorldPrefix & world)
 {
-    return &world.archives[11];
+    return &world.data.unk_FC0;
 }
 
 EC IndexedResourceArchive * func_0801FBF4(GameSceneWorldPrefix & world)
 {
-    return &world.archives[10];
+    return &world.data.unk_F90;
 }
 
 EC IndexedResourceArchive * func_0801FC00(GameSceneWorldPrefix & world)
 {
-    return &world.archives[9];
+    return &world.data.unk_F60;
 }
 
 EC IndexedResourceArchive * func_0801FC0C(GameSceneWorldPrefix & world)
 {
-    return &world.archives[8];
+    return &world.data.unk_F30;
 }
 
 EC IndexedResourceArchive * func_0801FC18(GameSceneWorldPrefix & world)
 {
-    return &world.archives[7];
+    return &world.data.unk_F00;
 }
 
 EC IndexedResourceArchive * func_0801FC24(GameSceneWorldPrefix & world)
 {
-    return &world.archives[6];
+    return &world.data.unk_ED0;
 }
 
 EC IndexedResourceArchive * func_0801FC30(GameSceneWorldPrefix & world)
 {
-    return &world.archives[5];
+    return &world.data.unk_EA0;
 }
 
 EC IndexedResourceArchive * func_0801FC3C(GameSceneWorldPrefix & world)
 {
-    return &world.archives[4];
+    return &world.data.unk_E70;
 }
 
 EC IndexedResourceArchive * func_0801FC48(GameSceneWorldPrefix & world)
 {
-    return &world.archives[3];
+    return &world.data.unk_E40;
 }
 
 EC IndexedResourceArchive * func_0801FC54(GameSceneWorldPrefix & world)
 {
-    return &world.archives[2];
+    return &world.data.unk_E10;
 }
 
 EC IndexedResourceArchive * func_0801FC60(GameSceneWorldPrefix & world)
 {
-    return &world.archives[1];
+    return &world.data.unk_DE0;
 }
 
 EC IndexedResourceArchive * func_0801FC6C(GameSceneWorldPrefix & world)
 {
-    return &world.archives[0];
+    return &world.data.actor_archive;
 }
 
 EC void func_0801FC78(GameSceneWorldPrefix & world)
@@ -772,12 +772,12 @@ EC void func_0801FC78(GameSceneWorldPrefix & world)
 
 EC GameSceneWorldMapPrefix * func_0801FC9C(GameSceneWorldPrefix & world)
 {
-    return world.map;
+    return world.data.map.value;
 }
 
 EC GameSceneWorldMapPrefix * func_0801FCA0(GameSceneWorldPrefix & world)
 {
-    return world.map;
+    return world.data.map.value;
 }
 
 EC GameStateClock const * func_0801FCA4(GameSceneWorldPrefix const & world)
@@ -787,7 +787,7 @@ EC GameStateClock const * func_0801FCA4(GameSceneWorldPrefix const & world)
 
 EC i32 func_0801FCB4(GameSceneWorldPrefix & world, u32 index)
 {
-    GameScenePaletteCache & cache = world.palette_cache;
+    GameScenePaletteCache & cache = world.data.palette_cache;
     u8 & encoded = cache.encoded_palette_banks[index];
     i32 bank = encoded - 16;
     if (bank < 0) {
@@ -799,26 +799,26 @@ EC i32 func_0801FCB4(GameSceneWorldPrefix & world, u32 index)
 
 EC void func_0801FCDC(GameSceneWorldPrefix & world, u32 index)
 {
-    world.palette_cache.resources[index].unk_81 = 0;
+    world.data.palette_cache.resources[index].unk_81 = 0;
 }
 
 EC AActorEntity * func_0801FCF4(GameSceneWorldPrefix const & world, u32 index)
 {
-    AActorEntity * const * first = world.entities;
+    AActorEntity * const * first = world.data.entities;
     std::advance(first, index);
     return *first;
 }
 
 EC AActorEntity * func_0801FD00(GameSceneWorldPrefix & world, u32 index)
 {
-    AActorEntity ** first = world.entities;
+    AActorEntity ** first = world.data.entities;
     std::advance(first, index);
     return *first;
 }
 
 EC void func_0801FD0C(GameSceneWorldPrefix & world, u32 index)
 {
-    AActorEntity ** entity = world.entities;
+    AActorEntity ** entity = world.data.entities;
     std::advance(entity, index);
     if (*entity != nullptr) {
         delete *entity;
@@ -828,37 +828,37 @@ EC void func_0801FD0C(GameSceneWorldPrefix & world, u32 index)
 
 EC void * func_0801FD30(GameSceneWorldPrefix & world)
 {
-    return world.unk_1024;
+    return world.data.unk_1020;
 }
 
 EC bool func_0801FD3C(GameSceneWorldPrefix const & world)
 {
-    return func_080A5A9C(world.map);
+    return func_080A5A9C(world.data.map.value);
 }
 
 EC i32 func_0801FD48(GameSceneWorldPrefix const & world)
 {
-    return world.map->y.parts.integer;
+    return world.data.map.value->y.parts.integer;
 }
 
 EC i32 func_0801FD50(GameSceneWorldPrefix const & world)
 {
-    return world.map->x.parts.integer;
+    return world.data.map.value->x.parts.integer;
 }
 
 EC u32 func_0801FD58(GameSceneWorldPrefix const & world)
 {
-    return world.map->map;
+    return world.data.map.value->map;
 }
 
 EC void func_0801FD60(GameSceneWorldPrefix & world, i32 x, i32 y, u32 speed)
 {
-    func_080A59BC(world.map, x, y, speed);
+    func_080A59BC(world.data.map.value, x, y, speed);
 }
 
 EC void func_0801FD6C(GameSceneWorldPrefix & world, i32 x, i32 y)
 {
-    func_080A5960(world.map, x, y);
+    func_080A5960(world.data.map.value, x, y);
 }
 
 EC Vec2 func_080A58EC(GameSceneWorldMapPrefix const * map, i32 x, i32 y)
