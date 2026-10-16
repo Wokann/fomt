@@ -3,6 +3,15 @@
 
 #include "field.hh"
 
+// A patch lookup entry is copied as one opaque four-byte tile attribute.
+// Its individual bits are not assigned meanings by the recovered writer.
+struct FieldRenderTileAttributes
+{
+    u32 unk_00;
+};
+
+typedef char FieldRenderTileAttributesSizeCheck[sizeof(FieldRenderTileAttributes) == 4 ? 1 : -1];
+
 struct FieldRenderRectDescriptor
 {
     u8 width;

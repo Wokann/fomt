@@ -8272,130 +8272,8 @@ func_080A54E8: @ 0x080A54E8
 	pop {r0}
 	bx r0
 
-    .global func_080A5610
-    .thumb_func
-func_080A5610: @ 0x080A5610
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0x1c
-	str r0, [sp]
-	mov r8, r1
-	str r2, [sp, #4]
-	str r3, [sp, #8]
-	ldr r0, [r0, #4]
-	bl GetMapData
-	ldrh r0, [r0, #0x20]
-	str r0, [sp, #0xc]
-	mov r0, r8
-	ldrb r6, [r0]
-	ldrb r1, [r0, #1]
-	mov sb, r1
-	adds r0, #4
-	str r0, [sp, #0x10]
-	movs r3, #0
-.Ljp_080A5C04:
-	lsls r2, r3, #2
-	ldr r4, [sp, #0x10]
-	adds r1, r2, r4
-	ldr r0, [r1]
-	adds r3, #1
-	mov sl, r3
-	cmp r0, #0
-	beq .Ljp_080A5C52
-	movs r4, #0
-	cmp r4, sb
-	bhs .Ljp_080A5C52
-	ldr r0, [sp]
-	adds r0, #0x10
-	adds r3, r0, r2
-	str r1, [sp, #0x18]
-	movs r5, #0
-.Ljp_080A5C24:
-	ldr r7, [sp, #8]
-	adds r0, r7, r4
-	ldr r1, [sp, #0xc]
-	muls r0, r1, r0
-	ldr r2, [r3]
-	lsls r0, r0, #1
-	ldr r7, [sp, #4]
-	lsls r1, r7, #1
-	adds r1, r1, r2
-	adds r0, r0, r1
-	ldr r2, [sp, #0x18]
-	ldr r1, [r2]
-	adds r1, r5, r1
-	lsls r2, r6, #1
-	str r3, [sp, #0x14]
-	bl memcpy
-	lsls r0, r6, #1
-	adds r5, r5, r0
-	adds r4, #1
-	ldr r3, [sp, #0x14]
-	cmp r4, sb
-	blo .Ljp_080A5C24
-.Ljp_080A5C52:
-	mov r3, sl
-	cmp r3, #2
-	bls .Ljp_080A5C04
-	mov r3, r8
-	ldr r0, [r3, #0x14]
-	cmp r0, #0
-	beq .Ljp_080A5CB0
-	ldr r0, [r3, #0x10]
-	cmp r0, #0
-	beq .Ljp_080A5CB0
-	movs r2, #0
-	cmp r2, sb
-	bhs .Ljp_080A5CB0
-	ldr r4, [sp, #4]
-	lsls r4, r4, #2
-	mov sl, r4
-.Ljp_080A5C72:
-	adds r1, r2, #0
-	muls r1, r6, r1
-	mov r7, r8
-	ldr r0, [r7, #0x14]
-	adds r3, r0, r1
-	ldr r0, [sp]
-	ldr r1, [r0, #0x2c]
-	add r1, sl
-	ldr r4, [sp, #8]
-	adds r0, r4, r2
-	ldr r7, [sp, #0xc]
-	muls r0, r7, r0
-	lsls r0, r0, #2
-	adds r5, r1, r0
-	movs r4, #0
-	adds r2, #1
-	cmp r4, r6
-	bhs .Ljp_080A5CAC
-.Ljp_080A5C96:
-	ldrb r0, [r3]
-	mov r7, r8
-	ldr r1, [r7, #0x10]
-	lsls r0, r0, #2
-	adds r0, r0, r1
-	ldr r0, [r0]
-	stm r5!, {r0}
-	adds r3, #1
-	adds r4, #1
-	cmp r4, r6
-	blo .Ljp_080A5C96
-.Ljp_080A5CAC:
-	cmp r2, sb
-	blo .Ljp_080A5C72
-.Ljp_080A5CB0:
-	add sp, #0x1c
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
+    .section .text.game_map_after_tile_patch, "ax", %progbits
+    .align 2, 0
 
     .global func_080A56F8
     .thumb_func
@@ -8855,59 +8733,8 @@ func_080A5F78: @ 0x080A59B0
 	.align 2, 0
 .Ljp_080A6018: .4byte 0x000003FF
 
-    .global func_080A601C
-    .thumb_func
-func_080A601C: @ 0x080A5A54
-	adds r0, #0x58
-	movs r1, #0x14
-	strb r1, [r0]
-	bx lr
-
-    .global func_080A6024
-    .thumb_func
-func_080A6024: @ 0x080A5A5C
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r2, r1, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x24
-	blt .Ljp_080A6064
-	cmp r0, #0x25
-	ble .Ljp_080A603A
-	cmp r0, #0x40
-	beq .Ljp_080A6054
-	b .Ljp_080A6064
-.Ljp_080A603A:
-	ldr r1, .Ljp_080A604C @ =gFieldRenderRectDescriptors + 0x360
-	ldr r0, .Ljp_080A6050 @ =gFieldRenderPatchArgumentData
-	adds r0, r2, r0
-	ldrb r2, [r0]
-	adds r0, r4, #0
-	movs r3, #8
-	bl func_080A5610
-	b .Ljp_080A6064
-	.align 2, 0
-.Ljp_080A604C: .4byte gFieldRenderRectDescriptors + 0x360
-.Ljp_080A6050: .4byte gFieldRenderPatchArgumentData
-.Ljp_080A6054:
-	ldr r1, .Ljp_080A6074 @ =gFieldRenderRectDescriptors + 0x360
-	ldr r0, .Ljp_080A6078 @ =gFieldRenderPatchArgumentData + 0x08
-	adds r0, r2, r0
-	ldrb r2, [r0]
-	adds r0, r4, #0
-	movs r3, #4
-	bl func_080A5610
-.Ljp_080A6064:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A6074: .4byte gFieldRenderRectDescriptors + 0x360
-.Ljp_080A6078: .4byte gFieldRenderPatchArgumentData + 0x08
+    .section .text.game_map_barn_feed, "ax", %progbits
+    .align 2, 0
 
     .global func_080A607C
     .thumb_func
@@ -8980,7 +8807,7 @@ func_080A607C: @ 0x080A5AB4
 	ldrb r3, [r3]
 .Ljp_080A6100:
 	adds r0, r4, #0
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A6120
 	.align 2, 0
 .Ljp_080A6108: .4byte gFieldRenderRectDescriptors + 0x348
@@ -8992,7 +8819,7 @@ func_080A607C: @ 0x080A5AB4
 	ldrb r2, [r0]
 	adds r0, r4, #0
 	movs r3, #5
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6120:
 	adds r1, r4, #0
 	adds r1, #0x29
@@ -9005,255 +8832,8 @@ func_080A607C: @ 0x080A5AB4
 .Ljp_080A6130: .4byte gFieldRenderRectDescriptors + 0x348
 .Ljp_080A6134: .4byte gFieldRenderPatchArgumentData + 0x5C
 
-    .global func_080A5B70
-    .thumb_func
-func_080A5B70: @ 0x080A5B70
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .Ljp_080A6160
-	cmp r0, #0x2a
-	bgt .Ljp_080A614C
-	cmp r0, #0x29
-	beq .Ljp_080A6152
-	b .Ljp_080A6180
-.Ljp_080A614C:
-	cmp r0, #0x2b
-	beq .Ljp_080A6174
-	b .Ljp_080A6180
-.Ljp_080A6152:
-	ldr r1, .Ljp_080A615C @ =gFieldRenderRectDescriptors + 0x150
-	adds r0, r4, #0
-	movs r2, #0x19
-	b .Ljp_080A6166
-	.align 2, 0
-.Ljp_080A615C: .4byte gFieldRenderRectDescriptors + 0x150
-.Ljp_080A6160:
-	ldr r1, .Ljp_080A6170 @ =gFieldRenderRectDescriptors + 0x150
-	adds r0, r4, #0
-	movs r2, #0x28
-.Ljp_080A6166:
-	movs r3, #0xf
-	bl func_080A5610
-	b .Ljp_080A6180
-	.align 2, 0
-.Ljp_080A6170: .4byte gFieldRenderRectDescriptors + 0x150
-.Ljp_080A6174:
-	ldr r1, .Ljp_080A6190 @ =gFieldRenderRectDescriptors + 0x150
-	adds r0, r4, #0
-	movs r2, #0x36
-	movs r3, #0xf
-	bl func_080A5610
-.Ljp_080A6180:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A6190: .4byte gFieldRenderRectDescriptors + 0x150
-
-    .global func_080A5BCC
-    .thumb_func
-func_080A5BCC: @ 0x080A5BCC
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .Ljp_080A61BC
-	cmp r0, #0x2a
-	bgt .Ljp_080A61A8
-	cmp r0, #0x29
-	beq .Ljp_080A61AE
-	b .Ljp_080A61DC
-.Ljp_080A61A8:
-	cmp r0, #0x2b
-	beq .Ljp_080A61D0
-	b .Ljp_080A61DC
-.Ljp_080A61AE:
-	ldr r1, .Ljp_080A61B8 @ =gFieldRenderRectDescriptors + 0x168
-	adds r0, r4, #0
-	movs r2, #0x19
-	b .Ljp_080A61C2
-	.align 2, 0
-.Ljp_080A61B8: .4byte gFieldRenderRectDescriptors + 0x168
-.Ljp_080A61BC:
-	ldr r1, .Ljp_080A61CC @ =gFieldRenderRectDescriptors + 0x168
-	adds r0, r4, #0
-	movs r2, #0x28
-.Ljp_080A61C2:
-	movs r3, #0xf
-	bl func_080A5610
-	b .Ljp_080A61DC
-	.align 2, 0
-.Ljp_080A61CC: .4byte gFieldRenderRectDescriptors + 0x168
-.Ljp_080A61D0:
-	ldr r1, .Ljp_080A61EC @ =gFieldRenderRectDescriptors + 0x168
-	adds r0, r4, #0
-	movs r2, #0x36
-	movs r3, #0xf
-	bl func_080A5610
-.Ljp_080A61DC:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A61EC: .4byte gFieldRenderRectDescriptors + 0x168
-
-    .global func_080A5C28
-    .thumb_func
-func_080A5C28: @ 0x080A5C28
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .Ljp_080A6200
-	cmp r0, #0x2b
-	beq .Ljp_080A6214
-	b .Ljp_080A6220
-.Ljp_080A6200:
-	ldr r1, .Ljp_080A6210 @ =gFieldRenderRectDescriptors + 0x180
-	adds r0, r4, #0
-	movs r2, #0xb
-	movs r3, #3
-	bl func_080A5610
-	b .Ljp_080A6220
-	.align 2, 0
-.Ljp_080A6210: .4byte gFieldRenderRectDescriptors + 0x180
-.Ljp_080A6214:
-	ldr r1, .Ljp_080A6230 @ =gFieldRenderRectDescriptors + 0x180
-	adds r0, r4, #0
-	movs r2, #0x13
-	movs r3, #3
-	bl func_080A5610
-.Ljp_080A6220:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A6230: .4byte gFieldRenderRectDescriptors + 0x180
-
-    .global func_080A5C6C
-    .thumb_func
-func_080A5C6C: @ 0x080A5C6C
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .Ljp_080A6244
-	cmp r0, #0x2b
-	beq .Ljp_080A6258
-	b .Ljp_080A6264
-.Ljp_080A6244:
-	ldr r1, .Ljp_080A6254 @ =gFieldRenderRectDescriptors + 0x198
-	adds r0, r4, #0
-	movs r2, #0xb
-	movs r3, #3
-	bl func_080A5610
-	b .Ljp_080A6264
-	.align 2, 0
-.Ljp_080A6254: .4byte gFieldRenderRectDescriptors + 0x198
-.Ljp_080A6258:
-	ldr r1, .Ljp_080A6274 @ =gFieldRenderRectDescriptors + 0x198
-	adds r0, r4, #0
-	movs r2, #0x13
-	movs r3, #3
-	bl func_080A5610
-.Ljp_080A6264:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A6274: .4byte gFieldRenderRectDescriptors + 0x198
-
-    .global func_080A5CB0
-    .thumb_func
-func_080A5CB0: @ 0x080A5CB0
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .Ljp_080A6288
-	cmp r0, #0x2b
-	beq .Ljp_080A629C
-	b .Ljp_080A62A8
-.Ljp_080A6288:
-	ldr r1, .Ljp_080A6298 @ =gFieldRenderRectDescriptors + 0x1B0
-	adds r0, r4, #0
-	movs r2, #0xf
-	movs r3, #2
-	bl func_080A5610
-	b .Ljp_080A62A8
-	.align 2, 0
-.Ljp_080A6298: .4byte gFieldRenderRectDescriptors + 0x1B0
-.Ljp_080A629C:
-	ldr r1, .Ljp_080A62B8 @ =gFieldRenderRectDescriptors + 0x1B0
-	adds r0, r4, #0
-	movs r2, #0x17
-	movs r3, #2
-	bl func_080A5610
-.Ljp_080A62A8:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A62B8: .4byte gFieldRenderRectDescriptors + 0x1B0
-
-    .global func_080A5CF4
-    .thumb_func
-func_080A5CF4: @ 0x080A5CF4
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .Ljp_080A62CC
-	cmp r0, #0x2b
-	beq .Ljp_080A62E0
-	b .Ljp_080A62EC
-.Ljp_080A62CC:
-	ldr r1, .Ljp_080A62DC @ =gFieldRenderRectDescriptors + 0x1C8
-	adds r0, r4, #0
-	movs r2, #0xf
-	movs r3, #2
-	bl func_080A5610
-	b .Ljp_080A62EC
-	.align 2, 0
-.Ljp_080A62DC: .4byte gFieldRenderRectDescriptors + 0x1C8
-.Ljp_080A62E0:
-	ldr r1, .Ljp_080A62FC @ =gFieldRenderRectDescriptors + 0x1C8
-	adds r0, r4, #0
-	movs r2, #0x17
-	movs r3, #2
-	bl func_080A5610
-.Ljp_080A62EC:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A62FC: .4byte gFieldRenderRectDescriptors + 0x1C8
+    .section .text.game_map_after_patch_dispatchers, "ax", %progbits
+    .align 2, 0
 
     .global func_080A5D38
     .thumb_func
@@ -9285,7 +8865,7 @@ func_080A5D38: @ 0x080A5D38
 	movs r2, #0x10
 .Ljp_080A632E:
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A6348
 	.align 2, 0
 .Ljp_080A6338: .4byte gFieldRenderRectDescriptors + 0x210
@@ -9294,7 +8874,7 @@ func_080A5D38: @ 0x080A5D38
 	adds r0, r4, #0
 	movs r2, #0x18
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6348:
 	adds r1, r4, #0
 	adds r1, #0x29
@@ -9337,7 +8917,7 @@ func_080A5D94: @ 0x080A5D94
 	movs r2, #0x10
 .Ljp_080A638A:
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A63A4
 	.align 2, 0
 .Ljp_080A6394: .4byte gFieldRenderRectDescriptors + 0x1F8
@@ -9346,7 +8926,7 @@ func_080A5D94: @ 0x080A5D94
 	adds r0, r4, #0
 	movs r2, #0x18
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A63A4:
 	adds r1, r4, #0
 	adds r1, #0x29
@@ -9379,7 +8959,7 @@ func_080A63B8: @ 0x080A5DF0
 	adds r0, r4, #0
 	movs r2, #1
 	movs r3, #0xd
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A640C
 	.align 2, 0
 .Ljp_080A63E0: .4byte gFieldRenderRectDescriptors + 0x798
@@ -9388,7 +8968,7 @@ func_080A63B8: @ 0x080A5DF0
 	adds r0, r4, #0
 	movs r2, #1
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A640C
 	.align 2, 0
 .Ljp_080A63F4: .4byte gFieldRenderRectDescriptors + 0x798
@@ -9402,7 +8982,7 @@ func_080A63B8: @ 0x080A5DF0
 	adds r0, r4, #0
 	adds r1, r2, #0
 	movs r2, #1
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A640C:
 	adds r1, r4, #0
 	adds r1, #0x29
@@ -9797,7 +9377,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A6806
 	.align 2, 0
 .Ljp_080A66D8: .4byte 0x0000214C
@@ -9815,7 +9395,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A66FE:
 	ldr r3, .Ljp_080A6824 @ =0x000021A0
 	adds r0, r4, r3
@@ -9828,7 +9408,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x16
 	movs r3, #0x10
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6718:
 	ldr r0, .Ljp_080A682C @ =0x0000219A
 	adds r5, r4, r0
@@ -9841,7 +9421,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6732:
 	ldr r1, .Ljp_080A6834 @ =0x0000219B
 	adds r0, r4, r1
@@ -9854,7 +9434,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A674C:
 	ldrb r0, [r5]
 	lsls r0, r0, #0x1c
@@ -9865,12 +9445,12 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	ldr r1, .Ljp_080A683C @ =gFarmHouseVisualDescriptors + 0xB0
 	mov r0, r8
 	movs r2, #0x11
 	movs r3, #0xf
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A676E:
 	ldr r2, .Ljp_080A6840 @ =0x0000219D
 	adds r0, r4, r2
@@ -9883,7 +9463,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0x17
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6788:
 	ldr r3, .Ljp_080A6848 @ =0x0000219E
 	adds r0, r4, r3
@@ -9896,7 +9476,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A67A2:
 	ldr r1, .Ljp_080A684C @ =0x000021A1
 	adds r0, r4, r1
@@ -9909,12 +9489,12 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	ldr r1, .Ljp_080A683C @ =gFarmHouseVisualDescriptors + 0xB0
 	mov r0, r8
 	movs r2, #0x11
 	movs r3, #0xf
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A67C8:
 	ldr r2, .Ljp_080A6850 @ =0x000021A2
 	adds r0, r4, r2
@@ -9927,7 +9507,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A67E2:
 	adds r0, r7, #0
 	adds r0, #0x4c
@@ -9939,12 +9519,12 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x1b
 	movs r3, #0x1a
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	ldr r1, .Ljp_080A6830 @ =gFarmHouseVisualDescriptors + 0x2C
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6806:
 	mov r3, r8
 	ldr r2, [r3, #4]
@@ -10044,7 +9624,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #0x19
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6964:
 	mov r1, sb
 	ldr r0, [r1]
@@ -10149,7 +9729,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x28
 	movs r3, #0x1d
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6A4A:
 	mov r0, r8
 	movs r1, #4
@@ -10269,7 +9849,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x14
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A6B74
 	.align 2, 0
 .Ljp_080A6B54: .4byte gFieldRenderRectDescriptors + 0x450
@@ -10285,7 +9865,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x14
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6B74:
 	mov r0, r8
 	bl func_080AA328
@@ -10296,7 +9876,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x17
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6B8C:
 	cmp r6, #1
 	beq .Ljp_080A6BB8
@@ -10329,7 +9909,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0xc
 	movs r3, #0x14
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	bl .Ljp_080A746E
 	.align 2, 0
 .Ljp_080A6BD0: .4byte gFieldRenderRectDescriptors + 0x4C8
@@ -10360,7 +9940,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x3c
 	movs r3, #0
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	bl .Ljp_080A746E
 	.align 2, 0
 .Ljp_080A6C14: .4byte gFieldRenderRectDescriptors + 0x3A8
@@ -10484,7 +10064,7 @@ func_080A6098: @ 0x080A6098
 	movs r2, #0x12
 .Ljp_080A6CF6:
 	movs r3, #3
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A6D10
 	.align 2, 0
 .Ljp_080A6D00: .4byte gFieldRenderRectDescriptors + 0x30
@@ -10493,7 +10073,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6D10:
 	mov r3, sb
 	ldr r0, [r3]
@@ -10513,7 +10093,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A6D4C
 	.align 2, 0
 .Ljp_080A6D3C: .4byte gFieldRenderRectDescriptors + 0x90
@@ -10522,7 +10102,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6D4C:
 	mov r2, sb
 	ldr r0, [r2]
@@ -10667,7 +10247,7 @@ func_080A6098: @ 0x080A6098
 	movs r2, #0x12
 .Ljp_080A6E56:
 	movs r3, #3
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A6E70
 	.align 2, 0
 .Ljp_080A6E60: .4byte gFieldRenderRectDescriptors + 0x48
@@ -10676,7 +10256,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6E70:
 	mov r3, sb
 	ldr r0, [r3]
@@ -10696,7 +10276,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A6EAC
 	.align 2, 0
 .Ljp_080A6E9C: .4byte gFieldRenderRectDescriptors + 0xA8
@@ -10705,7 +10285,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6EAC:
 	mov r2, sb
 	ldr r0, [r2]
@@ -10732,7 +10312,7 @@ func_080A6098: @ 0x080A6098
 	movs r2, #0xe
 .Ljp_080A6ED6:
 	movs r3, #0x34
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A746E
 	.align 2, 0
 .Ljp_080A6EE0: .4byte gFieldRenderRectDescriptors + 0x138
@@ -10741,7 +10321,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x19
 	movs r3, #0xf
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	mov r1, sb
 	ldr r0, [r1]
 	movs r2, #0xfa
@@ -10765,7 +10345,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #1
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A6F38
 	.align 2, 0
 .Ljp_080A6F28: .4byte gFieldRenderRectDescriptors + 0x210
@@ -10774,7 +10354,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #1
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6F38:
 	mov r3, sb
 	ldr r0, [r3]
@@ -10789,7 +10369,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #6
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6F58:
 	mov r1, sb
 	ldr r0, [r1]
@@ -10802,7 +10382,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #8
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6F74:
 	mov r2, sb
 	ldr r0, [r2]
@@ -10827,7 +10407,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x28
 	movs r3, #0xf
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	mov r3, sb
 	ldr r0, [r3]
 	movs r4, #0xfa
@@ -10841,7 +10421,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #2
 	movs r3, #1
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6FCC:
 	mov r1, sb
 	ldr r0, [r1]
@@ -10853,7 +10433,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0xb
 	movs r3, #3
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A6FE6:
 	mov r2, sb
 	ldr r0, [r2]
@@ -10865,7 +10445,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0xf
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A7000:
 	mov r3, sb
 	ldr r0, [r3]
@@ -10891,7 +10471,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x10
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A7050
 	.align 2, 0
 .Ljp_080A7040: .4byte gFieldRenderRectDescriptors + 0x210
@@ -10900,7 +10480,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x10
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A7050:
 	mov r1, sb
 	ldr r0, [r1]
@@ -10915,7 +10495,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0xa
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A7070:
 	mov r2, sb
 	ldr r0, [r2]
@@ -10928,7 +10508,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x22
 	movs r3, #6
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A708C:
 	mov r3, sb
 	ldr r0, [r3]
@@ -10941,7 +10521,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A70A8:
 	mov r1, sb
 	ldr r0, [r1]
@@ -10957,7 +10537,7 @@ func_080A6098: @ 0x080A6098
 	movs r2, #0x14
 .Ljp_080A70C0:
 	movs r3, #3
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A746E
 	.align 2, 0
 .Ljp_080A70C8: .4byte gFieldRenderRectDescriptors + 0x1E0
@@ -10970,7 +10550,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x36
 	movs r3, #0xf
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	mov r2, sb
 	ldr r0, [r2]
 	movs r4, #0xfa
@@ -10984,7 +10564,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #1
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A7108:
 	mov r3, sb
 	ldr r0, [r3]
@@ -10996,7 +10576,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #3
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A7122:
 	mov r1, sb
 	ldr r0, [r1]
@@ -11008,7 +10588,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A713C:
 	mov r2, sb
 	ldr r0, [r2]
@@ -11034,7 +10614,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x18
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A718C
 	.align 2, 0
 .Ljp_080A717C: .4byte gFieldRenderRectDescriptors + 0x210
@@ -11043,13 +10623,13 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x18
 	movs r3, #0x11
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A718C:
 	ldr r1, .Ljp_080A7248 @ =gFieldRenderRectDescriptors + 0x240
 	mov r0, r8
 	movs r2, #4
 	movs r3, #1
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	mov r3, sb
 	ldr r0, [r3]
 	movs r4, #0xfa
@@ -11063,7 +10643,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x34
 	movs r3, #5
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A71B8:
 	mov r1, sb
 	ldr r0, [r1]
@@ -11076,7 +10656,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x1f
 	movs r3, #0xa
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A71D4:
 	mov r2, sb
 	ldr r0, [r2]
@@ -11089,7 +10669,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x2a
 	movs r3, #6
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A71F0:
 	mov r3, sb
 	ldr r0, [r3]
@@ -11102,7 +10682,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x1f
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A720C:
 	mov r1, sb
 	ldr r0, [r1]
@@ -11115,7 +10695,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x1c
 	movs r3, #3
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A7228:
 	mov r2, sb
 	ldr r0, [r2]
@@ -11155,7 +10735,7 @@ func_080A6098: @ 0x080A6098
 	beq .Ljp_080A7284
 	mov r0, r8
 	adds r1, r4, #0
-	bl func_080A6024
+	bl RefreshCoopFeedTrough
 .Ljp_080A7284:
 	adds r4, #1
 .Ljp_080A7286:
@@ -11196,7 +10776,7 @@ func_080A6098: @ 0x080A6098
 	beq .Ljp_080A72D6
 	mov r0, r8
 	adds r1, r4, #0
-	bl func_080A6024
+	bl RefreshCoopFeedTrough
 .Ljp_080A72D6:
 	adds r4, #1
 .Ljp_080A72D8:
@@ -11213,7 +10793,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #2
 	movs r3, #5
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A72FA:
 	mov r3, sb
 	ldr r0, [r3]
@@ -11345,7 +10925,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0xc
 	movs r3, #5
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A7406:
 	adds r0, r5, #0
 	bl method_0800CF08__C4Barn
@@ -11356,7 +10936,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #8
 	movs r3, #5
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A746E
 	.align 2, 0
 .Ljp_080A7420: .4byte gFieldRenderRectDescriptors + 0x330
@@ -11372,7 +10952,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x24
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	b .Ljp_080A746E
 	.align 2, 0
 .Ljp_080A7444: .4byte gFieldRenderRectDescriptors + 0x420
@@ -11381,7 +10961,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x20
 	movs r3, #0x20
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	mov r1, sb
 	ldr r0, [r1]
 	bl GetFlag0__C18GameStateSaveImage
@@ -11392,7 +10972,7 @@ func_080A6098: @ 0x080A6098
 	mov r0, r8
 	movs r2, #0x24
 	movs r3, #2
-	bl func_080A5610
+	bl ApplyMapTilePatch
 .Ljp_080A746E:
 	mov r0, r8
 	bl func_080AA6F0
@@ -18216,7 +17796,7 @@ func_080AA288: @ 080AA288
 	ldr r2, [sp, #4]
 	ldr r3, [sp, #8]
 	adds r0, r5, #0
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	adds r1, r5, #0
 	adds r1, #0x29
 	movs r0, #1
@@ -18236,7 +17816,7 @@ func_080AA2D4: @ 080AA2D4
 	ldr r1, .Ljp_map_080AA2F0 @ =gFieldRenderRectDescriptors + 0x480
 	movs r2, #0x21
 	movs r3, #0x14
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	adds r4, #0x29
 	movs r0, #1
 	strb r0, [r4]
@@ -18254,7 +17834,7 @@ func_080AA2F4: @ 080AA2F4
 	ldr r1, .Ljp_map_080AA310 @ =gFieldRenderRectDescriptors + 0x480
 	movs r2, #0x21
 	movs r3, #0x17
-	bl func_080A5610
+	bl ApplyMapTilePatch
 	adds r4, #0x29
 	movs r0, #1
 	strb r0, [r4]
@@ -24752,7 +24332,7 @@ func_080AD398:
 func_080AD3A8:
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A6024
+	bl RefreshCoopFeedTrough
 	pop {r0}
 	bx r0
     .global func_080AD3B4
@@ -24768,7 +24348,7 @@ func_080AD3B4:
 func_080AD3C0:
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A5CF4
+	bl func_080A62BC
 	pop {r0}
 	bx r0
     .global func_080AD3CC
@@ -24776,7 +24356,7 @@ func_080AD3C0:
 func_080AD3CC:
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A5CB0
+	bl func_080A6278
 	pop {r0}
 	bx r0
     .global func_080AD3D8
@@ -24784,7 +24364,7 @@ func_080AD3CC:
 func_080AD3D8:
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A5C6C
+	bl func_080A6234
 	pop {r0}
 	bx r0
     .global func_080AD3E4
@@ -24792,7 +24372,7 @@ func_080AD3D8:
 func_080AD3E4:
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A5C28
+	bl func_080A61F0
 	pop {r0}
 	bx r0
     .global func_080AD3F0
@@ -24800,7 +24380,7 @@ func_080AD3E4:
 func_080AD3F0:
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A5BCC
+	bl func_080A6194
 	pop {r0}
 	bx r0
     .global func_080AD3FC
@@ -24808,7 +24388,7 @@ func_080AD3F0:
 func_080AD3FC:
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A5B70
+	bl func_080A6138
 	pop {r0}
 	bx r0
     .global func_080AD408
@@ -93145,129 +92725,8 @@ func_080A5AB0: @ 0x080A5AB0
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080A5BD8
-func_080A5BD8: @ 0x080A5BD8
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0x1c
-	str r0, [sp]
-	mov r8, r1
-	str r2, [sp, #4]
-	str r3, [sp, #8]
-	ldr r0, [r0, #4]
-	bl GetMapData
-	ldrh r0, [r0, #0x20]
-	str r0, [sp, #0xc]
-	mov r0, r8
-	ldrb r6, [r0]
-	ldrb r1, [r0, #1]
-	mov sb, r1
-	adds r0, #4
-	str r0, [sp, #0x10]
-	movs r3, #0
-.L080A5C04:
-	lsls r2, r3, #2
-	ldr r4, [sp, #0x10]
-	adds r1, r2, r4
-	ldr r0, [r1]
-	adds r3, #1
-	mov sl, r3
-	cmp r0, #0
-	beq .L080A5C52
-	movs r4, #0
-	cmp r4, sb
-	bhs .L080A5C52
-	ldr r0, [sp]
-	adds r0, #0x10
-	adds r3, r0, r2
-	str r1, [sp, #0x18]
-	movs r5, #0
-.L080A5C24:
-	ldr r7, [sp, #8]
-	adds r0, r7, r4
-	ldr r1, [sp, #0xc]
-	muls r0, r1, r0
-	ldr r2, [r3]
-	lsls r0, r0, #1
-	ldr r7, [sp, #4]
-	lsls r1, r7, #1
-	adds r1, r1, r2
-	adds r0, r0, r1
-	ldr r2, [sp, #0x18]
-	ldr r1, [r2]
-	adds r1, r5, r1
-	lsls r2, r6, #1
-	str r3, [sp, #0x14]
-	bl memcpy
-	lsls r0, r6, #1
-	adds r5, r5, r0
-	adds r4, #1
-	ldr r3, [sp, #0x14]
-	cmp r4, sb
-	blo .L080A5C24
-.L080A5C52:
-	mov r3, sl
-	cmp r3, #2
-	bls .L080A5C04
-	mov r3, r8
-	ldr r0, [r3, #0x14]
-	cmp r0, #0
-	beq .L080A5CB0
-	ldr r0, [r3, #0x10]
-	cmp r0, #0
-	beq .L080A5CB0
-	movs r2, #0
-	cmp r2, sb
-	bhs .L080A5CB0
-	ldr r4, [sp, #4]
-	lsls r4, r4, #2
-	mov sl, r4
-.L080A5C72:
-	adds r1, r2, #0
-	muls r1, r6, r1
-	mov r7, r8
-	ldr r0, [r7, #0x14]
-	adds r3, r0, r1
-	ldr r0, [sp]
-	ldr r1, [r0, #0x2c]
-	add r1, sl
-	ldr r4, [sp, #8]
-	adds r0, r4, r2
-	ldr r7, [sp, #0xc]
-	muls r0, r7, r0
-	lsls r0, r0, #2
-	adds r5, r1, r0
-	movs r4, #0
-	adds r2, #1
-	cmp r4, r6
-	bhs .L080A5CAC
-.L080A5C96:
-	ldrb r0, [r3]
-	mov r7, r8
-	ldr r1, [r7, #0x10]
-	lsls r0, r0, #2
-	adds r0, r0, r1
-	ldr r0, [r0]
-	stm r5!, {r0}
-	adds r3, #1
-	adds r4, #1
-	cmp r4, r6
-	blo .L080A5C96
-.L080A5CAC:
-	cmp r2, sb
-	blo .L080A5C72
-.L080A5CB0:
-	add sp, #0x1c
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
+    .section .text.game_map_after_tile_patch, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080A5CC0
 func_080A5CC0: @ 0x080A5CC0
@@ -93721,57 +93180,8 @@ func_080A5F78: @ 0x080A5F78
 	.align 2, 0
 .L080A6018: .4byte 0x000003FF
 
-	thumb_func_start func_080A601C
-func_080A601C: @ 0x080A601C
-	adds r0, #0x58
-	movs r1, #0x14
-	strb r1, [r0]
-	bx lr
-
-	thumb_func_start func_080A6024
-func_080A6024: @ 0x080A6024
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r2, r1, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x24
-	blt .L080A6064
-	cmp r0, #0x25
-	ble .L080A603A
-	cmp r0, #0x40
-	beq .L080A6054
-	b .L080A6064
-.L080A603A:
-	ldr r1, .L080A604C @ =gFieldRenderRectDescriptors + 0x360
-	ldr r0, .L080A6050 @ =gFieldRenderPatchArgumentData
-	adds r0, r2, r0
-	ldrb r2, [r0]
-	adds r0, r4, #0
-	movs r3, #8
-	bl func_080A5BD8
-	b .L080A6064
-	.align 2, 0
-.L080A604C: .4byte gFieldRenderRectDescriptors + 0x360
-.L080A6050: .4byte gFieldRenderPatchArgumentData
-.L080A6054:
-	ldr r1, .L080A6074 @ =gFieldRenderRectDescriptors + 0x360
-	ldr r0, .L080A6078 @ =gFieldRenderPatchArgumentData + 0x08
-	adds r0, r2, r0
-	ldrb r2, [r0]
-	adds r0, r4, #0
-	movs r3, #4
-	bl func_080A5BD8
-.L080A6064:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A6074: .4byte gFieldRenderRectDescriptors + 0x360
-.L080A6078: .4byte gFieldRenderPatchArgumentData + 0x08
+    .section .text.game_map_barn_feed, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080A607C
 func_080A607C: @ 0x080A607C
@@ -93843,7 +93253,7 @@ func_080A607C: @ 0x080A607C
 	ldrb r3, [r3]
 .L080A6100:
 	adds r0, r4, #0
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A6120
 	.align 2, 0
 .L080A6108: .4byte gFieldRenderRectDescriptors + 0x348
@@ -93855,7 +93265,7 @@ func_080A607C: @ 0x080A607C
 	ldrb r2, [r0]
 	adds r0, r4, #0
 	movs r3, #5
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6120:
 	adds r1, r4, #0
 	adds r1, #0x29
@@ -93868,249 +93278,8 @@ func_080A607C: @ 0x080A607C
 .L080A6130: .4byte gFieldRenderRectDescriptors + 0x348
 .L080A6134: .4byte gFieldRenderPatchArgumentData + 0x5C
 
-	thumb_func_start func_080A6138
-func_080A6138: @ 0x080A6138
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .L080A6160
-	cmp r0, #0x2a
-	bgt .L080A614C
-	cmp r0, #0x29
-	beq .L080A6152
-	b .L080A6180
-.L080A614C:
-	cmp r0, #0x2b
-	beq .L080A6174
-	b .L080A6180
-.L080A6152:
-	ldr r1, .L080A615C @ =gFieldRenderRectDescriptors + 0x150
-	adds r0, r4, #0
-	movs r2, #0x19
-	b .L080A6166
-	.align 2, 0
-.L080A615C: .4byte gFieldRenderRectDescriptors + 0x150
-.L080A6160:
-	ldr r1, .L080A6170 @ =gFieldRenderRectDescriptors + 0x150
-	adds r0, r4, #0
-	movs r2, #0x28
-.L080A6166:
-	movs r3, #0xf
-	bl func_080A5BD8
-	b .L080A6180
-	.align 2, 0
-.L080A6170: .4byte gFieldRenderRectDescriptors + 0x150
-.L080A6174:
-	ldr r1, .L080A6190 @ =gFieldRenderRectDescriptors + 0x150
-	adds r0, r4, #0
-	movs r2, #0x36
-	movs r3, #0xf
-	bl func_080A5BD8
-.L080A6180:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A6190: .4byte gFieldRenderRectDescriptors + 0x150
-
-	thumb_func_start func_080A6194
-func_080A6194: @ 0x080A6194
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .L080A61BC
-	cmp r0, #0x2a
-	bgt .L080A61A8
-	cmp r0, #0x29
-	beq .L080A61AE
-	b .L080A61DC
-.L080A61A8:
-	cmp r0, #0x2b
-	beq .L080A61D0
-	b .L080A61DC
-.L080A61AE:
-	ldr r1, .L080A61B8 @ =gFieldRenderRectDescriptors + 0x168
-	adds r0, r4, #0
-	movs r2, #0x19
-	b .L080A61C2
-	.align 2, 0
-.L080A61B8: .4byte gFieldRenderRectDescriptors + 0x168
-.L080A61BC:
-	ldr r1, .L080A61CC @ =gFieldRenderRectDescriptors + 0x168
-	adds r0, r4, #0
-	movs r2, #0x28
-.L080A61C2:
-	movs r3, #0xf
-	bl func_080A5BD8
-	b .L080A61DC
-	.align 2, 0
-.L080A61CC: .4byte gFieldRenderRectDescriptors + 0x168
-.L080A61D0:
-	ldr r1, .L080A61EC @ =gFieldRenderRectDescriptors + 0x168
-	adds r0, r4, #0
-	movs r2, #0x36
-	movs r3, #0xf
-	bl func_080A5BD8
-.L080A61DC:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A61EC: .4byte gFieldRenderRectDescriptors + 0x168
-
-	thumb_func_start func_080A61F0
-func_080A61F0: @ 0x080A61F0
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .L080A6200
-	cmp r0, #0x2b
-	beq .L080A6214
-	b .L080A6220
-.L080A6200:
-	ldr r1, .L080A6210 @ =gFieldRenderRectDescriptors + 0x180
-	adds r0, r4, #0
-	movs r2, #0xb
-	movs r3, #3
-	bl func_080A5BD8
-	b .L080A6220
-	.align 2, 0
-.L080A6210: .4byte gFieldRenderRectDescriptors + 0x180
-.L080A6214:
-	ldr r1, .L080A6230 @ =gFieldRenderRectDescriptors + 0x180
-	adds r0, r4, #0
-	movs r2, #0x13
-	movs r3, #3
-	bl func_080A5BD8
-.L080A6220:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A6230: .4byte gFieldRenderRectDescriptors + 0x180
-
-	thumb_func_start func_080A6234
-func_080A6234: @ 0x080A6234
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .L080A6244
-	cmp r0, #0x2b
-	beq .L080A6258
-	b .L080A6264
-.L080A6244:
-	ldr r1, .L080A6254 @ =gFieldRenderRectDescriptors + 0x198
-	adds r0, r4, #0
-	movs r2, #0xb
-	movs r3, #3
-	bl func_080A5BD8
-	b .L080A6264
-	.align 2, 0
-.L080A6254: .4byte gFieldRenderRectDescriptors + 0x198
-.L080A6258:
-	ldr r1, .L080A6274 @ =gFieldRenderRectDescriptors + 0x198
-	adds r0, r4, #0
-	movs r2, #0x13
-	movs r3, #3
-	bl func_080A5BD8
-.L080A6264:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A6274: .4byte gFieldRenderRectDescriptors + 0x198
-
-	thumb_func_start func_080A6278
-func_080A6278: @ 0x080A6278
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .L080A6288
-	cmp r0, #0x2b
-	beq .L080A629C
-	b .L080A62A8
-.L080A6288:
-	ldr r1, .L080A6298 @ =gFieldRenderRectDescriptors + 0x1B0
-	adds r0, r4, #0
-	movs r2, #0xf
-	movs r3, #2
-	bl func_080A5BD8
-	b .L080A62A8
-	.align 2, 0
-.L080A6298: .4byte gFieldRenderRectDescriptors + 0x1B0
-.L080A629C:
-	ldr r1, .L080A62B8 @ =gFieldRenderRectDescriptors + 0x1B0
-	adds r0, r4, #0
-	movs r2, #0x17
-	movs r3, #2
-	bl func_080A5BD8
-.L080A62A8:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A62B8: .4byte gFieldRenderRectDescriptors + 0x1B0
-
-	thumb_func_start func_080A62BC
-func_080A62BC: @ 0x080A62BC
-	push {r4, lr}
-	adds r4, r0, #0
-	ldr r0, [r4, #4]
-	cmp r0, #0x2a
-	beq .L080A62CC
-	cmp r0, #0x2b
-	beq .L080A62E0
-	b .L080A62EC
-.L080A62CC:
-	ldr r1, .L080A62DC @ =gFieldRenderRectDescriptors + 0x1C8
-	adds r0, r4, #0
-	movs r2, #0xf
-	movs r3, #2
-	bl func_080A5BD8
-	b .L080A62EC
-	.align 2, 0
-.L080A62DC: .4byte gFieldRenderRectDescriptors + 0x1C8
-.L080A62E0:
-	ldr r1, .L080A62FC @ =gFieldRenderRectDescriptors + 0x1C8
-	adds r0, r4, #0
-	movs r2, #0x17
-	movs r3, #2
-	bl func_080A5BD8
-.L080A62EC:
-	adds r1, r4, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A62FC: .4byte gFieldRenderRectDescriptors + 0x1C8
+    .section .text.game_map_after_patch_dispatchers, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080A6300
 func_080A6300: @ 0x080A6300
@@ -94141,7 +93310,7 @@ func_080A6300: @ 0x080A6300
 	movs r2, #0x10
 .L080A632E:
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A6348
 	.align 2, 0
 .L080A6338: .4byte gFieldRenderRectDescriptors + 0x210
@@ -94150,7 +93319,7 @@ func_080A6300: @ 0x080A6300
 	adds r0, r4, #0
 	movs r2, #0x18
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6348:
 	adds r1, r4, #0
 	adds r1, #0x29
@@ -94192,7 +93361,7 @@ func_080A635C: @ 0x080A635C
 	movs r2, #0x10
 .L080A638A:
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A63A4
 	.align 2, 0
 .L080A6394: .4byte gFieldRenderRectDescriptors + 0x1F8
@@ -94201,7 +93370,7 @@ func_080A635C: @ 0x080A635C
 	adds r0, r4, #0
 	movs r2, #0x18
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A63A4:
 	adds r1, r4, #0
 	adds r1, #0x29
@@ -94233,7 +93402,7 @@ func_080A63B8: @ 0x080A63B8
 	adds r0, r4, #0
 	movs r2, #1
 	movs r3, #0xd
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A640C
 	.align 2, 0
 .L080A63E0: .4byte gFieldRenderRectDescriptors + 0x798
@@ -94242,7 +93411,7 @@ func_080A63B8: @ 0x080A63B8
 	adds r0, r4, #0
 	movs r2, #1
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A640C
 	.align 2, 0
 .L080A63F4: .4byte gFieldRenderRectDescriptors + 0x798
@@ -94256,7 +93425,7 @@ func_080A63B8: @ 0x080A63B8
 	adds r0, r4, #0
 	adds r1, r2, #0
 	movs r2, #1
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A640C:
 	adds r1, r4, #0
 	adds r1, #0x29
@@ -94645,7 +93814,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A6806
 	.align 2, 0
 .L080A66D8: .4byte 0x0000214C
@@ -94663,7 +93832,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A66FE:
 	ldr r3, .L080A6824 @ =0x000021A0
 	adds r0, r4, r3
@@ -94676,7 +93845,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x16
 	movs r3, #0x10
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6718:
 	ldr r0, .L080A682C @ =0x0000219A
 	adds r5, r4, r0
@@ -94689,7 +93858,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6732:
 	ldr r1, .L080A6834 @ =0x0000219B
 	adds r0, r4, r1
@@ -94702,7 +93871,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A674C:
 	ldrb r0, [r5]
 	lsls r0, r0, #0x1c
@@ -94713,12 +93882,12 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	ldr r1, .L080A683C @ =gFarmHouseVisualDescriptors + 0xB0
 	mov r0, r8
 	movs r2, #0x11
 	movs r3, #0xf
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A676E:
 	ldr r2, .L080A6840 @ =0x0000219D
 	adds r0, r4, r2
@@ -94731,7 +93900,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0x17
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6788:
 	ldr r3, .L080A6848 @ =0x0000219E
 	adds r0, r4, r3
@@ -94744,7 +93913,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A67A2:
 	ldr r1, .L080A684C @ =0x000021A1
 	adds r0, r4, r1
@@ -94757,12 +93926,12 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	ldr r1, .L080A683C @ =gFarmHouseVisualDescriptors + 0xB0
 	mov r0, r8
 	movs r2, #0x11
 	movs r3, #0xf
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A67C8:
 	ldr r2, .L080A6850 @ =0x000021A2
 	adds r0, r4, r2
@@ -94775,7 +93944,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A67E2:
 	adds r0, r7, #0
 	adds r0, #0x4c
@@ -94787,12 +93956,12 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x1b
 	movs r3, #0x1a
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	ldr r1, .L080A6830 @ =gFarmHouseVisualDescriptors + 0x2C
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6806:
 	mov r3, r8
 	ldr r2, [r3, #4]
@@ -94892,7 +94061,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #0x19
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6964:
 	mov r1, sb
 	ldr r0, [r1]
@@ -94997,7 +94166,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x28
 	movs r3, #0x1d
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6A4A:
 	mov r0, r8
 	movs r1, #4
@@ -95117,7 +94286,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x14
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A6B74
 	.align 2, 0
 .L080A6B54: .4byte gFieldRenderRectDescriptors + 0x450
@@ -95133,7 +94302,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x14
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6B74:
 	mov r0, r8
 	bl func_080AA8F0
@@ -95144,7 +94313,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x17
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6B8C:
 	cmp r6, #1
 	beq .L080A6BB8
@@ -95177,7 +94346,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0xc
 	movs r3, #0x14
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	bl .L080A746E
 	.align 2, 0
 .L080A6BD0: .4byte gFieldRenderRectDescriptors + 0x4C8
@@ -95208,7 +94377,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x3c
 	movs r3, #0
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	bl .L080A746E
 	.align 2, 0
 .L080A6C14: .4byte gFieldRenderRectDescriptors + 0x3A8
@@ -95332,7 +94501,7 @@ func_080A6660: @ 0x080A6660
 	movs r2, #0x12
 .L080A6CF6:
 	movs r3, #3
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A6D10
 	.align 2, 0
 .L080A6D00: .4byte gFieldRenderRectDescriptors + 0x30
@@ -95341,7 +94510,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6D10:
 	mov r3, sb
 	ldr r0, [r3]
@@ -95361,7 +94530,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A6D4C
 	.align 2, 0
 .L080A6D3C: .4byte gFieldRenderRectDescriptors + 0x90
@@ -95370,7 +94539,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6D4C:
 	mov r2, sb
 	ldr r0, [r2]
@@ -95515,7 +94684,7 @@ func_080A6660: @ 0x080A6660
 	movs r2, #0x12
 .L080A6E56:
 	movs r3, #3
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A6E70
 	.align 2, 0
 .L080A6E60: .4byte gFieldRenderRectDescriptors + 0x48
@@ -95524,7 +94693,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6E70:
 	mov r3, sb
 	ldr r0, [r3]
@@ -95544,7 +94713,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A6EAC
 	.align 2, 0
 .L080A6E9C: .4byte gFieldRenderRectDescriptors + 0xA8
@@ -95553,7 +94722,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6EAC:
 	mov r2, sb
 	ldr r0, [r2]
@@ -95580,7 +94749,7 @@ func_080A6660: @ 0x080A6660
 	movs r2, #0xe
 .L080A6ED6:
 	movs r3, #0x34
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A746E
 	.align 2, 0
 .L080A6EE0: .4byte gFieldRenderRectDescriptors + 0x138
@@ -95589,7 +94758,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x19
 	movs r3, #0xf
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	mov r1, sb
 	ldr r0, [r1]
 	movs r2, #0xfa
@@ -95613,7 +94782,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #1
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A6F38
 	.align 2, 0
 .L080A6F28: .4byte gFieldRenderRectDescriptors + 0x210
@@ -95622,7 +94791,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #1
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6F38:
 	mov r3, sb
 	ldr r0, [r3]
@@ -95637,7 +94806,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #6
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6F58:
 	mov r1, sb
 	ldr r0, [r1]
@@ -95650,7 +94819,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #8
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6F74:
 	mov r2, sb
 	ldr r0, [r2]
@@ -95675,7 +94844,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x28
 	movs r3, #0xf
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	mov r3, sb
 	ldr r0, [r3]
 	movs r4, #0xfa
@@ -95689,7 +94858,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #2
 	movs r3, #1
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6FCC:
 	mov r1, sb
 	ldr r0, [r1]
@@ -95701,7 +94870,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0xb
 	movs r3, #3
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A6FE6:
 	mov r2, sb
 	ldr r0, [r2]
@@ -95713,7 +94882,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0xf
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A7000:
 	mov r3, sb
 	ldr r0, [r3]
@@ -95739,7 +94908,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x10
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A7050
 	.align 2, 0
 .L080A7040: .4byte gFieldRenderRectDescriptors + 0x210
@@ -95748,7 +94917,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x10
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A7050:
 	mov r1, sb
 	ldr r0, [r1]
@@ -95763,7 +94932,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0xa
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A7070:
 	mov r2, sb
 	ldr r0, [r2]
@@ -95776,7 +94945,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x22
 	movs r3, #6
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A708C:
 	mov r3, sb
 	ldr r0, [r3]
@@ -95789,7 +94958,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A70A8:
 	mov r1, sb
 	ldr r0, [r1]
@@ -95805,7 +94974,7 @@ func_080A6660: @ 0x080A6660
 	movs r2, #0x14
 .L080A70C0:
 	movs r3, #3
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A746E
 	.align 2, 0
 .L080A70C8: .4byte gFieldRenderRectDescriptors + 0x1E0
@@ -95818,7 +94987,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x36
 	movs r3, #0xf
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	mov r2, sb
 	ldr r0, [r2]
 	movs r4, #0xfa
@@ -95832,7 +95001,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #1
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A7108:
 	mov r3, sb
 	ldr r0, [r3]
@@ -95844,7 +95013,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #3
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A7122:
 	mov r1, sb
 	ldr r0, [r1]
@@ -95856,7 +95025,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A713C:
 	mov r2, sb
 	ldr r0, [r2]
@@ -95882,7 +95051,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x18
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A718C
 	.align 2, 0
 .L080A717C: .4byte gFieldRenderRectDescriptors + 0x210
@@ -95891,13 +95060,13 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x18
 	movs r3, #0x11
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A718C:
 	ldr r1, .L080A7248 @ =gFieldRenderRectDescriptors + 0x240
 	mov r0, r8
 	movs r2, #4
 	movs r3, #1
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	mov r3, sb
 	ldr r0, [r3]
 	movs r4, #0xfa
@@ -95911,7 +95080,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x34
 	movs r3, #5
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A71B8:
 	mov r1, sb
 	ldr r0, [r1]
@@ -95924,7 +95093,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x1f
 	movs r3, #0xa
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A71D4:
 	mov r2, sb
 	ldr r0, [r2]
@@ -95937,7 +95106,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x2a
 	movs r3, #6
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A71F0:
 	mov r3, sb
 	ldr r0, [r3]
@@ -95950,7 +95119,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x1f
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A720C:
 	mov r1, sb
 	ldr r0, [r1]
@@ -95963,7 +95132,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x1c
 	movs r3, #3
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A7228:
 	mov r2, sb
 	ldr r0, [r2]
@@ -96003,7 +95172,7 @@ func_080A6660: @ 0x080A6660
 	beq .L080A7284
 	mov r0, r8
 	adds r1, r4, #0
-	bl func_080A6024
+	bl RefreshCoopFeedTrough
 .L080A7284:
 	adds r4, #1
 .L080A7286:
@@ -96044,7 +95213,7 @@ func_080A6660: @ 0x080A6660
 	beq .L080A72D6
 	mov r0, r8
 	adds r1, r4, #0
-	bl func_080A6024
+	bl RefreshCoopFeedTrough
 .L080A72D6:
 	adds r4, #1
 .L080A72D8:
@@ -96061,7 +95230,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #2
 	movs r3, #5
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A72FA:
 	mov r3, sb
 	ldr r0, [r3]
@@ -96193,7 +95362,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0xc
 	movs r3, #5
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A7406:
 	adds r0, r5, #0
 	bl method_0800CF08__C4Barn
@@ -96204,7 +95373,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #8
 	movs r3, #5
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A746E
 	.align 2, 0
 .L080A7420: .4byte gFieldRenderRectDescriptors + 0x330
@@ -96220,7 +95389,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x24
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	b .L080A746E
 	.align 2, 0
 .L080A7444: .4byte gFieldRenderRectDescriptors + 0x420
@@ -96229,7 +95398,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x20
 	movs r3, #0x20
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	mov r1, sb
 	ldr r0, [r1]
 	bl GetFlag0__C18GameStateSaveImage
@@ -96240,7 +95409,7 @@ func_080A6660: @ 0x080A6660
 	mov r0, r8
 	movs r2, #0x24
 	movs r3, #2
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 .L080A746E:
 	mov r0, r8
 	bl func_080AACB8
@@ -103058,7 +102227,7 @@ func_080AA850: @ 0x080AA850
 	ldr r2, [sp, #4]
 	ldr r3, [sp, #8]
 	adds r0, r5, #0
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	adds r1, r5, #0
 	adds r1, #0x29
 	movs r0, #1
@@ -103077,7 +102246,7 @@ func_080AA89C: @ 0x080AA89C
 	ldr r1, .L080AA8B8 @ =gFieldRenderRectDescriptors + 0x480
 	movs r2, #0x21
 	movs r3, #0x14
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	adds r4, #0x29
 	movs r0, #1
 	strb r0, [r4]
@@ -103094,7 +102263,7 @@ func_080AA8BC: @ 0x080AA8BC
 	ldr r1, .L080AA8D8 @ =gFieldRenderRectDescriptors + 0x480
 	movs r2, #0x21
 	movs r3, #0x17
-	bl func_080A5BD8
+	bl ApplyMapTilePatch
 	adds r4, #0x29
 	movs r0, #1
 	strb r0, [r4]
@@ -109572,7 +108741,7 @@ func_080AD960: @ 0x080AD960
 func_080AD970: @ 0x080AD970
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A6024
+	bl RefreshCoopFeedTrough
 	pop {r0}
 	bx r0
 

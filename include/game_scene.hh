@@ -39,6 +39,8 @@ struct GameStateSaveImage;
 struct MusicPlayer;
 struct GameSceneIndexedSprite;
 struct HardwareBlendController;
+struct FieldRenderRectDescriptor;
+struct FieldRenderTileAttributes;
 
 // The map controller stores Q16.16 camera coordinates. Native integer
 // readers sign-extend their high halfwords; movement writes the whole word.
@@ -57,9 +59,14 @@ struct GameSceneWorldMapPrefix {
     u32 map_data_id;
     GameSceneCameraCoordinate x;
     GameSceneCameraCoordinate y;
-    u8 unk_10[0x19];
+    u16 * tile_layers[3];
+    u8 unk_1C[0xD];
     bool camera_changed;
-    u8 unk_2A[0x5A];
+    u8 unk_2A[2];
+    FieldRenderTileAttributes * tile_attributes;
+    u8 unk_30[0x28];
+    u8 unk_58;
+    u8 unk_59[0x2B];
     i32 step_x_q16;
     i32 step_y_q16;
     u32 movement_frames;
@@ -304,6 +311,12 @@ typedef char GameSceneCameraPointSizeCheck[sizeof(Vec2) == 4 ? 1 : -1];
 typedef char GameSceneCameraMapDataIdCheck[offsetof(GameSceneWorldMapPrefix, map_data_id) == 4 ? 1 : -1];
 typedef char GameSceneCameraXCheck[offsetof(GameSceneWorldMapPrefix, x) == 8 ? 1 : -1];
 typedef char GameSceneCameraYCheck[offsetof(GameSceneWorldMapPrefix, y) == 0xC ? 1 : -1];
+typedef char GameSceneMapTileLayersCheck[offsetof(GameSceneWorldMapPrefix, tile_layers) == 0x10 ? 1 : -1];
+
+typedef char GameSceneMapTileAttributesCheck[offsetof(GameSceneWorldMapPrefix, tile_attributes) == 0x2C ? 1 : -1];
+
+typedef char GameSceneMapUnk58Check[offsetof(GameSceneWorldMapPrefix, unk_58) == 0x58 ? 1 : -1];
+
 typedef char GameSceneCameraChangedCheck[offsetof(GameSceneWorldMapPrefix, camera_changed) == 0x29 ? 1 : -1];
 typedef char GameSceneCameraStepXCheck[offsetof(GameSceneWorldMapPrefix, step_x_q16) == 0x84 ? 1 : -1];
 typedef char GameSceneCameraStepYCheck[offsetof(GameSceneWorldMapPrefix, step_y_q16) == 0x88 ? 1 : -1];
@@ -1178,6 +1191,27 @@ void func_0801DB58(GameSceneWorldPrefix & world);
 void func_0801DC24(GameSceneWorldPrefix & world, u32 index);
 void func_0801DCA8(GameSceneWorldPrefix & world);
 void CollectDailyShippingRevenue(GameSceneWorldPrefix & world);
+void func_0801DD18(GameSceneWorldPrefix & world);
+void func_0801DD24(GameSceneWorldPrefix & world);
+void func_0801DD30(GameSceneWorldPrefix & world);
+void func_0801DD3C(GameSceneWorldPrefix & world);
+void func_0801DD48(GameSceneWorldPrefix & world);
+void func_0801DD54(GameSceneWorldPrefix & world);
+void func_0801DD60(GameSceneWorldPrefix & world, u32 index);
+void func_0801DD6C(GameSceneWorldPrefix & world, u32 index);
+void func_0801DD78(GameSceneWorldPrefix & world);
+void ApplyMapTilePatch(GameSceneWorldMapPrefix * map,
+    FieldRenderRectDescriptor const & patch, u32 x, u32 y);
+void func_080A601C(GameSceneWorldMapPrefix * map);
+void RefreshCoopFeedTrough(GameSceneWorldMapPrefix * map, u32 index);
+// This barn dispatcher retains its native implementation and unchecked index.
+void func_080A607C(GameSceneWorldMapPrefix * map, u32 index);
+void func_080A6138(GameSceneWorldMapPrefix * map);
+void func_080A6194(GameSceneWorldMapPrefix * map);
+void func_080A61F0(GameSceneWorldMapPrefix * map);
+void func_080A6234(GameSceneWorldMapPrefix * map);
+void func_080A6278(GameSceneWorldMapPrefix * map);
+void func_080A62BC(GameSceneWorldMapPrefix * map);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
 void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,

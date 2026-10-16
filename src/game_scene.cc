@@ -4,6 +4,8 @@
 #include "hardware_blend.hh"
 #include "game_state.hh"
 #include "field_item_data.hh"
+#include "field_render_rect_descriptors.hh"
+#include "field_render_resource_data.hh"
 #include "entity_actor.hh"
 #include "npc_entity.hh"
 #include "entity_ui.hh"
@@ -1335,6 +1337,51 @@ EC void CollectDailyShippingRevenue(GameSceneWorldPrefix & world)
         EventScript_FarmEvent_Zack_DailyShippingPickup, value), 1);
 }
 
+EC void func_0801DD18(GameSceneWorldPrefix & world)
+{
+    func_080A6138(world.data.map.value);
+}
+
+EC void func_0801DD24(GameSceneWorldPrefix & world)
+{
+    func_080A6194(world.data.map.value);
+}
+
+EC void func_0801DD30(GameSceneWorldPrefix & world)
+{
+    func_080A61F0(world.data.map.value);
+}
+
+EC void func_0801DD3C(GameSceneWorldPrefix & world)
+{
+    func_080A6234(world.data.map.value);
+}
+
+EC void func_0801DD48(GameSceneWorldPrefix & world)
+{
+    func_080A6278(world.data.map.value);
+}
+
+EC void func_0801DD54(GameSceneWorldPrefix & world)
+{
+    func_080A62BC(world.data.map.value);
+}
+
+EC void func_0801DD60(GameSceneWorldPrefix & world, u32 index)
+{
+    func_080A607C(world.data.map.value, index);
+}
+
+EC void func_0801DD6C(GameSceneWorldPrefix & world, u32 index)
+{
+    RefreshCoopFeedTrough(world.data.map.value, index);
+}
+
+EC void func_0801DD78(GameSceneWorldPrefix & world)
+{
+    func_080A601C(world.data.map.value);
+}
+
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
 {
     // Match native cleanup: release the first index, then destroy all three
@@ -1588,6 +1635,142 @@ EC void func_080A59BC(GameSceneWorldMapPrefix * map, i32 x, i32 y, u32 speed)
 EC bool func_080A5A9C(GameSceneWorldMapPrefix const * map)
 {
     return map->movement_frames == 0;
+}
+
+EC void ApplyMapTilePatch(GameSceneWorldMapPrefix * map,
+    FieldRenderRectDescriptor const & patch, u32 x, u32 y)
+{
+    u32 map_width = GetMapData(map->map_data_id)->width;
+    u32 width = patch.width;
+    u32 height = patch.height;
+    void const * const * buffers = patch.source_buffers;
+    for (u32 layer = 0; layer < 3; ++layer) {
+        if (buffers[layer] != nullptr) {
+            for (u32 row = 0; row < height; ++row) {
+                memcpy(map->tile_layers[layer] + x + (y + row) * map_width,
+                    static_cast<u16 const *>(buffers[layer]) + row * width,
+                    width * sizeof(u16));
+            }
+        }
+    }
+    if (patch.lookup_indices != nullptr && patch.lookup_values != nullptr) {
+        for (u32 row = 0; row < height; ++row) {
+            u8 const * source = static_cast<u8 const *>(patch.lookup_indices) + row * width;
+            FieldRenderTileAttributes * destination = map->tile_attributes + x + (y + row) * map_width;
+            for (u32 column = 0; column < width; ++column) {
+                *destination++ = static_cast<FieldRenderTileAttributes const *>(patch.lookup_values)[*source++];
+            }
+        }
+    }
+}
+
+EC void func_080A601C(GameSceneWorldMapPrefix * map)
+{
+    map->unk_58 = 0x14;
+}
+
+EC void RefreshCoopFeedTrough(GameSceneWorldMapPrefix * map, u32 index)
+{
+    switch (static_cast<i32>(map->map_data_id)) {
+    case 0x24:
+    case 0x25:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[36],
+            gFieldRenderPatchArgumentData.values_00[index], 8);
+        break;
+    case 0x40:
+    {
+        FieldRenderRectDescriptor const & patch = gFieldRenderRectDescriptors[36];
+        u8 const * coordinates = gFieldRenderPatchArgumentData.values_08;
+        ApplyMapTilePatch(map, patch,
+            coordinates[index], 4);
+        break;
+    }
+    }
+    map->camera_changed = true;
+}
+
+EC void func_080A6138(GameSceneWorldMapPrefix * map)
+{
+    switch (static_cast<i32>(map->map_data_id)) {
+    case 0x29:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[14], 0x19, 0xF);
+        break;
+    case 0x2A:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[14], 0x28, 0xF);
+        break;
+    case 0x2B:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[14], 0x36, 0xF);
+        break;
+    }
+    map->camera_changed = true;
+}
+
+EC void func_080A6194(GameSceneWorldMapPrefix * map)
+{
+    switch (static_cast<i32>(map->map_data_id)) {
+    case 0x29:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[15], 0x19, 0xF);
+        break;
+    case 0x2A:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[15], 0x28, 0xF);
+        break;
+    case 0x2B:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[15], 0x36, 0xF);
+        break;
+    }
+    map->camera_changed = true;
+}
+
+EC void func_080A61F0(GameSceneWorldMapPrefix * map)
+{
+    switch (static_cast<i32>(map->map_data_id)) {
+    case 0x2A:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[16], 0xB, 3);
+        break;
+    case 0x2B:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[16], 0x13, 3);
+        break;
+    }
+    map->camera_changed = true;
+}
+
+EC void func_080A6234(GameSceneWorldMapPrefix * map)
+{
+    switch (static_cast<i32>(map->map_data_id)) {
+    case 0x2A:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[17], 0xB, 3);
+        break;
+    case 0x2B:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[17], 0x13, 3);
+        break;
+    }
+    map->camera_changed = true;
+}
+
+EC void func_080A6278(GameSceneWorldMapPrefix * map)
+{
+    switch (static_cast<i32>(map->map_data_id)) {
+    case 0x2A:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[18], 0xF, 2);
+        break;
+    case 0x2B:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[18], 0x17, 2);
+        break;
+    }
+    map->camera_changed = true;
+}
+
+EC void func_080A62BC(GameSceneWorldMapPrefix * map)
+{
+    switch (static_cast<i32>(map->map_data_id)) {
+    case 0x2A:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[19], 0xF, 2);
+        break;
+    case 0x2B:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[19], 0x17, 2);
+        break;
+    }
+    map->camera_changed = true;
 }
 
 EC void func_080D7F08(GameSceneState * state)
