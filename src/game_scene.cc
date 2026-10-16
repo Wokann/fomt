@@ -1,4 +1,4 @@
-#include "game_scene.hh"
+#include "prelude.h"
 #include "new_game.hh"
 #include <new>
 #include "hardware_blend.hh"
@@ -13,6 +13,9 @@
 #include "font.hh"
 #include "gbasvc.h"
 #include <iterator>
+
+#pragma implementation "game_scene.hh"
+#include "game_scene.hh"
 
 static inline void StartSceneSong(MusicPlayer ** player, i32 mode, u16 song_id)
 {
@@ -1295,11 +1298,44 @@ EC void func_0801DB58(GameSceneWorldPrefix & world)
     scene->PlayBGM(AUDIO_START_WEAK, sequence, settings);
 }
 
+EC void func_0801DC24(GameSceneWorldPrefix & world, u32 index)
+{
+    GameSceneIndexedSprite * sprite = world.unk_1058.Get();
+    if (sprite != nullptr) {
+        ResolveIndexedResourceHandle(&sprite->handle, index);
+        sprite->unk_3C = 1;
+        sprite->unk_3E = 0;
+        sprite->unk_3F = 1;
+    } else {
+        world.unk_1058 = new GameSceneIndexedSprite(
+            reinterpret_cast<IndexedResourceProvider *>(world.vfunc_5C()),
+            index, &world, 3, 0x1B, true);
+    }
+}
+
+EC void func_0801DCA8(GameSceneWorldPrefix & world)
+{
+    world.unk_1058 = nullptr;
+}
+
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
 {
     // Match native cleanup: release the first index, then destroy all three
     // retained tile entries in reverse member-array order.
     world->vfunc_4C(indices[0]);
+}
+
+GameSceneSpriteBase::~GameSceneSpriteBase()
+{
+    for (u32 index = 0; index < palettes.count; ++index)
+        world->vfunc_4C(palettes[index]);
+}
+
+GameSceneIndexedSprite::GameSceneIndexedSprite(IndexedResourceProvider * resource,
+    u32 index, GameObject * world, u32 size_shift, i32 palette_kind, bool unk_3D)
+    : GameSceneSpriteBase(world, size_shift, palette_kind),
+      handle(resource, index, 0x100), unk_3C(1), unk_3D(unk_3D), unk_3E(0)
+{
 }
 
 EC IndexedResourceArchive * func_0801FBDC(GameSceneWorldPrefix & world)

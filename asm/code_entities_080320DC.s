@@ -133,7 +133,7 @@ func_080324BC:
     add	r5, sp, #8
     mov	r6, r8
     strb	r6, [r5, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     ldr	r0, [r4, #0]
     ldr	r1, [r0, #0]
     ldr	r1, [r1, #108]	@ 0x6c
@@ -149,7 +149,7 @@ func_080324BC:
     movs	r2, #0
     strb	r2, [r5, #0]
     movs	r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r7, #0
     adds	r0, #136	@ 0x88
     movs	r1, #0
@@ -233,7 +233,7 @@ func_08032560:
     movs	r2, #0
     strb	r2, [r4, #0]
     movs	r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r7, #0
     adds	r0, #136	@ 0x88
     movs	r1, #0
@@ -4948,7 +4948,7 @@ func_08034A14:
     str	r4, [sp, #4]
     add	r4, sp, #8
     strb	r6, [r4, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov	r0, r8
     adds	r0, #208	@ 0xd0
     strh	r6, [r0, #0]
@@ -5284,7 +5284,7 @@ func_080324BC:
     add	r5, sp, #8
     mov	r6, r8
     strb	r6, [r5, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     ldr	r0, [r4, #0]
     ldr	r1, [r0, #0]
     ldr	r1, [r1, #108]	@ 0x6c
@@ -5300,7 +5300,7 @@ func_080324BC:
     movs	r2, #0
     strb	r2, [r5, #0]
     movs	r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r7, #0
     adds	r0, #136	@ 0x88
     movs	r1, #0
@@ -5384,7 +5384,7 @@ func_08032560:
     movs	r2, #0
     strb	r2, [r4, #0]
     movs	r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r7, #0
     adds	r0, #136	@ 0x88
     movs	r1, #0
@@ -9210,7 +9210,7 @@ func_08034A14:
     str	r4, [sp, #4]
     add	r4, sp, #8
     strb	r6, [r4, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov	r0, r8
     adds	r0, #208	@ 0xd0
     strh	r6, [r0, #0]
@@ -9547,7 +9547,7 @@ func_080324BC:
     add	r5, sp, #8
     mov	r6, r8
     strb	r6, [r5, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     ldr	r0, [r4, #0]
     ldr	r1, [r0, #0]
     ldr	r1, [r1, #108]	@ 0x6c
@@ -9563,7 +9563,7 @@ func_080324BC:
     movs	r2, #0
     strb	r2, [r5, #0]
     movs	r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r7, #0
     adds	r0, #136	@ 0x88
     movs	r1, #0
@@ -9647,7 +9647,7 @@ func_08032560:
     movs	r2, #0
     strb	r2, [r4, #0]
     movs	r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r7, #0
     adds	r0, #136	@ 0x88
     movs	r1, #0
@@ -13473,7 +13473,7 @@ func_08034A14:
     str	r4, [sp, #4]
     add	r4, sp, #8
     strb	r6, [r4, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov	r0, r8
     adds	r0, #208	@ 0xd0
     strh	r6, [r0, #0]
@@ -13809,7 +13809,7 @@ func_080324BC:
     add	r5, sp, #8
     mov	r6, r8
     strb	r6, [r5, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     ldr	r0, [r4, #0]
     ldr	r1, [r0, #0]
     ldr	r1, [r1, #108]	@ 0x6c
@@ -13825,7 +13825,7 @@ func_080324BC:
     movs	r2, #0
     strb	r2, [r5, #0]
     movs	r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r7, #0
     adds	r0, #136	@ 0x88
     movs	r1, #0
@@ -13909,7 +13909,7 @@ func_08032560:
     movs	r2, #0
     strb	r2, [r4, #0]
     movs	r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r7, #0
     adds	r0, #136	@ 0x88
     movs	r1, #0
@@ -17842,7 +17842,7 @@ func_08034A14:
     str	r4, [sp, #4]
     add	r4, sp, #8
     strb	r6, [r4, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov	r0, r8
     adds	r0, #208	@ 0xd0
     strh	r6, [r0, #0]

@@ -333,7 +333,6 @@ extern void func_080A37A8(void);
 extern void func_080E3980(void);
 extern void func_080E39A8(void);
 extern void func_080A3CF4(void);
-extern void func_080A47B4(void);
 extern void func_080A4B6C(void);
 extern void func_080A4BEC(void);
 extern void func_080A4F50(void);
@@ -635,7 +634,6 @@ extern void func_080E41E8(void);
 extern void func_080A37A8(void);
 extern void func_080E4210(void);
 extern void func_080A3CF4(void);
-extern void func_080A47B4(void);
 extern void func_080A4B6C(void);
 extern void func_080A4BEC(void);
 extern void func_080A4F50(void);
@@ -2687,24 +2685,6 @@ extern RawVTableFunction const vtable_unk_080E676C[]
         __pure_virtual,
         __pure_virtual,
         __pure_virtual,
-    };
-
-#if defined(REGION_JP)
-extern void func_080DBFE8(void);
-#else
-extern void func_080DC834(void);
-#endif
-
-// Preserve this three-slot table and its regional callback in ROM order.
-extern RawVTableFunction const vtable_unk_080E681C[]
-    SECTION(".rodata.vtable_681c") = {
-        nullptr,
-        nullptr,
-#if defined(REGION_JP)
-        func_080DBFE8,
-#else
-        func_080DC834,
-#endif
     };
 
 #if defined(REGION_JP)
@@ -6984,18 +6964,14 @@ extern RawVTableFunction const vtable_unk_080E82B8[]
 #endif
     };
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E82C8[]
     SECTION(".rodata.vtable_82c8") = {
-#if defined(REGION_JP)
-        nullptr,
-        nullptr,
-        func_080A47B4,
-#else
         nullptr,
         nullptr,
         func_080E4210,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E82D4[]
     SECTION(".rodata.vtable_82d4") = {
@@ -7006,18 +6982,14 @@ extern RawVTableFunction const vtable_unk_080E82D4[]
 #endif
     };
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E82D8[]
     SECTION(".rodata.vtable_82d8") = {
-#if defined(REGION_JP)
         nullptr,
         func_080A4B6C,
         func_080A4BEC,
-#else
-        nullptr,
-        nullptr,
-        func_080A47B4,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E82E4[]
     SECTION(".rodata.vtable_82e4") = {

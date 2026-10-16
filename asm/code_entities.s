@@ -22174,7 +22174,7 @@ func_0802AFF4:
     add r4, sp, #8
     strb r5, [r4]
     movs r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov r1, sb
     adds r1, #0xcc
     str r5, [r1]
@@ -22212,7 +22212,7 @@ func_0802AFF4:
     strb r7, [r0]
     add r0, sp, #0x18
     movs r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     ldr r1, [sp, #0x64]
     strh r7, [r1]
     strh r7, [r1, #2]
@@ -22232,7 +22232,7 @@ func_0802AFF4:
     adds r0, r4, #0
     add r1, sp, #0x18
     bl func_080DC840
-    ldr r0, .Ljp_0802B144 @ =vtable_unk_080E681C
+    ldr r0, .Ljp_0802B144 @ =__vt_22GameSceneIndexedSprite
     str r0, [r4, #0x24]
     adds r1, r5, #0
     adds r1, #0x2c
@@ -22271,7 +22271,7 @@ func_0802AFF4:
 .Ljp_0802B108:
     ldr r0, [sp, #0x60]
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r4, [sp, #0x5c]
     adds r4, #1
     str r4, [sp, #0x5c]
@@ -22295,7 +22295,7 @@ func_0802AFF4:
 .Ljp_0802B138: .4byte gUnk_080F1218
 .Ljp_0802B13C: .4byte vtable_unk_080E6708
 .Ljp_0802B140: .4byte 0x00000281
-.Ljp_0802B144: .4byte vtable_unk_080E681C
+.Ljp_0802B144: .4byte __vt_22GameSceneIndexedSprite
     .global func_0802B148
     .thumb_func
 func_0802B148:
@@ -23860,7 +23860,7 @@ func_0802BCC0:
     add r2, sp, #8
     strb r6, [r2]
     movs r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov r1, r8
     adds r1, #0xcc
     ldr r0, .Ljp_0802BD30 @ =0x0000FFFF
@@ -56821,7 +56821,7 @@ func_0802B260: @ 0x0802B260
     add r4, sp, #8
     strb r5, [r4]
     movs r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov r1, sb
     adds r1, #0xcc
     str r5, [r1]
@@ -56859,7 +56859,7 @@ func_0802B260: @ 0x0802B260
     strb r7, [r0]
     add r0, sp, #0x18
     movs r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     ldr r1, [sp, #0x64]
     strh r7, [r1]
     strh r7, [r1, #2]
@@ -56879,7 +56879,7 @@ func_0802B260: @ 0x0802B260
     adds r0, r4, #0
     add r1, sp, #0x18
     bl func_080DC840
-    ldr r0, .L0802B3B0 @ =vtable_unk_080E681C
+    ldr r0, .L0802B3B0 @ =__vt_22GameSceneIndexedSprite
     str r0, [r4, #0x24]
     adds r1, r5, #0
     adds r1, #0x2c
@@ -56918,7 +56918,7 @@ func_0802B260: @ 0x0802B260
 .L0802B374:
     ldr r0, [sp, #0x60]
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r4, [sp, #0x5c]
     adds r4, #1
     str r4, [sp, #0x5c]
@@ -56942,7 +56942,7 @@ func_0802B260: @ 0x0802B260
 .L0802B3A4: .4byte gUnk_080F1218
 .L0802B3A8: .4byte vtable_unk_080E6708
 .L0802B3AC: .4byte 0x00000281
-.L0802B3B0: .4byte vtable_unk_080E681C
+.L0802B3B0: .4byte __vt_22GameSceneIndexedSprite
 
     thumb_func_start func_0802B3B4
 func_0802B3B4: @ 0x0802B3B4
@@ -58501,7 +58501,7 @@ func_0802BF2C: @ 0x0802BF2C
     add r2, sp, #8
     strb r6, [r2]
     movs r2, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov r1, r8
     adds r1, #0xcc
     ldr r0, .L0802BF9C @ =0x0000FFFF

@@ -37,6 +37,7 @@ struct GameObject;
 struct GameScene;
 struct GameStateSaveImage;
 struct MusicPlayer;
+struct GameSceneIndexedSprite;
 struct HardwareBlendController;
 
 // The map controller stores Q16.16 camera coordinates. Native integer
@@ -162,7 +163,7 @@ struct GameSceneWorldUnk1020Entry {
     u16 tile_index;
 };
 
-struct GameSceneWorldUnk1020Indices {
+struct GameScenePaletteIndices {
     u32 count;
     u8 values[16];
 
@@ -172,7 +173,7 @@ struct GameSceneWorldUnk1020Indices {
 struct GameSceneWorldUnk1020 {
     GameObject * world;
     GameSceneWorldUnk1020Entry entries[3];
-    GameSceneWorldUnk1020Indices indices;
+    GameScenePaletteIndices indices;
     u8 unk_9C;
 
     // The shared native constructor implements this real C++ ABI.
@@ -245,7 +246,8 @@ struct GameSceneWorldPrefix : GameObject {
     GameStateSaveImage * save;
     u8 unk_103C[0x18];
     GameScene * scene;
-    u8 unk_1058[0x24];
+    SmartPtr<GameSceneIndexedSprite> unk_1058;
+    u8 unk_105C[0x20];
     GameSceneWorldUnkOwner unk_107C;
     GameSceneWorldUnk1080Entry unk_1080[4];
 };
@@ -287,6 +289,8 @@ typedef char GameSceneWorldUnk1080EntrySizeCheck[sizeof(GameSceneWorldUnk1080Ent
 typedef char GameSceneWorldUnk1080TileXCheck[offsetof(GameSceneWorldUnk1080Entry, tile_x) == 4 ? 1 : -1];
 typedef char GameSceneWorldUnk1080TailCheck[offsetof(GameSceneWorldUnk1080Entry, unk_08) == 8 ? 1 : -1];
 typedef char GameSceneWorldSceneCheck[offsetof(GameSceneWorldPrefix, scene) == 0x1054 ? 1 : -1];
+typedef char GameSceneWorldSpriteCheck[offsetof(GameSceneWorldPrefix, unk_1058) == 0x1058 ? 1 : -1];
+typedef char GameSceneWorldUnk105CCheck[offsetof(GameSceneWorldPrefix, unk_105C) == 0x105C ? 1 : -1];
 
 typedef char GameSceneWorldUnk1080Check[offsetof(GameSceneWorldPrefix, unk_1080) == 0x1080 ? 1 : -1];
 
@@ -1167,6 +1171,8 @@ void func_0801D9A8(GameSceneWorldPrefix & world,
 u32 func_0801D9BC(GameSceneWorldPrefix & world);
 GameSceneSongPlayerPool & func_0801DB44(GameSceneWorldPrefix & world);
 void func_0801DB58(GameSceneWorldPrefix & world);
+void func_0801DC24(GameSceneWorldPrefix & world, u32 index);
+void func_0801DCA8(GameSceneWorldPrefix & world);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
 void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,
@@ -1234,5 +1240,40 @@ void func_0803B6B8(ScriptTextVariableStore * variables, u32 slot, char const * t
 SceneTransitionOwner sub_080D8178(GameSceneState * state);
 
 EXTERN_C_END
+
+// These concrete interfaces and their compiler-owned virtual tables belong
+// to game_scene.cc, using this frontend's interface/implementation convention.
+#pragma interface "game_scene.hh"
+
+// Native base owns OBJ tiles and the palette slots returned by GameObject.
+struct GameSceneSpriteBase {
+    GameObject * world;
+    HardwareStateEntry tiles;
+    u16 tile_index;
+    GameScenePaletteIndices palettes;
+
+    // The real constructor ABI is still implemented by native assembly.
+    GameSceneSpriteBase(GameObject * world, u32 size_shift, i32 palette_kind);
+    virtual ~GameSceneSpriteBase();
+};
+
+struct GameSceneIndexedSprite : GameSceneSpriteBase {
+    GameSceneIndexedSprite(IndexedResourceProvider * resource, u32 index,
+        GameObject * world, u32 size_shift, i32 palette_kind, bool unk_3D);
+
+    IndexedResourceHandle handle;
+    u8 unk_3C;
+    u8 unk_3D;
+    u8 unk_3E;
+    u8 unk_3F;
+};
+
+typedef char GameSceneSpriteBaseSizeCheck[sizeof(GameSceneSpriteBase) == 0x28 ? 1 : -1];
+typedef char GameSceneSpriteBaseTilesCheck[offsetof(GameSceneSpriteBase, tiles) == 4 ? 1 : -1];
+typedef char GameSceneSpriteBasePaletteCountCheck[offsetof(GameSceneSpriteBase, palettes.count) == 0x10 ? 1 : -1];
+typedef char GameSceneSpriteBasePaletteIndicesCheck[offsetof(GameSceneSpriteBase, palettes.values) == 0x14 ? 1 : -1];
+typedef char GameSceneIndexedSpriteSizeCheck[sizeof(GameSceneIndexedSprite) == 0x40 ? 1 : -1];
+typedef char GameSceneIndexedSpriteHandleCheck[offsetof(GameSceneIndexedSprite, handle) == 0x28 ? 1 : -1];
+typedef char GameSceneIndexedSpriteFlagsCheck[offsetof(GameSceneIndexedSprite, unk_3C) == 0x3C ? 1 : -1];
 
 #endif // GAME_SCENE_HH

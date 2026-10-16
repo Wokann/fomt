@@ -5349,7 +5349,7 @@ func_08037D08:
     adds	r0, r4, #0
     movs	r2, #2
     movs	r3, #10
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Ljp_08037B00
     str	r0, [r4, #36]	@ 0x24
     adds	r6, r7, #0
@@ -5606,7 +5606,7 @@ func_08037EF0:
     adds	r0, r4, #0
     movs	r2, #2
     movs	r3, #8
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Ljp_08037CF0
     str	r0, [r4, #36]	@ 0x24
     adds	r6, r7, #0
@@ -6413,7 +6413,7 @@ func_0803853C:
     add	r5, sp, #8
     movs	r4, #0
     strb	r4, [r5, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r6, #0
     add	sp, #12
     pop	{r4, r5, r6}
@@ -6826,7 +6826,7 @@ func_08038820:
     adds	r1, r4, #0
     movs	r2, #6
     movs	r3, #27
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Ljp_08038634
     str	r0, [r6, #36]	@ 0x24
     movs	r1, #40	@ 0x28
@@ -6902,7 +6902,7 @@ func_08038820:
 .Ljp_08038690:
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r4, #80	@ 0x50
     cmp	r4, r5
     bne .Ljp_08038690
@@ -7584,7 +7584,7 @@ func_08038DF0:
     adds	r1, r4, #0
     movs	r2, #6
     movs	r3, #27
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Ljp_08038C20
     str	r0, [r7, #36]	@ 0x24
     adds	r6, r7, #0
@@ -7625,7 +7625,7 @@ func_08038DF0:
     beq .Ljp_08038C12
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r0, r4, #0
     bl __builtin_delete
 .Ljp_08038C12:
@@ -7679,7 +7679,7 @@ func_08038EB8:
     beq .Ljp_08038C6C
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r0, r4, #0
     bl __builtin_delete
 .Ljp_08038C6C:
@@ -7741,7 +7741,7 @@ func_08038EE0:
     .4byte 0x46422000
     .4byte 0xA8037010
     .4byte 0x1C332201
-    .4byte 0xFB9AF06B
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     .4byte 0x28046828
     .4byte 0x0180D82A
     .4byte 0x182C3004
@@ -7766,9 +7766,9 @@ func_08038EE0:
     .4byte 0x68287001
     .4byte 0x60283001
     .4byte 0x2102A803
-    .4byte 0xFA42F06B
+    bl _._19GameSceneSpriteBase
     .4byte 0x0000E046
-    .4byte vtable_unk_080E681C
+    .4byte __vt_22GameSceneIndexedSprite
 .Ljp_08038D70:
     .4byte 0x6F816830
     .4byte 0xF09A1C30
@@ -7778,7 +7778,7 @@ func_08038EE0:
     .4byte 0x46422000
     .4byte 0xA8037010
     .4byte 0x1C332200
-    .4byte 0xFB52F06B
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     .4byte 0x28046828
     .4byte 0x0180D82A
     .4byte 0x182C3004
@@ -7803,7 +7803,7 @@ func_08038EE0:
     .4byte 0x68287001
     .4byte 0x60283001
     .4byte 0x2102A803
-    .4byte 0xF9FAF06B
+    bl _._19GameSceneSpriteBase
     .4byte 0x004921A2
     .4byte 0x44501868
     .4byte 0x70012100
@@ -7830,7 +7830,7 @@ func_08038EE0:
     .4byte 0x46AA46A1
     .4byte 0xBC01BCF0
     .4byte 0x00004700
-    .4byte vtable_unk_080E681C
+    .4byte __vt_22GameSceneIndexedSprite
     .global func_080390D0
     .thumb_func
 func_080390D0:
@@ -9649,7 +9649,7 @@ func_08039E98:
     strb	r4, [r2, #0]
     adds	r2, r5, #0
     adds	r3, r6, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov	r0, r9
     cmp	r0, #1
     bne .Ljp_08039CD0
@@ -9665,7 +9665,7 @@ func_08039E98:
     adds	r1, r6, #0
     movs	r2, #2
     movs	r3, #15
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Ljp_08039CC8
     str	r0, [r5, #36]	@ 0x24
     movs	r1, #40	@ 0x28
@@ -9727,7 +9727,7 @@ func_08039F50:
     adds	r0, r4, #0
     adds	r0, #8
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     movs	r0, #1
     ands	r0, r5
     cmp	r0, #0
@@ -16085,7 +16085,7 @@ func_08037D08:
     adds	r0, r4, #0
     movs	r2, #2
     movs	r3, #10
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Leu_08037D80
     str	r0, [r4, #36]	@ 0x24
     adds	r6, r7, #0
@@ -16342,7 +16342,7 @@ func_08037EF0:
     adds	r0, r4, #0
     movs	r2, #2
     movs	r3, #8
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Leu_08037F70
     str	r0, [r4, #36]	@ 0x24
     adds	r6, r7, #0
@@ -17149,7 +17149,7 @@ func_0803853C:
     add	r5, sp, #8
     movs	r4, #0
     strb	r4, [r5, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r6, #0
     add	sp, #12
     pop	{r4, r5, r6}
@@ -17562,7 +17562,7 @@ func_08038820:
     adds	r1, r4, #0
     movs	r2, #6
     movs	r3, #27
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Leu_080388B4
     str	r0, [r6, #36]	@ 0x24
     movs	r1, #40	@ 0x28
@@ -17638,7 +17638,7 @@ func_08038820:
 .Leu_08038910:
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r4, #80	@ 0x50
     cmp	r4, r5
     bne .Leu_08038910
@@ -18320,7 +18320,7 @@ func_08038DF0:
     adds	r1, r4, #0
     movs	r2, #6
     movs	r3, #27
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Leu_08038EA0
     str	r0, [r7, #36]	@ 0x24
     adds	r6, r7, #0
@@ -18361,7 +18361,7 @@ func_08038DF0:
     beq .Leu_08038E92
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r0, r4, #0
     bl __builtin_delete
 .Leu_08038E92:
@@ -18415,7 +18415,7 @@ func_08038EB8:
     beq .Leu_08038EEC
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r0, r4, #0
     bl __builtin_delete
 .Leu_08038EEC:
@@ -18477,7 +18477,7 @@ func_08038EE0:
     .4byte 0x46422000
     .4byte 0xA8037010
     .4byte 0x1C332201
-    .4byte 0xFD56F06B
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     .4byte 0x28046828
     .4byte 0x0180D82A
     .4byte 0x182C3004
@@ -18502,9 +18502,9 @@ func_08038EE0:
     .4byte 0x68287001
     .4byte 0x60283001
     .4byte 0x2102A803
-    .4byte 0xFBFEF06B
+    bl _._19GameSceneSpriteBase
     .4byte 0x0000E046
-    .4byte vtable_unk_080E681C
+    .4byte __vt_22GameSceneIndexedSprite
 .Leu_08038FF0:
     .4byte 0x6F816830
     .4byte 0xF09A1C30
@@ -18514,7 +18514,7 @@ func_08038EE0:
     .4byte 0x46422000
     .4byte 0xA8037010
     .4byte 0x1C332200
-    .4byte 0xFD0EF06B
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     .4byte 0x28046828
     .4byte 0x0180D82A
     .4byte 0x182C3004
@@ -18539,7 +18539,7 @@ func_08038EE0:
     .4byte 0x68287001
     .4byte 0x60283001
     .4byte 0x2102A803
-    .4byte 0xFBB6F06B
+    bl _._19GameSceneSpriteBase
     .4byte 0x004921A2
     .4byte 0x44501868
     .4byte 0x70012100
@@ -18566,7 +18566,7 @@ func_08038EE0:
     .4byte 0x46AA46A1
     .4byte 0xBC01BCF0
     .4byte 0x00004700
-    .4byte vtable_unk_080E681C
+    .4byte __vt_22GameSceneIndexedSprite
     .global func_080390D0
     .thumb_func
 func_080390D0:
@@ -20409,7 +20409,7 @@ func_08039E98:
     strb	r4, [r2, #0]
     adds	r2, r5, #0
     adds	r3, r6, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov	r0, r9
     cmp	r0, #1
     bne .Leu_08039F50
@@ -20425,7 +20425,7 @@ func_08039E98:
     adds	r1, r6, #0
     movs	r2, #2
     movs	r3, #15
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Leu_08039F48
     str	r0, [r5, #36]	@ 0x24
     movs	r1, #40	@ 0x28
@@ -20487,7 +20487,7 @@ func_08039F50:
     adds	r0, r4, #0
     adds	r0, #8
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     movs	r0, #1
     ands	r0, r5
     cmp	r0, #0
@@ -26991,7 +26991,7 @@ func_08037D08:
     adds	r0, r4, #0
     movs	r2, #2
     movs	r3, #10
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Lde_08037C80
     str	r0, [r4, #36]	@ 0x24
     adds	r6, r7, #0
@@ -27248,7 +27248,7 @@ func_08037EF0:
     adds	r0, r4, #0
     movs	r2, #2
     movs	r3, #8
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Lde_08037E70
     str	r0, [r4, #36]	@ 0x24
     adds	r6, r7, #0
@@ -28055,7 +28055,7 @@ func_0803853C:
     add	r5, sp, #8
     movs	r4, #0
     strb	r4, [r5, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r6, #0
     add	sp, #12
     pop	{r4, r5, r6}
@@ -28468,7 +28468,7 @@ func_08038820:
     adds	r1, r4, #0
     movs	r2, #6
     movs	r3, #27
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Lde_080387B4
     str	r0, [r6, #36]	@ 0x24
     movs	r1, #40	@ 0x28
@@ -28544,7 +28544,7 @@ func_08038820:
 .Lde_08038810:
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r4, #80	@ 0x50
     cmp	r4, r5
     bne .Lde_08038810
@@ -29226,7 +29226,7 @@ func_08038DF0:
     adds	r1, r4, #0
     movs	r2, #6
     movs	r3, #27
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Lde_08038DA0
     str	r0, [r7, #36]	@ 0x24
     adds	r6, r7, #0
@@ -29267,7 +29267,7 @@ func_08038DF0:
     beq .Lde_08038D92
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r0, r4, #0
     bl __builtin_delete
 .Lde_08038D92:
@@ -29321,7 +29321,7 @@ func_08038EB8:
     beq .Lde_08038DEC
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r0, r4, #0
     bl __builtin_delete
 .Lde_08038DEC:
@@ -29383,7 +29383,7 @@ func_08038EE0:
     .4byte 0x46422000
     .4byte 0xA8037010
     .4byte 0x1C332201
-    .4byte 0xFD6EF06B
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     .4byte 0x28046828
     .4byte 0x0180D82A
     .4byte 0x182C3004
@@ -29408,9 +29408,9 @@ func_08038EE0:
     .4byte 0x68287001
     .4byte 0x60283001
     .4byte 0x2102A803
-    .4byte 0xFC16F06B
+    bl _._19GameSceneSpriteBase
     .4byte 0x0000E046
-    .4byte vtable_unk_080E681C
+    .4byte __vt_22GameSceneIndexedSprite
 .Lde_08038EF0:
     .4byte 0x6F816830
     .4byte 0xF09A1C30
@@ -29420,7 +29420,7 @@ func_08038EE0:
     .4byte 0x46422000
     .4byte 0xA8037010
     .4byte 0x1C332200
-    .4byte 0xFD26F06B
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     .4byte 0x28046828
     .4byte 0x0180D82A
     .4byte 0x182C3004
@@ -29445,7 +29445,7 @@ func_08038EE0:
     .4byte 0x68287001
     .4byte 0x60283001
     .4byte 0x2102A803
-    .4byte 0xFBCEF06B
+    bl _._19GameSceneSpriteBase
     .4byte 0x004921A2
     .4byte 0x44501868
     .4byte 0x70012100
@@ -29472,7 +29472,7 @@ func_08038EE0:
     .4byte 0x46AA46A1
     .4byte 0xBC01BCF0
     .4byte 0x00004700
-    .4byte vtable_unk_080E681C
+    .4byte __vt_22GameSceneIndexedSprite
     .global func_080390D0
     .thumb_func
 func_080390D0:
@@ -31315,7 +31315,7 @@ func_08039E98:
     strb	r4, [r2, #0]
     adds	r2, r5, #0
     adds	r3, r6, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov	r0, r9
     cmp	r0, #1
     bne .Lde_08039E50
@@ -31331,7 +31331,7 @@ func_08039E98:
     adds	r1, r6, #0
     movs	r2, #2
     movs	r3, #15
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Lde_08039E48
     str	r0, [r5, #36]	@ 0x24
     movs	r1, #40	@ 0x28
@@ -31393,7 +31393,7 @@ func_08039F50:
     adds	r0, r4, #0
     adds	r0, #8
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     movs	r0, #1
     ands	r0, r5
     cmp	r0, #0
@@ -37896,7 +37896,7 @@ func_08037D08:
     adds	r0, r4, #0
     movs	r2, #2
     movs	r3, #10
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Lus_08037D6C
     str	r0, [r4, #36]	@ 0x24
     adds	r6, r7, #0
@@ -38153,7 +38153,7 @@ func_08037EF0:
     adds	r0, r4, #0
     movs	r2, #2
     movs	r3, #8
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Lus_08037F5C
     str	r0, [r4, #36]	@ 0x24
     adds	r6, r7, #0
@@ -38960,7 +38960,7 @@ func_0803853C:
     add	r5, sp, #8
     movs	r4, #0
     strb	r4, [r5, #0]
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     adds	r0, r6, #0
     add	sp, #12
     pop	{r4, r5, r6}
@@ -39373,7 +39373,7 @@ func_08038820:
     adds	r1, r4, #0
     movs	r2, #6
     movs	r3, #27
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Lus_080388A0
     str	r0, [r6, #36]	@ 0x24
     movs	r1, #40	@ 0x28
@@ -39449,7 +39449,7 @@ func_08038820:
 .Lus_080388FC:
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r4, #80	@ 0x50
     cmp	r4, r5
     bne .Lus_080388FC
@@ -40131,7 +40131,7 @@ func_08038DF0:
     adds	r1, r4, #0
     movs	r2, #6
     movs	r3, #27
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Lus_08038E8C
     str	r0, [r7, #36]	@ 0x24
     adds	r6, r7, #0
@@ -40172,7 +40172,7 @@ func_08038DF0:
     beq .Lus_08038E7E
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r0, r4, #0
     bl __builtin_delete
 .Lus_08038E7E:
@@ -40226,7 +40226,7 @@ func_08038EB8:
     beq .Lus_08038ED8
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds	r0, r4, #0
     bl __builtin_delete
 .Lus_08038ED8:
@@ -40288,7 +40288,7 @@ func_08038EE0:
     .4byte 0x46422000
     .4byte 0xA8037010
     .4byte 0x1C332201
-    .4byte 0xFD48F06B
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     .4byte 0x28046828
     .4byte 0x0180D82A
     .4byte 0x182C3004
@@ -40313,9 +40313,9 @@ func_08038EE0:
     .4byte 0x68287001
     .4byte 0x60283001
     .4byte 0x2102A803
-    .4byte 0xFBF0F06B
+    bl _._19GameSceneSpriteBase
     .4byte 0x0000E046
-    .4byte vtable_unk_080E681C
+    .4byte __vt_22GameSceneIndexedSprite
 .Lus_08038FDC:
     .4byte 0x6F816830
     .4byte 0xF09A1C30
@@ -40325,7 +40325,7 @@ func_08038EE0:
     .4byte 0x46422000
     .4byte 0xA8037010
     .4byte 0x1C332200
-    .4byte 0xFD00F06B
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     .4byte 0x28046828
     .4byte 0x0180D82A
     .4byte 0x182C3004
@@ -40350,7 +40350,7 @@ func_08038EE0:
     .4byte 0x68287001
     .4byte 0x60283001
     .4byte 0x2102A803
-    .4byte 0xFBA8F06B
+    bl _._19GameSceneSpriteBase
     .4byte 0x004921A2
     .4byte 0x44501868
     .4byte 0x70012100
@@ -40377,7 +40377,7 @@ func_08038EE0:
     .4byte 0x46AA46A1
     .4byte 0xBC01BCF0
     .4byte 0x00004700
-    .4byte vtable_unk_080E681C
+    .4byte __vt_22GameSceneIndexedSprite
     .global func_080390D0
     .thumb_func
 func_080390D0:
@@ -42220,7 +42220,7 @@ func_08039E98:
     strb	r4, [r2, #0]
     adds	r2, r5, #0
     adds	r3, r6, #0
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     mov	r0, r9
     cmp	r0, #1
     bne .Lus_08039F3C
@@ -42236,7 +42236,7 @@ func_08039E98:
     adds	r1, r6, #0
     movs	r2, #2
     movs	r3, #15
-    bl func_080A4740
+    bl __19GameSceneSpriteBaseP10GameObjectUii
     ldr r0, .Lus_08039F34
     str	r0, [r5, #36]	@ 0x24
     movs	r1, #40	@ 0x28
@@ -42298,7 +42298,7 @@ func_08039F50:
     adds	r0, r4, #0
     adds	r0, #8
     movs	r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     movs	r0, #1
     ands	r0, r5
     cmp	r0, #0

@@ -11642,7 +11642,7 @@ func_080DBD30:
     .thumb_func
 func_080DC5A8:
     push {lr}
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     pop {r0}
     bx r0
     .byte 0x00, 0x00
@@ -11688,11 +11688,11 @@ func_080DC5F4:
     adds r4, r1, #0
     adds r0, #0x48
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r5, #0
     adds r0, #8
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r0, [pc, #0x14]
     str r0, [r5, #4]
     movs r0, #1
@@ -11855,15 +11855,15 @@ func_080DC724:
     adds r4, r1, #0
     adds r0, #0x8c
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r5, #0
     adds r0, #0x48
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r5, #0
     adds r0, #8
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r0, [pc, #0x18]
     str r0, [r5, #4]
     movs r0, #1
@@ -11898,7 +11898,7 @@ func_080DC764:
     .Lauto_080DBF36:
     adds r0, r4, #4
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r4, #0x48
     cmp r4, r5
     bne .Lauto_080DBF36
@@ -11906,15 +11906,15 @@ func_080DC764:
     adds r0, r6, #0
     adds r0, #0x8c
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r6, #0
     adds r0, #0x48
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r6, #0
     adds r0, #8
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r0, [pc, #0x18]
     str r0, [r6, #4]
     movs r0, #1
@@ -11984,14 +11984,9 @@ func_080DBFB4:
     pop {r0}
     bx r0
     .byte 0x90, 0x56, 0x0E, 0x08
-    .global func_080DBFE8
-    .thumb_func
-func_080DBFE8:
-    push {lr}
-    bl func_080A47B4
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.game_scene_indexed_sprite_dtor_after, "ax", %progbits
+    .align 2, 0
+
     .global func_080DC840
     .thumb_func
 func_080DC840:
@@ -12030,7 +12025,8 @@ func_080DC840:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00, 0x08, 0x77, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_19GameSceneSpriteBase
     .global func_080DC044
     .thumb_func
 func_080DC044:
@@ -12039,11 +12035,11 @@ func_080DC044:
     adds r4, r1, #0
     adds r0, #0x48
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r5, #0
     adds r0, #8
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r0, [pc, #0x14]
     str r0, [r5, #4]
     movs r0, #1
@@ -12093,11 +12089,11 @@ func_080DC0AC:
     adds r4, r1, #0
     adds r0, #0x48
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r5, #0
     adds r0, #8
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r0, [pc, #0x14]
     str r0, [r5, #4]
     movs r0, #1
@@ -12119,15 +12115,15 @@ func_080DC0E0:
     adds r4, r1, #0
     adds r0, #0x8c
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r5, #0
     adds r0, #0x48
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r5, #0
     adds r0, #8
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r0, [pc, #0x18]
     str r0, [r5, #4]
     movs r0, #1
@@ -12499,7 +12495,7 @@ func_080DCB7C:
     strb r0, [r4]
     adds r0, r5, #0
     mov r3, sl
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     movs r0, #0xc8
     lsls r0, r0, #0xf
     str r0, [r5, #0x40]
@@ -12541,7 +12537,7 @@ func_080DCB7C:
     .Lauto_080DC3D2:
     add r0, sp, #0xc
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     movs r2, #0
     str r2, [sp, #0x60]
     add r7, sp, #0xc
@@ -12603,7 +12599,7 @@ func_080DCB7C:
     strb r0, [r3]
     adds r0, r7, #0
     mov r3, sl
-    bl func_080A4A00
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
     lsls r0, r5, #0x10
     str r0, [r7, #0x40]
     adds r0, r7, #0
@@ -12642,7 +12638,7 @@ func_080DCB7C:
     .Lauto_080DC4B8:
     add r0, sp, #0xc
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r2, [sp, #0x60]
     adds r2, #1
     str r2, [sp, #0x60]
@@ -12723,7 +12719,8 @@ func_080DCD2C:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00, 0x5C, 0x5C, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_22GameSceneIndexedSprite
     .global func_080DCDB0
     .thumb_func
 func_080DCDB0:
@@ -12748,7 +12745,7 @@ func_080DCDB0:
     .Lauto_080DC588:
     adds r0, r4, #0
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r4, #0x50
     cmp r4, r5
     bne .Lauto_080DC588
@@ -12785,7 +12782,7 @@ func_080DCDB0:
     beq .Lauto_080DC5DE
     adds r0, r4, #0
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r4, #0
     bl __builtin_delete
     .Lauto_080DC5DE:
@@ -12794,7 +12791,7 @@ func_080DCDB0:
     beq .Lauto_080DC5F2
     adds r0, r4, #0
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     adds r0, r4, #0
     bl __builtin_delete
     .Lauto_080DC5F2:
@@ -12850,7 +12847,7 @@ func_080DCE94:
     adds r4, r1, #0
     adds r0, #8
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r0, [pc, #0x18]
     str r0, [r5, #4]
     movs r0, #1
@@ -12872,7 +12869,7 @@ func_080DCEC0:
     adds r4, r1, #0
     adds r0, #8
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r0, [pc, #0x18]
     str r0, [r5, #4]
     movs r0, #1
@@ -12922,7 +12919,7 @@ func_080DCF20:
     adds r4, r1, #0
     adds r0, #8
     movs r1, #2
-    bl func_080A47B4
+    bl _._19GameSceneSpriteBase
     ldr r0, [pc, #0x18]
     str r0, [r5, #4]
     movs r0, #1
@@ -24763,7 +24760,7 @@ func_080DC57C: @ 0x080DC57C
 	thumb_func_start func_080DC5A8
 func_080DC5A8: @ 0x080DC5A8
 	.byte 0x00, 0xB5
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	.byte 0x01, 0xBC
 	.byte 0x00, 0x47, 0x00, 0x00
 
@@ -24787,9 +24784,9 @@ func_080DC5D4: @ 0x080DC5D4
 func_080DC5F4:
 	.byte 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C
 	.byte 0x48, 0x30, 0x02, 0x21
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	.byte 0x28, 0x1C, 0x08, 0x30, 0x02, 0x21
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	.byte 0x05, 0x48, 0x68, 0x60
 	.byte 0x01, 0x20, 0x20, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
 	bl __builtin_delete
@@ -24898,15 +24895,15 @@ func_080DC724: @ 0x080DC724
 	adds r4, r1, #0
 	adds r0, #0x8c
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	adds r0, r5, #0
 	adds r0, #0x48
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	adds r0, r5, #0
 	adds r0, #8
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	ldr r0, .L080DC760 @ =vtable_unk_080E65E0
 	str r0, [r5, #4]
 	movs r0, #1
@@ -24942,7 +24939,7 @@ func_080DC764: @ 0x080DC764
 .L080DC782:
 	adds r0, r4, #4
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	adds r4, #0x48
 	cmp r4, r5
 	bne .L080DC782
@@ -24950,15 +24947,15 @@ func_080DC764: @ 0x080DC764
 	adds r0, r6, #0
 	adds r0, #0x8c
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	adds r0, r6, #0
 	adds r0, #0x48
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	adds r0, r6, #0
 	adds r0, #8
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	ldr r0, .L080DC7C8 @ =vtable_unk_080E65E0
 	str r0, [r6, #4]
 	movs r0, #1
@@ -24993,19 +24990,15 @@ func_080DC800:
 	bl __builtin_delete
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
 	.4byte __vt_7AEntity
-	.global func_080DC834
-	.thumb_func
-func_080DC834:
-	.byte 0x00, 0xB5
-	bl func_080A47B4
-	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    .section .text.game_scene_indexed_sprite_dtor_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080DC840
 func_080DC840: @ 0x080DC840
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	adds r5, r1, #0
-	ldr r0, .L080DC88C @ =vtable_unk_080E82D8
+	ldr r0, .L080DC88C @ =__vt_19GameSceneSpriteBase
 	str r0, [r7, #0x24]
 	adds r6, r5, #0
 	ldm r6!, {r0}
@@ -25038,16 +25031,16 @@ func_080DC840: @ 0x080DC840
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080DC88C: .4byte vtable_unk_080E82D8
+.L080DC88C: .4byte __vt_19GameSceneSpriteBase
 .L080DC890:
 	.global func_080DC890
 	.thumb_func
 func_080DC890:
 	.byte 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C, 0x48, 0x30, 0x02, 0x21
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	.byte 0x28, 0x1C
 	.byte 0x08, 0x30, 0x02, 0x21
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	.byte 0x05, 0x48, 0x68, 0x60, 0x01, 0x20, 0x20, 0x40
 	.byte 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
 	bl __builtin_delete
@@ -25068,9 +25061,9 @@ func_080DC8C4:
 func_080DC8F8:
 	.byte 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C, 0x48, 0x30
 	.byte 0x02, 0x21
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	.byte 0x28, 0x1C, 0x08, 0x30, 0x02, 0x21
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	.byte 0x05, 0x48, 0x68, 0x60, 0x01, 0x20, 0x20, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
 	bl __builtin_delete
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
@@ -25080,11 +25073,11 @@ func_080DC8F8:
 func_080DC92C:
 	.byte 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C
 	.byte 0x8C, 0x30, 0x02, 0x21
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	.byte 0x28, 0x1C, 0x48, 0x30, 0x02, 0x21
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	.byte 0x28, 0x1C, 0x08, 0x30, 0x02, 0x21
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	.byte 0x06, 0x48
 	.byte 0x68, 0x60, 0x01, 0x20, 0x20, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
 	bl __builtin_delete
@@ -25448,7 +25441,7 @@ func_080DCB7C: @ 0x080DCB7C
 	strb r0, [r4]
 	adds r0, r5, #0
 	mov r3, sl
-	bl func_080A4A00
+	bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
 	movs r0, #0xc8
 	lsls r0, r0, #0xf
 	str r0, [r5, #0x40]
@@ -25490,7 +25483,7 @@ func_080DCB7C: @ 0x080DCB7C
 .L080DCC1E:
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	movs r2, #0
 	str r2, [sp, #0x60]
 	add r7, sp, #0xc
@@ -25555,7 +25548,7 @@ func_080DCB7C: @ 0x080DCB7C
 	strb r0, [r3]
 	adds r0, r7, #0
 	mov r3, sl
-	bl func_080A4A00
+	bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
 	lsls r0, r5, #0x10
 	str r0, [r7, #0x40]
 	adds r0, r7, #0
@@ -25594,7 +25587,7 @@ func_080DCB7C: @ 0x080DCB7C
 .L080DCD04:
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	ldr r2, [sp, #0x60]
 	adds r2, #1
 	str r2, [sp, #0x60]
@@ -25618,7 +25611,7 @@ func_080DCD2C: @ 0x080DCD2C
 	adds r4, r0, #0
 	adds r5, r1, #0
 	bl func_080DC840
-	ldr r0, .L080DCDAC @ =vtable_unk_080E681C
+	ldr r0, .L080DCDAC @ =__vt_22GameSceneIndexedSprite
 	str r0, [r4, #0x24]
 	adds r1, r4, #0
 	adds r1, #0x28
@@ -25677,7 +25670,7 @@ func_080DCD2C: @ 0x080DCD2C
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080DCDAC: .4byte vtable_unk_080E681C
+.L080DCDAC: .4byte __vt_22GameSceneIndexedSprite
 
 	thumb_func_start func_080DCDB0
 func_080DCDB0: @ 0x080DCDB0
@@ -25702,7 +25695,7 @@ func_080DCDB0: @ 0x080DCDB0
 .L080DCDD4:
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	adds r4, #0x50
 	cmp r4, r5
 	bne .L080DCDD4
@@ -25739,7 +25732,7 @@ func_080DCDB0: @ 0x080DCDB0
 	beq .L080DCE2A
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	adds r0, r4, #0
 	bl __builtin_delete
 .L080DCE2A:
@@ -25748,7 +25741,7 @@ func_080DCDB0: @ 0x080DCDB0
 	beq .L080DCE3E
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	adds r0, r4, #0
 	bl __builtin_delete
 .L080DCE3E:
@@ -25806,7 +25799,7 @@ func_080DCE94: @ 0x080DCE94
 	adds r4, r1, #0
 	adds r0, #8
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	ldr r0, .L080DCEBC @ =vtable_unk_080E65E0
 	str r0, [r5, #4]
 	movs r0, #1
@@ -25829,7 +25822,7 @@ func_080DCEC0: @ 0x080DCEC0
 	adds r4, r1, #0
 	adds r0, #8
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	ldr r0, .L080DCEE8 @ =vtable_unk_080E65E0
 	str r0, [r5, #4]
 	movs r0, #1
@@ -25881,7 +25874,7 @@ func_080DCF20: @ 0x080DCF20
 	adds r4, r1, #0
 	adds r0, #8
 	movs r1, #2
-	bl func_080A47B4
+	bl _._19GameSceneSpriteBase
 	ldr r0, .L080DCF48 @ =vtable_unk_080E65E0
 	str r0, [r5, #4]
 	movs r0, #1
