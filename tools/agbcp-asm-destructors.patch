@@ -116,7 +116,16 @@ diff --git a/g++/cp/class.c b/g++/cp/class.c
 diff --git a/g++/cp/method.c b/g++/cp/method.c
 --- a/g++/cp/method.c
 +++ b/g++/cp/method.c
-@@ -2449,7 +2449,7 @@
+@@ -2151,6 +2151,8 @@
+     DECL_RESULT (thunk_fndecl) = NULL_TREE;
+     DECL_LANG_SPECIFIC (thunk_fndecl) = DECL_LANG_SPECIFIC (function);
+     copy_lang_decl (thunk_fndecl);
++    /* The adjusted forwarding entry is not itself a destructor. */
++    DECL_LANG_SPECIFIC (thunk_fndecl)->decl_flags.destructor_attr = 0;
+     DECL_INTERFACE_KNOWN (thunk_fndecl) = 1;
+     DECL_NOT_REALLY_EXTERN (thunk_fndecl) = 1;
+ 
+@@ -2449,7 +2451,7 @@
  
    if (DECL_NAME (fndecl) == ansi_opname[MODIFY_EXPR])
      do_build_assign_ref (fndecl);
@@ -255,7 +264,16 @@ diff --git a/g++_arm/cp/class.c b/g++_arm/cp/class.c
 diff --git a/g++_arm/cp/method.c b/g++_arm/cp/method.c
 --- a/g++_arm/cp/method.c
 +++ b/g++_arm/cp/method.c
-@@ -2449,7 +2449,7 @@
+@@ -2151,6 +2151,8 @@
+     DECL_RESULT (thunk_fndecl) = NULL_TREE;
+     DECL_LANG_SPECIFIC (thunk_fndecl) = DECL_LANG_SPECIFIC (function);
+     copy_lang_decl (thunk_fndecl);
++    /* The adjusted forwarding entry is not itself a destructor. */
++    DECL_LANG_SPECIFIC (thunk_fndecl)->decl_flags.destructor_attr = 0;
+     DECL_INTERFACE_KNOWN (thunk_fndecl) = 1;
+     DECL_NOT_REALLY_EXTERN (thunk_fndecl) = 1;
+ 
+@@ -2449,7 +2451,7 @@
  
    if (DECL_NAME (fndecl) == ansi_opname[MODIFY_EXPR])
      do_build_assign_ref (fndecl);
@@ -358,11 +376,85 @@ new file mode 100644
 +.global _call_via_r2
 +_call_via_r2:
 +    bx r2
+diff --git a/tests/asm-destructor-mi.cc b/tests/asm-destructor-mi.cc
+new file mode 100644
+--- /dev/null
++++ b/tests/asm-destructor-mi.cc
+@@ -0,0 +1,69 @@
++// Generic multiple-inheritance forwarding, including deleting destructors.
++#if TEST_ASM_LABELS
++#define DTOR_LABEL(name) asm(name)
++#else
++#define DTOR_LABEL(name)
++#endif
++
++static int order;
++static int deletions;
++static int invalid_delete;
++static union { unsigned long align; char bytes[64]; } allocation;
++
++void * operator new(unsigned long) { return allocation.bytes; }
++void operator delete(void * pointer)
++{
++    ++deletions;
++    if (pointer != allocation.bytes) ++invalid_delete;
++}
++extern "C" void __gccmain(void) {}
++
++struct Left {
++    int left;
++    Left() : left(1) {}
++    virtual int Value() { return left; }
++    virtual ~Left() DTOR_LABEL("mi_left_cleanup");
++};
++Left::~Left() { order = order * 10 + left; }
++
++struct Right {
++    int right;
++    Right() : right(2) {}
++    virtual int Value() { return right; }
++    virtual ~Right() DTOR_LABEL("mi_right_cleanup");
++};
++Right::~Right() { order = order * 10 + right; }
++
++struct Derived : Left, Right {
++    virtual int Value() { return 44; }
++    virtual ~Derived() DTOR_LABEL("mi_derived_cleanup");
++};
++Derived::~Derived() { order = order * 10 + 3; }
++
++struct Implicit : Left, Right {
++    virtual int Value() { return 55; }
++};
++
++int main()
++{
++    { Derived local; }
++    if (order != 321 || deletions != 0) return 1;
++    order = 0;
++    Left * primary = new Derived;
++    if (primary->Value() != 44) return 2;
++    delete primary;
++    if (order != 321 || deletions != 1 || invalid_delete != 0) return 3;
++    order = 0;
++    Derived * complete = new Derived;
++    Right * secondary = complete;
++    if ((void *)secondary == (void *)complete) return 4;
++    if (secondary->Value() != 44) return 5;
++    delete secondary;
++    if (order != 321 || deletions != 2 || invalid_delete != 0) return 6;
++    order = 0;
++    Right * inherited = new Implicit;
++    if (inherited->Value() != 55) return 7;
++    delete inherited;
++    if (order != 21 || deletions != 3 || invalid_delete != 0) return 8;
++    return 0;
++}
 diff --git a/tests/README.asm-destructor.md b/tests/README.asm-destructor.md
 new file mode 100644
 --- /dev/null
 +++ b/tests/README.asm-destructor.md
-@@ -0,0 +1,56 @@
+@@ -0,0 +1,90 @@
 +# Asm-labelled destructor regression
 +
 +GNU C++ permits a destructor declaration to select a different assembler
@@ -376,6 +468,11 @@ new file mode 100644
 +name test remains for synthesized declarations. Both ARM and Thumb C++
 +frontends receive the same change; instruction selection and optimization
 +options are unchanged. No game address or function-specific rule is involved.
++
++Generic multiple-inheritance thunks copy the target's language flags. Clear
++the copied destructor-kind bit before starting the forwarding function:
++the adjusted entry calls a destructor but is not itself a destructor. ARM's
++dedicated assembly-thunk path is unchanged.
 +
 +`asm-destructor.cc` checks reverse stack destruction, array destruction,
 +virtual dispatch plus deleting destruction, and destruction of an
@@ -402,10 +499,33 @@ new file mode 100644
 +        "$tmpdir/$mode.o" -o "$tmpdir/$mode.elf"
 +    qemu-arm "$tmpdir/$mode.elf" || exit "$?"
 +done
++
++for mode in thumb arm; do
++    if [ "$mode" = thumb ]; then compiler=./agbcp; else compiler=./agbcp_arm; fi
++    for labels in 0 1; do
++        arm-none-eabi-cpp -P -DTEST_ASM_LABELS=$labels \
++            tests/asm-destructor-mi.cc > "$tmpdir/mi.i"
++        for opt in O0 O2; do
++            "$compiler" -quiet -fno-exceptions -fno-rtti -fvtable-thunks \
++                -mthumb-interwork -Werror -$opt -o "$tmpdir/mi.s" < "$tmpdir/mi.i"
++            arm-none-eabi-as -mcpu=arm7tdmi "$tmpdir/mi.s" -o "$tmpdir/mi.o"
++            arm-none-eabi-ld -Ttext=0x10000 -e _start "$tmpdir/start.o" \
++                "$tmpdir/mi.o" -o "$tmpdir/mi.elf"
++            qemu-arm "$tmpdir/mi.elf" || exit "$?"
++        done
++    done
++done
 +```
 +
 +Both executions must return zero. The original `cp` revision rejects the
 +out-of-line `Leaf::~Leaf()` definition in the same source.
++
++All eight multiple-inheritance executions must also return zero. They check
++ordinary and asm-labelled destructors, stack destruction, virtual calls and
++deletion through both primary and nonzero-offset secondary bases, plus an
++implicit derived destructor. The complete allocation pointer must be freed
++exactly once. Before the thunk correction, Thumb rejects both label modes;
++ARM's existing assembly-thunk path already passes and remains a regression.
 +
 +## 中文说明
 +
@@ -419,3 +539,9 @@ new file mode 100644
 +上述测试实际执行栈对象逆序析构、数组析构、虚函数删除及模板成员
 +析构，两种模式均应返回零。模板容器本身使用普通析构声明；此测试
 +不声称支持为模板析构实例指定汇编名。
++
++另一个回归同时测试普通名称与汇编改名、多继承主基类和非零偏移的
++次基类虚调用与删除，以及隐式派生析构，确保只释放一次完整对象。
++通用跳板复制语言属性后须清除析构标志，否则会被误当成析构本身。
++ARM、Thumb 在 O0/O2 下共八项执行均须返回零；ARM 已有的专用
++汇编跳板路径不变。修复不包含游戏名称、地址或指令替换规则。

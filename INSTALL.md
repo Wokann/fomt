@@ -11,7 +11,8 @@
 The installer checks out [notyourav/agbcc] at
 `1caa6becde5e4676b59c31c74d68f45ced79557c`, applies
 `tools/agbcp-asm-destructors.patch` and `tools/agbcc-long-calls.patch`, then
-runs its ordinary build and install scripts. The destructor patch is also
+runs its ordinary build and install scripts. The original assembler-name
+correction is also
 preserved in the sibling compiler repository's
 local `codex/cp-asm-destructors` branch at
 `52840e5535c8975649c1b767f77d82d057b3dbe5`; that branch is not published and
@@ -32,6 +33,23 @@ small Linux test entry and instructions. Both modes return zero under
 The compiler-only regression rebuilt all four existing game versions and
 preserved their full ROM bytes, symbol addresses and all 825 allocated-object
 signatures before the new destructor declarations were adopted.
+
+The installer patch also corrects generic multiple-inheritance forwarding
+thunks. Such a thunk copies its target's language flags, but must clear the
+copied destructor-kind bit before starting the forwarding function: it calls
+the destructor with an adjusted `this`, rather than being a second destructor.
+Without this correction, the Thumb frontend rejects even ordinary-named
+multiple-inheritance destructors. ARM's dedicated assembly-thunk path is
+unchanged; both frontend source trees receive the same generic-path fix.
+This follow-up is included in the installer patch, not in the older sibling
+branch commit mentioned above.
+
+`tests/asm-destructor-mi.cc` adds eight O0/O2 execution combinations across
+ARM/Thumb and ordinary/asm-labelled destructors. They check stack cleanup,
+virtual calls, deletion through primary and nonzero-offset secondary bases,
+and an implicit derived destructor. Each allocation must be freed exactly
+once at its complete-object address. The existing two destructor regressions
+still run as well; no instruction selection or project build flags change.
 
 ### Individual far-call declarations
 
