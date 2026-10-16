@@ -1135,6 +1135,7 @@ u8 * func_08010138(void);
 u32 func_08010148(void);
 ScriptEngine * func_0801014C(void);
 
+GameSceneSongPlayerPool & func_0801468C(GameScene & scene);
 u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind);
 bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & location,
     GameSceneFarmPlotLocation & output);
@@ -1156,6 +1157,8 @@ void func_0801D8CC(GameSceneWorldPrefix & world);
 void func_0801D948(GameSceneWorldPrefix & world);
 void func_0801D9A8(GameSceneWorldPrefix & world,
     GameSceneScriptRequest const & request, i32 delay);
+u32 func_0801D9BC(GameSceneWorldPrefix & world);
+GameSceneSongPlayerPool & func_0801DB44(GameSceneWorldPrefix & world);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
 void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,

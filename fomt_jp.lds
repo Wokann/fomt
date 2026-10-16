@@ -216,6 +216,8 @@ SECTIONS
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
         src/game_scene.o(.text.*__9GameScene*);
         asm/game_state.o(.text.game_scene_menu_hooks_after);
+        src/game_scene.o(.text.func_0801468C);
+        asm/game_state.o(.text.game_scene_song_players_after);
         src/game_scene.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
         src/game_scene.o(.text.func_0801B5C0);
@@ -226,7 +228,8 @@ SECTIONS
         asm/game_state.o(.text.game_scene_farm_plot_action_after);
         src/game_scene.o(.text.func_0801D3FC .text.func_0801D4E0 .text.func_0801D5BC
             .text.PickUpFieldItemAtLocation .text.func_0801D7B0 .text.func_0801D88C
-            .text.func_0801D8CC .text.func_0801D948 .text.func_0801D9A8);
+            .text.func_0801D8CC .text.func_0801D948 .text.func_0801D9A8
+            .text.func_0801D9BC .text.func_0801DB44);
         asm/game_state.o(.text.game_scene_item_actions_after);
         src/game_scene.o(.text.func_0801FB* .text.func_0801FC* .text.func_0801FD*);
         . = 0x1FB0C; /* JP ROM 0x0801FB0C, independently matched */

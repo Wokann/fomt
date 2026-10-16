@@ -701,6 +701,11 @@ void GameScene::DisableScriptedNpcControl()
     state->save->scripted_npc_control = 0;
 }
 
+EC GameSceneSongPlayerPool & func_0801468C(GameScene & scene)
+{
+    return scene.state->song_players;
+}
+
 EC u32 func_0801740C(FieldPlot const & plot)
 {
     switch (plot.GetUnk2()) {
@@ -1198,6 +1203,68 @@ EC void func_0801D9A8(GameSceneWorldPrefix & world,
     GameSceneScriptRequest const & request, i32 delay)
 {
     world.scene->QueueScript(request, delay);
+}
+
+EC u32 func_0801D9BC(GameSceneWorldPrefix & world)
+{
+    GameStateClock const & clock = world.save->clock;
+    if (clock.unk_00 == WEATHER_RAIN)
+        return AUDIO_AMBIENCE_RAIN;
+    if (clock.unk_00 == WEATHER_TYPHOON || clock.unk_00 == WEATHER_SNOWSTORM)
+        return AUDIO_AMBIENCE_STORM;
+
+    RecordPlayer * record_player = world.save->farm.farm_house.GetRecordPlayer();
+    u32 map = world.vfunc_14();
+    if (map >= MAP_SPRING_MINE_FLOOR_0 && map <= MAP_LAKE_MINE_FLOOR_255)
+        map = MAP_FARM;
+    switch (map) {
+    case MAP_MOTHERS_HILL_MIDDLE:
+    case MAP_FARM:
+    case MAP_FOREST:
+    case MAP_MOTHERS_HILL_SUMMIT:
+    case MAP_HORSE_STABLE:
+    case MAP_CHICKEN_COOP:
+    case MAP_MOUNTAIN_COTTAGE:
+    case MAP_FARMHOUSE:
+    case MAP_BARN:
+    case MAP_LAKE_MINE_ENTRANCE:
+    {
+        u8 hour = clock.calendar.time.clock_hour;
+        if (static_cast<u8>(hour - 6) <= 13) {
+            if (record_player != nullptr && record_player->HasAlbum())
+                return record_player->GetUnknown();
+            switch (static_cast<i32>(func_0800E324(clock.calendar))) {
+            case SEASON_SPRING:
+            default:
+                return AUDIO_BGM_SPRING;
+            case SEASON_SUMMER:
+                return AUDIO_BGM_SUMMER;
+            case SEASON_FALL:
+                return AUDIO_BGM_AUTUMN;
+            case SEASON_WINTER:
+                return AUDIO_BGM_WINTER;
+            }
+        }
+        goto night;
+    }
+    case MAP_MINERAL_BEACH:
+    case MAP_ZACK_HOUSE:
+    case MAP_BEACH_HOUSE:
+    case MAP_KAI_RESTAURANT:
+        return AUDIO_AMBIENCE_BEACH;
+    }
+    {
+        u8 hour = clock.calendar.time.clock_hour;
+        if (static_cast<u8>(hour - 6) <= 13)
+            return AUDIO_BGM_MINERAL_TOWN;
+    }
+night:
+    return AUDIO_AMBIENCE_NIGHT;
+}
+
+EC GameSceneSongPlayerPool & func_0801DB44(GameSceneWorldPrefix & world)
+{
+    return func_0801468C(*world.scene);
 }
 
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
