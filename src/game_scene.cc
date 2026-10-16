@@ -877,6 +877,18 @@ EC MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id)
     return MapTerrainView(attributes, indices, width, height);
 }
 
+EC TimeOfDayPeriod GetWorldTimeOfDayPeriod(GameSceneWorldPrefix &, u32 hour)
+{
+    if (hour <= 5)
+        return TIME_OF_DAY_PERIOD_NIGHT;
+    else if (hour <= 11)
+        return TIME_OF_DAY_PERIOD_MORNING;
+    else if (hour > 17)
+        return TIME_OF_DAY_PERIOD_EVENING;
+    else
+        return TIME_OF_DAY_PERIOD_AFTERNOON;
+}
+
 EC u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind)
 {
     switch (kind) {

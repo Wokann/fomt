@@ -10353,7 +10353,7 @@ func_08017348:
     lsls r1, r1, #0xb
     lsrs r1, r1, #0x1b
     adds r0, r7, #0
-    bl loc_0801A654
+    bl GetWorldTimeOfDayPeriod
     mov r1, sb
     str r0, [r1]
     ldr r0, [r4]
@@ -13718,7 +13718,9 @@ func_08019F38:
     sub sp, #0xc4
     str r0, [sp, #0x90]
     adds r4, r1, #0
-    .byte 0x17, 0x1C, 0x1B, 0x06, 0x1E, 0x0E, 0x00, 0xF0, 0xB5, 0xFB, 0x01, 0x1C, 0x24, 0x98, 0x0F, 0x4B
+    .byte 0x17, 0x1C, 0x1B, 0x06, 0x1E, 0x0E
+    bl GetWorldTimeOfDayPeriod
+    .byte 0x01, 0x1C, 0x24, 0x98, 0x0F, 0x4B
     .byte 0xC2, 0x18, 0x10, 0x68, 0x88, 0x42, 0x06, 0xD1, 0x20, 0x06, 0x2A, 0x90, 0x3B, 0x06, 0x2B, 0x93
     .byte 0x00, 0x2E, 0x00, 0xD1, 0x1E, 0xE3, 0x11, 0x60, 0x24, 0x9E, 0x70, 0x68, 0x8B, 0xF0, 0x1E, 0xFC
     .byte 0x70, 0x68, 0x01, 0x68, 0x06, 0x4A, 0xB0, 0x18, 0x00, 0x68, 0x08, 0x30, 0x2E, 0x29, 0x0D, 0xD0
@@ -13838,29 +13840,9 @@ func_08019F38:
     .byte 0x32, 0x6A, 0x00, 0x00, 0x2C, 0x0C, 0x00, 0x03, 0x29, 0x25, 0x00, 0x00, 0x38, 0x10, 0x00, 0x00
     .byte 0x48, 0x10, 0x00, 0x00, 0x4C, 0x10, 0x00, 0x00, 0x3E, 0x02, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF
     .byte 0x00, 0x00, 0xFF, 0xFF
-    .global loc_0801A654
-    .thumb_func
-    loc_0801A654:
-    push {lr}
-    cmp r1, #5
-    bhi .Lauto_0801A65E
-    movs r0, #3
-    b .Lauto_0801A670
-    .Lauto_0801A65E:
-    cmp r1, #0xb
-    bhi .Lauto_0801A666
-    movs r0, #0
-    b .Lauto_0801A670
-    .Lauto_0801A666:
-    cmp r1, #0x11
-    bhi .Lauto_0801A66E
-    movs r0, #1
-    b .Lauto_0801A670
-    .Lauto_0801A66E:
-    movs r0, #2
-    .Lauto_0801A670:
-    pop {r1}
-    bx r1
+    .section .text.game_scene_after_time_of_day_period, "ax", %progbits
+    .align 2, 0
+
     .global func_0801A8E0
     .thumb_func
 func_0801A8E0:
@@ -28646,7 +28628,7 @@ func_080175B4: @ 0x080175B4
     lsls r1, r1, #0xb
     lsrs r1, r1, #0x1b
     adds r0, r7, #0
-    bl func_0801A8C0
+    bl GetWorldTimeOfDayPeriod
     mov r1, sb
     str r0, [r1]
     ldr r0, [r4]
@@ -33798,7 +33780,7 @@ func_0801A13C: @ 0x0801A13C
     adds r7, r2, #0
     lsls r3, r3, #0x18
     lsrs r6, r3, #0x18
-    bl func_0801A8C0
+    bl GetWorldTimeOfDayPeriod
     adds r1, r0, #0
     ldr r0, [sp, #0x90]
     ldr r3, .L0801A198 @ =0x00001048
@@ -34755,28 +34737,8 @@ func_0801A13C: @ 0x0801A13C
 .L0801A8B8: .4byte 0xFFFFFF00
 .L0801A8BC: .4byte 0xFFFF0000
 
-    thumb_func_start func_0801A8C0
-func_0801A8C0: @ 0x0801A8C0
-    push {lr}
-    cmp r1, #5
-    bhi .L0801A8CA
-    movs r0, #3
-    b .L0801A8DC
-.L0801A8CA:
-    cmp r1, #0xb
-    bhi .L0801A8D2
-    movs r0, #0
-    b .L0801A8DC
-.L0801A8D2:
-    cmp r1, #0x11
-    bhi .L0801A8DA
-    movs r0, #1
-    b .L0801A8DC
-.L0801A8DA:
-    movs r0, #2
-.L0801A8DC:
-    pop {r1}
-    bx r1
+    .section .text.game_scene_after_time_of_day_period, "ax", %progbits
+    .align 2, 0
 
     thumb_func_start func_0801A8E0
 func_0801A8E0: @ 0x0801A8E0

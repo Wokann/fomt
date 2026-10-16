@@ -12,6 +12,7 @@
 #include "resource_handle.hh"
 #include "hardware_resource.hh"
 #include "hardware_state_clear.hh"
+#include "time_of_day.hh"
 #include <new>
 
 // Only the player virtual interface used by these scene commands is modeled.
@@ -1251,6 +1252,7 @@ void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
 i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map);
 i32 GetWorldMapPixelHeight(GameSceneWorldPrefix & world, u32 map);
 MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id);
+TimeOfDayPeriod GetWorldTimeOfDayPeriod(GameSceneWorldPrefix & world, u32 hour);
 void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,
     FieldPlot const * plot, FieldPlotRenderData const * render_data);
 

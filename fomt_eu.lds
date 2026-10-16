@@ -183,6 +183,8 @@ SECTIONS
         asm/game_state.o(.text.game_scene_field_item_tool_after);
         src/game_scene.o(.text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
         asm/game_state.o(.text.game_scene_after_map_terrain);
+        src/game_scene.o(.text.GetWorldTimeOfDayPeriod);
+        asm/game_state.o(.text.game_scene_after_time_of_day_period);
         src/game_scene.o(.text.func_0801B5C0);
         asm/game_state.o(.text.game_scene_palette_resource_selector_after);
         src/game_scene.o(.text.TryGetFarmPlotAtLocation);
