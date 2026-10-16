@@ -238,6 +238,9 @@ struct GameSceneWorldUnk1080Entry {
 // Only the verified prefix of the enclosing GameObject is modeled. It is
 // never allocated or used to infer the full size of a native world subclass.
 struct GameSceneWorldPrefix : GameObject {
+    // Native world slot +0x148 selects the default audio sequence.
+    virtual u32 GetDefaultAudioSequence() = 0;
+
     GameSceneWorldData data;
     GameStateSaveImage * save;
     u8 unk_103C[0x18];
@@ -362,6 +365,10 @@ struct GameSceneTalkWindowOwner {
 };
 
 struct GameSceneBgmSettings {
+    GameSceneBgmSettings()
+        : tempo(0x100), volume(0x100), pitch(0), pan(0),
+          modulation_depth(0), lfo_speed(0) {}
+
     u16 tempo;
     u16 volume;
     i16 pitch;
@@ -1159,6 +1166,7 @@ void func_0801D9A8(GameSceneWorldPrefix & world,
     GameSceneScriptRequest const & request, i32 delay);
 u32 func_0801D9BC(GameSceneWorldPrefix & world);
 GameSceneSongPlayerPool & func_0801DB44(GameSceneWorldPrefix & world);
+void func_0801DB58(GameSceneWorldPrefix & world);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
 void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,

@@ -1267,6 +1267,34 @@ EC GameSceneSongPlayerPool & func_0801DB44(GameSceneWorldPrefix & world)
     return func_0801468C(*world.scene);
 }
 
+EC void func_0801DB58(GameSceneWorldPrefix & world)
+{
+    GameSceneBgmSettings settings;
+    i32 map = world.vfunc_14();
+    if ((map >= MAP_SPRING_MINE_FLOOR_0 && map <= MAP_LAKE_MINE_FLOOR_255)
+        || map == MAP_LAKE_MINE_ENTRANCE) {
+        i32 floor;
+        if (map != MAP_LAKE_MINE_ENTRANCE) {
+            if (map > MAP_SPRING_MINE_FLOOR_255)
+                floor = map - MAP_LAKE_MINE_FLOOR_0;
+            else
+                floor = map - MAP_SPRING_MINE_FLOOR_0;
+        } else {
+            floor = 9;
+        }
+        i32 pitch = settings.pitch;
+        settings.pitch = pitch + (-0xA00 - pitch) * (floor + 1) / 0x100;
+    }
+    i32 fatigue = func_0800E4FC(world.save->farmer);
+    if (fatigue > 79) {
+        settings.modulation_depth = fatigue - 79;
+        settings.lfo_speed = 3;
+    }
+    GameScene * scene = world.scene;
+    u32 sequence = world.GetDefaultAudioSequence();
+    scene->PlayBGM(AUDIO_START_WEAK, sequence, settings);
+}
+
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
 {
     // Match native cleanup: release the first index, then destroy all three

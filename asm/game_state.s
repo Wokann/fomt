@@ -10380,7 +10380,9 @@ func_08017348:
     bl HasRegisteredEvents__C14GameEventState
     .byte 0x00, 0x06
     .byte 0x00, 0x28, 0x07, 0xD0, 0x39, 0x4B, 0xF8, 0x18, 0x00, 0x68, 0xFF, 0xF7, 0x2D, 0xF8, 0x00, 0x06
-    .byte 0x00, 0x28, 0x02, 0xD1, 0x38, 0x1C, 0x06, 0xF0, 0xED, 0xF9, 0xA0, 0x20, 0xE9, 0xF7, 0x5E, 0xF8
+    .byte 0x00, 0x28, 0x02, 0xD1, 0x38, 0x1C
+    bl func_0801DB58
+    .byte 0xA0, 0x20, 0xE9, 0xF7, 0x5E, 0xF8
     .byte 0x39, 0x1C
     bl __21GameSceneWorldUnk1020P10GameObject
     .byte 0x3B, 0x49, 0x7D, 0x18, 0x04, 0x1C, 0x28, 0x68, 0x84, 0x42
@@ -10998,7 +11000,7 @@ func_08017C30:
     movs r2, #0x9e
     bl PlaySong__9GameSceneiUi
     mov r0, r8
-    bl loc_0801D8EC
+    bl func_0801DB58
     b .Lauto_08017D92
     .byte 0x00, 0x00, 0x54, 0x10, 0x00, 0x00
     .Lauto_08017D4C:
@@ -11205,8 +11207,9 @@ func_08017C30:
     .byte 0x00, 0x68, 0xFE, 0xF7, 0xA3, 0xFA, 0x00, 0x06, 0x00, 0x28, 0x0A, 0xD0, 0x20, 0x68, 0x0D, 0x4B
     .byte 0xC0, 0x18
     bl HasRegisteredEvents__C14GameEventState
-    .byte 0x00, 0x06, 0x00, 0x28, 0x02, 0xD1, 0x40, 0x46, 0x05, 0xF0
-    .byte 0x5B, 0xFC, 0x0F, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC
+    .byte 0x00, 0x06, 0x00, 0x28, 0x02, 0xD1, 0x40, 0x46
+    bl func_0801DB58
+    .byte 0x0F, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC
     .byte 0x00, 0x47, 0x00, 0x00, 0x3C, 0x10, 0x00, 0x00, 0x38, 0x10, 0x00, 0x00, 0xD8, 0x1B, 0x00, 0x00
     .byte 0x54, 0x10, 0x00, 0x00, 0x4C, 0x21, 0x00, 0x00
     .global func_080182C8
@@ -13652,7 +13655,8 @@ func_08019BEC:
     .byte 0x03, 0x98, 0x00, 0x28, 0x14, 0xD0, 0x1A, 0x49, 0x78, 0x18, 0x00, 0x68, 0x19, 0x4A, 0x80, 0x18
     bl HasRegisteredEvents__C14GameEventState
     .byte 0x00, 0x06, 0x00, 0x28, 0x07, 0xD0, 0x17, 0x4B, 0xF8, 0x18, 0x00, 0x68
-    .byte 0xFC, 0xF7, 0x76, 0xFC, 0x00, 0x06, 0x00, 0x28, 0x02, 0xD1, 0x38, 0x1C, 0x03, 0xF0, 0x36, 0xFE
+    .byte 0xFC, 0xF7, 0x76, 0xFC, 0x00, 0x06, 0x00, 0x28, 0x02, 0xD1, 0x38, 0x1C
+    bl func_0801DB58
     .byte 0x78, 0x68, 0x40, 0x68, 0x8A, 0xF0, 0x24, 0xFA, 0x24, 0x30, 0x00, 0x78, 0x00, 0x28, 0x0C, 0xD1
     .byte 0x82, 0x21, 0x49, 0x01, 0x78, 0x18, 0x00, 0x68, 0x02, 0x68, 0xD1, 0x02, 0xC9, 0x0E, 0x52, 0x01
     .byte 0x92, 0x0E, 0x38, 0x1C, 0x01, 0x23, 0x00, 0xF0, 0x13, 0xF9, 0x09, 0xB0, 0x38, 0xBC, 0x98, 0x46
@@ -16201,101 +16205,6 @@ func_0801D23C:
     .section .text.game_scene_item_actions_after, "ax", %progbits
     .align 2, 0
 
-    .global loc_0801D8EC
-    .thumb_func
-    loc_0801D8EC:
-    push {r4, r5, lr}
-    sub sp, #0xc
-    adds r5, r0, #0
-    mov r0, sp
-    movs r2, #0
-    movs r3, #0
-    movs r1, #0x80
-    lsls r1, r1, #1
-    strh r1, [r0]
-    strh r1, [r0, #2]
-    strh r3, [r0, #4]
-    strb r2, [r0, #6]
-    strb r2, [r0, #7]
-    strb r2, [r0, #8]
-    ldr r0, [r5]
-    ldr r1, [r0, #0x14]
-    adds r0, r5, #0
-    bl _call_via_r1
-    adds r1, r0, #0
-    adds r2, r1, #0
-    subs r2, #0x34
-    ldr r0, [pc, #0x18]
-    cmp r2, r0
-    bls .Lauto_0801D922
-    cmp r1, #0x2b
-    bne .Lauto_0801D962
-    .Lauto_0801D922:
-    cmp r1, #0x2b
-    beq .Lauto_0801D944
-    ldr r0, [pc, #0x10]
-    cmp r1, r0
-    ble .Lauto_0801D940
-    ldr r0, [pc, #0xc]
-    adds r1, r1, r0
-    b .Lauto_0801D946
-    .byte 0x00, 0x00, 0xFF, 0x01, 0x00, 0x00, 0x33, 0x01, 0x00, 0x00, 0xCC, 0xFE, 0xFF, 0xFF
-    .Lauto_0801D940:
-    adds r1, r2, #0
-    b .Lauto_0801D946
-    .Lauto_0801D944:
-    movs r1, #9
-    .Lauto_0801D946:
-    mov r0, sp
-    movs r3, #4
-    ldrsh r2, [r0, r3]
-    mov r3, sp
-    ldr r0, [pc, #0x58]
-    subs r0, r0, r2
-    adds r1, #1
-    muls r0, r1, r0
-    cmp r0, #0
-    bge .Lauto_0801D95C
-    adds r0, #0xff
-    .Lauto_0801D95C:
-    asrs r0, r0, #8
-    adds r0, r2, r0
-    strh r0, [r3, #4]
-    .Lauto_0801D962:
-    ldr r1, [pc, #0x48]
-    adds r0, r5, r1
-    ldr r0, [r0]
-    ldr r3, [pc, #0x44]
-    adds r0, r0, r3
-    bl func_0800E4FC
-    cmp r0, #0x4f
-    ble .Lauto_0801D97E
-    mov r1, sp
-    subs r0, #0x4f
-    strb r0, [r1, #7]
-    movs r0, #3
-    strb r0, [r1, #8]
-    .Lauto_0801D97E:
-    ldr r1, [pc, #0x34]
-    adds r0, r5, r1
-    ldr r4, [r0]
-    ldr r0, [r5]
-    movs r3, #0xa4
-    lsls r3, r3, #1
-    adds r0, r0, r3
-    ldr r1, [r0]
-    adds r0, r5, #0
-    bl _call_via_r1
-    adds r2, r0, #0
-    adds r0, r4, #0
-    movs r1, #1
-    mov r3, sp
-    bl PlayBGM__9GameSceneiUiRC20GameSceneBgmSettings
-    add sp, #0xc
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0xF6, 0xFF, 0xFF, 0x38, 0x10, 0x00, 0x00, 0xD8, 0x1B, 0x00, 0x00, 0x54, 0x10, 0x00, 0x00
     .global func_0801DC24
     .thumb_func
 func_0801DC24:
@@ -16507,7 +16416,7 @@ func_0801DD84:
     adds r1, r5, #0
     bl RemoveAlbum__12RecordPlayer
     adds r0, r4, #0
-    bl loc_0801D8EC
+    bl func_0801DB58
     mov r0, sp
     bl GetArticle__C12ArticleStack
     adds r1, r0, #0
@@ -16619,7 +16528,7 @@ func_0801DE54:
     adds r2, r4, #0
     bl SetAlbum__12RecordPlayerRC7Article
     adds r0, r5, #0
-    bl loc_0801D8EC
+    bl func_0801DB58
     mov r0, sp
     bl GetArticle__C12ArticleStack
     adds r1, r0, #0
@@ -17568,7 +17477,7 @@ func_0801EAA0:
     cmp r0, #0
     bne .Lauto_0801EB6C
     adds r0, r7, #0
-    bl loc_0801D8EC
+    bl func_0801DB58
     .Lauto_0801EB6C:
     movs r3, #0xd4
     lsls r3, r3, #2
@@ -37741,108 +37650,6 @@ func_0801D23C:
     .byte 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
     .section .text.game_scene_item_actions_after, "ax", %progbits
     .align 2, 0
-
-    thumb_func_start func_0801DB58
-func_0801DB58: @ 0x0801DB58
-    push {r4, r5, lr}
-    sub sp, #0xc
-    adds r5, r0, #0
-    mov r0, sp
-    movs r2, #0
-    movs r3, #0
-    movs r1, #0x80
-    lsls r1, r1, #1
-    strh r1, [r0]
-    strh r1, [r0, #2]
-    strh r3, [r0, #4]
-    strb r2, [r0, #6]
-    strb r2, [r0, #7]
-    strb r2, [r0, #8]
-    ldr r0, [r5]
-    ldr r1, [r0, #0x14]
-    adds r0, r5, #0
-    bl _call_via_r1
-    adds r1, r0, #0
-    adds r2, r1, #0
-    subs r2, #0x34
-    ldr r0, .L0801DBA0 @ =0x000001FF
-    cmp r2, r0
-    bls .L0801DB8E
-    cmp r1, #0x2b
-    bne .L0801DBCE
-.L0801DB8E:
-    cmp r1, #0x2b
-    beq .L0801DBB0
-    ldr r0, .L0801DBA4 @ =0x00000133
-    cmp r1, r0
-    ble .L0801DBAC
-    ldr r0, .L0801DBA8 @ =0xFFFFFECC
-    adds r1, r1, r0
-    b .L0801DBB2
-    .align 2, 0
-.L0801DBA0: .4byte 0x000001FF
-.L0801DBA4: .4byte 0x00000133
-.L0801DBA8: .4byte 0xFFFFFECC
-.L0801DBAC:
-    adds r1, r2, #0
-    b .L0801DBB2
-.L0801DBB0:
-    movs r1, #9
-.L0801DBB2:
-    mov r0, sp
-    movs r3, #4
-    ldrsh r2, [r0, r3]
-    mov r3, sp
-    ldr r0, .L0801DC14 @ =0xFFFFF600
-    subs r0, r0, r2
-    adds r1, #1
-    muls r0, r1, r0
-    cmp r0, #0
-    bge .L0801DBC8
-    adds r0, #0xff
-.L0801DBC8:
-    asrs r0, r0, #8
-    adds r0, r2, r0
-    strh r0, [r3, #4]
-.L0801DBCE:
-    ldr r1, .L0801DC18 @ =0x00001038
-    adds r0, r5, r1
-    ldr r0, [r0]
-    ldr r3, .L0801DC1C @ =0x00001BD8
-    adds r0, r0, r3
-    bl func_0800E4FC
-    cmp r0, #0x4f
-    ble .L0801DBEA
-    mov r1, sp
-    subs r0, #0x4f
-    strb r0, [r1, #7]
-    movs r0, #3
-    strb r0, [r1, #8]
-.L0801DBEA:
-    ldr r1, .L0801DC20 @ =0x00001054
-    adds r0, r5, r1
-    ldr r4, [r0]
-    ldr r0, [r5]
-    movs r3, #0xa4
-    lsls r3, r3, #1
-    adds r0, r0, r3
-    ldr r1, [r0]
-    adds r0, r5, #0
-    bl _call_via_r1
-    adds r2, r0, #0
-    adds r0, r4, #0
-    movs r1, #1
-    mov r3, sp
-    bl PlayBGM__9GameSceneiUiRC20GameSceneBgmSettings
-    add sp, #0xc
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0801DC14: .4byte 0xFFFFF600
-.L0801DC18: .4byte 0x00001038
-.L0801DC1C: .4byte 0x00001BD8
-.L0801DC20: .4byte 0x00001054
 
     thumb_func_start func_0801DC24
 func_0801DC24: @ 0x0801DC24
