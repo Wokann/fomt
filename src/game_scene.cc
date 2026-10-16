@@ -937,6 +937,32 @@ EC bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & 
     return found;
 }
 
+EC u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location)
+{
+    u32 result = 0;
+    GameSceneFarmPlotLocation hit;
+    if (TryGetFarmPlotAtLocation(world, location, hit)) {
+        result = hit.plot->method_0800A190(world.save->clock.unk_00 == WEATHER_SUNNY);
+        if (world.vfunc_14() == location.GetMap()) {
+            GameSceneWorldMapPrefix * map = world.data.map.value;
+            Unk_Something const * render_data =
+                world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
+            func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
+        }
+        if (result == 3) {
+            for (u32 index = 0; index < ARRAY_COUNT(world.unk_1080); ++index) {
+                if (world.unk_1080[index].state == 0) {
+                    world.unk_1080[index].state = 2;
+                    world.unk_1080[index].tile_x = hit.tile_x;
+                    world.unk_1080[index].tile_y = hit.tile_y;
+                    break;
+                }
+            }
+        }
+    }
+    return result;
+}
+
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
 {
     // Match native cleanup: release the first index, then destroy all three

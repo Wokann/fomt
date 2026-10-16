@@ -67,6 +67,29 @@ struct Field
 
     FieldPlot & PlotAt(int x, int y) { return plots[x + y * Width]; }
 
+    bool Contains(i32 x, i32 y) const
+    {
+        bool inside = false;
+        if (x >= 0 && y >= 0 && x < static_cast<i32>(Width) && y < static_cast<i32>(Height))
+            inside = true;
+        return inside;
+    }
+
+    FieldPlot const * TryPlotAt(i32 x, i32 y) const
+    {
+        if (Contains(x, y))
+            return &PlotAt(x, y);
+        return nullptr;
+    }
+
+    Unk_Something const * PlotRenderDataAt(i32 x, i32 y) const
+    {
+        FieldPlot const & plot = PlotAt(x, y);
+        FieldPlot const * below = TryPlotAt(x, y + 1);
+        FieldPlot const * above = TryPlotAt(x, y - 1);
+        return plot.method_0800AF5C(below, above);
+    }
+
     bool FindRandomSpotFor(int id, i32 (&out_pos)[2]) const
     {
         bool big = id > 0x1A;

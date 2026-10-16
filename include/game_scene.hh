@@ -221,6 +221,18 @@ private:
     GameSceneWorldData & operator=(GameSceneWorldData const &);
 };
 
+// Native construction clears four records; update/draw code uses a 12-byte stride.
+// Only the state bits and tile coordinates have been identified.
+struct GameSceneWorldUnk1080Entry {
+    u8 unk_00;
+    u8 state : 2;
+    u8 unk_01_02 : 6;
+    u8 unk_02[2];
+    u16 tile_x;
+    u16 tile_y;
+    u32 unk_08;
+};
+
 // Only the verified prefix of the enclosing GameObject is modeled. It is
 // never allocated or used to infer the full size of a native world subclass.
 struct GameSceneWorldPrefix : GameObject {
@@ -228,17 +240,27 @@ struct GameSceneWorldPrefix : GameObject {
     GameStateSaveImage * save;
     u8 unk_103C[0x40];
     GameSceneWorldUnkOwner unk_107C;
+    GameSceneWorldUnk1080Entry unk_1080[4];
 };
 
 // A successful farm lookup returns the plot and both tile/grid coordinates.
 struct FieldPlot;
+struct Unk_Something;
 struct GameSceneFarmPlotLocation {
+    GameSceneFarmPlotLocation()
+        : plot(nullptr), tile_x(0), tile_y(0), column(0), row(0) {}
+
     FieldPlot * plot;
     u16 tile_x;
     u16 tile_y;
     u16 column;
     u16 row;
 };
+
+typedef char GameSceneWorldUnk1080EntrySizeCheck[sizeof(GameSceneWorldUnk1080Entry) == 12 ? 1 : -1];
+typedef char GameSceneWorldUnk1080TileXCheck[offsetof(GameSceneWorldUnk1080Entry, tile_x) == 4 ? 1 : -1];
+typedef char GameSceneWorldUnk1080TailCheck[offsetof(GameSceneWorldUnk1080Entry, unk_08) == 8 ? 1 : -1];
+typedef char GameSceneWorldUnk1080Check[offsetof(GameSceneWorldPrefix, unk_1080) == 0x1080 ? 1 : -1];
 
 typedef char GameSceneFarmPlotLocationSizeCheck[sizeof(GameSceneFarmPlotLocation) == 12 ? 1 : -1];
 typedef char GameSceneFarmPlotTileXCheck[offsetof(GameSceneFarmPlotLocation, tile_x) == 4 ? 1 : -1];
@@ -1091,6 +1113,9 @@ ScriptEngine * func_0801014C(void);
 u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind);
 bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & location,
     GameSceneFarmPlotLocation & output);
+u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location);
+void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,
+    FieldPlot const * plot, Unk_Something const * render_data);
 
 // Recovered native world callbacks. The duplicate slot readers retain
 // separate entries; neither adds bounds checking absent from the original.

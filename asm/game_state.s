@@ -14774,168 +14774,9 @@ func_0801C0E0:
     .byte 0x0E, 0xD9, 0x41, 0x46, 0x6A, 0x1A, 0x52, 0x08, 0xE1, 0x1A, 0x49, 0x08, 0x50, 0x00, 0x40, 0x44
     .byte 0x38, 0x80, 0x48, 0x00, 0x18, 0x18, 0x78, 0x80, 0xBA, 0x80, 0xF9, 0x80, 0x01, 0x20, 0x81, 0x46
     .byte 0x48, 0x46, 0x01, 0xB0, 0x18, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
-    .global func_0801C29C
-    .thumb_func
-func_0801C29C:
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #0x10
-    adds r5, r0, #0
-    adds r7, r1, #0
-    movs r6, #0
-    add r0, sp, #4
-    str r6, [sp, #4]
-    strh r6, [r0, #4]
-    strh r6, [r0, #6]
-    strh r6, [r0, #8]
-    strh r6, [r0, #0xa]
-    adds r0, r5, #0
-    add r2, sp, #4
-    bl TryGetFarmPlotAtLocation
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .Lauto_0801C05A
-    b .Lauto_0801C15C
-    .Lauto_0801C05A:
-    ldr r2, [sp, #4]
-    movs r1, #0
-    ldr r0, [pc, #0x6c]
-    adds r4, r5, r0
-    ldr r0, [r4]
-    ldr r0, [r0, #8]
-    cmp r0, #0
-    bne .Lauto_0801C06C
-    movs r1, #1
-    .Lauto_0801C06C:
-    adds r0, r2, #0
-    bl method_0800A190__9FieldPlotb
-    adds r6, r0, #0
-    ldr r0, [r5]
-    ldr r1, [r0, #0x14]
-    adds r0, r5, #0
-    bl _call_via_r1
-    ldrh r1, [r7]
-    lsls r1, r1, #0x16
-    lsrs r1, r1, #0x16
-    cmp r0, r1
-    bne .Lauto_0801C13E
-    ldr r2, [r5, #4]
-    mov r8, r2
-    add r1, sp, #4
-    adds r2, r1, #0
-    ldr r0, [r4]
-    ldr r3, [pc, #0x3c]
-    adds r4, r0, r3
-    ldrh r3, [r1, #8]
-    ldrh r2, [r2, #0xa]
-    movs r0, #0x2b
-    muls r0, r2, r0
-    adds r0, r3, r0
-    lsls r0, r0, #2
-    adds r7, r4, r0
-    adds r1, r2, #1
-    movs r0, #0
-    cmp r3, #0
-    blt .Lauto_0801C0BA
-    cmp r1, #0
-    blt .Lauto_0801C0BA
-    cmp r3, #0x2a
-    bgt .Lauto_0801C0BA
-    cmp r1, #0x18
-    bgt .Lauto_0801C0BA
-    movs r0, #1
-    .Lauto_0801C0BA:
-    cmp r0, #0
-    beq .Lauto_0801C0D4
-    movs r0, #0x2b
-    muls r0, r1, r0
-    adds r0, r3, r0
-    lsls r0, r0, #2
-    adds r1, r4, r0
-    b .Lauto_0801C0D6
-    .byte 0x00, 0x00, 0x38, 0x10, 0x00, 0x00, 0xDC, 0x09, 0x00, 0x00
-    .Lauto_0801C0D4:
-    movs r1, #0
-    .Lauto_0801C0D6:
-    subs r2, #1
-    movs r0, #0
-    cmp r3, #0
-    blt .Lauto_0801C0EC
-    cmp r2, #0
-    blt .Lauto_0801C0EC
-    cmp r3, #0x2a
-    bgt .Lauto_0801C0EC
-    cmp r2, #0x18
-    bgt .Lauto_0801C0EC
-    movs r0, #1
-    .Lauto_0801C0EC:
-    cmp r0, #0
-    beq .Lauto_0801C124
-    movs r0, #0x2b
-    muls r0, r2, r0
-    adds r0, r3, r0
-    lsls r0, r0, #2
-    adds r2, r4, r0
-    b .Lauto_0801C126
-    .Lauto_0801C0FC:
-    movs r0, #4
-    rsbs r0, r0, #0
-    ands r0, r1
-    movs r1, #2
-    orrs r0, r1
-    strb r0, [r2]
-    add r0, sp, #4
-    ldrh r1, [r0, #4]
-    ldr r2, [pc, #0x10]
-    adds r0, r3, r2
-    strh r1, [r0]
-    add r0, sp, #4
-    ldrh r1, [r0, #6]
-    adds r2, #2
-    adds r0, r3, r2
-    strh r1, [r0]
-    b .Lauto_0801C15C
-    .byte 0x00, 0x00, 0x84, 0x10, 0x00, 0x00
-    .Lauto_0801C124:
-    movs r2, #0
-    .Lauto_0801C126:
-    adds r0, r7, #0
-    bl method_0800AF5C__C9FieldPlotPC9FieldPlotT1
-    add r1, sp, #4
-    ldrh r1, [r1, #4]
-    add r2, sp, #4
-    ldrh r2, [r2, #6]
-    ldr r3, [sp, #4]
-    str r0, [sp]
-    mov r0, r8
-    bl func_080AA108
-    .Lauto_0801C13E:
-    cmp r6, #3
-    bne .Lauto_0801C15C
-    movs r4, #0
-    ldr r3, [pc, #0x24]
-    adds r2, r5, r3
-    adds r3, r5, #0
-    .Lauto_0801C14A:
-    ldrb r1, [r2]
-    lsls r0, r1, #0x1e
-    cmp r0, #0
-    beq .Lauto_0801C0FC
-    adds r2, #0xc
-    adds r3, #0xc
-    adds r4, #1
-    cmp r4, #3
-    bls .Lauto_0801C14A
-    .Lauto_0801C15C:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00, 0x81, 0x10, 0x00, 0x00
+    .section .text.game_scene_farm_plot_action_after, "ax", %progbits
+    .align 2, 0
+
     .global func_0801C3DC
     .thumb_func
 func_0801C3DC:
@@ -15379,7 +15220,7 @@ func_0801C69C:
     ldr r1, [sp, #0xc]
     mov r2, sl
     ldr r3, [sp, #0x10]
-    bl func_080AA108
+    bl func_080AA6D0
     .Lauto_0801C5F6:
     ldr r0, [sp, #8]
     add sp, #0x14
@@ -15942,7 +15783,7 @@ func_0801CBB0:
     str r0, [sp]
     mov r0, sl
     mov r3, sb
-    bl func_080AA108
+    bl func_080AA6D0
     .Lauto_0801CB3E:
     ldr r0, [sp, #4]
     add sp, #8
@@ -16499,7 +16340,9 @@ func_0801D23C:
     .byte 0x00, 0x23, 0x00, 0x2C, 0x06, 0xDB, 0x00, 0x28, 0x04, 0xDB, 0x2A, 0x2C, 0x02, 0xDC, 0x18, 0x28
     .byte 0x00, 0xDC, 0x01, 0x23, 0x00, 0x2B, 0x05, 0xD0, 0x2B, 0x23, 0x58, 0x43, 0x20, 0x18, 0x80, 0x00
     .byte 0x12, 0x18, 0x00, 0xE0, 0x00, 0x22, 0x60, 0x46, 0xED, 0xF7, 0xF4, 0xFE, 0x00, 0x90, 0x50, 0x46
-    .byte 0x06, 0x99, 0x4A, 0x46, 0x3B, 0x1C, 0x8C, 0xF0, 0xD3, 0xFF, 0x02, 0x20, 0x81, 0x44, 0x2B, 0x36
+    .byte 0x06, 0x99, 0x4A, 0x46, 0x3B, 0x1C
+    bl func_080AA6D0
+    .byte 0x02, 0x20, 0x81, 0x44, 0x2B, 0x36
     .byte 0x01, 0x35, 0x07, 0x99, 0x01, 0x39, 0x07, 0x91, 0x00, 0x29, 0x9D, 0xDA
     .Lauto_0801D174:
     ldr r2, [sp, #0x24]
@@ -16555,7 +16398,9 @@ func_0801D3FC:
     .byte 0x06, 0xDB, 0x00, 0x2A, 0x04, 0xDB, 0x2A, 0x2B, 0x02, 0xDC, 0x18, 0x2A, 0x00, 0xDC, 0x01, 0x20
     .byte 0x00, 0x28, 0x05, 0xD0, 0x2B, 0x20, 0x50, 0x43, 0x18, 0x18, 0x80, 0x00, 0x22, 0x18, 0x00, 0xE0
     .byte 0x00, 0x22, 0x28, 0x1C, 0xED, 0xF7, 0x76, 0xFE, 0x01, 0xA9, 0x89, 0x88, 0x01, 0xAA, 0xD2, 0x88
-    .byte 0x01, 0x9B, 0x00, 0x90, 0x30, 0x1C, 0x8C, 0xF0, 0x53, 0xFF, 0x01, 0x2F, 0x01, 0xD1, 0x01, 0x20
+    .byte 0x01, 0x9B, 0x00, 0x90, 0x30, 0x1C
+    bl func_080AA6D0
+    .byte 0x01, 0x2F, 0x01, 0xD1, 0x01, 0x20
     .byte 0x00, 0xE0
     .Lauto_0801D26A:
     movs r0, #0
@@ -16668,7 +16513,7 @@ func_0801D4E0:
     ldr r3, [sp, #4]
     str r0, [sp]
     adds r0, r6, #0
-    bl func_080AA108
+    bl func_080AA6D0
     .Lauto_0801D346:
     add sp, #0x10
     pop {r4, r5, r6}
@@ -16782,7 +16627,7 @@ func_0801D5BC:
     ldr r3, [sp, #4]
     str r0, [sp]
     adds r0, r6, #0
-    bl func_080AA108
+    bl func_080AA6D0
     b .Lauto_0801D436
     .Lauto_0801D428:
     add r0, sp, #0x10
@@ -16923,7 +16768,7 @@ func_0801D7B0:
     ldr r3, [sp, #4]
     str r0, [sp]
     adds r0, r6, #0
-    bl func_080AA108
+    bl func_080AA6D0
     .Lauto_0801D616:
     add sp, #0x10
     pop {r4, r5, r6}
@@ -17826,7 +17671,7 @@ func_0801DEB4:
     ldr r1, [sp, #0xc]
     mov r2, sb
     adds r3, r6, #0
-    bl func_080AA108
+    bl func_080AA6D0
     .Lauto_0801DDF0:
     movs r6, #2
     add sb, r6
@@ -37786,171 +37631,9 @@ func_0801C198: @ 0x0801C198
     pop {r1}
     bx r1
 
-    thumb_func_start func_0801C29C
-func_0801C29C: @ 0x0801C29C
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #0x10
-    adds r5, r0, #0
-    adds r7, r1, #0
-    movs r6, #0
-    add r0, sp, #4
-    str r6, [sp, #4]
-    strh r6, [r0, #4]
-    strh r6, [r0, #6]
-    strh r6, [r0, #8]
-    strh r6, [r0, #0xa]
-    adds r0, r5, #0
-    add r2, sp, #4
-    bl TryGetFarmPlotAtLocation
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L0801C2C6
-    b .L0801C3C8
-.L0801C2C6:
-    ldr r2, [sp, #4]
-    movs r1, #0
-    ldr r0, .L0801C338 @ =0x00001038
-    adds r4, r5, r0
-    ldr r0, [r4]
-    ldr r0, [r0, #8]
-    cmp r0, #0
-    bne .L0801C2D8
-    movs r1, #1
-.L0801C2D8:
-    adds r0, r2, #0
-    bl method_0800A190__9FieldPlotb
-    adds r6, r0, #0
-    ldr r0, [r5]
-    ldr r1, [r0, #0x14]
-    adds r0, r5, #0
-    bl _call_via_r1
-    ldrh r1, [r7]
-    lsls r1, r1, #0x16
-    lsrs r1, r1, #0x16
-    cmp r0, r1
-    bne .L0801C3AA
-    ldr r2, [r5, #4]
-    mov r8, r2
-    add r1, sp, #4
-    adds r2, r1, #0
-    ldr r0, [r4]
-    ldr r3, .L0801C33C @ =0x000009DC
-    adds r4, r0, r3
-    ldrh r3, [r1, #8]
-    ldrh r2, [r2, #0xa]
-    movs r0, #0x2b
-    muls r0, r2, r0
-    adds r0, r3, r0
-    lsls r0, r0, #2
-    adds r7, r4, r0
-    adds r1, r2, #1
-    movs r0, #0
-    cmp r3, #0
-    blt .L0801C326
-    cmp r1, #0
-    blt .L0801C326
-    cmp r3, #0x2a
-    bgt .L0801C326
-    cmp r1, #0x18
-    bgt .L0801C326
-    movs r0, #1
-.L0801C326:
-    cmp r0, #0
-    beq .L0801C340
-    movs r0, #0x2b
-    muls r0, r1, r0
-    adds r0, r3, r0
-    lsls r0, r0, #2
-    adds r1, r4, r0
-    b .L0801C342
+    .section .text.game_scene_farm_plot_action_after, "ax", %progbits
     .align 2, 0
-.L0801C338: .4byte 0x00001038
-.L0801C33C: .4byte 0x000009DC
-.L0801C340:
-    movs r1, #0
-.L0801C342:
-    subs r2, #1
-    movs r0, #0
-    cmp r3, #0
-    blt .L0801C358
-    cmp r2, #0
-    blt .L0801C358
-    cmp r3, #0x2a
-    bgt .L0801C358
-    cmp r2, #0x18
-    bgt .L0801C358
-    movs r0, #1
-.L0801C358:
-    cmp r0, #0
-    beq .L0801C390
-    movs r0, #0x2b
-    muls r0, r2, r0
-    adds r0, r3, r0
-    lsls r0, r0, #2
-    adds r2, r4, r0
-    b .L0801C392
-.L0801C368:
-    movs r0, #4
-    rsbs r0, r0, #0
-    ands r0, r1
-    movs r1, #2
-    orrs r0, r1
-    strb r0, [r2]
-    add r0, sp, #4
-    ldrh r1, [r0, #4]
-    ldr r2, .L0801C38C @ =0x00001084
-    adds r0, r3, r2
-    strh r1, [r0]
-    add r0, sp, #4
-    ldrh r1, [r0, #6]
-    adds r2, #2
-    adds r0, r3, r2
-    strh r1, [r0]
-    b .L0801C3C8
-    .align 2, 0
-.L0801C38C: .4byte 0x00001084
-.L0801C390:
-    movs r2, #0
-.L0801C392:
-    adds r0, r7, #0
-    bl method_0800AF5C__C9FieldPlotPC9FieldPlotT1
-    add r1, sp, #4
-    ldrh r1, [r1, #4]
-    add r2, sp, #4
-    ldrh r2, [r2, #6]
-    ldr r3, [sp, #4]
-    str r0, [sp]
-    mov r0, r8
-    bl func_080AA6D0
-.L0801C3AA:
-    cmp r6, #3
-    bne .L0801C3C8
-    movs r4, #0
-    ldr r3, .L0801C3D8 @ =0x00001081
-    adds r2, r5, r3
-    adds r3, r5, #0
-.L0801C3B6:
-    ldrb r1, [r2]
-    lsls r0, r1, #0x1e
-    cmp r0, #0
-    beq .L0801C368
-    adds r2, #0xc
-    adds r3, #0xc
-    adds r4, #1
-    cmp r4, #3
-    bls .L0801C3B6
-.L0801C3C8:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L0801C3D8: .4byte 0x00001081
+
 .L0801C3DC:
     .global func_0801C3DC
     .thumb_func

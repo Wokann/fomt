@@ -10850,7 +10850,7 @@ func_080A6098: @ 0x080A6098
 	ldr r2, [sp, #0x20]
 	adds r2, #0x16
 	adds r3, r5, #0
-	bl func_080AA108
+	bl func_080AA6D0
 	movs r0, #2
 	add sl, r0
 	adds r4, #1
@@ -11033,7 +11033,7 @@ func_080A6098: @ 0x080A6098
 	ldr r2, [sp, #0x28]
 	adds r2, #0x16
 	adds r3, r5, #0
-	bl func_080AA108
+	bl func_080AA6D0
 	movs r0, #2
 	add sl, r0
 	adds r4, #1
@@ -18402,9 +18402,9 @@ func_080A9F78: @ 0x080A9F78
 	bx r0
 	.align 2, 0
 
-    .global func_080AA108
+    .global func_080AA6D0
     .thumb_func
-func_080AA108: @ 0x080AA108
+func_080AA6D0: @ 0x080AA108
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
