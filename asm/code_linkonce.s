@@ -4,8 +4,8 @@
 
 	.section ".text.code_080D3C78"
 
-	thumb_func_start func_080D3C78
-func_080D3C78: @ 0x080D3C78
+	thumb_func_start DestroyIntroSceneCore
+DestroyIntroSceneCore: @ 0x080D3C78
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0
@@ -387,36 +387,8 @@ func_080D3EF4: @ 0x080D3EF4
 .L080D3FFC: .4byte 0x00000524
 .L080D4000: .4byte gUnk_0300040C
 
-	thumb_func_start func_080D4004
-func_080D4004: @ 0x080D4004
-	push {r4, lr}
-	sub sp, #0xc
-	adds r4, r0, #0
-	movs r0, #8
-	bl __builtin_new
-	bl ConstructGameIntroScene
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	adds r2, r1, #0
-	movs r1, #0
-	str r1, [r2]
-	str r0, [r4]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080D4036
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080D4036:
-	adds r0, r4, #0
-	add sp, #0xc
-	pop {r4}
-	pop {r1}
-	bx r1
+	.section .text.intro_scene_after_factory, "ax", %progbits
+	.align 2, 0
 
 	thumb_func_start func_080D4040
 func_080D4040: @ 0x080D4040

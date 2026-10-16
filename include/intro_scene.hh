@@ -151,11 +151,16 @@ typedef char IntroSceneCoreArchiveOffsetCheck[(offsetof(IntroSceneCore, intro_ar
 typedef char IntroSceneCoreResourcesOffsetCheck[(offsetof(IntroSceneCore, resources) == 0x6AA0) ? 1 : -1];
 typedef char IntroSceneCoreHardwareHandlesOffsetCheck[(offsetof(IntroSceneCore, state_handle_6C78) == 0x6C78) ? 1 : -1];
 
-struct GameIntroScene
+struct GameIntroScene : AScene
 {
-    IntroSceneVTableFunction const * vtable;
     IntroSceneCore * core;
+    GameIntroScene() asm("ConstructGameIntroScene");
+    virtual ~GameIntroScene() asm("DestroyGameIntroScene");
+    virtual SceneTransitionOwner Run() asm("RunGameIntroScene");
 };
+
+typedef char GameIntroSceneSizeCheck[sizeof(GameIntroScene) == 8 ? 1 : -1];
+typedef char GameIntroSceneCoreOffsetCheck[offsetof(GameIntroScene, core) == 4 ? 1 : -1];
 
 struct IntroNameEntryTransition : SceneTransition
 {
@@ -173,8 +178,9 @@ extern IntroSceneCoreVTable const vtable_unk_080E5A0C;
 extern u8 const gIntroSceneIndexedArchiveCompressed[];
 extern u8 const gIntroSceneSmallIndexedArchive[];
 extern u8 const gActorIndexedResourceArchive[];
-extern IntroSceneVTableFunction const vtable_unk_080E5A18[];
 IntroSceneCore * ConstructIntroSceneCore(void * core) SECTION(".text.intro_scene_core_constructor");
+// The core's full member cleanup remains native Thumb assembly.
+void DestroyIntroSceneCore(IntroSceneCore * core, int flags);
 void StartIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_startup");
 void func_08000F5C(IntroSceneCore * core);
 int RunIntroSceneSequence(IntroSceneCore * core) SECTION(".text.intro_scene_core_sequence");
@@ -187,6 +193,7 @@ void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
 void DestroyGameIntroScene(GameIntroScene * scene, int flags);
 SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene);
+SceneOwner CreateIntroScene(SceneTransition * transition) SECTION(".text.intro_scene_factory");
 SceneTransitionOwner RunIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_run");
 
 EXTERN_C_END
