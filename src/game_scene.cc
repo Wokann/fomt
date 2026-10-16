@@ -3,6 +3,7 @@
 #include <new>
 #include "hardware_blend.hh"
 #include "game_state.hh"
+#include "field_item_data.hh"
 #include "entity_actor.hh"
 #include "npc_entity.hh"
 #include "entity_ui.hh"
@@ -992,6 +993,69 @@ EC void func_0801D4E0(GameSceneWorldPrefix & world, Location const & location, i
             func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
         }
     }
+}
+
+EC void func_0801D5BC(GameSceneWorldPrefix & world, Location const & location,
+    RucksackItem & output)
+{
+    GameSceneFarmPlotLocation hit;
+    if (TryGetFarmPlotAtLocation(world, location, hit)) {
+        output = hit.plot->method_0800A4A4();
+        if (world.vfunc_14() == location.GetMap()) {
+            GameSceneWorldMapPrefix * map = world.data.map.value;
+            Unk_Something const * render_data =
+                world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
+            func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
+        }
+    } else {
+        output = PickUpFieldItemAtLocation(world, location);
+    }
+}
+
+EC RucksackItem PickUpFieldItemAtLocation(GameSceneWorldPrefix & world, Location const & location)
+{
+    FieldItemState & items = world.save->field_items;
+    i32 season = func_0800E324(world.save->clock.calendar);
+    Box area(location.GetX(), location.GetY(), 1, 1);
+    i32 index = items.Find(location.GetMap(), area, season);
+    RucksackItem item;
+    if (index != -1) {
+        item = items.PickUp(location.GetMap(), area, season);
+        if (!item.IsEmpty() && location.GetMap() == world.data.map.value->map) {
+            FieldItemInstance record = items.GetRecord(index);
+            GameSceneWorldMapPrefix * map = world.data.map.value;
+            Vec2 position(record.x / 8, record.y / 8);
+            func_080A5F78(map, 1, position, 2, 2);
+        }
+    }
+    return item;
+}
+
+EC void func_0801D7B0(GameSceneWorldPrefix & world, Location const & location,
+    Article const & article)
+{
+    GameSceneFarmPlotLocation hit;
+    if (TryGetFarmPlotAtLocation(world, location, hit)) {
+        hit.plot->method_0800A6F4(article);
+        if (world.vfunc_14() == location.GetMap()) {
+            GameSceneWorldMapPrefix * map = world.data.map.value;
+            Unk_Something const * render_data =
+                world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
+            func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
+        }
+    }
+}
+
+EC u32 func_0801D88C(GameSceneWorldPrefix & world, Location const & location,
+    Article const & article)
+{
+    GameSceneFarmPlotLocation hit;
+    if (TryGetFarmPlotAtLocation(world, location, hit)) {
+        if (hit.plot->method_0800A6C8(article))
+            return 0;
+        return 1;
+    }
+    return 2;
 }
 
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()

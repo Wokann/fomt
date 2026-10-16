@@ -183,8 +183,9 @@ SECTIONS
         asm/game_state.o(.text.game_scene_farm_plot_query_after);
         src/game_scene.o(.text.func_0801C29C);
         asm/game_state.o(.text.game_scene_farm_plot_action_after);
-        src/game_scene.o(.text.func_0801D3FC .text.func_0801D4E0);
-        asm/game_state.o(.text.game_scene_farm_plot_followup_after);
+        src/game_scene.o(.text.func_0801D3FC .text.func_0801D4E0 .text.func_0801D5BC
+            .text.PickUpFieldItemAtLocation .text.func_0801D7B0 .text.func_0801D88C);
+        asm/game_state.o(.text.game_scene_item_actions_after);
         src/game_scene.o(.text.func_0801FB* .text.func_0801FC* .text.func_0801FD*);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);

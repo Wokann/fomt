@@ -18,6 +18,7 @@
 // The complete player payload, construction, and action implementations remain
 // native. This prefix is never allocated or used to infer the complete size.
 struct RucksackItem;
+struct Article;
 struct GameScenePlayerActor : AActorEntity {
     /* vt+3C */ virtual void vfunc_3C();
     /* vt+40 */ virtual bool IsRidingHorse();
@@ -1116,6 +1117,15 @@ bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & loc
 u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location);
 u32 func_0801D3FC(GameSceneWorldPrefix & world, Location const & location);
 void func_0801D4E0(GameSceneWorldPrefix & world, Location const & location, i32 id);
+void func_0801D5BC(GameSceneWorldPrefix & world, Location const & location,
+    RucksackItem & output);
+RucksackItem PickUpFieldItemAtLocation(GameSceneWorldPrefix & world, Location const & location);
+void func_0801D7B0(GameSceneWorldPrefix & world, Location const & location,
+    Article const & article);
+u32 func_0801D88C(GameSceneWorldPrefix & world, Location const & location,
+    Article const & article);
+void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
+    Vec2 const & position, u32 width, u32 height);
 void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,
     FieldPlot const * plot, Unk_Something const * render_data);
 

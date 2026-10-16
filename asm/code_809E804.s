@@ -9168,9 +9168,9 @@ func_080A5EB8: @ 0x080A58F0
 	bx r1
 	.align 2, 0
 
-    .global func_080A59B0
+    .global func_080A5F78
     .thumb_func
-func_080A59B0: @ 0x080A59B0
+func_080A5F78: @ 0x080A59B0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
