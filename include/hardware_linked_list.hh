@@ -17,6 +17,7 @@ struct HardwareLinkBase {
     void ** vtable;
 #ifdef __cplusplus
     HardwareLinkBase() asm("func_08009A38") SECTION(".text.hardware_linked_list_tail");
+    ~HardwareLinkBase() asm("func_080098AC");
 #endif
 };
 
@@ -42,6 +43,8 @@ struct HardwareLinkedList {
     struct HardwareLink sentinel;
 #ifdef __cplusplus
     HardwareLinkedList() asm("func_08009A04") SECTION(".text.hardware_linked_list_constructor");
+    // Bind the native cleanup ABI while its complete virtual base is unresolved.
+    ~HardwareLinkedList() asm("func_080098DC");
 #endif
 };
 

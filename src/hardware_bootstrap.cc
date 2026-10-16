@@ -96,7 +96,6 @@ void func_08008724(struct HardwareBootstrap * owner)
     void ** vtable = *(void ***)((u8 *)object + 8);
     ((void (*)(void *, struct HardwareDisplayCommand *))vtable[4])(object, &command);
     func_08008AF0(manager);
-    func_080098AC(&command, 2);
 }
 
 void func_08008774(struct HardwareBootstrap * owner)
@@ -116,7 +115,6 @@ void func_08008774(struct HardwareBootstrap * owner)
     void ** vtable = *(void ***)((u8 *)object + 8);
     ((void (*)(void *, struct HardwareDisplayCommand *))vtable[4])(object, &command);
     func_08008AF0(manager);
-    func_080098AC(&command, 2);
 }
 
 void UpdateHardwareFrame(struct HardwareBootstrap * owner)
@@ -141,10 +139,7 @@ void UpdateHardwareFrame(struct HardwareBootstrap * owner)
     vtable = *reinterpret_cast<void ***>((u8 *)object + 8);
     ((void (*)(void *, HardwareLinkedList *))vtable[5])(object, &commands);
 
-    func_080098DC(&commands, 2);
-    func_080098AC(&dma, 2);
-    func_080098AC(&sprite, 2);
-    func_080098AC(&display, 2);
+    // The list and commands unlink in reverse construction order at scope exit.
 }
 
 u32 RunHardwareDisplayCommand(struct HardwareDisplayCommand * command)

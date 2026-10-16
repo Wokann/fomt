@@ -2,25 +2,19 @@
 #pragma implementation "hardware_linked_list.hh"
 #include "hardware_linked_list.hh"
 
-extern void __builtin_delete(void * pointer);
-
 typedef u8 (*HardwareLinkTest)(struct HardwareLink * node);
 typedef void (*HardwareLinkRemove)(struct HardwareLinkedList * list, struct HardwareLink * node);
 
-EXTERN_C
-
-void func_080098AC(void * object, u32 flags)
+HardwareLinkBase::~HardwareLinkBase()
 {
-    struct HardwareLink * link = (struct HardwareLink *)object;
-    link->vtable = (void **)vtable_unk_080E5BE8;
-    if (link->previous_slot != 0) {
-        struct HardwareLink ** previous_slot = link->previous_slot;
-        *previous_slot = link->next;
-        link->next->previous_slot = previous_slot;
+    vtable = (void **)vtable_unk_080E5BE8;
+    if (previous_slot != 0) {
+        *previous_slot = next;
+        next->previous_slot = previous_slot;
     }
-    if (flags & 1)
-        __builtin_delete(object);
 }
+
+EXTERN_C
 
 u32 func_080098D8(void)
 {
