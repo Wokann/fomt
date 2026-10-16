@@ -1248,6 +1248,8 @@ void func_080AA8BC(GameSceneWorldMapPrefix * map);
 void func_080AA8DC(GameSceneSavedMapPrefix * map);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
+i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map);
+i32 GetWorldMapPixelHeight(GameSceneWorldPrefix & world, u32 map);
 MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id);
 void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,
     FieldPlot const * plot, FieldPlotRenderData const * render_data);

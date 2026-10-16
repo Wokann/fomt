@@ -76,7 +76,7 @@ void AActorEntity::method_08032208()
     }
     else
     {
-        i32 map_width = go->vfunc_2C(map) << 16;
+        i32 map_width = go->GetMapPixelWidth(map) << 16;
 
         if (x_new_q16 > map_width)
             x_new_q16 = map_width;
@@ -88,7 +88,7 @@ void AActorEntity::method_08032208()
     }
     else
     {
-        i32 map_height = go->vfunc_30(map) << 16;
+        i32 map_height = go->GetMapPixelHeight(map) << 16;
 
         if (y_new_q16 > map_height)
             y_new_q16 = map_height;

@@ -821,6 +821,26 @@ failure:
     return false;
 }
 
+EC i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map)
+{
+    u32 season = func_0800E324(world.save->clock.calendar);
+    u32 house = world.save->farm.farm_house.GetUpgradeLevel();
+    u32 coop = world.save->farm.coop.GetUpgradeLevel();
+    u32 barn = world.save->farm.barn.GetUpgradeLevel();
+    u32 data_id = SelectMapDataId(map, season, house, coop, barn);
+    return GetMapData(data_id)->width * 8;
+}
+
+EC i32 GetWorldMapPixelHeight(GameSceneWorldPrefix & world, u32 map)
+{
+    u32 season = func_0800E324(world.save->clock.calendar);
+    u32 house = world.save->farm.farm_house.GetUpgradeLevel();
+    u32 coop = world.save->farm.coop.GetUpgradeLevel();
+    u32 barn = world.save->farm.barn.GetUpgradeLevel();
+    u32 data_id = SelectMapDataId(map, season, house, coop, barn);
+    return GetMapData(data_id)->height * 8;
+}
+
 EC MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id)
 {
     if (map_id > MAP_LAKE_MINE_FLOOR_255)
