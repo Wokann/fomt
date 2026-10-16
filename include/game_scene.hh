@@ -1114,6 +1114,8 @@ u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind);
 bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & location,
     GameSceneFarmPlotLocation & output);
 u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location);
+u32 func_0801D3FC(GameSceneWorldPrefix & world, Location const & location);
+void func_0801D4E0(GameSceneWorldPrefix & world, Location const & location, i32 id);
 void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,
     FieldPlot const * plot, Unk_Something const * render_data);
 

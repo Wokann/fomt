@@ -963,6 +963,37 @@ EC u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location)
     return result;
 }
 
+EC u32 func_0801D3FC(GameSceneWorldPrefix & world, Location const & location)
+{
+    GameSceneFarmPlotLocation hit;
+    if (TryGetFarmPlotAtLocation(world, location, hit)) {
+        u32 result = hit.plot->method_0800A438();
+        if (world.vfunc_14() == location.GetMap()) {
+            GameSceneWorldMapPrefix * map = world.data.map.value;
+            Unk_Something const * render_data =
+                world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
+            func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
+        }
+        if (result == 1)
+            return 1;
+    }
+    return 0;
+}
+
+EC void func_0801D4E0(GameSceneWorldPrefix & world, Location const & location, i32 id)
+{
+    GameSceneFarmPlotLocation hit;
+    if (TryGetFarmPlotAtLocation(world, location, hit)) {
+        hit.plot->method_0800A460(id);
+        if (world.vfunc_14() == location.GetMap()) {
+            GameSceneWorldMapPrefix * map = world.data.map.value;
+            Unk_Something const * render_data =
+                world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
+            func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
+        }
+    }
+}
+
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
 {
     // Match native cleanup: release the first index, then destroy all three
