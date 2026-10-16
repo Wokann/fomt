@@ -277,7 +277,7 @@ struct GameSceneWorldPrefix : GameObject {
 
 // A successful farm lookup returns the plot and both tile/grid coordinates.
 struct FieldPlot;
-struct Unk_Something;
+struct FieldPlotRenderData;
 struct GameSceneFarmPlotLocation {
     GameSceneFarmPlotLocation()
         : plot(nullptr), tile_x(0), tile_y(0), column(0), row(0) {}
@@ -1245,8 +1245,8 @@ void func_080AA8BC(GameSceneWorldMapPrefix * map);
 void func_080AA8DC(GameSceneSavedMapPrefix * map);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
-void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,
-    FieldPlot const * plot, Unk_Something const * render_data);
+void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,
+    FieldPlot const * plot, FieldPlotRenderData const * render_data);
 
 // Recovered native world callbacks. The duplicate slot readers retain
 // separate entries; neither adds bounds checking absent from the original.

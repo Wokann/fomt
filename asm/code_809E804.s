@@ -9869,7 +9869,7 @@ func_080A6098: @ 0x080A6098
 	ldr r2, [sp, #0x20]
 	adds r2, #0x16
 	adds r3, r5, #0
-	bl func_080AA6D0
+	bl RefreshFieldPlotTiles
 	movs r0, #2
 	add sl, r0
 	adds r4, #1
@@ -10052,7 +10052,7 @@ func_080A6098: @ 0x080A6098
 	ldr r2, [sp, #0x28]
 	adds r2, #0x16
 	adds r3, r5, #0
-	bl func_080AA6D0
+	bl RefreshFieldPlotTiles
 	movs r0, #2
 	add sl, r0
 	adds r4, #1
@@ -17420,194 +17420,6 @@ func_080A9F78: @ 0x080A9F78
 	pop {r0}
 	bx r0
 	.align 2, 0
-
-    .global func_080AA6D0
-    .thumb_func
-func_080AA6D0: @ 0x080AA108
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0xc
-	adds r7, r0, #0
-	str r1, [sp]
-	adds r6, r2, #0
-	str r3, [sp, #4]
-	ldr r0, [r7, #4]
-	bl GetMapData
-	ldrh r0, [r0, #0x20]
-	mov sl, r0
-	ldr r0, [sp, #4]
-	bl method_0800AF20__C9FieldPlot
-	adds r5, r0, #0
-	cmp r5, #0
-	beq .Ljp_map_080AA16A
-	mov r0, sl
-	muls r0, r6, r0
-	ldr r1, [r7, #0x10]
-	lsls r0, r0, #1
-	ldr r2, [sp]
-	lsls r4, r2, #1
-	adds r1, r4, r1
-	adds r0, r0, r1
-	adds r1, r5, #0
-	movs r2, #4
-	bl memcpy
-	adds r0, r6, #1
-	mov r1, sl
-	muls r1, r0, r1
-	adds r0, r1, #0
-	ldr r1, [r7, #0x10]
-	lsls r0, r0, #1
-	adds r4, r4, r1
-	adds r0, r0, r4
-	adds r1, r5, #4
-	movs r2, #4
-	bl memcpy
-	adds r1, r7, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-.Ljp_map_080AA16A:
-	mov r5, sl
-	muls r5, r6, r5
-	adds r2, r6, #1
-	str r2, [sp, #8]
-	ldr r0, [sp, #0x2c]
-	cmp r0, #0
-	beq .Ljp_map_080AA1C6
-	subs r0, r6, #1
-	mov r1, sl
-	muls r1, r0, r1
-	adds r0, r1, #0
-	ldr r1, [r7, #0x18]
-	lsls r0, r0, #1
-	ldr r2, [sp]
-	lsls r4, r2, #1
-	adds r1, r4, r1
-	adds r0, r0, r1
-	ldr r1, [sp, #0x2c]
-	movs r2, #4
-	bl memcpy
-	ldr r1, [r7, #0x14]
-	lsls r0, r5, #1
-	adds r1, r4, r1
-	adds r0, r0, r1
-	ldr r1, [sp, #0x2c]
-	adds r1, #4
-	movs r2, #4
-	bl memcpy
-	ldr r1, [sp, #8]
-	mov r0, sl
-	muls r0, r1, r0
-	ldr r1, [r7, #0x14]
-	lsls r0, r0, #1
-	adds r4, r4, r1
-	adds r0, r0, r4
-	ldr r1, [sp, #0x2c]
-	adds r1, #8
-	movs r2, #4
-	bl memcpy
-	adds r1, r7, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-.Ljp_map_080AA1C6:
-	ldr r0, [sp, #4]
-	bl method_0800A07C__C9FieldPlot
-	ldr r2, [sp]
-	adds r2, r2, r5
-	mov r8, r2
-	ldr r2, [r7, #0x2c]
-	mov r1, r8
-	lsls r1, r1, #2
-	mov r8, r1
-	adds r1, r1, r2
-	mov sb, r1
-	ldr r1, [sp, #8]
-	mov r4, sl
-	muls r4, r1, r4
-	ldr r1, [sp]
-	adds r4, r1, r4
-	lsls r4, r4, #2
-	adds r2, r4, r2
-	movs r6, #1
-	adds r5, r6, #0
-	ands r5, r0
-	ldrb r3, [r2, #4]
-	movs r1, #2
-	rsbs r1, r1, #0
-	adds r0, r1, #0
-	ands r0, r3
-	orrs r0, r5
-	strb r0, [r2, #4]
-	ldrb r3, [r2]
-	adds r0, r1, #0
-	ands r0, r3
-	orrs r0, r5
-	strb r0, [r2]
-	mov r0, sb
-	ldrb r2, [r0, #4]
-	adds r0, r1, #0
-	ands r0, r2
-	orrs r0, r5
-	mov r2, sb
-	strb r0, [r2, #4]
-	ldrb r0, [r2]
-	ands r1, r0
-	orrs r1, r5
-	strb r1, [r2]
-	ldr r0, [sp, #4]
-	bl method_0800A0A4__C9FieldPlot
-	ldr r1, [r7, #0x2c]
-	add r8, r1
-	movs r2, #4
-	add r2, r8
-	mov sb, r2
-	adds r4, r4, r1
-	adds r3, r4, #4
-	lsls r5, r0, #1
-	ldrh r2, [r3, #2]
-	adds r1, r6, #0
-	ands r1, r2
-	orrs r1, r5
-	strh r1, [r3, #2]
-	ldr r1, .Ljp_map_080AA284 @ =0x00007FFF
-	adds r5, r1, #0
-	ands r0, r5
-	lsls r3, r0, #1
-	ldrh r2, [r4, #2]
-	adds r1, r6, #0
-	ands r1, r2
-	orrs r1, r3
-	strh r1, [r4, #2]
-	ands r0, r5
-	lsls r3, r0, #1
-	mov r1, sb
-	ldrh r2, [r1, #2]
-	adds r1, r6, #0
-	ands r1, r2
-	orrs r1, r3
-	mov r2, sb
-	strh r1, [r2, #2]
-	ands r0, r5
-	lsls r0, r0, #1
-	mov r2, r8
-	ldrh r1, [r2, #2]
-	ands r6, r1
-	orrs r6, r0
-	strh r6, [r2, #2]
-	add sp, #0xc
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_map_080AA284: .4byte 0x00007FFF
 
     .section .text.game_map_after_flag_updates, "ax", %progbits
     .align 2, 0
@@ -94062,7 +93874,7 @@ func_080A6660: @ 0x080A6660
 	ldr r2, [sp, #0x20]
 	adds r2, #0x16
 	adds r3, r5, #0
-	bl func_080AA6D0
+	bl RefreshFieldPlotTiles
 	movs r0, #2
 	add sl, r0
 	adds r4, #1
@@ -94245,7 +94057,7 @@ func_080A6660: @ 0x080A6660
 	ldr r2, [sp, #0x28]
 	adds r2, #0x16
 	adds r3, r5, #0
-	bl func_080AA6D0
+	bl RefreshFieldPlotTiles
 	movs r0, #2
 	add sl, r0
 	adds r4, #1
@@ -101609,193 +101421,6 @@ func_080AA540: @ 0x080AA540
 	pop {r0}
 	bx r0
 	.align 2, 0
-
-	thumb_func_start func_080AA6D0
-func_080AA6D0: @ 0x080AA6D0
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0xc
-	adds r7, r0, #0
-	str r1, [sp]
-	adds r6, r2, #0
-	str r3, [sp, #4]
-	ldr r0, [r7, #4]
-	bl GetMapData
-	ldrh r0, [r0, #0x20]
-	mov sl, r0
-	ldr r0, [sp, #4]
-	bl method_0800AF20__C9FieldPlot
-	adds r5, r0, #0
-	cmp r5, #0
-	beq .L080AA732
-	mov r0, sl
-	muls r0, r6, r0
-	ldr r1, [r7, #0x10]
-	lsls r0, r0, #1
-	ldr r2, [sp]
-	lsls r4, r2, #1
-	adds r1, r4, r1
-	adds r0, r0, r1
-	adds r1, r5, #0
-	movs r2, #4
-	bl memcpy
-	adds r0, r6, #1
-	mov r1, sl
-	muls r1, r0, r1
-	adds r0, r1, #0
-	ldr r1, [r7, #0x10]
-	lsls r0, r0, #1
-	adds r4, r4, r1
-	adds r0, r0, r4
-	adds r1, r5, #4
-	movs r2, #4
-	bl memcpy
-	adds r1, r7, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-.L080AA732:
-	mov r5, sl
-	muls r5, r6, r5
-	adds r2, r6, #1
-	str r2, [sp, #8]
-	ldr r0, [sp, #0x2c]
-	cmp r0, #0
-	beq .L080AA78E
-	subs r0, r6, #1
-	mov r1, sl
-	muls r1, r0, r1
-	adds r0, r1, #0
-	ldr r1, [r7, #0x18]
-	lsls r0, r0, #1
-	ldr r2, [sp]
-	lsls r4, r2, #1
-	adds r1, r4, r1
-	adds r0, r0, r1
-	ldr r1, [sp, #0x2c]
-	movs r2, #4
-	bl memcpy
-	ldr r1, [r7, #0x14]
-	lsls r0, r5, #1
-	adds r1, r4, r1
-	adds r0, r0, r1
-	ldr r1, [sp, #0x2c]
-	adds r1, #4
-	movs r2, #4
-	bl memcpy
-	ldr r1, [sp, #8]
-	mov r0, sl
-	muls r0, r1, r0
-	ldr r1, [r7, #0x14]
-	lsls r0, r0, #1
-	adds r4, r4, r1
-	adds r0, r0, r4
-	ldr r1, [sp, #0x2c]
-	adds r1, #8
-	movs r2, #4
-	bl memcpy
-	adds r1, r7, #0
-	adds r1, #0x29
-	movs r0, #1
-	strb r0, [r1]
-.L080AA78E:
-	ldr r0, [sp, #4]
-	bl method_0800A07C__C9FieldPlot
-	ldr r2, [sp]
-	adds r2, r2, r5
-	mov r8, r2
-	ldr r2, [r7, #0x2c]
-	mov r1, r8
-	lsls r1, r1, #2
-	mov r8, r1
-	adds r1, r1, r2
-	mov sb, r1
-	ldr r1, [sp, #8]
-	mov r4, sl
-	muls r4, r1, r4
-	ldr r1, [sp]
-	adds r4, r1, r4
-	lsls r4, r4, #2
-	adds r2, r4, r2
-	movs r6, #1
-	adds r5, r6, #0
-	ands r5, r0
-	ldrb r3, [r2, #4]
-	movs r1, #2
-	rsbs r1, r1, #0
-	adds r0, r1, #0
-	ands r0, r3
-	orrs r0, r5
-	strb r0, [r2, #4]
-	ldrb r3, [r2]
-	adds r0, r1, #0
-	ands r0, r3
-	orrs r0, r5
-	strb r0, [r2]
-	mov r0, sb
-	ldrb r2, [r0, #4]
-	adds r0, r1, #0
-	ands r0, r2
-	orrs r0, r5
-	mov r2, sb
-	strb r0, [r2, #4]
-	ldrb r0, [r2]
-	ands r1, r0
-	orrs r1, r5
-	strb r1, [r2]
-	ldr r0, [sp, #4]
-	bl method_0800A0A4__C9FieldPlot
-	ldr r1, [r7, #0x2c]
-	add r8, r1
-	movs r2, #4
-	add r2, r8
-	mov sb, r2
-	adds r4, r4, r1
-	adds r3, r4, #4
-	lsls r5, r0, #1
-	ldrh r2, [r3, #2]
-	adds r1, r6, #0
-	ands r1, r2
-	orrs r1, r5
-	strh r1, [r3, #2]
-	ldr r1, .L080AA84C @ =0x00007FFF
-	adds r5, r1, #0
-	ands r0, r5
-	lsls r3, r0, #1
-	ldrh r2, [r4, #2]
-	adds r1, r6, #0
-	ands r1, r2
-	orrs r1, r3
-	strh r1, [r4, #2]
-	ands r0, r5
-	lsls r3, r0, #1
-	mov r1, sb
-	ldrh r2, [r1, #2]
-	adds r1, r6, #0
-	ands r1, r2
-	orrs r1, r3
-	mov r2, sb
-	strh r1, [r2, #2]
-	ands r0, r5
-	lsls r0, r0, #1
-	mov r2, r8
-	ldrh r1, [r2, #2]
-	ands r6, r1
-	orrs r6, r0
-	strh r6, [r2, #2]
-	add sp, #0xc
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080AA84C: .4byte 0x00007FFF
 
     .section .text.game_map_after_flag_updates, "ax", %progbits
     .align 2, 0

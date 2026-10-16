@@ -17,8 +17,8 @@ extern u8 SHOULD_BE(const) gUnk_086D6518[];
 extern u8 SHOULD_BE(const) gUnk_086D6520[];
 extern u8 SHOULD_BE(const) gUnk_086D6528[];
 
-extern Unk_Something SHOULD_BE(const) gUnk_086D6458;
-extern Unk_Something SHOULD_BE(const) gUnk_086D6608;
+extern FieldPlotRenderData SHOULD_BE(const) gUnk_086D6458;
+extern FieldPlotRenderData SHOULD_BE(const) gUnk_086D6608;
 
 u32 FieldPlot::method_0800A014() const
 {
@@ -1071,9 +1071,9 @@ void const * FieldPlot::method_0800AF20() const
 
 asm(".align 2, 0");
 
-Unk_Something const * FieldPlot::method_0800AF5C(FieldPlot const * arg_1, FieldPlot const * arg_2) const
+FieldPlotRenderData const * FieldPlot::method_0800AF5C(FieldPlot const * arg_1, FieldPlot const * arg_2) const
 {
-    Unk_Something const * ip = gFieldPlotTypeDefinitions[GetUnk2()].render_variants;
+    FieldPlotRenderData const * ip = gFieldPlotTypeDefinitions[GetUnk2()].render_variants;
     fu8 r4 = UINT8_MAX;
 
     if (static_cast<int>(unk_00_08) == 0)

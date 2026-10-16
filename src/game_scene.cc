@@ -1066,9 +1066,9 @@ EC u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location)
         result = hit.plot->method_0800A190(world.save->clock.unk_00 == WEATHER_SUNNY);
         if (world.vfunc_14() == location.GetMap()) {
             GameSceneWorldMapPrefix * map = world.data.map.value;
-            Unk_Something const * render_data =
+            FieldPlotRenderData const * render_data =
                 world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
-            func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
+            RefreshFieldPlotTiles(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
         }
         if (result == 3) {
             for (u32 index = 0; index < ARRAY_COUNT(world.unk_1080); ++index) {
@@ -1091,9 +1091,9 @@ EC u32 func_0801D3FC(GameSceneWorldPrefix & world, Location const & location)
         u32 result = hit.plot->method_0800A438();
         if (world.vfunc_14() == location.GetMap()) {
             GameSceneWorldMapPrefix * map = world.data.map.value;
-            Unk_Something const * render_data =
+            FieldPlotRenderData const * render_data =
                 world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
-            func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
+            RefreshFieldPlotTiles(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
         }
         if (result == 1)
             return 1;
@@ -1108,9 +1108,9 @@ EC void func_0801D4E0(GameSceneWorldPrefix & world, Location const & location, i
         hit.plot->method_0800A460(id);
         if (world.vfunc_14() == location.GetMap()) {
             GameSceneWorldMapPrefix * map = world.data.map.value;
-            Unk_Something const * render_data =
+            FieldPlotRenderData const * render_data =
                 world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
-            func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
+            RefreshFieldPlotTiles(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
         }
     }
 }
@@ -1123,9 +1123,9 @@ EC void func_0801D5BC(GameSceneWorldPrefix & world, Location const & location,
         output = hit.plot->method_0800A4A4();
         if (world.vfunc_14() == location.GetMap()) {
             GameSceneWorldMapPrefix * map = world.data.map.value;
-            Unk_Something const * render_data =
+            FieldPlotRenderData const * render_data =
                 world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
-            func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
+            RefreshFieldPlotTiles(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
         }
     } else {
         output = PickUpFieldItemAtLocation(world, location);
@@ -1159,9 +1159,9 @@ EC void func_0801D7B0(GameSceneWorldPrefix & world, Location const & location,
         hit.plot->method_0800A6F4(article);
         if (world.vfunc_14() == location.GetMap()) {
             GameSceneWorldMapPrefix * map = world.data.map.value;
-            Unk_Something const * render_data =
+            FieldPlotRenderData const * render_data =
                 world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
-            func_080AA6D0(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
+            RefreshFieldPlotTiles(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
         }
     }
 }
@@ -1876,6 +1876,32 @@ EC void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk)
         return;
     }
     map->camera_changed = true;
+}
+
+EC void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,
+    FieldPlot const * plot, FieldPlotRenderData const * render_data)
+{
+    u32 width = GetMapData(map->map_data_id)->width;
+    u16 const * ground = static_cast<u16 const *>(plot->method_0800AF20());
+    if (ground != nullptr) {
+        memcpy(map->tile_layers[0] + x + y * width, ground, 4);
+        memcpy(map->tile_layers[0] + x + (y + 1) * width, ground + 2, 4);
+        map->camera_changed = true;
+    }
+    if (render_data != nullptr) {
+        memcpy(map->tile_layers[2] + x + (y - 1) * width, render_data->tiles[0], 4);
+        memcpy(map->tile_layers[1] + x + y * width, render_data->tiles[1], 4);
+        memcpy(map->tile_layers[1] + x + (y + 1) * width, render_data->tiles[2], 4);
+        map->camera_changed = true;
+    }
+    map->tile_attributes[x + y * width].unk_00_00 =
+        map->tile_attributes[x + 1 + y * width].unk_00_00 =
+        map->tile_attributes[x + (y + 1) * width].unk_00_00 =
+        map->tile_attributes[x + 1 + (y + 1) * width].unk_00_00 = plot->method_0800A07C();
+    map->tile_attributes[x + y * width].unk_02_01 =
+        map->tile_attributes[x + 1 + y * width].unk_02_01 =
+        map->tile_attributes[x + (y + 1) * width].unk_02_01 =
+        map->tile_attributes[x + 1 + (y + 1) * width].unk_02_01 = plot->method_0800A0A4();
 }
 
 EC void func_080AA850(GameSceneSavedMapPrefix * map, u32 index)

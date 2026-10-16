@@ -3,11 +3,15 @@
 
 #include "field.hh"
 
-// A patch lookup entry is copied as one opaque four-byte tile attribute.
-// Its individual bits are not assigned meanings by the recovered writer.
+// Rectangle patches copy all four bytes; field-plot updates write only
+// bit 0 of the first halfword and bits 1..15 of the second halfword.
+// Their meanings and the untouched bits remain unknown.
 struct FieldRenderTileAttributes
 {
-    u32 unk_00;
+    bool unk_00_00 : 1;
+    u32 unk_00_01 : 15;
+    u16 unk_02_00 : 1;
+    u16 unk_02_01 : 15;
 };
 
 typedef char FieldRenderTileAttributesSizeCheck[sizeof(FieldRenderTileAttributes) == 4 ? 1 : -1];

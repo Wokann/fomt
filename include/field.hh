@@ -8,11 +8,13 @@
 
 #include <stdlib.h> // rand
 
-// TODO: what is this? (colors, mayhaps?)
-struct Unk_Something
+// Two tiles per row: upper overlay, plot top, and plot bottom.
+struct FieldPlotRenderData
 {
-    STRUCT_PAD(0x00, 0x0C);
+    u16 tiles[3][2];
 };
+
+typedef char FieldPlotRenderDataSizeCheck[sizeof(FieldPlotRenderData) == 12 ? 1 : -1];
 
 struct FieldPlot
 {
@@ -50,7 +52,7 @@ struct FieldPlot
     void DayUpdate(int weather, GameDate const & date);
     void method_0800AB08(Season season);
     void const * method_0800AF20() const;
-    Unk_Something const * method_0800AF5C(FieldPlot const * arg_1, FieldPlot const * arg_2) const;
+    FieldPlotRenderData const * method_0800AF5C(FieldPlot const * arg_1, FieldPlot const * arg_2) const;
 
     // typing on these is shaky
     /* bit 00 */ u32 unk_00_00 : 2;
@@ -82,7 +84,7 @@ struct Field
         return nullptr;
     }
 
-    Unk_Something const * PlotRenderDataAt(i32 x, i32 y) const
+    FieldPlotRenderData const * PlotRenderDataAt(i32 x, i32 y) const
     {
         FieldPlot const & plot = PlotAt(x, y);
         FieldPlot const * below = TryPlotAt(x, y + 1);

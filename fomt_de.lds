@@ -498,7 +498,7 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_barn_feed);
         src/game_scene.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC .text.func_080A6300 .text.func_080A635C .text.func_080A63B8);
         asm/code_809E804.o(.text.game_map_after_patch_dispatchers);
-        src/game_scene.o(.text.func_080AA850 .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
+        src/game_scene.o(.text.RefreshFieldPlotTiles .text.func_080AA850 .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
         asm/code_809E804.o(.text.game_map_after_flag_updates);
         . = 0xD0C38; /* DE ROM 0x080D0C38, glyph-map index converter and renderer. */
         src/font.o(.text);
