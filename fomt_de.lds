@@ -533,7 +533,8 @@ SECTIONS
         src/intro_scene.o(.text.intro_scene_transitions);
         *(.gnu.linkonce.t._._19IntroMenuTransition);
         *(.gnu.linkonce.t._._24IntroNameEntryTransition);
-        asm/code_linkonce.o(.text.code_080D3C78);
+        src/intro_scene.o(.text.intro_scene_core_cleanup);
+        asm/code_linkonce.o(.text.intro_scene_core_after_cleanup);
         src/intro_scene.o(.text.intro_scene_factory);
         asm/code_linkonce.o(.text.intro_scene_after_factory);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);

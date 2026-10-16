@@ -5,6 +5,7 @@
 #include "scene.hh"
 #include "hardware_music_player.hh"
 #include "hardware_refcount.hh"
+#include "hardware_allocator.hh"
 #include "resource_handle.hh"
 
 struct HardwareCoreState;
@@ -33,17 +34,30 @@ struct IntroSceneResourceState
     i32 unk_1C;
 };
 
-struct IntroSceneHardwareStateHandle
+struct IntroSceneHardwareStateHandle : HardwareSharedStateOwner
 {
-    u32 unk_00;
     u32 handle;
+
+    ~IntroSceneHardwareStateHandle()
+    {
+        ReleaseHardwareSharedStateHandle(this, handle);
+    }
 };
 
-struct IntroSceneHardwarePoolHandle
+struct IntroSceneHardwarePoolHandle : HardwarePoolOwner
 {
-    u32 unk_00;
     u32 handle;
+
+    ~IntroSceneHardwarePoolHandle()
+    {
+        func_080073E0(this, handle);
+    }
 };
+
+typedef char IntroSceneStateHandleSizeCheck[sizeof(IntroSceneHardwareStateHandle) == 8 ? 1 : -1];
+typedef char IntroSceneStateHandleOffsetCheck[offsetof(IntroSceneHardwareStateHandle, handle) == 4 ? 1 : -1];
+typedef char IntroScenePoolHandleSizeCheck[sizeof(IntroSceneHardwarePoolHandle) == 8 ? 1 : -1];
+typedef char IntroScenePoolHandleOffsetCheck[offsetof(IntroSceneHardwarePoolHandle, handle) == 4 ? 1 : -1];
 
 // The intro keeps its current group after the common 28-byte draw prefix.
 // The sprite renderer only receives that prefix, not these group ranges.
@@ -104,7 +118,7 @@ struct IntroSceneCore
     i8 continuation;
     u8 unk_6C6F;
     HardwareSharedStateOwner state_reservation;
-    u32 unk_6C74;
+    HardwarePoolOwner pool_reservation;
     IntroSceneHardwareStateHandle state_handle_6C78;
     IntroSceneHardwarePoolHandle pool_handle_6C80;
     IntroSceneHardwareStateHandle state_handle_6C88;
@@ -150,6 +164,7 @@ typedef char IntroSceneCoreAnimationStateOffsetCheck[(offsetof(IntroSceneCore, u
 typedef char IntroSceneCoreArchiveOffsetCheck[(offsetof(IntroSceneCore, intro_archive) == 0x6A10) ? 1 : -1];
 typedef char IntroSceneCoreResourcesOffsetCheck[(offsetof(IntroSceneCore, resources) == 0x6AA0) ? 1 : -1];
 typedef char IntroSceneCoreHardwareHandlesOffsetCheck[(offsetof(IntroSceneCore, state_handle_6C78) == 0x6C78) ? 1 : -1];
+typedef char IntroSceneCorePoolReservationOffsetCheck[offsetof(IntroSceneCore, pool_reservation) == 0x6C74 ? 1 : -1];
 
 struct GameIntroScene : AScene
 {
@@ -179,8 +194,7 @@ extern u8 const gIntroSceneIndexedArchiveCompressed[];
 extern u8 const gIntroSceneSmallIndexedArchive[];
 extern u8 const gActorIndexedResourceArchive[];
 IntroSceneCore * ConstructIntroSceneCore(void * core) SECTION(".text.intro_scene_core_constructor");
-// The core's full member cleanup remains native Thumb assembly.
-void DestroyIntroSceneCore(IntroSceneCore * core, int flags);
+void DestroyIntroSceneCore(IntroSceneCore * core, int flags) SECTION(".text.intro_scene_core_cleanup");
 void StartIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_startup");
 void func_08000F5C(IntroSceneCore * core);
 int RunIntroSceneSequence(IntroSceneCore * core) SECTION(".text.intro_scene_core_sequence");
