@@ -8,6 +8,10 @@
 #include "hardware_manager.hh"
 #include "hardware_dma_descriptor.hh"
 
+#ifdef __cplusplus
+#include "utility/container_algorithms.hh"
+#endif
+
 // The queue is grown with malloc in descriptor-sized (0x10-byte) steps.
 // Its allocator has no state; the allocated range ends at offset +0x0C.
 struct HardwareDmaQueueAllocator {
@@ -33,6 +37,21 @@ struct HardwareDmaQueue {
     struct DmaTransferDescriptor * last;
     struct HardwareDmaQueueAllocation allocation;
 #ifdef __cplusplus
+    bool IsEmpty() const { return first == last; }
+    size_t Size() const { return last - first; }
+
+    DmaTransferDescriptor * Erase(DmaTransferDescriptor * begin, DmaTransferDescriptor * end)
+    {
+        typedef __type_traits<DmaTransferDescriptor>::has_trivial_assignment_operator TrivialAssignment;
+        typedef __type_traits<DmaTransferDescriptor>::has_trivial_destructor TrivialDestructor;
+        DmaTransferDescriptor * new_end = copy_ptrs_inl(end, last, begin, TrivialAssignment());
+        destroy_range_inl(new_end, last, TrivialDestructor());
+        last = new_end;
+        return begin;
+    }
+
+    void Clear() { Erase(first, last); }
+
     HardwareDmaQueue(HardwareDmaQueueAllocator const & allocator = HardwareDmaQueueAllocator())
         : first(nullptr), last(nullptr), allocation(allocator) {}
 #endif

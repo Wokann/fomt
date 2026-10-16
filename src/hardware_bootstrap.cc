@@ -118,6 +118,16 @@ u8 HardwareSpriteBufferCommand::Run()
     return 0;
 }
 
+u8 HardwareDmaQueueCommand::Run()
+{
+    HardwareDmaQueue * storage = queue;
+    if (!storage->IsEmpty()) {
+        func_08008FE4(storage->first, storage->first + storage->Size());
+        storage->Clear();
+    }
+    return 0;
+}
+
 // Bootstrap itself is still a partial ABI view, unlike the command classes.
 extern HardwareLinkVirtualFunction const vtable_unk_080E5B00[] = {
     nullptr,

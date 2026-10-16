@@ -554,7 +554,7 @@ SECTIONS
         src/hardware_refcount.o(.text.hardware_shared_state_free_list);
         src/hardware_state_clear.o(.text.hardware_shared_state_free_list_after);
         src/hardware_bootstrap.o(.text.hardware_frame_commands);
-        asm/code_linkonce.o(.text.hardware_dma_command);
+        src/hardware_bootstrap.o(.text.hardware_dma_command);
         *(.gnu.linkonce.t._._23HardwareDmaQueueCommand);
         *(.gnu.linkonce.t._._27HardwareSpriteBufferCommand);
         *(.gnu.linkonce.t._._22HardwareDisplayCommand);

@@ -6000,45 +6000,6 @@ Unreserve__19HardwareTileTree256UiUi:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .section .text.hardware_dma_command, "ax", %progbits
-    .align 2, 0
-
-    .global RunHardwareDmaQueueCommand
-    .thumb_func
-RunHardwareDmaQueueCommand:
-    push {r4, lr}
-    ldr r4, [r0, #0xc]
-    movs r2, #0
-    ldr r0, [r4]
-    ldr r1, [r4, #4]
-    cmp r0, r1
-    bne .Lauto_080D6FF4
-    movs r2, #1
-    .Lauto_080D6FF4:
-    cmp r2, #0
-    bne .Lauto_080D7016
-    subs r1, r1, r0
-    asrs r1, r1, #4
-    lsls r1, r1, #4
-    adds r1, r0, r1
-    bl func_08008FE4
-    ldr r0, [r4]
-    adds r2, r0, #0
-    ldr r1, [r4, #4]
-    cmp r2, r1
-    beq .Lauto_080D7014
-    .Lauto_080D700E:
-    adds r0, #0x10
-    cmp r0, r1
-    bne .Lauto_080D700E
-    .Lauto_080D7014:
-    str r2, [r4, #4]
-    .Lauto_080D7016:
-    movs r0, #0
-    pop {r4}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
     .section .text.hardware_manager_vblank_after, "ax", %progbits
     .align 2, 0
 
@@ -7069,45 +7030,6 @@ Unreserve__19HardwareTileTree256UiUi: @ 0x080D72C4
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
-	.align 2, 0
-
-    .section .text.hardware_dma_command, "ax", %progbits
-    .align 2, 0
-
-	thumb_func_start RunHardwareDmaQueueCommand
-RunHardwareDmaQueueCommand: @ 0x080D782C
-	push {r4, lr}
-	ldr r4, [r0, #0xc]
-	movs r2, #0
-	ldr r0, [r4]
-	ldr r1, [r4, #4]
-	cmp r0, r1
-	bne .L080D783C
-	movs r2, #1
-.L080D783C:
-	cmp r2, #0
-	bne .L080D785E
-	subs r1, r1, r0
-	asrs r1, r1, #4
-	lsls r1, r1, #4
-	adds r1, r0, r1
-	bl func_08008FE4
-	ldr r0, [r4]
-	adds r2, r0, #0
-	ldr r1, [r4, #4]
-	cmp r2, r1
-	beq .L080D785C
-.L080D7856:
-	adds r0, #0x10
-	cmp r0, r1
-	bne .L080D7856
-.L080D785C:
-	str r2, [r4, #4]
-.L080D785E:
-	movs r0, #0
-	pop {r4}
-	pop {r1}
-	bx r1
 	.align 2, 0
 
     .section .text.hardware_manager_vblank_after, "ax", %progbits

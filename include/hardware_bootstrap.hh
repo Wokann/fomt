@@ -87,7 +87,7 @@ struct HardwareSpriteBufferCommand
 };
 
 #ifdef __cplusplus
-// Its virtual run method still has a native assembly body.
+// Keep the command's key virtual method with the bootstrap implementation.
 #pragma interface "hardware_bootstrap.hh"
 #endif
 struct HardwareDmaQueueCommand
@@ -102,8 +102,7 @@ struct HardwareDmaQueueCommand
 #endif
     struct HardwareDmaQueue * queue;
 #ifdef __cplusplus
-    // The native Thumb body implements this virtual method directly.
-    virtual u8 Run() asm("RunHardwareDmaQueueCommand");
+    virtual u8 Run() asm("RunHardwareDmaQueueCommand") SECTION(".text.hardware_dma_command");
     HardwareDmaQueueCommand(HardwareDmaQueue * state)
         SECTION(".text.hardware_frame_command_constructors");
 #endif
@@ -133,7 +132,7 @@ void func_080086BC(struct HardwareBootstrap * owner, u32 flags);
 void UpdateHardwareFrame(struct HardwareBootstrap * owner) SECTION(".text.hardware_frame_update");
 u32 RunHardwareDisplayCommand(struct HardwareDisplayCommand * command) SECTION(".text.hardware_frame_commands");
 u32 RunHardwareSpriteBufferCommand(struct HardwareSpriteBufferCommand * command) SECTION(".text.hardware_frame_commands");
-u32 RunHardwareDmaQueueCommand(struct HardwareDmaQueueCommand * command); // Still Thumb assembly.
+u32 RunHardwareDmaQueueCommand(struct HardwareDmaQueueCommand * command) SECTION(".text.hardware_dma_command");
 
 EXTERN_C_END
 
