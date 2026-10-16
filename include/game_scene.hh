@@ -230,6 +230,20 @@ struct GameSceneWorldPrefix : GameObject {
     GameSceneWorldUnkOwner unk_107C;
 };
 
+// A successful farm lookup returns the plot and both tile/grid coordinates.
+struct FieldPlot;
+struct GameSceneFarmPlotLocation {
+    FieldPlot * plot;
+    u16 tile_x;
+    u16 tile_y;
+    u16 column;
+    u16 row;
+};
+
+typedef char GameSceneFarmPlotLocationSizeCheck[sizeof(GameSceneFarmPlotLocation) == 12 ? 1 : -1];
+typedef char GameSceneFarmPlotTileXCheck[offsetof(GameSceneFarmPlotLocation, tile_x) == 4 ? 1 : -1];
+typedef char GameSceneFarmPlotColumnCheck[offsetof(GameSceneFarmPlotLocation, column) == 8 ? 1 : -1];
+
 typedef char GameSceneCameraCoordinateSizeCheck[sizeof(GameSceneCameraCoordinate) == 4 ? 1 : -1];
 typedef char GameSceneCameraIntegerCheck[offsetof(GameSceneCameraCoordinate, parts.integer) == 2 ? 1 : -1];
 typedef char GameSceneCameraPointSizeCheck[sizeof(Vec2) == 4 ? 1 : -1];
@@ -1075,6 +1089,8 @@ u32 func_08010148(void);
 ScriptEngine * func_0801014C(void);
 
 u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind);
+bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & location,
+    GameSceneFarmPlotLocation & output);
 
 // Recovered native world callbacks. The duplicate slot readers retain
 // separate entries; neither adds bounds checking absent from the original.

@@ -911,6 +911,32 @@ EC u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind)
     return ARRAY_COUNT(cache.resources) - 1;
 }
 
+EC bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & location,
+    GameSceneFarmPlotLocation & output)
+{
+    // Each farm plot spans two 8-pixel tiles from the field origin.
+    u32 first_x = 34;
+    u32 first_y = 22;
+    bool found = false;
+    if (location.GetMap() == MAP_FARM) {
+        u32 x = location.GetX() / 8;
+        u32 y = location.GetY() / 8;
+        if (x >= first_x && y >= first_y &&
+            x <= first_x + Farm::FIELD_WIDTH * 2 - 1 &&
+            y <= first_y + Farm::FIELD_HEIGHT * 2 - 1) {
+            u32 column = (x - first_x) / 2;
+            u32 row = (y - first_y) / 2;
+            output.plot = &world.save->farm.field.PlotAt(column, row);
+            output.tile_x = column * 2 + first_x;
+            output.tile_y = row * 2 + first_y;
+            output.column = column;
+            output.row = row;
+            found = true;
+        }
+    }
+    return found;
+}
+
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
 {
     // Match native cleanup: release the first index, then destroy all three
