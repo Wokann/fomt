@@ -822,6 +822,15 @@ failure:
     return false;
 }
 
+EC bool func_08019F38(GameSceneWorldPrefix & world, Location const & location)
+{
+    if (GetMapData(world.data.map.value->map_data_id)->flags != 0
+        || (func_0800E324(world.save->clock.calendar) != SEASON_WINTER
+            && !func_080A5EB8(world.data.map.value, location)))
+        return false;
+    return true;
+}
+
 EC i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map)
 {
     u32 season = func_0800E324(world.save->clock.calendar);
@@ -1845,6 +1854,27 @@ EC void LoadWorldMapTiles(GameSceneWorldMapPrefix & map)
 {
     MapData const * data = GetMapData(map.map_data_id);
     Unpack(data->tiles, reinterpret_cast<void *>(0x06000000));
+}
+
+EC bool func_080A5EB8(GameSceneWorldMapPrefix * map, Location const & location)
+{
+    if (location.GetMap() != MAP_MINERAL_BEACH || map->map != MAP_MINERAL_BEACH
+        || map->map_data_id != 8)
+        return false;
+
+    Vec2 position(location.GetX() / 8, location.GetY() / 8);
+    u32 width = GetMapData(8)->width;
+    for (u32 layer = 0; layer < 3; ++layer) {
+        u16 const * column = map->tile_layers[2 - layer] + position.x;
+        column += position.y * width;
+        u32 tile = *column & 0x3FF;
+        if (tile != 0x3FF) {
+            if (tile - 0x58 <= 0x3C || tile <= 0x33)
+                return true;
+            return false;
+        }
+    }
+    return false;
 }
 
 EC void func_080A601C(GameSceneWorldMapPrefix * map)

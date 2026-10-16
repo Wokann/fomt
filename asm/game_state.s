@@ -13669,42 +13669,6 @@ func_08019BEC:
     .byte 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x28, 0x10, 0x00, 0x00
     .byte 0x38, 0x10, 0x00, 0x00, 0x4C, 0x21, 0x00, 0x00, 0x54, 0x10, 0x00, 0x00
 
-    .global func_08019F38
-    .thumb_func
-func_08019F38:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, [r4, #4]
-    ldr r0, [r0, #4]
-    bl GetMapData
-    adds r0, #0x24
-    ldrb r0, [r0]
-    cmp r0, #0
-    bne .Lauto_08019D00
-    ldr r1, [pc, #0x20]
-    adds r0, r4, r1
-    ldr r0, [r0]
-    adds r0, #0x10
-    bl func_0800E324
-    cmp r0, #3
-    beq .Lauto_08019D08
-    ldr r0, [r4, #4]
-    adds r1, r5, #0
-    bl func_080A5EB8
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .Lauto_08019D08
-    .Lauto_08019D00:
-    movs r0, #0
-    b .Lauto_08019D0A
-    .byte 0x38, 0x10, 0x00, 0x00
-    .Lauto_08019D08:
-    movs r0, #1
-    .Lauto_08019D0A:
-    pop {r4, r5}
-    pop {r1}
-    bx r1
     .section .text.game_scene_after_map_terrain, "ax", %progbits
     .align 2, 0
 
@@ -33752,43 +33716,6 @@ func_08019BEC: @ 0x08019BEC
 .L08019F2C: .4byte 0x00001038
 .L08019F30: .4byte 0x0000214C
 .L08019F34: .4byte 0x00001054
-
-    thumb_func_start func_08019F38
-func_08019F38: @ 0x08019F38
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, [r4, #4]
-    ldr r0, [r0, #4]
-    bl GetMapData
-    adds r0, #0x24
-    ldrb r0, [r0]
-    cmp r0, #0
-    bne .L08019F6C
-    ldr r1, .L08019F70 @ =0x00001038
-    adds r0, r4, r1
-    ldr r0, [r0]
-    adds r0, #0x10
-    bl func_0800E324
-    cmp r0, #3
-    beq .L08019F74
-    ldr r0, [r4, #4]
-    adds r1, r5, #0
-    bl func_080A5EB8
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L08019F74
-.L08019F6C:
-    movs r0, #0
-    b .L08019F76
-    .align 2, 0
-.L08019F70: .4byte 0x00001038
-.L08019F74:
-    movs r0, #1
-.L08019F76:
-    pop {r4, r5}
-    pop {r1}
-    bx r1
 
     .section .text.game_scene_after_map_terrain, "ax", %progbits
     .align 2, 0

@@ -1263,10 +1263,12 @@ void func_080AA8DC(GameSceneSavedMapPrefix * map);
 void Unpack(u8 const * source, void * destination);
 void LoadWorldMapTilemaps(GameSceneWorldMapPrefix & map);
 void LoadWorldMapTiles(GameSceneWorldMapPrefix & map);
+bool func_080A5EB8(GameSceneWorldMapPrefix * map, Location const & location);
 void SetWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period);
 void LoadWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period, u32 buffer_index);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
+bool func_08019F38(GameSceneWorldPrefix & world, Location const & location);
 i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map);
 i32 GetWorldMapPixelHeight(GameSceneWorldPrefix & world, u32 map);
 MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id);

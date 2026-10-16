@@ -181,7 +181,7 @@ SECTIONS
         asm/game_state.o(.text.game_scene_song_players_after);
         src/game_scene.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
-        src/game_scene.o(.text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
+        src/game_scene.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
         asm/game_state.o(.text.game_scene_after_map_terrain);
         src/game_scene.o(.text.GetWorldTimeOfDayPeriod);
         asm/game_state.o(.text.game_scene_after_time_of_day_period);
@@ -500,7 +500,7 @@ SECTIONS
         src/game_scene.o(.text.ApplyMapTilePatch);
         src/game_scene.o(.text.LoadWorldMapTilemaps .text.SetWorldMapTimeOfDayPalette .text.LoadWorldMapTimeOfDayPalette);
         asm/code_809E804.o(.text.game_map_time_palette_after);
-        src/game_scene.o(.text.LoadWorldMapTiles);
+        src/game_scene.o(.text.LoadWorldMapTiles .text.func_080A5EB8);
         asm/code_809E804.o(.text.game_map_after_tiles);
         src/game_scene.o(.text.func_080A601C .text.RefreshCoopFeedTrough);
         asm/code_809E804.o(.text.game_map_barn_feed);
