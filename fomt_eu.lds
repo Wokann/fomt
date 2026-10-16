@@ -459,7 +459,7 @@ SECTIONS
         src/map_data.o(.text.get_map_data);
         . = 0xA46DC;
         asm/code_809E804.o(.text.get_map_data_after);
-        src/game_scene.o(.text.func_080A5A9C);
+        src/game_scene.o(.text.func_080A58EC .text.func_080A5960 .text.func_080A59BC .text.func_080A5A9C);
         asm/code_809E804.o(.text.game_map_after_camera_query);
         . = 0xD0D20; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);

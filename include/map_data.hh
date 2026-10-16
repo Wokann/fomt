@@ -16,6 +16,10 @@ struct MapData
     u8 padding[3];
 };
 
+typedef char MapDataSizeCheck[sizeof(MapData) == 0x28 ? 1 : -1];
+typedef char MapDataWidthCheck[offsetof(MapData, width) == 0x20 ? 1 : -1];
+typedef char MapDataHeightCheck[offsetof(MapData, height) == 0x22 ? 1 : -1];
+
 enum
 {
     MAP_DATA_COUNT = 66,

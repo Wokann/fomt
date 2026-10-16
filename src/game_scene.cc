@@ -10,6 +10,7 @@
 #include "hardware_music_player.hh"
 #include "hardware_song.hh"
 #include "font.hh"
+#include "gbasvc.h"
 #include <iterator>
 
 static inline void StartSceneSong(MusicPlayer ** player, i32 mode, u16 song_id)
@@ -756,6 +757,75 @@ EC void func_0801FD60(GameSceneWorldPrefix & world, i32 x, i32 y, u32 speed)
 EC void func_0801FD6C(GameSceneWorldPrefix & world, i32 x, i32 y)
 {
     func_080A5960(world.map, x, y);
+}
+
+EC Vec2 func_080A58EC(GameSceneWorldMapPrefix const * map, i32 x, i32 y)
+{
+    i32 old_x = map->x.parts.integer;
+    i32 old_y = map->y.parts.integer;
+    i32 center_x = old_x + 120;
+    i32 center_y = old_y + 80;
+    MapData const * data = GetMapData(map->map_data_id);
+    i32 width = data->width * 8;
+    i32 height = data->height * 8;
+    i32 dx = x - center_x;
+    i32 dy = y - center_y;
+    i32 next_x = old_x + dx;
+    if (next_x < 0)
+        next_x = 0;
+    else if (next_x > width - 240)
+        next_x = width - 240;
+    i32 next_y = old_y + dy;
+    if (next_y < 0)
+        next_y = 0;
+    else if (next_y > height - 160)
+        next_y = height - 160;
+    return Vec2(next_x, next_y);
+}
+
+EC void func_080A5960(GameSceneWorldMapPrefix * map, i32 x, i32 y)
+{
+    Vec2 target;
+    target = func_080A58EC(map, x, y);
+    Vec2 const & position = target;
+    if (map->x.parts.integer != position.x) {
+        map->camera_changed = true;
+        map->x.q16 = position.x << 16;
+    }
+    i32 current_y = map->y.parts.integer;
+    if (current_y != position.y) {
+        map->camera_changed = true;
+        map->y.q16 = position.y << 16;
+    }
+}
+
+EC void func_080A59BC(GameSceneWorldMapPrefix * map, i32 x, i32 y, u32 speed)
+{
+    Vec2 target;
+    target = func_080A58EC(map, x, y);
+    Vec2 const & position = target;
+    if (speed == 0)
+        speed = 1;
+    i32 old_x = map->x.parts.integer;
+    i32 dx = position.x - old_x;
+    i32 old_y = map->y.parts.integer;
+    i32 dy = position.y - old_y;
+    if (dx != 0 || dy != 0) {
+        u32 squared = dx * dx + dy * dy;
+        i32 shift = 0;
+        while ((squared << (shift * 2)) <= 0x3FFFFFFF)
+            ++shift;
+        squared <<= shift * 2;
+        i32 distance = Sqrt(squared) >> shift;
+        i32 frames = static_cast<u32>(distance) / speed;
+        if (frames == 0)
+            frames = 1;
+        map->step_x_q16 = ((position.x << 16) - map->x.q16) / frames;
+        map->step_y_q16 = ((position.y << 16) - map->y.q16) / frames;
+        map->movement_frames = frames;
+    } else {
+        map->movement_frames = 0;
+    }
 }
 
 EC bool func_080A5A9C(GameSceneWorldMapPrefix const * map)

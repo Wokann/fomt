@@ -468,7 +468,7 @@ SECTIONS
         src/map_data.o(.text.get_map_data);
         . = 0xA460C; /* DE ROM 0x080A460C, remaining map-data code. */
         asm/code_809E804.o(.text.get_map_data_after);
-        src/game_scene.o(.text.func_080A5A9C);
+        src/game_scene.o(.text.func_080A58EC .text.func_080A5960 .text.func_080A59BC .text.func_080A5A9C);
         asm/code_809E804.o(.text.game_map_after_camera_query);
         . = 0xD0C38; /* DE ROM 0x080D0C38, glyph-map index converter and renderer. */
         src/font.o(.text);

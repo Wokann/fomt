@@ -8,6 +8,7 @@
 #include "hardware_display_output.hh"
 #include "script_engine.hh"
 #include "fomt_constants.hh"
+#include "utility/vec2.hh"
 #include <new>
 
 // Only the player virtual interface used by these scene commands is modeled.
@@ -47,10 +48,12 @@ union GameSceneCameraCoordinate {
 // The move routine writes per-frame Q16.16 steps and a frame countdown.
 struct GameSceneWorldMapPrefix {
     u32 map;
-    u32 unk_04;
+    u32 map_data_id;
     GameSceneCameraCoordinate x;
     GameSceneCameraCoordinate y;
-    u8 unk_10[0x74];
+    u8 unk_10[0x19];
+    bool camera_changed;
+    u8 unk_2A[0x5A];
     i32 step_x_q16;
     i32 step_y_q16;
     u32 movement_frames;
@@ -67,8 +70,11 @@ struct GameSceneWorldPrefix : GameObject {
 
 typedef char GameSceneCameraCoordinateSizeCheck[sizeof(GameSceneCameraCoordinate) == 4 ? 1 : -1];
 typedef char GameSceneCameraIntegerCheck[offsetof(GameSceneCameraCoordinate, parts.integer) == 2 ? 1 : -1];
+typedef char GameSceneCameraPointSizeCheck[sizeof(Vec2) == 4 ? 1 : -1];
+typedef char GameSceneCameraMapDataIdCheck[offsetof(GameSceneWorldMapPrefix, map_data_id) == 4 ? 1 : -1];
 typedef char GameSceneCameraXCheck[offsetof(GameSceneWorldMapPrefix, x) == 8 ? 1 : -1];
 typedef char GameSceneCameraYCheck[offsetof(GameSceneWorldMapPrefix, y) == 0xC ? 1 : -1];
+typedef char GameSceneCameraChangedCheck[offsetof(GameSceneWorldMapPrefix, camera_changed) == 0x29 ? 1 : -1];
 typedef char GameSceneCameraStepXCheck[offsetof(GameSceneWorldMapPrefix, step_x_q16) == 0x84 ? 1 : -1];
 typedef char GameSceneCameraStepYCheck[offsetof(GameSceneWorldMapPrefix, step_y_q16) == 0x88 ? 1 : -1];
 typedef char GameSceneCameraFramesCheck[offsetof(GameSceneWorldMapPrefix, movement_frames) == 0x8C ? 1 : -1];
@@ -899,8 +905,9 @@ u32 func_0801FD58(GameSceneWorldPrefix const & world);
 void func_0801FD60(GameSceneWorldPrefix & world, i32 x, i32 y, u32 speed);
 void func_0801FD6C(GameSceneWorldPrefix & world, i32 x, i32 y);
 
-// Native camera setters remain assembly; all regions share their real
-// entry names. Only the countdown-completion query is recovered here.
+// A requested screen-center position is clamped to the map's camera origin.
+// Set applies it immediately; Pan keeps the native integer frame arithmetic.
+Vec2 func_080A58EC(GameSceneWorldMapPrefix const * map, i32 x, i32 y);
 void func_080A5960(GameSceneWorldMapPrefix * map, i32 x, i32 y);
 void func_080A59BC(GameSceneWorldMapPrefix * map, i32 x, i32 y, u32 speed);
 bool func_080A5A9C(GameSceneWorldMapPrefix const * map);
