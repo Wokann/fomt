@@ -19486,15 +19486,9 @@ func_0801FC6C:
     .byte 0x85, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21, 0x1B, 0xF0, 0x0C, 0xFA, 0x25, 0x60
     .byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x7C, 0x10, 0x00, 0x00, 0x40, 0x68, 0x70, 0x47, 0x40, 0x68
     .byte 0x70, 0x47
-    .global func_0801FCA4
-    .thumb_func
-func_0801FCA4:
-    ldr r1, [pc, #8]
-    adds r0, r0, r1
-    ldr r0, [r0]
-    adds r0, #8
-    bx lr
-    .byte 0x00, 0x00, 0x38, 0x10, 0x00, 0x00
+    .section .text.game_world_after_clock, "ax", %progbits
+    .align 2, 0
+
     .global func_0801FCB4
     .thumb_func
 func_0801FCB4:
@@ -19531,45 +19525,9 @@ func_0801FCDC:
     strb r1, [r0]
     bx lr
     .byte 0x00, 0x00, 0x3D, 0x02, 0x00, 0x00
-    .global func_0801FCF4
-    .thumb_func
-func_0801FCF4:
-    adds r0, #8
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    ldr r0, [r0]
-    bx lr
-    .byte 0x00, 0x00
-    .global func_0801FD00
-    .thumb_func
-func_0801FD00:
-    adds r0, #8
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    ldr r0, [r0]
-    bx lr
-    .byte 0x00, 0x00
-    .global func_0801FD0C
-    .thumb_func
-func_0801FD0C:
-    push {r4, lr}
-    adds r0, #8
-    lsls r1, r1, #2
-    adds r4, r0, r1
-    ldr r1, [r4]
-    cmp r1, #0
-    beq .Lauto_0801FABE
-    ldr r0, [r1, #0x14]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    movs r0, #0
-    str r0, [r4]
-    .Lauto_0801FABE:
-    pop {r4}
-    pop {r0}
-    bx r0
+    .section .text.game_world_after_entities, "ax", %progbits
+    .align 2, 0
+
     .global func_0801FD30
     .thumb_func
 func_0801FD30:
@@ -19578,51 +19536,7 @@ func_0801FD30:
     ldr r0, [r0]
     bx lr
     .byte 0x24, 0x10, 0x00, 0x00
-    .global func_0801FD3C
-    .thumb_func
-func_0801FD3C:
-    push {lr}
-    ldr r0, [r0, #4]
-    bl func_080A5A9C
-    pop {r1}
-    bx r1
-    .global func_0801FD48
-    .thumb_func
-func_0801FD48:
-    ldr r0, [r0, #4]
-    movs r1, #0xe
-    ldrsh r0, [r0, r1]
-    bx lr
-    .global func_0801FD50
-    .thumb_func
-func_0801FD50:
-    ldr r0, [r0, #4]
-    movs r1, #0xa
-    ldrsh r0, [r0, r1]
-    bx lr
-    .global func_0801FD58
-    .thumb_func
-func_0801FD58:
-    ldr r0, [r0, #4]
-    ldr r0, [r0]
-    bx lr
-    .byte 0x00, 0x00
-    .global func_0801FD60
-    .thumb_func
-func_0801FD60:
-    push {lr}
-    ldr r0, [r0, #4]
-    bl func_080A53F4
-    pop {r0}
-    bx r0
-    .global func_0801FD6C
-    .thumb_func
-func_0801FD6C:
-    push {lr}
-    ldr r0, [r0, #4]
-    bl func_080A5960
-    pop {r0}
-    bx r0
+
 
 
     .else
@@ -43702,11 +43616,9 @@ func_0801FC6C:
     bl func_0803B0A8
     .byte 0x25, 0x60, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x7C, 0x10, 0x00, 0x00, 0x40, 0x68, 0x70, 0x47
     .byte 0x40, 0x68, 0x70, 0x47
-    .global func_0801FCA4
-    .thumb_func
-func_0801FCA4:
-    .byte 0x02, 0x49, 0x40, 0x18, 0x00, 0x68, 0x08, 0x30, 0x70, 0x47, 0x00, 0x00
-    .byte 0x38, 0x10, 0x00, 0x00
+    .section .text.game_world_after_clock, "ax", %progbits
+    .align 2, 0
+
     .global func_0801FCB4
     .thumb_func
 func_0801FCB4:
@@ -43721,77 +43633,16 @@ func_0801FCDC:
     .byte 0x4A, 0x01, 0x52, 0x18
     .byte 0x92, 0x00, 0x80, 0x18, 0x02, 0x49, 0x40, 0x18, 0x00, 0x21, 0x01, 0x70, 0x70, 0x47, 0x00, 0x00
     .byte 0x3D, 0x02, 0x00, 0x00
-    .global func_0801FCF4
-    .thumb_func
-func_0801FCF4:
-    .byte 0x08, 0x30, 0x89, 0x00, 0x40, 0x18, 0x00, 0x68, 0x70, 0x47, 0x00, 0x00
-    .global func_0801FD00
-    .thumb_func
-func_0801FD00:
-    .byte 0x08, 0x30, 0x89, 0x00, 0x40, 0x18, 0x00, 0x68, 0x70, 0x47, 0x00, 0x00
+    .section .text.game_world_after_entities, "ax", %progbits
+    .align 2, 0
 
-    thumb_func_start func_0801FD0C
-func_0801FD0C: @ 0x0801FD0C
-    push {r4, lr}
-    adds r0, #8
-    lsls r1, r1, #2
-    adds r4, r0, r1
-    ldr r1, [r4]
-    cmp r1, #0
-    beq .L0801FD2A
-    ldr r0, [r1, #0x14]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    movs r0, #0
-    str r0, [r4]
-.L0801FD2A:
-    pop {r4}
-    pop {r0}
-    bx r0
 .L0801FD30:
     .global func_0801FD30
     .thumb_func
 func_0801FD30:
     .byte 0x01, 0x49, 0x40, 0x18, 0x00, 0x68, 0x70, 0x47, 0x24, 0x10, 0x00, 0x00
 
-    thumb_func_start func_0801FD3C
-func_0801FD3C: @ 0x0801FD3C
-    push {lr}
-    ldr r0, [r0, #4]
-    bl func_080A5A9C
-    pop {r1}
-    bx r1
-.L0801FD48:
-    .global func_0801FD48
-    .thumb_func
-func_0801FD48:
-    .byte 0x40, 0x68, 0x0E, 0x21, 0x40, 0x5E, 0x70, 0x47
-    .global func_0801FD50
-    .thumb_func
-func_0801FD50:
-    .byte 0x40, 0x68, 0x0A, 0x21, 0x40, 0x5E, 0x70, 0x47
-    .global func_0801FD58
-    .thumb_func
-func_0801FD58:
-    .byte 0x40, 0x68, 0x00, 0x68, 0x70, 0x47, 0x00, 0x00
 
-    thumb_func_start func_0801FD60
-func_0801FD60: @ 0x0801FD60
-    push {lr}
-    ldr r0, [r0, #4]
-    bl func_080A59BC
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_0801FD6C
-func_0801FD6C: @ 0x0801FD6C
-    push {lr}
-    ldr r0, [r0, #4]
-    bl func_080A5960
-    pop {r0}
-    bx r0
 
     @ All overseas virtual-table entries above are direct physical labels.
     @ The verified source positions are shared by US, EU, and DE.

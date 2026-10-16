@@ -10,6 +10,7 @@
 #include "hardware_music_player.hh"
 #include "hardware_song.hh"
 #include "font.hh"
+#include <iterator>
 
 static inline void StartSceneSong(MusicPlayer ** player, i32 mode, u16 song_id)
 {
@@ -696,6 +697,70 @@ void GameScene::EnableScriptedNpcControl()
 void GameScene::DisableScriptedNpcControl()
 {
     state->save->scripted_npc_control = 0;
+}
+
+EC GameStateClock const * func_0801FCA4(GameSceneWorldPrefix const & world)
+{
+    return &world.save->clock;
+}
+
+EC AActorEntity * func_0801FCF4(GameSceneWorldPrefix const & world, u32 index)
+{
+    AActorEntity * const * first = world.entities;
+    std::advance(first, index);
+    return *first;
+}
+
+EC AActorEntity * func_0801FD00(GameSceneWorldPrefix & world, u32 index)
+{
+    AActorEntity ** first = world.entities;
+    std::advance(first, index);
+    return *first;
+}
+
+EC void func_0801FD0C(GameSceneWorldPrefix & world, u32 index)
+{
+    AActorEntity ** entity = world.entities;
+    std::advance(entity, index);
+    if (*entity != nullptr) {
+        delete *entity;
+        *entity = nullptr;
+    }
+}
+
+EC bool func_0801FD3C(GameSceneWorldPrefix const & world)
+{
+    return func_080A5A9C(world.map);
+}
+
+EC i32 func_0801FD48(GameSceneWorldPrefix const & world)
+{
+    return world.map->y.parts.integer;
+}
+
+EC i32 func_0801FD50(GameSceneWorldPrefix const & world)
+{
+    return world.map->x.parts.integer;
+}
+
+EC u32 func_0801FD58(GameSceneWorldPrefix const & world)
+{
+    return world.map->map;
+}
+
+EC void func_0801FD60(GameSceneWorldPrefix & world, i32 x, i32 y, u32 speed)
+{
+    func_080A59BC(world.map, x, y, speed);
+}
+
+EC void func_0801FD6C(GameSceneWorldPrefix & world, i32 x, i32 y)
+{
+    func_080A5960(world.map, x, y);
+}
+
+EC bool func_080A5A9C(GameSceneWorldMapPrefix const * map)
+{
+    return map->movement_frames == 0;
 }
 
 EC void func_080D7F08(GameSceneState * state)

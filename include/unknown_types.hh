@@ -100,9 +100,9 @@ struct GameObject
     virtual void vfunc_0C();
     virtual void vfunc_10();
     virtual u32 vfunc_14(); // ok, get current map
-    virtual void vfunc_18();
-    virtual void vfunc_1C();
-    virtual void vfunc_20();
+    virtual i32 GetCameraX();
+    virtual i32 GetCameraY();
+    virtual void SetCameraPosition(i32 x, i32 y);
     virtual void PanCameraTo(i32 x, i32 y, u32 speed);
     virtual bool IsCameraMovementComplete();
     virtual i32 vfunc_2C(u32 map_id); // ok: get map width

@@ -8619,9 +8619,9 @@ func_080A5960: @ 0x080A5398
 	pop {r0}
 	bx r0
 
-    .global func_080A53F4
+    .global func_080A59BC
     .thumb_func
-func_080A53F4: @ 0x080A53F4
+func_080A59BC: @ 0x080A53F4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -8737,20 +8737,8 @@ func_080A53F4: @ 0x080A53F4
 	bx r0
 	.align 2, 0
 
-    .global func_080A5A9C
-    .thumb_func
-func_080A5A9C: @ 0x080A54D4
-	push {lr}
-	movs r1, #0
-	adds r0, #0x8c
-	ldr r0, [r0]
-	cmp r0, #0
-	bne .Ljp_080A5AAA
-	movs r1, #1
-.Ljp_080A5AAA:
-	adds r0, r1, #0
-	pop {r1}
-	bx r1
+    .section .text.game_map_after_camera_query, "ax", %progbits
+    .align 2, 0
 
     .global func_080A54E8
     .thumb_func
@@ -25777,7 +25765,7 @@ func_080AD5CC:
 func_080AD5D4:
     push {lr}
     ldr r0, [r0, #4]
-    bl func_080A53F4
+    bl func_080A59BC
     pop {r0}
     bx r0
 
@@ -94250,19 +94238,9 @@ func_080A59BC: @ 0x080A59BC
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080A5A9C
-func_080A5A9C: @ 0x080A5A9C
-	push {lr}
-	movs r1, #0
-	adds r0, #0x8c
-	ldr r0, [r0]
-	cmp r0, #0
-	bne .L080A5AAA
-	movs r1, #1
-.L080A5AAA:
-	adds r0, r1, #0
-	pop {r1}
-	bx r1
+    .section .text.game_map_after_camera_query, "ax", %progbits
+    .align 2, 0
+
 
 	thumb_func_start func_080A5AB0
 func_080A5AB0: @ 0x080A5AB0

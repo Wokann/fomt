@@ -33,6 +33,49 @@ struct GameStateSaveImage;
 struct MusicPlayer;
 struct HardwareBlendController;
 
+// The map controller stores Q16.16 camera coordinates. Native integer
+// readers sign-extend their high halfwords; movement writes the whole word.
+union GameSceneCameraCoordinate {
+    i32 q16;
+    struct {
+        u16 fraction;
+        i16 integer;
+    } parts;
+};
+
+// Only the verified map/camera prefix is modeled, not the complete object.
+// The move routine writes per-frame Q16.16 steps and a frame countdown.
+struct GameSceneWorldMapPrefix {
+    u32 map;
+    u32 unk_04;
+    GameSceneCameraCoordinate x;
+    GameSceneCameraCoordinate y;
+    u8 unk_10[0x74];
+    i32 step_x_q16;
+    i32 step_y_q16;
+    u32 movement_frames;
+};
+
+// This native GameObject keeps 100 entity slots. Its unrecovered payload
+// stays opaque; this prefix is never allocated or treated as its full size.
+struct GameSceneWorldPrefix : GameObject {
+    GameSceneWorldMapPrefix * map;
+    AActorEntity * entities[100];
+    u8 unk_198[0xEA0];
+    GameStateSaveImage * save;
+};
+
+typedef char GameSceneCameraCoordinateSizeCheck[sizeof(GameSceneCameraCoordinate) == 4 ? 1 : -1];
+typedef char GameSceneCameraIntegerCheck[offsetof(GameSceneCameraCoordinate, parts.integer) == 2 ? 1 : -1];
+typedef char GameSceneCameraXCheck[offsetof(GameSceneWorldMapPrefix, x) == 8 ? 1 : -1];
+typedef char GameSceneCameraYCheck[offsetof(GameSceneWorldMapPrefix, y) == 0xC ? 1 : -1];
+typedef char GameSceneCameraStepXCheck[offsetof(GameSceneWorldMapPrefix, step_x_q16) == 0x84 ? 1 : -1];
+typedef char GameSceneCameraStepYCheck[offsetof(GameSceneWorldMapPrefix, step_y_q16) == 0x88 ? 1 : -1];
+typedef char GameSceneCameraFramesCheck[offsetof(GameSceneWorldMapPrefix, movement_frames) == 0x8C ? 1 : -1];
+typedef char GameSceneWorldMapCheck[offsetof(GameSceneWorldPrefix, map) == 4 ? 1 : -1];
+typedef char GameSceneWorldEntitiesCheck[offsetof(GameSceneWorldPrefix, entities) == 8 ? 1 : -1];
+typedef char GameSceneWorldSaveCheck[offsetof(GameSceneWorldPrefix, save) == 0x1038 ? 1 : -1];
+
 // Only the shared destruction prefix is recovered. The concrete Time Window
 // and pause-menu selector payloads and their destructors remain native.
 struct GameSceneUiComponent {
@@ -842,6 +885,25 @@ u8 * func_08010128(void);
 u8 * func_08010138(void);
 u32 func_08010148(void);
 ScriptEngine * func_0801014C(void);
+
+// Recovered native world callbacks. The duplicate slot readers retain
+// separate entries; neither adds bounds checking absent from the original.
+GameStateClock const * func_0801FCA4(GameSceneWorldPrefix const & world);
+AActorEntity * func_0801FCF4(GameSceneWorldPrefix const & world, u32 index);
+AActorEntity * func_0801FD00(GameSceneWorldPrefix & world, u32 index);
+void func_0801FD0C(GameSceneWorldPrefix & world, u32 index);
+bool func_0801FD3C(GameSceneWorldPrefix const & world);
+i32 func_0801FD48(GameSceneWorldPrefix const & world);
+i32 func_0801FD50(GameSceneWorldPrefix const & world);
+u32 func_0801FD58(GameSceneWorldPrefix const & world);
+void func_0801FD60(GameSceneWorldPrefix & world, i32 x, i32 y, u32 speed);
+void func_0801FD6C(GameSceneWorldPrefix & world, i32 x, i32 y);
+
+// Native camera setters remain assembly; all regions share their real
+// entry names. Only the countdown-completion query is recovered here.
+void func_080A5960(GameSceneWorldMapPrefix * map, i32 x, i32 y);
+void func_080A59BC(GameSceneWorldMapPrefix * map, i32 x, i32 y, u32 speed);
+bool func_080A5A9C(GameSceneWorldMapPrefix const * map);
 
 // Recovered state callbacks retain address names where semantics are unresolved.
 void func_080D7F08(GameSceneState * state);
