@@ -1,7 +1,7 @@
 #ifndef HARDWARE_INTERRUPT_GUARD_HH
 #define HARDWARE_INTERRUPT_GUARD_HH
 
-#include "hardware_blend_object.hh"
+#include "hardware_linked_list.hh"
 #include "interrupt.hh"
 
 #ifdef __cplusplus
@@ -23,12 +23,12 @@ private:
 
 EXTERN_C
 
-void func_0800956C(struct HardwareBlendObject * object);
-void func_0800959C(struct HardwareBlendObject * object, u32 flags);
-void func_080095C0(struct HardwareBlendObject * object, u32 value);
-void func_080095FC(struct HardwareBlendObject * object, u32 value);
-void func_08009638(struct HardwareBlendObject * object, u32 value);
-void func_08009674(struct HardwareBlendObject * object, u32 value);
+void func_0800956C(struct HardwareLinkedList * list);
+void func_0800959C(struct HardwareLinkedList * list, u32 flags);
+void func_080095C0(struct HardwareLinkedList * list, struct HardwareLink * link);
+void func_080095FC(struct HardwareLinkedList * list, struct HardwareLink * link);
+void func_08009638(struct HardwareLinkedList * list, struct HardwareLinkedList * source);
+void func_08009674(struct HardwareLinkedList * list, struct HardwareLinkedList * other);
 
 EXTERN_C_END
 

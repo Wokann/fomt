@@ -2,6 +2,7 @@
 #include "intro_scene.hh"
 #include "new_game.hh"
 #include "hardware_bootstrap.hh"
+#include "hardware_manager.hh"
 #include "font.hh"
 
 EXTERN_C
@@ -785,11 +786,7 @@ extern void func_0801EE00(void);
 extern void func_0801F924(void);
 extern void func_0801C550(void);
 extern void func_0801C69C(void);
-extern void func_080D7944(void);
 extern void func_080D79CC(void);
-extern void func_080D7AAC(void);
-extern void func_080D7AD4(void);
-extern void func_080D7B04(void);
 extern void func_080D7B2C(void);
 extern void func_080D7B38(void);
 extern void func_080D7B44(void);
@@ -1008,7 +1005,7 @@ extern RawVTableFunction const vtable_unk_080E5B18[] = {
     nullptr,
     nullptr,
     reinterpret_cast<RawVTableFunction>(func_08009908),
-    func_080D7AD4,
+    reinterpret_cast<RawVTableFunction>(func_080D7AD4),
     func_080095C0,
     func_080095FC,
     func_0800956C,
@@ -1019,19 +1016,19 @@ extern RawVTableFunction const vtable_unk_080E5B18[] = {
 extern RawVTableFunction const vtable_unk_080E5B3C[] = {
     nullptr,
     nullptr,
-    func_080D7944,
+    reinterpret_cast<RawVTableFunction>(func_080D7944),
 };
 
 extern RawVTableFunction const vtable_unk_080E5B48[] = {
     nullptr,
     nullptr,
-    func_080D7B04,
+    reinterpret_cast<RawVTableFunction>(func_080D7B04),
 };
 
 extern RawVTableFunction const vtable_unk_080E5B54[] = {
     nullptr,
     nullptr,
-    func_080D7AAC,
+    reinterpret_cast<RawVTableFunction>(func_080D7AAC),
 };
 
 extern RawVTableFunction const vtable_unk_080E5B60[] = {

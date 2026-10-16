@@ -41,18 +41,31 @@ typedef char HardwareManagerVBlankBinding_handler_offset_check[
 typedef char HardwareManagerVBlankBinding_vtable_offset_check[
     offsetof(struct HardwareManagerVBlankBinding, vtable) == 0x14 ? 1 : -1];
 
-// The constructor allocates 0x6C bytes. The earlier nodes and lists still
-// need their full types established; the VBlank binding starts at +0x50.
-struct HardwareManagerState {
-    u8 unk_00[0x50];
+// The manager's second list is immediately followed by its VBlank binding.
+// Keep this verified storage composition without guessing C++ inheritance.
+struct HardwareManagerCommandGroup {
+    struct HardwareLinkedList commands;
     struct HardwareManagerVBlankBinding vblank;
+};
+
+typedef char HardwareManagerCommandGroup_size_check[
+    sizeof(struct HardwareManagerCommandGroup) == 0x34 ? 1 : -1];
+typedef char HardwareManagerCommandGroup_vblank_offset_check[
+    offsetof(struct HardwareManagerCommandGroup, vblank) == 0x1C ? 1 : -1];
+
+// The constructor allocates 0x6C bytes. The earlier nodes and lists still
+// need their full types established; the second command group is at +0x34.
+struct HardwareManagerState {
+    u8 unk_00[0x34];
+    struct HardwareManagerCommandGroup command_group;
     u8 unk_68;
     u8 unk_69[3];
 };
 
 typedef char HardwareManagerState_size_check[sizeof(struct HardwareManagerState) == 0x6C ? 1 : -1];
 typedef char HardwareManagerState_vblank_offset_check[
-    offsetof(struct HardwareManagerState, vblank) == 0x50 ? 1 : -1];
+    offsetof(struct HardwareManagerState, command_group) +
+    offsetof(struct HardwareManagerCommandGroup, vblank) == 0x50 ? 1 : -1];
 
 struct HardwareManagerOwner {
     struct HardwareManagerState * state;
@@ -72,6 +85,13 @@ struct HardwareManagerVBlankBinding * func_080D78F8(
     struct HardwareManagerVBlankBinding * binding, struct HardwareLinkedList * const * list);
 // This original destructor entry remains explicit Thumb assembly.
 void func_080D7944(struct HardwareManagerVBlankBinding * binding, u32 flags);
+// The original base and derived tables retain distinct cleanup entries.
+void func_080D7AAC(struct HardwareManagerPreviousBinding * binding, u32 flags)
+    SECTION(".text.hardware_manager_binding_cleanup");
+void func_080D7AD4(struct HardwareManagerCommandGroup * group, u32 flags)
+    SECTION(".text.hardware_manager_binding_cleanup");
+void func_080D7B04(struct HardwareManagerPreviousBinding * binding, u32 flags)
+    SECTION(".text.hardware_manager_binding_cleanup");
 
 EXTERN_C_END
 
