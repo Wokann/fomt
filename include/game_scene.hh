@@ -1200,6 +1200,8 @@ void func_0801DD54(GameSceneWorldPrefix & world);
 void func_0801DD60(GameSceneWorldPrefix & world, u32 index);
 void func_0801DD6C(GameSceneWorldPrefix & world, u32 index);
 void func_0801DD78(GameSceneWorldPrefix & world);
+MaryItemArticleId RemoveRecordPlayerAlbum(GameSceneWorldPrefix & world);
+MaryItemArticleId SwapRecordPlayerAlbum(GameSceneWorldPrefix & world, MaryItemArticleId article_id);
 void ApplyMapTilePatch(GameSceneWorldMapPrefix * map,
     FieldRenderRectDescriptor const & patch, u32 x, u32 y);
 void func_080A601C(GameSceneWorldMapPrefix * map);
@@ -1212,6 +1214,8 @@ void func_080A61F0(GameSceneWorldMapPrefix * map);
 void func_080A6234(GameSceneWorldMapPrefix * map);
 void func_080A6278(GameSceneWorldMapPrefix * map);
 void func_080A62BC(GameSceneWorldMapPrefix * map);
+void func_080A6300(GameSceneWorldMapPrefix * map);
+void func_080A635C(GameSceneWorldMapPrefix * map);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
 void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,

@@ -192,8 +192,10 @@ SECTIONS
             .text.func_0801D8CC .text.func_0801D948 .text.func_0801D9A8
             .text.func_0801D9BC .text.func_0801DB44 .text.func_0801DB58
             .text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue
-            .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78);
+            .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78 .text.RemoveRecordPlayerAlbum);
         asm/game_state.o(.text.game_scene_item_actions_after);
+        src/game_scene.o(.text.SwapRecordPlayerAlbum);
+        asm/game_state.o(.text.game_scene_after_record_player_album);
         src/game_scene.o(.text.func_0801FB* .text.func_0801FC* .text.func_0801FD*);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
@@ -493,7 +495,7 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_after_tile_patch);
         src/game_scene.o(.text.func_080A601C .text.RefreshCoopFeedTrough);
         asm/code_809E804.o(.text.game_map_barn_feed);
-        src/game_scene.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC);
+        src/game_scene.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC .text.func_080A6300 .text.func_080A635C);
         asm/code_809E804.o(.text.game_map_after_patch_dispatchers);
         . = 0xD0C38; /* DE ROM 0x080D0C38, glyph-map index converter and renderer. */
         src/font.o(.text);

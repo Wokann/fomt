@@ -16212,38 +16212,6 @@ func_0801D23C:
     .section .text.game_scene_item_actions_after, "ax", %progbits
     .align 2, 0
 
-    .global func_0801DD84
-    .thumb_func
-func_0801DD84:
-    push {r4, r5, lr}
-    sub sp, #8
-    adds r4, r0, #0
-    ldr r1, [pc, #0x3c]
-    adds r0, r4, r1
-    ldr r0, [r0]
-    movs r1, #0xfa
-    lsls r1, r1, #1
-    adds r0, r0, r1
-    bl GetRecordPlayer__9FarmHouse
-    adds r5, r0, #0
-    ldr r0, [r4, #4]
-    bl func_080A5D38
-    mov r0, sp
-    adds r1, r5, #0
-    bl RemoveAlbum__12RecordPlayer
-    adds r0, r4, #0
-    bl func_0801DB58
-    mov r0, sp
-    bl GetArticle__C12ArticleStack
-    adds r1, r0, #0
-    add r0, sp, #4
-    strb r1, [r0]
-    bl GetId__C7Article
-    add sp, #8
-    pop {r4, r5}
-    pop {r1}
-    bx r1
-    .byte 0x38, 0x10, 0x00, 0x00
     .global func_0801DDCC
     .thumb_func
 func_0801DDCC:
@@ -16316,49 +16284,9 @@ func_0801DE48:
     bl func_080AA314
     pop {r0}
     bx r0
-    .global func_0801DE54
-    .thumb_func
-func_0801DE54:
-    push {r4, r5, r6, lr}
-    mov r6, r8
-    push {r6}
-    sub sp, #8
-    adds r5, r0, #0
-    mov r8, r1
-    ldr r1, [pc, #0x4c]
-    adds r0, r5, r1
-    ldr r0, [r0]
-    movs r1, #0xfa
-    lsls r1, r1, #1
-    adds r0, r0, r1
-    bl GetRecordPlayer__9FarmHouse
-    adds r6, r0, #0
-    ldr r0, [r5, #4]
-    bl func_080A5D94
-    add r4, sp, #4
-    adds r0, r4, #0
-    mov r1, r8
-    bl __7ArticleUi
-    mov r0, sp
-    adds r1, r6, #0
-    adds r2, r4, #0
-    bl SetAlbum__12RecordPlayerRC7Article
-    adds r0, r5, #0
-    bl func_0801DB58
-    mov r0, sp
-    bl GetArticle__C12ArticleStack
-    adds r1, r0, #0
-    mov r0, sp
-    adds r0, #5
-    strb r1, [r0]
-    bl GetId__C7Article
-    add sp, #8
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x38, 0x10, 0x00, 0x00
+    .section .text.game_scene_after_record_player_album, "ax", %progbits
+    .align 2, 0
+
     .global func_0801DEB4
     .thumb_func
 func_0801DEB4:
@@ -37479,25 +37407,6 @@ func_0801D23C:
     .section .text.game_scene_item_actions_after, "ax", %progbits
     .align 2, 0
 
-.L0801DD84:
-    .global func_0801DD84
-    .thumb_func
-func_0801DD84:
-    .byte 0x30, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0F, 0x49, 0x60, 0x18, 0x00, 0x68
-    .byte 0xFA, 0x21, 0x49, 0x00, 0x40, 0x18
-    bl GetRecordPlayer__9FarmHouse
-    .byte 0x05, 0x1C, 0x60, 0x68
-    bl func_080A6300
-    .byte 0x68, 0x46, 0x29, 0x1C
-    bl RemoveAlbum__12RecordPlayer
-    .byte 0x20, 0x1C
-    bl func_0801DB58
-    .byte 0x68, 0x46
-    bl GetArticle__C12ArticleStack
-    .byte 0x01, 0x1C, 0x01, 0xA8, 0x01, 0x70
-    bl GetId__C7Article
-    .byte 0x02, 0xB0, 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x38, 0x10, 0x00, 0x00
-
     thumb_func_start func_0801DDCC
 func_0801DDCC: @ 0x0801DDCC
     push {r4, r5, lr}
@@ -37572,27 +37481,8 @@ func_0801DE48: @ 0x0801DE48
     bl func_080AA8DC
     pop {r0}
     bx r0
-.L0801DE54:
-    .global func_0801DE54
-    .thumb_func
-func_0801DE54:
-    .byte 0x70, 0xB5, 0x46, 0x46, 0x40, 0xB4, 0x82, 0xB0, 0x05, 0x1C, 0x88, 0x46
-    .byte 0x13, 0x49, 0x68, 0x18, 0x00, 0x68, 0xFA, 0x21, 0x49, 0x00, 0x40, 0x18
-    bl GetRecordPlayer__9FarmHouse
-    .byte 0x06, 0x1C, 0x68, 0x68
-    bl func_080A635C
-    .byte 0x01, 0xAC, 0x20, 0x1C, 0x41, 0x46
-    bl __7ArticleUi
-    .byte 0x68, 0x46, 0x31, 0x1C, 0x22, 0x1C
-    bl SetAlbum__12RecordPlayerRC7Article
-    .byte 0x28, 0x1C
-    bl func_0801DB58
-    .byte 0x68, 0x46
-    bl GetArticle__C12ArticleStack
-    .byte 0x01, 0x1C, 0x68, 0x46, 0x05, 0x30, 0x01, 0x70
-    bl GetId__C7Article
-    .byte 0x02, 0xB0, 0x08, 0xBC, 0x98, 0x46, 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47
-    .byte 0x38, 0x10, 0x00, 0x00
+    .section .text.game_scene_after_record_player_album, "ax", %progbits
+    .align 2, 0
 
     thumb_func_start func_0801DEB4
 func_0801DEB4: @ 0x0801DEB4

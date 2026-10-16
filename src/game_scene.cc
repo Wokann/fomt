@@ -1382,6 +1382,24 @@ EC void func_0801DD78(GameSceneWorldPrefix & world)
     func_080A601C(world.data.map.value);
 }
 
+EC MaryItemArticleId RemoveRecordPlayerAlbum(GameSceneWorldPrefix & world)
+{
+    RecordPlayer * record_player = world.save->farm.farm_house.GetRecordPlayer();
+    func_080A6300(world.data.map.value);
+    ArticleStack album = record_player->RemoveAlbum();
+    func_0801DB58(world);
+    return static_cast<MaryItemArticleId>(album.GetArticle().GetId());
+}
+
+EC MaryItemArticleId SwapRecordPlayerAlbum(GameSceneWorldPrefix & world, MaryItemArticleId article_id)
+{
+    RecordPlayer * record_player = world.save->farm.farm_house.GetRecordPlayer();
+    func_080A635C(world.data.map.value);
+    ArticleStack album = record_player->SetAlbum(Article(article_id));
+    func_0801DB58(world);
+    return static_cast<MaryItemArticleId>(album.GetArticle().GetId());
+}
+
 GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
 {
     // Match native cleanup: release the first index, then destroy all three
@@ -1769,6 +1787,42 @@ EC void func_080A62BC(GameSceneWorldMapPrefix * map)
     case 0x2B:
         ApplyMapTilePatch(map, gFieldRenderRectDescriptors[19], 0x17, 2);
         break;
+    }
+    map->camera_changed = true;
+}
+
+EC void func_080A6300(GameSceneWorldMapPrefix * map)
+{
+    switch (static_cast<i32>(map->map_data_id)) {
+    case 0x29:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[22], 1, 0x11);
+        break;
+    case 0x2A:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[22], 0x10, 0x11);
+        break;
+    case 0x2B:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[22], 0x18, 0x11);
+        break;
+    default:
+        return;
+    }
+    map->camera_changed = true;
+}
+
+EC void func_080A635C(GameSceneWorldMapPrefix * map)
+{
+    switch (static_cast<i32>(map->map_data_id)) {
+    case 0x29:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[21], 1, 0x11);
+        break;
+    case 0x2A:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[21], 0x10, 0x11);
+        break;
+    case 0x2B:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[21], 0x18, 0x11);
+        break;
+    default:
+        return;
     }
     map->camera_changed = true;
 }

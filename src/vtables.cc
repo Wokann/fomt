@@ -738,8 +738,8 @@ extern void func_0801DD48(void);
 extern void func_0801DD54(void);
 extern void func_0801DD60(void);
 extern void func_0801DD6C(void);
-extern void func_0801DD84(void);
-extern void func_0801DE54(void);
+extern void RemoveRecordPlayerAlbum(void);
+extern void SwapRecordPlayerAlbum(void);
 extern void func_0801DE24(void);
 extern void func_08017C00(void);
 extern void func_08019BEC(void);
@@ -1455,8 +1455,8 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801DD54,
     func_0801DD60,
     func_0801DD6C,
-    func_0801DD84,
-    func_0801DE54,
+    RemoveRecordPlayerAlbum,
+    SwapRecordPlayerAlbum,
     func_0801DE24,
     func_08017C00,
     func_08019BEC,
