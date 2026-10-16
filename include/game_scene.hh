@@ -258,6 +258,25 @@ struct GameSceneFarmPlotLocation {
     u16 row;
 };
 
+// Tool hits distinguish an unsupported target from a supported but unfinished
+// removal. Kind and coordinates are valid only when removed is true.
+struct Farm;
+struct FieldItemState;
+struct GameSceneFieldItemToolResult {
+    GameSceneFieldItemToolResult() : removed(false), rejected(true) {}
+
+    bool removed;
+    i32 kind;
+    i32 x;
+    i32 y;
+    bool rejected;
+};
+
+typedef char GameSceneFieldItemToolResultSizeCheck[sizeof(GameSceneFieldItemToolResult) == 20 ? 1 : -1];
+typedef char GameSceneFieldItemToolKindCheck[offsetof(GameSceneFieldItemToolResult, kind) == 4 ? 1 : -1];
+typedef char GameSceneFieldItemToolPositionCheck[offsetof(GameSceneFieldItemToolResult, x) == 8 ? 1 : -1];
+typedef char GameSceneFieldItemToolRejectedCheck[offsetof(GameSceneFieldItemToolResult, rejected) == 16 ? 1 : -1];
+
 typedef char GameSceneWorldUnk1080EntrySizeCheck[sizeof(GameSceneWorldUnk1080Entry) == 12 ? 1 : -1];
 typedef char GameSceneWorldUnk1080TileXCheck[offsetof(GameSceneWorldUnk1080Entry, tile_x) == 4 ? 1 : -1];
 typedef char GameSceneWorldUnk1080TailCheck[offsetof(GameSceneWorldUnk1080Entry, unk_08) == 8 ? 1 : -1];
@@ -1114,6 +1133,10 @@ ScriptEngine * func_0801014C(void);
 u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind);
 bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & location,
     GameSceneFarmPlotLocation & output);
+u32 func_0801740C(FieldPlot const & plot);
+u32 func_0801746C(FieldPlot const & plot);
+bool func_080174C8(Farm & farm, FieldItemState & items, u32 index, i32 season,
+    i32 power, bool hammer, GameSceneFieldItemToolResult & result);
 u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location);
 u32 func_0801D3FC(GameSceneWorldPrefix & world, Location const & location);
 void func_0801D4E0(GameSceneWorldPrefix & world, Location const & location, i32 id);

@@ -701,6 +701,106 @@ void GameScene::DisableScriptedNpcControl()
     state->save->scripted_npc_control = 0;
 }
 
+EC u32 func_0801740C(FieldPlot const & plot)
+{
+    switch (plot.GetUnk2()) {
+    case 0x1B:
+    case 0x1F:
+    case 0x23:
+    default:
+        return 0;
+    case 0x1C:
+    case 0x20:
+    case 0x24:
+        return 1;
+    case 0x1D:
+    case 0x21:
+    case 0x25:
+        return 2;
+    case 0x1E:
+    case 0x22:
+    case 0x26:
+        return 3;
+    }
+}
+
+EC u32 func_0801746C(FieldPlot const & plot)
+{
+    switch (plot.GetUnk2()) {
+    case 0x1B:
+    case 0x1C:
+    case 0x1D:
+    case 0x1E:
+    default:
+        return 0;
+    case 0x1F:
+    case 0x20:
+    case 0x21:
+    case 0x22:
+        return 1;
+    case 0x23:
+    case 0x24:
+    case 0x25:
+    case 0x26:
+        return 2;
+    }
+}
+
+EC bool func_080174C8(Farm & farm, FieldItemState & items, u32 index, i32 season,
+    i32 power, bool hammer, GameSceneFieldItemToolResult & result)
+{
+    FieldItemInstance const & record = items.GetRecord(index);
+    i32 minimum = 0;
+    i32 remaining;
+    if (hammer) {
+        switch (record.kind) {
+        case 0x13: minimum = 2; break;
+        case 0x14: minimum = 7; break;
+        default: goto failure;
+        }
+    } else {
+        switch (record.kind) {
+        case 0x12: break;
+        case 0x15: minimum = 1; break;
+        default: goto failure;
+        }
+    }
+
+    // A valid target is accepted even if this hit does not remove it.
+    result.rejected = false;
+    remaining = power - minimum;
+    if (remaining <= 0)
+        goto failure;
+    if (record.kind != 0x12)
+        items.DecreaseResourceValue(index, remaining);
+    if (record.kind != 0x12 && items.GetResourceValue(index) != 0)
+        goto failure;
+
+    items.ClearAvailability(index, season);
+    result.removed = true;
+    result.x = record.x;
+    result.y = record.y;
+    switch (record.kind) {
+    case 0x15:
+        farm.method_08009B68(6);
+        result.kind = 7;
+        break;
+    case 0x12:
+        farm.method_08009B68(1);
+        result.kind = 4;
+        break;
+    case 0x13:
+        result.kind = 6;
+        break;
+    case 0x14:
+        result.kind = 9;
+        break;
+    }
+    return true;
+failure:
+    return false;
+}
+
 EC u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind)
 {
     switch (kind) {

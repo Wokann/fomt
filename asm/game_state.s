@@ -10302,172 +10302,9 @@ func_08016D38:
     pop {r0}
     bx r0
     .byte 0x94, 0x65, 0x10, 0x08, 0xAC, 0x65, 0x10, 0x08
-    .global loc_080171A0
-    .thumb_func
-    loc_080171A0:
-    push {lr}
-    ldr r0, [r0]
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x1a
-    subs r0, #0x1b
-    cmp r0, #0xb
-    bhi .Lauto_080171EC
-    lsls r0, r0, #2
-    ldr r1, [pc, #4]
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .byte 0xBC, 0x71, 0x01, 0x08
-    .Lauto_080171BC:
-    .byte 0xEC, 0x71, 0x01, 0x08, 0xF0, 0x71, 0x01, 0x08, 0xF4, 0x71, 0x01, 0x08, 0xF8, 0x71, 0x01, 0x08
-    .byte 0xEC, 0x71, 0x01, 0x08, 0xF0, 0x71, 0x01, 0x08, 0xF4, 0x71, 0x01, 0x08, 0xF8, 0x71, 0x01, 0x08
-    .byte 0xEC, 0x71, 0x01, 0x08, 0xF0, 0x71, 0x01, 0x08, 0xF4, 0x71, 0x01, 0x08, 0xF8, 0x71, 0x01, 0x08
-    .Lauto_080171EC:
-    movs r0, #0
-    b .Lauto_080171FA
-    .Lauto_080171F0:
-    .byte 0x01, 0x20, 0x02, 0xE0
-    .Lauto_080171F4:
-    .byte 0x02, 0x20, 0x00, 0xE0
-    .Lauto_080171F8:
-    .byte 0x03, 0x20
-    .Lauto_080171FA:
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00, 0x00, 0xB5, 0x00, 0x68, 0x00, 0x06, 0x80, 0x0E, 0x1B, 0x38, 0x0B, 0x28, 0x1E, 0xD8
-    .byte 0x80, 0x00, 0x01, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x1C, 0x72, 0x01, 0x08, 0x4C, 0x72
-    .byte 0x01, 0x08, 0x4C, 0x72, 0x01, 0x08, 0x4C, 0x72, 0x01, 0x08, 0x4C, 0x72, 0x01, 0x08, 0x50, 0x72
-    .byte 0x01, 0x08, 0x50, 0x72, 0x01, 0x08, 0x50, 0x72, 0x01, 0x08, 0x50, 0x72, 0x01, 0x08, 0x54, 0x72
-    .byte 0x01, 0x08, 0x54, 0x72, 0x01, 0x08, 0x54, 0x72, 0x01, 0x08, 0x54, 0x72, 0x01, 0x08, 0x00, 0x20
-    .byte 0x02, 0xE0, 0x01, 0x20, 0x00, 0xE0, 0x02, 0x20, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
-    .global loc_0801725C
-    .thumb_func
-    loc_0801725C:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    sub sp, #0x10
-    mov sb, r0
-    adds r6, r1, #0
-    adds r7, r2, #0
-    mov sl, r3
-    add r0, sp, #0x34
-    ldr r1, [sp, #0x38]
-    mov r8, r1
-    ldrb r4, [r0]
-    mov r0, sp
-    adds r1, r6, #0
-    bl GetRecord__C14FieldItemStateUi
-    mov r5, sp
-    movs r2, #0
-    cmp r4, #0
-    beq .Lauto_0801729C
-    ldr r0, [sp]
-    cmp r0, #0x13
-    beq .Lauto_08017294
-    cmp r0, #0x14
-    beq .Lauto_08017298
-    b .Lauto_08017334
-    .Lauto_08017294:
-    movs r2, #2
-    b .Lauto_080172A8
-    .Lauto_08017298:
-    movs r2, #7
-    b .Lauto_080172A8
-    .Lauto_0801729C:
-    ldr r0, [sp]
-    cmp r0, #0x12
-    beq .Lauto_080172A8
-    cmp r0, #0x15
-    bne .Lauto_08017334
-    movs r2, #1
-    .Lauto_080172A8:
-    movs r0, #0
-    mov r1, r8
-    strb r0, [r1, #0x10]
-    ldr r0, [sp, #0x30]
-    subs r2, r0, r2
-    cmp r2, #0
-    ble .Lauto_08017334
-    ldr r0, [r5]
-    cmp r0, #0x12
-    beq .Lauto_080172D6
-    adds r0, r6, #0
-    adds r1, r7, #0
-    bl DecreaseResourceValue__14FieldItemStateUii
-    ldr r0, [r5]
-    cmp r0, #0x12
-    beq .Lauto_080172D6
-    adds r0, r6, #0
-    adds r1, r7, #0
-    bl GetResourceValue__C14FieldItemStateUi
-    cmp r0, #0
-    bne .Lauto_08017334
-    .Lauto_080172D6:
-    adds r0, r6, #0
-    adds r1, r7, #0
-    mov r2, sl
-    bl ClearAvailability__14FieldItemStateUii
-    movs r0, #1
-    mov r1, r8
-    strb r0, [r1]
-    movs r1, #8
-    ldrsh r0, [r5, r1]
-    mov r1, r8
-    str r0, [r1, #8]
-    movs r1, #0xa
-    ldrsh r0, [r5, r1]
-    mov r1, r8
-    str r0, [r1, #0xc]
-    ldr r0, [r5]
-    cmp r0, #0x13
-    beq .Lauto_08017326
-    cmp r0, #0x13
-    bgt .Lauto_08017306
-    cmp r0, #0x12
-    beq .Lauto_0801731A
-    b .Lauto_08017330
-    .Lauto_08017306:
-    cmp r0, #0x14
-    beq .Lauto_0801732A
-    cmp r0, #0x15
-    bne .Lauto_08017330
-    mov r0, sb
-    movs r1, #6
-    bl method_08009B68__4FarmUi
-    movs r0, #7
-    b .Lauto_0801732C
-    .Lauto_0801731A:
-    mov r0, sb
-    movs r1, #1
-    bl method_08009B68__4FarmUi
-    movs r0, #4
-    b .Lauto_0801732C
-    .Lauto_08017326:
-    movs r0, #6
-    b .Lauto_0801732C
-    .Lauto_0801732A:
-    movs r0, #9
-    .Lauto_0801732C:
-    mov r1, r8
-    str r0, [r1, #4]
-    .Lauto_08017330:
-    movs r0, #1
-    b .Lauto_08017336
-    .Lauto_08017334:
-    movs r0, #0
-    .Lauto_08017336:
-    add sp, #0x10
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
+    .section .text.game_scene_field_item_tool_after, "ax", %progbits
+    .align 2, 0
+
     .global func_08017348
     .thumb_func
 func_08017348:
@@ -15259,7 +15096,7 @@ func_0801C69C:
     cmp r0, #0
     beq .Lauto_0801C6AA
     adds r0, r4, #0
-    bl loc_080171A0
+    bl func_0801740C
     cmp r0, #1
     beq .Lauto_0801C65C
     cmp r0, #1
@@ -15639,7 +15476,7 @@ func_0801CBB0:
     str r4, [sp, #8]
     adds r2, r5, #0
     mov r3, r8
-    bl loc_0801725C
+    bl func_080174C8
     rsbs r0, r6, #0
     orrs r0, r6
     lsrs r6, r0, #0x1f
@@ -15822,7 +15659,7 @@ func_0801CBB0:
     cmp r0, #0
     beq .Lauto_0801CBF2
     adds r0, r4, #0
-    bl loc_080171A0
+    bl func_0801740C
     cmp r0, #1
     beq .Lauto_0801CBA4
     cmp r0, #1
@@ -16169,7 +16006,7 @@ func_0801CFB8:
     str r4, [sp, #8]
     adds r2, r5, #0
     mov r3, r8
-    bl loc_0801725C
+    bl func_080174C8
     rsbs r0, r6, #0
     orrs r0, r6
     lsrs r6, r0, #0x1f
@@ -16237,7 +16074,8 @@ func_0801CFB8:
     bl GetRecord__C14FieldItemStateUi
     .byte 0x03, 0xAE, 0x39, 0x68, 0x08, 0x1C, 0x14, 0x30, 0x12, 0x4A, 0x89, 0x18, 0x0A, 0x9B, 0x00, 0x93
     .byte 0x01, 0xAA, 0x0B, 0xAF, 0x3F, 0x78, 0x17, 0x70, 0x4A, 0x46, 0x02, 0x92, 0x22, 0x1C, 0x43, 0x46
-    .byte 0xFA, 0xF7, 0x90, 0xF9, 0x4B, 0x46, 0x18, 0x78, 0x00, 0x28, 0x39, 0xD0, 0x28, 0x88, 0x80, 0x05
+    bl func_080174C8
+    .byte 0x4B, 0x46, 0x18, 0x78, 0x00, 0x28, 0x39, 0xD0, 0x28, 0x88, 0x80, 0x05
     .byte 0x80, 0x0D, 0x57, 0x46, 0x79, 0x68, 0x0A, 0x68, 0x0D, 0x1C, 0x90, 0x42, 0x30, 0xD1, 0x58, 0x68
     .byte 0x06, 0x28, 0x15, 0xD0, 0x06, 0x28, 0x09, 0xDC, 0x04, 0x28, 0x0C, 0xD0, 0x2A, 0xE0, 0x00, 0x00
     .byte 0x38, 0x10, 0x00, 0x00, 0xC8, 0x34, 0x00, 0x00, 0xFF, 0x03, 0x00, 0x00, 0x07, 0x28, 0x05, 0xD0
@@ -29587,217 +29425,7 @@ func_080171F8: @ 0x080171F8
 .L08017404: .4byte gFieldRenderRectDescriptors + 0x120
 .L08017408: .4byte gFieldRenderRectDescriptors + 0x138
 
-    thumb_func_start func_0801740C
-func_0801740C: @ 0x0801740C
-    push {lr}
-    ldr r0, [r0]
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x1a
-    subs r0, #0x1b
-    cmp r0, #0xb
-    bhi .L08017458
-    lsls r0, r0, #2
-    ldr r1, .L08017424 @ =.L08017428
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L08017424: .4byte .L08017428
-.L08017428: @ jump table
-    .4byte .L08017458 @ case 0
-    .4byte .L0801745C @ case 1
-    .4byte .L08017460 @ case 2
-    .4byte .L08017464 @ case 3
-    .4byte .L08017458 @ case 4
-    .4byte .L0801745C @ case 5
-    .4byte .L08017460 @ case 6
-    .4byte .L08017464 @ case 7
-    .4byte .L08017458 @ case 8
-    .4byte .L0801745C @ case 9
-    .4byte .L08017460 @ case 10
-    .4byte .L08017464 @ case 11
-.L08017458:
-    movs r0, #0
-    b .L08017466
-.L0801745C:
-    movs r0, #1
-    b .L08017466
-.L08017460:
-    movs r0, #2
-    b .L08017466
-.L08017464:
-    movs r0, #3
-.L08017466:
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L0801746C:
-    push {lr}
-    ldr r0, [r0]
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x1a
-    subs r0, #0x1b
-    cmp r0, #0xb
-    bhi .L080174B8
-    lsls r0, r0, #2
-    ldr r1, .L08017484 @ =.L08017488
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L08017484: .4byte .L08017488
-.L08017488: @ jump table
-    .4byte .L080174B8 @ case 0
-    .4byte .L080174B8 @ case 1
-    .4byte .L080174B8 @ case 2
-    .4byte .L080174B8 @ case 3
-    .4byte .L080174BC @ case 4
-    .4byte .L080174BC @ case 5
-    .4byte .L080174BC @ case 6
-    .4byte .L080174BC @ case 7
-    .4byte .L080174C0 @ case 8
-    .4byte .L080174C0 @ case 9
-    .4byte .L080174C0 @ case 10
-    .4byte .L080174C0 @ case 11
-.L080174B8:
-    movs r0, #0
-    b .L080174C2
-.L080174BC:
-    movs r0, #1
-    b .L080174C2
-.L080174C0:
-    movs r0, #2
-.L080174C2:
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_080174C8
-func_080174C8: @ 0x080174C8
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    sub sp, #0x10
-    mov sb, r0
-    adds r6, r1, #0
-    adds r7, r2, #0
-    mov sl, r3
-    add r0, sp, #0x34
-    ldr r1, [sp, #0x38]
-    mov r8, r1
-    ldrb r4, [r0]
-    mov r0, sp
-    adds r1, r6, #0
-    bl GetRecord__C14FieldItemStateUi
-    mov r5, sp
-    movs r2, #0
-    cmp r4, #0
-    beq .L08017508
-    ldr r0, [sp]
-    cmp r0, #0x13
-    beq .L08017500
-    cmp r0, #0x14
-    beq .L08017504
-    b .L080175A0
-.L08017500:
-    movs r2, #2
-    b .L08017514
-.L08017504:
-    movs r2, #7
-    b .L08017514
-.L08017508:
-    ldr r0, [sp]
-    cmp r0, #0x12
-    beq .L08017514
-    cmp r0, #0x15
-    bne .L080175A0
-    movs r2, #1
-.L08017514:
-    movs r0, #0
-    mov r1, r8
-    strb r0, [r1, #0x10]
-    ldr r0, [sp, #0x30]
-    subs r2, r0, r2
-    cmp r2, #0
-    ble .L080175A0
-    ldr r0, [r5]
-    cmp r0, #0x12
-    beq .L08017542
-    adds r0, r6, #0
-    adds r1, r7, #0
-    bl DecreaseResourceValue__14FieldItemStateUii
-    ldr r0, [r5]
-    cmp r0, #0x12
-    beq .L08017542
-    adds r0, r6, #0
-    adds r1, r7, #0
-    bl GetResourceValue__C14FieldItemStateUi
-    cmp r0, #0
-    bne .L080175A0
-.L08017542:
-    adds r0, r6, #0
-    adds r1, r7, #0
-    mov r2, sl
-    bl ClearAvailability__14FieldItemStateUii
-    movs r0, #1
-    mov r1, r8
-    strb r0, [r1]
-    movs r1, #8
-    ldrsh r0, [r5, r1]
-    mov r1, r8
-    str r0, [r1, #8]
-    movs r1, #0xa
-    ldrsh r0, [r5, r1]
-    mov r1, r8
-    str r0, [r1, #0xc]
-    ldr r0, [r5]
-    cmp r0, #0x13
-    beq .L08017592
-    cmp r0, #0x13
-    bgt .L08017572
-    cmp r0, #0x12
-    beq .L08017586
-    b .L0801759C
-.L08017572:
-    cmp r0, #0x14
-    beq .L08017596
-    cmp r0, #0x15
-    bne .L0801759C
-    mov r0, sb
-    movs r1, #6
-    bl method_08009B68__4FarmUi
-    movs r0, #7
-    b .L08017598
-.L08017586:
-    mov r0, sb
-    movs r1, #1
-    bl method_08009B68__4FarmUi
-    movs r0, #4
-    b .L08017598
-.L08017592:
-    movs r0, #6
-    b .L08017598
-.L08017596:
-    movs r0, #9
-.L08017598:
-    mov r1, r8
-    str r0, [r1, #4]
-.L0801759C:
-    movs r0, #1
-    b .L080175A2
-.L080175A0:
-    movs r0, #0
-.L080175A2:
-    add sp, #0x10
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
+    .section .text.game_scene_field_item_tool_after, "ax", %progbits
     .align 2, 0
 
     thumb_func_start func_080175B4
