@@ -117,6 +117,42 @@ HardwareManagerVBlankBinding::HardwareManagerVBlankBinding(HardwareLinkedList * 
     func_0800050C(1);
 }
 
+void func_080D7990(HardwareLinkedList * list, HardwareLink * link)
+{
+    InterruptGuard guard(1);
+    func_08009940(list, link);
+}
+
+void func_080D79CC(HardwareManagerVBlankBinding * binding, u32 flags)
+{
+    // The secondary table supplies the binding subobject, not the whole group.
+    // Use its verified member layout until the full class hierarchy is recovered.
+    HardwareManagerCommandGroup * group = reinterpret_cast<HardwareManagerCommandGroup *>(
+        reinterpret_cast<u8 *>(binding) - offsetof(HardwareManagerCommandGroup, vblank));
+    group->vblank.vtable = reinterpret_cast<HardwareLinkVirtualFunction const *>(vtable_unk_080E5B0C);
+    group->commands.vtable = vtable_unk_080E5B18;
+    func_080D7944(binding, 0);
+    func_0800959C(&group->commands, flags);
+}
+
+void func_080D79F8(HardwareLinkedList * list, HardwareLink * link)
+{
+    InterruptGuard guard(1);
+    func_08009968(list, link);
+}
+
+void func_080D7A34(HardwareLinkedList * list, HardwareLinkedList * source)
+{
+    InterruptGuard guard(1);
+    func_080099B0(list, source);
+}
+
+void func_080D7A70(HardwareLinkedList * list, HardwareLinkedList * other)
+{
+    InterruptGuard guard(1);
+    func_080099D4(list, other);
+}
+
 void func_080D7AAC(HardwareManagerPreviousBinding * binding, u32 flags)
 {
     binding->vtable = vtable_unk_080E5B54;

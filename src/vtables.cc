@@ -782,7 +782,6 @@ extern void func_0801EE00(void);
 extern void func_0801F924(void);
 extern void func_0801C550(void);
 extern void func_0801C69C(void);
-extern void func_080D79CC(void);
 extern void func_080D7B2C(void);
 extern void func_080D7B38(void);
 extern void func_080D7B44(void);
@@ -965,7 +964,7 @@ extern RawVTableWithOffset const vtable_unk_080E5B0C = {
     -28,
     {
         nullptr,
-        func_080D79CC,
+        reinterpret_cast<RawVTableFunction>(func_080D79CC),
     },
 };
 

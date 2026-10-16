@@ -96,6 +96,19 @@ struct HardwareManagerVBlankBinding * func_080D78F8(
     struct HardwareManagerVBlankBinding * binding, struct HardwareLinkedList * const * list);
 // This original destructor entry remains explicit Thumb assembly.
 void func_080D7944(struct HardwareManagerVBlankBinding * binding, u32 flags);
+
+// Retained list callbacks and the secondary-subobject cleanup entry.
+void func_080D7990(struct HardwareLinkedList * list, struct HardwareLink * link)
+    SECTION(".text.hardware_manager_vblank_after");
+void func_080D79CC(struct HardwareManagerVBlankBinding * binding, u32 flags)
+    SECTION(".text.hardware_manager_vblank_after");
+void func_080D79F8(struct HardwareLinkedList * list, struct HardwareLink * link)
+    SECTION(".text.hardware_manager_vblank_after");
+void func_080D7A34(struct HardwareLinkedList * list, struct HardwareLinkedList * source)
+    SECTION(".text.hardware_manager_vblank_after");
+void func_080D7A70(struct HardwareLinkedList * list, struct HardwareLinkedList * other)
+    SECTION(".text.hardware_manager_vblank_after");
+
 // The original base and derived tables retain distinct cleanup entries.
 void func_080D7AAC(struct HardwareManagerPreviousBinding * binding, u32 flags)
     SECTION(".text.hardware_manager_binding_cleanup");
