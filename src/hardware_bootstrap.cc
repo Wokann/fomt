@@ -12,60 +12,57 @@ extern void __builtin_delete(void * pointer);
 extern void free(void * pointer);
 EXTERN_C_END
 
-struct HardwareBootstrap * func_08008444(struct HardwareBootstrap * owner)
+HardwareBootstrap::HardwareBootstrap()
 {
-    owner->vtable = vtable_unk_080E5B00;
+    this->vtable = vtable_unk_080E5B00;
     struct HardwareCoreState * state = new HardwareCoreState(30, 4, 0, 0x20);
     u16 status = state->display.status;
     status |= 8;
     state->display.status = status;
     REG_DISPSTAT = status;
-    owner->state = state;
-    return owner;
+    this->state = state;
 }
 
-struct HardwareBootstrap * func_080084DC(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input)
+HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input)
 {
-    owner->vtable = vtable_unk_080E5B00;
-    struct HardwareCoreState * state = new HardwareCoreState(input->delay, input->interval, 0, 0x20);
+    this->vtable = vtable_unk_080E5B00;
+    struct HardwareCoreState * state = new HardwareCoreState(input.delay, input.interval, 0, 0x20);
     u16 status = state->display.status;
     status |= 8;
     state->display.status = status;
     REG_DISPSTAT = status;
-    owner->state = state;
-    return owner;
+    this->state = state;
 }
 
-struct HardwareBootstrap * func_08008574(struct HardwareBootstrap * owner, struct HardwareSpriteBufferParameters const * buffer)
+HardwareBootstrap::HardwareBootstrap(HardwareSpriteBufferParameters const & buffer)
 {
-    owner->vtable = vtable_unk_080E5B00;
-    struct HardwareCoreState * state = new HardwareCoreState(30, 4, *buffer);
+    this->vtable = vtable_unk_080E5B00;
+    struct HardwareCoreState * state = new HardwareCoreState(30, 4, buffer);
     u16 status = state->display.status;
     status |= 8;
     state->display.status = status;
     REG_DISPSTAT = status;
-    owner->state = state;
-    return owner;
+    this->state = state;
 }
 
-struct HardwareBootstrap * func_08008618(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input, struct HardwareSpriteBufferParameters const * buffer)
+HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input,
+    HardwareSpriteBufferParameters const & buffer)
 {
-    owner->vtable = vtable_unk_080E5B00;
-    struct HardwareCoreState * state = new HardwareCoreState(input->delay, input->interval, *buffer);
+    this->vtable = vtable_unk_080E5B00;
+    struct HardwareCoreState * state = new HardwareCoreState(input.delay, input.interval, buffer);
     u16 status = state->display.status;
     status |= 8;
     state->display.status = status;
     REG_DISPSTAT = status;
-    owner->state = state;
-    return owner;
+    this->state = state;
 }
 
-void func_080086BC(struct HardwareBootstrap * owner, u32 flags)
+HardwareBootstrap::~HardwareBootstrap()
 {
     struct HardwareCoreState * state;
-    owner->vtable = vtable_unk_080E5B00;
-    if (owner->state != 0) {
-        state = owner->state;
+    this->vtable = vtable_unk_080E5B00;
+    if (this->state != 0) {
+        state = this->state;
         struct HardwareDmaQueue * queue;
         struct DmaTransferDescriptor * current;
         struct DmaTransferDescriptor * end;
@@ -80,8 +77,6 @@ void func_080086BC(struct HardwareBootstrap * owner, u32 flags)
             free(queue->first);
         __builtin_delete(state);
     }
-    if (flags & 1)
-        __builtin_delete(owner);
 }
 
 void func_08008724(struct HardwareBootstrap * owner)

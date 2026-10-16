@@ -38,6 +38,14 @@ struct HardwareDmaQueueCommandVTable {
 struct HardwareBootstrap {
     struct HardwareCoreState * state;
     void ** vtable;
+#ifdef __cplusplus
+    HardwareBootstrap() asm("func_08008444");
+    HardwareBootstrap(HardwareInputRepeatParameters const & input) asm("func_080084DC");
+    HardwareBootstrap(HardwareSpriteBufferParameters const & buffer) asm("func_08008574");
+    HardwareBootstrap(HardwareInputRepeatParameters const & input,
+        HardwareSpriteBufferParameters const & buffer) asm("func_08008618");
+    ~HardwareBootstrap() asm("func_080086BC");
+#endif
 };
 
 struct HardwareDisplayCommand
@@ -96,6 +104,8 @@ extern struct HardwareDisplayCommandVTable const gHardwareDisplayCommandVTable;
 extern struct HardwareSpriteBufferCommandVTable const gHardwareSpriteBufferCommandVTable;
 extern struct HardwareDmaQueueCommandVTable const gHardwareDmaQueueCommandVTable;
 
+// Direct declarations of the actual member ABI for the scene classes whose
+// complete lifecycles are still being recovered. These are not wrappers.
 struct HardwareBootstrap * func_08008444(struct HardwareBootstrap * owner);
 struct HardwareBootstrap * func_080084DC(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input);
 struct HardwareBootstrap * func_08008574(struct HardwareBootstrap * owner, struct HardwareSpriteBufferParameters const * buffer);
@@ -150,5 +160,9 @@ typedef char HardwareDmaQueueCommand_payload_check[offsetof(struct HardwareDmaQu
 typedef char HardwareDisplayCommandVTable_size_check[sizeof(struct HardwareDisplayCommandVTable) == 0x10 ? 1 : -1];
 typedef char HardwareSpriteBufferCommandVTable_size_check[sizeof(struct HardwareSpriteBufferCommandVTable) == 0x10 ? 1 : -1];
 typedef char HardwareDmaQueueCommandVTable_size_check[sizeof(struct HardwareDmaQueueCommandVTable) == 0x10 ? 1 : -1];
+
+typedef char HardwareBootstrap_size_check[sizeof(struct HardwareBootstrap) == 8 ? 1 : -1];
+typedef char HardwareBootstrap_state_check[offsetof(struct HardwareBootstrap, state) == 0 ? 1 : -1];
+typedef char HardwareBootstrap_vtable_check[offsetof(struct HardwareBootstrap, vtable) == 4 ? 1 : -1];
 
 #endif // HARDWARE_BOOTSTRAP_HH
