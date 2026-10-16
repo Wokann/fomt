@@ -117,6 +117,8 @@ struct GameStateUnknown2C1C {
 typedef char GameStateUnknown2C1CSizeCheck[sizeof(GameStateUnknown2C1C) == 0x30 ? 1 : -1];
 
 extern "C" void func_0809C4E4(u32 &);
+extern "C" void func_0809C5B4(u32 & flags, u32 index);
+extern "C" void func_0809C5D0(u32 & flags, u32 index);
 struct GameStateUnknown34D8 {
     u32 value;
     GameStateUnknown34D8() { func_0809C4E4(value); }

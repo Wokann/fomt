@@ -8,23 +8,45 @@ u8 const gActorStateMaxValues[] = {
 #include FOMT_TEXT_INCLUDE(actor_state_1.cc)
 
 ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 53), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 54), 0x15, 0x0C, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 55), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 56), 0x0A, 0x02, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 57), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 58), 0x24, 0x1B, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 59), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 60), 0x15, 0x1B, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 61), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 62), 0x21, 0x19, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 63), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 64), 0x0B, 0x19, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 65), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 66), 0x1F, 0x10, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 67), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 68), 0x05, 0x10, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 73), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 74), 0x15, 0x0E, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 75), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 76), 0x0B, 0x02, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 69), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 70), 0x25, 0x02, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 71), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 72), 0x06, 0x02, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 31), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 30), 0x01, 0x02, 0x0000 },
-    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 77), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 78), 0x69, 0x3E, 0x0000 },
+    { &gFieldRenderRectDescriptors[53], &gFieldRenderRectDescriptors[54], 0x15, 0x0C },
+    { &gFieldRenderRectDescriptors[55], &gFieldRenderRectDescriptors[56], 0x0A, 0x02 },
+    { &gFieldRenderRectDescriptors[57], &gFieldRenderRectDescriptors[58], 0x24, 0x1B },
+    { &gFieldRenderRectDescriptors[59], &gFieldRenderRectDescriptors[60], 0x15, 0x1B },
+    { &gFieldRenderRectDescriptors[61], &gFieldRenderRectDescriptors[62], 0x21, 0x19 },
+    { &gFieldRenderRectDescriptors[63], &gFieldRenderRectDescriptors[64], 0x0B, 0x19 },
+    { &gFieldRenderRectDescriptors[65], &gFieldRenderRectDescriptors[66], 0x1F, 0x10 },
+    { &gFieldRenderRectDescriptors[67], &gFieldRenderRectDescriptors[68], 0x05, 0x10 },
+    { &gFieldRenderRectDescriptors[73], &gFieldRenderRectDescriptors[74], 0x15, 0x0E },
+    { &gFieldRenderRectDescriptors[75], &gFieldRenderRectDescriptors[76], 0x0B, 0x02 },
+    { &gFieldRenderRectDescriptors[69], &gFieldRenderRectDescriptors[70], 0x25, 0x02 },
+    { &gFieldRenderRectDescriptors[71], &gFieldRenderRectDescriptors[72], 0x06, 0x02 },
+    { &gFieldRenderRectDescriptors[31], &gFieldRenderRectDescriptors[30], 0x01, 0x02 },
+    { &gFieldRenderRectDescriptors[77], &gFieldRenderRectDescriptors[78], 0x69, 0x3E },
 };
 
 #include FOMT_TEXT_INCLUDE(actor_state_2.cc)
+
+EC FieldRenderPatchPlacement SelectMapFlagPatch(u32 const & flags, u32 index, bool winter)
+{
+    bool present = false;
+    if (index <= 13)
+        present = (flags & (1 << (index & 31))) != 0;
+
+    if (present) {
+        if (index == 13 && winter) {
+            return FieldRenderPatchPlacement(&gFieldRenderRectDescriptors[80],
+                gActorDataSelectionEntries[index].tile_x, gActorDataSelectionEntries[index].tile_y);
+        }
+        return FieldRenderPatchPlacement(gActorDataSelectionEntries[index].present_patch,
+            gActorDataSelectionEntries[index].tile_x, gActorDataSelectionEntries[index].tile_y);
+    }
+    if (index == 13 && winter) {
+        return FieldRenderPatchPlacement(&gFieldRenderRectDescriptors[79],
+            gActorDataSelectionEntries[index].tile_x, gActorDataSelectionEntries[index].tile_y);
+    }
+    return FieldRenderPatchPlacement(gActorDataSelectionEntries[index].absent_patch,
+        gActorDataSelectionEntries[index].tile_x, gActorDataSelectionEntries[index].tile_y);
+}
 
 extern "C" u32 func_0809C3E0(ActorStateSlots & self, u32 index)
 {

@@ -76,6 +76,22 @@ private:
     GameSceneWorldMapPrefix();
 };
 
+// The native saved-map constructor calls the base constructor, replaces its
+// vtable at +0x90, then stores the save pointer at +0x94 and this flag at +0x98.
+// The complete allocation is 0xBC bytes; only the verified derived prefix is
+// modeled here. Never allocate it or infer the native size from this view.
+struct GameSceneSavedMapPrefix : GameSceneWorldMapPrefix {
+    GameStateSaveImage * save;
+    bool unk_98;
+
+private:
+    GameSceneSavedMapPrefix();
+};
+
+typedef char GameSceneSavedMapSaveCheck[offsetof(GameSceneSavedMapPrefix, save) == 0x94 ? 1 : -1];
+typedef char GameSceneSavedMapFlagCheck[offsetof(GameSceneSavedMapPrefix, unk_98) == 0x98 ? 1 : -1];
+typedef char GameSceneSavedMapPrefixSizeCheck[sizeof(GameSceneSavedMapPrefix) == 0x9C ? 1 : -1];
+
 // The native palette cache has 22 resource records and 13 retained banks.
 // Keep the remaining record bytes and flags opaque until their users are recovered.
 struct GameScenePaletteResource {
@@ -1200,6 +1216,12 @@ void func_0801DD54(GameSceneWorldPrefix & world);
 void func_0801DD60(GameSceneWorldPrefix & world, u32 index);
 void func_0801DD6C(GameSceneWorldPrefix & world, u32 index);
 void func_0801DD78(GameSceneWorldPrefix & world);
+void func_0801DDCC(GameSceneWorldPrefix & world, u32 index);
+void func_0801DDF8(GameSceneWorldPrefix & world, u32 index);
+void func_0801DE24(GameSceneWorldPrefix & world, u32 unk);
+void func_0801DE30(GameSceneWorldPrefix & world);
+void func_0801DE3C(GameSceneWorldPrefix & world);
+void func_0801DE48(GameSceneWorldPrefix & world);
 MaryItemArticleId RemoveRecordPlayerAlbum(GameSceneWorldPrefix & world);
 MaryItemArticleId SwapRecordPlayerAlbum(GameSceneWorldPrefix & world, MaryItemArticleId article_id);
 void ApplyMapTilePatch(GameSceneWorldMapPrefix * map,
@@ -1216,6 +1238,11 @@ void func_080A6278(GameSceneWorldMapPrefix * map);
 void func_080A62BC(GameSceneWorldMapPrefix * map);
 void func_080A6300(GameSceneWorldMapPrefix * map);
 void func_080A635C(GameSceneWorldMapPrefix * map);
+void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk);
+void func_080AA850(GameSceneSavedMapPrefix * map, u32 index);
+void func_080AA89C(GameSceneWorldMapPrefix * map);
+void func_080AA8BC(GameSceneWorldMapPrefix * map);
+void func_080AA8DC(GameSceneSavedMapPrefix * map);
 void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
 void func_080AA6D0(GameSceneWorldMapPrefix * map, u32 x, u32 y,

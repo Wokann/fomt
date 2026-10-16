@@ -192,9 +192,9 @@ SECTIONS
             .text.func_0801D8CC .text.func_0801D948 .text.func_0801D9A8
             .text.func_0801D9BC .text.func_0801DB44 .text.func_0801DB58
             .text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue
-            .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78 .text.RemoveRecordPlayerAlbum);
-        asm/game_state.o(.text.game_scene_item_actions_after);
-        src/game_scene.o(.text.SwapRecordPlayerAlbum);
+            .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78 .text.RemoveRecordPlayerAlbum
+            .text.func_0801DDCC .text.func_0801DDF8 .text.func_0801DE24 .text.func_0801DE30 .text.func_0801DE3C .text.func_0801DE48
+            .text.SwapRecordPlayerAlbum);
         asm/game_state.o(.text.game_scene_after_record_player_album);
         src/game_scene.o(.text.func_0801FB* .text.func_0801FC* .text.func_0801FD*);
         src/entity.o(.text);
@@ -409,6 +409,7 @@ SECTIONS
         src/code_actor_0809C4E4.o(.text);
         . = 0x9C44C; /* DE ROM 0x0809C44C, shared selection helper and raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809C4EC);
+        src/actor_state.o(.text.SelectMapFlagPatch);
         . = 0x9C514; /* DE ROM 0x0809C514, set bounded flag */
         src/code_actor_0809C5B4.o(.text);
         . = 0x9C530; /* DE ROM 0x0809C530, clear bounded flag */
@@ -495,8 +496,10 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_after_tile_patch);
         src/game_scene.o(.text.func_080A601C .text.RefreshCoopFeedTrough);
         asm/code_809E804.o(.text.game_map_barn_feed);
-        src/game_scene.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC .text.func_080A6300 .text.func_080A635C);
+        src/game_scene.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC .text.func_080A6300 .text.func_080A635C .text.func_080A63B8);
         asm/code_809E804.o(.text.game_map_after_patch_dispatchers);
+        src/game_scene.o(.text.func_080AA850 .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
+        asm/code_809E804.o(.text.game_map_after_flag_updates);
         . = 0xD0C38; /* DE ROM 0x080D0C38, glyph-map index converter and renderer. */
         src/font.o(.text);
         . = 0xD0E20; /* DE ROM 0x080D0E20, remaining font support code. */

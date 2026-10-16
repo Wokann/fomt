@@ -6,6 +6,7 @@
 #include "field_item_data.hh"
 #include "field_render_rect_descriptors.hh"
 #include "field_render_resource_data.hh"
+#include "actor_state.hh"
 #include "entity_actor.hh"
 #include "npc_entity.hh"
 #include "entity_ui.hh"
@@ -1391,6 +1392,38 @@ EC MaryItemArticleId RemoveRecordPlayerAlbum(GameSceneWorldPrefix & world)
     return static_cast<MaryItemArticleId>(album.GetArticle().GetId());
 }
 
+EC void func_0801DDCC(GameSceneWorldPrefix & world, u32 index)
+{
+    func_0809C5B4(world.save->unk_34D8.value, index);
+    func_080AA850(static_cast<GameSceneSavedMapPrefix *>(world.data.map.value), index);
+}
+
+EC void func_0801DDF8(GameSceneWorldPrefix & world, u32 index)
+{
+    func_0809C5D0(world.save->unk_34D8.value, index);
+    func_080AA850(static_cast<GameSceneSavedMapPrefix *>(world.data.map.value), index);
+}
+
+EC void func_0801DE24(GameSceneWorldPrefix & world, u32 unk)
+{
+    func_080A63B8(world.data.map.value, unk);
+}
+
+EC void func_0801DE30(GameSceneWorldPrefix & world)
+{
+    func_080AA89C(world.data.map.value);
+}
+
+EC void func_0801DE3C(GameSceneWorldPrefix & world)
+{
+    func_080AA8BC(world.data.map.value);
+}
+
+EC void func_0801DE48(GameSceneWorldPrefix & world)
+{
+    func_080AA8DC(static_cast<GameSceneSavedMapPrefix *>(world.data.map.value));
+}
+
 EC MaryItemArticleId SwapRecordPlayerAlbum(GameSceneWorldPrefix & world, MaryItemArticleId article_id)
 {
     RecordPlayer * record_player = world.save->farm.farm_house.GetRecordPlayer();
@@ -1825,6 +1858,51 @@ EC void func_080A635C(GameSceneWorldMapPrefix * map)
         return;
     }
     map->camera_changed = true;
+}
+
+EC void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk)
+{
+    switch (static_cast<i32>(map->map_data_id)) {
+    case 0x40:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[81], 1, 0xD);
+        break;
+    case 0x24:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[81], 1, 0x11);
+        break;
+    case 0x25:
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[81], 1, unk == 0 ? 0x11 : 0xD);
+        break;
+    default:
+        return;
+    }
+    map->camera_changed = true;
+}
+
+EC void func_080AA850(GameSceneSavedMapPrefix * map, u32 index)
+{
+    Season season = static_cast<Season>(func_0800E324(map->save->clock.calendar));
+    FieldRenderPatchPlacement placement = SelectMapFlagPatch(
+        map->save->unk_34D8.value, index, season == SEASON_WINTER);
+    ApplyMapTilePatch(map, *placement.patch, placement.x, placement.y);
+    map->camera_changed = true;
+}
+
+EC void func_080AA89C(GameSceneWorldMapPrefix * map)
+{
+    ApplyMapTilePatch(map, gFieldRenderRectDescriptors[48], 0x21, 0x14);
+    map->camera_changed = true;
+}
+
+EC void func_080AA8BC(GameSceneWorldMapPrefix * map)
+{
+    ApplyMapTilePatch(map, gFieldRenderRectDescriptors[48], 0x21, 0x17);
+    map->camera_changed = true;
+}
+
+EC void func_080AA8DC(GameSceneSavedMapPrefix * map)
+{
+    if (map->map == MAP_FARMHOUSE)
+        map->unk_98 = true;
 }
 
 EC void func_080D7F08(GameSceneState * state)

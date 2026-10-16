@@ -21,6 +21,20 @@ struct FieldRenderRectDescriptor
     void const * lookup_indices;
 };
 
+struct FieldRenderPatchPlacement
+{
+    FieldRenderPatchPlacement(FieldRenderRectDescriptor const * patch, u32 x, u32 y)
+        : patch(patch), x(x), y(y) {}
+
+    FieldRenderRectDescriptor const * patch;
+    u32 x;
+    u32 y;
+};
+
+typedef char FieldRenderPatchPlacementSizeCheck[sizeof(FieldRenderPatchPlacement) == 12 ? 1 : -1];
+typedef char FieldRenderPatchPlacementXCheck[offsetof(FieldRenderPatchPlacement, x) == 4 ? 1 : -1];
+typedef char FieldRenderPatchPlacementYCheck[offsetof(FieldRenderPatchPlacement, y) == 8 ? 1 : -1];
+
 enum
 {
     FIELD_RENDER_RECT_DESCRIPTOR_COUNT = 82,

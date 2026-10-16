@@ -124,7 +124,7 @@ struct GameObject
     virtual void RefreshChickenFeedTrough(MaryChickenCoopFeedTroughIndex trough);
     virtual MaryItemArticleId RemoveRecordPlayerAlbum();
     virtual MaryItemArticleId SwapRecordPlayerAlbum(MaryItemArticleId article);
-    virtual void vfunc_AC();
+    virtual void vfunc_AC(u32 unk);
     virtual void vfunc_B0();
     virtual void ChangeMap(Location const & location, bool unk);
     virtual void vfunc_B8();

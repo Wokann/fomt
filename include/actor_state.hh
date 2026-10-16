@@ -23,20 +23,25 @@ extern u8 const gActorStateMaxValues[];
 extern "C" u32 func_0809C3E0(ActorStateSlots & self, u32 index);
 extern char const gCppRuntimeBadAlloc_ActorDataSelectionPrefix[];
 
-// func_0809C510 selects one of the two unknown data pointers in each row and
-// copies unk_08 and unk_09 into its three-word output.  The pointed-to data
-// has not been identified yet.
+// Each flag selects an absent/present map rectangle at the stored tile position.
+// The final two bytes of a row are natural four-byte alignment padding.
+struct FieldRenderRectDescriptor;
+struct FieldRenderPatchPlacement;
 struct ActorDataSelectionEntry
 {
-    u8 const * unk_00;
-    u8 const * unk_04;
-    u8 unk_08;
-    u8 unk_09;
-    u16 unk_0A;
+    FieldRenderRectDescriptor const * absent_patch;
+    FieldRenderRectDescriptor const * present_patch;
+    u8 tile_x;
+    u8 tile_y;
 };
+
+typedef char ActorDataSelectionEntrySizeCheck[sizeof(ActorDataSelectionEntry) == 12 ? 1 : -1];
+typedef char ActorDataSelectionEntryXCheck[offsetof(ActorDataSelectionEntry, tile_x) == 8 ? 1 : -1];
+typedef char ActorDataSelectionEntryYCheck[offsetof(ActorDataSelectionEntry, tile_y) == 9 ? 1 : -1];
 
 extern ActorDataSelectionEntry const gActorDataSelectionEntries[];
 extern char const gCppRuntimeBadAlloc_ActorDataSelectionTrailer[];
+extern "C" FieldRenderPatchPlacement SelectMapFlagPatch(u32 const & flags, u32 index, bool winter);
 
 // The initializer visits 28 rows of 28 two-byte cells. The low four bits
 // select the cell's data; the meanings of the remaining fields are unknown.
