@@ -1975,9 +1975,9 @@ func_0803B660:
 .Ljp_0803B81C:
     .4byte 0xFFFF807F
 .Ljp_0803B820:
-    .4byte vtable_unk_080E5BB4
+    .4byte __vt_18HardwareLinkedList
 .Ljp_0803B824:
-    .4byte vtable_unk_080E5BD8
+    .4byte __vt_12HardwareLink
 .Ljp_0803B828:
     .4byte gUiSharedTileByteCount
 .Ljp_0803B82C:
@@ -10022,9 +10022,9 @@ func_0803B8CC:
 .Leu_0803BA9C:
     .4byte 0xFFFF807F
 .Leu_0803BAA0:
-    .4byte vtable_unk_080E5BB4
+    .4byte __vt_18HardwareLinkedList
 .Leu_0803BAA4:
-    .4byte vtable_unk_080E5BD8
+    .4byte __vt_12HardwareLink
 .Leu_0803BAA8:
     .4byte gUiSharedTileByteCount
 .Leu_0803BAAC:
@@ -18141,9 +18141,9 @@ func_0803B8CC:
 .Lde_0803B99C:
     .4byte 0xFFFF807F
 .Lde_0803B9A0:
-    .4byte vtable_unk_080E5BB4
+    .4byte __vt_18HardwareLinkedList
 .Lde_0803B9A4:
-    .4byte vtable_unk_080E5BD8
+    .4byte __vt_12HardwareLink
 .Lde_0803B9A8:
     .4byte gUiSharedTileByteCount
 .Lde_0803B9AC:
@@ -26238,9 +26238,9 @@ func_0803B8CC:
 .Lus_0803BA88:
     .4byte 0xFFFF807F
 .Lus_0803BA8C:
-    .4byte vtable_unk_080E5BB4
+    .4byte __vt_18HardwareLinkedList
 .Lus_0803BA90:
-    .4byte vtable_unk_080E5BD8
+    .4byte __vt_12HardwareLink
 .Lus_0803BA94:
     .4byte gUiSharedTileByteCount
 .Lus_0803BA98:

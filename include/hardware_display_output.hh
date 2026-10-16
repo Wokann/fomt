@@ -130,6 +130,10 @@ struct HardwareSpriteBufferParameters {
 
 EXTERN_C
 
+struct HardwareBootstrap;
+void func_08008724(struct HardwareBootstrap * owner) SECTION(".text.hardware_display_control_commands");
+void func_08008774(struct HardwareBootstrap * owner) SECTION(".text.hardware_display_control_commands");
+
 struct HardwareDisplayState * func_080096B0(struct HardwareDisplayState * object);
 void WriteHardwareDisplayState(struct HardwareDisplayState * object);
 void func_08009710(struct HardwareDisplayState * object);

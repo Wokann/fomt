@@ -24259,13 +24259,13 @@ func_080AD9A4:
     adds r0, r6, r1
     str r4, [r0]
     str r4, [r0, #4]
-    ldr r1, .Ljp_080ADF00 @ =vtable_unk_080E5B70
+    ldr r1, .Ljp_080ADF00 @ =__vt_25HardwareSoundVSyncCommand
     str r1, [r0, #8]
     ldr r2, .Ljp_080ADF04 @ =0x0000082C
     adds r0, r6, r2
     str r4, [r0]
     str r4, [r0, #4]
-    ldr r1, .Ljp_080ADF08 @ =vtable_unk_080E5B60
+    ldr r1, .Ljp_080ADF08 @ =__vt_24HardwareSoundMainCommand
     str r1, [r0, #8]
     ldr r0, .Ljp_080ADF0C @ =0x00000888
     adds r5, r6, r0
@@ -24340,9 +24340,9 @@ func_080AD9A4:
 .Ljp_080ADEF4: .4byte 0x00000814
 .Ljp_080ADEF8: .4byte 0x00000818
 .Ljp_080ADEFC: .4byte 0x0000081C
-.Ljp_080ADF00: .4byte vtable_unk_080E5B70
+.Ljp_080ADF00: .4byte __vt_25HardwareSoundVSyncCommand
 .Ljp_080ADF04: .4byte 0x0000082C
-.Ljp_080ADF08: .4byte vtable_unk_080E5B60
+.Ljp_080ADF08: .4byte __vt_24HardwareSoundMainCommand
 .Ljp_080ADF0C: .4byte 0x00000888
 
     .global func_080ADF10
@@ -54098,13 +54098,13 @@ func_080BC938: @ 0x080BC36C
 	adds r0, r6, r2
 	str r4, [r0]
 	str r4, [r0, #4]
-	ldr r1, .L080BC6F0 @ =vtable_unk_080E5B70
+	ldr r1, .L080BC6F0 @ =__vt_25HardwareSoundVSyncCommand
 	str r1, [r0, #8]
 	ldr r1, .L080BC6F4 @ =0x00000594
 	adds r0, r6, r1
 	str r4, [r0]
 	str r4, [r0, #4]
-	ldr r1, .L080BC6F8 @ =vtable_unk_080E5B60
+	ldr r1, .L080BC6F8 @ =__vt_24HardwareSoundMainCommand
 	str r1, [r0, #8]
 	adds r2, #0x28
 	adds r5, r6, r2
@@ -54196,9 +54196,9 @@ func_080BC938: @ 0x080BC36C
 .L080BC6E4: .4byte 0x0000043C
 .L080BC6E8: .4byte 0x0000057C
 .L080BC6EC: .4byte 0x00000584
-.L080BC6F0: .4byte vtable_unk_080E5B70
+.L080BC6F0: .4byte __vt_25HardwareSoundVSyncCommand
 .L080BC6F4: .4byte 0x00000594
-.L080BC6F8: .4byte vtable_unk_080E5B60
+.L080BC6F8: .4byte __vt_24HardwareSoundMainCommand
 .L080BC6FC: .4byte 0x00000604
 .L080BC700: .4byte 0x00000614
 .L080BC704: .4byte 0x0000061C
@@ -107125,13 +107125,13 @@ func_080ADF6C: @ 0x080ADF6C
 	adds r0, r6, r1
 	str r4, [r0]
 	str r4, [r0, #4]
-	ldr r1, .L080AE4C8 @ =vtable_unk_080E5B70
+	ldr r1, .L080AE4C8 @ =__vt_25HardwareSoundVSyncCommand
 	str r1, [r0, #8]
 	ldr r2, .L080AE4CC @ =0x0000082C
 	adds r0, r6, r2
 	str r4, [r0]
 	str r4, [r0, #4]
-	ldr r1, .L080AE4D0 @ =vtable_unk_080E5B60
+	ldr r1, .L080AE4D0 @ =__vt_24HardwareSoundMainCommand
 	str r1, [r0, #8]
 	ldr r0, .L080AE4D4 @ =0x00000888
 	adds r5, r6, r0
@@ -107206,9 +107206,9 @@ func_080ADF6C: @ 0x080ADF6C
 .L080AE4BC: .4byte 0x00000814
 .L080AE4C0: .4byte 0x00000818
 .L080AE4C4: .4byte 0x0000081C
-.L080AE4C8: .4byte vtable_unk_080E5B70
+.L080AE4C8: .4byte __vt_25HardwareSoundVSyncCommand
 .L080AE4CC: .4byte 0x0000082C
-.L080AE4D0: .4byte vtable_unk_080E5B60
+.L080AE4D0: .4byte __vt_24HardwareSoundMainCommand
 .L080AE4D4: .4byte 0x00000888
 
 	thumb_func_start func_080AE4D8
@@ -136904,13 +136904,13 @@ func_080BC938: @ 0x080BC938
 	adds r0, r6, r2
 	str r4, [r0]
 	str r4, [r0, #4]
-	ldr r1, .L080BCCBC @ =vtable_unk_080E5B70
+	ldr r1, .L080BCCBC @ =__vt_25HardwareSoundVSyncCommand
 	str r1, [r0, #8]
 	ldr r1, .L080BCCC0 @ =0x00000594
 	adds r0, r6, r1
 	str r4, [r0]
 	str r4, [r0, #4]
-	ldr r1, .L080BCCC4 @ =vtable_unk_080E5B60
+	ldr r1, .L080BCCC4 @ =__vt_24HardwareSoundMainCommand
 	str r1, [r0, #8]
 	adds r2, #0x28
 	adds r5, r6, r2
@@ -137002,9 +137002,9 @@ func_080BC938: @ 0x080BC938
 .L080BCCB0: .4byte 0x0000043C
 .L080BCCB4: .4byte 0x0000057C
 .L080BCCB8: .4byte 0x00000584
-.L080BCCBC: .4byte vtable_unk_080E5B70
+.L080BCCBC: .4byte __vt_25HardwareSoundVSyncCommand
 .L080BCCC0: .4byte 0x00000594
-.L080BCCC4: .4byte vtable_unk_080E5B60
+.L080BCCC4: .4byte __vt_24HardwareSoundMainCommand
 .L080BCCC8: .4byte 0x00000604
 .L080BCCCC: .4byte 0x00000614
 .L080BCCD0: .4byte 0x0000061C
@@ -145930,14 +145930,14 @@ func_080C0DCC: @ 0x080C0DCC
 	adds r0, r6, r2
 	str r4, [r0]
 	str r4, [r0, #4]
-	ldr r1, .L080C12A8 @ =vtable_unk_080E5B70
+	ldr r1, .L080C12A8 @ =__vt_25HardwareSoundVSyncCommand
 	str r1, [r0, #8]
 	movs r1, #0x83
 	lsls r1, r1, #4
 	adds r0, r6, r1
 	str r4, [r0]
 	str r4, [r0, #4]
-	ldr r1, .L080C12AC @ =vtable_unk_080E5B60
+	ldr r1, .L080C12AC @ =__vt_24HardwareSoundMainCommand
 	str r1, [r0, #8]
 	adds r2, #0x18
 	adds r0, r6, r2
@@ -145968,8 +145968,8 @@ func_080C0DCC: @ 0x080C0DCC
 .L080C129C: .4byte 0x00000818
 .L080C12A0: .4byte 0x0000081C
 .L080C12A4: .4byte 0x00000824
-.L080C12A8: .4byte vtable_unk_080E5B70
-.L080C12AC: .4byte vtable_unk_080E5B60
+.L080C12A8: .4byte __vt_25HardwareSoundVSyncCommand
+.L080C12AC: .4byte __vt_24HardwareSoundMainCommand
 .L080C12B0: .4byte 0x00000974
 .L080C12B4: .4byte 0x00000988
 

@@ -60,9 +60,11 @@ struct HardwareDisplayCommand
 #endif
     struct HardwareDisplayState * display;
 #ifdef __cplusplus
-    // The display-control paths fill this command's fields explicitly.
-    HardwareDisplayCommand();
-    HardwareDisplayCommand(HardwareDisplayState * state);
+    virtual u8 Run() asm("RunHardwareDisplayCommand") SECTION(".text.hardware_frame_commands");
+    // The retail callers inline these constructors. Keep any emitted fallback
+    // bodies separate from the module's original out-of-line entries.
+    HardwareDisplayCommand(HardwareDisplayState * state)
+        SECTION(".text.hardware_frame_command_constructors");
 #endif
 };
 
@@ -78,10 +80,16 @@ struct HardwareSpriteBufferCommand
 #endif
     struct HardwareSpriteBufferState * buffer;
 #ifdef __cplusplus
-    HardwareSpriteBufferCommand(HardwareSpriteBufferState * state);
+    virtual u8 Run() asm("RunHardwareSpriteBufferCommand") SECTION(".text.hardware_frame_commands");
+    HardwareSpriteBufferCommand(HardwareSpriteBufferState * state)
+        SECTION(".text.hardware_frame_command_constructors");
 #endif
 };
 
+#ifdef __cplusplus
+// Its virtual run method still has a native assembly body.
+#pragma interface "hardware_bootstrap.hh"
+#endif
 struct HardwareDmaQueueCommand
 #ifdef __cplusplus
     : HardwareLinkBase
@@ -94,59 +102,57 @@ struct HardwareDmaQueueCommand
 #endif
     struct HardwareDmaQueue * queue;
 #ifdef __cplusplus
-    HardwareDmaQueueCommand(HardwareDmaQueue * state);
+    // The native Thumb body implements this virtual method directly.
+    virtual u8 Run() asm("RunHardwareDmaQueueCommand");
+    HardwareDmaQueueCommand(HardwareDmaQueue * state)
+        SECTION(".text.hardware_frame_command_constructors");
 #endif
 };
 
+#ifdef __cplusplus
+#pragma implementation
+#endif
+
 EXTERN_C
 
-extern struct HardwareDisplayCommandVTable const gHardwareDisplayCommandVTable;
-extern struct HardwareSpriteBufferCommandVTable const gHardwareSpriteBufferCommandVTable;
-extern struct HardwareDmaQueueCommandVTable const gHardwareDmaQueueCommandVTable;
+#ifndef __cplusplus
+// These are the compiler-owned tables, also referenced by native C callers.
+extern struct HardwareDisplayCommandVTable const __vt_22HardwareDisplayCommand;
+extern struct HardwareSpriteBufferCommandVTable const __vt_27HardwareSpriteBufferCommand;
+extern struct HardwareDmaQueueCommandVTable const __vt_23HardwareDmaQueueCommand;
+#endif
 
 // Direct declarations of the actual member ABI for the scene classes whose
 // complete lifecycles are still being recovered. These are not wrappers.
+extern HardwareLinkVirtualFunction const vtable_unk_080E5B00[];
 struct HardwareBootstrap * func_08008444(struct HardwareBootstrap * owner);
 struct HardwareBootstrap * func_080084DC(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input);
 struct HardwareBootstrap * func_08008574(struct HardwareBootstrap * owner, struct HardwareSpriteBufferParameters const * buffer);
 struct HardwareBootstrap * func_08008618(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input, struct HardwareSpriteBufferParameters const * buffer);
 void func_080086BC(struct HardwareBootstrap * owner, u32 flags);
-void func_08008724(struct HardwareBootstrap * owner);
-void func_08008774(struct HardwareBootstrap * owner);
-void UpdateHardwareFrame(struct HardwareBootstrap * owner);
+void UpdateHardwareFrame(struct HardwareBootstrap * owner) SECTION(".text.hardware_frame_update");
 u32 RunHardwareDisplayCommand(struct HardwareDisplayCommand * command) SECTION(".text.hardware_frame_commands");
 u32 RunHardwareSpriteBufferCommand(struct HardwareSpriteBufferCommand * command) SECTION(".text.hardware_frame_commands");
 u32 RunHardwareDmaQueueCommand(struct HardwareDmaQueueCommand * command); // Still Thumb assembly.
-void DestroyHardwareDmaQueueCommand(struct HardwareDmaQueueCommand * command, u32 flags) SECTION(".text.hardware_frame_command_cleanup");
-void DestroyHardwareSpriteBufferCommand(struct HardwareSpriteBufferCommand * command, u32 flags) SECTION(".text.hardware_frame_command_cleanup");
-void DestroyHardwareDisplayCommand(struct HardwareDisplayCommand * command, u32 flags) SECTION(".text.hardware_frame_command_cleanup");
 
 EXTERN_C_END
 
 #ifdef __cplusplus
-inline HardwareDisplayCommand::HardwareDisplayCommand()
-    : HardwareLinkBase()
-{
-}
-
 inline HardwareDisplayCommand::HardwareDisplayCommand(HardwareDisplayState * state)
     : HardwareLinkBase()
 {
-    vtable = (void **)&gHardwareDisplayCommandVTable;
     display = state;
 }
 
 inline HardwareSpriteBufferCommand::HardwareSpriteBufferCommand(HardwareSpriteBufferState * state)
     : HardwareLinkBase()
 {
-    vtable = (void **)&gHardwareSpriteBufferCommandVTable;
     buffer = state;
 }
 
 inline HardwareDmaQueueCommand::HardwareDmaQueueCommand(HardwareDmaQueue * state)
     : HardwareLinkBase()
 {
-    vtable = (void **)&gHardwareDmaQueueCommandVTable;
     queue = state;
 }
 #endif

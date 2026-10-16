@@ -474,6 +474,15 @@ char const * func_08007110(NewGameNameInputScene const * scene)
 char const * func_0800711C(NewGameNameInputCore const * core)
     SECTION(".text.new_game_name_input_scene");
 
+// Native callback entries for the remaining partial menu classes.
+void func_080D3EF4(void);
+void func_080D404C(void);
+void func_080D406C(void);
+void func_080D6C58(void);
+void func_080D6D8C(void);
+void func_08004C68(void);
+extern NewGameSceneVTableFunction const vtable_unk_080E5A78[];
+
 EXTERN_C_END
 
 #endif // NEW_GAME_HH

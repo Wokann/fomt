@@ -6266,14 +6266,14 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     mov r1, r8
     str r4, [r1, #0x20]
     str r4, [r2, #4]
-    ldr r0, .Ljp_0804F3E0 @ =vtable_unk_080E5BB4
+    ldr r0, .Ljp_0804F3E0 @ =__vt_18HardwareLinkedList
     str r0, [r2, #8]
     adds r1, #0x30
     str r1, [r2, #0xc]
     mov r0, r8
     str r4, [r0, #0x30]
     str r4, [r1, #4]
-    ldr r0, .Ljp_0804F3E4 @ =vtable_unk_080E5BD8
+    ldr r0, .Ljp_0804F3E4 @ =__vt_12HardwareLink
     str r0, [r1, #8]
     mov r0, r8
     adds r0, #0x2c
@@ -6657,8 +6657,8 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     .align 2, 0
 .Ljp_0804F3D8: .4byte 0xFFFFFE7F
 .Ljp_0804F3DC: .4byte 0xFFF801FF
-.Ljp_0804F3E0: .4byte vtable_unk_080E5BB4
-.Ljp_0804F3E4: .4byte vtable_unk_080E5BD8
+.Ljp_0804F3E0: .4byte __vt_18HardwareLinkedList
+.Ljp_0804F3E4: .4byte __vt_12HardwareLink
 .Ljp_0804F3E8: .4byte vtable_unk_080E7888
 .Ljp_0804F3EC: .4byte vtable_unk_080E78B0
 .Ljp_0804F3F0: .4byte vtable_unk_080E7878
@@ -151028,14 +151028,14 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	mov r1, r8
 	str r4, [r1, #0x20]
 	str r4, [r2, #4]
-	ldr r0, .L0804F654 @ =vtable_unk_080E5BB4
+	ldr r0, .L0804F654 @ =__vt_18HardwareLinkedList
 	str r0, [r2, #8]
 	adds r1, #0x30
 	str r1, [r2, #0xc]
 	mov r0, r8
 	str r4, [r0, #0x30]
 	str r4, [r1, #4]
-	ldr r0, .L0804F658 @ =vtable_unk_080E5BD8
+	ldr r0, .L0804F658 @ =__vt_12HardwareLink
 	str r0, [r1, #8]
 	mov r0, r8
 	adds r0, #0x2c
@@ -151419,8 +151419,8 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	.align 2, 0
 .L0804F64C: .4byte 0xFFFFFE7F
 .L0804F650: .4byte 0xFFF801FF
-.L0804F654: .4byte vtable_unk_080E5BB4
-.L0804F658: .4byte vtable_unk_080E5BD8
+.L0804F654: .4byte __vt_18HardwareLinkedList
+.L0804F658: .4byte __vt_12HardwareLink
 .L0804F65C: .4byte vtable_unk_080E7898
 .L0804F660: .4byte vtable_unk_080E78C0
 .L0804F664: .4byte vtable_unk_080E7888

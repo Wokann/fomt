@@ -14,6 +14,45 @@
 #include "ui_state.hh"
 #include <string.h>
 
+// Keep the partial menu-class tables together in their retail ROM order.
+extern NewGameSceneVTableFunction const vtable_unk_080E5A4C[] = {
+    nullptr, nullptr, func_080D404C, func_080D3EF4,
+};
+extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[] = {
+    nullptr, nullptr, func_080D406C,
+};
+extern NewGameSceneVTableFunction const vtable_unk_080E5A68[] = {
+    nullptr, nullptr,
+    reinterpret_cast<NewGameSceneVTableFunction>(func_08004BDC),
+    reinterpret_cast<NewGameSceneVTableFunction>(func_08004C0C),
+};
+extern NewGameSceneVTableFunction const vtable_unk_080E5A78[] = {
+    nullptr, nullptr, func_080D6D8C, func_080D6C58,
+};
+extern NewGameSceneVTableFunction const vtable_unk_080E5A88[] = {
+    nullptr, nullptr,
+    reinterpret_cast<NewGameSceneVTableFunction>(func_08004C54),
+    func_08004C68,
+};
+extern NewGameSceneVTableFunction const vtable_unk_080E5A98[] = {
+    nullptr, nullptr,
+    reinterpret_cast<NewGameSceneVTableFunction>(func_080050C8),
+};
+extern NewGameSceneVTableFunction const vtable_unk_080E5AA4[] = {
+    nullptr, nullptr,
+    reinterpret_cast<NewGameSceneVTableFunction>(func_080059D0),
+    reinterpret_cast<NewGameSceneVTableFunction>(func_08005A00),
+};
+extern NewGameSceneVTableFunction const vtable_unk_080E5AB4[] = {
+    nullptr, nullptr,
+    reinterpret_cast<NewGameSceneVTableFunction>(func_08005B38),
+};
+extern NewGameSceneVTableFunction const vtable_unk_080E5AC0[] = {
+    nullptr, nullptr,
+    reinterpret_cast<NewGameSceneVTableFunction>(func_080070A4),
+    reinterpret_cast<NewGameSceneVTableFunction>(func_080070D4),
+};
+
 void * operator new(unsigned long);
 void operator delete(void *);
 inline void * operator new(unsigned long, void * location) { return location; }

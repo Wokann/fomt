@@ -1,20 +1,22 @@
+#include "prelude.h"
+#pragma implementation "hardware_bootstrap.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_nested_accessors.hh"
 #include "hardware_oam_state.hh"
 #include "gbaio.h"
-#include <new>
+
+void * operator new(unsigned long);
+void operator delete(void *);
 
 EXTERN_C
-extern void * vtable_unk_080E5B00[];
-extern void func_08008AF0(void * object);
 extern void __builtin_delete(void * pointer);
 extern void free(void * pointer);
 EXTERN_C_END
 
 HardwareBootstrap::HardwareBootstrap()
 {
-    this->vtable = vtable_unk_080E5B00;
+    this->vtable = (void **)vtable_unk_080E5B00;
     struct HardwareCoreState * state = new HardwareCoreState(30, 4, 0, 0x20);
     u16 status = state->display.status;
     status |= 8;
@@ -25,7 +27,7 @@ HardwareBootstrap::HardwareBootstrap()
 
 HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input)
 {
-    this->vtable = vtable_unk_080E5B00;
+    this->vtable = (void **)vtable_unk_080E5B00;
     struct HardwareCoreState * state = new HardwareCoreState(input.delay, input.interval, 0, 0x20);
     u16 status = state->display.status;
     status |= 8;
@@ -36,7 +38,7 @@ HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input
 
 HardwareBootstrap::HardwareBootstrap(HardwareSpriteBufferParameters const & buffer)
 {
-    this->vtable = vtable_unk_080E5B00;
+    this->vtable = (void **)vtable_unk_080E5B00;
     struct HardwareCoreState * state = new HardwareCoreState(30, 4, buffer);
     u16 status = state->display.status;
     status |= 8;
@@ -48,7 +50,7 @@ HardwareBootstrap::HardwareBootstrap(HardwareSpriteBufferParameters const & buff
 HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input,
     HardwareSpriteBufferParameters const & buffer)
 {
-    this->vtable = vtable_unk_080E5B00;
+    this->vtable = (void **)vtable_unk_080E5B00;
     struct HardwareCoreState * state = new HardwareCoreState(input.delay, input.interval, buffer);
     u16 status = state->display.status;
     status |= 8;
@@ -60,7 +62,7 @@ HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input
 HardwareBootstrap::~HardwareBootstrap()
 {
     struct HardwareCoreState * state;
-    this->vtable = vtable_unk_080E5B00;
+    this->vtable = (void **)vtable_unk_080E5B00;
     if (this->state != 0) {
         state = this->state;
         struct HardwareDmaQueue * queue;
@@ -79,44 +81,6 @@ HardwareBootstrap::~HardwareBootstrap()
     }
 }
 
-void func_08008724(struct HardwareBootstrap * owner)
-{
-    struct HardwareCoreState * state = owner->state;
-    u16 * control = (u16 *)&state->display.control;
-    HardwareDisplayCommand command;
-    u32 zero = 0;
-    *control |= 0x80;
-    command.previous_slot = (HardwareLink **)zero;
-    command.next = (HardwareLink *)zero;
-    command.vtable = (void **)&gHardwareDisplayCommandVTable;
-    command.display = &state->display;
-
-    void * manager = &state->manager;
-    void * object = func_08008AE0((void * const *)manager);
-    void ** vtable = *(void ***)((u8 *)object + 8);
-    ((void (*)(void *, struct HardwareDisplayCommand *))vtable[4])(object, &command);
-    func_08008AF0(manager);
-}
-
-void func_08008774(struct HardwareBootstrap * owner)
-{
-    struct HardwareCoreState * state = owner->state;
-    u16 * control = (u16 *)&state->display.control;
-    HardwareDisplayCommand command;
-    u32 zero = 0;
-    *control &= 0xFF7F;
-    command.previous_slot = (HardwareLink **)zero;
-    command.next = (HardwareLink *)zero;
-    command.vtable = (void **)&gHardwareDisplayCommandVTable;
-    command.display = &state->display;
-
-    void * manager = &state->manager;
-    void * object = func_08008AE0((void * const *)manager);
-    void ** vtable = *(void ***)((u8 *)object + 8);
-    ((void (*)(void *, struct HardwareDisplayCommand *))vtable[4])(object, &command);
-    func_08008AF0(manager);
-}
-
 void UpdateHardwareFrame(struct HardwareBootstrap * owner)
 {
     struct HardwareCoreState * state = owner->state;
@@ -125,10 +89,10 @@ void UpdateHardwareFrame(struct HardwareBootstrap * owner)
     HardwareDmaQueueCommand dma(&state->dma_queue);
     HardwareLinkedList commands;
 
-    func_08009940(&commands, reinterpret_cast<HardwareLink *>(&state->links));
-    func_08009940(&commands, reinterpret_cast<HardwareLink *>(&display));
-    func_08009940(&commands, reinterpret_cast<HardwareLink *>(&dma));
-    func_08009940(&commands, reinterpret_cast<HardwareLink *>(&sprite));
+    func_08009940(&commands, &state->links);
+    func_08009940(&commands, &display);
+    func_08009940(&commands, &dma);
+    func_08009940(&commands, &sprite);
 
     void * manager = &state->manager;
     void * object = func_08008AE0(reinterpret_cast<void * const *>(manager));
@@ -142,29 +106,21 @@ void UpdateHardwareFrame(struct HardwareBootstrap * owner)
     // The list and commands unlink in reverse construction order at scope exit.
 }
 
-u32 RunHardwareDisplayCommand(struct HardwareDisplayCommand * command)
+u8 HardwareDisplayCommand::Run()
 {
-    WriteHardwareDisplayState(command->display);
+    WriteHardwareDisplayState(display);
     return 0;
 }
 
-u32 RunHardwareSpriteBufferCommand(struct HardwareSpriteBufferCommand * command)
+u8 HardwareSpriteBufferCommand::Run()
 {
-    func_08009864(command->buffer);
+    func_08009864(buffer);
     return 0;
 }
 
-void DestroyHardwareDmaQueueCommand(struct HardwareDmaQueueCommand * command, u32 flags)
-{
-    func_080098AC(command, flags);
-}
-
-void DestroyHardwareSpriteBufferCommand(struct HardwareSpriteBufferCommand * command, u32 flags)
-{
-    func_080098AC(command, flags);
-}
-
-void DestroyHardwareDisplayCommand(struct HardwareDisplayCommand * command, u32 flags)
-{
-    func_080098AC(command, flags);
-}
+// Bootstrap itself is still a partial ABI view, unlike the command classes.
+extern HardwareLinkVirtualFunction const vtable_unk_080E5B00[] = {
+    nullptr,
+    nullptr,
+    reinterpret_cast<HardwareLinkVirtualFunction>(func_080086BC),
+};

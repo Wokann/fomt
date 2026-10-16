@@ -1,7 +1,5 @@
 #include "hardware_blend_object.hh"
-
-extern void * const vtable_unk_080E5B80[];
-extern void func_080098AC(void * object, u32 flags);
+#include "hardware_linked_list.hh"
 
 i16 func_080094A4(struct HardwareBlendController * controller)
 {
@@ -58,3 +56,11 @@ struct HardwareBlendObject * func_08009548(struct HardwareBlendObject * object, 
     func_08009300(&object->blend, display);
     return object;
 }
+
+// This controller still uses a native ABI field view, not a recovered class.
+void * const vtable_unk_080E5B80[] = {
+    0,
+    0,
+    (void *)func_080094AC,
+    (void *)func_080094B8,
+};

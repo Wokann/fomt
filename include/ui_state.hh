@@ -98,8 +98,11 @@ typedef char UiStateOwnerSizeCheck[sizeof(UiStateOwner) == 4 ? 1 : -1];
 // Verified field view of the native linked command. Initialization writes
 // only these four fields; the upper nine bits retain their previous value.
 // Their runtime meanings have not been established.
-struct UnkUiPackedLinkCommand : HardwareLinkBase
+struct UnkUiPackedLinkCommand
 {
+    HardwareLinkBase ** previous_slot;
+    HardwareLinkBase * next;
+    void ** vtable;
     unsigned unk_0c_00 : 5;
     unsigned unk_0c_05 : 10;
     unsigned unk_0c_15 : 4;
@@ -189,8 +192,11 @@ struct UnkUiSelectionDimensions
     UnkUiSelectionDimensions(u16 first, u16 second) : width(first), height(second) {}
 };
 
-struct UnkUiSelectionLinkCommand : HardwareLinkBase
+struct UnkUiSelectionLinkCommand
 {
+    HardwareLinkBase ** previous_slot;
+    HardwareLinkBase * next;
+    void ** vtable;
     u32 unk_0c;
     u32 unk_10;
     u16 unk_14_00 : 14;

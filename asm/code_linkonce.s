@@ -6075,7 +6075,7 @@ func_080D7944:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .4byte vtable_unk_080E5B3C
+    .4byte __vt_28HardwareManagerVBlankBinding
     .4byte vtable_unk_080E5B54
     .4byte gUnk_03000410
 
@@ -7118,7 +7118,7 @@ func_080D7944: @ 0x080D7944
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	ldr r0, .L080D7984 @ =vtable_unk_080E5B3C
+	ldr r0, .L080D7984 @ =__vt_28HardwareManagerVBlankBinding
 	str r0, [r4, #0x14]
 	movs r0, #1
 	bl func_08000528
@@ -7146,7 +7146,7 @@ func_080D7944: @ 0x080D7944
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080D7984: .4byte vtable_unk_080E5B3C
+.L080D7984: .4byte __vt_28HardwareManagerVBlankBinding
 .L080D7988: .4byte vtable_unk_080E5B54
 .L080D798C: .4byte gUnk_03000410
 
@@ -16474,7 +16474,7 @@ sub_080D8178: @ 0x080D8178
 	add r4, sp
 	str r2, [r4]
 	str r2, [r4, #4]
-	ldr r0, .L080D82E0 @ =gHardwareDisplayCommandVTable
+	ldr r0, .L080D82E0 @ =__vt_22HardwareDisplayCommand
 	str r0, [r4, #8]
 	str r7, [r4, #0xc]
 	mov r5, sl
@@ -16614,7 +16614,7 @@ sub_080D8178: @ 0x080D8178
 	.align 2, 0
 .L080D82D8: .4byte 0xFFFFFA70
 .L080D82DC: .4byte 0x000004DC
-.L080D82E0: .4byte gHardwareDisplayCommandVTable
+.L080D82E0: .4byte __vt_22HardwareDisplayCommand
 .L080D82E4: .4byte 0x0000046C
 .L080D82E8: .4byte 0x00000544
 .L080D82EC: .4byte 0x0000056C

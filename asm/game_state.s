@@ -1385,31 +1385,31 @@ func_08011CD8:
     adds r5, r0, #0
     adds r3, r5, #0
     adds r3, #0x10
-    ldr r0, .Ljp_08011D8C @ =vtable_unk_080E5BE8
+    ldr r0, .Ljp_08011D8C @ =__vt_16HardwareLinkBase
     mov sb, r0
     movs r2, #0
     str r2, [sp]
     str r2, [sp, #4]
-    ldr r0, .Ljp_08011D90 @ =gHardwareDisplayCommandVTable
+    ldr r0, .Ljp_08011D90 @ =__vt_22HardwareDisplayCommand
     str r0, [sp, #8]
     str r3, [sp, #0xc]
     add r0, sp, #0x10
     mov r8, r0
     str r2, [sp, #0x10]
     str r2, [r0, #4]
-    ldr r0, .Ljp_08011D94 @ =gHardwareSpriteBufferCommandVTable
+    ldr r0, .Ljp_08011D94 @ =__vt_27HardwareSpriteBufferCommand
     str r0, [sp, #0x18]
     str r1, [sp, #0x1c]
     add r6, sp, #0x20
     str r2, [sp, #0x20]
     str r2, [r6, #4]
-    ldr r0, .Ljp_08011D98 @ =gHardwareDmaQueueCommandVTable
+    ldr r0, .Ljp_08011D98 @ =__vt_23HardwareDmaQueueCommand
     str r0, [sp, #0x28]
     str r5, [sp, #0x2c]
     add r4, sp, #0x30
     str r2, [sp, #0x30]
     str r2, [r4, #4]
-    ldr r0, .Ljp_08011D9C @ =vtable_unk_080E5BB4
+    ldr r0, .Ljp_08011D9C @ =__vt_18HardwareLinkedList
     str r0, [sp, #0x38]
     add r1, sp, #0x40
     str r1, [r4, #0xc]
@@ -1417,7 +1417,7 @@ func_08011CD8:
     str r0, [sp, #0x48]
     str r2, [sp, #0x40]
     str r2, [r1, #4]
-    ldr r0, .Ljp_08011DA0 @ =vtable_unk_080E5BD8
+    ldr r0, .Ljp_08011DA0 @ =__vt_12HardwareLink
     str r0, [r1, #8]
     add r0, sp, #0x3c
     str r0, [r4, #0x10]
@@ -1470,12 +1470,12 @@ func_08011CD8:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08011D8C: .4byte vtable_unk_080E5BE8
-.Ljp_08011D90: .4byte gHardwareDisplayCommandVTable
-.Ljp_08011D94: .4byte gHardwareSpriteBufferCommandVTable
-.Ljp_08011D98: .4byte gHardwareDmaQueueCommandVTable
-.Ljp_08011D9C: .4byte vtable_unk_080E5BB4
-.Ljp_08011DA0: .4byte vtable_unk_080E5BD8
+.Ljp_08011D8C: .4byte __vt_16HardwareLinkBase
+.Ljp_08011D90: .4byte __vt_22HardwareDisplayCommand
+.Ljp_08011D94: .4byte __vt_27HardwareSpriteBufferCommand
+.Ljp_08011D98: .4byte __vt_23HardwareDmaQueueCommand
+.Ljp_08011D9C: .4byte __vt_18HardwareLinkedList
+.Ljp_08011DA0: .4byte __vt_12HardwareLink
     .global __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest
     .thumb_func
 __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest:
@@ -1510,14 +1510,14 @@ __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest:
     adds r2, #0x6c
     str r4, [r7, #0x6c]
     str r4, [r2, #4]
-    ldr r0, .Ljp_08011EA8 @ =vtable_unk_080E5BB4
+    ldr r0, .Ljp_08011EA8 @ =__vt_18HardwareLinkedList
     str r0, [r2, #8]
     adds r1, r7, #0
     adds r1, #0x7c
     str r1, [r2, #0xc]
     str r4, [r7, #0x7c]
     str r4, [r1, #4]
-    ldr r0, .Ljp_08011EAC @ =vtable_unk_080E5BD8
+    ldr r0, .Ljp_08011EAC @ =__vt_12HardwareLink
     str r0, [r1, #8]
     adds r0, r7, #0
     adds r0, #0x78
@@ -1599,8 +1599,8 @@ __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest:
     .align 2, 0
 .Ljp_08011EA0: .4byte __vt_9GameScene
 .Ljp_08011EA4: .4byte vtable_unk_080E5C08
-.Ljp_08011EA8: .4byte vtable_unk_080E5BB4
-.Ljp_08011EAC: .4byte vtable_unk_080E5BD8
+.Ljp_08011EA8: .4byte __vt_18HardwareLinkedList
+.Ljp_08011EAC: .4byte __vt_12HardwareLink
 .Ljp_08011EB0: .4byte 0x04000004
 .Ljp_08011EB4: .4byte gUnk_0300040C
     .section .text.game_scene_entity_commands_after, "ax", %progbits
@@ -19005,31 +19005,31 @@ func_08011CD8: @ 0x08011CD8
     adds r5, r0, #0
     adds r3, r5, #0
     adds r3, #0x10
-    ldr r0, .L08011DAC @ =vtable_unk_080E5BE8
+    ldr r0, .L08011DAC @ =__vt_16HardwareLinkBase
     mov sb, r0
     movs r2, #0
     str r2, [sp]
     str r2, [sp, #4]
-    ldr r0, .L08011DB0 @ =gHardwareDisplayCommandVTable
+    ldr r0, .L08011DB0 @ =__vt_22HardwareDisplayCommand
     str r0, [sp, #8]
     str r3, [sp, #0xc]
     add r0, sp, #0x10
     mov r8, r0
     str r2, [sp, #0x10]
     str r2, [r0, #4]
-    ldr r0, .L08011DB4 @ =gHardwareSpriteBufferCommandVTable
+    ldr r0, .L08011DB4 @ =__vt_27HardwareSpriteBufferCommand
     str r0, [sp, #0x18]
     str r1, [sp, #0x1c]
     add r6, sp, #0x20
     str r2, [sp, #0x20]
     str r2, [r6, #4]
-    ldr r0, .L08011DB8 @ =gHardwareDmaQueueCommandVTable
+    ldr r0, .L08011DB8 @ =__vt_23HardwareDmaQueueCommand
     str r0, [sp, #0x28]
     str r5, [sp, #0x2c]
     add r4, sp, #0x30
     str r2, [sp, #0x30]
     str r2, [r4, #4]
-    ldr r0, .L08011DBC @ =vtable_unk_080E5BB4
+    ldr r0, .L08011DBC @ =__vt_18HardwareLinkedList
     str r0, [sp, #0x38]
     add r1, sp, #0x40
     str r1, [r4, #0xc]
@@ -19037,7 +19037,7 @@ func_08011CD8: @ 0x08011CD8
     str r0, [sp, #0x48]
     str r2, [sp, #0x40]
     str r2, [r1, #4]
-    ldr r0, .L08011DC0 @ =vtable_unk_080E5BD8
+    ldr r0, .L08011DC0 @ =__vt_12HardwareLink
     str r0, [r1, #8]
     add r0, sp, #0x3c
     str r0, [r4, #0x10]
@@ -19090,12 +19090,12 @@ func_08011CD8: @ 0x08011CD8
     pop {r0}
     bx r0
     .align 2, 0
-.L08011DAC: .4byte vtable_unk_080E5BE8
-.L08011DB0: .4byte gHardwareDisplayCommandVTable
-.L08011DB4: .4byte gHardwareSpriteBufferCommandVTable
-.L08011DB8: .4byte gHardwareDmaQueueCommandVTable
-.L08011DBC: .4byte vtable_unk_080E5BB4
-.L08011DC0: .4byte vtable_unk_080E5BD8
+.L08011DAC: .4byte __vt_16HardwareLinkBase
+.L08011DB0: .4byte __vt_22HardwareDisplayCommand
+.L08011DB4: .4byte __vt_27HardwareSpriteBufferCommand
+.L08011DB8: .4byte __vt_23HardwareDmaQueueCommand
+.L08011DBC: .4byte __vt_18HardwareLinkedList
+.L08011DC0: .4byte __vt_12HardwareLink
 
     thumb_func_start __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest
 __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest: @ 0x08011DC4
@@ -19130,14 +19130,14 @@ __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest: @ 0x08011DC4
     adds r2, #0x6c
     str r4, [r7, #0x6c]
     str r4, [r2, #4]
-    ldr r0, .L08011EC8 @ =vtable_unk_080E5BB4
+    ldr r0, .L08011EC8 @ =__vt_18HardwareLinkedList
     str r0, [r2, #8]
     adds r1, r7, #0
     adds r1, #0x7c
     str r1, [r2, #0xc]
     str r4, [r7, #0x7c]
     str r4, [r1, #4]
-    ldr r0, .L08011ECC @ =vtable_unk_080E5BD8
+    ldr r0, .L08011ECC @ =__vt_12HardwareLink
     str r0, [r1, #8]
     adds r0, r7, #0
     adds r0, #0x78
@@ -19219,8 +19219,8 @@ __9GameSceneP18GameStateSaveImageRC22GameSceneResumeRequest: @ 0x08011DC4
     .align 2, 0
 .L08011EC0: .4byte __vt_9GameScene
 .L08011EC4: .4byte vtable_unk_080E5C08
-.L08011EC8: .4byte vtable_unk_080E5BB4
-.L08011ECC: .4byte vtable_unk_080E5BD8
+.L08011EC8: .4byte __vt_18HardwareLinkedList
+.L08011ECC: .4byte __vt_12HardwareLink
 .L08011ED0: .4byte 0x04000004
 .L08011ED4: .4byte gUnk_0300040C
     @ Overseas-only overload: the local request initializes only kind = 2.
@@ -19259,8 +19259,8 @@ __9GameSceneP18GameStateSaveImage:
     .byte 0x28, 0x1C, 0x05, 0xB0, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
     .4byte __vt_9GameScene
     .4byte vtable_unk_080E5C08
-    .4byte vtable_unk_080E5BB4
-    .4byte vtable_unk_080E5BD8
+    .4byte __vt_18HardwareLinkedList
+    .4byte __vt_12HardwareLink
     .4byte 0x04000004
     .4byte gUnk_0300040C
 

@@ -2,6 +2,54 @@
 #include "hardware_dma.hh"
 #include "gbaio.h"
 #include "gbasvc.h"
+#include "hardware_bootstrap.hh"
+#include "hardware_state_accessors.hh"
+#include "hardware_nested_accessors.hh"
+
+// These native C entry points build commands through the shared C ABI view.
+// C has no automatic destructor, so scope cleanup is explicit at the end.
+
+void func_08008724(struct HardwareBootstrap * owner)
+{
+    struct HardwareCoreState * state = owner->state;
+    u16 * control = (u16 *)&state->display.control;
+    struct HardwareDisplayCommand command;
+    u32 zero = 0;
+    *control |= 0x80;
+    command.previous_slot = (struct HardwareLink **)zero;
+    command.next = (struct HardwareLink *)zero;
+    command.vtable = &__vt_22HardwareDisplayCommand;
+    command.display = &state->display;
+    {
+        void * manager = &state->manager;
+        void * object = func_08008AE0((void * const *)manager);
+        void ** vtable = *(void ***)((u8 *)object + 8);
+        ((void (*)(void *, struct HardwareDisplayCommand *))vtable[4])(object, &command);
+        func_08008AF0(manager);
+    }
+    func_080098AC(&command, 2);
+}
+
+void func_08008774(struct HardwareBootstrap * owner)
+{
+    struct HardwareCoreState * state = owner->state;
+    u16 * control = (u16 *)&state->display.control;
+    struct HardwareDisplayCommand command;
+    u32 zero = 0;
+    *control &= 0xFF7F;
+    command.previous_slot = (struct HardwareLink **)zero;
+    command.next = (struct HardwareLink *)zero;
+    command.vtable = &__vt_22HardwareDisplayCommand;
+    command.display = &state->display;
+    {
+        void * manager = &state->manager;
+        void * object = func_08008AE0((void * const *)manager);
+        void ** vtable = *(void ***)((u8 *)object + 8);
+        ((void (*)(void *, struct HardwareDisplayCommand *))vtable[4])(object, &command);
+        func_08008AF0(manager);
+    }
+    func_080098AC(&command, 2);
+}
 
 struct HardwareDisplayState * func_080096B0(struct HardwareDisplayState * object)
 {
