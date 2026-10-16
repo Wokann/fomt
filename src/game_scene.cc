@@ -700,6 +700,13 @@ void GameScene::DisableScriptedNpcControl()
     state->save->scripted_npc_control = 0;
 }
 
+GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
+{
+    // Match native cleanup: release the first index, then destroy all three
+    // retained tile entries in reverse member-array order.
+    world->vfunc_4C(indices[0]);
+}
+
 EC IndexedResourceArchive * func_0801FBDC(GameSceneWorldPrefix & world)
 {
     return &world.data.unk_FF0;

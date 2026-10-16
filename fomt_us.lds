@@ -226,6 +226,8 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.npc_characters_after);
 
         asm/code_0803A8A4.o(.text);
+        src/game_scene.o(.text._._21GameSceneWorldUnk1020);
+        asm/code_0803A8A4.o(.text.world_sprite_groups_after_destructor);
         . = 0x3BDE4; /* US ROM 0x0803BDE4, set a u16 pair */
         src/code_0803BDE4.o(.text);
         . = 0x3BDFC; /* US ROM 0x0803BDFC, remaining raw control code */

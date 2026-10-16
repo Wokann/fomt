@@ -663,56 +663,8 @@ func_0803CD4C:
     .align 2, 0
 .Ljp_0803AA08:
     .4byte 0x0000091A
-    .global func_0803AC78
-    .thumb_func
-func_0803AC78:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r8
-    push	{r7}
-    adds	r6, r0, #0
-    mov	r8, r1
-    ldr	r0, [r6, #0]
-    ldr	r2, [r0, #0]
-    adds	r4, r6, #0
-    adds	r4, #136	@ 0x88
-    adds	r1, r6, #0
-    adds	r1, #140	@ 0x8c
-    ldrb	r1, [r1, #0]
-    ldr	r2, [r2, #76]	@ 0x4c
-    bl _call_via_r2
-    adds	r0, r6, #4
-    cmp	r0, #0
-    beq .Ljp_0803AA52
-    adds	r5, r4, #0
-    cmp	r0, r5
-    beq .Ljp_0803AA52
-    adds	r7, r0, #0
-.Ljp_0803AA38:
-    subs	r5, #44	@ 0x2c
-    adds	r4, r5, #0
-    adds	r4, #32
-    ldr	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl _._24HardwareSharedStateOwner
-    cmp	r7, r5
-    bne .Ljp_0803AA38
-.Ljp_0803AA52:
-    movs	r0, #1
-    mov	r1, r8
-    ands	r0, r1
-    cmp	r0, #0
-    beq .Ljp_0803AA62
-    adds	r0, r6, #0
-    bl __builtin_delete
-.Ljp_0803AA62:
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
+    .section .text.world_sprite_groups_after_destructor
+
     .global func_0803AA6C
     .thumb_func
 func_0803AA6C:
@@ -9214,56 +9166,8 @@ func_0803AB30:
     .align 2, 0
 .Leu_0803AC88:
     .4byte 0x0000091A
-    .global func_0803AC78
-    .thumb_func
-func_0803AC78:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r8
-    push	{r7}
-    adds	r6, r0, #0
-    mov	r8, r1
-    ldr	r0, [r6, #0]
-    ldr	r2, [r0, #0]
-    adds	r4, r6, #0
-    adds	r4, #136	@ 0x88
-    adds	r1, r6, #0
-    adds	r1, #140	@ 0x8c
-    ldrb	r1, [r1, #0]
-    ldr	r2, [r2, #76]	@ 0x4c
-    bl _call_via_r2
-    adds	r0, r6, #4
-    cmp	r0, #0
-    beq .Leu_0803ACD2
-    adds	r5, r4, #0
-    cmp	r0, r5
-    beq .Leu_0803ACD2
-    adds	r7, r0, #0
-.Leu_0803ACB8:
-    subs	r5, #44	@ 0x2c
-    adds	r4, r5, #0
-    adds	r4, #32
-    ldr	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl _._24HardwareSharedStateOwner
-    cmp	r7, r5
-    bne .Leu_0803ACB8
-.Leu_0803ACD2:
-    movs	r0, #1
-    mov	r1, r8
-    ands	r0, r1
-    cmp	r0, #0
-    beq .Leu_0803ACE2
-    adds	r0, r6, #0
-    bl __builtin_delete
-.Leu_0803ACE2:
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
+    .section .text.world_sprite_groups_after_destructor
+
     .global func_0803ACD8
     .thumb_func
 func_0803ACD8:
@@ -17839,56 +17743,8 @@ func_0803AB30:
     .align 2, 0
 .Lde_0803AB88:
     .4byte 0x0000091A
-    .global func_0803AC78
-    .thumb_func
-func_0803AC78:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r8
-    push	{r7}
-    adds	r6, r0, #0
-    mov	r8, r1
-    ldr	r0, [r6, #0]
-    ldr	r2, [r0, #0]
-    adds	r4, r6, #0
-    adds	r4, #136	@ 0x88
-    adds	r1, r6, #0
-    adds	r1, #140	@ 0x8c
-    ldrb	r1, [r1, #0]
-    ldr	r2, [r2, #76]	@ 0x4c
-    bl _call_via_r2
-    adds	r0, r6, #4
-    cmp	r0, #0
-    beq .Lde_0803ABD2
-    adds	r5, r4, #0
-    cmp	r0, r5
-    beq .Lde_0803ABD2
-    adds	r7, r0, #0
-.Lde_0803ABB8:
-    subs	r5, #44	@ 0x2c
-    adds	r4, r5, #0
-    adds	r4, #32
-    ldr	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl _._24HardwareSharedStateOwner
-    cmp	r7, r5
-    bne .Lde_0803ABB8
-.Lde_0803ABD2:
-    movs	r0, #1
-    mov	r1, r8
-    ands	r0, r1
-    cmp	r0, #0
-    beq .Lde_0803ABE2
-    adds	r0, r6, #0
-    bl __builtin_delete
-.Lde_0803ABE2:
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
+    .section .text.world_sprite_groups_after_destructor
+
     .global func_0803ACD8
     .thumb_func
 func_0803ACD8:
@@ -26442,56 +26298,8 @@ func_0803AB30:
     .align 2, 0
 .Lus_0803AC74:
     .4byte 0x0000091A
-    .global func_0803AC78
-    .thumb_func
-func_0803AC78:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r8
-    push	{r7}
-    adds	r6, r0, #0
-    mov	r8, r1
-    ldr	r0, [r6, #0]
-    ldr	r2, [r0, #0]
-    adds	r4, r6, #0
-    adds	r4, #136	@ 0x88
-    adds	r1, r6, #0
-    adds	r1, #140	@ 0x8c
-    ldrb	r1, [r1, #0]
-    ldr	r2, [r2, #76]	@ 0x4c
-    bl _call_via_r2
-    adds	r0, r6, #4
-    cmp	r0, #0
-    beq .Lus_0803ACBE
-    adds	r5, r4, #0
-    cmp	r0, r5
-    beq .Lus_0803ACBE
-    adds	r7, r0, #0
-.Lus_0803ACA4:
-    subs	r5, #44	@ 0x2c
-    adds	r4, r5, #0
-    adds	r4, #32
-    ldr	r1, [r4, #4]
-    adds	r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl _._24HardwareSharedStateOwner
-    cmp	r7, r5
-    bne .Lus_0803ACA4
-.Lus_0803ACBE:
-    movs	r0, #1
-    mov	r1, r8
-    ands	r0, r1
-    cmp	r0, #0
-    beq .Lus_0803ACCE
-    adds	r0, r6, #0
-    bl __builtin_delete
-.Lus_0803ACCE:
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
+    .section .text.world_sprite_groups_after_destructor
+
     .global func_0803ACD8
     .thumb_func
 func_0803ACD8:

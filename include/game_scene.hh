@@ -11,6 +11,7 @@
 #include "utility/vec2.hh"
 #include "resource_handle.hh"
 #include "hardware_resource.hh"
+#include "hardware_state_clear.hh"
 #include <new>
 
 // Only the player virtual interface used by these scene commands is modeled.
@@ -149,6 +150,42 @@ struct GameSceneWorldUnk1028 {
     u8 unk_09;
 };
 
+// This native world member stores three resource groups and a counted
+// sixteen-byte index list. The constructor still uses native assembly.
+struct GameSceneWorldUnk1020Entry {
+    IndexedResourceGroupResult group;
+    HardwareStateEntry tiles;
+    u16 tile_index;
+};
+
+struct GameSceneWorldUnk1020Indices {
+    u32 count;
+    u8 values[16];
+
+    u8 & operator[](u32 index) { return values[index]; }
+};
+
+struct GameSceneWorldUnk1020 {
+    GameObject * world;
+    GameSceneWorldUnk1020Entry entries[3];
+    GameSceneWorldUnk1020Indices indices;
+    u8 unk_9C;
+
+    ~GameSceneWorldUnk1020();
+
+private:
+    GameSceneWorldUnk1020();
+};
+
+typedef char GameSceneWorldUnk1020EntrySizeCheck[sizeof(GameSceneWorldUnk1020Entry) == 44 ? 1 : -1];
+typedef char GameSceneWorldUnk1020EntryTilesCheck[offsetof(GameSceneWorldUnk1020Entry, tiles) == 32 ? 1 : -1];
+typedef char GameSceneWorldUnk1020EntryTileIndexCheck[offsetof(GameSceneWorldUnk1020Entry, tile_index) == 40 ? 1 : -1];
+typedef char GameSceneWorldUnk1020EntriesCheck[offsetof(GameSceneWorldUnk1020, entries) == 4 ? 1 : -1];
+typedef char GameSceneWorldUnk1020IndicesCheck[offsetof(GameSceneWorldUnk1020, indices) == 0x88 ? 1 : -1];
+typedef char GameSceneWorldUnk1020IndexValuesCheck[offsetof(GameSceneWorldUnk1020, indices.values) == 0x8C ? 1 : -1];
+typedef char GameSceneWorldUnk1020FlagCheck[offsetof(GameSceneWorldUnk1020, unk_9C) == 0x9C ? 1 : -1];
+typedef char GameSceneWorldUnk1020SizeCheck[sizeof(GameSceneWorldUnk1020) == 0xA0 ? 1 : -1];
+
 // The native constructor receives this member at world+4, not the complete
 // world object. Each archive has its own source and reverse-order destruction.
 // The constructor and destructor bodies remain native assembly under their
@@ -171,7 +208,7 @@ struct GameSceneWorldData {
     IndexedResourceArchive unk_F90;
     IndexedResourceArchive unk_FC0;
     IndexedResourceArchive unk_FF0;
-    void * unk_1020;
+    GameSceneWorldUnk1020 * unk_1020;
     void * unk_1024;
     GameSceneWorldUnk1028 unk_1028;
 

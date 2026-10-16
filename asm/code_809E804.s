@@ -23023,7 +23023,7 @@ _._18GameSceneWorldData: @ 080AC294
 	cmp r0, #0
 	beq .Ljp_map_080AC2F0
 	movs r1, #3
-	bl func_0803AC78
+	bl _._21GameSceneWorldUnk1020
 .Ljp_map_080AC2F0:
 	movs r2, #0xff
 	lsls r2, r2, #4
@@ -23242,7 +23242,7 @@ func_080AC424: @ 080AC424
 	cmp r0, #0
 	beq .Ljp_map_080AC4A2
 	movs r1, #3
-	bl func_0803AC78
+	bl _._21GameSceneWorldUnk1020
 .Ljp_map_080AC4A2:
 	str r4, [r5]
 	ldr r0, .Ljp_map_080AC524 @ =0x00001028
@@ -24459,7 +24459,7 @@ func_080ACDE8:
 	cmp r0, #0
 	beq .Ljp_entity_080ACE2A
 	movs r1, #3
-	bl func_0803AC78
+	bl _._21GameSceneWorldUnk1020
 .Ljp_entity_080ACE2A:
 	str r5, [r4]
 	ldr r0, .Ljp_entity_080ACED0 @ =0x00001028
@@ -24494,7 +24494,7 @@ func_080ACDE8:
 	cmp r0, #0
 	beq .Ljp_entity_080ACE76
 	movs r1, #3
-	bl func_0803AC78
+	bl _._21GameSceneWorldUnk1020
 .Ljp_entity_080ACE76:
 	str r4, [r5]
 	movs r0, #4
@@ -108246,7 +108246,7 @@ _._18GameSceneWorldData: @ 0x080AC85C
 	cmp r0, #0
 	beq .L080AC8B8
 	movs r1, #3
-	bl func_0803AC78
+	bl _._21GameSceneWorldUnk1020
 .L080AC8B8:
 	movs r2, #0xff
 	lsls r2, r2, #4
@@ -108465,7 +108465,7 @@ func_080AC9EC: @ 0x080AC9EC
 	cmp r0, #0
 	beq .L080ACA6A
 	movs r1, #3
-	bl func_0803AC78
+	bl _._21GameSceneWorldUnk1020
 .L080ACA6A:
 	str r4, [r5]
 	ldr r0, .L080ACAEC @ =0x00001028
@@ -109681,7 +109681,7 @@ func_080AD3B0: @ 0x080AD3B0
 	cmp r0, #0
 	beq .L080AD3F2
 	movs r1, #3
-	bl func_0803AC78
+	bl _._21GameSceneWorldUnk1020
 .L080AD3F2:
 	str r5, [r4]
 	ldr r0, .L080AD498 @ =0x00001028
@@ -109716,7 +109716,7 @@ func_080AD3B0: @ 0x080AD3B0
 	cmp r0, #0
 	beq .L080AD43E
 	movs r1, #3
-	bl func_0803AC78
+	bl _._21GameSceneWorldUnk1020
 .L080AD43E:
 	str r4, [r5]
 	movs r0, #4

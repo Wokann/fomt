@@ -273,6 +273,8 @@ SECTIONS
         . = 0x3A518; /* JP ROM 0x0803A518, independently matched */
 
         asm/code_0803A8A4.o(.text);
+        src/game_scene.o(.text._._21GameSceneWorldUnk1020);
+        asm/code_0803A8A4.o(.text.world_sprite_groups_after_destructor);
         . = 0x3BB78; /* JP counterpart of US function 0x0803BDE4. */
         src/code_0803BDE4.o(.text);
         . = 0x3BB90; /* JP ROM 0x0803BDFC, remaining raw control code */
