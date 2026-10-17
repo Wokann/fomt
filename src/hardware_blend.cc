@@ -1,25 +1,16 @@
 #include "hardware_blend.hh"
 
-extern void * __builtin_new(u32 size);
-extern void __builtin_delete(void * pointer);
+void * operator new(unsigned long);
+void operator delete(void *);
 
-struct HardwareBlendController * func_08009300(struct HardwareBlendController * controller, struct HardwareDisplayState * display)
+HardwareBlendController::HardwareBlendController(HardwareDisplayState * display)
+    : state(new HardwareBlendState(display))
 {
-    struct HardwareBlendState * state = __builtin_new(sizeof(*state));
-    state->display = display;
-    state->step = 0;
-    state->mode = 0;
-    state->mosaic_enabled = 0;
-    state->progress = 0;
-    controller->state = state;
-    return controller;
 }
 
-void func_08009324(struct HardwareBlendController * controller, u32 flags)
+HardwareBlendController::~HardwareBlendController()
 {
-    __builtin_delete(controller->state);
-    if (flags & 1)
-        __builtin_delete(controller);
+    delete state;
 }
 
 struct HardwareDisplayState * func_08009344(struct HardwareBlendController * controller, struct HardwareDisplayState * display)

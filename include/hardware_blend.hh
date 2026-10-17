@@ -21,13 +21,21 @@ struct HardwareBlendState {
     u8 mosaic_enabled;
     u8 unk_0d;
     u16 progress;
+#ifdef __cplusplus
+    HardwareBlendState(HardwareDisplayState * value)
+        : display(value), step(0), mode(0), mosaic_enabled(0), progress(0) {}
+#endif
 };
 
 struct HardwareBlendController {
     struct HardwareBlendState * state;
 #ifdef __cplusplus
+    HardwareBlendController(HardwareDisplayState * display) asm("func_08009300");
+    ~HardwareBlendController() asm("func_08009324");
     void Begin(i16 step, u32 mode, u32 mosaic);
     void End(i16 step, u32 mode, u32 mosaic);
+    // The body remains native assembly; every exit returns false or true.
+    bool Update() asm("func_080093AC");
 #endif
 };
 
@@ -45,7 +53,7 @@ struct HardwareDisplayState * func_08009344(struct HardwareBlendController * con
 void func_0800934C(struct HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic);
 void func_08009378(struct HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic);
 i16 func_080093A0(struct HardwareBlendController * controller, i16 step);
-u32 func_080093AC(struct HardwareBlendController * controller);
+bool func_080093AC(struct HardwareBlendController * controller);
 
 EXTERN_C_END
 

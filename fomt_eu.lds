@@ -648,7 +648,7 @@ SECTIONS
         src/hardware_manager.o(.rodata);
         *(.gnu.linkonce.d.__vt_24HardwareSoundMainCommand);
         *(.gnu.linkonce.d.__vt_25HardwareSoundVSyncCommand);
-        src/hardware_blend_object.o(.rodata);
+        *(.gnu.linkonce.d.__vt_19HardwareBlendObject);
         src/hardware_interrupt_guard.o(.rodata);
         *(.gnu.linkonce.d.__vt_18HardwareLinkedList);
         *(.gnu.linkonce.d.__vt_12HardwareLink);

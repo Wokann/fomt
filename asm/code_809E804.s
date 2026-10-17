@@ -1764,7 +1764,7 @@ func_080A25B0: @ 0x080A1FE8
 	movs r6, #0
 	str r6, [r4]
 	str r6, [r4, #4]
-	ldr r0, .Ljp_080A2668 @ =vtable_unk_080E5B80
+	ldr r0, .Ljp_080A2668 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -1816,7 +1816,7 @@ func_080A25B0: @ 0x080A1FE8
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.Ljp_080A2668: .4byte vtable_unk_080E5B80
+.Ljp_080A2668: .4byte __vt_19HardwareBlendObject
 .Ljp_080A266C: .4byte 0x00000889
 .Ljp_080A2670: .4byte 0x00000216
 .Ljp_080A2674: .4byte .Ljp_080A2678
@@ -23831,7 +23831,7 @@ func_080AD9A4:
     adds r1, r0, #0
     str r4, [r5]
     str r4, [r5, #4]
-    ldr r0, .Ljp_080ADDAC @ =vtable_unk_080E5B80
+    ldr r0, .Ljp_080ADDAC @ =__vt_19HardwareBlendObject
     str r0, [r5, #8]
     adds r0, r5, #0
     adds r0, #0xc
@@ -24205,7 +24205,7 @@ func_080AD9A4:
 .Ljp_080ADDA0: .4byte gUnk_084B1FCC
 .Ljp_080ADDA4: .4byte 0x00000434
 .Ljp_080ADDA8: .4byte gUnk_084C3840
-.Ljp_080ADDAC: .4byte vtable_unk_080E5B80
+.Ljp_080ADDAC: .4byte __vt_19HardwareBlendObject
 .Ljp_080ADDB0: .4byte 0x0000043C
 .Ljp_080ADDB4: .4byte 0x000007CC
 .Ljp_080ADDB8: .4byte 0x000007D4
@@ -35904,7 +35904,7 @@ func_080B3CC8: @ 0x080B36FC
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .Ljp_080B3B70 @ =vtable_unk_080E5B80
+	ldr r0, .Ljp_080B3B70 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -36147,7 +36147,7 @@ func_080B3CC8: @ 0x080B36FC
 .Ljp_080B3B64: .4byte gUnk_084AF5C8
 .Ljp_080B3B68: .4byte gUnk_084C6B4C
 .Ljp_080B3B6C: .4byte 0x0000079C
-.Ljp_080B3B70: .4byte vtable_unk_080E5B80
+.Ljp_080B3B70: .4byte __vt_19HardwareBlendObject
 .Ljp_080B3B74: .4byte 0x000007A4
 .Ljp_080B3B78: .4byte 0x000007AC
 .Ljp_080B3B7C: .4byte 0x000007B4
@@ -53913,7 +53913,7 @@ func_080BC938: @ 0x080BC36C
 	adds r1, r0, #0
 	str r4, [r5]
 	str r4, [r5, #4]
-	ldr r0, .L080BC6E0 @ =vtable_unk_080E5B80
+	ldr r0, .L080BC6E0 @ =__vt_19HardwareBlendObject
 	str r0, [r5, #8]
 	adds r0, r5, #0
 	adds r0, #0xc
@@ -54192,7 +54192,7 @@ func_080BC938: @ 0x080BC36C
 .L080BC6D4: .4byte gUnk_084B1FCC
 .L080BC6D8: .4byte 0x00000434
 .L080BC6DC: .4byte gUnk_084C3840
-.L080BC6E0: .4byte vtable_unk_080E5B80
+.L080BC6E0: .4byte __vt_19HardwareBlendObject
 .L080BC6E4: .4byte 0x0000043C
 .L080BC6E8: .4byte 0x0000057C
 .L080BC6EC: .4byte 0x00000584
@@ -61262,8 +61262,9 @@ func_080C0D90:
     .byte 0x00, 0x00, 0x84, 0x79, 0x0E, 0x08, 0x1C, 0x05, 0x00, 0x00, 0x18, 0x47, 0x4C, 0x08, 0xAC, 0x3F
     .byte 0x4C, 0x08, 0x24, 0x05, 0x00, 0x00, 0x08, 0x67, 0x4C, 0x08, 0x84, 0x1B, 0x31, 0x08, 0x2C, 0x05
     .byte 0x00, 0x00, 0x64, 0x37, 0x4C, 0x08, 0x70, 0x6A, 0x4C, 0x08, 0x34, 0x05, 0x00, 0x00, 0x78, 0x36
-    .byte 0x4A, 0x08, 0xCC, 0x1F, 0x4B, 0x08, 0x3C, 0x05, 0x00, 0x00, 0x40, 0x38, 0x4C, 0x08, 0xC0, 0x4F
-    .byte 0x0E, 0x08, 0x44, 0x05, 0x00, 0x00, 0x1C, 0x06, 0x00, 0x00, 0x08, 0x08, 0x00, 0x00, 0xA4, 0x06
+    .byte 0x4A, 0x08, 0xCC, 0x1F, 0x4B, 0x08, 0x3C, 0x05, 0x00, 0x00, 0x40, 0x38, 0x4C, 0x08
+    .word __vt_19HardwareBlendObject
+    .byte 0x44, 0x05, 0x00, 0x00, 0x1C, 0x06, 0x00, 0x00, 0x08, 0x08, 0x00, 0x00, 0xA4, 0x06
     .byte 0x00, 0x00, 0x2C, 0x07, 0x00, 0x00, 0x54, 0x07, 0x00, 0x00, 0x9C, 0x07, 0x00, 0x00, 0xC4, 0x07
     .byte 0x00, 0x00, 0xEC, 0x07, 0x00, 0x00, 0x14, 0x08, 0x00, 0x00
     .Lauto_080C0C54:
@@ -84726,7 +84727,7 @@ func_080A25B0: @ 0x080A25B0
 	movs r6, #0
 	str r6, [r4]
 	str r6, [r4, #4]
-	ldr r0, .L080A2668 @ =vtable_unk_080E5B80
+	ldr r0, .L080A2668 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -84778,7 +84779,7 @@ func_080A25B0: @ 0x080A25B0
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L080A2668: .4byte vtable_unk_080E5B80
+.L080A2668: .4byte __vt_19HardwareBlendObject
 .L080A266C: .4byte 0x00000889
 .L080A2670: .4byte 0x00000216
 .L080A2674: .4byte .L080A2678
@@ -106697,7 +106698,7 @@ func_080ADF6C: @ 0x080ADF6C
 	adds r1, r0, #0
 	str r4, [r5]
 	str r4, [r5, #4]
-	ldr r0, .L080AE374 @ =vtable_unk_080E5B80
+	ldr r0, .L080AE374 @ =__vt_19HardwareBlendObject
 	str r0, [r5, #8]
 	adds r0, r5, #0
 	adds r0, #0xc
@@ -107071,7 +107072,7 @@ func_080ADF6C: @ 0x080ADF6C
 .L080AE368: .4byte gUnk_0872BE64
 .L080AE36C: .4byte 0x00000434
 .L080AE370: .4byte gUnk_0873D6D8
-.L080AE374: .4byte vtable_unk_080E5B80
+.L080AE374: .4byte __vt_19HardwareBlendObject
 .L080AE378: .4byte 0x0000043C
 .L080AE37C: .4byte 0x000007CC
 .L080AE380: .4byte 0x000007D4
@@ -118757,7 +118758,7 @@ func_080B3CC8: @ 0x080B3CC8
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L080B413C @ =vtable_unk_080E5B80
+	ldr r0, .L080B413C @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -119000,7 +119001,7 @@ func_080B3CC8: @ 0x080B3CC8
 .L080B4130: .4byte gUnk_08729460
 .L080B4134: .4byte gUnk_087409E4
 .L080B4138: .4byte 0x0000079C
-.L080B413C: .4byte vtable_unk_080E5B80
+.L080B413C: .4byte __vt_19HardwareBlendObject
 .L080B4140: .4byte 0x000007A4
 .L080B4144: .4byte 0x000007AC
 .L080B4148: .4byte 0x000007B4
@@ -136719,7 +136720,7 @@ func_080BC938: @ 0x080BC938
 	adds r1, r0, #0
 	str r4, [r5]
 	str r4, [r5, #4]
-	ldr r0, .L080BCCAC @ =vtable_unk_080E5B80
+	ldr r0, .L080BCCAC @ =__vt_19HardwareBlendObject
 	str r0, [r5, #8]
 	adds r0, r5, #0
 	adds r0, #0xc
@@ -136998,7 +136999,7 @@ func_080BC938: @ 0x080BC938
 .L080BCCA0: .4byte gUnk_0872BE64
 .L080BCCA4: .4byte 0x00000434
 .L080BCCA8: .4byte gUnk_0873D6D8
-.L080BCCAC: .4byte vtable_unk_080E5B80
+.L080BCCAC: .4byte __vt_19HardwareBlendObject
 .L080BCCB0: .4byte 0x0000043C
 .L080BCCB4: .4byte 0x0000057C
 .L080BCCB8: .4byte 0x00000584
@@ -145525,7 +145526,7 @@ func_080C0DCC: @ 0x080C0DCC
 	adds r1, r0, #0
 	str r4, [r5]
 	str r4, [r5, #4]
-	ldr r0, .L080C11FC @ =vtable_unk_080E5B80
+	ldr r0, .L080C11FC @ =__vt_19HardwareBlendObject
 	str r0, [r5, #8]
 	adds r0, r5, #0
 	adds r0, #0xc
@@ -145899,7 +145900,7 @@ func_080C0DCC: @ 0x080C0DCC
 .L080C11F0: .4byte gUnk_0872BE64
 .L080C11F4: .4byte 0x0000053C
 .L080C11F8: .4byte gUnk_0873D6D8
-.L080C11FC: .4byte vtable_unk_080E5B80
+.L080C11FC: .4byte __vt_19HardwareBlendObject
 .L080C1200: .4byte 0x00000544
 .L080C1204: .4byte 0x0000061C
 .L080C1208: .4byte 0x00000808

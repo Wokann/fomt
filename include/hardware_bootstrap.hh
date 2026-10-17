@@ -60,7 +60,7 @@ struct HardwareDisplayCommand
 #endif
     struct HardwareDisplayState * display;
 #ifdef __cplusplus
-    virtual u8 Run() asm("RunHardwareDisplayCommand") SECTION(".text.hardware_frame_commands");
+    virtual bool Run() asm("RunHardwareDisplayCommand") SECTION(".text.hardware_frame_commands");
     // The retail callers inline these constructors. Keep any emitted fallback
     // bodies separate from the module's original out-of-line entries.
     HardwareDisplayCommand(HardwareDisplayState * state)
@@ -80,7 +80,7 @@ struct HardwareSpriteBufferCommand
 #endif
     struct HardwareSpriteBufferState * buffer;
 #ifdef __cplusplus
-    virtual u8 Run() asm("RunHardwareSpriteBufferCommand") SECTION(".text.hardware_frame_commands");
+    virtual bool Run() asm("RunHardwareSpriteBufferCommand") SECTION(".text.hardware_frame_commands");
     HardwareSpriteBufferCommand(HardwareSpriteBufferState * state)
         SECTION(".text.hardware_frame_command_constructors");
 #endif
@@ -102,7 +102,7 @@ struct HardwareDmaQueueCommand
 #endif
     struct HardwareDmaQueue * queue;
 #ifdef __cplusplus
-    virtual u8 Run() asm("RunHardwareDmaQueueCommand") SECTION(".text.hardware_dma_command");
+    virtual bool Run() asm("RunHardwareDmaQueueCommand") SECTION(".text.hardware_dma_command");
     HardwareDmaQueueCommand(HardwareDmaQueue * state)
         SECTION(".text.hardware_frame_command_constructors");
 #endif

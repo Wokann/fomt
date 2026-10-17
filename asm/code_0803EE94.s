@@ -9860,7 +9860,7 @@ func_08051504: @ 0x08051290
     beq .Ljp_08051342
     b .Ljp_08051426
     .align 2, 0
-.Ljp_0805132C: .4byte vtable_unk_080E5B80
+.Ljp_0805132C: .4byte __vt_19HardwareBlendObject
 .Ljp_08051330: .4byte 0x00000889
 .Ljp_08051334: .4byte 0x000008BC
 .Ljp_08051338:
@@ -11629,7 +11629,8 @@ func_08052714:
     adds r0, r5, #0
     bl func_080558C4
     bl .Lauto_08053370
-    .byte 0xC0, 0x4F, 0x0E, 0x08, 0x8A, 0x22, 0x00, 0x00, 0x3B, 0x03, 0x00, 0x00, 0x28, 0x23, 0x00, 0x00
+    .word __vt_19HardwareBlendObject
+    .byte 0x8A, 0x22, 0x00, 0x00, 0x3B, 0x03, 0x00, 0x00, 0x28, 0x23, 0x00, 0x00
     .byte 0x21, 0x23, 0x00, 0x00
     .Lauto_08052814:
     ldr r4, [pc, #0x18]
@@ -17656,7 +17657,9 @@ func_08057CF4:
     movs r0, #0xd
     strh r0, [r1]
     b .Lauto_0805877E
-    .byte 0x00, 0x00, 0xC0, 0x4F, 0x0E, 0x08, 0x2A, 0x2C, 0x00, 0x00, 0x2C, 0x11, 0x00, 0x00, 0x28, 0x2C
+    .byte 0x00, 0x00
+    .word __vt_19HardwareBlendObject
+    .byte 0x2A, 0x2C, 0x00, 0x00, 0x2C, 0x11, 0x00, 0x00, 0x28, 0x2C
     .byte 0x00, 0x00, 0x29, 0x2C, 0x00, 0x00, 0x2C, 0x2C, 0x00, 0x00, 0x34, 0x11, 0x00, 0x00, 0x4A, 0x2C
     .byte 0x00, 0x00, 0x08, 0x11, 0x00, 0x00, 0x04, 0x11, 0x00, 0x00
     .Lauto_0805874C:
@@ -22268,7 +22271,9 @@ func_0805CF70:
     bl UpdateHardwareFrame @ JP ROM 0x0805CF9E
     .byte 0x30, 0x1C, 0xAB, 0xF7, 0x8C, 0xFC, 0x0D, 0x4C, 0x30, 0x19
     .byte 0x00, 0x21, 0x40, 0x5E, 0x0C, 0x28, 0x00, 0xD9, 0x3E, 0xE2, 0x80, 0x00, 0x0B, 0x49, 0x40, 0x18
-    .byte 0x00, 0x68, 0x87, 0x46, 0xC0, 0x4F, 0x0E, 0x08, 0xE9, 0x0A, 0x00, 0x00, 0x4A, 0x2C, 0x00, 0x00
+    .byte 0x00, 0x68, 0x87, 0x46
+    .word __vt_19HardwareBlendObject
+    .byte 0xE9, 0x0A, 0x00, 0x00, 0x4A, 0x2C, 0x00, 0x00
     .byte 0xE1, 0x0A, 0x00, 0x00, 0xD4, 0x0A, 0x00, 0x00, 0xD6, 0x0A, 0x00, 0x00, 0xD8, 0x0A, 0x00, 0x00
     .byte 0xDC, 0x0A, 0x00, 0x00, 0xDA, 0x0A, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0xEC, 0xCF, 0x05, 0x08
     .byte 0x20, 0xD0, 0x05, 0x08, 0x38, 0xD0, 0x05, 0x08, 0xD0, 0xD1, 0x05, 0x08, 0xD0, 0xD1, 0x05, 0x08
@@ -23558,7 +23563,7 @@ func_0805EE44:
 	ldr r2, [sp, #0x38]
 	str r2, [r4]
 	str r2, [r4, #4]
-	ldr r0, .L0805EF00 @ =vtable_unk_080E5B80
+	ldr r0, .L0805EF00 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -23613,7 +23618,7 @@ func_0805EE44:
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L0805EF00: .4byte vtable_unk_080E5B80
+.L0805EF00: .4byte __vt_19HardwareBlendObject
 .L0805EF04: .4byte 0x00000889
 .L0805EF08: .4byte 0x00006422
 .L0805EF0C: .4byte .L0805EF10
@@ -52359,7 +52364,7 @@ func_0806A1F4:
 	b .Ljp_0806C364
 	.align 2, 0
 .Ljp_0806C314:
-	.4byte vtable_unk_080E5B80
+	.4byte __vt_19HardwareBlendObject
 .Ljp_0806C318:
 	.4byte 0x00000889
 .Ljp_0806C31C:
@@ -55379,7 +55384,7 @@ func_0806DB38:
 	mov pc, r0
 	.align 2, 0
 .Ljp_0806D9E4:
-	.4byte vtable_unk_080E5B80
+	.4byte __vt_19HardwareBlendObject
 .Ljp_0806D9E8:
 	.4byte 0x00000889
 .Ljp_0806D9EC:
@@ -57062,7 +57067,7 @@ func_0806EA78:
 	bl _call_via_r2
 	b .Ljp_0806E734
 .Ljp_0806E720:
-	.4byte vtable_unk_080E5B80
+	.4byte __vt_19HardwareBlendObject
 .Ljp_0806E724:
 	.4byte 0x00000889
 .Ljp_0806E728:
@@ -57120,7 +57125,7 @@ func_0806EAF4:
 	bl _call_via_r2
 	b .Ljp_0806E7B0
 .Ljp_0806E79C:
-	.4byte vtable_unk_080E5B80
+	.4byte __vt_19HardwareBlendObject
 .Ljp_0806E7A0:
 	.4byte 0x00000889
 .Ljp_0806E7A4:
@@ -73666,7 +73671,7 @@ func_080769A0: @ 0x08076600
     bl _call_via_r2
     b .Ljp_080766FC
     .align 2, 0
-.Ljp_080766C0: .4byte vtable_unk_080E5B80
+.Ljp_080766C0: .4byte __vt_19HardwareBlendObject
 .Ljp_080766C4: .4byte 0x00000889
 .Ljp_080766C8:
     movs r1, #0x8e
@@ -75086,7 +75091,7 @@ func_08077490: @ 0x080770C8
 	ldr r0, [r0]
 	mov pc, r0
 .Ljp_08077174:
-	.4byte vtable_unk_080E5B80
+	.4byte __vt_19HardwareBlendObject
 .Ljp_08077178:
 	.4byte 0x00000889
 .Ljp_0807717C:
@@ -76027,7 +76032,7 @@ func_08077CE0: @ 0x08077868
     bl _call_via_r2
     b .Ljp_080778C8
     .align 2, 0
-.Ljp_080778B4: .4byte vtable_unk_080E5B80
+.Ljp_080778B4: .4byte __vt_19HardwareBlendObject
 .Ljp_080778B8: .4byte 0x00000889
 .Ljp_080778BC:
     adds r0, r5, #0
@@ -76085,7 +76090,7 @@ func_08077D5C: @ 0x080778E4
     bl _call_via_r2
     b .Ljp_08077944
     .align 2, 0
-.Ljp_08077930: .4byte vtable_unk_080E5B80
+.Ljp_08077930: .4byte __vt_19HardwareBlendObject
 .Ljp_08077934: .4byte 0x00000889
 .Ljp_08077938:
     adds r0, r5, #0
@@ -78129,7 +78134,7 @@ func_080790E4: @ 0x080790E4
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .Ljp_080791C0 @ =vtable_unk_080E5B80
+	ldr r0, .Ljp_080791C0 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -78202,7 +78207,7 @@ func_080790E4: @ 0x080790E4
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.Ljp_080791C0: .4byte vtable_unk_080E5B80
+.Ljp_080791C0: .4byte __vt_19HardwareBlendObject
 .Ljp_080791C4: .4byte 0x00000A58
 .Ljp_080791C8: .4byte 0x00000856
 .Ljp_080791CC: .4byte 0x00000842
@@ -84342,7 +84347,7 @@ func_0807BA6C:
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .Ljp_poultry_main_C1CC @ =vtable_unk_080E5B80
+	ldr r0, .Ljp_poultry_main_C1CC @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -84390,7 +84395,7 @@ sub_0807BD38:
 	rsbs r0, r0, #0
 	bl .Ljp_poultry_state_return
 	.align 2, 0
-.Ljp_poultry_main_C1CC: .4byte vtable_unk_080E5B80
+.Ljp_poultry_main_C1CC: .4byte __vt_19HardwareBlendObject
 .Ljp_poultry_main_C1D0: .4byte 0x00000889
 .Ljp_poultry_state_C1D4:
     .global sub_0807BD78
@@ -86903,7 +86908,7 @@ func_0807CD80: @ 0x0807CD80
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .Ljp_0807D28C @ =vtable_unk_080E5B80
+	ldr r0, .Ljp_0807D28C @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -86960,7 +86965,7 @@ func_0807CD80: @ 0x0807CD80
 	.align 2, 0
 .Ljp_0807D284: .4byte gUnk_083ED9FC
 .Ljp_0807D288: .4byte gSupermarketCropSeedCatalog
-.Ljp_0807D28C: .4byte vtable_unk_080E5B80
+.Ljp_0807D28C: .4byte __vt_19HardwareBlendObject
 .Ljp_0807D290: .4byte 0x00000889
 .Ljp_0807D294: .4byte .Ljp_0807D298
 .Ljp_0807D298: @ jump table
@@ -87995,7 +88000,7 @@ func_0807DE3C: @ 0x0807D9A4
 	adds r1, r0, #0
 	str r5, [r4]
 	str r5, [r4, #4]
-	ldr r0, .Ljp_0807DD64 @ =vtable_unk_080E5B80
+	ldr r0, .Ljp_0807DD64 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -88269,7 +88274,7 @@ func_0807DE3C: @ 0x0807D9A4
 .Ljp_0807DD58: .4byte gUnk_083ED9FC
 .Ljp_0807DD5C: .4byte 0x000006A4
 .Ljp_0807DD60: .4byte gSupermarketAdditionalSeedCatalog
-.Ljp_0807DD64: .4byte vtable_unk_080E5B80
+.Ljp_0807DD64: .4byte __vt_19HardwareBlendObject
 .Ljp_0807DD68: .4byte 0x00000889
 .Ljp_0807DD6C: .4byte 0x00001C38
 .Ljp_0807DD70: .4byte 0x00001C2C
@@ -88996,7 +89001,7 @@ func_0807E0C0: @ 0x0807E0C0
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .Ljp_0807E3B0 @ =vtable_unk_080E5B80
+	ldr r0, .Ljp_0807E3B0 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -89053,7 +89058,7 @@ func_0807E0C0: @ 0x0807E0C0
 	.align 2, 0
 .Ljp_0807E3A8: .4byte gUnk_083ED9FC
 .Ljp_0807E3AC: .4byte gClinicCatalog
-.Ljp_0807E3B0: .4byte vtable_unk_080E5B80
+.Ljp_0807E3B0: .4byte __vt_19HardwareBlendObject
 .Ljp_0807E3B4: .4byte 0x00000889
 .Ljp_0807E3B8: .4byte .Ljp_0807E3BC
 .Ljp_0807E3BC: @ jump table
@@ -90398,7 +90403,7 @@ func_0807EAF8:
 	b .Ljp_0807F0B6
 	.align 2, 0
 .Ljp_0807EE74:
-	.4byte vtable_unk_080E5B80
+	.4byte __vt_19HardwareBlendObject
 .Ljp_0807EE78:
 	.4byte 0x00000889
 .Ljp_0807EE7C:
@@ -91214,7 +91219,9 @@ func_0807F430:
     .byte 0x00, 0x29, 0x01, 0xD0, 0x00, 0xF0, 0x30, 0xFC, 0xE1, 0x22, 0xD2, 0x00, 0xB0, 0x18, 0x00, 0x68
     .byte 0x04, 0x28, 0x01, 0xD9, 0x00, 0xF0, 0x20, 0xFC, 0x80, 0x00, 0x08, 0x49, 0x40, 0x18, 0x00, 0x68
     .byte 0x87, 0x46, 0x00, 0x00, 0xD8, 0x1B, 0x00, 0x00, 0x2C, 0x1C, 0x00, 0x00, 0x38, 0x1C, 0x00, 0x00
-    .byte 0xC7, 0x21, 0x00, 0x00, 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00, 0x80, 0xF7, 0x07, 0x08
+    .byte 0xC7, 0x21, 0x00, 0x00
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00, 0x80, 0xF7, 0x07, 0x08
     .byte 0x94, 0xF7, 0x07, 0x08, 0x38, 0xFD, 0x07, 0x08, 0x6C, 0xFD, 0x07, 0x08, 0x94, 0xFD, 0x07, 0x08
     .byte 0x54, 0xFF, 0x07, 0x08, 0x70, 0x69, 0x31, 0x69, 0x88, 0x42, 0x02, 0xD0, 0x30, 0x1C, 0xFF, 0xF7
     .byte 0x25, 0xFD, 0x1E, 0x4B, 0xF0, 0x18, 0x00, 0x78, 0x00, 0x28, 0x00, 0xD1, 0x8C, 0xE2, 0x30, 0x69
@@ -91812,7 +91819,7 @@ func_080800A8:
 .Ljp_08080338:
 	.4byte gWineryShopCatalog
 .Ljp_0808033C:
-	.4byte vtable_unk_080E5B80
+	.4byte __vt_19HardwareBlendObject
 .Ljp_08080340:
 	.4byte 0x00000889
 .Ljp_08080344:
@@ -93226,7 +93233,7 @@ func_08080CC4:
 	mov pc, r0
 	.align 2, 0
 .Ljp_08080E70: .4byte 0x00001FE4
-.Ljp_08080E74: .4byte vtable_unk_080E5B80
+.Ljp_08080E74: .4byte __vt_19HardwareBlendObject
 .Ljp_08080E78: .4byte 0x00000889
 .Ljp_08080E7C: .4byte 0x000006A4
 .Ljp_08080E80: .4byte .Ljp_08080E84
@@ -94656,7 +94663,7 @@ func_08081734:
 	beq .Ljp_08081A4A
 	b .Ljp_08081C5A
 	.align 2, 0
-.Ljp_08081A2C: .4byte vtable_unk_080E5B80
+.Ljp_08081A2C: .4byte __vt_19HardwareBlendObject
 .Ljp_08081A30: .4byte 0x00000889
 .Ljp_08081A34: .4byte 0x000006AC
 .Ljp_08081A38: .4byte 0x000006A4
@@ -96778,7 +96785,7 @@ func_08082CEC:
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .Ljp_08082AFC @ =vtable_unk_080E5B80
+	ldr r0, .Ljp_08082AFC @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -96826,7 +96833,7 @@ sub_08082F50:
 	movs r0, #0
 	bl .Ljp_080835E6
 	.align 2, 0
-.Ljp_08082AFC: .4byte vtable_unk_080E5B80
+.Ljp_08082AFC: .4byte __vt_19HardwareBlendObject
 .Ljp_08082B00: .4byte 0x00000889
 .Ljp_08082B04:
 	ldr r1, .Ljp_08082B1C @ =0x000006A4
@@ -99153,7 +99160,8 @@ func_08084228:
     .byte 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x01, 0xDA, 0x01, 0xF0, 0x0A, 0xF8, 0x17, 0x99, 0x00, 0x29
     .byte 0x01, 0xD0, 0x01, 0xF0, 0x0D, 0xF8, 0xE1, 0x22, 0xD2, 0x00, 0xB0, 0x18, 0x00, 0x68, 0x0B, 0x28
     .byte 0x01, 0xD9, 0x00, 0xF0, 0xFD, 0xFF, 0x80, 0x00, 0x05, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46
-    .byte 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00, 0xE7, 0x03, 0x00, 0x00, 0xF0, 0x61, 0x00, 0x00
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00, 0xE7, 0x03, 0x00, 0x00, 0xF0, 0x61, 0x00, 0x00
     .byte 0x64, 0x40, 0x08, 0x08, 0x94, 0x40, 0x08, 0x08, 0x5C, 0x48, 0x08, 0x08, 0x9C, 0x4A, 0x08, 0x08
     .byte 0x88, 0x4C, 0x08, 0x08, 0x60, 0x4C, 0x08, 0x08, 0xB0, 0x4C, 0x08, 0x08, 0x0E, 0x4D, 0x08, 0x08
     .byte 0x88, 0x4D, 0x08, 0x08, 0xA8, 0x4E, 0x08, 0x08, 0xEC, 0x4E, 0x08, 0x08, 0xCC, 0x4F, 0x08, 0x08
@@ -102655,7 +102663,9 @@ func_08086A08:
     rsbs r0, r0, #0
     bl .Lauto_08087C96
     muls r4, r2, r4
-    .byte 0x00, 0x00, 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00
+    .byte 0x00, 0x00
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00
     .Lauto_080869B4:
     ldr r1, [pc, #0x14]
     adds r0, r7, r1
@@ -105544,8 +105554,9 @@ func_0808A09C:
     adds r0, r0, r1
     ldr r0, [r0]
     mov pc, r0
-    .byte 0x00, 0x00, 0x04, 0xFA, 0x0F, 0x08, 0x0C, 0xFA, 0x0F, 0x08, 0x68, 0x4E, 0x0E, 0x08, 0xC0, 0x4F
-    .byte 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00, 0x20, 0xA3, 0x08, 0x08, 0x34, 0xA3, 0x08, 0x08, 0x92, 0xA5
+    .byte 0x00, 0x00, 0x04, 0xFA, 0x0F, 0x08, 0x0C, 0xFA, 0x0F, 0x08, 0x68, 0x4E, 0x0E, 0x08
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00, 0x20, 0xA3, 0x08, 0x08, 0x34, 0xA3, 0x08, 0x08, 0x92, 0xA5
     .byte 0x08, 0x08, 0xC8, 0xA5, 0x08, 0x08, 0x06, 0xA6, 0x08, 0x08, 0x3A, 0xA6, 0x08, 0x08, 0x38, 0x1C
     .byte 0x7E, 0xF7, 0xD1, 0xFA, 0x40, 0x21, 0x08, 0x40, 0x00, 0x28, 0x0C, 0xD0, 0x30, 0x68, 0x40, 0x68
     .byte 0x09, 0x28, 0x04, 0xDD, 0x0D, 0x28, 0x02, 0xDC, 0x38, 0x1C, 0xFD, 0xF7, 0xBE, 0xFE, 0x30, 0x68
@@ -108146,7 +108157,9 @@ func_0808BC14:
     b .Lauto_0808BDEC
     .4byte gText_HomeStorage_CategoryTools
     .4byte gText_HomeStorage_CategoryItems
-    .byte 0x68, 0x4E, 0x0E, 0x08, 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00
+    .byte 0x68, 0x4E, 0x0E, 0x08
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00
     .global loc_0808BE44
     .thumb_func
     loc_0808BE44:
@@ -109606,7 +109619,9 @@ func_0808E23C:
     .byte 0x00, 0x00
     .4byte gText_Shelf_Items
     .4byte gText_Shelf_Title
-    .byte 0x68, 0x4E, 0x0E, 0x08, 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00, 0xC0, 0xE4, 0x08, 0x08
+    .byte 0x68, 0x4E, 0x0E, 0x08
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00, 0xC0, 0xE4, 0x08, 0x08
     .byte 0xD4, 0xE4, 0x08, 0x08, 0x32, 0xE7, 0x08, 0x08, 0x68, 0xE7, 0x08, 0x08, 0xA6, 0xE7, 0x08, 0x08
     .byte 0xDA, 0xE7, 0x08, 0x08, 0x38, 0x1C, 0x7A, 0xF7, 0x01, 0xFA, 0x40, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x0C, 0xD0, 0x30, 0x68, 0x40, 0x68, 0x09, 0x28, 0x04, 0xDD, 0x0D, 0x28, 0x02, 0xDC, 0x38, 0x1C
@@ -113027,7 +113042,7 @@ func_08090960:
 .Ljp_08090710:
     .4byte vtable_unk_080E5A28
 .Ljp_08090714:
-    .4byte vtable_unk_080E5B80
+    .4byte __vt_19HardwareBlendObject
 .Ljp_08090718:
     .4byte 0x00000889
 .Ljp_0809071C:
@@ -114328,7 +114343,9 @@ func_0809106C:
     movs r0, r0
     .4byte gText_BlacksmithUpgrade_Tools
     .4byte gText_BlacksmithUpgrade_Items
-    .byte 0x68, 0x4E, 0x0E, 0x08, 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00, 0x54, 0x52, 0x0E, 0x08
+    .byte 0x68, 0x4E, 0x0E, 0x08
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00, 0x54, 0x52, 0x0E, 0x08
     .global loc_0809133C
     .thumb_func
     loc_0809133C:
@@ -115726,8 +115743,9 @@ func_08092D64:
     cmp r0, #0
     beq .Lauto_08092A88
     b .Lauto_08092A22
-    .byte 0x00, 0x00, 0xD8, 0xFD, 0x0F, 0x08, 0xE0, 0xFD, 0x0F, 0x08, 0x68, 0x4E, 0x0E, 0x08, 0xC0, 0x4F
-    .byte 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00
+    .byte 0x00, 0x00, 0xD8, 0xFD, 0x0F, 0x08, 0xE0, 0xFD, 0x0F, 0x08, 0x68, 0x4E, 0x0E, 0x08
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00
     .Lauto_08092A80:
     cmp r0, #2
     bne .Lauto_08092A86
@@ -116262,7 +116280,8 @@ func_08092E30:
     .byte 0x03, 0x00, 0x03, 0x00
     .4byte gUiSharedPalette
     .byte 0xFF, 0x03, 0xFF, 0x03, 0xD4, 0x1C, 0x00, 0x00, 0x89, 0xFF, 0x0C, 0x08
-    .byte 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00, 0x64, 0x30, 0x09, 0x08, 0xF2, 0x30, 0x09, 0x08
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00, 0x64, 0x30, 0x09, 0x08, 0xF2, 0x30, 0x09, 0x08
     .byte 0xF2, 0x30, 0x09, 0x08, 0xF2, 0x30, 0x09, 0x08, 0xF2, 0x30, 0x09, 0x08, 0xF2, 0x30, 0x09, 0x08
     .byte 0xF2, 0x30, 0x09, 0x08, 0x88, 0x30, 0x09, 0x08, 0xF2, 0x30, 0x09, 0x08, 0xF2, 0x30, 0x09, 0x08
     .byte 0xB8, 0x68, 0x81, 0x69, 0x16, 0x98, 0x40, 0xF0, 0x1B, 0xF8, 0x01, 0x28, 0x06, 0xD0, 0x01, 0x28
@@ -119584,7 +119603,9 @@ func_08094A40:
     .byte 0x30, 0x1C, 0x00, 0xF0, 0x94, 0xF9, 0x00, 0x24, 0xA2, 0x46, 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x08094D32
     .byte 0x30, 0x1C, 0x73, 0xF7, 0xC2, 0xFD, 0x38, 0x1C, 0x04, 0x28, 0x00, 0xD9, 0x4B, 0xE1, 0x80, 0x00
-    .byte 0x04, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x00, 0x00, 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08
+    .byte 0x04, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x00, 0x00
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08
     .byte 0x00, 0x00, 0x5C, 0x4D, 0x09, 0x08, 0x70, 0x4D, 0x09, 0x08, 0x82, 0x4D, 0x09, 0x08, 0x9C, 0x4F
     .byte 0x09, 0x08, 0xA6, 0x4F, 0x09, 0x08, 0xCC, 0x4F, 0x09, 0x08, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42
     .byte 0x08, 0x43, 0x00, 0x28, 0x00, 0xDA, 0x2E, 0xE1, 0x01, 0x27, 0x2C, 0xE1, 0x13, 0x49, 0x70, 0x18
@@ -119705,7 +119726,9 @@ func_08094A40:
     bl UpdateHardwareFrame @ JP ROM 0x0809546C
     .byte 0x30, 0x1C, 0x73, 0xF7, 0x25, 0xFA
     .byte 0x38, 0x1C, 0x0A, 0x28, 0x00, 0xD9, 0xB8, 0xE1, 0x80, 0x00, 0x06, 0x49, 0x40, 0x18, 0x00, 0x68
-    .byte 0x87, 0x46, 0xB0, 0x2B, 0x00, 0x00, 0xAF, 0x2B, 0x00, 0x00, 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08
+    .byte 0x87, 0x46, 0xB0, 0x2B, 0x00, 0x00, 0xAF, 0x2B, 0x00, 0x00
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08
     .byte 0x00, 0x00, 0xD2, 0x33, 0x00, 0x00, 0xA0, 0x54, 0x09, 0x08, 0xCC, 0x54, 0x09, 0x08, 0x20, 0x55
     .byte 0x09, 0x08, 0x70, 0x55, 0x09, 0x08, 0x98, 0x55, 0x09, 0x08, 0xB8, 0x55, 0x09, 0x08, 0x5C, 0x56
     .byte 0x09, 0x08, 0x8E, 0x56, 0x09, 0x08, 0xB4, 0x56, 0x09, 0x08, 0xEC, 0x56, 0x09, 0x08, 0xAC, 0x57
@@ -119785,8 +119808,9 @@ func_08094A40:
     .byte 0x05, 0x94, 0x0C, 0x48, 0x31, 0x18, 0xC8, 0x20, 0x08, 0x80, 0x00, 0x21, 0x06, 0x91, 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x08095926
     .byte 0x30, 0x1C, 0x72, 0xF7, 0xC8, 0xFF, 0x50, 0x46, 0x06, 0x28, 0x00, 0xD9
-    .byte 0x0F, 0xE2, 0x80, 0x00, 0x05, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x00, 0x00, 0xC0, 0x4F
-    .byte 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00, 0x62, 0x03, 0x00, 0x00, 0x54, 0x59, 0x09, 0x08, 0x70, 0x59
+    .byte 0x0F, 0xE2, 0x80, 0x00, 0x05, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x00, 0x00
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00, 0x62, 0x03, 0x00, 0x00, 0x54, 0x59, 0x09, 0x08, 0x70, 0x59
     .byte 0x09, 0x08, 0x84, 0x59, 0x09, 0x08, 0xA8, 0x5B, 0x09, 0x08, 0xB4, 0x5C, 0x09, 0x08, 0xD8, 0x5C
     .byte 0x09, 0x08, 0x20, 0x5D, 0x09, 0x08, 0x48, 0x5D, 0x09, 0x08, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42
     .byte 0x08, 0x43, 0x00, 0x28, 0x00, 0xDA, 0xEC, 0xE1, 0x01, 0x22, 0x92, 0x46, 0xE9, 0xE1, 0x4D, 0x46
@@ -119882,8 +119906,9 @@ func_08094A40:
     .byte 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x08095EC8
     .byte 0x30, 0x1C, 0x72, 0xF7, 0xF7, 0xFC, 0x29, 0x98, 0x04, 0x28
-    .byte 0x00, 0xD9, 0x7A, 0xE3, 0x80, 0x00, 0x06, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0xC0, 0x4F
-    .byte 0x0E, 0x08, 0x90, 0x2B, 0x00, 0x00, 0x62, 0x03, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0xD2, 0x33
+    .byte 0x00, 0xD9, 0x7A, 0xE3, 0x80, 0x00, 0x06, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46
+    .word __vt_19HardwareBlendObject
+    .byte 0x90, 0x2B, 0x00, 0x00, 0x62, 0x03, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0xD2, 0x33
     .byte 0x00, 0x00, 0xFC, 0x5E, 0x09, 0x08, 0x10, 0x5F, 0x09, 0x08, 0x24, 0x5F, 0x09, 0x08, 0x78, 0x65
     .byte 0x09, 0x08, 0x98, 0x65, 0x09, 0x08, 0xC0, 0x65, 0x09, 0x08, 0x22, 0x98, 0x01, 0x68, 0x48, 0x42
     .byte 0x08, 0x43, 0x00, 0x28, 0x00, 0xDA, 0x58, 0xE3, 0x01, 0x22, 0x29, 0x92, 0x55, 0xE3, 0x00, 0x27
@@ -120344,7 +120369,9 @@ func_08096EE8:
     .byte 0xF1, 0x18, 0x02, 0x20, 0x08, 0x70, 0x00, 0x20, 0x82, 0x46, 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x08096E0C
     .byte 0x30, 0x1C, 0x71, 0xF7, 0x55, 0xFD, 0x38, 0x1C, 0x08, 0x28, 0x00, 0xD9, 0x10, 0xE1, 0x80, 0x00
-    .byte 0x04, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00
+    .byte 0x04, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00
     .byte 0xD2, 0x33, 0x00, 0x00, 0x38, 0x6E, 0x09, 0x08, 0x5C, 0x6E, 0x09, 0x08, 0x88, 0x6E, 0x09, 0x08
     .byte 0xD0, 0x6E, 0x09, 0x08, 0xF8, 0x6E, 0x09, 0x08, 0x18, 0x6F, 0x09, 0x08, 0xBC, 0x6F, 0x09, 0x08
     .byte 0xE2, 0x6F, 0x09, 0x08, 0x08, 0x70, 0x09, 0x08, 0x30, 0x70, 0x09, 0x08, 0x01, 0x98, 0x01, 0x68
@@ -120484,7 +120511,9 @@ func_08096EE8:
     .byte 0x45, 0xFD, 0x0B, 0x48, 0x31, 0x18, 0x02, 0x20, 0x08, 0x70, 0x00, 0x24, 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x0809764E
     .byte 0x30, 0x1C, 0x71, 0xF7, 0x34, 0xF9, 0x38, 0x1C, 0x01, 0x28, 0x2C, 0xD0, 0x01, 0x28
-    .byte 0x08, 0xDC, 0x00, 0x28, 0x0B, 0xD0, 0x7E, 0xE0, 0xC0, 0x4F, 0x0E, 0x08, 0x89, 0x08, 0x00, 0x00
+    .byte 0x08, 0xDC, 0x00, 0x28, 0x0B, 0xD0, 0x7E, 0xE0
+    .word __vt_19HardwareBlendObject
+    .byte 0x89, 0x08, 0x00, 0x00
     .byte 0xD2, 0x33, 0x00, 0x00, 0x02, 0x28, 0x54, 0xD0, 0x03, 0x28, 0x6D, 0xD0, 0x73, 0xE0, 0x01, 0x98
     .byte 0x01, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x6D, 0xDB, 0x41, 0x46, 0x00, 0x29, 0x05, 0xD1
     .byte 0x01, 0x4A, 0xB1, 0x18, 0x08, 0x20, 0x04, 0xE0, 0xD4, 0x33, 0x00, 0x00, 0x04, 0x48, 0x31, 0x18
@@ -154562,7 +154591,7 @@ func_08051504: @ 0x08051504
 	movs r5, #0
 	str r5, [r4]
 	str r5, [r4, #4]
-	ldr r0, .L080515A0 @ =vtable_unk_080E5B80
+	ldr r0, .L080515A0 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -154605,7 +154634,7 @@ func_08051504: @ 0x08051504
 	beq .L080515B6
 	b .L0805169A
 	.align 2, 0
-.L080515A0: .4byte vtable_unk_080E5B80
+.L080515A0: .4byte __vt_19HardwareBlendObject
 .L080515A4: .4byte 0x00000889
 .L080515A8: .4byte 0x000008BC
 .L080515AC:
@@ -156921,7 +156950,7 @@ func_08052984: @ 0x08052984
 	ldr r2, [sp, #0x30]
 	str r2, [r4]
 	str r2, [r4, #4]
-	ldr r0, .L08052A70 @ =vtable_unk_080E5B80
+	ldr r0, .L08052A70 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -156993,7 +157022,7 @@ sub_08052A1E: @ 0x08052A1E
 	bl func_080558C4
 	bl .L080535E0
 	.align 2, 0
-.L08052A70: .4byte vtable_unk_080E5B80
+.L08052A70: .4byte __vt_19HardwareBlendObject
 .L08052A74: .4byte 0x0000228A
 .L08052A78: .4byte 0x0000033B
 .L08052A7C: .4byte 0x00002328
@@ -168743,7 +168772,7 @@ func_080588AC: @ 0x080588AC
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L08058994 @ =vtable_unk_080E5B80
+	ldr r0, .L08058994 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -168827,7 +168856,7 @@ func_080588AC: @ 0x080588AC
 	strh r0, [r1]
 	b .L080589EE
 	.align 2, 0
-.L08058994: .4byte vtable_unk_080E5B80
+.L08058994: .4byte __vt_19HardwareBlendObject
 .L08058998: .4byte 0x00002C2A
 .L0805899C: .4byte 0x0000144C
 .L080589A0: .4byte 0x00002C28
@@ -177676,7 +177705,7 @@ func_0805D170: @ 0x0805D170
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0805D278 @ =vtable_unk_080E5B80
+	ldr r0, .L0805D278 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -177775,7 +177804,7 @@ func_0805D170: @ 0x0805D170
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L0805D278: .4byte vtable_unk_080E5B80
+.L0805D278: .4byte __vt_19HardwareBlendObject
 .L0805D27C: .4byte 0x00000AE9
 .L0805D280: .4byte 0x00002C4A
 .L0805D284: .4byte 0x00000AE1
@@ -180836,7 +180865,7 @@ func_0805EE44: @ 0x0805EE44
 	ldr r2, [sp, #0x38]
 	str r2, [r4]
 	str r2, [r4, #4]
-	ldr r0, .L0805EF00 @ =vtable_unk_080E5B80
+	ldr r0, .L0805EF00 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -180891,7 +180920,7 @@ func_0805EE44: @ 0x0805EE44
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L0805EF00: .4byte vtable_unk_080E5B80
+.L0805EF00: .4byte __vt_19HardwareBlendObject
 .L0805EF04: .4byte 0x00000889
 .L0805EF08: .4byte 0x00006422
 .L0805EF0C: .4byte .L0805EF10
@@ -209235,7 +209264,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0806C514 @ =vtable_unk_080E5B80
+	ldr r0, .L0806C514 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -209316,7 +209345,7 @@ sub_0806C492: @ 0x0806C492
 	str r1, [r6]
 	b .L0806C562
 	.align 2, 0
-.L0806C514: .4byte vtable_unk_080E5B80
+.L0806C514: .4byte __vt_19HardwareBlendObject
 .L0806C518: .4byte 0x00000889
 .L0806C51C: .4byte 0x00004170
 .L0806C520:
@@ -212248,7 +212277,7 @@ func_0806DB38: @ 0x0806DB38
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0806DBE4 @ =vtable_unk_080E5B80
+	ldr r0, .L0806DBE4 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -212298,7 +212327,7 @@ func_0806DB38: @ 0x0806DB38
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L0806DBE4: .4byte vtable_unk_080E5B80
+.L0806DBE4: .4byte __vt_19HardwareBlendObject
 .L0806DBE8: .4byte 0x00000889
 .L0806DBEC:
 	.ifdef REGION_DE
@@ -214280,7 +214309,7 @@ func_0806EA78: @ 0x0806EA78
 	movs r0, #0
 	str r0, [sp, #4]
 	str r0, [r4, #4]
-	ldr r0, .L0806EAC4 @ =vtable_unk_080E5B80
+	ldr r0, .L0806EAC4 @ =__vt_19HardwareBlendObject
 	str r0, [sp, #0xc]
 	add r0, sp, #0x10
 	bl func_08009300
@@ -214297,7 +214326,7 @@ func_0806EA78: @ 0x0806EA78
 	bl _call_via_r2
 	b .L0806EAD8
 	.align 2, 0
-.L0806EAC4: .4byte vtable_unk_080E5B80
+.L0806EAC4: .4byte __vt_19HardwareBlendObject
 .L0806EAC8: .4byte 0x00000889
 .L0806EACC:
 	adds r0, r5, #0
@@ -214337,7 +214366,7 @@ func_0806EAF4: @ 0x0806EAF4
 	movs r0, #0
 	str r0, [sp, #4]
 	str r0, [r4, #4]
-	ldr r0, .L0806EB40 @ =vtable_unk_080E5B80
+	ldr r0, .L0806EB40 @ =__vt_19HardwareBlendObject
 	str r0, [sp, #0xc]
 	add r0, sp, #0x10
 	bl func_08009300
@@ -214354,7 +214383,7 @@ func_0806EAF4: @ 0x0806EAF4
 	bl _call_via_r2
 	b .L0806EB54
 	.align 2, 0
-.L0806EB40: .4byte vtable_unk_080E5B80
+.L0806EB40: .4byte __vt_19HardwareBlendObject
 .L0806EB44: .4byte 0x00000889
 .L0806EB48:
 	adds r0, r5, #0
@@ -231594,7 +231623,7 @@ func_080769A0: @ 0x080769A0
 	movs r0, #0
 	str r0, [sp, #4]
 	str r0, [r4, #4]
-	ldr r0, .L08076A60 @ =vtable_unk_080E5B80
+	ldr r0, .L08076A60 @ =__vt_19HardwareBlendObject
 	str r0, [sp, #0xc]
 	add r0, sp, #0x10
 	bl func_08009300
@@ -231658,7 +231687,7 @@ func_080769A0: @ 0x080769A0
 	bl _call_via_r2
 	b .L08076A9C
 	.align 2, 0
-.L08076A60: .4byte vtable_unk_080E5B80
+.L08076A60: .4byte __vt_19HardwareBlendObject
 .L08076A64: .4byte 0x00000889
 .L08076A68:
 	movs r1, #0x8e
@@ -233044,7 +233073,7 @@ func_08077490: @ 0x08077490
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0807753C @ =vtable_unk_080E5B80
+	ldr r0, .L0807753C @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -233094,7 +233123,7 @@ func_08077490: @ 0x08077490
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L0807753C: .4byte vtable_unk_080E5B80
+.L0807753C: .4byte __vt_19HardwareBlendObject
 .L08077540: .4byte 0x00000889
 .L08077544: .4byte 0x0000072A
 .L08077548: .4byte .L0807754C
@@ -234057,7 +234086,7 @@ func_08077CE0: @ 0x08077CE0
 	movs r0, #0
 	str r0, [sp, #4]
 	str r0, [r4, #4]
-	ldr r0, .L08077D2C @ =vtable_unk_080E5B80
+	ldr r0, .L08077D2C @ =__vt_19HardwareBlendObject
 	str r0, [sp, #0xc]
 	add r0, sp, #0x10
 	bl func_08009300
@@ -234074,7 +234103,7 @@ func_08077CE0: @ 0x08077CE0
 	bl _call_via_r2
 	b .L08077D40
 	.align 2, 0
-.L08077D2C: .4byte vtable_unk_080E5B80
+.L08077D2C: .4byte __vt_19HardwareBlendObject
 .L08077D30: .4byte 0x00000889
 .L08077D34:
 	adds r0, r5, #0
@@ -234114,7 +234143,7 @@ func_08077D5C: @ 0x08077D5C
 	movs r0, #0
 	str r0, [sp, #4]
 	str r0, [r4, #4]
-	ldr r0, .L08077DA8 @ =vtable_unk_080E5B80
+	ldr r0, .L08077DA8 @ =__vt_19HardwareBlendObject
 	str r0, [sp, #0xc]
 	add r0, sp, #0x10
 	bl func_08009300
@@ -234131,7 +234160,7 @@ func_08077D5C: @ 0x08077D5C
 	bl _call_via_r2
 	b .L08077DBC
 	.align 2, 0
-.L08077DA8: .4byte vtable_unk_080E5B80
+.L08077DA8: .4byte __vt_19HardwareBlendObject
 .L08077DAC: .4byte 0x00000889
 .L08077DB0:
 	adds r0, r5, #0
@@ -236166,7 +236195,7 @@ func_080790E4: @ 0x080790E4
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L080791C0 @ =vtable_unk_080E5B80
+	ldr r0, .L080791C0 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -236239,7 +236268,7 @@ func_080790E4: @ 0x080790E4
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L080791C0: .4byte vtable_unk_080E5B80
+.L080791C0: .4byte __vt_19HardwareBlendObject
 .L080791C4: .4byte 0x00000A58
 .L080791C8: .4byte 0x00000856
 .L080791CC: .4byte 0x00000842
@@ -242239,7 +242268,7 @@ func_0807BEC8: @ 0x0807BEC8
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0807C1CC @ =vtable_unk_080E5B80
+	ldr r0, .L0807C1CC @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -242286,7 +242315,7 @@ sub_0807C194: @ 0x0807C194
 	rsbs r0, r0, #0
 	bl .L0807D05E
 	.align 2, 0
-.L0807C1CC: .4byte vtable_unk_080E5B80
+.L0807C1CC: .4byte __vt_19HardwareBlendObject
 .L0807C1D0: .4byte 0x00000889
 .L0807C1D4:
 	ldr r1, .L0807C1EC @ =0x000006A4
@@ -244748,7 +244777,7 @@ func_0807D218: @ 0x0807D218
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0807D724 @ =vtable_unk_080E5B80
+	ldr r0, .L0807D724 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -244805,7 +244834,7 @@ func_0807D218: @ 0x0807D218
 	.align 2, 0
 .L0807D71C: .4byte gUnk_086678A0
 .L0807D720: .4byte gSupermarketCropSeedCatalog
-.L0807D724: .4byte vtable_unk_080E5B80
+.L0807D724: .4byte __vt_19HardwareBlendObject
 .L0807D728: .4byte 0x00000889
 .L0807D72C: .4byte .L0807D730
 .L0807D730: @ jump table
@@ -245816,7 +245845,7 @@ func_0807DE3C: @ 0x0807DE3C
 	adds r1, r0, #0
 	str r5, [r4]
 	str r5, [r4, #4]
-	ldr r0, .L0807E1FC @ =vtable_unk_080E5B80
+	ldr r0, .L0807E1FC @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -246090,7 +246119,7 @@ func_0807DE3C: @ 0x0807DE3C
 .L0807E1F0: .4byte gUnk_086678A0
 .L0807E1F4: .4byte 0x000006A4
 .L0807E1F8: .4byte gSupermarketAdditionalSeedCatalog
-.L0807E1FC: .4byte vtable_unk_080E5B80
+.L0807E1FC: .4byte __vt_19HardwareBlendObject
 .L0807E200: .4byte 0x00000889
 .L0807E204: .4byte 0x00001C38
 .L0807E208: .4byte 0x00001C2C
@@ -246810,7 +246839,7 @@ func_0807E558: @ 0x0807E558
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0807E848 @ =vtable_unk_080E5B80
+	ldr r0, .L0807E848 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -246867,7 +246896,7 @@ func_0807E558: @ 0x0807E558
 	.align 2, 0
 .L0807E840: .4byte gUnk_086678A0
 .L0807E844: .4byte gClinicCatalog
-.L0807E848: .4byte vtable_unk_080E5B80
+.L0807E848: .4byte __vt_19HardwareBlendObject
 .L0807E84C: .4byte 0x00000889
 .L0807E850: .4byte .L0807E854
 .L0807E854: @ jump table
@@ -248142,7 +248171,7 @@ func_0807EF90: @ 0x0807EF90
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0807F30C @ =vtable_unk_080E5B80
+	ldr r0, .L0807F30C @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -248202,7 +248231,7 @@ func_0807EF90: @ 0x0807EF90
 	beq .L0807F32A
 	b .L0807F54E
 	.align 2, 0
-.L0807F30C: .4byte vtable_unk_080E5B80
+.L0807F30C: .4byte __vt_19HardwareBlendObject
 .L0807F310: .4byte 0x00000889
 .L0807F314: .4byte 0x000006AC
 .L0807F318: .4byte 0x000006A4
@@ -249288,7 +249317,7 @@ func_0807F8C8: @ 0x0807F8C8
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0807FC0C @ =vtable_unk_080E5B80
+	ldr r0, .L0807FC0C @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -249344,7 +249373,7 @@ func_0807F8C8: @ 0x0807F8C8
 .L0807FC00: .4byte 0x00001C2C
 .L0807FC04: .4byte 0x00001C38
 .L0807FC08: .4byte 0x000021C7
-.L0807FC0C: .4byte vtable_unk_080E5B80
+.L0807FC0C: .4byte __vt_19HardwareBlendObject
 .L0807FC10: .4byte 0x00000889
 .L0807FC14: .4byte .L0807FC18
 .L0807FC18: @ jump table
@@ -250722,7 +250751,7 @@ func_08080540: @ 0x08080540
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L080807D4 @ =vtable_unk_080E5B80
+	ldr r0, .L080807D4 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -250778,7 +250807,7 @@ func_08080540: @ 0x08080540
 	.align 2, 0
 .L080807CC: .4byte gUnk_086678A0
 .L080807D0: .4byte gWineryShopCatalog
-.L080807D4: .4byte vtable_unk_080E5B80
+.L080807D4: .4byte __vt_19HardwareBlendObject
 .L080807D8: .4byte 0x00000889
 .L080807DC: .4byte 0x000006A4
 .L080807E0: .4byte .L080807E4
@@ -252121,7 +252150,7 @@ func_0808114C: @ 0x0808114C
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L080812FC @ =vtable_unk_080E5B80
+	ldr r0, .L080812FC @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -252173,7 +252202,7 @@ func_0808114C: @ 0x0808114C
 	mov pc, r0
 	.align 2, 0
 .L080812F8: .4byte 0x00001FE4
-.L080812FC: .4byte vtable_unk_080E5B80
+.L080812FC: .4byte __vt_19HardwareBlendObject
 .L08081300: .4byte 0x00000889
 .L08081304: .4byte 0x000006A4
 .L08081308: .4byte .L0808130C
@@ -253537,7 +253566,7 @@ func_08081BBC: @ 0x08081BBC
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L08081EB4 @ =vtable_unk_080E5B80
+	ldr r0, .L08081EB4 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -253599,7 +253628,7 @@ func_08081BBC: @ 0x08081BBC
 	beq .L08081ED2
 	b .L080820E2
 	.align 2, 0
-.L08081EB4: .4byte vtable_unk_080E5B80
+.L08081EB4: .4byte __vt_19HardwareBlendObject
 .L08081EB8: .4byte 0x00000889
 .L08081EBC: .4byte 0x000006AC
 .L08081EC0: .4byte 0x000006A4
@@ -255710,7 +255739,7 @@ func_08082CEC: @ 0x08082CEC
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L08082F84 @ =vtable_unk_080E5B80
+	ldr r0, .L08082F84 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -255757,7 +255786,7 @@ sub_08082F50: @ 0x08082F50
 	movs r0, #0
 	bl .L08083A6E
 	.align 2, 0
-.L08082F84: .4byte vtable_unk_080E5B80
+.L08082F84: .4byte __vt_19HardwareBlendObject
 .L08082F88: .4byte 0x00000889
 .L08082F8C:
 	ldr r1, .L08082FA4 @ =0x000006A4
@@ -258245,7 +258274,7 @@ func_08084228: @ 0x08084228
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L080844D8 @ =vtable_unk_080E5B80
+	ldr r0, .L080844D8 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -258307,7 +258336,7 @@ func_08084228: @ 0x08084228
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L080844D8: .4byte vtable_unk_080E5B80
+.L080844D8: .4byte __vt_19HardwareBlendObject
 .L080844DC: .4byte 0x00000889
 .L080844E0: .4byte 0x000003E7
 .L080844E4: .4byte 0x000061F0
@@ -262857,7 +262886,7 @@ func_08086A08: @ 0x08086A08
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L08086E34 @ =vtable_unk_080E5B80
+	ldr r0, .L08086E34 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -262905,7 +262934,7 @@ sub_08086DFA: @ 0x08086DFA
 	bl .L08088156
 	.align 2, 0
 .L08086E30: .4byte 0x00004354
-.L08086E34: .4byte vtable_unk_080E5B80
+.L08086E34: .4byte __vt_19HardwareBlendObject
 .L08086E38: .4byte 0x00000889
 .L08086E3C:
 	ldr r1, .L08086E54 @ =0x000006A4
@@ -269838,7 +269867,7 @@ func_0808A55C: @ 0x0808A55C
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0808A7D4 @ =vtable_unk_080E5B80
+	ldr r0, .L0808A7D4 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -269893,7 +269922,7 @@ func_0808A55C: @ 0x0808A55C
 .L0808A7C8: .4byte gText_Fridge_Items
 .L0808A7CC: .4byte gText_Fridge_Title
 .L0808A7D0: .4byte vtable_unk_080E5A28
-.L0808A7D4: .4byte vtable_unk_080E5B80
+.L0808A7D4: .4byte __vt_19HardwareBlendObject
 .L0808A7D8: .4byte 0x00000889
 .L0808A7DC: .4byte .L0808A7E0
 .L0808A7E0: @ jump table
@@ -273004,7 +273033,7 @@ func_0808C0BC: @ 0x0808C0BC
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0808C2FC @ =vtable_unk_080E5B80
+	ldr r0, .L0808C2FC @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -273062,7 +273091,7 @@ func_0808C0BC: @ 0x0808C0BC
 .L0808C2F0: .4byte gText_HomeStorage_CategoryTools
 .L0808C2F4: .4byte gText_HomeStorage_CategoryItems
 .L0808C2F8: .4byte vtable_unk_080E5A28
-.L0808C2FC: .4byte vtable_unk_080E5B80
+.L0808C2FC: .4byte __vt_19HardwareBlendObject
 .L0808C300: .4byte 0x00000889
 .L0808C304:
 	cmp r0, #2
@@ -277423,7 +277452,7 @@ func_0808E6FC: @ 0x0808E6FC
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0808E974 @ =vtable_unk_080E5B80
+	ldr r0, .L0808E974 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -277478,7 +277507,7 @@ func_0808E6FC: @ 0x0808E6FC
 .L0808E968: .4byte gText_Shelf_Items
 .L0808E96C: .4byte gText_Shelf_Title
 .L0808E970: .4byte vtable_unk_080E5A28
-.L0808E974: .4byte vtable_unk_080E5B80
+.L0808E974: .4byte __vt_19HardwareBlendObject
 .L0808E978: .4byte 0x00000889
 .L0808E97C: .4byte .L0808E980
 .L0808E980: @ jump table
@@ -281333,7 +281362,7 @@ func_08090960: @ 0x08090960
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L08090BD4 @ =vtable_unk_080E5B80
+	ldr r0, .L08090BD4 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -281388,7 +281417,7 @@ func_08090960: @ 0x08090960
 .L08090BC8: .4byte gText_ToolChest_HeaderTools
 .L08090BCC: .4byte gText_ToolChest_Title
 .L08090BD0: .4byte vtable_unk_080E5A28
-.L08090BD4: .4byte vtable_unk_080E5B80
+.L08090BD4: .4byte __vt_19HardwareBlendObject
 .L08090BD8: .4byte 0x00000889
 .L08090BDC:
 	adds r0, r7, #0
@@ -282774,7 +282803,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L080917F0 @ =vtable_unk_080E5B80
+	ldr r0, .L080917F0 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -282849,7 +282878,7 @@ func_0809152C: @ 0x0809152C
 .L080917E4: .4byte gText_BlacksmithUpgrade_Tools
 .L080917E8: .4byte gText_BlacksmithUpgrade_Items
 .L080917EC: .4byte vtable_unk_080E5A28
-.L080917F0: .4byte vtable_unk_080E5B80
+.L080917F0: .4byte __vt_19HardwareBlendObject
 .L080917F4: .4byte 0x00000889
 .L080917F8: .4byte vtable_unk_080E5E14
 .L080917FC:
@@ -285663,7 +285692,7 @@ func_08092D64: @ 0x08092D64
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L08092FAC @ =vtable_unk_080E5B80
+	ldr r0, .L08092FAC @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -285724,7 +285753,7 @@ func_08092D64: @ 0x08092D64
 .L08092FA0: .4byte gText_GiftWrap_Tools
 .L08092FA4: .4byte gText_GiftWrap_Items
 .L08092FA8: .4byte vtable_unk_080E5A28
-.L08092FAC: .4byte vtable_unk_080E5B80
+.L08092FAC: .4byte __vt_19HardwareBlendObject
 .L08092FB0: .4byte 0x00000889
 .L08092FB4:
 	cmp r0, #2
@@ -286310,7 +286339,7 @@ func_08093364: @ 0x08093364
 	mov r2, sb
 	str r2, [r4]
 	str r2, [r4, #4]
-	ldr r0, .L0809358C @ =vtable_unk_080E5B80
+	ldr r0, .L0809358C @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -286415,7 +286444,7 @@ func_08093364: @ 0x08093364
 .L08093580: .4byte 0x03FF03FF
 .L08093584: .4byte 0x00001CD4
 .L08093588: .4byte func_080D0704
-.L0809358C: .4byte vtable_unk_080E5B80
+.L0809358C: .4byte __vt_19HardwareBlendObject
 .L08093590: .4byte 0x00000889
 .L08093594: .4byte .L08093598
 .L08093598: @ jump table
@@ -290281,7 +290310,7 @@ func_080951B4: @ 0x080951B4
 	mov r3, sb
 	str r3, [r4]
 	str r3, [r4, #4]
-	ldr r0, .L0809527C @ =vtable_unk_080E5B80
+	ldr r0, .L0809527C @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -290319,7 +290348,7 @@ func_080951B4: @ 0x080951B4
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L0809527C: .4byte vtable_unk_080E5B80
+.L0809527C: .4byte __vt_19HardwareBlendObject
 .L08095280: .4byte 0x00000889
 .L08095284: .4byte .L08095288
 .L08095288: @ jump table
@@ -291188,7 +291217,7 @@ func_080958C0: @ 0x080958C0
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L080959B0 @ =vtable_unk_080E5B80
+	ldr r0, .L080959B0 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -291230,7 +291259,7 @@ func_080958C0: @ 0x080958C0
 	.align 2, 0
 .L080959A8: .4byte 0x00002BB0
 .L080959AC: .4byte 0x00002BAF
-.L080959B0: .4byte vtable_unk_080E5B80
+.L080959B0: .4byte __vt_19HardwareBlendObject
 .L080959B4: .4byte 0x00000889
 .L080959B8: .4byte 0x000033D2
 .L080959BC: .4byte .L080959C0
@@ -291756,7 +291785,7 @@ func_08095D80: @ 0x08095D80
 	ldr r0, [sp, #8]
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L08095E64 @ =vtable_unk_080E5B80
+	ldr r0, .L08095E64 @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -291806,7 +291835,7 @@ func_08095D80: @ 0x08095D80
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L08095E64: .4byte vtable_unk_080E5B80
+.L08095E64: .4byte __vt_19HardwareBlendObject
 .L08095E68: .4byte 0x00000889
 .L08095E6C: .4byte 0x00000362
 .L08095E70: .4byte .L08095E74
@@ -292437,7 +292466,7 @@ func_080962F0: @ 0x080962F0
 	ldr r0, [sp, #0xa8]
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L0809640C @ =vtable_unk_080E5B80
+	ldr r0, .L0809640C @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
@@ -292498,7 +292527,7 @@ func_080962F0: @ 0x080962F0
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L0809640C: .4byte vtable_unk_080E5B80
+.L0809640C: .4byte __vt_19HardwareBlendObject
 .L08096410: .4byte 0x00002B90
 .L08096414: .4byte 0x00000362
 .L08096418: .4byte 0x00000889
@@ -294386,7 +294415,7 @@ func_080972AC: @ 0x080972AC
 	mov r2, r8
 	str r2, [r4]
 	str r2, [r4, #4]
-	ldr r0, .L0809736C @ =vtable_unk_080E5B80
+	ldr r0, .L0809736C @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -294426,7 +294455,7 @@ func_080972AC: @ 0x080972AC
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L0809736C: .4byte vtable_unk_080E5B80
+.L0809736C: .4byte __vt_19HardwareBlendObject
 .L08097370: .4byte 0x00000889
 .L08097374: .4byte 0x000033D2
 .L08097378: .4byte .L0809737C
@@ -295441,7 +295470,7 @@ func_08097AE4: @ 0x08097AE4
 	movs r0, #0
 	str r0, [r4]
 	str r0, [r4, #4]
-	ldr r0, .L08097BAC @ =vtable_unk_080E5B80
+	ldr r0, .L08097BAC @ =__vt_19HardwareBlendObject
 	str r0, [r4, #8]
 	adds r5, r4, #0
 	adds r5, #0xc
@@ -295478,7 +295507,7 @@ func_08097AE4: @ 0x08097AE4
 	beq .L08097BC2
 	b .L08097CAA
 	.align 2, 0
-.L08097BAC: .4byte vtable_unk_080E5B80
+.L08097BAC: .4byte __vt_19HardwareBlendObject
 .L08097BB0: .4byte 0x00000889
 .L08097BB4: .4byte 0x000033D2
 .L08097BB8:

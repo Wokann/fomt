@@ -12,7 +12,7 @@ struct HardwareSoundVSyncCommand
 #endif
 {
 #ifdef __cplusplus
-    virtual u8 Run() asm("func_08008B0C");
+    virtual bool Run() asm("func_08008B0C");
 #else
     struct HardwareLinkBase base;
 #endif
@@ -24,7 +24,7 @@ struct HardwareSoundMainCommand
 #endif
 {
 #ifdef __cplusplus
-    virtual u8 Run() asm("func_08008B18");
+    virtual bool Run() asm("func_08008B18");
 #else
     struct HardwareLinkBase base;
 #endif

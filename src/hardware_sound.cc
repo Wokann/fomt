@@ -16,13 +16,13 @@ void func_08008AFC(void)
     m4aSoundVSyncOff();
 }
 
-u8 HardwareSoundVSyncCommand::Run()
+bool HardwareSoundVSyncCommand::Run()
 {
     m4aSoundVSync();
     return 1;
 }
 
-u8 HardwareSoundMainCommand::Run()
+bool HardwareSoundMainCommand::Run()
 {
     m4aSoundMain();
     return 1;

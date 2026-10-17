@@ -60,21 +60,21 @@ inline void * operator new[](unsigned long, void * location) { return location; 
 
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
 {
-    u8 * list = func_08008940(reinterpret_cast<void * const *>(core));
-    void * const * vtable = *reinterpret_cast<void * const **>(list + 8);
-    ((void (*)(u8 *, HardwareBlendObject *))vtable[4])(list, &blend);
+    HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
+        func_08008940(reinterpret_cast<void * const *>(core)));
+    list->Append(&blend);
 }
 
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendOwner const & owner)
 {
-    u8 * list = func_08008940(reinterpret_cast<void * const *>(core));
-    void * const * vtable = *reinterpret_cast<void * const **>(list + 8);
-    ((void (*)(u8 *, HardwareBlendObject *))vtable[4])(list, owner.object);
+    HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
+        func_08008940(reinterpret_cast<void * const *>(core)));
+    list->Append(owner.object);
 }
 
 static inline bool MenuBlendIsQueued(HardwareBlendObject const & blend)
 {
-    return blend.unk_00 != nullptr;
+    return blend.previous_slot != nullptr;
 }
 
 void func_08003B40(HardwareBootstrap * core)

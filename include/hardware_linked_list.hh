@@ -14,7 +14,8 @@ struct HardwareLinkBase {
     struct HardwareLinkBase * next;
 #ifdef __cplusplus
     HardwareLinkBase() asm("func_08009A38") SECTION(".text.hardware_linked_list_tail");
-    virtual u8 Run() = 0;
+    // The native list consumes the boolean result from the low byte.
+    virtual bool Run() = 0;
     virtual ~HardwareLinkBase() asm("func_080098AC");
 #else
     void ** vtable;
@@ -32,7 +33,7 @@ struct HardwareLink
     void ** vtable;
 #else
     HardwareLink() SECTION(".text.hardware_link_constructor");
-    virtual u8 Run() asm("func_080098D8");
+    virtual bool Run() asm("func_080098D8");
     // The compiler-generated destructor forwards directly to the link base.
 #endif
 };
@@ -51,7 +52,7 @@ struct HardwareLinkedList
     struct HardwareLink sentinel;
 #ifdef __cplusplus
     HardwareLinkedList() asm("func_08009A04") SECTION(".text.hardware_linked_list_constructor");
-    virtual u8 Run() asm("func_08009908");
+    virtual bool Run() asm("func_08009908");
     virtual ~HardwareLinkedList() asm("func_080098DC");
     virtual void Append(HardwareLinkBase * link) asm("func_08009940");
     virtual void Remove(HardwareLinkBase * link) asm("func_08009968");

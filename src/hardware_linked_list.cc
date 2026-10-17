@@ -10,7 +10,7 @@ HardwareLinkBase::~HardwareLinkBase()
     }
 }
 
-u8 HardwareLink::Run()
+bool HardwareLink::Run()
 {
     return 1;
 }
@@ -20,7 +20,7 @@ HardwareLinkedList::~HardwareLinkedList()
     HardwareLinkedList::Clear();
 }
 
-u8 HardwareLinkedList::Run()
+bool HardwareLinkedList::Run()
 {
     HardwareLinkBase * current = first;
     HardwareLinkBase * end = &sentinel;

@@ -207,9 +207,9 @@ choose_continuation:
 
 static inline void QueueIntroSceneBlend(IntroSceneCore * core, HardwareBlendOwner const & owner)
 {
-    u8 * list = func_08008940(reinterpret_cast<void * const *>(core));
-    void * const * vtable = *reinterpret_cast<void * const **>(list + 8);
-    ((void (*)(u8 *, HardwareBlendObject *))vtable[4])(list, owner.object);
+    HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
+        func_08008940(reinterpret_cast<void * const *>(core)));
+    list->Append(owner.object);
 }
 
 void StartIntroSceneCore(IntroSceneCore * core)

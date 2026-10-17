@@ -106,19 +106,19 @@ void UpdateHardwareFrame(struct HardwareBootstrap * owner)
     // The list and commands unlink in reverse construction order at scope exit.
 }
 
-u8 HardwareDisplayCommand::Run()
+bool HardwareDisplayCommand::Run()
 {
     WriteHardwareDisplayState(display);
     return 0;
 }
 
-u8 HardwareSpriteBufferCommand::Run()
+bool HardwareSpriteBufferCommand::Run()
 {
     func_08009864(buffer);
     return 0;
 }
 
-u8 HardwareDmaQueueCommand::Run()
+bool HardwareDmaQueueCommand::Run()
 {
     HardwareDmaQueue * storage = queue;
     if (!storage->IsEmpty()) {
