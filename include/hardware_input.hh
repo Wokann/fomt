@@ -19,6 +19,8 @@ struct HardwareInputState {
     i16 held_frames[10];
 #ifdef __cplusplus
     HardwareInputState(u16 delay, u16 interval) asm("func_080091A4");
+    HardwareInputState(u32 held_value) asm("func_080091E8");
+    HardwareInputState(u16 delay, u16 interval, u32 held_value) asm("func_08009224");
 #endif
 };
 
