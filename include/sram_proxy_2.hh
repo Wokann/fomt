@@ -13,6 +13,7 @@ extern u8 gUnk_03000402;
 void func_0800063C(void);
 void *func_08000640(void *source);
 u32 func_08000664(void *destination);
+// Raw C/assembly ABI view; the low byte holds the boolean write result.
 u32 func_080006A4(void *destination, u32 offset, void const *source, u32 size);
 u32 func_080006E4(void *source, void *destination, u32 offset, u32 size);
 u32 func_08000714(u8 const *context, void (*handler)(void));
@@ -28,6 +29,7 @@ struct SramAccess
     u32 unk_00[2];
 #ifdef __cplusplus
     SramAccess() asm("func_08000640");
+    bool Write(u32 offset, void const *source, u32 size) asm("func_080006A4");
 #endif
 };
 

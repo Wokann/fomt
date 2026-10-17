@@ -40,6 +40,21 @@ u32 func_08000664(void *destination)
     return 1;
 }
 
+bool SramAccess::Write(u32 offset, void const *source, u32 size)
+{
+    gUnk_03000400 = 0;
+    if (size == 0)
+        return false;
+
+    bool success = true;
+    if (WriteSramFastAndVerify(static_cast<u8 const *>(source),
+            reinterpret_cast<u8 *>(0x0E000000 | offset), size) != 0) {
+        func_08000728(this, 0x100);
+        success = false;
+    }
+    return success;
+}
+
 u32 func_080006E4(void *unused, void *destination, u32 offset, u32 size)
 {
     gUnk_03000400 = 0;

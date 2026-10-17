@@ -56,9 +56,7 @@ SECTIONS
         src/interrupt.o(.text);
         src/new.o(.text);
         src/pure_virtual.o(.text);
-        src/sram_proxy_2.o(.text.func_0800063C .text.func_08000640 .text.func_08000664);
-        asm/sram_proxy_2.o(.text);
-        src/sram_proxy_2.o(.text.func_080006E4 .text.func_08000714 .text.func_08000728);
+        src/sram_proxy_2.o(.text);
         src/scene.o(.text);
         src/intro_scene.o(.text.intro_scene_core_constructor);
         src/intro_scene.o(.text.intro_scene_core_run);

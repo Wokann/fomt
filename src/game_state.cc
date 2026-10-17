@@ -246,14 +246,14 @@ u32 WriteGameStateSaveImage(void const * image, SramAccess * access, u32 offset)
     u32 stage;
     u32 checksum;
 
-    if (static_cast<u8>(func_080006A4(access, offset, &size, sizeof(size))) == 0) {
+    if (!access->Write(offset, &size, sizeof(size))) {
         error = gUnk_03000400;
         stage = GAME_STATE_SAVE_WRITE_SIZE_ERROR;
         goto failed;
     }
 
     offset += sizeof(size);
-    if (static_cast<u8>(func_080006A4(access, offset, image, size)) == 0) {
+    if (!access->Write(offset, image, size)) {
         error = gUnk_03000400;
         stage = GAME_STATE_SAVE_WRITE_IMAGE_ERROR;
         goto failed;
@@ -261,7 +261,7 @@ u32 WriteGameStateSaveImage(void const * image, SramAccess * access, u32 offset)
 
     offset = record_offset + sizeof(size) + sizeof(GameStateSaveImage);
     checksum = CalculateSaveImageChecksum(static_cast<u8 const *>(image), size);
-    if (static_cast<u8>(func_080006A4(access, offset, &checksum, sizeof(checksum))) != 0)
+    if (access->Write(offset, &checksum, sizeof(checksum)))
         return 0;
 
     error = gUnk_03000400;

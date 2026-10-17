@@ -353,9 +353,6 @@ $(BUILD_DIR)/src/m4a.o: $(OLD_CC1)
 # The linker orders compiler-owned function sections around their assembly.
 $(BUILD_DIR)/src/font_draw.o: CXXFLAGS += -ffunction-sections
 
-# The unmatched SRAM write wrapper sits between runs of ordinary C++ in the ROM.
-$(BUILD_DIR)/src/sram_proxy_2.o: CXXFLAGS += -ffunction-sections
-
 # The two recovered state helpers bracket still-unmatched saved-image code.
 # Use compiler-owned function sections, not source section attributes.
 $(BUILD_DIR)/src/game_state.o: CXXFLAGS += -ffunction-sections
