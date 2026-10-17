@@ -19,7 +19,8 @@ extern NewGameSceneVTableFunction const vtable_unk_080E5A4C[] = {
     nullptr, nullptr, func_080D404C, func_080D3EF4,
 };
 extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[] = {
-    nullptr, nullptr, func_080D406C,
+    nullptr, nullptr,
+    reinterpret_cast<NewGameSceneVTableFunction>(func_080D406C),
 };
 extern NewGameSceneVTableFunction const vtable_unk_080E5A68[] = {
     nullptr, nullptr,
@@ -434,13 +435,12 @@ void func_08004C54(NewGameNameEntryScene * scene, int flags)
     DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
 }
 
-void func_080050C8(NewGameIdentityCore * core, int flags)
+NewGameIdentityCore::~NewGameIdentityCore()
 {
-    core->vtable = reinterpret_cast<void **>(
+    vtable = reinterpret_cast<void **>(
         const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E5A98));
-    if (core->ui_state != nullptr)
-        delete core->ui_state;
-    func_080086BC(core, flags);
+    if (ui_state != nullptr)
+        delete ui_state;
 }
 
 SceneTransitionOwner func_080050F8(NewGameIdentityCore * core)
@@ -638,13 +638,12 @@ NewGameNameInputCore * func_08005A58(NewGameNameInputCore * core,
     return core;
 }
 
-void func_08005B38(NewGameNameInputCore * core, int flags)
+NewGameNameInputCore::~NewGameNameInputCore()
 {
-    core->vtable = reinterpret_cast<void **>(
+    vtable = reinterpret_cast<void **>(
         const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E5AB4));
-    if (core->ui_state != nullptr)
-        delete core->ui_state;
-    func_080086BC(core, flags);
+    if (ui_state != nullptr)
+        delete ui_state;
 }
 
 SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
@@ -1260,4 +1259,9 @@ char const * func_08007110(NewGameNameInputScene const * scene)
 char const * func_0800711C(NewGameNameInputCore const * core)
 {
     return core->name;
+}
+
+// The members and the bootstrap base unwind in reverse construction order.
+NewGameMenuCore::~NewGameMenuCore()
+{
 }

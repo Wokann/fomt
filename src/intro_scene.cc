@@ -154,11 +154,10 @@ void DestroyIntroSceneCore(IntroSceneCore * core, int flags)
     core->pool_reservation.~HardwarePoolOwner();
     core->state_reservation.~HardwareSharedStateOwner();
 
-    // Each archive's provider-base destruction restores this actual table.
-    // It does not release the archive data; the unpacked bytes belong to core.
-    core->actor_archive.vtable = &vtable_unk_080E5A28;
-    core->small_archive.vtable = &vtable_unk_080E5A28;
-    core->intro_archive.vtable = &vtable_unk_080E5A28;
+    // Archives borrow their payloads; the unpacked bytes belong to core.
+    core->actor_archive.~IndexedResourceArchive();
+    core->small_archive.~IndexedResourceArchive();
+    core->intro_archive.~IndexedResourceArchive();
     func_080086BC(reinterpret_cast<HardwareBootstrap *>(core), flags);
 }
 

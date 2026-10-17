@@ -538,6 +538,8 @@ SECTIONS
         src/intro_scene.o(.text.intro_scene_factory);
         src/intro_scene.o(.gnu.linkonce.t._._19MenuIntroTransition);
         asm/code_linkonce.o(.text.intro_scene_after_transition);
+        src/new_game.o(.text.new_game_menu_core_cleanup);
+        asm/code_linkonce.o(.text.new_game_after_menu_core_cleanup);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         asm/code_linkonce.o(.text.code_080D68C0);
         src/hardware.o(.text.hardware_free_list);

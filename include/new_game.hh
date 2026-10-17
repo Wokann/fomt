@@ -53,6 +53,8 @@ typedef char NewGameMenuSaveSlotStatusSizeCheck[sizeof(NewGameMenuSaveSlotStatus
 // constructor, cleanup, and hardware/UI consumers are modeled here; the
 // remaining payload is not yet a recovered high-level class.
 struct NewGameMenuCore : HardwareBootstrap {
+    ~NewGameMenuCore() asm("func_080D406C")
+        SECTION(".text.new_game_menu_core_cleanup");
     void * unk_08;
     SceneTransitionOwner continuation;
     UiStateOwner ui_state;
@@ -172,6 +174,8 @@ enum NewGameIdentityField {
 // four labels. Overseas labels are wider and form their own four-entry array.
 // The unknown scalar and control-byte names retain their original US offsets.
 struct NewGameIdentityCore : HardwareBootstrap {
+    ~NewGameIdentityCore() asm("func_080050C8")
+        SECTION(".text.new_game_identity_core_cleanup");
 #if defined(REGION_JP)
     NewGameTextTileBuffer<12> buffers[8];
 #else
@@ -212,6 +216,8 @@ typedef char NewGameNameInputSpriteStateAttributesCheck[
 // Construction and the drawing/upload consumers confirm this physical order.
 // Remaining control fields keep their unknown names; name is RAM storage.
 struct NewGameNameInputCore : HardwareBootstrap {
+    ~NewGameNameInputCore() asm("func_08005B38")
+        SECTION(".text.new_game_name_input_core_cleanup");
 #if defined(REGION_DE)
     NewGameTextTileBuffer<30> keyboard_buffers[9];
 #else
@@ -477,7 +483,8 @@ char const * func_0800711C(NewGameNameInputCore const * core)
 // Native callback entries for the remaining partial menu classes.
 void func_080D3EF4(void);
 void func_080D404C(void);
-void func_080D406C(void);
+// Raw C/assembly view of the actual menu-core destructor entry.
+void func_080D406C(NewGameMenuCore * core, int flags);
 void func_080D6C58(void);
 void func_080D6D8C(void);
 void func_08004C68(void);

@@ -158,6 +158,7 @@ struct IndexedResourceArchiveGroupDescriptor
 
 struct IndexedResourceArchive
 {
+    ~IndexedResourceArchive();
     IndexedResourceArchive(u8 const * data)
         SECTION(".text.indexed_resource_archive_constructor");
 
@@ -259,5 +260,12 @@ void TransformIndexedResourceSpritePosition(i32 *, i32 *, u32, u32,
     SECTION(".text.indexed_resource_sprite_transform");
 
 EXTERN_C_END
+
+// The archive borrows its payload. Its provider view is restored when the
+// archive subobject leaves scope; the payload itself is not freed here.
+inline IndexedResourceArchive::~IndexedResourceArchive()
+{
+    vtable = &vtable_unk_080E5A28;
+}
 
 #endif // RESOURCE_HANDLE_HH

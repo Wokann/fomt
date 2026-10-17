@@ -156,49 +156,7 @@ func_080D404C: @ 0x080D404C
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080D406C
-func_080D406C: @ 0x080D406C
-	push {r4, r5, r6, lr}
-	adds r5, r0, #0
-	adds r6, r1, #0
-	adds r4, r5, #0
-	adds r4, #0x54
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl func_080073E0
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	ldr r0, .L080D40C8 @ =vtable_unk_080E5A28
-	str r0, [r5, #0x1c]
-	adds r0, r5, #0
-	adds r0, #0x10
-	movs r1, #2
-	bl _._12UiStateOwner
-	ldr r1, [r5, #0xc]
-	cmp r1, #0
-	beq .L080D40B8
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080D40B8:
-	adds r0, r5, #0
-	adds r1, r6, #0
-	bl func_080086BC
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080D40C8: .4byte vtable_unk_080E5A28
+	.section .text.new_game_after_menu_core_cleanup
 
 	thumb_func_start func_080D40CC
 func_080D40CC: @ 0x080D40CC
