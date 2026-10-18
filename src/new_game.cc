@@ -1280,10 +1280,68 @@ void DestroyFreshSaveGameTransition(NewGameFreshSaveTransition * transition, int
     DestroySceneTransitionBase(reinterpret_cast<SceneTransition *>(transition), flags);
 }
 
+// The birthday UI wraps invalid day fields; ordinary GameDate construction
+// elsewhere retains its existing packed-value semantics.
+static inline void SetBirthdayInputDate(GameDate & destination, Season season,
+    u32 const & requested_day)
+{
+    destination.season = season;
+    u32 day = requested_day;
+    if (day > 29)
+        day %= 30;
+    destination.day = day;
+}
+
+NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore * core, GameDate birthday)
+{
+    HardwareInputRepeatParameters input(30, 1);
+    func_080084DC(core, &input);
+#if defined(REGION_JP)
+    core->vtable = reinterpret_cast<void **>(const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E7AB4));
+#else
+    core->vtable = reinterpret_cast<void **>(const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E7AC4));
+#endif
+    core->unk_08 = 0;
+    // Allocate the owner before acquiring its temporary shared resources.
+    void * storage = ::operator new(sizeof(UiStateOwner));
+    {
+        HardwareStateOwner shared;
+        HardwareResource resources;
+        core->ui_state = new (storage) UiStateOwner(0, 31, 15, core->unk_08, shared, resources);
+    }
+    func_08008B54(&core->music_players[0], 1);
+    func_08008B54(&core->music_players[1], 2);
+    new (&core->glyph_tiles) HardwareStateEntry(7);
+    new (&core->glyph_palette) HardwareResourceEntry;
+    new (&core->cursor_tiles) HardwareStateEntry(3);
+    new (&core->cursor_palette) HardwareResourceEntry;
+    SetBirthdayInputDate(core->birthday, birthday.GetSeason(), birthday.GetDay());
+    core->step = 0;
+    core->dialogue_state = 2;
+    switch (core->birthday.GetSeason()) {
+    case SEASON_SPRING: core->season_column = 0; break;
+#if defined(REGION_JP)
+    case SEASON_SUMMER: core->season_column = 1; break;
+    case SEASON_FALL: core->season_column = 2; break;
+    case SEASON_WINTER: core->season_column = 3; break;
+#else
+    case SEASON_SUMMER: core->season_column = 4; break;
+    case SEASON_FALL: core->season_column = 8; break;
+    case SEASON_WINTER: core->season_column = 12; break;
+#endif
+    }
+    core->day = core->birthday.GetDay() + 1;
+    core->cursor_column = core->season_column;
+    core->cursor_row = 0;
+    core->saved_season_column = 0;
+    core->cursor_visible = 0;
+    return core;
+}
+
 NewGameBirthdayInputScene * InitializeBirthdayInputScene(NewGameBirthdayInputScene * scene, GameDate birthday)
 {
     scene->vtable = gNewGameBirthdayInputSceneVTable;
-    scene->core = func_0806D990(static_cast<NewGameBirthdayInputCore *>(
+    scene->core = InitializeBirthdayInputCore(static_cast<NewGameBirthdayInputCore *>(
         ::operator new(sizeof(NewGameBirthdayInputCore))), birthday);
     return scene;
 }

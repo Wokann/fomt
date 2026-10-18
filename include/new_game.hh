@@ -148,7 +148,8 @@ struct NewGameBirthdayInputCore : HardwareBootstrap {
     MusicPlayer * music_players[2];
     HardwareStateEntry glyph_tiles;
     HardwareResourceEntry glyph_palette;
-    u8 unk_28[0x10];
+    HardwareStateEntry cursor_tiles;
+    HardwareResourceEntry cursor_palette;
     i8 cursor_column;
     i8 cursor_row;
     i8 saved_season_column;
@@ -196,6 +197,8 @@ typedef char BirthdayGlyphPriorityCheck[offsetof(NewGameBirthdayInputGlyph, prio
 typedef char BirthdayMusicCheck[offsetof(NewGameBirthdayInputCore, music_players) == 0x10 ? 1 : -1];
 typedef char BirthdayGlyphTilesCheck[offsetof(NewGameBirthdayInputCore, glyph_tiles) == 0x18 ? 1 : -1];
 typedef char BirthdayGlyphPaletteCheck[offsetof(NewGameBirthdayInputCore, glyph_palette) == 0x20 ? 1 : -1];
+typedef char BirthdayCursorTilesCheck[offsetof(NewGameBirthdayInputCore, cursor_tiles) == 0x28 ? 1 : -1];
+typedef char BirthdayCursorPaletteCheck[offsetof(NewGameBirthdayInputCore, cursor_palette) == 0x30 ? 1 : -1];
 typedef char BirthdayCursorCheck[offsetof(NewGameBirthdayInputCore, cursor_column) == 0x38 ? 1 : -1];
 typedef char BirthdayCursorRowCheck[offsetof(NewGameBirthdayInputCore, cursor_row) == 0x39 ? 1 : -1];
 typedef char BirthdaySavedSeasonCheck[offsetof(NewGameBirthdayInputCore, saved_season_column) == 0x3A ? 1 : -1];
@@ -212,7 +215,10 @@ typedef char BirthdayDialogueStateCheck[offsetof(NewGameBirthdayInputCore, dialo
 typedef char BirthdayDialogueChoiceCheck[offsetof(NewGameBirthdayInputCore, dialogue_choice)
     == offsetof(NewGameBirthdayInputCore, birthday) + 8 ? 1 : -1];
 extern "C" {
-NewGameBirthdayInputCore * func_0806D990(NewGameBirthdayInputCore *, GameDate);
+NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore *, GameDate)
+    SECTION(".text.new_game_birthday_core");
+extern NewGameSceneVTableFunction const vtable_unk_080E7AB4[];
+extern NewGameSceneVTableFunction const vtable_unk_080E7AC4[];
 SceneTransitionOwner func_0806DB38(NewGameBirthdayInputCore *);
 NewGameBirthdayInputScene * InitializeBirthdayInputScene(NewGameBirthdayInputScene *, GameDate)
     SECTION(".text.new_game_birthday_input_scene");

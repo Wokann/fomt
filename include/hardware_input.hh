@@ -6,7 +6,14 @@
 struct HardwareInputRepeatParameters {
     u16 delay;
     u16 interval;
+#ifdef __cplusplus
+    HardwareInputRepeatParameters(u16 delay, u16 interval)
+        : delay(delay), interval(interval) {}
+#endif
 };
+
+typedef char HardwareInputRepeatParameters_size_check[sizeof(struct HardwareInputRepeatParameters) == 4 ? 1 : -1];
+typedef char HardwareInputRepeatParameters_interval_check[offsetof(struct HardwareInputRepeatParameters, interval) == 2 ? 1 : -1];
 
 struct HardwareInputState {
     u16 held;
