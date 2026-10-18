@@ -54,8 +54,6 @@ extern void func_08069E58(void);
 extern void func_08069E98(void);
 extern void func_0806D918(void);
 extern void func_0806D948(void);
-extern void func_0806EA00(void);
-extern void func_0806EA30(void);
 extern void func_080E0F48(void);
 extern void func_080E0F90(void);
 extern void func_080E0EF0(void);
@@ -5030,13 +5028,17 @@ extern RawVTableFunction const vtable_unk_080E7AB4[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern RawVTableFunction const gNewGameBirthdayInputSceneVTable[]
+#else
 extern RawVTableFunction const vtable_unk_080E7AC4[]
+#endif
     SECTION(".rodata.vtable_7ac4") = {
 #if defined(REGION_JP)
         nullptr,
         nullptr,
-        func_0806EA00,
-        func_0806EA30,
+        reinterpret_cast<RawVTableFunction>(DestroyBirthdayInputScene),
+        reinterpret_cast<RawVTableFunction>(RunBirthdayInputScene),
 #else
         nullptr,
         nullptr,
@@ -5044,15 +5046,19 @@ extern RawVTableFunction const vtable_unk_080E7AC4[]
 #endif
     };
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7AD0[]
+#else
+extern RawVTableFunction const gNewGameBirthdayInputSceneVTable[]
+#endif
     SECTION(".rodata.vtable_7ad0") = {
         nullptr,
         nullptr,
 #if defined(REGION_JP)
         func_080E2018,
 #else
-        func_0806EA00,
-        func_0806EA30,
+        reinterpret_cast<RawVTableFunction>(DestroyBirthdayInputScene),
+        reinterpret_cast<RawVTableFunction>(RunBirthdayInputScene),
 #endif
     };
 

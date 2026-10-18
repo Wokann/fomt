@@ -1278,3 +1278,30 @@ void DestroyFreshSaveGameTransition(NewGameFreshSaveTransition * transition, int
 {
     DestroySceneTransitionBase(reinterpret_cast<SceneTransition *>(transition), flags);
 }
+
+NewGameBirthdayInputScene * InitializeBirthdayInputScene(NewGameBirthdayInputScene * scene, GameDate birthday)
+{
+    scene->vtable = gNewGameBirthdayInputSceneVTable;
+    scene->core = func_0806D990(static_cast<NewGameBirthdayInputCore *>(
+        ::operator new(sizeof(NewGameBirthdayInputCore))), birthday);
+    return scene;
+}
+
+void DestroyBirthdayInputScene(NewGameBirthdayInputScene * scene, int flags)
+{
+    scene->vtable = gNewGameBirthdayInputSceneVTable;
+    NewGameBirthdayInputCore * core = scene->core;
+    if (core != nullptr)
+        ((void (*)(NewGameBirthdayInputCore *, int))core->vtable[2])(core, 3);
+    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
+}
+
+SceneTransitionOwner RunBirthdayInputScene(NewGameBirthdayInputScene * scene)
+{
+    return func_0806DB38(scene->core);
+}
+
+GameDate GetBirthdayInputSceneDate(NewGameBirthdayInputScene const * scene)
+{
+    return scene->core->birthday;
+}

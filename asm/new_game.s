@@ -1446,10 +1446,10 @@ func_08004C68:
     bl func_080070A4
     adds r0, r6, #0
     mov r1, r8
-    bl func_0806E9D8
+    bl InitializeBirthdayInputScene
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_0806EA30
+    bl RunBirthdayInputScene
     ldr r1, [sp, #0x40]
     cmp r1, #0
     beq .Ljp_08004D28
@@ -1460,11 +1460,11 @@ func_08004C68:
     bl _call_via_r2
 .Ljp_08004D28:
     adds r0, r6, #0
-    bl func_0806EA6C
+    bl GetBirthdayInputSceneDate
     mov r8, r0
     adds r0, r6, #0
     movs r1, #2
-    bl func_0806EA00
+    bl DestroyBirthdayInputScene
     adds r0, r6, #0
     ldr r1, .Ljp_08004EEC @ =gText_NewGameIdentity_FarmPrefix
     mov r2, sb
@@ -5154,10 +5154,10 @@ func_08004C68: @ 0x08004C68
     bl func_080070A4
     adds r0, r6, #0
     mov r1, r8
-    bl func_0806E9D8
+    bl InitializeBirthdayInputScene
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_0806EA30
+    bl RunBirthdayInputScene
     ldr r1, [sp, #0x40]
     cmp r1, #0
     beq .L08004D28
@@ -5168,11 +5168,11 @@ func_08004C68: @ 0x08004C68
     bl _call_via_r2
 .L08004D28:
     adds r0, r6, #0
-    bl func_0806EA6C
+    bl GetBirthdayInputSceneDate
     mov r8, r0
     adds r0, r6, #0
     movs r1, #2
-    bl func_0806EA00
+    bl DestroyBirthdayInputScene
     adds r0, r6, #0
     ldr r1, .L08004EEC @ =gText_NewGameIdentity_FarmPrefix
     mov r2, sb

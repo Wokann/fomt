@@ -341,6 +341,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.indexed_resource_handle_constructor_after);
         src/resource_handle.o(.text.indexed_resource_sprite_transform);
         asm/code_0803EE94.o(.text.indexed_resource_sprite_transform_after);
+        src/new_game.o(.text.new_game_birthday_input_scene);
+        asm/code_0803EE94.o(.text.new_game_birthday_input_after);
         . = 0x75DCC; /* JP/US-shared scroll-position reset. */
         src/scroll_state.o(.text.reset_scroll_position);
         . = 0x75DE8; /* JP/US-shared scroll-buffer clear. */
