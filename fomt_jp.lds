@@ -605,7 +605,8 @@ SECTIONS
         src/intro_scene.o(.gnu.linkonce.t._._19MenuIntroTransition);
         asm/code_linkonce.o(.text.intro_scene_after_transition);
         src/new_game.o(.text.new_game_menu_core_cleanup);
-        asm/code_linkonce.o(.text.new_game_after_menu_core_cleanup);
+        src/game_scene.o(.text.game_scene_controller_record_initializers);
+        asm/code_linkonce.o(.text.new_game_after_controller_records);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         . = 0xD6078; /* JP ROM 0x080D6078, independently matched */
         asm/code_linkonce.o(.text.code_080D68C0);

@@ -485,8 +485,42 @@ struct GameSceneScriptQueue {
     }
 };
 
-// Only the verified controller prefix through its three queues is modeled.
-// The native owner, fields outside this prefix and lifecycle stay in assembly.
+// The four reusable records back entity slots 70-73, not particular NPCs.
+// Actors write their location and animation back here when destroyed; the
+// independently stored event-script halfword is read by their script hook.
+// See docs/mary-native-audit/entities/entity_event_script_audit.md.
+struct GameSceneControllerActorRecord {
+    GameSceneControllerActorRecord() asm("func_080D40CC")
+        SECTION(".text.game_scene_controller_record_initializers");
+
+    ActorLocation location;
+    u16 animation;
+    u16 event_script;
+};
+
+// The six preceding records also hold packed locations. Only the low two
+// bits at +0 and the location are initialized; their gameplay role and the
+// remaining fields are not inferred from the four actor records above.
+struct GameSceneControllerLocationRecord {
+    GameSceneControllerLocationRecord() asm("func_080D4130")
+        SECTION(".text.game_scene_controller_record_initializers");
+
+    u8 unk_00_00 : 2;
+    u8 unk_00_02 : 6;
+    u8 unk_01;
+    Location location;
+    u8 unk_08[4];
+};
+
+typedef char GameSceneControllerActorRecordSizeCheck[sizeof(GameSceneControllerActorRecord) == 12 ? 1 : -1];
+typedef char GameSceneControllerActorAnimationCheck[offsetof(GameSceneControllerActorRecord, animation) == 8 ? 1 : -1];
+typedef char GameSceneControllerActorScriptCheck[offsetof(GameSceneControllerActorRecord, event_script) == 10 ? 1 : -1];
+typedef char GameSceneControllerLocationRecordSizeCheck[sizeof(GameSceneControllerLocationRecord) == 12 ? 1 : -1];
+typedef char GameSceneControllerLocationOffsetCheck[offsetof(GameSceneControllerLocationRecord, location) == 2 ? 1 : -1];
+
+// Verified prefix through the three queues. The native owner and lifecycle
+// are still incomplete; do not treat the unknown eight-byte prefix as a
+// recovered polymorphic class or as a fully modeled save-image owner.
 struct GameSceneScriptControllerPrefix {
     u8 unk_00[8];
     ScriptEngine script_engine;
@@ -502,6 +536,21 @@ typedef char GameSceneControllerQueue0Check[offsetof(GameSceneScriptControllerPr
 typedef char GameSceneControllerQueue1Check[offsetof(GameSceneScriptControllerPrefix, queue_1) == 0x38C ? 1 : -1];
 typedef char GameSceneControllerQueue2Check[offsetof(GameSceneScriptControllerPrefix, queue_2) == 0x4D0 ? 1 : -1];
 typedef char GameSceneControllerPrefixSizeCheck[sizeof(GameSceneScriptControllerPrefix) == 0x4DC ? 1 : -1];
+
+// Native creation allocates 0x554 bytes, initializes these two arrays and
+// publishes this controller through gUnk_0300040C. This is a field view, not
+// a replacement for the still-native controller constructor/destructor.
+struct GameSceneScriptController : GameSceneScriptControllerPrefix {
+    GameSceneControllerLocationRecord location_records[6];
+    GameSceneControllerActorRecord actor_records[4];
+
+private:
+    GameSceneScriptController();
+};
+
+typedef char GameSceneControllerLocationArrayCheck[offsetof(GameSceneScriptController, location_records) == 0x4DC ? 1 : -1];
+typedef char GameSceneControllerActorArrayCheck[offsetof(GameSceneScriptController, actor_records) == 0x524 ? 1 : -1];
+typedef char GameSceneControllerSizeCheck[sizeof(GameSceneScriptController) == 0x554 ? 1 : -1];
 
 // The return transition and the native GameScene constructor copy this whole
 // three-word record. Only its first word is initialized by the shop commands;
@@ -1210,8 +1259,8 @@ BlacksmithShopScene * func_08083A7C(void *, SceneTransition **, GameStateSaveIma
 // The global controller and its subobjects are not yet fully recovered.
 extern u8 * gUnk_0300040C;
 
-u8 * func_080100F0(void);
-u8 * func_08010104(void);
+GameSceneControllerActorRecord * func_080100F0(void);
+GameSceneControllerLocationRecord * func_08010104(void);
 GameSceneScriptQueue<2> * func_08010118(void);
 u8 * func_08010128(void);
 u8 * func_08010138(void);

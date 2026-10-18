@@ -69,14 +69,18 @@ static inline void ApplySceneBgmSettings(GameSceneBgmSettings const & settings, 
     func_08008CA8(player, settings.lfo_speed, 0xFFFF);
 }
 
-u8 * func_080100F0(void)
+GameSceneControllerActorRecord * func_080100F0(void)
 {
-    return gUnk_0300040C + 0x524;
+    GameSceneScriptController * controller =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
+    return controller->actor_records;
 }
 
-u8 * func_08010104(void)
+GameSceneControllerLocationRecord * func_08010104(void)
 {
-    return gUnk_0300040C + 0x4DC;
+    GameSceneScriptController * controller =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
+    return controller->location_records;
 }
 
 GameSceneScriptQueue<2> * func_08010118(void)
@@ -2246,6 +2250,16 @@ EC void func_080AA8DC(GameSceneSavedMapPrefix * map)
 {
     if (map->map == MAP_FARMHOUSE)
         map->unk_98 = true;
+}
+
+GameSceneControllerActorRecord::GameSceneControllerActorRecord()
+    : location(Location(MAP_NONE, 0, 0), 0), animation(0), event_script(0)
+{
+}
+
+GameSceneControllerLocationRecord::GameSceneControllerLocationRecord()
+    : unk_00_00(0), location(MAP_NONE, 0, 0)
+{
 }
 
 EC void func_080D7F08(GameSceneState * state)
