@@ -135,9 +135,9 @@ UI_SCENE_08054F40_TILES_SOURCE_DIR := graphics/ui/scene_08054f40_tiles/shared
 UI_SCENE_08054F40_TILES_SOURCE := $(UI_SCENE_08054F40_TILES_SOURCE_DIR)/tiles.4bpp
 UI_SCENE_08054F40_TILES_OUTPUT := $(UI_SCENE_08054F40_TILES_SOURCE).lz
 
-UI_SCENE_0805AB08_TILES_SOURCE_DIR := graphics/ui/scene_0805ab08_tiles/shared
-UI_SCENE_0805AB08_TILES_SOURCE := $(UI_SCENE_0805AB08_TILES_SOURCE_DIR)/tiles.4bpp
-UI_SCENE_0805AB08_TILES_OUTPUT := $(UI_SCENE_0805AB08_TILES_SOURCE).lz
+UI_THREE_LAYER_BACKGROUND_DIR := graphics/ui/three_layer_background/shared
+$(UI_THREE_LAYER_BACKGROUND_DIR)/tiles.4bpp: GFX_TILE_COUNT := 358
+$(UI_THREE_LAYER_BACKGROUND_DIR)/palettes.gbapal: GFX_PALETTE_COLORS := 176
 
 # Seven FarmHouse visual descriptors each pass a separately bounded native
 # 0x70 stream directly to Unpack. Shared native-index PNGs and independent
@@ -215,7 +215,11 @@ $(UI_SCENE_080B55D0_AUX_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5 0x16
 $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x110
 $(UI_SCENE_080B55D0_AUX_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,8,9,10,11,12 0xD60
 $(UI_SCENE_08054F40_TILES_OUTPUT): FOMT_LZ_ENCODE := encode-lz2 2,5,7,8,10,13,14 0xCA8
-$(UI_SCENE_0805AB08_TILES_OUTPUT): FOMT_LZ_ENCODE := encode-lz2 3,5,7,10,11,12,14 0x880
+$(UI_THREE_LAYER_BACKGROUND_DIR)/tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 3,5,7,10,11,12,14 0x880
+$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5 0xA0
+$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 0x30
+$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 2,4,7 0x30
+$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,3,5 0x38
 $(INTRO_BACKGROUND_PACKED_BIN): FOMT_LZ_ENCODE := encode-lz2 3,5,8,10,12,13,15 0x49BC --literal-tail
 graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,14 0 --greedy --tie=exchange
 graphics/ui/farm_status/shared/base_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,8,13 0 --greedy --tie=exchange

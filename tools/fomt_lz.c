@@ -3024,6 +3024,60 @@ static unsigned char *encode_huff_lz2_strategy(unsigned char const *source, size
     return packed;
 }
 
+typedef struct {
+    unsigned core;
+    unsigned filter;
+    unsigned ladder_count;
+    LadderEntry ladder[7];
+} NativeStreamInfo;
+
+// Decode the stream's own mode and filter, using the same implementation for
+// editable-source extraction and native-source verification. No ROM is read.
+static unsigned char *decode_native(unsigned char const *packed, size_t packed_size,
+                                    size_t *decoded_size, NativeStreamInfo *info)
+{
+    if (packed_size < 8 || packed[0] != 0x70)
+        fail("input is not a FoMT native stream");
+    BitReader reader = {packed, packed_size, 4, 0, 0};
+    uint32_t format;
+    if (!read_bits(&reader, 8, &format))
+        fail("truncated native stream format");
+    info->filter = format >> 5;
+    info->core = format & 31u;
+    if (info->filter > 4)
+        fail("unsupported native differential filter");
+    unsigned core = info->core;
+    static unsigned const ladder_counts[4] = { 2, 4, 7, 3 };
+    info->ladder_count = ladder_counts[core & 3u];
+    unsigned char *normalized = malloc(packed_size);
+    if (!normalized)
+        fail("out of memory");
+    memcpy(normalized, packed, packed_size);
+    normalized[7] &= 31u;
+    unsigned char *decoded;
+    if (core == 0)
+        decoded = decode_lz0(normalized, packed_size, info->ladder, decoded_size);
+    else if (core == 1)
+        decoded = decode_lz1(normalized, packed_size, info->ladder, decoded_size);
+    else if (core == 2)
+        decoded = decode_lz2(normalized, packed_size, info->ladder, decoded_size);
+    else if (core == 3)
+        decoded = decode_lz3(normalized, packed_size, info->ladder, decoded_size);
+    else if (core == 0x08)
+        decoded = decode_huff4_lz0(normalized, packed_size, info->ladder, decoded_size);
+    else if (core == 0x0A || core == 0x12)
+        decoded = decode_huff_lz2(normalized, packed_size, info->ladder,
+                                  decoded_size, core == 0x0A ? 4 : 8);
+    else if (core == 0x0B || core == 0x13)
+        decoded = decode_huff_lz3(normalized, packed_size, info->ladder,
+                                  decoded_size, core == 0x0B ? 4 : 8);
+    else
+        fail("unsupported native stream format");
+    free(normalized);
+    apply_differential(decoded, *decoded_size, info->filter);
+    return decoded;
+}
+
 static void usage(void)
 {
     fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|encode-huff4-lz0|"
@@ -3033,6 +3087,7 @@ static void usage(void)
          "[--parent-first] [--greedy] [--tail=FILE] | "
          "decode-lz1|decode-lz2|decode-lz3|decode-huff4-lz0|decode-huff4-lz3|decode-huff8-lz3|"
          "decode-huff4-lz2|decode-huff8-lz2 SOURCE OUTPUT | "
+         "decode-native SOURCE OUTPUT [--info] | "
          "verify-native SOURCE PACKED [TAIL] | "
          "verify-lz1|verify-lz2|verify-lz3|verify-huff4-lz0|verify-huff4-lz3|verify-huff8-lz3|"
          "verify-huff4-lz2|verify-huff8-lz2 SOURCE PACKED [LADDER] | "
@@ -3385,6 +3440,22 @@ int main(int argc, char **argv)
         write_file(argv[3], decoded, decoded_size);
         free(decoded);
         free(packed);
+    } else if (strcmp(argv[1], "decode-native") == 0) {
+        if (argc != 4 && !(argc == 5 && strcmp(argv[4], "--info") == 0))
+            usage();
+        size_t packed_size, decoded_size;
+        unsigned char *packed = read_file(argv[2], &packed_size);
+        NativeStreamInfo info;
+        unsigned char *decoded = decode_native(packed, packed_size, &decoded_size, &info);
+        write_file(argv[3], decoded, decoded_size);
+        if (argc == 5) {
+            printf("core=%u filter=%u size=%zu ladder=", info.core, info.filter, decoded_size);
+            for (unsigned index = 0; index < info.ladder_count; index++)
+                printf("%s%u", index ? "," : "", info.ladder[index].width);
+            putchar('\n');
+        }
+        free(decoded);
+        free(packed);
     } else if (strcmp(argv[1], "verify-native") == 0) {
         if (argc != 4 && argc != 5)
             usage();
@@ -3392,43 +3463,8 @@ int main(int argc, char **argv)
         unsigned char *source = read_file_parts(argv[2], argc == 5 ? argv[4] : NULL,
                                                 &source_size);
         unsigned char *packed = read_file(argv[3], &packed_size);
-        if (packed_size < 8 || packed[0] != 0x70)
-            fail("verify-native input is not a FoMT native stream");
-        BitReader reader = {packed, packed_size, 4, 0, 0};
-        uint32_t format;
-        if (!read_bits(&reader, 8, &format))
-            fail("truncated native stream format");
-        unsigned filter = format >> 5;
-        unsigned core = format & 31u;
-        if (filter > 4)
-            fail("verify-native has an unsupported differential filter");
-        unsigned char *normalized = malloc(packed_size);
-        if (!normalized)
-            fail("out of memory");
-        memcpy(normalized, packed, packed_size);
-        normalized[7] &= 31u;
-        LadderEntry ladder[7];
-        unsigned char *decoded;
-        if (core == 0)
-            decoded = decode_lz0(normalized, packed_size, ladder, &decoded_size);
-        else if (core == 1)
-            decoded = decode_lz1(normalized, packed_size, ladder, &decoded_size);
-        else if (core == 2)
-            decoded = decode_lz2(normalized, packed_size, ladder, &decoded_size);
-        else if (core == 3)
-            decoded = decode_lz3(normalized, packed_size, ladder, &decoded_size);
-        else if (core == 0x08)
-            decoded = decode_huff4_lz0(normalized, packed_size, ladder, &decoded_size);
-        else if (core == 0x0A || core == 0x12)
-            decoded = decode_huff_lz2(normalized, packed_size, ladder,
-                                      &decoded_size, core == 0x0A ? 4 : 8);
-        else if (core == 0x0B || core == 0x13)
-            decoded = decode_huff_lz3(normalized, packed_size, ladder, &decoded_size,
-                                      core == 0x0B ? 4 : 8);
-        else
-            fail("verify-native does not support this stream format");
-        free(normalized);
-        apply_differential(decoded, decoded_size, filter);
+        NativeStreamInfo info;
+        unsigned char *decoded = decode_native(packed, packed_size, &decoded_size, &info);
         if (source_size != decoded_size || memcmp(source, decoded, source_size) != 0)
             fail("decoded native stream does not match the source");
         free(decoded);

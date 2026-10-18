@@ -34,6 +34,7 @@ graphics/intro_scene/shared/object_tiles/*.4bpp
 graphics/ui/scene_08077810/shared/tiles.4bpp
 graphics/ui/scene_08077810/jp/tiles.4bpp
 graphics/ui/scene_080b55d0_main/shared/main_tiles.4bpp
+graphics/ui/three_layer_background/shared/tiles.4bpp
 graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp
 graphics/ui/seasonal_background/winter/winter_tiles.4bpp
 graphics/ui/farm_status/shared/exterior_styles/*/style_*.4bpp
