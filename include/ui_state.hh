@@ -379,7 +379,8 @@ UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index)
 
 // Existing UI adapter ABI. The menu supplies a text address as arg_r1;
 // the payload's other scalar argument domains are still unresolved.
-void func_08050D5C(void * const * object) SECTION(".text.ui_state_adapters");
+void func_08050D5C(UiStateOwner const * object) SECTION(".text.ui_state_adapters");
+void func_08050D68(UiStateOwner const * object) SECTION(".text.ui_state_adapters");
 void func_08050D74(void * const * object) SECTION(".text.ui_state_adapters");
 void * func_08050DF0(void * const * object) SECTION(".text.ui_state_adapters");
 void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
@@ -492,12 +493,14 @@ struct UnkUiPayloadLowFlags
     UnkUiPayloadLowFlags() : low(0x3F) {}
 };
 // Native member order and ownership are checked against the original complete
-// constructor and destructor. Only destruction is currently recovered in C++.
+// constructor and destructor. Opening and destruction are recovered in C++.
 struct UiStatePayload
 {
     // Construction and Update retain their original native assembly bodies.
     UiStatePayload(u32, u32, u32, u32, HardwareStateOwner const &, HardwareResource const &);
     ~UiStatePayload() SECTION(".text.ui_payload_destructor");
+    void Open() SECTION(".text.ui_payload_open");
+    void OpenImmediately() SECTION(".text.ui_payload_open");
     i32 Update(HardwareCoreState *, HardwareSpriteBufferState *, HardwareDisplayState *,
         u8 *, u8 *, MusicPlayer **);
     unsigned background : 2;

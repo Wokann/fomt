@@ -259,10 +259,8 @@ i32 UiStateOwner::Update(HardwareCoreState * state,
 }
 
 // These adapters follow the owner methods in the same native ROM block.
-// The owning high-level UI class is still unknown, so retain the recovered
-// entry-point names and only model fields that the code demonstrably uses.
-EC void func_08050D68(void * const * object)
-    SECTION(".text.ui_state_adapters");
+// Use the verified owner type for opening; unresolved payload operations keep
+// their recovered entry-point names and only demonstrably consumed fields.
 EC void func_08050D80(void * const * object)
     SECTION(".text.ui_state_adapters");
 EC void func_08050D8C(void * const * object, u32 arg_r1)
@@ -275,8 +273,6 @@ EC u8 func_08050DD8(void * const * object)
     SECTION(".text.ui_state_adapters");
 EC u8 func_08050DE4(void * const * object)
     SECTION(".text.ui_state_adapters");
-EC void func_0805039C(void * object);
-EC void func_080503E4(void * object);
 EC void func_08050424(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3);
 EC void func_08050478(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3,
     u32 arg_sp0, u32 arg_sp1, u32 arg_sp2, u32 arg_sp3);
@@ -287,14 +283,14 @@ EC void func_08050B50(void * object, char const * text);
 EC void func_08050C2C(void * object, u32 arg_r1);
 EC void func_08050C64(void * object);
 
-EC void func_08050D5C(void * const * object)
+EC void func_08050D5C(UiStateOwner const * object)
 {
-    func_0805039C(*object);
+    object->value->Open();
 }
 
-EC void func_08050D68(void * const * object)
+EC void func_08050D68(UiStateOwner const * object)
 {
-    func_080503E4(*object);
+    object->value->OpenImmediately();
 }
 
 EC void func_08050D74(void * const * object)
@@ -730,3 +726,28 @@ UiTextTileCopyCommand::UiTextTileCopyCommand(u32 const * source, u32 * destinati
 // Reverse member destruction owns every resource and unlinks each queued
 // command. No borrowed output/queue pointer is separately freed.
 UiStatePayload::~UiStatePayload() {}
+
+// Only an inactive window resets its rows and queues setup commands. Reopening
+// a closing window keeps its current animation phase and queued ownership.
+void UiStatePayload::Open()
+{
+    if (state == 0) {
+        output.NextPage();
+        if (mode != 1)
+            commands.HardwareLinkedList::Append(&tile_copy);
+        commands.HardwareLinkedList::Append(&window);
+        unk_0c = 0;
+    }
+    if (state < 0)
+        return;
+    if (state > 2)
+        return;
+    state = 1;
+}
+
+void UiStatePayload::OpenImmediately()
+{
+    Open();
+    state = 3;
+    unk_0c = 9;
+}

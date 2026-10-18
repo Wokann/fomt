@@ -525,7 +525,7 @@ void func_08005800(NewGameIdentityCore * core)
     case 0:
         if (core->unk_1A75 != 0)
             core->unk_1A74 = 1;
-        func_08050D5C(reinterpret_cast<void * const *>(core->ui_state));
+        func_08050D5C(core->ui_state);
         break;
     case 3:
         switch (state)
@@ -1188,7 +1188,7 @@ void func_08006ED8(NewGameNameInputCore * core)
                 core->finished = 1;
                 strcpy(core->name, reinterpret_cast<char const *>(core->normalized_name));
             }
-            func_08050D5C(reinterpret_cast<void * const *>(core->ui_state));
+            func_08050D5C(core->ui_state);
             break;
         case 3:
             switch (previous_state) {
@@ -1767,7 +1767,7 @@ void UpdateBirthdayInputUi(NewGameBirthdayInputCore * core)
     switch (ui->Update(state, sprites, display, links, manager, music)) {
     case 0:
         if (core->dialogue_state == 0) {
-            func_08050D5C(reinterpret_cast<void * const *>(core->ui_state));
+            func_08050D5C(core->ui_state);
             core->dialogue_state = 3;
         } else {
             core->dialogue_state = 2;

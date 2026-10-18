@@ -309,6 +309,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.ui_text_window_setup_after);
         src/ui_state.o(.text.ui_payload_destructor);
         asm/code_0803EE94.o(.text.ui_payload_destructor_after);
+        src/ui_state.o(.text.ui_payload_open);
         . = 0x50410; /* JP/US-shared nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
         . = 0x50424; /* JP/US-shared nonzero UI-state clearer. */
