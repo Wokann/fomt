@@ -382,8 +382,8 @@ UnkUiSelectionRow * func_080512C8(UnkUiSelectionData const * object, u32 index)
 UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index)
     SECTION(".text.ui_state_selection");
 
-// Existing UI adapter ABI. The menu supplies a text address as arg_r1;
-// the payload's other scalar argument domains are still unresolved.
+// Existing C adapter ABI. Message adapters pass encoded text, a u16 speed
+// and an optional variable store to the typed payload SetText method.
 void func_08050D5C(UiStateOwner const * object) SECTION(".text.ui_state_adapters");
 void func_08050D68(UiStateOwner const * object) SECTION(".text.ui_state_adapters");
 void func_08050D74(void * const * object) SECTION(".text.ui_state_adapters");
@@ -541,6 +541,8 @@ struct UiStatePayload
     ~UiStatePayload() SECTION(".text.ui_payload_destructor");
     void Open() SECTION(".text.ui_payload_open");
     void OpenImmediately() SECTION(".text.ui_payload_open");
+    void SetText(char const *, u16 speed, ScriptTextVariableStore *)
+        SECTION(".text.ui_payload_text");
     i32 Update(HardwareCoreState *, HardwareSpriteBufferState *, HardwareDisplayState *,
         u8 *, u8 *, MusicPlayer **);
     void ShowHeartIndicator(u32 level) SECTION(".text.ui_heart_indicator");

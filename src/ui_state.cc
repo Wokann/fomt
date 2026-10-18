@@ -260,8 +260,8 @@ i32 UiStateOwner::Update(HardwareCoreState * state,
 }
 
 // These adapters follow the owner methods in the same native ROM block.
-// Use the verified owner type for opening; unresolved payload operations keep
-// their recovered entry-point names and only demonstrably consumed fields.
+// Use the verified payload methods for opening and ordinary message text.
+// Other unresolved operations keep their recovered native entry-point names.
 EC void func_08050D80(void * const * object)
     SECTION(".text.ui_state_adapters");
 EC void func_08050D8C(void * const * object, u32 arg_r1)
@@ -274,7 +274,6 @@ EC u8 func_08050DD8(void * const * object)
     SECTION(".text.ui_state_adapters");
 EC u8 func_08050DE4(void * const * object)
     SECTION(".text.ui_state_adapters");
-EC void func_08050424(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3);
 EC void func_08050478(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3,
     u32 arg_sp0, u32 arg_sp1, u32 arg_sp2, u32 arg_sp3);
 EC void func_08050664(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3,
@@ -303,23 +302,29 @@ EC void func_08050D80(void * const * object)
 
 EC void func_08050D8C(void * const * object, u32 arg_r1)
 {
-    func_08050424(*object, arg_r1, 0x100, 0);
+    static_cast<UiStatePayload *>(*object)->SetText(
+        reinterpret_cast<char const *>(arg_r1), 0x100, nullptr);
 }
 
 EC void func_08050DA0(void * const * object, u32 arg_r1, u32 arg_r2)
 {
-    func_08050424(*object, arg_r1, 0x100, arg_r2);
+    static_cast<UiStatePayload *>(*object)->SetText(
+        reinterpret_cast<char const *>(arg_r1), 0x100,
+        reinterpret_cast<ScriptTextVariableStore *>(arg_r2));
 }
 
 EC void func_08050DB4(void * const * object, u32 arg_r1, u16 arg_r2)
 {
-    func_08050424(*object, arg_r1, arg_r2, 0);
+    static_cast<UiStatePayload *>(*object)->SetText(
+        reinterpret_cast<char const *>(arg_r1), arg_r2, nullptr);
 }
 
 EC void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
     u32 arg_r3)
 {
-    func_08050424(*object, arg_r1, arg_r2, arg_r3);
+    static_cast<UiStatePayload *>(*object)->SetText(
+        reinterpret_cast<char const *>(arg_r1), arg_r2,
+        reinterpret_cast<ScriptTextVariableStore *>(arg_r3));
 }
 
 EC u8 func_08050DD8(void * const * object)
@@ -753,6 +758,20 @@ void UiStatePayload::OpenImmediately()
     Open();
     state = 3;
     unk_0c = 9;
+}
+
+void UiStatePayload::SetText(char const * message, u16 speed,
+    ScriptTextVariableStore * variables)
+{
+    if (state >= 0) {
+        if (state <= 2)
+            OpenImmediately();
+        else if (state <= 6)
+            output.NextPage();
+    }
+    SetUiTextStreamText(&text, message, variables);
+    SetUiTextStreamSpeed(&text, speed);
+    state = 4;
 }
 
 UiTextLayoutPosition GetUiChoiceLayoutPosition(u32 layout, u32 selection)
