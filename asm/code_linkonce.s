@@ -20447,7 +20447,7 @@ sub_080DA76C: @ 0x080DA76C
 	add r0, sp
 	ldr r2, .L080DA8C4 @ =0x05000002
 	movs r3, #2
-	bl func_08008F60
+	bl __21DmaTransferDescriptorUiPvUi
 	movs r0, #0x87
 	lsls r0, r0, #3
 	add r0, sp
@@ -20808,7 +20808,7 @@ sub_080DA76C: @ 0x080DA76C
 	movs r2, #0xa0
 	lsls r2, r2, #0x13
 	movs r3, #2
-	bl func_08008F60
+	bl __21DmaTransferDescriptorUiPvUi
 	movs r6, #0x87
 	lsls r6, r6, #3
 	add r6, sp
@@ -31683,7 +31683,7 @@ func_080E0094: @ 0x080E0094
 	movs r2, #0xa0
 	lsls r2, r2, #0x13
 	movs r3, #2
-	bl func_08008F60
+	bl __21DmaTransferDescriptorUiPvUi
 	mov r0, sp
 	adds r0, #0xc
 	str r0, [sp, #0x90]

@@ -9,6 +9,10 @@ enum DmaDescriptorMode {
 };
 
 struct DmaTransferDescriptor {
+#ifdef __cplusplus
+    DmaTransferDescriptor(void const * source, void * destination, u32 byte_count);
+    DmaTransferDescriptor(u32 value, void * destination, u32 byte_count);
+#endif
     u32 mode;
     union {
         void const * source;
@@ -25,8 +29,6 @@ typedef char DmaTransferDescriptor_control_offset_check[(offsetof(struct DmaTran
 
 EXTERN_C
 
-struct DmaTransferDescriptor * func_08008F0C(struct DmaTransferDescriptor * descriptor, void const * source, void * destination, u32 byte_count);
-struct DmaTransferDescriptor * func_08008F60(struct DmaTransferDescriptor * descriptor, u32 value, void * destination, u32 byte_count);
 void func_08008FB8(struct DmaTransferDescriptor const * descriptor);
 void func_08008FE4(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end);
 void func_0800901C(struct DmaTransferDescriptor const * descriptor);

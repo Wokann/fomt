@@ -2126,7 +2126,7 @@ func_08005278:
     ldr r2, [sp, #0x64]
     movs r3, #0xc0
     lsls r3, r3, #2
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r1, [r6, #4]
     ldr r0, [r6, #0xc]
     cmp r1, r0
@@ -2660,7 +2660,7 @@ func_08005CDC:
     adds	r1, r7, #0
     movs	r2, #192	@ 0xc0
     lsls	r2, r2, #19
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr	r3, [sp, #68]	@ 0x44
     mov	r8, r3
     ldr	r1, [r6, #4]
@@ -2864,7 +2864,7 @@ func_08005CDC:
     adds	r2, r2, r5
     add	r0, sp, #12
     ldr	r1, [sp, #64]	@ 0x40
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     add	r7, sp, #12
     mov	r9, r7
     ldr	r1, [r6, #4]
@@ -3095,7 +3095,7 @@ func_0800637C:
     adds r2, r2, r0
     add r0, sp, #0xc
     adds r1, r4, #0
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     add r4, sp, #0xc
     mov r9, r4
     ldr r1, [r6, #4]
@@ -3330,7 +3330,7 @@ func_080064E8:
     adds r1, r4, #0
     movs r3, #0xf0
     lsls r3, r3, #3
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r1, [r5, #4]
     ldr r0, [r5, #0xc]
     cmp r1, r0
@@ -3562,7 +3562,7 @@ func_080064E8:
     add r0, sp, #4
     ldr r1, [sp, #0x50]
     adds r3, r4, #0
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     add r7, sp, #4
     mov r9, r7
     ldr r1, [r5, #4]
@@ -5824,7 +5824,7 @@ func_08005278: @ 0x08005278
     ldr r2, [sp, #0x84]
     movs r3, #0xc0
     lsls r3, r3, #2
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r1, [r6, #4]
     ldr r0, [r6, #0xc]
     cmp r1, r0
@@ -6019,7 +6019,7 @@ func_08005278: @ 0x08005278
     ldr r2, [sp, #0x7c]
     movs r3, #0xe0
     lsls r3, r3, #2
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r1, [r6, #4]
     ldr r0, [r6, #0xc]
     cmp r1, r0
@@ -6527,7 +6527,7 @@ add	r0, sp, #16
 adds	r1, r7, #0
 movs	r2, #192
 lsls	r2, r2, #19
-bl	func_08008F0C
+bl	__21DmaTransferDescriptorPCvPvUi
 ldr	r5, [sp, #64]
 mov	r8, r5
 ldr	r1, [r6, #4]
@@ -6736,7 +6736,7 @@ lsls	r0, r0, #19
 adds	r2, r2, r0
 add	r0, sp, #12
 ldr	r1, [sp, #72]
-bl	func_08008F0C
+bl	__21DmaTransferDescriptorPCvPvUi
 add	r4, sp, #12
 mov	r9, r4
 ldr	r1, [r6, #4]
@@ -7135,7 +7135,7 @@ bx	r0
     adds r1, r7, #0
     movs r2, #0xc0
     lsls r2, r2, #0x13
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r3, [sp, #0x44]
     mov r8, r3
     ldr r1, [r6, #4]
@@ -7340,7 +7340,7 @@ bx	r0
     adds r2, r2, r5
     add r0, sp, #0xc
     ldr r1, [sp, #0x40]
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     add r7, sp, #0xc
     mov sb, r7
     ldr r1, [r6, #4]
@@ -7568,7 +7568,7 @@ ldr	r2, [pc, #52]
 add	r0, sp, #12
 adds	r1, r5, #0
 adds	r3, r4, #0
-bl	func_08008F0C
+bl	__21DmaTransferDescriptorPCvPvUi
 add	r3, sp, #12
 mov	r9, r3
 ldr	r1, [r6, #4]
@@ -7762,7 +7762,7 @@ bx	r0
     adds r2, r2, r0
     add r0, sp, #0xc
     adds r1, r4, #0
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     add r4, sp, #0xc
     mov sb, r4
     ldr r1, [r6, #4]
@@ -8004,7 +8004,7 @@ add	r0, sp, #4
 adds	r1, r4, #0
 movs	r3, #240
 lsls	r3, r3, #3
-bl	func_08008F0C
+bl	__21DmaTransferDescriptorPCvPvUi
 ldr	r1, [r5, #4]
 ldr	r0, [r5, #12]
 cmp	r1, r0
@@ -8227,7 +8227,7 @@ add	r0, sp, #4
 ldr	r1, [sp, #80]
 movs	r3, #240
 lsls	r3, r3, #3
-bl	func_08008F0C
+bl	__21DmaTransferDescriptorPCvPvUi
 add	r4, sp, #4
 mov	r9, r4
 ldr	r1, [r5, #4]
@@ -8470,7 +8470,7 @@ bx	r0
     adds r1, r4, #0
     movs r3, #0xf0
     lsls r3, r3, #3
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r1, [r5, #4]
     ldr r0, [r5, #0xc]
     cmp r1, r0
@@ -8698,7 +8698,7 @@ bx	r0
     add r0, sp, #4
     ldr r1, [sp, #0x50]
     adds r3, r4, #0
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     add r7, sp, #4
     mov sb, r7
     ldr r1, [r5, #4]

@@ -4,44 +4,42 @@
 #include "gbaio.h"
 #include "gbasvc.h"
 
-struct DmaTransferDescriptor * func_08008F0C(struct DmaTransferDescriptor * descriptor, void const * source, void * destination, u32 byte_count)
+DmaTransferDescriptor::DmaTransferDescriptor(void const * source, void * target, u32 byte_count)
 {
-    if (source != 0 && destination != 0 && byte_count != 0 && (((u32)source | (u32)destination | byte_count) & 1) == 0) {
-        if ((((u32)source | (u32)destination | byte_count) & 3) == 0)
+    if (source != 0 && target != 0 && byte_count != 0 && (((u32)source | (u32)target | byte_count) & 1) == 0) {
+        if ((((u32)source | (u32)target | byte_count) & 3) == 0)
             byte_count = ((DMA_ENABLE | DMA_32BIT) << 16) | ((byte_count >> 2) & 0xffff);
         else
             byte_count = (DMA_ENABLE << 16) | ((byte_count >> 1) & 0xffff);
     } else {
         byte_count = 0;
     }
-    descriptor->mode = DMA_DESCRIPTOR_COPY;
-    descriptor->source_or_value.source = source;
-    descriptor->destination = destination;
-    descriptor->control = byte_count;
-    return descriptor;
+    mode = DMA_DESCRIPTOR_COPY;
+    source_or_value.source = source;
+    destination = target;
+    control = byte_count;
 }
 
-struct DmaTransferDescriptor * func_08008F60(struct DmaTransferDescriptor * descriptor, u32 value, void * destination, u32 byte_count)
+DmaTransferDescriptor::DmaTransferDescriptor(u32 value, void * target, u32 byte_count)
 {
-    u32 control;
-    if (destination != 0) {
-        if (byte_count != 0 && (((u32)destination | byte_count) & 1) == 0) {
-            if ((((u32)destination | byte_count) & 3) == 0)
+    u32 result;
+    if (target != 0) {
+        if (byte_count != 0 && (((u32)target | byte_count) & 1) == 0) {
+            if ((((u32)target | byte_count) & 3) == 0)
                 byte_count = ((DMA_ENABLE | DMA_32BIT) << 16) | ((byte_count >> 2) & 0xffff);
             else
                 byte_count = (DMA_ENABLE << 16) | ((byte_count >> 1) & 0xffff);
         } else {
             byte_count = 0;
         }
-        control = byte_count | (DMA_SRC_FIXED << 16);
+        result = byte_count | (DMA_SRC_FIXED << 16);
     } else {
-        control = 0;
+        result = 0;
     }
-    descriptor->mode = DMA_DESCRIPTOR_FILL;
-    descriptor->source_or_value.fill_value = value;
-    descriptor->destination = destination;
-    descriptor->control = control;
-    return descriptor;
+    mode = DMA_DESCRIPTOR_FILL;
+    source_or_value.fill_value = value;
+    destination = target;
+    control = result;
 }
 
 void func_08008FB8(struct DmaTransferDescriptor const * descriptor)
@@ -87,7 +85,7 @@ void func_0800901C(struct DmaTransferDescriptor const * descriptor)
         source = (u8 const *)&fill_value;
     }
     control = descriptor->control;
-    destination = descriptor->destination;
+    destination = (u8 *)descriptor->destination;
     if ((control & CPUSET_32BIT) != 0) {
         aligned_count = control & 0xffff;
         remainder = aligned_count & 7;
@@ -123,7 +121,7 @@ void func_08009094(struct DmaTransferDescriptor const * first, struct DmaTransfe
             source = (u8 const *)&fill_value;
         }
         control = current->control;
-        destination = current->destination;
+        destination = (u8 *)current->destination;
         if ((control & CPUSET_32BIT) != 0) {
             aligned_count = control & 0xffff;
             remainder = aligned_count & 7;

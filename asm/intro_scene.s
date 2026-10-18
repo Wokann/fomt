@@ -1984,7 +1984,7 @@ RenderIntroSceneFrame:
     adds r2, r2, r1
     mov r0, sb
     mov r1, r8
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r1, [r5, #4]
     ldr r0, [r5, #0xc]
     cmp r1, r0
@@ -2253,7 +2253,7 @@ RenderIntroSceneFrame:
     adds r2, r2, r4
     mov r0, sb
     mov r1, r8
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r1, [r5, #4]
     ldr r0, [r5, #0xc]
     cmp r1, r0
@@ -2510,7 +2510,7 @@ RenderIntroSceneFrame:
     adds r2, r2, r4
     mov r0, sb
     mov r1, r8
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r1, [r5, #4]
     ldr r0, [r5, #0xc]
     cmp r1, r0
@@ -2799,7 +2799,7 @@ RenderIntroSceneFrame:
     adds r2, r2, r1
     mov r0, sb
     mov r1, r8
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r1, [r5, #4]
     ldr r0, [r5, #0xc]
     cmp r1, r0
@@ -3050,7 +3050,7 @@ RenderIntroSceneFrame:
     adds r2, r2, r4
     mov r0, sb
     mov r1, r8
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     ldr r1, [r5, #4]
     ldr r0, [r5, #0xc]
     cmp r1, r0
@@ -3295,7 +3295,7 @@ RenderIntroSceneFrame:
     adds r2, r2, r1
     mov r0, sb
     mov r1, r8
-    bl func_08008F0C
+    bl __21DmaTransferDescriptorPCvPvUi
     mov sl, sb
     ldr r1, [r5, #4]
     ldr r0, [r5, #0xc]
