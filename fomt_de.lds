@@ -151,7 +151,8 @@ SECTIONS
         asm/game_scene.o(.text);
         src/game_scene.o(.text.func_08010*);
         asm/game_scene.o(.text.game_scene_post);
-        src/game_scene.o(.text.game_scene_controller_constructors);
+        src/game_scene.o(.text.__25GameSceneScriptControllerG23GameStateSaveImageOwner);
+        src/game_scene.o(.text.__25GameSceneScriptControllerPCcT1G8GameDateT1);
         src/game_state.o(.text.GetNonzeroRandomValue .text.__18GameStateSaveImagePCcT1G8GameDateT1 .text.Get*__C18GameStateSaveImage .text.AllAnimalsHaveHighAffection__C18GameStateSaveImage .text.SetFlag[0-3]__18GameStateSaveImage);
         asm/game_state.o(.text.game_state_after_startup_accessors);
         src/game_state.o(.text.CollectShippingRevenue__18GameStateSaveImage .text.SetFlag4__18GameStateSaveImage .text.UpdateUnknown*__18GameStateSaveImageUi);
@@ -535,10 +536,10 @@ SECTIONS
         *(.gnu.linkonce.t._._24IntroNameEntryTransition);
         src/intro_scene.o(.text.intro_scene_core_cleanup);
         src/resource_handle.o(.text.indexed_resource_provider_cleanup);
-        asm/code_linkonce.o(.text.intro_scene_after_provider_cleanup);
+        src/new_game.o(.gnu.linkonce.t.CreateScene__27NewGameLoadedSaveTransition);
         src/intro_scene.o(.text.intro_scene_factory);
         src/intro_scene.o(.gnu.linkonce.t._._19MenuIntroTransition);
-        asm/code_linkonce.o(.text.intro_scene_after_transition);
+        src/new_game.o(.gnu.linkonce.t._._27NewGameLoadedSaveTransition);
         src/new_game.o(.text.new_game_menu_core_cleanup);
         src/game_scene.o(.text.game_scene_controller_record_initializers);
         asm/code_linkonce.o(.text.new_game_after_controller_records);
@@ -648,6 +649,7 @@ SECTIONS
         src/intro_scene.o(.gnu.linkonce.d.__vt_14GameIntroScene);
         src/resource_handle.o(.rodata);
         src/intro_scene.o(.gnu.linkonce.d.__vt_19MenuIntroTransition);
+        src/new_game.o(.gnu.linkonce.d.__vt_27NewGameLoadedSaveTransition);
         src/new_game.o(.rodata);
         *(.gnu.linkonce.d.__vt_23HardwareDmaQueueCommand);
         *(.gnu.linkonce.d.__vt_27HardwareSpriteBufferCommand);

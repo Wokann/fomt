@@ -13,11 +13,15 @@
 #include "sram_proxy_1.hh"
 #include "ui_state.hh"
 #include <string.h>
+#include "game_scene.hh"
+#pragma implementation
+
+inline SceneOwner NewGameLoadedSaveTransition::CreateScene()
+{
+    return SceneOwner(new GameSceneScriptController(state));
+}
 
 // Keep the partial menu-class tables together in their retail ROM order.
-extern NewGameSceneVTableFunction const vtable_unk_080E5A4C[] = {
-    nullptr, nullptr, func_080D404C, func_080D3EF4,
-};
 extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[] = {
     nullptr, nullptr,
     reinterpret_cast<NewGameSceneVTableFunction>(func_080D406C),
@@ -213,11 +217,7 @@ bool func_08003F9C(NewGameMenuCore * core)
 
 static inline SceneTransition * CreateLoadedMenuSaveTransition(GameStateSaveImageOwner & owner)
 {
-    NewGameLoadedSaveTransition * object = static_cast<NewGameLoadedSaveTransition *>(
-        ::operator new(sizeof(NewGameLoadedSaveTransition)));
-    object->vtable = vtable_unk_080E5A4C;
-    object->state = owner.release();
-    return reinterpret_cast<SceneTransition *>(object);
+    return new NewGameLoadedSaveTransition(owner);
 }
 
 static inline void SetMenuContinuation(SceneTransitionOwner & owner, SceneTransition * next)

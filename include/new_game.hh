@@ -93,11 +93,15 @@ typedef char NewGameMenuCoreSavedDisplayOptionsCheck[offsetof(NewGameMenuCore, s
 // Original ABI tables contain two metadata words before their callbacks.
 typedef void (*NewGameSceneVTableFunction)(void);
 
-// The existing +0x0C virtual callback creates the next game scene; its
-// destructor cleans up the save image stored immediately after the vtable.
-struct NewGameLoadedSaveTransition {
-    NewGameSceneVTableFunction const * vtable;
-    void * state;
+// Loading transfers the saved image into the next game controller. All
+// virtual methods are inline (the implicit destructor owns the image), so
+// the compiler emits their shared implementations and table without a key
+// method or a separate unused constructor body.
+struct NewGameLoadedSaveTransition : SceneTransition {
+    explicit NewGameLoadedSaveTransition(GameStateSaveImageOwner & owner)
+        : state(owner.release()) {}
+    virtual inline SceneOwner CreateScene();
+    GameStateSaveImageOwner state;
 };
 
 typedef char NewGameLoadedSaveTransitionSizeCheck[sizeof(NewGameLoadedSaveTransition) == 8 ? 1 : -1];
@@ -349,7 +353,6 @@ AScene * func_08004B58(void * object)
 AScene * func_08004B94(void * object, void * state, SceneTransition *& continuation)
     SECTION(".text.new_game_scene_lifecycle");
 
-extern NewGameSceneVTableFunction const vtable_unk_080E5A4C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A68[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A88[];
@@ -455,8 +458,6 @@ char const * func_0800711C(NewGameNameInputCore const * core)
     SECTION(".text.new_game_name_input_scene");
 
 // Native callback entries for the remaining partial menu classes.
-void func_080D3EF4(void);
-void func_080D404C(void);
 // Raw C/assembly view of the actual menu-core destructor entry.
 void func_080D406C(NewGameMenuCore * core, int flags);
 void func_080D6C58(void);

@@ -15,7 +15,6 @@
 #include "hardware_state_clear.hh"
 #include "time_of_day.hh"
 #include "field_render_farm_house_data.hh"
-#include <new>
 
 // Only the player virtual interface used by these scene commands is modeled.
 // The complete player payload, construction, and action implementations remain
@@ -488,13 +487,7 @@ struct GameSceneScriptQueue {
     }
 
     // Native insertion drops a full queue; it does not grow or overwrite it.
-    void Push(GameSceneScriptRequest const & request)
-    {
-        if (count < Capacity) {
-            new (End()) GameSceneScriptRequest(request);
-            ++count;
-        }
-    }
+    inline void Push(GameSceneScriptRequest const & request);
 };
 
 // The four reusable records back entity slots 70-73, not particular NPCs.
@@ -553,11 +546,9 @@ struct GameSceneScriptControllerUnk36C {
 // constructors are recovered; Run and destruction remain native. The first
 // word is AScene's actual inherited vptr, not manually written payload.
 struct GameSceneScriptController : AScene {
-    GameSceneScriptController(GameStateSaveImageOwner save)
-        SECTION(".text.game_scene_controller_constructors");
+    GameSceneScriptController(GameStateSaveImageOwner save);
     GameSceneScriptController(char const * player_name, char const * farm_name,
-        GameDate birthday, char const * dog_name)
-        SECTION(".text.game_scene_controller_constructors");
+        GameDate birthday, char const * dog_name);
     virtual ~GameSceneScriptController() asm("func_08010158");
     virtual SceneTransitionOwner Run() asm("func_0801004C");
 
@@ -1517,6 +1508,20 @@ inline void MapTilePatchAnimationState::ResetFrame()
 {
     frame = 0;
     update_pending = false;
+}
+
+inline GameSceneScriptController::GameSceneScriptController(GameStateSaveImageOwner input)
+    : save(input.release()), script_engine(save.get()), unk_364(0)
+{
+    gUnk_0300040C = reinterpret_cast<u8 *>(this);
+}
+
+inline GameSceneScriptController::GameSceneScriptController(char const * player_name,
+    char const * farm_name, GameDate birthday, char const * dog_name)
+    : save(new GameStateSaveImage(player_name, farm_name, birthday, dog_name)),
+      script_engine(save.get()), unk_364(1), unk_368(0xAB)
+{
+    gUnk_0300040C = reinterpret_cast<u8 *>(this);
 }
 
 #endif // GAME_SCENE_HH

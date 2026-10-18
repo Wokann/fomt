@@ -293,7 +293,7 @@ public:
     explicit GameStateSaveImageOwner(void * initial)
         : value(static_cast<GameStateSaveImage *>(initial)) {}
     GameStateSaveImageOwner(GameStateSaveImageOwner & other)
-        : value(other.release()) {}
+        : value(other.value) { other.value = nullptr; }
     ~GameStateSaveImageOwner()
     {
         if (value != nullptr)

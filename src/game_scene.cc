@@ -31,6 +31,15 @@
 #pragma implementation "game_scene.hh"
 #include "game_scene.hh"
 
+template <u32 Capacity>
+inline void GameSceneScriptQueue<Capacity>::Push(GameSceneScriptRequest const & request)
+{
+    if (count < Capacity) {
+        new (End()) GameSceneScriptRequest(request);
+        ++count;
+    }
+}
+
 static inline void StartSceneSong(MusicPlayer ** player, i32 mode, u16 song_id)
 {
     switch (mode) {
@@ -110,20 +119,6 @@ ScriptEngine * func_0801014C(void)
     GameSceneScriptController * controller =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
     return &controller->script_engine;
-}
-
-GameSceneScriptController::GameSceneScriptController(GameStateSaveImageOwner input)
-    : save(input.release()), script_engine(save.get()), unk_364(0)
-{
-    gUnk_0300040C = reinterpret_cast<u8 *>(this);
-}
-
-GameSceneScriptController::GameSceneScriptController(char const * player_name,
-    char const * farm_name, GameDate birthday, char const * dog_name)
-    : save(new GameStateSaveImage(player_name, farm_name, birthday, dog_name)),
-      script_engine(save.get()), unk_364(1), unk_368(0xAB)
-{
-    gUnk_0300040C = reinterpret_cast<u8 *>(this);
 }
 
 GameScene::~GameScene()
