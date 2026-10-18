@@ -545,6 +545,7 @@ SECTIONS
         asm/code_linkonce.o(.text.new_game_after_controller_records);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         asm/code_linkonce.o(.text.code_080D68C0);
+        src/new_game.o(.text.new_game_fresh_save_callbacks);
         src/hardware.o(.text.hardware_free_list);
         src/hardware_resource.o(.text.code_080D6DB8);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree);

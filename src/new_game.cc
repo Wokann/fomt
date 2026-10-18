@@ -31,8 +31,10 @@ extern NewGameSceneVTableFunction const vtable_unk_080E5A68[] = {
     reinterpret_cast<NewGameSceneVTableFunction>(func_08004BDC),
     reinterpret_cast<NewGameSceneVTableFunction>(func_08004C0C),
 };
-extern NewGameSceneVTableFunction const vtable_unk_080E5A78[] = {
-    nullptr, nullptr, func_080D6D8C, func_080D6C58,
+extern NewGameSceneVTableFunction const gNewGameFreshSaveTransitionVTable[] = {
+    nullptr, nullptr,
+    reinterpret_cast<NewGameSceneVTableFunction>(DestroyFreshSaveGameTransition),
+    reinterpret_cast<NewGameSceneVTableFunction>(CreateFreshSaveGameScene),
 };
 extern NewGameSceneVTableFunction const vtable_unk_080E5A88[] = {
     nullptr, nullptr,
@@ -1264,4 +1266,15 @@ char const * func_0800711C(NewGameNameInputCore const * core)
 // The members and the bootstrap base unwind in reverse construction order.
 NewGameMenuCore::~NewGameMenuCore()
 {
+}
+
+SceneOwner CreateFreshSaveGameScene(NewGameFreshSaveTransition * transition)
+{
+    return SceneOwner(new GameSceneScriptController(transition->farm_name,
+        transition->player_name, transition->birthday, transition->dog_name));
+}
+
+void DestroyFreshSaveGameTransition(NewGameFreshSaveTransition * transition, int flags)
+{
+    DestroySceneTransitionBase(reinterpret_cast<SceneTransition *>(transition), flags);
 }

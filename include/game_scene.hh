@@ -547,7 +547,7 @@ struct GameSceneScriptControllerUnk36C {
 // word is AScene's actual inherited vptr, not manually written payload.
 struct GameSceneScriptController : AScene {
     GameSceneScriptController(GameStateSaveImageOwner save);
-    GameSceneScriptController(char const * player_name, char const * farm_name,
+    GameSceneScriptController(char const * farm_name, char const * player_name,
         GameDate birthday, char const * dog_name);
     virtual ~GameSceneScriptController() asm("func_08010158");
     virtual SceneTransitionOwner Run() asm("func_0801004C");
@@ -1516,9 +1516,9 @@ inline GameSceneScriptController::GameSceneScriptController(GameStateSaveImageOw
     gUnk_0300040C = reinterpret_cast<u8 *>(this);
 }
 
-inline GameSceneScriptController::GameSceneScriptController(char const * player_name,
-    char const * farm_name, GameDate birthday, char const * dog_name)
-    : save(new GameStateSaveImage(player_name, farm_name, birthday, dog_name)),
+inline GameSceneScriptController::GameSceneScriptController(char const * farm_name,
+    char const * player_name, GameDate birthday, char const * dog_name)
+    : save(new GameStateSaveImage(farm_name, player_name, birthday, dog_name)),
       script_engine(save.get()), unk_364(1), unk_368(0xAB)
 {
     gUnk_0300040C = reinterpret_cast<u8 *>(this);

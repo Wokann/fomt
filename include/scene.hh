@@ -156,4 +156,9 @@ extern "C" void SceneMain(SceneOwner scene);
 // ABI-compatible derived destroyer forwards its original flags here.
 extern "C" void DestroySceneBase(AScene * scene, int flags) asm("_._6AScene");
 
+// Direct declaration of the existing transition-base destructor ABI. Native
+// transition callbacks forward the caller's original destruction flags here.
+extern "C" void DestroySceneTransitionBase(SceneTransition * transition, int flags)
+    asm("_._15SceneTransition");
+
 #endif // SCENE_HH

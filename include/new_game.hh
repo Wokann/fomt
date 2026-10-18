@@ -107,6 +107,27 @@ struct NewGameLoadedSaveTransition : SceneTransition {
 typedef char NewGameLoadedSaveTransitionSizeCheck[sizeof(NewGameLoadedSaveTransition) == 8 ? 1 : -1];
 typedef char NewGameLoadedSaveTransitionStateCheck[offsetof(NewGameLoadedSaveTransition, state) == 4 ? 1 : -1];
 
+// Verified native payload; construction remains in the input workflow and
+// the callback table is an explicit ABI table, not a compiler-owned class.
+// Do not default-construct this record.
+// Each name is limited to twelve encoded bytes, with word-aligned members.
+struct NewGameFreshSaveTransition {
+    NewGameSceneVTableFunction const * vtable;
+    FixedStr<12> farm_name ALIGN(4);
+    FixedStr<12> player_name ALIGN(4);
+    GameDate birthday ALIGN(4);
+    FixedStr<12> dog_name ALIGN(4);
+
+private:
+    NewGameFreshSaveTransition();
+};
+
+typedef char NewGameFreshSaveTransitionSizeCheck[sizeof(NewGameFreshSaveTransition) == 0x38 ? 1 : -1];
+typedef char NewGameFreshSaveFarmCheck[offsetof(NewGameFreshSaveTransition, farm_name) == 4 ? 1 : -1];
+typedef char NewGameFreshSavePlayerCheck[offsetof(NewGameFreshSaveTransition, player_name) == 0x14 ? 1 : -1];
+typedef char NewGameFreshSaveBirthdayCheck[offsetof(NewGameFreshSaveTransition, birthday) == 0x24 ? 1 : -1];
+typedef char NewGameFreshSaveDogCheck[offsetof(NewGameFreshSaveTransition, dog_name) == 0x28 ? 1 : -1];
+
 struct NewGameMenuScene {
     NewGameSceneVTableFunction const * vtable;
     NewGameMenuCore * core;
@@ -460,10 +481,12 @@ char const * func_0800711C(NewGameNameInputCore const * core)
 // Native callback entries for the remaining partial menu classes.
 // Raw C/assembly view of the actual menu-core destructor entry.
 void func_080D406C(NewGameMenuCore * core, int flags);
-void func_080D6C58(void);
-void func_080D6D8C(void);
+SceneOwner CreateFreshSaveGameScene(NewGameFreshSaveTransition * transition)
+    SECTION(".text.new_game_fresh_save_callbacks");
+void DestroyFreshSaveGameTransition(NewGameFreshSaveTransition * transition, int flags)
+    SECTION(".text.new_game_fresh_save_callbacks");
 void func_08004C68(void);
-extern NewGameSceneVTableFunction const vtable_unk_080E5A78[];
+extern NewGameSceneVTableFunction const gNewGameFreshSaveTransitionVTable[];
 
 EXTERN_C_END
 
