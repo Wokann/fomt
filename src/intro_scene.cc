@@ -336,7 +336,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             }
             break;
         case 6:
-            if (core->resources[0].flags.wrapped < 0)
+            if (core->resources[0].flags.bits.wrapped < 0)
             {
                 ResolveIndexedResourceHandle(&core->resources[0].handle, 0x195);
                 right_state = left_state = 1;
@@ -516,7 +516,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             break;
         }
 
-        if (reset_pending && core->resources[0].flags.wrapped < 0)
+        if (reset_pending && core->resources[0].flags.bits.wrapped < 0)
         {
             ResolveIndexedResourceHandle(&core->resources[0].handle, 0x192);
             reset_pending = false;
@@ -530,11 +530,11 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             sound_state = 2;
             break;
         case 2:
-            if (core->resources[1].flags.wrapped < 0)
+            if (core->resources[1].flags.bits.wrapped < 0)
                 func_08008B88(core->music_players + 1, 0xA9);
             break;
         case 3:
-            if (core->resources[1].flags.wrapped < 0)
+            if (core->resources[1].flags.bits.wrapped < 0)
             {
                 ResolveIndexedResourceHandle(&core->resources[1].handle, 0x338);
                 sound_state = 0;

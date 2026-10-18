@@ -16,15 +16,21 @@ struct IntroSceneUnpackedResources
     void Initialize(u8 const * source);
 };
 
-struct IntroSceneResourceFlags
+union IntroSceneResourceFlags
 {
-    // Returned by UpdateIndexedResourceHandle. The loop sign-tests bit 2:
-    // a signed one-bit field is zero or -1 without changing the stored bit.
-    u8 entry_advanced : 1;
-    u8 group_changed : 1;
-    i8 wrapped : 1;
-    u8 unk_3 : 5;
+    // Native frame updates store the complete returned word. Consumers test
+    // its low-byte fields; the signed wrap bit reads as zero or minus one.
+    u32 raw;
+    struct {
+        u8 entry_advanced : 1;
+        u8 group_changed : 1;
+        i8 wrapped : 1;
+        u8 unk_3 : 5;
+    } bits;
 };
+
+typedef char IntroSceneResourceFlagsSizeCheck[sizeof(IntroSceneResourceFlags) == 4 ? 1 : -1];
+typedef char IntroSceneResourceFlagBitsOffsetCheck[offsetof(IntroSceneResourceFlags, bits) == 0 ? 1 : -1];
 
 struct IntroSceneResourceState
 {

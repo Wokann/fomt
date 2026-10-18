@@ -47,9 +47,9 @@ u16 func_08008908(void * const * state)
     return ((struct HardwareCoreState *)*state)->input.repeat_interval;
 }
 
-u8 * func_08008910(void * const * state)
+struct HardwareDmaQueue * func_08008910(void * const * state)
 {
-    return (u8 *)&((struct HardwareCoreState *)*state)->dma_queue;
+    return &((struct HardwareCoreState *)*state)->dma_queue;
 }
 
 struct HardwareDisplayState * func_08008918(void * const * state)
