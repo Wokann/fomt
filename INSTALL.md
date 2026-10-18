@@ -10,7 +10,8 @@
 
 The installer checks out [notyourav/agbcc] at
 `1caa6becde5e4676b59c31c74d68f45ced79557c`, applies
-`tools/agbcp-asm-destructors.patch` and `tools/agbcc-long-calls.patch`, then
+`tools/agbcp-asm-destructors.patch`, `tools/agbcc-long-calls.patch` and
+`tools/agbcp-frame-address.patch`, then
 runs its ordinary build and install scripts. The original assembler-name
 correction is also
 preserved in the sibling compiler repository's
@@ -50,6 +51,22 @@ virtual calls, deletion through primary and nonzero-offset secondary bases,
 and an implicit derived destructor. Each allocation must be freed exactly
 once at its complete-object address. The existing two destructor regressions
 still run as well; no instruction selection or project build flags change.
+
+### Thumb C++ subword frame addresses
+
+The third patch fixes an internal compiler error when valid C++ value-parameter
+copies expose byte or halfword frame addresses. Thumb rejects these addresses
+before reload because the frame pointer may later become SP, which has no
+byte/halfword load form. At zero offset, the old fallback leaves the same hard
+register in place and aborts. The corrected fallback copies a rejected address
+into a fresh pseudo-register; the initial successful-validation path is unchanged.
+It does not test game names, rewrite assembly, or change optimization flags.
+
+`tests/subword-frame.cc` executes constant and variable value copies for bytes,
+signed halfwords and unsigned halfwords across all 65,536 halfword inputs,
+checking guard words and accessor call counts. Corrected Thumb and unchanged
+ARM both run at O0/O2 under `qemu-arm`; unpatched Thumb reproduces the internal
+error at O2. See `tests/README.subword-frame.md` after applying the patches.
 
 ### Individual far-call declarations
 

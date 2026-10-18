@@ -1,0 +1,169 @@
+diff --git a/g++/function.c b/g++/function.c
+--- a/g++/function.c
++++ b/g++/function.c
+@@ -3657,7 +3657,10 @@
+ 		return 0;
+ 
+ 	      start_sequence ();
+-	      temp = force_operand (temp, NULL_RTX);
++	      /* A bare frame or argument register can also be an invalid
++		 address for this insn.  force_operand leaves such a register
++		 unchanged; copy it to a pseudo just as for a computed sum.  */
++	      temp = copy_addr_to_reg (temp);
+ 	      seq = get_insns ();
+ 	      end_sequence ();
+ 
+diff --git a/tests/subword-frame.cc b/tests/subword-frame.cc
+new file mode 100644
+--- /dev/null
++++ b/tests/subword-frame.cc
+@@ -0,0 +1,94 @@
++// Ordinary C++ value arguments must not leave an illegal subword frame address.
++typedef unsigned char Byte;
++typedef unsigned short Halfword;
++typedef short SignedHalfword;
++
++// No global object in this regression requires dynamic initialization.
++extern "C" void __gccmain() {}
++
++template<class T> inline void Store(T & destination, T value)
++{
++    destination = value;
++}
++
++template<class T> struct Value {
++    T value;
++    Value(int input) { Store(value, static_cast<T>(input)); }
++    Value(Value const & input) { Store(value, input.value); }
++};
++
++template<class T> struct Registers {
++    unsigned int before;
++    T control;
++    T x;
++    T y;
++    unsigned int after;
++
++    void SetControl(Value<T> input) { Store(control, input.value); }
++    void SetX(Value<T> input) { Store(x, input.value); }
++    void SetY(Value<T> input) { Store(y, input.value); }
++};
++
++extern Registers<Byte> * GetByteState();
++extern Registers<Halfword> * GetHalfwordState();
++extern Registers<SignedHalfword> * GetSignedState();
++
++void Initialize()
++{
++    GetHalfwordState()->SetControl(0x840);
++    GetHalfwordState()->SetX(0);
++    GetHalfwordState()->SetY(0);
++}
++
++void WriteValues(unsigned int input)
++{
++    GetByteState()->SetControl(input);
++    GetByteState()->SetX(input ^ 0xA5);
++    GetByteState()->SetY(0xFFFF - input);
++    GetHalfwordState()->SetControl(input);
++    GetHalfwordState()->SetX(input ^ 0xA55A);
++    GetHalfwordState()->SetY(0xFFFF - input);
++    GetSignedState()->SetControl(input);
++    GetSignedState()->SetX(input ^ 0xA55A);
++    GetSignedState()->SetY(0xFFFF - input);
++}
++
++Registers<Byte> bytes;
++Registers<Halfword> halfwords;
++Registers<SignedHalfword> signed_halfwords;
++unsigned int state_reads;
++
++Registers<Byte> * GetByteState() { ++state_reads; return &bytes; }
++Registers<Halfword> * GetHalfwordState() { ++state_reads; return &halfwords; }
++Registers<SignedHalfword> * GetSignedState() { ++state_reads; return &signed_halfwords; }
++
++extern "C" int main()
++{
++    bytes.before = halfwords.before = signed_halfwords.before = 0xA1B2C3D4;
++    bytes.after = halfwords.after = signed_halfwords.after = 0x9E8F7A6B;
++    Initialize();
++    if (halfwords.control != 0x840 || halfwords.x != 0 || halfwords.y != 0)
++        return 1;
++
++    for (unsigned int input = 0; input < 65536; ++input) {
++        WriteValues(input);
++        if (bytes.control != static_cast<Byte>(input)
++            || bytes.x != static_cast<Byte>(input ^ 0xA5)
++            || bytes.y != static_cast<Byte>(0xFFFF - input))
++            return 2;
++        if (halfwords.control != static_cast<Halfword>(input)
++            || halfwords.x != static_cast<Halfword>(input ^ 0xA55A)
++            || halfwords.y != static_cast<Halfword>(0xFFFF - input))
++            return 3;
++        if (signed_halfwords.control != static_cast<SignedHalfword>(input)
++            || signed_halfwords.x != static_cast<SignedHalfword>(input ^ 0xA55A)
++            || signed_halfwords.y != static_cast<SignedHalfword>(0xFFFF - input))
++            return 4;
++        if (bytes.before != 0xA1B2C3D4 || halfwords.before != 0xA1B2C3D4
++            || signed_halfwords.before != 0xA1B2C3D4
++            || bytes.after != 0x9E8F7A6B || halfwords.after != 0x9E8F7A6B
++            || signed_halfwords.after != 0x9E8F7A6B)
++            return 5;
++    }
++    return state_reads == 3 + 9 * 65536 ? 0 : 6;
++}
+diff --git a/tests/README.subword-frame.md b/tests/README.subword-frame.md
+new file mode 100644
+--- /dev/null
++++ b/tests/README.subword-frame.md
+@@ -0,0 +1,50 @@
++# Thumb C++ subword frame-address regression
++
++Thumb cannot load a byte or halfword directly from SP. Before reload, its
++address predicate also rejects frame/argument-relative subword addresses
++that could later become SP-relative. A valid C++ value-parameter copy can
++expose such an address when virtual stack registers are instantiated.
++
++The fallback must materialize a rejected address in a fresh pseudo-register.
++For a zero offset, force_operand returns the original hard register without
++emitting anything; validation fails again and the compiler aborts.
++copy_addr_to_reg handles both a computed address and this bare-register case.
++Initially valid addresses take their existing path. No game symbol,
++instruction rewrite, optimization flag or register-allocation rule is involved.
++
++subword-frame.cc reproduces the old Thumb O2 internal compiler error. It
++checks constant and variable arguments, unsigned bytes, signed/unsigned
++halfwords, neighboring guard words, and the exact number of accessor calls.
++Each execution covers all 65,536 halfword input values. ARM is an unchanged
++control; both ARM and corrected Thumb must return zero at O0 and O2.
++
++After the ordinary compiler build, run with arm-none-eabi binutils and qemu-arm:
++
++```sh
++tmpdir=$(mktemp -d)
++arm-none-eabi-cpp -P tests/subword-frame.cc -o "$tmpdir/test.i"
++arm-none-eabi-as -mcpu=arm7tdmi tests/asm-destructor-start.s -o "$tmpdir/start.o"
++for mode in thumb arm; do
++    if [ "$mode" = thumb ]; then compiler=./agbcp; else compiler=./agbcp_arm; fi
++    for opt in O0 O2; do
++        "$compiler" -quiet -fno-exceptions -fno-rtti -fvtable-thunks \
++            -mthumb-interwork -Werror -"$opt" -o "$tmpdir/test.s" < "$tmpdir/test.i"
++        arm-none-eabi-as -mcpu=arm7tdmi "$tmpdir/test.s" -o "$tmpdir/test.o"
++        arm-none-eabi-ld -Ttext=0x10000 -e _start "$tmpdir/start.o" \
++            "$tmpdir/test.o" -o "$tmpdir/test.elf"
++        qemu-arm "$tmpdir/test.elf" || exit "$?"
++    done
++done
++```
++
++## 中文说明
++
++Thumb 在重载前禁止可能变为 SP 相对寻址的字节、半字帧地址。标准
++C++ 对象按值传参时，虚拟栈寄存器展开可能遇到这种地址。零偏移下，
++原 force_operand 不生成新寄存器，导致重复验证失败并触发编译器内部
++错误。修复仅让已拒绝的地址经 copy_addr_to_reg 物化为伪寄存器，不
++改动初次验证成功的路径，不包含游戏地址、寄存器绑定或指令补正。
++
++回归覆盖常量及全部 65,536 个半字输入、无符号字节、有符号及无符号
++半字、邻接哨兵和访问器调用次数。修复后的 Thumb 及未改动的 ARM
++在 O0/O2 下均须执行返回零；未修复的 Thumb 在 O2 下应复现内部错误。
