@@ -6043,7 +6043,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     mov r2, sl
     strb r0, [r2, #0x1a]
     ldr r0, [sp, #0x14]
-    bl InitializeUiTextStream
+    bl __12UiTextStream
     movs r0, #0x90
     lsls r0, r0, #1
     add r0, r8
@@ -149167,7 +149167,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	mov r2, sl
 	strb r0, [r2, #0x1a]
 	ldr r0, [sp, #0x14]
-	bl InitializeUiTextStream
+	bl __12UiTextStream
 	movs r0, #0x90
 	lsls r0, r0, #1
 	add r0, r8

@@ -3,8 +3,6 @@
 #include "resource_handle.hh"
 #include "gbasvc.h"
 
-inline void * operator new(unsigned long, void * address) { return address; }
-
 static inline IndexedResourceGroupResult LoadUiPortraitGroup(u32 index)
 {
     IndexedResourceArchive archive(gPortraitIndexedResourceArchive);
@@ -40,10 +38,9 @@ u16 GetUiPortraitCount()
     return archive.entry_descriptor_count;
 }
 
-UiTextStream * InitializeUiTextStream(UiTextStream * stream)
-{
-    return new (stream) UiTextStream;
-}
+UiTextStream::UiTextStream()
+    : phase(0), speed(0x100), progress(0), cursor(nullptr),
+      variables(nullptr), replacement_cursor(nullptr) {}
 
 void SetUiTextStreamText(UiTextStream * stream, char const * text,
     ScriptTextVariableStore * variables)

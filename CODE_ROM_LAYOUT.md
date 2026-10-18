@@ -2,6 +2,41 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的连续模块。地址以各地区基准 ROM 的物理地址为准；一个模块即使在原始布局中被已编译的 C/C++ 输入节穿插，也仍由同一个源文件维护。
 
+## 启动 UI 依赖：恢复文本流的独立 C++ 构造边界
+
+完整 UI 构造在初始化 `+0xEC` 的文本流时，实际调用一个独立
+24 字节入口，而非在调用方内联全部字段写入。为保留此边界，
+`UiTextStream` 的构造定义由头文件移到既有 `src/ui_state.cc`，
+头文件只声明普通 C++ 构造函数；原 `InitializeUiTextStream`
+入口直接改用真实构造符号 `__12UiTextStream`，四版的原调用
+均同步更新，不留下 C 包装、第二入口或汇编别名。
+
+| 区域 | 构造起点 | 终点（不含） | 既有 C++ 字节 |
+| --- | --- | --- | --- |
+| JP | `0x080AD77C` | `0x080AD794` | 24 |
+| US | `0x080ADD44` | `0x080ADD5C` | 24 |
+| EU | `0x080ADD74` | `0x080ADD8C` | 24 |
+| DE | `0x080ADCA4` | `0x080ADCBC` | 24 |
+
+阶段、默认速度、进度和三个指针的初始化不变；替换缓冲仍由
+`FixedStr<31>` 正常构造，只写首字节终止符。原构造／换文／
+速度设置仍共用原有 52 字节输入节，LDS 不变。没有 `noinline`
+属性、编译选项变化、填充或指令修补；这是已有 24 字节的构造
+接口修正，不增加或重复统计反编译字节。
+
+四版 WSL `-j4 compare`、完整 8 MiB 字节与 SHA-1 校验通过。
+所有分配字节、重定位位置及全局地址保持，只改变调用方真实
+重定位的符号名；其余 210 个对象的分配内容不变，包含
+`ui_state.o` 本身。四版 O0／O2 的文本流 65,741 组完整字节
+预期、解析器 66,048 组四帧差分及 8 项语义检查，和头像组
+736 组生命周期回归均通过；测试直接以普通 C++ placement
+construction 调用当前构造体，不通过旧 C 初始化包装。
+
+完整 UI 构造的结构模型仍在单独验证，尚有编译差异，当前
+工程继续保留其真实汇编。姓名牌的三份 260 字节绘图缓冲及
+原生交替半字节掩码拷贝已由使用点核实；不把这些缓冲当作
+文本／填充，也不把掩码模式误称为压缩。
+
 ## 启动 UI 依赖：头像归档组的构造、更新与生命周期
 
 沿完整 UI 构造的实际成员依赖，将紧邻文本流初始化前的六个
@@ -298,7 +333,7 @@ Q8 进度、控制符、多字节码、空／最长替换串、输出暂停，�
 ## 启动 UI 依赖：文本流初始化、换文及速度设置
 
 沿生日输入所使用的 UI 核心继续核对依赖，恢复
-`InitializeUiTextStream`、`SetUiTextStreamText` 和
+`UiTextStream::UiTextStream`（原 `InitializeUiTextStream`）、`SetUiTextStreamText` 和
 `SetUiTextStreamSpeed` 三个连续入口，分别为 24、24、4 字节。
 四版共用 `src/ui_state.cc`，类型、声明及偏移检查统一位于
 `include/ui_state.hh`，不新增模块、别名或地区字节替身。
@@ -12158,7 +12193,7 @@ SHA-1 校验。
 `func_080AD758`、`func_080AD77C`、`func_080AD794` 与 `func_080AD7AC`。
 
 前六入口现由 `UiPortraitGroupOwner` 的构造、析构、更新和读取，及
-`GetUiPortraitCount` 编译；后三入口为已有的 `InitializeUiTextStream`、
+`GetUiPortraitCount` 编译；后三入口为已有的 `UiTextStream::UiTextStream`、
 `SetUiTextStreamText`、`SetUiTextStreamSpeed`。实际头像资源标签在四版均为
 `gPortraitIndexedResourceArchive`，三个使用点保持真实重定位。所有跨模块
 调用均直接引用上述实际符号，没有恢复数字入口别名或 `.byte` 替身。

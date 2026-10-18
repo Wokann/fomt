@@ -78,9 +78,7 @@ struct UiTextStream
     char const * replacement_cursor;
     FixedStr<31> replacement;
 
-    UiTextStream()
-        : phase(0), speed(0x100), progress(0), cursor(nullptr),
-          variables(nullptr), replacement_cursor(nullptr) {}
+    UiTextStream() SECTION(".text.ui_text_stream_setup");
 };
 
 typedef char UiTextStreamSizeCheck[sizeof(UiTextStream) == 0x34 ? 1 : -1];
@@ -95,7 +93,6 @@ EXTERN_C
 u16 GetUiPortraitCount() SECTION(".text.ui_portrait_group");
 extern u8 const gPortraitIndexedResourceArchive[];
 
-UiTextStream * InitializeUiTextStream(UiTextStream *) SECTION(".text.ui_text_stream_setup");
 void SetUiTextStreamText(UiTextStream *, char const *, ScriptTextVariableStore *)
     SECTION(".text.ui_text_stream_setup");
 void SetUiTextStreamSpeed(UiTextStream *, u16) SECTION(".text.ui_text_stream_setup");
