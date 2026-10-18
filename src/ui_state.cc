@@ -274,10 +274,6 @@ EC u8 func_08050DD8(void * const * object)
     SECTION(".text.ui_state_adapters");
 EC u8 func_08050DE4(void * const * object)
     SECTION(".text.ui_state_adapters");
-EC void func_08050478(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3,
-    u32 arg_sp0, u32 arg_sp1, u32 arg_sp2, u32 arg_sp3);
-EC void func_08050664(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3,
-    u32 arg_sp0, u32 arg_sp1, u32 arg_sp2);
 EC void func_08050AD8(void * object, u32 arg_r1);
 
 EC void func_08050D5C(UiStateOwner const * object)
@@ -400,18 +396,14 @@ EC void func_08050E0C(UiStateOwner const * object, char const * first, char cons
     char const * third, char const * fourth, char const * fifth, char const * sixth,
     ScriptTextVariableStore * variables)
 {
-    func_08050478(object->value, reinterpret_cast<u32>(first), reinterpret_cast<u32>(second),
-        reinterpret_cast<u32>(third), reinterpret_cast<u32>(fourth), reinterpret_cast<u32>(fifth),
-        reinterpret_cast<u32>(sixth), reinterpret_cast<u32>(variables));
+    object->value->SetChoices(first, second, third, fourth, fifth, sixth, variables);
 }
 
 EC void func_08050E30(UiStateOwner const * object, char const * prompt, char const * first,
     char const * second, char const * third, char const * fourth,
     ScriptTextVariableStore * variables)
 {
-    func_08050664(object->value, reinterpret_cast<u32>(prompt), reinterpret_cast<u32>(first),
-        reinterpret_cast<u32>(second), reinterpret_cast<u32>(third), reinterpret_cast<u32>(fourth),
-        reinterpret_cast<u32>(variables));
+    object->value->SetPromptChoices(prompt, first, second, third, fourth, variables);
 }
 
 EC void func_08050E50(void * const * object, u32 arg_r1)
@@ -772,6 +764,130 @@ void UiStatePayload::SetText(char const * message, u16 speed,
     SetUiTextStreamText(&text, message, variables);
     SetUiTextStreamSpeed(&text, speed);
     state = 4;
+}
+
+void UiStatePayload::SetChoices(char const * first, char const * second,
+    char const * third, char const * fourth, char const * fifth, char const * sixth,
+    ScriptTextVariableStore * variables)
+{
+    if (state >= 0) {
+        if (state <= 2)
+            OpenImmediately();
+        else if (state <= 6)
+            output.NextPage();
+    }
+    // Layouts 0..4 hold two through six choices. Four or more use two columns
+    // and the shorter encoded-byte limit. Missing inner slots stay selectable.
+    int layout = 4;
+    u32 limit = 12;
+    if (sixth == nullptr) {
+        layout = 3;
+        if (fifth == nullptr) {
+            layout = 2;
+            if (fourth == nullptr) {
+                limit = 26;
+                layout = 0;
+                if (third != nullptr)
+                    ++layout;
+            }
+        }
+    }
+    switch (layout) {
+    default: layout = 0;
+    case 4:
+        if (sixth == nullptr || strlen(sixth) > limit)
+            sixth = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+        // Fall through to validate every earlier optional slot.
+    case 3:
+        if (fifth == nullptr || strlen(fifth) > limit)
+            fifth = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+    case 2:
+        if (fourth == nullptr || strlen(fourth) > limit)
+            fourth = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+    case 1:
+        if (third == nullptr || strlen(third) > limit)
+            third = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+    case 0:
+        break;
+    }
+    if (second == nullptr || strlen(second) > limit)
+        second = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+    if (first == nullptr || strlen(first) > limit)
+        first = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+    switch (layout) {
+    case 4:
+        RenderUiChoiceLabel(this, GetUiChoiceLayoutPosition(layout, 6), sixth, variables);
+    case 3:
+        RenderUiChoiceLabel(this, GetUiChoiceLayoutPosition(layout, 5), fifth, variables);
+    case 2:
+        RenderUiChoiceLabel(this, GetUiChoiceLayoutPosition(layout, 4), fourth, variables);
+    case 1:
+        RenderUiChoiceLabel(this, GetUiChoiceLayoutPosition(layout, 3), third, variables);
+    case 0:
+        RenderUiChoiceLabel(this, GetUiChoiceLayoutPosition(layout, 2), second, variables);
+        RenderUiChoiceLabel(this, GetUiChoiceLayoutPosition(layout, 1), first, variables);
+        break;
+    default:
+        layout = 0;
+    }
+    choice_layout = layout;
+    choice_index = 1;
+    state = 6;
+    InitializeIndexedResourceHandle(&choice_handle,
+        reinterpret_cast<IndexedResourceProvider *>(&hand_cursor), 0);
+}
+
+void UiStatePayload::SetPromptChoices(char const * prompt, char const * first,
+    char const * second, char const * third, char const * fourth,
+    ScriptTextVariableStore * variables)
+{
+    if (prompt == nullptr || strlen(prompt) > 28)
+        prompt = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+    // Layouts 5..7 reserve the first row for the prompt and hold 2..4 choices.
+    int layout = 7;
+    u32 limit = 12;
+    if (fourth == nullptr) {
+        layout = 6;
+        if (third == nullptr) {
+            limit = 26;
+            layout = 5;
+        }
+    }
+    switch (layout) {
+    default: layout = 5;
+    case 7:
+        if (fourth == nullptr || strlen(fourth) > limit)
+            fourth = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+    case 6:
+        if (third == nullptr || strlen(third) > limit)
+            third = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+    case 5:
+        break;
+    }
+    if (second == nullptr || strlen(second) > limit)
+        second = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+    if (first == nullptr || strlen(first) > limit)
+        first = reinterpret_cast<char const *>(&gUiTextLayoutPositionTable);
+    output.NextPage();
+    UiTextLayoutPosition prompt_position = {0, 0, 0};
+    RenderUiChoiceLabel(this, prompt_position, prompt, variables);
+    switch (layout) {
+    case 7:
+        RenderUiChoiceLabel(this, GetUiChoiceLayoutPosition(layout, 4), fourth, variables);
+    case 6:
+        RenderUiChoiceLabel(this, GetUiChoiceLayoutPosition(layout, 3), third, variables);
+    case 5:
+        RenderUiChoiceLabel(this, GetUiChoiceLayoutPosition(layout, 2), second, variables);
+        RenderUiChoiceLabel(this, GetUiChoiceLayoutPosition(layout, 1), first, variables);
+        break;
+    default:
+        layout = 5;
+    }
+    choice_layout = layout;
+    choice_index = 1;
+    state = 6;
+    InitializeIndexedResourceHandle(&choice_handle,
+        reinterpret_cast<IndexedResourceProvider *>(&hand_cursor), 0);
 }
 
 UiTextLayoutPosition GetUiChoiceLayoutPosition(u32 layout, u32 selection)

@@ -543,6 +543,12 @@ struct UiStatePayload
     void OpenImmediately() SECTION(".text.ui_payload_open");
     void SetText(char const *, u16 speed, ScriptTextVariableStore *)
         SECTION(".text.ui_payload_text");
+    void SetChoices(char const * first, char const * second, char const * third,
+        char const * fourth, char const * fifth, char const * sixth,
+        ScriptTextVariableStore *) SECTION(".text.ui_payload_choices");
+    void SetPromptChoices(char const * prompt, char const * first, char const * second,
+        char const * third, char const * fourth,
+        ScriptTextVariableStore *) SECTION(".text.ui_payload_choices");
     i32 Update(HardwareCoreState *, HardwareSpriteBufferState *, HardwareDisplayState *,
         u8 *, u8 *, MusicPlayer **);
     void ShowHeartIndicator(u32 level) SECTION(".text.ui_heart_indicator");

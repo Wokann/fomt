@@ -315,7 +315,7 @@ SECTIONS
         . = 0x50424; /* JP/US-shared nonzero UI-state clearer. */
         src/ui_state.o(.text.clear_ui_object_state_if_nonzero);
         src/ui_state.o(.text.ui_payload_text);
-        asm/code_0803EE94.o(.text.ui_object_state_after);
+        src/ui_state.o(.text.ui_payload_choices);
         src/ui_state.o(.text.ui_choice_labels);
         asm/code_0803EE94.o(.text.ui_choice_labels_after);
         . = 0x50B50; /* JP/US-shared UI action-state first-flag clearer. */
