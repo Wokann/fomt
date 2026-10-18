@@ -211,7 +211,7 @@ bool func_08003F9C(NewGameMenuCore * core)
     return false;
 }
 
-static inline SceneTransition * CreateLoadedMenuSaveTransition(NewGameLoadedSaveOwner & owner)
+static inline SceneTransition * CreateLoadedMenuSaveTransition(GameStateSaveImageOwner & owner)
 {
     NewGameLoadedSaveTransition * object = static_cast<NewGameLoadedSaveTransition *>(
         ::operator new(sizeof(NewGameLoadedSaveTransition)));
@@ -235,7 +235,7 @@ bool func_080040A0(NewGameMenuCore * core)
     u32 attempts = 3;
     do {
         InterruptGuard guard(0x1000);
-        NewGameLoadedSaveOwner loaded(func_08011650(::operator new(sizeof(GameStateSaveImage)),
+        GameStateSaveImageOwner loaded(func_08011650(::operator new(sizeof(GameStateSaveImage)),
             &core->sram, offset, &status));
         if (status == 0) {
             if (core->unk_08 != nullptr) {
@@ -348,7 +348,7 @@ NewGameMenuCore * func_080041DC(NewGameMenuCore * core, void * state,
             u32 status = 0;
             int retries = 3;
             do {
-                NewGameLoadedSaveOwner loaded(func_08011650(
+                GameStateSaveImageOwner loaded(func_08011650(
                     ::operator new(sizeof(GameStateSaveImage)), &core->sram,
                     offset, &status));
                 if (status == 0) {

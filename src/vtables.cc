@@ -856,7 +856,9 @@ extern void func_080DC554(void);
 extern void func_080DC5A8(void);
 extern void func_080DC5B4(void);
 extern void func_080DC5D4(void);
-extern RawVTableFunction const vtable_unk_080E5BF8[] = {
+// Native callbacks of the recovered startup-controller class. Keep this
+// physical table here until its remaining native virtual bodies are recovered.
+extern RawVTableFunction const __vt_25GameSceneScriptController[] = {
     nullptr,
     nullptr,
     func_08010158,

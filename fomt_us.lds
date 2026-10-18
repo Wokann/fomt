@@ -151,6 +151,7 @@ SECTIONS
         asm/game_scene.o(.text);
         src/game_scene.o(.text.func_08010*);
         asm/game_scene.o(.text.game_scene_post);
+        src/game_scene.o(.text.game_scene_controller_constructors);
         src/game_state.o(.text.GetNonzeroRandomValue .text.__18GameStateSaveImagePCcT1G8GameDateT1 .text.Get*__C18GameStateSaveImage .text.AllAnimalsHaveHighAffection__C18GameStateSaveImage .text.SetFlag[0-3]__18GameStateSaveImage);
         asm/game_state.o(.text.game_state_after_startup_accessors);
         src/game_state.o(.text.CollectShippingRevenue__18GameStateSaveImage .text.SetFlag4__18GameStateSaveImage .text.UpdateUnknown*__18GameStateSaveImageUi);

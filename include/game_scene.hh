@@ -2,6 +2,7 @@
 #define GAME_SCENE_HH
 
 #include "prelude.h"
+#include "game_state.hh"
 #include "scene.hh"
 #include "entity_actor.hh"
 #include "ui_state.hh"
@@ -470,10 +471,21 @@ struct GameSceneScriptRequest {
 
 template <u32 Capacity>
 struct GameSceneScriptQueue {
-    u32 count;
-    GameSceneScriptRequest entries[Capacity];
+    GameSceneScriptQueue() : count(0) {}
 
-    GameSceneScriptRequest * End() { return &entries[count]; }
+    u32 count;
+    // Only [Data(), End()) contains constructed requests. Native construction
+    // leaves the remaining capacity untouched; insertion uses placement new.
+    u32 storage[Capacity * 2];
+
+    GameSceneScriptRequest * Data()
+    {
+        return reinterpret_cast<GameSceneScriptRequest *>(storage);
+    }
+    GameSceneScriptRequest * End()
+    {
+        return &reinterpret_cast<GameSceneScriptRequest *>(storage)[count];
+    }
 
     // Native insertion drops a full queue; it does not grow or overwrite it.
     void Push(GameSceneScriptRequest const & request)
@@ -518,36 +530,61 @@ typedef char GameSceneControllerActorScriptCheck[offsetof(GameSceneControllerAct
 typedef char GameSceneControllerLocationRecordSizeCheck[sizeof(GameSceneControllerLocationRecord) == 12 ? 1 : -1];
 typedef char GameSceneControllerLocationOffsetCheck[offsetof(GameSceneControllerLocationRecord, location) == 2 ? 1 : -1];
 
-// Verified prefix through the three queues. The native owner and lifecycle
-// are still incomplete; do not treat the unknown eight-byte prefix as a
-// recovered polymorphic class or as a fully modeled save-image owner.
-struct GameSceneScriptControllerPrefix {
-    u8 unk_00[8];
+// Native initialization preserves the upper five bits and following storage.
+// These flags have not yet been assigned a gameplay meaning.
+struct GameSceneScriptControllerUnk374 {
+    u16 unk_00 : 5;
+    u16 unk_05 : 6;
+    u16 unk_11 : 5;
+
+    GameSceneScriptControllerUnk374() : unk_00(6), unk_05(0) {}
+};
+
+struct GameSceneScriptControllerUnk36C {
+    u8 unk_00;
+    u8 unk_01[3];
+    u32 unk_04;
+    GameSceneScriptControllerUnk374 unk_08;
+
+    GameSceneScriptControllerUnk36C() : unk_00(0), unk_04(0x1D) {}
+};
+
+// Startup controller, distinct from the eight-byte GameScene wrapper. Both
+// constructors are recovered; Run and destruction remain native. The first
+// word is AScene's actual inherited vptr, not manually written payload.
+struct GameSceneScriptController : AScene {
+    GameSceneScriptController(GameStateSaveImageOwner save)
+        SECTION(".text.game_scene_controller_constructors");
+    GameSceneScriptController(char const * player_name, char const * farm_name,
+        GameDate birthday, char const * dog_name)
+        SECTION(".text.game_scene_controller_constructors");
+    virtual ~GameSceneScriptController() asm("func_08010158");
+    virtual SceneTransitionOwner Run() asm("func_0801004C");
+
+    GameStateSaveImageOwner save;
     ScriptEngine script_engine;
-    u8 unk_364[0x14];
+    u8 unk_364;
+    u8 unk_365[3];
+    u32 unk_368;
+    GameSceneScriptControllerUnk36C unk_36C;
     GameSceneScriptQueue<2> queue_0;
     GameSceneScriptQueue<40> queue_1;
     GameSceneScriptQueue<1> queue_2;
+    GameSceneControllerLocationRecord location_records[6];
+    GameSceneControllerActorRecord actor_records[4];
 };
 
 typedef char GameSceneScriptRequestSizeCheck[sizeof(GameSceneScriptRequest) == 8 ? 1 : -1];
-typedef char GameSceneControllerEngineCheck[offsetof(GameSceneScriptControllerPrefix, script_engine) == 8 ? 1 : -1];
-typedef char GameSceneControllerQueue0Check[offsetof(GameSceneScriptControllerPrefix, queue_0) == 0x378 ? 1 : -1];
-typedef char GameSceneControllerQueue1Check[offsetof(GameSceneScriptControllerPrefix, queue_1) == 0x38C ? 1 : -1];
-typedef char GameSceneControllerQueue2Check[offsetof(GameSceneScriptControllerPrefix, queue_2) == 0x4D0 ? 1 : -1];
-typedef char GameSceneControllerPrefixSizeCheck[sizeof(GameSceneScriptControllerPrefix) == 0x4DC ? 1 : -1];
-
-// Native creation allocates 0x554 bytes, initializes these two arrays and
-// publishes this controller through gUnk_0300040C. This is a field view, not
-// a replacement for the still-native controller constructor/destructor.
-struct GameSceneScriptController : GameSceneScriptControllerPrefix {
-    GameSceneControllerLocationRecord location_records[6];
-    GameSceneControllerActorRecord actor_records[4];
-
-private:
-    GameSceneScriptController();
-};
-
+typedef char GameSceneControllerSaveCheck[offsetof(GameSceneScriptController, save) == 4 ? 1 : -1];
+typedef char GameSceneControllerEngineCheck[offsetof(GameSceneScriptController, script_engine) == 8 ? 1 : -1];
+typedef char GameSceneControllerUnk364Check[offsetof(GameSceneScriptController, unk_364) == 0x364 ? 1 : -1];
+typedef char GameSceneControllerUnk368Check[offsetof(GameSceneScriptController, unk_368) == 0x368 ? 1 : -1];
+typedef char GameSceneControllerUnk36CCheck[offsetof(GameSceneScriptController, unk_36C) == 0x36C ? 1 : -1];
+typedef char GameSceneControllerUnk36CSizeCheck[sizeof(GameSceneScriptControllerUnk36C) == 12 ? 1 : -1];
+typedef char GameSceneControllerUnk374Check[offsetof(GameSceneScriptControllerUnk36C, unk_08) == 8 ? 1 : -1];
+typedef char GameSceneControllerQueue0Check[offsetof(GameSceneScriptController, queue_0) == 0x378 ? 1 : -1];
+typedef char GameSceneControllerQueue1Check[offsetof(GameSceneScriptController, queue_1) == 0x38C ? 1 : -1];
+typedef char GameSceneControllerQueue2Check[offsetof(GameSceneScriptController, queue_2) == 0x4D0 ? 1 : -1];
 typedef char GameSceneControllerLocationArrayCheck[offsetof(GameSceneScriptController, location_records) == 0x4DC ? 1 : -1];
 typedef char GameSceneControllerActorArrayCheck[offsetof(GameSceneScriptController, actor_records) == 0x524 ? 1 : -1];
 typedef char GameSceneControllerSizeCheck[sizeof(GameSceneScriptController) == 0x554 ? 1 : -1];

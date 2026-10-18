@@ -85,8 +85,8 @@ GameSceneControllerLocationRecord * func_08010104(void)
 
 GameSceneScriptQueue<2> * func_08010118(void)
 {
-    GameSceneScriptControllerPrefix * controller =
-        reinterpret_cast<GameSceneScriptControllerPrefix *>(gUnk_0300040C);
+    GameSceneScriptController * controller =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
     return &controller->queue_0;
 }
 
@@ -107,15 +107,29 @@ u32 func_08010148(void)
 
 ScriptEngine * func_0801014C(void)
 {
-    GameSceneScriptControllerPrefix * controller =
-        reinterpret_cast<GameSceneScriptControllerPrefix *>(gUnk_0300040C);
+    GameSceneScriptController * controller =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
     return &controller->script_engine;
+}
+
+GameSceneScriptController::GameSceneScriptController(GameStateSaveImageOwner input)
+    : save(input.release()), script_engine(save.get()), unk_364(0)
+{
+    gUnk_0300040C = reinterpret_cast<u8 *>(this);
+}
+
+GameSceneScriptController::GameSceneScriptController(char const * player_name,
+    char const * farm_name, GameDate birthday, char const * dog_name)
+    : save(new GameStateSaveImage(player_name, farm_name, birthday, dog_name)),
+      script_engine(save.get()), unk_364(1), unk_368(0xAB)
+{
+    gUnk_0300040C = reinterpret_cast<u8 *>(this);
 }
 
 GameScene::~GameScene()
 {
-    GameSceneScriptControllerPrefix * controller =
-        reinterpret_cast<GameSceneScriptControllerPrefix *>(gUnk_0300040C);
+    GameSceneScriptController * controller =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
     controller->script_engine.ClearUnk();
     delete state;
 }
@@ -549,16 +563,16 @@ void GameScene::TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width)
 void GameScene::CallScript(i32 script_id, i32 context_value)
 {
     GameSceneState * current = state;
-    GameSceneScriptControllerPrefix * controller =
-        reinterpret_cast<GameSceneScriptControllerPrefix *>(gUnk_0300040C);
+    GameSceneScriptController * controller =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
     controller->script_engine.LoadById(script_id, context_value);
     func_080D7F3C(current);
 }
 
 void GameScene::QueueScript(GameSceneScriptRequest const & request, i32 queue_kind)
 {
-    GameSceneScriptControllerPrefix * controller =
-        reinterpret_cast<GameSceneScriptControllerPrefix *>(gUnk_0300040C);
+    GameSceneScriptController * controller =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
     GameSceneScriptQueue<2> & first = controller->queue_0;
     switch (queue_kind) {
     case 0: first.Push(request); break;

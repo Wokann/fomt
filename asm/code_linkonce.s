@@ -22,7 +22,7 @@ func_080D3EF4: @ 0x080D3EF4
 	movs r4, #0
 	str r4, [r5, #4]
 	adds r6, r0, #0
-	ldr r0, .L080D3FF0 @ =vtable_unk_080E5BF8
+	ldr r0, .L080D3FF0 @ =__vt_25GameSceneScriptController
 	str r0, [r6]
 	str r4, [sp, #4]
 	str r1, [r6, #4]
@@ -129,7 +129,7 @@ func_080D3EF4: @ 0x080D3EF4
 	bx r1
 	.align 2, 0
 .L080D3FEC: .4byte 0x00000554
-.L080D3FF0: .4byte vtable_unk_080E5BF8
+.L080D3FF0: .4byte __vt_25GameSceneScriptController
 .L080D3FF4: .4byte 0xFFFFF81F
 .L080D3FF8: .4byte 0x000004DC
 .L080D3FFC: .4byte 0x00000524
@@ -5448,7 +5448,7 @@ func_080D6C58:
     adds r0, r5, #0
     adds r0, #0x24
     ldrb r5, [r0]
-    ldr r0, [pc, #0xe8]
+    ldr r0, .Ljp_GameSceneScriptControllerVTable
     str r0, [r7]
     ldr r0, [pc, #0xe8]
     bl __builtin_new
@@ -5561,7 +5561,10 @@ func_080D6C58:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x54, 0x05, 0x00, 0x00, 0x38, 0x50, 0x0E, 0x08, 0xF4, 0x34, 0x00, 0x00, 0x1F, 0xF8, 0xFF, 0xFF
+    .byte 0x54, 0x05, 0x00, 0x00
+.Ljp_GameSceneScriptControllerVTable:
+    .4byte __vt_25GameSceneScriptController
+    .byte 0xF4, 0x34, 0x00, 0x00, 0x1F, 0xF8, 0xFF, 0xFF
     .byte 0xDC, 0x04, 0x00, 0x00, 0x24, 0x05, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03
     .global func_080D6D8C
     .thumb_func
@@ -6473,7 +6476,7 @@ func_080D6C58: @ 0x080D6C58
 	adds r0, r5, #0
 	adds r0, #0x24
 	ldrb r5, [r0]
-	ldr r0, .L080D6D74 @ =vtable_unk_080E5BF8
+	ldr r0, .L080D6D74 @ =__vt_25GameSceneScriptController
 	str r0, [r7]
 	ldr r0, .L080D6D78 @ =0x000034F4
 	bl __builtin_new
@@ -6588,7 +6591,7 @@ func_080D6C58: @ 0x080D6C58
 	bx r1
 	.align 2, 0
 .L080D6D70: .4byte 0x00000554
-.L080D6D74: .4byte vtable_unk_080E5BF8
+.L080D6D74: .4byte __vt_25GameSceneScriptController
 .L080D6D78: .4byte 0x000034F4
 .L080D6D7C: .4byte 0xFFFFF81F
 .L080D6D80: .4byte 0x000004DC

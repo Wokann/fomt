@@ -93,31 +93,6 @@ typedef char NewGameMenuCoreSavedDisplayOptionsCheck[offsetof(NewGameMenuCore, s
 // Original ABI tables contain two metadata words before their callbacks.
 typedef void (*NewGameSceneVTableFunction)(void);
 
-// This one-word owner scopes the allocation returned by the save read. Its
-// layout stays opaque; cleanup uses the existing image destructor. Failed
-// reads release the allocation for the caller's original raw-delete path.
-class NewGameLoadedSaveOwner {
-public:
-    explicit NewGameLoadedSaveOwner(void * state) : value(state) {}
-    ~NewGameLoadedSaveOwner()
-    {
-        if (value != nullptr)
-            func_080D4480(value, 3);
-    }
-    void * get() const { return value; }
-    void * release()
-    {
-        void * state = value;
-        value = nullptr;
-        return state;
-    }
-
-private:
-    void * value;
-    NewGameLoadedSaveOwner(NewGameLoadedSaveOwner const &);
-    NewGameLoadedSaveOwner & operator=(NewGameLoadedSaveOwner const &);
-};
-
 // The existing +0x0C virtual callback creates the next game scene; its
 // destructor cleans up the save image stored immediately after the vtable.
 struct NewGameLoadedSaveTransition {
@@ -125,7 +100,6 @@ struct NewGameLoadedSaveTransition {
     void * state;
 };
 
-typedef char NewGameLoadedSaveOwnerSizeCheck[sizeof(NewGameLoadedSaveOwner) == 4 ? 1 : -1];
 typedef char NewGameLoadedSaveTransitionSizeCheck[sizeof(NewGameLoadedSaveTransition) == 8 ? 1 : -1];
 typedef char NewGameLoadedSaveTransitionStateCheck[offsetof(NewGameLoadedSaveTransition, state) == 4 ? 1 : -1];
 

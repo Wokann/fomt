@@ -285,6 +285,35 @@ void func_080D4480(void * object, u32 flags);
 
 EXTERN_C_END
 
+// One-word owner of a native save image. Non-const copies transfer ownership,
+// including by-value controller arguments whose cleanup belongs to the callee.
+// Keep this game-specific lifetime here instead of a menu-only duplicate.
+class GameStateSaveImageOwner {
+public:
+    explicit GameStateSaveImageOwner(void * initial)
+        : value(static_cast<GameStateSaveImage *>(initial)) {}
+    GameStateSaveImageOwner(GameStateSaveImageOwner & other)
+        : value(other.release()) {}
+    ~GameStateSaveImageOwner()
+    {
+        if (value != nullptr)
+            func_080D4480(value, 3);
+    }
+    GameStateSaveImage * get() const { return value; }
+    GameStateSaveImage * release()
+    {
+        GameStateSaveImage * result = value;
+        value = nullptr;
+        return result;
+    }
+
+private:
+    GameStateSaveImage * value;
+    GameStateSaveImageOwner & operator=(GameStateSaveImageOwner const &);
+};
+
+typedef char GameStateSaveImageOwnerSizeCheck[sizeof(GameStateSaveImageOwner) == 4 ? 1 : -1];
+
 inline GameDisplayOptions::GameDisplayOptions()
 {
     InitializeGameDisplayOptions(this);

@@ -189,6 +189,7 @@ SECTIONS
         asm/game_scene.o(.text);
         src/game_scene.o(.text.func_08010*);
         asm/game_scene.o(.text.game_scene_post);
+        src/game_scene.o(.text.game_scene_controller_constructors);
         . = 0x10328; /* JP ROM 0x08010328, bounded by game_scene and entity */
         src/game_state.o(.text.GetNonzeroRandomValue .text.__18GameStateSaveImagePCcT1G8GameDateT1 .text.Get*__C18GameStateSaveImage .text.AllAnimalsHaveHighAffection__C18GameStateSaveImage .text.SetFlag[0-3]__18GameStateSaveImage);
         asm/game_state.o(.text.game_state_after_startup_accessors);
