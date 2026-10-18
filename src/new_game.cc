@@ -1562,3 +1562,88 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
 #endif
     }
 }
+
+void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore * core)
+{
+    core->glyph_count = 0;
+#if defined(REGION_JP)
+    int title[3];
+    title[0] = core->season_column + 10;
+#else
+    int title[8];
+    switch (core->season_column) {
+    case 0: {
+        for (int i = 0; i < 6; ++i)
+            title[i] = i + 10;
+    } break;
+    case 4: {
+        for (int i = 0; i < 6; ++i)
+            title[i] = i + 16;
+    } break;
+    case 8: {
+        for (int i = 0; i < 6; ++i)
+            title[i] = i + 22;
+    } break;
+    default: {
+        for (int i = 0; i < 6; ++i)
+            title[i] = i + 28;
+    } break;
+    }
+#endif
+#if defined(REGION_JP)
+    title[1] = static_cast<i8>(core->day / 10) == 0 ? 20 : static_cast<i8>(core->day / 10);
+    title[2] = static_cast<i8>(core->day % 10);
+    AppendBirthdayInputGlyph(core, 144, 8, title[0], 1);
+    AppendBirthdayInputGlyph(core, 192, 8, title[1], 1);
+    AppendBirthdayInputGlyph(core, 208, 8, title[2], 1);
+    for (int i = 0; i < 3; ++i)
+        AppendBirthdayInputGlyph(core, 80 + i * 16, 8, i + 14, 1);
+    AppendBirthdayInputGlyph(core, 160, 8, 17, 1);
+    AppendBirthdayInputGlyph(core, 176, 8, 18, 1);
+    AppendBirthdayInputGlyph(core, 224, 8, 16, 1);
+    for (int i = 0; i < 4; ++i)
+        AppendBirthdayInputGlyph(core, 18 + i * 34, 40, i + 10, 3);
+#else
+#if defined(REGION_DE)
+    title[6] = static_cast<i8>(core->day / 10) == 0 ? 45 : static_cast<i8>(core->day / 10);
+#else
+    title[6] = static_cast<i8>(core->day / 10) == 0 ? 26 : static_cast<i8>(core->day / 10);
+#endif
+    title[7] = static_cast<i8>(core->day % 10);
+    for (int i = 0; i < 6; ++i)
+        AppendBirthdayInputGlyph(core, 120 + i * 8, 8, title[i], 1);
+    AppendBirthdayInputGlyph(core, 192, 8, title[6], 1);
+    AppendBirthdayInputGlyph(core, 200, 8, title[7], 1);
+#endif
+    u8 day = 1;
+    for (int row = 0; row < 5; ++row) {
+        for (int column = 0; column < 7; ++column) {
+#if defined(REGION_JP)
+            if (day > 9) AppendBirthdayInputGlyph(core, column * 34 + 2, row * 18 + 64, static_cast<u8>(day / 10u), 3);
+            AppendBirthdayInputGlyph(core, column * 34 + 18, row * 18 + 64, static_cast<u8>(day % 10u), 3);
+#else
+            if (day > 9) AppendBirthdayInputGlyph(core, column * 32 + 16, row * 18 + 64, static_cast<u8>(day / 10u), 3);
+            AppendBirthdayInputGlyph(core, column * 32 + 24, row * 18 + 64, static_cast<u8>(day % 10u), 3);
+#endif
+            ++day;
+            if (day > 30) break;
+        }
+    }
+#if !defined(REGION_JP)
+    for (int i = 0; i < 6; ++i)
+        AppendBirthdayInputGlyph(core, i * 8, 40, i + 10, 3);
+    for (int i = 0; i < 6; ++i)
+        AppendBirthdayInputGlyph(core, i * 8 + 64, 40, i + 16, 3);
+    for (int i = 0; i < 6; ++i)
+        AppendBirthdayInputGlyph(core, i * 8 + 128, 40, i + 22, 3);
+    for (int i = 0; i < 6; ++i)
+        AppendBirthdayInputGlyph(core, i * 8 + 192, 40, i + 28, 3);
+#if defined(REGION_DE)
+    for (int i = 0; i < 10; ++i)
+        AppendBirthdayInputGlyph(core, i * 8 + 8, 8, i + 35, 3);
+#else
+    for (int i = 0; i < 8; ++i)
+        AppendBirthdayInputGlyph(core, i * 8 + 8, 8, i + 35, 3);
+#endif
+#endif
+}

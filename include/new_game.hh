@@ -225,7 +225,8 @@ bool CancelBirthdayInputSelection(NewGameBirthdayInputCore *)
 // Display helpers still implemented by native assembly in every region.
 void func_0806E234(NewGameBirthdayInputCore *);
 void func_0806E43C(NewGameBirthdayInputCore *);
-void func_0806E578(NewGameBirthdayInputCore *);
+void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore *)
+    SECTION(".text.new_game_birthday_glyph_layout");
 void AppendBirthdayInputGlyph(NewGameBirthdayInputCore *, i32, i32, i32, i32)
     SECTION(".text.new_game_birthday_glyph_append");
 void RenderBirthdayInputSprites(NewGameBirthdayInputCore *)
