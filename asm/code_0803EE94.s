@@ -5809,7 +5809,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     adds r0, #0x94
     str r4, [r0]
     str r4, [r0, #4]
-    ldr r1, .Ljp_0804F3E8 @ =vtable_unk_080E7888
+    ldr r1, .Ljp_0804F3E8 @ =__vt_20UiDmaTransferCommand
     str r1, [r0, #8]
     str r2, [r0, #0xc]
     movs r2, #0xd0
@@ -5974,7 +5974,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     add r0, r8
     str r7, [r0]
     str r7, [r0, #4]
-    ldr r1, .Ljp_0804F3F0 @ =vtable_unk_080E7878
+    ldr r1, .Ljp_0804F3F0 @ =__vt_25UiTextOutputUploadCommand
     str r1, [r0, #8]
     ldr r1, [sp, #0x10]
     str r1, [r0, #0xc]
@@ -6007,7 +6007,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     adds r1, r1, r0
     str r7, [r2]
     str r7, [r2, #4]
-    ldr r0, .Ljp_0804F3FC @ =vtable_unk_080E78D0
+    ldr r0, .Ljp_0804F3FC @ =__vt_21UiTextTileCopyCommand
     str r0, [r2, #8]
     str r3, [r2, #0xc]
     str r1, [r2, #0x10]
@@ -6047,7 +6047,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     add r3, r8
     str r7, [r3]
     str r7, [r3, #4]
-    ldr r1, .Ljp_0804F408 @ =vtable_unk_080E7868
+    ldr r1, .Ljp_0804F408 @ =__vt_24UiTextWindowSetupCommand
     str r1, [r3, #8]
     ldrb r2, [r3, #0xc]
     movs r1, #0x20
@@ -6183,15 +6183,15 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
 .Ljp_0804F3DC: .4byte 0xFFF801FF
 .Ljp_0804F3E0: .4byte __vt_18HardwareLinkedList
 .Ljp_0804F3E4: .4byte __vt_12HardwareLink
-.Ljp_0804F3E8: .4byte vtable_unk_080E7888
+.Ljp_0804F3E8: .4byte __vt_20UiDmaTransferCommand
 .Ljp_0804F3EC: .4byte __vt_18UnkUiSelectionData
-.Ljp_0804F3F0: .4byte vtable_unk_080E7878
+.Ljp_0804F3F0: .4byte __vt_25UiTextOutputUploadCommand
 .Ljp_0804F3F4: .4byte gUiSharedTileByteCount
 .Ljp_0804F3F8: .4byte gUiSharedTiles
-.Ljp_0804F3FC: .4byte vtable_unk_080E78D0
+.Ljp_0804F3FC: .4byte __vt_21UiTextTileCopyCommand
 .Ljp_0804F400: .4byte 0x00003FFF
 .Ljp_0804F404: .4byte 0xFFFFC000
-.Ljp_0804F408: .4byte vtable_unk_080E7868
+.Ljp_0804F408: .4byte __vt_24UiTextWindowSetupCommand
 .Ljp_0804F40C: .4byte 0xFFFF801F
 .Ljp_0804F410: .4byte 0xFFF87FFF
 .Ljp_0804F414: .4byte gUiHandCursorArchive
@@ -6203,124 +6203,8 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
 
 
 
-    .global _._14UiStatePayload
-    .thumb_func
-_._14UiStatePayload: @ 0x0804F428
-    push {r4, r5, r6, r7, lr}
-    adds r6, r0, #0
-    adds r7, r1, #0
-    movs r0, #0xa9
-    lsls r0, r0, #3
-    adds r4, r6, r0
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl func_080073E0
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._17HardwarePoolOwner
-    ldr r1, .Ljp_0804F528 @ =0x00000504
-    adds r0, r6, r1
-    ldr r5, .Ljp_0804F52C @ =vtable_unk_080E5A28
-    str r5, [r0]
-    movs r0, #0xf4
-    lsls r0, r0, #1
-    adds r4, r6, r0
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl func_080073E0
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._17HardwarePoolOwner
-    movs r1, #0xf2
-    lsls r1, r1, #1
-    adds r0, r6, r1
-    movs r1, #2
-    bl _._20UiPortraitGroupOwner
-    movs r0, #0xea
-    lsls r0, r0, #1
-    adds r4, r6, r0
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    movs r1, #0xc8
-    lsls r1, r1, #1
-    adds r0, r6, r1
-    str r5, [r0]
-    subs r1, #0x30
-    adds r0, r6, r1
-    str r5, [r0]
-    subs r1, #0x18
-    adds r0, r6, r1
-    movs r1, #2
-    bl func_080098AC
-    movs r1, #0x98
-    lsls r1, r1, #1
-    adds r0, r6, r1
-    movs r1, #2
-    bl func_080098AC
-    movs r1, #0x90
-    lsls r1, r1, #1
-    adds r0, r6, r1
-    movs r1, #2
-    bl func_080098AC
-    adds r0, r6, #0
-    adds r0, #0xd0
-    movs r1, #2
-    bl _._18UnkUiSelectionData
-    adds r0, r6, #0
-    adds r0, #0xc0
-    movs r1, #2
-    bl func_080098AC
-    adds r1, r6, #0
-    adds r1, #0x3c
-    ldr r0, [r6, #0x3c]
-    lsls r0, r0, #4
-    adds r0, #4
-    adds r1, r1, r0
-    adds r0, r6, #0
-    adds r0, #0x40
-    cmp r0, r1
-    beq .Ljp_0804F4E2
-.Ljp_0804F4DC:
-    adds r0, #0x10
-    cmp r0, r1
-    bne .Ljp_0804F4DC
-.Ljp_0804F4E2:
-    adds r0, r6, #0
-    adds r0, #0x20
-    movs r1, #2
-    bl func_080098DC
-    adds r4, r6, #0
-    adds r4, #0x18
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    subs r4, #8
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl func_080073E0
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._17HardwarePoolOwner
-    movs r0, #1
-    ands r0, r7
-    cmp r0, #0
-    beq .Ljp_0804F520
-    adds r0, r6, #0
-    bl __builtin_delete
-.Ljp_0804F520:
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
+    .section .text.ui_payload_destructor_after, "ax", %progbits
     .align 2, 0
-.Ljp_0804F528: .4byte 0x00000504
-.Ljp_0804F52C: .4byte vtable_unk_080E5A28
     .global Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     .thumb_func
 Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer: @ 0x0804F530
@@ -148859,7 +148743,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	adds r0, #0x94
 	str r4, [r0]
 	str r4, [r0, #4]
-	ldr r1, .L0804F65C @ =vtable_unk_080E7898
+	ldr r1, .L0804F65C @ =__vt_20UiDmaTransferCommand
 	str r1, [r0, #8]
 	str r2, [r0, #0xc]
 	movs r2, #0xd0
@@ -149024,7 +148908,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	add r0, r8
 	str r7, [r0]
 	str r7, [r0, #4]
-	ldr r1, .L0804F664 @ =vtable_unk_080E7888
+	ldr r1, .L0804F664 @ =__vt_25UiTextOutputUploadCommand
 	str r1, [r0, #8]
 	ldr r1, [sp, #0x10]
 	str r1, [r0, #0xc]
@@ -149057,7 +148941,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	adds r1, r1, r0
 	str r7, [r2]
 	str r7, [r2, #4]
-	ldr r0, .L0804F670 @ =vtable_unk_080E78E0
+	ldr r0, .L0804F670 @ =__vt_21UiTextTileCopyCommand
 	str r0, [r2, #8]
 	str r3, [r2, #0xc]
 	str r1, [r2, #0x10]
@@ -149097,7 +148981,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	add r3, r8
 	str r7, [r3]
 	str r7, [r3, #4]
-	ldr r1, .L0804F67C @ =vtable_unk_080E7878
+	ldr r1, .L0804F67C @ =__vt_24UiTextWindowSetupCommand
 	str r1, [r3, #8]
 	ldrb r2, [r3, #0xc]
 	movs r1, #0x20
@@ -149233,15 +149117,15 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 .L0804F650: .4byte 0xFFF801FF
 .L0804F654: .4byte __vt_18HardwareLinkedList
 .L0804F658: .4byte __vt_12HardwareLink
-.L0804F65C: .4byte vtable_unk_080E7898
+.L0804F65C: .4byte __vt_20UiDmaTransferCommand
 .L0804F660: .4byte __vt_18UnkUiSelectionData
-.L0804F664: .4byte vtable_unk_080E7888
+.L0804F664: .4byte __vt_25UiTextOutputUploadCommand
 .L0804F668: .4byte gUiSharedTileByteCount
 .L0804F66C: .4byte gUiSharedTiles
-.L0804F670: .4byte vtable_unk_080E78E0
+.L0804F670: .4byte __vt_21UiTextTileCopyCommand
 .L0804F674: .4byte 0x00003FFF
 .L0804F678: .4byte 0xFFFFC000
-.L0804F67C: .4byte vtable_unk_080E7878
+.L0804F67C: .4byte __vt_24UiTextWindowSetupCommand
 .L0804F680: .4byte 0xFFFF801F
 .L0804F684: .4byte 0xFFF87FFF
 .L0804F688: .4byte gUiHandCursorArchive
@@ -149250,124 +149134,8 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 .L0804F694: .4byte gUnk_08728320
 .L0804F698: .4byte 0x00000534
 
-	thumb_func_start _._14UiStatePayload
-_._14UiStatePayload: @ 0x0804F69C
-	push {r4, r5, r6, r7, lr}
-	adds r6, r0, #0
-	adds r7, r1, #0
-	movs r0, #0xa9
-	lsls r0, r0, #3
-	adds r4, r6, r0
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl func_080073E0
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	ldr r1, .L0804F79C @ =0x00000504
-	adds r0, r6, r1
-	ldr r5, .L0804F7A0 @ =vtable_unk_080E5A28
-	str r5, [r0]
-	movs r0, #0xf4
-	lsls r0, r0, #1
-	adds r4, r6, r0
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl func_080073E0
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	movs r1, #0xf2
-	lsls r1, r1, #1
-	adds r0, r6, r1
-	movs r1, #2
-	bl _._20UiPortraitGroupOwner
-	movs r0, #0xea
-	lsls r0, r0, #1
-	adds r4, r6, r0
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	movs r1, #0xc8
-	lsls r1, r1, #1
-	adds r0, r6, r1
-	str r5, [r0]
-	subs r1, #0x30
-	adds r0, r6, r1
-	str r5, [r0]
-	subs r1, #0x18
-	adds r0, r6, r1
-	movs r1, #2
-	bl func_080098AC
-	movs r1, #0x98
-	lsls r1, r1, #1
-	adds r0, r6, r1
-	movs r1, #2
-	bl func_080098AC
-	movs r1, #0x90
-	lsls r1, r1, #1
-	adds r0, r6, r1
-	movs r1, #2
-	bl func_080098AC
-	adds r0, r6, #0
-	adds r0, #0xd0
-	movs r1, #2
-	bl _._18UnkUiSelectionData
-	adds r0, r6, #0
-	adds r0, #0xc0
-	movs r1, #2
-	bl func_080098AC
-	adds r1, r6, #0
-	adds r1, #0x3c
-	ldr r0, [r6, #0x3c]
-	lsls r0, r0, #4
-	adds r0, #4
-	adds r1, r1, r0
-	adds r0, r6, #0
-	adds r0, #0x40
-	cmp r0, r1
-	beq .L0804F756
-.L0804F750:
-	adds r0, #0x10
-	cmp r0, r1
-	bne .L0804F750
-.L0804F756:
-	adds r0, r6, #0
-	adds r0, #0x20
-	movs r1, #2
-	bl func_080098DC
-	adds r4, r6, #0
-	adds r4, #0x18
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl func_080073E0
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	movs r0, #1
-	ands r0, r7
-	cmp r0, #0
-	beq .L0804F794
-	adds r0, r6, #0
-	bl __builtin_delete
-.L0804F794:
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0804F79C: .4byte 0x00000504
-.L0804F7A0: .4byte vtable_unk_080E5A28
-
+    .section .text.ui_payload_destructor_after, "ax", %progbits
+    .align 2, 0
 	thumb_func_start Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer: @ 0x0804F7A4
 	push {r4, r5, r6, r7, lr}

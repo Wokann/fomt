@@ -32607,9 +32607,9 @@ func_080E0EF0:
     .section .text.code_080E0F48, "ax", %progbits
     .align 2, 0
 
-    .global func_080E0F48
+    .global Run__20UiDmaTransferCommand
     .thumb_func
-func_080E0F48:
+Run__20UiDmaTransferCommand:
     push {r4, r5, lr}
     ldr r5, [r0, #0xc]
     movs r0, #0
@@ -32652,30 +32652,6 @@ func_080E0F48:
     .section .text.ui_text_output_upload_after, "ax", %progbits
     .align 2, 0
 
-    .global func_080E07B8
-    .thumb_func
-func_080E07B8:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .global func_080E07C4
-    .thumb_func
-func_080E07C4:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .global func_080E07D0
-    .thumb_func
-func_080E07D0:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
     .global func_080E07DC
     .thumb_func
 func_080E07DC:
@@ -32695,14 +32671,6 @@ func_080E07DC:
     .byte 0x00, 0x00, 0x20, 0x6D, 0x0E, 0x08
     .section .text.ui_selection_cleanup_after, "ax", %progbits
     .align 2, 0
-    .global func_080E0880
-    .thumb_func
-func_080E0880:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
     .global func_080E10EC
     .thumb_func
 func_080E10EC:
@@ -40235,8 +40203,8 @@ func_080E0EF0: @ 0x080E0EF0
     .section .text.code_080E0F48, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080E0F48
-func_080E0F48: @ 0x080E0F48
+	thumb_func_start Run__20UiDmaTransferCommand
+Run__20UiDmaTransferCommand: @ 0x080E0F48
 	push {r4, r5, lr}
 	ldr r5, [r0, #0xc]
 	movs r0, #0
@@ -40281,30 +40249,6 @@ func_080E0F48: @ 0x080E0F48
     .align 2, 0
 
 
-	thumb_func_start func_080E1018
-func_080E1018: @ 0x080E1018
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E1024
-func_080E1024: @ 0x080E1024
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E1030
-func_080E1030: @ 0x080E1030
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
 	thumb_func_start func_080E103C
 func_080E103C: @ 0x080E103C
 	push {lr}
@@ -40325,14 +40269,6 @@ func_080E103C: @ 0x080E103C
 
     .section .text.ui_selection_cleanup_after, "ax", %progbits
     .align 2, 0
-
-	thumb_func_start func_080E10E0
-func_080E10E0: @ 0x080E10E0
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
 
 	thumb_func_start func_080E10EC
 func_080E10EC: @ 0x080E10EC

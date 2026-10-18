@@ -2,6 +2,10 @@
 #define UI_STATE_HH
 
 #include "prelude.h"
+#include "resource_handle.hh"
+#include "hardware_resource.hh"
+#include "hardware_dma_descriptor.hh"
+#include "utility/container_algorithms.hh"
 #include "hardware_linked_list.hh"
 #include "hardware_state_clear.hh"
 #include "utility/fixed_str.hh"
@@ -152,22 +156,7 @@ struct FirstFieldUiOwner
     FirstFieldUiFlags * data;
 };
 
-// The payload's allocation size and state field are verified. Its constructor,
-// destructor and update routine still have their original assembly bodies;
-// the remaining fields must not be treated as recovered high-level data.
-struct UiStatePayload
-{
-    UiStatePayload(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
-        HardwareStateOwner const & shared, HardwareResource const & resources);
-    ~UiStatePayload();
-    i32 Update(HardwareCoreState * state, HardwareSpriteBufferState * sprites,
-        HardwareDisplayState * display, u8 * links, u8 * manager,
-        MusicPlayer ** music);
-
-    u8 unknown_00[8];
-    i32 state;
-    u8 unknown_0c[0x548];
-};
+struct UiStatePayload;
 
 struct UiStateOwner
 {
@@ -183,17 +172,15 @@ struct UiStateOwner
     UiStatePayload * value;
 };
 
-typedef char UiStatePayloadSizeCheck[sizeof(UiStatePayload) == 0x554 ? 1 : -1];
 typedef char UiStateOwnerSizeCheck[sizeof(UiStateOwner) == 4 ? 1 : -1];
 
 // One-shot window setup: a background screen block, border tile index,
 // background palette bank and hand-cursor OBJ palette bank. The upper nine
 // bits retain their previous value and still have no established meaning.
-struct UiTextWindowSetupCommand
+struct UiTextWindowSetupCommand : HardwareLinkBase
 {
-    HardwareLinkBase ** previous_slot;
-    HardwareLinkBase * next;
-    HardwareLinkVirtualFunction const * vtable;
+    UiTextWindowSetupCommand(u32, u32, u32, u32) SECTION(".text.ui_state_adapters");
+    virtual bool Run() SECTION(".text.ui_text_window_setup");
     unsigned screen_block : 5;
     unsigned first_tile : 10;
     unsigned background_palette : 4;
@@ -203,8 +190,6 @@ struct UiTextWindowSetupCommand
 
 typedef char UiTextWindowSetupCommandSizeCheck[
     sizeof(UiTextWindowSetupCommand) == 0x10 ? 1 : -1];
-typedef char UiTextWindowSetupCommandVTableCheck[
-    offsetof(UiTextWindowSetupCommand, vtable) == 8 ? 1 : -1];
 
 // The native UI update copies input.pressed into this word-sized snapshot.
 // Only its low eight key bits are queried; allow_resume gates resumption.
@@ -291,11 +276,9 @@ struct UnkUiSelectionDimensions
 
 // Upload changed glyph buffers from the three physical rows, then retire
 // this queued command. The output storage and its resource handles are borrowed.
-struct UiTextOutputUploadCommand
+struct UiTextOutputUploadCommand : HardwareLinkBase
 {
-    HardwareLinkBase ** previous_slot;
-    HardwareLinkBase * next;
-    HardwareLinkVirtualFunction const * vtable;
+    virtual bool Run() SECTION(".text.ui_text_output_upload");
     UnkUiSelectionData * output;
 };
 
@@ -306,11 +289,10 @@ typedef char UiTextOutputUploadCommandOutputCheck[
 
 // A repeating BG tile upload. Alternating mode toggles its nibble mask each
 // run; it is not compression. That mode requires at least one 32-byte tile.
-struct UiTextTileCopyCommand
+struct UiTextTileCopyCommand : HardwareLinkBase
 {
-    HardwareLinkBase ** previous_slot;
-    HardwareLinkBase * next;
-    HardwareLinkVirtualFunction const * vtable;
+    UiTextTileCopyCommand(u32 const *, u32 *, u32, bool) SECTION(".text.ui_state_selection");
+    virtual bool Run() SECTION(".text.ui_text_tile_copy");
     u32 const * source;
     u32 * destination;
     u16 tile_count : 14;
@@ -367,14 +349,6 @@ typedef char UiTextTileCopyCommandDestinationCheck[
 
 EXTERN_C
 
-bool RunUiTextTileCopyCommand(UiTextTileCopyCommand * command)
-    SECTION(".text.ui_text_tile_copy");
-
-bool RunUiTextOutputUploadCommand(UiTextOutputUploadCommand * command)
-    SECTION(".text.ui_text_output_upload");
-
-bool RunUiTextWindowSetupCommand(UiTextWindowSetupCommand * command)
-    SECTION(".text.ui_text_window_setup");
 // The native nine-tile border helper remains assembly.
 void func_08051320(u16 * tilemap, u32 x, u32 y, u32 width, u32 height,
     u32 first_tile, u32 palette);
@@ -387,17 +361,8 @@ bool ShouldWaitForUiTextInput(UiTextInputAdapter const * input)
 bool CanResumeUiText(UiTextInputAdapter const * input)
     SECTION(".text.ui_text_input_callbacks");
 
-extern HardwareLinkVirtualFunction const vtable_unk_080E7868[];
-extern HardwareLinkVirtualFunction const vtable_unk_080E7878[];
-extern HardwareLinkVirtualFunction const vtable_unk_080E7888[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7898[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E78A8[];
-extern HardwareLinkVirtualFunction const vtable_unk_080E78D0[];
-extern HardwareLinkVirtualFunction const vtable_unk_080E78E0[];
-
-UiTextWindowSetupCommand * InitializeUiTextWindowSetupCommand(UiTextWindowSetupCommand * object,
-    u32 screen_block, u32 first_tile, u32 background_palette, u32 cursor_palette)
-    SECTION(".text.ui_state_adapters");
 
 UiTextInputAdapter * InitializeUiTextInputAdapter(UiTextInputAdapter * input,
     u32 const & pressed, u8 allow_resume);
@@ -415,9 +380,6 @@ int func_080512B8(UnkUiSelectionData const * object, int index)
 UnkUiSelectionRow * func_080512C8(UnkUiSelectionData const * object, u32 index)
     SECTION(".text.ui_state_selection");
 UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index)
-    SECTION(".text.ui_state_selection");
-UiTextTileCopyCommand * func_080512D8(UiTextTileCopyCommand * object,
-    u32 const * source, u32 * destination, u32 tile_count, bool alternate_nibbles)
     SECTION(".text.ui_state_selection");
 
 // Existing UI adapter ABI. The menu supplies a text address as arg_r1;
@@ -486,5 +448,129 @@ extern u8 const gUnk_UiSharedResourceData_001[];
 extern u8 const * const gUiSharedTiles;
 extern u32 const gUiSharedTileByteCount;
 extern u8 const * const gUiSharedPalette;
+
+// Eight 16-byte DMA descriptors; only the counted range has an active lifetime.
+struct UiDmaTransferQueue
+{
+    u32 count;
+    u8 storage[8 * sizeof(DmaTransferDescriptor)];
+
+    UiDmaTransferQueue() : count(0) {}
+    DmaTransferDescriptor * Begin()
+    {
+        return reinterpret_cast<DmaTransferDescriptor *>(storage);
+    }
+    DmaTransferDescriptor * End()
+    {
+        return reinterpret_cast<DmaTransferDescriptor *>(storage + count * sizeof(DmaTransferDescriptor));
+    }
+    ~UiDmaTransferQueue()
+    {
+        typedef __type_traits<DmaTransferDescriptor>::has_trivial_destructor Trait;
+        DmaTransferDescriptor * last = End();
+        destroy_range_inl(Begin(), last, Trait());
+    }
+};
+// The native Run remains assembly. Emit its real table and implicit destructor
+// in this implementation without exporting an unused constructor.
+#pragma interface "ui_state.hh"
+struct UiDmaTransferCommand : HardwareLinkBase
+{
+    UiDmaTransferQueue * queue;
+    virtual bool Run();
+};
+#pragma implementation
+typedef char UiDmaTransferQueueSizeCheck[sizeof(UiDmaTransferQueue) == 0x84 ? 1 : -1];
+typedef char UiDmaTransferCommandSizeCheck[sizeof(UiDmaTransferCommand) == 0x10 ? 1 : -1];
+
+struct UiResourceChangeFlags
+{
+    u8 active : 1;
+    u8 changed : 1;
+    u8 unknown : 6;
+    UiResourceChangeFlags() : active(0), changed(0) {}
+};
+struct UnkUiPayloadLowFlags
+{
+    u8 low : 6;
+    u8 unknown : 2;
+    UnkUiPayloadLowFlags() : low(0x3F) {}
+};
+// Native member order and ownership are checked against the original complete
+// constructor and destructor. Only destruction is currently recovered in C++.
+struct UiStatePayload
+{
+    // Construction and Update retain their original native assembly bodies.
+    UiStatePayload(u32, u32, u32, u32, HardwareStateOwner const &, HardwareResource const &);
+    ~UiStatePayload() SECTION(".text.ui_payload_destructor");
+    i32 Update(HardwareCoreState *, HardwareSpriteBufferState *, HardwareDisplayState *,
+        u8 *, u8 *, MusicPlayer **);
+    unsigned background : 2;
+    unsigned screen_block : 5;
+    unsigned character_block : 2;
+    unsigned first_tile : 10;
+    unsigned background_palette : 4;
+    unsigned unknown_00_23 : 9;
+    u32 mode;
+    i32 state;
+    u8 unk_0c;
+    u8 allow_resume;
+    HardwareResourceEntry palette;
+    HardwareStateEntry background_state;
+    HardwareLinkedList commands;
+    UiDmaTransferQueue records;
+    UiDmaTransferCommand records_command;
+    UnkUiSelectionData output;
+    UiTextStream text;
+    UiTextOutputUploadCommand output_command;
+    UiTextTileCopyCommand tile_copy;
+    UiTextWindowSetupCommand window;
+    u32 choice_index;
+    u32 choice_layout;
+    IndexedResourceArchive hand_cursor;
+    IndexedResourceArchive choice_cursor;
+    IndexedResourceHandle choice_handle;
+    HardwareStateEntry choice_state;
+    UiResourceChangeFlags portrait_flags;
+    u32 portrait_id;
+    UiPortraitGroupOwner portrait;
+    HardwareResourceEntry portrait_palette;
+    UiResourceChangeFlags nameplate_flags;
+    UnkUiSelectionTileBuffer nameplate_tiles[3];
+    u8 nameplate_phase;
+    IndexedResourceArchive nameplate_archive;
+    IndexedResourceHandle nameplate_handle;
+    HardwareResourceEntry nameplate_palette;
+    UnkUiPayloadLowFlags low_flags;
+};
+typedef char UiStatePayloadSizeCheck[sizeof(UiStatePayload) == 0x554 ? 1 : -1];
+typedef char UiPayload_state[offsetof(UiStatePayload, state) == 8 ? 1 : -1];
+typedef char UiPayload_palette[offsetof(UiStatePayload, palette) == 16 ? 1 : -1];
+typedef char UiPayload_background_state[offsetof(UiStatePayload, background_state) == 24 ? 1 : -1];
+typedef char UiPayload_commands[offsetof(UiStatePayload, commands) == 32 ? 1 : -1];
+typedef char UiPayload_records[offsetof(UiStatePayload, records) == 60 ? 1 : -1];
+typedef char UiPayload_records_command[offsetof(UiStatePayload, records_command) == 192 ? 1 : -1];
+typedef char UiPayload_output[offsetof(UiStatePayload, output) == 208 ? 1 : -1];
+typedef char UiPayload_text[offsetof(UiStatePayload, text) == 236 ? 1 : -1];
+typedef char UiPayload_output_command[offsetof(UiStatePayload, output_command) == 288 ? 1 : -1];
+typedef char UiPayload_tile_copy[offsetof(UiStatePayload, tile_copy) == 304 ? 1 : -1];
+typedef char UiPayload_window[offsetof(UiStatePayload, window) == 328 ? 1 : -1];
+typedef char UiPayload_choice_index[offsetof(UiStatePayload, choice_index) == 344 ? 1 : -1];
+typedef char UiPayload_choice_layout[offsetof(UiStatePayload, choice_layout) == 348 ? 1 : -1];
+typedef char UiPayload_hand_cursor[offsetof(UiStatePayload, hand_cursor) == 352 ? 1 : -1];
+typedef char UiPayload_choice_cursor[offsetof(UiStatePayload, choice_cursor) == 400 ? 1 : -1];
+typedef char UiPayload_choice_handle[offsetof(UiStatePayload, choice_handle) == 448 ? 1 : -1];
+typedef char UiPayload_choice_state[offsetof(UiStatePayload, choice_state) == 468 ? 1 : -1];
+typedef char UiPayload_portrait_flags[offsetof(UiStatePayload, portrait_flags) == 476 ? 1 : -1];
+typedef char UiPayload_portrait_id[offsetof(UiStatePayload, portrait_id) == 480 ? 1 : -1];
+typedef char UiPayload_portrait[offsetof(UiStatePayload, portrait) == 484 ? 1 : -1];
+typedef char UiPayload_portrait_palette[offsetof(UiStatePayload, portrait_palette) == 488 ? 1 : -1];
+typedef char UiPayload_nameplate_flags[offsetof(UiStatePayload, nameplate_flags) == 496 ? 1 : -1];
+typedef char UiPayload_nameplate_tiles[offsetof(UiStatePayload, nameplate_tiles) == 500 ? 1 : -1];
+typedef char UiPayload_nameplate_phase[offsetof(UiStatePayload, nameplate_phase) == 1280 ? 1 : -1];
+typedef char UiPayload_nameplate_archive[offsetof(UiStatePayload, nameplate_archive) == 1284 ? 1 : -1];
+typedef char UiPayload_nameplate_handle[offsetof(UiStatePayload, nameplate_handle) == 1332 ? 1 : -1];
+typedef char UiPayload_nameplate_palette[offsetof(UiStatePayload, nameplate_palette) == 1352 ? 1 : -1];
+typedef char UiPayload_low_flags[offsetof(UiStatePayload, low_flags) == 1360 ? 1 : -1];
 
 #endif // UI_STATE_HH

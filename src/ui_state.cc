@@ -1,3 +1,5 @@
+#include "prelude.h"
+#pragma implementation "ui_state.hh"
 #include "ui_state.hh"
 #include "font.hh"
 #include "resource_handle.hh"
@@ -8,8 +10,9 @@ void UiTextOutput::NextPage() {}
 void UiTextOutput::LineFeed() {}
 void UiTextOutput::CarriageReturn() {}
 
-bool RunUiTextTileCopyCommand(UiTextTileCopyCommand * command)
+bool UiTextTileCopyCommand::Run()
 {
+    UiTextTileCopyCommand * command = this;
     u32 const * source = command->source;
     u32 * destination = command->destination;
     if (command->alternate_nibbles) {
@@ -352,8 +355,9 @@ static inline void FillUiFastWords(u32 value, void * destination, u32 count)
     u32 volatile source = value;
     CpuFastSet((void const *)&source, destination, CPUSET_SRC_FIXED | count);
 }
-bool RunUiTextWindowSetupCommand(UiTextWindowSetupCommand * command)
+bool UiTextWindowSetupCommand::Run()
 {
+    UiTextWindowSetupCommand * command = this;
     u16 tile = ((command->first_tile + 3) & 0x3FF) | (command->background_palette << 12);
     u32 fill = tile | (static_cast<u32>(tile) << 16);
     FillUiFastWords(fill, reinterpret_cast<void *>(0x06000000 + command->screen_block * 0x800),
@@ -458,21 +462,10 @@ EC u32 func_08050EBC(FirstFieldUiOwner & object, u32 const flag_mask)
     return old_flags;
 }
 
-EC UiTextWindowSetupCommand * InitializeUiTextWindowSetupCommand(UiTextWindowSetupCommand * object,
-    u32 screen_block, u32 first_tile, u32 background_palette, u32 cursor_palette)
+UiTextWindowSetupCommand::UiTextWindowSetupCommand(u32 screen, u32 tile, u32 background, u32 cursor)
+    : HardwareLinkBase(), screen_block(screen), first_tile(tile),
+      background_palette(background), cursor_palette(cursor)
 {
-    object->previous_slot = nullptr;
-    object->next = nullptr;
-#if defined(REGION_JP)
-    object->vtable = vtable_unk_080E7868;
-#else
-    object->vtable = vtable_unk_080E7878;
-#endif
-    object->screen_block = screen_block;
-    object->first_tile = first_tile;
-    object->background_palette = background_palette;
-    object->cursor_palette = cursor_palette;
-    return object;
 }
 
 EC UiTextInputAdapter * InitializeUiTextInputAdapter(UiTextInputAdapter * input,
@@ -679,8 +672,9 @@ EC void func_080510E8(UnkUiSelectionData * object)
     UploadUiTextOutput(object);
 }
 
-bool RunUiTextOutputUploadCommand(UiTextOutputUploadCommand * command)
+bool UiTextOutputUploadCommand::Run()
 {
+    UiTextOutputUploadCommand * command = this;
     UploadUiTextOutput(command->output);
     return false;
 }
@@ -728,20 +722,13 @@ EC UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 inde
     return object->rows[index].Get();
 }
 
-EC UiTextTileCopyCommand * func_080512D8(UiTextTileCopyCommand * object,
-    u32 const * source, u32 * destination, u32 tile_count, bool alternate_nibbles)
+UiTextTileCopyCommand::UiTextTileCopyCommand(u32 const * source, u32 * destination,
+    u32 tile_count, bool alternate_nibbles)
+    : HardwareLinkBase(), source(source), destination(destination), tile_count(tile_count),
+      nibble_phase(0), alternate_nibbles(alternate_nibbles)
 {
-    object->previous_slot = nullptr;
-    object->next = nullptr;
-#if defined(REGION_JP)
-    object->vtable = vtable_unk_080E78D0;
-#else
-    object->vtable = vtable_unk_080E78E0;
-#endif
-    object->source = source;
-    object->destination = destination;
-    object->tile_count = tile_count;
-    object->nibble_phase = 0;
-    object->alternate_nibbles = alternate_nibbles;
-    return object;
 }
+
+// Reverse member destruction owns every resource and unlinks each queued
+// command. No borrowed output/queue pointer is separately freed.
+UiStatePayload::~UiStatePayload() {}

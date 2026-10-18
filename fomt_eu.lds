@@ -307,6 +307,8 @@ SECTIONS
         src/ui_state.o(.text.ui_text_input_callbacks);
         src/ui_state.o(.text.ui_text_window_setup);
         asm/code_0803EE94.o(.text.ui_text_window_setup_after);
+        src/ui_state.o(.text.ui_payload_destructor);
+        asm/code_0803EE94.o(.text.ui_payload_destructor_after);
         . = 0x50410; /* JP/US-shared nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
         . = 0x50424; /* JP/US-shared nonzero UI-state clearer. */
@@ -649,8 +651,12 @@ SECTIONS
         src/font.o(.text.font_unsigned_decimal);
         asm/code_linkonce.o(.text.code_080E0F48);
         src/ui_state.o(.text.ui_text_output_upload);
+        src/ui_state.o(.gnu.linkonce.t._._24UiTextWindowSetupCommand);
+        src/ui_state.o(.gnu.linkonce.t._._25UiTextOutputUploadCommand);
+        src/ui_state.o(.gnu.linkonce.t._._20UiDmaTransferCommand);
         asm/code_linkonce.o(.text.ui_text_output_upload_after);
         src/ui_state.o(.gnu.linkonce.t._._18UnkUiSelectionData);
+        src/ui_state.o(.gnu.linkonce.t._._21UiTextTileCopyCommand);
         asm/code_linkonce.o(.text.ui_selection_cleanup_after);
         src/ui_state.o(.text.ui_text_output_defaults);
         src/ui_state.o(.text.ui_text_output_base_destructor);
@@ -798,8 +804,13 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_13AScriptEngine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine_adjacent);
+        src/ui_state.o(.gnu.linkonce.d.__vt_24UiTextWindowSetupCommand);
+        src/ui_state.o(.gnu.linkonce.d.__vt_25UiTextOutputUploadCommand);
+        src/ui_state.o(.gnu.linkonce.d.__vt_20UiDmaTransferCommand);
+        src/vtables.o(.rodata.ui_input_table);
         src/ui_state.o(.gnu.linkonce.d.__vt_18UnkUiSelectionData);
-        src/vtables.o(.rodata.ui_output_table_after);
+        src/ui_state.o(.gnu.linkonce.d.__vt_21UiTextTileCopyCommand);
+        src/vtables.o(.rodata.ui_input_base_table);
         src/ui_state.o(.gnu.linkonce.d.__vt_12UiTextOutput);
         src/vtables.o(.rodata.ui_output_base_after);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7928);
