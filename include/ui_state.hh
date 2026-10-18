@@ -168,23 +168,25 @@ struct UiStateOwner
 typedef char UiStatePayloadSizeCheck[sizeof(UiStatePayload) == 0x554 ? 1 : -1];
 typedef char UiStateOwnerSizeCheck[sizeof(UiStateOwner) == 4 ? 1 : -1];
 
-// Verified field view of the native linked command. Initialization writes
-// only these four fields; the upper nine bits retain their previous value.
-// Their runtime meanings have not been established.
-struct UnkUiPackedLinkCommand
+// One-shot window setup: a background screen block, border tile index,
+// background palette bank and hand-cursor OBJ palette bank. The upper nine
+// bits retain their previous value and still have no established meaning.
+struct UiTextWindowSetupCommand
 {
     HardwareLinkBase ** previous_slot;
     HardwareLinkBase * next;
-    void ** vtable;
-    unsigned unk_0c_00 : 5;
-    unsigned unk_0c_05 : 10;
-    unsigned unk_0c_15 : 4;
-    unsigned unk_0c_19 : 4;
+    HardwareLinkVirtualFunction const * vtable;
+    unsigned screen_block : 5;
+    unsigned first_tile : 10;
+    unsigned background_palette : 4;
+    unsigned cursor_palette : 4;
     unsigned unk_0c_23 : 9;
 };
 
-typedef char UnkUiPackedLinkCommandSizeCheck[
-    sizeof(UnkUiPackedLinkCommand) == 0x10 ? 1 : -1];
+typedef char UiTextWindowSetupCommandSizeCheck[
+    sizeof(UiTextWindowSetupCommand) == 0x10 ? 1 : -1];
+typedef char UiTextWindowSetupCommandVTableCheck[
+    offsetof(UiTextWindowSetupCommand, vtable) == 8 ? 1 : -1];
 
 // The native UI update copies input.pressed into this word-sized snapshot.
 // Only its low eight key bits are queried; allow_resume gates resumption.
@@ -322,6 +324,13 @@ typedef char UnkUiSelectionLinkCommandSizeCheck[
 
 EXTERN_C
 
+bool RunUiTextWindowSetupCommand(UiTextWindowSetupCommand * command)
+    SECTION(".text.ui_text_window_setup");
+// The native nine-tile border helper remains assembly.
+void func_08051320(u16 * tilemap, u32 x, u32 y, u32 width, u32 height,
+    u32 first_tile, u32 palette);
+extern u8 const gUiHandCursorArchive[];
+
 bool EmitUiTextGlyph(UnkUiSelectionData * object, u32 code)
     SECTION(".text.ui_text_output_callbacks");
 void ReturnUiTextCursor(UnkUiSelectionData * object)
@@ -350,8 +359,8 @@ extern HardwareLinkVirtualFunction const vtable_unk_080E78C0[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E78D0[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E78E0[];
 
-UnkUiPackedLinkCommand * func_08050EE4(UnkUiPackedLinkCommand * object,
-    u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4)
+UiTextWindowSetupCommand * InitializeUiTextWindowSetupCommand(UiTextWindowSetupCommand * object,
+    u32 screen_block, u32 first_tile, u32 background_palette, u32 cursor_palette)
     SECTION(".text.ui_state_adapters");
 
 UiTextInputAdapter * InitializeUiTextInputAdapter(UiTextInputAdapter * input,

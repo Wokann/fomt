@@ -49,7 +49,6 @@ struct RawVTableWithOffsetAnd66Entries {
 
 extern void __pure_virtual(void);
 extern void func_0804EEFC(void);
-extern void func_0804F19C(void);
 extern void func_08069D84(void);
 extern void func_08069E58(void);
 extern void func_08069E98(void);
@@ -4460,7 +4459,7 @@ extern RawVTableFunction const vtable_unk_080E7868[]
         nullptr,
         nullptr,
 #if defined(REGION_JP)
-        func_0804F19C,
+        reinterpret_cast<RawVTableFunction>(RunUiTextWindowSetupCommand),
         func_080E07B8,
 #else
         func_0804EEFC,
@@ -4476,7 +4475,7 @@ extern RawVTableFunction const vtable_unk_080E7878[]
         func_080E0F90,
         func_080E07C4,
 #else
-        func_0804F19C,
+        reinterpret_cast<RawVTableFunction>(RunUiTextWindowSetupCommand),
         func_080E1018,
 #endif
     };

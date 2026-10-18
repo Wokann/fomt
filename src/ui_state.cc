@@ -1,5 +1,6 @@
 #include "ui_state.hh"
 #include "font.hh"
+#include "resource_handle.hh"
 #include "gbasvc.h"
 
 inline void * operator new(unsigned long, void * address) { return address; }
@@ -283,6 +284,28 @@ EC void * func_08050DF0(void * const * object)
     return data->result;
 }
 
+static inline void FillUiFastWords(u32 value, void * destination, u32 count)
+{
+    u32 volatile source = value;
+    CpuFastSet((void const *)&source, destination, CPUSET_SRC_FIXED | count);
+}
+bool RunUiTextWindowSetupCommand(UiTextWindowSetupCommand * command)
+{
+    u16 tile = ((command->first_tile + 3) & 0x3FF) | (command->background_palette << 12);
+    u32 fill = tile | (static_cast<u32>(tile) << 16);
+    FillUiFastWords(fill, reinterpret_cast<void *>(0x06000000 + command->screen_block * 0x800),
+        160);
+    func_08051320(reinterpret_cast<u16 *>(0x06000000 + command->screen_block * 0x800),
+        16, 0, 14, 3, command->first_tile, command->background_palette);
+    func_08051320(reinterpret_cast<u16 *>(0x06000000 + command->screen_block * 0x800),
+        0, 3, 30, 7, command->first_tile, command->background_palette);
+    u32 palette = command->background_palette;
+    CpuFastSet(gUiSharedPalette, reinterpret_cast<void *>(0x05000000 + palette * 32), 8);
+    CpuFastSet(IndexedResourceArchive(gUiHandCursorArchive).GetGroupData(0).fifth.data,
+        reinterpret_cast<void *>(0x05000200 + command->cursor_palette * 32), 8);
+    return false;
+}
+
 #include FOMT_TEXT_INCLUDE(ui_state.cc)
 
 UiTextLayoutPositionTable const gUiTextLayoutPositionTable = {
@@ -372,20 +395,20 @@ EC u32 func_08050EBC(FirstFieldUiOwner & object, u32 const flag_mask)
     return old_flags;
 }
 
-EC UnkUiPackedLinkCommand * func_08050EE4(UnkUiPackedLinkCommand * object,
-    u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4)
+EC UiTextWindowSetupCommand * InitializeUiTextWindowSetupCommand(UiTextWindowSetupCommand * object,
+    u32 screen_block, u32 first_tile, u32 background_palette, u32 cursor_palette)
 {
     object->previous_slot = nullptr;
     object->next = nullptr;
 #if defined(REGION_JP)
-    object->vtable = (void **)vtable_unk_080E7868;
+    object->vtable = vtable_unk_080E7868;
 #else
-    object->vtable = (void **)vtable_unk_080E7878;
+    object->vtable = vtable_unk_080E7878;
 #endif
-    object->unk_0c_00 = arg_1;
-    object->unk_0c_05 = arg_2;
-    object->unk_0c_15 = arg_3;
-    object->unk_0c_19 = arg_4;
+    object->screen_block = screen_block;
+    object->first_tile = first_tile;
+    object->background_palette = background_palette;
+    object->cursor_palette = cursor_palette;
     return object;
 }
 

@@ -496,7 +496,6 @@ AScene * func_08004B94(void * object, void * state, SceneTransition *& continuat
 extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A68[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A88[];
-extern u8 const gUiHandCursorArchive[];
 
 // One contiguous scene lifecycle interval, beginning with both constructors.
 void func_08004BDC(struct NewGameMenuScene * scene, int flags)

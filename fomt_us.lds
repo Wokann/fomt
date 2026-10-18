@@ -304,7 +304,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.font_decimal_after);
         src/ui_state.o(.text.ui_text_output_callbacks);
         src/ui_state.o(.text.ui_text_input_callbacks);
-        asm/code_0803EE94.o(.text.ui_text_input_after);
+        src/ui_state.o(.text.ui_text_window_setup);
+        asm/code_0803EE94.o(.text.ui_text_window_setup_after);
         . = 0x503FC; /* JP/US-shared nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
         . = 0x50410; /* JP/US-shared nonzero UI-state clearer. */
