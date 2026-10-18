@@ -320,7 +320,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.ui_choice_labels_after);
         . = 0x50A34; /* DE ROM 0x08050A34, UI action-state first-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01dc);
-        . = 0x50A48; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01dc_after);
+        src/ui_state.o(.text.ui_nameplate);
         . = 0x50B10; /* DE ROM 0x08050B10, UI action-state second-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01f0);
         . = 0x50B24; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);

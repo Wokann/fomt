@@ -319,7 +319,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.ui_choice_labels_after);
         . = 0x50B50; /* JP/US-shared UI action-state first-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01dc);
-        . = 0x50B64; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01dc_after);
+        src/ui_state.o(.text.ui_nameplate);
         . = 0x50C2C; /* JP/US-shared UI action-state second-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01f0);
         . = 0x50C40; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);

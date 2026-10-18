@@ -100,7 +100,7 @@ typedef char UiTextStreamReplacementCursorCheck[offsetof(UiTextStream, replaceme
 typedef char UiTextStreamReplacementCheck[offsetof(UiTextStream, replacement) == 0x14 ? 1 : -1];
 
 EXTERN_C
-u16 GetUiPortraitCount() SECTION(".text.ui_portrait_group");
+u32 GetUiPortraitCount() SECTION(".text.ui_portrait_group");
 extern u8 const gPortraitIndexedResourceArchive[];
 
 void SetUiTextStreamText(UiTextStream *, char const *, ScriptTextVariableStore *)
@@ -412,6 +412,9 @@ enum
 {
     UI_TEXT_LAYOUT_VARIANT_COUNT = 8,
     UI_TEXT_LAYOUT_SLOT_COUNT = 6,
+    UI_NAMEPLATE_TILE_BUFFER_COUNT = 3,
+    UI_NAMEPLATE_CHUNK_BYTE_COUNT = 4,
+    UI_NAMEPLATE_TEXT_MAX_BYTES = UI_NAMEPLATE_TILE_BUFFER_COUNT * UI_NAMEPLATE_CHUNK_BYTE_COUNT,
 };
 
 // The layout table stores one packed byte per choice. Coordinates address
@@ -445,6 +448,10 @@ EC void RenderUiChoiceLabel(UiStatePayload *, UiTextLayoutPosition const &,
     char const *, ScriptTextVariableStore *) SECTION(".text.ui_choice_labels");
 EC i32 MoveUiChoiceSelection(u32 layout, i32 selection, UiChoiceKeyState keys)
     SECTION(".text.ui_choice_labels");
+// The encoded input must contain 1..12 bytes. Invalid text only disables the
+// nameplate; valid input clears three owned buffers and draws up to four bytes
+// into each. The portrait and the text-window state are independent.
+EC void SetUiNameplateText(UiStatePayload *, char const *) SECTION(".text.ui_nameplate");
 
 // These native objects physically precede the layout-position table.  The
 // full-width decimal formatter FormatFullWidthDecimal reads two encoded bytes from
@@ -513,8 +520,8 @@ typedef char UiDmaTransferCommandSizeCheck[sizeof(UiDmaTransferCommand) == 0x10 
 
 struct UiResourceChangeFlags
 {
-    u8 active : 1;
-    u8 changed : 1;
+    bool active : 1;
+    bool changed : 1;
     u8 unknown : 6;
     UiResourceChangeFlags() : active(0), changed(0) {}
 };
@@ -566,7 +573,7 @@ struct UiStatePayload
     UiPortraitGroupOwner portrait;
     HardwareResourceEntry portrait_palette;
     UiResourceChangeFlags nameplate_flags;
-    UnkUiSelectionTileBuffer nameplate_tiles[3];
+    UnkUiSelectionTileBuffer nameplate_tiles[UI_NAMEPLATE_TILE_BUFFER_COUNT];
     u8 nameplate_phase;
     IndexedResourceArchive nameplate_archive;
     IndexedResourceHandle nameplate_handle;

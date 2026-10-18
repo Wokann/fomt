@@ -4,6 +4,7 @@
 #include "font.hh"
 #include "resource_handle.hh"
 #include "gbasvc.h"
+#include <string.h>
 
 bool UiTextInput::Resume() { return true; }
 bool UiTextInput::WaitForInput() { return false; }
@@ -70,7 +71,7 @@ IndexedResourceGroupResult UiPortraitGroupOwner::Get() const
     return *value;
 }
 
-u16 GetUiPortraitCount()
+u32 GetUiPortraitCount()
 {
     IndexedResourceArchive archive(gPortraitIndexedResourceArchive);
     return archive.entry_descriptor_count;
@@ -279,7 +280,6 @@ EC void func_08050478(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3,
 EC void func_08050664(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3,
     u32 arg_sp0, u32 arg_sp1, u32 arg_sp2);
 EC void func_08050AD8(void * object, u32 arg_r1);
-EC void func_08050B50(void * object, char const * text);
 EC void func_08050C2C(void * object, u32 arg_r1);
 EC void func_08050C64(void * object);
 
@@ -423,7 +423,7 @@ EC void func_08050E5C(void * const * object)
 
 EC void func_08050E68(void * const * object, char const * text)
 {
-    func_08050B50(*object, text);
+    SetUiNameplateText(static_cast<UiStatePayload *>(*object), text);
 }
 
 EC void func_08050E74(void * const * object)
@@ -920,4 +920,43 @@ i32 MoveUiChoiceSelection(u32 layout, i32 selection, UiChoiceKeyState keys)
         break;
     }
     return 1;
+}
+
+static inline void ClearUiNameplateBuffer(UnkUiSelectionTileBuffer * buffer)
+{
+    UnkUiSelectionDimensions size(4, 2);
+    Clear2DGfxBuffer(reinterpret_cast<u32 const &>(size), buffer->tiles, 0);
+}
+
+static inline void DrawUiNameplateBuffer(UnkUiSelectionTileBuffer * buffer, char const * text)
+{
+    UnkUiSelectionDimensions size(4, 2);
+    DrawStringTo2DGfxBuffer(reinterpret_cast<u32 const &>(size), buffer->tiles,
+        0, 0, reinterpret_cast<u8 const *>(text));
+}
+
+void SetUiNameplateText(UiStatePayload * payload, char const * text)
+{
+    u32 remaining = text != nullptr ? strlen(text) : 0;
+    if (remaining - 1 > UI_NAMEPLATE_TEXT_MAX_BYTES - 1) {
+        ClearUiActionStateFlag01F0(payload);
+        return;
+    }
+    char const * cursor = text;
+    for (u32 index = 0; index < UI_NAMEPLATE_TILE_BUFFER_COUNT; ++index) {
+        UnkUiSelectionTileBuffer * buffer = payload->nameplate_tiles + index;
+        ClearUiNameplateBuffer(buffer);
+        if (remaining != 0) {
+            char part[UI_NAMEPLATE_CHUNK_BYTE_COUNT + 1];
+            char * output = part;
+            do {
+                *output++ = *cursor++;
+                --remaining;
+            } while (remaining != 0 && output != part + UI_NAMEPLATE_CHUNK_BYTE_COUNT);
+            *output = '\0';
+            DrawUiNameplateBuffer(buffer, part);
+        }
+    }
+    payload->nameplate_flags.active = 1;
+    payload->nameplate_flags.changed = 1;
 }
