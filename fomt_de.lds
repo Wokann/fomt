@@ -316,6 +316,8 @@ SECTIONS
         . = 0x50308; /* DE ROM 0x08050308, nonzero UI-state clearer. */
         src/ui_state.o(.text.clear_ui_object_state_if_nonzero);
         . = 0x5031C; asm/code_0803EE94.o(.text.ui_object_state_after);
+        src/ui_state.o(.text.ui_choice_labels);
+        asm/code_0803EE94.o(.text.ui_choice_labels_after);
         . = 0x50A34; /* DE ROM 0x08050A34, UI action-state first-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01dc);
         . = 0x50A48; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01dc_after);

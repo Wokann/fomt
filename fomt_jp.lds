@@ -364,6 +364,8 @@ SECTIONS
         . = 0x5019C; /* JP/US-shared nonzero UI-state clearer. */
         src/ui_state.o(.text.clear_ui_object_state_if_nonzero);
         . = 0x501B0; asm/code_0803EE94.o(.text.ui_object_state_after);
+        src/ui_state.o(.text.ui_choice_labels);
+        asm/code_0803EE94.o(.text.ui_choice_labels_after);
         . = 0x508C8; /* JP/US-shared UI action-state first-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01dc);
         . = 0x508DC; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01dc_after);

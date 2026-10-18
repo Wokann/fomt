@@ -478,19 +478,24 @@ EC u8 func_08050F70(UnkUiSelectionData const * object)
     return object->unk_1a;
 }
 
-EC void func_08050F74(UnkUiSelectionData * object, u32 const arg_1,
-    u32 const arg_2)
+static inline void SetUiChoiceOutputPosition(UnkUiSelectionData * object, u32 column, u32 row)
 {
-    u32 second_index = arg_2;
+    u32 second_index = row;
     if (second_index > 2)
         second_index %= 3;
     object->unk_16 = second_index;
 
-    u32 first_index = arg_1;
+    u32 first_index = column;
     if (first_index > 27)
         first_index %= 28;
     object->unk_14 = first_index;
     object->unk_19 = 0;
+}
+
+EC void func_08050F74(UnkUiSelectionData * object, u32 const arg_1,
+    u32 const arg_2)
+{
+    SetUiChoiceOutputPosition(object, arg_1, arg_2);
 }
 
 static inline bool HasUiSelectionState(HardwareStateEntry const & state)
@@ -750,4 +755,28 @@ void UiStatePayload::OpenImmediately()
     Open();
     state = 3;
     unk_0c = 9;
+}
+
+UiTextLayoutPosition GetUiChoiceLayoutPosition(u32 layout, u32 selection)
+{
+    if (layout >= UI_TEXT_LAYOUT_VARIANT_COUNT)
+        layout = 0;
+    if (selection - 1 >= UI_TEXT_LAYOUT_SLOT_COUNT)
+        selection = 1;
+    // The leading table byte is also the parser's empty-string fallback.
+    // A one-based choice index addresses the actual packed position bytes.
+    return reinterpret_cast<UiTextLayoutPosition const *>(&gUiTextLayoutPositionTable)
+        [layout * UI_TEXT_LAYOUT_SLOT_COUNT + selection];
+}
+
+void RenderUiChoiceLabel(UiStatePayload * payload, UiTextLayoutPosition const & position,
+    char const * text, ScriptTextVariableStore * variables)
+{
+    SetUiChoiceOutputPosition(&payload->output, position.column, position.row);
+    SetUiTextStreamText(&payload->text, text, variables);
+    u32 phase;
+    do {
+        UiTextInput input;
+        phase = UpdateUiTextStream(&payload->text, &payload->output, &input);
+    } while (phase == 1);
 }

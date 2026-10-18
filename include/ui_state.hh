@@ -414,6 +414,21 @@ enum
     UI_TEXT_LAYOUT_SLOT_COUNT = 6,
 };
 
+// The layout table stores one packed byte per choice. Coordinates address
+// three text rows and 28 glyph columns; bit seven has no verified meaning.
+struct UiTextLayoutPosition
+{
+    u8 row : 2;
+    u8 column : 5;
+    u8 unknown : 1;
+} PACKED;
+typedef char UiTextLayoutPositionSizeCheck[sizeof(UiTextLayoutPosition) == 1 ? 1 : -1];
+
+EC UiTextLayoutPosition GetUiChoiceLayoutPosition(u32 layout, u32 selection)
+    SECTION(".text.ui_choice_labels");
+EC void RenderUiChoiceLabel(UiStatePayload *, UiTextLayoutPosition const &,
+    char const *, ScriptTextVariableStore *) SECTION(".text.ui_choice_labels");
+
 // These native objects physically precede the layout-position table.  The
 // full-width decimal formatter FormatFullWidthDecimal reads two encoded bytes from
 // each three-byte digit row, or from the space/hyphen strings.  Its checked

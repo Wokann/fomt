@@ -6590,7 +6590,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     lsls r6, r6, #1
     adds r1, r7, r6
     ldr r1, [r1]
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     add r4, sp, #0x58
     ldrb r3, [r4]
     adds r3, #0x73
@@ -7939,66 +7939,66 @@ func_08050478: @ 0x08050204
 .Ljp_08050328:
     adds r0, r5, #0
     movs r1, #6
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     mov r1, sp
     strb r0, [r1]
     adds r0, r4, #0
     adds r2, r7, #0
     ldr r3, [sp, #0x3c]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
 .Ljp_0805033E:
     adds r0, r5, #0
     movs r1, #5
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     mov r1, sp
     adds r1, #1
     strb r0, [r1]
     adds r0, r4, #0
     mov r2, r8
     ldr r3, [sp, #0x3c]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
 .Ljp_08050356:
     adds r0, r5, #0
     movs r1, #4
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     mov r1, sp
     adds r1, #2
     strb r0, [r1]
     adds r0, r4, #0
     mov r2, sl
     ldr r3, [sp, #0x3c]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
 .Ljp_0805036E:
     adds r0, r5, #0
     movs r1, #3
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     mov r1, sp
     adds r1, #3
     strb r0, [r1]
     adds r0, r4, #0
     mov r2, sb
     ldr r3, [sp, #0x3c]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
 .Ljp_08050386:
     adds r0, r5, #0
     movs r1, #2
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     add r1, sp, #4
     strb r0, [r1]
     adds r0, r4, #0
     ldr r2, [sp, #0xc]
     ldr r3, [sp, #0x3c]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
     adds r0, r5, #0
     movs r1, #1
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     mov r1, sp
     adds r1, #5
     strb r0, [r1]
     adds r0, r4, #0
     ldr r2, [sp, #8]
     ldr r3, [sp, #0x3c]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
     b .Ljp_080503B8
 .Ljp_080503B6:
     movs r5, #0
@@ -8134,7 +8134,7 @@ func_08050664: @ 0x080503F0
     mov r1, sp
     adds r2, r7, #0
     ldr r3, [sp, #0x34]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
     cmp r4, #6
     beq .Ljp_080504DC
     cmp r4, #6
@@ -8149,45 +8149,45 @@ func_08050664: @ 0x080503F0
     bne .Ljp_08050524
     movs r0, #7
     movs r1, #4
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     mov r1, sp
     adds r1, #1
     strb r0, [r1]
     adds r0, r5, #0
     adds r2, r6, #0
     ldr r3, [sp, #0x34]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
 .Ljp_080504DC:
     adds r0, r4, #0
     movs r1, #3
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     mov r1, sp
     adds r1, #2
     strb r0, [r1]
     adds r0, r5, #0
     mov r2, sb
     ldr r3, [sp, #0x34]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
 .Ljp_080504F4:
     adds r0, r4, #0
     movs r1, #2
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     mov r1, sp
     adds r1, #3
     strb r0, [r1]
     adds r0, r5, #0
     mov r2, sl
     ldr r3, [sp, #0x34]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
     adds r0, r4, #0
     movs r1, #1
-    bl func_080507D0
+    bl GetUiChoiceLayoutPosition
     add r1, sp, #4
     strb r0, [r1]
     adds r0, r5, #0
     ldr r2, [sp, #8]
     ldr r3, [sp, #0x34]
-    bl func_080507F8
+    bl RenderUiChoiceLabel
     b .Ljp_08050526
 .Ljp_08050524:
     movs r4, #5
@@ -8218,89 +8218,9 @@ func_08050664: @ 0x080503F0
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .global func_080507D0
-    .thumb_func
-func_080507D0: @ 0x0805055C
-    push {lr}
-    adds r2, r0, #0
-    cmp r2, #7
-    bls .Ljp_08050566
-    movs r2, #0
-.Ljp_08050566:
-    subs r0, r1, #1
-    cmp r0, #5
-    bls .Ljp_0805056E
-    movs r1, #1
-.Ljp_0805056E:
-    lsls r0, r2, #1
-    adds r0, r0, r2
-    lsls r0, r0, #1
-    adds r0, r0, r1
-    ldr r1, .Ljp_08050580 @ =gUiTextLayoutPositionTable
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    pop {r1}
-    bx r1
+    .section .text.ui_choice_labels_after, "ax", %progbits
     .align 2, 0
-.Ljp_08050580: .4byte gUiTextLayoutPositionTable
 
-    .global func_080507F8
-    .thumb_func
-func_080507F8: @ 0x08050584
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #4
-    adds r4, r0, #0
-    adds r7, r2, #0
-    mov r8, r3
-    ldrb r0, [r1]
-    lsls r1, r0, #0x19
-    lsrs r6, r1, #0x1b
-    lsls r0, r0, #0x1e
-    adds r5, r4, #0
-    adds r5, #0xd0
-    lsrs r0, r0, #0x1e
-    cmp r0, #2
-    bls .Ljp_080505AA
-    movs r1, #3
-    bl __umodsi3
-.Ljp_080505AA:
-    strh r0, [r5, #0x16]
-    adds r0, r6, #0
-    cmp r0, #0x1b
-    bls .Ljp_080505B8
-    movs r1, #0x1c
-    bl __umodsi3
-.Ljp_080505B8:
-    strh r0, [r5, #0x14]
-    movs r0, #0
-    strb r0, [r5, #0x19]
-    adds r4, #0xec
-    adds r0, r4, #0
-    adds r1, r7, #0
-    mov r2, r8
-    bl SetUiTextStreamText
-    adds r6, r5, #0
-    adds r5, r4, #0
-    ldr r4, .Ljp_080505F0 @ =__vt_11UiTextInput
-.Ljp_080505D0:
-    str r4, [sp]
-    adds r0, r5, #0
-    adds r1, r6, #0
-    mov r2, sp
-    bl UpdateUiTextStream
-    str r4, [sp]
-    cmp r0, #1
-    beq .Ljp_080505D0
-    add sp, #4
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_080505F0: .4byte __vt_11UiTextInput
     .global func_08050868
     .thumb_func
 func_08050868: @ 0x080505F4
@@ -149466,7 +149386,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	lsls r6, r6, #1
 	adds r1, r7, r6
 	ldr r1, [r1]
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	add r4, sp, #0x58
 	ldrb r3, [r4]
 	adds r3, #0x73
@@ -150812,66 +150732,66 @@ func_08050478: @ 0x08050478
 .L0805059C:
 	adds r0, r5, #0
 	movs r1, #6
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	mov r1, sp
 	strb r0, [r1]
 	adds r0, r4, #0
 	adds r2, r7, #0
 	ldr r3, [sp, #0x3c]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 .L080505B2:
 	adds r0, r5, #0
 	movs r1, #5
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	mov r1, sp
 	adds r1, #1
 	strb r0, [r1]
 	adds r0, r4, #0
 	mov r2, r8
 	ldr r3, [sp, #0x3c]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 .L080505CA:
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	mov r1, sp
 	adds r1, #2
 	strb r0, [r1]
 	adds r0, r4, #0
 	mov r2, sl
 	ldr r3, [sp, #0x3c]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 .L080505E2:
 	adds r0, r5, #0
 	movs r1, #3
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	mov r1, sp
 	adds r1, #3
 	strb r0, [r1]
 	adds r0, r4, #0
 	mov r2, sb
 	ldr r3, [sp, #0x3c]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 .L080505FA:
 	adds r0, r5, #0
 	movs r1, #2
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	add r1, sp, #4
 	strb r0, [r1]
 	adds r0, r4, #0
 	ldr r2, [sp, #0xc]
 	ldr r3, [sp, #0x3c]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 	adds r0, r5, #0
 	movs r1, #1
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	mov r1, sp
 	adds r1, #5
 	strb r0, [r1]
 	adds r0, r4, #0
 	ldr r2, [sp, #8]
 	ldr r3, [sp, #0x3c]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 	b .L0805062C
 .L0805062A:
 	movs r5, #0
@@ -151007,7 +150927,7 @@ func_08050664: @ 0x08050664
 	mov r1, sp
 	adds r2, r7, #0
 	ldr r3, [sp, #0x34]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 	cmp r4, #6
 	beq .L08050750
 	cmp r4, #6
@@ -151022,45 +150942,45 @@ func_08050664: @ 0x08050664
 	bne .L08050798
 	movs r0, #7
 	movs r1, #4
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	mov r1, sp
 	adds r1, #1
 	strb r0, [r1]
 	adds r0, r5, #0
 	adds r2, r6, #0
 	ldr r3, [sp, #0x34]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 .L08050750:
 	adds r0, r4, #0
 	movs r1, #3
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	mov r1, sp
 	adds r1, #2
 	strb r0, [r1]
 	adds r0, r5, #0
 	mov r2, sb
 	ldr r3, [sp, #0x34]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 .L08050768:
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	mov r1, sp
 	adds r1, #3
 	strb r0, [r1]
 	adds r0, r5, #0
 	mov r2, sl
 	ldr r3, [sp, #0x34]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 	adds r0, r4, #0
 	movs r1, #1
-	bl func_080507D0
+	bl GetUiChoiceLayoutPosition
 	add r1, sp, #4
 	strb r0, [r1]
 	adds r0, r5, #0
 	ldr r2, [sp, #8]
 	ldr r3, [sp, #0x34]
-	bl func_080507F8
+	bl RenderUiChoiceLabel
 	b .L0805079A
 .L08050798:
 	movs r4, #5
@@ -151092,87 +151012,8 @@ func_08050664: @ 0x08050664
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080507D0
-func_080507D0: @ 0x080507D0
-	push {lr}
-	adds r2, r0, #0
-	cmp r2, #7
-	bls .L080507DA
-	movs r2, #0
-.L080507DA:
-	subs r0, r1, #1
-	cmp r0, #5
-	bls .L080507E2
-	movs r1, #1
-.L080507E2:
-	lsls r0, r2, #1
-	adds r0, r0, r2
-	lsls r0, r0, #1
-	adds r0, r0, r1
-	ldr r1, .L080507F4 @ =gUiTextLayoutPositionTable
-	adds r0, r0, r1
-	ldrb r0, [r0]
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080507F4: .4byte gUiTextLayoutPositionTable
-
-	thumb_func_start func_080507F8
-func_080507F8: @ 0x080507F8
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #4
-	adds r4, r0, #0
-	adds r7, r2, #0
-	mov r8, r3
-	ldrb r0, [r1]
-	lsls r1, r0, #0x19
-	lsrs r6, r1, #0x1b
-	lsls r0, r0, #0x1e
-	adds r5, r4, #0
-	adds r5, #0xd0
-	lsrs r0, r0, #0x1e
-	cmp r0, #2
-	bls .L0805081E
-	movs r1, #3
-	bl __umodsi3
-.L0805081E:
-	strh r0, [r5, #0x16]
-	adds r0, r6, #0
-	cmp r0, #0x1b
-	bls .L0805082C
-	movs r1, #0x1c
-	bl __umodsi3
-.L0805082C:
-	strh r0, [r5, #0x14]
-	movs r0, #0
-	strb r0, [r5, #0x19]
-	adds r4, #0xec
-	adds r0, r4, #0
-	adds r1, r7, #0
-	mov r2, r8
-	bl SetUiTextStreamText
-	adds r6, r5, #0
-	adds r5, r4, #0
-	ldr r4, .L08050864 @ =__vt_11UiTextInput
-.L08050844:
-	str r4, [sp]
-	adds r0, r5, #0
-	adds r1, r6, #0
-	mov r2, sp
-	bl UpdateUiTextStream
-	str r4, [sp]
-	cmp r0, #1
-	beq .L08050844
-	add sp, #4
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08050864: .4byte __vt_11UiTextInput
+    .section .text.ui_choice_labels_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_08050868
 func_08050868: @ 0x08050868
