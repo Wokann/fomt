@@ -1,6 +1,7 @@
 #include "new_game.hh"
 #include "intro_scene.hh"
 #include "new_game_data.hh"
+#include "farm_status_screen_data.hh"
 #include "game_state.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_state_accessors.hh"
@@ -1646,4 +1647,47 @@ void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore * core)
         AppendBirthdayInputGlyph(core, i * 8 + 8, 8, i + 35, 3);
 #endif
 #endif
+}
+
+void UpdateBirthdayInputUi(NewGameBirthdayInputCore * core)
+{
+    UiStateOwner const * ui = core->ui_state;
+    HardwareCoreState * state = static_cast<HardwareCoreState *>(func_080088DC(reinterpret_cast<void * const *>(core)));
+    HardwareSpriteBufferState * sprites = func_08008920(reinterpret_cast<void * const *>(core));
+    HardwareDisplayState * display = func_08008918(reinterpret_cast<void * const *>(core));
+    u8 * links = func_08008940(reinterpret_cast<void * const *>(core));
+    u8 * manager = func_0800894C(reinterpret_cast<void * const *>(core));
+    MusicPlayer ** music = core->music_players;
+    switch (ui->Update(state, sprites, display, links, manager, music)) {
+    case 0:
+        if (core->dialogue_state == 0) {
+            func_08050D5C(reinterpret_cast<void * const *>(core->ui_state));
+            core->dialogue_state = 3;
+        } else {
+            core->dialogue_state = 2;
+        }
+        break;
+    case 3:
+        if (core->dialogue_state == 5) {
+            func_08050D74(reinterpret_cast<void * const *>(core->ui_state));
+            core->dialogue_state = 1;
+        } else if (core->dialogue_state == 4) {
+            u32 selection = reinterpret_cast<u32>(func_08050DF0(reinterpret_cast<void * const *>(core->ui_state)));
+            core->dialogue_state = 5;
+            if (selection == 1) core->dialogue_choice = 0;
+            else if (selection == 2) core->dialogue_choice = 1;
+        } else if (core->dialogue_state == 3) {
+            core->dialogue_state = 5;
+            func_08050E30(core->ui_state, gText_AnimalContest_FinalConfirmation,
+                gText_AnimalContest_FinalYes, gText_AnimalContest_FinalNo, nullptr, nullptr, nullptr);
+            core->dialogue_state = 4;
+        }
+        break;
+    case 1:
+    case 2:
+    case 4:
+    case 5:
+    case 6:
+        break;
+    }
 }

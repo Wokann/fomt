@@ -167,7 +167,9 @@ struct NewGameBirthdayInputCore : HardwareBootstrap {
     GameDate birthday;
     i8 season_column;
     i8 day;
-    u8 unk_after_day[9];
+    i16 step;
+    i16 dialogue_state;
+    i16 dialogue_choice;
 private:
     NewGameBirthdayInputCore();
 };
@@ -203,6 +205,12 @@ typedef char BirthdayGlyphCountCheck[offsetof(NewGameBirthdayInputCore, glyph_co
     == offsetof(NewGameBirthdayInputCore, birthday) - 2 ? 1 : -1];
 typedef char BirthdayDayCheck[offsetof(NewGameBirthdayInputCore, day)
     == offsetof(NewGameBirthdayInputCore, birthday) + 2 ? 1 : -1];
+typedef char BirthdayStepCheck[offsetof(NewGameBirthdayInputCore, step)
+    == offsetof(NewGameBirthdayInputCore, birthday) + 4 ? 1 : -1];
+typedef char BirthdayDialogueStateCheck[offsetof(NewGameBirthdayInputCore, dialogue_state)
+    == offsetof(NewGameBirthdayInputCore, birthday) + 6 ? 1 : -1];
+typedef char BirthdayDialogueChoiceCheck[offsetof(NewGameBirthdayInputCore, dialogue_choice)
+    == offsetof(NewGameBirthdayInputCore, birthday) + 8 ? 1 : -1];
 extern "C" {
 NewGameBirthdayInputCore * func_0806D990(NewGameBirthdayInputCore *, GameDate);
 SceneTransitionOwner func_0806DB38(NewGameBirthdayInputCore *);
@@ -215,6 +223,8 @@ SceneTransitionOwner RunBirthdayInputScene(NewGameBirthdayInputScene *)
 GameDate GetBirthdayInputSceneDate(NewGameBirthdayInputScene const *)
     SECTION(".text.new_game_birthday_input_scene");
 extern NewGameSceneVTableFunction const gNewGameBirthdayInputSceneVTable[];
+void UpdateBirthdayInputUi(NewGameBirthdayInputCore *)
+    SECTION(".text.new_game_birthday_ui");
 void MoveBirthdayInputCursor(NewGameBirthdayInputCore *)
     SECTION(".text.new_game_birthday_navigation");
 void func_0806E02C(NewGameBirthdayInputCore *);
