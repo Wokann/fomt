@@ -55,7 +55,6 @@ extern void func_08069E98(void);
 extern void func_0806D918(void);
 extern void func_0806D948(void);
 extern void func_080E0F48(void);
-extern void func_080E0F90(void);
 extern void func_080E0EF0(void);
 extern void method_0803EFD8__13AScriptEngine(void);
 extern void OnCall__12ScriptEnginei(void);
@@ -4471,7 +4470,7 @@ extern RawVTableFunction const vtable_unk_080E7878[]
         nullptr,
         nullptr,
 #if defined(REGION_JP)
-        func_080E0F90,
+        reinterpret_cast<RawVTableFunction>(RunUiTextOutputUploadCommand),
         func_080E07C4,
 #else
         reinterpret_cast<RawVTableFunction>(RunUiTextWindowSetupCommand),
@@ -4487,7 +4486,7 @@ extern RawVTableFunction const vtable_unk_080E7888[]
         func_080E0F48,
         func_080E07D0,
 #else
-        func_080E0F90,
+        reinterpret_cast<RawVTableFunction>(RunUiTextOutputUploadCommand),
         func_080E1024,
 #endif
     };

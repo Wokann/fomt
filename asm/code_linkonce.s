@@ -32649,80 +32649,9 @@ func_080E0F48:
     pop {r1}
     bx r1
     .byte 0x00, 0x00
-    .global func_080E0F90
-    .thumb_func
-func_080E0F90:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    ldr r0, [r0, #0xc]
-    mov r8, r0
-    movs r1, #0
-    .Lauto_080E073E:
-    movs r7, #0
-    lsls r0, r1, #2
-    adds r1, #1
-    mov sb, r1
-    mov r1, r8
-    adds r6, r0, r1
-    adds r6, #8
-    .Lauto_080E074C:
-    ldr r0, [r6]
-    lsls r1, r7, #4
-    adds r5, r0, r1
-    ldrb r0, [r5, #0xc]
-    cmp r0, #0
-    beq .Lauto_080E0782
-    adds r2, r5, #4
-    ldr r1, [r2, #4]
-    rsbs r0, r1, #0
-    orrs r0, r1
-    cmp r0, #0
-    bge .Lauto_080E077E
-    ldr r4, [r5]
-    adds r4, #4
-    adds r0, r2, #0
-    bl GetHardwareSharedStateTileIndex
-    adds r1, r0, #0
-    lsls r1, r1, #5
-    ldr r0, [pc, #0x40]
-    adds r1, r1, r0
-    adds r0, r4, #0
-    movs r2, #0x40
-    bl CpuFastSet
-    .Lauto_080E077E:
-    movs r0, #0
-    strb r0, [r5, #0xc]
-    .Lauto_080E0782:
-    adds r7, #1
-    cmp r7, #6
-    ble .Lauto_080E074C
-    mov r1, sb
-    cmp r1, #2
-    ble .Lauto_080E073E
-    mov r1, r8
-    ldrb r0, [r1, #0x19]
-    cmp r0, #0
-    beq .Lauto_080E079A
-    movs r0, #0
-    strb r0, [r1, #0x19]
-    .Lauto_080E079A:
-    mov r1, r8
-    ldrb r0, [r1, #0x1a]
-    cmp r0, #0
-    beq .Lauto_080E07A6
-    movs r0, #0
-    strb r0, [r1, #0x1a]
-    .Lauto_080E07A6:
-    movs r0, #0
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00, 0x01, 0x06
+    .section .text.ui_text_output_upload_after, "ax", %progbits
+    .align 2, 0
+
     .global func_080E07B8
     .thumb_func
 func_080E07B8:
@@ -40450,80 +40379,9 @@ func_080E0F48: @ 0x080E0F48
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080E0F90
-func_080E0F90: @ 0x080E0F90
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	ldr r0, [r0, #0xc]
-	mov r8, r0
-	movs r1, #0
-.L080E0F9E:
-	movs r7, #0
-	lsls r0, r1, #2
-	adds r1, #1
-	mov sb, r1
-	mov r1, r8
-	adds r6, r0, r1
-	adds r6, #8
-.L080E0FAC:
-	ldr r0, [r6]
-	lsls r1, r7, #4
-	adds r5, r0, r1
-	ldrb r0, [r5, #0xc]
-	cmp r0, #0
-	beq .L080E0FE2
-	adds r2, r5, #4
-	ldr r1, [r2, #4]
-	rsbs r0, r1, #0
-	orrs r0, r1
-	cmp r0, #0
-	bge .L080E0FDE
-	ldr r4, [r5]
-	adds r4, #4
-	adds r0, r2, #0
-	bl GetHardwareSharedStateTileIndex
-	adds r1, r0, #0
-	lsls r1, r1, #5
-	ldr r0, .L080E1014 @ =0x06010000
-	adds r1, r1, r0
-	adds r0, r4, #0
-	movs r2, #0x40
-	bl CpuFastSet
-.L080E0FDE:
-	movs r0, #0
-	strb r0, [r5, #0xc]
-.L080E0FE2:
-	adds r7, #1
-	cmp r7, #6
-	ble .L080E0FAC
-	mov r1, sb
-	cmp r1, #2
-	ble .L080E0F9E
-	mov r1, r8
-	ldrb r0, [r1, #0x19]
-	cmp r0, #0
-	beq .L080E0FFA
-	movs r0, #0
-	strb r0, [r1, #0x19]
-.L080E0FFA:
-	mov r1, r8
-	ldrb r0, [r1, #0x1a]
-	cmp r0, #0
-	beq .L080E1006
-	movs r0, #0
-	strb r0, [r1, #0x1a]
-.L080E1006:
-	movs r0, #0
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080E1014: .4byte 0x06010000
+    .section .text.ui_text_output_upload_after, "ax", %progbits
+    .align 2, 0
+
 
 	thumb_func_start func_080E1018
 func_080E1018: @ 0x080E1018

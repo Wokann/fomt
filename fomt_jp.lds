@@ -726,6 +726,8 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080E0EF0);
         src/font.o(.text.font_unsigned_decimal);
         asm/code_linkonce.o(.text.code_080E0F48);
+        src/ui_state.o(.text.ui_text_output_upload);
+        asm/code_linkonce.o(.text.ui_text_output_upload_after);
         src/new_game.o(.text.new_game_birthday_core_cleanup);
         asm/code_linkonce.o(.text.new_game_birthday_core_cleanup_after);
         src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);

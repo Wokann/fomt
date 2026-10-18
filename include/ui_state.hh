@@ -282,6 +282,21 @@ struct UnkUiSelectionDimensions
     UnkUiSelectionDimensions(u16 first, u16 second) : width(first), height(second) {}
 };
 
+// Upload changed glyph buffers from the three physical rows, then retire
+// this queued command. The output storage and its resource handles are borrowed.
+struct UiTextOutputUploadCommand
+{
+    HardwareLinkBase ** previous_slot;
+    HardwareLinkBase * next;
+    HardwareLinkVirtualFunction const * vtable;
+    UnkUiSelectionData * output;
+};
+
+typedef char UiTextOutputUploadCommandSizeCheck[
+    sizeof(UiTextOutputUploadCommand) == 0x10 ? 1 : -1];
+typedef char UiTextOutputUploadCommandOutputCheck[
+    offsetof(UiTextOutputUploadCommand, output) == 0x0C ? 1 : -1];
+
 // A repeating BG tile upload. Alternating mode toggles its nibble mask each
 // run; it is not compression. That mode requires at least one 32-byte tile.
 struct UiTextTileCopyCommand
@@ -348,6 +363,9 @@ EXTERN_C
 bool RunUiTextTileCopyCommand(UiTextTileCopyCommand * command)
     SECTION(".text.ui_text_tile_copy");
 
+bool RunUiTextOutputUploadCommand(UiTextOutputUploadCommand * command)
+    SECTION(".text.ui_text_output_upload");
+
 bool RunUiTextWindowSetupCommand(UiTextWindowSetupCommand * command)
     SECTION(".text.ui_text_window_setup");
 // The native nine-tile border helper remains assembly.
@@ -376,6 +394,7 @@ bool CanResumeUiText(UiTextInputAdapter const * input)
 
 extern HardwareLinkVirtualFunction const vtable_unk_080E7868[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7878[];
+extern HardwareLinkVirtualFunction const vtable_unk_080E7888[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7898[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E78A8[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E78B0[];

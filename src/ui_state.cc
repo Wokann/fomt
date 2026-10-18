@@ -637,7 +637,7 @@ bool CanResumeUiText(UiTextInputAdapter const * input)
     return result;
 }
 
-EC void func_080510E8(UnkUiSelectionData * object)
+static inline void UploadUiTextOutput(UnkUiSelectionData * object)
 {
     for (int row = 0; row <= 2; ++row)
     {
@@ -661,6 +661,17 @@ EC void func_080510E8(UnkUiSelectionData * object)
         object->unk_19 = 0;
     if (object->unk_1a)
         object->unk_1a = 0;
+}
+
+EC void func_080510E8(UnkUiSelectionData * object)
+{
+    UploadUiTextOutput(object);
+}
+
+bool RunUiTextOutputUploadCommand(UiTextOutputUploadCommand * command)
+{
+    UploadUiTextOutput(command->output);
+    return false;
 }
 
 EC UnkUiSelectionData * func_0805116C(UnkUiSelectionData * object,
