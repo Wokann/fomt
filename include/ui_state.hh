@@ -15,6 +15,41 @@ struct HardwareResourceEntry;
 struct MusicPlayer;
 struct ScriptTextVariableStore;
 
+struct UiTextSubstitution
+{
+    bool found;
+    FixedStr<31> text;
+};
+
+// Recovered virtual contracts only; concrete output, input and variable-store
+// objects still have native implementations and additional storage.
+struct UiTextOutput
+{
+    virtual ~UiTextOutput();
+    virtual bool Emit(u32 code) = 0;
+    virtual void CarriageReturn() = 0;
+    virtual void LineFeed() = 0;
+    virtual void NextPage() = 0;
+    virtual bool ShouldStop() = 0;
+};
+
+struct UiTextInput
+{
+    virtual ~UiTextInput();
+    virtual bool Fast() = 0;
+    virtual bool WaitForInput() = 0;
+    virtual bool Resume() = 0;
+};
+
+struct ScriptTextVariableStore
+{
+    virtual ~ScriptTextVariableStore();
+    virtual UiTextSubstitution Lookup(u32 code) = 0;
+};
+
+typedef char UiTextSubstitutionSizeCheck[sizeof(UiTextSubstitution) == 36 ? 1 : -1];
+typedef char UiTextSubstitutionTextCheck[offsetof(UiTextSubstitution, text) == 4 ? 1 : -1];
+
 // Native text reader: 0 is idle, 1 reads text and 2 waits for input.
 // The parser temporarily switches from cursor to replacement_cursor while
 // consuming a substituted value stored in the inline 32-byte buffer.
@@ -46,6 +81,10 @@ UiTextStream * InitializeUiTextStream(UiTextStream *) SECTION(".text.ui_text_str
 void SetUiTextStreamText(UiTextStream *, char const *, ScriptTextVariableStore *)
     SECTION(".text.ui_text_stream_setup");
 void SetUiTextStreamSpeed(UiTextStream *, u16) SECTION(".text.ui_text_stream_setup");
+u32 UpdateUiTextStream(UiTextStream *, UiTextOutput *, UiTextInput *)
+    SECTION(".text.ui_text_stream_update");
+// This dependency keeps its original 44-byte assembly body.
+int AdvanceUiTextStreamClock(UiTextStream *);
 EXTERN_C_END
 
 // Verified views of the state fields consumed by the native UI adapters.

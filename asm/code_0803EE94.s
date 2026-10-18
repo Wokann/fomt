@@ -6929,7 +6929,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     adds r1, r7, #0
     adds r1, #0xd0
     mov r2, sp
-    bl func_080AD7B0
+    bl UpdateUiTextStream
     cmp r0, #1
     beq .Ljp_0804F644
     cmp r0, #1
@@ -8935,7 +8935,7 @@ func_080507F8: @ 0x08050584
     adds r0, r5, #0
     adds r1, r6, #0
     mov r2, sp
-    bl func_080AD7B0
+    bl UpdateUiTextStream
     str r4, [sp]
     cmp r0, #1
     beq .Ljp_080505D0
@@ -150442,7 +150442,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	adds r1, r7, #0
 	adds r1, #0xd0
 	mov r2, sp
-	bl func_080ADD78
+	bl UpdateUiTextStream
 	cmp r0, #1
 	beq .L0804F8B8
 	cmp r0, #1
@@ -152443,7 +152443,7 @@ func_080507F8: @ 0x080507F8
 	adds r0, r5, #0
 	adds r1, r6, #0
 	mov r2, sp
-	bl func_080ADD78
+	bl UpdateUiTextStream
 	str r4, [sp]
 	cmp r0, #1
 	beq .L08050844
