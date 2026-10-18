@@ -652,7 +652,6 @@ extern void func_08075DEC(void);
 extern void func_08075328(void);
 extern void Resolve__C22IndexedResourceArchiveUi(void);
 extern void GetGroupData__C22IndexedResourceArchiveUi(void);
-extern void func_0804EF20(void);
 extern void func_080E103C(void);
 extern void func_080E105C(void);
 extern void func_080E10E0(void);
@@ -4551,7 +4550,7 @@ extern RawVTableFunction const vtable_unk_080E78D0[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
-        func_0804EF20,
+        reinterpret_cast<RawVTableFunction>(RunUiTextTileCopyCommand),
         func_080E0880,
     };
 #else
@@ -4576,7 +4575,7 @@ extern RawVTableFunction const vtable_unk_080E78E0[]
         func_080E0898,
         func_080E0894,
 #else
-        func_0804EF20,
+        reinterpret_cast<RawVTableFunction>(RunUiTextTileCopyCommand),
         func_080E10E0,
 #endif
     };

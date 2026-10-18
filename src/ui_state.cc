@@ -3,6 +3,32 @@
 #include "resource_handle.hh"
 #include "gbasvc.h"
 
+bool RunUiTextTileCopyCommand(UiTextTileCopyCommand * command)
+{
+    u32 const * source = command->source;
+    u32 * destination = command->destination;
+    if (command->alternate_nibbles) {
+        u32 * end = destination + command->tile_count * 8;
+        u32 phase = command->nibble_phase ^ 1;
+        command->nibble_phase = phase;
+        u32 mask = 0x0F0F0F0Fu << (phase * 4);
+        u32 alternate = ~mask;
+        do {
+            *destination++ = *source++ & mask;
+            *destination++ = *source++ & alternate;
+            *destination++ = *source++ & mask;
+            *destination++ = *source++ & alternate;
+            *destination++ = *source++ & mask;
+            *destination++ = *source++ & alternate;
+            *destination++ = *source++ & mask;
+            *destination++ = *source++ & alternate;
+        } while (destination != end);
+        return true;
+    }
+    CpuFastSet(source, destination, command->tile_count * 8);
+    return false;
+}
+
 static inline IndexedResourceGroupResult LoadUiPortraitGroup(u32 index)
 {
     IndexedResourceArchive archive(gPortraitIndexedResourceArchive);
@@ -695,20 +721,20 @@ EC UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 inde
     return object->rows[index].Get();
 }
 
-EC UnkUiSelectionLinkCommand * func_080512D8(UnkUiSelectionLinkCommand * object,
-    u32 arg_1, u32 arg_2, u32 arg_3, bool arg_4)
+EC UiTextTileCopyCommand * func_080512D8(UiTextTileCopyCommand * object,
+    u32 const * source, u32 * destination, u32 tile_count, bool alternate_nibbles)
 {
     object->previous_slot = nullptr;
     object->next = nullptr;
 #if defined(REGION_JP)
-    object->vtable = (void **)vtable_unk_080E78D0;
+    object->vtable = vtable_unk_080E78D0;
 #else
-    object->vtable = (void **)vtable_unk_080E78E0;
+    object->vtable = vtable_unk_080E78E0;
 #endif
-    object->unk_0c = arg_1;
-    object->unk_10 = arg_2;
-    object->unk_14_00 = arg_3;
-    object->unk_14_14 = 0;
-    object->unk_14_15 = arg_4;
+    object->source = source;
+    object->destination = destination;
+    object->tile_count = tile_count;
+    object->nibble_phase = 0;
+    object->alternate_nibbles = alternate_nibbles;
     return object;
 }

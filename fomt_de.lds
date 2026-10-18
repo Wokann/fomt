@@ -303,6 +303,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.font_draw_after);
         src/font.o(.text.font_decimal);
         asm/code_0803EE94.o(.text.font_decimal_after);
+        src/ui_state.o(.text.ui_text_tile_copy);
         src/ui_state.o(.text.ui_text_output_callbacks);
         src/ui_state.o(.text.ui_text_input_callbacks);
         src/ui_state.o(.text.ui_text_window_setup);

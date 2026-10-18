@@ -282,16 +282,18 @@ struct UnkUiSelectionDimensions
     UnkUiSelectionDimensions(u16 first, u16 second) : width(first), height(second) {}
 };
 
-struct UnkUiSelectionLinkCommand
+// A repeating BG tile upload. Alternating mode toggles its nibble mask each
+// run; it is not compression. That mode requires at least one 32-byte tile.
+struct UiTextTileCopyCommand
 {
     HardwareLinkBase ** previous_slot;
     HardwareLinkBase * next;
-    void ** vtable;
-    u32 unk_0c;
-    u32 unk_10;
-    u16 unk_14_00 : 14;
-    u16 unk_14_14 : 1;
-    u16 unk_14_15 : 1;
+    HardwareLinkVirtualFunction const * vtable;
+    u32 const * source;
+    u32 * destination;
+    u16 tile_count : 14;
+    u16 nibble_phase : 1;
+    u16 alternate_nibbles : 1;
 };
 
 typedef char UiTextInputAdapterSizeCheck[
@@ -334,10 +336,17 @@ typedef char UnkUiSelectionDataNonblankCheck[
     offsetof(UnkUiSelectionData, unk_1b) == 0x1B ? 1 : -1];
 typedef char UnkUiSelectionDimensionsSizeCheck[
     sizeof(UnkUiSelectionDimensions) == 4 ? 1 : -1];
-typedef char UnkUiSelectionLinkCommandSizeCheck[
-    sizeof(UnkUiSelectionLinkCommand) == 0x18 ? 1 : -1];
+typedef char UiTextTileCopyCommandSizeCheck[
+    sizeof(UiTextTileCopyCommand) == 0x18 ? 1 : -1];
+typedef char UiTextTileCopyCommandSourceCheck[
+    offsetof(UiTextTileCopyCommand, source) == 0x0C ? 1 : -1];
+typedef char UiTextTileCopyCommandDestinationCheck[
+    offsetof(UiTextTileCopyCommand, destination) == 0x10 ? 1 : -1];
 
 EXTERN_C
+
+bool RunUiTextTileCopyCommand(UiTextTileCopyCommand * command)
+    SECTION(".text.ui_text_tile_copy");
 
 bool RunUiTextWindowSetupCommand(UiTextWindowSetupCommand * command)
     SECTION(".text.ui_text_window_setup");
@@ -398,8 +407,8 @@ UnkUiSelectionRow * func_080512C8(UnkUiSelectionData const * object, u32 index)
     SECTION(".text.ui_state_selection");
 UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index)
     SECTION(".text.ui_state_selection");
-UnkUiSelectionLinkCommand * func_080512D8(UnkUiSelectionLinkCommand * object,
-    u32 arg_1, u32 arg_2, u32 arg_3, bool arg_4)
+UiTextTileCopyCommand * func_080512D8(UiTextTileCopyCommand * object,
+    u32 const * source, u32 * destination, u32 tile_count, bool alternate_nibbles)
     SECTION(".text.ui_state_selection");
 
 // Existing UI adapter ABI. The menu supplies a text address as arg_r1;
