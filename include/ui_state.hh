@@ -301,12 +301,34 @@ typedef char UnkUiSelectionDataRowsCheck[
     offsetof(UnkUiSelectionData, rows) == 8 ? 1 : -1];
 typedef char UnkUiSelectionDataControlCheck[
     offsetof(UnkUiSelectionData, unk_14) == 0x14 ? 1 : -1];
+typedef char UnkUiSelectionDataLineCheck[
+    offsetof(UnkUiSelectionData, unk_16) == 0x16 ? 1 : -1];
+typedef char UnkUiSelectionDataOriginCheck[
+    offsetof(UnkUiSelectionData, unk_18) == 0x18 ? 1 : -1];
+typedef char UnkUiSelectionDataStopCheck[
+    offsetof(UnkUiSelectionData, unk_19) == 0x19 ? 1 : -1];
+typedef char UnkUiSelectionDataChangedCheck[
+    offsetof(UnkUiSelectionData, unk_1a) == 0x1A ? 1 : -1];
+typedef char UnkUiSelectionDataNonblankCheck[
+    offsetof(UnkUiSelectionData, unk_1b) == 0x1B ? 1 : -1];
 typedef char UnkUiSelectionDimensionsSizeCheck[
     sizeof(UnkUiSelectionDimensions) == 4 ? 1 : -1];
 typedef char UnkUiSelectionLinkCommandSizeCheck[
     sizeof(UnkUiSelectionLinkCommand) == 0x18 ? 1 : -1];
 
 EXTERN_C
+
+bool EmitUiTextGlyph(UnkUiSelectionData * object, u32 code)
+    SECTION(".text.ui_text_output_callbacks");
+void ReturnUiTextCursor(UnkUiSelectionData * object)
+    SECTION(".text.ui_text_output_callbacks");
+void AdvanceUiTextLine(UnkUiSelectionData * object)
+    SECTION(".text.ui_text_output_callbacks");
+void ClearUiTextPage(UnkUiSelectionData * object)
+    SECTION(".text.ui_text_output_callbacks");
+// Preserve the native stored-byte result, rather than normalizing it.
+u8 GetUiTextStopFlag(UnkUiSelectionData const * object)
+    SECTION(".text.ui_text_output_callbacks");
 
 extern HardwareLinkVirtualFunction const vtable_unk_080E7868[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7878[];

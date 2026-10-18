@@ -432,6 +432,105 @@ static inline u32 UiSelectionTileIndex(HardwareStateEntry & state)
     return GetHardwareSharedStateTileIndex(&state, state.handle);
 }
 
+// Three physical rows contain seven four-column glyph entries each.
+// Keep the renderer's original bounds and post-draw handle checks.
+static inline u32 DrawUiTextEntry(UnkUiSelectionEntry * entry, u32 code, u32 column)
+{
+    if (column <= 3) {
+        UnkUiSelectionTileBuffer * buffer = entry->pixels.value;
+        u32 x = (column & 3) * 8;
+        UnkUiSelectionDimensions dimensions(4, 2);
+        u32 result = DrawCharacterGlyphTo2DGfxBuffer(reinterpret_cast<u32 const &>(dimensions),
+            buffer->tiles, x, 0, code);
+        if (result == 1 || result == 2)
+            entry->changed = HasUiSelectionState(entry->state);
+        return result;
+    }
+    return 0;
+}
+
+static inline void ClearUiTextEntry(UnkUiSelectionEntry * entry)
+{
+    UnkUiSelectionTileBuffer * buffer = entry->pixels.value;
+    UnkUiSelectionDimensions dimensions(4, 2);
+    Clear2DGfxBuffer(reinterpret_cast<u32 const &>(dimensions), buffer->tiles, 0);
+    entry->changed = HasUiSelectionState(entry->state);
+}
+
+static inline int GetUiTextPhysicalRow(UnkUiSelectionData const * object, int row)
+{
+    int result = row + object->unk_18;
+    if (result > 2)
+        result -= 3;
+    return result;
+}
+
+bool EmitUiTextGlyph(UnkUiSelectionData * object, u32 code)
+{
+    u32 column = object->unk_14;
+    UnkUiSelectionRow * row = object->rows[GetUiTextPhysicalRow(object, object->unk_16)].Get();
+    UnkUiSelectionEntry * entry = &row->Entry(column >> 2);
+    u32 advanced = DrawUiTextEntry(entry, code, column & 3);
+    if (advanced == 0)
+        return false;
+    if (advanced > 2)
+        return false;
+    u32 next = column + advanced;
+    if (next > 27)
+        next %= 28;
+    object->unk_14 = next;
+    if (code != 0x20 && code != 0x8140)
+        object->unk_1b = 1;
+    object->unk_1a = 1;
+    return true;
+}
+
+void ReturnUiTextCursor(UnkUiSelectionData * object)
+{
+    object->unk_14 = 0;
+}
+
+void AdvanceUiTextLine(UnkUiSelectionData * object)
+{
+    if (object->unk_16 <= 1)
+        ++object->unk_16;
+    else {
+        if (++object->unk_18 > 2)
+            object->unk_18 = 0;
+        int row = GetUiTextPhysicalRow(object, 2);
+        UnkUiSelectionRow * row_buffer = object->rows[row].Get();
+        for (int column = 0; column <= 6; ++column) {
+            UnkUiSelectionEntry * entry = &row_buffer->Entry(column);
+            UnkUiSelectionTileBuffer * pixels = entry->pixels.value;
+            UnkUiSelectionDimensions dimensions(4, 2);
+            Clear2DGfxBuffer(reinterpret_cast<u32 const &>(dimensions), pixels->tiles, 0);
+            entry->changed = entry->state.handle != 0;
+        }
+        object->unk_19 = 1;
+        object->unk_1a = 1;
+    }
+}
+
+void ClearUiTextPage(UnkUiSelectionData * object)
+{
+    for (int row = 0; row <= 2; ++row) {
+        for (int column = 0; column <= 6; ++column) {
+            UnkUiSelectionEntry * entry = &object->Entry(row, column);
+            ClearUiTextEntry(entry);
+        }
+    }
+    object->unk_16 = 0;
+    object->unk_14 = 0;
+    object->unk_19 = 1;
+    object->unk_1a = 1;
+    object->unk_1b = 0;
+}
+
+u8 GetUiTextStopFlag(UnkUiSelectionData const * object)
+{
+    return object->unk_19;
+}
+
 EC void func_080510E8(UnkUiSelectionData * object)
 {
     for (int row = 0; row <= 2; ++row)

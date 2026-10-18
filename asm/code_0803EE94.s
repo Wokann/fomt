@@ -5781,254 +5781,8 @@ func_0804EF20: @ 0x0804ECAC
     .align 2, 0
 
 
-    .global func_0804ED38
-    .thumb_func
-func_0804ED38: @ 0x0804ED38
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    sub sp, #8
-    adds r6, r0, #0
-    mov sb, r1
-    ldrh r0, [r6, #0x14]
-    mov r8, r0
-    ldrh r1, [r6, #0x16]
-    ldrb r0, [r6, #0x18]
-    adds r0, r1, r0
-    cmp r0, #2
-    ble .Ljp_0804ED56
-    subs r0, #3
-.Ljp_0804ED56:
-    lsls r0, r0, #2
-    adds r0, r0, r6
-    ldr r1, [r0, #8]
-    mov r2, r8
-    lsrs r0, r2, #2
-    lsls r0, r0, #4
-    adds r7, r1, r0
-    movs r0, #3
-    ands r2, r0
-    cmp r2, #3
-    bhi .Ljp_0804EDA2
-    ldr r1, [r7]
-    ands r2, r0
-    lsls r2, r2, #3
-    add r5, sp, #4
-    movs r3, #4
-    movs r4, #2
-    adds r0, r5, #0
-    strh r3, [r0]
-    strh r4, [r5, #2]
-    ldr r0, [sp, #4]
-    adds r1, #4
-    mov r3, sb
-    str r3, [sp]
-    movs r3, #0
-    bl DrawCharacterGlyphTo2DGfxBuffer
-    adds r2, r0, #0
-    subs r0, r2, #1
-    cmp r0, #1
-    bhi .Ljp_0804ED9E
-    ldr r1, [r7, #8]
-    rsbs r0, r1, #0
-    orrs r0, r1
-    lsrs r0, r0, #0x1f
-    strb r0, [r7, #0xc]
-.Ljp_0804ED9E:
-    adds r0, r2, #0
-    b .Ljp_0804EDA4
-.Ljp_0804EDA2:
-    movs r0, #0
-.Ljp_0804EDA4:
-    cmp r0, #0
-    beq .Ljp_0804EDAC
-    cmp r0, #2
-    bls .Ljp_0804EDB0
-.Ljp_0804EDAC:
-    movs r0, #0
-    b .Ljp_0804EDD2
-.Ljp_0804EDB0:
-    add r0, r8
-    cmp r0, #0x1b
-    bls .Ljp_0804EDBC
-    movs r1, #0x1c
-    bl __umodsi3
-.Ljp_0804EDBC:
-    strh r0, [r6, #0x14]
-    mov r0, sb
-    cmp r0, #0x20
-    beq .Ljp_0804EDCE
-    ldr r0, .Ljp_0804EDE0 @ =0x00008140
-    cmp sb, r0
-    beq .Ljp_0804EDCE
-    movs r0, #1
-    strb r0, [r6, #0x1b]
-.Ljp_0804EDCE:
-    movs r0, #1
-    strb r0, [r6, #0x1a]
-.Ljp_0804EDD2:
-    add sp, #8
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
+    .section .text.ui_text_output_after, "ax", %progbits
     .align 2, 0
-.Ljp_0804EDE0: .4byte 0x00008140
-    .global func_0804EDE4
-    .thumb_func
-func_0804EDE4:
-    movs r1, #0
-    strh r1, [r0, #0x14]
-    bx lr
-    .align 2, 0
-
-    .global func_0804F060
-    .thumb_func
-func_0804F060: @ 0x0804EDEC
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    sub sp, #4
-    adds r5, r0, #0
-    ldrh r0, [r5, #0x16]
-    cmp r0, #1
-    bhi .Ljp_0804EE04
-    adds r0, #1
-    strh r0, [r5, #0x16]
-    b .Ljp_0804EE5E
-.Ljp_0804EE04:
-    ldrb r0, [r5, #0x18]
-    adds r0, #1
-    strb r0, [r5, #0x18]
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    cmp r0, #2
-    bls .Ljp_0804EE16
-    movs r0, #0
-    strb r0, [r5, #0x18]
-.Ljp_0804EE16:
-    ldrb r1, [r5, #0x18]
-    adds r0, r1, #2
-    cmp r0, #2
-    ble .Ljp_0804EE20
-    subs r0, r1, #1
-.Ljp_0804EE20:
-    lsls r0, r0, #2
-    adds r0, r0, r5
-    mov r6, sp
-    movs r1, #4
-    mov sb, r1
-    movs r1, #2
-    mov r8, r1
-    ldr r4, [r0, #8]
-    movs r7, #6
-.Ljp_0804EE32:
-    ldr r1, [r4]
-    mov r0, sb
-    strh r0, [r6]
-    mov r0, r8
-    strh r0, [r6, #2]
-    ldr r0, [sp]
-    adds r1, #4
-    movs r2, #0
-    bl Clear2DGfxBuffer
-    ldr r1, [r4, #8]
-    rsbs r0, r1, #0
-    orrs r0, r1
-    lsrs r0, r0, #0x1f
-    strb r0, [r4, #0xc]
-    adds r4, #0x10
-    subs r7, #1
-    cmp r7, #0
-    bge .Ljp_0804EE32
-    movs r0, #1
-    strb r0, [r5, #0x19]
-    strb r0, [r5, #0x1a]
-.Ljp_0804EE5E:
-    add sp, #4
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-
-    .global func_0804EE6C
-    .thumb_func
-func_0804EE6C: @ 0x0804EE6C
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    sub sp, #8
-    adds r3, r0, #0
-    movs r1, #0
-    mov r8, sp
-    movs r0, #2
-    mov sl, r0
-.Ljp_0804EE82:
-    movs r7, #0
-    lsls r0, r1, #2
-    adds r1, #1
-    mov sb, r1
-    adds r6, r0, r3
-    adds r6, #8
-.Ljp_0804EE8E:
-    ldr r5, [r6]
-    lsls r0, r7, #4
-    adds r5, r5, r0
-    adds r4, r5, #0
-    ldm r4!, {r1}
-    movs r0, #4
-    mov r2, r8
-    strh r0, [r2]
-    mov r0, sl
-    strh r0, [r2, #2]
-    ldr r0, [sp]
-    adds r1, #4
-    movs r2, #0
-    str r3, [sp, #4]
-    bl Clear2DGfxBuffer
-    ldr r1, [r4, #4]
-    rsbs r0, r1, #0
-    orrs r0, r1
-    lsrs r0, r0, #0x1f
-    strb r0, [r5, #0xc]
-    adds r7, #1
-    ldr r3, [sp, #4]
-    cmp r7, #6
-    ble .Ljp_0804EE8E
-    mov r1, sb
-    cmp r1, #2
-    ble .Ljp_0804EE82
-    movs r0, #0
-    movs r1, #0
-    strh r1, [r3, #0x16]
-    strh r1, [r3, #0x14]
-    movs r1, #1
-    strb r1, [r3, #0x19]
-    strb r1, [r3, #0x1a]
-    strb r0, [r3, #0x1b]
-    add sp, #8
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    .global func_0804F15C
-    .thumb_func
-func_0804F15C: @ 0x0804EEE8
-    ldrb r0, [r0, #0x19]
-    bx lr
 
     .global func_0804EEEC
     .thumb_func
@@ -8344,7 +8098,7 @@ func_0805039C: @ 0x08050128
     cmp r6, #0
     bne .Ljp_0805015C
     adds r0, #0xd0
-    bl func_0804EE6C
+    bl ClearUiTextPage
     ldr r0, [r4, #4]
     adds r5, r4, #0
     adds r5, #0x20
@@ -8416,7 +8170,7 @@ func_08050424: @ 0x080501B0
     bgt .Ljp_080501E0
     adds r0, r5, #0
     adds r0, #0xd0
-    bl func_0804EE6C
+    bl ClearUiTextPage
 .Ljp_080501E0:
     adds r4, r5, #0
     adds r4, #0xec
@@ -8465,7 +8219,7 @@ func_08050478: @ 0x08050204
     bgt .Ljp_08050240
     adds r0, r4, #0
     adds r0, #0xd0
-    bl func_0804EE6C
+    bl ClearUiTextPage
 .Ljp_08050240:
     movs r5, #4
     movs r6, #0xc
@@ -8772,7 +8526,7 @@ func_08050664: @ 0x080503F0
 .Ljp_08050494:
     adds r0, r5, #0
     adds r0, #0xd0
-    bl func_0804EE6C
+    bl ClearUiTextPage
     movs r1, #0
     mov r0, sp
     strb r1, [r0]
@@ -149307,251 +149061,8 @@ func_0804EF20: @ 0x0804EF20
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_0804EFAC
-func_0804EFAC: @ 0x0804EFAC
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #8
-	adds r6, r0, #0
-	mov sb, r1
-	ldrh r0, [r6, #0x14]
-	mov r8, r0
-	ldrh r1, [r6, #0x16]
-	ldrb r0, [r6, #0x18]
-	adds r0, r1, r0
-	cmp r0, #2
-	ble .L0804EFCA
-	subs r0, #3
-.L0804EFCA:
-	lsls r0, r0, #2
-	adds r0, r0, r6
-	ldr r1, [r0, #8]
-	mov r2, r8
-	lsrs r0, r2, #2
-	lsls r0, r0, #4
-	adds r7, r1, r0
-	movs r0, #3
-	ands r2, r0
-	cmp r2, #3
-	bhi .L0804F016
-	ldr r1, [r7]
-	ands r2, r0
-	lsls r2, r2, #3
-	add r5, sp, #4
-	movs r3, #4
-	movs r4, #2
-	adds r0, r5, #0
-	strh r3, [r0]
-	strh r4, [r5, #2]
-	ldr r0, [sp, #4]
-	adds r1, #4
-	mov r3, sb
-	str r3, [sp]
-	movs r3, #0
-	bl DrawCharacterGlyphTo2DGfxBuffer
-	adds r2, r0, #0
-	subs r0, r2, #1
-	cmp r0, #1
-	bhi .L0804F012
-	ldr r1, [r7, #8]
-	rsbs r0, r1, #0
-	orrs r0, r1
-	lsrs r0, r0, #0x1f
-	strb r0, [r7, #0xc]
-.L0804F012:
-	adds r0, r2, #0
-	b .L0804F018
-.L0804F016:
-	movs r0, #0
-.L0804F018:
-	cmp r0, #0
-	beq .L0804F020
-	cmp r0, #2
-	bls .L0804F024
-.L0804F020:
-	movs r0, #0
-	b .L0804F046
-.L0804F024:
-	add r0, r8
-	cmp r0, #0x1b
-	bls .L0804F030
-	movs r1, #0x1c
-	bl __umodsi3
-.L0804F030:
-	strh r0, [r6, #0x14]
-	mov r0, sb
-	cmp r0, #0x20
-	beq .L0804F042
-	ldr r0, .L0804F054 @ =0x00008140
-	cmp sb, r0
-	beq .L0804F042
-	movs r0, #1
-	strb r0, [r6, #0x1b]
-.L0804F042:
-	movs r0, #1
-	strb r0, [r6, #0x1a]
-.L0804F046:
-	add sp, #8
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0804F054: .4byte 0x00008140
-.L0804F058:
-	.global func_0804F058
-	.thumb_func
-func_0804F058:
-	movs r1, #0
-	strh r1, [r0, #0x14]
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_0804F060
-func_0804F060: @ 0x0804F060
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #4
-	adds r5, r0, #0
-	ldrh r0, [r5, #0x16]
-	cmp r0, #1
-	bhi .L0804F078
-	adds r0, #1
-	strh r0, [r5, #0x16]
-	b .L0804F0D2
-.L0804F078:
-	ldrb r0, [r5, #0x18]
-	adds r0, #1
-	strb r0, [r5, #0x18]
-	lsls r0, r0, #0x18
-	lsrs r0, r0, #0x18
-	cmp r0, #2
-	bls .L0804F08A
-	movs r0, #0
-	strb r0, [r5, #0x18]
-.L0804F08A:
-	ldrb r1, [r5, #0x18]
-	adds r0, r1, #2
-	cmp r0, #2
-	ble .L0804F094
-	subs r0, r1, #1
-.L0804F094:
-	lsls r0, r0, #2
-	adds r0, r0, r5
-	mov r6, sp
-	movs r1, #4
-	mov sb, r1
-	movs r1, #2
-	mov r8, r1
-	ldr r4, [r0, #8]
-	movs r7, #6
-.L0804F0A6:
-	ldr r1, [r4]
-	mov r0, sb
-	strh r0, [r6]
-	mov r0, r8
-	strh r0, [r6, #2]
-	ldr r0, [sp]
-	adds r1, #4
-	movs r2, #0
-	bl Clear2DGfxBuffer
-	ldr r1, [r4, #8]
-	rsbs r0, r1, #0
-	orrs r0, r1
-	lsrs r0, r0, #0x1f
-	strb r0, [r4, #0xc]
-	adds r4, #0x10
-	subs r7, #1
-	cmp r7, #0
-	bge .L0804F0A6
-	movs r0, #1
-	strb r0, [r5, #0x19]
-	strb r0, [r5, #0x1a]
-.L0804F0D2:
-	add sp, #4
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0804F0E0
-func_0804F0E0: @ 0x0804F0E0
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #8
-	adds r3, r0, #0
-	movs r1, #0
-	mov r8, sp
-	movs r0, #2
-	mov sl, r0
-.L0804F0F6:
-	movs r7, #0
-	lsls r0, r1, #2
-	adds r1, #1
-	mov sb, r1
-	adds r6, r0, r3
-	adds r6, #8
-.L0804F102:
-	ldr r5, [r6]
-	lsls r0, r7, #4
-	adds r5, r5, r0
-	adds r4, r5, #0
-	ldm r4!, {r1}
-	movs r0, #4
-	mov r2, r8
-	strh r0, [r2]
-	mov r0, sl
-	strh r0, [r2, #2]
-	ldr r0, [sp]
-	adds r1, #4
-	movs r2, #0
-	str r3, [sp, #4]
-	bl Clear2DGfxBuffer
-	ldr r1, [r4, #4]
-	rsbs r0, r1, #0
-	orrs r0, r1
-	lsrs r0, r0, #0x1f
-	strb r0, [r5, #0xc]
-	adds r7, #1
-	ldr r3, [sp, #4]
-	cmp r7, #6
-	ble .L0804F102
-	mov r1, sb
-	cmp r1, #2
-	ble .L0804F0F6
-	movs r0, #0
-	movs r1, #0
-	strh r1, [r3, #0x16]
-	strh r1, [r3, #0x14]
-	movs r1, #1
-	strb r1, [r3, #0x19]
-	strb r1, [r3, #0x1a]
-	strb r0, [r3, #0x1b]
-	add sp, #8
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_0804F15C
-func_0804F15C: @ 0x0804F15C
-	ldrb r0, [r0, #0x19]
-	bx lr
+    .section .text.ui_text_output_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0804F160
 func_0804F160: @ 0x0804F160
@@ -151854,7 +151365,7 @@ func_0805039C: @ 0x0805039C
 	cmp r6, #0
 	bne .L080503D0
 	adds r0, #0xd0
-	bl func_0804F0E0
+	bl ClearUiTextPage
 	ldr r0, [r4, #4]
 	adds r5, r4, #0
 	adds r5, #0x20
@@ -151925,7 +151436,7 @@ func_08050424: @ 0x08050424
 	bgt .L08050454
 	adds r0, r5, #0
 	adds r0, #0xd0
-	bl func_0804F0E0
+	bl ClearUiTextPage
 .L08050454:
 	adds r4, r5, #0
 	adds r4, #0xec
@@ -151974,7 +151485,7 @@ func_08050478: @ 0x08050478
 	bgt .L080504B4
 	adds r0, r4, #0
 	adds r0, #0xd0
-	bl func_0804F0E0
+	bl ClearUiTextPage
 .L080504B4:
 	movs r5, #4
 	movs r6, #0xc
@@ -152281,7 +151792,7 @@ func_08050664: @ 0x08050664
 .L08050708:
 	adds r0, r5, #0
 	adds r0, #0xd0
-	bl func_0804F0E0
+	bl ClearUiTextPage
 	movs r1, #0
 	mov r0, sp
 	strb r1, [r0]

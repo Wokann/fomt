@@ -4,6 +4,7 @@
 #include "hardware_bootstrap.hh"
 #include "hardware_manager.hh"
 #include "font.hh"
+#include "ui_state.hh"
 
 EXTERN_C
 
@@ -65,9 +66,6 @@ extern void func_080E07B8(void);
 extern void func_080E07C4(void);
 extern void func_080E07D0(void);
 extern void func_080E07DC(void);
-extern void func_0804ED38(void);
-extern void func_0804EDE4(void);
-extern void func_0804EE6C(void);
 extern void func_080E0880(void);
 extern void func_080E0890(void);
 extern void func_080E0894(void);
@@ -393,7 +391,6 @@ extern void func_08093220(void);
 extern void func_080E1018(void);
 extern void func_080E1024(void);
 extern void func_080E1030(void);
-extern void func_0804F058(void);
 extern void func_080E10F0(void);
 extern void func_080E10F4(void);
 extern void func_080E1118(void);
@@ -658,10 +655,6 @@ extern void func_08075328(void);
 extern void Resolve__C22IndexedResourceArchiveUi(void);
 extern void GetGroupData__C22IndexedResourceArchiveUi(void);
 extern void func_0804EF20(void);
-extern void func_0804EFAC(void);
-extern void func_0804F060(void);
-extern void func_0804F0E0(void);
-extern void func_0804F15C(void);
 extern void func_0804F160(void);
 extern void func_0804F174(void);
 extern void func_0804F178(void);
@@ -4534,7 +4527,7 @@ extern RawVTableFunction const vtable_unk_080E78B0[]
         nullptr,
         nullptr,
         func_080E105C,
-        func_0804ED38,
+        reinterpret_cast<RawVTableFunction>(EmitUiTextGlyph),
     };
 #else
 extern RawVTableFunction const vtable_unk_080E78A8[]
@@ -4553,10 +4546,10 @@ extern RawVTableFunction const vtable_unk_080E78A8[]
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E78C0[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
-        func_0804EDE4,
-        func_0804F060,
-        func_0804EE6C,
-        func_0804F15C,
+        reinterpret_cast<RawVTableFunction>(ReturnUiTextCursor),
+        reinterpret_cast<RawVTableFunction>(AdvanceUiTextLine),
+        reinterpret_cast<RawVTableFunction>(ClearUiTextPage),
+        reinterpret_cast<RawVTableFunction>(GetUiTextStopFlag),
     };
 
 extern RawVTableFunction const vtable_unk_080E78D0[]
@@ -4572,11 +4565,11 @@ extern RawVTableFunction const vtable_unk_080E78C0[]
         nullptr,
         nullptr,
         func_080E105C,
-        func_0804EFAC,
-        func_0804F058,
-        func_0804F060,
-        func_0804F0E0,
-        func_0804F15C,
+        reinterpret_cast<RawVTableFunction>(EmitUiTextGlyph),
+        reinterpret_cast<RawVTableFunction>(ReturnUiTextCursor),
+        reinterpret_cast<RawVTableFunction>(AdvanceUiTextLine),
+        reinterpret_cast<RawVTableFunction>(ClearUiTextPage),
+        reinterpret_cast<RawVTableFunction>(GetUiTextStopFlag),
     };
 #endif
 
