@@ -34595,54 +34595,8 @@ func_080E15C8:
     .byte 0x00, 0x00, 0xA0, 0x3B, 0x00, 0x00, 0x50, 0x3B, 0x00, 0x00, 0x28, 0x3A, 0x00, 0x00, 0x24, 0x39
     .byte 0x00, 0x00, 0x48, 0x3B, 0x00, 0x00, 0x38, 0x3B, 0x00, 0x00, 0x30, 0x3B, 0x00, 0x00, 0x24, 0x3A
     .byte 0x00, 0x00, 0x20, 0x39, 0x00, 0x00, 0x68, 0x4E, 0x0E, 0x08
-    .global func_080E1FAC
-    .thumb_func
-func_080E1FAC:
-    push {r4, r5, r6, lr}
-    adds r5, r0, #0
-    adds r6, r1, #0
-    adds r4, r5, #0
-    adds r4, #0x30
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl func_080073E0
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._17HardwarePoolOwner
-    subs r4, #8
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    subs r4, #8
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl func_080073E0
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._17HardwarePoolOwner
-    subs r4, #8
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    ldr r0, [r5, #0xc]
-    cmp r0, #0
-    beq .Lauto_080E17A8
-    movs r1, #3
-    bl _._12UiStateOwner
-    .Lauto_080E17A8:
-    adds r0, r5, #0
-    adds r1, r6, #0
-    bl func_080086BC
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.new_game_birthday_core_cleanup_after, "ax", %progbits
+    .align 2, 0
     .global func_080E2018
     .thumb_func
 func_080E2018:
@@ -42533,53 +42487,7 @@ func_080E1E28: @ 0x080E1E28
 .L080E1FA4: .4byte 0x00003EA0
 .L080E1FA8: .4byte vtable_unk_080E5A28
 
-	thumb_func_start func_080E1FAC
-func_080E1FAC: @ 0x080E1FAC
-	push {r4, r5, r6, lr}
-	adds r5, r0, #0
-	adds r6, r1, #0
-	adds r4, r5, #0
-	adds r4, #0x30
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl func_080073E0
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl func_080073E0
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	ldr r0, [r5, #0xc]
-	cmp r0, #0
-	beq .L080E2008
-	movs r1, #3
-	bl _._12UiStateOwner
-.L080E2008:
-	adds r0, r5, #0
-	adds r1, r6, #0
-	bl func_080086BC
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.new_game_birthday_core_cleanup_after, "ax", %progbits
 
 	thumb_func_start func_080E2018
 func_080E2018: @ 0x080E2018

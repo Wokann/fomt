@@ -650,7 +650,6 @@ extern void func_080A748C(void);
 extern void func_080A6660(void);
 extern void func_080A95A4(void);
 #endif
-extern void func_080E1FAC(void);
 extern void func_080E2018(void);
 extern void func_080713AC(void);
 extern void func_08070C88(void);
@@ -5021,7 +5020,7 @@ extern RawVTableFunction const vtable_unk_080E7AB4[]
         nullptr,
         nullptr,
 #if defined(REGION_JP)
-        func_080E1FAC,
+        reinterpret_cast<RawVTableFunction>(DestroyBirthdayInputCore),
 #else
         func_0806D918,
         func_0806D948,
@@ -5042,7 +5041,7 @@ extern RawVTableFunction const vtable_unk_080E7AC4[]
 #else
         nullptr,
         nullptr,
-        func_080E1FAC,
+        reinterpret_cast<RawVTableFunction>(DestroyBirthdayInputCore),
 #endif
     };
 

@@ -1338,6 +1338,20 @@ NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore 
     return core;
 }
 
+// The core still has an explicit native callback table. End the constructed
+// member lifetimes in their original order and forward the deleting flags to
+// the existing base destructor rather than inventing another deletion layer.
+void DestroyBirthdayInputCore(NewGameBirthdayInputCore * core, u32 flags)
+{
+    core->cursor_palette.~HardwareResourceEntry();
+    core->cursor_tiles.~HardwareStateEntry();
+    core->glyph_palette.~HardwareResourceEntry();
+    core->glyph_tiles.~HardwareStateEntry();
+    if (core->ui_state != nullptr)
+        delete core->ui_state;
+    func_080086BC(core, flags);
+}
+
 NewGameBirthdayInputScene * InitializeBirthdayInputScene(NewGameBirthdayInputScene * scene, GameDate birthday)
 {
     scene->vtable = gNewGameBirthdayInputSceneVTable;

@@ -217,6 +217,8 @@ typedef char BirthdayDialogueChoiceCheck[offsetof(NewGameBirthdayInputCore, dial
 extern "C" {
 NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore *, GameDate)
     SECTION(".text.new_game_birthday_core");
+void DestroyBirthdayInputCore(NewGameBirthdayInputCore *, u32 flags)
+    SECTION(".text.new_game_birthday_core_cleanup");
 extern NewGameSceneVTableFunction const vtable_unk_080E7AB4[];
 extern NewGameSceneVTableFunction const vtable_unk_080E7AC4[];
 SceneTransitionOwner func_0806DB38(NewGameBirthdayInputCore *);
