@@ -637,8 +637,6 @@ extern void Resolve__C22IndexedResourceArchiveUi(void);
 extern void GetGroupData__C22IndexedResourceArchiveUi(void);
 extern void func_080E1128(void);
 extern void func_080E1148(void);
-extern void Run__25GameSceneScriptController(void);
-extern void func_08010158(void);
 // Direct binding to the compiler's legacy destructor symbol, not an alias body.
 extern void destructor_GameScene(void) asm("_._9GameScene");
 extern void Run__9GameScene(void);
@@ -818,15 +816,6 @@ extern void func_080DC554(void);
 extern void func_080DC5A8(void);
 extern void func_080DC5B4(void);
 extern void func_080DC5D4(void);
-// Native callbacks of the recovered startup-controller class. Keep this
-// physical table here until its remaining native virtual bodies are recovered.
-extern RawVTableFunction const __vt_25GameSceneScriptController[] = {
-    nullptr,
-    nullptr,
-    func_08010158,
-    Run__25GameSceneScriptController,
-};
-
 extern RawVTableFunction const vtable_unk_080E5C08[] = {
     nullptr,
     nullptr,

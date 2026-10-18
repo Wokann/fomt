@@ -115,7 +115,7 @@ GameSceneScriptQueue<2> * func_08010118(void)
 {
     GameSceneScriptController * controller =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
-    return &controller->queue_0;
+    return &controller->queues.queue_0;
 }
 
 u8 * func_08010128(void)
@@ -138,6 +138,11 @@ ScriptEngine * func_0801014C(void)
     GameSceneScriptController * controller =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
     return &controller->script_engine;
+}
+
+GameSceneScriptController::~GameSceneScriptController()
+{
+    gUnk_0300040C = nullptr;
 }
 
 GameScene::~GameScene()
@@ -587,11 +592,11 @@ void GameScene::QueueScript(GameSceneScriptRequest const & request, i32 queue_ki
 {
     GameSceneScriptController * controller =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
-    GameSceneScriptQueue<2> & first = controller->queue_0;
+    GameSceneScriptQueue<2> & first = controller->queues.queue_0;
     switch (queue_kind) {
     case 0: first.Push(request); break;
-    case 1: controller->queue_1.Push(request); break;
-    case 2: controller->queue_2.Push(request); break;
+    case 1: controller->queues.queue_1.Push(request); break;
+    case 2: controller->queues.queue_2.Push(request); break;
     }
 }
 

@@ -6485,6 +6485,69 @@ func_080D7944: @ 0x080D7944
     .endif
 	.section ".text.code_080D7CFC"
 
+    @ Contiguous fixed script-queue aggregate; reverse-order destruction.
+    @ This body remains native, with the ordinary C++ destructor ABI.
+	thumb_func_start _._21GameSceneScriptQueues
+_._21GameSceneScriptQueues:
+	push {r4, r5, lr}
+	adds r3, r0, #0
+	adds r5, r1, #0
+	movs r0, #0xac
+	lsls r0, r0, #1
+	adds r1, r3, r0
+	ldr r0, [r1]
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r1, r1, r0
+	movs r2, #0xae
+	lsls r2, r2, #1
+	adds r0, r3, r2
+	cmp r0, r1
+	beq .L080D7E88
+.L080D7E82:
+	adds r0, #8
+	cmp r0, r1
+	bne .L080D7E82
+.L080D7E88:
+	adds r1, r3, #0
+	adds r1, #0x14
+	ldr r0, [r3, #0x14]
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r1, r1, r0
+	adds r2, r3, #0
+	adds r2, #0x18
+	adds r4, r3, #4
+	ldr r0, [r3]
+	cmp r2, r1
+	beq .L080D7EA6
+.L080D7EA0:
+	adds r2, #8
+	cmp r2, r1
+	bne .L080D7EA0
+.L080D7EA6:
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r0, r3, r0
+	adds r1, r4, #0
+	cmp r1, r0
+	beq .L080D7EB8
+.L080D7EB2:
+	adds r1, #8
+	cmp r1, r0
+	bne .L080D7EB2
+.L080D7EB8:
+	movs r0, #1
+	ands r0, r5
+	cmp r0, #0
+	beq .L080D7EC6
+	adds r0, r3, #0
+	bl __builtin_delete
+.L080D7EC6:
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+
     .ifdef REGION_JP
     @ JP revision 0 counterpart of .text.code_080D7CFC.
     @
@@ -6496,67 +6559,6 @@ func_080D7944: @ 0x080D7944
     .syntax unified
     .thumb
 
-    .global func_080D7E64
-    .thumb_func
-func_080D7E64:
-    push {r4, r5, lr}
-    adds r3, r0, #0
-    adds r5, r1, #0
-    movs r0, #0xac
-    lsls r0, r0, #1
-    adds r1, r3, r0
-    ldr r0, [r1]
-    lsls r0, r0, #3
-    adds r0, #4
-    adds r1, r1, r0
-    movs r2, #0xae
-    lsls r2, r2, #1
-    adds r0, r3, r2
-    cmp r0, r1
-    beq .Lauto_080D7640
-    .Lauto_080D763A:
-    adds r0, #8
-    cmp r0, r1
-    bne .Lauto_080D763A
-    .Lauto_080D7640:
-    adds r1, r3, #0
-    adds r1, #0x14
-    ldr r0, [r3, #0x14]
-    lsls r0, r0, #3
-    adds r0, #4
-    adds r1, r1, r0
-    adds r2, r3, #0
-    adds r2, #0x18
-    adds r4, r3, #4
-    ldr r0, [r3]
-    cmp r2, r1
-    beq .Lauto_080D765E
-    .Lauto_080D7658:
-    adds r2, #8
-    cmp r2, r1
-    bne .Lauto_080D7658
-    .Lauto_080D765E:
-    lsls r0, r0, #3
-    adds r0, #4
-    adds r0, r3, r0
-    adds r1, r4, #0
-    cmp r1, r0
-    beq .Lauto_080D7670
-    .Lauto_080D766A:
-    adds r1, #8
-    cmp r1, r0
-    bne .Lauto_080D766A
-    .Lauto_080D7670:
-    movs r0, #1
-    ands r0, r5
-    cmp r0, #0
-    beq .Lauto_080D767E
-    adds r0, r3, #0
-    bl __builtin_delete
-    .Lauto_080D767E:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
     .section .text.game_scene_state_callbacks_after, "ax", %progbits
 
     .global func_080D7F9C
@@ -15475,67 +15477,6 @@ func_080E0E80:
     bx r1
 
     .else
-
-	thumb_func_start func_080D7E64
-func_080D7E64: @ 0x080D7E64
-	push {r4, r5, lr}
-	adds r3, r0, #0
-	adds r5, r1, #0
-	movs r0, #0xac
-	lsls r0, r0, #1
-	adds r1, r3, r0
-	ldr r0, [r1]
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	movs r2, #0xae
-	lsls r2, r2, #1
-	adds r0, r3, r2
-	cmp r0, r1
-	beq .L080D7E88
-.L080D7E82:
-	adds r0, #8
-	cmp r0, r1
-	bne .L080D7E82
-.L080D7E88:
-	adds r1, r3, #0
-	adds r1, #0x14
-	ldr r0, [r3, #0x14]
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	adds r2, r3, #0
-	adds r2, #0x18
-	adds r4, r3, #4
-	ldr r0, [r3]
-	cmp r2, r1
-	beq .L080D7EA6
-.L080D7EA0:
-	adds r2, #8
-	cmp r2, r1
-	bne .L080D7EA0
-.L080D7EA6:
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r0, r3, r0
-	adds r1, r4, #0
-	cmp r1, r0
-	beq .L080D7EB8
-.L080D7EB2:
-	adds r1, #8
-	cmp r1, r0
-	bne .L080D7EB2
-.L080D7EB8:
-	movs r0, #1
-	ands r0, r5
-	cmp r0, #0
-	beq .L080D7EC6
-	adds r0, r3, #0
-	bl __builtin_delete
-.L080D7EC6:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
 
     .section .text.game_scene_state_callbacks_after, "ax", %progbits
 

@@ -150,7 +150,7 @@ SECTIONS
         asm/more_items.o(.text);
         src/game_scene.o(.text.Run__25GameSceneScriptController);
         src/game_scene.o(.text.func_08010*);
-        asm/game_scene.o(.text.game_scene_post);
+        src/game_scene.o(.text._._25GameSceneScriptController);
         src/game_scene.o(.text.__25GameSceneScriptControllerG23GameStateSaveImageOwner);
         src/game_scene.o(.text.__25GameSceneScriptControllerPCcT1G8GameDateT1);
         src/game_state.o(.text.GetNonzeroRandomValue .text.__18GameStateSaveImagePCcT1G8GameDateT1 .text.Get*__C18GameStateSaveImage .text.AllAnimalsHaveHighAffection__C18GameStateSaveImage .text.SetFlag[0-3]__18GameStateSaveImage);
@@ -714,6 +714,7 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_18HardwareLinkedList);
         *(.gnu.linkonce.d.__vt_12HardwareLink);
         *(.gnu.linkonce.d.__vt_16HardwareLinkBase);
+        src/game_scene.o(.gnu.linkonce.d.__vt_25GameSceneScriptController);
         src/vtables.o(.rodata);
         *(.gnu.linkonce.d.__vt_7AEntity);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6284);

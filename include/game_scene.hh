@@ -490,6 +490,21 @@ struct GameSceneScriptQueue {
     inline void Push(GameSceneScriptRequest const & request);
 };
 
+// The native cleanup owns all three adjacent queues and destroys them in
+// reverse order. Its out-of-line destructor still has a native implementation.
+struct GameSceneScriptQueues {
+    ~GameSceneScriptQueues();
+
+    GameSceneScriptQueue<2> queue_0;
+    GameSceneScriptQueue<40> queue_1;
+    GameSceneScriptQueue<1> queue_2;
+};
+
+typedef char GameSceneScriptQueuesSizeCheck[sizeof(GameSceneScriptQueues) == 0x164 ? 1 : -1];
+typedef char GameSceneScriptQueuesFirstCheck[offsetof(GameSceneScriptQueues, queue_0) == 0 ? 1 : -1];
+typedef char GameSceneScriptQueuesSecondCheck[offsetof(GameSceneScriptQueues, queue_1) == 0x14 ? 1 : -1];
+typedef char GameSceneScriptQueuesThirdCheck[offsetof(GameSceneScriptQueues, queue_2) == 0x158 ? 1 : -1];
+
 // The four reusable records back entity slots 70-73, not particular NPCs.
 // Actors write their location and animation back here when destroyed; the
 // independently stored event-script halfword is read by their script hook.
@@ -543,13 +558,13 @@ struct GameSceneScriptControllerUnk36C {
 };
 
 // Startup controller, distinct from the eight-byte GameScene wrapper. Both
-// constructors and Run are recovered; destruction remains native. The first
-// word is AScene's actual inherited vptr, not manually written payload.
+// constructors, Run and destruction are recovered. The first word is AScene's
+// actual inherited vptr, not manually written payload.
 struct GameSceneScriptController : AScene {
     GameSceneScriptController(GameStateSaveImageOwner save);
     GameSceneScriptController(char const * farm_name, char const * player_name,
         GameDate birthday, char const * dog_name);
-    virtual ~GameSceneScriptController() asm("func_08010158");
+    virtual ~GameSceneScriptController();
     virtual SceneTransitionOwner Run();
 
     GameStateSaveImageOwner save;
@@ -558,9 +573,7 @@ struct GameSceneScriptController : AScene {
     u8 unk_365[3];
     u32 unk_368;
     GameSceneScriptControllerUnk36C unk_36C;
-    GameSceneScriptQueue<2> queue_0;
-    GameSceneScriptQueue<40> queue_1;
-    GameSceneScriptQueue<1> queue_2;
+    GameSceneScriptQueues queues;
     GameSceneControllerLocationRecord location_records[6];
     GameSceneControllerActorRecord actor_records[4];
 };
@@ -573,9 +586,10 @@ typedef char GameSceneControllerUnk368Check[offsetof(GameSceneScriptController, 
 typedef char GameSceneControllerUnk36CCheck[offsetof(GameSceneScriptController, unk_36C) == 0x36C ? 1 : -1];
 typedef char GameSceneControllerUnk36CSizeCheck[sizeof(GameSceneScriptControllerUnk36C) == 12 ? 1 : -1];
 typedef char GameSceneControllerUnk374Check[offsetof(GameSceneScriptControllerUnk36C, unk_08) == 8 ? 1 : -1];
-typedef char GameSceneControllerQueue0Check[offsetof(GameSceneScriptController, queue_0) == 0x378 ? 1 : -1];
-typedef char GameSceneControllerQueue1Check[offsetof(GameSceneScriptController, queue_1) == 0x38C ? 1 : -1];
-typedef char GameSceneControllerQueue2Check[offsetof(GameSceneScriptController, queue_2) == 0x4D0 ? 1 : -1];
+typedef char GameSceneControllerQueuesCheck[offsetof(GameSceneScriptController, queues) == 0x378 ? 1 : -1];
+typedef char GameSceneControllerQueue0Check[offsetof(GameSceneScriptController, queues.queue_0) == 0x378 ? 1 : -1];
+typedef char GameSceneControllerQueue1Check[offsetof(GameSceneScriptController, queues.queue_1) == 0x38C ? 1 : -1];
+typedef char GameSceneControllerQueue2Check[offsetof(GameSceneScriptController, queues.queue_2) == 0x4D0 ? 1 : -1];
 typedef char GameSceneControllerLocationArrayCheck[offsetof(GameSceneScriptController, location_records) == 0x4DC ? 1 : -1];
 typedef char GameSceneControllerActorArrayCheck[offsetof(GameSceneScriptController, actor_records) == 0x524 ? 1 : -1];
 typedef char GameSceneControllerSizeCheck[sizeof(GameSceneScriptController) == 0x554 ? 1 : -1];
