@@ -659,6 +659,11 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080E0F48);
         src/ui_state.o(.text.ui_text_output_upload);
         asm/code_linkonce.o(.text.ui_text_output_upload_after);
+        src/ui_state.o(.gnu.linkonce.t._._18UnkUiSelectionData);
+        asm/code_linkonce.o(.text.ui_selection_cleanup_after);
+        src/ui_state.o(.text.ui_text_output_defaults);
+        src/ui_state.o(.text.ui_text_output_base_destructor);
+        asm/code_linkonce.o(.text.ui_text_output_base_after);
         src/new_game.o(.text.new_game_birthday_core_cleanup);
         asm/code_linkonce.o(.text.new_game_birthday_core_cleanup_after);
         src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);
@@ -802,6 +807,10 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_13AScriptEngine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine_adjacent);
+        src/ui_state.o(.gnu.linkonce.d.__vt_18UnkUiSelectionData);
+        src/vtables.o(.rodata.ui_output_table_after);
+        src/ui_state.o(.gnu.linkonce.d.__vt_12UiTextOutput);
+        src/vtables.o(.rodata.ui_output_base_after);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7928);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7934);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7944);

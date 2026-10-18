@@ -36,17 +36,20 @@ struct UiTextSubstitution
     FixedStr<31> text;
 };
 
-// Recovered virtual contracts only; concrete output, input and variable-store
-// objects still have native implementations and additional storage.
+// The output base supplies native no-op cursor/page defaults and a byte-valued
+// stop query. Concrete output storage below owns its three glyph rows.
+// Input and variable-store implementations still have additional native storage.
 struct UiTextOutput
 {
-    virtual ~UiTextOutput();
+    virtual ~UiTextOutput() SECTION(".text.ui_text_output_base_destructor");
     virtual bool Emit(u32 code) = 0;
-    virtual void CarriageReturn() = 0;
-    virtual void LineFeed() = 0;
-    virtual void NextPage() = 0;
-    virtual bool ShouldStop() = 0;
+    virtual void CarriageReturn() SECTION(".text.ui_text_output_defaults");
+    virtual void LineFeed() SECTION(".text.ui_text_output_defaults");
+    virtual void NextPage() SECTION(".text.ui_text_output_defaults");
+    virtual u8 ShouldStop() SECTION(".text.ui_text_output_defaults");
 };
+
+inline UiTextOutput::~UiTextOutput() {}
 
 struct UiTextInput
 {
@@ -258,9 +261,17 @@ struct UnkUiSelectionRowOwner
     }
 };
 
-struct UnkUiSelectionData
+struct UnkUiSelectionData : UiTextOutput
 {
-    HardwareLinkVirtualFunction const * vtable;
+    UnkUiSelectionData(HardwareResourceEntry *, HardwareStateOwner const &)
+        SECTION(".text.ui_state_selection");
+    // Keep the implicit virtual destructor: row ownership supplies its body.
+    virtual bool Emit(u32) SECTION(".text.ui_text_output_callbacks");
+    virtual void CarriageReturn() SECTION(".text.ui_text_output_callbacks");
+    virtual void LineFeed() SECTION(".text.ui_text_output_callbacks");
+    virtual void NextPage() SECTION(".text.ui_text_output_callbacks");
+    // Return the stored byte unchanged; do not normalize it to a C++ bool.
+    virtual u8 ShouldStop() SECTION(".text.ui_text_output_callbacks");
     HardwareResourceEntry * palette;
     UnkUiSelectionRowOwner rows[3];
     u16 unk_14;
@@ -269,10 +280,6 @@ struct UnkUiSelectionData
     u8 unk_19;
     u8 unk_1a;
     u8 unk_1b;
-    UnkUiSelectionEntry & Entry(int row, int column)
-    {
-        return rows[row]->Entry(column);
-    }
 };
 
 struct UnkUiSelectionDimensions
@@ -373,18 +380,6 @@ void func_08051320(u16 * tilemap, u32 x, u32 y, u32 width, u32 height,
     u32 first_tile, u32 palette);
 extern u8 const gUiHandCursorArchive[];
 
-bool EmitUiTextGlyph(UnkUiSelectionData * object, u32 code)
-    SECTION(".text.ui_text_output_callbacks");
-void ReturnUiTextCursor(UnkUiSelectionData * object)
-    SECTION(".text.ui_text_output_callbacks");
-void AdvanceUiTextLine(UnkUiSelectionData * object)
-    SECTION(".text.ui_text_output_callbacks");
-void ClearUiTextPage(UnkUiSelectionData * object)
-    SECTION(".text.ui_text_output_callbacks");
-// Preserve the native stored-byte result, rather than normalizing it.
-u8 GetUiTextStopFlag(UnkUiSelectionData const * object)
-    SECTION(".text.ui_text_output_callbacks");
-
 bool IsUiTextFastRequested(UiTextInputAdapter const * input)
     SECTION(".text.ui_text_input_callbacks");
 bool ShouldWaitForUiTextInput(UiTextInputAdapter const * input)
@@ -397,8 +392,6 @@ extern HardwareLinkVirtualFunction const vtable_unk_080E7878[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7888[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7898[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E78A8[];
-extern HardwareLinkVirtualFunction const vtable_unk_080E78B0[];
-extern HardwareLinkVirtualFunction const vtable_unk_080E78C0[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E78D0[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E78E0[];
 
@@ -416,9 +409,6 @@ void func_08050F74(UnkUiSelectionData * object, u32 arg_1, u32 arg_2);
 void func_08050FA0(UnkUiSelectionData * object, HardwareSpriteBufferState * sprites);
 
 void func_080510E8(UnkUiSelectionData * object)
-    SECTION(".text.ui_state_selection");
-UnkUiSelectionData * func_0805116C(UnkUiSelectionData * object,
-    HardwareResourceEntry * palette, HardwareStateOwner const & state)
     SECTION(".text.ui_state_selection");
 int func_080512B8(UnkUiSelectionData const * object, int index)
     SECTION(".text.ui_state_selection");

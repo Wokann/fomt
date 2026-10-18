@@ -5815,7 +5815,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     movs r2, #0xd0
     add r2, r8
     mov sl, r2
-    ldr r0, .Ljp_0804F3EC @ =vtable_unk_080E78B0
+    ldr r0, .Ljp_0804F3EC @ =__vt_18UnkUiSelectionData
     str r0, [r2]
     str r5, [r2, #4]
     mov r1, r8
@@ -6184,7 +6184,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
 .Ljp_0804F3E0: .4byte __vt_18HardwareLinkedList
 .Ljp_0804F3E4: .4byte __vt_12HardwareLink
 .Ljp_0804F3E8: .4byte vtable_unk_080E7888
-.Ljp_0804F3EC: .4byte vtable_unk_080E78B0
+.Ljp_0804F3EC: .4byte __vt_18UnkUiSelectionData
 .Ljp_0804F3F0: .4byte vtable_unk_080E7878
 .Ljp_0804F3F4: .4byte gUiSharedTileByteCount
 .Ljp_0804F3F8: .4byte gUiSharedTiles
@@ -6269,7 +6269,7 @@ _._14UiStatePayload: @ 0x0804F428
     adds r0, r6, #0
     adds r0, #0xd0
     movs r1, #2
-    bl func_080E105C
+    bl _._18UnkUiSelectionData
     adds r0, r6, #0
     adds r0, #0xc0
     movs r1, #2
@@ -7868,7 +7868,7 @@ func_0805039C: @ 0x08050128
     cmp r6, #0
     bne .Ljp_0805015C
     adds r0, #0xd0
-    bl ClearUiTextPage
+    bl NextPage__18UnkUiSelectionData
     ldr r0, [r4, #4]
     adds r5, r4, #0
     adds r5, #0x20
@@ -7940,7 +7940,7 @@ func_08050424: @ 0x080501B0
     bgt .Ljp_080501E0
     adds r0, r5, #0
     adds r0, #0xd0
-    bl ClearUiTextPage
+    bl NextPage__18UnkUiSelectionData
 .Ljp_080501E0:
     adds r4, r5, #0
     adds r4, #0xec
@@ -7989,7 +7989,7 @@ func_08050478: @ 0x08050204
     bgt .Ljp_08050240
     adds r0, r4, #0
     adds r0, #0xd0
-    bl ClearUiTextPage
+    bl NextPage__18UnkUiSelectionData
 .Ljp_08050240:
     movs r5, #4
     movs r6, #0xc
@@ -8296,7 +8296,7 @@ func_08050664: @ 0x080503F0
 .Ljp_08050494:
     adds r0, r5, #0
     adds r0, #0xd0
-    bl ClearUiTextPage
+    bl NextPage__18UnkUiSelectionData
     movs r1, #0
     mov r0, sp
     strb r1, [r0]
@@ -148865,7 +148865,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	movs r2, #0xd0
 	add r2, r8
 	mov sl, r2
-	ldr r0, .L0804F660 @ =vtable_unk_080E78C0
+	ldr r0, .L0804F660 @ =__vt_18UnkUiSelectionData
 	str r0, [r2]
 	str r5, [r2, #4]
 	mov r1, r8
@@ -149234,7 +149234,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 .L0804F654: .4byte __vt_18HardwareLinkedList
 .L0804F658: .4byte __vt_12HardwareLink
 .L0804F65C: .4byte vtable_unk_080E7898
-.L0804F660: .4byte vtable_unk_080E78C0
+.L0804F660: .4byte __vt_18UnkUiSelectionData
 .L0804F664: .4byte vtable_unk_080E7888
 .L0804F668: .4byte gUiSharedTileByteCount
 .L0804F66C: .4byte gUiSharedTiles
@@ -149315,7 +149315,7 @@ _._14UiStatePayload: @ 0x0804F69C
 	adds r0, r6, #0
 	adds r0, #0xd0
 	movs r1, #2
-	bl func_080E105C
+	bl _._18UnkUiSelectionData
 	adds r0, r6, #0
 	adds r0, #0xc0
 	movs r1, #2
@@ -150911,7 +150911,7 @@ func_0805039C: @ 0x0805039C
 	cmp r6, #0
 	bne .L080503D0
 	adds r0, #0xd0
-	bl ClearUiTextPage
+	bl NextPage__18UnkUiSelectionData
 	ldr r0, [r4, #4]
 	adds r5, r4, #0
 	adds r5, #0x20
@@ -150982,7 +150982,7 @@ func_08050424: @ 0x08050424
 	bgt .L08050454
 	adds r0, r5, #0
 	adds r0, #0xd0
-	bl ClearUiTextPage
+	bl NextPage__18UnkUiSelectionData
 .L08050454:
 	adds r4, r5, #0
 	adds r4, #0xec
@@ -151031,7 +151031,7 @@ func_08050478: @ 0x08050478
 	bgt .L080504B4
 	adds r0, r4, #0
 	adds r0, #0xd0
-	bl ClearUiTextPage
+	bl NextPage__18UnkUiSelectionData
 .L080504B4:
 	movs r5, #4
 	movs r6, #0xc
@@ -151338,7 +151338,7 @@ func_08050664: @ 0x08050664
 .L08050708:
 	adds r0, r5, #0
 	adds r0, #0xd0
-	bl ClearUiTextPage
+	bl NextPage__18UnkUiSelectionData
 	movs r1, #0
 	mov r0, sp
 	strb r1, [r0]

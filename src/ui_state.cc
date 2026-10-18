@@ -3,6 +3,11 @@
 #include "resource_handle.hh"
 #include "gbasvc.h"
 
+u8 UiTextOutput::ShouldStop() { return false; }
+void UiTextOutput::NextPage() {}
+void UiTextOutput::LineFeed() {}
+void UiTextOutput::CarriageReturn() {}
+
 bool RunUiTextTileCopyCommand(UiTextTileCopyCommand * command)
 {
     u32 const * source = command->source;
@@ -546,10 +551,16 @@ static inline int GetUiTextPhysicalRow(UnkUiSelectionData const * object, int ro
     return result;
 }
 
-bool EmitUiTextGlyph(UnkUiSelectionData * object, u32 code)
+static inline UnkUiSelectionEntry & GetUiTextEntry(UnkUiSelectionData & object,
+    int row, int column)
 {
-    u32 column = object->unk_14;
-    UnkUiSelectionRow * row = object->rows[GetUiTextPhysicalRow(object, object->unk_16)].Get();
+    return object.rows[row]->Entry(column);
+}
+
+bool UnkUiSelectionData::Emit(u32 code)
+{
+    u32 column = unk_14;
+    UnkUiSelectionRow * row = rows[GetUiTextPhysicalRow(this, unk_16)].Get();
     UnkUiSelectionEntry * entry = &row->Entry(column >> 2);
     u32 advanced = DrawUiTextEntry(entry, code, column & 3);
     if (advanced == 0)
@@ -559,27 +570,27 @@ bool EmitUiTextGlyph(UnkUiSelectionData * object, u32 code)
     u32 next = column + advanced;
     if (next > 27)
         next %= 28;
-    object->unk_14 = next;
+    unk_14 = next;
     if (code != 0x20 && code != 0x8140)
-        object->unk_1b = 1;
-    object->unk_1a = 1;
+        unk_1b = 1;
+    unk_1a = 1;
     return true;
 }
 
-void ReturnUiTextCursor(UnkUiSelectionData * object)
+void UnkUiSelectionData::CarriageReturn()
 {
-    object->unk_14 = 0;
+    unk_14 = 0;
 }
 
-void AdvanceUiTextLine(UnkUiSelectionData * object)
+void UnkUiSelectionData::LineFeed()
 {
-    if (object->unk_16 <= 1)
-        ++object->unk_16;
+    if (unk_16 <= 1)
+        ++unk_16;
     else {
-        if (++object->unk_18 > 2)
-            object->unk_18 = 0;
-        int row = GetUiTextPhysicalRow(object, 2);
-        UnkUiSelectionRow * row_buffer = object->rows[row].Get();
+        if (++unk_18 > 2)
+            unk_18 = 0;
+        int row = GetUiTextPhysicalRow(this, 2);
+        UnkUiSelectionRow * row_buffer = rows[row].Get();
         for (int column = 0; column <= 6; ++column) {
             UnkUiSelectionEntry * entry = &row_buffer->Entry(column);
             UnkUiSelectionTileBuffer * pixels = entry->pixels.value;
@@ -587,29 +598,29 @@ void AdvanceUiTextLine(UnkUiSelectionData * object)
             Clear2DGfxBuffer(reinterpret_cast<u32 const &>(dimensions), pixels->tiles, 0);
             entry->changed = entry->state.handle != 0;
         }
-        object->unk_19 = 1;
-        object->unk_1a = 1;
+        unk_19 = 1;
+        unk_1a = 1;
     }
 }
 
-void ClearUiTextPage(UnkUiSelectionData * object)
+void UnkUiSelectionData::NextPage()
 {
     for (int row = 0; row <= 2; ++row) {
         for (int column = 0; column <= 6; ++column) {
-            UnkUiSelectionEntry * entry = &object->Entry(row, column);
+            UnkUiSelectionEntry * entry = &GetUiTextEntry(*this, row, column);
             ClearUiTextEntry(entry);
         }
     }
-    object->unk_16 = 0;
-    object->unk_14 = 0;
-    object->unk_19 = 1;
-    object->unk_1a = 1;
-    object->unk_1b = 0;
+    unk_16 = 0;
+    unk_14 = 0;
+    unk_19 = 1;
+    unk_1a = 1;
+    unk_1b = 0;
 }
 
-u8 GetUiTextStopFlag(UnkUiSelectionData const * object)
+u8 UnkUiSelectionData::ShouldStop()
 {
-    return object->unk_19;
+    return unk_19;
 }
 
 static inline bool HasUiTextAdvanceKeys(u8 value)
@@ -644,7 +655,7 @@ static inline void UploadUiTextOutput(UnkUiSelectionData * object)
         int column = 0;
         for (; column <= 6; ++column)
         {
-            UnkUiSelectionEntry & entry = object->Entry(row, column);
+            UnkUiSelectionEntry & entry = GetUiTextEntry(*object, row, column);
             if (entry.changed)
             {
                 if (HasUiSelectionState(entry.state))
@@ -674,30 +685,16 @@ bool RunUiTextOutputUploadCommand(UiTextOutputUploadCommand * command)
     return false;
 }
 
-EC UnkUiSelectionData * func_0805116C(UnkUiSelectionData * object,
-    HardwareResourceEntry * palette, HardwareStateOwner const & state)
+UnkUiSelectionData::UnkUiSelectionData(HardwareResourceEntry * palette,
+    HardwareStateOwner const & state)
+    : palette(palette), unk_14(0), unk_16(0), unk_18(0), unk_19(0), unk_1a(0), unk_1b(0)
 {
-#if defined(REGION_JP)
-    object->vtable = vtable_unk_080E78B0;
-#else
-    object->vtable = vtable_unk_080E78C0;
-#endif
-    object->palette = palette;
-    UnkUiSelectionRowOwner * first_row = object->rows;
-    for (int count = 2; count != -1; --count)
-        (first_row++)->value = nullptr;
-    object->unk_14 = 0;
-    object->unk_16 = 0;
-    object->unk_18 = 0;
-    object->unk_19 = 0;
-    object->unk_1a = 0;
-    object->unk_1b = 0;
     for (int row = 0; row <= 2; ++row)
     {
-        object->rows[row] = new UnkUiSelectionRow;
+        rows[row] = new UnkUiSelectionRow;
         for (int column = 0; column <= 6; ++column)
         {
-            UnkUiSelectionEntry * entry = &object->Entry(row, column);
+            UnkUiSelectionEntry * entry = &GetUiTextEntry(*this, row, column);
             entry->state = state.Get(3);
             bool available = HasUiSelectionState(entry->state);
             if (available)
@@ -710,8 +707,7 @@ EC UnkUiSelectionData * func_0805116C(UnkUiSelectionData * object,
             entry->changed = available;
         }
     }
-    object->unk_1a = 1;
-    return object;
+    unk_1a = 1;
 }
 
 EC int func_080512B8(UnkUiSelectionData const * object, int index)

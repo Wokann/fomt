@@ -32693,75 +32693,8 @@ func_080E07DC:
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0x20, 0x6D, 0x0E, 0x08
-    .global func_080E105C
-    .thumb_func
-func_080E105C:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    mov r8, r0
-    mov sl, r1
-    adds r0, #8
-    cmp r0, #0
-    beq .Lauto_080E0858
-    mov r7, r8
-    adds r7, #0x14
-    cmp r0, r7
-    beq .Lauto_080E0858
-    .Lauto_080E0818:
-    subs r7, #4
-    ldr r0, [r7]
-    movs r1, #8
-    add r1, r8
-    mov sb, r1
-    cmp r0, #0
-    beq .Lauto_080E0854
-    adds r6, r0, #0
-    adds r5, r6, #0
-    adds r5, #0x70
-    cmp r6, r5
-    beq .Lauto_080E084E
-    .Lauto_080E0830:
-    subs r5, #0x10
-    adds r4, r5, #4
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    ldr r0, [r5]
-    bl __builtin_delete
-    cmp r6, r5
-    bne .Lauto_080E0830
-    .Lauto_080E084E:
-    adds r0, r6, #0
-    bl __builtin_delete
-    .Lauto_080E0854:
-    cmp sb, r7
-    bne .Lauto_080E0818
-    .Lauto_080E0858:
-    ldr r0, [pc, #0x20]
-    mov r1, r8
-    str r0, [r1]
-    movs r0, #1
-    mov r1, sl
-    ands r0, r1
-    cmp r0, #0
-    beq .Lauto_080E086E
-    mov r0, r8
-    bl __builtin_delete
-    .Lauto_080E086E:
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .byte 0x38, 0x6D, 0x0E, 0x08
+    .section .text.ui_selection_cleanup_after, "ax", %progbits
+    .align 2, 0
     .global func_080E0880
     .thumb_func
 func_080E0880:
@@ -32802,43 +32735,8 @@ func_080E0898:
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0x20, 0x6D, 0x0E, 0x08
-    .global func_080E08B8
-    .thumb_func
-func_080E08B8:
-    movs r0, #0
-    bx lr
-    .global func_080E08BC
-    .thumb_func
-func_080E08BC:
-    bx lr
-    .byte 0x00, 0x00
-    .global func_080E08C0
-    .thumb_func
-func_080E08C0:
-    bx lr
-    .byte 0x00, 0x00
-    .global func_080E08C4
-    .thumb_func
-func_080E08C4:
-    bx lr
-    .byte 0x00, 0x00
-    .global func_080E08C8
-    .thumb_func
-func_080E08C8:
-    push {lr}
-    adds r2, r0, #0
-    ldr r0, [pc, #0x14]
-    str r0, [r2]
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    beq .Lauto_080E08DE
-    adds r0, r2, #0
-    bl __builtin_delete
-    .Lauto_080E08DE:
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00, 0x38, 0x6D, 0x0E, 0x08
+    .section .text.ui_text_output_base_after, "ax", %progbits
+    .align 2, 0
     .global func_080E1148
     .thumb_func
 func_080E1148:
@@ -40425,75 +40323,8 @@ func_080E103C: @ 0x080E103C
 	.align 2, 0
 .L080E1058: .4byte vtable_unk_080E78F0
 
-	thumb_func_start func_080E105C
-func_080E105C: @ 0x080E105C
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	mov r8, r0
-	mov sl, r1
-	adds r0, #8
-	cmp r0, #0
-	beq .L080E10B8
-	mov r7, r8
-	adds r7, #0x14
-	cmp r0, r7
-	beq .L080E10B8
-.L080E1078:
-	subs r7, #4
-	ldr r0, [r7]
-	movs r1, #8
-	add r1, r8
-	mov sb, r1
-	cmp r0, #0
-	beq .L080E10B4
-	adds r6, r0, #0
-	adds r5, r6, #0
-	adds r5, #0x70
-	cmp r6, r5
-	beq .L080E10AE
-.L080E1090:
-	subs r5, #0x10
-	adds r4, r5, #4
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	ldr r0, [r5]
-	bl __builtin_delete
-	cmp r6, r5
-	bne .L080E1090
-.L080E10AE:
-	adds r0, r6, #0
-	bl __builtin_delete
-.L080E10B4:
-	cmp sb, r7
-	bne .L080E1078
-.L080E10B8:
-	ldr r0, .L080E10DC @ =vtable_unk_080E7908
-	mov r1, r8
-	str r0, [r1]
-	movs r0, #1
-	mov r1, sl
-	ands r0, r1
-	cmp r0, #0
-	beq .L080E10CE
-	mov r0, r8
-	bl __builtin_delete
-.L080E10CE:
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E10DC: .4byte vtable_unk_080E7908
+    .section .text.ui_selection_cleanup_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E10E0
 func_080E10E0: @ 0x080E10E0
@@ -40535,40 +40366,8 @@ func_080E10F8: @ 0x080E10F8
 	.align 2, 0
 .L080E1114: .4byte vtable_unk_080E78F0
 .L080E1118:
-	.global func_080E1118
-	.thumb_func
-func_080E1118:
-	.byte 0x00, 0x20, 0x70, 0x47
-	.global func_080E111C
-	.thumb_func
-func_080E111C:
-	.byte 0x70, 0x47, 0x00, 0x00
-	.global func_080E1120
-	.thumb_func
-func_080E1120:
-	.byte 0x70, 0x47, 0x00, 0x00
-	.global func_080E1124
-	.thumb_func
-func_080E1124:
-	.byte 0x70, 0x47, 0x00, 0x00
-
-	thumb_func_start func_080E1128
-func_080E1128: @ 0x080E1128
-	push {lr}
-	adds r2, r0, #0
-	ldr r0, .L080E1144 @ =vtable_unk_080E7908
-	str r0, [r2]
-	movs r0, #1
-	ands r0, r1
-	cmp r0, #0
-	beq .L080E113E
-	adds r0, r2, #0
-	bl __builtin_delete
-.L080E113E:
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E1144: .4byte vtable_unk_080E7908
+    .section .text.ui_text_output_base_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E1148
 func_080E1148: @ 0x080E1148
