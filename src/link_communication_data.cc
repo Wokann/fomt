@@ -1,6 +1,6 @@
 #include "link_communication_data.hh"
 
-// Preserve the physical order of this single ROM block: regional dialog,
+// Preserve the physical order of this read-only ROM block: regional dialog,
 // packet data, character codes, protocol identifiers, then runtime strings.
 #include FOMT_TEXT_INCLUDE(link_communication_data.cc)
 
@@ -198,4 +198,48 @@ char const gCppRuntimeBadAlloc_LinkCommunicationA4N[] =
 char const gCppRuntimeBadAlloc_LinkCommunicationGYW[] =
     "bad_alloc";
 
+}
+
+// The word overload of Set remains explicit assembly: its native register
+// scheduling has not been recovered as ordinary C++ yet.
+void LinkCommunicationValue::Set(u8 first, u8 second, u8 const * bytes)
+{
+    unk_00 = first;
+    unk_01 = second;
+    value[0] = bytes[0];
+    value[1] = bytes[1];
+}
+
+u8 LinkCommunicationValue::GetByte0() const
+{
+    return unk_00;
+}
+
+u16 LinkCommunicationValue::GetValue() const
+{
+    return value[0] | (value[1] << 8);
+}
+
+u8 LinkCommunicationValue::GetByte1() const
+{
+    return unk_01;
+}
+
+void LinkCommunicationValue::CopyValue(u8 * destination) const
+{
+    destination[0] = value[0];
+    destination[1] = value[1];
+}
+
+u16 LinkCommunicationValue::GetPrefix() const
+{
+    return unk_00 | (unk_01 << 8);
+}
+
+bool LinkCommunicationValue::HasValue(u8 const * bytes) const
+{
+    bool result = false;
+    if (bytes[0] == value[0] && bytes[1] == value[1])
+        result = true;
+    return result;
 }

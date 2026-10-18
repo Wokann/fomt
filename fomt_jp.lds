@@ -605,6 +605,8 @@ SECTIONS
         src/ui_state.o(.text.ui_text_stream_setup);
         src/ui_state.o(.text.ui_text_stream_update);
         asm/code_809E804.o(.text.ui_text_stream_update_after);
+        asm/code_809E804.o(.text.link_communication_value);
+        src/link_communication_data.o(.text);
         . = 0xD0558; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);
         . = 0xD0674; /* Remaining JP font support code. */

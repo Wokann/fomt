@@ -45,6 +45,28 @@ extern char const gCppRuntimeBadAlloc_LinkCommunicationGYW[];
 
 }
 
+// Four byte-oriented fields in the helpers following the serial-link queue.
+// The prefix bytes have no independently established protocol meanings yet.
+struct LinkCommunicationValue
+{
+    u8 unk_00;
+    u8 unk_01;
+    u8 value[2];
+
+    void Set(u8 first, u16 word);
+    void Set(u8 first, u8 second, u8 const * bytes);
+    u8 GetByte0() const;
+    u16 GetValue() const;
+    u8 GetByte1() const;
+    void CopyValue(u8 * destination) const;
+    u16 GetPrefix() const;
+    bool HasValue(u8 const * bytes) const;
+};
+
+typedef char LinkCommunicationValue_size[sizeof(LinkCommunicationValue) == 4 ? 1 : -1];
+typedef char LinkCommunicationValue_prefix[offsetof(LinkCommunicationValue, unk_01) == 1 ? 1 : -1];
+typedef char LinkCommunicationValue_value[offsetof(LinkCommunicationValue, value) == 2 ? 1 : -1];
+
 extern char const gText_LinkCommunication_Waiting[];
 extern char const gText_LinkCommunication_SendingGameData[];
 extern char const gText_LinkCommunication_TestingConnection[];
