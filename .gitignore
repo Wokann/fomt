@@ -8,19 +8,6 @@
 *.map
 *.sav
 *.lz
-!graphics/farm_house_visual/shared/*.original.lz
-!graphics/intro_scene/shared/startup_tilemaps/*.original.lz
-!graphics/intro_scene/shared/object_tiles/*.original.lz
-!graphics/intro_scene/shared/startup_visual/*.original.lz
-!graphics/intro_scene/shared/*.original.lz
-!graphics/ui/farm_status/shared/*.original.lz
-!graphics/ui/farm_status/winter/shared/*.original.lz
-!graphics/ui/seasonal_background/shared/*.original.lz
-!graphics/ui/seasonal_background/winter/*.original.lz
-!graphics/ui/farm_status/shared/secondary_tilemaps/*.original.lz
-!graphics/ui/scene_08077810/shared/*.original.lz
-!graphics/ui/scene_08077810/jp/*.original.lz
-!graphics/maps/shared/map_*/*.original.lz
 
 build/
 # Authored color tables are PAL sources; GBAPAL files are converter outputs.

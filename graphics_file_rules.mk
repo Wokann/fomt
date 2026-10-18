@@ -249,8 +249,8 @@ $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_04.4bpp.lz: FOMT_LZ_ENCODE := encode-huff
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_05.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,8 0x364
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_06.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,8,12 0 --greedy --tie=exchange
 
-# All 17 of these retail Raw-LZ3 streams were rebuilt directly and matched
-# their original packed bytes; their .original.lz copies are audit-only now.
+# All 17 of these retail Raw-LZ3 streams are rebuilt directly from source.
+# Original comparison samples are kept outside the formal source tree.
 $(INTRO_OBJECTS_SOURCE_DIR)/object_01.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x54
 $(INTRO_OBJECTS_SOURCE_DIR)/object_03.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x6C
 $(INTRO_OBJECTS_SOURCE_DIR)/object_05.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x98
