@@ -1451,3 +1451,13 @@ bool CancelBirthdayInputSelection(NewGameBirthdayInputCore * core)
     }
     return cancelled;
 }
+
+void AppendBirthdayInputGlyph(NewGameBirthdayInputCore * core, i32 x, i32 y,
+    i32 glyph, i32 priority)
+{
+    core->glyphs[core->glyph_count].x = x;
+    core->glyphs[core->glyph_count].y = y;
+    core->glyphs[core->glyph_count].glyph_index = glyph;
+    core->glyphs[core->glyph_count].priority = priority;
+    core->glyph_count++;
+}

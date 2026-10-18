@@ -133,11 +133,13 @@ struct NewGameMenuScene {
     NewGameMenuCore * core;
 };
 
-// Only the selection fields and accessed glyph slots are interpreted here.
-// Construction, rendering and the overall UI loop still remain native.
-struct NewGameBirthdayInputGlyph {
-    u16 unk_00[3];
-    u16 glyph_index;
+// Halfword-aligned records written by the append routine and read by OAM
+// rendering. Only priority's low two bits are consumed by that renderer.
+struct PACKED ALIGN(2) NewGameBirthdayInputGlyph {
+    i16 x;
+    i16 y;
+    i16 glyph_index;
+    u16 priority;
 };
 
 struct NewGameBirthdayInputCore : HardwareBootstrap {
@@ -150,16 +152,16 @@ struct NewGameBirthdayInputCore : HardwareBootstrap {
     i8 saved_season_column;
     u8 unk_3B;
     NewGameMenuSpriteAttributes cursor_attributes;
+    u8 cursor_visible;
+    u8 unk_45;
 #if defined(REGION_JP)
-    NewGameBirthdayInputGlyph glyphs[3];
-    u8 unk_after_glyphs[0x21C];
+    NewGameBirthdayInputGlyph glyphs[70];
 #elif defined(REGION_DE)
-    NewGameBirthdayInputGlyph glyphs[8];
-    u8 unk_after_glyphs[0x3DC];
+    NewGameBirthdayInputGlyph glyphs[131];
 #else
-    NewGameBirthdayInputGlyph glyphs[8];
-    u8 unk_after_glyphs[0x3C4];
+    NewGameBirthdayInputGlyph glyphs[128];
 #endif
+    i16 glyph_count;
     GameDate birthday;
     i8 season_column;
     i8 day;
@@ -183,12 +185,18 @@ typedef char BirthdayFieldCheck[offsetof(NewGameBirthdayInputCore, birthday) == 
 #endif
 typedef char BirthdaySceneSizeCheck[sizeof(NewGameBirthdayInputScene) == 8 ? 1 : -1];
 typedef char BirthdayGlyphSizeCheck[sizeof(NewGameBirthdayInputGlyph) == 8 ? 1 : -1];
-typedef char BirthdayGlyphIndexCheck[offsetof(NewGameBirthdayInputGlyph, glyph_index) == 6 ? 1 : -1];
+typedef char BirthdayGlyphAlignmentCheck[__alignof__(NewGameBirthdayInputGlyph) == 2 ? 1 : -1];
+typedef char BirthdayGlyphYCheck[offsetof(NewGameBirthdayInputGlyph, y) == 2 ? 1 : -1];
+typedef char BirthdayGlyphIndexCheck[offsetof(NewGameBirthdayInputGlyph, glyph_index) == 4 ? 1 : -1];
+typedef char BirthdayGlyphPriorityCheck[offsetof(NewGameBirthdayInputGlyph, priority) == 6 ? 1 : -1];
 typedef char BirthdayMusicCheck[offsetof(NewGameBirthdayInputCore, music_players) == 0x10 ? 1 : -1];
 typedef char BirthdayCursorCheck[offsetof(NewGameBirthdayInputCore, cursor_column) == 0x38 ? 1 : -1];
 typedef char BirthdayCursorRowCheck[offsetof(NewGameBirthdayInputCore, cursor_row) == 0x39 ? 1 : -1];
 typedef char BirthdaySavedSeasonCheck[offsetof(NewGameBirthdayInputCore, saved_season_column) == 0x3A ? 1 : -1];
-typedef char BirthdayGlyphsCheck[offsetof(NewGameBirthdayInputCore, glyphs) == 0x44 ? 1 : -1];
+typedef char BirthdayCursorVisibleCheck[offsetof(NewGameBirthdayInputCore, cursor_visible) == 0x44 ? 1 : -1];
+typedef char BirthdayGlyphsCheck[offsetof(NewGameBirthdayInputCore, glyphs) == 0x46 ? 1 : -1];
+typedef char BirthdayGlyphCountCheck[offsetof(NewGameBirthdayInputCore, glyph_count)
+    == offsetof(NewGameBirthdayInputCore, birthday) - 2 ? 1 : -1];
 typedef char BirthdayDayCheck[offsetof(NewGameBirthdayInputCore, day)
     == offsetof(NewGameBirthdayInputCore, birthday) + 2 ? 1 : -1];
 extern "C" {
@@ -214,6 +222,9 @@ bool CancelBirthdayInputSelection(NewGameBirthdayInputCore *)
 void func_0806E234(NewGameBirthdayInputCore *);
 void func_0806E43C(NewGameBirthdayInputCore *);
 void func_0806E578(NewGameBirthdayInputCore *);
+void AppendBirthdayInputGlyph(NewGameBirthdayInputCore *, i32, i32, i32, i32)
+    SECTION(".text.new_game_birthday_glyph_append");
+void func_0806E7E0(NewGameBirthdayInputCore *);
 }
 
 struct NewGameNameEntryScene {

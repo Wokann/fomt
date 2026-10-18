@@ -55559,7 +55559,7 @@ func_0806DB38:
 	adds r0, r5, #0
 	bl .Ljp_0806DB94
 	adds r0, r5, #0
-	bl #0x806e4c8
+	bl func_0806E7E0
 	mov r0, r8
 	cmp r0, #0
 	bne .Ljp_0806DB48
@@ -55860,6 +55860,7 @@ func_0806E02C:
 .Ljp_0806DEDC:
 	.4byte 0x0000027A
     .section .text.new_game_birthday_selection_after, "ax", %progbits
+    .align 2, 0
 
     .global func_0806E234
     .thumb_func
@@ -56310,19 +56311,19 @@ func_0806E578:
 	adds r0, r6, #0
 	movs r1, #0x90
 	movs r2, #8
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	ldr r3, [sp, #8]
 	str r4, [sp]
 	adds r0, r6, #0
 	movs r1, #0xc0
 	movs r2, #8
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	ldr r3, [sp, #0xc]
 	str r4, [sp]
 	adds r0, r6, #0
 	movs r1, #0xd0
 	movs r2, #8
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	movs r4, #0
 	movs r7, #1
 	movs r5, #0x50
@@ -56333,7 +56334,7 @@ func_0806E578:
 	adds r0, r6, #0
 	adds r1, r5, #0
 	movs r2, #8
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	adds r5, #0x10
 	adds r4, #1
 	cmp r4, #2
@@ -56344,19 +56345,19 @@ func_0806E578:
 	movs r1, #0xa0
 	movs r2, #8
 	movs r3, #0x11
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	str r4, [sp]
 	adds r0, r6, #0
 	movs r1, #0xb0
 	movs r2, #8
 	movs r3, #0x12
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	str r4, [sp]
 	adds r0, r6, #0
 	movs r1, #0xe0
 	movs r2, #8
 	movs r3, #0x10
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	movs r4, #0
 	movs r5, #0x12
 .Ljp_0806E3C6:
@@ -56367,7 +56368,7 @@ func_0806E578:
 	adds r0, r6, #0
 	adds r1, r5, #0
 	movs r2, #0x28
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	adds r5, #0x22
 	adds r4, #1
 	cmp r4, #3
@@ -56400,7 +56401,7 @@ func_0806E578:
 	adds r1, r7, #0
 	adds r2, r5, #0
 	adds r2, #0x40
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 .Ljp_0806E41A:
 	adds r0, r4, #0
 	movs r1, #0xa
@@ -56414,7 +56415,7 @@ func_0806E578:
 	mov r1, r8
 	adds r2, r5, #0
 	adds r2, #0x40
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	adds r0, r4, #1
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
@@ -56446,51 +56447,10 @@ func_0806E578:
 	.4byte 0x00000279
 .Ljp_0806E470:
 	.4byte 0x0000027A
-	.global func_0806E78C
-	.thumb_func
-func_0806E78C:
-	push {r4, r5, r6, lr}
-	mov ip, r0
-	ldr r6, [sp, #0x10]
-	ldr r5, .Ljp_0806E4C4
-	add r5, ip
-	movs r0, #0
-	ldrsh r4, [r5, r0]
-	lsls r4, r4, #3
-	mov r0, ip
-	adds r0, #0x46
-	adds r0, r0, r4
-	strh r1, [r0]
-	movs r0, #0
-	ldrsh r1, [r5, r0]
-	lsls r1, r1, #3
-	mov r0, ip
-	adds r0, #0x48
-	adds r0, r0, r1
-	strh r2, [r0]
-	movs r0, #0
-	ldrsh r1, [r5, r0]
-	lsls r1, r1, #3
-	mov r0, ip
-	adds r0, #0x4a
-	adds r0, r0, r1
-	strh r3, [r0]
-	movs r0, #0
-	ldrsh r1, [r5, r0]
-	lsls r1, r1, #3
-	mov r0, ip
-	adds r0, #0x4c
-	adds r0, r0, r1
-	strh r6, [r0]
-	ldrh r0, [r5]
-	adds r0, #1
-	strh r0, [r5]
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_0806E4C4:
-	.4byte 0x00000276
+    .section .text.new_game_birthday_glyph_append_after, "ax", %progbits
+    .global func_0806E7E0
+    .thumb_func
+func_0806E7E0:
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r5, r0, #0
@@ -213075,7 +213035,7 @@ func_0806E578: @ 0x0806E578
 	adds r0, r6, #0
 	adds r1, r5, #0
 	movs r2, #8
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	adds r5, #8
 	subs r4, #1
 	cmp r4, #0
@@ -213086,13 +213046,13 @@ func_0806E578: @ 0x0806E578
 	adds r0, r6, #0
 	movs r1, #0xc0
 	movs r2, #8
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	ldr r3, [sp, #0x20]
 	str r4, [sp]
 	adds r0, r6, #0
 	movs r1, #0xc8
 	movs r2, #8
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	movs r1, #0
 .L0806E672:
 	movs r2, #0
@@ -213120,7 +213080,7 @@ func_0806E578: @ 0x0806E578
 	adds r1, r7, #0
 	adds r2, r5, #0
 	adds r2, #0x40
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 .L0806E6A8:
 	adds r0, r4, #0
 	movs r1, #0xa
@@ -213134,7 +213094,7 @@ func_0806E578: @ 0x0806E578
 	mov r1, r8
 	adds r2, r5, #0
 	adds r2, #0x40
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	adds r0, r4, #1
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
@@ -213161,7 +213121,7 @@ func_0806E578: @ 0x0806E578
 	str r5, [sp]
 	adds r0, r6, #0
 	movs r2, #0x28
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	adds r4, #1
 	cmp r4, #5
 	ble .L0806E6EA
@@ -213175,7 +213135,7 @@ func_0806E578: @ 0x0806E578
 	adds r0, r6, #0
 	adds r1, r5, #0
 	movs r2, #0x28
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	adds r5, #8
 	adds r4, #1
 	cmp r4, #5
@@ -213190,7 +213150,7 @@ func_0806E578: @ 0x0806E578
 	adds r0, r6, #0
 	adds r1, r5, #0
 	movs r2, #0x28
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	adds r5, #8
 	adds r4, #1
 	cmp r4, #5
@@ -213205,7 +213165,7 @@ func_0806E578: @ 0x0806E578
 	adds r0, r6, #0
 	adds r1, r5, #0
 	movs r2, #0x28
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	adds r5, #8
 	adds r4, #1
 	cmp r4, #5
@@ -213220,7 +213180,7 @@ func_0806E578: @ 0x0806E578
 	adds r0, r6, #0
 	adds r1, r5, #0
 	movs r2, #8
-	bl func_0806E78C
+	bl AppendBirthdayInputGlyph
 	adds r5, #8
 	adds r4, #1
 	.ifdef REGION_DE
@@ -213245,54 +213205,8 @@ func_0806E578: @ 0x0806E578
 	.4byte 0x0000044A
 	.endif
 
-	thumb_func_start func_0806E78C
-func_0806E78C: @ 0x0806E78C
-	push {r4, r5, r6, lr}
-	mov ip, r0
-	ldr r6, [sp, #0x10]
-	ldr r5, .L0806E7DC @ =0x00000446
-	add r5, ip
-	movs r0, #0
-	ldrsh r4, [r5, r0]
-	lsls r4, r4, #3
-	mov r0, ip
-	adds r0, #0x46
-	adds r0, r0, r4
-	strh r1, [r0]
-	movs r0, #0
-	ldrsh r1, [r5, r0]
-	lsls r1, r1, #3
-	mov r0, ip
-	adds r0, #0x48
-	adds r0, r0, r1
-	strh r2, [r0]
-	movs r0, #0
-	ldrsh r1, [r5, r0]
-	lsls r1, r1, #3
-	mov r0, ip
-	adds r0, #0x4a
-	adds r0, r0, r1
-	strh r3, [r0]
-	movs r0, #0
-	ldrsh r1, [r5, r0]
-	lsls r1, r1, #3
-	mov r0, ip
-	adds r0, #0x4c
-	adds r0, r0, r1
-	strh r6, [r0]
-	ldrh r0, [r5]
-	adds r0, #1
-	strh r0, [r5]
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0806E7DC:
-	.ifdef REGION_DE
-	.4byte 0x0000045E
-	.else
-	.4byte 0x00000446
-	.endif
+    .section .text.new_game_birthday_glyph_append_after, "ax", %progbits
+
 
 	thumb_func_start func_0806E7E0
 func_0806E7E0: @ 0x0806E7E0

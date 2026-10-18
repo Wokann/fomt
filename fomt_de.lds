@@ -346,6 +346,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.new_game_birthday_navigation_after);
         src/new_game.o(.text.new_game_birthday_selection);
         asm/code_0803EE94.o(.text.new_game_birthday_selection_after);
+        src/new_game.o(.text.new_game_birthday_glyph_append);
+        asm/code_0803EE94.o(.text.new_game_birthday_glyph_append_after);
         src/new_game.o(.text.new_game_birthday_input_scene);
         asm/code_0803EE94.o(.text.new_game_birthday_input_after);
         . = 0x75CB0; /* DE ROM 0x08075CB0, scroll-position reset. */
