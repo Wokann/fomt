@@ -238,9 +238,10 @@ bool ConfirmBirthdayInputSelection(NewGameBirthdayInputCore *)
     SECTION(".text.new_game_birthday_selection");
 bool CancelBirthdayInputSelection(NewGameBirthdayInputCore *)
     SECTION(".text.new_game_birthday_selection");
-// Display helpers still implemented by native assembly in every region.
+// Background/glyph preparation remains native in every region.
 void func_0806E234(NewGameBirthdayInputCore *);
-void func_0806E43C(NewGameBirthdayInputCore *);
+void InitializeBirthdayInputCursor(NewGameBirthdayInputCore *)
+    SECTION(".text.new_game_birthday_cursor_setup");
 void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore *)
     SECTION(".text.new_game_birthday_glyph_layout");
 void AppendBirthdayInputGlyph(NewGameBirthdayInputCore *, i32, i32, i32, i32)

@@ -397,6 +397,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.new_game_birthday_navigation_after);
         src/new_game.o(.text.new_game_birthday_selection);
         asm/code_0803EE94.o(.text.new_game_birthday_selection_after);
+        src/new_game.o(.text.new_game_birthday_cursor_setup);
         src/new_game.o(.text.new_game_birthday_glyph_layout);
         src/new_game.o(.text.new_game_birthday_glyph_append);
         src/new_game.o(.text.new_game_birthday_sprite_render);

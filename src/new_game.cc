@@ -1622,6 +1622,40 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
     }
 }
 
+void InitializeBirthdayInputCursor(NewGameBirthdayInputCore * core)
+{
+    func_08008E64(gUiSharedPalette,
+        reinterpret_cast<void *>(0x05000200 + SpritePaletteBank(core->cursor_palette) * 32), 32);
+    *reinterpret_cast<u16 *>(0x0500020E + SpritePaletteBank(core->cursor_palette) * 32) = 0x027F;
+    func_08008EB8(0, &core->cursor_attributes, sizeof(core->cursor_attributes));
+#if defined(REGION_JP)
+    core->cursor_attributes.size = 2;
+    core->cursor_attributes.shape = 1;
+#else
+    core->cursor_attributes.size = 1;
+    core->cursor_attributes.shape = 0;
+#endif
+    core->cursor_attributes.object_mode = 1;
+    // Use the native OAM halfword view for the tile and palette fields.
+    reinterpret_cast<HardwareSpriteOamRecord &>(core->cursor_attributes).tile_index = SpriteTileIndex(core->cursor_tiles);
+    reinterpret_cast<HardwareSpriteOamRecord &>(core->cursor_attributes).palette_bank = SpritePaletteBank(core->cursor_palette);
+    reinterpret_cast<HardwareSpriteOamRecord &>(core->cursor_attributes).priority = 3;
+    for (int tile = 0; tile < 8; ++tile) {
+        for (int row = 0; row < 8; ++row) {
+            *reinterpret_cast<u32 *>(0x06010000
+                + (SpriteTileIndex(core->cursor_tiles) + tile) * 32 + row * 4) = 0x77777777;
+        }
+    }
+#if defined(REGION_JP)
+    i32 cell_width = core->cursor_column * 32;
+    i32 gutter = core->cursor_column * 2 + 2;
+    core->cursor_attributes.x = cell_width + gutter;
+#else
+    core->cursor_attributes.x = core->cursor_column * 16;
+#endif
+    core->cursor_attributes.y = 40;
+}
+
 void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore * core)
 {
     core->glyph_count = 0;
