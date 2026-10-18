@@ -23415,43 +23415,8 @@ func_080AD758:
 .Ljp_entity_080AD774: .4byte gUnk_082B3AE0
 .Ljp_entity_080AD778: .4byte vtable_unk_080E5A28
 
-    .global func_080AD77C
-    .thumb_func
-func_080AD77C:
-    movs r2, #0
-    str r2, [r0]
-    movs r3, #0
-    movs r1, #0x80
-    lsls r1, r1, #1
-    strh r1, [r0, #4]
-    strh r2, [r0, #6]
-    str r2, [r0, #8]
-    str r2, [r0, #0xC]
-    str r2, [r0, #0x10]
-    strb r3, [r0, #0x14]
-    bx lr
-
-    .global func_080AD794
-    .thumb_func
-func_080AD794:
-    str r1, [r0, #8]
-    str r2, [r0, #0xC]
-    movs r3, #0
-    str r3, [r0, #0x10]
-    strb r3, [r0, #0x14]
-    rsbs r2, r1, #0
-    orrs r2, r1
-    lsrs r2, r2, #0x1F
-    str r2, [r0]
-    strh r3, [r0, #6]
-    bx lr
+    .section .text.ui_text_stream_setup_after, "ax", %progbits
     .align 2, 0
-
-    .global func_080AD7AC
-    .thumb_func
-func_080AD7AC:
-    strh r1, [r0, #4]
-    bx lr
 
     .global func_080AD7B0
     .thumb_func
@@ -106288,40 +106253,8 @@ func_080ADD20: @ 0x080ADD20
 .L080ADD3C: .4byte gUnk_0852D984
 .L080ADD40: .4byte vtable_unk_080E5A28
 
-	thumb_func_start func_080ADD44
-func_080ADD44: @ 0x080ADD44
-	movs r2, #0
-	str r2, [r0]
-	movs r3, #0
-	movs r1, #0x80
-	lsls r1, r1, #1
-	strh r1, [r0, #4]
-	strh r2, [r0, #6]
-	str r2, [r0, #8]
-	str r2, [r0, #0xc]
-	str r2, [r0, #0x10]
-	strb r3, [r0, #0x14]
-	bx lr
-
-	thumb_func_start func_080ADD5C
-func_080ADD5C: @ 0x080ADD5C
-	str r1, [r0, #8]
-	str r2, [r0, #0xc]
-	movs r3, #0
-	str r3, [r0, #0x10]
-	strb r3, [r0, #0x14]
-	rsbs r2, r1, #0
-	orrs r2, r1
-	lsrs r2, r2, #0x1f
-	str r2, [r0]
-	strh r3, [r0, #6]
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_080ADD74
-func_080ADD74: @ 0x080ADD74
-	strh r1, [r0, #4]
-	bx lr
+    .section .text.ui_text_stream_setup_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080ADD78
 func_080ADD78: @ 0x080ADD78

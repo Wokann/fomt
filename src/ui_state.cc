@@ -2,6 +2,29 @@
 #include "font.hh"
 #include "gbasvc.h"
 
+inline void * operator new(unsigned long, void * address) { return address; }
+
+UiTextStream * InitializeUiTextStream(UiTextStream * stream)
+{
+    return new (stream) UiTextStream;
+}
+
+void SetUiTextStreamText(UiTextStream * stream, char const * text,
+    ScriptTextVariableStore * variables)
+{
+    stream->cursor = text;
+    stream->variables = variables;
+    stream->replacement_cursor = nullptr;
+    stream->replacement[0] = '\0';
+    stream->phase = text != nullptr;
+    stream->progress = 0;
+}
+
+void SetUiTextStreamSpeed(UiTextStream * stream, u16 speed)
+{
+    stream->speed = speed;
+}
+
 extern "C" void SetUiObjectStateTwoIfNonzero(void * object)
     SECTION(".text.set_ui_object_state_two_if_nonzero");
 

@@ -4,6 +4,7 @@
 #include "prelude.h"
 #include "hardware_linked_list.hh"
 #include "hardware_state_clear.hh"
+#include "utility/fixed_str.hh"
 
 struct HardwareCoreState;
 struct HardwareSpriteBufferState;
@@ -13,6 +14,39 @@ struct HardwareResource;
 struct HardwareResourceEntry;
 struct MusicPlayer;
 struct ScriptTextVariableStore;
+
+// Native text reader: 0 is idle, 1 reads text and 2 waits for input.
+// The parser temporarily switches from cursor to replacement_cursor while
+// consuming a substituted value stored in the inline 32-byte buffer.
+struct UiTextStream
+{
+    u32 phase;
+    u16 speed;
+    u16 progress;
+    char const * cursor;
+    ScriptTextVariableStore * variables;
+    char const * replacement_cursor;
+    FixedStr<31> replacement;
+
+    UiTextStream()
+        : phase(0), speed(0x100), progress(0), cursor(nullptr),
+          variables(nullptr), replacement_cursor(nullptr) {}
+};
+
+typedef char UiTextStreamSizeCheck[sizeof(UiTextStream) == 0x34 ? 1 : -1];
+typedef char UiTextStreamSpeedCheck[offsetof(UiTextStream, speed) == 4 ? 1 : -1];
+typedef char UiTextStreamProgressCheck[offsetof(UiTextStream, progress) == 6 ? 1 : -1];
+typedef char UiTextStreamCursorCheck[offsetof(UiTextStream, cursor) == 8 ? 1 : -1];
+typedef char UiTextStreamVariablesCheck[offsetof(UiTextStream, variables) == 0x0C ? 1 : -1];
+typedef char UiTextStreamReplacementCursorCheck[offsetof(UiTextStream, replacement_cursor) == 0x10 ? 1 : -1];
+typedef char UiTextStreamReplacementCheck[offsetof(UiTextStream, replacement) == 0x14 ? 1 : -1];
+
+EXTERN_C
+UiTextStream * InitializeUiTextStream(UiTextStream *) SECTION(".text.ui_text_stream_setup");
+void SetUiTextStreamText(UiTextStream *, char const *, ScriptTextVariableStore *)
+    SECTION(".text.ui_text_stream_setup");
+void SetUiTextStreamSpeed(UiTextStream *, u16) SECTION(".text.ui_text_stream_setup");
+EXTERN_C_END
 
 // Verified views of the state fields consumed by the native UI adapters.
 struct UiObjectState

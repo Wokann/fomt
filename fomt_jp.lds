@@ -589,6 +589,8 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_after_flag_updates);
         src/map_data.o(.text.IsMapTerrainBoxBlocked);
         asm/code_809E804.o(.text.game_map_after_terrain_query);
+        src/ui_state.o(.text.ui_text_stream_setup);
+        asm/code_809E804.o(.text.ui_text_stream_setup_after);
         . = 0xD0558; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);
         . = 0xD0674; /* Remaining JP font support code. */
