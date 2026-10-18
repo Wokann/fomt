@@ -6147,7 +6147,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     strb r0, [r1]
     ldr r4, .Ljp_0804F41C @ =0x00000504
     add r4, r8
-    ldr r1, .Ljp_0804F420 @ =gUnk_084AE488
+    ldr r1, .Ljp_0804F420 @ =gUiHeartIndicatorArchive
     adds r0, r4, #0
     bl __22IndexedResourceArchivePCUc
     ldr r0, .Ljp_0804F424 @ =0x00000534
@@ -6197,7 +6197,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
 .Ljp_0804F414: .4byte gUiHandCursorArchive
 .Ljp_0804F418: .4byte gUnk_084AF4E4
 .Ljp_0804F41C: .4byte 0x00000504
-.Ljp_0804F420: .4byte gUnk_084AE488
+.Ljp_0804F420: .4byte gUiHeartIndicatorArchive
 .Ljp_0804F424: .4byte 0x00000534
 
 
@@ -8279,46 +8279,6 @@ func_08050AD8: @ 0x08050864
 	.section .text.clear_ui_action_state_flag_01f0_after
 
     .section .text.clear_ui_action_state_flag_01f0_after
-    .global func_08050C2C
-    .thumb_func
-func_08050C2C: @ 0x080509B8
-    push {lr}
-    adds r2, r0, #0
-    adds r3, r1, #0
-    ldr r1, .Ljp_080509D0 @ =0x00000504
-    adds r0, r2, r1
-    ldrh r0, [r0, #0x20]
-    cmp r3, r0
-    blo .Ljp_080509D4
-    adds r0, r2, #0
-    bl func_08050C64
-    b .Ljp_080509E8
-    .align 2, 0
-.Ljp_080509D0: .4byte 0x00000504
-.Ljp_080509D4:
-    movs r1, #0xa0
-    lsls r1, r1, #3
-    adds r0, r2, r1
-    movs r1, #1
-    strb r1, [r0]
-    ldr r1, .Ljp_080509EC @ =0x00000534
-    adds r0, r2, r1
-    adds r1, r3, #0
-    bl ResolveIndexedResourceHandle
-.Ljp_080509E8:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_080509EC: .4byte 0x00000534
-    .global func_08050C64
-    .thumb_func
-func_08050C64: @ 0x080509F0
-    movs r1, #0xa0
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    movs r1, #0
-    strb r1, [r0]
-    bx lr
 
     .global func_08050C70
     .thumb_func
@@ -148514,7 +148474,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	strb r0, [r1]
 	ldr r4, .L0804F690 @ =0x00000504
 	add r4, r8
-	ldr r1, .L0804F694 @ =gUnk_08728320
+	ldr r1, .L0804F694 @ =gUiHeartIndicatorArchive
 	adds r0, r4, #0
 	bl __22IndexedResourceArchivePCUc
 	ldr r0, .L0804F698 @ =0x00000534
@@ -148564,7 +148524,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 .L0804F688: .4byte gUiHandCursorArchive
 .L0804F68C: .4byte gUnk_0872937C
 .L0804F690: .4byte 0x00000504
-.L0804F694: .4byte gUnk_08728320
+.L0804F694: .4byte gUiHeartIndicatorArchive
 .L0804F698: .4byte 0x00000534
 
     .section .text.ui_payload_destructor_after, "ax", %progbits
@@ -150639,45 +150599,6 @@ func_08050AD8: @ 0x08050AD8
 
 	.section .text.clear_ui_action_state_flag_01f0_after
 
-	thumb_func_start func_08050C2C
-func_08050C2C: @ 0x08050C2C
-	push {lr}
-	adds r2, r0, #0
-	adds r3, r1, #0
-	ldr r1, .L08050C44 @ =0x00000504
-	adds r0, r2, r1
-	ldrh r0, [r0, #0x20]
-	cmp r3, r0
-	blo .L08050C48
-	adds r0, r2, #0
-	bl func_08050C64
-	b .L08050C5C
-	.align 2, 0
-.L08050C44: .4byte 0x00000504
-.L08050C48:
-	movs r1, #0xa0
-	lsls r1, r1, #3
-	adds r0, r2, r1
-	movs r1, #1
-	strb r1, [r0]
-	ldr r1, .L08050C60 @ =0x00000534
-	adds r0, r2, r1
-	adds r1, r3, #0
-	bl ResolveIndexedResourceHandle
-.L08050C5C:
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08050C60: .4byte 0x00000534
-
-	thumb_func_start func_08050C64
-func_08050C64: @ 0x08050C64
-	movs r1, #0xa0
-	lsls r1, r1, #3
-	adds r0, r0, r1
-	movs r1, #0
-	strb r1, [r0]
-	bx lr
 	thumb_func_start func_08050C70
 func_08050C70: @ 0x08050C70
 	push {r4, lr}

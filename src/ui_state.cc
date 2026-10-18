@@ -280,8 +280,6 @@ EC void func_08050478(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3,
 EC void func_08050664(void * object, u32 arg_r1, u32 arg_r2, u32 arg_r3,
     u32 arg_sp0, u32 arg_sp1, u32 arg_sp2);
 EC void func_08050AD8(void * object, u32 arg_r1);
-EC void func_08050C2C(void * object, u32 arg_r1);
-EC void func_08050C64(void * object);
 
 EC void func_08050D5C(UiStateOwner const * object)
 {
@@ -431,14 +429,14 @@ EC void func_08050E74(void * const * object)
     ClearUiActionStateFlag01F0(*object);
 }
 
-EC void func_08050E80(void * const * object, u32 arg_r1)
+void UiStateOwner::ShowHeartIndicator(u32 level) const
 {
-    func_08050C2C(*object, arg_r1);
+    value->ShowHeartIndicator(level);
 }
 
-EC void func_08050E8C(void * const * object)
+void UiStateOwner::HideHeartIndicator() const
 {
-    func_08050C64(*object);
+    value->HideHeartIndicator();
 }
 
 EC u32 func_08050E98(FirstFieldUiOwner & object, u32 const flag_mask)
@@ -959,4 +957,19 @@ void SetUiNameplateText(UiStatePayload * payload, char const * text)
     }
     payload->nameplate_flags.active = 1;
     payload->nameplate_flags.changed = 1;
+}
+
+void UiStatePayload::ShowHeartIndicator(u32 level)
+{
+    if (level >= heart_indicator_archive.GetEntryDescriptorCount()) {
+        HideHeartIndicator();
+        return;
+    }
+    heart_indicator_visible = 1;
+    ResolveIndexedResourceHandle(&heart_indicator_handle, level);
+}
+
+void UiStatePayload::HideHeartIndicator()
+{
+    heart_indicator_visible = 0;
 }

@@ -98891,8 +98891,8 @@ gUnk_08727A74:
 	.global gUiHandCursorArchive
 gUiHandCursorArchive:
     .include "graphics/regional_resource_08728208/archive.inc"
-	.global gUnk_08728320
-gUnk_08728320:
+	.global gUiHeartIndicatorArchive
+gUiHeartIndicatorArchive:
 	.include "graphics/shared_resource_08728320/archive.inc"
 	.global gUnk_0872937C
 gUnk_0872937C:

@@ -156,6 +156,9 @@ struct IndexedResourceArchiveGroupDescriptor
     u16 sixth_first_index;
 };
 
+// Native callers inline the entry-count accessor and archive cleanup. Their
+// original standalone entries are emitted only by the implementation unit.
+#pragma interface "resource_handle.hh"
 struct IndexedResourceArchive
 {
     ~IndexedResourceArchive();
@@ -184,9 +187,15 @@ struct IndexedResourceArchive
         SECTION(".text.indexed_resource_archive_get_group_data");
     u16 GetGroupDescriptorCount() const
         SECTION(".text.indexed_resource_archive_get_group_descriptor_count");
-    u16 GetEntryDescriptorCount() const
+    inline u16 GetEntryDescriptorCount() const
         SECTION(".text.indexed_resource_archive_get_entry_descriptor_count");
 };
+
+inline u16 IndexedResourceArchive::GetEntryDescriptorCount() const
+{
+    return entry_descriptor_count;
+}
+#pragma implementation
 
 struct IndexedResourceHandle
 {
@@ -241,11 +250,13 @@ u32 UpdateIndexedResourceHandle(IndexedResourceHandle *);
 void DrawIndexedResourceSprites(HardwareSpriteBufferState *, HardwareSpriteOamRecord const *,
     u32 count, IndexedResourceSpriteParameters const *);
 
-// Direct declarations of the existing constructor ABI, for owners whose
+// Direct declarations of the existing lifecycle ABI, for owners whose
 // remaining lifecycle is still supplied by the original assembly routines.
-// These reference the real C++ constructors, not wrapper functions or aliases.
+// These reference real C++ lifecycle entries, not wrapper functions or aliases.
 IndexedResourceArchive * ConstructIndexedResourceArchive(IndexedResourceArchive *, u8 const *)
     asm("__22IndexedResourceArchivePCUc");
+void DestroyIndexedResourceArchive(IndexedResourceArchive *, int)
+    asm("_._22IndexedResourceArchive");
 IndexedResourceHandle * ConstructIndexedResourceHandle(IndexedResourceHandle *, IndexedResourceProvider *, u32, i32)
     asm("__21IndexedResourceHandleP23IndexedResourceProviderUii");
 

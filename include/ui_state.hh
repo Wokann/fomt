@@ -102,6 +102,7 @@ typedef char UiTextStreamReplacementCheck[offsetof(UiTextStream, replacement) ==
 EXTERN_C
 u32 GetUiPortraitCount() SECTION(".text.ui_portrait_group");
 extern u8 const gPortraitIndexedResourceArchive[];
+extern u8 const gUiHeartIndicatorArchive[];
 
 void SetUiTextStreamText(UiTextStream *, char const *, ScriptTextVariableStore *)
     SECTION(".text.ui_text_stream_setup");
@@ -171,6 +172,10 @@ struct UiStateOwner
     i32 Update(HardwareCoreState * state, HardwareSpriteBufferState * sprites,
         HardwareDisplayState * display, u8 * links, u8 * manager,
         MusicPlayer ** music) const SECTION(".text.ui_state_adapters");
+    // These take an archive level index, not a character ID. GameScene owns
+    // the love-value to level mapping used by the script-facing operation.
+    void ShowHeartIndicator(u32 level) const SECTION(".text.ui_state_adapters");
+    void HideHeartIndicator() const SECTION(".text.ui_state_adapters");
 
     UiStatePayload * value;
 };
@@ -401,10 +406,6 @@ void func_08050E68(void * const * object, char const * text)
     SECTION(".text.ui_state_adapters");
 void func_08050E74(void * const * object)
     SECTION(".text.ui_state_adapters");
-void func_08050E80(void * const * object, u32 arg_r1)
-    SECTION(".text.ui_state_adapters");
-void func_08050E8C(void * const * object)
-    SECTION(".text.ui_state_adapters");
 
 EXTERN_C_END
 
@@ -542,6 +543,8 @@ struct UiStatePayload
     void OpenImmediately() SECTION(".text.ui_payload_open");
     i32 Update(HardwareCoreState *, HardwareSpriteBufferState *, HardwareDisplayState *,
         u8 *, u8 *, MusicPlayer **);
+    void ShowHeartIndicator(u32 level) SECTION(".text.ui_heart_indicator");
+    void HideHeartIndicator() SECTION(".text.ui_heart_indicator");
     unsigned background : 2;
     unsigned screen_block : 5;
     unsigned character_block : 2;
@@ -574,10 +577,10 @@ struct UiStatePayload
     HardwareResourceEntry portrait_palette;
     UiResourceChangeFlags nameplate_flags;
     UnkUiSelectionTileBuffer nameplate_tiles[UI_NAMEPLATE_TILE_BUFFER_COUNT];
-    u8 nameplate_phase;
-    IndexedResourceArchive nameplate_archive;
-    IndexedResourceHandle nameplate_handle;
-    HardwareResourceEntry nameplate_palette;
+    u8 heart_indicator_visible;
+    IndexedResourceArchive heart_indicator_archive;
+    IndexedResourceHandle heart_indicator_handle;
+    HardwareResourceEntry heart_indicator_palette;
     UnkUiPayloadLowFlags low_flags;
 };
 typedef char UiStatePayloadSizeCheck[sizeof(UiStatePayload) == 0x554 ? 1 : -1];
@@ -604,10 +607,10 @@ typedef char UiPayload_portrait[offsetof(UiStatePayload, portrait) == 484 ? 1 : 
 typedef char UiPayload_portrait_palette[offsetof(UiStatePayload, portrait_palette) == 488 ? 1 : -1];
 typedef char UiPayload_nameplate_flags[offsetof(UiStatePayload, nameplate_flags) == 496 ? 1 : -1];
 typedef char UiPayload_nameplate_tiles[offsetof(UiStatePayload, nameplate_tiles) == 500 ? 1 : -1];
-typedef char UiPayload_nameplate_phase[offsetof(UiStatePayload, nameplate_phase) == 1280 ? 1 : -1];
-typedef char UiPayload_nameplate_archive[offsetof(UiStatePayload, nameplate_archive) == 1284 ? 1 : -1];
-typedef char UiPayload_nameplate_handle[offsetof(UiStatePayload, nameplate_handle) == 1332 ? 1 : -1];
-typedef char UiPayload_nameplate_palette[offsetof(UiStatePayload, nameplate_palette) == 1352 ? 1 : -1];
+typedef char UiPayload_heart_indicator_visible[offsetof(UiStatePayload, heart_indicator_visible) == 1280 ? 1 : -1];
+typedef char UiPayload_heart_indicator_archive[offsetof(UiStatePayload, heart_indicator_archive) == 1284 ? 1 : -1];
+typedef char UiPayload_heart_indicator_handle[offsetof(UiStatePayload, heart_indicator_handle) == 1332 ? 1 : -1];
+typedef char UiPayload_heart_indicator_palette[offsetof(UiStatePayload, heart_indicator_palette) == 1352 ? 1 : -1];
 typedef char UiPayload_low_flags[offsetof(UiStatePayload, low_flags) == 1360 ? 1 : -1];
 
 #endif // UI_STATE_HH

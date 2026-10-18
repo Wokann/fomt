@@ -371,7 +371,8 @@ SECTIONS
         src/ui_state.o(.text.ui_nameplate);
         . = 0x509A4; /* JP/US-shared UI action-state second-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01f0);
-        . = 0x509B8; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
+        src/ui_state.o(.text.ui_heart_indicator);
+        asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
         . = 0x50A4C; /* JP ROM contiguous UI owner and adapter block. */
         src/ui_state.o(.text.ui_state_adapters);
         asm/code_0803EE94.o(.text.code_08050E50);
@@ -743,6 +744,8 @@ SECTIONS
         src/ui_state.o(.text.ui_text_output_defaults);
         src/ui_state.o(.text.ui_text_output_base_destructor);
         asm/code_linkonce.o(.text.ui_text_output_base_after);
+        src/resource_handle.o(.text);
+        asm/code_linkonce.o(.text.indexed_resource_archive_destructor_after);
         src/new_game.o(.text.new_game_birthday_core_cleanup);
         asm/code_linkonce.o(.text.new_game_birthday_core_cleanup_after);
         src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);

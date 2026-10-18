@@ -406,7 +406,7 @@ void GameScene::TalkShowHeartIndicator(u32 id)
             else if (love >= LOVE_HEART_BLUE_MIN) heart = 2;
             else if (love >= LOVE_HEART_PURPLE_MIN) heart = 1;
             else heart = 0;
-            func_08050E80(reinterpret_cast<void * const *>(current->talk_window.Get()), heart);
+            current->talk_window.Get()->ShowHeartIndicator(heart);
         }
     }
 }
@@ -415,7 +415,7 @@ void GameScene::TalkHideHeartIndicator()
 {
     UiStateOwner * window = state->talk_window.Get();
     if (window != nullptr)
-        func_08050E8C(reinterpret_cast<void * const *>(window));
+        window->HideHeartIndicator();
 }
 
 void GameScene::TalkPromptChoices(char const * prompt, char const * first, char const * second,
@@ -2291,7 +2291,7 @@ EC void func_080D7F60(GameSceneState * state)
 {
     UiStateOwner * window = state->talk_window.Get();
     if (window != nullptr)
-        func_08050E8C(reinterpret_cast<void * const *>(window));
+        window->HideHeartIndicator();
 }
 
 EC void func_080D7F74(GameSceneState * state)

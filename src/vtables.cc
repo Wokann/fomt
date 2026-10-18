@@ -5,6 +5,7 @@
 #include "hardware_manager.hh"
 #include "font.hh"
 #include "ui_state.hh"
+#include "resource_handle.hh"
 
 EXTERN_C
 
@@ -77,7 +78,6 @@ extern void func_0805E3DC(void);
 extern void func_080E1044(void);
 extern void func_080E0FE4(void);
 extern void func_080E1104(void);
-extern void func_080E1124(void);
 extern void func_080E1144(void);
 extern void func_080E1198(void);
 extern void func_080E11C8(void);
@@ -379,7 +379,6 @@ extern void func_08093220(void);
 extern void func_080E1118(void);
 extern void func_080E111C(void);
 extern void func_080E1120(void);
-extern void func_080E1124(void);
 extern void func_080521BC(void);
 extern void func_080521FC(void);
 extern void func_080E11EC(void);
@@ -395,7 +394,6 @@ extern void func_0805CF3C(void);
 extern void func_080E18A4(void);
 extern void func_080E1844(void);
 extern void func_080E1964(void);
-extern void func_080E1984(void);
 extern void func_080E19F8(void);
 extern void func_080E19A4(void);
 extern void func_080E1A28(void);
@@ -4613,7 +4611,7 @@ extern RawVTableFunction const vtable_unk_080E79B8[]
         nullptr,
         nullptr,
 #if defined(REGION_JP)
-        func_080E1124,
+        reinterpret_cast<RawVTableFunction>(DestroyIndexedResourceArchive),
         Resolve__C22IndexedResourceArchiveUi,
 #else
         func_0805E658,
@@ -4628,7 +4626,7 @@ extern RawVTableFunction const vtable_unk_080E79C8[]
 #else
         nullptr,
         nullptr,
-        func_080E1984,
+        reinterpret_cast<RawVTableFunction>(DestroyIndexedResourceArchive),
         Resolve__C22IndexedResourceArchiveUi,
         GetGroupData__C22IndexedResourceArchiveUi,
 #endif

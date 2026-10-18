@@ -1,3 +1,5 @@
+#include "prelude.h"
+#pragma implementation "resource_handle.hh"
 #include "resource_handle.hh"
 
 EXTERN_C
@@ -135,11 +137,6 @@ IndexedResourceGroupResult IndexedResourceArchive::GetGroupData(u32 index) const
 u16 IndexedResourceArchive::GetGroupDescriptorCount() const
 {
     return group_descriptor_count;
-}
-
-u16 IndexedResourceArchive::GetEntryDescriptorCount() const
-{
-    return entry_descriptor_count;
 }
 
 IndexedResourceHandle::IndexedResourceHandle(

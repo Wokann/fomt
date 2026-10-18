@@ -33533,23 +33533,8 @@ func_080E1104:
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
-    .global func_080E1124
-    .thumb_func
-func_080E1124:
-    push {lr}
-    adds r2, r0, #0
-    ldr r0, [pc, #0x14]
-    str r0, [r2]
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    beq .Lauto_080E113A
-    adds r0, r2, #0
-    bl __builtin_delete
-    .Lauto_080E113A:
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00, 0x68, 0x4E, 0x0E, 0x08
+    .section .text.indexed_resource_archive_destructor_after, "ax", %progbits
+    .align 2, 0
     .global func_080E19A4
     .thumb_func
 func_080E19A4:
@@ -41157,23 +41142,8 @@ func_080E1964: @ 0x080E1964
 	.align 2, 0
 .L080E1980: .4byte vtable_unk_080E76F8
 
-	thumb_func_start func_080E1984
-func_080E1984: @ 0x080E1984
-	push {lr}
-	adds r2, r0, #0
-	ldr r0, .L080E19A0 @ =vtable_unk_080E5A28
-	str r0, [r2]
-	movs r0, #1
-	ands r0, r1
-	cmp r0, #0
-	beq .L080E199A
-	adds r0, r2, #0
-	bl __builtin_delete
-.L080E199A:
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E19A0: .4byte vtable_unk_080E5A28
+    .section .text.indexed_resource_archive_destructor_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E19A4
 func_080E19A4: @ 0x080E19A4
