@@ -1306,6 +1306,110 @@ GameDate GetBirthdayInputSceneDate(NewGameBirthdayInputScene const * scene)
     return scene->core->birthday;
 }
 
+void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
+{
+    // Direction buttons occupy the low byte of the repeated-key ABI word.
+    u32 input = func_080088D4(reinterpret_cast<void * const *>(core));
+    if (reinterpret_cast<u8 const *>(&input)[0] & 0x40) {
+        if (core->cursor_row != 0) {
+            func_08008B6C(&core->music_players[1], 0xCB);
+            if (core->cursor_row > 1)
+                core->cursor_row--;
+            else if (core->cursor_row == 1) {
+#if defined(REGION_JP)
+                if (core->cursor_column > 1)
+                    core->cursor_row = 4;
+                else
+                    core->cursor_row = 5;
+#else
+                if (core->cursor_column > 3)
+                    core->cursor_row = 4;
+                else
+                    core->cursor_row = 5;
+#endif
+            }
+        }
+    } else if (reinterpret_cast<u8 const *>(&input)[0] & 0x80) {
+        if (core->cursor_row != 0) {
+            func_08008B6C(&core->music_players[1], 0xCB);
+            core->cursor_row++;
+            if (core->cursor_row == 6 || (core->cursor_row == 5 &&
+#if defined(REGION_JP)
+                    core->cursor_column > 1))
+#else
+                    core->cursor_column > 3))
+#endif
+                core->cursor_row = 1;
+        }
+    } else if (reinterpret_cast<u8 const *>(&input)[0] & 0x20) {
+        func_08008B6C(&core->music_players[1], 0xCB);
+#if defined(REGION_JP)
+        core->cursor_column--;
+        if (core->cursor_row == 0) {
+            if (core->cursor_column < 0)
+                core->cursor_column = 3;
+        } else if (core->cursor_column < 0) {
+            core->cursor_row--;
+            if (core->cursor_row <= 0) {
+                core->cursor_row = 5;
+                core->cursor_column = 1;
+            } else
+                core->cursor_column = 6;
+        }
+#else
+        if (core->cursor_row == 0) {
+            core->cursor_column -= 4;
+            if (core->cursor_column < 0)
+                core->cursor_column = 12;
+        } else {
+            core->cursor_column -= 2;
+            if (core->cursor_column < 0) {
+                core->cursor_row--;
+                if (core->cursor_row <= 0) {
+                    core->cursor_row = 5;
+                    core->cursor_column = 3;
+                } else
+                    core->cursor_column = 13;
+            }
+        }
+#endif
+    } else if (reinterpret_cast<u8 const *>(&input)[0] & 0x10) {
+        func_08008B6C(&core->music_players[1], 0xCB);
+#if defined(REGION_JP)
+        core->cursor_column++;
+        if (core->cursor_row == 0) {
+            if (core->cursor_column > 3)
+                core->cursor_column = 0;
+        } else if (core->cursor_row == 5) {
+            if (core->cursor_column > 1) {
+                core->cursor_row = 1;
+                core->cursor_column = 0;
+            }
+        } else if (core->cursor_column > 6) {
+            core->cursor_row++;
+            core->cursor_column = 0;
+        }
+#else
+        if (core->cursor_row == 0) {
+            core->cursor_column += 4;
+            if (core->cursor_column > 12)
+                core->cursor_column = 0;
+        } else {
+            core->cursor_column += 2;
+            if (core->cursor_row == 5) {
+                if (core->cursor_column > 3) {
+                    core->cursor_row = 1;
+                    core->cursor_column = 1;
+                }
+            } else if (core->cursor_column > 13) {
+                core->cursor_row++;
+                core->cursor_column = 1;
+            }
+        }
+#endif
+    }
+}
+
 bool ConfirmBirthdayInputSelection(NewGameBirthdayInputCore * core)
 {
     bool complete = false;

@@ -203,6 +203,9 @@ SceneTransitionOwner RunBirthdayInputScene(NewGameBirthdayInputScene *)
 GameDate GetBirthdayInputSceneDate(NewGameBirthdayInputScene const *)
     SECTION(".text.new_game_birthday_input_scene");
 extern NewGameSceneVTableFunction const gNewGameBirthdayInputSceneVTable[];
+void MoveBirthdayInputCursor(NewGameBirthdayInputCore *)
+    SECTION(".text.new_game_birthday_navigation");
+void func_0806E02C(NewGameBirthdayInputCore *);
 bool ConfirmBirthdayInputSelection(NewGameBirthdayInputCore *)
     SECTION(".text.new_game_birthday_selection");
 bool CancelBirthdayInputSelection(NewGameBirthdayInputCore *)
