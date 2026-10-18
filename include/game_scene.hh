@@ -543,14 +543,14 @@ struct GameSceneScriptControllerUnk36C {
 };
 
 // Startup controller, distinct from the eight-byte GameScene wrapper. Both
-// constructors are recovered; Run and destruction remain native. The first
+// constructors and Run are recovered; destruction remains native. The first
 // word is AScene's actual inherited vptr, not manually written payload.
 struct GameSceneScriptController : AScene {
     GameSceneScriptController(GameStateSaveImageOwner save);
     GameSceneScriptController(char const * farm_name, char const * player_name,
         GameDate birthday, char const * dog_name);
     virtual ~GameSceneScriptController() asm("func_08010158");
-    virtual SceneTransitionOwner Run() asm("func_0801004C");
+    virtual SceneTransitionOwner Run();
 
     GameStateSaveImageOwner save;
     ScriptEngine script_engine;
@@ -586,6 +586,10 @@ typedef char GameSceneControllerSizeCheck[sizeof(GameSceneScriptController) == 0
 struct GameSceneResumeRequest {
     i32 kind;
     u8 unk_04[8];
+
+    // Native requests initialize only kind; the remaining payload is opaque.
+    GameSceneResumeRequest() {}
+    explicit GameSceneResumeRequest(i32 value) : kind(value) {}
 };
 
 struct SupermarketSceneCore;

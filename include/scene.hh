@@ -37,6 +37,15 @@ struct SceneOwner
 {
     void * value;
 
+    // Define the helper before its use by the transfer-copy constructor so
+    // the old compiler can inline that constructor without an outlined call.
+    AScene * release()
+    {
+        AScene * scene = static_cast<AScene *>(value);
+        value = nullptr;
+        return scene;
+    }
+
     explicit SceneOwner(AScene * scene = nullptr) : value(scene) {}
     SceneOwner(SceneOwner & other) : value(other.release()) {}
     SceneOwner(SceneOwnerTransfer transfer);
@@ -46,12 +55,6 @@ struct SceneOwner
     SceneOwner & operator=(AScene * scene);
     AScene * get() const { return static_cast<AScene *>(value); }
     AScene * operator->() const { return static_cast<AScene *>(value); }
-    AScene * release()
-    {
-        AScene * scene = static_cast<AScene *>(value);
-        value = nullptr;
-        return scene;
-    }
     void reset(AScene * scene = nullptr);
     operator SceneOwnerTransfer()
     {

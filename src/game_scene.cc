@@ -2,6 +2,7 @@
 #include "new_game.hh"
 #include <new>
 #include "hardware_blend.hh"
+#include "hardware_manager.hh"
 #include "hardware_dma.hh"
 #include "game_state.hh"
 #include "field_item_data.hh"
@@ -76,6 +77,24 @@ static inline void ApplySceneBgmSettings(GameSceneBgmSettings const & settings, 
     func_08008C70(player, settings.pan, 0xFFFF);
     func_08008C8C(player, settings.modulation_depth, 0xFFFF);
     func_08008CA8(player, settings.lfo_speed, 0xFFFF);
+}
+
+SceneTransitionOwner GameSceneScriptController::Run()
+{
+    HardwareManagerOwner hardware;
+    SceneOwner scene;
+    if (unk_364 != 0)
+    {
+        GameSceneResumeRequest request(0);
+        scene = new GameScene(save.get(), request);
+    }
+    else
+    {
+        GameSceneResumeRequest request(1);
+        scene = new GameScene(save.get(), request);
+    }
+    SceneMain(scene);
+    return SceneTransitionOwner();
 }
 
 GameSceneControllerActorRecord * func_080100F0(void)

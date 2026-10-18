@@ -186,7 +186,7 @@ SECTIONS
         src/more_items.o(.text);
         asm/more_items.o(.text);
         . = 0x1002C; /* JP ROM 0x0801002C, independently matched */
-        asm/game_scene.o(.text);
+        src/game_scene.o(.text.Run__25GameSceneScriptController);
         src/game_scene.o(.text.func_08010*);
         asm/game_scene.o(.text.game_scene_post);
         src/game_scene.o(.text.__25GameSceneScriptControllerG23GameStateSaveImageOwner);
