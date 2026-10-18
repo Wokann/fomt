@@ -780,3 +780,144 @@ void RenderUiChoiceLabel(UiStatePayload * payload, UiTextLayoutPosition const & 
         phase = UpdateUiTextStream(&payload->text, &payload->output, &input);
     } while (phase == 1);
 }
+
+// Choices are one-based. Down takes priority over up, then either horizontal
+// key; no directional input returns one. The horizontal paths for layouts
+// 0, 1 and 5 deliberately preserve even an out-of-range selection.
+i32 MoveUiChoiceSelection(u32 layout, i32 selection, UiChoiceKeyState keys)
+{
+    switch (layout) {
+    case 0:
+    case 5:
+        if (keys.value & (UiChoiceKeyState::UP | UiChoiceKeyState::DOWN)) {
+            switch (selection) {
+            case 1: return 2;
+            case 2: return 1;
+            }
+        } else if (keys.value & (UiChoiceKeyState::LEFT | UiChoiceKeyState::RIGHT)) {
+            return selection;
+        }
+        break;
+    case 1:
+        if (keys.value & UiChoiceKeyState::DOWN) {
+            switch (selection) {
+            case 1: return 2;
+            case 2: return 3;
+            case 3: return 1;
+            }
+        } else if (keys.value & UiChoiceKeyState::UP) {
+            switch (selection) {
+            case 1: return 3;
+            case 2: return 1;
+            case 3: return 2;
+            }
+        } else if (keys.value & (UiChoiceKeyState::LEFT | UiChoiceKeyState::RIGHT)) {
+            return selection;
+        }
+        break;
+    case 6:
+        if (keys.value & UiChoiceKeyState::DOWN) {
+            switch (selection) {
+            case 1: return 2;
+            case 2: return 1;
+            case 3: return 2;
+            }
+        } else if (keys.value & UiChoiceKeyState::UP) {
+            switch (selection) {
+            case 1: return 2;
+            case 2: return 1;
+            case 3: return 2;
+            }
+        } else if (keys.value & (UiChoiceKeyState::LEFT | UiChoiceKeyState::RIGHT)) {
+            switch (selection) {
+            case 1: return 3;
+            case 2: return 3;
+            case 3: return 1;
+            }
+        }
+        break;
+    case 2:
+    case 7:
+        if (keys.value & UiChoiceKeyState::DOWN) {
+            switch (selection) {
+            case 1: return 2;
+            case 2: return 1;
+            case 3: return 4;
+            case 4: return 3;
+            }
+        } else if (keys.value & UiChoiceKeyState::UP) {
+            switch (selection) {
+            case 1: return 2;
+            case 2: return 1;
+            case 3: return 4;
+            case 4: return 3;
+            }
+        } else if (keys.value & (UiChoiceKeyState::LEFT | UiChoiceKeyState::RIGHT)) {
+            switch (selection) {
+            case 1: return 3;
+            case 2: return 4;
+            case 3: return 1;
+            case 4: return 2;
+            }
+        }
+        break;
+    case 3:
+        if (keys.value & UiChoiceKeyState::DOWN) {
+            switch (selection) {
+            case 1: return 2;
+            case 2: return 3;
+            case 3: return 1;
+            case 4: return 5;
+            case 5: return 4;
+            }
+        } else if (keys.value & UiChoiceKeyState::UP) {
+            switch (selection) {
+            case 1: return 3;
+            case 2: return 1;
+            case 3: return 2;
+            case 4: return 5;
+            case 5: return 4;
+            }
+        } else if (keys.value & (UiChoiceKeyState::LEFT | UiChoiceKeyState::RIGHT)) {
+            switch (selection) {
+            case 1: return 4;
+            case 2: return 5;
+            case 3: return 5;
+            case 4: return 1;
+            case 5: return 2;
+            }
+        }
+        break;
+    case 4:
+        if (keys.value & UiChoiceKeyState::DOWN) {
+            switch (selection) {
+            case 1: return 2;
+            case 2: return 3;
+            case 3: return 1;
+            case 4: return 5;
+            case 5: return 6;
+            case 6: return 4;
+            }
+        } else if (keys.value & UiChoiceKeyState::UP) {
+            switch (selection) {
+            case 1: return 3;
+            case 2: return 1;
+            case 3: return 2;
+            case 4: return 6;
+            case 5: return 4;
+            case 6: return 5;
+            }
+        } else if (keys.value & (UiChoiceKeyState::LEFT | UiChoiceKeyState::RIGHT)) {
+            switch (selection) {
+            case 1: return 4;
+            case 2: return 5;
+            case 3: return 6;
+            case 4: return 1;
+            case 5: return 2;
+            case 6: return 3;
+            }
+        }
+        break;
+    }
+    return 1;
+}

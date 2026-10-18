@@ -424,10 +424,27 @@ struct UiTextLayoutPosition
 } PACKED;
 typedef char UiTextLayoutPositionSizeCheck[sizeof(UiTextLayoutPosition) == 1 ? 1 : -1];
 
+// Navigation receives a halfword key mask by value. The native C++ ABI
+// rounds this value object to one word, rather than a scalar u16 argument.
+struct UiChoiceKeyState
+{
+    enum
+    {
+        RIGHT = 0x10,
+        LEFT = 0x20,
+        UP = 0x40,
+        DOWN = 0x80,
+    };
+    u16 value;
+};
+typedef char UiChoiceKeyStateSizeCheck[sizeof(UiChoiceKeyState) == 4 ? 1 : -1];
+
 EC UiTextLayoutPosition GetUiChoiceLayoutPosition(u32 layout, u32 selection)
     SECTION(".text.ui_choice_labels");
 EC void RenderUiChoiceLabel(UiStatePayload *, UiTextLayoutPosition const &,
     char const *, ScriptTextVariableStore *) SECTION(".text.ui_choice_labels");
+EC i32 MoveUiChoiceSelection(u32 layout, i32 selection, UiChoiceKeyState keys)
+    SECTION(".text.ui_choice_labels");
 
 // These native objects physically precede the layout-position table.  The
 // full-width decimal formatter FormatFullWidthDecimal reads two encoded bytes from
