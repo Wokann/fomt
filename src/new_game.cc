@@ -1305,3 +1305,45 @@ GameDate GetBirthdayInputSceneDate(NewGameBirthdayInputScene const * scene)
 {
     return scene->core->birthday;
 }
+
+bool ConfirmBirthdayInputSelection(NewGameBirthdayInputCore * core)
+{
+    bool complete = false;
+    bool pressed = false;
+    if ((static_cast<u8>(func_080088D4(reinterpret_cast<void * const *>(core))) & 1) ||
+        (static_cast<u8>(func_080088D4(reinterpret_cast<void * const *>(core))) & 8))
+        pressed = true;
+    if (pressed) {
+        func_08008B6C(&core->music_players[1], 0x6A);
+        if (core->cursor_row == 0) {
+            core->saved_season_column = core->cursor_column;
+            core->cursor_row = (core->day - 1) / 7 + 1;
+#if defined(REGION_JP)
+            core->cursor_column = (core->day - 1) % 7;
+#else
+            core->cursor_column = ((core->day - 1) % 7) * 2 + 1;
+#endif
+        } else complete = true;
+    }
+    return complete;
+}
+
+bool CancelBirthdayInputSelection(NewGameBirthdayInputCore * core)
+{
+    bool cancelled = false;
+    if (static_cast<u8>(func_080088D4(reinterpret_cast<void * const *>(core))) & 2) {
+        func_08008B6C(&core->music_players[1], 0x6C);
+        if (core->cursor_row > 0) {
+            core->cursor_column = core->saved_season_column;
+            core->cursor_row = 0;
+#if defined(REGION_JP)
+            core->glyphs[1].glyph_index = 19;
+            core->glyphs[2].glyph_index = 19;
+#else
+            core->glyphs[6].glyph_index = 34;
+            core->glyphs[7].glyph_index = 34;
+#endif
+        } else cancelled = true;
+    }
+    return cancelled;
+}

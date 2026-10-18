@@ -133,18 +133,37 @@ struct NewGameMenuScene {
     NewGameMenuCore * core;
 };
 
-// Native birthday UI core: only the bootstrap prefix and returned date
-// are currently interpreted. Construction and running remain native.
+// Only the selection fields and accessed glyph slots are interpreted here.
+// Construction, rendering and the overall UI loop still remain native.
+struct NewGameBirthdayInputGlyph {
+    u16 unk_00[3];
+    u16 glyph_index;
+};
+
 struct NewGameBirthdayInputCore : HardwareBootstrap {
+    u32 unk_08;
+    UiStateOwner * ui_state;
+    MusicPlayer * music_players[2];
+    u8 unk_18[0x20];
+    i8 cursor_column;
+    i8 cursor_row;
+    i8 saved_season_column;
+    u8 unk_3B;
+    NewGameMenuSpriteAttributes cursor_attributes;
 #if defined(REGION_JP)
-    u8 unk_08[0x270];
+    NewGameBirthdayInputGlyph glyphs[3];
+    u8 unk_after_glyphs[0x21C];
 #elif defined(REGION_DE)
-    u8 unk_08[0x458];
+    NewGameBirthdayInputGlyph glyphs[8];
+    u8 unk_after_glyphs[0x3DC];
 #else
-    u8 unk_08[0x440];
+    NewGameBirthdayInputGlyph glyphs[8];
+    u8 unk_after_glyphs[0x3C4];
 #endif
     GameDate birthday;
-    u8 unk_after_birthday[11];
+    i8 season_column;
+    i8 day;
+    u8 unk_after_day[9];
 private:
     NewGameBirthdayInputCore();
 };
@@ -163,6 +182,15 @@ typedef char BirthdayCoreSizeCheck[sizeof(NewGameBirthdayInputCore) == 0x454 ? 1
 typedef char BirthdayFieldCheck[offsetof(NewGameBirthdayInputCore, birthday) == 0x448 ? 1 : -1];
 #endif
 typedef char BirthdaySceneSizeCheck[sizeof(NewGameBirthdayInputScene) == 8 ? 1 : -1];
+typedef char BirthdayGlyphSizeCheck[sizeof(NewGameBirthdayInputGlyph) == 8 ? 1 : -1];
+typedef char BirthdayGlyphIndexCheck[offsetof(NewGameBirthdayInputGlyph, glyph_index) == 6 ? 1 : -1];
+typedef char BirthdayMusicCheck[offsetof(NewGameBirthdayInputCore, music_players) == 0x10 ? 1 : -1];
+typedef char BirthdayCursorCheck[offsetof(NewGameBirthdayInputCore, cursor_column) == 0x38 ? 1 : -1];
+typedef char BirthdayCursorRowCheck[offsetof(NewGameBirthdayInputCore, cursor_row) == 0x39 ? 1 : -1];
+typedef char BirthdaySavedSeasonCheck[offsetof(NewGameBirthdayInputCore, saved_season_column) == 0x3A ? 1 : -1];
+typedef char BirthdayGlyphsCheck[offsetof(NewGameBirthdayInputCore, glyphs) == 0x44 ? 1 : -1];
+typedef char BirthdayDayCheck[offsetof(NewGameBirthdayInputCore, day)
+    == offsetof(NewGameBirthdayInputCore, birthday) + 2 ? 1 : -1];
 extern "C" {
 NewGameBirthdayInputCore * func_0806D990(NewGameBirthdayInputCore *, GameDate);
 SceneTransitionOwner func_0806DB38(NewGameBirthdayInputCore *);
@@ -175,6 +203,14 @@ SceneTransitionOwner RunBirthdayInputScene(NewGameBirthdayInputScene *)
 GameDate GetBirthdayInputSceneDate(NewGameBirthdayInputScene const *)
     SECTION(".text.new_game_birthday_input_scene");
 extern NewGameSceneVTableFunction const gNewGameBirthdayInputSceneVTable[];
+bool ConfirmBirthdayInputSelection(NewGameBirthdayInputCore *)
+    SECTION(".text.new_game_birthday_selection");
+bool CancelBirthdayInputSelection(NewGameBirthdayInputCore *)
+    SECTION(".text.new_game_birthday_selection");
+// Display helpers still implemented by native assembly in every region.
+void func_0806E234(NewGameBirthdayInputCore *);
+void func_0806E43C(NewGameBirthdayInputCore *);
+void func_0806E578(NewGameBirthdayInputCore *);
 }
 
 struct NewGameNameEntryScene {

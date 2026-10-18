@@ -55339,11 +55339,11 @@ func_0806DB38:
 	bl func_08009300
 	str r4, [sp, #4]
 	adds r0, r5, #0
-	bl .Ljp_0806DFAC
+	bl func_0806E234
 	adds r0, r5, #0
-	bl .Ljp_0806E1B0
+	bl func_0806E43C
 	adds r0, r5, #0
-	bl .Ljp_0806E2F4
+	bl func_0806E578
 	ldr r0, [sp, #4]
 	ldr r1, .Ljp_0806D9E8
 	adds r0, #0xc
@@ -55415,7 +55415,7 @@ func_0806DB38:
 	adds r0, r5, #0
 	bl .Ljp_0806DE08
 	adds r0, r5, #0
-	bl .Ljp_0806DEE0
+	bl ConfirmBirthdayInputSelection
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_0806DA44
@@ -55429,7 +55429,7 @@ func_0806DB38:
 	.4byte 0x0000027E
 .Ljp_0806DA44:
 	adds r0, r5, #0
-	bl .Ljp_0806DF60
+	bl CancelBirthdayInputSelection
 	b .Ljp_0806DB34
 .Ljp_0806DA4C:
 	ldr r1, .Ljp_0806DA80
@@ -56034,110 +56034,11 @@ func_0806DB38:
 	.align 2, 0
 .Ljp_0806DEDC:
 	.4byte 0x0000027A
-.Ljp_0806DEE0:
-	push {r4, r5, r6, r7, lr}
-	adds r4, r0, #0
-	movs r7, #0
-	movs r5, #0
-	bl func_080088D4
-	movs r1, #1
-	ands r0, r1
-	cmp r0, #0
-	bne .Ljp_0806DF02
-	adds r0, r4, #0
-	bl func_080088D4
-	movs r1, #8
-	ands r0, r1
-	cmp r0, #0
-	beq .Ljp_0806DF04
-.Ljp_0806DF02:
-	movs r5, #1
-.Ljp_0806DF04:
-	cmp r5, #0
-	beq .Ljp_0806DF56
-	adds r0, r4, #0
-	adds r0, #0x14
-	movs r1, #0x6a
-	bl func_08008B6C
-	adds r6, r4, #0
-	adds r6, #0x39
-	movs r0, #0
-	ldrsb r0, [r6, r0]
-	cmp r0, #0
-	bne .Ljp_0806DF54
-	adds r5, r4, #0
-	adds r5, #0x38
-	ldrb r0, [r5]
-	adds r1, r4, #0
-	adds r1, #0x3a
-	strb r0, [r1]
-	ldr r0, .Ljp_0806DF50
-	adds r4, r4, r0
-	movs r0, #0
-	ldrsb r0, [r4, r0]
-	subs r0, #1
-	movs r1, #7
-	bl __divsi3
-	adds r0, #1
-	strb r0, [r6]
-	movs r0, #0
-	ldrsb r0, [r4, r0]
-	subs r0, #1
-	movs r1, #7
-	bl __modsi3
-	strb r0, [r5]
-	b .Ljp_0806DF56
-	.align 2, 0
-.Ljp_0806DF50:
-	.4byte 0x0000027A
-.Ljp_0806DF54:
-	movs r7, #1
-.Ljp_0806DF56:
-	adds r0, r7, #0
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_0806DF60:
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	movs r5, #0
-	bl func_080088D4
-	movs r1, #2
-	ands r0, r1
-	cmp r0, #0
-	beq .Ljp_0806DFA2
-	adds r0, r4, #0
-	adds r0, #0x14
-	movs r1, #0x6c
-	bl func_08008B6C
-	adds r2, r4, #0
-	adds r2, #0x39
-	movs r0, #0
-	ldrsb r0, [r2, r0]
-	cmp r0, #0
-	ble .Ljp_0806DFA0
-	adds r0, r4, #0
-	adds r0, #0x3a
-	ldrb r1, [r0]
-	subs r0, #2
-	strb r1, [r0]
-	strb r5, [r2]
-	adds r0, #0x1a
-	movs r1, #0x13
-	strh r1, [r0]
-	adds r0, #8
-	strh r1, [r0]
-	b .Ljp_0806DFA2
-.Ljp_0806DFA0:
-	movs r5, #1
-.Ljp_0806DFA2:
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_0806DFAC:
+    .section .text.new_game_birthday_selection_after, "ax", %progbits
+
+    .global func_0806E234
+    .thumb_func
+func_0806E234:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -56372,7 +56273,9 @@ func_0806DB38:
 	.4byte gFarmStatusScreenPreloadedGlyphs
 .Ljp_0806E1AC:
 	.4byte 0x06010000
-.Ljp_0806E1B0:
+    .global func_0806E43C
+    .thumb_func
+func_0806E43C:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -56530,7 +56433,9 @@ func_0806DB38:
 	.4byte 0x000001FF
 .Ljp_0806E2F0:
 	.4byte 0xFFFFFE00
-.Ljp_0806E2F4:
+    .global func_0806E578
+    .thumb_func
+func_0806E578:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -212276,7 +212181,7 @@ func_0806DB38: @ 0x0806DB38
 	adds r0, r5, #0
 	bl func_0806E02C
 	adds r0, r5, #0
-	bl func_0806E164
+	bl ConfirmBirthdayInputSelection
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L0806DC48
@@ -212294,7 +212199,7 @@ func_0806DB38: @ 0x0806DB38
 	.endif
 .L0806DC48:
 	adds r0, r5, #0
-	bl func_0806E1E8
+	bl CancelBirthdayInputSelection
 	b .L0806DD3C
 .L0806DC50:
 	ldr r1, .L0806DC84 @ =0x0000044E
@@ -213032,118 +212937,8 @@ func_0806E02C: @ 0x0806E02C
 	.4byte 0x0000044A
 	.endif
 
-	thumb_func_start func_0806E164
-func_0806E164: @ 0x0806E164
-	push {r4, r5, r6, r7, lr}
-	adds r4, r0, #0
-	movs r7, #0
-	movs r5, #0
-	bl func_080088D4
-	movs r1, #1
-	ands r0, r1
-	cmp r0, #0
-	bne .L0806E186
-	adds r0, r4, #0
-	bl func_080088D4
-	movs r1, #8
-	ands r0, r1
-	cmp r0, #0
-	beq .L0806E188
-.L0806E186:
-	movs r5, #1
-.L0806E188:
-	cmp r5, #0
-	beq .L0806E1DE
-	adds r0, r4, #0
-	adds r0, #0x14
-	movs r1, #0x6a
-	bl func_08008B6C
-	adds r6, r4, #0
-	adds r6, #0x39
-	movs r0, #0
-	ldrsb r0, [r6, r0]
-	cmp r0, #0
-	bne .L0806E1DC
-	adds r5, r4, #0
-	adds r5, #0x38
-	ldrb r0, [r5]
-	adds r1, r4, #0
-	adds r1, #0x3a
-	strb r0, [r1]
-	ldr r0, .L0806E1D8 @ =0x0000044A
-	adds r4, r4, r0
-	movs r0, #0
-	ldrsb r0, [r4, r0]
-	subs r0, #1
-	movs r1, #7
-	bl __divsi3
-	adds r0, #1
-	strb r0, [r6]
-	movs r0, #0
-	ldrsb r0, [r4, r0]
-	subs r0, #1
-	movs r1, #7
-	bl __modsi3
-	lsls r0, r0, #1
-	adds r0, #1
-	strb r0, [r5]
-	b .L0806E1DE
-	.align 2, 0
-.L0806E1D8:
-	.ifdef REGION_DE
-	.4byte 0x00000462
-	.else
-	.4byte 0x0000044A
-	.endif
-.L0806E1DC:
-	movs r7, #1
-.L0806E1DE:
-	adds r0, r7, #0
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.new_game_birthday_selection_after, "ax", %progbits
 
-	thumb_func_start func_0806E1E8
-func_0806E1E8: @ 0x0806E1E8
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	movs r5, #0
-	bl func_080088D4
-	movs r1, #2
-	ands r0, r1
-	cmp r0, #0
-	beq .L0806E22A
-	adds r0, r4, #0
-	adds r0, #0x14
-	movs r1, #0x6c
-	bl func_08008B6C
-	adds r2, r4, #0
-	adds r2, #0x39
-	movs r0, #0
-	ldrsb r0, [r2, r0]
-	cmp r0, #0
-	ble .L0806E228
-	adds r0, r4, #0
-	adds r0, #0x3a
-	ldrb r1, [r0]
-	subs r0, #2
-	strb r1, [r0]
-	strb r5, [r2]
-	adds r0, #0x42
-	movs r1, #0x22
-	strh r1, [r0]
-	adds r0, #8
-	strh r1, [r0]
-	b .L0806E22A
-.L0806E228:
-	movs r5, #1
-.L0806E22A:
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
 
 	thumb_func_start func_0806E234
 func_0806E234: @ 0x0806E234
