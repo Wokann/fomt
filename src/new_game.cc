@@ -1461,3 +1461,104 @@ void AppendBirthdayInputGlyph(NewGameBirthdayInputCore * core, i32 x, i32 y,
     core->glyphs[core->glyph_count].priority = priority;
     core->glyph_count++;
 }
+
+static inline void SubmitBirthdaySprite(NewGameBirthdayInputCore * core,
+    HardwareSpriteOamRecord const & attributes)
+{
+    HardwareSpriteBufferState * buffer =
+        func_08008920(reinterpret_cast<void * const *>(core));
+    u32 const & position_and_mode = reinterpret_cast<u32 const &>(attributes);
+    u32 count = buffer->sprite_count;
+    if (count < ARRAY_COUNT(buffer->sprites)) {
+        HardwareSpriteOamRecord & destination = buffer->sprites[count];
+        reinterpret_cast<u32 *>(&destination)[0] = position_and_mode;
+        reinterpret_cast<u16 *>(&destination)[2] =
+            reinterpret_cast<u16 const *>(&attributes)[2];
+        buffer->sprite_count = count + 1;
+    }
+}
+
+void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
+{
+    HardwareSpriteOamRecord attributes;
+    attributes.affine_mode = 0;
+    attributes.object_mode = 0;
+    attributes.color_mode = 0;
+#if defined(REGION_JP)
+    attributes.shape = 0;
+#else
+    attributes.shape = 2;
+#endif
+    attributes.affine_index_low = 0;
+    attributes.horizontal_flip = 0;
+    attributes.vertical_flip = 0;
+#if defined(REGION_JP)
+    attributes.size = 1;
+#else
+    attributes.size = 0;
+#endif
+    attributes.palette_bank = static_cast<u16>(SpritePaletteBank(core->glyph_palette));
+    attributes.affine_coefficient = 0;
+    attributes.mosaic = 1;
+    for (i32 index = core->glyph_count - 1; index >= 0; --index) {
+        attributes.priority = core->glyphs[index].priority;
+        attributes.x = core->glyphs[index].x;
+        attributes.y = core->glyphs[index].y;
+#if defined(REGION_JP)
+        attributes.tile_index = SpriteTileIndex(core->glyph_tiles)
+            + core->glyphs[index].glyph_index * 4;
+#else
+        attributes.tile_index = SpriteTileIndex(core->glyph_tiles)
+            + core->glyphs[index].glyph_index * 2;
+#endif
+        SubmitBirthdaySprite(core, attributes);
+    }
+    // Copy only the six attribute bytes; the buffer owns affine coefficients.
+    if (core->cursor_visible) {
+        {
+            HardwareSpriteBufferState * buffer =
+                func_08008920(reinterpret_cast<void * const *>(core));
+            u32 const & position_and_mode =
+                reinterpret_cast<u32 const &>(core->cursor_attributes);
+            u32 count = buffer->sprite_count;
+            if (count < ARRAY_COUNT(buffer->sprites)) {
+                HardwareSpriteOamRecord & destination = buffer->sprites[count];
+                reinterpret_cast<u32 *>(&destination)[0] = position_and_mode;
+                reinterpret_cast<u16 *>(&destination)[2] = core->cursor_attributes.tile_attributes;
+                buffer->sprite_count = count + 1;
+            }
+        }
+#if !defined(REGION_JP)
+        if (core->cursor_row == 0) {
+            core->cursor_attributes.x = core->cursor_column * 16 + 16;
+            {
+                HardwareSpriteBufferState * buffer =
+                    func_08008920(reinterpret_cast<void * const *>(core));
+                u32 const & position_and_mode =
+                    reinterpret_cast<u32 const &>(core->cursor_attributes);
+                u32 count = buffer->sprite_count;
+                if (count < ARRAY_COUNT(buffer->sprites)) {
+                    HardwareSpriteOamRecord & destination = buffer->sprites[count];
+                    reinterpret_cast<u32 *>(&destination)[0] = position_and_mode;
+                    reinterpret_cast<u16 *>(&destination)[2] = core->cursor_attributes.tile_attributes;
+                    buffer->sprite_count = count + 1;
+                }
+            }
+            core->cursor_attributes.x = core->cursor_column * 16 + 32;
+            {
+                HardwareSpriteBufferState * buffer =
+                    func_08008920(reinterpret_cast<void * const *>(core));
+                u32 const & position_and_mode =
+                    reinterpret_cast<u32 const &>(core->cursor_attributes);
+                u32 count = buffer->sprite_count;
+                if (count < ARRAY_COUNT(buffer->sprites)) {
+                    HardwareSpriteOamRecord & destination = buffer->sprites[count];
+                    reinterpret_cast<u32 *>(&destination)[0] = position_and_mode;
+                    reinterpret_cast<u16 *>(&destination)[2] = core->cursor_attributes.tile_attributes;
+                    buffer->sprite_count = count + 1;
+                }
+            }
+        }
+#endif
+    }
+}

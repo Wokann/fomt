@@ -146,7 +146,9 @@ struct NewGameBirthdayInputCore : HardwareBootstrap {
     u32 unk_08;
     UiStateOwner * ui_state;
     MusicPlayer * music_players[2];
-    u8 unk_18[0x20];
+    HardwareStateEntry glyph_tiles;
+    HardwareResourceEntry glyph_palette;
+    u8 unk_28[0x10];
     i8 cursor_column;
     i8 cursor_row;
     i8 saved_season_column;
@@ -190,6 +192,8 @@ typedef char BirthdayGlyphYCheck[offsetof(NewGameBirthdayInputGlyph, y) == 2 ? 1
 typedef char BirthdayGlyphIndexCheck[offsetof(NewGameBirthdayInputGlyph, glyph_index) == 4 ? 1 : -1];
 typedef char BirthdayGlyphPriorityCheck[offsetof(NewGameBirthdayInputGlyph, priority) == 6 ? 1 : -1];
 typedef char BirthdayMusicCheck[offsetof(NewGameBirthdayInputCore, music_players) == 0x10 ? 1 : -1];
+typedef char BirthdayGlyphTilesCheck[offsetof(NewGameBirthdayInputCore, glyph_tiles) == 0x18 ? 1 : -1];
+typedef char BirthdayGlyphPaletteCheck[offsetof(NewGameBirthdayInputCore, glyph_palette) == 0x20 ? 1 : -1];
 typedef char BirthdayCursorCheck[offsetof(NewGameBirthdayInputCore, cursor_column) == 0x38 ? 1 : -1];
 typedef char BirthdayCursorRowCheck[offsetof(NewGameBirthdayInputCore, cursor_row) == 0x39 ? 1 : -1];
 typedef char BirthdaySavedSeasonCheck[offsetof(NewGameBirthdayInputCore, saved_season_column) == 0x3A ? 1 : -1];
@@ -224,7 +228,8 @@ void func_0806E43C(NewGameBirthdayInputCore *);
 void func_0806E578(NewGameBirthdayInputCore *);
 void AppendBirthdayInputGlyph(NewGameBirthdayInputCore *, i32, i32, i32, i32)
     SECTION(".text.new_game_birthday_glyph_append");
-void func_0806E7E0(NewGameBirthdayInputCore *);
+void RenderBirthdayInputSprites(NewGameBirthdayInputCore *)
+    SECTION(".text.new_game_birthday_sprite_render");
 }
 
 struct NewGameNameEntryScene {
