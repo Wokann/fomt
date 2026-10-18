@@ -14,6 +14,21 @@ struct HardwareResource;
 struct HardwareResourceEntry;
 struct MusicPlayer;
 struct ScriptTextVariableStore;
+struct IndexedResourceGroupResult;
+
+// Own the current portrait archive group, including sprite and tile/palette
+// ranges. The pointed-to 32-byte result borrows its actual archive payload.
+struct UiPortraitGroupOwner
+{
+    IndexedResourceGroupResult * value;
+    UiPortraitGroupOwner() SECTION(".text.ui_portrait_group");
+    UiPortraitGroupOwner(u32 index) SECTION(".text.ui_portrait_group");
+    ~UiPortraitGroupOwner() SECTION(".text.ui_portrait_group");
+    void Set(u32 index) SECTION(".text.ui_portrait_group");
+    IndexedResourceGroupResult Get() const SECTION(".text.ui_portrait_group");
+};
+
+typedef char UiPortraitGroupOwnerSizeCheck[sizeof(UiPortraitGroupOwner) == 4 ? 1 : -1];
 
 struct UiTextSubstitution
 {
@@ -77,6 +92,9 @@ typedef char UiTextStreamReplacementCursorCheck[offsetof(UiTextStream, replaceme
 typedef char UiTextStreamReplacementCheck[offsetof(UiTextStream, replacement) == 0x14 ? 1 : -1];
 
 EXTERN_C
+u16 GetUiPortraitCount() SECTION(".text.ui_portrait_group");
+extern u8 const gPortraitIndexedResourceArchive[];
+
 UiTextStream * InitializeUiTextStream(UiTextStream *) SECTION(".text.ui_text_stream_setup");
 void SetUiTextStreamText(UiTextStream *, char const *, ScriptTextVariableStore *)
     SECTION(".text.ui_text_stream_setup");

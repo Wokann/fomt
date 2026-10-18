@@ -6195,7 +6195,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     movs r0, #0xf2
     lsls r0, r0, #1
     add r0, r8
-    bl func_080AD638
+    bl __20UiPortraitGroupOwner
     movs r0, #0xf4
     lsls r0, r0, #1
     add r0, r8
@@ -6310,7 +6310,7 @@ _._14UiStatePayload: @ 0x0804F428
     lsls r1, r1, #1
     adds r0, r6, r1
     movs r1, #2
-    bl func_080AD6BC
+    bl _._20UiPortraitGroupOwner
     movs r0, #0xea
     lsls r0, r0, #1
     adds r4, r6, r0
@@ -7366,7 +7366,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     lsls r2, r2, #1
     adds r1, r7, r2
     ldr r0, [sp, #0x90]
-    bl func_080AD740
+    bl Get__C20UiPortraitGroupOwner
     movs r3, #0xee
     lsls r3, r3, #1
     adds r0, r7, r3
@@ -8878,7 +8878,7 @@ func_08050AD8: @ 0x08050864
     adds r5, r1, #0
     cmp r5, #0
     blo .Ljp_08050876
-    bl func_080AD758
+    bl GetUiPortraitCount
     cmp r5, r0
     blo .Ljp_0805087E
 .Ljp_08050876:
@@ -8909,7 +8909,7 @@ func_08050AD8: @ 0x08050864
     lsls r1, r1, #1
     adds r0, r4, r1
     adds r1, r5, #0
-    bl func_080AD6DC
+    bl Set__20UiPortraitGroupOwnerUi
     movs r1, #0xf0
     lsls r1, r1, #1
     adds r0, r4, r1
@@ -149319,7 +149319,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	movs r0, #0xf2
 	lsls r0, r0, #1
 	add r0, r8
-	bl func_080ADC00
+	bl __20UiPortraitGroupOwner
 	movs r0, #0xf4
 	lsls r0, r0, #1
 	add r0, r8
@@ -149430,7 +149430,7 @@ _._14UiStatePayload: @ 0x0804F69C
 	lsls r1, r1, #1
 	adds r0, r6, r1
 	movs r1, #2
-	bl func_080ADC84
+	bl _._20UiPortraitGroupOwner
 	movs r0, #0xea
 	lsls r0, r0, #1
 	adds r4, r6, r0
@@ -150486,7 +150486,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	lsls r2, r2, #1
 	adds r1, r7, r2
 	ldr r0, [sp, #0x90]
-	bl func_080ADD08
+	bl Get__C20UiPortraitGroupOwner
 	movs r3, #0xee
 	lsls r3, r3, #1
 	adds r0, r7, r3
@@ -151992,7 +151992,7 @@ func_08050AD8: @ 0x08050AD8
 	adds r5, r1, #0
 	cmp r5, #0
 	blo .L08050AEA
-	bl func_080ADD20
+	bl GetUiPortraitCount
 	cmp r5, r0
 	blo .L08050AF2
 .L08050AEA:
@@ -152023,7 +152023,7 @@ func_08050AD8: @ 0x08050AD8
 	lsls r1, r1, #1
 	adds r0, r4, r1
 	adds r1, r5, #0
-	bl func_080ADCA4
+	bl Set__20UiPortraitGroupOwnerUi
 	movs r1, #0xf0
 	lsls r1, r1, #1
 	adds r0, r4, r1

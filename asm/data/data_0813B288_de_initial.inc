@@ -94740,8 +94740,8 @@ gUnk_082B4930:
 	.global gUnk_082B49CC
 gUnk_082B49CC:
 	.incbin "graphics/ui/farm_status/shared/tilemaps/barn_level_0_alternate.tilemap"
-	.global gUnk_0852D984
-gUnk_0852D984:
+	.global gPortraitIndexedResourceArchive
+gPortraitIndexedResourceArchive:
     .include "graphics/portraits/shared/archive.inc"
 
 	@ DE places these archive payloads earlier than the corresponding US stream.

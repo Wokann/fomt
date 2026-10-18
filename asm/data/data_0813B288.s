@@ -94755,8 +94755,8 @@ gUnk_082B39F0:
     .global gUnk_082B3A8C
 gUnk_082B3A8C:
     .incbin "graphics/ui/farm_status/shared/tilemaps/barn_level_0_alternate.tilemap"
-    .global gUnk_082B3AE0
-gUnk_082B3AE0:
+    .global gPortraitIndexedResourceArchive
+gPortraitIndexedResourceArchive:
     .include "graphics/portraits/shared/archive.inc"
     .global gActorIndexedResourceArchive
 gActorIndexedResourceArchive:
@@ -300177,8 +300177,8 @@ gUnk_0852D894:
 	.global gUnk_0852D930
 gUnk_0852D930:
 	.incbin "graphics/ui/farm_status/shared/tilemaps/barn_level_0_alternate.tilemap"
-	.global gUnk_0852D984
-gUnk_0852D984:
+	.global gPortraitIndexedResourceArchive
+gPortraitIndexedResourceArchive:
     .include "graphics/portraits/shared/archive.inc"
 	.else
 	.global gUnk_08529794
@@ -300470,8 +300470,8 @@ gUnk_0852D894:
 gUnk_0852D930:
 	.incbin "graphics/ui/farm_status/shared/tilemaps/barn_level_0_alternate.tilemap"
 
-	.global gUnk_0852D984
-gUnk_0852D984:
+	.global gPortraitIndexedResourceArchive
+gPortraitIndexedResourceArchive:
     .include "graphics/portraits/shared/archive.inc"
 	.endif
 
