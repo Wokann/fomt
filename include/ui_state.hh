@@ -186,13 +186,13 @@ struct UnkUiPackedLinkCommand
 typedef char UnkUiPackedLinkCommandSizeCheck[
     sizeof(UnkUiPackedLinkCommand) == 0x10 ? 1 : -1];
 
-// Native field views for the following UI helpers. Unknown prefixes and
-// byte fields remain unknown until their owning classes are recovered.
-struct UnkUiReferenceObject
+// The native UI update copies input.pressed into this word-sized snapshot.
+// Only its low eight key bits are queried; allow_resume gates resumption.
+struct UiTextInputAdapter
 {
     HardwareLinkVirtualFunction const * vtable;
-    void * value;
-    u8 unk_08;
+    u32 pressed;
+    u8 allow_resume;
 };
 
 // Native selection storage: three owned rows, each with seven 16-byte
@@ -277,8 +277,12 @@ struct UnkUiSelectionLinkCommand
     u16 unk_14_15 : 1;
 };
 
-typedef char UnkUiReferenceObjectSizeCheck[
-    sizeof(UnkUiReferenceObject) == 0x0C ? 1 : -1];
+typedef char UiTextInputAdapterSizeCheck[
+    sizeof(UiTextInputAdapter) == 0x0C ? 1 : -1];
+typedef char UiTextInputAdapterPressedCheck[
+    offsetof(UiTextInputAdapter, pressed) == 4 ? 1 : -1];
+typedef char UiTextInputAdapterResumeCheck[
+    offsetof(UiTextInputAdapter, allow_resume) == 8 ? 1 : -1];
 typedef char UnkUiSelectionDataSizeCheck[
     sizeof(UnkUiSelectionData) == 0x1C ? 1 : -1];
 typedef char UnkUiSelectionTileBufferSizeCheck[
@@ -330,6 +334,13 @@ void ClearUiTextPage(UnkUiSelectionData * object)
 u8 GetUiTextStopFlag(UnkUiSelectionData const * object)
     SECTION(".text.ui_text_output_callbacks");
 
+bool IsUiTextFastRequested(UiTextInputAdapter const * input)
+    SECTION(".text.ui_text_input_callbacks");
+bool ShouldWaitForUiTextInput(UiTextInputAdapter const * input)
+    SECTION(".text.ui_text_input_callbacks");
+bool CanResumeUiText(UiTextInputAdapter const * input)
+    SECTION(".text.ui_text_input_callbacks");
+
 extern HardwareLinkVirtualFunction const vtable_unk_080E7868[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7878[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7898[];
@@ -343,8 +354,8 @@ UnkUiPackedLinkCommand * func_08050EE4(UnkUiPackedLinkCommand * object,
     u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4)
     SECTION(".text.ui_state_adapters");
 
-UnkUiReferenceObject * func_08050F60(UnkUiReferenceObject * object,
-    void * const * value, u8 arg_2);
+UiTextInputAdapter * InitializeUiTextInputAdapter(UiTextInputAdapter * input,
+    u32 const & pressed, u8 allow_resume);
 u8 func_08050F70(UnkUiSelectionData const * object);
 void func_08050F74(UnkUiSelectionData * object, u32 arg_1, u32 arg_2);
 

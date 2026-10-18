@@ -389,17 +389,17 @@ EC UnkUiPackedLinkCommand * func_08050EE4(UnkUiPackedLinkCommand * object,
     return object;
 }
 
-EC UnkUiReferenceObject * func_08050F60(UnkUiReferenceObject * object,
-    void * const * value, u8 arg_2)
+EC UiTextInputAdapter * InitializeUiTextInputAdapter(UiTextInputAdapter * input,
+    u32 const & pressed, u8 allow_resume)
 {
 #if defined(REGION_JP)
-    object->vtable = vtable_unk_080E7898;
+    input->vtable = vtable_unk_080E7898;
 #else
-    object->vtable = vtable_unk_080E78A8;
+    input->vtable = vtable_unk_080E78A8;
 #endif
-    object->value = *value;
-    object->unk_08 = arg_2;
-    return object;
+    input->pressed = pressed;
+    input->allow_resume = allow_resume;
+    return input;
 }
 
 EC u8 func_08050F70(UnkUiSelectionData const * object)
@@ -529,6 +529,31 @@ void ClearUiTextPage(UnkUiSelectionData * object)
 u8 GetUiTextStopFlag(UnkUiSelectionData const * object)
 {
     return object->unk_19;
+}
+
+static inline bool HasUiTextAdvanceKeys(u8 value)
+{
+    return value;
+}
+
+bool IsUiTextFastRequested(UiTextInputAdapter const * input)
+{
+    return HasUiTextAdvanceKeys(static_cast<u8>(input->pressed));
+}
+
+bool ShouldWaitForUiTextInput(UiTextInputAdapter const *)
+{
+    return true;
+}
+
+bool CanResumeUiText(UiTextInputAdapter const * input)
+{
+    bool result = false;
+    if (input->allow_resume) {
+        if (HasUiTextAdvanceKeys(static_cast<u8>(input->pressed)))
+            result = true;
+    }
+    return result;
 }
 
 EC void func_080510E8(UnkUiSelectionData * object)

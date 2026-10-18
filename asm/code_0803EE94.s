@@ -5781,52 +5781,7 @@ func_0804EF20: @ 0x0804ECAC
     .align 2, 0
 
 
-    .section .text.ui_text_output_after, "ax", %progbits
-    .align 2, 0
-
-    .global func_0804EEEC
-    .thumb_func
-func_0804EEEC: @ 0x0804EEEC
-    push {lr}
-    ldrb r0, [r0, #4]
-    adds r1, r0, #0
-    cmp r0, #0
-    beq .Ljp_0804EEF8
-    movs r1, #1
-.Ljp_0804EEF8:
-    adds r0, r1, #0
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    .global func_0804F174
-    .thumb_func
-func_0804F174: @ 0x0804EF00
-    movs r0, #1
-    bx lr
-
-    .global func_0804F178
-    .thumb_func
-func_0804F178: @ 0x0804EF04
-    push {lr}
-    adds r1, r0, #0
-    movs r2, #0
-    ldrb r0, [r1, #8]
-    cmp r0, #0
-    beq .Ljp_0804EF20
-    ldrb r0, [r1, #4]
-    adds r1, r0, #0
-    cmp r0, #0
-    beq .Ljp_0804EF1A
-    movs r1, #1
-.Ljp_0804EF1A:
-    cmp r1, #0
-    beq .Ljp_0804EF20
-    movs r2, #1
-.Ljp_0804EF20:
-    adds r0, r2, #0
-    pop {r1}
-    bx r1
+    .section .text.ui_text_input_after, "ax", %progbits
     .align 2, 0
 
 
@@ -149061,50 +149016,8 @@ func_0804EF20: @ 0x0804EF20
 	bx r1
 	.align 2, 0
 
-    .section .text.ui_text_output_after, "ax", %progbits
+    .section .text.ui_text_input_after, "ax", %progbits
     .align 2, 0
-
-	thumb_func_start func_0804F160
-func_0804F160: @ 0x0804F160
-	push {lr}
-	ldrb r0, [r0, #4]
-	adds r1, r0, #0
-	cmp r0, #0
-	beq .L0804F16C
-	movs r1, #1
-.L0804F16C:
-	adds r0, r1, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-	thumb_func_start func_0804F174
-func_0804F174: @ 0x0804F174
-	movs r0, #1
-	bx lr
-
-	thumb_func_start func_0804F178
-func_0804F178: @ 0x0804F178
-	push {lr}
-	adds r1, r0, #0
-	movs r2, #0
-	ldrb r0, [r1, #8]
-	cmp r0, #0
-	beq .L0804F194
-	ldrb r0, [r1, #4]
-	adds r1, r0, #0
-	cmp r0, #0
-	beq .L0804F18E
-	movs r1, #1
-.L0804F18E:
-	cmp r1, #0
-	beq .L0804F194
-	movs r2, #1
-.L0804F194:
-	adds r0, r2, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
 
 	thumb_func_start func_0804F19C
 func_0804F19C: @ 0x0804F19C

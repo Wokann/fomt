@@ -61,7 +61,6 @@ extern void func_080E0EF0(void);
 extern void method_0803EFD8__13AScriptEngine(void);
 extern void OnCall__12ScriptEnginei(void);
 #if defined(REGION_JP)
-extern void func_0804EEEC(void);
 extern void func_080E07B8(void);
 extern void func_080E07C4(void);
 extern void func_080E07D0(void);
@@ -655,9 +654,6 @@ extern void func_08075328(void);
 extern void Resolve__C22IndexedResourceArchiveUi(void);
 extern void GetGroupData__C22IndexedResourceArchiveUi(void);
 extern void func_0804EF20(void);
-extern void func_0804F160(void);
-extern void func_0804F174(void);
-extern void func_0804F178(void);
 extern void func_080E103C(void);
 extern void func_080E105C(void);
 extern void func_080E10E0(void);
@@ -4504,7 +4500,7 @@ extern RawVTableFunction const vtable_unk_080E7898[]
         nullptr,
 #if defined(REGION_JP)
         func_080E07DC,
-        func_0804EEEC,
+        reinterpret_cast<RawVTableFunction>(IsUiTextFastRequested),
 #else
         func_080E0F48,
         func_080E1030,
@@ -4516,8 +4512,8 @@ extern RawVTableFunction const vtable_unk_080E7898[]
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E78A8[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
-        func_0804F174,
-        func_0804F178,
+        reinterpret_cast<RawVTableFunction>(ShouldWaitForUiTextInput),
+        reinterpret_cast<RawVTableFunction>(CanResumeUiText),
     };
 
 // JP code constructs an object with this inner dispatch table directly.
@@ -4535,9 +4531,9 @@ extern RawVTableFunction const vtable_unk_080E78A8[]
         nullptr,
         nullptr,
         func_080E103C,
-        func_0804F160,
-        func_0804F174,
-        func_0804F178,
+        reinterpret_cast<RawVTableFunction>(IsUiTextFastRequested),
+        reinterpret_cast<RawVTableFunction>(ShouldWaitForUiTextInput),
+        reinterpret_cast<RawVTableFunction>(CanResumeUiText),
     };
 #endif
 
