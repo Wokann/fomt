@@ -42,7 +42,8 @@ struct UiTextSubstitution
 
 // The output base supplies native no-op cursor/page defaults and a byte-valued
 // stop query. Concrete output storage below owns its three glyph rows.
-// Input and variable-store implementations still have additional native storage.
+// The input adapter below stores a copied key snapshot and a byte-valued gate;
+// variable-store implementations still have additional native storage.
 struct UiTextOutput
 {
     virtual ~UiTextOutput() SECTION(".text.ui_text_output_base_destructor");
@@ -57,11 +58,13 @@ inline UiTextOutput::~UiTextOutput() {}
 
 struct UiTextInput
 {
-    virtual ~UiTextInput();
-    virtual bool Fast() = 0;
-    virtual bool WaitForInput() = 0;
-    virtual bool Resume() = 0;
+    virtual ~UiTextInput() SECTION(".text.ui_text_input_base_destructor");
+    virtual bool Fast() SECTION(".text.ui_text_input_defaults");
+    virtual bool WaitForInput() SECTION(".text.ui_text_input_defaults");
+    virtual bool Resume() SECTION(".text.ui_text_input_defaults");
 };
+
+inline UiTextInput::~UiTextInput() {}
 
 struct ScriptTextVariableStore
 {
@@ -193,9 +196,13 @@ typedef char UiTextWindowSetupCommandSizeCheck[
 
 // The native UI update copies input.pressed into this word-sized snapshot.
 // Only its low eight key bits are queried; allow_resume gates resumption.
-struct UiTextInputAdapter
+struct UiTextInputAdapter : UiTextInput
 {
-    HardwareLinkVirtualFunction const * vtable;
+    UiTextInputAdapter(u32 const &, u8);
+    // The implicit virtual destructor forwards to the real input base.
+    virtual bool Fast() SECTION(".text.ui_text_input_callbacks");
+    virtual bool WaitForInput() SECTION(".text.ui_text_input_callbacks");
+    virtual bool Resume() SECTION(".text.ui_text_input_callbacks");
     u32 pressed;
     u8 allow_resume;
 };
@@ -354,18 +361,6 @@ void func_08051320(u16 * tilemap, u32 x, u32 y, u32 width, u32 height,
     u32 first_tile, u32 palette);
 extern u8 const gUiHandCursorArchive[];
 
-bool IsUiTextFastRequested(UiTextInputAdapter const * input)
-    SECTION(".text.ui_text_input_callbacks");
-bool ShouldWaitForUiTextInput(UiTextInputAdapter const * input)
-    SECTION(".text.ui_text_input_callbacks");
-bool CanResumeUiText(UiTextInputAdapter const * input)
-    SECTION(".text.ui_text_input_callbacks");
-
-extern HardwareLinkVirtualFunction const vtable_unk_080E7898[];
-extern HardwareLinkVirtualFunction const vtable_unk_080E78A8[];
-
-UiTextInputAdapter * InitializeUiTextInputAdapter(UiTextInputAdapter * input,
-    u32 const & pressed, u8 allow_resume);
 u8 func_08050F70(UnkUiSelectionData const * object);
 void func_08050F74(UnkUiSelectionData * object, u32 arg_1, u32 arg_2);
 

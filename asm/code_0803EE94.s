@@ -6223,7 +6223,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     ldrh r6, [r1, #8]
     ldrb r2, [r7, #0xd]
     mov r1, sp
-    ldr r0, .Ljp_0804F568 @ =vtable_unk_080E7898
+    ldr r0, .Ljp_0804F568 @ =__vt_18UiTextInputAdapter
     str r0, [sp]
     str r3, [sp, #4]
     strb r2, [r1, #8]
@@ -6238,7 +6238,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.Ljp_0804F568: .4byte vtable_unk_080E7898
+.Ljp_0804F568: .4byte __vt_18UiTextInputAdapter
 .Ljp_0804F56C: .4byte .Ljp_0804F570
 .Ljp_0804F570: @ jump table
     .4byte .Ljp_0804F728 @ case 0
@@ -7731,7 +7731,7 @@ sub_080500CE: @ 0x080500CE
     bl _call_via_r2
 .Ljp_0805010E:
     ldr r0, [r7, #8]
-    ldr r1, .Ljp_08050124 @ =vtable_unk_080E78E0
+    ldr r1, .Ljp_08050124 @ =__vt_11UiTextInput
     str r1, [sp]
     add sp, #0xb8
     pop {r3, r4, r5}
@@ -7742,7 +7742,7 @@ sub_080500CE: @ 0x080500CE
     pop {r1}
     bx r1
     .align 2, 0
-.Ljp_08050124: .4byte vtable_unk_080E78E0
+.Ljp_08050124: .4byte __vt_11UiTextInput
     .global func_0805039C
     .thumb_func
 func_0805039C: @ 0x08050128
@@ -8337,7 +8337,7 @@ func_080507F8: @ 0x08050584
     bl SetUiTextStreamText
     adds r6, r5, #0
     adds r5, r4, #0
-    ldr r4, .Ljp_080505F0 @ =vtable_unk_080E78E0
+    ldr r4, .Ljp_080505F0 @ =__vt_11UiTextInput
 .Ljp_080505D0:
     str r4, [sp]
     adds r0, r5, #0
@@ -8354,7 +8354,7 @@ func_080507F8: @ 0x08050584
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080505F0: .4byte vtable_unk_080E78E0
+.Ljp_080505F0: .4byte __vt_11UiTextInput
     .global func_08050868
     .thumb_func
 func_08050868: @ 0x080505F4
@@ -149153,7 +149153,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	ldrh r6, [r1, #8]
 	ldrb r2, [r7, #0xd]
 	mov r1, sp
-	ldr r0, .L0804F7DC @ =vtable_unk_080E78A8
+	ldr r0, .L0804F7DC @ =__vt_18UiTextInputAdapter
 	str r0, [sp]
 	str r3, [sp, #4]
 	strb r2, [r1, #8]
@@ -149168,7 +149168,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L0804F7DC: .4byte vtable_unk_080E78A8
+.L0804F7DC: .4byte __vt_18UiTextInputAdapter
 .L0804F7E0: .4byte .L0804F7E4
 .L0804F7E4: @ jump table
 	.4byte .L0804F99C @ case 0
@@ -150658,7 +150658,7 @@ sub_08050342: @ 0x08050342
 	bl _call_via_r2
 .L08050382:
 	ldr r0, [r7, #8]
-	ldr r1, .L08050398 @ =vtable_unk_080E78F0
+	ldr r1, .L08050398 @ =__vt_11UiTextInput
 	str r1, [sp]
 	add sp, #0xb8
 	pop {r3, r4, r5}
@@ -150669,7 +150669,7 @@ sub_08050342: @ 0x08050342
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L08050398: .4byte vtable_unk_080E78F0
+.L08050398: .4byte __vt_11UiTextInput
 
 	thumb_func_start func_0805039C
 func_0805039C: @ 0x0805039C
@@ -151262,7 +151262,7 @@ func_080507F8: @ 0x080507F8
 	bl SetUiTextStreamText
 	adds r6, r5, #0
 	adds r5, r4, #0
-	ldr r4, .L08050864 @ =vtable_unk_080E78F0
+	ldr r4, .L08050864 @ =__vt_11UiTextInput
 .L08050844:
 	str r4, [sp]
 	adds r0, r5, #0
@@ -151279,7 +151279,7 @@ func_080507F8: @ 0x080507F8
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08050864: .4byte vtable_unk_080E78F0
+.L08050864: .4byte __vt_11UiTextInput
 
 	thumb_func_start func_08050868
 func_08050868: @ 0x08050868

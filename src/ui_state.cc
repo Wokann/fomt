@@ -5,6 +5,10 @@
 #include "resource_handle.hh"
 #include "gbasvc.h"
 
+bool UiTextInput::Resume() { return true; }
+bool UiTextInput::WaitForInput() { return false; }
+bool UiTextInput::Fast() { return false; }
+
 u8 UiTextOutput::ShouldStop() { return false; }
 void UiTextOutput::NextPage() {}
 void UiTextOutput::LineFeed() {}
@@ -468,17 +472,9 @@ UiTextWindowSetupCommand::UiTextWindowSetupCommand(u32 screen, u32 tile, u32 bac
 {
 }
 
-EC UiTextInputAdapter * InitializeUiTextInputAdapter(UiTextInputAdapter * input,
-    u32 const & pressed, u8 allow_resume)
+UiTextInputAdapter::UiTextInputAdapter(u32 const & pressed, u8 allow_resume)
+    : pressed(pressed), allow_resume(allow_resume)
 {
-#if defined(REGION_JP)
-    input->vtable = vtable_unk_080E7898;
-#else
-    input->vtable = vtable_unk_080E78A8;
-#endif
-    input->pressed = pressed;
-    input->allow_resume = allow_resume;
-    return input;
 }
 
 EC u8 func_08050F70(UnkUiSelectionData const * object)
@@ -621,18 +617,20 @@ static inline bool HasUiTextAdvanceKeys(u8 value)
     return value;
 }
 
-bool IsUiTextFastRequested(UiTextInputAdapter const * input)
+bool UiTextInputAdapter::Fast()
 {
+    UiTextInputAdapter const * input = this;
     return HasUiTextAdvanceKeys(static_cast<u8>(input->pressed));
 }
 
-bool ShouldWaitForUiTextInput(UiTextInputAdapter const *)
+bool UiTextInputAdapter::WaitForInput()
 {
     return true;
 }
 
-bool CanResumeUiText(UiTextInputAdapter const * input)
+bool UiTextInputAdapter::Resume()
 {
+    UiTextInputAdapter const * input = this;
     bool result = false;
     if (input->allow_resume) {
         if (HasUiTextAdvanceKeys(static_cast<u8>(input->pressed)))

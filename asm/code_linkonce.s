@@ -32649,60 +32649,6 @@ Run__20UiDmaTransferCommand:
     pop {r1}
     bx r1
     .byte 0x00, 0x00
-    .section .text.ui_text_output_upload_after, "ax", %progbits
-    .align 2, 0
-
-    .global func_080E07DC
-    .thumb_func
-func_080E07DC:
-    push {lr}
-    adds r2, r0, #0
-    ldr r0, [pc, #0x14]
-    str r0, [r2]
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    beq .Lauto_080E07F2
-    adds r0, r2, #0
-    bl __builtin_delete
-    .Lauto_080E07F2:
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00, 0x20, 0x6D, 0x0E, 0x08
-    .section .text.ui_selection_cleanup_after, "ax", %progbits
-    .align 2, 0
-    .global func_080E10EC
-    .thumb_func
-func_080E10EC:
-    movs r0, #1
-    bx lr
-    .global func_080E0890
-    .thumb_func
-func_080E0890:
-    movs r0, #0
-    bx lr
-    .global func_080E0894
-    .thumb_func
-func_080E0894:
-    movs r0, #0
-    bx lr
-    .global func_080E0898
-    .thumb_func
-func_080E0898:
-    push {lr}
-    adds r2, r0, #0
-    ldr r0, [pc, #0x14]
-    str r0, [r2]
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    beq .Lauto_080E08AE
-    adds r0, r2, #0
-    bl __builtin_delete
-    .Lauto_080E08AE:
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00, 0x20, 0x6D, 0x0E, 0x08
     .section .text.ui_text_output_base_after, "ax", %progbits
     .align 2, 0
     .global func_080E1148
@@ -40245,63 +40191,6 @@ Run__20UiDmaTransferCommand: @ 0x080E0F48
 	bx r1
 	.align 2, 0
 
-    .section .text.ui_text_output_upload_after, "ax", %progbits
-    .align 2, 0
-
-
-	thumb_func_start func_080E103C
-func_080E103C: @ 0x080E103C
-	push {lr}
-	adds r2, r0, #0
-	ldr r0, .L080E1058 @ =vtable_unk_080E78F0
-	str r0, [r2]
-	movs r0, #1
-	ands r0, r1
-	cmp r0, #0
-	beq .L080E1052
-	adds r0, r2, #0
-	bl __builtin_delete
-.L080E1052:
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E1058: .4byte vtable_unk_080E78F0
-
-    .section .text.ui_selection_cleanup_after, "ax", %progbits
-    .align 2, 0
-
-	thumb_func_start func_080E10EC
-func_080E10EC: @ 0x080E10EC
-	movs r0, #1
-	bx lr
-.L080E10F0:
-	.global func_080E10F0
-	.thumb_func
-func_080E10F0:
-	.byte 0x00, 0x20, 0x70, 0x47
-	.global func_080E10F4
-	.thumb_func
-func_080E10F4:
-	.byte 0x00, 0x20, 0x70, 0x47
-
-	thumb_func_start func_080E10F8
-func_080E10F8: @ 0x080E10F8
-	push {lr}
-	adds r2, r0, #0
-	ldr r0, .L080E1114 @ =vtable_unk_080E78F0
-	str r0, [r2]
-	movs r0, #1
-	ands r0, r1
-	cmp r0, #0
-	beq .L080E110E
-	adds r0, r2, #0
-	bl __builtin_delete
-.L080E110E:
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E1114: .4byte vtable_unk_080E78F0
-.L080E1118:
     .section .text.ui_text_output_base_after, "ax", %progbits
     .align 2, 0
 

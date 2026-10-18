@@ -58,10 +58,6 @@ extern void func_080E0EF0(void);
 extern void method_0803EFD8__13AScriptEngine(void);
 extern void OnCall__12ScriptEnginei(void);
 #if defined(REGION_JP)
-extern void func_080E07DC(void);
-extern void func_080E0890(void);
-extern void func_080E0894(void);
-extern void func_080E0898(void);
 extern void func_080E08B8(void);
 extern void func_080E08BC(void);
 extern void func_080E08C0(void);
@@ -380,8 +376,6 @@ extern void func_08092604(void);
 extern void func_08092690(void);
 extern void func_080931E0(void);
 extern void func_08093220(void);
-extern void func_080E10F0(void);
-extern void func_080E10F4(void);
 extern void func_080E1118(void);
 extern void func_080E111C(void);
 extern void func_080E1120(void);
@@ -643,9 +637,6 @@ extern void func_08075DEC(void);
 extern void func_08075328(void);
 extern void Resolve__C22IndexedResourceArchiveUi(void);
 extern void GetGroupData__C22IndexedResourceArchiveUi(void);
-extern void func_080E103C(void);
-extern void func_080E10EC(void);
-extern void func_080E10F8(void);
 extern void func_080E1128(void);
 extern void func_080E1148(void);
 extern void func_0801004C(void);
@@ -4454,57 +4445,7 @@ extern RawVTableFunction const vtable_unk_080E7868[]
     };
 #endif
 
-// Native input tables still have their original assembly implementations.
-#if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E7898[]
-    SECTION(".rodata.ui_input_table") = {
-        nullptr,
-        nullptr,
-        func_080E07DC,
-        reinterpret_cast<RawVTableFunction>(IsUiTextFastRequested),
-    };
-extern RawVTableFunction const vtable_unk_080E78A8[]
-    SECTION(".rodata.ui_input_table") = {
-        reinterpret_cast<RawVTableFunction>(ShouldWaitForUiTextInput),
-        reinterpret_cast<RawVTableFunction>(CanResumeUiText),
-    };
-#else
-extern RawVTableFunction const vtable_unk_080E78A8[]
-    SECTION(".rodata.ui_input_table") = {
-        nullptr,
-        nullptr,
-        func_080E103C,
-        reinterpret_cast<RawVTableFunction>(IsUiTextFastRequested),
-        reinterpret_cast<RawVTableFunction>(ShouldWaitForUiTextInput),
-        reinterpret_cast<RawVTableFunction>(CanResumeUiText),
-    };
-#endif
-
-// The concrete output and tile-copy tables are compiler-owned. These following
-// physical slots belong to the still-native input base, not to those tables.
-#if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E78E0[]
-    SECTION(".rodata.ui_input_base_table") = {
-        nullptr,
-        nullptr,
-        func_080E0898,
-        func_080E0894,
-    };
-#endif
-extern RawVTableFunction const vtable_unk_080E78F0[]
-    SECTION(".rodata.ui_input_base_table") = {
-#if defined(REGION_JP)
-        func_080E0890,
-        func_080E10EC,
-#else
-        nullptr,
-        nullptr,
-        func_080E10F8,
-        func_080E10F4,
-        func_080E10F0,
-        func_080E10EC,
-#endif
-    };
+// Both complete input tables are now compiler-owned in ui_state.cc.
 
 // UiTextOutput supplies the next complete C++ table, including the four
 // words formerly split across two JP fragments. These following slots

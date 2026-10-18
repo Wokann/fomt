@@ -732,10 +732,11 @@ SECTIONS
         src/ui_state.o(.gnu.linkonce.t._._24UiTextWindowSetupCommand);
         src/ui_state.o(.gnu.linkonce.t._._25UiTextOutputUploadCommand);
         src/ui_state.o(.gnu.linkonce.t._._20UiDmaTransferCommand);
-        asm/code_linkonce.o(.text.ui_text_output_upload_after);
+        src/ui_state.o(.gnu.linkonce.t._._18UiTextInputAdapter);
         src/ui_state.o(.gnu.linkonce.t._._18UnkUiSelectionData);
         src/ui_state.o(.gnu.linkonce.t._._21UiTextTileCopyCommand);
-        asm/code_linkonce.o(.text.ui_selection_cleanup_after);
+        src/ui_state.o(.text.ui_text_input_defaults);
+        src/ui_state.o(.text.ui_text_input_base_destructor);
         src/ui_state.o(.text.ui_text_output_defaults);
         src/ui_state.o(.text.ui_text_output_base_destructor);
         asm/code_linkonce.o(.text.ui_text_output_base_after);
@@ -886,10 +887,10 @@ SECTIONS
         src/ui_state.o(.gnu.linkonce.d.__vt_24UiTextWindowSetupCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_25UiTextOutputUploadCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_20UiDmaTransferCommand);
-        src/vtables.o(.rodata.ui_input_table);
+        src/ui_state.o(.gnu.linkonce.d.__vt_18UiTextInputAdapter);
         src/ui_state.o(.gnu.linkonce.d.__vt_18UnkUiSelectionData);
         src/ui_state.o(.gnu.linkonce.d.__vt_21UiTextTileCopyCommand);
-        src/vtables.o(.rodata.ui_input_base_table);
+        src/ui_state.o(.gnu.linkonce.d.__vt_11UiTextInput);
         src/ui_state.o(.gnu.linkonce.d.__vt_12UiTextOutput);
         src/vtables.o(.rodata.ui_output_base_after);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7928);
