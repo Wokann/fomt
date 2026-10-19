@@ -76705,8 +76705,10 @@ func_080CCD68:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xA6, 0x21, 0x89, 0x00, 0x40, 0x18, 0x00, 0x68, 0x70, 0x47, 0x00, 0x00, 0x9F, 0x21
-    .byte 0x89, 0x00, 0x40, 0x18, 0x00, 0x78, 0x70, 0x47, 0x00, 0x00
+    .byte 0x00, 0x00
+    .section .text.after_menu_owned_data_accessors, "ax", %progbits
+    .align 2, 0
+
     .global func_080CD950
     .thumb_func
 func_080CD950:
@@ -76745,76 +76747,9 @@ func_080CD950:
     bx r0
     .byte 0xEC, 0x79, 0x0E, 0x08, 0x01, 0x49, 0x09, 0x68, 0x01, 0x60, 0x70, 0x47, 0x44, 0x8A, 0x11, 0x08
     .byte 0x92, 0x00, 0x02, 0x49, 0x52, 0x18, 0x11, 0x68, 0x01, 0x60, 0x70, 0x47, 0x48, 0x8A, 0x11, 0x08
-    .global func_080CD9B0
-    .thumb_func
-func_080CD9B0:
-    push {r4, r5, r6, r7, lr}
-    adds r7, r0, #0
-    str r1, [r7]
-    str r2, [r7, #4]
-    str r2, [r7, #8]
-    adds r4, r7, #0
-    adds r4, #0x14
-    adds r0, r4, #0
-    bl func_08007874
-    adds r0, r4, #0
-    movs r1, #2
-    bl AllocateHardwareSharedStateHandle
-    str r0, [r4, #4]
-    adds r4, #8
-    adds r0, r4, #0
-    bl func_08007128
-    adds r0, r4, #0
-    bl AllocateHardwarePoolHandle
-    str r0, [r4, #4]
-    adds r6, r7, #0
-    adds r6, #0x24
-    ldr r1, [pc, #0x5c]
-    adds r0, r6, #0
-    bl __22IndexedResourceArchivePCUc
-    adds r0, r7, #0
-    adds r0, #0x54
-    movs r5, #0
-    movs r4, #0
-    strh r4, [r0]
-    strh r4, [r0, #2]
-    adds r0, #4
-    adds r1, r6, #0
-    movs r2, #0
-    movs r3, #0x80
-    lsls r3, r3, #1
-    bl __21IndexedResourceHandleP23IndexedResourceProviderUii
-    adds r0, r7, #0
-    adds r0, #0x6c
-    strh r4, [r0]
-    strh r4, [r0, #2]
-    strh r4, [r0, #4]
-    strh r4, [r0, #6]
-    strh r4, [r0, #8]
-    str r4, [r0, #0xc]
-    strb r5, [r0, #0x10]
-    strb r5, [r0, #0x11]
-    str r4, [r0, #0x14]
-    strb r5, [r0, #0x18]
-    adds r0, #0x1c
-    strb r5, [r0]
-    ldr r1, [r7]
-    ldr r0, [r1, #0x78]
-    movs r2, #0xa6
-    lsls r2, r2, #2
-    adds r0, r0, r2
-    ldr r0, [r0]
-    str r0, [r7, #0xc]
-    ldr r0, [r1, #0x7c]
-    adds r0, r0, r2
-    ldr r0, [r0]
-    adds r0, #9
-    str r0, [r7, #0x10]
-    adds r0, r7, #0
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .4byte gUiHandCursorArchive
+    .section .text.after_menu_cursor_data_constructor, "ax", %progbits
+    .align 2, 0
+
     .global func_080CDA44
     .thumb_func
 func_080CDA44: @ 0x080CD254
@@ -77845,27 +77780,9 @@ func_080CE184: @ 0x080CD994
 	pop {r1}
 	bx r1
 	.align 2, 0
-    .global func_080CE19C
-    .thumb_func
-func_080CE19C:
-    push {r4, lr}
-    adds r4, r0, #0
-    bl __23GameSceneMenuCorePrefixP18GameStateSaveImage
-    ldr r0, [pc, #0x18]
-    str r0, [r4, #4]
-    adds r0, r4, #0
-    adds r0, #0x8c
-    movs r1, #0
-    str r1, [r0]
-    adds r0, #4
-    str r1, [r0]
-    adds r0, #4
-    str r1, [r0]
-    adds r0, r4, #0
-    pop {r4}
-    pop {r1}
-    bx r1
-    .byte 0x0C, 0x7A, 0x0E, 0x08
+    .section .text.after_menu_selection_core_constructor, "ax", %progbits
+    .align 2, 0
+
     .global loc_080CD9D4
     .thumb_func
     loc_080CD9D4:
@@ -79035,67 +78952,9 @@ func_080CE3D0:
     pop {r1}
     bx r1
     .byte 0xF6, 0xF0, 0x00, 0x06
-    .global func_080CEC00
-    .thumb_func
-func_080CEC00:
-    push {r4, r5, r6, r7, lr}
-    adds r7, r0, #0
-    adds r4, r7, #0
-    stm r4!, {r1}
-    ldr r1, [pc, #0x74]
-    adds r0, r4, #0
-    bl __22IndexedResourceArchivePCUc
-    movs r6, #0
-    movs r5, #0
-    strh r5, [r7, #0x34]
-    strh r5, [r7, #0x36]
-    adds r0, r7, #0
-    adds r0, #0x38
-    adds r1, r4, #0
-    movs r2, #1
-    movs r3, #0x80
-    lsls r3, r3, #1
-    bl __21IndexedResourceHandleP23IndexedResourceProviderUii
-    adds r0, r7, #0
-    adds r0, #0x4c
-    strh r5, [r0]
-    strh r5, [r0, #2]
-    strh r5, [r0, #4]
-    strh r5, [r0, #6]
-    strh r5, [r0, #8]
-    str r5, [r0, #0xc]
-    strb r6, [r0, #0x10]
-    strb r6, [r0, #0x11]
-    str r5, [r0, #0x14]
-    strb r6, [r0, #0x18]
-    adds r0, #0x1c
-    strb r6, [r0]
-    adds r4, r7, #0
-    adds r4, #0x6c
-    adds r0, r4, #0
-    bl func_08007874
-    adds r0, r4, #0
-    movs r1, #4
-    bl AllocateHardwareSharedStateHandle
-    str r0, [r4, #4]
-    adds r4, #8
-    adds r0, r4, #0
-    bl func_08007128
-    adds r0, r4, #0
-    bl AllocateHardwarePoolHandle
-    str r0, [r4, #4]
-    movs r0, #0x12
-    str r0, [r7, #0x7c]
-    adds r0, r7, #0
-    adds r0, #0x80
-    str r5, [r0]
-    adds r0, #4
-    strb r6, [r0]
-    adds r0, r7, #0
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00, 0xB8, 0xAB, 0x4D, 0x08
+    .section .text.after_menu_sprite_data_constructor, "ax", %progbits
+    .align 2, 0
+
     .global func_080CEC84
     .thumb_func
 func_080CEC84: @ 0x080CE494
@@ -170575,9 +170434,9 @@ func_080CD8A0: @ 0x080CD8A0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080CD938:
-	.byte 0xA6, 0x21, 0x89, 0x00, 0x40, 0x18, 0x00, 0x68
-	.byte 0x70, 0x47, 0x00, 0x00, 0x9F, 0x21, 0x89, 0x00, 0x40, 0x18, 0x00, 0x78, 0x70, 0x47, 0x00, 0x00
+    .section .text.after_menu_owned_data_accessors, "ax", %progbits
+    .align 2, 0
+
 
 	thumb_func_start func_080CD950
 func_080CD950: @ 0x080CD950
@@ -170622,76 +170481,8 @@ func_080CD950: @ 0x080CD950
 	.byte 0x92, 0x00, 0x02, 0x49, 0x52, 0x18, 0x11, 0x68, 0x01, 0x60, 0x70, 0x47
 	.4byte gUnk_08117860
 
-	thumb_func_start func_080CD9B0
-func_080CD9B0: @ 0x080CD9B0
-	push {r4, r5, r6, r7, lr}
-	adds r7, r0, #0
-	str r1, [r7]
-	str r2, [r7, #4]
-	str r2, [r7, #8]
-	adds r4, r7, #0
-	adds r4, #0x14
-	adds r0, r4, #0
-	bl func_08007874
-	adds r0, r4, #0
-	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
-	str r0, [r4, #4]
-	adds r4, #8
-	adds r0, r4, #0
-	bl func_08007128
-	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
-	str r0, [r4, #4]
-	adds r6, r7, #0
-	adds r6, #0x24
-	ldr r1, .L080CDA40 @ =gUiHandCursorArchive
-	adds r0, r6, #0
-	bl __22IndexedResourceArchivePCUc
-	adds r0, r7, #0
-	adds r0, #0x54
-	movs r5, #0
-	movs r4, #0
-	strh r4, [r0]
-	strh r4, [r0, #2]
-	adds r0, #4
-	adds r1, r6, #0
-	movs r2, #0
-	movs r3, #0x80
-	lsls r3, r3, #1
-	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
-	adds r0, r7, #0
-	adds r0, #0x6c
-	strh r4, [r0]
-	strh r4, [r0, #2]
-	strh r4, [r0, #4]
-	strh r4, [r0, #6]
-	strh r4, [r0, #8]
-	str r4, [r0, #0xc]
-	strb r5, [r0, #0x10]
-	strb r5, [r0, #0x11]
-	str r4, [r0, #0x14]
-	strb r5, [r0, #0x18]
-	adds r0, #0x1c
-	strb r5, [r0]
-	ldr r1, [r7]
-	ldr r0, [r1, #0x78]
-	movs r2, #0xa6
-	lsls r2, r2, #2
-	adds r0, r0, r2
-	ldr r0, [r0]
-	str r0, [r7, #0xc]
-	ldr r0, [r1, #0x7c]
-	adds r0, r0, r2
-	ldr r0, [r0]
-	adds r0, #9
-	str r0, [r7, #0x10]
-	adds r0, r7, #0
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080CDA40: .4byte gUiHandCursorArchive
+    .section .text.after_menu_cursor_data_constructor, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080CDA44
 func_080CDA44: @ 0x080CDA44
@@ -171710,27 +171501,8 @@ func_080CE184: @ 0x080CE184
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080CE19C
-func_080CE19C: @ 0x080CE19C
-	push {r4, lr}
-	adds r4, r0, #0
-	bl __23GameSceneMenuCorePrefixP18GameStateSaveImage
-	ldr r0, .L080CE1C0 @ =vtable_unk_080E85DC
-	str r0, [r4, #4]
-	adds r0, r4, #0
-	adds r0, #0x8c
-	movs r1, #0
-	str r1, [r0]
-	adds r0, #4
-	str r1, [r0]
-	adds r0, #4
-	str r1, [r0]
-	adds r0, r4, #0
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080CE1C0: .4byte vtable_unk_080E85DC
+    .section .text.after_menu_selection_core_constructor, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080CE1C4
 func_080CE1C4: @ 0x080CE1C4
@@ -172945,67 +172717,8 @@ func_080CEBC0: @ 0x080CEBC0
 	.align 2, 0
 .L080CEBFC: .4byte 0x0600F0F6
 
-	thumb_func_start func_080CEC00
-func_080CEC00: @ 0x080CEC00
-	push {r4, r5, r6, r7, lr}
-	adds r7, r0, #0
-	adds r4, r7, #0
-	stm r4!, {r1}
-	ldr r1, .L080CEC80 @ =gUnk_08754C0C
-	adds r0, r4, #0
-	bl __22IndexedResourceArchivePCUc
-	movs r6, #0
-	movs r5, #0
-	strh r5, [r7, #0x34]
-	strh r5, [r7, #0x36]
-	adds r0, r7, #0
-	adds r0, #0x38
-	adds r1, r4, #0
-	movs r2, #1
-	movs r3, #0x80
-	lsls r3, r3, #1
-	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
-	adds r0, r7, #0
-	adds r0, #0x4c
-	strh r5, [r0]
-	strh r5, [r0, #2]
-	strh r5, [r0, #4]
-	strh r5, [r0, #6]
-	strh r5, [r0, #8]
-	str r5, [r0, #0xc]
-	strb r6, [r0, #0x10]
-	strb r6, [r0, #0x11]
-	str r5, [r0, #0x14]
-	strb r6, [r0, #0x18]
-	adds r0, #0x1c
-	strb r6, [r0]
-	adds r4, r7, #0
-	adds r4, #0x6c
-	adds r0, r4, #0
-	bl func_08007874
-	adds r0, r4, #0
-	movs r1, #4
-	bl AllocateHardwareSharedStateHandle
-	str r0, [r4, #4]
-	adds r4, #8
-	adds r0, r4, #0
-	bl func_08007128
-	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
-	str r0, [r4, #4]
-	movs r0, #0x12
-	str r0, [r7, #0x7c]
-	adds r0, r7, #0
-	adds r0, #0x80
-	str r5, [r0]
-	adds r0, #4
-	strb r6, [r0]
-	adds r0, r7, #0
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080CEC80: .4byte gUnk_08754C0C
+    .section .text.after_menu_sprite_data_constructor, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080CEC84
 func_080CEC84: @ 0x080CEC84

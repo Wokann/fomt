@@ -2875,3 +2875,28 @@ GameSceneMenuTilemapData::~GameSceneMenuTilemapData()
     for (; current != end; ++current)
         delete *current;
 }
+
+GameSceneMenuCursorData::GameSceneMenuCursorData(GameSceneMenuCorePrefix * owner, u32 input)
+    : core(owner), unk_04(input), unk_08(input), state(2), resource(),
+      archive(gUiHandCursorArchive), sprite(&archive, 0, 0x100)
+{
+    unk_0C = static_cast<GameSceneMenuOwnedDataState *>(core->unk_78.value)->GetUnk298();
+    unk_10 = static_cast<GameSceneMenuOwnedDataState *>(core->unk_7C.value)->GetUnk298() + 9;
+}
+
+GameSceneMenuSpriteData::GameSceneMenuSpriteData(GameSceneMenuCorePrefix * owner)
+    : core(owner),
+#if defined(REGION_JP)
+      archive(gUnk_084DABB8),
+#else
+      archive(gUnk_08754C0C),
+#endif
+      sprite(&archive, 1, 0x100), state(4), resource(),
+      unk_7C(18), unk_80(0), unk_84(0)
+{
+}
+
+GameSceneMenuSelectionCore::GameSceneMenuSelectionCore(GameStateSaveImage * image)
+    : GameSceneMenuCorePrefix(image), cursor(), sprite(), tilemap()
+{
+}

@@ -651,8 +651,17 @@ SECTIONS
         asm/code_809E804.o(.text.ui_text_stream_update_after);
         src/game_scene.o(.text.__23GameSceneMenuCorePrefixP18GameStateSaveImage);
         asm/code_809E804.o(.text.after_menu_core_prefix_constructor);
+        src/game_scene.o(.text.GetUnk298__C27GameSceneMenuOwnedDataState);
+        src/game_scene.o(.text.GetUnk27C__C27GameSceneMenuOwnedDataState);
+        asm/code_809E804.o(.text.after_menu_owned_data_accessors);
+        src/game_scene.o(.text.__23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi);
+        asm/code_809E804.o(.text.after_menu_cursor_data_constructor);
+        src/game_scene.o(.text.__26GameSceneMenuSelectionCoreP18GameStateSaveImage);
+        asm/code_809E804.o(.text.after_menu_selection_core_constructor);
         src/game_scene.o(.text._._24GameSceneMenuTilemapData);
         asm/code_809E804.o(.text.after_menu_tilemap_data_destructor);
+        src/game_scene.o(.text.__23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix);
+        asm/code_809E804.o(.text.after_menu_sprite_data_constructor);
         src/link_communication_data.o(.text);
         . = 0xD0558; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);
@@ -787,6 +796,8 @@ SECTIONS
         asm/code_linkonce.o(.text.new_game_birthday_core_cleanup_after);
         src/game_scene.o(.text.CreateScene__30BlacksmithShopResultTransition .gnu.linkonce.t._._30BlacksmithShopResultTransition);
         asm/code_linkonce.o(.text.after_blacksmith_shop_result_transition);
+        src/game_scene.o(.gnu.linkonce.t._._26GameSceneMenuSelectionCore);
+        asm/code_linkonce.o(.text.after_menu_selection_core_destructor);
         src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);
         asm/code_linkonce.o(.text.sprite_work_target_search_after);
         src/game_scene.o(.gnu.linkonce.t._._19SavedNameEntryScene);
@@ -1078,6 +1089,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85a0);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85ac);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85bc);
+. = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_26GameSceneMenuSelectionCore);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85cc);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85dc);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85e8);

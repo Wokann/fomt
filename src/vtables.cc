@@ -7215,47 +7215,30 @@ extern RawVTableFunction const vtable_unk_080E85BC[]
     };
 
 #if defined(REGION_JP)
-extern void func_080E3504(void);
+// First metadata word of the following native world-map table, not padding.
+extern RawVTableFunction const gUnk_080E7A18
+    SECTION(".rodata.vtable_85cc") = nullptr;
 #else
 extern void func_080CADF0(void);
 extern void func_080CAF6C(void);
-#endif
-
-// Preserve this four-slot callback sequence and its regional targets in ROM order.
 extern RawVTableFunction const vtable_unk_080E85CC[]
     SECTION(".rodata.vtable_85cc") = {
-#if defined(REGION_JP)
-        nullptr,
-        nullptr,
-        func_080E3504,
-        nullptr,
-#else
         nullptr,
         nullptr,
         func_080CADF0,
         func_080CAF6C,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080E4E00(void);
-#else
-extern void func_080E3504(void);
-#endif
-
-// Preserve this three-slot callback sequence and its regional targets in ROM order.
 extern RawVTableFunction const vtable_unk_080E85DC[]
     SECTION(".rodata.vtable_85dc") = {
-#if defined(REGION_JP)
         nullptr,
         func_080E4E00,
         UpdateWorldMap,
-#else
-        nullptr,
-        nullptr,
-        func_080E3504,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080CF500(void);

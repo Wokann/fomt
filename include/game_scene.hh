@@ -1766,17 +1766,22 @@ struct GameSceneMenuCorePrefix : GameSceneUiComponent {
     GameSceneMenuOwnedDataOwner unk_78;
     GameSceneMenuOwnedDataOwner unk_7C;
     UiStateOwner ui;
-private:
+    // Written by the native UI update, not initialized by this constructor.
+    u32 unk_84;
+    u32 unk_88;
+protected:
     GameSceneMenuCorePrefix(GameStateSaveImage *);
 };
 typedef char MenuOwnedDataPrefixSizeCheck[sizeof(GameSceneMenuOwnedDataPrefix) == 0x214 ? 1 : -1];
-typedef char MenuCorePrefixSizeCheck[sizeof(GameSceneMenuCorePrefix) == 0x84 ? 1 : -1];
+typedef char MenuCorePrefixSizeCheck[sizeof(GameSceneMenuCorePrefix) == 0x8C ? 1 : -1];
 typedef char MenuCoreArchiveCheck[offsetof(GameSceneMenuCorePrefix, archive) == 0x10 ? 1 : -1];
 typedef char MenuCoreHandleCheck[offsetof(GameSceneMenuCorePrefix, resource_state) + offsetof(GameSceneMenuResourceState, handle) == 0x44 ? 1 : -1];
 typedef char MenuCoreSpriteCheck[offsetof(GameSceneMenuCorePrefix, resource_state) + offsetof(GameSceneMenuResourceState, parameters) == 0x58 ? 1 : -1];
 typedef char MenuCoreOwnedDataCheck[offsetof(GameSceneMenuCorePrefix, unk_78) == 0x78 ? 1 : -1];
 typedef char MenuCoreUiCheck[offsetof(GameSceneMenuCorePrefix, ui) == 0x80 ? 1 : -1];
 typedef char MenuCoreResourceStateOffsetCheck[offsetof(GameSceneMenuCorePrefix, resource_state) == 0x40 ? 1 : -1];
+typedef char MenuCoreUnknownStateCheck[offsetof(GameSceneMenuCorePrefix, unk_84) == 0x84 ? 1 : -1];
+typedef char MenuCoreUnknownResultCheck[offsetof(GameSceneMenuCorePrefix, unk_88) == 0x88 ? 1 : -1];
 extern "C" {
 #if defined(REGION_JP)
 extern u8 const gUnk_084DABB8[];
@@ -1858,5 +1863,87 @@ typedef char MenuTilemapDataFirstResourceCheck[offsetof(GameSceneMenuTilemapData
 typedef char MenuTilemapDataSecondResourceCheck[offsetof(GameSceneMenuTilemapData, second) == 0x84 ? 1 : -1];
 typedef char MenuTilemapDataUnknownWordCheck[offsetof(GameSceneMenuTilemapData, unk_BC) == 0xBC ? 1 : -1];
 typedef char MenuTilemapDataQueueCheck[offsetof(GameSceneMenuTilemapData, commands) == 0xC0 ? 1 : -1];
+
+// Borrowed extension of the verified virtual prefix. Not independently allocated.
+struct GameSceneMenuOwnedDataState : GameSceneMenuOwnedDataPrefix {
+    u8 unk_214[0x68];
+    u8 unk_27C;
+    u8 unk_27D[0x1B];
+    u32 unk_298;
+    u32 GetUnk298() const { return unk_298; }
+    u8 GetUnk27C() const { return unk_27C; }
+private:
+    GameSceneMenuOwnedDataState();
+};
+typedef char MenuOwnedStateWordCheck[offsetof(GameSceneMenuOwnedDataState, unk_298) == 0x298 ? 1 : -1];
+typedef char MenuOwnedStateByteCheck[offsetof(GameSceneMenuOwnedDataState, unk_27C) == 0x27C ? 1 : -1];
+typedef char MenuOwnedStateSizeCheck[sizeof(GameSceneMenuOwnedDataState) == 0x29C ? 1 : -1];
+
+struct GameSceneMenuCursorData {
+    GameSceneMenuCorePrefix * core;
+    u32 unk_04;
+    u32 unk_08;
+    u32 unk_0C;
+    u32 unk_10;
+    HardwareStateEntry state;
+    HardwareResourceEntry resource;
+    IndexedResourceArchive archive;
+    GameSceneMenuResourceState sprite;
+    GameSceneMenuCursorData(GameSceneMenuCorePrefix *, u32);
+};
+struct GameSceneMenuSpriteData {
+    GameSceneMenuCorePrefix * core;
+    IndexedResourceArchive archive;
+    GameSceneMenuResourceState sprite;
+    HardwareStateEntry state;
+    HardwareResourceEntry resource;
+    u32 unk_7C;
+    u32 unk_80;
+    u8 unk_84;
+    GameSceneMenuSpriteData(GameSceneMenuCorePrefix *);
+};
+struct GameSceneMenuCursorDataOwner {
+    GameSceneMenuCursorData * value;
+    GameSceneMenuCursorDataOwner() : value(nullptr) {}
+    ~GameSceneMenuCursorDataOwner() { delete value; }
+};
+struct GameSceneMenuSpriteDataOwner {
+    GameSceneMenuSpriteData * value;
+    GameSceneMenuSpriteDataOwner() : value(nullptr) {}
+    ~GameSceneMenuSpriteDataOwner() { delete value; }
+};
+struct GameSceneMenuTilemapDataOwner {
+    GameSceneMenuTilemapData * value;
+    GameSceneMenuTilemapDataOwner() : value(nullptr) {}
+    ~GameSceneMenuTilemapDataOwner() { delete value; }
+};
+// The concrete scene cores add their own payload after this common 0x98 prefix.
+struct GameSceneMenuSelectionCore : GameSceneMenuCorePrefix {
+    GameSceneMenuCursorDataOwner cursor;
+    GameSceneMenuSpriteDataOwner sprite;
+    GameSceneMenuTilemapDataOwner tilemap;
+protected:
+    GameSceneMenuSelectionCore(GameStateSaveImage *);
+};
+typedef char MenuCursorDataSizeCheck[sizeof(GameSceneMenuCursorData) == 0x8C ? 1 : -1];
+typedef char MenuCursorStateCheck[offsetof(GameSceneMenuCursorData, state) == 0x14 ? 1 : -1];
+typedef char MenuCursorResourceCheck[offsetof(GameSceneMenuCursorData, resource) == 0x1C ? 1 : -1];
+typedef char MenuCursorArchiveCheck[offsetof(GameSceneMenuCursorData, archive) == 0x24 ? 1 : -1];
+typedef char MenuCursorSpriteCheck[offsetof(GameSceneMenuCursorData, sprite) == 0x54 ? 1 : -1];
+typedef char MenuSpriteDataSizeCheck[sizeof(GameSceneMenuSpriteData) == 0x88 ? 1 : -1];
+typedef char MenuSpriteArchiveCheck[offsetof(GameSceneMenuSpriteData, archive) == 4 ? 1 : -1];
+typedef char MenuSpriteParametersCheck[offsetof(GameSceneMenuSpriteData, sprite) == 0x34 ? 1 : -1];
+typedef char MenuSpriteStateCheck[offsetof(GameSceneMenuSpriteData, state) == 0x6C ? 1 : -1];
+typedef char MenuSpriteResourceCheck[offsetof(GameSceneMenuSpriteData, resource) == 0x74 ? 1 : -1];
+typedef char MenuSpriteUnknownWordCheck[offsetof(GameSceneMenuSpriteData, unk_7C) == 0x7C ? 1 : -1];
+typedef char MenuSpriteUnknownByteCheck[offsetof(GameSceneMenuSpriteData, unk_84) == 0x84 ? 1 : -1];
+typedef char MenuCursorOwnerSizeCheck[sizeof(GameSceneMenuCursorDataOwner) == 4 ? 1 : -1];
+typedef char MenuSpriteOwnerSizeCheck[sizeof(GameSceneMenuSpriteDataOwner) == 4 ? 1 : -1];
+typedef char MenuTilemapOwnerSizeCheck[sizeof(GameSceneMenuTilemapDataOwner) == 4 ? 1 : -1];
+typedef char MenuSelectionCoreSizeCheck[sizeof(GameSceneMenuSelectionCore) == 0x98 ? 1 : -1];
+typedef char MenuSelectionCursorCheck[offsetof(GameSceneMenuSelectionCore, cursor) == 0x8C ? 1 : -1];
+typedef char MenuSelectionSpriteCheck[offsetof(GameSceneMenuSelectionCore, sprite) == 0x90 ? 1 : -1];
+typedef char MenuSelectionTilemapCheck[offsetof(GameSceneMenuSelectionCore, tilemap) == 0x94 ? 1 : -1];
+extern "C" u8 const gUiHandCursorArchive[];
 
 #endif // GAME_SCENE_HH

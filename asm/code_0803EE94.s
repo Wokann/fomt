@@ -100294,7 +100294,7 @@ func_08087CEC: @ 0x08087CEC
 func_08087DEC: @ 0x08087DEC
     push {r4, r5, r6, lr}
     adds r6, r0, #0
-    bl func_080CE19C
+    bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
     ldr r0, .Ljp_08087E3C @ =vtable_unk_080E7D3C
     str r0, [r6, #4]
     adds r0, r6, #0
@@ -100338,7 +100338,7 @@ func_08087E44:
     push {lr}
     ldr r2, [pc, #0xc]
     str r2, [r0, #4]
-    bl func_080E3504
+    bl _._26GameSceneMenuSelectionCore
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0x7C, 0x71, 0x0E, 0x08
@@ -102554,7 +102554,7 @@ func_0808A09C:
     bl __builtin_new
     adds r1, r7, #0
     movs r2, #1
-    bl func_080CD9B0
+    bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
     movs r1, #0x8c
     adds r1, r1, r7
     mov r8, r1
@@ -102591,7 +102591,7 @@ func_0808A09C:
     movs r0, #0x88
     bl __builtin_new
     adds r1, r7, #0
-    bl func_080CEC00
+    bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
     movs r1, #0x90
     adds r1, r1, r7
     mov r8, r1
@@ -102861,7 +102861,7 @@ func_0808A6A8:
 func_0808A704:
     push {r4, r5, lr}
     adds r4, r0, #0
-    bl func_080CE19C
+    bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
     ldr r0, .Ljp_0808A74C
     str r0, [r4, #4]
     adds r0, r4, #0
@@ -102904,7 +102904,7 @@ func_0808A754:
     push {lr}
     ldr r2, .Ljp_0808A764
     str r2, [r0, #4]
-    bl func_080E3504
+    bl _._26GameSceneMenuSelectionCore
     pop {r0}
     bx r0
     .align 2, 0
@@ -105166,7 +105166,7 @@ func_0808BC14:
     bl __builtin_new
     adds r1, r7, #0
     movs r2, #1
-    bl func_080CD9B0
+    bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
     adds r6, r7, #0
     adds r6, #0x8c
     mov sb, r0
@@ -105201,7 +105201,7 @@ func_0808BC14:
     movs r0, #0x88
     bl __builtin_new
     adds r1, r7, #0
-    bl func_080CEC00
+    bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
     adds r6, r7, #0
     adds r6, #0x90
     mov sl, r0
@@ -105697,7 +105697,7 @@ func_0808C5DC:
     loc_0808C138:
     push {r4, r5, r6, lr}
     adds r6, r0, #0
-    bl func_080CE19C
+    bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
     ldr r0, [pc, #0x44]
     str r0, [r6, #4]
     adds r0, r6, #0
@@ -105739,7 +105739,7 @@ func_0808C190:
     push {lr}
     ldr r2, [pc, #0xc]
     str r2, [r0, #4]
-    bl func_080E3504
+    bl _._26GameSceneMenuSelectionCore
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0xB4, 0x71, 0x0E, 0x08
@@ -106632,7 +106632,7 @@ func_0808E23C:
     bl __builtin_new
     adds r1, r7, #0
     movs r2, #1
-    bl func_080CD9B0
+    bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
     movs r1, #0x8c
     adds r1, r1, r7
     mov r8, r1
@@ -106669,7 +106669,7 @@ func_0808E23C:
     movs r0, #0x88
     bl __builtin_new
     adds r1, r7, #0
-    bl func_080CEC00
+    bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
     movs r1, #0x90
     adds r1, r1, r7
     mov r8, r1
@@ -106941,7 +106941,7 @@ func_0808E848:
 func_0808E8A4:
     push {r4, r5, lr}
     adds r4, r0, #0
-    bl func_080CE19C
+    bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
     ldr r0, .Ljp_0808E8F0
     str r0, [r4, #4]
     adds r0, r4, #0
@@ -106985,7 +106985,7 @@ func_0808E8F8:
     push {lr}
     ldr r2, .Ljp_0808E908
     str r2, [r0, #4]
-    bl func_080E3504
+    bl _._26GameSceneMenuSelectionCore
     pop {r0}
     bx r0
     .align 2, 0
@@ -110060,7 +110060,7 @@ func_08090960:
     bl __builtin_new
     adds	r1, r7, #0
     movs	r2, #1
-    bl func_080CD9B0
+    bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
     movs	r1, #140
     adds	r1, r1, r7
     mov	r8, r1
@@ -110097,7 +110097,7 @@ func_08090960:
     movs	r0, #136
     bl __builtin_new
     adds	r1, r7, #0
-    bl func_080CEC00
+    bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
     movs	r1, #144
     adds	r1, r1, r7
     mov	r8, r1
@@ -110584,7 +110584,7 @@ func_08090EE0:
     adds r1, r2, #0
     lsls r4, r3, #0x18
     lsrs r4, r4, #0x18
-    bl func_080CE19C
+    bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
     ldr r0, .Ljp_08090A90 @ =vtable_unk_080E7DAC
     str r0, [r6, #4]
     adds r0, r6, #0
@@ -110685,7 +110685,7 @@ func_08090F58:
 .Ljp_08090AF6:
     adds r0, r6, #0
     adds r1, r7, #0
-    bl func_080E3504
+    bl _._26GameSceneMenuSelectionCore
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
@@ -111296,7 +111296,7 @@ func_0809106C:
     bl __builtin_new
     adds r1, r7, #0
     movs r2, #1
-    bl func_080CD9B0
+    bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
     adds r6, r7, #0
     adds r6, #0x8c
     mov r8, r0
@@ -111331,7 +111331,7 @@ func_0809106C:
     movs r0, #0x88
     bl __builtin_new
     adds r1, r7, #0
-    bl func_080CEC00
+    bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
     adds r6, r7, #0
     adds r6, #0x90
     mov r8, r0
@@ -111366,7 +111366,7 @@ func_0809106C:
     movs r0, #0x88
     bl __builtin_new
     adds r1, r7, #0
-    bl func_080CEC00
+    bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
     movs r2, #0x86
     lsls r2, r2, #1
     adds r2, r2, r7
@@ -111840,7 +111840,7 @@ func_0809106C:
 func_0809210C:
     push {r4, r5, lr}
     adds r4, r0, #0
-    bl func_080CE19C
+    bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
     ldr r0, .Ljp_08092154
     str r0, [r4, #4]
     adds r0, r4, #0
@@ -111883,7 +111883,7 @@ func_0809215C:
     push {lr}
     ldr r2, .Ljp_0809216C
     str r2, [r0, #4]
-    bl func_080E3504
+    bl _._26GameSceneMenuSelectionCore
     pop {r0}
     bx r0
     .align 2, 0
@@ -112693,7 +112693,7 @@ func_08092D64:
     bl __builtin_new
     adds r1, r7, #0
     movs r2, #1
-    bl func_080CD9B0
+    bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
     adds r6, r7, #0
     adds r6, #0x8c
     mov r8, r0
@@ -112728,7 +112728,7 @@ func_08092D64:
     movs r0, #0x88
     bl __builtin_new
     adds r1, r7, #0
-    bl func_080CEC00
+    bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
     movs r1, #0x90
     adds r1, r1, r7
     mov r8, r1
@@ -259656,7 +259656,7 @@ func_080881AC: @ 0x080881AC
 func_080882AC: @ 0x080882AC
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
-	bl func_080CE19C
+	bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
 	ldr r0, .L080882FC @ =vtable_unk_080E7D4C
 	str r0, [r6, #4]
 	adds r0, r6, #0
@@ -259700,7 +259700,7 @@ func_08088304: @ 0x08088304
 	push {lr}
 	ldr r2, .L08088314 @ =vtable_unk_080E7D4C
 	str r2, [r0, #4]
-	bl func_080E3504
+	bl _._26GameSceneMenuSelectionCore
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -263797,7 +263797,7 @@ func_0808A55C: @ 0x0808A55C
 	bl __builtin_new
 	adds r1, r7, #0
 	movs r2, #1
-	bl func_080CD9B0
+	bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
 	movs r1, #0x8c
 	adds r1, r1, r7
 	mov r8, r1
@@ -263834,7 +263834,7 @@ func_0808A55C: @ 0x0808A55C
 	movs r0, #0x88
 	bl __builtin_new
 	adds r1, r7, #0
-	bl func_080CEC00
+	bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
 	movs r1, #0x90
 	adds r1, r1, r7
 	mov r8, r1
@@ -264421,7 +264421,7 @@ func_0808AB68: @ 0x0808AB68
 func_0808ABC4: @ 0x0808ABC4
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl func_080CE19C
+	bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
 	ldr r0, .L0808AC0C @ =vtable_unk_080E7D68
 	str r0, [r4, #4]
 	adds r0, r4, #0
@@ -264463,7 +264463,7 @@ func_0808AC14: @ 0x0808AC14
 	push {lr}
 	ldr r2, .L0808AC24 @ =vtable_unk_080E7D68
 	str r2, [r0, #4]
-	bl func_080E3504
+	bl _._26GameSceneMenuSelectionCore
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -266953,7 +266953,7 @@ func_0808C0BC: @ 0x0808C0BC
 	bl __builtin_new
 	adds r1, r7, #0
 	movs r2, #1
-	bl func_080CD9B0
+	bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
 	adds r6, r7, #0
 	adds r6, #0x8c
 	mov sb, r0
@@ -266988,7 +266988,7 @@ func_0808C0BC: @ 0x0808C0BC
 	movs r0, #0x88
 	bl __builtin_new
 	adds r1, r7, #0
-	bl func_080CEC00
+	bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
 	adds r6, r7, #0
 	adds r6, #0x90
 	mov sl, r0
@@ -267477,7 +267477,7 @@ func_0808C5DC: @ 0x0808C5DC
 func_0808C5F8: @ 0x0808C5F8
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
-	bl func_080CE19C
+	bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
 	ldr r0, .L0808C648 @ =vtable_unk_080E7D84
 	str r0, [r6, #4]
 	adds r0, r6, #0
@@ -267521,7 +267521,7 @@ func_0808C650: @ 0x0808C650
 	push {lr}
 	ldr r2, .L0808C660 @ =vtable_unk_080E7D84
 	str r2, [r0, #4]
-	bl func_080E3504
+	bl _._26GameSceneMenuSelectionCore
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -271369,7 +271369,7 @@ func_0808E6FC: @ 0x0808E6FC
 	bl __builtin_new
 	adds r1, r7, #0
 	movs r2, #1
-	bl func_080CD9B0
+	bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
 	movs r1, #0x8c
 	adds r1, r1, r7
 	mov r8, r1
@@ -271406,7 +271406,7 @@ func_0808E6FC: @ 0x0808E6FC
 	movs r0, #0x88
 	bl __builtin_new
 	adds r1, r7, #0
-	bl func_080CEC00
+	bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
 	movs r1, #0x90
 	adds r1, r1, r7
 	mov r8, r1
@@ -271993,7 +271993,7 @@ func_0808ED08: @ 0x0808ED08
 func_0808ED64: @ 0x0808ED64
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl func_080CE19C
+	bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
 	ldr r0, .L0808EDB0 @ =vtable_unk_080E7DA0
 	str r0, [r4, #4]
 	adds r0, r4, #0
@@ -272036,7 +272036,7 @@ func_0808EDB8: @ 0x0808EDB8
 	push {lr}
 	ldr r2, .L0808EDC8 @ =vtable_unk_080E7DA0
 	str r2, [r0, #4]
-	bl func_080E3504
+	bl _._26GameSceneMenuSelectionCore
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -275266,7 +275266,7 @@ func_08090960: @ 0x08090960
 	bl __builtin_new
 	adds r1, r7, #0
 	movs r2, #1
-	bl func_080CD9B0
+	bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
 	movs r1, #0x8c
 	adds r1, r1, r7
 	mov r8, r1
@@ -275303,7 +275303,7 @@ func_08090960: @ 0x08090960
 	movs r0, #0x88
 	bl __builtin_new
 	adds r1, r7, #0
-	bl func_080CEC00
+	bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
 	movs r1, #0x90
 	adds r1, r1, r7
 	mov r8, r1
@@ -275781,7 +275781,7 @@ func_08090EE0: @ 0x08090EE0
 	adds r1, r2, #0
 	lsls r4, r3, #0x18
 	lsrs r4, r4, #0x18
-	bl func_080CE19C
+	bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
 	ldr r0, .L08090F50 @ =vtable_unk_080E7DBC
 	str r0, [r6, #4]
 	adds r0, r6, #0
@@ -275881,7 +275881,7 @@ func_08090F58: @ 0x08090F58
 .L08090FB6:
 	adds r0, r6, #0
 	adds r1, r7, #0
-	bl func_080E3504
+	bl _._26GameSceneMenuSelectionCore
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
@@ -276661,7 +276661,7 @@ func_0809152C: @ 0x0809152C
 	bl __builtin_new
 	adds r1, r7, #0
 	movs r2, #1
-	bl func_080CD9B0
+	bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
 	adds r6, r7, #0
 	adds r6, #0x8c
 	mov r8, r0
@@ -276696,7 +276696,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #0x88
 	bl __builtin_new
 	adds r1, r7, #0
-	bl func_080CEC00
+	bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
 	adds r6, r7, #0
 	adds r6, #0x90
 	mov r8, r0
@@ -276731,7 +276731,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #0x88
 	bl __builtin_new
 	adds r1, r7, #0
-	bl func_080CEC00
+	bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
 	movs r2, #0x86
 	lsls r2, r2, #1
 	adds r2, r2, r7
@@ -278447,7 +278447,7 @@ func_0809152C: @ 0x0809152C
 func_08092640: @ 0x08092640
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl func_080CE19C
+	bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
 	ldr r0, .L08092688 @ =vtable_unk_080E7DD8
 	str r0, [r4, #4]
 	adds r0, r4, #0
@@ -278489,7 +278489,7 @@ func_08092690: @ 0x08092690
 	push {lr}
 	ldr r2, .L080926A0 @ =vtable_unk_080E7DD8
 	str r2, [r0, #4]
-	bl func_080E3504
+	bl _._26GameSceneMenuSelectionCore
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -279481,7 +279481,7 @@ func_08092D64: @ 0x08092D64
 	bl __builtin_new
 	adds r1, r7, #0
 	movs r2, #1
-	bl func_080CD9B0
+	bl __23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi
 	adds r6, r7, #0
 	adds r6, #0x8c
 	mov r8, r0
@@ -279516,7 +279516,7 @@ func_08092D64: @ 0x08092D64
 	movs r0, #0x88
 	bl __builtin_new
 	adds r1, r7, #0
-	bl func_080CEC00
+	bl __23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix
 	movs r1, #0x90
 	adds r1, r1, r7
 	mov r8, r1
