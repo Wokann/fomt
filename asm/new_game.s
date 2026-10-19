@@ -689,7 +689,7 @@ func_08004570:
     movs	r1, #0
     movs	r2, #0
     movs	r3, #30
-    bl func_08051320
+    bl DrawUiTextWindowBorder
     add	r1, sp, #12
     movs	r2, #234
     lsls	r2, r2, #5
@@ -1979,7 +1979,7 @@ func_08005278:
     movs r1, #0
     movs r2, #0
     movs r3, #0x1e
-    bl func_08051320
+    bl DrawUiTextWindowBorder
     ldr r1, .Ljp_080054CC
     movs r0, #0
     movs r2, #0x20
@@ -2489,7 +2489,7 @@ func_08005CDC:
     movs	r1, #0
     movs	r2, #0
     movs	r3, #30
-    bl func_08051320
+    bl DrawUiTextWindowBorder
     movs	r0, #1
     negs	r0, r0
     ldr r4, .Ljp_00005DB8
@@ -4397,7 +4397,7 @@ func_08004570: @ 0x08004570
     movs r1, #0
     movs r2, #0
     movs r3, #0x1e
-    bl func_08051320
+    bl DrawUiTextWindowBorder
     add r1, sp, #0xc
     movs r2, #0xea
     lsls r2, r2, #5
@@ -5646,7 +5646,7 @@ func_08005278: @ 0x08005278
     movs r1, #0
     movs r2, #0
     movs r3, #0x1e
-    bl func_08051320
+    bl DrawUiTextWindowBorder
     ldr r1, .L080054A4 @ =0x06FFC000
     movs r0, #0
     movs r2, #0x20
@@ -6357,7 +6357,7 @@ str	r4, [sp, #8]
 movs	r1, #0
 movs	r2, #0
 movs	r3, #30
-bl	func_08051320
+bl	DrawUiTextWindowBorder
 movs	r0, #1
 negs	r0, r0
 ldr	r4, [pc, #392]
@@ -6964,7 +6964,7 @@ bx	r0
     movs r1, #0
     movs r2, #0
     movs r3, #0x1e
-    bl func_08051320
+    bl DrawUiTextWindowBorder
     movs r0, #1
     rsbs r0, r0, #0
     ldr r4, .L08005EE4 @ =0x0600C000

@@ -361,8 +361,11 @@ typedef char UiTextTileCopyCommandDestinationCheck[
 
 EXTERN_C
 
-// The native nine-tile border helper remains assembly.
-void func_08051320(u16 * tilemap, u32 x, u32 y, u32 width, u32 height,
+// Draw a nine-tile frame in one 32x32 BG screen block. Coordinates wrap
+// modulo 32; the right and bottom edges clip. Effective dimensions must
+// both be at least three. The tile index uses ten bits and the palette four;
+// the original 16-bit tile-offset arithmetic is retained. Body stays native.
+void DrawUiTextWindowBorder(u16 * tilemap, u32 x, u32 y, u32 width, u32 height,
     u32 first_tile, u32 palette);
 extern u8 const gUiHandCursorArchive[];
 

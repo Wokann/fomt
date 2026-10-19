@@ -1721,7 +1721,7 @@ func_0803B840:
     lsrs	r2, r2, #28
     str	r2, [sp, #8]
     movs	r2, #0
-    bl func_08051320
+    bl DrawUiTextWindowBorder
     ldr	r1, [r4, #28]
     lsls	r1, r1, #13
     lsrs	r1, r1, #28
@@ -9768,7 +9768,7 @@ func_0803B840:
     lsrs	r2, r2, #28
     str	r2, [sp, #8]
     movs	r2, #0
-    bl func_08051320
+    bl DrawUiTextWindowBorder
     ldr	r1, [r4, #28]
     lsls	r1, r1, #13
     lsrs	r1, r1, #28
@@ -17887,7 +17887,7 @@ func_0803B840:
     lsrs	r2, r2, #28
     str	r2, [sp, #8]
     movs	r2, #0
-    bl func_08051320
+    bl DrawUiTextWindowBorder
     ldr	r1, [r4, #28]
     lsls	r1, r1, #13
     lsrs	r1, r1, #28
@@ -25984,7 +25984,7 @@ func_0803B840:
     lsrs	r2, r2, #28
     str	r2, [sp, #8]
     movs	r2, #0
-    bl func_08051320
+    bl DrawUiTextWindowBorder
     ldr	r1, [r4, #28]
     lsls	r1, r1, #13
     lsrs	r1, r1, #28

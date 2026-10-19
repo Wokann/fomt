@@ -360,9 +360,9 @@ bool UiTextWindowSetupCommand::Run()
     u32 fill = tile | (static_cast<u32>(tile) << 16);
     FillUiFastWords(fill, reinterpret_cast<void *>(0x06000000 + command->screen_block * 0x800),
         160);
-    func_08051320(reinterpret_cast<u16 *>(0x06000000 + command->screen_block * 0x800),
+    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(0x06000000 + command->screen_block * 0x800),
         16, 0, 14, 3, command->first_tile, command->background_palette);
-    func_08051320(reinterpret_cast<u16 *>(0x06000000 + command->screen_block * 0x800),
+    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(0x06000000 + command->screen_block * 0x800),
         0, 3, 30, 7, command->first_tile, command->background_palette);
     u32 palette = command->background_palette;
     CpuFastSet(gUiSharedPalette, reinterpret_cast<void *>(0x05000000 + palette * 32), 8);
