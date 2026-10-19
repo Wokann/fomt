@@ -176,9 +176,6 @@ extern void func_0808E848(void);
 extern void func_0808E8F8(void);
 extern void func_080909C4(void);
 extern void func_08090F58(void);
-extern void func_08092090(void);
-extern void func_080920D0(void);
-extern void func_08092604(void);
 extern void func_0809215C(void);
 extern void func_08092CAC(void);
 extern void func_08093D4C(void);
@@ -362,8 +359,6 @@ extern void func_0808ED08(void);
 extern void func_0808EDB8(void);
 extern void func_08090E84(void);
 extern void func_08090F58(void);
-extern void func_080925C4(void);
-extern void func_08092604(void);
 extern void func_08092690(void);
 extern void func_080931E0(void);
 extern void func_080E1118(void);
@@ -5572,27 +5567,16 @@ extern RawVTableFunction const vtable_unk_080E7DAC[]
 #endif
     };
 
-#if defined(REGION_JP)
-extern RawVTableFunction const gUnk_080E71F8
-    SECTION(".rodata.vtable_7dac") = nullptr;
-#endif
-
+// The result scene now owns its real compiler vtable. Preserve the different
+// overseas core table and the JP following core/null-tail physical objects.
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7DBC[]
     SECTION(".rodata.vtable_7dbc") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_08092090,
-        func_080920D0,
-#else
         nullptr,
         nullptr,
         func_08090F58,
-#endif
     };
-
-// JP code directly addresses the final word. Keep it separately addressable
-// so that call sites use its true symbol rather than a pointer offset.
-#if defined(REGION_JP)
+#else
 extern RawVTableFunction const vtable_unk_080E7DC8[]
     SECTION(".rodata.vtable_7dc8") = {
         nullptr,
@@ -5602,14 +5586,6 @@ extern RawVTableFunction const vtable_unk_080E7DC8[]
 
 extern RawVTableFunction const gUnk_080E7214
     SECTION(".rodata.vtable_7dc8") = nullptr;
-#else
-extern RawVTableFunction const vtable_unk_080E7DC8[]
-    SECTION(".rodata.vtable_7dc8") = {
-        nullptr,
-        nullptr,
-        func_080925C4,
-        func_08092604,
-    };
 #endif
 
 extern RawVTableFunction const vtable_unk_080E7DD8[]

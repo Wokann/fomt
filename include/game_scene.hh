@@ -414,6 +414,7 @@ struct GameSceneUiComponentOwner {
     GameSceneUiComponent * value;
 
     GameSceneUiComponentOwner() : value(nullptr) {}
+    explicit GameSceneUiComponentOwner(GameSceneUiComponent * input) : value(input) {}
     ~GameSceneUiComponentOwner() { delete value; }
     GameSceneUiComponentOwner & operator=(GameSceneUiComponent * next)
     {
@@ -1089,13 +1090,24 @@ typedef char BlacksmithShopSceneSaveCheck[offsetof(BlacksmithShopScene, save) ==
 typedef char BlacksmithShopTransitionSizeCheck[sizeof(BlacksmithShopTransition) == 32 ? 1 : -1];
 typedef char BlacksmithShopTransitionByteCheck[offsetof(BlacksmithShopTransition, unk_1C) == 28 ? 1 : -1];
 
-// The result scene retains its native constructor, cleanup and Run. Only
-// the complete 12-byte wrapper layout is used by its recovered factory.
-struct BlacksmithShopResultSceneCore;
+// This is the verified native destruction-prefix view, not the full core hierarchy.
+// The concrete core constructor, Run and destructor bodies remain native.
+struct BlacksmithShopResultSceneCore : GameSceneUiComponent {
+    u8 unk_008[0x108];
+    SceneTransitionOwner continuation;
+    u8 unk_114;
+    u8 unk_115[0xA3];
+};
+typedef char BlacksmithShopResultSceneCoreSizeCheck[sizeof(BlacksmithShopResultSceneCore) == 0x1B8 ? 1 : -1];
+typedef char BlacksmithShopResultSceneCorePayloadCheck[offsetof(BlacksmithShopResultSceneCore, unk_008) == 8 ? 1 : -1];
+typedef char BlacksmithShopResultSceneCoreContinuationCheck[offsetof(BlacksmithShopResultSceneCore, continuation) == 0x110 ? 1 : -1];
+typedef char BlacksmithShopResultSceneCoreByteCheck[offsetof(BlacksmithShopResultSceneCore, unk_114) == 0x114 ? 1 : -1];
+
 struct BlacksmithShopResultScene : AScene {
+    BlacksmithShopResultScene(SceneTransitionOwner next, GameStateSaveImage * image, u8 input);
     virtual ~BlacksmithShopResultScene();
     virtual SceneTransitionOwner Run();
-    BlacksmithShopResultSceneCore * core;
+    GameSceneUiComponentOwner core;
     SceneTransitionOwner continuation;
 };
 
@@ -1363,12 +1375,13 @@ void func_0807E0C0(ClinicShopSceneCore * core);
 void func_0807E558(ClinicShopSceneCore * core);
 #endif
 
-// Keep the native result-scene construction ABI until that scene is recovered.
+// The core still has its native constructor and regional owning Run ABI.
 u32 func_08082CEC(BlacksmithShopSceneCore * core);
+BlacksmithShopResultSceneCore * func_08090EE0(void *, SceneTransitionOwner, GameStateSaveImage *, u8);
 #if defined(REGION_JP)
-BlacksmithShopResultScene * loc_0809203C(void *, SceneTransition **, GameStateSaveImage *, u8);
+SceneTransitionOwner func_0809106C(BlacksmithShopResultSceneCore * core);
 #else
-BlacksmithShopResultScene * func_08092570(void *, SceneTransition **, GameStateSaveImage *, u8);
+SceneTransitionOwner func_0809152C(BlacksmithShopResultSceneCore * core);
 #endif
 
 // Ranch Run returns the purchased target slot or -1; the second core

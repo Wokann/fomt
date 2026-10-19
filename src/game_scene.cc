@@ -2553,6 +2553,26 @@ SceneTransitionOwner ShelfScene::Run()
     return continuation;
 }
 
+BlacksmithShopResultScene::BlacksmithShopResultScene(SceneTransitionOwner next,
+    GameStateSaveImage * image, u8 input)
+    : core(func_08090EE0(::operator new(sizeof(BlacksmithShopResultSceneCore)), next, image, input)),
+      continuation(next)
+{
+}
+
+BlacksmithShopResultScene::~BlacksmithShopResultScene()
+{
+}
+
+SceneTransitionOwner BlacksmithShopResultScene::Run()
+{
+#if defined(REGION_JP)
+    return func_0809106C(static_cast<BlacksmithShopResultSceneCore *>(core.value));
+#else
+    return func_0809152C(static_cast<BlacksmithShopResultSceneCore *>(core.value));
+#endif
+}
+
 SceneTransitionOwner GiftWrappingScene::Run()
 {
     func_08092D64(core);
@@ -2819,9 +2839,5 @@ SceneOwner ReturnToGameScene::CreateScene()
 SceneOwner BlacksmithShopResultTransition::CreateScene()
 {
     SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(loc_0809203C(::operator new(sizeof(BlacksmithShopResultScene)), &next, save, unk_0C));
-#else
-    return SceneOwner(func_08092570(::operator new(sizeof(BlacksmithShopResultScene)), &next, save, unk_0C));
-#endif
+    return SceneOwner(new BlacksmithShopResultScene(SceneTransitionOwner(next), save, unk_0C));
 }

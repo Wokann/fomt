@@ -469,6 +469,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_refrigerator_scene_run);
         src/game_scene.o(.text.Run__10ShelfScene);
         asm/code_0803EE94.o(.text.after_shelf_scene_run);
+        src/game_scene.o(.text.__25BlacksmithShopResultSceneG20SceneTransitionOwnerP18GameStateSaveImageUc .text._._25BlacksmithShopResultScene .text.Run__25BlacksmithShopResultScene);
+        asm/code_0803EE94.o(.text.after_blacksmith_shop_result_scene);
         src/game_scene.o(.text.Run__17GiftWrappingScene);
         asm/code_0803EE94.o(.text.after_gift_wrapping_scene_run);
         src/game_scene.o(.text.Run__12CookingScene);
@@ -1019,7 +1021,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d90);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7da0);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dac);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7dbc);
+. = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_25BlacksmithShopResultScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dc8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dd8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7de4);
