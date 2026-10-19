@@ -2504,6 +2504,19 @@ SceneTransitionOwner CarpenterShopScene::Run()
     return continuation;
 }
 
+SceneTransitionOwner YodelRanchShopScene::Run()
+{
+    i32 result = func_08086A08(core);
+    if (result != -1) {
+        u32 selection = func_08085EEC(core);
+        MaryNameEntryKind kind = selection != 0 ? NAME_ENTRY_SHEEP : NAME_ENTRY_COW;
+        SceneTransitionOwner next(new YodelRanchShopTransition(continuation, save,
+            selection != 0 ? 2 : 1));
+        return SceneTransitionOwner(new SavedNameEntryTransition(next, save, kind, result));
+    }
+    return continuation;
+}
+
 SceneTransitionOwner ToolChestScene::Run()
 {
 #if defined(REGION_JP)

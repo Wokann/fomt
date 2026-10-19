@@ -2087,7 +2087,7 @@ func_08012FE8:
     str r2, [sp, #0xc]
     str r4, [sp, #0x10]
     ldr r3, [r5]
-    ldr r1, .Ljp_08012F4C @ =vtable_unk_080E5D94
+    ldr r1, .Ljp_08012F4C @ =__vt_24YodelRanchShopTransition
     str r1, [r0]
     str r2, [sp, #0x10]
     str r4, [r0, #4]
@@ -2126,7 +2126,7 @@ func_08012FE8:
     bx r0
     .align 2, 0
 .Ljp_08012F48: .4byte vtable_unk_080E5E74
-.Ljp_08012F4C: .4byte vtable_unk_080E5D94
+.Ljp_08012F4C: .4byte __vt_24YodelRanchShopTransition
 
     .global func_08013080
     .thumb_func
@@ -19621,7 +19621,7 @@ func_08012FE8: @ 0x08012FE8
     str r2, [sp, #0xc]
     str r4, [sp, #0x10]
     ldr r3, [r5]
-    ldr r1, .L0801307C @ =vtable_unk_080E5D94
+    ldr r1, .L0801307C @ =__vt_24YodelRanchShopTransition
     str r1, [r0]
     str r2, [sp, #0x10]
     str r4, [r0, #4]
@@ -19660,7 +19660,7 @@ func_08012FE8: @ 0x08012FE8
     bx r0
     .align 2, 0
 .L08013078: .4byte vtable_unk_080E5E74
-.L0801307C: .4byte vtable_unk_080E5D94
+.L0801307C: .4byte __vt_24YodelRanchShopTransition
 
     thumb_func_start func_08013080
 func_08013080: @ 0x08013080

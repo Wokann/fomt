@@ -413,6 +413,8 @@ SECTIONS
         src/game_scene.o(.text.Run__18CarpenterShopScene);
         asm/code_0803EE94.o(.text.after_carpenter_shop_scene_run);
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after_de_tail);
+        src/game_scene.o(.text.Run__19YodelRanchShopScene);
+        asm/code_0803EE94.o(.text.after_yodel_ranch_shop_scene_run);
         src/game_scene.o(.text.Run__14ToolChestScene);
         asm/code_0803EE94.o(.text.after_tool_chest_scene_run);
         src/game_scene.o(.text.Run__17RefrigeratorScene);

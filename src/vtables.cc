@@ -15,6 +15,7 @@ extern void UpdateWorldMap(void);
 // member declarations stay in game_scene.hh. These are not ABI wrappers.
 extern void CreateScene__24SavedNameEntryTransition(void);
 extern void Run__20PoultryFarmShopScene(void);
+extern void Run__19YodelRanchShopScene(void);
 extern void DestroySavedNameEntryTransition(void) asm("_._24SavedNameEntryTransition");
 extern void Run__18ReferencePageScene(void);
 extern void Run__16SupermarketScene(void);
@@ -165,7 +166,6 @@ extern void func_080837C8(void);
 extern void func_080850A0(void);
 extern void func_080851A4(void);
 extern void func_08087CEC(void);
-extern void func_08087D2C(void);
 extern void func_08087E44(void);
 extern void func_0808A6A8(void);
 extern void func_0808A754(void);
@@ -357,7 +357,6 @@ extern void func_08083C50(void);
 extern void func_08085528(void);
 extern void func_0808562C(void);
 extern void func_080881AC(void);
-extern void func_080881EC(void);
 extern void func_08088304(void);
 extern void func_0808AB68(void);
 extern void func_0808AC14(void);
@@ -961,7 +960,7 @@ extern RawVTableFunction const vtable_unk_080E5D84[] = {
     CreateScene__22GiftWrappingTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5D94[] = {
+extern RawVTableFunction const __vt_24YodelRanchShopTransition[] = {
     nullptr,
     nullptr,
     DestroyYodelRanchShopTransition,
@@ -5448,7 +5447,7 @@ extern RawVTableFunction const vtable_unk_080E7D30[]
 #if defined(REGION_JP)
         nullptr,
         func_08087CEC,
-        func_08087D2C,
+        Run__19YodelRanchShopScene,
 #else
         nullptr,
         nullptr,
@@ -5466,7 +5465,7 @@ extern RawVTableFunction const vtable_unk_080E7D3C[]
         nullptr,
         nullptr,
         func_080881AC,
-        func_080881EC,
+        Run__19YodelRanchShopScene,
 #endif
     };
 

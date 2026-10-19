@@ -994,6 +994,8 @@ struct YodelRanchShopScene : AScene {
 };
 
 struct YodelRanchShopTransition : SceneTransition {
+    YodelRanchShopTransition(SceneTransitionOwner next, GameStateSaveImage * image, u32 input)
+        : continuation(next), save(image), unk_0C(input) {}
     virtual SceneOwner CreateScene();
     SceneTransitionOwner continuation;
     GameStateSaveImage * save;
@@ -1332,6 +1334,11 @@ void func_0807E0C0(ClinicShopSceneCore * core);
 #else
 void func_0807E558(ClinicShopSceneCore * core);
 #endif
+
+// Ranch Run returns the purchased target slot or -1; the second core
+// query selects the existing cow/sheep naming branch.
+i32 func_08086A08(YodelRanchShopSceneCore * core);
+u32 func_08085EEC(YodelRanchShopSceneCore * core);
 
 // The poultry core returns a signed target slot, with -1 meaning no purchase.
 #if defined(REGION_JP)
