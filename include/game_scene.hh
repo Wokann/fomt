@@ -1889,15 +1889,23 @@ typedef char MenuOwnedStateSizeCheck[sizeof(GameSceneMenuOwnedDataState) == 0x29
 
 struct GameSceneMenuCursorData {
     GameSceneMenuCorePrefix * core;
-    u32 unk_04;
-    u32 unk_08;
-    u32 unk_0C;
-    u32 unk_10;
+    i32 selection;
+    i32 previous;
+    i32 left_limit;
+    i32 right_limit;
     HardwareStateEntry state;
     HardwareResourceEntry resource;
     IndexedResourceArchive archive;
     GameSceneMenuResourceState sprite;
     GameSceneMenuCursorData(GameSceneMenuCorePrefix *, u32);
+    // Navigation requires both panel views and a selection in 0..17.
+    inline void RefreshBounds();
+    i32 MoveUp();
+    i32 MoveDown();
+    i32 MoveLeft();
+    i32 SwitchPanel();
+    void SetSelection(i32);
+
 };
 struct GameSceneMenuSpriteData {
     GameSceneMenuCorePrefix * core;
@@ -1937,6 +1945,10 @@ protected:
 public:
     void Update();
 };
+typedef char MenuCursorSelectionCheck[offsetof(GameSceneMenuCursorData, selection) == 4 ? 1 : -1];
+typedef char MenuCursorPreviousCheck[offsetof(GameSceneMenuCursorData, previous) == 8 ? 1 : -1];
+typedef char MenuCursorLeftLimitCheck[offsetof(GameSceneMenuCursorData, left_limit) == 0xC ? 1 : -1];
+typedef char MenuCursorRightLimitCheck[offsetof(GameSceneMenuCursorData, right_limit) == 0x10 ? 1 : -1];
 typedef char MenuCursorDataSizeCheck[sizeof(GameSceneMenuCursorData) == 0x8C ? 1 : -1];
 typedef char MenuCursorStateCheck[offsetof(GameSceneMenuCursorData, state) == 0x14 ? 1 : -1];
 typedef char MenuCursorResourceCheck[offsetof(GameSceneMenuCursorData, resource) == 0x1C ? 1 : -1];

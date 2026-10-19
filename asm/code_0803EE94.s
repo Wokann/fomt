@@ -102848,24 +102848,29 @@ func_0808A09C:
     bl func_080088D4
     .byte 0x40, 0x21, 0x08, 0x40, 0x00, 0x28, 0x0C, 0xD0, 0x30, 0x68, 0x40, 0x68
     .byte 0x09, 0x28, 0x04, 0xDD, 0x0D, 0x28, 0x02, 0xDC, 0x38, 0x1C, 0xFD, 0xF7, 0xBE, 0xFE, 0x30, 0x68
-    .byte 0x42, 0xF0, 0x7D, 0xFF, 0x3E, 0xE0, 0x38, 0x1C
+    bl MoveUp__23GameSceneMenuCursorData
+    .byte 0x3E, 0xE0, 0x38, 0x1C
     bl func_080088D4
     .byte 0x80, 0x21, 0x08, 0x40
     .byte 0x00, 0x28, 0x0A, 0xD0, 0x30, 0x68, 0x40, 0x68, 0x0D, 0x28, 0x02, 0xDD, 0x38, 0x1C, 0xFD, 0xF7
-    .byte 0x9E, 0xFE, 0x30, 0x68, 0x42, 0xF0, 0xCD, 0xFF, 0x2C, 0xE0, 0x38, 0x1C
+    .byte 0x9E, 0xFE, 0x30, 0x68
+    bl MoveDown__23GameSceneMenuCursorData
+    .byte 0x2C, 0xE0, 0x38, 0x1C
     bl func_080088D4
     .byte 0x10, 0x21, 0x08, 0x40, 0x00, 0x28, 0x03, 0xD0, 0x30, 0x68, 0x43, 0xF0, 0xA6, 0xF8, 0x21, 0xE0
     .byte 0x38, 0x1C
     bl func_080088D4
     .byte 0x20, 0x21, 0x08, 0x40, 0x00, 0x28, 0x03, 0xD0, 0x30, 0x68
-    .byte 0x43, 0xF0, 0x33, 0xF8, 0x16, 0xE0, 0x00, 0x24, 0x38, 0x1C
+    bl MoveLeft__23GameSceneMenuCursorData
+    .byte 0x16, 0xE0, 0x00, 0x24, 0x38, 0x1C
     bl func_080088D4
     .byte 0x00, 0x0A
     .byte 0x01, 0x21, 0x01, 0x40, 0x00, 0x29, 0x07, 0xD1, 0x38, 0x1C
     bl func_080088D4
     .byte 0x00, 0x0A
     .byte 0x02, 0x21, 0x01, 0x40, 0x00, 0x29, 0x00, 0xD0, 0x01, 0x24, 0x00, 0x2C, 0x08, 0xD0, 0x30, 0x68
-    .byte 0x43, 0xF0, 0xD9, 0xF8, 0x38, 0x1C, 0x0C, 0x30, 0xCB, 0x21
+    bl SwitchPanel__23GameSceneMenuCursorData
+    .byte 0x38, 0x1C, 0x0C, 0x30, 0xCB, 0x21
     bl func_08008B6C
     .byte 0xCC, 0xE0
     .byte 0x38, 0x1C
@@ -105499,7 +105504,7 @@ func_0808BC14:
     cmp r0, #0
     beq .Lauto_0808BE62
     ldr r0, [r4]
-    bl func_080CDA44
+    bl MoveUp__23GameSceneMenuCursorData
     b .Lauto_0808BED4
     .Lauto_0808BE62:
     adds r0, r7, #0
@@ -105509,7 +105514,7 @@ func_0808BC14:
     cmp r0, #0
     beq .Lauto_0808BE78
     ldr r0, [r4]
-    bl func_080CDB08
+    bl MoveDown__23GameSceneMenuCursorData
     b .Lauto_0808BED4
     .Lauto_0808BE78:
     adds r0, r7, #0
@@ -105529,7 +105534,7 @@ func_0808BC14:
     cmp r0, #0
     beq .Lauto_0808BEA4
     ldr r0, [r4]
-    bl func_080CDC00
+    bl MoveLeft__23GameSceneMenuCursorData
     b .Lauto_0808BED4
     .Lauto_0808BEA4:
     movs r4, #0
@@ -105554,7 +105559,7 @@ func_0808BC14:
     beq .Lauto_0808BEE0
     mov r1, r8
     ldr r0, [r1]
-    bl func_080CDD7C
+    bl SwitchPanel__23GameSceneMenuCursorData
     .Lauto_0808BED4:
     adds r0, r7, #0
     adds r0, #0xc
@@ -107109,22 +107114,30 @@ func_0808E23C:
     bl func_080088D4
     .byte 0x40, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x0C, 0xD0, 0x30, 0x68, 0x40, 0x68, 0x09, 0x28, 0x04, 0xDD, 0x0D, 0x28, 0x02, 0xDC, 0x38, 0x1C
-    .byte 0xFD, 0xF7, 0x92, 0xFF, 0x30, 0x68, 0x3E, 0xF0, 0xAD, 0xFE, 0x3E, 0xE0, 0x38, 0x1C
+    .byte 0xFD, 0xF7, 0x92, 0xFF, 0x30, 0x68
+    bl MoveUp__23GameSceneMenuCursorData
+    .byte 0x3E, 0xE0, 0x38, 0x1C
     bl func_080088D4
     .byte 0x80, 0x21, 0x08, 0x40, 0x00, 0x28, 0x0A, 0xD0, 0x30, 0x68, 0x40, 0x68, 0x0D, 0x28
-    .byte 0x02, 0xDD, 0x38, 0x1C, 0xFD, 0xF7, 0x72, 0xFF, 0x30, 0x68, 0x3E, 0xF0, 0xFD, 0xFE, 0x2C, 0xE0
+    .byte 0x02, 0xDD, 0x38, 0x1C, 0xFD, 0xF7, 0x72, 0xFF, 0x30, 0x68
+    bl MoveDown__23GameSceneMenuCursorData
+    .byte 0x2C, 0xE0
     .byte 0x38, 0x1C
     bl func_080088D4
     .byte 0x10, 0x21, 0x08, 0x40, 0x00, 0x28, 0x03, 0xD0, 0x30, 0x68
     .byte 0x3E, 0xF0, 0xD6, 0xFF, 0x21, 0xE0, 0x38, 0x1C
     bl func_080088D4
     .byte 0x20, 0x21, 0x08, 0x40
-    .byte 0x00, 0x28, 0x03, 0xD0, 0x30, 0x68, 0x3E, 0xF0, 0x63, 0xFF, 0x16, 0xE0, 0x00, 0x24, 0x38, 0x1C
+    .byte 0x00, 0x28, 0x03, 0xD0, 0x30, 0x68
+    bl MoveLeft__23GameSceneMenuCursorData
+    .byte 0x16, 0xE0, 0x00, 0x24, 0x38, 0x1C
     bl func_080088D4
     .byte 0x00, 0x0A, 0x01, 0x21, 0x01, 0x40, 0x00, 0x29, 0x07, 0xD1, 0x38, 0x1C
     bl func_080088D4
     .byte 0x00, 0x0A, 0x02, 0x21, 0x01, 0x40, 0x00, 0x29, 0x00, 0xD0, 0x01, 0x24
-    .byte 0x00, 0x2C, 0x08, 0xD0, 0x30, 0x68, 0x3F, 0xF0, 0x09, 0xF8, 0x38, 0x1C, 0x0C, 0x30, 0xCB, 0x21
+    .byte 0x00, 0x2C, 0x08, 0xD0, 0x30, 0x68
+    bl SwitchPanel__23GameSceneMenuCursorData
+    .byte 0x38, 0x1C, 0x0C, 0x30, 0xCB, 0x21
     bl func_08008B6C
     .byte 0xCC, 0xE0, 0x38, 0x1C
     bl func_080088CC
@@ -110569,7 +110582,7 @@ func_08090960:
     bl func_0808EA8C
 .Ljp_0809073C:
     ldr	r0, [r6, #0]
-    bl func_080CDA44
+    bl MoveUp__23GameSceneMenuCursorData
     b.n .Ljp_080907C2
 .Ljp_08090744:
     adds	r0, r7, #0
@@ -110586,7 +110599,7 @@ func_08090960:
     bl func_0808EA70
 .Ljp_08090760:
     ldr	r0, [r6, #0]
-    bl func_080CDB08
+    bl MoveDown__23GameSceneMenuCursorData
     b.n .Ljp_080907C2
 .Ljp_08090768:
     adds	r0, r7, #0
@@ -110606,7 +110619,7 @@ func_08090960:
     cmp	r0, #0
     beq.n .Ljp_08090794
     ldr	r0, [r6, #0]
-    bl func_080CDC00
+    bl MoveLeft__23GameSceneMenuCursorData
     b.n .Ljp_080907C2
 .Ljp_08090794:
     movs	r4, #0
@@ -110630,7 +110643,7 @@ func_08090960:
     cmp	r4, #0
     beq.n .Ljp_080907CE
     ldr	r0, [r6, #0]
-    bl func_080CDD7C
+    bl SwitchPanel__23GameSceneMenuCursorData
 .Ljp_080907C2:
     adds	r0, r7, #0
     adds	r0, #12
@@ -111875,24 +111888,31 @@ func_0809106C:
     .byte 0x38, 0x1C
     bl func_080088D4
     .byte 0x40, 0x21, 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x18, 0x9A
-    .byte 0x10, 0x68, 0x3B, 0xF0, 0x55, 0xFF, 0x3B, 0xE0, 0x38, 0x1C
+    .byte 0x10, 0x68
+    bl MoveUp__23GameSceneMenuCursorData
+    .byte 0x3B, 0xE0, 0x38, 0x1C
     bl func_080088D4
     .byte 0x80, 0x21
-    .byte 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x18, 0x99, 0x08, 0x68, 0x3B, 0xF0, 0xAB, 0xFF, 0x2F, 0xE0
+    .byte 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x18, 0x99, 0x08, 0x68
+    bl MoveDown__23GameSceneMenuCursorData
+    .byte 0x2F, 0xE0
     .byte 0x38, 0x1C
     bl func_080088D4
     .byte 0x10, 0x21, 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x18, 0x9A
     .byte 0x10, 0x68, 0x3C, 0xF0, 0x83, 0xF8, 0x23, 0xE0, 0x38, 0x1C
     bl func_080088D4
     .byte 0x20, 0x21
-    .byte 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x18, 0x99, 0x08, 0x68, 0x3C, 0xF0, 0x0F, 0xF8, 0x17, 0xE0
+    .byte 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x18, 0x99, 0x08, 0x68
+    bl MoveLeft__23GameSceneMenuCursorData
+    .byte 0x17, 0xE0
     .byte 0x00, 0x24, 0x38, 0x1C
     bl func_080088D4
     .byte 0x00, 0x0A, 0x01, 0x21, 0x01, 0x40, 0x00, 0x29
     .byte 0x07, 0xD1, 0x38, 0x1C
     bl func_080088D4
     .byte 0x00, 0x0A, 0x02, 0x21, 0x01, 0x40, 0x00, 0x29
-    .byte 0x00, 0xD0, 0x01, 0x24, 0x00, 0x2C, 0x09, 0xD0, 0x18, 0x9A, 0x10, 0x68, 0x3C, 0xF0, 0xB4, 0xF8
+    .byte 0x00, 0xD0, 0x01, 0x24, 0x00, 0x2C, 0x09, 0xD0, 0x18, 0x9A, 0x10, 0x68
+    bl SwitchPanel__23GameSceneMenuCursorData
     .byte 0x38, 0x1C, 0x0C, 0x30, 0xCB, 0x21
     bl func_08008B6C
     .byte 0xFB, 0xE2, 0x38, 0x1C
@@ -113232,7 +113252,7 @@ func_08092D64:
     cmp r0, #0
     beq .Lauto_08092A9E
     ldr r0, [r6]
-    bl func_080CDA44
+    bl MoveUp__23GameSceneMenuCursorData
     b .Lauto_08092B10
     .Lauto_08092A9E:
     adds r0, r7, #0
@@ -113242,7 +113262,7 @@ func_08092D64:
     cmp r0, #0
     beq .Lauto_08092AB4
     ldr r0, [r6]
-    bl func_080CDB08
+    bl MoveDown__23GameSceneMenuCursorData
     b .Lauto_08092B10
     .Lauto_08092AB4:
     adds r0, r7, #0
@@ -113262,7 +113282,7 @@ func_08092D64:
     cmp r0, #0
     beq .Lauto_08092AE0
     ldr r0, [r6]
-    bl func_080CDC00
+    bl MoveLeft__23GameSceneMenuCursorData
     b .Lauto_08092B10
     .Lauto_08092AE0:
     movs r4, #0
@@ -113287,7 +113307,7 @@ func_08092D64:
     beq .Lauto_08092B1C
     mov r2, sb
     ldr r0, [r2]
-    bl func_080CDD7C
+    bl SwitchPanel__23GameSceneMenuCursorData
     .Lauto_08092B10:
     adds r0, r7, #0
     adds r0, #0xc
@@ -264382,7 +264402,7 @@ func_0808A55C: @ 0x0808A55C
 	bl func_08088590
 .L0808A814:
 	ldr r0, [r6]
-	bl func_080CDA44
+	bl MoveUp__23GameSceneMenuCursorData
 	b .L0808A89A
 .L0808A81C:
 	adds r0, r7, #0
@@ -264399,7 +264419,7 @@ func_0808A55C: @ 0x0808A55C
 	bl func_08088574
 .L0808A838:
 	ldr r0, [r6]
-	bl func_080CDB08
+	bl MoveDown__23GameSceneMenuCursorData
 	b .L0808A89A
 .L0808A840:
 	adds r0, r7, #0
@@ -264419,7 +264439,7 @@ func_0808A55C: @ 0x0808A55C
 	cmp r0, #0
 	beq .L0808A86C
 	ldr r0, [r6]
-	bl func_080CDC00
+	bl MoveLeft__23GameSceneMenuCursorData
 	b .L0808A89A
 .L0808A86C:
 	movs r4, #0
@@ -264443,7 +264463,7 @@ func_0808A55C: @ 0x0808A55C
 	cmp r4, #0
 	beq .L0808A8A6
 	ldr r0, [r6]
-	bl func_080CDD7C
+	bl SwitchPanel__23GameSceneMenuCursorData
 .L0808A89A:
 	adds r0, r7, #0
 	adds r0, #0xc
@@ -267528,7 +267548,7 @@ func_0808C0BC: @ 0x0808C0BC
 	cmp r0, #0
 	beq .L0808C322
 	ldr r0, [r4]
-	bl func_080CDA44
+	bl MoveUp__23GameSceneMenuCursorData
 	b .L0808C394
 .L0808C322:
 	adds r0, r7, #0
@@ -267538,7 +267558,7 @@ func_0808C0BC: @ 0x0808C0BC
 	cmp r0, #0
 	beq .L0808C338
 	ldr r0, [r4]
-	bl func_080CDB08
+	bl MoveDown__23GameSceneMenuCursorData
 	b .L0808C394
 .L0808C338:
 	adds r0, r7, #0
@@ -267558,7 +267578,7 @@ func_0808C0BC: @ 0x0808C0BC
 	cmp r0, #0
 	beq .L0808C364
 	ldr r0, [r4]
-	bl func_080CDC00
+	bl MoveLeft__23GameSceneMenuCursorData
 	b .L0808C394
 .L0808C364:
 	movs r4, #0
@@ -267583,7 +267603,7 @@ func_0808C0BC: @ 0x0808C0BC
 	beq .L0808C3A0
 	mov r1, r8
 	ldr r0, [r1]
-	bl func_080CDD7C
+	bl SwitchPanel__23GameSceneMenuCursorData
 .L0808C394:
 	adds r0, r7, #0
 	adds r0, #0xc
@@ -271954,7 +271974,7 @@ func_0808E6FC: @ 0x0808E6FC
 	bl func_0808C8D8
 .L0808E9B4:
 	ldr r0, [r6]
-	bl func_080CDA44
+	bl MoveUp__23GameSceneMenuCursorData
 	b .L0808EA3A
 .L0808E9BC:
 	adds r0, r7, #0
@@ -271971,7 +271991,7 @@ func_0808E6FC: @ 0x0808E6FC
 	bl func_0808C8BC
 .L0808E9D8:
 	ldr r0, [r6]
-	bl func_080CDB08
+	bl MoveDown__23GameSceneMenuCursorData
 	b .L0808EA3A
 .L0808E9E0:
 	adds r0, r7, #0
@@ -271991,7 +272011,7 @@ func_0808E6FC: @ 0x0808E6FC
 	cmp r0, #0
 	beq .L0808EA0C
 	ldr r0, [r6]
-	bl func_080CDC00
+	bl MoveLeft__23GameSceneMenuCursorData
 	b .L0808EA3A
 .L0808EA0C:
 	movs r4, #0
@@ -272015,7 +272035,7 @@ func_0808E6FC: @ 0x0808E6FC
 	cmp r4, #0
 	beq .L0808EA46
 	ldr r0, [r6]
-	bl func_080CDD7C
+	bl SwitchPanel__23GameSceneMenuCursorData
 .L0808EA3A:
 	adds r0, r7, #0
 	adds r0, #0xc
@@ -275844,7 +275864,7 @@ func_08090960: @ 0x08090960
 	bl func_0808EF4C
 .L08090BFC:
 	ldr r0, [r6]
-	bl func_080CDA44
+	bl MoveUp__23GameSceneMenuCursorData
 	b .L08090C82
 .L08090C04:
 	adds r0, r7, #0
@@ -275861,7 +275881,7 @@ func_08090960: @ 0x08090960
 	bl func_0808EF30
 .L08090C20:
 	ldr r0, [r6]
-	bl func_080CDB08
+	bl MoveDown__23GameSceneMenuCursorData
 	b .L08090C82
 .L08090C28:
 	adds r0, r7, #0
@@ -275881,7 +275901,7 @@ func_08090960: @ 0x08090960
 	cmp r0, #0
 	beq .L08090C54
 	ldr r0, [r6]
-	bl func_080CDC00
+	bl MoveLeft__23GameSceneMenuCursorData
 	b .L08090C82
 .L08090C54:
 	movs r4, #0
@@ -275905,7 +275925,7 @@ func_08090960: @ 0x08090960
 	cmp r4, #0
 	beq .L08090C8E
 	ldr r0, [r6]
-	bl func_080CDD7C
+	bl SwitchPanel__23GameSceneMenuCursorData
 .L08090C82:
 	adds r0, r7, #0
 	adds r0, #0xc
@@ -277322,7 +277342,7 @@ func_0809152C: @ 0x0809152C
 	beq .L0809186C
 	ldr r2, [sp, #0x60]
 	ldr r0, [r2]
-	bl func_080CDA44
+	bl MoveUp__23GameSceneMenuCursorData
 	b .L080918E4
 .L0809186C:
 	adds r0, r7, #0
@@ -277333,7 +277353,7 @@ func_0809152C: @ 0x0809152C
 	beq .L08091884
 	ldr r1, [sp, #0x60]
 	ldr r0, [r1]
-	bl func_080CDB08
+	bl MoveDown__23GameSceneMenuCursorData
 	b .L080918E4
 .L08091884:
 	adds r0, r7, #0
@@ -277355,7 +277375,7 @@ func_0809152C: @ 0x0809152C
 	beq .L080918B4
 	ldr r1, [sp, #0x60]
 	ldr r0, [r1]
-	bl func_080CDC00
+	bl MoveLeft__23GameSceneMenuCursorData
 	b .L080918E4
 .L080918B4:
 	movs r4, #0
@@ -277380,7 +277400,7 @@ func_0809152C: @ 0x0809152C
 	beq .L080918F0
 	ldr r2, [sp, #0x60]
 	ldr r0, [r2]
-	bl func_080CDD7C
+	bl SwitchPanel__23GameSceneMenuCursorData
 .L080918E4:
 	adds r0, r7, #0
 	adds r0, #0xc
@@ -280059,7 +280079,7 @@ func_08092D64: @ 0x08092D64
 	cmp r0, #0
 	beq .L08092FD2
 	ldr r0, [r6]
-	bl func_080CDA44
+	bl MoveUp__23GameSceneMenuCursorData
 	b .L08093044
 .L08092FD2:
 	adds r0, r7, #0
@@ -280069,7 +280089,7 @@ func_08092D64: @ 0x08092D64
 	cmp r0, #0
 	beq .L08092FE8
 	ldr r0, [r6]
-	bl func_080CDB08
+	bl MoveDown__23GameSceneMenuCursorData
 	b .L08093044
 .L08092FE8:
 	adds r0, r7, #0
@@ -280089,7 +280109,7 @@ func_08092D64: @ 0x08092D64
 	cmp r0, #0
 	beq .L08093014
 	ldr r0, [r6]
-	bl func_080CDC00
+	bl MoveLeft__23GameSceneMenuCursorData
 	b .L08093044
 .L08093014:
 	movs r4, #0
@@ -280114,7 +280134,7 @@ func_08092D64: @ 0x08092D64
 	beq .L08093050
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_080CDD7C
+	bl SwitchPanel__23GameSceneMenuCursorData
 .L08093044:
 	adds r0, r7, #0
 	adds r0, #0xc

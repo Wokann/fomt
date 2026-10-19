@@ -2901,11 +2901,201 @@ GameSceneMenuTilemapData::~GameSceneMenuTilemapData()
 }
 
 GameSceneMenuCursorData::GameSceneMenuCursorData(GameSceneMenuCorePrefix * owner, u32 input)
-    : core(owner), unk_04(input), unk_08(input), state(2), resource(),
+    : core(owner), selection(input), previous(input), state(2), resource(),
       archive(gUiHandCursorArchive), sprite(&archive, 0, 0x100)
 {
-    unk_0C = static_cast<GameSceneMenuOwnedDataState *>(core->unk_78.value)->GetUnk298();
-    unk_10 = static_cast<GameSceneMenuOwnedDataState *>(core->unk_7C.value)->GetUnk298() + 9;
+    left_limit = static_cast<GameSceneMenuOwnedDataState *>(core->unk_78.value)->GetUnk298();
+    right_limit = static_cast<GameSceneMenuOwnedDataState *>(core->unk_7C.value)->GetUnk298() + 9;
+}
+
+inline void GameSceneMenuCursorData::RefreshBounds()
+{
+    left_limit = static_cast<GameSceneMenuOwnedDataState *>(core->unk_78.value)->GetUnk298();
+    right_limit = static_cast<GameSceneMenuOwnedDataState *>(core->unk_7C.value)->GetUnk298() + 9;
+}
+
+i32 GameSceneMenuCursorData::MoveUp()
+{
+    RefreshBounds();
+    i32 next = gMenuGridNavigation[selection].up;
+    if (selection == 0)
+    {
+        if (previous != 9)
+        {
+            u32 column = previous - 5;
+            next = previous + 4;
+            if (column <= 3)
+                next = previous;
+        }
+    }
+    else if (selection == 9 && previous != 0)
+    {
+        u32 column = previous - 14;
+        next = previous + 4;
+        if (column <= 3)
+            next = previous;
+    }
+    i32 old;
+    if (next <= 8)
+    {
+        old = selection;
+        if (next == 0 && static_cast<GameSceneMenuOwnedDataState *>(core->unk_78.value)->GetUnk27C() == 0)
+            next = old + 4;
+        while (next > left_limit)
+            next = gMenuGridNavigation[next].up;
+    }
+    else
+    {
+        old = selection;
+        if (next == 9 && static_cast<GameSceneMenuOwnedDataState *>(core->unk_7C.value)->GetUnk27C() == 0)
+            next = old + 4;
+        while (next > right_limit)
+            next = gMenuGridNavigation[next].up;
+    }
+    if (next != old)
+    {
+        previous = old;
+        selection = next;
+    }
+    return next;
+}
+
+i32 GameSceneMenuCursorData::MoveDown()
+{
+    RefreshBounds();
+    i32 next = gMenuGridNavigation[selection].down;
+    if (selection == 0)
+    {
+        if (previous != 9)
+        {
+            u32 column = previous - 1;
+            next = previous - 4;
+            if (column <= 3)
+                next = previous;
+        }
+    }
+    else if (selection == 9 && previous != 0)
+    {
+        u32 column = previous - 10;
+        next = previous - 4;
+        if (column <= 3)
+            next = previous;
+    }
+    i32 old;
+    if (next <= 8)
+    {
+        old = selection;
+        if (next == 0 && static_cast<GameSceneMenuOwnedDataState *>(core->unk_78.value)->GetUnk27C() == 0)
+            next = old - 4;
+        while (next > left_limit)
+        {
+            next = gMenuGridNavigation[next].down;
+            if (next == 0 && static_cast<GameSceneMenuOwnedDataState *>(core->unk_78.value)->GetUnk27C() == 0)
+                next = old;
+        }
+    }
+    else
+    {
+        old = selection;
+        if (next == 9 && static_cast<GameSceneMenuOwnedDataState *>(core->unk_7C.value)->GetUnk27C() == 0)
+            next = old - 4;
+        while (next > right_limit)
+        {
+            next = gMenuGridNavigation[next].down;
+            if (next == 9 && static_cast<GameSceneMenuOwnedDataState *>(core->unk_7C.value)->GetUnk27C() == 0)
+                next = old;
+        }
+    }
+    if (next != old)
+    {
+        previous = old;
+        selection = next;
+    }
+    return next;
+}
+
+i32 GameSceneMenuCursorData::MoveLeft()
+{
+    RefreshBounds();
+    i32 next = gMenuGridNavigation[selection].left;
+    if (next <= 8)
+    {
+        if (next == 0)
+        {
+            u8 header = static_cast<GameSceneMenuOwnedDataState *>(core->unk_78.value)->GetUnk27C();
+            if (header == 0)
+                next = selection;
+        }
+        else
+        {
+            while (next > left_limit)
+            {
+                if (left_limit <= 4)
+                    next = left_limit;
+                else
+                    next = gMenuGridNavigation[next].left;
+            }
+        }
+        if (next == 4 && previous == left_limit && previous > 4)
+            next = previous;
+    }
+    else
+    {
+        if (next == 9)
+        {
+            u8 header = static_cast<GameSceneMenuOwnedDataState *>(core->unk_7C.value)->GetUnk27C();
+            if (header == 0)
+                next = 0;
+        }
+        else
+        {
+            while (next > right_limit)
+            {
+                if (right_limit <= 13)
+                    next = right_limit;
+                else
+                    next = gMenuGridNavigation[next].left;
+            }
+        }
+        if (next == 13 && previous == right_limit && previous > 13)
+            next = previous;
+    }
+    if (next != selection)
+    {
+        previous = selection;
+        selection = next;
+    }
+    return next;
+}
+
+i32 GameSceneMenuCursorData::SwitchPanel()
+{
+    i32 next = 10;
+    if (selection < 9)
+    {
+        if (core->unk_7C.value == nullptr)
+            next = selection;
+    }
+    else
+    {
+        GameSceneMenuOwnedDataPrefix * destination = core->unk_78.value;
+        next = 1;
+        if (destination == nullptr)
+            next = selection;
+    }
+    if (next != selection)
+    {
+        previous = selection;
+        selection = next;
+    }
+    return next;
+}
+
+void GameSceneMenuCursorData::SetSelection(i32 next)
+{
+    RefreshBounds();
+    previous = selection;
+    selection = next;
 }
 
 GameSceneMenuSpriteData::GameSceneMenuSpriteData(GameSceneMenuCorePrefix * owner)

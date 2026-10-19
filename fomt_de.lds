@@ -603,7 +603,13 @@ SECTIONS
         src/game_scene.o(.text.GetUnk27C__C27GameSceneMenuOwnedDataState);
         asm/code_809E804.o(.text.after_menu_owned_data_accessors);
         src/game_scene.o(.text.__23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi);
+        src/game_scene.o(.text.MoveUp__23GameSceneMenuCursorData);
+        src/game_scene.o(.text.MoveDown__23GameSceneMenuCursorData);
+        src/game_scene.o(.text.MoveLeft__23GameSceneMenuCursorData);
         asm/code_809E804.o(.text.after_menu_cursor_data_constructor);
+        src/game_scene.o(.text.SwitchPanel__23GameSceneMenuCursorData);
+        src/game_scene.o(.text.SetSelection__23GameSceneMenuCursorDatai);
+        asm/code_809E804.o(.text.after_menu_cursor_navigation);
         src/game_scene.o(.text.GetCursorPosition__C23GameSceneMenuCorePrefixi);
         src/game_scene.o(.text.GetItemIndex__C23GameSceneMenuCorePrefixii);
         src/game_scene.o(.text.__26GameSceneMenuSelectionCoreP18GameStateSaveImage);

@@ -12,6 +12,23 @@
 
 JP 已将逐主题旧锚点合并为两片连续可变区域：`0x080E7A40`–`0x080F822F`（上界为 Mary 脚本总索引表）和 `0x080F96F4`–`0x08118D17`（上界为尚保留的原始静态资源）。两片区域内的文本、结构、指针表及其已知调用均随符号重定位；LDS 只保留真实对齐与填充值。
 
+## 菜单导航记录：原位结构化，只读布局不变
+
+`src/shop_common.cc` 中、`shop_common_5.cc` 和 `shop_common_6.cc`
+两个文本 include 之间的 `gUnk_0811788C[18][4]` 已明确为
+`gMenuGridNavigation[18]`。同名头文件定义四个有符号方向索引字段，
+步长 16，四字节自然对齐；不新增 section、文本文件或物理断点。
+表范围为 JP `0x08118A74–0x08118B94`、US
+`0x0811788C–0x081179AC`、EU `0x081178E4–0x08117A04`、DE
+`0x081198EC–0x08119A0C`，半开区间，均为 288 字节。
+
+本批恢复五个共用 C++ 导航方法，并补齐十二条 JP 原始调用。
+完整范围扫描后，每版八处表引用均为真实符号重定位；`+4` 明确指向
+`down` 成员，不是语言地址补偿。一个看似指向表内部的 JP 字节序列
+已核实位于角色归档的原生 4bpp 图块像素内，不是指针。
+四版完整 ROM、宿主只读输入字节、所有文本和命名地址均保持原样。
+未据此移除任何既有 LDS 地址边界，向右移动与游标更新仍保留汇编。
+
 ## 资源更新与精灵绘制入口：只读布局不变
 
 JP 将仍在程序字节中的 47 条调用原位改为对
@@ -1248,7 +1265,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x081189D4`–`0x081189F1` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common_1.cc` | 运行时字符串 `1` 项<br>`gUnk_080C85A0DigitGlyphs` |
 | `0x081189F2`–`0x081189F3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081189F4`–`0x08118A13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_2.cc`<br>`data/text/jp/shop_common_3.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
-| `0x08118A14`–`0x08118B93` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common_4.cc`<br>`data/text/jp/shop_common_5.cc` | 运行时字符串 `2` 项<br>`gMenuGridHeaderPosition`, `gMenuGridCellPositions`（四字节对齐的像素字节坐标记录）<br>`gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
+| `0x08118A14`–`0x08118B93` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common_4.cc`<br>`data/text/jp/shop_common_5.cc` | 运行时字符串 `2` 项<br>`gMenuGridHeaderPosition`, `gMenuGridCellPositions`（四字节对齐的像素字节坐标记录）<br>`gUnk_0811785C`, `gUnk_08117860`<br>`gMenuGridNavigation`（十八项上／下／左／右选择索引记录） |
 | `0x08118B94`–`0x08118CF3` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_6.cc`–`shop_common_9.cc` | 文本 `26` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
 | `0x08118CF4`–`0x08118D17` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/jp/font.cc` | 普通 C 字符串 `gCppRuntimeBadAlloc_Font`（`0x0C`，含后续字形对齐填充）<br>`gFontSpecialGlyph81CD`（`0x18`，直写 4 字节对齐属性） |
 | `0x08118D18`–`0x0813ABCB` | `asm/data/static_resources.o(.rodata)` | [直接标签的原始资源] | `asm/data/static_resources.s`<br>`include/static_resources.hh` | 地图、场景渲染与农舍资源共 220 项；每项均为实际标签和独立区域 `incbin`，没有 `.set` 偏移别名 |
@@ -3083,7 +3100,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x081177EC`–`0x08117809` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/us/shop_common_1.cc` | 运行时字符串 `1` 项<br>`gUnk_080C85A0DigitGlyphs` |
 | `0x0811780A`–`0x0811780B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0811780C`–`0x0811782B` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_2.cc`<br>`data/text/us/shop_common_3.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
-| `0x0811782C`–`0x081179AB` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/us/shop_common_4.cc`<br>`data/text/us/shop_common_5.cc` | 运行时字符串 `2` 项<br>`gMenuGridHeaderPosition`, `gMenuGridCellPositions`（四字节对齐的像素字节坐标记录）<br>`gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
+| `0x0811782C`–`0x081179AB` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/us/shop_common_4.cc`<br>`data/text/us/shop_common_5.cc` | 运行时字符串 `2` 项<br>`gMenuGridHeaderPosition`, `gMenuGridCellPositions`（四字节对齐的像素字节坐标记录）<br>`gUnk_0811785C`, `gUnk_08117860`<br>`gMenuGridNavigation`（十八项上／下／左／右选择索引记录） |
 | `0x081179AC`–`0x08117B13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_6.cc`–`shop_common_9.cc` | 文本 `25` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
 | `0x08117B14`–`0x08117BD3` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/us/font.cc` | 普通 C 字符串 `gCppRuntimeBadAlloc_Font`（`0x0C`，含后续字形对齐填充）<br>`gFontSpecialGlyphBlocks`（`0xA8`）→ `gFontSpecialGlyphC3`（`0x0C`，均直写 4 字节对齐属性） |
 | `0x08117BD4`–`0x08139A87` | `asm/data/static_resources.o(.rodata)` | [直接标签的原始资源] | `asm/data/static_resources.s`<br>`include/static_resources.hh` | 地图、场景渲染与农舍资源共 220 项；每项均为实际标签和独立区域 `incbin`，没有 `.set` 偏移别名 |
