@@ -7823,8 +7823,9 @@ func_08038EE0:
     .4byte 0xF09A2102
     .4byte 0x3440F947
     .4byte 0xD1F642AC
-    .4byte 0xF7C71C30
-    .4byte 0x4641FBDF
+    adds r0, r6, #0
+    bl __builtin_delete
+    mov r1, r8
     .4byte 0xB013600F
     .4byte 0x4698BC38
     .4byte 0x46AA46A1
@@ -10463,8 +10464,9 @@ func_0803A394:
     .4byte .Ljp_0803A484
     .4byte .Ljp_0803A4A4
 .Ljp_0803A288:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F9A3
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A154641
     .4byte 0xF7FF2301
     .4byte 0x4814FCC9
@@ -10490,16 +10492,18 @@ func_0803A394:
     .4byte 0x000009B6
     .4byte vtable_unk_080E76A4
 .Ljp_0803A2F0:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F96F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x22104641
     .4byte 0xF7FF2301
     .4byte 0x4801FC95
     .4byte 0x0000E7CA
     .4byte vtable_unk_080E768C
 .Ljp_0803A30C:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F961
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC87
@@ -10507,8 +10511,9 @@ func_0803A394:
     .4byte 0x000003DB
     .4byte vtable_unk_080E7674
 .Ljp_0803A32C:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F951
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC77
@@ -10516,8 +10521,9 @@ func_0803A394:
     .4byte 0x00000806
     .4byte vtable_unk_080E765C
 .Ljp_0803A34C:
-    .4byte 0xF7C6206C
-    .4byte 0x1C04F941
+    movs r0, #108
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A0F4641
     .4byte 0xF7FF2301
     .4byte 0x480EFC67
@@ -10537,8 +10543,9 @@ func_0803A394:
     .4byte 0x00000202
     .4byte vtable_unk_080E7644
 .Ljp_0803A39C:
-    .4byte 0xF7C62088
-    .4byte 0x1C05F919
+    movs r0, #136
+    bl __builtin_new
+    adds r5, r0, #0
     .4byte 0x22A94641
     .4byte 0x23010092
     .4byte 0xFC3EF7FF
@@ -10564,8 +10571,9 @@ func_0803A394:
     .4byte 0x0000E077
     .4byte vtable_unk_080E762C
 .Ljp_0803A404:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F8E5
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC0B
@@ -10573,8 +10581,9 @@ func_0803A394:
     .4byte 0x0000087B
     .4byte vtable_unk_080E7614
 .Ljp_0803A424:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F8D5
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBFB
@@ -10582,8 +10591,9 @@ func_0803A394:
     .4byte 0x0000065C
     .4byte vtable_unk_080E75FC
 .Ljp_0803A444:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F8C5
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBEB
@@ -10591,8 +10601,9 @@ func_0803A394:
     .4byte 0x000008F9
     .4byte vtable_unk_080E75E4
 .Ljp_0803A464:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F8B5
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBDB
@@ -10600,8 +10611,9 @@ func_0803A394:
     .4byte 0x000009A9
     .4byte vtable_unk_080E75CC
 .Ljp_0803A484:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F8A5
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBCB
@@ -10609,8 +10621,9 @@ func_0803A394:
     .4byte 0x000008FD
     .4byte vtable_unk_080E75B4
 .Ljp_0803A4A4:
-    .4byte 0xF7C62064
-    .4byte 0x1C05F895
+    movs r0, #100
+    bl __builtin_new
+    adds r5, r0, #0
     .4byte 0x22154641
     .4byte 0xF7FF2300
     .4byte 0x481CFBBB
@@ -18559,8 +18572,9 @@ func_08038EE0:
     .4byte 0xF09A2102
     .4byte 0x3440FC51
     .4byte 0xD1F642AC
-    .4byte 0xF7C71C30
-    .4byte 0x4641FAA9
+    adds r0, r6, #0
+    bl __builtin_delete
+    mov r1, r8
     .4byte 0xB013600F
     .4byte 0x4698BC38
     .4byte 0x46AA46A1
@@ -21223,8 +21237,9 @@ func_0803A394:
     .4byte .Leu_0803A704
     .4byte .Leu_0803A724
 .Leu_0803A508:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F86D
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A154641
     .4byte 0xF7FF2301
     .4byte 0x4814FCC9
@@ -21250,16 +21265,18 @@ func_0803A394:
     .4byte 0x000009B6
     .4byte vtable_unk_080E76A4
 .Leu_0803A570:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F839
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x22104641
     .4byte 0xF7FF2301
     .4byte 0x4801FC95
     .4byte 0x0000E7CA
     .4byte vtable_unk_080E768C
 .Leu_0803A58C:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F82B
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC87
@@ -21267,8 +21284,9 @@ func_0803A394:
     .4byte 0x000003DB
     .4byte vtable_unk_080E7674
 .Leu_0803A5AC:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F81B
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC77
@@ -21276,8 +21294,9 @@ func_0803A394:
     .4byte 0x00000806
     .4byte vtable_unk_080E765C
 .Leu_0803A5CC:
-    .4byte 0xF7C6206C
-    .4byte 0x1C04F80B
+    movs r0, #108
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A0F4641
     .4byte 0xF7FF2301
     .4byte 0x480EFC67
@@ -21297,8 +21316,9 @@ func_0803A394:
     .4byte 0x00000202
     .4byte vtable_unk_080E7644
 .Leu_0803A61C:
-    .4byte 0xF7C52088
-    .4byte 0x1C05FFE3
+    movs r0, #136
+    bl __builtin_new
+    adds r5, r0, #0
     .4byte 0x22A94641
     .4byte 0x23010092
     .4byte 0xFC3EF7FF
@@ -21324,8 +21344,9 @@ func_0803A394:
     .4byte 0x0000E077
     .4byte vtable_unk_080E762C
 .Leu_0803A684:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FFAF
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC0B
@@ -21333,8 +21354,9 @@ func_0803A394:
     .4byte 0x0000087B
     .4byte vtable_unk_080E7614
 .Leu_0803A6A4:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FF9F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBFB
@@ -21342,8 +21364,9 @@ func_0803A394:
     .4byte 0x0000065C
     .4byte vtable_unk_080E75FC
 .Leu_0803A6C4:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FF8F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBEB
@@ -21351,8 +21374,9 @@ func_0803A394:
     .4byte 0x000008F9
     .4byte vtable_unk_080E75E4
 .Leu_0803A6E4:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FF7F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBDB
@@ -21360,8 +21384,9 @@ func_0803A394:
     .4byte 0x000009A9
     .4byte vtable_unk_080E75CC
 .Leu_0803A704:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FF6F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBCB
@@ -21369,8 +21394,9 @@ func_0803A394:
     .4byte 0x000008FD
     .4byte vtable_unk_080E75B4
 .Leu_0803A724:
-    .4byte 0xF7C52064
-    .4byte 0x1C05FF5F
+    movs r0, #100
+    bl __builtin_new
+    adds r5, r0, #0
     .4byte 0x22154641
     .4byte 0xF7FF2300
     .4byte 0x481CFBBB
@@ -29465,8 +29491,9 @@ func_08038EE0:
     .4byte 0xF09A2102
     .4byte 0x3440FC5D
     .4byte 0xD1F642AC
-    .4byte 0xF7C71C30
-    .4byte 0x4641FB29
+    adds r0, r6, #0
+    bl __builtin_delete
+    mov r1, r8
     .4byte 0xB013600F
     .4byte 0x4698BC38
     .4byte 0x46AA46A1
@@ -32129,8 +32156,9 @@ func_0803A394:
     .4byte .Lde_0803A604
     .4byte .Lde_0803A624
 .Lde_0803A408:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F8ED
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A154641
     .4byte 0xF7FF2301
     .4byte 0x4814FCC9
@@ -32156,16 +32184,18 @@ func_0803A394:
     .4byte 0x000009B6
     .4byte vtable_unk_080E76A4
 .Lde_0803A470:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F8B9
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x22104641
     .4byte 0xF7FF2301
     .4byte 0x4801FC95
     .4byte 0x0000E7CA
     .4byte vtable_unk_080E768C
 .Lde_0803A48C:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F8AB
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC87
@@ -32173,8 +32203,9 @@ func_0803A394:
     .4byte 0x000003DB
     .4byte vtable_unk_080E7674
 .Lde_0803A4AC:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F89B
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC77
@@ -32182,8 +32213,9 @@ func_0803A394:
     .4byte 0x00000806
     .4byte vtable_unk_080E765C
 .Lde_0803A4CC:
-    .4byte 0xF7C6206C
-    .4byte 0x1C04F88B
+    movs r0, #108
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A0F4641
     .4byte 0xF7FF2301
     .4byte 0x480EFC67
@@ -32203,8 +32235,9 @@ func_0803A394:
     .4byte 0x00000202
     .4byte vtable_unk_080E7644
 .Lde_0803A51C:
-    .4byte 0xF7C62088
-    .4byte 0x1C05F863
+    movs r0, #136
+    bl __builtin_new
+    adds r5, r0, #0
     .4byte 0x22A94641
     .4byte 0x23010092
     .4byte 0xFC3EF7FF
@@ -32230,8 +32263,9 @@ func_0803A394:
     .4byte 0x0000E077
     .4byte vtable_unk_080E762C
 .Lde_0803A584:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F82F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC0B
@@ -32239,8 +32273,9 @@ func_0803A394:
     .4byte 0x0000087B
     .4byte vtable_unk_080E7614
 .Lde_0803A5A4:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F81F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBFB
@@ -32248,8 +32283,9 @@ func_0803A394:
     .4byte 0x0000065C
     .4byte vtable_unk_080E75FC
 .Lde_0803A5C4:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F80F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBEB
@@ -32257,8 +32293,9 @@ func_0803A394:
     .4byte 0x000008F9
     .4byte vtable_unk_080E75E4
 .Lde_0803A5E4:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FFFF
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBDB
@@ -32266,8 +32303,9 @@ func_0803A394:
     .4byte 0x000009A9
     .4byte vtable_unk_080E75CC
 .Lde_0803A604:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FFEF
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBCB
@@ -32275,8 +32313,9 @@ func_0803A394:
     .4byte 0x000008FD
     .4byte vtable_unk_080E75B4
 .Lde_0803A624:
-    .4byte 0xF7C52064
-    .4byte 0x1C05FFDF
+    movs r0, #100
+    bl __builtin_new
+    adds r5, r0, #0
     .4byte 0x22154641
     .4byte 0xF7FF2300
     .4byte 0x481CFBBB
@@ -40370,8 +40409,9 @@ func_08038EE0:
     .4byte 0xF09A2102
     .4byte 0x3440FC35
     .4byte 0xD1F642AC
-    .4byte 0xF7C71C30
-    .4byte 0x4641FAA9
+    adds r0, r6, #0
+    bl __builtin_delete
+    mov r1, r8
     .4byte 0xB013600F
     .4byte 0x4698BC38
     .4byte 0x46AA46A1
@@ -43034,8 +43074,9 @@ func_0803A394:
     .4byte .Lus_0803A6F0
     .4byte .Lus_0803A710
 .Lus_0803A4F4:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F86D
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A154641
     .4byte 0xF7FF2301
     .4byte 0x4814FCC9
@@ -43061,16 +43102,18 @@ func_0803A394:
     .4byte 0x000009B6
     .4byte vtable_unk_080E76A4
 .Lus_0803A55C:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F839
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x22104641
     .4byte 0xF7FF2301
     .4byte 0x4801FC95
     .4byte 0x0000E7CA
     .4byte vtable_unk_080E768C
 .Lus_0803A578:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F82B
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC87
@@ -43078,8 +43121,9 @@ func_0803A394:
     .4byte 0x000003DB
     .4byte vtable_unk_080E7674
 .Lus_0803A598:
-    .4byte 0xF7C62064
-    .4byte 0x1C04F81B
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC77
@@ -43087,8 +43131,9 @@ func_0803A394:
     .4byte 0x00000806
     .4byte vtable_unk_080E765C
 .Lus_0803A5B8:
-    .4byte 0xF7C6206C
-    .4byte 0x1C04F80B
+    movs r0, #108
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A0F4641
     .4byte 0xF7FF2301
     .4byte 0x480EFC67
@@ -43108,8 +43153,9 @@ func_0803A394:
     .4byte 0x00000202
     .4byte vtable_unk_080E7644
 .Lus_0803A608:
-    .4byte 0xF7C52088
-    .4byte 0x1C05FFE3
+    movs r0, #136
+    bl __builtin_new
+    adds r5, r0, #0
     .4byte 0x22A94641
     .4byte 0x23010092
     .4byte 0xFC3EF7FF
@@ -43135,8 +43181,9 @@ func_0803A394:
     .4byte 0x0000E077
     .4byte vtable_unk_080E762C
 .Lus_0803A670:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FFAF
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FC0B
@@ -43144,8 +43191,9 @@ func_0803A394:
     .4byte 0x0000087B
     .4byte vtable_unk_080E7614
 .Lus_0803A690:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FF9F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBFB
@@ -43153,8 +43201,9 @@ func_0803A394:
     .4byte 0x0000065C
     .4byte vtable_unk_080E75FC
 .Lus_0803A6B0:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FF8F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBEB
@@ -43162,8 +43211,9 @@ func_0803A394:
     .4byte 0x000008F9
     .4byte vtable_unk_080E75E4
 .Lus_0803A6D0:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FF7F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBDB
@@ -43171,8 +43221,9 @@ func_0803A394:
     .4byte 0x000009A9
     .4byte vtable_unk_080E75CC
 .Lus_0803A6F0:
-    .4byte 0xF7C52064
-    .4byte 0x1C04FF6F
+    movs r0, #100
+    bl __builtin_new
+    adds r4, r0, #0
     .4byte 0x4A034641
     .4byte 0xF7FF2301
     .4byte 0x4802FBCB
@@ -43180,8 +43231,9 @@ func_0803A394:
     .4byte 0x000008FD
     .4byte vtable_unk_080E75B4
 .Lus_0803A710:
-    .4byte 0xF7C52064
-    .4byte 0x1C05FF5F
+    movs r0, #100
+    bl __builtin_new
+    adds r5, r0, #0
     .4byte 0x22154641
     .4byte 0xF7FF2300
     .4byte 0x481CFBBB
