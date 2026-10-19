@@ -76635,77 +76635,6 @@ func_080CCD68:
     .byte 0x12, 0x98, 0x83, 0xF7, 0x29, 0xFD, 0x16, 0xB0, 0x38, 0xBC, 0x98, 0x46
     .byte 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x80, 0x03, 0x00, 0x06
     .byte 0x20, 0x00, 0x00, 0x05
-    .global loc_080CD0B0
-    .thumb_func
-    loc_080CD0B0:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    sub sp, #0xc
-    adds r7, r0, #0
-    movs r0, #0x80
-    adds r0, r0, r7
-    mov r8, r0
-    bl GetState__C12UiStateOwner
-    adds r1, r7, #0
-    adds r1, #0x84
-    str r0, [r1]
-    adds r0, r7, #0
-    bl func_080088DC
-    mov sb, r0
-    adds r0, r7, #0
-    bl func_08008920
-    adds r6, r0, #0
-    adds r0, r7, #0
-    bl func_08008918
-    adds r5, r0, #0
-    adds r0, r7, #0
-    bl func_08008940
-    adds r4, r0, #0
-    adds r0, r7, #0
-    bl func_0800894C
-    adds r1, r7, #0
-    adds r1, #0xc
-    str r4, [sp]
-    str r0, [sp, #4]
-    str r1, [sp, #8]
-    mov r0, r8
-    mov r1, sb
-    adds r2, r6, #0
-    adds r3, r5, #0
-    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
-    adds r1, r7, #0
-    adds r1, #0x88
-    str r0, [r1]
-    ldr r2, [r7, #0x78]
-    cmp r2, #0
-    beq .Lauto_080CD124
-    movs r1, #0x84
-    lsls r1, r1, #2
-    adds r0, r2, r1
-    ldr r0, [r0]
-    ldr r1, [r0, #0xc]
-    adds r0, r2, #0
-    bl _call_via_r1
-    .Lauto_080CD124:
-    ldr r4, [r7, #0x7c]
-    cmp r4, #0
-    beq .Lauto_080CD138
-    adds r0, r7, #0
-    bl func_08008920
-    adds r1, r0, #0
-    adds r0, r4, #0
-    bl loc_080CBD9C
-    .Lauto_080CD138:
-    add sp, #0xc
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
     .section .text.after_menu_owned_data_accessors, "ax", %progbits
     .align 2, 0
 
@@ -77841,36 +77770,9 @@ func_080CE294:
     pop {r4}
     pop {r0}
     bx r0
-    .global func_080CE2C4
-    .thumb_func
-func_080CE2C4:
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, #0x8c
-    ldr r0, [r0]
-    cmp r0, #0
-    beq .Lauto_080CDAE4
-    bl func_080CDDD4
-    .Lauto_080CDAE4:
-    adds r0, r4, #0
-    adds r0, #0x90
-    ldr r0, [r0]
-    cmp r0, #0
-    beq .Lauto_080CDAF2
-    bl func_080CECE8
-    .Lauto_080CDAF2:
-    adds r0, r4, #0
-    adds r0, #0x94
-    ldr r0, [r0]
-    cmp r0, #0
-    beq .Lauto_080CDB00
-    bl loc_080CDFA0
-    .Lauto_080CDB00:
-    adds r0, r4, #0
-    bl loc_080CD0B0
-    pop {r4}
-    pop {r0}
-    bx r0
+    .section .text.after_menu_selection_update, "ax", %progbits
+    .align 2, 0
+
     .global func_080CE2FC
     .thumb_func
 func_080CE2FC:
@@ -170364,76 +170266,6 @@ func_080CD620: @ 0x080CD620
 .L080CD898: .4byte 0x06000380
 .L080CD89C: .4byte 0x05000020
 
-	thumb_func_start func_080CD8A0
-func_080CD8A0: @ 0x080CD8A0
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #0xc
-	adds r7, r0, #0
-	movs r0, #0x80
-	adds r0, r0, r7
-	mov r8, r0
-	bl GetState__C12UiStateOwner
-	adds r1, r7, #0
-	adds r1, #0x84
-	str r0, [r1]
-	adds r0, r7, #0
-	bl func_080088DC
-	mov sb, r0
-	adds r0, r7, #0
-	bl func_08008920
-	adds r6, r0, #0
-	adds r0, r7, #0
-	bl func_08008918
-	adds r5, r0, #0
-	adds r0, r7, #0
-	bl func_08008940
-	adds r4, r0, #0
-	adds r0, r7, #0
-	bl func_0800894C
-	adds r1, r7, #0
-	adds r1, #0xc
-	str r4, [sp]
-	str r0, [sp, #4]
-	str r1, [sp, #8]
-	mov r0, r8
-	mov r1, sb
-	adds r2, r6, #0
-	adds r3, r5, #0
-	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
-	adds r1, r7, #0
-	adds r1, #0x88
-	str r0, [r1]
-	ldr r2, [r7, #0x78]
-	cmp r2, #0
-	beq .L080CD914
-	movs r1, #0x84
-	lsls r1, r1, #2
-	adds r0, r2, r1
-	ldr r0, [r0]
-	ldr r1, [r0, #0xc]
-	adds r0, r2, #0
-	bl _call_via_r1
-.L080CD914:
-	ldr r4, [r7, #0x7c]
-	cmp r4, #0
-	beq .L080CD928
-	adds r0, r7, #0
-	bl func_08008920
-	adds r1, r0, #0
-	adds r0, r4, #0
-	bl func_080CC58C
-.L080CD928:
-	add sp, #0xc
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
     .section .text.after_menu_owned_data_accessors, "ax", %progbits
     .align 2, 0
 
@@ -171595,35 +171427,8 @@ func_080CE294: @ 0x080CE294
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080CE2C4
-func_080CE2C4: @ 0x080CE2C4
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, #0x8c
-	ldr r0, [r0]
-	cmp r0, #0
-	beq .L080CE2D4
-	bl func_080CDDD4
-.L080CE2D4:
-	adds r0, r4, #0
-	adds r0, #0x90
-	ldr r0, [r0]
-	cmp r0, #0
-	beq .L080CE2E2
-	bl func_080CECE8
-.L080CE2E2:
-	adds r0, r4, #0
-	adds r0, #0x94
-	ldr r0, [r0]
-	cmp r0, #0
-	beq .L080CE2F0
-	bl func_080CE790
-.L080CE2F0:
-	adds r0, r4, #0
-	bl func_080CD8A0
-	pop {r4}
-	pop {r0}
-	bx r0
+    .section .text.after_menu_selection_update, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080CE2FC
 func_080CE2FC: @ 0x080CE2FC

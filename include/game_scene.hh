@@ -1740,6 +1740,8 @@ inline GameSceneScriptController::GameSceneScriptController(char const * farm_na
 struct GameSceneMenuOwnedDataPrefix {
     u8 unk_000[0x210];
     virtual ~GameSceneMenuOwnedDataPrefix();
+    // Native virtual slot +0x0C; its payload-specific meaning is unknown.
+    virtual void vfunc_0C();
 private:
     GameSceneMenuOwnedDataPrefix();
 };
@@ -1771,6 +1773,8 @@ struct GameSceneMenuCorePrefix : GameSceneUiComponent {
     u32 unk_88;
 protected:
     GameSceneMenuCorePrefix(GameStateSaveImage *);
+public:
+    void Update();
 };
 typedef char MenuOwnedDataPrefixSizeCheck[sizeof(GameSceneMenuOwnedDataPrefix) == 0x214 ? 1 : -1];
 typedef char MenuCorePrefixSizeCheck[sizeof(GameSceneMenuCorePrefix) == 0x8C ? 1 : -1];
@@ -1924,6 +1928,8 @@ struct GameSceneMenuSelectionCore : GameSceneMenuCorePrefix {
     GameSceneMenuTilemapDataOwner tilemap;
 protected:
     GameSceneMenuSelectionCore(GameStateSaveImage *);
+public:
+    void Update();
 };
 typedef char MenuCursorDataSizeCheck[sizeof(GameSceneMenuCursorData) == 0x8C ? 1 : -1];
 typedef char MenuCursorStateCheck[offsetof(GameSceneMenuCursorData, state) == 0x14 ? 1 : -1];
@@ -1945,5 +1951,18 @@ typedef char MenuSelectionCursorCheck[offsetof(GameSceneMenuSelectionCore, curso
 typedef char MenuSelectionSpriteCheck[offsetof(GameSceneMenuSelectionCore, sprite) == 0x90 ? 1 : -1];
 typedef char MenuSelectionTilemapCheck[offsetof(GameSceneMenuSelectionCore, tilemap) == 0x94 ? 1 : -1];
 extern "C" u8 const gUiHandCursorArchive[];
+
+extern "C" {
+// Actual existing native entries, not generated wrappers or aliases.
+void func_080CDDD4(GameSceneMenuCursorData *);
+void func_080CECE8(GameSceneMenuSpriteData *);
+#if defined(REGION_JP)
+void loc_080CDFA0(GameSceneMenuTilemapData *);
+void loc_080CBD9C(GameSceneMenuOwnedDataPrefix *, HardwareSpriteBufferState *);
+#else
+void func_080CE790(GameSceneMenuTilemapData *);
+void func_080CC58C(GameSceneMenuOwnedDataPrefix *, HardwareSpriteBufferState *);
+#endif
+}
 
 #endif // GAME_SCENE_HH

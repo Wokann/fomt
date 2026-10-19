@@ -2854,6 +2854,30 @@ GameSceneMenuCorePrefix::GameSceneMenuCorePrefix(GameStateSaveImage * image)
 {
 }
 
+void GameSceneMenuCorePrefix::Update()
+{
+    // The existing C hardware interface views the first native owner pointer.
+    void * const * hardware_owner = reinterpret_cast<void * const *>(this);
+    unk_84 = ui.GetState();
+    HardwareCoreState * hardware = static_cast<HardwareCoreState *>(func_080088DC(hardware_owner));
+    HardwareSpriteBufferState * sprites = func_08008920(hardware_owner);
+    HardwareDisplayState * display = func_08008918(hardware_owner);
+    u8 * links = func_08008940(hardware_owner);
+    u8 * manager = func_0800894C(hardware_owner);
+    MusicPlayer ** music_player = &music.value;
+    unk_88 = ui.Update(hardware, sprites, display, links, manager, music_player);
+    if (unk_78.value != nullptr)
+        unk_78.value->vfunc_0C();
+    GameSceneMenuOwnedDataPrefix * renderer = unk_7C.value;
+    if (renderer != nullptr) {
+#if defined(REGION_JP)
+        loc_080CBD9C(renderer, func_08008920(hardware_owner));
+#else
+        func_080CC58C(renderer, func_08008920(hardware_owner));
+#endif
+    }
+}
+
 void GameSceneMenuCommandQueue::ClearNodes()
 {
     GameSceneMenuCommandNode * node = sentinel->next;
@@ -2899,4 +2923,20 @@ GameSceneMenuSpriteData::GameSceneMenuSpriteData(GameSceneMenuCorePrefix * owner
 GameSceneMenuSelectionCore::GameSceneMenuSelectionCore(GameStateSaveImage * image)
     : GameSceneMenuCorePrefix(image), cursor(), sprite(), tilemap()
 {
+}
+
+void GameSceneMenuSelectionCore::Update()
+{
+    if (cursor.value != nullptr)
+        func_080CDDD4(cursor.value);
+    if (sprite.value != nullptr)
+        func_080CECE8(sprite.value);
+    if (tilemap.value != nullptr) {
+#if defined(REGION_JP)
+        loc_080CDFA0(tilemap.value);
+#else
+        func_080CE790(tilemap.value);
+#endif
+    }
+    GameSceneMenuCorePrefix::Update();
 }

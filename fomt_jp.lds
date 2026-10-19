@@ -651,6 +651,7 @@ SECTIONS
         asm/code_809E804.o(.text.ui_text_stream_update_after);
         src/game_scene.o(.text.__23GameSceneMenuCorePrefixP18GameStateSaveImage);
         asm/code_809E804.o(.text.after_menu_core_prefix_constructor);
+        src/game_scene.o(.text.Update__23GameSceneMenuCorePrefix);
         src/game_scene.o(.text.GetUnk298__C27GameSceneMenuOwnedDataState);
         src/game_scene.o(.text.GetUnk27C__C27GameSceneMenuOwnedDataState);
         asm/code_809E804.o(.text.after_menu_owned_data_accessors);
@@ -658,6 +659,8 @@ SECTIONS
         asm/code_809E804.o(.text.after_menu_cursor_data_constructor);
         src/game_scene.o(.text.__26GameSceneMenuSelectionCoreP18GameStateSaveImage);
         asm/code_809E804.o(.text.after_menu_selection_core_constructor);
+        src/game_scene.o(.text.Update__26GameSceneMenuSelectionCore);
+        asm/code_809E804.o(.text.after_menu_selection_update);
         src/game_scene.o(.text._._24GameSceneMenuTilemapData);
         asm/code_809E804.o(.text.after_menu_tilemap_data_destructor);
         src/game_scene.o(.text.__23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix);
