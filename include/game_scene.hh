@@ -452,12 +452,6 @@ struct GameSceneBgmSettings {
     u8 lfo_speed;
 };
 
-// These slots borrow the hardware music players; they do not destroy them.
-struct GameSceneMusicPlayerSlot {
-    MusicPlayer * value;
-    explicit GameSceneMusicPlayerSlot(u8 index) { func_08008B54(&value, index); }
-};
-
 // Entries point to the scene's pointer slots, not directly to m4a players.
 // The empty allocator occupies a word before the capacity pointer at +0x0C.
 struct GameSceneSongPlayerPool {
@@ -467,11 +461,11 @@ struct GameSceneSongPlayerPool {
     };
     struct Allocation {
         Allocator allocator;
-        MusicPlayer *** end;
+        HardwareMusicPlayerSlot ** end;
         Allocation(Allocator const & input) : allocator(input), end(nullptr) {}
     };
-    MusicPlayer *** begin;
-    MusicPlayer *** end;
+    HardwareMusicPlayerSlot ** begin;
+    HardwareMusicPlayerSlot ** end;
     Allocation allocation;
 
     ~GameSceneSongPlayerPool()
@@ -1126,11 +1120,11 @@ struct GameSceneState {
     GameSceneTextVariablesOwner text_variables;
     GameSceneUiComponentOwner time_window;
     GameSceneUiComponentOwner pause_menu_selector;
-    GameSceneMusicPlayerSlot bgm_player;
-    GameSceneMusicPlayerSlot music_player_1;
-    GameSceneMusicPlayerSlot music_player_2;
-    GameSceneMusicPlayerSlot music_player_3;
-    GameSceneMusicPlayerSlot music_player_4;
+    HardwareMusicPlayerSlot bgm_player;
+    HardwareMusicPlayerSlot music_player_1;
+    HardwareMusicPlayerSlot music_player_2;
+    HardwareMusicPlayerSlot music_player_3;
+    HardwareMusicPlayerSlot music_player_4;
     GameSceneSongPlayerPool song_players;
     u16 wait_frames;
     u16 unk_E2;
@@ -1230,7 +1224,6 @@ typedef char GameSceneTalkWindowOwnerSizeCheck[sizeof(GameSceneTalkWindowOwner) 
 typedef char GameSceneBgmSettingsSizeCheck[sizeof(GameSceneBgmSettings) == 12 ? 1 : -1];
 typedef char GameSceneBgmSettingsPitchCheck[offsetof(GameSceneBgmSettings, pitch) == 4 ? 1 : -1];
 typedef char GameSceneBgmSettingsLfoCheck[offsetof(GameSceneBgmSettings, lfo_speed) == 8 ? 1 : -1];
-typedef char GameSceneMusicPlayerSlotSizeCheck[sizeof(GameSceneMusicPlayerSlot) == 4 ? 1 : -1];
 typedef char GameSceneSongPlayerPoolSizeCheck[sizeof(GameSceneSongPlayerPool) == 16 ? 1 : -1];
 typedef char GameSceneSongPlayerPoolCapacityCheck[offsetof(GameSceneSongPlayerPool, allocation.end) == 12 ? 1 : -1];
 typedef char GameSceneStateSizeCheck[sizeof(GameSceneState) == 0xF8 ? 1 : -1];
