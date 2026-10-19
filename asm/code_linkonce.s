@@ -39022,48 +39022,9 @@ func_080E5898:
     pop {r0}
     bx r0
     .byte 0xDC, 0x79, 0x0E, 0x08
-    .global func_080E4DAC
-    .thumb_func
-func_080E4DAC:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    adds r0, #0x80
-    movs r1, #2
-    bl _._12UiStateOwner
-    ldr r1, [r4, #0x7c]
-    cmp r1, #0
-    beq .Lauto_080E4DD2
-    movs r2, #0x84
-    lsls r2, r2, #2
-    adds r0, r1, r2
-    ldr r0, [r0]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080E4DD2:
-    ldr r1, [r4, #0x78]
-    cmp r1, #0
-    beq .Lauto_080E4DEA
-    movs r2, #0x84
-    lsls r2, r2, #2
-    adds r0, r1, r2
-    ldr r0, [r0]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080E4DEA:
-    ldr r0, [pc, #0x10]
-    str r0, [r4, #0x10]
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl func_080086BC
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .4byte __vt_23IndexedResourceProvider
+    .section .text.after_menu_core_prefix_destructor, "ax", %progbits
+    .align 2, 0
+
     .global func_080E4E00
     .thumb_func
 func_080E4E00:
@@ -48251,48 +48212,8 @@ func_080E5898: @ 0x080E5898
 	.align 2, 0
 .L080E5968: .4byte vtable_unk_080E85AC
 
-	thumb_func_start func_080E596C
-func_080E596C: @ 0x080E596C
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	adds r0, #0x80
-	movs r1, #2
-	bl _._12UiStateOwner
-	ldr r1, [r4, #0x7c]
-	cmp r1, #0
-	beq .L080E5992
-	movs r2, #0x84
-	lsls r2, r2, #2
-	adds r0, r1, r2
-	ldr r0, [r0]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080E5992:
-	ldr r1, [r4, #0x78]
-	cmp r1, #0
-	beq .L080E59AA
-	movs r2, #0x84
-	lsls r2, r2, #2
-	adds r0, r1, r2
-	ldr r0, [r0]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080E59AA:
-	ldr r0, .L080E59BC @ =__vt_23IndexedResourceProvider
-	str r0, [r4, #0x10]
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl func_080086BC
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E59BC: .4byte __vt_23IndexedResourceProvider
+    .section .text.after_menu_core_prefix_destructor, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E59C0
 func_080E59C0: @ 0x080E59C0

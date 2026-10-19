@@ -407,7 +407,9 @@ typedef char GameSceneWorldSaveCheck[offsetof(GameSceneWorldPrefix, save) == 0x1
 // and pause-menu selector payloads and their destructors remain native.
 struct GameSceneUiComponent {
     u32 unk_00;
-    virtual ~GameSceneUiComponent();
+    // Actual existing bootstrap lifecycle ABI; these declarations emit no code.
+    GameSceneUiComponent() asm("func_08008444");
+    virtual ~GameSceneUiComponent() asm("func_080086BC");
 };
 
 struct GameSceneUiComponentOwner {
@@ -1729,6 +1731,57 @@ inline GameSceneScriptController::GameSceneScriptController(char const * farm_na
       script_engine(save.get()), unk_364(1), unk_368(0xAB)
 {
     gUnk_0300040C = reinterpret_cast<u8 *>(this);
+}
+
+
+// These views expose only the native destruction interfaces and known members.
+// Do not independently allocate either prefix or infer the full core hierarchy.
+struct GameSceneMenuOwnedDataPrefix {
+    u8 unk_000[0x210];
+    virtual ~GameSceneMenuOwnedDataPrefix();
+private:
+    GameSceneMenuOwnedDataPrefix();
+};
+struct GameSceneMenuOwnedDataOwner {
+    GameSceneMenuOwnedDataPrefix * value;
+    GameSceneMenuOwnedDataOwner() : value(nullptr) {}
+    ~GameSceneMenuOwnedDataOwner() { delete value; }
+};
+struct GameSceneMenuResourceState {
+    u16 unk_00;
+    u16 unk_02;
+    IndexedResourceHandle handle;
+    IndexedResourceSpriteParameters parameters;
+    u8 unk_34;
+    GameSceneMenuResourceState(IndexedResourceProvider * provider, u32 index, i32 delta)
+        : unk_00(0), unk_02(0), handle(provider, index, delta), parameters(), unk_34(0) {}
+};
+typedef char MenuResourceStateSizeCheck[sizeof(GameSceneMenuResourceState) == 0x38 ? 1 : -1];
+struct GameSceneMenuCorePrefix : GameSceneUiComponent {
+    GameStateSaveImage * save;
+    HardwareMusicPlayerSlot music;
+    IndexedResourceArchive archive;
+    GameSceneMenuResourceState resource_state;
+    GameSceneMenuOwnedDataOwner unk_78;
+    GameSceneMenuOwnedDataOwner unk_7C;
+    UiStateOwner ui;
+private:
+    GameSceneMenuCorePrefix(GameStateSaveImage *);
+};
+typedef char MenuOwnedDataPrefixSizeCheck[sizeof(GameSceneMenuOwnedDataPrefix) == 0x214 ? 1 : -1];
+typedef char MenuCorePrefixSizeCheck[sizeof(GameSceneMenuCorePrefix) == 0x84 ? 1 : -1];
+typedef char MenuCoreArchiveCheck[offsetof(GameSceneMenuCorePrefix, archive) == 0x10 ? 1 : -1];
+typedef char MenuCoreHandleCheck[offsetof(GameSceneMenuCorePrefix, resource_state) + offsetof(GameSceneMenuResourceState, handle) == 0x44 ? 1 : -1];
+typedef char MenuCoreSpriteCheck[offsetof(GameSceneMenuCorePrefix, resource_state) + offsetof(GameSceneMenuResourceState, parameters) == 0x58 ? 1 : -1];
+typedef char MenuCoreOwnedDataCheck[offsetof(GameSceneMenuCorePrefix, unk_78) == 0x78 ? 1 : -1];
+typedef char MenuCoreUiCheck[offsetof(GameSceneMenuCorePrefix, ui) == 0x80 ? 1 : -1];
+typedef char MenuCoreResourceStateOffsetCheck[offsetof(GameSceneMenuCorePrefix, resource_state) == 0x40 ? 1 : -1];
+extern "C" {
+#if defined(REGION_JP)
+extern u8 const gUnk_084DABB8[];
+#else
+extern u8 const gUnk_08754C0C[];
+#endif
 }
 
 #endif // GAME_SCENE_HH

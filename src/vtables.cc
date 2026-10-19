@@ -7123,13 +7123,13 @@ extern void func_080E4C5C(void);
 extern void func_080E5844(void);
 #endif
 
-// Preserve the original regional placement of this table's single callback.
+// Keep the preceding physical callback bytes. JP's last null word and the
+// first two words of the next old record are now the real menu-core table.
 extern RawVTableFunction const vtable_unk_080E8588[]
     SECTION(".rodata.vtable_8588") = {
 #if defined(REGION_JP)
         nullptr,
         func_080E4C5C,
-        nullptr,
 #else
         nullptr,
         nullptr,
@@ -7138,45 +7138,33 @@ extern RawVTableFunction const vtable_unk_080E8588[]
     };
 
 #if defined(REGION_JP)
-extern void func_080E4DAC(void);
+// First metadata word of the following native core table, not padding.
+extern RawVTableFunction const gUnk_080E79DC
+    SECTION(".rodata.vtable_8594") = nullptr;
 #else
 extern void func_080E581C(void);
-#endif
-
-// Keep the region-specific slot position of this table's sole callback.
 extern RawVTableFunction const vtable_unk_080E8594[]
     SECTION(".rodata.vtable_8594") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080E4DAC,
-        nullptr,
-#else
         nullptr,
         nullptr,
         func_080E581C,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080E5898(void);
 extern void func_080CAF6C(void);
-#else
-extern void func_080E596C(void);
 #endif
 
 // Preserve the original three slots and their region-specific callbacks.
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E85A0[]
     SECTION(".rodata.vtable_85a0") = {
-#if defined(REGION_JP)
         nullptr,
         func_080E5898,
         func_080CAF6C,
-#else
-        nullptr,
-        nullptr,
-        func_080E596C,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080CD950(void);

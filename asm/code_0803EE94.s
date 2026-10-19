@@ -116067,7 +116067,7 @@ func_08094594:
     lsls r2, r2, #0x18
     lsrs r2, r2, #0x18
     str r2, [sp, #4]
-    bl func_080CCD88
+    bl __23GameSceneMenuCorePrefixP18GameStateSaveImage
     ldr r0, .Ljp_08094970 @ =gUnk_080E7660
     str r0, [r7, #4]
     adds r0, r7, #0
@@ -283277,7 +283277,7 @@ func_08094AC0: @ 0x08094AC0
 	lsls r2, r2, #0x18
 	lsrs r2, r2, #0x18
 	str r2, [sp, #4]
-	bl func_080CD578
+	bl __23GameSceneMenuCorePrefixP18GameStateSaveImage
 	ldr r0, .L08094E9C @ =vtable_unk_080E8230
 	str r0, [r7, #4]
 	adds r0, r7, #0

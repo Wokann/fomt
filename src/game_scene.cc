@@ -2841,3 +2841,15 @@ SceneOwner BlacksmithShopResultTransition::CreateScene()
     SceneTransition * next = continuation.release();
     return SceneOwner(new BlacksmithShopResultScene(SceneTransitionOwner(next), save, unk_0C));
 }
+
+GameSceneMenuCorePrefix::GameSceneMenuCorePrefix(GameStateSaveImage * image)
+    : save(image), music(1),
+#if defined(REGION_JP)
+      archive(gUnk_084DABB8),
+#else
+      archive(gUnk_08754C0C),
+#endif
+      resource_state(&archive, 0, 0x100), unk_78(), unk_7C(),
+      ui(0, 29, 0, 0, HardwareStateOwner(), HardwareResource())
+{
+}

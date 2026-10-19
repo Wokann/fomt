@@ -76536,81 +76536,9 @@ func_080CCD68:
     str r2, [r0]
     bx lr
     .byte 0x00, 0x00, 0x20, 0x8A, 0x11, 0x08, 0x00, 0xFF, 0xFF, 0xFF
-    .global func_080CCD88
-    .thumb_func
-func_080CCD88:
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x14
-    adds r7, r0, #0
-    adds r4, r1, #0
-    bl func_08008444
-    ldr r0, [pc, #0x90]
-    str r0, [r7, #4]
-    str r4, [r7, #8]
-    adds r0, r7, #0
-    adds r0, #0xc
-    movs r1, #1
-    bl func_08008B54
-    adds r6, r7, #0
-    adds r6, #0x10
-    ldr r1, [pc, #0x80]
-    adds r0, r6, #0
-    bl __22IndexedResourceArchivePCUc
-    adds r0, r7, #0
-    adds r0, #0x40
-    movs r5, #0
-    movs r4, #0
-    strh r4, [r0]
-    strh r4, [r0, #2]
-    adds r0, #4
-    adds r1, r6, #0
-    movs r2, #0
-    movs r3, #0x80
-    lsls r3, r3, #1
-    bl __21IndexedResourceHandleP23IndexedResourceProviderUii
-    adds r0, r7, #0
-    adds r0, #0x58
-    strh r4, [r0]
-    strh r4, [r0, #2]
-    strh r4, [r0, #4]
-    strh r4, [r0, #6]
-    strh r4, [r0, #8]
-    str r4, [r0, #0xc]
-    strb r5, [r0, #0x10]
-    strb r5, [r0, #0x11]
-    str r4, [r0, #0x14]
-    strb r5, [r0, #0x18]
-    adds r0, #0x1c
-    strb r5, [r0]
-    str r4, [r7, #0x78]
-    str r4, [r7, #0x7c]
-    add r0, sp, #0xc
-    bl __18HardwareStateOwner
-    add r5, sp, #0x10
-    adds r0, r5, #0
-    bl __16HardwareResource
-    adds r0, r7, #0
-    adds r0, #0x80
-    str r4, [sp]
-    add r1, sp, #0xc
-    str r1, [sp, #4]
-    str r5, [sp, #8]
-    movs r1, #0
-    movs r2, #0x1d
-    movs r3, #0
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
-    adds r0, r5, #0
-    movs r1, #2
-    bl _._16HardwareResource
-    add r0, sp, #0xc
-    movs r1, #2
-    bl _._18HardwareStateOwner
-    adds r0, r7, #0
-    add sp, #0x14
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .byte 0xD0, 0x79, 0x0E, 0x08, 0xB8, 0xAB, 0x4D, 0x08
+    .section .text.after_menu_core_prefix_constructor, "ax", %progbits
+    .align 2, 0
+
     .global loc_080CCE30
     .thumb_func
     loc_080CCE30:
@@ -77922,7 +77850,7 @@ func_080CE184: @ 0x080CD994
 func_080CE19C:
     push {r4, lr}
     adds r4, r0, #0
-    bl func_080CCD88
+    bl __23GameSceneMenuCorePrefixP18GameStateSaveImage
     ldr r0, [pc, #0x18]
     str r0, [r4, #4]
     adds r0, r4, #0
@@ -170339,82 +170267,8 @@ func_080CD558: @ 0x080CD558
 .L080CD570: .4byte gUnk_08117838
 .L080CD574: .4byte 0xFFFFFF00
 
-	thumb_func_start func_080CD578
-func_080CD578: @ 0x080CD578
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x14
-	adds r7, r0, #0
-	adds r4, r1, #0
-	bl func_08008444
-	ldr r0, .L080CD618 @ =vtable_unk_080E85A0
-	str r0, [r7, #4]
-	str r4, [r7, #8]
-	adds r0, r7, #0
-	adds r0, #0xc
-	movs r1, #1
-	bl func_08008B54
-	adds r6, r7, #0
-	adds r6, #0x10
-	ldr r1, .L080CD61C @ =gUnk_08754C0C
-	adds r0, r6, #0
-	bl __22IndexedResourceArchivePCUc
-	adds r0, r7, #0
-	adds r0, #0x40
-	movs r5, #0
-	movs r4, #0
-	strh r4, [r0]
-	strh r4, [r0, #2]
-	adds r0, #4
-	adds r1, r6, #0
-	movs r2, #0
-	movs r3, #0x80
-	lsls r3, r3, #1
-	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
-	adds r0, r7, #0
-	adds r0, #0x58
-	strh r4, [r0]
-	strh r4, [r0, #2]
-	strh r4, [r0, #4]
-	strh r4, [r0, #6]
-	strh r4, [r0, #8]
-	str r4, [r0, #0xc]
-	strb r5, [r0, #0x10]
-	strb r5, [r0, #0x11]
-	str r4, [r0, #0x14]
-	strb r5, [r0, #0x18]
-	adds r0, #0x1c
-	strb r5, [r0]
-	str r4, [r7, #0x78]
-	str r4, [r7, #0x7c]
-	add r0, sp, #0xc
-	bl __18HardwareStateOwner
-	add r5, sp, #0x10
-	adds r0, r5, #0
-	bl __16HardwareResource
-	adds r0, r7, #0
-	adds r0, #0x80
-	str r4, [sp]
-	add r1, sp, #0xc
-	str r1, [sp, #4]
-	str r5, [sp, #8]
-	movs r1, #0
-	movs r2, #0x1d
-	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
-	adds r0, r5, #0
-	movs r1, #2
-	bl _._16HardwareResource
-	add r0, sp, #0xc
-	movs r1, #2
-	bl _._18HardwareStateOwner
-	adds r0, r7, #0
-	add sp, #0x14
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080CD618: .4byte vtable_unk_080E85A0
-.L080CD61C: .4byte gUnk_08754C0C
+    .section .text.after_menu_core_prefix_constructor, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080CD620
 func_080CD620: @ 0x080CD620
@@ -171937,7 +171791,7 @@ func_080CE184: @ 0x080CE184
 func_080CE19C: @ 0x080CE19C
 	push {r4, lr}
 	adds r4, r0, #0
-	bl func_080CD578
+	bl __23GameSceneMenuCorePrefixP18GameStateSaveImage
 	ldr r0, .L080CE1C0 @ =vtable_unk_080E85DC
 	str r0, [r4, #4]
 	adds r0, r4, #0

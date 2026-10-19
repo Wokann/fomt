@@ -582,6 +582,8 @@ SECTIONS
         src/ui_state.o(.text.ui_text_stream_setup);
         src/ui_state.o(.text.ui_text_stream_update);
         asm/code_809E804.o(.text.ui_text_stream_update_after);
+        src/game_scene.o(.text.__23GameSceneMenuCorePrefixP18GameStateSaveImage);
+        asm/code_809E804.o(.text.after_menu_core_prefix_constructor);
         src/link_communication_data.o(.text);
         . = 0xD0CD4; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);
@@ -709,6 +711,8 @@ SECTIONS
         asm/code_linkonce.o(.text.sprite_work_target_search_after);
         src/game_scene.o(.gnu.linkonce.t._._19SavedNameEntryScene);
         asm/code_linkonce.o(.text.after_saved_name_scene_destructor);
+        src/game_scene.o(.gnu.linkonce.t._._23GameSceneMenuCorePrefix);
+        asm/code_linkonce.o(.text.after_menu_core_prefix_destructor);
 
     } > ROM = 0xFF
 
@@ -981,7 +985,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_857c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8588);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8594);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_85a0);
+. = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_23GameSceneMenuCorePrefix);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85ac);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85bc);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85cc);
