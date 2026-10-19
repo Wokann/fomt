@@ -37,7 +37,7 @@ typedef char NewGameMenuSpriteAttributesSizeCheck[sizeof(NewGameMenuSpriteAttrib
 typedef char NewGameMenuSpriteAttributesTileCheck[offsetof(NewGameMenuSpriteAttributes, tile_attributes) == 4 ? 1 : -1];
 typedef char NewGameMenuSpriteAttributesCoefficientCheck[offsetof(NewGameMenuSpriteAttributes, affine_coefficient) == 6 ? 1 : -1];
 
-// Runtime save-summary text, filled by func_08003788 and selected by the
+// Runtime text filled by FormatNewGameSaveSlotSummary and selected by the
 // menu's second choice. These two 128-byte buffers are not ROM literals.
 struct NewGameMenuSaveSlotStatus {
     char text[0x80];
@@ -474,9 +474,11 @@ bool func_08003F9C(struct NewGameMenuCore * core)
 bool func_080040A0(struct NewGameMenuCore * core)
     SECTION(".text.new_game_menu_update");
 
-// Formats one runtime save-summary buffer from the save image. Calendar and
-// farm members are recovered; the formatter body still remains assembly.
-void func_08003788(struct NewGameMenuCore * core,
+// Clear the output, then append up to 127 encoded bytes and a terminator.
+// JP uses full-width
+// digits; overseas text puts the year/day labels before their numbers.
+// The first argument is unused by the native body, which remains assembly.
+void FormatNewGameSaveSlotSummary(struct NewGameMenuCore * core,
     NewGameMenuSaveSlotStatus & output, GameStateSaveImage const * snapshot);
 
 // Initialize the supplied storage and consume the transition pointer word.

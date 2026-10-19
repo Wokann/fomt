@@ -14,9 +14,9 @@
     .syntax unified
     .thumb
 
-    .global func_08003788
+    .global FormatNewGameSaveSlotSummary
     .thumb_func
-func_08003788:
+FormatNewGameSaveSlotSummary:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -3719,8 +3719,8 @@ func_080064E8:
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
-    thumb_func_start func_08003788
-func_08003788: @ 0x08003788
+    thumb_func_start FormatNewGameSaveSlotSummary
+FormatNewGameSaveSlotSummary: @ Original US 0x08003788; body remains native.
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb

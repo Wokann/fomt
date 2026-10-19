@@ -199,7 +199,7 @@ bool func_08003F9C(NewGameMenuCore * core)
         do {
             InterruptGuard guard(0x1000);
             if (WriteGameStateSaveImage(core->unk_08, &core->sram, offset) == 0) {
-                func_08003788(core, core->save_slot_status[slot],
+                FormatNewGameSaveSlotSummary(core, core->save_slot_status[slot],
                     static_cast<GameStateSaveImage *>(core->unk_08));
                 func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
                     reinterpret_cast<u32>(core->save_slot_status[slot].Data()), 0, 0);
@@ -355,7 +355,7 @@ NewGameMenuCore * func_080041DC(NewGameMenuCore * core, void * state,
                     ::operator new(sizeof(GameStateSaveImage)), &core->sram,
                     offset, &status));
                 if (status == 0) {
-                    func_08003788(core, core->save_slot_status[slot],
+                    FormatNewGameSaveSlotSummary(core, core->save_slot_status[slot],
                         static_cast<GameStateSaveImage *>(loaded.get()));
                     CopySavedDisplayOptions(core->saved_display_options[slot], loaded.get());
                     break;
