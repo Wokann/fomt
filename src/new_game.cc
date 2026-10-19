@@ -445,7 +445,7 @@ SceneTransitionOwner func_080050F8(NewGameIdentityCore * core)
 {
     func_08005254(core);
     func_08005260(core);
-    func_08005278(core);
+    InitializeNewGameIdentityScreen(core);
 
     HardwareDisplayState * display =
         func_08008918(reinterpret_cast<void * const *>(core));

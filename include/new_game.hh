@@ -278,7 +278,7 @@ typedef char NewGameIdentityTextBufferSizeCheck[sizeof(FixedStr<15>) == 0x10 ? 1
 
 // Physical field order: player name, birthday, farm name, dog name. Native
 // construction bounds each byte string to 15 bytes plus its terminator;
-// func_08005278 renders these four consecutive values in the same order.
+// InitializeNewGameIdentityScreen renders these four values in this order.
 enum NewGameIdentityField {
     NEW_GAME_IDENTITY_PLAYER_NAME,
     NEW_GAME_IDENTITY_BIRTHDAY,
@@ -532,7 +532,10 @@ void func_08005254(NewGameIdentityCore * core)
     SECTION(".text.new_game_identity_core_initialization");
 void func_08005260(NewGameIdentityCore * core)
     SECTION(".text.new_game_identity_core_initialization");
-void func_08005278(NewGameIdentityCore * core);
+// Configure the confirmation screen, draw the four values and labels, queue
+// all eight tile buffers, build their BG map, and update the UI owner once.
+// JP has eight 12x2 buffers; overseas labels use separate 14x2 buffers.
+void InitializeNewGameIdentityScreen(NewGameIdentityCore * core);
 void func_08005800(NewGameIdentityCore * core)
     SECTION(".text.new_game_identity_core_update");
 extern NewGameSceneVTableFunction const vtable_unk_080E5A98[];

@@ -1924,9 +1924,9 @@ func_08004EFC:
 
     .section .text.new_game_identity_core_after_initialization
 
-    .global func_08005278
+    .global InitializeNewGameIdentityScreen
     .thumb_func
-func_08005278:
+InitializeNewGameIdentityScreen:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -5592,8 +5592,8 @@ func_08004EFC: @ 0x08004EFC
 
     .section .text.new_game_identity_core_after_initialization
 
-    thumb_func_start func_08005278
-func_08005278: @ 0x08005278
+    thumb_func_start InitializeNewGameIdentityScreen
+InitializeNewGameIdentityScreen: @ US 0x08005278
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
