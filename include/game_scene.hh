@@ -1003,6 +1003,40 @@ typedef char YodelRanchShopSceneSizeCheck[sizeof(YodelRanchShopScene) == 20 ? 1 
 typedef char YodelRanchShopSceneSaveCheck[offsetof(YodelRanchShopScene, save) == 16 ? 1 : -1];
 typedef char YodelRanchShopTransitionSizeCheck[sizeof(YodelRanchShopTransition) == 16 ? 1 : -1];
 
+// This saved-target naming operation is distinct from the reusable keyboard.
+// The native Run handles the six NAME_ENTRY_* cases and edits the save image.
+struct SavedNameEntryScene : AScene {
+    SavedNameEntryScene(SceneTransitionOwner next, GameStateSaveImage * image,
+        MaryNameEntryKind input_kind, u8 index)
+        : continuation(next), save(image), kind(input_kind), target_index(index) {}
+    virtual SceneTransitionOwner Run();
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+    MaryNameEntryKind kind;
+    u8 target_index;
+};
+
+struct SavedNameEntryTransition : SceneTransition {
+    SavedNameEntryTransition(SceneTransitionOwner next, GameStateSaveImage * image,
+        MaryNameEntryKind input_kind, u8 index)
+        : continuation(next), save(image), kind(input_kind), target_index(index) {}
+    virtual SceneOwner CreateScene();
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+    MaryNameEntryKind kind;
+    u8 target_index;
+};
+typedef char SavedNameEntrySceneSizeCheck[sizeof(SavedNameEntryScene) == 20 ? 1 : -1];
+typedef char SavedNameEntryTransitionSizeCheck[sizeof(SavedNameEntryTransition) == 20 ? 1 : -1];
+typedef char SavedNameEntrySceneContinuationCheck[offsetof(SavedNameEntryScene, continuation) == 4 ? 1 : -1];
+typedef char SavedNameEntrySceneSaveCheck[offsetof(SavedNameEntryScene, save) == 8 ? 1 : -1];
+typedef char SavedNameEntrySceneKindCheck[offsetof(SavedNameEntryScene, kind) == 12 ? 1 : -1];
+typedef char SavedNameEntryTransitionContinuationCheck[offsetof(SavedNameEntryTransition, continuation) == 4 ? 1 : -1];
+typedef char SavedNameEntryTransitionSaveCheck[offsetof(SavedNameEntryTransition, save) == 8 ? 1 : -1];
+typedef char SavedNameEntryTransitionKindCheck[offsetof(SavedNameEntryTransition, kind) == 12 ? 1 : -1];
+typedef char SavedNameEntrySceneIndexCheck[offsetof(SavedNameEntryScene, target_index) == 16 ? 1 : -1];
+typedef char SavedNameEntryTransitionIndexCheck[offsetof(SavedNameEntryTransition, target_index) == 16 ? 1 : -1];
+
 struct PoultryFarmShopSceneCore;
 struct PoultryFarmShopScene : AScene {
     virtual ~PoultryFarmShopScene();
@@ -1014,6 +1048,8 @@ struct PoultryFarmShopScene : AScene {
 };
 
 struct PoultryFarmShopTransition : SceneTransition {
+    PoultryFarmShopTransition(SceneTransitionOwner next, GameStateSaveImage * image, u32 input)
+        : continuation(next), save(image), unk_0C(input) {}
     virtual SceneOwner CreateScene();
     SceneTransitionOwner continuation;
     GameStateSaveImage * save;
@@ -1295,6 +1331,13 @@ void func_08084228(CarpenterShopSceneCore * core);
 void func_0807E0C0(ClinicShopSceneCore * core);
 #else
 void func_0807E558(ClinicShopSceneCore * core);
+#endif
+
+// The poultry core returns a signed target slot, with -1 meaning no purchase.
+#if defined(REGION_JP)
+i32 func_0807BA6C(PoultryFarmShopSceneCore * core);
+#else
+i32 func_0807BEC8(PoultryFarmShopSceneCore * core);
 #endif
 
 // Native shop construction ABI: each constructor consumes *continuation.

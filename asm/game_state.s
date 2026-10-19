@@ -2313,7 +2313,7 @@ func_080131A8:
     str r2, [sp, #0xc]
     str r4, [sp, #0x10]
     ldr r3, [r5]
-    ldr r1, .Ljp_08013108 @ =vtable_unk_080E5DA4
+    ldr r1, .Ljp_08013108 @ =__vt_25PoultryFarmShopTransition
     str r1, [r0]
     str r2, [sp, #0x10]
     str r4, [r0, #4]
@@ -2352,7 +2352,7 @@ func_080131A8:
     bx r0
     .align 2, 0
 .Ljp_08013104: .4byte vtable_unk_080E5E74
-.Ljp_08013108: .4byte vtable_unk_080E5DA4
+.Ljp_08013108: .4byte __vt_25PoultryFarmShopTransition
 
     .global func_0801323C
     .thumb_func
@@ -4106,7 +4106,7 @@ func_08013F88:
     str r2, [sp, #0xc]
     str r4, [sp, #0x10]
     ldr r3, [r5]
-    ldr r1, .Ljp_08013F04 @ =vtable_unk_080E5C64
+    ldr r1, .Ljp_08013F04 @ =__vt_24SavedNameEntryTransition
     str r1, [r0]
     str r2, [sp, #0x10]
     str r4, [r0, #4]
@@ -4151,7 +4151,7 @@ func_08013F88:
     bx r0
     .align 2, 0
 .Ljp_08013F00: .4byte vtable_unk_080E5E74
-.Ljp_08013F04: .4byte vtable_unk_080E5C64
+.Ljp_08013F04: .4byte __vt_24SavedNameEntryTransition
 
     .section .text.game_scene_menu_hooks_after, "ax", %progbits
 
@@ -19843,7 +19843,7 @@ func_080131A8: @ 0x080131A8
     str r2, [sp, #0xc]
     str r4, [sp, #0x10]
     ldr r3, [r5]
-    ldr r1, .L08013238 @ =vtable_unk_080E5DA4
+    ldr r1, .L08013238 @ =__vt_25PoultryFarmShopTransition
     str r1, [r0]
     str r2, [sp, #0x10]
     str r4, [r0, #4]
@@ -19882,7 +19882,7 @@ func_080131A8: @ 0x080131A8
     bx r0
     .align 2, 0
 .L08013234: .4byte vtable_unk_080E5E74
-.L08013238: .4byte vtable_unk_080E5DA4
+.L08013238: .4byte __vt_25PoultryFarmShopTransition
 
     thumb_func_start func_0801323C
 func_0801323C: @ 0x0801323C
@@ -21613,7 +21613,7 @@ func_08013F88: @ 0x08013F88
     str r2, [sp, #0xc]
     str r4, [sp, #0x10]
     ldr r3, [r5]
-    ldr r1, .L08014030 @ =vtable_unk_080E5C64
+    ldr r1, .L08014030 @ =__vt_24SavedNameEntryTransition
     str r1, [r0]
     str r2, [sp, #0x10]
     str r4, [r0, #4]
@@ -21658,7 +21658,7 @@ func_08013F88: @ 0x08013F88
     bx r0
     .align 2, 0
 .L0801402C: .4byte vtable_unk_080E5E74
-.L08014030: .4byte vtable_unk_080E5C64
+.L08014030: .4byte __vt_24SavedNameEntryTransition
 
     .section .text.game_scene_menu_hooks_after, "ax", %progbits
 

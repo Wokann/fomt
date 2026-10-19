@@ -8751,71 +8751,9 @@ func_080DB44C:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DB474
-    .thumb_func
-func_080DB474:
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x10
-    adds r7, r0, #0
-    adds r4, r1, #0
-    movs r0, #0x14
-    bl __builtin_new
-    ldr r5, [r4, #4]
-    movs r2, #0
-    str r2, [r4, #4]
-    ldrb r6, [r4, #0x10]
-    ldr r3, [r4, #8]
-    ldr r4, [r4, #0xc]
-    ldr r1, [pc, #0x34]
-    str r1, [r0]
-    str r2, [sp, #4]
-    str r5, [r0, #4]
-    str r3, [r0, #8]
-    str r4, [r0, #0xc]
-    strb r6, [r0, #0x10]
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r2, [r1]
-    str r0, [r7]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DAC6E
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DAC6E:
-    adds r0, r7, #0
-    add sp, #0x10
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .byte 0xF8, 0x76, 0x0E, 0x08
-    .global func_080DB4C8
-    .thumb_func
-func_080DB4C8:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_080DAC94
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DAC94:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._15SceneTransition
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.after_saved_name_transition, "ax", %progbits
+    .align 2, 0
+
     .global func_080DB4F0
     .thumb_func
 func_080DB4F0:
@@ -21408,26 +21346,9 @@ func_080DB44C:
 	.byte 0xF8, 0xF7, 0x58, 0xFA, 0x20, 0x1C, 0x29, 0x1C
 	bl _._15SceneTransition
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	.global func_080DB474
-	.thumb_func
-func_080DB474:
-	.byte 0xF0, 0xB5, 0x84, 0xB0, 0x07, 0x1C, 0x0C, 0x1C
-	.byte 0x14, 0x20
-	bl __builtin_new
-	.byte 0x65, 0x68, 0x00, 0x22, 0x62, 0x60, 0x26, 0x7C, 0xA3, 0x68, 0xE4, 0x68, 0x0D, 0x49, 0x01, 0x60
-	.byte 0x01, 0x92, 0x45, 0x60, 0x83, 0x60, 0xC4, 0x60, 0x06, 0x74, 0x00, 0x90, 0x69, 0x46, 0x02, 0x91
-	.byte 0x03, 0x90, 0x0A, 0x60, 0x38, 0x60, 0x00, 0x99, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68
-	.byte 0x08, 0x1C, 0x03, 0x21, 0xF8, 0xF7, 0x2D, 0xFA, 0x38, 0x1C, 0x04, 0xB0, 0xF0, 0xBC, 0x02, 0xBC
-	.byte 0x08, 0x47
-	.4byte vtable_unk_080E82B8 + 0x10
-	.global func_080DB4C8
-	.thumb_func
-func_080DB4C8:
-	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x61, 0x68, 0x00, 0x29
-	.byte 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF8, 0xF7, 0x1A, 0xFA, 0x20, 0x1C
-	.byte 0x29, 0x1C
-	bl _._15SceneTransition
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    .section .text.after_saved_name_transition, "ax", %progbits
+    .align 2, 0
+
 	.global func_080DB4F0
 	.thumb_func
 func_080DB4F0:
@@ -36927,28 +36848,9 @@ func_080E3980:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080E39A8
-    .thumb_func
-func_080E39A8:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_080E39C0
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080E39C0:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.after_saved_name_scene_destructor, "ax", %progbits
+    .align 2, 0
+
     .global func_080E39D0
     .thumb_func
 func_080E39D0:
@@ -45596,27 +45498,8 @@ func_080E41E8: @ 0x080E41E8
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080E4210
-func_080E4210: @ 0x080E4210
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080E4228
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080E4228:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_saved_name_scene_destructor, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E4238
 func_080E4238: @ 0x080E4238

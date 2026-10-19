@@ -13,6 +13,9 @@ extern void UpdateWorldMap(void);
 
 // Address-only references to the real compiler member symbols; the typed
 // member declarations stay in game_scene.hh. These are not ABI wrappers.
+extern void CreateScene__24SavedNameEntryTransition(void);
+extern void Run__20PoultryFarmShopScene(void);
+extern void DestroySavedNameEntryTransition(void) asm("_._24SavedNameEntryTransition");
 extern void Run__18ReferencePageScene(void);
 extern void Run__16SupermarketScene(void);
 extern void Run__24SupermarketPurchaseScene(void);
@@ -139,7 +142,6 @@ extern void func_080E2B70(void);
 extern void func_0807AC20(void);
 extern void func_0807AD18(void);
 extern void func_0807CC1C(void);
-extern void func_0807CC5C(void);
 extern void func_0807D960(void);
 extern void func_0807CD30(void);
 extern void func_0807D8D0(void);
@@ -332,8 +334,6 @@ extern void func_080A3900(void);
 extern void func_080A3C8C(void);
 extern void func_080A37A8(void);
 extern void func_080E3980(void);
-extern void func_080E39A8(void);
-extern void func_080A3CF4(void);
 extern void func_080A4B6C(void);
 extern void func_080A4F50(void);
 extern void func_080A5670(void);
@@ -432,7 +432,6 @@ extern void func_080E33D0(void);
 extern void func_0807B07C(void);
 extern void func_0807B174(void);
 extern void func_0807D0B4(void);
-extern void func_0807D0F4(void);
 extern void func_0807DDF8(void);
 extern void func_0807D1C8(void);
 extern void func_0807E478(void);
@@ -601,8 +600,6 @@ extern void func_080A3C8C(void);
 extern void func_080A3900(void);
 extern void func_080E41E8(void);
 extern void func_080A37A8(void);
-extern void func_080E4210(void);
-extern void func_080A3CF4(void);
 extern void func_080A4B6C(void);
 extern void func_080A4F50(void);
 extern void func_080A5760(void);
@@ -722,8 +719,6 @@ extern void func_080DB394(void);
 extern void func_080DB3DC(void);
 extern void func_080DB404(void);
 extern void func_080DB44C(void);
-extern void func_080DB474(void);
-extern void func_080DB4C8(void);
 extern void func_080DB4F0(void);
 extern void func_080DB540(void);
 extern void func_080DB568(void);
@@ -833,11 +828,11 @@ extern RawVTableFunction const vtable_unk_080E5C54[] = {
     func_080DB404,
 };
 
-extern RawVTableFunction const vtable_unk_080E5C64[] = {
+extern RawVTableFunction const __vt_24SavedNameEntryTransition[] = {
     nullptr,
     nullptr,
-    func_080DB4C8,
-    func_080DB474,
+    DestroySavedNameEntryTransition,
+    CreateScene__24SavedNameEntryTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5C74[] = {
@@ -973,7 +968,7 @@ extern RawVTableFunction const vtable_unk_080E5D94[] = {
     CreateScene__24YodelRanchShopTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5DA4[] = {
+extern RawVTableFunction const __vt_25PoultryFarmShopTransition[] = {
     nullptr,
     nullptr,
     DestroyPoultryFarmShopTransition,
@@ -5051,7 +5046,7 @@ extern RawVTableFunction const vtable_unk_080E7BEC[]
 #if defined(REGION_JP)
         nullptr,
         func_0807CC1C,
-        func_0807CC5C,
+        Run__20PoultryFarmShopScene,
 #else
         nullptr,
         nullptr,
@@ -5076,7 +5071,7 @@ extern RawVTableFunction const vtable_unk_080E7BF8[]
         nullptr,
         nullptr,
         func_0807D0B4,
-        func_0807D0F4,
+        Run__20PoultryFarmShopScene,
     };
 #endif
 
@@ -6412,39 +6407,22 @@ extern RawVTableFunction const vtable_unk_080E82A8[]
 #endif
     };
 
-// These are three adjacent callback starts in the original ROM.  Keep each
-// physical start as a real symbol: JP constructors use the C8 and D4 entries,
-// while the overseas code uses the later D8 table.
+// The naming scene now supplies its actual compiler vtable. The preceding
+// overseas scene table and the following JP map-prefix word remain native.
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E82B8[]
     SECTION(".rodata.vtable_82b8") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
-        func_080E39A8,
-        func_080A3CF4,
-#else
         func_080E41E8,
         func_080A37A8,
-#endif
     };
-
-#if !defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E82C8[]
-    SECTION(".rodata.vtable_82c8") = {
-        nullptr,
-        nullptr,
-        func_080E4210,
-    };
-#endif
-
+#else
 extern RawVTableFunction const vtable_unk_080E82D4[]
     SECTION(".rodata.vtable_82d4") = {
-#if defined(REGION_JP)
         nullptr,
-#else
-        func_080A3CF4,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E82D8[]

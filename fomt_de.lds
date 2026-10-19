@@ -392,6 +392,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
         src/game_scene.o(.text.Run__18ReferencePageScene);
         asm/code_0803EE94.o(.text.after_reference_page_scene_run);
+        src/game_scene.o(.text.Run__20PoultryFarmShopScene);
+        asm/code_0803EE94.o(.text.after_poultry_farm_shop_scene_run);
         src/game_scene.o(.text.Run__16SupermarketScene);
         asm/code_0803EE94.o(.text.after_supermarket_scene_run);
         src/game_scene.o(.text.Run__24SupermarketPurchaseScene);
@@ -546,6 +548,8 @@ SECTIONS
         asm/code_809E804.o(.text.field_item_after);
         src/game_scene.o(.text.Run__13CalendarScene);
         asm/code_809E804.o(.text.after_calendar_scene_run);
+        src/game_scene.o(.text.Run__19SavedNameEntryScene .text.__19SavedNameEntrySceneG20SceneTransitionOwnerP18GameStateSaveImage17MaryNameEntryKindUc);
+        asm/code_809E804.o(.text.after_saved_name_scene);
         src/time_of_day.o(.text.GetTimeOfDayTransitionValue);
         . = 0xA45F8; /* DE ROM 0x080A45F8, map-data accessor. */
         src/map_data.o(.text.GetMapData);
@@ -651,6 +655,8 @@ SECTIONS
         asm/code_linkonce.o(.text.game_scene_state_callbacks_after);
         src/game_scene.o(.text._._14GameSceneState);
         asm/code_linkonce.o(.text.scene_calendar_before);
+        src/game_scene.o(.text.CreateScene__24SavedNameEntryTransition .gnu.linkonce.t._._24SavedNameEntryTransition);
+        asm/code_linkonce.o(.text.after_saved_name_transition);
         src/game_scene.o(.text.CreateScene__18CalendarTransition .gnu.linkonce.t._._18CalendarTransition);
         src/game_scene.o(.text.CreateScene__19ToolChestTransition .gnu.linkonce.t._._19ToolChestTransition);
         src/game_scene.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
@@ -702,6 +708,8 @@ SECTIONS
         asm/code_linkonce.o(.text.new_game_birthday_core_cleanup_after);
         src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);
         asm/code_linkonce.o(.text.sprite_work_target_search_after);
+        src/game_scene.o(.gnu.linkonce.t._._19SavedNameEntryScene);
+        asm/code_linkonce.o(.text.after_saved_name_scene_destructor);
 
     } > ROM = 0xFF
 
@@ -953,8 +961,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8298);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82a8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82b8);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_82c8);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_82d4);
+. = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_19SavedNameEntryScene);
 . = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82e4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82fc);

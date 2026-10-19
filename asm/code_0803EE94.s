@@ -83626,86 +83626,9 @@ func_0807CC1C:
     bx r0
     .align 2, 0
 .Ljp_poultry_status_vtable: .4byte gUnk_080E7028
-    .global func_0807CC5C
-    .thumb_func
-func_0807CC5C:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    sub sp, #0x14
-    mov r8, r0
-    adds r7, r1, #0
-    ldr r0, [r7, #4]
-    bl func_0807BA6C
-    adds r6, r0, #0
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r6, r0
-    beq .Ljp_poultry_action_failed
-    movs r0, #0x10
-    bl __builtin_new
-    ldr r5, [r7, #8]
-    movs r4, #0
-    str r4, [r7, #8]
-    add r1, sp, #4
-    mov sb, r1
-    ldr r2, [r7, #0x10]
-    movs r3, #1
-    ldr r1, .Ljp_poultry_action_vtable_first
-    str r1, [r0]
-    str r4, [sp, #4]
-    str r5, [r0, #4]
-    str r2, [r0, #8]
-    str r3, [r0, #0xc]
-    str r0, [sp]
-    movs r0, #0x14
-    bl __builtin_new
-    ldr r5, [sp]
-    str r4, [sp]
-    ldr r2, [r7, #0x10]
-    movs r3, #3
-    ldr r1, .Ljp_poultry_action_vtable_second
-    str r1, [r0]
-    str r4, [sp, #8]
-    str r5, [r0, #4]
-    str r2, [r0, #8]
-    str r3, [r0, #0xc]
-    strb r6, [r0, #0x10]
-    mov r1, sb
-    str r1, [sp, #0xc]
-    str r0, [sp, #0x10]
-    str r4, [sp, #4]
-    mov r1, r8
-    str r0, [r1]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Ljp_poultry_action_done
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    b .Ljp_poultry_action_done
+    .section .text.after_poultry_farm_shop_scene_run, "ax", %progbits
     .align 2, 0
-.Ljp_poultry_action_vtable_first: .4byte vtable_unk_080E5DA4
-.Ljp_poultry_action_vtable_second: .4byte vtable_unk_080E5C64
-.Ljp_poultry_action_failed:
-    ldr r1, [r7, #8]
-    movs r0, #0
-    str r0, [r7, #8]
-    mov r0, r8
-    str r1, [r0]
-.Ljp_poultry_action_done:
-    mov r0, r8
-    add sp, #0x14
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
+
     .global func_0807CCFC
     .thumb_func
 func_0807CCFC:
@@ -100498,7 +100421,7 @@ func_08087D2C: @ 0x08087D2C
     ldr r3, [sp]
     str r6, [sp]
     ldr r2, [r5, #0x10]
-    ldr r1, .Ljp_08087DCC @ =vtable_unk_080E5C64
+    ldr r1, .Ljp_08087DCC @ =__vt_24SavedNameEntryTransition
     str r1, [r0]
     str r6, [sp, #8]
     str r3, [r0, #4]
@@ -100523,7 +100446,7 @@ func_08087D2C: @ 0x08087D2C
     b .Ljp_08087DDA
     .align 2, 0
 .Ljp_08087DC8: .4byte vtable_unk_080E5D94
-.Ljp_08087DCC: .4byte vtable_unk_080E5C64
+.Ljp_08087DCC: .4byte __vt_24SavedNameEntryTransition
 .Ljp_08087DD0:
     ldr r1, [r5, #8]
     movs r0, #0
@@ -238776,27 +238699,8 @@ func_0807D0B4:
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
 
 	.4byte vtable_unk_080E7BF8
-	.global func_0807D0F4
-	.thumb_func
-func_0807D0F4:
-	.byte 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x85, 0xB0, 0x80, 0x46
-	.byte 0x0F, 0x1C, 0x78, 0x68
-	bl func_0807BEC8
-	.byte 0x06, 0x1C, 0x01, 0x20, 0x40, 0x42, 0x86, 0x42, 0x32, 0xD0, 0x10, 0x20
-	bl __builtin_new
-	.byte 0xBD, 0x68, 0x00, 0x24, 0xBC, 0x60, 0x01, 0xA9, 0x89, 0x46, 0x3A, 0x69, 0x01, 0x23, 0x12, 0x49
-	.byte 0x01, 0x60, 0x01, 0x94, 0x45, 0x60, 0x82, 0x60, 0xC3, 0x60, 0x00, 0x90, 0x14, 0x20
-	bl __builtin_new
-	.byte 0x00, 0x9D, 0x00, 0x94, 0x3A, 0x69, 0x03, 0x23, 0x0C, 0x49, 0x01, 0x60, 0x02, 0x94, 0x45, 0x60
-	.byte 0x82, 0x60, 0xC3, 0x60, 0x06, 0x74, 0x49, 0x46, 0x03, 0x91, 0x04, 0x90, 0x01, 0x94, 0x41, 0x46
-	.byte 0x08, 0x60, 0x00, 0x99, 0x00, 0x29, 0x0F, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
-	bl _call_via_r2
-	.byte 0x08, 0xE0
-	.4byte vtable_unk_080E5DA4
-	.4byte vtable_unk_080E5C64
-	.byte 0xB9, 0x68, 0x00, 0x20, 0xB8, 0x60, 0x40, 0x46
-	.byte 0x01, 0x60, 0x40, 0x46, 0x05, 0xB0, 0x18, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xF0, 0xBC, 0x02, 0xBC
-	.byte 0x08, 0x47, 0x00, 0x00
+    .section .text.after_poultry_farm_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0807D194
 func_0807D194: @ 0x0807D194
@@ -260160,7 +260064,7 @@ func_080881EC: @ 0x080881EC
 	ldr r3, [sp]
 	str r6, [sp]
 	ldr r2, [r5, #0x10]
-	ldr r1, .L0808828C @ =vtable_unk_080E5C64
+	ldr r1, .L0808828C @ =__vt_24SavedNameEntryTransition
 	str r1, [r0]
 	str r6, [sp, #8]
 	str r3, [r0, #4]
@@ -260185,7 +260089,7 @@ func_080881EC: @ 0x080881EC
 	b .L0808829A
 	.align 2, 0
 .L08088288: .4byte vtable_unk_080E5D94
-.L0808828C: .4byte vtable_unk_080E5C64
+.L0808828C: .4byte __vt_24SavedNameEntryTransition
 .L08088290:
 	ldr r1, [r5, #8]
 	movs r0, #0
