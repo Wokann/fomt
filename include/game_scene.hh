@@ -1237,6 +1237,66 @@ typedef char GameSceneStatePointerCheck[offsetof(GameScene, state) == 4 ? 1 : -1
 
 EXTERN_C
 
+// Native modal cores remain opaque here. Calendar, cooking and guide cores
+// return a temporary transition owner that the scene must destroy before
+// handing back its own continuation; the other listed calls return void.
+#if defined(REGION_JP)
+void func_0807CD80(SupermarketSceneCore * core);
+#else
+void func_0807D218(SupermarketSceneCore * core);
+#endif
+void func_0807DE3C(SupermarketPurchaseSceneCore * core);
+SceneTransitionOwner func_080A25B0(CalendarSceneCore * core);
+#if defined(REGION_JP)
+void func_0808A09C(ToolChestSceneCore * core);
+#else
+void func_0808A55C(ToolChestSceneCore * core);
+#endif
+#if defined(REGION_JP)
+void func_0808E23C(RefrigeratorSceneCore * core);
+#else
+void func_0808E6FC(RefrigeratorSceneCore * core);
+#endif
+void func_08090960(ShelfSceneCore * core);
+#if defined(REGION_JP)
+SceneTransitionOwner func_08094A40(CookingSceneCore * core);
+#else
+SceneTransitionOwner func_08094F6C(CookingSceneCore * core);
+#endif
+SceneTransitionOwner func_080790E4(ReferencePageSceneCore * core);
+#if defined(REGION_JP)
+void func_08080CC4(SpecialMerchantShopSceneCore * core);
+#else
+void func_0808114C(SpecialMerchantShopSceneCore * core);
+#endif
+void func_08092D64(GiftWrappingSceneCore * core);
+#if defined(REGION_JP)
+void func_080800A8(WineryShopSceneCore * core);
+#else
+void func_08080540(WineryShopSceneCore * core);
+#endif
+#if defined(REGION_JP)
+void func_0807EAF8(InnShopSceneCore * core);
+#else
+void func_0807EF90(InnShopSceneCore * core);
+#endif
+#if defined(REGION_JP)
+void func_08081734(BeachCafeShopSceneCore * core);
+#else
+void func_08081BBC(BeachCafeShopSceneCore * core);
+#endif
+#if defined(REGION_JP)
+void func_0807F430(WonShopSceneCore * core);
+#else
+void func_0807F8C8(WonShopSceneCore * core);
+#endif
+void func_08084228(CarpenterShopSceneCore * core);
+#if defined(REGION_JP)
+void func_0807E0C0(ClinicShopSceneCore * core);
+#else
+void func_0807E558(ClinicShopSceneCore * core);
+#endif
+
 // Native shop construction ABI: each constructor consumes *continuation.
 #if defined(REGION_JP)
 SupermarketScene * func_0807D8A0(void * object, SceneTransition ** continuation,

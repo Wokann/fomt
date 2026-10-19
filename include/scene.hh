@@ -66,6 +66,15 @@ struct SceneTransitionOwner
 {
     void * value;
 
+    // As with SceneOwner, define the release helper before the transfer-copy
+    // constructor so the old compiler can inline that ordinary copy.
+    SceneTransition * release()
+    {
+        SceneTransition * transition = static_cast<SceneTransition *>(value);
+        value = nullptr;
+        return transition;
+    }
+
     explicit SceneTransitionOwner(SceneTransition * transition = nullptr) : value(transition) {}
     SceneTransitionOwner(SceneTransitionOwner & other) : value(other.release()) {}
     SceneTransitionOwner(SceneTransitionOwnerTransfer transfer);
@@ -73,12 +82,6 @@ struct SceneTransitionOwner
 
     SceneTransition * get() const { return static_cast<SceneTransition *>(value); }
     SceneTransition * operator->() const { return static_cast<SceneTransition *>(value); }
-    SceneTransition * release()
-    {
-        SceneTransition * transition = static_cast<SceneTransition *>(value);
-        value = nullptr;
-        return transition;
-    }
     operator SceneTransitionOwnerTransfer()
     {
         return SceneTransitionOwnerTransfer(value, static_cast<SceneTransition *>(value));

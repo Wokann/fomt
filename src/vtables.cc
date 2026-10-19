@@ -11,6 +11,25 @@ EXTERN_C
 
 extern void UpdateWorldMap(void);
 
+// Address-only references to the real compiler member symbols; the typed
+// member declarations stay in game_scene.hh. These are not ABI wrappers.
+extern void Run__18ReferencePageScene(void);
+extern void Run__16SupermarketScene(void);
+extern void Run__24SupermarketPurchaseScene(void);
+extern void Run__15ClinicShopScene(void);
+extern void Run__12InnShopScene(void);
+extern void Run__12WonShopScene(void);
+extern void Run__15WineryShopScene(void);
+extern void Run__24SpecialMerchantShopScene(void);
+extern void Run__18BeachCafeShopScene(void);
+extern void Run__18CarpenterShopScene(void);
+extern void Run__14ToolChestScene(void);
+extern void Run__17RefrigeratorScene(void);
+extern void Run__10ShelfScene(void);
+extern void Run__17GiftWrappingScene(void);
+extern void Run__12CookingScene(void);
+extern void Run__13CalendarScene(void);
+
 extern void DrawSavedWorldMap(void);
 
 extern void SelectDefaultWorldMapData(void);
@@ -118,62 +137,48 @@ extern void func_08078670(void);
 extern void func_080786A0(void);
 extern void func_080E2B70(void);
 extern void func_0807AC20(void);
-extern void func_0807AC60(void);
 extern void func_0807AD18(void);
 extern void func_0807CC1C(void);
 extern void func_0807CC5C(void);
 extern void func_0807D960(void);
 extern void func_0807CD30(void);
 extern void func_0807D8D0(void);
-extern void func_0807D910(void);
 extern void func_0807DFE0(void);
-extern void func_0807E020(void);
 extern void func_0807E070(void);
 extern void func_0807E9AC(void);
-extern void func_0807E9EC(void);
 extern void func_0807EA3C(void);
 extern void func_0807F118(void);
-extern void func_0807F158(void);
 extern void func_0807F1D8(void);
 extern void func_0807FFF4(void);
-extern void func_08080034(void);
 extern void func_08080094(void);
 extern void func_0808093C(void);
-extern void func_0808097C(void);
 extern void func_080809CC(void);
 extern void func_080815E8(void);
-extern void func_08081628(void);
 extern void func_08081678(void);
 extern void func_08081CBC(void);
-extern void func_08081CFC(void);
 extern void func_08081DC8(void);
 extern void func_08083664(void);
 extern void func_080836A4(void);
 extern void func_080837C8(void);
 extern void func_080850A0(void);
-extern void func_080850E0(void);
 extern void func_080851A4(void);
 extern void func_08087CEC(void);
 extern void func_08087D2C(void);
 extern void func_08087E44(void);
 extern void func_0808A6A8(void);
-extern void func_0808A6E8(void);
 extern void func_0808A754(void);
 extern void func_0808C0DC(void);
 extern void func_0808C5DC(void);
 extern void func_0808C190(void);
 extern void func_0808E848(void);
-extern void func_0808E888(void);
 extern void func_0808E8F8(void);
 extern void func_080909C4(void);
-extern void func_08090EC4(void);
 extern void func_08090F58(void);
 extern void func_08092090(void);
 extern void func_080920D0(void);
 extern void func_08092604(void);
 extern void func_0809215C(void);
 extern void func_08092CAC(void);
-extern void func_08093220(void);
 extern void func_08093D4C(void);
 extern void func_08093D80(void);
 extern void func_080E2C34(void);
@@ -315,12 +320,10 @@ extern void func_080E33D4(void);
 extern void func_080E352C(void);
 extern void func_080E3318(void);
 extern void func_08099F50(void);
-extern void func_08099F90(void);
 extern void func_080E3838(void);
 extern void func_080E3928(void);
 extern void func_080E36D8(void);
 extern void func_080E3948(void);
-extern void func_080A3774(void);
 extern void func_080A3AF8(void);
 extern void func_080A3BF4(void);
 extern void func_080A39FC(void);
@@ -345,7 +348,6 @@ extern void func_080E3C50(void);
 extern void func_080AC528(void);
 #else
 extern void func_08082144(void);
-extern void func_08082184(void);
 extern void func_08082250(void);
 extern void func_080E3494(void);
 extern void func_080E34DC(void);
@@ -353,28 +355,23 @@ extern void func_08083AEC(void);
 extern void func_08083B2C(void);
 extern void func_08083C50(void);
 extern void func_08085528(void);
-extern void func_08085568(void);
 extern void func_0808562C(void);
 extern void func_080881AC(void);
 extern void func_080881EC(void);
 extern void func_08088304(void);
 extern void func_0808AB68(void);
-extern void func_0808ABA8(void);
 extern void func_0808AC14(void);
 extern void func_0808C59C(void);
 extern void func_0808C5DC(void);
 extern void func_0808C650(void);
 extern void func_0808ED08(void);
-extern void func_0808ED48(void);
 extern void func_0808EDB8(void);
 extern void func_08090E84(void);
-extern void func_08090EC4(void);
 extern void func_08090F58(void);
 extern void func_080925C4(void);
 extern void func_08092604(void);
 extern void func_08092690(void);
 extern void func_080931E0(void);
-extern void func_08093220(void);
 extern void func_080E1118(void);
 extern void func_080E111C(void);
 extern void func_080E1120(void);
@@ -433,31 +430,23 @@ extern void func_08078AE8(void);
 extern void func_08078B18(void);
 extern void func_080E33D0(void);
 extern void func_0807B07C(void);
-extern void func_0807B0BC(void);
 extern void func_0807B174(void);
 extern void func_0807D0B4(void);
 extern void func_0807D0F4(void);
 extern void func_0807DDF8(void);
 extern void func_0807D1C8(void);
 extern void func_0807E478(void);
-extern void func_0807E4B8(void);
 extern void func_0807DD68(void);
-extern void func_0807DDA8(void);
 extern void func_0807E508(void);
 extern void func_0807EE44(void);
-extern void func_0807EE84(void);
 extern void func_0807EED4(void);
 extern void func_0807F5B0(void);
-extern void func_0807F5F0(void);
 extern void func_0807F670(void);
 extern void func_0808048C(void);
-extern void func_080804CC(void);
 extern void func_0808052C(void);
 extern void func_08080DC4(void);
-extern void func_08080E04(void);
 extern void func_08080E54(void);
 extern void func_08081A70(void);
-extern void func_08081AB0(void);
 extern void func_08081B00(void);
 extern void func_080E1E28(void);
 extern void func_0805E658(void);
@@ -600,12 +589,10 @@ extern void func_080E3C3C(void);
 extern void func_080E3D94(void);
 extern void func_080E3B80(void);
 extern void func_0809A518(void);
-extern void func_0809A558(void);
 extern void func_080E40A0(void);
 extern void func_080E4190(void);
 extern void func_080E3F40(void);
 extern void func_080E41B0(void);
-extern void func_080A3774(void);
 extern void func_080A3BF4(void);
 extern void func_080A3AF8(void);
 extern void func_080A3C40(void);
@@ -5026,7 +5013,7 @@ extern RawVTableFunction const vtable_unk_080E700C[]
         nullptr,
         nullptr,
         func_0807AC20,
-        func_0807AC60,
+        Run__18ReferencePageScene,
 #else
 extern RawVTableFunction const vtable_unk_080E7BD0[]
     SECTION(".rodata.vtable_7bd0") = {
@@ -5055,7 +5042,7 @@ extern RawVTableFunction const vtable_unk_080E7BDC[]
         nullptr,
         nullptr,
         func_0807B07C,
-        func_0807B0BC,
+        Run__18ReferencePageScene,
     };
 #endif
 
@@ -5114,7 +5101,7 @@ extern RawVTableFunction const vtable_unk_080E7050[]
         nullptr,
         nullptr,
         func_0807DFE0,
-        func_0807E020,
+        Run__24SupermarketPurchaseScene,
     };
 #else
 extern RawVTableFunction const vtable_unk_080E7C14[]
@@ -5131,12 +5118,12 @@ extern RawVTableFunction const vtable_unk_080E7C20[]
         nullptr,
         nullptr,
         func_0807D8D0,
-        func_0807D910,
+        Run__16SupermarketScene,
 #else
         nullptr,
         nullptr,
         func_0807E478,
-        func_0807E4B8,
+        Run__24SupermarketPurchaseScene,
 #endif
     };
 
@@ -5150,7 +5137,7 @@ extern RawVTableFunction const vtable_unk_080E7C30[]
         nullptr,
         nullptr,
         func_0807DD68,
-        func_0807DDA8,
+        Run__16SupermarketScene,
 #endif
     };
 
@@ -5169,7 +5156,7 @@ extern RawVTableFunction const vtable_unk_080E7C40[]
 #if defined(REGION_JP)
         nullptr,
         func_0807E9AC,
-        func_0807E9EC,
+        Run__15ClinicShopScene,
 #else
         nullptr,
         nullptr,
@@ -5187,7 +5174,7 @@ extern RawVTableFunction const vtable_unk_080E7C4C[]
         nullptr,
         nullptr,
         func_0807EE44,
-        func_0807EE84,
+        Run__15ClinicShopScene,
 #endif
     };
 
@@ -5203,7 +5190,7 @@ extern RawVTableFunction const vtable_unk_080E7C5C[]
 #if defined(REGION_JP)
         nullptr,
         func_0807F118,
-        func_0807F158,
+        Run__12InnShopScene,
 #else
         nullptr,
         nullptr,
@@ -5221,7 +5208,7 @@ extern RawVTableFunction const vtable_unk_080E7C68[]
         nullptr,
         nullptr,
         func_0807F5B0,
-        func_0807F5F0,
+        Run__12InnShopScene,
 #endif
     };
 
@@ -5237,7 +5224,7 @@ extern RawVTableFunction const vtable_unk_080E7C78[]
 #if defined(REGION_JP)
         nullptr,
         func_0807FFF4,
-        func_08080034,
+        Run__12WonShopScene,
 #else
         nullptr,
         nullptr,
@@ -5255,7 +5242,7 @@ extern RawVTableFunction const vtable_unk_080E7C84[]
         nullptr,
         nullptr,
         func_0808048C,
-        func_080804CC,
+        Run__12WonShopScene,
 #endif
     };
 
@@ -5271,7 +5258,7 @@ extern RawVTableFunction const vtable_unk_080E7C94[]
 #if defined(REGION_JP)
         nullptr,
         func_0808093C,
-        func_0808097C,
+        Run__15WineryShopScene,
 #else
         nullptr,
         nullptr,
@@ -5289,7 +5276,7 @@ extern RawVTableFunction const vtable_unk_080E7CA0[]
         nullptr,
         nullptr,
         func_08080DC4,
-        func_08080E04,
+        Run__15WineryShopScene,
 #endif
     };
 
@@ -5305,7 +5292,7 @@ extern RawVTableFunction const vtable_unk_080E7CB0[]
 #if defined(REGION_JP)
         nullptr,
         func_080815E8,
-        func_08081628,
+        Run__24SpecialMerchantShopScene,
 #else
         nullptr,
         nullptr,
@@ -5323,7 +5310,7 @@ extern RawVTableFunction const vtable_unk_080E7CBC[]
         nullptr,
         nullptr,
         func_08081A70,
-        func_08081AB0,
+        Run__24SpecialMerchantShopScene,
 #endif
     };
 
@@ -5339,7 +5326,7 @@ extern RawVTableFunction const vtable_unk_080E7CCC[]
 #if defined(REGION_JP)
         nullptr,
         func_08081CBC,
-        func_08081CFC,
+        Run__18BeachCafeShopScene,
 #else
         nullptr,
         nullptr,
@@ -5357,7 +5344,7 @@ extern RawVTableFunction const vtable_unk_080E7CD8[]
         nullptr,
         nullptr,
         func_08082144,
-        func_08082184,
+        Run__18BeachCafeShopScene,
 #endif
     };
 
@@ -5428,7 +5415,7 @@ extern RawVTableFunction const vtable_unk_080E7D14[]
 #if defined(REGION_JP)
         nullptr,
         func_080850A0,
-        func_080850E0,
+        Run__18CarpenterShopScene,
 #else
         nullptr,
         nullptr,
@@ -5457,7 +5444,7 @@ extern RawVTableFunction const vtable_unk_080E7D20[]
         nullptr,
         nullptr,
         func_08085528,
-        func_08085568,
+        Run__18CarpenterShopScene,
     };
 #endif
 
@@ -5498,7 +5485,7 @@ extern RawVTableFunction const vtable_unk_080E7D4C[]
 #if defined(REGION_JP)
         nullptr,
         func_0808A6A8,
-        func_0808A6E8,
+        Run__14ToolChestScene,
 #else
         nullptr,
         nullptr,
@@ -5517,7 +5504,7 @@ extern RawVTableFunction const vtable_unk_080E7D58[]
         nullptr,
         nullptr,
         func_0808AB68,
-        func_0808ABA8,
+        Run__14ToolChestScene,
 #endif
     };
 
@@ -5558,7 +5545,7 @@ extern RawVTableFunction const vtable_unk_080E7D84[]
 #if defined(REGION_JP)
         nullptr,
         func_0808E848,
-        func_0808E888,
+        Run__17RefrigeratorScene,
 #else
         nullptr,
         nullptr,
@@ -5583,7 +5570,7 @@ extern RawVTableFunction const vtable_unk_080E7D90[]
         nullptr,
         nullptr,
         func_0808ED08,
-        func_0808ED48,
+        Run__17RefrigeratorScene,
     };
 #endif
 
@@ -5592,7 +5579,7 @@ extern RawVTableFunction const vtable_unk_080E7DA0[]
 #if defined(REGION_JP)
         nullptr,
         func_080909C4,
-        func_08090EC4,
+        Run__10ShelfScene,
 #else
         nullptr,
         nullptr,
@@ -5610,7 +5597,7 @@ extern RawVTableFunction const vtable_unk_080E7DAC[]
         nullptr,
         nullptr,
         func_08090E84,
-        func_08090EC4,
+        Run__10ShelfScene,
 #endif
     };
 
@@ -5659,7 +5646,7 @@ extern RawVTableFunction const vtable_unk_080E7DD8[]
 #if defined(REGION_JP)
         nullptr,
         func_08092CAC,
-        func_08093220,
+        Run__17GiftWrappingScene,
 #else
         nullptr,
         nullptr,
@@ -5681,7 +5668,7 @@ extern RawVTableWithOffsetThreeEntries const vtable_unk_080E7DE4
         {
             nullptr,
             func_080931E0,
-            func_08093220,
+            Run__17GiftWrappingScene,
         },
 #endif
     };
@@ -6328,7 +6315,7 @@ extern RawVTableFunction const vtable_unk_080E823C[]
         nullptr,
 #if defined(REGION_JP)
         func_08099F50,
-        func_08099F90,
+        Run__12CookingScene,
 #else
         func_080E3D94,
         func_080E3B80,
@@ -6344,7 +6331,7 @@ extern RawVTableFunction const vtable_unk_080E824C[]
         nullptr,
 #else
         func_0809A518,
-        func_0809A558,
+        Run__12CookingScene,
 #endif
     };
 
@@ -6366,7 +6353,7 @@ extern RawVTableFunction const vtable_unk_080E8268[]
         nullptr,
 #if defined(REGION_JP)
         func_080E3948,
-        func_080A3774,
+        Run__13CalendarScene,
 #else
         func_080E4190,
         func_080E3F40,
@@ -6382,7 +6369,7 @@ extern RawVTableFunction const vtable_unk_080E8278[]
         func_080A3AF8,
 #else
         func_080E41B0,
-        func_080A3774,
+        Run__13CalendarScene,
 #endif
     };
 

@@ -3950,34 +3950,8 @@ func_080A3744: @ 0x080A317C
 	.align 2, 0
 .Ljp_080A3770: .4byte vtable_unk_080E8268
 
-    .global func_080A3774
-    .thumb_func
-func_080A3774: @ 0x080A31AC
-	push {r4, r5, lr}
-	sub sp, #4
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r1, [r4, #4]
-	mov r0, sp
-	bl func_080A25B0
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .Ljp_080A3796
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_080A3796:
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	add sp, #4
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_calendar_scene_run, "ax", %progbits
+    .align 2, 0
 
     .global func_080A37A8
     .thumb_func
@@ -86891,33 +86865,8 @@ func_080A3744: @ 0x080A3744
 	.align 2, 0
 .L080A3770: .4byte vtable_unk_080E8278
 
-	thumb_func_start func_080A3774
-func_080A3774: @ 0x080A3774
-	push {r4, r5, lr}
-	sub sp, #4
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r1, [r4, #4]
-	mov r0, sp
-	bl func_080A25B0
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080A3796
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080A3796:
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	add sp, #4
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_calendar_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080A37A8
 func_080A37A8: @ 0x080A37A8

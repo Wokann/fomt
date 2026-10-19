@@ -390,7 +390,37 @@ SECTIONS
         src/town_map_data.o(.text.town_map_hotspot_contains);
         . = 0x781E4; /* DE ROM 0x080781E4, town-map continuation. */
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
+        src/game_scene.o(.text.Run__18ReferencePageScene);
+        asm/code_0803EE94.o(.text.after_reference_page_scene_run);
+        src/game_scene.o(.text.Run__16SupermarketScene);
+        asm/code_0803EE94.o(.text.after_supermarket_scene_run);
+        src/game_scene.o(.text.Run__24SupermarketPurchaseScene);
+        asm/code_0803EE94.o(.text.after_supermarket_purchase_scene_run);
+        src/game_scene.o(.text.Run__15ClinicShopScene);
+        asm/code_0803EE94.o(.text.after_clinic_shop_scene_run);
+        src/game_scene.o(.text.Run__12InnShopScene);
+        asm/code_0803EE94.o(.text.after_inn_shop_scene_run);
+        src/game_scene.o(.text.Run__12WonShopScene);
+        asm/code_0803EE94.o(.text.after_won_shop_scene_run);
+        src/game_scene.o(.text.Run__15WineryShopScene);
+        asm/code_0803EE94.o(.text.after_winery_shop_scene_run);
+        src/game_scene.o(.text.Run__24SpecialMerchantShopScene);
+        asm/code_0803EE94.o(.text.after_special_merchant_shop_scene_run);
+        src/game_scene.o(.text.Run__18BeachCafeShopScene);
+        asm/code_0803EE94.o(.text.after_beach_cafe_shop_scene_run);
+        src/game_scene.o(.text.Run__18CarpenterShopScene);
+        asm/code_0803EE94.o(.text.after_carpenter_shop_scene_run);
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after_de_tail);
+        src/game_scene.o(.text.Run__14ToolChestScene);
+        asm/code_0803EE94.o(.text.after_tool_chest_scene_run);
+        src/game_scene.o(.text.Run__17RefrigeratorScene);
+        asm/code_0803EE94.o(.text.after_refrigerator_scene_run);
+        src/game_scene.o(.text.Run__10ShelfScene);
+        asm/code_0803EE94.o(.text.after_shelf_scene_run);
+        src/game_scene.o(.text.Run__17GiftWrappingScene);
+        asm/code_0803EE94.o(.text.after_gift_wrapping_scene_run);
+        src/game_scene.o(.text.Run__12CookingScene);
+        asm/code_0803EE94.o(.text.after_cooking_scene_run);
         src/cooking_recipe_inventory_data.o(.text);
         asm/code_0803EE94.o(.text.cooking_recipe_inventory_after);
         src/money_account.o(.text.money_account_update);
@@ -514,6 +544,8 @@ SECTIONS
         src/npc_locations.o(.text);
         src/field_item_data.o(.text);
         asm/code_809E804.o(.text.field_item_after);
+        src/game_scene.o(.text.Run__13CalendarScene);
+        asm/code_809E804.o(.text.after_calendar_scene_run);
         src/time_of_day.o(.text.GetTimeOfDayTransitionValue);
         . = 0xA45F8; /* DE ROM 0x080A45F8, map-data accessor. */
         src/map_data.o(.text.GetMapData);

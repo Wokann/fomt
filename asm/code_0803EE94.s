@@ -79673,34 +79673,8 @@ func_0807AC20: @ 0x0807AC20
     bx r0
 .Ljp_0807AC5C: .4byte vtable_unk_080E700C
 
-    .global func_0807AC60
-    .thumb_func
-func_0807AC60: @ 0x0807AC60
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r1, [r4, #4]
-    mov r0, sp
-    bl func_080790E4
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Ljp_0807AC82
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_0807AC82:
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    add sp, #4
-    pop {r4, r5}
-    pop {r1}
-    bx r1
+    .section .text.after_reference_page_scene_run, "ax", %progbits
+    .align 2, 0
 
     .global func_0807AC94
     .thumb_func
@@ -85237,22 +85211,8 @@ func_0807D8D0:
     .align 2, 0
 .Ljp_poultry_transfer_vtable: .4byte vtable_unk_080E7C20
 
-    .global func_0807D910
-    .thumb_func
-func_0807D910:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    bl func_0807CD80
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    pop {r4, r5}
-    pop {r1}
-    bx r1
+    .section .text.after_supermarket_scene_run, "ax", %progbits
+    .align 2, 0
 
     .global func_0807D92C
     .thumb_func
@@ -86096,22 +86056,8 @@ func_0807DFE0:
     .align 2, 0
 .Ljp_0807E01C: .4byte vtable_unk_080E7050
 
-    .global func_0807E020
-    .thumb_func
-func_0807E020:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    bl func_0807DE3C
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    pop {r4, r5}
-    pop {r1}
-    bx r1
+    .section .text.after_supermarket_purchase_scene_run, "ax", %progbits
+    .align 2, 0
 
     .global func_0807E03C
     .thumb_func
@@ -87294,22 +87240,8 @@ func_0807E9AC: @ 0x0807E9AC
 	.align 2, 0
 .Ljp_0807E9E8: .4byte vtable_unk_080E7C30_NullTail
 
-.global func_0807E9EC
-.thumb_func
-func_0807E9EC: @ 0x0807E9EC
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0807E0C0
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_clinic_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 .global func_0807EA08
 .thumb_func
@@ -88261,22 +88193,8 @@ func_0807F118: @ 0x0807F118
 	.align 2, 0
 .Ljp_0807F154: .4byte vtable_unk_080E7C4C_NullTail
 
-.global func_0807F158
-.thumb_func
-func_0807F158: @ 0x0807F158
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0807EAF8
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_inn_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 	.global func_0807F174
 	.thumb_func
@@ -88939,22 +88857,8 @@ func_0807FFF4: @ 0x0807FFF4
 	.align 2, 0
 .Ljp_08080030: .4byte vtable_unk_080E7C68_NullTail
 
-.global func_08080034
-.thumb_func
-func_08080034: @ 0x08080034
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0807F430
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_won_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 	.global func_08080050
 	.thumb_func
@@ -90103,22 +90007,8 @@ func_0808093C: @ 0x0808093C
 	.align 2, 0
 .Ljp_08080978: .4byte vtable_unk_080E7C84_NullTail
 
-.global func_0808097C
-.thumb_func
-func_0808097C: @ 0x0808097C
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_080800A8
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_winery_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 .global func_08080998
 .thumb_func
@@ -91651,22 +91541,8 @@ func_080815E8: @ 0x080815E8
 	.align 2, 0
 .Ljp_08081624: .4byte vtable_unk_080E7CA0_NullTail
 
-.global func_08081628
-.thumb_func
-func_08081628: @ 0x08081628
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_08080CC4
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_special_merchant_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 .global func_08081644
 .thumb_func
@@ -92515,22 +92391,8 @@ func_08081CBC: @ 0x08081CBC
 	.align 2, 0
 .Ljp_08081CF8: .4byte vtable_unk_080E7CBC_NullTail
 
-.global func_08081CFC
-.thumb_func
-func_08081CFC: @ 0x08081CFC
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_08081734
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_beach_cafe_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
     .global func_08081D18
     .thumb_func
@@ -97019,22 +96881,9 @@ func_080850A0: @ 0x080850A0
 	bx r0
 	.align 2, 0
 .Ljp_080850DC: .4byte vtable_unk_080E7D04_NullTail
-.global func_080850E0
-.thumb_func
-func_080850E0: @ 0x080850E0
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_08084228
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_carpenter_shop_scene_run, "ax", %progbits
+    .align 2, 0
+
 .global func_080850FC
 .thumb_func
 func_080850FC:
@@ -103256,22 +103105,8 @@ func_0808A6A8:
     .align 2, 0
 .Ljp_0808A6E4: .4byte gUnk_080E7188
 
-    .global func_0808A6E8
-    .thumb_func
-func_0808A6E8:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    bl func_0808A09C
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    pop {r4, r5}
-    pop {r1}
-    bx r1
+    .section .text.after_tool_chest_scene_run, "ax", %progbits
+    .align 2, 0
 
     .global func_0808A704
     .thumb_func
@@ -107350,22 +107185,8 @@ func_0808E848:
     .align 2, 0
 .Ljp_0808E884: .4byte gUnk_080E71C0
 
-    .global func_0808E888
-    .thumb_func
-func_0808E888:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    bl func_0808E23C
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    pop {r4, r5}
-    pop {r1}
-    bx r1
+    .section .text.after_refrigerator_scene_run, "ax", %progbits
+    .align 2, 0
 
     .global func_0808E8A4
     .thumb_func
@@ -111003,22 +110824,8 @@ func_080909C4:
     .align 2, 0
 .Ljp_08090A00:
     .4byte gUnk_080E71DC
-    .global func_08090EC4
-    .thumb_func
-func_08090EC4:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    bl func_08090960
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    pop {r4, r5}
-    pop {r1}
-    bx r1
+    .section .text.after_shelf_scene_run, "ax", %progbits
+    .align 2, 0
 
     .global func_08090EE0
     .thumb_func
@@ -113694,22 +113501,8 @@ func_08092CAC:
 	bx r0
 	.align 2, 0
 .Ljp_08092CE8: .4byte gUnk_080E7214
-.global func_08093220
-.thumb_func
-func_08093220:
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_08092D64
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_gift_wrapping_scene_run, "ax", %progbits
+    .align 2, 0
 
 	.global loc_08092D08
 	.thumb_func
@@ -119794,34 +119587,8 @@ func_08099F50:
     bx r0
     .align 2, 0
 .Ljp_08099F8C: .4byte vtable_unk_080E823C
-    .global func_08099F90
-    .thumb_func
-func_08099F90:
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r1, [r4, #4]
-    mov r0, sp
-    bl func_08094A40
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Ljp_08099FB2
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08099FB2:
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    add sp, #4
-    pop {r4, r5}
-    pop {r1}
-    bx r1
+    .section .text.after_cooking_scene_run, "ax", %progbits
+    .align 2, 0
 
     .global func_08099FC4
     .thumb_func
@@ -235059,16 +234826,8 @@ func_0807B07C:
 	bl _._6AScene
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
 	.4byte vtable_unk_080E7BDC
-	.global func_0807B0BC
-	.thumb_func
-func_0807B0BC:
-	.byte 0x30, 0xB5, 0x81, 0xB0
-	.byte 0x05, 0x1C, 0x0C, 0x1C, 0x61, 0x68, 0x68, 0x46, 0xFE, 0xF7, 0x0C, 0xF8, 0x00, 0x99, 0x00, 0x29
-	.byte 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
-	bl _call_via_r2
-	.byte 0xA1, 0x68
-	.byte 0x00, 0x20, 0xA0, 0x60, 0x29, 0x60, 0x28, 0x1C, 0x01, 0xB0, 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47
-
+    .section .text.after_reference_page_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0807B0F0
 func_0807B0F0: @ 0x0807B0F0
@@ -240541,21 +240300,8 @@ func_0807DD68: @ 0x0807DD68
 	.align 2, 0
 .L0807DDA4: .4byte vtable_unk_080E7C30
 
-	thumb_func_start func_0807DDA8
-func_0807DDA8: @ 0x0807DDA8
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0807D218
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_supermarket_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0807DDC4
 func_0807DDC4: @ 0x0807DDC4
@@ -241375,21 +241121,8 @@ func_0807E478: @ 0x0807E478
 	.align 2, 0
 .L0807E4B4: .4byte vtable_unk_080E7C20
 
-	thumb_func_start func_0807E4B8
-func_0807E4B8: @ 0x0807E4B8
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0807DE3C
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_supermarket_purchase_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0807E4D4
 func_0807E4D4: @ 0x0807E4D4
@@ -242567,21 +242300,8 @@ func_0807EE44: @ 0x0807EE44
 	.align 2, 0
 .L0807EE80: .4byte vtable_unk_080E7C4C
 
-	thumb_func_start func_0807EE84
-func_0807EE84: @ 0x0807EE84
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0807E558
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_clinic_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0807EEA0
 func_0807EEA0: @ 0x0807EEA0
@@ -243511,21 +243231,9 @@ func_0807F5B0: @ 0x0807F5B0
 	.align 2, 0
 .L0807F5EC: .4byte vtable_unk_080E7C68
 
-	thumb_func_start func_0807F5F0
-func_0807F5F0: @ 0x0807F5F0
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0807EF90
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_inn_shop_scene_run, "ax", %progbits
+    .align 2, 0
+
 	.global func_0807F60C
 	.thumb_func
 func_0807F60C: @ 0x0807F60C
@@ -245351,21 +245059,9 @@ func_0808048C: @ 0x0808048C
 	.align 2, 0
 .L080804C8: .4byte vtable_unk_080E7C84
 
-	thumb_func_start func_080804CC
-func_080804CC: @ 0x080804CC
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0807F8C8
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_won_shop_scene_run, "ax", %progbits
+    .align 2, 0
+
 	.global func_080804E8
 	.thumb_func
 func_080804E8: @ 0x080804E8
@@ -246493,21 +246189,8 @@ func_08080DC4: @ 0x08080DC4
 	.align 2, 0
 .L08080E00: .4byte vtable_unk_080E7CA0
 
-	thumb_func_start func_08080E04
-func_08080E04: @ 0x08080E04
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_08080540
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_winery_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_08080E20
 func_08080E20: @ 0x08080E20
@@ -248038,21 +247721,8 @@ func_08081A70: @ 0x08081A70
 	.align 2, 0
 .L08081AAC: .4byte vtable_unk_080E7CBC
 
-	thumb_func_start func_08081AB0
-func_08081AB0: @ 0x08081AB0
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0808114C
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_special_merchant_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_08081ACC
 func_08081ACC: @ 0x08081ACC
@@ -248897,21 +248567,9 @@ func_08082144: @ 0x08082144
 	.align 2, 0
 .L08082180: .4byte vtable_unk_080E7CD8
 
-	thumb_func_start func_08082184
-func_08082184: @ 0x08082184
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_08081BBC
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_beach_cafe_shop_scene_run, "ax", %progbits
+    .align 2, 0
+
 	thumb_func_start func_080821A0
 func_080821A0: @ 0x080821A0
 	push {r4, lr}
@@ -254681,21 +254339,8 @@ func_08085528: @ 0x08085528
 	.align 2, 0
 .L08085564: .4byte vtable_unk_080E7D20
 
-	thumb_func_start func_08085568
-func_08085568: @ 0x08085568
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_08084228
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_carpenter_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_08085584
 func_08085584: @ 0x08085584
@@ -265320,21 +264965,8 @@ func_0808AB68: @ 0x0808AB68
 	.align 2, 0
 .L0808ABA4: .4byte vtable_unk_080E7D58
 
-	thumb_func_start func_0808ABA8
-func_0808ABA8: @ 0x0808ABA8
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0808A55C
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_tool_chest_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0808ABC4
 func_0808ABC4: @ 0x0808ABC4
@@ -272905,21 +272537,8 @@ func_0808ED08: @ 0x0808ED08
 	.align 2, 0
 .L0808ED44: .4byte vtable_unk_080E7D90
 
-	thumb_func_start func_0808ED48
-func_0808ED48: @ 0x0808ED48
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_0808E6FC
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_refrigerator_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0808ED64
 func_0808ED64: @ 0x0808ED64
@@ -276702,21 +276321,8 @@ func_08090E84: @ 0x08090E84
 	.align 2, 0
 .L08090EC0: .4byte vtable_unk_080E7DAC
 
-	thumb_func_start func_08090EC4
-func_08090EC4: @ 0x08090EC4
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_08090960
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_shelf_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_08090EE0
 func_08090EE0: @ 0x08090EE0
@@ -280988,21 +280594,8 @@ func_080931E0: @ 0x080931E0
 	.align 2, 0
 .L0809321C: .4byte vtable_unk_080E7DE4
 
-	thumb_func_start func_08093220
-func_08093220: @ 0x08093220
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_08092D64
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_gift_wrapping_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0809323C
 func_0809323C: @ 0x0809323C
@@ -295628,33 +295221,8 @@ func_0809A518: @ 0x0809A518
 	.align 2, 0
 .L0809A554: .4byte vtable_unk_080E824C
 
-	thumb_func_start func_0809A558
-func_0809A558: @ 0x0809A558
-	push {r4, r5, lr}
-	sub sp, #4
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r1, [r4, #4]
-	mov r0, sp
-	bl func_08094F6C
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L0809A57A
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0809A57A:
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	add sp, #4
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_cooking_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0809A58C
 func_0809A58C: @ 0x0809A58C

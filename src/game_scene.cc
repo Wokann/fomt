@@ -2399,6 +2399,144 @@ EC void func_080D7F88(GameSceneState * state)
         func_08050E74(reinterpret_cast<void * const *>(window));
 }
 
+// Modal run methods follow their native ROM order. Returning the member
+// transfers its pointer and clears the source; it does not run the next scene.
+SceneTransitionOwner ReferencePageScene::Run()
+{
+    func_080790E4(core);
+    return continuation;
+}
+
+SceneTransitionOwner SupermarketScene::Run()
+{
+#if defined(REGION_JP)
+    func_0807CD80(core);
+#else
+    func_0807D218(core);
+#endif
+    return continuation;
+}
+
+SceneTransitionOwner SupermarketPurchaseScene::Run()
+{
+    func_0807DE3C(core);
+    return continuation;
+}
+
+SceneTransitionOwner ClinicShopScene::Run()
+{
+#if defined(REGION_JP)
+    func_0807E0C0(core);
+#else
+    func_0807E558(core);
+#endif
+    return continuation;
+}
+
+SceneTransitionOwner InnShopScene::Run()
+{
+#if defined(REGION_JP)
+    func_0807EAF8(core);
+#else
+    func_0807EF90(core);
+#endif
+    return continuation;
+}
+
+SceneTransitionOwner WonShopScene::Run()
+{
+#if defined(REGION_JP)
+    func_0807F430(core);
+#else
+    func_0807F8C8(core);
+#endif
+    return continuation;
+}
+
+SceneTransitionOwner WineryShopScene::Run()
+{
+#if defined(REGION_JP)
+    func_080800A8(core);
+#else
+    func_08080540(core);
+#endif
+    return continuation;
+}
+
+SceneTransitionOwner SpecialMerchantShopScene::Run()
+{
+#if defined(REGION_JP)
+    func_08080CC4(core);
+#else
+    func_0808114C(core);
+#endif
+    return continuation;
+}
+
+SceneTransitionOwner BeachCafeShopScene::Run()
+{
+#if defined(REGION_JP)
+    func_08081734(core);
+#else
+    func_08081BBC(core);
+#endif
+    return continuation;
+}
+
+SceneTransitionOwner CarpenterShopScene::Run()
+{
+    func_08084228(core);
+    return continuation;
+}
+
+SceneTransitionOwner ToolChestScene::Run()
+{
+#if defined(REGION_JP)
+    func_0808A09C(core);
+#else
+    func_0808A55C(core);
+#endif
+    return continuation;
+}
+
+SceneTransitionOwner RefrigeratorScene::Run()
+{
+#if defined(REGION_JP)
+    func_0808E23C(core);
+#else
+    func_0808E6FC(core);
+#endif
+    return continuation;
+}
+
+SceneTransitionOwner ShelfScene::Run()
+{
+    func_08090960(core);
+    return continuation;
+}
+
+SceneTransitionOwner GiftWrappingScene::Run()
+{
+    func_08092D64(core);
+    return continuation;
+}
+
+SceneTransitionOwner CookingScene::Run()
+{
+#if defined(REGION_JP)
+    func_08094A40(core);
+#else
+    func_08094F6C(core);
+#endif
+    return continuation;
+}
+
+SceneTransitionOwner CalendarScene::Run()
+{
+    func_080A25B0(core);
+    return continuation;
+}
+
 SceneOwner CalendarTransition::CreateScene()
 {
     SceneTransition * next = continuation.release();
