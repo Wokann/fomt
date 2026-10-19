@@ -159,6 +159,8 @@ SECTIONS
         src/game_state.o(.text.InitializeGameDisplayOptions);
         src/game_state.o(.text.*);
         asm/game_state.o(.text.game_state_after_display_options);
+        src/game_scene.o(.text.UpdateGameSceneHardwareFrame);
+        asm/game_state.o(.text.game_scene_constructors);
         src/game_scene.o(.text._._9GameScene);
         /* Keep the recovered member runs around the native opener and menus.
          * Patterns in one input selector keep the object's section order. */

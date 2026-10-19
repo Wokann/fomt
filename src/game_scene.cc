@@ -4,6 +4,8 @@
 #include "hardware_blend.hh"
 #include "hardware_manager.hh"
 #include "hardware_dma.hh"
+#include "hardware_bootstrap.hh"
+#include "hardware_nested_accessors.hh"
 #include "game_state.hh"
 #include "field_item_data.hh"
 #include "field_render_rect_descriptors.hh"
@@ -143,6 +145,32 @@ ScriptEngine * func_0801014C(void)
 GameSceneScriptController::~GameSceneScriptController()
 {
     gUnk_0300040C = nullptr;
+}
+
+void UpdateGameSceneHardwareFrame(GameSceneState * state, HardwareSpriteBufferState * buffer)
+{
+    HardwareDisplayCommand display(&state->display);
+    HardwareSpriteBufferCommand sprite(buffer);
+    HardwareDmaQueueCommand dma(&state->dma_queue);
+    HardwareLinkedList commands;
+
+    func_08009940(&commands, &state->links);
+    func_08009940(&commands, &display);
+    func_08009940(&commands, &dma);
+    func_08009940(&commands, &sprite);
+
+    // The manager returns its interrupt list. Its native virtual Append and
+    // Remove ABI is retained here, as in UpdateHardwareFrame, around the tick.
+    void * manager = &state->manager;
+    void * object = func_08008AE0(reinterpret_cast<void * const *>(manager));
+    void ** vtable = *reinterpret_cast<void ***>((u8 *)object + 8);
+    ((void (*)(void *, HardwareLinkedList *))vtable[4])(object, &commands);
+    func_08008AF0(manager);
+    object = func_08008AE0(reinterpret_cast<void * const *>(manager));
+    vtable = *reinterpret_cast<void ***>((u8 *)object + 8);
+    ((void (*)(void *, HardwareLinkedList *))vtable[5])(object, &commands);
+
+    // The temporary list and commands unlink in reverse construction order.
 }
 
 GameScene::~GameScene()

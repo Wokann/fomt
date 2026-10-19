@@ -13,6 +13,7 @@
 #include "resource_handle.hh"
 #include "hardware_resource.hh"
 #include "hardware_state_clear.hh"
+#include "hardware_state_accessors.hh"
 #include "time_of_day.hh"
 #include "field_render_farm_house_data.hh"
 
@@ -1064,9 +1065,11 @@ typedef char ClockTransitionOwnerCheck[offsetof(ClockTransition, continuation) =
 // The display shadow at +0x10 is constructed as HardwareDisplayState.
 // Other fields are typed only where native construction or use proves them.
 struct GameSceneState {
-    u8 unk_00[0x10];
+    HardwareDmaQueue dma_queue;
     HardwareDisplayState display;
-    u8 unk_68[0x24];
+    HardwareManagerOwner manager;
+    HardwareLinkedList links;
+    GameScene * scene;
     GameStateSaveImage * save;
     GameSceneResumeRequest resume_request;
     u32 script_state;
@@ -1181,7 +1184,11 @@ typedef char GameSceneBgmSettingsLfoCheck[offsetof(GameSceneBgmSettings, lfo_spe
 typedef char GameSceneSongPlayerPoolSizeCheck[sizeof(GameSceneSongPlayerPool) == 16 ? 1 : -1];
 typedef char GameSceneSongPlayerPoolCapacityCheck[offsetof(GameSceneSongPlayerPool, capacity_end) == 12 ? 1 : -1];
 typedef char GameSceneStateSizeCheck[sizeof(GameSceneState) == 0xF8 ? 1 : -1];
+typedef char GameSceneStateDmaQueueCheck[offsetof(GameSceneState, dma_queue) == 0 ? 1 : -1];
 typedef char GameSceneStateDisplayCheck[offsetof(GameSceneState, display) == 0x10 ? 1 : -1];
+typedef char GameSceneStateManagerCheck[offsetof(GameSceneState, manager) == 0x68 ? 1 : -1];
+typedef char GameSceneStateLinksCheck[offsetof(GameSceneState, links) == 0x6C ? 1 : -1];
+typedef char GameSceneStateSceneCheck[offsetof(GameSceneState, scene) == 0x88 ? 1 : -1];
 typedef char GameSceneStateBlendControlCheck[offsetof(GameSceneState, display) +
     offsetof(HardwareDisplayState, blend_control) == 0x60 ? 1 : -1];
 typedef char GameSceneStateScreenBlendCheck[offsetof(GameSceneState, screen_blend) == 0xA0 ? 1 : -1];
@@ -1476,6 +1483,8 @@ void func_0803B6B8(ScriptTextVariableStore * variables, u32 slot, char const * t
 
 // The native scene runner still owns the underlying update loop.
 SceneTransitionOwner sub_080D8178(GameSceneState * state);
+
+void UpdateGameSceneHardwareFrame(GameSceneState * state, HardwareSpriteBufferState * buffer);
 
 EXTERN_C_END
 
