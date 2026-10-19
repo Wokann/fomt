@@ -73036,7 +73036,7 @@ func_080CADF0:
     blt .Lauto_080CA620
     adds r4, r5, #4
     adds r0, r4, #0
-    bl func_080E586C
+    bl ClearNodes__25GameSceneMenuCommandQueue
     ldr r0, [r4, #4]
     cmp r0, #0
     beq .Lauto_080CA658
@@ -78058,86 +78058,9 @@ func_080CE2FC:
     bx r1
     .byte 0x00, 0x00
     .4byte gUnk_08527094
-    .global func_080CE3DC
-    .thumb_func
-func_080CE3DC: @ 0x080CDBEC
-	push {r4, r5, r6, lr}
-	sub sp, #8
-	adds r5, r0, #0
-	adds r6, r1, #0
-	adds r0, #0xc0
-	ldr r0, [r0, #4]
-	ldr r1, [r0]
-	str r1, [sp]
-	str r0, [sp, #4]
-	b .L080CDC1C
-.L080CDC00:
-	ldr r0, [sp]
-	ldr r1, [r0, #8]
-	cmp r1, #0
-	beq .L080CDC14
-	ldr r0, [r1, #8]
-	ldr r2, [r0, #0xc]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080CDC14:
-	ldr r0, [sp]
-	ldr r0, [r0]
-	str r0, [sp]
-	ldr r1, [sp, #4]
-.L080CDC1C:
-	eors r1, r0
-	rsbs r0, r1, #0
-	orrs r0, r1
-	cmp r0, #0
-	blt .L080CDC00
-	adds r4, r5, #0
-	adds r4, #0xc0
-	adds r0, r4, #0
-	bl func_080E586C
-	ldr r0, [r4, #4]
-	cmp r0, #0
-	beq .L080CDC3A
-	bl free
-.L080CDC3A:
-	ldr r0, .L080CDC8C @ =__vt_23IndexedResourceProvider
-	str r0, [r5, #0x1c]
-	adds r4, r5, #0
-	adds r4, #0x14
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl func_080073E0
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	adds r4, r5, #4
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	movs r0, #1
-	ands r0, r6
-	cmp r0, #0
-	beq .L080CDC84
-	adds r0, r5, #0
-	bl __builtin_delete
-.L080CDC84:
-	add sp, #8
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080CDC8C: .4byte __vt_23IndexedResourceProvider
+    .section .text.after_menu_tilemap_data_destructor, "ax", %progbits
+    .align 2, 0
+
     .global func_080CE480
     .thumb_func
 func_080CE480: @ 0x080CDC90
@@ -165081,7 +165004,7 @@ func_080CADF0: @ 0x080CADF0
 	blt .L080CAE10
 	adds r4, r5, #4
 	adds r0, r4, #0
-	bl func_080E586C
+	bl ClearNodes__25GameSceneMenuCommandQueue
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	beq .L080CAE48
@@ -172034,85 +171957,8 @@ func_080CE2FC: @ 0x080CE2FC
 	.align 2, 0
 .L080CE3D8: .4byte gUnk_08527094
 
-	thumb_func_start func_080CE3DC
-func_080CE3DC: @ 0x080CE3DC
-	push {r4, r5, r6, lr}
-	sub sp, #8
-	adds r5, r0, #0
-	adds r6, r1, #0
-	adds r0, #0xc0
-	ldr r0, [r0, #4]
-	ldr r1, [r0]
-	str r1, [sp]
-	str r0, [sp, #4]
-	b .L080CE40C
-.L080CE3F0:
-	ldr r0, [sp]
-	ldr r1, [r0, #8]
-	cmp r1, #0
-	beq .L080CE404
-	ldr r0, [r1, #8]
-	ldr r2, [r0, #0xc]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080CE404:
-	ldr r0, [sp]
-	ldr r0, [r0]
-	str r0, [sp]
-	ldr r1, [sp, #4]
-.L080CE40C:
-	eors r1, r0
-	rsbs r0, r1, #0
-	orrs r0, r1
-	cmp r0, #0
-	blt .L080CE3F0
-	adds r4, r5, #0
-	adds r4, #0xc0
-	adds r0, r4, #0
-	bl func_080E586C
-	ldr r0, [r4, #4]
-	cmp r0, #0
-	beq .L080CE42A
-	bl free
-.L080CE42A:
-	ldr r0, .L080CE47C @ =__vt_23IndexedResourceProvider
-	str r0, [r5, #0x1c]
-	adds r4, r5, #0
-	adds r4, #0x14
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl func_080073E0
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	adds r4, r5, #4
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	movs r0, #1
-	ands r0, r6
-	cmp r0, #0
-	beq .L080CE474
-	adds r0, r5, #0
-	bl __builtin_delete
-.L080CE474:
-	add sp, #8
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080CE47C: .4byte __vt_23IndexedResourceProvider
+    .section .text.after_menu_tilemap_data_destructor, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080CE480
 func_080CE480: @ 0x080CE480

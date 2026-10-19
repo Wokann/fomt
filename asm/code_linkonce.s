@@ -35191,7 +35191,7 @@ func_080E3504:
     cmp r0, #0
     beq .Lauto_080E2CB8
     movs r1, #3
-    bl func_080CE3DC
+    bl _._24GameSceneMenuTilemapData
     .Lauto_080E2CB8:
     adds r0, r6, #0
     adds r0, #0x90
@@ -38890,33 +38890,9 @@ func_080E4C84:
     pop {r0}
     bx r0
     .byte 0xC4, 0x79, 0x0E, 0x08, 0x14, 0x04, 0x00, 0x03
-    .global func_080E586C
-    .thumb_func
-func_080E586C:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    ldr r0, [r5, #4]
-    ldr r4, [r0]
-    cmp r4, r0
-    beq .Lauto_080E4CCA
-    .Lauto_080E4CB8:
-    adds r0, r4, #0
-    ldr r4, [r4]
-    cmp r0, #0
-    beq .Lauto_080E4CC4
-    bl free
-    .Lauto_080E4CC4:
-    ldr r0, [r5, #4]
-    cmp r4, r0
-    bne .Lauto_080E4CB8
-    .Lauto_080E4CCA:
-    ldr r0, [r5, #4]
-    str r0, [r0]
-    str r0, [r0, #4]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.after_menu_command_node_cleanup, "ax", %progbits
+    .align 2, 0
+
     .global func_080E5898
     .thumb_func
 func_080E5898:
@@ -43671,7 +43647,7 @@ func_080E3504: @ 0x080E3504
 	cmp r0, #0
 	beq .L080E3518
 	movs r1, #3
-	bl func_080CE3DC
+	bl _._24GameSceneMenuTilemapData
 .L080E3518:
 	adds r0, r6, #0
 	adds r0, #0x90
@@ -48079,32 +48055,8 @@ func_080E5844: @ 0x080E5844
 .L080E5864: .4byte vtable_unk_080E8594
 .L080E5868: .4byte gUnk_03000414
 
-	thumb_func_start func_080E586C
-func_080E586C: @ 0x080E586C
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	ldr r0, [r5, #4]
-	ldr r4, [r0]
-	cmp r4, r0
-	beq .L080E588A
-.L080E5878:
-	adds r0, r4, #0
-	ldr r4, [r4]
-	cmp r0, #0
-	beq .L080E5884
-	bl free
-.L080E5884:
-	ldr r0, [r5, #4]
-	cmp r4, r0
-	bne .L080E5878
-.L080E588A:
-	ldr r0, [r5, #4]
-	str r0, [r0]
-	str r0, [r0, #4]
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_menu_command_node_cleanup, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E5898
 func_080E5898: @ 0x080E5898

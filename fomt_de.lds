@@ -593,6 +593,8 @@ SECTIONS
         asm/code_809E804.o(.text.ui_text_stream_update_after);
         src/game_scene.o(.text.__23GameSceneMenuCorePrefixP18GameStateSaveImage);
         asm/code_809E804.o(.text.after_menu_core_prefix_constructor);
+        src/game_scene.o(.text._._24GameSceneMenuTilemapData);
+        asm/code_809E804.o(.text.after_menu_tilemap_data_destructor);
         src/link_communication_data.o(.text);
         . = 0xD0C38; /* DE ROM 0x080D0C38, glyph-map index converter and renderer. */
         src/font.o(.text);
@@ -720,6 +722,8 @@ SECTIONS
         asm/code_linkonce.o(.text.sprite_work_target_search_after);
         src/game_scene.o(.gnu.linkonce.t._._19SavedNameEntryScene);
         asm/code_linkonce.o(.text.after_saved_name_scene_destructor);
+        src/game_scene.o(.text.ClearNodes__25GameSceneMenuCommandQueue);
+        asm/code_linkonce.o(.text.after_menu_command_node_cleanup);
         src/game_scene.o(.gnu.linkonce.t._._23GameSceneMenuCorePrefix);
         asm/code_linkonce.o(.text.after_menu_core_prefix_destructor);
 

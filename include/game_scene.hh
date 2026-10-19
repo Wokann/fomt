@@ -2,6 +2,7 @@
 #define GAME_SCENE_HH
 
 #include "prelude.h"
+#include <stdlib.h>
 #include "game_state.hh"
 #include "scene.hh"
 #include "entity_actor.hh"
@@ -1783,5 +1784,79 @@ extern u8 const gUnk_084DABB8[];
 extern u8 const gUnk_08754C0C[];
 #endif
 }
+
+// Native menu tilemap command storage. Construction remains in assembly;
+// only the verified layout and command/resource cleanup are recovered here.
+// Do not allocate these views or assign meaning to untouched words.
+struct GameSceneMenuCommandNode {
+    GameSceneMenuCommandNode * next;
+    GameSceneMenuCommandNode * previous;
+    HardwareLinkBase * command;
+};
+struct GameSceneMenuCommandIterator {
+    GameSceneMenuCommandNode * current;
+    explicit GameSceneMenuCommandIterator(GameSceneMenuCommandNode * node) : current(node) {}
+    GameSceneMenuCommandIterator(GameSceneMenuCommandIterator const & other) : current(other.current) {}
+    bool operator!=(GameSceneMenuCommandIterator const & other) const
+    {
+        return current != other.current;
+    }
+    GameSceneMenuCommandIterator & operator++()
+    {
+        current = current->next;
+        return *this;
+    }
+    HardwareLinkBase * operator*() const { return current->command; }
+};
+struct GameSceneMenuCommandQueue {
+    u32 unk_00;
+    GameSceneMenuCommandNode * sentinel;
+    void ClearNodes();
+    ~GameSceneMenuCommandQueue()
+    {
+        ClearNodes();
+        if (sentinel != nullptr)
+            free(sentinel);
+    }
+    GameSceneMenuCommandIterator Begin() const
+    {
+        return GameSceneMenuCommandIterator(sentinel->next);
+    }
+    GameSceneMenuCommandIterator End() const
+    {
+        return GameSceneMenuCommandIterator(sentinel);
+    }
+private:
+    GameSceneMenuCommandQueue();
+};
+
+struct GameSceneMenuTilemapData {
+    u32 unk_00;
+    HardwareStateEntry unk_04;
+    HardwareStateEntry unk_0C;
+    HardwareResourceEntry unk_14;
+    IndexedResourceArchive archive;
+    GameSceneMenuResourceState first;
+    GameSceneMenuResourceState second;
+    u32 unk_BC;
+    GameSceneMenuCommandQueue commands;
+    ~GameSceneMenuTilemapData();
+private:
+    GameSceneMenuTilemapData();
+};
+typedef char MenuCommandNodeSizeCheck[sizeof(GameSceneMenuCommandNode) == 12 ? 1 : -1];
+typedef char MenuCommandNodeValueCheck[offsetof(GameSceneMenuCommandNode, command) == 8 ? 1 : -1];
+typedef char MenuCommandIteratorSizeCheck[sizeof(GameSceneMenuCommandIterator) == 4 ? 1 : -1];
+typedef char MenuCommandQueueSizeCheck[sizeof(GameSceneMenuCommandQueue) == 8 ? 1 : -1];
+typedef char MenuCommandQueueHeadCheck[offsetof(GameSceneMenuCommandQueue, sentinel) == 4 ? 1 : -1];
+typedef char MenuTilemapDataSizeCheck[sizeof(GameSceneMenuTilemapData) == 0xC8 ? 1 : -1];
+typedef char MenuTilemapDataFirstStateCheck[offsetof(GameSceneMenuTilemapData, unk_04) == 4 ? 1 : -1];
+typedef char MenuTilemapDataSecondStateCheck[offsetof(GameSceneMenuTilemapData, unk_0C) == 0xC ? 1 : -1];
+typedef char MenuTilemapDataPoolEntryCheck[offsetof(GameSceneMenuTilemapData, unk_14) == 0x14 ? 1 : -1];
+typedef char MenuTilemapDataArchiveCheck[offsetof(GameSceneMenuTilemapData, archive) == 0x1C ? 1 : -1];
+typedef char MenuTilemapDataFirstResourceCheck[offsetof(GameSceneMenuTilemapData, first) == 0x4C ? 1 : -1];
+typedef char MenuTilemapDataSecondResourceCheck[offsetof(GameSceneMenuTilemapData, second) == 0x84 ? 1 : -1];
+typedef char MenuTilemapDataUnknownWordCheck[offsetof(GameSceneMenuTilemapData, unk_BC) == 0xBC ? 1 : -1];
+typedef char MenuTilemapDataQueueCheck[offsetof(GameSceneMenuTilemapData, commands) == 0xC0 ? 1 : -1];
 
 #endif // GAME_SCENE_HH

@@ -102538,7 +102538,7 @@ func_0808A09C:
     cmp r0, #0
     beq .Lauto_0808A1A0
     movs r1, #3
-    bl func_080CE3DC
+    bl _._24GameSceneMenuTilemapData
     .Lauto_0808A1A0:
     str r5, [r4]
     ldr r1, [sp, #0x18]
@@ -106616,7 +106616,7 @@ func_0808E23C:
     cmp r0, #0
     beq .Lauto_0808E340
     movs r1, #3
-    bl func_080CE3DC
+    bl _._24GameSceneMenuTilemapData
     .Lauto_0808E340:
     str r5, [r4]
     ldr r1, [sp, #0x18]
@@ -110044,7 +110044,7 @@ func_08090960:
     cmp	r0, #0
     beq.n .Ljp_080905A4
     movs	r1, #3
-    bl func_080CE3DC
+    bl _._24GameSceneMenuTilemapData
 .Ljp_080905A4:
     str	r5, [r4, #0]
     ldr	r1, [sp, #16]
@@ -263781,7 +263781,7 @@ func_0808A55C: @ 0x0808A55C
 	cmp r0, #0
 	beq .L0808A660
 	movs r1, #3
-	bl func_080CE3DC
+	bl _._24GameSceneMenuTilemapData
 .L0808A660:
 	str r5, [r4]
 	ldr r1, [sp, #0x18]
@@ -271353,7 +271353,7 @@ func_0808E6FC: @ 0x0808E6FC
 	cmp r0, #0
 	beq .L0808E800
 	movs r1, #3
-	bl func_080CE3DC
+	bl _._24GameSceneMenuTilemapData
 .L0808E800:
 	str r5, [r4]
 	ldr r1, [sp, #0x18]
@@ -275250,7 +275250,7 @@ func_08090960: @ 0x08090960
 	cmp r0, #0
 	beq .L08090A64
 	movs r1, #3
-	bl func_080CE3DC
+	bl _._24GameSceneMenuTilemapData
 .L08090A64:
 	str r5, [r4]
 	ldr r1, [sp, #0x10]
