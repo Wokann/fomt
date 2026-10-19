@@ -14262,7 +14262,7 @@ func_080A8B5A: @ 0x080A8B5A
 	bge .Ljp_map_080A8FC4
 	b .Ljp_map_080A8E4E
 .Ljp_map_080A8FC4:
-	ldr r0, .Ljp_map_080A8FD8 @ =vtable_unk_080E5A28
+	ldr r0, .Ljp_map_080A8FD8 @ =__vt_23IndexedResourceProvider
 	str r0, [sp]
 	add sp, #0x1c4
 	pop {r3, r4, r5}
@@ -14273,7 +14273,7 @@ func_080A8B5A: @ 0x080A8B5A
 	pop {r0}
 	bx r0
 	.align 2, 0
-.Ljp_map_080A8FD8: .4byte vtable_unk_080E5A28
+.Ljp_map_080A8FD8: .4byte __vt_23IndexedResourceProvider
 
     .global func_080A8FDC
     .thumb_func
@@ -15845,7 +15845,7 @@ func_080A8FDC: @ 0x080A8FDC
 	ldr r1, [sp, #0xd8]
 	mov r2, sb
 	bl func_080A9CA8
-	ldr r0, .Ljp_map_080A9CA4 @ =vtable_unk_080E5A28
+	ldr r0, .Ljp_map_080A9CA4 @ =__vt_23IndexedResourceProvider
 	str r0, [sp]
 	add sp, #0xe8
 	pop {r3, r4, r5}
@@ -15860,7 +15860,7 @@ func_080A8FDC: @ 0x080A8FDC
 .Ljp_map_080A9C98: .4byte gFarmHouseVisualDescriptors
 .Ljp_map_080A9C9C: .4byte gFarmHouseVisualDescriptors + 0xDC
 .Ljp_map_080A9CA0: .4byte gFarmHouseVisualDescriptors + 0x2C
-.Ljp_map_080A9CA4: .4byte vtable_unk_080E5A28
+.Ljp_map_080A9CA4: .4byte __vt_23IndexedResourceProvider
 
     .global func_080A9CA8
     .thumb_func
@@ -20688,7 +20688,7 @@ _._18GameSceneWorldData: @ 080AC294
 	movs r2, #0xff
 	lsls r2, r2, #4
 	adds r0, r5, r2
-	ldr r1, .Ljp_map_080AC39C @ =vtable_unk_080E5A28
+	ldr r1, .Ljp_map_080AC39C @ =__vt_23IndexedResourceProvider
 	str r1, [r0]
 	subs r2, #0x30
 	adds r0, r5, r2
@@ -20770,7 +20770,7 @@ _._18GameSceneWorldData: @ 080AC294
 	.align 2, 0
 .Ljp_map_080AC394: .4byte 0x00001028
 .Ljp_map_080AC398: .4byte 0x00001024
-.Ljp_map_080AC39C: .4byte vtable_unk_080E5A28
+.Ljp_map_080AC39C: .4byte __vt_23IndexedResourceProvider
 .Ljp_map_080AC3A0: .4byte 0x00000DAC
     .global func_080AC96C
     .thumb_func
@@ -68924,7 +68924,8 @@ func_080C8360:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0xA0, 0x79, 0x0E, 0x08, 0x34, 0x04, 0x00, 0x00, 0x34, 0x05, 0x00, 0x00, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0xA0, 0x79, 0x0E, 0x08, 0x34, 0x04, 0x00, 0x00, 0x34, 0x05, 0x00, 0x00
+    .4byte __vt_23IndexedResourceProvider
     .byte 0x04, 0x05, 0x00, 0x00
     .global func_080C8550
     .thumb_func
@@ -72704,7 +72705,9 @@ func_080CA480:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00, 0x68, 0x4E, 0x0E, 0x08, 0x41, 0x60, 0x82, 0x60, 0x03, 0x60, 0x70, 0x47
+    .byte 0x00, 0x00
+    .4byte __vt_23IndexedResourceProvider
+    .byte 0x41, 0x60, 0x82, 0x60, 0x03, 0x60, 0x70, 0x47
     .global loc_080CA520
     .thumb_func
     loc_080CA520:
@@ -72781,7 +72784,7 @@ func_080CA480:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x68, 0x4E, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global loc_080CA5B0
     .thumb_func
     loc_080CA5B0:
@@ -77974,7 +77977,7 @@ func_080CE3DC: @ 0x080CDBEC
 	beq .L080CDC3A
 	bl free
 .L080CDC3A:
-	ldr r0, .L080CDC8C @ =vtable_unk_080E5A28
+	ldr r0, .L080CDC8C @ =__vt_23IndexedResourceProvider
 	str r0, [r5, #0x1c]
 	adds r4, r5, #0
 	adds r4, #0x14
@@ -78010,7 +78013,7 @@ func_080CE3DC: @ 0x080CDBEC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080CDC8C: .4byte vtable_unk_080E5A28
+.L080CDC8C: .4byte __vt_23IndexedResourceProvider
     .global func_080CE480
     .thumb_func
 func_080CE480: @ 0x080CDC90
@@ -96752,7 +96755,7 @@ sub_080A9122: @ 0x080A9122
 	bge .L080A958C
 	b .L080A9416
 .L080A958C:
-	ldr r0, .L080A95A0 @ =vtable_unk_080E5A28
+	ldr r0, .L080A95A0 @ =__vt_23IndexedResourceProvider
 	str r0, [sp]
 	add sp, #0x1c4
 	pop {r3, r4, r5}
@@ -96763,7 +96766,7 @@ sub_080A9122: @ 0x080A9122
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A95A0: .4byte vtable_unk_080E5A28
+.L080A95A0: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080A95A4
 func_080A95A4: @ 0x080A95A4
@@ -98334,7 +98337,7 @@ func_080A95A4: @ 0x080A95A4
 	ldr r1, [sp, #0xd8]
 	mov r2, sb
 	bl func_080AA270
-	ldr r0, .L080AA26C @ =vtable_unk_080E5A28
+	ldr r0, .L080AA26C @ =__vt_23IndexedResourceProvider
 	str r0, [sp]
 	add sp, #0xe8
 	pop {r3, r4, r5}
@@ -98349,7 +98352,7 @@ func_080A95A4: @ 0x080A95A4
 .L080AA260: .4byte gFarmHouseVisualDescriptors
 .L080AA264: .4byte gFarmHouseVisualDescriptors + 0xDC
 .L080AA268: .4byte gFarmHouseVisualDescriptors + 0x2C
-.L080AA26C: .4byte vtable_unk_080E5A28
+.L080AA26C: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080AA270
 func_080AA270: @ 0x080AA270
@@ -103161,7 +103164,7 @@ _._18GameSceneWorldData: @ 0x080AC85C
 	movs r2, #0xff
 	lsls r2, r2, #4
 	adds r0, r5, r2
-	ldr r1, .L080AC964 @ =vtable_unk_080E5A28
+	ldr r1, .L080AC964 @ =__vt_23IndexedResourceProvider
 	str r1, [r0]
 	subs r2, #0x30
 	adds r0, r5, r2
@@ -103243,7 +103246,7 @@ _._18GameSceneWorldData: @ 0x080AC85C
 	.align 2, 0
 .L080AC95C: .4byte 0x00001028
 .L080AC960: .4byte 0x00001024
-.L080AC964: .4byte vtable_unk_080E5A28
+.L080AC964: .4byte __vt_23IndexedResourceProvider
 .L080AC968: .4byte 0x00000DAC
 
 	thumb_func_start func_080AC96C
@@ -159558,7 +159561,7 @@ func_080C8360: @ 0x080C8360
 	bl func_08000540
 	ldr r1, .L080C8544 @ =0x00000534
 	adds r0, r5, r1
-	ldr r1, .L080C8548 @ =vtable_unk_080E5A28
+	ldr r1, .L080C8548 @ =__vt_23IndexedResourceProvider
 	str r1, [r0]
 	ldr r2, .L080C854C @ =0x00000504
 	adds r0, r5, r2
@@ -159764,7 +159767,7 @@ func_080C8360: @ 0x080C8360
 .L080C853C: .4byte vtable_unk_080E8570
 .L080C8540: .4byte 0x00000434
 .L080C8544: .4byte 0x00000534
-.L080C8548: .4byte vtable_unk_080E5A28
+.L080C8548: .4byte __vt_23IndexedResourceProvider
 .L080C854C: .4byte 0x00000504
 
 	thumb_func_start func_080C8550
@@ -164993,7 +164996,7 @@ func_080CAC7C: @ 0x080CAC7C
 	str r0, [r1, #8]
 	mov r0, sb
 	str r0, [r1]
-	ldr r0, .L080CAD04 @ =vtable_unk_080E5A28
+	ldr r0, .L080CAD04 @ =__vt_23IndexedResourceProvider
 	str r0, [sp]
 	mov r0, r8
 	add sp, #0x88
@@ -165004,7 +165007,7 @@ func_080CAC7C: @ 0x080CAC7C
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080CAD04: .4byte vtable_unk_080E5A28
+.L080CAD04: .4byte __vt_23IndexedResourceProvider
 .L080CAD08:
 	.byte 0x41, 0x60, 0x82, 0x60, 0x03, 0x60, 0x70, 0x47
 
@@ -165074,7 +165077,7 @@ func_080CAD18: @ 0x080CAD18
 	str r0, [r1, #8]
 	mov r0, sb
 	str r0, [r1]
-	ldr r0, .L080CAD9C @ =vtable_unk_080E5A28
+	ldr r0, .L080CAD9C @ =__vt_23IndexedResourceProvider
 	str r0, [sp]
 	add sp, #0x88
 	pop {r3, r4}
@@ -165084,7 +165087,7 @@ func_080CAD18: @ 0x080CAD18
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080CAD9C: .4byte vtable_unk_080E5A28
+.L080CAD9C: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080CADA0
 func_080CADA0: @ 0x080CADA0
@@ -172244,7 +172247,7 @@ func_080CE3DC: @ 0x080CE3DC
 	beq .L080CE42A
 	bl free
 .L080CE42A:
-	ldr r0, .L080CE47C @ =vtable_unk_080E5A28
+	ldr r0, .L080CE47C @ =__vt_23IndexedResourceProvider
 	str r0, [r5, #0x1c]
 	adds r4, r5, #0
 	adds r4, #0x14
@@ -172280,7 +172283,7 @@ func_080CE3DC: @ 0x080CE3DC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080CE47C: .4byte vtable_unk_080E5A28
+.L080CE47C: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080CE480
 func_080CE480: @ 0x080CE480

@@ -121,22 +121,18 @@ struct IndexedResourceGroupResult
     IndexedResourceDescriptor8Range sixth;
 };
 
-typedef IndexedResourceResult (*IndexedResourceResolver)(IndexedResourceProvider *, u32);
-typedef IndexedResourceGroupResult (*IndexedResourceGroupResolver)(IndexedResourceProvider const *, u32);
-typedef void (*IndexedResourceDestroyer)(IndexedResourceProvider *, int);
-
-struct IndexedResourceProviderVTable
-{
-    u8 unknown_00[8];
-    IndexedResourceDestroyer destroy;
-    IndexedResourceResolver resolve;
-    IndexedResourceGroupResolver get_group_data;
-};
-
+// Native provider-base and archive tables share the C++ virtual destructor,
+// entry resolver and group resolver slots. Only the implementation unit emits
+// their standalone methods and vtables; callers may inline cleanup.
+#pragma interface "resource_handle.hh"
 struct IndexedResourceProvider
 {
-    IndexedResourceProviderVTable const * vtable;
+    virtual ~IndexedResourceProvider() SECTION(".text.indexed_resource_provider_cleanup");
+    virtual IndexedResourceResult Resolve(u32 index) const = 0;
+    virtual IndexedResourceGroupResult GetGroupData(u32 index) const = 0;
 };
+
+inline IndexedResourceProvider::~IndexedResourceProvider() {}
 
 struct IndexedResourceArchiveEntry
 {
@@ -156,16 +152,13 @@ struct IndexedResourceArchiveGroupDescriptor
     u16 sixth_first_index;
 };
 
-// Native callers inline the entry-count accessor and archive cleanup. Their
-// original standalone entries are emitted only by the implementation unit.
-#pragma interface "resource_handle.hh"
-struct IndexedResourceArchive
+// An archive borrows its payload; destroying it never frees that payload.
+struct IndexedResourceArchive : IndexedResourceProvider
 {
-    ~IndexedResourceArchive();
+    virtual ~IndexedResourceArchive();
     IndexedResourceArchive(u8 const * data)
         SECTION(".text.indexed_resource_archive_constructor");
 
-    IndexedResourceProviderVTable const * vtable;
     IndexedResourceArchiveEntry * entry_descriptors;
     IndexedResourceArchiveGroupDescriptor * group_descriptors;
     HardwareSpriteOamRecord * sprite_descriptors;
@@ -181,9 +174,9 @@ struct IndexedResourceArchive
     u16 sixth_descriptor_count;
     u16 entry_count;
 
-    IndexedResourceResult Resolve(u32 index) const
+    virtual IndexedResourceResult Resolve(u32 index) const
         SECTION(".text.indexed_resource_archive_resolve");
-    IndexedResourceGroupResult GetGroupData(u32 index) const
+    virtual IndexedResourceGroupResult GetGroupData(u32 index) const
         SECTION(".text.indexed_resource_archive_get_group_data");
     u16 GetGroupDescriptorCount() const
         SECTION(".text.indexed_resource_archive_get_group_descriptor_count");
@@ -210,6 +203,9 @@ struct IndexedResourceHandle
     u8 initialized;
 };
 
+typedef char IndexedResourceProviderSizeCheck[sizeof(IndexedResourceProvider) == 4 ? 1 : -1];
+typedef char IndexedResourceArchiveEntriesOffsetCheck[offsetof(IndexedResourceArchive, entry_descriptors) == 4 ? 1 : -1];
+typedef char IndexedResourceArchiveCountOffsetCheck[offsetof(IndexedResourceArchive, entry_descriptor_count) == 0x20 ? 1 : -1];
 typedef char IndexedResourceArchiveSizeCheck[sizeof(IndexedResourceArchive) == 0x30 ? 1 : -1];
 typedef char IndexedResourceResultSizeCheck[sizeof(IndexedResourceResult) == 8 ? 1 : -1];
 typedef char IndexedResourceHandleSizeCheck[sizeof(IndexedResourceHandle) == 0x14 ? 1 : -1];
@@ -221,17 +217,9 @@ typedef char IndexedResourceGroupResultSizeCheck[sizeof(IndexedResourceGroupResu
 typedef char IndexedResourceGroupFourthOffsetCheck[offsetof(IndexedResourceGroupResult, fourth) == 8 ? 1 : -1];
 typedef char IndexedResourceGroupFifthOffsetCheck[offsetof(IndexedResourceGroupResult, fifth) == 16 ? 1 : -1];
 typedef char IndexedResourceGroupSixthOffsetCheck[offsetof(IndexedResourceGroupResult, sixth) == 24 ? 1 : -1];
-typedef char IndexedResourceGroupResolverOffsetCheck[offsetof(IndexedResourceProviderVTable, get_group_data) == 0x10 ? 1 : -1];
-typedef char IndexedResourceDestroyerOffsetCheck[offsetof(IndexedResourceProviderVTable, destroy) == 8 ? 1 : -1];
-typedef char IndexedResourceResolverOffsetCheck[offsetof(IndexedResourceProviderVTable, resolve) == 12 ? 1 : -1];
-typedef char IndexedResourceProviderVTableSizeCheck[sizeof(IndexedResourceProviderVTable) == 20 ? 1 : -1];
 typedef char IndexedResourceSpriteMatrixSizeCheck[sizeof(IndexedResourceSpriteMatrix) == 8 ? 1 : -1];
 
 EXTERN_C
-
-extern IndexedResourceProviderVTable const vtable_unk_080E5A28;
-void DestroyIndexedResourceProvider(IndexedResourceProvider * provider, int flags)
-    SECTION(".text.indexed_resource_provider_cleanup");
 
 // The first update reports GROUP_CHANGED and clears the initialized byte.
 // A zero metric stops traversal; the other bits describe the whole update,
@@ -255,8 +243,6 @@ void DrawIndexedResourceSprites(HardwareSpriteBufferState *, HardwareSpriteOamRe
 // These reference real C++ lifecycle entries, not wrapper functions or aliases.
 IndexedResourceArchive * ConstructIndexedResourceArchive(IndexedResourceArchive *, u8 const *)
     asm("__22IndexedResourceArchivePCUc");
-void DestroyIndexedResourceArchive(IndexedResourceArchive *, int)
-    asm("_._22IndexedResourceArchive");
 IndexedResourceHandle * ConstructIndexedResourceHandle(IndexedResourceHandle *, IndexedResourceProvider *, u32, i32)
     asm("__21IndexedResourceHandleP23IndexedResourceProviderUii");
 
@@ -272,11 +258,8 @@ void TransformIndexedResourceSpritePosition(i32 *, i32 *, u32, u32,
 
 EXTERN_C_END
 
-// The archive borrows its payload. Its provider view is restored when the
-// archive subobject leaves scope; the payload itself is not freed here.
 inline IndexedResourceArchive::~IndexedResourceArchive()
 {
-    vtable = &vtable_unk_080E5A28;
 }
 
 #endif // RESOURCE_HANDLE_HH

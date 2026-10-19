@@ -633,8 +633,6 @@ extern void func_080713AC(void);
 extern void func_08070C88(void);
 extern void func_08075DEC(void);
 extern void func_08075328(void);
-extern void Resolve__C22IndexedResourceArchiveUi(void);
-extern void GetGroupData__C22IndexedResourceArchiveUi(void);
 extern void func_080E1128(void);
 extern void func_080E1148(void);
 // Direct binding to the compiler's legacy destructor symbol, not an alias body.
@@ -4595,35 +4593,19 @@ extern RawVTableFunction const vtable_unk_080E79A8[]
 #endif
     };
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E79B8[]
     SECTION(".rodata.vtable_79b8") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
-        reinterpret_cast<RawVTableFunction>(DestroyIndexedResourceArchive),
-        Resolve__C22IndexedResourceArchiveUi,
-#else
         func_0805E658,
         func_0805E698,
-#endif
     };
-
-extern RawVTableFunction const vtable_unk_080E79C8[]
-    SECTION(".rodata.vtable_79c8") = {
-#if defined(REGION_JP)
-        GetGroupData__C22IndexedResourceArchiveUi,
-#else
-        nullptr,
-        nullptr,
-        reinterpret_cast<RawVTableFunction>(DestroyIndexedResourceArchive),
-        Resolve__C22IndexedResourceArchiveUi,
-        GetGroupData__C22IndexedResourceArchiveUi,
 #endif
-    };
 
 #if defined(REGION_JP)
-// JP places two independently referenced vtable fragments inside the ROM
-// range occupied by the overseas vtable_unk_080E79C8 object.
+// JP places these independently referenced fragments after the archive's
+// compiler-generated vtable; they are not part of the resource provider.
 extern RawVTableFunction const gUnk_080E6E0C[]
     SECTION(".rodata.vtable_79c8") = {
         nullptr,

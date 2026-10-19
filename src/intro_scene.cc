@@ -35,7 +35,7 @@ static inline void InitializeIntroSceneResourceState(
     IntroSceneResourceState * state, IndexedResourceArchive * archive, u32 index)
 {
     ConstructIndexedResourceHandle(&state->handle,
-        reinterpret_cast<IndexedResourceProvider *>(archive), index, 0x100);
+        archive, index, 0x100);
     state->x = 0;
     state->y = 0;
 }
@@ -154,10 +154,11 @@ void DestroyIntroSceneCore(IntroSceneCore * core, int flags)
     core->pool_reservation.~HardwarePoolOwner();
     core->state_reservation.~HardwareSharedStateOwner();
 
-    // Archives borrow their payloads; the unpacked bytes belong to core.
-    core->actor_archive.~IndexedResourceArchive();
-    core->small_archive.~IndexedResourceArchive();
-    core->intro_archive.~IndexedResourceArchive();
+    // These are concrete archive subobjects, not polymorphic owners.
+    // Their payloads are borrowed; the unpacked bytes belong to core.
+    core->actor_archive.IndexedResourceArchive::~IndexedResourceArchive();
+    core->small_archive.IndexedResourceArchive::~IndexedResourceArchive();
+    core->intro_archive.IndexedResourceArchive::~IndexedResourceArchive();
     func_080086BC(reinterpret_cast<HardwareBootstrap *>(core), flags);
 }
 
@@ -639,7 +640,7 @@ static inline u32 GetIntroScenePaletteIndex(IntroSceneHardwarePoolHandle & state
 
 static inline IndexedResourceGroupResult LoadIntroSceneResourceGroup(IndexedResourceHandle const & handle)
 {
-    return handle.resource->vtable->get_group_data(handle.resource,
+    return handle.resource->GetGroupData(
         handle.resolved_resource[handle.current_entry_index].group_index);
 }
 

@@ -2,40 +2,8 @@
 #pragma implementation "resource_handle.hh"
 #include "resource_handle.hh"
 
-EXTERN_C
-void __builtin_delete(void *);
-void __pure_virtual(void);
-EXTERN_C_END
-
-// The two resolver slots are pure virtual in this provider-base table.
-extern IndexedResourceProviderVTable const vtable_unk_080E5A28 = {
-    { 0 },
-    DestroyIndexedResourceProvider,
-    reinterpret_cast<IndexedResourceResolver>(__pure_virtual),
-    reinterpret_cast<IndexedResourceGroupResolver>(__pure_virtual),
-};
-
-void DestroyIndexedResourceProvider(IndexedResourceProvider * provider, int flags)
-{
-    provider->vtable = &vtable_unk_080E5A28;
-    if (flags & 1)
-        __builtin_delete(provider);
-}
-
-#if defined(REGION_JP)
-extern "C" char vtable_unk_080E79B8;
-#else
-extern "C" char vtable_unk_080E79C8;
-#endif
-
 IndexedResourceArchive::IndexedResourceArchive(u8 const * data)
 {
-#if defined(REGION_JP)
-    vtable = reinterpret_cast<IndexedResourceProviderVTable const *>(&vtable_unk_080E79B8);
-#else
-    vtable = reinterpret_cast<IndexedResourceProviderVTable const *>(&vtable_unk_080E79C8);
-#endif
-
     if (data != 0)
     {
         entry_descriptor_count = *(u16 const *)data;
@@ -142,7 +110,7 @@ u16 IndexedResourceArchive::GetGroupDescriptorCount() const
 IndexedResourceHandle::IndexedResourceHandle(
     IndexedResourceProvider * a_resource, u32 index, i32 a_scroll_delta)
     : resource(a_resource),
-      resolved_resource(a_resource->vtable->resolve(a_resource, index)),
+      resolved_resource(a_resource->Resolve(index)),
       current_entry_index(0),
       metric_scaled(resolved_resource.entries->metric << 8),
       scroll_delta(a_scroll_delta),
@@ -159,7 +127,7 @@ extern "C" void InitializeIndexedResourceHandle(
 
 extern "C" void ResolveIndexedResourceHandle(IndexedResourceHandle * handle, u32 index)
 {
-    IndexedResourceResult resolved = handle->resource->vtable->resolve(handle->resource, index);
+    IndexedResourceResult resolved = handle->resource->Resolve(index);
 
     handle->resolved_resource = resolved;
     handle->current_entry_index = 0;

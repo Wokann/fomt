@@ -695,7 +695,7 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_24IntroNameEntryTransition);
         . = ALIGN(4); src/intro_scene.o(.rodata);
         src/intro_scene.o(.gnu.linkonce.d.__vt_14GameIntroScene);
-        src/resource_handle.o(.rodata);
+        src/resource_handle.o(.gnu.linkonce.d.__vt_23IndexedResourceProvider);
         src/intro_scene.o(.gnu.linkonce.d.__vt_19MenuIntroTransition);
         src/new_game.o(.gnu.linkonce.d.__vt_27NewGameLoadedSaveTransition);
         src/new_game.o(.rodata);
@@ -844,7 +844,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_799c);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79a8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79b8);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_79c8);
+        . = ALIGN(4); src/resource_handle.o(.gnu.linkonce.d.__vt_22IndexedResourceArchive);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79dc);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79e8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79f8);

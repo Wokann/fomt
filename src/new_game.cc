@@ -333,7 +333,7 @@ NewGameMenuCore * func_080041DC(NewGameMenuCore * core, void * state,
     HardwareSpriteOamRecord initial_sprite = {};
     core->option_attributes = initial_sprite;
     new (&core->selector_resource) IndexedResourceHandle(
-        reinterpret_cast<IndexedResourceProvider *>(&core->resources), 0, 256);
+        &core->resources, 0, 256);
     core->active_row = 0;
     core->unk_8C = 0;
     func_08000640(&core->sram);

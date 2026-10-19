@@ -45,9 +45,8 @@ bool UiTextTileCopyCommand::Run()
 static inline IndexedResourceGroupResult LoadUiPortraitGroup(u32 index)
 {
     IndexedResourceArchive archive(gPortraitIndexedResourceArchive);
-    IndexedResourceProvider * provider = reinterpret_cast<IndexedResourceProvider *>(&archive);
-    IndexedResourceProviderVTable const * table = archive.vtable;
-    return table->get_group_data(provider, table->resolve(provider, index)[0].group_index);
+    IndexedResourceProvider const * provider = &archive;
+    return provider->GetGroupData(provider->Resolve(index)[0].group_index);
 }
 
 UiPortraitGroupOwner::UiPortraitGroupOwner()
@@ -834,7 +833,7 @@ void UiStatePayload::SetChoices(char const * first, char const * second,
     choice_index = 1;
     state = 6;
     InitializeIndexedResourceHandle(&choice_handle,
-        reinterpret_cast<IndexedResourceProvider *>(&hand_cursor), 0);
+        &hand_cursor, 0);
 }
 
 void UiStatePayload::SetPromptChoices(char const * prompt, char const * first,
@@ -887,7 +886,7 @@ void UiStatePayload::SetPromptChoices(char const * prompt, char const * first,
     choice_index = 1;
     state = 6;
     InitializeIndexedResourceHandle(&choice_handle,
-        reinterpret_cast<IndexedResourceProvider *>(&hand_cursor), 0);
+        &hand_cursor, 0);
 }
 
 UiTextLayoutPosition GetUiChoiceLayoutPosition(u32 layout, u32 selection)

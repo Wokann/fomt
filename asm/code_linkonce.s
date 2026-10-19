@@ -15305,7 +15305,8 @@ func_080E0C38:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E0D50
     .thumb_func
 func_080E0D50:
@@ -15441,7 +15442,8 @@ func_080E0D70:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E0E80
     .thumb_func
 func_080E0E80:
@@ -32333,7 +32335,7 @@ func_080E0C38: @ 0x080E0C38
 	mov r0, sb
 	movs r1, #2
 	bl _._17HardwarePoolOwner
-	ldr r0, .L080E0D4C @ =vtable_unk_080E5A28
+	ldr r0, .L080E0D4C @ =__vt_23IndexedResourceProvider
 	str r0, [r6]
 	movs r0, #1
 	ldr r1, [sp]
@@ -32352,7 +32354,7 @@ func_080E0C38: @ 0x080E0C38
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E0D4C: .4byte vtable_unk_080E5A28
+.L080E0D4C: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E0D50
 func_080E0D50: @ 0x080E0D50
@@ -32475,7 +32477,7 @@ func_080E0D70: @ 0x080E0D70
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._17HardwarePoolOwner
-	ldr r0, .L080E0E7C @ =vtable_unk_080E5A28
+	ldr r0, .L080E0E7C @ =__vt_23IndexedResourceProvider
 	str r0, [r6, #0x30]
 	str r0, [r6]
 	movs r0, #1
@@ -32489,7 +32491,7 @@ func_080E0D70: @ 0x080E0D70
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E0E7C: .4byte vtable_unk_080E5A28
+.L080E0E7C: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E0E80
 func_080E0E80: @ 0x080E0E80
@@ -32621,7 +32623,8 @@ func_080E1148:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E118C
     .thumb_func
 func_080E118C:
@@ -32965,7 +32968,8 @@ func_080E11EC:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xA0, 0x23, 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0x00, 0x00, 0xA0, 0x23, 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E0C38_vtable_target
     .thumb_func
 func_080E0C38_vtable_target:
@@ -33304,7 +33308,8 @@ func_080E0D60:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x38, 0x6B, 0x0E, 0x08, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0x38, 0x6B, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E0FC4
     .thumb_func
 func_080E0FC4:
@@ -33456,7 +33461,8 @@ func_080E1044:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xEC, 0x0A, 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0x00, 0x00, 0xEC, 0x0A, 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E1104
     .thumb_func
 func_080E1104:
@@ -33585,7 +33591,8 @@ func_080E11F4:
     bl func_08076E0C
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xC4, 0x09, 0x00, 0x00, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0x00, 0x00, 0xC4, 0x09, 0x00, 0x00
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E1A70
     .thumb_func
 func_080E1A70:
@@ -34087,7 +34094,8 @@ func_080E1574:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x68, 0x4E, 0x0E, 0x08, 0xB4, 0x05, 0x00, 0x00
+    .4byte __vt_23IndexedResourceProvider
+    .byte 0xB4, 0x05, 0x00, 0x00
     .global func_080E15C8
     .thumb_func
 func_080E15C8:
@@ -34261,7 +34269,8 @@ func_080E15C8:
     bx r0
     .byte 0x00, 0x00, 0xA0, 0x3B, 0x00, 0x00, 0x50, 0x3B, 0x00, 0x00, 0x28, 0x3A, 0x00, 0x00, 0x24, 0x39
     .byte 0x00, 0x00, 0x48, 0x3B, 0x00, 0x00, 0x38, 0x3B, 0x00, 0x00, 0x30, 0x3B, 0x00, 0x00, 0x24, 0x3A
-    .byte 0x00, 0x00, 0x20, 0x39, 0x00, 0x00, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0x00, 0x00, 0x20, 0x39, 0x00, 0x00
+    .4byte __vt_23IndexedResourceProvider
     .section .text.new_game_birthday_core_cleanup_after, "ax", %progbits
     .align 2, 0
     .global func_080E2018
@@ -34328,7 +34337,7 @@ func_080E2018:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x68, 0x4E, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E2094
     .thumb_func
 func_080E2094:
@@ -34451,7 +34460,8 @@ func_080E18BC:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x68, 0x4E, 0x0E, 0x08, 0xB4, 0x05, 0x00, 0x00
+    .4byte __vt_23IndexedResourceProvider
+    .byte 0xB4, 0x05, 0x00, 0x00
 
 
 
@@ -35331,7 +35341,9 @@ func_080E25D4:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x68, 0x4E, 0x0E, 0x08, 0xB4, 0x05, 0x00, 0x00
+    .byte 0x00, 0x00
+    .4byte __vt_23IndexedResourceProvider
+    .byte 0xB4, 0x05, 0x00, 0x00
     .global func_080E260C
     .thumb_func
 func_080E260C:
@@ -36051,7 +36063,7 @@ func_080E2A88:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x68, 0x4E, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E3398
     .thumb_func
 func_080E3398:
@@ -36166,7 +36178,7 @@ func_080E2B70:
     pop {r0}
     bx r0
     .byte 0x38, 0x08, 0x00, 0x00, 0x28, 0x08, 0x00, 0x00, 0x18, 0x08, 0x00, 0x00, 0x44, 0x07, 0x00, 0x00
-    .byte 0x68, 0x4E, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E2C34
     .thumb_func
 func_080E2C34:
@@ -36325,7 +36337,7 @@ func_080E3504:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x68, 0x4E, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E2D7C
     .thumb_func
 func_080E2D7C:
@@ -37323,7 +37335,8 @@ func_080E33D4:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xD8, 0x33, 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0x00, 0x00, 0xD8, 0x33, 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E352C
     .thumb_func
 func_080E352C:
@@ -37766,7 +37779,8 @@ func_080E3838:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08, 0x68, 0x4E, 0x0E, 0x08
+    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E3928
     .thumb_func
 func_080E3928:
@@ -40053,7 +40067,7 @@ func_080E4DAC:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x68, 0x4E, 0x0E, 0x08
+    .4byte __vt_23IndexedResourceProvider
     .global func_080E4E00
     .thumb_func
 func_080E4E00:
@@ -40140,7 +40154,7 @@ func_080E1148: @ 0x080E1148
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._24HardwareSharedStateOwner
-	ldr r0, .L080E1188 @ =vtable_unk_080E5A28
+	ldr r0, .L080E1188 @ =__vt_23IndexedResourceProvider
 	str r0, [r5, #0x10]
 	adds r0, r5, #0
 	adds r1, r6, #0
@@ -40149,7 +40163,7 @@ func_080E1148: @ 0x080E1148
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E1188: .4byte vtable_unk_080E5A28
+.L080E1188: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E118C
 func_080E118C: @ 0x080E118C
@@ -40456,7 +40470,7 @@ func_080E11EC: @ 0x080E11EC
 	movs r2, #0xe8
 	lsls r2, r2, #1
 	adds r1, r6, r2
-	ldr r0, .L080E1494 @ =vtable_unk_080E5A28
+	ldr r0, .L080E1494 @ =__vt_23IndexedResourceProvider
 	str r0, [r1]
 	subs r2, #0x30
 	adds r1, r6, r2
@@ -40496,7 +40510,7 @@ func_080E11EC: @ 0x080E11EC
 	.align 2, 0
 .L080E148C: .4byte 0x000023A0
 .L080E1490: .4byte vtable_unk_080E76F8
-.L080E1494: .4byte vtable_unk_080E5A28
+.L080E1494: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E1498
 func_080E1498: @ 0x080E1498
@@ -40875,7 +40889,7 @@ func_080E15C0: @ 0x080E15C0
 	movs r0, #0xd0
 	lsls r0, r0, #1
 	adds r1, r7, r0
-	ldr r0, .L080E1820 @ =vtable_unk_080E5A28
+	ldr r0, .L080E1820 @ =__vt_23IndexedResourceProvider
 	str r0, [r1]
 	movs r2, #0xb8
 	lsls r2, r2, #1
@@ -40912,7 +40926,7 @@ func_080E15C0: @ 0x080E15C0
 	bx r0
 	.align 2, 0
 .L080E181C: .4byte vtable_unk_080E76F8
-.L080E1820: .4byte vtable_unk_080E5A28
+.L080E1820: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E1824
 func_080E1824: @ 0x080E1824
@@ -41045,7 +41059,7 @@ func_080E18A4: @ 0x080E18A4
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._24HardwareSharedStateOwner
-	ldr r0, .L080E1960 @ =vtable_unk_080E5A28
+	ldr r0, .L080E1960 @ =__vt_23IndexedResourceProvider
 	str r0, [r5, #0x50]
 	str r0, [r5, #0x20]
 	ldr r0, [r5, #0x10]
@@ -41063,7 +41077,7 @@ func_080E18A4: @ 0x080E18A4
 	.align 2, 0
 .L080E1958: .4byte 0x00000AEC
 .L080E195C: .4byte vtable_unk_080E76F8
-.L080E1960: .4byte vtable_unk_080E5A28
+.L080E1960: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E1964
 func_080E1964: @ 0x080E1964
@@ -41186,14 +41200,14 @@ func_080E1A54: @ 0x080E1A54
 	push {lr}
 	ldr r2, .L080E1A68 @ =0x000009C4
 	adds r3, r0, r2
-	ldr r2, .L080E1A6C @ =vtable_unk_080E5A28
+	ldr r2, .L080E1A6C @ =__vt_23IndexedResourceProvider
 	str r2, [r3]
 	bl func_08076E0C
 	pop {r0}
 	bx r0
 	.align 2, 0
 .L080E1A68: .4byte 0x000009C4
-.L080E1A6C: .4byte vtable_unk_080E5A28
+.L080E1A6C: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E1A70
 func_080E1A70: @ 0x080E1A70
@@ -41668,7 +41682,7 @@ func_080E1DD4: @ 0x080E1DD4
 	movs r2, #0x94
 	lsls r2, r2, #1
 	adds r0, r4, r2
-	ldr r2, .L080E1E20 @ =vtable_unk_080E5A28
+	ldr r2, .L080E1E20 @ =__vt_23IndexedResourceProvider
 	cmp r0, r1
 	beq .L080E1DFA
 .L080E1DF4:
@@ -41695,7 +41709,7 @@ func_080E1DD4: @ 0x080E1DD4
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E1E20: .4byte vtable_unk_080E5A28
+.L080E1E20: .4byte __vt_23IndexedResourceProvider
 .L080E1E24: .4byte 0x000005B4
 
 	thumb_func_start func_080E1E28
@@ -41820,7 +41834,7 @@ func_080E1E28: @ 0x080E1E28
 	adds r0, r5, r1
 	movs r1, #2
 	bl _._12UiStateOwner
-	ldr r0, .L080E1FA8 @ =vtable_unk_080E5A28
+	ldr r0, .L080E1FA8 @ =__vt_23IndexedResourceProvider
 	str r0, [r5, #0x54]
 	str r0, [r5, #0x24]
 	ldr r0, [r5, #0x1c]
@@ -41878,7 +41892,7 @@ func_080E1E28: @ 0x080E1E28
 .L080E1F9C: .4byte 0x000040B0
 .L080E1FA0: .4byte 0x00003FA4
 .L080E1FA4: .4byte 0x00003EA0
-.L080E1FA8: .4byte vtable_unk_080E5A28
+.L080E1FA8: .4byte __vt_23IndexedResourceProvider
 
     .section .text.new_game_birthday_core_cleanup_after, "ax", %progbits
 
@@ -41924,7 +41938,7 @@ func_080E2018: @ 0x080E2018
 	beq .L080E2062
 	bl free
 .L080E2062:
-	ldr r0, .L080E2090 @ =vtable_unk_080E5A28
+	ldr r0, .L080E2090 @ =__vt_23IndexedResourceProvider
 	str r0, [r4]
 	str r0, [r5, #0x20]
 	adds r0, r6, #0
@@ -41946,7 +41960,7 @@ func_080E2018: @ 0x080E2018
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E2090: .4byte vtable_unk_080E5A28
+.L080E2090: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E2094
 func_080E2094: @ 0x080E2094
@@ -42043,7 +42057,7 @@ func_080E211C: @ 0x080E211C
 	movs r2, #0x94
 	lsls r2, r2, #1
 	adds r0, r4, r2
-	ldr r2, .L080E2168 @ =vtable_unk_080E5A28
+	ldr r2, .L080E2168 @ =__vt_23IndexedResourceProvider
 	cmp r0, r1
 	beq .L080E2142
 .L080E213C:
@@ -42070,7 +42084,7 @@ func_080E211C: @ 0x080E211C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E2168: .4byte vtable_unk_080E5A28
+.L080E2168: .4byte __vt_23IndexedResourceProvider
 .L080E216C: .4byte 0x000005B4
 
 	thumb_func_start func_080E2170
@@ -43907,7 +43921,7 @@ func_080E2E34:
 	bl func_080086BC
 	.byte 0x30, 0xBC, 0x01, 0xBC
 	.byte 0x00, 0x47, 0x00, 0x00
-	.4byte vtable_unk_080E5A28
+	.4byte __vt_23IndexedResourceProvider
 	.byte 0xB4, 0x05, 0x00, 0x00
 	.global func_080E2E6C
 	.thumb_func
@@ -44565,7 +44579,7 @@ func_080E32E8:
 	bl func_080086BC
 	.byte 0x08, 0xBC, 0x98, 0x46, 0xF0, 0xBC
 	.byte 0x01, 0xBC, 0x00, 0x47
-	.4byte vtable_unk_080E5A28
+	.4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E3398
 func_080E3398: @ 0x080E3398
@@ -44685,7 +44699,7 @@ func_080E33D0:
 .L080E3484: .4byte 0x00000828
 .L080E3488: .4byte 0x00000818
 .L080E348C: .4byte 0x00000744
-.L080E3490: .4byte vtable_unk_080E5A28
+.L080E3490: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E3494
 func_080E3494: @ 0x080E3494
@@ -44778,7 +44792,7 @@ func_080E3504: @ 0x080E3504
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._24HardwareSharedStateOwner
-	ldr r0, .L080E35D8 @ =vtable_unk_080E5A28
+	ldr r0, .L080E35D8 @ =__vt_23IndexedResourceProvider
 	str r0, [r5, #4]
 	adds r0, r5, #0
 	bl __builtin_delete
@@ -44788,7 +44802,7 @@ func_080E3504: @ 0x080E3504
 	ldr r5, [r0]
 	cmp r5, #0
 	beq .L080E358C
-	ldr r0, .L080E35D8 @ =vtable_unk_080E5A28
+	ldr r0, .L080E35D8 @ =__vt_23IndexedResourceProvider
 	str r0, [r5, #0x24]
 	adds r4, r5, #0
 	adds r4, #0x1c
@@ -44836,7 +44850,7 @@ func_080E3504: @ 0x080E3504
 	movs r1, #3
 	bl _call_via_r2
 .L080E35C6:
-	ldr r0, .L080E35D8 @ =vtable_unk_080E5A28
+	ldr r0, .L080E35D8 @ =__vt_23IndexedResourceProvider
 	str r0, [r6, #0x10]
 	adds r0, r6, #0
 	adds r1, r7, #0
@@ -44845,7 +44859,7 @@ func_080E3504: @ 0x080E3504
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E35D8: .4byte vtable_unk_080E5A28
+.L080E35D8: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E35DC
 func_080E35DC: @ 0x080E35DC
@@ -45854,7 +45868,7 @@ func_080E3C3C: @ 0x080E3C3C
 	movs r2, #0x94
 	lsls r2, r2, #1
 	adds r0, r5, r2
-	ldr r4, .L080E3D90 @ =vtable_unk_080E5A28
+	ldr r4, .L080E3D90 @ =__vt_23IndexedResourceProvider
 	str r4, [r0]
 	adds r0, r5, #0
 	adds r0, #0xf8
@@ -45900,7 +45914,7 @@ func_080E3C3C: @ 0x080E3C3C
 	.align 2, 0
 .L080E3D88: .4byte 0x000033D8
 .L080E3D8C: .4byte vtable_unk_080E76F8
-.L080E3D90: .4byte vtable_unk_080E5A28
+.L080E3D90: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E3D94
 func_080E3D94: @ 0x080E3D94
@@ -46342,7 +46356,7 @@ func_080E40A0: @ 0x080E40A0
 	bl _._24HardwareSharedStateOwner
 	adds r1, r5, #0
 	adds r1, #0x80
-	ldr r0, .L080E418C @ =vtable_unk_080E5A28
+	ldr r0, .L080E418C @ =__vt_23IndexedResourceProvider
 	str r0, [r1]
 	str r0, [r5, #0x50]
 	str r0, [r5, #0x20]
@@ -46360,7 +46374,7 @@ func_080E40A0: @ 0x080E40A0
 	bx r0
 	.align 2, 0
 .L080E4188: .4byte vtable_unk_080E76F8
-.L080E418C: .4byte vtable_unk_080E5A28
+.L080E418C: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E4190
 func_080E4190: @ 0x080E4190
@@ -49348,7 +49362,7 @@ func_080E596C: @ 0x080E596C
 	movs r1, #3
 	bl _call_via_r2
 .L080E59AA:
-	ldr r0, .L080E59BC @ =vtable_unk_080E5A28
+	ldr r0, .L080E59BC @ =__vt_23IndexedResourceProvider
 	str r0, [r4, #0x10]
 	adds r0, r4, #0
 	adds r1, r5, #0
@@ -49357,7 +49371,7 @@ func_080E596C: @ 0x080E596C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E59BC: .4byte vtable_unk_080E5A28
+.L080E59BC: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E59C0
 func_080E59C0: @ 0x080E59C0
