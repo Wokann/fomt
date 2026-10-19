@@ -111,15 +111,14 @@ struct IntroSceneCore
     IndexedResourceArchive small_archive;
     IndexedResourceArchive actor_archive;
     IntroSceneResourceState resources[14];
-    // Initialization stores a halfword; the next upload sign-extends it.
-    // Preserve the following unknown bytes, rather than widening that store
-    // or assuming the uninspected bytes are initialized alignment padding.
-    i16 unk_6C60;
+    // Resource 9 follows resource 8's OBJ tiles: initialization stores the
+    // first upload's byte count / 32, and drawing uses it as the tile index.
+    // Preserve the following untouched bytes; the native store is a halfword.
+    i16 resource9_tile_index;
     u8 unk_6C62[2];
-    i16 unk_6C64;
-    i16 unk_6C66;
-    i16 unk_6C68;
-    i16 unk_6C6A;
+    // The frame renderer writes these four signed coefficients to OAM
+    // matrix 0. The sequence changes its diagonal from 0x400 to 0x100.
+    IndexedResourceSpriteMatrix sprite_matrix;
     i8 unk_6C6C;
     i8 unk_6C6D;
     i8 continuation;
@@ -163,10 +162,14 @@ typedef char IntroSceneResourceStateSizeCheck[(sizeof(IntroSceneResourceState) =
 typedef char IntroSceneResourceFlagsOffsetCheck[(offsetof(IntroSceneResourceState, flags) == 0x14) ? 1 : -1];
 typedef char IntroSceneResourceXOffsetCheck[(offsetof(IntroSceneResourceState, x) == 0x18) ? 1 : -1];
 typedef char IntroSceneResourceYOffsetCheck[(offsetof(IntroSceneResourceState, y) == 0x1C) ? 1 : -1];
-typedef char IntroSceneCoreField6C60OffsetCheck[(offsetof(IntroSceneCore, unk_6C60) == 0x6C60) ? 1 : -1];
-typedef char IntroSceneCoreField6C60WidthCheck[(sizeof(((IntroSceneCore *)0)->unk_6C60) == 2) ? 1 : -1];
+typedef char IntroSceneCoreResource9TileIndexOffsetCheck[(offsetof(IntroSceneCore, resource9_tile_index) == 0x6C60) ? 1 : -1];
+typedef char IntroSceneCoreResource9TileIndexWidthCheck[(sizeof(((IntroSceneCore *)0)->resource9_tile_index) == 2) ? 1 : -1];
 typedef char IntroSceneCoreUnknown6C62OffsetCheck[(offsetof(IntroSceneCore, unk_6C62) == 0x6C62) ? 1 : -1];
-typedef char IntroSceneCoreField6C64OffsetCheck[(offsetof(IntroSceneCore, unk_6C64) == 0x6C64) ? 1 : -1];
+typedef char IntroSceneCoreSpriteMatrixOffsetCheck[(offsetof(IntroSceneCore, sprite_matrix) == 0x6C64) ? 1 : -1];
+typedef char IntroSceneCoreSpriteMatrixSizeCheck[(sizeof(((IntroSceneCore *)0)->sprite_matrix) == 8) ? 1 : -1];
+typedef char IntroSceneMatrixPbOffsetCheck[(offsetof(IndexedResourceSpriteMatrix, pb) == 2) ? 1 : -1];
+typedef char IntroSceneMatrixPcOffsetCheck[(offsetof(IndexedResourceSpriteMatrix, pc) == 4) ? 1 : -1];
+typedef char IntroSceneMatrixPdOffsetCheck[(offsetof(IndexedResourceSpriteMatrix, pd) == 6) ? 1 : -1];
 typedef char IntroSceneCoreAnimationStateOffsetCheck[(offsetof(IntroSceneCore, unk_6C6C) == 0x6C6C) ? 1 : -1];
 typedef char IntroSceneCoreArchiveOffsetCheck[(offsetof(IntroSceneCore, intro_archive) == 0x6A10) ? 1 : -1];
 typedef char IntroSceneCoreResourcesOffsetCheck[(offsetof(IntroSceneCore, resources) == 0x6AA0) ? 1 : -1];

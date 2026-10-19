@@ -269,10 +269,10 @@ int RunIntroSceneSequence(IntroSceneCore * core)
     func_0800934C(&owner.object->blend, 0x889, 1, 0);
     QueueIntroSceneBlend(core, owner);
     func_08008B6C(core->music_players, 0x23);
-    core->unk_6C64 = 0x400;
-    core->unk_6C66 = 0;
-    core->unk_6C68 = 0;
-    core->unk_6C6A = 0x400;
+    core->sprite_matrix.pa = 0x400;
+    core->sprite_matrix.pb = 0;
+    core->sprite_matrix.pc = 0;
+    core->sprite_matrix.pd = 0x400;
     core->startup_phase = 3;
     core->unk_6D30 = 224;
     core->unk_6C6D = 0;
@@ -371,9 +371,9 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             }
             break;
         case 10:
-            core->unk_6C64 -= 16;
-            core->unk_6C6A -= 16;
-            if (core->unk_6C64 == 0x100)
+            core->sprite_matrix.pa -= 16;
+            core->sprite_matrix.pd -= 16;
+            if (core->sprite_matrix.pa == 0x100)
             {
                 skipped = true;
                 core->startup_phase = 12;
@@ -390,8 +390,8 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             right_state = left_state = 2;
             core->unk_6C6C = 9;
             core->resources[8].y = 0;
-            core->unk_6C64 = 0x100;
-            core->unk_6C6A = 0x100;
+            core->sprite_matrix.pa = 0x100;
+            core->sprite_matrix.pd = 0x100;
             skipped = true;
             core->startup_phase = 12;
             break;
