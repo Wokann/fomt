@@ -1352,31 +1352,29 @@ void DestroyBirthdayInputCore(NewGameBirthdayInputCore * core, u32 flags)
     func_080086BC(core, flags);
 }
 
-NewGameBirthdayInputScene * InitializeBirthdayInputScene(NewGameBirthdayInputScene * scene, GameDate birthday)
+NewGameBirthdayInputScene::NewGameBirthdayInputScene(GameDate birthday)
 {
-    scene->vtable = gNewGameBirthdayInputSceneVTable;
-    scene->core = InitializeBirthdayInputCore(static_cast<NewGameBirthdayInputCore *>(
+    core = InitializeBirthdayInputCore(static_cast<NewGameBirthdayInputCore *>(
         ::operator new(sizeof(NewGameBirthdayInputCore))), birthday);
-    return scene;
 }
 
-void DestroyBirthdayInputScene(NewGameBirthdayInputScene * scene, int flags)
+NewGameBirthdayInputScene::~NewGameBirthdayInputScene()
 {
-    scene->vtable = gNewGameBirthdayInputSceneVTable;
-    NewGameBirthdayInputCore * core = scene->core;
-    if (core != nullptr)
-        ((void (*)(NewGameBirthdayInputCore *, int))core->vtable[2])(core, 3);
-    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
+    // The outer scene has its real C++ lifetime. Its core still has a partial
+    // bootstrap ABI view, so retain the verified virtual cleanup of that core.
+    NewGameBirthdayInputCore * object = core;
+    if (object != nullptr)
+        ((void (*)(NewGameBirthdayInputCore *, int))object->vtable[2])(object, 3);
 }
 
-SceneTransitionOwner RunBirthdayInputScene(NewGameBirthdayInputScene * scene)
+SceneTransitionOwner NewGameBirthdayInputScene::Run()
 {
-    return func_0806DB38(scene->core);
+    return func_0806DB38(core);
 }
 
-GameDate GetBirthdayInputSceneDate(NewGameBirthdayInputScene const * scene)
+GameDate NewGameBirthdayInputScene::GetDate() const
 {
-    return scene->core->birthday;
+    return core->birthday;
 }
 
 void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)

@@ -934,7 +934,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7a98);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7aa8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ab4);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7ac4);
+. = ALIGN(4); src/new_game.o(.gnu.linkonce.d.__vt_25NewGameBirthdayInputScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ad0);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_6f1c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ae0);

@@ -4804,39 +4804,23 @@ extern RawVTableFunction const vtable_unk_080E7AB4[]
 #endif
     };
 
-#if defined(REGION_JP)
-extern RawVTableFunction const gNewGameBirthdayInputSceneVTable[]
-#else
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7AC4[]
-#endif
     SECTION(".rodata.vtable_7ac4") = {
-#if defined(REGION_JP)
-        nullptr,
-        nullptr,
-        reinterpret_cast<RawVTableFunction>(DestroyBirthdayInputScene),
-        reinterpret_cast<RawVTableFunction>(RunBirthdayInputScene),
-#else
         nullptr,
         nullptr,
         reinterpret_cast<RawVTableFunction>(DestroyBirthdayInputCore),
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7AD0[]
-#else
-extern RawVTableFunction const gNewGameBirthdayInputSceneVTable[]
-#endif
     SECTION(".rodata.vtable_7ad0") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
         func_080E2018,
-#else
-        reinterpret_cast<RawVTableFunction>(DestroyBirthdayInputScene),
-        reinterpret_cast<RawVTableFunction>(RunBirthdayInputScene),
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 // Physical JP sub-vtable used while func_080701BC constructs its resource

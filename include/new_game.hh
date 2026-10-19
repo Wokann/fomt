@@ -174,9 +174,17 @@ struct NewGameBirthdayInputCore : HardwareBootstrap {
 private:
     NewGameBirthdayInputCore();
 };
-struct NewGameBirthdayInputScene {
-    NewGameSceneVTableFunction const * vtable;
+struct NewGameBirthdayInputScene : AScene {
     NewGameBirthdayInputCore * core;
+
+    NewGameBirthdayInputScene(GameDate birthday) asm("InitializeBirthdayInputScene")
+        SECTION(".text.new_game_birthday_input_scene");
+    virtual ~NewGameBirthdayInputScene() asm("DestroyBirthdayInputScene")
+        SECTION(".text.new_game_birthday_input_scene");
+    virtual SceneTransitionOwner Run() asm("RunBirthdayInputScene")
+        SECTION(".text.new_game_birthday_input_scene");
+    GameDate GetDate() const asm("GetBirthdayInputSceneDate")
+        SECTION(".text.new_game_birthday_input_scene");
 };
 #if defined(REGION_JP)
 typedef char BirthdayCoreSizeCheck[sizeof(NewGameBirthdayInputCore) == 0x284 ? 1 : -1];
@@ -189,6 +197,7 @@ typedef char BirthdayCoreSizeCheck[sizeof(NewGameBirthdayInputCore) == 0x454 ? 1
 typedef char BirthdayFieldCheck[offsetof(NewGameBirthdayInputCore, birthday) == 0x448 ? 1 : -1];
 #endif
 typedef char BirthdaySceneSizeCheck[sizeof(NewGameBirthdayInputScene) == 8 ? 1 : -1];
+typedef char BirthdaySceneCoreCheck[offsetof(NewGameBirthdayInputScene, core) == 4 ? 1 : -1];
 typedef char BirthdayGlyphSizeCheck[sizeof(NewGameBirthdayInputGlyph) == 8 ? 1 : -1];
 typedef char BirthdayGlyphAlignmentCheck[__alignof__(NewGameBirthdayInputGlyph) == 2 ? 1 : -1];
 typedef char BirthdayGlyphYCheck[offsetof(NewGameBirthdayInputGlyph, y) == 2 ? 1 : -1];
@@ -222,15 +231,6 @@ void DestroyBirthdayInputCore(NewGameBirthdayInputCore *, u32 flags)
 extern NewGameSceneVTableFunction const vtable_unk_080E7AB4[];
 extern NewGameSceneVTableFunction const vtable_unk_080E7AC4[];
 SceneTransitionOwner func_0806DB38(NewGameBirthdayInputCore *);
-NewGameBirthdayInputScene * InitializeBirthdayInputScene(NewGameBirthdayInputScene *, GameDate)
-    SECTION(".text.new_game_birthday_input_scene");
-void DestroyBirthdayInputScene(NewGameBirthdayInputScene *, int)
-    SECTION(".text.new_game_birthday_input_scene");
-SceneTransitionOwner RunBirthdayInputScene(NewGameBirthdayInputScene *)
-    SECTION(".text.new_game_birthday_input_scene");
-GameDate GetBirthdayInputSceneDate(NewGameBirthdayInputScene const *)
-    SECTION(".text.new_game_birthday_input_scene");
-extern NewGameSceneVTableFunction const gNewGameBirthdayInputSceneVTable[];
 void UpdateBirthdayInputUi(NewGameBirthdayInputCore *)
     SECTION(".text.new_game_birthday_ui");
 void MoveBirthdayInputCursor(NewGameBirthdayInputCore *)
