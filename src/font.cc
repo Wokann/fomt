@@ -4,8 +4,6 @@
 
 #include <string.h>
 
-extern "C" {
-
 // Converts one Shift-JIS two-byte code to the index used by the font's
 // double-width glyph map. Returns -1 for a code outside that map.
 i32 GetShiftJisGlyphMapIndex(i32 character)
@@ -142,33 +140,18 @@ void DrawDecimalTo2x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
     } while (value != 0);
 }
 
-FontTilemapDecimalCommand * InitializeFontTilemapDecimalCommand(
-    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
+FontTilemapDecimalCommand::FontTilemapDecimalCommand(u32 value, u16 * right_tile,
     u16 base_tile, u16 palette, u32 row_stride)
 {
-    object->unk_00 = nullptr;
-    object->unk_04 = nullptr;
-#if defined(REGION_JP)
-    object->vtable = vtable_unk_080E7848;
-#else
-    object->vtable = vtable_unk_080E7858;
-#endif
-    object->value = value;
-    object->right_tile = right_tile;
-    object->base_tile = base_tile;
-    object->palette = palette;
-    object->row_stride = row_stride;
-    return object;
+    this->value = value;
+    this->right_tile = right_tile;
+    this->base_tile = base_tile;
+    this->palette = palette;
+    this->row_stride = row_stride;
 }
 
-void DestroyFontTilemapDecimalCommand(FontTilemapDecimalCommand * object, u32 flags)
+FontTilemapDecimalCommand::~FontTilemapDecimalCommand()
 {
-#if defined(REGION_JP)
-    object->vtable = vtable_unk_080E7848;
-#else
-    object->vtable = vtable_unk_080E7858;
-#endif
-    func_080098AC(object, flags);
 }
 
 #if !defined(REGION_JP)
@@ -189,25 +172,18 @@ void DrawDecimalTo1x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
     } while (value != 0);
 }
 
-FontTilemapDecimalCommand * InitializeFontTilemapTallDecimalCommand(
-    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
+FontTilemapTallDecimalCommand::FontTilemapTallDecimalCommand(u32 value, u16 * right_tile,
     u16 base_tile, u16 palette, u32 row_stride)
 {
-    object->unk_00 = nullptr;
-    object->unk_04 = nullptr;
-    object->vtable = vtable_unk_080E7848;
-    object->value = value;
-    object->right_tile = right_tile;
-    object->base_tile = base_tile;
-    object->palette = palette;
-    object->row_stride = row_stride;
-    return object;
+    this->value = value;
+    this->right_tile = right_tile;
+    this->base_tile = base_tile;
+    this->palette = palette;
+    this->row_stride = row_stride;
 }
 
-void DestroyFontTilemapTallDecimalCommand(FontTilemapDecimalCommand * object, u32 flags)
+FontTilemapTallDecimalCommand::~FontTilemapTallDecimalCommand()
 {
-    object->vtable = vtable_unk_080E7848;
-    func_080098AC(object, flags);
 }
 #endif
 
@@ -227,48 +203,38 @@ void DrawDecimalToTilemap(u32 value, u16 * right_tile, u32 base_tile,
     } while (value != 0);
 }
 
-FontTilemapDecimalCommand * InitializeFontTilemapSingleTileDecimalCommand(
-    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
+FontTilemapSingleTileDecimalCommand::FontTilemapSingleTileDecimalCommand(u32 value, u16 * right_tile,
     u16 base_tile, u16 palette, u32 row_stride)
 {
-    object->unk_00 = nullptr;
-    object->unk_04 = nullptr;
-    object->vtable = vtable_unk_080E7838;
-    object->value = value;
-    object->right_tile = right_tile;
-    object->base_tile = base_tile;
-    object->palette = palette;
-    object->row_stride = row_stride;
-    return object;
+    this->value = value;
+    this->right_tile = right_tile;
+    this->base_tile = base_tile;
+    this->palette = palette;
+    this->row_stride = row_stride;
 }
 
-void DestroyFontTilemapSingleTileDecimalCommand(FontTilemapDecimalCommand * object, u32 flags)
+FontTilemapSingleTileDecimalCommand::~FontTilemapSingleTileDecimalCommand()
 {
-    object->vtable = vtable_unk_080E7838;
-    func_080098AC(object, flags);
 }
 
-u32 RunFontTilemapSingleTileDecimalCommand(FontTilemapDecimalCommand * object)
+bool FontTilemapSingleTileDecimalCommand::Run()
 {
-    DrawDecimalToTilemap(object->value, object->right_tile, object->base_tile,
-        object->palette, object->row_stride);
-    return 0;
+    DrawDecimalToTilemap(value, right_tile, base_tile, palette, row_stride);
+    return false;
 }
 
 #if !defined(REGION_JP)
-u32 RunFontTilemapTallDecimalCommand(FontTilemapDecimalCommand * object)
+bool FontTilemapTallDecimalCommand::Run()
 {
-    DrawDecimalTo1x2Tilemap(object->value, object->right_tile, object->base_tile,
-        object->palette, object->row_stride);
-    return 0;
+    DrawDecimalTo1x2Tilemap(value, right_tile, base_tile, palette, row_stride);
+    return false;
 }
 #endif
 
-u32 RunFontTilemapDecimalCommand(FontTilemapDecimalCommand * object)
+bool FontTilemapDecimalCommand::Run()
 {
-    DrawDecimalTo2x2Tilemap(object->value, object->right_tile, object->base_tile,
-        object->palette, object->row_stride);
-    return 0;
+    DrawDecimalTo2x2Tilemap(value, right_tile, base_tile, palette, row_stride);
+    return false;
 }
 
 void FormatUnsignedDecimal(u32 value, char * output)
@@ -430,6 +396,4 @@ i32 DrawCharacterGlyph(void *destination, i32 character)
     if (glyph_index >= 0)
         result = glyph_width;
     return result;
-}
-
 }

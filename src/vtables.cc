@@ -4374,40 +4374,8 @@ extern RawVTableFunction const __vt_12ScriptEngine[]
         OnCall__12ScriptEnginei,
     };
 
-// JP has the single-tile and 2x2 decimal commands; overseas ROMs insert the
-// 1x2 variant between them. The following rectangle-fill table is now owned
-// by FontTilemapRectCommand in font_draw.cc.
-extern RawVTableFunction const vtable_unk_080E7838[]
-    SECTION(".rodata.vtable_script_engine_adjacent") = {
-        nullptr,
-        nullptr,
-        reinterpret_cast<RawVTableFunction>(RunFontTilemapSingleTileDecimalCommand),
-        reinterpret_cast<RawVTableFunction>(DestroyFontTilemapSingleTileDecimalCommand),
-    };
-
-extern RawVTableFunction const vtable_unk_080E7848[]
-    SECTION(".rodata.vtable_script_engine_adjacent") = {
-        nullptr,
-        nullptr,
-#if defined(REGION_JP)
-        reinterpret_cast<RawVTableFunction>(RunFontTilemapDecimalCommand),
-        reinterpret_cast<RawVTableFunction>(DestroyFontTilemapDecimalCommand),
-#else
-        reinterpret_cast<RawVTableFunction>(RunFontTilemapTallDecimalCommand),
-        reinterpret_cast<RawVTableFunction>(DestroyFontTilemapTallDecimalCommand),
-#endif
-    };
-
-#if !defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E7858[]
-    SECTION(".rodata.vtable_script_engine_adjacent") = {
-        nullptr,
-        nullptr,
-        reinterpret_cast<RawVTableFunction>(RunFontTilemapDecimalCommand),
-        reinterpret_cast<RawVTableFunction>(DestroyFontTilemapDecimalCommand),
-    };
-#endif
-
+// The adjacent decimal command and rectangle-fill tables are now generated
+// by their actual classes in font.cc and font_draw.cc.
 // Both complete input tables are now compiler-owned in ui_state.cc.
 
 // UiTextOutput supplies the next complete C++ table, including the four

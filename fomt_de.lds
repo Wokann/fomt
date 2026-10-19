@@ -827,7 +827,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_77e0);
         *(.gnu.linkonce.d.__vt_13AScriptEngine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine_adjacent);
+        . = ALIGN(4); src/font.o(.gnu.linkonce.d.__vt_*FontTilemap*DecimalCommand);
         src/font_draw.o(.gnu.linkonce.d.__vt_22FontTilemapRectCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_24UiTextWindowSetupCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_25UiTextOutputUploadCommand);

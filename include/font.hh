@@ -37,24 +37,32 @@ void FormatSignedDecimal(i32 value, char * output, u32 width)
 void DrawDecimalTo2x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
     u32 palette, u32 row_stride) SECTION(".text.font_decimal");
 
-// The metadata entries and native callbacks are not invoked through this
-// opaque table type. Only their actual table addresses are used here.
-typedef void (*FontTilemapDecimalVTableFunction)(void);
-extern FontTilemapDecimalVTableFunction const vtable_unk_080E7838[];
-extern FontTilemapDecimalVTableFunction const vtable_unk_080E7848[];
-#if !defined(REGION_JP)
-extern FontTilemapDecimalVTableFunction const vtable_unk_080E7858[];
-#endif
+EXTERN_C_END
 
-typedef struct FontTilemapDecimalCommand {
-    void * unk_00;
-    void * unk_04;
-    FontTilemapDecimalVTableFunction const * vtable;
+// These sibling queue commands retain the same payload layout, but have
+// distinct virtual drawing methods. right_tile is the upper-right tile of
+// the final digit. The base unlinks a command when its Run returns false.
+typedef struct FontTilemapDecimalCommand
+#ifdef __cplusplus
+    : HardwareLinkBase
+#endif
+{
+#ifndef __cplusplus
+    struct HardwareLinkBase ** previous_slot;
+    struct HardwareLinkBase * next;
+    void ** vtable;
+#endif
     u32 value;
     u16 * right_tile;
     u16 base_tile;
     u16 palette;
     u32 row_stride;
+#ifdef __cplusplus
+    FontTilemapDecimalCommand(u32 value, u16 * right_tile, u16 base_tile,
+        u16 palette, u32 row_stride) SECTION(".text.font_decimal");
+    virtual ~FontTilemapDecimalCommand() SECTION(".text.font_decimal");
+    virtual bool Run() SECTION(".text.font_decimal");
+#endif
 } FontTilemapDecimalCommand;
 
 typedef char FontTilemapDecimalCommandSizeCheck[sizeof(FontTilemapDecimalCommand) == 0x1C ? 1 : -1];
@@ -64,41 +72,78 @@ typedef char FontTilemapDecimalCommandBaseTileCheck[offsetof(FontTilemapDecimalC
 typedef char FontTilemapDecimalCommandPaletteCheck[offsetof(FontTilemapDecimalCommand, palette) == 0x16 ? 1 : -1];
 typedef char FontTilemapDecimalCommandRowStrideCheck[offsetof(FontTilemapDecimalCommand, row_stride) == 0x18 ? 1 : -1];
 
-FontTilemapDecimalCommand * InitializeFontTilemapDecimalCommand(
-    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
-    u16 base_tile, u16 palette, u32 row_stride) SECTION(".text.font_decimal");
+// Overseas ROMs insert the one-column, two-row variant. JP has no such class.
+#if !defined(REGION_JP)
+typedef struct FontTilemapTallDecimalCommand
+#ifdef __cplusplus
+    : HardwareLinkBase
+#endif
+{
+#ifndef __cplusplus
+    struct HardwareLinkBase ** previous_slot;
+    struct HardwareLinkBase * next;
+    void ** vtable;
+#endif
+    u32 value;
+    u16 * right_tile;
+    u16 base_tile;
+    u16 palette;
+    u32 row_stride;
+#ifdef __cplusplus
+    FontTilemapTallDecimalCommand(u32 value, u16 * right_tile, u16 base_tile,
+        u16 palette, u32 row_stride) SECTION(".text.font_decimal");
+    virtual ~FontTilemapTallDecimalCommand() SECTION(".text.font_decimal");
+    virtual bool Run() SECTION(".text.font_decimal");
+#endif
+} FontTilemapTallDecimalCommand;
 
-void DestroyFontTilemapDecimalCommand(FontTilemapDecimalCommand * object,
-    u32 flags) SECTION(".text.font_decimal");
+typedef char FontTilemapTallDecimalCommandSizeCheck[sizeof(FontTilemapTallDecimalCommand) == 0x1C ? 1 : -1];
+typedef char FontTilemapTallDecimalCommandValueCheck[offsetof(FontTilemapTallDecimalCommand, value) == 0x0C ? 1 : -1];
+typedef char FontTilemapTallDecimalCommandDestinationCheck[offsetof(FontTilemapTallDecimalCommand, right_tile) == 0x10 ? 1 : -1];
+typedef char FontTilemapTallDecimalCommandBaseTileCheck[offsetof(FontTilemapTallDecimalCommand, base_tile) == 0x14 ? 1 : -1];
+typedef char FontTilemapTallDecimalCommandPaletteCheck[offsetof(FontTilemapTallDecimalCommand, palette) == 0x16 ? 1 : -1];
+typedef char FontTilemapTallDecimalCommandStrideCheck[offsetof(FontTilemapTallDecimalCommand, row_stride) == 0x18 ? 1 : -1];
+#endif
 
-// The overseas ROMs also have a one-column, two-row digit variant.
+// Single-tile digits retain row_stride in the ABI but write only one row.
+typedef struct FontTilemapSingleTileDecimalCommand
+#ifdef __cplusplus
+    : HardwareLinkBase
+#endif
+{
+#ifndef __cplusplus
+    struct HardwareLinkBase ** previous_slot;
+    struct HardwareLinkBase * next;
+    void ** vtable;
+#endif
+    u32 value;
+    u16 * right_tile;
+    u16 base_tile;
+    u16 palette;
+    u32 row_stride;
+#ifdef __cplusplus
+    FontTilemapSingleTileDecimalCommand(u32 value, u16 * right_tile, u16 base_tile,
+        u16 palette, u32 row_stride) SECTION(".text.font_decimal");
+    virtual ~FontTilemapSingleTileDecimalCommand() SECTION(".text.font_decimal");
+    virtual bool Run() SECTION(".text.font_decimal");
+#endif
+} FontTilemapSingleTileDecimalCommand;
+
+typedef char FontTilemapSingleTileDecimalCommandSizeCheck[sizeof(FontTilemapSingleTileDecimalCommand) == 0x1C ? 1 : -1];
+typedef char FontTilemapSingleTileDecimalCommandValueCheck[offsetof(FontTilemapSingleTileDecimalCommand, value) == 0x0C ? 1 : -1];
+typedef char FontTilemapSingleTileDecimalCommandDestinationCheck[offsetof(FontTilemapSingleTileDecimalCommand, right_tile) == 0x10 ? 1 : -1];
+typedef char FontTilemapSingleTileDecimalCommandBaseTileCheck[offsetof(FontTilemapSingleTileDecimalCommand, base_tile) == 0x14 ? 1 : -1];
+typedef char FontTilemapSingleTileDecimalCommandPaletteCheck[offsetof(FontTilemapSingleTileDecimalCommand, palette) == 0x16 ? 1 : -1];
+typedef char FontTilemapSingleTileDecimalCommandStrideCheck[offsetof(FontTilemapSingleTileDecimalCommand, row_stride) == 0x18 ? 1 : -1];
+
+EXTERN_C
+
 #if !defined(REGION_JP)
 void DrawDecimalTo1x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
     u32 palette, u32 row_stride) SECTION(".text.font_decimal");
-FontTilemapDecimalCommand * InitializeFontTilemapTallDecimalCommand(
-    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
-    u16 base_tile, u16 palette, u32 row_stride) SECTION(".text.font_decimal");
-void DestroyFontTilemapTallDecimalCommand(FontTilemapDecimalCommand * object,
-    u32 flags) SECTION(".text.font_decimal");
 #endif
-
-// Single-tile digits use the same native field layout. row_stride is kept
-// for the command ABI but this renderer writes only one row.
 void DrawDecimalToTilemap(u32 value, u16 * right_tile, u32 base_tile,
     u32 palette, u32 row_stride) SECTION(".text.font_decimal");
-FontTilemapDecimalCommand * InitializeFontTilemapSingleTileDecimalCommand(
-    FontTilemapDecimalCommand * object, u32 value, u16 * right_tile,
-    u16 base_tile, u16 palette, u32 row_stride) SECTION(".text.font_decimal");
-void DestroyFontTilemapSingleTileDecimalCommand(FontTilemapDecimalCommand * object,
-    u32 flags) SECTION(".text.font_decimal");
-u32 RunFontTilemapSingleTileDecimalCommand(FontTilemapDecimalCommand * object)
-    SECTION(".text.font_decimal");
-#if !defined(REGION_JP)
-u32 RunFontTilemapTallDecimalCommand(FontTilemapDecimalCommand * object)
-    SECTION(".text.font_decimal");
-#endif
-u32 RunFontTilemapDecimalCommand(FontTilemapDecimalCommand * object)
-    SECTION(".text.font_decimal");
 
 // Writes an unsigned 32-bit value as ASCII decimal followed by a terminator.
 // The caller provides space for up to ten digits and the terminator.
