@@ -14,6 +14,7 @@
 #include "hardware_resource.hh"
 #include "hardware_state_clear.hh"
 #include "hardware_state_accessors.hh"
+#include "hardware_music_player.hh"
 #include "time_of_day.hh"
 #include "field_render_farm_house_data.hh"
 
@@ -450,13 +451,30 @@ struct GameSceneBgmSettings {
     u8 lfo_speed;
 };
 
-// Entries point to the scene's MusicPlayer pointer wrappers, not directly
-// to m4a players. The allocation paths place capacity_end at +0x0C.
+// These slots borrow the hardware music players; they do not destroy them.
+struct GameSceneMusicPlayerSlot {
+    MusicPlayer * value;
+    explicit GameSceneMusicPlayerSlot(u8 index) { func_08008B54(&value, index); }
+};
+
+// Entries point to the scene's pointer slots, not directly to m4a players.
+// The empty allocator occupies a word before the capacity pointer at +0x0C.
 struct GameSceneSongPlayerPool {
+    struct Allocator {
+        Allocator() {}
+        Allocator(Allocator const &) {}
+    };
+    struct Allocation {
+        Allocator allocator;
+        MusicPlayer *** end;
+        Allocation(Allocator const & input) : allocator(input), end(nullptr) {}
+    };
     MusicPlayer *** begin;
     MusicPlayer *** end;
-    u32 unk_08;
-    MusicPlayer *** capacity_end;
+    Allocation allocation;
+
+    GameSceneSongPlayerPool(Allocator const & input = Allocator())
+        : begin(nullptr), end(nullptr), allocation(input) {}
 };
 
 // Each pending request is passed unchanged to LoadById(id, context).
@@ -1064,7 +1082,10 @@ typedef char ClockTransitionOwnerCheck[offsetof(ClockTransition, continuation) =
 // The native constructor allocates 0xF8 bytes and places its vptr at +0xF4.
 // The display shadow at +0x10 is constructed as HardwareDisplayState.
 // Other fields are typed only where native construction or use proves them.
+#pragma interface "game_scene.hh"
 struct GameSceneState {
+    GameSceneState(GameScene * owner, GameStateSaveImage * image,
+        GameSceneResumeRequest const & request);
     HardwareDmaQueue dma_queue;
     HardwareDisplayState display;
     HardwareManagerOwner manager;
@@ -1080,20 +1101,24 @@ struct GameSceneState {
     ScriptTextVariableStore * text_variables;
     GameSceneUiComponentOwner time_window;
     GameSceneUiComponentOwner pause_menu_selector;
-    MusicPlayer * bgm_player;
-    u8 unk_C0[0x10];
+    GameSceneMusicPlayerSlot bgm_player;
+    GameSceneMusicPlayerSlot music_player_1;
+    GameSceneMusicPlayerSlot music_player_2;
+    GameSceneMusicPlayerSlot music_player_3;
+    GameSceneMusicPlayerSlot music_player_4;
     GameSceneSongPlayerPool song_players;
     u16 wait_frames;
     u16 unk_E2;
     AActorEntity * waiting_entity;
     u8 unk_E8;
     u8 unk_E9;
-    u8 unk_EA[0xA];
+    u8 unk_EA[6];
+    void * unk_F0;
+    // The real cleanup body remains in native assembly.
     virtual ~GameSceneState();
 };
 
 struct GameScene : AScene {
-    // The regional constructors still have native assembly implementations.
     GameScene(GameStateSaveImage * image, GameSceneResumeRequest const & request);
 #if !defined(REGION_JP)
     explicit GameScene(GameStateSaveImage * image);
@@ -1181,8 +1206,9 @@ typedef char GameSceneTalkWindowOwnerSizeCheck[sizeof(GameSceneTalkWindowOwner) 
 typedef char GameSceneBgmSettingsSizeCheck[sizeof(GameSceneBgmSettings) == 12 ? 1 : -1];
 typedef char GameSceneBgmSettingsPitchCheck[offsetof(GameSceneBgmSettings, pitch) == 4 ? 1 : -1];
 typedef char GameSceneBgmSettingsLfoCheck[offsetof(GameSceneBgmSettings, lfo_speed) == 8 ? 1 : -1];
+typedef char GameSceneMusicPlayerSlotSizeCheck[sizeof(GameSceneMusicPlayerSlot) == 4 ? 1 : -1];
 typedef char GameSceneSongPlayerPoolSizeCheck[sizeof(GameSceneSongPlayerPool) == 16 ? 1 : -1];
-typedef char GameSceneSongPlayerPoolCapacityCheck[offsetof(GameSceneSongPlayerPool, capacity_end) == 12 ? 1 : -1];
+typedef char GameSceneSongPlayerPoolCapacityCheck[offsetof(GameSceneSongPlayerPool, allocation.end) == 12 ? 1 : -1];
 typedef char GameSceneStateSizeCheck[sizeof(GameSceneState) == 0xF8 ? 1 : -1];
 typedef char GameSceneStateDmaQueueCheck[offsetof(GameSceneState, dma_queue) == 0 ? 1 : -1];
 typedef char GameSceneStateDisplayCheck[offsetof(GameSceneState, display) == 0x10 ? 1 : -1];
@@ -1204,9 +1230,12 @@ typedef char GameSceneStateTalkContextCheck[offsetof(GameSceneState, text_variab
 typedef char GameSceneStateTimeWindowCheck[offsetof(GameSceneState, time_window) == 0xB4 ? 1 : -1];
 typedef char GameSceneStateMenuSelectorCheck[offsetof(GameSceneState, pause_menu_selector) == 0xB8 ? 1 : -1];
 typedef char GameSceneStateBgmPlayerCheck[offsetof(GameSceneState, bgm_player) == 0xBC ? 1 : -1];
+typedef char GameSceneStateMusicPlayer1Check[offsetof(GameSceneState, music_player_1) == 0xC0 ? 1 : -1];
+typedef char GameSceneStateMusicPlayer4Check[offsetof(GameSceneState, music_player_4) == 0xCC ? 1 : -1];
 typedef char GameSceneStateSongPlayersCheck[offsetof(GameSceneState, song_players) == 0xD0 ? 1 : -1];
 typedef char GameSceneStateWaitFramesCheck[offsetof(GameSceneState, wait_frames) == 0xE0 ? 1 : -1];
 typedef char GameSceneStateWaitingEntityCheck[offsetof(GameSceneState, waiting_entity) == 0xE4 ? 1 : -1];
+typedef char GameSceneStateUnknownPointerCheck[offsetof(GameSceneState, unk_F0) == 0xF0 ? 1 : -1];
 typedef char GameSceneSizeCheck[sizeof(GameScene) == 8 ? 1 : -1];
 typedef char GameSceneStatePointerCheck[offsetof(GameScene, state) == 4 ? 1 : -1];
 
@@ -1487,10 +1516,6 @@ SceneTransitionOwner sub_080D8178(GameSceneState * state);
 void UpdateGameSceneHardwareFrame(GameSceneState * state, HardwareSpriteBufferState * buffer);
 
 EXTERN_C_END
-
-// These concrete interfaces and their compiler-owned virtual tables belong
-// to game_scene.cc, using this frontend's interface/implementation convention.
-#pragma interface "game_scene.hh"
 
 // Native base owns OBJ tiles and the palette slots returned by GameObject.
 struct GameSceneSpriteBase {

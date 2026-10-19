@@ -29,6 +29,7 @@
 #include "hardware_song.hh"
 #include "font.hh"
 #include "gbasvc.h"
+#include "gbaio.h"
 #include <iterator>
 
 #pragma implementation "game_scene.hh"
@@ -146,6 +147,45 @@ GameSceneScriptController::~GameSceneScriptController()
 {
     gUnk_0300040C = nullptr;
 }
+
+inline GameSceneState::GameSceneState(GameScene * owner, GameStateSaveImage * image,
+    GameSceneResumeRequest const & request)
+    : scene(owner), save(image), resume_request(request), screen_blend(nullptr),
+      game_object(nullptr), text_variables(nullptr), bgm_player(0), music_player_1(1),
+      music_player_2(2), music_player_3(3), music_player_4(4)
+{
+    unk_E8 = 0;
+    unk_EA[0] = 0;
+    unk_F0 = nullptr;
+}
+
+GameScene::GameScene(GameStateSaveImage * image, GameSceneResumeRequest const & request)
+{
+    GameSceneState * core = new GameSceneState(this, image, request);
+    u16 status = core->display.status;
+    status |= 8;
+    core->display.status = status;
+    REG_DISPSTAT = status;
+    state = core;
+    GameSceneScriptController * controller =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
+    controller->script_engine.SetUnk(this);
+}
+
+#if !defined(REGION_JP)
+GameScene::GameScene(GameStateSaveImage * image)
+{
+    GameSceneState * core = new GameSceneState(this, image, GameSceneResumeRequest(2));
+    u16 status = core->display.status;
+    status |= 8;
+    core->display.status = status;
+    REG_DISPSTAT = status;
+    state = core;
+    GameSceneScriptController * controller =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
+    controller->script_engine.SetUnk(this);
+}
+#endif
 
 void UpdateGameSceneHardwareFrame(GameSceneState * state, HardwareSpriteBufferState * buffer)
 {
@@ -339,13 +379,13 @@ void GameScene::WaitForCameraMovement()
 void GameScene::PlayBGM(i32 mode, u32 sequence, GameSceneBgmSettings const & settings)
 {
     GameSceneState * current = state;
-    StartSceneSong(&current->bgm_player, mode, static_cast<u16>(sequence));
-    ApplySceneBgmSettings(settings, &current->bgm_player);
+    StartSceneSong(&current->bgm_player.value, mode, static_cast<u16>(sequence));
+    ApplySceneBgmSettings(settings, &current->bgm_player.value);
 }
 
 void GameScene::StopBGM()
 {
-    func_08008BE0(&state->bgm_player);
+    func_08008BE0(&state->bgm_player.value);
 }
 
 void GameScene::PlaySong(i32 mode, u32 sequence)

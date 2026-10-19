@@ -8311,9 +8311,9 @@ sub_080D8178:
     .byte 0x90, 0xFF, 0xD4, 0x04, 0x00, 0x00, 0x06, 0x4B, 0x6B, 0x44, 0x18, 0x68, 0xB2, 0x23, 0xDB, 0x00
     .byte 0x9D, 0x44, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
     .byte 0x00, 0x00, 0xDC, 0x04, 0x00, 0x00
-    .global func_080DB0EC
+    .global _._14GameSceneState
     .thumb_func
-func_080DB0EC:
+_._14GameSceneState:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
@@ -8435,7 +8435,7 @@ func_080DB0EC:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x48, 0x50, 0x0E, 0x08
+    .4byte __vt_14GameSceneState
     .global func_080DB1E4
     .thumb_func
 func_080DB1E4:
@@ -21490,14 +21490,14 @@ func_080DB0CC:
 	.align 2, 0
 .L080DB0E8: .4byte 0x000004DC
 
-	thumb_func_start func_080DB0EC
-func_080DB0EC: @ 0x080DB0EC
+	thumb_func_start _._14GameSceneState
+_._14GameSceneState: @ 0x080DB0EC
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
 	adds r1, r4, #0
 	adds r1, #0xf4
-	ldr r0, .L080DB1E0 @ =vtable_unk_080E5C08
+	ldr r0, .L080DB1E0 @ =__vt_14GameSceneState
 	str r0, [r1]
 	adds r0, r4, #0
 	adds r0, #0xf0
@@ -21614,7 +21614,7 @@ func_080DB0EC: @ 0x080DB0EC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080DB1E0: .4byte vtable_unk_080E5C08
+.L080DB1E0: .4byte __vt_14GameSceneState
 
 	thumb_func_start func_080DB1E4
 func_080DB1E4: @ 0x080DB1E4

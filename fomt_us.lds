@@ -160,7 +160,7 @@ SECTIONS
         src/game_state.o(.text.*);
         asm/game_state.o(.text.game_state_after_display_options);
         src/game_scene.o(.text.UpdateGameSceneHardwareFrame);
-        asm/game_state.o(.text.game_scene_constructors);
+        src/game_scene.o(.text.__9GameSceneP18GameStateSaveImage*);
         src/game_scene.o(.text._._9GameScene);
         /* Keep the recovered member runs around the native opener and menus.
          * Patterns in one input selector keep the object's section order. */
@@ -708,6 +708,7 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_12HardwareLink);
         *(.gnu.linkonce.d.__vt_16HardwareLinkBase);
         src/game_scene.o(.gnu.linkonce.d.__vt_25GameSceneScriptController);
+        src/game_scene.o(.gnu.linkonce.d.__vt_14GameSceneState);
         src/vtables.o(.rodata);
         *(.gnu.linkonce.d.__vt_7AEntity);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6284);
