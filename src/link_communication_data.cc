@@ -200,19 +200,24 @@ char const gCppRuntimeBadAlloc_LinkCommunicationGYW[] =
 
 }
 
-// The word overload of Set remains explicit assembly: its native register
-// scheduling has not been recovered as ordinary C++ yet.
+void LinkCommunicationValue::Set(u8 first, u16 word)
+{
+    prefix.word = first;
+    value[0] = word;
+    value[1] = word >> 8;
+}
+
 void LinkCommunicationValue::Set(u8 first, u8 second, u8 const * bytes)
 {
-    unk_00 = first;
-    unk_01 = second;
+    prefix.bytes[0] = first;
+    prefix.bytes[1] = second;
     value[0] = bytes[0];
     value[1] = bytes[1];
 }
 
 u8 LinkCommunicationValue::GetByte0() const
 {
-    return unk_00;
+    return prefix.bytes[0];
 }
 
 u16 LinkCommunicationValue::GetValue() const
@@ -222,7 +227,7 @@ u16 LinkCommunicationValue::GetValue() const
 
 u8 LinkCommunicationValue::GetByte1() const
 {
-    return unk_01;
+    return prefix.bytes[1];
 }
 
 void LinkCommunicationValue::CopyValue(u8 * destination) const
@@ -233,7 +238,7 @@ void LinkCommunicationValue::CopyValue(u8 * destination) const
 
 u16 LinkCommunicationValue::GetPrefix() const
 {
-    return unk_00 | (unk_01 << 8);
+    return prefix.bytes[0] | (prefix.bytes[1] << 8);
 }
 
 bool LinkCommunicationValue::HasValue(u8 const * bytes) const

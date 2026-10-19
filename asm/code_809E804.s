@@ -177873,22 +177873,6 @@ func_080D101C: @ 0x080D101C
 
     .endif
 
-    @ Only the first overload still requires native assembly. The remaining
-    @ seven methods follow it in src/link_communication_data.o(.text).
-    .section .text.link_communication_value,"ax",%progbits
-    .syntax unified
-    thumb_func_start Set__22LinkCommunicationValueUcUs
-Set__22LinkCommunicationValueUcUs:
-    strb r1, [r0]
-    movs r1, #0
-    strb r1, [r0, #1]
-    strb r2, [r0, #2]
-    lsrs r2, r2, #8
-    strb r2, [r0, #3]
-    bx lr
-    .align 2, 0
-    thumb_func_end Set__22LinkCommunicationValueUcUs
-
     @ Shared native decompressor. Internal helpers pass bit state and results
     @ in r2-r4/r7-r11, rather than the ordinary C calling convention.
     @ Preserve that ABI; every code pointer names its actual instruction label.

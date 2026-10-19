@@ -45,12 +45,15 @@ extern char const gCppRuntimeBadAlloc_LinkCommunicationGYW[];
 
 }
 
-// Four byte-oriented fields in the helpers following the serial-link queue.
-// The prefix bytes have no independently established protocol meanings yet.
-struct LinkCommunicationValue
+// A serialized two-byte prefix and two payload bytes. The native API
+// exposes both halfword and byte views of the prefix. Its protocol
+// meaning is still unknown; do not impose halfword alignment on the record.
+struct PACKED LinkCommunicationValue
 {
-    u8 unk_00;
-    u8 unk_01;
+    union PACKED {
+        u16 word;
+        u8 bytes[2];
+    } prefix;
     u8 value[2];
 
     void Set(u8 first, u16 word);
@@ -64,7 +67,11 @@ struct LinkCommunicationValue
 };
 
 typedef char LinkCommunicationValue_size[sizeof(LinkCommunicationValue) == 4 ? 1 : -1];
-typedef char LinkCommunicationValue_prefix[offsetof(LinkCommunicationValue, unk_01) == 1 ? 1 : -1];
+typedef char LinkCommunicationValue_prefix[offsetof(LinkCommunicationValue, prefix) == 0 ? 1 : -1];
+
+typedef char LinkCommunicationValue_prefix_size[sizeof(((LinkCommunicationValue *)0)->prefix) == 2 ? 1 : -1];
+
+typedef char LinkCommunicationValue_alignment[__alignof__(LinkCommunicationValue) == 1 ? 1 : -1];
 typedef char LinkCommunicationValue_value[offsetof(LinkCommunicationValue, value) == 2 ? 1 : -1];
 
 extern char const gText_LinkCommunication_Waiting[];
