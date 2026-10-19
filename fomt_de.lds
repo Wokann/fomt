@@ -618,6 +618,8 @@ SECTIONS
         src/npc_entity.o(.text.FindScheduleEntryUpperBound);
         src/game_scene.o(.text.func_080D7F*);
         asm/code_linkonce.o(.text.game_scene_state_callbacks_after);
+        src/game_scene.o(.text._._14GameSceneState);
+        asm/code_linkonce.o(.text.scene_calendar_before);
         src/game_scene.o(.text.CreateScene__18CalendarTransition);
         asm/code_linkonce.o(.text.scene_calendar_after);
         src/game_scene.o(.text.CreateScene__19ToolChestTransition);

@@ -2,6 +2,7 @@
 #define HARDWARE_STATE_ACCESSORS_HH
 
 #include "prelude.h"
+#include <stdlib.h>
 #include "hardware_display_output.hh"
 #include "hardware_input.hh"
 #include "hardware_linked_list.hh"
@@ -37,6 +38,15 @@ struct HardwareDmaQueue {
     struct DmaTransferDescriptor * last;
     struct HardwareDmaQueueAllocation allocation;
 #ifdef __cplusplus
+    ~HardwareDmaQueue()
+    {
+        typedef __type_traits<DmaTransferDescriptor>::has_trivial_destructor TrivialDestructor;
+        DmaTransferDescriptor * end = last;
+        destroy_range_inl(first, end, TrivialDestructor());
+        if (first != nullptr)
+            free(first);
+    }
+
     bool IsEmpty() const { return first == last; }
     size_t Size() const { return last - first; }
 

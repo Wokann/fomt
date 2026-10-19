@@ -9,11 +9,6 @@
 void * operator new(unsigned long);
 void operator delete(void *);
 
-EXTERN_C
-extern void __builtin_delete(void * pointer);
-extern void free(void * pointer);
-EXTERN_C_END
-
 HardwareBootstrap::HardwareBootstrap()
 {
     this->vtable = (void **)vtable_unk_080E5B00;
@@ -61,24 +56,8 @@ HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input
 
 HardwareBootstrap::~HardwareBootstrap()
 {
-    struct HardwareCoreState * state;
     this->vtable = (void **)vtable_unk_080E5B00;
-    if (this->state != 0) {
-        state = this->state;
-        struct HardwareDmaQueue * queue;
-        struct DmaTransferDescriptor * current;
-        struct DmaTransferDescriptor * end;
-        func_080098DC(&state->links, 2);
-        func_08008A68(&state->manager, 2);
-        queue = &state->dma_queue;
-        end = queue->last;
-        current = queue->first;
-        while (current != end)
-            current++;
-        if (queue->first != nullptr)
-            free(queue->first);
-        __builtin_delete(state);
-    }
+    delete state;
 }
 
 void UpdateHardwareFrame(struct HardwareBootstrap * owner)

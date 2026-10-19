@@ -14,6 +14,7 @@
 #include "hardware_resource.hh"
 #include "hardware_state_clear.hh"
 #include "hardware_state_accessors.hh"
+#include "hardware_blend.hh"
 #include "hardware_music_player.hh"
 #include "time_of_day.hh"
 #include "field_render_farm_house_data.hh"
@@ -472,6 +473,12 @@ struct GameSceneSongPlayerPool {
     MusicPlayer *** begin;
     MusicPlayer *** end;
     Allocation allocation;
+
+    ~GameSceneSongPlayerPool()
+    {
+        if (begin != nullptr)
+            free(begin);
+    }
 
     GameSceneSongPlayerPool(Allocator const & input = Allocator())
         : begin(nullptr), end(nullptr), allocation(input) {}
@@ -1079,6 +1086,24 @@ struct ClockTransition : SceneTransition {
 typedef char ClockTransitionSizeCheck[sizeof(ClockTransition) == 12 ? 1 : -1];
 typedef char ClockTransitionOwnerCheck[offsetof(ClockTransition, continuation) == 8 ? 1 : -1];
 
+struct GameSceneBlendOwner {
+    HardwareBlendController * value;
+    explicit GameSceneBlendOwner(HardwareBlendController * input = nullptr) : value(input) {}
+    ~GameSceneBlendOwner() { delete value; }
+};
+
+struct GameSceneWorldOwner {
+    GameObject * value;
+    explicit GameSceneWorldOwner(GameObject * input = nullptr) : value(input) {}
+    ~GameSceneWorldOwner() { delete value; }
+};
+
+struct GameSceneTextVariablesOwner {
+    ScriptTextVariableStore * value;
+    explicit GameSceneTextVariablesOwner(ScriptTextVariableStore * input = nullptr) : value(input) {}
+    ~GameSceneTextVariablesOwner() { delete value; }
+};
+
 // The native constructor allocates 0xF8 bytes and places its vptr at +0xF4.
 // The display shadow at +0x10 is constructed as HardwareDisplayState.
 // Other fields are typed only where native construction or use proves them.
@@ -1094,11 +1119,11 @@ struct GameSceneState {
     GameStateSaveImage * save;
     GameSceneResumeRequest resume_request;
     u32 script_state;
-    HardwareBlendController * screen_blend;
+    GameSceneBlendOwner screen_blend;
     SceneTransitionOwner pending_transition;
-    GameObject * game_object;
+    GameSceneWorldOwner game_object;
     GameSceneTalkWindowOwner talk_window;
-    ScriptTextVariableStore * text_variables;
+    GameSceneTextVariablesOwner text_variables;
     GameSceneUiComponentOwner time_window;
     GameSceneUiComponentOwner pause_menu_selector;
     GameSceneMusicPlayerSlot bgm_player;
@@ -1114,7 +1139,6 @@ struct GameSceneState {
     u8 unk_E9;
     u8 unk_EA[6];
     void * unk_F0;
-    // The real cleanup body remains in native assembly.
     virtual ~GameSceneState();
 };
 

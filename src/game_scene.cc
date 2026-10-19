@@ -159,6 +159,11 @@ inline GameSceneState::GameSceneState(GameScene * owner, GameStateSaveImage * im
     unk_F0 = nullptr;
 }
 
+GameSceneState::~GameSceneState()
+{
+    ::operator delete(unk_F0);
+}
+
 GameScene::GameScene(GameStateSaveImage * image, GameSceneResumeRequest const & request)
 {
     GameSceneState * core = new GameSceneState(this, image, request);
@@ -229,13 +234,13 @@ SceneTransitionOwner GameScene::Run()
 void GameScene::SetEntityPosition(u32 id, i32 x, i32 y, u32 facing)
 {
     GameSceneState * current = state;
-    u32 map = current->game_object->vfunc_14();
+    u32 map = current->game_object.value->vfunc_14();
     func_080D7F9C(current, id, map, x, y, facing);
 }
 
 i32 GameScene::GetEntityX(u32 id)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     i32 value = 0;
     if (entity != nullptr)
         value = entity->GetQ16X();
@@ -244,7 +249,7 @@ i32 GameScene::GetEntityX(u32 id)
 
 i32 GameScene::GetEntityY(u32 id)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     i32 value = 0;
     if (entity != nullptr)
         value = entity->GetQ16Y();
@@ -253,20 +258,20 @@ i32 GameScene::GetEntityY(u32 id)
 
 void GameScene::SetEntityFacing(u32 id, u32 facing)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     if (entity != nullptr && entity->facing != facing)
         entity->SetAnimFacing(facing);
 }
 
 u32 GameScene::GetEntityFacing(u32 id)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     return entity != nullptr ? entity->facing : 0;
 }
 
 u32 GameScene::GetEntityMap(u32 id)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     u32 map = MAP_NONE;
     if (entity != nullptr)
         map = entity->GetMap();
@@ -275,21 +280,21 @@ u32 GameScene::GetEntityMap(u32 id)
 
 void GameScene::SetEntitySpritePriority(u32 id, u32 priority)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     if (entity != nullptr)
         entity->unk_21 = priority;
 }
 
 void GameScene::MoveEntityXTo(u32 id, u32 target, i32 speed_q16)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     if (entity != nullptr)
         func_08032308(*entity, target, speed_q16);
 }
 
 void GameScene::MoveEntityYTo(u32 id, u32 target, i32 speed_q16)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     if (entity != nullptr)
         func_0803233C(*entity, target, speed_q16);
 }
@@ -297,7 +302,7 @@ void GameScene::MoveEntityYTo(u32 id, u32 target, i32 speed_q16)
 void GameScene::WaitForEntityMovement(u32 id)
 {
     GameSceneState * current = state;
-    AActorEntity * entity = current->game_object->GetActorEntity(id);
+    AActorEntity * entity = current->game_object.value->GetActorEntity(id);
     current->waiting_entity = entity;
     if (entity != nullptr)
         current->script_state = 0x16;
@@ -305,7 +310,7 @@ void GameScene::WaitForEntityMovement(u32 id)
 
 void GameScene::SetEntityAnim(u32 id, u32 animation)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     if (entity != nullptr && entity->anim_id != animation)
         entity->SetAnim(animation);
 }
@@ -316,14 +321,14 @@ void GameScene::NoOp014(i32)
 
 void GameScene::HideEntity(u32 id)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     if (entity != nullptr)
         entity->PutOutOfTown();
 }
 
 void GameScene::OffsetEntityPosition(u32 id, i32 delta_x, i32 delta_y)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     if (entity != nullptr) {
         // This native callback uses the extended +0x30 selector, not the
         // actor's +0x20 facing. It does not write the actor's coordinates.
@@ -338,21 +343,21 @@ void GameScene::OffsetEntityPosition(u32 id, i32 delta_x, i32 delta_y)
 
 void GameScene::StartEntityEffect(u32 id, u32 effect, u32 persistent)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     if (entity != nullptr)
         func_08032384(*entity, effect, persistent != 0);
 }
 
 void GameScene::StopEntityEffect(u32 id)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     if (entity != nullptr)
         func_080323C8(*entity);
 }
 
 void GameScene::SetEntityAuxRenderProfile(u32 id, u32 profile)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
     if (entity != nullptr)
         func_080323E0(*entity, profile);
 }
@@ -360,19 +365,19 @@ void GameScene::SetEntityAuxRenderProfile(u32 id, u32 profile)
 void GameScene::ChangeMap(u32 map, i32 x, i32 y)
 {
     GameSceneState * current = state;
-    current->game_object->ChangeMap(Location(map, x, y), true);
+    current->game_object.value->ChangeMap(Location(map, x, y), true);
     func_080D7F08(current);
 }
 
 void GameScene::PanCameraTo(i32 x, i32 y, u32 speed)
 {
-    state->game_object->PanCameraTo(x, y, speed);
+    state->game_object.value->PanCameraTo(x, y, speed);
 }
 
 void GameScene::WaitForCameraMovement()
 {
     GameSceneState * current = state;
-    if (!current->game_object->IsCameraMovementComplete())
+    if (!current->game_object.value->IsCameraMovementComplete())
         current->script_state = 0x17;
 }
 
@@ -425,7 +430,7 @@ void GameScene::TalkMessage(char const * text, u32 rate)
     GameSceneState * current = state;
     if (current->talk_window.Get() != nullptr) {
         func_08050DC8(reinterpret_cast<void * const *>(current->talk_window.Get()),
-            reinterpret_cast<u32>(text), static_cast<u16>(rate), reinterpret_cast<u32>(current->text_variables));
+            reinterpret_cast<u32>(text), static_cast<u16>(rate), reinterpret_cast<u32>(current->text_variables.value));
         current->script_state = 0x10;
     }
 }
@@ -435,7 +440,7 @@ void GameScene::TalkTelevisionMessage(char const * text)
     GameSceneState * current = state;
     if (current->talk_window.Get() != nullptr) {
         func_08050DC8(reinterpret_cast<void * const *>(current->talk_window.Get()),
-            reinterpret_cast<u32>(text), 0x40, reinterpret_cast<u32>(current->text_variables));
+            reinterpret_cast<u32>(text), 0x40, reinterpret_cast<u32>(current->text_variables.value));
         // Television uses a separate completion state, not slow dialogue.
         current->script_state = 0x11;
     }
@@ -517,17 +522,17 @@ void GameScene::TalkPromptChoices(char const * prompt, char const * first, char 
     // A missing optional row terminates the list, even if later rows exist.
     if (current->talk_window.Get() != nullptr && first != nullptr && second != nullptr) {
         if (third == nullptr) {
-            ScriptTextVariableStore * variables = current->text_variables;
+            ScriptTextVariableStore * variables = current->text_variables.value;
             func_08050E30(current->talk_window.Get(),
                 prompt, first, second,
                 0, 0, variables);
         } else if (fourth == nullptr) {
-            ScriptTextVariableStore * variables = current->text_variables;
+            ScriptTextVariableStore * variables = current->text_variables.value;
             func_08050E30(current->talk_window.Get(),
                 prompt, first, second,
                 third, 0, variables);
         } else {
-            ScriptTextVariableStore * variables = current->text_variables;
+            ScriptTextVariableStore * variables = current->text_variables.value;
             func_08050E30(current->talk_window.Get(),
                 prompt, first, second,
                 third, fourth, variables);
@@ -543,25 +548,25 @@ void GameScene::TalkChoices(char const * first, char const * second, char const 
     // A missing optional row terminates the list, even if later rows exist.
     if (current->talk_window.Get() != nullptr && first != nullptr && second != nullptr) {
         if (third == nullptr) {
-            ScriptTextVariableStore * variables = current->text_variables;
+            ScriptTextVariableStore * variables = current->text_variables.value;
             func_08050E0C(current->talk_window.Get(), first,
                 second, 0, 0, 0, 0, variables);
         } else if (fourth == nullptr) {
-            ScriptTextVariableStore * variables = current->text_variables;
+            ScriptTextVariableStore * variables = current->text_variables.value;
             func_08050E0C(current->talk_window.Get(), first,
                 second, third, 0, 0, 0, variables);
         } else if (fifth == nullptr) {
-            ScriptTextVariableStore * variables = current->text_variables;
+            ScriptTextVariableStore * variables = current->text_variables.value;
             func_08050E0C(current->talk_window.Get(), first,
                 second, third, fourth,
                 0, 0, variables);
         } else if (sixth == nullptr) {
-            ScriptTextVariableStore * variables = current->text_variables;
+            ScriptTextVariableStore * variables = current->text_variables.value;
             func_08050E0C(current->talk_window.Get(), first,
                 second, third, fourth,
                 fifth, 0, variables);
         } else {
-            ScriptTextVariableStore * variables = current->text_variables;
+            ScriptTextVariableStore * variables = current->text_variables.value;
             func_08050E0C(current->talk_window.Get(), first,
                 second, third, fourth,
                 fifth, sixth, variables);
@@ -591,15 +596,15 @@ void GameScene::FadeScreen(u32 style, i32 speed, bool fade_out, bool call_scene_
     }
     // Start the original direction-specific controller and wait state.
     if (fade_out != 0) {
-        func_08009378(current->screen_blend, step, mode, mosaic);
+        func_08009378(current->screen_blend.value, step, mode, mosaic);
         current->script_state = 0x12;
         current->unk_E8 = 0;
         current->unk_E9 = mode == 2;
     } else {
         // The third callable uses this same path but suppresses the hook.
         if (call_scene_hook != 0)
-            current->game_object->vfunc_B8();
-        func_0800934C(current->screen_blend, step, mode, mosaic);
+            current->game_object.value->vfunc_B8();
+        func_0800934C(current->screen_blend.value, step, mode, mosaic);
         current->script_state = 0x13;
         current->unk_E8 = fade_out;
         current->unk_E9 = mode == 2;
@@ -626,12 +631,12 @@ void GameScene::TextVariableSetNumber(u32 slot, i32 value)
 #else
     FormatSignedDecimal(value, text, 0);
 #endif
-    func_0803B6B8(current->text_variables, slot, text);
+    func_0803B6B8(current->text_variables.value, slot, text);
 }
 
 void GameScene::TextVariableSetString(u32 slot, char const * text)
 {
-    func_0803B6B8(state->text_variables, slot, text);
+    func_0803B6B8(state->text_variables.value, slot, text);
 }
 
 void GameScene::TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width)
@@ -644,7 +649,7 @@ void GameScene::TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width)
 #else
     FormatSignedDecimal(value, text, width);
 #endif
-    func_0803B6B8(current->text_variables, slot, text);
+    func_0803B6B8(current->text_variables.value, slot, text);
 }
 
 void GameScene::CallScript(i32 script_id, i32 context_value)
@@ -678,62 +683,62 @@ void GameScene::WaitFrames(i32 frames)
 
 void GameScene::PrepareClockMenuTransition()
 {
-    state->game_object->PrepareClockMenuTransition();
+    state->game_object.value->PrepareClockMenuTransition();
 }
 
 void GameScene::RestoreAfterClockMenu()
 {
-    state->game_object->RestoreAfterClockMenu();
+    state->game_object.value->RestoreAfterClockMenu();
 }
 
 void GameScene::PrepareCookingMenuTransition()
 {
-    state->game_object->PrepareCookingMenuTransition();
+    state->game_object.value->PrepareCookingMenuTransition();
 }
 
 void GameScene::RestoreAfterCookingMenu()
 {
-    state->game_object->RestoreAfterCookingMenu();
+    state->game_object.value->RestoreAfterCookingMenu();
 }
 
 void GameScene::PrepareRecipeMenuTransition()
 {
-    state->game_object->PrepareRecipeMenuTransition();
+    state->game_object.value->PrepareRecipeMenuTransition();
 }
 
 void GameScene::RestoreAfterRecipeMenu()
 {
-    state->game_object->RestoreAfterRecipeMenu();
+    state->game_object.value->RestoreAfterRecipeMenu();
 }
 
 // These calls refresh map tiles after the caller updates feed storage.
 // The native path forwards the original index without another bounds check.
 void GameScene::RefreshBarnFeedTrough(MaryBarnFeedTroughIndex trough)
 {
-    state->game_object->RefreshBarnFeedTrough(trough);
+    state->game_object.value->RefreshBarnFeedTrough(trough);
 }
 
 void GameScene::RefreshChickenFeedTrough(MaryChickenCoopFeedTroughIndex trough)
 {
-    state->game_object->RefreshChickenFeedTrough(trough);
+    state->game_object.value->RefreshChickenFeedTrough(trough);
 }
 
 void GameScene::StartShipmentBoxDepositAnimation()
 {
-    state->game_object->StartShipmentBoxDepositAnimation();
+    state->game_object.value->StartShipmentBoxDepositAnimation();
 }
 
 // ENTITY_PLAYER is required here, unlike the nullable arbitrary-entity calls.
 bool GameScene::IsPlayerRidingHorse()
 {
-    return static_cast<GameScenePlayerActor *>(state->game_object->GetActorEntity(ENTITY_PLAYER))->IsRidingHorse();
+    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))->IsRidingHorse();
 }
 
 bool GameScene::TryShipPlayerHeldItem()
 {
     GameSceneState * current = state;
     bool result;
-    if (static_cast<GameScenePlayerActor *>(current->game_object->GetActorEntity(ENTITY_PLAYER))->TryShipHeldItem()) {
+    if (static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->TryShipHeldItem()) {
         current->script_state = 0x19;
         result = true;
     } else {
@@ -747,7 +752,7 @@ bool GameScene::TryShipPlayerHeldItem()
 bool GameScene::SetPlayerHeldItem(RucksackItem const & item, bool wrapped)
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object->GetActorEntity(ENTITY_PLAYER))->SetHeldItem(item, wrapped);
+    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->SetHeldItem(item, wrapped);
     current->script_state = 0x19;
     return true;
 }
@@ -755,7 +760,7 @@ bool GameScene::SetPlayerHeldItem(RucksackItem const & item, bool wrapped)
 bool GameScene::GivePlayerBasket()
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object->GetActorEntity(ENTITY_PLAYER))->GiveBasket();
+    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->GiveBasket();
     current->script_state = 0x19;
     return true;
 }
@@ -763,54 +768,54 @@ bool GameScene::GivePlayerBasket()
 void GameScene::ThrowPlayerHeldItem()
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object->GetActorEntity(ENTITY_PLAYER))->ThrowHeldItem();
+    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->ThrowHeldItem();
     current->script_state = 0x19;
 }
 
 void GameScene::UsePlayerHeldItem()
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object->GetActorEntity(ENTITY_PLAYER))->UseHeldItem();
+    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->UseHeldItem();
     current->script_state = 0x19;
 }
 
 void GameScene::ClearPlayerHeldItem()
 {
-    static_cast<GameScenePlayerActor *>(state->game_object->GetActorEntity(ENTITY_PLAYER))->ClearHeldItem();
+    static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))->ClearHeldItem();
 }
 
 MaryItemArticleId GameScene::RemoveRecordPlayerAlbum()
 {
-    return state->game_object->RemoveRecordPlayerAlbum();
+    return state->game_object.value->RemoveRecordPlayerAlbum();
 }
 
 MaryItemArticleId GameScene::SwapRecordPlayerAlbum(MaryItemArticleId article)
 {
-    return state->game_object->SwapRecordPlayerAlbum(article);
+    return state->game_object.value->SwapRecordPlayerAlbum(article);
 }
 
 void GameScene::SetEntityEventScript(u32 entity_id, MaryScriptId script_id)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(entity_id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(entity_id);
     if (entity != nullptr)
         entity->SetEventScript(script_id);
 }
 
 void GameScene::ClearEntityEventScript(u32 entity_id)
 {
-    AActorEntity * entity = state->game_object->GetActorEntity(entity_id);
+    AActorEntity * entity = state->game_object.value->GetActorEntity(entity_id);
     if (entity != nullptr)
         entity->SetEventScript(0);
 }
 
 void GameScene::SetTelevisionProgram(MaryTelevisionProgramId program)
 {
-    state->game_object->SetTelevisionProgram(program);
+    state->game_object.value->SetTelevisionProgram(program);
 }
 
 void GameScene::EndTelevisionProgram()
 {
-    state->game_object->EndTelevisionProgram();
+    state->game_object.value->EndTelevisionProgram();
 }
 
 void GameScene::EnableScriptedNpcControl()
@@ -2366,7 +2371,7 @@ GameSceneControllerLocationRecord::GameSceneControllerLocationRecord()
 EC void func_080D7F08(GameSceneState * state)
 {
     for (u32 id = ENTITY_LILLIA; id <= ENTITY_CHILD; ++id) {
-        GameObject * & game_object = state->game_object;
+        GameObject * & game_object = state->game_object.value;
         ANpcEntity * entity = static_cast<ANpcEntity *>(game_object->GetActorEntity(id));
         if (entity != nullptr)
             entity->vfunc_3C(3);
@@ -2375,7 +2380,7 @@ EC void func_080D7F08(GameSceneState * state)
 
 EC void func_080D7F3C(GameSceneState * state)
 {
-    state->game_object->vfunc_124();
+    state->game_object.value->vfunc_124();
     state->script_state = 2;
 }
 
