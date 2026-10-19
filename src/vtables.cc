@@ -745,14 +745,14 @@ extern void func_080DB5E0(void);
 extern void func_080DB630(void);
 extern void func_080DB658(void);
 extern void func_080DB6A4(void);
+extern void DestroyCalendarTransition(void) asm("_._18CalendarTransition");
 extern void CreateScene__18CalendarTransition(void);
-extern void func_080DB714(void);
+extern void DestroyToolChestTransition(void) asm("_._19ToolChestTransition");
 extern void CreateScene__19ToolChestTransition(void);
-extern void func_080DB784(void);
+extern void DestroyRefrigeratorTransition(void) asm("_._22RefrigeratorTransition");
 extern void CreateScene__22RefrigeratorTransition(void);
-extern void func_080DB7F4(void);
+extern void DestroyShelfTransition(void) asm("_._15ShelfTransition");
 extern void CreateScene__15ShelfTransition(void);
-extern void func_080DB864(void);
 extern void func_080DB88C(void);
 extern void func_080DB8D4(void);
 extern void func_080DB8FC(void);
@@ -763,44 +763,44 @@ extern void func_080DB9DC(void);
 extern void func_080DBA24(void);
 extern void func_080DBA4C(void);
 extern void func_080DBA94(void);
+extern void DestroyCookingTransition(void) asm("_._17CookingTransition");
 extern void CreateScene__17CookingTransition(void);
-extern void func_080DBB04(void);
+extern void DestroyReferencePageTransition(void) asm("_._23ReferencePageTransition");
 extern void CreateScene__23ReferencePageTransition(void);
-extern void func_080DBB74(void);
+extern void DestroySpecialMerchantShopTransition(void) asm("_._29SpecialMerchantShopTransition");
 extern void CreateScene__29SpecialMerchantShopTransition(void);
-extern void func_080DBBE4(void);
 extern void func_080DBC0C(void);
 extern void func_080DBC50(void);
+extern void DestroyGiftWrappingTransition(void) asm("_._22GiftWrappingTransition");
 extern void CreateScene__22GiftWrappingTransition(void);
-extern void func_080DBCC0(void);
 extern void CreateScene__24YodelRanchShopTransition(void);
 extern void func_080DB4E4(void);
 extern void func_080DBD30(void);
+extern void DestroyPoultryFarmShopTransition(void) asm("_._25PoultryFarmShopTransition");
 extern void CreateScene__25PoultryFarmShopTransition(void);
-extern void func_080DBDA0(void);
+extern void DestroyWineryShopTransition(void) asm("_._20WineryShopTransition");
 extern void CreateScene__20WineryShopTransition(void);
-extern void func_080DBE10(void);
+extern void DestroyInnShopTransition(void) asm("_._17InnShopTransition");
 extern void CreateScene__17InnShopTransition(void);
-extern void func_080DBE80(void);
+extern void DestroyBeachCafeShopTransition(void) asm("_._23BeachCafeShopTransition");
 extern void CreateScene__23BeachCafeShopTransition(void);
-extern void func_080DBEF0(void);
+extern void DestroyWonShopTransition(void) asm("_._17WonShopTransition");
 extern void CreateScene__17WonShopTransition(void);
-extern void func_080DBF60(void);
+extern void DestroyCarpenterShopTransition(void) asm("_._23CarpenterShopTransition");
 extern void CreateScene__23CarpenterShopTransition(void);
-extern void func_080DBFD0(void);
+extern void DestroyClinicShopTransition(void) asm("_._20ClinicShopTransition");
 extern void CreateScene__20ClinicShopTransition(void);
-extern void func_080DC040(void);
+extern void DestroyBlacksmithShopTransition(void) asm("_._24BlacksmithShopTransition");
 extern void CreateScene__24BlacksmithShopTransition(void);
-extern void func_080DC0C0(void);
+extern void DestroySupermarketPurchaseTransition(void) asm("_._29SupermarketPurchaseTransition");
 extern void CreateScene__29SupermarketPurchaseTransition(void);
-extern void func_080DC130(void);
+extern void DestroySupermarketTransition(void) asm("_._21SupermarketTransition");
 extern void CreateScene__21SupermarketTransition(void);
-extern void func_080DC1A0(void);
 extern void func_080DC1C8(void);
+extern void DestroyClockTransition(void) asm("_._15ClockTransition");
 extern void CreateScene__15ClockTransition(void);
-extern void func_080DC21C(void);
+extern void DestroyReturnToGameScene(void) asm("_._17ReturnToGameScene");
 extern void CreateScene__17ReturnToGameScene(void);
-extern void func_080DC288(void);
 extern void func_080DC3A0(void);
 extern void func_080DC404(void);
 extern void func_080DC42C(void);
@@ -885,28 +885,28 @@ extern RawVTableFunction const vtable_unk_080E5CA4[] = {
 extern RawVTableFunction const vtable_unk_080E5CB4[] = {
     nullptr,
     nullptr,
-    func_080DB714,
+    DestroyCalendarTransition,
     CreateScene__18CalendarTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5CC4[] = {
     nullptr,
     nullptr,
-    func_080DB784,
+    DestroyToolChestTransition,
     CreateScene__19ToolChestTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5CD4[] = {
     nullptr,
     nullptr,
-    func_080DB7F4,
+    DestroyRefrigeratorTransition,
     CreateScene__22RefrigeratorTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5CE4[] = {
     nullptr,
     nullptr,
-    func_080DB864,
+    DestroyShelfTransition,
     CreateScene__15ShelfTransition,
 };
 
@@ -948,21 +948,21 @@ extern RawVTableFunction const vtable_unk_080E5D34[] = {
 extern RawVTableFunction const vtable_unk_080E5D44[] = {
     nullptr,
     nullptr,
-    func_080DBB04,
+    DestroyCookingTransition,
     CreateScene__17CookingTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5D54[] = {
     nullptr,
     nullptr,
-    func_080DBB74,
+    DestroyReferencePageTransition,
     CreateScene__23ReferencePageTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5D64[] = {
     nullptr,
     nullptr,
-    func_080DBBE4,
+    DestroySpecialMerchantShopTransition,
     CreateScene__29SpecialMerchantShopTransition,
 };
 
@@ -976,7 +976,7 @@ extern RawVTableFunction const vtable_unk_080E5D74[] = {
 extern RawVTableFunction const vtable_unk_080E5D84[] = {
     nullptr,
     nullptr,
-    func_080DBCC0,
+    DestroyGiftWrappingTransition,
     CreateScene__22GiftWrappingTransition,
 };
 
@@ -994,70 +994,70 @@ extern RawVTableFunction const vtable_unk_080E5D94[] = {
 extern RawVTableFunction const vtable_unk_080E5DA4[] = {
     nullptr,
     nullptr,
-    func_080DBDA0,
+    DestroyPoultryFarmShopTransition,
     CreateScene__25PoultryFarmShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DB4[] = {
     nullptr,
     nullptr,
-    func_080DBE10,
+    DestroyWineryShopTransition,
     CreateScene__20WineryShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DC4[] = {
     nullptr,
     nullptr,
-    func_080DBE80,
+    DestroyInnShopTransition,
     CreateScene__17InnShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DD4[] = {
     nullptr,
     nullptr,
-    func_080DBEF0,
+    DestroyBeachCafeShopTransition,
     CreateScene__23BeachCafeShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DE4[] = {
     nullptr,
     nullptr,
-    func_080DBF60,
+    DestroyWonShopTransition,
     CreateScene__17WonShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5DF4[] = {
     nullptr,
     nullptr,
-    func_080DBFD0,
+    DestroyCarpenterShopTransition,
     CreateScene__23CarpenterShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E04[] = {
     nullptr,
     nullptr,
-    func_080DC040,
+    DestroyClinicShopTransition,
     CreateScene__20ClinicShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E14[] = {
     nullptr,
     nullptr,
-    func_080DC0C0,
+    DestroyBlacksmithShopTransition,
     CreateScene__24BlacksmithShopTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E24[] = {
     nullptr,
     nullptr,
-    func_080DC130,
+    DestroySupermarketPurchaseTransition,
     CreateScene__29SupermarketPurchaseTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E34[] = {
     nullptr,
     nullptr,
-    func_080DC1A0,
+    DestroySupermarketTransition,
     CreateScene__21SupermarketTransition,
 };
 
@@ -1071,7 +1071,7 @@ extern RawVTableFunction const vtable_unk_080E5E44[] = {
 extern RawVTableFunction const vtable_unk_080E5E54[] = {
     nullptr,
     nullptr,
-    func_080DC21C,
+    DestroyClockTransition,
     CreateScene__15ClockTransition,
 };
 
@@ -1085,7 +1085,7 @@ extern RawVTableFunction const __vt_9GameScene[] = {
 extern RawVTableFunction const vtable_unk_080E5E74[] = {
     nullptr,
     nullptr,
-    func_080DC288,
+    DestroyReturnToGameScene,
     CreateScene__17ReturnToGameScene,
 };
 

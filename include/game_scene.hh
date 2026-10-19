@@ -647,11 +647,10 @@ struct SupermarketPurchaseScene : AScene {
     SceneTransitionOwner continuation;
 };
 
-// Native destructors remain the first virtuals in these classes. Their
-// existing ROM tables now call the recovered CreateScene members directly;
-// no duplicate compiler vtables or aliases are introduced.
+// Scene wrappers retain their native cleanup; recovered transition records use
+// implicit cleanup of their continuation owner and SceneTransition base.
+// Existing native-format tables reference these real methods and CreateScene.
 struct SupermarketPurchaseTransition : SceneTransition {
-    virtual ~SupermarketPurchaseTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -660,7 +659,6 @@ struct SupermarketPurchaseTransition : SceneTransition {
 };
 
 struct SupermarketTransition : SceneTransition {
-    virtual ~SupermarketTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -668,7 +666,6 @@ struct SupermarketTransition : SceneTransition {
 };
 
 struct ReturnToGameScene : SceneTransition {
-    virtual ~ReturnToGameScene();
     virtual SceneOwner CreateScene();
 
     GameStateSaveImage * save;
@@ -699,7 +696,6 @@ struct CalendarScene : AScene {
 };
 
 struct CalendarTransition : SceneTransition {
-    virtual ~CalendarTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -721,7 +717,6 @@ struct ToolChestScene : AScene {
 };
 
 struct ToolChestTransition : SceneTransition {
-    virtual ~ToolChestTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -743,7 +738,6 @@ struct RefrigeratorScene : AScene {
 };
 
 struct RefrigeratorTransition : SceneTransition {
-    virtual ~RefrigeratorTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -765,7 +759,6 @@ struct ShelfScene : AScene {
 };
 
 struct ShelfTransition : SceneTransition {
-    virtual ~ShelfTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -787,7 +780,6 @@ struct CookingScene : AScene {
 };
 
 struct CookingTransition : SceneTransition {
-    virtual ~CookingTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -810,7 +802,6 @@ struct ReferencePageScene : AScene {
 };
 
 struct ReferencePageTransition : SceneTransition {
-    virtual ~ReferencePageTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -833,7 +824,6 @@ struct SpecialMerchantShopScene : AScene {
 };
 
 struct SpecialMerchantShopTransition : SceneTransition {
-    virtual ~SpecialMerchantShopTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -855,7 +845,6 @@ struct GiftWrappingScene : AScene {
 };
 
 struct GiftWrappingTransition : SceneTransition {
-    virtual ~GiftWrappingTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -877,7 +866,6 @@ struct WineryShopScene : AScene {
 };
 
 struct WineryShopTransition : SceneTransition {
-    virtual ~WineryShopTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -899,7 +887,6 @@ struct InnShopScene : AScene {
 };
 
 struct InnShopTransition : SceneTransition {
-    virtual ~InnShopTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -921,7 +908,6 @@ struct BeachCafeShopScene : AScene {
 };
 
 struct BeachCafeShopTransition : SceneTransition {
-    virtual ~BeachCafeShopTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -943,7 +929,6 @@ struct WonShopScene : AScene {
 };
 
 struct WonShopTransition : SceneTransition {
-    virtual ~WonShopTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -965,7 +950,6 @@ struct CarpenterShopScene : AScene {
 };
 
 struct CarpenterShopTransition : SceneTransition {
-    virtual ~CarpenterShopTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -987,7 +971,6 @@ struct ClinicShopScene : AScene {
 };
 
 struct ClinicShopTransition : SceneTransition {
-    virtual ~ClinicShopTransition();
     virtual SceneOwner CreateScene();
 
     SceneTransitionOwner continuation;
@@ -1032,7 +1015,6 @@ struct PoultryFarmShopScene : AScene {
 };
 
 struct PoultryFarmShopTransition : SceneTransition {
-    virtual ~PoultryFarmShopTransition();
     virtual SceneOwner CreateScene();
     SceneTransitionOwner continuation;
     GameStateSaveImage * save;
@@ -1056,7 +1038,6 @@ struct BlacksmithShopScene : AScene {
 };
 
 struct BlacksmithShopTransition : SceneTransition {
-    virtual ~BlacksmithShopTransition();
     virtual SceneOwner CreateScene();
     SceneTransitionOwner continuation;
     GameStateSaveImage * save;
@@ -1072,7 +1053,6 @@ typedef char BlacksmithShopTransitionSizeCheck[sizeof(BlacksmithShopTransition) 
 typedef char BlacksmithShopTransitionByteCheck[offsetof(BlacksmithShopTransition, unk_1C) == 28 ? 1 : -1];
 
 struct ClockTransition : SceneTransition {
-    virtual ~ClockTransition();
     virtual SceneOwner CreateScene();
     GameStateSaveImage * save;
     SceneTransitionOwner continuation;
