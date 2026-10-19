@@ -35177,65 +35177,9 @@ func_080E2B70:
     bx r0
     .byte 0x38, 0x08, 0x00, 0x00, 0x28, 0x08, 0x00, 0x00, 0x18, 0x08, 0x00, 0x00, 0x44, 0x07, 0x00, 0x00
     .4byte __vt_23IndexedResourceProvider
-    .global func_080E2C34
-    .thumb_func
-func_080E2C34:
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    adds r6, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    movs r5, #0
-    str r5, [r4, #4]
-    str r0, [sp, #4]
-    movs r0, #0xc
-    bl __builtin_new
-    add r1, sp, #4
-    ldr r2, [r4, #8]
-    ldrb r3, [r4, #0xc]
-    bl loc_0809203C
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r5, [r1]
-    str r0, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080E2C72
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080E2C72:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .global func_080E2C7C
-    .thumb_func
-func_080E2C7C:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_080E2C94
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080E2C94:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._15SceneTransition
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.after_blacksmith_shop_result_transition, "ax", %progbits
+    .align 2, 0
+
     .global func_080E3504
     .thumb_func
 func_080E3504:
@@ -43753,64 +43697,8 @@ func_080E33D0:
 .L080E348C: .4byte 0x00000744
 .L080E3490: .4byte __vt_23IndexedResourceProvider
 
-	thumb_func_start func_080E3494
-func_080E3494: @ 0x080E3494
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	adds r6, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	movs r5, #0
-	str r5, [r4, #4]
-	str r0, [sp, #4]
-	movs r0, #0xc
-	bl __builtin_new
-	add r1, sp, #4
-	ldr r2, [r4, #8]
-	ldrb r3, [r4, #0xc]
-	bl func_08092570
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r5, [r1]
-	str r0, [r6]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080E34D2
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080E34D2:
-	adds r0, r6, #0
-	add sp, #0x10
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-
-	thumb_func_start func_080E34DC
-func_080E34DC: @ 0x080E34DC
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080E34F4
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080E34F4:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._15SceneTransition
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_blacksmith_shop_result_transition, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E3504
 func_080E3504: @ 0x080E3504

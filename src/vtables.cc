@@ -16,6 +16,7 @@ extern void UpdateWorldMap(void);
 extern void CreateScene__24SavedNameEntryTransition(void);
 extern void Run__20PoultryFarmShopScene(void);
 extern void Run__19YodelRanchShopScene(void);
+extern void Run__19BlacksmithShopScene(void);
 extern void DestroySavedNameEntryTransition(void) asm("_._24SavedNameEntryTransition");
 extern void Run__18ReferencePageScene(void);
 extern void Run__16SupermarketScene(void);
@@ -161,7 +162,6 @@ extern void func_08081678(void);
 extern void func_08081CBC(void);
 extern void func_08081DC8(void);
 extern void func_08083664(void);
-extern void func_080836A4(void);
 extern void func_080837C8(void);
 extern void func_080850A0(void);
 extern void func_080851A4(void);
@@ -183,8 +183,6 @@ extern void func_0809215C(void);
 extern void func_08092CAC(void);
 extern void func_08093D4C(void);
 extern void func_08093D80(void);
-extern void func_080E2C34(void);
-extern void func_080E2C7C(void);
 extern void func_080E14B8(void);
 extern void func_0805FA48(void);
 extern void func_0805FA88(void);
@@ -349,10 +347,7 @@ extern void func_080AC528(void);
 #else
 extern void func_08082144(void);
 extern void func_08082250(void);
-extern void func_080E3494(void);
-extern void func_080E34DC(void);
 extern void func_08083AEC(void);
-extern void func_08083B2C(void);
 extern void func_08083C50(void);
 extern void func_08085528(void);
 extern void func_0808562C(void);
@@ -5342,42 +5337,24 @@ extern RawVTableFunction const vtable_unk_080E7CD8[]
 #endif
     };
 
-#if defined(REGION_JP)
-// This final null word is directly addressed by the blacksmith result helper.
-// Keep it as a real object instead of a vtable + offset expression.
-extern RawVTableFunction const vtable_unk_080E7CD8_NullTail[]
-    SECTION(".rodata.vtable_7cd8") = {
-        nullptr,
-    };
-#endif
-
+// The blacksmith result transition now owns its actual compiler vtable.
+// Overseas retains the preceding unrelated core table; JP retains its shop.
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7CE8[]
     SECTION(".rodata.vtable_7ce8") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080E2C7C,
-        func_080E2C34,
-#else
         nullptr,
         nullptr,
         func_08082250,
-#endif
     };
-
+#else
 extern RawVTableFunction const vtable_unk_080E7CF4[]
     SECTION(".rodata.vtable_7cf4") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_08083664,
-        func_080836A4,
-#else
-        nullptr,
-        nullptr,
-        func_080E34DC,
-        func_080E3494,
-#endif
+        Run__19BlacksmithShopScene,
     };
+#endif
 
 #if defined(REGION_JP)
 // The four-byte null tail is directly used as a vtable pointer by
@@ -5400,7 +5377,7 @@ extern RawVTableFunction const vtable_unk_080E7D04[]
         nullptr,
         nullptr,
         func_08083AEC,
-        func_08083B2C,
+        Run__19BlacksmithShopScene,
     };
 #endif
 

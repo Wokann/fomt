@@ -410,6 +410,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_special_merchant_shop_scene_run);
         src/game_scene.o(.text.Run__18BeachCafeShopScene);
         asm/code_0803EE94.o(.text.after_beach_cafe_shop_scene_run);
+        src/game_scene.o(.text.Run__19BlacksmithShopScene);
+        asm/code_0803EE94.o(.text.after_blacksmith_shop_scene_run);
         src/game_scene.o(.text.Run__18CarpenterShopScene);
         asm/code_0803EE94.o(.text.after_carpenter_shop_scene_run);
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after_de_tail);
@@ -708,6 +710,8 @@ SECTIONS
         asm/code_linkonce.o(.text.indexed_resource_archive_destructor_after);
         src/new_game.o(.text.new_game_birthday_core_cleanup);
         asm/code_linkonce.o(.text.new_game_birthday_core_cleanup_after);
+        src/game_scene.o(.text.CreateScene__30BlacksmithShopResultTransition .gnu.linkonce.t._._30BlacksmithShopResultTransition);
+        asm/code_linkonce.o(.text.after_blacksmith_shop_result_transition);
         src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);
         asm/code_linkonce.o(.text.sprite_work_target_search_after);
         src/game_scene.o(.gnu.linkonce.t._._19SavedNameEntryScene);
@@ -929,7 +933,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ccc);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7cd8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ce8);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7cf4);
+. = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_30BlacksmithShopResultTransition);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d04);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d14);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d20);

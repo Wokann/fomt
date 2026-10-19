@@ -2498,6 +2498,16 @@ SceneTransitionOwner BeachCafeShopScene::Run()
     return continuation;
 }
 
+SceneTransitionOwner BlacksmithShopScene::Run()
+{
+    u32 result = func_08082CEC(core);
+    if (result == 0)
+        return continuation;
+    if (result == 1)
+        return SceneTransitionOwner(new BlacksmithShopResultTransition(continuation, save, 0));
+    return SceneTransitionOwner(new BlacksmithShopResultTransition(continuation, save, 1));
+}
+
 SceneTransitionOwner CarpenterShopScene::Run()
 {
     func_08084228(core);
@@ -2804,4 +2814,14 @@ SceneOwner ClockTransition::CreateScene()
 SceneOwner ReturnToGameScene::CreateScene()
 {
     return SceneOwner(new GameScene(save, request));
+}
+
+SceneOwner BlacksmithShopResultTransition::CreateScene()
+{
+    SceneTransition * next = continuation.release();
+#if defined(REGION_JP)
+    return SceneOwner(loc_0809203C(::operator new(sizeof(BlacksmithShopResultScene)), &next, save, unk_0C));
+#else
+    return SceneOwner(func_08092570(::operator new(sizeof(BlacksmithShopResultScene)), &next, save, unk_0C));
+#endif
 }

@@ -1089,6 +1089,34 @@ typedef char BlacksmithShopSceneSaveCheck[offsetof(BlacksmithShopScene, save) ==
 typedef char BlacksmithShopTransitionSizeCheck[sizeof(BlacksmithShopTransition) == 32 ? 1 : -1];
 typedef char BlacksmithShopTransitionByteCheck[offsetof(BlacksmithShopTransition, unk_1C) == 28 ? 1 : -1];
 
+// The result scene retains its native constructor, cleanup and Run. Only
+// the complete 12-byte wrapper layout is used by its recovered factory.
+struct BlacksmithShopResultSceneCore;
+struct BlacksmithShopResultScene : AScene {
+    virtual ~BlacksmithShopResultScene();
+    virtual SceneTransitionOwner Run();
+    BlacksmithShopResultSceneCore * core;
+    SceneTransitionOwner continuation;
+};
+
+// This result transition is not the 32-byte shop-opening transition above.
+// Its byte is passed unchanged to the native result-scene constructor.
+struct BlacksmithShopResultTransition : SceneTransition {
+    BlacksmithShopResultTransition(SceneTransitionOwner next, GameStateSaveImage * image, u8 input)
+        : continuation(next), save(image), unk_0C(input) {}
+    virtual SceneOwner CreateScene();
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+    u8 unk_0C;
+};
+typedef char BlacksmithShopResultSceneSizeCheck[sizeof(BlacksmithShopResultScene) == 12 ? 1 : -1];
+typedef char BlacksmithShopResultSceneCoreCheck[offsetof(BlacksmithShopResultScene, core) == 4 ? 1 : -1];
+typedef char BlacksmithShopResultSceneContinuationCheck[offsetof(BlacksmithShopResultScene, continuation) == 8 ? 1 : -1];
+typedef char BlacksmithShopResultTransitionSizeCheck[sizeof(BlacksmithShopResultTransition) == 16 ? 1 : -1];
+typedef char BlacksmithShopResultTransitionContinuationCheck[offsetof(BlacksmithShopResultTransition, continuation) == 4 ? 1 : -1];
+typedef char BlacksmithShopResultTransitionSaveCheck[offsetof(BlacksmithShopResultTransition, save) == 8 ? 1 : -1];
+typedef char BlacksmithShopResultTransitionByteCheck[offsetof(BlacksmithShopResultTransition, unk_0C) == 12 ? 1 : -1];
+
 struct ClockTransition : SceneTransition {
     virtual SceneOwner CreateScene();
     GameStateSaveImage * save;
@@ -1333,6 +1361,14 @@ void func_08084228(CarpenterShopSceneCore * core);
 void func_0807E0C0(ClinicShopSceneCore * core);
 #else
 void func_0807E558(ClinicShopSceneCore * core);
+#endif
+
+// Keep the native result-scene construction ABI until that scene is recovered.
+u32 func_08082CEC(BlacksmithShopSceneCore * core);
+#if defined(REGION_JP)
+BlacksmithShopResultScene * loc_0809203C(void *, SceneTransition **, GameStateSaveImage *, u8);
+#else
+BlacksmithShopResultScene * func_08092570(void *, SceneTransition **, GameStateSaveImage *, u8);
 #endif
 
 // Ranch Run returns the purchased target slot or -1; the second core

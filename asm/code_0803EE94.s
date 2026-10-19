@@ -95481,90 +95481,9 @@ func_08083664: @ 0x08083664
 	.align 2, 0
 .Ljp_080836A0: .4byte vtable_unk_080E7CF4
 
-.global func_080836A4
-.thumb_func
-func_080836A4: @ 0x080836A4
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x18
-	adds r7, r0, #0
-	adds r6, r1, #0
-	ldr r0, [r6, #4]
-	bl func_08082CEC
-	adds r1, r0, #0
-	cmp r1, #0
-	bne .Ljp_080836C0
-	ldr r0, [r6, #8]
-	str r1, [r6, #8]
-	str r0, [r7]
-	b .Ljp_0808373E
-.Ljp_080836C0:
-	cmp r1, #1
-	bne .Ljp_08083704
-	movs r0, #0x10
-	bl __builtin_new
-	ldr r4, [r6, #8]
-	movs r2, #0
-	str r2, [r6, #8]
-	ldr r3, [r6, #0x1c]
-	ldr r1, .Ljp_08083700 @ =vtable_unk_080E7CD8_NullTail
-	str r1, [r0]
-	str r2, [sp, #4]
-	str r4, [r0, #4]
-	str r3, [r0, #8]
-	strb r2, [r0, #0xc]
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r2, [r1]
-	str r0, [r7]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .Ljp_0808373E
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-	b .Ljp_0808373E
-	.align 2, 0
-.Ljp_08083700: .4byte vtable_unk_080E7CD8_NullTail
-.Ljp_08083704:
-	movs r0, #0x10
-	bl __builtin_new
-	ldr r5, [r6, #8]
-	movs r2, #0
-	str r2, [r6, #8]
-	ldr r3, [r6, #0x1c]
-	movs r4, #1
-	ldr r1, .Ljp_08083748 @ =vtable_unk_080E7CD8_NullTail
-	str r1, [r0]
-	str r2, [sp, #4]
-	str r5, [r0, #4]
-	str r3, [r0, #8]
-	strb r4, [r0, #0xc]
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #0x10]
-	str r0, [sp, #0x14]
-	str r2, [r1]
-	str r0, [r7]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .Ljp_0808373E
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_0808373E:
-	adds r0, r7, #0
-	add sp, #0x18
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_08083748: .4byte vtable_unk_080E7CD8_NullTail
+    .section .text.after_blacksmith_shop_scene_run, "ax", %progbits
+    .align 2, 0
+
 .global func_0808374C
 .thumb_func
 func_0808374C: @ 0x0808374C
@@ -251534,89 +251453,8 @@ func_08083AEC: @ 0x08083AEC
 	.align 2, 0
 .L08083B28: .4byte vtable_unk_080E7D04
 
-	thumb_func_start func_08083B2C
-func_08083B2C: @ 0x08083B2C
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x18
-	adds r7, r0, #0
-	adds r6, r1, #0
-	ldr r0, [r6, #4]
-	bl func_08082CEC
-	adds r1, r0, #0
-	cmp r1, #0
-	bne .L08083B48
-	ldr r0, [r6, #8]
-	str r1, [r6, #8]
-	str r0, [r7]
-	b .L08083BC6
-.L08083B48:
-	cmp r1, #1
-	bne .L08083B8C
-	movs r0, #0x10
-	bl __builtin_new
-	ldr r4, [r6, #8]
-	movs r2, #0
-	str r2, [r6, #8]
-	ldr r3, [r6, #0x1c]
-	ldr r1, .L08083B88 @ =vtable_unk_080E7CF4
-	str r1, [r0]
-	str r2, [sp, #4]
-	str r4, [r0, #4]
-	str r3, [r0, #8]
-	strb r2, [r0, #0xc]
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r2, [r1]
-	str r0, [r7]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L08083BC6
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-	b .L08083BC6
-	.align 2, 0
-.L08083B88: .4byte vtable_unk_080E7CF4
-.L08083B8C:
-	movs r0, #0x10
-	bl __builtin_new
-	ldr r5, [r6, #8]
-	movs r2, #0
-	str r2, [r6, #8]
-	ldr r3, [r6, #0x1c]
-	movs r4, #1
-	ldr r1, .L08083BD0 @ =vtable_unk_080E7CF4
-	str r1, [r0]
-	str r2, [sp, #4]
-	str r5, [r0, #4]
-	str r3, [r0, #8]
-	strb r4, [r0, #0xc]
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #0x10]
-	str r0, [sp, #0x14]
-	str r2, [r1]
-	str r0, [r7]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L08083BC6
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08083BC6:
-	adds r0, r7, #0
-	add sp, #0x18
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08083BD0: .4byte vtable_unk_080E7CF4
+    .section .text.after_blacksmith_shop_scene_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_08083BD4
 func_08083BD4: @ 0x08083BD4
