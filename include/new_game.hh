@@ -361,8 +361,17 @@ struct NewGameNameInputCore : HardwareBootstrap {
     u32 unk_463c;
 };
 
-struct NewGameNameInputScene {
-    NewGameSceneVTableFunction const * vtable;
+// The reusable keyboard is a real scene. Its core keeps the verified native
+// bootstrap interface until that separate hierarchy is fully recovered.
+struct NewGameNameInputScene : AScene {
+    NewGameNameInputScene(char const * prompt, char const * initial_name)
+        asm("func_08007078") SECTION(".text.new_game_name_input_scene");
+    virtual ~NewGameNameInputScene()
+        asm("func_080070A4") SECTION(".text.new_game_name_input_scene");
+    virtual SceneTransitionOwner Run()
+        asm("func_080070D4") SECTION(".text.new_game_name_input_scene");
+    char const * GetName() const
+        asm("func_08007110") SECTION(".text.new_game_name_input_scene");
     NewGameNameInputCore * core;
 };
 
@@ -584,8 +593,9 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
 void func_08006ED8(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_confirmation");
 extern NewGameSceneVTableFunction const vtable_unk_080E5AB4[];
-extern NewGameSceneVTableFunction const vtable_unk_080E5AC0[];
 
+// These C declarations name the actual member ABI for existing native
+// callers; they do not emit extra wrappers or alias symbols.
 // One consecutive keyboard-scene interval: construction, cleanup, running,
 // and the two accessors returning the core's actual runtime name buffer.
 NewGameNameInputScene * func_08007078(NewGameNameInputScene * scene,

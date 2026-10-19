@@ -55,11 +55,6 @@ extern NewGameSceneVTableFunction const vtable_unk_080E5AB4[] = {
     nullptr, nullptr,
     reinterpret_cast<NewGameSceneVTableFunction>(func_08005B38),
 };
-extern NewGameSceneVTableFunction const vtable_unk_080E5AC0[] = {
-    nullptr, nullptr,
-    reinterpret_cast<NewGameSceneVTableFunction>(func_080070A4),
-    reinterpret_cast<NewGameSceneVTableFunction>(func_080070D4),
-};
 
 void * operator new(unsigned long);
 void operator delete(void *);
@@ -1231,32 +1226,30 @@ void func_08006ED8(NewGameNameInputCore * core)
     }
 }
 
-NewGameNameInputScene * func_08007078(NewGameNameInputScene * scene,
-    char const * prompt, char const * initial_name)
+NewGameNameInputScene::NewGameNameInputScene(char const * prompt,
+    char const * initial_name)
 {
-    scene->vtable = vtable_unk_080E5AC0;
-    scene->core = func_08005A58(static_cast<NewGameNameInputCore *>(
+    core = func_08005A58(static_cast<NewGameNameInputCore *>(
         ::operator new(sizeof(NewGameNameInputCore))), prompt, initial_name);
-    return scene;
 }
 
-void func_080070A4(NewGameNameInputScene * scene, int flags)
+NewGameNameInputScene::~NewGameNameInputScene()
 {
-    scene->vtable = vtable_unk_080E5AC0;
-    NewGameNameInputCore * core = scene->core;
-    if (core != nullptr)
-        ((void (*)(NewGameNameInputCore *, int))core->vtable[2])(core, 3);
-    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
+    // Preserve virtual cleanup through the core's still-partial bootstrap
+    // interface; this scene and its AScene base have their real C++ lifetime.
+    NewGameNameInputCore * object = core;
+    if (object != nullptr)
+        ((void (*)(NewGameNameInputCore *, int))object->vtable[2])(object, 3);
 }
 
-SceneTransitionOwner func_080070D4(NewGameNameInputScene * scene)
+SceneTransitionOwner NewGameNameInputScene::Run()
 {
-    return func_08005B68(scene->core);
+    return func_08005B68(core);
 }
 
-char const * func_08007110(NewGameNameInputScene const * scene)
+char const * NewGameNameInputScene::GetName() const
 {
-    return scene->core->name;
+    return core->name;
 }
 
 char const * func_0800711C(NewGameNameInputCore const * core)

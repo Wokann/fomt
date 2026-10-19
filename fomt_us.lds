@@ -707,7 +707,7 @@ SECTIONS
         src/resource_handle.o(.gnu.linkonce.d.__vt_23IndexedResourceProvider);
         src/intro_scene.o(.gnu.linkonce.d.__vt_19MenuIntroTransition);
         src/new_game.o(.gnu.linkonce.d.__vt_27NewGameLoadedSaveTransition);
-        src/new_game.o(.rodata);
+        src/new_game.o(.rodata .gnu.linkonce.d.__vt_21NewGameNameInputScene);
         *(.gnu.linkonce.d.__vt_23HardwareDmaQueueCommand);
         *(.gnu.linkonce.d.__vt_27HardwareSpriteBufferCommand);
         *(.gnu.linkonce.d.__vt_22HardwareDisplayCommand);
