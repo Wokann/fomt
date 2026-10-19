@@ -773,9 +773,8 @@ extern void func_080DBC0C(void);
 extern void func_080DBC50(void);
 extern void DestroyGiftWrappingTransition(void) asm("_._22GiftWrappingTransition");
 extern void CreateScene__22GiftWrappingTransition(void);
+extern void DestroyYodelRanchShopTransition(void) asm("_._24YodelRanchShopTransition");
 extern void CreateScene__24YodelRanchShopTransition(void);
-extern void func_080DB4E4(void);
-extern void func_080DBD30(void);
 extern void DestroyPoultryFarmShopTransition(void) asm("_._25PoultryFarmShopTransition");
 extern void CreateScene__25PoultryFarmShopTransition(void);
 extern void DestroyWineryShopTransition(void) asm("_._20WineryShopTransition");
@@ -983,11 +982,7 @@ extern RawVTableFunction const vtable_unk_080E5D84[] = {
 extern RawVTableFunction const vtable_unk_080E5D94[] = {
     nullptr,
     nullptr,
-#if defined(REGION_JP)
-    func_080DB4E4,
-#else
-    func_080DBD30,
-#endif
+    DestroyYodelRanchShopTransition,
     CreateScene__24YodelRanchShopTransition,
 };
 

@@ -697,8 +697,7 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__29SpecialMerchantShopTransition .gnu.linkonce.t._._29SpecialMerchantShopTransition);
         asm/code_linkonce.o(.text.scene_special_merchant_shop_after);
         src/game_scene.o(.text.CreateScene__22GiftWrappingTransition .gnu.linkonce.t._._22GiftWrappingTransition);
-        src/game_scene.o(.text.CreateScene__24YodelRanchShopTransition);
-        asm/code_linkonce.o(.text.scene_yodel_ranch_shop_after);
+        src/game_scene.o(.text.CreateScene__24YodelRanchShopTransition .gnu.linkonce.t._._24YodelRanchShopTransition);
         src/game_scene.o(.text.CreateScene__25PoultryFarmShopTransition .gnu.linkonce.t._._25PoultryFarmShopTransition);
         src/game_scene.o(.text.CreateScene__20WineryShopTransition .gnu.linkonce.t._._20WineryShopTransition);
         src/game_scene.o(.text.CreateScene__17InnShopTransition .gnu.linkonce.t._._17InnShopTransition);

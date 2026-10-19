@@ -994,7 +994,6 @@ struct YodelRanchShopScene : AScene {
 };
 
 struct YodelRanchShopTransition : SceneTransition {
-    virtual ~YodelRanchShopTransition();
     virtual SceneOwner CreateScene();
     SceneTransitionOwner continuation;
     GameStateSaveImage * save;

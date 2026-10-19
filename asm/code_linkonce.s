@@ -9434,30 +9434,6 @@ func_080DBC50:
     .byte 0x00, 0x00
     .section .text.scene_gift_wrapping_after, "ax", %progbits
 
-    .section .text.scene_yodel_ranch_shop_after, "ax", %progbits
-
-    .global func_080DB4E4
-    .thumb_func
-func_080DB4E4:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_080DB4FC
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DB4FC:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._15SceneTransition
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
     .section .text.scene_poultry_farm_shop_after, "ax", %progbits
 
     .section .text.scene_winery_shop_after, "ax", %progbits
@@ -21968,30 +21944,6 @@ func_080DBC50: @ 0x080DBC50
 
     .section .text.scene_gift_wrapping_after, "ax", %progbits
 
-	.align 2, 0
-
-    .section .text.scene_yodel_ranch_shop_after, "ax", %progbits
-
-	thumb_func_start func_080DBD30
-func_080DBD30: @ 0x080DBD30
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080DBD48
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DBD48:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._15SceneTransition
-	pop {r4, r5}
-	pop {r0}
-	bx r0
 	.align 2, 0
 
     .section .text.scene_poultry_farm_shop_after, "ax", %progbits
