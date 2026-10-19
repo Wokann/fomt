@@ -1,11 +1,11 @@
 #include "hardware_nested_accessors.hh"
 
-u8 * func_08008AE0(void * const * state)
+struct HardwareInterruptList * func_08008AE0(struct HardwareManagerOwner const * owner)
 {
-    return (u8 *)*state + 0xC;
+    return &owner->state->unk_0C;
 }
 
-u8 * func_08008AE8(void * const * state)
+struct HardwareInterruptList * func_08008AE8(struct HardwareManagerOwner const * owner)
 {
-    return (u8 *)*state + 0xC;
+    return &owner->state->unk_0C;
 }

@@ -204,16 +204,10 @@ void UpdateGameSceneHardwareFrame(GameSceneState * state, HardwareSpriteBufferSt
     func_08009940(&commands, &dma);
     func_08009940(&commands, &sprite);
 
-    // The manager returns its interrupt list. Its native virtual Append and
-    // Remove ABI is retained here, as in UpdateHardwareFrame, around the tick.
-    void * manager = &state->manager;
-    void * object = func_08008AE0(reinterpret_cast<void * const *>(manager));
-    void ** vtable = *reinterpret_cast<void ***>((u8 *)object + 8);
-    ((void (*)(void *, HardwareLinkedList *))vtable[4])(object, &commands);
+    HardwareManagerOwner * manager = &state->manager;
+    func_08008AE0(manager)->Append(&commands);
     func_08008AF0(manager);
-    object = func_08008AE0(reinterpret_cast<void * const *>(manager));
-    vtable = *reinterpret_cast<void ***>((u8 *)object + 8);
-    ((void (*)(void *, HardwareLinkedList *))vtable[5])(object, &commands);
+    func_08008AE0(manager)->Remove(&commands);
 
     // The temporary list and commands unlink in reverse construction order.
 }

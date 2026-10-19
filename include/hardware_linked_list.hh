@@ -3,6 +3,28 @@
 
 #include "prelude.h"
 
+#ifndef __cplusplus
+struct HardwareLinkedList;
+struct HardwareLinkBase;
+
+// C ABI view of the compiler-owned HardwareLinkedList virtual methods.
+// C++ callers use the corresponding declarations on the classes below.
+struct HardwareLinkedListVTable {
+    void const * metadata[2];
+    u8 (*run)(struct HardwareLinkedList *);
+    void (*destroy)(struct HardwareLinkedList *, u32);
+    void (*append)(struct HardwareLinkedList *, struct HardwareLinkBase *);
+    void (*remove)(struct HardwareLinkedList *, struct HardwareLinkBase *);
+    void (*clear)(struct HardwareLinkedList *);
+    void (*splice)(struct HardwareLinkedList *, struct HardwareLinkedList *);
+    void (*swap)(struct HardwareLinkedList *, struct HardwareLinkedList *);
+};
+
+typedef char HardwareLinkedListVTable_size_check[sizeof(struct HardwareLinkedListVTable) == 0x24 ? 1 : -1];
+typedef char HardwareLinkedListVTable_append_check[offsetof(struct HardwareLinkedListVTable, append) == 0x10 ? 1 : -1];
+typedef char HardwareLinkedListVTable_remove_check[offsetof(struct HardwareLinkedListVTable, remove) == 0x14 ? 1 : -1];
+#endif
+
 #ifdef __cplusplus
 // Emit the retail out-of-line constructors here while allowing their normal
 // member initialization to inline in owning objects.
@@ -46,7 +68,7 @@ struct HardwareLinkedList
 #ifndef __cplusplus
     struct HardwareLinkBase ** previous_slot;
     struct HardwareLinkBase * next;
-    void ** vtable;
+    struct HardwareLinkedListVTable const * vtable;
 #endif
     struct HardwareLinkBase * first;
     struct HardwareLink sentinel;

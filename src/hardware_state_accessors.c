@@ -84,7 +84,7 @@ u8 * func_08008940(void * const * state)
 
 u8 * func_0800894C(void * const * state)
 {
-    return func_08008AE0((void * const *)&((struct HardwareCoreState *)*state)->manager);
+    return (u8 *)func_08008AE0(&((struct HardwareCoreState *)*state)->manager);
 }
 
 u8 * func_08008960(void * const * state)
@@ -94,5 +94,5 @@ u8 * func_08008960(void * const * state)
 
 u8 * func_0800896C(void * const * state)
 {
-    return func_08008AE0((void * const *)&((struct HardwareCoreState *)*state)->manager);
+    return (u8 *)func_08008AE0(&((struct HardwareCoreState *)*state)->manager);
 }

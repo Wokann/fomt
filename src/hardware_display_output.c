@@ -21,10 +21,9 @@ void func_08008724(struct HardwareBootstrap * owner)
     command.vtable = &__vt_22HardwareDisplayCommand;
     command.display = &state->display;
     {
-        void * manager = &state->manager;
-        void * object = func_08008AE0((void * const *)manager);
-        void ** vtable = *(void ***)((u8 *)object + 8);
-        ((void (*)(void *, struct HardwareDisplayCommand *))vtable[4])(object, &command);
+        struct HardwareManagerOwner * manager = &state->manager;
+        struct HardwareLinkedList * list = &func_08008AE0(manager)->list;
+        list->vtable->append(list, (struct HardwareLinkBase *)&command);
         func_08008AF0(manager);
     }
     func_080098AC(&command, 2);
@@ -42,10 +41,9 @@ void func_08008774(struct HardwareBootstrap * owner)
     command.vtable = &__vt_22HardwareDisplayCommand;
     command.display = &state->display;
     {
-        void * manager = &state->manager;
-        void * object = func_08008AE0((void * const *)manager);
-        void ** vtable = *(void ***)((u8 *)object + 8);
-        ((void (*)(void *, struct HardwareDisplayCommand *))vtable[4])(object, &command);
+        struct HardwareManagerOwner * manager = &state->manager;
+        struct HardwareLinkedList * list = &func_08008AE0(manager)->list;
+        list->vtable->append(list, (struct HardwareLinkBase *)&command);
         func_08008AF0(manager);
     }
     func_080098AC(&command, 2);
