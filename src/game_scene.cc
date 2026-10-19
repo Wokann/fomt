@@ -2940,3 +2940,83 @@ void GameSceneMenuSelectionCore::Update()
     }
     GameSceneMenuCorePrefix::Update();
 }
+
+MenuGridPosition GetMenuGridLeftCellPosition(GameSceneMenuOwnedDataPrefix const *, i32 index)
+{
+    return gMenuGridCellPositions[index];
+}
+
+MenuGridPosition GetMenuGridLeftHeaderPosition(GameSceneMenuOwnedDataPrefix const *)
+{
+    return gMenuGridHeaderPosition;
+}
+
+MenuGridPosition GetMenuGridRightCellPosition(GameSceneMenuOwnedDataPrefix const *, i32 index)
+{
+    MenuGridPosition position = gMenuGridCellPositions[index];
+    position.x += 120;
+    return position;
+}
+
+MenuGridPosition GetMenuGridRightHeaderPosition(GameSceneMenuOwnedDataPrefix const *)
+{
+    MenuGridPosition position = gMenuGridHeaderPosition;
+    position.x += 120;
+    return position;
+}
+
+MenuGridPosition GameSceneMenuCorePrefix::GetCursorPosition(i32 index) const
+{
+    MenuGridPosition position;
+    switch (index) {
+    case 0:
+        if (unk_78.value != nullptr)
+            position = GetMenuGridLeftHeaderPosition(unk_78.value);
+        break;
+    case 9:
+        if (unk_7C.value != nullptr)
+            position = GetMenuGridRightHeaderPosition(unk_7C.value);
+        break;
+    default:
+        if (index <= 8) {
+            if (unk_78.value != nullptr)
+                position = GetMenuGridLeftCellPosition(unk_78.value, index - 1);
+        } else {
+            if (unk_7C.value != nullptr)
+                position = GetMenuGridRightCellPosition(unk_7C.value, index - 10);
+        }
+        break;
+    }
+    return position;
+}
+
+i32 GameSceneMenuCorePrefix::GetItemIndex(i32 selection, i32 page) const
+{
+    i32 offset;
+    if (selection <= 8)
+        offset = (page << 3) - 1;
+    else
+        offset = (page << 3) - 10;
+    return selection + offset;
+}
+
+void GameSceneMenuSpriteData::Show(i32 selection, u32 page)
+{
+    unk_84 = 1;
+    sprite.unk_34 = 1;
+    // The wrapped flag is bit 2 of the existing integer result.
+    while (static_cast<i32>(UpdateIndexedResourceHandle(&sprite.handle) << 29) >= 0) {}
+    MenuGridPosition position = core->GetCursorPosition(selection);
+    sprite.unk_00 = position.x + 8;
+    sprite.unk_02 = position.y;
+    unk_7C = selection;
+    unk_80 = page;
+}
+
+void GameSceneMenuSpriteData::Hide()
+{
+    unk_84 = 0;
+    sprite.unk_34 = 0;
+    unk_7C = 18;
+    unk_80 = 0;
+}

@@ -75024,24 +75024,9 @@ func_080CC0B4:
     pop {r0}
     bx r0
     .byte 0x44, 0x8A, 0x11, 0x08, 0x00, 0xF0, 0x00, 0x06, 0x80, 0xF0, 0x00, 0x06
-    .global loc_080CB944
-    .thumb_func
-    loc_080CB944:
-    lsls r2, r2, #2
-    ldr r1, [pc, #8]
-    adds r2, r2, r1
-    ldr r1, [r2]
-    str r1, [r0]
-    bx lr
-    .byte 0x24, 0x8A, 0x11, 0x08
-    .global loc_080CB954
-    .thumb_func
-    loc_080CB954:
-    ldr r1, [pc, #4]
-    ldr r1, [r1]
-    str r1, [r0]
-    bx lr
-    .byte 0x20, 0x8A, 0x11, 0x08
+    .section .text.after_menu_grid_left_positions, "ax", %progbits
+    .align 2, 0
+
     .global func_080CC150
     .thumb_func
 func_080CC150:
@@ -76502,40 +76487,6 @@ func_080CD4D4:
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0x44, 0x8A, 0x11, 0x08, 0x00, 0xFF, 0xFF, 0xFF, 0x80, 0xF0, 0x00, 0x06
-    .global func_080CD534
-    .thumb_func
-func_080CD534: @ 0x080CCD44
-	lsls r2, r2, #2
-	ldr r1, .L080CCD60 @ =gUnk_0811783C
-	adds r2, r2, r1
-	ldr r2, [r2]
-	adds r1, r2, #0
-	adds r1, #0x78
-	lsls r1, r1, #0x18
-	lsrs r1, r1, #0x18
-	ldr r3, .L080CCD64 @ =0xFFFFFF00
-	ands r2, r3
-	orrs r2, r1
-	str r2, [r0]
-	bx lr
-	.align 2, 0
-.L080CCD60: .4byte gUnk_0811783C
-.L080CCD64: .4byte 0xFFFFFF00
-    .global func_080CCD68
-    .thumb_func
-func_080CCD68:
-    ldr r1, [pc, #0x14]
-    ldr r2, [r1]
-    adds r1, r2, #0
-    adds r1, #0x78
-    lsls r1, r1, #0x18
-    lsrs r1, r1, #0x18
-    ldr r3, [pc, #0xc]
-    ands r2, r3
-    orrs r2, r1
-    str r2, [r0]
-    bx lr
-    .byte 0x00, 0x00, 0x20, 0x8A, 0x11, 0x08, 0x00, 0xFF, 0xFF, 0xFF
     .section .text.after_menu_core_prefix_constructor, "ax", %progbits
     .align 2, 0
 
@@ -77212,7 +77163,7 @@ func_080CDDD4: @ 0x080CD5E4
 	ldr r2, [r7, #4]
 	add r5, sp, #0x4c
 	adds r0, r5, #0
-	bl func_080CE120
+	bl GetCursorPosition__C23GameSceneMenuCorePrefixi
 	ldrb r0, [r5]
 	movs r2, #0x54
 	adds r2, r2, r7
@@ -77638,77 +77589,6 @@ func_080CDDD4: @ 0x080CD5E4
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-    .global func_080CE120
-    .thumb_func
-func_080CE120:
-    push {r4, lr}
-    sub sp, #0x10
-    adds r4, r0, #0
-    cmp r2, #0
-    beq .Lauto_080CD94A
-    cmp r2, #9
-    beq .Lauto_080CD95A
-    cmp r2, #8
-    bgt .Lauto_080CD976
-    ldr r1, [r1, #0x78]
-    cmp r1, #0
-    beq .Lauto_080CD986
-    b .Lauto_080CD96A
-    .Lauto_080CD94A:
-    ldr r1, [r1, #0x78]
-    cmp r1, #0
-    beq .Lauto_080CD986
-    mov r0, sp
-    bl loc_080CB954
-    ldr r3, [sp]
-    b .Lauto_080CD986
-    .Lauto_080CD95A:
-    ldr r1, [r1, #0x7c]
-    cmp r1, #0
-    beq .Lauto_080CD986
-    add r0, sp, #4
-    bl func_080CCD68
-    ldr r3, [sp, #4]
-    b .Lauto_080CD986
-    .Lauto_080CD96A:
-    subs r2, #1
-    add r0, sp, #8
-    bl loc_080CB944
-    ldr r3, [sp, #8]
-    b .Lauto_080CD986
-    .Lauto_080CD976:
-    ldr r1, [r1, #0x7c]
-    cmp r1, #0
-    beq .Lauto_080CD986
-    subs r2, #0xa
-    add r0, sp, #0xc
-    bl func_080CD534
-    ldr r3, [sp, #0xc]
-    .Lauto_080CD986:
-    str r3, [r4]
-    adds r0, r4, #0
-    add sp, #0x10
-    pop {r4}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
-    .global func_080CE184
-    .thumb_func
-func_080CE184: @ 0x080CD994
-	push {lr}
-	cmp r1, #8
-	bgt .L080CD9A0
-	lsls r0, r2, #3
-	subs r0, #1
-	b .L080CD9A4
-.L080CD9A0:
-	lsls r0, r2, #3
-	subs r0, #0xa
-.L080CD9A4:
-	adds r0, r1, r0
-	pop {r1}
-	bx r1
-	.align 2, 0
     .section .text.after_menu_selection_core_constructor, "ax", %progbits
     .align 2, 0
 
@@ -78857,61 +78737,6 @@ func_080CE3D0:
     .section .text.after_menu_sprite_data_constructor, "ax", %progbits
     .align 2, 0
 
-    .global func_080CEC84
-    .thumb_func
-func_080CEC84: @ 0x080CE494
-	push {r4, r5, r6, r7, lr}
-	sub sp, #4
-	adds r5, r0, #0
-	adds r6, r1, #0
-	adds r7, r2, #0
-	adds r0, #0x84
-	movs r1, #1
-	strb r1, [r0]
-	subs r0, #0x1c
-	strb r1, [r0]
-.L080CE4A8:
-	adds r0, r5, #0
-	adds r0, #0x38
-	bl UpdateIndexedResourceHandle
-	lsls r0, r0, #0x1d
-	cmp r0, #0
-	bge .L080CE4A8
-	ldr r1, [r5]
-	mov r4, sp
-	mov r0, sp
-	adds r2, r6, #0
-	bl func_080CE120
-	mov r0, sp
-	ldrb r0, [r0]
-	adds r0, #8
-	strh r0, [r5, #0x34]
-	ldrb r0, [r4, #1]
-	strh r0, [r5, #0x36]
-	str r6, [r5, #0x7c]
-	adds r0, r5, #0
-	adds r0, #0x80
-	str r7, [r0]
-	add sp, #4
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-    .global func_080CECD0
-    .thumb_func
-func_080CECD0: @ 0x080CE4E0
-	adds r2, r0, #0
-	adds r0, #0x84
-	movs r1, #0
-	strb r1, [r0]
-	subs r0, #0x1c
-	strb r1, [r0]
-	movs r0, #0x12
-	str r0, [r2, #0x7c]
-	adds r0, r2, #0
-	adds r0, #0x80
-	str r1, [r0]
-	bx lr
     .global func_080CECE8
     .thumb_func
 func_080CECE8: @ 0x080CE4F8
@@ -167307,25 +167132,8 @@ func_080CC0B4: @ 0x080CC0B4
 .L080CC12C: .4byte 0x0600F000
 .L080CC130: .4byte 0x0600F080
 
-	thumb_func_start func_080CC134
-func_080CC134: @ 0x080CC134
-	lsls r2, r2, #2
-	ldr r1, .L080CC140 @ =gUnk_0811783C
-	adds r2, r2, r1
-	ldr r1, [r2]
-	str r1, [r0]
-	bx lr
-	.align 2, 0
-.L080CC140: .4byte gUnk_0811783C
-
-	thumb_func_start func_080CC144
-func_080CC144: @ 0x080CC144
-	ldr r1, .L080CC14C @ =gUnk_08117838
-	ldr r1, [r1]
-	str r1, [r0]
-	bx lr
-	.align 2, 0
-.L080CC14C: .4byte gUnk_08117838
+    .section .text.after_menu_grid_left_positions, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080CC150
 func_080CC150: @ 0x080CC150
@@ -169915,41 +169723,6 @@ func_080CD4D4: @ 0x080CD4D4
 .L080CD52C: .4byte 0xFFFFFF00
 .L080CD530: .4byte 0x0600F080
 
-	thumb_func_start func_080CD534
-func_080CD534: @ 0x080CD534
-	lsls r2, r2, #2
-	ldr r1, .L080CD550 @ =gUnk_0811783C
-	adds r2, r2, r1
-	ldr r2, [r2]
-	adds r1, r2, #0
-	adds r1, #0x78
-	lsls r1, r1, #0x18
-	lsrs r1, r1, #0x18
-	ldr r3, .L080CD554 @ =0xFFFFFF00
-	ands r2, r3
-	orrs r2, r1
-	str r2, [r0]
-	bx lr
-	.align 2, 0
-.L080CD550: .4byte gUnk_0811783C
-.L080CD554: .4byte 0xFFFFFF00
-
-	thumb_func_start func_080CD558
-func_080CD558: @ 0x080CD558
-	ldr r1, .L080CD570 @ =gUnk_08117838
-	ldr r2, [r1]
-	adds r1, r2, #0
-	adds r1, #0x78
-	lsls r1, r1, #0x18
-	lsrs r1, r1, #0x18
-	ldr r3, .L080CD574 @ =0xFFFFFF00
-	ands r2, r3
-	orrs r2, r1
-	str r2, [r0]
-	bx lr
-	.align 2, 0
-.L080CD570: .4byte gUnk_08117838
-.L080CD574: .4byte 0xFFFFFF00
 
     .section .text.after_menu_core_prefix_constructor, "ax", %progbits
     .align 2, 0
@@ -170835,7 +170608,7 @@ func_080CDDD4: @ 0x080CDDD4
 	ldr r2, [r7, #4]
 	add r5, sp, #0x4c
 	adds r0, r5, #0
-	bl func_080CE120
+	bl GetCursorPosition__C23GameSceneMenuCorePrefixi
 	ldrb r0, [r5]
 	movs r2, #0x54
 	adds r2, r2, r7
@@ -171262,76 +171035,6 @@ func_080CDDD4: @ 0x080CDDD4
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080CE120
-func_080CE120: @ 0x080CE120
-	push {r4, lr}
-	sub sp, #0x10
-	adds r4, r0, #0
-	cmp r2, #0
-	beq .L080CE13A
-	cmp r2, #9
-	beq .L080CE14A
-	cmp r2, #8
-	bgt .L080CE166
-	ldr r1, [r1, #0x78]
-	cmp r1, #0
-	beq .L080CE176
-	b .L080CE15A
-.L080CE13A:
-	ldr r1, [r1, #0x78]
-	cmp r1, #0
-	beq .L080CE176
-	mov r0, sp
-	bl func_080CC144
-	ldr r3, [sp]
-	b .L080CE176
-.L080CE14A:
-	ldr r1, [r1, #0x7c]
-	cmp r1, #0
-	beq .L080CE176
-	add r0, sp, #4
-	bl func_080CD558
-	ldr r3, [sp, #4]
-	b .L080CE176
-.L080CE15A:
-	subs r2, #1
-	add r0, sp, #8
-	bl func_080CC134
-	ldr r3, [sp, #8]
-	b .L080CE176
-.L080CE166:
-	ldr r1, [r1, #0x7c]
-	cmp r1, #0
-	beq .L080CE176
-	subs r2, #0xa
-	add r0, sp, #0xc
-	bl func_080CD534
-	ldr r3, [sp, #0xc]
-.L080CE176:
-	str r3, [r4]
-	adds r0, r4, #0
-	add sp, #0x10
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-	thumb_func_start func_080CE184
-func_080CE184: @ 0x080CE184
-	push {lr}
-	cmp r1, #8
-	bgt .L080CE190
-	lsls r0, r2, #3
-	subs r0, #1
-	b .L080CE194
-.L080CE190:
-	lsls r0, r2, #3
-	subs r0, #0xa
-.L080CE194:
-	adds r0, r1, r0
-	pop {r1}
-	bx r1
-	.align 2, 0
 
     .section .text.after_menu_selection_core_constructor, "ax", %progbits
     .align 2, 0
@@ -172524,61 +172227,6 @@ func_080CEBC0: @ 0x080CEBC0
 
     .section .text.after_menu_sprite_data_constructor, "ax", %progbits
     .align 2, 0
-
-	thumb_func_start func_080CEC84
-func_080CEC84: @ 0x080CEC84
-	push {r4, r5, r6, r7, lr}
-	sub sp, #4
-	adds r5, r0, #0
-	adds r6, r1, #0
-	adds r7, r2, #0
-	adds r0, #0x84
-	movs r1, #1
-	strb r1, [r0]
-	subs r0, #0x1c
-	strb r1, [r0]
-.L080CEC98:
-	adds r0, r5, #0
-	adds r0, #0x38
-	bl UpdateIndexedResourceHandle
-	lsls r0, r0, #0x1d
-	cmp r0, #0
-	bge .L080CEC98
-	ldr r1, [r5]
-	mov r4, sp
-	mov r0, sp
-	adds r2, r6, #0
-	bl func_080CE120
-	mov r0, sp
-	ldrb r0, [r0]
-	adds r0, #8
-	strh r0, [r5, #0x34]
-	ldrb r0, [r4, #1]
-	strh r0, [r5, #0x36]
-	str r6, [r5, #0x7c]
-	adds r0, r5, #0
-	adds r0, #0x80
-	str r7, [r0]
-	add sp, #4
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080CECD0
-func_080CECD0: @ 0x080CECD0
-	adds r2, r0, #0
-	adds r0, #0x84
-	movs r1, #0
-	strb r1, [r0]
-	subs r0, #0x1c
-	strb r1, [r0]
-	movs r0, #0x12
-	str r0, [r2, #0x7c]
-	adds r0, r2, #0
-	adds r0, #0x80
-	str r1, [r0]
-	bx lr
 
 	thumb_func_start func_080CECE8
 func_080CECE8: @ 0x080CECE8

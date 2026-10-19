@@ -26,11 +26,11 @@ char const * const gShopCommonOwnedQuantityLabelTextRef =
 
 #include FOMT_TEXT_INCLUDE(shop_common_4.cc)
 
-u32 const gUnk_08117838 = 0x00001010;
+MenuGridPosition const gMenuGridHeaderPosition = { 16, 16 };
 
-u32 const gUnk_0811783C[8] = {
-    0x00003010, 0x00003028, 0x00003040, 0x00003058,
-    0x00005010, 0x00005028, 0x00005040, 0x00005058,
+MenuGridPosition const gMenuGridCellPositions[8] = {
+    { 16, 48 }, { 40, 48 }, { 64, 48 }, { 88, 48 },
+    { 16, 80 }, { 40, 80 }, { 64, 80 }, { 88, 80 },
 };
 
 u32 const gUnk_0811785C = 0x00000102;

@@ -582,6 +582,11 @@ SECTIONS
         src/ui_state.o(.text.ui_text_stream_setup);
         src/ui_state.o(.text.ui_text_stream_update);
         asm/code_809E804.o(.text.ui_text_stream_update_after);
+        src/game_scene.o(.text.GetMenuGridLeftCellPosition__FPC28GameSceneMenuOwnedDataPrefixi);
+        src/game_scene.o(.text.GetMenuGridLeftHeaderPosition__FPC28GameSceneMenuOwnedDataPrefix);
+        asm/code_809E804.o(.text.after_menu_grid_left_positions);
+        src/game_scene.o(.text.GetMenuGridRightCellPosition__FPC28GameSceneMenuOwnedDataPrefixi);
+        src/game_scene.o(.text.GetMenuGridRightHeaderPosition__FPC28GameSceneMenuOwnedDataPrefix);
         src/game_scene.o(.text.__23GameSceneMenuCorePrefixP18GameStateSaveImage);
         asm/code_809E804.o(.text.after_menu_core_prefix_constructor);
         src/game_scene.o(.text.Update__23GameSceneMenuCorePrefix);
@@ -590,6 +595,8 @@ SECTIONS
         asm/code_809E804.o(.text.after_menu_owned_data_accessors);
         src/game_scene.o(.text.__23GameSceneMenuCursorDataP23GameSceneMenuCorePrefixUi);
         asm/code_809E804.o(.text.after_menu_cursor_data_constructor);
+        src/game_scene.o(.text.GetCursorPosition__C23GameSceneMenuCorePrefixi);
+        src/game_scene.o(.text.GetItemIndex__C23GameSceneMenuCorePrefixii);
         src/game_scene.o(.text.__26GameSceneMenuSelectionCoreP18GameStateSaveImage);
         asm/code_809E804.o(.text.after_menu_selection_core_constructor);
         src/game_scene.o(.text.Update__26GameSceneMenuSelectionCore);
@@ -597,6 +604,8 @@ SECTIONS
         src/game_scene.o(.text._._24GameSceneMenuTilemapData);
         asm/code_809E804.o(.text.after_menu_tilemap_data_destructor);
         src/game_scene.o(.text.__23GameSceneMenuSpriteDataP23GameSceneMenuCorePrefix);
+        src/game_scene.o(.text.Show__23GameSceneMenuSpriteDataiUi);
+        src/game_scene.o(.text.Hide__23GameSceneMenuSpriteData);
         asm/code_809E804.o(.text.after_menu_sprite_data_constructor);
         src/link_communication_data.o(.text);
         . = 0xD0CD4; /* Shift-JIS glyph-map index converter and renderer. */

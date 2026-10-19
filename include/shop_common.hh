@@ -6,8 +6,15 @@
 extern char const gCppRuntimeBadAlloc_ShopCommonDigitGlyphs[];
 extern u16 const gUnk_080C85A0DigitGlyphs[10];
 extern char const gCppRuntimeBadAlloc_ShopCommonPostText[];
-extern u32 const gUnk_08117838;
-extern u32 const gUnk_0811783C[8];
+// Pixel-byte pairs retain the native four-byte record alignment.
+struct ALIGN(4) MenuGridPosition {
+    u8 x;
+    u8 y;
+};
+typedef char MenuGridPositionSizeCheck[sizeof(MenuGridPosition) == 4 ? 1 : -1];
+typedef char MenuGridPositionYCheck[offsetof(MenuGridPosition, y) == 1 ? 1 : -1];
+extern MenuGridPosition const gMenuGridHeaderPosition;
+extern MenuGridPosition const gMenuGridCellPositions[8];
 extern u32 const gUnk_0811785C;
 extern u32 const gUnk_08117860[8];
 extern char const gCppRuntimeBadAlloc_ShopCommonTable[];

@@ -1,5 +1,6 @@
 #ifndef GAME_SCENE_HH
 #define GAME_SCENE_HH
+#include "shop_common.hh"
 
 #include "prelude.h"
 #include <stdlib.h>
@@ -1775,6 +1776,9 @@ protected:
     GameSceneMenuCorePrefix(GameStateSaveImage *);
 public:
     void Update();
+    // Native precondition: the selected panel exists and index is 0..17.
+    MenuGridPosition GetCursorPosition(i32) const;
+    i32 GetItemIndex(i32, i32) const;
 };
 typedef char MenuOwnedDataPrefixSizeCheck[sizeof(GameSceneMenuOwnedDataPrefix) == 0x214 ? 1 : -1];
 typedef char MenuCorePrefixSizeCheck[sizeof(GameSceneMenuCorePrefix) == 0x8C ? 1 : -1];
@@ -1905,6 +1909,8 @@ struct GameSceneMenuSpriteData {
     u32 unk_80;
     u8 unk_84;
     GameSceneMenuSpriteData(GameSceneMenuCorePrefix *);
+    void Show(i32, u32);
+    void Hide();
 };
 struct GameSceneMenuCursorDataOwner {
     GameSceneMenuCursorData * value;
@@ -1964,5 +1970,12 @@ void func_080CE790(GameSceneMenuTilemapData *);
 void func_080CC58C(GameSceneMenuOwnedDataPrefix *, HardwareSpriteBufferState *);
 #endif
 }
+
+// Coordinate readers retain the native unused panel argument, without
+// inventing a relationship between the left/right opaque payload types.
+MenuGridPosition GetMenuGridLeftCellPosition(GameSceneMenuOwnedDataPrefix const *, i32);
+MenuGridPosition GetMenuGridLeftHeaderPosition(GameSceneMenuOwnedDataPrefix const *);
+MenuGridPosition GetMenuGridRightCellPosition(GameSceneMenuOwnedDataPrefix const *, i32);
+MenuGridPosition GetMenuGridRightHeaderPosition(GameSceneMenuOwnedDataPrefix const *);
 
 #endif // GAME_SCENE_HH
