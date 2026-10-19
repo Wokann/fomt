@@ -574,7 +574,7 @@ void func_08005800(NewGameIdentityCore * core)
 }
 
 NewGameIdentityScene * func_0800598C(NewGameIdentityScene * scene,
-    char const * player_name, u32 birthday, char const * farm_name, char const * dog_name)
+    char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name)
 {
     scene->vtable = vtable_unk_080E5AA4;
     scene->core = func_08004EFC(static_cast<NewGameIdentityCore *>(

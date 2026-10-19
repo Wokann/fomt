@@ -511,8 +511,10 @@ void func_08004C54(struct NewGameNameEntryScene * scene, int flags)
 
 // Native form construction and UI setup still remain assembly. The
 // running core and scene below share their real allocation and return-owner ABI.
+// Both constructors pass the existing packed date by value: season in bits
+// 0..1 and the zero-based day in bits 2..6. Bit 7 is not part of the date.
 NewGameIdentityCore * func_08004EFC(NewGameIdentityCore * core,
-    char const * player_name, u32 birthday, char const * farm_name, char const * dog_name);
+    char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name);
 void func_080050C8(NewGameIdentityCore * core, int flags)
     SECTION(".text.new_game_identity_core_cleanup");
 SceneTransitionOwner func_080050F8(NewGameIdentityCore * core)
@@ -530,7 +532,7 @@ extern NewGameSceneVTableFunction const vtable_unk_080E5AA4[];
 // One consecutive scene interval: construction, cleanup, running and the
 // two native byte-result accessors. Its core remains an incomplete field view.
 NewGameIdentityScene * func_0800598C(NewGameIdentityScene * scene,
-    char const * player_name, u32 birthday, char const * farm_name, char const * dog_name)
+    char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name)
     SECTION(".text.new_game_identity_scene");
 void func_080059D0(NewGameIdentityScene * scene, int flags)
     SECTION(".text.new_game_identity_scene");
