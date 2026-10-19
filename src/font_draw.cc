@@ -1,5 +1,4 @@
-#include "font.hh"
-#include "hardware_linked_list.hh"
+#include "font_draw.hh"
 
 #include "gbasvc.h"
 
@@ -120,8 +119,6 @@ i32 DrawCharacterGlyphTo2DGfxBufferExtUnaligned(u32 size, void *buffer,
     return 0;
 }
 
-extern void const * const vtable_unk_080E7868[];
-
 // Copy a complete packed 4bpp tile buffer. The low and high halves of size
 // are its tile width and height respectively.
 void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
@@ -154,34 +151,25 @@ void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
     }
 }
 
-UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
-    u32 unk_0c, u16 unk_12, u32 unk_14, u32 unk_18, u16 unk_10,
-    u32 unk_1c)
-{
-    object->unk_00 = nullptr;
-    object->unk_04 = nullptr;
-#if defined(REGION_JP)
-    object->vtable = vtable_unk_080E7858;
-#else
-    object->vtable = vtable_unk_080E7868;
-#endif
-    object->unk_0c = unk_0c;
-    object->unk_12 = unk_12;
-    object->unk_14 = unk_14;
-    object->unk_18 = unk_18;
-    object->unk_10 = unk_10;
-    object->unk_1c = unk_1c;
-    return object;
-}
-
-void DestroyUnkFontDrawObject(UnkFontDrawObject * object, u32 flags)
-{
-#if defined(REGION_JP)
-    object->vtable = vtable_unk_080E7858;
-#else
-    object->vtable = vtable_unk_080E7868;
-#endif
-    func_080098AC(object, flags);
-}
-
 EXTERN_C_END
+
+FontTilemapRectCommand::FontTilemapRectCommand(u16 * destination, u16 first_tile,
+    u32 width, u32 height, u16 palette, u32 row_stride)
+{
+    this->destination = destination;
+    this->first_tile = first_tile;
+    this->width = width;
+    this->height = height;
+    this->palette = palette;
+    this->row_stride = row_stride;
+}
+
+FontTilemapRectCommand::~FontTilemapRectCommand()
+{
+}
+
+bool FontTilemapRectCommand::Run()
+{
+    Fill2DGfxTilemapRect(destination, first_tile, width, height, palette, row_stride);
+    return false;
+}

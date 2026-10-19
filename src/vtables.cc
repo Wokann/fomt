@@ -49,7 +49,6 @@ struct RawVTableWithOffsetAnd66Entries {
 };
 
 extern void __pure_virtual(void);
-extern void func_0804EEFC(void);
 extern void func_08069D84(void);
 extern void func_08069E58(void);
 extern void func_08069E98(void);
@@ -4375,8 +4374,9 @@ extern RawVTableFunction const __vt_12ScriptEngine[]
         OnCall__12ScriptEnginei,
     };
 
-// Seven adjacent two-method dispatch tables. JP has the single-tile and
-// 2x2 decimal commands; overseas ROMs also insert the 1x2 variant between them.
+// JP has the single-tile and 2x2 decimal commands; overseas ROMs insert the
+// 1x2 variant between them. The following rectangle-fill table is now owned
+// by FontTilemapRectCommand in font_draw.cc.
 extern RawVTableFunction const vtable_unk_080E7838[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
@@ -4398,28 +4398,13 @@ extern RawVTableFunction const vtable_unk_080E7848[]
 #endif
     };
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7858[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
-        func_0804EEFC,
-        reinterpret_cast<RawVTableFunction>(DestroyUnkFontDrawObject),
-#else
         reinterpret_cast<RawVTableFunction>(RunFontTilemapDecimalCommand),
         reinterpret_cast<RawVTableFunction>(DestroyFontTilemapDecimalCommand),
-#endif
-    };
-
-// The next three complete tables belong to the recovered UI command classes.
-// Keep the preceding, unrelated font table only where it physically exists.
-#if !defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E7868[]
-    SECTION(".rodata.vtable_script_engine_adjacent") = {
-        nullptr,
-        nullptr,
-        func_0804EEFC,
-        reinterpret_cast<RawVTableFunction>(DestroyUnkFontDrawObject),
     };
 #endif
 

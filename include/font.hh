@@ -2,6 +2,7 @@
 #define FONT_HH
 
 #include "prelude.h"
+#include "font_draw.hh"
 
 #ifdef __cplusplus
 extern "C" {
@@ -41,7 +42,9 @@ void DrawDecimalTo2x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
 typedef void (*FontTilemapDecimalVTableFunction)(void);
 extern FontTilemapDecimalVTableFunction const vtable_unk_080E7838[];
 extern FontTilemapDecimalVTableFunction const vtable_unk_080E7848[];
+#if !defined(REGION_JP)
 extern FontTilemapDecimalVTableFunction const vtable_unk_080E7858[];
+#endif
 
 typedef struct FontTilemapDecimalCommand {
     void * unk_00;
@@ -101,55 +104,6 @@ u32 RunFontTilemapDecimalCommand(FontTilemapDecimalCommand * object)
 // The caller provides space for up to ten digits and the terminator.
 void FormatUnsignedDecimal(u32 value, char * output)
     SECTION(".text.font_unsigned_decimal");
-
-// Draw one encoded glyph or a terminated encoded string into a two-dimensional
-// 4bpp tile buffer. The packed size stores width in its low half and height
-// in its high half; x and y are pixel coordinates.
-i32 DrawCharacterGlyphTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
-    i32 character);
-// Draws a glyph with a caller-provided foreground/background palette pair.
-i32 DrawCharacterGlyphTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
-    i32 character, i32 foreground, i32 background);
-// Both original unaligned paths return zero without modifying their
-// destination. Assembly callers refer directly to these C linkage entries.
-i32 DrawCharacterGlyphTo2DGfxBufferUnaligned(u32 size, void *buffer, i32 x,
-    i32 y, void *glyph);
-i32 DrawCharacterGlyphTo2DGfxBufferExtUnaligned(u32 size, void *buffer,
-    i32 x, i32 y, void *glyph, i32 foreground,
-    i32 background);
-
-// The adjacent virtual object has not yet received a semantic class name.
-// Its layout is retained here because its constructor is shared by both ROMs.
-typedef struct UnkFontDrawObject
-{
-    void * unk_00;
-    void * unk_04;
-    void const * vtable;
-    u32 unk_0c;
-    u16 unk_10;
-    u16 unk_12;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1c;
-} UnkFontDrawObject;
-
-void Clear2DGfxBuffer(u32 size, void *buffer, u32 color);
-void Clear2DGfxBufferRect(u32 size, void *buffer, u32 x, u32 y, u32 width,
-    u32 height, u32 color);
-// Copies every 32-byte tile in a packed two-dimensional 4bpp buffer.
-void Copy2DGfxBuffer(u32 size, void *destination, void const *source);
-// Fills a tilemap rectangle with sequential tile IDs. Only the low 16 bits
-// of first_tile and palette are represented in each tilemap entry.
-void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
-    u32 height, u32 palette, u32 row_stride);
-UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
-    u32 unk_0c, u16 unk_12, u32 unk_14, u32 unk_18, u16 unk_10,
-    u32 unk_1c);
-void DestroyUnkFontDrawObject(UnkFontDrawObject * object, u32 flags);
-void DrawStringTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
-    u8 const *string);
-void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
-    u8 const *string, i32 foreground, i32 background);
 
 // Raw font payloads selected by the renderer. Single-width glyphs occupy
 // 12 bytes; double-width glyphs occupy 24 bytes.

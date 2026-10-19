@@ -300,11 +300,11 @@ SECTIONS
         src/font_draw.o(.text.DrawCharacterGlyphTo2DGfxBufferExtUnaligned);
         . = 0x4E8C8; src/font_draw.o(.text.Copy2DGfxBuffer);
         src/font_draw.o(.text.Fill2DGfxTilemapRect);
-        src/font_draw.o(.text.InitializeUnkFontDrawObject);
-        src/font_draw.o(.text.DestroyUnkFontDrawObject);
+        src/font_draw.o(.text.__22FontTilemapRectCommandPUsUsUiUiUsUi);
+        src/font_draw.o(.text._._22FontTilemapRectCommand);
         asm/code_0803EE94.o(.text.font_draw_after);
         src/font.o(.text.font_decimal);
-        asm/code_0803EE94.o(.text.font_decimal_after);
+        src/font_draw.o(.text.Run__22FontTilemapRectCommand);
         src/ui_state.o(.text.ui_text_tile_copy);
         src/ui_state.o(.text.ui_text_output_callbacks);
         src/ui_state.o(.text.ui_text_input_callbacks);
@@ -828,6 +828,7 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_13AScriptEngine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine_adjacent);
+        src/font_draw.o(.gnu.linkonce.d.__vt_22FontTilemapRectCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_24UiTextWindowSetupCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_25UiTextOutputUploadCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_20UiDmaTransferCommand);

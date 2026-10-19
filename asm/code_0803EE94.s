@@ -5681,31 +5681,6 @@ func_0804EA94:
     .byte 0x10, 0x47, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x01, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0xFE
     .byte 0x00, 0xFC, 0xFF, 0xFF, 0xFF, 0x0F, 0xFF, 0xFF, 0xFF, 0xF3, 0xFF, 0xFF, 0xFF, 0x3F, 0xFF, 0xFF
     .byte 0xFF, 0xFF, 0xFF, 0x3F
-    .section .text.font_decimal_after
-
-
-    .global func_0804EEFC
-    .thumb_func
-func_0804EEFC: @ 0x0804EC88
-    push {r4, r5, lr}
-    sub sp, #8
-    ldr r5, [r0, #0xc]
-    ldrh r1, [r0, #0x12]
-    ldr r2, [r0, #0x14]
-    ldr r3, [r0, #0x18]
-    ldrh r4, [r0, #0x10]
-    str r4, [sp]
-    ldr r0, [r0, #0x1c]
-    str r0, [sp, #4]
-    adds r0, r5, #0
-    bl Fill2DGfxTilemapRect
-    movs r0, #0
-    add sp, #8
-    pop {r4, r5}
-    pop {r1}
-    bx r1
-
-
     .section .text.ui_text_window_setup_after, "ax", %progbits
     .align 2, 0
 
@@ -148644,29 +148619,6 @@ func_0804EA94: @ 0x0804EA94
 .L0804EB58: .4byte 0xFFFFF3FF
 .L0804EB5C: .4byte 0xFFFF3FFF
 .L0804EB60: .4byte 0x3FFFFFFF
-    .section .text.font_decimal_after
-
-
-	thumb_func_start func_0804EEFC
-func_0804EEFC: @ 0x0804EEFC
-	push {r4, r5, lr}
-	sub sp, #8
-	ldr r5, [r0, #0xc]
-	ldrh r1, [r0, #0x12]
-	ldr r2, [r0, #0x14]
-	ldr r3, [r0, #0x18]
-	ldrh r4, [r0, #0x10]
-	str r4, [sp]
-	ldr r0, [r0, #0x1c]
-	str r0, [sp, #4]
-	adds r0, r5, #0
-	bl Fill2DGfxTilemapRect
-	movs r0, #0
-	add sp, #8
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-
     .section .text.ui_text_window_setup_after, "ax", %progbits
     .align 2, 0
 
