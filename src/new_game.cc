@@ -575,11 +575,11 @@ void func_08005800(NewGameIdentityCore * core)
             {
             case 1:
                 core->unk_1A75 = 1;
-                core->unk_1A76 = 1;
+                core->confirmed = 1;
                 break;
             case 2:
                 core->unk_1A75 = 1;
-                core->unk_1A76 = 0;
+                core->confirmed = 0;
                 break;
             case 0:
             case 3:
@@ -603,7 +603,7 @@ void func_08005800(NewGameIdentityCore * core)
 NewGameIdentityScene::NewGameIdentityScene(char const * player_name,
     GameDate birthday, char const * farm_name, char const * dog_name)
 {
-    core = func_08004EFC(static_cast<NewGameIdentityCore *>(
+    core = InitializeNewGameIdentityCore(static_cast<NewGameIdentityCore *>(
         ::operator new(sizeof(NewGameIdentityCore))), player_name, birthday, farm_name, dog_name);
 }
 
@@ -621,12 +621,12 @@ SceneTransitionOwner NewGameIdentityScene::Run()
 
 u8 NewGameIdentityScene::GetConfirmed() const
 {
-    return core->unk_1A76;
+    return core->confirmed;
 }
 
 u8 func_08005A4C(NewGameIdentityCore const * core)
 {
-    return core->unk_1A76;
+    return core->confirmed;
 }
 
 NewGameNameInputCore * func_08005A58(NewGameNameInputCore * core,

@@ -1368,9 +1368,9 @@ func_08004570:
     bx	r1
     .section .text.new_game_after_scene_lifecycle
 
-    .global func_08004EFC
+    .global InitializeNewGameIdentityCore
     .thumb_func
-func_08004EFC:
+InitializeNewGameIdentityCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -4776,8 +4776,8 @@ func_08004570: @ 0x08004570
 
     .section .text.new_game_after_scene_lifecycle
 
-    thumb_func_start func_08004EFC
-func_08004EFC: @ 0x08004EFC
+    thumb_func_start InitializeNewGameIdentityCore
+InitializeNewGameIdentityCore: @ US 0x08004EFC; body remains native.
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb

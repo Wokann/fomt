@@ -323,7 +323,7 @@ struct NewGameIdentityCore : HardwareBootstrap {
     FixedStr<15> fields[NEW_GAME_IDENTITY_FIELD_COUNT];
     u8 unk_1A74;
     u8 unk_1A75;
-    u8 unk_1A76;
+    u8 confirmed;
     u8 unk_1A77;
 };
 
@@ -438,7 +438,7 @@ typedef char NewGameIdentityCoreUiCheck[offsetof(NewGameIdentityCore, ui_state) 
 typedef char NewGameIdentityCoreMusicCheck[offsetof(NewGameIdentityCore, music) == 0x1830 ? 1 : -1];
 typedef char NewGameIdentityCoreFieldsCheck[offsetof(NewGameIdentityCore, fields) == 0x1834 ? 1 : -1];
 typedef char NewGameIdentityCoreControlCheck[offsetof(NewGameIdentityCore, unk_1A74) == 0x1874 ? 1 : -1];
-typedef char NewGameIdentityCoreResultCheck[offsetof(NewGameIdentityCore, unk_1A76) == 0x1876 ? 1 : -1];
+typedef char NewGameIdentityCoreResultCheck[offsetof(NewGameIdentityCore, confirmed) == 0x1876 ? 1 : -1];
 #else
 typedef char NewGameIdentityCoreSizeCheck[sizeof(NewGameIdentityCore) == 0x1A78 ? 1 : -1];
 typedef char NewGameIdentityCoreValueBuffersCheck[offsetof(NewGameIdentityCore, value_buffers) == 8 ? 1 : -1];
@@ -448,7 +448,7 @@ typedef char NewGameIdentityCoreUiCheck[offsetof(NewGameIdentityCore, ui_state) 
 typedef char NewGameIdentityCoreMusicCheck[offsetof(NewGameIdentityCore, music) == 0x1A30 ? 1 : -1];
 typedef char NewGameIdentityCoreFieldsCheck[offsetof(NewGameIdentityCore, fields) == 0x1A34 ? 1 : -1];
 typedef char NewGameIdentityCoreControlCheck[offsetof(NewGameIdentityCore, unk_1A74) == 0x1A74 ? 1 : -1];
-typedef char NewGameIdentityCoreResultCheck[offsetof(NewGameIdentityCore, unk_1A76) == 0x1A76 ? 1 : -1];
+typedef char NewGameIdentityCoreResultCheck[offsetof(NewGameIdentityCore, confirmed) == 0x1A76 ? 1 : -1];
 #endif
 typedef char NewGameIdentitySceneSizeCheck[sizeof(NewGameIdentityScene) == 8 ? 1 : -1];
 typedef char NewGameIdentitySceneCoreCheck[offsetof(NewGameIdentityScene, core) == 4 ? 1 : -1];
@@ -547,7 +547,11 @@ void func_08004C54(struct NewGameNameEntryScene * scene, int flags)
 // running core and scene below share their real allocation and return-owner ABI.
 // Both constructors pass the existing packed date by value: season in bits
 // 0..1 and the zero-based day in bits 2..6. Bit 7 is not part of the date.
-NewGameIdentityCore * func_08004EFC(NewGameIdentityCore * core,
+// Construct the bootstrap, uninitialized tile buffers and owned UI, then
+// format the four bounded fields. Names and the birthday use at most 15
+// encoded bytes plus NUL; JP appends its month/day suffixes. Only confirmed
+// is reset here: the running screen initializes its other control bytes.
+NewGameIdentityCore * InitializeNewGameIdentityCore(NewGameIdentityCore * core,
     char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name);
 void func_080050C8(NewGameIdentityCore * core, int flags)
     SECTION(".text.new_game_identity_core_cleanup");
