@@ -7244,7 +7244,7 @@ func_080A56DC: @ 0x080A5114
 	lsls r2, r2, #0x10
 	asrs r2, r2, #0x10
 	mov r0, r8
-	bl func_080A5960
+	bl SetWorldMapCameraPosition
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6}
@@ -22935,7 +22935,7 @@ func_080AD58C:
 func_080AD5B0:
     push {lr}
     ldr r0, [r0, #4]
-    bl func_080A5A9C
+    bl IsWorldMapCameraMovementComplete
     pop {r1}
     bx r1
 
@@ -22968,7 +22968,7 @@ func_080AD5CC:
 func_080AD5D4:
     push {lr}
     ldr r0, [r0, #4]
-    bl func_080A59BC
+    bl PanWorldMapCameraTo
     pop {r0}
     bx r0
 
@@ -22977,7 +22977,7 @@ func_080AD5D4:
 func_080AD5E0:
     push {lr}
     ldr r0, [r0, #4]
-    bl func_080A5960
+    bl SetWorldMapCameraPosition
     pop {r0}
     bx r0
 
@@ -88968,7 +88968,7 @@ func_080A56DC: @ 0x080A56DC
 	lsls r2, r2, #0x10
 	asrs r2, r2, #0x10
 	mov r0, r8
-	bl func_080A5960
+	bl SetWorldMapCameraPosition
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6}
@@ -104607,7 +104607,7 @@ func_080ADB54: @ 0x080ADB54
 func_080ADB78: @ 0x080ADB78
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A5A9C
+	bl IsWorldMapCameraMovementComplete
 	pop {r1}
 	bx r1
 	thumb_func_start func_080ADB84
@@ -104635,7 +104635,7 @@ func_080ADB94: @ 0x080ADB94
 func_080ADB9C: @ 0x080ADB9C
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A59BC
+	bl PanWorldMapCameraTo
 	pop {r0}
 	bx r0
 
@@ -104643,7 +104643,7 @@ func_080ADB9C: @ 0x080ADB9C
 func_080ADBA8: @ 0x080ADBA8
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A5960
+	bl SetWorldMapCameraPosition
 	pop {r0}
 	bx r0
 

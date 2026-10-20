@@ -206,7 +206,7 @@ SECTIONS
             .text.EnableScriptedNpcControl__9GameScene
             .text.DisableScriptedNpcControl__9GameScene);
         asm/game_state.o(.text.game_scene_menu_hooks_after);
-        src/game_scene.o(.text.func_0801468C);
+        src/game_scene.o(.text.GetSceneSongPlayerPool);
         src/game_scene.o(
             .text.LightFireplaceAtLocation__9GameScene9MaryMapId
             .text.SetVaseArticleId__9GameScene17MaryItemArticleId
@@ -254,28 +254,57 @@ SECTIONS
             .text.ClearPreservedPlayerLocation__9GameScene
             .text.GetPreservedPlayerMapId__9GameScene);
         asm/game_state.o(.text.game_scene_after_world_effect_commands);
-        src/game_scene.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
+        src/game_world.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
-        src/game_scene.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
+        src/game_world.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
         asm/game_state.o(.text.game_scene_after_map_terrain);
-        src/game_scene.o(.text.GetWorldTimeOfDayPeriod);
+        src/game_world.o(.text.GetWorldTimeOfDayPeriod);
         asm/game_state.o(.text.game_scene_after_time_of_day_period);
-        src/game_scene.o(.text.func_0801B5C0);
+        src/game_world.o(.text.func_0801B5C0);
         asm/game_state.o(.text.game_scene_palette_resource_selector_after);
-        src/game_scene.o(.text.TryGetFarmPlotAtLocation);
+        src/game_world.o(.text.TryGetFarmPlotAtLocation);
         asm/game_state.o(.text.game_scene_farm_plot_query_after);
-        src/game_scene.o(.text.func_0801C29C);
+        src/game_world.o(.text.func_0801C29C);
         asm/game_state.o(.text.game_scene_farm_plot_action_after);
-        src/game_scene.o(.text.func_0801D3FC .text.func_0801D4E0 .text.func_0801D5BC
+        src/game_world.o(.text.func_0801D3FC .text.func_0801D4E0 .text.func_0801D5BC
             .text.PickUpFieldItemAtLocation .text.func_0801D7B0 .text.func_0801D88C
-            .text.func_0801D8CC .text.func_0801D948 .text.func_0801D9A8
-            .text.func_0801D9BC .text.func_0801DB44 .text.func_0801DB58
+            .text.func_0801D8CC .text.func_0801D948 .text.QueueWorldScript
+            .text.SelectWorldBackgroundAudio .text.GetWorldSongPlayerPool .text.UpdateWorldBackgroundAudio
             .text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue
             .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78 .text.RemoveRecordPlayerAlbum
             .text.func_0801DDCC .text.func_0801DDF8 .text.func_0801DE24 .text.func_0801DE30 .text.func_0801DE3C .text.func_0801DE48
             .text.SwapRecordPlayerAlbum);
         asm/game_state.o(.text.game_scene_after_record_player_album);
-        src/game_scene.o(.text.func_0801FB* .text.func_0801FC* .text.func_0801FD*);
+        src/game_world.o(
+            .text.func_0801FBDC
+            .text.func_0801FBE8
+            .text.func_0801FBF4
+            .text.func_0801FC00
+            .text.func_0801FC0C
+            .text.func_0801FC18
+            .text.func_0801FC24
+            .text.func_0801FC30
+            .text.func_0801FC3C
+            .text.func_0801FC48
+            .text.func_0801FC54
+            .text.func_0801FC60
+            .text.GetWorldActorAnimationArchive
+            .text.func_0801FC78
+            .text.func_0801FC9C
+            .text.func_0801FCA0
+            .text.GetWorldClock
+            .text.GetWorldSpritePaletteBank
+            .text.func_0801FCDC
+            .text.func_0801FCF4
+            .text.func_0801FD00
+            .text.RemoveWorldEntity
+            .text.func_0801FD30
+            .text.IsWorldCameraMovementComplete
+            .text.GetWorldCameraY
+            .text.GetWorldCameraX
+            .text.GetWorldCurrentMapId
+            .text.PanWorldCameraTo
+            .text.SetWorldCameraPosition);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
         asm/code_entities.o(.text);
@@ -328,7 +357,7 @@ SECTIONS
         . = 0x3A7B8; /* DE ROM 0x0803A7B8, remaining raw control code. */
         src/map_data.o(.text.SelectMapDataId);
         asm/code_0803A8A4.o(.text.world_sprite_groups_constructor);
-        src/game_scene.o(.text._._21GameSceneWorldUnk1020);
+        src/game_world.o(.text._._21GameSceneWorldUnk1020);
         asm/code_0803A8A4.o(.text.world_sprite_groups_after_destructor);
         . = 0x3BCF8; /* DE ROM 0x0803BCF8, set a u16 pair. */
         src/code_0803BDE4.o(.text);
@@ -635,29 +664,29 @@ SECTIONS
         src/map_data.o(.text.GetMapData);
         . = 0xA460C; /* DE ROM 0x080A460C, remaining map-data code. */
         asm/code_809E804.o(.text.get_map_data_after);
-        src/game_scene.o(.text._._19GameSceneSpriteBase);
+        src/game_world.o(.text._._19GameSceneSpriteBase);
         asm/code_809E804.o(.text.game_scene_sprite_base_after);
-        src/game_scene.o(.text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib);
+        src/game_world.o(.text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib);
         asm/code_809E804.o(.text.game_scene_indexed_sprite_after);
-        src/game_scene.o(.text.UpdateWorldMap);
+        src/world_map.o(.text.UpdateWorldMap);
         asm/code_809E804.o(.text.game_map_after_update);
-        src/game_scene.o(.text.func_080A58EC .text.func_080A5960 .text.func_080A59BC .text.func_080A5A9C);
+        src/world_map.o(.text.ClampWorldMapCameraPosition .text.SetWorldMapCameraPosition .text.PanWorldMapCameraTo .text.IsWorldMapCameraMovementComplete);
         asm/code_809E804.o(.text.game_map_after_camera_query);
-        src/game_scene.o(.text.ApplyMapTilePatch);
-        src/game_scene.o(.text.LoadWorldMapTilemaps .text.SetWorldMapTimeOfDayPalette .text.LoadWorldMapTimeOfDayPalette);
+        src/world_map.o(.text.ApplyMapTilePatch);
+        src/world_map.o(.text.LoadWorldMapTilemaps .text.SetWorldMapTimeOfDayPalette .text.LoadWorldMapTimeOfDayPalette);
         asm/code_809E804.o(.text.game_map_time_palette_after);
-        src/game_scene.o(.text.LoadWorldMapTiles .text.func_080A5EB8);
+        src/world_map.o(.text.LoadWorldMapTiles .text.func_080A5EB8);
         asm/code_809E804.o(.text.game_map_after_tiles);
-        src/game_scene.o(.text.func_080A601C .text.RefreshCoopFeedTrough);
+        src/world_map.o(.text.func_080A601C .text.RefreshCoopFeedTrough);
         asm/code_809E804.o(.text.game_map_barn_feed);
-        src/game_scene.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC .text.func_080A6300 .text.func_080A635C .text.func_080A63B8);
-        src/game_scene.o(.text.SelectDefaultWorldMapData .text.GetWorldMapTileAttributes .text.GetWorldMapDataId .text.GetWorldMapId .text.GetWorldMapViewY .text.GetWorldMapViewX);
+        src/world_map.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC .text.func_080A6300 .text.func_080A635C .text.func_080A63B8);
+        src/world_map.o(.text.SelectDefaultWorldMapData .text.GetWorldMapTileAttributes .text.GetWorldMapDataId .text.GetWorldMapId .text.GetWorldMapViewY .text.GetWorldMapViewX);
         asm/code_809E804.o(.text.game_map_after_patch_dispatchers);
-        src/game_scene.o(.text.UpdateSavedMapTileAnimationTimers);
-        src/game_scene.o(.text.DrawSavedWorldMap);
-        src/game_scene.o(.text.ResetSavedMapTileAnimationFrames);
+        src/world_map.o(.text.UpdateSavedMapTileAnimationTimers);
+        src/world_map.o(.text.DrawSavedWorldMap);
+        src/world_map.o(.text.ResetSavedMapTileAnimationFrames);
         asm/code_809E804.o(.text.game_map_after_animation_reset);
-        src/game_scene.o(.text.RefreshFieldPlotTiles .text.func_080AA850 .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
+        src/world_map.o(.text.RefreshFieldPlotTiles .text.func_080AA850 .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
         asm/code_809E804.o(.text.game_map_after_flag_updates);
         src/map_data.o(.text.IsMapTerrainBoxBlocked);
         asm/code_809E804.o(.text.game_map_after_terrain_query);
@@ -793,7 +822,7 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__15ClockTransition .gnu.linkonce.t._._15ClockTransition);
         src/game_scene.o(.text.CreateScene__17ReturnToGameScene .gnu.linkonce.t._._17ReturnToGameScene);
         asm/code_linkonce.o(.text.scene_return_after);
-        src/game_scene.o(.gnu.linkonce.t._._22GameSceneIndexedSprite);
+        src/game_world.o(.gnu.linkonce.t._._22GameSceneIndexedSprite);
         asm/code_linkonce.o(.text.game_scene_indexed_sprite_dtor_after);
         src/npc_entity.o(.text.FindTimedPathPointUpperBound);
         asm/code_linkonce.o(.text.npc_timed_path_search_after);
@@ -877,7 +906,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6708);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_671c);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_676c);
-        . = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_22GameSceneIndexedSprite);
+        . = ALIGN(4); src/game_world.o(.gnu.linkonce.d.__vt_22GameSceneIndexedSprite);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6828);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6864);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_aactor_entity);
@@ -1081,7 +1110,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82a8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82b8);
 . = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_19SavedNameEntryScene);
-. = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
+. = ALIGN(4); src/game_world.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82e4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82fc);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_830c);

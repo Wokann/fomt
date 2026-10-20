@@ -357,8 +357,9 @@ $(BUILD_DIR)/src/font_draw.o: CXXFLAGS += -ffunction-sections
 # Use compiler-owned function sections, not source section attributes.
 $(BUILD_DIR)/src/game_state.o: CXXFLAGS += -ffunction-sections
 
-# Scene accessors and entity commands occupy separate native code runs.
-$(BUILD_DIR)/src/game_scene.o: CXXFLAGS += -ffunction-sections
+# Recovered scene, world and map functions surround still-native routines.
+# Keep each functional module at its original compiler-owned code positions.
+$(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/src/game_world.o $(BUILD_DIR)/src/world_map.o: CXXFLAGS += -ffunction-sections
 
 # Grid methods are interleaved with unrecovered actor routines in the ROM.
 $(BUILD_DIR)/src/actor_state.o: CXXFLAGS += -ffunction-sections

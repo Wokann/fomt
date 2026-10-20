@@ -613,28 +613,28 @@ extern void Run__9GameScene(void);
 extern void func_080179CC(void);
 extern void func_08017C30(void);
 extern void func_080182C8(void);
-extern void func_0801FD58(void);
-extern void func_0801FD50(void);
-extern void func_0801FD48(void);
-extern void func_0801FD6C(void);
-extern void func_0801FD60(void);
-extern void func_0801FD3C(void);
+extern void GetWorldCurrentMapId(void);
+extern void GetWorldCameraX(void);
+extern void GetWorldCameraY(void);
+extern void SetWorldCameraPosition(void);
+extern void PanWorldCameraTo(void);
+extern void IsWorldCameraMovementComplete(void);
 extern void GetWorldMapPixelWidth(void);
 extern void GetWorldMapPixelHeight(void);
 extern void GetWorldMapTerrain(void);
 extern void func_0801A8E0(void);
-extern void func_0801FD0C(void);
+extern void RemoveWorldEntity(void);
 extern void func_0801FD00(void);
 extern void func_0801FCF4(void);
 extern void func_0801B5C0(void);
 extern void func_0801FCDC(void);
-extern void func_0801FCB4(void);
+extern void GetWorldSpritePaletteBank(void);
 extern void func_0801B9E8(void);
 extern void func_0801FD30(void);
 extern void func_0801FC54(void);
 extern void func_0801FC48(void);
 extern void func_0801FC60(void);
-extern void func_0801FC6C(void);
+extern void GetWorldActorAnimationArchive(void);
 extern void func_0801FC3C(void);
 extern void func_0801FC0C(void);
 extern void func_0801FC00(void);
@@ -688,10 +688,10 @@ extern void func_0801FAB8(void);
 extern void func_0801B498(void);
 extern void func_0801E084(void);
 extern void func_0801C0E0(void);
-extern void func_0801D9A8(void);
-extern void func_0801FCA4(void);
-extern void func_0801D9BC(void);
-extern void func_0801DB44(void);
+extern void QueueWorldScript(void);
+extern void GetWorldClock(void);
+extern void SelectWorldBackgroundAudio(void);
+extern void GetWorldSongPlayerPool(void);
 extern void func_0801F518(void);
 extern void func_0801F5F0(void);
 extern void func_0801EE00(void);
@@ -1089,28 +1089,28 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_080179CC,
     func_08017C30,
     func_080182C8,
-    func_0801FD58,
-    func_0801FD50,
-    func_0801FD48,
-    func_0801FD6C,
-    func_0801FD60,
-    func_0801FD3C,
+    GetWorldCurrentMapId,
+    GetWorldCameraX,
+    GetWorldCameraY,
+    SetWorldCameraPosition,
+    PanWorldCameraTo,
+    IsWorldCameraMovementComplete,
     GetWorldMapPixelWidth,
     GetWorldMapPixelHeight,
     GetWorldMapTerrain,
     func_0801A8E0,
-    func_0801FD0C,
+    RemoveWorldEntity,
     func_0801FD00,
     func_0801FCF4,
     func_0801B5C0,
     func_0801FCDC,
-    func_0801FCB4,
+    GetWorldSpritePaletteBank,
     func_0801B9E8,
     func_0801FD30,
     func_0801FC54,
     func_0801FC48,
     func_0801FC60,
-    func_0801FC6C,
+    GetWorldActorAnimationArchive,
     func_0801FC3C,
     func_0801FC0C,
     func_0801FC00,
@@ -1164,10 +1164,10 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801B498,
     func_0801E084,
     func_0801C0E0,
-    func_0801D9A8,
-    func_0801FCA4,
-    func_0801D9BC,
-    func_0801DB44,
+    QueueWorldScript,
+    GetWorldClock,
+    SelectWorldBackgroundAudio,
+    GetWorldSongPlayerPool,
     func_0801F518,
     func_0801F5F0,
     func_0801EE00,

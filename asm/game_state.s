@@ -9316,7 +9316,7 @@ func_08017348:
     bl IsBackgroundMusicActive__9GameScene
     .byte 0x00, 0x06
     .byte 0x00, 0x28, 0x02, 0xD1, 0x38, 0x1C
-    bl func_0801DB58
+    bl UpdateWorldBackgroundAudio
     .byte 0xA0, 0x20
     bl __builtin_new
     .byte 0x39, 0x1C
@@ -9400,7 +9400,7 @@ func_080179CC:
     cmp r0, #0
     bne .Lauto_0801781A
     adds r0, r6, #0
-    bl func_0801DB44
+    bl GetWorldSongPlayerPool
     ldr r4, [r0]
     ldr r5, [r0, #4]
     cmp r4, r5
@@ -9448,7 +9448,7 @@ func_080179CC:
     adds r0, r6, #0
     mov r1, sp
     movs r2, #0
-    bl func_0801D9A8
+    bl QueueWorldScript
     .Lauto_0801781A:
     ldr r1, [pc, #0x38]
     adds r0, r6, r1
@@ -9945,7 +9945,7 @@ func_08017C30:
     movs r2, #0x9e
     bl PlaySong__9GameSceneiUi
     mov r0, r8
-    bl func_0801DB58
+    bl UpdateWorldBackgroundAudio
     b .Lauto_08017D92
     .byte 0x00, 0x00, 0x54, 0x10, 0x00, 0x00
     .Lauto_08017D4C:
@@ -10149,7 +10149,7 @@ func_08017C30:
     .byte 0x01, 0x20, 0x82, 0x44, 0x51, 0x46, 0x03, 0x29, 0x00, 0xD8, 0x61, 0xE7, 0x19, 0x48, 0x40, 0x44
     .byte 0x00, 0x78, 0x00, 0x28, 0x08, 0xD1, 0x43, 0x46, 0x9A, 0x68, 0x58, 0x68, 0x0A, 0x23, 0xD1, 0x5E
     .byte 0x0E, 0x23, 0xD2, 0x5E
-    bl func_080A5960
+    bl SetWorldMapCameraPosition
     .byte 0x13, 0x4C, 0x44, 0x44, 0x20, 0x68, 0x13, 0x49
     .byte 0x40, 0x18, 0xF6, 0xF7, 0x69, 0xFA, 0x0B, 0x9A, 0x90, 0x42, 0x12, 0xD0, 0x10, 0x48, 0x40, 0x44
     .byte 0x00, 0x68
@@ -10158,7 +10158,7 @@ func_08017C30:
     .byte 0xC0, 0x18
     bl HasRegisteredEvents__C14GameEventState
     .byte 0x00, 0x06, 0x00, 0x28, 0x02, 0xD1, 0x40, 0x46
-    bl func_0801DB58
+    bl UpdateWorldBackgroundAudio
     .byte 0x0F, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC
     .byte 0x00, 0x47, 0x00, 0x00, 0x3C, 0x10, 0x00, 0x00, 0x38, 0x10, 0x00, 0x00, 0xD8, 0x1B, 0x00, 0x00
     .byte 0x54, 0x10, 0x00, 0x00, 0x4C, 0x21, 0x00, 0x00
@@ -12616,7 +12616,7 @@ func_08019BEC:
     .byte 0x00, 0x06, 0x00, 0x28, 0x07, 0xD0, 0x17, 0x4B, 0xF8, 0x18, 0x00, 0x68
     bl IsBackgroundMusicActive__9GameScene
     .byte 0x00, 0x06, 0x00, 0x28, 0x02, 0xD1, 0x38, 0x1C
-    bl func_0801DB58
+    bl UpdateWorldBackgroundAudio
     .byte 0x78, 0x68, 0x40, 0x68, 0x8A, 0xF0, 0x24, 0xFA, 0x24, 0x30, 0x00, 0x78, 0x00, 0x28, 0x0C, 0xD1
     .byte 0x82, 0x21, 0x49, 0x01, 0x78, 0x18, 0x00, 0x68, 0x02, 0x68, 0xD1, 0x02, 0xC9, 0x0E, 0x52, 0x01
     .byte 0x92, 0x0E, 0x38, 0x1C, 0x01, 0x23, 0x00, 0xF0, 0x13, 0xF9, 0x09, 0xB0, 0x38, 0xBC, 0x98, 0x46
@@ -15969,7 +15969,7 @@ func_0801EAA0:
     cmp r0, #0
     bne .Lauto_0801EB6C
     adds r0, r7, #0
-    bl func_0801DB58
+    bl UpdateWorldBackgroundAudio
     .Lauto_0801EB6C:
     movs r3, #0xd4
     lsls r3, r3, #2
@@ -26757,7 +26757,7 @@ func_080175B4: @ 0x080175B4
     bne .L0801777E
 .L08017778:
     adds r0, r7, #0
-    bl func_0801DB58
+    bl UpdateWorldBackgroundAudio
 .L0801777E:
     movs r0, #0xa0
     bl __builtin_new
@@ -27053,7 +27053,7 @@ func_080179CC: @ 0x080179CC
     cmp r0, #0
     bne .L08017A86
     adds r0, r6, #0
-    bl func_0801DB44
+    bl GetWorldSongPlayerPool
     ldr r4, [r0]
     ldr r5, [r0, #4]
     cmp r4, r5
@@ -27107,7 +27107,7 @@ func_080179CC: @ 0x080179CC
     adds r0, r6, #0
     mov r1, sp
     movs r2, #0
-    bl func_0801D9A8
+    bl QueueWorldScript
 .L08017A86:
     ldr r1, .L08017AC0 @ =0x00001050
     adds r0, r6, r1
@@ -27754,7 +27754,7 @@ func_08017C30: @ 0x08017C30
     movs r2, #0x9e
     bl PlaySong__9GameSceneiUi
     mov r0, r8
-    bl func_0801DB58
+    bl UpdateWorldBackgroundAudio
     b .L08017FFE
     .align 2, 0
 .L08017FB4: .4byte 0x00001054
@@ -28116,7 +28116,7 @@ func_08017C30: @ 0x08017C30
     ldrsh r1, [r2, r3]
     movs r3, #0xe
     ldrsh r2, [r2, r3]
-    bl func_080A5960
+    bl SetWorldMapCameraPosition
 .L08018268:
     ldr r4, .L080182B8 @ =0x00001038
     add r4, r8
@@ -28142,7 +28142,7 @@ func_08017C30: @ 0x08017C30
     cmp r0, #0
     bne .L080182A2
     mov r0, r8
-    bl func_0801DB58
+    bl UpdateWorldBackgroundAudio
 .L080182A2:
     add sp, #0x3c
     pop {r3, r4, r5}
@@ -31647,7 +31647,7 @@ func_08019BEC: @ 0x08019BEC
     bne .L08019EEC
 .L08019EE6:
     adds r0, r7, #0
-    bl func_0801DB58
+    bl UpdateWorldBackgroundAudio
 .L08019EEC:
     ldr r0, [r7, #4]
     ldr r0, [r0, #4]
@@ -36149,7 +36149,7 @@ func_0801EAA0: @ 0x0801EAA0
     cmp r0, #0
     bne .L0801EDD8
     adds r0, r7, #0
-    bl func_0801DB58
+    bl UpdateWorldBackgroundAudio
 .L0801EDD8:
     movs r3, #0xd4
     lsls r3, r3, #2
