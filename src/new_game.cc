@@ -22,7 +22,8 @@ inline SceneOwner NewGameLoadedSaveTransition::CreateScene()
     return SceneOwner(new GameSceneScriptController(state));
 }
 
-// Keep the partial menu-class tables together in their retail ROM order.
+// Keep the GNU C++ tables and partial-core tables in retail ROM order.
+// Their real ABI labels have one definition each; no aliases are used.
 extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[] = {
     nullptr, nullptr,
     reinterpret_cast<NewGameSceneVTableFunction>(func_080D406C),
@@ -32,24 +33,24 @@ extern NewGameSceneVTableFunction const vtable_unk_080E5A68[] = {
     reinterpret_cast<NewGameSceneVTableFunction>(func_08004BDC),
     reinterpret_cast<NewGameSceneVTableFunction>(func_08004C0C),
 };
-extern NewGameSceneVTableFunction const gNewGameFreshSaveTransitionVTable[] = {
+NewGameNativeVTableEntry __vt_26NewGameFreshSaveTransition[4] = {
     nullptr, nullptr,
-    reinterpret_cast<NewGameSceneVTableFunction>(DestroyFreshSaveGameTransition),
-    reinterpret_cast<NewGameSceneVTableFunction>(CreateFreshSaveGameScene),
+    reinterpret_cast<NewGameNativeVTableEntry>(DestroyFreshSaveGameTransition),
+    reinterpret_cast<NewGameNativeVTableEntry>(CreateFreshSaveGameScene),
 };
-extern NewGameSceneVTableFunction const vtable_unk_080E5A88[] = {
+NewGameNativeVTableEntry __vt_21NewGameNameEntryScene[4] = {
     nullptr, nullptr,
-    reinterpret_cast<NewGameSceneVTableFunction>(func_08004C54),
-    func_08004C68,
+    reinterpret_cast<NewGameNativeVTableEntry>(func_08004C54),
+    reinterpret_cast<NewGameNativeVTableEntry>(func_08004C68),
 };
 extern NewGameSceneVTableFunction const vtable_unk_080E5A98[] = {
     nullptr, nullptr,
     reinterpret_cast<NewGameSceneVTableFunction>(func_080050C8),
 };
-extern NewGameSceneVTableFunction const vtable_unk_080E5AA4[] = {
+NewGameNativeVTableEntry __vt_20NewGameIdentityScene[4] = {
     nullptr, nullptr,
-    reinterpret_cast<NewGameSceneVTableFunction>(func_080059D0),
-    reinterpret_cast<NewGameSceneVTableFunction>(func_08005A00),
+    reinterpret_cast<NewGameNativeVTableEntry>(func_080059D0),
+    reinterpret_cast<NewGameNativeVTableEntry>(func_08005A00),
 };
 extern NewGameSceneVTableFunction const vtable_unk_080E5AB4[] = {
     nullptr, nullptr,
@@ -420,17 +421,48 @@ SceneTransitionOwner func_08004C0C(NewGameMenuScene * scene)
     return func_08004570(scene->core);
 }
 
-AScene * func_08004C48(void * object)
-{
-    NewGameNameEntryScene * scene = static_cast<NewGameNameEntryScene *>(object);
-    scene->vtable = vtable_unk_080E5A88;
-    return reinterpret_cast<AScene *>(scene);
-}
+NewGameNameEntryScene::NewGameNameEntryScene() {}
 
-void func_08004C54(NewGameNameEntryScene * scene, int flags)
+NewGameNameEntryScene::~NewGameNameEntryScene() {}
+
+SceneTransitionOwner NewGameNameEntryScene::Run()
 {
-    scene->vtable = vtable_unk_080E5A88;
-    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
+    HardwareManagerOwner manager;
+    func_08008DB8(0x23);
+    FixedStr<12> player_name ALIGN(4);
+    FixedStr<12> farm_name ALIGN(4);
+    FixedStr<12> dog_name ALIGN(4);
+    GameDate birthday(SEASON_SPRING, 0);
+    u8 confirmed;
+    do {
+        {
+            NewGameNameInputScene input(gText_NewGameIdentity_PlayerPrefix, player_name);
+            input.Run();
+            player_name = input.GetName();
+        }
+        {
+            NewGameBirthdayInputScene input(birthday);
+            input.Run();
+            birthday = input.GetDate();
+        }
+        {
+            NewGameNameInputScene input(gText_NewGameIdentity_FarmPrefix, farm_name);
+            input.Run();
+            farm_name = input.GetName();
+        }
+        {
+            NewGameNameInputScene input(gText_NewGameIdentity_DogPrefix, dog_name);
+            input.Run();
+            dog_name = input.GetName();
+        }
+        {
+            NewGameIdentityScene input(player_name, birthday, farm_name, dog_name);
+            input.Run();
+            confirmed = input.GetConfirmed();
+        }
+    } while (!confirmed);
+    return SceneTransitionOwner(new NewGameFreshSaveTransition(
+        farm_name, player_name, birthday, dog_name));
 }
 
 NewGameIdentityCore::~NewGameIdentityCore()
@@ -568,32 +600,28 @@ void func_08005800(NewGameIdentityCore * core)
     }
 }
 
-NewGameIdentityScene * func_0800598C(NewGameIdentityScene * scene,
-    char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name)
+NewGameIdentityScene::NewGameIdentityScene(char const * player_name,
+    GameDate birthday, char const * farm_name, char const * dog_name)
 {
-    scene->vtable = vtable_unk_080E5AA4;
-    scene->core = func_08004EFC(static_cast<NewGameIdentityCore *>(
+    core = func_08004EFC(static_cast<NewGameIdentityCore *>(
         ::operator new(sizeof(NewGameIdentityCore))), player_name, birthday, farm_name, dog_name);
-    return scene;
 }
 
-void func_080059D0(NewGameIdentityScene * scene, int flags)
+NewGameIdentityScene::~NewGameIdentityScene()
 {
-    scene->vtable = vtable_unk_080E5AA4;
-    NewGameIdentityCore * core = scene->core;
-    if (core != nullptr)
-        ((void (*)(NewGameIdentityCore *, int))core->vtable[2])(core, 3);
-    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
+    NewGameIdentityCore * object = core;
+    if (object != nullptr)
+        ((void (*)(NewGameIdentityCore *, int))object->vtable[2])(object, 3);
 }
 
-SceneTransitionOwner func_08005A00(NewGameIdentityScene * scene)
+SceneTransitionOwner NewGameIdentityScene::Run()
 {
-    return func_080050F8(scene->core);
+    return func_080050F8(core);
 }
 
-u8 func_08005A3C(NewGameIdentityScene const * scene)
+u8 NewGameIdentityScene::GetConfirmed() const
 {
-    return scene->core->unk_1A76;
+    return core->unk_1A76;
 }
 
 u8 func_08005A4C(NewGameIdentityCore const * core)
@@ -1262,12 +1290,13 @@ NewGameMenuCore::~NewGameMenuCore()
 {
 }
 
-SceneOwner CreateFreshSaveGameScene(NewGameFreshSaveTransition * transition)
+SceneOwner NewGameFreshSaveTransition::CreateScene()
 {
-    return SceneOwner(new GameSceneScriptController(transition->farm_name,
-        transition->player_name, transition->birthday, transition->dog_name));
+    return SceneOwner(new GameSceneScriptController(farm_name,
+        player_name, birthday, dog_name));
 }
 
+// The native slot forwards to base cleanup; the fixed strings have trivial destruction.
 void DestroyFreshSaveGameTransition(NewGameFreshSaveTransition * transition, int flags)
 {
     DestroySceneTransitionBase(reinterpret_cast<SceneTransition *>(transition), flags);

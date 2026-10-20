@@ -89,6 +89,7 @@ SECTIONS
         src/new_game.o(.text.new_game_menu_update);
         asm/new_game.o(.text.new_game_after_status_update);
         src/new_game.o(.text.new_game_scene_lifecycle);
+        src/new_game.o(.text.new_game_name_entry_workflow);
         asm/new_game.o(.text.new_game_after_scene_lifecycle);
         src/new_game.o(.text.new_game_identity_core_cleanup);
         src/new_game.o(.text.new_game_identity_core_run);

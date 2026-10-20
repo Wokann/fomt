@@ -90,8 +90,11 @@ typedef char NewGameMenuCoreSramCheck[offsetof(NewGameMenuCore, sram) == 0x90 ? 
 typedef char NewGameMenuCoreSaveSlotStatusCheck[offsetof(NewGameMenuCore, save_slot_status) == 0x98 ? 1 : -1];
 typedef char NewGameMenuCoreSavedDisplayOptionsCheck[offsetof(NewGameMenuCore, saved_display_options) == 0x198 ? 1 : -1];
 
-// Original ABI tables contain two metadata words before their callbacks.
+// Partial-core tables retain their existing raw callback view. The compiler's
+// real C++ vtable symbols require its erased int(...) entry type instead.
+// Call code uses the typed scene interfaces, not these erased signatures.
 typedef void (*NewGameSceneVTableFunction)(void);
+typedef int (*NewGameNativeVTableEntry)(...);
 
 // Loading transfers the saved image into the next game controller. All
 // virtual methods are inline (the implicit destructor owns the image), so
@@ -107,20 +110,28 @@ struct NewGameLoadedSaveTransition : SceneTransition {
 typedef char NewGameLoadedSaveTransitionSizeCheck[sizeof(NewGameLoadedSaveTransition) == 8 ? 1 : -1];
 typedef char NewGameLoadedSaveTransitionStateCheck[offsetof(NewGameLoadedSaveTransition, state) == 4 ? 1 : -1];
 
-// Verified native payload; construction remains in the input workflow and
-// the callback table is an explicit ABI table, not a compiler-owned class.
-// Do not default-construct this record.
+// The workflow creates this transition after all four fields are confirmed.
 // Each name is limited to twelve encoded bytes, with word-aligned members.
-struct NewGameFreshSaveTransition {
-    NewGameSceneVTableFunction const * vtable;
+// Retain the explicit GNU ABI table beside the neighboring partial-core tables;
+// the interface pragma prevents a second compiler-emitted table.
+#pragma interface "new_game.hh"
+struct NewGameFreshSaveTransition : SceneTransition {
+    NewGameFreshSaveTransition(char const * farm, char const * player,
+        GameDate date, char const * dog)
+        : farm_name(farm), player_name(player), birthday(date), dog_name(dog) {}
+    // This real native entry forwards the trivial name fields to base cleanup.
+    virtual ~NewGameFreshSaveTransition() asm("DestroyFreshSaveGameTransition")
+        SECTION(".text.new_game_fresh_save_callbacks");
+    virtual SceneOwner CreateScene() asm("CreateFreshSaveGameScene")
+        SECTION(".text.new_game_fresh_save_callbacks");
+
     FixedStr<12> farm_name ALIGN(4);
     FixedStr<12> player_name ALIGN(4);
     GameDate birthday ALIGN(4);
     FixedStr<12> dog_name ALIGN(4);
-
-private:
-    NewGameFreshSaveTransition();
 };
+#pragma implementation
+
 
 typedef char NewGameFreshSaveTransitionSizeCheck[sizeof(NewGameFreshSaveTransition) == 0x38 ? 1 : -1];
 typedef char NewGameFreshSaveFarmCheck[offsetof(NewGameFreshSaveTransition, farm_name) == 4 ? 1 : -1];
@@ -252,9 +263,15 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore *)
     SECTION(".text.new_game_birthday_sprite_render");
 }
 
-struct NewGameNameEntryScene {
-    NewGameSceneVTableFunction const * vtable;
+// The complete form workflow is this scene's native virtual Run method.
+#pragma interface "new_game.hh"
+struct NewGameNameEntryScene : AScene {
+    NewGameNameEntryScene() asm("func_08004C48") SECTION(".text.new_game_scene_lifecycle");
+    virtual ~NewGameNameEntryScene() asm("func_08004C54") SECTION(".text.new_game_scene_lifecycle");
+    virtual SceneTransitionOwner Run() asm("func_08004C68")
+        SECTION(".text.new_game_name_entry_workflow");
 };
+#pragma implementation
 
 // Clear2DGfxBuffer and DrawStringTo2DGfxBuffer consume the tile words after
 // the untouched four-byte prefix. Each 4bpp tile occupies eight words and
@@ -310,10 +327,18 @@ struct NewGameIdentityCore : HardwareBootstrap {
     u8 unk_1A77;
 };
 
-struct NewGameIdentityScene {
-    NewGameSceneVTableFunction const * vtable;
+#pragma interface "new_game.hh"
+struct NewGameIdentityScene : AScene {
+    NewGameIdentityScene(char const * player_name, GameDate birthday,
+        char const * farm_name, char const * dog_name)
+        asm("func_0800598C") SECTION(".text.new_game_identity_scene");
+    virtual ~NewGameIdentityScene() asm("func_080059D0") SECTION(".text.new_game_identity_scene");
+    virtual SceneTransitionOwner Run() asm("func_08005A00") SECTION(".text.new_game_identity_scene");
+    u8 GetConfirmed() const asm("func_08005A3C") SECTION(".text.new_game_identity_scene");
     NewGameIdentityCore * core;
 };
+#pragma implementation
+
 
 // Each name-input sprite has four control bytes before its native OAM record.
 // Sprite 0 uses bytes 0/1 for keyboard column/row; sprite 1 uses byte 0 for
@@ -506,7 +531,7 @@ AScene * func_08004B94(void * object, void * state, SceneTransition *& continuat
 
 extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A68[];
-extern NewGameSceneVTableFunction const vtable_unk_080E5A88[];
+extern NewGameNativeVTableEntry __vt_21NewGameNameEntryScene[4];
 
 // One contiguous scene lifecycle interval, beginning with both constructors.
 void func_08004BDC(struct NewGameMenuScene * scene, int flags)
@@ -539,7 +564,7 @@ void InitializeNewGameIdentityScreen(NewGameIdentityCore * core);
 void func_08005800(NewGameIdentityCore * core)
     SECTION(".text.new_game_identity_core_update");
 extern NewGameSceneVTableFunction const vtable_unk_080E5A98[];
-extern NewGameSceneVTableFunction const vtable_unk_080E5AA4[];
+extern NewGameNativeVTableEntry __vt_20NewGameIdentityScene[4];
 
 // One consecutive scene interval: construction, cleanup, running and the
 // two native byte-result accessors. Its core remains an incomplete field view.
@@ -613,6 +638,8 @@ char const * func_08007110(NewGameNameInputScene const * scene)
 char const * func_0800711C(NewGameNameInputCore const * core)
     SECTION(".text.new_game_name_input_scene");
 
+// C/assembly declarations of the real member entries used by the ABI tables.
+SceneTransitionOwner func_08004C68(NewGameNameEntryScene *);
 // Native callback entries for the remaining partial menu classes.
 // Raw C/assembly view of the actual menu-core destructor entry.
 void func_080D406C(NewGameMenuCore * core, int flags);
@@ -620,8 +647,8 @@ SceneOwner CreateFreshSaveGameScene(NewGameFreshSaveTransition * transition)
     SECTION(".text.new_game_fresh_save_callbacks");
 void DestroyFreshSaveGameTransition(NewGameFreshSaveTransition * transition, int flags)
     SECTION(".text.new_game_fresh_save_callbacks");
-void func_08004C68(void);
-extern NewGameSceneVTableFunction const gNewGameFreshSaveTransitionVTable[];
+
+extern NewGameNativeVTableEntry __vt_26NewGameFreshSaveTransition[4];
 
 EXTERN_C_END
 
