@@ -7827,7 +7827,7 @@ func_080A607C: @ 0x080A5AB4
 .Ljp_080A6098:
 	cmp r2, #0xf
 	bls .Ljp_080A60BC
-	ldr r1, .Ljp_080A60B4 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r1, .Ljp_080A60B4 @ =gFieldRenderRectDescriptors + 0x1F8
 	ldr r3, .Ljp_080A60B8 @ =gFieldRenderPatchArgumentData + 0x0C
 	adds r0, r2, #0
 	subs r0, #0x10
@@ -7839,19 +7839,19 @@ func_080A607C: @ 0x080A5AB4
 	ldrb r3, [r0]
 	b .Ljp_080A6100
 	.align 2, 0
-.Ljp_080A60B4: .4byte gFieldRenderRectDescriptors + 0x348
+.Ljp_080A60B4: .4byte gFieldRenderRectDescriptors + 0x1F8
 .Ljp_080A60B8: .4byte gFieldRenderPatchArgumentData + 0x0C
 .Ljp_080A60BC:
-	ldr r1, .Ljp_080A60C4 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r1, .Ljp_080A60C4 @ =gFieldRenderRectDescriptors + 0x1F8
 	ldr r0, .Ljp_080A60C8 @ =gFieldRenderPatchArgumentData + 0x2C
 	b .Ljp_080A60F4
 	.align 2, 0
-.Ljp_080A60C4: .4byte gFieldRenderRectDescriptors + 0x348
+.Ljp_080A60C4: .4byte gFieldRenderRectDescriptors + 0x1F8
 .Ljp_080A60C8: .4byte gFieldRenderPatchArgumentData + 0x2C
 .Ljp_080A60CC:
 	cmp r2, #0xf
 	bls .Ljp_080A60F0
-	ldr r1, .Ljp_080A60E8 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r1, .Ljp_080A60E8 @ =gFieldRenderRectDescriptors + 0x1F8
 	ldr r3, .Ljp_080A60EC @ =gFieldRenderPatchArgumentData + 0x0C
 	adds r0, r2, #0
 	subs r0, #0x10
@@ -7863,10 +7863,10 @@ func_080A607C: @ 0x080A5AB4
 	ldrb r3, [r0]
 	b .Ljp_080A6100
 	.align 2, 0
-.Ljp_080A60E8: .4byte gFieldRenderRectDescriptors + 0x348
+.Ljp_080A60E8: .4byte gFieldRenderRectDescriptors + 0x1F8
 .Ljp_080A60EC: .4byte gFieldRenderPatchArgumentData + 0x0C
 .Ljp_080A60F0:
-	ldr r1, .Ljp_080A6108 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r1, .Ljp_080A6108 @ =gFieldRenderRectDescriptors + 0x1F8
 	ldr r0, .Ljp_080A610C @ =gFieldRenderPatchArgumentData + 0x3C
 .Ljp_080A60F4:
 	lsls r3, r2, #1
@@ -7880,10 +7880,10 @@ func_080A607C: @ 0x080A5AB4
 	bl ApplyMapTilePatch
 	b .Ljp_080A6120
 	.align 2, 0
-.Ljp_080A6108: .4byte gFieldRenderRectDescriptors + 0x348
+.Ljp_080A6108: .4byte gFieldRenderRectDescriptors + 0x1F8
 .Ljp_080A610C: .4byte gFieldRenderPatchArgumentData + 0x3C
 .Ljp_080A6110:
-	ldr r1, .Ljp_080A6130 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r1, .Ljp_080A6130 @ =gFieldRenderRectDescriptors + 0x1F8
 	ldr r0, .Ljp_080A6134 @ =gFieldRenderPatchArgumentData + 0x5C
 	adds r0, r2, r0
 	ldrb r2, [r0]
@@ -7899,7 +7899,7 @@ func_080A607C: @ 0x080A5AB4
 	pop {r0}
 	bx r0
 	.align 2, 0
-.Ljp_080A6130: .4byte gFieldRenderRectDescriptors + 0x348
+.Ljp_080A6130: .4byte gFieldRenderRectDescriptors + 0x1F8
 .Ljp_080A6134: .4byte gFieldRenderPatchArgumentData + 0x5C
 
     .section .text.game_map_after_patch_dispatchers, "ax", %progbits
@@ -8004,7 +8004,7 @@ func_080A6098: @ 0x080A6098
 	beq .Ljp_080A66CA
 	b .Ljp_080A6806
 .Ljp_080A66CA:
-	ldr r1, .Ljp_080A66E0 @ =gFieldRenderRectDescriptors + 0x408
+	ldr r1, .Ljp_080A66E0 @ =gFieldRenderRectDescriptors + 0x2B8
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0x11
@@ -8013,7 +8013,7 @@ func_080A6098: @ 0x080A6098
 	.align 2, 0
 .Ljp_080A66D8: .4byte 0x0000214C
 .Ljp_080A66DC: .4byte 0x0000219C
-.Ljp_080A66E0: .4byte gFieldRenderRectDescriptors + 0x408
+.Ljp_080A66E0: .4byte gFieldRenderRectDescriptors + 0x2B8
 .Ljp_080A66E4:
 	ldr r2, .Ljp_080A681C @ =0x000021A9
 	adds r0, r4, r2
@@ -8251,7 +8251,7 @@ func_080A6098: @ 0x080A6098
 .Ljp_080A6954:
 	cmp r6, #1
 	bne .Ljp_080A6964
-	ldr r1, .Ljp_080A6980 @ =gFieldRenderRectDescriptors + 0x3F0
+	ldr r1, .Ljp_080A6980 @ =gFieldRenderRectDescriptors + 0x2A0
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #0x19
@@ -8265,13 +8265,13 @@ func_080A6098: @ 0x080A6098
 	bne .Ljp_080A6976
 	bl .Ljp_080A746E
 .Ljp_080A6976:
-	ldr r1, .Ljp_080A6984 @ =gFieldRenderRectDescriptors + 0x3C0
+	ldr r1, .Ljp_080A6984 @ =gFieldRenderRectDescriptors + 0x270
 	mov r0, r8
 	movs r2, #0x17
 	b .Ljp_080A6ED6
 	.align 2, 0
-.Ljp_080A6980: .4byte gFieldRenderRectDescriptors + 0x3F0
-.Ljp_080A6984: .4byte gFieldRenderRectDescriptors + 0x3C0
+.Ljp_080A6980: .4byte gFieldRenderRectDescriptors + 0x2A0
+.Ljp_080A6984: .4byte gFieldRenderRectDescriptors + 0x270
 .Ljp_080A6988:
 	mov r2, sb
 	ldr r0, [r2]
@@ -8281,12 +8281,12 @@ func_080A6098: @ 0x080A6098
 	bne .Ljp_080A699A
 	bl .Ljp_080A746E
 .Ljp_080A699A:
-	ldr r1, .Ljp_080A69A4 @ =gFieldRenderRectDescriptors + 0x3D8
+	ldr r1, .Ljp_080A69A4 @ =gFieldRenderRectDescriptors + 0x288
 	mov r0, r8
 	movs r2, #0x17
 	b .Ljp_080A6ED6
 	.align 2, 0
-.Ljp_080A69A4: .4byte gFieldRenderRectDescriptors + 0x3D8
+.Ljp_080A69A4: .4byte gFieldRenderRectDescriptors + 0x288
 .Ljp_080A69A8:
 	mov r0, r8
 	movs r1, #0
@@ -8356,7 +8356,7 @@ func_080A6098: @ 0x080A6098
 	ands r1, r0
 	cmp r1, #3
 	bne .Ljp_080A6A4A
-	ldr r1, .Ljp_080A6A64 @ =gFieldRenderRectDescriptors + 0x4E0
+	ldr r1, .Ljp_080A6A64 @ =gFieldRenderRectDescriptors + 0x390
 	mov r0, r8
 	movs r2, #0x28
 	movs r3, #0x1d
@@ -8371,7 +8371,7 @@ func_080A6098: @ 0x080A6098
 	bl .Ljp_080A746E
 	.align 2, 0
 .Ljp_080A6A60: .4byte 0x00002186
-.Ljp_080A6A64: .4byte gFieldRenderRectDescriptors + 0x4E0
+.Ljp_080A6A64: .4byte gFieldRenderRectDescriptors + 0x390
 .Ljp_080A6A68:
 	adds r0, r2, #0
 	subs r0, #0x38
@@ -8476,14 +8476,14 @@ func_080A6098: @ 0x080A6098
 	.align 2, 0
 .Ljp_080A6B40: .4byte 0x00001C38
 .Ljp_080A6B44:
-	ldr r1, .Ljp_080A6B54 @ =gFieldRenderRectDescriptors + 0x450
+	ldr r1, .Ljp_080A6B54 @ =gFieldRenderRectDescriptors + 0x300
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x14
 	bl ApplyMapTilePatch
 	b .Ljp_080A6B74
 	.align 2, 0
-.Ljp_080A6B54: .4byte gFieldRenderRectDescriptors + 0x450
+.Ljp_080A6B54: .4byte gFieldRenderRectDescriptors + 0x300
 .Ljp_080A6B58:
 	mov r3, sb
 	ldr r0, [r3]
@@ -8492,7 +8492,7 @@ func_080A6098: @ 0x080A6098
 	bl func_0800E9A0
 	cmp r0, #7
 	bne .Ljp_080A6B74
-	ldr r1, .Ljp_080A6BA0 @ =gFieldRenderRectDescriptors + 0x450
+	ldr r1, .Ljp_080A6BA0 @ =gFieldRenderRectDescriptors + 0x300
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x14
@@ -8503,7 +8503,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A6B8C
-	ldr r1, .Ljp_080A6BA4 @ =gFieldRenderRectDescriptors + 0x468
+	ldr r1, .Ljp_080A6BA4 @ =gFieldRenderRectDescriptors + 0x318
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x17
@@ -8518,24 +8518,24 @@ func_080A6098: @ 0x080A6098
 	bl .Ljp_080A746E
 	.align 2, 0
 .Ljp_080A6B9C: .4byte 0x00001BD8
-.Ljp_080A6BA0: .4byte gFieldRenderRectDescriptors + 0x450
-.Ljp_080A6BA4: .4byte gFieldRenderRectDescriptors + 0x468
+.Ljp_080A6BA0: .4byte gFieldRenderRectDescriptors + 0x300
+.Ljp_080A6BA4: .4byte gFieldRenderRectDescriptors + 0x318
 .Ljp_080A6BA8:
 	cmp r6, #2
 	beq .Ljp_080A6BC0
 	bl .Ljp_080A746E
 .Ljp_080A6BB0:
-	ldr r1, .Ljp_080A6BB4 @ =gFieldRenderRectDescriptors + 0x498
+	ldr r1, .Ljp_080A6BB4 @ =gFieldRenderRectDescriptors + 0x348
 	b .Ljp_080A6BC2
 	.align 2, 0
-.Ljp_080A6BB4: .4byte gFieldRenderRectDescriptors + 0x498
+.Ljp_080A6BB4: .4byte gFieldRenderRectDescriptors + 0x348
 .Ljp_080A6BB8:
-	ldr r1, .Ljp_080A6BBC @ =gFieldRenderRectDescriptors + 0x4B0
+	ldr r1, .Ljp_080A6BBC @ =gFieldRenderRectDescriptors + 0x360
 	b .Ljp_080A6BC2
 	.align 2, 0
-.Ljp_080A6BBC: .4byte gFieldRenderRectDescriptors + 0x4B0
+.Ljp_080A6BBC: .4byte gFieldRenderRectDescriptors + 0x360
 .Ljp_080A6BC0:
-	ldr r1, .Ljp_080A6BD0 @ =gFieldRenderRectDescriptors + 0x4C8
+	ldr r1, .Ljp_080A6BD0 @ =gFieldRenderRectDescriptors + 0x378
 .Ljp_080A6BC2:
 	mov r0, r8
 	movs r2, #0xc
@@ -8543,7 +8543,7 @@ func_080A6098: @ 0x080A6098
 	bl ApplyMapTilePatch
 	bl .Ljp_080A746E
 	.align 2, 0
-.Ljp_080A6BD0: .4byte gFieldRenderRectDescriptors + 0x4C8
+.Ljp_080A6BD0: .4byte gFieldRenderRectDescriptors + 0x378
 .Ljp_080A6BD4:
 	mov r2, sb
 	ldr r0, [r2]
@@ -8553,10 +8553,10 @@ func_080A6098: @ 0x080A6098
 	bne .Ljp_080A6BE6
 	bl .Ljp_080A746E
 .Ljp_080A6BE6:
-	ldr r1, .Ljp_080A6BEC @ =gFieldRenderRectDescriptors + 0x390
+	ldr r1, .Ljp_080A6BEC @ =gFieldRenderRectDescriptors + 0x240
 	b .Ljp_080A6C04
 	.align 2, 0
-.Ljp_080A6BEC: .4byte gFieldRenderRectDescriptors + 0x390
+.Ljp_080A6BEC: .4byte gFieldRenderRectDescriptors + 0x240
 .Ljp_080A6BF0:
 	mov r3, sb
 	ldr r0, [r3]
@@ -8566,7 +8566,7 @@ func_080A6098: @ 0x080A6098
 	bne .Ljp_080A6C02
 	bl .Ljp_080A746E
 .Ljp_080A6C02:
-	ldr r1, .Ljp_080A6C14 @ =gFieldRenderRectDescriptors + 0x3A8
+	ldr r1, .Ljp_080A6C14 @ =gFieldRenderRectDescriptors + 0x258
 .Ljp_080A6C04:
 	mov r0, r8
 	movs r2, #0x3c
@@ -8574,7 +8574,7 @@ func_080A6098: @ 0x080A6098
 	bl ApplyMapTilePatch
 	bl .Ljp_080A746E
 	.align 2, 0
-.Ljp_080A6C14: .4byte gFieldRenderRectDescriptors + 0x3A8
+.Ljp_080A6C14: .4byte gFieldRenderRectDescriptors + 0x258
 .Ljp_080A6C18:
 	movs r0, #0
 .Ljp_080A6C1A:
@@ -8683,14 +8683,14 @@ func_080A6098: @ 0x080A6098
 	beq .Ljp_080A6D04
 	b .Ljp_080A6D10
 .Ljp_080A6CE4:
-	ldr r1, .Ljp_080A6CEC @ =gFieldRenderRectDescriptors
+	ldr r1, .Ljp_080A6CEC @ =gFarmHouseLevel0Patch
 	mov r0, r8
 	movs r2, #0x1a
 	b .Ljp_080A6CF6
 	.align 2, 0
-.Ljp_080A6CEC: .4byte gFieldRenderRectDescriptors
+.Ljp_080A6CEC: .4byte gFarmHouseLevel0Patch
 .Ljp_080A6CF0:
-	ldr r1, .Ljp_080A6D00 @ =gFieldRenderRectDescriptors + 0x30
+	ldr r1, .Ljp_080A6D00 @ =gFarmHouseLevel1Patch
 	mov r0, r8
 	movs r2, #0x12
 .Ljp_080A6CF6:
@@ -8698,9 +8698,9 @@ func_080A6098: @ 0x080A6098
 	bl ApplyMapTilePatch
 	b .Ljp_080A6D10
 	.align 2, 0
-.Ljp_080A6D00: .4byte gFieldRenderRectDescriptors + 0x30
+.Ljp_080A6D00: .4byte gFarmHouseLevel1Patch
 .Ljp_080A6D04:
-	ldr r1, .Ljp_080A6D28 @ =gFieldRenderRectDescriptors + 0x60
+	ldr r1, .Ljp_080A6D28 @ =gFarmHouseLevel2Patch
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #2
@@ -8718,18 +8718,18 @@ func_080A6098: @ 0x080A6098
 	beq .Ljp_080A6D40
 	b .Ljp_080A6D4C
 	.align 2, 0
-.Ljp_080A6D28: .4byte gFieldRenderRectDescriptors + 0x60
+.Ljp_080A6D28: .4byte gFarmHouseLevel2Patch
 .Ljp_080A6D2C:
-	ldr r1, .Ljp_080A6D3C @ =gFieldRenderRectDescriptors + 0x90
+	ldr r1, .Ljp_080A6D3C @ =gBarnLevel0Patch
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
 	bl ApplyMapTilePatch
 	b .Ljp_080A6D4C
 	.align 2, 0
-.Ljp_080A6D3C: .4byte gFieldRenderRectDescriptors + 0x90
+.Ljp_080A6D3C: .4byte gBarnLevel0Patch
 .Ljp_080A6D40:
-	ldr r1, .Ljp_080A6D64 @ =gFieldRenderRectDescriptors + 0xC0
+	ldr r1, .Ljp_080A6D64 @ =gBarnLevel1Patch
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
@@ -8747,17 +8747,17 @@ func_080A6098: @ 0x080A6098
 	beq .Ljp_080A6D70
 	b .Ljp_080A746E
 	.align 2, 0
-.Ljp_080A6D64: .4byte gFieldRenderRectDescriptors + 0xC0
+.Ljp_080A6D64: .4byte gBarnLevel1Patch
 .Ljp_080A6D68:
-	ldr r1, .Ljp_080A6D6C @ =gFieldRenderRectDescriptors + 0xF0
+	ldr r1, .Ljp_080A6D6C @ =gCoopLevel0Patch
 	b .Ljp_080A6ED2
 	.align 2, 0
-.Ljp_080A6D6C: .4byte gFieldRenderRectDescriptors + 0xF0
+.Ljp_080A6D6C: .4byte gCoopLevel0Patch
 .Ljp_080A6D70:
-	ldr r1, .Ljp_080A6D74 @ =gFieldRenderRectDescriptors + 0x120
+	ldr r1, .Ljp_080A6D74 @ =gCoopLevel1Patch
 	b .Ljp_080A6ED2
 	.align 2, 0
-.Ljp_080A6D74: .4byte gFieldRenderRectDescriptors + 0x120
+.Ljp_080A6D74: .4byte gCoopLevel1Patch
 .Ljp_080A6D78:
 	movs r0, #0
 .Ljp_080A6D7A:
@@ -8866,14 +8866,14 @@ func_080A6098: @ 0x080A6098
 	beq .Ljp_080A6E64
 	b .Ljp_080A6E70
 .Ljp_080A6E44:
-	ldr r1, .Ljp_080A6E4C @ =gFieldRenderRectDescriptors + 0x18
+	ldr r1, .Ljp_080A6E4C @ =gFarmHouseLevel0WinterPatch
 	mov r0, r8
 	movs r2, #0x1a
 	b .Ljp_080A6E56
 	.align 2, 0
-.Ljp_080A6E4C: .4byte gFieldRenderRectDescriptors + 0x18
+.Ljp_080A6E4C: .4byte gFarmHouseLevel0WinterPatch
 .Ljp_080A6E50:
-	ldr r1, .Ljp_080A6E60 @ =gFieldRenderRectDescriptors + 0x48
+	ldr r1, .Ljp_080A6E60 @ =gFarmHouseLevel1WinterPatch
 	mov r0, r8
 	movs r2, #0x12
 .Ljp_080A6E56:
@@ -8881,9 +8881,9 @@ func_080A6098: @ 0x080A6098
 	bl ApplyMapTilePatch
 	b .Ljp_080A6E70
 	.align 2, 0
-.Ljp_080A6E60: .4byte gFieldRenderRectDescriptors + 0x48
+.Ljp_080A6E60: .4byte gFarmHouseLevel1WinterPatch
 .Ljp_080A6E64:
-	ldr r1, .Ljp_080A6E88 @ =gFieldRenderRectDescriptors + 0x78
+	ldr r1, .Ljp_080A6E88 @ =gFarmHouseLevel2WinterPatch
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #2
@@ -8901,18 +8901,18 @@ func_080A6098: @ 0x080A6098
 	beq .Ljp_080A6EA0
 	b .Ljp_080A6EAC
 	.align 2, 0
-.Ljp_080A6E88: .4byte gFieldRenderRectDescriptors + 0x78
+.Ljp_080A6E88: .4byte gFarmHouseLevel2WinterPatch
 .Ljp_080A6E8C:
-	ldr r1, .Ljp_080A6E9C @ =gFieldRenderRectDescriptors + 0xA8
+	ldr r1, .Ljp_080A6E9C @ =gBarnLevel0WinterPatch
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
 	bl ApplyMapTilePatch
 	b .Ljp_080A6EAC
 	.align 2, 0
-.Ljp_080A6E9C: .4byte gFieldRenderRectDescriptors + 0xA8
+.Ljp_080A6E9C: .4byte gBarnLevel0WinterPatch
 .Ljp_080A6EA0:
-	ldr r1, .Ljp_080A6EC4 @ =gFieldRenderRectDescriptors + 0xD8
+	ldr r1, .Ljp_080A6EC4 @ =gBarnLevel1WinterPatch
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
@@ -8930,14 +8930,14 @@ func_080A6098: @ 0x080A6098
 	beq .Ljp_080A6ED0
 	b .Ljp_080A746E
 	.align 2, 0
-.Ljp_080A6EC4: .4byte gFieldRenderRectDescriptors + 0xD8
+.Ljp_080A6EC4: .4byte gBarnLevel1WinterPatch
 .Ljp_080A6EC8:
-	ldr r1, .Ljp_080A6ECC @ =gFieldRenderRectDescriptors + 0x108
+	ldr r1, .Ljp_080A6ECC @ =gCoopLevel0WinterPatch
 	b .Ljp_080A6ED2
 	.align 2, 0
-.Ljp_080A6ECC: .4byte gFieldRenderRectDescriptors + 0x108
+.Ljp_080A6ECC: .4byte gCoopLevel0WinterPatch
 .Ljp_080A6ED0:
-	ldr r1, .Ljp_080A6EE0 @ =gFieldRenderRectDescriptors + 0x138
+	ldr r1, .Ljp_080A6EE0 @ =gCoopLevel1WinterPatch
 .Ljp_080A6ED2:
 	mov r0, r8
 	movs r2, #0xe
@@ -8946,9 +8946,9 @@ func_080A6098: @ 0x080A6098
 	bl ApplyMapTilePatch
 	b .Ljp_080A746E
 	.align 2, 0
-.Ljp_080A6EE0: .4byte gFieldRenderRectDescriptors + 0x138
+.Ljp_080A6EE0: .4byte gCoopLevel1WinterPatch
 .Ljp_080A6EE4:
-	ldr r1, .Ljp_080A6F10 @ =gFieldRenderRectDescriptors + 0x168
+	ldr r1, .Ljp_080A6F10 @ =gFieldRenderRectDescriptors + 0x18
 	mov r0, r8
 	movs r2, #0x19
 	movs r3, #0xf
@@ -8965,13 +8965,13 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A6F18
-	ldr r1, .Ljp_080A6F14 @ =gFieldRenderRectDescriptors + 0x1F8
+	ldr r1, .Ljp_080A6F14 @ =gFieldRenderRectDescriptors + 0xA8
 	b .Ljp_080A6F1A
 	.align 2, 0
-.Ljp_080A6F10: .4byte gFieldRenderRectDescriptors + 0x168
-.Ljp_080A6F14: .4byte gFieldRenderRectDescriptors + 0x1F8
+.Ljp_080A6F10: .4byte gFieldRenderRectDescriptors + 0x18
+.Ljp_080A6F14: .4byte gFieldRenderRectDescriptors + 0xA8
 .Ljp_080A6F18:
-	ldr r1, .Ljp_080A6F28 @ =gFieldRenderRectDescriptors + 0x210
+	ldr r1, .Ljp_080A6F28 @ =gFieldRenderRectDescriptors + 0xC0
 .Ljp_080A6F1A:
 	mov r0, r8
 	movs r2, #1
@@ -8979,9 +8979,9 @@ func_080A6098: @ 0x080A6098
 	bl ApplyMapTilePatch
 	b .Ljp_080A6F38
 	.align 2, 0
-.Ljp_080A6F28: .4byte gFieldRenderRectDescriptors + 0x210
+.Ljp_080A6F28: .4byte gFieldRenderRectDescriptors + 0xC0
 .Ljp_080A6F2C:
-	ldr r1, .Ljp_080A6F90 @ =gFieldRenderRectDescriptors + 0x1E0
+	ldr r1, .Ljp_080A6F90 @ =gFieldRenderRectDescriptors + 0x90
 	mov r0, r8
 	movs r2, #1
 	movs r3, #0x11
@@ -8996,7 +8996,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A6F58
-	ldr r1, .Ljp_080A6F94 @ =gFieldRenderRectDescriptors + 0x288
+	ldr r1, .Ljp_080A6F94 @ =gFieldRenderRectDescriptors + 0x138
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #6
@@ -9009,7 +9009,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A6F74
-	ldr r1, .Ljp_080A6F98 @ =gFieldRenderRectDescriptors + 0x2A0
+	ldr r1, .Ljp_080A6F98 @ =gFieldRenderRectDescriptors + 0x150
 	mov r0, r8
 	movs r2, #8
 	movs r3, #2
@@ -9024,17 +9024,17 @@ func_080A6098: @ 0x080A6098
 	bne .Ljp_080A6F86
 	b .Ljp_080A746E
 .Ljp_080A6F86:
-	ldr r1, .Ljp_080A6F9C @ =gFieldRenderRectDescriptors + 0x2B8
+	ldr r1, .Ljp_080A6F9C @ =gFieldRenderRectDescriptors + 0x168
 	mov r0, r8
 	movs r2, #5
 	b .Ljp_080A70C0
 	.align 2, 0
-.Ljp_080A6F90: .4byte gFieldRenderRectDescriptors + 0x1E0
-.Ljp_080A6F94: .4byte gFieldRenderRectDescriptors + 0x288
-.Ljp_080A6F98: .4byte gFieldRenderRectDescriptors + 0x2A0
-.Ljp_080A6F9C: .4byte gFieldRenderRectDescriptors + 0x2B8
+.Ljp_080A6F90: .4byte gFieldRenderRectDescriptors + 0x90
+.Ljp_080A6F94: .4byte gFieldRenderRectDescriptors + 0x138
+.Ljp_080A6F98: .4byte gFieldRenderRectDescriptors + 0x150
+.Ljp_080A6F9C: .4byte gFieldRenderRectDescriptors + 0x168
 .Ljp_080A6FA0:
-	ldr r1, .Ljp_080A701C @ =gFieldRenderRectDescriptors + 0x168
+	ldr r1, .Ljp_080A701C @ =gFieldRenderRectDescriptors + 0x18
 	mov r0, r8
 	movs r2, #0x28
 	movs r3, #0xf
@@ -9048,7 +9048,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A6FCC
-	ldr r1, .Ljp_080A7020 @ =gFieldRenderRectDescriptors + 0x228
+	ldr r1, .Ljp_080A7020 @ =gFieldRenderRectDescriptors + 0xD8
 	mov r0, r8
 	movs r2, #2
 	movs r3, #1
@@ -9060,7 +9060,7 @@ func_080A6098: @ 0x080A6098
 	bl GetFridge__C9FarmHouse
 	cmp r0, #0
 	beq .Ljp_080A6FE6
-	ldr r1, .Ljp_080A7024 @ =gFieldRenderRectDescriptors + 0x198
+	ldr r1, .Ljp_080A7024 @ =gFieldRenderRectDescriptors + 0x48
 	mov r0, r8
 	movs r2, #0xb
 	movs r3, #3
@@ -9072,7 +9072,7 @@ func_080A6098: @ 0x080A6098
 	bl GetShelf__C9FarmHouse
 	cmp r0, #0
 	beq .Ljp_080A7000
-	ldr r1, .Ljp_080A7028 @ =gFieldRenderRectDescriptors + 0x1C8
+	ldr r1, .Ljp_080A7028 @ =gFieldRenderRectDescriptors + 0x78
 	mov r0, r8
 	movs r2, #0xf
 	movs r3, #2
@@ -9088,16 +9088,16 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A7030
-	ldr r1, .Ljp_080A702C @ =gFieldRenderRectDescriptors + 0x1F8
+	ldr r1, .Ljp_080A702C @ =gFieldRenderRectDescriptors + 0xA8
 	b .Ljp_080A7032
 	.align 2, 0
-.Ljp_080A701C: .4byte gFieldRenderRectDescriptors + 0x168
-.Ljp_080A7020: .4byte gFieldRenderRectDescriptors + 0x228
-.Ljp_080A7024: .4byte gFieldRenderRectDescriptors + 0x198
-.Ljp_080A7028: .4byte gFieldRenderRectDescriptors + 0x1C8
-.Ljp_080A702C: .4byte gFieldRenderRectDescriptors + 0x1F8
+.Ljp_080A701C: .4byte gFieldRenderRectDescriptors + 0x18
+.Ljp_080A7020: .4byte gFieldRenderRectDescriptors + 0xD8
+.Ljp_080A7024: .4byte gFieldRenderRectDescriptors + 0x48
+.Ljp_080A7028: .4byte gFieldRenderRectDescriptors + 0x78
+.Ljp_080A702C: .4byte gFieldRenderRectDescriptors + 0xA8
 .Ljp_080A7030:
-	ldr r1, .Ljp_080A7040 @ =gFieldRenderRectDescriptors + 0x210
+	ldr r1, .Ljp_080A7040 @ =gFieldRenderRectDescriptors + 0xC0
 .Ljp_080A7032:
 	mov r0, r8
 	movs r2, #0x10
@@ -9105,9 +9105,9 @@ func_080A6098: @ 0x080A6098
 	bl ApplyMapTilePatch
 	b .Ljp_080A7050
 	.align 2, 0
-.Ljp_080A7040: .4byte gFieldRenderRectDescriptors + 0x210
+.Ljp_080A7040: .4byte gFieldRenderRectDescriptors + 0xC0
 .Ljp_080A7044:
-	ldr r1, .Ljp_080A70C8 @ =gFieldRenderRectDescriptors + 0x1E0
+	ldr r1, .Ljp_080A70C8 @ =gFieldRenderRectDescriptors + 0x90
 	mov r0, r8
 	movs r2, #0x10
 	movs r3, #0x11
@@ -9122,7 +9122,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A7070
-	ldr r1, .Ljp_080A70CC @ =gFieldRenderRectDescriptors + 0x270
+	ldr r1, .Ljp_080A70CC @ =gFieldRenderRectDescriptors + 0x120
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0xa
@@ -9135,7 +9135,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A708C
-	ldr r1, .Ljp_080A70D0 @ =gFieldRenderRectDescriptors + 0x288
+	ldr r1, .Ljp_080A70D0 @ =gFieldRenderRectDescriptors + 0x138
 	mov r0, r8
 	movs r2, #0x22
 	movs r3, #6
@@ -9148,7 +9148,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A70A8
-	ldr r1, .Ljp_080A70D4 @ =gFieldRenderRectDescriptors + 0x2A0
+	ldr r1, .Ljp_080A70D4 @ =gFieldRenderRectDescriptors + 0x150
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #2
@@ -9163,7 +9163,7 @@ func_080A6098: @ 0x080A6098
 	bne .Ljp_080A70BA
 	b .Ljp_080A746E
 .Ljp_080A70BA:
-	ldr r1, .Ljp_080A70D8 @ =gFieldRenderRectDescriptors + 0x2B8
+	ldr r1, .Ljp_080A70D8 @ =gFieldRenderRectDescriptors + 0x168
 	mov r0, r8
 	movs r2, #0x14
 .Ljp_080A70C0:
@@ -9171,13 +9171,13 @@ func_080A6098: @ 0x080A6098
 	bl ApplyMapTilePatch
 	b .Ljp_080A746E
 	.align 2, 0
-.Ljp_080A70C8: .4byte gFieldRenderRectDescriptors + 0x1E0
-.Ljp_080A70CC: .4byte gFieldRenderRectDescriptors + 0x270
-.Ljp_080A70D0: .4byte gFieldRenderRectDescriptors + 0x288
-.Ljp_080A70D4: .4byte gFieldRenderRectDescriptors + 0x2A0
-.Ljp_080A70D8: .4byte gFieldRenderRectDescriptors + 0x2B8
+.Ljp_080A70C8: .4byte gFieldRenderRectDescriptors + 0x90
+.Ljp_080A70CC: .4byte gFieldRenderRectDescriptors + 0x120
+.Ljp_080A70D0: .4byte gFieldRenderRectDescriptors + 0x138
+.Ljp_080A70D4: .4byte gFieldRenderRectDescriptors + 0x150
+.Ljp_080A70D8: .4byte gFieldRenderRectDescriptors + 0x168
 .Ljp_080A70DC:
-	ldr r1, .Ljp_080A7158 @ =gFieldRenderRectDescriptors + 0x168
+	ldr r1, .Ljp_080A7158 @ =gFieldRenderRectDescriptors + 0x18
 	mov r0, r8
 	movs r2, #0x36
 	movs r3, #0xf
@@ -9191,7 +9191,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A7108
-	ldr r1, .Ljp_080A715C @ =gFieldRenderRectDescriptors + 0x228
+	ldr r1, .Ljp_080A715C @ =gFieldRenderRectDescriptors + 0xD8
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #1
@@ -9203,7 +9203,7 @@ func_080A6098: @ 0x080A6098
 	bl GetFridge__C9FarmHouse
 	cmp r0, #0
 	beq .Ljp_080A7122
-	ldr r1, .Ljp_080A7160 @ =gFieldRenderRectDescriptors + 0x198
+	ldr r1, .Ljp_080A7160 @ =gFieldRenderRectDescriptors + 0x48
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #3
@@ -9215,7 +9215,7 @@ func_080A6098: @ 0x080A6098
 	bl GetShelf__C9FarmHouse
 	cmp r0, #0
 	beq .Ljp_080A713C
-	ldr r1, .Ljp_080A7164 @ =gFieldRenderRectDescriptors + 0x1C8
+	ldr r1, .Ljp_080A7164 @ =gFieldRenderRectDescriptors + 0x78
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #2
@@ -9231,16 +9231,16 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A716C
-	ldr r1, .Ljp_080A7168 @ =gFieldRenderRectDescriptors + 0x1F8
+	ldr r1, .Ljp_080A7168 @ =gFieldRenderRectDescriptors + 0xA8
 	b .Ljp_080A716E
 	.align 2, 0
-.Ljp_080A7158: .4byte gFieldRenderRectDescriptors + 0x168
-.Ljp_080A715C: .4byte gFieldRenderRectDescriptors + 0x228
-.Ljp_080A7160: .4byte gFieldRenderRectDescriptors + 0x198
-.Ljp_080A7164: .4byte gFieldRenderRectDescriptors + 0x1C8
-.Ljp_080A7168: .4byte gFieldRenderRectDescriptors + 0x1F8
+.Ljp_080A7158: .4byte gFieldRenderRectDescriptors + 0x18
+.Ljp_080A715C: .4byte gFieldRenderRectDescriptors + 0xD8
+.Ljp_080A7160: .4byte gFieldRenderRectDescriptors + 0x48
+.Ljp_080A7164: .4byte gFieldRenderRectDescriptors + 0x78
+.Ljp_080A7168: .4byte gFieldRenderRectDescriptors + 0xA8
 .Ljp_080A716C:
-	ldr r1, .Ljp_080A717C @ =gFieldRenderRectDescriptors + 0x210
+	ldr r1, .Ljp_080A717C @ =gFieldRenderRectDescriptors + 0xC0
 .Ljp_080A716E:
 	mov r0, r8
 	movs r2, #0x18
@@ -9248,15 +9248,15 @@ func_080A6098: @ 0x080A6098
 	bl ApplyMapTilePatch
 	b .Ljp_080A718C
 	.align 2, 0
-.Ljp_080A717C: .4byte gFieldRenderRectDescriptors + 0x210
+.Ljp_080A717C: .4byte gFieldRenderRectDescriptors + 0xC0
 .Ljp_080A7180:
-	ldr r1, .Ljp_080A7244 @ =gFieldRenderRectDescriptors + 0x1E0
+	ldr r1, .Ljp_080A7244 @ =gFieldRenderRectDescriptors + 0x90
 	mov r0, r8
 	movs r2, #0x18
 	movs r3, #0x11
 	bl ApplyMapTilePatch
 .Ljp_080A718C:
-	ldr r1, .Ljp_080A7248 @ =gFieldRenderRectDescriptors + 0x240
+	ldr r1, .Ljp_080A7248 @ =gFieldRenderRectDescriptors + 0xF0
 	mov r0, r8
 	movs r2, #4
 	movs r3, #1
@@ -9270,7 +9270,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A71B8
-	ldr r1, .Ljp_080A724C @ =gFieldRenderRectDescriptors + 0x258
+	ldr r1, .Ljp_080A724C @ =gFieldRenderRectDescriptors + 0x108
 	mov r0, r8
 	movs r2, #0x34
 	movs r3, #5
@@ -9283,7 +9283,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A71D4
-	ldr r1, .Ljp_080A7250 @ =gFieldRenderRectDescriptors + 0x270
+	ldr r1, .Ljp_080A7250 @ =gFieldRenderRectDescriptors + 0x120
 	mov r0, r8
 	movs r2, #0x1f
 	movs r3, #0xa
@@ -9296,7 +9296,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A71F0
-	ldr r1, .Ljp_080A7254 @ =gFieldRenderRectDescriptors + 0x288
+	ldr r1, .Ljp_080A7254 @ =gFieldRenderRectDescriptors + 0x138
 	mov r0, r8
 	movs r2, #0x2a
 	movs r3, #6
@@ -9309,7 +9309,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A720C
-	ldr r1, .Ljp_080A7258 @ =gFieldRenderRectDescriptors + 0x2A0
+	ldr r1, .Ljp_080A7258 @ =gFieldRenderRectDescriptors + 0x150
 	mov r0, r8
 	movs r2, #0x1f
 	movs r3, #2
@@ -9322,7 +9322,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A7228
-	ldr r1, .Ljp_080A725C @ =gFieldRenderRectDescriptors + 0x2B8
+	ldr r1, .Ljp_080A725C @ =gFieldRenderRectDescriptors + 0x168
 	mov r0, r8
 	movs r2, #0x1c
 	movs r3, #3
@@ -9342,13 +9342,13 @@ func_080A6098: @ 0x080A6098
 	bl func_080AA850
 	b .Ljp_080A746E
 	.align 2, 0
-.Ljp_080A7244: .4byte gFieldRenderRectDescriptors + 0x1E0
-.Ljp_080A7248: .4byte gFieldRenderRectDescriptors + 0x240
-.Ljp_080A724C: .4byte gFieldRenderRectDescriptors + 0x258
-.Ljp_080A7250: .4byte gFieldRenderRectDescriptors + 0x270
-.Ljp_080A7254: .4byte gFieldRenderRectDescriptors + 0x288
-.Ljp_080A7258: .4byte gFieldRenderRectDescriptors + 0x2A0
-.Ljp_080A725C: .4byte gFieldRenderRectDescriptors + 0x2B8
+.Ljp_080A7244: .4byte gFieldRenderRectDescriptors + 0x90
+.Ljp_080A7248: .4byte gFieldRenderRectDescriptors + 0xF0
+.Ljp_080A724C: .4byte gFieldRenderRectDescriptors + 0x108
+.Ljp_080A7250: .4byte gFieldRenderRectDescriptors + 0x120
+.Ljp_080A7254: .4byte gFieldRenderRectDescriptors + 0x138
+.Ljp_080A7258: .4byte gFieldRenderRectDescriptors + 0x150
+.Ljp_080A725C: .4byte gFieldRenderRectDescriptors + 0x168
 .Ljp_080A7260:
 	mov r3, sb
 	ldr r0, [r3]
@@ -9420,7 +9420,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A72FA
-	ldr r1, .Ljp_080A7338 @ =gFieldRenderRectDescriptors + 0x300
+	ldr r1, .Ljp_080A7338 @ =gFieldRenderRectDescriptors + 0x1B0
 	mov r0, r8
 	movs r2, #2
 	movs r3, #5
@@ -9455,7 +9455,7 @@ func_080A6098: @ 0x080A6098
 	bl func_080A63B8
 	b .Ljp_080A746E
 	.align 2, 0
-.Ljp_080A7338: .4byte gFieldRenderRectDescriptors + 0x300
+.Ljp_080A7338: .4byte gFieldRenderRectDescriptors + 0x1B0
 .Ljp_080A733C:
 	mov r2, sb
 	ldr r0, [r2]
@@ -9552,7 +9552,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A7406
-	ldr r1, .Ljp_080A7420 @ =gFieldRenderRectDescriptors + 0x330
+	ldr r1, .Ljp_080A7420 @ =gFieldRenderRectDescriptors + 0x1E0
 	mov r0, r8
 	movs r2, #0xc
 	movs r3, #5
@@ -9563,15 +9563,15 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A746E
-	ldr r1, .Ljp_080A7424 @ =gFieldRenderRectDescriptors + 0x318
+	ldr r1, .Ljp_080A7424 @ =gFieldRenderRectDescriptors + 0x1C8
 	mov r0, r8
 	movs r2, #8
 	movs r3, #5
 	bl ApplyMapTilePatch
 	b .Ljp_080A746E
 	.align 2, 0
-.Ljp_080A7420: .4byte gFieldRenderRectDescriptors + 0x330
-.Ljp_080A7424: .4byte gFieldRenderRectDescriptors + 0x318
+.Ljp_080A7420: .4byte gFieldRenderRectDescriptors + 0x1E0
+.Ljp_080A7424: .4byte gFieldRenderRectDescriptors + 0x1C8
 .Ljp_080A7428:
 	mov r3, sb
 	ldr r0, [r3]
@@ -9579,16 +9579,16 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A746E
-	ldr r1, .Ljp_080A7444 @ =gFieldRenderRectDescriptors + 0x420
+	ldr r1, .Ljp_080A7444 @ =gFieldRenderRectDescriptors + 0x2D0
 	mov r0, r8
 	movs r2, #0x24
 	movs r3, #2
 	bl ApplyMapTilePatch
 	b .Ljp_080A746E
 	.align 2, 0
-.Ljp_080A7444: .4byte gFieldRenderRectDescriptors + 0x420
+.Ljp_080A7444: .4byte gFieldRenderRectDescriptors + 0x2D0
 .Ljp_080A7448:
-	ldr r1, .Ljp_080A7484 @ =gFieldRenderRectDescriptors + 0x378
+	ldr r1, .Ljp_080A7484 @ =gFieldRenderRectDescriptors + 0x228
 	mov r0, r8
 	movs r2, #0x20
 	movs r3, #0x20
@@ -9599,7 +9599,7 @@ func_080A6098: @ 0x080A6098
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A746E
-	ldr r1, .Ljp_080A7488 @ =gFieldRenderRectDescriptors + 0x438
+	ldr r1, .Ljp_080A7488 @ =gFieldRenderRectDescriptors + 0x2E8
 	mov r0, r8
 	movs r2, #0x24
 	movs r3, #2
@@ -9616,8 +9616,8 @@ func_080A6098: @ 0x080A6098
 	pop {r0}
 	bx r0
 	.align 2, 0
-.Ljp_080A7484: .4byte gFieldRenderRectDescriptors + 0x378
-.Ljp_080A7488: .4byte gFieldRenderRectDescriptors + 0x438
+.Ljp_080A7484: .4byte gFieldRenderRectDescriptors + 0x228
+.Ljp_080A7488: .4byte gFieldRenderRectDescriptors + 0x2E8
     .global func_080A6EC4
     .thumb_func
 func_080A6EC4: @ 0x080A6EC4
@@ -89547,7 +89547,7 @@ func_080A607C: @ 0x080A607C
 .L080A6098:
 	cmp r2, #0xf
 	bls .L080A60BC
-	ldr r1, .L080A60B4 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r1, .L080A60B4 @ =gFieldRenderRectDescriptors + 0x1F8
 	ldr r3, .L080A60B8 @ =gFieldRenderPatchArgumentData + 0x0C
 	adds r0, r2, #0
 	subs r0, #0x10
@@ -89559,19 +89559,19 @@ func_080A607C: @ 0x080A607C
 	ldrb r3, [r0]
 	b .L080A6100
 	.align 2, 0
-.L080A60B4: .4byte gFieldRenderRectDescriptors + 0x348
+.L080A60B4: .4byte gFieldRenderRectDescriptors + 0x1F8
 .L080A60B8: .4byte gFieldRenderPatchArgumentData + 0x0C
 .L080A60BC:
-	ldr r1, .L080A60C4 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r1, .L080A60C4 @ =gFieldRenderRectDescriptors + 0x1F8
 	ldr r0, .L080A60C8 @ =gFieldRenderPatchArgumentData + 0x2C
 	b .L080A60F4
 	.align 2, 0
-.L080A60C4: .4byte gFieldRenderRectDescriptors + 0x348
+.L080A60C4: .4byte gFieldRenderRectDescriptors + 0x1F8
 .L080A60C8: .4byte gFieldRenderPatchArgumentData + 0x2C
 .L080A60CC:
 	cmp r2, #0xf
 	bls .L080A60F0
-	ldr r1, .L080A60E8 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r1, .L080A60E8 @ =gFieldRenderRectDescriptors + 0x1F8
 	ldr r3, .L080A60EC @ =gFieldRenderPatchArgumentData + 0x0C
 	adds r0, r2, #0
 	subs r0, #0x10
@@ -89583,10 +89583,10 @@ func_080A607C: @ 0x080A607C
 	ldrb r3, [r0]
 	b .L080A6100
 	.align 2, 0
-.L080A60E8: .4byte gFieldRenderRectDescriptors + 0x348
+.L080A60E8: .4byte gFieldRenderRectDescriptors + 0x1F8
 .L080A60EC: .4byte gFieldRenderPatchArgumentData + 0x0C
 .L080A60F0:
-	ldr r1, .L080A6108 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r1, .L080A6108 @ =gFieldRenderRectDescriptors + 0x1F8
 	ldr r0, .L080A610C @ =gFieldRenderPatchArgumentData + 0x3C
 .L080A60F4:
 	lsls r3, r2, #1
@@ -89600,10 +89600,10 @@ func_080A607C: @ 0x080A607C
 	bl ApplyMapTilePatch
 	b .L080A6120
 	.align 2, 0
-.L080A6108: .4byte gFieldRenderRectDescriptors + 0x348
+.L080A6108: .4byte gFieldRenderRectDescriptors + 0x1F8
 .L080A610C: .4byte gFieldRenderPatchArgumentData + 0x3C
 .L080A6110:
-	ldr r1, .L080A6130 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r1, .L080A6130 @ =gFieldRenderRectDescriptors + 0x1F8
 	ldr r0, .L080A6134 @ =gFieldRenderPatchArgumentData + 0x5C
 	adds r0, r2, r0
 	ldrb r2, [r0]
@@ -89619,7 +89619,7 @@ func_080A607C: @ 0x080A607C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A6130: .4byte gFieldRenderRectDescriptors + 0x348
+.L080A6130: .4byte gFieldRenderRectDescriptors + 0x1F8
 .L080A6134: .4byte gFieldRenderPatchArgumentData + 0x5C
 
     .section .text.game_map_after_patch_dispatchers, "ax", %progbits
@@ -89722,7 +89722,7 @@ func_080A6660: @ 0x080A6660
 	beq .L080A66CA
 	b .L080A6806
 .L080A66CA:
-	ldr r1, .L080A66E0 @ =gFieldRenderRectDescriptors + 0x408
+	ldr r1, .L080A66E0 @ =gFieldRenderRectDescriptors + 0x2B8
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0x11
@@ -89731,7 +89731,7 @@ func_080A6660: @ 0x080A6660
 	.align 2, 0
 .L080A66D8: .4byte 0x0000214C
 .L080A66DC: .4byte 0x0000219C
-.L080A66E0: .4byte gFieldRenderRectDescriptors + 0x408
+.L080A66E0: .4byte gFieldRenderRectDescriptors + 0x2B8
 .L080A66E4:
 	ldr r2, .L080A681C @ =0x000021A9
 	adds r0, r4, r2
@@ -89969,7 +89969,7 @@ func_080A6660: @ 0x080A6660
 .L080A6954:
 	cmp r6, #1
 	bne .L080A6964
-	ldr r1, .L080A6980 @ =gFieldRenderRectDescriptors + 0x3F0
+	ldr r1, .L080A6980 @ =gFieldRenderRectDescriptors + 0x2A0
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #0x19
@@ -89983,13 +89983,13 @@ func_080A6660: @ 0x080A6660
 	bne .L080A6976
 	bl .L080A746E
 .L080A6976:
-	ldr r1, .L080A6984 @ =gFieldRenderRectDescriptors + 0x3C0
+	ldr r1, .L080A6984 @ =gFieldRenderRectDescriptors + 0x270
 	mov r0, r8
 	movs r2, #0x17
 	b .L080A6ED6
 	.align 2, 0
-.L080A6980: .4byte gFieldRenderRectDescriptors + 0x3F0
-.L080A6984: .4byte gFieldRenderRectDescriptors + 0x3C0
+.L080A6980: .4byte gFieldRenderRectDescriptors + 0x2A0
+.L080A6984: .4byte gFieldRenderRectDescriptors + 0x270
 .L080A6988:
 	mov r2, sb
 	ldr r0, [r2]
@@ -89999,12 +89999,12 @@ func_080A6660: @ 0x080A6660
 	bne .L080A699A
 	bl .L080A746E
 .L080A699A:
-	ldr r1, .L080A69A4 @ =gFieldRenderRectDescriptors + 0x3D8
+	ldr r1, .L080A69A4 @ =gFieldRenderRectDescriptors + 0x288
 	mov r0, r8
 	movs r2, #0x17
 	b .L080A6ED6
 	.align 2, 0
-.L080A69A4: .4byte gFieldRenderRectDescriptors + 0x3D8
+.L080A69A4: .4byte gFieldRenderRectDescriptors + 0x288
 .L080A69A8:
 	mov r0, r8
 	movs r1, #0
@@ -90074,7 +90074,7 @@ func_080A6660: @ 0x080A6660
 	ands r1, r0
 	cmp r1, #3
 	bne .L080A6A4A
-	ldr r1, .L080A6A64 @ =gFieldRenderRectDescriptors + 0x4E0
+	ldr r1, .L080A6A64 @ =gFieldRenderRectDescriptors + 0x390
 	mov r0, r8
 	movs r2, #0x28
 	movs r3, #0x1d
@@ -90089,7 +90089,7 @@ func_080A6660: @ 0x080A6660
 	bl .L080A746E
 	.align 2, 0
 .L080A6A60: .4byte 0x00002186
-.L080A6A64: .4byte gFieldRenderRectDescriptors + 0x4E0
+.L080A6A64: .4byte gFieldRenderRectDescriptors + 0x390
 .L080A6A68:
 	adds r0, r2, #0
 	subs r0, #0x38
@@ -90194,14 +90194,14 @@ func_080A6660: @ 0x080A6660
 	.align 2, 0
 .L080A6B40: .4byte 0x00001C38
 .L080A6B44:
-	ldr r1, .L080A6B54 @ =gFieldRenderRectDescriptors + 0x450
+	ldr r1, .L080A6B54 @ =gFieldRenderRectDescriptors + 0x300
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x14
 	bl ApplyMapTilePatch
 	b .L080A6B74
 	.align 2, 0
-.L080A6B54: .4byte gFieldRenderRectDescriptors + 0x450
+.L080A6B54: .4byte gFieldRenderRectDescriptors + 0x300
 .L080A6B58:
 	mov r3, sb
 	ldr r0, [r3]
@@ -90210,7 +90210,7 @@ func_080A6660: @ 0x080A6660
 	bl func_0800E9A0
 	cmp r0, #7
 	bne .L080A6B74
-	ldr r1, .L080A6BA0 @ =gFieldRenderRectDescriptors + 0x450
+	ldr r1, .L080A6BA0 @ =gFieldRenderRectDescriptors + 0x300
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x14
@@ -90221,7 +90221,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A6B8C
-	ldr r1, .L080A6BA4 @ =gFieldRenderRectDescriptors + 0x468
+	ldr r1, .L080A6BA4 @ =gFieldRenderRectDescriptors + 0x318
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x17
@@ -90236,24 +90236,24 @@ func_080A6660: @ 0x080A6660
 	bl .L080A746E
 	.align 2, 0
 .L080A6B9C: .4byte 0x00001BD8
-.L080A6BA0: .4byte gFieldRenderRectDescriptors + 0x450
-.L080A6BA4: .4byte gFieldRenderRectDescriptors + 0x468
+.L080A6BA0: .4byte gFieldRenderRectDescriptors + 0x300
+.L080A6BA4: .4byte gFieldRenderRectDescriptors + 0x318
 .L080A6BA8:
 	cmp r6, #2
 	beq .L080A6BC0
 	bl .L080A746E
 .L080A6BB0:
-	ldr r1, .L080A6BB4 @ =gFieldRenderRectDescriptors + 0x498
+	ldr r1, .L080A6BB4 @ =gFieldRenderRectDescriptors + 0x348
 	b .L080A6BC2
 	.align 2, 0
-.L080A6BB4: .4byte gFieldRenderRectDescriptors + 0x498
+.L080A6BB4: .4byte gFieldRenderRectDescriptors + 0x348
 .L080A6BB8:
-	ldr r1, .L080A6BBC @ =gFieldRenderRectDescriptors + 0x4B0
+	ldr r1, .L080A6BBC @ =gFieldRenderRectDescriptors + 0x360
 	b .L080A6BC2
 	.align 2, 0
-.L080A6BBC: .4byte gFieldRenderRectDescriptors + 0x4B0
+.L080A6BBC: .4byte gFieldRenderRectDescriptors + 0x360
 .L080A6BC0:
-	ldr r1, .L080A6BD0 @ =gFieldRenderRectDescriptors + 0x4C8
+	ldr r1, .L080A6BD0 @ =gFieldRenderRectDescriptors + 0x378
 .L080A6BC2:
 	mov r0, r8
 	movs r2, #0xc
@@ -90261,7 +90261,7 @@ func_080A6660: @ 0x080A6660
 	bl ApplyMapTilePatch
 	bl .L080A746E
 	.align 2, 0
-.L080A6BD0: .4byte gFieldRenderRectDescriptors + 0x4C8
+.L080A6BD0: .4byte gFieldRenderRectDescriptors + 0x378
 .L080A6BD4:
 	mov r2, sb
 	ldr r0, [r2]
@@ -90271,10 +90271,10 @@ func_080A6660: @ 0x080A6660
 	bne .L080A6BE6
 	bl .L080A746E
 .L080A6BE6:
-	ldr r1, .L080A6BEC @ =gFieldRenderRectDescriptors + 0x390
+	ldr r1, .L080A6BEC @ =gFieldRenderRectDescriptors + 0x240
 	b .L080A6C04
 	.align 2, 0
-.L080A6BEC: .4byte gFieldRenderRectDescriptors + 0x390
+.L080A6BEC: .4byte gFieldRenderRectDescriptors + 0x240
 .L080A6BF0:
 	mov r3, sb
 	ldr r0, [r3]
@@ -90284,7 +90284,7 @@ func_080A6660: @ 0x080A6660
 	bne .L080A6C02
 	bl .L080A746E
 .L080A6C02:
-	ldr r1, .L080A6C14 @ =gFieldRenderRectDescriptors + 0x3A8
+	ldr r1, .L080A6C14 @ =gFieldRenderRectDescriptors + 0x258
 .L080A6C04:
 	mov r0, r8
 	movs r2, #0x3c
@@ -90292,7 +90292,7 @@ func_080A6660: @ 0x080A6660
 	bl ApplyMapTilePatch
 	bl .L080A746E
 	.align 2, 0
-.L080A6C14: .4byte gFieldRenderRectDescriptors + 0x3A8
+.L080A6C14: .4byte gFieldRenderRectDescriptors + 0x258
 .L080A6C18:
 	movs r0, #0
 .L080A6C1A:
@@ -90401,14 +90401,14 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6D04
 	b .L080A6D10
 .L080A6CE4:
-	ldr r1, .L080A6CEC @ =gFieldRenderRectDescriptors
+	ldr r1, .L080A6CEC @ =gFarmHouseLevel0Patch
 	mov r0, r8
 	movs r2, #0x1a
 	b .L080A6CF6
 	.align 2, 0
-.L080A6CEC: .4byte gFieldRenderRectDescriptors
+.L080A6CEC: .4byte gFarmHouseLevel0Patch
 .L080A6CF0:
-	ldr r1, .L080A6D00 @ =gFieldRenderRectDescriptors + 0x30
+	ldr r1, .L080A6D00 @ =gFarmHouseLevel1Patch
 	mov r0, r8
 	movs r2, #0x12
 .L080A6CF6:
@@ -90416,9 +90416,9 @@ func_080A6660: @ 0x080A6660
 	bl ApplyMapTilePatch
 	b .L080A6D10
 	.align 2, 0
-.L080A6D00: .4byte gFieldRenderRectDescriptors + 0x30
+.L080A6D00: .4byte gFarmHouseLevel1Patch
 .L080A6D04:
-	ldr r1, .L080A6D28 @ =gFieldRenderRectDescriptors + 0x60
+	ldr r1, .L080A6D28 @ =gFarmHouseLevel2Patch
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #2
@@ -90436,18 +90436,18 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6D40
 	b .L080A6D4C
 	.align 2, 0
-.L080A6D28: .4byte gFieldRenderRectDescriptors + 0x60
+.L080A6D28: .4byte gFarmHouseLevel2Patch
 .L080A6D2C:
-	ldr r1, .L080A6D3C @ =gFieldRenderRectDescriptors + 0x90
+	ldr r1, .L080A6D3C @ =gBarnLevel0Patch
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
 	bl ApplyMapTilePatch
 	b .L080A6D4C
 	.align 2, 0
-.L080A6D3C: .4byte gFieldRenderRectDescriptors + 0x90
+.L080A6D3C: .4byte gBarnLevel0Patch
 .L080A6D40:
-	ldr r1, .L080A6D64 @ =gFieldRenderRectDescriptors + 0xC0
+	ldr r1, .L080A6D64 @ =gBarnLevel1Patch
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
@@ -90465,17 +90465,17 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6D70
 	b .L080A746E
 	.align 2, 0
-.L080A6D64: .4byte gFieldRenderRectDescriptors + 0xC0
+.L080A6D64: .4byte gBarnLevel1Patch
 .L080A6D68:
-	ldr r1, .L080A6D6C @ =gFieldRenderRectDescriptors + 0xF0
+	ldr r1, .L080A6D6C @ =gCoopLevel0Patch
 	b .L080A6ED2
 	.align 2, 0
-.L080A6D6C: .4byte gFieldRenderRectDescriptors + 0xF0
+.L080A6D6C: .4byte gCoopLevel0Patch
 .L080A6D70:
-	ldr r1, .L080A6D74 @ =gFieldRenderRectDescriptors + 0x120
+	ldr r1, .L080A6D74 @ =gCoopLevel1Patch
 	b .L080A6ED2
 	.align 2, 0
-.L080A6D74: .4byte gFieldRenderRectDescriptors + 0x120
+.L080A6D74: .4byte gCoopLevel1Patch
 .L080A6D78:
 	movs r0, #0
 .L080A6D7A:
@@ -90584,14 +90584,14 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6E64
 	b .L080A6E70
 .L080A6E44:
-	ldr r1, .L080A6E4C @ =gFieldRenderRectDescriptors + 0x18
+	ldr r1, .L080A6E4C @ =gFarmHouseLevel0WinterPatch
 	mov r0, r8
 	movs r2, #0x1a
 	b .L080A6E56
 	.align 2, 0
-.L080A6E4C: .4byte gFieldRenderRectDescriptors + 0x18
+.L080A6E4C: .4byte gFarmHouseLevel0WinterPatch
 .L080A6E50:
-	ldr r1, .L080A6E60 @ =gFieldRenderRectDescriptors + 0x48
+	ldr r1, .L080A6E60 @ =gFarmHouseLevel1WinterPatch
 	mov r0, r8
 	movs r2, #0x12
 .L080A6E56:
@@ -90599,9 +90599,9 @@ func_080A6660: @ 0x080A6660
 	bl ApplyMapTilePatch
 	b .L080A6E70
 	.align 2, 0
-.L080A6E60: .4byte gFieldRenderRectDescriptors + 0x48
+.L080A6E60: .4byte gFarmHouseLevel1WinterPatch
 .L080A6E64:
-	ldr r1, .L080A6E88 @ =gFieldRenderRectDescriptors + 0x78
+	ldr r1, .L080A6E88 @ =gFarmHouseLevel2WinterPatch
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #2
@@ -90619,18 +90619,18 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6EA0
 	b .L080A6EAC
 	.align 2, 0
-.L080A6E88: .4byte gFieldRenderRectDescriptors + 0x78
+.L080A6E88: .4byte gFarmHouseLevel2WinterPatch
 .L080A6E8C:
-	ldr r1, .L080A6E9C @ =gFieldRenderRectDescriptors + 0xA8
+	ldr r1, .L080A6E9C @ =gBarnLevel0WinterPatch
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
 	bl ApplyMapTilePatch
 	b .L080A6EAC
 	.align 2, 0
-.L080A6E9C: .4byte gFieldRenderRectDescriptors + 0xA8
+.L080A6E9C: .4byte gBarnLevel0WinterPatch
 .L080A6EA0:
-	ldr r1, .L080A6EC4 @ =gFieldRenderRectDescriptors + 0xD8
+	ldr r1, .L080A6EC4 @ =gBarnLevel1WinterPatch
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
@@ -90648,14 +90648,14 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6ED0
 	b .L080A746E
 	.align 2, 0
-.L080A6EC4: .4byte gFieldRenderRectDescriptors + 0xD8
+.L080A6EC4: .4byte gBarnLevel1WinterPatch
 .L080A6EC8:
-	ldr r1, .L080A6ECC @ =gFieldRenderRectDescriptors + 0x108
+	ldr r1, .L080A6ECC @ =gCoopLevel0WinterPatch
 	b .L080A6ED2
 	.align 2, 0
-.L080A6ECC: .4byte gFieldRenderRectDescriptors + 0x108
+.L080A6ECC: .4byte gCoopLevel0WinterPatch
 .L080A6ED0:
-	ldr r1, .L080A6EE0 @ =gFieldRenderRectDescriptors + 0x138
+	ldr r1, .L080A6EE0 @ =gCoopLevel1WinterPatch
 .L080A6ED2:
 	mov r0, r8
 	movs r2, #0xe
@@ -90664,9 +90664,9 @@ func_080A6660: @ 0x080A6660
 	bl ApplyMapTilePatch
 	b .L080A746E
 	.align 2, 0
-.L080A6EE0: .4byte gFieldRenderRectDescriptors + 0x138
+.L080A6EE0: .4byte gCoopLevel1WinterPatch
 .L080A6EE4:
-	ldr r1, .L080A6F10 @ =gFieldRenderRectDescriptors + 0x168
+	ldr r1, .L080A6F10 @ =gFieldRenderRectDescriptors + 0x18
 	mov r0, r8
 	movs r2, #0x19
 	movs r3, #0xf
@@ -90683,13 +90683,13 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A6F18
-	ldr r1, .L080A6F14 @ =gFieldRenderRectDescriptors + 0x1F8
+	ldr r1, .L080A6F14 @ =gFieldRenderRectDescriptors + 0xA8
 	b .L080A6F1A
 	.align 2, 0
-.L080A6F10: .4byte gFieldRenderRectDescriptors + 0x168
-.L080A6F14: .4byte gFieldRenderRectDescriptors + 0x1F8
+.L080A6F10: .4byte gFieldRenderRectDescriptors + 0x18
+.L080A6F14: .4byte gFieldRenderRectDescriptors + 0xA8
 .L080A6F18:
-	ldr r1, .L080A6F28 @ =gFieldRenderRectDescriptors + 0x210
+	ldr r1, .L080A6F28 @ =gFieldRenderRectDescriptors + 0xC0
 .L080A6F1A:
 	mov r0, r8
 	movs r2, #1
@@ -90697,9 +90697,9 @@ func_080A6660: @ 0x080A6660
 	bl ApplyMapTilePatch
 	b .L080A6F38
 	.align 2, 0
-.L080A6F28: .4byte gFieldRenderRectDescriptors + 0x210
+.L080A6F28: .4byte gFieldRenderRectDescriptors + 0xC0
 .L080A6F2C:
-	ldr r1, .L080A6F90 @ =gFieldRenderRectDescriptors + 0x1E0
+	ldr r1, .L080A6F90 @ =gFieldRenderRectDescriptors + 0x90
 	mov r0, r8
 	movs r2, #1
 	movs r3, #0x11
@@ -90714,7 +90714,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A6F58
-	ldr r1, .L080A6F94 @ =gFieldRenderRectDescriptors + 0x288
+	ldr r1, .L080A6F94 @ =gFieldRenderRectDescriptors + 0x138
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #6
@@ -90727,7 +90727,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A6F74
-	ldr r1, .L080A6F98 @ =gFieldRenderRectDescriptors + 0x2A0
+	ldr r1, .L080A6F98 @ =gFieldRenderRectDescriptors + 0x150
 	mov r0, r8
 	movs r2, #8
 	movs r3, #2
@@ -90742,17 +90742,17 @@ func_080A6660: @ 0x080A6660
 	bne .L080A6F86
 	b .L080A746E
 .L080A6F86:
-	ldr r1, .L080A6F9C @ =gFieldRenderRectDescriptors + 0x2B8
+	ldr r1, .L080A6F9C @ =gFieldRenderRectDescriptors + 0x168
 	mov r0, r8
 	movs r2, #5
 	b .L080A70C0
 	.align 2, 0
-.L080A6F90: .4byte gFieldRenderRectDescriptors + 0x1E0
-.L080A6F94: .4byte gFieldRenderRectDescriptors + 0x288
-.L080A6F98: .4byte gFieldRenderRectDescriptors + 0x2A0
-.L080A6F9C: .4byte gFieldRenderRectDescriptors + 0x2B8
+.L080A6F90: .4byte gFieldRenderRectDescriptors + 0x90
+.L080A6F94: .4byte gFieldRenderRectDescriptors + 0x138
+.L080A6F98: .4byte gFieldRenderRectDescriptors + 0x150
+.L080A6F9C: .4byte gFieldRenderRectDescriptors + 0x168
 .L080A6FA0:
-	ldr r1, .L080A701C @ =gFieldRenderRectDescriptors + 0x168
+	ldr r1, .L080A701C @ =gFieldRenderRectDescriptors + 0x18
 	mov r0, r8
 	movs r2, #0x28
 	movs r3, #0xf
@@ -90766,7 +90766,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A6FCC
-	ldr r1, .L080A7020 @ =gFieldRenderRectDescriptors + 0x228
+	ldr r1, .L080A7020 @ =gFieldRenderRectDescriptors + 0xD8
 	mov r0, r8
 	movs r2, #2
 	movs r3, #1
@@ -90778,7 +90778,7 @@ func_080A6660: @ 0x080A6660
 	bl GetFridge__C9FarmHouse
 	cmp r0, #0
 	beq .L080A6FE6
-	ldr r1, .L080A7024 @ =gFieldRenderRectDescriptors + 0x198
+	ldr r1, .L080A7024 @ =gFieldRenderRectDescriptors + 0x48
 	mov r0, r8
 	movs r2, #0xb
 	movs r3, #3
@@ -90790,7 +90790,7 @@ func_080A6660: @ 0x080A6660
 	bl GetShelf__C9FarmHouse
 	cmp r0, #0
 	beq .L080A7000
-	ldr r1, .L080A7028 @ =gFieldRenderRectDescriptors + 0x1C8
+	ldr r1, .L080A7028 @ =gFieldRenderRectDescriptors + 0x78
 	mov r0, r8
 	movs r2, #0xf
 	movs r3, #2
@@ -90806,16 +90806,16 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A7030
-	ldr r1, .L080A702C @ =gFieldRenderRectDescriptors + 0x1F8
+	ldr r1, .L080A702C @ =gFieldRenderRectDescriptors + 0xA8
 	b .L080A7032
 	.align 2, 0
-.L080A701C: .4byte gFieldRenderRectDescriptors + 0x168
-.L080A7020: .4byte gFieldRenderRectDescriptors + 0x228
-.L080A7024: .4byte gFieldRenderRectDescriptors + 0x198
-.L080A7028: .4byte gFieldRenderRectDescriptors + 0x1C8
-.L080A702C: .4byte gFieldRenderRectDescriptors + 0x1F8
+.L080A701C: .4byte gFieldRenderRectDescriptors + 0x18
+.L080A7020: .4byte gFieldRenderRectDescriptors + 0xD8
+.L080A7024: .4byte gFieldRenderRectDescriptors + 0x48
+.L080A7028: .4byte gFieldRenderRectDescriptors + 0x78
+.L080A702C: .4byte gFieldRenderRectDescriptors + 0xA8
 .L080A7030:
-	ldr r1, .L080A7040 @ =gFieldRenderRectDescriptors + 0x210
+	ldr r1, .L080A7040 @ =gFieldRenderRectDescriptors + 0xC0
 .L080A7032:
 	mov r0, r8
 	movs r2, #0x10
@@ -90823,9 +90823,9 @@ func_080A6660: @ 0x080A6660
 	bl ApplyMapTilePatch
 	b .L080A7050
 	.align 2, 0
-.L080A7040: .4byte gFieldRenderRectDescriptors + 0x210
+.L080A7040: .4byte gFieldRenderRectDescriptors + 0xC0
 .L080A7044:
-	ldr r1, .L080A70C8 @ =gFieldRenderRectDescriptors + 0x1E0
+	ldr r1, .L080A70C8 @ =gFieldRenderRectDescriptors + 0x90
 	mov r0, r8
 	movs r2, #0x10
 	movs r3, #0x11
@@ -90840,7 +90840,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A7070
-	ldr r1, .L080A70CC @ =gFieldRenderRectDescriptors + 0x270
+	ldr r1, .L080A70CC @ =gFieldRenderRectDescriptors + 0x120
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0xa
@@ -90853,7 +90853,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A708C
-	ldr r1, .L080A70D0 @ =gFieldRenderRectDescriptors + 0x288
+	ldr r1, .L080A70D0 @ =gFieldRenderRectDescriptors + 0x138
 	mov r0, r8
 	movs r2, #0x22
 	movs r3, #6
@@ -90866,7 +90866,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A70A8
-	ldr r1, .L080A70D4 @ =gFieldRenderRectDescriptors + 0x2A0
+	ldr r1, .L080A70D4 @ =gFieldRenderRectDescriptors + 0x150
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #2
@@ -90881,7 +90881,7 @@ func_080A6660: @ 0x080A6660
 	bne .L080A70BA
 	b .L080A746E
 .L080A70BA:
-	ldr r1, .L080A70D8 @ =gFieldRenderRectDescriptors + 0x2B8
+	ldr r1, .L080A70D8 @ =gFieldRenderRectDescriptors + 0x168
 	mov r0, r8
 	movs r2, #0x14
 .L080A70C0:
@@ -90889,13 +90889,13 @@ func_080A6660: @ 0x080A6660
 	bl ApplyMapTilePatch
 	b .L080A746E
 	.align 2, 0
-.L080A70C8: .4byte gFieldRenderRectDescriptors + 0x1E0
-.L080A70CC: .4byte gFieldRenderRectDescriptors + 0x270
-.L080A70D0: .4byte gFieldRenderRectDescriptors + 0x288
-.L080A70D4: .4byte gFieldRenderRectDescriptors + 0x2A0
-.L080A70D8: .4byte gFieldRenderRectDescriptors + 0x2B8
+.L080A70C8: .4byte gFieldRenderRectDescriptors + 0x90
+.L080A70CC: .4byte gFieldRenderRectDescriptors + 0x120
+.L080A70D0: .4byte gFieldRenderRectDescriptors + 0x138
+.L080A70D4: .4byte gFieldRenderRectDescriptors + 0x150
+.L080A70D8: .4byte gFieldRenderRectDescriptors + 0x168
 .L080A70DC:
-	ldr r1, .L080A7158 @ =gFieldRenderRectDescriptors + 0x168
+	ldr r1, .L080A7158 @ =gFieldRenderRectDescriptors + 0x18
 	mov r0, r8
 	movs r2, #0x36
 	movs r3, #0xf
@@ -90909,7 +90909,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A7108
-	ldr r1, .L080A715C @ =gFieldRenderRectDescriptors + 0x228
+	ldr r1, .L080A715C @ =gFieldRenderRectDescriptors + 0xD8
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #1
@@ -90921,7 +90921,7 @@ func_080A6660: @ 0x080A6660
 	bl GetFridge__C9FarmHouse
 	cmp r0, #0
 	beq .L080A7122
-	ldr r1, .L080A7160 @ =gFieldRenderRectDescriptors + 0x198
+	ldr r1, .L080A7160 @ =gFieldRenderRectDescriptors + 0x48
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #3
@@ -90933,7 +90933,7 @@ func_080A6660: @ 0x080A6660
 	bl GetShelf__C9FarmHouse
 	cmp r0, #0
 	beq .L080A713C
-	ldr r1, .L080A7164 @ =gFieldRenderRectDescriptors + 0x1C8
+	ldr r1, .L080A7164 @ =gFieldRenderRectDescriptors + 0x78
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #2
@@ -90949,16 +90949,16 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A716C
-	ldr r1, .L080A7168 @ =gFieldRenderRectDescriptors + 0x1F8
+	ldr r1, .L080A7168 @ =gFieldRenderRectDescriptors + 0xA8
 	b .L080A716E
 	.align 2, 0
-.L080A7158: .4byte gFieldRenderRectDescriptors + 0x168
-.L080A715C: .4byte gFieldRenderRectDescriptors + 0x228
-.L080A7160: .4byte gFieldRenderRectDescriptors + 0x198
-.L080A7164: .4byte gFieldRenderRectDescriptors + 0x1C8
-.L080A7168: .4byte gFieldRenderRectDescriptors + 0x1F8
+.L080A7158: .4byte gFieldRenderRectDescriptors + 0x18
+.L080A715C: .4byte gFieldRenderRectDescriptors + 0xD8
+.L080A7160: .4byte gFieldRenderRectDescriptors + 0x48
+.L080A7164: .4byte gFieldRenderRectDescriptors + 0x78
+.L080A7168: .4byte gFieldRenderRectDescriptors + 0xA8
 .L080A716C:
-	ldr r1, .L080A717C @ =gFieldRenderRectDescriptors + 0x210
+	ldr r1, .L080A717C @ =gFieldRenderRectDescriptors + 0xC0
 .L080A716E:
 	mov r0, r8
 	movs r2, #0x18
@@ -90966,15 +90966,15 @@ func_080A6660: @ 0x080A6660
 	bl ApplyMapTilePatch
 	b .L080A718C
 	.align 2, 0
-.L080A717C: .4byte gFieldRenderRectDescriptors + 0x210
+.L080A717C: .4byte gFieldRenderRectDescriptors + 0xC0
 .L080A7180:
-	ldr r1, .L080A7244 @ =gFieldRenderRectDescriptors + 0x1E0
+	ldr r1, .L080A7244 @ =gFieldRenderRectDescriptors + 0x90
 	mov r0, r8
 	movs r2, #0x18
 	movs r3, #0x11
 	bl ApplyMapTilePatch
 .L080A718C:
-	ldr r1, .L080A7248 @ =gFieldRenderRectDescriptors + 0x240
+	ldr r1, .L080A7248 @ =gFieldRenderRectDescriptors + 0xF0
 	mov r0, r8
 	movs r2, #4
 	movs r3, #1
@@ -90988,7 +90988,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A71B8
-	ldr r1, .L080A724C @ =gFieldRenderRectDescriptors + 0x258
+	ldr r1, .L080A724C @ =gFieldRenderRectDescriptors + 0x108
 	mov r0, r8
 	movs r2, #0x34
 	movs r3, #5
@@ -91001,7 +91001,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A71D4
-	ldr r1, .L080A7250 @ =gFieldRenderRectDescriptors + 0x270
+	ldr r1, .L080A7250 @ =gFieldRenderRectDescriptors + 0x120
 	mov r0, r8
 	movs r2, #0x1f
 	movs r3, #0xa
@@ -91014,7 +91014,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A71F0
-	ldr r1, .L080A7254 @ =gFieldRenderRectDescriptors + 0x288
+	ldr r1, .L080A7254 @ =gFieldRenderRectDescriptors + 0x138
 	mov r0, r8
 	movs r2, #0x2a
 	movs r3, #6
@@ -91027,7 +91027,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A720C
-	ldr r1, .L080A7258 @ =gFieldRenderRectDescriptors + 0x2A0
+	ldr r1, .L080A7258 @ =gFieldRenderRectDescriptors + 0x150
 	mov r0, r8
 	movs r2, #0x1f
 	movs r3, #2
@@ -91040,7 +91040,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A7228
-	ldr r1, .L080A725C @ =gFieldRenderRectDescriptors + 0x2B8
+	ldr r1, .L080A725C @ =gFieldRenderRectDescriptors + 0x168
 	mov r0, r8
 	movs r2, #0x1c
 	movs r3, #3
@@ -91060,13 +91060,13 @@ func_080A6660: @ 0x080A6660
 	bl func_080AA850
 	b .L080A746E
 	.align 2, 0
-.L080A7244: .4byte gFieldRenderRectDescriptors + 0x1E0
-.L080A7248: .4byte gFieldRenderRectDescriptors + 0x240
-.L080A724C: .4byte gFieldRenderRectDescriptors + 0x258
-.L080A7250: .4byte gFieldRenderRectDescriptors + 0x270
-.L080A7254: .4byte gFieldRenderRectDescriptors + 0x288
-.L080A7258: .4byte gFieldRenderRectDescriptors + 0x2A0
-.L080A725C: .4byte gFieldRenderRectDescriptors + 0x2B8
+.L080A7244: .4byte gFieldRenderRectDescriptors + 0x90
+.L080A7248: .4byte gFieldRenderRectDescriptors + 0xF0
+.L080A724C: .4byte gFieldRenderRectDescriptors + 0x108
+.L080A7250: .4byte gFieldRenderRectDescriptors + 0x120
+.L080A7254: .4byte gFieldRenderRectDescriptors + 0x138
+.L080A7258: .4byte gFieldRenderRectDescriptors + 0x150
+.L080A725C: .4byte gFieldRenderRectDescriptors + 0x168
 .L080A7260:
 	mov r3, sb
 	ldr r0, [r3]
@@ -91138,7 +91138,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A72FA
-	ldr r1, .L080A7338 @ =gFieldRenderRectDescriptors + 0x300
+	ldr r1, .L080A7338 @ =gFieldRenderRectDescriptors + 0x1B0
 	mov r0, r8
 	movs r2, #2
 	movs r3, #5
@@ -91173,7 +91173,7 @@ func_080A6660: @ 0x080A6660
 	bl func_080A63B8
 	b .L080A746E
 	.align 2, 0
-.L080A7338: .4byte gFieldRenderRectDescriptors + 0x300
+.L080A7338: .4byte gFieldRenderRectDescriptors + 0x1B0
 .L080A733C:
 	mov r2, sb
 	ldr r0, [r2]
@@ -91270,7 +91270,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A7406
-	ldr r1, .L080A7420 @ =gFieldRenderRectDescriptors + 0x330
+	ldr r1, .L080A7420 @ =gFieldRenderRectDescriptors + 0x1E0
 	mov r0, r8
 	movs r2, #0xc
 	movs r3, #5
@@ -91281,15 +91281,15 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A746E
-	ldr r1, .L080A7424 @ =gFieldRenderRectDescriptors + 0x318
+	ldr r1, .L080A7424 @ =gFieldRenderRectDescriptors + 0x1C8
 	mov r0, r8
 	movs r2, #8
 	movs r3, #5
 	bl ApplyMapTilePatch
 	b .L080A746E
 	.align 2, 0
-.L080A7420: .4byte gFieldRenderRectDescriptors + 0x330
-.L080A7424: .4byte gFieldRenderRectDescriptors + 0x318
+.L080A7420: .4byte gFieldRenderRectDescriptors + 0x1E0
+.L080A7424: .4byte gFieldRenderRectDescriptors + 0x1C8
 .L080A7428:
 	mov r3, sb
 	ldr r0, [r3]
@@ -91297,16 +91297,16 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A746E
-	ldr r1, .L080A7444 @ =gFieldRenderRectDescriptors + 0x420
+	ldr r1, .L080A7444 @ =gFieldRenderRectDescriptors + 0x2D0
 	mov r0, r8
 	movs r2, #0x24
 	movs r3, #2
 	bl ApplyMapTilePatch
 	b .L080A746E
 	.align 2, 0
-.L080A7444: .4byte gFieldRenderRectDescriptors + 0x420
+.L080A7444: .4byte gFieldRenderRectDescriptors + 0x2D0
 .L080A7448:
-	ldr r1, .L080A7484 @ =gFieldRenderRectDescriptors + 0x378
+	ldr r1, .L080A7484 @ =gFieldRenderRectDescriptors + 0x228
 	mov r0, r8
 	movs r2, #0x20
 	movs r3, #0x20
@@ -91317,7 +91317,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A746E
-	ldr r1, .L080A7488 @ =gFieldRenderRectDescriptors + 0x438
+	ldr r1, .L080A7488 @ =gFieldRenderRectDescriptors + 0x2E8
 	mov r0, r8
 	movs r2, #0x24
 	movs r3, #2
@@ -91334,8 +91334,8 @@ func_080A6660: @ 0x080A6660
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A7484: .4byte gFieldRenderRectDescriptors + 0x378
-.L080A7488: .4byte gFieldRenderRectDescriptors + 0x438
+.L080A7484: .4byte gFieldRenderRectDescriptors + 0x228
+.L080A7488: .4byte gFieldRenderRectDescriptors + 0x2E8
 
 	thumb_func_start func_080A748C
 func_080A748C: @ 0x080A748C

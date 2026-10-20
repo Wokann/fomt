@@ -5,9 +5,8 @@
 
 struct Farm;
 
-// These two typed entries still use verified native assembly, not matched C++.
 EXTERN_C
-// Horizontal fit is checked; the native entry has no destination-height check.
+// Still native: horizontal fit is checked, but destination height is not.
 void ApplyMapTerrainPatch(FieldRenderTileAttributes * destination, u32 width,
     FieldRenderRectDescriptor const & patch, u32 x, u32 y);
 // Winter uses the low input byte; nonzero selects the alternate map and patches.

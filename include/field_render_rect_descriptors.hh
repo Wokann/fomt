@@ -34,8 +34,24 @@ typedef char FieldRenderPatchPlacementYCheck[offsetof(FieldRenderPatchPlacement,
 
 enum
 {
-    FIELD_RENDER_RECT_DESCRIPTOR_COUNT = 82,
+    // Fourteen named building variants precede this remaining array.
+    FIELD_RENDER_RECT_DESCRIPTOR_COUNT = 68,
 };
+
+extern FieldRenderRectDescriptor const gFarmHouseLevel0Patch;
+extern FieldRenderRectDescriptor const gFarmHouseLevel0WinterPatch;
+extern FieldRenderRectDescriptor const gFarmHouseLevel1Patch;
+extern FieldRenderRectDescriptor const gFarmHouseLevel1WinterPatch;
+extern FieldRenderRectDescriptor const gFarmHouseLevel2Patch;
+extern FieldRenderRectDescriptor const gFarmHouseLevel2WinterPatch;
+extern FieldRenderRectDescriptor const gBarnLevel0Patch;
+extern FieldRenderRectDescriptor const gBarnLevel0WinterPatch;
+extern FieldRenderRectDescriptor const gBarnLevel1Patch;
+extern FieldRenderRectDescriptor const gBarnLevel1WinterPatch;
+extern FieldRenderRectDescriptor const gCoopLevel0Patch;
+extern FieldRenderRectDescriptor const gCoopLevel0WinterPatch;
+extern FieldRenderRectDescriptor const gCoopLevel1Patch;
+extern FieldRenderRectDescriptor const gCoopLevel1WinterPatch;
 
 extern FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DESCRIPTOR_COUNT];
 

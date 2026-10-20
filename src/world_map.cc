@@ -257,12 +257,12 @@ EC void RefreshCoopFeedTrough(GameSceneWorldMapPrefix * map, u32 index)
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x24:
     case 0x25:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[36],
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[22],
             gFieldRenderPatchArgumentData.values_00[index], 8);
         break;
     case 0x40:
     {
-        FieldRenderRectDescriptor const & patch = gFieldRenderRectDescriptors[36];
+        FieldRenderRectDescriptor const & patch = gFieldRenderRectDescriptors[22];
         u8 const * coordinates = gFieldRenderPatchArgumentData.values_08;
         ApplyMapTilePatch(map, patch,
             coordinates[index], 4);
@@ -276,13 +276,13 @@ EC void func_080A6138(GameSceneWorldMapPrefix * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x29:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[14], 0x19, 0xF);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[0], 0x19, 0xF);
         break;
     case 0x2A:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[14], 0x28, 0xF);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[0], 0x28, 0xF);
         break;
     case 0x2B:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[14], 0x36, 0xF);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[0], 0x36, 0xF);
         break;
     }
     map->view_changed = true;
@@ -292,13 +292,13 @@ EC void func_080A6194(GameSceneWorldMapPrefix * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x29:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[15], 0x19, 0xF);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[1], 0x19, 0xF);
         break;
     case 0x2A:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[15], 0x28, 0xF);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[1], 0x28, 0xF);
         break;
     case 0x2B:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[15], 0x36, 0xF);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[1], 0x36, 0xF);
         break;
     }
     map->view_changed = true;
@@ -308,10 +308,10 @@ EC void func_080A61F0(GameSceneWorldMapPrefix * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x2A:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[16], 0xB, 3);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[2], 0xB, 3);
         break;
     case 0x2B:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[16], 0x13, 3);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[2], 0x13, 3);
         break;
     }
     map->view_changed = true;
@@ -321,10 +321,10 @@ EC void func_080A6234(GameSceneWorldMapPrefix * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x2A:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[17], 0xB, 3);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[3], 0xB, 3);
         break;
     case 0x2B:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[17], 0x13, 3);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[3], 0x13, 3);
         break;
     }
     map->view_changed = true;
@@ -334,10 +334,10 @@ EC void func_080A6278(GameSceneWorldMapPrefix * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x2A:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[18], 0xF, 2);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[4], 0xF, 2);
         break;
     case 0x2B:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[18], 0x17, 2);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[4], 0x17, 2);
         break;
     }
     map->view_changed = true;
@@ -347,10 +347,10 @@ EC void func_080A62BC(GameSceneWorldMapPrefix * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x2A:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[19], 0xF, 2);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[5], 0xF, 2);
         break;
     case 0x2B:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[19], 0x17, 2);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[5], 0x17, 2);
         break;
     }
     map->view_changed = true;
@@ -360,13 +360,13 @@ EC void func_080A6300(GameSceneWorldMapPrefix * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x29:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[22], 1, 0x11);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[8], 1, 0x11);
         break;
     case 0x2A:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[22], 0x10, 0x11);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[8], 0x10, 0x11);
         break;
     case 0x2B:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[22], 0x18, 0x11);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[8], 0x18, 0x11);
         break;
     default:
         return;
@@ -378,13 +378,13 @@ EC void func_080A635C(GameSceneWorldMapPrefix * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x29:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[21], 1, 0x11);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[7], 1, 0x11);
         break;
     case 0x2A:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[21], 0x10, 0x11);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[7], 0x10, 0x11);
         break;
     case 0x2B:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[21], 0x18, 0x11);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[7], 0x18, 0x11);
         break;
     default:
         return;
@@ -396,13 +396,13 @@ EC void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x40:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[81], 1, 0xD);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[67], 1, 0xD);
         break;
     case 0x24:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[81], 1, 0x11);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[67], 1, 0x11);
         break;
     case 0x25:
-        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[81], 1, unk == 0 ? 0x11 : 0xD);
+        ApplyMapTilePatch(map, gFieldRenderRectDescriptors[67], 1, unk == 0 ? 0x11 : 0xD);
         break;
     default:
         return;
@@ -548,13 +548,13 @@ EC void func_080AA850(GameSceneSavedMapPrefix * map, u32 index)
 
 EC void func_080AA89C(GameSceneWorldMapPrefix * map)
 {
-    ApplyMapTilePatch(map, gFieldRenderRectDescriptors[48], 0x21, 0x14);
+    ApplyMapTilePatch(map, gFieldRenderRectDescriptors[34], 0x21, 0x14);
     map->view_changed = true;
 }
 
 EC void func_080AA8BC(GameSceneWorldMapPrefix * map)
 {
-    ApplyMapTilePatch(map, gFieldRenderRectDescriptors[48], 0x21, 0x17);
+    ApplyMapTilePatch(map, gFieldRenderRectDescriptors[34], 0x21, 0x17);
     map->view_changed = true;
 }
 

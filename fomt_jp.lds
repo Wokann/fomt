@@ -312,6 +312,7 @@ SECTIONS
         src/game_scene.o(.text.CureAllSickLivestock__9GameScene);
         src/entity_location.o(.text.RelocateEntityToMap__9GameSceneiUiiiUi);
         asm/farm_terrain.o(.text);
+        src/farm_terrain.o(.text);
         src/game_world.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
         src/game_world.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
