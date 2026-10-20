@@ -1295,6 +1295,8 @@ struct GameScene : AScene {
     void RefreshAllNpcSchedules();
     void ChangePlayerStaminaAndFatigue(MaryStaminaDelta stamina_delta,
         MaryFatigueDelta fatigue_delta);
+    void CreateFarmHorse(MaryBool skip_creation, MaryAnimalHorseAgeStage age_stage,
+        MaryMapId map, MaryMapSpaceX x, MaryMapSpaceY y);
     void RemoveFarmHorse(MaryBool skip_removal, i32 unused_value);
     MaryAnimalSlotIndex GetInteractingAnimalIndex();
     bool IsPlayerHoldingTool();

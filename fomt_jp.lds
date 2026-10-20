@@ -252,9 +252,8 @@ SECTIONS
         asm/game_state.o(.text.game_scene_song_players_after);
         src/game_scene.o(
             .text.RefreshAllNpcSchedules__9GameScene
-            .text.ChangePlayerStaminaAndFatigue__9GameSceneii);
-        asm/game_state.o(.text.game_scene_create_horse);
-        src/game_scene.o(
+            .text.ChangePlayerStaminaAndFatigue__9GameSceneii
+            .text.CreateFarmHorse__9GameScene8MaryBool23MaryAnimalHorseAgeStage9MaryMapIdii
             .text.RemoveFarmHorse__9GameScene8MaryBooli
             .text.GetInteractingAnimalIndex__9GameScene
             .text.IsPlayerHoldingTool__9GameScene);

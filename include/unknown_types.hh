@@ -79,7 +79,7 @@ struct GameObject
     virtual i32 GetMapPixelWidth(u32 map_id);
     virtual i32 GetMapPixelHeight(u32 map_id);
     virtual MapTerrainView GetMapTerrain(u32 map_id);
-    virtual void vfunc_38();
+    virtual void vfunc_38(u32 entity_id);
     virtual void vfunc_3C(u32 index);
     virtual AActorEntity * GetActorEntity(u32 id);
     virtual AActorEntity * vfunc_44(u32 index);

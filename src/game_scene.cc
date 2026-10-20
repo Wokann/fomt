@@ -867,6 +867,23 @@ void GameScene::ChangePlayerStaminaAndFatigue(MaryStaminaDelta stamina_delta,
         ENTITY_PLAYER))->ChangeStaminaAndFatigue(stamina_delta, fatigue_delta);
 }
 
+void GameScene::CreateFarmHorse(MaryBool skip_creation, MaryAnimalHorseAgeStage age_stage,
+    MaryMapId map, MaryMapSpaceX x, MaryMapSpaceY y)
+{
+    GameSceneState * current = state;
+    // The same native guard is also the only reachable facing value (zero).
+    if (skip_creation == FALSE) {
+        Farm & farm = current->save->farm;
+        farm.SetHorse(Horse(ActorLocation(Location(map, x, y), skip_creation),
+            static_cast<u32>(age_stage) * 120));
+        GameObject * & world = current->game_object.value;
+        world->vfunc_38(ENTITY_FARM_HORSE);
+        AActorEntity * horse = world->GetActorEntity(ENTITY_FARM_HORSE);
+        if (horse != nullptr && !horse->vfunc_28())
+            horse->vfunc_20();
+    }
+}
+
 void GameScene::RemoveFarmHorse(MaryBool skip_removal, i32 unused_value)
 {
     GameSceneState * current = state;
