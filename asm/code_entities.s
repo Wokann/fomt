@@ -5174,14 +5174,9 @@ func_080226E4:
 func_0802274C:
     movs r0, #1
     bx lr
-    .global func_08022750
-    .thumb_func
-func_08022750:
-    push {lr}
-    ldr r0, [r0, #0x34]
-    bl IsSick__C9Livestock
-    pop {r1}
-    bx r1
+    .section .text.livestock_actor_chicken_after_sick_check, "ax", %progbits
+    .align 2, 0
+
     .global func_0802275C
     .thumb_func
 func_0802275C:
@@ -5275,25 +5270,9 @@ func_0802278C:
     .word 0xFF7FFFFF
 .Ljp_08022818:
     .word 0x00FFFFFF
-    .global func_0802281C
-    .thumb_func
-func_0802281C:
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, [r4, #0x34]
-    bl ResetSick__9Livestock
-    ldr r0, [r4, #0x34]
-    bl IsUnhappy__C9Livestock
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Lauto_08022838
-    ldr r0, [r4, #0x34]
-    bl ResetUnhappy__9Livestock
-    .Lauto_08022838:
-    pop {r4}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.livestock_actor_chicken_after_cure, "ax", %progbits
+    .align 2, 0
+
     .global func_08022840
     .thumb_func
 func_08022840:
@@ -6493,14 +6472,9 @@ func_08023314:
     bl CanBeMilked__C3Cow
     pop {r1}
     bx r1
-    .global func_08023320
-    .thumb_func
-func_08023320:
-    push {lr}
-    ldr r0, [r0, #0x34]
-    bl IsSick__C9Livestock
-    pop {r1}
-    bx r1
+    .section .text.livestock_actor_cow_after_sick_check, "ax", %progbits
+    .align 2, 0
+
     .global func_0802332C
     .thumb_func
 func_0802332C:
@@ -6663,25 +6637,9 @@ func_08023458:
     pop {r4}
     pop {r1}
     bx r1
-    .global func_08023478
-    .thumb_func
-func_08023478:
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, [r4, #0x34]
-    bl ResetSick__9Livestock
-    ldr r0, [r4, #0x34]
-    bl IsUnhappy__C9Livestock
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Lauto_08023494
-    ldr r0, [r4, #0x34]
-    bl ResetUnhappy__9Livestock
-    .Lauto_08023494:
-    pop {r4}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.livestock_actor_cow_after_cure, "ax", %progbits
+    .align 2, 0
+
     .global func_0802349C
     .thumb_func
 func_0802349C:
@@ -7930,14 +7888,9 @@ func_08023FC8:
     bl CanBeSheared__C5Sheep
     pop {r1}
     bx r1
-    .global func_08023FD4
-    .thumb_func
-func_08023FD4:
-    push {lr}
-    ldr r0, [r0, #0x34]
-    bl IsSick__C9Livestock
-    pop {r1}
-    bx r1
+    .section .text.livestock_actor_sheep_after_sick_check, "ax", %progbits
+    .align 2, 0
+
     .global func_08023FE0
     .thumb_func
 func_08023FE0:
@@ -8084,25 +8037,9 @@ func_0802410C:
     pop {r1}
     bx r1
     .align 2, 0
-    .global func_0802414C
-    .thumb_func
-func_0802414C:
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, [r4, #0x34]
-    bl ResetSick__9Livestock
-    ldr r0, [r4, #0x34]
-    bl IsUnhappy__C9Livestock
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Ljp_08024168
-    ldr r0, [r4, #0x34]
-    bl ResetUnhappy__9Livestock
-.Ljp_08024168:
-    pop {r4}
-    pop {r0}
-    bx r0
+    .section .text.livestock_actor_sheep_after_cure, "ax", %progbits
     .align 2, 0
+
     .global func_08024170
     .thumb_func
 func_08024170:
@@ -41076,12 +41013,9 @@ func_080229A4: @ 0x080229A4
     .thumb_func
 func_080229B8:
     .byte 0x01, 0x20, 0x70, 0x47
-    .global func_080229BC
-    .thumb_func
-func_080229BC:
-    .byte 0x00, 0xB5, 0x40, 0x6B
-    bl IsSick__C9Livestock
-    .byte 0x02, 0xBC, 0x08, 0x47
+    .section .text.livestock_actor_chicken_after_sick_check, "ax", %progbits
+    .align 2, 0
+
     .global func_080229C8
     .thumb_func
 func_080229C8:
@@ -41160,16 +41094,9 @@ func_080229F8:
     .word 0xFF7FFFFF
 .L08022A84:
     .word 0x00FFFFFF
-    .global func_08022A88
-    .thumb_func
-func_08022A88:
-    .byte 0x10, 0xB5, 0x04, 0x1C, 0x60, 0x6B
-    bl ResetSick__9Livestock
-    .byte 0x60, 0x6B
-    bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x02, 0xD0, 0x60, 0x6B
-    bl ResetUnhappy__9Livestock
-    .byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    .section .text.livestock_actor_chicken_after_cure, "ax", %progbits
+    .align 2, 0
+
     .global func_08022AAC
     .thumb_func
 func_08022AAC:
@@ -41788,12 +41715,9 @@ func_08023580:
     .byte 0x00, 0xB5, 0x40, 0x6B
     bl CanBeMilked__C3Cow
     .byte 0x02, 0xBC, 0x08, 0x47
-    .global func_0802358C
-    .thumb_func
-func_0802358C:
-    .byte 0x00, 0xB5, 0x40, 0x6B
-    bl IsSick__C9Livestock
-    .byte 0x02, 0xBC, 0x08, 0x47
+    .section .text.livestock_actor_cow_after_sick_check, "ax", %progbits
+    .align 2, 0
+
     .global func_08023598
     .thumb_func
 func_08023598:
@@ -41939,16 +41863,9 @@ func_080236C4:
     pop {r4}
     pop {r1}
     bx r1
-    .global func_080236E4
-    .thumb_func
-func_080236E4:
-    .byte 0x10, 0xB5, 0x04, 0x1C, 0x60, 0x6B
-    bl ResetSick__9Livestock
-    .byte 0x60, 0x6B
-    bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x02, 0xD0, 0x60, 0x6B
-    bl ResetUnhappy__9Livestock
-    .byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    .section .text.livestock_actor_cow_after_cure, "ax", %progbits
+    .align 2, 0
+
     .global func_08023708
     .thumb_func
 func_08023708:
@@ -42630,12 +42547,9 @@ func_08024234:
     .byte 0x00, 0xB5, 0x40, 0x6B
     bl CanBeSheared__C5Sheep
     .byte 0x02, 0xBC, 0x08, 0x47
-    .global func_08024240
-    .thumb_func
-func_08024240:
-    .byte 0x00, 0xB5, 0x40, 0x6B
-    bl IsSick__C9Livestock
-    .byte 0x02, 0xBC, 0x08, 0x47
+    .section .text.livestock_actor_sheep_after_sick_check, "ax", %progbits
+    .align 2, 0
+
     .global func_0802424C
     .thumb_func
 func_0802424C:
@@ -42755,25 +42669,9 @@ func_08024378:
     pop {r1}
     bx r1
     .align 2, 0
-    .global func_080243B8
-    .thumb_func
-func_080243B8:
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, [r4, #0x34]
-    bl ResetSick__9Livestock
-    ldr r0, [r4, #0x34]
-    bl IsUnhappy__C9Livestock
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L080243D4
-    ldr r0, [r4, #0x34]
-    bl ResetUnhappy__9Livestock
-.L080243D4:
-    pop {r4}
-    pop {r0}
-    bx r0
+    .section .text.livestock_actor_sheep_after_cure, "ax", %progbits
     .align 2, 0
+
     .global func_080243DC
     .thumb_func
 func_080243DC:

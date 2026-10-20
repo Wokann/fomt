@@ -1266,7 +1266,7 @@ extern void func_08023F90(void);
 extern void func_08023FB8(void);
 extern void func_08020070(void);
 extern void func_08023FC8(void);
-extern void func_08023FD4(void);
+extern void IsSick__C10SheepActor(void);
 extern void func_08023FE0(void);
 extern void func_08024010(void);
 extern void func_08020084(void);
@@ -1274,7 +1274,7 @@ extern void func_080240A0(void);
 extern void func_080240AC(void);
 extern void func_08020090(void);
 extern void func_0802410C(void);
-extern void func_0802414C(void);
+extern void CureSickness__10SheepActor(void);
 extern void func_08024170(void);
 extern void func_080241FC(void);
 extern void func_080236DC(void);
@@ -1300,7 +1300,7 @@ extern void func_080241FC(void);
 extern void func_08024224(void);
 extern void func_080202DC(void);
 extern void func_08024234(void);
-extern void func_08024240(void);
+extern void IsSick__C10SheepActor(void);
 extern void func_0802424C(void);
 extern void func_0802427C(void);
 extern void func_080202F0(void);
@@ -1308,7 +1308,7 @@ extern void func_0802430C(void);
 extern void func_08024318(void);
 extern void func_080202FC(void);
 extern void func_08024378(void);
-extern void func_080243B8(void);
+extern void CureSickness__10SheepActor(void);
 extern void func_080243DC(void);
 extern void func_08024468(void);
 extern void func_08023948(void);
@@ -1341,7 +1341,7 @@ extern RawVTableFunction const vtable_unk_080E6284[]
         func_08023FB8,
         func_08020070,
         func_08023FC8,
-        func_08023FD4,
+        IsSick__C10SheepActor,
         func_08023FE0,
         func_08024010,
         func_08020084,
@@ -1349,7 +1349,7 @@ extern RawVTableFunction const vtable_unk_080E6284[]
         func_080240AC,
         func_08020090,
         func_0802410C,
-        func_0802414C,
+        CureSickness__10SheepActor,
         func_08024170,
         func_080241FC,
         func_080236DC,
@@ -1377,7 +1377,7 @@ extern RawVTableFunction const vtable_unk_080E6284[]
         func_08024224,
         func_080202DC,
         func_08024234,
-        func_08024240,
+        IsSick__C10SheepActor,
         func_0802424C,
         func_0802427C,
         func_080202F0,
@@ -1385,7 +1385,7 @@ extern RawVTableFunction const vtable_unk_080E6284[]
         func_08024318,
         func_080202FC,
         func_08024378,
-        func_080243B8,
+        CureSickness__10SheepActor,
         func_080243DC,
         func_08024468,
         func_08023948,
@@ -1404,7 +1404,7 @@ extern void func_08020068(void);
 extern void func_08023304(void);
 extern void func_08023314(void);
 extern void func_08020074(void);
-extern void func_08023320(void);
+extern void IsSick__C8CowActor(void);
 extern void func_0802332C(void);
 extern void func_0802335C(void);
 extern void func_080233EC(void);
@@ -1412,7 +1412,7 @@ extern void func_08020088(void);
 extern void func_080233F8(void);
 extern void func_08023458(void);
 extern void func_08020094(void);
-extern void func_08023478(void);
+extern void CureSickness__8CowActor(void);
 extern void func_0802349C(void);
 extern void func_08023528(void);
 extern void func_08022A48(void);
@@ -1428,7 +1428,7 @@ extern void func_080202D4(void);
 extern void func_08023570(void);
 extern void func_08023580(void);
 extern void func_080202E0(void);
-extern void func_0802358C(void);
+extern void IsSick__C8CowActor(void);
 extern void func_08023598(void);
 extern void func_080235C8(void);
 extern void func_08023658(void);
@@ -1436,7 +1436,7 @@ extern void func_080202F4(void);
 extern void func_08023664(void);
 extern void func_080236C4(void);
 extern void func_08020300(void);
-extern void func_080236E4(void);
+extern void CureSickness__8CowActor(void);
 extern void func_08023708(void);
 extern void func_08023794(void);
 extern void func_08022CB4(void);
@@ -1469,7 +1469,7 @@ extern RawVTableFunction const vtable_unk_080E6310[]
         func_08023304,
         func_08023314,
         func_08020074,
-        func_08023320,
+        IsSick__C8CowActor,
         func_0802332C,
         func_0802335C,
         func_080233EC,
@@ -1477,7 +1477,7 @@ extern RawVTableFunction const vtable_unk_080E6310[]
         func_080233F8,
         func_08023458,
         func_08020094,
-        func_08023478,
+        CureSickness__8CowActor,
         func_0802349C,
         func_08023528,
         func_08022A48,
@@ -1505,7 +1505,7 @@ extern RawVTableFunction const vtable_unk_080E6310[]
         func_08023570,
         func_08023580,
         func_080202E0,
-        func_0802358C,
+        IsSick__C8CowActor,
         func_08023598,
         func_080235C8,
         func_08023658,
@@ -1513,7 +1513,7 @@ extern RawVTableFunction const vtable_unk_080E6310[]
         func_08023664,
         func_080236C4,
         func_08020300,
-        func_080236E4,
+        CureSickness__8CowActor,
         func_08023708,
         func_08023794,
         func_08022CB4,
@@ -1530,11 +1530,11 @@ extern void func_08020058(void);
 extern void func_0802005C(void);
 extern void func_0802274C(void);
 extern void func_0802006C(void);
-extern void func_08022750(void);
+extern void IsSick__C12ChickenActor(void);
 extern void func_0802275C(void);
 extern void func_0802278C(void);
 extern void func_0802008C(void);
-extern void func_0802281C(void);
+extern void CureSickness__12ChickenActor(void);
 extern void func_08022840(void);
 extern void func_080200A0(void);
 extern void func_080221D8(void);
@@ -1548,11 +1548,11 @@ extern void func_080202C4(void);
 extern void func_080202C8(void);
 extern void func_080229B8(void);
 extern void func_080202D8(void);
-extern void func_080229BC(void);
+extern void IsSick__C12ChickenActor(void);
 extern void func_080229C8(void);
 extern void func_080229F8(void);
 extern void func_080202F8(void);
-extern void func_08022A88(void);
+extern void CureSickness__12ChickenActor(void);
 extern void func_08022AAC(void);
 extern void func_0802030C(void);
 extern void func_08022444(void);
@@ -1585,7 +1585,7 @@ extern RawVTableFunction const vtable_unk_080E639C[]
         func_0802006C,
         func_08020070,
         func_08020074,
-        func_08022750,
+        IsSick__C12ChickenActor,
         func_0802275C,
         func_0802278C,
         func_08020084,
@@ -1593,7 +1593,7 @@ extern RawVTableFunction const vtable_unk_080E639C[]
         func_0802008C,
         func_08020090,
         func_08020094,
-        func_0802281C,
+        CureSickness__12ChickenActor,
         func_08022840,
         func_080200A0,
         func_080221D8,
@@ -1621,7 +1621,7 @@ extern RawVTableFunction const vtable_unk_080E639C[]
         func_080202D8,
         func_080202DC,
         func_080202E0,
-        func_080229BC,
+        IsSick__C12ChickenActor,
         func_080229C8,
         func_080229F8,
         func_080202F0,
@@ -1629,7 +1629,7 @@ extern RawVTableFunction const vtable_unk_080E639C[]
         func_080202F8,
         func_080202FC,
         func_08020300,
-        func_08022A88,
+        CureSickness__12ChickenActor,
         func_08022AAC,
         func_0802030C,
         func_08022444,

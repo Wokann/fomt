@@ -361,6 +361,9 @@ $(BUILD_DIR)/src/game_state.o: CXXFLAGS += -ffunction-sections
 # Keep each functional module at its original compiler-owned code positions.
 $(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/src/game_world.o $(BUILD_DIR)/src/world_map.o $(BUILD_DIR)/src/game_menu.o: CXXFLAGS += -ffunction-sections
 
+# Species health callbacks retain their distinct native function positions.
+$(BUILD_DIR)/src/livestock_actor.o: CXXFLAGS += -ffunction-sections
+
 # Grid methods are interleaved with unrecovered actor routines in the ROM.
 $(BUILD_DIR)/src/actor_state.o: CXXFLAGS += -ffunction-sections
 

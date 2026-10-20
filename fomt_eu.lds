@@ -270,6 +270,7 @@ SECTIONS
         src/game_scene.o(
             .text.SetPlayerActorUpdateSuspended__9GameScene8MaryBool
             .text.ShowPlayerHoldingTool__9GameScene14MaryItemToolId);
+        src/game_scene.o(.text.CureAllSickLivestock__9GameScene);
         asm/game_state.o(.text.game_scene_after_world_effect_commands);
         src/game_world.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
@@ -325,6 +326,18 @@ SECTIONS
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
         asm/code_entities.o(.text);
+        src/livestock_actor.o(.text.IsSick__C12ChickenActor);
+        asm/code_entities.o(.text.livestock_actor_chicken_after_sick_check);
+        src/livestock_actor.o(.text.CureSickness__12ChickenActor);
+        asm/code_entities.o(.text.livestock_actor_chicken_after_cure);
+        src/livestock_actor.o(.text.IsSick__C8CowActor);
+        asm/code_entities.o(.text.livestock_actor_cow_after_sick_check);
+        src/livestock_actor.o(.text.CureSickness__8CowActor);
+        asm/code_entities.o(.text.livestock_actor_cow_after_cure);
+        src/livestock_actor.o(.text.IsSick__C10SheepActor);
+        asm/code_entities.o(.text.livestock_actor_sheep_after_sick_check);
+        src/livestock_actor.o(.text.CureSickness__10SheepActor);
+        asm/code_entities.o(.text.livestock_actor_sheep_after_cure);
         src/player_actor.o(.text);
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);

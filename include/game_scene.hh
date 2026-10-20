@@ -22,6 +22,7 @@
 #include "field_render_farm_house_data.hh"
 #include "game_world.hh"
 #include "player_actor.hh"
+#include "livestock_actor.hh"
 
 #pragma interface "game_scene.hh"
 
@@ -962,6 +963,7 @@ struct GameScene : AScene {
     void RemoveEventIcon(MaryEventIconSlot slot);
     void SetPlayerActorUpdateSuspended(MaryBool suspended);
     void ShowPlayerHoldingTool(MaryItemToolId tool_id);
+    void CureAllSickLivestock();
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];

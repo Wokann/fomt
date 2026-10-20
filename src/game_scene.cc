@@ -1191,6 +1191,20 @@ void GameScene::ShowPlayerHoldingTool(MaryItemToolId tool_id)
     current->script_state = 0x19;
 }
 
+void GameScene::CureAllSickLivestock()
+{
+    GameSceneState * current = state;
+    u32 id = ENTITY_ANIMAL_CHICKEN_SLOT_1;
+    // Borrow the slot, not its value: callbacks may replace the current world.
+    GameObject * & world = current->game_object.value;
+    for (; id <= ENTITY_BARN_ANIMAL_SLOT_16; ++id) {
+        LivestockActor * actor = static_cast<LivestockActor *>(
+            world->GetActorEntity(id));
+        if (actor != nullptr && actor->IsSick())
+            actor->CureSickness();
+    }
+}
+
 GameSceneControllerActorRecord::GameSceneControllerActorRecord()
     : location(Location(MAP_NONE, 0, 0), 0), animation(0), event_script(0)
 {
