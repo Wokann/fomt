@@ -828,6 +828,25 @@ EC GameSceneSongPlayerPool & func_0801468C(GameScene & scene)
     return scene.state->song_players;
 }
 
+void GameScene::LightFireplaceAtLocation(MaryMapId map)
+{
+    static_cast<GameSceneWorldPrefix *>(state->game_object.value)->LightFireplaceAtLocation(map);
+}
+
+void GameScene::SetVaseArticleId(MaryItemArticleId article)
+{
+    static_cast<GameSceneWorldPrefix *>(state->game_object.value)->SetVaseArticleId(article);
+}
+
+void GameScene::BeginEggIncubation(MaryChickenCoopIncubatorIndex incubator)
+{
+    GameSceneState * current = state;
+    // Storage checks capacity, but the native refresh still receives the
+    // original full-width index even when that storage operation rejects it.
+    current->save->farm.coop.BeginIncubation(incubator);
+    current->game_object.value->RefreshChickenCoopIncubator(incubator);
+}
+
 EC u32 func_0801740C(FieldPlot const & plot)
 {
     switch (plot.GetUnk2()) {

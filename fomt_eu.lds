@@ -179,9 +179,37 @@ SECTIONS
             .text.TextVariable*__9GameScene* .text.CallScript__9GameScene*
             .text.QueueScript__9GameScene* .text.WaitFrames__9GameScene*);
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
-        src/game_scene.o(.text.*__9GameScene*);
+        src/game_scene.o(
+            .text.PrepareClockMenuTransition__9GameScene
+            .text.RestoreAfterClockMenu__9GameScene
+            .text.PrepareCookingMenuTransition__9GameScene
+            .text.RestoreAfterCookingMenu__9GameScene
+            .text.PrepareRecipeMenuTransition__9GameScene
+            .text.RestoreAfterRecipeMenu__9GameScene
+            .text.RefreshBarnFeedTrough__9GameScene23MaryBarnFeedTroughIndex
+            .text.RefreshChickenFeedTrough__9GameScene30MaryChickenCoopFeedTroughIndex
+            .text.StartShipmentBoxDepositAnimation__9GameScene
+            .text.IsPlayerRidingHorse__9GameScene
+            .text.TryShipPlayerHeldItem__9GameScene
+            .text.SetPlayerHeldItem__9GameSceneRC12RucksackItemb
+            .text.GivePlayerBasket__9GameScene
+            .text.ThrowPlayerHeldItem__9GameScene
+            .text.UsePlayerHeldItem__9GameScene
+            .text.ClearPlayerHeldItem__9GameScene
+            .text.RemoveRecordPlayerAlbum__9GameScene
+            .text.SwapRecordPlayerAlbum__9GameScene17MaryItemArticleId
+            .text.SetEntityEventScript__9GameSceneUii
+            .text.ClearEntityEventScript__9GameSceneUi
+            .text.SetTelevisionProgram__9GameScene23MaryTelevisionProgramId
+            .text.EndTelevisionProgram__9GameScene
+            .text.EnableScriptedNpcControl__9GameScene
+            .text.DisableScriptedNpcControl__9GameScene);
         asm/game_state.o(.text.game_scene_menu_hooks_after);
         src/game_scene.o(.text.func_0801468C);
+        src/game_scene.o(
+            .text.LightFireplaceAtLocation__9GameScene9MaryMapId
+            .text.SetVaseArticleId__9GameScene17MaryItemArticleId
+            .text.BeginEggIncubation__9GameScene29MaryChickenCoopIncubatorIndex);
         asm/game_state.o(.text.game_scene_song_players_after);
         src/game_scene.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);

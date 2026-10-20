@@ -4607,66 +4607,6 @@ func_080145F8:
     .section .text.game_scene_song_players_after, "ax", %progbits
     .align 2, 0
 
-    .global func_08014694
-    .thumb_func
-func_08014694:
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r2, [r0]
-    movs r3, #0xa8
-    lsls r3, r3, #1
-    adds r2, r2, r3
-    ldr r2, [r2]
-    bl _call_via_r2
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    .global func_080146B0
-    .thumb_func
-func_080146B0:
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r2, [r0]
-    movs r3, #0xaa
-    lsls r3, r3, #1
-    adds r2, r2, r3
-    ldr r2, [r2]
-    bl _call_via_r2
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    .global func_080146CC
-    .thumb_func
-func_080146CC:
-    push {r4, r5, lr}
-    adds r5, r1, #0
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #0x8c
-    ldr r0, [r0]
-    movs r1, #0x82
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    adds r1, r5, #0
-    bl BeginIncubation__4CoopUi
-    adds r4, #0xa8
-    ldr r0, [r4]
-    ldr r1, [r0]
-    adds r1, #0xac
-    ldr r2, [r1]
-    adds r1, r5, #0
-    bl _call_via_r2
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-
     .global func_080146FC
     .thumb_func
 func_080146FC:
@@ -22111,63 +22051,6 @@ func_080145F8: @ 0x080145F8
 .L08014688: .4byte vtable_unk_080E5D04
 
     .section .text.game_scene_song_players_after, "ax", %progbits
-    .align 2, 0
-
-    thumb_func_start func_08014694
-func_08014694: @ 0x08014694
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r2, [r0]
-    movs r3, #0xa8
-    lsls r3, r3, #1
-    adds r2, r2, r3
-    ldr r2, [r2]
-    bl _call_via_r2
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_080146B0
-func_080146B0: @ 0x080146B0
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r2, [r0]
-    movs r3, #0xaa
-    lsls r3, r3, #1
-    adds r2, r2, r3
-    ldr r2, [r2]
-    bl _call_via_r2
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_080146CC
-func_080146CC: @ 0x080146CC
-    push {r4, r5, lr}
-    adds r5, r1, #0
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #0x8c
-    ldr r0, [r0]
-    movs r1, #0x82
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    adds r1, r5, #0
-    bl BeginIncubation__4CoopUi
-    adds r4, #0xa8
-    ldr r0, [r4]
-    ldr r1, [r0]
-    adds r1, #0xac
-    ldr r2, [r1]
-    adds r1, r5, #0
-    bl _call_via_r2
-    pop {r4, r5}
-    pop {r0}
-    bx r0
     .align 2, 0
 
     thumb_func_start func_080146FC

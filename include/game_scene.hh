@@ -305,6 +305,10 @@ struct GameSceneWorldUnk1080Entry {
 struct GameSceneWorldPrefix : GameObject {
     // Native world slot +0x148 selects the default audio sequence.
     virtual u32 GetDefaultAudioSequence() = 0;
+    // Preserve the unrecovered slot before the world-only furniture hooks.
+    virtual void vfunc_14C();
+    virtual void LightFireplaceAtLocation(MaryMapId map);
+    virtual void SetVaseArticleId(MaryItemArticleId article);
 
     GameSceneWorldData data;
     GameStateSaveImage * save;
@@ -1277,6 +1281,9 @@ struct GameScene : AScene {
     void EndTelevisionProgram();
     void EnableScriptedNpcControl();
     void DisableScriptedNpcControl();
+    void LightFireplaceAtLocation(MaryMapId map);
+    void SetVaseArticleId(MaryItemArticleId article);
+    void BeginEggIncubation(MaryChickenCoopIncubatorIndex incubator);
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];
