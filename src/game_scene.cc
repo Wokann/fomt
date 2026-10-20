@@ -229,86 +229,16 @@ SceneTransitionOwner GameScene::Run()
     return sub_080D8178(state);
 }
 
-void GameScene::SetEntityPosition(u32 id, i32 x, i32 y, u32 facing)
-{
-    GameSceneState * current = state;
-    u32 map = current->game_object.value->vfunc_14();
-    func_080D7F9C(current, id, map, x, y, facing);
-}
-
-i32 GameScene::GetEntityX(u32 id)
-{
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
-    i32 value = 0;
-    if (entity != nullptr)
-        value = entity->GetQ16X();
-    return value >> 16;
-}
-
-i32 GameScene::GetEntityY(u32 id)
-{
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
-    i32 value = 0;
-    if (entity != nullptr)
-        value = entity->GetQ16Y();
-    return value >> 16;
-}
-
-void GameScene::SetEntityFacing(u32 id, u32 facing)
-{
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
-    if (entity != nullptr && entity->facing != facing)
-        entity->SetAnimFacing(facing);
-}
-
-u32 GameScene::GetEntityFacing(u32 id)
-{
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
-    return entity != nullptr ? entity->facing : 0;
-}
-
-u32 GameScene::GetEntityMap(u32 id)
-{
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
-    u32 map = MAP_NONE;
-    if (entity != nullptr)
-        map = entity->GetMap();
-    return map;
-}
-
 void GameScene::SetEntitySpritePriority(u32 id, u32 priority)
 {
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
+    AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr)
         entity->unk_21 = priority;
 }
 
-void GameScene::MoveEntityXTo(u32 id, u32 target, i32 speed_q16)
-{
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
-    if (entity != nullptr)
-        func_08032308(*entity, target, speed_q16);
-}
-
-void GameScene::MoveEntityYTo(u32 id, u32 target, i32 speed_q16)
-{
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
-    if (entity != nullptr)
-        func_0803233C(*entity, target, speed_q16);
-}
-
-void GameScene::WaitForEntityMovement(u32 id)
-{
-    GameSceneState * current = state;
-    AActorEntity * entity = current->game_object.value->GetActorEntity(id);
-    current->waiting_entity = entity;
-    if (entity != nullptr)
-        current->script_state = 0x16;
-}
-
 void GameScene::SetEntityAnim(u32 id, u32 animation)
 {
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
+    AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr && entity->anim_id != animation)
         entity->SetAnim(animation);
 }
@@ -319,14 +249,14 @@ void GameScene::NoOp014(i32)
 
 void GameScene::HideEntity(u32 id)
 {
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
+    AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr)
         entity->PutOutOfTown();
 }
 
 void GameScene::OffsetEntityPosition(u32 id, i32 delta_x, i32 delta_y)
 {
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
+    AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr) {
         // This native callback uses the extended +0x30 selector, not the
         // actor's +0x20 facing. It does not write the actor's coordinates.
@@ -341,21 +271,21 @@ void GameScene::OffsetEntityPosition(u32 id, i32 delta_x, i32 delta_y)
 
 void GameScene::StartEntityEffect(u32 id, u32 effect, u32 persistent)
 {
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
+    AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr)
         func_08032384(*entity, effect, persistent != 0);
 }
 
 void GameScene::StopEntityEffect(u32 id)
 {
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
+    AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr)
         func_080323C8(*entity);
 }
 
 void GameScene::SetEntityAuxRenderProfile(u32 id, u32 profile)
 {
-    AActorEntity * entity = state->game_object.value->GetActorEntity(id);
+    AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr)
         func_080323E0(*entity, profile);
 }
@@ -729,14 +659,14 @@ void GameScene::StartShipmentBoxDepositAnimation()
 // ENTITY_PLAYER is required here, unlike the nullable arbitrary-entity calls.
 bool GameScene::IsPlayerRidingHorse()
 {
-    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))->IsRidingHorse();
+    return static_cast<PlayerActor *>(state->game_object.value->GetEntity(ENTITY_PLAYER))->IsRidingHorse();
 }
 
 bool GameScene::TryShipPlayerHeldItem()
 {
     GameSceneState * current = state;
     bool result;
-    if (static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->TryShipHeldItem()) {
+    if (static_cast<PlayerActor *>(current->game_object.value->GetEntity(ENTITY_PLAYER))->TryShipHeldItem()) {
         current->script_state = 0x19;
         result = true;
     } else {
@@ -750,7 +680,7 @@ bool GameScene::TryShipPlayerHeldItem()
 bool GameScene::SetPlayerHeldItem(RucksackItem const & item, bool wrapped)
 {
     GameSceneState * current = state;
-    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->SetHeldItem(item, wrapped);
+    static_cast<PlayerActor *>(current->game_object.value->GetEntity(ENTITY_PLAYER))->SetHeldItem(item, wrapped);
     current->script_state = 0x19;
     return true;
 }
@@ -758,7 +688,7 @@ bool GameScene::SetPlayerHeldItem(RucksackItem const & item, bool wrapped)
 bool GameScene::GivePlayerBasket()
 {
     GameSceneState * current = state;
-    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->GiveBasket();
+    static_cast<PlayerActor *>(current->game_object.value->GetEntity(ENTITY_PLAYER))->GiveBasket();
     current->script_state = 0x19;
     return true;
 }
@@ -766,20 +696,20 @@ bool GameScene::GivePlayerBasket()
 void GameScene::ThrowPlayerHeldItem()
 {
     GameSceneState * current = state;
-    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->ThrowHeldItem();
+    static_cast<PlayerActor *>(current->game_object.value->GetEntity(ENTITY_PLAYER))->ThrowHeldItem();
     current->script_state = 0x19;
 }
 
 void GameScene::UsePlayerHeldItem()
 {
     GameSceneState * current = state;
-    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->UseHeldItem();
+    static_cast<PlayerActor *>(current->game_object.value->GetEntity(ENTITY_PLAYER))->UseHeldItem();
     current->script_state = 0x19;
 }
 
 void GameScene::ClearPlayerHeldItem()
 {
-    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))->ClearHeldItem();
+    static_cast<PlayerActor *>(state->game_object.value->GetEntity(ENTITY_PLAYER))->ClearHeldItem();
 }
 
 MaryItemArticleId GameScene::RemoveRecordPlayerAlbum()
@@ -794,14 +724,14 @@ MaryItemArticleId GameScene::SwapRecordPlayerAlbum(MaryItemArticleId article)
 
 void GameScene::SetEntityEventScript(u32 entity_id, MaryScriptId script_id)
 {
-    AActorEntity * entity = state->game_object.value->GetActorEntity(entity_id);
+    AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(entity_id));
     if (entity != nullptr)
         entity->SetEventScript(script_id);
 }
 
 void GameScene::ClearEntityEventScript(u32 entity_id)
 {
-    AActorEntity * entity = state->game_object.value->GetActorEntity(entity_id);
+    AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(entity_id));
     if (entity != nullptr)
         entity->SetEventScript(0);
 }
@@ -857,7 +787,7 @@ void GameScene::RefreshAllNpcSchedules()
     for (u32 id = ENTITY_LILLIA; id <= ENTITY_CHILD; ++id) {
         GameObject * & world = current->game_object.value;
         ANpcEntity * npc = static_cast<ANpcEntity *>(
-            world->GetActorEntity(id));
+            world->GetEntity(id));
         if (npc != nullptr)
             npc->vfunc_3C(3);
     }
@@ -866,7 +796,7 @@ void GameScene::RefreshAllNpcSchedules()
 void GameScene::ChangePlayerStaminaAndFatigue(MaryStaminaDelta stamina_delta,
     MaryFatigueDelta fatigue_delta)
 {
-    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
+    static_cast<PlayerActor *>(state->game_object.value->GetEntity(
         ENTITY_PLAYER))->ChangeStaminaAndFatigue(stamina_delta, fatigue_delta);
 }
 
@@ -881,7 +811,7 @@ void GameScene::CreateFarmHorse(MaryBool skip_creation, MaryAnimalHorseAgeStage 
             static_cast<u32>(age_stage) * 120));
         GameObject * & world = current->game_object.value;
         world->vfunc_38(ENTITY_FARM_HORSE);
-        AActorEntity * horse = world->GetActorEntity(ENTITY_FARM_HORSE);
+        AActorEntity * horse = static_cast<AActorEntity *>(world->GetEntity(ENTITY_FARM_HORSE));
         if (horse != nullptr && !horse->vfunc_28())
             horse->vfunc_20();
     }
@@ -899,13 +829,13 @@ void GameScene::RemoveFarmHorse(MaryBool skip_removal, i32 unused_value)
 
 MaryAnimalSlotIndex GameScene::GetInteractingAnimalIndex()
 {
-    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetEntity(
         ENTITY_PLAYER))->GetInteractingAnimalIndex();
 }
 
 bool GameScene::IsPlayerHoldingTool()
 {
-    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetEntity(
         ENTITY_PLAYER))->IsHoldingTool();
 }
 
@@ -914,7 +844,7 @@ void GameScene::BeginHoldingActorGraphic(MaryAnimationId animation_id)
     // The native player action consumes only the low 16 animation-ID bits.
     u16 animation = animation_id;
     GameSceneState * current = state;
-    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(
+    static_cast<PlayerActor *>(current->game_object.value->GetEntity(
         ENTITY_PLAYER))->BeginHoldingActorGraphic(animation);
     current->script_state = 0x19;
 }
@@ -922,7 +852,7 @@ void GameScene::BeginHoldingActorGraphic(MaryAnimationId animation_id)
 void GameScene::ObtainPowerBerry()
 {
     GameSceneState * current = state;
-    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(
+    static_cast<PlayerActor *>(current->game_object.value->GetEntity(
         ENTITY_PLAYER))->ObtainPowerBerry();
     current->script_state = 0x19;
 }
@@ -930,7 +860,7 @@ void GameScene::ObtainPowerBerry()
 void GameScene::ObtainMysticBerry()
 {
     GameSceneState * current = state;
-    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(
+    static_cast<PlayerActor *>(current->game_object.value->GetEntity(
         ENTITY_PLAYER))->ObtainMysticBerry();
     current->script_state = 0x19;
 }
@@ -940,7 +870,7 @@ bool GameScene::IsHarvestSpriteDailyWorkComplete(MaryCharacterId sprite_id)
     GameSceneState * current = state;
     // These seven character IDs are also their runtime entity IDs.
     if (static_cast<u32>(sprite_id) - CHARACTER_STAID <= CHARACTER_TIMID - CHARACTER_STAID) {
-        AEntity * entity = current->game_object.value->GetActorEntity(sprite_id);
+        AEntity * entity = current->game_object.value->GetEntity(sprite_id);
         if (entity != nullptr)
             return func_08033B24(static_cast<EntityUiHarvestSpriteState *>(entity));
     }
@@ -949,25 +879,25 @@ bool GameScene::IsHarvestSpriteDailyWorkComplete(MaryCharacterId sprite_id)
 
 MaryHeldItemKind GameScene::GetPresentedItemKind()
 {
-    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetEntity(
         ENTITY_PLAYER))->GetPresentedItemKind();
 }
 
 i32 GameScene::GetPresentedItemId()
 {
-    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetEntity(
         ENTITY_PLAYER))->GetPresentedItemId();
 }
 
 bool GameScene::IsPresentedItemGiftWrapped()
 {
-    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetEntity(
         ENTITY_PLAYER))->IsPresentedItemGiftWrapped();
 }
 
 GameSceneCaughtFish const * GameScene::GetCaughtFish()
 {
-    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetEntity(
         ENTITY_PLAYER))->GetCaughtFish();
 }
 
@@ -985,7 +915,7 @@ void GameScene::CreatePlayerChildEntity()
     // Refresh may replace the world; resolve the child from the current slot.
     GameObject * & world = current->game_object.value;
     world->vfunc_38(ENTITY_CHILD);
-    AActorEntity * child = world->GetActorEntity(ENTITY_CHILD);
+    AActorEntity * child = static_cast<AActorEntity *>(world->GetEntity(ENTITY_CHILD));
     if (child != nullptr && !child->vfunc_28())
         child->vfunc_20();
 }
@@ -1041,38 +971,38 @@ void GameScene::func_08016C10()
 // These commands forward to its owned controller without creating a host.
 void GameScene::CreateNewYearSunriseEffect()
 {
-    func_080387B8(state->game_object.value->GetActorEntity(0x5D));
+    func_080387B8(state->game_object.value->GetEntity(0x5D));
 }
 
 void GameScene::PlayNewYearSunriseEffect()
 {
     GameSceneState * current = state;
-    func_080387C8(current->game_object.value->GetActorEntity(0x5D));
+    func_080387C8(current->game_object.value->GetEntity(0x5D));
     // The callback may change scene.state; the native write uses this state.
     current->script_state = 0x1C;
 }
 
 void GameScene::DestroyNewYearSunriseEffect()
 {
-    func_080387EC(state->game_object.value->GetActorEntity(0x5D));
+    func_080387EC(state->game_object.value->GetEntity(0x5D));
 }
 
 void GameScene::PlayStarSparkleEffect()
 {
     GameSceneState * current = state;
-    func_080387FC(current->game_object.value->GetActorEntity(0x5D));
+    func_080387FC(current->game_object.value->GetEntity(0x5D));
     current->script_state = 0x1B;
 }
 
 void GameScene::EnterHotSpringBathingState()
 {
-    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(state->game_object.value->GetEntity(ENTITY_PLAYER))
         ->EnterHotSpringBathingState();
 }
 
 void GameScene::ExitHotSpringBathingState()
 {
-    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(state->game_object.value->GetEntity(ENTITY_PLAYER))
         ->ExitHotSpringBathingState();
 }
 
@@ -1081,7 +1011,7 @@ void GameScene::RefreshEntity(MaryEntityId entity_id)
     // Refresh may replace the world; re-read its current slot afterwards.
     GameObject * & world = state->game_object.value;
     world->vfunc_38(entity_id);
-    AActorEntity * actor = world->GetActorEntity(entity_id);
+    AActorEntity * actor = static_cast<AActorEntity *>(world->GetEntity(entity_id));
     if (actor != nullptr && !actor->vfunc_28())
         actor->vfunc_20();
 }
@@ -1094,7 +1024,7 @@ void GameScene::RemoveEntity(MaryEntityId entity_id)
 void GameScene::PreservePlayerLocationForNextDay()
 {
     GameSceneState * current = state;
-    AActorEntity * player = current->game_object.value->GetActorEntity(ENTITY_PLAYER);
+    AActorEntity * player = static_cast<AActorEntity *>(current->game_object.value->GetEntity(ENTITY_PLAYER));
     // Lookup can replace the global controller; resolve it after the call.
     GameScenePreservedPlayerLocation & saved =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C)->preserved_player_location;
@@ -1142,21 +1072,21 @@ void GameScene::EatRandomMeal()
 {
     GameSceneState * current = state;
     // Native order obtains the player/vtable before selecting the meal.
-    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(current->game_object.value->GetEntity(ENTITY_PLAYER))
         ->EatFood(ChooseRandomMeal(*current));
     current->script_state = 0x19;
 }
 
 void GameScene::PreparePlayerForScriptedAnimation()
 {
-    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(state->game_object.value->GetEntity(ENTITY_PLAYER))
         ->PrepareForScriptedAnimation();
 }
 
 void GameScene::RestorePlayerAfterScriptedAnimation()
 {
     GameSceneState * current = state;
-    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(current->game_object.value->GetEntity(ENTITY_PLAYER))
         ->RestoreAfterScriptedAnimation();
     current->script_state = 0x19;
 }
@@ -1179,14 +1109,14 @@ void GameScene::SetPlayerActorUpdateSuspended(MaryBool suspended)
 {
     // Native entry keeps the low byte; do not replace it with bool normalization.
     u8 value = suspended;
-    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(state->game_object.value->GetEntity(ENTITY_PLAYER))
         ->SetUpdateSuspended(value);
 }
 
 void GameScene::ShowPlayerHoldingTool(MaryItemToolId tool_id)
 {
     GameSceneState * current = state;
-    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(current->game_object.value->GetEntity(ENTITY_PLAYER))
         ->ShowHoldingTool(tool_id);
     current->script_state = 0x19;
 }
@@ -1199,7 +1129,7 @@ void GameScene::CureAllSickLivestock()
     GameObject * & world = current->game_object.value;
     for (; id <= ENTITY_BARN_ANIMAL_SLOT_16; ++id) {
         LivestockActor * actor = static_cast<LivestockActor *>(
-            world->GetActorEntity(id));
+            world->GetEntity(id));
         if (actor != nullptr && actor->IsSick())
             actor->CureSickness();
     }
@@ -1219,7 +1149,7 @@ EC void func_080D7F08(GameSceneState * state)
 {
     for (u32 id = ENTITY_LILLIA; id <= ENTITY_CHILD; ++id) {
         GameObject * & game_object = state->game_object.value;
-        ANpcEntity * entity = static_cast<ANpcEntity *>(game_object->GetActorEntity(id));
+        ANpcEntity * entity = static_cast<ANpcEntity *>(game_object->GetEntity(id));
         if (entity != nullptr)
             entity->vfunc_3C(3);
     }

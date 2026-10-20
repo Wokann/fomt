@@ -14,7 +14,7 @@ Farmer::Farmer(char const * arg_1, GameDate const & arg_2)
       step_count(0),
       unk_48_1D(0),
       unk_4C_00(0),
-      unk_4C_07(0),
+      deepest_mine_floor(0),
       unk_4C_0F(0),
       unk_50_0D(0)
 {
@@ -212,9 +212,9 @@ EC unsigned int func_0800E970(Farmer const & self)
     return self.unk_4C_00;
 }
 
-EC unsigned int func_0800E97C(Farmer const & self)
+EC unsigned int GetDeepestMineFloor(Farmer const & self)
 {
-    return self.unk_4C_07;
+    return self.deepest_mine_floor;
 }
 
 EC unsigned int func_0800E988(Farmer const & self)
@@ -491,11 +491,11 @@ EC void func_0800EE60(Farmer & self)
     }
 }
 
-EC bool func_0800EECC(Farmer & self, unsigned int arg_1)
+EC bool UpdateDeepestMineFloor(Farmer & self, unsigned int floor)
 {
-    if (self.unk_4C_07 < arg_1)
+    if (self.deepest_mine_floor < floor)
     {
-        self.unk_4C_07 = arg_1;
+        self.deepest_mine_floor = floor;
         return true;
     }
 

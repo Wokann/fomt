@@ -624,8 +624,8 @@ extern void GetWorldMapPixelHeight(void);
 extern void GetWorldMapTerrain(void);
 extern void func_0801A8E0(void);
 extern void RemoveWorldEntity(void);
-extern void func_0801FD00(void);
-extern void func_0801FCF4(void);
+extern void GetEntity__20GameSceneWorldPrefixUi(void);
+extern void GetEntity__C20GameSceneWorldPrefixUi(void);
 extern void func_0801B5C0(void);
 extern void func_0801FCDC(void);
 extern void GetWorldSpritePaletteBank(void);
@@ -1100,8 +1100,8 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     GetWorldMapTerrain,
     func_0801A8E0,
     RemoveWorldEntity,
-    func_0801FD00,
-    func_0801FCF4,
+    GetEntity__20GameSceneWorldPrefixUi,
+    GetEntity__C20GameSceneWorldPrefixUi,
     func_0801B5C0,
     func_0801FCDC,
     GetWorldSpritePaletteBank,

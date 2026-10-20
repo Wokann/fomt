@@ -147,7 +147,7 @@ typedef char GameSceneWorldUnk1020SizeCheck[sizeof(GameSceneWorldUnk1020) == 0xA
 // real C++ ABI names; declaring them does not count as C++ code recovery.
 struct GameSceneWorldData {
     GameSceneWorldMapOwner map;
-    AActorEntity * entities[100];
+    AEntity * entities[100];
     u32 unk_194;
     GameScenePaletteCache palette_cache;
     IndexedResourceArchive actor_archive;
@@ -190,6 +190,8 @@ struct GameSceneWorldUnk1080Entry {
 // Only the verified prefix of the enclosing GameObject is modeled. It is
 // never allocated or used to infer the full size of a native world subclass.
 struct GameSceneWorldPrefix : GameObject {
+    virtual AEntity * GetEntity(u32 index);
+    virtual AEntity * GetEntity(u32 index) const;
     // Native world slot +0x148 selects the default audio sequence.
     virtual u32 GetDefaultAudioSequence() = 0;
     // Preserve the unrecovered slot before the world-only furniture hooks.
@@ -369,8 +371,6 @@ void * func_0801FD30(GameSceneWorldPrefix & world);
 i32 func_080AC96C(GameScenePaletteCache * cache, u32 index);
 
 GameStateClock const * GetWorldClock(GameSceneWorldPrefix const & world);
-AActorEntity * func_0801FCF4(GameSceneWorldPrefix const & world, u32 index);
-AActorEntity * func_0801FD00(GameSceneWorldPrefix & world, u32 index);
 void RemoveWorldEntity(GameSceneWorldPrefix & world, u32 index);
 bool IsWorldCameraMovementComplete(GameSceneWorldPrefix const & world);
 i32 GetWorldCameraY(GameSceneWorldPrefix const & world);

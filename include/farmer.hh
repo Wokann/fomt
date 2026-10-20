@@ -53,7 +53,7 @@ struct Farmer
     u32 step_count : 30;
     u32 unk_48_1D : 3;
     u32 unk_4C_00 : 7;
-    u32 unk_4C_07 : 8;
+    u32 deepest_mine_floor : 8;
     u32 unk_4C_0F : 30;
     u32 unk_50_0D : 3;
     HeldItem unk_54;  /* held item? */
@@ -79,7 +79,7 @@ EC bool func_0800E940(Farmer const & self);
 EC unsigned int func_0800E94C(Farmer const & self);
 EC unsigned int func_0800E958(Farmer const & self);
 EC unsigned int func_0800E970(Farmer const & self);
-EC unsigned int func_0800E97C(Farmer const & self);
+EC unsigned int GetDeepestMineFloor(Farmer const & self);
 EC unsigned int func_0800E988(Farmer const & self);
 EC unsigned int func_0800E9A0(Farmer const & self);
 EC void func_0800E9A8(Farmer & self, char const * arg_1);
@@ -105,7 +105,7 @@ EC void func_0800ED54(Farmer & self, int arg_1);
 EC void func_0800ED8C(Farmer & self);
 EC bool func_0800EE2C(Farmer & self);
 EC void func_0800EE60(Farmer & self);
-EC bool func_0800EECC(Farmer & self, unsigned int arg_1);
+EC bool UpdateDeepestMineFloor(Farmer & self, unsigned int floor);
 EC void func_0800EEF8(Farmer & self);
 
 /* Farmer::ToolLevel methods */

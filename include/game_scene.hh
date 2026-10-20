@@ -848,6 +848,7 @@ struct GameScene : AScene {
     GameSceneState * state;
 
     void SetEntityPosition(u32 id, i32 x, i32 y, u32 facing);
+    void RelocateEntityToMap(i32 entity_id, u32 map, i32 x, i32 y, u32 facing);
     i32 GetEntityX(u32 id);
     i32 GetEntityY(u32 id);
     void SetEntityFacing(u32 id, u32 facing);
@@ -1202,10 +1203,6 @@ void func_080D7F3C(GameSceneState * state);
 void func_080D7F60(GameSceneState * state);
 void func_080D7F74(GameSceneState * state);
 void func_080D7F88(GameSceneState * state);
-
-// This entity-position update helper still remains in native code.
-void func_080D7F9C(GameSceneState * state, u32 id, u32 map, i32 x, i32 y,
-    u32 facing);
 
 // Native text-variable storage keeps its original byte-based truncation.
 // The scene wrappers do not add a slot check or width clamp.

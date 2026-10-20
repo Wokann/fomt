@@ -89,7 +89,8 @@ struct NpcCollection
     // The counter meanings are not established; do not infer them from size.
     void AddUnk00_0(u32 amount);
     void AddUnk00_6(u32 amount);
-    void IncrementUnk01_5OncePerDay();
+    // Map-entry counter, once per DayUpdate reset; it feeds Mary's visit bonus.
+    void RecordLibrarySecondFloorVisit();
 
     // South-town slots 1 and 2 select their entries; all other values use 0.
     ActorLocation * GetSouthTownNpcLocation1(u32 slot);
@@ -107,8 +108,8 @@ struct NpcCollection
 
     /* +000 */ u32 unk_00_0 : 6;
     /* +000 */ u32 unk_00_6 : 7;
-    /* +001 */ u32 unk_01_5 : 8;
-    /* +002 */ bool unk_02_5 : 1;
+    /* +001 */ u32 library_second_floor_visit_count : 8;
+    /* +002 */ bool library_second_floor_visited_today : 1;
     /* +002 */ u32 unk_02_6 : 3;
     /* +003 */ bool has_child : 1;
     /* +003 */ u32 unk_03_2 : 3;

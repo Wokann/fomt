@@ -578,15 +578,15 @@ EC void func_0801D8CC(GameSceneWorldPrefix & world)
     world.unk_103C[0] = 1;
     if (world.save->scripted_npc_control) {
         // The original control path still notifies every actor here.
-        AActorEntity ** it = world.data.entities;
-        AActorEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
+        AEntity ** it = world.data.entities;
+        AEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
         for (; it != end; ++it) {
             if (*it != nullptr)
                 (*it)->vfunc_20();
         }
     } else {
-        AActorEntity ** it = world.data.entities;
-        AActorEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
+        AEntity ** it = world.data.entities;
+        AEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
         for (; it != end; ++it) {
             if (*it != nullptr)
                 (*it)->vfunc_20();
@@ -600,8 +600,8 @@ EC void func_0801D948(GameSceneWorldPrefix & world)
     if (world.save->scripted_npc_control) {
         world.data.entities[0]->vfunc_24();
     } else {
-        AActorEntity ** it = world.data.entities;
-        AActorEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
+        AEntity ** it = world.data.entities;
+        AEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
         for (; it != end; ++it) {
             if (*it != nullptr)
                 (*it)->vfunc_24();
@@ -950,23 +950,23 @@ EC void func_0801FCDC(GameSceneWorldPrefix & world, u32 index)
     world.data.palette_cache.resources[index].unk_81 = 0;
 }
 
-EC AActorEntity * func_0801FCF4(GameSceneWorldPrefix const & world, u32 index)
+AEntity * GameSceneWorldPrefix::GetEntity(u32 index) const
 {
-    AActorEntity * const * first = world.data.entities;
+    AEntity * const * first = data.entities;
     std::advance(first, index);
     return *first;
 }
 
-EC AActorEntity * func_0801FD00(GameSceneWorldPrefix & world, u32 index)
+AEntity * GameSceneWorldPrefix::GetEntity(u32 index)
 {
-    AActorEntity ** first = world.data.entities;
+    AEntity ** first = data.entities;
     std::advance(first, index);
     return *first;
 }
 
 EC void RemoveWorldEntity(GameSceneWorldPrefix & world, u32 index)
 {
-    AActorEntity ** entity = world.data.entities;
+    AEntity ** entity = world.data.entities;
     std::advance(entity, index);
     if (*entity != nullptr) {
         delete *entity;

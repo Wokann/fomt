@@ -12,7 +12,7 @@ static inline ActorLocation InitialNpcLocation()
 }
 
 NpcCollection::NpcCollection()
-    : unk_00_0(0), unk_00_6(0), unk_01_5(0), unk_02_5(false),
+    : unk_00_0(0), unk_00_6(0), library_second_floor_visit_count(0), library_second_floor_visited_today(false),
       unk_02_6(0), has_child(false), unk_03_2(0),
       wedding_date(),
       lillia(InitialNpcLocation()),
@@ -205,11 +205,11 @@ void NpcCollection::AddUnk00_6(u32 amount)
     unk_00_6 = std::min(unk_00_6 + amount, 127u);
 }
 
-void NpcCollection::IncrementUnk01_5OncePerDay()
+void NpcCollection::RecordLibrarySecondFloorVisit()
 {
-    if (!unk_02_5) {
-        unk_01_5 = std::min(unk_01_5 + 1, 255u);
-        unk_02_5 = true;
+    if (!library_second_floor_visited_today) {
+        library_second_floor_visit_count = std::min(library_second_floor_visit_count + 1, 255u);
+        library_second_floor_visited_today = true;
     }
 }
 
@@ -257,7 +257,7 @@ static inline void ResetHarvestSpriteForDay(HarvestSprite & sprite, u32 slot)
 void NpcCollection::DayUpdate(GameStateClock const & clock, GameEventState const & events,
     Farmer const & farmer, Farm const & farm)
 {
-    unk_02_5 = false;
+    library_second_floor_visited_today = false;
     u32 spouse = GetSpouseCharacterId();
     bool married = spouse != 0;
     lillia.DayUpdate(rand() % 100);
@@ -346,7 +346,7 @@ void NpcCollection::DayUpdate(GameStateClock const & clock, GameEventState const
         }
     }
     if (mary.method_0809E4BC() <= 4 && (!married || spouse == CHARACTER_MARY)) {
-        u32 value = unk_01_5;
+        u32 value = library_second_floor_visit_count;
         while (mary.method_0809E4BC() <= 4
             && value >= gUnk_BacheloretteLoveThresholds01[mary.method_0809E4BC()]) {
             mary.AddLove(2500);

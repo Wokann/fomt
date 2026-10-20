@@ -170,13 +170,13 @@ SECTIONS
         src/game_scene.o(.text.UpdateGameSceneHardwareFrame);
         src/game_scene.o(.text.__9GameSceneP18GameStateSaveImage*);
         src/game_scene.o(.text._._9GameScene);
-        /* Keep the recovered member runs around the native opener and menus.
-         * Patterns in one input selector keep the object's section order. */
+        /* Entity location commands keep their native order across modules. */
+        src/game_scene.o(.text.Run__9GameScene*);
+        src/entity_location.o(.text.SetEntityPosition__9GameScene* .text.GetEntity*__9GameScene* .text.SetEntityFacing__9GameScene*);
+        src/game_scene.o(.text.SetEntitySpritePriority__9GameScene*);
+        src/entity_location.o(.text.MoveEntity*__9GameScene* .text.WaitForEntityMovement__9GameScene*);
         src/game_scene.o(
-            .text.Run__9GameScene* .text.GetEntity*__9GameScene*
-            .text.SetEntityA*__9GameScene* .text.SetEntityFacing__9GameScene*
-            .text.SetEntityPosition__9GameScene* .text.SetEntitySpritePriority__9GameScene*
-            .text.MoveEntity*__9GameScene* .text.WaitFor*__9GameScene*
+            .text.SetEntityA*__9GameScene* .text.WaitForCameraMovement__9GameScene*
             .text.NoOp*__9GameScene* .text.HideEntity__9GameScene* .text.OffsetEntityPosition__9GameScene*
             .text.StartEntityEffect__9GameScene* .text.Stop*__9GameScene*
             .text.ChangeMap__9GameScene* .text.PanCameraTo__9GameScene*
@@ -271,6 +271,7 @@ SECTIONS
             .text.SetPlayerActorUpdateSuspended__9GameScene8MaryBool
             .text.ShowPlayerHoldingTool__9GameScene14MaryItemToolId);
         src/game_scene.o(.text.CureAllSickLivestock__9GameScene);
+        src/entity_location.o(.text.RelocateEntityToMap__9GameSceneiUiiiUi);
         asm/game_state.o(.text.game_scene_after_world_effect_commands);
         src/game_world.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
@@ -313,8 +314,8 @@ SECTIONS
             .text.GetWorldClock
             .text.GetWorldSpritePaletteBank
             .text.func_0801FCDC
-            .text.func_0801FCF4
-            .text.func_0801FD00
+            .text.GetEntity__C20GameSceneWorldPrefixUi
+            .text.GetEntity__20GameSceneWorldPrefixUi
             .text.RemoveWorldEntity
             .text.func_0801FD30
             .text.IsWorldCameraMovementComplete
@@ -679,7 +680,7 @@ SECTIONS
         asm/code_809E804.o(.text.npc_after_partner_queries);
         src/npc_collection.o(.text.GetNpc__13NpcCollectionUi .text.GetBachelorette__13NpcCollectionUi .text.GetHarvestSpriteByCharacterId__13NpcCollectionUi .text.GetHarvestSpriteByIndex__13NpcCollectionUi);
         src/npc_collection.o(.text.GetChild__13NpcCollection);
-        src/npc_collection.o(.text.AddUnk00_0__13NpcCollectionUi .text.AddUnk00_6__13NpcCollectionUi .text.IncrementUnk01_5OncePerDay__13NpcCollection .text.GetSouthTownNpcLocation1__13NpcCollectionUi .text.GetSouthTownNpcLocation2__13NpcCollectionUi .text.GetYodelRanchHouseNpcLocation__13NpcCollection .text.GetInnSecondFloorNpcLocation__13NpcCollection);
+        src/npc_collection.o(.text.AddUnk00_0__13NpcCollectionUi .text.AddUnk00_6__13NpcCollectionUi .text.RecordLibrarySecondFloorVisit__13NpcCollection .text.GetSouthTownNpcLocation1__13NpcCollectionUi .text.GetSouthTownNpcLocation2__13NpcCollectionUi .text.GetYodelRanchHouseNpcLocation__13NpcCollection .text.GetInnSecondFloorNpcLocation__13NpcCollection);
         src/npc_collection.o(.text.DayUpdate__13NpcCollectionRC14GameStateClockRC14GameEventStateRC6FarmerRC4Farm);
         src/npc_collection.o(.text.SetWeddingDate__13NpcCollectionRC11WeddingDate .text.GetWeddingDate__C13NpcCollection);
         asm/code_809E804.o(.text.npc_after_wedding_date);
@@ -825,6 +826,7 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080D7CFC);
         src/npc_entity.o(.text.FindScheduleEntryUpperBound);
         src/game_scene.o(.text.func_080D7F*);
+        src/entity_location.o(.text.RelocateEntityToMap__FP14GameSceneStateiUiiiUi);
         asm/code_linkonce.o(.text.game_scene_state_callbacks_after);
         src/game_scene.o(.text._._14GameSceneState);
         asm/code_linkonce.o(.text.scene_calendar_before);

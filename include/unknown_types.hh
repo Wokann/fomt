@@ -59,6 +59,7 @@ struct UnkMapBox : public Box
 };
 
 // TODO: move elsewhere
+struct AEntity;
 struct AActorEntity;
 struct Location;
 struct GameStateClock;
@@ -81,8 +82,8 @@ struct GameObject
     virtual MapTerrainView GetMapTerrain(u32 map_id);
     virtual void vfunc_38(u32 entity_id);
     virtual void vfunc_3C(u32 index);
-    virtual AActorEntity * GetActorEntity(u32 id);
-    virtual AActorEntity * vfunc_44(u32 index);
+    virtual AEntity * GetEntity(u32 id);
+    virtual AEntity * GetEntity(u32 id) const;
     virtual u32 vfunc_48(i32 kind);
     virtual void vfunc_4C(u32 index);
     virtual i32 GetSpritePaletteBank(u32 index);
