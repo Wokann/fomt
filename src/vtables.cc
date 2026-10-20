@@ -696,8 +696,8 @@ extern void func_0801F518(void);
 extern void func_0801F5F0(void);
 extern void func_0801EE00(void);
 extern void func_0801F924(void);
-extern void func_0801C550(void);
-extern void func_0801C69C(void);
+extern void CreateWorldEventIcon(void);
+extern void RemoveWorldEventIcon(void);
 extern void func_080DB1E4(void);
 extern void func_080DB238(void);
 extern void func_080DB2EC(void);
@@ -1172,8 +1172,8 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801F5F0,
     func_0801EE00,
     func_0801F924,
-    func_0801C550,
-    func_0801C69C,
+    CreateWorldEventIcon,
+    RemoveWorldEventIcon,
 };
 
 extern RawVTableFunction const vtable_unk_080E602C[] = {

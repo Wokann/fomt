@@ -208,33 +208,35 @@ typedef char GameSceneScriptQueuesThirdCheck[offsetof(GameSceneScriptQueues, que
 // independently stored event-script halfword is read by their script hook.
 // See docs/mary-native-audit/entities/entity_event_script_audit.md.
 struct GameSceneControllerActorRecord {
-    GameSceneControllerActorRecord() asm("func_080D40CC")
-        SECTION(".text.game_scene_controller_record_initializers");
+    GameSceneControllerActorRecord();
 
     ActorLocation location;
     u16 animation;
     u16 event_script;
 };
 
-// The six preceding records also hold packed locations. Only the low two
-// bits at +0 and the location are initialized; their gameplay role and the
-// remaining fields are not inferred from the four actor records above.
-struct GameSceneControllerLocationRecord {
-    GameSceneControllerLocationRecord() asm("func_080D4130")
-        SECTION(".text.game_scene_controller_record_initializers");
+// Six event-local icon slots, in map-local pixels rather than screen pixels.
+// Native creation stores layer & 3 and a u16 icon ID; neither entry checks slots.
+// Construction initializes only state and location, preserving all other bits.
+// See docs/mary-native-audit/entities/event_icon_callables.md.
+struct GameSceneEventIconRecord {
+    GameSceneEventIconRecord();
 
-    u8 unk_00_00 : 2;
-    u8 unk_00_02 : 6;
+    u8 state : 2;
+    u8 layer : 2;
+    u8 unk_00_04 : 4;
     u8 unk_01;
     Location location;
-    u8 unk_08[4];
+    u16 icon_id;
+    u8 unk_0A[2];
 };
 
 typedef char GameSceneControllerActorRecordSizeCheck[sizeof(GameSceneControllerActorRecord) == 12 ? 1 : -1];
 typedef char GameSceneControllerActorAnimationCheck[offsetof(GameSceneControllerActorRecord, animation) == 8 ? 1 : -1];
 typedef char GameSceneControllerActorScriptCheck[offsetof(GameSceneControllerActorRecord, event_script) == 10 ? 1 : -1];
-typedef char GameSceneControllerLocationRecordSizeCheck[sizeof(GameSceneControllerLocationRecord) == 12 ? 1 : -1];
-typedef char GameSceneControllerLocationOffsetCheck[offsetof(GameSceneControllerLocationRecord, location) == 2 ? 1 : -1];
+typedef char GameSceneEventIconRecordSizeCheck[sizeof(GameSceneEventIconRecord) == 12 ? 1 : -1];
+typedef char GameSceneEventIconLocationOffsetCheck[offsetof(GameSceneEventIconRecord, location) == 2 ? 1 : -1];
+typedef char GameSceneEventIconIdOffsetCheck[offsetof(GameSceneEventIconRecord, icon_id) == 8 ? 1 : -1];
 
 // The native clock slot has four-byte storage, unlike the packed GameTime.
 // Construction preserves its unknown bits; saving copies only the low halfword.
@@ -276,7 +278,7 @@ struct GameSceneScriptController : AScene {
     u32 unk_368;
     GameScenePreservedPlayerLocation preserved_player_location;
     GameSceneScriptQueues queues;
-    GameSceneControllerLocationRecord location_records[6];
+    GameSceneEventIconRecord event_icon_records[6];
     GameSceneControllerActorRecord actor_records[4];
 };
 
@@ -295,7 +297,7 @@ typedef char GameSceneControllerQueuesCheck[offsetof(GameSceneScriptController, 
 typedef char GameSceneControllerQueue0Check[offsetof(GameSceneScriptController, queues.queue_0) == 0x378 ? 1 : -1];
 typedef char GameSceneControllerQueue1Check[offsetof(GameSceneScriptController, queues.queue_1) == 0x38C ? 1 : -1];
 typedef char GameSceneControllerQueue2Check[offsetof(GameSceneScriptController, queues.queue_2) == 0x4D0 ? 1 : -1];
-typedef char GameSceneControllerLocationArrayCheck[offsetof(GameSceneScriptController, location_records) == 0x4DC ? 1 : -1];
+typedef char GameSceneControllerEventIconArrayCheck[offsetof(GameSceneScriptController, event_icon_records) == 0x4DC ? 1 : -1];
 typedef char GameSceneControllerActorArrayCheck[offsetof(GameSceneScriptController, actor_records) == 0x524 ? 1 : -1];
 typedef char GameSceneControllerSizeCheck[sizeof(GameSceneScriptController) == 0x554 ? 1 : -1];
 
@@ -998,6 +1000,9 @@ struct GameScene : AScene {
     void EatRandomMeal();
     void PreparePlayerForScriptedAnimation();
     void RestorePlayerAfterScriptedAnimation();
+    void CreateEventIcon(MaryEventIconSlot slot, MaryMapSpaceX x, MaryMapSpaceY y,
+        MaryEventIconLayer layer, MaryEventIconId icon_id);
+    void RemoveEventIcon(MaryEventIconSlot slot);
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];
@@ -1222,7 +1227,7 @@ BlacksmithShopScene * func_08083A7C(void *, SceneTransition **, GameStateSaveIma
 extern u8 * gUnk_0300040C;
 
 GameSceneControllerActorRecord * GetSceneActorRecords(void);
-GameSceneControllerLocationRecord * GetSceneLocationRecords(void);
+GameSceneEventIconRecord * GetSceneEventIconRecords(void);
 GameSceneScriptQueue<2> * GetSceneScriptQueue0(void);
 GameScenePreservedPlayerLocation * GetScenePreservedPlayerLocation(void);
 u8 * func_08010138(void);

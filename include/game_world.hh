@@ -196,6 +196,11 @@ struct GameSceneWorldPrefix : GameObject {
     virtual void vfunc_14C();
     virtual void LightFireplaceAtLocation(MaryMapId map);
     virtual void SetVaseArticleId(MaryItemArticleId article);
+    virtual void vfunc_158();
+    virtual void vfunc_15C();
+    virtual void CreateEventIcon(MaryEventIconSlot slot, MaryMapSpaceX x,
+        MaryMapSpaceY y, MaryEventIconLayer layer, u16 icon_id);
+    virtual void RemoveEventIcon(MaryEventIconSlot slot);
 
     GameSceneWorldData data;
     GameStateSaveImage * save;
@@ -303,6 +308,11 @@ u32 func_0801D88C(GameSceneWorldPrefix & world, Location const & location,
     Article const & article);
 void func_0801D8CC(GameSceneWorldPrefix & world);
 void func_0801D948(GameSceneWorldPrefix & world);
+// These two world implementations remain native; their real callers and
+// virtual slots are named without replacing their bodies with approximations.
+void CreateWorldEventIcon(GameSceneWorldPrefix & world, MaryEventIconSlot slot,
+    MaryMapSpaceX x, MaryMapSpaceY y, MaryEventIconLayer layer, u16 icon_id);
+void RemoveWorldEventIcon(GameSceneWorldPrefix & world, MaryEventIconSlot slot);
 void QueueWorldScript(GameSceneWorldPrefix & world,
     GameSceneScriptRequest const & request, i32 queue_kind);
 u32 SelectWorldBackgroundAudio(GameSceneWorldPrefix & world);

@@ -152,7 +152,7 @@ SECTIONS
         src/game_scene.o(.text.Run__25GameSceneScriptController);
         src/game_scene.o(
             .text.GetSceneActorRecords
-            .text.GetSceneLocationRecords
+            .text.GetSceneEventIconRecords
             .text.GetSceneScriptQueue0
             .text.GetScenePreservedPlayerLocation
             .text.func_08010138
@@ -264,6 +264,9 @@ SECTIONS
             .text.EatRandomMeal__9GameScene
             .text.PreparePlayerForScriptedAnimation__9GameScene
             .text.RestorePlayerAfterScriptedAnimation__9GameScene);
+        src/game_scene.o(
+            .text.CreateEventIcon__9GameScene17MaryEventIconSlotii18MaryEventIconLayeri
+            .text.RemoveEventIcon__9GameScene17MaryEventIconSlot);
         asm/game_state.o(.text.game_scene_after_world_effect_commands);
         src/game_world.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
@@ -750,7 +753,9 @@ SECTIONS
         src/intro_scene.o(.gnu.linkonce.t._._19MenuIntroTransition);
         src/new_game.o(.gnu.linkonce.t._._27NewGameLoadedSaveTransition);
         src/new_game.o(.text.new_game_menu_core_cleanup);
-        src/game_scene.o(.text.game_scene_controller_record_initializers);
+        src/game_scene.o(
+            .text.__30GameSceneControllerActorRecord
+            .text.__24GameSceneEventIconRecord);
         asm/code_linkonce.o(.text.new_game_after_controller_records);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         asm/code_linkonce.o(.text.code_080D68C0);

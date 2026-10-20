@@ -109,11 +109,11 @@ GameSceneControllerActorRecord * GetSceneActorRecords(void)
     return controller->actor_records;
 }
 
-GameSceneControllerLocationRecord * GetSceneLocationRecords(void)
+GameSceneEventIconRecord * GetSceneEventIconRecords(void)
 {
     GameSceneScriptController * controller =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
-    return controller->location_records;
+    return controller->event_icon_records;
 }
 
 GameSceneScriptQueue<2> * GetSceneScriptQueue0(void)
@@ -1161,13 +1161,27 @@ void GameScene::RestorePlayerAfterScriptedAnimation()
     current->script_state = 0x19;
 }
 
+void GameScene::CreateEventIcon(MaryEventIconSlot slot, MaryMapSpaceX x,
+    MaryMapSpaceY y, MaryEventIconLayer layer, MaryEventIconId icon_id)
+{
+    // Preserve native narrowing before obtaining the world dispatch target.
+    u16 id = icon_id;
+    static_cast<GameSceneWorldPrefix *>(state->game_object.value)
+        ->CreateEventIcon(slot, x, y, layer, id);
+}
+
+void GameScene::RemoveEventIcon(MaryEventIconSlot slot)
+{
+    static_cast<GameSceneWorldPrefix *>(state->game_object.value)->RemoveEventIcon(slot);
+}
+
 GameSceneControllerActorRecord::GameSceneControllerActorRecord()
     : location(Location(MAP_NONE, 0, 0), 0), animation(0), event_script(0)
 {
 }
 
-GameSceneControllerLocationRecord::GameSceneControllerLocationRecord()
-    : unk_00_00(0), location(MAP_NONE, 0, 0)
+GameSceneEventIconRecord::GameSceneEventIconRecord()
+    : state(0), location(MAP_NONE, 0, 0)
 {
 }
 
