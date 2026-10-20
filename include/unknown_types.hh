@@ -85,7 +85,7 @@ struct GameObject
     virtual AEntity * GetEntity(u32 id);
     virtual AEntity * GetEntity(u32 id) const;
     virtual u32 vfunc_48(i32 kind);
-    virtual void vfunc_4C(u32 index);
+    virtual void ClearSpritePaletteResourceFlag(u32 index);
     virtual i32 GetSpritePaletteBank(u32 index);
     virtual void vfunc_54();
     virtual void * vfunc_58();

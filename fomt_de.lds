@@ -315,9 +315,9 @@ SECTIONS
             .text.func_0801FC78
             .text.func_0801FC9C
             .text.func_0801FCA0
-            .text.GetWorldClock
-            .text.GetWorldSpritePaletteBank
-            .text.func_0801FCDC
+            .text.GetWorldClock);
+        src/world_runtime.o(.text.GetWorldSpritePaletteBank .text.ClearWorldSpritePaletteResourceFlag);
+        src/game_world.o(
             .text.GetEntity__C20GameSceneWorldPrefixUi
             .text.GetEntity__20GameSceneWorldPrefixUi
             .text.RemoveWorldEntity
@@ -394,7 +394,7 @@ SECTIONS
         . = 0x3A7B8; /* DE ROM 0x0803A7B8, remaining raw control code. */
         src/map_data.o(.text.SelectMapDataId);
         asm/code_0803A8A4.o(.text.world_sprite_groups_constructor);
-        src/game_world.o(.text._._21GameSceneWorldUnk1020);
+        src/world_runtime.o(.text._._21GameSceneWorldUnk1020);
         asm/code_0803A8A4.o(.text.world_sprite_groups_after_destructor);
         . = 0x3BCF8; /* DE ROM 0x0803BCF8, set a u16 pair. */
         src/code_0803BDE4.o(.text);
@@ -726,6 +726,8 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_after_flag_updates);
         src/map_data.o(.text.IsMapTerrainBoxBlocked);
         asm/code_809E804.o(.text.game_map_after_terrain_query);
+        asm/world_runtime.o(.text);
+        asm/code_809E804.o(.text.world_runtime_after);
         src/ui_state.o(.text.ui_portrait_group);
         src/ui_state.o(.text.ui_text_stream_setup);
         src/ui_state.o(.text.ui_text_stream_update);

@@ -792,17 +792,10 @@ EC MaryItemArticleId SwapRecordPlayerAlbum(GameSceneWorldPrefix & world, MaryIte
     return static_cast<MaryItemArticleId>(album.GetArticle().GetId());
 }
 
-GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
-{
-    // Match native cleanup: release the first index, then destroy all three
-    // retained tile entries in reverse member-array order.
-    world->vfunc_4C(indices[0]);
-}
-
 GameSceneSpriteBase::~GameSceneSpriteBase()
 {
     for (u32 index = 0; index < palettes.count; ++index)
-        world->vfunc_4C(palettes[index]);
+        world->ClearSpritePaletteResourceFlag(palettes[index]);
 }
 
 GameSceneIndexedSprite::GameSceneIndexedSprite(IndexedResourceProvider * resource,
@@ -895,23 +888,6 @@ EC GameSceneWorldMapPrefix * func_0801FCA0(GameSceneWorldPrefix & world)
 EC GameStateClock const * GetWorldClock(GameSceneWorldPrefix const & world)
 {
     return &world.save->clock;
-}
-
-EC i32 GetWorldSpritePaletteBank(GameSceneWorldPrefix & world, u32 index)
-{
-    GameScenePaletteCache & cache = world.data.palette_cache;
-    u8 & encoded = cache.encoded_palette_banks[index];
-    i32 bank = encoded - 16;
-    if (bank < 0) {
-        bank = func_080AC96C(&cache, index);
-        encoded = bank + 16;
-    }
-    return bank;
-}
-
-EC void func_0801FCDC(GameSceneWorldPrefix & world, u32 index)
-{
-    world.data.palette_cache.resources[index].unk_81 = 0;
 }
 
 AEntity * GameSceneWorldPrefix::GetEntity(u32 index) const
