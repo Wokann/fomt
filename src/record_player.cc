@@ -30,7 +30,7 @@ bool RecordPlayer::HasAlbum() const
     return has_album;
 }
 
-u32 RecordPlayer::GetUnknown() const
+u32 RecordPlayer::GetAudioSequenceId() const
 {
     if (!HasAlbum())
         return 199;

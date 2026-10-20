@@ -10,7 +10,7 @@ struct RecordPlayer
     RecordPlayer();
 
     bool HasAlbum() const;
-    u32 GetUnknown() const;
+    u32 GetAudioSequenceId() const;
     ArticleStack RemoveAlbum();
     ArticleStack SetAlbum(Article const & album_article);
 

@@ -293,9 +293,10 @@ SECTIONS
         src/game_world.o(.text.func_0801D3FC .text.func_0801D4E0 .text.func_0801D5BC
             .text.PickUpFieldItemAtLocation .text.func_0801D7B0 .text.func_0801D88C);
         src/world_control.o(.text.SuspendWorldUpdates .text.ResumeWorldUpdates);
-        src/game_world.o(.text.QueueWorldScript
-            .text.SelectWorldBackgroundAudio .text.GetWorldSongPlayerPool .text.UpdateWorldBackgroundAudio
-            .text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue
+        src/game_world.o(.text.QueueWorldScript);
+        src/world_audio.o(.text.SelectWorldBackgroundAudio .text.GetWorldSongPlayerPool
+            .text.UpdateWorldBackgroundAudio);
+        src/game_world.o(.text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue
             .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78 .text.RemoveRecordPlayerAlbum
             .text.func_0801DDCC .text.func_0801DDF8 .text.func_0801DE24 .text.func_0801DE30 .text.func_0801DE3C .text.func_0801DE48
             .text.SwapRecordPlayerAlbum);

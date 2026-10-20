@@ -14,7 +14,6 @@
 
 struct GameScene;
 struct GameSceneScriptRequest;
-struct GameSceneSongPlayerPool;
 struct GameSceneIndexedSprite;
 struct GameStateClock;
 struct GameStateSaveImage;
@@ -158,9 +157,6 @@ void CreateWorldEventIcon(GameSceneWorldPrefix & world, MaryEventIconSlot slot,
 void RemoveWorldEventIcon(GameSceneWorldPrefix & world, MaryEventIconSlot slot);
 void QueueWorldScript(GameSceneWorldPrefix & world,
     GameSceneScriptRequest const & request, i32 queue_kind);
-u32 SelectWorldBackgroundAudio(GameSceneWorldPrefix & world);
-GameSceneSongPlayerPool & GetWorldSongPlayerPool(GameSceneWorldPrefix & world);
-void UpdateWorldBackgroundAudio(GameSceneWorldPrefix & world);
 void func_0801DC24(GameSceneWorldPrefix & world, u32 index);
 void func_0801DCA8(GameSceneWorldPrefix & world);
 void CollectDailyShippingRevenue(GameSceneWorldPrefix & world);
