@@ -2683,14 +2683,19 @@ OnCall__12ScriptEnginei:
     .byte 0x24, 0x32, 0xDA, 0x23, 0x5B, 0x00, 0xE9, 0x18, 0x50, 0xE2
 .LScriptCallJp_069:
     .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19
-    .byte 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFC, 0xF7, 0x35, 0xFB, 0xD1, 0xF7, 0x56, 0xFF, 0xFC, 0xF7
+    .byte 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFC, 0xF7, 0x35, 0xFB
+    bl EatRandomMeal__9GameScene
+    .byte 0xFC, 0xF7
     .byte 0x31, 0xFB
 .LScriptCallJp_06A:
     .byte 0xD5, 0x26, 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68, 0x00, 0x28, 0x00, 0xD1, 0x9D, 0xE2
-    .byte 0xD1, 0xF7, 0xB1, 0xFF, 0x9A, 0xE2
+    bl PreparePlayerForScriptedAnimation__9GameScene
+    .byte 0x9A, 0xE2
 .LScriptCallJp_06B:
     .byte 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68, 0x00, 0x28
-    .byte 0x01, 0xD1, 0xFC, 0xF7, 0x1F, 0xFB, 0xD1, 0xF7, 0xB6, 0xFF, 0xFC, 0xF7, 0x1B, 0xFB
+    .byte 0x01, 0xD1, 0xFC, 0xF7, 0x1F, 0xFB
+    bl RestorePlayerAfterScriptedAnimation__9GameScene
+    .byte 0xFC, 0xF7, 0x1B, 0xFB
 .LScriptCallJp_139:
     .byte 0x2E, 0x1C
     .byte 0x24, 0x36, 0xDA, 0x23, 0x5B, 0x00, 0xEA, 0x18, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x30, 0x18
@@ -118264,7 +118269,9 @@ func_08096EE8:
     .byte 0x08, 0x48, 0x39, 0x18, 0x06, 0x20, 0x08, 0x80, 0x07, 0x4A, 0xB9, 0x18, 0x00, 0x20, 0x08, 0x70
     .byte 0x18, 0x04, 0x00, 0x14, 0x08, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC
     .byte 0x02, 0xBC, 0x08, 0x47, 0xD4, 0x33, 0x00, 0x00, 0xD2, 0x33, 0x00, 0x00, 0x70, 0xB5, 0x85, 0xB0
-    .byte 0x14, 0x1C, 0x68, 0x46, 0x02, 0xF0, 0xAE, 0xFE, 0x21, 0x1C, 0x68, 0x46, 0x2C, 0xC8, 0x2C, 0xC1
+    .byte 0x14, 0x1C, 0x68, 0x46
+    bl EvaluateCookingRecipe
+    .byte 0x21, 0x1C, 0x68, 0x46, 0x2C, 0xC8, 0x2C, 0xC1
     .byte 0x0C, 0xC8, 0x0C, 0xC1, 0x20, 0x88, 0x00, 0x28, 0x1A, 0xD1, 0x60, 0x80, 0xA0, 0x80, 0x00, 0x23
     .byte 0x05, 0x4E, 0xE5, 0x88, 0xB2, 0x1C, 0x31, 0x1C, 0x08, 0x88, 0x28, 0x40, 0x00, 0x28, 0x05, 0xD0
     .byte 0x10, 0x88, 0x20, 0x80, 0x07, 0xE0, 0x00, 0x00, 0x24, 0x0C, 0x10, 0x08, 0x04, 0x32, 0x04, 0x31
@@ -119743,9 +119750,9 @@ func_08099F50:
     .section .text.after_cooking_scene_run, "ax", %progbits
     .align 2, 0
 
-    .global func_08099FC4
+    .global EvaluateCookingRecipe
     .thumb_func
-func_08099FC4:
+EvaluateCookingRecipe:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -120188,78 +120195,6 @@ func_08099FC4:
     bx r1
     .align 2, 0
 
-    .section .text.cooking_recipe_inventory_after
-    .global func_0809AB08
-    .thumb_func
-func_0809AB08:
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #0x28
-    mov r8, r0
-    adds r5, r1, #0
-    mov ip, r2
-    mov r0, sp
-    movs r1, #0
-    strh r1, [r0]
-    movs r6, #0
-    movs r2, #0
-    ldr r1, .Ljp_0809A590
-    adds r0, r5, r1
-    ldrb r0, [r0]
-    cmp r2, r0
-    bge .Ljp_0809A5A6
-    add r4, sp, #0x14
-    adds r3, r5, #0
-    adds r1, r5, #0
-.Ljp_0809A568:
-    ldrh r0, [r3]
-    cmp r0, #0xAB
-    bhi .Ljp_0809A596
-    ldrb r0, [r3, #0x13]
-    lsls r0, r0, #0x1B
-    cmp r0, #0
-    bge .Ljp_0809A596
-    cmp r6, ip
-    bne .Ljp_0809A594
-    adds r0, r4, #0
-    bl func_08099FC4
-    mov r1, sp
-    adds r0, r4, #0
-    ldm r0!, {r2, r3, r4}
-    stm r1!, {r2, r3, r4}
-    ldm r0!, {r2, r7}
-    stm r1!, {r2, r7}
-    b .Ljp_0809A5A6
-    .align 2, 0
-.Ljp_0809A590: .4byte 0x00000A06
-.Ljp_0809A594:
-    adds r6, #1
-.Ljp_0809A596:
-    adds r3, #0x14
-    adds r1, #0x14
-    adds r2, #1
-    ldr r7, .Ljp_0809A5C0
-    adds r0, r5, r7
-    ldrb r0, [r0]
-    cmp r2, r0
-    blt .Ljp_0809A568
-.Ljp_0809A5A6:
-    mov r1, r8
-    mov r0, sp
-    ldm r0!, {r2, r3, r4}
-    stm r1!, {r2, r3, r4}
-    ldm r0!, {r2, r7}
-    stm r1!, {r2, r7}
-    mov r0, r8
-    add sp, #0x28
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_0809A5C0: .4byte 0x00000A06
     .section .text.money_account_history
     .global UpdateMoneyAccountRecordHistory
     .thumb_func
@@ -131170,7 +131105,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08045020
 	bl .L0804168A
 .L08045020:
-	bl func_08016DB0
+	bl EatRandomMeal__9GameScene
 	bl .L0804168A
 .L08045028:
 	movs r6, #0xd5
@@ -131181,7 +131116,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08045036
 	b .L08045572
 .L08045036:
-	bl func_08016E7C
+	bl PreparePlayerForScriptedAnimation__9GameScene
 	b .L08045572
 .L0804503C:
 	movs r1, #0xd5
@@ -131192,7 +131127,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L0804504C
 	bl .L0804168A
 .L0804504C:
-	bl func_08016E9C
+	bl RestorePlayerAfterScriptedAnimation__9GameScene
 	bl .L0804168A
 .L08045054:
 	adds r6, r5, #0
@@ -289349,7 +289284,7 @@ func_080977A0: @ 0x080977A0
 	sub sp, #0x14
 	adds r4, r2, #0
 	mov r0, sp
-	bl func_0809A58C
+	bl EvaluateCookingRecipe
 	adds r1, r4, #0
 	mov r0, sp
 	ldm r0!, {r2, r3, r5}
@@ -295079,8 +295014,8 @@ func_0809A518: @ 0x0809A518
     .section .text.after_cooking_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_0809A58C
-func_0809A58C: @ 0x0809A58C
+	thumb_func_start EvaluateCookingRecipe
+EvaluateCookingRecipe: @ 0x0809A58C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -295522,78 +295457,6 @@ func_0809A58C: @ 0x0809A58C
 	pop {r1}
 	bx r1
 	.align 2, 0
-
-    .section .text.cooking_recipe_inventory_after
-	thumb_func_start func_0809AB08
-func_0809AB08: @ 0x0809AB08
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x28
-	mov r8, r0
-	adds r5, r1, #0
-	mov ip, r2
-	mov r0, sp
-	movs r1, #0
-	strh r1, [r0]
-	movs r6, #0
-	movs r2, #0
-	ldr r1, .L0809AB58 @ =0x00000A06
-	adds r0, r5, r1
-	ldrb r0, [r0]
-	cmp r2, r0
-	bge .L0809AB6E
-	add r4, sp, #0x14
-	adds r3, r5, #0
-	adds r1, r5, #0
-.L0809AB30:
-	ldrh r0, [r3]
-	cmp r0, #0xab
-	bhi .L0809AB5E
-	ldrb r0, [r3, #0x13]
-	lsls r0, r0, #0x1b
-	cmp r0, #0
-	bge .L0809AB5E
-	cmp r6, ip
-	bne .L0809AB5C
-	adds r0, r4, #0
-	bl func_0809A58C
-	mov r1, sp
-	adds r0, r4, #0
-	ldm r0!, {r2, r3, r4}
-	stm r1!, {r2, r3, r4}
-	ldm r0!, {r2, r7}
-	stm r1!, {r2, r7}
-	b .L0809AB6E
-	.align 2, 0
-.L0809AB58: .4byte 0x00000A06
-.L0809AB5C:
-	adds r6, #1
-.L0809AB5E:
-	adds r3, #0x14
-	adds r1, #0x14
-	adds r2, #1
-	ldr r7, .L0809AB88 @ =0x00000A06
-	adds r0, r5, r7
-	ldrb r0, [r0]
-	cmp r2, r0
-	blt .L0809AB30
-.L0809AB6E:
-	mov r1, r8
-	mov r0, sp
-	ldm r0!, {r2, r3, r4}
-	stm r1!, {r2, r3, r4}
-	ldm r0!, {r2, r7}
-	stm r1!, {r2, r7}
-	mov r0, r8
-	add sp, #0x28
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0809AB88: .4byte 0x00000A06
 
     .section .text.money_account_history
 	thumb_func_start UpdateMoneyAccountRecordHistory

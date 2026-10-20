@@ -1,4 +1,4 @@
-#include "cooking_recipe_inventory_data.hh"
+#include "cooking_recipe_inventory.hh"
 #include "fomt_constants.hh"
 
 CookingRecipeInventory::CookingRecipeInventory()
@@ -106,6 +106,22 @@ u32 CookingRecipeInventory::CountLearnedFoodRecipes() const
     return count;
 }
 
+CookingRecipeEvaluation CookingRecipeInventory::GetLearnedFoodRecipe(u32 ordinal) const
+{
+    CookingRecipeEvaluation result;
+    u32 found = 0;
+    for (int index = 0; index < record_count; ++index) {
+        if (records[index].recipe_id <= ITEM_FOOD_NONE && records[index].learned) {
+            if (found == ordinal) {
+                result = EvaluateCookingRecipe(records[index]);
+                break;
+            }
+            ++found;
+        }
+    }
+    return result;
+}
+
 extern "C" {
 
 // func_080977A0 compares a recipe inventory bitfield to required_mask and
@@ -123,7 +139,7 @@ CookingRecipeInventoryMaskEntry const gCookingRecipeInventoryMaskEntries[] = {
 };
 
 // The list contains 117 native definitions followed by this all-zero sentinel.
-// func_0809A58C and CookingRecipeInventory both stop when recipe_id is zero.
+// EvaluateCookingRecipe and CookingRecipeInventory both stop when recipe_id is zero.
 CookingRecipeDefinition const gCookingRecipeDefinitions[] = {
     /* 000 */ { 0x0017, 0x0001, -1, 0x0210, gCookingRecipeDefinitionPayload.recipe_000_values_08, nullptr, nullptr },
     /* 001 */ { 0x0018, 0x0002, -1, 0x0210, gCookingRecipeDefinitionPayload.recipe_001_values_08, gCookingRecipeDefinitionPayload.recipe_001_entries_0c, nullptr },
@@ -2457,5 +2473,5 @@ CookingRecipeDefinitionPayload const gCookingRecipeDefinitionPayload = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(cooking_recipe_inventory_data.cc)
+#include FOMT_TEXT_INCLUDE(cooking_recipe_inventory.cc)
 }

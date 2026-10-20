@@ -19038,9 +19038,9 @@ func_080292EC: @ 0x080292EC
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .global func_08029764
+    .global PlayerPrepareForScriptedAnimation
     .thumb_func
-func_08029764: @ 0x08029764
+PlayerPrepareForScriptedAnimation: @ 0x08029764
     push {lr}
     adds r1, r0, #0
     adds r1, #0xa4
@@ -19054,9 +19054,9 @@ func_08029764: @ 0x08029764
     pop {r0}
     bx r0
     .align 2, 0
-    .global func_08029780
+    .global PlayerRestoreAfterScriptedAnimation
     .thumb_func
-func_08029780: @ 0x08029780
+PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -20305,9 +20305,9 @@ func_08029CC4: @ 0x08029CC4
     pop {r0}
     bx r0
     .align 2, 0
-    .global func_0802A194
+    .global PlayerEatFood
     .thumb_func
-func_0802A194: @ 0x0802A194
+PlayerEatFood: @ 0x0802A194
     push {r4, r5, r6, r7, lr}
     mov r7, sb
     mov r6, r8
@@ -53694,8 +53694,8 @@ func_08029558: @ 0x08029558
     pop {r1}
     bx r1
 
-    thumb_func_start func_080299D0
-func_080299D0: @ 0x080299D0
+    thumb_func_start PlayerPrepareForScriptedAnimation
+PlayerPrepareForScriptedAnimation: @ 0x080299D0
     push {lr}
     adds r1, r0, #0
     adds r1, #0xa4
@@ -53710,8 +53710,8 @@ func_080299D0: @ 0x080299D0
     bx r0
     .align 2, 0
 
-    thumb_func_start func_080299EC
-func_080299EC: @ 0x080299EC
+    thumb_func_start PlayerRestoreAfterScriptedAnimation
+PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -54961,8 +54961,8 @@ func_08029F30: @ 0x08029F30
     bx r0
     .align 2, 0
 
-    thumb_func_start func_0802A400
-func_0802A400: @ 0x0802A400
+    thumb_func_start PlayerEatFood
+PlayerEatFood: @ 0x0802A400
     push {r4, r5, r6, r7, lr}
     mov r7, sb
     mov r6, r8

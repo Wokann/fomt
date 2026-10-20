@@ -9,7 +9,7 @@
 #include "time_of_day.hh"
 #include "money_account.hh"
 #include "actor_state.hh"
-#include "cooking_recipe_inventory_data.hh"
+#include "cooking_recipe_inventory.hh"
 #include "event_state.hh"
 #include "npc_collection.hh"
 #include "field_item_data.hh"

@@ -150,7 +150,14 @@ SECTIONS
         src/more_items.o(.text);
         asm/more_items.o(.text);
         src/game_scene.o(.text.Run__25GameSceneScriptController);
-        src/game_scene.o(.text.func_08010*);
+        src/game_scene.o(
+            .text.GetSceneActorRecords
+            .text.GetSceneLocationRecords
+            .text.GetSceneScriptQueue0
+            .text.GetScenePreservedPlayerLocation
+            .text.func_08010138
+            .text.func_08010148
+            .text.GetSceneScriptEngine);
         src/game_scene.o(.text._._25GameSceneScriptController);
         src/game_scene.o(.text.__25GameSceneScriptControllerG23GameStateSaveImageOwner);
         src/game_scene.o(.text.__25GameSceneScriptControllerPCcT1G8GameDateT1);
@@ -253,6 +260,10 @@ SECTIONS
             .text.PreservePlayerLocationForNextDay__9GameScene
             .text.ClearPreservedPlayerLocation__9GameScene
             .text.GetPreservedPlayerMapId__9GameScene);
+        src/game_scene.o(
+            .text.EatRandomMeal__9GameScene
+            .text.PreparePlayerForScriptedAnimation__9GameScene
+            .text.RestorePlayerAfterScriptedAnimation__9GameScene);
         asm/game_state.o(.text.game_scene_after_world_effect_commands);
         src/game_world.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
@@ -527,8 +538,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_gift_wrapping_scene_run);
         src/game_scene.o(.text.Run__12CookingScene);
         asm/code_0803EE94.o(.text.after_cooking_scene_run);
-        src/cooking_recipe_inventory_data.o(.text);
-        asm/code_0803EE94.o(.text.cooking_recipe_inventory_after);
+        src/cooking_recipe_inventory.o(.text);
         src/money_account.o(.text.money_account_update);
         asm/code_0803EE94.o(.text.money_account_history);
         src/money_account.o(.text);
@@ -1235,7 +1245,7 @@ SECTIONS
         . = ABSOLUTE(0x08100AC0); src/cooking_recipe_inventory_page_data.o(.rodata);
         . = ABSOLUTE(0x08100AD2); src/recovery_status.o(.rodata);
         . = ABSOLUTE(0x08100DE4); src/cooking.o(.rodata);
-        . = ABSOLUTE(0x081010E8); src/cooking_recipe_inventory_data.o(.rodata);
+        . = ABSOLUTE(0x081010E8); src/cooking_recipe_inventory.o(.rodata);
         src/animal.o(.rodata);
         . = ABSOLUTE(0x08103660); src/livestock_day_update_data.o(.rodata);
         . = ABSOLUTE(0x081036C0); src/actor_state.o(.rodata);

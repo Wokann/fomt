@@ -1,7 +1,8 @@
-#ifndef COOKING_RECIPE_INVENTORY_DATA_HH
-#define COOKING_RECIPE_INVENTORY_DATA_HH
+#ifndef COOKING_RECIPE_INVENTORY_HH
+#define COOKING_RECIPE_INVENTORY_HH
 
 #include "prelude.h"
+#include "item.hh"
 
 // Saved at GameStateSaveImage +0x2214. The low twelve bits select utensils;
 // bit twelve records that this recipe has been learned. The remaining three
@@ -17,6 +18,38 @@ struct CookingRecipeRecord
     u32 unk_13_5 : 3;
 };
 
+// The native evaluation result is copied as twenty bytes. It is not a saved
+// CookingRecipeRecord: only its first eight bytes have identified fields.
+struct CookingRecipeEvaluation
+{
+    u16 recipe_id; // One-based food result; zero means no matching recipe.
+    i16 stamina_bonus;
+    i16 fatigue_bonus;
+    u16 utensil_mask;
+    u8 unk_08[12];
+
+    CookingRecipeEvaluation() : recipe_id(0) {}
+
+    Food ToFood() const
+    {
+        if (recipe_id != 0) {
+            Food food(recipe_id - 1);
+            food.AddBonuses(stamina_bonus, fatigue_bonus);
+            return food;
+        }
+        return Food(ITEM_FOOD_BREAD);
+    }
+};
+
+typedef char CookingRecipeEvaluationSizeCheck[sizeof(CookingRecipeEvaluation) == 20 ? 1 : -1];
+typedef char CookingRecipeStaminaOffsetCheck[offsetof(CookingRecipeEvaluation, stamina_bonus) == 2 ? 1 : -1];
+typedef char CookingRecipeFatigueOffsetCheck[offsetof(CookingRecipeEvaluation, fatigue_bonus) == 4 ? 1 : -1];
+typedef char CookingRecipeUtensilOffsetCheck[offsetof(CookingRecipeEvaluation, utensil_mask) == 6 ? 1 : -1];
+typedef char CookingRecipeUnknownTailCheck[offsetof(CookingRecipeEvaluation, unk_08) == 8 ? 1 : -1];
+
+// The evaluator's implementation remains native; this is its actual return ABI.
+extern "C" CookingRecipeEvaluation EvaluateCookingRecipe(CookingRecipeRecord const & recipe);
+
 // The original constructor keeps one record per consecutive run of equal
 // definition IDs. It assumes the list fits 128 records; it does not globally
 // deduplicate IDs or perform a capacity check. Padding at +0xA07 is untouched.
@@ -31,6 +64,7 @@ struct CookingRecipeInventory
     bool RecordFailedDish(u16 result_id);
     // One-based food results end at ITEM_FOOD_NONE; article results follow.
     u32 CountLearnedFoodRecipes() const;
+    CookingRecipeEvaluation GetLearnedFoodRecipe(u32 ordinal) const;
 
     CookingRecipeRecord records[128];
     bool failed_dish;
@@ -63,7 +97,7 @@ struct CookingRecipeInventoryMaskEntry
     u16 selected_value;
 };
 
-// func_0809A58C walks these four-byte, zero-key-terminated records through
+// EvaluateCookingRecipe walks these four-byte, zero-key-terminated records through
 // the +0x0C and +0x10 pointers of a recipe definition.  The meanings of the
 // signed adjustment bytes are not established yet.
 struct ALIGN(4) CookingRecipeUnknownValueOffsetEntry
@@ -369,4 +403,4 @@ extern char const gCppRuntimeBadAlloc_CookingRecipeDefinitionPayload1[];
 
 }
 
-#endif // COOKING_RECIPE_INVENTORY_DATA_HH
+#endif // COOKING_RECIPE_INVENTORY_HH

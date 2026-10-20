@@ -2061,13 +2061,13 @@ extern void func_08027990(void);
 extern void func_080283D8(void);
 extern void func_080288E4(void);
 extern void func_08028E10(void);
-extern void func_0802A194(void);
+extern void PlayerEatFood(void);
 extern void func_08028E68(void);
 extern void func_080292EC(void);
 extern void func_08024DFC(void);
 extern void func_08026AA8(void);
-extern void func_08029764(void);
-extern void func_08029780(void);
+extern void PlayerPrepareForScriptedAnimation(void);
+extern void PlayerRestoreAfterScriptedAnimation(void);
 extern void func_08029CC4(void);
 extern void func_08031DE0(void);
 extern void func_080260E0(void);
@@ -2099,13 +2099,13 @@ extern void func_08027BFC(void);
 extern void func_08028644(void);
 extern void func_08028B50(void);
 extern void func_0802907C(void);
-extern void func_0802A400(void);
+extern void PlayerEatFood(void);
 extern void func_080290D4(void);
 extern void func_08029558(void);
 extern void func_08025068(void);
 extern void func_08026D14(void);
-extern void func_080299D0(void);
-extern void func_080299EC(void);
+extern void PlayerPrepareForScriptedAnimation(void);
+extern void PlayerRestoreAfterScriptedAnimation(void);
 extern void func_08029F30(void);
 extern void func_0803204C(void);
 extern void func_0802634C(void);
@@ -2149,13 +2149,13 @@ extern RawVTableFunction const vtable_unk_080E6658[]
         func_080283D8,
         func_080288E4,
         func_08028E10,
-        func_0802A194,
+        PlayerEatFood,
         func_08028E68,
         func_080292EC,
         func_08024DFC,
         func_08026AA8,
-        func_08029764,
-        func_08029780,
+        PlayerPrepareForScriptedAnimation,
+        PlayerRestoreAfterScriptedAnimation,
         func_08029CC4,
         func_08031DE0,
         func_080260E0,
@@ -2194,13 +2194,13 @@ extern RawVTableFunction const vtable_unk_080E6658[]
         func_08028644,
         func_08028B50,
         func_0802907C,
-        func_0802A400,
+        PlayerEatFood,
         func_080290D4,
         func_08029558,
         func_08025068,
         func_08026D14,
-        func_080299D0,
-        func_080299EC,
+        PlayerPrepareForScriptedAnimation,
+        PlayerRestoreAfterScriptedAnimation,
         func_08029F30,
         func_0803204C,
         func_0802634C,

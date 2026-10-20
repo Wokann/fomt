@@ -1,4 +1,4 @@
-#include "cooking_recipe_inventory_data.hh"
+#include "cooking_recipe_inventory.hh"
 
 // Each ordinary C string emits one terminator. The compiler aligns the next
 // object to four bytes; the final two-byte gap is output-section alignment

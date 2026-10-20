@@ -31,6 +31,7 @@
 struct GameSceneCaughtFish;
 struct RucksackItem;
 struct Article;
+struct Food;
 struct GameScenePlayerActor : AActorEntity {
     /* vt+3C */ virtual void vfunc_3C();
     /* vt+40 */ virtual bool IsRidingHorse();
@@ -39,15 +40,15 @@ struct GameScenePlayerActor : AActorEntity {
     /* vt+4C */ virtual void ThrowHeldItem();
     /* vt+50 */ virtual void UseHeldItem();
     /* vt+54 */ virtual void ClearHeldItem();
-    /* vt+58 */ virtual void vfunc_58();
+    /* vt+58 */ virtual void EatFood(Food const & food);
     /* vt+5C */ virtual void SetHeldItem(RucksackItem const & item, bool wrapped);
     /* vt+60 */ virtual void GiveBasket();
     /* vt+64 */ virtual void ChangeStaminaAndFatigue(MaryStaminaDelta stamina_delta,
         MaryFatigueDelta fatigue_delta);
     /* vt+68 */ virtual void BeginHoldingActorGraphic(u16 animation_id);
-    // Unrecovered slots retain their positions; these declarations are not called.
-    /* vt+6C */ virtual void vfunc_6C();
-    /* vt+70 */ virtual void vfunc_70();
+    // Paired player hooks prepare and restore direct script animation control.
+    /* vt+6C */ virtual void PrepareForScriptedAnimation();
+    /* vt+70 */ virtual void RestoreAfterScriptedAnimation();
     /* vt+74 */ virtual void vfunc_74();
     /* vt+78 */ virtual MaryAnimalSlotIndex GetInteractingAnimalIndex();
     /* vt+7C */ virtual void ObtainMysticBerry();
@@ -994,6 +995,9 @@ struct GameScene : AScene {
     void PreservePlayerLocationForNextDay();
     void ClearPreservedPlayerLocation();
     MaryMapId GetPreservedPlayerMapId();
+    void EatRandomMeal();
+    void PreparePlayerForScriptedAnimation();
+    void RestorePlayerAfterScriptedAnimation();
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];
@@ -1217,13 +1221,13 @@ BlacksmithShopScene * func_08083A7C(void *, SceneTransition **, GameStateSaveIma
 // The global controller and its subobjects are not yet fully recovered.
 extern u8 * gUnk_0300040C;
 
-GameSceneControllerActorRecord * func_080100F0(void);
-GameSceneControllerLocationRecord * func_08010104(void);
-GameSceneScriptQueue<2> * func_08010118(void);
-GameScenePreservedPlayerLocation * func_08010128(void);
+GameSceneControllerActorRecord * GetSceneActorRecords(void);
+GameSceneControllerLocationRecord * GetSceneLocationRecords(void);
+GameSceneScriptQueue<2> * GetSceneScriptQueue0(void);
+GameScenePreservedPlayerLocation * GetScenePreservedPlayerLocation(void);
 u8 * func_08010138(void);
 u32 func_08010148(void);
-ScriptEngine * func_0801014C(void);
+ScriptEngine * GetSceneScriptEngine(void);
 
 GameSceneSongPlayerPool & GetSceneSongPlayerPool(GameScene & scene);
 // Recovered state callbacks retain address names where semantics are unresolved.

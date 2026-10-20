@@ -102,28 +102,28 @@ SceneTransitionOwner GameSceneScriptController::Run()
     return SceneTransitionOwner();
 }
 
-GameSceneControllerActorRecord * func_080100F0(void)
+GameSceneControllerActorRecord * GetSceneActorRecords(void)
 {
     GameSceneScriptController * controller =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
     return controller->actor_records;
 }
 
-GameSceneControllerLocationRecord * func_08010104(void)
+GameSceneControllerLocationRecord * GetSceneLocationRecords(void)
 {
     GameSceneScriptController * controller =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
     return controller->location_records;
 }
 
-GameSceneScriptQueue<2> * func_08010118(void)
+GameSceneScriptQueue<2> * GetSceneScriptQueue0(void)
 {
     GameSceneScriptController * controller =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
     return &controller->queues.queue_0;
 }
 
-GameScenePreservedPlayerLocation * func_08010128(void)
+GameScenePreservedPlayerLocation * GetScenePreservedPlayerLocation(void)
 {
     GameSceneScriptController * controller =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
@@ -140,7 +140,7 @@ u32 func_08010148(void)
     return 25;
 }
 
-ScriptEngine * func_0801014C(void)
+ScriptEngine * GetSceneScriptEngine(void)
 {
     GameSceneScriptController * controller =
         reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
@@ -1120,6 +1120,45 @@ MaryMapId GameScene::GetPreservedPlayerMapId()
     // This native query returns the stored map even when active is zero.
     return reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C)
         ->preserved_player_location.GetMapId();
+}
+
+static inline Food ChooseRandomMeal(GameSceneState const & current)
+{
+    // Rice ball and bread are always candidates in addition to learned food.
+    u32 choices = current.save->cooking_recipes.CountLearnedFoodRecipes() + 2;
+    u32 selection = rand() % choices;
+    switch (selection) {
+    case 0:
+        return Food(ITEM_FOOD_RICE_BALL);
+    case 1:
+        return Food(ITEM_FOOD_BREAD);
+    default:
+        selection -= 2;
+        return current.save->cooking_recipes.GetLearnedFoodRecipe(selection).ToFood();
+    }
+}
+
+void GameScene::EatRandomMeal()
+{
+    GameSceneState * current = state;
+    // Native order obtains the player/vtable before selecting the meal.
+    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))
+        ->EatFood(ChooseRandomMeal(*current));
+    current->script_state = 0x19;
+}
+
+void GameScene::PreparePlayerForScriptedAnimation()
+{
+    static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+        ->PrepareForScriptedAnimation();
+}
+
+void GameScene::RestorePlayerAfterScriptedAnimation()
+{
+    GameSceneState * current = state;
+    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))
+        ->RestoreAfterScriptedAnimation();
+    current->script_state = 0x19;
 }
 
 GameSceneControllerActorRecord::GameSceneControllerActorRecord()
