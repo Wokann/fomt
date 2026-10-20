@@ -58,7 +58,7 @@ u32 FieldPlot::method_0800A014() const
     return result;
 }
 
-bool FieldPlot::method_0800A07C() const
+bool FieldPlot::IsTerrainBlocking() const
 {
     int val = unk_00_08;
 

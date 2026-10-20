@@ -530,7 +530,7 @@ EC void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,
     map->tile_attributes[x + y * width].unk_00_00 =
         map->tile_attributes[x + 1 + y * width].unk_00_00 =
         map->tile_attributes[x + (y + 1) * width].unk_00_00 =
-        map->tile_attributes[x + 1 + (y + 1) * width].unk_00_00 = plot->method_0800A07C();
+        map->tile_attributes[x + 1 + (y + 1) * width].unk_00_00 = plot->IsTerrainBlocking();
     map->tile_attributes[x + y * width].unk_02_01 =
         map->tile_attributes[x + 1 + y * width].unk_02_01 =
         map->tile_attributes[x + (y + 1) * width].unk_02_01 =

@@ -12,6 +12,12 @@ struct FieldRenderRectDescriptor
     void const * lookup_indices;
 };
 
+// Native terrain patching consumes these two pointer fields directly.
+typedef char FieldRenderRectDescriptorSizeCheck[sizeof(FieldRenderRectDescriptor) == 0x18 ? 1 : -1];
+typedef char FieldRenderRectDescriptorHeightCheck[offsetof(FieldRenderRectDescriptor, height) == 1 ? 1 : -1];
+typedef char FieldRenderRectDescriptorValuesCheck[offsetof(FieldRenderRectDescriptor, lookup_values) == 0x10 ? 1 : -1];
+typedef char FieldRenderRectDescriptorIndicesCheck[offsetof(FieldRenderRectDescriptor, lookup_indices) == 0x14 ? 1 : -1];
+
 struct FieldRenderPatchPlacement
 {
     FieldRenderPatchPlacement(FieldRenderRectDescriptor const * patch, u32 x, u32 y)
