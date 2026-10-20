@@ -359,7 +359,7 @@ $(BUILD_DIR)/src/game_state.o: CXXFLAGS += -ffunction-sections
 
 # Recovered scene, world and map functions surround still-native routines.
 # Keep each functional module at its original compiler-owned code positions.
-$(BUILD_DIR)/src/entity_location.o $(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/src/game_world.o $(BUILD_DIR)/src/world_control.o $(BUILD_DIR)/src/world_runtime.o $(BUILD_DIR)/src/world_map.o $(BUILD_DIR)/src/game_menu.o: CXXFLAGS += -ffunction-sections
+$(BUILD_DIR)/src/entity_location.o $(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/src/game_world.o $(BUILD_DIR)/src/world_control.o $(BUILD_DIR)/src/world_lighting.o $(BUILD_DIR)/src/world_runtime.o $(BUILD_DIR)/src/world_map.o $(BUILD_DIR)/src/game_menu.o: CXXFLAGS += -ffunction-sections
 
 # Species health callbacks retain their distinct native function positions.
 $(BUILD_DIR)/src/livestock_actor.o: CXXFLAGS += -ffunction-sections

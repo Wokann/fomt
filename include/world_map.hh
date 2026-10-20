@@ -59,7 +59,7 @@ struct GameSceneWorldMapPrefix {
     virtual ~GameSceneWorldMapPrefix();
     virtual void vfunc_0C();
     virtual void vfunc_10();
-    virtual void vfunc_14();
+    virtual void RefreshAppearance(i32 period, u32 first_weight, u32 second_weight);
     virtual u32 SelectMapData();
     virtual void LoadTiles();
     virtual void LoadTilemaps();
@@ -144,14 +144,13 @@ void QueueMapTilePatch(GameSceneWorldMapPrefix * map,
     FarmHouseTilePatchDescriptor const & patch, u32 frame, HardwareDmaQueue & queue);
 void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queue,
     HardwareDisplayState & display, void * unk);
-void ResetSavedMapTileAnimationFrames(GameSceneSavedMapPrefix * map);
-// The shared base update is C++; the regional reset entries remain native.
+void RefreshSavedWorldMapAppearance(GameSceneSavedMapPrefix * map, i32 period,
+    u32 first_weight, u32 second_weight);
+// Per-frame movement is C++; appearance refresh still has a native base.
+// Appearance also refreshes tile data and forwards both encoded palette weights.
 void UpdateWorldMap(GameSceneWorldMapPrefix * map);
-#if defined(REGION_JP)
-void func_080A5198(GameSceneWorldMapPrefix * map);
-#else
-void func_080A5760(GameSceneWorldMapPrefix * map);
-#endif
+void RefreshWorldMapAppearance(GameSceneWorldMapPrefix * map, i32 period,
+    u32 first_weight, u32 second_weight);
 void func_080AA850(GameSceneSavedMapPrefix * map, u32 index);
 void func_080AA89C(GameSceneWorldMapPrefix * map);
 void func_080AA8BC(GameSceneWorldMapPrefix * map);

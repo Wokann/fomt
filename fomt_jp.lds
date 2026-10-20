@@ -317,9 +317,11 @@ SECTIONS
         asm/game_state.o(.text.game_scene_field_item_tool_after);
         src/world_control.o(.text.IsWorldTimePaused);
         asm/game_state.o(.text.world_update_after_pause_query);
+        src/world_lighting.o(.text.RefreshWorldMapTimeOfDayPalette);
+        asm/game_state.o(.text.world_after_palette_refresh);
         src/game_world.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
         asm/game_state.o(.text.game_scene_after_map_terrain);
-        src/game_world.o(.text.GetWorldTimeOfDayPeriod);
+        src/world_lighting.o(.text.GetWorldTimeOfDayPeriod);
         asm/game_state.o(.text.game_scene_after_time_of_day_period);
         src/game_world.o(.text.func_0801B5C0);
         asm/game_state.o(.text.game_scene_palette_resource_selector_after);
@@ -778,7 +780,7 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_after_patch_dispatchers);
         src/world_map.o(.text.UpdateSavedMapTileAnimationTimers);
         src/world_map.o(.text.DrawSavedWorldMap);
-        src/world_map.o(.text.ResetSavedMapTileAnimationFrames);
+        src/world_map.o(.text.RefreshSavedWorldMapAppearance);
         asm/code_809E804.o(.text.game_map_after_animation_reset);
         src/world_map.o(.text.RefreshFieldPlotTiles .text.func_080AA850 .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
         asm/code_809E804.o(.text.game_map_after_flag_updates);

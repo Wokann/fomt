@@ -10,6 +10,7 @@
 EXTERN_C
 
 extern void UpdateWorldMap(void);
+extern void RefreshWorldMapAppearance(void);
 
 // Address-only references to the real compiler member symbols; the typed
 // member declarations stay in game_scene.hh. These are not ABI wrappers.
@@ -39,7 +40,7 @@ extern void DrawSavedWorldMap(void);
 
 extern void SelectDefaultWorldMapData(void);
 extern void UpdateSavedMapTileAnimationTimers(void);
-extern void ResetSavedMapTileAnimationFrames(void);
+extern void RefreshSavedWorldMapAppearance(void);
 
 extern void LoadWorldMapTiles(void);
 
@@ -332,7 +333,6 @@ extern void func_080E3980(void);
 extern void func_080A4B6C(void);
 extern void func_080A4F50(void);
 extern void func_080A5670(void);
-extern void func_080A5198(void);
 extern void func_080E39D0(void);
 extern void func_080E3B50(void);
 extern void func_080AA974(void);
@@ -591,7 +591,6 @@ extern void func_080E41E8(void);
 extern void func_080A37A8(void);
 extern void func_080A4B6C(void);
 extern void func_080A4F50(void);
-extern void func_080A5760(void);
 extern void func_080A5670(void);
 extern void func_080E4238(void);
 extern void func_080E43B8(void);
@@ -654,7 +653,7 @@ extern void SwapRecordPlayerAlbum(void);
 extern void func_0801DE24(void);
 extern void IsWorldTimePaused(void);
 extern void func_08019BEC(void);
-extern void func_08019B90(void);
+extern void RefreshWorldMapTimeOfDayPalette(void);
 extern void func_0801EAA0(void);
 extern void func_0801C29C(void);
 extern void func_0801CA1C(void);
@@ -1130,7 +1129,7 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801DE24,
     IsWorldTimePaused,
     func_08019BEC,
-    func_08019B90,
+    RefreshWorldMapTimeOfDayPalette,
     func_0801EAA0,
     func_0801C29C,
     func_0801CA1C,
@@ -6389,7 +6388,7 @@ extern RawVTableFunction const vtable_unk_080E82E4[]
     SECTION(".rodata.vtable_82e4") = {
 #if defined(REGION_JP)
         func_080A4F50,
-        func_080A5198,
+        RefreshWorldMapAppearance,
         SelectDefaultWorldMapData,
         LoadWorldMapTiles,
         LoadWorldMapTilemaps,
@@ -6400,7 +6399,7 @@ extern RawVTableFunction const vtable_unk_080E82E4[]
         func_080A4B6C,
         UpdateWorldMap,
         func_080A4F50,
-        func_080A5760,
+        RefreshWorldMapAppearance,
 #endif
     };
 
@@ -6436,7 +6435,7 @@ extern RawVTableFunction const vtable_unk_080E830C[]
 extern RawVTableFunction const vtable_unk_080E831C[]
     SECTION(".rodata.vtable_831c") = {
         DrawSavedWorldMap,
-        ResetSavedMapTileAnimationFrames,
+        RefreshSavedWorldMapAppearance,
         func_080AA974,
         func_080A6EC4,
         func_080A6098,
@@ -6460,7 +6459,7 @@ extern RawVTableFunction const vtable_unk_080E831C[]
         func_080E43B8,
         UpdateSavedMapTileAnimationTimers,
         DrawSavedWorldMap,
-        ResetSavedMapTileAnimationFrames,
+        RefreshSavedWorldMapAppearance,
         func_080AAF3C,
         func_080A748C,
         func_080A6660,
@@ -7256,7 +7255,7 @@ extern RawVTableFunction const vtable_unk_080E85E8[]
     SECTION(".rodata.vtable_85e8") = {
 #if defined(REGION_JP)
         func_080A4F50,
-        func_080A5198,
+        RefreshWorldMapAppearance,
         SelectDefaultWorldMapData,
         func_080CF500,
         func_080CF430,
@@ -7267,7 +7266,7 @@ extern RawVTableFunction const vtable_unk_080E85E8[]
         func_080E59C0,
         UpdateWorldMap,
         func_080A4F50,
-        func_080A5760,
+        RefreshWorldMapAppearance,
         SelectDefaultWorldMapData,
         func_080CFC7C,
         func_080CFBAC,

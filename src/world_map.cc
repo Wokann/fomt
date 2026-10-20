@@ -500,13 +500,10 @@ EC void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queu
     }
 }
 
-EC void ResetSavedMapTileAnimationFrames(GameSceneSavedMapPrefix * map)
+EC void RefreshSavedWorldMapAppearance(GameSceneSavedMapPrefix * map, i32 period,
+    u32 first_weight, u32 second_weight)
 {
-#if defined(REGION_JP)
-    func_080A5198(map);
-#else
-    func_080A5760(map);
-#endif
+    RefreshWorldMapAppearance(map, period, first_weight, second_weight);
     map->tile_animations[0].ResetFrame();
     map->tile_animations[1].ResetFrame();
 }

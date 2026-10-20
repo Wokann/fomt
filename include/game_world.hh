@@ -53,7 +53,12 @@ struct GameSceneWorldPrefix : GameObject {
     GameSceneWorldData data;
     GameStateSaveImage * save;
     u8 updates_suspended;
-    u8 unk_103D[0x13];
+    u8 unk_103D[3];
+    GameCalendar const * calendar;
+    u32 unk_1044;
+    i32 time_of_day_period;
+    u8 time_palette_blend;
+    u8 unk_104D[3];
     FieldRenderTileAttributes * farm_tile_attributes;
     GameScene * scene;
     SmartPtr<GameSceneIndexedSprite> unk_1058;
@@ -123,6 +128,9 @@ typedef char GameSceneWorldUnkOwnerSizeCheck[sizeof(GameSceneWorldUnkOwner) == 4
 typedef char GameSceneWorldUnkOwnerCheck[offsetof(GameSceneWorldPrefix, unk_107C) == 0x107C ? 1 : -1];
 typedef char GameSceneWorldSaveCheck[offsetof(GameSceneWorldPrefix, save) == 0x1038 ? 1 : -1];
 typedef char GameSceneWorldSuspensionCheck[offsetof(GameSceneWorldPrefix, updates_suspended) == 0x103C ? 1 : -1];
+typedef char GameSceneWorldCalendarCheck[offsetof(GameSceneWorldPrefix, calendar) == 0x1040 ? 1 : -1];
+typedef char GameSceneWorldPeriodCheck[offsetof(GameSceneWorldPrefix, time_of_day_period) == 0x1048 ? 1 : -1];
+typedef char GameSceneWorldPaletteBlendCheck[offsetof(GameSceneWorldPrefix, time_palette_blend) == 0x104C ? 1 : -1];
 
 
 EXTERN_C
@@ -177,7 +185,6 @@ bool func_08019F38(GameSceneWorldPrefix & world, Location const & location);
 i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map);
 i32 GetWorldMapPixelHeight(GameSceneWorldPrefix & world, u32 map);
 MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id);
-TimeOfDayPeriod GetWorldTimeOfDayPeriod(GameSceneWorldPrefix & world, u32 hour);
 // Recovered native world callbacks. The duplicate slot readers retain
 // separate entries; neither adds bounds checking absent from the original.
 IndexedResourceArchive * func_0801FBDC(GameSceneWorldPrefix & world);

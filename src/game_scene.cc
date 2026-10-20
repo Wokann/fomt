@@ -531,7 +531,7 @@ void GameScene::FadeScreen(u32 style, i32 speed, bool fade_out, bool call_scene_
     } else {
         // The third callable uses this same path but suppresses the hook.
         if (call_scene_hook != 0)
-            current->game_object.value->vfunc_B8();
+            current->game_object.value->RefreshMapTimeOfDayPalette();
         func_0800934C(current->screen_blend.value, step, mode, mosaic);
         current->script_state = 0x13;
         current->unk_E8 = fade_out;

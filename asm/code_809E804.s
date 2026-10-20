@@ -7253,9 +7253,9 @@ func_080A56DC: @ 0x080A5114
 	.align 2, 0
 .Ljp_080A575C: .4byte 0x000003FF
 
-    .global func_080A5198
+    .global RefreshWorldMapAppearance
     .thumb_func
-func_080A5198: @ 0x080A5198
+RefreshWorldMapAppearance: @ 0x080A5198
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -88556,8 +88556,8 @@ func_080A56DC: @ 0x080A56DC
 	.align 2, 0
 .L080A575C: .4byte 0x000003FF
 
-	thumb_func_start func_080A5760
-func_080A5760: @ 0x080A5760
+	thumb_func_start RefreshWorldMapAppearance
+RefreshWorldMapAppearance: @ 0x080A5760
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

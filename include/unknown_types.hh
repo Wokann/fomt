@@ -112,7 +112,7 @@ struct GameObject
     virtual void RefreshChickenCoopIncubator(MaryChickenCoopIncubatorIndex incubator);
     virtual bool IsTimePaused() const;
     virtual void ChangeMap(Location const & location, bool unk);
-    virtual void vfunc_B8();
+    virtual void RefreshMapTimeOfDayPalette();
     // Unrecovered slots retain their offsets; only the television pair is named.
     virtual void vfunc_BC();
     virtual void vfunc_C0();

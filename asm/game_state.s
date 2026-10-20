@@ -9287,7 +9287,7 @@ func_08017C30:
     adds r1, r5, #0
     adds r2, r4, #0
     movs r3, #0
-    bl loc_08019ED0
+    bl UpdateWorldTimeOfDayPalettes
     cmp r5, #0x14
     bne .Lauto_08017D4C
     cmp r4, #0
@@ -11802,49 +11802,9 @@ func_080182C8:
     .byte 0x00, 0x00, 0xAC, 0x0C, 0x00, 0x00, 0xB8, 0x0C, 0x00, 0x00, 0xD8, 0x0C, 0x00, 0x00, 0xB4, 0x0C
     .byte 0x00, 0x00, 0xA4, 0x0C, 0x00, 0x00, 0xA8, 0x0C, 0x00, 0x00, 0xBC, 0x0C, 0x00, 0x00, 0x81, 0x0B
     .byte 0x00, 0x00, 0xB1, 0x0D, 0x00, 0x00
-    .global func_08019B90
-    .thumb_func
-func_08019B90:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    ldr r0, [r5, #4]
-    adds r1, r0, #0
-    adds r1, #0x90
-    ldr r4, [r1]
-    ldr r2, [pc, #0x44]
-    adds r1, r5, r2
-    ldr r1, [r1]
-    ldr r3, [pc, #0x44]
-    adds r2, r5, r3
-    ldrb r2, [r2]
-    movs r3, #0x1e
-    subs r3, r3, r2
-    ldr r4, [r4, #0x14]
-    bl _call_via_r4
-    ldr r0, [r5, #4]
-    ldr r0, [r0, #4]
-    bl GetMapData
-    adds r0, #0x24
-    ldrb r0, [r0]
-    cmp r0, #0
-    bne .Lauto_08019970
-    movs r1, #0x82
-    lsls r1, r1, #5
-    adds r0, r5, r1
-    ldr r0, [r0]
-    ldr r2, [r0]
-    lsls r1, r2, #0xb
-    lsrs r1, r1, #0x1b
-    lsls r2, r2, #5
-    lsrs r2, r2, #0x1a
-    adds r0, r5, #0
-    movs r3, #1
-    bl loc_08019ED0
-    .Lauto_08019970:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00, 0x48, 0x10, 0x00, 0x00, 0x4C, 0x10, 0x00, 0x00
+    .section .text.world_after_palette_refresh, "ax", %progbits
+    .align 2, 0
+
     .global func_08019BEC
     .thumb_func
 func_08019BEC:
@@ -11973,16 +11933,18 @@ func_08019BEC:
     bl UpdateWorldBackgroundAudio
     .byte 0x78, 0x68, 0x40, 0x68, 0x8A, 0xF0, 0x24, 0xFA, 0x24, 0x30, 0x00, 0x78, 0x00, 0x28, 0x0C, 0xD1
     .byte 0x82, 0x21, 0x49, 0x01, 0x78, 0x18, 0x00, 0x68, 0x02, 0x68, 0xD1, 0x02, 0xC9, 0x0E, 0x52, 0x01
-    .byte 0x92, 0x0E, 0x38, 0x1C, 0x01, 0x23, 0x00, 0xF0, 0x13, 0xF9, 0x09, 0xB0, 0x38, 0xBC, 0x98, 0x46
+    .byte 0x92, 0x0E, 0x38, 0x1C, 0x01, 0x23
+    bl UpdateWorldTimeOfDayPalettes
+    .byte 0x09, 0xB0, 0x38, 0xBC, 0x98, 0x46
     .byte 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x28, 0x10, 0x00, 0x00
     .byte 0x38, 0x10, 0x00, 0x00, 0x4C, 0x21, 0x00, 0x00, 0x54, 0x10, 0x00, 0x00
 
     .section .text.game_scene_after_map_terrain, "ax", %progbits
     .align 2, 0
 
-    .global loc_08019ED0
+    .global UpdateWorldTimeOfDayPalettes
     .thumb_func
-    loc_08019ED0:
+    UpdateWorldTimeOfDayPalettes:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -15298,8 +15260,9 @@ func_0801EAA0:
     lsls r4, r4, #5
     adds r0, r7, r4
     ldr r0, [r0]
-    .byte 0x02, 0x68, 0xD1, 0x02, 0xC9, 0x0E, 0x52, 0x01, 0x92, 0x0E, 0x38, 0x1C, 0x00, 0x23, 0xFB, 0xF7
-    .byte 0xCD, 0xF9
+    .byte 0x02, 0x68, 0xD1, 0x02, 0xC9, 0x0E, 0x52, 0x01, 0x92, 0x0E, 0x38, 0x1C, 0x00, 0x23
+    bl UpdateWorldTimeOfDayPalettes
+
     .Lauto_0801EB36:
     ldr r0, [r7, #8]
     ldr r1, [r0, #0x14]
@@ -26251,7 +26214,7 @@ func_08017C30: @ 0x08017C30
     adds r1, r5, #0
     adds r2, r4, #0
     movs r3, #0
-    bl func_0801A13C
+    bl UpdateWorldTimeOfDayPalettes
     cmp r5, #0x14
     bne .L08017FB8
     cmp r4, #0
@@ -29744,50 +29707,8 @@ func_080182C8: @ 0x080182C8
 .L08019B88: .4byte 0x00000B81
 .L08019B8C: .4byte 0x00000DB1
 
-    thumb_func_start func_08019B90
-func_08019B90: @ 0x08019B90
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    ldr r0, [r5, #4]
-    adds r1, r0, #0
-    adds r1, #0x90
-    ldr r4, [r1]
-    ldr r2, .L08019BE4 @ =0x00001048
-    adds r1, r5, r2
-    ldr r1, [r1]
-    ldr r3, .L08019BE8 @ =0x0000104C
-    adds r2, r5, r3
-    ldrb r2, [r2]
-    movs r3, #0x1e
-    subs r3, r3, r2
-    ldr r4, [r4, #0x14]
-    bl _call_via_r4
-    ldr r0, [r5, #4]
-    ldr r0, [r0, #4]
-    bl GetMapData
-    adds r0, #0x24
-    ldrb r0, [r0]
-    cmp r0, #0
-    bne .L08019BDC
-    movs r1, #0x82
-    lsls r1, r1, #5
-    adds r0, r5, r1
-    ldr r0, [r0]
-    ldr r2, [r0]
-    lsls r1, r2, #0xb
-    lsrs r1, r1, #0x1b
-    lsls r2, r2, #5
-    lsrs r2, r2, #0x1a
-    adds r0, r5, #0
-    movs r3, #1
-    bl func_0801A13C
-.L08019BDC:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
+    .section .text.world_after_palette_refresh, "ax", %progbits
     .align 2, 0
-.L08019BE4: .4byte 0x00001048
-.L08019BE8: .4byte 0x0000104C
 
     thumb_func_start func_08019BEC
 func_08019BEC: @ 0x08019BEC
@@ -30176,7 +30097,7 @@ func_08019BEC: @ 0x08019BEC
     lsrs r2, r2, #0x1a
     adds r0, r7, #0
     movs r3, #1
-    bl func_0801A13C
+    bl UpdateWorldTimeOfDayPalettes
 .L08019F16:
     add sp, #0x24
     pop {r3, r4, r5}
@@ -30195,8 +30116,8 @@ func_08019BEC: @ 0x08019BEC
     .section .text.game_scene_after_map_terrain, "ax", %progbits
     .align 2, 0
 
-    thumb_func_start func_0801A13C
-func_0801A13C: @ 0x0801A13C
+    thumb_func_start UpdateWorldTimeOfDayPalettes
+UpdateWorldTimeOfDayPalettes: @ 0x0801A13C
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -34634,7 +34555,7 @@ func_0801EAA0: @ 0x0801EAA0
     lsrs r2, r2, #0x1a
     adds r0, r7, #0
     movs r3, #0
-    bl func_0801A13C
+    bl UpdateWorldTimeOfDayPalettes
 .L0801EDA2:
     ldr r0, [r7, #8]
     ldr r1, [r0, #0x14]
