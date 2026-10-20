@@ -847,6 +847,48 @@ void GameScene::BeginEggIncubation(MaryChickenCoopIncubatorIndex incubator)
     current->game_object.value->RefreshChickenCoopIncubator(incubator);
 }
 
+void GameScene::RefreshAllNpcSchedules()
+{
+    // Re-read the current world for each slot: a refresh can change it.
+    GameSceneState * current = state;
+    for (u32 id = ENTITY_LILLIA; id <= ENTITY_CHILD; ++id) {
+        GameObject * & world = current->game_object.value;
+        ANpcEntity * npc = static_cast<ANpcEntity *>(
+            world->GetActorEntity(id));
+        if (npc != nullptr)
+            npc->vfunc_3C(3);
+    }
+}
+
+void GameScene::ChangePlayerStaminaAndFatigue(MaryStaminaDelta stamina_delta,
+    MaryFatigueDelta fatigue_delta)
+{
+    static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+        ENTITY_PLAYER))->ChangeStaminaAndFatigue(stamina_delta, fatigue_delta);
+}
+
+void GameScene::RemoveFarmHorse(MaryBool skip_removal, i32 unused_value)
+{
+    GameSceneState * current = state;
+    // The VM consumes unused_value, but the native operation never reads it.
+    if (skip_removal == FALSE) {
+        current->game_object.value->vfunc_3C(ENTITY_FARM_HORSE);
+        current->save->farm.RemoveHorse();
+    }
+}
+
+MaryAnimalSlotIndex GameScene::GetInteractingAnimalIndex()
+{
+    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+        ENTITY_PLAYER))->GetInteractingAnimalIndex();
+}
+
+bool GameScene::IsPlayerHoldingTool()
+{
+    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+        ENTITY_PLAYER))->IsHoldingTool();
+}
+
 EC u32 func_0801740C(FieldPlot const & plot)
 {
     switch (plot.GetUnk2()) {

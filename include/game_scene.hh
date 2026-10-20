@@ -29,7 +29,7 @@ struct Article;
 struct GameScenePlayerActor : AActorEntity {
     /* vt+3C */ virtual void vfunc_3C();
     /* vt+40 */ virtual bool IsRidingHorse();
-    /* vt+44 */ virtual void vfunc_44();
+    /* vt+44 */ virtual bool IsHoldingTool();
     /* vt+48 */ virtual bool TryShipHeldItem();
     /* vt+4C */ virtual void ThrowHeldItem();
     /* vt+50 */ virtual void UseHeldItem();
@@ -37,6 +37,14 @@ struct GameScenePlayerActor : AActorEntity {
     /* vt+58 */ virtual void vfunc_58();
     /* vt+5C */ virtual void SetHeldItem(RucksackItem const & item, bool wrapped);
     /* vt+60 */ virtual void GiveBasket();
+    /* vt+64 */ virtual void ChangeStaminaAndFatigue(MaryStaminaDelta stamina_delta,
+        MaryFatigueDelta fatigue_delta);
+    // Unrecovered slots retain their positions; these declarations are not called.
+    /* vt+68 */ virtual void vfunc_68();
+    /* vt+6C */ virtual void vfunc_6C();
+    /* vt+70 */ virtual void vfunc_70();
+    /* vt+74 */ virtual void vfunc_74();
+    /* vt+78 */ virtual MaryAnimalSlotIndex GetInteractingAnimalIndex();
 private:
     GameScenePlayerActor();
 };
@@ -1284,6 +1292,12 @@ struct GameScene : AScene {
     void LightFireplaceAtLocation(MaryMapId map);
     void SetVaseArticleId(MaryItemArticleId article);
     void BeginEggIncubation(MaryChickenCoopIncubatorIndex incubator);
+    void RefreshAllNpcSchedules();
+    void ChangePlayerStaminaAndFatigue(MaryStaminaDelta stamina_delta,
+        MaryFatigueDelta fatigue_delta);
+    void RemoveFarmHorse(MaryBool skip_removal, i32 unused_value);
+    MaryAnimalSlotIndex GetInteractingAnimalIndex();
+    bool IsPlayerHoldingTool();
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];

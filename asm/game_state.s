@@ -5272,57 +5272,7 @@ func_08014AF8:
     bx r0
     .align 2, 0
 
-    .global func_08014BD8
-    .thumb_func
-func_08014BD8:
-    push {r4, r5, lr}
-    ldr r0, [r0, #4]
-    movs r4, #1
-    adds r5, r0, #0
-    adds r5, #0xa8
-.Ljp_08014AB6:
-    ldr r0, [r5]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    adds r1, r4, #0
-    bl _call_via_r2
-    adds r1, r0, #0
-    cmp r1, #0
-    beq .Ljp_08014AD4
-    ldr r0, [r1, #0x14]
-    ldr r2, [r0, #0x3c]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08014AD4:
-    adds r4, #1
-    cmp r4, #0x23
-    bls .Ljp_08014AB6
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-
-    .global func_08014C0C
-    .thumb_func
-func_08014C0C:
-    push {r4, r5, lr}
-    adds r4, r1, #0
-    adds r5, r2, #0
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r3, [r1, #0x64]
-    adds r1, r4, #0
-    adds r2, r5, #0
-    bl _call_via_r3
-    pop {r4, r5}
-    pop {r0}
-    bx r0
+    .section .text.game_scene_create_horse, "ax", %progbits
 
     .global func_08014C34
     .thumb_func
@@ -5447,66 +5397,7 @@ func_08014C34:
 .Ljp_08014BFC: .4byte 0x000003FF
 .Ljp_08014C00: .4byte 0xFFFFFC00
 
-    .global func_08014D30
-    .thumb_func
-func_08014D30:
-    push {r4, lr}
-    ldr r4, [r0, #4]
-    cmp r1, #0
-    bne .Ljp_08014C28
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x3c]
-    movs r1, #0x2c
-    bl _call_via_r2
-    adds r0, r4, #0
-    adds r0, #0x8c
-    ldr r0, [r0]
-    adds r0, #0x14
-    bl RemoveHorse__4Farm
-.Ljp_08014C28:
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    .global func_08014D5C
-    .thumb_func
-func_08014D5C:
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r1, [r1, #0x78]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    .global func_08014D7C
-    .thumb_func
-func_08014D7C:
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r1, [r1, #0x44]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-    .align 2, 0
+    .section .text.game_scene_after_actor_commands, "ax", %progbits
 
     .global func_08014C70
     .thumb_func
@@ -22716,55 +22607,7 @@ func_08014AF8: @ 0x08014AF8
     bx r0
     .align 2, 0
 
-    thumb_func_start func_08014BD8
-func_08014BD8: @ 0x08014BD8
-    push {r4, r5, lr}
-    ldr r0, [r0, #4]
-    movs r4, #1
-    adds r5, r0, #0
-    adds r5, #0xa8
-.L08014BE2:
-    ldr r0, [r5]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    adds r1, r4, #0
-    bl _call_via_r2
-    adds r1, r0, #0
-    cmp r1, #0
-    beq .L08014C00
-    ldr r0, [r1, #0x14]
-    ldr r2, [r0, #0x3c]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08014C00:
-    adds r4, #1
-    cmp r4, #0x23
-    bls .L08014BE2
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_08014C0C
-func_08014C0C: @ 0x08014C0C
-    push {r4, r5, lr}
-    adds r4, r1, #0
-    adds r5, r2, #0
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r3, [r1, #0x64]
-    adds r1, r4, #0
-    adds r2, r5, #0
-    bl _call_via_r3
-    pop {r4, r5}
-    pop {r0}
-    bx r0
+    .section .text.game_scene_create_horse, "ax", %progbits
 
     thumb_func_start func_08014C34
 func_08014C34: @ 0x08014C34
@@ -22888,63 +22731,7 @@ func_08014C34: @ 0x08014C34
 .L08014D28: .4byte 0x000003FF
 .L08014D2C: .4byte 0xFFFFFC00
 
-    thumb_func_start func_08014D30
-func_08014D30: @ 0x08014D30
-    push {r4, lr}
-    ldr r4, [r0, #4]
-    cmp r1, #0
-    bne .L08014D54
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x3c]
-    movs r1, #0x2c
-    bl _call_via_r2
-    adds r0, r4, #0
-    adds r0, #0x8c
-    ldr r0, [r0]
-    adds r0, #0x14
-    bl RemoveHorse__4Farm
-.L08014D54:
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_08014D5C
-func_08014D5C: @ 0x08014D5C
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r1, [r1, #0x78]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_08014D7C
-func_08014D7C: @ 0x08014D7C
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r1, [r1, #0x44]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-    .align 2, 0
+    .section .text.game_scene_after_actor_commands, "ax", %progbits
 
     thumb_func_start func_08014D9C
 func_08014D9C: @ 0x08014D9C
