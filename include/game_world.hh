@@ -206,7 +206,8 @@ struct GameSceneWorldPrefix : GameObject {
 
     GameSceneWorldData data;
     GameStateSaveImage * save;
-    u8 unk_103C[0x14];
+    u8 updates_suspended;
+    u8 unk_103D[0x13];
     FieldRenderTileAttributes * farm_tile_attributes;
     GameScene * scene;
     SmartPtr<GameSceneIndexedSprite> unk_1058;
@@ -288,6 +289,7 @@ typedef char GameSceneWorldUnknownObjectCheck[offsetof(GameSceneWorldPrefix, dat
 typedef char GameSceneWorldUnkOwnerSizeCheck[sizeof(GameSceneWorldUnkOwner) == 4 ? 1 : -1];
 typedef char GameSceneWorldUnkOwnerCheck[offsetof(GameSceneWorldPrefix, unk_107C) == 0x107C ? 1 : -1];
 typedef char GameSceneWorldSaveCheck[offsetof(GameSceneWorldPrefix, save) == 0x1038 ? 1 : -1];
+typedef char GameSceneWorldSuspensionCheck[offsetof(GameSceneWorldPrefix, updates_suspended) == 0x103C ? 1 : -1];
 
 
 EXTERN_C
@@ -308,8 +310,6 @@ void func_0801D7B0(GameSceneWorldPrefix & world, Location const & location,
     Article const & article);
 u32 func_0801D88C(GameSceneWorldPrefix & world, Location const & location,
     Article const & article);
-void func_0801D8CC(GameSceneWorldPrefix & world);
-void func_0801D948(GameSceneWorldPrefix & world);
 // These two world implementations remain native; their real callers and
 // virtual slots are named without replacing their bodies with approximations.
 void CreateWorldEventIcon(GameSceneWorldPrefix & world, MaryEventIconSlot slot,

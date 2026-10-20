@@ -110,7 +110,7 @@ struct GameObject
     virtual MaryItemArticleId RemoveRecordPlayerAlbum();
     virtual MaryItemArticleId SwapRecordPlayerAlbum(MaryItemArticleId article);
     virtual void RefreshChickenCoopIncubator(MaryChickenCoopIncubatorIndex incubator);
-    virtual void vfunc_B0();
+    virtual bool IsTimePaused() const;
     virtual void ChangeMap(Location const & location, bool unk);
     virtual void vfunc_B8();
     // Unrecovered slots retain their offsets; only the television pair is named.
@@ -140,10 +140,10 @@ struct GameObject
     virtual void SetTelevisionProgram(MaryTelevisionProgramId program);
     virtual void EndTelevisionProgram();
     virtual void vfunc_120();
-    virtual void vfunc_124();
+    virtual void SuspendUpdates();
     // Unrecovered entries preserve the native slot order; their call ABIs
     // are not established. GetClock is verified through the concrete table.
-    virtual void vfunc_128();
+    virtual void ResumeUpdates();
     virtual void vfunc_12C();
     virtual void vfunc_130();
     virtual void vfunc_134();

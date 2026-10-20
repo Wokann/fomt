@@ -1157,7 +1157,7 @@ EC void func_080D7F08(GameSceneState * state)
 
 EC void func_080D7F3C(GameSceneState * state)
 {
-    state->game_object.value->vfunc_124();
+    state->game_object.value->SuspendUpdates();
     state->script_state = 2;
 }
 

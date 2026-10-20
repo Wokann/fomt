@@ -276,6 +276,8 @@ SECTIONS
         src/farm_terrain.o(.text);
         src/game_world.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
+        src/world_control.o(.text.IsWorldTimePaused);
+        asm/game_state.o(.text.world_update_after_pause_query);
         src/game_world.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
         asm/game_state.o(.text.game_scene_after_map_terrain);
         src/game_world.o(.text.GetWorldTimeOfDayPeriod);
@@ -287,8 +289,9 @@ SECTIONS
         src/game_world.o(.text.func_0801C29C);
         asm/game_state.o(.text.game_scene_farm_plot_action_after);
         src/game_world.o(.text.func_0801D3FC .text.func_0801D4E0 .text.func_0801D5BC
-            .text.PickUpFieldItemAtLocation .text.func_0801D7B0 .text.func_0801D88C
-            .text.func_0801D8CC .text.func_0801D948 .text.QueueWorldScript
+            .text.PickUpFieldItemAtLocation .text.func_0801D7B0 .text.func_0801D88C);
+        src/world_control.o(.text.SuspendWorldUpdates .text.ResumeWorldUpdates);
+        src/game_world.o(.text.QueueWorldScript
             .text.SelectWorldBackgroundAudio .text.GetWorldSongPlayerPool .text.UpdateWorldBackgroundAudio
             .text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue
             .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78 .text.RemoveRecordPlayerAlbum

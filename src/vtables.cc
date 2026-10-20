@@ -652,7 +652,7 @@ extern void func_0801DD6C(void);
 extern void RemoveRecordPlayerAlbum(void);
 extern void SwapRecordPlayerAlbum(void);
 extern void func_0801DE24(void);
-extern void func_08017C00(void);
+extern void IsWorldTimePaused(void);
 extern void func_08019BEC(void);
 extern void func_08019B90(void);
 extern void func_0801EAA0(void);
@@ -681,8 +681,8 @@ extern void CollectDailyShippingRevenue(void);
 extern void func_0801DC24(void);
 extern void func_0801DCA8(void);
 extern void func_08019F38(void);
-extern void func_0801D8CC(void);
-extern void func_0801D948(void);
+extern void SuspendWorldUpdates(void);
+extern void ResumeWorldUpdates(void);
 extern void func_0801FAA8(void);
 extern void func_0801FAB8(void);
 extern void func_0801B498(void);
@@ -1128,7 +1128,7 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     RemoveRecordPlayerAlbum,
     SwapRecordPlayerAlbum,
     func_0801DE24,
-    func_08017C00,
+    IsWorldTimePaused,
     func_08019BEC,
     func_08019B90,
     func_0801EAA0,
@@ -1157,8 +1157,8 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801DC24,
     func_0801DCA8,
     func_08019F38,
-    func_0801D8CC,
-    func_0801D948,
+    SuspendWorldUpdates,
+    ResumeWorldUpdates,
     func_0801FAA8,
     func_0801FAB8,
     func_0801B498,

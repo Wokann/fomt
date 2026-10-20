@@ -573,42 +573,6 @@ EC u32 func_0801D88C(GameSceneWorldPrefix & world, Location const & location,
     return 2;
 }
 
-EC void func_0801D8CC(GameSceneWorldPrefix & world)
-{
-    world.unk_103C[0] = 1;
-    if (world.save->scripted_npc_control) {
-        // The original control path still notifies every actor here.
-        AEntity ** it = world.data.entities;
-        AEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
-        for (; it != end; ++it) {
-            if (*it != nullptr)
-                (*it)->vfunc_20();
-        }
-    } else {
-        AEntity ** it = world.data.entities;
-        AEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
-        for (; it != end; ++it) {
-            if (*it != nullptr)
-                (*it)->vfunc_20();
-        }
-    }
-}
-
-EC void func_0801D948(GameSceneWorldPrefix & world)
-{
-    world.unk_103C[0] = 0;
-    if (world.save->scripted_npc_control) {
-        world.data.entities[0]->vfunc_24();
-    } else {
-        AEntity ** it = world.data.entities;
-        AEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
-        for (; it != end; ++it) {
-            if (*it != nullptr)
-                (*it)->vfunc_24();
-        }
-    }
-}
-
 EC void QueueWorldScript(GameSceneWorldPrefix & world,
     GameSceneScriptRequest const & request, i32 queue_kind)
 {
