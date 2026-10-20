@@ -8605,30 +8605,6 @@ func_08016890:
     .section .text.game_scene_after_world_effect_commands, "ax", %progbits
     .align 2, 0
 
-    .global func_08016CA0
-    .thumb_func
-func_08016CA0:
-    push {r4, lr}
-    lsls r4, r1, #0x18
-    lsrs r4, r4, #0x18
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    adds r1, #0x9c
-    ldr r2, [r1]
-    adds r1, r4, #0
-    bl _call_via_r2
-    pop {r4}
-    pop {r0}
-    bx r0
-    .byte 0x30, 0xB5, 0x0D, 0x1C, 0x44, 0x68, 0x20, 0x1C, 0xA8, 0x30, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C
-    .byte 0x00, 0x21, 0xBC, 0xF0, 0xF7, 0xF9, 0x41, 0x69, 0x4A, 0x6F, 0x29, 0x1C, 0xBC, 0xF0, 0xF2, 0xF9
-    .byte 0x9C, 0x34, 0x19, 0x20, 0x20, 0x60, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
     .global func_08016CF4
     .thumb_func
 func_08016CF4:
@@ -25548,50 +25524,6 @@ func_08016AFC: @ 0x08016AFC
 
     .section .text.game_scene_after_world_effect_commands, "ax", %progbits
     .align 2, 0
-
-    thumb_func_start func_08016F0C
-func_08016F0C: @ 0x08016F0C
-    push {r4, lr}
-    lsls r4, r1, #0x18
-    lsrs r4, r4, #0x18
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    adds r1, #0x9c
-    ldr r2, [r1]
-    adds r1, r4, #0
-    bl _call_via_r2
-    pop {r4}
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_08016F34
-func_08016F34: @ 0x08016F34
-    push {r4, r5, lr}
-    adds r5, r1, #0
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r2, [r1, #0x74]
-    adds r1, r5, #0
-    bl _call_via_r2
-    adds r4, #0x9c
-    movs r0, #0x19
-    str r0, [r4]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
 
     thumb_func_start func_08016F60
 func_08016F60: @ 0x08016F60

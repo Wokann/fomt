@@ -19715,9 +19715,9 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .global func_08029CC4
+    .global PlayerShowHoldingTool
     .thumb_func
-func_08029CC4: @ 0x08029CC4
+PlayerShowHoldingTool: @ 0x08029CC4
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -36268,20 +36268,7 @@ sub_08031DA8:
     adds r0, #0x88
     bx lr
 
-    .global func_08031DAC
-    .thumb_func
-func_08031DAC:
-    adds r0, #0xc2
-    ldrb r0, [r0]
-    bx lr
-    .align 2, 0
-
-    .global func_08031DB4
-    .thumb_func
-func_08031DB4:
-    adds r0, #0xc2
-    strb r1, [r0]
-    bx lr
+    .section .text.player_actor_update_state_after, "ax", %progbits
     .align 2, 0
 
     .global func_08031DBC
@@ -54371,8 +54358,8 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     pop {r0}
     bx r0
 
-    thumb_func_start func_08029F30
-func_08029F30: @ 0x08029F30
+    thumb_func_start PlayerShowHoldingTool
+PlayerShowHoldingTool: @ 0x08029F30
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -70882,20 +70869,7 @@ sub_08031FDC:
 sub_08032014:
     adds r0, #0x88
     bx lr
-    .global func_08032018
-    .thumb_func
-func_08032018:
-    adds r0, #0xc2
-    ldrb r0, [r0]
-    bx lr
-    .align 2, 0
-
-    .global func_08032020
-    .thumb_func
-func_08032020:
-    adds r0, #0xc2
-    strb r1, [r0]
-    bx lr
+    .section .text.player_actor_update_state_after, "ax", %progbits
     .align 2, 0
 
     .global func_08032028

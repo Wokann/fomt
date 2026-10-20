@@ -729,14 +729,14 @@ void GameScene::StartShipmentBoxDepositAnimation()
 // ENTITY_PLAYER is required here, unlike the nullable arbitrary-entity calls.
 bool GameScene::IsPlayerRidingHorse()
 {
-    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))->IsRidingHorse();
+    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))->IsRidingHorse();
 }
 
 bool GameScene::TryShipPlayerHeldItem()
 {
     GameSceneState * current = state;
     bool result;
-    if (static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->TryShipHeldItem()) {
+    if (static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->TryShipHeldItem()) {
         current->script_state = 0x19;
         result = true;
     } else {
@@ -750,7 +750,7 @@ bool GameScene::TryShipPlayerHeldItem()
 bool GameScene::SetPlayerHeldItem(RucksackItem const & item, bool wrapped)
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->SetHeldItem(item, wrapped);
+    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->SetHeldItem(item, wrapped);
     current->script_state = 0x19;
     return true;
 }
@@ -758,7 +758,7 @@ bool GameScene::SetPlayerHeldItem(RucksackItem const & item, bool wrapped)
 bool GameScene::GivePlayerBasket()
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->GiveBasket();
+    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->GiveBasket();
     current->script_state = 0x19;
     return true;
 }
@@ -766,20 +766,20 @@ bool GameScene::GivePlayerBasket()
 void GameScene::ThrowPlayerHeldItem()
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->ThrowHeldItem();
+    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->ThrowHeldItem();
     current->script_state = 0x19;
 }
 
 void GameScene::UsePlayerHeldItem()
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->UseHeldItem();
+    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))->UseHeldItem();
     current->script_state = 0x19;
 }
 
 void GameScene::ClearPlayerHeldItem()
 {
-    static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))->ClearHeldItem();
+    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))->ClearHeldItem();
 }
 
 MaryItemArticleId GameScene::RemoveRecordPlayerAlbum()
@@ -866,7 +866,7 @@ void GameScene::RefreshAllNpcSchedules()
 void GameScene::ChangePlayerStaminaAndFatigue(MaryStaminaDelta stamina_delta,
     MaryFatigueDelta fatigue_delta)
 {
-    static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
         ENTITY_PLAYER))->ChangeStaminaAndFatigue(stamina_delta, fatigue_delta);
 }
 
@@ -899,13 +899,13 @@ void GameScene::RemoveFarmHorse(MaryBool skip_removal, i32 unused_value)
 
 MaryAnimalSlotIndex GameScene::GetInteractingAnimalIndex()
 {
-    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
         ENTITY_PLAYER))->GetInteractingAnimalIndex();
 }
 
 bool GameScene::IsPlayerHoldingTool()
 {
-    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
         ENTITY_PLAYER))->IsHoldingTool();
 }
 
@@ -914,7 +914,7 @@ void GameScene::BeginHoldingActorGraphic(MaryAnimationId animation_id)
     // The native player action consumes only the low 16 animation-ID bits.
     u16 animation = animation_id;
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(
+    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(
         ENTITY_PLAYER))->BeginHoldingActorGraphic(animation);
     current->script_state = 0x19;
 }
@@ -922,7 +922,7 @@ void GameScene::BeginHoldingActorGraphic(MaryAnimationId animation_id)
 void GameScene::ObtainPowerBerry()
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(
+    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(
         ENTITY_PLAYER))->ObtainPowerBerry();
     current->script_state = 0x19;
 }
@@ -930,7 +930,7 @@ void GameScene::ObtainPowerBerry()
 void GameScene::ObtainMysticBerry()
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(
+    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(
         ENTITY_PLAYER))->ObtainMysticBerry();
     current->script_state = 0x19;
 }
@@ -949,25 +949,25 @@ bool GameScene::IsHarvestSpriteDailyWorkComplete(MaryCharacterId sprite_id)
 
 MaryHeldItemKind GameScene::GetPresentedItemKind()
 {
-    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
         ENTITY_PLAYER))->GetPresentedItemKind();
 }
 
 i32 GameScene::GetPresentedItemId()
 {
-    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
         ENTITY_PLAYER))->GetPresentedItemId();
 }
 
 bool GameScene::IsPresentedItemGiftWrapped()
 {
-    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
         ENTITY_PLAYER))->IsPresentedItemGiftWrapped();
 }
 
 GameSceneCaughtFish const * GameScene::GetCaughtFish()
 {
-    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+    return static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(
         ENTITY_PLAYER))->GetCaughtFish();
 }
 
@@ -1066,13 +1066,13 @@ void GameScene::PlayStarSparkleEffect()
 
 void GameScene::EnterHotSpringBathingState()
 {
-    static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
         ->EnterHotSpringBathingState();
 }
 
 void GameScene::ExitHotSpringBathingState()
 {
-    static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
         ->ExitHotSpringBathingState();
 }
 
@@ -1142,21 +1142,21 @@ void GameScene::EatRandomMeal()
 {
     GameSceneState * current = state;
     // Native order obtains the player/vtable before selecting the meal.
-    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))
         ->EatFood(ChooseRandomMeal(*current));
     current->script_state = 0x19;
 }
 
 void GameScene::PreparePlayerForScriptedAnimation()
 {
-    static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
         ->PrepareForScriptedAnimation();
 }
 
 void GameScene::RestorePlayerAfterScriptedAnimation()
 {
     GameSceneState * current = state;
-    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))
+    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))
         ->RestoreAfterScriptedAnimation();
     current->script_state = 0x19;
 }
@@ -1173,6 +1173,22 @@ void GameScene::CreateEventIcon(MaryEventIconSlot slot, MaryMapSpaceX x,
 void GameScene::RemoveEventIcon(MaryEventIconSlot slot)
 {
     static_cast<GameSceneWorldPrefix *>(state->game_object.value)->RemoveEventIcon(slot);
+}
+
+void GameScene::SetPlayerActorUpdateSuspended(MaryBool suspended)
+{
+    // Native entry keeps the low byte; do not replace it with bool normalization.
+    u8 value = suspended;
+    static_cast<PlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+        ->SetUpdateSuspended(value);
+}
+
+void GameScene::ShowPlayerHoldingTool(MaryItemToolId tool_id)
+{
+    GameSceneState * current = state;
+    static_cast<PlayerActor *>(current->game_object.value->GetActorEntity(ENTITY_PLAYER))
+        ->ShowHoldingTool(tool_id);
+    current->script_state = 0x19;
 }
 
 GameSceneControllerActorRecord::GameSceneControllerActorRecord()

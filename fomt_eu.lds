@@ -267,6 +267,9 @@ SECTIONS
         src/game_scene.o(
             .text.CreateEventIcon__9GameScene17MaryEventIconSlotii18MaryEventIconLayeri
             .text.RemoveEventIcon__9GameScene17MaryEventIconSlot);
+        src/game_scene.o(
+            .text.SetPlayerActorUpdateSuspended__9GameScene8MaryBool
+            .text.ShowPlayerHoldingTool__9GameScene14MaryItemToolId);
         asm/game_state.o(.text.game_scene_after_world_effect_commands);
         src/game_world.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
@@ -322,6 +325,8 @@ SECTIONS
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
         asm/code_entities.o(.text);
+        src/player_actor.o(.text);
+        asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);
         asm/code_entities_080320DC.o(.text);
         . = 0x324CC; /* JP/US-shared default entity-UI false handler. */

@@ -21,53 +21,10 @@
 #include "time_of_day.hh"
 #include "field_render_farm_house_data.hh"
 #include "game_world.hh"
+#include "player_actor.hh"
 
 #pragma interface "game_scene.hh"
 
-// Only the player virtual interface used by these scene commands is modeled.
-// The complete player payload, construction, and action implementations remain
-// native. This prefix is never allocated or used to infer the complete size.
-// The player owns this native catch record; this interface only borrows it.
-struct GameSceneCaughtFish;
-struct RucksackItem;
-struct Article;
-struct Food;
-struct GameScenePlayerActor : AActorEntity {
-    /* vt+3C */ virtual void vfunc_3C();
-    /* vt+40 */ virtual bool IsRidingHorse();
-    /* vt+44 */ virtual bool IsHoldingTool();
-    /* vt+48 */ virtual bool TryShipHeldItem();
-    /* vt+4C */ virtual void ThrowHeldItem();
-    /* vt+50 */ virtual void UseHeldItem();
-    /* vt+54 */ virtual void ClearHeldItem();
-    /* vt+58 */ virtual void EatFood(Food const & food);
-    /* vt+5C */ virtual void SetHeldItem(RucksackItem const & item, bool wrapped);
-    /* vt+60 */ virtual void GiveBasket();
-    /* vt+64 */ virtual void ChangeStaminaAndFatigue(MaryStaminaDelta stamina_delta,
-        MaryFatigueDelta fatigue_delta);
-    /* vt+68 */ virtual void BeginHoldingActorGraphic(u16 animation_id);
-    // Paired player hooks prepare and restore direct script animation control.
-    /* vt+6C */ virtual void PrepareForScriptedAnimation();
-    /* vt+70 */ virtual void RestoreAfterScriptedAnimation();
-    /* vt+74 */ virtual void vfunc_74();
-    /* vt+78 */ virtual MaryAnimalSlotIndex GetInteractingAnimalIndex();
-    /* vt+7C */ virtual void ObtainMysticBerry();
-    /* vt+80 */ virtual void ObtainPowerBerry();
-    /* vt+84 */ virtual MaryHeldItemKind GetPresentedItemKind();
-    /* vt+88 */ virtual i32 GetPresentedItemId();
-    /* vt+8C */ virtual bool IsPresentedItemGiftWrapped();
-    /* vt+90 */ virtual GameSceneCaughtFish const * GetCaughtFish();
-    // Unrecovered intervening slots are not called by this partial interface.
-    /* vt+94 */ virtual void vfunc_94();
-    /* vt+98 */ virtual void vfunc_98();
-    /* vt+9C */ virtual void vfunc_9C();
-    /* vt+A0 */ virtual void vfunc_A0();
-    /* vt+A4 */ virtual void vfunc_A4();
-    /* vt+A8 */ virtual void EnterHotSpringBathingState();
-    /* vt+AC */ virtual void ExitHotSpringBathingState();
-private:
-    GameScenePlayerActor();
-};
 struct GameObject;
 struct GameScene;
 struct GameStateSaveImage;
@@ -1003,6 +960,8 @@ struct GameScene : AScene {
     void CreateEventIcon(MaryEventIconSlot slot, MaryMapSpaceX x, MaryMapSpaceY y,
         MaryEventIconLayer layer, MaryEventIconId icon_id);
     void RemoveEventIcon(MaryEventIconSlot slot);
+    void SetPlayerActorUpdateSuspended(MaryBool suspended);
+    void ShowPlayerHoldingTool(MaryItemToolId tool_id);
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];

@@ -2068,7 +2068,7 @@ extern void func_08024DFC(void);
 extern void func_08026AA8(void);
 extern void PlayerPrepareForScriptedAnimation(void);
 extern void PlayerRestoreAfterScriptedAnimation(void);
-extern void func_08029CC4(void);
+extern void PlayerShowHoldingTool(void);
 extern void func_08031DE0(void);
 extern void func_080260E0(void);
 extern void func_080265C4(void);
@@ -2078,8 +2078,8 @@ extern void func_08031DC8(void);
 extern void func_08031DBC(void);
 extern void func_08031DC0(void);
 extern void func_08024A34(void);
-extern void func_08031DB4(void);
-extern void func_08031DAC(void);
+extern void SetUpdateSuspended__11PlayerActorUc(void);
+extern void GetUpdateSuspended__C11PlayerActor(void);
 extern void func_08024A08(void);
 extern void func_08024A1C(void);
 extern void func_08024A2C(void);
@@ -2106,7 +2106,7 @@ extern void func_08025068(void);
 extern void func_08026D14(void);
 extern void PlayerPrepareForScriptedAnimation(void);
 extern void PlayerRestoreAfterScriptedAnimation(void);
-extern void func_08029F30(void);
+extern void PlayerShowHoldingTool(void);
 extern void func_0803204C(void);
 extern void func_0802634C(void);
 extern void func_08026830(void);
@@ -2116,8 +2116,8 @@ extern void func_08032034(void);
 extern void func_08032028(void);
 extern void func_0803202C(void);
 extern void func_08024CA0(void);
-extern void func_08032020(void);
-extern void func_08032018(void);
+extern void SetUpdateSuspended__11PlayerActorUc(void);
+extern void GetUpdateSuspended__C11PlayerActor(void);
 extern void func_08024C74(void);
 extern void func_08024C88(void);
 extern void func_08024C98(void);
@@ -2156,7 +2156,7 @@ extern RawVTableFunction const vtable_unk_080E6658[]
         func_08026AA8,
         PlayerPrepareForScriptedAnimation,
         PlayerRestoreAfterScriptedAnimation,
-        func_08029CC4,
+        PlayerShowHoldingTool,
         func_08031DE0,
         func_080260E0,
         func_080265C4,
@@ -2166,8 +2166,8 @@ extern RawVTableFunction const vtable_unk_080E6658[]
         func_08031DBC,
         func_08031DC0,
         func_08024A34,
-        func_08031DB4,
-        func_08031DAC,
+        SetUpdateSuspended__11PlayerActorUc,
+        GetUpdateSuspended__C11PlayerActor,
         func_08024A08,
         func_08024A1C,
         func_08024A2C,
@@ -2201,7 +2201,7 @@ extern RawVTableFunction const vtable_unk_080E6658[]
         func_08026D14,
         PlayerPrepareForScriptedAnimation,
         PlayerRestoreAfterScriptedAnimation,
-        func_08029F30,
+        PlayerShowHoldingTool,
         func_0803204C,
         func_0802634C,
         func_08026830,
@@ -2211,8 +2211,8 @@ extern RawVTableFunction const vtable_unk_080E6658[]
         func_08032028,
         func_0803202C,
         func_08024CA0,
-        func_08032020,
-        func_08032018,
+        SetUpdateSuspended__11PlayerActorUc,
+        GetUpdateSuspended__C11PlayerActor,
         func_08024C74,
         func_08024C88,
         func_08024C98,
