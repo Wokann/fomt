@@ -164,7 +164,7 @@ SECTIONS
         . = 0xBB40; /* JP ROM 0x0800BB40, independently matched */
         src/record_player.o(.text);
         . = 0xBC38; /* JP ROM 0x0800BC38, independently matched */
-        src/code_0800BC58.o(.text);
+        src/furniture.o(.text);
         . = 0xBE50; /* JP ROM 0x0800BE50, independently matched */
         src/farm_house.o(.text);
         . = 0xC430; /* JP ROM 0x0800C430, independently matched */

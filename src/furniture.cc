@@ -41,10 +41,3 @@ u32 Unk_0800BC58::method_0800BDEC() const
     return bit_array_08.Count();
 }
 
-EC void func_0800BC58() ALIAS(__12Unk_0800BC58);
-EC void func_0800BCB0() ALIAS(method_0800BCB0__12Unk_0800BC58Ui);
-EC void func_0800BCD0() ALIAS(method_0800BCD0__12Unk_0800BC58Ui);
-EC void func_0800BD14() ALIAS(method_0800BD14__C12Unk_0800BC58Ui);
-EC void func_0800BD40() ALIAS(method_0800BD40__C12Unk_0800BC58Ui);
-EC void func_0800BD6C() ALIAS(method_0800BD6C__C12Unk_0800BC58);
-EC void func_0800BDEC() ALIAS(method_0800BDEC__C12Unk_0800BC58);

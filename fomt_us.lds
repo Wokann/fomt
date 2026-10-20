@@ -137,7 +137,7 @@ SECTIONS
         src/fridge.o(.text);
         src/shelf.o(.text);
         src/record_player.o(.text);
-        src/code_0800BC58.o(.text);
+        src/furniture.o(.text);
         src/farm_house.o(.text);
         src/coop.o(.text);
         src/barn.o(.text);
