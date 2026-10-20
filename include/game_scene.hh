@@ -24,6 +24,8 @@
 // Only the player virtual interface used by these scene commands is modeled.
 // The complete player payload, construction, and action implementations remain
 // native. This prefix is never allocated or used to infer the complete size.
+// The player owns this native catch record; this interface only borrows it.
+struct GameSceneCaughtFish;
 struct RucksackItem;
 struct Article;
 struct GameScenePlayerActor : AActorEntity {
@@ -50,6 +52,7 @@ struct GameScenePlayerActor : AActorEntity {
     /* vt+84 */ virtual MaryHeldItemKind GetPresentedItemKind();
     /* vt+88 */ virtual i32 GetPresentedItemId();
     /* vt+8C */ virtual bool IsPresentedItemGiftWrapped();
+    /* vt+90 */ virtual GameSceneCaughtFish const * GetCaughtFish();
 private:
     GameScenePlayerActor();
 };
@@ -1312,6 +1315,10 @@ struct GameScene : AScene {
     MaryHeldItemKind GetPresentedItemKind();
     i32 GetPresentedItemId();
     bool IsPresentedItemGiftWrapped();
+    GameSceneCaughtFish const * GetCaughtFish();
+    u32 IsBackgroundMusicActive();
+    void CreatePlayerChildEntity();
+    void SetContestAnimal(MaryAnimalKind animal_kind, MaryAnimalSlotIndex animal_index);
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];

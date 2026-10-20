@@ -8301,154 +8301,8 @@ func_08016518:
     pop {r4}
     pop {r1}
     bx r1
-    .global func_08016540
-    .thumb_func
-func_08016540:
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #168
-    ldr r0, [r0, #0]
-    ldr r1, [r0, #0]
-    ldr r2, [r1, #64]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #20]
-    adds r1, #144
-    ldr r1, [r1, #0]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-    .global func_08016560
-    .thumb_func
-func_08016560:
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #188
-    bl func_08008CD0
-    pop {r1}
-    bx r1
-    .align 2, 0
-    .global func_08016570
-    .thumb_func
-func_08016570:
-    push {r4, lr}
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #140
-    ldr r1, [r0, #0]
-    ldr r2, .Ljp_080165C4
-    adds r0, r1, r2
-    adds r1, #17
-    bl func_080A05E8
-    adds r4, #168
-    ldr r0, [r4, #0]
-    ldr r1, [r0, #0]
-    ldr r2, [r1, #56]
-    movs r1, #35
-    bl _call_via_r2
-    ldr r0, [r4, #0]
-    ldr r1, [r0, #0]
-    ldr r2, [r1, #64]
-    movs r1, #35
-    bl _call_via_r2
-    adds r4, r0, #0
-    cmp r4, #0
-    beq .Ljp_080165BE
-    ldr r0, [r4, #20]
-    ldr r1, [r0, #40]
-    adds r0, r4, #0
-    bl _call_via_r1
-    lsls r0, r0, #24
-    cmp r0, #0
-    bne .Ljp_080165BE
-    ldr r0, [r4, #20]
-    ldr r1, [r0, #32]
-    adds r0, r4, #0
-    bl _call_via_r1
-.Ljp_080165BE:
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_080165C4: .4byte 0x00001CD4
-    .global func_080165C8
-    .thumb_func
-func_080165C8:
-    push {r4, r5, lr}
-    adds r5, r2, #0
-    ldr r4, [r0, #4]
-    cmp r1, #4
-    bhi .Ljp_08016662
-    lsls r0, r1, #2
-    ldr r1, .Ljp_080165DC
-    adds r0, r0, r1
-    ldr r0, [r0, #0]
-    mov pc, r0
-    .align 2, 0
-.Ljp_080165DC: .4byte .Ljp_080165E0
-.Ljp_080165E0: @ jump table
-    .4byte .Ljp_080165F4 @ case 0
-    .4byte .Ljp_08016618 @ case 1
-    .4byte .Ljp_08016618 @ case 2
-    .4byte .Ljp_0801663E @ case 3
-    .4byte .Ljp_08016606 @ case 4
-.Ljp_080165F4:
-    adds r0, r4, #0
-    adds r0, #168
-    ldr r0, [r0, #0]
-    ldr r1, [r0, #0]
-    ldr r2, [r1, #60]
-    movs r1, #44
-    bl _call_via_r2
-    b .Ljp_08016662
-.Ljp_08016606:
-    adds r0, r4, #0
-    adds r0, #168
-    ldr r0, [r0, #0]
-    ldr r1, [r0, #0]
-    ldr r2, [r1, #60]
-    movs r1, #43
-    bl _call_via_r2
-    b .Ljp_08016662
-.Ljp_08016618:
-    adds r0, r4, #0
-    adds r0, #140
-    ldr r0, [r0, #0]
-    movs r1, #190
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    adds r1, r5, #0
-    bl method_0800D80C__4BarnUi
-    adds r0, r4, #0
-    adds r0, #168
-    ldr r0, [r0, #0]
-    ldr r2, [r0, #0]
-    adds r1, r5, #0
-    adds r1, #54
-    ldr r2, [r2, #60]
-    bl _call_via_r2
-    b .Ljp_08016662
-.Ljp_0801663E:
-    adds r0, r4, #0
-    adds r0, #140
-    ldr r0, [r0, #0]
-    movs r1, #130
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    adds r1, r5, #0
-    bl method_0800CB7C__4CoopUi
-    adds r0, r4, #0
-    adds r0, #168
-    ldr r0, [r0, #0]
-    ldr r2, [r0, #0]
-    adds r1, r5, #0
-    adds r1, #46
-    ldr r2, [r2, #60]
-    bl _call_via_r2
-.Ljp_08016662:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
+    .section .text.game_scene_after_contest_registration, "ax", %progbits
+
     .global func_08016668
     .thumb_func
 func_08016668:
@@ -9713,7 +9567,9 @@ func_08017348:
     .byte 0x39, 0x49, 0x78, 0x18, 0x00, 0x68, 0x46, 0x4A, 0x80, 0x18
     bl HasRegisteredEvents__C14GameEventState
     .byte 0x00, 0x06
-    .byte 0x00, 0x28, 0x07, 0xD0, 0x39, 0x4B, 0xF8, 0x18, 0x00, 0x68, 0xFF, 0xF7, 0x2D, 0xF8, 0x00, 0x06
+    .byte 0x00, 0x28, 0x07, 0xD0, 0x39, 0x4B, 0xF8, 0x18, 0x00, 0x68
+    bl IsBackgroundMusicActive__9GameScene
+    .byte 0x00, 0x06
     .byte 0x00, 0x28, 0x02, 0xD1, 0x38, 0x1C
     bl func_0801DB58
     .byte 0xA0, 0x20
@@ -10551,7 +10407,9 @@ func_08017C30:
     bl func_080A5960
     .byte 0x13, 0x4C, 0x44, 0x44, 0x20, 0x68, 0x13, 0x49
     .byte 0x40, 0x18, 0xF6, 0xF7, 0x69, 0xFA, 0x0B, 0x9A, 0x90, 0x42, 0x12, 0xD0, 0x10, 0x48, 0x40, 0x44
-    .byte 0x00, 0x68, 0xFE, 0xF7, 0xA3, 0xFA, 0x00, 0x06, 0x00, 0x28, 0x0A, 0xD0, 0x20, 0x68, 0x0D, 0x4B
+    .byte 0x00, 0x68
+    bl IsBackgroundMusicActive__9GameScene
+    .byte 0x00, 0x06, 0x00, 0x28, 0x0A, 0xD0, 0x20, 0x68, 0x0D, 0x4B
     .byte 0xC0, 0x18
     bl HasRegisteredEvents__C14GameEventState
     .byte 0x00, 0x06, 0x00, 0x28, 0x02, 0xD1, 0x40, 0x46
@@ -13011,7 +12869,8 @@ func_08019BEC:
     .byte 0x03, 0x98, 0x00, 0x28, 0x14, 0xD0, 0x1A, 0x49, 0x78, 0x18, 0x00, 0x68, 0x19, 0x4A, 0x80, 0x18
     bl HasRegisteredEvents__C14GameEventState
     .byte 0x00, 0x06, 0x00, 0x28, 0x07, 0xD0, 0x17, 0x4B, 0xF8, 0x18, 0x00, 0x68
-    .byte 0xFC, 0xF7, 0x76, 0xFC, 0x00, 0x06, 0x00, 0x28, 0x02, 0xD1, 0x38, 0x1C
+    bl IsBackgroundMusicActive__9GameScene
+    .byte 0x00, 0x06, 0x00, 0x28, 0x02, 0xD1, 0x38, 0x1C
     bl func_0801DB58
     .byte 0x78, 0x68, 0x40, 0x68, 0x8A, 0xF0, 0x24, 0xFA, 0x24, 0x30, 0x00, 0x78, 0x00, 0x28, 0x0C, 0xD1
     .byte 0x82, 0x21, 0x49, 0x01, 0x78, 0x18, 0x00, 0x68, 0x02, 0x68, 0xD1, 0x02, 0xC9, 0x0E, 0x52, 0x01
@@ -16351,7 +16210,7 @@ func_0801EAA0:
     ldr r5, [pc, #0x44]
     adds r0, r7, r5
     ldr r0, [r0]
-    bl func_08016560
+    bl IsBackgroundMusicActive__9GameScene
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Lauto_0801EB6C
@@ -25755,153 +25614,7 @@ func_08016784: @ 0x08016784
     pop {r1}
     bx r1
 
-    thumb_func_start func_080167AC
-func_080167AC: @ 0x080167AC
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    adds r1, #0x90
-    ldr r1, [r1]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-
-    thumb_func_start func_080167CC
-func_080167CC: @ 0x080167CC
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xbc
-    bl func_08008CD0
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_080167DC
-func_080167DC: @ 0x080167DC
-    push {r4, lr}
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #0x8c
-    ldr r1, [r0]
-    ldr r2, .L08016830 @ =0x00001CD4
-    adds r0, r1, r2
-    adds r1, #0x11
-    bl func_080A05E8
-    adds r4, #0xa8
-    ldr r0, [r4]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x38]
-    movs r1, #0x23
-    bl _call_via_r2
-    ldr r0, [r4]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0x23
-    bl _call_via_r2
-    adds r4, r0, #0
-    cmp r4, #0
-    beq .L0801682A
-    ldr r0, [r4, #0x14]
-    ldr r1, [r0, #0x28]
-    adds r0, r4, #0
-    bl _call_via_r1
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L0801682A
-    ldr r0, [r4, #0x14]
-    ldr r1, [r0, #0x20]
-    adds r0, r4, #0
-    bl _call_via_r1
-.L0801682A:
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08016830: .4byte 0x00001CD4
-
-    thumb_func_start func_08016834
-func_08016834: @ 0x08016834
-    push {r4, r5, lr}
-    adds r5, r2, #0
-    ldr r4, [r0, #4]
-    cmp r1, #4
-    bhi .L080168CE
-    lsls r0, r1, #2
-    ldr r1, .L08016848 @ =.L0801684C
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L08016848: .4byte .L0801684C
-.L0801684C: @ jump table
-    .4byte .L08016860 @ case 0
-    .4byte .L08016884 @ case 1
-    .4byte .L08016884 @ case 2
-    .4byte .L080168AA @ case 3
-    .4byte .L08016872 @ case 4
-.L08016860:
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x3c]
-    movs r1, #0x2c
-    bl _call_via_r2
-    b .L080168CE
-.L08016872:
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x3c]
-    movs r1, #0x2b
-    bl _call_via_r2
-    b .L080168CE
-.L08016884:
-    adds r0, r4, #0
-    adds r0, #0x8c
-    ldr r0, [r0]
-    movs r1, #0xbe
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    adds r1, r5, #0
-    bl method_0800D80C__4BarnUi
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r2, [r0]
-    adds r1, r5, #0
-    adds r1, #0x36
-    ldr r2, [r2, #0x3c]
-    bl _call_via_r2
-    b .L080168CE
-.L080168AA:
-    adds r0, r4, #0
-    adds r0, #0x8c
-    ldr r0, [r0]
-    movs r1, #0x82
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    adds r1, r5, #0
-    bl method_0800CB7C__4CoopUi
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r2, [r0]
-    adds r1, r5, #0
-    adds r1, #0x2e
-    ldr r2, [r2, #0x3c]
-    bl _call_via_r2
-.L080168CE:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
+    .section .text.game_scene_after_contest_registration, "ax", %progbits
 
     thumb_func_start func_080168D4
 func_080168D4: @ 0x080168D4
@@ -27574,7 +27287,7 @@ func_080175B4: @ 0x080175B4
     ldr r3, .L08017850 @ =0x00001054
     adds r0, r7, r3
     ldr r0, [r0]
-    bl func_080167CC
+    bl IsBackgroundMusicActive__9GameScene
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0801777E
@@ -28953,7 +28666,7 @@ func_08017C30: @ 0x08017C30
     ldr r0, .L080182C0 @ =0x00001054
     add r0, r8
     ldr r0, [r0]
-    bl func_080167CC
+    bl IsBackgroundMusicActive__9GameScene
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080182A2
@@ -32464,7 +32177,7 @@ func_08019BEC: @ 0x08019BEC
     ldr r3, .L08019F34 @ =0x00001054
     adds r0, r7, r3
     ldr r0, [r0]
-    bl func_080167CC
+    bl IsBackgroundMusicActive__9GameScene
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08019EEC
@@ -36958,7 +36671,7 @@ func_0801EAA0: @ 0x0801EAA0
     ldr r5, .L0801EDF4 @ =0x00001054
     adds r0, r7, r5
     ldr r0, [r0]
-    bl func_080167CC
+    bl IsBackgroundMusicActive__9GameScene
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0801EDD8

@@ -267,6 +267,12 @@ SECTIONS
             .text.GetPresentedItemId__9GameScene
             .text.IsPresentedItemGiftWrapped__9GameScene);
         asm/game_state.o(.text.game_scene_after_player_presentation);
+        src/game_scene.o(
+            .text.GetCaughtFish__9GameScene
+            .text.IsBackgroundMusicActive__9GameScene
+            .text.CreatePlayerChildEntity__9GameScene
+            .text.SetContestAnimal__9GameScene14MaryAnimalKind19MaryAnimalSlotIndex);
+        asm/game_state.o(.text.game_scene_after_contest_registration);
         src/game_scene.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
         src/game_scene.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);

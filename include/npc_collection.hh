@@ -179,4 +179,7 @@ typedef char NpcCollectionLastByteCheck[offsetof(NpcCollection, unk_474) == 0x47
 // Native character-name resolver; its dispatch body remains in assembly.
 extern "C" char const * func_0809FE3C(NpcCollection * collection, u32 character_id);
 
+// Existing native child construction; a saved calendar date is passed by reference.
+extern "C" void func_080A05E8(NpcCollection & npcs, GameDate const & date);
+
 #endif // NPC_COLLECTION_HH

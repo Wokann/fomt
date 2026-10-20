@@ -962,6 +962,53 @@ bool GameScene::IsPresentedItemGiftWrapped()
         ENTITY_PLAYER))->IsPresentedItemGiftWrapped();
 }
 
+GameSceneCaughtFish const * GameScene::GetCaughtFish()
+{
+    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+        ENTITY_PLAYER))->GetCaughtFish();
+}
+
+u32 GameScene::IsBackgroundMusicActive()
+{
+    // Preserve the native word-returning music-player query.
+    return state->bgm_player.IsActive();
+}
+
+void GameScene::CreatePlayerChildEntity()
+{
+    GameSceneState * current = state;
+    GameStateSaveImage * save = current->save;
+    func_080A05E8(save->npcs, save->clock.calendar.date);
+    // Refresh may replace the world; resolve the child from the current slot.
+    GameObject * & world = current->game_object.value;
+    world->vfunc_38(ENTITY_CHILD);
+    AActorEntity * child = world->GetActorEntity(ENTITY_CHILD);
+    if (child != nullptr && !child->vfunc_28())
+        child->vfunc_20();
+}
+
+void GameScene::SetContestAnimal(MaryAnimalKind animal_kind, MaryAnimalSlotIndex animal_index)
+{
+    GameSceneState * current = state;
+    switch (animal_kind) {
+    case ANIMAL_KIND_HORSE:
+        current->game_object.value->vfunc_3C(ENTITY_FARM_HORSE);
+        break;
+    case ANIMAL_KIND_DOG:
+        current->game_object.value->vfunc_3C(ENTITY_FARM_DOG);
+        break;
+    case ANIMAL_KIND_COW:
+    case ANIMAL_KIND_SHEEP:
+        current->save->farm.barn.method_0800D80C(animal_index);
+        current->game_object.value->vfunc_3C(ENTITY_BARN_ANIMAL_SLOT_1 + static_cast<u32>(animal_index));
+        break;
+    case ANIMAL_KIND_CHICKEN:
+        current->save->farm.coop.method_0800CB7C(animal_index);
+        current->game_object.value->vfunc_3C(ENTITY_ANIMAL_CHICKEN_SLOT_1 + static_cast<u32>(animal_index));
+        break;
+    }
+}
+
 EC u32 func_0801740C(FieldPlot const & plot)
 {
     switch (plot.GetUnk2()) {
