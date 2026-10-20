@@ -129,12 +129,12 @@ struct GameObject
     virtual void vfunc_F0();
     virtual void vfunc_F4();
     virtual void vfunc_F8();
-    virtual void vfunc_FC();
-    virtual void vfunc_100();
+    virtual void RedrawRucksackShelfAfterPurchase();
+    virtual void RedrawBlueFeatherShelfAfterPurchase();
     virtual void vfunc_104();
     virtual void vfunc_108();
-    virtual void vfunc_10C();
-    virtual void vfunc_110();
+    virtual void OpenDoor(MaryDoorIndex door_index);
+    virtual void CloseDoor(MaryDoorIndex door_index);
     virtual void vfunc_114();
     virtual void SetTelevisionProgram(MaryTelevisionProgramId program);
     virtual void EndTelevisionProgram();

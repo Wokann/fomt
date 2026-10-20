@@ -53,6 +53,14 @@ struct GameScenePlayerActor : AActorEntity {
     /* vt+88 */ virtual i32 GetPresentedItemId();
     /* vt+8C */ virtual bool IsPresentedItemGiftWrapped();
     /* vt+90 */ virtual GameSceneCaughtFish const * GetCaughtFish();
+    // Unrecovered intervening slots are not called by this partial interface.
+    /* vt+94 */ virtual void vfunc_94();
+    /* vt+98 */ virtual void vfunc_98();
+    /* vt+9C */ virtual void vfunc_9C();
+    /* vt+A0 */ virtual void vfunc_A0();
+    /* vt+A4 */ virtual void vfunc_A4();
+    /* vt+A8 */ virtual void EnterHotSpringBathingState();
+    /* vt+AC */ virtual void ExitHotSpringBathingState();
 private:
     GameScenePlayerActor();
 };
@@ -1319,6 +1327,18 @@ struct GameScene : AScene {
     u32 IsBackgroundMusicActive();
     void CreatePlayerChildEntity();
     void SetContestAnimal(MaryAnimalKind animal_kind, MaryAnimalSlotIndex animal_index);
+    void OpenDoor(MaryDoorIndex door_index);
+    void CloseDoor(MaryDoorIndex door_index);
+    void RedrawRucksackShelfAfterPurchase();
+    void RedrawBlueFeatherShelfAfterPurchase();
+    void func_08016C10();
+    void CreateNewYearSunriseEffect();
+    void PlayNewYearSunriseEffect();
+    void DestroyNewYearSunriseEffect();
+    void PlayStarSparkleEffect();
+    void EnterHotSpringBathingState();
+    void ExitHotSpringBathingState();
+    void RefreshEntity(MaryEntityId entity_id);
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];

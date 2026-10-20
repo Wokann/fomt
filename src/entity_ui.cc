@@ -657,3 +657,47 @@ extern "C" void func_08034C4C(EntityUiCallbackState * state, u32 arg_1,
 {
     func_08033B84(state, state->value_30, arg_1, arg_2);
 }
+
+extern "C" void func_080387B8(AEntity * entity)
+{
+    UnknownEntityThing * controller = entity->unk_10.Get();
+    if (controller != nullptr)
+        func_08038DF0(controller);
+}
+
+extern "C" void func_080387C8(AEntity * entity)
+{
+    UnknownEntityThing * controller = entity->unk_10.Get();
+    if (controller != nullptr)
+        func_08038E90(controller);
+}
+
+extern "C" bool func_080387D8(AEntity * entity)
+{
+    UnknownEntityThing * controller = entity->unk_10.Get();
+    if (controller != nullptr)
+        return func_08038EA0(controller);
+    return true;
+}
+
+extern "C" void func_080387EC(AEntity * entity)
+{
+    UnknownEntityThing * controller = entity->unk_10.Get();
+    if (controller != nullptr)
+        func_08038EB8(controller);
+}
+
+extern "C" void func_080387FC(AEntity * entity)
+{
+    UnknownEntityThing * controller = entity->unk_10.Get();
+    if (controller != nullptr)
+        func_08038EE0(controller);
+}
+
+extern "C" bool func_0803880C(AEntity * entity)
+{
+    UnknownEntityThing * controller = entity->unk_10.Get();
+    if (controller != nullptr)
+        return func_080390D0(controller);
+    return false;
+}

@@ -172,7 +172,8 @@ SECTIONS
             .text.MoveEntity*__9GameScene* .text.WaitFor*__9GameScene*
             .text.NoOp*__9GameScene* .text.HideEntity__9GameScene* .text.OffsetEntityPosition__9GameScene*
             .text.StartEntityEffect__9GameScene* .text.Stop*__9GameScene*
-            .text.ChangeMap__9GameScene* .text.P[al]*__9GameScene*);
+            .text.ChangeMap__9GameScene* .text.PanCameraTo__9GameScene*
+            .text.PlayBGM__9GameScene* .text.PlaySong__9GameScene*);
         asm/game_state.o(.text.game_scene_entity_commands_after);
         src/game_scene.o(
             .text.Talk*__9GameScene* .text.FadeScreen__9GameScene*
@@ -234,6 +235,20 @@ SECTIONS
             .text.CreatePlayerChildEntity__9GameScene
             .text.SetContestAnimal__9GameScene14MaryAnimalKind19MaryAnimalSlotIndex);
         asm/game_state.o(.text.game_scene_after_contest_registration);
+        src/game_scene.o(
+            .text.OpenDoor__9GameScene13MaryDoorIndex
+            .text.CloseDoor__9GameScene13MaryDoorIndex
+            .text.RedrawRucksackShelfAfterPurchase__9GameScene
+            .text.RedrawBlueFeatherShelfAfterPurchase__9GameScene
+            .text.func_08016C10__9GameScene
+            .text.CreateNewYearSunriseEffect__9GameScene
+            .text.PlayNewYearSunriseEffect__9GameScene
+            .text.DestroyNewYearSunriseEffect__9GameScene
+            .text.PlayStarSparkleEffect__9GameScene
+            .text.EnterHotSpringBathingState__9GameScene
+            .text.ExitHotSpringBathingState__9GameScene
+            .text.RefreshEntity__9GameScene12MaryEntityId);
+        asm/game_state.o(.text.game_scene_after_world_effect_commands);
         src/game_scene.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
         src/game_scene.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
@@ -302,6 +317,8 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.npc_schedule_transition_query);
         src/npc_entity.o(.text.func_08035A48 .text.func_08035AE0);
         asm/code_entities_08034CEC.o(.text.npc_characters_after);
+        src/entity_ui.o(.text);
+        asm/code_entities_08034CEC.o(.text.entity_event_effects_after);
 
         . = 0x3A7B8; /* DE ROM 0x0803A7B8, remaining raw control code. */
         src/map_data.o(.text.SelectMapDataId);

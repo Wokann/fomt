@@ -1009,6 +1009,80 @@ void GameScene::SetContestAnimal(MaryAnimalKind animal_kind, MaryAnimalSlotIndex
     }
 }
 
+void GameScene::OpenDoor(MaryDoorIndex door_index)
+{
+    state->game_object.value->OpenDoor(door_index);
+}
+
+void GameScene::CloseDoor(MaryDoorIndex door_index)
+{
+    state->game_object.value->CloseDoor(door_index);
+}
+
+void GameScene::RedrawRucksackShelfAfterPurchase()
+{
+    state->game_object.value->RedrawRucksackShelfAfterPurchase();
+}
+
+void GameScene::RedrawBlueFeatherShelfAfterPurchase()
+{
+    state->game_object.value->RedrawBlueFeatherShelfAfterPurchase();
+}
+
+void GameScene::func_08016C10()
+{
+    state->game_object.value->vfunc_104();
+}
+
+// Entity 0x5D is the existing event-effect host, not the effect itself.
+// These commands forward to its owned controller without creating a host.
+void GameScene::CreateNewYearSunriseEffect()
+{
+    func_080387B8(state->game_object.value->GetActorEntity(0x5D));
+}
+
+void GameScene::PlayNewYearSunriseEffect()
+{
+    GameSceneState * current = state;
+    func_080387C8(current->game_object.value->GetActorEntity(0x5D));
+    // The callback may change scene.state; the native write uses this state.
+    current->script_state = 0x1C;
+}
+
+void GameScene::DestroyNewYearSunriseEffect()
+{
+    func_080387EC(state->game_object.value->GetActorEntity(0x5D));
+}
+
+void GameScene::PlayStarSparkleEffect()
+{
+    GameSceneState * current = state;
+    func_080387FC(current->game_object.value->GetActorEntity(0x5D));
+    current->script_state = 0x1B;
+}
+
+void GameScene::EnterHotSpringBathingState()
+{
+    static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+        ->EnterHotSpringBathingState();
+}
+
+void GameScene::ExitHotSpringBathingState()
+{
+    static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(ENTITY_PLAYER))
+        ->ExitHotSpringBathingState();
+}
+
+void GameScene::RefreshEntity(MaryEntityId entity_id)
+{
+    // Refresh may replace the world; re-read its current slot afterwards.
+    GameObject * & world = state->game_object.value;
+    world->vfunc_38(entity_id);
+    AActorEntity * actor = world->GetActorEntity(entity_id);
+    if (actor != nullptr && !actor->vfunc_28())
+        actor->vfunc_20();
+}
+
 EC u32 func_0801740C(FieldPlot const & plot)
 {
     switch (plot.GetUnk2()) {
