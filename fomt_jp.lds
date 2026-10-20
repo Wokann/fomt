@@ -287,6 +287,11 @@ SECTIONS
             .text.EnterHotSpringBathingState__9GameScene
             .text.ExitHotSpringBathingState__9GameScene
             .text.RefreshEntity__9GameScene12MaryEntityId);
+        src/game_scene.o(
+            .text.RemoveEntity__9GameScene12MaryEntityId
+            .text.PreservePlayerLocationForNextDay__9GameScene
+            .text.ClearPreservedPlayerLocation__9GameScene
+            .text.GetPreservedPlayerMapId__9GameScene);
         asm/game_state.o(.text.game_scene_after_world_effect_commands);
         src/game_scene.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);

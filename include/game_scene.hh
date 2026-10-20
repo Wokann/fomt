@@ -591,23 +591,27 @@ typedef char GameSceneControllerActorScriptCheck[offsetof(GameSceneControllerAct
 typedef char GameSceneControllerLocationRecordSizeCheck[sizeof(GameSceneControllerLocationRecord) == 12 ? 1 : -1];
 typedef char GameSceneControllerLocationOffsetCheck[offsetof(GameSceneControllerLocationRecord, location) == 2 ? 1 : -1];
 
-// Native initialization preserves the upper five bits and following storage.
-// These flags have not yet been assigned a gameplay meaning.
-struct GameSceneScriptControllerUnk374 {
-    u16 unk_00 : 5;
-    u16 unk_05 : 6;
+// The native clock slot has four-byte storage, unlike the packed GameTime.
+// Construction preserves its unknown bits; saving copies only the low halfword.
+struct GameScenePreservedClock {
+    u16 clock_hour : 5;
+    u16 clock_minute : 6;
     u16 unk_11 : 5;
 
-    GameSceneScriptControllerUnk374() : unk_00(6), unk_05(0) {}
+    GameScenePreservedClock() : clock_hour(6), clock_minute(0) {}
 };
 
-struct GameSceneScriptControllerUnk36C {
-    u8 unk_00;
+// This native overnight record saves the map and clock, not coordinates.
+struct GameScenePreservedPlayerLocation {
+    u8 active;
     u8 unk_01[3];
-    u32 unk_04;
-    GameSceneScriptControllerUnk374 unk_08;
+    MaryMapId map;
+    GameScenePreservedClock time;
 
-    GameSceneScriptControllerUnk36C() : unk_00(0), unk_04(0x1D) {}
+    MaryMapId GetMapId() const { return map; }
+
+    GameScenePreservedPlayerLocation()
+        : active(0), map(MAP_FARMHOUSE) {}
 };
 
 // Startup controller, distinct from the eight-byte GameScene wrapper. Both
@@ -625,7 +629,7 @@ struct GameSceneScriptController : AScene {
     u8 unk_364;
     u8 unk_365[3];
     u32 unk_368;
-    GameSceneScriptControllerUnk36C unk_36C;
+    GameScenePreservedPlayerLocation preserved_player_location;
     GameSceneScriptQueues queues;
     GameSceneControllerLocationRecord location_records[6];
     GameSceneControllerActorRecord actor_records[4];
@@ -636,9 +640,12 @@ typedef char GameSceneControllerSaveCheck[offsetof(GameSceneScriptController, sa
 typedef char GameSceneControllerEngineCheck[offsetof(GameSceneScriptController, script_engine) == 8 ? 1 : -1];
 typedef char GameSceneControllerUnk364Check[offsetof(GameSceneScriptController, unk_364) == 0x364 ? 1 : -1];
 typedef char GameSceneControllerUnk368Check[offsetof(GameSceneScriptController, unk_368) == 0x368 ? 1 : -1];
-typedef char GameSceneControllerUnk36CCheck[offsetof(GameSceneScriptController, unk_36C) == 0x36C ? 1 : -1];
-typedef char GameSceneControllerUnk36CSizeCheck[sizeof(GameSceneScriptControllerUnk36C) == 12 ? 1 : -1];
-typedef char GameSceneControllerUnk374Check[offsetof(GameSceneScriptControllerUnk36C, unk_08) == 8 ? 1 : -1];
+typedef char GameSceneControllerPreservedLocationCheck[offsetof(GameSceneScriptController, preserved_player_location) == 0x36C ? 1 : -1];
+typedef char GameSceneControllerPreservedLocationSizeCheck[sizeof(GameScenePreservedPlayerLocation) == 12 ? 1 : -1];
+typedef char GameSceneControllerPreservedClockSizeCheck[sizeof(GameScenePreservedClock) == 4 ? 1 : -1];
+typedef char GameSceneControllerPreservedFlagCheck[offsetof(GameScenePreservedPlayerLocation, active) == 0 ? 1 : -1];
+typedef char GameSceneControllerPreservedMapCheck[offsetof(GameScenePreservedPlayerLocation, map) == 4 ? 1 : -1];
+typedef char GameSceneControllerPreservedTimeCheck[offsetof(GameScenePreservedPlayerLocation, time) == 8 ? 1 : -1];
 typedef char GameSceneControllerQueuesCheck[offsetof(GameSceneScriptController, queues) == 0x378 ? 1 : -1];
 typedef char GameSceneControllerQueue0Check[offsetof(GameSceneScriptController, queues.queue_0) == 0x378 ? 1 : -1];
 typedef char GameSceneControllerQueue1Check[offsetof(GameSceneScriptController, queues.queue_1) == 0x38C ? 1 : -1];
@@ -1339,6 +1346,10 @@ struct GameScene : AScene {
     void EnterHotSpringBathingState();
     void ExitHotSpringBathingState();
     void RefreshEntity(MaryEntityId entity_id);
+    void RemoveEntity(MaryEntityId entity_id);
+    void PreservePlayerLocationForNextDay();
+    void ClearPreservedPlayerLocation();
+    MaryMapId GetPreservedPlayerMapId();
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];
@@ -1565,7 +1576,7 @@ extern u8 * gUnk_0300040C;
 GameSceneControllerActorRecord * func_080100F0(void);
 GameSceneControllerLocationRecord * func_08010104(void);
 GameSceneScriptQueue<2> * func_08010118(void);
-u8 * func_08010128(void);
+GameScenePreservedPlayerLocation * func_08010128(void);
 u8 * func_08010138(void);
 u32 func_08010148(void);
 ScriptEngine * func_0801014C(void);

@@ -8605,63 +8605,6 @@ func_08016890:
     .section .text.game_scene_after_world_effect_commands, "ax", %progbits
     .align 2, 0
 
-    .byte 0x00, 0xB5, 0x40, 0x68, 0xA8, 0x30, 0x00, 0x68, 0x02, 0x68, 0xD2, 0x6B, 0xBC, 0xF0
-    .byte 0xFA, 0xFA, 0x01, 0xBC, 0x00, 0x47
-    .global func_08016ADC
-    .thumb_func
-func_08016ADC:
-    push {r4, lr}
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [pc, #0x1c]
-    ldr r1, [r1]
-    movs r2, #0xdb
-    lsls r2, r2, #2
-    adds r1, r1, r2
-    ldrh r3, [r0, #4]
-    adds r4, #0x8c
-    ldr r2, [r4]
-    movs r0, #1
-    strb r0, [r1]
-    str r3, [r1, #4]
-    ldrh r0, [r2, #0x12]
-    strh r0, [r1, #8]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .byte 0x0C, 0x04, 0x00, 0x03
-    .global func_08016B14
-    .thumb_func
-func_08016B14:
-    ldr r0, [pc, #0x14]
-    ldr r0, [r0]
-    movs r1, #0xdb
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    movs r1, #0
-    strb r1, [r0]
-    movs r1, #0x8d
-    lsls r1, r1, #2
-    str r1, [r0, #4]
-    bx lr
-    .byte 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03
-    .global func_08016B30
-    .thumb_func
-func_08016B30:
-    ldr r0, [pc, #0xc]
-    ldr r0, [r0]
-    movs r1, #0xdb
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    ldr r0, [r0, #4]
-    bx lr
-    .byte 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03
     .global func_08016B44
     .thumb_func
 func_08016B44:
@@ -25767,75 +25710,6 @@ func_08016AFC: @ 0x08016AFC
 
     .section .text.game_scene_after_world_effect_commands, "ax", %progbits
     .align 2, 0
-
-.L08016D34:
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r2, [r0]
-    ldr r2, [r2, #0x3c]
-    bl _call_via_r2
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_08016D48
-func_08016D48: @ 0x08016D48
-    push {r4, lr}
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, .L08016D7C @ =gUnk_0300040C
-    ldr r1, [r1]
-    movs r2, #0xdb
-    lsls r2, r2, #2
-    adds r1, r1, r2
-    ldrh r3, [r0, #4]
-    adds r4, #0x8c
-    ldr r2, [r4]
-    movs r0, #1
-    strb r0, [r1]
-    str r3, [r1, #4]
-    ldrh r0, [r2, #0x12]
-    strh r0, [r1, #8]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08016D7C: .4byte gUnk_0300040C
-
-    thumb_func_start func_08016D80
-func_08016D80: @ 0x08016D80
-    ldr r0, .L08016D98 @ =gUnk_0300040C
-    ldr r0, [r0]
-    movs r1, #0xdb
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    movs r1, #0
-    strb r1, [r0]
-    movs r1, #0x8d
-    lsls r1, r1, #2
-    str r1, [r0, #4]
-    bx lr
-    .align 2, 0
-.L08016D98: .4byte gUnk_0300040C
-
-    thumb_func_start func_08016D9C
-func_08016D9C: @ 0x08016D9C
-    ldr r0, .L08016DAC @ =gUnk_0300040C
-    ldr r0, [r0]
-    movs r1, #0xdb
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    ldr r0, [r0, #4]
-    bx lr
-    .align 2, 0
-.L08016DAC: .4byte gUnk_0300040C
 
     thumb_func_start func_08016DB0
 func_08016DB0: @ 0x08016DB0

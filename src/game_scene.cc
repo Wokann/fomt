@@ -1,6 +1,7 @@
 #include "prelude.h"
 #include "new_game.hh"
 #include <new>
+#include <string.h>
 #include "hardware_blend.hh"
 #include "hardware_manager.hh"
 #include "hardware_dma.hh"
@@ -122,9 +123,11 @@ GameSceneScriptQueue<2> * func_08010118(void)
     return &controller->queues.queue_0;
 }
 
-u8 * func_08010128(void)
+GameScenePreservedPlayerLocation * func_08010128(void)
 {
-    return gUnk_0300040C + 0x36C;
+    GameSceneScriptController * controller =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C);
+    return &controller->preserved_player_location;
 }
 
 u8 * func_08010138(void)
@@ -1081,6 +1084,42 @@ void GameScene::RefreshEntity(MaryEntityId entity_id)
     AActorEntity * actor = world->GetActorEntity(entity_id);
     if (actor != nullptr && !actor->vfunc_28())
         actor->vfunc_20();
+}
+
+void GameScene::RemoveEntity(MaryEntityId entity_id)
+{
+    state->game_object.value->vfunc_3C(entity_id);
+}
+
+void GameScene::PreservePlayerLocationForNextDay()
+{
+    GameSceneState * current = state;
+    AActorEntity * player = current->game_object.value->GetActorEntity(ENTITY_PLAYER);
+    // Lookup can replace the global controller; resolve it after the call.
+    GameScenePreservedPlayerLocation & saved =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C)->preserved_player_location;
+    u32 map = player->GetMap();
+    GameStateSaveImage * save = current->save;
+    saved.active = 1;
+    saved.map = static_cast<MaryMapId>(map);
+    // The native operation copies all 16 encoded clock bits, not the slot's
+    // remaining padding. Preserve unknown bits instead of rebuilding the time.
+    memcpy(&saved.time, &save->clock.calendar.time, sizeof(GameTime));
+}
+
+void GameScene::ClearPreservedPlayerLocation()
+{
+    GameScenePreservedPlayerLocation & saved =
+        reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C)->preserved_player_location;
+    saved.active = 0;
+    saved.map = MAP_NONE;
+}
+
+MaryMapId GameScene::GetPreservedPlayerMapId()
+{
+    // This native query returns the stored map even when active is zero.
+    return reinterpret_cast<GameSceneScriptController *>(gUnk_0300040C)
+        ->preserved_player_location.GetMapId();
 }
 
 EC u32 func_0801740C(FieldPlot const & plot)
