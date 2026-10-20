@@ -359,7 +359,7 @@ $(BUILD_DIR)/src/game_state.o: CXXFLAGS += -ffunction-sections
 
 # Recovered scene, world and map functions surround still-native routines.
 # Keep each functional module at its original compiler-owned code positions.
-$(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/src/game_world.o $(BUILD_DIR)/src/world_map.o: CXXFLAGS += -ffunction-sections
+$(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/src/game_world.o $(BUILD_DIR)/src/world_map.o $(BUILD_DIR)/src/game_menu.o: CXXFLAGS += -ffunction-sections
 
 # Grid methods are interleaved with unrecovered actor routines in the ROM.
 $(BUILD_DIR)/src/actor_state.o: CXXFLAGS += -ffunction-sections

@@ -563,4 +563,3 @@ EC void func_080AA8DC(GameSceneSavedMapPrefix * map)
     if (map->map == MAP_FARMHOUSE)
         map->unk_98 = true;
 }
-

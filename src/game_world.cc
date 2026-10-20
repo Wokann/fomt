@@ -1008,4 +1008,3 @@ EC void SetWorldCameraPosition(GameSceneWorldPrefix & world, i32 x, i32 y)
 {
     SetWorldMapCameraPosition(world.data.map.value, x, y);
 }
-
