@@ -101,6 +101,9 @@ struct EntityUiHarvestSpriteState : public AEntity
     void * unknown_3C;
 };
 
+// Existing runtime work-target query, shared with the scene dispatcher.
+extern "C" bool func_08033B24(EntityUiHarvestSpriteState * state);
+
 extern "C" char const gText_NotAvailable[];
 
 // Native assembly has direct relocations to these source-defined UI tables.

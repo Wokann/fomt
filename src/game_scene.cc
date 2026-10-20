@@ -906,6 +906,62 @@ bool GameScene::IsPlayerHoldingTool()
         ENTITY_PLAYER))->IsHoldingTool();
 }
 
+void GameScene::BeginHoldingActorGraphic(MaryAnimationId animation_id)
+{
+    // The native player action consumes only the low 16 animation-ID bits.
+    u16 animation = animation_id;
+    GameSceneState * current = state;
+    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(
+        ENTITY_PLAYER))->BeginHoldingActorGraphic(animation);
+    current->script_state = 0x19;
+}
+
+void GameScene::ObtainPowerBerry()
+{
+    GameSceneState * current = state;
+    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(
+        ENTITY_PLAYER))->ObtainPowerBerry();
+    current->script_state = 0x19;
+}
+
+void GameScene::ObtainMysticBerry()
+{
+    GameSceneState * current = state;
+    static_cast<GameScenePlayerActor *>(current->game_object.value->GetActorEntity(
+        ENTITY_PLAYER))->ObtainMysticBerry();
+    current->script_state = 0x19;
+}
+
+bool GameScene::IsHarvestSpriteDailyWorkComplete(MaryCharacterId sprite_id)
+{
+    GameSceneState * current = state;
+    // These seven character IDs are also their runtime entity IDs.
+    if (static_cast<u32>(sprite_id) - CHARACTER_STAID <= CHARACTER_TIMID - CHARACTER_STAID) {
+        AEntity * entity = current->game_object.value->GetActorEntity(sprite_id);
+        if (entity != nullptr)
+            return func_08033B24(static_cast<EntityUiHarvestSpriteState *>(entity));
+    }
+    return false;
+}
+
+MaryHeldItemKind GameScene::GetPresentedItemKind()
+{
+    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+        ENTITY_PLAYER))->GetPresentedItemKind();
+}
+
+i32 GameScene::GetPresentedItemId()
+{
+    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+        ENTITY_PLAYER))->GetPresentedItemId();
+}
+
+bool GameScene::IsPresentedItemGiftWrapped()
+{
+    return static_cast<GameScenePlayerActor *>(state->game_object.value->GetActorEntity(
+        ENTITY_PLAYER))->IsPresentedItemGiftWrapped();
+}
+
 EC u32 func_0801740C(FieldPlot const & plot)
 {
     switch (plot.GetUnk2()) {

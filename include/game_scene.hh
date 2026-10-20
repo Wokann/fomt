@@ -39,12 +39,17 @@ struct GameScenePlayerActor : AActorEntity {
     /* vt+60 */ virtual void GiveBasket();
     /* vt+64 */ virtual void ChangeStaminaAndFatigue(MaryStaminaDelta stamina_delta,
         MaryFatigueDelta fatigue_delta);
+    /* vt+68 */ virtual void BeginHoldingActorGraphic(u16 animation_id);
     // Unrecovered slots retain their positions; these declarations are not called.
-    /* vt+68 */ virtual void vfunc_68();
     /* vt+6C */ virtual void vfunc_6C();
     /* vt+70 */ virtual void vfunc_70();
     /* vt+74 */ virtual void vfunc_74();
     /* vt+78 */ virtual MaryAnimalSlotIndex GetInteractingAnimalIndex();
+    /* vt+7C */ virtual void ObtainMysticBerry();
+    /* vt+80 */ virtual void ObtainPowerBerry();
+    /* vt+84 */ virtual MaryHeldItemKind GetPresentedItemKind();
+    /* vt+88 */ virtual i32 GetPresentedItemId();
+    /* vt+8C */ virtual bool IsPresentedItemGiftWrapped();
 private:
     GameScenePlayerActor();
 };
@@ -1300,6 +1305,13 @@ struct GameScene : AScene {
     void RemoveFarmHorse(MaryBool skip_removal, i32 unused_value);
     MaryAnimalSlotIndex GetInteractingAnimalIndex();
     bool IsPlayerHoldingTool();
+    void BeginHoldingActorGraphic(MaryAnimationId animation_id);
+    void ObtainPowerBerry();
+    void ObtainMysticBerry();
+    bool IsHarvestSpriteDailyWorkComplete(MaryCharacterId sprite_id);
+    MaryHeldItemKind GetPresentedItemKind();
+    i32 GetPresentedItemId();
+    bool IsPresentedItemGiftWrapped();
 };
 
 typedef char GameSceneUiComponentPrefixCheck[sizeof(GameSceneUiComponent) == 8 ? 1 : -1];

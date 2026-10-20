@@ -258,6 +258,15 @@ SECTIONS
             .text.GetInteractingAnimalIndex__9GameScene
             .text.IsPlayerHoldingTool__9GameScene);
         asm/game_state.o(.text.game_scene_after_actor_commands);
+        src/game_scene.o(
+            .text.BeginHoldingActorGraphic__9GameScene15MaryAnimationId
+            .text.ObtainPowerBerry__9GameScene
+            .text.ObtainMysticBerry__9GameScene
+            .text.IsHarvestSpriteDailyWorkComplete__9GameScene15MaryCharacterId
+            .text.GetPresentedItemKind__9GameScene
+            .text.GetPresentedItemId__9GameScene
+            .text.IsPresentedItemGiftWrapped__9GameScene);
+        asm/game_state.o(.text.game_scene_after_player_presentation);
         src/game_scene.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         asm/game_state.o(.text.game_scene_field_item_tool_after);
         src/game_scene.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
