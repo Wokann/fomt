@@ -42,8 +42,7 @@ SECTIONS
         . = 0x000410; gUnk_03000410 = .;
         . = 0x000414; gUnk_03000414 = .;
         . = 0x000418; src/heap.o(.bss COMMON);
-        . = 0x00041C; gUnk_0300041C = .;
-        . = 0x000420; gUnk_03000420 = .;
+        . = 0x00041C; src/joy_bus.o(.bss);
         . = 0x000430; src/interrupt.o(.bss COMMON);
         . = 0x000490; /* end */
     } > IWRAM
@@ -762,7 +761,15 @@ SECTIONS
         src/game_menu.o(.text.Hide__23GameSceneMenuSpriteData);
         asm/code_809E804.o(.text.after_menu_sprite_data_constructor);
         src/heap.o(.text);
-        asm/code_809E804.o(.text.heap_runtime_after);
+        src/joy_bus.o(.text.InitializeJoyBusContext);
+        asm/joy_bus.o(.text.joy_bus_link_reset);
+        src/joy_bus.o(.text.StartJoyBusCommunication .text.StopJoyBusCommunication);
+        asm/joy_bus.o(.text.joy_bus_update);
+        src/joy_bus.o(.text.FinishJoyBusCommand .text.ResetJoyBusCommandResult);
+        asm/joy_bus.o(.text.joy_bus_flagged_result);
+        src/joy_bus.o(.text.EnableJoyBusInterrupt .text.DisableJoyBusInterrupt);
+        asm/joy_bus.o(.text.joy_bus_register_setup);
+        src/joy_bus.o(.text.ResetJoyBusCommandQueue .text.EnqueueJoyBusCommand .text.AdvanceJoyBusCommandQueue .text.IsJoyBusCommandQueueEmpty .text.ClearJoyBusCommandQueue);
         src/link_communication_data.o(.text);
         . = 0xD0D20; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);

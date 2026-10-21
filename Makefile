@@ -353,6 +353,10 @@ $(BUILD_DIR)/src/m4a.o: $(OLD_CC1)
 # The linker orders compiler-owned function sections around their assembly.
 $(BUILD_DIR)/src/font_draw.o: CXXFLAGS += -ffunction-sections
 
+# JoyBus functions interleave with the native protocol state machine. Give its
+# real IWRAM variables BSS storage instead of linker-address aliases.
+$(BUILD_DIR)/src/joy_bus.o: CFLAGS += -ffunction-sections -fno-common
+
 # Saved-state and inventory lifetimes retain their native linkonce positions.
 # Use compiler-owned function sections, not source section attributes.
 $(BUILD_DIR)/src/game_state.o $(BUILD_DIR)/src/rucksack.o $(BUILD_DIR)/src/money_account.o $(BUILD_DIR)/src/farmer.o $(BUILD_DIR)/src/dog.o $(BUILD_DIR)/src/farm.o: CXXFLAGS += -ffunction-sections

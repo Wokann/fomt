@@ -20453,3 +20453,68 @@ GBA 音频外设或实机验证；测试文件不进入正式构建链。
 地址全部保持原位，新模块的 236 字节及两个重定位逐项核实。
 这属于启动调用链的底层依赖恢复，不表示已经连续推进到该 ROM
 地址；更早的背景初始化、菜单等未匹配正文仍保留原生汇编。
+
+## JoyBus 通信：按功能归位的 C 接口、命令环与原生协议
+
+紧随堆分配器的 JoyBus 运行时不再堆放在 `code_809E804.s`。
+已恢复的普通 C 实现归入 `src/joy_bus.c`，命令、上下文已知字段和
+外部声明统一放在 `include/joy_bus.hh`；尚未高级语言化的协议正文
+归入同主题的 `asm/joy_bus.s`，继续保留四区显式指令及原有区域差异。
+已确认作用的入口直接使用语义名称，所有调用点同步修改，不设置
+旧地址名称别名。未确认的协议字段和回调仍保留 `unk`／原地址名，
+不为了美观猜测其含义。
+
+| 普通 C 接口 | 完整代码字节数 |
+| --- | ---: |
+| `InitializeJoyBusContext` | 32 |
+| `StartJoyBusCommunication` | 80 |
+| `StopJoyBusCommunication` | 28 |
+| `FinishJoyBusCommand` | 32 |
+| `ResetJoyBusCommandResult` | 32 |
+| `EnableJoyBusInterrupt` | 36 |
+| `DisableJoyBusInterrupt` | 52 |
+| `ResetJoyBusCommandQueue` | 32 |
+| `EnqueueJoyBusCommand` | 56 |
+| `AdvanceJoyBusCommandQueue` | 48 |
+| `IsJoyBusCommandQueueEmpty` | 28 |
+| `ClearJoyBusCommandQueue` | 60 |
+| **真正新增高级语言覆盖** | **516** |
+
+十个槽的命令环使用独立读写索引，命令大小为 32 字节；不将十个槽
+误称为可同时放十条命令，也不新增原实现不存在的满队列检查。
+入队先修改调用者命令的两个未知字段，再复制整个命令；启动仅设置
+该命令的 `kind`，不擅自清零其余载荷。清队列依照原实现推进至
+当前读索引的下一槽，而非强制把索引重置为零。结构偏移由编译期
+检查约束；上下文只描述已确认到 `+0x184` 的字段，不据此猜测整个
+外层场景的大小。
+
+| 区域 | 本主题完整半开区间 | 新增 C | 仅迁移的原生汇编 |
+| --- | --- | ---: | ---: |
+| JP | `0x080CFB50–0x080D04EC` | 516 | 1,944 |
+| US | `0x080D02CC–0x080D0C68` | 516 | 1,944 |
+| EU | `0x080D02FC–0x080D0CB4` | 516 | 1,972 |
+| DE | `0x080D0214–0x080D0BCC` | 516 | 1,972 |
+
+`ResetJoyBusLinkRegisters`、`UpdateJoyBusCommunication` 和
+`ConfigureJoyBusRegisters` 是真实原生入口的更名，并不计入新增 C。
+前者在 JP/US 是空操作，在 EU/DE 写链接寄存器；这些差异没有用
+二进制、别名或地址加偏移代替。其余协议状态机尚未恢复为 C。
+
+原 `0x0300041C`／`0x03000420` 现在分别由真实 C 变量
+`gCurrentJoyBusCommand`／`gJoyBusContext` 占用，不再由 LDS 定义
+两个没有存储对象的绝对地址符号。旧编译器按源码顺序输出连续
+八字节 `.bss`，LDS 只链接一次该 `.bss`。匹配正文使用普通 C 前端，
+代码分节用于与剩余原生正文交错排列，`-fno-common` 用于实际 BSS
+存储；没有源码 section 属性、寄存器绑定或编译后指令修补。
+
+这一批是依赖模块恢复，不是连续反编译前沿已经到达 `0x080Dxxxx`。
+重命名、文件迁移和保留汇编的字节数与新增 C 覆盖分别记录，不能
+用新文件数量或同一个历史汇编文件的减少量代替真实完成度。
+
+四区 WSL `make -j4 GAME_REGION=<区域> compare` 均通过，完整
+8 MiB ROM 的逐字节及 SHA-1 与原版一致。每区 228 个其他输入对象
+的分配段与重定位不变；两个外部调用对象只改为新入口名称，原大
+汇编对象只移出本主题。其余既有命名地址不变。核对本主题中两个
+RAM 变量的全部对齐指针字，均有真实重定位；US 共用正文中原先
+夹在代码字节里的三处上下文指针也已拆为 `.4byte gJoyBusContext`，
+该修正同时覆盖 EU/DE。没有把局部审查扩大宣称为全 ROM 指针审计。

@@ -113659,7 +113659,7 @@ func_08092CAC:
 	str r0, [r7, #8]
 	adds r0, r7, #0
 	adds r0, #0x38
-	bl func_080D02CC
+	bl InitializeJoyBusContext
 	adds r0, r4, #0
 	movs r1, #0
 	bl func_080E3234
@@ -113758,7 +113758,7 @@ func_08092DD4:
     adds r4, #8
     ldr r0, .Ljp_08092E2C
     str r0, [r5, #8]
-    bl func_080CFB70
+    bl ResetJoyBusLinkRegisters
     adds r0, r4, #0
     movs r1, #0
     bl func_08093D2C
@@ -280420,7 +280420,7 @@ func_0809323C: @ 0x0809323C
 	str r0, [r7, #8]
 	adds r0, r7, #0
 	adds r0, #0x38
-	bl func_080D02CC
+	bl InitializeJoyBusContext
 	adds r0, r4, #0
 	movs r1, #0
 	.ifdef REGION_JP
@@ -280526,7 +280526,7 @@ func_08093308: @ 0x08093308
 	adds r4, #8
 	ldr r0, .L08093360 @ =vtable_unk_080E7F0C
 	str r0, [r5, #8]
-	bl func_080D02EC
+	bl ResetJoyBusLinkRegisters
 	adds r0, r4, #0
 	movs r1, #0
 	bl func_08094268
@@ -281281,7 +281281,7 @@ func_08093364: @ 0x08093364
 	ldr r0, [r0]
 	cmp r0, #3
 	bne .L08093A14
-	bl func_080D02EC
+	bl ResetJoyBusLinkRegisters
 	movs r0, #1
 	str r0, [sp, #0x50]
 	ldr r0, [sp, #0x14]

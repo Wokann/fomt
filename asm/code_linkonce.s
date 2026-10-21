@@ -33468,7 +33468,7 @@ func_080E30A8:
     .thumb_func
 func_080E30AC:
     push {lr}
-    bl func_080D0340
+    bl StopJoyBusCommunication
     pop {r0}
     bx r0
     .byte 0x00, 0x00
@@ -33476,7 +33476,7 @@ func_080E30AC:
     .thumb_func
 func_080E30B8:
     push {lr}
-    bl func_080D02F0
+    bl StartJoyBusCommunication
     pop {r0}
     bx r0
     .byte 0x00, 0x00
@@ -33484,7 +33484,7 @@ func_080E30B8:
     .thumb_func
 func_080E30C4:
     push {lr}
-    bl func_080D035C
+    bl UpdateJoyBusCommunication
     pop {r0}
     bx r0
     .byte 0x00, 0x00
@@ -33737,7 +33737,7 @@ func_080E32F8:
     adds r5, r1, #0
     ldr r0, [pc, #0x14]
     str r0, [r4]
-    bl func_080CFB70
+    bl ResetJoyBusLinkRegisters
     adds r0, r4, #0
     adds r1, r5, #0
     bl func_08093D2C
@@ -41823,7 +41823,7 @@ func_080E3910: @ 0x080E3910
 	thumb_func_start func_080E3914
 func_080E3914: @ 0x080E3914
 	push {lr}
-	bl func_080D0340
+	bl StopJoyBusCommunication
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -41831,7 +41831,7 @@ func_080E3914: @ 0x080E3914
 	thumb_func_start func_080E3920
 func_080E3920: @ 0x080E3920
 	push {lr}
-	bl func_080D02F0
+	bl StartJoyBusCommunication
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -41839,7 +41839,7 @@ func_080E3920: @ 0x080E3920
 	thumb_func_start func_080E392C
 func_080E392C: @ 0x080E392C
 	push {lr}
-	bl func_080D035C
+	bl UpdateJoyBusCommunication
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -42153,7 +42153,7 @@ func_080E3B60: @ 0x080E3B60
 	adds r5, r1, #0
 	ldr r0, .L080E3B7C @ =vtable_unk_080E7F0C
 	str r0, [r4]
-	bl func_080D02EC
+	bl ResetJoyBusLinkRegisters
 	adds r0, r4, #0
 	adds r1, r5, #0
 	bl func_08094268
