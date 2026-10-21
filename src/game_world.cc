@@ -691,19 +691,6 @@ EC MaryItemArticleId SwapRecordPlayerAlbum(GameSceneWorldPrefix & world, MaryIte
     return static_cast<MaryItemArticleId>(album.GetArticle().GetId());
 }
 
-GameSceneSpriteBase::~GameSceneSpriteBase()
-{
-    for (u32 index = 0; index < palettes.count; ++index)
-        world->ClearSpritePaletteResourceFlag(palettes[index]);
-}
-
-GameSceneIndexedSprite::GameSceneIndexedSprite(IndexedResourceProvider * resource,
-    u32 index, GameObject * world, u32 size_shift, i32 palette_kind, bool unk_3D)
-    : GameSceneSpriteBase(world, size_shift, palette_kind),
-      handle(resource, index, 0x100), unk_3C(1), unk_3D(unk_3D), unk_3E(0)
-{
-}
-
 EC IndexedResourceArchive * func_0801FBDC(GameSceneWorldPrefix & world)
 {
     return &world.data.unk_FF0;

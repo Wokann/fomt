@@ -1,0 +1,57 @@
+#ifndef SCENE_SPRITE_HH
+#define SCENE_SPRITE_HH
+
+#include "prelude.h"
+#include "world_runtime.hh"
+
+#pragma interface "scene_sprite.hh"
+
+// Native base owns OBJ tiles and the palette slots returned by GameObject.
+struct GameSceneSpriteBase {
+    GameObject * world;
+    HardwareStateEntry tiles;
+    u16 tile_index;
+    GameScenePaletteIndices palettes;
+
+    // The real constructor ABI is still implemented by native assembly.
+    GameSceneSpriteBase(GameObject * world, u32 size_shift, i32 palette_kind);
+    virtual ~GameSceneSpriteBase();
+};
+
+struct GameSceneIndexedSprite : GameSceneSpriteBase {
+    GameSceneIndexedSprite(IndexedResourceProvider * resource, u32 index,
+        GameObject * world, u32 size_shift, i32 palette_kind, bool unk_3D);
+
+    IndexedResourceHandle handle;
+    u8 unk_3C;
+    u8 unk_3D;
+    u8 unk_3E;
+    u8 unk_3F;
+};
+
+typedef char GameSceneSpriteBaseSizeCheck[sizeof(GameSceneSpriteBase) == 0x28 ? 1 : -1];
+typedef char GameSceneSpriteBaseTilesCheck[offsetof(GameSceneSpriteBase, tiles) == 4 ? 1 : -1];
+typedef char GameSceneSpriteBasePaletteCountCheck[offsetof(GameSceneSpriteBase, palettes.count) == 0x10 ? 1 : -1];
+typedef char GameSceneSpriteBasePaletteIndicesCheck[offsetof(GameSceneSpriteBase, palettes.values) == 0x14 ? 1 : -1];
+typedef char GameSceneIndexedSpriteSizeCheck[sizeof(GameSceneIndexedSprite) == 0x40 ? 1 : -1];
+typedef char GameSceneIndexedSpriteHandleCheck[offsetof(GameSceneIndexedSprite, handle) == 0x28 ? 1 : -1];
+typedef char GameSceneIndexedSpriteFlagsCheck[offsetof(GameSceneIndexedSprite, unk_3C) == 0x3C ? 1 : -1];
+
+// Both world event icons and entity-owned graphics embed this same group
+// sprite. A group is resolved once; the indexed sprite instead keeps a handle.
+// The byte at +0x48 is initialized by native factories, but its full meaning
+// is not yet established. Preserve that uncertainty rather than naming a flag.
+struct GameSceneGroupSprite : GameSceneSpriteBase {
+    IndexedResourceGroupResult group;
+    u8 unk_48;
+
+    // Creation is still native. Do not allocate a partly recovered constructor.
+private:
+    GameSceneGroupSprite();
+};
+
+typedef char GameSceneGroupSpriteSizeCheck[sizeof(GameSceneGroupSprite) == 0x4C ? 1 : -1];
+typedef char GameSceneGroupSpriteGroupCheck[offsetof(GameSceneGroupSprite, group) == 0x28 ? 1 : -1];
+typedef char GameSceneGroupSpriteByteCheck[offsetof(GameSceneGroupSprite, unk_48) == 0x48 ? 1 : -1];
+
+#endif // SCENE_SPRITE_HH

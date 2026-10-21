@@ -9632,14 +9632,9 @@ func_080DBD30:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DC5A8
-    .thumb_func
-func_080DC5A8:
-    push {lr}
-    bl _._19GameSceneSpriteBase
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.scene_group_sprite_cleanup_after, "ax", %progbits
+    .align 2, 0
+
     .global func_080DC5B4
     .thumb_func
 func_080DC5B4:
@@ -21980,12 +21975,8 @@ func_080DC57C: @ 0x080DC57C
 	pop {r0}
 	bx r0
 	.align 2, 0
-	thumb_func_start func_080DC5A8
-func_080DC5A8: @ 0x080DC5A8
-	.byte 0x00, 0xB5
-	bl _._19GameSceneSpriteBase
-	.byte 0x01, 0xBC
-	.byte 0x00, 0x47, 0x00, 0x00
+    .section .text.scene_group_sprite_cleanup_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080DC5B4
 func_080DC5B4: @ 0x080DC5B4

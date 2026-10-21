@@ -761,9 +761,9 @@ SECTIONS
         src/map_data.o(.text.GetMapData);
         . = 0xA40E4;
         asm/code_809E804.o(.text.get_map_data_after);
-        src/game_world.o(.text._._19GameSceneSpriteBase);
+        src/scene_sprite.o(.text._._19GameSceneSpriteBase);
         asm/code_809E804.o(.text.game_scene_sprite_base_after);
-        src/game_world.o(.text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib);
+        src/scene_sprite.o(.text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib);
         asm/code_809E804.o(.text.game_scene_indexed_sprite_after);
         src/world_map.o(.text.UpdateWorldMap);
         asm/code_809E804.o(.text.game_map_after_update);
@@ -934,7 +934,9 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__15ClockTransition .gnu.linkonce.t._._15ClockTransition);
         src/game_scene.o(.text.CreateScene__17ReturnToGameScene .gnu.linkonce.t._._17ReturnToGameScene);
         asm/code_linkonce.o(.text.scene_return_after);
-        src/game_world.o(.gnu.linkonce.t._._22GameSceneIndexedSprite);
+        src/scene_sprite.o(.gnu.linkonce.t._._20GameSceneGroupSprite);
+        asm/code_linkonce.o(.text.scene_group_sprite_cleanup_after);
+        src/scene_sprite.o(.gnu.linkonce.t._._22GameSceneIndexedSprite);
         asm/code_linkonce.o(.text.game_scene_indexed_sprite_dtor_after);
         src/npc_entity.o(.text.FindTimedPathPointUpperBound);
         asm/code_linkonce.o(.text.npc_timed_path_search_after);
@@ -1020,7 +1022,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6708);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_671c);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_676c);
-        . = ALIGN(4); src/game_world.o(.gnu.linkonce.d.__vt_22GameSceneIndexedSprite);
+        . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_22GameSceneIndexedSprite);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6828);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6864);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_aactor_entity);
@@ -1225,7 +1227,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8298);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82a8);
 . = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_19SavedNameEntryScene);
-. = ALIGN(4); src/game_world.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
+. = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82d4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82d8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82e4);

@@ -778,7 +778,8 @@ extern void func_080DC49C(void);
 extern void func_080DC4E4(void);
 extern void func_080DC50C(void);
 extern void func_080DC554(void);
-extern void func_080DC5A8(void);
+// Direct declaration of the C++ destructor ABI; no wrapper or alias is emitted.
+extern void DestroyGameSceneGroupSprite(void) asm("_._20GameSceneGroupSprite");
 extern void func_080DC5B4(void);
 extern void func_080DC5D4(void);
 extern RawVTableFunction const vtable_unk_080E5C14[] = {
@@ -1175,10 +1176,10 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     RemoveWorldEventIcon,
 };
 
-extern RawVTableFunction const vtable_unk_080E602C[] = {
+extern RawVTableFunction const __vt_20GameSceneGroupSprite[] = {
     nullptr,
     nullptr,
-    func_080DC5A8,
+    DestroyGameSceneGroupSprite,
 };
 
 extern RawVTableFunction const vtable_unk_080E6038[] = {

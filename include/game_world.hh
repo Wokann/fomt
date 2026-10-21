@@ -9,12 +9,12 @@
 #include "resource_handle.hh"
 #include "time_of_day.hh"
 #include "world_map.hh"
+#include "scene_sprite.hh"
 
 #pragma interface "game_world.hh"
 
 struct GameScene;
 struct GameSceneScriptRequest;
-struct GameSceneIndexedSprite;
 struct GameStateClock;
 struct GameStateSaveImage;
 struct RucksackItem;
@@ -211,37 +211,5 @@ void PanWorldCameraTo(GameSceneWorldPrefix & world, i32 x, i32 y, u32 speed);
 void SetWorldCameraPosition(GameSceneWorldPrefix & world, i32 x, i32 y);
 
 EXTERN_C_END
-
-// Native base owns OBJ tiles and the palette slots returned by GameObject.
-struct GameSceneSpriteBase {
-    GameObject * world;
-    HardwareStateEntry tiles;
-    u16 tile_index;
-    GameScenePaletteIndices palettes;
-
-    // The real constructor ABI is still implemented by native assembly.
-    GameSceneSpriteBase(GameObject * world, u32 size_shift, i32 palette_kind);
-    virtual ~GameSceneSpriteBase();
-};
-
-struct GameSceneIndexedSprite : GameSceneSpriteBase {
-    GameSceneIndexedSprite(IndexedResourceProvider * resource, u32 index,
-        GameObject * world, u32 size_shift, i32 palette_kind, bool unk_3D);
-
-    IndexedResourceHandle handle;
-    u8 unk_3C;
-    u8 unk_3D;
-    u8 unk_3E;
-    u8 unk_3F;
-};
-
-typedef char GameSceneSpriteBaseSizeCheck[sizeof(GameSceneSpriteBase) == 0x28 ? 1 : -1];
-typedef char GameSceneSpriteBaseTilesCheck[offsetof(GameSceneSpriteBase, tiles) == 4 ? 1 : -1];
-typedef char GameSceneSpriteBasePaletteCountCheck[offsetof(GameSceneSpriteBase, palettes.count) == 0x10 ? 1 : -1];
-typedef char GameSceneSpriteBasePaletteIndicesCheck[offsetof(GameSceneSpriteBase, palettes.values) == 0x14 ? 1 : -1];
-typedef char GameSceneIndexedSpriteSizeCheck[sizeof(GameSceneIndexedSprite) == 0x40 ? 1 : -1];
-typedef char GameSceneIndexedSpriteHandleCheck[offsetof(GameSceneIndexedSprite, handle) == 0x28 ? 1 : -1];
-typedef char GameSceneIndexedSpriteFlagsCheck[offsetof(GameSceneIndexedSprite, unk_3C) == 0x3C ? 1 : -1];
-
 
 #endif // GAME_WORLD_HH

@@ -5378,7 +5378,7 @@ func_08037D08:
 .Ljp_08037AFC:
     .4byte vtable_unk_080E7478
 .Ljp_08037B00:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08037D70
     .thumb_func
 func_08037D70:
@@ -5639,7 +5639,7 @@ func_08037EF0:
 .Ljp_08037CEC:
     .4byte vtable_unk_080E7430
 .Ljp_08037CF0:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08037F60
     .thumb_func
 func_08037F60:
@@ -6784,7 +6784,7 @@ func_08038820:
 .Ljp_08038630:
     .4byte vtable_unk_080E736C
 .Ljp_08038634:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
 .Ljp_08038638:
     movs	r6, #0
 .Ljp_0803863A:
@@ -7568,7 +7568,7 @@ func_08038DF0:
     pop	{r0}
     bx	r0
 .Ljp_08038C20:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08038E90
     .thumb_func
 func_08038E90:
@@ -9624,7 +9624,7 @@ func_08039E98:
 .Ljp_08039CC4:
     .4byte vtable_unk_080E76BC
 .Ljp_08039CC8:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
 .Ljp_08039CCC:
     .4byte 0x0000091A
 .Ljp_08039CD0:
@@ -16058,7 +16058,7 @@ func_08037D08:
 .Leu_08037D7C:
     .4byte vtable_unk_080E7478
 .Leu_08037D80:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08037D70
     .thumb_func
 func_08037D70:
@@ -16319,7 +16319,7 @@ func_08037EF0:
 .Leu_08037F6C:
     .4byte vtable_unk_080E7430
 .Leu_08037F70:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08037F60
     .thumb_func
 func_08037F60:
@@ -17464,7 +17464,7 @@ func_08038820:
 .Leu_080388B0:
     .4byte vtable_unk_080E736C
 .Leu_080388B4:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
 .Leu_080388B8:
     movs	r6, #0
 .Leu_080388BA:
@@ -18248,7 +18248,7 @@ func_08038DF0:
     pop	{r0}
     bx	r0
 .Leu_08038EA0:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08038E90
     .thumb_func
 func_08038E90:
@@ -20328,7 +20328,7 @@ func_08039E98:
 .Leu_08039F44:
     .4byte vtable_unk_080E76BC
 .Leu_08039F48:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
 .Leu_08039F4C:
     .4byte 0x0000091A
 .Leu_08039F50:
@@ -26908,7 +26908,7 @@ func_08037D08:
 .Lde_08037C7C:
     .4byte vtable_unk_080E7478
 .Lde_08037C80:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08037D70
     .thumb_func
 func_08037D70:
@@ -27169,7 +27169,7 @@ func_08037EF0:
 .Lde_08037E6C:
     .4byte vtable_unk_080E7430
 .Lde_08037E70:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08037F60
     .thumb_func
 func_08037F60:
@@ -28314,7 +28314,7 @@ func_08038820:
 .Lde_080387B0:
     .4byte vtable_unk_080E736C
 .Lde_080387B4:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
 .Lde_080387B8:
     movs	r6, #0
 .Lde_080387BA:
@@ -29098,7 +29098,7 @@ func_08038DF0:
     pop	{r0}
     bx	r0
 .Lde_08038DA0:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08038E90
     .thumb_func
 func_08038E90:
@@ -31178,7 +31178,7 @@ func_08039E98:
 .Lde_08039E44:
     .4byte vtable_unk_080E76BC
 .Lde_08039E48:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
 .Lde_08039E4C:
     .4byte 0x0000091A
 .Lde_08039E50:
@@ -37757,7 +37757,7 @@ func_08037D08:
 .Lus_08037D68:
     .4byte vtable_unk_080E7478
 .Lus_08037D6C:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08037D70
     .thumb_func
 func_08037D70:
@@ -38018,7 +38018,7 @@ func_08037EF0:
 .Lus_08037F58:
     .4byte vtable_unk_080E7430
 .Lus_08037F5C:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08037F60
     .thumb_func
 func_08037F60:
@@ -39163,7 +39163,7 @@ func_08038820:
 .Lus_0803889C:
     .4byte vtable_unk_080E736C
 .Lus_080388A0:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
 .Lus_080388A4:
     movs	r6, #0
 .Lus_080388A6:
@@ -39947,7 +39947,7 @@ func_08038DF0:
     pop	{r0}
     bx	r0
 .Lus_08038E8C:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
     .global func_08038E90
     .thumb_func
 func_08038E90:
@@ -42027,7 +42027,7 @@ func_08039E98:
 .Lus_08039F30:
     .4byte vtable_unk_080E76BC
 .Lus_08039F34:
-    .4byte vtable_unk_080E602C
+    .4byte __vt_20GameSceneGroupSprite
 .Lus_08039F38:
     .4byte 0x0000091A
 .Lus_08039F3C:
