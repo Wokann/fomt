@@ -1,6 +1,7 @@
 #include "world_audio.hh"
 #include "game_world.hh"
 #include "game_scene.hh"
+#include "scene_audio.hh"
 #include "game_state.hh"
 #include "fomt_constants.hh"
 

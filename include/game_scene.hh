@@ -938,6 +938,9 @@ struct GameScene : AScene {
     bool IsPresentedItemGiftWrapped();
     GameSceneCaughtFish const * GetCaughtFish();
     u32 IsBackgroundMusicActive();
+    void StartWorldBackgroundMusic();
+    // Returns whether a fade was requested; it does not wait for completion.
+    bool FadeOutBackgroundMusic();
     void CreatePlayerChildEntity();
     void SetContestAnimal(MaryAnimalKind animal_kind, MaryAnimalSlotIndex animal_index);
     void OpenDoor(MaryDoorIndex door_index);
@@ -976,6 +979,8 @@ typedef char GameSceneBgmSettingsLfoCheck[offsetof(GameSceneBgmSettings, lfo_spe
 typedef char GameSceneSongPlayerPoolSizeCheck[sizeof(GameSceneSongPlayerPool) == 16 ? 1 : -1];
 typedef char GameSceneSongPlayerPoolCapacityCheck[offsetof(GameSceneSongPlayerPool, allocation.end) == 12 ? 1 : -1];
 typedef char GameSceneStateSizeCheck[sizeof(GameSceneState) == 0xF8 ? 1 : -1];
+typedef char GameSceneStateBgmPlayerOffsetCheck[offsetof(GameSceneState, bgm_player) == 0xBC ? 1 : -1];
+typedef char GameSceneStateSongPlayersOffsetCheck[offsetof(GameSceneState, song_players) == 0xD0 ? 1 : -1];
 typedef char GameSceneStateDmaQueueCheck[offsetof(GameSceneState, dma_queue) == 0 ? 1 : -1];
 typedef char GameSceneStateDisplayCheck[offsetof(GameSceneState, display) == 0x10 ? 1 : -1];
 typedef char GameSceneStateManagerCheck[offsetof(GameSceneState, manager) == 0x68 ? 1 : -1];
@@ -1196,7 +1201,6 @@ u8 * func_08010138(void);
 u32 func_08010148(void);
 ScriptEngine * GetSceneScriptEngine(void);
 
-GameSceneSongPlayerPool & GetSceneSongPlayerPool(GameScene & scene);
 // Recovered state callbacks retain address names where semantics are unresolved.
 void func_080D7F08(GameSceneState * state);
 void func_080D7F3C(GameSceneState * state);

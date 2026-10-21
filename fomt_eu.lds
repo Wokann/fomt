@@ -180,9 +180,11 @@ SECTIONS
         src/game_scene.o(
             .text.SetEntityA*__9GameScene* .text.WaitForCameraMovement__9GameScene*
             .text.NoOp*__9GameScene* .text.HideEntity__9GameScene* .text.OffsetEntityPosition__9GameScene*
-            .text.StartEntityEffect__9GameScene* .text.Stop*__9GameScene*
-            .text.ChangeMap__9GameScene* .text.PanCameraTo__9GameScene*
-            .text.PlayBGM__9GameScene* .text.PlaySong__9GameScene*);
+            .text.StartEntityEffect__9GameScene* .text.StopEntityEffect__9GameSceneUi
+            .text.ChangeMap__9GameScene* .text.PanCameraTo__9GameScene*);
+        src/scene_audio.o(
+            .text.PlayBGM__9GameScene* .text.StopBGM__9GameScene
+            .text.PlaySong__9GameScene* .text.StopAllSongs__9GameScene);
         asm/game_state.o(.text.game_scene_entity_commands_after);
         src/game_scene.o(
             .text.Talk*__9GameScene* .text.FadeScreen__9GameScene*
@@ -215,7 +217,7 @@ SECTIONS
             .text.EnableScriptedNpcControl__9GameScene
             .text.DisableScriptedNpcControl__9GameScene);
         asm/game_state.o(.text.game_scene_menu_hooks_after);
-        src/game_scene.o(.text.GetSceneSongPlayerPool);
+        src/scene_audio.o(.text.GetSceneSongPlayerPool);
         src/game_scene.o(
             .text.LightFireplaceAtLocation__9GameScene9MaryMapId
             .text.SetVaseArticleId__9GameScene17MaryItemArticleId
@@ -238,9 +240,10 @@ SECTIONS
             .text.GetPresentedItemId__9GameScene
             .text.IsPresentedItemGiftWrapped__9GameScene);
         asm/game_state.o(.text.game_scene_after_player_presentation);
+        src/scene_audio.o(.text.StartWorldBackgroundMusic__9GameScene .text.FadeOutBackgroundMusic__9GameScene);
+        src/game_scene.o(.text.GetCaughtFish__9GameScene);
+        src/scene_audio.o(.text.IsBackgroundMusicActive__9GameScene);
         src/game_scene.o(
-            .text.GetCaughtFish__9GameScene
-            .text.IsBackgroundMusicActive__9GameScene
             .text.CreatePlayerChildEntity__9GameScene
             .text.SetContestAnimal__9GameScene14MaryAnimalKind19MaryAnimalSlotIndex);
         asm/game_state.o(.text.game_scene_after_contest_registration);
