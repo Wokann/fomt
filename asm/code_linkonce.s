@@ -4237,10 +4237,10 @@ func_080D7944:
     ldr r0, [pc, #0x38]
     str r0, [r4, #0x14]
     movs r0, #1
-    bl func_08000528
+    bl DisableInterrupts
     ldr r1, [r4, #0x10]
     movs r0, #0
-    bl func_080D100C
+    bl ExchangeInterruptHandler
     ldr r0, [pc, #0x28]
     str r0, [r4, #0xc]
     ldr r1, [pc, #0x28]
@@ -4249,7 +4249,7 @@ func_080D7944:
     ldrh r0, [r4, #4]
     cmp r0, #0
     beq .Lauto_080D7128
-    bl func_080004F4
+    bl EnableInterrupts
     .Lauto_080D7128:
     movs r0, #1
     ands r5, r0
@@ -4626,10 +4626,10 @@ func_080D7944: @ 0x080D7944
 	ldr r0, .L080D7984 @ =__vt_28HardwareManagerVBlankBinding
 	str r0, [r4, #0x14]
 	movs r0, #1
-	bl func_08000528
+	bl DisableInterrupts
 	ldr r1, [r4, #0x10]
 	movs r0, #0
-	bl func_080D100C
+	bl ExchangeInterruptHandler
 	ldr r0, .L080D7988 @ =vtable_unk_080E5B54
 	str r0, [r4, #0xc]
 	ldr r1, .L080D798C @ =gUnk_03000410
@@ -4638,7 +4638,7 @@ func_080D7944: @ 0x080D7944
 	ldrh r0, [r4, #4]
 	cmp r0, #0
 	beq .L080D7970
-	bl func_080004F4
+	bl EnableInterrupts
 .L080D7970:
 	movs r0, #1
 	ands r5, r0
@@ -36512,7 +36512,7 @@ func_080E542C:
     str r0, [r5]
     movs r4, #4
     movs r0, #4
-    bl func_08000528
+    bl DisableInterrupts
     ands r4, r0
     strh r4, [r5, #4]
     ldr r0, [pc, #0x24]
@@ -36523,10 +36523,10 @@ func_080E542C:
     str r0, [r5, #0xc]
     ldr r1, [pc, #0x20]
     movs r0, #2
-    bl func_080D100C
+    bl ExchangeInterruptHandler
     str r0, [r5, #0x10]
     movs r0, #4
-    bl func_0800050C
+    bl AcknowledgeAndEnableInterrupts
     adds r0, r5, #0
     pop {r4, r5}
     pop {r1}
@@ -36541,10 +36541,10 @@ func_080E4C10:
     ldr r0, [pc, #0x38]
     str r0, [r4, #0x14]
     movs r0, #4
-    bl func_08000528
+    bl DisableInterrupts
     ldr r1, [r4, #0x10]
     movs r0, #2
-    bl func_080D100C
+    bl ExchangeInterruptHandler
     ldr r0, [pc, #0x28]
     str r0, [r4, #0xc]
     ldr r1, [pc, #0x28]
@@ -36553,7 +36553,7 @@ func_080E4C10:
     ldrh r0, [r4, #4]
     cmp r0, #0
     beq .Lauto_080E4C3C
-    bl func_080004F4
+    bl EnableInterrupts
     .Lauto_080E4C3C:
     movs r0, #1
     ands r0, r5
@@ -45095,7 +45095,7 @@ func_080E542C: @ 0x080E542C
 	str r0, [r5]
 	movs r4, #4
 	movs r0, #4
-	bl func_08000528
+	bl DisableInterrupts
 	ands r4, r0
 	strh r4, [r5, #4]
 	ldr r0, .L080E546C @ =gUnk_03000414
@@ -45106,10 +45106,10 @@ func_080E542C: @ 0x080E542C
 	str r0, [r5, #0xc]
 	ldr r1, .L080E5474 @ =func_080E5418
 	movs r0, #2
-	bl func_080D100C
+	bl ExchangeInterruptHandler
 	str r0, [r5, #0x10]
 	movs r0, #4
-	bl func_0800050C
+	bl AcknowledgeAndEnableInterrupts
 	adds r0, r5, #0
 	pop {r4, r5}
 	pop {r1}
@@ -45128,10 +45128,10 @@ func_080E5478: @ 0x080E5478
 	ldr r0, .L080E54B8 @ =vtable_unk_080E857C
 	str r0, [r4, #0x14]
 	movs r0, #4
-	bl func_08000528
+	bl DisableInterrupts
 	ldr r1, [r4, #0x10]
 	movs r0, #2
-	bl func_080D100C
+	bl ExchangeInterruptHandler
 	ldr r0, .L080E54BC @ =vtable_unk_080E8594
 	str r0, [r4, #0xc]
 	ldr r1, .L080E54C0 @ =gUnk_03000414
@@ -45140,7 +45140,7 @@ func_080E5478: @ 0x080E5478
 	ldrh r0, [r4, #4]
 	cmp r0, #0
 	beq .L080E54A4
-	bl func_080004F4
+	bl EnableInterrupts
 .L080E54A4:
 	movs r0, #1
 	ands r0, r5

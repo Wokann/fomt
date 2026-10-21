@@ -7,6 +7,17 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+// These two native adapters belong to the allocation runtime, not IRQs.
+void * AllocateCppObjectMemory(u32 size)
+{
+    return ::operator new(size);
+}
+
+void DeallocateCppObjectMemory(void * pointer)
+{
+    ::operator delete(pointer);
+}
+
 extern std::new_handler __new_handler;
 
 static void * alloc(size_t size)

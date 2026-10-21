@@ -66,7 +66,6 @@ SECTIONS
         src/sram_proxy_1.o(.text);
         . = 0x4C4; /* JP ROM 0x080004C4, independently matched */
         src/interrupt.o(.text);
-        . = 0x59C; /* JP ROM 0x0800059C, independently matched */
         src/new.o(.text);
         src/pure_virtual.o(.text);
         . = 0x63C; /* JP ROM 0x0800063C, independently matched */
@@ -834,6 +833,7 @@ SECTIONS
         src/font.o(.text);
         . = 0xD0674; /* Remaining JP font support code. */
         asm/code_809E804.o(.text.font_after);
+        asm/interrupt.o(.text);
         asm/compression.o(.text.compression_stream);
         asm/random.o(.text);
         asm/compression.o(.text.compression_packets);

@@ -7,7 +7,7 @@
 void func_08008AF0(void * manager)
 {
     (void)manager;
-    func_08000568(1);
+    WaitForNextInterrupt(1);
 }
 
 void func_08008AFC(void)

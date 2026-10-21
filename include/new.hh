@@ -6,6 +6,10 @@
 
 EXTERN_C
 
+// Native adapters to the ordinary C++ allocation/deallocation entries.
+void * AllocateCppObjectMemory(u32 size);
+void DeallocateCppObjectMemory(void * pointer);
+
 // This handler belongs to the original runtime's allocation-failure path,
 // independently of the __new_handler used by the early new operators.
 extern std::new_handler gUnk_03000CD4;

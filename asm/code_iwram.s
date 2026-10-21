@@ -412,15 +412,15 @@ func_03000958:
     strb r1, [r2, #8]
     bx lr
 .LInterruptEnableMasks:
-    .4byte gInterruptEnableMasks
+    .4byte gInterruptNestingMasks
 .LInterruptHandlers:
     .4byte gInterruptHandlers
     .4byte 0x03007FF8
 
-    .global func_03000A1C
-    .type func_03000A1C, function
+    .global ApplyInterruptEnableMask
+    .type ApplyInterruptEnableMask, function
     .arm
-func_03000A1C:
+ApplyInterruptEnableMask:
     cmp lr, #0x8000000
     ldr r3, .LInterruptEnableRegister
     ldrblo r2, [r3, #8]

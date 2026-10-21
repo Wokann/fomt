@@ -69,7 +69,7 @@ u32 func_08000714(u8 const *context, void (*handler)(void))
 {
     u32 flags = context[4];
     u32 mask = 3;
-    return (u32)func_080D100C((flags & mask) + 3, handler);
+    return (u32)ExchangeInterruptHandler((flags & mask) + 3, handler);
 }
 
 void func_08000728(void *destination, u16 flag)

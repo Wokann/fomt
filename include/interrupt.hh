@@ -9,28 +9,30 @@ typedef void (*InterruptHandler)(void);
 
 // Each IRQ slot has a nesting-enable mask and a callback. The ARM dispatcher
 // intersects this mask with IE before invoking the corresponding callback.
-extern u16 gInterruptEnableMasks[16];
+extern u16 gInterruptNestingMasks[16];
 extern InterruptHandler gInterruptHandlers[16];
 
 // Exchange one slot without adding bounds checks absent from the original.
-InterruptHandler func_080D100C(u32 index, InterruptHandler handler);
-u16 func_080D101C(u32 index, u16 value);
+InterruptHandler ExchangeInterruptHandler(u32 index, InterruptHandler handler);
+u16 ExchangeInterruptNestingMask(u32 index, u16 value);
 
-// The ROM-facing packed-mask entry executes ARM code in IWRAM. Request the
-// ordinary indirect interworking call, rather than an out-of-range Thumb BL.
-u16 func_03000A1C(u32 value) __attribute__((long_call));
+// Low input halfword disables IE bits; the high halfword enables them.
+// ROM callers additionally force Game Pak IRQ enabled and leave IME at one.
+// The native IRQ-dispatcher path instead receives its mask in ip/r12 and
+// restores the previous IME; do not invoke that path as an ordinary C call.
+// The entry executes in IWRAM: use the actual indirect interworking call.
+u16 ApplyInterruptEnableMask(u32 value) __attribute__((long_call));
 
-void func_080004C4(void);
-u16 func_080004F4(u32 value);
-u16 func_0800050C(u16 value);
-u16 func_08000528(u16 value);
-u16 func_08000540(u32 index, u16 value);
-void func_08000554(u16 value);
-void func_08000568(u16 value);
+void InitializeInterrupts(void);
+u16 EnableInterrupts(u32 value);
+u16 AcknowledgeAndEnableInterrupts(u16 value);
+u16 DisableInterrupts(u16 value);
+u16 SetInterruptNestingMask(u32 index, u16 value);
+// Preserve the distinct native BIOS arguments: IntrWait(0, flags) and (1, flags).
+void WaitForInterruptFlags(u16 value);
+void WaitForNextInterrupt(u16 value);
 u32 func_0800057C(u32 unused, u32 value);
 u32 func_08000580(u32 unused, u32 value);
-void *func_08000584(u32 size);
-void func_08000590(void *pointer);
 
 EXTERN_C_END
 

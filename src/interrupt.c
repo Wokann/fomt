@@ -2,53 +2,53 @@
 #include "gbaio.h"
 #include "gbasvc.h"
 
-u16 gInterruptEnableMasks[16];
+u16 gInterruptNestingMasks[16];
 InterruptHandler gInterruptHandlers[16];
 
 extern void func_03000958(void);
-extern void *__builtin_new(u32 size);
-extern void __builtin_delete(void *pointer);
 
-void func_080004C4(void)
+void InitializeInterrupts(void)
 {
     u32 index;
-    func_08000528(0xFFFF);
+    DisableInterrupts(0xFFFF);
     *(void (**)(void))0x03007FFC = func_03000958;
     for (index = 0; index <= 13; index++)
-        func_080D100C(index, 0);
+        ExchangeInterruptHandler(index, 0);
 }
 
-u16 func_080004F4(u32 value)
+u16 EnableInterrupts(u32 value)
 {
-    return func_03000A1C(value << 16);
+    return ApplyInterruptEnableMask(value << 16);
 }
 
-u16 func_0800050C(u16 value)
+u16 AcknowledgeAndEnableInterrupts(u16 value)
 {
     REG_IF = value;
-    return func_080004F4(value);
+    return EnableInterrupts(value);
 }
 
-u16 func_08000528(u16 value)
+u16 DisableInterrupts(u16 value)
 {
-    return func_03000A1C(value);
+    return ApplyInterruptEnableMask(value);
 }
 
-u16 func_08000540(u32 index, u16 value)
+u16 SetInterruptNestingMask(u32 index, u16 value)
 {
-    return func_080D101C(index, value);
+    return ExchangeInterruptNestingMask(index, value);
 }
 
-void func_08000554(u16 value)
+void WaitForInterruptFlags(u16 value)
 {
     IntrWait(0, value);
 }
 
-void func_08000568(u16 value)
+void WaitForNextInterrupt(u16 value)
 {
     IntrWait(1, value);
 }
 
+// These two forwarding entries have no identified callers and retain unknown
+// names; do not infer an IRQ API from physical adjacency alone.
 u32 func_0800057C(u32 unused, u32 value)
 {
     return value;
@@ -57,14 +57,4 @@ u32 func_0800057C(u32 unused, u32 value)
 u32 func_08000580(u32 unused, u32 value)
 {
     return value;
-}
-
-void *func_08000584(u32 size)
-{
-    return __builtin_new(size);
-}
-
-void func_08000590(void *pointer)
-{
-    __builtin_delete(pointer);
 }

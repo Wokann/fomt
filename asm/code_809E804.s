@@ -68404,7 +68404,7 @@ func_080C8360:
     adds r4, r5, r0
     ldrh r1, [r4]
     movs r0, #0
-    bl func_08000540
+    bl SetInterruptNestingMask
     ldr r1, [pc, #0x1c4]
     adds r0, r5, r1
     ldr r1, [pc, #0x1c4]
@@ -68836,9 +68836,9 @@ func_080C7FC4:
     bl func_08008918
     .byte 0x81, 0x88, 0xB8, 0x23, 0x5B, 0x01
     .byte 0x1A, 0x1C, 0x11, 0x43, 0x81, 0x80, 0x04, 0x20
-    bl func_0800050C
+    bl AcknowledgeAndEnableInterrupts
     .byte 0x00, 0x20, 0x04, 0x21
-    bl func_08000540
+    bl SetInterruptNestingMask
     .byte 0x26, 0x49, 0x51, 0x44, 0x08, 0x80, 0x26, 0x48, 0x50, 0x44, 0xE8, 0x22
     .byte 0x02, 0x80, 0x25, 0x49, 0x51, 0x44, 0x18, 0x20, 0x08, 0x80, 0x24, 0x48, 0x50, 0x44, 0x02, 0x80
     .byte 0x23, 0x49, 0x51, 0x44, 0x60, 0x20, 0x08, 0x80, 0x22, 0x48, 0x50, 0x44, 0x01, 0x68, 0x0B, 0x68
@@ -81274,28 +81274,6 @@ sub_080D0FDC: @ 0x080D0794
 	pop {r4}
 	bx lr
 	.align 2, 0
-    .global func_080D100C
-    .thumb_func
-func_080D100C: @ 0x080D07C4
-	ldr r2, .L080D07D0 @ =gInterruptHandlers
-	lsls r0, r0, #2
-	adds r2, r2, r0
-	ldr r0, [r2]
-	str r1, [r2]
-	bx lr
-	.align 2, 0
-.L080D07D0: .4byte gInterruptHandlers
-    .global func_080D101C
-    .thumb_func
-func_080D101C:
-    ldr r2, .LInterruptEnableMasksJp
-    lsls r0, r0, #1
-    adds r2, r2, r0
-    ldrh r0, [r2]
-    strh r1, [r2]
-    bx lr
-.LInterruptEnableMasksJp:
-    .4byte gInterruptEnableMasks
     .else
 
     .INCLUDE "asm/macro.inc"
@@ -157717,7 +157695,7 @@ func_080C8360: @ 0x080C8360
 	adds r4, r5, r0
 	ldrh r1, [r4]
 	movs r0, #0
-	bl func_08000540
+	bl SetInterruptNestingMask
 	ldr r1, .L080C8544 @ =0x00000534
 	adds r0, r5, r1
 	ldr r1, .L080C8548 @ =__vt_23IndexedResourceProvider
@@ -158756,10 +158734,10 @@ func_080C85A0: @ 0x080C85A0
 	orrs r1, r2
 	strh r1, [r0, #4]
 	movs r0, #4
-	bl func_0800050C
+	bl AcknowledgeAndEnableInterrupts
 	movs r0, #0
 	movs r1, #4
-	bl func_08000540
+	bl SetInterruptNestingMask
 	ldr r4, .L080C8C8C @ =0x00000434
 	adds r1, r7, r4
 	strh r0, [r1]
@@ -174993,27 +174971,5 @@ sub_080D0FDC: @ 0x080D0FDC
 	pop {r4}
 	bx lr
 	.align 2, 0
-
-	thumb_func_start func_080D100C
-func_080D100C: @ 0x080D100C
-	ldr r2, .L080D1018 @ =gInterruptHandlers
-	lsls r0, r0, #2
-	adds r2, r2, r0
-	ldr r0, [r2]
-	str r1, [r2]
-	bx lr
-	.align 2, 0
-.L080D1018: .4byte gInterruptHandlers
-
-	thumb_func_start func_080D101C
-func_080D101C: @ 0x080D101C
-	ldr r2, .L080D1028 @ =gInterruptEnableMasks
-	lsls r0, r0, #1
-	adds r2, r2, r0
-	ldrh r0, [r2]
-	strh r1, [r2]
-	bx lr
-	.align 2, 0
-.L080D1028: .4byte gInterruptEnableMasks
 
     .endif

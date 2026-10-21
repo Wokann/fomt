@@ -29,13 +29,13 @@ HardwareManagerVBlankBinding::HardwareManagerVBlankBinding(HardwareLinkedList * 
 {
     commands = list;
     u32 mask = 1;
-    enabled = mask & func_08000528(1);
+    enabled = mask & DisableInterrupts(1);
     HardwareManagerVBlankBinding * old_binding = gUnk_03000410;
     gUnk_03000410 = this;
     previous.previous = old_binding;
     previous.vtable = vtable_unk_080E5B48;
-    previous_handler = func_080D100C(0, func_080D78E0);
-    func_0800050C(1);
+    previous_handler = ExchangeInterruptHandler(0, func_080D78E0);
+    AcknowledgeAndEnableInterrupts(1);
 }
 
 void func_080D7990(HardwareLinkedList * list, HardwareLinkBase * link)

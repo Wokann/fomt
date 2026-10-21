@@ -14,17 +14,17 @@ extern "C" void func_08008AFC(void);
 void AgbMain(void)
 {
     REG_WAITCNT = 0x4014;
-    func_080004C4();
-    func_080D100C(13, func_03000490);
-    func_0800050C(0x2000);
+    InitializeInterrupts();
+    ExchangeInterruptHandler(13, func_03000490);
+    AcknowledgeAndEnableInterrupts(0x2000);
 
     SramAccess save;
     if (!func_080002E0(&save))
         func_08000358(&save);
 
-    func_080D100C(12, func_08000240);
+    ExchangeInterruptHandler(12, func_08000240);
     REG_KEYCNT = 0xC00F;
-    func_0800050C(0x1000);
+    AcknowledgeAndEnableInterrupts(0x1000);
 #if defined(REGION_EU) || defined(REGION_DE)
     REG_SIOCNT = 0x6000;
     REG_RCNT = 0;
@@ -39,7 +39,7 @@ void func_08000240(void)
 {
     volatile u16 *dma;
 
-    func_08000528(0xFFFF);
+    DisableInterrupts(0xFFFF);
     REG_DISPCNT = 0x80;
     *((volatile u8 *)&REG_SOUNDCNT_X) = 0;
 

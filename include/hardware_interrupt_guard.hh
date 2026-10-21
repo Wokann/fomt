@@ -9,11 +9,11 @@
 // and hardware command updates use the same scoped protection.
 class InterruptGuard {
 public:
-    explicit InterruptGuard(u16 mask) : enabled(mask & func_08000528(mask)) {}
+    explicit InterruptGuard(u16 mask) : enabled(mask & DisableInterrupts(mask)) {}
     ~InterruptGuard()
     {
         if (enabled)
-            func_080004F4(enabled);
+            EnableInterrupts(enabled);
     }
 
 private:
