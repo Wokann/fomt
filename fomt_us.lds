@@ -41,7 +41,7 @@ SECTIONS
         . = 0x00040C; gUnk_0300040C = .;
         . = 0x000410; gUnk_03000410 = .;
         . = 0x000414; gUnk_03000414 = .;
-        . = 0x000418; gUnk_03000418 = .;
+        . = 0x000418; src/heap.o(.bss COMMON);
         . = 0x00041C; gUnk_0300041C = .;
         . = 0x000420; gUnk_03000420 = .;
         . = 0x000430; src/interrupt.o(.bss COMMON);
@@ -761,6 +761,8 @@ SECTIONS
         src/game_menu.o(.text.Show__23GameSceneMenuSpriteDataiUi);
         src/game_menu.o(.text.Hide__23GameSceneMenuSpriteData);
         asm/code_809E804.o(.text.after_menu_sprite_data_constructor);
+        src/heap.o(.text);
+        asm/code_809E804.o(.text.heap_runtime_after);
         src/link_communication_data.o(.text);
         . = 0xD0CD4; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);
