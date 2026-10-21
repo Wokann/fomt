@@ -974,7 +974,7 @@ func_08011934:
     adds r7, r0, #0
     cmp r7, #0
     beq .Ljp_08011A44
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     ldr r1, [sp, #0xc]
     cmp r0, r1
     bne .Ljp_08011A44
@@ -1105,7 +1105,7 @@ func_08011934:
     adds r7, r0, #0
     cmp r7, #0
     beq .Ljp_08011B58
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     ldr r2, [sp, #0xc]
     cmp r0, r2
     bne .Ljp_08011B58
@@ -1228,7 +1228,7 @@ func_08011934:
     adds r7, r0, #0
     cmp r7, #0
     beq .Ljp_08011C58
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     ldr r2, [sp, #0xc]
     cmp r0, r2
     bne .Ljp_08011C58
@@ -5765,7 +5765,7 @@ func_08015044:
     bl GetChicken__4CoopUi
     cmp r0, #0
     beq .Ljp_080150A0
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     cmp r0, #2
     bne .Ljp_080150A0
     ldr r0, [r7, #0]
@@ -5837,7 +5837,7 @@ func_08015044:
     bl GetBarnAnimal__4BarnUi
     cmp r0, #0
     beq .Ljp_0801513C
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     cmp r0, #2
     bne .Ljp_0801513C
     ldr r0, [r6, #0]
@@ -6354,7 +6354,7 @@ func_08015524:
     bl GetChicken__4CoopUi
     cmp	r0, #0
     beq .Ljp_08015580
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     cmp	r0, #1
     bne .Ljp_08015580
     ldr	r0, [r7, #0]
@@ -6426,7 +6426,7 @@ func_08015524:
     bl GetBarnAnimal__4BarnUi
     cmp	r0, #0
     beq .Ljp_0801561C
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     cmp	r0, #1
     bne .Ljp_0801561C
     ldr	r0, [r6, #0]
@@ -17007,7 +17007,7 @@ func_08011934: @ 0x08011934
     adds r7, r0, #0
     cmp r7, #0
     beq .L08011A64
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     ldr r1, [sp, #0xc]
     cmp r0, r1
     bne .L08011A64
@@ -17138,7 +17138,7 @@ func_08011934: @ 0x08011934
     adds r7, r0, #0
     cmp r7, #0
     beq .L08011B78
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     ldr r2, [sp, #0xc]
     cmp r0, r2
     bne .L08011B78
@@ -17261,7 +17261,7 @@ func_08011934: @ 0x08011934
     adds r7, r0, #0
     cmp r7, #0
     beq .L08011C78
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     ldr r2, [sp, #0xc]
     cmp r0, r2
     bne .L08011C78
@@ -21916,7 +21916,7 @@ func_08015210: @ 0x08015210
     bl GetChicken__4CoopUi
     cmp r0, #0
     beq .L0801526C
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     cmp r0, #2
     bne .L0801526C
     ldr r0, [r7]
@@ -21988,7 +21988,7 @@ func_08015210: @ 0x08015210
     bl GetBarnAnimal__4BarnUi
     cmp r0, #0
     beq .L08015308
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     cmp r0, #2
     bne .L08015308
     ldr r0, [r6]
@@ -22641,7 +22641,7 @@ func_08015790: @ 0x08015790
     bl GetChicken__4CoopUi
     cmp r0, #0
     beq .L080157EC
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     cmp r0, #1
     bne .L080157EC
     ldr r0, [r7]
@@ -22713,7 +22713,7 @@ func_08015790: @ 0x08015790
     bl GetBarnAnimal__4BarnUi
     cmp r0, #0
     beq .L08015888
-    bl method_0809B514__C9Livestock
+    bl GetLifeState__C9Livestock
     cmp r0, #1
     bne .L08015888
     ldr r0, [r6]

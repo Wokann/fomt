@@ -10,7 +10,7 @@ Livestock::Livestock(char const * name, ActorLocation const & location, u32 age,
     fed = false;
     unhappy = false;
     sick = false;
-    unk_0x1D_0 = 0;
+    life_state = LIVESTOCK_LIFE_STATE_ALIVE;
     days_unhappy = 0;
     days_sick = 0;
     current_outdoor_minutes = 0;
@@ -24,7 +24,7 @@ Livestock::Livestock(ActorLocation const & location, u32 age, u32 days_fed)
     fed = false;
     unhappy = false;
     sick = false;
-    unk_0x1D_0 = 0;
+    life_state = LIVESTOCK_LIFE_STATE_ALIVE;
     days_unhappy = 0;
     days_sick = 0;
     current_outdoor_minutes = 0;
@@ -51,10 +51,9 @@ bool Livestock::IsSick() const
     return sick;
 }
 
-// Returns the unknown 2bit value 0x1D_0
-u8 Livestock::method_0809B514() const
+MaryLivestockLifeState Livestock::GetLifeState() const
 {
-    return unk_0x1D_0;
+    return static_cast<MaryLivestockLifeState>(life_state);
 }
 
 u32 Livestock::GetCurrentOutdoorMinutes() const
@@ -217,7 +216,7 @@ void Livestock::DayUpdate(LivestockDayUpdateInfo const * info)
         days_sick = 0;
     }
 
-    int val = 0;
+    MaryLivestockLifeState next_life_state = LIVESTOCK_LIFE_STATE_ALIVE;
 
     if (sick)
     {
@@ -235,14 +234,14 @@ void Livestock::DayUpdate(LivestockDayUpdateInfo const * info)
         if (4 < idx)
             idx = 4;
 
-        if (rand() % 100 < info->sick_unk_rates[idx])
-            val = 2;
+        if (rand() % 100 < info->neglect_death_rates[idx])
+            next_life_state = LIVESTOCK_LIFE_STATE_DIED_FROM_NEGLECT;
     }
 
-    if (val == 0)
+    if (next_life_state == LIVESTOCK_LIFE_STATE_ALIVE)
     {
-        LivestockDayUpdateInfo::AgeUnkRateEnt const * it = info->age_unk_rates;
-        LivestockDayUpdateInfo::AgeUnkRateEnt const * end = info->age_unk_rates + 4;
+        LivestockDayUpdateInfo::AgeDeathRateEntry const * it = info->natural_death_rates;
+        LivestockDayUpdateInfo::AgeDeathRateEntry const * end = info->natural_death_rates + 4;
 
         u32 age = GetAge();
 
@@ -251,9 +250,9 @@ void Livestock::DayUpdate(LivestockDayUpdateInfo const * info)
             it = it + 1;
         }
 
-        if (rand() % 100 < it->unk_02)
-            val = 1;
+        if (rand() % 100 < it->death_rate)
+            next_life_state = LIVESTOCK_LIFE_STATE_DIED_NATURALLY;
     }
 
-    unk_0x1D_0 = val;
+    life_state = next_life_state;
 }
