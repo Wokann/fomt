@@ -591,7 +591,7 @@ SECTIONS
         src/pet.o(.text);
         src/livestock.o(.text);
         src/barn_animal.o(.text);
-        src/dog.o(.text);
+        src/dog.o(.text .text.__3Dog* .text.[A-Za-z]*);
         src/horse.o(.text);
         src/chicken.o(.text);
         src/cow.o(.text);
@@ -801,6 +801,7 @@ SECTIONS
         asm/code_linkonce.o(.text.new_game_after_controller_records);
         src/game_state.o(.text._._18GameStateSaveImage);
         asm/code_linkonce.o(.text.save_image_after_destructor);
+        src/dog.o(.text.__as__3DogRC3Dog);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         src/farmer.o(.text.__6FarmerRC6Farmer);
         src/rucksack.o(.text.__8RucksackRC8Rucksack);

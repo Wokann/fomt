@@ -640,7 +640,7 @@ SECTIONS
         . = 0x9B260; /* JP ROM 0x0809B260, independently matched */
         src/barn_animal.o(.text);
         . = 0x9B40C; /* JP ROM 0x0809B40C, independently matched */
-        src/dog.o(.text);
+        src/dog.o(.text .text.__3Dog* .text.[A-Za-z]*);
         . = 0x9B608; /* JP ROM 0x0809B608, independently matched */
         src/horse.o(.text);
         . = 0x9B69C; /* JP ROM 0x0809B69C, independently matched */
@@ -867,6 +867,7 @@ SECTIONS
         asm/code_linkonce.o(.text.new_game_after_controller_records);
         src/game_state.o(.text._._18GameStateSaveImage);
         asm/code_linkonce.o(.text.save_image_after_destructor);
+        src/dog.o(.text.__as__3DogRC3Dog);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         . = 0xD6078; /* JP ROM 0x080D6078, independently matched */
         src/farmer.o(.text.__6FarmerRC6Farmer);

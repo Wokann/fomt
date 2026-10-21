@@ -22,6 +22,17 @@ Dog::Dog()
     unk_24.a.unk_02 = 0;
 }
 
+Dog & Dog::operator=(Dog const & other)
+{
+    Pet::operator=(other);
+    unk_20 = other.unk_20;
+    unk_24 = other.unk_24;
+    frisbee_record = other.frisbee_record;
+    unk_2D_2 = other.unk_2D_2;
+    frisbee_gauge_limit = other.frisbee_gauge_limit;
+    return *this;
+}
+
 Dog::GrowthStage Dog::GetGrowthStage() const
 {
     return GetAge() < 60 ? STAGE_0 : STAGE_1;

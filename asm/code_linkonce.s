@@ -115,7 +115,7 @@ func_080D4178: @ 0x080D4178
 	ldr r1, .L080D4430 @ =0x00001C70
 	adds r0, r5, r1
 	adds r1, r6, r1
-	bl func_080D67C8
+	bl __as__3DogRC3Dog
 	movs r0, #0xe5
 	lsls r0, r0, #5
 	adds r1, r5, r0
@@ -4819,73 +4819,6 @@ func_080D66A4: @ 0x080D66A4
 .L080D67BC: .4byte 0x000007FE
 .L080D67C0: .4byte 0xFFFFF801
 .L080D67C4: .4byte 0xFFF00FFF
-
-	thumb_func_start func_080D67C8
-func_080D67C8: @ 0x080D67C8
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	bl __as__6AnimalRC6Animal
-	ldrb r0, [r5, #0x1c]
-	strb r0, [r4, #0x1c]
-	ldrb r3, [r5, #0x1d]
-	lsls r1, r3, #0x1f
-	lsrs r1, r1, #0x1f
-	ldrb r2, [r4, #0x1d]
-	movs r0, #2
-	rsbs r0, r0, #0
-	ands r0, r2
-	orrs r0, r1
-	movs r1, #2
-	ands r1, r3
-	movs r2, #3
-	rsbs r2, r2, #0
-	ands r0, r2
-	orrs r0, r1
-	strb r0, [r4, #0x1d]
-	ldr r0, [r5, #0x20]
-	str r0, [r4, #0x20]
-	ldr r0, [r5, #0x24]
-	ldr r1, [r5, #0x28]
-	str r0, [r4, #0x24]
-	str r1, [r4, #0x28]
-	ldrh r1, [r5, #0x2c]
-	lsls r1, r1, #0x16
-	lsrs r1, r1, #0x16
-	ldrh r2, [r4, #0x2c]
-	ldr r0, .L080D6844 @ =0xFFFFFC00
-	ands r0, r2
-	orrs r0, r1
-	strh r0, [r4, #0x2c]
-	adds r0, r5, #0
-	adds r0, #0x2d
-	ldrb r0, [r0]
-	adds r3, r4, #0
-	adds r3, #0x2d
-	movs r1, #0x1c
-	ands r1, r0
-	ldrb r2, [r3]
-	movs r0, #0x1d
-	rsbs r0, r0, #0
-	ands r0, r2
-	orrs r0, r1
-	strb r0, [r3]
-	ldr r2, [r5, #0x2c]
-	movs r0, #0xff
-	lsls r0, r0, #0xd
-	ands r2, r0
-	ldr r0, [r4, #0x2c]
-	ldr r1, .L080D6848 @ =0xFFE01FFF
-	ands r0, r1
-	orrs r0, r2
-	str r0, [r4, #0x2c]
-	adds r0, r4, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080D6844: .4byte 0xFFFFFC00
-.L080D6848: .4byte 0xFFE01FFF
 
     .ifdef REGION_JP
     @ JP revision 0 C++ helpers retain their matched function boundaries.
