@@ -1,4 +1,6 @@
 #include "intro_scene.hh"
+#include "compression.hh"
+#include "random.hh"
 #include "new_game.hh"
 #include "hardware.hh"
 #include "hardware_allocator.hh"
@@ -8,13 +10,6 @@
 #include "hardware_state_accessors.hh"
 #include "sram_proxy_1.hh"
 #include "sram_proxy_2.hh"
-#include <stdlib.h>
-
-EXTERN_C
-
-void Unpack(u8 const * source, void * destination);
-
-EXTERN_C_END
 
 void * operator new(unsigned long);
 

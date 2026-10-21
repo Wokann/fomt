@@ -767,6 +767,9 @@ SECTIONS
         src/font.o(.text);
         . = 0xD0F08; /* Remaining font support code. */
         asm/code_809E804.o(.text.font_after);
+        asm/compression.o(.text.compression_stream);
+        asm/random.o(.text);
+        asm/compression.o(.text.compression_packets);
 
         src/m4a_1.o(.text);
         src/m4a.o(.text);

@@ -155,7 +155,6 @@ void func_080AA850(GameSceneSavedMapPrefix * map, u32 index);
 void func_080AA89C(GameSceneWorldMapPrefix * map);
 void func_080AA8BC(GameSceneWorldMapPrefix * map);
 void func_080AA8DC(GameSceneSavedMapPrefix * map);
-void Unpack(u8 const * source, void * destination);
 void LoadWorldMapTilemaps(GameSceneWorldMapPrefix & map);
 void LoadWorldMapTiles(GameSceneWorldMapPrefix & map);
 bool func_080A5EB8(GameSceneWorldMapPrefix * map, Location const & location);

@@ -1,4 +1,5 @@
 #include "world_map.hh"
+#include "compression.hh"
 #include "game_state.hh"
 #include "map_data.hh"
 #include "field_render_rect_descriptors.hh"

@@ -834,6 +834,9 @@ SECTIONS
         src/font.o(.text);
         . = 0xD0674; /* Remaining JP font support code. */
         asm/code_809E804.o(.text.font_after);
+        asm/compression.o(.text.compression_stream);
+        asm/random.o(.text);
+        asm/compression.o(.text.compression_packets);
 
         . = 0xD0D4C; /* JP ROM 0x080D0D4C, independently matched */
 
