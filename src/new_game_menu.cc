@@ -27,7 +27,7 @@ extern NewGameMenuVTableEntry const gNewGameMenuCoreVTable[] = {
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
 {
     HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
-        func_08008940(reinterpret_cast<void * const *>(core)));
+        GetHardwareCommandList(reinterpret_cast<void * const *>(core)));
     list->Append(&blend);
 }
 
@@ -38,8 +38,8 @@ static inline bool MenuBlendIsQueued(HardwareBlendObject const & blend)
 
 void RunNewGameMenuOpeningBlend(HardwareBootstrap * core)
 {
-    func_08008918(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
-    HardwareBlendObject blend(func_08008918(reinterpret_cast<void * const *>(core)));
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
+    HardwareBlendObject blend(GetHardwareDisplayState(reinterpret_cast<void * const *>(core)));
     i16 step = 0x889;
     func_0800934C(&blend.blend, step, 1, 1);
     QueueMenuBlend(core, blend);
@@ -49,8 +49,8 @@ void RunNewGameMenuOpeningBlend(HardwareBootstrap * core)
 
 void RunNewGameMenuClosingBlend(HardwareBootstrap * core)
 {
-    func_08008918(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
-    HardwareBlendObject blend(func_08008918(reinterpret_cast<void * const *>(core)));
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
+    HardwareBlendObject blend(GetHardwareDisplayState(reinterpret_cast<void * const *>(core)));
     i16 step = 0x889;
     func_08009378(&blend.blend, step, 1, 1);
     QueueMenuBlend(core, blend);
@@ -61,11 +61,11 @@ void RunNewGameMenuClosingBlend(HardwareBootstrap * core)
 void UpdateNewGameMenuUi(NewGameMenuCore * core)
 {
     void * const * hardware = reinterpret_cast<void * const *>(core);
-    HardwareCoreState * state = static_cast<HardwareCoreState *>(func_080088DC(hardware));
-    HardwareSpriteBufferState * sprites = func_08008920(hardware);
-    HardwareDisplayState * display = func_08008918(hardware);
-    u8 * links = func_08008940(hardware);
-    u8 * manager = func_0800894C(hardware);
+    HardwareCoreState * state = static_cast<HardwareCoreState *>(GetHardwareCoreState(hardware));
+    HardwareSpriteBufferState * sprites = GetHardwareSpriteBuffer(hardware);
+    HardwareDisplayState * display = GetHardwareDisplayState(hardware);
+    u8 * links = GetHardwareCommandList(hardware);
+    u8 * manager = GetHardwareInterruptList(hardware);
     UiStateOwner const * owner = &core->ui_state;
     MusicPlayer ** music = &core->music_players[0];
     owner->Update(state, sprites, display, links, manager, music);
@@ -87,7 +87,7 @@ void SubmitNewGameMenuChoiceSprite(NewGameMenuCore * core, u32 row,
     if (row == 1 && core->active_row != 1)
         attributes.affine_mode = 2;
 
-    HardwareSpriteBufferState * buffer = func_08008920(
+    HardwareSpriteBufferState * buffer = GetHardwareSpriteBuffer(
         reinterpret_cast<void * const *>(core));
     StoreMenuSpriteAttributes(buffer, row, attributes);
 }
@@ -101,7 +101,7 @@ void SubmitNewGameMenuCursorSprite(NewGameMenuCore * core, u32 row,
     attributes.y += 8 + (row * 2 + 1) * 8;
     attributes.x += 16;
 
-    HardwareSpriteBufferState * buffer = func_08008920(
+    HardwareSpriteBufferState * buffer = GetHardwareSpriteBuffer(
         reinterpret_cast<void * const *>(core));
     StoreMenuSpriteAttributes(buffer, 6, attributes);
 }

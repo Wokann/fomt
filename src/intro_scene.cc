@@ -203,7 +203,7 @@ choose_continuation:
 static inline void QueueIntroSceneBlend(IntroSceneCore * core, HardwareBlendOwner const & owner)
 {
     HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
-        func_08008940(reinterpret_cast<void * const *>(core)));
+        GetHardwareCommandList(reinterpret_cast<void * const *>(core)));
     list->Append(owner.object);
 }
 
@@ -211,10 +211,10 @@ void StartIntroSceneCore(IntroSceneCore * core)
 {
     func_08008724(reinterpret_cast<HardwareBootstrap *>(core));
     InitializeIntroSceneBackground(core);
-    func_08008918(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
 
     HardwareBlendOwner owner(new HardwareBlendObject(
-        func_08008918(reinterpret_cast<void * const *>(core))));
+        GetHardwareDisplayState(reinterpret_cast<void * const *>(core))));
     func_0800934C(&owner.object->blend, 0x889, 1, 0);
     QueueIntroSceneBlend(core, owner);
     core->startup_phase = 0;
@@ -224,7 +224,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
     do
     {
         UpdateHardwareFrame(reinterpret_cast<HardwareBootstrap *>(core));
-        func_080088B8(reinterpret_cast<void * const *>(core));
+        UpdateHardwareInput(reinterpret_cast<void * const *>(core));
         switch (core->startup_phase)
         {
         case 0:
@@ -237,7 +237,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
         case 1:
             --core->startup_hold_frames;
             // START skips the hold, but both fades still run to completion.
-            if (static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 8))
+            if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 8))
                 core->startup_hold_frames = 0;
             if (core->startup_hold_frames <= 0)
             {
@@ -258,9 +258,9 @@ int RunIntroSceneSequence(IntroSceneCore * core)
 {
     func_08008724(reinterpret_cast<HardwareBootstrap *>(core));
     InitializeIntroSceneSequenceResources(core);
-    func_08008918(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
     HardwareBlendOwner owner(new HardwareBlendObject(
-        func_08008918(reinterpret_cast<void * const *>(core))));
+        GetHardwareDisplayState(reinterpret_cast<void * const *>(core))));
     func_0800934C(&owner.object->blend, 0x889, 1, 0);
     QueueIntroSceneBlend(core, owner);
     func_08008B6C(core->music_players, 0x23);
@@ -282,13 +282,13 @@ int RunIntroSceneSequence(IntroSceneCore * core)
     {
         rand();
         UpdateHardwareFrame(reinterpret_cast<HardwareBootstrap *>(core));
-        func_080088B8(reinterpret_cast<void * const *>(core));
+        UpdateHardwareInput(reinterpret_cast<void * const *>(core));
         if (!skipped)
         {
             bool pressed = false;
-            if (static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 1)
-                || static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 2)
-                || static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 8))
+            if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 1)
+                || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 2)
+                || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 8))
                 pressed = true;
             if (pressed)
                 core->startup_phase = 11;
@@ -427,8 +427,8 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             if (core->unk_6C6D == 2)
             {
                 bool moved = false;
-                if (static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 32)
-                    || static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 16))
+                if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 32)
+                    || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 16))
                     moved = true;
                 if (moved)
                 {
@@ -461,8 +461,8 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             }
 
             bool pressed = false;
-            if (static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 1)
-                || static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 8))
+            if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 1)
+                || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 8))
                 pressed = true;
             if (pressed)
             {
@@ -614,10 +614,10 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             break;
         }
 
-        func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(0, core->unk_6D30);
-        func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(1, core->unk_6D30);
-        func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(2, core->unk_6D30);
-        func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(3, core->unk_6D30);
+        GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundX(0, core->unk_6D30);
+        GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundX(1, core->unk_6D30);
+        GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundX(2, core->unk_6D30);
+        GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundX(3, core->unk_6D30);
         RenderIntroSceneFrame(core);
     } while (!finished);
     return confirmed;
@@ -666,7 +666,7 @@ void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
     parameters.priority = 0;
     parameters.palette_offset = GetIntroScenePaletteIndex(core->pool_handle_6CE8);
     parameters.mosaic = 1;
-    DrawIndexedResourceSprites(func_08008920(reinterpret_cast<void * const *>(core)),
+    DrawIndexedResourceSprites(GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core)),
         group.sprites.Data(), group.sprites.Count(), &parameters);
 }
 

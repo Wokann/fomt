@@ -285,7 +285,7 @@ InitializeNewGameIdentityScreen:
     movs r2, #0x20
     bl CopyHardwareDma3
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     movs r3, #0xba
     lsls r3, r3, #5
@@ -294,14 +294,14 @@ InitializeNewGameIdentityScreen:
     movs r4, #0
     strh r2, [r0]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0xc
     ldr r5, .Ljp_080054C0
     adds r1, r5, #0
     strh r1, [r2]
     strh r1, [r0, #0xa]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0xc
     ldr r3, .Ljp_080054C4
     adds r1, r3, #0
@@ -457,7 +457,7 @@ InitializeNewGameIdentityScreen:
     str r5, [sp, #0x68]
 .Ljp_0800547A:
     mov r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r6, r0, #0
     add r0, sp, #0x10
     ldr r1, [sp, #0x68]
@@ -727,19 +727,19 @@ InitializeNewGameIdentityScreen:
     ldr r0, [r0]
     mov sb, r0
     mov r0, sl
-    bl func_080088DC
+    bl GetHardwareCoreState
     mov r8, r0
     mov r0, sl
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r6, r0, #0
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r5, r0, #0
     mov r0, sl
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r4, r0, #0
     mov r0, sl
-    bl func_0800894C
+    bl GetHardwareInterruptList
     ldr r1, .Ljp_080056D0
     add r1, sl
     str r4, [sp]
@@ -795,7 +795,7 @@ func_08005CDC:
     movs	r2, #32
     bl CopyHardwareDma3
     mov	r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add	r1, sp, #12
     movs	r3, #186	@ 0xba
     lsls	r3, r3, #5
@@ -804,14 +804,14 @@ func_08005CDC:
     movs	r4, #0
     strh	r2, [r0, #0]
     mov	r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add	r2, sp, #12
     ldr r5, .Ljp_00005DAC
     adds	r1, r5, #0
     strh	r1, [r2, #0]
     strh	r1, [r0, #10]
     mov	r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add	r2, sp, #12
     ldr r7, .Ljp_00005DB0
     adds	r1, r7, #0
@@ -990,7 +990,7 @@ func_08005CDC:
     movs	r3, #0
     bl DrawStringTo2DGfxBuffer
     mov	r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     movs	r3, #240	@ 0xf0
     lsls	r3, r3, #3
     adds	r6, r0, #0
@@ -1191,7 +1191,7 @@ func_08005CDC:
     bl DrawStringTo2DGfxBuffer
 .Ljp_00005F04:
     mov	r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     movs	r3, #192	@ 0xc0
     lsls	r3, r3, #1
     adds	r6, r0, #0
@@ -1343,19 +1343,19 @@ func_08005CDC:
     ldr	r0, [r0, #0]
     mov	r9, r0
     mov	r0, sl
-    bl func_080088DC
+    bl GetHardwareCoreState
     mov	r8, r0
     mov	r0, sl
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds	r6, r0, #0
     mov	r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds	r5, r0, #0
     mov	r0, sl
-    bl func_08008940
+    bl GetHardwareCommandList
     adds	r4, r0, #0
     mov	r0, sl
-    bl func_0800894C
+    bl GetHardwareInterruptList
     ldr r1, .Ljp_00006074
     add	r1, sl
     str	r4, [sp, #0]
@@ -1424,7 +1424,7 @@ func_0800637C:
     movs r3, #0
     bl DrawStringTo2DGfxBuffer
     adds r0, r5, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r6, r0, #0
     mov r3, r9
     lsls r2, r3, #3
@@ -1653,7 +1653,7 @@ func_080064E8:
     movs r3, #0
     bl DrawStringTo2DGfxBuffer
     mov r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     add r4, sl
     adds r4, #0xc
     movs r1, #0xf0
@@ -1888,7 +1888,7 @@ func_080064E8:
     bl DrawStringTo2DGfxBuffer
 .Ljp_08006606:
     mov r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r3, [sp, #0x4c]
     movs r4, #0xf0
@@ -2293,7 +2293,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     movs r2, #0x20
     bl CopyHardwareDma3
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     movs r3, #0xba
     lsls r3, r3, #5
@@ -2302,14 +2302,14 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     movs r4, #0
     strh r2, [r0]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0xc
     ldr r5, .L08005498 @ =0x00001841
     adds r1, r5, #0
     strh r1, [r2]
     strh r1, [r0, #0xa]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0xc
     ldr r7, .L0800549C @ =0x00001F01
     adds r1, r7, #0
@@ -2496,7 +2496,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     str r7, [sp, #0x88]
 .L08005448:
     mov r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r6, r0, #0
     add r0, sp, #0x10
     ldr r1, [sp, #0x88]
@@ -2691,7 +2691,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     str r2, [sp, #0x80]
 .L080055D0:
     mov r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r6, r0, #0
     add r0, sp, #0xc
     ldr r1, [sp, #0x80]
@@ -2938,19 +2938,19 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     ldr r0, [r0]
     mov sb, r0
     mov r0, sl
-    bl func_080088DC
+    bl GetHardwareCoreState
     mov r8, r0
     mov r0, sl
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r6, r0, #0
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r5, r0, #0
     mov r0, sl
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r4, r0, #0
     mov r0, sl
-    bl func_0800894C
+    bl GetHardwareInterruptList
     ldr r1, .L080057FC @ =0x00001A30
     add r1, sl
     str r4, [sp]
@@ -3002,7 +3002,7 @@ lsls	r1, r1, #19
 movs	r2, #32
 bl	CopyHardwareDma3
 mov	r0, sl
-bl	func_08008918
+bl	GetHardwareDisplayState
 .LNewGameDE_08005D1C:
 add	r1, sp, #12
 movs	r3, #186
@@ -3012,7 +3012,7 @@ strh	r2, [r1, #0]
 movs	r4, #0
 strh	r2, [r0, #0]
 mov	r0, sl
-bl	func_08008918
+bl	GetHardwareDisplayState
 .LNewGameDE_08005D30:
 add	r2, sp, #12
 ldr	r5, [pc, #432]
@@ -3020,7 +3020,7 @@ adds	r1, r5, #0
 strh	r1, [r2, #0]
 strh	r1, [r0, #10]
 mov	r0, sl
-bl	func_08008918
+bl	GetHardwareDisplayState
 add	r2, sp, #12
 ldr	r7, [pc, #420]
 adds	r1, r7, #0
@@ -3198,7 +3198,7 @@ movs	r2, #88
 movs	r3, #0
 bl	DrawStringTo2DGfxBuffer
 mov	r0, sl
-bl	func_08008910
+bl	GetHardwareDmaQueue
 movs	r3, #240
 lsls	r3, r3, #3
 adds	r6, r0, #0
@@ -3403,7 +3403,7 @@ movs	r3, #0
 bl	DrawStringTo2DGfxBuffer
 .LNewGameDE_08006044:
 mov	r0, sl
-bl	func_08008910
+bl	GetHardwareDmaQueue
 movs	r3, #144
 lsls	r3, r3, #2
 adds	r6, r0, #0
@@ -3555,19 +3555,19 @@ add	r0, sl
 ldr	r0, [r0, #0]
 mov	r9, r0
 mov	r0, sl
-bl	func_080088DC
+bl	GetHardwareCoreState
 mov	r8, r0
 mov	r0, sl
-bl	func_08008920
+bl	GetHardwareSpriteBuffer
 adds	r6, r0, #0
 mov	r0, sl
-bl	func_08008918
+bl	GetHardwareDisplayState
 adds	r5, r0, #0
 mov	r0, sl
-bl	func_08008940
+bl	GetHardwareCommandList
 adds	r4, r0, #0
 mov	r0, sl
-bl	func_0800894C
+bl	GetHardwareInterruptList
 ldr	r1, [pc, #40]
 add	r1, sl
 str	r4, [sp, #0]
@@ -3611,7 +3611,7 @@ bx	r0
     movs r2, #0x20
     bl CopyHardwareDma3
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     movs r3, #0xba
     lsls r3, r3, #5
@@ -3620,14 +3620,14 @@ bx	r0
     movs r4, #0
     strh r2, [r0]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0xc
     ldr r5, .L08005ED8 @ =0x00001841
     adds r1, r5, #0
     strh r1, [r2]
     strh r1, [r0, #0xa]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0xc
     ldr r7, .L08005EDC @ =0x00001F02
     adds r1, r7, #0
@@ -3806,7 +3806,7 @@ bx	r0
     movs r3, #0
     bl DrawStringTo2DGfxBuffer
     mov r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     movs r3, #0xf0
     lsls r3, r3, #3
     adds r6, r0, #0
@@ -4008,7 +4008,7 @@ bx	r0
     bl DrawStringTo2DGfxBuffer
 .L08006032:
     mov r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     movs r3, #0x90
     lsls r3, r3, #2
     adds r6, r0, #0
@@ -4159,19 +4159,19 @@ bx	r0
     ldr r0, [r0]
     mov sb, r0
     mov r0, sl
-    bl func_080088DC
+    bl GetHardwareCoreState
     mov r8, r0
     mov r0, sl
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r6, r0, #0
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r5, r0, #0
     mov r0, sl
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r4, r0, #0
     mov r0, sl
-    bl func_0800894C
+    bl GetHardwareInterruptList
     ldr r1, .L0800619C @ =0x000045F0
     add r1, sl
     str r4, [sp]
@@ -4239,7 +4239,7 @@ movs	r2, #144
 movs	r3, #0
 bl	DrawStringTo2DGfxBuffer
 adds	r0, r4, #0
-bl	func_08008910
+bl	GetHardwareDmaQueue
 adds	r6, r0, #0
 movs	r4, #240
 lsls	r4, r4, #3
@@ -4432,7 +4432,7 @@ bx	r0
     movs r3, #0
     bl DrawStringTo2DGfxBuffer
     adds r0, r5, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r6, r0, #0
     mov r3, sb
     lsls r2, r3, #3
@@ -4667,7 +4667,7 @@ movs	r2, #0
 movs	r3, #0
 bl	DrawStringTo2DGfxBuffer
 mov	r0, sl
-bl	func_08008910
+bl	GetHardwareDmaQueue
 add	r4, sl
 adds	r4, #12
 movs	r1, #240
@@ -4896,7 +4896,7 @@ movs	r3, #0
 bl	DrawStringTo2DGfxBuffer
 .LNewGameDE_08006746:
 mov	r0, sl
-bl	func_08008910
+bl	GetHardwareDmaQueue
 adds	r5, r0, #0
 movs	r2, #192
 lsls	r2, r2, #19
@@ -5134,7 +5134,7 @@ bx	r0
     movs r3, #0
     bl DrawStringTo2DGfxBuffer
     mov r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     add r4, sl
     adds r4, #0xc
     movs r1, #0xf0
@@ -5365,7 +5365,7 @@ bx	r0
     bl DrawStringTo2DGfxBuffer
 .L0800672A:
     mov r0, sl
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r3, [sp, #0x4c]
     movs r4, #0xf0

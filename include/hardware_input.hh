@@ -25,24 +25,21 @@ struct HardwareInputState {
     u16 repeat_interval;
     i16 held_frames[10];
 #ifdef __cplusplus
-    HardwareInputState(u16 delay, u16 interval) asm("func_080091A4");
-    HardwareInputState(u32 held_value) asm("func_080091E8");
-    HardwareInputState(u16 delay, u16 interval, u32 held_value) asm("func_08009224");
+    HardwareInputState(u16 delay, u16 interval);
+    HardwareInputState(u32 held_value);
+    HardwareInputState(u16 delay, u16 interval, u32 held_value);
 #endif
 };
 
 EXTERN_C
 
-u32 func_0800912C(void);
-u16 * func_08009140(u16 * held);
-void func_08009154(u16 * held, u32 value);
-u32 func_08009158(u16 * held);
-struct HardwareInputState * func_08009168(struct HardwareInputState * input);
-struct HardwareInputState * func_0800917C(struct HardwareInputState * input, u32 value);
-u32 func_08009190(struct HardwareInputState * input);
-struct HardwareInputState * func_080091A4(struct HardwareInputState * input, u16 delay, u16 interval);
-struct HardwareInputState * func_080091E8(struct HardwareInputState * input, u32 held);
-struct HardwareInputState * func_08009224(struct HardwareInputState * input, u16 delay, u16 interval, u32 held);
+u32 ReadHardwareKeys(void);
+u16 * InitializeHardwareHeldKeys(u16 * held);
+void AssignHardwareHeldKeys(u16 * held, u32 value);
+u32 RefreshHardwareHeldKeys(u16 * held);
+struct HardwareInputState * InitializeHardwareInputSnapshot(struct HardwareInputState * input);
+struct HardwareInputState * InitializeHardwareInputSnapshotFromKeys(struct HardwareInputState * input, u32 value);
+u32 UpdateHardwareKeySnapshot(struct HardwareInputState * input);
 
 EXTERN_C_END
 

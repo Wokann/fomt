@@ -8205,7 +8205,7 @@ func_08051504: @ 0x08051290
     adds r0, r6, #0
     bl func_08008724
     adds r0, r6, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     movs r2, #0x3f
     strh r2, [r1]
@@ -8215,7 +8215,7 @@ func_08051504: @ 0x08051290
     bl __builtin_new
     adds r4, r0, #0
     adds r0, r6, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     movs r5, #0
     str r5, [r4]
@@ -8235,7 +8235,7 @@ func_08051504: @ 0x08051290
     movs r3, #1
     bl func_0800934C
     adds r0, r6, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #4]
     ldr r2, [r2, #0x10]
@@ -8253,7 +8253,7 @@ func_08051504: @ 0x08051290
     adds r0, r6, #0
     bl UpdateHardwareFrame
     adds r0, r6, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     ldr r0, [r5]
     cmp r0, #1
     beq .Ljp_08051354
@@ -8284,7 +8284,7 @@ func_08051504: @ 0x08051290
     b .Ljp_08051426
 .Ljp_08051354:
     adds r0, r6, #0
-    bl func_080088C4
+    bl GetHardwareHeldKeys
     movs r1, #0x80
     ands r0, r1
     lsls r0, r0, #0x18
@@ -8307,7 +8307,7 @@ func_08051504: @ 0x08051290
 .Ljp_08051380: .4byte 0x000008B8
 .Ljp_08051384:
     adds r0, r6, #0
-    bl func_080088C4
+    bl GetHardwareHeldKeys
     movs r1, #0x40
     ands r0, r1
     cmp r0, #0
@@ -8324,13 +8324,13 @@ func_08051504: @ 0x08051290
 .Ljp_080513A4:
     movs r4, #0
     adds r0, r6, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #2
     ands r0, r1
     cmp r0, #0
     bne .Ljp_080513C2
     adds r0, r6, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #8
     ands r0, r1
     cmp r0, #0
@@ -8348,7 +8348,7 @@ func_08051504: @ 0x08051290
     str r0, [r5]
 .Ljp_080513D6:
     adds r0, r6, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r2, sp
     ldr r3, .Ljp_080513EC
     adds r1, r6, r3
@@ -8366,7 +8366,7 @@ func_08051504: @ 0x08051290
     movs r3, #1
     bl func_08009378
     adds r0, r6, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #4]
     ldr r2, [r2, #0x10]
@@ -8442,44 +8442,44 @@ func_0805147C:
     ldr r4, [pc, #0x2b8]
     add sp, r4
     mov sl, r0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     movs r4, #0
     strh r4, [r1]
     strh r4, [r0, #0x10]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0xc
     movs r1, #4
     strh r1, [r2]
     strh r1, [r0, #0x12]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     strh r4, [r1]
     strh r4, [r0, #0x14]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     strh r4, [r1]
     strh r4, [r0, #0x16]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     strh r4, [r1]
     strh r4, [r0, #0x18]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     strh r4, [r1]
     strh r4, [r0, #0x1a]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     strh r4, [r1]
     strh r4, [r0, #0x1c]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     strh r4, [r1]
     strh r4, [r0, #0x1e]
@@ -8511,7 +8511,7 @@ func_0805147C:
     adds r2, r5, #0
     bl FillHardwareDma3
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     movs r2, #0xfa
     lsls r2, r2, #5
@@ -8520,28 +8520,28 @@ func_0805147C:
     movs r6, #0
     strh r4, [r0]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0xc
     ldr r3, [pc, #0x20c]
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xe]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0xc
     ldr r3, [pc, #0x200]
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xc]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0xc
     ldr r3, [pc, #0x1f4]
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xa]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     strh r4, [r1]
     strh r4, [r0, #8]
@@ -8779,7 +8779,7 @@ func_08051B00:
     strh r5, [r0, #8]
     strb r1, [r0, #0x18]
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r0, [sp, #0x24]
     mov r8, r0
@@ -8942,7 +8942,7 @@ func_08051B00:
     str r0, [r2, #0xc]
     .Lauto_08051D04:
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -9027,7 +9027,7 @@ func_08051B00:
     strh r2, [r0, #8]
     strb r1, [r0, #0x18]
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r3, [sp, #0x24]
     mov r8, r3
@@ -9191,7 +9191,7 @@ func_08051B00:
     str r0, [r6, #0xc]
     .Lauto_08051EEC:
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -9960,14 +9960,14 @@ func_08052714:
     adds r0, r5, #0
     bl func_08008724
     adds r0, r5, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     movs r2, #0xbf
     strh r2, [r1]
     adds r0, #0x50
     strh r2, [r0]
     adds r0, r5, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     movs r2, #0x10
     strh r2, [r1]
@@ -9977,7 +9977,7 @@ func_08052714:
     bl __builtin_new
     adds r4, r0, #0
     adds r0, r5, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     ldr r2, [sp, #0x30]
     str r2, [r4]
@@ -10018,7 +10018,7 @@ func_08052714:
     adds r0, r5, #0
     bl UpdateHardwareFrame
     adds r0, r5, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     bl rand
     ldr r3, [pc, #0x50]
     adds r4, r5, r3
@@ -10028,7 +10028,7 @@ func_08052714:
     cmp r0, #0
     beq .Lauto_08052814
     adds r0, r5, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #8
     ands r0, r1
     cmp r0, #0
@@ -10089,7 +10089,7 @@ func_08052714:
     .byte 0x0C, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x28, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x80, 0xF0, 0xA9, 0xFB, 0x00, 0xF0, 0x3A, 0xFC
     .byte 0x00, 0x00, 0x28, 0x23, 0x00, 0x00, 0xC2, 0x22, 0x00, 0x00, 0x2A, 0x23, 0x00, 0x00, 0x92, 0x22
     .byte 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43, 0xC1, 0x0F
@@ -10135,7 +10135,7 @@ func_08052714:
     .byte 0x00, 0x28, 0x00, 0xDB, 0xFE, 0xE2, 0x05, 0x4C, 0x28, 0x19, 0x02, 0x60, 0x05, 0x4E, 0xA9, 0x19
     .byte 0x04, 0x20, 0x08, 0x80, 0x04, 0x4F, 0xE9, 0x19, 0x30, 0xE2, 0x22, 0x23, 0x00, 0x00, 0x5C, 0x22
     .byte 0x00, 0x00, 0x2A, 0x23, 0x00, 0x00, 0x28, 0x23, 0x00, 0x00, 0x28, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1, 0xE4, 0xE2, 0x04, 0x48, 0x29, 0x18, 0x10, 0x20
     .byte 0x08, 0x80, 0x03, 0x4A, 0xA9, 0x18, 0x02, 0x20, 0x08, 0x70, 0xDB, 0xE2, 0x00, 0x00, 0x28, 0x23
     .byte 0x00, 0x00, 0x21, 0x23, 0x00, 0x00, 0x0C, 0x9B, 0x00, 0x2B, 0x00, 0xD1, 0xD2, 0xE2, 0x08, 0x4C
@@ -10211,7 +10211,7 @@ func_08052714:
     .byte 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x28, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68
     .byte 0x01, 0x99, 0x12, 0x69, 0x80, 0xF0, 0x33, 0xF8, 0x04, 0x48, 0x29, 0x18, 0x08, 0x88, 0x01, 0x30
     .byte 0x08, 0x80, 0xBF, 0xE0, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0x28, 0x23, 0x00, 0x00, 0x01, 0x98
@@ -10241,13 +10241,13 @@ func_08052714:
     .byte 0x01, 0x26, 0x0D, 0x96
     .Lauto_080531F2:
     .byte 0x28, 0x1C, 0x00, 0xF0, 0x7C, 0xFA, 0x00, 0x04, 0x00, 0x0C, 0x0C, 0x90, 0x28, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0x09, 0x4F, 0xE9, 0x19, 0x09, 0x88, 0x11, 0x80, 0x81, 0x83, 0x07, 0x48
     .byte 0x29, 0x18, 0x08, 0x78, 0x13, 0x28, 0x0C, 0xD8, 0x01, 0x30, 0x08, 0x70, 0xA1, 0xE0, 0x4C, 0x2C
     .byte 0x00, 0x00, 0xC8, 0x22, 0x00, 0x00, 0x70, 0x1C, 0x00, 0x00, 0x30, 0x23, 0x00, 0x00, 0x59, 0x1D
     .byte 0x00, 0x00, 0x00, 0x20, 0x08, 0x70, 0x15, 0x49, 0x6C, 0x18, 0x20, 0x78, 0x01, 0x30, 0x03, 0x21
     .byte 0x08, 0x40, 0x20, 0x70, 0x28, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x22, 0x78, 0x06, 0x1C, 0x51, 0x00
     .byte 0x89, 0x18, 0x49, 0x02, 0x49, 0x19, 0xAB, 0x22, 0xD2, 0x00, 0x89, 0x18, 0x02, 0xA8, 0xC0, 0x22
     .byte 0xD2, 0x04, 0xC0, 0x23, 0xDB, 0x00
@@ -10277,15 +10277,15 @@ func_08052714:
     .byte 0x0B, 0x98, 0x12, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC
     .byte 0x08, 0x47, 0x00, 0x00, 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x83, 0xB0, 0x07, 0x1C
     .byte 0x38, 0x69, 0x81, 0x46, 0x38, 0x1C
-    bl func_080088DC
+    bl GetHardwareCoreState
     .byte 0x80, 0x46, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x06, 0x1C, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x05, 0x1C, 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x04, 0x1C, 0x38, 0x1C
-    bl func_0800894C
+    bl GetHardwareInterruptList
     .byte 0x39, 0x1C, 0x14, 0x31, 0x00, 0x94
     .byte 0x01, 0x90, 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C
     bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
@@ -10804,7 +10804,7 @@ func_08053960:
     .byte 0x46, 0xFC, 0x01, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x28, 0x1C, 0x09, 0xF0, 0x60, 0xFF, 0x29, 0x68
     .byte 0x0B, 0x68, 0xAA, 0x89, 0x92, 0x00, 0x4C, 0x46, 0x20, 0x68, 0x80, 0x18, 0x02, 0x88, 0x68, 0x46
     .byte 0x1B, 0x69, 0x7E, 0xF0, 0xEA, 0xFC, 0x30, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0x04, 0x9D
     .byte 0x9F, 0x27, 0xFF, 0x00, 0xF0, 0x19, 0x41, 0x68
     bl func_080074C0
@@ -10830,7 +10830,7 @@ func_08053960:
     .byte 0x90, 0x42, 0x02, 0xD0, 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x7B, 0xF0
     .byte 0x5E, 0xF9, 0x15, 0x98, 0x48, 0x44, 0x15, 0x99, 0x14, 0x9A, 0x11, 0x60, 0x55, 0x60, 0xD0, 0x60
     .byte 0x30, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0x02, 0x9D, 0x9E, 0x23, 0xDB, 0x00, 0xF0, 0x18
     .byte 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
@@ -11102,28 +11102,28 @@ func_08054D34:
     bl CopyHardwareDma3
     .byte 0x33, 0x48, 0xAB, 0x23
     .byte 0xDB, 0x00, 0xF1, 0x18, 0x7B, 0xF0, 0x3E, 0xFD, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46
     .byte 0xF2, 0x23, 0x5B, 0x01, 0x1A, 0x1C, 0x0A, 0x80, 0x00, 0x24, 0x02, 0x80, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0x2A, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0xC1, 0x81, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0x27, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0x81, 0x81, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0x24, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0x41, 0x81, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x0C, 0x80, 0x84, 0x82, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46
     .byte 0x0C, 0x80, 0xC4, 0x82, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x0C, 0x80, 0x04, 0x83
     .byte 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x0C, 0x80, 0x44, 0x83, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x0C, 0x80, 0x84, 0x83, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46
     .byte 0x0C, 0x80, 0xC4, 0x83, 0x01, 0xB0, 0x18, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0x70, 0xBC, 0x01, 0xBC
     .byte 0x00, 0x47, 0x00, 0x00, 0xE0, 0x7F, 0x00, 0x06, 0x00, 0xE0, 0x00, 0x06, 0x00, 0xE8, 0x00, 0x06
@@ -11138,7 +11138,7 @@ func_08054D34:
     .byte 0x18, 0x80, 0x52, 0x18, 0x01, 0x30, 0x10, 0x80, 0x01, 0x3C, 0x05, 0x2C, 0x0A, 0xDD, 0x1B, 0x4A
     .byte 0x1B, 0x49, 0xA0, 0x01, 0x80, 0x19, 0x40, 0x19, 0x02, 0x80, 0x41, 0x80, 0x40, 0x38, 0x01, 0x3C
     .byte 0x05, 0x2C, 0xF9, 0xDC, 0x28, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x06, 0x1C, 0x15, 0x4A, 0xA9, 0x18
     .byte 0x68, 0x46, 0x15, 0x4A, 0xA0, 0x23, 0xDB, 0x00
     bl __21DmaTransferDescriptorPCvPvUi
@@ -11965,7 +11965,7 @@ func_080558C4:
     ldm r0!, {r4, r5}
     stm r1!, {r4, r5}
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     ldr r5, [sp, #0x28]
     movs r7, #0x93
@@ -12122,7 +12122,7 @@ func_080558C4:
     str r0, [r2, #0xc]
     .Lauto_080557EC:
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     ldr r5, [sp, #0x30]
     movs r3, #0x94
@@ -12303,7 +12303,7 @@ func_080558C4:
     movs r0, #1
     strb r0, [r1, #0x18]
     adds r0, r6, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x20]
     adds r1, r0, #0
@@ -12376,7 +12376,7 @@ func_080558C4:
     b .Lauto_08056184
     .Lauto_080559D0:
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r7, [sp, #0x28]
     mov r8, r7
@@ -12545,7 +12545,7 @@ func_080558C4:
     str r0, [r2, #0xc]
     .Lauto_08055B0E:
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     ldr r5, [sp, #0x30]
     movs r3, #0x94
@@ -12731,7 +12731,7 @@ func_080558C4:
     b .Lauto_08056184
     .Lauto_08055C6A:
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     ldr r5, [sp, #0x28]
     movs r7, #0x93
@@ -12902,7 +12902,7 @@ func_080558C4:
     str r0, [r2, #0xc]
     .Lauto_08055DAC:
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     ldr r5, [sp, #0x30]
     movs r3, #0x94
@@ -13090,7 +13090,7 @@ func_080558C4:
     b .Lauto_08056184
     .Lauto_08055F0E:
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     ldr r5, [sp, #0x28]
     movs r7, #0x93
@@ -13261,7 +13261,7 @@ func_080558C4:
     str r0, [r2, #0xc]
     .Lauto_08056050:
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     ldr r5, [sp, #0x30]
     movs r3, #0x94
@@ -13450,7 +13450,7 @@ func_080558C4:
     movs r0, #1
     strb r0, [r1, #0x18]
     adds r0, r6, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x20]
     adds r1, r0, #0
@@ -13543,7 +13543,7 @@ func_080558C4:
     movs r0, #1
     strb r0, [r1, #0x18]
     adds r0, r6, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x20]
     adds r1, r0, #0
@@ -13635,7 +13635,7 @@ func_080558C4:
     bl func_080074C0
     .byte 0xA8, 0x80, 0x01, 0x23, 0x9A, 0x46
     .byte 0x54, 0x46, 0x2C, 0x76, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x08, 0x98, 0x01, 0x1C
     .byte 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x68, 0x46, 0x82, 0x8C, 0x18, 0x1C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -13650,7 +13650,7 @@ func_080558C4:
     .byte 0x02, 0x30, 0xE8, 0x80, 0x96, 0x22, 0xD2, 0x00, 0xB0, 0x18, 0x41, 0x68
     bl func_080074C0
     .byte 0xA8, 0x80, 0x53, 0x46, 0x2B, 0x76, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x08, 0x99, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46, 0xA2, 0x8C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
     .byte 0x04, 0x37, 0x3E, 0x98, 0x01, 0x38, 0x3E, 0x90, 0x00, 0x28, 0x00, 0xDB, 0x46, 0xE7
@@ -13740,7 +13740,7 @@ func_080558C4:
     b .Lauto_0805688C
     .Lauto_080564E4:
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r7, [sp, #0x28]
     mov r8, r7
@@ -13899,7 +13899,7 @@ func_080558C4:
     str r0, [r2, #0xc]
     .Lauto_08056624:
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     ldr r5, [sp, #0x30]
     movs r3, #0xa9
@@ -14061,7 +14061,7 @@ func_080558C4:
     str r0, [r2, #0xc]
     .Lauto_08056750:
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r7, r0, #0
     ldr r0, [sp, #0x30]
     adds r4, r0, #0
@@ -14333,7 +14333,7 @@ func_080558C4:
     lsls r3, r3, #2
     adds r0, r6, r3
     .byte 0x00, 0x78, 0x80, 0x07, 0x00, 0x28, 0x00, 0xDB, 0x98, 0xE0, 0x30, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x0A, 0x9F, 0xB8, 0x46, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
     .byte 0x02, 0x1C
@@ -14357,7 +14357,7 @@ func_080558C4:
     .byte 0xF3, 0xD1, 0x15, 0x1C, 0x48, 0x98, 0x42, 0x68, 0x00, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0
     .byte 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x79, 0xF0, 0x2D, 0xF8, 0x49, 0x98
     .byte 0x50, 0x44, 0x49, 0x99, 0x48, 0x9A, 0x11, 0x60, 0x55, 0x60, 0xD0, 0x60, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x08, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46
     .byte 0xA2, 0x8C, 0x18, 0x1C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -14440,7 +14440,7 @@ func_080558C4:
     lsls r5, r5, #2
     adds r0, r6, r5
     .byte 0x00, 0x78, 0x80, 0x07, 0x00, 0x28, 0x00, 0xDB, 0x98, 0xE0, 0x30, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x0A, 0x9F, 0xB8, 0x46, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
     .byte 0x02, 0x1C
@@ -14464,7 +14464,7 @@ func_080558C4:
     .byte 0xF3, 0xD1, 0x15, 0x1C, 0x48, 0x98, 0x42, 0x68, 0x00, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0
     .byte 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x78, 0xF0, 0x2F, 0xFF, 0x49, 0x98
     .byte 0x50, 0x44, 0x49, 0x99, 0x48, 0x9A, 0x11, 0x60, 0x55, 0x60, 0xD0, 0x60, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x08, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46
     .byte 0xA2, 0x8C, 0x18, 0x1C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -14485,7 +14485,7 @@ func_080558C4:
     .byte 0x01, 0xA9, 0x88, 0x80
     .byte 0x08, 0x1C, 0x52, 0x46, 0x02, 0x76, 0x85, 0x23, 0xDB, 0x00, 0xF0, 0x18, 0x00, 0x78, 0x80, 0x07
     .byte 0x00, 0x28, 0x00, 0xDB, 0x9C, 0xE0, 0x30, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x0A, 0x9F
     .byte 0xB8, 0x46, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
@@ -14511,7 +14511,7 @@ func_080558C4:
     .byte 0x90, 0x42, 0x02, 0xD0, 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x78, 0xF0
     .byte 0x25, 0xFE, 0x49, 0x98, 0x50, 0x44, 0x49, 0x99, 0x48, 0x9A, 0x11, 0x60, 0x55, 0x60, 0xD0, 0x60
     .byte 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x08, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29
     .byte 0x01, 0xD0, 0x6C, 0x46, 0xA2, 0x8C, 0x18, 0x1C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -14530,7 +14530,7 @@ func_080558C4:
     bl func_080074C0
     .byte 0x01, 0xA9, 0x88, 0x80, 0x08, 0x1C, 0x52, 0x46, 0x02, 0x76, 0x8C, 0x23
     .byte 0xDB, 0x00, 0xF0, 0x18, 0x00, 0x78, 0x80, 0x07, 0x00, 0x28, 0x00, 0xDB, 0xA0, 0xE0, 0x30, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x0A, 0x9F, 0xB8, 0x46, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
     .byte 0x02, 0x1C, 0x0A, 0x98, 0x00, 0x23, 0x00, 0x28, 0x01, 0xD0, 0x68, 0x46, 0x83, 0x8D
@@ -14554,7 +14554,7 @@ func_080558C4:
     .byte 0x90, 0x42, 0x02, 0xD0, 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x78, 0xF0
     .byte 0x15, 0xFD, 0x49, 0x98, 0x50, 0x44, 0x49, 0x99, 0x48, 0x9A, 0x11, 0x60, 0x55, 0x60, 0xD0, 0x60
     .byte 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x08, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29
     .byte 0x01, 0xD0, 0x6C, 0x46, 0xA2, 0x8C, 0x18, 0x1C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -14573,7 +14573,7 @@ func_080558C4:
     bl func_080074C0
     .byte 0x01, 0xA9, 0x88, 0x80, 0x08, 0x1C, 0x52, 0x46, 0x02, 0x76, 0xEE, 0x23, 0x9B, 0x00, 0xF0, 0x18
     .byte 0x00, 0x78, 0x80, 0x07, 0x00, 0x28, 0x00, 0xDB, 0x98, 0xE0, 0x30, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x0A, 0x9F, 0xB8, 0x46, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
     .byte 0x02, 0x1C
@@ -14597,7 +14597,7 @@ func_080558C4:
     .byte 0xF3, 0xD1, 0x15, 0x1C, 0x48, 0x98, 0x42, 0x68, 0x00, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0
     .byte 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x78, 0xF0, 0x0F, 0xFC, 0x49, 0x98
     .byte 0x50, 0x44, 0x49, 0x99, 0x48, 0x9A, 0x11, 0x60, 0x55, 0x60, 0xD0, 0x60, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x08, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46
     .byte 0xA2, 0x8C, 0x18, 0x1C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -14618,7 +14618,7 @@ func_080558C4:
     .byte 0x01, 0xA9, 0x88, 0x80
     .byte 0x08, 0x1C, 0x52, 0x46, 0x02, 0x76, 0xD2, 0x23, 0x9B, 0x00, 0xF0, 0x18, 0x00, 0x78, 0x80, 0x07
     .byte 0x00, 0x28, 0x00, 0xDB, 0x98, 0xE0, 0x30, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x0A, 0x9F
     .byte 0xB8, 0x46, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
@@ -14643,7 +14643,7 @@ func_080558C4:
     .byte 0x48, 0x98, 0x42, 0x68, 0x00, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0, 0x10, 0x31, 0x91, 0x42
     .byte 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x78, 0xF0, 0x09, 0xFB, 0x49, 0x98, 0x50, 0x44, 0x49, 0x99
     .byte 0x48, 0x9A, 0x11, 0x60, 0x55, 0x60, 0xD0, 0x60, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C
     .byte 0x08, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46, 0xA2, 0x8C, 0x18, 0x1C
     .byte 0x01, 0xAB
@@ -14661,7 +14661,7 @@ func_080558C4:
     .byte 0x41, 0x68
     bl func_080074C0
     .byte 0x01, 0xA9, 0x88, 0x80, 0x01, 0x20, 0x08, 0x76, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x08, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0
     .byte 0x6F, 0x46, 0xBA, 0x8C, 0x18, 0x1C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -14681,7 +14681,7 @@ func_080558C4:
     bl func_080074C0
     .byte 0x01, 0xA9, 0x88, 0x80, 0x01, 0x20, 0x08, 0x76
     .byte 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x08, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29
     .byte 0x01, 0xD0, 0x40, 0x46, 0x82, 0x88, 0x18, 0x1C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -14700,7 +14700,7 @@ func_080558C4:
     bl func_080074C0
     .byte 0x01, 0xA9, 0x88, 0x80, 0x08, 0x1C, 0x42, 0x46, 0x02, 0x76
     .byte 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x08, 0x99, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6B, 0x46
     .byte 0x9A, 0x8C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -14733,7 +14733,7 @@ func_080558C4:
     .byte 0xC8, 0x68, 0x18, 0x40, 0x80, 0x02, 0x00, 0x99, 0x11, 0x40, 0x01, 0x43, 0x43, 0x46, 0x5A, 0x69
     .byte 0x03, 0x20, 0x02, 0x40, 0x12, 0x02, 0x1C, 0x48, 0x01, 0x40, 0x11, 0x43, 0x1A, 0x7E, 0x53, 0x46
     .byte 0x1A, 0x40, 0x12, 0x03, 0x19, 0x48, 0x01, 0x40, 0x11, 0x43, 0x00, 0x91, 0x02, 0x98
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x1A, 0x78, 0x7F, 0x2A, 0x08, 0xD8, 0xD1, 0x00, 0x04, 0x31, 0x59, 0x18
     .byte 0x00, 0x98, 0x08, 0x60, 0xA0, 0x88, 0x88, 0x80, 0x50, 0x1C, 0x18, 0x70, 0x08, 0x20, 0x81, 0x44
     .byte 0x03, 0x99, 0x89, 0x45, 0x00, 0xD0, 0x42, 0xE7, 0x04, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46
@@ -14945,7 +14945,7 @@ func_08057D34:
     mov r0, sp
     strb r2, [r0, #0x18]
     adds r0, r5, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -16155,7 +16155,7 @@ func_08057CF4:
     adds r0, r6, #0
     bl func_08008724
     adds r0, r6, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     movs r2, #0x3f
     strh r2, [r1]
@@ -16165,7 +16165,7 @@ func_08057CF4:
     bl __builtin_new
     adds r4, r0, #0
     adds r0, r6, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     movs r0, #0
     str r0, [r4]
@@ -16273,7 +16273,7 @@ func_08057CF4:
     movs r3, #1
     bl func_0800934C
     adds r0, r6, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #4]
     ldr r2, [r2, #0x10]
@@ -16290,7 +16290,7 @@ func_08057CF4:
     adds r0, r6, #0
     bl UpdateHardwareFrame
     adds r0, r6, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     ldr r7, [pc, #0x18]
     adds r0, r6, r7
     movs r1, #0
@@ -16311,23 +16311,23 @@ func_08057CF4:
     .byte 0x48, 0x42, 0x08, 0x43, 0xC1, 0x0F, 0x00, 0x29, 0x00, 0xD0, 0xE1, 0xE1, 0x02, 0x4A, 0xB0, 0x18
     .byte 0x01, 0x80, 0x02, 0x4B, 0xF1, 0x18, 0x7E, 0xE1, 0xEA, 0x10, 0x00, 0x00, 0x04, 0x11, 0x00, 0x00
     .byte 0x0F, 0x4C, 0x35, 0x19, 0x28, 0x78, 0x00, 0x28, 0x1E, 0xD1, 0x30, 0x1C
-    bl func_080088C4
+    bl GetHardwareHeldKeys
     .byte 0x04, 0x21, 0x08, 0x40, 0x00, 0x28, 0x37, 0xD0, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46
     .byte 0xC4, 0x27, 0x3F, 0x01, 0x39, 0x1C, 0x11, 0x80, 0x01, 0x80, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0x04, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0x81, 0x81, 0x01, 0x20, 0x28, 0x70, 0xB7, 0xE1
     .byte 0x06, 0x11, 0x00, 0x00, 0x49, 0x1F, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088C4
+    bl GetHardwareHeldKeys
     .byte 0x04, 0x21
     .byte 0x08, 0x40, 0x00, 0x06, 0x04, 0x0E, 0x00, 0x2C, 0x00, 0xD0, 0xA9, 0xE1, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0xF2, 0x27, 0x7F, 0x01, 0x39, 0x1C, 0x11, 0x80, 0x01, 0x80, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0x03, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0x81, 0x81, 0x2C, 0x70
     .byte 0x96, 0xE1, 0x00, 0x00, 0x41, 0x1D, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x40, 0x21
     .byte 0x08, 0x40, 0x00, 0x28, 0x16, 0xD0, 0x04, 0x4C, 0x30, 0x19, 0x01, 0x88, 0x00, 0x27, 0xC0, 0x5F
     .byte 0x00, 0x28, 0x03, 0xDD, 0x01, 0x39, 0x02, 0xE0, 0xEA, 0x10, 0x00, 0x00, 0x04, 0x21, 0x04, 0x4A
@@ -16335,7 +16335,7 @@ func_08057CF4:
     bl func_08008B6C
     .byte 0x1C, 0xE0
     .byte 0xEA, 0x10, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x80, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x13, 0xD0, 0x04, 0x4B, 0xF0, 0x18, 0x01, 0x88, 0x00, 0x24, 0x00, 0x5F, 0x03, 0x28, 0x03, 0xDC
     .byte 0x01, 0x31, 0x02, 0xE0, 0xEA, 0x10, 0x00, 0x00, 0x00, 0x21, 0x0C, 0x4F, 0xF0, 0x19, 0x01, 0x80
@@ -16343,33 +16343,33 @@ func_08057CF4:
     bl func_08008B6C
     .byte 0x08, 0x49, 0x70, 0x18, 0x00, 0x22
     .byte 0x80, 0x5E, 0x04, 0x28, 0x36, 0xD0, 0x00, 0x24, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x10, 0x21
     .byte 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x01, 0x24, 0x22, 0xE0, 0x00, 0x00, 0xEA, 0x10, 0x00, 0x00
     .byte 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x20, 0x21, 0x08, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x01, 0x24
     .byte 0x64, 0x42, 0x15, 0xE0, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A, 0x01, 0x21, 0x01, 0x40
     .byte 0x00, 0x29, 0x01, 0xD0, 0x0A, 0x24, 0x0B, 0xE0, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A
     .byte 0x02, 0x21, 0x01, 0x40, 0x00, 0x29, 0x01, 0xD0, 0x0A, 0x24, 0x64, 0x42, 0x00, 0x2C, 0x09, 0xD0
     .byte 0x30, 0x1C, 0x21, 0x1C, 0x00, 0xF0, 0xCC, 0xFD, 0x30, 0x1C, 0x1C, 0x30, 0xCB, 0x21
     bl func_08008B6C
     .byte 0x1D, 0xE1, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x10, 0xD0, 0x30, 0x1C, 0x1C, 0x30, 0xC6, 0x21
     bl func_08008B6C
     .byte 0x03, 0x4B, 0xF1, 0x18
     .byte 0x00, 0x20, 0x08, 0x70, 0x02, 0x4C, 0x31, 0x19, 0x50, 0xE0, 0x00, 0x00, 0x09, 0x11, 0x00, 0x00
     .byte 0x04, 0x11, 0x00, 0x00, 0x00, 0x24, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x08, 0x21, 0x08, 0x40
     .byte 0x00, 0x28, 0x0C, 0xD1, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x06, 0xD0, 0x17, 0x4F, 0xF0, 0x19, 0x00, 0x21, 0x40, 0x5E, 0x04, 0x28, 0x00, 0xD1, 0x01, 0x24
     .byte 0x00, 0x2C, 0x00, 0xD1, 0xEC, 0xE0, 0x30, 0x1C, 0x1C, 0x30, 0xC5, 0x21
@@ -16392,7 +16392,7 @@ func_08057CF4:
     .byte 0x04, 0x11, 0x00, 0x00, 0x01, 0x98, 0x0A, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x7A, 0xF0
     .byte 0xE5, 0xFA, 0x04, 0x4C, 0x31, 0x19, 0x08, 0x88, 0x01, 0x30, 0x08, 0x80, 0x58, 0xE0, 0x00, 0x00
     .byte 0x89, 0x08, 0x00, 0x00, 0x04, 0x11, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43
@@ -16512,7 +16512,7 @@ func_08057CF4:
     movs r3, #1
     bl func_0800934C
     adds r0, r6, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #4]
     ldr r2, [r2, #0x10]
@@ -16531,10 +16531,10 @@ func_08057CF4:
     adds r0, r6, #0
     bl UpdateHardwareFrame
     adds r0, r6, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     movs r4, #0
     adds r0, r6, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #8
     ands r0, r1
     cmp r0, #0
@@ -16648,7 +16648,7 @@ func_08057CF4:
     .byte 0x01, 0x98, 0x08, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x7A, 0xF0, 0x11, 0xF8, 0x02, 0x4B
     .byte 0xF1, 0x18, 0x0B, 0xE0, 0x89, 0x08, 0x00, 0x00, 0x04, 0x11, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68
     .byte 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x04, 0xDB, 0x41, 0x4C, 0x31, 0x19, 0x08, 0x88, 0x01, 0x30
@@ -16761,7 +16761,7 @@ func_08057CF4:
     movs r3, #1
     bl func_0800934C
     adds r0, r6, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #4]
     ldr r2, [r2, #0x10]
@@ -16775,7 +16775,7 @@ func_08057CF4:
     adds r0, r6, #0
     bl UpdateHardwareFrame
     adds r0, r6, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     ldr r2, [pc, #0x18]
     adds r0, r6, r2
     ldrh r0, [r0]
@@ -16802,7 +16802,7 @@ func_08057CF4:
     .byte 0x88, 0x21, 0x49, 0x01, 0x70, 0x18, 0x02, 0x80, 0x06, 0x4A, 0xB1, 0x18, 0x3C, 0x20, 0x08, 0x80
     .byte 0x05, 0x4B, 0xF1, 0x18, 0xDF, 0xE0, 0x00, 0x00, 0xD4, 0x11, 0x00, 0x00, 0xFC, 0x10, 0x00, 0x00
     .byte 0x09, 0x11, 0x00, 0x00, 0xE6, 0x10, 0x00, 0x00, 0x04, 0x11, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40, 0x00, 0x28, 0x1C, 0xD0, 0x13, 0x4C, 0x30, 0x19, 0x00, 0x21
     .byte 0x01, 0x80, 0x12, 0x4F, 0xF0, 0x19, 0x00, 0x21, 0x44, 0x5E, 0x00, 0x2C, 0x12, 0xD1, 0x10, 0x4B
     .byte 0xF2, 0x18, 0x18, 0x37, 0xF3, 0x19, 0x00, 0x20, 0x19, 0x5E, 0x10, 0x68, 0x40, 0x18, 0x10, 0x60
@@ -16829,13 +16829,13 @@ func_08057CF4:
     .byte 0xF0, 0x18, 0x04, 0x70, 0x03, 0x4C, 0x31, 0x19, 0x2D, 0xE0, 0x00, 0x00, 0xE6, 0x10, 0x00, 0x00
     .byte 0x09, 0x11, 0x00, 0x00, 0x04, 0x11, 0x00, 0x00, 0x30, 0x1C, 0x00, 0xF0, 0xF1, 0xF8, 0x07, 0x4F
     .byte 0xF0, 0x19, 0x00, 0x78, 0x02, 0x28, 0x38, 0xD1, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21
     .byte 0x08, 0x40, 0x00, 0x28, 0x31, 0xD0, 0x02, 0x48, 0x31, 0x18, 0x14, 0xE0, 0x09, 0x11, 0x00, 0x00
     .byte 0x04, 0x11, 0x00, 0x00, 0x01, 0x98, 0x0A, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x79, 0xF0
     .byte 0x31, 0xFE, 0x04, 0x4A, 0xB1, 0x18, 0x08, 0x88, 0x01, 0x30, 0x08, 0x80, 0x15, 0xE0, 0x00, 0x00
     .byte 0x89, 0x08, 0x00, 0x00, 0x04, 0x11, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43
@@ -16910,15 +16910,15 @@ func_08057CF4:
     .byte 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0xEA, 0x10, 0x00, 0x00, 0x36, 0x11, 0x00, 0x00, 0xF4, 0x10
     .byte 0x00, 0x00, 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x83, 0xB0, 0x07, 0x1C, 0x38, 0x69
     .byte 0x81, 0x46, 0x38, 0x1C
-    bl func_080088DC
+    bl GetHardwareCoreState
     .byte 0x80, 0x46, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x06, 0x1C, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x05, 0x1C, 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x04, 0x1C, 0x38, 0x1C
-    bl func_0800894C
+    bl GetHardwareInterruptList
     .byte 0x39, 0x1C, 0x14, 0x31, 0x00, 0x94, 0x01, 0x90
     .byte 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C
     bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
@@ -17023,38 +17023,38 @@ func_08057CF4:
     .byte 0x62, 0x49, 0x20, 0x1C, 0x32, 0x1C
     bl FillHardwareDma3
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0xF2, 0x22, 0x52, 0x01, 0x11, 0x1C, 0x53, 0x46
     .byte 0x19, 0x80, 0x00, 0x25, 0x01, 0x80, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x5A, 0x4C, 0x21, 0x1C
     .byte 0x52, 0x46, 0x11, 0x80, 0xC1, 0x81, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x57, 0x4B, 0x19, 0x1C
     .byte 0x54, 0x46, 0x21, 0x80, 0x81, 0x81, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x54, 0x4A, 0x11, 0x1C
     .byte 0x21, 0x80, 0x41, 0x81, 0x53, 0x48, 0x00, 0x68, 0xC0, 0x21, 0xC9, 0x04, 0x52, 0x4A, 0x12, 0x68
     bl CopyHardwareDma3
     .byte 0x51, 0x48, 0x41, 0x46, 0x32, 0x1C
     bl FillHardwareDma3
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x25, 0x80, 0x85, 0x83, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x25, 0x80
     .byte 0xC5, 0x83, 0x03, 0x20, 0x00, 0x90, 0x01, 0x95, 0x02, 0x95, 0x48, 0x46, 0x00, 0x21, 0x00, 0x22
     .byte 0x20, 0x23
     bl DrawUiTextWindowBorder
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x25, 0x80, 0x05, 0x83
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x25, 0x80, 0x45, 0x83, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x25, 0x80, 0x85, 0x82, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x25, 0x80, 0xC5, 0x82, 0x3C, 0x48
     .byte 0x00, 0x68, 0xA0, 0x21, 0xC9, 0x04, 0x20, 0x22
     bl CopyHardwareDma3
@@ -17959,7 +17959,7 @@ func_0805A6E4:
     movs r0, #1
     strb r0, [r1, #0x18]
     adds r0, r5, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -18038,7 +18038,7 @@ func_0805A6E4:
     movs r0, #1
     strb r0, [r4, #0x18]
     adds r0, r5, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -18155,7 +18155,7 @@ func_0805A6E4:
     bl func_080074C0
     .byte 0x00, 0x04, 0x00, 0x0C, 0x0F, 0x21, 0x08, 0x40, 0x00, 0x03, 0x14, 0x4A
     .byte 0x4B, 0x46, 0x59, 0x68, 0x11, 0x40, 0x01, 0x43, 0x59, 0x60, 0x28, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x1A, 0x78, 0x7F, 0x2A, 0x09, 0xD8, 0xD1, 0x00, 0x04, 0x31, 0x59, 0x18, 0x17, 0x98
     .byte 0x08, 0x60, 0x4C, 0x46, 0xA0, 0x88, 0x88, 0x80, 0x50, 0x1C, 0x18, 0x70, 0x40, 0x46, 0x29, 0x18
     .byte 0x08, 0x88, 0x01, 0x38, 0x08, 0x80, 0x42, 0x46, 0x00, 0x04, 0x00, 0x28, 0x00, 0xDB, 0x55, 0xE7
@@ -18220,16 +18220,16 @@ func_0805A6E4:
     .byte 0x92, 0x00
     bl CopyHardwareDma3
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0xF2, 0x23
     .byte 0x5B, 0x01, 0x19, 0x1C, 0x11, 0x80, 0x01, 0x80, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46
     .byte 0x2D, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0xC1, 0x81, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46
     .byte 0x2A, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0x81, 0x81, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46
     .byte 0x27, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0x41, 0x81, 0x00, 0x21, 0x00, 0x20, 0x81, 0x46, 0x48, 0x00
     .byte 0x8A, 0x01, 0x90, 0x46, 0x4B, 0x1C, 0x04, 0x93, 0x40, 0x18, 0x80, 0x00, 0x1B, 0x49, 0x41, 0x18
@@ -18258,11 +18258,11 @@ func_0805A6E4:
     .byte 0x04, 0x80, 0x17, 0x49, 0x78, 0x18, 0x04, 0x80, 0x06, 0x32, 0xB8, 0x18, 0x04, 0x80, 0x06, 0x33
     .byte 0xF8, 0x18, 0x04, 0x80, 0x06, 0x31, 0x78, 0x18, 0x04, 0x80, 0x06, 0x32, 0xB8, 0x18, 0x04, 0x80
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x0C, 0x80, 0xC4, 0x82, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x0C, 0x80, 0x44, 0x83, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46
     .byte 0x0C, 0x80, 0xC4, 0x83, 0x05, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC
     .byte 0x01, 0xBC, 0x00, 0x47, 0x24, 0xD8, 0x00, 0x06, 0xCA, 0x10, 0x00, 0x00, 0xCC, 0x10, 0x00, 0x00
@@ -18277,7 +18277,7 @@ func_0805A6E4:
     push {r5, r6, r7}
     sub sp, #0x68
     mov sl, r0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r2, sp
     ldr r1, [pc, #0xcc]
     add r1, sl
@@ -18285,7 +18285,7 @@ func_0805A6E4:
     strh r1, [r2]
     strh r1, [r0, #0x14]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r2, sp
     ldr r1, [pc, #0xc0]
     add r1, sl
@@ -18293,7 +18293,7 @@ func_0805A6E4:
     strh r1, [r2]
     strh r1, [r0, #0x18]
     mov r0, sl
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r2, sp
     ldr r3, [pc, #0xb0]
     add r3, sl
@@ -18331,7 +18331,7 @@ func_0805A6E4:
     movs r7, #0
     .byte 0x00, 0x12, 0xC0, 0x02, 0x0E, 0x90, 0x68, 0x46, 0x04, 0x30, 0x0F, 0x90, 0x1F, 0x20, 0x02, 0x40
     .byte 0x52, 0x00, 0x0D, 0x92, 0x50, 0x46
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x19, 0x49, 0x51, 0x44, 0x00, 0x23
     .byte 0xCA, 0x5E, 0x79, 0x00, 0xC9, 0x19, 0x89, 0x18, 0x05, 0x1C, 0x89, 0x00, 0x51, 0x44, 0x15, 0x4C
     .byte 0x09, 0x19, 0xBA, 0x01, 0x0E, 0x9E, 0xB2, 0x18, 0x0D, 0x98, 0x82, 0x18, 0x12, 0x4B, 0xD2, 0x18
@@ -18378,7 +18378,7 @@ func_0805A6E4:
     .byte 0x10, 0x3B, 0xF8, 0x21, 0x49, 0x00, 0x0B, 0x40, 0xDA, 0x10, 0x90, 0x38, 0x00, 0x04, 0x00, 0x0C
     .byte 0x2F, 0x28, 0x00, 0xD9, 0xAF, 0xE0, 0x03, 0x27, 0x1B, 0x12, 0x17, 0x93, 0x1F, 0x20, 0x02, 0x40
     .byte 0x52, 0x00, 0x10, 0x92, 0x6A, 0x46, 0x11, 0x92, 0x50, 0x46
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x18, 0x49
     .byte 0x51, 0x44, 0x00, 0x23, 0xCA, 0x5E, 0x79, 0x00, 0xC9, 0x19, 0x89, 0x18, 0x05, 0x1C, 0x89, 0x00
     .byte 0x51, 0x44, 0x14, 0x4C, 0x09, 0x19, 0x17, 0x9E, 0xF2, 0x02, 0xB8, 0x01, 0x12, 0x18, 0x10, 0x98
@@ -18404,7 +18404,7 @@ func_0805A6E4:
     .byte 0x48, 0x46, 0x40, 0x44, 0x41, 0x46, 0x29, 0x60, 0x6C, 0x60, 0xE8, 0x60, 0x19, 0x9F, 0x11, 0x2F
     .byte 0x00, 0xDC, 0x59, 0xE7, 0xA8, 0xE0, 0x03, 0x27, 0x1B, 0x12, 0x17, 0x93, 0x1F, 0x20, 0x02, 0x40
     .byte 0x52, 0x00, 0x12, 0x92, 0x6A, 0x46, 0x13, 0x92, 0x50, 0x46
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x15, 0x49
     .byte 0x51, 0x44, 0x00, 0x23, 0xCA, 0x5E, 0x79, 0x00, 0xC9, 0x19, 0x89, 0x18, 0x05, 0x1C, 0x89, 0x00
     .byte 0x51, 0x44, 0x11, 0x4C, 0x09, 0x19, 0x17, 0x9E, 0xF2, 0x02, 0xB8, 0x01, 0x12, 0x18, 0x12, 0x98
@@ -18449,7 +18449,7 @@ func_0805A6E4:
     .byte 0x08, 0x80, 0x00, 0x04, 0x00, 0x28, 0x01, 0xDA, 0x02, 0x20, 0x08, 0x80, 0x10, 0x88, 0x10, 0x38
     .byte 0xF8, 0x21, 0x49, 0x00, 0x08, 0x40, 0xC2, 0x10, 0x11, 0x27, 0x00, 0x12, 0xC0, 0x02, 0x15, 0x90
     .byte 0x6B, 0x46, 0x16, 0x93, 0x1F, 0x20, 0x02, 0x40, 0x52, 0x00, 0x14, 0x92, 0x50, 0x46
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x17, 0x49, 0x51, 0x44, 0x00, 0x24, 0x0A, 0x5F, 0x79, 0x00, 0xC9, 0x19, 0x89, 0x18
     .byte 0x05, 0x1C, 0x89, 0x00, 0x51, 0x44, 0x13, 0x4E, 0x89, 0x19, 0xBA, 0x01, 0x15, 0x98, 0x82, 0x18
     .byte 0x14, 0x9B, 0x9A, 0x18, 0x10, 0x4C, 0x12, 0x19, 0x68, 0x46, 0x04, 0x23
@@ -19629,7 +19629,7 @@ func_0805A6E4:
     adds r0, r1, #0
     strb r4, [r0, #0x18]
     adds r0, r5, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x20]
     adds r1, r0, #0
@@ -19725,7 +19725,7 @@ func_0805A6E4:
     movs r0, #1
     strb r0, [r4, #0x18]
     adds r0, r5, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x20]
     adds r1, r0, #0
@@ -20084,7 +20084,7 @@ func_0805A6E4:
     movs r1, #1
     strb r1, [r0, #0x18]
     adds r0, r5, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x20]
     adds r1, r0, #0
@@ -20174,7 +20174,7 @@ func_0805A6E4:
     movs r6, #1
     strb r6, [r4, #0x18]
     adds r0, r5, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     ldr r1, [sp, #0x20]
     movs r2, #0
     cmp r1, #0
@@ -20308,7 +20308,7 @@ func_0805A6E4:
     adds r0, #0x30
     .byte 0x00, 0x78, 0x80, 0x07, 0x51, 0x46, 0x01, 0x39, 0x22, 0x91, 0x00, 0x28, 0x00, 0xDB, 0x98, 0xE0
     .byte 0x28, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x06, 0x1C, 0x0A, 0x9F, 0x60, 0x19, 0xCB, 0x22, 0xD2, 0x00
     .byte 0x80, 0x18, 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
@@ -20349,7 +20349,7 @@ func_0805A6E4:
     .byte 0x1E, 0x9B
     .byte 0x9A, 0x89, 0x92, 0x00, 0x1F, 0x9C, 0x21, 0x68, 0x89, 0x18, 0x09, 0x88, 0x89, 0x00, 0x40, 0x18
     .byte 0xF0, 0x80, 0x28, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x08, 0x99, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0
     .byte 0x6E, 0x46, 0xB2, 0x8C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -20368,7 +20368,7 @@ func_0805A6E4:
     bl GetHardwareSharedStateTileIndex
     .byte 0xF0, 0x80, 0x01, 0x20
     .byte 0x30, 0x76, 0x28, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x08, 0x98, 0x01, 0x1C, 0x00, 0x22
     .byte 0x00, 0x29, 0x01, 0xD0, 0x68, 0x46, 0x82, 0x8C, 0x18, 0x1C, 0x01, 0xAB
     bl DrawIndexedResourceSprites
@@ -20386,7 +20386,7 @@ func_0805A6E4:
     bl GetHardwareSharedStateTileIndex
     .byte 0xE4, 0x00, 0x00, 0x19, 0xF8, 0x80
     .byte 0x02, 0x20, 0x38, 0x81, 0x4B, 0x46, 0x3B, 0x76, 0x28, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C
     .byte 0x08, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46, 0xA2, 0x8C, 0x18, 0x1C
     .byte 0x01, 0xAB
@@ -20420,7 +20420,7 @@ func_0805A6E4:
     .byte 0x43, 0x46, 0x5A, 0x69, 0x03, 0x20, 0x02, 0x40, 0x12, 0x02, 0x1C, 0x48, 0x01, 0x40, 0x11, 0x43
     .byte 0x1A, 0x7E, 0x53, 0x46, 0x1A, 0x40, 0x12, 0x03, 0x19, 0x48, 0x01, 0x40, 0x11, 0x43, 0x00, 0x91
     .byte 0x02, 0x98
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x1A, 0x78, 0x7F, 0x2A, 0x08, 0xD8, 0xD1, 0x00
     .byte 0x04, 0x31, 0x59, 0x18, 0x00, 0x98, 0x08, 0x60, 0xA0, 0x88, 0x88, 0x80, 0x50, 0x1C, 0x18, 0x70
     .byte 0x08, 0x20, 0x81, 0x44, 0x03, 0x99, 0x89, 0x45, 0x00, 0xD0, 0x42, 0xE7, 0x04, 0xB0, 0x38, 0xBC
@@ -20648,7 +20648,7 @@ func_0805A6E4:
     .byte 0x76, 0x07, 0x00, 0x00, 0xAC, 0x20, 0x80, 0x00, 0x34, 0x18, 0x04, 0x49, 0x20, 0x1C, 0x01, 0xF0
     .byte 0xA9, 0xFD, 0x80, 0x20, 0x40, 0x00, 0x20, 0x82, 0x90, 0xE0, 0x00, 0x00, 0x5E, 0x07, 0x00, 0x00
     .byte 0x0F, 0x4A, 0xB0, 0x18, 0x00, 0x78, 0x01, 0x28, 0x32, 0xD1, 0x02, 0x2B, 0x30, 0xD1, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1, 0x7E, 0xE0, 0x30, 0x1C
     .byte 0x1C, 0x30, 0xA8, 0x21
     bl func_08008B6C
@@ -20990,7 +20990,7 @@ func_0805CF70:
     adds r0, r6, #0
     bl func_08008724
     adds r0, r6, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     movs r2, #0x3f
     strh r2, [r1]
@@ -21000,7 +21000,7 @@ func_0805CF70:
     bl __builtin_new
     adds r4, r0, #0
     adds r0, r6, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     movs r0, #0
     str r0, [r4]
@@ -21048,12 +21048,12 @@ func_0805CF70:
     .byte 0x19, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x76, 0xF0, 0x9A, 0xF8, 0x00, 0x23, 0x98, 0x46
     .byte 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x0805CF9E
     .byte 0x30, 0x1C
-    bl func_080088B8
+    bl UpdateHardwareInput
     .byte 0x0D, 0x4C, 0x30, 0x19
     .byte 0x00, 0x21, 0x40, 0x5E, 0x0C, 0x28, 0x00, 0xD9, 0x3E, 0xE2, 0x80, 0x00, 0x0B, 0x49, 0x40, 0x18
     .byte 0x00, 0x68, 0x87, 0x46
@@ -21066,7 +21066,7 @@ func_0805CF70:
     .byte 0x58, 0xD2, 0x05, 0x08, 0x58, 0xD2, 0x05, 0x08, 0x58, 0xD2, 0x05, 0x08, 0xF0, 0xD3, 0x05, 0x08
     .byte 0x24, 0xD4, 0x05, 0x08, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x00, 0xDA
     .byte 0x02, 0xE2, 0x01, 0x4A, 0xB1, 0x18, 0xEE, 0xE1, 0xDA, 0x0A, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x40, 0x21, 0x08, 0x40, 0x00, 0x28, 0x2E, 0xD0, 0x30, 0x1C, 0x1C, 0x30, 0xCB, 0x21
     bl func_08008B6C
     .byte 0x05, 0x4B, 0xF1, 0x18, 0x0A, 0x88, 0x00, 0x24, 0x08, 0x5F, 0x00, 0x28
@@ -21075,7 +21075,7 @@ func_0805CF70:
     .byte 0x13, 0x88, 0x00, 0x24, 0x10, 0x5F, 0x81, 0x42, 0x00, 0xDB, 0xD5, 0xE1, 0x58, 0x1E, 0x10, 0x80
     .byte 0x04, 0x48, 0x31, 0x18, 0x05, 0x20, 0x08, 0x80, 0xCE, 0xE1, 0x00, 0x00, 0xD4, 0x0A, 0x00, 0x00
     .byte 0xD6, 0x0A, 0x00, 0x00, 0xDA, 0x0A, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x80, 0x21
     .byte 0x08, 0x40, 0x00, 0x06, 0x05, 0x0E, 0x00, 0x2D, 0x2E, 0xD0, 0x30, 0x1C, 0x1C, 0x30, 0xCB, 0x21
     bl func_08008B6C
@@ -21085,7 +21085,7 @@ func_0805CF70:
     .byte 0x00, 0x24, 0x10, 0x5F, 0x09, 0x1A, 0x07, 0x29, 0x00, 0xDC, 0x9D, 0xE1, 0x10, 0x88, 0x01, 0x30
     .byte 0x10, 0x80, 0x04, 0x48, 0x31, 0x18, 0x06, 0x20, 0x08, 0x80, 0x95, 0xE1, 0xD4, 0x0A, 0x00, 0x00
     .byte 0xD6, 0x0A, 0x00, 0x00, 0xDA, 0x0A, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x04, 0x1C
     .byte 0x01, 0x20, 0x04, 0x40, 0x00, 0x2C, 0x3B, 0xD0, 0x30, 0x1C, 0x1C, 0x30, 0xC5, 0x21
     bl func_08008B6C
@@ -21097,7 +21097,7 @@ func_0805CF70:
     .byte 0xDC, 0x0A, 0x00, 0x00, 0xD4, 0x0A, 0x00, 0x00, 0x98, 0xA8, 0x0F, 0x08, 0xDA, 0x0A, 0x00, 0x00
     .byte 0x02, 0x4B, 0xF1, 0x18, 0x07, 0x20, 0x08, 0x80, 0x4E, 0xE1, 0x00, 0x00, 0xDA, 0x0A, 0x00, 0x00
     .byte 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1, 0x43, 0xE1
     .byte 0x30, 0x1C, 0x1C, 0x30, 0xC6, 0x21
     bl func_08008B6C
@@ -21140,12 +21140,12 @@ func_0805CF70:
     .byte 0xDA, 0x0A, 0x00, 0x00, 0x01, 0x98, 0x0A, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x75, 0xF0
     .byte 0x5F, 0xFE, 0x04, 0x4B, 0xF1, 0x18, 0x08, 0x88, 0x01, 0x30, 0x08, 0x80, 0x0C, 0xE0, 0x00, 0x00
     .byte 0x89, 0x08, 0x00, 0x00, 0xDA, 0x0A, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43
     .byte 0x00, 0x28, 0x01, 0xDB, 0x01, 0x24, 0xA0, 0x46, 0x30, 0x1C, 0x00, 0xF0, 0x37, 0xF8, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0xA6, 0x23, 0x5B, 0x00, 0xF1, 0x18, 0x09, 0x88, 0x11, 0x80
     .byte 0xC1, 0x82, 0x30, 0x1C, 0x00, 0xF0, 0x8A, 0xFB, 0x30, 0x1C, 0x00, 0xF0, 0x57, 0xFC, 0x44, 0x46
     .byte 0x01, 0x2C, 0x00, 0xD0, 0x9C, 0xE5, 0x00, 0x20, 0x02, 0x90, 0x05, 0x97, 0x51, 0x46, 0x48, 0x60
@@ -21154,15 +21154,15 @@ func_0805CF70:
     .byte 0xC2, 0x68, 0x08, 0x1C, 0x03, 0x21, 0x75, 0xF0, 0x1B, 0xFE, 0x48, 0x46, 0x07, 0xB0, 0x38, 0xBC
     .byte 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0xF0, 0xB5, 0x4F, 0x46
     .byte 0x46, 0x46, 0xC0, 0xB4, 0x83, 0xB0, 0x07, 0x1C, 0x38, 0x69, 0x81, 0x46, 0x38, 0x1C
-    bl func_080088DC
+    bl GetHardwareCoreState
     .byte 0x80, 0x46, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x06, 0x1C, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x05, 0x1C, 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x04, 0x1C, 0x38, 0x1C
-    bl func_0800894C
+    bl GetHardwareInterruptList
     .byte 0x39, 0x1C, 0x14, 0x31, 0x00, 0x94, 0x01, 0x90, 0x02, 0x91, 0x48, 0x46, 0x41, 0x46
     .byte 0x32, 0x1C, 0x2B, 0x1C
     bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
@@ -21201,20 +21201,20 @@ func_0805CF70:
     .byte 0xF3, 0xF7, 0x1E, 0xFA, 0x03, 0xB0, 0x18, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xF0, 0xBC, 0x01, 0xBC
     .byte 0x00, 0x47, 0x00, 0x00, 0x18, 0xAA, 0x0F, 0x08, 0xEC, 0x0A, 0x00, 0x00, 0xF0, 0xB5, 0x57, 0x46
     .byte 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0xA6, 0xB0, 0x07, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9
     .byte 0x00, 0x24, 0x0C, 0x80, 0x84, 0x82, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xAA, 0xA6, 0x23
     .byte 0x5B, 0x00, 0xF9, 0x18, 0x09, 0x88, 0x11, 0x80, 0xC1, 0x82, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0C, 0x80, 0x04, 0x83, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0C, 0x80
     .byte 0x44, 0x83, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0C, 0x80, 0x84, 0x83, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0C, 0x80, 0xC4, 0x83, 0x6E, 0x49, 0x00, 0x20, 0x20, 0x22
     bl FillHardwareDma3
     .byte 0x01, 0x24, 0x64, 0x42, 0x6B, 0x48, 0x80, 0x46, 0x80, 0x26, 0x36, 0x01
@@ -21226,37 +21226,37 @@ func_0805CF70:
     .byte 0x66, 0x49, 0x20, 0x1C, 0x32, 0x1C
     bl FillHardwareDma3
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0xF2, 0x23, 0x5B, 0x01, 0x1A, 0x1C, 0x0A, 0x80
     .byte 0x00, 0x25, 0x02, 0x80, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xAA, 0x5D, 0x4B, 0x19, 0x1C
     .byte 0x11, 0x80, 0xC1, 0x81, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xAA, 0x5A, 0x4B, 0x19, 0x1C
     .byte 0x11, 0x80, 0x81, 0x81, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xAA, 0x57, 0x4B, 0x19, 0x1C
     .byte 0x11, 0x80, 0x41, 0x81, 0x56, 0x48, 0x00, 0x68, 0xC0, 0x21, 0xC9, 0x04, 0x55, 0x4A, 0x12, 0x68
     bl CopyHardwareDma3
     .byte 0x54, 0x48, 0x41, 0x46, 0x32, 0x1C
     bl FillHardwareDma3
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0D, 0x80, 0x85, 0x83, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0D, 0x80, 0xC5, 0x83, 0x03, 0x20, 0x00, 0x90, 0x01, 0x95, 0x02, 0x95, 0x48, 0x46
     .byte 0x00, 0x21, 0x00, 0x22, 0x20, 0x23
     bl DrawUiTextWindowBorder
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0D, 0x80, 0x05, 0x83, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0D, 0x80
     .byte 0x45, 0x83, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0D, 0x80, 0x85, 0x82, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0D, 0x80, 0xC5, 0x82, 0x3C, 0x48, 0x00, 0x68, 0xA0, 0x21
     .byte 0xC9, 0x04, 0x20, 0x22
     bl CopyHardwareDma3
@@ -21684,7 +21684,7 @@ func_0805DF68:
     .byte 0x69, 0x46, 0xC8, 0x80, 0xA2, 0x22, 0x52, 0x00, 0xB0, 0x18, 0x41, 0x68
     bl func_080074C0
     .byte 0x69, 0x46, 0x88, 0x80, 0x02, 0x20, 0x08, 0x81, 0x01, 0x20, 0x08, 0x76, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46
     .byte 0x22, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
@@ -21705,7 +21705,7 @@ func_0805DF68:
     bl func_080074C0
     .byte 0x69, 0x46, 0x88, 0x80, 0x02, 0x20
     .byte 0x08, 0x81, 0x68, 0x46, 0x01, 0x22, 0x91, 0x46, 0x4B, 0x46, 0x03, 0x76, 0x30, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x09, 0x98, 0x80, 0x46, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
     .byte 0x02, 0x1C, 0x09, 0x98, 0x00, 0x23, 0x00, 0x28, 0x01, 0xD0, 0x69, 0x46, 0x0B, 0x8D, 0x1E, 0x95
@@ -21729,7 +21729,7 @@ func_0805DF68:
     .byte 0xF0, 0xD1, 0x14, 0x1C, 0x1E, 0x9B, 0x5A, 0x68, 0x18, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0
     .byte 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x71, 0xF0, 0x82, 0xFD, 0x48, 0x46
     .byte 0x40, 0x44, 0x45, 0x46, 0x1E, 0x9F, 0x3D, 0x60, 0x7C, 0x60, 0xF8, 0x60, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x68, 0x46
     .byte 0x02, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
@@ -21747,7 +21747,7 @@ func_0805DF68:
     bl func_080074C0
     .byte 0x69, 0x46, 0x88, 0x80, 0x02, 0x20, 0x08, 0x81, 0x68, 0x46, 0x01, 0x22
     .byte 0x91, 0x46, 0x4B, 0x46, 0x03, 0x76, 0x30, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x09, 0x98
     .byte 0x80, 0x46, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
@@ -21772,7 +21772,7 @@ func_0805DF68:
     .byte 0x42, 0x68, 0x00, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0, 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1
     .byte 0x00, 0x28, 0x01, 0xD0, 0x71, 0xF0, 0x8D, 0xFC, 0x48, 0x46, 0x40, 0x44, 0x41, 0x46, 0x1E, 0x9A
     .byte 0x11, 0x60, 0x54, 0x60, 0xD0, 0x60, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98
     .byte 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46, 0x22, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
@@ -21796,7 +21796,7 @@ func_0805DF68:
     .byte 0x00, 0x21, 0x62, 0x5E, 0xD2, 0x00, 0xA9, 0x23, 0x5B, 0x00
     .byte 0xF1, 0x18, 0x89, 0x18, 0x00, 0x27, 0xC9, 0x5F, 0x89, 0x00, 0x40, 0x18, 0x80, 0x05, 0x80, 0x0D
     .byte 0x20, 0x4A, 0x69, 0x68, 0x11, 0x40, 0x01, 0x43, 0x69, 0x60, 0x30, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x1A, 0x78, 0x7F, 0x2A, 0x09, 0xD8, 0xD1, 0x00, 0x04, 0x31, 0x59, 0x18, 0x1B, 0x98
     .byte 0x08, 0x60, 0x1D, 0x9F, 0xB8, 0x88, 0x88, 0x80, 0x50, 0x1C, 0x18, 0x70, 0x20, 0x88, 0x01, 0x38
     .byte 0x20, 0x80, 0x00, 0x04, 0x00, 0x28, 0xA4, 0xDA, 0x20, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46
@@ -22442,7 +22442,7 @@ func_0805EE44:
 	adds r0, r5, #0
 	bl func_08008724
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -22452,7 +22452,7 @@ func_0805EE44:
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	ldr r2, [sp, #0x38]
 	str r2, [r4]
@@ -22476,7 +22476,7 @@ func_0805EE44:
 	movs r3, #0
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -22495,7 +22495,7 @@ func_0805EE44:
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r1, .L0805EF08 @ =0x00006422
 	adds r0, r5, r1
 	ldrh r0, [r0]
@@ -22535,7 +22535,7 @@ func_0805EE44:
 	movs r3, #0
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -22573,7 +22573,7 @@ func_0805EE44:
 	movs r3, #0
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -22809,7 +22809,7 @@ func_0805EE44:
 	movs r3, #0
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -22826,7 +22826,7 @@ func_0805EE44:
 	movs r3, #0
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -22847,7 +22847,7 @@ func_0805EE44:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -22913,7 +22913,7 @@ func_0805EE44:
 .L0805F27C: .4byte 0x00006422
 .L0805F280:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r3, #0x92
 	lsls r3, r3, #5
@@ -22927,7 +22927,7 @@ func_0805EE44:
 .L0805F298: .4byte 0x00006422
 .L0805F29C:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r7, #0x82
 	lsls r7, r7, #5
@@ -23007,7 +23007,7 @@ func_0805EE44:
 	b .L0805F59E
 .L0805F338:
 	adds r0, r5, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	mov r3, sl
 	lsls r4, r3, #2
@@ -23166,7 +23166,7 @@ func_0805EE44:
 	str r0, [r6, #0xc]
 .L0805F460:
 	adds r0, r5, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, [sp, #0x48]
 	add r1, sl
@@ -23321,7 +23321,7 @@ func_0805EE44:
 	str r0, [r6, #0xc]
 .L0805F57A:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r3, #0xe2
 	lsls r3, r3, #5
@@ -23395,19 +23395,19 @@ func_0805F5F4:
 	ldr r0, [r7, #0x10]
 	mov sb, r0
 	adds r0, r7, #0
-	bl func_080088DC
+	bl GetHardwareCoreState
 	mov r8, r0
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	adds r1, r7, #0
 	adds r1, #0x14
 	str r4, [sp]
@@ -24023,7 +24023,7 @@ func_0805FBB8:
 	adds r0, r1, #0
 	strh r0, [r4]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r3, #0xe2
 	lsls r3, r3, #5
@@ -24032,43 +24032,43 @@ func_0805FBB8:
 	movs r4, #0
 	strh r2, [r0]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L0805FCC0 @ =0x00001E43
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L0805FCC4 @ =0x00001D42
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L0805FCC8 @ =0x00001C41
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xa]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -24499,7 +24499,7 @@ func_0805FF14:
 	movs r3, #0
 	bl DrawStringTo2DGfxBuffer
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x38
 	lsls r2, r3, #5
@@ -24815,7 +24815,7 @@ func_0805FF14:
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x3c
 	lsls r2, r3, #5
@@ -24978,7 +24978,7 @@ func_0805FF14:
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r2, .L080603BC @ =0x06000800
 	add r0, sp, #0x38
@@ -25133,7 +25133,7 @@ func_0805FF14:
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x44
 	lsls r2, r3, #5
@@ -25296,7 +25296,7 @@ func_0805FF14:
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x1c4]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r5, #0x48
 	lsls r2, r5, #5
@@ -25459,7 +25459,7 @@ func_0805FF14:
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x1c4]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r5, #0x4c
 	lsls r2, r5, #5
@@ -25622,7 +25622,7 @@ func_0805FF14:
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x1c4]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r5, #0x50
 	lsls r2, r5, #5
@@ -25773,7 +25773,7 @@ func_0805FF14:
 .L08060946:
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060988 @ =gUnk_0875196C
 	movs r3, #0x54
@@ -25920,7 +25920,7 @@ func_0805FF14:
 .L08060A54:
 	ldr r2, [sp, #0x1c4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060A8C @ =gUnk_087519EC
 	add r0, sp, #0x38
@@ -26062,7 +26062,7 @@ func_0805FF14:
 .L08060B58:
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060B98 @ =gUnk_0875254C
 	movs r3, #0x58
@@ -26209,7 +26209,7 @@ func_0805FF14:
 .L08060C64:
 	ldr r2, [sp, #0x1c4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060C9C @ =gUnk_087525CC
 	add r0, sp, #0x38
@@ -26351,7 +26351,7 @@ func_0805FF14:
 .L08060D68:
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060DA8 @ =gUnk_087530CC
 	movs r3, #0x5c
@@ -26498,7 +26498,7 @@ func_0805FF14:
 .L08060E74:
 	ldr r2, [sp, #0x1c4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060EAC @ =gUnk_0875314C
 	add r0, sp, #0x38
@@ -26640,7 +26640,7 @@ func_0805FF14:
 .L08060F78:
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060FB8 @ =gUnk_0875348C
 	movs r3, #0x5d
@@ -26787,7 +26787,7 @@ func_0805FF14:
 .L08061084:
 	ldr r2, [sp, #0x1c4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L080610BC @ =gUnk_0875350C
 	add r0, sp, #0x38
@@ -27316,7 +27316,7 @@ func_0805FF14:
 	bl DrawStringTo2DGfxBuffer
 	ldr r3, [sp, #0x1c4]
 	ldr r0, [r3]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -27907,7 +27907,7 @@ func_0805FF14:
 	bl DrawStringTo2DGfxBuffer
 	ldr r3, [sp, #0x1c4]
 	ldr r0, [r3]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -28356,7 +28356,7 @@ func_0805FF14:
 	bl DrawStringTo2DGfxBuffer
 	ldr r3, [sp, #0x1c4]
 	ldr r0, [r3]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -28782,7 +28782,7 @@ sub_08061E00:
 	bl DrawStringTo2DGfxBuffer
 	ldr r3, [sp, #0x1c4]
 	ldr r0, [r3]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -29249,7 +29249,7 @@ sub_08061E00:
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0x1c4]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -30846,7 +30846,7 @@ func_08062E9C:
 	bne .Ljp_08062C3C
 	ldr r3, [sp, #0xa8]
 	ldr r0, [r3]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r7, r0, #0
 	movs r5, #6
 	movs r6, #2
@@ -34035,7 +34035,7 @@ func_080645F0: @ 0x080645F0
 	movs r3, #0
 	bl DrawStringTo2DGfxBuffer
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r0, #0x38
 	lsls r2, r0, #5
@@ -34255,7 +34255,7 @@ func_080645F0: @ 0x080645F0
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0xf0]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	.ifdef REGION_DE
 	movs r3, #0xc0
 	.else
@@ -34429,7 +34429,7 @@ func_080645F0: @ 0x080645F0
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0xf0]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	.ifdef REGION_DE
 	movs r3, #0xc0
 	lsls r3, r3, #1
@@ -34604,7 +34604,7 @@ func_080645F0: @ 0x080645F0
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0xf0]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -34749,7 +34749,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_08064B30:
 	ldr r2, [sp, #0xf0]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_08064B74 @ =gUnk_0875254C
 	movs r3, #0x6c
@@ -34897,7 +34897,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_08064C3E:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_08064C78 @ =gUnk_087525CC
 	add r0, sp, #8
@@ -35042,7 +35042,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_08064D46:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_08064D88 @ =gUnk_08752DCC
 	movs r3, #0x70
@@ -35190,7 +35190,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_08064E52:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_08064E94 @ =gUnk_08752B4C
 	movs r3, #0x71
@@ -35338,7 +35338,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_08064F5E:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_08064FA0 @ =gUnk_087529AC
 	movs r3, #0x72
@@ -35486,7 +35486,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_0806506A:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_080650AC @ =gUnk_08752D4C
 	movs r3, #0x73
@@ -35634,7 +35634,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_08065176:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_080651B8 @ =gUnk_08752ACC
 	movs r3, #0x77
@@ -35784,7 +35784,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_08065288:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_080652CC @ =gUnk_0875290C
 	movs r3, #0x7b
@@ -35934,7 +35934,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_0806539C:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_080653D8 @ =gUnk_0875298C
 	add r0, sp, #8
@@ -36079,7 +36079,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_080654A8:
 	ldr r2, [sp, #0xf0]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_080654EC @ =gUnk_087517AC
 	movs r3, #0x80
@@ -36229,7 +36229,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_080655BC:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_08065600 @ =gUnk_08750F8C
 	movs r3, #0x89
@@ -36379,7 +36379,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_080656D0:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_08065714 @ =gUnk_08750E4C
 	movs r3, #0x92
@@ -36529,7 +36529,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_080657E4:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_08065820 @ =gUnk_08750F6C
 	add r0, sp, #8
@@ -36674,7 +36674,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_080658F0:
 	ldr r2, [sp, #0xf0]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_0806592C @ =gUnk_08750C4C
 	add r0, sp, #8
@@ -36821,7 +36821,7 @@ func_080645F0: @ 0x080645F0
 .Ljp_08065A00:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_08065A3C @ =gUnk_08750C6C
 	add r0, sp, #8
@@ -38229,7 +38229,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x38
 	lsls r2, r3, #5
@@ -38580,7 +38580,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x3c
 	lsls r2, r3, #5
@@ -38744,7 +38744,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0xf4]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	mov r5, sl
 	lsls r2, r5, #5
@@ -38911,7 +38911,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0xf4]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	mov r5, sl
 	lsls r2, r5, #5
@@ -39077,7 +39077,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x48
 	lsls r2, r3, #5
@@ -39233,7 +39233,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r2, .Ljp_phys_08066970
 	add r0, sp, #8
@@ -39387,7 +39387,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0xf4]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r2, .Ljp_phys_08066A8C
 	add r0, sp, #8
@@ -39541,7 +39541,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r2, .Ljp_phys_08066BA8
 	add r0, sp, #8
@@ -39698,7 +39698,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0xf4]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -39868,7 +39868,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0xf4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -40037,7 +40037,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0xf4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -40205,7 +40205,7 @@ func_0806644C:
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0xf4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -40358,7 +40358,7 @@ func_0806644C:
 .Ljp_phys_08067152:
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_0806718C
 	add r0, sp, #8
@@ -40504,7 +40504,7 @@ func_0806644C:
 .Ljp_phys_0806725C:
 	ldr r2, [sp, #0xf4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_08067298
 	add r0, sp, #8
@@ -40653,7 +40653,7 @@ func_0806644C:
 .Ljp_phys_0806736C:
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_080673A8
 	add r0, sp, #8
@@ -40800,7 +40800,7 @@ func_0806644C:
 .Ljp_phys_08067478:
 	ldr r2, [sp, #0xf4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_080674B4
 	add r0, sp, #8
@@ -40949,7 +40949,7 @@ func_0806644C:
 .Ljp_phys_08067588:
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_080675C4
 	add r0, sp, #8
@@ -41096,7 +41096,7 @@ func_0806644C:
 .Ljp_phys_08067694:
 	ldr r2, [sp, #0xf4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_080676D0
 	add r0, sp, #8
@@ -41245,7 +41245,7 @@ func_0806644C:
 .Ljp_phys_080677A4:
 	ldr r1, [sp, #0xf4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_080677E0
 	add r0, sp, #8
@@ -41392,7 +41392,7 @@ func_0806644C:
 .Ljp_phys_080678B0:
 	ldr r2, [sp, #0xf4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_080678EC
 	add r0, sp, #8
@@ -42611,7 +42611,7 @@ func_08068344:
 	movs r3, #0
 	bl DrawStringTo2DGfxBuffer
 	ldr r0, [r7]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -42819,7 +42819,7 @@ func_08068344:
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -42977,7 +42977,7 @@ func_08068344:
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x54
 	lsls r2, r3, #5
@@ -43121,7 +43121,7 @@ func_08068344:
 .Ljp_phys_080685DC:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_08068624
 	movs r3, #0x58
@@ -43275,7 +43275,7 @@ func_08068344:
 .Ljp_phys_080686F4:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_08068734
 	movs r2, #0xa0
@@ -43422,7 +43422,7 @@ func_08068344:
 .Ljp_phys_080687FE:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_08068840
 	movs r3, #0x59
@@ -43570,7 +43570,7 @@ func_08068344:
 .Ljp_phys_0806890A:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_0806894C
 	movs r3, #0x5a
@@ -43718,7 +43718,7 @@ func_08068344:
 .Ljp_phys_08068A16:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_08068A58
 	movs r3, #0x5b
@@ -43866,7 +43866,7 @@ func_08068344:
 .Ljp_phys_08068B22:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_08068B68
 	movs r3, #0x80
@@ -44021,7 +44021,7 @@ func_08068344:
 .Ljp_phys_08068C3E:
 	ldr r2, [sp, #0xbc]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_08068C80
 	movs r2, #0xa0
@@ -44171,7 +44171,7 @@ func_08068344:
 .Ljp_phys_08068D50:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_08068D94
 	movs r3, #0x89
@@ -44322,7 +44322,7 @@ func_08068344:
 .Ljp_phys_08068E64:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_08068EA8
 	movs r3, #0x92
@@ -44473,7 +44473,7 @@ func_08068344:
 .Ljp_phys_08068F78:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .Ljp_phys_08068FBC
 	movs r3, #0x9b
@@ -46702,7 +46702,7 @@ func_0806A1F4:
 	adds r0, r7, #0
 	bl func_08008724
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	movs r3, #0xea
 	lsls r3, r3, #5
@@ -46710,14 +46710,14 @@ func_0806A1F4:
 	strh r1, [r2]
 	strh r1, [r0, #8]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	ldr r4, .Ljp_0806A2F8
 	adds r1, r4, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xa]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	ldr r5, .Ljp_0806A2FC
 	adds r1, r5, #0
@@ -46734,7 +46734,7 @@ func_0806A1F4:
 	movs r2, #0x20
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	movs r6, #0xb2
 	lsls r6, r6, #5
@@ -46898,7 +46898,7 @@ func_0806A1F4:
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r6, [sp, #0x2fc]
 	ldrh r2, [r6]
 	movs r3, #0xc0
@@ -47223,7 +47223,7 @@ func_0806A1F4:
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x2fc]
 	ldrh r2, [r1, #2]
 	movs r3, #0xc0
@@ -47414,7 +47414,7 @@ func_0806A1F4:
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r5, [sp, #0x2fc]
 	ldrh r2, [r5, #4]
 	movs r3, #0xc0
@@ -47599,7 +47599,7 @@ func_0806A1F4:
 	movs r2, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x3bc]
 	ldr r6, [sp, #0x254]
 	lsls r2, r6, #5
@@ -47775,7 +47775,7 @@ func_0806A1F4:
 	movs r2, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x3bc]
 	lsls r4, r4, #5
 	movs r0, #0xc0
@@ -47951,7 +47951,7 @@ func_0806A1F4:
 	movs r2, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x3bc]
 	lsls r4, r4, #5
 	movs r0, #0xc0
@@ -48127,7 +48127,7 @@ func_0806A1F4:
 	movs r2, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x3bc]
 	lsls r4, r4, #5
 	movs r0, #0xc0
@@ -48303,7 +48303,7 @@ func_0806A1F4:
 	movs r2, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x3bc]
 	ldr r6, [sp, #0x258]
 	lsls r2, r6, #5
@@ -48479,7 +48479,7 @@ func_0806A1F4:
 	movs r2, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x3bc]
 	ldr r6, [sp, #0x25c]
 	lsls r2, r6, #5
@@ -48640,7 +48640,7 @@ func_0806A1F4:
 	adds r0, #0x20
 	str r0, [sp, #0x260]
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x3bc]
 	ldr r1, .Ljp_0806AF4C
 	ldr r3, [sp, #0x260]
@@ -48804,7 +48804,7 @@ func_0806A1F4:
 	str r0, [r6, #0xc]
 .Ljp_0806B02E:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x3bc]
 	ldr r1, .Ljp_0806B06C
 	add r0, sp, #0xa0
@@ -48963,7 +48963,7 @@ func_0806A1F4:
 	adds r0, #0x20
 	str r0, [sp, #0x264]
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x3bc]
 	ldr r1, .Ljp_0806B198
 	ldr r3, [sp, #0x264]
@@ -49121,7 +49121,7 @@ func_0806A1F4:
 	str r0, [r2, #0xc]
 .Ljp_0806B274:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x3bc]
 	ldr r1, .Ljp_0806B2B0
 	add r0, sp, #0xa0
@@ -49285,10 +49285,10 @@ func_0806A1F4:
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r3, r0, #0
 	str r6, [sp]
 	adds r0, r5, #0
@@ -50805,7 +50805,7 @@ func_0806A1F4:
 	ldr r3, [r3, #0x10]
 	bl _call_via_r3
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r0, [sp, #0x324]
 	ldr r5, [r0]
@@ -50989,7 +50989,7 @@ func_0806A1F4:
 	ldr r3, [r3, #0x10]
 	bl _call_via_r3
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r6, [sp, #0x338]
 	ldr r5, [r6]
@@ -51160,7 +51160,7 @@ func_0806A1F4:
 	str r0, [r2, #0xc]
 .Ljp_0806C234:
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0x10
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -51170,7 +51170,7 @@ func_0806A1F4:
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -51189,7 +51189,7 @@ func_0806A1F4:
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r4, [sp, #0x300]
 	ldr r1, [r4]
@@ -51201,21 +51201,21 @@ func_0806A1F4:
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
-	bl func_080088DC
+	bl GetHardwareCoreState
 	mov r8, r0
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	movs r1, #0x9a
 	lsls r1, r1, #1
 	adds r2, r7, r1
@@ -51385,7 +51385,7 @@ func_0806A1F4:
 	bl .Ljp_0806CBE0
 .Ljp_0806C418:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -51441,7 +51441,7 @@ func_0806A1F4:
 	.4byte 0x00003B2C
 .Ljp_0806C47C:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -51524,7 +51524,7 @@ func_0806A1F4:
 	.4byte 0x00003BF0
 .Ljp_0806C518:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -51704,7 +51704,7 @@ func_0806A1F4:
 	.4byte 0x00003BF4
 .Ljp_0806C678:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -52365,7 +52365,7 @@ func_0806A1F4:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r4, [sp, #0x300]
 	ldr r1, [r4]
@@ -52400,7 +52400,7 @@ func_0806A1F4:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r4, [sp, #0x300]
 	ldr r1, [r4]
@@ -52553,7 +52553,7 @@ func_0806A1F4:
 	strh r0, [r1, #6]
 	strb r4, [r1, #0x18]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [r6]
 	movs r2, #0
 	cmp r1, #0
@@ -52563,7 +52563,7 @@ func_0806A1F4:
 	mov r3, sl
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	mov r4, sp
 	add r4, r8
@@ -52804,7 +52804,7 @@ func_0806A1F4:
 	mov r1, sl
 	strh r0, [r1, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [r4]
 	movs r2, #0
 	cmp r1, #0
@@ -52814,7 +52814,7 @@ func_0806A1F4:
 	mov r3, sl
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r4, sp, #0x120
 	ldr r2, [r4]
@@ -53039,7 +53039,7 @@ func_0806A1F4:
 	bl GetHardwareSharedStateTileIndex
 	strh r0, [r4, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [r6]
 	movs r2, #0
 	cmp r1, #0
@@ -53049,7 +53049,7 @@ func_0806A1F4:
 	mov r3, sl
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r4, sp, #0x120
 	ldr r1, [r4]
@@ -53283,7 +53283,7 @@ func_0806A1F4:
 	bl func_080074C0
 	str r0, [sp, #0x2b8]
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, [r5, #8]
 	ldr r3, [sp, #0x2b4]
@@ -53463,7 +53463,7 @@ func_0806A1F4:
 	str r0, [r6, #0xc]
 .Ljp_0806D3AE:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x2f0]
 	adds r1, #4
 	ldr r2, [sp, #0x2b0]
@@ -53614,7 +53614,7 @@ func_0806A1F4:
 	str r0, [r6, #0xc]
 .Ljp_0806D4C2:
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r4, r0, #0
 	ldr r1, [sp, #0x2f0]
 	adds r1, #4
@@ -53715,7 +53715,7 @@ func_0806A1F4:
 	b .Ljp_0806D698
 .Ljp_0806D582:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, [r4, #4]
 	ldr r2, [r4, #8]
@@ -54006,7 +54006,7 @@ func_0806DB38:
 	adds r0, r5, #0
 	bl func_08008724
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -54016,7 +54016,7 @@ func_0806DB38:
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -54040,7 +54040,7 @@ func_0806DB38:
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -54056,7 +54056,7 @@ func_0806DB38:
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	movs r1, #0x9f
 	lsls r1, r1, #2
 	adds r0, r5, r1
@@ -54219,7 +54219,7 @@ func_0806DB38:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -54421,23 +54421,23 @@ func_0806E234:
 	push {r5, r6, r7}
 	sub sp, #0x98
 	adds r7, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r4, #0
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -54461,7 +54461,7 @@ func_0806E234:
 	adds r2, r6, #0
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r3, #0xc2
 	lsls r3, r3, #5
@@ -54470,7 +54470,7 @@ func_0806E234:
 	movs r5, #0
 	strh r2, [r0]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .Ljp_0806E180
 	adds r1, r3, #0
@@ -54488,12 +54488,12 @@ func_0806E234:
 	adds r2, r6, #0
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x1c]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x1e]
@@ -54507,22 +54507,22 @@ func_0806E234:
 	movs r3, #0x20
 	bl DrawUiTextWindowBorder
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x18]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x1a]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x14]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x16]
@@ -54657,14 +54657,14 @@ func_0806EA78:
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r5, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
 	adds r0, #0x50
 	strh r2, [r0]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	add r4, sp, #4
 	movs r0, #0
@@ -54680,7 +54680,7 @@ func_0806EA78:
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r1, [r0, #8]
 	ldr r2, [r1, #0x10]
 	adds r1, r4, #0
@@ -54715,14 +54715,14 @@ func_0806EAF4:
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r5, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
 	adds r0, #0x50
 	strh r2, [r0]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	add r4, sp, #4
 	movs r0, #0
@@ -54738,7 +54738,7 @@ func_0806EAF4:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r1, [r0, #8]
 	ldr r2, [r1, #0x10]
 	adds r1, r4, #0
@@ -55367,7 +55367,7 @@ func_0806EFC0:
 	adds r6, r0, #0
 .Ljp_0806EC56:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r3, r0, #0
 	adds r0, r7, #0
 	cmp r7, #0
@@ -55413,7 +55413,7 @@ func_0806EFC0:
 	mov sb, r0
 	bl UpdateIndexedResourceHandle
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	mov r8, r0
 	cmp r7, #0
 	ble .Ljp_0806ECF8
@@ -57668,7 +57668,7 @@ func_08070140:
 	mov r8, r0
 .Ljp_0806FDB6:
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r6, r0, #0
 	ldr r1, [r4, #8]
 	ldr r3, [r1]
@@ -58737,7 +58737,7 @@ func_08070A08:
 	str r0, [sp, #0x14]
 	ldr r6, [r1, #4]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #4
 	movs r3, #0xf2
 	lsls r3, r3, #5
@@ -58772,7 +58772,7 @@ func_08070A08:
 	.4byte 0x0000D440
 .Ljp_080706C0:
 	adds r0, r6, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	adds r3, r0, #0
 	str r3, [sp, #8]
 	movs r2, #0
@@ -58870,9 +58870,9 @@ func_08070A08:
 	bl UpdateHardwareFrame
 .Ljp_08070776:
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -59279,7 +59279,7 @@ func_08070DE4:
 	bl DrawStringTo2DGfxBuffer
 	ldr r6, [sp, #0xd0]
 	ldr r0, [r6]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	adds r1, r4, #0
@@ -60062,7 +60062,7 @@ func_080713B8:
 	movs r3, #0
 	bl DrawStringTo2DGfxBuffer
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -60334,7 +60334,7 @@ func_080713B8:
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0x100]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xa0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -60497,7 +60497,7 @@ func_080713B8:
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0x100]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -60658,7 +60658,7 @@ func_080713B8:
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x100]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x170]
@@ -60818,7 +60818,7 @@ func_080713B8:
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x100]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x130]
@@ -60979,7 +60979,7 @@ func_080713B8:
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0x100]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -61140,7 +61140,7 @@ func_080713B8:
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x100]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x164]
@@ -62109,7 +62109,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xd0
 	lsls r3, r3, #3
 	adds r6, r0, #0
@@ -62718,7 +62718,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -62878,7 +62878,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -63038,7 +63038,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -63198,7 +63198,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xa0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -63357,7 +63357,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x278]
@@ -63515,7 +63515,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x284]
@@ -63674,7 +63674,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -63833,7 +63833,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x2a0]
@@ -64295,7 +64295,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r6, sb
 	ldr r0, [r6]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xd0
 	lsls r3, r3, #3
 	adds r5, r0, #0
@@ -64484,7 +64484,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -64648,7 +64648,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -64812,7 +64812,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -64975,7 +64975,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x2bc]
@@ -65444,7 +65444,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r6, sb
 	ldr r0, [r6]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xd0
 	lsls r3, r3, #3
 	adds r6, r0, #0
@@ -65610,7 +65610,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x280]
@@ -65772,7 +65772,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x28c]
@@ -65934,7 +65934,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x298]
@@ -66096,7 +66096,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x29c]
@@ -66259,7 +66259,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -66422,7 +66422,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x2b0]
@@ -66676,7 +66676,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r1, sb
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -66934,7 +66934,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r1, sb
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -67192,7 +67192,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r1, sb
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -67401,7 +67401,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r7, sb
 	ldr r0, [r7]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xd0
 	lsls r3, r3, #3
 	adds r6, r0, #0
@@ -67567,7 +67567,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -67730,7 +67730,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x288]
@@ -67957,7 +67957,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #3
 	adds r6, r0, #0
@@ -68123,7 +68123,7 @@ func_080722DC:
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	ldr r1, [sp, #0x2cc]
@@ -69890,14 +69890,14 @@ func_08075E7C:
 	adds r0, r7, #0
 	bl func_08008724
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r5, .Ljp_08075DC4
 	adds r1, r5, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xa]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r6, #0xea
 	lsls r6, r6, #5
@@ -69905,14 +69905,14 @@ func_08075E7C:
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .Ljp_08075DC8
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r5, .Ljp_08075DCC
 	adds r1, r5, #0
@@ -69930,7 +69930,7 @@ func_08075E7C:
 	movs r2, #0x20
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r3, #0xfa
 	lsls r3, r3, #5
@@ -69951,7 +69951,7 @@ func_08075E7C:
 	adds r2, r5, #0
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -69965,7 +69965,7 @@ func_08075E7C:
 	movs r3, #0x1e
 	bl DrawUiTextWindowBorder
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r3, #0xf4
 	lsls r3, r3, #1
@@ -69989,7 +69989,7 @@ func_08075E7C:
 	movs r3, #2
 	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r4, .Ljp_08075DF4
 	adds r1, r4, #0
@@ -70063,7 +70063,7 @@ func_08075E7C:
 	ldr r3, [r3, #0x10]
 	bl _call_via_r3
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r2, r0, #0
 	ldr r1, [sp, #0xd4]
 	ldr r0, [r1]
@@ -70361,7 +70361,7 @@ func_0807628C: @ 0x08075EEC
 	strh r6, [r0, #4]
 	strh r6, [r0, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [sp, #0x1c]
 	movs r2, #0
 	str r5, [sp, #0xc4]
@@ -70373,7 +70373,7 @@ func_0807628C: @ 0x08075EEC
 	mov r3, sp
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x24]
 	add r2, sp, #0x24
 	movs r3, #0
@@ -70617,7 +70617,7 @@ func_0807628C: @ 0x08075EEC
 	movs r4, #1
 	strh r4, [r0, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x4c]
 	adds r1, r0, #0
@@ -70631,7 +70631,7 @@ func_0807628C: @ 0x08075EEC
 	mov r3, sp
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x54]
 	movs r3, #0
 	cmp r1, #0
@@ -70826,7 +70826,7 @@ func_0807628C: @ 0x08075EEC
 	movs r0, #2
 	strh r0, [r1, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x6c]
 	adds r1, r0, #0
@@ -70839,7 +70839,7 @@ func_0807628C: @ 0x08075EEC
 	mov r3, sp
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x74]
 	add r2, sp, #0x74
 	movs r3, #0
@@ -71037,7 +71037,7 @@ func_0807628C: @ 0x08075EEC
 	movs r0, #3
 	strh r0, [r1, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x6c]
 	adds r1, r0, #0
@@ -71050,7 +71050,7 @@ func_0807628C: @ 0x08075EEC
 	mov r3, sp
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x74]
 	add r2, sp, #0x74
 	movs r3, #0
@@ -71230,14 +71230,14 @@ func_080769A0: @ 0x08076600
     push {r6, r7}
     sub sp, #0x18
     adds r6, r0, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     movs r2, #0x3f
     strh r2, [r1]
     adds r0, #0x50
     strh r2, [r0]
     adds r0, r6, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     add r4, sp, #4
     movs r0, #0
@@ -71253,7 +71253,7 @@ func_080769A0: @ 0x08076600
     movs r3, #1
     bl func_0800934C
     adds r0, r6, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r1, [r0, #8]
     ldr r2, [r1, #0x10]
     adds r1, r4, #0
@@ -71268,15 +71268,15 @@ func_080769A0: @ 0x08076600
     adds r0, r6, #0
     bl UpdateHardwareFrame
     adds r0, r6, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     adds r0, r6, #0
-    bl func_080088C4
+    bl GetHardwareHeldKeys
     str r0, [sp, #0x14]
     adds r0, r6, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     adds r4, r0, #0
     adds r0, r6, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     adds r7, r0, #0
     ldr r1, [sp, #4]
     rsbs r0, r1, #0
@@ -71300,7 +71300,7 @@ func_080769A0: @ 0x08076600
     movs r3, #1
     bl func_08009378
     adds r0, r6, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r1, [r0, #8]
     ldr r2, [r1, #0x10]
     mov r1, sb
@@ -71328,7 +71328,7 @@ func_080769A0: @ 0x08076600
     movs r3, #1
     bl func_08009378
     adds r0, r6, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r1, [r0, #8]
     ldr r2, [r1, #0x10]
     mov r1, sb
@@ -71534,10 +71534,10 @@ func_08076BFC: @ 0x0807685C
     bl __builtin_new
     adds r5, r0, #0
     mov r0, r8
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r4, r0, #0
     mov r0, r8
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r3, r0, #0
     ldr r0, .Ljp_08076950
     str r0, [sp]
@@ -71595,7 +71595,7 @@ func_08076BFC: @ 0x0807685C
     movs r3, #0
     bl DrawStringTo2DGfxBuffer
     mov r0, r8
-    bl func_08008910
+    bl GetHardwareDmaQueue
     movs r3, #0xb0
     lsls r3, r3, #3
     adds r6, r0, #0
@@ -71927,7 +71927,7 @@ func_08076EA8: @ 0x08076AE0
     str r6, [sp, #0x4c]
     mov r7, sl
     ldr r0, [r7]
-    bl func_08008910
+    bl GetHardwareDmaQueue
     ldr r2, [sp, #0x44]
     ldr r1, [r2]
     ldr r3, [sp, #0x60]
@@ -72099,7 +72099,7 @@ func_08076EA8: @ 0x08076AE0
 .Ljp_08076CBC:
     mov r1, sl
     ldr r0, [r1]
-    bl func_08008910
+    bl GetHardwareDmaQueue
     ldr r2, [sp, #0x44]
     ldr r1, [r2]
     ldr r3, [sp, #0x60]
@@ -72247,7 +72247,7 @@ func_08076EA8: @ 0x08076AE0
 .Ljp_08076DCA:
     mov r2, sl
     ldr r0, [r2]
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r4, r0, #0
     ldr r3, [sp, #0x44]
     ldr r1, [r3]
@@ -72372,7 +72372,7 @@ func_08076EA8: @ 0x08076AE0
 .Ljp_08076EB6:
     mov r6, sl
     ldr r0, [r6]
-    bl func_08008910
+    bl GetHardwareDmaQueue
     ldr r3, [r7]
     adds r3, r3, r4
     adds r5, r0, #0
@@ -72662,7 +72662,7 @@ func_08077490: @ 0x080770C8
 	adds r0, r5, #0
 	bl func_08008724
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -72672,7 +72672,7 @@ func_08077490: @ 0x080770C8
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -72698,7 +72698,7 @@ func_08077490: @ 0x080770C8
 	movs r3, #0
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -72712,7 +72712,7 @@ func_08077490: @ 0x080770C8
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r2, .Ljp_0807717C
 	adds r0, r5, r2
 	movs r3, #0
@@ -72925,7 +72925,7 @@ func_08077490: @ 0x080770C8
 	movs r3, #0
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -72949,7 +72949,7 @@ func_08077490: @ 0x080770C8
 	movs r7, #1
 .Ljp_0807732E:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .Ljp_080773A0
 	adds r1, r5, r3
@@ -72957,7 +72957,7 @@ func_08077490: @ 0x080770C8
 	strh r1, [r2]
 	strh r1, [r0, #0x16]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r4, .Ljp_080773A4
 	adds r1, r5, r4
@@ -73019,33 +73019,33 @@ func_08077810: @ 0x080773A8
 	ldr r4, .Ljp_08077504
 	add sp, r4
 	adds r5, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r4, #0
 	strh r4, [r1]
 	strh r4, [r0, #0x14]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x16]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -73069,7 +73069,7 @@ func_08077810: @ 0x080773A8
 	mov r2, r8
 	bl FillHardwareDma3
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r3, #0xc8
 	lsls r3, r3, #3
@@ -73079,14 +73079,14 @@ func_08077810: @ 0x080773A8
 	mov sl, r7
 	strh r2, [r0]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .Ljp_08077514
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r7, .Ljp_08077518
 	adds r1, r7, #0
@@ -73390,7 +73390,7 @@ func_08077A1C: @ 0x080775A4
     adds r0, #1
     str r0, [r1]
     adds r0, r5, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r1, r5, #0
     adds r1, #0x14
     adds r5, r0, #0
@@ -73638,14 +73638,14 @@ func_08077CE0: @ 0x08077868
     push {r4, r5, lr}
     sub sp, #0x14
     adds r5, r0, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     movs r2, #0x3f
     strh r2, [r1]
     adds r0, #0x50
     strh r2, [r0]
     adds r0, r5, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     add r4, sp, #4
     movs r0, #0
@@ -73661,7 +73661,7 @@ func_08077CE0: @ 0x08077868
     movs r3, #1
     bl func_0800934C
     adds r0, r5, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r1, [r0, #8]
     ldr r2, [r1, #0x10]
     adds r1, r4, #0
@@ -73696,14 +73696,14 @@ func_08077D5C: @ 0x080778E4
     push {r4, r5, lr}
     sub sp, #0x14
     adds r5, r0, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     movs r2, #0x3f
     strh r2, [r1]
     adds r0, #0x50
     strh r2, [r0]
     adds r0, r5, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     add r4, sp, #4
     movs r0, #0
@@ -73719,7 +73719,7 @@ func_08077D5C: @ 0x080778E4
     movs r3, #1
     bl func_08009378
     adds r0, r5, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r1, [r0, #8]
     ldr r2, [r1, #0x10]
     adds r1, r4, #0
@@ -73761,18 +73761,18 @@ func_08077DD8: @ 0x08077960
     mov sb, r0
     add r0, sp, #0xc
     movs r1, #0
-    bl func_080091E8
+    bl __18HardwareInputStateUi
     adds r0, r4, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     mov r8, r0
     adds r0, r4, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r6, r0, #0
     adds r0, r4, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r5, r0, #0
     adds r0, r4, #0
-    bl func_0800894C
+    bl GetHardwareInterruptList
     adds r4, #0x18
     str r5, [sp]
     str r0, [sp, #4]
@@ -74055,7 +74055,7 @@ func_08078044: @ 0x08078044
 	adds r0, r4, #0
 	bl UpdateIndexedResourceHandle
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r5, r0, #0
 	ldr r1, [r7, #0x78]
 	ldr r3, [r1]
@@ -74084,7 +74084,7 @@ func_08078044: @ 0x08078044
 .L08078108: .4byte 0x000003FF
 .L0807810C:
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r1, r0, #0
 	adds r0, r7, #0
 	adds r0, #0x20
@@ -74725,7 +74725,7 @@ func_080785C8:
 	beq .Ljp_08078620
 .Ljp_080785E0:
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r4, r0, #0
 	ldr r1, [r5, #8]
 	ldr r3, [r1]
@@ -74761,10 +74761,10 @@ func_080785C8:
 	cmp r0, #0
 	bge .Ljp_0807864E
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r1, r6, #0
 	adds r1, #0x1c
 	str r0, [sp]
@@ -75339,7 +75339,7 @@ func_08078670:
 func_080786A0:
 	.byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46
 	.byte 0xE0, 0xB4, 0x91, 0xB0, 0x0D, 0x90, 0x0E, 0x90, 0x4F, 0x68, 0x38, 0x1C
-	bl func_08008918
+	bl GetHardwareDisplayState
 	.byte 0x02, 0x1C, 0x15, 0x1C, 0x04, 0xA9, 0xE2, 0x23, 0x5B, 0x01, 0x18, 0x1C, 0x08, 0x80, 0x10, 0x80
 	.byte 0xB8, 0x68, 0x30, 0x4B, 0xC0, 0x18, 0x00, 0x78, 0x80, 0x07, 0x00, 0x28, 0x02, 0xDA, 0xF2, 0x20
 	.byte 0x40, 0x01, 0x10, 0x80, 0xF2, 0x21, 0x49, 0x01, 0x08, 0x1C, 0x6A, 0x46, 0x10, 0x82, 0xE8, 0x81
@@ -75400,7 +75400,7 @@ func_080786A0:
 	bl func_08008DA8
 	.byte 0x38, 0x7D, 0x60, 0x40, 0x38, 0x75
 	.byte 0x38, 0x1C
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	.byte 0x03, 0x1C, 0x08, 0x93, 0x00, 0x25, 0x00, 0x22, 0x00, 0x24
 	.byte 0x19, 0x06, 0x58, 0x06, 0xC9, 0x0F, 0xC0, 0x0F, 0x81, 0x42, 0x04, 0xD0, 0x99, 0x06, 0xD8, 0x06
 	.byte 0xCC, 0x0F, 0xC0, 0x0F, 0x44, 0x40, 0x80, 0x23, 0x9B, 0x00, 0x00, 0x2C, 0x00, 0xD0, 0x96, 0x3B
@@ -75418,9 +75418,9 @@ func_080786A0:
 	.byte 0x38, 0x1C
 	bl UpdateHardwareFrame
 	.byte 0x38, 0x1C
-	bl func_080088B8
+	bl UpdateHardwareInput
 	.byte 0x38, 0x1C
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	.byte 0x01, 0x1C, 0x02, 0x20, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1, 0x20, 0xE7, 0x38, 0x1C
 	bl func_08077D5C
 	.byte 0xF8, 0x68, 0x00, 0x24, 0xFC, 0x60, 0x04, 0x90, 0x04, 0xA9, 0x09, 0x91
@@ -75755,7 +75755,7 @@ func_080790E4: @ 0x080790E4
 	adds r0, r5, #0
 	bl func_08008724
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -75765,7 +75765,7 @@ func_080790E4: @ 0x080790E4
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -75821,7 +75821,7 @@ func_080790E4: @ 0x080790E4
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -75831,7 +75831,7 @@ func_080790E4: @ 0x080790E4
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r6, .Ljp_080791C4 @ =0x00000A58
 	adds r0, r5, r6
 	ldr r0, [r0]
@@ -75881,7 +75881,7 @@ func_080790E4: @ 0x080790E4
 	b .Ljp_08079444
 .Ljp_0807921C:
 	adds r0, r5, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -75944,7 +75944,7 @@ func_080790E4: @ 0x080790E4
 .Ljp_0807929C: .4byte 0x00000A58
 .Ljp_080792A0:
 	adds r0, r5, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -76013,7 +76013,7 @@ func_080790E4: @ 0x080790E4
 .Ljp_0807932C: .4byte 0x00000A58
 .Ljp_08079330:
 	adds r0, r5, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -76061,7 +76061,7 @@ func_080790E4: @ 0x080790E4
 .Ljp_08079394: .4byte gReferenceGuideTables
 .Ljp_08079398:
 	adds r0, r5, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -76163,7 +76163,7 @@ func_080790E4: @ 0x080790E4
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -76202,7 +76202,7 @@ func_080790E4: @ 0x080790E4
 	movs r4, #1
 .Ljp_080794B6:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r6, #0x84
 	lsls r6, r6, #4
@@ -76251,7 +76251,7 @@ func_080790E4: @ 0x080790E4
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -76261,7 +76261,7 @@ func_080790E4: @ 0x080790E4
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r4, .Ljp_08079554 @ =0x00000A58
 	adds r0, r5, r4
 	ldr r0, [r0]
@@ -76329,10 +76329,10 @@ func_080790E4: @ 0x080790E4
 	b .Ljp_08079782
 .Ljp_080795D8:
 	adds r0, r5, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	str r0, [sp, #0xc]
 	adds r0, r5, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r3, r0, #0
 	movs r0, #3
 	ands r0, r3
@@ -76527,7 +76527,7 @@ func_080790E4: @ 0x080790E4
 .Ljp_08079760: .4byte 0x00000A58
 .Ljp_08079764:
 	adds r0, r5, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	str r0, [sp, #0x10]
 	add r2, sp, #0x10
 	ldrb r1, [r2]
@@ -76556,7 +76556,7 @@ func_080790E4: @ 0x080790E4
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -76595,7 +76595,7 @@ func_080790E4: @ 0x080790E4
 	movs r7, #1
 .Ljp_080797EC:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r3, #0x84
 	lsls r3, r3, #4
@@ -76664,33 +76664,33 @@ func_08079860:
 	ldr r4, .Ljp_lib_080795A0
 	add sp, r4
 	adds r5, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r4, #0
 	strh r4, [r1]
 	strh r4, [r0, #0x14]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x16]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -76718,21 +76718,21 @@ func_08079860:
 	mov r2, r8
 	bl FillHardwareDma3
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .Ljp_lib_080795B4
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r7, .Ljp_lib_080795B8
 	adds r1, r7, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .Ljp_lib_080795BC
 	adds r1, r3, #0
@@ -77304,7 +77304,7 @@ func_08079A64:
 	ble .Ljp_library_page_08079896
 .Ljp_library_page_08079918:
 	adds r0, r4, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r3, #0xf2
 	lsls r3, r3, #5
@@ -77425,7 +77425,7 @@ func_08079DC0:
 	bl DrawStringTo2DGfxBufferExt
 .Ljp_library_scroll_08079A06:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	lsls r2, r5, #3
 	subs r2, r2, r5
@@ -77972,7 +77972,7 @@ func_08079F8C:
 	ble .Ljp_library_render_08079DB2
 .Ljp_library_render_08079E20:
 	mov r0, sb
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r3, #0xf2
 	lsls r3, r3, #5
@@ -78392,7 +78392,7 @@ func_0807A554: @ 0x0807A554
 	bl DrawStringTo2DGfxBufferExt
 .Ljp_0807A5EE:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	lsls r2, r5, #3
 	subs r2, r2, r5
@@ -78994,7 +78994,7 @@ func_0807A98C:
 	orrs r1, r0
 	str r1, [r3, #4]
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -79088,7 +79088,7 @@ func_0807A98C:
 	mov r1, sb
 	strb r1, [r0, #0x18]
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r6, [sp, #0x24]
 	ldr r1, [r4, #4]
@@ -79276,7 +79276,7 @@ func_0807A98C:
 	str r0, [r5, #0xc]
 .Ljp_library_selection_0807A836:
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -79365,7 +79365,7 @@ func_0807A98C:
 	movs r6, #1
 	strb r6, [r0, #0x18]
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r0, [sp, #0x24]
 	mov sb, r0
@@ -79531,7 +79531,7 @@ func_0807A98C:
 	str r0, [r6, #0xc]
 .Ljp_library_selection_0807AA22:
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -79617,7 +79617,7 @@ func_0807A98C:
 	mov r0, sp
 	strb r2, [r0, #0x18]
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -80340,7 +80340,7 @@ func_0807AF54: @ 0x0807AF54
 	adds r0, #0xd0
 	mov sb, r0
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	add r4, r8
 	adds r4, r4, r7
 	adds r4, #4
@@ -80533,7 +80533,7 @@ func_0807AF54: @ 0x0807AF54
 	movs r3, #2
 	bl Fill2DGfxTilemapRect
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r0, #0xf8
 	lsls r0, r0, #1
@@ -80683,7 +80683,7 @@ func_0807AF54: @ 0x0807AF54
 	str r0, [r6, #0xc]
 .Ljp_poultry_shop_B30A:
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #0x1c
 	ldr r1, .Ljp_poultry_shop_B344 @ =gUnk_084D8578
@@ -81757,7 +81757,7 @@ func_0807BA6C:
 	lsls r4, r4, #3
 	adds r4, #0xd0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r1, r5, r7
 	movs r5, #0xe2
 	lsls r5, r5, #3
@@ -81942,7 +81942,7 @@ func_0807BA6C:
 	adds r0, r7, #0
 	bl func_0807B4C4
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -81952,7 +81952,7 @@ func_0807BA6C:
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -81970,7 +81970,7 @@ func_0807BA6C:
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -81984,7 +81984,7 @@ sub_0807BD38:
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r3, [sp, #0xc]
 	ldr r1, [r3]
 	rsbs r0, r1, #0
@@ -82901,7 +82901,7 @@ sub_0807BD78:
 .Ljp_poultry_state_case_0_item_3_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_0_no_prompt:
     adds r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #2
     ands r0, r1
     cmp r0, #0
@@ -83103,7 +83103,7 @@ sub_0807BD78:
 .Ljp_poultry_state_case_1_reset_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_2:
     adds r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     adds r4, r0, #0
     movs r0, #1
     ands r4, r0
@@ -83305,7 +83305,7 @@ sub_0807BD78:
 .Ljp_poultry_state_case_2_complete_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_2_alternate:
     adds r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #2
     ands r0, r1
     cmp r0, #0
@@ -83423,7 +83423,7 @@ sub_0807BD78:
     movs r3, #1
     bl func_08009378
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #0xc]
     ldr r2, [r2, #0x10]
@@ -83663,7 +83663,7 @@ sub_0807BD78:
     movs r2, #1
     bl func_08009378
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #0xc]
     ldr r2, [r2, #0x10]
@@ -84426,7 +84426,7 @@ func_0807CD80: @ 0x0807CD80
 	adds r0, r7, #0
 	bl func_0807CD44
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	ldr r3, [sp, #0xe4]
 	strh r1, [r3]
@@ -84436,7 +84436,7 @@ func_0807CD80: @ 0x0807CD80
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -84455,7 +84455,7 @@ func_0807CD80: @ 0x0807CD80
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xe4]
 	ldr r1, [r3]
@@ -84467,7 +84467,7 @@ func_0807CD80: @ 0x0807CD80
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r0, [sp, #0xe4]
 	ldr r3, [r0]
 	ldr r1, [r3]
@@ -84857,7 +84857,7 @@ func_0807CD80: @ 0x0807CD80
 .Ljp_0807D594: .4byte gText_Supermarket_InsufficientGold
 .Ljp_0807D598:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -84955,7 +84955,7 @@ func_0807CD80: @ 0x0807CD80
 	b .Ljp_0807D870
 .Ljp_0807D664:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -85137,7 +85137,7 @@ func_0807CD80: @ 0x0807CD80
 .Ljp_0807D7EC: .4byte 0x0000070C
 .Ljp_0807D7F0:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -85189,7 +85189,7 @@ func_0807CD80: @ 0x0807CD80
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [r4]
 	ldr r2, [r2, #0x10]
@@ -85505,7 +85505,7 @@ func_0807DE3C: @ 0x0807D9A4
 	movs r3, #2
 	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	add r3, sp, #0xa0
 	strh r1, [r3]
@@ -85515,7 +85515,7 @@ func_0807DE3C: @ 0x0807D9A4
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	str r5, [r4]
 	str r5, [r4, #4]
@@ -85532,7 +85532,7 @@ func_0807DE3C: @ 0x0807D9A4
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xa0]
 	ldr r2, [r2, #0x10]
@@ -85820,7 +85820,7 @@ func_0807DE3C: @ 0x0807D9A4
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r1, [sp, #0xd4]
 	ldr r3, [r1]
 	ldr r1, [r3]
@@ -85852,7 +85852,7 @@ func_0807DE3C: @ 0x0807D9A4
 	b .Ljp_0807DF6E
 .Ljp_0807DDDE:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -85975,7 +85975,7 @@ func_0807DE3C: @ 0x0807D9A4
 .Ljp_0807DEEC: .4byte 0x0000070C
 .Ljp_0807DEF0:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -86024,7 +86024,7 @@ func_0807DE3C: @ 0x0807D9A4
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xd4]
 	ldr r1, [r3]
@@ -86491,7 +86491,7 @@ func_0807E0C0: @ 0x0807E0C0
 	adds r0, r7, #0
 	bl func_0807E084
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	ldr r3, [sp, #0xe8]
 	strh r1, [r3]
@@ -86501,7 +86501,7 @@ func_0807E0C0: @ 0x0807E0C0
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -86520,7 +86520,7 @@ func_0807E0C0: @ 0x0807E0C0
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xe8]
 	ldr r1, [r3]
@@ -86532,7 +86532,7 @@ func_0807E0C0: @ 0x0807E0C0
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r0, [sp, #0xe8]
 	ldr r3, [r0]
 	ldr r1, [r3]
@@ -86925,7 +86925,7 @@ func_0807E0C0: @ 0x0807E0C0
 .Ljp_0807E6C0: .4byte gText_Clinic_InsufficientGold
 .Ljp_0807E6C4:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -87018,7 +87018,7 @@ func_0807E0C0: @ 0x0807E0C0
 	b .Ljp_0807E94C
 .Ljp_0807E784:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -87160,7 +87160,7 @@ func_0807E0C0: @ 0x0807E0C0
 .Ljp_0807E8BC: .4byte 0x0000070C
 .Ljp_0807E8C0:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -87217,7 +87217,7 @@ func_0807E0C0: @ 0x0807E0C0
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xe8]
 	ldr r1, [r3]
@@ -87819,7 +87819,7 @@ func_0807EAF8:
 	adds r0, r7, #0
 	bl func_0807EA7C
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	strh r1, [r6]
 	adds r0, #0x50
@@ -87828,7 +87828,7 @@ func_0807EAF8:
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -87846,7 +87846,7 @@ func_0807EAF8:
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [r6]
 	ldr r2, [r2, #0x10]
@@ -87865,7 +87865,7 @@ func_0807EAF8:
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	mov r0, sb
 	ldr r3, [r0]
 	ldr r1, [r3]
@@ -88041,7 +88041,7 @@ func_0807EAF8:
 	.4byte gText_InnShop_InsufficientGold
 .Ljp_0807EF98:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -88170,7 +88170,7 @@ func_0807EAF8:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	mov r3, sb
 	ldr r1, [r3]
@@ -88684,23 +88684,23 @@ func_0807F430:
     .byte 0x01, 0x30, 0x08, 0x60, 0x30, 0x1C, 0xFF, 0xF7, 0xD3, 0xFD, 0x04, 0x1C, 0xF0, 0x69, 0x0C, 0x25
     .byte 0x71, 0x5F, 0xF6, 0xF7, 0x17, 0xF9, 0xF0, 0x69, 0x21, 0x1C, 0x08, 0x31, 0xC9, 0x04, 0x09, 0x14
     .byte 0xF6, 0xF7, 0xDE, 0xF9, 0x31, 0x69, 0x30, 0x1C, 0xFF, 0xF7, 0x90, 0xFD, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x3F, 0x22, 0x0A, 0x80, 0x50, 0x30, 0x02, 0x80, 0x10, 0x20
     bl __builtin_new
     .byte 0x04, 0x1C, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x01, 0x1C, 0x00, 0x20, 0x20, 0x60
     .byte 0x60, 0x60, 0x20, 0x48, 0xA0, 0x60, 0x25, 0x1C, 0x0C, 0x35, 0x28, 0x1C
     bl func_08009300
     .byte 0x01, 0x94, 0x1D, 0x49, 0x28, 0x1C, 0x01, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x53, 0xF0, 0xD7, 0xFC, 0x00, 0x20
     .byte 0x0F, 0x90, 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x0807F724
     .byte 0x30, 0x1C
-    bl func_080088B8
+    bl UpdateHardwareInput
     .byte 0x01, 0x9B
     .byte 0x19, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x01, 0xDA, 0x00, 0xF0, 0x2D, 0xFC, 0x0F, 0x99
     .byte 0x00, 0x29, 0x01, 0xD0, 0x00, 0xF0, 0x30, 0xFC, 0xE1, 0x22, 0xD2, 0x00, 0xB0, 0x18, 0x00, 0x68
@@ -88803,7 +88803,7 @@ func_0807F430:
     .byte 0x2C, 0xE0, 0x00, 0x00
     .4byte gText_WonShop_InsufficientGold
     .byte 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x23, 0xD0, 0x08, 0x4B
     .byte 0xF0, 0x18, 0x00, 0x78, 0x00, 0x28, 0x0F, 0xD0, 0x06, 0x49, 0x30, 0x1C, 0x4A, 0xF0, 0x64, 0xFB
     .byte 0xD2, 0x24, 0xA4, 0x00, 0x30, 0x19, 0x73, 0x21, 0xD0, 0xF7, 0x74, 0xFF, 0x0E, 0xE0, 0x00, 0x00
@@ -88821,7 +88821,7 @@ func_0807F430:
     .byte 0xD4, 0x25, 0xAD, 0x00, 0x70, 0x19, 0x00, 0x68, 0x03, 0x28, 0x00, 0xD0, 0x0E, 0xE1, 0xD2, 0x21
     .byte 0x89, 0x00, 0x70, 0x18, 0xD0, 0xF7, 0x32, 0xFF, 0xE1, 0x22, 0xD2, 0x00, 0xB1, 0x18, 0x00, 0x20
     .byte 0x08, 0x60, 0x01, 0x38, 0x70, 0x61, 0x01, 0xE1, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x04, 0x1C
     .byte 0x01, 0x20, 0x04, 0x40, 0x00, 0x2C, 0x00, 0xD1, 0xB4, 0xE0, 0x1F, 0x4B, 0xF0, 0x18, 0x47, 0x69
     .byte 0x01, 0x24, 0xA0, 0x46, 0x4A, 0xF0, 0xA8, 0xFA, 0x31, 0x69, 0x30, 0x1C, 0xFF, 0xF7, 0x18, 0xFA
@@ -88851,7 +88851,7 @@ func_0807F430:
     .byte 0x70, 0x19, 0x01, 0x70, 0x48, 0xE0, 0x00, 0x00
     .4byte gText_WonShop_PurchaseComplete
     .byte 0x0C, 0x07, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x0E, 0xD0, 0x06, 0x49, 0x70, 0x18, 0x4A, 0xF0, 0xEF, 0xF9, 0xE1, 0x22, 0xD2, 0x00, 0xB0, 0x18
     .byte 0x04, 0x60, 0x31, 0x69, 0x30, 0x1C, 0xFF, 0xF7, 0x5B, 0xF9, 0x2F, 0xE0, 0x84, 0x06, 0x00, 0x00
@@ -88862,7 +88862,7 @@ func_0807F430:
     .byte 0x10, 0x1C, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x53, 0xF0, 0x9A, 0xF8, 0x30, 0x1C, 0x49, 0xF0
     .byte 0x99, 0xF8, 0xFF, 0xF7, 0xC0, 0xFB, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0x98, 0x68, 0xC2, 0x68
     .byte 0x18, 0x1C, 0x03, 0x21, 0x53, 0xF0, 0x8C, 0xF8, 0x11, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46
@@ -89228,7 +89228,7 @@ func_080800A8:
 	adds r0, r7, #0
 	bl func_080CA3FC
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	ldr r4, [sp, #0xe8]
 	strh r1, [r4]
@@ -89238,7 +89238,7 @@ func_080800A8:
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -89257,7 +89257,7 @@ func_080800A8:
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xe8]
 	ldr r1, [r3]
@@ -89269,7 +89269,7 @@ func_080800A8:
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r0, [sp, #0xe8]
 	ldr r3, [r0]
 	ldr r1, [r3]
@@ -89694,7 +89694,7 @@ func_080800A8:
 	.4byte 0x000006A4
 .Ljp_08080678:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -89765,7 +89765,7 @@ func_080800A8:
 	.4byte 0x000006A4
 .Ljp_08080704:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -89906,7 +89906,7 @@ func_080800A8:
 	.4byte 0x000006A4
 .Ljp_08080828:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -89985,7 +89985,7 @@ func_080800A8:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [r4]
 	ldr r2, [r2, #0x10]
@@ -90634,7 +90634,7 @@ func_08080CC4:
 	adds r0, r6, #0
 	bl func_08080C80
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -90644,7 +90644,7 @@ func_08080CC4:
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -90662,7 +90662,7 @@ func_08080CC4:
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -90673,7 +90673,7 @@ func_08080CC4:
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r3, [sp, #4]
 	ldr r1, [r3]
 	rsbs r0, r1, #0
@@ -91132,7 +91132,7 @@ func_08080CC4:
 .Ljp_08081220: .4byte 0x000006A4
 .Ljp_08081224:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -91366,7 +91366,7 @@ func_08080CC4:
 .Ljp_08081418: .4byte 0x000006A4
 .Ljp_0808141C:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -91473,7 +91473,7 @@ func_08080CC4:
 .Ljp_0808150C: .4byte 0x000006A4
 .Ljp_08081510:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -91524,7 +91524,7 @@ func_08080CC4:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -92041,7 +92041,7 @@ func_08081734:
 	adds r0, r7, #0
 	bl func_080816B8
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	strh r1, [r6]
 	adds r0, #0x50
@@ -92050,7 +92050,7 @@ func_08081734:
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -92068,7 +92068,7 @@ func_08081734:
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [r6]
 	ldr r2, [r2, #0x10]
@@ -92089,7 +92089,7 @@ func_08081734:
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r1, [sp, #0xf0]
 	ldr r3, [r1]
 	ldr r1, [r3]
@@ -92256,7 +92256,7 @@ func_08081734:
 .Ljp_08081B50: .4byte gText_BeachCafeShop_InsufficientGold
 .Ljp_08081B54:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -92369,7 +92369,7 @@ func_08081734:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xf0]
 	ldr r1, [r3]
@@ -92774,7 +92774,7 @@ func_0808234C:
 	adds r1, r1, r5
 	mov sb, r1
 	ldr r0, [sp, #0xc4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x78]
 	adds r6, r0, #0
 	mov r3, sb
@@ -92941,7 +92941,7 @@ func_0808234C:
 	str r0, [r6, #0xc]
 .Ljp_080820B8:
 	ldr r0, [sp, #0xc4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x80]
 	adds r6, r0, #0
 	mov r0, sl
@@ -93265,7 +93265,7 @@ func_0808268C:
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r2, [r4]
 	lsls r1, r2, #1
 	adds r1, r1, r2
@@ -94210,7 +94210,7 @@ func_08082CEC:
 	adds r0, r7, #0
 	bl func_08082C14
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r6, sp, #0x24
 	movs r1, #0x3f
 	strh r1, [r6]
@@ -94220,7 +94220,7 @@ func_08082CEC:
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -94238,7 +94238,7 @@ func_08082CEC:
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x28]
 	ldr r2, [r2, #0x10]
@@ -94253,7 +94253,7 @@ sub_08082F50:
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r3, [sp, #0x28]
 	ldr r1, [r3]
 	rsbs r0, r1, #0
@@ -94475,7 +94475,7 @@ sub_08082F50:
 	b .Ljp_08082D14
 .Ljp_08082CD0:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -95193,7 +95193,7 @@ sub_08082F50:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x28]
 	ldr r2, [r2, #0x10]
@@ -95488,7 +95488,7 @@ sub_08082F50:
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x28]
 	ldr r2, [r2, #0x10]
@@ -96477,7 +96477,7 @@ func_08084228:
     lsls r5, r5, #2
     adds r5, #0xd0
     adds r0, r6, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r4, r6
     movs r7, #0xe4
     lsls r7, r7, #3
@@ -96508,12 +96508,12 @@ func_08084228:
     .byte 0xB1, 0xFC, 0xF0, 0x69, 0x39, 0x1C, 0x08, 0x31, 0xC9, 0x04, 0x09, 0x14, 0xF1, 0xF7, 0x78, 0xFD
     .byte 0x30, 0x69, 0x80, 0x00, 0x80, 0x19, 0xAA, 0x25, 0xAD, 0x00, 0x40, 0x19, 0x01, 0x68, 0x30, 0x1C
     .byte 0xFF, 0xF7, 0x64, 0xFE, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x04, 0xA9, 0x3F, 0x22, 0x0A, 0x80
     .byte 0x50, 0x30, 0x02, 0x80, 0x10, 0x20
     bl __builtin_new
     .byte 0x04, 0x1C, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x01, 0x1C, 0x00, 0x20, 0x20, 0x60, 0x60, 0x60, 0x21, 0x48, 0xA0, 0x60, 0x25, 0x1C
     .byte 0x0C, 0x35, 0x28, 0x1C
     bl func_08009300
@@ -96521,14 +96521,14 @@ func_08084228:
     .byte 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x04, 0x99
     .byte 0x12, 0x69, 0x4F, 0xF0, 0x6B, 0xF8, 0x00, 0x27, 0x17, 0x97, 0xB0, 0x68, 0x14, 0x30, 0x85, 0xF7
     .byte 0x7F, 0xFD, 0x15, 0x49, 0x88, 0x42, 0x03, 0xD1, 0x14, 0x48, 0x31, 0x18, 0x01, 0x20, 0x08, 0x70
     .byte 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x08084012
     .byte 0x30, 0x1C
-    bl func_080088B8
+    bl UpdateHardwareInput
     .byte 0x04, 0x9B, 0x19, 0x68
     .byte 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x01, 0xDA, 0x01, 0xF0, 0x0A, 0xF8, 0x17, 0x99, 0x00, 0x29
     .byte 0x01, 0xD0, 0x01, 0xF0, 0x0D, 0xF8, 0xE1, 0x22, 0xD2, 0x00, 0xB0, 0x18, 0x00, 0x68, 0x0B, 0x28
@@ -96666,7 +96666,7 @@ func_08084228:
     .byte 0x00, 0xD0, 0x02, 0x60, 0x08, 0x68, 0x01, 0x30, 0x08, 0x60, 0x00, 0x20, 0x30, 0x61, 0x01, 0x38
     .byte 0x70, 0x61, 0xE1, 0x22, 0xD2, 0x00, 0xB1, 0x18, 0x01, 0x20, 0x08, 0x60, 0x00, 0xF0, 0x20, 0xFC
     .byte 0x14, 0x07, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x01, 0xD1, 0x00, 0xF0, 0x15, 0xFC, 0x05, 0x4B, 0xF0, 0x18, 0x00, 0x78, 0x00, 0x28, 0x09, 0xD0
     .byte 0x03, 0x49, 0x30, 0x1C, 0x45, 0xF0, 0xC4, 0xFD, 0x08, 0xE0, 0x00, 0x00, 0x0C, 0x07, 0x00, 0x00
@@ -96705,13 +96705,13 @@ func_08084228:
     .byte 0x45, 0xF0, 0xBE, 0xFC, 0xD2, 0x25, 0xAD, 0x00, 0x70, 0x19, 0xAC, 0x21, 0xCC, 0xF7, 0xCE, 0xF8
     .byte 0xE1, 0x27, 0xFF, 0x00, 0xF1, 0x19, 0x08, 0x20, 0x08, 0x60, 0xF9, 0xE2, 0x28, 0xF3, 0x0F, 0x08
     .byte 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1, 0xEF, 0xE2
     .byte 0xF0, 0x69, 0xF0, 0xF7, 0xE5, 0xFF, 0x30, 0x1C, 0xFE, 0xF7, 0xB8, 0xFE, 0x07, 0x1C, 0xB4, 0x81
     .byte 0xC9, 0x20, 0xC0, 0x00, 0x31, 0x18, 0x28, 0x20, 0x08, 0x60, 0xF0, 0x69, 0x0C, 0x22, 0xB1, 0x5E
     .byte 0xF0, 0xF7, 0xC8, 0xFF, 0xF0, 0x69, 0x39, 0x1C, 0x08, 0x31, 0xC9, 0x04, 0x09, 0x14, 0xF0, 0xF7
     .byte 0xF7, 0xFF, 0xE1, 0x23, 0xDB, 0x00, 0xF0, 0x18, 0x04, 0x60, 0x33, 0xE1, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x04, 0x1C, 0x01, 0x20, 0x04, 0x40, 0x00, 0x2C, 0x00, 0xD1, 0xB0, 0xE0, 0x18, 0x4C
     .byte 0x30, 0x19, 0x47, 0x69, 0x01, 0x25, 0x45, 0xF0, 0x25, 0xFC, 0x05, 0xA8, 0x80, 0x46, 0xA9, 0x21
     .byte 0x89, 0x00, 0x89, 0x19, 0x89, 0x46, 0x30, 0x69, 0x80, 0x00, 0x04, 0x30, 0x48, 0x44, 0x00, 0x68
@@ -96736,7 +96736,7 @@ func_08084228:
     .byte 0x00, 0x28, 0x00, 0xD0, 0x24, 0xE2, 0x0D, 0x70, 0x05, 0x20, 0x20, 0x60, 0x20, 0xE2, 0x00, 0x00
     .byte 0x80, 0xF4, 0x0F, 0x08, 0x0C, 0x07, 0x00, 0x00, 0xE7, 0x03, 0x00, 0x00, 0xF0, 0x61, 0x00, 0x00
     .byte 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x14, 0xD0, 0x09, 0x49
     .byte 0x70, 0x18, 0x45, 0xF0, 0x6F, 0xFB, 0xE1, 0x22, 0xD2, 0x00, 0xB0, 0x18, 0x04, 0x60, 0x30, 0x69
     .byte 0x80, 0x00, 0x80, 0x19, 0xAA, 0x23, 0x9B, 0x00, 0xC0, 0x18, 0x01, 0x68, 0x30, 0x1C, 0xFF, 0xF7
@@ -96807,7 +96807,7 @@ func_08084228:
     .byte 0x17, 0x97, 0x0A, 0x49, 0x10, 0x1C, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x04, 0x99, 0x12, 0x69, 0x4E, 0xF0, 0x46, 0xF8
     .byte 0x30, 0x1C, 0x44, 0xF0, 0x45, 0xF8, 0xFE, 0xF7, 0xE3, 0xFF, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00
     .byte 0x98, 0x68, 0xC2, 0x68, 0x18, 0x1C, 0x03, 0x21, 0x4E, 0xF0, 0x38, 0xF8, 0x1C, 0xB0, 0x38, 0xBC
@@ -97490,7 +97490,7 @@ func_0808586C:
 	adds r0, #0xd0
 	mov sl, r0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r3, [sp, #0x58]
 	adds r1, r4, r3
 	lsls r1, r1, #6
@@ -97688,7 +97688,7 @@ func_0808586C:
 	movs r3, #2
 	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	movs r6, #0xca
 	lsls r6, r6, #2
@@ -97843,7 +97843,7 @@ func_0808586C:
 	str r0, [r5, #0xc]
 .Ljp_08085858:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	add r0, sp, #0x1c
 	ldr r1, .Ljp_08085890 @ =gUnk_087525CC
@@ -99778,7 +99778,7 @@ func_08086A08:
     lsls r5, r4, #3
     adds r5, #0xd0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     lsls r4, r4, #6
     add r4, sb
     lsls r4, r4, #2
@@ -99974,7 +99974,7 @@ func_08086A08:
     adds r0, r7, #0
     bl func_08085F08
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0xc
     movs r2, #0x3f
     strh r2, [r1]
@@ -99984,7 +99984,7 @@ func_08086A08:
     bl __builtin_new
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     movs r0, #0
     str r0, [r4]
@@ -100002,7 +100002,7 @@ func_08086A08:
     movs r3, #1
     bl func_0800934C
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #0xc]
     ldr r2, [r2, #0x10]
@@ -100012,7 +100012,7 @@ func_08086A08:
     adds r0, r7, #0
     bl UpdateHardwareFrame
     adds r0, r7, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     ldr r3, [sp, #0xc]
     ldr r1, [r3]
     rsbs r0, r1, #0
@@ -100189,7 +100189,7 @@ func_08086A08:
     .byte 0x08, 0x31, 0xC9, 0x04, 0x09, 0x14, 0xEE, 0xF7, 0x0D, 0xFC, 0x3C, 0x61, 0x01, 0x20, 0x40, 0x42
     .byte 0x78, 0x61, 0x05, 0x4B, 0xF9, 0x18, 0x01, 0x20, 0x08, 0x60, 0x00, 0xF0, 0x09, 0xFD, 0x00, 0x00
     .byte 0x2C, 0x07, 0x00, 0x00, 0xAC, 0x06, 0x00, 0x00, 0xA4, 0x06, 0x00, 0x00, 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x01, 0xD1, 0x00, 0xF0, 0xF9, 0xFC, 0xD5, 0x24
     .byte 0xE4, 0x00, 0x38, 0x19, 0x00, 0x78, 0x00, 0x28, 0x06, 0xD0, 0x02, 0x49, 0x38, 0x1C, 0x43, 0xF0
     .byte 0x81, 0xF8, 0x05, 0xE0, 0xC0, 0xF7, 0x0F, 0x08, 0x07, 0x49, 0x38, 0x1C, 0x43, 0xF0, 0x7A, 0xF8
@@ -100218,7 +100218,7 @@ func_08086A08:
     .byte 0x29, 0x1C, 0x08, 0x31, 0xC9, 0x04, 0x09, 0x14, 0xEE, 0xF7, 0x2C, 0xFB, 0x03, 0x4D, 0x78, 0x19
     .byte 0x04, 0x60, 0x3C, 0x61, 0x00, 0xF0, 0xF1, 0xFB, 0xA3, 0x06, 0x00, 0x00, 0xA4, 0x06, 0x00, 0x00
     .byte 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x04, 0x1C, 0x01, 0x20, 0x04, 0x40, 0x00, 0x2C, 0x00, 0xD1
     .byte 0xD4, 0xE0, 0x1C, 0x4E, 0xB8, 0x19, 0x41, 0x69, 0x88, 0x46, 0x42, 0xF0, 0x55, 0xFF, 0x04, 0xAB
     .byte 0xA9, 0x22, 0x92, 0x00, 0xBC, 0x18, 0x38, 0x69, 0x80, 0x00, 0x04, 0x30, 0x20, 0x18, 0x00, 0x68
@@ -100247,7 +100247,7 @@ func_08086A08:
     .byte 0x06, 0xE0, 0x00, 0x00, 0xBC, 0xF8, 0x0F, 0x08, 0x07, 0x49, 0x38, 0x1C, 0x42, 0xF0, 0xEA, 0xFE
     .byte 0xD5, 0x22, 0xD2, 0x00, 0xB8, 0x18, 0x01, 0x21, 0x01, 0x70, 0xD2, 0x23, 0x9B, 0x00, 0xF8, 0x18
     .byte 0xB4, 0x21, 0xC9, 0xF7, 0xF5, 0xFA, 0x4B, 0xE3, 0x00, 0xF9, 0x0F, 0x08, 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x0C, 0xD0, 0x04, 0x4D, 0x78, 0x19, 0x42, 0xF0
     .byte 0x7B, 0xFE, 0x03, 0x4E, 0xB8, 0x19, 0x04, 0x60, 0xFF, 0xE2, 0x00, 0x00, 0x84, 0x06, 0x00, 0x00
     .byte 0xA4, 0x06, 0x00, 0x00, 0x04, 0x48, 0x39, 0x18, 0x08, 0x7A, 0x00, 0x28, 0x00, 0xD1, 0x2F, 0xE3
@@ -100305,7 +100305,7 @@ func_08086A08:
     .byte 0x01, 0x20, 0x08, 0x60, 0x03, 0x98, 0x0C, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x03, 0x99, 0x12, 0x69, 0x4B, 0xF0
     .byte 0xA7, 0xFB, 0x06, 0x4D, 0x79, 0x19, 0x0C, 0x20, 0x08, 0x60, 0x05, 0x4E, 0xB8, 0x19, 0x04, 0x60
     .byte 0x7E, 0xE1, 0x00, 0x00, 0xD8, 0x43, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0xA4, 0x06, 0x00, 0x00
@@ -100356,7 +100356,7 @@ func_08086A08:
     .byte 0x01, 0x26, 0x28, 0x96, 0x07, 0x49, 0x10, 0x1C, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x03, 0x99, 0x12, 0x69, 0x4B, 0xF0
     .byte 0x37, 0xFA, 0x15, 0xE0, 0x89, 0x08, 0x00, 0x00, 0x03, 0x9B, 0x19, 0x68, 0x48, 0x42, 0x08, 0x43
     .byte 0x00, 0x28, 0x0D, 0xDB, 0x05, 0x49, 0x78, 0x18, 0x04, 0x68, 0x98, 0x68, 0xC2, 0x68, 0x18, 0x1C
@@ -102692,10 +102692,10 @@ func_0808A09C:
     bl __builtin_new
     adds r6, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x228]
     str r0, [sp]
@@ -102735,10 +102735,10 @@ func_0808A09C:
     bl __builtin_new
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x1cc]
     str r0, [sp]
@@ -102875,7 +102875,7 @@ func_0808A09C:
     adds r0, r7, #0
     bl func_080885AC
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0x10
     movs r2, #0x3f
     strh r2, [r1]
@@ -102885,7 +102885,7 @@ func_0808A09C:
     bl __builtin_new
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     movs r0, #0
     str r0, [r4]
@@ -102903,7 +102903,7 @@ func_0808A09C:
     movs r3, #1
     bl func_0800934C
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #0x14]
     ldr r2, [r2, #0x10]
@@ -102914,7 +102914,7 @@ func_0808A09C:
     adds r0, r7, #0
     bl UpdateHardwareFrame
     adds r0, r7, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     adds r0, r7, #0
     bl Update__26GameSceneMenuSelectionCore
     ldr r3, [sp, #0x14]
@@ -102946,28 +102946,28 @@ func_0808A09C:
     .word __vt_19HardwareBlendObject
     .byte 0x89, 0x08, 0x00, 0x00, 0x20, 0xA3, 0x08, 0x08, 0x34, 0xA3, 0x08, 0x08, 0x92, 0xA5
     .byte 0x08, 0x08, 0xC8, 0xA5, 0x08, 0x08, 0x06, 0xA6, 0x08, 0x08, 0x3A, 0xA6, 0x08, 0x08, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x40, 0x21, 0x08, 0x40, 0x00, 0x28, 0x0C, 0xD0, 0x30, 0x68, 0x40, 0x68
     .byte 0x09, 0x28, 0x04, 0xDD, 0x0D, 0x28, 0x02, 0xDC, 0x38, 0x1C, 0xFD, 0xF7, 0xBE, 0xFE, 0x30, 0x68
     bl MoveUp__23GameSceneMenuCursorData
     .byte 0x3E, 0xE0, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x80, 0x21, 0x08, 0x40
     .byte 0x00, 0x28, 0x0A, 0xD0, 0x30, 0x68, 0x40, 0x68, 0x0D, 0x28, 0x02, 0xDD, 0x38, 0x1C, 0xFD, 0xF7
     .byte 0x9E, 0xFE, 0x30, 0x68
     bl MoveDown__23GameSceneMenuCursorData
     .byte 0x2C, 0xE0, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x10, 0x21, 0x08, 0x40, 0x00, 0x28, 0x03, 0xD0, 0x30, 0x68, 0x43, 0xF0, 0xA6, 0xF8, 0x21, 0xE0
     .byte 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x20, 0x21, 0x08, 0x40, 0x00, 0x28, 0x03, 0xD0, 0x30, 0x68
     bl MoveLeft__23GameSceneMenuCursorData
     .byte 0x16, 0xE0, 0x00, 0x24, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A
     .byte 0x01, 0x21, 0x01, 0x40, 0x00, 0x29, 0x07, 0xD1, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A
     .byte 0x02, 0x21, 0x01, 0x40, 0x00, 0x29, 0x00, 0xD0, 0x01, 0x24, 0x00, 0x2C, 0x08, 0xD0, 0x30, 0x68
     bl SwitchPanel__23GameSceneMenuCursorData
@@ -102975,7 +102975,7 @@ func_0808A09C:
     bl func_08008B6C
     .byte 0xCC, 0xE0
     .byte 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1, 0x8B, 0xE0
     .byte 0x4A, 0x46, 0x13, 0x68, 0x18, 0x1C, 0x84, 0x30, 0x00, 0x78, 0x00, 0x28, 0x10, 0xD1, 0x30, 0x68
     .byte 0x41, 0x68, 0x08, 0x29, 0x04, 0xDC, 0x18, 0x1C, 0x00, 0x22
@@ -103009,7 +103009,7 @@ func_0808A09C:
     .byte 0xC7, 0x21
     bl func_08008B6C
     .byte 0x38, 0xE0, 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21
     .byte 0x08, 0x40, 0x00, 0x28, 0x25, 0xD0, 0x4A, 0x46, 0x11, 0x68, 0x08, 0x1C, 0x84, 0x30, 0x00, 0x78
     .byte 0x00, 0x28, 0x03, 0xD0, 0x08, 0x1C
@@ -103019,10 +103019,10 @@ func_0808A09C:
     .byte 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x05, 0x99, 0x12, 0x69, 0x48, 0xF0, 0xB6, 0xFD, 0x0E, 0xE0, 0x00, 0x00, 0x89, 0x08
     .byte 0x00, 0x00, 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x08, 0x21, 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0
     .byte 0x30, 0x68, 0x41, 0x68, 0x38, 0x1C, 0xFF, 0xF7, 0x5A, 0xFC, 0x30, 0x68, 0x41, 0x68, 0x8D, 0x42
     .byte 0x00, 0xD1, 0x9D, 0xE6, 0x38, 0x1C, 0xFD, 0xF7, 0xAE, 0xFD, 0x99, 0xE6, 0x38, 0x1C, 0x88, 0x30
@@ -105353,10 +105353,10 @@ func_0808BC14:
     bl __builtin_new
     adds r6, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x1f0]
     str r0, [sp]
@@ -105396,10 +105396,10 @@ func_0808BC14:
     bl __builtin_new
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x194]
     str r0, [sp]
@@ -105510,7 +105510,7 @@ func_0808BC14:
     adds r0, r7, #0
     bl loc_0808BACC
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #8
     movs r2, #0x3f
     strh r2, [r1]
@@ -105520,7 +105520,7 @@ func_0808BC14:
     bl __builtin_new
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     movs r0, #0
     str r0, [r4]
@@ -105538,7 +105538,7 @@ func_0808BC14:
     movs r3, #1
     bl func_0800934C
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #0xc]
     ldr r2, [r2, #0x10]
@@ -105552,7 +105552,7 @@ func_0808BC14:
     adds r0, r7, #0
     bl UpdateHardwareFrame
     adds r0, r7, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     adds r0, r7, #0
     bl Update__26GameSceneMenuSelectionCore
     ldr r3, [sp, #0xc]
@@ -105599,7 +105599,7 @@ func_0808BC14:
     .thumb_func
     loc_0808BE4C:
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs r1, #0x40
     ands r0, r1
     cmp r0, #0
@@ -105609,7 +105609,7 @@ func_0808BC14:
     b .Lauto_0808BED4
     .Lauto_0808BE62:
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs r1, #0x80
     ands r0, r1
     cmp r0, #0
@@ -105619,7 +105619,7 @@ func_0808BC14:
     b .Lauto_0808BED4
     .Lauto_0808BE78:
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs r1, #0x10
     ands r0, r1
     cmp r0, #0
@@ -105629,7 +105629,7 @@ func_0808BC14:
     b .Lauto_0808BED4
     .Lauto_0808BE8E:
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs r1, #0x20
     ands r0, r1
     cmp r0, #0
@@ -105640,14 +105640,14 @@ func_0808BC14:
     .Lauto_0808BEA4:
     movs r4, #0
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     lsrs r0, r0, #8
     movs r1, #1
     ands r1, r0
     cmp r1, #0
     bne .Lauto_0808BEC6
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     lsrs r0, r0, #8
     movs r1, #2
     ands r1, r0
@@ -105669,7 +105669,7 @@ func_0808BC14:
     b .Lauto_0808C02E
     .Lauto_0808BEE0:
     adds r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #1
     ands r0, r1
     cmp r0, #0
@@ -105771,7 +105771,7 @@ func_0808BC14:
     b .Lauto_0808C02E
     .Lauto_0808BFBA:
     adds r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #2
     ands r0, r1
     cmp r0, #0
@@ -105802,7 +105802,7 @@ func_0808BC14:
     movs r3, #1
     bl func_08009378
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #0xc]
     ldr r2, [r2, #0x10]
@@ -105811,7 +105811,7 @@ func_0808BC14:
     .byte 0x00, 0x00, 0x89, 0x08, 0x00, 0x00
     .Lauto_0808C014:
     adds r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #8
     ands r0, r1
     cmp r0, #0
@@ -106955,10 +106955,10 @@ func_0808E23C:
     bl __builtin_new
     adds r6, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x228]
     str r0, [sp]
@@ -106998,10 +106998,10 @@ func_0808E23C:
     bl __builtin_new
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x1cc]
     str r0, [sp]
@@ -107138,7 +107138,7 @@ func_0808E23C:
     adds r0, r7, #0
     bl func_0808C8F4
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0x10
     movs r2, #0x3f
     strh r2, [r1]
@@ -107148,7 +107148,7 @@ func_0808E23C:
     bl __builtin_new
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     movs r0, #0
     str r0, [r4]
@@ -107166,7 +107166,7 @@ func_0808E23C:
     movs r3, #1
     bl func_0800934C
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #0x14]
     ldr r2, [r2, #0x10]
@@ -107177,7 +107177,7 @@ func_0808E23C:
     adds r0, r7, #0
     bl UpdateHardwareFrame
     adds r0, r7, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     adds r0, r7, #0
     bl Update__26GameSceneMenuSelectionCore
     ldr r3, [sp, #0x14]
@@ -107212,36 +107212,36 @@ func_0808E23C:
     .byte 0x89, 0x08, 0x00, 0x00, 0xC0, 0xE4, 0x08, 0x08
     .byte 0xD4, 0xE4, 0x08, 0x08, 0x32, 0xE7, 0x08, 0x08, 0x68, 0xE7, 0x08, 0x08, 0xA6, 0xE7, 0x08, 0x08
     .byte 0xDA, 0xE7, 0x08, 0x08, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x40, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x0C, 0xD0, 0x30, 0x68, 0x40, 0x68, 0x09, 0x28, 0x04, 0xDD, 0x0D, 0x28, 0x02, 0xDC, 0x38, 0x1C
     .byte 0xFD, 0xF7, 0x92, 0xFF, 0x30, 0x68
     bl MoveUp__23GameSceneMenuCursorData
     .byte 0x3E, 0xE0, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x80, 0x21, 0x08, 0x40, 0x00, 0x28, 0x0A, 0xD0, 0x30, 0x68, 0x40, 0x68, 0x0D, 0x28
     .byte 0x02, 0xDD, 0x38, 0x1C, 0xFD, 0xF7, 0x72, 0xFF, 0x30, 0x68
     bl MoveDown__23GameSceneMenuCursorData
     .byte 0x2C, 0xE0
     .byte 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x10, 0x21, 0x08, 0x40, 0x00, 0x28, 0x03, 0xD0, 0x30, 0x68
     .byte 0x3E, 0xF0, 0xD6, 0xFF, 0x21, 0xE0, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x20, 0x21, 0x08, 0x40
     .byte 0x00, 0x28, 0x03, 0xD0, 0x30, 0x68
     bl MoveLeft__23GameSceneMenuCursorData
     .byte 0x16, 0xE0, 0x00, 0x24, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A, 0x01, 0x21, 0x01, 0x40, 0x00, 0x29, 0x07, 0xD1, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A, 0x02, 0x21, 0x01, 0x40, 0x00, 0x29, 0x00, 0xD0, 0x01, 0x24
     .byte 0x00, 0x2C, 0x08, 0xD0, 0x30, 0x68
     bl SwitchPanel__23GameSceneMenuCursorData
     .byte 0x38, 0x1C, 0x0C, 0x30, 0xCB, 0x21
     bl func_08008B6C
     .byte 0xCC, 0xE0, 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40
     .byte 0x00, 0x28, 0x00, 0xD1, 0x8B, 0xE0, 0x4A, 0x46, 0x13, 0x68, 0x18, 0x1C, 0x84, 0x30, 0x00, 0x78
     .byte 0x00, 0x28, 0x10, 0xD1, 0x30, 0x68, 0x41, 0x68, 0x08, 0x29, 0x04, 0xDC, 0x18, 0x1C, 0x00, 0x22
@@ -107271,7 +107271,7 @@ func_0808E23C:
     .byte 0x3E, 0xD0, 0x38, 0x1C, 0x0C, 0x30, 0xC7, 0x21
     bl func_08008B6C
     .byte 0x38, 0xE0, 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x25, 0xD0, 0x4A, 0x46, 0x11, 0x68
     .byte 0x08, 0x1C, 0x84, 0x30, 0x00, 0x78, 0x00, 0x28, 0x03, 0xD0, 0x08, 0x1C
     bl Hide__23GameSceneMenuSpriteData
@@ -107279,10 +107279,10 @@ func_0808E23C:
     .byte 0x80, 0x46, 0x08, 0x49, 0x10, 0x1C, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x05, 0x99, 0x12, 0x69, 0x44, 0xF0, 0xE6, 0xFC
     .byte 0x0E, 0xE0, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x08, 0x21
     .byte 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x30, 0x68, 0x41, 0x68, 0x38, 0x1C, 0xFF, 0xF7, 0x32, 0xFC
     .byte 0x30, 0x68, 0x41, 0x68, 0x8D, 0x42, 0x00, 0xD1, 0x9D, 0xE6, 0x38, 0x1C, 0xFD, 0xF7, 0x82, 0xFE
@@ -110406,10 +110406,10 @@ func_08090960:
     bl __builtin_new
     adds	r6, r0, #0
     adds	r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds	r5, r0, #0
     adds	r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds	r2, r0, #0
     ldr	r0, .Ljp_08090708
     str	r0, [sp, #0]
@@ -110449,10 +110449,10 @@ func_08090960:
     bl __builtin_new
     adds	r5, r0, #0
     adds	r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds	r4, r0, #0
     adds	r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds	r2, r0, #0
     ldr	r0, .Ljp_0809070C
     str	r0, [sp, #0]
@@ -110589,7 +110589,7 @@ func_08090960:
     adds	r0, r7, #0
     bl func_0808EF68
     adds	r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add	r1, sp, #8
     movs	r2, #63
     strh	r2, [r1, #0]
@@ -110599,7 +110599,7 @@ func_08090960:
     bl __builtin_new
     adds	r4, r0, #0
     adds	r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds	r1, r0, #0
     movs	r0, #0
     str	r0, [r4, #0]
@@ -110617,7 +110617,7 @@ func_08090960:
     movs	r3, #1
     bl func_0800934C
     adds	r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr	r2, [r0, #8]
     ldr	r1, [sp, #12]
     ldr	r2, [r2, #16]
@@ -110628,7 +110628,7 @@ func_08090960:
     adds	r0, r7, #0
     bl UpdateHardwareFrame
     adds	r0, r7, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     adds	r0, r7, #0
     bl Update__26GameSceneMenuSelectionCore
     ldr	r3, [sp, #12]
@@ -110668,7 +110668,7 @@ func_08090960:
     .4byte 0x00000889
 .Ljp_0809071C:
     adds	r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs	r1, #64
     ands	r0, r1
     cmp	r0, #0
@@ -110687,7 +110687,7 @@ func_08090960:
     b.n .Ljp_080907C2
 .Ljp_08090744:
     adds	r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs	r1, #128
     ands	r0, r1
     cmp	r0, #0
@@ -110704,7 +110704,7 @@ func_08090960:
     b.n .Ljp_080907C2
 .Ljp_08090768:
     adds	r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs	r1, #16
     ands	r0, r1
     cmp	r0, #0
@@ -110714,7 +110714,7 @@ func_08090960:
     b.n .Ljp_080907C2
 .Ljp_0809077E:
     adds	r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs	r1, #32
     ands	r0, r1
     cmp	r0, #0
@@ -110725,14 +110725,14 @@ func_08090960:
 .Ljp_08090794:
     movs	r4, #0
     adds	r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     lsrs	r0, r0, #8
     movs	r1, #1
     ands	r1, r0
     cmp	r1, #0
     bne.n .Ljp_080907B6
     adds	r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     lsrs	r0, r0, #8
     movs	r1, #2
     ands	r1, r0
@@ -110753,7 +110753,7 @@ func_08090960:
     b.n .Ljp_0809094C
 .Ljp_080907CE:
     adds	r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs	r1, #1
     ands	r0, r1
     cmp	r0, #0
@@ -110874,7 +110874,7 @@ func_08090960:
     b.n .Ljp_0809094C
 .Ljp_080908DA:
     adds	r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs	r1, #2
     ands	r0, r1
     cmp	r0, #0
@@ -110905,7 +110905,7 @@ func_08090960:
     movs	r3, #1
     bl func_08009378
     adds	r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr	r2, [r0, #8]
     ldr	r1, [sp, #12]
     ldr	r2, [r2, #16]
@@ -110917,7 +110917,7 @@ func_08090960:
     .4byte 0x00000889
 .Ljp_08090934:
     adds	r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs	r1, #8
     ands	r0, r1
     cmp	r0, #0
@@ -111665,10 +111665,10 @@ func_0809106C:
     bl __builtin_new
     adds r6, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x270]
     str r0, [sp]
@@ -111708,10 +111708,10 @@ func_0809106C:
     bl __builtin_new
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x214]
     str r0, [sp]
@@ -111858,7 +111858,7 @@ func_0809106C:
     adds r0, r7, #0
     bl loc_08090DC0
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #0x10
     movs r2, #0x3f
     strh r2, [r1]
@@ -111868,7 +111868,7 @@ func_0809106C:
     bl __builtin_new
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     movs r0, #0
     str r0, [r4]
@@ -111886,7 +111886,7 @@ func_0809106C:
     movs r3, #1
     bl func_0800934C
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #0x14]
     ldr r2, [r2, #0x10]
@@ -111911,7 +111911,7 @@ func_0809106C:
     adds r0, r7, #0
     bl UpdateHardwareFrame
     adds r0, r7, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     adds r0, r7, #0
     bl Update__26GameSceneMenuSelectionCore
     ldr r0, [sp, #0x14]
@@ -111987,37 +111987,37 @@ func_0809106C:
     .byte 0x64, 0x1E, 0x09, 0x08, 0x50, 0x1F, 0x09, 0x08, 0x80, 0x1F, 0x09, 0x08, 0xE0, 0x1F, 0x09, 0x08
     .Lauto_08091394:
     .byte 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x40, 0x21, 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x18, 0x9A
     .byte 0x10, 0x68
     bl MoveUp__23GameSceneMenuCursorData
     .byte 0x3B, 0xE0, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x80, 0x21
     .byte 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x18, 0x99, 0x08, 0x68
     bl MoveDown__23GameSceneMenuCursorData
     .byte 0x2F, 0xE0
     .byte 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x10, 0x21, 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x18, 0x9A
     .byte 0x10, 0x68, 0x3C, 0xF0, 0x83, 0xF8, 0x23, 0xE0, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x20, 0x21
     .byte 0x08, 0x40, 0x00, 0x28, 0x04, 0xD0, 0x18, 0x99, 0x08, 0x68
     bl MoveLeft__23GameSceneMenuCursorData
     .byte 0x17, 0xE0
     .byte 0x00, 0x24, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A, 0x01, 0x21, 0x01, 0x40, 0x00, 0x29
     .byte 0x07, 0xD1, 0x38, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A, 0x02, 0x21, 0x01, 0x40, 0x00, 0x29
     .byte 0x00, 0xD0, 0x01, 0x24, 0x00, 0x2C, 0x09, 0xD0, 0x18, 0x9A, 0x10, 0x68
     bl SwitchPanel__23GameSceneMenuCursorData
     .byte 0x38, 0x1C, 0x0C, 0x30, 0xCB, 0x21
     bl func_08008B6C
     .byte 0xFB, 0xE2, 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1, 0xC3, 0xE2, 0x19, 0x98, 0x01, 0x68
     .byte 0x08, 0x1C, 0x84, 0x30, 0x00, 0x78, 0x00, 0x28, 0x00, 0xD0, 0xA7, 0xE1, 0x18, 0x99, 0x08, 0x68
     .byte 0x41, 0x68, 0x08, 0x29, 0x3A, 0xDD, 0x01, 0x25, 0x09, 0x29, 0x0B, 0xD1, 0x80, 0x22, 0x52, 0x00
@@ -112170,7 +112170,7 @@ func_0809106C:
     .byte 0x31, 0xE0, 0x00, 0x00
     .4byte gText_BlacksmithUpgrade_InvalidUpgradeOre
     .byte 0x38, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x28, 0xD0, 0x86, 0x21
     .byte 0x49, 0x00, 0x78, 0x18, 0x01, 0x68, 0x08, 0x1C, 0x84, 0x30, 0x00, 0x78, 0x00, 0x28, 0x03, 0xD0
     .byte 0x08, 0x1C
@@ -112277,7 +112277,7 @@ func_0809106C:
     .byte 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x05, 0x99, 0x12, 0x69, 0x41, 0xF0, 0xDF, 0xF8, 0x84, 0x22, 0x52, 0x00, 0xB9, 0x18
     .byte 0x06, 0x20, 0x08, 0x60, 0xFF, 0xF7, 0xD7, 0xF9, 0x89, 0x08, 0x00, 0x00, 0x0A, 0x49, 0x20, 0x1C
     .byte 0xBE, 0xF7, 0xF8, 0xFD, 0x20, 0x1C, 0xA8, 0x21, 0xBE, 0xF7, 0x56, 0xFE, 0x86, 0x21, 0x49, 0x00
@@ -112315,7 +112315,7 @@ func_0809106C:
     .byte 0x66, 0xF9, 0x01, 0x20, 0x17, 0x90, 0x08, 0x49, 0x10, 0x1C, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x05, 0x99, 0x12, 0x69
     .byte 0x41, 0xF0, 0x56, 0xF8, 0xFF, 0xF7, 0x53, 0xF9, 0x89, 0x08, 0x00, 0x00
     .Lauto_08092028:
@@ -113106,10 +113106,10 @@ func_08092D64:
     bl __builtin_new
     adds r6, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x1f8]
     str r0, [sp]
@@ -113149,10 +113149,10 @@ func_08092D64:
     bl __builtin_new
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x19c]
     str r0, [sp]
@@ -113263,7 +113263,7 @@ func_08092D64:
     adds r0, r7, #0
     bl loc_0809240C
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r1, sp, #8
     movs r2, #0x3f
     strh r2, [r1]
@@ -113273,7 +113273,7 @@ func_08092D64:
     bl __builtin_new
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r1, r0, #0
     movs r0, #0
     str r0, [r4]
@@ -113291,7 +113291,7 @@ func_08092D64:
     movs r3, #1
     bl func_0800934C
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #0xc]
     ldr r2, [r2, #0x10]
@@ -113303,7 +113303,7 @@ func_08092D64:
     adds r0, r7, #0
     bl UpdateHardwareFrame
     adds r0, r7, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     adds r0, r7, #0
     bl Update__26GameSceneMenuSelectionCore
     ldr r3, [sp, #0xc]
@@ -113347,7 +113347,7 @@ func_08092D64:
     b .Lauto_08092A22
     .Lauto_08092A88:
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs r1, #0x40
     ands r0, r1
     cmp r0, #0
@@ -113357,7 +113357,7 @@ func_08092D64:
     b .Lauto_08092B10
     .Lauto_08092A9E:
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs r1, #0x80
     ands r0, r1
     cmp r0, #0
@@ -113367,7 +113367,7 @@ func_08092D64:
     b .Lauto_08092B10
     .Lauto_08092AB4:
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs r1, #0x10
     ands r0, r1
     cmp r0, #0
@@ -113377,7 +113377,7 @@ func_08092D64:
     b .Lauto_08092B10
     .Lauto_08092ACA:
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     movs r1, #0x20
     ands r0, r1
     cmp r0, #0
@@ -113388,14 +113388,14 @@ func_08092D64:
     .Lauto_08092AE0:
     movs r4, #0
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     lsrs r0, r0, #8
     movs r1, #1
     ands r1, r0
     cmp r1, #0
     bne .Lauto_08092B02
     adds r0, r7, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     lsrs r0, r0, #8
     movs r1, #2
     ands r1, r0
@@ -113417,7 +113417,7 @@ func_08092D64:
     b .Lauto_08092B6C
     .Lauto_08092B1C:
     adds r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #1
     ands r0, r1
     cmp r0, #0
@@ -113430,7 +113430,7 @@ func_08092D64:
     b .Lauto_08092B6C
     .Lauto_08092B38:
     adds r0, r7, #0
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #2
     ands r0, r1
     cmp r0, #0
@@ -113544,7 +113544,7 @@ func_08092D64:
     movs r3, #1
     bl func_08009378
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     ldr r2, [r0, #8]
     ldr r1, [sp, #0xc]
     ldr r2, [r2, #0x10]
@@ -113785,7 +113785,7 @@ func_08092E30:
     adds r7, r0, #0
     bl func_08008724
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0x10
     movs r3, #0xea
     lsls r3, r3, #5
@@ -113793,14 +113793,14 @@ func_08092E30:
     strh r1, [r2]
     strh r1, [r0, #8]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0x10
     ldr r3, [pc, #0x1c8]
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xa]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     add r2, sp, #0x10
     ldr r3, [pc, #0x1bc]
     adds r1, r3, #0
@@ -113825,7 +113825,7 @@ func_08092E30:
     .byte 0x80, 0x22, 0x12, 0x02, 0x00, 0x20
     bl FillHardwareDma3
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x04, 0xA9, 0xB2, 0x23, 0x5B, 0x01, 0x1A, 0x1C, 0x0A, 0x80, 0x00, 0x21, 0x89, 0x46, 0x02, 0x80
     .byte 0x60, 0x48, 0x00, 0x68, 0xC0, 0x21, 0xC9, 0x04, 0x5F, 0x4A, 0x12, 0x68
     bl CopyHardwareDma3
@@ -113845,12 +113845,12 @@ func_08092E30:
     .byte 0x80, 0x21
     bl SetInterruptNestingMask
     .byte 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x04, 0xA9, 0x3F, 0x22
     .byte 0x0A, 0x80, 0x50, 0x30, 0x02, 0x80, 0x10, 0x20
     bl __builtin_new
     .byte 0x04, 0x1C, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x01, 0x1C, 0x4A, 0x46, 0x22, 0x60, 0x62, 0x60, 0x40, 0x48, 0xA0, 0x60
     .byte 0x25, 0x1C, 0x0C, 0x35, 0x28, 0x1C
     bl func_08009300
@@ -113858,26 +113858,26 @@ func_08092E30:
     .byte 0x01, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68
     .byte 0x05, 0x99, 0x12, 0x69, 0x40, 0xF0, 0xA6, 0xF8, 0x00, 0x23, 0x14, 0x93, 0x38, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x08092F86
     .byte 0x38, 0x1C
-    bl func_080088B8
+    bl UpdateHardwareInput
     .byte 0xB8, 0x68, 0x08, 0x21, 0xC9, 0x19, 0x8A, 0x46
     .byte 0xC1, 0x68, 0x50, 0x46, 0x40, 0xF0, 0x94, 0xF8, 0xE8, 0x22, 0x52, 0x00, 0xD2, 0x19, 0x90, 0x46
     .byte 0x40, 0x46
     bl GetState__C12UiStateOwner
     .byte 0xEC, 0x23, 0x5B, 0x00, 0xF9, 0x18, 0x08, 0x60, 0x38, 0x1C
-    bl func_080088DC
+    bl GetHardwareCoreState
     .byte 0x81, 0x46, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x06, 0x1C, 0x38, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x05, 0x1C, 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x04, 0x1C, 0x38, 0x1C
-    bl func_0800894C
+    bl GetHardwareInterruptList
     .byte 0xEA, 0x22, 0x52, 0x00, 0xB9, 0x18, 0x00, 0x94, 0x01, 0x90, 0x02, 0x91
     .byte 0x40, 0x46, 0x49, 0x46, 0x32, 0x1C, 0x2B, 0x1C
     bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
@@ -113977,7 +113977,7 @@ func_08092E30:
     .byte 0x01, 0x20, 0x14, 0x90, 0x05, 0x98, 0x1C, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x05, 0x99, 0x12, 0x69, 0x3F, 0xF0
     .byte 0x01, 0xFE, 0x08, 0x21, 0xFA, 0x22, 0x92, 0x00, 0xB8, 0x18, 0x01, 0x60, 0xFB, 0x23, 0x9B, 0x00
     .byte 0xF8, 0x18, 0x14, 0xA9, 0x09, 0x78, 0x01, 0x70, 0xB8, 0x68, 0x01, 0x69, 0x16, 0x98, 0x3F, 0xF0
@@ -114227,7 +114227,7 @@ func_0809369C:
     .thumb_func
 func_080936C0:
     push {lr}
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #2
     ands r0, r1
     cmp r0, #0
@@ -114411,7 +114411,7 @@ func_080937E8:
     .thumb_func
 func_08093810:
     push {lr}
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     movs r1, #2
     ands r0, r1
     cmp r0, #0
@@ -114450,7 +114450,7 @@ func_08093828:
     .thumb_func
 func_08093850:
     push {lr}
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     pop {r1}
     bx r1
     .align 2, 0
@@ -114459,7 +114459,7 @@ func_08093850:
     .thumb_func
 func_0809385C:
     push {lr}
-    bl func_080088C4
+    bl GetHardwareHeldKeys
     pop {r1}
     bx r1
     .align 2, 0
@@ -117215,23 +117215,23 @@ func_08094A40:
     .byte 0x20, 0x1C
     bl AllocateHardwarePoolHandle
     .byte 0x60, 0x60, 0x30, 0x1C, 0x02, 0xF0, 0xFA, 0xFE, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x3F, 0x22, 0x0A, 0x80, 0x50, 0x30, 0x02, 0x80, 0x10, 0x20
     bl __builtin_new
     .byte 0x04, 0x1C, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x01, 0x1C, 0x4B, 0x46
     .byte 0x23, 0x60, 0x63, 0x60, 0x15, 0x48, 0xA0, 0x60, 0x25, 0x1C, 0x0C, 0x35, 0x28, 0x1C
     bl func_08009300
     .byte 0x01, 0x94, 0x12, 0x49, 0x28, 0x1C, 0x01, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x3E, 0xF0, 0xD3, 0xF9
     .byte 0x30, 0x1C, 0x00, 0xF0, 0x94, 0xF9, 0x00, 0x24, 0xA2, 0x46, 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x08094D32
     .byte 0x30, 0x1C
-    bl func_080088B8
+    bl UpdateHardwareInput
     .byte 0x38, 0x1C, 0x04, 0x28, 0x00, 0xD9, 0x4B, 0xE1, 0x80, 0x00
     .byte 0x04, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x00, 0x00
     .word __vt_19HardwareBlendObject
@@ -117240,27 +117240,27 @@ func_08094A40:
     .byte 0x09, 0x08, 0xA6, 0x4F, 0x09, 0x08, 0xCC, 0x4F, 0x09, 0x08, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42
     .byte 0x08, 0x43, 0x00, 0x28, 0x00, 0xDA, 0x2E, 0xE1, 0x01, 0x27, 0x2C, 0xE1, 0x13, 0x49, 0x70, 0x18
     .byte 0x05, 0x78, 0xD9, 0x22, 0x92, 0x00, 0xB0, 0x18, 0x00, 0x78, 0x80, 0x46, 0x00, 0x24, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x10, 0x21, 0x08, 0x40, 0x00, 0x28, 0x07, 0xD1, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A, 0x01, 0x21, 0x01, 0x40, 0x00, 0x29, 0x00, 0xD0, 0x01, 0x24, 0x00, 0x2C
     .byte 0x11, 0xD0, 0x05, 0x4B, 0xF2, 0x18, 0x05, 0x4C, 0x30, 0x19, 0x11, 0x78, 0x00, 0x78, 0x81, 0x42
     .byte 0x07, 0xD2, 0x48, 0x1C, 0x10, 0x70, 0x01, 0x1C, 0x26, 0xE0, 0x66, 0x03, 0x00, 0x00, 0x67, 0x03
     .byte 0x00, 0x00, 0x00, 0x21, 0x20, 0xE0, 0x00, 0x24, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x20, 0x21
     .byte 0x08, 0x40, 0x00, 0x28, 0x07, 0xD1, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A, 0x02, 0x21
     .byte 0x01, 0x40, 0x00, 0x29, 0x00, 0xD0, 0x01, 0x24, 0x00, 0x2C, 0x16, 0xD0, 0x04, 0x4B, 0xF1, 0x18
     .byte 0x08, 0x78, 0x00, 0x28, 0x05, 0xD0, 0x01, 0x38, 0x08, 0x70, 0x01, 0x1C, 0x04, 0xE0, 0x66, 0x03
     .byte 0x00, 0x00, 0x03, 0x4C, 0x30, 0x19, 0x01, 0x78, 0x03, 0x4A, 0xB0, 0x18, 0x01, 0x70, 0x02, 0x27
     .byte 0x33, 0xE0, 0x67, 0x03, 0x00, 0x00, 0x66, 0x03, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x80, 0x21, 0x08, 0x40, 0x00, 0x28, 0x10, 0xD0, 0xD9, 0x23, 0x9B, 0x00, 0xF2, 0x18, 0x04, 0x4C
     .byte 0x30, 0x19, 0x11, 0x78, 0x00, 0x78, 0x81, 0x42, 0x05, 0xD2, 0x48, 0x1C, 0x10, 0x70, 0x01, 0x1C
     .byte 0x17, 0xE0, 0x65, 0x03, 0x00, 0x00, 0x00, 0x21, 0x13, 0xE0, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x40, 0x21, 0x08, 0x40, 0x00, 0x28, 0x10, 0xD0, 0xD9, 0x23, 0x9B, 0x00, 0xF1, 0x18, 0x08, 0x78
     .byte 0x00, 0x28, 0x03, 0xD0, 0x01, 0x38, 0x08, 0x70, 0x01, 0x1C, 0x02, 0xE0, 0x09, 0x4C, 0x30, 0x19
     .byte 0x01, 0x78, 0xD9, 0x22, 0x92, 0x00, 0xB0, 0x18, 0x01, 0x70, 0x06, 0x4B, 0xF0, 0x18, 0x00, 0x78
@@ -117271,10 +117271,10 @@ func_08094A40:
     .byte 0x00, 0x78, 0x80, 0x45, 0x04, 0xD0, 0x30, 0x1C, 0x94, 0x30, 0xCB, 0x21
     bl func_08008B6C
     .byte 0x00, 0x24, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40, 0x00, 0x28, 0x06, 0xD1
     .byte 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x08, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD0, 0x01, 0x24
     .byte 0x00, 0x2C, 0x47, 0xD0, 0x02, 0xAA, 0x00, 0x20, 0x10, 0x80, 0x51, 0x8A, 0x1C, 0x48, 0x08, 0x40
     .byte 0x50, 0x82, 0xD1, 0x7C, 0x11, 0x20, 0x40, 0x42, 0x08, 0x40, 0xD0, 0x74, 0x34, 0x1C, 0x94, 0x34
@@ -117289,7 +117289,7 @@ func_08094A40:
     .byte 0xFF, 0xFF, 0x14, 0x22, 0x00, 0x00, 0x66, 0x03, 0x00, 0x00, 0x20, 0x1C, 0xC7, 0x21
     bl func_08008B6C
     .byte 0x30, 0xE0, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x29, 0xD0, 0x30, 0x1C, 0x94, 0x30, 0xC6, 0x21
     bl func_08008B6C
@@ -117298,7 +117298,7 @@ func_08094A40:
     .byte 0x01, 0x98, 0x07, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x3E, 0xF0, 0x84, 0xF8, 0x04, 0x27
     .byte 0x09, 0xE0, 0x89, 0x08, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28
     .byte 0x01, 0xDB, 0x01, 0x21, 0x8A, 0x46, 0xD8, 0x22, 0x92, 0x00, 0xB1, 0x18, 0x10, 0x20, 0x08, 0x80
@@ -117338,7 +117338,7 @@ func_08094A40:
     .byte 0x12, 0xA8, 0x14, 0x22, 0x02, 0x80, 0x02, 0x26, 0x44, 0x46, 0x66, 0x80, 0x12, 0x98, 0xDD, 0x27
     .byte 0xBF, 0x00, 0xC9, 0x19, 0x00, 0x93, 0x00, 0x22, 0x01, 0x92, 0x01, 0x23, 0x02, 0x93, 0x00, 0x23
     .byte 0xB9, 0xF7, 0xD3, 0xFA, 0x16, 0x49, 0x51, 0x44, 0x08, 0x78, 0x01, 0x30, 0x08, 0x70, 0x50, 0x46
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x4C, 0x46, 0x62, 0x19, 0x91, 0x01, 0x49, 0x19, 0x89, 0x00, 0x51, 0x44
     .byte 0xDD, 0x26, 0xB6, 0x00, 0x89, 0x19, 0x05, 0x1C, 0x12, 0x02, 0x0D, 0x4F, 0xD2, 0x19, 0x08, 0xA8
     .byte 0xA0, 0x23, 0xDB, 0x00
@@ -117381,12 +117381,12 @@ func_08094A40:
     .byte 0x01, 0xC5, 0x01, 0x3C, 0x00, 0x2C, 0xF7, 0xDA, 0x00, 0x22, 0x08, 0x21, 0x26, 0x4B, 0xF0, 0x18
     .byte 0x02, 0x70, 0x01, 0x38, 0x01, 0x39, 0x00, 0x29, 0xFA, 0xDA, 0xCD, 0x24, 0xA4, 0x00, 0x31, 0x19
     .byte 0x30, 0x1C, 0x03, 0xF0, 0x4C, 0xF8, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x3F, 0x22
     .byte 0x0A, 0x80, 0x50, 0x30, 0x02, 0x80, 0x10, 0x20
     bl __builtin_new
     .byte 0x04, 0x1C, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x01, 0x1C, 0x00, 0x20, 0x20, 0x60, 0x60, 0x60, 0x17, 0x48, 0xA0, 0x60
     .byte 0x25, 0x1C, 0x0C, 0x35, 0x28, 0x1C
     bl func_08009300
@@ -117394,13 +117394,13 @@ func_08094A40:
     .byte 0x01, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68
     .byte 0x00, 0x99, 0x12, 0x69, 0x3D, 0xF0, 0x37, 0xFE, 0x0E, 0x48, 0x31, 0x18, 0x02, 0x20, 0x08, 0x70
     .byte 0x00, 0x21, 0x8A, 0x46, 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x0809546C
     .byte 0x30, 0x1C
-    bl func_080088B8
+    bl UpdateHardwareInput
     .byte 0x38, 0x1C, 0x0A, 0x28, 0x00, 0xD9, 0xB8, 0xE1, 0x80, 0x00, 0x06, 0x49, 0x40, 0x18, 0x00, 0x68
     .byte 0x87, 0x46, 0xB0, 0x2B, 0x00, 0x00, 0xAF, 0x2B, 0x00, 0x00
     .word __vt_19HardwareBlendObject
@@ -117422,7 +117422,7 @@ func_08094A40:
     .byte 0x02, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68
     .byte 0x00, 0x99, 0x12, 0x69, 0x3D, 0xF0, 0x9F, 0xFD, 0x03, 0x27, 0x2E, 0xE1, 0x00, 0x00, 0x89, 0x08
     .byte 0x00, 0x00, 0x00, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x00, 0xDA, 0x24, 0xE1
@@ -117431,7 +117431,7 @@ func_08094A40:
     .byte 0x78, 0x20, 0x81, 0x46, 0x04, 0x27
     .byte 0x1B, 0xE1, 0x49, 0x46, 0x08, 0x04, 0x25, 0x4A, 0x80, 0x18, 0x03, 0x0C, 0x99, 0x46, 0x00, 0x28
     .byte 0x00, 0xDB, 0x12, 0xE1, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x01, 0xAA, 0x82, 0x24, 0x64, 0x01
     .byte 0x21, 0x1C, 0x11, 0x80, 0x01, 0x80, 0x34, 0x1C, 0x7C, 0x34, 0x00, 0x25, 0xF1, 0x6F, 0x8D, 0x42
     .byte 0x0A, 0xD0, 0x00, 0x29, 0x08, 0xD0, 0x84, 0x22, 0x92, 0x00, 0x88, 0x18, 0x00, 0x68, 0x82, 0x68
@@ -117442,7 +117442,7 @@ func_08094A40:
     .byte 0x02, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68
     .byte 0x00, 0x99, 0x12, 0x69, 0x3D, 0xF0, 0x3F, 0xFD, 0x05, 0x27, 0xCE, 0xE0, 0x00, 0x00, 0x00, 0x00
     .byte 0xFF, 0xFF, 0x89, 0x08, 0x00, 0x00, 0x00, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28
@@ -117470,7 +117470,7 @@ func_08094A40:
     .byte 0x00, 0x98, 0x08, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x00, 0x99, 0x12, 0x69, 0x3D, 0xF0, 0x7C, 0xFC, 0x0A, 0x27, 0x0B, 0xE0, 0xD8, 0x05
     .byte 0x10, 0x08, 0x89, 0x08, 0x00, 0x00, 0x00, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28
     .byte 0x01, 0xDB, 0x01, 0x22, 0x92, 0x46, 0x03, 0x9B, 0x00, 0x2B, 0x0C, 0xD0, 0x19, 0x4C, 0x30, 0x19
@@ -117497,24 +117497,24 @@ func_08094A40:
     bl AllocateHardwarePoolHandle
     .byte 0x60, 0x60
     .byte 0xD2, 0x23, 0x9B, 0x00, 0xF1, 0x18, 0x30, 0x1C, 0x02, 0xF0, 0x7F, 0xFF, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x3F, 0x22, 0x0A, 0x80, 0x50, 0x30, 0x02, 0x80, 0x10, 0x20
     bl __builtin_new
     .byte 0x04, 0x1C, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x01, 0x1C, 0x02, 0x98, 0x20, 0x60
     .byte 0x60, 0x60, 0x1A, 0x48, 0xA0, 0x60, 0x25, 0x1C, 0x0C, 0x35, 0x28, 0x1C
     bl func_08009300
     .byte 0x01, 0x94, 0x17, 0x49, 0x28, 0x1C, 0x01, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x3D, 0xF0, 0xE4, 0xFB, 0x00, 0x21
     .byte 0x89, 0x46, 0x00, 0x22, 0x03, 0x92, 0x90, 0x46, 0x00, 0x23, 0x04, 0x93, 0x01, 0x24, 0x64, 0x42
     .byte 0x05, 0x94, 0x0C, 0x48, 0x31, 0x18, 0xC8, 0x20, 0x08, 0x80, 0x00, 0x21, 0x06, 0x91, 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x08095926
     .byte 0x30, 0x1C
-    bl func_080088B8
+    bl UpdateHardwareInput
     .byte 0x50, 0x46, 0x06, 0x28, 0x00, 0xD9
     .byte 0x0F, 0xE2, 0x80, 0x00, 0x05, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x00, 0x00
     .word __vt_19HardwareBlendObject
@@ -117523,16 +117523,16 @@ func_08094A40:
     .byte 0x09, 0x08, 0x20, 0x5D, 0x09, 0x08, 0x48, 0x5D, 0x09, 0x08, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42
     .byte 0x08, 0x43, 0x00, 0x28, 0x00, 0xDA, 0xEC, 0xE1, 0x01, 0x22, 0x92, 0x46, 0xE9, 0xE1, 0x4D, 0x46
     .byte 0x03, 0x9F, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x10, 0x21, 0x08, 0x40, 0x00, 0x28, 0x06, 0xD0
     .byte 0x02, 0x2D, 0x02, 0xDC, 0x48, 0x46, 0x01, 0x30, 0x0F, 0xE0, 0x00, 0x20, 0x0D, 0xE0, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x20, 0x21, 0x08, 0x40, 0x00, 0x28, 0x08, 0xD0, 0x4B, 0x46, 0x00, 0x2B
     .byte 0x02, 0xDD, 0x48, 0x46, 0x01, 0x38, 0x00, 0xE0, 0x03, 0x20, 0x81, 0x46, 0x15, 0xE0, 0x00, 0x24
     .byte 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x80, 0x21, 0x08, 0x40, 0x00, 0x28, 0x06, 0xD1, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x40, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD0, 0x01, 0x24, 0x00, 0x2C
     .byte 0x03, 0xD0, 0x01, 0x20, 0x03, 0x9C, 0x44, 0x40, 0x03, 0x94, 0x4D, 0x45, 0x02, 0xD1, 0x03, 0x98
     .byte 0x87, 0x42, 0x04, 0xD0, 0x30, 0x1C, 0x94, 0x30, 0xCB, 0x21
@@ -117550,7 +117550,7 @@ func_08094A40:
     .byte 0xBB, 0xF7, 0xD5, 0xF8, 0x20, 0x1C, 0x29, 0x1C, 0x00, 0x22, 0x00, 0x23, 0xBB, 0xF7, 0x67, 0xF8
     .byte 0x06, 0xE0, 0xFC, 0x08, 0x10, 0x08, 0x30, 0x1C, 0x80, 0x30, 0x12, 0x49, 0xBB, 0xF7, 0x41, 0xF8
     .byte 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40, 0x00, 0x28, 0x28, 0xD0, 0xCC, 0x22
     .byte 0x92, 0x00, 0xB0, 0x18, 0x00, 0x88, 0x38, 0x41, 0x01, 0x24, 0x20, 0x40, 0x00, 0x28, 0x50, 0xD0
     .byte 0x07, 0x2F, 0x18, 0xD0, 0x09, 0x48, 0x33, 0x18, 0x1A, 0x88, 0x11, 0x05, 0x09, 0x0D, 0x20, 0x1C
@@ -117558,7 +117558,7 @@ func_08094A40:
     .byte 0x18, 0x80, 0x35, 0xE0, 0x00, 0x00, 0xD8, 0x05, 0x10, 0x08, 0x5A, 0x03, 0x00, 0x00, 0xFF, 0x0F
     .byte 0x00, 0x00, 0x00, 0xF0, 0xFF, 0xFF, 0x01, 0x20, 0x04, 0x90, 0x02, 0x21, 0x8A, 0x46, 0x27, 0xE0
     .byte 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x41, 0xD0, 0x0B, 0x4A
     .byte 0xB4, 0x18, 0x23, 0x88, 0x0B, 0x4D, 0x28, 0x1C, 0x18, 0x40, 0x00, 0x28, 0x27, 0xD0, 0x07, 0x2F
     .byte 0x1F, 0xD0, 0x18, 0x05, 0x01, 0x0D, 0x01, 0x22, 0xBA, 0x40, 0x08, 0x1C, 0x10, 0x40, 0x00, 0x28
@@ -117575,25 +117575,25 @@ func_08094A40:
     .byte 0x02, 0x23, 0x02, 0x93, 0x05, 0x24, 0xA2, 0x46
     .byte 0x30, 0x1C, 0x80, 0x30, 0x02, 0x49, 0xBA, 0xF7, 0xCC, 0xFF, 0xEA, 0xE0, 0x00, 0x00, 0xD8, 0x05
     .byte 0x10, 0x08, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x08, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1
     .byte 0xDF, 0xE0, 0x30, 0x1C, 0x94, 0x30, 0xC5, 0x21
     bl func_08008B6C
     .byte 0x03, 0x20, 0x82, 0x46
     .byte 0xD7, 0xE0, 0x44, 0x46, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x80, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x06, 0xD0, 0x03, 0x2C, 0x02, 0xDC, 0x40, 0x46, 0x01, 0x30, 0x0F, 0xE0, 0x00, 0x20, 0x0D, 0xE0
     .byte 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x40, 0x21, 0x08, 0x40, 0x00, 0x28, 0x08, 0xD0, 0x41, 0x46
     .byte 0x00, 0x29, 0x02, 0xDD, 0x40, 0x46, 0x01, 0x38, 0x00, 0xE0, 0x04, 0x20, 0x80, 0x46, 0x1E, 0xE0
     .byte 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x10, 0x21, 0x08, 0x40, 0x00, 0x28, 0x08, 0xD0, 0x02, 0x22
     .byte 0x90, 0x44, 0x43, 0x46, 0x04, 0x2B, 0x12, 0xDD, 0x05, 0x20, 0x40, 0x42, 0x80, 0x44, 0x0E, 0xE0
     .byte 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x20, 0x21, 0x08, 0x40, 0x00, 0x28, 0x07, 0xD0, 0x02, 0x21
     .byte 0x49, 0x42, 0x88, 0x44, 0x42, 0x46, 0x00, 0x2A, 0x01, 0xDA, 0x05, 0x23, 0x98, 0x44, 0x44, 0x45
     .byte 0x04, 0xD0, 0x30, 0x1C, 0x94, 0x30, 0xCB, 0x21
@@ -117601,14 +117601,14 @@ func_08094A40:
     .byte 0xD8, 0x24, 0xA4, 0x00
     .byte 0x31, 0x19, 0x90, 0x20, 0x08, 0x80, 0x41, 0x46, 0x08, 0x01, 0x18, 0x30, 0x18, 0x4A, 0xB1, 0x18
     .byte 0x08, 0x80, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40, 0x00, 0x28, 0x15, 0xD0
     .byte 0x14, 0x4B, 0xF4, 0x18, 0x23, 0x88, 0x19, 0x05, 0x09, 0x0D, 0x42, 0x46, 0x07, 0x32, 0x01, 0x20
     .byte 0x90, 0x40, 0x41, 0x40, 0x10, 0x4A, 0x10, 0x1C, 0x01, 0x40, 0x0F, 0x48, 0x18, 0x40, 0x08, 0x43
     .byte 0x20, 0x80, 0x30, 0x1C, 0x94, 0x30, 0xC5, 0x21
     bl func_08008B6C
     .byte 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x63, 0xD0, 0x00, 0x23, 0x04, 0x93, 0x01, 0x24
     .byte 0xA2, 0x46, 0x30, 0x1C, 0x94, 0x30, 0xC6, 0x21
     bl func_08008B6C
@@ -117617,10 +117617,10 @@ func_08094A40:
     .byte 0x34, 0x1C, 0x80, 0x34, 0x20, 0x1C, 0x04, 0x21, 0xBA, 0xF7, 0xB1, 0xFF, 0x20, 0x1C, 0x29, 0x1C
     .byte 0x00, 0x22, 0x00, 0x23, 0xBA, 0xF7, 0x43, 0xFF, 0x04, 0x20, 0x82, 0x46, 0x41, 0xE0, 0x0C, 0x09
     .byte 0x10, 0x08, 0x00, 0x24, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x06, 0xD1, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD0
     .byte 0x01, 0x24, 0x00, 0x2C, 0x2D, 0xD0, 0x30, 0x1C, 0x94, 0x30, 0xC5, 0x21
     bl func_08008B6C
@@ -117629,7 +117629,7 @@ func_08094A40:
     .byte 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x3D, 0xF0, 0xC7, 0xF9, 0x06, 0x23, 0x9A, 0x46, 0x09, 0xE0
     .byte 0x89, 0x08, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x01, 0xDB
     .byte 0x01, 0x24, 0x06, 0x94, 0x04, 0x9C, 0x30, 0x1C, 0x21, 0x1C, 0x02, 0xF0, 0xBB, 0xFE, 0x1A, 0x49
@@ -117665,12 +117665,12 @@ func_08094A40:
     bl AllocateHardwarePoolHandle
     .byte 0x60, 0x60
     .byte 0x30, 0x1C, 0x03, 0xF0, 0x72, 0xF9, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x21, 0xA9, 0x3F, 0x22
     .byte 0x0A, 0x80, 0x50, 0x30, 0x02, 0x80, 0x10, 0x20
     bl __builtin_new
     .byte 0x04, 0x1C, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x01, 0x1C, 0x28, 0x98, 0x20, 0x60, 0x60, 0x60, 0x20, 0x48, 0xA0, 0x60
     .byte 0x20, 0x1C, 0x0C, 0x30
     bl func_08009300
@@ -117680,13 +117680,13 @@ func_08094A40:
     .byte 0x31, 0x19, 0xC8, 0x20, 0x08, 0x80, 0x28, 0x68, 0x14, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x29, 0x68, 0x12, 0x69
     .byte 0x3D, 0xF0, 0x09, 0xF9, 0x0E, 0x48, 0x31, 0x18, 0x02, 0x20, 0x08, 0x70, 0x00, 0x21, 0x2E, 0x91
     .byte 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x08095EC8
     .byte 0x30, 0x1C
-    bl func_080088B8
+    bl UpdateHardwareInput
     .byte 0x29, 0x98, 0x04, 0x28
     .byte 0x00, 0xD9, 0x7A, 0xE3, 0x80, 0x00, 0x06, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46
     .word __vt_19HardwareBlendObject
@@ -117695,23 +117695,23 @@ func_08094A40:
     .byte 0x09, 0x08, 0x98, 0x65, 0x09, 0x08, 0xC0, 0x65, 0x09, 0x08, 0x22, 0x98, 0x01, 0x68, 0x48, 0x42
     .byte 0x08, 0x43, 0x00, 0x28, 0x00, 0xDA, 0x58, 0xE3, 0x01, 0x22, 0x29, 0x92, 0x55, 0xE3, 0x00, 0x27
     .byte 0x0F, 0x4C, 0x35, 0x19, 0x00, 0x24, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A, 0x02, 0x21
     .byte 0x01, 0x40, 0x00, 0x29, 0x07, 0xD1, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x00, 0x0A, 0x01, 0x21
     .byte 0x01, 0x40, 0x00, 0x29, 0x00, 0xD0, 0x01, 0x24, 0x00, 0x2C, 0x0A, 0xD0, 0x00, 0x20, 0x2A, 0x99
     .byte 0x03, 0x29, 0x00, 0xDC, 0x04, 0x20, 0x2A, 0x90, 0x01, 0x22, 0x2B, 0x92, 0x5B, 0xE0, 0x90, 0x2B
     .byte 0x00, 0x00, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x10, 0x21, 0x08, 0x40, 0x00, 0x28, 0x09, 0xD0
     .byte 0x2A, 0x9C, 0x06, 0x2C, 0x02, 0xDC, 0x20, 0x1C, 0x01, 0x30, 0x00, 0xE0, 0x00, 0x20, 0x2A, 0x90
     .byte 0x2C, 0x90, 0x48, 0xE0, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x20, 0x21, 0x08, 0x40, 0x00, 0x28
     .byte 0x06, 0xD0, 0x2A, 0x98, 0x00, 0x28, 0x01, 0xDD, 0x01, 0x38, 0xF0, 0xE7, 0x07, 0x20, 0xEE, 0xE7
     .byte 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x80, 0x21, 0x08, 0x40, 0x00, 0x28, 0x3B, 0xD0, 0x2B, 0x99
     .byte 0x01, 0x31, 0x2B, 0x91, 0x02, 0x29, 0x1B, 0xDD, 0x00, 0x22, 0x2B, 0x92, 0x2A, 0x9C, 0x03, 0x2C
     .byte 0x29, 0xDD, 0x03, 0x48, 0x31, 0x18, 0x08, 0x78, 0x07, 0x28, 0x04, 0xD8, 0x01, 0x30, 0x08, 0x70
@@ -117722,7 +117722,7 @@ func_08094A40:
     .byte 0x01, 0xDC, 0x03, 0x31, 0x2A, 0x91, 0x30, 0x1C, 0x94, 0x30, 0xCB, 0x21
     bl func_08008B6C
     .byte 0x49, 0xE0, 0xA0, 0x2B, 0x00, 0x00, 0x30, 0x1C
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     .byte 0x40, 0x21, 0x08, 0x40
     .byte 0x00, 0x28, 0x40, 0xD0, 0x2B, 0x9C, 0x01, 0x3C, 0x2B, 0x94, 0x00, 0x2C, 0x2A, 0xDA, 0x02, 0x20
     .byte 0x2B, 0x90, 0x2A, 0x99, 0x03, 0x29, 0x31, 0xDD, 0x04, 0x4A, 0xB1, 0x18, 0x08, 0x78, 0x00, 0x28
@@ -117766,7 +117766,7 @@ func_08094A40:
     .byte 0x00, 0x2D, 0x0C, 0xD0, 0x34, 0x1C, 0x80, 0x34, 0x20, 0x1C, 0x04, 0x21, 0xBA, 0xF7, 0xD7, 0xFC
     .byte 0x20, 0x1C, 0x29, 0x1C, 0x00, 0x22, 0x00, 0x23, 0xBA, 0xF7, 0x69, 0xFC, 0x04, 0xE0, 0x30, 0x1C
     .byte 0x80, 0x30, 0x1A, 0x49, 0xBA, 0xF7, 0x45, 0xFC, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x01, 0x21
     .byte 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1, 0xCE, 0xE0, 0x2B, 0x99, 0x00, 0x29, 0x00, 0xD1, 0xC4, 0xE0
     .byte 0x01, 0x39, 0x89, 0x00, 0x03, 0x20, 0x2A, 0x9A, 0x10, 0x40, 0x0F, 0x18, 0x03, 0x2A, 0x00, 0xDC
@@ -117796,13 +117796,13 @@ func_08094A40:
     .byte 0x00, 0x00, 0xB0, 0x2B, 0x00, 0x00, 0xD8, 0x05, 0x10, 0x08, 0x30, 0x1C, 0x94, 0x30, 0xC7, 0x21
     bl func_08008B6C
     .byte 0xC9, 0xE0, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x02, 0x21, 0x08, 0x40
     .byte 0x00, 0x28, 0x10, 0xD0, 0x02, 0x20, 0x28, 0x90, 0x03, 0x21, 0x29, 0x91, 0x30, 0x1C, 0x80, 0x30
     .byte 0x04, 0x49, 0xBA, 0xF7, 0x5E, 0xFB, 0x30, 0x1C, 0x94, 0x30, 0xC6, 0x21
     bl func_08008B6C
     .byte 0xB3, 0xE0, 0xD8, 0x05, 0x10, 0x08, 0x30, 0x1C
-    bl func_080088CC
+    bl GetHardwarePressedKeys
     .byte 0x08, 0x21, 0x08, 0x40
     .byte 0x00, 0x28, 0x00, 0xD1, 0xA9, 0xE0, 0x00, 0x25, 0xD7, 0x22, 0x92, 0x00, 0xB0, 0x18, 0x05, 0x70
     .byte 0x94, 0x24, 0xA4, 0x19, 0xA1, 0x46, 0x10, 0x1C, 0x80, 0x19, 0x80, 0x46, 0x0E, 0x49, 0x74, 0x18
@@ -117828,7 +117828,7 @@ func_08094A40:
     .byte 0x00, 0x00, 0x22, 0x98, 0x08, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x22, 0x99, 0x12, 0x69, 0x3C, 0xF0, 0x8B, 0xFD, 0x04, 0x20, 0x29, 0x90, 0x09, 0xE0
     .byte 0x89, 0x08, 0x00, 0x00, 0x22, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x01, 0xDB
     .byte 0x01, 0x21, 0x2E, 0x91, 0x30, 0x1C, 0x02, 0xF0, 0xED, 0xFF, 0x30, 0x1C
@@ -117870,7 +117870,7 @@ func_08094A40:
     .byte 0x01, 0x21, 0x14, 0x80, 0x04, 0x80, 0x40, 0x30, 0x40, 0x32, 0x01, 0x39, 0x00, 0x29, 0xF8, 0xDA
     .byte 0x07, 0x2B, 0xE3, 0xDD, 0x00, 0x21, 0x17, 0x4F, 0xE8, 0x19, 0x42, 0x46, 0x02, 0x80, 0x42, 0x80
     .byte 0x40, 0x30, 0x01, 0x31, 0x01, 0x29, 0xF8, 0xDD, 0x28, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x0A, 0x90
     .byte 0x10, 0x4B, 0xE9, 0x18, 0x03, 0xA8, 0x10, 0x4A, 0xC0, 0x23, 0x9B, 0x00
     bl __21DmaTransferDescriptorPCvPvUi
@@ -118185,23 +118185,23 @@ func_08096EE8:
     bl AllocateHardwarePoolHandle
     .byte 0x60, 0x60
     .byte 0xD2, 0x20, 0x80, 0x00, 0x31, 0x18, 0x30, 0x1C, 0x01, 0xF0, 0x7C, 0xFB, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x3F, 0x22, 0x0A, 0x80, 0x50, 0x30, 0x02, 0x80, 0x10, 0x20
     bl __builtin_new
     .byte 0x04, 0x1C, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x01, 0x1C, 0x42, 0x46, 0x22, 0x60
     .byte 0x62, 0x60, 0x15, 0x48, 0xA0, 0x60, 0x25, 0x1C, 0x0C, 0x35, 0x28, 0x1C
     bl func_08009300
     .byte 0x01, 0x94, 0x12, 0x49, 0x28, 0x1C, 0x01, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x3C, 0xF0, 0x67, 0xF9, 0x0C, 0x4B
     .byte 0xF1, 0x18, 0x02, 0x20, 0x08, 0x70, 0x00, 0x20, 0x82, 0x46, 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x08096E0C
     .byte 0x30, 0x1C
-    bl func_080088B8
+    bl UpdateHardwareInput
     .byte 0x38, 0x1C, 0x08, 0x28, 0x00, 0xD9, 0x10, 0xE1, 0x80, 0x00
     .byte 0x04, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46
     .word __vt_19HardwareBlendObject
@@ -118219,14 +118219,14 @@ func_08096EE8:
     .byte 0x01, 0x98, 0x08, 0x49, 0x0C, 0x30, 0x02, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x3C, 0xF0, 0xEF, 0xF8, 0x03, 0x27
     .byte 0xA6, 0xE0, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43
     .byte 0x00, 0x28, 0x00, 0xDA, 0x9C, 0xE0, 0x30, 0x1C, 0x94, 0x30, 0xAD, 0x21
     bl func_08008B6C
     .byte 0x78, 0x23, 0x99, 0x46, 0x04, 0x27, 0x93, 0xE0, 0x49, 0x46, 0x08, 0x04, 0x25, 0x4A, 0x80, 0x18
     .byte 0x03, 0x0C, 0x99, 0x46, 0x00, 0x28, 0x00, 0xDB, 0x8A, 0xE0, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0x82, 0x23, 0x5B, 0x01, 0x19, 0x1C, 0x11, 0x80, 0x01, 0x80, 0x34, 0x1C, 0x7C, 0x34
     .byte 0x00, 0x25, 0xF1, 0x6F, 0x8D, 0x42, 0x0A, 0xD0, 0x00, 0x29, 0x08, 0xD0, 0x84, 0x22, 0x92, 0x00
     .byte 0x88, 0x18, 0x00, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0x3C, 0xF0, 0xB7, 0xF8, 0x25, 0x60
@@ -118236,7 +118236,7 @@ func_08096EE8:
     .byte 0x01, 0x98, 0x09, 0x49, 0x0C, 0x30, 0x02, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x3C, 0xF0, 0x8F, 0xF8, 0x05, 0x27
     .byte 0x46, 0xE0, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0x89, 0x08, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68
     .byte 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x3B, 0xDB, 0x30, 0x1C, 0x00, 0xF0, 0x71, 0xF8, 0x00, 0x04
@@ -118247,7 +118247,7 @@ func_08096EE8:
     .byte 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x3C, 0xF0, 0x53, 0xF8, 0x08, 0x27, 0x0A, 0xE0, 0x00, 0x00
     .byte 0x89, 0x08, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x01, 0xDB
     .byte 0x01, 0x20, 0x82, 0x46, 0x02, 0x99, 0x00, 0x29, 0x0C, 0xD0, 0x19, 0x4A, 0xB0, 0x18, 0x01, 0x88
@@ -118358,24 +118358,24 @@ func_08096EE8:
     .byte 0x42, 0x46, 0x00, 0x2A, 0x06, 0xD1, 0xD2, 0x20, 0x80, 0x00, 0x31, 0x18, 0x30, 0x1C, 0x00, 0xF0
     .byte 0x61, 0xFF, 0x05, 0xE0, 0xCD, 0x22, 0x92, 0x00, 0xB1, 0x18, 0x30, 0x1C, 0x00, 0xF0, 0x5A, 0xFF
     .byte 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x69, 0x46, 0x3F, 0x22, 0x0A, 0x80, 0x50, 0x30, 0x02, 0x80
     .byte 0x10, 0x20
     bl __builtin_new
     .byte 0x04, 0x1C, 0x30, 0x1C
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x01, 0x1C
     .byte 0x00, 0x20, 0x20, 0x60, 0x60, 0x60, 0x14, 0x48, 0xA0, 0x60, 0x25, 0x1C, 0x0C, 0x35, 0x28, 0x1C
     bl func_08009300
     .byte 0x01, 0x94, 0x11, 0x49, 0x28, 0x1C, 0x01, 0x22, 0x01, 0x23
     bl func_0800934C
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x3B, 0xF0
     .byte 0x45, 0xFD, 0x0B, 0x48, 0x31, 0x18, 0x02, 0x20, 0x08, 0x70, 0x00, 0x24, 0x30, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x0809764E
     .byte 0x30, 0x1C
-    bl func_080088B8
+    bl UpdateHardwareInput
     .byte 0x38, 0x1C, 0x01, 0x28, 0x2C, 0xD0, 0x01, 0x28
     .byte 0x08, 0xDC, 0x00, 0x28, 0x0B, 0xD0, 0x7E, 0xE0
     .word __vt_19HardwareBlendObject
@@ -118396,7 +118396,7 @@ func_08096EE8:
     .byte 0x08, 0x49, 0x01, 0x22, 0x01, 0x23
     bl func_08009378
     .byte 0x30, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x01, 0x99, 0x12, 0x69, 0x3B, 0xF0, 0xC1, 0xFC, 0x03, 0x27, 0x0B, 0xE0, 0x00, 0x00
     .byte 0xD8, 0x05, 0x10, 0x08, 0x89, 0x08, 0x00, 0x00, 0x01, 0x98, 0x01, 0x68, 0x48, 0x42, 0x08, 0x43
     .byte 0x00, 0x28, 0x00, 0xDB, 0x01, 0x24, 0x40, 0x46, 0x00, 0x28, 0x0F, 0xD1, 0x06, 0x49, 0x70, 0x18
@@ -118482,20 +118482,20 @@ func_08097D38:
     bx r0
     .byte 0x00, 0x00, 0x24, 0x0B, 0x10, 0x08, 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4
     .byte 0xBE, 0xB0, 0x82, 0x46
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x00, 0x24, 0x0C, 0x80, 0x84, 0x82
     .byte 0x50, 0x46
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0C, 0x80, 0xC4, 0x82, 0x50, 0x46
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0C, 0x80, 0x04, 0x83, 0x50, 0x46
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9
     .byte 0x0C, 0x80, 0x44, 0x83, 0x50, 0x46
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0C, 0x80, 0x84, 0x83
     .byte 0x50, 0x46
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9, 0x0C, 0x80, 0xC4, 0x83, 0xC0, 0x27, 0xFF, 0x04
     .byte 0x80, 0x22, 0x12, 0x02, 0x00, 0x20, 0x39, 0x1C
     bl FillHardwareDma3
@@ -118508,14 +118508,14 @@ func_08097D38:
     .byte 0x30, 0x1C, 0x22, 0x1C
     bl FillHardwareDma3
     .byte 0x50, 0x46
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xA9
     .byte 0xF2, 0x23, 0x5B, 0x01, 0x1A, 0x1C, 0x0A, 0x80, 0x00, 0x25, 0x02, 0x80, 0x50, 0x46
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xAA, 0xBD, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0xC1, 0x81, 0x50, 0x46
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xAA, 0xBA, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0x81, 0x81, 0x50, 0x46
-    bl func_08008918
+    bl GetHardwareDisplayState
     .byte 0x03, 0xAA, 0xB7, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0x41, 0x81, 0xB6, 0x48, 0x00, 0x68
     .byte 0xB6, 0x49, 0x0A, 0x68, 0x39, 0x1C
     bl CopyHardwareDma3
@@ -118626,7 +118626,7 @@ func_08097D38:
     bl GetHardwareSharedStateTileIndex
     .byte 0xA1, 0x00, 0x40, 0x18, 0x80, 0x05, 0x80, 0x0D
     .byte 0x8D, 0x4A, 0x18, 0x99, 0x11, 0x40, 0x01, 0x43, 0x18, 0x91, 0x40, 0x46
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x1A, 0x78, 0x7F, 0x2A, 0x09, 0xD8, 0xD1, 0x00, 0x04, 0x31, 0x59, 0x18, 0x17, 0x98
     .byte 0x08, 0x60, 0x4F, 0x46, 0xB8, 0x88, 0x88, 0x80, 0x50, 0x1C, 0x18, 0x70, 0x10, 0x36, 0x01, 0x34
     .byte 0x0A, 0x2C, 0xD5, 0xDD, 0x73, 0x49, 0x19, 0x98, 0x08, 0x40, 0x72, 0x4C, 0x20, 0x40, 0x80, 0x21
@@ -118645,7 +118645,7 @@ func_08097D38:
     .byte 0x5A, 0x49
     .byte 0x41, 0x44, 0x09, 0x19, 0x09, 0x78, 0x09, 0x18, 0x89, 0x05, 0x89, 0x0D, 0x56, 0x4A, 0x68, 0x68
     .byte 0x10, 0x40, 0x08, 0x43, 0x68, 0x60, 0x40, 0x46
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x1A, 0x78
     .byte 0x7F, 0x2A, 0x09, 0xD8, 0xD1, 0x00, 0x04, 0x31, 0x59, 0x18, 0x19, 0x98, 0x08, 0x60, 0x56, 0x46
     .byte 0xB0, 0x88, 0x88, 0x80, 0x50, 0x1C, 0x18, 0x70, 0x08, 0x37, 0x01, 0x34, 0x04, 0x2C, 0xD2, 0xDD
@@ -118662,7 +118662,7 @@ func_08097D38:
     bl func_080074C0
     .byte 0x69, 0x46, 0x88, 0x80, 0x68, 0x46, 0x01, 0x21, 0x01, 0x27, 0xB9, 0x46, 0x4A, 0x46
     .byte 0x02, 0x81, 0x01, 0x76, 0x28, 0x78, 0x80, 0x07, 0x00, 0x28, 0x00, 0xDB, 0xAA, 0xE0, 0x40, 0x46
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x09, 0x9F, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
     .byte 0x02, 0x1C, 0x09, 0x98, 0x00, 0x23, 0x00, 0x28, 0x01, 0xD0, 0x6C, 0x46, 0x23, 0x8D, 0x2E, 0x1C
@@ -118688,7 +118688,7 @@ func_08097D38:
     .byte 0x72, 0x68, 0x30, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0, 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1
     .byte 0x00, 0x28, 0x01, 0xD0, 0x37, 0xF0, 0x2D, 0xFC, 0x23, 0x98, 0x48, 0x44, 0x23, 0x9F, 0x37, 0x60
     .byte 0x75, 0x60, 0xF0, 0x60, 0x40, 0x46
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98, 0x01, 0x1C
     .byte 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x68, 0x46, 0x02, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
@@ -118707,7 +118707,7 @@ func_08097D38:
     .byte 0x69, 0x46, 0x88, 0x80, 0x68, 0x46, 0x01, 0x21, 0x01, 0x23
     .byte 0x99, 0x46, 0x4E, 0x46, 0x06, 0x81, 0x01, 0x76, 0x28, 0x78, 0x80, 0x07, 0x00, 0x28, 0x00, 0xDB
     .byte 0x8D, 0xE0, 0x40, 0x46
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x09, 0x9F, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
     .byte 0x02, 0x1C, 0x09, 0x98, 0x00, 0x23, 0x00, 0x28, 0x01, 0xD0, 0x68, 0x46
@@ -118728,7 +118728,7 @@ func_08097D38:
     .byte 0x01, 0x3B, 0x10, 0x32, 0x00, 0x2B, 0xF3, 0xD1, 0x15, 0x1C, 0x72, 0x68, 0x30, 0x68, 0x01, 0x1C
     .byte 0x90, 0x42, 0x02, 0xD0, 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x37, 0xF0
     .byte 0x40, 0xFB, 0x23, 0x98, 0x48, 0x44, 0x23, 0x99, 0x31, 0x60, 0x75, 0x60, 0xF0, 0x60, 0x40, 0x46
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0
     .byte 0x6C, 0x46, 0x22, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
@@ -118770,10 +118770,10 @@ func_080989DC:
     bl __builtin_new
     adds r6, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0x180]
     str r0, [sp]
@@ -118877,10 +118877,10 @@ func_080989DC:
     bl __builtin_new
     adds r5, r0, #0
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r4, r0, #0
     adds r0, r7, #0
-    bl func_08008940
+    bl GetHardwareCommandList
     adds r2, r0, #0
     ldr r0, [pc, #0xac]
     str r0, [sp]
@@ -119082,9 +119082,9 @@ func_080989DC:
     .byte 0x08, 0x1C, 0x03, 0x21, 0x3A, 0xF0, 0x74, 0xFC, 0x25, 0x60, 0xA7, 0x20, 0x80, 0x00
     bl __builtin_new
     .byte 0x05, 0x1C, 0x38, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x02, 0x1C, 0xAC, 0x48, 0x00, 0x90, 0x01, 0xA9, 0x00, 0x20, 0x08, 0x70, 0x28, 0x1C
     .byte 0x21, 0x1C, 0x08, 0x23, 0x31, 0xF0, 0xE0, 0xFF, 0x3D, 0x1C, 0x78, 0x35, 0x04, 0x1C, 0xB9, 0x6F
     .byte 0x8C, 0x42, 0x0A, 0xD0, 0x00, 0x29, 0x08, 0xD0, 0x84, 0x23, 0x9B, 0x00, 0xC8, 0x18, 0x00, 0x68
@@ -119165,7 +119165,7 @@ func_080989DC:
     bl GetHardwareSharedStateTileIndex
     .byte 0xA9, 0x00, 0x41, 0x44, 0x40, 0x18, 0x80, 0x05, 0x80, 0x0D, 0x1E, 0x4A, 0x61, 0x68
     .byte 0x11, 0x40, 0x01, 0x43, 0x61, 0x60, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x1A, 0x78
     .byte 0x7F, 0x2A, 0x08, 0xD8, 0xD0, 0x00, 0x04, 0x30, 0x18, 0x18, 0x00, 0x99, 0x01, 0x60, 0xA1, 0x88
     .byte 0x81, 0x80, 0x50, 0x1C, 0x18, 0x70, 0x10, 0x36, 0x01, 0x35, 0x04, 0x2D, 0xCC, 0xDD, 0x51, 0x46
@@ -119195,7 +119195,7 @@ func_080989DC:
     .byte 0x02, 0x20, 0x08, 0x81, 0x68, 0x46, 0x01, 0x21, 0x01, 0x76, 0x30, 0x78, 0x80, 0x07, 0x00, 0x28
     .byte 0x00, 0xDB, 0x96, 0xE0, 0x09, 0x98, 0x00, 0x21, 0x00, 0x28, 0x01, 0xD0, 0x6A, 0x46, 0x11, 0x8D
     .byte 0x00, 0x29, 0x00, 0xD1, 0x8D, 0xE0, 0x48, 0x46
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0x09, 0x9D
     .byte 0x79, 0x68, 0x38, 0x1C
     bl GetHardwareSharedStateTileIndex
@@ -119221,14 +119221,14 @@ func_080989DC:
     .byte 0xF0, 0x60, 0x00, 0x22, 0x6D, 0x46, 0x74, 0x4E, 0x1B, 0x99, 0x11, 0x41, 0x01, 0x20, 0x01, 0x40
     .byte 0x54, 0x1C, 0x00, 0x29, 0x15, 0xD0, 0xA1, 0x00, 0x89, 0x19, 0x08, 0x78, 0x08, 0x30, 0x28, 0x80
     .byte 0x48, 0x78, 0x68, 0x80, 0x48, 0x46
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98, 0x01, 0x1C
     .byte 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x68, 0x46, 0x02, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
     .byte 0x22, 0x1C, 0x06, 0x2A, 0xDF, 0xDD, 0xF8, 0x20, 0x00, 0x01, 0x1B, 0x99, 0x08, 0x40
     .byte 0x00, 0x28, 0x18, 0xD0, 0x6A, 0x46, 0x60, 0x49, 0x08, 0x1C, 0x20, 0x30, 0x00, 0x78, 0x08, 0x30
     .byte 0x10, 0x80, 0x21, 0x31, 0x08, 0x78, 0x50, 0x80, 0x48, 0x46
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C
     .byte 0x07, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46, 0x22, 0x8C, 0x18, 0x1C
     .byte 0x6B, 0x46
@@ -119236,7 +119236,7 @@ func_080989DC:
     .byte 0x1D, 0x9D, 0x01, 0x2D, 0x26, 0xD0, 0x00, 0x22, 0x6D, 0x46
     .byte 0x51, 0x4E, 0x1C, 0x99, 0x11, 0x41, 0x01, 0x20, 0x01, 0x40, 0x54, 0x1C, 0x00, 0x29, 0x15, 0xD0
     .byte 0xA1, 0x00, 0x89, 0x19, 0x08, 0x78, 0x80, 0x30, 0x28, 0x80, 0x48, 0x78, 0x68, 0x80, 0x48, 0x46
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0
     .byte 0x6F, 0x46, 0x3A, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
@@ -119259,7 +119259,7 @@ func_080989DC:
     .byte 0x01, 0x27, 0xB8, 0x46, 0x41, 0x46, 0x01, 0x76, 0x28, 0x78, 0x80, 0x07, 0x00, 0x28, 0x00, 0xDB
     .byte 0x97, 0xE0, 0x09, 0xA9, 0x09, 0x98, 0x00, 0x22, 0x00, 0x28, 0x00, 0xD0, 0x8A, 0x88, 0x00, 0x2A
     .byte 0x00, 0xD1, 0x8E, 0xE0, 0x48, 0x46
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x09, 0x9F, 0x61, 0x68
     .byte 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
@@ -119285,7 +119285,7 @@ func_080989DC:
     .byte 0x01, 0xD0, 0x36, 0xF0, 0x11, 0xFD, 0x1F, 0x98, 0x40, 0x44, 0x1F, 0x9F, 0x37, 0x60, 0x75, 0x60
     .byte 0xF0, 0x60, 0x00, 0x24, 0x6D, 0x46, 0xE0, 0x1D, 0x1B, 0x99, 0x01, 0x41, 0x01, 0x20, 0x01, 0x40
     .byte 0x00, 0x29, 0x13, 0xD0, 0x90, 0x20, 0x28, 0x80, 0x20, 0x01, 0x10, 0x30, 0x68, 0x80, 0x48, 0x46
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0
     .byte 0x68, 0x46, 0x02, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
@@ -119297,9 +119297,9 @@ func_080989DC:
     .byte 0x08, 0x1C, 0x03, 0x21, 0x39, 0xF0, 0xBC, 0xFF, 0x25, 0x60, 0xA7, 0x20, 0x80, 0x00
     bl __builtin_new
     .byte 0x06, 0x1C, 0x38, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x02, 0x1C, 0x28, 0x48, 0x00, 0x90, 0x01, 0xAC, 0x00, 0x20, 0x20, 0x70, 0x30, 0x1C
     .byte 0x29, 0x1C, 0x08, 0x23, 0x31, 0xF0, 0x28, 0xFB, 0x3E, 0x1C, 0x78, 0x36, 0x05, 0x1C, 0xB9, 0x6F
     .byte 0xA0, 0x46, 0x8D, 0x42, 0x0A, 0xD0, 0x00, 0x29, 0x08, 0xD0, 0x84, 0x23, 0x9B, 0x00, 0xC8, 0x18
@@ -119318,9 +119318,9 @@ func_080989DC:
     .byte 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0x39, 0xF0, 0x33, 0xFF, 0x25, 0x60, 0xCB, 0x20, 0x80, 0x00
     bl __builtin_new
     .byte 0x05, 0x1C, 0x38, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0x38, 0x1C
-    bl func_08008940
+    bl GetHardwareCommandList
     .byte 0x02, 0x1C, 0xBE, 0x48, 0x00, 0x90, 0x00, 0x20, 0x43, 0x46, 0x18, 0x70
     .byte 0x28, 0x1C, 0x21, 0x1C, 0x08, 0x23, 0x32, 0xF0, 0x6B, 0xFB, 0x35, 0x1C, 0x04, 0x1C, 0xF9, 0x6F
     .byte 0x8C, 0x42, 0x0A, 0xD0, 0x00, 0x29, 0x08, 0xD0, 0x84, 0x22, 0x92, 0x00, 0x88, 0x18, 0x00, 0x68
@@ -119420,7 +119420,7 @@ func_080989DC:
     bl GetHardwareSharedStateTileIndex
     .byte 0xA1, 0x00, 0x40, 0x18, 0x1F, 0x99, 0x40, 0x18, 0x80, 0x05
     .byte 0x80, 0x0D, 0x7E, 0x4A, 0x43, 0x46, 0x59, 0x68, 0x11, 0x40, 0x01, 0x43, 0x59, 0x60, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x1A, 0x78, 0x7F, 0x2A, 0x09, 0xD8, 0xD1, 0x00, 0x04, 0x31
     .byte 0x59, 0x18, 0x17, 0x98, 0x08, 0x60, 0x4D, 0x46, 0xA8, 0x88, 0x88, 0x80, 0x50, 0x1C, 0x18, 0x70
     .byte 0x10, 0x36, 0x01, 0x34, 0x02, 0x2C, 0xD1, 0xDD, 0x62, 0x4E, 0xB8, 0x19, 0x00, 0x78, 0x00, 0x28
@@ -119431,7 +119431,7 @@ func_080989DC:
     bl GetHardwareSharedStateTileIndex
     .byte 0x50, 0x4A, 0xB9, 0x18, 0x49, 0x19, 0x0A, 0x78, 0x12, 0x18, 0x5D, 0x4B, 0x18, 0x1C
     .byte 0x02, 0x40, 0xA0, 0x88, 0x59, 0x4E, 0x31, 0x1C, 0x08, 0x40, 0x10, 0x43, 0xA0, 0x80, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x1A, 0x78, 0x7F, 0x2A, 0x09, 0xD8, 0xD1, 0x00, 0x04, 0x31
     .byte 0x59, 0x18, 0x17, 0x98, 0x08, 0x60, 0x4E, 0x46, 0xB0, 0x88, 0x88, 0x80, 0x50, 0x1C, 0x18, 0x70
     .byte 0x08, 0x20, 0x80, 0x44, 0x01, 0x35, 0x02, 0x2D, 0xCC, 0xDD, 0xA8, 0x21, 0x89, 0x00, 0x7D, 0x18
@@ -119450,7 +119450,7 @@ func_080989DC:
     .byte 0x4B, 0x46, 0x03, 0x76, 0x28, 0x78, 0x80, 0x07, 0x00, 0x28, 0x00, 0xDB, 0xBE, 0xE0, 0x09, 0x98
     .byte 0x00, 0x21, 0x00, 0x28, 0x01, 0xD0, 0x6D, 0x46, 0x29, 0x8D, 0x00, 0x29, 0x00, 0xD1, 0xB5, 0xE0
     .byte 0x38, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x09, 0x9E, 0xB0, 0x46, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
     .byte 0x02, 0x1C, 0x09, 0x98, 0x00, 0x23, 0x00, 0x28, 0x01, 0xD0, 0x68, 0x46
@@ -119479,14 +119479,14 @@ func_080989DC:
     .byte 0x5F, 0x4B, 0x98, 0x46, 0xB0, 0x00, 0x5F, 0x4C, 0x00, 0x19, 0x38, 0x18, 0x75, 0xF7, 0x50, 0xFB
     .byte 0x00, 0x06, 0x74, 0x1C, 0x00, 0x28, 0x15, 0xD1, 0xA1, 0x00, 0x41, 0x44, 0x08, 0x78, 0x08, 0x30
     .byte 0x28, 0x80, 0x48, 0x78, 0x68, 0x80, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98
     .byte 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x68, 0x46, 0x02, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
     .byte 0x50, 0x4A, 0xB9, 0x18, 0x50, 0x4B, 0xF8, 0x18, 0x09, 0x78, 0x40, 0x18
     .byte 0x00, 0x78, 0x30, 0x41, 0x01, 0x21, 0x08, 0x40, 0x00, 0x28, 0x15, 0xD0, 0xA1, 0x00, 0x41, 0x44
     .byte 0x08, 0x78, 0x80, 0x30, 0x28, 0x80, 0x48, 0x78, 0x68, 0x80, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6E, 0x46, 0x32, 0x8C
     .byte 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
@@ -119504,7 +119504,7 @@ func_080989DC:
     bl func_080074C0
     .byte 0x69, 0x46, 0x88, 0x80, 0x68, 0x46, 0x01, 0x21, 0x01, 0x22, 0x91, 0x46, 0x4B, 0x46, 0x03, 0x81
     .byte 0x01, 0x76, 0x28, 0x78, 0x80, 0x07, 0x00, 0x28, 0x00, 0xDB, 0x9B, 0xE0, 0x38, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x09, 0x9E, 0xB0, 0x46, 0x61, 0x68, 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
     .byte 0x02, 0x1C, 0x09, 0x98, 0x00, 0x23, 0x00, 0x28, 0x01, 0xD0, 0x68, 0x46, 0x03, 0x8D, 0x24, 0x95
@@ -119529,7 +119529,7 @@ func_080989DC:
     .byte 0x30, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0, 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28
     .byte 0x01, 0xD0, 0x35, 0xF0, 0x79, 0xFF, 0x25, 0x98, 0x48, 0x44, 0x25, 0x99, 0x24, 0x9A, 0x11, 0x60
     .byte 0x55, 0x60, 0xD0, 0x60, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98, 0x01, 0x1C
     .byte 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46, 0x22, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
@@ -119548,7 +119548,7 @@ func_080989DC:
     .byte 0x69, 0x46, 0x88, 0x80, 0x68, 0x46, 0x01, 0x21, 0x01, 0x22
     .byte 0x91, 0x46, 0x4B, 0x46, 0x03, 0x81, 0x01, 0x76, 0x28, 0x78, 0x80, 0x07, 0x00, 0x28, 0x00, 0xDB
     .byte 0x94, 0xE0, 0x38, 0x1C
-    bl func_08008910
+    bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x09, 0x9E, 0xB0, 0x46, 0x61, 0x68
     .byte 0x20, 0x1C
     bl GetHardwareSharedStateTileIndex
@@ -119571,7 +119571,7 @@ func_080989DC:
     .byte 0xF0, 0xD1, 0x15, 0x1C, 0x24, 0x9E, 0x72, 0x68, 0x30, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0
     .byte 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x35, 0xF0, 0x85, 0xFE, 0x25, 0x98
     .byte 0x48, 0x44, 0x25, 0x99, 0x24, 0x9A, 0x11, 0x60, 0x55, 0x60, 0xD0, 0x60, 0x38, 0x1C
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     .byte 0x03, 0x1C, 0x07, 0x98, 0x01, 0x1C, 0x00, 0x22, 0x00, 0x29, 0x01, 0xD0, 0x6C, 0x46
     .byte 0x22, 0x8C, 0x18, 0x1C, 0x6B, 0x46
     bl DrawIndexedResourceSprites
@@ -119677,7 +119677,7 @@ func_08099E18:
     mov r0, sp
     strb r2, [r0, #0x18]
     adds r0, r5, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -150900,7 +150900,7 @@ func_08051504: @ 0x08051504
 	adds r0, r6, #0
 	bl func_08008724
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -150910,7 +150910,7 @@ func_08051504: @ 0x08051504
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r5, #0
 	str r5, [r4]
@@ -150930,7 +150930,7 @@ func_08051504: @ 0x08051504
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -150948,7 +150948,7 @@ func_08051504: @ 0x08051504
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r0, [r5]
 	cmp r0, #1
 	beq .L080515C8
@@ -150979,7 +150979,7 @@ func_08051504: @ 0x08051504
 	b .L0805169A
 .L080515C8:
 	adds r0, r6, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	movs r1, #0x80
 	ands r0, r1
 	lsls r0, r0, #0x18
@@ -151002,7 +151002,7 @@ func_08051504: @ 0x08051504
 .L080515F4: .4byte 0x000008B8
 .L080515F8:
 	adds r0, r6, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -151019,13 +151019,13 @@ func_08051504: @ 0x08051504
 .L08051618:
 	movs r4, #0
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
 	bne .L08051636
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
@@ -151043,7 +151043,7 @@ func_08051504: @ 0x08051504
 	str r0, [r5]
 .L0805164A:
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L08051660 @ =0x000008B8
 	adds r1, r6, r3
@@ -151061,7 +151061,7 @@ func_08051504: @ 0x08051504
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -151134,44 +151134,44 @@ func_080516F0: @ 0x080516F0
 	ldr r4, .L080519B8 @ =0xFFFFF58C
 	add sp, r4
 	mov sl, r0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r4, #0
 	strh r4, [r1]
 	strh r4, [r0, #0x10]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r1, #4
 	strh r1, [r2]
 	strh r1, [r0, #0x12]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x14]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x16]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -151203,7 +151203,7 @@ func_080516F0: @ 0x080516F0
 	adds r2, r5, #0
 	bl FillHardwareDma3
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r2, #0xfa
 	lsls r2, r2, #5
@@ -151212,28 +151212,28 @@ func_080516F0: @ 0x080516F0
 	movs r6, #0
 	strh r4, [r0]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L080519D0 @ =0x00001C43
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L080519D4 @ =0x00001D41
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L080519D8 @ =0x00001E42
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xa]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #8]
@@ -151973,7 +151973,7 @@ func_08051D70: @ 0x08051D70
 	strh r5, [r0, #8]
 	strb r1, [r0, #0x18]
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r0, [sp, #0x24]
 	mov r8, r0
@@ -152138,7 +152138,7 @@ func_08051D70: @ 0x08051D70
 	str r0, [r2, #0xc]
 .L08051F74:
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -152223,7 +152223,7 @@ func_08051D70: @ 0x08051D70
 	strh r2, [r0, #8]
 	strb r1, [r0, #0x18]
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r3, [sp, #0x24]
 	mov r8, r3
@@ -152389,7 +152389,7 @@ func_08051D70: @ 0x08051D70
 	str r0, [r6, #0xc]
 .L0805215C:
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -153252,14 +153252,14 @@ func_08052984: @ 0x08052984
 	adds r0, r5, #0
 	bl func_08008724
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0xbf
 	strh r2, [r1]
 	adds r0, #0x50
 	strh r2, [r0]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x10
 	strh r2, [r1]
@@ -153269,7 +153269,7 @@ func_08052984: @ 0x08052984
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	ldr r2, [sp, #0x30]
 	str r2, [r4]
@@ -153313,7 +153313,7 @@ sub_08052A1E: @ 0x08052A1E
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	bl rand
 	ldr r3, .L08052A80 @ =0x00002321
 	adds r4, r5, r3
@@ -153323,7 +153323,7 @@ sub_08052A1E: @ 0x08052A1E
 	cmp r0, #0
 	beq .L08052A84
 	adds r0, r5, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
@@ -153486,7 +153486,7 @@ sub_08052A1E: @ 0x08052A1E
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -153810,7 +153810,7 @@ sub_08052A1E: @ 0x08052A1E
 .L08052E84: .4byte 0x00002328
 .L08052E88:
 	adds r0, r5, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -154330,7 +154330,7 @@ sub_08052A1E: @ 0x08052A1E
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -154533,7 +154533,7 @@ sub_08052A1E: @ 0x08052A1E
 	lsrs r0, r0, #0x10
 	str r0, [sp, #0x30]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r7, .L0805349C @ =0x00002330
 	adds r1, r5, r7
@@ -154565,7 +154565,7 @@ sub_08052A1E: @ 0x08052A1E
 	ands r0, r1
 	strb r0, [r4]
 	adds r0, r5, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldrb r2, [r4]
 	adds r6, r0, #0
 	lsls r1, r2, #1
@@ -154779,19 +154779,19 @@ func_08053634: @ 0x08053634
 	ldr r0, [r7, #0x10]
 	mov sb, r0
 	adds r0, r7, #0
-	bl func_080088DC
+	bl GetHardwareCoreState
 	mov r8, r0
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	adds r1, r7, #0
 	adds r1, #0x14
 	str r4, [sp]
@@ -156993,7 +156993,7 @@ func_08053960: @ 0x08053960
 	ldr r3, [r3, #0x10]
 	bl _call_via_r3
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x10]
 	movs r7, #0x9f
@@ -157158,7 +157158,7 @@ func_08053960: @ 0x08053960
 	str r0, [r2, #0xc]
 .L08054AA6:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #8]
 	movs r3, #0x9e
@@ -157822,7 +157822,7 @@ func_08054F40: @ 0x08054F40
 	adds r1, r6, r3
 	bl Unpack
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r3, #0xf2
 	lsls r3, r3, #5
@@ -157831,53 +157831,53 @@ func_08054F40: @ 0x08054F40
 	movs r4, #0
 	strh r2, [r0]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L080550A0 @ =0x00001C43
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L080550A4 @ =0x00001D42
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L080550A8 @ =0x00001E41
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xa]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x14]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x16]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -157971,7 +157971,7 @@ func_080550AC: @ 0x080550AC
 	bgt .L08055118
 .L08055124:
 	adds r0, r5, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r2, .L08055184 @ =0x00001D5A
 	adds r1, r5, r2
@@ -158963,7 +158963,7 @@ func_080558C4: @ 0x080558C4
 	ldm r0!, {r4, r5}
 	stm r1!, {r4, r5}
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x28]
 	movs r7, #0x93
@@ -159122,7 +159122,7 @@ func_080558C4: @ 0x080558C4
 	str r0, [r2, #0xc]
 .L08055A5C:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x30]
 	movs r3, #0x94
@@ -159304,7 +159304,7 @@ func_080558C4: @ 0x080558C4
 	movs r0, #1
 	strb r0, [r1, #0x18]
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -159376,7 +159376,7 @@ func_080558C4: @ 0x080558C4
 	b .L080563F4
 .L08055C40:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x28]
 	mov r8, r7
@@ -159547,7 +159547,7 @@ func_080558C4: @ 0x080558C4
 	str r0, [r2, #0xc]
 .L08055D7E:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x30]
 	movs r3, #0x94
@@ -159735,7 +159735,7 @@ func_080558C4: @ 0x080558C4
 	b .L080563F4
 .L08055EDA:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x28]
 	movs r7, #0x93
@@ -159908,7 +159908,7 @@ func_080558C4: @ 0x080558C4
 	str r0, [r2, #0xc]
 .L0805601C:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x30]
 	movs r3, #0x94
@@ -160098,7 +160098,7 @@ func_080558C4: @ 0x080558C4
 	b .L080563F4
 .L0805617E:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x28]
 	movs r7, #0x93
@@ -160271,7 +160271,7 @@ func_080558C4: @ 0x080558C4
 	str r0, [r2, #0xc]
 .L080562C0:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x30]
 	movs r3, #0x94
@@ -160461,7 +160461,7 @@ func_080558C4: @ 0x080558C4
 	movs r0, #1
 	strb r0, [r1, #0x18]
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -160556,7 +160556,7 @@ sub_08056442: @ 0x08056442
 	movs r0, #1
 	strb r0, [r1, #0x18]
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -160673,7 +160673,7 @@ sub_08056442: @ 0x08056442
 	mov r4, sl
 	strb r4, [r5, #0x18]
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -160750,7 +160750,7 @@ sub_08056442: @ 0x08056442
 	mov r3, sl
 	strb r3, [r5, #0x18]
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [sp, #0x20]
 	movs r2, #0
 	cmp r1, #0
@@ -160854,7 +160854,7 @@ sub_08056442: @ 0x08056442
 	b .L08056AFC
 .L08056754:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x28]
 	mov r8, r7
@@ -161020,7 +161020,7 @@ sub_08056442: @ 0x08056442
 	str r0, [r2, #0xc]
 .L08056894:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x30]
 	movs r3, #0xa9
@@ -161183,7 +161183,7 @@ sub_08056442: @ 0x08056442
 	str r0, [r2, #0xc]
 .L080569C0:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r7, r0, #0
 	ldr r0, [sp, #0x30]
 	adds r4, r0, #0
@@ -161462,7 +161462,7 @@ sub_08056442: @ 0x08056442
 	b .L08056D08
 .L08056BD6:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x28]
 	mov r8, r7
@@ -161624,7 +161624,7 @@ sub_08056442: @ 0x08056442
 	str r0, [r2, #0xc]
 .L08056D08:
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -161722,7 +161722,7 @@ sub_08056442: @ 0x08056442
 	b .L08056F04
 .L08056DD2:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x28]
 	mov r8, r7
@@ -161884,7 +161884,7 @@ sub_08056442: @ 0x08056442
 	str r0, [r2, #0xc]
 .L08056F04:
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -161990,7 +161990,7 @@ sub_08056442: @ 0x08056442
 	b .L08057118
 .L08056FDE:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x28]
 	mov r8, r7
@@ -162154,7 +162154,7 @@ sub_08056442: @ 0x08056442
 	str r0, [r2, #0xc]
 .L08057118:
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -162263,7 +162263,7 @@ sub_08056442: @ 0x08056442
 	b .L08057338
 .L080571F6:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x28]
 	mov r8, r7
@@ -162429,7 +162429,7 @@ sub_08056442: @ 0x08056442
 	str r0, [r2, #0xc]
 .L08057338:
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -162536,7 +162536,7 @@ sub_08056442: @ 0x08056442
 	b .L08057544
 .L08057412:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x28]
 	mov r8, r7
@@ -162698,7 +162698,7 @@ sub_08056442: @ 0x08056442
 	str r0, [r2, #0xc]
 .L08057544:
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -162805,7 +162805,7 @@ sub_08056442: @ 0x08056442
 	b .L08057750
 .L0805761E:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x28]
 	mov r8, r7
@@ -162967,7 +162967,7 @@ sub_08056442: @ 0x08056442
 	str r0, [r2, #0xc]
 .L08057750:
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -163053,7 +163053,7 @@ sub_08056442: @ 0x08056442
 	movs r0, #1
 	strb r0, [r1, #0x18]
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -163145,7 +163145,7 @@ sub_08056442: @ 0x08056442
 	movs r0, #1
 	strb r0, [r1, #0x18]
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -163227,7 +163227,7 @@ sub_08056442: @ 0x08056442
 	mov r2, r8
 	strb r2, [r0, #0x18]
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [sp, #0x20]
 	movs r2, #0
 	cmp r1, #0
@@ -163444,7 +163444,7 @@ func_080579B4: @ 0x080579B4
 	orrs r1, r2
 	str r1, [sp]
 	ldr r0, [sp, #8]
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -163759,7 +163759,7 @@ func_08057D34: @ 0x08057D34
 	mov r0, sp
 	strb r2, [r0, #0x18]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -165081,7 +165081,7 @@ func_080588AC: @ 0x080588AC
 	adds r0, r6, #0
 	bl func_08008724
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -165091,7 +165091,7 @@ func_080588AC: @ 0x080588AC
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -165205,7 +165205,7 @@ func_080588AC: @ 0x080588AC
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -165222,7 +165222,7 @@ func_080588AC: @ 0x080588AC
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r7, .L08058A24 @ =0x00001424
 	adds r0, r6, r7
 	movs r1, #0
@@ -165279,13 +165279,13 @@ func_080588AC: @ 0x080588AC
 	cmp r0, #0
 	bne .L08058AC8
 	adds r0, r6, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	movs r1, #4
 	ands r0, r1
 	cmp r0, #0
 	beq .L08058B08
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r7, #0xc4
 	lsls r7, r7, #4
@@ -165293,7 +165293,7 @@ func_080588AC: @ 0x080588AC
 	strh r1, [r2]
 	strh r1, [r0]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L08058AC4 @ =0x00001F49
 	adds r1, r3, #0
@@ -165307,7 +165307,7 @@ func_080588AC: @ 0x080588AC
 .L08058AC4: .4byte 0x00001F49
 .L08058AC8:
 	adds r0, r6, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	movs r1, #4
 	ands r0, r1
 	lsls r0, r0, #0x18
@@ -165317,7 +165317,7 @@ func_080588AC: @ 0x080588AC
 	b .L08058E30
 .L08058ADC:
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r7, #0xf2
 	lsls r7, r7, #5
@@ -165325,7 +165325,7 @@ func_080588AC: @ 0x080588AC
 	strh r1, [r2]
 	strh r1, [r0]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L08058B04 @ =0x00001D41
 	adds r1, r3, #0
@@ -165337,7 +165337,7 @@ func_080588AC: @ 0x080588AC
 .L08058B04: .4byte 0x00001D41
 .L08058B08:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -165368,7 +165368,7 @@ func_080588AC: @ 0x080588AC
 .L08058B40: .4byte 0x0000140A
 .L08058B44:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -165403,7 +165403,7 @@ func_080588AC: @ 0x080588AC
 	beq .L08058BF4
 	movs r4, #0
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
@@ -165414,7 +165414,7 @@ func_080588AC: @ 0x080588AC
 .L08058B9C: .4byte 0x0000140A
 .L08058BA0:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
@@ -165424,7 +165424,7 @@ func_080588AC: @ 0x080588AC
 	b .L08058BE0
 .L08058BB4:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #1
 	ands r1, r0
@@ -165434,7 +165434,7 @@ func_080588AC: @ 0x080588AC
 	b .L08058BE0
 .L08058BC8:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #2
 	ands r1, r0
@@ -165456,7 +165456,7 @@ func_080588AC: @ 0x080588AC
 	b .L08058E30
 .L08058BF4:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -165478,13 +165478,13 @@ func_080588AC: @ 0x080588AC
 .L08058C24:
 	movs r4, #0
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
 	bne .L08058C4E
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -165631,7 +165631,7 @@ func_080588AC: @ 0x080588AC
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -165832,7 +165832,7 @@ func_080588AC: @ 0x080588AC
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -165851,10 +165851,10 @@ func_080588AC: @ 0x080588AC
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	movs r4, #0
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
@@ -166272,7 +166272,7 @@ func_080588AC: @ 0x080588AC
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -166406,7 +166406,7 @@ func_080588AC: @ 0x080588AC
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -166427,7 +166427,7 @@ func_080588AC: @ 0x080588AC
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r2, .L08059488 @ =0x00001424
 	adds r0, r6, r2
 	ldrh r0, [r0]
@@ -166518,7 +166518,7 @@ func_080588AC: @ 0x080588AC
 .L08059530: .4byte 0x00001424
 .L08059534:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -166686,7 +166686,7 @@ func_080588AC: @ 0x080588AC
 	cmp r0, #2
 	bne .L08059712
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -166705,7 +166705,7 @@ func_080588AC: @ 0x080588AC
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -166933,19 +166933,19 @@ func_08059878: @ 0x08059878
 	ldr r0, [r7, #0x10]
 	mov sb, r0
 	adds r0, r7, #0
-	bl func_080088DC
+	bl GetHardwareCoreState
 	mov r8, r0
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	adds r1, r7, #0
 	adds r1, #0x14
 	str r4, [sp]
@@ -167600,7 +167600,7 @@ func_08059C94: @ 0x08059C94
 	adds r2, r6, #0
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r2, #0xf2
 	lsls r2, r2, #5
 	adds r1, r2, #0
@@ -167609,21 +167609,21 @@ func_08059C94: @ 0x08059C94
 	movs r5, #0
 	strh r1, [r0]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	ldr r4, .L08059FB0 @ =0x00005C43
 	adds r1, r4, #0
 	mov r2, sl
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	ldr r3, .L08059FB4 @ =0x00001D41
 	adds r1, r3, #0
 	mov r4, sl
 	strh r1, [r4]
 	strh r1, [r0, #0xc]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	ldr r2, .L08059FB8 @ =0x00005E42
 	adds r1, r2, #0
 	strh r1, [r4]
@@ -167640,11 +167640,11 @@ func_08059C94: @ 0x08059C94
 	adds r2, r6, #0
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	strh r5, [r4]
 	strh r5, [r0, #0x1c]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	strh r5, [r4]
 	strh r5, [r0, #0x1e]
 	movs r0, #3
@@ -167657,19 +167657,19 @@ func_08059C94: @ 0x08059C94
 	movs r3, #0x20
 	bl DrawUiTextWindowBorder
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	strh r5, [r4]
 	strh r5, [r0, #0x18]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	strh r5, [r4]
 	strh r5, [r0, #0x1a]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	strh r5, [r4]
 	strh r5, [r0, #0x14]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	strh r5, [r4]
 	strh r5, [r0, #0x16]
 	ldr r0, .L08059FC8 @ =gUiSharedPalette
@@ -168804,7 +168804,7 @@ func_0805A744: @ 0x0805A744
 	movs r0, #1
 	strb r0, [r1, #0x18]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -168883,7 +168883,7 @@ func_0805A744: @ 0x0805A744
 	movs r0, #1
 	strb r0, [r4, #0x18]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -169096,7 +169096,7 @@ func_0805A744: @ 0x0805A744
 .L0805AAB0:
 	str r0, [sp, #0x5c]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -169192,7 +169192,7 @@ func_0805AB08: @ 0x0805AB08
 	lsls r2, r2, #2
 	bl CopyHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r3, #0xf2
 	lsls r3, r3, #5
@@ -169200,21 +169200,21 @@ func_0805AB08: @ 0x0805AB08
 	strh r1, [r2]
 	strh r1, [r0]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L0805AC58 @ =0x00005943
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L0805AC5C @ =0x00005B42
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L0805AC60 @ =0x00005D41
 	adds r1, r3, #0
@@ -169337,17 +169337,17 @@ func_0805AB08: @ 0x0805AB08
 	adds r0, r7, r2
 	strh r4, [r0]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x16]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -169374,7 +169374,7 @@ func_0805AD14: @ 0x0805AD14
 	push {r5, r6, r7}
 	sub sp, #0x68
 	mov sl, r0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r1, .L0805ADF8 @ =0x000013EA
 	add r1, sl
@@ -169382,7 +169382,7 @@ func_0805AD14: @ 0x0805AD14
 	strh r1, [r2]
 	strh r1, [r0, #0x14]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r1, .L0805ADFC @ =0x000013EC
 	add r1, sl
@@ -169390,7 +169390,7 @@ func_0805AD14: @ 0x0805AD14
 	strh r1, [r2]
 	strh r1, [r0, #0x18]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L0805AE00 @ =0x000013EE
 	add r3, sl
@@ -169438,7 +169438,7 @@ func_0805AD14: @ 0x0805AD14
 	str r2, [sp, #0x34]
 .L0805ADA0:
 	mov r0, sl
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, .L0805AE0C @ =0x000013FA
 	add r1, sl
 	movs r3, #0
@@ -169661,7 +169661,7 @@ func_0805AD14: @ 0x0805AD14
 	str r2, [sp, #0x44]
 .L0805AF48:
 	mov r0, sl
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, .L0805AFB0 @ =0x000013F8
 	add r1, sl
 	movs r3, #0
@@ -169847,7 +169847,7 @@ func_0805AD14: @ 0x0805AD14
 	str r2, [sp, #0x4c]
 .L0805B0A8:
 	mov r0, sl
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, .L0805B104 @ =0x000013F8
 	add r1, sl
 	movs r3, #0
@@ -170059,7 +170059,7 @@ func_0805AD14: @ 0x0805AD14
 	str r2, [sp, #0x50]
 .L0805B234:
 	mov r0, sl
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, .L0805B298 @ =0x000013F6
 	add r1, sl
 	movs r4, #0
@@ -171397,7 +171397,7 @@ func_0805BC34: @ 0x0805BC34
 	adds r0, r1, #0
 	strb r4, [r0, #0x18]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -171493,7 +171493,7 @@ func_0805BC34: @ 0x0805BC34
 	movs r0, #1
 	strb r0, [r4, #0x18]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -171861,7 +171861,7 @@ func_0805BC34: @ 0x0805BC34
 	movs r1, #1
 	strb r1, [r0, #0x18]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -171951,7 +171951,7 @@ func_0805BC34: @ 0x0805BC34
 	movs r6, #1
 	strb r6, [r4, #0x18]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [sp, #0x20]
 	movs r2, #0
 	cmp r1, #0
@@ -172098,7 +172098,7 @@ func_0805BC34: @ 0x0805BC34
 	b .L0805C3BA
 .L0805C288:
 	adds r0, r5, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r7, [sp, #0x28]
 	adds r0, r4, r5
@@ -172363,7 +172363,7 @@ func_0805BC34: @ 0x0805BC34
 	adds r0, r0, r1
 	strh r0, [r6, #6]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [sp, #0x20]
 	movs r2, #0
 	cmp r1, #0
@@ -172447,7 +172447,7 @@ func_0805BC34: @ 0x0805BC34
 	movs r0, #1
 	strb r0, [r6, #0x18]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -172536,7 +172536,7 @@ func_0805BC34: @ 0x0805BC34
 	mov r3, sb
 	strb r3, [r7, #0x18]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r1, r0, #0
@@ -172761,7 +172761,7 @@ func_0805C63C: @ 0x0805C63C
 	orrs r1, r2
 	str r1, [sp]
 	ldr r0, [sp, #8]
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -173479,7 +173479,7 @@ func_0805C96C: @ 0x0805C96C
 	cmp r3, #2
 	bne .L0805CD88
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -174014,7 +174014,7 @@ func_0805D170: @ 0x0805D170
 	adds r0, r6, #0
 	bl func_08008724
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -174024,7 +174024,7 @@ func_0805D170: @ 0x0805D170
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -174102,7 +174102,7 @@ func_0805D170: @ 0x0805D170
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -174113,7 +174113,7 @@ func_0805D170: @ 0x0805D170
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r4, .L0805D298 @ =0x00000ADA
 	adds r0, r6, r4
 	movs r1, #0
@@ -174169,7 +174169,7 @@ func_0805D170: @ 0x0805D170
 .L0805D2EC: .4byte 0x00000ADA
 .L0805D2F0:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -174221,7 +174221,7 @@ func_0805D170: @ 0x0805D170
 .L0805D358: .4byte 0x00000ADA
 .L0805D35C:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	lsls r0, r0, #0x18
@@ -174276,7 +174276,7 @@ func_0805D170: @ 0x0805D170
 .L0805D3C8: .4byte 0x00000ADA
 .L0805D3CC:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -174340,7 +174340,7 @@ func_0805D170: @ 0x0805D170
 .L0805D450: .4byte 0x00000ADA
 .L0805D454:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -174634,7 +174634,7 @@ func_0805D170: @ 0x0805D170
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -174662,7 +174662,7 @@ func_0805D170: @ 0x0805D170
 	adds r0, r6, #0
 	bl func_0805D760
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r3, #0xa6
 	lsls r3, r3, #1
@@ -174726,19 +174726,19 @@ func_0805D760: @ 0x0805D760
 	ldr r0, [r7, #0x10]
 	mov sb, r0
 	adds r0, r7, #0
-	bl func_080088DC
+	bl GetHardwareCoreState
 	mov r8, r0
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	adds r1, r7, #0
 	adds r1, #0x14
 	str r4, [sp]
@@ -175004,13 +175004,13 @@ func_0805D9C0: @ 0x0805D9C0
 	push {r5, r6, r7}
 	sub sp, #0x58
 	adds r6, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r4, #0
 	strh r4, [r1]
 	strh r4, [r0, #0x14]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r3, #0xa6
 	lsls r3, r3, #1
@@ -175019,22 +175019,22 @@ func_0805D9C0: @ 0x0805D9C0
 	strh r1, [r2]
 	strh r1, [r0, #0x16]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -175064,7 +175064,7 @@ func_0805D9C0: @ 0x0805D9C0
 	mov r2, r8
 	bl FillHardwareDma3
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r3, #0xf2
 	lsls r3, r3, #5
@@ -175073,21 +175073,21 @@ func_0805D9C0: @ 0x0805D9C0
 	movs r5, #0
 	strh r2, [r0]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L0805DBEC @ =0x00005C43
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L0805DBF0 @ =0x00001D41
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L0805DBF4 @ =0x00005E42
 	adds r1, r3, #0
@@ -175105,12 +175105,12 @@ func_0805D9C0: @ 0x0805D9C0
 	mov r2, r8
 	bl FillHardwareDma3
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x1c]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x1e]
@@ -175124,22 +175124,22 @@ func_0805D9C0: @ 0x0805D9C0
 	movs r3, #0x20
 	bl DrawUiTextWindowBorder
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x18]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x1a]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x14]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x16]
@@ -175835,7 +175835,7 @@ func_0805DFC4: @ 0x0805DFC4
 	movs r0, #1
 	strb r0, [r1, #0x18]
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -175927,7 +175927,7 @@ func_0805DFC4: @ 0x0805DFC4
 	mov r3, sb
 	strb r3, [r0, #0x18]
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r0, [sp, #0x24]
 	mov r8, r0
@@ -176097,7 +176097,7 @@ func_0805DFC4: @ 0x0805DFC4
 	str r0, [r7, #0xc]
 .L0805E2AA:
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -176186,7 +176186,7 @@ func_0805DFC4: @ 0x0805DFC4
 	mov r3, sb
 	strb r3, [r0, #0x18]
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r0, [sp, #0x24]
 	mov r8, r0
@@ -176350,7 +176350,7 @@ func_0805DFC4: @ 0x0805DFC4
 	str r0, [r2, #0xc]
 .L0805E494:
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -176488,7 +176488,7 @@ func_0805DFC4: @ 0x0805DFC4
 	orrs r1, r0
 	str r1, [r5, #4]
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -177174,7 +177174,7 @@ func_0805EE44: @ 0x0805EE44
 	adds r0, r5, #0
 	bl func_08008724
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -177184,7 +177184,7 @@ func_0805EE44: @ 0x0805EE44
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	ldr r2, [sp, #0x38]
 	str r2, [r4]
@@ -177208,7 +177208,7 @@ func_0805EE44: @ 0x0805EE44
 	movs r3, #0
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -177227,7 +177227,7 @@ func_0805EE44: @ 0x0805EE44
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r1, .L0805EF08 @ =0x00006422
 	adds r0, r5, r1
 	ldrh r0, [r0]
@@ -177267,7 +177267,7 @@ func_0805EE44: @ 0x0805EE44
 	movs r3, #0
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -177305,7 +177305,7 @@ func_0805EE44: @ 0x0805EE44
 	movs r3, #0
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -177541,7 +177541,7 @@ func_0805EE44: @ 0x0805EE44
 	movs r3, #0
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -177558,7 +177558,7 @@ func_0805EE44: @ 0x0805EE44
 	movs r3, #0
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -177579,7 +177579,7 @@ func_0805EE44: @ 0x0805EE44
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -177645,7 +177645,7 @@ func_0805EE44: @ 0x0805EE44
 .L0805F27C: .4byte 0x00006422
 .L0805F280:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r3, #0x92
 	lsls r3, r3, #5
@@ -177659,7 +177659,7 @@ func_0805EE44: @ 0x0805EE44
 .L0805F298: .4byte 0x00006422
 .L0805F29C:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r7, #0x82
 	lsls r7, r7, #5
@@ -177739,7 +177739,7 @@ func_0805EE44: @ 0x0805EE44
 	b .L0805F59E
 .L0805F338:
 	adds r0, r5, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	mov r3, sl
 	lsls r4, r3, #2
@@ -177898,7 +177898,7 @@ func_0805EE44: @ 0x0805EE44
 	str r0, [r6, #0xc]
 .L0805F460:
 	adds r0, r5, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, [sp, #0x48]
 	add r1, sl
@@ -178053,7 +178053,7 @@ func_0805EE44: @ 0x0805EE44
 	str r0, [r6, #0xc]
 .L0805F57A:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r3, #0xe2
 	lsls r3, r3, #5
@@ -178126,19 +178126,19 @@ func_0805F5F4: @ 0x0805F5F4
 	ldr r0, [r7, #0x10]
 	mov sb, r0
 	adds r0, r7, #0
-	bl func_080088DC
+	bl GetHardwareCoreState
 	mov r8, r0
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	adds r1, r7, #0
 	adds r1, #0x14
 	str r4, [sp]
@@ -178754,7 +178754,7 @@ func_0805FBB8: @ 0x0805FBB8
 	adds r0, r1, #0
 	strh r0, [r4]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r3, #0xe2
 	lsls r3, r3, #5
@@ -178763,43 +178763,43 @@ func_0805FBB8: @ 0x0805FBB8
 	movs r4, #0
 	strh r2, [r0]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L0805FCC0 @ =0x00001E43
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L0805FCC4 @ =0x00001D42
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L0805FCC8 @ =0x00001C41
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xa]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -179228,7 +179228,7 @@ func_0805FF14: @ 0x0805FF14
 	movs r3, #0
 	bl DrawStringTo2DGfxBuffer
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x38
 	lsls r2, r3, #5
@@ -179544,7 +179544,7 @@ func_0805FF14: @ 0x0805FF14
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x3c
 	lsls r2, r3, #5
@@ -179707,7 +179707,7 @@ func_0805FF14: @ 0x0805FF14
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r2, .L080603BC @ =0x06000800
 	add r0, sp, #0x38
@@ -179862,7 +179862,7 @@ func_0805FF14: @ 0x0805FF14
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x44
 	lsls r2, r3, #5
@@ -180025,7 +180025,7 @@ func_0805FF14: @ 0x0805FF14
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x1c4]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r5, #0x48
 	lsls r2, r5, #5
@@ -180188,7 +180188,7 @@ func_0805FF14: @ 0x0805FF14
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x1c4]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r5, #0x4c
 	lsls r2, r5, #5
@@ -180351,7 +180351,7 @@ func_0805FF14: @ 0x0805FF14
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x1c4]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r5, #0x50
 	lsls r2, r5, #5
@@ -180502,7 +180502,7 @@ func_0805FF14: @ 0x0805FF14
 .L08060946:
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060988 @ =gUnk_0875196C
 	movs r3, #0x54
@@ -180649,7 +180649,7 @@ func_0805FF14: @ 0x0805FF14
 .L08060A54:
 	ldr r2, [sp, #0x1c4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060A8C @ =gUnk_087519EC
 	add r0, sp, #0x38
@@ -180791,7 +180791,7 @@ func_0805FF14: @ 0x0805FF14
 .L08060B58:
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060B98 @ =gUnk_0875254C
 	movs r3, #0x58
@@ -180938,7 +180938,7 @@ func_0805FF14: @ 0x0805FF14
 .L08060C64:
 	ldr r2, [sp, #0x1c4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060C9C @ =gUnk_087525CC
 	add r0, sp, #0x38
@@ -181080,7 +181080,7 @@ func_0805FF14: @ 0x0805FF14
 .L08060D68:
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060DA8 @ =gUnk_087530CC
 	movs r3, #0x5c
@@ -181227,7 +181227,7 @@ func_0805FF14: @ 0x0805FF14
 .L08060E74:
 	ldr r2, [sp, #0x1c4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060EAC @ =gUnk_0875314C
 	add r0, sp, #0x38
@@ -181369,7 +181369,7 @@ func_0805FF14: @ 0x0805FF14
 .L08060F78:
 	ldr r1, [sp, #0x1c4]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08060FB8 @ =gUnk_0875348C
 	movs r3, #0x5d
@@ -181516,7 +181516,7 @@ func_0805FF14: @ 0x0805FF14
 .L08061084:
 	ldr r2, [sp, #0x1c4]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L080610BC @ =gUnk_0875350C
 	add r0, sp, #0x38
@@ -182045,7 +182045,7 @@ func_0805FF14: @ 0x0805FF14
 	bl DrawStringTo2DGfxBuffer
 	ldr r3, [sp, #0x1c4]
 	ldr r0, [r3]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -182636,7 +182636,7 @@ func_0805FF14: @ 0x0805FF14
 	bl DrawStringTo2DGfxBuffer
 	ldr r3, [sp, #0x1c4]
 	ldr r0, [r3]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -183085,7 +183085,7 @@ func_0805FF14: @ 0x0805FF14
 	bl DrawStringTo2DGfxBuffer
 	ldr r3, [sp, #0x1c4]
 	ldr r0, [r3]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -183511,7 +183511,7 @@ sub_08061E00: @ 0x08061E00
 	bl DrawStringTo2DGfxBuffer
 	ldr r3, [sp, #0x1c4]
 	ldr r0, [r3]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -183978,7 +183978,7 @@ sub_08061E00: @ 0x08061E00
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0x1c4]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -185575,7 +185575,7 @@ func_08062E9C: @ 0x08062E9C
 	bne .L08062EF8
 	ldr r3, [sp, #0xa8]
 	ldr r0, [r3]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r7, r0, #0
 	movs r5, #8
 	movs r6, #2
@@ -188732,7 +188732,7 @@ func_080645F0: @ 0x080645F0
 	movs r3, #0
 	bl DrawStringTo2DGfxBuffer
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r0, #0x38
 	lsls r2, r0, #5
@@ -188952,7 +188952,7 @@ func_080645F0: @ 0x080645F0
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0xf0]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	.ifdef REGION_DE
 	movs r3, #0xc0
 	.else
@@ -189126,7 +189126,7 @@ func_080645F0: @ 0x080645F0
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0xf0]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	.ifdef REGION_DE
 	movs r3, #0xc0
 	lsls r3, r3, #1
@@ -189301,7 +189301,7 @@ func_080645F0: @ 0x080645F0
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0xf0]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -189446,7 +189446,7 @@ func_080645F0: @ 0x080645F0
 .L08064B30:
 	ldr r2, [sp, #0xf0]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08064B74 @ =gUnk_0875254C
 	movs r3, #0x6c
@@ -189594,7 +189594,7 @@ func_080645F0: @ 0x080645F0
 .L08064C3E:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08064C78 @ =gUnk_087525CC
 	add r0, sp, #8
@@ -189739,7 +189739,7 @@ func_080645F0: @ 0x080645F0
 .L08064D46:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08064D88 @ =gUnk_08752DCC
 	movs r3, #0x70
@@ -189887,7 +189887,7 @@ func_080645F0: @ 0x080645F0
 .L08064E52:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08064E94 @ =gUnk_08752B4C
 	movs r3, #0x71
@@ -190035,7 +190035,7 @@ func_080645F0: @ 0x080645F0
 .L08064F5E:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08064FA0 @ =gUnk_087529AC
 	movs r3, #0x72
@@ -190183,7 +190183,7 @@ func_080645F0: @ 0x080645F0
 .L0806506A:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L080650AC @ =gUnk_08752D4C
 	movs r3, #0x73
@@ -190331,7 +190331,7 @@ func_080645F0: @ 0x080645F0
 .L08065176:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L080651B8 @ =gUnk_08752ACC
 	movs r3, #0x77
@@ -190481,7 +190481,7 @@ func_080645F0: @ 0x080645F0
 .L08065288:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L080652CC @ =gUnk_0875290C
 	movs r3, #0x7b
@@ -190631,7 +190631,7 @@ func_080645F0: @ 0x080645F0
 .L0806539C:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L080653D8 @ =gUnk_0875298C
 	add r0, sp, #8
@@ -190776,7 +190776,7 @@ func_080645F0: @ 0x080645F0
 .L080654A8:
 	ldr r2, [sp, #0xf0]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L080654EC @ =gUnk_087517AC
 	movs r3, #0x9c
@@ -190926,7 +190926,7 @@ func_080645F0: @ 0x080645F0
 .L080655BC:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08065600 @ =gUnk_08750F8C
 	movs r3, #0xa5
@@ -191076,7 +191076,7 @@ func_080645F0: @ 0x080645F0
 .L080656D0:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08065714 @ =gUnk_08750E4C
 	movs r3, #0xae
@@ -191226,7 +191226,7 @@ func_080645F0: @ 0x080645F0
 .L080657E4:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08065820 @ =gUnk_08750F6C
 	add r0, sp, #8
@@ -191371,7 +191371,7 @@ func_080645F0: @ 0x080645F0
 .L080658F0:
 	ldr r2, [sp, #0xf0]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L0806592C @ =gUnk_08750C4C
 	add r0, sp, #8
@@ -191518,7 +191518,7 @@ func_080645F0: @ 0x080645F0
 .L08065A00:
 	ldr r1, [sp, #0xf0]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08065A3C @ =gUnk_08750C6C
 	add r0, sp, #8
@@ -192919,7 +192919,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xe8]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x38
 	lsls r2, r3, #5
@@ -193237,7 +193237,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xe8]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x3c
 	lsls r2, r3, #5
@@ -193401,7 +193401,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0xe8]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	mov r5, sl
 	lsls r2, r5, #5
@@ -193568,7 +193568,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0xe8]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	mov r5, sl
 	lsls r2, r5, #5
@@ -193734,7 +193734,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xe8]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -193892,7 +193892,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xe8]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -194047,7 +194047,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0xe8]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -194202,7 +194202,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0xe8]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -194359,7 +194359,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r5, [sp, #0xe8]
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -194528,7 +194528,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0xe8]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -194696,7 +194696,7 @@ func_0806644C: @ 0x0806644C
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0xe8]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -194849,7 +194849,7 @@ func_0806644C: @ 0x0806644C
 .L080672DE:
 	ldr r1, [sp, #0xe8]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08067318 @ =gUnk_08752F8C
 	add r0, sp, #8
@@ -194994,7 +194994,7 @@ func_0806644C: @ 0x0806644C
 .L080673E8:
 	ldr r2, [sp, #0xe8]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08067424 @ =gUnk_0875300C
 	add r0, sp, #8
@@ -195141,7 +195141,7 @@ func_0806644C: @ 0x0806644C
 .L080674F8:
 	ldr r1, [sp, #0xe8]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08067534 @ =gUnk_08750C8C
 	add r0, sp, #8
@@ -195287,7 +195287,7 @@ func_0806644C: @ 0x0806644C
 .L08067604:
 	ldr r2, [sp, #0xe8]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08067640 @ =gUnk_0875166C
 	add r0, sp, #8
@@ -195435,7 +195435,7 @@ func_0806644C: @ 0x0806644C
 .L08067714:
 	ldr r1, [sp, #0xe8]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08067750 @ =gUnk_087510AC
 	add r0, sp, #8
@@ -195581,7 +195581,7 @@ func_0806644C: @ 0x0806644C
 .L08067820:
 	ldr r2, [sp, #0xe8]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L0806785C @ =gUnk_0875178C
 	add r0, sp, #8
@@ -195728,7 +195728,7 @@ func_0806644C: @ 0x0806644C
 .L08067930:
 	ldr r1, [sp, #0xe8]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L0806796C @ =gUnk_08750C4C
 	add r0, sp, #8
@@ -195873,7 +195873,7 @@ func_0806644C: @ 0x0806644C
 .L08067A3C:
 	ldr r2, [sp, #0xe8]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08067A78 @ =gUnk_08750C6C
 	add r0, sp, #8
@@ -197070,7 +197070,7 @@ func_08068344: @ 0x08068344
 	movs r3, #0
 	bl DrawStringTo2DGfxBuffer
 	ldr r0, [r7]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -197269,7 +197269,7 @@ func_08068344: @ 0x08068344
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -197426,7 +197426,7 @@ func_08068344: @ 0x08068344
 	bl DrawStringTo2DGfxBuffer
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r3, #0x54
 	lsls r2, r3, #5
@@ -197570,7 +197570,7 @@ func_08068344: @ 0x08068344
 .L0806874C:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08068794 @ =gUnk_08752A2C
 	movs r3, #0x58
@@ -197723,7 +197723,7 @@ func_08068344: @ 0x08068344
 .L08068864:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L080688A4 @ =gUnk_08752AAC
 	movs r2, #0xa0
@@ -197869,7 +197869,7 @@ func_08068344: @ 0x08068344
 .L0806896E:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L080689B0 @ =gUnk_08752CCC
 	movs r3, #0x59
@@ -198017,7 +198017,7 @@ func_08068344: @ 0x08068344
 .L08068A7A:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08068ABC @ =gUnk_08752BCC
 	movs r3, #0x5a
@@ -198165,7 +198165,7 @@ func_08068344: @ 0x08068344
 .L08068B86:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08068BC8 @ =gUnk_08752C4C
 	movs r3, #0x5b
@@ -198313,7 +198313,7 @@ func_08068344: @ 0x08068344
 .L08068C92:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08068CD8 @ =gUnk_087511CC
 	movs r3, #0x9c
@@ -198468,7 +198468,7 @@ func_08068344: @ 0x08068344
 .L08068DAE:
 	ldr r2, [sp, #0xbc]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08068DF0 @ =gUnk_087512EC
 	movs r2, #0xa0
@@ -198617,7 +198617,7 @@ func_08068344: @ 0x08068344
 .L08068EC0:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08068F04 @ =gUnk_0875154C
 	movs r3, #0xa5
@@ -198767,7 +198767,7 @@ func_08068344: @ 0x08068344
 .L08068FD4:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L08069018 @ =gUnk_0875130C
 	movs r3, #0xae
@@ -198917,7 +198917,7 @@ func_08068344: @ 0x08068344
 .L080690E8:
 	ldr r1, [sp, #0xbc]
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, .L0806912C @ =gUnk_0875142C
 	movs r3, #0xb7
@@ -201096,7 +201096,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r0, r7, #0
 	bl func_08008724
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	movs r3, #0xea
 	lsls r3, r3, #5
@@ -201104,14 +201104,14 @@ func_0806A1F4: @ 0x0806A1F4
 	strh r1, [r2]
 	strh r1, [r0, #8]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	ldr r4, .L0806A460 @ =0x00001E41
 	adds r1, r4, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xa]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	ldr r5, .L0806A464 @ =0x00003F42
 	adds r1, r5, #0
@@ -201128,7 +201128,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r2, #0x20
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	movs r6, #0xb2
 	lsls r6, r6, #5
@@ -201290,7 +201290,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r6, [sp, #0x2b8]
 	ldrh r2, [r6]
 	movs r3, #0x80
@@ -201595,7 +201595,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x2b8]
 	ldrh r2, [r1, #2]
 	movs r3, #0x80
@@ -201785,7 +201785,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r5, [sp, #0x2b8]
 	ldrh r2, [r5, #4]
 	movs r3, #0x80
@@ -201972,7 +201972,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	str r0, [sp, #0x380]
@@ -202153,7 +202153,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	str r0, [sp, #0x380]
@@ -202334,7 +202334,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	str r0, [sp, #0x380]
@@ -202515,7 +202515,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	str r0, [sp, #0x380]
@@ -202699,7 +202699,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r2, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x380]
 	ldr r6, [sp, #0x218]
 	lsls r2, r6, #5
@@ -202875,7 +202875,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r2, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x380]
 	ldr r6, [sp, #0x21c]
 	lsls r2, r6, #5
@@ -203036,7 +203036,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r0, #0x20
 	str r0, [sp, #0x220]
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x380]
 	ldr r1, .L0806B0EC @ =gUnk_0875196C
 	ldr r3, [sp, #0x220]
@@ -203199,7 +203199,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r6, #0xc]
 .L0806B1CE:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x380]
 	ldr r1, .L0806B20C @ =gUnk_087519EC
 	add r0, sp, #0x60
@@ -203356,7 +203356,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r0, #0x20
 	str r0, [sp, #0x224]
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x380]
 	ldr r1, .L0806B338 @ =gUnk_0875254C
 	ldr r3, [sp, #0x224]
@@ -203513,7 +203513,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r2, #0xc]
 .L0806B414:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x380]
 	ldr r1, .L0806B450 @ =gUnk_087525CC
 	add r0, sp, #0x60
@@ -203676,10 +203676,10 @@ func_0806A1F4: @ 0x0806A1F4
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r3, r0, #0
 	str r6, [sp]
 	adds r0, r5, #0
@@ -205223,7 +205223,7 @@ func_0806A1F4: @ 0x0806A1F4
 	ldr r3, [r3, #0x10]
 	bl _call_via_r3
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x8c]
 	ldr r1, .L0806C204 @ =0x000040B8
@@ -205404,7 +205404,7 @@ func_0806A1F4: @ 0x0806A1F4
 	ldr r3, [r3, #0x10]
 	bl _call_via_r3
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r6, [sp, #0x2e8]
 	ldr r5, [r6]
@@ -205573,7 +205573,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r2, #0xc]
 .L0806C43C:
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0x10
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -205583,7 +205583,7 @@ func_0806A1F4: @ 0x0806A1F4
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -205601,7 +205601,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x60]
 	ldr r2, [r2, #0x10]
@@ -205614,21 +205614,21 @@ sub_0806C492: @ 0x0806C492
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
-	bl func_080088DC
+	bl GetHardwareCoreState
 	mov r8, r0
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	movs r1, #0x9a
 	lsls r1, r1, #1
 	adds r2, r7, r1
@@ -205800,7 +205800,7 @@ sub_0806C492: @ 0x0806C492
 	bl .L0806CDEA
 .L0806C628:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -205855,7 +205855,7 @@ sub_0806C492: @ 0x0806C492
 .L0806C688: .4byte 0x000040AC
 .L0806C68C:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -205935,7 +205935,7 @@ sub_0806C492: @ 0x0806C492
 .L0806C724: .4byte 0x00004170
 .L0806C728:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -206108,7 +206108,7 @@ sub_0806C492: @ 0x0806C492
 .L0806C884: .4byte 0x00004174
 .L0806C888:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -206726,7 +206726,7 @@ sub_0806C492: @ 0x0806C492
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x60]
 	ldr r2, [r2, #0x10]
@@ -206759,7 +206759,7 @@ sub_0806C492: @ 0x0806C492
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x60]
 	ldr r2, [r2, #0x10]
@@ -206906,7 +206906,7 @@ sub_0806C492: @ 0x0806C492
 	strh r0, [r1, #6]
 	strb r4, [r1, #0x18]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [r6]
 	movs r2, #0
 	cmp r1, #0
@@ -206916,7 +206916,7 @@ sub_0806C492: @ 0x0806C492
 	mov r3, sl
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r4, sp, #0xe0
 	ldr r2, [r4]
@@ -207149,7 +207149,7 @@ sub_0806C492: @ 0x0806C492
 	mov r1, sl
 	strh r0, [r1, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [r4]
 	movs r2, #0
 	cmp r1, #0
@@ -207159,7 +207159,7 @@ sub_0806C492: @ 0x0806C492
 	mov r3, sl
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r4, sp, #0xe0
 	ldr r2, [r4]
@@ -207382,7 +207382,7 @@ sub_0806C492: @ 0x0806C492
 	bl GetHardwareSharedStateTileIndex
 	strh r0, [r4, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [r6]
 	movs r2, #0
 	cmp r1, #0
@@ -207392,7 +207392,7 @@ sub_0806C492: @ 0x0806C492
 	mov r3, sl
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r4, sp, #0xe0
 	ldr r1, [r4]
@@ -207626,7 +207626,7 @@ sub_0806C492: @ 0x0806C492
 	bl func_080074C0
 	str r0, [sp, #0x278]
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, [r5, #8]
 	ldr r3, [sp, #0x274]
@@ -207801,7 +207801,7 @@ sub_0806C492: @ 0x0806C492
 	str r0, [r6, #0xc]
 .L0806D5B6:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x2ac]
 	adds r1, #4
 	ldr r2, [sp, #0x270]
@@ -207952,7 +207952,7 @@ sub_0806C492: @ 0x0806C492
 	str r0, [r6, #0xc]
 .L0806D6CA:
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r4, r0, #0
 	ldr r1, [sp, #0x2ac]
 	adds r1, #4
@@ -208053,7 +208053,7 @@ sub_0806C492: @ 0x0806C492
 	b .L0806D8A0
 .L0806D78A:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	ldr r1, [r4, #4]
 	ldr r2, [r4, #8]
@@ -208345,7 +208345,7 @@ func_0806DB38: @ 0x0806DB38
 	adds r0, r5, #0
 	bl func_08008724
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -208355,7 +208355,7 @@ func_0806DB38: @ 0x0806DB38
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -208379,7 +208379,7 @@ func_0806DB38: @ 0x0806DB38
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -208395,7 +208395,7 @@ func_0806DB38: @ 0x0806DB38
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r1, .L0806DBEC @ =0x0000044C
 	adds r0, r5, r1
 	movs r1, #0
@@ -208591,7 +208591,7 @@ func_0806DB38: @ 0x0806DB38
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -208867,23 +208867,23 @@ func_0806E234: @ 0x0806E234
 	push {r5, r6, r7}
 	sub sp, #0x58
 	adds r6, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r4, #0
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -208909,7 +208909,7 @@ func_0806E234: @ 0x0806E234
 	mov r2, r8
 	bl FillHardwareDma3
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r3, #0xc2
 	lsls r3, r3, #5
@@ -208918,7 +208918,7 @@ func_0806E234: @ 0x0806E234
 	movs r5, #0
 	strh r2, [r0]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L0806E40C @ =0x00001C03
 	adds r1, r3, #0
@@ -208936,12 +208936,12 @@ func_0806E234: @ 0x0806E234
 	mov r2, r8
 	bl FillHardwareDma3
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x1c]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x1e]
@@ -208955,22 +208955,22 @@ func_0806E234: @ 0x0806E234
 	movs r3, #0x20
 	bl DrawUiTextWindowBorder
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x18]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x1a]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x14]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r5, [r1]
 	strh r5, [r0, #0x16]
@@ -209096,14 +209096,14 @@ func_0806EA78: @ 0x0806EA78
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r5, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
 	adds r0, #0x50
 	strh r2, [r0]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	add r4, sp, #4
 	movs r0, #0
@@ -209119,7 +209119,7 @@ func_0806EA78: @ 0x0806EA78
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r1, [r0, #8]
 	ldr r2, [r1, #0x10]
 	adds r1, r4, #0
@@ -209153,14 +209153,14 @@ func_0806EAF4: @ 0x0806EAF4
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r5, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
 	adds r0, #0x50
 	strh r2, [r0]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	add r4, sp, #4
 	movs r0, #0
@@ -209176,7 +209176,7 @@ func_0806EAF4: @ 0x0806EAF4
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r1, [r0, #8]
 	ldr r2, [r1, #0x10]
 	adds r1, r4, #0
@@ -209792,7 +209792,7 @@ func_0806EFC0: @ 0x0806EFC0
 	adds r6, r0, #0
 .L0806EFFA:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r3, r0, #0
 	adds r0, r7, #0
 	cmp r7, #0
@@ -209838,7 +209838,7 @@ func_0806EFC0: @ 0x0806EFC0
 	mov sb, r0
 	bl UpdateIndexedResourceHandle
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	mov r8, r0
 	cmp r7, #0
 	ble .L0806F09C
@@ -212077,7 +212077,7 @@ func_08070140: @ 0x08070140
 	mov r8, r0
 .L0807015A:
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r6, r0, #0
 	ldr r1, [r4, #8]
 	ldr r3, [r1]
@@ -213124,7 +213124,7 @@ func_08070A08: @ 0x08070A08
 	str r0, [sp, #0x14]
 	ldr r6, [r1, #4]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #4
 	movs r3, #0xf2
 	lsls r3, r3, #5
@@ -213156,7 +213156,7 @@ func_08070A08: @ 0x08070A08
 .L08070A60: .4byte 0x0000D440
 .L08070A64:
 	adds r0, r6, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	adds r3, r0, #0
 	str r3, [sp, #8]
 	movs r2, #0
@@ -213254,9 +213254,9 @@ func_08070A08: @ 0x08070A08
 	bl UpdateHardwareFrame
 .L08070B1A:
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -213657,7 +213657,7 @@ func_08070DE4: @ 0x08070DE4
 	bl DrawStringTo2DGfxBuffer
 	ldr r6, [sp, #0xd0]
 	ldr r0, [r6]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	adds r1, r4, #0
@@ -214428,7 +214428,7 @@ func_080713B8: @ 0x080713B8
 	movs r3, #0
 	bl DrawStringTo2DGfxBuffer
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -214793,7 +214793,7 @@ func_080713B8: @ 0x080713B8
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0x100]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	.ifdef REGION_DE
 	movs r3, #0xe0
 	.else
@@ -214966,7 +214966,7 @@ func_080713B8: @ 0x080713B8
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0x100]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	.ifdef REGION_DE
 	movs r3, #0xa0
 	.else
@@ -215148,7 +215148,7 @@ func_080713B8: @ 0x080713B8
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0x100]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	.ifdef REGION_DE
 	movs r3, #0xc0
 	.else
@@ -215325,7 +215325,7 @@ func_080713B8: @ 0x080713B8
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x100]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	.ifdef REGION_DE
@@ -215502,7 +215502,7 @@ func_080713B8: @ 0x080713B8
 	bl DrawStringTo2DGfxBuffer
 	ldr r2, [sp, #0x100]
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -215675,7 +215675,7 @@ func_080713B8: @ 0x080713B8
 	bl DrawStringTo2DGfxBuffer
 	ldr r4, [sp, #0x100]
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	.ifdef REGION_DE
@@ -216776,7 +216776,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xd0
 	lsls r3, r3, #3
 	adds r6, r0, #0
@@ -217394,7 +217394,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -217561,7 +217561,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #3
 	adds r6, r0, #0
@@ -217732,7 +217732,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	.ifdef REGION_DE
 	movs r3, #0xc0
 	.else
@@ -217903,7 +217903,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -218073,7 +218073,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	.ifdef REGION_DE
@@ -218238,7 +218238,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	.ifdef REGION_DE
@@ -218404,7 +218404,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -218571,7 +218571,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -219061,7 +219061,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r6, sb
 	ldr r0, [r6]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xd0
 	lsls r3, r3, #3
 	adds r5, r0, #0
@@ -219258,7 +219258,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xe0
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -219436,7 +219436,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -219614,7 +219614,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	.ifdef REGION_DE
 	movs r3, #0xa0
 	.else
@@ -219791,7 +219791,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	add r0, sp, #8
 	.ifdef REGION_DE
@@ -220334,7 +220334,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r6, sb
 	ldr r0, [r6]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xd0
 	lsls r3, r3, #3
 	adds r6, r0, #0
@@ -220510,7 +220510,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #2
 	adds r6, r0, #0
@@ -220684,7 +220684,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -220858,7 +220858,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -221032,7 +221032,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -221205,7 +221205,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	.ifdef REGION_DE
@@ -221377,7 +221377,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	.ifdef REGION_DE
@@ -221637,7 +221637,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r1, sb
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -221899,7 +221899,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r1, sb
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -222161,7 +222161,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r1, sb
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #2
 	adds r5, r0, #0
@@ -222382,7 +222382,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r7, sb
 	ldr r0, [r7]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xd0
 	lsls r3, r3, #3
 	adds r6, r0, #0
@@ -222557,7 +222557,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r2, sb
 	ldr r0, [r2]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r6, r0, #0
@@ -222727,7 +222727,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r5, sb
 	ldr r0, [r5]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xa0
 	lsls r3, r3, #3
 	adds r6, r0, #0
@@ -222954,7 +222954,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r6, sb
 	ldr r0, [r6]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	movs r3, #0xc0
 	lsls r3, r3, #3
 	adds r6, r0, #0
@@ -223129,7 +223129,7 @@ func_080722DC: @ 0x080722DC
 	bl DrawStringTo2DGfxBuffer
 	mov r4, sb
 	ldr r0, [r4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #8
 	.ifdef REGION_DE
@@ -225092,14 +225092,14 @@ func_08075E7C: @ 0x08075E7C
 	adds r0, r7, #0
 	bl func_08008724
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r5, .L08076164 @ =0x00001E41
 	adds r1, r5, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xa]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r6, #0xea
 	lsls r6, r6, #5
@@ -225107,14 +225107,14 @@ func_08075E7C: @ 0x08075E7C
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L08076168 @ =0x00003F42
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r5, .L0807616C @ =0x00001C48
 	adds r1, r5, #0
@@ -225132,7 +225132,7 @@ func_08075E7C: @ 0x08075E7C
 	movs r2, #0x20
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r3, #0xfa
 	lsls r3, r3, #5
@@ -225153,7 +225153,7 @@ func_08075E7C: @ 0x08075E7C
 	adds r2, r5, #0
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -225167,7 +225167,7 @@ func_08075E7C: @ 0x08075E7C
 	movs r3, #0x1e
 	bl DrawUiTextWindowBorder
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r3, #0xf4
 	lsls r3, r3, #1
@@ -225191,7 +225191,7 @@ func_08075E7C: @ 0x08075E7C
 	movs r3, #2
 	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r4, .L08076194 @ =0x0000FFFC
 	adds r1, r4, #0
@@ -225263,7 +225263,7 @@ func_08075E7C: @ 0x08075E7C
 	ldr r3, [r3, #0x10]
 	bl _call_via_r3
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r2, r0, #0
 	ldr r0, [sp, #0x64]
 	adds r1, r0, #0
@@ -225542,7 +225542,7 @@ func_0807628C: @ 0x0807628C
 	strh r6, [r0, #4]
 	strh r6, [r0, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	ldr r1, [sp, #0x1c]
 	movs r2, #0
 	str r5, [sp, #0xc4]
@@ -225554,7 +225554,7 @@ func_0807628C: @ 0x0807628C
 	mov r3, sp
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x24]
 	add r2, sp, #0x24
 	movs r3, #0
@@ -225798,7 +225798,7 @@ func_0807628C: @ 0x0807628C
 	movs r4, #1
 	strh r4, [r0, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x4c]
 	adds r1, r0, #0
@@ -225812,7 +225812,7 @@ func_0807628C: @ 0x0807628C
 	mov r3, sp
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x54]
 	movs r3, #0
 	cmp r1, #0
@@ -226007,7 +226007,7 @@ func_0807628C: @ 0x0807628C
 	movs r0, #2
 	strh r0, [r1, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x6c]
 	adds r1, r0, #0
@@ -226020,7 +226020,7 @@ func_0807628C: @ 0x0807628C
 	mov r3, sp
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x74]
 	add r2, sp, #0x74
 	movs r3, #0
@@ -226218,7 +226218,7 @@ func_0807628C: @ 0x0807628C
 	movs r0, #3
 	strh r0, [r1, #6]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x6c]
 	adds r1, r0, #0
@@ -226231,7 +226231,7 @@ func_0807628C: @ 0x0807628C
 	mov r3, sp
 	bl DrawIndexedResourceSprites
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x74]
 	add r2, sp, #0x74
 	movs r3, #0
@@ -226410,14 +226410,14 @@ func_080769A0: @ 0x080769A0
 	push {r6, r7}
 	sub sp, #0x18
 	adds r6, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
 	adds r0, #0x50
 	strh r2, [r0]
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	add r4, sp, #4
 	movs r0, #0
@@ -226433,7 +226433,7 @@ func_080769A0: @ 0x080769A0
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r1, [r0, #8]
 	ldr r2, [r1, #0x10]
 	adds r1, r4, #0
@@ -226448,15 +226448,15 @@ func_080769A0: @ 0x080769A0
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r6, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	str r0, [sp, #0x14]
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	adds r7, r0, #0
 	ldr r1, [sp, #4]
 	rsbs r0, r1, #0
@@ -226480,7 +226480,7 @@ func_080769A0: @ 0x080769A0
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r1, [r0, #8]
 	ldr r2, [r1, #0x10]
 	mov r1, sb
@@ -226508,7 +226508,7 @@ func_080769A0: @ 0x080769A0
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r1, [r0, #8]
 	ldr r2, [r1, #0x10]
 	mov r1, sb
@@ -226712,10 +226712,10 @@ func_08076BFC: @ 0x08076BFC
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r3, r0, #0
 	ldr r0, .L08076CC0 @ =0x0600F000
 	str r0, [sp]
@@ -226802,7 +226802,7 @@ func_08076BFC: @ 0x08076BFC
 	bl DrawStringTo2DGfxBuffer
 .L08076CF2:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	mov r1, sb
 	adds r1, #0xc
 	movs r3, #0xb0
@@ -227126,7 +227126,7 @@ func_08076EA8: @ 0x08076EA8
 	str r6, [sp, #0x4c]
 	mov r7, sl
 	ldr r0, [r7]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r2, [sp, #0x44]
 	ldr r1, [r2]
 	ldr r3, [sp, #0x60]
@@ -227298,7 +227298,7 @@ func_08076EA8: @ 0x08076EA8
 .L08077084:
 	mov r1, sl
 	ldr r0, [r1]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r2, [sp, #0x44]
 	ldr r1, [r2]
 	ldr r3, [sp, #0x60]
@@ -227446,7 +227446,7 @@ func_08076EA8: @ 0x08076EA8
 .L08077192:
 	mov r2, sl
 	ldr r0, [r2]
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r4, r0, #0
 	ldr r3, [sp, #0x44]
 	ldr r1, [r3]
@@ -227571,7 +227571,7 @@ func_08076EA8: @ 0x08076EA8
 .L0807727E:
 	mov r6, sl
 	ldr r0, [r6]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r3, [r7]
 	adds r3, r3, r4
 	adds r5, r0, #0
@@ -227858,7 +227858,7 @@ func_08077490: @ 0x08077490
 	adds r0, r5, #0
 	bl func_08008724
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -227868,7 +227868,7 @@ func_08077490: @ 0x08077490
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -227894,7 +227894,7 @@ func_08077490: @ 0x08077490
 	movs r3, #0
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -227908,7 +227908,7 @@ func_08077490: @ 0x08077490
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r2, .L08077544 @ =0x0000072A
 	adds r0, r5, r2
 	movs r3, #0
@@ -228025,7 +228025,7 @@ func_08077490: @ 0x08077490
 	movs r3, #0
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -228059,7 +228059,7 @@ func_08077490: @ 0x08077490
 	adds r0, r5, #0
 	bl func_08077A1C
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r3, #0xc8
 	lsls r3, r3, #3
@@ -228073,7 +228073,7 @@ func_08077490: @ 0x08077490
 	movs r3, #0
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -228175,7 +228175,7 @@ func_08077490: @ 0x08077490
 	movs r3, #0
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -228198,7 +228198,7 @@ func_08077490: @ 0x08077490
 	movs r7, #1
 .L08077796:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L08077808 @ =0x00000716
 	adds r1, r5, r3
@@ -228206,7 +228206,7 @@ func_08077490: @ 0x08077490
 	strh r1, [r2]
 	strh r1, [r0, #0x16]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r4, .L0807780C @ =0x00000714
 	adds r1, r5, r4
@@ -228267,33 +228267,33 @@ func_08077810: @ 0x08077810
 	ldr r4, .L08077974 @ =0xFFFFF7FC
 	add sp, r4
 	adds r5, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r4, #0
 	strh r4, [r1]
 	strh r4, [r0, #0x14]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x16]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -228321,7 +228321,7 @@ func_08077810: @ 0x08077810
 	mov r2, r8
 	bl FillHardwareDma3
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r3, #0x90
 	lsls r3, r3, #2
@@ -228331,14 +228331,14 @@ func_08077810: @ 0x08077810
 	mov sl, r7
 	strh r2, [r0]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r3, .L08077988 @ =0x0000994A
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	ldr r7, .L0807798C @ =0x00001E42
 	adds r1, r7, #0
@@ -228629,7 +228629,7 @@ func_08077A1C: @ 0x08077A1C
 	adds r0, #1
 	str r0, [r1]
 	adds r0, r5, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r1, r5, #0
 	adds r1, #0x14
 	adds r5, r0, #0
@@ -228873,14 +228873,14 @@ func_08077CE0: @ 0x08077CE0
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r5, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
 	adds r0, #0x50
 	strh r2, [r0]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	add r4, sp, #4
 	movs r0, #0
@@ -228896,7 +228896,7 @@ func_08077CE0: @ 0x08077CE0
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r1, [r0, #8]
 	ldr r2, [r1, #0x10]
 	adds r1, r4, #0
@@ -228930,14 +228930,14 @@ func_08077D5C: @ 0x08077D5C
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r5, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
 	adds r0, #0x50
 	strh r2, [r0]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	add r4, sp, #4
 	movs r0, #0
@@ -228953,7 +228953,7 @@ func_08077D5C: @ 0x08077D5C
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r1, [r0, #8]
 	ldr r2, [r1, #0x10]
 	adds r1, r4, #0
@@ -228994,18 +228994,18 @@ func_08077DD8: @ 0x08077DD8
 	mov sb, r0
 	add r0, sp, #0xc
 	movs r1, #0
-	bl func_080091E8
+	bl __18HardwareInputStateUi
 	adds r0, r4, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	mov r8, r0
 	adds r0, r4, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r6, r0, #0
 	adds r0, r4, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r5, r0, #0
 	adds r0, r4, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	adds r4, #0x18
 	str r5, [sp]
 	str r0, [sp, #4]
@@ -229288,7 +229288,7 @@ func_08078044: @ 0x08078044
 	adds r0, r4, #0
 	bl UpdateIndexedResourceHandle
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r5, r0, #0
 	ldr r1, [r7, #0x78]
 	ldr r3, [r1]
@@ -229317,7 +229317,7 @@ func_08078044: @ 0x08078044
 .L08078108: .4byte 0x000003FF
 .L0807810C:
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r1, r0, #0
 	adds r0, r7, #0
 	adds r0, #0x20
@@ -229957,7 +229957,7 @@ func_080785C8: @ 0x080785C8
 	beq .L08078620
 .L080785E0:
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r4, r0, #0
 	ldr r1, [r5, #8]
 	ldr r3, [r1]
@@ -229993,10 +229993,10 @@ func_080785C8: @ 0x080785C8
 	cmp r0, #0
 	bge .L0807864E
 	adds r0, r6, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r1, r6, #0
 	adds r1, #0x1c
 	str r0, [sp]
@@ -230566,7 +230566,7 @@ func_08078AE8:
 func_08078B18:
 	.byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46
 	.byte 0xE0, 0xB4, 0x91, 0xB0, 0x0D, 0x90, 0x0E, 0x90, 0x4F, 0x68, 0x38, 0x1C
-	bl func_08008918
+	bl GetHardwareDisplayState
 	.byte 0x02, 0x1C, 0x15, 0x1C, 0x04, 0xA9, 0xE2, 0x23, 0x5B, 0x01, 0x18, 0x1C, 0x08, 0x80, 0x10, 0x80
 	.byte 0xB8, 0x68, 0x30, 0x4B, 0xC0, 0x18, 0x00, 0x78, 0x80, 0x07, 0x00, 0x28, 0x02, 0xDA, 0xF2, 0x20
 	.byte 0x40, 0x01, 0x10, 0x80, 0xF2, 0x21, 0x49, 0x01, 0x08, 0x1C, 0x6A, 0x46, 0x10, 0x82, 0xE8, 0x81
@@ -230627,7 +230627,7 @@ func_08078B18:
 	bl func_08008DA8
 	.byte 0x38, 0x7D, 0x60, 0x40, 0x38, 0x75
 	.byte 0x38, 0x1C
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	.byte 0x03, 0x1C, 0x08, 0x93, 0x00, 0x25, 0x00, 0x22, 0x00, 0x24
 	.byte 0x19, 0x06, 0x58, 0x06, 0xC9, 0x0F, 0xC0, 0x0F, 0x81, 0x42, 0x04, 0xD0, 0x99, 0x06, 0xD8, 0x06
 	.byte 0xCC, 0x0F, 0xC0, 0x0F, 0x44, 0x40, 0x80, 0x23, 0x9B, 0x00, 0x00, 0x2C, 0x00, 0xD0, 0x96, 0x3B
@@ -230645,9 +230645,9 @@ func_08078B18:
 	.byte 0x38, 0x1C
 	bl UpdateHardwareFrame
 	.byte 0x38, 0x1C
-	bl func_080088B8
+	bl UpdateHardwareInput
 	.byte 0x38, 0x1C
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	.byte 0x01, 0x1C, 0x02, 0x20, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1, 0x20, 0xE7, 0x38, 0x1C
 	bl func_08077D5C
 	.byte 0xF8, 0x68, 0x00, 0x24, 0xFC, 0x60, 0x04, 0x90, 0x04, 0xA9, 0x09, 0x91
@@ -230980,7 +230980,7 @@ func_080790E4: @ 0x080790E4
 	adds r0, r5, #0
 	bl func_08008724
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -230990,7 +230990,7 @@ func_080790E4: @ 0x080790E4
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -231046,7 +231046,7 @@ func_080790E4: @ 0x080790E4
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -231056,7 +231056,7 @@ func_080790E4: @ 0x080790E4
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r6, .L080791C4 @ =0x00000A58
 	adds r0, r5, r6
 	ldr r0, [r0]
@@ -231106,7 +231106,7 @@ func_080790E4: @ 0x080790E4
 	b .L08079444
 .L0807921C:
 	adds r0, r5, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -231169,7 +231169,7 @@ func_080790E4: @ 0x080790E4
 .L0807929C: .4byte 0x00000A58
 .L080792A0:
 	adds r0, r5, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -231238,7 +231238,7 @@ func_080790E4: @ 0x080790E4
 .L0807932C: .4byte 0x00000A58
 .L08079330:
 	adds r0, r5, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -231286,7 +231286,7 @@ func_080790E4: @ 0x080790E4
 .L08079394: .4byte gReferenceGuideTables
 .L08079398:
 	adds r0, r5, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -231388,7 +231388,7 @@ func_080790E4: @ 0x080790E4
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -231427,7 +231427,7 @@ func_080790E4: @ 0x080790E4
 	movs r4, #1
 .L080794B6:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r6, #0x84
 	lsls r6, r6, #4
@@ -231476,7 +231476,7 @@ func_080790E4: @ 0x080790E4
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -231486,7 +231486,7 @@ func_080790E4: @ 0x080790E4
 	adds r0, r5, #0
 	bl UpdateHardwareFrame
 	adds r0, r5, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r4, .L08079554 @ =0x00000A58
 	adds r0, r5, r4
 	ldr r0, [r0]
@@ -231554,10 +231554,10 @@ func_080790E4: @ 0x080790E4
 	b .L08079782
 .L080795D8:
 	adds r0, r5, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	str r0, [sp, #0xc]
 	adds r0, r5, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r3, r0, #0
 	movs r0, #3
 	ands r0, r3
@@ -231752,7 +231752,7 @@ func_080790E4: @ 0x080790E4
 .L08079760: .4byte 0x00000A58
 .L08079764:
 	adds r0, r5, #0
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	str r0, [sp, #0x10]
 	add r2, sp, #0x10
 	ldrb r1, [r2]
@@ -231781,7 +231781,7 @@ func_080790E4: @ 0x080790E4
 	movs r3, #1
 	bl func_08009378
 	adds r0, r5, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -231820,7 +231820,7 @@ func_080790E4: @ 0x080790E4
 	movs r7, #1
 .L080797EC:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r3, #0x84
 	lsls r3, r3, #4
@@ -231888,33 +231888,33 @@ func_08079860: @ 0x08079860
 	ldr r4, .L08079A18 @ =0xFFFFF7F0
 	add sp, r4
 	adds r5, r0, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r4, #0
 	strh r4, [r1]
 	strh r4, [r0, #0x14]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x16]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -231942,21 +231942,21 @@ func_08079860: @ 0x08079860
 	mov r2, r8
 	bl FillHardwareDma3
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L08079A2C @ =0x00001C43
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r7, .L08079A30 @ =0x00001D41
 	adds r1, r7, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L08079A34 @ =0x00001E42
 	adds r1, r3, #0
@@ -232497,7 +232497,7 @@ func_08079A64: @ 0x08079A64
 	ble .L08079D0E
 .L08079D7C:
 	adds r0, r5, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r3, #0xf2
 	lsls r3, r3, #5
@@ -232610,7 +232610,7 @@ func_08079DC0: @ 0x08079DC0
 	bl DrawStringTo2DGfxBufferExt
 .L08079E6A:
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	lsls r2, r5, #3
 	subs r2, r2, r5
@@ -233143,7 +233143,7 @@ func_08079F8C: @ 0x08079F8C
 	ble .L0807A216
 .L0807A278:
 	mov r0, sb
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	movs r3, #0xf2
 	lsls r3, r3, #5
@@ -233558,7 +233558,7 @@ func_0807A554: @ 0x0807A554
 	bl DrawStringTo2DGfxBufferExt
 .L0807A5EE:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	lsls r2, r5, #3
 	subs r2, r2, r5
@@ -234158,7 +234158,7 @@ func_0807A98C: @ 0x0807A98C
 	orrs r1, r0
 	str r1, [r3, #4]
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -234252,7 +234252,7 @@ func_0807A98C: @ 0x0807A98C
 	mov r1, sb
 	strb r1, [r0, #0x18]
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r6, [sp, #0x24]
 	ldr r1, [r4, #4]
@@ -234422,7 +234422,7 @@ func_0807A98C: @ 0x0807A98C
 	str r0, [r5, #0xc]
 .L0807AC92:
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -234511,7 +234511,7 @@ func_0807A98C: @ 0x0807A98C
 	movs r6, #1
 	strb r6, [r0, #0x18]
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r0, [sp, #0x24]
 	mov sb, r0
@@ -234672,7 +234672,7 @@ func_0807A98C: @ 0x0807A98C
 	str r0, [r6, #0xc]
 .L0807AE7E:
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -234758,7 +234758,7 @@ func_0807A98C: @ 0x0807A98C
 	mov r0, sp
 	strb r2, [r0, #0x18]
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -235447,7 +235447,7 @@ func_0807B3B0: @ 0x0807B3B0
 	adds r0, #0xd0
 	mov sb, r0
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	add r4, r8
 	adds r4, r4, r7
 	adds r4, #4
@@ -235640,7 +235640,7 @@ func_0807B3B0: @ 0x0807B3B0
 	movs r3, #2
 	bl Fill2DGfxTilemapRect
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	movs r0, #0xf8
 	lsls r0, r0, #1
@@ -235790,7 +235790,7 @@ func_0807B3B0: @ 0x0807B3B0
 	str r0, [r6, #0xc]
 .L0807B766:
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r6, r0, #0
 	add r0, sp, #0x1c
 	ldr r1, .L0807B7A0 @ =gUnk_087525CC
@@ -236860,7 +236860,7 @@ func_0807BEC8: @ 0x0807BEC8
 	lsls r4, r4, #3
 	adds r4, #0xd0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r1, r5, r7
 	movs r5, #0xe2
 	lsls r5, r5, #3
@@ -237045,7 +237045,7 @@ func_0807BEC8: @ 0x0807BEC8
 	adds r0, r7, #0
 	bl func_0807B920
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -237055,7 +237055,7 @@ func_0807BEC8: @ 0x0807BEC8
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -237073,7 +237073,7 @@ func_0807BEC8: @ 0x0807BEC8
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -237086,7 +237086,7 @@ sub_0807C194: @ 0x0807C194
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r3, [sp, #0xc]
 	ldr r1, [r3]
 	rsbs r0, r1, #0
@@ -238000,7 +238000,7 @@ sub_0807C194: @ 0x0807C194
 .L0807C96C: .4byte 0x000006A4
 .L0807C970:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -238234,7 +238234,7 @@ sub_0807C194: @ 0x0807C194
 .L0807CB5C: .4byte 0x000006A4
 .L0807CB60:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -238436,7 +238436,7 @@ sub_0807C194: @ 0x0807C194
 .L0807CD0C: .4byte 0x000006A4
 .L0807CD10:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -238554,7 +238554,7 @@ sub_0807C194: @ 0x0807C194
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -238794,7 +238794,7 @@ sub_0807C194: @ 0x0807C194
 	movs r2, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -239535,7 +239535,7 @@ func_0807D218: @ 0x0807D218
 	adds r0, r7, #0
 	bl func_0807D1DC
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	ldr r3, [sp, #0xe4]
 	strh r1, [r3]
@@ -239545,7 +239545,7 @@ func_0807D218: @ 0x0807D218
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -239564,7 +239564,7 @@ func_0807D218: @ 0x0807D218
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xe4]
 	ldr r1, [r3]
@@ -239576,7 +239576,7 @@ func_0807D218: @ 0x0807D218
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r0, [sp, #0xe4]
 	ldr r3, [r0]
 	ldr r1, [r3]
@@ -239966,7 +239966,7 @@ func_0807D218: @ 0x0807D218
 .L0807DA2C: .4byte gText_Supermarket_InsufficientGold
 .L0807DA30:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -240064,7 +240064,7 @@ func_0807D218: @ 0x0807D218
 	b .L0807DD08
 .L0807DAFC:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -240246,7 +240246,7 @@ func_0807D218: @ 0x0807D218
 .L0807DC84: .4byte 0x0000070C
 .L0807DC88:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -240298,7 +240298,7 @@ func_0807D218: @ 0x0807D218
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [r4]
 	ldr r2, [r2, #0x10]
@@ -240591,7 +240591,7 @@ func_0807DE3C: @ 0x0807DE3C
 	movs r3, #2
 	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	add r3, sp, #0xa0
 	strh r1, [r3]
@@ -240601,7 +240601,7 @@ func_0807DE3C: @ 0x0807DE3C
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	str r5, [r4]
 	str r5, [r4, #4]
@@ -240618,7 +240618,7 @@ func_0807DE3C: @ 0x0807DE3C
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xa0]
 	ldr r2, [r2, #0x10]
@@ -240906,7 +240906,7 @@ func_0807DE3C: @ 0x0807DE3C
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r1, [sp, #0xd4]
 	ldr r3, [r1]
 	ldr r1, [r3]
@@ -240938,7 +240938,7 @@ func_0807DE3C: @ 0x0807DE3C
 	b .L0807E406
 .L0807E276:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -241061,7 +241061,7 @@ func_0807DE3C: @ 0x0807DE3C
 .L0807E384: .4byte 0x0000070C
 .L0807E388:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -241110,7 +241110,7 @@ func_0807DE3C: @ 0x0807DE3C
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xd4]
 	ldr r1, [r3]
@@ -241571,7 +241571,7 @@ func_0807E558: @ 0x0807E558
 	adds r0, r7, #0
 	bl func_0807E51C
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	ldr r3, [sp, #0xe8]
 	strh r1, [r3]
@@ -241581,7 +241581,7 @@ func_0807E558: @ 0x0807E558
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -241600,7 +241600,7 @@ func_0807E558: @ 0x0807E558
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xe8]
 	ldr r1, [r3]
@@ -241612,7 +241612,7 @@ func_0807E558: @ 0x0807E558
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r0, [sp, #0xe8]
 	ldr r3, [r0]
 	ldr r1, [r3]
@@ -242005,7 +242005,7 @@ func_0807E558: @ 0x0807E558
 .L0807EB58: .4byte gText_Clinic_InsufficientGold
 .L0807EB5C:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -242098,7 +242098,7 @@ func_0807E558: @ 0x0807E558
 	b .L0807EDE4
 .L0807EC1C:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -242240,7 +242240,7 @@ func_0807E558: @ 0x0807E558
 .L0807ED54: .4byte 0x0000070C
 .L0807ED58:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -242297,7 +242297,7 @@ func_0807E558: @ 0x0807E558
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xe8]
 	ldr r1, [r3]
@@ -242891,7 +242891,7 @@ func_0807EF90: @ 0x0807EF90
 	adds r0, r7, #0
 	bl func_0807EF14
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	strh r1, [r6]
 	adds r0, #0x50
@@ -242900,7 +242900,7 @@ func_0807EF90: @ 0x0807EF90
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -242918,7 +242918,7 @@ func_0807EF90: @ 0x0807EF90
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [r6]
 	ldr r2, [r2, #0x10]
@@ -242937,7 +242937,7 @@ func_0807EF90: @ 0x0807EF90
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	mov r0, sb
 	ldr r3, [r0]
 	ldr r1, [r3]
@@ -243104,7 +243104,7 @@ func_0807EF90: @ 0x0807EF90
 .L0807F42C: .4byte gText_InnShop_InsufficientGold
 .L0807F430:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -243228,7 +243228,7 @@ func_0807EF90: @ 0x0807EF90
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	mov r3, sb
 	ldr r1, [r3]
@@ -244024,7 +244024,7 @@ func_0807F8C8: @ 0x0807F8C8
 	adds r0, r6, #0
 	bl func_0807F684
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -244034,7 +244034,7 @@ func_0807F8C8: @ 0x0807F8C8
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -244052,7 +244052,7 @@ func_0807F8C8: @ 0x0807F8C8
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -244063,7 +244063,7 @@ func_0807F8C8: @ 0x0807F8C8
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r3, [sp, #4]
 	ldr r1, [r3]
 	rsbs r0, r1, #0
@@ -244732,7 +244732,7 @@ func_0807F8C8: @ 0x0807F8C8
 .L0808015C: .4byte gText_WonShop_InsufficientGold
 .L08080160:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -244830,7 +244830,7 @@ func_0807F8C8: @ 0x0807F8C8
 	b .L08080430
 .L0808022C:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -245003,7 +245003,7 @@ func_0807F8C8: @ 0x0807F8C8
 .L080803A4: .4byte 0x0000070C
 .L080803A8:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -245059,7 +245059,7 @@ func_0807F8C8: @ 0x0807F8C8
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -245446,7 +245446,7 @@ func_08080540: @ 0x08080540
 	adds r0, r7, #0
 	bl func_080CABEC
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	ldr r4, [sp, #0xe8]
 	strh r1, [r4]
@@ -245456,7 +245456,7 @@ func_08080540: @ 0x08080540
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -245475,7 +245475,7 @@ func_08080540: @ 0x08080540
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xe8]
 	ldr r1, [r3]
@@ -245487,7 +245487,7 @@ func_08080540: @ 0x08080540
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r0, [sp, #0xe8]
 	ldr r3, [r0]
 	ldr r1, [r3]
@@ -245893,7 +245893,7 @@ func_08080540: @ 0x08080540
 .L08080B0C: .4byte 0x000006A4
 .L08080B10:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -245962,7 +245962,7 @@ func_08080540: @ 0x08080540
 .L08080B98: .4byte 0x000006A4
 .L08080B9C:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -246112,7 +246112,7 @@ func_08080540: @ 0x08080540
 .L08080CAC: .4byte 0x000006A4
 .L08080CB0:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -246187,7 +246187,7 @@ func_08080540: @ 0x08080540
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [r4]
 	ldr r2, [r2, #0x10]
@@ -246832,7 +246832,7 @@ func_0808114C: @ 0x0808114C
 	adds r0, r6, #0
 	bl func_08081108
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -246842,7 +246842,7 @@ func_0808114C: @ 0x0808114C
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -246860,7 +246860,7 @@ func_0808114C: @ 0x0808114C
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -246871,7 +246871,7 @@ func_0808114C: @ 0x0808114C
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r3, [sp, #4]
 	ldr r1, [r3]
 	rsbs r0, r1, #0
@@ -247331,7 +247331,7 @@ func_0808114C: @ 0x0808114C
 .L080816A8: .4byte 0x000006A4
 .L080816AC:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -247565,7 +247565,7 @@ func_0808114C: @ 0x0808114C
 .L080818A0: .4byte 0x000006A4
 .L080818A4:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -247672,7 +247672,7 @@ func_0808114C: @ 0x0808114C
 .L08081994: .4byte 0x000006A4
 .L08081998:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -247723,7 +247723,7 @@ func_0808114C: @ 0x0808114C
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -248236,7 +248236,7 @@ func_08081BBC: @ 0x08081BBC
 	adds r0, r7, #0
 	bl func_08081B40
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	movs r1, #0x3f
 	strh r1, [r6]
 	adds r0, #0x50
@@ -248245,7 +248245,7 @@ func_08081BBC: @ 0x08081BBC
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -248263,7 +248263,7 @@ func_08081BBC: @ 0x08081BBC
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [r6]
 	ldr r2, [r2, #0x10]
@@ -248284,7 +248284,7 @@ func_08081BBC: @ 0x08081BBC
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r1, [sp, #0xf0]
 	ldr r3, [r1]
 	ldr r1, [r3]
@@ -248451,7 +248451,7 @@ func_08081BBC: @ 0x08081BBC
 .L08081FD8: .4byte gText_BeachCafeShop_InsufficientGold
 .L08081FDC:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -248564,7 +248564,7 @@ func_08081BBC: @ 0x08081BBC
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r3, [sp, #0xf0]
 	ldr r1, [r3]
@@ -248965,7 +248965,7 @@ func_0808234C: @ 0x0808234C
 	adds r1, r1, r5
 	mov sb, r1
 	ldr r0, [sp, #0xc4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x78]
 	adds r6, r0, #0
 	mov r3, sb
@@ -249132,7 +249132,7 @@ func_0808234C: @ 0x0808234C
 	str r0, [r6, #0xc]
 .L08082540:
 	ldr r0, [sp, #0xc4]
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r1, [sp, #0x80]
 	adds r6, r0, #0
 	mov r0, sl
@@ -249454,7 +249454,7 @@ func_0808268C: @ 0x0808268C
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r2, [r4]
 	lsls r1, r2, #1
 	adds r1, r1, r2
@@ -250396,7 +250396,7 @@ func_08082CEC: @ 0x08082CEC
 	adds r0, r7, #0
 	bl func_08082C14
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r6, sp, #0x24
 	movs r1, #0x3f
 	strh r1, [r6]
@@ -250406,7 +250406,7 @@ func_08082CEC: @ 0x08082CEC
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -250424,7 +250424,7 @@ func_08082CEC: @ 0x08082CEC
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x28]
 	ldr r2, [r2, #0x10]
@@ -250438,7 +250438,7 @@ sub_08082F50: @ 0x08082F50
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r3, [sp, #0x28]
 	ldr r1, [r3]
 	rsbs r0, r1, #0
@@ -250660,7 +250660,7 @@ sub_08082F50: @ 0x08082F50
 	b .L0808319C
 .L08083158:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -251378,7 +251378,7 @@ sub_08082F50: @ 0x08082F50
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x28]
 	ldr r2, [r2, #0x10]
@@ -251673,7 +251673,7 @@ sub_08082F50: @ 0x08082F50
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x28]
 	ldr r2, [r2, #0x10]
@@ -252660,7 +252660,7 @@ func_08084228: @ 0x08084228
 	lsls r5, r5, #2
 	adds r5, #0xd0
 	adds r0, r6, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r4, r6
 	movs r7, #0xe4
 	lsls r7, r7, #3
@@ -252850,7 +252850,7 @@ func_08084228: @ 0x08084228
 	adds r0, r6, #0
 	bl func_080840F4
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0x10
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -252860,7 +252860,7 @@ func_08084228: @ 0x08084228
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -252878,7 +252878,7 @@ func_08084228: @ 0x08084228
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x10]
 	ldr r2, [r2, #0x10]
@@ -252899,7 +252899,7 @@ func_08084228: @ 0x08084228
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r3, [sp, #0x10]
 	ldr r1, [r3]
 	rsbs r0, r1, #0
@@ -253270,7 +253270,7 @@ func_08084228: @ 0x08084228
 	.byte 0x01, 0x20, 0x08, 0x60, 0x00, 0xF0, 0x20, 0xFC, 0x14, 0x07, 0x00, 0x00
 .L08084C8C:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -253545,7 +253545,7 @@ func_08084228: @ 0x08084228
 .L08084ED4: .4byte gText_Carpenter_ThreeDayConfirmation
 .L08084ED8:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -253580,7 +253580,7 @@ func_08084228: @ 0x08084228
 	b .L0808518C
 .L08084F24:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -253753,7 +253753,7 @@ func_08084228: @ 0x08084228
 .L08085094: .4byte 0x000061F0
 .L08085098:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -254258,7 +254258,7 @@ func_08084228: @ 0x08084228
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x10]
 	ldr r2, [r2, #0x10]
@@ -254965,7 +254965,7 @@ func_0808586C: @ 0x0808586C
 	adds r0, #0xd0
 	mov sl, r0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	ldr r3, [sp, #0x58]
 	adds r1, r4, r3
 	lsls r1, r1, #6
@@ -255163,7 +255163,7 @@ func_0808586C: @ 0x0808586C
 	movs r3, #2
 	bl Fill2DGfxTilemapRect
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	movs r6, #0xca
 	lsls r6, r6, #2
@@ -255318,7 +255318,7 @@ func_0808586C: @ 0x0808586C
 	str r0, [r5, #0xc]
 .L08085CE0:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	add r0, sp, #0x1c
 	ldr r1, .L08085D18 @ =gUnk_087525CC
@@ -257250,7 +257250,7 @@ func_08086A08: @ 0x08086A08
 	lsls r5, r4, #3
 	adds r5, #0xd0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	lsls r4, r4, #6
 	add r4, sb
 	lsls r4, r4, #2
@@ -257449,7 +257449,7 @@ func_08086A08: @ 0x08086A08
 	adds r0, r7, #0
 	bl func_08085F08
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -257459,7 +257459,7 @@ func_08086A08: @ 0x08086A08
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -257477,7 +257477,7 @@ func_08086A08: @ 0x08086A08
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -257490,7 +257490,7 @@ sub_08086DFA: @ 0x08086DFA
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r3, [sp, #0xc]
 	ldr r1, [r3]
 	rsbs r0, r1, #0
@@ -258558,7 +258558,7 @@ sub_08086DFA: @ 0x08086DFA
 	thumb_func_start sub_08087710
 sub_08087710: @ 0x08087710
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -258782,7 +258782,7 @@ sub_08087710: @ 0x08087710
 .L080878F8: .4byte 0x000006A4
 .L080878FC:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	adds r4, r0, #0
 	movs r0, #1
 	ands r4, r0
@@ -258992,7 +258992,7 @@ sub_08087710: @ 0x08087710
 .L08087AB4: .4byte gText_LivestockShop_PurchaseComplete
 .L08087AB8:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -259411,7 +259411,7 @@ sub_08087710: @ 0x08087710
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -259788,7 +259788,7 @@ sub_08087710: @ 0x08087710
 	.endif
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -259995,7 +259995,7 @@ sub_08087710: @ 0x08087710
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -264154,10 +264154,10 @@ func_0808A55C: @ 0x0808A55C
 	bl __builtin_new
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L0808A7C8 @ =gText_Fridge_Items
 	str r0, [sp]
@@ -264197,10 +264197,10 @@ func_0808A55C: @ 0x0808A55C
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L0808A7CC @ =gText_Fridge_Title
 	str r0, [sp]
@@ -264337,7 +264337,7 @@ func_0808A55C: @ 0x0808A55C
 	adds r0, r7, #0
 	bl func_080885AC
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0x10
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -264347,7 +264347,7 @@ func_0808A55C: @ 0x0808A55C
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -264365,7 +264365,7 @@ func_0808A55C: @ 0x0808A55C
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x14]
 	ldr r2, [r2, #0x10]
@@ -264376,7 +264376,7 @@ func_0808A55C: @ 0x0808A55C
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
 	bl Update__26GameSceneMenuSelectionCore
 	ldr r3, [sp, #0x14]
@@ -264418,7 +264418,7 @@ func_0808A55C: @ 0x0808A55C
 	.4byte .L0808AAFA @ case 4
 .L0808A7F4:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -264437,7 +264437,7 @@ func_0808A55C: @ 0x0808A55C
 	b .L0808A89A
 .L0808A81C:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -264454,7 +264454,7 @@ func_0808A55C: @ 0x0808A55C
 	b .L0808A89A
 .L0808A840:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
@@ -264464,7 +264464,7 @@ func_0808A55C: @ 0x0808A55C
 	b .L0808A89A
 .L0808A856:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
@@ -264475,14 +264475,14 @@ func_0808A55C: @ 0x0808A55C
 .L0808A86C:
 	movs r4, #0
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
 	bne .L0808A88E
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #2
 	ands r1, r0
@@ -264503,7 +264503,7 @@ func_0808A55C: @ 0x0808A55C
 	b .L0808AA40
 .L0808A8A6:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -264641,7 +264641,7 @@ func_0808A55C: @ 0x0808A55C
 	b .L0808AA40
 .L0808A9CE:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -264672,7 +264672,7 @@ func_0808A55C: @ 0x0808A55C
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x14]
 	ldr r2, [r2, #0x10]
@@ -264682,7 +264682,7 @@ func_0808A55C: @ 0x0808A55C
 .L0808AA24: .4byte 0x00000889
 .L0808AA28:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
@@ -267333,10 +267333,10 @@ func_0808C0BC: @ 0x0808C0BC
 	bl __builtin_new
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L0808C2F0 @ =gText_HomeStorage_CategoryTools
 	str r0, [sp]
@@ -267376,10 +267376,10 @@ func_0808C0BC: @ 0x0808C0BC
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L0808C2F4 @ =gText_HomeStorage_CategoryItems
 	str r0, [sp]
@@ -267490,7 +267490,7 @@ func_0808C0BC: @ 0x0808C0BC
 	adds r0, r7, #0
 	bl func_0808BF8C
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #8
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -267500,7 +267500,7 @@ func_0808C0BC: @ 0x0808C0BC
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -267518,7 +267518,7 @@ func_0808C0BC: @ 0x0808C0BC
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -267529,7 +267529,7 @@ func_0808C0BC: @ 0x0808C0BC
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
 	bl Update__26GameSceneMenuSelectionCore
 	ldr r3, [sp, #0xc]
@@ -267573,7 +267573,7 @@ func_0808C0BC: @ 0x0808C0BC
 	b .L0808C2AC
 .L0808C30C:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -267583,7 +267583,7 @@ func_0808C0BC: @ 0x0808C0BC
 	b .L0808C394
 .L0808C322:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -267593,7 +267593,7 @@ func_0808C0BC: @ 0x0808C0BC
 	b .L0808C394
 .L0808C338:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
@@ -267603,7 +267603,7 @@ func_0808C0BC: @ 0x0808C0BC
 	b .L0808C394
 .L0808C34E:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
@@ -267614,14 +267614,14 @@ func_0808C0BC: @ 0x0808C0BC
 .L0808C364:
 	movs r4, #0
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
 	bne .L0808C386
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #2
 	ands r1, r0
@@ -267643,7 +267643,7 @@ func_0808C0BC: @ 0x0808C0BC
 	b .L0808C4EE
 .L0808C3A0:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -267745,7 +267745,7 @@ func_0808C0BC: @ 0x0808C0BC
 	b .L0808C4EE
 .L0808C47A:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -267776,7 +267776,7 @@ func_0808C0BC: @ 0x0808C0BC
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -267786,7 +267786,7 @@ func_0808C0BC: @ 0x0808C0BC
 .L0808C4D0: .4byte 0x00000889
 .L0808C4D4:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
@@ -271726,10 +271726,10 @@ func_0808E6FC: @ 0x0808E6FC
 	bl __builtin_new
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L0808E968 @ =gText_Shelf_Items
 	str r0, [sp]
@@ -271769,10 +271769,10 @@ func_0808E6FC: @ 0x0808E6FC
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L0808E96C @ =gText_Shelf_Title
 	str r0, [sp]
@@ -271909,7 +271909,7 @@ func_0808E6FC: @ 0x0808E6FC
 	adds r0, r7, #0
 	bl func_0808C8F4
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0x10
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -271919,7 +271919,7 @@ func_0808E6FC: @ 0x0808E6FC
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -271937,7 +271937,7 @@ func_0808E6FC: @ 0x0808E6FC
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x14]
 	ldr r2, [r2, #0x10]
@@ -271948,7 +271948,7 @@ func_0808E6FC: @ 0x0808E6FC
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
 	bl Update__26GameSceneMenuSelectionCore
 	ldr r3, [sp, #0x14]
@@ -271990,7 +271990,7 @@ func_0808E6FC: @ 0x0808E6FC
 	.4byte .L0808EC9A @ case 4
 .L0808E994:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -272009,7 +272009,7 @@ func_0808E6FC: @ 0x0808E6FC
 	b .L0808EA3A
 .L0808E9BC:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -272026,7 +272026,7 @@ func_0808E6FC: @ 0x0808E6FC
 	b .L0808EA3A
 .L0808E9E0:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
@@ -272036,7 +272036,7 @@ func_0808E6FC: @ 0x0808E6FC
 	b .L0808EA3A
 .L0808E9F6:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
@@ -272047,14 +272047,14 @@ func_0808E6FC: @ 0x0808E6FC
 .L0808EA0C:
 	movs r4, #0
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
 	bne .L0808EA2E
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #2
 	ands r1, r0
@@ -272075,7 +272075,7 @@ func_0808E6FC: @ 0x0808E6FC
 	b .L0808EBE0
 .L0808EA46:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -272213,7 +272213,7 @@ func_0808E6FC: @ 0x0808E6FC
 	b .L0808EBE0
 .L0808EB6E:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -272244,7 +272244,7 @@ func_0808E6FC: @ 0x0808E6FC
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x14]
 	ldr r2, [r2, #0x10]
@@ -272254,7 +272254,7 @@ func_0808E6FC: @ 0x0808E6FC
 .L0808EBC4: .4byte 0x00000889
 .L0808EBC8:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
@@ -275623,10 +275623,10 @@ func_08090960: @ 0x08090960
 	bl __builtin_new
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L08090BC8 @ =gText_ToolChest_HeaderTools
 	str r0, [sp]
@@ -275666,10 +275666,10 @@ func_08090960: @ 0x08090960
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L08090BCC @ =gText_ToolChest_Title
 	str r0, [sp]
@@ -275806,7 +275806,7 @@ func_08090960: @ 0x08090960
 	adds r0, r7, #0
 	bl func_0808EF68
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #8
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -275816,7 +275816,7 @@ func_08090960: @ 0x08090960
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -275834,7 +275834,7 @@ func_08090960: @ 0x08090960
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -275845,7 +275845,7 @@ func_08090960: @ 0x08090960
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
 	bl Update__26GameSceneMenuSelectionCore
 	ldr r3, [sp, #0xc]
@@ -275880,7 +275880,7 @@ func_08090960: @ 0x08090960
 .L08090BD8: .4byte 0x00000889
 .L08090BDC:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -275899,7 +275899,7 @@ func_08090960: @ 0x08090960
 	b .L08090C82
 .L08090C04:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -275916,7 +275916,7 @@ func_08090960: @ 0x08090960
 	b .L08090C82
 .L08090C28:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
@@ -275926,7 +275926,7 @@ func_08090960: @ 0x08090960
 	b .L08090C82
 .L08090C3E:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
@@ -275937,14 +275937,14 @@ func_08090960: @ 0x08090960
 .L08090C54:
 	movs r4, #0
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
 	bne .L08090C76
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #2
 	ands r1, r0
@@ -275965,7 +275965,7 @@ func_08090960: @ 0x08090960
 	b .L08090E0C
 .L08090C8E:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -276086,7 +276086,7 @@ func_08090960: @ 0x08090960
 	b .L08090E0C
 .L08090D9A:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -276117,7 +276117,7 @@ func_08090960: @ 0x08090960
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -276127,7 +276127,7 @@ func_08090960: @ 0x08090960
 .L08090DF0: .4byte 0x00000889
 .L08090DF4:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
@@ -277041,10 +277041,10 @@ func_0809152C: @ 0x0809152C
 	bl __builtin_new
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L080917E4 @ =gText_BlacksmithUpgrade_Tools
 	str r0, [sp]
@@ -277084,10 +277084,10 @@ func_0809152C: @ 0x0809152C
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L080917E8 @ =gText_BlacksmithUpgrade_Items
 	str r0, [sp]
@@ -277234,7 +277234,7 @@ func_0809152C: @ 0x0809152C
 	adds r0, r7, #0
 	bl func_08091280
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0x10
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -277244,7 +277244,7 @@ func_0809152C: @ 0x0809152C
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -277262,7 +277262,7 @@ func_0809152C: @ 0x0809152C
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x14]
 	ldr r2, [r2, #0x10]
@@ -277284,7 +277284,7 @@ func_0809152C: @ 0x0809152C
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
 	bl Update__26GameSceneMenuSelectionCore
 	ldr r0, [sp, #0x14]
@@ -277366,7 +277366,7 @@ func_0809152C: @ 0x0809152C
 	.4byte .L08092514 @ case 7
 .L08091854:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -277377,7 +277377,7 @@ func_0809152C: @ 0x0809152C
 	b .L080918E4
 .L0809186C:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -277388,7 +277388,7 @@ func_0809152C: @ 0x0809152C
 	b .L080918E4
 .L08091884:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
@@ -277399,7 +277399,7 @@ func_0809152C: @ 0x0809152C
 	b .L080918E4
 .L0809189C:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
@@ -277411,14 +277411,14 @@ func_0809152C: @ 0x0809152C
 .L080918B4:
 	movs r4, #0
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
 	bne .L080918D6
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #2
 	ands r1, r0
@@ -277440,7 +277440,7 @@ func_0809152C: @ 0x0809152C
 	b .L08091EE8
 .L080918F0:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -278076,7 +278076,7 @@ func_0809152C: @ 0x0809152C
 .L08091E84: .4byte gText_BlacksmithUpgrade_InvalidUpgradeOre
 .L08091E88:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -278754,7 +278754,7 @@ func_0809152C: @ 0x0809152C
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x14]
 	ldr r2, [r2, #0x10]
@@ -278884,7 +278884,7 @@ func_0809152C: @ 0x0809152C
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x14]
 	ldr r2, [r2, #0x10]
@@ -279861,10 +279861,10 @@ func_08092D64: @ 0x08092D64
 	bl __builtin_new
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L08092FA0 @ =gText_GiftWrap_Tools
 	str r0, [sp]
@@ -279904,10 +279904,10 @@ func_08092D64: @ 0x08092D64
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L08092FA4 @ =gText_GiftWrap_Items
 	str r0, [sp]
@@ -280018,7 +280018,7 @@ func_08092D64: @ 0x08092D64
 	adds r0, r7, #0
 	bl func_08092940
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #8
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -280028,7 +280028,7 @@ func_08092D64: @ 0x08092D64
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -280046,7 +280046,7 @@ func_08092D64: @ 0x08092D64
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -280058,7 +280058,7 @@ func_08092D64: @ 0x08092D64
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
 	bl Update__26GameSceneMenuSelectionCore
 	ldr r3, [sp, #0xc]
@@ -280104,7 +280104,7 @@ func_08092D64: @ 0x08092D64
 	b .L08092F56
 .L08092FBC:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -280114,7 +280114,7 @@ func_08092D64: @ 0x08092D64
 	b .L08093044
 .L08092FD2:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -280124,7 +280124,7 @@ func_08092D64: @ 0x08092D64
 	b .L08093044
 .L08092FE8:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
@@ -280134,7 +280134,7 @@ func_08092D64: @ 0x08092D64
 	b .L08093044
 .L08092FFE:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
@@ -280145,14 +280145,14 @@ func_08092D64: @ 0x08092D64
 .L08093014:
 	movs r4, #0
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #1
 	ands r1, r0
 	cmp r1, #0
 	bne .L08093036
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #2
 	ands r1, r0
@@ -280174,7 +280174,7 @@ func_08092D64: @ 0x08092D64
 	b .L080930A0
 .L08093050:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -280187,7 +280187,7 @@ func_08092D64: @ 0x08092D64
 	b .L080930A0
 .L0809306C:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -280304,7 +280304,7 @@ func_08092D64: @ 0x08092D64
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0xc]
 	ldr r2, [r2, #0x10]
@@ -280552,7 +280552,7 @@ func_08093364: @ 0x08093364
 	adds r7, r0, #0
 	bl func_08008724
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	movs r3, #0xea
 	lsls r3, r3, #5
@@ -280560,14 +280560,14 @@ func_08093364: @ 0x08093364
 	strh r1, [r2]
 	strh r1, [r0, #8]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	ldr r3, .L0809355C @ =0x00001E41
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xa]
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0x10
 	ldr r3, .L08093560 @ =0x00001F42
 	adds r1, r3, #0
@@ -280594,7 +280594,7 @@ func_08093364: @ 0x08093364
 	movs r0, #0
 	bl FillHardwareDma3
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0x10
 	movs r3, #0xb2
 	lsls r3, r3, #5
@@ -280652,7 +280652,7 @@ func_08093364: @ 0x08093364
 	movs r1, #0x80
 	bl SetInterruptNestingMask
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0x10
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -280662,7 +280662,7 @@ func_08093364: @ 0x08093364
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	mov r2, sb
 	str r2, [r4]
@@ -280680,7 +280680,7 @@ func_08093364: @ 0x08093364
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x14]
 	ldr r2, [r2, #0x10]
@@ -280691,7 +280691,7 @@ func_08093364: @ 0x08093364
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r0, [r7, #8]
 	movs r1, #8
 	adds r1, r1, r7
@@ -280710,19 +280710,19 @@ func_08093364: @ 0x08093364
 	adds r1, r7, r3
 	str r0, [r1]
 	adds r0, r7, #0
-	bl func_080088DC
+	bl GetHardwareCoreState
 	mov sb, r0
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_0800894C
+	bl GetHardwareInterruptList
 	movs r2, #0xea
 	lsls r2, r2, #1
 	adds r1, r7, r2
@@ -281291,7 +281291,7 @@ func_08093364: @ 0x08093364
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x14]
 	ldr r2, [r2, #0x10]
@@ -281565,7 +281565,7 @@ func_08093AD4: @ 0x08093AD4
 .L08093BF8: .4byte gText_LinkCommunication_NowSendingData
 .L08093BFC:
 	push {lr}
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -281734,7 +281734,7 @@ func_08093C3C: @ 0x08093C3C
 
 .L08093D4C:
 	push {lr}
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -281768,13 +281768,13 @@ func_08093C3C: @ 0x08093C3C
 
 .L08093D8C:
 	push {lr}
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	pop {r1}
 	bx r1
 	.align 2, 0
 .L08093D98:
 	push {lr}
-	bl func_080088C4
+	bl GetHardwareHeldKeys
 	pop {r1}
 	bx r1
 	.align 2, 0
@@ -284623,7 +284623,7 @@ func_080951B4: @ 0x080951B4
 	adds r0, r6, #0
 	bl func_0809800C
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -284633,7 +284633,7 @@ func_080951B4: @ 0x080951B4
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	mov r3, sb
 	str r3, [r4]
@@ -284651,7 +284651,7 @@ func_080951B4: @ 0x080951B4
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -284664,7 +284664,7 @@ func_080951B4: @ 0x080951B4
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
 	cmp r0, #4
 	bls .L08095270
@@ -284707,13 +284707,13 @@ func_080951B4: @ 0x080951B4
 	mov r8, r0
 	movs r4, #0
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
 	bne .L080952DE
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #1
 	ands r1, r0
@@ -284745,13 +284745,13 @@ func_080951B4: @ 0x080951B4
 .L08095308:
 	movs r4, #0
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
 	bne .L08095328
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #2
 	ands r1, r0
@@ -284788,7 +284788,7 @@ func_080951B4: @ 0x080951B4
 .L08095358: .4byte 0x00000366
 .L0809535C:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -284813,7 +284813,7 @@ func_080951B4: @ 0x080951B4
 	b .L080953B4
 .L0809538C:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -284865,13 +284865,13 @@ func_080951B4: @ 0x080951B4
 .L080953F2:
 	movs r4, #0
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
 	bne .L08095410
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
@@ -284951,7 +284951,7 @@ func_080951B4: @ 0x080951B4
 	b .L08095508
 .L080954A6:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -284978,7 +284978,7 @@ func_080951B4: @ 0x080951B4
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -285249,7 +285249,7 @@ func_08095580: @ 0x08095580
 	strb r0, [r1]
 .L08095702:
 	mov r0, sl
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	mov r7, r8
 	adds r2, r7, r6
 	lsls r1, r2, #6
@@ -285530,7 +285530,7 @@ func_080958C0: @ 0x080958C0
 	adds r0, r6, #0
 	bl func_080989DC
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -285540,7 +285540,7 @@ func_080958C0: @ 0x080958C0
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -285558,7 +285558,7 @@ func_080958C0: @ 0x080958C0
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp]
 	ldr r2, [r2, #0x10]
@@ -285573,7 +285573,7 @@ func_080958C0: @ 0x080958C0
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
 	cmp r0, #0xa
 	bls .L0809599E
@@ -285694,7 +285694,7 @@ func_080958C0: @ 0x080958C0
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp]
 	ldr r2, [r2, #0x10]
@@ -285732,7 +285732,7 @@ func_080958C0: @ 0x080958C0
 	b .L08095D10
 .L08095AEA:
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #4
 	movs r4, #0x82
 	lsls r4, r4, #5
@@ -285788,7 +285788,7 @@ func_080958C0: @ 0x080958C0
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp]
 	ldr r2, [r2, #0x10]
@@ -285985,7 +285985,7 @@ func_080958C0: @ 0x080958C0
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp]
 	ldr r2, [r2, #0x10]
@@ -286098,7 +286098,7 @@ func_08095D80: @ 0x08095D80
 	adds r0, r6, #0
 	bl func_08098CE8
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -286108,7 +286108,7 @@ func_08095D80: @ 0x08095D80
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	ldr r0, [sp, #8]
 	str r0, [r4]
@@ -286126,7 +286126,7 @@ func_08095D80: @ 0x08095D80
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -286151,7 +286151,7 @@ func_08095D80: @ 0x08095D80
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	mov r0, sl
 	cmp r0, #6
 	bls .L08095E58
@@ -286191,7 +286191,7 @@ func_08095D80: @ 0x08095D80
 	mov r5, sb
 	ldr r7, [sp, #0xc]
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
@@ -286206,7 +286206,7 @@ func_08095D80: @ 0x08095D80
 	b .L08095EE0
 .L08095EC4:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
@@ -286225,13 +286225,13 @@ func_08095D80: @ 0x08095D80
 .L08095EE4:
 	movs r4, #0
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
 	bne .L08095F02
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -286329,7 +286329,7 @@ func_08095D80: @ 0x08095D80
 	bl func_08050D8C
 .L08095FB6:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -286374,7 +286374,7 @@ func_08095D80: @ 0x08095D80
 	b .L08096066
 .L08096016:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -286444,7 +286444,7 @@ func_08095D80: @ 0x08095D80
 .L080960A4: .4byte gText_Cooking_Recipe_PageBreak
 .L080960A8:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
@@ -286461,7 +286461,7 @@ func_08095D80: @ 0x08095D80
 .L080960C8:
 	mov r4, r8
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -286476,7 +286476,7 @@ func_08095D80: @ 0x08095D80
 	b .L08096102
 .L080960E6:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -286494,7 +286494,7 @@ func_08095D80: @ 0x08095D80
 	b .L08096144
 .L08096106:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
@@ -286510,7 +286510,7 @@ func_08095D80: @ 0x08095D80
 	b .L08096144
 .L08096126:
 	adds r0, r6, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
@@ -286543,7 +286543,7 @@ func_08095D80: @ 0x08095D80
 	adds r1, r6, r2
 	strh r0, [r1]
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -286571,7 +286571,7 @@ func_08095D80: @ 0x08095D80
 	bl func_08008B6C
 .L080961A2:
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -286610,13 +286610,13 @@ func_08095D80: @ 0x08095D80
 .L080961F8:
 	movs r4, #0
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
 	bne .L08096216
 	adds r0, r6, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -286649,7 +286649,7 @@ func_08095D80: @ 0x08095D80
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -286779,7 +286779,7 @@ func_080962F0: @ 0x080962F0
 	adds r0, r7, #0
 	bl func_0809964C
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0x8c
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -286789,7 +286789,7 @@ func_080962F0: @ 0x080962F0
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	ldr r0, [sp, #0xa8]
 	str r0, [r4]
@@ -286828,7 +286828,7 @@ func_080962F0: @ 0x080962F0
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [r5]
 	ldr r2, [r2, #0x10]
@@ -286843,7 +286843,7 @@ func_080962F0: @ 0x080962F0
 	adds r0, r7, #0
 	bl UpdateHardwareFrame
 	adds r0, r7, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	ldr r0, [sp, #0xac]
 	cmp r0, #4
 	bls .L08096402
@@ -286886,14 +286886,14 @@ func_080962F0: @ 0x080962F0
 .L08096452:
 	movs r4, #0
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #2
 	ands r1, r0
 	cmp r1, #0
 	bne .L08096474
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	lsrs r0, r0, #8
 	movs r1, #1
 	ands r1, r0
@@ -286918,7 +286918,7 @@ func_080962F0: @ 0x080962F0
 .L0809648C: .4byte 0x00002B90
 .L08096490:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x10
 	ands r0, r1
 	cmp r0, #0
@@ -286937,7 +286937,7 @@ func_080962F0: @ 0x080962F0
 	b .L08096544
 .L080964B2:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x20
 	ands r0, r1
 	cmp r0, #0
@@ -286952,7 +286952,7 @@ func_080962F0: @ 0x080962F0
 	b .L080964AC
 .L080964CE:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x80
 	ands r0, r1
 	cmp r0, #0
@@ -287021,7 +287021,7 @@ func_080962F0: @ 0x080962F0
 .L08096550: .4byte 0x00002BA0
 .L08096554:
 	adds r0, r7, #0
-	bl func_080088D4
+	bl GetHardwareRepeatedKeys
 	movs r1, #0x40
 	ands r0, r1
 	cmp r0, #0
@@ -287332,7 +287332,7 @@ func_080962F0: @ 0x080962F0
 	bl func_08050D8C
 .L080967D0:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #1
 	ands r0, r1
 	cmp r0, #0
@@ -287533,7 +287533,7 @@ func_080962F0: @ 0x080962F0
 	b .L08096B14
 .L08096980:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #2
 	ands r0, r1
 	cmp r0, #0
@@ -287555,7 +287555,7 @@ func_080962F0: @ 0x080962F0
 .L080969AC: .4byte gText_Cooking_Recipe_PageBreak
 .L080969B0:
 	adds r0, r7, #0
-	bl func_080088CC
+	bl GetHardwarePressedKeys
 	movs r1, #8
 	ands r0, r1
 	cmp r0, #0
@@ -287707,7 +287707,7 @@ func_080962F0: @ 0x080962F0
 	movs r3, #1
 	bl func_08009378
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #0x90]
 	ldr r2, [r2, #0x10]
@@ -288001,7 +288001,7 @@ func_08096B88: @ 0x08096B88
 	cmp r1, #1
 	ble .L08096D24
 	adds r0, r5, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	str r0, [sp, #0x28]
 	ldr r3, .L08096D7C @ =0x00002BD0
 	adds r1, r5, r3
@@ -288728,7 +288728,7 @@ func_080972AC: @ 0x080972AC
 	adds r0, r6, #0
 	bl func_080989DC
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -288738,7 +288738,7 @@ func_080972AC: @ 0x080972AC
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	mov r2, r8
 	str r2, [r4]
@@ -288756,7 +288756,7 @@ func_080972AC: @ 0x080972AC
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -288771,7 +288771,7 @@ func_080972AC: @ 0x080972AC
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
 	cmp r0, #8
 	bls .L08097362
@@ -288864,7 +288864,7 @@ func_080972AC: @ 0x080972AC
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -288902,7 +288902,7 @@ func_080972AC: @ 0x080972AC
 	b .L08097584
 .L0809746E:
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r2, sp
 	movs r3, #0x82
 	lsls r3, r3, #5
@@ -288958,7 +288958,7 @@ func_080972AC: @ 0x080972AC
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -289013,7 +289013,7 @@ func_080972AC: @ 0x080972AC
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -289783,7 +289783,7 @@ func_08097AE4: @ 0x08097AE4
 	bl func_080989DC
 .L08097B34:
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	mov r1, sp
 	movs r2, #0x3f
 	strh r2, [r1]
@@ -289793,7 +289793,7 @@ func_08097AE4: @ 0x08097AE4
 	bl __builtin_new
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	adds r1, r0, #0
 	movs r0, #0
 	str r0, [r4]
@@ -289811,7 +289811,7 @@ func_08097AE4: @ 0x08097AE4
 	movs r3, #1
 	bl func_0800934C
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -289825,7 +289825,7 @@ func_08097AE4: @ 0x08097AE4
 	adds r0, r6, #0
 	bl UpdateHardwareFrame
 	adds r0, r6, #0
-	bl func_080088B8
+	bl UpdateHardwareInput
 	adds r0, r7, #0
 	cmp r0, #1
 	beq .L08097BFC
@@ -289942,7 +289942,7 @@ func_08097AE4: @ 0x08097AE4
 	movs r3, #1
 	bl func_08009378
 	adds r0, r6, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
 	ldr r1, [sp, #4]
 	ldr r2, [r2, #0x10]
@@ -290373,33 +290373,33 @@ func_0809800C: @ 0x0809800C
 	push {r5, r6, r7}
 	sub sp, #0xb8
 	mov sl, r0
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r4, #0
 	strh r4, [r1]
 	strh r4, [r0, #0x14]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x16]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x18]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1a]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1c]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
@@ -290430,7 +290430,7 @@ func_0809800C: @ 0x0809800C
 	adds r2, r4, #0
 	bl FillHardwareDma3
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r1, sp, #0xc
 	movs r3, #0xf2
 	lsls r3, r3, #5
@@ -290439,21 +290439,21 @@ func_0809800C: @ 0x0809800C
 	movs r5, #0
 	strh r2, [r0]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L080983A0 @ =0x00001C43
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xe]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L080983A4 @ =0x00001F41
 	adds r1, r3, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xc]
 	mov r0, sl
-	bl func_08008918
+	bl GetHardwareDisplayState
 	add r2, sp, #0xc
 	ldr r3, .L080983A8 @ =0x00001E42
 	adds r1, r3, #0
@@ -290927,7 +290927,7 @@ func_080983E8: @ 0x080983E8
 	orrs r1, r0
 	str r1, [sp, #0x60]
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -291036,7 +291036,7 @@ func_080983E8: @ 0x080983E8
 	orrs r0, r1
 	str r0, [r5, #4]
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -291132,7 +291132,7 @@ func_080983E8: @ 0x080983E8
 	b .L080987CE
 .L08098676:
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x24]
 	ldr r1, [r4, #4]
@@ -291301,7 +291301,7 @@ func_080983E8: @ 0x080983E8
 	str r0, [r6, #0xc]
 .L080987CE:
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -291391,7 +291391,7 @@ func_080983E8: @ 0x080983E8
 	b .L080989A8
 .L0809888C:
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x24]
 	ldr r1, [r4, #4]
@@ -291546,7 +291546,7 @@ func_080983E8: @ 0x080983E8
 	str r0, [r6, #0xc]
 .L080989A8:
 	mov r0, r8
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -291604,10 +291604,10 @@ func_080989DC: @ 0x080989DC
 	bl __builtin_new
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L08098BB0 @ =gText_Cooking_Recipe_Utensils
 	str r0, [sp]
@@ -291711,10 +291711,10 @@ func_080989DC: @ 0x080989DC
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L08098BBC @ =gText_Cooking_Recipe_Ingredients
 	str r0, [sp]
@@ -291970,10 +291970,10 @@ func_08098CE8: @ 0x08098CE8
 	bl __builtin_new
 	adds r5, r0, #0
 	mov r0, r8
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	mov r0, r8
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L08098FDC @ =gText_Cooking_Recipe_Utensils
 	str r0, [sp]
@@ -292412,7 +292412,7 @@ func_08099000: @ 0x08099000
 	orrs r1, r0
 	str r1, [r4, #4]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -292585,7 +292585,7 @@ func_08099144: @ 0x08099144
 	b .L0809935A
 .L0809923E:
 	mov r0, sb
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	ldr r5, [sp, #0x24]
 	ldr r1, [r7, #4]
@@ -292757,7 +292757,7 @@ func_08099144: @ 0x08099144
 	ldrb r0, [r1, #1]
 	strh r0, [r5, #2]
 	mov r0, sb
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -292791,7 +292791,7 @@ func_08099144: @ 0x08099144
 	ldrb r0, [r1]
 	strh r0, [r2, #2]
 	mov r0, sb
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -292827,7 +292827,7 @@ func_08099144: @ 0x08099144
 	ldrb r0, [r1, #1]
 	strh r0, [r5, #2]
 	mov r0, sb
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -292933,7 +292933,7 @@ func_08099144: @ 0x08099144
 	b .L080995FA
 .L080994DC:
 	mov r0, sb
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r7, [sp, #0x24]
 	ldr r1, [r4, #4]
@@ -293103,7 +293103,7 @@ func_08099144: @ 0x08099144
 	adds r0, #0x10
 	strh r0, [r5, #2]
 	mov r0, sb
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -293164,10 +293164,10 @@ func_0809964C: @ 0x0809964C
 	bl __builtin_new
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L08099740 @ =gText_Cooking_Recipe_UseIngredients
 	str r0, [sp]
@@ -293291,10 +293291,10 @@ func_0809964C: @ 0x0809964C
 	bl __builtin_new
 	adds r5, r0, #0
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r4, r0, #0
 	adds r0, r7, #0
-	bl func_08008940
+	bl GetHardwareCommandList
 	adds r2, r0, #0
 	ldr r0, .L08099A98 @ =gText_Cooking_Recipe_Empty
 	str r0, [sp]
@@ -293812,7 +293812,7 @@ func_08099ACC: @ 0x08099ACC
 	orrs r1, r0
 	str r1, [r3, #4]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -293905,7 +293905,7 @@ func_08099ACC: @ 0x08099ACC
 	orrs r1, r0
 	strh r1, [r4, #4]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -293986,7 +293986,7 @@ func_08099ACC: @ 0x08099ACC
 	orrs r0, r2
 	strh r0, [r4, #4]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldrb r2, [r3]
 	cmp r2, #0x7f
@@ -294090,7 +294090,7 @@ func_08099ACC: @ 0x08099ACC
 	b .L08099F60
 .L08099E22:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r6, [sp, #0x24]
 	mov r8, r6
@@ -294277,7 +294277,7 @@ func_08099ACC: @ 0x08099ACC
 	ldrb r0, [r1, #1]
 	strh r0, [r5, #2]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -294311,7 +294311,7 @@ func_08099ACC: @ 0x08099ACC
 	ldrb r0, [r1, #1]
 	strh r0, [r5, #2]
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -294404,7 +294404,7 @@ func_08099ACC: @ 0x08099ACC
 	b .L0809A1C8
 .L0809A090:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r6, [sp, #0x24]
 	mov r8, r6
@@ -294569,7 +294569,7 @@ func_08099ACC: @ 0x08099ACC
 	str r0, [r2, #0xc]
 .L0809A1C8:
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -294659,7 +294659,7 @@ func_08099ACC: @ 0x08099ACC
 	b .L0809A3B0
 .L0809A286:
 	adds r0, r7, #0
-	bl func_08008910
+	bl GetHardwareDmaQueue
 	adds r5, r0, #0
 	ldr r6, [sp, #0x24]
 	mov r8, r6
@@ -294820,7 +294820,7 @@ func_08099ACC: @ 0x08099ACC
 	str r0, [r2, #0xc]
 .L0809A3B0:
 	adds r0, r7, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0
@@ -294942,7 +294942,7 @@ func_0809A3E0: @ 0x0809A3E0
 	mov r0, sp
 	strb r2, [r0, #0x18]
 	adds r0, r5, #0
-	bl func_08008920
+	bl GetHardwareSpriteBuffer
 	adds r3, r0, #0
 	ldr r0, [sp, #0x1c]
 	adds r1, r0, #0

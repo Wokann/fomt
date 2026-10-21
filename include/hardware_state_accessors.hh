@@ -97,26 +97,26 @@ typedef char HardwareCoreState_links_check[offsetof(struct HardwareCoreState, li
 
 EXTERN_C
 
-void func_080088B8(void * const * state);
-u16 func_080088C4(void * const * state);
+void UpdateHardwareInput(void * const * state);
+u16 GetHardwareHeldKeys(void * const * state);
 // The halfword input field is returned zero-extended in the ARM ABI word.
-u32 func_080088CC(void * const * state);
+u32 GetHardwarePressedKeys(void * const * state);
 // The native repeated-key mask also returns a zero-extended ABI word.
-u32 func_080088D4(void * const * state);
-void * func_080088DC(void * const * state);
+u32 GetHardwareRepeatedKeys(void * const * state);
+struct HardwareCoreState * GetHardwareCoreState(void * const * state);
 
-void func_080088E0(void * const * state, u16 value);
-void func_080088F0(void * const * state, u16 value);
-u16 func_08008900(void * const * state);
-u16 func_08008908(void * const * state);
-struct HardwareDmaQueue * func_08008910(void * const * state);
-struct HardwareDisplayState * func_08008918(void * const * state);
-struct HardwareSpriteBufferState * func_08008920(void * const * state);
+void SetHardwareRepeatDelay(void * const * state, u16 value);
+void SetHardwareRepeatInterval(void * const * state, u16 value);
+u16 GetHardwareRepeatDelay(void * const * state);
+u16 GetHardwareRepeatInterval(void * const * state);
+struct HardwareDmaQueue * GetHardwareDmaQueue(void * const * state);
+struct HardwareDisplayState * GetHardwareDisplayState(void * const * state);
+struct HardwareSpriteBufferState * GetHardwareSpriteBuffer(void * const * state);
 u8 * func_08008928(void * const * state);
 struct HardwareDisplayState * func_08008930(void * const * state);
 struct HardwareSpriteBufferState * func_08008938(void * const * state);
-u8 * func_08008940(void * const * state);
-u8 * func_0800894C(void * const * state);
+u8 * GetHardwareCommandList(void * const * state);
+u8 * GetHardwareInterruptList(void * const * state);
 u8 * func_08008960(void * const * state);
 u8 * func_0800896C(void * const * state);
 

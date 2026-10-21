@@ -51,14 +51,14 @@ inline void * operator new[](unsigned long, void * location) { return location; 
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
 {
     HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
-        func_08008940(reinterpret_cast<void * const *>(core)));
+        GetHardwareCommandList(reinterpret_cast<void * const *>(core)));
     list->Append(&blend);
 }
 
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendOwner const & owner)
 {
     HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
-        func_08008940(reinterpret_cast<void * const *>(core)));
+        GetHardwareCommandList(reinterpret_cast<void * const *>(core)));
     list->Append(owner.object);
 }
 
@@ -136,12 +136,12 @@ SceneTransitionOwner func_080050F8(NewGameIdentityCore * core)
     InitializeNewGameIdentityScreen(core);
 
     HardwareDisplayState * display =
-        func_08008918(reinterpret_cast<void * const *>(core));
+        GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
     HardwareDisplayRegisterValue control(0x3F);
     display->SetBlendControl(control);
 
     HardwareBlendOwner owner(new HardwareBlendObject(
-        func_08008918(reinterpret_cast<void * const *>(core))));
+        GetHardwareDisplayState(reinterpret_cast<void * const *>(core))));
     func_0800934C(&owner.object->blend, 0x889, 1, 1);
     QueueMenuBlend(core, owner);
 
@@ -150,8 +150,8 @@ SceneTransitionOwner func_080050F8(NewGameIdentityCore * core)
     do
     {
         UpdateHardwareFrame(core);
-        func_080088B8(reinterpret_cast<void * const *>(core));
-        func_080088D4(reinterpret_cast<void * const *>(core));
+        UpdateHardwareInput(reinterpret_cast<void * const *>(core));
+        GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core));
         switch (phase)
         {
         case 0:
@@ -193,13 +193,13 @@ void func_08005800(NewGameIdentityCore * core)
     int state = core->ui_state->GetState();
     UiStateOwner * owner = core->ui_state;
     HardwareCoreState * hardware = static_cast<HardwareCoreState *>(
-        func_080088DC(reinterpret_cast<void * const *>(core)));
+        GetHardwareCoreState(reinterpret_cast<void * const *>(core)));
     HardwareSpriteBufferState * sprites =
-        func_08008920(reinterpret_cast<void * const *>(core));
+        GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
     HardwareDisplayState * display =
-        func_08008918(reinterpret_cast<void * const *>(core));
-    u8 * links = func_08008940(reinterpret_cast<void * const *>(core));
-    u8 * manager = func_0800894C(reinterpret_cast<void * const *>(core));
+        GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
+    u8 * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
+    u8 * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
     MusicPlayer ** music = &core->music;
     int action = owner->Update(hardware, sprites, display, links, manager, music);
 
@@ -341,10 +341,10 @@ SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
     func_0800637C(core);
 
     HardwareDisplayState * display =
-        func_08008918(reinterpret_cast<void * const *>(core));
+        GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
     HardwareDisplayRegisterValue control(0x3F);
     display->SetBlendControl(control);
-    HardwareBlendObject blend(func_08008918(reinterpret_cast<void * const *>(core)));
+    HardwareBlendObject blend(GetHardwareDisplayState(reinterpret_cast<void * const *>(core)));
     {
         i16 step = 0x889;
         blend.blend.Begin(step, 1, 1);
@@ -355,7 +355,7 @@ SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
 
     while (core->finished == 0)
     {
-        func_080088B8(reinterpret_cast<void * const *>(core));
+        UpdateHardwareInput(reinterpret_cast<void * const *>(core));
         ProcessNameInputKeys(core);
         UpdateNameInputCursorSprites(core);
         func_0800637C(core);
@@ -438,7 +438,7 @@ void func_08006858(NewGameNameInputCore * core)
     // coefficient is owned by the sprite buffer and must remain untouched.
     if (core->unk_463c == 0) {
         HardwareSpriteBufferState * buffer =
-            func_08008920(reinterpret_cast<void * const *>(core));
+            GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
         u32 const & position_and_mode =
             reinterpret_cast<u32 const &>(core->sprites[0].attributes);
         u32 count = buffer->sprite_count;
@@ -452,7 +452,7 @@ void func_08006858(NewGameNameInputCore * core)
     }
     {
         HardwareSpriteBufferState * buffer =
-            func_08008920(reinterpret_cast<void * const *>(core));
+            GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
         u32 const & position_and_mode =
             reinterpret_cast<u32 const &>(core->sprites[1].attributes);
         u32 count = buffer->sprite_count;
@@ -520,7 +520,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
     int const last_column = 12;
 #endif
 #endif
-    u32 input = func_080088D4(reinterpret_cast<void * const *>(core));
+    u32 input = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core));
     u32 up = input & 0x40;
     if (static_cast<u8>(up)) {
         func_08008B6C(&core->music_players[1], 0xCB);
@@ -739,7 +739,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
     if (core->unk_463c != 0)
         return;
     MoveNameInputKeyboardCursor(core);
-    u32 input = func_080088D4(reinterpret_cast<void * const *>(core));
+    u32 input = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core));
     if (reinterpret_cast<u8 const *>(&input)[0] & 1) {
 #if defined(REGION_DE)
         if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 6) {
@@ -848,13 +848,13 @@ void func_08006ED8(NewGameNameInputCore * core)
         i32 previous_state = core->ui_state->GetState();
         UiStateOwner * ui = core->ui_state;
         HardwareCoreState * state = static_cast<HardwareCoreState *>(
-            func_080088DC(reinterpret_cast<void * const *>(core)));
+            GetHardwareCoreState(reinterpret_cast<void * const *>(core)));
         HardwareSpriteBufferState * sprites =
-            func_08008920(reinterpret_cast<void * const *>(core));
+            GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
         HardwareDisplayState * display =
-            func_08008918(reinterpret_cast<void * const *>(core));
-        u8 * links = func_08008940(reinterpret_cast<void * const *>(core));
-        u8 * manager = func_0800894C(reinterpret_cast<void * const *>(core));
+            GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
+        u8 * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
+        u8 * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
         MusicPlayer ** music = core->music_players;
         switch (ui->Update(state, sprites, display, links, manager, music)) {
         case 0:
@@ -1053,7 +1053,7 @@ GameDate NewGameBirthdayInputScene::GetDate() const
 void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
 {
     // Direction buttons occupy the low byte of the repeated-key ABI word.
-    u32 input = func_080088D4(reinterpret_cast<void * const *>(core));
+    u32 input = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core));
     if (reinterpret_cast<u8 const *>(&input)[0] & 0x40) {
         if (core->cursor_row != 0) {
             func_08008B6C(&core->music_players[1], 0xCB);
@@ -1158,8 +1158,8 @@ bool ConfirmBirthdayInputSelection(NewGameBirthdayInputCore * core)
 {
     bool complete = false;
     bool pressed = false;
-    if ((static_cast<u8>(func_080088D4(reinterpret_cast<void * const *>(core))) & 1) ||
-        (static_cast<u8>(func_080088D4(reinterpret_cast<void * const *>(core))) & 8))
+    if ((static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core))) & 1) ||
+        (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core))) & 8))
         pressed = true;
     if (pressed) {
         func_08008B6C(&core->music_players[1], 0x6A);
@@ -1179,7 +1179,7 @@ bool ConfirmBirthdayInputSelection(NewGameBirthdayInputCore * core)
 bool CancelBirthdayInputSelection(NewGameBirthdayInputCore * core)
 {
     bool cancelled = false;
-    if (static_cast<u8>(func_080088D4(reinterpret_cast<void * const *>(core))) & 2) {
+    if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core))) & 2) {
         func_08008B6C(&core->music_players[1], 0x6C);
         if (core->cursor_row > 0) {
             core->cursor_column = core->saved_season_column;
@@ -1210,7 +1210,7 @@ static inline void SubmitBirthdaySprite(NewGameBirthdayInputCore * core,
     HardwareSpriteOamRecord const & attributes)
 {
     HardwareSpriteBufferState * buffer =
-        func_08008920(reinterpret_cast<void * const *>(core));
+        GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
     u32 const & position_and_mode = reinterpret_cast<u32 const &>(attributes);
     u32 count = buffer->sprite_count;
     if (count < ARRAY_COUNT(buffer->sprites)) {
@@ -1261,7 +1261,7 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
     if (core->cursor_visible) {
         {
             HardwareSpriteBufferState * buffer =
-                func_08008920(reinterpret_cast<void * const *>(core));
+                GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
             u32 const & position_and_mode =
                 reinterpret_cast<u32 const &>(core->cursor_attributes);
             u32 count = buffer->sprite_count;
@@ -1277,7 +1277,7 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
             core->cursor_attributes.x = core->cursor_column * 16 + 16;
             {
                 HardwareSpriteBufferState * buffer =
-                    func_08008920(reinterpret_cast<void * const *>(core));
+                    GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
                 u32 const & position_and_mode =
                     reinterpret_cast<u32 const &>(core->cursor_attributes);
                 u32 count = buffer->sprite_count;
@@ -1291,7 +1291,7 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
             core->cursor_attributes.x = core->cursor_column * 16 + 32;
             {
                 HardwareSpriteBufferState * buffer =
-                    func_08008920(reinterpret_cast<void * const *>(core));
+                    GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
                 u32 const & position_and_mode =
                     reinterpret_cast<u32 const &>(core->cursor_attributes);
                 u32 count = buffer->sprite_count;
@@ -1429,11 +1429,11 @@ void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore * core)
 void UpdateBirthdayInputUi(NewGameBirthdayInputCore * core)
 {
     UiStateOwner const * ui = core->ui_state;
-    HardwareCoreState * state = static_cast<HardwareCoreState *>(func_080088DC(reinterpret_cast<void * const *>(core)));
-    HardwareSpriteBufferState * sprites = func_08008920(reinterpret_cast<void * const *>(core));
-    HardwareDisplayState * display = func_08008918(reinterpret_cast<void * const *>(core));
-    u8 * links = func_08008940(reinterpret_cast<void * const *>(core));
-    u8 * manager = func_0800894C(reinterpret_cast<void * const *>(core));
+    HardwareCoreState * state = static_cast<HardwareCoreState *>(GetHardwareCoreState(reinterpret_cast<void * const *>(core)));
+    HardwareSpriteBufferState * sprites = GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
+    HardwareDisplayState * display = GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
+    u8 * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
+    u8 * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
     MusicPlayer ** music = core->music_players;
     switch (ui->Update(state, sprites, display, links, manager, music)) {
     case 0:

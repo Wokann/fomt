@@ -22,11 +22,11 @@ void GameSceneMenuCorePrefix::Update()
     // The existing C hardware interface views the first native owner pointer.
     void * const * hardware_owner = reinterpret_cast<void * const *>(this);
     unk_84 = ui.GetState();
-    HardwareCoreState * hardware = static_cast<HardwareCoreState *>(func_080088DC(hardware_owner));
-    HardwareSpriteBufferState * sprites = func_08008920(hardware_owner);
-    HardwareDisplayState * display = func_08008918(hardware_owner);
-    u8 * links = func_08008940(hardware_owner);
-    u8 * manager = func_0800894C(hardware_owner);
+    HardwareCoreState * hardware = static_cast<HardwareCoreState *>(GetHardwareCoreState(hardware_owner));
+    HardwareSpriteBufferState * sprites = GetHardwareSpriteBuffer(hardware_owner);
+    HardwareDisplayState * display = GetHardwareDisplayState(hardware_owner);
+    u8 * links = GetHardwareCommandList(hardware_owner);
+    u8 * manager = GetHardwareInterruptList(hardware_owner);
     MusicPlayer ** music_player = &music.value;
     unk_88 = ui.Update(hardware, sprites, display, links, manager, music_player);
     if (unk_78.value != nullptr)
@@ -34,9 +34,9 @@ void GameSceneMenuCorePrefix::Update()
     GameSceneMenuOwnedDataPrefix * renderer = unk_7C.value;
     if (renderer != nullptr) {
 #if defined(REGION_JP)
-        loc_080CBD9C(renderer, func_08008920(hardware_owner));
+        loc_080CBD9C(renderer, GetHardwareSpriteBuffer(hardware_owner));
 #else
-        func_080CC58C(renderer, func_08008920(hardware_owner));
+        func_080CC58C(renderer, GetHardwareSpriteBuffer(hardware_owner));
 #endif
     }
 }

@@ -1,8 +1,8 @@
 #include "hardware_input_repeat.hh"
 
-u32 func_08009268(struct HardwareInputState * input)
+u32 UpdateHardwareKeyRepeat(struct HardwareInputState * input)
 {
-    u32 pressed = func_08009190(input);
+    u32 pressed = UpdateHardwareKeySnapshot(input);
     u16 held = input->held;
     u16 interval = input->repeat_interval;
     u16 delay = input->repeat_delay;
@@ -35,7 +35,7 @@ u32 func_08009268(struct HardwareInputState * input)
     return repeated;
 }
 
-void func_080092C8(struct HardwareInputState * input, u16 delay)
+void SetHardwareKeyRepeatDelay(struct HardwareInputState * input, u16 delay)
 {
     u16 held = input->held;
     u32 mask = 0x200;
@@ -52,7 +52,7 @@ void func_080092C8(struct HardwareInputState * input, u16 delay)
     input->repeat_delay = delay;
 }
 
-void func_080092FC(struct HardwareInputState * input, u16 interval)
+void SetHardwareKeyRepeatInterval(struct HardwareInputState * input, u16 interval)
 {
     input->repeat_interval = interval;
 }

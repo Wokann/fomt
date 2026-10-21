@@ -649,7 +649,7 @@ RunNewGameMenuCore:
     adds	r0, r6, #0
     bl func_08008724
     adds	r0, r6, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds	r5, r0, #0
     add	r0, sp, #12
     movs	r2, #226
@@ -756,11 +756,11 @@ RunNewGameMenuCore:
     adds	r0, r6, #0
     bl UpdateHardwareFrame
     adds	r0, r6, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     adds	r0, r6, #0
     bl UpdateNewGameMenuUi
     adds	r0, r6, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     adds	r7, r0, #0
     mov	r5, sl
     ldr	r0, [r5, #0]
@@ -2006,7 +2006,7 @@ RunNewGameMenuCore: @ 0x08004570
     adds r0, r6, #0
     bl func_08008724
     adds r0, r6, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     adds r5, r0, #0
     add r0, sp, #0xc
     movs r2, #0xe2
@@ -2113,11 +2113,11 @@ RunNewGameMenuCore: @ 0x08004570
     adds r0, r6, #0
     bl UpdateHardwareFrame
     adds r0, r6, #0
-    bl func_080088B8
+    bl UpdateHardwareInput
     adds r0, r6, #0
     bl UpdateNewGameMenuUi
     adds r0, r6, #0
-    bl func_080088D4
+    bl GetHardwareRepeatedKeys
     adds r7, r0, #0
     mov r5, sl
     ldr r0, [r5]

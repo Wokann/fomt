@@ -3,47 +3,47 @@
 #include "gbaio.h"
 #include "unknown_inlines.hh"
 
-u32 func_0800912C(void)
+u32 ReadHardwareKeys(void)
 {
     return 0x3ff & ~REG_KEYINPUT;
 }
 
-u16 * func_08009140(u16 * held)
+u16 * InitializeHardwareHeldKeys(u16 * held)
 {
-    *held = func_0800912C();
+    *held = ReadHardwareKeys();
     return held;
 }
 
-void func_08009154(u16 * held, u32 value)
+void AssignHardwareHeldKeys(u16 * held, u32 value)
 {
     *held = value;
 }
 
-u32 func_08009158(u16 * held)
+u32 RefreshHardwareHeldKeys(u16 * held)
 {
-    u32 value = func_0800912C();
+    u32 value = ReadHardwareKeys();
     *held = value;
     return value;
 }
 
-struct HardwareInputState * func_08009168(struct HardwareInputState * input)
+struct HardwareInputState * InitializeHardwareInputSnapshot(struct HardwareInputState * input)
 {
-    func_08009140(&input->held);
+    InitializeHardwareHeldKeys(&input->held);
     input->pressed = input->held;
     return input;
 }
 
-struct HardwareInputState * func_0800917C(struct HardwareInputState * input, u32 value)
+struct HardwareInputState * InitializeHardwareInputSnapshotFromKeys(struct HardwareInputState * input, u32 value)
 {
-    func_08009154(&input->held, value);
+    AssignHardwareHeldKeys(&input->held, value);
     input->pressed = input->held;
     return input;
 }
 
-u32 func_08009190(struct HardwareInputState * input)
+u32 UpdateHardwareKeySnapshot(struct HardwareInputState * input)
 {
     u16 previous = input->held;
-    u32 current = func_08009158(&input->held);
+    u32 current = RefreshHardwareHeldKeys(&input->held);
     u32 pressed = current & ~previous;
     input->pressed = pressed;
     return pressed;
@@ -51,7 +51,7 @@ u32 func_08009190(struct HardwareInputState * input)
 
 HardwareInputState::HardwareInputState(u16 delay, u16 interval)
 {
-    func_08009168(this);
+    InitializeHardwareInputSnapshot(this);
     repeated = pressed;
     repeat_delay = delay;
     repeat_interval = interval;
@@ -60,7 +60,7 @@ HardwareInputState::HardwareInputState(u16 delay, u16 interval)
 
 HardwareInputState::HardwareInputState(u32 held_value)
 {
-    func_0800917C(this, held_value);
+    InitializeHardwareInputSnapshotFromKeys(this, held_value);
     repeated = pressed;
     repeat_delay = 30;
     repeat_interval = 4;
@@ -69,7 +69,7 @@ HardwareInputState::HardwareInputState(u32 held_value)
 
 HardwareInputState::HardwareInputState(u16 delay, u16 interval, u32 held_value)
 {
-    func_0800917C(this, held_value);
+    InitializeHardwareInputSnapshotFromKeys(this, held_value);
     repeated = pressed;
     repeat_delay = delay;
     repeat_interval = interval;

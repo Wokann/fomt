@@ -36,7 +36,7 @@ InitializeIntroSceneBackground:
     adds	r1, r4, #0
     bl Unpack
     adds	r0, r5, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov	r1, sp
     movs	r3, #132	@ 0x84
     lsls	r3, r3, #4
@@ -45,19 +45,19 @@ InitializeIntroSceneBackground:
     movs	r4, #0
     strh	r2, [r0, #0]
     adds	r0, r5, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov	r2, sp
     ldr r3, .L08000FF4
     adds	r1, r3, #0
     strh	r1, [r2, #0]
     strh	r1, [r0, #14]
     adds	r0, r5, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov	r1, sp
     strh	r4, [r1, #0]
     strh	r4, [r0, #28]
     adds	r0, r5, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov	r1, sp
     strh	r4, [r1, #0]
     strh	r4, [r0, #30]
@@ -251,7 +251,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     cmp r4, #3
     ble .L08001AC0
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     movs r3, #0xfa
     lsls r3, r3, #5
@@ -260,70 +260,70 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     movs r4, #0
     strh r2, [r0]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r2, sp
     ldr r5, .L08001E34 @ =0x00005843
     adds r1, r5, #0
     strh r1, [r2]
     strh r1, [r0, #8]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r2, sp
     ldr r3, .L08001E38 @ =0x00005A42
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xa]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r2, sp
     ldr r5, .L08001E3C @ =0x00005C41
     adds r1, r5, #0
     strh r1, [r2]
     strh r1, [r0, #0xc]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r2, sp
     ldr r3, .L08001E40 @ =0x00005E40
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xe]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
     strh r4, [r0, #0x10]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
     strh r4, [r0, #0x12]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
     strh r4, [r0, #0x14]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
     strh r4, [r0, #0x16]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
     strh r4, [r0, #0x18]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
     strh r4, [r0, #0x1a]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
     strh r4, [r0, #0x1c]
     adds r0, r7, #0
-    bl func_08008918
+    bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
     strh r4, [r0, #0x1e]
@@ -1472,7 +1472,7 @@ RenderIntroSceneFrame:
     movs r0, #1
     strb r0, [r1, #0x18]
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -1539,7 +1539,7 @@ RenderIntroSceneFrame:
     mov r1, sp
     strh r0, [r1, #4]
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     ldr r1, [sp, #0x1c]
     movs r2, #0
     cmp r1, #0
@@ -1606,7 +1606,7 @@ RenderIntroSceneFrame:
     mov r1, sp
     strh r0, [r1, #4]
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     ldr r1, [sp, #0x1c]
     movs r2, #0
     cmp r1, #0
@@ -1665,7 +1665,7 @@ RenderIntroSceneFrame:
     mov r1, sp
     strh r0, [r1, #4]
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -1721,7 +1721,7 @@ RenderIntroSceneFrame:
     movs r0, #1
     strb r0, [r1, #0x18]
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -1743,7 +1743,7 @@ RenderIntroSceneFrame:
     b .L08002976
 .L08002846:
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     ldr r2, .L08002958 @ =0x00006C64
     adds r5, r7, r2
     adds r0, #4
@@ -1862,7 +1862,7 @@ RenderIntroSceneFrame:
     movs r1, #1
     strb r1, [r0, #0x18]
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -1963,7 +1963,7 @@ RenderIntroSceneFrame:
     b .L08002B84
 .L08002A14:
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r6, [sp, #0x24]
     mov r8, r6
@@ -2149,7 +2149,7 @@ RenderIntroSceneFrame:
     str r0, [r2, #0xc]
 .L08002B84:
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -2232,7 +2232,7 @@ RenderIntroSceneFrame:
     b .L08002D6A
 .L08002C34:
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r0, [sp, #0x24]
     mov r8, r0
@@ -2396,7 +2396,7 @@ RenderIntroSceneFrame:
     str r0, [r2, #0xc]
 .L08002D6A:
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -2489,7 +2489,7 @@ RenderIntroSceneFrame:
     b .L08002F6A
 .L08002E2C:
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r0, [sp, #0x24]
     mov r8, r0
@@ -2655,7 +2655,7 @@ RenderIntroSceneFrame:
     str r0, [r2, #0xc]
 .L08002F6A:
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -2690,7 +2690,7 @@ RenderIntroSceneFrame:
     ldrsh r1, [r2, r3]
     strh r1, [r0, #2]
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     ldr r1, [sp, #0x1c]
     movs r2, #0
     cmp r1, #0
@@ -2778,7 +2778,7 @@ RenderIntroSceneFrame:
     b .L080031AC
 .L0800306A:
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r6, [sp, #0x24]
     mov r8, r6
@@ -2945,7 +2945,7 @@ RenderIntroSceneFrame:
     str r0, [r2, #0xc]
 .L080031AC:
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -3029,7 +3029,7 @@ RenderIntroSceneFrame:
     b .L08003396
 .L0800325E:
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r0, [sp, #0x24]
     mov r8, r0
@@ -3194,7 +3194,7 @@ RenderIntroSceneFrame:
     str r0, [r2, #0xc]
 .L08003396:
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
@@ -3274,7 +3274,7 @@ RenderIntroSceneFrame:
     b .L0800357E
 .L08003440:
     adds r0, r7, #0
-    bl func_08008910
+    bl GetHardwareDmaQueue
     adds r5, r0, #0
     ldr r6, [sp, #0x24]
     mov r8, r6
@@ -3441,7 +3441,7 @@ RenderIntroSceneFrame:
     str r0, [r6, #0xc]
 .L0800357E:
     adds r0, r7, #0
-    bl func_08008920
+    bl GetHardwareSpriteBuffer
     adds r3, r0, #0
     ldr r0, [sp, #0x1c]
     adds r1, r0, #0
