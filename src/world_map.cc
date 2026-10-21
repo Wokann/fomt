@@ -173,7 +173,7 @@ EC void LoadWorldMapTilemaps(GameSceneWorldMapPrefix & map)
         if (source != nullptr)
             Unpack(source, *destination);
         else
-            func_08008EB8(0x03FF03FF, *destination, static_cast<u32>(data->width) * (data->height << 1));
+            FillHardwareDma3(0x03FF03FF, *destination, static_cast<u32>(data->width) * (data->height << 1));
     }
     map.view_changed = true;
 }

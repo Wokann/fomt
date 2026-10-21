@@ -12909,7 +12909,7 @@ func_080E0D50:
     ldr r1, [r0, #0x10]
     ldr r2, [r0, #0x14]
     adds r0, r3, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r0, #0
     pop {r1}
     bx r1
@@ -29171,7 +29171,7 @@ func_080E0D50: @ 0x080E0D50
 	ldr r1, [r0, #0x10]
 	ldr r2, [r0, #0x14]
 	adds r0, r3, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r0, #0
 	pop {r1}
 	bx r1
@@ -29375,7 +29375,7 @@ Run__20UiDmaTransferCommand:
     lsls r1, r1, #4
     adds r1, r4, r1
     adds r0, r4, #0
-    bl func_08009094
+    bl ExecuteBiosTransfers
     ldr r0, [r5]
     lsls r0, r0, #4
     adds r0, #4
@@ -36754,7 +36754,7 @@ Run__20UiDmaTransferCommand: @ 0x080E0F48
 	lsls r1, r1, #4
 	adds r1, r4, r1
 	adds r0, r4, #0
-	bl func_08009094
+	bl ExecuteBiosTransfers
 	ldr r0, [r5]
 	lsls r0, r0, #4
 	adds r0, #4

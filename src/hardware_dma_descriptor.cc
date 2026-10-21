@@ -42,7 +42,7 @@ DmaTransferDescriptor::DmaTransferDescriptor(u32 value, void * target, u32 byte_
     control = result;
 }
 
-void func_08008FB8(struct DmaTransferDescriptor const * descriptor)
+void ExecuteDmaTransfer(struct DmaTransferDescriptor const * descriptor)
 {
     void const * source = descriptor->source_or_value.source;
     u32 fill_value;
@@ -50,10 +50,10 @@ void func_08008FB8(struct DmaTransferDescriptor const * descriptor)
         fill_value = descriptor->source_or_value.fill_value;
         source = &fill_value;
     }
-    func_080D0EBC(source, descriptor->destination, descriptor->control, (volatile struct HardwareDmaRegisters *)&REG_DMA3SAD);
+    WriteHardwareDmaRegisters(source, descriptor->destination, descriptor->control, (volatile struct HardwareDmaRegisters *)&REG_DMA3SAD);
 }
 
-void func_08008FE4(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end)
+void ExecuteDmaTransfers(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end)
 {
     struct DmaTransferDescriptor const * stop = end;
     volatile struct HardwareDmaRegisters * registers = (volatile struct HardwareDmaRegisters *)&REG_DMA3SAD;
@@ -65,12 +65,12 @@ void func_08008FE4(struct DmaTransferDescriptor const * first, struct DmaTransfe
             fill_value = current->source_or_value.fill_value;
             source = &fill_value;
         }
-        func_080D0EBC(source, current->destination, current->control, registers);
+        WriteHardwareDmaRegisters(source, current->destination, current->control, registers);
         ++current;
     }
 }
 
-void func_0800901C(struct DmaTransferDescriptor const * descriptor)
+void ExecuteBiosTransfer(struct DmaTransferDescriptor const * descriptor)
 {
     u8 const * source;
     u32 fill_value;
@@ -103,7 +103,7 @@ void func_0800901C(struct DmaTransferDescriptor const * descriptor)
     }
 }
 
-void func_08009094(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end)
+void ExecuteBiosTransfers(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end)
 {
     struct DmaTransferDescriptor const * stop = end;
     struct DmaTransferDescriptor const * current = first;

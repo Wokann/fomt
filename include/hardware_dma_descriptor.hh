@@ -29,10 +29,14 @@ typedef char DmaTransferDescriptor_control_offset_check[(offsetof(struct DmaTran
 
 EXTERN_C
 
-void func_08008FB8(struct DmaTransferDescriptor const * descriptor);
-void func_08008FE4(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end);
-void func_0800901C(struct DmaTransferDescriptor const * descriptor);
-void func_08009094(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end);
+// Execute one descriptor, or the half-open [first, end) range, through DMA3.
+void ExecuteDmaTransfer(struct DmaTransferDescriptor const * descriptor);
+void ExecuteDmaTransfers(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end);
+
+// The BIOS path uses CpuFastSet for complete groups of eight words, then
+// CpuSet for the remaining words or for a halfword transfer.
+void ExecuteBiosTransfer(struct DmaTransferDescriptor const * descriptor);
+void ExecuteBiosTransfers(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end);
 
 EXTERN_C_END
 

@@ -8486,7 +8486,7 @@ func_0805147C:
     ldr r1, [pc, #0x254]
     movs r0, #0
     movs r2, #0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r4, #1
     rsbs r4, r4, #0
     ldr r0, [pc, #0x248]
@@ -8496,20 +8496,20 @@ func_0805147C:
     adds r0, r4, #0
     mov r1, r8
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, [pc, #0x23c]
     mov sb, r1
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, [pc, #0x234]
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, [pc, #0x22c]
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     mov r0, sl
     bl func_08008918
     add r1, sp, #0xc
@@ -8551,11 +8551,11 @@ func_0805147C:
     lsls r1, r1, #0x13
     ldr r2, [pc, #0x1e0]
     ldr r2, [r2]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [pc, #0x1dc]
     mov r1, r8
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r0, #3
     str r0, [sp]
     str r6, [sp, #4]
@@ -8568,7 +8568,7 @@ func_0805147C:
     ldr r0, [pc, #0x1c0]
     ldr r0, [r0]
     .byte 0xA0, 0x21, 0xC9, 0x04, 0x20, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x6E, 0x49, 0xF8, 0x24, 0xA4, 0x00
     .byte 0x20, 0x1C, 0x08, 0x80, 0x6C, 0x48, 0x06, 0x80, 0x04, 0x31, 0x6C, 0x4A, 0x10, 0x1C, 0x08, 0x80
     .byte 0x00, 0x23, 0x99, 0x46, 0x6A, 0x4F, 0x6F, 0x44, 0x6C, 0x46, 0x14, 0x34, 0x69, 0x48, 0x68, 0x44
@@ -8581,10 +8581,10 @@ func_0805147C:
     .byte 0x32, 0x80, 0x7A, 0x80, 0x30, 0x68, 0x00, 0x91, 0x00, 0x23, 0x01, 0x93, 0x01, 0x21, 0x02, 0x91
     .byte 0x05, 0xA9, 0x00, 0x22, 0xFC, 0xF7, 0xBE, 0xFE, 0x4A, 0x4A, 0x6A, 0x44, 0x10, 0x68, 0x29, 0x1C
     .byte 0x80, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x80, 0x35, 0x02, 0x34, 0x01, 0x23, 0x99, 0x44, 0x48, 0x46
     .byte 0x0C, 0x28, 0xE3, 0xDD, 0x4D, 0x48, 0x54, 0x46, 0xB8, 0x34, 0x80, 0x22, 0x12, 0x01, 0x21, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x00, 0x21, 0x92, 0x20, 0x00, 0x01, 0x68, 0x44, 0x01, 0x70, 0x3E, 0x4A
     .byte 0x6A, 0x44, 0x12, 0x68, 0x51, 0x80, 0x46, 0x4B, 0x6B, 0x44, 0x19, 0x60, 0xFA, 0x20, 0x80, 0x00
     .byte 0x44, 0x49, 0x69, 0x44, 0x08, 0x60, 0x00, 0x22, 0x90, 0x46, 0x95, 0x23, 0x1B, 0x01, 0x6B, 0x44
@@ -8615,7 +8615,7 @@ func_0805147C:
     .byte 0x02, 0x91, 0x26, 0xA9, 0x00, 0x22, 0x00, 0x23, 0xFC, 0xF7, 0xC2, 0xFF, 0x42, 0x46, 0x55, 0x00
     .byte 0xAC, 0x18, 0x21, 0x02, 0x9B, 0x4B, 0xC9, 0x18, 0x97, 0x22, 0x12, 0x01, 0x6A, 0x44, 0x10, 0x68
     .byte 0xC0, 0x22, 0x92, 0x00
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0xE4, 0x04, 0x85, 0x23, 0x9B, 0x05, 0xE4, 0x18
     .byte 0x27, 0x0C, 0x00, 0x24, 0x40, 0x46, 0x01, 0x30, 0x96, 0x21, 0x09, 0x01, 0x69, 0x44, 0x08, 0x60
     .byte 0x2A, 0x1D, 0x92, 0x01, 0x68, 0x1D, 0x80, 0x01, 0x3E, 0x1C, 0x0C, 0x36, 0x95, 0x23, 0x1B, 0x01
@@ -8638,22 +8638,22 @@ func_0805147C:
     .byte 0x32, 0x1C, 0x0B, 0x23, 0x00, 0xF0, 0xBC, 0xF8, 0x96, 0x24, 0x24, 0x01, 0x6C, 0x44, 0x24, 0x68
     .byte 0xA0, 0x46, 0x09, 0x2C, 0x00, 0xDC, 0xBD, 0xE6, 0x4A, 0x49, 0x80, 0x24, 0x24, 0x01, 0x95, 0x22
     .byte 0x12, 0x01, 0x6A, 0x44, 0x10, 0x68, 0x22, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x46, 0x48, 0x95, 0x23
     .byte 0x1B, 0x01, 0x6B, 0x44, 0x19, 0x68, 0x22, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x16, 0x24, 0x02, 0x25
     .byte 0x00, 0x26, 0x93, 0x20, 0x00, 0x01, 0x68, 0x44, 0x04, 0x80, 0x40, 0x49, 0x69, 0x44, 0x09, 0x68
     .byte 0x4D, 0x80, 0x00, 0x68, 0xE7, 0xA9, 0x00, 0x22, 0xFC, 0xF7, 0x16, 0xFE, 0x3C, 0x49, 0x01, 0x22
     .byte 0x3C, 0x48, 0x68, 0x44, 0x04, 0x80, 0x3C, 0x4B, 0x6B, 0x44, 0x1B, 0x68, 0x5D, 0x80, 0x00, 0x68
     .byte 0x00, 0x91, 0x01, 0x96, 0x02, 0x92, 0xE7, 0xA9, 0x00, 0x22, 0x00, 0x23, 0xFC, 0xF7, 0xE0, 0xFE
     .byte 0x36, 0x49, 0xB0, 0x22, 0xD2, 0x00, 0x36, 0x4C, 0x6C, 0x44, 0x20, 0x68
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x84, 0x25, 0xAD, 0x01, 0x00, 0x23, 0x2C, 0x1C, 0x16, 0x34, 0xA0, 0x22, 0x52, 0x00, 0x52, 0x44
     .byte 0x30, 0x48, 0x68, 0x44, 0x01, 0x68, 0x08, 0x31, 0xE8, 0x18, 0x08, 0x80, 0x14, 0x80, 0x01, 0x34
     .byte 0x02, 0x32, 0x02, 0x31, 0x01, 0x33, 0x15, 0x2B, 0xF6, 0xDD, 0x2B, 0x49, 0x80, 0x22, 0x12, 0x01
     .byte 0x95, 0x23, 0x1B, 0x01, 0x6B, 0x44, 0x18, 0x68
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x54, 0x46, 0x21, 0x6C
     .byte 0x0B, 0x68, 0x26, 0x48, 0x68, 0x44, 0x00, 0x68, 0x82, 0x89, 0x92, 0x00, 0x60, 0x6C, 0x80, 0x18
     .byte 0x02, 0x88, 0x03, 0xA8, 0x1B, 0x69, 0x81, 0xF0, 0x53, 0xFB, 0x07, 0x9C, 0x20, 0x4A, 0x6A, 0x44
@@ -8662,7 +8662,7 @@ func_0805147C:
     .byte 0x40, 0x01
     .byte 0x1C, 0x4A, 0x81, 0x18, 0x07, 0x98, 0x00, 0x22, 0x00, 0x28, 0x03, 0xD0, 0x1A, 0x4B, 0x6B, 0x44
     .byte 0x1B, 0x68, 0x9A, 0x88, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x18, 0x4B, 0x9D, 0x44, 0x38, 0xBC
     .byte 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0xD9, 0x97, 0x0F, 0x08
     .byte 0x2C, 0x09, 0x00, 0x00, 0x00, 0x28, 0x00, 0x06, 0x6C, 0x09, 0x00, 0x00, 0x3C, 0x09, 0x00, 0x00
@@ -11053,7 +11053,7 @@ func_08054D34:
     ldr r1, [pc, #0x124]
     movs r0, #0
     movs r2, #0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r4, #1
     rsbs r4, r4, #0
     ldr r0, [pc, #0x11c]
@@ -11063,16 +11063,16 @@ func_08054D34:
     adds r0, r4, #0
     mov r1, sb
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, [pc, #0x10c]
     mov r8, r1
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, [pc, #0x104]
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r0, [pc, #0x100]
     ldr r2, [pc, #0x100]
     adds r4, r6, r2
@@ -11082,11 +11082,11 @@ func_08054D34:
     lsls r2, r2, #3
     adds r0, r4, #0
     mov r1, sb
-    bl func_08008E64
+    bl CopyHardwareDma3
     adds r0, r4, #0
     mov r1, r8
     movs r2, #0xc0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [pc, #0xe4]
     adds r1, r4, #0
     bl Unpack
@@ -11099,7 +11099,7 @@ func_08054D34:
     bl Unpack
     ldr r0, [pc, #0xd8]
     .byte 0xA0, 0x21, 0xC9, 0x04, 0x80, 0x22, 0x92, 0x00
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x33, 0x48, 0xAB, 0x23
     .byte 0xDB, 0x00, 0xF1, 0x18, 0x7B, 0xF0, 0x3E, 0xFD, 0x30, 0x1C
     bl func_08008918
@@ -11234,7 +11234,7 @@ func_08054D34:
     ldrh r2, [r3, #0x14]
     .Lauto_08055080:
     mov r0, r8
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r4, #0x9c
     lsls r4, r4, #2
     adds r0, r7, r4
@@ -11281,7 +11281,7 @@ func_08054D34:
     ldrh r2, [r3, #0x14]
     .Lauto_080550E4:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r6, #0
     movs r5, #0
     movs r4, #0xab
@@ -11359,7 +11359,7 @@ func_08054D34:
     ldrh r2, [r3, #0xc]
     .Lauto_08055186:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [sp, #8]
     movs r1, #0
     cmp r0, #0
@@ -11415,7 +11415,7 @@ func_08054D34:
     ldrh r2, [r0, #0x14]
     .Lauto_080551FA:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r6, #0
     movs r5, #0
     mov sb, sl
@@ -11455,7 +11455,7 @@ func_08054D34:
     ldrh r2, [r3, #0xc]
     .Lauto_0805524C:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [sp, #8]
     movs r1, #0
     cmp r0, #0
@@ -11518,7 +11518,7 @@ func_08054D34:
     ldrh r2, [r3, #4]
     .Lauto_080552D0:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     add r5, sp, #8
     mov sb, r5
     ldr r0, [sp, #8]
@@ -11540,7 +11540,7 @@ func_08054D34:
     ldrh r2, [r3, #4]
     .Lauto_080552FE:
     mov r0, r8
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r1, [pc, #0x124]
     adds r0, r6, #0
     bl ResolveIndexedResourceHandle
@@ -11582,7 +11582,7 @@ func_08054D34:
     ldrh r2, [r0, #4]
     .Lauto_0805535A:
     adds r0, r6, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r1, #0xc6
     lsls r1, r1, #2
     adds r0, r7, r1
@@ -11626,7 +11626,7 @@ func_08054D34:
     ldrh r2, [r3, #4]
     .Lauto_080553B8:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r5, #0xd3
     lsls r5, r5, #2
     adds r0, r7, r5
@@ -11679,7 +11679,7 @@ func_08054D34:
     ldrh r2, [r3, #4]
     .Lauto_0805543A:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [pc, #0xf0]
     adds r0, r7, r4
     ldrb r0, [r0]
@@ -11756,7 +11756,7 @@ func_08054D34:
     ldrh r2, [r3, #0x14]
     .Lauto_080554DC:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [sp, #8]
     ldr r1, [r5, #4]
     adds r0, r5, #0
@@ -11772,7 +11772,7 @@ func_08054D34:
     ldrh r2, [r3, #0xc]
     .Lauto_080554FE:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     adds r5, #0x10
     adds r6, #0x10
     movs r4, #1
@@ -11861,7 +11861,7 @@ func_08054D34:
     ldrh r2, [r0, #0x14]
     .Lauto_080555E4:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [sp, #8]
     movs r1, #0x9c
     lsls r1, r1, #3
@@ -11879,7 +11879,7 @@ func_08054D34:
     ldrh r2, [r3, #0xc]
     .Lauto_0805560A:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [pc, #0x38]
     adds r0, r7, r4
     strb r6, [r0]
@@ -16999,7 +16999,7 @@ func_08057CF4:
     bl func_080074C0
     .byte 0x40, 0x01, 0x94, 0x4A, 0x81, 0x18
     .byte 0x07, 0x98, 0x00, 0x22, 0xA2, 0x46, 0x00, 0x28, 0x01, 0xD0, 0x4B, 0x46, 0x9A, 0x88, 0x28, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x00, 0x24, 0xA1, 0x46, 0x00, 0x26, 0x45, 0x46, 0x36, 0x95, 0x68, 0x46
     .byte 0xD0, 0x30, 0x35, 0x90, 0x69, 0x46, 0x50, 0x31, 0x37, 0x91, 0xD6, 0x22, 0x92, 0x00, 0xBD, 0x18
     .byte 0xD0, 0x46, 0x28, 0x1C, 0x31, 0x1C, 0x04, 0xF0, 0x4B, 0xFD, 0x29, 0x68, 0x0B, 0x68, 0xAA, 0x89
@@ -17010,18 +17010,18 @@ func_08057CF4:
     bl GetHardwareSharedStateTileIndex
     .byte 0x48, 0x44, 0x40, 0x01, 0x75, 0x4A
     .byte 0x81, 0x18, 0x05, 0x98, 0x00, 0x22, 0x00, 0x28, 0x01, 0xD0, 0x6B, 0x46, 0x1A, 0x8B, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x05, 0x98, 0x00, 0x21, 0x00, 0x28, 0x01, 0xD0, 0x6C, 0x46, 0x21, 0x8B
     .byte 0x48, 0x09, 0x81, 0x44, 0x01, 0x36, 0x03, 0x2E, 0xC3, 0xDD, 0x6B, 0x49, 0x00, 0x20, 0x20, 0x22
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x01, 0x24, 0x64, 0x42, 0x68, 0x4D, 0xA8, 0x46, 0x80, 0x26, 0x36, 0x01
     .byte 0x20, 0x1C, 0x41, 0x46, 0x32, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x65, 0x48, 0x81, 0x46, 0x20, 0x1C
     .byte 0x49, 0x46, 0x32, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x62, 0x49, 0x20, 0x1C, 0x32, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x38, 0x1C
     bl func_08008918
     .byte 0xF2, 0x22, 0x52, 0x01, 0x11, 0x1C, 0x53, 0x46
@@ -17035,9 +17035,9 @@ func_08057CF4:
     bl func_08008918
     .byte 0x54, 0x4A, 0x11, 0x1C
     .byte 0x21, 0x80, 0x41, 0x81, 0x53, 0x48, 0x00, 0x68, 0xC0, 0x21, 0xC9, 0x04, 0x52, 0x4A, 0x12, 0x68
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x51, 0x48, 0x41, 0x46, 0x32, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x38, 0x1C
     bl func_08008918
     .byte 0x25, 0x80, 0x85, 0x83, 0x38, 0x1C
@@ -17057,7 +17057,7 @@ func_08057CF4:
     bl func_08008918
     .byte 0x25, 0x80, 0xC5, 0x82, 0x3C, 0x48
     .byte 0x00, 0x68, 0xA0, 0x21, 0xC9, 0x04, 0x20, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x39, 0x48, 0xF8, 0x23
     .byte 0x9B, 0x00, 0x1E, 0x1C, 0x06, 0x80, 0x02, 0x30, 0x05, 0x80, 0x02, 0x30, 0x36, 0x4C, 0xA0, 0x46
     .byte 0x04, 0x80, 0xC3, 0x20, 0xC0, 0x00, 0x3C, 0x18, 0x61, 0x68, 0x20, 0x1C
@@ -17074,7 +17074,7 @@ func_08057CF4:
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C, 0xA0, 0x00, 0x09, 0x18, 0x49, 0x01, 0x09, 0x48
     .byte 0x09, 0x18, 0x37, 0x98, 0x80, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x01, 0x34, 0x13, 0x2C, 0xDA, 0xDD
     .byte 0x38, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
     .byte 0x00, 0x02, 0x00, 0x05, 0x00, 0x00, 0x01, 0x06, 0xE0, 0x7F, 0x00, 0x06, 0x00, 0xE0, 0x00, 0x06
@@ -17125,7 +17125,7 @@ func_08059FE0:
     ldrh r2, [r5, #4]
     .Lauto_08059DB4:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     add r4, sp, #0x14
     ldr r5, [sp, #0x14]
     movs r0, #0xc8
@@ -17143,7 +17143,7 @@ func_08059FE0:
     ldrh r2, [r4, #4]
     .Lauto_08059DDA:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [pc, #0x48]
     movs r0, #0xc2
     lsls r0, r0, #3
@@ -17156,7 +17156,7 @@ func_08059FE0:
     adds r1, r1, r3
     adds r0, r4, #0
     movs r2, #0x80
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [pc, #0x34]
     movs r0, #0xc4
     lsls r0, r0, #3
@@ -17168,7 +17168,7 @@ func_08059FE0:
     adds r1, r1, r6
     adds r0, r4, #0
     movs r2, #0x20
-    bl func_08008E64
+    bl CopyHardwareDma3
     b .Lauto_08059E74
     .byte 0x90, 0xF4, 0xFF, 0xFF, 0x54, 0x0B, 0x00, 0x00, 0x00, 0x02, 0x00, 0x05, 0x00, 0x00, 0x01, 0x06
     .byte 0x38, 0x8F, 0x4D, 0x08, 0x00, 0x0A, 0x01, 0x06, 0xB8, 0x8F, 0x4D, 0x08
@@ -17185,7 +17185,7 @@ func_08059FE0:
     adds r1, r1, r7
     adds r0, r4, #0
     movs r2, #0x80
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [pc, #0xc8]
     movs r0, #0xc4
     lsls r0, r0, #3
@@ -17198,7 +17198,7 @@ func_08059FE0:
     adds r1, r1, r0
     adds r0, r4, #0
     movs r2, #0x20
-    bl func_08008E64
+    bl CopyHardwareDma3
     .Lauto_08059E74:
     ldr r4, [pc, #0xb0]
     add r4, r8
@@ -17312,7 +17312,7 @@ func_08059FE0:
     mov r1, sb
     movs r2, #0xc0
     lsls r2, r2, #2
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r2, #0xc0
     lsls r2, r2, #2
     add sb, r2
@@ -17359,7 +17359,7 @@ func_08059FE0:
     ldr r3, [pc, #0x6c]
     add r3, sp
     ldr r0, [r3]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [pc, #0x64]
     add r0, sp
     strh r4, [r0]
@@ -17427,13 +17427,13 @@ func_08059FE0:
     add r3, sp
     ldr r0, [r3]
     adds r2, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r0, #1
     rsbs r0, r0, #0
     ldr r1, [pc, #0xbc]
     add r1, r8
     adds r2, r4, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r5, #0x85
     lsls r5, r5, #6
     movs r1, #0
@@ -17509,7 +17509,7 @@ func_08059FE0:
     ldr r1, [pc, #0x30]
     movs r2, #0x80
     lsls r2, r2, #4
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r3, #0xb7
     lsls r3, r3, #4
     add sp, r3
@@ -17536,13 +17536,13 @@ func_0805A3F0:
     movs r2, #0xb0
     lsls r2, r2, #6
     movs r0, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r4, [pc, #0xc0]
     movs r2, #0x80
     lsls r2, r2, #4
     movs r0, #0
     adds r1, r4, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r2, #0
     ldr r0, [pc, #0xb4]
     mov r8, r0
@@ -17612,7 +17612,7 @@ func_0805A3F0:
     adds r1, r7, #0
     movs r2, #0x80
     lsls r2, r2, #4
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r0, #0x80
     lsls r0, r0, #4
     adds r7, r7, r0
@@ -18182,7 +18182,7 @@ func_0805A6E4:
     ldr r1, [pc, #0x108]
     movs r0, #0
     movs r2, #0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r4, #1
     rsbs r4, r4, #0
     ldr r1, [pc, #0xfc]
@@ -18190,15 +18190,15 @@ func_0805A6E4:
     lsls r5, r5, #5
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, [pc, #0xf4]
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, [pc, #0xec]
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r0, [pc, #0xe8]
     ldr r2, [pc, #0xe8]
     adds r1, r7, r2
@@ -18218,7 +18218,7 @@ func_0805A6E4:
     ldr r0, [pc, #0xe0]
     .byte 0xC0, 0x21, 0xC9, 0x04, 0x75, 0xF0, 0x92, 0xFF, 0x36, 0x48, 0xA0, 0x21, 0xC9, 0x04, 0x80, 0x22
     .byte 0x92, 0x00
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x38, 0x1C
     bl func_08008918
     .byte 0x6A, 0x46, 0xF2, 0x23
@@ -18236,10 +18236,10 @@ func_0805A6E4:
     .byte 0x02, 0x91, 0x18, 0x4A, 0x82, 0x18, 0x03, 0x92, 0x10, 0x4E, 0x46, 0x44, 0x0E, 0x4D, 0x45, 0x44
     .byte 0x0C, 0x4C, 0x44, 0x44, 0x0F, 0x4B, 0xC3, 0x18, 0x01, 0x93, 0x10, 0x49, 0x09, 0x18, 0x8A, 0x46
     .byte 0x01, 0x9A, 0xB8, 0x18, 0x21, 0x1C, 0x0C, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x4B, 0x46, 0x12, 0x2B
     .byte 0x28, 0xD0, 0x51, 0x46, 0x78, 0x18, 0x29, 0x1C, 0x0C, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x28, 0xE0
     .byte 0xE0, 0x7F, 0x00, 0x06, 0x00, 0xC8, 0x00, 0x06, 0x00, 0xD8, 0x00, 0x06, 0x00, 0xE8, 0x00, 0x06
     .4byte gUiThreeLayerBackgroundTilemap0, 0x000008CA
@@ -18248,9 +18248,9 @@ func_0805A6E4:
     .4byte gUiThreeLayerBackgroundTilemap3, 0x00000BCA
     .4byte gUiThreeLayerBackgroundTiles, gUiThreeLayerBackgroundPalette, 0x00005943, 0x00005B42
     .byte 0x41, 0x5D, 0x00, 0x00, 0x02, 0x9A, 0xB8, 0x18, 0x26, 0x49, 0x41, 0x44, 0x0C, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x03, 0x9B, 0xF8, 0x18, 0x31, 0x1C, 0x0C, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x0C, 0x36
     .byte 0x0C, 0x35, 0x0C, 0x34, 0x06, 0x20, 0x81, 0x44, 0x49, 0x46, 0x1D, 0x29, 0xB8, 0xDD, 0x04, 0x99
     .byte 0x1F, 0x29, 0x9A, 0xDD, 0x00, 0x24, 0x1C, 0x4A, 0xB8, 0x18, 0xC0, 0x21, 0xC9, 0x00, 0x01, 0x80
@@ -18551,7 +18551,7 @@ func_0805A6E4:
     ldrh r2, [r3, #0x14]
     .Lauto_0805B15C:
     adds r0, r7, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r7, #0
     movs r6, #0
     mov sl, sb
@@ -18645,7 +18645,7 @@ func_0805A6E4:
     ldrh r2, [r3, #0xc]
     .Lauto_0805B21E:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [sp, #8]
     movs r1, #0
     cmp r0, #0
@@ -18702,7 +18702,7 @@ func_0805A6E4:
     .Lauto_0805B292:
     lsrs r2, r2, #1
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r1, [sp, #0x10]
     movs r0, #0
     cmp r1, #0
@@ -18728,7 +18728,7 @@ func_0805A6E4:
     .Lauto_0805B2C6:
     lsrs r2, r2, #1
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r0, #0x90
     lsls r0, r0, #2
     add r0, r8
@@ -18772,7 +18772,7 @@ func_0805A6E4:
     .Lauto_0805B324:
     lsrs r2, r2, #1
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r1, [sp, #0x10]
     movs r0, #0
     cmp r1, #0
@@ -18798,7 +18798,7 @@ func_0805A6E4:
     .Lauto_0805B358:
     lsrs r2, r2, #1
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [pc, #0xb0]
     add r0, r8
     ldrb r0, [r0]
@@ -18849,7 +18849,7 @@ func_0805A6E4:
     .Lauto_0805B3C4:
     lsrs r2, r2, #1
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r1, [sp, #0x10]
     movs r0, #0
     cmp r1, #0
@@ -18875,7 +18875,7 @@ func_0805A6E4:
     .Lauto_0805B3F8:
     lsrs r2, r2, #1
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     b .Lauto_0805B4AE
     .byte 0x00, 0x00, 0x00, 0x02, 0x00, 0x05, 0x74, 0x04, 0x00, 0x00, 0x8C, 0x05, 0x00, 0x00, 0x00, 0x00
     .byte 0x01, 0x06, 0xEE, 0x10, 0x00, 0x00
@@ -18925,7 +18925,7 @@ func_0805A6E4:
     .Lauto_0805B472:
     lsrs r2, r2, #1
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r1, [sp, #0x10]
     movs r0, #0
     cmp r1, #0
@@ -18951,7 +18951,7 @@ func_0805A6E4:
     .Lauto_0805B4A6:
     lsrs r2, r2, #1
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     .Lauto_0805B4AE:
     movs r0, #0xac
     lsls r0, r0, #2
@@ -18997,7 +18997,7 @@ func_0805A6E4:
     .Lauto_0805B506:
     lsrs r2, r2, #1
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r1, [sp, #0x10]
     movs r0, #0
     cmp r1, #0
@@ -19023,7 +19023,7 @@ func_0805A6E4:
     .Lauto_0805B53A:
     lsrs r2, r2, #1
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r1, [sp, #0x6c]
     add r0, sp, #0x20
     movs r2, #0
@@ -19052,7 +19052,7 @@ func_0805A6E4:
     ldrh r2, [r0, #0x14]
     .Lauto_0805B57A:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r5, [sp, #8]
     movs r4, #0xba
     lsls r4, r4, #3
@@ -19071,7 +19071,7 @@ func_0805A6E4:
     ldrh r2, [r3, #0xc]
     .Lauto_0805B5A2:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     add r0, sp, #0x20
     ldr r1, [sp, #0x6c]
     movs r2, #1
@@ -19099,7 +19099,7 @@ func_0805A6E4:
     ldrh r2, [r7, #0xc]
     .Lauto_0805B5DE:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r3, #0
     ldr r0, [pc, #0x2b4]
     adds r4, r0, #0
@@ -19163,7 +19163,7 @@ func_0805A6E4:
     ldrh r2, [r5, #0x14]
     .Lauto_0805B662:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r7, #0
     movs r0, #0
     mov sl, r0
@@ -19223,7 +19223,7 @@ func_0805A6E4:
     ldrh r2, [r3, #0xc]
     .Lauto_0805B6DE:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [sp, #8]
     movs r1, #0
     cmp r0, #0
@@ -19269,7 +19269,7 @@ func_0805A6E4:
     ldrh r2, [r7, #0x14]
     .Lauto_0805B73C:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [sp, #8]
     movs r0, #0xbe
     lsls r0, r0, #3
@@ -19287,7 +19287,7 @@ func_0805A6E4:
     ldrh r2, [r3, #0xc]
     .Lauto_0805B762:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r7, #0
     movs r5, #0
     movs r6, #0x88
@@ -19347,7 +19347,7 @@ func_0805A6E4:
     ldrh r2, [r3, #0xc]
     .Lauto_0805B7E0:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [sp, #8]
     movs r1, #0
     cmp r0, #0
@@ -19403,7 +19403,7 @@ func_0805A6E4:
     ldrh r2, [r7, #0x14]
     .Lauto_0805B854:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r7, #0
     movs r5, #0
     movs r6, #0xa0
@@ -19467,7 +19467,7 @@ func_0805A6E4:
     ldrh r2, [r3, #0xc]
     .Lauto_0805B8EE:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [sp, #8]
     movs r1, #0
     cmp r0, #0
@@ -19523,7 +19523,7 @@ func_0805A6E4:
     ldrh r2, [r7, #0xc]
     .Lauto_0805B962:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     add sp, #0x90
     pop {r3, r4, r5}
     mov r8, r3
@@ -21216,15 +21216,15 @@ func_0805CF70:
     .byte 0x03, 0xA9, 0x0C, 0x80, 0x84, 0x83, 0x38, 0x1C
     bl func_08008918
     .byte 0x03, 0xA9, 0x0C, 0x80, 0xC4, 0x83, 0x6E, 0x49, 0x00, 0x20, 0x20, 0x22
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x01, 0x24, 0x64, 0x42, 0x6B, 0x48, 0x80, 0x46, 0x80, 0x26, 0x36, 0x01
     .byte 0x20, 0x1C, 0x41, 0x46, 0x32, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x68, 0x49, 0x89, 0x46, 0x20, 0x1C
     .byte 0x32, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x66, 0x49, 0x20, 0x1C, 0x32, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x38, 0x1C
     bl func_08008918
     .byte 0x03, 0xA9, 0xF2, 0x23, 0x5B, 0x01, 0x1A, 0x1C, 0x0A, 0x80
@@ -21238,9 +21238,9 @@ func_0805CF70:
     bl func_08008918
     .byte 0x03, 0xAA, 0x57, 0x4B, 0x19, 0x1C
     .byte 0x11, 0x80, 0x41, 0x81, 0x56, 0x48, 0x00, 0x68, 0xC0, 0x21, 0xC9, 0x04, 0x55, 0x4A, 0x12, 0x68
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x54, 0x48, 0x41, 0x46, 0x32, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x38, 0x1C
     bl func_08008918
     .byte 0x03, 0xA9, 0x0D, 0x80, 0x85, 0x83, 0x38, 0x1C
@@ -21259,7 +21259,7 @@ func_0805CF70:
     bl func_08008918
     .byte 0x03, 0xA9, 0x0D, 0x80, 0xC5, 0x82, 0x3C, 0x48, 0x00, 0x68, 0xA0, 0x21
     .byte 0xC9, 0x04, 0x20, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x39, 0x48, 0xF8, 0x21, 0x89, 0x00, 0x0E, 0x1C
     .byte 0x06, 0x80, 0x02, 0x30, 0x05, 0x80, 0x02, 0x30, 0x36, 0x4B, 0x98, 0x46, 0x03, 0x80, 0x92, 0x20
     .byte 0x40, 0x00, 0x3C, 0x18, 0x61, 0x68, 0x20, 0x1C
@@ -21279,7 +21279,7 @@ func_0805CF70:
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C, 0xA0, 0x00, 0x09, 0x18, 0x49, 0x01
     .byte 0x19, 0x4B, 0xC9, 0x18, 0x48, 0x46, 0x80, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x01, 0x34, 0x13, 0x2C
     .byte 0xDA, 0xDD, 0x26, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC
     .byte 0x00, 0x47, 0x00, 0x00, 0xE0, 0x7F, 0x00, 0x06, 0x00, 0xE0, 0x00, 0x06, 0x00, 0xE8, 0x00, 0x06
@@ -21357,7 +21357,7 @@ func_0805DC24:
     ldrh r2, [r6, #4]
     .Lauto_0805D9EA:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     mov r1, r8
     adds r1, #0x50
     adds r0, r4, #0
@@ -21386,7 +21386,7 @@ func_0805DC24:
     ldrh r2, [r6, #4]
     .Lauto_0805DA28:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [sp, #0x14]
     movs r0, #0x9e
     lsls r0, r0, #1
@@ -21404,7 +21404,7 @@ func_0805DC24:
     ldrh r2, [r0, #4]
     .Lauto_0805DA4E:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r4, #0
     add r6, sp, #0x3d0
     movs r1, #0xf5
@@ -21458,7 +21458,7 @@ func_0805DC24:
     adds r1, r5, #0
     movs r2, #0xe0
     lsls r2, r2, #2
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r2, #0xe0
     lsls r2, r2, #2
     adds r5, r5, r2
@@ -21472,7 +21472,7 @@ func_0805DC24:
     add r1, r8
     movs r2, #0x80
     lsls r2, r2, #4
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r5, #0x85
     lsls r5, r5, #6
     movs r1, #0
@@ -21517,7 +21517,7 @@ func_0805DC24:
     ldr r1, [pc, #0x30]
     movs r2, #0x80
     lsls r2, r2, #4
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r3, #0xf8
     lsls r3, r3, #2
     add sp, r3
@@ -23993,22 +23993,22 @@ func_0805FBB8:
 	ldr r1, .L0805FCA0 @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r4, .L0805FCA4 @ =0x10661066
 	ldr r1, .L0805FCA8 @ =0x0600E000
 	movs r5, #0x80
 	lsls r5, r5, #4
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0805FCAC @ =0x0600E800
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0805FCB0 @ =0x0600F000
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r0, .L0805FCB4 @ =gUnk_08743058
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
@@ -24018,7 +24018,7 @@ func_0805FBB8:
 	lsls r4, r4, #0x13
 	adds r1, r4, #0
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, .L0805FCBC @ =0x00007FFF
 	adds r0, r1, #0
 	strh r0, [r4]
@@ -46728,11 +46728,11 @@ func_0806A1F4:
 	ldr r1, .Ljp_0806A300
 	movs r2, #0xc0
 	lsls r2, r2, #5
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .Ljp_0806A304
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	add r2, sp, #0x10
@@ -46747,12 +46747,12 @@ func_0806A1F4:
 	lsls r1, r1, #0x13
 	ldr r2, .Ljp_0806A30C
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .Ljp_0806A310
 	ldr r1, .Ljp_0806A314
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #0
 	mov sl, r0
 	movs r1, #0x9c
@@ -46851,7 +46851,7 @@ func_0806A1F4:
 	ldr r0, [sp, #0x2f4]
 	adds r1, r5, #0
 	movs r2, #0x80
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #0x80
 	adds r4, #2
 	movs r3, #1
@@ -49280,7 +49280,7 @@ func_0806A1F4:
 	movs r2, #0x80
 	lsls r2, r2, #4
 	adds r1, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #0x4c
 	bl __builtin_new
 	adds r5, r0, #0
@@ -54444,7 +54444,7 @@ func_0806E234:
 	ldr r1, .Ljp_0806E174
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r4, #1
 	rsbs r4, r4, #0
 	ldr r0, .Ljp_0806E178
@@ -54454,12 +54454,12 @@ func_0806E234:
 	adds r0, r4, #0
 	mov r1, r8
 	adds r2, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .Ljp_0806E17C
 	mov sb, r1
 	adds r0, r4, #0
 	adds r2, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	add r1, sp, #0xc
@@ -54482,11 +54482,11 @@ func_0806E234:
 	lsls r1, r1, #0x13
 	ldr r2, .Ljp_0806E188
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .Ljp_0806E18C
 	mov r1, r8
 	adds r2, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	add r1, sp, #0xc
@@ -54531,7 +54531,7 @@ func_0806E234:
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .Ljp_0806E194
 	movs r1, #0xf8
 	lsls r1, r1, #2
@@ -54606,7 +54606,7 @@ func_0806E234:
 	adds r1, r1, r0
 	mov r0, sb
 	movs r2, #0x80
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r4, #1
 	cmp r4, #0x14
 	ble .Ljp_0806E11C
@@ -54962,7 +54962,7 @@ func_0806EC94:
 	lsls r1, r1, #0x13
 	movs r2, #0x80
 	lsls r2, r2, #2
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r2, .Ljp_0806E9D8
 	ldr r3, [sp, #0xc]
 	cmp r3, #0
@@ -55222,7 +55222,7 @@ func_0806EC94:
 	adds r0, r0, r1
 	ldr r1, .Ljp_0806EBFC
 	lsls r2, r2, #5
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r5, #2
 	str r5, [sp]
 	str r5, [sp, #4]
@@ -55254,7 +55254,7 @@ func_0806EC94:
 	adds r0, r0, r1
 	ldr r1, .Ljp_0806EC0C
 	lsls r2, r2, #5
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r0, #1
 	str r0, [sp]
 	str r5, [sp, #4]
@@ -55290,7 +55290,7 @@ func_0806EC94:
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	lsls r2, r2, #5
-	bl func_08008E64
+	bl CopyHardwareDma3
 	add sp, #0x20
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -69223,7 +69223,7 @@ func_080757E8:
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C
     .byte 0x49, 0x01, 0x04, 0x48, 0x09, 0x18, 0x20, 0x22, 0xB2, 0x40, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x15, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06, 0x00, 0x98, 0x02, 0x90, 0x03, 0x90, 0x41, 0x46
     .byte 0x4B, 0x68, 0x19, 0x1D, 0x1A, 0x1C, 0x08, 0x32, 0x0C, 0x33, 0x6C, 0xF0, 0xFD, 0xFB, 0x00, 0x28
     .byte 0x01, 0xD0, 0x5A, 0xF0, 0x9D, 0xFA, 0x42, 0x46, 0x90, 0x68, 0x01, 0x38, 0x90, 0x60, 0x78, 0x79
@@ -69240,7 +69240,7 @@ func_080757E8:
     bl func_080074C0
     .byte 0x01, 0x1C, 0x49, 0x01
     .byte 0x09, 0x4A, 0x89, 0x18, 0x20, 0x1C, 0x20, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x0D, 0x9F, 0x0B, 0x98
     .byte 0x87, 0x42, 0x00, 0xD0, 0x0B, 0xE7
     .Lauto_0807565A:
@@ -69683,13 +69683,13 @@ func_08075A5C: @ 0x08075A5C
     ldr r0, [r4, #0xc]
     ldr r1, [r4, #0x10]
     ldr r2, [r4, #0x14]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r1, [r4, #0x1c]
     cmp r1, #0
     beq .Ljp_08075A78
     ldr r0, [r4, #0x18]
     ldr r2, [r4, #0x20]
-    bl func_08008E64
+    bl CopyHardwareDma3
 .Ljp_08075A78:
     movs r0, #0
     pop {r4}
@@ -69924,11 +69924,11 @@ func_08075E7C:
 	movs r2, #0x80
 	lsls r2, r2, #6
 	adds r1, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .Ljp_08075DD4
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	add r2, sp, #0xc
@@ -69943,13 +69943,13 @@ func_08075E7C:
 	lsls r1, r1, #0x13
 	ldr r2, .Ljp_08075DDC
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .Ljp_08075DE0
 	ldr r1, .Ljp_08075DE4
 	movs r5, #0x80
 	lsls r5, r5, #4
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	add r1, sp, #0xc
@@ -69975,11 +69975,11 @@ func_08075E7C:
 	ldr r1, .Ljp_08075DEC
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #0
 	adds r1, r6, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r0, .Ljp_08075DF0
 	str r4, [sp]
 	movs r1, #0x20
@@ -70001,11 +70001,11 @@ func_08075E7C:
 	lsls r1, r1, #0x13
 	adds r0, r4, #0
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, .Ljp_08075DFC
 	adds r0, r4, #0
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r5, #0
 	mov r8, r5
 	add r6, sp, #0xc4
@@ -70041,7 +70041,7 @@ func_08075E7C:
 	ldr r0, [sp, #0xdc]
 	adds r1, r5, #0
 	movs r2, #0x80
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #0x80
 	adds r4, #2
 	movs r3, #1
@@ -73052,7 +73052,7 @@ func_08077810: @ 0x080773A8
 	ldr r1, .Ljp_08077508
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r6, #1
 	rsbs r6, r6, #0
 	ldr r0, .Ljp_0807750C
@@ -73063,11 +73063,11 @@ func_08077810: @ 0x080773A8
 	adds r0, r6, #0
 	mov r1, sb
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .Ljp_08077510
 	adds r0, r6, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r5, #0
 	bl func_08008918
 	mov r1, sp
@@ -73101,7 +73101,7 @@ func_08077810: @ 0x080773A8
 	lsls r4, r4, #0x13
 	adds r1, r4, #0
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .Ljp_08077524
 	mov r1, sb
 	bl Unpack
@@ -73119,7 +73119,7 @@ func_08077810: @ 0x080773A8
 	adds r0, r6, #0
 	adds r1, r4, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r6, .Ljp_08077534
 	movs r2, #0
 	mov sb, r4
@@ -73160,7 +73160,7 @@ func_08077810: @ 0x080773A8
 	movs r2, #0x80
 	lsls r2, r2, #4
 	mov r0, sb
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r3, .Ljp_08077538
 	add sp, r3
 	pop {r3, r4, r5}
@@ -73211,7 +73211,7 @@ func_080779B4: @ 0x0807753C
     movs r2, #0xe0
     lsls r2, r2, #4
     movs r0, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     mov r5, sp
     movs r0, #0x1c
     mov sb, r0
@@ -73233,7 +73233,7 @@ func_080779B4: @ 0x0807753C
     adds r1, r7, #0
     movs r2, #0xe0
     lsls r2, r2, #3
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r0, #0xe0
     lsls r0, r0, #3
     adds r7, r7, r0
@@ -73823,7 +73823,7 @@ func_08077EC0: @ 0x08077EC0
 .L08077EF2:
 	ldr r1, .L08077F48 @ =0x05000020
 	movs r2, #0xc0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r2, .L08077F4C @ =gUnk_08755230
 	cmp r5, #0
 	beq .L08077F02
@@ -75347,11 +75347,11 @@ func_080786A0:
 	bl func_08077EC0
 	.byte 0x25, 0x49, 0x08, 0x1C, 0x6A, 0x46, 0x10, 0x82, 0x68, 0x81, 0x24, 0x48, 0x00, 0x68, 0x24, 0x49
 	.byte 0x0A, 0x68, 0x24, 0x49
-	bl func_08008E64
+	bl CopyHardwareDma3
 	.byte 0x00, 0x20, 0x23, 0x49, 0x20, 0x22
-	bl func_08008EB8
+	bl FillHardwareDma3
 	.byte 0x01, 0x20, 0x40, 0x42, 0x21, 0x49, 0x80, 0x22, 0x12, 0x01
-	bl func_08008EB8
+	bl FillHardwareDma3
 	.byte 0x03, 0x20, 0x00, 0x90, 0x00, 0x20, 0x01, 0x90, 0x0F, 0x20, 0x02, 0x90, 0x1B, 0x48, 0x13, 0x21
 	.byte 0x0A, 0x22, 0x0B, 0x23
 	bl DrawUiTextWindowBorder
@@ -76697,7 +76697,7 @@ func_08079860:
 	ldr r1, .Ljp_lib_080795A4
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #1
 	rsbs r0, r0, #0
 	mov sl, r0
@@ -76707,16 +76707,16 @@ func_08079860:
 	mov r8, r1
 	adds r1, r4, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r6, .Ljp_lib_080795AC
 	mov r0, sl
 	adds r1, r6, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .Ljp_lib_080795B0
 	mov r0, sl
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r5, #0
 	bl func_08008918
 	add r2, sp, #0xc
@@ -76744,11 +76744,11 @@ func_08079860:
 	lsls r1, r1, #0x13
 	ldr r2, .Ljp_lib_080795C4
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .Ljp_lib_080795C8
 	adds r1, r4, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #3
 	str r0, [sp]
 	movs r4, #0
@@ -76764,7 +76764,7 @@ func_08079860:
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .Ljp_lib_080795D0
 	movs r7, #0xf8
 	lsls r7, r7, #2
@@ -76804,7 +76804,7 @@ func_08079860:
 	mov r0, sl
 	adds r1, r4, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r6, .Ljp_lib_080795E8
 	movs r2, #0
 	mov sb, r4
@@ -76845,7 +76845,7 @@ func_08079860:
 	movs r2, #0x80
 	lsls r2, r2, #4
 	mov r0, sb
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r3, #0x81
 	lsls r3, r3, #4
 	add sp, r3
@@ -77211,7 +77211,7 @@ func_08079A64:
 	mov r0, sl
 	movs r2, #0xe0
 	lsls r2, r2, #3
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #1
 	cmp r5, #0xa
 	ble .Ljp_library_page_080797C0
@@ -77227,7 +77227,7 @@ func_08079A64:
 	movs r2, #0xe0
 	lsls r2, r2, #3
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r6, #0
 	add r5, sp, #0xc
 	ldr r1, .Ljp_library_page_08079954
@@ -77298,7 +77298,7 @@ func_08079A64:
 	adds r1, r1, r0
 	ldr r0, [sp, #0xc0]
 	movs r2, #0x80
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r6, #1
 	cmp r6, #8
 	ble .Ljp_library_page_08079896
@@ -77825,7 +77825,7 @@ func_08079F8C:
 	movs r2, #0xe0
 	lsls r2, r2, #4
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r5, #0
 	ldr r3, [sp, #0xdc]
 	mov r8, r3
@@ -77878,7 +77878,7 @@ func_08079F8C:
 	mov r1, sl
 	movs r2, #0xe0
 	lsls r2, r2, #3
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r3, #0xe0
 	lsls r3, r3, #3
 	add sl, r3
@@ -77897,7 +77897,7 @@ func_08079F8C:
 	movs r2, #0xe0
 	lsls r2, r2, #3
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r0, .Ljp_library_render_08079E4C
 	add r0, sb
 	ldr r0, [r0]
@@ -77963,7 +77963,7 @@ func_08079F8C:
 	adds r1, r1, r3
 	ldr r0, [sp, #0xd4]
 	movs r2, #0x80
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r4, #2
 	movs r0, #1
 	add sl, r0
@@ -78816,7 +78816,7 @@ func_0807A878:
 	ldrh r2, [r7, #4]
 .Ljp_0807A8FA:
 	adds r0, r6, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r2, .Ljp_0807A980 @ =0x00000744
 	adds r1, r5, r2
 	adds r0, r4, #0
@@ -78845,7 +78845,7 @@ func_0807A878:
 	ldrh r2, [r7, #4]
 .Ljp_0807A938:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, [sp, #8]
 	movs r1, #0x83
 	lsls r1, r1, #4
@@ -78863,7 +78863,7 @@ func_0807A878:
 	ldrh r2, [r3, #4]
 .Ljp_0807A95E:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	add sp, #0x40
 	pop {r3, r4}
 	mov r8, r3
@@ -113815,27 +113815,27 @@ func_08092E30:
     adds r0, r4, #0
     mov r1, r8
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r6, [pc, #0x1a8]
     adds r0, r4, #0
     adds r1, r6, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, [pc, #0x1a0]
     .byte 0x80, 0x22, 0x12, 0x02, 0x00, 0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x38, 0x1C
     bl func_08008918
     .byte 0x04, 0xA9, 0xB2, 0x23, 0x5B, 0x01, 0x1A, 0x1C, 0x0A, 0x80, 0x00, 0x21, 0x89, 0x46, 0x02, 0x80
     .byte 0x60, 0x48, 0x00, 0x68, 0xC0, 0x21, 0xC9, 0x04, 0x5F, 0x4A, 0x12, 0x68
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x5E, 0x48, 0x31, 0x1C, 0x2A, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x5D, 0x48, 0x00, 0x68, 0xA0, 0x21
     .byte 0xC9, 0x04, 0x20, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x5A, 0x48, 0x41, 0x46, 0x2A, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0xE8, 0x22, 0x52, 0x00, 0xBC, 0x18, 0x20, 0x1C, 0xBD, 0xF7, 0xF9, 0xFD, 0x20, 0x1C
     .byte 0x38, 0x21, 0xBD, 0xF7, 0x6F, 0xFE, 0xE6, 0x23, 0x5B, 0x00, 0xF8, 0x18, 0x00, 0x68, 0x52, 0x49
     .byte 0x40, 0x18, 0x1F, 0x21, 0x0C, 0xF0, 0xB2, 0xFC, 0x01, 0x1C, 0x20, 0x1C, 0xBD, 0xF7, 0x6E, 0xFE
@@ -118498,15 +118498,15 @@ func_08097D38:
     bl func_08008918
     .byte 0x03, 0xA9, 0x0C, 0x80, 0xC4, 0x83, 0xC0, 0x27, 0xFF, 0x04
     .byte 0x80, 0x22, 0x12, 0x02, 0x00, 0x20, 0x39, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x01, 0x26, 0x76, 0x42
     .byte 0xCB, 0x48, 0x80, 0x46, 0x80, 0x24, 0x24, 0x01, 0x30, 0x1C, 0x41, 0x46, 0x22, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0xC7, 0x49, 0x89, 0x46, 0x30, 0x1C, 0x22, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0xC5, 0x49
     .byte 0x30, 0x1C, 0x22, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x50, 0x46
     bl func_08008918
     .byte 0x03, 0xA9
@@ -118518,19 +118518,19 @@ func_08097D38:
     bl func_08008918
     .byte 0x03, 0xAA, 0xB7, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0x41, 0x81, 0xB6, 0x48, 0x00, 0x68
     .byte 0xB6, 0x49, 0x0A, 0x68, 0x39, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0xB4, 0x48, 0x41, 0x46, 0x22, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x03, 0x20, 0x00, 0x90, 0x01, 0x95, 0x02, 0x95, 0x48, 0x46, 0x00, 0x21
     .byte 0x00, 0x22, 0x20, 0x23
     bl DrawUiTextWindowBorder
     .byte 0xAE, 0x48, 0x00, 0x68, 0xA0, 0x21, 0xC9, 0x04
     .byte 0x20, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0xAB, 0x49, 0xF8, 0x27, 0xBF, 0x00, 0x38, 0x1C, 0x08, 0x80
     .byte 0xAA, 0x48, 0x05, 0x80, 0x04, 0x31, 0xA9, 0x4A, 0x10, 0x1C, 0x08, 0x80, 0xA9, 0x49, 0x51, 0x44
     .byte 0x30, 0x1C, 0x22, 0x1C
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x84, 0x25, 0xAD, 0x01, 0x00, 0x21, 0x6B, 0x46
     .byte 0x10, 0x33, 0x39, 0x93, 0x6C, 0x46, 0x18, 0x34, 0x3B, 0x94, 0x6F, 0x46, 0x20, 0x37, 0x3C, 0x97
     .byte 0x68, 0x46, 0x28, 0x30, 0x3D, 0x90, 0x0C, 0xAA, 0x91, 0x46, 0xAE, 0x23, 0x5B, 0x00, 0x53, 0x44
@@ -118540,12 +118540,12 @@ func_08097D38:
     .byte 0x13, 0x80, 0x01, 0x33, 0x02, 0x32, 0x02, 0x31, 0x01, 0x34, 0x13, 0x2C, 0xF6, 0xDD, 0x30, 0x04
     .byte 0x05, 0x0C, 0x61, 0x46, 0x07, 0x29, 0xE2, 0xDD, 0x8A, 0x48, 0x50, 0x44, 0x7E, 0x49, 0x80, 0x22
     .byte 0x12, 0x01
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x88, 0x4C, 0xC4, 0x20, 0x80, 0x00, 0x50, 0x44, 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C, 0x49, 0x01, 0x85, 0x4F, 0xC9, 0x19, 0xE0, 0x22, 0x52, 0x00
     .byte 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x39, 0x9D, 0x00, 0x20, 0x04, 0x90, 0xA8, 0x80, 0x3B, 0x99
     .byte 0x06, 0x90, 0x88, 0x80, 0x3C, 0x9E, 0x08, 0x90, 0xB0, 0x80, 0x0A, 0x90, 0x3D, 0x99, 0x88, 0x80
     .byte 0xAC, 0x20, 0x40, 0x00, 0x50, 0x44, 0x01, 0x68, 0x0B, 0x68, 0x82, 0x89, 0x92, 0x00, 0x38, 0x9C
@@ -118555,26 +118555,26 @@ func_08097D38:
     bl func_080074C0
     .byte 0x40, 0x01, 0x6A, 0x4D, 0x41, 0x19, 0x08, 0x98, 0x00, 0x22, 0x00, 0x28
     .byte 0x00, 0xD0, 0xB2, 0x88, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x48, 0x46, 0x3A, 0x99, 0x00, 0x22
     .byte 0xC6, 0xF7, 0xDF, 0xFB, 0x39, 0x99, 0x48, 0x46, 0x1C, 0xC8, 0x1C, 0xC1, 0x1C, 0xC8, 0x1C, 0xC1
     .byte 0x14, 0xC8, 0x14, 0xC1, 0x08, 0x9C, 0xBE, 0x20, 0x80, 0x00, 0x50, 0x44, 0x41, 0x68
     bl func_080074C0
     .byte 0x40, 0x01, 0x41, 0x19, 0x08, 0x98, 0x00, 0x22, 0x00, 0x28, 0x01, 0xD0, 0x3C, 0x9B
     .byte 0x9A, 0x88, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x06, 0x9C, 0xBC, 0x20, 0x80, 0x00, 0x50, 0x44
     .byte 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
     .byte 0x40, 0x01, 0xC1, 0x19, 0x06, 0x98, 0x00, 0x22, 0x00, 0x28
     .byte 0x01, 0xD0, 0x3B, 0x98, 0x82, 0x88, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0xC0, 0x20, 0x80, 0x00
     .byte 0x50, 0x44, 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C, 0x49, 0x01, 0xC9, 0x19, 0xE0, 0x22
     .byte 0xD2, 0x00, 0x00, 0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x00, 0x21, 0x89, 0x46, 0x03, 0xAC, 0x35, 0xAE
     .byte 0x45, 0x4A, 0x90, 0x46, 0x02, 0x27, 0x36, 0xAD, 0x6B, 0x46, 0x54, 0x33, 0x37, 0x93, 0x41, 0x46
     .byte 0x08, 0x78, 0x20, 0x70, 0x00, 0x28, 0x29, 0xD0, 0x48, 0x78, 0x60, 0x70, 0x37, 0x80, 0x77, 0x80
@@ -118585,7 +118585,7 @@ func_08097D38:
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C, 0x4A, 0x46, 0x90, 0x00, 0x09, 0x18, 0x49, 0x01
     .byte 0x2B, 0x4B, 0xC9, 0x18, 0x37, 0x98, 0x80, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x02, 0x20, 0x80, 0x44
     .byte 0x01, 0x21, 0x89, 0x44, 0x4A, 0x46, 0x0A, 0x2A, 0xC9, 0xDD, 0xC2, 0x24, 0xA4, 0x00, 0x54, 0x44
     .byte 0x61, 0x68, 0x20, 0x1C
@@ -119067,7 +119067,7 @@ func_080989DC:
     ldrh r2, [r3, #4]
     .Lauto_08098796:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     add sp, #0x84
     pop {r3, r4, r5}
     mov r8, r3
@@ -119107,23 +119107,23 @@ func_080989DC:
     bl func_080074C0
     .byte 0x40, 0x01
     .byte 0x64, 0x4E, 0x81, 0x19, 0x07, 0x98, 0x00, 0x22, 0x00, 0x28, 0x00, 0xD0, 0xAA, 0x88, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x48, 0x46, 0x3F, 0x99, 0x00, 0x22, 0xC5, 0xF7, 0xC5, 0xFD, 0x03, 0xA9
     .byte 0x48, 0x46, 0x1C, 0xC8, 0x1C, 0xC1, 0x1C, 0xC8, 0x1C, 0xC1, 0x14, 0xC8, 0x14, 0xC1, 0x07, 0x9C
     .byte 0xBE, 0x23, 0x9B, 0x00, 0xF8, 0x18, 0x41, 0x68
     bl func_080074C0
     .byte 0x40, 0x01, 0x81, 0x19
     .byte 0x07, 0x98, 0x00, 0x22, 0x00, 0x28, 0x01, 0xD0, 0x39, 0x98, 0x82, 0x88, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x05, 0x9C, 0xBC, 0x21, 0x89, 0x00, 0x78, 0x18, 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
     .byte 0x40, 0x01, 0x4D, 0x4D, 0x41, 0x19, 0x05, 0x98, 0x00, 0x22, 0x00, 0x28, 0x01, 0xD0, 0x38, 0x9B
     .byte 0x9A, 0x88, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0xC0, 0x24, 0xA4, 0x00, 0x38, 0x19, 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C, 0x49, 0x01, 0x49, 0x19, 0xE0, 0x22, 0xD2, 0x00, 0x00, 0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x00, 0x20, 0x80, 0x46, 0x03, 0xAD, 0x02, 0x21, 0x89, 0x46, 0x00, 0x26
     .byte 0x40, 0x46, 0x08, 0x30, 0x42, 0x46, 0x92, 0x00, 0x92, 0x46, 0x43, 0x46, 0x01, 0x33, 0x3D, 0x93
     .byte 0x0B, 0x21, 0x48, 0x43, 0x39, 0x49, 0x44, 0x18, 0x20, 0x78, 0x28, 0x70, 0x60, 0x78, 0x68, 0x70
@@ -119135,7 +119135,7 @@ func_080989DC:
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C, 0x50, 0x46, 0x40, 0x44, 0x80, 0x00
     .byte 0x09, 0x18, 0xB0, 0x00, 0x09, 0x18, 0x49, 0x01, 0x1F, 0x48, 0x09, 0x18, 0x40, 0x98, 0x80, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x02, 0x34, 0x01, 0x36, 0x04, 0x2E, 0xC5, 0xDD, 0x3D, 0x99, 0x88, 0x46
     .byte 0x04, 0x29, 0xB4, 0xDD, 0xC2, 0x22, 0x92, 0x00, 0xBC, 0x18, 0x61, 0x68, 0x20, 0x1C
     bl func_080074C0
@@ -119328,7 +119328,7 @@ func_080989DC:
     .byte 0x31, 0xFC, 0xB0, 0x4C, 0xC4, 0x23, 0x9B, 0x00, 0xF8, 0x18, 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C, 0x49, 0x01, 0xAC, 0x48, 0x09, 0x18, 0xE0, 0x22, 0x52, 0x00, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x3F, 0x9E, 0x00, 0x20, 0x04, 0x90, 0xB0, 0x80, 0x40, 0x99, 0x06, 0x90, 0x88, 0x80
     .byte 0x41, 0x99, 0x88, 0x46, 0x08, 0x90, 0x88, 0x80, 0x0A, 0x90, 0x4A, 0x46, 0x90, 0x80, 0xE4, 0x23
     .byte 0x5B, 0x00, 0xF8, 0x18, 0x01, 0x68, 0x0B, 0x68, 0x82, 0x89, 0x92, 0x00, 0x3E, 0x9C, 0x20, 0x68
@@ -119339,7 +119339,7 @@ func_080989DC:
     bl func_080074C0
     .byte 0x40, 0x01, 0x90, 0x4A, 0x91, 0x46, 0x81, 0x18, 0x08, 0x98
     .byte 0x00, 0x22, 0x00, 0x28, 0x01, 0xD0, 0x43, 0x46, 0x9A, 0x88, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x50, 0x46, 0x04, 0x68, 0x3C, 0x98, 0xE3, 0x68, 0x51, 0x46, 0x01, 0x22, 0x39, 0xF0, 0xB2, 0xFE
     .byte 0x36, 0xA8, 0x00, 0x68, 0x02, 0x88, 0x28, 0x1C, 0x23, 0x69, 0x51, 0x46, 0x39, 0xF0, 0xAA, 0xFE
     .byte 0x28, 0x1C, 0x29, 0x1C, 0x20, 0x22, 0x39, 0xF0, 0xE3, 0xFE, 0x31, 0x1C, 0x28, 0x1C, 0x1C, 0xC8
@@ -119348,24 +119348,24 @@ func_080989DC:
     bl func_080074C0
     .byte 0x40, 0x01, 0x4A, 0x46, 0x81, 0x18, 0x08, 0x98
     .byte 0x00, 0x22, 0x00, 0x28, 0x01, 0xD0, 0x43, 0x46, 0x9A, 0x88, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x3B, 0x98, 0x3D, 0x99, 0x00, 0x22, 0xC5, 0xF7, 0x87, 0xF8, 0x3F, 0x99, 0x3B, 0x98, 0x1C, 0xC8
     .byte 0x1C, 0xC1, 0x1C, 0xC8, 0x1C, 0xC1, 0x14, 0xC8, 0x14, 0xC1, 0x08, 0x9C, 0xBE, 0x23, 0x9B, 0x00
     .byte 0xF8, 0x18, 0x41, 0x68
     bl func_080074C0
     .byte 0x40, 0x01, 0x4A, 0x46, 0x81, 0x18, 0x08, 0x98
     .byte 0x00, 0x22, 0x00, 0x28, 0x01, 0xD0, 0x41, 0x9B, 0x9A, 0x88, 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x06, 0x9C, 0xBC, 0x21, 0x89, 0x00, 0x78, 0x18, 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
     .byte 0x40, 0x01
     .byte 0x5D, 0x4A, 0x81, 0x18, 0x06, 0x98, 0x00, 0x22, 0x00, 0x28, 0x01, 0xD0, 0x40, 0x9B, 0x9A, 0x88
     .byte 0x20, 0x1C
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0xC0, 0x24, 0xA4, 0x00, 0x38, 0x19, 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C, 0x49, 0x01, 0x54, 0x48, 0x09, 0x18, 0xE0, 0x22, 0xD2, 0x00, 0x00, 0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x00, 0x21, 0x8A, 0x46, 0x03, 0xAC, 0x38, 0xAE, 0x50, 0x4A, 0x91, 0x46
     .byte 0x02, 0x23, 0x98, 0x46, 0x39, 0xAD, 0x68, 0x46, 0x54, 0x30, 0x3A, 0x90, 0x49, 0x46, 0x08, 0x78
     .byte 0x20, 0x70, 0x00, 0x28, 0x2C, 0xD0, 0x48, 0x78, 0x60, 0x70, 0x42, 0x46, 0x32, 0x80, 0x72, 0x80
@@ -119376,7 +119376,7 @@ func_080989DC:
     bl GetHardwareSharedStateTileIndex
     .byte 0x01, 0x1C, 0x52, 0x46, 0x90, 0x00
     .byte 0x09, 0x18, 0x49, 0x01, 0x34, 0x4B, 0xC9, 0x18, 0x3A, 0x98, 0x80, 0x22
-    bl func_08008E64
+    bl CopyHardwareDma3
     .byte 0x02, 0x20, 0x81, 0x44, 0x01, 0x21, 0x8A, 0x44, 0x52, 0x46, 0x0A, 0x2A, 0xC6, 0xDD, 0xC2, 0x23
     .byte 0x9B, 0x00, 0xFC, 0x18, 0x61, 0x68, 0x20, 0x1C
     bl func_080074C0
@@ -119387,7 +119387,7 @@ func_080989DC:
     bl func_080074C0
     .byte 0x40, 0x01, 0x24, 0x4C, 0x00, 0x19, 0x24, 0x4A, 0x11, 0x1C, 0x01, 0x80
     .byte 0x23, 0x48, 0x24, 0x4C, 0x39, 0x19, 0xC0, 0x22, 0x92, 0x00
-    bl func_08008EB8
+    bl FillHardwareDma3
     .byte 0x00, 0x23
     .byte 0x21, 0x4E, 0x22, 0x4D, 0x01, 0x33, 0x98, 0x00, 0x80, 0x19, 0x01, 0x78, 0x42, 0x78, 0x48, 0x1C
     .byte 0x40, 0x00, 0x92, 0x01, 0x00, 0x19, 0x10, 0x18, 0xC0, 0x19, 0x49, 0x00, 0x09, 0x19, 0x52, 0x18
@@ -151178,7 +151178,7 @@ func_080516F0: @ 0x080516F0
 	ldr r1, .L080519BC @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r4, #1
 	rsbs r4, r4, #0
 	ldr r0, .L080519C0 @ =0x0600E000
@@ -151188,20 +151188,20 @@ func_080516F0: @ 0x080516F0
 	adds r0, r4, #0
 	mov r1, r8
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L080519C4 @ =0x0600E800
 	mov sb, r1
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L080519C8 @ =0x0600F000
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L080519CC @ =0x0600F800
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	mov r0, sl
 	bl func_08008918
 	add r1, sp, #0xc
@@ -151243,11 +151243,11 @@ func_080516F0: @ 0x080516F0
 	lsls r1, r1, #0x13
 	ldr r2, .L080519E0 @ =gUiSharedTileByteCount
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L080519E4 @ =0x00030003
 	mov r1, r8
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #3
 	str r0, [sp]
 	str r6, [sp, #4]
@@ -151262,7 +151262,7 @@ func_080516F0: @ 0x080516F0
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, .L080519EC @ =0x05000040
 	movs r4, #0xf8
 	lsls r4, r4, #2
@@ -151349,7 +151349,7 @@ func_080516F0: @ 0x080516F0
 	ldr r0, [r3]
 	adds r1, r5, #0
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #0x40
 	adds r4, #2
 	movs r0, #1
@@ -151363,7 +151363,7 @@ func_080516F0: @ 0x080516F0
 	movs r2, #0x80
 	lsls r2, r2, #4
 	adds r1, r4, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r1, #0
 	movs r0, #0xa2
 	lsls r0, r0, #4
@@ -151526,7 +151526,7 @@ func_080516F0: @ 0x080516F0
 	ldr r0, [r2]
 	movs r2, #0xc0
 	lsls r2, r2, #2
-	bl func_08008E64
+	bl CopyHardwareDma3
 	lsls r4, r4, #0x13
 	movs r3, #0x85
 	lsls r3, r3, #0x16
@@ -151686,13 +151686,13 @@ func_080516F0: @ 0x080516F0
 	add r2, sp
 	ldr r0, [r2]
 	adds r2, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L08051D08 @ =0x03FF03FF
 	ldr r3, .L08051CF4 @ =0x00000A44
 	add r3, sp
 	ldr r1, [r3]
 	adds r2, r4, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r4, #0x1b
 	movs r5, #2
 	movs r6, #0
@@ -151732,7 +151732,7 @@ func_080516F0: @ 0x080516F0
 	ldr r4, .L08051D1C @ =0x00000A54
 	add r4, sp
 	ldr r0, [r4]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r5, #0x84
 	lsls r5, r5, #6
 	movs r3, #0
@@ -151761,7 +151761,7 @@ func_080516F0: @ 0x080516F0
 	ldr r3, .L08051CF4 @ =0x00000A44
 	add r3, sp
 	ldr r0, [r3]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	mov r4, sl
 	ldr r1, [r4, #0x40]
 	ldr r3, [r1]
@@ -151802,7 +151802,7 @@ func_080516F0: @ 0x080516F0
 	ldrh r2, [r3, #4]
 .L08051CC6:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r3, .L08051D2C @ =0x00000A74
 	add sp, r3
 	pop {r3, r4, r5}
@@ -157766,7 +157766,7 @@ func_08054F40: @ 0x08054F40
 	ldr r1, .L08055074 @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r4, #1
 	rsbs r4, r4, #0
 	ldr r0, .L08055078 @ =0x0600E000
@@ -157776,16 +157776,16 @@ func_08054F40: @ 0x08054F40
 	adds r0, r4, #0
 	mov r1, sb
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0805507C @ =0x0600E800
 	mov r8, r1
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L08055080 @ =0x0600F000
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r0, .L08055084 @ =gUnk_08738AD8
 	ldr r2, .L08055088 @ =0x00001D5A
 	adds r4, r6, r2
@@ -157795,11 +157795,11 @@ func_08054F40: @ 0x08054F40
 	lsls r2, r2, #3
 	adds r0, r4, #0
 	mov r1, sb
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r0, r4, #0
 	mov r1, r8
 	movs r2, #0xc0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L0805508C @ =gUnk_08738CC8
 	adds r1, r4, #0
 	bl Unpack
@@ -157815,7 +157815,7 @@ func_08054F40: @ 0x08054F40
 	lsls r1, r1, #0x13
 	movs r2, #0x80
 	lsls r2, r2, #2
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L0805509C @ =gUnk_08739A64
 	movs r3, #0xab
 	lsls r3, r3, #3
@@ -158205,7 +158205,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #0x14]
 .L080552F0:
 	mov r0, r8
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r4, #0x9c
 	lsls r4, r4, #2
 	adds r0, r7, r4
@@ -158252,7 +158252,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #0x14]
 .L08055354:
 	adds r0, r5, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r6, #0
 	movs r5, #0
 	movs r4, #0xab
@@ -158330,7 +158330,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #0xc]
 .L080553F6:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, [sp, #8]
 	movs r1, #0
 	cmp r0, #0
@@ -158386,7 +158386,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r0, #0x14]
 .L0805546A:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r6, #0
 	movs r5, #0
 	mov sb, sl
@@ -158426,7 +158426,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #0xc]
 .L080554BC:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, [sp, #8]
 	movs r1, #0
 	cmp r0, #0
@@ -158489,7 +158489,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #4]
 .L08055540:
 	adds r0, r5, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	add r5, sp, #8
 	mov sb, r5
 	ldr r0, [sp, #8]
@@ -158511,7 +158511,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #4]
 .L0805556E:
 	mov r0, r8
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, .L0805569C @ =0x0000091B
 	adds r0, r6, #0
 	bl ResolveIndexedResourceHandle
@@ -158553,7 +158553,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r0, #4]
 .L080555CA:
 	adds r0, r6, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r1, #0xc6
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -158597,7 +158597,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #4]
 .L08055628:
 	adds r0, r5, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r5, #0xd3
 	lsls r5, r5, #2
 	adds r0, r7, r5
@@ -158655,7 +158655,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #4]
 .L080556AA:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, .L080557A4 @ =0x00002324
 	adds r0, r7, r4
 	ldrb r0, [r0]
@@ -158732,7 +158732,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #0x14]
 .L0805574C:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, [sp, #8]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
@@ -158748,7 +158748,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #0xc]
 .L0805576E:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #0x10
 	adds r6, #0x10
 	movs r4, #1
@@ -158855,7 +158855,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r0, #0x14]
 .L08055854:
 	adds r0, r5, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, [sp, #8]
 	movs r1, #0x9c
 	lsls r1, r1, #3
@@ -158873,7 +158873,7 @@ func_08055264: @ 0x08055264
 	ldrh r2, [r3, #0xc]
 .L0805587A:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, .L080558BC @ =0x0000042C
 	adds r0, r7, r4
 	strb r6, [r0]
@@ -167501,7 +167501,7 @@ func_08059C94: @ 0x08059C94
 	ldrh r2, [r3, #4]
 .L08059D52:
 	adds r0, r5, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r4, #0
 	mov sb, r4
 	movs r6, #0
@@ -167562,7 +167562,7 @@ func_08059C94: @ 0x08059C94
 	ldrh r2, [r3, #0x18]
 .L08059DD2:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, [sp, #0x14]
 	movs r1, #0
 	cmp r0, #0
@@ -167578,7 +167578,7 @@ func_08059C94: @ 0x08059C94
 	ldr r1, .L08059FA0 @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r4, #1
 	rsbs r4, r4, #0
 	ldr r5, .L08059FA4 @ =0x0600E000
@@ -167588,17 +167588,17 @@ func_08059C94: @ 0x08059C94
 	adds r0, r4, #0
 	mov r1, r8
 	adds r2, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r0, .L08059FA8 @ =0x0600E800
 	mov sb, r0
 	adds r0, r4, #0
 	mov r1, sb
 	adds r2, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L08059FAC @ =0x0600F000
 	adds r0, r4, #0
 	adds r2, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	movs r2, #0xf2
@@ -167634,11 +167634,11 @@ func_08059C94: @ 0x08059C94
 	lsls r1, r1, #0x13
 	ldr r2, .L08059FC0 @ =gUiSharedTileByteCount
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L08059FC4 @ =0x00030003
 	mov r1, r8
 	adds r2, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	strh r5, [r4]
@@ -167677,7 +167677,7 @@ func_08059C94: @ 0x08059C94
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L08059FCC @ =0x05000040
 	movs r3, #0xf8
 	lsls r3, r3, #2
@@ -167752,7 +167752,7 @@ func_08059C94: @ 0x08059C94
 	adds r1, r1, r4
 	ldr r0, [sp, #0x9c]
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #1
 	cmp r5, #0x17
 	ble .L08059F3A
@@ -167822,7 +167822,7 @@ func_08059FE0: @ 0x08059FE0
 	ldrh r2, [r5, #4]
 .L0805A028:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	add r4, sp, #0x14
 	ldr r5, [sp, #0x14]
 	movs r0, #0xc8
@@ -167840,7 +167840,7 @@ func_08059FE0: @ 0x08059FE0
 	ldrh r2, [r4, #4]
 .L0805A04E:
 	adds r0, r5, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, .L0805A0A0 @ =gUnk_08752F8C
 	movs r0, #0xc2
 	lsls r0, r0, #3
@@ -167853,7 +167853,7 @@ func_08059FE0: @ 0x08059FE0
 	adds r1, r1, r3
 	adds r0, r4, #0
 	movs r2, #0x80
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, .L0805A0A8 @ =gUnk_0875300C
 	movs r0, #0xc4
 	lsls r0, r0, #3
@@ -167865,7 +167865,7 @@ func_08059FE0: @ 0x08059FE0
 	adds r1, r1, r6
 	adds r0, r4, #0
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	b .L0805A0E8
 	.align 2, 0
 .L0805A090: .4byte 0xFFFFF490
@@ -167888,7 +167888,7 @@ func_08059FE0: @ 0x08059FE0
 	adds r1, r1, r7
 	adds r0, r4, #0
 	movs r2, #0x80
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, .L0805A194 @ =gUnk_087519EC
 	movs r0, #0xc4
 	lsls r0, r0, #3
@@ -167901,7 +167901,7 @@ func_08059FE0: @ 0x08059FE0
 	adds r1, r1, r0
 	adds r0, r4, #0
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 .L0805A0E8:
 	ldr r4, .L0805A19C @ =0x0000142C
 	add r4, r8
@@ -168028,7 +168028,7 @@ func_08059FE0: @ 0x08059FE0
 	mov r1, sb
 	movs r2, #0xc0
 	lsls r2, r2, #2
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r2, #0xc0
 	lsls r2, r2, #2
 	add sb, r2
@@ -168075,7 +168075,7 @@ func_08059FE0: @ 0x08059FE0
 	ldr r3, .L0805A2D0 @ =0x00000B58
 	add r3, sp
 	ldr r0, [r3]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L0805A2D4 @ =0x00000B48
 	add r0, sp
 	strh r4, [r0]
@@ -168153,13 +168153,13 @@ func_08059FE0: @ 0x08059FE0
 	add r3, sp
 	ldr r0, [r3]
 	adds r2, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r0, #1
 	rsbs r0, r0, #0
 	ldr r1, .L0805A3E4 @ =0x00000BEA
 	add r1, r8
 	adds r2, r4, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r5, #0x85
 	lsls r5, r5, #6
 	movs r1, #0
@@ -168235,7 +168235,7 @@ func_08059FE0: @ 0x08059FE0
 	ldr r1, .L0805A3EC @ =0x0600F000
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r3, #0xb7
 	lsls r3, r3, #4
 	add sp, r3
@@ -168267,13 +168267,13 @@ func_0805A3F0: @ 0x0805A3F0
 	movs r2, #0xb0
 	lsls r2, r2, #6
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r4, .L0805A4CC @ =0x0600F800
 	movs r2, #0x80
 	lsls r2, r2, #4
 	movs r0, #0
 	adds r1, r4, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r2, #0
 	ldr r0, .L0805A4D0 @ =gHorseRaceTicketControls
 	mov r8, r0
@@ -168343,7 +168343,7 @@ func_0805A3F0: @ 0x0805A3F0
 	adds r1, r7, #0
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r0, #0x80
 	lsls r0, r0, #4
 	adds r7, r7, r0
@@ -169148,7 +169148,7 @@ func_0805AB08: @ 0x0805AB08
 	ldr r1, .L0805AC20 @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r4, #1
 	rsbs r4, r4, #0
 	ldr r1, .L0805AC24 @ =0x0600C800
@@ -169156,15 +169156,15 @@ func_0805AB08: @ 0x0805AB08
 	lsls r5, r5, #5
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0805AC28 @ =0x0600D800
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0805AC2C @ =0x0600E800
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r0, .L0805AC30 @ =gUiThreeLayerBackgroundTilemap0
 	ldr r2, .L0805AC34 @ =0x00000BEA
 	adds r1, r7, r2
@@ -169190,7 +169190,7 @@ func_0805AB08: @ 0x0805AB08
 	lsls r1, r1, #0x13
 	movs r2, #0x80
 	lsls r2, r2, #2
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	mov r2, sp
@@ -169254,7 +169254,7 @@ func_0805AB08: @ 0x0805AB08
 	adds r0, r7, r2
 	adds r1, r4, #0
 	movs r2, #0xc
-	bl func_08008E64
+	bl CopyHardwareDma3
 	mov r3, sb
 	cmp r3, #0x12
 	beq .L0805AC64
@@ -169262,7 +169262,7 @@ func_0805AB08: @ 0x0805AB08
 	adds r0, r7, r1
 	adds r1, r5, #0
 	movs r2, #0xc
-	bl func_08008E64
+	bl CopyHardwareDma3
 	b .L0805AC72
 	.align 2, 0
 .L0805AC20: .4byte 0x06007FE0
@@ -169288,13 +169288,13 @@ func_0805AB08: @ 0x0805AB08
 	ldr r1, .L0805AD04 @ =0x0600D824
 	add r1, r8
 	movs r2, #0xc
-	bl func_08008E64
+	bl CopyHardwareDma3
 .L0805AC72:
 	ldr r3, [sp, #0xc]
 	adds r0, r7, r3
 	adds r1, r6, #0
 	movs r2, #0xc
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r6, #0xc
 	adds r5, #0xc
 	adds r4, #0xc
@@ -170309,7 +170309,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r3, #0x14]
 .L0805B414:
 	adds r0, r7, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r7, #0
 	movs r6, #0
 	mov sl, sb
@@ -170403,7 +170403,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r3, #0xc]
 .L0805B4D6:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, [sp, #8]
 	movs r1, #0
 	cmp r0, #0
@@ -170460,7 +170460,7 @@ func_0805B38C: @ 0x0805B38C
 .L0805B54A:
 	lsrs r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, [sp, #0x10]
 	movs r0, #0
 	cmp r1, #0
@@ -170486,7 +170486,7 @@ func_0805B38C: @ 0x0805B38C
 .L0805B57E:
 	lsrs r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r0, #0x90
 	lsls r0, r0, #2
 	add r0, r8
@@ -170530,7 +170530,7 @@ func_0805B38C: @ 0x0805B38C
 .L0805B5DC:
 	lsrs r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, [sp, #0x10]
 	movs r0, #0
 	cmp r1, #0
@@ -170556,7 +170556,7 @@ func_0805B38C: @ 0x0805B38C
 .L0805B610:
 	lsrs r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L0805B6CC @ =0x0000140E
 	add r0, r8
 	ldrb r0, [r0]
@@ -170607,7 +170607,7 @@ func_0805B38C: @ 0x0805B38C
 .L0805B67C:
 	lsrs r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, [sp, #0x10]
 	movs r0, #0
 	cmp r1, #0
@@ -170633,7 +170633,7 @@ func_0805B38C: @ 0x0805B38C
 .L0805B6B0:
 	lsrs r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	b .L0805B766
 	.align 2, 0
 .L0805B6BC: .4byte 0x05000200
@@ -170687,7 +170687,7 @@ func_0805B38C: @ 0x0805B38C
 .L0805B72A:
 	lsrs r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, [sp, #0x10]
 	movs r0, #0
 	cmp r1, #0
@@ -170713,7 +170713,7 @@ func_0805B38C: @ 0x0805B38C
 .L0805B75E:
 	lsrs r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 .L0805B766:
 	movs r0, #0xac
 	lsls r0, r0, #2
@@ -170759,7 +170759,7 @@ func_0805B38C: @ 0x0805B38C
 .L0805B7BE:
 	lsrs r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, [sp, #0x10]
 	movs r0, #0
 	cmp r1, #0
@@ -170785,7 +170785,7 @@ func_0805B38C: @ 0x0805B38C
 .L0805B7F2:
 	lsrs r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, [sp, #0x6c]
 	add r0, sp, #0x20
 	movs r2, #0
@@ -170814,7 +170814,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r0, #0x14]
 .L0805B832:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r5, [sp, #8]
 	movs r4, #0xba
 	lsls r4, r4, #3
@@ -170833,7 +170833,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r3, #0xc]
 .L0805B85A:
 	adds r0, r5, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	add r0, sp, #0x20
 	ldr r1, [sp, #0x6c]
 	movs r2, #1
@@ -170861,7 +170861,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r7, #0xc]
 .L0805B896:
 	adds r0, r5, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r3, #0
 	ldr r0, .L0805BB54 @ =0x0000FFFF
 	adds r4, r0, #0
@@ -170925,7 +170925,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r5, #0x14]
 .L0805B91A:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r7, #0
 	movs r0, #0
 	mov sl, r0
@@ -170985,7 +170985,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r3, #0xc]
 .L0805B996:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, [sp, #8]
 	movs r1, #0
 	cmp r0, #0
@@ -171031,7 +171031,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r7, #0x14]
 .L0805B9F4:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, [sp, #8]
 	movs r0, #0xbe
 	lsls r0, r0, #3
@@ -171049,7 +171049,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r3, #0xc]
 .L0805BA1A:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r7, #0
 	movs r5, #0
 	movs r6, #0x88
@@ -171109,7 +171109,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r3, #0xc]
 .L0805BA98:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, [sp, #8]
 	movs r1, #0
 	cmp r0, #0
@@ -171165,7 +171165,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r7, #0x14]
 .L0805BB0C:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r7, #0
 	movs r5, #0
 	movs r6, #0xa0
@@ -171234,7 +171234,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r3, #0xc]
 .L0805BBA6:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, [sp, #8]
 	movs r1, #0
 	cmp r0, #0
@@ -171290,7 +171290,7 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r7, #0xc]
 .L0805BC1A:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	add sp, #0x90
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -175041,7 +175041,7 @@ func_0805D9C0: @ 0x0805D9C0
 	ldr r1, .L0805DBDC @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r4, #1
 	rsbs r4, r4, #0
 	ldr r0, .L0805DBE0 @ =0x0600E000
@@ -175052,17 +175052,17 @@ func_0805D9C0: @ 0x0805D9C0
 	adds r0, r4, #0
 	mov r1, sb
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r2, .L0805DBE4 @ =0x0600E800
 	mov sl, r2
 	adds r0, r4, #0
 	mov r1, sl
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0805DBE8 @ =0x0600F000
 	adds r0, r4, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r6, #0
 	bl func_08008918
 	add r1, sp, #0xc
@@ -175099,11 +175099,11 @@ func_0805D9C0: @ 0x0805D9C0
 	lsls r1, r1, #0x13
 	ldr r2, .L0805DBFC @ =gUiSharedTileByteCount
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L0805DC00 @ =0x00030003
 	mov r1, sb
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r6, #0
 	bl func_08008918
 	add r1, sp, #0xc
@@ -175148,7 +175148,7 @@ func_0805D9C0: @ 0x0805D9C0
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L0805DC08 @ =0x05000040
 	movs r1, #0xf8
 	lsls r1, r1, #2
@@ -175225,7 +175225,7 @@ func_0805D9C0: @ 0x0805D9C0
 	adds r1, r1, r2
 	mov r0, r8
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #1
 	cmp r5, #0x17
 	ble .L0805DB84
@@ -175323,7 +175323,7 @@ func_0805DC24: @ 0x0805DC24
 	ldrh r2, [r6, #4]
 .L0805DCA6:
 	adds r0, r5, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	mov r1, r8
 	adds r1, #0x50
 	adds r0, r4, #0
@@ -175352,7 +175352,7 @@ func_0805DC24: @ 0x0805DC24
 	ldrh r2, [r6, #4]
 .L0805DCE4:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, [sp, #0x14]
 	movs r0, #0x9e
 	lsls r0, r0, #1
@@ -175370,7 +175370,7 @@ func_0805DC24: @ 0x0805DC24
 	ldrh r2, [r0, #4]
 .L0805DD0A:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r4, #0
 	add r6, sp, #0x3d0
 	movs r1, #0xf5
@@ -175424,7 +175424,7 @@ func_0805DC24: @ 0x0805DC24
 	adds r1, r5, #0
 	movs r2, #0xe0
 	lsls r2, r2, #2
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r2, #0xe0
 	lsls r2, r2, #2
 	adds r5, r5, r2
@@ -175438,7 +175438,7 @@ func_0805DC24: @ 0x0805DC24
 	add r1, r8
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r5, #0x85
 	lsls r5, r5, #6
 	movs r1, #0
@@ -175483,7 +175483,7 @@ func_0805DC24: @ 0x0805DC24
 	ldr r1, .L0805DE20 @ =0x0600F000
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r3, #0xf8
 	lsls r3, r3, #2
 	add sp, r3
@@ -178724,22 +178724,22 @@ func_0805FBB8: @ 0x0805FBB8
 	ldr r1, .L0805FCA0 @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r4, .L0805FCA4 @ =0x10661066
 	ldr r1, .L0805FCA8 @ =0x0600E000
 	movs r5, #0x80
 	lsls r5, r5, #4
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0805FCAC @ =0x0600E800
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0805FCB0 @ =0x0600F000
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r0, .L0805FCB4 @ =gUnk_08743058
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
@@ -178749,7 +178749,7 @@ func_0805FBB8: @ 0x0805FBB8
 	lsls r4, r4, #0x13
 	adds r1, r4, #0
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, .L0805FCBC @ =0x00007FFF
 	adds r0, r1, #0
 	strh r0, [r4]
@@ -201122,11 +201122,11 @@ func_0806A1F4: @ 0x0806A1F4
 	ldr r1, .L0806A468 @ =0x0600E800
 	movs r2, #0xc0
 	lsls r2, r2, #5
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0806A46C @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	add r2, sp, #0x10
@@ -201141,12 +201141,12 @@ func_0806A1F4: @ 0x0806A1F4
 	lsls r1, r1, #0x13
 	ldr r2, .L0806A474 @ =gUiSharedTileByteCount
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L0806A478 @ =0x00030003
 	ldr r1, .L0806A47C @ =0x0600F800
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #0
 	mov sl, r0
 	add r1, sp, #0xf8
@@ -201243,7 +201243,7 @@ func_0806A1F4: @ 0x0806A1F4
 	ldr r0, [sp, #0x2b0]
 	adds r1, r5, #0
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #0x40
 	adds r4, #2
 	movs r3, #1
@@ -203671,7 +203671,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r2, #0x80
 	lsls r2, r2, #4
 	adds r1, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #0x4c
 	bl __builtin_new
 	adds r5, r0, #0
@@ -208890,7 +208890,7 @@ func_0806E234: @ 0x0806E234
 	ldr r1, .L0806E400 @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r4, #1
 	rsbs r4, r4, #0
 	ldr r0, .L0806E404 @ =0x0600E000
@@ -208901,13 +208901,13 @@ func_0806E234: @ 0x0806E234
 	adds r0, r4, #0
 	mov r1, sb
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r2, .L0806E408 @ =0x0600E800
 	mov sl, r2
 	adds r0, r4, #0
 	mov r1, sl
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r6, #0
 	bl func_08008918
 	add r1, sp, #0xc
@@ -208930,11 +208930,11 @@ func_0806E234: @ 0x0806E234
 	lsls r1, r1, #0x13
 	ldr r2, .L0806E414 @ =gUiSharedTileByteCount
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L0806E418 @ =0x00030003
 	mov r1, sb
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r6, #0
 	bl func_08008918
 	add r1, sp, #0xc
@@ -208979,7 +208979,7 @@ func_0806E234: @ 0x0806E234
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L0806E420 @ =0x05000040
 	movs r1, #0xf8
 	lsls r1, r1, #2
@@ -209053,7 +209053,7 @@ func_0806E234: @ 0x0806E234
 	adds r1, r1, r2
 	mov r0, r8
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #1
 	.ifdef REGION_DE
 	cmp r5, #0x2d
@@ -209398,7 +209398,7 @@ func_0806EC94: @ 0x0806EC94
 	lsls r1, r1, #0x13
 	movs r2, #0x80
 	lsls r2, r2, #2
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r2, .L0806ED7C @ =gUnk_08527238
 	ldr r3, [sp, #0xc]
 	cmp r3, #0
@@ -209662,7 +209662,7 @@ func_0806EC94: @ 0x0806EC94
 	adds r0, r0, r1
 	ldr r1, .L0806EFA0 @ =0x060002C0
 	lsls r2, r2, #5
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r5, #2
 	str r5, [sp]
 	str r5, [sp, #4]
@@ -209694,7 +209694,7 @@ func_0806EC94: @ 0x0806EC94
 	adds r0, r0, r1
 	ldr r1, .L0806EFB0 @ =0x06000340
 	lsls r2, r2, #5
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r0, #1
 	str r0, [sp]
 	str r5, [sp, #4]
@@ -209730,7 +209730,7 @@ func_0806EC94: @ 0x0806EC94
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	lsls r2, r2, #5
-	bl func_08008E64
+	bl CopyHardwareDma3
 	add sp, #0x20
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -224331,7 +224331,7 @@ func_080757E8: @ 0x080757E8
 	movs r2, #0x20
 	lsls r2, r6
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	b .L08075956
 	.align 2, 0
 .L0807592C: .4byte 0x06010000
@@ -224437,7 +224437,7 @@ func_080757E8: @ 0x080757E8
 	adds r1, r1, r2
 	adds r0, r4, #0
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 .L080759F4:
 	ldr r7, [sp, #0x34]
 	ldr r0, [sp, #0x2c]
@@ -224886,13 +224886,13 @@ func_08075E00:
 	ldr r0, [r4, #0xc]
 	ldr r1, [r4, #0x10]
 	ldr r2, [r4, #0x14]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, [r4, #0x1c]
 	cmp r1, #0
 	beq .L08075E1C
 	ldr r0, [r4, #0x18]
 	ldr r2, [r4, #0x20]
-	bl func_08008E64
+	bl CopyHardwareDma3
 .L08075E1C:
 	movs r0, #0
 	pop {r4}
@@ -225126,11 +225126,11 @@ func_08075E7C: @ 0x08075E7C
 	movs r2, #0x80
 	lsls r2, r2, #6
 	adds r1, r6, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L08076174 @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	add r2, sp, #0xc
@@ -225145,13 +225145,13 @@ func_08075E7C: @ 0x08075E7C
 	lsls r1, r1, #0x13
 	ldr r2, .L0807617C @ =gUiSharedTileByteCount
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L08076180 @ =0x00030003
 	ldr r1, .L08076184 @ =0x0600F800
 	movs r5, #0x80
 	lsls r5, r5, #4
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	add r1, sp, #0xc
@@ -225177,11 +225177,11 @@ func_08075E7C: @ 0x08075E7C
 	ldr r1, .L0807618C @ =0x06008000
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #0
 	adds r1, r6, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r0, .L08076190 @ =0x0600E008
 	str r4, [sp]
 	movs r1, #0x20
@@ -225203,11 +225203,11 @@ func_08075E7C: @ 0x08075E7C
 	lsls r1, r1, #0x13
 	adds r0, r4, #0
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, .L0807619C @ =0x05000200
 	adds r0, r4, #0
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r6, #0
 	add r5, sp, #0x84
 	mov sb, r5
@@ -225243,7 +225243,7 @@ func_08075E7C: @ 0x08075E7C
 	mov r0, r8
 	adds r1, r5, #0
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #0x40
 	adds r4, #2
 	adds r6, #1
@@ -228300,11 +228300,11 @@ func_08077810: @ 0x08077810
 	ldr r1, .L08077978 @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0807797C @ =0x0600FFE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r6, #1
 	rsbs r6, r6, #0
 	ldr r0, .L08077980 @ =0x0600C800
@@ -228315,11 +228315,11 @@ func_08077810: @ 0x08077810
 	adds r0, r6, #0
 	mov r1, sb
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L08077984 @ =0x0600F000
 	adds r0, r6, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r5, #0
 	bl func_08008918
 	mov r1, sp
@@ -228352,7 +228352,7 @@ func_08077810: @ 0x08077810
 	lsls r4, r4, #0x13
 	adds r1, r4, #0
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L0807799C @ =gSharedSceneBackgroundLayer0Tilemap
 	mov r1, sb
 	bl Unpack
@@ -228370,7 +228370,7 @@ func_08077810: @ 0x08077810
 	adds r0, r6, #0
 	adds r1, r4, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r6, .L080779AC @ =0x00002060
 	movs r2, #0
 	mov sb, r4
@@ -228411,7 +228411,7 @@ func_08077810: @ 0x08077810
 	movs r2, #0x80
 	lsls r2, r2, #4
 	mov r0, sb
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r3, .L080779B0 @ =0x00000804
 	add sp, r3
 	pop {r3, r4, r5}
@@ -228451,7 +228451,7 @@ func_080779B4: @ 0x080779B4
 	movs r2, #0xe0
 	lsls r2, r2, #4
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	mov r5, sp
 	movs r0, #0x1c
 	mov sb, r0
@@ -228473,7 +228473,7 @@ func_080779B4: @ 0x080779B4
 	adds r1, r7, #0
 	movs r2, #0xe0
 	lsls r2, r2, #3
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r0, #0xe0
 	lsls r0, r0, #3
 	adds r7, r7, r0
@@ -229057,7 +229057,7 @@ func_08077EC0: @ 0x08077EC0
 .L08077EF2:
 	ldr r1, .L08077F48 @ =0x05000020
 	movs r2, #0xc0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r2, .L08077F4C @ =gUnk_08755230
 	cmp r5, #0
 	beq .L08077F02
@@ -230574,11 +230574,11 @@ func_08078B18:
 	bl func_08077EC0
 	.byte 0x25, 0x49, 0x08, 0x1C, 0x6A, 0x46, 0x10, 0x82, 0x68, 0x81, 0x24, 0x48, 0x00, 0x68, 0x24, 0x49
 	.byte 0x0A, 0x68, 0x24, 0x49
-	bl func_08008E64
+	bl CopyHardwareDma3
 	.byte 0x00, 0x20, 0x23, 0x49, 0x20, 0x22
-	bl func_08008EB8
+	bl FillHardwareDma3
 	.byte 0x01, 0x20, 0x40, 0x42, 0x21, 0x49, 0x80, 0x22, 0x12, 0x01
-	bl func_08008EB8
+	bl FillHardwareDma3
 	.byte 0x03, 0x20, 0x00, 0x90, 0x00, 0x20, 0x01, 0x90, 0x0F, 0x20, 0x02, 0x90, 0x1B, 0x48, 0x13, 0x21
 	.byte 0x0A, 0x22, 0x0B, 0x23
 	bl DrawUiTextWindowBorder
@@ -231921,7 +231921,7 @@ func_08079860: @ 0x08079860
 	ldr r1, .L08079A1C @ =0x06007FE0
 	movs r0, #0
 	movs r2, #0x20
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #1
 	rsbs r0, r0, #0
 	mov sl, r0
@@ -231931,16 +231931,16 @@ func_08079860: @ 0x08079860
 	mov r8, r1
 	adds r1, r4, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r6, .L08079A24 @ =0x0600E800
 	mov r0, sl
 	adds r1, r6, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L08079A28 @ =0x0600F000
 	mov r0, sl
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r5, #0
 	bl func_08008918
 	add r2, sp, #0xc
@@ -231968,11 +231968,11 @@ func_08079860: @ 0x08079860
 	lsls r1, r1, #0x13
 	ldr r2, .L08079A3C @ =gUiSharedTileByteCount
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L08079A40 @ =0x00030003
 	adds r1, r4, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #3
 	str r0, [sp]
 	movs r4, #0
@@ -231988,7 +231988,7 @@ func_08079860: @ 0x08079860
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L08079A48 @ =0x05000040
 	movs r7, #0xf8
 	lsls r7, r7, #2
@@ -232028,7 +232028,7 @@ func_08079860: @ 0x08079860
 	mov r0, sl
 	adds r1, r4, #0
 	mov r2, r8
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r6, .L08079A60 @ =0x00002060
 	movs r2, #0
 	mov sb, r4
@@ -232069,7 +232069,7 @@ func_08079860: @ 0x08079860
 	movs r2, #0x80
 	lsls r2, r2, #4
 	mov r0, sb
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r3, #0x81
 	lsls r3, r3, #4
 	add sp, r3
@@ -232415,7 +232415,7 @@ func_08079A64: @ 0x08079A64
 	mov r0, sl
 	movs r2, #0xe0
 	lsls r2, r2, #3
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r4, #1
 	cmp r4, #0xa
 	ble .L08079C38
@@ -232431,7 +232431,7 @@ func_08079A64: @ 0x08079A64
 	movs r2, #0xe0
 	lsls r2, r2, #3
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r6, #0
 	movs r7, #1
 	add r3, sp, #0x78
@@ -232491,7 +232491,7 @@ func_08079A64: @ 0x08079A64
 	adds r1, r1, r0
 	ldr r0, [sp, #0x80]
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r6, #1
 	cmp r6, #0xb
 	ble .L08079D0E
@@ -233002,7 +233002,7 @@ func_08079F8C: @ 0x08079F8C
 	movs r2, #0xe0
 	lsls r2, r2, #4
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r4, #0
 	movs r3, #2
 	mov sl, r3
@@ -233056,7 +233056,7 @@ func_08079F8C: @ 0x08079F8C
 	mov r1, r8
 	movs r2, #0xe0
 	lsls r2, r2, #3
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r0, #0xe0
 	lsls r0, r0, #3
 	add r8, r0
@@ -233075,7 +233075,7 @@ func_08079F8C: @ 0x08079F8C
 	movs r2, #0xe0
 	lsls r2, r2, #3
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r0, .L0807A2A4 @ =0x00000A5C
 	add r0, sb
 	ldr r0, [r0]
@@ -233137,7 +233137,7 @@ func_08079F8C: @ 0x08079F8C
 	adds r1, r1, r0
 	ldr r0, [sp, #0x90]
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #1
 	cmp r5, #0x1b
 	ble .L0807A216
@@ -233980,7 +233980,7 @@ func_0807A878: @ 0x0807A878
 	ldrh r2, [r7, #4]
 .L0807A8FA:
 	adds r0, r6, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r2, .L0807A980 @ =0x00000744
 	adds r1, r5, r2
 	adds r0, r4, #0
@@ -234009,7 +234009,7 @@ func_0807A878: @ 0x0807A878
 	ldrh r2, [r7, #4]
 .L0807A938:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, [sp, #8]
 	movs r1, #0x83
 	lsls r1, r1, #4
@@ -234027,7 +234027,7 @@ func_0807A878: @ 0x0807A878
 	ldrh r2, [r3, #4]
 .L0807A95E:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	add sp, #0x40
 	pop {r3, r4}
 	mov r8, r3
@@ -280582,17 +280582,17 @@ func_08093364: @ 0x08093364
 	adds r0, r4, #0
 	mov r1, r8
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r6, .L08093568 @ =0x0600F800
 	adds r0, r4, #0
 	adds r1, r6, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0809356C @ =0x06007FE0
 	movs r2, #0x80
 	lsls r2, r2, #8
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	adds r0, r7, #0
 	bl func_08008918
 	add r1, sp, #0x10
@@ -280609,21 +280609,21 @@ func_08093364: @ 0x08093364
 	lsls r1, r1, #0x13
 	ldr r2, .L08093574 @ =gUiSharedTileByteCount
 	ldr r2, [r2]
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L08093578 @ =0x00030003
 	adds r1, r6, #0
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r0, .L0809357C @ =gUiSharedPalette
 	ldr r0, [r0]
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L08093580 @ =0x03FF03FF
 	mov r1, r8
 	adds r2, r5, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r2, #0xe8
 	lsls r2, r2, #1
 	adds r4, r7, r2
@@ -290409,7 +290409,7 @@ func_0809800C: @ 0x0809800C
 	lsls r2, r2, #8
 	movs r0, #0
 	adds r1, r7, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r6, #1
 	rsbs r6, r6, #0
 	ldr r0, .L08098394 @ =0x0600E000
@@ -290419,16 +290419,16 @@ func_0809800C: @ 0x0809800C
 	adds r0, r6, #0
 	mov r1, r8
 	adds r2, r4, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L08098398 @ =0x0600F800
 	mov sb, r1
 	adds r0, r6, #0
 	adds r2, r4, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	ldr r1, .L0809839C @ =0x0600F000
 	adds r0, r6, #0
 	adds r2, r4, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	mov r0, sl
 	bl func_08008918
 	add r1, sp, #0xc
@@ -290464,11 +290464,11 @@ func_0809800C: @ 0x0809800C
 	ldr r1, .L080983B0 @ =gUiSharedTileByteCount
 	ldr r2, [r1]
 	adds r1, r7, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, .L080983B4 @ =0x00030003
 	mov r1, r8
 	adds r2, r4, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r0, #3
 	str r0, [sp]
 	str r5, [sp, #4]
@@ -290483,7 +290483,7 @@ func_0809800C: @ 0x0809800C
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r1, .L080983BC @ =0x05000040
 	movs r7, #0xf8
 	lsls r7, r7, #2
@@ -290499,7 +290499,7 @@ func_0809800C: @ 0x0809800C
 	add r1, sl
 	adds r0, r6, #0
 	adds r2, r4, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r5, #0x84
 	lsls r5, r5, #6
 	movs r1, #0
@@ -290563,7 +290563,7 @@ func_0809800C: @ 0x0809800C
 	ldr r1, .L0809839C @ =0x0600F000
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, .L080983D0 @ =gUnk_08750C8C
 	movs r0, #0xc4
 	lsls r0, r0, #2
@@ -290577,7 +290577,7 @@ func_0809800C: @ 0x0809800C
 	movs r2, #0xe0
 	lsls r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r5, [sp, #0xa4]
 	movs r0, #0
 	str r0, [sp, #0x10]
@@ -290632,7 +290632,7 @@ func_0809800C: @ 0x0809800C
 	ldrh r2, [r6, #4]
 .L0809824A:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	mov r0, sb
 	ldr r1, [sp, #0xac]
 	movs r2, #0
@@ -290661,7 +290661,7 @@ func_0809800C: @ 0x0809800C
 	ldrh r2, [r3, #4]
 .L08098288:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, [sp, #0x18]
 	movs r0, #0xbc
 	lsls r0, r0, #2
@@ -290678,7 +290678,7 @@ func_0809800C: @ 0x0809800C
 	ldrh r2, [r0, #4]
 .L080982AC:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r0, #0xc0
 	lsls r0, r0, #2
 	add r0, sl
@@ -290690,7 +290690,7 @@ func_0809800C: @ 0x0809800C
 	movs r2, #0xe0
 	lsls r2, r2, #3
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r5, #0
 	add r7, sp, #0x94
 	movs r1, #1
@@ -290742,7 +290742,7 @@ func_0809800C: @ 0x0809800C
 	adds r1, r1, r2
 	ldr r0, [sp, #0x9c]
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 .L0809833C:
 	adds r5, #1
 	cmp r5, #0x15
@@ -291924,7 +291924,7 @@ func_080989DC: @ 0x080989DC
 	ldrh r2, [r3, #4]
 .L08098CCE:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	add sp, #0x84
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -292131,7 +292131,7 @@ func_08098CE8: @ 0x08098CE8
 	ldrh r2, [r5, #4]
 .L08098E78:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	mov r0, sb
 	ldr r1, [sp, #0xa0]
 	movs r2, #0
@@ -292160,7 +292160,7 @@ func_08098CE8: @ 0x08098CE8
 	ldrh r2, [r0, #4]
 .L08098EB6:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, [sp, #0x14]
 	movs r0, #0xbc
 	lsls r0, r0, #2
@@ -292178,7 +292178,7 @@ func_08098CE8: @ 0x08098CE8
 	ldrh r2, [r3, #4]
 .L08098EDC:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r0, #0xc0
 	lsls r0, r0, #2
 	add r0, r8
@@ -292190,7 +292190,7 @@ func_08098CE8: @ 0x08098CE8
 	movs r2, #0xe0
 	lsls r2, r2, #3
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r7, #0
 	movs r4, #1
 	mov sb, r4
@@ -292251,7 +292251,7 @@ func_08098CE8: @ 0x08098CE8
 	adds r1, r1, r3
 	ldr r0, [sp, #0xa4]
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 	adds r5, #1
 	adds r6, #1
 	cmp r6, #9
@@ -293337,7 +293337,7 @@ func_0809964C: @ 0x0809964C
 	movs r2, #0xe0
 	lsls r2, r2, #1
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r6, [sp, #0xb8]
 	movs r0, #0
 	str r0, [sp, #0x10]
@@ -293397,7 +293397,7 @@ func_0809964C: @ 0x0809964C
 	ldrh r2, [r3, #4]
 .L08099882:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	mov r0, sl
 	ldr r4, [r0]
 	ldr r0, [sp, #0xac]
@@ -293441,7 +293441,7 @@ func_0809964C: @ 0x0809964C
 	ldrh r2, [r3, #4]
 .L080998E2:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r0, [sp, #0xc4]
 	ldr r1, [sp, #0xb0]
 	movs r2, #0
@@ -293471,7 +293471,7 @@ func_0809964C: @ 0x0809964C
 	ldrh r2, [r3, #4]
 .L08099922:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	ldr r4, [sp, #0x18]
 	movs r1, #0xbc
 	lsls r1, r1, #2
@@ -293489,7 +293489,7 @@ func_0809964C: @ 0x0809964C
 	ldrh r2, [r3, #4]
 .L08099948:
 	adds r0, r4, #0
-	bl func_08008E64
+	bl CopyHardwareDma3
 	movs r4, #0xc0
 	lsls r4, r4, #2
 	adds r0, r7, r4
@@ -293502,7 +293502,7 @@ func_0809964C: @ 0x0809964C
 	movs r2, #0xe0
 	lsls r2, r2, #3
 	movs r0, #0
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r5, #0
 	add r1, sp, #0xa0
 	mov r8, r1
@@ -293556,7 +293556,7 @@ func_0809964C: @ 0x0809964C
 	adds r1, r1, r4
 	ldr r0, [sp, #0xa8]
 	movs r2, #0x40
-	bl func_08008E64
+	bl CopyHardwareDma3
 .L080999DE:
 	adds r5, #1
 	cmp r5, #0x10
@@ -293596,7 +293596,7 @@ func_0809964C: @ 0x0809964C
 	adds r1, r7, r4
 	movs r2, #0xc0
 	lsls r2, r2, #2
-	bl func_08008EB8
+	bl FillHardwareDma3
 	movs r3, #0
 	ldr r6, .L08099AC0 @ =gUnk_0811785C
 	ldr r5, .L08099AC4 @ =0x0000101C

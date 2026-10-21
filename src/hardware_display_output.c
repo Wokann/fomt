@@ -71,7 +71,7 @@ struct HardwareDisplayState * func_080096B0(struct HardwareDisplayState * object
 
 void WriteHardwareDisplayState(struct HardwareDisplayState * object)
 {
-    func_08008E64(object, (void *)&REG_DISPCNT,
+    CopyHardwareDma3(object, (void *)&REG_DISPCNT,
         offsetof(struct HardwareDisplayState, blend_brightness));
     // The original routine writes BLDY as a halfword, not REG_BLDY's byte view.
     REG(u16, 0x04000054) = object->blend_brightness;
@@ -106,7 +106,7 @@ void * func_08009744(void * object, u8 byte1, u8 byte3)
 
 void func_0800977C(void * object)
 {
-    func_08008E64((u8 *)object + 4, (void *)0x07000000, 0x400);
+    CopyHardwareDma3((u8 *)object + 4, (void *)0x07000000, 0x400);
 }
 
 void func_08009790(void * object)

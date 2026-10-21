@@ -481,13 +481,13 @@ RenderNewGameMenuLabelTiles:
     ldr	r1, .Ljp_08003DDC
     movs	r0, #0
     movs	r2, #32
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs	r0, #1
     negs	r0, r0
     movs	r2, #128
     lsls	r2, r2, #4
     adds	r1, r4, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs	r3, #0
     movs	r2, #0
     ldr	r5, .Ljp_08003DE0
@@ -614,7 +614,7 @@ RenderNewGameMenuLabelTiles:
     ldr	r3, .Ljp_08003DE4
     add	r3, sp
     ldr	r0, [r3, #0]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr	r3, .Ljp_08003E04
     add	sp, r3
     pop	{r3, r4, r5}
@@ -669,7 +669,7 @@ func_08004570:
     lsls	r1, r1, #19
     ldr r2, .Ljp_080046C0
     ldr	r2, [r2, #0]
-    bl func_08008E64
+    bl CopyHardwareDma3
     add	r1, sp, #12
     ldr r2, .Ljp_080046C4
     adds	r0, r2, #0
@@ -680,7 +680,7 @@ func_08004570:
     ldr r1, .Ljp_080046CC
     ldr r2, .Ljp_080046D0
     ldr	r2, [r2, #0]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, .Ljp_080046D4
     movs	r1, #20
     str	r1, [sp, #0]
@@ -729,7 +729,7 @@ func_08004570:
     adds	r1, r1, r0
     adds	r0, r4, #0
     movs	r2, #128
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr	r4, [sp, #32]
     adds	r0, r6, #0
     adds	r0, #84
@@ -741,7 +741,7 @@ func_08004570:
     adds	r1, r1, r2
     adds	r0, r4, #0
     movs	r2, #32
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs	r4, #0
 .Ljp_0800466E:
     ldr	r2, [r6, #92]
@@ -1638,13 +1638,13 @@ InitializeNewGameIdentityScreen:
     ldr r1, .Ljp_080054B4
     ldr r2, .Ljp_080054B8
     ldr r2, [r2]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, .Ljp_080054BC
     ldr r0, [r0]
     movs r1, #0xa0
     lsls r1, r1, #0x13
     movs r2, #0x20
-    bl func_08008E64
+    bl CopyHardwareDma3
     mov r0, sl
     bl func_08008918
     add r1, sp, #0xc
@@ -1682,7 +1682,7 @@ InitializeNewGameIdentityScreen:
     ldr r1, .Ljp_080054CC
     movs r0, #0
     movs r2, #0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r7, #0
     add r5, sp, #0x20
     add r4, sp, #0x24
@@ -2011,7 +2011,7 @@ InitializeNewGameIdentityScreen:
     movs r2, #0x80
     lsls r2, r2, #4
     adds r1, r4, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r7, #0
     movs r1, #0xaa
 .Ljp_080055EA:
@@ -2148,13 +2148,13 @@ func_08005CDC:
     ldr r1, .Ljp_00005DA0
     ldr r2, .Ljp_00005DA4
     ldr	r2, [r2, #0]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, .Ljp_00005DA8
     ldr	r0, [r0, #0]
     movs	r1, #160	@ 0xa0
     lsls	r1, r1, #19
     movs	r2, #32
-    bl func_08008E64
+    bl CopyHardwareDma3
     mov	r0, sl
     bl func_08008918
     add	r1, sp, #12
@@ -2195,7 +2195,7 @@ func_08005CDC:
     movs	r2, #128	@ 0x80
     lsls	r2, r2, #4
     adds	r1, r4, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs	r1, #0
     add	r0, sp, #32
     mov	r8, r0
@@ -2328,7 +2328,7 @@ func_08005CDC:
     ldr r1, .Ljp_00005DE8
     movs	r0, #0
     movs	r2, #32
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs	r4, #30
     movs	r5, #2
     add	r0, sp, #32
@@ -3888,13 +3888,13 @@ RenderNewGameMenuLabelTiles: @ 0x08003C80
     ldr r1, .L08003DC4 @ =0x06007FE0
     movs r0, #0
     movs r2, #0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r0, #1
     rsbs r0, r0, #0
     movs r2, #0x80
     lsls r2, r2, #4
     adds r1, r4, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r3, #0
     movs r2, #0
     ldr r5, .L08003DC8 @ =0x00002D08
@@ -4021,7 +4021,7 @@ RenderNewGameMenuLabelTiles: @ 0x08003C80
     ldr r3, .L08003DCC @ =0x00002D24
     add r3, sp
     ldr r0, [r3]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r3, .L08003DEC @ =0x00002D28
     add sp, r3
     pop {r3, r4, r5}
@@ -4076,7 +4076,7 @@ func_08004570: @ 0x08004570
     lsls r1, r1, #0x13
     ldr r2, .L080046A8 @ =gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
     ldr r2, [r2]
-    bl func_08008E64
+    bl CopyHardwareDma3
     add r1, sp, #0xc
     ldr r2, .L080046AC @ =0x00001E4C
     adds r0, r2, #0
@@ -4087,7 +4087,7 @@ func_08004570: @ 0x08004570
     ldr r1, .L080046B4 @ =0x0600C000
     ldr r2, .L080046B8 @ =gUiSharedTileByteCount
     ldr r2, [r2]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, .L080046BC @ =0x0600F000
     movs r1, #0x14
     str r1, [sp]
@@ -4136,7 +4136,7 @@ func_08004570: @ 0x08004570
     adds r1, r1, r0
     adds r0, r4, #0
     movs r2, #0x80
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [sp, #0x20]
     adds r0, r6, #0
     adds r0, #0x54
@@ -4148,7 +4148,7 @@ func_08004570: @ 0x08004570
     adds r1, r1, r2
     adds r0, r4, #0
     movs r2, #0x20
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r4, #0
 .L08004656:
     ldr r2, [r6, #0x5c]
@@ -5005,13 +5005,13 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     ldr r1, .L0800548C @ =0x06004B00
     ldr r2, .L08005490 @ =gUiSharedTileByteCount
     ldr r2, [r2]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, .L08005494 @ =gUiSharedPalette
     ldr r0, [r0]
     movs r1, #0xa0
     lsls r1, r1, #0x13
     movs r2, #0x20
-    bl func_08008E64
+    bl CopyHardwareDma3
     mov r0, sl
     bl func_08008918
     add r1, sp, #0xc
@@ -5049,7 +5049,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     ldr r1, .L080054A4 @ =0x06FFC000
     movs r0, #0
     movs r2, #0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r0, #0
     mov r8, r0
     add r5, sp, #0x20
@@ -5572,7 +5572,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     movs r2, #0x80
     lsls r2, r2, #4
     adds r1, r4, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r7, #0
     mov r8, r7
     movs r1, #0x64
@@ -5714,13 +5714,13 @@ ldr	r0, [r0, #0]
 ldr	r1, [pc, #472]
 ldr	r2, [pc, #472]
 ldr	r2, [r2, #0]
-bl	func_08008E64
+bl	CopyHardwareDma3
 ldr	r0, [pc, #468]
 ldr	r0, [r0, #0]
 movs	r1, #160
 lsls	r1, r1, #19
 movs	r2, #32
-bl	func_08008E64
+bl	CopyHardwareDma3
 mov	r0, sl
 bl	func_08008918
 .LNewGameDE_08005D1C:
@@ -5763,7 +5763,7 @@ ldr	r4, [pc, #392]
 movs	r2, #128
 lsls	r2, r2, #4
 adds	r1, r4, #0
-bl	func_08008EB8
+bl	FillHardwareDma3
 movs	r1, #0
 add	r0, sp, #32
 mov	r8, r0
@@ -5895,7 +5895,7 @@ bls.n	.LNewGameDE_08005E4C
 ldr	r1, [pc, #192]
 movs	r0, #0
 movs	r2, #32
-bl	func_08008EB8
+bl	FillHardwareDma3
 movs	r4, #30
 movs	r5, #2
 add	r0, sp, #32
@@ -6323,13 +6323,13 @@ bx	r0
     ldr r1, .L08005ECC @ =0x06004B00
     ldr r2, .L08005ED0 @ =gUiSharedTileByteCount
     ldr r2, [r2]
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, .L08005ED4 @ =gUiSharedPalette
     ldr r0, [r0]
     movs r1, #0xa0
     lsls r1, r1, #0x13
     movs r2, #0x20
-    bl func_08008E64
+    bl CopyHardwareDma3
     mov r0, sl
     bl func_08008918
     add r1, sp, #0xc
@@ -6370,7 +6370,7 @@ bx	r0
     movs r2, #0x80
     lsls r2, r2, #4
     adds r1, r4, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r1, #0
     add r0, sp, #0x20
     mov r8, r0
@@ -6503,7 +6503,7 @@ bx	r0
     ldr r1, .L08005F14 @ =0x06FFC000
     movs r0, #0
     movs r2, #0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r4, #0x1e
     movs r5, #2
     add r0, sp, #0x20

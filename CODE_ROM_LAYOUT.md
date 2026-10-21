@@ -5,6 +5,48 @@
 本文包含分阶段记录；资源构建的当前状态以文末“退役压缩样本清理”
 为准，早期“尚需原压缩流”的阶段性说明不代表当前 Make 依赖。
 
+## 启动依赖的语义命名：DMA 与 BIOS 传输接口
+
+这一批只整理已经确认含义的接口，**新增 C/C++ 覆盖为零**。
+控制字计算、即时复制和填充仍属于 `src/hardware_dma.c`／
+`include/hardware_dma.hh`；描述符构造与执行属于现有
+`src/hardware_dma_descriptor.cc`／同名头文件。不创建新的通用
+容器、包装函数、别名或文件，也不改变工具、编译参数和 LDS。
+
+| 旧入口名（历史 US 地址名） | 当前直接调用的语义符号 |
+| --- | --- |
+| `func_08008E28` | `MakeHardwareDmaCopyControl` |
+| `func_08008E64` | `CopyHardwareDma3` |
+| `func_08008EB8` | `FillHardwareDma3` |
+| `func_08008FB8` | `ExecuteDmaTransfer` |
+| `func_08008FE4` | `ExecuteDmaTransfers` |
+| `func_0800901C` | `ExecuteBiosTransfer` |
+| `func_08009094` | `ExecuteBiosTransfers` |
+| `func_080D0EBC` | `WriteHardwareDmaRegisters` |
+
+计算控制字的例程依据源、目标和字节数的对齐选择字或半字传输。
+两个即时操作使用 DMA3；描述符执行器分别使用 DMA3 或 BIOS
+`CpuFastSet`／`CpuSet`。单项和半开范围执行保留各自真实入口，
+不将无实际直接调用的单项入口误当作不存在或与范围入口合并。
+最底层四字节寄存器写入叶仍是原生 `stm`／`bx`，仅更名，
+不把它统计为已完成的高级语言实现。
+
+14 个现有文件的 730 处定义、声明和符号使用统一采用新名称。
+全部旧入口名已从正式 C/C++／汇编中移除，不使用 `.set`、
+地址别名或额外跳转维持旧名。结构和接口说明留在对应头文件。
+
+四版 WSL `make -j4 GAME_REGION=JP|US|EU|DE compare` 及各自
+完整 8 MiB 字节／SHA-1 比对通过。每版 226 个分配输入及全部
+全局地址在仅替换八个名字后完全一致：12 个输入只改变重定位
+名称，另 214 个输入连分配段签名和重定位名字也不变。
+JP 的 373 个、三个海外版各 374 个实际直接 BL 均保持原位置和
+目标，并逐一由对象重定位覆盖；本组没有遗留的原始直接 BL。
+该检查仅针对这八个入口，不扩展为整个 ROM 的指针完成声明。
+
+背景初始化的 156 字节仍保留实际汇编，当前并没有因接口正名
+而新增匹配；更早启动缺口和存档父级、事件复制等也仍未完成。
+下述各阶段的旧地址名作为历史对照保留，不代表当前源码接口。
+
 ## 存档复制依赖：NPC 整表及儿童姓名的真实布局
 
 `NpcCollection::NpcCollection(NpcCollection const &)` 现由现有

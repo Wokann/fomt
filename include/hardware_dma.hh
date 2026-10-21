@@ -16,10 +16,18 @@ typedef char HardwareDmaRegisters_control_offset_check[(offsetof(struct Hardware
 
 EXTERN_C
 
-u32 func_08008E28(void const * source, void * destination, u32 byte_count);
-void func_08008E64(void const * source, void * destination, u32 byte_count);
-void func_08008EB8(u32 value, void * destination, u32 byte_count);
-void func_080D0EBC(void const * source, void * destination, u32 control, volatile struct HardwareDmaRegisters * registers);
+// Choose word transfers only when both addresses and the byte count permit
+// them; otherwise use halfwords. Zero/odd lengths produce a disabled control.
+u32 MakeHardwareDmaCopyControl(void const * source, void * destination, u32 byte_count);
+
+// Immediate DMA3 operations. The fill value is a word; halfword transfers use
+// its low halfword. Keep the original null/alignment handling in each routine.
+void CopyHardwareDma3(void const * source, void * destination, u32 byte_count);
+void FillHardwareDma3(u32 value, void * destination, u32 byte_count);
+
+// The native four-byte leaf stores these three words consecutively to the
+// selected DMA register bank; it neither builds nor validates the control.
+void WriteHardwareDmaRegisters(void const * source, void * destination, u32 control, volatile struct HardwareDmaRegisters * registers);
 
 EXTERN_C_END
 

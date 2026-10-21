@@ -2,7 +2,7 @@
 
 #include "gbaio.h"
 
-u32 func_08008E28(void const * source, void * destination, u32 byte_count)
+u32 MakeHardwareDmaCopyControl(void const * source, void * destination, u32 byte_count)
 {
     if (byte_count != 0 && (((u32)source | (u32)destination | byte_count) & 1) == 0) {
         if ((((u32)source | (u32)destination | byte_count) & 3) == 0)
@@ -15,7 +15,7 @@ u32 func_08008E28(void const * source, void * destination, u32 byte_count)
     return byte_count;
 }
 
-void func_08008E64(void const * source, void * destination, u32 byte_count)
+void CopyHardwareDma3(void const * source, void * destination, u32 byte_count)
 {
     void const * saved_source;
     if (source == 0 || destination == 0)
@@ -29,10 +29,10 @@ void func_08008E64(void const * source, void * destination, u32 byte_count)
     } else {
         byte_count = 0;
     }
-    func_080D0EBC(saved_source, destination, byte_count, (volatile struct HardwareDmaRegisters *)&REG_DMA3SAD);
+    WriteHardwareDmaRegisters(saved_source, destination, byte_count, (volatile struct HardwareDmaRegisters *)&REG_DMA3SAD);
 }
 
-void func_08008EB8(u32 value, void * destination, u32 byte_count)
+void FillHardwareDma3(u32 value, void * destination, u32 byte_count)
 {
     u32 fill_value = value;
     if (destination != 0) {
@@ -46,6 +46,6 @@ void func_08008EB8(u32 value, void * destination, u32 byte_count)
             control = 0;
         }
         control |= DMA_SRC_FIXED << 16;
-        func_080D0EBC(&fill_value, destination, control, (volatile struct HardwareDmaRegisters *)&REG_DMA3SAD);
+        WriteHardwareDmaRegisters(&fill_value, destination, control, (volatile struct HardwareDmaRegisters *)&REG_DMA3SAD);
     }
 }

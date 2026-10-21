@@ -97,7 +97,7 @@ bool HardwareDmaQueueCommand::Run()
 {
     HardwareDmaQueue * storage = queue;
     if (!storage->IsEmpty()) {
-        func_08008FE4(storage->first, storage->first + storage->Size());
+        ExecuteDmaTransfers(storage->first, storage->first + storage->Size());
         storage->Clear();
     }
     return 0;

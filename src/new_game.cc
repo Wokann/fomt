@@ -639,9 +639,9 @@ SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
 
 void func_080061A0(NewGameNameInputCore * core, u32 tile_index)
 {
-    func_08008EB8(0, &core->sprites[0].attributes,
+    FillHardwareDma3(0, &core->sprites[0].attributes,
         sizeof(core->sprites[0].attributes));
-    func_08008EB8(0, &core->sprites[1].attributes,
+    FillHardwareDma3(0, &core->sprites[1].attributes,
         sizeof(core->sprites[1].attributes));
 #if defined(REGION_JP)
     core->sprites[0].attributes.size = 1;
@@ -1575,10 +1575,10 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
 
 void InitializeBirthdayInputCursor(NewGameBirthdayInputCore * core)
 {
-    func_08008E64(gUiSharedPalette,
+    CopyHardwareDma3(gUiSharedPalette,
         reinterpret_cast<void *>(0x05000200 + SpritePaletteBank(core->cursor_palette) * 32), 32);
     *reinterpret_cast<u16 *>(0x0500020E + SpritePaletteBank(core->cursor_palette) * 32) = 0x027F;
-    func_08008EB8(0, &core->cursor_attributes, sizeof(core->cursor_attributes));
+    FillHardwareDma3(0, &core->cursor_attributes, sizeof(core->cursor_attributes));
 #if defined(REGION_JP)
     core->cursor_attributes.size = 2;
     core->cursor_attributes.shape = 1;

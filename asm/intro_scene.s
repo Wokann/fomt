@@ -15,14 +15,14 @@ InitializeIntroSceneBackground:
     ldr r1, .L08000FE0
     movs	r0, #0
     movs	r2, #32
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs	r0, #1
     negs	r0, r0
     ldr r4, .L08000FE4
     movs	r2, #128	@ 0x80
     lsls	r2, r2, #4
     adds	r1, r4, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r0, .L08000FE8
     movs	r1, #192	@ 0xc0
     lsls	r1, r1, #19
@@ -31,7 +31,7 @@ InitializeIntroSceneBackground:
     movs	r1, #160	@ 0xa0
     lsls	r1, r1, #19
     movs	r2, #32
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, .L08000FF0
     adds	r1, r4, #0
     bl Unpack
@@ -95,7 +95,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, .L08001DB0 @ =0x06007FE0
     movs r0, #0
     movs r2, #0x20
-    bl func_08008EB8
+    bl FillHardwareDma3
     movs r4, #1
     rsbs r4, r4, #0
     ldr r1, .L08001DB4 @ =0x0600C000
@@ -103,19 +103,19 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     lsls r5, r5, #5
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, .L08001DB8 @ =0x0600D000
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, .L08001DBC @ =0x0600E000
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r1, .L08001DC0 @ =0x0600F000
     adds r0, r4, #0
     adds r2, r5, #0
-    bl func_08008EB8
+    bl FillHardwareDma3
     ldr r0, .L08001DC4 @ =gIntroSceneStartupTiles
     movs r1, #0xc0
     lsls r1, r1, #0x13
@@ -125,7 +125,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     lsls r1, r1, #0x13
     movs r2, #0x80
     lsls r2, r2, #2
-    bl func_08008E64
+    bl CopyHardwareDma3
     movs r4, #0
     add r0, sp, #8
     mov sb, r0
@@ -377,7 +377,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     adds r0, r0, r1
     ldr r1, .L08001E48 @ =0x05000320
     movs r2, #0xe0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [sp, #8]
     movs r2, #0
     cmp r0, #0
@@ -386,7 +386,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L08001C5A:
     ldr r1, .L08001E4C @ =0x06010000
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r0, [sp, #8]
     movs r1, #0
     cmp r0, #0
@@ -451,7 +451,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r4, #4]
 .L08001CDE:
     adds r0, r3, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r5, .L08001E60 @ =0x00006BD8
     adds r0, r7, r5
     mov r1, r8
@@ -510,7 +510,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L08001D5C:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, .L08001E70 @ =0x00006AB8
     adds r0, r7, r4
     movs r5, #0x84
@@ -630,7 +630,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L08001EAE:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, .L08002260 @ =0x00006AD8
     adds r0, r7, r4
     str r5, [r0]
@@ -681,7 +681,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L08001F1A:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, .L08002274 @ =0x00006AF8
     adds r0, r7, r4
     movs r5, #0xa0
@@ -739,7 +739,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L08001F96:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, .L08002288 @ =0x00006B18
     adds r1, r7, r4
     movs r0, #0x88
@@ -839,7 +839,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L0800206E:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, .L080022B8 @ =0x00006B58
     adds r0, r7, r4
     movs r5, #0xa0
@@ -906,7 +906,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L080020FC:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r5, [sp, #8]
     ldr r1, .L080022D0 @ =0x00006CD0
     adds r0, r7, r1
@@ -923,7 +923,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L08002120:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r1, .L080022D8 @ =0x0000091B
     adds r0, r4, #0
     bl ResolveIndexedResourceHandle
@@ -966,7 +966,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L0800217E:
     adds r0, r5, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r1, .L080022E0 @ =0x0000091C
     adds r0, r4, #0
     bl ResolveIndexedResourceHandle
@@ -1011,7 +1011,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L080021E0:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r5, .L080022E8 @ =0x00006BE0
     adds r4, r7, r5
     adds r0, r4, #0
@@ -1063,7 +1063,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L08002248:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [sp, #8]
     ldr r5, .L080022F0 @ =0x00006CF0
     adds r0, r7, r5
@@ -1122,7 +1122,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L0800230A:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, .L080024A0 @ =0x00006BFC
     adds r0, r7, r4
     movs r5, #0xe0
@@ -1179,7 +1179,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L0800237C:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, .L080024AC @ =0x00006C1C
     adds r0, r7, r4
     str r5, [r0]
@@ -1226,7 +1226,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L080023E0:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [sp, #8]
     ldr r5, .L080024C0 @ =0x00006D08
     adds r0, r7, r5
@@ -1243,7 +1243,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L08002404:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, .L080024C4 @ =0x00006C38
     adds r0, r7, r4
     movs r5, #0xf0
@@ -1283,7 +1283,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L08002458:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, [sp, #8]
     ldr r1, .L080024D4 @ =0x00006D18
     adds r0, r7, r1
@@ -1300,7 +1300,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r2, [r3, #4]
 .L0800247C:
     adds r0, r4, #0
-    bl func_08008E64
+    bl CopyHardwareDma3
     ldr r4, .L080024D8 @ =0x00006C5C
     adds r0, r7, r4
     str r5, [r0]
