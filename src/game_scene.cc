@@ -1537,8 +1537,7 @@ SceneOwner SupermarketTransition::CreateScene()
 SceneOwner ClockTransition::CreateScene()
 {
     SceneTransition * next = continuation.release();
-    return SceneOwner(func_08004B94(::operator new(sizeof(NewGameMenuScene)), save,
-        next));
+    return SceneOwner(new NewGameMenuScene(save, next));
 }
 
 SceneOwner ReturnToGameScene::CreateScene()

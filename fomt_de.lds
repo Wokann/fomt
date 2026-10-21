@@ -66,13 +66,12 @@ SECTIONS
         asm/intro_scene.o(.text.intro_scene_core_after_sequence);
         src/intro_scene.o(.text.intro_scene_sprite_submission);
         src/intro_scene.o(.text);
-        asm/new_game.o(.text);
-        src/new_game.o(.text);
+        asm/new_game_menu.o(.text);
         src/new_game_menu.o(.text);
-        asm/new_game.o(.text.new_game_after_fades);
+        asm/new_game_menu.o(.text.new_game_menu_label_tiles);
         src/new_game_menu.o(.text.new_game_menu_update);
-        src/new_game.o(.text.new_game_menu_update);
-        asm/new_game.o(.text.new_game_after_status_update);
+        asm/new_game_menu.o(.text.new_game_menu_core_run);
+        src/new_game_menu.o(.text.new_game_menu_scene);
         src/new_game.o(.text.new_game_scene_lifecycle);
         src/new_game.o(.text.new_game_name_entry_workflow);
         asm/new_game.o(.text.new_game_after_scene_lifecycle);
@@ -794,11 +793,11 @@ SECTIONS
         *(.gnu.linkonce.t._._24IntroNameEntryTransition);
         src/intro_scene.o(.text.intro_scene_core_cleanup);
         src/resource_handle.o(.text.indexed_resource_provider_cleanup);
-        src/new_game.o(.gnu.linkonce.t.CreateScene__27NewGameLoadedSaveTransition);
+        src/new_game_menu.o(.gnu.linkonce.t.CreateScene__27NewGameLoadedSaveTransition);
         src/intro_scene.o(.text.intro_scene_factory);
         src/intro_scene.o(.gnu.linkonce.t._._19MenuIntroTransition);
-        src/new_game.o(.gnu.linkonce.t._._27NewGameLoadedSaveTransition);
-        src/new_game.o(.text.new_game_menu_core_cleanup);
+        src/new_game_menu.o(.gnu.linkonce.t._._27NewGameLoadedSaveTransition);
+        src/new_game_menu.o(.text.new_game_menu_core_cleanup);
         src/game_scene.o(
             .text.__30GameSceneControllerActorRecord
             .text.__24GameSceneEventIconRecord);
@@ -937,7 +936,8 @@ SECTIONS
         src/intro_scene.o(.gnu.linkonce.d.__vt_14GameIntroScene);
         src/resource_handle.o(.gnu.linkonce.d.__vt_23IndexedResourceProvider);
         src/intro_scene.o(.gnu.linkonce.d.__vt_19MenuIntroTransition);
-        src/new_game.o(.gnu.linkonce.d.__vt_27NewGameLoadedSaveTransition);
+        src/new_game_menu.o(.gnu.linkonce.d.__vt_27NewGameLoadedSaveTransition);
+        src/new_game_menu.o(.rodata .gnu.linkonce.d.__vt_16NewGameMenuScene);
         src/new_game.o(.rodata .gnu.linkonce.d.__vt_21NewGameNameInputScene);
         *(.gnu.linkonce.d.__vt_23HardwareDmaQueueCommand);
         *(.gnu.linkonce.d.__vt_27HardwareSpriteBufferCommand);

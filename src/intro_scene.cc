@@ -678,8 +678,7 @@ SceneOwner IntroNameEntryTransition::CreateScene()
 
 SceneOwner IntroMenuTransition::CreateScene()
 {
-    // The existing menu scene contains a vtable and an owned menu core.
-    return SceneOwner(func_08004B58(::operator new(8)));
+    return SceneOwner(new NewGameMenuScene);
 }
 
 SceneOwner MenuIntroTransition::CreateScene()

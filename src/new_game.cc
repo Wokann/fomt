@@ -17,22 +17,8 @@
 #include "game_scene.hh"
 #pragma implementation
 
-inline SceneOwner NewGameLoadedSaveTransition::CreateScene()
-{
-    return SceneOwner(new GameSceneScriptController(state));
-}
-
 // Keep the GNU C++ tables and partial-core tables in retail ROM order.
 // Their real ABI labels have one definition each; no aliases are used.
-extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[] = {
-    nullptr, nullptr,
-    reinterpret_cast<NewGameSceneVTableFunction>(func_080D406C),
-};
-extern NewGameSceneVTableFunction const vtable_unk_080E5A68[] = {
-    nullptr, nullptr,
-    reinterpret_cast<NewGameSceneVTableFunction>(func_08004BDC),
-    reinterpret_cast<NewGameSceneVTableFunction>(func_08004C0C),
-};
 NewGameNativeVTableEntry __vt_26NewGameFreshSaveTransition[4] = {
     nullptr, nullptr,
     reinterpret_cast<NewGameNativeVTableEntry>(DestroyFreshSaveGameTransition),
@@ -81,137 +67,6 @@ static inline bool MenuBlendIsQueued(HardwareBlendObject const & blend)
     return blend.previous_slot != nullptr;
 }
 
-void func_08003B40(HardwareBootstrap * core)
-{
-    func_08008918(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
-    HardwareBlendObject blend(func_08008918(reinterpret_cast<void * const *>(core)));
-    i16 step = 0x889;
-    func_0800934C(&blend.blend, step, 1, 1);
-    QueueMenuBlend(core, blend);
-    while (MenuBlendIsQueued(blend))
-        UpdateHardwareFrame(core);
-}
-
-void func_08003BB4(HardwareBootstrap * core)
-{
-    func_08008918(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
-    HardwareBlendObject blend(func_08008918(reinterpret_cast<void * const *>(core)));
-    i16 step = 0x889;
-    func_08009378(&blend.blend, step, 1, 1);
-    QueueMenuBlend(core, blend);
-    while (MenuBlendIsQueued(blend))
-        UpdateHardwareFrame(core);
-}
-
-bool func_08003F9C(NewGameMenuCore * core)
-{
-    if (core->unk_08 != nullptr) {
-        u32 slot = core->choices[1];
-        u32 offset = func_080003DC(reinterpret_cast<u32>(&core->sram), slot);
-        u32 attempts = 3;
-        do {
-            InterruptGuard guard(0x1000);
-            if (WriteGameStateSaveImage(core->unk_08, &core->sram, offset) == 0) {
-                FormatNewGameSaveSlotSummary(core, core->save_slot_status[slot],
-                    static_cast<GameStateSaveImage *>(core->unk_08));
-                func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
-                    reinterpret_cast<u32>(core->save_slot_status[slot].Data()), 0, 0);
-                core->unk_8C = 3;
-                func_08008B6C(&core->music_players[1], 0xC5);
-                func_080003E8(&core->sram, slot);
-                func_08000470(&core->sram, slot);
-                return true;
-            }
-        } while (--attempts != 0);
-    }
-    func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
-        reinterpret_cast<u32>(gText_NewGameSave_SaveFailed), 0, 0);
-    core->unk_8C = 3;
-    func_08008B6C(&core->music_players[1], 0xC7);
-    return false;
-}
-
-static inline SceneTransition * CreateLoadedMenuSaveTransition(GameStateSaveImageOwner & owner)
-{
-    return new NewGameLoadedSaveTransition(owner);
-}
-
-static inline void SetMenuContinuation(SceneTransitionOwner & owner, SceneTransition * next)
-{
-    if (next != owner.get())
-        delete owner.get();
-    owner.value = next;
-}
-
-bool func_080040A0(NewGameMenuCore * core)
-{
-    u32 slot = core->choices[1];
-    u32 offset = func_080003DC(reinterpret_cast<u32>(&core->sram), slot);
-    u32 status = 0;
-    u32 attempts = 3;
-    do {
-        InterruptGuard guard(0x1000);
-        GameStateSaveImageOwner loaded(func_08011650(::operator new(sizeof(GameStateSaveImage)),
-            &core->sram, offset, &status));
-        if (status == 0) {
-            if (core->unk_08 != nullptr) {
-                static_cast<GameStateSaveImage *>(core->unk_08)->~GameStateSaveImage();
-                if (core->unk_08 != nullptr)
-                    func_080D4178(core->unk_08, loaded.get());
-            } else {
-                SetMenuContinuation(core->continuation, CreateLoadedMenuSaveTransition(loaded));
-            }
-            func_08008B6C(&core->music_players[1], 0xC5);
-            func_08000470(&core->sram, slot);
-            return true;
-        }
-        ::operator delete(loaded.release());
-    } while (--attempts != 0);
-
-    func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
-        reinterpret_cast<u32>(gText_NewGameSave_LoadFailed), 0, 0);
-    core->unk_8C = 3;
-    func_08008B6C(&core->music_players[1], 0xC7);
-    return false;
-}
-
-static inline GameDisplayOptions const & SavedDisplayOptions(void const * image)
-{
-    return static_cast<GameStateSaveImage const *>(image)->display_options;
-}
-
-static inline void CopySavedDisplayOptions(GameDisplayOptions & destination,
-    void const * image)
-{
-    destination = SavedDisplayOptions(image);
-}
-
-static inline NewGameMenuSpriteAttributes const & MenuSpriteAttributes(
-    HardwareSpriteOamRecord const & attributes)
-{
-    return reinterpret_cast<NewGameMenuSpriteAttributes const &>(attributes);
-}
-
-static inline void SetInitialChoices(NewGameMenuCore * core,
-    GameDisplayOptions const & options)
-{
-    // The selector stores byte-valued choices; keep boolean extraction in
-    // that width before inverting the display options.
-    core->choices[2] = options.control_scheme == 1;
-    SubmitNewGameMenuChoiceSprite(core, 2, MenuSpriteAttributes(core->option_attributes));
-    core->choices[3] = !static_cast<u8>(options.show_clock);
-    SubmitNewGameMenuChoiceSprite(core, 3, MenuSpriteAttributes(core->option_attributes));
-    core->choices[4] = !static_cast<u8>(options.show_portrait);
-    SubmitNewGameMenuChoiceSprite(core, 4, MenuSpriteAttributes(core->option_attributes));
-    core->choices[5] = !static_cast<u8>(options.show_nameplate);
-    SubmitNewGameMenuChoiceSprite(core, 5, MenuSpriteAttributes(core->option_attributes));
-}
-
-static inline bool HasSaveSlot(SramAccess & access, u32 slot)
-{
-    return (1 << slot) & func_080003A0(&access);
-}
-
 static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
 {
     return GetHardwareSharedStateTileIndex(&entry, entry.handle);
@@ -220,122 +75,6 @@ static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
 static inline u32 SpritePaletteBank(HardwareResourceEntry & entry)
 {
     return func_080074C0(&entry, entry.handle);
-}
-
-NewGameMenuCore * func_080041DC(NewGameMenuCore * core, void * state,
-    SceneTransition *& continuation)
-{
-    HardwareSpriteBufferParameters buffers(7, 0);
-    func_08008574(core, &buffers);
-    core->vtable = reinterpret_cast<void **>(
-        const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E5A5C));
-    core->unk_08 = state;
-    SceneTransition * next = continuation;
-    continuation = nullptr;
-    core->continuation.value = next;
-    {
-        HardwareStateOwner shared;
-        HardwareResource resources;
-        new (&core->ui_state) UiStateOwner(0, 31, 15, 0, shared, resources);
-    }
-    func_08008B54(&core->music_players[0], 1);
-    func_08008B54(&core->music_players[1], 2);
-    new (&core->resources) IndexedResourceArchive(gUiHandCursorArchive);
-    new (&core->state_entry) HardwareStateEntry(2);
-    new (&core->resource_entry) HardwareResourceEntry;
-    HardwareSpriteOamRecord initial_sprite = {};
-    core->option_attributes = initial_sprite;
-    new (&core->selector_resource) IndexedResourceHandle(
-        &core->resources, 0, 256);
-    core->active_row = 0;
-    core->unk_8C = 0;
-    func_08000640(&core->sram);
-    new (core->save_slot_status) NewGameMenuSaveSlotStatus[2];
-    new (core->saved_display_options) GameDisplayOptions[2];
-    IndexedResourceGroupResult group = core->resources.GetGroupData(0);
-    core->option_attributes = group.sprites.Data()[0];
-    core->option_attributes.tile_index = SpriteTileIndex(core->state_entry);
-    core->option_attributes.palette_bank = SpritePaletteBank(core->resource_entry);
-    core->option_attributes.mosaic = 1;
-    core->selector_attributes = core->option_attributes;
-    for (u32 slot = 0; slot < 2; ++slot) {
-        if (HasSaveSlot(core->sram, slot)) {
-            u32 offset = func_080003DC(reinterpret_cast<u32>(&core->sram), slot);
-            u32 status = 0;
-            int retries = 3;
-            do {
-                GameStateSaveImageOwner loaded(func_08011650(
-                    ::operator new(sizeof(GameStateSaveImage)), &core->sram,
-                    offset, &status));
-                if (status == 0) {
-                    FormatNewGameSaveSlotSummary(core, core->save_slot_status[slot],
-                        static_cast<GameStateSaveImage *>(loaded.get()));
-                    CopySavedDisplayOptions(core->saved_display_options[slot], loaded.get());
-                    break;
-                }
-                ::operator delete(loaded.release());
-            } while (--retries != -1);
-        }
-    }
-    u32 recent_slot = func_08000488(&core->sram);
-    if (core->unk_08 != nullptr) {
-        core->choices[0] = 0;
-        core->choices[1] = recent_slot != 0;
-        SetInitialChoices(core, SavedDisplayOptions(core->unk_08));
-    } else {
-        core->active_row = 1;
-        core->choices[0] = 1;
-        core->choices[1] = recent_slot != 0;
-        SetInitialChoices(core, core->saved_display_options[core->choices[1]]);
-    }
-    delete continuation;
-    return core;
-}
-
-AScene * func_08004B58(void * object)
-{
-    NewGameMenuScene * scene = static_cast<NewGameMenuScene *>(object);
-    scene->vtable = vtable_unk_080E5A68;
-    SceneTransition * continuation = new MenuIntroTransition;
-    scene->core = func_080041DC(
-        static_cast<NewGameMenuCore *>(::operator new(sizeof(NewGameMenuCore))),
-        nullptr, continuation);
-    return reinterpret_cast<AScene *>(scene);
-}
-
-// Move out of the native input slot before constructing the menu core.
-static inline SceneTransition * TakeMenuContinuation(SceneTransition *& source)
-{
-    SceneTransition * value = source;
-    source = nullptr;
-    return value;
-}
-
-AScene * func_08004B94(void * object, void * state, SceneTransition *& continuation)
-{
-    NewGameMenuScene * scene = static_cast<NewGameMenuScene *>(object);
-    scene->vtable = vtable_unk_080E5A68;
-    SceneTransition * next = TakeMenuContinuation(continuation);
-    scene->core = func_080041DC(
-        static_cast<NewGameMenuCore *>(::operator new(sizeof(NewGameMenuCore))),
-        state, next);
-    // Preserve native cleanup even when the consumed slot is null.
-    delete continuation;
-    return reinterpret_cast<AScene *>(scene);
-}
-
-void func_08004BDC(NewGameMenuScene * scene, int flags)
-{
-    scene->vtable = vtable_unk_080E5A68;
-    NewGameMenuCore * core = scene->core;
-    if (core != nullptr)
-        ((void (*)(NewGameMenuCore *, int))core->vtable[2])(core, 3);
-    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
-}
-
-SceneTransitionOwner func_08004C0C(NewGameMenuScene * scene)
-{
-    return func_08004570(scene->core);
 }
 
 NewGameNameEntryScene::NewGameNameEntryScene() {}
@@ -1200,11 +939,6 @@ char const * NewGameNameInputScene::GetName() const
 char const * func_0800711C(NewGameNameInputCore const * core)
 {
     return core->name;
-}
-
-// The members and the bootstrap base unwind in reverse construction order.
-NewGameMenuCore::~NewGameMenuCore()
-{
 }
 
 SceneOwner NewGameFreshSaveTransition::CreateScene()

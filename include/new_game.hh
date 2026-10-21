@@ -15,78 +15,11 @@
 
 struct MusicPlayer;
 
-// Runtime text filled by FormatNewGameSaveSlotSummary and selected by the
-// menu's second choice. These two 128-byte buffers are not ROM literals.
-struct NewGameMenuSaveSlotStatus {
-    char text[0x80];
-
-    NewGameMenuSaveSlotStatus() { text[0] = '\0'; }
-    bool IsEmpty() const { return text[0] == '\0'; }
-    char const * Data() const { return text; }
-};
-
-typedef char NewGameMenuSaveSlotStatusSizeCheck[sizeof(NewGameMenuSaveSlotStatus) == 0x80 ? 1 : -1];
-
-// The menu constructor allocates 0x1A0 bytes. Only fields confirmed by its
-// constructor, cleanup, and hardware/UI consumers are modeled here; the
-// remaining payload is not yet a recovered high-level class.
-struct NewGameMenuCore : HardwareBootstrap {
-    ~NewGameMenuCore() asm("func_080D406C")
-        SECTION(".text.new_game_menu_core_cleanup");
-    void * unk_08;
-    SceneTransitionOwner continuation;
-    UiStateOwner ui_state;
-    MusicPlayer * music_players[2];
-    IndexedResourceArchive resources;
-    HardwareStateEntry state_entry;
-    HardwareResourceEntry resource_entry;
-    HardwareSpriteOamRecord option_attributes;
-    IndexedResourceHandle selector_resource;
-    HardwareSpriteOamRecord selector_attributes;
-    u32 active_row;
-    u8 choices[6];
-    u8 unk_8A[2];
-    u32 unk_8C;
-    SramAccess sram;
-    NewGameMenuSaveSlotStatus save_slot_status[2];
-    GameDisplayOptions saved_display_options[2];
-};
-
-typedef char NewGameMenuCoreSizeCheck[sizeof(NewGameMenuCore) == 0x1A0 ? 1 : -1];
-typedef char NewGameMenuCoreUiCheck[offsetof(NewGameMenuCore, ui_state) == 0x10 ? 1 : -1];
-typedef char NewGameMenuCoreMusicCheck[offsetof(NewGameMenuCore, music_players) == 0x14 ? 1 : -1];
-typedef char NewGameMenuCoreResourcesCheck[offsetof(NewGameMenuCore, resources) == 0x1C ? 1 : -1];
-typedef char NewGameMenuCoreStateEntryCheck[offsetof(NewGameMenuCore, state_entry) == 0x4C ? 1 : -1];
-typedef char NewGameMenuCoreResourceEntryCheck[offsetof(NewGameMenuCore, resource_entry) == 0x54 ? 1 : -1];
-typedef char NewGameMenuCoreOptionAttributesCheck[offsetof(NewGameMenuCore, option_attributes) == 0x5C ? 1 : -1];
-typedef char NewGameMenuCoreSelectorResourceCheck[offsetof(NewGameMenuCore, selector_resource) == 0x64 ? 1 : -1];
-typedef char NewGameMenuCoreSelectorAttributesCheck[offsetof(NewGameMenuCore, selector_attributes) == 0x78 ? 1 : -1];
-typedef char NewGameMenuCoreActiveRowCheck[offsetof(NewGameMenuCore, active_row) == 0x80 ? 1 : -1];
-typedef char NewGameMenuCoreChoicesCheck[offsetof(NewGameMenuCore, choices) == 0x84 ? 1 : -1];
-typedef char NewGameMenuCoreUnk8CCheck[offsetof(NewGameMenuCore, unk_8C) == 0x8C ? 1 : -1];
-typedef char NewGameMenuCoreSramCheck[offsetof(NewGameMenuCore, sram) == 0x90 ? 1 : -1];
-typedef char NewGameMenuCoreSaveSlotStatusCheck[offsetof(NewGameMenuCore, save_slot_status) == 0x98 ? 1 : -1];
-typedef char NewGameMenuCoreSavedDisplayOptionsCheck[offsetof(NewGameMenuCore, saved_display_options) == 0x198 ? 1 : -1];
-
 // Partial-core tables retain their existing raw callback view. The compiler's
 // real C++ vtable symbols require its erased int(...) entry type instead.
 // Call code uses the typed scene interfaces, not these erased signatures.
 typedef void (*NewGameSceneVTableFunction)(void);
 typedef int (*NewGameNativeVTableEntry)(...);
-
-// Loading transfers the saved image into the next game controller. All
-// virtual methods are inline (the implicit destructor owns the image), so
-// the compiler emits their shared implementations and table without a key
-// method or a separate unused constructor body.
-struct NewGameLoadedSaveTransition : SceneTransition {
-    explicit NewGameLoadedSaveTransition(GameStateSaveImageOwner & owner)
-        : state(owner.release()) {}
-    virtual inline SceneOwner CreateScene();
-    GameStateSaveImageOwner state;
-};
-
-typedef char NewGameLoadedSaveTransitionSizeCheck[sizeof(NewGameLoadedSaveTransition) == 8 ? 1 : -1];
-typedef char NewGameLoadedSaveTransitionStateCheck[offsetof(NewGameLoadedSaveTransition, state) == 4 ? 1 : -1];
 
 // The workflow creates this transition after all four fields are confirmed.
 // Each name is limited to twelve encoded bytes, with word-aligned members.
@@ -116,11 +49,6 @@ typedef char NewGameFreshSaveFarmCheck[offsetof(NewGameFreshSaveTransition, farm
 typedef char NewGameFreshSavePlayerCheck[offsetof(NewGameFreshSaveTransition, player_name) == 0x14 ? 1 : -1];
 typedef char NewGameFreshSaveBirthdayCheck[offsetof(NewGameFreshSaveTransition, birthday) == 0x24 ? 1 : -1];
 typedef char NewGameFreshSaveDogCheck[offsetof(NewGameFreshSaveTransition, dog_name) == 0x28 ? 1 : -1];
-
-struct NewGameMenuScene {
-    NewGameSceneVTableFunction const * vtable;
-    NewGameMenuCore * core;
-};
 
 // Halfword-aligned records written by the append routine and read by OAM
 // rendering. Only priority's low two bits are consumed by that renderer.
@@ -406,7 +334,6 @@ typedef char NewGameNameInputFinalWordCheck[
     offsetof(NewGameNameInputCore, unk_463c)
         == sizeof(NewGameNameInputCore) - 4 ? 1 : -1];
 
-typedef char NewGameMenuSceneSizeCheck[sizeof(NewGameMenuScene) == 8 ? 1 : -1];
 typedef char NewGameNameEntrySceneSizeCheck[sizeof(NewGameNameEntryScene) == 4 ? 1 : -1];
 #if defined(REGION_JP)
 typedef char NewGameIdentityCoreSizeCheck[sizeof(NewGameIdentityCore) == 0x1878 ? 1 : -1];
@@ -464,47 +391,8 @@ typedef char NewGameNameInputSceneCoreCheck[offsetof(NewGameNameInputScene, core
 
 EXTERN_C
 
-// Both menu transitions wait until their stack-owned blend command leaves
-// the hardware queue. The first decreases progress; the second increases it.
-void func_08003B40(struct HardwareBootstrap * core);
-void func_08003BB4(struct HardwareBootstrap * core);
-
-// Saving, loading and core construction retain their native order.
-bool func_08003F9C(struct NewGameMenuCore * core)
-    SECTION(".text.new_game_menu_update");
-bool func_080040A0(struct NewGameMenuCore * core)
-    SECTION(".text.new_game_menu_update");
-
-// Clear the output, then append up to 127 encoded bytes and a terminator.
-// JP uses full-width
-// digits; overseas text puts the year/day labels before their numbers.
-// The first argument is unused by the native body, which remains assembly.
-void FormatNewGameSaveSlotSummary(struct NewGameMenuCore * core,
-    NewGameMenuSaveSlotStatus & output, GameStateSaveImage const * snapshot);
-
-// Initialize the supplied storage and consume the transition pointer word.
-// This explicit pointer-reference view preserves the native ownership ABI;
-// cleanup of the consumed input also belongs to the callee.
-NewGameMenuCore * func_080041DC(NewGameMenuCore * core, void * state,
-    SceneTransition *& continuation)
-    SECTION(".text.new_game_menu_update");
-SceneTransitionOwner func_08004570(struct NewGameMenuCore * core);
-AScene * func_08004B58(void * object)
-    SECTION(".text.new_game_scene_lifecycle");
-// This native entry consumes and clears a caller-provided pointer slot.
-// Residual-input cleanup belongs to the callee, as in the core entry.
-AScene * func_08004B94(void * object, void * state, SceneTransition *& continuation)
-    SECTION(".text.new_game_scene_lifecycle");
-
-extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[];
-extern NewGameSceneVTableFunction const vtable_unk_080E5A68[];
 extern NewGameNativeVTableEntry __vt_21NewGameNameEntryScene[4];
 
-// One contiguous scene lifecycle interval, beginning with both constructors.
-void func_08004BDC(struct NewGameMenuScene * scene, int flags)
-    SECTION(".text.new_game_scene_lifecycle");
-SceneTransitionOwner func_08004C0C(struct NewGameMenuScene * scene)
-    SECTION(".text.new_game_scene_lifecycle");
 AScene * func_08004C48(void * object)
     SECTION(".text.new_game_scene_lifecycle");
 void func_08004C54(struct NewGameNameEntryScene * scene, int flags)
@@ -611,9 +499,6 @@ char const * func_0800711C(NewGameNameInputCore const * core)
 
 // C/assembly declarations of the real member entries used by the ABI tables.
 SceneTransitionOwner func_08004C68(NewGameNameEntryScene *);
-// Native callback entries for the remaining partial menu classes.
-// Raw C/assembly view of the actual menu-core destructor entry.
-void func_080D406C(NewGameMenuCore * core, int flags);
 SceneOwner CreateFreshSaveGameScene(NewGameFreshSaveTransition * transition)
     SECTION(".text.new_game_fresh_save_callbacks");
 void DestroyFreshSaveGameTransition(NewGameFreshSaveTransition * transition, int flags)
