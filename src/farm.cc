@@ -7,6 +7,23 @@ Farm::Farm(char const * name)
 {
 }
 
+// agbcp requires a mutable reference for primitive-array copy initialization.
+// This initializes only the destination storage; the source remains read-only.
+Farm::Farm(Farm const & other)
+    : name(other.name),
+      unk_0010_0(other.unk_0010_0),
+      has_horse(other.has_horse),
+      unk_0010_11(other.unk_0010_11),
+      unk_0010_12(other.unk_0010_12),
+      horse_storage(const_cast<HorseStorage &>(other.horse_storage)),
+      shipping_bin(other.shipping_bin),
+      farm_house(other.farm_house),
+      coop(other.coop),
+      barn(other.barn),
+      field(other.field)
+{
+}
+
 Vec2 Farm::smethod_08009ADC()
 {
     return Vec2(0x1F8, 0x84);
@@ -29,7 +46,7 @@ u32 Farm::GetUnk10() const
 
 Horse const * Farm::GetHorse() const
 {
-    return has_horse ? reinterpret_cast<Horse const *>(&horse_placeholder) : nullptr;
+    return has_horse ? reinterpret_cast<Horse const *>(&horse_storage) : nullptr;
 }
 
 bool Farm::GetUnkFlag11() const
@@ -81,7 +98,7 @@ void Farm::SetHorse(Horse const & a_horse)
 {
     if (!has_horse)
     {
-        Horse * horse = reinterpret_cast<Horse *>(&horse_placeholder);
+        Horse * horse = reinterpret_cast<Horse *>(&horse_storage);
 
         if (horse != nullptr)
             *horse = a_horse;
@@ -92,7 +109,7 @@ void Farm::SetHorse(Horse const & a_horse)
 
 Horse * Farm::GetHorse()
 {
-    return has_horse ? reinterpret_cast<Horse *>(&horse_placeholder) : nullptr;
+    return has_horse ? reinterpret_cast<Horse *>(&horse_storage) : nullptr;
 }
 
 void Farm::RemoveHorse()

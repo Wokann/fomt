@@ -22,7 +22,11 @@ struct Farm
 
     // clang-format on
 
+    // Optional horse storage is copied word-by-word even when unoccupied.
+    typedef u32 HorseStorage[(sizeof(Horse) + sizeof(u32) - 1) / sizeof(u32)];
+
     Farm(char const * name);
+    Farm(Farm const & other);
 
     static Vec2 smethod_08009ADC();
     static Vec2 smethod_08009AE8();
@@ -48,12 +52,20 @@ struct Farm
     /* +0010 */ bool has_horse : 1;
     /* +0010 */ bool unk_0010_11 : 1;
     /* +0010 */ bool unk_0010_12 : 1;
-    /* +0014 */ Placeholder<Horse> horse_placeholder;
+    /* +0014 */ HorseStorage horse_storage;
     /* +0040 */ ShippingBin shipping_bin;
     /* +01E0 */ FarmHouse farm_house;
     /* +03FC */ Coop coop;
     /* +05DC */ Barn barn;
     /* +09C8 */ Field<FIELD_WIDTH, FIELD_HEIGHT> field;
 };
+
+typedef char FarmHorseStorageSizeCheck[sizeof(Farm::HorseStorage) == 0x2C ? 1 : -1];
+typedef char FarmHorseStorageOffsetCheck[offsetof(Farm, horse_storage) == 0x14 ? 1 : -1];
+typedef char FarmShippingBinOffsetCheck[offsetof(Farm, shipping_bin) == 0x40 ? 1 : -1];
+typedef char FarmCoopOffsetCheck[offsetof(Farm, coop) == 0x3FC ? 1 : -1];
+typedef char FarmBarnOffsetCheck[offsetof(Farm, barn) == 0x5DC ? 1 : -1];
+typedef char FarmFieldOffsetCheck[offsetof(Farm, field) == 0x9C8 ? 1 : -1];
+typedef char FarmSizeCheck[sizeof(Farm) == 0x1A94 ? 1 : -1];
 
 #endif // FARM_HH

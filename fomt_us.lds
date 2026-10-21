@@ -132,7 +132,7 @@ SECTIONS
         src/hardware_linked_list.o(.text);
         src/hardware_linked_list.o(.text.hardware_linked_list_constructor);
         src/hardware_linked_list.o(.text.hardware_linked_list_tail);
-        src/farm.o(.text);
+        src/farm.o(.text .text.__4FarmPCc .text.[A-Za-z]*);
         src/field.o(.text);
         src/shipping_bin.o(.text);
         src/tool_chest.o(.text);
@@ -792,6 +792,9 @@ SECTIONS
         asm/code_linkonce.o(.text.new_game_after_controller_records);
         src/game_state.o(.text._._18GameStateSaveImage);
         asm/code_linkonce.o(.text.save_image_after_destructor);
+        src/farm.o(.text.__4FarmRC4Farm);
+        src/farm.o(.gnu.linkonce.t.__4BarnRC4Barn);
+        src/farm.o(.gnu.linkonce.t.__4CoopRC4Coop);
         src/dog.o(.text.__as__3DogRC3Dog);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         src/farmer.o(.text.__6FarmerRC6Farmer);

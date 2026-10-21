@@ -152,7 +152,7 @@ SECTIONS
         src/hardware_linked_list.o(.text.hardware_linked_list_constructor);
         src/hardware_linked_list.o(.text.hardware_linked_list_tail);
         . = 0x9A50; /* JP ROM 0x08009A50, independently matched */
-        src/farm.o(.text);
+        src/farm.o(.text .text.__4FarmPCc .text.[A-Za-z]*);
         . = 0x9F94; /* JP ROM 0x08009F94, independently matched */
         src/field.o(.text);
         . = 0xB0BC; /* JP ROM 0x0800B0BC, independently matched */
@@ -867,6 +867,9 @@ SECTIONS
         asm/code_linkonce.o(.text.new_game_after_controller_records);
         src/game_state.o(.text._._18GameStateSaveImage);
         asm/code_linkonce.o(.text.save_image_after_destructor);
+        src/farm.o(.text.__4FarmRC4Farm);
+        src/farm.o(.gnu.linkonce.t.__4BarnRC4Barn);
+        src/farm.o(.gnu.linkonce.t.__4CoopRC4Coop);
         src/dog.o(.text.__as__3DogRC3Dog);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         . = 0xD6078; /* JP ROM 0x080D6078, independently matched */

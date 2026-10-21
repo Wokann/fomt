@@ -119,4 +119,11 @@ struct Coop
     /* +1D8 */ Incubator incubator[MAX_INCUBATOR_CAPACITY];
 };
 
+typedef char CoopEntrySizeCheck[sizeof(Coop::Ent) == 0x30 ? 1 : -1];
+typedef char CoopNameOffsetCheck[offsetof(Coop, unk_chicken_name) == 8 ? 1 : -1];
+typedef char CoopEntriesOffsetCheck[offsetof(Coop, ent) == 0x18 ? 1 : -1];
+typedef char CoopEggsOffsetCheck[offsetof(Coop, egg) == 0x198 ? 1 : -1];
+typedef char CoopIncubatorsOffsetCheck[offsetof(Coop, incubator) == 0x1D8 ? 1 : -1];
+typedef char CoopSizeCheck[sizeof(Coop) == 0x1E0 ? 1 : -1];
+
 #endif // COOP_HH

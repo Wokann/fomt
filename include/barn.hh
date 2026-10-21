@@ -113,4 +113,11 @@ struct Barn
     /* +2C */ Ent ent[MAX_CAPACITY];
 };
 
+typedef char BarnEntrySizeCheck[sizeof(Barn::Ent) == 0x3C ? 1 : -1];
+typedef char BarnPregnancyIndicesOffsetCheck[offsetof(Barn, pregnancy_stall_ent_idx) == 7 ? 1 : -1];
+typedef char BarnCowNameOffsetCheck[offsetof(Barn, unk_cow_name) == 0xC ? 1 : -1];
+typedef char BarnSheepNameOffsetCheck[offsetof(Barn, unk_sheep_name) == 0x1C ? 1 : -1];
+typedef char BarnEntriesOffsetCheck[offsetof(Barn, ent) == 0x2C ? 1 : -1];
+typedef char BarnSizeCheck[sizeof(Barn) == 0x3EC ? 1 : -1];
+
 #endif // BARN_HH
