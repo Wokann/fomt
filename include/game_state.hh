@@ -171,7 +171,8 @@ struct GameStateSaveImage {
     /* bit 25 */ u8 unk_25 : 6;
     /* bit 31 */ bool unk_31 : 1;
     /* bit 32 */ bool unk_32 : 1;
-    u8 unk_05[3];
+    // +0x05..+0x07 are natural word-alignment padding, not saved array
+    // elements. Both native initialization and field copying leave them alone.
     GameStateClock clock;
     Farm farm;
     MoneyAccount money_account;
@@ -205,7 +206,6 @@ struct GameStateSaveImage {
 };
 
 typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
-typedef char GameStateSaveImageUnknown05Check[offsetof(GameStateSaveImage, unk_05) == 5 ? 1 : -1];
 typedef char GameStateSaveImageUnknown08Check[offsetof(GameStateSaveImage, clock) == 8 ? 1 : -1];
 typedef char GameStateSaveImageUnknown0CCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, unk_04) == 12 ? 1 : -1];
 typedef char GameStateSaveImageCalendarCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, calendar) == 0x10 ? 1 : -1];
