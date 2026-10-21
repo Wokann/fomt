@@ -1,5 +1,9 @@
 #include "money_account.hh"
 
+MoneyAccount::~MoneyAccount()
+{
+}
+
 template <typename T>
 inline T LimitedAmount(T available, T amount)
 {

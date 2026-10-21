@@ -184,7 +184,7 @@ SECTIONS
         . = 0xF150; /* JP ROM 0x0800F150, independently matched */
         src/held_item.o(.text);
         . = 0xF554; /* JP ROM 0x0800F554, independently matched */
-        src/rucksack.o(.text);
+        src/rucksack.o(.text .text.__* .text.[A-Za-z]*);
         . = 0xFF6C; /* JP ROM 0x0800FF6C, independently matched */
         src/more_items.o(.text);
         asm/more_items.o(.text);
@@ -206,7 +206,7 @@ SECTIONS
         asm/game_state.o(.text.game_state_after_startup_accessors);
         src/game_state.o(.text.CollectShippingRevenue__18GameStateSaveImage .text.SetFlag4__18GameStateSaveImage .text.UpdateUnknown*__18GameStateSaveImageUi);
         src/game_state.o(.text.InitializeGameDisplayOptions);
-        src/game_state.o(.text.*);
+        src/game_state.o(.text.__* .text.[A-Za-z]*);
         asm/game_state.o(.text.game_state_after_display_options);
         src/game_scene.o(.text.UpdateGameSceneHardwareFrame);
         src/game_scene.o(.text.__9GameSceneP18GameStateSaveImage*);
@@ -626,7 +626,7 @@ SECTIONS
         src/cooking_recipe_inventory.o(.text);
         src/money_account.o(.text.money_account_update);
         asm/code_0803EE94.o(.text.money_account_history);
-        src/money_account.o(.text);
+        src/money_account.o(.text .text.__* .text.[A-Za-z]*);
 
         . = 0x9AB3C; /* JP ROM 0x0809AB3C, independently matched */
 
@@ -865,9 +865,14 @@ SECTIONS
             .text.__30GameSceneControllerActorRecord
             .text.__24GameSceneEventIconRecord);
         asm/code_linkonce.o(.text.new_game_after_controller_records);
+        src/game_state.o(.text._._18GameStateSaveImage);
+        asm/code_linkonce.o(.text.save_image_after_destructor);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         . = 0xD6078; /* JP ROM 0x080D6078, independently matched */
         asm/code_linkonce.o(.text.code_080D68C0);
+        src/rucksack.o(.text._._8Rucksack);
+        asm/code_linkonce.o(.text.money_account_copy_after_rucksack);
+        src/money_account.o(.text._._12MoneyAccount);
         src/new_game.o(.text.new_game_fresh_save_callbacks);
         src/hardware.o(.text.hardware_free_list);
         src/hardware_resource.o(.text.code_080D6DB8);

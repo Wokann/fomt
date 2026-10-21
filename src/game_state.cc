@@ -77,6 +77,10 @@ GameStateSaveImage::GameStateSaveImage(char const * farm_name, char const * play
     for (u32 i = 0; i < 50; ++i) PutInitialItem(farm.field, 0x17);
 }
 
+GameStateSaveImage::~GameStateSaveImage()
+{
+}
+
 bool GameStateSaveImage::GetFlag0() const { return flag_0; }
 bool GameStateSaveImage::GetFlag1() const { return flag_1; }
 bool GameStateSaveImage::GetFlag2() const { return flag_2; }

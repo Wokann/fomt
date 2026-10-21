@@ -17,6 +17,17 @@ struct MoneyAccountRecord {
 // income/expense fields are verified, but their time periods are not yet named.
 template <unsigned Capacity>
 struct MoneyAccountHistory {
+    // End only the active record lifetimes; do not clear or reset storage.
+    ~MoneyAccountHistory()
+    {
+        MoneyAccountRecord * last = End();
+        MoneyAccountRecord * first = Begin();
+        while (first != last) {
+            first->~MoneyAccountRecord();
+            ++first;
+        }
+    }
+
     u32 count;
     // Slots are constructed only when appended. Default-constructing a full
     // record array would incorrectly clear the unused native save storage.
@@ -88,6 +99,7 @@ struct MoneyAccountHistory {
 
 struct MoneyAccount {
     MoneyAccount();
+    ~MoneyAccount();
 
     u32 balance;
     u8 unk_04_0 : 1;

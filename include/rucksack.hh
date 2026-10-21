@@ -25,6 +25,15 @@ struct Rucksack
         typedef std::reverse_iterator<iterator> reverse_iterator;
 
         Slots() : m_size(0) {}
+        ~Slots()
+        {
+            iterator last = end();
+            iterator first = begin();
+            while (first != last) {
+                first->~T();
+                ++first;
+            }
+        }
         inline Slots(u32 size, T const & value);
 
         iterator begin() { return reinterpret_cast<T *>(m_data); }
@@ -57,6 +66,7 @@ struct Rucksack
     };
 
     Rucksack();
+    ~Rucksack();
 
     u32 GetUpgradeLevel() const;
     u32 GetSize() const;

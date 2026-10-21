@@ -6,6 +6,15 @@
 struct MoreItems
 {
     MoreItems();
+    ~MoreItems()
+    {
+        u8 * last = data + size;
+        u8 * first = data;
+        while (first != last) {
+            first->~u8();
+            ++first;
+        }
+    }
 
     u32 GetSize() const;
     u8 * Begin();

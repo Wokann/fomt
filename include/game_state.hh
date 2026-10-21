@@ -127,9 +127,10 @@ typedef char GameStateUnknown34D8SizeCheck[sizeof(GameStateUnknown34D8) == 4 ? 1
 
 // The initializer, copy constructor and save-summary reader agree on these
 // member offsets. Unknown fields keep offset names. Initialization is recovered;
-// native copy/cleanup bodies have not yet been recovered as C++.
+// native copying remains unresolved; destruction uses real member lifetimes.
 struct GameStateSaveImage {
     GameStateSaveImage(char const *, char const *, GameDate, char const *);
+    ~GameStateSaveImage();
 
     // Update tomorrow's weather and the farm/NPC/order state for the current
     // calendar day. This does not itself advance the saved calendar date.
@@ -278,10 +279,8 @@ u32 WriteGameStateSaveImage(void const * snapshot, struct SramAccess * access, u
 // status output is zero on success; the complete image layout is unresolved.
 void * func_08011650(void * object, struct SramAccess * access, u32 offset,
     u32 * status);
-// Copy-construction into existing storage and the original destructor ABI.
-// Destructor flag bit zero requests deallocation after member cleanup.
+// Native copy-construction into existing storage; no destructor alias.
 void * func_080D4178(void * object, void const * source);
-void func_080D4480(void * object, u32 flags);
 
 EXTERN_C_END
 
@@ -297,7 +296,7 @@ public:
     ~GameStateSaveImageOwner()
     {
         if (value != nullptr)
-            func_080D4480(value, 3);
+            delete value;
     }
     GameStateSaveImage * get() const { return value; }
     GameStateSaveImage * release()

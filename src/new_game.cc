@@ -155,7 +155,7 @@ bool func_080040A0(NewGameMenuCore * core)
             &core->sram, offset, &status));
         if (status == 0) {
             if (core->unk_08 != nullptr) {
-                func_080D4480(core->unk_08, 2);
+                static_cast<GameStateSaveImage *>(core->unk_08)->~GameStateSaveImage();
                 if (core->unk_08 != nullptr)
                     func_080D4178(core->unk_08, loaded.get());
             } else {

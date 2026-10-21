@@ -32,6 +32,10 @@ Rucksack::Rucksack()
 {
 }
 
+Rucksack::~Rucksack()
+{
+}
+
 u32 Rucksack::GetUpgradeLevel() const
 {
     u32 size = items.size();

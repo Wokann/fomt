@@ -353,9 +353,9 @@ $(BUILD_DIR)/src/m4a.o: $(OLD_CC1)
 # The linker orders compiler-owned function sections around their assembly.
 $(BUILD_DIR)/src/font_draw.o: CXXFLAGS += -ffunction-sections
 
-# The two recovered state helpers bracket still-unmatched saved-image code.
+# Saved-state and inventory lifetimes retain their native linkonce positions.
 # Use compiler-owned function sections, not source section attributes.
-$(BUILD_DIR)/src/game_state.o: CXXFLAGS += -ffunction-sections
+$(BUILD_DIR)/src/game_state.o $(BUILD_DIR)/src/rucksack.o $(BUILD_DIR)/src/money_account.o: CXXFLAGS += -ffunction-sections
 
 # Recovered scene, world and map functions surround still-native routines.
 # Keep each functional module at its original compiler-owned code positions.
