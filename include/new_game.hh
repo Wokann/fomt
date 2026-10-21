@@ -10,32 +10,10 @@
 #include "scene.hh"
 #include "sram_proxy_2.hh"
 #include "ui_state.hh"
+#include "new_game_menu.hh"
 #include "utility/fixed_str.hh"
 
 struct MusicPlayer;
-
-// Menu OAM coordinates use their wrapped hardware representation, not the
-// signed offsets stored in sprite archives. Only the first six bytes are
-// copied to OAM; the destination's affine coefficient is left untouched.
-struct NewGameMenuSpriteAttributes {
-    u32 y : 8;
-    u32 affine_mode : 2;
-    u32 object_mode : 2;
-    u32 mosaic : 1;
-    u32 color_mode : 1;
-    u32 shape : 2;
-    u32 x : 9;
-    u32 affine_index_low : 3;
-    u32 horizontal_flip : 1;
-    u32 vertical_flip : 1;
-    u32 size : 2;
-    u16 tile_attributes;
-    u16 affine_coefficient;
-};
-
-typedef char NewGameMenuSpriteAttributesSizeCheck[sizeof(NewGameMenuSpriteAttributes) == 8 ? 1 : -1];
-typedef char NewGameMenuSpriteAttributesTileCheck[offsetof(NewGameMenuSpriteAttributes, tile_attributes) == 4 ? 1 : -1];
-typedef char NewGameMenuSpriteAttributesCoefficientCheck[offsetof(NewGameMenuSpriteAttributes, affine_coefficient) == 6 ? 1 : -1];
 
 // Runtime text filled by FormatNewGameSaveSlotSummary and selected by the
 // menu's second choice. These two 128-byte buffers are not ROM literals.
@@ -490,19 +468,8 @@ EXTERN_C
 // the hardware queue. The first decreases progress; the second increases it.
 void func_08003B40(struct HardwareBootstrap * core);
 void func_08003BB4(struct HardwareBootstrap * core);
-void func_08003C28(struct NewGameMenuCore * core);
 
-// One contiguous interval: option OAM, selector OAM, status, saving, loading,
-// and core construction.
-// The preceding label graphics renderer still remains assembly.
-void func_08003DF0(struct NewGameMenuCore * core, u32 row,
-    NewGameMenuSpriteAttributes attributes)
-    SECTION(".text.new_game_menu_update");
-void func_08003E88(struct NewGameMenuCore * core, u32 row,
-    NewGameMenuSpriteAttributes const initial)
-    SECTION(".text.new_game_menu_update");
-void func_08003EEC(struct NewGameMenuCore * core)
-    SECTION(".text.new_game_menu_update");
+// Saving, loading and core construction retain their native order.
 bool func_08003F9C(struct NewGameMenuCore * core)
     SECTION(".text.new_game_menu_update");
 bool func_080040A0(struct NewGameMenuCore * core)

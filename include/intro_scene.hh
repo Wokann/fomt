@@ -213,7 +213,7 @@ extern u8 const gActorIndexedResourceArchive[];
 IntroSceneCore * ConstructIntroSceneCore(void * core) SECTION(".text.intro_scene_core_constructor");
 void DestroyIntroSceneCore(IntroSceneCore * core, int flags) SECTION(".text.intro_scene_core_cleanup");
 void StartIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_startup");
-void func_08000F5C(IntroSceneCore * core);
+void InitializeIntroSceneBackground(IntroSceneCore * core);
 int RunIntroSceneSequence(IntroSceneCore * core) SECTION(".text.intro_scene_core_sequence");
 // Native resource upload/setup; a full C++ replacement is not yet matched.
 void InitializeIntroSceneSequenceResources(IntroSceneCore * core);

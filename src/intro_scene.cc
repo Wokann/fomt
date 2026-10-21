@@ -215,7 +215,7 @@ static inline void QueueIntroSceneBlend(IntroSceneCore * core, HardwareBlendOwne
 void StartIntroSceneCore(IntroSceneCore * core)
 {
     func_08008724(reinterpret_cast<HardwareBootstrap *>(core));
-    func_08000F5C(core);
+    InitializeIntroSceneBackground(core);
     func_08008918(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
 
     HardwareBlendOwner owner(new HardwareBlendObject(

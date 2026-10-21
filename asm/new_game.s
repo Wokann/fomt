@@ -467,9 +467,9 @@ FormatNewGameSaveSlotSummary:
 .Ljp_08003B54: .4byte 0x00001BD8
     .section .text.new_game_after_fades
 
-    .global func_08003C80
+    .global RenderNewGameMenuLabelTiles
     .thumb_func
-func_08003C80:
+RenderNewGameMenuLabelTiles:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -697,7 +697,7 @@ func_08004570:
     strh	r0, [r1, #0]
     strh	r0, [r5, #12]
     adds	r0, r6, #0
-    bl func_08003C80
+    bl RenderNewGameMenuLabelTiles
     adds	r4, r6, #0
     adds	r4, #16
     adds	r0, r4, #0
@@ -706,13 +706,13 @@ func_08004570:
     adds	r0, r4, #0
     bl func_08050D68
     adds	r0, r6, #0
-    bl func_08003C28
+    bl UpdateNewGameMenuUi
     ldrh	r0, [r5, #8]
     movs	r1, #64
     orrs	r0, r1
     strh	r0, [r5, #8]
     adds	r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     add	r0, sp, #16
     adds	r1, r6, #0
     adds	r1, #28
@@ -748,7 +748,7 @@ func_08004570:
     ldr	r3, [r6, #96]
     adds	r0, r6, #0
     adds	r1, r4, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     adds	r4, #1
     cmp	r4, #5
     bls.n .Ljp_0800466E
@@ -763,7 +763,7 @@ func_08004570:
     adds	r0, r6, #0
     bl func_080088B8
     adds	r0, r6, #0
-    bl func_08003C28
+    bl UpdateNewGameMenuUi
     adds	r0, r6, #0
     bl func_080088D4
     adds	r7, r0, #0
@@ -840,7 +840,7 @@ func_08004570:
     ldr	r2, [r6, #120]
     ldr	r3, [r6, #124]
     adds	r0, r6, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldr	r1, [r4, #0]
     ldr	r0, [r6, #8]
     adds	r2, r6, #0
@@ -852,7 +852,7 @@ func_08004570:
     ldr	r3, [r2, #4]
     ldr	r2, [r2, #0]
     adds	r0, r6, #0
-    bl func_08003E88
+    bl SubmitNewGameMenuCursorSprite
 .Ljp_08004762:
     movs	r1, #2
     mov	r9, r1
@@ -879,17 +879,17 @@ func_08004570:
     movs	r0, #0
     str	r0, [r4, #0]
     adds	r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     ldr	r2, [r6, #92]
     ldr	r3, [r6, #96]
     adds	r0, r6, #0
     movs	r1, #1
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldr	r2, [r6, #120]
     ldr	r3, [r6, #124]
     adds	r0, r6, #0
     movs	r1, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     b.n .Ljp_0800468C
     .align 2, 0
 .Ljp_080047B4: .4byte 0xFFFFFE00
@@ -918,14 +918,14 @@ func_08004570:
     ldr	r3, [r6, #96]
     adds	r0, r6, #0
     movs	r1, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldr	r2, [r6, #120]
     ldr	r3, [r6, #124]
     adds	r0, r6, #0
     movs	r1, #1
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     adds	r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     adds	r0, r6, #0
     adds	r0, #24
     movs	r1, #197
@@ -1061,7 +1061,7 @@ func_08004570:
     .4byte .Ljp_08004974
 .Ljp_08004914:
     adds	r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     b.n .Ljp_08004A20
 .Ljp_0800491C:
     ldr	r3, [r6, #8]
@@ -1133,7 +1133,7 @@ func_08004570:
 .Ljp_08004994: .4byte 0x00002210
 .Ljp_08004998:
     adds	r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     adds	r0, r6, #0
     adds	r0, #133
     ldrb	r0, [r0, #0]
@@ -1156,7 +1156,7 @@ func_08004570:
     ldr	r3, [r6, #96]
     adds	r0, r6, #0
     movs	r1, #2
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldrb	r0, [r4, #0]
     lsrs	r0, r0, #1
     mov	r2, r8
@@ -1169,7 +1169,7 @@ func_08004570:
     ldr	r3, [r6, #96]
     adds	r0, r6, #0
     movs	r1, #3
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldrb	r0, [r4, #0]
     lsrs	r0, r0, #2
     mov	r1, r8
@@ -1182,7 +1182,7 @@ func_08004570:
     ldr	r3, [r6, #96]
     adds	r0, r6, #0
     movs	r1, #4
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldrb	r0, [r4, #0]
     lsrs	r0, r0, #3
     mov	r2, r8
@@ -1195,13 +1195,13 @@ func_08004570:
     ldr	r3, [r6, #96]
     adds	r0, r6, #0
     movs	r1, #5
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
 .Ljp_08004A20:
     ldr	r1, [r5, #0]
     ldr	r2, [r6, #120]
     ldr	r3, [r6, #124]
     adds	r0, r6, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     b.n .Ljp_08004AAA
 .Ljp_08004A2E:
     ldr	r0, [r6, #8]
@@ -1255,19 +1255,19 @@ func_08004570:
     ldr	r3, [r6, #96]
     adds	r0, r6, #0
     adds	r1, r4, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldr	r1, [r5, #0]
     ldr	r2, [r6, #120]
     ldr	r3, [r6, #124]
     adds	r0, r6, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldr	r1, [r5, #0]
     ldr	r2, [r6, #120]
     ldr	r3, [r6, #124]
     adds	r0, r6, #0
-    bl func_08003E88
+    bl SubmitNewGameMenuCursorSprite
     adds	r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
 .Ljp_08004AAA:
     adds	r0, r6, #0
     adds	r0, #24
@@ -1330,7 +1330,7 @@ func_08004570:
     movs	r1, #197
     bl func_08008B6C
     adds	r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     movs	r0, #0
     str	r0, [r5, #0]
     b.n .Ljp_0800468C
@@ -1343,7 +1343,7 @@ func_08004570:
     b.n .Ljp_0800468C
 .Ljp_08004B40:
     adds	r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     movs	r0, #0
 .Ljp_08004B48:
     mov	r1, sl
@@ -3875,8 +3875,8 @@ FormatNewGameSaveSlotSummary: @ Original US 0x08003788; body remains native.
 
     .section .text.new_game_after_fades
 
-    thumb_func_start func_08003C80
-func_08003C80: @ 0x08003C80
+    thumb_func_start RenderNewGameMenuLabelTiles
+RenderNewGameMenuLabelTiles: @ 0x08003C80
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -4104,7 +4104,7 @@ func_08004570: @ 0x08004570
     strh r0, [r1]
     strh r0, [r5, #0xc]
     adds r0, r6, #0
-    bl func_08003C80
+    bl RenderNewGameMenuLabelTiles
     adds r4, r6, #0
     adds r4, #0x10
     adds r0, r4, #0
@@ -4113,13 +4113,13 @@ func_08004570: @ 0x08004570
     adds r0, r4, #0
     bl func_08050D68
     adds r0, r6, #0
-    bl func_08003C28
+    bl UpdateNewGameMenuUi
     ldrh r0, [r5, #8]
     movs r1, #0x40
     orrs r0, r1
     strh r0, [r5, #8]
     adds r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     add r0, sp, #0x10
     adds r1, r6, #0
     adds r1, #0x1c
@@ -4155,7 +4155,7 @@ func_08004570: @ 0x08004570
     ldr r3, [r6, #0x60]
     adds r0, r6, #0
     adds r1, r4, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     adds r4, #1
     cmp r4, #5
     bls .L08004656
@@ -4170,7 +4170,7 @@ func_08004570: @ 0x08004570
     adds r0, r6, #0
     bl func_080088B8
     adds r0, r6, #0
-    bl func_08003C28
+    bl UpdateNewGameMenuUi
     adds r0, r6, #0
     bl func_080088D4
     adds r7, r0, #0
@@ -4247,7 +4247,7 @@ func_08004570: @ 0x08004570
     ldr r2, [r6, #0x78]
     ldr r3, [r6, #0x7c]
     adds r0, r6, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldr r1, [r4]
     ldr r0, [r6, #8]
     adds r2, r6, #0
@@ -4259,7 +4259,7 @@ func_08004570: @ 0x08004570
     ldr r3, [r2, #4]
     ldr r2, [r2]
     adds r0, r6, #0
-    bl func_08003E88
+    bl SubmitNewGameMenuCursorSprite
 .L0800474A:
     movs r1, #2
     mov sb, r1
@@ -4286,17 +4286,17 @@ func_08004570: @ 0x08004570
     movs r0, #0
     str r0, [r4]
     adds r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     ldr r2, [r6, #0x5c]
     ldr r3, [r6, #0x60]
     adds r0, r6, #0
     movs r1, #1
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldr r2, [r6, #0x78]
     ldr r3, [r6, #0x7c]
     adds r0, r6, #0
     movs r1, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     b .L08004674
     .align 2, 0
 .L0800479C: .4byte 0xFFFFFE00
@@ -4325,14 +4325,14 @@ func_08004570: @ 0x08004570
     ldr r3, [r6, #0x60]
     adds r0, r6, #0
     movs r1, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldr r2, [r6, #0x78]
     ldr r3, [r6, #0x7c]
     adds r0, r6, #0
     movs r1, #1
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     adds r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     adds r0, r6, #0
     adds r0, #0x18
     movs r1, #0xc5
@@ -4468,7 +4468,7 @@ func_08004570: @ 0x08004570
     .4byte .L0800495C @ case 5
 .L080048FC:
     adds r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     b .L08004A08
 .L08004904:
     ldr r3, [r6, #8]
@@ -4540,7 +4540,7 @@ func_08004570: @ 0x08004570
 .L0800497C: .4byte 0x00002210
 .L08004980:
     adds r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     adds r0, r6, #0
     adds r0, #0x85
     ldrb r0, [r0]
@@ -4563,7 +4563,7 @@ func_08004570: @ 0x08004570
     ldr r3, [r6, #0x60]
     adds r0, r6, #0
     movs r1, #2
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldrb r0, [r4]
     lsrs r0, r0, #1
     mov r2, r8
@@ -4576,7 +4576,7 @@ func_08004570: @ 0x08004570
     ldr r3, [r6, #0x60]
     adds r0, r6, #0
     movs r1, #3
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldrb r0, [r4]
     lsrs r0, r0, #2
     mov r1, r8
@@ -4589,7 +4589,7 @@ func_08004570: @ 0x08004570
     ldr r3, [r6, #0x60]
     adds r0, r6, #0
     movs r1, #4
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldrb r0, [r4]
     lsrs r0, r0, #3
     mov r2, r8
@@ -4602,13 +4602,13 @@ func_08004570: @ 0x08004570
     ldr r3, [r6, #0x60]
     adds r0, r6, #0
     movs r1, #5
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
 .L08004A08:
     ldr r1, [r5]
     ldr r2, [r6, #0x78]
     ldr r3, [r6, #0x7c]
     adds r0, r6, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     b .L08004A92
 .L08004A16:
     ldr r0, [r6, #8]
@@ -4662,19 +4662,19 @@ func_08004570: @ 0x08004570
     ldr r3, [r6, #0x60]
     adds r0, r6, #0
     adds r1, r4, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldr r1, [r5]
     ldr r2, [r6, #0x78]
     ldr r3, [r6, #0x7c]
     adds r0, r6, #0
-    bl func_08003DF0
+    bl SubmitNewGameMenuChoiceSprite
     ldr r1, [r5]
     ldr r2, [r6, #0x78]
     ldr r3, [r6, #0x7c]
     adds r0, r6, #0
-    bl func_08003E88
+    bl SubmitNewGameMenuCursorSprite
     adds r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
 .L08004A92:
     adds r0, r6, #0
     adds r0, #0x18
@@ -4737,7 +4737,7 @@ func_08004570: @ 0x08004570
     movs r1, #0xc5
     bl func_08008B6C
     adds r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     movs r0, #0
     str r0, [r5]
     b .L08004674
@@ -4750,7 +4750,7 @@ func_08004570: @ 0x08004570
     b .L08004674
 .L08004B28:
     adds r0, r6, #0
-    bl func_08003EEC
+    bl UpdateNewGameMenuStatusText
     movs r0, #0
 .L08004B30:
     mov r1, sl

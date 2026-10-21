@@ -7,8 +7,8 @@
 
     .section .text.intro_scene_core_after_startup
 
-    thumb_func_start func_08000F5C
-func_08000F5C:
+    thumb_func_start InitializeIntroSceneBackground
+InitializeIntroSceneBackground:
     push	{r4, r5, lr}
     sub	sp, #4
     adds	r5, r0, #0
@@ -78,7 +78,7 @@ func_08000F5C:
     .4byte gSharedSceneBackgroundLayer1Tilemap
 .L08000FF4:
     .4byte 0x00001F43
-    thumb_func_end func_08000F5C
+    thumb_func_end InitializeIntroSceneBackground
 
     .section .text.intro_scene_core_after_sequence
 
