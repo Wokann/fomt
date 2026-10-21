@@ -20,6 +20,31 @@ Farmer::Farmer(char const * arg_1, GameDate const & arg_2)
 {
 }
 
+Farmer::Farmer(Farmer const & other)
+    : unk_00(other.unk_00),
+      unk_10(other.unk_10),
+      unk_20(other.unk_20),
+      location(other.location),
+      unk_2C(other.unk_2C),
+      num_power_berries(other.num_power_berries),
+      unk_44_04(other.unk_44_04),
+      unk_44_05(other.unk_44_05),
+      unk_44_06(other.unk_44_06),
+      stamina(other.stamina),
+      unk_44_0F(other.unk_44_0F),
+      unk_44_17(other.unk_44_17),
+      step_count(other.step_count),
+      unk_48_1D(other.unk_48_1D),
+      unk_4C_00(other.unk_4C_00),
+      deepest_mine_floor(other.deepest_mine_floor),
+      unk_4C_0F(other.unk_4C_0F),
+      unk_50_0D(other.unk_50_0D),
+      unk_54(other.unk_54),
+      unk_5C(other.unk_5C),
+      rucksack(other.rucksack)
+{
+}
+
 EC char const * func_0800E4E0(Farmer const & self)
 {
     return self.unk_00;

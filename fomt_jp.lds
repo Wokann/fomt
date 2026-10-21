@@ -178,13 +178,13 @@ SECTIONS
         . = 0xE2C4; /* JP ROM 0x0800E2C4, independently matched */
         src/time_of_day.o(.text.func_0800E2E4 .text.func_0800E304 .text.func_0800E324);
         . = 0xE334; /* JP ROM 0x0800E334, independently matched */
-        src/farmer.o(.text);
+        src/farmer.o(.text .text.__6FarmerPCcRC8GameDate .text.__Q* .text.[A-Za-z]*);
         . = 0xEFCC; /* JP ROM 0x0800EFCC, independently matched */
         src/rucksack_item.o(.text);
         . = 0xF150; /* JP ROM 0x0800F150, independently matched */
         src/held_item.o(.text);
         . = 0xF554; /* JP ROM 0x0800F554, independently matched */
-        src/rucksack.o(.text .text.__* .text.[A-Za-z]*);
+        src/rucksack.o(.text .text.__8Rucksack .text.[A-Za-z]*);
         . = 0xFF6C; /* JP ROM 0x0800FF6C, independently matched */
         src/more_items.o(.text);
         asm/more_items.o(.text);
@@ -869,7 +869,8 @@ SECTIONS
         asm/code_linkonce.o(.text.save_image_after_destructor);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         . = 0xD6078; /* JP ROM 0x080D6078, independently matched */
-        asm/code_linkonce.o(.text.code_080D68C0);
+        src/farmer.o(.text.__6FarmerRC6Farmer);
+        src/rucksack.o(.text.__8RucksackRC8Rucksack);
         src/rucksack.o(.text._._8Rucksack);
         src/money_account.o(.text.__12MoneyAccountRC12MoneyAccount);
         src/money_account.o(.text._._12MoneyAccount);

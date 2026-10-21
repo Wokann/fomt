@@ -355,7 +355,7 @@ $(BUILD_DIR)/src/font_draw.o: CXXFLAGS += -ffunction-sections
 
 # Saved-state and inventory lifetimes retain their native linkonce positions.
 # Use compiler-owned function sections, not source section attributes.
-$(BUILD_DIR)/src/game_state.o $(BUILD_DIR)/src/rucksack.o $(BUILD_DIR)/src/money_account.o: CXXFLAGS += -ffunction-sections
+$(BUILD_DIR)/src/game_state.o $(BUILD_DIR)/src/rucksack.o $(BUILD_DIR)/src/money_account.o $(BUILD_DIR)/src/farmer.o: CXXFLAGS += -ffunction-sections
 
 # Recovered scene, world and map functions surround still-native routines.
 # Keep each functional module at its original compiler-owned code positions.

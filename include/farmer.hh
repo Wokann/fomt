@@ -37,6 +37,7 @@ struct Farmer
     };
 
     Farmer(char const * arg_1, GameDate const & arg_2);
+    Farmer(Farmer const & other);
 
     FixedStr<12> unk_00; /* name? */
     FixedStr<12> unk_10;
@@ -60,6 +61,11 @@ struct Farmer
     ToolStack unk_5C; /* held tool? */
     Rucksack rucksack;
 };
+
+typedef char FarmerToolLevelSizeCheck[sizeof(Farmer::ToolLevel) == 4 ? 1 : -1];
+typedef char FarmerHeldItemOffsetCheck[offsetof(Farmer, unk_54) == 0x54 ? 1 : -1];
+typedef char FarmerRucksackOffsetCheck[offsetof(Farmer, rucksack) == 0x60 ? 1 : -1];
+typedef char FarmerSizeCheck[sizeof(Farmer) == 0x98 ? 1 : -1];
 
 /* Farmer methods */
 EC char const * func_0800E4E0(Farmer const & self);

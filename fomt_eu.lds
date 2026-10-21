@@ -145,10 +145,10 @@ SECTIONS
         src/barn.o(.text);
         src/item.o(.text);
         src/time_of_day.o(.text.func_0800E2E4 .text.func_0800E304 .text.func_0800E324);
-        src/farmer.o(.text);
+        src/farmer.o(.text .text.__6FarmerPCcRC8GameDate .text.__Q* .text.[A-Za-z]*);
         src/rucksack_item.o(.text);
         src/held_item.o(.text);
-        src/rucksack.o(.text .text.__* .text.[A-Za-z]*);
+        src/rucksack.o(.text .text.__8Rucksack .text.[A-Za-z]*);
         src/more_items.o(.text);
         asm/more_items.o(.text);
         src/game_scene.o(.text.Run__25GameSceneScriptController);
@@ -793,7 +793,8 @@ SECTIONS
         src/game_state.o(.text._._18GameStateSaveImage);
         asm/code_linkonce.o(.text.save_image_after_destructor);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
-        asm/code_linkonce.o(.text.code_080D68C0);
+        src/farmer.o(.text.__6FarmerRC6Farmer);
+        src/rucksack.o(.text.__8RucksackRC8Rucksack);
         src/rucksack.o(.text._._8Rucksack);
         src/money_account.o(.text.__12MoneyAccountRC12MoneyAccount);
         src/money_account.o(.text._._12MoneyAccount);
