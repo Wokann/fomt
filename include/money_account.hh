@@ -17,6 +17,26 @@ struct MoneyAccountRecord {
 // income/expense fields are verified, but their time periods are not yet named.
 template <unsigned Capacity>
 struct MoneyAccountHistory {
+    // The owning initializer sets count; default construction preserves storage.
+    MoneyAccountHistory() {}
+    MoneyAccountHistory(MoneyAccountHistory const & other) : count(0)
+    {
+        u32 active = other.count;
+        MoneyAccountRecord const * start = other.Begin();
+        // The record arena is word storage; derive its byte extent from the type.
+        u32 end_address = active * sizeof(MoneyAccountRecord);
+        end_address += reinterpret_cast<u32>(start);
+        MoneyAccountRecord const * last = reinterpret_cast<MoneyAccountRecord const *>(end_address);
+        MoneyAccountRecord const * first = other.Begin();
+        MoneyAccountRecord * destination = Begin();
+        while (first != last) {
+            new (destination) MoneyAccountRecord(*first);
+            ++first;
+            ++destination;
+        }
+        count = active;
+    }
+
     // End only the active record lifetimes; do not clear or reset storage.
     ~MoneyAccountHistory()
     {
@@ -97,8 +117,16 @@ struct MoneyAccountHistory {
     }
 };
 
+// Each native maximum is one income/expense pair, copied as an eight-byte value.
+// Plain default initialization leaves it for InitializeMoneyAccount to fill.
+struct MoneyAccountMaximumRecord {
+    u32 income;
+    u32 expense;
+};
+
 struct MoneyAccount {
     MoneyAccount();
+    MoneyAccount(MoneyAccount const & other);
     ~MoneyAccount();
 
     u32 balance;
@@ -108,19 +136,21 @@ struct MoneyAccount {
     u8 unk_05[3];
     MoneyAccountHistory<30> history_08;
     MoneyAccountHistory<4> history_FC;
-    u32 max_income_08;
-    u32 max_expense_08;
-    u32 max_income_FC;
-    u32 max_expense_FC;
+    MoneyAccountMaximumRecord maximum_08;
+    MoneyAccountMaximumRecord maximum_FC;
 
     u32 GetBalance() const { return balance; }
 };
+
+typedef char MoneyAccountMaximumRecordSizeCheck[sizeof(MoneyAccountMaximumRecord) == 8 ? 1 : -1];
 
 typedef char MoneyAccountRecordSizeCheck[sizeof(MoneyAccountRecord) == 8 ? 1 : -1];
 typedef char MoneyAccountSizeCheck[sizeof(MoneyAccount) == 0x130 ? 1 : -1];
 typedef char MoneyAccountHistory08Check[offsetof(MoneyAccount, history_08) == 8 ? 1 : -1];
 typedef char MoneyAccountHistoryFCCheck[offsetof(MoneyAccount, history_FC) == 0xFC ? 1 : -1];
-typedef char MoneyAccountMaximaCheck[offsetof(MoneyAccount, max_income_08) == 0x120 ? 1 : -1];
+typedef char MoneyAccountMaximaCheck[offsetof(MoneyAccount, maximum_08) == 0x120 ? 1 : -1];
+
+typedef char MoneyAccountMaximumFCCheck[offsetof(MoneyAccount, maximum_FC) == 0x128 ? 1 : -1];
 
 EXTERN_C
 

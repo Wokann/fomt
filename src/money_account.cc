@@ -1,5 +1,12 @@
 #include "money_account.hh"
 
+MoneyAccount::MoneyAccount(MoneyAccount const & other)
+    : balance(other.balance), unk_04_0(other.unk_04_0), unk_04_1(other.unk_04_1),
+      history_08(other.history_08), history_FC(other.history_FC),
+      maximum_08(other.maximum_08), maximum_FC(other.maximum_FC)
+{
+}
+
 MoneyAccount::~MoneyAccount()
 {
 }
@@ -17,10 +24,10 @@ MoneyAccount * InitializeMoneyAccount(MoneyAccount * account)
     account->unk_04_1 = 0;
     account->history_08.count = 0;
     account->history_FC.count = 0;
-    account->max_income_08 = 0;
-    account->max_expense_08 = 0;
-    account->max_income_FC = 0;
-    account->max_expense_FC = 0;
+    account->maximum_08.income = 0;
+    account->maximum_08.expense = 0;
+    account->maximum_FC.income = 0;
+    account->maximum_FC.expense = 0;
     UpdateMoneyAccountRecordHistory(account);
     return account;
 }
@@ -69,14 +76,14 @@ bool SubtractMoneyFromAccount(MoneyAccount * account, u32 amount)
 void AppendMoneyAccountRecord30(MoneyAccount * account)
 {
     if (!account->history_08.Empty()) {
-        u32 maximum = account->max_income_08;
+        u32 maximum = account->maximum_08.income;
         u32 current = account->history_08.Last().income;
         if (maximum < current)
-            account->max_income_08 = current;
-        maximum = account->max_expense_08;
+            account->maximum_08.income = current;
+        maximum = account->maximum_08.expense;
         current = account->history_08.Last().expense;
         if (maximum < current)
-            account->max_expense_08 = current;
+            account->maximum_08.expense = current;
     }
     while (account->history_08.Size() >= 30)
         account->history_08.Erase(account->history_08.Begin());
@@ -96,7 +103,7 @@ MoneyAccountRecord const * GetMoneyAccountRecord4(MoneyAccount const * account, 
 u32 GetMoneyAccountMaximumIncome30(MoneyAccount const * account)
 {
     u32 const & current = account->history_08.Last().income;
-    u32 const & maximum = account->max_income_08;
+    u32 const & maximum = account->maximum_08.income;
     u32 const & result = maximum < current ? current : maximum;
     return result;
 }
@@ -104,7 +111,7 @@ u32 GetMoneyAccountMaximumIncome30(MoneyAccount const * account)
 u32 GetMoneyAccountMaximumExpense30(MoneyAccount const * account)
 {
     u32 const & current = account->history_08.Last().expense;
-    u32 const & maximum = account->max_expense_08;
+    u32 const & maximum = account->maximum_08.expense;
     u32 const & result = maximum < current ? current : maximum;
     return result;
 }
@@ -112,7 +119,7 @@ u32 GetMoneyAccountMaximumExpense30(MoneyAccount const * account)
 u32 GetMoneyAccountMaximumIncome4(MoneyAccount const * account)
 {
     u32 const & current = account->history_FC.Last().income;
-    u32 const & maximum = account->max_income_FC;
+    u32 const & maximum = account->maximum_FC.income;
     u32 const & result = maximum < current ? current : maximum;
     return result;
 }
@@ -120,7 +127,7 @@ u32 GetMoneyAccountMaximumIncome4(MoneyAccount const * account)
 u32 GetMoneyAccountMaximumExpense4(MoneyAccount const * account)
 {
     u32 const & current = account->history_FC.Last().expense;
-    u32 const & maximum = account->max_expense_FC;
+    u32 const & maximum = account->maximum_FC.expense;
     u32 const & result = maximum < current ? current : maximum;
     return result;
 }

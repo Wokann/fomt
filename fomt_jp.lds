@@ -626,7 +626,7 @@ SECTIONS
         src/cooking_recipe_inventory.o(.text);
         src/money_account.o(.text.money_account_update);
         asm/code_0803EE94.o(.text.money_account_history);
-        src/money_account.o(.text .text.__* .text.[A-Za-z]*);
+        src/money_account.o(.text .text.__12MoneyAccount .text.[A-Za-z]*);
 
         . = 0x9AB3C; /* JP ROM 0x0809AB3C, independently matched */
 
@@ -871,7 +871,7 @@ SECTIONS
         . = 0xD6078; /* JP ROM 0x080D6078, independently matched */
         asm/code_linkonce.o(.text.code_080D68C0);
         src/rucksack.o(.text._._8Rucksack);
-        asm/code_linkonce.o(.text.money_account_copy_after_rucksack);
+        src/money_account.o(.text.__12MoneyAccountRC12MoneyAccount);
         src/money_account.o(.text._._12MoneyAccount);
         src/new_game.o(.text.new_game_fresh_save_callbacks);
         src/hardware.o(.text.hardware_free_list);
