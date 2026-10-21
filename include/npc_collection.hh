@@ -15,6 +15,7 @@
 struct NpcCollectionLocations
 {
     NpcCollectionLocations();
+    NpcCollectionLocations(NpcCollectionLocations const & other);
 
     /* +00 */ ActorLocation south_town_1_0;
     /* +08 */ ActorLocation south_town_1_1;
@@ -36,6 +37,19 @@ inline NpcCollectionLocations::NpcCollectionLocations()
     InitializeSouthTownNpcLocation2(&south_town_2_2, 2);
     InitializeYodelRanchHouseNpcLocation(&yodel_ranch_house);
     InitializeInnSecondFloorNpcLocation(&inn_second_floor);
+}
+
+// Preserve the eight distinct saved location records, in physical order.
+inline NpcCollectionLocations::NpcCollectionLocations(NpcCollectionLocations const & other)
+    : south_town_1_0(other.south_town_1_0),
+      south_town_1_1(other.south_town_1_1),
+      south_town_1_2(other.south_town_1_2),
+      south_town_2_0(other.south_town_2_0),
+      south_town_2_1(other.south_town_2_1),
+      south_town_2_2(other.south_town_2_2),
+      yodel_ranch_house(other.yodel_ranch_house),
+      inn_second_floor(other.inn_second_floor)
+{
 }
 
 // The wedding-date readers use the same year encoding as GameCalendar and
@@ -64,7 +78,13 @@ struct Farm;
 
 struct NpcCollection
 {
+    // Seven saved assignments are copied as one value, including empty slots.
+    struct WorkTargets {
+        HarvestSpriteWorkTarget values[7];
+    };
+
     NpcCollection();
+    NpcCollection(NpcCollection const & other);
 
     // IDs are the canonical Mary character IDs. Unsupported IDs return null;
     // the child is available only when has_child is set. Sprite slots are 0-6.
@@ -158,10 +178,13 @@ struct NpcCollection
     /* +3CC */ HarvestSprite aqua;
     /* +3F0 */ HarvestSprite hoggy;
     /* +414 */ HarvestSprite timid;
-    /* +438 */ HarvestSpriteWorkTarget work_targets[7];
+    /* +438 */ WorkTargets work_targets;
     /* +470 */ u32 days_since_pregnancy_event;
     /* +474 */ u8 unk_474;
 };
+
+typedef char NpcCollectionWorkTargetValueSizeCheck[sizeof(NpcCollection::WorkTargets) == 0x38 ? 1 : -1];
+typedef char NpcCollectionWorkTargetValuesOffsetCheck[offsetof(NpcCollection::WorkTargets, values) == 0 ? 1 : -1];
 
 typedef char NpcCollectionLocationsSizeCheck[sizeof(NpcCollectionLocations) == 0x40 ? 1 : -1];
 typedef char NpcCollectionSizeCheck[sizeof(NpcCollection) == 0x478 ? 1 : -1];

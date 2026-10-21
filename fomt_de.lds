@@ -801,6 +801,7 @@ SECTIONS
         asm/code_linkonce.o(.text.new_game_after_controller_records);
         src/game_state.o(.text._._18GameStateSaveImage);
         asm/code_linkonce.o(.text.save_image_after_destructor);
+        src/npc_collection.o(.text.__13NpcCollectionRC13NpcCollection);
         src/farm.o(.text.__4FarmRC4Farm);
         src/farm.o(.gnu.linkonce.t.__4BarnRC4Barn);
         src/farm.o(.gnu.linkonce.t.__4CoopRC4Coop);

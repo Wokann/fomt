@@ -62,6 +62,64 @@ NpcCollection::NpcCollection()
     // The remaining state bits, child walking bit and object padding are not cleared.
 }
 
+NpcCollection::NpcCollection(NpcCollection const & other)
+    : unk_00_0(other.unk_00_0),
+      unk_00_6(other.unk_00_6),
+      library_second_floor_visit_count(other.library_second_floor_visit_count),
+      library_second_floor_visited_today(other.library_second_floor_visited_today),
+      unk_02_6(other.unk_02_6),
+      has_child(other.has_child),
+      unk_03_2(other.unk_03_2),
+      child(other.child),
+      wedding_date(other.wedding_date),
+      locations(other.locations),
+      lillia(other.lillia),
+      rick(other.rick),
+      popuri(other.popuri),
+      barley(other.barley),
+      may(other.may),
+      saibara(other.saibara),
+      gray(other.gray),
+      duke(other.duke),
+      manna(other.manna),
+      basil(other.basil),
+      anna(other.anna),
+      mary(other.mary),
+      thomas(other.thomas),
+      harris(other.harris),
+      ellen(other.ellen),
+      stu(other.stu),
+      jeff(other.jeff),
+      sasha(other.sasha),
+      karen(other.karen),
+      doctor(other.doctor),
+      elli(other.elli),
+      carter(other.carter),
+      cliff(other.cliff),
+      doug(other.doug),
+      ann(other.ann),
+      kai(other.kai),
+      gotz(other.gotz),
+      zack(other.zack),
+      won(other.won),
+      gourmet(other.gourmet),
+      harvest_goddess(other.harvest_goddess),
+      kappa(other.kappa),
+      van(other.van),
+      lou(other.lou),
+      staid(other.staid),
+      nappy(other.nappy),
+      bold(other.bold),
+      chef(other.chef),
+      aqua(other.aqua),
+      hoggy(other.hoggy),
+      timid(other.timid),
+      work_targets(other.work_targets),
+      days_since_pregnancy_event(other.days_since_pregnancy_event),
+      unk_474(other.unk_474)
+{
+}
+
 Npc * NpcCollection::GetNpc(u32 character_id)
 {
     switch (character_id) {
@@ -307,19 +365,19 @@ void NpcCollection::DayUpdate(GameStateClock const & clock, GameEventState const
         child.DayUpdate();
 
     ResetHarvestSpriteForDay(staid, 0);
-    ClearHarvestSpriteWorkTarget(work_targets, 0);
+    ClearHarvestSpriteWorkTarget(work_targets.values, 0);
     ResetHarvestSpriteForDay(nappy, 1);
-    ClearHarvestSpriteWorkTarget(work_targets, 1);
+    ClearHarvestSpriteWorkTarget(work_targets.values, 1);
     ResetHarvestSpriteForDay(bold, 2);
-    ClearHarvestSpriteWorkTarget(work_targets, 2);
+    ClearHarvestSpriteWorkTarget(work_targets.values, 2);
     ResetHarvestSpriteForDay(chef, 3);
-    ClearHarvestSpriteWorkTarget(work_targets, 3);
+    ClearHarvestSpriteWorkTarget(work_targets.values, 3);
     ResetHarvestSpriteForDay(aqua, 4);
-    ClearHarvestSpriteWorkTarget(work_targets, 4);
+    ClearHarvestSpriteWorkTarget(work_targets.values, 4);
     ResetHarvestSpriteForDay(hoggy, 5);
-    ClearHarvestSpriteWorkTarget(work_targets, 5);
+    ClearHarvestSpriteWorkTarget(work_targets.values, 5);
     ResetHarvestSpriteForDay(timid, 6);
-    ClearHarvestSpriteWorkTarget(work_targets, 6);
+    ClearHarvestSpriteWorkTarget(work_targets.values, 6);
 
     if (events.popuri_pregnancy_event_state == 2 || events.ann_pregnancy_event_state == 2
         || events.elli_pregnancy_event_state == 2 || events.karen_pregnancy_event_state == 2

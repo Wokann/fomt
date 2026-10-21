@@ -2,6 +2,7 @@
 #define CHILD_HH
 
 #include "npc.hh"
+#include "utility/fixed_str.hh"
 #include "unknown_types.hh"
 
 // The child is an actual Npc subclass at save-image +0x1CD8.
@@ -18,9 +19,10 @@ struct Child : public Npc
     void DayUpdate();
     void SetName(char const * value);
 
-    // Physical storage is 16 bytes; native copies are capped at 12 encoded bytes.
-    char name[0x10];
-    GameDate birthday;
+    // The physical slot is 16 bytes: twelve encoded bytes plus a terminator,
+    // then three alignment bytes before the birthday. Input remains capped at 12.
+    FixedStr<12> name;
+    GameDate birthday ALIGN(4);
     u8 age_days;
     bool can_walk : 1;
     u8 : 7;

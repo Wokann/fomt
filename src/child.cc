@@ -4,19 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-static inline void CopyChildName(char * destination, char const * source)
-{
-    u32 length = strlen(source);
-    if (length > 12)
-        length = 12;
-    memcpy(destination, source, length);
-    destination[length] = 0;
-}
-
 Child::Child()
-    : Npc(ActorLocation(Location(MAP_FARMHOUSE, 100, 100), FACING_DOWN))
+    : Npc(ActorLocation(Location(MAP_FARMHOUSE, 100, 100), FACING_DOWN)),
+      name(gText_CharacterName_Empty)
 {
-    CopyChildName(name, gText_CharacterName_Empty);
     birthday.season = SEASON_SPRING;
     birthday.day = 0;
     age_days = 0;
@@ -24,9 +15,8 @@ Child::Child()
 }
 
 Child::Child(GameDate const & a_birthday, ActorLocation const & location)
-    : Npc(location)
+    : Npc(location), name(gText_CharacterName_Empty)
 {
-    CopyChildName(name, gText_CharacterName_Empty);
     // Native birth initialization copies the entire packed date, including its spare bit.
     birthday = a_birthday;
     age_days = 0;
@@ -35,7 +25,7 @@ Child::Child(GameDate const & a_birthday, ActorLocation const & location)
 
 char * Child::GetName()
 {
-    return name;
+    return &name[0];
 }
 
 u8 Child::GetBirthdayCode() const
@@ -68,5 +58,5 @@ void Child::DayUpdate()
 
 void Child::SetName(char const * value)
 {
-    CopyChildName(name, value);
+    name = value;
 }
