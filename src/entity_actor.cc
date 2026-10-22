@@ -350,3 +350,35 @@ ActorMovementBounds ActorMovementBounds::Empty()
     result.unk_13 = true;
     return result;
 }
+
+void ActorMovementBounds::ClipAgainstBox(Box const & other, u32 clear_flags)
+{
+    if (box.x1 < other.x2 && other.x1 < box.x2) {
+        i32 dy = box.y2 - other.y1;
+        if (dy <= 0 && dy + GetDown() > 0) {
+            down_limit = -dy;
+            if (clear_flags == 1)
+                unk_10 = false;
+        }
+        dy = box.y1 - other.y2;
+        if (dy >= 0 && dy + GetUp() < 0) {
+            up_limit = -dy;
+            if (clear_flags == 1)
+                unk_11 = false;
+        }
+    }
+    if (box.y1 < other.y2 && other.y1 < box.y2) {
+        i32 dx = box.x1 - other.x2;
+        if (dx >= 0 && dx + GetLeft() < 0) {
+            left_limit = -dx;
+            if (clear_flags == 1)
+                unk_12 = false;
+        }
+        dx = box.x2 - other.x1;
+        if (dx <= 0 && dx + GetRight() > 0) {
+            right_limit = -dx;
+            if (clear_flags == 1)
+                unk_13 = false;
+        }
+    }
+}

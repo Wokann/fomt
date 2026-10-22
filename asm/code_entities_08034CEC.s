@@ -4082,7 +4082,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080AB4C8
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Ljp_080370A4:
     ldr	r0, [r7, #0]
     ldr	r1, [r0, #0]
@@ -4104,7 +4104,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080AB4C8
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Ljp_080370D4:
     adds	r2, r7, #0
     adds	r2, #52	@ 0x34
@@ -4125,7 +4125,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r2, #0
     movs	r2, #0
-    bl func_080AB4C8
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Ljp_080370FE:
     ldrh	r4, [r7, #62]	@ 0x3e
     cmp	r4, #0
@@ -9242,7 +9242,7 @@ func_08039A60:
     mov	r0, r8
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080AB4C8
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Ljp_080399CC:
     ldr	r0, [r7, #0]
     ldr	r1, [r0, #0]
@@ -9264,7 +9264,7 @@ func_08039A60:
     mov	r0, r8
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080AB4C8
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Ljp_080399FC:
     ldr	r0, [r7, #52]	@ 0x34
     ldr	r0, [r0, #12]
@@ -14701,7 +14701,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Leu_08037324:
     ldr	r0, [r7, #0]
     ldr	r1, [r0, #0]
@@ -14723,7 +14723,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Leu_08037354:
     adds	r2, r7, #0
     adds	r2, #52	@ 0x34
@@ -14744,7 +14744,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r2, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Leu_0803737E:
     ldrh	r4, [r7, #62]	@ 0x3e
     cmp	r4, #0
@@ -19943,7 +19943,7 @@ func_08039A60:
     mov	r0, r8
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Leu_08039C4C:
     ldr	r0, [r7, #0]
     ldr	r1, [r0, #0]
@@ -19965,7 +19965,7 @@ func_08039A60:
     mov	r0, r8
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Leu_08039C7C:
     ldr	r0, [r7, #52]	@ 0x34
     ldr	r0, [r0, #12]
@@ -25551,7 +25551,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Lde_08037224:
     ldr	r0, [r7, #0]
     ldr	r1, [r0, #0]
@@ -25573,7 +25573,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Lde_08037254:
     adds	r2, r7, #0
     adds	r2, #52	@ 0x34
@@ -25594,7 +25594,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r2, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Lde_0803727E:
     ldrh	r4, [r7, #62]	@ 0x3e
     cmp	r4, #0
@@ -30793,7 +30793,7 @@ func_08039A60:
     mov	r0, r8
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Lde_08039B4C:
     ldr	r0, [r7, #0]
     ldr	r1, [r0, #0]
@@ -30815,7 +30815,7 @@ func_08039A60:
     mov	r0, r8
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Lde_08039B7C:
     ldr	r0, [r7, #52]	@ 0x34
     ldr	r0, [r0, #12]
@@ -36400,7 +36400,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Lus_08037310:
     ldr	r0, [r7, #0]
     ldr	r1, [r0, #0]
@@ -36422,7 +36422,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Lus_08037340:
     adds	r2, r7, #0
     adds	r2, #52	@ 0x34
@@ -36443,7 +36443,7 @@ func_0803726C:
     mov	r0, r9
     adds	r1, r2, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Lus_0803736A:
     ldrh	r4, [r7, #62]	@ 0x3e
     cmp	r4, #0
@@ -41642,7 +41642,7 @@ func_08039A60:
     mov	r0, r8
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Lus_08039C38:
     ldr	r0, [r7, #0]
     ldr	r1, [r0, #0]
@@ -41664,7 +41664,7 @@ func_08039A60:
     mov	r0, r8
     adds	r1, r4, #0
     movs	r2, #0
-    bl func_080ABA90
+    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
 .Lus_08039C68:
     ldr	r0, [r7, #52]	@ 0x34
     ldr	r0, [r0, #12]

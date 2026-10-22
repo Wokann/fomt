@@ -36,6 +36,9 @@ struct ActorMovementBounds
           terrain(0, 0, 0), box(0, 0), max_distance(1), x_probe(0), y_probe(0) {}
     static ActorMovementBounds Empty() SECTION(".text.actor_movement_bounds");
 
+    // Clip against another box; a value of 1 also clears the affected probe flags.
+    void ClipAgainstBox(Box const & other, u32 clear_flags) SECTION(".text.actor_movement_bounds");
+
     void RefreshDown() SECTION(".text.actor_movement_bounds");
     void RefreshUp() SECTION(".text.actor_movement_bounds");
     void RefreshLeft() SECTION(".text.actor_movement_bounds");
