@@ -735,7 +735,7 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_after_flag_updates);
         src/entity_actor.o(.text.actor_movement_bounds);
         asm/code_809E804.o(.text.actor_movement_bounds_after);
-        src/map_data.o(.text.IsMapTerrainBoxBlocked);
+        src/map_data.o(.text.IsMapTerrainBoxBlocked .text.ClipMapTerrainMovement);
         asm/code_809E804.o(.text.game_map_after_terrain_query);
         asm/world_runtime.o(.text);
         asm/code_809E804.o(.text.world_runtime_after);
