@@ -5722,7 +5722,7 @@ func_080A4A94: @ 0x080A44CC
 	bx r1
 	.align 2, 0
 .Ljp_080A4B64: .4byte vtable_unk_080E82D4
-.Ljp_080A4B68: .4byte vtable_unk_080E82FC
+.Ljp_080A4B68: .4byte __vt_25MapViewportTilemapCommand
 
     .global func_080A4B6C
     .thumb_func
@@ -6675,63 +6675,8 @@ func_080A4F50: @ 0x080A4988
 	.align 2, 0
 .Ljp_080A566C: .4byte gMapTilePatch9
 
-    .global func_080A5670
-    .thumb_func
-func_080A5670: @ 0x080A50A8
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	mov r8, r0
-	ldrh r0, [r0, #0x24]
-	lsls r0, r0, #1
-	mov sb, r0
-	ldr r0, .Ljp_080A56D4 @ =0x040000D4
-	mov sl, r0
-	movs r1, #0
-.Ljp_080A5688:
-	lsls r2, r1, #3
-	mov r0, r8
-	adds r0, #0xc
-	adds r0, r0, r2
-	ldr r0, [r0]
-	adds r7, r1, #1
-	cmp r0, #0
-	beq .Ljp_080A56BC
-	adds r5, r0, #0
-	mov r0, r8
-	adds r0, #0x10
-	adds r0, r0, r2
-	ldr r4, [r0]
-	movs r1, #0xa8
-	lsls r1, r1, #3
-	adds r6, r4, r1
-.Ljp_080A56A8:
-	adds r0, r5, #0
-	adds r1, r4, #0
-	ldr r2, .Ljp_080A56D8 @ =0x8000001F
-	mov r3, sl
-	bl WriteHardwareDmaRegisters
-	add r5, sb
-	adds r4, #0x40
-	cmp r4, r6
-	bne .Ljp_080A56A8
-.Ljp_080A56BC:
-	adds r1, r7, #0
-	cmp r1, #2
-	bls .Ljp_080A5688
-	movs r0, #0
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_080A56D4: .4byte 0x040000D4
-.Ljp_080A56D8: .4byte 0x8000001F
+    .section .text.game_map_after_viewport_command, "ax", %progbits
+    .align 2, 0
 
     .global func_080A56DC
     .thumb_func
@@ -83102,7 +83047,7 @@ func_080A4A94: @ 0x080A4A94
 	adds r2, #0x5c
 	str r0, [r4, #0x5c]
 	str r0, [r2, #4]
-	ldr r1, .L080A4B68 @ =vtable_unk_080E830C
+	ldr r1, .L080A4B68 @ =__vt_25MapViewportTilemapCommand
 	str r1, [r2, #8]
 	adds r1, r4, #0
 	adds r1, #0x8c
@@ -83139,7 +83084,7 @@ func_080A4A94: @ 0x080A4A94
 	bx r1
 	.align 2, 0
 .L080A4B64: .4byte vtable_unk_080E82E4
-.L080A4B68: .4byte vtable_unk_080E830C
+.L080A4B68: .4byte __vt_25MapViewportTilemapCommand
 
 	thumb_func_start func_080A4B6C
 func_080A4B6C: @ 0x080A4B6C
@@ -84090,62 +84035,8 @@ func_080A4F50: @ 0x080A4F50
 	.align 2, 0
 .L080A566C: .4byte gMapTilePatch9
 
-	thumb_func_start func_080A5670
-func_080A5670: @ 0x080A5670
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	mov r8, r0
-	ldrh r0, [r0, #0x24]
-	lsls r0, r0, #1
-	mov sb, r0
-	ldr r0, .L080A56D4 @ =0x040000D4
-	mov sl, r0
-	movs r1, #0
-.L080A5688:
-	lsls r2, r1, #3
-	mov r0, r8
-	adds r0, #0xc
-	adds r0, r0, r2
-	ldr r0, [r0]
-	adds r7, r1, #1
-	cmp r0, #0
-	beq .L080A56BC
-	adds r5, r0, #0
-	mov r0, r8
-	adds r0, #0x10
-	adds r0, r0, r2
-	ldr r4, [r0]
-	movs r1, #0xa8
-	lsls r1, r1, #3
-	adds r6, r4, r1
-.L080A56A8:
-	adds r0, r5, #0
-	adds r1, r4, #0
-	ldr r2, .L080A56D8 @ =0x8000001F
-	mov r3, sl
-	bl WriteHardwareDmaRegisters
-	add r5, sb
-	adds r4, #0x40
-	cmp r4, r6
-	bne .L080A56A8
-.L080A56BC:
-	adds r1, r7, #0
-	cmp r1, #2
-	bls .L080A5688
-	movs r0, #0
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080A56D4: .4byte 0x040000D4
-.L080A56D8: .4byte 0x8000001F
+    .section .text.game_map_after_viewport_command, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080A56DC
 func_080A56DC: @ 0x080A56DC

@@ -723,6 +723,8 @@ SECTIONS
         asm/code_809E804.o(.text.game_scene_indexed_sprite_after);
         src/world_map.o(.text.UpdateWorldMap);
         asm/code_809E804.o(.text.game_map_after_update);
+        src/world_map.o(.text.Run__25MapViewportTilemapCommand);
+        asm/code_809E804.o(.text.game_map_after_viewport_command);
         src/world_map.o(.text.ClampWorldMapCameraPosition .text.SetWorldMapCameraPosition .text.PanWorldMapCameraTo .text.IsWorldMapCameraMovementComplete);
         asm/code_809E804.o(.text.game_map_after_camera_query);
         src/world_map.o(.text.ApplyMapTilePatch);
@@ -944,6 +946,7 @@ SECTIONS
         src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);
         asm/code_linkonce.o(.text.sprite_work_target_search_after);
         src/game_scene.o(.gnu.linkonce.t._._19SavedNameEntryScene);
+        src/world_map.o(.gnu.linkonce.t._._25MapViewportTilemapCommand);
         asm/code_linkonce.o(.text.after_saved_name_scene_destructor);
         src/game_menu.o(.text.ClearNodes__25GameSceneMenuCommandQueue);
         asm/code_linkonce.o(.text.after_menu_command_node_cleanup);
@@ -1208,7 +1211,7 @@ SECTIONS
 . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82e4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82fc);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_830c);
+. = ALIGN(4); src/world_map.o(.gnu.linkonce.d.__vt_25MapViewportTilemapCommand);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_831c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8344);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8404);

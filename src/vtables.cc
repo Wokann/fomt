@@ -332,8 +332,6 @@ extern void func_080A37A8(void);
 extern void func_080E3980(void);
 extern void func_080A4B6C(void);
 extern void func_080A4F50(void);
-extern void func_080A5670(void);
-extern void func_080E39D0(void);
 extern void func_080E3B50(void);
 extern void func_080AA974(void);
 extern void func_080A6EC4(void);
@@ -591,8 +589,6 @@ extern void func_080E41E8(void);
 extern void func_080A37A8(void);
 extern void func_080A4B6C(void);
 extern void func_080A4F50(void);
-extern void func_080A5670(void);
-extern void func_080E4238(void);
 extern void func_080E43B8(void);
 extern void func_080AAF3C(void);
 extern void func_080A748C(void);
@@ -6404,33 +6400,25 @@ extern RawVTableFunction const vtable_unk_080E82E4[]
 #endif
     };
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E82FC[]
     SECTION(".rodata.vtable_82fc") = {
-#if defined(REGION_JP)
-        nullptr,
-        nullptr,
-        func_080A5670,
-        func_080E39D0,
-#else
         SelectDefaultWorldMapData,
         LoadWorldMapTiles,
         LoadWorldMapTilemaps,
         LoadWorldMapTimeOfDayPalette,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E830C[]
     SECTION(".rodata.vtable_830c") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
         func_080E3B50,
         UpdateSavedMapTileAnimationTimers,
-#else
-        func_080A5670,
-        func_080E4238,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E831C[]

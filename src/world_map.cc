@@ -8,6 +8,7 @@
 #include "hardware_state_accessors.hh"
 #include "time_of_day.hh"
 #include "gbasvc.h"
+#include "gbaio.h"
 #include <string.h>
 
 EC void UpdateWorldMap(GameSceneWorldMapPrefix * map)
@@ -61,6 +62,28 @@ EC void UpdateWorldMap(GameSceneWorldMapPrefix * map)
         map->layout_animations[1].Tick(gMapLayoutTileAnimation3);
         break;
     }
+}
+
+bool MapViewportTilemapCommand::Run()
+{
+    u32 source_stride = source_width * sizeof(u16);
+    volatile HardwareDmaRegisters * registers =
+        reinterpret_cast<volatile HardwareDmaRegisters *>(&REG_DMA3SAD);
+    for (u32 layer = 0; layer < ARRAY_COUNT(layers); ++layer) {
+        u16 const * input = layers[layer].source;
+        if (input != nullptr) {
+            u8 const * source = reinterpret_cast<u8 const *>(input);
+            u16 * destination = layers[layer].destination;
+            u16 * end = destination + 32 * 21;
+            do {
+                WriteHardwareDmaRegisters(source, destination,
+                    (static_cast<u32>(DMA_ENABLE) << 16) | 31, registers);
+                source += source_stride;
+                destination += 32;
+            } while (destination != end);
+        }
+    }
+    return false;
 }
 
 EC Vec2 ClampWorldMapCameraPosition(GameSceneWorldMapPrefix const * map, i32 x, i32 y)

@@ -3,6 +3,7 @@
 
 #include "prelude.h"
 #include "utility/vec2.hh"
+#include "hardware_linked_list.hh"
 #include "field_render_farm_house_data.hh"
 
 struct GameStateSaveImage;
@@ -36,6 +37,25 @@ typedef char MapTilePatchAnimationPendingCheck[offsetof(MapTilePatchAnimationSta
 typedef char MapTilePatchAnimationElapsedCheck[offsetof(MapTilePatchAnimationState, elapsed_frames) == 2 ? 1 : -1];
 typedef char MapTilePatchAnimationStateSizeCheck[sizeof(MapTilePatchAnimationState) == 4 ? 1 : -1];
 
+// One DMA source/destination pair for a visible tilemap layer.
+struct MapViewportTilemapTransfer {
+    u16 const * source;
+    u16 * destination;
+};
+
+// The one-shot hardware command copies a 31x21 viewport into the
+// 32-entry destination rows, then returns false to leave the list.
+struct MapViewportTilemapCommand : HardwareLinkBase {
+    virtual bool Run();
+
+    MapViewportTilemapTransfer layers[3];
+    u16 source_width;
+};
+
+typedef char MapViewportTilemapCommandSizeCheck[sizeof(MapViewportTilemapCommand) == 0x28 ? 1 : -1];
+typedef char MapViewportTilemapCommandLayersCheck[offsetof(MapViewportTilemapCommand, layers) == 0xC ? 1 : -1];
+typedef char MapViewportTilemapCommandWidthCheck[offsetof(MapViewportTilemapCommand, source_width) == 0x24 ? 1 : -1];
+
 // Only the verified map/camera prefix is modeled, not the complete object.
 // The move routine writes per-frame Q16.16 steps and a frame countdown.
 struct GameSceneWorldMapPrefix {
@@ -52,7 +72,8 @@ struct GameSceneWorldMapPrefix {
     FieldRenderTileAttributes * tile_attributes;
     MapTilePatchAnimationState layout_animations[10];
     u8 unk_58;
-    u8 unk_59[0x2B];
+    u8 unk_59[3];
+    MapViewportTilemapCommand viewport_command;
     i32 step_x_q16;
     i32 step_y_q16;
     u32 movement_frames;
@@ -106,6 +127,8 @@ typedef char GameSceneCameraXCheck[offsetof(GameSceneWorldMapPrefix, x) == 8 ? 1
 typedef char GameSceneCameraYCheck[offsetof(GameSceneWorldMapPrefix, y) == 0xC ? 1 : -1];
 typedef char GameSceneMapTileLayersCheck[offsetof(GameSceneWorldMapPrefix, tile_layers) == 0x10 ? 1 : -1];
 typedef char GameSceneMapTileAttributesCheck[offsetof(GameSceneWorldMapPrefix, tile_attributes) == 0x2C ? 1 : -1];
+typedef char GameSceneMapViewportCommandCheck[offsetof(GameSceneWorldMapPrefix, viewport_command) == 0x5C ? 1 : -1];
+
 typedef char GameSceneMapUnk58Check[offsetof(GameSceneWorldMapPrefix, unk_58) == 0x58 ? 1 : -1];
 typedef char GameSceneMapViewChangedCheck[offsetof(GameSceneWorldMapPrefix, view_changed) == 0x29 ? 1 : -1];
 typedef char GameSceneCameraStepXCheck[offsetof(GameSceneWorldMapPrefix, step_x_q16) == 0x84 ? 1 : -1];
