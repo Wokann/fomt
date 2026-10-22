@@ -20670,7 +20670,7 @@ func_0802A574: @ 0x0802A574
     adds r0, r5, #0
     mov r1, sb
     mov r2, sl
-    bl func_080AC008
+    bl IsMapTerrainFlag1Footprint
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802A736
@@ -55010,7 +55010,7 @@ func_0802A7E0: @ 0x0802A7E0
     adds r0, r5, #0
     mov r1, sb
     mov r2, sl
-    bl func_080AC5D0
+    bl IsMapTerrainFlag1Footprint
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802A9A2

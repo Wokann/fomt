@@ -18178,103 +18178,6 @@ func_080AB0C4: @ 080AB0C4
 	bx r0
 	.align 2, 0
 
-    .section .text.game_map_after_terrain_query, "ax", %progbits
-    .align 2, 0
-
-    .global func_080AC008
-    .thumb_func
-func_080AC008: @ 080AC008
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	adds r4, r0, #0
-	adds r0, r2, #0
-	subs r0, #8
-	asrs r3, r0, #3
-	subs r0, r1, #6
-	asrs r0, r0, #3
-	mov sl, r0
-	adds r2, #3
-	asrs r2, r2, #3
-	mov r8, r2
-	adds r1, #5
-	asrs r7, r1, #3
-	cmp r3, r8
-	bgt .Ljp_map_080AC050
-	cmp sl, r7
-	bgt .Ljp_map_080AC050
-	ldrh r0, [r4, #8]
-	mov sb, r0
-	cmp r3, #0
-	blt .Ljp_map_080AC050
-	mov r1, sl
-	cmp r1, #0
-	blt .Ljp_map_080AC050
-	ldrh r0, [r4, #0xa]
-	cmp r8, r0
-	bhs .Ljp_map_080AC050
-	cmp r7, sb
-	bhs .Ljp_map_080AC050
-	ldr r6, [r4]
-	cmp r6, #0
-	bne .Ljp_map_080AC054
-.Ljp_map_080AC050:
-	movs r0, #0
-	b .Ljp_map_080AC09E
-.Ljp_map_080AC054:
-	ldr r4, [r4, #4]
-	mov ip, r4
-	adds r5, r3, #0
-	cmp r5, r8
-	bgt .Ljp_map_080AC09C
-	mov r4, sb
-	muls r4, r5, r4
-.Ljp_map_080AC062:
-	mov r3, sl
-	cmp r3, r7
-	bgt .Ljp_map_080AC094
-	adds r0, r3, r4
-	lsls r2, r0, #2
-	mov r1, ip
-	adds r0, r4, r1
-	adds r1, r3, r0
-.Ljp_map_080AC072:
-	mov r0, ip
-	cmp r0, #0
-	beq .Ljp_map_080AC080
-	ldrb r0, [r1]
-	lsls r0, r0, #2
-	adds r0, r6, r0
-	b .Ljp_map_080AC082
-.Ljp_map_080AC080:
-	adds r0, r6, r2
-.Ljp_map_080AC082:
-	ldr r0, [r0]
-	lsls r0, r0, #0x1e
-	cmp r0, #0
-	bge .Ljp_map_080AC050
-	adds r2, #4
-	adds r1, #1
-	adds r3, #1
-	cmp r3, r7
-	ble .Ljp_map_080AC072
-.Ljp_map_080AC094:
-	add r4, sb
-	adds r5, #1
-	cmp r5, r8
-	ble .Ljp_map_080AC062
-.Ljp_map_080AC09C:
-	movs r0, #1
-.Ljp_map_080AC09E:
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
     .section .text.world_runtime_after, "ax", %progbits
     .align 2, 0
 
@@ -20030,7 +19933,7 @@ func_080AD1B4:
 	lsls r2, r2, #0x10
 	asrs r2, r2, #0x10
 	add r0, sp, #0xc
-	bl func_080AC008
+	bl IsMapTerrainFlag1Footprint
 	movs r1, #1
 	eors r0, r1
 	lsls r0, r0, #0x18
@@ -96112,104 +96015,6 @@ func_080AB68C: @ 0x080AB68C
 	bx r0
 	.align 2, 0
 
-    .section .text.game_map_after_terrain_query, "ax", %progbits
-    .align 2, 0
-
-
-	thumb_func_start func_080AC5D0
-func_080AC5D0: @ 0x080AC5D0
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	adds r4, r0, #0
-	adds r0, r2, #0
-	subs r0, #8
-	asrs r3, r0, #3
-	subs r0, r1, #6
-	asrs r0, r0, #3
-	mov sl, r0
-	adds r2, #3
-	asrs r2, r2, #3
-	mov r8, r2
-	adds r1, #5
-	asrs r7, r1, #3
-	cmp r3, r8
-	bgt .L080AC618
-	cmp sl, r7
-	bgt .L080AC618
-	ldrh r0, [r4, #8]
-	mov sb, r0
-	cmp r3, #0
-	blt .L080AC618
-	mov r1, sl
-	cmp r1, #0
-	blt .L080AC618
-	ldrh r0, [r4, #0xa]
-	cmp r8, r0
-	bhs .L080AC618
-	cmp r7, sb
-	bhs .L080AC618
-	ldr r6, [r4]
-	cmp r6, #0
-	bne .L080AC61C
-.L080AC618:
-	movs r0, #0
-	b .L080AC666
-.L080AC61C:
-	ldr r4, [r4, #4]
-	mov ip, r4
-	adds r5, r3, #0
-	cmp r5, r8
-	bgt .L080AC664
-	mov r4, sb
-	muls r4, r5, r4
-.L080AC62A:
-	mov r3, sl
-	cmp r3, r7
-	bgt .L080AC65C
-	adds r0, r3, r4
-	lsls r2, r0, #2
-	mov r1, ip
-	adds r0, r4, r1
-	adds r1, r3, r0
-.L080AC63A:
-	mov r0, ip
-	cmp r0, #0
-	beq .L080AC648
-	ldrb r0, [r1]
-	lsls r0, r0, #2
-	adds r0, r6, r0
-	b .L080AC64A
-.L080AC648:
-	adds r0, r6, r2
-.L080AC64A:
-	ldr r0, [r0]
-	lsls r0, r0, #0x1e
-	cmp r0, #0
-	bge .L080AC618
-	adds r2, #4
-	adds r1, #1
-	adds r3, #1
-	cmp r3, r7
-	ble .L080AC63A
-.L080AC65C:
-	add r4, sb
-	adds r5, #1
-	cmp r5, r8
-	ble .L080AC62A
-.L080AC664:
-	movs r0, #1
-.L080AC666:
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-
     .section .text.world_runtime_after, "ax", %progbits
     .align 2, 0
 
@@ -97960,7 +97765,7 @@ func_080AD77C: @ 0x080AD77C
 	lsls r2, r2, #0x10
 	asrs r2, r2, #0x10
 	add r0, sp, #0xc
-	bl func_080AC5D0
+	bl IsMapTerrainFlag1Footprint
 	movs r1, #1
 	eors r0, r1
 	lsls r0, r0, #0x18

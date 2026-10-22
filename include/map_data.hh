@@ -81,6 +81,10 @@ void ClipMapTerrainMovement(MapTerrainView const & map, Box const & box,
 void ClipMapTerrainMovementIgnoringFlag1(MapTerrainView const & map, Box const & box,
     i32 * down, i32 * up, i32 * left, i32 * right);
 bool IsMapTerrainBoxBlocked(MapTerrainView const & map, Box const & box);
+// Require bit 1 on every tile intersecting the inclusive 12x12-pixel
+// footprint [x-6,x+5] by [y-8,y+3]. Invalid/null views return false.
+// Shared native assembly is retained until the C++ implementation matches.
+bool IsMapTerrainFlag1Footprint(MapTerrainView const & map, i32 x, i32 y);
 
 }
 
