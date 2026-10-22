@@ -5615,46 +5615,6 @@ func_080A45A8: @ 0x080A3FE0
 
     .section .text.game_scene_indexed_sprite_after, "ax", %progbits
 
-.Ljp_080A4484_helper:
-    .thumb_func
-    push {r4, r5, r6, lr}
-    sub sp, #0x14
-    adds r4, r0, #0
-    adds r5, r1, #0
-    adds r6, r2, #0
-    ldr r1, [r4, #8]
-    negs r0, r1
-    orrs r0, r1
-    cmp r0, #0
-    blt .Ljp_080A4484_helper_call
-    movs r0, #0
-    b .Ljp_080A4484_helper_exit
-.Ljp_080A4484_helper_call:
-    ldrh r1, [r4, #0xC]
-    adds r2, r4, #0
-    adds r2, #0x10
-    ldr r0, [sp, #0x28]
-    str r0, [sp]
-    ldr r0, [sp, #0x2C]
-    str r0, [sp, #4]
-    ldr r0, [sp, #0x30]
-    str r0, [sp, #8]
-    str r1, [sp, #0xC]
-    str r2, [sp, #0x10]
-    adds r0, r5, #0
-    adds r1, r6, #0
-    adds r2, r3, #0
-    ldr r3, [sp, #0x24]
-    ldr r4, .Ljp_080A4484_helper_literal
-    bl _call_via_r4
-.Ljp_080A4484_helper_exit:
-    add sp, #0x14
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_080A4484_helper_literal: .4byte 0x030004DC
-
     .global func_080A4A94
     .thumb_func
 func_080A4A94: @ 0x080A44CC
@@ -17616,7 +17576,7 @@ func_080AAE48: @ 080AAE48
 	adds r1, r2, #0
 	adds r2, r6, #0
 	movs r3, #0xaa
-	ldr r4, .Ljp_map_080AB0C0 @ =func_030004DC
+	ldr r4, .Ljp_map_080AB0C0 @ =SubmitWorldSpriteRecords
 	bl _call_via_r4
 .Ljp_map_080AB0A4:
 	adds r7, #8
@@ -17634,7 +17594,7 @@ func_080AAE48: @ 080AAE48
 	pop {r0}
 	bx r0
 	.align 2, 0
-.Ljp_map_080AB0C0: .4byte func_030004DC
+.Ljp_map_080AB0C0: .4byte SubmitWorldSpriteRecords
     .global func_080AB0C4
     .thumb_func
 func_080AB0C4: @ 080AB0C4
@@ -18377,7 +18337,7 @@ func_080AC648:
 	add r3, sp
 	ldr r2, [r3]
 	movs r3, #0xaa
-	ldr r4, .Ljp_entity_080AC928 @ =func_030004DC
+	ldr r4, .Ljp_entity_080AC928 @ =SubmitWorldSpriteRecords
 	bl _call_via_r4
 	b .Ljp_entity_080AC92E
 	.align 2, 0
@@ -18400,7 +18360,7 @@ func_080AC648:
 .Ljp_entity_080AC91C: .4byte 0x00000C78
 .Ljp_entity_080AC920: .4byte 0x00000C7C
 .Ljp_entity_080AC924: .4byte 0x00000C38
-.Ljp_entity_080AC928: .4byte func_030004DC
+.Ljp_entity_080AC928: .4byte SubmitWorldSpriteRecords
 .Ljp_entity_080AC92C:
 	movs r0, #0
 .Ljp_entity_080AC92E:
@@ -18507,12 +18467,12 @@ func_080AC648:
 	ldr r1, [r2]
 	mov r2, sl
 	movs r3, #0xaa
-	ldr r4, .Ljp_entity_080ACA08 @ =func_030004DC
+	ldr r4, .Ljp_entity_080ACA08 @ =SubmitWorldSpriteRecords
 	bl _call_via_r4
 	b .Ljp_entity_080ACA0E
 	.align 2, 0
 .Ljp_entity_080ACA04: .4byte 0x00000C38
-.Ljp_entity_080ACA08: .4byte func_030004DC
+.Ljp_entity_080ACA08: .4byte SubmitWorldSpriteRecords
 .Ljp_entity_080ACA0C:
 	movs r0, #0
 .Ljp_entity_080ACA0E:
@@ -83073,46 +83033,6 @@ func_080A45A8: @ 0x080A45A8
 
     .section .text.game_scene_indexed_sprite_after, "ax", %progbits
 
-.L080A4A4C:
-	.thumb_func
-	push {r4, r5, r6, lr}
-	sub sp, #0x14
-	adds r4, r0, #0
-	adds r5, r1, #0
-	adds r6, r2, #0
-	ldr r1, [r4, #8]
-	negs r0, r1
-	orrs r0, r1
-	cmp r0, #0
-	blt .L080A4A64
-	movs r0, #0
-	b .L080A4A88
-.L080A4A64:
-	ldrh r1, [r4, #0xC]
-	adds r2, r4, #0
-	adds r2, #0x10
-	ldr r0, [sp, #0x28]
-	str r0, [sp]
-	ldr r0, [sp, #0x2C]
-	str r0, [sp, #4]
-	ldr r0, [sp, #0x30]
-	str r0, [sp, #8]
-	str r1, [sp, #0xC]
-	str r2, [sp, #0x10]
-	adds r0, r5, #0
-	adds r1, r6, #0
-	adds r2, r3, #0
-	ldr r3, [sp, #0x24]
-	ldr r4, .L080A4A90
-	bl _call_via_r4
-.L080A4A88:
-	add sp, #0x14
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080A4A90: .4byte 0x030004DC
-
 	thumb_func_start func_080A4A94
 func_080A4A94: @ 0x080A4A94
 	push {r4, r5, r6, lr}
@@ -95045,7 +94965,7 @@ func_080AB410: @ 0x080AB410
 	adds r1, r2, #0
 	adds r2, r6, #0
 	movs r3, #0xaa
-	ldr r4, .L080AB688 @ =func_030004DC
+	ldr r4, .L080AB688 @ =SubmitWorldSpriteRecords
 	bl _call_via_r4
 .L080AB66C:
 	adds r7, #8
@@ -95063,7 +94983,7 @@ func_080AB410: @ 0x080AB410
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080AB688: .4byte func_030004DC
+.L080AB688: .4byte SubmitWorldSpriteRecords
 
 	thumb_func_start func_080AB68C
 func_080AB68C: @ 0x080AB68C
@@ -95804,7 +95724,7 @@ func_080ACC10: @ 0x080ACC10
 	add r3, sp
 	ldr r2, [r3]
 	movs r3, #0xaa
-	ldr r4, .L080ACEF0 @ =func_030004DC
+	ldr r4, .L080ACEF0 @ =SubmitWorldSpriteRecords
 	bl _call_via_r4
 	b .L080ACEF6
 	.align 2, 0
@@ -95827,7 +95747,7 @@ func_080ACC10: @ 0x080ACC10
 .L080ACEE4: .4byte 0x00000C78
 .L080ACEE8: .4byte 0x00000C7C
 .L080ACEEC: .4byte 0x00000C38
-.L080ACEF0: .4byte func_030004DC
+.L080ACEF0: .4byte SubmitWorldSpriteRecords
 .L080ACEF4:
 	movs r0, #0
 .L080ACEF6:
@@ -95934,12 +95854,12 @@ func_080ACC10: @ 0x080ACC10
 	ldr r1, [r2]
 	mov r2, sl
 	movs r3, #0xaa
-	ldr r4, .L080ACFD0 @ =func_030004DC
+	ldr r4, .L080ACFD0 @ =SubmitWorldSpriteRecords
 	bl _call_via_r4
 	b .L080ACFD6
 	.align 2, 0
 .L080ACFCC: .4byte 0x00000C38
-.L080ACFD0: .4byte func_030004DC
+.L080ACFD0: .4byte SubmitWorldSpriteRecords
 .L080ACFD4:
 	movs r0, #0
 .L080ACFD6:

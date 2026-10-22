@@ -775,6 +775,7 @@ SECTIONS
             .text.UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
             .text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
             .text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
+            .text.Submit__C19GameSceneSpriteBaseP21WorldSpriteDrawBufferiiUiUiRC26IndexedResourceSpriteRangeP10GameObject
         );
         asm/code_809E804.o(.text.game_scene_indexed_sprite_after);
         src/world_map.o(.text.UpdateWorldMap);

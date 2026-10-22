@@ -403,7 +403,7 @@ func_0803AE58:
     pop	{r0}
     bx	r0
 .Ljp_0803AC30:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
     .global func_0803AEA0
     .thumb_func
 func_0803AEA0:
@@ -1174,7 +1174,7 @@ func_0803B0FC:
     bx	r0
     .align 2, 0
 .Ljp_0803B1E4:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
     .global func_0803B454
     .thumb_func
 func_0803B454:
@@ -8448,7 +8448,7 @@ func_0803AE58:
     pop	{r0}
     bx	r0
 .Leu_0803AEB0:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
     .global func_0803AEA0
     .thumb_func
 func_0803AEA0:
@@ -9219,7 +9219,7 @@ func_0803B368:
     bx	r0
     .align 2, 0
 .Leu_0803B464:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
     .global func_0803B454
     .thumb_func
 func_0803B454:
@@ -16567,7 +16567,7 @@ func_0803AE58:
     pop	{r0}
     bx	r0
 .Lde_0803ADB0:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
     .global func_0803AEA0
     .thumb_func
 func_0803AEA0:
@@ -17338,7 +17338,7 @@ func_0803B368:
     bx	r0
     .align 2, 0
 .Lde_0803B364:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
     .global func_0803B454
     .thumb_func
 func_0803B454:
@@ -24664,7 +24664,7 @@ func_0803AE58:
     pop	{r0}
     bx	r0
 .Lus_0803AE9C:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
     .global func_0803AEA0
     .thumb_func
 func_0803AEA0:
@@ -25435,7 +25435,7 @@ func_0803B368:
     bx	r0
     .align 2, 0
 .Lus_0803B450:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
     .global func_0803B454
     .thumb_func
 func_0803B454:

@@ -141,6 +141,20 @@ GameSceneIndexedSprite::GameSceneIndexedSprite(IndexedResourceProvider * resourc
 {
 }
 
+u32 GameSceneSpriteBase::Submit(WorldSpriteDrawBuffer * buffer, i32 x, i32 y,
+    u32 priorities, u32 sort_key, IndexedResourceSpriteRange const & range,
+    GameObject * palette_source) const
+{
+    bool has_handle = tiles.handle != 0;
+    if (has_handle) {
+        u32 first_tile = tile_index;
+        GameScenePaletteIndices const & palette_indices = palettes;
+        return SubmitWorldSpriteRecords(buffer, x, y, priorities, sort_key,
+            range, palette_source, first_tile, palette_indices);
+    }
+    return 0;
+}
+
 // GameSceneGroupSprite deliberately uses its implicit destructor: only the
 // real base owns cleanup. The compiler emits the native flag-forwarding entry
 // without the extra vptr store of a user-written empty destructor.

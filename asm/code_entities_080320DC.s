@@ -447,7 +447,7 @@ func_08032690:
 .Ljp_080324F8:
     .4byte gUnk_080F1328
 .Ljp_080324FC:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Ljp_08032500:
     movs	r0, #0
 .Ljp_08032502:
@@ -563,7 +563,7 @@ func_08032690:
     bl _call_via_r4
     b .Ljp_080325E2
 .Ljp_080325DC:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Ljp_080325E0:
     movs	r0, #0
 .Ljp_080325E2:
@@ -5092,7 +5092,7 @@ func_08034AE8:
     b .Ljp_0803492A
     .align 2, 0
 .Ljp_08034924:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Ljp_08034928:
     movs	r0, #0
 .Ljp_0803492A:
@@ -5598,7 +5598,7 @@ func_08032690:
 .Leu_08032778:
     .4byte gUnk_080F1328
 .Leu_0803277C:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Leu_08032780:
     movs	r0, #0
 .Leu_08032782:
@@ -5714,7 +5714,7 @@ func_08032690:
     bl _call_via_r4
     b .Leu_08032862
 .Leu_0803285C:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Leu_08032860:
     movs	r0, #0
 .Leu_08032862:
@@ -9363,7 +9363,7 @@ func_08034AE8:
     b .Leu_08034BAA
     .align 2, 0
 .Leu_08034BA4:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Leu_08034BA8:
     movs	r0, #0
 .Leu_08034BAA:
@@ -9870,7 +9870,7 @@ func_08032690:
 .Lde_08032678:
     .4byte gUnk_080F1328
 .Lde_0803267C:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Lde_08032680:
     movs	r0, #0
 .Lde_08032682:
@@ -9986,7 +9986,7 @@ func_08032690:
     bl _call_via_r4
     b .Lde_08032762
 .Lde_0803275C:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Lde_08032760:
     movs	r0, #0
 .Lde_08032762:
@@ -13635,7 +13635,7 @@ func_08034AE8:
     b .Lde_08034AAA
     .align 2, 0
 .Lde_08034AA4:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Lde_08034AA8:
     movs	r0, #0
 .Lde_08034AAA:
@@ -14141,7 +14141,7 @@ func_08032690:
 .Lus_08032764:
     .4byte gUnk_080F1328
 .Lus_08032768:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Lus_0803276C:
     movs	r0, #0
 .Lus_0803276E:
@@ -14257,7 +14257,7 @@ func_08032690:
     bl _call_via_r4
     b .Lus_0803284E
 .Lus_08032848:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Lus_0803284C:
     movs	r0, #0
 .Lus_0803284E:
@@ -18013,7 +18013,7 @@ func_08034AE8:
     b .Lus_08034B96
     .align 2, 0
 .Lus_08034B90:
-    .4byte func_030004DC
+    .4byte SubmitWorldSpriteRecords
 .Lus_08034B94:
     movs	r0, #0
 .Lus_08034B96:

@@ -22365,7 +22365,7 @@ func_0802B2B0:
     b .Ljp_0802B402
     .align 2, 0
 .Ljp_0802B3FC:
-    .4byte 0x030004DC
+    .4byte SubmitWorldSpriteRecords
 .Ljp_0802B400:
     movs	r0, #0
 .Ljp_0802B402:
@@ -22482,7 +22482,7 @@ func_0802B2B0:
     b .Ljp_0802B4EA
     .align 2, 0
 .Ljp_0802B4E4:
-    .4byte 0x030004DC
+    .4byte SubmitWorldSpriteRecords
 .Ljp_0802B4E8:
     movs	r0, #0
 .Ljp_0802B4EA:
@@ -23783,11 +23783,11 @@ func_0802BD78:
     ldr r1, [sp, #0x54]
     ldr r2, [sp, #0x5c]
     adds r3, r4, #0
-    ldr r4, .Ljp_0802BEC4 @ =func_030004DC
+    ldr r4, .Ljp_0802BEC4 @ =SubmitWorldSpriteRecords
     bl _call_via_r4
     b .Ljp_0802BECA
     .align 2, 0
-.Ljp_0802BEC4: .4byte func_030004DC
+.Ljp_0802BEC4: .4byte SubmitWorldSpriteRecords
 .Ljp_0802BEC8:
     movs r0, #0
 .Ljp_0802BECA:
@@ -56699,7 +56699,7 @@ func_0802B51C:
     b .L802B66E
     .align 2, 0
 .L802B668:
-    .4byte 0x030004DC
+    .4byte SubmitWorldSpriteRecords
 .L802B66C:
     movs	r0, #0
 .L802B66E:
@@ -56816,7 +56816,7 @@ func_0802B51C:
     b .L802B756
     .align 2, 0
 .L802B750:
-    .4byte 0x030004DC
+    .4byte SubmitWorldSpriteRecords
 .L802B754:
     movs	r0, #0
 .L802B756:
@@ -58109,11 +58109,11 @@ func_0802BFE4: @ 0x0802BFE4
     ldr r1, [sp, #0x54]
     ldr r2, [sp, #0x5c]
     adds r3, r4, #0
-    ldr r4, .L0802C130 @ =func_030004DC
+    ldr r4, .L0802C130 @ =SubmitWorldSpriteRecords
     bl _call_via_r4
     b .L0802C136
     .align 2, 0
-.L0802C130: .4byte func_030004DC
+.L0802C130: .4byte SubmitWorldSpriteRecords
 .L0802C134:
     movs r0, #0
 .L0802C136:

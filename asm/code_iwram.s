@@ -34,10 +34,10 @@ __new_handler:
     .section .iwram.after_dimensions, "awx"
     .align 2, 0
 
-    .global func_030004DC
-    .type func_030004DC, function
+    .global SubmitWorldSpriteRecords
+    .type SubmitWorldSpriteRecords, function
     .arm
-func_030004DC:
+SubmitWorldSpriteRecords:
     push {r4, r5, r6, r7, r8, sb, sl, lr}
     mov ip, #0
     sub sp, sp, #0x34

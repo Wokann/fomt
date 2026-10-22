@@ -7,6 +7,7 @@
 #pragma interface "scene_sprite.hh"
 
 struct HardwareDmaQueue;
+struct WorldSpriteDrawBuffer;
 
 // Native base owns OBJ tiles and the palette slots returned by GameObject.
 struct GameSceneSpriteBase {
@@ -22,6 +23,9 @@ struct GameSceneSpriteBase {
 
     void QueueTileUpload(HardwareDmaQueue & queue, IndexedResourceDescriptor32Range const & range);
     void UploadPalettes(IndexedResourceDescriptor32Range const & range, u8 unk);
+
+    u32 Submit(WorldSpriteDrawBuffer * buffer, i32 x, i32 y, u32 priorities,
+        u32 sort_key, IndexedResourceSpriteRange const & range, GameObject * palette_source) const;
 };
 
 struct GameSceneIndexedSprite : GameSceneSpriteBase {
@@ -70,5 +74,18 @@ private:
 typedef char GameSceneGroupSpriteSizeCheck[sizeof(GameSceneGroupSprite) == 0x4C ? 1 : -1];
 typedef char GameSceneGroupSpriteGroupCheck[offsetof(GameSceneGroupSprite, group) == 0x28 ? 1 : -1];
 typedef char GameSceneGroupSpriteByteCheck[offsetof(GameSceneGroupSprite, unk_48) == 0x48 ? 1 : -1];
+
+EXTERN_C
+
+// ARM entry in IWRAM, distinct from the direct hardware OAM submission path.
+// priorities packs a two-bit destination priority for each source priority.
+// sort_key occupies the high bits of each queued key; the low seven are the
+// sprite index. The return counts visible records even when the queue is full.
+u32 SubmitWorldSpriteRecords(WorldSpriteDrawBuffer * buffer, i32 x, i32 y,
+    u32 priorities, u32 sort_key, IndexedResourceSpriteRange const & range,
+    GameObject * palette_source, u32 tile_offset,
+    GameScenePaletteIndices const & palette_map) __attribute__((long_call));
+
+EXTERN_C_END
 
 #endif // SCENE_SPRITE_HH
