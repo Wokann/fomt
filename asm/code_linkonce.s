@@ -10895,42 +10895,11 @@ func_080DE220:
     .Lauto_080DD9EA:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
-    .global func_080DE240
-    .thumb_func
-func_080DE240:
-    push {r4, lr}
-    sub sp, #0x20
-    adds r4, r0, #0
-    mov r1, sp
-    movs r0, #0
-    strb r0, [r1]
-    strb r0, [r4]
-    adds r0, r4, #4
-    bl strcpy
-    adds r0, r4, #0
-    add sp, #0x20
-    pop {r4}
-    pop {r1}
-    bx r1
     .byte 0x00, 0x00
-    .global func_080DE260
-    .thumb_func
-func_080DE260:
-    push {lr}
-    adds r2, r0, #0
-    ldr r0, [pc, #0x14]
-    str r0, [r2]
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    beq .Lauto_080DDA2A
-    adds r0, r2, #0
-    bl __builtin_delete
-    .Lauto_080DDA2A:
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .4byte __vt_23ScriptTextVariableStore
+
+    .section .text.script_text_variables_after, "ax", %progbits
+    .align 2, 0
     .global func_080DE280
     .thumb_func
 func_080DE280:
@@ -23717,7 +23686,7 @@ func_080DE1B4: @ 0x080DE1B4
 func_080DE220: @ 0x080DE220
 	push {lr}
 	adds r2, r0, #0
-	ldr r0, .L080DE23C @ =vtable_unk_080E76F8
+	ldr r0, .L080DE23C @ =__vt_23ScriptTextVariableStore
 	str r0, [r2]
 	movs r0, #1
 	ands r0, r1
@@ -23729,21 +23698,10 @@ func_080DE220: @ 0x080DE220
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080DE23C: .4byte vtable_unk_080E76F8
-.L080DE240:
-	.global func_080DE240
-	.thumb_func
-func_080DE240:
-	.byte 0x10, 0xB5, 0x88, 0xB0, 0x04, 0x1C, 0x69, 0x46, 0x00, 0x20, 0x08, 0x70, 0x20, 0x70, 0x20, 0x1D
-	.byte 0xF5, 0xF7, 0x6A, 0xFC, 0x20, 0x1C, 0x08, 0xB0, 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
-	.global func_080DE260
-	.thumb_func
-func_080DE260:
-	.byte 0x00, 0xB5, 0x02, 0x1C, 0x05, 0x48, 0x10, 0x60, 0x01, 0x20, 0x08, 0x40, 0x00, 0x28, 0x02, 0xD0
-	.byte 0x10, 0x1C
-	bl __builtin_delete
-	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	.4byte vtable_unk_080E76F8
+.L080DE23C: .4byte __vt_23ScriptTextVariableStore
+
+    .section .text.script_text_variables_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080DE280
 func_080DE280: @ 0x080DE280
@@ -29674,7 +29632,8 @@ func_080E11EC:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xA0, 0x23, 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .byte 0x00, 0x00, 0xA0, 0x23, 0x00, 0x00
+    .4byte __vt_23ScriptTextVariableStore
     .4byte __vt_23IndexedResourceProvider
     .global func_080E0C38_vtable_target
     .thumb_func
@@ -29692,7 +29651,8 @@ func_080E0C38_vtable_target:
     .Lauto_080E0C4E:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_23ScriptTextVariableStore
     .global func_080E14B8
     .thumb_func
 func_080E14B8:
@@ -30014,7 +29974,7 @@ func_080E0D60:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x38, 0x6B, 0x0E, 0x08
+    .4byte __vt_23ScriptTextVariableStore
     .4byte __vt_23IndexedResourceProvider
     .global func_080E0FC4
     .thumb_func
@@ -30032,7 +29992,8 @@ func_080E0FC4:
     .Lauto_080E0FDA:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_23ScriptTextVariableStore
     .global func_080E1844
     .thumb_func
 func_080E1844:
@@ -30167,7 +30128,8 @@ func_080E1044:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xEC, 0x0A, 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .byte 0x00, 0x00, 0xEC, 0x0A, 0x00, 0x00
+    .4byte __vt_23ScriptTextVariableStore
     .4byte __vt_23IndexedResourceProvider
     .global func_080E1104
     .thumb_func
@@ -30185,56 +30147,11 @@ func_080E1104:
     .Lauto_080E111A:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
-    .section .text.indexed_resource_archive_destructor_after, "ax", %progbits
-    .align 2, 0
-    .global func_080E19A4
-    .thumb_func
-func_080E19A4:
-    .global func_080E1144
-    .thumb_func
-func_080E1144:
-    push {r4, r5, r6, lr}
-    sub sp, #0x20
-    adds r5, r0, #0
-    cmp r2, #0xff
-    bne .Lauto_080E117E
-    ldr r6, [r1, #4]
-    adds r0, r6, #0
-    bl strlen
-    adds r4, r0, #0
-    cmp r4, #0x1f
-    bls .Lauto_080E115E
-    movs r4, #0x1f
-    .Lauto_080E115E:
-    mov r0, sp
-    adds r1, r6, #0
-    adds r2, r4, #0
-    bl memcpy
-    mov r0, sp
-    adds r1, r0, r4
-    movs r0, #0
-    strb r0, [r1]
-    movs r0, #1
-    strb r0, [r5]
-    adds r0, r5, #4
-    mov r1, sp
-    bl strcpy
-    b .Lauto_080E118C
-    .Lauto_080E117E:
-    mov r1, sp
-    movs r0, #0
-    strb r0, [r1]
-    strb r0, [r5]
-    adds r0, r5, #4
-    bl strcpy
-    .Lauto_080E118C:
-    adds r0, r5, #0
-    add sp, #0x20
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
     .byte 0x00, 0x00
+    .4byte __vt_23ScriptTextVariableStore
+
+    .section .text.intro_story_core_destructor, "ax", %progbits
+    .align 2, 0
     .global func_080E19F8
     .thumb_func
 func_080E19F8:
@@ -30260,24 +30177,11 @@ func_080E1198:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x28, 0x64, 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
-    .global func_080E11C8
-    .thumb_func
-func_080E11C8:
-    push {lr}
-    adds r2, r0, #0
-    ldr r0, [pc, #0x14]
-    str r0, [r2]
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    beq .Lauto_080E11DE
-    adds r0, r2, #0
-    bl __builtin_delete
-    .Lauto_080E11DE:
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .byte 0x28, 0x64, 0x00, 0x00
+    .4byte __vt_23ScriptTextVariableStore
+
+    .section .text.indexed_resource_archive_destructor_after, "ax", %progbits
+    .align 2, 0
     .global func_080E11E8
     .thumb_func
 func_080E11E8:
@@ -33891,7 +33795,8 @@ func_080E33D4:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xD8, 0x33, 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .byte 0x00, 0x00, 0xD8, 0x33, 0x00, 0x00
+    .4byte __vt_23ScriptTextVariableStore
     .4byte __vt_23IndexedResourceProvider
     .global func_080E352C
     .thumb_func
@@ -33909,7 +33814,8 @@ func_080E352C:
     .Lauto_080E3542:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_23ScriptTextVariableStore
     .global func_080E3DB4
     .thumb_func
 func_080E3DB4:
@@ -34335,7 +34241,8 @@ func_080E3838:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_23ScriptTextVariableStore
     .4byte __vt_23IndexedResourceProvider
     .global func_080E3928
     .thumb_func
@@ -34353,7 +34260,8 @@ func_080E3928:
     .Lauto_080E393E:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x38, 0x6B, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_23ScriptTextVariableStore
     .global func_080E3948
     .thumb_func
 func_080E3948:
@@ -36763,7 +36671,7 @@ func_080E11EC: @ 0x080E11EC
 	mov sl, r1
 	ldr r0, .L080E148C @ =0x000023A0
 	adds r1, r6, r0
-	ldr r0, .L080E1490 @ =vtable_unk_080E76F8
+	ldr r0, .L080E1490 @ =__vt_23ScriptTextVariableStore
 	str r0, [r1]
 	movs r1, #0xa8
 	lsls r1, r1, #3
@@ -37048,14 +36956,14 @@ func_080E11EC: @ 0x080E11EC
 	bx r0
 	.align 2, 0
 .L080E148C: .4byte 0x000023A0
-.L080E1490: .4byte vtable_unk_080E76F8
+.L080E1490: .4byte __vt_23ScriptTextVariableStore
 .L080E1494: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E1498
 func_080E1498: @ 0x080E1498
 	push {lr}
 	adds r2, r0, #0
-	ldr r0, .L080E14B4 @ =vtable_unk_080E76F8
+	ldr r0, .L080E14B4 @ =__vt_23ScriptTextVariableStore
 	str r0, [r2]
 	movs r0, #1
 	ands r0, r1
@@ -37067,7 +36975,7 @@ func_080E1498: @ 0x080E1498
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E14B4: .4byte vtable_unk_080E76F8
+.L080E14B4: .4byte __vt_23ScriptTextVariableStore
 
 	thumb_func_start func_080E14B8
 func_080E14B8: @ 0x080E14B8
@@ -37208,7 +37116,7 @@ func_080E15C0: @ 0x080E15C0
 	movs r0, #0xa7
 	lsls r0, r0, #5
 	adds r1, r7, r0
-	ldr r0, .L080E181C @ =vtable_unk_080E76F8
+	ldr r0, .L080E181C @ =__vt_23ScriptTextVariableStore
 	str r0, [r1]
 	movs r1, #0xcb
 	lsls r1, r1, #3
@@ -37464,14 +37372,14 @@ func_080E15C0: @ 0x080E15C0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E181C: .4byte vtable_unk_080E76F8
+.L080E181C: .4byte __vt_23ScriptTextVariableStore
 .L080E1820: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E1824
 func_080E1824: @ 0x080E1824
 	push {lr}
 	adds r2, r0, #0
-	ldr r0, .L080E1840 @ =vtable_unk_080E76F8
+	ldr r0, .L080E1840 @ =__vt_23ScriptTextVariableStore
 	str r0, [r2]
 	movs r0, #1
 	ands r0, r1
@@ -37483,7 +37391,7 @@ func_080E1824: @ 0x080E1824
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E1840: .4byte vtable_unk_080E76F8
+.L080E1840: .4byte __vt_23ScriptTextVariableStore
 
 	thumb_func_start func_080E1844
 func_080E1844: @ 0x080E1844
@@ -37542,7 +37450,7 @@ func_080E18A4: @ 0x080E18A4
 	adds r6, r1, #0
 	ldr r0, .L080E1958 @ =0x00000AEC
 	adds r1, r5, r0
-	ldr r0, .L080E195C @ =vtable_unk_080E76F8
+	ldr r0, .L080E195C @ =__vt_23ScriptTextVariableStore
 	str r0, [r1]
 	movs r0, #0xa2
 	lsls r0, r0, #1
@@ -37615,14 +37523,14 @@ func_080E18A4: @ 0x080E18A4
 	bx r0
 	.align 2, 0
 .L080E1958: .4byte 0x00000AEC
-.L080E195C: .4byte vtable_unk_080E76F8
+.L080E195C: .4byte __vt_23ScriptTextVariableStore
 .L080E1960: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E1964
 func_080E1964: @ 0x080E1964
 	push {lr}
 	adds r2, r0, #0
-	ldr r0, .L080E1980 @ =vtable_unk_080E76F8
+	ldr r0, .L080E1980 @ =__vt_23ScriptTextVariableStore
 	str r0, [r2]
 	movs r0, #1
 	ands r0, r1
@@ -37634,54 +37542,10 @@ func_080E1964: @ 0x080E1964
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E1980: .4byte vtable_unk_080E76F8
+.L080E1980: .4byte __vt_23ScriptTextVariableStore
 
-    .section .text.indexed_resource_archive_destructor_after, "ax", %progbits
+    .section .text.intro_story_core_destructor, "ax", %progbits
     .align 2, 0
-
-	thumb_func_start func_080E19A4
-func_080E19A4: @ 0x080E19A4
-	push {r4, r5, r6, lr}
-	sub sp, #0x20
-	adds r5, r0, #0
-	cmp r2, #0xff
-	bne .L080E19DE
-	ldr r6, [r1, #4]
-	adds r0, r6, #0
-	bl strlen
-	adds r4, r0, #0
-	cmp r4, #0x1f
-	bls .L080E19BE
-	movs r4, #0x1f
-.L080E19BE:
-	mov r0, sp
-	adds r1, r6, #0
-	adds r2, r4, #0
-	bl memcpy
-	mov r0, sp
-	adds r1, r0, r4
-	movs r0, #0
-	strb r0, [r1]
-	movs r0, #1
-	strb r0, [r5]
-	adds r0, r5, #4
-	mov r1, sp
-	bl strcpy
-	b .L080E19EC
-.L080E19DE:
-	mov r1, sp
-	movs r0, #0
-	strb r0, [r1]
-	strb r0, [r5]
-	adds r0, r5, #4
-	bl strcpy
-.L080E19EC:
-	adds r0, r5, #0
-	add sp, #0x20
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
 
 	thumb_func_start func_080E19F8
 func_080E19F8: @ 0x080E19F8
@@ -37690,7 +37554,7 @@ func_080E19F8: @ 0x080E19F8
 	adds r5, r1, #0
 	ldr r0, .L080E1A20 @ =0x00006428
 	adds r1, r4, r0
-	ldr r0, .L080E1A24 @ =vtable_unk_080E76F8
+	ldr r0, .L080E1A24 @ =__vt_23ScriptTextVariableStore
 	str r0, [r1]
 	ldr r0, [r4, #0x10]
 	cmp r0, #0
@@ -37706,25 +37570,10 @@ func_080E19F8: @ 0x080E19F8
 	bx r0
 	.align 2, 0
 .L080E1A20: .4byte 0x00006428
-.L080E1A24: .4byte vtable_unk_080E76F8
+.L080E1A24: .4byte __vt_23ScriptTextVariableStore
 
-	thumb_func_start func_080E1A28
-func_080E1A28: @ 0x080E1A28
-	push {lr}
-	adds r2, r0, #0
-	ldr r0, .L080E1A44 @ =vtable_unk_080E76F8
-	str r0, [r2]
-	movs r0, #1
-	ands r0, r1
-	cmp r0, #0
-	beq .L080E1A3E
-	adds r0, r2, #0
-	bl __builtin_delete
-.L080E1A3E:
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E1A44: .4byte vtable_unk_080E76F8
+    .section .text.indexed_resource_archive_destructor_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E1A48
 func_080E1A48: @ 0x080E1A48
@@ -42158,7 +42007,7 @@ func_080E3C3C: @ 0x080E3C3C
 	adds r6, r1, #0
 	ldr r0, .L080E3D88 @ =0x000033D8
 	adds r1, r5, r0
-	ldr r0, .L080E3D8C @ =vtable_unk_080E76F8
+	ldr r0, .L080E3D8C @ =__vt_23ScriptTextVariableStore
 	str r0, [r1]
 	movs r1, #0xca
 	lsls r1, r1, #2
@@ -42298,14 +42147,14 @@ func_080E3C3C: @ 0x080E3C3C
 	bx r0
 	.align 2, 0
 .L080E3D88: .4byte 0x000033D8
-.L080E3D8C: .4byte vtable_unk_080E76F8
+.L080E3D8C: .4byte __vt_23ScriptTextVariableStore
 .L080E3D90: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E3D94
 func_080E3D94: @ 0x080E3D94
 	push {lr}
 	adds r2, r0, #0
-	ldr r0, .L080E3DB0 @ =vtable_unk_080E76F8
+	ldr r0, .L080E3DB0 @ =__vt_23ScriptTextVariableStore
 	str r0, [r2]
 	movs r0, #1
 	ands r0, r1
@@ -42317,7 +42166,7 @@ func_080E3D94: @ 0x080E3D94
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E3DB0: .4byte vtable_unk_080E76F8
+.L080E3DB0: .4byte __vt_23ScriptTextVariableStore
 
 	thumb_func_start func_080E3DB4
 func_080E3DB4: @ 0x080E3DB4
@@ -42665,7 +42514,7 @@ func_080E40A0: @ 0x080E40A0
 	movs r0, #0x87
 	lsls r0, r0, #2
 	adds r1, r5, r0
-	ldr r0, .L080E4188 @ =vtable_unk_080E76F8
+	ldr r0, .L080E4188 @ =__vt_23ScriptTextVariableStore
 	str r0, [r1]
 	movs r0, #0xd6
 	lsls r0, r0, #1
@@ -42758,14 +42607,14 @@ func_080E40A0: @ 0x080E40A0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E4188: .4byte vtable_unk_080E76F8
+.L080E4188: .4byte __vt_23ScriptTextVariableStore
 .L080E418C: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E4190
 func_080E4190: @ 0x080E4190
 	push {lr}
 	adds r2, r0, #0
-	ldr r0, .L080E41AC @ =vtable_unk_080E76F8
+	ldr r0, .L080E41AC @ =__vt_23ScriptTextVariableStore
 	str r0, [r2]
 	movs r0, #1
 	ands r0, r1
@@ -42777,7 +42626,7 @@ func_080E4190: @ 0x080E4190
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E41AC: .4byte vtable_unk_080E76F8
+.L080E41AC: .4byte __vt_23ScriptTextVariableStore
 
 	thumb_func_start func_080E41B0
 func_080E41B0: @ 0x080E41B0

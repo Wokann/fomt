@@ -482,7 +482,7 @@ SECTIONS
         . = 0x50BB8; /* DE ROM 0x08050BB8, UI owner and adapter block. */
         src/ui_state.o(.text.ui_state_adapters);
         asm/code_0803EE94.o(.text.code_08050E50);
-        src/ui_state.o(.text);
+        src/ui_state.o(.text.__18UiTextInputAdapterRCUiUc .text.func_08050F70 .text.func_08050F74);
         asm/code_0803EE94.o(.text.ui_state_helpers_after);
         src/ui_state.o(.text.ui_state_selection);
         asm/code_0803EE94.o(.text.ui_state_selection_after);
@@ -931,6 +931,8 @@ SECTIONS
         asm/code_linkonce.o(.text.game_scene_indexed_sprite_dtor_after);
         src/npc_entity.o(.text.FindTimedPathPointUpperBound);
         asm/code_linkonce.o(.text.npc_timed_path_search_after);
+        src/ui_state.o(.text.Lookup__23ScriptTextVariableStoreUi .text._._23ScriptTextVariableStore);
+        asm/code_linkonce.o(.text.script_text_variables_after);
         *(.gnu.linkonce.t.__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01);
         asm/code_linkonce.o(.text.code_080E0EF0);
         src/font.o(.text.font_unsigned_decimal);
@@ -948,6 +950,9 @@ SECTIONS
         src/ui_state.o(.text.ui_text_output_base_destructor);
         asm/code_linkonce.o(.text.ui_text_output_base_after);
         src/resource_handle.o(.text);
+        src/intro_story_scene.o(.text.Lookup__23IntroStoryTextVariablesUi);
+        asm/code_linkonce.o(.text.intro_story_core_destructor);
+        src/intro_story_scene.o(.text._._23IntroStoryTextVariables);
         asm/code_linkonce.o(.text.indexed_resource_archive_destructor_after);
         src/new_game.o(.text.new_game_birthday_core_cleanup);
         asm/code_linkonce.o(.text.new_game_birthday_core_cleanup_after);
@@ -1094,7 +1099,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_76bc);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_76d4);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_76e8);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_76f8);
+        . = ALIGN(4); src/ui_state.o(.gnu.linkonce.d.__vt_23ScriptTextVariableStore);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7708);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7714);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7728);
@@ -1132,7 +1137,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79b8);
         . = ALIGN(4); src/resource_handle.o(.gnu.linkonce.d.__vt_22IndexedResourceArchive);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79dc);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_79e8);
+        . = ALIGN(4); src/intro_story_scene.o(.gnu.linkonce.d.__vt_23IntroStoryTextVariables);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79f8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7a08);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7a18);

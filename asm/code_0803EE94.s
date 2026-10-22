@@ -22377,7 +22377,7 @@ func_0805ED4C:
 	bl func_08008B54
 	ldr r2, .Ljp0805EB68 @ =0x00006428
 	adds r1, r4, r2
-	ldr r0, .Ljp0805EB6C @ =gUnk_080E6E18
+	ldr r0, .Ljp0805EB6C @ =__vt_23IntroStoryTextVariables
 	str r0, [r1]
 	mov r3, r8
 	str r3, [r1, #4]
@@ -22415,7 +22415,7 @@ func_0805ED4C:
 	.align 2, 0
 .Ljp0805EB64: .4byte gUnk_080E6E0C
 .Ljp0805EB68: .4byte 0x00006428
-.Ljp0805EB6C: .4byte gUnk_080E6E18
+.Ljp0805EB6C: .4byte __vt_23IntroStoryTextVariables
 .Ljp0805EB70: .4byte 0x00006420
 .Ljp0805EB74: .4byte 0x00006422
 .Ljp0805EB78: .4byte 0x00006426
@@ -177111,7 +177111,7 @@ func_0805ED4C: @ 0x0805ED4C
 	bl func_08008B54
 	ldr r2, .L0805EE24 @ =0x00006428
 	adds r1, r4, r2
-	ldr r0, .L0805EE28 @ =vtable_unk_080E79E8
+	ldr r0, .L0805EE28 @ =__vt_23IntroStoryTextVariables
 	str r0, [r1]
 	mov r3, r8
 	str r3, [r1, #4]
@@ -177149,7 +177149,7 @@ func_0805ED4C: @ 0x0805ED4C
 	.align 2, 0
 .L0805EE20: .4byte vtable_unk_080E79DC
 .L0805EE24: .4byte 0x00006428
-.L0805EE28: .4byte vtable_unk_080E79E8
+.L0805EE28: .4byte __vt_23IntroStoryTextVariables
 .L0805EE2C: .4byte 0x00006420
 .L0805EE30: .4byte 0x00006422
 .L0805EE34: .4byte 0x00006426

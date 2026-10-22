@@ -38,6 +38,9 @@ struct UiTextSubstitution
 {
     bool found;
     FixedStr<31> text;
+
+    UiTextSubstitution(bool value, FixedStr<31> const & replacement)
+        : found(value), text(replacement) {}
 };
 
 // The output base supplies native no-op cursor/page defaults and a byte-valued
@@ -69,8 +72,10 @@ inline UiTextInput::~UiTextInput() {}
 struct ScriptTextVariableStore
 {
     virtual ~ScriptTextVariableStore();
-    virtual UiTextSubstitution Lookup(u32 code) = 0;
+    virtual UiTextSubstitution Lookup(u32 code);
 };
+
+inline ScriptTextVariableStore::~ScriptTextVariableStore() {}
 
 typedef char UiTextSubstitutionSizeCheck[sizeof(UiTextSubstitution) == 36 ? 1 : -1];
 typedef char UiTextSubstitutionTextCheck[offsetof(UiTextSubstitution, text) == 4 ? 1 : -1];

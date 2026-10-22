@@ -6,6 +6,11 @@
 #include "gbasvc.h"
 #include <string.h>
 
+UiTextSubstitution ScriptTextVariableStore::Lookup(u32)
+{
+    return UiTextSubstitution(false, FixedStr<31>());
+}
+
 bool UiTextInput::Resume() { return true; }
 bool UiTextInput::WaitForInput() { return false; }
 bool UiTextInput::Fast() { return false; }
