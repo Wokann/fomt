@@ -174,20 +174,4 @@ extern "C" char const gCppRuntimeBadAlloc_EntityUiEighth[];
 extern "C" char const gCppRuntimeBadAlloc_EntityUiNinth[];
 extern "C" char const gCppRuntimeBadAlloc_EntityUiTenth[];
 
-// Event-effect accessors borrow the controller already owned by the entity.
-extern "C" void func_080387B8(AEntity * entity);
-extern "C" void func_080387C8(AEntity * entity);
-extern "C" bool func_080387D8(AEntity * entity);
-extern "C" void func_080387EC(AEntity * entity);
-extern "C" void func_080387FC(AEntity * entity);
-extern "C" bool func_0803880C(AEntity * entity);
-
-// Native controller operations; its full payload remains unrecovered.
-extern "C" void func_08038DF0(UnknownEntityThing * controller);
-extern "C" void func_08038E90(UnknownEntityThing * controller);
-extern "C" bool func_08038EA0(UnknownEntityThing * controller);
-extern "C" void func_08038EB8(UnknownEntityThing * controller);
-extern "C" void func_08038EE0(UnknownEntityThing * controller);
-extern "C" bool func_080390D0(UnknownEntityThing * controller);
-
 #endif

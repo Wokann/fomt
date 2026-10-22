@@ -397,8 +397,10 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.npc_schedule_transition_query);
         src/npc_entity.o(.text.func_08035A48 .text.func_08035AE0);
         asm/code_entities_08034CEC.o(.text.npc_characters_after);
-        src/entity_ui.o(.text);
+        src/entity_event_effects.o(.text.CreateEntityNewYearSunriseEffect .text.PlayEntityNewYearSunriseEffect .text.IsEntityNewYearSunriseEffectComplete .text.DestroyEntityNewYearSunriseEffect .text.PlayEntityStarSparkleEffect .text.HasEntityStarSparkleEffect);
         asm/code_entities_08034CEC.o(.text.entity_event_effects_after);
+        src/entity_event_effects.o(.text.PlayControllerNewYearSunriseEffect .text.IsControllerNewYearSunriseEffectComplete .text.DestroyControllerNewYearSunriseEffect);
+        asm/code_entities_08034CEC.o(.text.entity_event_effects_after_sunrise);
 
         . = 0x3A7B8; /* DE ROM 0x0803A7B8, remaining raw control code. */
         src/map_data.o(.text.SelectMapDataId);

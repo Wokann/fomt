@@ -7492,9 +7492,9 @@ func_08038A70:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08038DF0
+    .global CreateControllerNewYearSunriseEffect
     .thumb_func
-func_08038DF0:
+CreateControllerNewYearSunriseEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -7569,58 +7569,10 @@ func_08038DF0:
     bx	r0
 .Ljp_08038C20:
     .4byte __vt_20GameSceneGroupSprite
-    .global func_08038E90
+    .section .text.entity_event_effects_after_sunrise, "ax", %progbits
+    .global PlayControllerStarSparkleEffect
     .thumb_func
-func_08038E90:
-    ldr	r0, [r0, #12]
-    movs	r1, #144	@ 0x90
-    lsls	r1, r1, #17
-    str	r1, [r0, #76]	@ 0x4c
-    adds	r0, #80	@ 0x50
-    movs	r1, #1
-    strb	r1, [r0, #0]
-    bx	lr
-    .global func_08038EA0
-    .thumb_func
-func_08038EA0:
-    push	{lr}
-    ldr	r0, [r0, #12]
-    movs	r1, #0
-    adds	r0, #80	@ 0x50
-    ldrb	r0, [r0, #0]
-    cmp	r0, #0
-    bne .Ljp_08038C44
-    movs	r1, #1
-.Ljp_08038C44:
-    adds	r0, r1, #0
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-    .global func_08038EB8
-    .thumb_func
-func_08038EB8:
-    push	{r4, r5, r6, lr}
-    adds	r5, r0, #0
-    adds	r5, #12
-    movs	r6, #0
-    ldr	r4, [r0, #12]
-    cmp	r6, r4
-    beq .Ljp_08038C6C
-    cmp	r4, #0
-    beq .Ljp_08038C6C
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl _._19GameSceneSpriteBase
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Ljp_08038C6C:
-    str	r6, [r5, #0]
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .global func_08038EE0
-    .thumb_func
-func_08038EE0:
+PlayControllerStarSparkleEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -7763,9 +7715,9 @@ func_08038EE0:
     .4byte 0xBC01BCF0
     .4byte 0x00004700
     .4byte __vt_22GameSceneIndexedSprite
-    .global func_080390D0
+    .global HasControllerStarSparkleEffect
     .thumb_func
-func_080390D0:
+HasControllerStarSparkleEffect:
     ldr	r1, [r0, #16]
     negs	r0, r1
     orrs	r0, r1
@@ -18172,9 +18124,9 @@ func_08038A70:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08038DF0
+    .global CreateControllerNewYearSunriseEffect
     .thumb_func
-func_08038DF0:
+CreateControllerNewYearSunriseEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -18249,58 +18201,10 @@ func_08038DF0:
     bx	r0
 .Leu_08038EA0:
     .4byte __vt_20GameSceneGroupSprite
-    .global func_08038E90
+    .section .text.entity_event_effects_after_sunrise, "ax", %progbits
+    .global PlayControllerStarSparkleEffect
     .thumb_func
-func_08038E90:
-    ldr	r0, [r0, #12]
-    movs	r1, #144	@ 0x90
-    lsls	r1, r1, #17
-    str	r1, [r0, #76]	@ 0x4c
-    adds	r0, #80	@ 0x50
-    movs	r1, #1
-    strb	r1, [r0, #0]
-    bx	lr
-    .global func_08038EA0
-    .thumb_func
-func_08038EA0:
-    push	{lr}
-    ldr	r0, [r0, #12]
-    movs	r1, #0
-    adds	r0, #80	@ 0x50
-    ldrb	r0, [r0, #0]
-    cmp	r0, #0
-    bne .Leu_08038EC4
-    movs	r1, #1
-.Leu_08038EC4:
-    adds	r0, r1, #0
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-    .global func_08038EB8
-    .thumb_func
-func_08038EB8:
-    push	{r4, r5, r6, lr}
-    adds	r5, r0, #0
-    adds	r5, #12
-    movs	r6, #0
-    ldr	r4, [r0, #12]
-    cmp	r6, r4
-    beq .Leu_08038EEC
-    cmp	r4, #0
-    beq .Leu_08038EEC
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl _._19GameSceneSpriteBase
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Leu_08038EEC:
-    str	r6, [r5, #0]
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .global func_08038EE0
-    .thumb_func
-func_08038EE0:
+PlayControllerStarSparkleEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -18443,9 +18347,9 @@ func_08038EE0:
     .4byte 0xBC01BCF0
     .4byte 0x00004700
     .4byte __vt_22GameSceneIndexedSprite
-    .global func_080390D0
+    .global HasControllerStarSparkleEffect
     .thumb_func
-func_080390D0:
+HasControllerStarSparkleEffect:
     ldr	r1, [r0, #16]
     negs	r0, r1
     orrs	r0, r1
@@ -29022,9 +28926,9 @@ func_08038A70:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08038DF0
+    .global CreateControllerNewYearSunriseEffect
     .thumb_func
-func_08038DF0:
+CreateControllerNewYearSunriseEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -29099,58 +29003,10 @@ func_08038DF0:
     bx	r0
 .Lde_08038DA0:
     .4byte __vt_20GameSceneGroupSprite
-    .global func_08038E90
+    .section .text.entity_event_effects_after_sunrise, "ax", %progbits
+    .global PlayControllerStarSparkleEffect
     .thumb_func
-func_08038E90:
-    ldr	r0, [r0, #12]
-    movs	r1, #144	@ 0x90
-    lsls	r1, r1, #17
-    str	r1, [r0, #76]	@ 0x4c
-    adds	r0, #80	@ 0x50
-    movs	r1, #1
-    strb	r1, [r0, #0]
-    bx	lr
-    .global func_08038EA0
-    .thumb_func
-func_08038EA0:
-    push	{lr}
-    ldr	r0, [r0, #12]
-    movs	r1, #0
-    adds	r0, #80	@ 0x50
-    ldrb	r0, [r0, #0]
-    cmp	r0, #0
-    bne .Lde_08038DC4
-    movs	r1, #1
-.Lde_08038DC4:
-    adds	r0, r1, #0
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-    .global func_08038EB8
-    .thumb_func
-func_08038EB8:
-    push	{r4, r5, r6, lr}
-    adds	r5, r0, #0
-    adds	r5, #12
-    movs	r6, #0
-    ldr	r4, [r0, #12]
-    cmp	r6, r4
-    beq .Lde_08038DEC
-    cmp	r4, #0
-    beq .Lde_08038DEC
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl _._19GameSceneSpriteBase
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Lde_08038DEC:
-    str	r6, [r5, #0]
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .global func_08038EE0
-    .thumb_func
-func_08038EE0:
+PlayControllerStarSparkleEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -29293,9 +29149,9 @@ func_08038EE0:
     .4byte 0xBC01BCF0
     .4byte 0x00004700
     .4byte __vt_22GameSceneIndexedSprite
-    .global func_080390D0
+    .global HasControllerStarSparkleEffect
     .thumb_func
-func_080390D0:
+HasControllerStarSparkleEffect:
     ldr	r1, [r0, #16]
     negs	r0, r1
     orrs	r0, r1
@@ -39871,9 +39727,9 @@ func_08038A70:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08038DF0
+    .global CreateControllerNewYearSunriseEffect
     .thumb_func
-func_08038DF0:
+CreateControllerNewYearSunriseEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -39948,58 +39804,10 @@ func_08038DF0:
     bx	r0
 .Lus_08038E8C:
     .4byte __vt_20GameSceneGroupSprite
-    .global func_08038E90
+    .section .text.entity_event_effects_after_sunrise, "ax", %progbits
+    .global PlayControllerStarSparkleEffect
     .thumb_func
-func_08038E90:
-    ldr	r0, [r0, #12]
-    movs	r1, #144	@ 0x90
-    lsls	r1, r1, #17
-    str	r1, [r0, #76]	@ 0x4c
-    adds	r0, #80	@ 0x50
-    movs	r1, #1
-    strb	r1, [r0, #0]
-    bx	lr
-    .global func_08038EA0
-    .thumb_func
-func_08038EA0:
-    push	{lr}
-    ldr	r0, [r0, #12]
-    movs	r1, #0
-    adds	r0, #80	@ 0x50
-    ldrb	r0, [r0, #0]
-    cmp	r0, #0
-    bne .Lus_08038EB0
-    movs	r1, #1
-.Lus_08038EB0:
-    adds	r0, r1, #0
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-    .global func_08038EB8
-    .thumb_func
-func_08038EB8:
-    push	{r4, r5, r6, lr}
-    adds	r5, r0, #0
-    adds	r5, #12
-    movs	r6, #0
-    ldr	r4, [r0, #12]
-    cmp	r6, r4
-    beq .Lus_08038ED8
-    cmp	r4, #0
-    beq .Lus_08038ED8
-    adds	r0, r4, #0
-    movs	r1, #2
-    bl _._19GameSceneSpriteBase
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Lus_08038ED8:
-    str	r6, [r5, #0]
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .global func_08038EE0
-    .thumb_func
-func_08038EE0:
+PlayControllerStarSparkleEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -40142,9 +39950,9 @@ func_08038EE0:
     .4byte 0xBC01BCF0
     .4byte 0x00004700
     .4byte __vt_22GameSceneIndexedSprite
-    .global func_080390D0
+    .global HasControllerStarSparkleEffect
     .thumb_func
-func_080390D0:
+HasControllerStarSparkleEffect:
     ldr	r1, [r0, #16]
     negs	r0, r1
     orrs	r0, r1

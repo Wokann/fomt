@@ -16,6 +16,7 @@
 #include "entity_actor.hh"
 #include "npc_entity.hh"
 #include "entity_ui.hh"
+#include "entity_event_effects.hh"
 #include "fomt_constants.hh"
 #if defined(REGION_JP)
 #include "data/scripts/jp/fomt_scripts.mary.h"
@@ -899,26 +900,26 @@ void GameScene::func_08016C10()
 // These commands forward to its owned controller without creating a host.
 void GameScene::CreateNewYearSunriseEffect()
 {
-    func_080387B8(state->game_object.value->GetEntity(0x5D));
+    CreateEntityNewYearSunriseEffect(state->game_object.value->GetEntity(0x5D));
 }
 
 void GameScene::PlayNewYearSunriseEffect()
 {
     GameSceneState * current = state;
-    func_080387C8(current->game_object.value->GetEntity(0x5D));
+    PlayEntityNewYearSunriseEffect(current->game_object.value->GetEntity(0x5D));
     // The callback may change scene.state; the native write uses this state.
     current->script_state = 0x1C;
 }
 
 void GameScene::DestroyNewYearSunriseEffect()
 {
-    func_080387EC(state->game_object.value->GetEntity(0x5D));
+    DestroyEntityNewYearSunriseEffect(state->game_object.value->GetEntity(0x5D));
 }
 
 void GameScene::PlayStarSparkleEffect()
 {
     GameSceneState * current = state;
-    func_080387FC(current->game_object.value->GetEntity(0x5D));
+    PlayEntityStarSparkleEffect(current->game_object.value->GetEntity(0x5D));
     current->script_state = 0x1B;
 }
 
