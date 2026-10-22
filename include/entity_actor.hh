@@ -43,6 +43,28 @@ struct ActorMovementBounds
     void RefreshUp() SECTION(".text.actor_movement_bounds");
     void RefreshLeft() SECTION(".text.actor_movement_bounds");
     void RefreshRight() SECTION(".text.actor_movement_bounds");
+    // Probe flags refresh the same lazy cache as their distance getters.
+    bool GetDownProbeFlag() {
+        if (down_limit > max_distance)
+            RefreshDown();
+        return unk_10;
+    }
+    bool GetUpProbeFlag() {
+        if (up_limit < -max_distance)
+            RefreshUp();
+        return unk_11;
+    }
+    bool GetLeftProbeFlag() {
+        if (left_limit < -max_distance)
+            RefreshLeft();
+        return unk_12;
+    }
+    bool GetRightProbeFlag() {
+        if (right_limit > max_distance)
+            RefreshRight();
+        return unk_13;
+    }
+
     i32 GetDown() {
         i32 cached = down_limit;
         if (cached > max_distance) {

@@ -371,6 +371,9 @@ $(BUILD_DIR)/src/livestock_actor.o: CXXFLAGS += -ffunction-sections
 # Grid methods are interleaved with unrecovered actor routines in the ROM.
 $(BUILD_DIR)/src/actor_state.o: CXXFLAGS += -ffunction-sections
 
+# Relative-facing conversion precedes the movement-bound-dependent selectors.
+$(BUILD_DIR)/src/actor_facing.o: CXXFLAGS += -ffunction-sections
+
 # The static table accessor and terrain query retain their native code positions.
 $(BUILD_DIR)/src/map_data.o: CXXFLAGS += -ffunction-sections
 

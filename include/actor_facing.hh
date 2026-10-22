@@ -11,7 +11,8 @@ EXTERN_C
 // Preserve the original switch fallthrough for values outside 0..3.
 i32 GetRelativeFacing(i32 facing, i32 relative);
 
-// Native implementations remain shared assembly until the C++ models match.
+// Score four directions against target displacement and cached movement bounds.
+// Prefer the lowest score, breaking tied choices with RandomBelow.
 i32 SelectApproachFacing(i32 x, i32 y, i32 target_x, i32 target_y,
     ActorMovementBounds & limits, i32 facing);
 i32 SelectRetreatFacing(i32 x, i32 y, i32 target_x, i32 target_y,
