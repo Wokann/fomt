@@ -30150,36 +30150,6 @@ func_080E1104:
     .byte 0x00, 0x00
     .4byte __vt_23ScriptTextVariableStore
 
-    .section .text.intro_story_core_destructor, "ax", %progbits
-    .align 2, 0
-    .global func_080E19F8
-    .thumb_func
-func_080E19F8:
-    .global func_080E1198
-    .thumb_func
-func_080E1198:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, [pc, #0x20]
-    adds r1, r4, r0
-    ldr r0, [pc, #0x20]
-    str r0, [r1]
-    ldr r0, [r4, #0x10]
-    cmp r0, #0
-    beq .Lauto_080E11B2
-    movs r1, #3
-    bl _._12UiStateOwner
-    .Lauto_080E11B2:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl func_080086BC
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x28, 0x64, 0x00, 0x00
-    .4byte __vt_23ScriptTextVariableStore
-
     .section .text.indexed_resource_archive_destructor_after, "ax", %progbits
     .align 2, 0
     .global func_080E11E8
@@ -37543,34 +37513,6 @@ func_080E1964: @ 0x080E1964
 	bx r0
 	.align 2, 0
 .L080E1980: .4byte __vt_23ScriptTextVariableStore
-
-    .section .text.intro_story_core_destructor, "ax", %progbits
-    .align 2, 0
-
-	thumb_func_start func_080E19F8
-func_080E19F8: @ 0x080E19F8
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L080E1A20 @ =0x00006428
-	adds r1, r4, r0
-	ldr r0, .L080E1A24 @ =__vt_23ScriptTextVariableStore
-	str r0, [r1]
-	ldr r0, [r4, #0x10]
-	cmp r0, #0
-	beq .L080E1A12
-	movs r1, #3
-	bl _._12UiStateOwner
-.L080E1A12:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl func_080086BC
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E1A20: .4byte 0x00006428
-.L080E1A24: .4byte __vt_23ScriptTextVariableStore
 
     .section .text.indexed_resource_archive_destructor_after, "ax", %progbits
     .align 2, 0

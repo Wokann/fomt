@@ -165,6 +165,11 @@ struct FirstFieldUiOwner
     FirstFieldUiFlags * data;
 };
 
+EXTERN_C
+u32 func_08050E98(FirstFieldUiOwner &, u32 flag_mask) SECTION(".text.ui_state_adapters");
+u32 func_08050EBC(FirstFieldUiOwner &, u32 flag_mask) SECTION(".text.ui_state_adapters");
+EXTERN_C_END
+
 struct UiStatePayload;
 
 struct UiStateOwner

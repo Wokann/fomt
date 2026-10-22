@@ -22315,113 +22315,7 @@ DrawIndexedResourceSprites:
 .L0805EC1C: .4byte 0xFFFFFC00
 .L0805EC20: .4byte 0xFFFF0FFF
     .section .text.indexed_resource_sprite_transform_after
-    .global func_0805ED4C
-    .thumb_func
-func_0805ED4C:
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	sub sp, #0x18
-	adds r4, r0, #0
-	adds r5, r1, #0
-	add r1, sp, #0x14
-	movs r0, #0x1e
-	movs r2, #1
-	movs r3, #0
-	mov r8, r3
-	strh r0, [r1]
-	strh r2, [r1, #2]
-	adds r0, r4, #0
-	bl func_080084DC
-	ldr r0, .Ljp0805EB64 @ =gUnk_080E6E0C
-	str r0, [r4, #4]
-	str r5, [r4, #8]
-	mov r0, r8
-	str r0, [r4, #0xc]
-	movs r0, #4
-	bl __builtin_new
-	adds r6, r0, #0
-	add r0, sp, #0xc
-	bl __18HardwareStateOwner
-	add r5, sp, #0x10
-	adds r0, r5, #0
-	bl __16HardwareResource
-	ldr r0, [r4, #0xc]
-	str r0, [sp]
-	add r1, sp, #0xc
-	str r1, [sp, #4]
-	str r5, [sp, #8]
-	adds r0, r6, #0
-	movs r1, #0
-	movs r2, #0x1f
-	movs r3, #0xf
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
-	str r0, [r4, #0x10]
-	adds r0, r5, #0
-	movs r1, #2
-	bl _._16HardwareResource
-	add r0, sp, #0xc
-	movs r1, #2
-	bl _._18HardwareStateOwner
-	adds r0, r4, #0
-	adds r0, #0x14
-	movs r1, #1
-	bl func_08008B54
-	adds r0, r4, #0
-	adds r0, #0x18
-	movs r1, #0
-	bl func_08008B54
-	adds r0, r4, #0
-	adds r0, #0x1c
-	movs r1, #2
-	bl func_08008B54
-	ldr r2, .Ljp0805EB68 @ =0x00006428
-	adds r1, r4, r2
-	ldr r0, .Ljp0805EB6C @ =__vt_23IntroStoryTextVariables
-	str r0, [r1]
-	mov r3, r8
-	str r3, [r1, #4]
-	ldr r0, [r4, #0x10]
-	movs r1, #0xb
-	bl func_08050E98
-	ldr r1, .Ljp0805EB70 @ =0x00006420
-	adds r0, r4, r1
-	mov r2, r8
-	strh r2, [r0]
-	ldr r3, .Ljp0805EB74 @ =0x00006422
-	adds r0, r4, r3
-	strh r2, [r0]
-	ldr r0, .Ljp0805EB78 @ =0x00006426
-	adds r1, r4, r0
-	movs r0, #2
-	strh r0, [r1]
-	ldr r1, .Ljp0805EB7C @ =0x00006424
-	adds r0, r4, r1
-	strh r2, [r0]
-	ldr r0, [r4, #8]
-	ldr r2, .Ljp0805EB80 @ =0x00001BD8
-	adds r0, r0, r2
-	bl func_0800E4E0
-	ldr r3, .Ljp0805EB84 @ =0x0000642C
-	adds r1, r4, r3
-	str r0, [r1]
-	adds r0, r4, #0
-	add sp, #0x18
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp0805EB64: .4byte gUnk_080E6E0C
-.Ljp0805EB68: .4byte 0x00006428
-.Ljp0805EB6C: .4byte __vt_23IntroStoryTextVariables
-.Ljp0805EB70: .4byte 0x00006420
-.Ljp0805EB74: .4byte 0x00006422
-.Ljp0805EB78: .4byte 0x00006426
-.Ljp0805EB7C: .4byte 0x00006424
-.Ljp0805EB80: .4byte 0x00001BD8
-.Ljp0805EB84: .4byte 0x0000642C
+
     @ JP and overseas ROMs share this complete instruction body;
     @ regional text and data addresses remain ordinary relocatable symbols.
     .global func_0805EE44
@@ -24115,7 +24009,7 @@ func_0805FCD0:
 	ldr r0, .L0805FD00 @ =0x00006430
 	bl __builtin_new
 	adds r1, r5, #0
-	bl func_0805ED4C
+	bl InitializeIntroStorySceneCore
 	str r0, [r4, #4]
 	ldr r1, [r6]
 	movs r0, #0
@@ -177050,112 +176944,7 @@ DrawIndexedResourceSprites: @ 0x0805E99C
 .L0805EC20: .4byte 0xFFFF0FFF
 
 	.section .text.indexed_resource_sprite_transform_after
-	thumb_func_start func_0805ED4C
-func_0805ED4C: @ 0x0805ED4C
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	sub sp, #0x18
-	adds r4, r0, #0
-	adds r5, r1, #0
-	add r1, sp, #0x14
-	movs r0, #0x1e
-	movs r2, #1
-	movs r3, #0
-	mov r8, r3
-	strh r0, [r1]
-	strh r2, [r1, #2]
-	adds r0, r4, #0
-	bl func_080084DC
-	ldr r0, .L0805EE20 @ =vtable_unk_080E79DC
-	str r0, [r4, #4]
-	str r5, [r4, #8]
-	mov r0, r8
-	str r0, [r4, #0xc]
-	movs r0, #4
-	bl __builtin_new
-	adds r6, r0, #0
-	add r0, sp, #0xc
-	bl __18HardwareStateOwner
-	add r5, sp, #0x10
-	adds r0, r5, #0
-	bl __16HardwareResource
-	ldr r0, [r4, #0xc]
-	str r0, [sp]
-	add r1, sp, #0xc
-	str r1, [sp, #4]
-	str r5, [sp, #8]
-	adds r0, r6, #0
-	movs r1, #0
-	movs r2, #0x1f
-	movs r3, #0xf
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
-	str r0, [r4, #0x10]
-	adds r0, r5, #0
-	movs r1, #2
-	bl _._16HardwareResource
-	add r0, sp, #0xc
-	movs r1, #2
-	bl _._18HardwareStateOwner
-	adds r0, r4, #0
-	adds r0, #0x14
-	movs r1, #1
-	bl func_08008B54
-	adds r0, r4, #0
-	adds r0, #0x18
-	movs r1, #0
-	bl func_08008B54
-	adds r0, r4, #0
-	adds r0, #0x1c
-	movs r1, #2
-	bl func_08008B54
-	ldr r2, .L0805EE24 @ =0x00006428
-	adds r1, r4, r2
-	ldr r0, .L0805EE28 @ =__vt_23IntroStoryTextVariables
-	str r0, [r1]
-	mov r3, r8
-	str r3, [r1, #4]
-	ldr r0, [r4, #0x10]
-	movs r1, #0xb
-	bl func_08050E98
-	ldr r1, .L0805EE2C @ =0x00006420
-	adds r0, r4, r1
-	mov r2, r8
-	strh r2, [r0]
-	ldr r3, .L0805EE30 @ =0x00006422
-	adds r0, r4, r3
-	strh r2, [r0]
-	ldr r0, .L0805EE34 @ =0x00006426
-	adds r1, r4, r0
-	movs r0, #2
-	strh r0, [r1]
-	ldr r1, .L0805EE38 @ =0x00006424
-	adds r0, r4, r1
-	strh r2, [r0]
-	ldr r0, [r4, #8]
-	ldr r2, .L0805EE3C @ =0x00001BD8
-	adds r0, r0, r2
-	bl func_0800E4E0
-	ldr r3, .L0805EE40 @ =0x0000642C
-	adds r1, r4, r3
-	str r0, [r1]
-	adds r0, r4, #0
-	add sp, #0x18
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0805EE20: .4byte vtable_unk_080E79DC
-.L0805EE24: .4byte 0x00006428
-.L0805EE28: .4byte __vt_23IntroStoryTextVariables
-.L0805EE2C: .4byte 0x00006420
-.L0805EE30: .4byte 0x00006422
-.L0805EE34: .4byte 0x00006426
-.L0805EE38: .4byte 0x00006424
-.L0805EE3C: .4byte 0x00001BD8
-.L0805EE40: .4byte 0x0000642C
+
 
 	thumb_func_start func_0805EE44
 func_0805EE44: @ 0x0805EE44
@@ -178845,7 +178634,7 @@ func_0805FCD0: @ 0x0805FCD0
 	ldr r0, .L0805FD00 @ =0x00006430
 	bl __builtin_new
 	adds r1, r5, #0
-	bl func_0805ED4C
+	bl InitializeIntroStorySceneCore
 	str r0, [r4, #4]
 	ldr r1, [r6]
 	movs r0, #0

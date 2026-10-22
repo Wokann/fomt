@@ -441,11 +441,6 @@ void UiStateOwner::HideHeartIndicator() const
 }
 
 EC u32 func_08050E98(FirstFieldUiOwner & object, u32 const flag_mask)
-    SECTION(".text.ui_state_adapters");
-EC u32 func_08050EBC(FirstFieldUiOwner & object, u32 const flag_mask)
-    SECTION(".text.ui_state_adapters");
-
-EC u32 func_08050E98(FirstFieldUiOwner & object, u32 const flag_mask)
 {
     FirstFieldUiFlags * const data = object.data;
     u32 const old_flags = data->low_flags;

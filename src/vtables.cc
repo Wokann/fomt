@@ -102,7 +102,6 @@ extern void func_0805E3DC(void);
 extern void func_080E1044(void);
 extern void func_080E0FE4(void);
 extern void func_080E1104(void);
-extern void func_080E1198(void);
 extern void func_080E11E8(void);
 extern void func_080E11F4(void);
 extern void func_080E1210(void);
@@ -374,7 +373,6 @@ extern void func_0805CF3C(void);
 extern void func_080E18A4(void);
 extern void func_080E1844(void);
 extern void func_080E1964(void);
-extern void func_080E19F8(void);
 extern void func_080E1A48(void);
 extern void func_080E1A54(void);
 extern void func_080E1A70(void);
@@ -4490,26 +4488,6 @@ extern RawVTableFunction const vtable_unk_080E79B8[]
         nullptr,
         func_0805E658,
         func_0805E698,
-    };
-#endif
-
-#if defined(REGION_JP)
-// JP places these independently referenced fragments after the archive's
-// compiler-generated vtable; they are not part of the resource provider.
-extern RawVTableFunction const gUnk_080E6E0C[]
-    SECTION(".rodata.vtable_79c8") = {
-        nullptr,
-        nullptr,
-        func_080E1198,
-    };
-#endif
-
-#if !defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E79DC[]
-    SECTION(".rodata.vtable_79dc") = {
-        nullptr,
-        nullptr,
-        func_080E19F8,
     };
 #endif
 
