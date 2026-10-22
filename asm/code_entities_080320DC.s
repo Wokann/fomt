@@ -3625,7 +3625,7 @@ func_08033B94:
     adds	r0, #32
     ldrb	r4, [r0, #0]
     add	r0, sp, #8
-    bl func_080AB474
+    bl Empty__19ActorMovementBounds
     add	r0, sp, #88	@ 0x58
     movs	r3, #0
     ldrsh	r2, [r0, r3]
@@ -8198,8 +8198,9 @@ func_08033B94:
     .4byte 0x9926FBC7
     .4byte 0x1C388008
     .4byte 0x78043020
-    .4byte 0xF077A802
-    .4byte 0xA816FD19
+    add r0, sp, #8
+    bl Empty__19ActorMovementBounds
+    add r0, sp, #0x58
     .4byte 0x5EC22300
     .4byte 0x5E6B2102
     .4byte 0x9500AD02
@@ -12461,8 +12462,9 @@ func_08033B94:
     .4byte 0x9926FBDF
     .4byte 0x1C388008
     .4byte 0x78043020
-    .4byte 0xF077A802
-    .4byte 0xA816FD31
+    add r0, sp, #8
+    bl Empty__19ActorMovementBounds
+    add r0, sp, #0x58
     .4byte 0x5EC22300
     .4byte 0x5E6B2102
     .4byte 0x9500AD02
@@ -16830,8 +16832,9 @@ func_08033B94:
     .4byte 0x9926FBB9
     .4byte 0x1C388008
     .4byte 0x78043020
-    .4byte 0xF077A802
-    .4byte 0xA816FD0B
+    add r0, sp, #8
+    bl Empty__19ActorMovementBounds
+    add r0, sp, #0x58
     .4byte 0x5EC22300
     .4byte 0x5E6B2102
     .4byte 0x9500AD02

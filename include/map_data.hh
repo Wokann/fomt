@@ -72,6 +72,10 @@ MapData const * GetMapData(u32 map_id);
 
 // Logical map IDs select one of the regional MapData records.
 u32 SelectMapDataId(i32 map, u32 season, u32 house, u32 coop, u32 barn);
+// Clip only the requested pixel-distance limits; null directions are not scanned.
+// The implementation remains native assembly at its original regional entry.
+void ClipMapTerrainMovement(MapTerrainView const & map, Box const & box,
+    i32 * down, i32 * up, i32 * left, i32 * right);
 bool IsMapTerrainBoxBlocked(MapTerrainView const & map, Box const & box);
 
 }

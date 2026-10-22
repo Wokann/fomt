@@ -43,6 +43,31 @@ bool AActorEntity::IsAnimationComplete() const
     return true;
 }
 
+void AActorEntity::ApplyMovement(ActorMovementBounds * bounds)
+{
+    i32 old_x_q16 = x_q16;
+    i32 old_y_q16 = y_q16;
+    i32 next_x_q16 = old_x_q16 + x_speed_q16;
+    i32 next_y_q16 = old_y_q16 + y_speed_q16;
+    if (bounds != 0) {
+        ActorMovementBounds & limits = *bounds;
+        i32 old_x = old_x_q16 >> 16;
+        i32 old_y = old_y_q16 >> 16;
+        i32 dy = (next_y_q16 >> 16) - old_y;
+        i32 dx = (next_x_q16 >> 16) - old_x;
+        if (dy > 0 && dy > limits.GetDown())
+            next_y_q16 = (old_y + limits.GetDown()) << 16;
+        if (dy < 0 && dy < limits.GetUp())
+            next_y_q16 = (old_y + limits.GetUp()) << 16;
+        if (dx < 0 && dx < limits.GetLeft())
+            next_x_q16 = (old_x + limits.GetLeft()) << 16;
+        if (dx > 0 && dx > limits.GetRight())
+            next_x_q16 = (old_x + limits.GetRight()) << 16;
+    }
+    x_q16 = next_x_q16;
+    y_q16 = next_y_q16;
+}
+
 AActorEntity::AActorEntity(GameObject * game_object, ActorLocation const & location, u32 arg_2, u32 anim_id)
     : AEntity(game_object, location), x_speed_q16(0), y_speed_q16(0), facing(location.facing), unk_21(arg_2)
 {
@@ -285,3 +310,43 @@ EC void func_0803242C(AActorEntity & self, u32 arg_1)
 #endif
 
 // this goes up to func_08032BB4
+
+// Shared lazy terrain probes follow the actor operations in ROM.
+
+void ActorMovementBounds::RefreshDown()
+{
+    down_limit = max_distance;
+    ClipMapTerrainMovement(terrain, box, &down_limit, 0, 0, 0);
+    unk_10 = y_probe != 0 ? !IsMapTerrainBoxBlocked(terrain, box.Moved(0, down_limit + y_probe)) : false;
+}
+
+void ActorMovementBounds::RefreshUp()
+{
+    up_limit = -max_distance;
+    ClipMapTerrainMovement(terrain, box, 0, &up_limit, 0, 0);
+    unk_11 = y_probe != 0 ? !IsMapTerrainBoxBlocked(terrain, box.Moved(0, up_limit - y_probe)) : false;
+}
+
+void ActorMovementBounds::RefreshLeft()
+{
+    left_limit = -max_distance;
+    ClipMapTerrainMovement(terrain, box, 0, 0, &left_limit, 0);
+    unk_12 = x_probe != 0 ? !IsMapTerrainBoxBlocked(terrain, box.Moved(left_limit - x_probe, 0)) : false;
+}
+
+void ActorMovementBounds::RefreshRight()
+{
+    right_limit = max_distance;
+    ClipMapTerrainMovement(terrain, box, 0, 0, 0, &right_limit);
+    unk_13 = x_probe != 0 ? !IsMapTerrainBoxBlocked(terrain, box.Moved(right_limit + x_probe, 0)) : false;
+}
+
+ActorMovementBounds ActorMovementBounds::Empty()
+{
+    ActorMovementBounds result;
+    result.unk_10 = true;
+    result.unk_11 = true;
+    result.unk_12 = true;
+    result.unk_13 = true;
+    return result;
+}

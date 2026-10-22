@@ -3858,7 +3858,7 @@ func_08037118:
     cmp	r1, r0
     ble .Ljp_08036EF6
     adds	r0, r4, #0
-    bl func_080AB294
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [r4, #0]
     b .Ljp_08036EF8
 .Ljp_08036EF6:
@@ -3871,7 +3871,7 @@ func_08037118:
     cmp	r1, r0
     ble .Ljp_08036F0E
     adds	r0, r4, #0
-    bl func_080AB294
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [r4, #0]
     b .Ljp_08036F10
 .Ljp_08036F0E:
@@ -3888,7 +3888,7 @@ func_08037118:
     cmn	r1, r0
     bge .Ljp_08036F2C
     adds	r0, r4, #0
-    bl func_080AB308
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [r4, #4]
     b .Ljp_08036F2E
 .Ljp_08036F2C:
@@ -3901,7 +3901,7 @@ func_08037118:
     cmn	r1, r0
     bge .Ljp_08036F44
     adds	r0, r4, #0
-    bl func_080AB308
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [r4, #4]
     b .Ljp_08036F46
 .Ljp_08036F44:
@@ -3919,7 +3919,7 @@ func_08037118:
     cmn	r1, r0
     bge .Ljp_08036F64
     adds	r0, r4, #0
-    bl func_080AB380
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [r4, #8]
     b .Ljp_08036F66
 .Ljp_08036F64:
@@ -3932,7 +3932,7 @@ func_08037118:
     cmn	r1, r0
     bge .Ljp_08036F7C
     adds	r0, r4, #0
-    bl func_080AB380
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [r4, #8]
     b .Ljp_08036F7E
 .Ljp_08036F7C:
@@ -3951,7 +3951,7 @@ func_08037118:
     cmp	r1, r0
     ble .Ljp_08036F9E
     adds	r0, r4, #0
-    bl func_080AB3FC
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [r4, #12]
     b .Ljp_08036FA0
 .Ljp_08036F9E:
@@ -3964,7 +3964,7 @@ func_08037118:
     cmp	r1, r0
     ble .Ljp_08036FB6
     adds	r0, r4, #0
-    bl func_080AB3FC
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [r4, #12]
     b .Ljp_08036FB8
 .Ljp_08036FB6:
@@ -4139,7 +4139,7 @@ func_0803726C:
     cmn	r1, r0
     bge .Ljp_0803711E
     add	r0, sp, #12
-    bl func_080AB380
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [sp, #20]
     b .Ljp_08037120
 .Ljp_0803711E:
@@ -4155,7 +4155,7 @@ func_0803726C:
     cmp	r1, r0
     ble .Ljp_0803713A
     add	r0, sp, #12
-    bl func_080AB3FC
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [sp, #24]
     b .Ljp_0803713C
 .Ljp_0803713A:
@@ -4171,7 +4171,7 @@ func_0803726C:
     cmn	r1, r0
     bge .Ljp_08037156
     add	r0, sp, #12
-    bl func_080AB308
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [sp, #16]
     b .Ljp_08037158
 .Ljp_08037156:
@@ -4187,7 +4187,7 @@ func_0803726C:
     cmp	r1, r0
     ble .Ljp_08037172
     add	r0, sp, #12
-    bl func_080AB294
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [sp, #12]
     b .Ljp_08037174
 .Ljp_08037172:
@@ -9340,7 +9340,7 @@ func_08039A60:
 .Ljp_08039A92:
     adds	r0, r7, #0
     adds	r1, r4, #0
-    bl func_0801FF04
+    bl ApplyMovement__12AActorEntityP19ActorMovementBounds
 .Ljp_08039A9A:
     adds	r1, r7, #0
     adds	r1, #48	@ 0x30
@@ -10009,7 +10009,7 @@ func_0803A180:
     cmp	r1, r0
     ble .Ljp_08039FBA
     adds	r0, r3, #0
-    bl func_080AB294
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [sp, #12]
     b .Ljp_08039FBC
 .Ljp_08039FBA:
@@ -10027,7 +10027,7 @@ func_0803A180:
     cmn	r1, r0
     bge .Ljp_08039FD8
     adds	r0, r3, #0
-    bl func_080AB308
+    bl RefreshUp__19ActorMovementBounds
     ldr	r1, [sp, #16]
 .Ljp_08039FD8:
     movs	r0, #1
@@ -10044,7 +10044,7 @@ func_0803A180:
     cmn	r1, r0
     bge .Ljp_08039FF8
     adds	r0, r3, #0
-    bl func_080AB380
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r1, [sp, #20]
 .Ljp_08039FF8:
     movs	r0, #1
@@ -10061,7 +10061,7 @@ func_0803A180:
     cmp	r1, r0
     ble .Ljp_0803A01A
     adds	r0, r3, #0
-    bl func_080AB3FC
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [sp, #24]
     b .Ljp_0803A01C
 .Ljp_0803A01A:
@@ -14470,7 +14470,7 @@ func_08037118:
     cmp	r1, r0
     ble .Leu_08037176
     adds	r0, r4, #0
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [r4, #0]
     b .Leu_08037178
 .Leu_08037176:
@@ -14483,7 +14483,7 @@ func_08037118:
     cmp	r1, r0
     ble .Leu_0803718E
     adds	r0, r4, #0
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [r4, #0]
     b .Leu_08037190
 .Leu_0803718E:
@@ -14500,7 +14500,7 @@ func_08037118:
     cmn	r1, r0
     bge .Leu_080371AC
     adds	r0, r4, #0
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [r4, #4]
     b .Leu_080371AE
 .Leu_080371AC:
@@ -14513,7 +14513,7 @@ func_08037118:
     cmn	r1, r0
     bge .Leu_080371C4
     adds	r0, r4, #0
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [r4, #4]
     b .Leu_080371C6
 .Leu_080371C4:
@@ -14531,7 +14531,7 @@ func_08037118:
     cmn	r1, r0
     bge .Leu_080371E4
     adds	r0, r4, #0
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [r4, #8]
     b .Leu_080371E6
 .Leu_080371E4:
@@ -14544,7 +14544,7 @@ func_08037118:
     cmn	r1, r0
     bge .Leu_080371FC
     adds	r0, r4, #0
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [r4, #8]
     b .Leu_080371FE
 .Leu_080371FC:
@@ -14563,7 +14563,7 @@ func_08037118:
     cmp	r1, r0
     ble .Leu_0803721E
     adds	r0, r4, #0
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [r4, #12]
     b .Leu_08037220
 .Leu_0803721E:
@@ -14576,7 +14576,7 @@ func_08037118:
     cmp	r1, r0
     ble .Leu_08037236
     adds	r0, r4, #0
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [r4, #12]
     b .Leu_08037238
 .Leu_08037236:
@@ -14758,7 +14758,7 @@ func_0803726C:
     cmn	r1, r0
     bge .Leu_0803739E
     add	r0, sp, #12
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [sp, #20]
     b .Leu_080373A0
 .Leu_0803739E:
@@ -14774,7 +14774,7 @@ func_0803726C:
     cmp	r1, r0
     ble .Leu_080373BA
     add	r0, sp, #12
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [sp, #24]
     b .Leu_080373BC
 .Leu_080373BA:
@@ -14790,7 +14790,7 @@ func_0803726C:
     cmn	r1, r0
     bge .Leu_080373D6
     add	r0, sp, #12
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [sp, #16]
     b .Leu_080373D8
 .Leu_080373D6:
@@ -14806,7 +14806,7 @@ func_0803726C:
     cmp	r1, r0
     ble .Leu_080373F2
     add	r0, sp, #12
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [sp, #12]
     b .Leu_080373F4
 .Leu_080373F2:
@@ -20041,7 +20041,7 @@ func_08039A60:
 .Leu_08039D12:
     adds	r0, r7, #0
     adds	r1, r4, #0
-    bl func_08020170
+    bl ApplyMovement__12AActorEntityP19ActorMovementBounds
 .Leu_08039D1A:
     adds	r1, r7, #0
     adds	r1, #48	@ 0x30
@@ -20713,7 +20713,7 @@ func_0803A180:
     cmp	r1, r0
     ble .Leu_0803A23A
     adds	r0, r3, #0
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [sp, #12]
     b .Leu_0803A23C
 .Leu_0803A23A:
@@ -20731,7 +20731,7 @@ func_0803A180:
     cmn	r1, r0
     bge .Leu_0803A258
     adds	r0, r3, #0
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r1, [sp, #16]
 .Leu_0803A258:
     movs	r0, #1
@@ -20748,7 +20748,7 @@ func_0803A180:
     cmn	r1, r0
     bge .Leu_0803A278
     adds	r0, r3, #0
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r1, [sp, #20]
 .Leu_0803A278:
     movs	r0, #1
@@ -20765,7 +20765,7 @@ func_0803A180:
     cmp	r1, r0
     ble .Leu_0803A29A
     adds	r0, r3, #0
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [sp, #24]
     b .Leu_0803A29C
 .Leu_0803A29A:
@@ -25320,7 +25320,7 @@ func_08037118:
     cmp	r1, r0
     ble .Lde_08037076
     adds	r0, r4, #0
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [r4, #0]
     b .Lde_08037078
 .Lde_08037076:
@@ -25333,7 +25333,7 @@ func_08037118:
     cmp	r1, r0
     ble .Lde_0803708E
     adds	r0, r4, #0
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [r4, #0]
     b .Lde_08037090
 .Lde_0803708E:
@@ -25350,7 +25350,7 @@ func_08037118:
     cmn	r1, r0
     bge .Lde_080370AC
     adds	r0, r4, #0
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [r4, #4]
     b .Lde_080370AE
 .Lde_080370AC:
@@ -25363,7 +25363,7 @@ func_08037118:
     cmn	r1, r0
     bge .Lde_080370C4
     adds	r0, r4, #0
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [r4, #4]
     b .Lde_080370C6
 .Lde_080370C4:
@@ -25381,7 +25381,7 @@ func_08037118:
     cmn	r1, r0
     bge .Lde_080370E4
     adds	r0, r4, #0
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [r4, #8]
     b .Lde_080370E6
 .Lde_080370E4:
@@ -25394,7 +25394,7 @@ func_08037118:
     cmn	r1, r0
     bge .Lde_080370FC
     adds	r0, r4, #0
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [r4, #8]
     b .Lde_080370FE
 .Lde_080370FC:
@@ -25413,7 +25413,7 @@ func_08037118:
     cmp	r1, r0
     ble .Lde_0803711E
     adds	r0, r4, #0
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [r4, #12]
     b .Lde_08037120
 .Lde_0803711E:
@@ -25426,7 +25426,7 @@ func_08037118:
     cmp	r1, r0
     ble .Lde_08037136
     adds	r0, r4, #0
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [r4, #12]
     b .Lde_08037138
 .Lde_08037136:
@@ -25608,7 +25608,7 @@ func_0803726C:
     cmn	r1, r0
     bge .Lde_0803729E
     add	r0, sp, #12
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [sp, #20]
     b .Lde_080372A0
 .Lde_0803729E:
@@ -25624,7 +25624,7 @@ func_0803726C:
     cmp	r1, r0
     ble .Lde_080372BA
     add	r0, sp, #12
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [sp, #24]
     b .Lde_080372BC
 .Lde_080372BA:
@@ -25640,7 +25640,7 @@ func_0803726C:
     cmn	r1, r0
     bge .Lde_080372D6
     add	r0, sp, #12
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [sp, #16]
     b .Lde_080372D8
 .Lde_080372D6:
@@ -25656,7 +25656,7 @@ func_0803726C:
     cmp	r1, r0
     ble .Lde_080372F2
     add	r0, sp, #12
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [sp, #12]
     b .Lde_080372F4
 .Lde_080372F2:
@@ -30891,7 +30891,7 @@ func_08039A60:
 .Lde_08039C12:
     adds	r0, r7, #0
     adds	r1, r4, #0
-    bl func_08020170
+    bl ApplyMovement__12AActorEntityP19ActorMovementBounds
 .Lde_08039C1A:
     adds	r1, r7, #0
     adds	r1, #48	@ 0x30
@@ -31563,7 +31563,7 @@ func_0803A180:
     cmp	r1, r0
     ble .Lde_0803A13A
     adds	r0, r3, #0
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [sp, #12]
     b .Lde_0803A13C
 .Lde_0803A13A:
@@ -31581,7 +31581,7 @@ func_0803A180:
     cmn	r1, r0
     bge .Lde_0803A158
     adds	r0, r3, #0
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r1, [sp, #16]
 .Lde_0803A158:
     movs	r0, #1
@@ -31598,7 +31598,7 @@ func_0803A180:
     cmn	r1, r0
     bge .Lde_0803A178
     adds	r0, r3, #0
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r1, [sp, #20]
 .Lde_0803A178:
     movs	r0, #1
@@ -31615,7 +31615,7 @@ func_0803A180:
     cmp	r1, r0
     ble .Lde_0803A19A
     adds	r0, r3, #0
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [sp, #24]
     b .Lde_0803A19C
 .Lde_0803A19A:
@@ -36169,7 +36169,7 @@ func_08037118:
     cmp	r1, r0
     ble .Lus_08037162
     adds	r0, r4, #0
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [r4, #0]
     b .Lus_08037164
 .Lus_08037162:
@@ -36182,7 +36182,7 @@ func_08037118:
     cmp	r1, r0
     ble .Lus_0803717A
     adds	r0, r4, #0
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [r4, #0]
     b .Lus_0803717C
 .Lus_0803717A:
@@ -36199,7 +36199,7 @@ func_08037118:
     cmn	r1, r0
     bge .Lus_08037198
     adds	r0, r4, #0
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [r4, #4]
     b .Lus_0803719A
 .Lus_08037198:
@@ -36212,7 +36212,7 @@ func_08037118:
     cmn	r1, r0
     bge .Lus_080371B0
     adds	r0, r4, #0
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [r4, #4]
     b .Lus_080371B2
 .Lus_080371B0:
@@ -36230,7 +36230,7 @@ func_08037118:
     cmn	r1, r0
     bge .Lus_080371D0
     adds	r0, r4, #0
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [r4, #8]
     b .Lus_080371D2
 .Lus_080371D0:
@@ -36243,7 +36243,7 @@ func_08037118:
     cmn	r1, r0
     bge .Lus_080371E8
     adds	r0, r4, #0
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [r4, #8]
     b .Lus_080371EA
 .Lus_080371E8:
@@ -36262,7 +36262,7 @@ func_08037118:
     cmp	r1, r0
     ble .Lus_0803720A
     adds	r0, r4, #0
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [r4, #12]
     b .Lus_0803720C
 .Lus_0803720A:
@@ -36275,7 +36275,7 @@ func_08037118:
     cmp	r1, r0
     ble .Lus_08037222
     adds	r0, r4, #0
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [r4, #12]
     b .Lus_08037224
 .Lus_08037222:
@@ -36457,7 +36457,7 @@ func_0803726C:
     cmn	r1, r0
     bge .Lus_0803738A
     add	r0, sp, #12
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r0, [sp, #20]
     b .Lus_0803738C
 .Lus_0803738A:
@@ -36473,7 +36473,7 @@ func_0803726C:
     cmp	r1, r0
     ble .Lus_080373A6
     add	r0, sp, #12
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [sp, #24]
     b .Lus_080373A8
 .Lus_080373A6:
@@ -36489,7 +36489,7 @@ func_0803726C:
     cmn	r1, r0
     bge .Lus_080373C2
     add	r0, sp, #12
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r0, [sp, #16]
     b .Lus_080373C4
 .Lus_080373C2:
@@ -36505,7 +36505,7 @@ func_0803726C:
     cmp	r1, r0
     ble .Lus_080373DE
     add	r0, sp, #12
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [sp, #12]
     b .Lus_080373E0
 .Lus_080373DE:
@@ -41740,7 +41740,7 @@ func_08039A60:
 .Lus_08039CFE:
     adds	r0, r7, #0
     adds	r1, r4, #0
-    bl func_08020170
+    bl ApplyMovement__12AActorEntityP19ActorMovementBounds
 .Lus_08039D06:
     adds	r1, r7, #0
     adds	r1, #48	@ 0x30
@@ -42412,7 +42412,7 @@ func_0803A180:
     cmp	r1, r0
     ble .Lus_0803A226
     adds	r0, r3, #0
-    bl func_080AB85C
+    bl RefreshDown__19ActorMovementBounds
     ldr	r0, [sp, #12]
     b .Lus_0803A228
 .Lus_0803A226:
@@ -42430,7 +42430,7 @@ func_0803A180:
     cmn	r1, r0
     bge .Lus_0803A244
     adds	r0, r3, #0
-    bl func_080AB8D0
+    bl RefreshUp__19ActorMovementBounds
     ldr	r1, [sp, #16]
 .Lus_0803A244:
     movs	r0, #1
@@ -42447,7 +42447,7 @@ func_0803A180:
     cmn	r1, r0
     bge .Lus_0803A264
     adds	r0, r3, #0
-    bl func_080AB948
+    bl RefreshLeft__19ActorMovementBounds
     ldr	r1, [sp, #20]
 .Lus_0803A264:
     movs	r0, #1
@@ -42464,7 +42464,7 @@ func_0803A180:
     cmp	r1, r0
     ble .Lus_0803A286
     adds	r0, r3, #0
-    bl func_080AB9C4
+    bl RefreshRight__19ActorMovementBounds
     ldr	r0, [sp, #24]
     b .Lus_0803A288
 .Lus_0803A286:

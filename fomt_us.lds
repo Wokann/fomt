@@ -338,7 +338,7 @@ SECTIONS
         src/code_entity_08020018.o(.text);
         src/entity_actor.o(.text.entity_actor_movement);
         asm/code_entities.o(.text.entity_actor_sound);
-        src/entity_actor.o(.text.entity_actor_animation_complete);
+        src/entity_actor.o(.text.entity_actor_animation_complete .text.entity_actor_apply_movement);
         asm/code_entities.o(.text);
         src/livestock_actor.o(.text.IsSick__C12ChickenActor);
         asm/code_entities.o(.text.livestock_actor_chicken_after_sick_check);
@@ -724,6 +724,8 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_after_animation_reset);
         src/world_map.o(.text.RefreshFieldPlotTiles .text.func_080AA850 .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
         asm/code_809E804.o(.text.game_map_after_flag_updates);
+        src/entity_actor.o(.text.actor_movement_bounds);
+        asm/code_809E804.o(.text.actor_movement_bounds_after);
         src/map_data.o(.text.IsMapTerrainBoxBlocked);
         asm/code_809E804.o(.text.game_map_after_terrain_query);
         asm/world_runtime.o(.text);

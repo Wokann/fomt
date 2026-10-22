@@ -12,6 +12,76 @@ struct UnkActorEntity28
     /* +00 */ u32 unk_00;
 };
 
+// Lazily cached pixel-distance limits for an actor collision box.
+// The four flag bytes are preserved without assigning an unverified gameplay meaning.
+struct ActorMovementBounds
+{
+    i32 down_limit;
+    i32 up_limit;
+    i32 left_limit;
+    i32 right_limit;
+    bool unk_10;
+    bool unk_11;
+    bool unk_12;
+    bool unk_13;
+    MapTerrainView terrain;
+    Box box;
+    i32 max_distance;
+    i32 x_probe;
+    i32 y_probe;
+
+    ActorMovementBounds()
+        : down_limit(0), up_limit(0), left_limit(0), right_limit(0),
+          unk_10(false), unk_11(false), unk_12(false), unk_13(false),
+          terrain(0, 0, 0), box(0, 0), max_distance(1), x_probe(0), y_probe(0) {}
+    static ActorMovementBounds Empty() SECTION(".text.actor_movement_bounds");
+
+    void RefreshDown() SECTION(".text.actor_movement_bounds");
+    void RefreshUp() SECTION(".text.actor_movement_bounds");
+    void RefreshLeft() SECTION(".text.actor_movement_bounds");
+    void RefreshRight() SECTION(".text.actor_movement_bounds");
+    i32 GetDown() {
+        i32 cached = down_limit;
+        if (cached > max_distance) {
+            RefreshDown();
+            return down_limit;
+        }
+        return cached;
+    }
+    i32 GetUp() {
+        i32 cached = up_limit;
+        if (cached < -max_distance) {
+            RefreshUp();
+            return up_limit;
+        }
+        return cached;
+    }
+    i32 GetLeft() {
+        i32 cached = left_limit;
+        if (cached < -max_distance) {
+            RefreshLeft();
+            return left_limit;
+        }
+        return cached;
+    }
+    i32 GetRight() {
+        i32 cached = right_limit;
+        if (cached > max_distance) {
+            RefreshRight();
+            return right_limit;
+        }
+        return cached;
+    }
+};
+
+typedef char ActorMovementBoundsSizeCheck[sizeof(ActorMovementBounds) == 0x34 ? 1 : -1];
+typedef char ActorMovementBoundsTerrainCheck[offsetof(ActorMovementBounds, terrain) == 0x14 ? 1 : -1];
+typedef char ActorMovementBoundsBoxCheck[offsetof(ActorMovementBounds, box) == 0x20 ? 1 : -1];
+typedef char ActorMovementBoundsDistanceCheck[offsetof(ActorMovementBounds, max_distance) == 0x28 ? 1 : -1];
+typedef char ActorMovementBoundsFlagsCheck[offsetof(ActorMovementBounds, unk_10) == 0x10 ? 1 : -1];
+typedef char ActorMovementBoundsXProbeCheck[offsetof(ActorMovementBounds, x_probe) == 0x2C ? 1 : -1];
+typedef char ActorMovementBoundsYProbeCheck[offsetof(ActorMovementBounds, y_probe) == 0x30 ? 1 : -1];
+
 struct AActorEntity : public AEntity
 {
     AActorEntity(GameObject * game_object, ActorLocation const & location, u32 arg_2, u32 arg_3);
@@ -22,6 +92,7 @@ struct AActorEntity : public AEntity
     bool IsOnCurrentMap() const SECTION(".text.entity_actor_movement");
     void SetMovementSpeed(i32 speed_q16) SECTION(".text.entity_actor_movement");
     bool IsAnimationComplete() const SECTION(".text.entity_actor_animation_complete");
+    void ApplyMovement(ActorMovementBounds * bounds) SECTION(".text.entity_actor_apply_movement");
 
     void SetLocation(ActorLocation const & location);
     ActorLocation GetLocation() const;

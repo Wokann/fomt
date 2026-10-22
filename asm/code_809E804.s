@@ -18307,302 +18307,11 @@ func_080AB264: @ 080AB264
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-    .global func_080AB294
-    .thumb_func
-func_080AB294: @ 080AB294
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x10
-	adds r7, r0, #0
-	ldr r0, [r7, #0x28]
-	str r0, [r7]
-	movs r0, #0x14
-	adds r0, r0, r7
-	mov r8, r0
-	adds r6, r7, #0
-	adds r6, #0x20
-	movs r0, #0
-	str r0, [sp]
-	str r0, [sp, #4]
-	mov r0, r8
-	adds r1, r6, #0
-	adds r2, r7, #0
-	movs r3, #0
-	bl func_080ABB5C
-	ldr r0, [r7, #0x30]
-	cmp r0, #0
-	beq .Ljp_map_080AB2F8
-	ldr r3, [r7]
-	adds r3, r3, r0
-	movs r0, #0x20
-	ldrsh r4, [r7, r0]
-	movs r0, #2
-	ldrsh r1, [r6, r0]
-	movs r0, #4
-	ldrsh r5, [r6, r0]
-	movs r0, #6
-	ldrsh r6, [r6, r0]
-	add r2, sp, #8
-	adds r0, r2, #0
-	strh r4, [r0]
-	adds r1, r3, r1
-	strh r1, [r2, #2]
-	strh r5, [r2, #4]
-	adds r3, r3, r6
-	strh r3, [r2, #6]
-	mov r0, r8
-	adds r1, r2, #0
-	bl IsMapTerrainBoxBlocked
-	adds r1, r0, #0
-	movs r0, #1
-	eors r1, r0
-	b .Ljp_map_080AB2FA
-.Ljp_map_080AB2F8:
-	movs r1, #0
-.Ljp_map_080AB2FA:
-	strb r1, [r7, #0x10]
-	add sp, #0x10
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-    .global func_080AB308
-    .thumb_func
-func_080AB308: @ 080AB308
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x10
-	adds r7, r0, #0
-	ldr r0, [r7, #0x28]
-	rsbs r0, r0, #0
-	str r0, [r7, #4]
-	movs r0, #0x14
-	adds r0, r0, r7
-	mov r8, r0
-	adds r6, r7, #0
-	adds r6, #0x20
-	adds r3, r7, #4
-	movs r0, #0
-	str r0, [sp]
-	str r0, [sp, #4]
-	mov r0, r8
-	adds r1, r6, #0
-	movs r2, #0
-	bl func_080ABB5C
-	ldr r0, [r7, #0x30]
-	cmp r0, #0
-	beq .Ljp_map_080AB36E
-	ldr r3, [r7, #4]
-	subs r3, r3, r0
-	movs r0, #0x20
-	ldrsh r4, [r7, r0]
-	movs r0, #2
-	ldrsh r1, [r6, r0]
-	movs r0, #4
-	ldrsh r5, [r6, r0]
-	movs r0, #6
-	ldrsh r6, [r6, r0]
-	add r2, sp, #8
-	adds r0, r2, #0
-	strh r4, [r0]
-	adds r1, r3, r1
-	strh r1, [r2, #2]
-	strh r5, [r2, #4]
-	adds r3, r3, r6
-	strh r3, [r2, #6]
-	mov r0, r8
-	adds r1, r2, #0
-	bl IsMapTerrainBoxBlocked
-	adds r1, r0, #0
-	movs r0, #1
-	eors r1, r0
-	b .Ljp_map_080AB370
-.Ljp_map_080AB36E:
-	movs r1, #0
-.Ljp_map_080AB370:
-	strb r1, [r7, #0x11]
-	add sp, #0x10
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-    .global func_080AB380
-    .thumb_func
-func_080AB380: @ 080AB380
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x10
-	adds r7, r0, #0
-	ldr r0, [r7, #0x28]
-	rsbs r0, r0, #0
-	str r0, [r7, #8]
-	movs r0, #0x14
-	adds r0, r0, r7
-	mov r8, r0
-	adds r6, r7, #0
-	adds r6, #0x20
-	adds r0, r7, #0
-	adds r0, #8
-	str r0, [sp]
-	movs r0, #0
-	str r0, [sp, #4]
-	mov r0, r8
-	adds r1, r6, #0
-	movs r2, #0
-	movs r3, #0
-	bl func_080ABB5C
-	ldr r0, [r7, #0x2c]
-	cmp r0, #0
-	beq .Ljp_map_080AB3EA
-	ldr r1, [r7, #8]
-	subs r1, r1, r0
-	movs r0, #0x20
-	ldrsh r2, [r7, r0]
-	movs r0, #2
-	ldrsh r4, [r6, r0]
-	movs r0, #4
-	ldrsh r5, [r6, r0]
-	movs r0, #6
-	ldrsh r6, [r6, r0]
-	add r3, sp, #8
-	adds r2, r1, r2
-	adds r0, r3, #0
-	strh r2, [r0]
-	strh r4, [r3, #2]
-	adds r1, r1, r5
-	strh r1, [r3, #4]
-	strh r6, [r3, #6]
-	mov r0, r8
-	adds r1, r3, #0
-	bl IsMapTerrainBoxBlocked
-	adds r1, r0, #0
-	movs r0, #1
-	eors r1, r0
-	b .Ljp_map_080AB3EC
-.Ljp_map_080AB3EA:
-	movs r1, #0
-.Ljp_map_080AB3EC:
-	strb r1, [r7, #0x12]
-	add sp, #0x10
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-    .global func_080AB3FC
-    .thumb_func
-func_080AB3FC: @ 080AB3FC
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x10
-	adds r7, r0, #0
-	ldr r0, [r7, #0x28]
-	str r0, [r7, #0xc]
-	movs r0, #0x14
-	adds r0, r0, r7
-	mov r8, r0
-	adds r6, r7, #0
-	adds r6, #0x20
-	movs r0, #0
-	str r0, [sp]
-	adds r0, r7, #0
-	adds r0, #0xc
-	str r0, [sp, #4]
-	mov r0, r8
-	adds r1, r6, #0
-	movs r2, #0
-	movs r3, #0
-	bl func_080ABB5C
-	ldr r0, [r7, #0x2c]
-	cmp r0, #0
-	beq .Ljp_map_080AB464
-	ldr r1, [r7, #0xc]
-	adds r1, r1, r0
-	movs r0, #0x20
-	ldrsh r2, [r7, r0]
-	movs r0, #2
-	ldrsh r4, [r6, r0]
-	movs r0, #4
-	ldrsh r5, [r6, r0]
-	movs r0, #6
-	ldrsh r6, [r6, r0]
-	add r3, sp, #8
-	adds r2, r1, r2
-	adds r0, r3, #0
-	strh r2, [r0]
-	strh r4, [r3, #2]
-	adds r1, r1, r5
-	strh r1, [r3, #4]
-	strh r6, [r3, #6]
-	mov r0, r8
-	adds r1, r3, #0
-	bl IsMapTerrainBoxBlocked
-	adds r1, r0, #0
-	movs r0, #1
-	eors r1, r0
-	b .Ljp_map_080AB466
-.Ljp_map_080AB464:
-	movs r1, #0
-.Ljp_map_080AB466:
-	strb r1, [r7, #0x13]
-	add sp, #0x10
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-    .global func_080AB474
-    .thumb_func
-func_080AB474: @ 080AB474
-	push {r4, lr}
-	sub sp, #0x34
-	adds r4, r0, #0
-	mov r1, sp
-	movs r0, #0
-	str r0, [sp]
-	str r0, [sp, #4]
-	str r0, [sp, #8]
-	str r0, [sp, #0xc]
-	strb r0, [r1, #0x10]
-	strb r0, [r1, #0x11]
-	strb r0, [r1, #0x12]
-	strb r0, [r1, #0x13]
-	add r1, sp, #0x14
-	str r0, [sp, #0x14]
-	str r0, [r1, #4]
-	strh r0, [r1, #8]
-	strh r0, [r1, #0xa]
-	add r1, sp, #0x20
-	strh r0, [r1]
-	strh r0, [r1, #2]
-	strh r0, [r1, #4]
-	strh r0, [r1, #6]
-	movs r1, #1
-	str r1, [sp, #0x28]
-	str r0, [sp, #0x2c]
-	str r0, [sp, #0x30]
-	mov r0, sp
-	strb r1, [r0, #0x10]
-	strb r1, [r0, #0x11]
-	strb r1, [r0, #0x12]
-	strb r1, [r0, #0x13]
-	adds r0, r4, #0
-	mov r1, sp
-	movs r2, #0x34
-	bl memcpy
-	adds r0, r4, #0
-	add sp, #0x34
-	pop {r4}
-	pop {r1}
-	bx r1
+
+    .section .text.actor_movement_bounds_after, "ax", %progbits
+    .thumb
+    .align 2, 0
+
     .global func_080AB4C8
     .thumb_func
 func_080AB4C8: @ 080AB4C8
@@ -18634,7 +18343,7 @@ func_080AB4C8: @ 080AB4C8
 	cmp r1, r0
 	ble .Ljp_map_080AB508
 	adds r0, r4, #0
-	bl func_080AB294
+	bl RefreshDown__19ActorMovementBounds
 	ldr r0, [r4]
 	b .Ljp_map_080AB50A
 .Ljp_map_080AB508:
@@ -18662,7 +18371,7 @@ func_080AB4C8: @ 080AB4C8
 	cmn r1, r0
 	bge .Ljp_map_080AB53C
 	adds r0, r4, #0
-	bl func_080AB308
+	bl RefreshUp__19ActorMovementBounds
 	ldr r0, [r4, #4]
 	b .Ljp_map_080AB53E
 .Ljp_map_080AB53C:
@@ -18702,7 +18411,7 @@ func_080AB4C8: @ 080AB4C8
 	cmn r1, r0
 	bge .Ljp_map_080AB588
 	adds r0, r4, #0
-	bl func_080AB380
+	bl RefreshLeft__19ActorMovementBounds
 	ldr r0, [r4, #8]
 	b .Ljp_map_080AB58A
 .Ljp_map_080AB588:
@@ -18730,7 +18439,7 @@ func_080AB4C8: @ 080AB4C8
 	cmp r1, r0
 	ble .Ljp_map_080AB5BC
 	adds r0, r4, #0
-	bl func_080AB3FC
+	bl RefreshRight__19ActorMovementBounds
 	ldr r0, [r4, #0xc]
 	b .Ljp_map_080AB5BE
 .Ljp_map_080AB5BC:
@@ -18929,7 +18638,7 @@ func_080AB678: @ 080AB678
 	cmp r1, r0
 	ble .Ljp_map_080AB724
 	adds r0, r4, #0
-	bl func_080AB294
+	bl RefreshDown__19ActorMovementBounds
 	ldr r0, [r4]
 	b .Ljp_map_080AB726
 .Ljp_map_080AB724:
@@ -18942,7 +18651,7 @@ func_080AB678: @ 080AB678
 	cmp r1, r0
 	ble .Ljp_map_080AB738
 	adds r0, r4, #0
-	bl func_080AB294
+	bl RefreshDown__19ActorMovementBounds
 .Ljp_map_080AB738:
 	ldrb r0, [r4, #0x10]
 	b .Ljp_map_080AB7F8
@@ -18960,7 +18669,7 @@ func_080AB678: @ 080AB678
 	cmn r1, r0
 	bge .Ljp_map_080AB75E
 	adds r0, r4, #0
-	bl func_080AB308
+	bl RefreshUp__19ActorMovementBounds
 	ldr r0, [r4, #4]
 	b .Ljp_map_080AB760
 .Ljp_map_080AB75E:
@@ -18973,7 +18682,7 @@ func_080AB678: @ 080AB678
 	cmn r0, r1
 	bge .Ljp_map_080AB772
 	adds r0, r4, #0
-	bl func_080AB308
+	bl RefreshUp__19ActorMovementBounds
 .Ljp_map_080AB772:
 	ldrb r0, [r4, #0x11]
 	b .Ljp_map_080AB7F8
@@ -18995,7 +18704,7 @@ func_080AB678: @ 080AB678
 	cmn r1, r0
 	bge .Ljp_map_080AB79E
 	adds r0, r4, #0
-	bl func_080AB380
+	bl RefreshLeft__19ActorMovementBounds
 	ldr r0, [r4, #8]
 	b .Ljp_map_080AB7A0
 .Ljp_map_080AB79E:
@@ -19008,7 +18717,7 @@ func_080AB678: @ 080AB678
 	cmn r0, r1
 	bge .Ljp_map_080AB7B2
 	adds r0, r4, #0
-	bl func_080AB380
+	bl RefreshLeft__19ActorMovementBounds
 .Ljp_map_080AB7B2:
 	ldrb r0, [r4, #0x12]
 	b .Ljp_map_080AB7F8
@@ -19033,7 +18742,7 @@ func_080AB678: @ 080AB678
 	cmp r1, r0
 	ble .Ljp_map_080AB7E2
 	adds r0, r4, #0
-	bl func_080AB3FC
+	bl RefreshRight__19ActorMovementBounds
 	ldr r0, [r4, #0xc]
 	b .Ljp_map_080AB7E4
 .Ljp_map_080AB7E2:
@@ -19046,7 +18755,7 @@ func_080AB678: @ 080AB678
 	cmp r1, r0
 	ble .Ljp_map_080AB7F6
 	adds r0, r4, #0
-	bl func_080AB3FC
+	bl RefreshRight__19ActorMovementBounds
 .Ljp_map_080AB7F6:
 	ldrb r0, [r4, #0x13]
 .Ljp_map_080AB7F8:
@@ -19229,7 +18938,7 @@ func_080AB890: @ 080AB890
 	cmp r1, r0
 	ble .Ljp_map_080AB93C
 	adds r0, r4, #0
-	bl func_080AB294
+	bl RefreshDown__19ActorMovementBounds
 	ldr r0, [r4]
 	b .Ljp_map_080AB93E
 .Ljp_map_080AB93C:
@@ -19242,7 +18951,7 @@ func_080AB890: @ 080AB890
 	cmp r1, r0
 	ble .Ljp_map_080AB950
 	adds r0, r4, #0
-	bl func_080AB294
+	bl RefreshDown__19ActorMovementBounds
 .Ljp_map_080AB950:
 	ldrb r0, [r4, #0x10]
 	b .Ljp_map_080ABA10
@@ -19260,7 +18969,7 @@ func_080AB890: @ 080AB890
 	cmn r1, r0
 	bge .Ljp_map_080AB976
 	adds r0, r4, #0
-	bl func_080AB308
+	bl RefreshUp__19ActorMovementBounds
 	ldr r0, [r4, #4]
 	b .Ljp_map_080AB978
 .Ljp_map_080AB976:
@@ -19273,7 +18982,7 @@ func_080AB890: @ 080AB890
 	cmn r0, r1
 	bge .Ljp_map_080AB98A
 	adds r0, r4, #0
-	bl func_080AB308
+	bl RefreshUp__19ActorMovementBounds
 .Ljp_map_080AB98A:
 	ldrb r0, [r4, #0x11]
 	b .Ljp_map_080ABA10
@@ -19295,7 +19004,7 @@ func_080AB890: @ 080AB890
 	cmn r1, r0
 	bge .Ljp_map_080AB9B6
 	adds r0, r4, #0
-	bl func_080AB380
+	bl RefreshLeft__19ActorMovementBounds
 	ldr r0, [r4, #8]
 	b .Ljp_map_080AB9B8
 .Ljp_map_080AB9B6:
@@ -19308,7 +19017,7 @@ func_080AB890: @ 080AB890
 	cmn r0, r1
 	bge .Ljp_map_080AB9CA
 	adds r0, r4, #0
-	bl func_080AB380
+	bl RefreshLeft__19ActorMovementBounds
 .Ljp_map_080AB9CA:
 	ldrb r0, [r4, #0x12]
 	b .Ljp_map_080ABA10
@@ -19333,7 +19042,7 @@ func_080AB890: @ 080AB890
 	cmp r1, r0
 	ble .Ljp_map_080AB9FA
 	adds r0, r4, #0
-	bl func_080AB3FC
+	bl RefreshRight__19ActorMovementBounds
 	ldr r0, [r4, #0xc]
 	b .Ljp_map_080AB9FC
 .Ljp_map_080AB9FA:
@@ -19346,7 +19055,7 @@ func_080AB890: @ 080AB890
 	cmp r1, r0
 	ble .Ljp_map_080ABA0E
 	adds r0, r4, #0
-	bl func_080AB3FC
+	bl RefreshRight__19ActorMovementBounds
 .Ljp_map_080ABA0E:
 	ldrb r0, [r4, #0x13]
 .Ljp_map_080ABA10:
@@ -19441,9 +19150,9 @@ func_080AB890: @ 080AB890
     .section .text.game_map_after_terrain_query, "ax", %progbits
     .align 2, 0
 
-    .global func_080ABB5C
+    .global ClipMapTerrainMovement
     .thumb_func
-func_080ABB5C: @ 080ABB5C
+ClipMapTerrainMovement: @ 080ABB5C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -98162,301 +97871,10 @@ func_080AB82C: @ 0x080AB82C
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080AB85C
-func_080AB85C: @ 0x080AB85C
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x10
-	adds r7, r0, #0
-	ldr r0, [r7, #0x28]
-	str r0, [r7]
-	movs r0, #0x14
-	adds r0, r0, r7
-	mov r8, r0
-	adds r6, r7, #0
-	adds r6, #0x20
-	movs r0, #0
-	str r0, [sp]
-	str r0, [sp, #4]
-	mov r0, r8
-	adds r1, r6, #0
-	adds r2, r7, #0
-	movs r3, #0
-	bl func_080AC124
-	ldr r0, [r7, #0x30]
-	cmp r0, #0
-	beq .L080AB8C0
-	ldr r3, [r7]
-	adds r3, r3, r0
-	movs r0, #0x20
-	ldrsh r4, [r7, r0]
-	movs r0, #2
-	ldrsh r1, [r6, r0]
-	movs r0, #4
-	ldrsh r5, [r6, r0]
-	movs r0, #6
-	ldrsh r6, [r6, r0]
-	add r2, sp, #8
-	adds r0, r2, #0
-	strh r4, [r0]
-	adds r1, r3, r1
-	strh r1, [r2, #2]
-	strh r5, [r2, #4]
-	adds r3, r3, r6
-	strh r3, [r2, #6]
-	mov r0, r8
-	adds r1, r2, #0
-	bl IsMapTerrainBoxBlocked
-	adds r1, r0, #0
-	movs r0, #1
-	eors r1, r0
-	b .L080AB8C2
-.L080AB8C0:
-	movs r1, #0
-.L080AB8C2:
-	strb r1, [r7, #0x10]
-	add sp, #0x10
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
+    .section .text.actor_movement_bounds_after, "ax", %progbits
+    .thumb
+    .align 2, 0
 
-	thumb_func_start func_080AB8D0
-func_080AB8D0: @ 0x080AB8D0
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x10
-	adds r7, r0, #0
-	ldr r0, [r7, #0x28]
-	rsbs r0, r0, #0
-	str r0, [r7, #4]
-	movs r0, #0x14
-	adds r0, r0, r7
-	mov r8, r0
-	adds r6, r7, #0
-	adds r6, #0x20
-	adds r3, r7, #4
-	movs r0, #0
-	str r0, [sp]
-	str r0, [sp, #4]
-	mov r0, r8
-	adds r1, r6, #0
-	movs r2, #0
-	bl func_080AC124
-	ldr r0, [r7, #0x30]
-	cmp r0, #0
-	beq .L080AB936
-	ldr r3, [r7, #4]
-	subs r3, r3, r0
-	movs r0, #0x20
-	ldrsh r4, [r7, r0]
-	movs r0, #2
-	ldrsh r1, [r6, r0]
-	movs r0, #4
-	ldrsh r5, [r6, r0]
-	movs r0, #6
-	ldrsh r6, [r6, r0]
-	add r2, sp, #8
-	adds r0, r2, #0
-	strh r4, [r0]
-	adds r1, r3, r1
-	strh r1, [r2, #2]
-	strh r5, [r2, #4]
-	adds r3, r3, r6
-	strh r3, [r2, #6]
-	mov r0, r8
-	adds r1, r2, #0
-	bl IsMapTerrainBoxBlocked
-	adds r1, r0, #0
-	movs r0, #1
-	eors r1, r0
-	b .L080AB938
-.L080AB936:
-	movs r1, #0
-.L080AB938:
-	strb r1, [r7, #0x11]
-	add sp, #0x10
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080AB948
-func_080AB948: @ 0x080AB948
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x10
-	adds r7, r0, #0
-	ldr r0, [r7, #0x28]
-	rsbs r0, r0, #0
-	str r0, [r7, #8]
-	movs r0, #0x14
-	adds r0, r0, r7
-	mov r8, r0
-	adds r6, r7, #0
-	adds r6, #0x20
-	adds r0, r7, #0
-	adds r0, #8
-	str r0, [sp]
-	movs r0, #0
-	str r0, [sp, #4]
-	mov r0, r8
-	adds r1, r6, #0
-	movs r2, #0
-	movs r3, #0
-	bl func_080AC124
-	ldr r0, [r7, #0x2c]
-	cmp r0, #0
-	beq .L080AB9B2
-	ldr r1, [r7, #8]
-	subs r1, r1, r0
-	movs r0, #0x20
-	ldrsh r2, [r7, r0]
-	movs r0, #2
-	ldrsh r4, [r6, r0]
-	movs r0, #4
-	ldrsh r5, [r6, r0]
-	movs r0, #6
-	ldrsh r6, [r6, r0]
-	add r3, sp, #8
-	adds r2, r1, r2
-	adds r0, r3, #0
-	strh r2, [r0]
-	strh r4, [r3, #2]
-	adds r1, r1, r5
-	strh r1, [r3, #4]
-	strh r6, [r3, #6]
-	mov r0, r8
-	adds r1, r3, #0
-	bl IsMapTerrainBoxBlocked
-	adds r1, r0, #0
-	movs r0, #1
-	eors r1, r0
-	b .L080AB9B4
-.L080AB9B2:
-	movs r1, #0
-.L080AB9B4:
-	strb r1, [r7, #0x12]
-	add sp, #0x10
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080AB9C4
-func_080AB9C4: @ 0x080AB9C4
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x10
-	adds r7, r0, #0
-	ldr r0, [r7, #0x28]
-	str r0, [r7, #0xc]
-	movs r0, #0x14
-	adds r0, r0, r7
-	mov r8, r0
-	adds r6, r7, #0
-	adds r6, #0x20
-	movs r0, #0
-	str r0, [sp]
-	adds r0, r7, #0
-	adds r0, #0xc
-	str r0, [sp, #4]
-	mov r0, r8
-	adds r1, r6, #0
-	movs r2, #0
-	movs r3, #0
-	bl func_080AC124
-	ldr r0, [r7, #0x2c]
-	cmp r0, #0
-	beq .L080ABA2C
-	ldr r1, [r7, #0xc]
-	adds r1, r1, r0
-	movs r0, #0x20
-	ldrsh r2, [r7, r0]
-	movs r0, #2
-	ldrsh r4, [r6, r0]
-	movs r0, #4
-	ldrsh r5, [r6, r0]
-	movs r0, #6
-	ldrsh r6, [r6, r0]
-	add r3, sp, #8
-	adds r2, r1, r2
-	adds r0, r3, #0
-	strh r2, [r0]
-	strh r4, [r3, #2]
-	adds r1, r1, r5
-	strh r1, [r3, #4]
-	strh r6, [r3, #6]
-	mov r0, r8
-	adds r1, r3, #0
-	bl IsMapTerrainBoxBlocked
-	adds r1, r0, #0
-	movs r0, #1
-	eors r1, r0
-	b .L080ABA2E
-.L080ABA2C:
-	movs r1, #0
-.L080ABA2E:
-	strb r1, [r7, #0x13]
-	add sp, #0x10
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_080ABA3C
-func_080ABA3C: @ 0x080ABA3C
-	push {r4, lr}
-	sub sp, #0x34
-	adds r4, r0, #0
-	mov r1, sp
-	movs r0, #0
-	str r0, [sp]
-	str r0, [sp, #4]
-	str r0, [sp, #8]
-	str r0, [sp, #0xc]
-	strb r0, [r1, #0x10]
-	strb r0, [r1, #0x11]
-	strb r0, [r1, #0x12]
-	strb r0, [r1, #0x13]
-	add r1, sp, #0x14
-	str r0, [sp, #0x14]
-	str r0, [r1, #4]
-	strh r0, [r1, #8]
-	strh r0, [r1, #0xa]
-	add r1, sp, #0x20
-	strh r0, [r1]
-	strh r0, [r1, #2]
-	strh r0, [r1, #4]
-	strh r0, [r1, #6]
-	movs r1, #1
-	str r1, [sp, #0x28]
-	str r0, [sp, #0x2c]
-	str r0, [sp, #0x30]
-	mov r0, sp
-	strb r1, [r0, #0x10]
-	strb r1, [r0, #0x11]
-	strb r1, [r0, #0x12]
-	strb r1, [r0, #0x13]
-	adds r0, r4, #0
-	mov r1, sp
-	movs r2, #0x34
-	bl memcpy
-	adds r0, r4, #0
-	add sp, #0x34
-	pop {r4}
-	pop {r1}
-	bx r1
 
 	thumb_func_start func_080ABA90
 func_080ABA90: @ 0x080ABA90
@@ -98488,7 +97906,7 @@ func_080ABA90: @ 0x080ABA90
 	cmp r1, r0
 	ble .L080ABAD0
 	adds r0, r4, #0
-	bl func_080AB85C
+	bl RefreshDown__19ActorMovementBounds
 	ldr r0, [r4]
 	b .L080ABAD2
 .L080ABAD0:
@@ -98516,7 +97934,7 @@ func_080ABA90: @ 0x080ABA90
 	cmn r1, r0
 	bge .L080ABB04
 	adds r0, r4, #0
-	bl func_080AB8D0
+	bl RefreshUp__19ActorMovementBounds
 	ldr r0, [r4, #4]
 	b .L080ABB06
 .L080ABB04:
@@ -98556,7 +97974,7 @@ func_080ABA90: @ 0x080ABA90
 	cmn r1, r0
 	bge .L080ABB50
 	adds r0, r4, #0
-	bl func_080AB948
+	bl RefreshLeft__19ActorMovementBounds
 	ldr r0, [r4, #8]
 	b .L080ABB52
 .L080ABB50:
@@ -98584,7 +98002,7 @@ func_080ABA90: @ 0x080ABA90
 	cmp r1, r0
 	ble .L080ABB84
 	adds r0, r4, #0
-	bl func_080AB9C4
+	bl RefreshRight__19ActorMovementBounds
 	ldr r0, [r4, #0xc]
 	b .L080ABB86
 .L080ABB84:
@@ -98783,7 +98201,7 @@ func_080ABC40: @ 0x080ABC40
 	cmp r1, r0
 	ble .L080ABCEC
 	adds r0, r4, #0
-	bl func_080AB85C
+	bl RefreshDown__19ActorMovementBounds
 	ldr r0, [r4]
 	b .L080ABCEE
 .L080ABCEC:
@@ -98796,7 +98214,7 @@ func_080ABC40: @ 0x080ABC40
 	cmp r1, r0
 	ble .L080ABD00
 	adds r0, r4, #0
-	bl func_080AB85C
+	bl RefreshDown__19ActorMovementBounds
 .L080ABD00:
 	ldrb r0, [r4, #0x10]
 	b .L080ABDC0
@@ -98814,7 +98232,7 @@ func_080ABC40: @ 0x080ABC40
 	cmn r1, r0
 	bge .L080ABD26
 	adds r0, r4, #0
-	bl func_080AB8D0
+	bl RefreshUp__19ActorMovementBounds
 	ldr r0, [r4, #4]
 	b .L080ABD28
 .L080ABD26:
@@ -98827,7 +98245,7 @@ func_080ABC40: @ 0x080ABC40
 	cmn r0, r1
 	bge .L080ABD3A
 	adds r0, r4, #0
-	bl func_080AB8D0
+	bl RefreshUp__19ActorMovementBounds
 .L080ABD3A:
 	ldrb r0, [r4, #0x11]
 	b .L080ABDC0
@@ -98849,7 +98267,7 @@ func_080ABC40: @ 0x080ABC40
 	cmn r1, r0
 	bge .L080ABD66
 	adds r0, r4, #0
-	bl func_080AB948
+	bl RefreshLeft__19ActorMovementBounds
 	ldr r0, [r4, #8]
 	b .L080ABD68
 .L080ABD66:
@@ -98862,7 +98280,7 @@ func_080ABC40: @ 0x080ABC40
 	cmn r0, r1
 	bge .L080ABD7A
 	adds r0, r4, #0
-	bl func_080AB948
+	bl RefreshLeft__19ActorMovementBounds
 .L080ABD7A:
 	ldrb r0, [r4, #0x12]
 	b .L080ABDC0
@@ -98887,7 +98305,7 @@ func_080ABC40: @ 0x080ABC40
 	cmp r1, r0
 	ble .L080ABDAA
 	adds r0, r4, #0
-	bl func_080AB9C4
+	bl RefreshRight__19ActorMovementBounds
 	ldr r0, [r4, #0xc]
 	b .L080ABDAC
 .L080ABDAA:
@@ -98900,7 +98318,7 @@ func_080ABC40: @ 0x080ABC40
 	cmp r1, r0
 	ble .L080ABDBE
 	adds r0, r4, #0
-	bl func_080AB9C4
+	bl RefreshRight__19ActorMovementBounds
 .L080ABDBE:
 	ldrb r0, [r4, #0x13]
 .L080ABDC0:
@@ -99083,7 +98501,7 @@ func_080ABE58: @ 0x080ABE58
 	cmp r1, r0
 	ble .L080ABF04
 	adds r0, r4, #0
-	bl func_080AB85C
+	bl RefreshDown__19ActorMovementBounds
 	ldr r0, [r4]
 	b .L080ABF06
 .L080ABF04:
@@ -99096,7 +98514,7 @@ func_080ABE58: @ 0x080ABE58
 	cmp r1, r0
 	ble .L080ABF18
 	adds r0, r4, #0
-	bl func_080AB85C
+	bl RefreshDown__19ActorMovementBounds
 .L080ABF18:
 	ldrb r0, [r4, #0x10]
 	b .L080ABFD8
@@ -99114,7 +98532,7 @@ func_080ABE58: @ 0x080ABE58
 	cmn r1, r0
 	bge .L080ABF3E
 	adds r0, r4, #0
-	bl func_080AB8D0
+	bl RefreshUp__19ActorMovementBounds
 	ldr r0, [r4, #4]
 	b .L080ABF40
 .L080ABF3E:
@@ -99127,7 +98545,7 @@ func_080ABE58: @ 0x080ABE58
 	cmn r0, r1
 	bge .L080ABF52
 	adds r0, r4, #0
-	bl func_080AB8D0
+	bl RefreshUp__19ActorMovementBounds
 .L080ABF52:
 	ldrb r0, [r4, #0x11]
 	b .L080ABFD8
@@ -99149,7 +98567,7 @@ func_080ABE58: @ 0x080ABE58
 	cmn r1, r0
 	bge .L080ABF7E
 	adds r0, r4, #0
-	bl func_080AB948
+	bl RefreshLeft__19ActorMovementBounds
 	ldr r0, [r4, #8]
 	b .L080ABF80
 .L080ABF7E:
@@ -99162,7 +98580,7 @@ func_080ABE58: @ 0x080ABE58
 	cmn r0, r1
 	bge .L080ABF92
 	adds r0, r4, #0
-	bl func_080AB948
+	bl RefreshLeft__19ActorMovementBounds
 .L080ABF92:
 	ldrb r0, [r4, #0x12]
 	b .L080ABFD8
@@ -99187,7 +98605,7 @@ func_080ABE58: @ 0x080ABE58
 	cmp r1, r0
 	ble .L080ABFC2
 	adds r0, r4, #0
-	bl func_080AB9C4
+	bl RefreshRight__19ActorMovementBounds
 	ldr r0, [r4, #0xc]
 	b .L080ABFC4
 .L080ABFC2:
@@ -99200,7 +98618,7 @@ func_080ABE58: @ 0x080ABE58
 	cmp r1, r0
 	ble .L080ABFD6
 	adds r0, r4, #0
-	bl func_080AB9C4
+	bl RefreshRight__19ActorMovementBounds
 .L080ABFD6:
 	ldrb r0, [r4, #0x13]
 .L080ABFD8:
@@ -99296,8 +98714,8 @@ func_080ABE58: @ 0x080ABE58
     .section .text.game_map_after_terrain_query, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080AC124
-func_080AC124: @ 0x080AC124
+	thumb_func_start ClipMapTerrainMovement
+ClipMapTerrainMovement: @ 0x080AC124
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
