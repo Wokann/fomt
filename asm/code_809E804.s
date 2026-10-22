@@ -6496,279 +6496,6 @@ Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLi
 	.align 2, 0
 .Ljp_080A566C: .4byte gMapTilePatch9
 
-    .section .text.game_map_after_viewport_command, "ax", %progbits
-    .align 2, 0
-
-    .global func_080A56DC
-    .thumb_func
-func_080A56DC: @ 0x080A5114
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	mov r8, r0
-	adds r5, r1, #0
-	adds r1, r2, #0
-	adds r2, r3, #0
-	ldr r3, [sp, #0x14]
-	ldrh r0, [r5]
-	lsls r0, r0, #0x16
-	lsrs r0, r0, #0x16
-	mov r4, r8
-	str r0, [r4]
-	ldrb r4, [r5, #1]
-	lsrs r4, r4, #2
-	ldrh r0, [r5, #2]
-	ldr r6, .Ljp_080A575C @ =0x000003FF
-	ands r0, r6
-	lsls r0, r0, #6
-	orrs r0, r4
-	lsls r0, r0, #0x10
-	mov r4, r8
-	str r0, [r4, #8]
-	ldrb r4, [r5, #3]
-	lsrs r4, r4, #2
-	ldrh r0, [r5, #4]
-	ands r0, r6
-	lsls r0, r0, #6
-	orrs r0, r4
-	lsls r0, r0, #0x10
-	mov r4, r8
-	str r0, [r4, #0xc]
-	mov r0, r8
-	adds r0, #0x90
-	ldr r0, [r0]
-	ldr r4, [r0, #0x14]
-	mov r0, r8
-	bl _call_via_r4
-	ldrb r0, [r5, #1]
-	lsrs r0, r0, #2
-	ldrh r1, [r5, #2]
-	ands r1, r6
-	lsls r1, r1, #6
-	orrs r1, r0
-	lsls r1, r1, #0x10
-	asrs r1, r1, #0x10
-	ldrb r0, [r5, #3]
-	lsrs r0, r0, #2
-	ldrh r2, [r5, #4]
-	ands r2, r6
-	lsls r2, r2, #6
-	orrs r2, r0
-	lsls r2, r2, #0x10
-	asrs r2, r2, #0x10
-	mov r0, r8
-	bl SetWorldMapCameraPosition
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A575C: .4byte 0x000003FF
-
-    .global RefreshAppearance__17GameSceneWorldMapiUiUi
-    .thumb_func
-RefreshAppearance__17GameSceneWorldMapiUiUi: @ 0x080A5198
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0x34
-	adds r4, r0, #0
-	str r1, [sp, #4]
-	str r2, [sp, #8]
-	str r3, [sp, #0xc]
-	adds r7, r4, #0
-	adds r7, #0x90
-	ldr r0, [r7]
-	ldr r1, [r0, #0x18]
-	adds r0, r4, #0
-	bl _call_via_r1
-	str r0, [r4, #4]
-	bl GetMapData
-	adds r5, r0, #0
-	ldr r0, [r5, #0x1c]
-	cmp r0, #0
-	beq .Ljp_080A581A
-	ldr r0, [r5, #0x18]
-	cmp r0, #0
-	beq .Ljp_080A581A
-	movs r6, #0
-	mov ip, r7
-	adds r0, r4, #0
-	adds r0, #0x28
-	str r0, [sp, #0x24]
-	adds r1, r4, #0
-	adds r1, #0x30
-	str r1, [sp, #0x28]
-	adds r2, r4, #0
-	adds r2, #0x34
-	str r2, [sp, #0x2c]
-	adds r0, #0x10
-	str r0, [sp, #0x30]
-	movs r1, #0x3c
-	adds r1, r1, r4
-	mov r8, r1
-	movs r2, #0x40
-	adds r2, r2, r4
-	mov sb, r2
-	movs r0, #0x44
-	adds r0, r0, r4
-	mov sl, r0
-	adds r1, r4, #0
-	adds r1, #0x48
-	str r1, [sp, #0x10]
-	adds r2, r4, #0
-	adds r2, #0x4c
-	str r2, [sp, #0x14]
-	adds r0, r4, #0
-	adds r0, #0x50
-	str r0, [sp, #0x18]
-	adds r1, #0xc
-	str r1, [sp, #0x1c]
-	adds r2, #0xc
-	str r2, [sp, #0x20]
-	ldrh r0, [r5, #0x22]
-	cmp r6, r0
-	bhs .Ljp_080A5874
-.Ljp_080A57E2:
-	movs r3, #0
-	ldrh r0, [r5, #0x20]
-	adds r7, r6, #1
-	cmp r3, r0
-	bhs .Ljp_080A5810
-.Ljp_080A57EC:
-	adds r1, r6, #0
-	muls r1, r0, r1
-	adds r1, r3, r1
-	ldr r0, [r5, #0x1c]
-	adds r0, r0, r1
-	ldrb r0, [r0]
-	ldr r2, [r4, #0x2c]
-	lsls r1, r1, #2
-	adds r1, r1, r2
-	ldr r2, [r5, #0x18]
-	lsls r0, r0, #2
-	adds r0, r0, r2
-	ldr r0, [r0]
-	str r0, [r1]
-	adds r3, #1
-	ldrh r0, [r5, #0x20]
-	cmp r3, r0
-	blo .Ljp_080A57EC
-.Ljp_080A5810:
-	adds r6, r7, #0
-	ldrh r1, [r5, #0x22]
-	cmp r6, r1
-	blo .Ljp_080A57E2
-	b .Ljp_080A5874
-.Ljp_080A581A:
-	movs r0, #0
-	str r0, [sp]
-	ldr r1, [r4, #0x2c]
-	movs r0, #0xf2
-	lsls r0, r0, #8
-	adds r2, r1, r0
-	mov r3, sp
-	movs r0, #0x90
-	adds r0, r0, r4
-	mov ip, r0
-	adds r0, r4, #0
-	adds r0, #0x28
-	str r0, [sp, #0x24]
-	adds r0, #8
-	str r0, [sp, #0x28]
-	adds r0, #4
-	str r0, [sp, #0x2c]
-	adds r0, #4
-	str r0, [sp, #0x30]
-	movs r0, #0x3c
-	adds r0, r0, r4
-	mov r8, r0
-	movs r0, #0x40
-	adds r0, r0, r4
-	mov sb, r0
-	movs r0, #0x44
-	adds r0, r0, r4
-	mov sl, r0
-	adds r0, r4, #0
-	adds r0, #0x48
-	str r0, [sp, #0x10]
-	adds r0, #4
-	str r0, [sp, #0x14]
-	adds r0, #4
-	str r0, [sp, #0x18]
-	adds r0, #4
-	str r0, [sp, #0x1c]
-	adds r0, #4
-	str r0, [sp, #0x20]
-	cmp r1, r2
-	beq .Ljp_080A5874
-.Ljp_080A586C:
-	ldr r0, [r3]
-	stm r1!, {r0}
-	cmp r1, r2
-	bne .Ljp_080A586C
-.Ljp_080A5874:
-	mov r1, ip
-	ldr r0, [r1]
-	ldr r1, [r0, #0x20]
-	adds r0, r4, #0
-	bl _call_via_r1
-	adds r0, r4, #0
-	ldr r1, [sp, #4]
-	bl SetWorldMapTimeOfDayPalette
-	adds r0, r4, #0
-	ldr r1, [sp, #8]
-	ldr r2, [sp, #0xc]
-	bl func_080A5834
-	movs r0, #0
-	movs r1, #1
-	ldr r2, [sp, #0x24]
-	strb r1, [r2]
-	ldr r1, [sp, #0x28]
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	ldr r2, [sp, #0x2c]
-	strb r0, [r2]
-	strb r0, [r2, #1]
-	ldr r1, [sp, #0x30]
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	mov r2, r8
-	strb r0, [r2]
-	strb r0, [r2, #1]
-	mov r1, sb
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	mov r2, sl
-	strb r0, [r2]
-	strb r0, [r2, #1]
-	ldr r1, [sp, #0x10]
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	ldr r2, [sp, #0x14]
-	strb r0, [r2]
-	strb r0, [r2, #1]
-	ldr r1, [sp, #0x18]
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	ldr r2, [sp, #0x1c]
-	strb r0, [r2]
-	strb r0, [r2, #1]
-	ldr r1, [sp, #0x20]
-	strb r0, [r1]
-	add sp, #0x34
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
     .section .text.game_map_after_camera_query, "ax", %progbits
     .align 2, 0
 
@@ -6942,9 +6669,9 @@ QueueMapTilePatch: @ 0x080A54E8
     .section .text.game_map_time_palette_after, "ax", %progbits
     .align 2, 0
 
-    .global func_080A5834
+    .global BlendTimeOfDayPalettes__17GameSceneWorldMapUiUi
     .thumb_func
-func_080A5834: @ 0x080A5834
+BlendTimeOfDayPalettes__17GameSceneWorldMapUiUi: @ 0x080A5834
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -17540,7 +17267,7 @@ func_080AC424: @ 080AC424
 	str r2, [sp]
 	movs r2, #0
 	movs r3, #0
-	bl func_080A56DC
+	bl SetLocation__17GameSceneWorldMapRC8LocationiUiUi
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
@@ -18792,7 +18519,7 @@ func_080ACDE8:
 	adds r1, r7, #0
 	movs r2, #0
 	movs r3, #0
-	bl func_080A56DC
+	bl SetLocation__17GameSceneWorldMapRC8LocationiUiUi
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
@@ -19529,7 +19256,7 @@ func_080AD3FC:
 func_080AD408:
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A601C
+	bl StartWorldMapTilePatchCountdown
 	pop {r0}
 	bx r0
     .global func_080AD414
@@ -83679,277 +83406,6 @@ Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLi
 	.align 2, 0
 .L080A566C: .4byte gMapTilePatch9
 
-    .section .text.game_map_after_viewport_command, "ax", %progbits
-    .align 2, 0
-
-	thumb_func_start func_080A56DC
-func_080A56DC: @ 0x080A56DC
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	mov r8, r0
-	adds r5, r1, #0
-	adds r1, r2, #0
-	adds r2, r3, #0
-	ldr r3, [sp, #0x14]
-	ldrh r0, [r5]
-	lsls r0, r0, #0x16
-	lsrs r0, r0, #0x16
-	mov r4, r8
-	str r0, [r4]
-	ldrb r4, [r5, #1]
-	lsrs r4, r4, #2
-	ldrh r0, [r5, #2]
-	ldr r6, .L080A575C @ =0x000003FF
-	ands r0, r6
-	lsls r0, r0, #6
-	orrs r0, r4
-	lsls r0, r0, #0x10
-	mov r4, r8
-	str r0, [r4, #8]
-	ldrb r4, [r5, #3]
-	lsrs r4, r4, #2
-	ldrh r0, [r5, #4]
-	ands r0, r6
-	lsls r0, r0, #6
-	orrs r0, r4
-	lsls r0, r0, #0x10
-	mov r4, r8
-	str r0, [r4, #0xc]
-	mov r0, r8
-	adds r0, #0x90
-	ldr r0, [r0]
-	ldr r4, [r0, #0x14]
-	mov r0, r8
-	bl _call_via_r4
-	ldrb r0, [r5, #1]
-	lsrs r0, r0, #2
-	ldrh r1, [r5, #2]
-	ands r1, r6
-	lsls r1, r1, #6
-	orrs r1, r0
-	lsls r1, r1, #0x10
-	asrs r1, r1, #0x10
-	ldrb r0, [r5, #3]
-	lsrs r0, r0, #2
-	ldrh r2, [r5, #4]
-	ands r2, r6
-	lsls r2, r2, #6
-	orrs r2, r0
-	lsls r2, r2, #0x10
-	asrs r2, r2, #0x10
-	mov r0, r8
-	bl SetWorldMapCameraPosition
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A575C: .4byte 0x000003FF
-
-	thumb_func_start RefreshAppearance__17GameSceneWorldMapiUiUi
-RefreshAppearance__17GameSceneWorldMapiUiUi: @ 0x080A5760
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0x34
-	adds r4, r0, #0
-	str r1, [sp, #4]
-	str r2, [sp, #8]
-	str r3, [sp, #0xc]
-	adds r7, r4, #0
-	adds r7, #0x90
-	ldr r0, [r7]
-	ldr r1, [r0, #0x18]
-	adds r0, r4, #0
-	bl _call_via_r1
-	str r0, [r4, #4]
-	bl GetMapData
-	adds r5, r0, #0
-	ldr r0, [r5, #0x1c]
-	cmp r0, #0
-	beq .L080A581A
-	ldr r0, [r5, #0x18]
-	cmp r0, #0
-	beq .L080A581A
-	movs r6, #0
-	mov ip, r7
-	adds r0, r4, #0
-	adds r0, #0x28
-	str r0, [sp, #0x24]
-	adds r1, r4, #0
-	adds r1, #0x30
-	str r1, [sp, #0x28]
-	adds r2, r4, #0
-	adds r2, #0x34
-	str r2, [sp, #0x2c]
-	adds r0, #0x10
-	str r0, [sp, #0x30]
-	movs r1, #0x3c
-	adds r1, r1, r4
-	mov r8, r1
-	movs r2, #0x40
-	adds r2, r2, r4
-	mov sb, r2
-	movs r0, #0x44
-	adds r0, r0, r4
-	mov sl, r0
-	adds r1, r4, #0
-	adds r1, #0x48
-	str r1, [sp, #0x10]
-	adds r2, r4, #0
-	adds r2, #0x4c
-	str r2, [sp, #0x14]
-	adds r0, r4, #0
-	adds r0, #0x50
-	str r0, [sp, #0x18]
-	adds r1, #0xc
-	str r1, [sp, #0x1c]
-	adds r2, #0xc
-	str r2, [sp, #0x20]
-	ldrh r0, [r5, #0x22]
-	cmp r6, r0
-	bhs .L080A5874
-.L080A57E2:
-	movs r3, #0
-	ldrh r0, [r5, #0x20]
-	adds r7, r6, #1
-	cmp r3, r0
-	bhs .L080A5810
-.L080A57EC:
-	adds r1, r6, #0
-	muls r1, r0, r1
-	adds r1, r3, r1
-	ldr r0, [r5, #0x1c]
-	adds r0, r0, r1
-	ldrb r0, [r0]
-	ldr r2, [r4, #0x2c]
-	lsls r1, r1, #2
-	adds r1, r1, r2
-	ldr r2, [r5, #0x18]
-	lsls r0, r0, #2
-	adds r0, r0, r2
-	ldr r0, [r0]
-	str r0, [r1]
-	adds r3, #1
-	ldrh r0, [r5, #0x20]
-	cmp r3, r0
-	blo .L080A57EC
-.L080A5810:
-	adds r6, r7, #0
-	ldrh r1, [r5, #0x22]
-	cmp r6, r1
-	blo .L080A57E2
-	b .L080A5874
-.L080A581A:
-	movs r0, #0
-	str r0, [sp]
-	ldr r1, [r4, #0x2c]
-	movs r0, #0xf2
-	lsls r0, r0, #8
-	adds r2, r1, r0
-	mov r3, sp
-	movs r0, #0x90
-	adds r0, r0, r4
-	mov ip, r0
-	adds r0, r4, #0
-	adds r0, #0x28
-	str r0, [sp, #0x24]
-	adds r0, #8
-	str r0, [sp, #0x28]
-	adds r0, #4
-	str r0, [sp, #0x2c]
-	adds r0, #4
-	str r0, [sp, #0x30]
-	movs r0, #0x3c
-	adds r0, r0, r4
-	mov r8, r0
-	movs r0, #0x40
-	adds r0, r0, r4
-	mov sb, r0
-	movs r0, #0x44
-	adds r0, r0, r4
-	mov sl, r0
-	adds r0, r4, #0
-	adds r0, #0x48
-	str r0, [sp, #0x10]
-	adds r0, #4
-	str r0, [sp, #0x14]
-	adds r0, #4
-	str r0, [sp, #0x18]
-	adds r0, #4
-	str r0, [sp, #0x1c]
-	adds r0, #4
-	str r0, [sp, #0x20]
-	cmp r1, r2
-	beq .L080A5874
-.L080A586C:
-	ldr r0, [r3]
-	stm r1!, {r0}
-	cmp r1, r2
-	bne .L080A586C
-.L080A5874:
-	mov r1, ip
-	ldr r0, [r1]
-	ldr r1, [r0, #0x20]
-	adds r0, r4, #0
-	bl _call_via_r1
-	adds r0, r4, #0
-	ldr r1, [sp, #4]
-	bl SetWorldMapTimeOfDayPalette
-	adds r0, r4, #0
-	ldr r1, [sp, #8]
-	ldr r2, [sp, #0xc]
-	bl func_080A5DFC
-	movs r0, #0
-	movs r1, #1
-	ldr r2, [sp, #0x24]
-	strb r1, [r2]
-	ldr r1, [sp, #0x28]
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	ldr r2, [sp, #0x2c]
-	strb r0, [r2]
-	strb r0, [r2, #1]
-	ldr r1, [sp, #0x30]
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	mov r2, r8
-	strb r0, [r2]
-	strb r0, [r2, #1]
-	mov r1, sb
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	mov r2, sl
-	strb r0, [r2]
-	strb r0, [r2, #1]
-	ldr r1, [sp, #0x10]
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	ldr r2, [sp, #0x14]
-	strb r0, [r2]
-	strb r0, [r2, #1]
-	ldr r1, [sp, #0x18]
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	ldr r2, [sp, #0x1c]
-	strb r0, [r2]
-	strb r0, [r2, #1]
-	ldr r1, [sp, #0x20]
-	strb r0, [r1]
-	add sp, #0x34
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
     .section .text.game_map_after_camera_query, "ax", %progbits
     .align 2, 0
 
@@ -84123,8 +83579,8 @@ QueueMapTilePatch: @ 0x080A5AB0
     .section .text.game_map_time_palette_after, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080A5DFC
-func_080A5DFC: @ 0x080A5DFC
+	thumb_func_start BlendTimeOfDayPalettes__17GameSceneWorldMapUiUi
+BlendTimeOfDayPalettes__17GameSceneWorldMapUiUi: @ 0x080A5DFC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -94697,7 +94153,7 @@ func_080AC9EC: @ 0x080AC9EC
 	str r2, [sp]
 	movs r2, #0
 	movs r3, #0
-	bl func_080A56DC
+	bl SetLocation__17GameSceneWorldMapRC8LocationiUiUi
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
@@ -95948,7 +95404,7 @@ func_080AD3B0: @ 0x080AD3B0
 	adds r1, r7, #0
 	movs r2, #0
 	movs r3, #0
-	bl func_080A56DC
+	bl SetLocation__17GameSceneWorldMapRC8LocationiUiUi
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
@@ -96681,7 +96137,7 @@ func_080AD9C4: @ 0x080AD9C4
 func_080AD9D0: @ 0x080AD9D0
 	push {lr}
 	ldr r0, [r0, #4]
-	bl func_080A601C
+	bl StartWorldMapTilePatchCountdown
 	pop {r0}
 	bx r0
 	thumb_func_start func_080AD9DC

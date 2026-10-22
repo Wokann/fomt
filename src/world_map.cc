@@ -10,11 +10,12 @@
 #include "gbasvc.h"
 #include "gbaio.h"
 #include <string.h>
+#include <algorithm>
 
 GameSceneWorldMap::GameSceneWorldMap()
     : map(MAP_NONE), map_data_id(MAP_DATA_COUNT), x(), y(),
-      unk_28(0), view_changed(false), time_palette_changed(false),
-      tile_attributes(nullptr), unk_58(0), movement_frames(0)
+      tiles_changed(0), view_changed(false), time_palette_changed(false),
+      tile_attributes(nullptr), tile_patch_countdown(0), movement_frames(0)
 {
     for (u32 layer = 0; layer < ARRAY_COUNT(time_palette_buffers); ++layer)
         time_palette_buffers[layer] = new u16[240];
@@ -106,6 +107,49 @@ bool MapViewportTilemapCommand::Run()
         }
     }
     return false;
+}
+
+void GameSceneWorldMap::SetLocation(Location const & location, i32 period,
+    u32 first_weight, u32 second_weight)
+{
+    map = location.GetMap();
+    x.q16 = location.GetX() << 16;
+    y.q16 = location.GetY() << 16;
+    RefreshAppearance(period, first_weight, second_weight);
+    SetWorldMapCameraPosition(this, location.GetX(), location.GetY());
+}
+
+void GameSceneWorldMap::RefreshAppearance(i32 period, u32 first_weight, u32 second_weight)
+{
+    map_data_id = SelectMapData();
+    MapData const * data = GetMapData(map_data_id);
+    if (data->terrain_map != nullptr && data->terrain_data != nullptr) {
+        for (u32 row = 0; row < data->height; ++row) {
+            for (u32 column = 0; column < data->width; ++column) {
+                u32 index = column + row * data->width;
+                u8 attribute = static_cast<u8 const *>(data->terrain_map)[index];
+                tile_attributes[index] = static_cast<FieldRenderTileAttributes const *>(data->terrain_data)[attribute];
+            }
+        }
+    } else {
+        FieldRenderTileAttributes empty = { false, false, 0, 0, 0 };
+        std::fill(tile_attributes, tile_attributes + 0x3C80, empty);
+    }
+    LoadTilemaps();
+    SetWorldMapTimeOfDayPalette(*this, period);
+    BlendTimeOfDayPalettes(first_weight, second_weight);
+    tiles_changed = 1;
+    layout_animation_0.ResetFrame();
+    layout_animation_1.ResetFrame();
+    layout_animation_2.ResetFrame();
+    layout_animation_3.ResetFrame();
+    layout_animation_4.ResetFrame();
+    layout_animation_5.ResetFrame();
+    layout_animation_6.ResetFrame();
+    layout_animation_7.ResetFrame();
+    layout_animation_8.ResetFrame();
+    layout_animation_9.ResetFrame();
+    tile_patch_countdown = 0;
 }
 
 EC Vec2 ClampWorldMapCameraPosition(GameSceneWorldMap const * map, i32 x, i32 y)
@@ -295,9 +339,9 @@ EC bool func_080A5EB8(GameSceneWorldMap * map, Location const & location)
     return false;
 }
 
-EC void func_080A601C(GameSceneWorldMap * map)
+EC void StartWorldMapTilePatchCountdown(GameSceneWorldMap * map)
 {
-    map->unk_58 = 0x14;
+    map->tile_patch_countdown = 0x14;
 }
 
 EC void RefreshCoopFeedTrough(GameSceneWorldMap * map, u32 index)

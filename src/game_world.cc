@@ -638,7 +638,7 @@ EC void func_0801DD6C(GameSceneWorldPrefix & world, u32 index)
 
 EC void func_0801DD78(GameSceneWorldPrefix & world)
 {
-    func_080A601C(world.data.map.value);
+    StartWorldMapTilePatchCountdown(world.data.map.value);
 }
 
 EC MaryItemArticleId RemoveRecordPlayerAlbum(GameSceneWorldPrefix & world)

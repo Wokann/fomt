@@ -715,7 +715,7 @@ SECTIONS
         src/world_map.o(.text.Update__17GameSceneWorldMap);
         asm/code_809E804.o(.text.game_map_after_update);
         src/world_map.o(.text.Run__25MapViewportTilemapCommand);
-        asm/code_809E804.o(.text.game_map_after_viewport_command);
+        src/world_map.o(.text.SetLocation__17GameSceneWorldMapRC8LocationiUiUi .text.RefreshAppearance__17GameSceneWorldMapiUiUi);
         src/world_map.o(.text.ClampWorldMapCameraPosition .text.SetWorldMapCameraPosition .text.PanWorldMapCameraTo .text.IsWorldMapCameraMovementComplete);
         asm/code_809E804.o(.text.game_map_after_camera_query);
         src/world_map.o(.text.ApplyMapTilePatch);
@@ -723,7 +723,7 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_time_palette_after);
         src/world_map.o(.text.LoadTiles__17GameSceneWorldMapR16HardwareDmaQueue .text.func_080A5EB8);
         asm/code_809E804.o(.text.game_map_after_tiles);
-        src/world_map.o(.text.func_080A601C .text.RefreshCoopFeedTrough);
+        src/world_map.o(.text.StartWorldMapTilePatchCountdown .text.RefreshCoopFeedTrough);
         asm/code_809E804.o(.text.game_map_barn_feed);
         src/world_map.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC .text.func_080A6300 .text.func_080A635C .text.func_080A63B8);
         src/world_map.o(.text.SelectMapData__17GameSceneWorldMap .text.GetWorldMapTileAttributes .text.GetWorldMapDataId .text.GetWorldMapId .text.GetWorldMapViewY .text.GetWorldMapViewX);

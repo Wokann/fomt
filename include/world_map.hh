@@ -67,7 +67,7 @@ struct GameSceneWorldMap {
     GameSceneCameraCoordinate y;
     u16 * tile_layers[3];
     u16 * time_palette_buffers[3];
-    u8 unk_28;
+    u8 tiles_changed;
     bool view_changed;
     bool time_palette_changed;
     u8 unk_2B;
@@ -84,7 +84,7 @@ struct GameSceneWorldMap {
     MapTilePatchAnimationState layout_animation_7;
     MapTilePatchAnimationState layout_animation_8;
     MapTilePatchAnimationState layout_animation_9;
-    u8 unk_58;
+    u8 tile_patch_countdown;
     u8 unk_59[3];
     MapViewportTilemapCommand viewport_command;
     i32 step_x_q16;
@@ -92,7 +92,7 @@ struct GameSceneWorldMap {
     u32 movement_frames;
     virtual ~GameSceneWorldMap();
     virtual void Update();
-    // Draw and appearance refresh retain their native bodies for now.
+    // Draw retains its native body for now.
     virtual void Draw(HardwareDmaQueue & queue, HardwareDisplayState & display, HardwareLinkedList & commands);
     virtual void RefreshAppearance(i32 period, u32 first_weight, u32 second_weight);
     virtual u32 SelectMapData();
@@ -100,6 +100,10 @@ struct GameSceneWorldMap {
     virtual void LoadTiles(HardwareDmaQueue & queue);
     virtual void LoadTilemaps();
     virtual void LoadTimeOfDayPalette(i32 period, u32 buffer_index);
+
+    void SetLocation(Location const & location, i32 period, u32 first_weight, u32 second_weight);
+    // The RGB5 bank mixer still retains its native assembly body.
+    void BlendTimeOfDayPalettes(u32 first_weight, u32 second_weight);
 
     GameSceneWorldMap();
 };
@@ -151,7 +155,8 @@ typedef char GameSceneMapTileLayersCheck[offsetof(GameSceneWorldMap, tile_layers
 typedef char GameSceneMapTileAttributesCheck[offsetof(GameSceneWorldMap, tile_attributes) == 0x2C ? 1 : -1];
 typedef char GameSceneMapViewportCommandCheck[offsetof(GameSceneWorldMap, viewport_command) == 0x5C ? 1 : -1];
 
-typedef char GameSceneMapUnk58Check[offsetof(GameSceneWorldMap, unk_58) == 0x58 ? 1 : -1];
+typedef char GameSceneMapTilePatchCountdownCheck[offsetof(GameSceneWorldMap, tile_patch_countdown) == 0x58 ? 1 : -1];
+typedef char GameSceneMapTilesChangedCheck[offsetof(GameSceneWorldMap, tiles_changed) == 0x28 ? 1 : -1];
 typedef char GameSceneMapViewChangedCheck[offsetof(GameSceneWorldMap, view_changed) == 0x29 ? 1 : -1];
 typedef char GameSceneCameraStepXCheck[offsetof(GameSceneWorldMap, step_x_q16) == 0x84 ? 1 : -1];
 typedef char GameSceneCameraStepYCheck[offsetof(GameSceneWorldMap, step_y_q16) == 0x88 ? 1 : -1];
@@ -161,7 +166,7 @@ typedef char GameSceneWorldMapSizeCheck[sizeof(GameSceneWorldMap) == 0x94 ? 1 : 
 EXTERN_C
 void ApplyMapTilePatch(GameSceneWorldMap * map,
     FieldRenderRectDescriptor const & patch, u32 x, u32 y);
-void func_080A601C(GameSceneWorldMap * map);
+void StartWorldMapTilePatchCountdown(GameSceneWorldMap * map);
 void RefreshCoopFeedTrough(GameSceneWorldMap * map, u32 index);
 // This barn dispatcher retains its native implementation and unchecked index.
 void func_080A607C(GameSceneWorldMap * map, u32 index);
