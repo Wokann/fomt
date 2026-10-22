@@ -5613,235 +5613,6 @@ func_080A45A8: @ 0x080A3FE0
 	bx r1
 	.align 2, 0
 
-    .section .text.game_scene_sprite_base_after, "ax", %progbits
-
-    .global func_080A480C
-    .thumb_func
-func_080A480C: @ 0x080A4244
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0x1c
-	adds r5, r1, #0
-	ldr r6, [r2]
-	movs r4, #0
-	cmp r6, #0
-	beq .Ljp_080A4824
-	ldrh r4, [r2, #4]
-.Ljp_080A4824:
-	cmp r4, #0
-	bne .Ljp_080A482A
-	b .Ljp_080A4932
-.Ljp_080A482A:
-	adds r0, #4
-	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
-	adds r2, r0, #0
-	lsls r2, r2, #5
-	ldr r0, .Ljp_080A4868 @ =0x06010000
-	adds r2, r2, r0
-	mov r0, sp
-	adds r1, r6, #0
-	adds r3, r4, #0
-	bl __21DmaTransferDescriptorPCvPvUi
-	mov sb, sp
-	ldr r1, [r5, #4]
-	ldr r0, [r5, #0xc]
-	cmp r1, r0
-	beq .Ljp_080A486C
-	cmp r1, #0
-	beq .Ljp_080A485E
-	adds r0, r1, #0
-	mov r1, sp
-	ldm r1!, {r2, r3, r4}
-	stm r0!, {r2, r3, r4}
-	ldr r1, [r1]
-	str r1, [r0]
-.Ljp_080A485E:
-	ldr r0, [r5, #4]
-	adds r0, #0x10
-	str r0, [r5, #4]
-	b .Ljp_080A4932
-	.align 2, 0
-.Ljp_080A4868: .4byte 0x06010000
-.Ljp_080A486C:
-	mov sl, r1
-	movs r0, #1
-	str r0, [sp, #0x14]
-	ldr r1, [r5]
-	mov r6, sl
-	subs r0, r6, r1
-	asrs r4, r0, #4
-	str r4, [sp, #0x10]
-	add r2, sp, #0x14
-	add r0, sp, #0x10
-	cmp r4, #1
-	bhs .Ljp_080A4886
-	adds r0, r2, #0
-.Ljp_080A4886:
-	ldr r0, [r0]
-	adds r0, r4, r0
-	cmp r0, #0
-	beq .Ljp_080A48A6
-	lsls r4, r0, #4
-	adds r0, r4, #0
-	bl malloc
-	mov r8, r4
-	cmp r0, #0
-	bne .Ljp_080A48A2
-	mov r0, r8
-	bl RetryMemoryAllocation
-.Ljp_080A48A2:
-	ldr r1, [r5]
-	b .Ljp_080A48AA
-.Ljp_080A48A6:
-	movs r0, #0
-	mov r8, r0
-.Ljp_080A48AA:
-	adds r4, r0, #0
-	str r4, [sp, #0x18]
-	adds r2, r1, #0
-	adds r3, r4, #0
-	cmp r2, sl
-	beq .Ljp_080A48CE
-.Ljp_080A48B6:
-	cmp r3, #0
-	beq .Ljp_080A48C6
-	adds r0, r3, #0
-	adds r1, r2, #0
-	ldm r1!, {r4, r6, r7}
-	stm r0!, {r4, r6, r7}
-	ldr r1, [r1]
-	str r1, [r0]
-.Ljp_080A48C6:
-	adds r2, #0x10
-	adds r3, #0x10
-	cmp r2, sl
-	bne .Ljp_080A48B6
-.Ljp_080A48CE:
-	adds r4, r3, #0
-	ldr r0, [sp, #0x14]
-	cmp r0, #1
-	bne .Ljp_080A48EA
-	cmp r4, #0
-	beq .Ljp_080A48E6
-	adds r0, r4, #0
-	mov r1, sb
-	ldm r1!, {r2, r3, r7}
-	stm r0!, {r2, r3, r7}
-	ldr r1, [r1]
-	str r1, [r0]
-.Ljp_080A48E6:
-	adds r4, #0x10
-	b .Ljp_080A490C
-.Ljp_080A48EA:
-	adds r3, r0, #0
-	adds r2, r4, #0
-	cmp r3, #0
-	beq .Ljp_080A490A
-.Ljp_080A48F2:
-	cmp r2, #0
-	beq .Ljp_080A4902
-	adds r0, r2, #0
-	mov r1, sb
-	ldm r1!, {r4, r6, r7}
-	stm r0!, {r4, r6, r7}
-	ldr r1, [r1]
-	str r1, [r0]
-.Ljp_080A4902:
-	subs r3, #1
-	adds r2, #0x10
-	cmp r3, #0
-	bne .Ljp_080A48F2
-.Ljp_080A490A:
-	adds r4, r2, #0
-.Ljp_080A490C:
-	ldr r2, [r5, #4]
-	ldr r1, [r5]
-	adds r0, r1, #0
-	cmp r1, r2
-	beq .Ljp_080A491C
-.Ljp_080A4916:
-	adds r0, #0x10
-	cmp r0, r2
-	bne .Ljp_080A4916
-.Ljp_080A491C:
-	cmp r1, #0
-	beq .Ljp_080A4926
-	adds r0, r1, #0
-	bl free
-.Ljp_080A4926:
-	ldr r0, [sp, #0x18]
-	add r0, r8
-	ldr r1, [sp, #0x18]
-	str r1, [r5]
-	str r4, [r5, #4]
-	str r0, [r5, #0xc]
-.Ljp_080A4932:
-	add sp, #0x1c
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-    .global func_080A4944
-    .thumb_func
-func_080A4944: @ 0x080A437C
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	lsls r2, r2, #0x18
-	lsrs r2, r2, #0x18
-	mov sl, r2
-	ldr r3, [r1]
-	movs r2, #0
-	cmp r3, #0
-	beq .Ljp_080A495E
-	ldrh r2, [r1, #4]
-.Ljp_080A495E:
-	cmp r2, #0
-	beq .Ljp_080A4992
-	ldr r1, [r0]
-	mov r8, r1
-	lsrs r2, r2, #5
-	mov sb, r2
-	adds r6, r3, #0
-	movs r7, #0
-	cmp r7, sb
-	bhs .Ljp_080A4992
-	adds r5, r0, #0
-	adds r5, #0x14
-.Ljp_080A4976:
-	mov r1, r8
-	ldr r0, [r1]
-	ldrb r2, [r5]
-	ldr r4, [r0, #0x54]
-	mov r0, r8
-	adds r1, r6, #0
-	mov r3, sl
-	bl _call_via_r4
-	adds r5, #1
-	adds r7, #1
-	adds r6, #0x20
-	cmp r7, sb
-	blo .Ljp_080A4976
-.Ljp_080A4992:
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-
     .section .text.game_scene_indexed_sprite_after, "ax", %progbits
 
 .Ljp_080A4484_helper:
@@ -18651,7 +18422,7 @@ func_080AC648:
 	adds r2, r7, #0
 	adds r2, #8
 	adds r0, r6, #0
-	bl func_080A480C
+	bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
 	adds r0, r6, #0
 	adds r0, #0x3d
 	ldrb r0, [r0]
@@ -18661,7 +18432,7 @@ func_080AC648:
 	adds r1, #0x10
 	adds r0, r6, #0
 	movs r2, #1
-	bl func_080A4944
+	bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
 	b .Ljp_entity_080AC98A
 	.align 2, 0
 .Ljp_entity_080AC96C: .4byte 0x00000C5C
@@ -18675,7 +18446,7 @@ func_080AC648:
 	adds r1, #0x10
 	adds r0, r6, #0
 	movs r2, #1
-	bl func_080A4944
+	bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
 	movs r0, #1
 	strb r0, [r4]
 .Ljp_entity_080AC98A:
@@ -18759,7 +18530,7 @@ func_080AC648:
 	adds r2, r6, #0
 	adds r2, #8
 	adds r0, r5, #0
-	bl func_080A480C
+	bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
 	adds r0, r5, #0
 	adds r0, #0x3d
 	ldrb r0, [r0]
@@ -18769,7 +18540,7 @@ func_080AC648:
 	adds r1, #0x10
 	adds r0, r5, #0
 	movs r2, #1
-	bl func_080A4944
+	bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
 	b .Ljp_entity_080ACA66
 	.align 2, 0
 .Ljp_entity_080ACA48: .4byte 0x00000C5C
@@ -18783,7 +18554,7 @@ func_080AC648:
 	adds r1, #0x10
 	adds r0, r5, #0
 	movs r2, #1
-	bl func_080A4944
+	bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
 	movs r0, #1
 	strb r0, [r4]
 .Ljp_entity_080ACA66:
@@ -83300,233 +83071,6 @@ func_080A45A8: @ 0x080A45A8
 	bx r1
 	.align 2, 0
 
-    .section .text.game_scene_sprite_base_after, "ax", %progbits
-
-	thumb_func_start func_080A480C
-func_080A480C: @ 0x080A480C
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0x1c
-	adds r5, r1, #0
-	ldr r6, [r2]
-	movs r4, #0
-	cmp r6, #0
-	beq .L080A4824
-	ldrh r4, [r2, #4]
-.L080A4824:
-	cmp r4, #0
-	bne .L080A482A
-	b .L080A4932
-.L080A482A:
-	adds r0, #4
-	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
-	adds r2, r0, #0
-	lsls r2, r2, #5
-	ldr r0, .L080A4868 @ =0x06010000
-	adds r2, r2, r0
-	mov r0, sp
-	adds r1, r6, #0
-	adds r3, r4, #0
-	bl __21DmaTransferDescriptorPCvPvUi
-	mov sb, sp
-	ldr r1, [r5, #4]
-	ldr r0, [r5, #0xc]
-	cmp r1, r0
-	beq .L080A486C
-	cmp r1, #0
-	beq .L080A485E
-	adds r0, r1, #0
-	mov r1, sp
-	ldm r1!, {r2, r3, r4}
-	stm r0!, {r2, r3, r4}
-	ldr r1, [r1]
-	str r1, [r0]
-.L080A485E:
-	ldr r0, [r5, #4]
-	adds r0, #0x10
-	str r0, [r5, #4]
-	b .L080A4932
-	.align 2, 0
-.L080A4868: .4byte 0x06010000
-.L080A486C:
-	mov sl, r1
-	movs r0, #1
-	str r0, [sp, #0x14]
-	ldr r1, [r5]
-	mov r6, sl
-	subs r0, r6, r1
-	asrs r4, r0, #4
-	str r4, [sp, #0x10]
-	add r2, sp, #0x14
-	add r0, sp, #0x10
-	cmp r4, #1
-	bhs .L080A4886
-	adds r0, r2, #0
-.L080A4886:
-	ldr r0, [r0]
-	adds r0, r4, r0
-	cmp r0, #0
-	beq .L080A48A6
-	lsls r4, r0, #4
-	adds r0, r4, #0
-	bl malloc
-	mov r8, r4
-	cmp r0, #0
-	bne .L080A48A2
-	mov r0, r8
-	bl RetryMemoryAllocation
-.L080A48A2:
-	ldr r1, [r5]
-	b .L080A48AA
-.L080A48A6:
-	movs r0, #0
-	mov r8, r0
-.L080A48AA:
-	adds r4, r0, #0
-	str r4, [sp, #0x18]
-	adds r2, r1, #0
-	adds r3, r4, #0
-	cmp r2, sl
-	beq .L080A48CE
-.L080A48B6:
-	cmp r3, #0
-	beq .L080A48C6
-	adds r0, r3, #0
-	adds r1, r2, #0
-	ldm r1!, {r4, r6, r7}
-	stm r0!, {r4, r6, r7}
-	ldr r1, [r1]
-	str r1, [r0]
-.L080A48C6:
-	adds r2, #0x10
-	adds r3, #0x10
-	cmp r2, sl
-	bne .L080A48B6
-.L080A48CE:
-	adds r4, r3, #0
-	ldr r0, [sp, #0x14]
-	cmp r0, #1
-	bne .L080A48EA
-	cmp r4, #0
-	beq .L080A48E6
-	adds r0, r4, #0
-	mov r1, sb
-	ldm r1!, {r2, r3, r7}
-	stm r0!, {r2, r3, r7}
-	ldr r1, [r1]
-	str r1, [r0]
-.L080A48E6:
-	adds r4, #0x10
-	b .L080A490C
-.L080A48EA:
-	adds r3, r0, #0
-	adds r2, r4, #0
-	cmp r3, #0
-	beq .L080A490A
-.L080A48F2:
-	cmp r2, #0
-	beq .L080A4902
-	adds r0, r2, #0
-	mov r1, sb
-	ldm r1!, {r4, r6, r7}
-	stm r0!, {r4, r6, r7}
-	ldr r1, [r1]
-	str r1, [r0]
-.L080A4902:
-	subs r3, #1
-	adds r2, #0x10
-	cmp r3, #0
-	bne .L080A48F2
-.L080A490A:
-	adds r4, r2, #0
-.L080A490C:
-	ldr r2, [r5, #4]
-	ldr r1, [r5]
-	adds r0, r1, #0
-	cmp r1, r2
-	beq .L080A491C
-.L080A4916:
-	adds r0, #0x10
-	cmp r0, r2
-	bne .L080A4916
-.L080A491C:
-	cmp r1, #0
-	beq .L080A4926
-	adds r0, r1, #0
-	bl free
-.L080A4926:
-	ldr r0, [sp, #0x18]
-	add r0, r8
-	ldr r1, [sp, #0x18]
-	str r1, [r5]
-	str r4, [r5, #4]
-	str r0, [r5, #0xc]
-.L080A4932:
-	add sp, #0x1c
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080A4944
-func_080A4944: @ 0x080A4944
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	lsls r2, r2, #0x18
-	lsrs r2, r2, #0x18
-	mov sl, r2
-	ldr r3, [r1]
-	movs r2, #0
-	cmp r3, #0
-	beq .L080A495E
-	ldrh r2, [r1, #4]
-.L080A495E:
-	cmp r2, #0
-	beq .L080A4992
-	ldr r1, [r0]
-	mov r8, r1
-	lsrs r2, r2, #5
-	mov sb, r2
-	adds r6, r3, #0
-	movs r7, #0
-	cmp r7, sb
-	bhs .L080A4992
-	adds r5, r0, #0
-	adds r5, #0x14
-.L080A4976:
-	mov r1, r8
-	ldr r0, [r1]
-	ldrb r2, [r5]
-	ldr r4, [r0, #0x54]
-	mov r0, r8
-	adds r1, r6, #0
-	mov r3, sl
-	bl _call_via_r4
-	adds r5, #1
-	adds r7, #1
-	adds r6, #0x20
-	cmp r7, sb
-	blo .L080A4976
-.L080A4992:
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-
     .section .text.game_scene_indexed_sprite_after, "ax", %progbits
 
 .L080A4A4C:
@@ -96305,7 +95849,7 @@ func_080ACC10: @ 0x080ACC10
 	adds r2, r7, #0
 	adds r2, #8
 	adds r0, r6, #0
-	bl func_080A480C
+	bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
 	adds r0, r6, #0
 	adds r0, #0x3d
 	ldrb r0, [r0]
@@ -96315,7 +95859,7 @@ func_080ACC10: @ 0x080ACC10
 	adds r1, #0x10
 	adds r0, r6, #0
 	movs r2, #1
-	bl func_080A4944
+	bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
 	b .L080ACF52
 	.align 2, 0
 .L080ACF34: .4byte 0x00000C5C
@@ -96329,7 +95873,7 @@ func_080ACC10: @ 0x080ACC10
 	adds r1, #0x10
 	adds r0, r6, #0
 	movs r2, #1
-	bl func_080A4944
+	bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
 	movs r0, #1
 	strb r0, [r4]
 .L080ACF52:
@@ -96413,7 +95957,7 @@ func_080ACC10: @ 0x080ACC10
 	adds r2, r6, #0
 	adds r2, #8
 	adds r0, r5, #0
-	bl func_080A480C
+	bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
 	adds r0, r5, #0
 	adds r0, #0x3d
 	ldrb r0, [r0]
@@ -96423,7 +95967,7 @@ func_080ACC10: @ 0x080ACC10
 	adds r1, #0x10
 	adds r0, r5, #0
 	movs r2, #1
-	bl func_080A4944
+	bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
 	b .L080AD02E
 	.align 2, 0
 .L080AD010: .4byte 0x00000C5C
@@ -96437,7 +95981,7 @@ func_080ACC10: @ 0x080ACC10
 	adds r1, #0x10
 	adds r0, r5, #0
 	movs r2, #1
-	bl func_080A4944
+	bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
 	movs r0, #1
 	strb r0, [r4]
 .L080AD02E:

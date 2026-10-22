@@ -701,9 +701,15 @@ SECTIONS
         . = 0xA4698;
         src/map_data.o(.text.GetMapData);
         . = 0xA46AC;
-        src/scene_sprite.o(.text.__19GameSceneSpriteBaseP10GameObjectUiPCiUi .text.__19GameSceneSpriteBaseP10GameObjectUii .text._._19GameSceneSpriteBase);
-        asm/code_809E804.o(.text.game_scene_sprite_base_after);
-        src/scene_sprite.o(.text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib .text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib);
+        src/scene_sprite.o(
+            .text.__19GameSceneSpriteBaseP10GameObjectUiPCiUi
+            .text.__19GameSceneSpriteBaseP10GameObjectUii
+            .text._._19GameSceneSpriteBase
+            .text.QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+            .text.UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+            .text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
+            .text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
+        );
         asm/code_809E804.o(.text.game_scene_indexed_sprite_after);
         src/world_map.o(.text.UpdateWorldMap);
         asm/code_809E804.o(.text.game_map_after_update);

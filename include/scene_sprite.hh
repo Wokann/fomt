@@ -6,6 +6,8 @@
 
 #pragma interface "scene_sprite.hh"
 
+struct HardwareDmaQueue;
+
 // Native base owns OBJ tiles and the palette slots returned by GameObject.
 struct GameSceneSpriteBase {
     GameObject * world;
@@ -17,6 +19,9 @@ struct GameSceneSpriteBase {
         i32 const * palette_kinds, u32 palette_count);
     GameSceneSpriteBase(GameObject * world, u32 size_shift, i32 palette_kind);
     virtual ~GameSceneSpriteBase();
+
+    void QueueTileUpload(HardwareDmaQueue & queue, IndexedResourceDescriptor32Range const & range);
+    void UploadPalettes(IndexedResourceDescriptor32Range const & range, u8 unk);
 };
 
 struct GameSceneIndexedSprite : GameSceneSpriteBase {

@@ -628,7 +628,7 @@ extern void GetEntity__C20GameSceneWorldPrefixUi(void);
 extern void func_0801B5C0(void);
 extern void ClearWorldSpritePaletteResourceFlag(void);
 extern void GetWorldSpritePaletteBank(void);
-extern void func_0801B9E8(void);
+extern void SetWorldSpritePaletteColors(void);
 extern void func_0801FD30(void);
 extern void func_0801FC54(void);
 extern void func_0801FC48(void);
@@ -1105,7 +1105,7 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801B5C0,
     ClearWorldSpritePaletteResourceFlag,
     GetWorldSpritePaletteBank,
-    func_0801B9E8,
+    SetWorldSpritePaletteColors,
     func_0801FD30,
     func_0801FC54,
     func_0801FC48,

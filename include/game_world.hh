@@ -134,6 +134,10 @@ typedef char GameSceneWorldPaletteBlendCheck[offsetof(GameSceneWorldPrefix, time
 
 EXTERN_C
 u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind);
+// Native palette callback at virtual slot +0x54. The final byte
+// is retained by the resource; its complete meaning is still unknown.
+void SetWorldSpritePaletteColors(GameSceneWorldPrefix & world,
+    u8 const * data, u32 palette_resource, u8 unk);
 bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & location,
     GameSceneFarmPlotLocation & output);
 u32 func_0801740C(FieldPlot const & plot);

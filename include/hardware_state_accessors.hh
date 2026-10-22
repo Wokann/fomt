@@ -38,6 +38,19 @@ struct HardwareDmaQueue {
     struct DmaTransferDescriptor * last;
     struct HardwareDmaQueueAllocation allocation;
 #ifdef __cplusplus
+private:
+    static void * AllocateDmaBytes(u32 bytes);
+    static DmaTransferDescriptor * AllocateDmaDescriptors(u32 count);
+    static DmaTransferDescriptor * CopyDmaDescriptors(DmaTransferDescriptor const * first,
+        DmaTransferDescriptor const * last, DmaTransferDescriptor * result);
+    static DmaTransferDescriptor * FillDmaDescriptors(DmaTransferDescriptor * first,
+        u32 count, DmaTransferDescriptor const & value);
+    void Grow(DmaTransferDescriptor * old_end, u32 count,
+        DmaTransferDescriptor const & value);
+
+public:
+    void PushBack(DmaTransferDescriptor const & value);
+
     ~HardwareDmaQueue()
     {
         typedef __type_traits<DmaTransferDescriptor>::has_trivial_destructor TrivialDestructor;

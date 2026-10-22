@@ -88,7 +88,7 @@ struct GameObject
     virtual u32 vfunc_48(i32 kind);
     virtual void ClearSpritePaletteResourceFlag(u32 index);
     virtual i32 GetSpritePaletteBank(u32 index);
-    virtual void vfunc_54();
+    virtual void SetSpritePaletteColors(u8 const * data, u32 palette_resource, u8 unk);
     virtual void * vfunc_58();
     virtual IndexedResourceArchive * vfunc_5C();
     virtual IndexedResourceArchive * vfunc_60();
