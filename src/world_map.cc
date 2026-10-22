@@ -6,6 +6,7 @@
 #include "field_render_resource_data.hh"
 #include "hardware_dma.hh"
 #include "hardware_state_accessors.hh"
+#include "hardware_dma_queue.hh"
 #include "time_of_day.hh"
 #include "gbasvc.h"
 #include "gbaio.h"
@@ -224,6 +225,22 @@ EC void PanWorldMapCameraTo(GameSceneWorldMap * map, i32 x, i32 y, u32 speed)
 EC bool IsWorldMapCameraMovementComplete(GameSceneWorldMap const * map)
 {
     return map->movement_frames == 0;
+}
+
+EC void QueueMapTilePatch(GameSceneWorldMap *,
+    FarmHouseTilePatchDescriptor const & patch, u32 frame, HardwareDmaQueue & queue)
+{
+    // The unused receiver and unchecked frame number preserve the native ABI.
+    u8 const * data = patch.frame_data;
+    MapTilePatchFrameHeader const * header = reinterpret_cast<MapTilePatchFrameHeader const *>(data);
+    u32 tile_count = header->tiles_per_frame;
+    data += sizeof(MapTilePatchFrameHeader);
+    data += tile_count * frame * 32;
+    u32 destination_tile = patch.destination_tile;
+    u32 byte_count = tile_count * 32;
+    DmaTransferDescriptor transfer(data,
+        reinterpret_cast<void *>(0x06000000u + destination_tile * 32), byte_count);
+    queue.PushBack(transfer);
 }
 
 EC void ApplyMapTilePatch(GameSceneWorldMap * map,

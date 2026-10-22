@@ -723,12 +723,20 @@ SECTIONS
         src/world_map.o(.text.__17GameSceneWorldMap .text._._17GameSceneWorldMap);
         src/world_map.o(.text.Update__17GameSceneWorldMap);
         asm/code_809E804.o(.text.game_map_after_update);
-        src/world_map.o(.text.Run__25MapViewportTilemapCommand);
-        src/world_map.o(.text.SetLocation__17GameSceneWorldMapRC8LocationiUiUi .text.RefreshAppearance__17GameSceneWorldMapiUiUi);
-        src/world_map.o(.text.ClampWorldMapCameraPosition .text.SetWorldMapCameraPosition .text.PanWorldMapCameraTo .text.IsWorldMapCameraMovementComplete);
-        asm/code_809E804.o(.text.game_map_after_camera_query);
-        src/world_map.o(.text.ApplyMapTilePatch);
-        src/world_map.o(.text.LoadTilemaps__17GameSceneWorldMap .text.SetWorldMapTimeOfDayPalette .text.LoadTimeOfDayPalette__17GameSceneWorldMapiUi);
+        src/world_map.o(
+            .text.Run__25MapViewportTilemapCommand
+            .text.SetLocation__17GameSceneWorldMapRC8LocationiUiUi
+            .text.RefreshAppearance__17GameSceneWorldMapiUiUi
+            .text.ClampWorldMapCameraPosition
+            .text.SetWorldMapCameraPosition
+            .text.PanWorldMapCameraTo
+            .text.IsWorldMapCameraMovementComplete
+            .text.QueueMapTilePatch
+            .text.ApplyMapTilePatch
+            .text.LoadTilemaps__17GameSceneWorldMap
+            .text.SetWorldMapTimeOfDayPalette
+            .text.LoadTimeOfDayPalette__17GameSceneWorldMapiUi
+        );
         asm/code_809E804.o(.text.game_map_time_palette_after);
         src/world_map.o(.text.LoadTiles__17GameSceneWorldMapR16HardwareDmaQueue .text.func_080A5EB8);
         asm/code_809E804.o(.text.game_map_after_tiles);
