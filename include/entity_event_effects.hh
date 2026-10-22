@@ -13,6 +13,8 @@ struct NewYearSunriseEffectState {
     i32 unk_4C;
     u8 active;
     u8 unk_51;
+
+    NewYearSunriseEffectState(GameObject * world);
 };
 
 struct NewYearSunriseEffectOwner {
@@ -32,7 +34,7 @@ struct NewYearSunriseEffectOwner {
 // A borrowed view of the known prefix, not the size of the full controller.
 // Native code also owns a separate sparkle collection at +0x10.
 struct EntityEventEffectControllerPrefix {
-    u32 unk_00;
+    AEntity * entity;
     u32 unk_04;
     u32 unk_08;
     NewYearSunriseEffectOwner sunrise;
@@ -44,6 +46,7 @@ private:
 typedef char NewYearSunriseEffectSizeCheck[sizeof(NewYearSunriseEffectState) == 0x54 ? 1 : -1];
 typedef char NewYearSunriseEffectValueCheck[offsetof(NewYearSunriseEffectState, unk_4C) == 0x4C ? 1 : -1];
 typedef char NewYearSunriseEffectActiveCheck[offsetof(NewYearSunriseEffectState, active) == 0x50 ? 1 : -1];
+typedef char EntityEventEffectHostOffsetCheck[offsetof(EntityEventEffectControllerPrefix, entity) == 0 ? 1 : -1];
 typedef char EntityEventEffectSunriseOffsetCheck[offsetof(EntityEventEffectControllerPrefix, sunrise) == 0x0C ? 1 : -1];
 
 extern "C" void CreateEntityNewYearSunriseEffect(AEntity * entity);
@@ -53,7 +56,7 @@ extern "C" void DestroyEntityNewYearSunriseEffect(AEntity * entity);
 extern "C" void PlayEntityStarSparkleEffect(AEntity * entity);
 extern "C" bool HasEntityStarSparkleEffect(AEntity * entity);
 
-// Creation and the sparkle operations still use their genuine native bodies.
+// The sparkle operations still use their genuine native bodies.
 extern "C" void CreateControllerNewYearSunriseEffect(EntityEventEffectControllerPrefix & controller);
 extern "C" void PlayControllerNewYearSunriseEffect(EntityEventEffectControllerPrefix & controller);
 extern "C" bool IsControllerNewYearSunriseEffectComplete(EntityEventEffectControllerPrefix & controller);

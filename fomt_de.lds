@@ -399,7 +399,7 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.npc_characters_after);
         src/entity_event_effects.o(.text.CreateEntityNewYearSunriseEffect .text.PlayEntityNewYearSunriseEffect .text.IsEntityNewYearSunriseEffectComplete .text.DestroyEntityNewYearSunriseEffect .text.PlayEntityStarSparkleEffect .text.HasEntityStarSparkleEffect);
         asm/code_entities_08034CEC.o(.text.entity_event_effects_after);
-        src/entity_event_effects.o(.text.PlayControllerNewYearSunriseEffect .text.IsControllerNewYearSunriseEffectComplete .text.DestroyControllerNewYearSunriseEffect);
+        src/entity_event_effects.o(.text.CreateControllerNewYearSunriseEffect .text.PlayControllerNewYearSunriseEffect .text.IsControllerNewYearSunriseEffectComplete .text.DestroyControllerNewYearSunriseEffect);
         asm/code_entities_08034CEC.o(.text.entity_event_effects_after_sunrise);
 
         . = 0x3A7B8; /* DE ROM 0x0803A7B8, remaining raw control code. */

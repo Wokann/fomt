@@ -42,10 +42,18 @@ typedef char GameSceneIndexedSpriteFlagsCheck[offsetof(GameSceneIndexedSprite, u
 // The byte at +0x48 is initialized by native factories, but its full meaning
 // is not yet established. Preserve that uncertainty rather than naming a flag.
 struct GameSceneGroupSprite : GameSceneSpriteBase {
+    GameSceneGroupSprite(IndexedResourceProvider * resource, u32 index,
+        GameObject * world, u32 size_shift, i32 palette_kind)
+        : GameSceneSpriteBase(world, size_shift, palette_kind),
+          group(ResolveIndexedResourceGroup(resource, index)),
+          unk_48(1)
+    {
+    }
+
     IndexedResourceGroupResult group;
     u8 unk_48;
 
-    // Creation is still native. Do not allocate a partly recovered constructor.
+    // No default construction path has been recovered.
 private:
     GameSceneGroupSprite();
 };

@@ -2,6 +2,12 @@
 
 #include "entity.hh"
 
+inline NewYearSunriseEffectState::NewYearSunriseEffectState(GameObject * world)
+    : sprite(world->vfunc_70(), 0, world, 6, 27),
+      unk_4C(288 << 16), active(0), unk_51(0)
+{
+}
+
 extern "C" void CreateEntityNewYearSunriseEffect(AEntity * entity)
 {
     UnknownEntityThing * controller = entity->unk_10.Get();
@@ -44,6 +50,11 @@ extern "C" bool HasEntityStarSparkleEffect(AEntity * entity)
     if (controller != nullptr)
         return HasControllerStarSparkleEffect(controller);
     return false;
+}
+
+extern "C" void CreateControllerNewYearSunriseEffect(EntityEventEffectControllerPrefix & controller)
+{
+    controller.sunrise = new NewYearSunriseEffectState(controller.entity->GetGameObject());
 }
 
 extern "C" void PlayControllerNewYearSunriseEffect(EntityEventEffectControllerPrefix & controller)

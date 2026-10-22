@@ -134,6 +134,13 @@ struct IndexedResourceProvider
 
 inline IndexedResourceProvider::~IndexedResourceProvider() {}
 
+// Resolve an entry index to the group referenced by its first entry.
+static inline IndexedResourceGroupResult ResolveIndexedResourceGroup(
+    IndexedResourceProvider const * resource, u32 index)
+{
+    return resource->GetGroupData(resource->Resolve(index)[0].group_index);
+}
+
 struct IndexedResourceArchiveEntry
 {
     u16 entry_count;
