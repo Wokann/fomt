@@ -216,7 +216,7 @@ HardwareSharedStateEntry * InitializeHardwareSharedStateFreeList(
     HardwareSharedStateEntry * entries, i32 count, HardwareSharedStateEntry * tail);
 
 // The receiver is unused; each query validates a handle in the shared pool.
-u32 GetHardwareSharedStateTileIndex(void * owner, u32 handle);
+u32 GetHardwareSharedStateTileIndex(void const * owner, u32 handle);
 u32 GetHardwareSharedStateSizeShift(void * owner, u32 handle);
 u32 GetHardwareSharedStateReferenceCount(void * owner, u32 handle);
 

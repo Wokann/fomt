@@ -116,9 +116,9 @@ u32 RetainHardwareSharedStateHandle(void *, u32 value)
     return 0;
 }
 
-u32 GetHardwareSharedStateTileIndex(void *, u32 value)
+u32 GetHardwareSharedStateTileIndex(void const *, u32 value)
     SECTION(".text.hardware_shared_state_handles");
-u32 GetHardwareSharedStateTileIndex(void *, u32 value)
+u32 GetHardwareSharedStateTileIndex(void const *, u32 value)
 {
     HardwareSharedState * state = gUnk_03000408;
     if (value != 0) {

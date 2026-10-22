@@ -13,12 +13,16 @@ struct GameSceneSpriteBase {
     u16 tile_index;
     GameScenePaletteIndices palettes;
 
-    // The real constructor ABI is still implemented by native assembly.
+    GameSceneSpriteBase(GameObject * world, u32 size_shift,
+        i32 const * palette_kinds, u32 palette_count);
     GameSceneSpriteBase(GameObject * world, u32 size_shift, i32 palette_kind);
     virtual ~GameSceneSpriteBase();
 };
 
 struct GameSceneIndexedSprite : GameSceneSpriteBase {
+    GameSceneIndexedSprite(IndexedResourceProvider * resource, u32 index,
+        GameObject * world, u32 size_shift, i32 const * palette_kinds,
+        u32 palette_count, bool unk_3D);
     GameSceneIndexedSprite(IndexedResourceProvider * resource, u32 index,
         GameObject * world, u32 size_shift, i32 palette_kind, bool unk_3D);
 

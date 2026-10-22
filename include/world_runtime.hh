@@ -6,6 +6,7 @@
 #include "hardware_state_clear.hh"
 #include "resource_handle.hh"
 #include "world_map.hh"
+#include <string.h>
 
 #pragma interface "world_runtime.hh"
 
@@ -111,11 +112,30 @@ struct GameSceneWorldUnk1020Entry {
 };
 
 struct GameScenePaletteIndices {
+private:
+    void Initialize(u32 input_count, u8 const & initial)
+    {
+        count = 0;
+        if (input_count <= ARRAY_COUNT(values)) {
+            memset(values, initial, input_count);
+            count = input_count;
+        }
+    }
+
+public:
+    explicit GameScenePaletteIndices(u32 input_count)
+    {
+        Initialize(input_count, 0);
+    }
+
     u32 count;
     u8 values[16];
 
     u8 & operator[](u32 index) { return values[index]; }
 };
+
+typedef char GameScenePaletteIndicesSizeCheck[sizeof(GameScenePaletteIndices) == 20 ? 1 : -1];
+typedef char GameScenePaletteIndexValuesCheck[offsetof(GameScenePaletteIndices, values) == 4 ? 1 : -1];
 
 struct GameSceneWorldUnk1020 {
     GameObject * world;

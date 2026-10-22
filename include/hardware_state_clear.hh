@@ -33,6 +33,9 @@ struct HardwareStateEntry {
         handle = RetainHardwareSharedStateHandle(this, value.handle);
     }
 
+    u32 GetTileIndex() const
+    { return GetHardwareSharedStateTileIndex(this, handle); }
+
     ~HardwareStateEntry()
     {
         ReleaseHardwareSharedStateHandle(this, handle);

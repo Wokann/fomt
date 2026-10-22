@@ -216,7 +216,7 @@ func_08032560:
     add	r4, sp, #12
     mov	r6, r8
     strb	r6, [r4, #0]
-    bl func_080A49A0
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
     ldr	r0, [r5, #0]
     ldr	r1, [r0, #0]
     ldr	r1, [r1, #108]	@ 0x6c
@@ -5367,7 +5367,7 @@ func_08032560:
     add	r4, sp, #12
     mov	r6, r8
     strb	r6, [r4, #0]
-    bl func_080A49A0
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
     ldr	r0, [r5, #0]
     ldr	r1, [r0, #0]
     ldr	r1, [r1, #108]	@ 0x6c
@@ -9639,7 +9639,7 @@ func_08032560:
     add	r4, sp, #12
     mov	r6, r8
     strb	r6, [r4, #0]
-    bl func_080A49A0
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
     ldr	r0, [r5, #0]
     ldr	r1, [r0, #0]
     ldr	r1, [r1, #108]	@ 0x6c
@@ -13910,7 +13910,7 @@ func_08032560:
     add	r4, sp, #12
     mov	r6, r8
     strb	r6, [r4, #0]
-    bl func_080A49A0
+    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
     ldr	r0, [r5, #0]
     ldr	r1, [r0, #0]
     ldr	r1, [r1, #108]	@ 0x6c
