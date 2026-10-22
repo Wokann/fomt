@@ -4326,19 +4326,19 @@ func_08037494:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #5
-    bl func_080AB264
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB1C0
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Ljp_0803729C
@@ -4347,7 +4347,7 @@ func_08037494:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB1DC
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -4542,19 +4542,19 @@ func_0803763C:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #7
-    bl func_080AB264
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB1C0
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Ljp_08037444
@@ -4563,7 +4563,7 @@ func_0803763C:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB1DC
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -4759,19 +4759,19 @@ func_080377E8:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #13
-    bl func_080AB264
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB1C0
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Ljp_080375EE
@@ -4780,7 +4780,7 @@ func_080377E8:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB1DC
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -4918,19 +4918,19 @@ func_08037958:
     ldr r5, .Ljp_08037768
     adds	r0, r5, #0
     movs	r1, #3
-    bl func_080AB264
+    bl SelectActorBehaviorTimingIndex
     lsls	r4, r0, #2
     adds	r4, r4, r5
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB1C0
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Ljp_08037738
@@ -4939,7 +4939,7 @@ func_08037958:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB1DC
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -8023,7 +8023,7 @@ func_08039204:
     adds	r1, r7, #0
     mov	r2, sl
     adds	r3, r6, #0
-    bl func_080AB678
+    bl SelectApproachFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -8032,7 +8032,7 @@ func_08039204:
     bl SetAnimFacing__12AActorEntityUi
 .Ljp_08039070:
     movs	r0, #30
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r4, r0, #1
 .Ljp_08039078:
     ldr	r0, [sp, #20]
@@ -8201,7 +8201,7 @@ func_08039310:
     adds	r1, r7, #0
     mov	r2, sl
     mov	r3, r9
-    bl func_080AB678
+    bl SelectApproachFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -8210,7 +8210,7 @@ func_08039310:
     bl SetAnimFacing__12AActorEntityUi
 .Ljp_080391BA:
     movs	r0, #30
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r6, r0, #1
     mov	r1, sl
     mov	r0, r8
@@ -8281,7 +8281,7 @@ func_08039310:
     cmp	r6, #100	@ 0x64
     beq .Ljp_080392C8
     movs	r0, #100	@ 0x64
-    bl func_080AB1C0
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Ljp_08039290
     ldr r1, .Ljp_08039284
@@ -8289,7 +8289,7 @@ func_08039310:
     ands	r0, r1
     str	r0, [sp, #12]
     movs	r0, #8
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -8314,7 +8314,7 @@ func_08039310:
     .4byte 0x00FFFFFF
 .Ljp_08039290:
     movs	r0, #60	@ 0x3c
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -8474,7 +8474,7 @@ func_0803955C:
     cmp	r6, #100	@ 0x64
     beq .Ljp_0803944C
     movs	r0, #100	@ 0x64
-    bl func_080AB1C0
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Ljp_08039414
     ldr r1, .Ljp_08039408
@@ -8482,7 +8482,7 @@ func_0803955C:
     ands	r0, r1
     str	r0, [sp, #0]
     movs	r0, #8
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -8508,7 +8508,7 @@ func_0803955C:
     .4byte 0x00FFFFFF
 .Ljp_08039414:
     movs	r0, #60	@ 0x3c
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -8654,7 +8654,7 @@ func_08039708:
     str	r4, [sp, #0]
     mov	r4, ip
     str	r4, [sp, #4]
-    bl func_080AB890
+    bl SelectRetreatFacing
     adds	r1, r0, #0
     ldrb	r0, [r5, #0]
     cmp	r0, r1
@@ -8663,7 +8663,7 @@ func_08039708:
     bl SetAnimFacing__12AActorEntityUi
 .Ljp_08039538:
     movs	r0, #30
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r4, r0, #1
 .Ljp_08039540:
     mov	r0, r8
@@ -8705,7 +8705,7 @@ func_08039708:
     cmp	r5, #100	@ 0x64
     beq .Ljp_0803960C
     movs	r0, #100	@ 0x64
-    bl func_080AB1C0
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Ljp_080395D4
     ldr r1, .Ljp_080395C8
@@ -8713,7 +8713,7 @@ func_08039708:
     ands	r0, r1
     str	r0, [sp, #8]
     movs	r0, #8
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -8738,7 +8738,7 @@ func_08039708:
     .4byte 0x00FFFFFF
 .Ljp_080395D4:
     movs	r0, #60	@ 0x3c
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -9054,7 +9054,7 @@ func_08039A60:
     b .Ljp_08039940
 .Ljp_0803983E:
     movs	r0, #2
-    bl func_080AB1C0
+    bl RandomBelow
     cmp	r0, #0
     beq .Ljp_08039858
     add	r0, sp, #68	@ 0x44
@@ -9088,7 +9088,7 @@ func_08039A60:
     cmp	r0, #100	@ 0x64
     beq .Ljp_08039940
     movs	r0, #100	@ 0x64
-    bl func_080AB1C0
+    bl RandomBelow
     cmp	r0, #14
     bhi .Ljp_08039940
     movs	r0, #0
@@ -9156,7 +9156,7 @@ func_08039A60:
     ands	r0, r1
     str	r0, [sp, #76]	@ 0x4c
     movs	r0, #8
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -9442,7 +9442,7 @@ func_08039DA8:
     cmp	r0, #1
     beq .Ljp_08039B94
     movs	r0, #120	@ 0x78
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #240	@ 0xf0
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -9497,7 +9497,7 @@ func_08039E18:
     cmp	r0, #1
     beq .Ljp_08039C06
     movs	r0, #120	@ 0x78
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #240	@ 0xf0
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -9903,7 +9903,7 @@ func_0803A144:
     cmp	r2, #0
     bge .Ljp_08039EEE
     movs	r0, #3
-    bl func_080AB1C0
+    bl RandomBelow
     lsls	r0, r0, #24
     lsrs	r0, r0, #24
 .Ljp_08039EEE:
@@ -10117,7 +10117,7 @@ func_0803A180:
     cmp	r0, #0
     bge .Ljp_0803A0A4
     movs	r0, #3
-    bl func_080AB1C0
+    bl RandomBelow
     lsls	r0, r0, #16
     asrs	r1, r0, #16
     cmp	r1, #3
@@ -10129,11 +10129,11 @@ func_0803A180:
     movs	r0, #1
     strb	r0, [r4, #18]
     ldr	r0, [r4, #0]
-    bl func_080AB1DC
+    bl GetRelativeFacing
     str	r0, [r4, #0]
 .Ljp_0803A096:
     movs	r0, #31
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #16
     strh	r0, [r4, #16]
     movs	r7, #1
@@ -10244,7 +10244,7 @@ func_0803A394:
     mov	sl, r2
 .Ljp_0803A156:
     movs	r0, #99	@ 0x63
-    bl func_080AB1C0
+    bl RandomBelow
     lsls	r0, r0, #16
     lsrs	r4, r0, #16
     movs	r3, #0
@@ -10339,7 +10339,7 @@ func_0803A394:
     ble .Ljp_0803A20E
     adds	r0, r2, #0
     subs	r0, #1
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #1
     str	r0, [sp, #4]
 .Ljp_0803A20E:
@@ -10350,20 +10350,20 @@ func_0803A394:
 .Ljp_0803A216:
     movs	r0, #196	@ 0xc4
     lsls	r0, r0, #1
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r5, r0, #0
     adds	r5, #184	@ 0xb8
     cmp	r5, #239	@ 0xef
     bgt .Ljp_0803A234
     movs	r0, #56	@ 0x38
-    bl func_080AB1C0
+    bl RandomBelow
     movs	r1, #248	@ 0xf8
     lsls	r1, r1, #1
     adds	r7, r0, r1
     b .Ljp_0803A240
 .Ljp_0803A234:
     movs	r0, #48	@ 0x30
-    bl func_080AB1C0
+    bl RandomBelow
     movs	r2, #138	@ 0x8a
     lsls	r2, r2, #2
     adds	r7, r0, r2
@@ -14945,19 +14945,19 @@ func_08037494:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #5
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Leu_0803751C
@@ -14966,7 +14966,7 @@ func_08037494:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -15161,19 +15161,19 @@ func_0803763C:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #7
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Leu_080376C4
@@ -15182,7 +15182,7 @@ func_0803763C:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -15378,19 +15378,19 @@ func_080377E8:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #13
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Leu_0803786E
@@ -15399,7 +15399,7 @@ func_080377E8:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -15537,19 +15537,19 @@ func_08037958:
     ldr r5, .Leu_080379E8
     adds	r0, r5, #0
     movs	r1, #3
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r4, r0, #2
     adds	r4, r4, r5
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Leu_080379B8
@@ -15558,7 +15558,7 @@ func_08037958:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -18724,7 +18724,7 @@ func_08039204:
     adds	r1, r7, #0
     mov	r2, sl
     adds	r3, r6, #0
-    bl func_080ABC40
+    bl SelectApproachFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -18733,7 +18733,7 @@ func_08039204:
     bl SetAnimFacing__12AActorEntityUi
 .Leu_080392F0:
     movs	r0, #30
-    bl func_080AB788
+    bl RandomBelow
     adds	r4, r0, #1
 .Leu_080392F8:
     ldr	r0, [sp, #20]
@@ -18902,7 +18902,7 @@ func_08039310:
     adds	r1, r7, #0
     mov	r2, sl
     mov	r3, r9
-    bl func_080ABC40
+    bl SelectApproachFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -18911,7 +18911,7 @@ func_08039310:
     bl SetAnimFacing__12AActorEntityUi
 .Leu_0803943A:
     movs	r0, #30
-    bl func_080AB788
+    bl RandomBelow
     adds	r6, r0, #1
     mov	r1, sl
     mov	r0, r8
@@ -18982,7 +18982,7 @@ func_08039310:
     cmp	r6, #100	@ 0x64
     beq .Leu_08039548
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Leu_08039510
     ldr r1, .Leu_08039504
@@ -18990,7 +18990,7 @@ func_08039310:
     ands	r0, r1
     str	r0, [sp, #12]
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -19015,7 +19015,7 @@ func_08039310:
     .4byte 0x00FFFFFF
 .Leu_08039510:
     movs	r0, #60	@ 0x3c
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -19175,7 +19175,7 @@ func_0803955C:
     cmp	r6, #100	@ 0x64
     beq .Leu_080396CC
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Leu_08039694
     ldr r1, .Leu_08039688
@@ -19183,7 +19183,7 @@ func_0803955C:
     ands	r0, r1
     str	r0, [sp, #0]
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -19209,7 +19209,7 @@ func_0803955C:
     .4byte 0x00FFFFFF
 .Leu_08039694:
     movs	r0, #60	@ 0x3c
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -19355,7 +19355,7 @@ func_08039708:
     str	r4, [sp, #0]
     mov	r4, ip
     str	r4, [sp, #4]
-    bl func_080ABE58
+    bl SelectRetreatFacing
     adds	r1, r0, #0
     ldrb	r0, [r5, #0]
     cmp	r0, r1
@@ -19364,7 +19364,7 @@ func_08039708:
     bl SetAnimFacing__12AActorEntityUi
 .Leu_080397B8:
     movs	r0, #30
-    bl func_080AB788
+    bl RandomBelow
     adds	r4, r0, #1
 .Leu_080397C0:
     mov	r0, r8
@@ -19406,7 +19406,7 @@ func_08039708:
     cmp	r5, #100	@ 0x64
     beq .Leu_0803988C
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Leu_08039854
     ldr r1, .Leu_08039848
@@ -19414,7 +19414,7 @@ func_08039708:
     ands	r0, r1
     str	r0, [sp, #8]
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -19439,7 +19439,7 @@ func_08039708:
     .4byte 0x00FFFFFF
 .Leu_08039854:
     movs	r0, #60	@ 0x3c
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -19755,7 +19755,7 @@ func_08039A60:
     b .Leu_08039BC0
 .Leu_08039ABE:
     movs	r0, #2
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #0
     beq .Leu_08039AD8
     add	r0, sp, #68	@ 0x44
@@ -19789,7 +19789,7 @@ func_08039A60:
     cmp	r0, #100	@ 0x64
     beq .Leu_08039BC0
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #14
     bhi .Leu_08039BC0
     movs	r0, #0
@@ -19857,7 +19857,7 @@ func_08039A60:
     ands	r0, r1
     str	r0, [sp, #76]	@ 0x4c
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -20143,7 +20143,7 @@ func_08039DA8:
     cmp	r0, #1
     beq .Leu_08039E14
     movs	r0, #120	@ 0x78
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #240	@ 0xf0
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -20198,7 +20198,7 @@ func_08039E18:
     cmp	r0, #1
     beq .Leu_08039E86
     movs	r0, #120	@ 0x78
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #240	@ 0xf0
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -20607,7 +20607,7 @@ func_0803A144:
     cmp	r2, #0
     bge .Leu_0803A16E
     movs	r0, #3
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #24
     lsrs	r0, r0, #24
 .Leu_0803A16E:
@@ -20821,7 +20821,7 @@ func_0803A180:
     cmp	r0, #0
     bge .Leu_0803A324
     movs	r0, #3
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #16
     asrs	r1, r0, #16
     cmp	r1, #3
@@ -20833,11 +20833,11 @@ func_0803A180:
     movs	r0, #1
     strb	r0, [r4, #18]
     ldr	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     str	r0, [r4, #0]
 .Leu_0803A316:
     movs	r0, #31
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #16
     strh	r0, [r4, #16]
     movs	r7, #1
@@ -20948,7 +20948,7 @@ func_0803A394:
     mov	sl, r2
 .Leu_0803A3D6:
     movs	r0, #99	@ 0x63
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #16
     lsrs	r4, r0, #16
     movs	r3, #0
@@ -21043,7 +21043,7 @@ func_0803A394:
     ble .Leu_0803A48E
     adds	r0, r2, #0
     subs	r0, #1
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #1
     str	r0, [sp, #4]
 .Leu_0803A48E:
@@ -21054,20 +21054,20 @@ func_0803A394:
 .Leu_0803A496:
     movs	r0, #196	@ 0xc4
     lsls	r0, r0, #1
-    bl func_080AB788
+    bl RandomBelow
     adds	r5, r0, #0
     adds	r5, #184	@ 0xb8
     cmp	r5, #239	@ 0xef
     bgt .Leu_0803A4B4
     movs	r0, #56	@ 0x38
-    bl func_080AB788
+    bl RandomBelow
     movs	r1, #248	@ 0xf8
     lsls	r1, r1, #1
     adds	r7, r0, r1
     b .Leu_0803A4C0
 .Leu_0803A4B4:
     movs	r0, #48	@ 0x30
-    bl func_080AB788
+    bl RandomBelow
     movs	r2, #138	@ 0x8a
     lsls	r2, r2, #2
     adds	r7, r0, r2
@@ -25795,19 +25795,19 @@ func_08037494:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #5
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Lde_0803741C
@@ -25816,7 +25816,7 @@ func_08037494:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -26011,19 +26011,19 @@ func_0803763C:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #7
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Lde_080375C4
@@ -26032,7 +26032,7 @@ func_0803763C:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -26228,19 +26228,19 @@ func_080377E8:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #13
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Lde_0803776E
@@ -26249,7 +26249,7 @@ func_080377E8:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -26387,19 +26387,19 @@ func_08037958:
     ldr r5, .Lde_080378E8
     adds	r0, r5, #0
     movs	r1, #3
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r4, r0, #2
     adds	r4, r4, r5
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Lde_080378B8
@@ -26408,7 +26408,7 @@ func_08037958:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -29574,7 +29574,7 @@ func_08039204:
     adds	r1, r7, #0
     mov	r2, sl
     adds	r3, r6, #0
-    bl func_080ABC40
+    bl SelectApproachFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -29583,7 +29583,7 @@ func_08039204:
     bl SetAnimFacing__12AActorEntityUi
 .Lde_080391F0:
     movs	r0, #30
-    bl func_080AB788
+    bl RandomBelow
     adds	r4, r0, #1
 .Lde_080391F8:
     ldr	r0, [sp, #20]
@@ -29752,7 +29752,7 @@ func_08039310:
     adds	r1, r7, #0
     mov	r2, sl
     mov	r3, r9
-    bl func_080ABC40
+    bl SelectApproachFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -29761,7 +29761,7 @@ func_08039310:
     bl SetAnimFacing__12AActorEntityUi
 .Lde_0803933A:
     movs	r0, #30
-    bl func_080AB788
+    bl RandomBelow
     adds	r6, r0, #1
     mov	r1, sl
     mov	r0, r8
@@ -29832,7 +29832,7 @@ func_08039310:
     cmp	r6, #100	@ 0x64
     beq .Lde_08039448
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Lde_08039410
     ldr r1, .Lde_08039404
@@ -29840,7 +29840,7 @@ func_08039310:
     ands	r0, r1
     str	r0, [sp, #12]
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -29865,7 +29865,7 @@ func_08039310:
     .4byte 0x00FFFFFF
 .Lde_08039410:
     movs	r0, #60	@ 0x3c
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -30025,7 +30025,7 @@ func_0803955C:
     cmp	r6, #100	@ 0x64
     beq .Lde_080395CC
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Lde_08039594
     ldr r1, .Lde_08039588
@@ -30033,7 +30033,7 @@ func_0803955C:
     ands	r0, r1
     str	r0, [sp, #0]
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -30059,7 +30059,7 @@ func_0803955C:
     .4byte 0x00FFFFFF
 .Lde_08039594:
     movs	r0, #60	@ 0x3c
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -30205,7 +30205,7 @@ func_08039708:
     str	r4, [sp, #0]
     mov	r4, ip
     str	r4, [sp, #4]
-    bl func_080ABE58
+    bl SelectRetreatFacing
     adds	r1, r0, #0
     ldrb	r0, [r5, #0]
     cmp	r0, r1
@@ -30214,7 +30214,7 @@ func_08039708:
     bl SetAnimFacing__12AActorEntityUi
 .Lde_080396B8:
     movs	r0, #30
-    bl func_080AB788
+    bl RandomBelow
     adds	r4, r0, #1
 .Lde_080396C0:
     mov	r0, r8
@@ -30256,7 +30256,7 @@ func_08039708:
     cmp	r5, #100	@ 0x64
     beq .Lde_0803978C
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Lde_08039754
     ldr r1, .Lde_08039748
@@ -30264,7 +30264,7 @@ func_08039708:
     ands	r0, r1
     str	r0, [sp, #8]
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -30289,7 +30289,7 @@ func_08039708:
     .4byte 0x00FFFFFF
 .Lde_08039754:
     movs	r0, #60	@ 0x3c
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -30605,7 +30605,7 @@ func_08039A60:
     b .Lde_08039AC0
 .Lde_080399BE:
     movs	r0, #2
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #0
     beq .Lde_080399D8
     add	r0, sp, #68	@ 0x44
@@ -30639,7 +30639,7 @@ func_08039A60:
     cmp	r0, #100	@ 0x64
     beq .Lde_08039AC0
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #14
     bhi .Lde_08039AC0
     movs	r0, #0
@@ -30707,7 +30707,7 @@ func_08039A60:
     ands	r0, r1
     str	r0, [sp, #76]	@ 0x4c
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -30993,7 +30993,7 @@ func_08039DA8:
     cmp	r0, #1
     beq .Lde_08039D14
     movs	r0, #120	@ 0x78
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #240	@ 0xf0
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -31048,7 +31048,7 @@ func_08039E18:
     cmp	r0, #1
     beq .Lde_08039D86
     movs	r0, #120	@ 0x78
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #240	@ 0xf0
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -31457,7 +31457,7 @@ func_0803A144:
     cmp	r2, #0
     bge .Lde_0803A06E
     movs	r0, #3
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #24
     lsrs	r0, r0, #24
 .Lde_0803A06E:
@@ -31671,7 +31671,7 @@ func_0803A180:
     cmp	r0, #0
     bge .Lde_0803A224
     movs	r0, #3
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #16
     asrs	r1, r0, #16
     cmp	r1, #3
@@ -31683,11 +31683,11 @@ func_0803A180:
     movs	r0, #1
     strb	r0, [r4, #18]
     ldr	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     str	r0, [r4, #0]
 .Lde_0803A216:
     movs	r0, #31
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #16
     strh	r0, [r4, #16]
     movs	r7, #1
@@ -31798,7 +31798,7 @@ func_0803A394:
     mov	sl, r2
 .Lde_0803A2D6:
     movs	r0, #99	@ 0x63
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #16
     lsrs	r4, r0, #16
     movs	r3, #0
@@ -31893,7 +31893,7 @@ func_0803A394:
     ble .Lde_0803A38E
     adds	r0, r2, #0
     subs	r0, #1
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #1
     str	r0, [sp, #4]
 .Lde_0803A38E:
@@ -31904,20 +31904,20 @@ func_0803A394:
 .Lde_0803A396:
     movs	r0, #196	@ 0xc4
     lsls	r0, r0, #1
-    bl func_080AB788
+    bl RandomBelow
     adds	r5, r0, #0
     adds	r5, #184	@ 0xb8
     cmp	r5, #239	@ 0xef
     bgt .Lde_0803A3B4
     movs	r0, #56	@ 0x38
-    bl func_080AB788
+    bl RandomBelow
     movs	r1, #248	@ 0xf8
     lsls	r1, r1, #1
     adds	r7, r0, r1
     b .Lde_0803A3C0
 .Lde_0803A3B4:
     movs	r0, #48	@ 0x30
-    bl func_080AB788
+    bl RandomBelow
     movs	r2, #138	@ 0x8a
     lsls	r2, r2, #2
     adds	r7, r0, r2
@@ -36644,19 +36644,19 @@ func_08037494:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #5
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Lus_08037508
@@ -36665,7 +36665,7 @@ func_08037494:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -36860,19 +36860,19 @@ func_0803763C:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #7
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Lus_080376B0
@@ -36881,7 +36881,7 @@ func_0803763C:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -37077,19 +37077,19 @@ func_080377E8:
     adds	r4, r4, r0
     adds	r0, r4, #0
     movs	r1, #13
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r1, r0, #2
     adds	r4, r4, r1
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Lus_0803785A
@@ -37098,7 +37098,7 @@ func_080377E8:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -37236,19 +37236,19 @@ func_08037958:
     ldr r5, .Lus_080379D4
     adds	r0, r5, #0
     movs	r1, #3
-    bl func_080AB82C
+    bl SelectActorBehaviorTimingIndex
     lsls	r4, r0, #2
     adds	r4, r4, r5
     adds	r7, r0, #0
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r5, r1, r0
     movs	r0, #4
-    bl func_080AB788
+    bl RandomBelow
     adds	r1, r0, #0
     cmp	r1, #0
     beq .Lus_080379A4
@@ -37257,7 +37257,7 @@ func_08037958:
     adds	r4, r6, #0
     adds	r4, #32
     ldrb	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -40423,7 +40423,7 @@ func_08039204:
     adds	r1, r7, #0
     mov	r2, sl
     adds	r3, r6, #0
-    bl func_080ABC40
+    bl SelectApproachFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -40432,7 +40432,7 @@ func_08039204:
     bl SetAnimFacing__12AActorEntityUi
 .Lus_080392DC:
     movs	r0, #30
-    bl func_080AB788
+    bl RandomBelow
     adds	r4, r0, #1
 .Lus_080392E4:
     ldr	r0, [sp, #20]
@@ -40601,7 +40601,7 @@ func_08039310:
     adds	r1, r7, #0
     mov	r2, sl
     mov	r3, r9
-    bl func_080ABC40
+    bl SelectApproachFacing
     adds	r1, r0, #0
     ldrb	r0, [r4, #0]
     cmp	r0, r1
@@ -40610,7 +40610,7 @@ func_08039310:
     bl SetAnimFacing__12AActorEntityUi
 .Lus_08039426:
     movs	r0, #30
-    bl func_080AB788
+    bl RandomBelow
     adds	r6, r0, #1
     mov	r1, sl
     mov	r0, r8
@@ -40681,7 +40681,7 @@ func_08039310:
     cmp	r6, #100	@ 0x64
     beq .Lus_08039534
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Lus_080394FC
     ldr r1, .Lus_080394F0
@@ -40689,7 +40689,7 @@ func_08039310:
     ands	r0, r1
     str	r0, [sp, #12]
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -40714,7 +40714,7 @@ func_08039310:
     .4byte 0x00FFFFFF
 .Lus_080394FC:
     movs	r0, #60	@ 0x3c
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -40874,7 +40874,7 @@ func_0803955C:
     cmp	r6, #100	@ 0x64
     beq .Lus_080396B8
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Lus_08039680
     ldr r1, .Lus_08039674
@@ -40882,7 +40882,7 @@ func_0803955C:
     ands	r0, r1
     str	r0, [sp, #0]
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -40908,7 +40908,7 @@ func_0803955C:
     .4byte 0x00FFFFFF
 .Lus_08039680:
     movs	r0, #60	@ 0x3c
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -41054,7 +41054,7 @@ func_08039708:
     str	r4, [sp, #0]
     mov	r4, ip
     str	r4, [sp, #4]
-    bl func_080ABE58
+    bl SelectRetreatFacing
     adds	r1, r0, #0
     ldrb	r0, [r5, #0]
     cmp	r0, r1
@@ -41063,7 +41063,7 @@ func_08039708:
     bl SetAnimFacing__12AActorEntityUi
 .Lus_080397A4:
     movs	r0, #30
-    bl func_080AB788
+    bl RandomBelow
     adds	r4, r0, #1
 .Lus_080397AC:
     mov	r0, r8
@@ -41105,7 +41105,7 @@ func_08039708:
     cmp	r5, #100	@ 0x64
     beq .Lus_08039878
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #69	@ 0x45
     bhi .Lus_08039840
     ldr r1, .Lus_08039834
@@ -41113,7 +41113,7 @@ func_08039708:
     ands	r0, r1
     str	r0, [sp, #8]
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -41138,7 +41138,7 @@ func_08039708:
     .4byte 0x00FFFFFF
 .Lus_08039840:
     movs	r0, #60	@ 0x3c
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #120	@ 0x78
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -41454,7 +41454,7 @@ func_08039A60:
     b .Lus_08039BAC
 .Lus_08039AAA:
     movs	r0, #2
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #0
     beq .Lus_08039AC4
     add	r0, sp, #68	@ 0x44
@@ -41488,7 +41488,7 @@ func_08039A60:
     cmp	r0, #100	@ 0x64
     beq .Lus_08039BAC
     movs	r0, #100	@ 0x64
-    bl func_080AB788
+    bl RandomBelow
     cmp	r0, #14
     bhi .Lus_08039BAC
     movs	r0, #0
@@ -41556,7 +41556,7 @@ func_08039A60:
     ands	r0, r1
     str	r0, [sp, #76]	@ 0x4c
     movs	r0, #8
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #3
     lsls	r0, r0, #24
     lsrs	r0, r0, #8
@@ -41842,7 +41842,7 @@ func_08039DA8:
     cmp	r0, #1
     beq .Lus_08039E00
     movs	r0, #120	@ 0x78
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #240	@ 0xf0
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -41897,7 +41897,7 @@ func_08039E18:
     cmp	r0, #1
     beq .Lus_08039E72
     movs	r0, #120	@ 0x78
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #240	@ 0xf0
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
@@ -42306,7 +42306,7 @@ func_0803A144:
     cmp	r2, #0
     bge .Lus_0803A15A
     movs	r0, #3
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #24
     lsrs	r0, r0, #24
 .Lus_0803A15A:
@@ -42520,7 +42520,7 @@ func_0803A180:
     cmp	r0, #0
     bge .Lus_0803A310
     movs	r0, #3
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #16
     asrs	r1, r0, #16
     cmp	r1, #3
@@ -42532,11 +42532,11 @@ func_0803A180:
     movs	r0, #1
     strb	r0, [r4, #18]
     ldr	r0, [r4, #0]
-    bl func_080AB7A4
+    bl GetRelativeFacing
     str	r0, [r4, #0]
 .Lus_0803A302:
     movs	r0, #31
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #16
     strh	r0, [r4, #16]
     movs	r7, #1
@@ -42647,7 +42647,7 @@ func_0803A394:
     mov	sl, r2
 .Lus_0803A3C2:
     movs	r0, #99	@ 0x63
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #16
     lsrs	r4, r0, #16
     movs	r3, #0
@@ -42742,7 +42742,7 @@ func_0803A394:
     ble .Lus_0803A47A
     adds	r0, r2, #0
     subs	r0, #1
-    bl func_080AB788
+    bl RandomBelow
     adds	r0, #1
     str	r0, [sp, #4]
 .Lus_0803A47A:
@@ -42753,20 +42753,20 @@ func_0803A394:
 .Lus_0803A482:
     movs	r0, #196	@ 0xc4
     lsls	r0, r0, #1
-    bl func_080AB788
+    bl RandomBelow
     adds	r5, r0, #0
     adds	r5, #184	@ 0xb8
     cmp	r5, #239	@ 0xef
     bgt .Lus_0803A4A0
     movs	r0, #56	@ 0x38
-    bl func_080AB788
+    bl RandomBelow
     movs	r1, #248	@ 0xf8
     lsls	r1, r1, #1
     adds	r7, r0, r1
     b .Lus_0803A4AC
 .Lus_0803A4A0:
     movs	r0, #48	@ 0x30
-    bl func_080AB788
+    bl RandomBelow
     movs	r2, #138	@ 0x8a
     lsls	r2, r2, #2
     adds	r7, r0, r2

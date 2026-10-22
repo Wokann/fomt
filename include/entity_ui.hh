@@ -2,6 +2,7 @@
 #define ENTITY_UI_HH
 
 #include "entity.hh"
+#include "actor_behavior.hh"
 #include "harvest_sprite.hh"
 
 struct EntityUiUnknownState
@@ -26,14 +27,6 @@ struct EntityUiHarvestSpriteResult
 {
     u8 flags;
     u8 unknown_01[7];
-};
-
-struct EntityUiUnknownEntry
-{
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
 };
 
 // The callers establish the physical 8-byte layout, but not the game-level
@@ -141,13 +134,13 @@ extern "C" u16 const gUnk_080F14D4[];
 extern "C" u16 const gUnk_080F14E2[];
 extern "C" u16 const gUnk_080F14F0[];
 extern "C" u16 const gUnk_080F1514[];
-extern "C" EntityUiUnknownEntry const gUnk_080F1538[];
+extern "C" ActorBehaviorTiming const gUnk_080F1538[];
 extern "C" u16 const gUnk_080F1560[];
-extern "C" EntityUiUnknownEntry const gUnk_080F156C[];
+extern "C" ActorBehaviorTiming const gUnk_080F156C[];
 extern "C" u16 const gUnk_080F15A4[];
-extern "C" EntityUiUnknownEntry const gUnk_080F15B4[];
+extern "C" ActorBehaviorTiming const gUnk_080F15B4[];
 extern "C" u16 const gUnk_080F161C[];
-extern "C" EntityUiUnknownEntry const gUnk_080F1638[];
+extern "C" ActorBehaviorTiming const gUnk_080F1638[];
 extern "C" u16 const gUnk_080F1644[];
 extern "C" u16 const gUnk_080F165E[];
 extern "C" u16 const gUnk_080F1672[];

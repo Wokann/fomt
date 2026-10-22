@@ -63,7 +63,7 @@ u8 const gUnk_080F0800[] ALIGN(1) = {
 
 #include FOMT_TEXT_INCLUDE(animal_data_2.cc)
 
-AnimalDataEntry const gUnk_080F0838[2][2][13] ALIGN(1)
+ActorBehaviorTiming const gUnk_080F0838[2][2][13] ALIGN(1)
     = {
     {
         {
@@ -110,7 +110,7 @@ u16 const gUnk_080F0908[2][13] ALIGN(1) = {
     },
 };
 
-AnimalDataEntry const gUnk_080F093C[28] ALIGN(1)
+ActorBehaviorTiming const gUnk_080F093C[28] ALIGN(1)
     = {
     { 20, 1, 1, 0 }, { 30, 1, 2, 0 }, { 20, 1, 2, 0 },
     { 10, 1, 1, 0 }, { 10, 1, 2, 0 }, { 10, 1, 2, 0 },
@@ -129,7 +129,7 @@ u16 const gUnk_080F09AC[2][7] ALIGN(1) = {
     { 0x077A, 0x077E, 0x0782, 0x0786, 0x078A, 0x078E, 0x0792 },
 };
 
-AnimalDataEntry const gUnk_080F09C8[40] = {
+ActorBehaviorTiming const gUnk_080F09C8[40] = {
     {  40, 1, 2, 0 }, {  60, 1, 2, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
     {   0, 0, 0, 0 }, {  70, 1, 2, 0 }, {  30, 1, 2, 0 }, {   0, 0, 0, 0 },
     {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  10, 1, 2, 0 }, {  50, 1, 2, 0 },
@@ -147,7 +147,7 @@ u16 const gUnk_080F0A68[10] = {
     0x071C, 0x0720, 0x0724, 0x072C, 0x0728,
 };
 
-AnimalDataEntry const gUnk_080F0A7C[112] = {
+ActorBehaviorTiming const gUnk_080F0A7C[112] = {
     {  10, 1, 2, 0 }, {  45, 1, 2, 0 }, {  30, 1, 2, 0 }, {  10, 1, 2, 0 },
     {   5, 1, 1, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  10, 1, 2, 0 },
     {   5, 1, 1, 0 }, {  15, 1, 2, 0 }, {  30, 3, 2, 0 }, {  40, 3, 2, 0 },
@@ -185,7 +185,7 @@ u16 const gUnk_080F0C3C[28] = {
     0x02E4, 0x02B0, 0x02E8, 0x02EC, 0x02F0, 0x02F4, 0x02F8,
 };
 
-AnimalDataEntry const gUnk_080F0C74[112] = {
+ActorBehaviorTiming const gUnk_080F0C74[112] = {
     {  10, 1, 2, 0 }, {  45, 1, 2, 0 }, {  30, 1, 2, 0 }, {  10, 1, 2, 0 },
     {   5, 1, 1, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  10, 1, 2, 0 },
     {   5, 1, 1, 0 }, {  15, 1, 2, 0 }, {  30, 3, 2, 0 }, {  40, 3, 2, 0 },

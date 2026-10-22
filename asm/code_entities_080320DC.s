@@ -2746,7 +2746,7 @@ func_080338F0:
     adds	r4, r0, #0
     movs	r0, #128	@ 0x80
     lsls	r0, r0, #2
-    bl func_080AB1C0
+    bl RandomBelow
     movs	r1, #0
     movs	r2, #128	@ 0x80
     lsls	r2, r2, #1
@@ -3205,7 +3205,7 @@ func_08033B94:
     ldr r5, .Ljp_08033AA4
     adds	r0, r5, #0
     movs	r1, #5
-    bl func_080AB264
+    bl SelectActorBehaviorTimingIndex
     lsls	r4, r0, #2
     adds	r4, r4, r5
     movs	r6, #0
@@ -3214,7 +3214,7 @@ func_08033B94:
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB1C0
+    bl RandomBelow
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r1, r1, r0
@@ -3240,12 +3240,12 @@ func_08033B94:
     b .Ljp_08033AFE
 .Ljp_08033AAE:
     movs	r0, #72	@ 0x48
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #128	@ 0x80
     mov	r3, r9
     strh	r0, [r3, #0]
     movs	r0, #72	@ 0x48
-    bl func_080AB1C0
+    bl RandomBelow
     movs	r5, #148	@ 0x94
     lsls	r5, r5, #1
     adds	r0, r0, r5
@@ -3254,24 +3254,24 @@ func_08033B94:
     b .Ljp_08033AFE
 .Ljp_08033ACC:
     movs	r0, #104	@ 0x68
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #72	@ 0x48
     mov	r1, r9
     strh	r0, [r1, #0]
     movs	r0, #48	@ 0x30
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #96	@ 0x60
     mov	r2, r9
     strh	r0, [r2, #2]
     b .Ljp_08033AFE
 .Ljp_08033AE6:
     movs	r0, #64	@ 0x40
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #144	@ 0x90
     mov	r3, r9
     strh	r0, [r3, #0]
     movs	r0, #48	@ 0x30
-    bl func_080AB1C0
+    bl RandomBelow
     adds	r0, #112	@ 0x70
     mov	r5, r9
     strh	r0, [r5, #2]
@@ -3332,7 +3332,7 @@ func_08033B94:
     str	r4, [sp, #0]
     mov	r6, r8
     str	r6, [sp, #4]
-    bl func_080AB678
+    bl SelectApproachFacing
     adds	r2, r0, #0
     ldr	r0, [sp, #148]	@ 0x94
     ldrb	r1, [r0, #2]
@@ -3618,7 +3618,7 @@ func_08033B94:
     adds	r0, r3, #0
 .Ljp_08033DA4:
     ldr	r0, [r0, #0]
-    bl func_080AB1C0
+    bl RandomBelow
     ldr	r1, [sp, #152]	@ 0x98
     strh	r0, [r1, #0]
     adds	r0, r7, #0
@@ -3636,7 +3636,7 @@ func_08033B94:
     str	r4, [sp, #4]
     ldr	r0, [sp, #156]	@ 0x9c
     ldr	r1, [sp, #160]	@ 0xa0
-    bl func_080AB678
+    bl SelectApproachFacing
     adds	r2, r0, #0
     adds	r0, r7, #0
     movs	r1, #1
@@ -4007,7 +4007,7 @@ func_080342D8:
     bne .Ljp_080340EA
 .Ljp_0803408E:
     movs	r0, #180	@ 0xb4
-    bl func_080AB1C0
+    bl RandomBelow
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
     ldr r2, .Ljp_080340F4
@@ -4027,7 +4027,7 @@ func_080342D8:
     movs	r0, #128	@ 0x80
     lsls	r0, r0, #1
     subs	r0, r0, r1
-    bl func_080AB1C0
+    bl RandomBelow
     lsrs	r0, r0, #6
     adds	r0, #2
     lsls	r0, r0, #24
@@ -4763,7 +4763,7 @@ func_0803436C:
     cmp	r6, #3
     beq .Ljp_080346BC
     movs	r0, #200	@ 0xc8
-    bl func_080AB1C0
+    bl RandomBelow
     mov	r2, r8
     adds	r1, r2, r6
     ldrb	r1, [r1, #0]
@@ -7562,7 +7562,7 @@ func_080338F0:
     adds	r4, r0, #0
     movs	r0, #128	@ 0x80
     lsls	r0, r0, #2
-    bl func_080AB788
+    bl RandomBelow
     movs	r1, #0
     movs	r2, #128	@ 0x80
     lsls	r2, r2, #1
@@ -7986,13 +7986,15 @@ func_08033B94:
     .4byte 0x28000600
     .4byte 0xE21FD000
     .4byte 0x1C284D0F
-    .4byte 0xF0772105
-    .4byte 0x0084FDB7
+    .byte 0x05, 0x21
+    bl SelectActorBehaviorTimingIndex
+    .byte 0x84, 0x00
     .4byte 0x26001964
     .4byte 0x70889925
     .4byte 0x78A0253C
-    .4byte 0xF0774368
-    .4byte 0x7861FD5B
+    .byte 0x68, 0x43
+    bl RandomBelow
+    .byte 0x61, 0x78
     .4byte 0x18094369
     .4byte 0x80119A25
     .4byte 0xA81388BC
@@ -8004,24 +8006,26 @@ func_08033B94:
     .4byte gUnk_080F143C
     .4byte 0xD00F2C25
     .4byte 0x2048E027
-    .4byte 0xFD42F077
+    bl RandomBelow
     .4byte 0x464B3080
     .4byte 0x20488018
-    .4byte 0xFD3CF077
+    bl RandomBelow
     .4byte 0x006D2594
     .4byte 0x464E1940
     .4byte 0xE0188070
-    .4byte 0xF0772068
-    .4byte 0x3048FD33
+    .byte 0x68, 0x20
+    bl RandomBelow
+    .byte 0x48, 0x30
     .4byte 0x80084649
-    .4byte 0xF0772030
-    .4byte 0x3060FD2D
+    .byte 0x30, 0x20
+    bl RandomBelow
+    .byte 0x60, 0x30
     .4byte 0x8050464A
     .4byte 0x2040E00B
-    .4byte 0xFD26F077
+    bl RandomBelow
     .4byte 0x464B3090
     .4byte 0x20308018
-    .4byte 0xFD20F077
+    bl RandomBelow
     .4byte 0x464D3070
     .4byte 0x1C388068
     .4byte 0x78003020
@@ -8052,8 +8056,9 @@ func_08033B94:
     .4byte 0xAB135FAA
     .4byte 0x5F5B2502
     .4byte 0x46469400
-    .4byte 0xF0779601
-    .4byte 0x1C02FF3D
+    .byte 0x01, 0x96
+    bl SelectApproachFacing
+    .byte 0x02, 0x1C
     .4byte 0x78819825
     .4byte 0x021B2380
     .4byte 0xF0001C38
@@ -8194,8 +8199,9 @@ func_08033B94:
     .4byte 0x6002A822
     .4byte 0x428A6819
     .4byte 0x1C18D900
-    .4byte 0xF0776800
-    .4byte 0x9926FBC7
+    .byte 0x00, 0x68
+    bl RandomBelow
+    .byte 0x26, 0x99
     .4byte 0x1C388008
     .4byte 0x78043020
     add r0, sp, #8
@@ -8205,8 +8211,9 @@ func_08033B94:
     .4byte 0x5E6B2102
     .4byte 0x9500AD02
     .4byte 0x98279401
-    .4byte 0xF0779928
-    .4byte 0x1C02FE0F
+    .byte 0x28, 0x99
+    bl SelectApproachFacing
+    .byte 0x02, 0x1C
     .4byte 0x21011C38
     .4byte 0xF0001C33
     .4byte 0xE061F89B
@@ -8526,7 +8533,7 @@ func_080342D8:
     bne .Leu_0803436A
 .Leu_0803430E:
     movs	r0, #180	@ 0xb4
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
     ldr r2, .Leu_08034374
@@ -8546,7 +8553,7 @@ func_080342D8:
     movs	r0, #128	@ 0x80
     lsls	r0, r0, #1
     subs	r0, r0, r1
-    bl func_080AB788
+    bl RandomBelow
     lsrs	r0, r0, #6
     adds	r0, #2
     lsls	r0, r0, #24
@@ -9032,8 +9039,9 @@ func_0803436C:
     .4byte 0x22034640
     .4byte 0xF862F09F
     .4byte 0xD00D2E03
-    .4byte 0xF07620C8
-    .4byte 0x4642FF49
+    .byte 0xC8, 0x20
+    bl RandomBelow
+    .byte 0x42, 0x46
     .4byte 0x78091991
     .4byte 0xD2054288
     .4byte 0x6B609C09
@@ -11826,7 +11834,7 @@ func_080338F0:
     adds	r4, r0, #0
     movs	r0, #128	@ 0x80
     lsls	r0, r0, #2
-    bl func_080AB788
+    bl RandomBelow
     movs	r1, #0
     movs	r2, #128	@ 0x80
     lsls	r2, r2, #1
@@ -12250,13 +12258,15 @@ func_08033B94:
     .4byte 0x28000600
     .4byte 0xE21FD000
     .4byte 0x1C284D0F
-    .4byte 0xF0772105
-    .4byte 0x0084FDCF
+    .byte 0x05, 0x21
+    bl SelectActorBehaviorTimingIndex
+    .byte 0x84, 0x00
     .4byte 0x26001964
     .4byte 0x70889925
     .4byte 0x78A0253C
-    .4byte 0xF0774368
-    .4byte 0x7861FD73
+    .byte 0x68, 0x43
+    bl RandomBelow
+    .byte 0x61, 0x78
     .4byte 0x18094369
     .4byte 0x80119A25
     .4byte 0xA81388BC
@@ -12268,24 +12278,26 @@ func_08033B94:
     .4byte gUnk_080F143C
     .4byte 0xD00F2C25
     .4byte 0x2048E027
-    .4byte 0xFD5AF077
+    bl RandomBelow
     .4byte 0x464B3080
     .4byte 0x20488018
-    .4byte 0xFD54F077
+    bl RandomBelow
     .4byte 0x006D2594
     .4byte 0x464E1940
     .4byte 0xE0188070
-    .4byte 0xF0772068
-    .4byte 0x3048FD4B
+    .byte 0x68, 0x20
+    bl RandomBelow
+    .byte 0x48, 0x30
     .4byte 0x80084649
-    .4byte 0xF0772030
-    .4byte 0x3060FD45
+    .byte 0x30, 0x20
+    bl RandomBelow
+    .byte 0x60, 0x30
     .4byte 0x8050464A
     .4byte 0x2040E00B
-    .4byte 0xFD3EF077
+    bl RandomBelow
     .4byte 0x464B3090
     .4byte 0x20308018
-    .4byte 0xFD38F077
+    bl RandomBelow
     .4byte 0x464D3070
     .4byte 0x1C388068
     .4byte 0x78003020
@@ -12316,8 +12328,9 @@ func_08033B94:
     .4byte 0xAB135FAA
     .4byte 0x5F5B2502
     .4byte 0x46469400
-    .4byte 0xF0779601
-    .4byte 0x1C02FF55
+    .byte 0x01, 0x96
+    bl SelectApproachFacing
+    .byte 0x02, 0x1C
     .4byte 0x78819825
     .4byte 0x021B2380
     .4byte 0xF0001C38
@@ -12458,8 +12471,9 @@ func_08033B94:
     .4byte 0x6002A822
     .4byte 0x428A6819
     .4byte 0x1C18D900
-    .4byte 0xF0776800
-    .4byte 0x9926FBDF
+    .byte 0x00, 0x68
+    bl RandomBelow
+    .byte 0x26, 0x99
     .4byte 0x1C388008
     .4byte 0x78043020
     add r0, sp, #8
@@ -12469,8 +12483,9 @@ func_08033B94:
     .4byte 0x5E6B2102
     .4byte 0x9500AD02
     .4byte 0x98279401
-    .4byte 0xF0779928
-    .4byte 0x1C02FE27
+    .byte 0x28, 0x99
+    bl SelectApproachFacing
+    .byte 0x02, 0x1C
     .4byte 0x21011C38
     .4byte 0xF0001C33
     .4byte 0xE061F89B
@@ -12790,7 +12805,7 @@ func_080342D8:
     bne .Lde_0803426A
 .Lde_0803420E:
     movs	r0, #180	@ 0xb4
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
     ldr r2, .Lde_08034274
@@ -12810,7 +12825,7 @@ func_080342D8:
     movs	r0, #128	@ 0x80
     lsls	r0, r0, #1
     subs	r0, r0, r1
-    bl func_080AB788
+    bl RandomBelow
     lsrs	r0, r0, #6
     adds	r0, #2
     lsls	r0, r0, #24
@@ -13296,8 +13311,9 @@ func_0803436C:
     .4byte 0x22034640
     .4byte 0xF86EF09F
     .4byte 0xD00D2E03
-    .4byte 0xF07620C8
-    .4byte 0x4642FF61
+    .byte 0xC8, 0x20
+    bl RandomBelow
+    .byte 0x42, 0x46
     .4byte 0x78091991
     .4byte 0xD2054288
     .4byte 0x6B609C09
@@ -16196,7 +16212,7 @@ func_080338F0:
     adds	r4, r0, #0
     movs	r0, #128	@ 0x80
     lsls	r0, r0, #2
-    bl func_080AB788
+    bl RandomBelow
     movs	r1, #0
     movs	r2, #128	@ 0x80
     lsls	r2, r2, #1
@@ -16620,13 +16636,15 @@ func_08033B94:
     .4byte 0x28000600
     .4byte 0xE21FD000
     .4byte 0x1C284D0F
-    .4byte 0xF0772105
-    .4byte 0x0084FDA9
+    .byte 0x05, 0x21
+    bl SelectActorBehaviorTimingIndex
+    .byte 0x84, 0x00
     .4byte 0x26001964
     .4byte 0x70889925
     .4byte 0x78A0253C
-    .4byte 0xF0774368
-    .4byte 0x7861FD4D
+    .byte 0x68, 0x43
+    bl RandomBelow
+    .byte 0x61, 0x78
     .4byte 0x18094369
     .4byte 0x80119A25
     .4byte 0xA81388BC
@@ -16638,24 +16656,26 @@ func_08033B94:
     .4byte gUnk_080F143C
     .4byte 0xD00F2C25
     .4byte 0x2048E027
-    .4byte 0xFD34F077
+    bl RandomBelow
     .4byte 0x464B3080
     .4byte 0x20488018
-    .4byte 0xFD2EF077
+    bl RandomBelow
     .4byte 0x006D2594
     .4byte 0x464E1940
     .4byte 0xE0188070
-    .4byte 0xF0772068
-    .4byte 0x3048FD25
+    .byte 0x68, 0x20
+    bl RandomBelow
+    .byte 0x48, 0x30
     .4byte 0x80084649
-    .4byte 0xF0772030
-    .4byte 0x3060FD1F
+    .byte 0x30, 0x20
+    bl RandomBelow
+    .byte 0x60, 0x30
     .4byte 0x8050464A
     .4byte 0x2040E00B
-    .4byte 0xFD18F077
+    bl RandomBelow
     .4byte 0x464B3090
     .4byte 0x20308018
-    .4byte 0xFD12F077
+    bl RandomBelow
     .4byte 0x464D3070
     .4byte 0x1C388068
     .4byte 0x78003020
@@ -16686,8 +16706,9 @@ func_08033B94:
     .4byte 0xAB135FAA
     .4byte 0x5F5B2502
     .4byte 0x46469400
-    .4byte 0xF0779601
-    .4byte 0x1C02FF2F
+    .byte 0x01, 0x96
+    bl SelectApproachFacing
+    .byte 0x02, 0x1C
     .4byte 0x78819825
     .4byte 0x021B2380
     .4byte 0xF0001C38
@@ -16828,8 +16849,9 @@ func_08033B94:
     .4byte 0x6002A822
     .4byte 0x428A6819
     .4byte 0x1C18D900
-    .4byte 0xF0776800
-    .4byte 0x9926FBB9
+    .byte 0x00, 0x68
+    bl RandomBelow
+    .byte 0x26, 0x99
     .4byte 0x1C388008
     .4byte 0x78043020
     add r0, sp, #8
@@ -16839,8 +16861,9 @@ func_08033B94:
     .4byte 0x5E6B2102
     .4byte 0x9500AD02
     .4byte 0x98279401
-    .4byte 0xF0779928
-    .4byte 0x1C02FE01
+    .byte 0x28, 0x99
+    bl SelectApproachFacing
+    .byte 0x02, 0x1C
     .4byte 0x21011C38
     .4byte 0xF0001C33
     .4byte 0xE061F89B
@@ -17160,7 +17183,7 @@ func_080342D8:
     bne .Lus_08034356
 .Lus_080342FA:
     movs	r0, #180	@ 0xb4
-    bl func_080AB788
+    bl RandomBelow
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
     ldr r2, .Lus_08034360
@@ -17180,7 +17203,7 @@ func_080342D8:
     movs	r0, #128	@ 0x80
     lsls	r0, r0, #1
     subs	r0, r0, r1
-    bl func_080AB788
+    bl RandomBelow
     lsrs	r0, r0, #6
     adds	r0, #2
     lsls	r0, r0, #24
@@ -17666,8 +17689,9 @@ func_0803436C:
     .4byte 0x22034640
     .4byte 0xF846F09F
     .4byte 0xD00D2E03
-    .4byte 0xF07620C8
-    .4byte 0x4642FF3B
+    .byte 0xC8, 0x20
+    bl RandomBelow
+    .byte 0x42, 0x46
     .4byte 0x78091991
     .4byte 0xD2054288
     .4byte 0x6B609C09

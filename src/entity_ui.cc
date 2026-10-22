@@ -299,9 +299,9 @@ extern "C" u16 const gUnk_080F1514[] ALIGN(4) = {
 
 #include FOMT_TEXT_INCLUDE(entity_ui_5.cc)
 
-// Native callers read the first byte of each entry; the table's game-level
-// field meanings remain unresolved.
-extern "C" EntityUiUnknownEntry const gUnk_080F1538[] ALIGN(4) = {
+// These weighted behavior-timing records share the animal-table layout.
+// The fourth byte remains unnamed until a caller establishes its meaning.
+extern "C" ActorBehaviorTiming const gUnk_080F1538[] ALIGN(4) = {
     { 0x0A, 0x01, 0x02, 0x00 },
     { 0x32, 0x01, 0x02, 0x00 },
     { 0x1E, 0x01, 0x02, 0x00 },
@@ -320,7 +320,7 @@ extern "C" u16 const gUnk_080F1560[] = {
     0x071C, 0x0720, 0x0724, 0x072C, 0x0728, 0x0000,
 };
 
-extern "C" EntityUiUnknownEntry const gUnk_080F156C[] = {
+extern "C" ActorBehaviorTiming const gUnk_080F156C[] = {
     { 0x0A, 0x01, 0x02, 0x00 },
     { 0x2D, 0x01, 0x02, 0x00 },
     { 0x1E, 0x01, 0x02, 0x00 },
@@ -342,7 +342,7 @@ extern "C" u16 const gUnk_080F15A4[] = {
     0x02BC, 0x02C0, 0x02C4, 0x0000,
 };
 
-extern "C" EntityUiUnknownEntry const gUnk_080F15B4[] = {
+extern "C" ActorBehaviorTiming const gUnk_080F15B4[] = {
     { 0x0A, 0x01, 0x02, 0x00 },
     { 0x1E, 0x01, 0x02, 0x00 },
     { 0x0A, 0x01, 0x02, 0x00 },
@@ -376,7 +376,7 @@ extern "C" u16 const gUnk_080F161C[] = {
     0x0395, 0x0399, 0x039D, 0x03A1, 0x03A5, 0x03AA, 0x0000,
 };
 
-extern "C" EntityUiUnknownEntry const gUnk_080F1638[] = {
+extern "C" ActorBehaviorTiming const gUnk_080F1638[] = {
     { 0x28, 0x01, 0x02, 0x00 },
     { 0x1E, 0x01, 0x02, 0x00 },
     { 0x1E, 0x01, 0x02, 0x00 },

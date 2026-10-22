@@ -2,6 +2,7 @@
 #define ANIMAL_DATA_HH
 
 #include "prelude.h"
+#include "actor_behavior.hh"
 
 // The animal memorial message is assembled by native code from these direct
 // text pointers. The US version has a separate farm-name suffix, while JP has
@@ -36,21 +37,14 @@ extern u8 const gUnk_080F0748[];
 extern u8 const gUnk_080F0770[];
 extern u8 const gUnk_080F0800[];
 
-struct AnimalDataEntry {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-};
-
-extern AnimalDataEntry const gUnk_080F0838[2][2][13];
+extern ActorBehaviorTiming const gUnk_080F0838[2][2][13];
 extern u16 const gUnk_080F0908[2][13];
-extern AnimalDataEntry const gUnk_080F093C[28];
+extern ActorBehaviorTiming const gUnk_080F093C[28];
 extern u16 const gUnk_080F09AC[2][7];
-extern AnimalDataEntry const gUnk_080F09C8[40];
+extern ActorBehaviorTiming const gUnk_080F09C8[40];
 extern u16 const gUnk_080F0A68[10];
-extern AnimalDataEntry const gUnk_080F0A7C[112];
+extern ActorBehaviorTiming const gUnk_080F0A7C[112];
 extern u16 const gUnk_080F0C3C[28];
-extern AnimalDataEntry const gUnk_080F0C74[112];
+extern ActorBehaviorTiming const gUnk_080F0C74[112];
 extern u16 const gUnk_080F0E34[28];
 #endif // ANIMAL_DATA_HH
