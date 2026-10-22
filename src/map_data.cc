@@ -1047,3 +1047,102 @@ right_blocked:
 right_done:
     return;
 }
+
+extern "C" void ClipMapTerrainMovementIgnoringFlag1(MapTerrainView const & map, Box const & box,
+    i32 * down, i32 * up, i32 * left, i32 * right)
+{
+    i32 first_x = box.x1 >> 3;
+    i32 end_x = (box.x2 + 7) >> 3;
+    i32 first_y = box.y1 >> 3;
+    i32 end_y = (box.y2 + 7) >> 3;
+    FieldRenderTileAttributes const * attributes = map.attributes;
+    i32 width = map.width;
+    u8 const * indices = map.indices;
+
+    if (down != 0) {
+        i32 limit = *down;
+        i32 distance = (end_y << 3) - box.y2;
+        if (distance < limit) {
+            i32 last_row = map.height - 1;
+            for (i32 y = end_y; y <= last_row; ++y) {
+                for (i32 x = first_x; x < end_x; ++x) {
+                    FieldRenderTileAttributes const & tile = attributes[indices != 0
+                        ? indices[x + y * width] : x + y * width];
+                    if (tile.unk_00_00)
+                        goto down_blocked;
+                }
+                distance += 8;
+                if (distance >= limit)
+                    goto down_done;
+            }
+down_blocked:
+            *down = distance;
+        }
+    }
+down_done:
+
+    if (up != 0) {
+        i32 limit = *up;
+        i32 distance = (first_y << 3) - box.y1;
+        if (distance > limit) {
+            for (i32 y = first_y - 1; y >= 0; --y) {
+                for (i32 x = first_x; x < end_x; ++x) {
+                    FieldRenderTileAttributes const & tile = attributes[indices != 0
+                        ? indices[x + y * width] : x + y * width];
+                    if (tile.unk_00_00)
+                        goto up_blocked;
+                }
+                distance -= 8;
+                if (distance <= limit)
+                    goto up_done;
+            }
+up_blocked:
+            *up = distance;
+        }
+    }
+up_done:
+
+    if (left != 0) {
+        i32 limit = *left;
+        i32 distance = (first_x << 3) - box.x1;
+        if (distance > limit) {
+            for (i32 x = first_x - 1; x >= 0; --x) {
+                for (i32 y = first_y; y < end_y; ++y) {
+                    FieldRenderTileAttributes const & tile = attributes[indices != 0
+                        ? indices[x + y * width] : x + y * width];
+                    if (tile.unk_00_00)
+                        goto left_blocked;
+                }
+                distance -= 8;
+                if (distance <= limit)
+                    goto left_done;
+            }
+left_blocked:
+            *left = distance;
+        }
+    }
+left_done:
+
+    if (right != 0) {
+        i32 limit = *right;
+        i32 distance = (end_x << 3) - box.x2;
+        if (distance < limit) {
+            i32 last_column = width - 1;
+            for (i32 x = end_x; x <= last_column; ++x) {
+                for (i32 y = first_y; y < end_y; ++y) {
+                    FieldRenderTileAttributes const & tile = attributes[indices != 0
+                        ? indices[x + y * width] : x + y * width];
+                    if (tile.unk_00_00)
+                        goto right_blocked;
+                }
+                distance += 8;
+                if (distance >= limit)
+                    goto right_done;
+            }
+right_blocked:
+            *right = distance;
+        }
+    }
+right_done:
+    return;
+}

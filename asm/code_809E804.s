@@ -18474,7 +18474,7 @@ func_080AB5D8: @ 080AB5D8
 	movs r3, #0
 	str r3, [sp]
 	str r3, [sp, #4]
-	bl func_080ABDC0
+	bl ClipMapTerrainMovementIgnoringFlag1
 	add sp, #8
 	pop {r0}
 	bx r0
@@ -18496,7 +18496,7 @@ func_080AB5FC: @ 080AB5FC
 	movs r2, #0
 	str r2, [sp]
 	str r2, [sp, #4]
-	bl func_080ABDC0
+	bl ClipMapTerrainMovementIgnoringFlag1
 	add sp, #8
 	pop {r0}
 	bx r0
@@ -18519,7 +18519,7 @@ func_080AB624: @ 080AB624
 	movs r2, #0
 	str r2, [sp, #4]
 	movs r3, #0
-	bl func_080ABDC0
+	bl ClipMapTerrainMovementIgnoringFlag1
 	add sp, #8
 	pop {r0}
 	bx r0
@@ -18542,7 +18542,7 @@ func_080AB64C: @ 080AB64C
 	str r2, [sp, #4]
 	movs r2, #0
 	movs r3, #0
-	bl func_080ABDC0
+	bl ClipMapTerrainMovementIgnoringFlag1
 	add sp, #8
 	pop {r0}
 	bx r0
@@ -19150,329 +19150,6 @@ func_080AB890: @ 080AB890
     .section .text.game_map_after_terrain_query, "ax", %progbits
     .align 2, 0
 
-    .global func_080ABDC0
-    .thumb_func
-func_080ABDC0: @ 080ABDC0
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0x30
-	adds r4, r0, #0
-	str r1, [sp]
-	str r2, [sp, #4]
-	str r3, [sp, #8]
-	ldrh r0, [r1]
-	lsls r0, r0, #0x10
-	asrs r6, r0, #0x13
-	movs r2, #4
-	ldrsh r0, [r1, r2]
-	adds r0, #7
-	asrs r0, r0, #3
-	mov sl, r0
-	ldrh r0, [r1, #2]
-	lsls r0, r0, #0x10
-	asrs r0, r0, #0x13
-	str r0, [sp, #0xc]
-	movs r3, #6
-	ldrsh r1, [r1, r3]
-	adds r0, r1, #7
-	asrs r0, r0, #3
-	str r0, [sp, #0x10]
-	ldr r7, [r4]
-	mov ip, r7
-	ldrh r0, [r4, #8]
-	mov r8, r0
-	ldr r2, [r4, #4]
-	mov sb, r2
-	ldr r3, [sp, #4]
-	cmp r3, #0
-	beq .Ljp_map_080ABE74
-	ldr r7, [r3]
-	str r7, [sp, #0x14]
-	ldr r2, [sp, #0x10]
-	lsls r0, r2, #3
-	subs r5, r0, r1
-	cmp r5, r7
-	bge .Ljp_map_080ABE74
-	ldrh r0, [r4, #0xa]
-	subs r0, #1
-	str r0, [sp, #0x18]
-	str r2, [sp, #0x2c]
-	cmp r2, r0
-	bgt .Ljp_map_080ABE70
-	mov r4, r8
-	muls r4, r2, r4
-.Ljp_map_080ABE26:
-	adds r3, r6, #0
-	cmp r6, sl
-	bge .Ljp_map_080ABE5A
-	adds r0, r6, r4
-	lsls r2, r0, #2
-	mov r7, sb
-	adds r0, r4, r7
-	adds r1, r6, r0
-.Ljp_map_080ABE36:
-	mov r0, sb
-	cmp r0, #0
-	beq .Ljp_map_080ABE44
-	ldrb r0, [r1]
-	lsls r0, r0, #2
-	add r0, ip
-	b .Ljp_map_080ABE48
-.Ljp_map_080ABE44:
-	mov r7, ip
-	adds r0, r7, r2
-.Ljp_map_080ABE48:
-	ldr r0, [r0]
-	lsls r0, r0, #0x1f
-	cmp r0, #0
-	bne .Ljp_map_080ABE70
-	adds r2, #4
-	adds r1, #1
-	adds r3, #1
-	cmp r3, sl
-	blt .Ljp_map_080ABE36
-.Ljp_map_080ABE5A:
-	adds r5, #8
-	ldr r0, [sp, #0x14]
-	cmp r5, r0
-	bge .Ljp_map_080ABE74
-	add r4, r8
-	ldr r1, [sp, #0x2c]
-	adds r1, #1
-	str r1, [sp, #0x2c]
-	ldr r2, [sp, #0x18]
-	cmp r1, r2
-	ble .Ljp_map_080ABE26
-.Ljp_map_080ABE70:
-	ldr r3, [sp, #4]
-	str r5, [r3]
-.Ljp_map_080ABE74:
-	ldr r7, [sp, #8]
-	cmp r7, #0
-	beq .Ljp_map_080ABEF4
-	ldr r0, [r7]
-	str r0, [sp, #0x1c]
-	ldr r2, [sp, #0xc]
-	lsls r1, r2, #3
-	ldr r3, [sp]
-	movs r7, #2
-	ldrsh r0, [r3, r7]
-	subs r1, r1, r0
-	str r1, [sp, #0x2c]
-	ldr r0, [sp, #0x1c]
-	cmp r1, r0
-	ble .Ljp_map_080ABEF4
-	adds r5, r2, #0
-	subs r5, #1
-	cmp r5, #0
-	blt .Ljp_map_080ABEEE
-	mov r4, r8
-	muls r4, r5, r4
-	mov r1, r8
-	rsbs r1, r1, #0
-	str r1, [sp, #0x28]
-.Ljp_map_080ABEA4:
-	adds r3, r6, #0
-	cmp r6, sl
-	bge .Ljp_map_080ABED8
-	adds r0, r6, r4
-	lsls r1, r0, #2
-	mov r2, sb
-	adds r0, r4, r2
-	adds r2, r6, r0
-.Ljp_map_080ABEB4:
-	mov r7, sb
-	cmp r7, #0
-	beq .Ljp_map_080ABEC2
-	ldrb r0, [r2]
-	lsls r0, r0, #2
-	add r0, ip
-	b .Ljp_map_080ABEC6
-.Ljp_map_080ABEC2:
-	mov r7, ip
-	adds r0, r7, r1
-.Ljp_map_080ABEC6:
-	ldr r0, [r0]
-	lsls r0, r0, #0x1f
-	cmp r0, #0
-	bne .Ljp_map_080ABEEE
-	adds r1, #4
-	adds r2, #1
-	adds r3, #1
-	cmp r3, sl
-	blt .Ljp_map_080ABEB4
-.Ljp_map_080ABED8:
-	ldr r0, [sp, #0x2c]
-	subs r0, #8
-	str r0, [sp, #0x2c]
-	ldr r1, [sp, #0x1c]
-	cmp r0, r1
-	ble .Ljp_map_080ABEF4
-	ldr r2, [sp, #0x28]
-	adds r4, r4, r2
-	subs r5, #1
-	cmp r5, #0
-	bge .Ljp_map_080ABEA4
-.Ljp_map_080ABEEE:
-	ldr r3, [sp, #0x2c]
-	ldr r7, [sp, #8]
-	str r3, [r7]
-.Ljp_map_080ABEF4:
-	ldr r0, [sp, #0x50]
-	cmp r0, #0
-	beq .Ljp_map_080ABF72
-	ldr r1, [r0]
-	str r1, [sp, #0x2c]
-	lsls r1, r6, #3
-	ldr r2, [sp]
-	movs r3, #0
-	ldrsh r0, [r2, r3]
-	subs r5, r1, r0
-	ldr r7, [sp, #0x2c]
-	cmp r5, r7
-	ble .Ljp_map_080ABF72
-	subs r4, r6, #1
-	cmp r4, #0
-	blt .Ljp_map_080ABF6E
-	ldr r1, [sp, #0xc]
-	lsls r0, r1, #2
-	mov r2, r8
-	muls r2, r0, r2
-	str r2, [sp, #0x24]
-.Ljp_map_080ABF1E:
-	ldr r3, [sp, #0xc]
-	ldr r6, [sp, #0x10]
-	cmp r3, r6
-	bge .Ljp_map_080ABF60
-	lsls r0, r4, #2
-	ldr r7, [sp, #0x24]
-	adds r2, r7, r0
-	mov r1, r8
-	muls r1, r3, r1
-	mov r6, sb
-	adds r0, r4, r6
-	adds r1, r1, r0
-	mov r7, r8
-	lsls r6, r7, #2
-.Ljp_map_080ABF3A:
-	mov r0, sb
-	cmp r0, #0
-	beq .Ljp_map_080ABF48
-	ldrb r0, [r1]
-	lsls r0, r0, #2
-	add r0, ip
-	b .Ljp_map_080ABF4C
-.Ljp_map_080ABF48:
-	mov r7, ip
-	adds r0, r7, r2
-.Ljp_map_080ABF4C:
-	ldr r0, [r0]
-	lsls r0, r0, #0x1f
-	cmp r0, #0
-	bne .Ljp_map_080ABF6E
-	adds r2, r2, r6
-	add r1, r8
-	adds r3, #1
-	ldr r0, [sp, #0x10]
-	cmp r3, r0
-	blt .Ljp_map_080ABF3A
-.Ljp_map_080ABF60:
-	subs r5, #8
-	ldr r1, [sp, #0x2c]
-	cmp r5, r1
-	ble .Ljp_map_080ABF72
-	subs r4, #1
-	cmp r4, #0
-	bge .Ljp_map_080ABF1E
-.Ljp_map_080ABF6E:
-	ldr r2, [sp, #0x50]
-	str r5, [r2]
-.Ljp_map_080ABF72:
-	ldr r3, [sp, #0x54]
-	cmp r3, #0
-	beq .Ljp_map_080ABFF8
-	ldr r6, [r3]
-	str r6, [sp, #0x20]
-	mov r7, sl
-	lsls r1, r7, #3
-	ldr r2, [sp]
-	movs r3, #4
-	ldrsh r0, [r2, r3]
-	subs r5, r1, r0
-	cmp r5, r6
-	bge .Ljp_map_080ABFF8
-	mov r6, r8
-	subs r6, #1
-	str r6, [sp, #0x2c]
-	mov r4, sl
-	cmp r4, r6
-	bgt .Ljp_map_080ABFF4
-	ldr r7, [sp, #0xc]
-	lsls r0, r7, #2
-	mov r1, r8
-	muls r1, r0, r1
-	mov sl, r1
-.Ljp_map_080ABFA2:
-	ldr r2, [sp, #0xc]
-	ldr r3, [sp, #0x10]
-	cmp r2, r3
-	bge .Ljp_map_080ABFE4
-	lsls r0, r4, #2
-	mov r6, sl
-	adds r3, r6, r0
-	mov r1, r8
-	muls r1, r2, r1
-	mov r7, sb
-	adds r0, r4, r7
-	adds r1, r1, r0
-	mov r0, r8
-	lsls r6, r0, #2
-.Ljp_map_080ABFBE:
-	mov r7, sb
-	cmp r7, #0
-	beq .Ljp_map_080ABFCC
-	ldrb r0, [r1]
-	lsls r0, r0, #2
-	add r0, ip
-	b .Ljp_map_080ABFD0
-.Ljp_map_080ABFCC:
-	mov r7, ip
-	adds r0, r7, r3
-.Ljp_map_080ABFD0:
-	ldr r0, [r0]
-	lsls r0, r0, #0x1f
-	cmp r0, #0
-	bne .Ljp_map_080ABFF4
-	adds r3, r3, r6
-	add r1, r8
-	adds r2, #1
-	ldr r0, [sp, #0x10]
-	cmp r2, r0
-	blt .Ljp_map_080ABFBE
-.Ljp_map_080ABFE4:
-	adds r5, #8
-	ldr r1, [sp, #0x20]
-	cmp r5, r1
-	bge .Ljp_map_080ABFF8
-	adds r4, #1
-	ldr r2, [sp, #0x2c]
-	cmp r4, r2
-	ble .Ljp_map_080ABFA2
-.Ljp_map_080ABFF4:
-	ldr r3, [sp, #0x54]
-	str r5, [r3]
-.Ljp_map_080ABFF8:
-	add sp, #0x30
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
     .global func_080AC008
     .thumb_func
 func_080AC008: @ 080AC008
@@ -97700,7 +97377,7 @@ func_080ABBA0: @ 0x080ABBA0
 	movs r3, #0
 	str r3, [sp]
 	str r3, [sp, #4]
-	bl func_080AC388
+	bl ClipMapTerrainMovementIgnoringFlag1
 	add sp, #8
 	pop {r0}
 	bx r0
@@ -97722,7 +97399,7 @@ func_080ABBC4: @ 0x080ABBC4
 	movs r2, #0
 	str r2, [sp]
 	str r2, [sp, #4]
-	bl func_080AC388
+	bl ClipMapTerrainMovementIgnoringFlag1
 	add sp, #8
 	pop {r0}
 	bx r0
@@ -97745,7 +97422,7 @@ func_080ABBEC: @ 0x080ABBEC
 	movs r2, #0
 	str r2, [sp, #4]
 	movs r3, #0
-	bl func_080AC388
+	bl ClipMapTerrainMovementIgnoringFlag1
 	add sp, #8
 	pop {r0}
 	bx r0
@@ -97768,7 +97445,7 @@ func_080ABC14: @ 0x080ABC14
 	str r2, [sp, #4]
 	movs r2, #0
 	movs r3, #0
-	bl func_080AC388
+	bl ClipMapTerrainMovementIgnoringFlag1
 	add sp, #8
 	pop {r0}
 	bx r0
@@ -98377,329 +98054,6 @@ func_080ABE58: @ 0x080ABE58
     .section .text.game_map_after_terrain_query, "ax", %progbits
     .align 2, 0
 
-
-	thumb_func_start func_080AC388
-func_080AC388: @ 0x080AC388
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0x30
-	adds r4, r0, #0
-	str r1, [sp]
-	str r2, [sp, #4]
-	str r3, [sp, #8]
-	ldrh r0, [r1]
-	lsls r0, r0, #0x10
-	asrs r6, r0, #0x13
-	movs r2, #4
-	ldrsh r0, [r1, r2]
-	adds r0, #7
-	asrs r0, r0, #3
-	mov sl, r0
-	ldrh r0, [r1, #2]
-	lsls r0, r0, #0x10
-	asrs r0, r0, #0x13
-	str r0, [sp, #0xc]
-	movs r3, #6
-	ldrsh r1, [r1, r3]
-	adds r0, r1, #7
-	asrs r0, r0, #3
-	str r0, [sp, #0x10]
-	ldr r7, [r4]
-	mov ip, r7
-	ldrh r0, [r4, #8]
-	mov r8, r0
-	ldr r2, [r4, #4]
-	mov sb, r2
-	ldr r3, [sp, #4]
-	cmp r3, #0
-	beq .L080AC43C
-	ldr r7, [r3]
-	str r7, [sp, #0x14]
-	ldr r2, [sp, #0x10]
-	lsls r0, r2, #3
-	subs r5, r0, r1
-	cmp r5, r7
-	bge .L080AC43C
-	ldrh r0, [r4, #0xa]
-	subs r0, #1
-	str r0, [sp, #0x18]
-	str r2, [sp, #0x2c]
-	cmp r2, r0
-	bgt .L080AC438
-	mov r4, r8
-	muls r4, r2, r4
-.L080AC3EE:
-	adds r3, r6, #0
-	cmp r6, sl
-	bge .L080AC422
-	adds r0, r6, r4
-	lsls r2, r0, #2
-	mov r7, sb
-	adds r0, r4, r7
-	adds r1, r6, r0
-.L080AC3FE:
-	mov r0, sb
-	cmp r0, #0
-	beq .L080AC40C
-	ldrb r0, [r1]
-	lsls r0, r0, #2
-	add r0, ip
-	b .L080AC410
-.L080AC40C:
-	mov r7, ip
-	adds r0, r7, r2
-.L080AC410:
-	ldr r0, [r0]
-	lsls r0, r0, #0x1f
-	cmp r0, #0
-	bne .L080AC438
-	adds r2, #4
-	adds r1, #1
-	adds r3, #1
-	cmp r3, sl
-	blt .L080AC3FE
-.L080AC422:
-	adds r5, #8
-	ldr r0, [sp, #0x14]
-	cmp r5, r0
-	bge .L080AC43C
-	add r4, r8
-	ldr r1, [sp, #0x2c]
-	adds r1, #1
-	str r1, [sp, #0x2c]
-	ldr r2, [sp, #0x18]
-	cmp r1, r2
-	ble .L080AC3EE
-.L080AC438:
-	ldr r3, [sp, #4]
-	str r5, [r3]
-.L080AC43C:
-	ldr r7, [sp, #8]
-	cmp r7, #0
-	beq .L080AC4BC
-	ldr r0, [r7]
-	str r0, [sp, #0x1c]
-	ldr r2, [sp, #0xc]
-	lsls r1, r2, #3
-	ldr r3, [sp]
-	movs r7, #2
-	ldrsh r0, [r3, r7]
-	subs r1, r1, r0
-	str r1, [sp, #0x2c]
-	ldr r0, [sp, #0x1c]
-	cmp r1, r0
-	ble .L080AC4BC
-	adds r5, r2, #0
-	subs r5, #1
-	cmp r5, #0
-	blt .L080AC4B6
-	mov r4, r8
-	muls r4, r5, r4
-	mov r1, r8
-	rsbs r1, r1, #0
-	str r1, [sp, #0x28]
-.L080AC46C:
-	adds r3, r6, #0
-	cmp r6, sl
-	bge .L080AC4A0
-	adds r0, r6, r4
-	lsls r1, r0, #2
-	mov r2, sb
-	adds r0, r4, r2
-	adds r2, r6, r0
-.L080AC47C:
-	mov r7, sb
-	cmp r7, #0
-	beq .L080AC48A
-	ldrb r0, [r2]
-	lsls r0, r0, #2
-	add r0, ip
-	b .L080AC48E
-.L080AC48A:
-	mov r7, ip
-	adds r0, r7, r1
-.L080AC48E:
-	ldr r0, [r0]
-	lsls r0, r0, #0x1f
-	cmp r0, #0
-	bne .L080AC4B6
-	adds r1, #4
-	adds r2, #1
-	adds r3, #1
-	cmp r3, sl
-	blt .L080AC47C
-.L080AC4A0:
-	ldr r0, [sp, #0x2c]
-	subs r0, #8
-	str r0, [sp, #0x2c]
-	ldr r1, [sp, #0x1c]
-	cmp r0, r1
-	ble .L080AC4BC
-	ldr r2, [sp, #0x28]
-	adds r4, r4, r2
-	subs r5, #1
-	cmp r5, #0
-	bge .L080AC46C
-.L080AC4B6:
-	ldr r3, [sp, #0x2c]
-	ldr r7, [sp, #8]
-	str r3, [r7]
-.L080AC4BC:
-	ldr r0, [sp, #0x50]
-	cmp r0, #0
-	beq .L080AC53A
-	ldr r1, [r0]
-	str r1, [sp, #0x2c]
-	lsls r1, r6, #3
-	ldr r2, [sp]
-	movs r3, #0
-	ldrsh r0, [r2, r3]
-	subs r5, r1, r0
-	ldr r7, [sp, #0x2c]
-	cmp r5, r7
-	ble .L080AC53A
-	subs r4, r6, #1
-	cmp r4, #0
-	blt .L080AC536
-	ldr r1, [sp, #0xc]
-	lsls r0, r1, #2
-	mov r2, r8
-	muls r2, r0, r2
-	str r2, [sp, #0x24]
-.L080AC4E6:
-	ldr r3, [sp, #0xc]
-	ldr r6, [sp, #0x10]
-	cmp r3, r6
-	bge .L080AC528
-	lsls r0, r4, #2
-	ldr r7, [sp, #0x24]
-	adds r2, r7, r0
-	mov r1, r8
-	muls r1, r3, r1
-	mov r6, sb
-	adds r0, r4, r6
-	adds r1, r1, r0
-	mov r7, r8
-	lsls r6, r7, #2
-.L080AC502:
-	mov r0, sb
-	cmp r0, #0
-	beq .L080AC510
-	ldrb r0, [r1]
-	lsls r0, r0, #2
-	add r0, ip
-	b .L080AC514
-.L080AC510:
-	mov r7, ip
-	adds r0, r7, r2
-.L080AC514:
-	ldr r0, [r0]
-	lsls r0, r0, #0x1f
-	cmp r0, #0
-	bne .L080AC536
-	adds r2, r2, r6
-	add r1, r8
-	adds r3, #1
-	ldr r0, [sp, #0x10]
-	cmp r3, r0
-	blt .L080AC502
-.L080AC528:
-	subs r5, #8
-	ldr r1, [sp, #0x2c]
-	cmp r5, r1
-	ble .L080AC53A
-	subs r4, #1
-	cmp r4, #0
-	bge .L080AC4E6
-.L080AC536:
-	ldr r2, [sp, #0x50]
-	str r5, [r2]
-.L080AC53A:
-	ldr r3, [sp, #0x54]
-	cmp r3, #0
-	beq .L080AC5C0
-	ldr r6, [r3]
-	str r6, [sp, #0x20]
-	mov r7, sl
-	lsls r1, r7, #3
-	ldr r2, [sp]
-	movs r3, #4
-	ldrsh r0, [r2, r3]
-	subs r5, r1, r0
-	cmp r5, r6
-	bge .L080AC5C0
-	mov r6, r8
-	subs r6, #1
-	str r6, [sp, #0x2c]
-	mov r4, sl
-	cmp r4, r6
-	bgt .L080AC5BC
-	ldr r7, [sp, #0xc]
-	lsls r0, r7, #2
-	mov r1, r8
-	muls r1, r0, r1
-	mov sl, r1
-.L080AC56A:
-	ldr r2, [sp, #0xc]
-	ldr r3, [sp, #0x10]
-	cmp r2, r3
-	bge .L080AC5AC
-	lsls r0, r4, #2
-	mov r6, sl
-	adds r3, r6, r0
-	mov r1, r8
-	muls r1, r2, r1
-	mov r7, sb
-	adds r0, r4, r7
-	adds r1, r1, r0
-	mov r0, r8
-	lsls r6, r0, #2
-.L080AC586:
-	mov r7, sb
-	cmp r7, #0
-	beq .L080AC594
-	ldrb r0, [r1]
-	lsls r0, r0, #2
-	add r0, ip
-	b .L080AC598
-.L080AC594:
-	mov r7, ip
-	adds r0, r7, r3
-.L080AC598:
-	ldr r0, [r0]
-	lsls r0, r0, #0x1f
-	cmp r0, #0
-	bne .L080AC5BC
-	adds r3, r3, r6
-	add r1, r8
-	adds r2, #1
-	ldr r0, [sp, #0x10]
-	cmp r2, r0
-	blt .L080AC586
-.L080AC5AC:
-	adds r5, #8
-	ldr r1, [sp, #0x20]
-	cmp r5, r1
-	bge .L080AC5C0
-	adds r4, #1
-	ldr r2, [sp, #0x2c]
-	cmp r4, r2
-	ble .L080AC56A
-.L080AC5BC:
-	ldr r3, [sp, #0x54]
-	str r5, [r3]
-.L080AC5C0:
-	add sp, #0x30
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
 
 	thumb_func_start func_080AC5D0
 func_080AC5D0: @ 0x080AC5D0

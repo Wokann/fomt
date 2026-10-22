@@ -77,6 +77,9 @@ u32 SelectMapDataId(i32 map, u32 season, u32 house, u32 coop, u32 barn);
 // As in the original, callers supply a valid terrain view and collision box.
 void ClipMapTerrainMovement(MapTerrainView const & map, Box const & box,
     i32 * down, i32 * up, i32 * left, i32 * right);
+// The alternate scan blocks only on bit 0; bit 1 is intentionally ignored.
+void ClipMapTerrainMovementIgnoringFlag1(MapTerrainView const & map, Box const & box,
+    i32 * down, i32 * up, i32 * left, i32 * right);
 bool IsMapTerrainBoxBlocked(MapTerrainView const & map, Box const & box);
 
 }
