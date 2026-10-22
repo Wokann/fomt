@@ -3,15 +3,6 @@
 
 #include "field.hh"
 
-struct FieldRenderParallelTables
-{
-    u32 values_00[3];
-    u32 values_0C[3];
-    u32 values_18[3];
-    u32 values_24[3];
-    u32 values_30[3];
-};
-
 struct FieldRenderPatchArgumentData
 {
     u8 values_00[8];
@@ -40,7 +31,12 @@ extern u8 const gUnk_FieldRenderResource_177[];
 extern u8 const gUnk_FieldRenderResource_178[];
 extern char const gCppRuntimeBadAlloc_FieldRenderResource00[];
 extern char const gCppRuntimeBadAlloc_FieldRenderResource01[];
-extern FieldRenderParallelTables const gFieldRenderParallelTables;
+// One independently addressed table for each viewport configuration field.
+extern u32 const gWorldMapViewportScreenBlocks[3];
+extern u32 const gWorldMapViewportPriorities[3];
+extern volatile u16 * const gWorldMapViewportControlRegisters[3];
+extern volatile u16 * const gWorldMapViewportHorizontalScrollRegisters[3];
+extern volatile u16 * const gWorldMapViewportVerticalScrollRegisters[3];
 extern FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData;
 extern char const gCppRuntimeBadAlloc_FieldRenderPatchArguments[];
 extern FarmHouseStyleNibbleLookupData const gFarmHouseStyleNibbleLookupData;

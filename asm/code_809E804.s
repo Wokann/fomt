@@ -5691,14 +5691,14 @@ Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLi
 	ldr r5, [r0]
 	cmp r5, #0
 	beq .Ljp_080A5090
-	ldr r0, .Ljp_080A507C @ =gFieldRenderParallelTables + 0x18
+	ldr r0, .Ljp_080A507C @ =gWorldMapViewportControlRegisters
 	adds r0, r4, r0
 	ldr r0, [r0]
 	str r0, [sp, #0x50]
-	ldr r0, .Ljp_080A5080 @ =gFieldRenderParallelTables + 0x0C
+	ldr r0, .Ljp_080A5080 @ =gWorldMapViewportPriorities
 	adds r0, r4, r0
 	ldr r2, [r0]
-	ldr r0, .Ljp_080A5084 @ =gFieldRenderParallelTables
+	ldr r0, .Ljp_080A5084 @ =gWorldMapViewportScreenBlocks
 	adds r0, r4, r0
 	ldr r0, [r0]
 	mov sb, r0
@@ -5719,7 +5719,7 @@ Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLi
 	ldr r1, [sp, #0x1c]
 	adds r3, r1, r3
 	strh r2, [r3]
-	ldr r0, .Ljp_080A5088 @ =gFieldRenderParallelTables + 0x24
+	ldr r0, .Ljp_080A5088 @ =gWorldMapViewportHorizontalScrollRegisters
 	adds r0, r4, r0
 	ldr r1, [r0]
 	mov r2, sp
@@ -5739,7 +5739,7 @@ Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLi
 	ldr r3, [sp, #0x1c]
 	adds r1, r3, r1
 	strh r0, [r1]
-	ldr r0, .Ljp_080A508C @ =gFieldRenderParallelTables + 0x30
+	ldr r0, .Ljp_080A508C @ =gWorldMapViewportVerticalScrollRegisters
 	adds r0, r4, r0
 	ldr r0, [r0]
 	mov r2, sp
@@ -5775,11 +5775,11 @@ Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLi
 	str r0, [r1]
 	b .Ljp_080A5094
 	.align 2, 0
-.Ljp_080A507C: .4byte gFieldRenderParallelTables + 0x18
-.Ljp_080A5080: .4byte gFieldRenderParallelTables + 0x0C
-.Ljp_080A5084: .4byte gFieldRenderParallelTables
-.Ljp_080A5088: .4byte gFieldRenderParallelTables + 0x24
-.Ljp_080A508C: .4byte gFieldRenderParallelTables + 0x30
+.Ljp_080A507C: .4byte gWorldMapViewportControlRegisters
+.Ljp_080A5080: .4byte gWorldMapViewportPriorities
+.Ljp_080A5084: .4byte gWorldMapViewportScreenBlocks
+.Ljp_080A5088: .4byte gWorldMapViewportHorizontalScrollRegisters
+.Ljp_080A508C: .4byte gWorldMapViewportVerticalScrollRegisters
 .Ljp_080A5090:
 	mov r4, r8
 	str r5, [r4]
@@ -8942,7 +8942,7 @@ func_080A6EC4: @ 0x080A6EC4
 	sub sp, #0x1c4
 	str r0, [sp, #0x190]
 	adds r7, r1, #0
-	bl LoadTiles__17GameSceneWorldMap
+	bl LoadTiles__17GameSceneWorldMapR16HardwareDmaQueue
 	ldr r0, [sp, #0x190]
 	adds r0, #0x94
 	ldr r0, [r0]
@@ -76225,7 +76225,7 @@ func_080CF500:
     sub sp, #0x24
     adds r4, r0, #0
     adds r5, r1, #0
-    bl LoadTiles__17GameSceneWorldMap
+    bl LoadTiles__17GameSceneWorldMapR16HardwareDmaQueue
     ldr r0, [r4, #4]
     cmp r0, #0x3e
     beq .Lauto_080CF51C
@@ -82874,14 +82874,14 @@ Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLi
 	ldr r5, [r0]
 	cmp r5, #0
 	beq .L080A5090
-	ldr r0, .L080A507C @ =gFieldRenderParallelTables + 0x18
+	ldr r0, .L080A507C @ =gWorldMapViewportControlRegisters
 	adds r0, r4, r0
 	ldr r0, [r0]
 	str r0, [sp, #0x50]
-	ldr r0, .L080A5080 @ =gFieldRenderParallelTables + 0x0C
+	ldr r0, .L080A5080 @ =gWorldMapViewportPriorities
 	adds r0, r4, r0
 	ldr r2, [r0]
-	ldr r0, .L080A5084 @ =gFieldRenderParallelTables
+	ldr r0, .L080A5084 @ =gWorldMapViewportScreenBlocks
 	adds r0, r4, r0
 	ldr r0, [r0]
 	mov sb, r0
@@ -82902,7 +82902,7 @@ Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLi
 	ldr r1, [sp, #0x1c]
 	adds r3, r1, r3
 	strh r2, [r3]
-	ldr r0, .L080A5088 @ =gFieldRenderParallelTables + 0x24
+	ldr r0, .L080A5088 @ =gWorldMapViewportHorizontalScrollRegisters
 	adds r0, r4, r0
 	ldr r1, [r0]
 	mov r2, sp
@@ -82922,7 +82922,7 @@ Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLi
 	ldr r3, [sp, #0x1c]
 	adds r1, r3, r1
 	strh r0, [r1]
-	ldr r0, .L080A508C @ =gFieldRenderParallelTables + 0x30
+	ldr r0, .L080A508C @ =gWorldMapViewportVerticalScrollRegisters
 	adds r0, r4, r0
 	ldr r0, [r0]
 	mov r2, sp
@@ -82958,11 +82958,11 @@ Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLi
 	str r0, [r1]
 	b .L080A5094
 	.align 2, 0
-.L080A507C: .4byte gFieldRenderParallelTables + 0x18
-.L080A5080: .4byte gFieldRenderParallelTables + 0x0C
-.L080A5084: .4byte gFieldRenderParallelTables
-.L080A5088: .4byte gFieldRenderParallelTables + 0x24
-.L080A508C: .4byte gFieldRenderParallelTables + 0x30
+.L080A507C: .4byte gWorldMapViewportControlRegisters
+.L080A5080: .4byte gWorldMapViewportPriorities
+.L080A5084: .4byte gWorldMapViewportScreenBlocks
+.L080A5088: .4byte gWorldMapViewportHorizontalScrollRegisters
+.L080A508C: .4byte gWorldMapViewportVerticalScrollRegisters
 .L080A5090:
 	mov r4, r8
 	str r5, [r4]
@@ -86118,7 +86118,7 @@ func_080A748C: @ 0x080A748C
 	sub sp, #0x1c4
 	str r0, [sp, #0x190]
 	adds r7, r1, #0
-	bl LoadTiles__17GameSceneWorldMap
+	bl LoadTiles__17GameSceneWorldMapR16HardwareDmaQueue
 	ldr r0, [sp, #0x190]
 	adds r0, #0x94
 	ldr r0, [r0]
@@ -165745,7 +165745,7 @@ func_080CFC7C: @ 0x080CFC7C
 	sub sp, #0x24
 	adds r4, r0, #0
 	adds r5, r1, #0
-	bl LoadTiles__17GameSceneWorldMap
+	bl LoadTiles__17GameSceneWorldMapR16HardwareDmaQueue
 	ldr r0, [r4, #4]
 	cmp r0, #0x3e
 	beq .L080CFC98

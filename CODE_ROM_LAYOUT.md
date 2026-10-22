@@ -5,6 +5,50 @@
 本文包含分阶段记录；资源构建的当前状态以文末“退役压缩样本清理”
 为准，早期“尚需原压缩流”的阶段性说明不代表当前 Make 依赖。
 
+## 世界地图：视口配置表及 tile 加载虚接口补正
+
+绘制消费者确认 `LoadTiles` 虚槽会收到 `HardwareDmaQueue &`。
+基类正文只执行解压，没有使用该参数，但保存地图的派生加载器
+会保留队列并将额外 tile DMA 描述符加入其中。现补齐真实虚接口，
+基类定义、虚表和直接汇编调用均使用同一真实成员符号；基类
+原有 24 字节正文不变，没有新增转发函数或旧名别名。
+
+现将 `FieldRenderParallelTables` 的早期聚合表示，改为由绘制器
+独立索引的五份真实数组，仍在既有 `field_render_resource_data.cc`／
+`.hh` 中按 ROM 顺序维护，每份三个四字节条目：
+
+| 数组 | 实际用途 |
+| --- | --- |
+| `gWorldMapViewportScreenBlocks` | 三层分别使用 screen block 28、29、30 |
+| `gWorldMapViewportPriorities` | 背景优先级 3、2、1 |
+| `gWorldMapViewportControlRegisters` | BG3／BG2／BG1 控制寄存器 |
+| `gWorldMapViewportHorizontalScrollRegisters` | 相应背景的水平滚动寄存器 |
+| `gWorldMapViewportVerticalScrollRegisters` | 相应背景的垂直滚动寄存器 |
+
+后三组是指向半字 MMIO 寄存器的常量指针数组，初始化直接使用
+`&REG_BG*`，不是游戏文本或编码数据；绘制器据这些地址选择显示
+缓冲中的同偏移字段。五份数组自然连续，合计 60 字节，未新增
+section、定位地址、文件或生成机制。
+
+| 区域 | 五份数组的连续半开区间 |
+| --- | --- |
+| JP | `0x08106ED0–0x08106F0C` |
+| US | `0x08107388–0x081073C4` |
+| EU | `0x081073E0–0x0810741C` |
+| DE | `0x08107DAC–0x08107DE8` |
+
+原先五处表地址引用改为相应真实数组名，其中四处不再借助聚合
+成员字节偏移。完整 ROM 地址字扫描确认每版恰有这五处表地址
+引用，均保持真实 `R_ARM_ABS32`；加载方法另有两处直接 BL 及
+一处虚表引用，也全部核对为真实重定位。没有发现需新增修复的
+原始指针，本批新增动态化位置为零。
+
+四版 WSL `make -j4 GAME_REGION=<区域> compare`、完整 8 MiB ROM
+逐字节及原版 SHA-1 均通过。其余原生代码、既有 C++ 正文和
+数组内容／相邻对象地址保持；本批仅修正接口和数据组织，新增
+C++ 覆盖为零。完整绘制候选尚未匹配，1824 字节正文仍明确保留
+为原生汇编，未采用编译后补丁或固定寄存器来替代源码恢复。
+
 ## 世界地图：真实基类构造、析构与虚接口
 
 `src/world_map.cc`／`include/world_map.hh` 现定义真实

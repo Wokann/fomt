@@ -1,4 +1,5 @@
 #include "field_render_resource_data.hh"
+#include "gbaio.h"
 
 u8 const gUnk_FieldRenderResource_158[] = {
         0x01, 0x00, 0x00, 0x00,
@@ -24,13 +25,21 @@ u8 const gUnk_FieldRenderResource_178[] = {
 
 #include FOMT_TEXT_INCLUDE(field_render_resource_data_1.cc)
 
-FieldRenderParallelTables const gFieldRenderParallelTables = {
-        { 0x0000001C, 0x0000001D, 0x0000001E },
-        { 0x00000003, 0x00000002, 0x00000001 },
-        { 0x0400000E, 0x0400000C, 0x0400000A },
-        { 0x0400001C, 0x04000018, 0x04000014 },
-        { 0x0400001E, 0x0400001A, 0x04000016 },
-    };
+// The three logical map layers use BG3, BG2 and BG1 respectively.
+u32 const gWorldMapViewportScreenBlocks[3] = { 28, 29, 30 };
+u32 const gWorldMapViewportPriorities[3] = { 3, 2, 1 };
+
+volatile u16 * const gWorldMapViewportControlRegisters[3] = {
+    &REG_BG3CNT, &REG_BG2CNT, &REG_BG1CNT,
+};
+
+volatile u16 * const gWorldMapViewportHorizontalScrollRegisters[3] = {
+    &REG_BG3HOFS, &REG_BG2HOFS, &REG_BG1HOFS,
+};
+
+volatile u16 * const gWorldMapViewportVerticalScrollRegisters[3] = {
+    &REG_BG3VOFS, &REG_BG2VOFS, &REG_BG1VOFS,
+};
 
 FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData = {
         { 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25 },

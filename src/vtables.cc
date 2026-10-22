@@ -42,7 +42,7 @@ extern void SelectMapData__17GameSceneWorldMap(void);
 extern void UpdateSavedMapTileAnimationTimers(void);
 extern void RefreshSavedWorldMapAppearance(void);
 
-extern void LoadTiles__17GameSceneWorldMap(void);
+extern void LoadTiles__17GameSceneWorldMapR16HardwareDmaQueue(void);
 
 extern void LoadTilemaps__17GameSceneWorldMap(void);
 

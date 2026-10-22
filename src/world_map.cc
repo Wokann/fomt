@@ -267,7 +267,7 @@ void GameSceneWorldMap::LoadTimeOfDayPalette(i32 period, u32 buffer_index)
     }
 }
 
-void GameSceneWorldMap::LoadTiles()
+void GameSceneWorldMap::LoadTiles(HardwareDmaQueue &)
 {
     GameSceneWorldMap & map = *this;
     MapData const * data = GetMapData(map.map_data_id);

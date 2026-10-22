@@ -96,7 +96,8 @@ struct GameSceneWorldMap {
     virtual void Draw(HardwareDmaQueue & queue, HardwareDisplayState & display, HardwareLinkedList & commands);
     virtual void RefreshAppearance(i32 period, u32 first_weight, u32 second_weight);
     virtual u32 SelectMapData();
-    virtual void LoadTiles();
+    // The base ignores the queue; saved-map overrides enqueue extra tiles.
+    virtual void LoadTiles(HardwareDmaQueue & queue);
     virtual void LoadTilemaps();
     virtual void LoadTimeOfDayPalette(i32 period, u32 buffer_index);
 
