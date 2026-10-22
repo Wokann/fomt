@@ -1,5 +1,5 @@
 #include "prelude.h"
-#include "new_game.hh"
+#include "new_game_name_input.hh"
 #include <new>
 #include <string.h>
 #include "hardware_blend.hh"
