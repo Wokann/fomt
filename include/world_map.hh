@@ -197,7 +197,7 @@ void func_080AA8BC(GameSceneWorldMap * map);
 void func_080AA8DC(GameSceneSavedMapPrefix * map);
 bool func_080A5EB8(GameSceneWorldMap * map, Location const & location);
 void SetWorldMapTimeOfDayPalette(GameSceneWorldMap & map, i32 period);
-void func_080A5F78(GameSceneWorldMap * map, u32 layer,
+void ClearWorldMapTileRectangle(GameSceneWorldMap * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
 void RefreshFieldPlotTiles(GameSceneWorldMap * map, u32 x, u32 y,
     FieldPlot const * plot, FieldPlotRenderData const * render_data);

@@ -529,7 +529,7 @@ EC RucksackItem PickUpFieldItemAtLocation(GameSceneWorldPrefix & world, Location
             FieldItemInstance record = items.GetRecord(index);
             GameSceneWorldMap * map = world.data.map.value;
             Vec2 position(record.x / 8, record.y / 8);
-            func_080A5F78(map, 1, position, 2, 2);
+            ClearWorldMapTileRectangle(map, 1, position, 2, 2);
         }
     }
     return item;

@@ -356,6 +356,22 @@ EC bool func_080A5EB8(GameSceneWorldMap * map, Location const & location)
     return false;
 }
 
+EC void ClearWorldMapTileRectangle(GameSceneWorldMap * map, u32 layer,
+    Vec2 const & position, u32 width, u32 height)
+{
+    u32 map_width = GetMapData(map->map_data_id)->width;
+    for (u32 row = 0; row < height; ++row) {
+        for (u32 column = 0; column < width; ++column) {
+            u32 index = position.x + column + (position.y + row) * map_width;
+            u16 & tile = map->tile_layers[layer][index];
+            tile = 0x3FF;
+            map->tile_attributes[index].unk_00_00 = false;
+            map->tile_attributes[index].unk_02_01 = 0;
+        }
+    }
+    map->view_changed = true;
+}
+
 EC void StartWorldMapTilePatchCountdown(GameSceneWorldMap * map)
 {
     map->tile_patch_countdown = 0x14;
