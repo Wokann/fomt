@@ -11,8 +11,30 @@
 #include "gbaio.h"
 #include <string.h>
 
-EC void UpdateWorldMap(GameSceneWorldMapPrefix * map)
+GameSceneWorldMap::GameSceneWorldMap()
+    : map(MAP_NONE), map_data_id(MAP_DATA_COUNT), x(), y(),
+      unk_28(0), view_changed(false), time_palette_changed(false),
+      tile_attributes(nullptr), unk_58(0), movement_frames(0)
 {
+    for (u32 layer = 0; layer < ARRAY_COUNT(time_palette_buffers); ++layer)
+        time_palette_buffers[layer] = new u16[240];
+    for (u32 layer = 0; layer < ARRAY_COUNT(tile_layers); ++layer)
+        tile_layers[layer] = new u16[0x3C80];
+    tile_attributes = new FieldRenderTileAttributes[0x3C80];
+}
+
+GameSceneWorldMap::~GameSceneWorldMap()
+{
+    delete[] tile_attributes;
+    for (u32 layer = 0; layer < ARRAY_COUNT(tile_layers); ++layer)
+        delete[] tile_layers[layer];
+    for (u32 layer = 0; layer < ARRAY_COUNT(time_palette_buffers); ++layer)
+        delete[] time_palette_buffers[layer];
+}
+
+void GameSceneWorldMap::Update()
+{
+    GameSceneWorldMap * map = this;
     if (map->movement_frames != 0) {
         map->x.q16 += map->step_x_q16;
         map->y.q16 += map->step_y_q16;
@@ -22,44 +44,44 @@ EC void UpdateWorldMap(GameSceneWorldMapPrefix * map)
     // These are layout indices, not the logical MAP_* identifiers.
     switch (map->map_data_id) {
     case 14:
-        map->layout_animations[4].Tick(gMapLayoutTileAnimation8);
-        map->layout_animations[5].Tick(gMapLayoutTileAnimation9);
-        map->layout_animations[6].Tick(gMapLayoutTileAnimation10);
+        map->layout_animation_4.Tick(gMapLayoutTileAnimation8);
+        map->layout_animation_5.Tick(gMapLayoutTileAnimation9);
+        map->layout_animation_6.Tick(gMapLayoutTileAnimation10);
         break;
     case 15:
-        map->layout_animations[4].Tick(gMapLayoutTileAnimation11);
-        map->layout_animations[5].Tick(gMapLayoutTileAnimation12);
-        map->layout_animations[6].Tick(gMapLayoutTileAnimation13);
+        map->layout_animation_4.Tick(gMapLayoutTileAnimation11);
+        map->layout_animation_5.Tick(gMapLayoutTileAnimation12);
+        map->layout_animation_6.Tick(gMapLayoutTileAnimation13);
         break;
     case 60:
-        map->layout_animations[8].Tick(gMapLayoutTileAnimation17);
+        map->layout_animation_8.Tick(gMapLayoutTileAnimation17);
         break;
     case 31:
-        map->layout_animations[9].Tick(gMapLayoutTileAnimation15);
+        map->layout_animation_9.Tick(gMapLayoutTileAnimation15);
         break;
     case 8:
-        map->layout_animations[7].Tick(gMapLayoutTileAnimation14);
+        map->layout_animation_7.Tick(gMapLayoutTileAnimation14);
         break;
     case 9:
-        map->layout_animations[7].Tick(gMapLayoutTileAnimation16);
+        map->layout_animation_7.Tick(gMapLayoutTileAnimation16);
         break;
     case 6:
-        map->layout_animations[2].Tick(gMapLayoutTileAnimation4);
-        map->layout_animations[3].Tick(gMapLayoutTileAnimation5);
+        map->layout_animation_2.Tick(gMapLayoutTileAnimation4);
+        map->layout_animation_3.Tick(gMapLayoutTileAnimation5);
         break;
     case 7:
-        map->layout_animations[2].Tick(gMapLayoutTileAnimation6);
-        map->layout_animations[3].Tick(gMapLayoutTileAnimation7);
+        map->layout_animation_2.Tick(gMapLayoutTileAnimation6);
+        map->layout_animation_3.Tick(gMapLayoutTileAnimation7);
         break;
     case 0:
     case 62:
     case 63:
-        map->layout_animations[0].Tick(gMapLayoutTileAnimation0);
-        map->layout_animations[1].Tick(gMapLayoutTileAnimation2);
+        map->layout_animation_0.Tick(gMapLayoutTileAnimation0);
+        map->layout_animation_1.Tick(gMapLayoutTileAnimation2);
         break;
     case 1:
-        map->layout_animations[0].Tick(gMapLayoutTileAnimation1);
-        map->layout_animations[1].Tick(gMapLayoutTileAnimation3);
+        map->layout_animation_0.Tick(gMapLayoutTileAnimation1);
+        map->layout_animation_1.Tick(gMapLayoutTileAnimation3);
         break;
     }
 }
@@ -86,7 +108,7 @@ bool MapViewportTilemapCommand::Run()
     return false;
 }
 
-EC Vec2 ClampWorldMapCameraPosition(GameSceneWorldMapPrefix const * map, i32 x, i32 y)
+EC Vec2 ClampWorldMapCameraPosition(GameSceneWorldMap const * map, i32 x, i32 y)
 {
     i32 old_x = map->x.parts.integer;
     i32 old_y = map->y.parts.integer;
@@ -110,7 +132,7 @@ EC Vec2 ClampWorldMapCameraPosition(GameSceneWorldMapPrefix const * map, i32 x, 
     return Vec2(next_x, next_y);
 }
 
-EC void SetWorldMapCameraPosition(GameSceneWorldMapPrefix * map, i32 x, i32 y)
+EC void SetWorldMapCameraPosition(GameSceneWorldMap * map, i32 x, i32 y)
 {
     Vec2 target;
     target = ClampWorldMapCameraPosition(map, x, y);
@@ -126,7 +148,7 @@ EC void SetWorldMapCameraPosition(GameSceneWorldMapPrefix * map, i32 x, i32 y)
     }
 }
 
-EC void PanWorldMapCameraTo(GameSceneWorldMapPrefix * map, i32 x, i32 y, u32 speed)
+EC void PanWorldMapCameraTo(GameSceneWorldMap * map, i32 x, i32 y, u32 speed)
 {
     Vec2 target;
     target = ClampWorldMapCameraPosition(map, x, y);
@@ -155,12 +177,12 @@ EC void PanWorldMapCameraTo(GameSceneWorldMapPrefix * map, i32 x, i32 y, u32 spe
     }
 }
 
-EC bool IsWorldMapCameraMovementComplete(GameSceneWorldMapPrefix const * map)
+EC bool IsWorldMapCameraMovementComplete(GameSceneWorldMap const * map)
 {
     return map->movement_frames == 0;
 }
 
-EC void ApplyMapTilePatch(GameSceneWorldMapPrefix * map,
+EC void ApplyMapTilePatch(GameSceneWorldMap * map,
     FieldRenderRectDescriptor const & patch, u32 x, u32 y)
 {
     u32 map_width = GetMapData(map->map_data_id)->width;
@@ -187,8 +209,9 @@ EC void ApplyMapTilePatch(GameSceneWorldMapPrefix * map,
     }
 }
 
-EC void LoadWorldMapTilemaps(GameSceneWorldMapPrefix & map)
+void GameSceneWorldMap::LoadTilemaps()
 {
+    GameSceneWorldMap & map = *this;
     MapData const * data = GetMapData(map.map_data_id);
     u32 layer = 0;
     u16 ** destination = map.tile_layers;
@@ -202,7 +225,7 @@ EC void LoadWorldMapTilemaps(GameSceneWorldMapPrefix & map)
     map.view_changed = true;
 }
 
-EC void SetWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period)
+EC void SetWorldMapTimeOfDayPalette(GameSceneWorldMap & map, i32 period)
 {
     switch (period) {
     case TIME_OF_DAY_PERIOD_NIGHT:
@@ -225,9 +248,9 @@ EC void SetWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period)
     map.time_palette_changed = true;
 }
 
-EC void LoadWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period,
-    u32 buffer_index)
+void GameSceneWorldMap::LoadTimeOfDayPalette(i32 period, u32 buffer_index)
 {
+    GameSceneWorldMap & map = *this;
     MapData const * data = GetMapData(map.map_data_id);
     // The native loader first decodes the default palette even when the
     // selected period will decode that same resource again below.
@@ -244,13 +267,14 @@ EC void LoadWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period,
     }
 }
 
-EC void LoadWorldMapTiles(GameSceneWorldMapPrefix & map)
+void GameSceneWorldMap::LoadTiles()
 {
+    GameSceneWorldMap & map = *this;
     MapData const * data = GetMapData(map.map_data_id);
     Unpack(data->tiles, reinterpret_cast<void *>(0x06000000));
 }
 
-EC bool func_080A5EB8(GameSceneWorldMapPrefix * map, Location const & location)
+EC bool func_080A5EB8(GameSceneWorldMap * map, Location const & location)
 {
     if (location.GetMap() != MAP_MINERAL_BEACH || map->map != MAP_MINERAL_BEACH
         || map->map_data_id != 8)
@@ -271,12 +295,12 @@ EC bool func_080A5EB8(GameSceneWorldMapPrefix * map, Location const & location)
     return false;
 }
 
-EC void func_080A601C(GameSceneWorldMapPrefix * map)
+EC void func_080A601C(GameSceneWorldMap * map)
 {
     map->unk_58 = 0x14;
 }
 
-EC void RefreshCoopFeedTrough(GameSceneWorldMapPrefix * map, u32 index)
+EC void RefreshCoopFeedTrough(GameSceneWorldMap * map, u32 index)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x24:
@@ -296,7 +320,7 @@ EC void RefreshCoopFeedTrough(GameSceneWorldMapPrefix * map, u32 index)
     map->view_changed = true;
 }
 
-EC void func_080A6138(GameSceneWorldMapPrefix * map)
+EC void func_080A6138(GameSceneWorldMap * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x29:
@@ -312,7 +336,7 @@ EC void func_080A6138(GameSceneWorldMapPrefix * map)
     map->view_changed = true;
 }
 
-EC void func_080A6194(GameSceneWorldMapPrefix * map)
+EC void func_080A6194(GameSceneWorldMap * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x29:
@@ -328,7 +352,7 @@ EC void func_080A6194(GameSceneWorldMapPrefix * map)
     map->view_changed = true;
 }
 
-EC void func_080A61F0(GameSceneWorldMapPrefix * map)
+EC void func_080A61F0(GameSceneWorldMap * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x2A:
@@ -341,7 +365,7 @@ EC void func_080A61F0(GameSceneWorldMapPrefix * map)
     map->view_changed = true;
 }
 
-EC void func_080A6234(GameSceneWorldMapPrefix * map)
+EC void func_080A6234(GameSceneWorldMap * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x2A:
@@ -354,7 +378,7 @@ EC void func_080A6234(GameSceneWorldMapPrefix * map)
     map->view_changed = true;
 }
 
-EC void func_080A6278(GameSceneWorldMapPrefix * map)
+EC void func_080A6278(GameSceneWorldMap * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x2A:
@@ -367,7 +391,7 @@ EC void func_080A6278(GameSceneWorldMapPrefix * map)
     map->view_changed = true;
 }
 
-EC void func_080A62BC(GameSceneWorldMapPrefix * map)
+EC void func_080A62BC(GameSceneWorldMap * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x2A:
@@ -380,7 +404,7 @@ EC void func_080A62BC(GameSceneWorldMapPrefix * map)
     map->view_changed = true;
 }
 
-EC void func_080A6300(GameSceneWorldMapPrefix * map)
+EC void func_080A6300(GameSceneWorldMap * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x29:
@@ -398,7 +422,7 @@ EC void func_080A6300(GameSceneWorldMapPrefix * map)
     map->view_changed = true;
 }
 
-EC void func_080A635C(GameSceneWorldMapPrefix * map)
+EC void func_080A635C(GameSceneWorldMap * map)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x29:
@@ -416,7 +440,7 @@ EC void func_080A635C(GameSceneWorldMapPrefix * map)
     map->view_changed = true;
 }
 
-EC void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk)
+EC void func_080A63B8(GameSceneWorldMap * map, u32 unk)
 {
     switch (static_cast<i32>(map->map_data_id)) {
     case 0x40:
@@ -434,41 +458,42 @@ EC void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk)
     map->view_changed = true;
 }
 
-EC u32 SelectDefaultWorldMapData(GameSceneWorldMapPrefix const * map)
+u32 GameSceneWorldMap::SelectMapData()
 {
+    GameSceneWorldMap const * map = this;
     return SelectMapDataId(map->map, SEASON_SUMMER, 0, 0, 0);
 }
 
-EC FieldRenderTileAttributes * GetWorldMapTileAttributes(GameSceneWorldMapPrefix * map,
+EC FieldRenderTileAttributes * GetWorldMapTileAttributes(GameSceneWorldMap * map,
     u32 x, u32 y)
 {
     u32 width = GetMapData(map->map_data_id)->width;
     return &map->tile_attributes[x + y * width];
 }
 
-EC u32 GetWorldMapDataId(GameSceneWorldMapPrefix const * map)
+EC u32 GetWorldMapDataId(GameSceneWorldMap const * map)
 {
     return map->map_data_id;
 }
 
-EC u32 GetWorldMapId(GameSceneWorldMapPrefix const * map)
+EC u32 GetWorldMapId(GameSceneWorldMap const * map)
 {
     return map->map;
 }
 
-EC i32 GetWorldMapViewY(GameSceneWorldMapPrefix const * map)
+EC i32 GetWorldMapViewY(GameSceneWorldMap const * map)
 {
     return map->y.parts.integer;
 }
 
-EC i32 GetWorldMapViewX(GameSceneWorldMapPrefix const * map)
+EC i32 GetWorldMapViewX(GameSceneWorldMap const * map)
 {
     return map->x.parts.integer;
 }
 
 EC void UpdateSavedMapTileAnimationTimers(GameSceneSavedMapPrefix * map)
 {
-    UpdateWorldMap(map);
+    map->GameSceneWorldMap::Update();
     GameStateSaveImage * save = map->save;
     if (map->map == MAP_ROSE_SQUARE
         && save->event_state.harvest_festival_active == FESTIVAL_PHASE_INITIAL) {
@@ -483,7 +508,7 @@ static inline bool AdvanceMapAnimationFrame(MapTilePatchAnimationState & state, 
 }
 
 static inline void QueueMapAnimationFrame(MapTilePatchAnimationState & state,
-    GameSceneWorldMapPrefix * map, FarmHouseTilePatchAnimationDescriptor const & animation,
+    GameSceneWorldMap * map, FarmHouseTilePatchAnimationDescriptor const & animation,
     HardwareDmaQueue & queue)
 {
     if (state.update_pending) {
@@ -497,9 +522,9 @@ static inline void QueueMapAnimationFrame(MapTilePatchAnimationState & state,
 }
 
 EC void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queue,
-    HardwareDisplayState & display, void * unk)
+    HardwareDisplayState & display, HardwareLinkedList & commands)
 {
-    func_080A4F50(map, queue, display, unk);
+    map->GameSceneWorldMap::Draw(queue, display, commands);
     GameStateSaveImage * save = map->save;
     switch (map->map) {
     case MAP_FARMHOUSE:
@@ -527,12 +552,12 @@ EC void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queu
 EC void RefreshSavedWorldMapAppearance(GameSceneSavedMapPrefix * map, i32 period,
     u32 first_weight, u32 second_weight)
 {
-    RefreshWorldMapAppearance(map, period, first_weight, second_weight);
+    map->GameSceneWorldMap::RefreshAppearance(period, first_weight, second_weight);
     map->tile_animations[0].ResetFrame();
     map->tile_animations[1].ResetFrame();
 }
 
-EC void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,
+EC void RefreshFieldPlotTiles(GameSceneWorldMap * map, u32 x, u32 y,
     FieldPlot const * plot, FieldPlotRenderData const * render_data)
 {
     u32 width = GetMapData(map->map_data_id)->width;
@@ -567,13 +592,13 @@ EC void func_080AA850(GameSceneSavedMapPrefix * map, u32 index)
     map->view_changed = true;
 }
 
-EC void func_080AA89C(GameSceneWorldMapPrefix * map)
+EC void func_080AA89C(GameSceneWorldMap * map)
 {
     ApplyMapTilePatch(map, gFieldRenderRectDescriptors[34], 0x21, 0x14);
     map->view_changed = true;
 }
 
-EC void func_080AA8BC(GameSceneWorldMapPrefix * map)
+EC void func_080AA8BC(GameSceneWorldMap * map)
 {
     ApplyMapTilePatch(map, gFieldRenderRectDescriptors[34], 0x21, 0x17);
     map->view_changed = true;

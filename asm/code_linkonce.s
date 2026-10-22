@@ -34648,7 +34648,7 @@ func_080E3B50:
     .Lauto_080E3B84:
     adds r0, r5, #0
     adds r1, r6, #0
-    bl func_080A4B6C
+    bl _._17GameSceneWorldMap
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -36611,7 +36611,7 @@ func_080E5898:
     .thumb_func
 func_080E4E00:
     push {lr}
-    bl func_080A4B6C
+    bl _._17GameSceneWorldMap
     pop {r0}
     bx r0
     .byte 0x00, 0x00
@@ -43069,7 +43069,7 @@ func_080E43B8: @ 0x080E43B8
 .L080E43EC:
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl func_080A4B6C
+	bl _._17GameSceneWorldMap
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -45670,7 +45670,7 @@ func_080E5898: @ 0x080E5898
 	thumb_func_start func_080E59C0
 func_080E59C0: @ 0x080E59C0
 	push {lr}
-	bl func_080A4B6C
+	bl _._17GameSceneWorldMap
 	pop {r0}
 	bx r0
 .align 2, 0

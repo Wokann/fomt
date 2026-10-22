@@ -711,22 +711,22 @@ SECTIONS
             .text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
             .text.Submit__C19GameSceneSpriteBaseP21WorldSpriteDrawBufferiiUiUiRC26IndexedResourceSpriteRangeP10GameObject
         );
-        asm/code_809E804.o(.text.game_scene_indexed_sprite_after);
-        src/world_map.o(.text.UpdateWorldMap);
+        src/world_map.o(.text.__17GameSceneWorldMap .text._._17GameSceneWorldMap);
+        src/world_map.o(.text.Update__17GameSceneWorldMap);
         asm/code_809E804.o(.text.game_map_after_update);
         src/world_map.o(.text.Run__25MapViewportTilemapCommand);
         asm/code_809E804.o(.text.game_map_after_viewport_command);
         src/world_map.o(.text.ClampWorldMapCameraPosition .text.SetWorldMapCameraPosition .text.PanWorldMapCameraTo .text.IsWorldMapCameraMovementComplete);
         asm/code_809E804.o(.text.game_map_after_camera_query);
         src/world_map.o(.text.ApplyMapTilePatch);
-        src/world_map.o(.text.LoadWorldMapTilemaps .text.SetWorldMapTimeOfDayPalette .text.LoadWorldMapTimeOfDayPalette);
+        src/world_map.o(.text.LoadTilemaps__17GameSceneWorldMap .text.SetWorldMapTimeOfDayPalette .text.LoadTimeOfDayPalette__17GameSceneWorldMapiUi);
         asm/code_809E804.o(.text.game_map_time_palette_after);
-        src/world_map.o(.text.LoadWorldMapTiles .text.func_080A5EB8);
+        src/world_map.o(.text.LoadTiles__17GameSceneWorldMap .text.func_080A5EB8);
         asm/code_809E804.o(.text.game_map_after_tiles);
         src/world_map.o(.text.func_080A601C .text.RefreshCoopFeedTrough);
         asm/code_809E804.o(.text.game_map_barn_feed);
         src/world_map.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC .text.func_080A6300 .text.func_080A635C .text.func_080A63B8);
-        src/world_map.o(.text.SelectDefaultWorldMapData .text.GetWorldMapTileAttributes .text.GetWorldMapDataId .text.GetWorldMapId .text.GetWorldMapViewY .text.GetWorldMapViewX);
+        src/world_map.o(.text.SelectMapData__17GameSceneWorldMap .text.GetWorldMapTileAttributes .text.GetWorldMapDataId .text.GetWorldMapId .text.GetWorldMapViewY .text.GetWorldMapViewX);
         asm/code_809E804.o(.text.game_map_after_patch_dispatchers);
         src/world_map.o(.text.UpdateSavedMapTileAnimationTimers);
         src/world_map.o(.text.DrawSavedWorldMap);
@@ -1200,8 +1200,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82b8);
 . = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_19SavedNameEntryScene);
 . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_82e4);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_82fc);
+. = ALIGN(4); src/world_map.o(.gnu.linkonce.d.__vt_17GameSceneWorldMap);
 . = ALIGN(4); src/world_map.o(.gnu.linkonce.d.__vt_25MapViewportTilemapCommand);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_831c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8344);

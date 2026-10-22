@@ -9,8 +9,8 @@
 
 EXTERN_C
 
-extern void UpdateWorldMap(void);
-extern void RefreshWorldMapAppearance(void);
+extern void Update__17GameSceneWorldMap(void);
+extern void RefreshAppearance__17GameSceneWorldMapiUiUi(void);
 
 // Address-only references to the real compiler member symbols; the typed
 // member declarations stay in game_scene.hh. These are not ABI wrappers.
@@ -38,15 +38,15 @@ extern void Run__13CalendarScene(void);
 
 extern void DrawSavedWorldMap(void);
 
-extern void SelectDefaultWorldMapData(void);
+extern void SelectMapData__17GameSceneWorldMap(void);
 extern void UpdateSavedMapTileAnimationTimers(void);
 extern void RefreshSavedWorldMapAppearance(void);
 
-extern void LoadWorldMapTiles(void);
+extern void LoadTiles__17GameSceneWorldMap(void);
 
-extern void LoadWorldMapTilemaps(void);
+extern void LoadTilemaps__17GameSceneWorldMap(void);
 
-extern void LoadWorldMapTimeOfDayPalette(void);
+extern void LoadTimeOfDayPalette__17GameSceneWorldMapiUi(void);
 
 // These early C++ ABI tables have two null metadata slots followed by opaque
 // function targets. The functions are not called through these declarations;
@@ -330,8 +330,7 @@ extern void func_080A3900(void);
 extern void func_080A3C8C(void);
 extern void func_080A37A8(void);
 extern void func_080E3980(void);
-extern void func_080A4B6C(void);
-extern void func_080A4F50(void);
+extern void Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList(void);
 extern void func_080E3B50(void);
 extern void func_080AA974(void);
 extern void func_080A6EC4(void);
@@ -587,8 +586,7 @@ extern void func_080A3C8C(void);
 extern void func_080A3900(void);
 extern void func_080E41E8(void);
 extern void func_080A37A8(void);
-extern void func_080A4B6C(void);
-extern void func_080A4F50(void);
+extern void Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList(void);
 extern void func_080E43B8(void);
 extern void func_080AAF3C(void);
 extern void func_080A748C(void);
@@ -6355,8 +6353,8 @@ extern RawVTableFunction const vtable_unk_080E82A8[]
 #endif
     };
 
-// The naming scene now supplies its actual compiler vtable. The preceding
-// overseas scene table and the following JP map-prefix word remain native.
+// The naming scene and base map supply their real compiler tables.
+// This preceding overseas scene table still has its native representation.
 #if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E82B8[]
     SECTION(".rodata.vtable_82b8") = {
@@ -6364,49 +6362,6 @@ extern RawVTableFunction const vtable_unk_080E82B8[]
         nullptr,
         func_080E41E8,
         func_080A37A8,
-    };
-#else
-extern RawVTableFunction const vtable_unk_080E82D4[]
-    SECTION(".rodata.vtable_82d4") = {
-        nullptr,
-    };
-#endif
-
-#if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E82D8[]
-    SECTION(".rodata.vtable_82d8") = {
-        nullptr,
-        func_080A4B6C,
-        UpdateWorldMap,
-    };
-#endif
-
-extern RawVTableFunction const vtable_unk_080E82E4[]
-    SECTION(".rodata.vtable_82e4") = {
-#if defined(REGION_JP)
-        func_080A4F50,
-        RefreshWorldMapAppearance,
-        SelectDefaultWorldMapData,
-        LoadWorldMapTiles,
-        LoadWorldMapTilemaps,
-        LoadWorldMapTimeOfDayPalette,
-#else
-        nullptr,
-        nullptr,
-        func_080A4B6C,
-        UpdateWorldMap,
-        func_080A4F50,
-        RefreshWorldMapAppearance,
-#endif
-    };
-
-#if !defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E82FC[]
-    SECTION(".rodata.vtable_82fc") = {
-        SelectDefaultWorldMapData,
-        LoadWorldMapTiles,
-        LoadWorldMapTilemaps,
-        LoadWorldMapTimeOfDayPalette,
     };
 #endif
 
@@ -7224,7 +7179,7 @@ extern RawVTableFunction const vtable_unk_080E85DC[]
     SECTION(".rodata.vtable_85dc") = {
         nullptr,
         func_080E4E00,
-        UpdateWorldMap,
+        Update__17GameSceneWorldMap,
     };
 #endif
 
@@ -7243,9 +7198,9 @@ extern void func_080CFB5C(void);
 extern RawVTableFunction const vtable_unk_080E85E8[]
     SECTION(".rodata.vtable_85e8") = {
 #if defined(REGION_JP)
-        func_080A4F50,
-        RefreshWorldMapAppearance,
-        SelectDefaultWorldMapData,
+        Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList,
+        RefreshAppearance__17GameSceneWorldMapiUiUi,
+        SelectMapData__17GameSceneWorldMap,
         func_080CF500,
         func_080CF430,
         func_080CF3E0,
@@ -7253,10 +7208,10 @@ extern RawVTableFunction const vtable_unk_080E85E8[]
         nullptr,
         nullptr,
         func_080E59C0,
-        UpdateWorldMap,
-        func_080A4F50,
-        RefreshWorldMapAppearance,
-        SelectDefaultWorldMapData,
+        Update__17GameSceneWorldMap,
+        Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList,
+        RefreshAppearance__17GameSceneWorldMapiUiUi,
+        SelectMapData__17GameSceneWorldMap,
         func_080CFC7C,
         func_080CFBAC,
         func_080CFB5C,

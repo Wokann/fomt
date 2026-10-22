@@ -193,7 +193,7 @@ EC MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id)
     FieldRenderTileAttributes const * attributes;
     u8 const * indices;
     if (current_map == map_id) {
-        GameSceneWorldMapPrefix * active = world.data.map.value;
+        GameSceneWorldMap * active = world.data.map.value;
         // The native branch performs this lookup even though its result is unused.
         GetMapData(active->map_data_id);
         indices = nullptr;
@@ -449,7 +449,7 @@ EC u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location)
     if (TryGetFarmPlotAtLocation(world, location, hit)) {
         result = hit.plot->method_0800A190(world.save->clock.unk_00 == WEATHER_SUNNY);
         if (world.vfunc_14() == location.GetMap()) {
-            GameSceneWorldMapPrefix * map = world.data.map.value;
+            GameSceneWorldMap * map = world.data.map.value;
             FieldPlotRenderData const * render_data =
                 world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
             RefreshFieldPlotTiles(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
@@ -474,7 +474,7 @@ EC u32 func_0801D3FC(GameSceneWorldPrefix & world, Location const & location)
     if (TryGetFarmPlotAtLocation(world, location, hit)) {
         u32 result = hit.plot->method_0800A438();
         if (world.vfunc_14() == location.GetMap()) {
-            GameSceneWorldMapPrefix * map = world.data.map.value;
+            GameSceneWorldMap * map = world.data.map.value;
             FieldPlotRenderData const * render_data =
                 world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
             RefreshFieldPlotTiles(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
@@ -491,7 +491,7 @@ EC void func_0801D4E0(GameSceneWorldPrefix & world, Location const & location, i
     if (TryGetFarmPlotAtLocation(world, location, hit)) {
         hit.plot->method_0800A460(id);
         if (world.vfunc_14() == location.GetMap()) {
-            GameSceneWorldMapPrefix * map = world.data.map.value;
+            GameSceneWorldMap * map = world.data.map.value;
             FieldPlotRenderData const * render_data =
                 world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
             RefreshFieldPlotTiles(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
@@ -506,7 +506,7 @@ EC void func_0801D5BC(GameSceneWorldPrefix & world, Location const & location,
     if (TryGetFarmPlotAtLocation(world, location, hit)) {
         output = hit.plot->method_0800A4A4();
         if (world.vfunc_14() == location.GetMap()) {
-            GameSceneWorldMapPrefix * map = world.data.map.value;
+            GameSceneWorldMap * map = world.data.map.value;
             FieldPlotRenderData const * render_data =
                 world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
             RefreshFieldPlotTiles(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
@@ -527,7 +527,7 @@ EC RucksackItem PickUpFieldItemAtLocation(GameSceneWorldPrefix & world, Location
         item = items.PickUp(location.GetMap(), area, season);
         if (!item.IsEmpty() && location.GetMap() == world.data.map.value->map) {
             FieldItemInstance record = items.GetRecord(index);
-            GameSceneWorldMapPrefix * map = world.data.map.value;
+            GameSceneWorldMap * map = world.data.map.value;
             Vec2 position(record.x / 8, record.y / 8);
             func_080A5F78(map, 1, position, 2, 2);
         }
@@ -542,7 +542,7 @@ EC void func_0801D7B0(GameSceneWorldPrefix & world, Location const & location,
     if (TryGetFarmPlotAtLocation(world, location, hit)) {
         hit.plot->method_0800A6F4(article);
         if (world.vfunc_14() == location.GetMap()) {
-            GameSceneWorldMapPrefix * map = world.data.map.value;
+            GameSceneWorldMap * map = world.data.map.value;
             FieldPlotRenderData const * render_data =
                 world.save->farm.field.PlotRenderDataAt(hit.column, hit.row);
             RefreshFieldPlotTiles(map, hit.tile_x, hit.tile_y, hit.plot, render_data);
@@ -761,12 +761,12 @@ EC void func_0801FC78(GameSceneWorldPrefix & world)
     world.unk_107C = nullptr;
 }
 
-EC GameSceneWorldMapPrefix * func_0801FC9C(GameSceneWorldPrefix & world)
+EC GameSceneWorldMap * func_0801FC9C(GameSceneWorldPrefix & world)
 {
     return world.data.map.value;
 }
 
-EC GameSceneWorldMapPrefix * func_0801FCA0(GameSceneWorldPrefix & world)
+EC GameSceneWorldMap * func_0801FCA0(GameSceneWorldPrefix & world)
 {
     return world.data.map.value;
 }

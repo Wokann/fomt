@@ -201,8 +201,8 @@ IndexedResourceArchive * func_0801FC54(GameSceneWorldPrefix & world);
 IndexedResourceArchive * func_0801FC60(GameSceneWorldPrefix & world);
 IndexedResourceArchive * GetWorldActorAnimationArchive(GameSceneWorldPrefix & world);
 void func_0801FC78(GameSceneWorldPrefix & world);
-GameSceneWorldMapPrefix * func_0801FC9C(GameSceneWorldPrefix & world);
-GameSceneWorldMapPrefix * func_0801FCA0(GameSceneWorldPrefix & world);
+GameSceneWorldMap * func_0801FC9C(GameSceneWorldPrefix & world);
+GameSceneWorldMap * func_0801FCA0(GameSceneWorldPrefix & world);
 void * func_0801FD30(GameSceneWorldPrefix & world);
 
 GameStateClock const * GetWorldClock(GameSceneWorldPrefix const & world);

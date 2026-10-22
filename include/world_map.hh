@@ -18,6 +18,7 @@ struct HardwareDisplayState;
 // The map controller stores Q16.16 camera coordinates. Native integer
 // readers sign-extend their high halfwords; movement writes the whole word.
 union GameSceneCameraCoordinate {
+    GameSceneCameraCoordinate() : q16(0) {}
     i32 q16;
     struct {
         u16 fraction;
@@ -26,6 +27,7 @@ union GameSceneCameraCoordinate {
 };
 
 struct MapTilePatchAnimationState {
+    MapTilePatchAnimationState() : frame(0), update_pending(false), elapsed_frames(0) {}
     u8 frame;
     bool update_pending;
     u8 elapsed_frames;
@@ -56,9 +58,9 @@ typedef char MapViewportTilemapCommandSizeCheck[sizeof(MapViewportTilemapCommand
 typedef char MapViewportTilemapCommandLayersCheck[offsetof(MapViewportTilemapCommand, layers) == 0xC ? 1 : -1];
 typedef char MapViewportTilemapCommandWidthCheck[offsetof(MapViewportTilemapCommand, source_width) == 0x24 ? 1 : -1];
 
-// Only the verified map/camera prefix is modeled, not the complete object.
+// The base map owns three tile grids, time-of-day palettes and tile attributes.
 // The move routine writes per-frame Q16.16 steps and a frame countdown.
-struct GameSceneWorldMapPrefix {
+struct GameSceneWorldMap {
     u32 map;
     u32 map_data_id;
     GameSceneCameraCoordinate x;
@@ -70,24 +72,35 @@ struct GameSceneWorldMapPrefix {
     bool time_palette_changed;
     u8 unk_2B;
     FieldRenderTileAttributes * tile_attributes;
-    MapTilePatchAnimationState layout_animations[10];
+    // Native construction initializes ten independent state objects.
+    // Their individual layout roles are not yet fully identified.
+    MapTilePatchAnimationState layout_animation_0;
+    MapTilePatchAnimationState layout_animation_1;
+    MapTilePatchAnimationState layout_animation_2;
+    MapTilePatchAnimationState layout_animation_3;
+    MapTilePatchAnimationState layout_animation_4;
+    MapTilePatchAnimationState layout_animation_5;
+    MapTilePatchAnimationState layout_animation_6;
+    MapTilePatchAnimationState layout_animation_7;
+    MapTilePatchAnimationState layout_animation_8;
+    MapTilePatchAnimationState layout_animation_9;
     u8 unk_58;
     u8 unk_59[3];
     MapViewportTilemapCommand viewport_command;
     i32 step_x_q16;
     i32 step_y_q16;
     u32 movement_frames;
-    virtual ~GameSceneWorldMapPrefix();
-    virtual void vfunc_0C();
-    virtual void vfunc_10();
+    virtual ~GameSceneWorldMap();
+    virtual void Update();
+    // Draw and appearance refresh retain their native bodies for now.
+    virtual void Draw(HardwareDmaQueue & queue, HardwareDisplayState & display, HardwareLinkedList & commands);
     virtual void RefreshAppearance(i32 period, u32 first_weight, u32 second_weight);
     virtual u32 SelectMapData();
     virtual void LoadTiles();
     virtual void LoadTilemaps();
     virtual void LoadTimeOfDayPalette(i32 period, u32 buffer_index);
 
-private:
-    GameSceneWorldMapPrefix();
+    GameSceneWorldMap();
 };
 
 // The native saved-map constructor calls the base constructor, replaces its
@@ -95,7 +108,7 @@ private:
 // The allocation is 0xBC bytes. The runtime member at +0x9C remains
 // opaque; the two verified animation states begin at +0xB4 and +0xB8.
 // This borrowed view is never allocated or used to infer a native class size.
-struct GameSceneSavedMapPrefix : GameSceneWorldMapPrefix {
+struct GameSceneSavedMapPrefix : GameSceneWorldMap {
     GameStateSaveImage * save;
     bool unk_98;
     u8 unk_9C[0x18] ALIGN(4);
@@ -105,12 +118,20 @@ private:
     GameSceneSavedMapPrefix();
 };
 
-typedef char GameSceneMapLayoutAnimationsCheck[offsetof(GameSceneWorldMapPrefix, layout_animations) == 0x30 ? 1 : -1];
-typedef char GameSceneMapLayoutAnimationsSizeCheck[sizeof(((GameSceneWorldMapPrefix *) 0)->layout_animations) == 0x28 ? 1 : -1];
+typedef char GameSceneMapLayoutAnimation0Check[offsetof(GameSceneWorldMap, layout_animation_0) == 0x30 ? 1 : -1];
+typedef char GameSceneMapLayoutAnimation1Check[offsetof(GameSceneWorldMap, layout_animation_1) == 0x34 ? 1 : -1];
+typedef char GameSceneMapLayoutAnimation2Check[offsetof(GameSceneWorldMap, layout_animation_2) == 0x38 ? 1 : -1];
+typedef char GameSceneMapLayoutAnimation3Check[offsetof(GameSceneWorldMap, layout_animation_3) == 0x3c ? 1 : -1];
+typedef char GameSceneMapLayoutAnimation4Check[offsetof(GameSceneWorldMap, layout_animation_4) == 0x40 ? 1 : -1];
+typedef char GameSceneMapLayoutAnimation5Check[offsetof(GameSceneWorldMap, layout_animation_5) == 0x44 ? 1 : -1];
+typedef char GameSceneMapLayoutAnimation6Check[offsetof(GameSceneWorldMap, layout_animation_6) == 0x48 ? 1 : -1];
+typedef char GameSceneMapLayoutAnimation7Check[offsetof(GameSceneWorldMap, layout_animation_7) == 0x4c ? 1 : -1];
+typedef char GameSceneMapLayoutAnimation8Check[offsetof(GameSceneWorldMap, layout_animation_8) == 0x50 ? 1 : -1];
+typedef char GameSceneMapLayoutAnimation9Check[offsetof(GameSceneWorldMap, layout_animation_9) == 0x54 ? 1 : -1];
 
 // These are palette buffers, distinct from the three map tile grids.
-typedef char GameSceneMapTimePaletteBuffersCheck[offsetof(GameSceneWorldMapPrefix, time_palette_buffers) == 0x1C ? 1 : -1];
-typedef char GameSceneMapTimePaletteChangedCheck[offsetof(GameSceneWorldMapPrefix, time_palette_changed) == 0x2A ? 1 : -1];
+typedef char GameSceneMapTimePaletteBuffersCheck[offsetof(GameSceneWorldMap, time_palette_buffers) == 0x1C ? 1 : -1];
+typedef char GameSceneMapTimePaletteChangedCheck[offsetof(GameSceneWorldMap, time_palette_changed) == 0x2A ? 1 : -1];
 
 typedef char GameSceneSavedMapSaveCheck[offsetof(GameSceneSavedMapPrefix, save) == 0x94 ? 1 : -1];
 typedef char GameSceneSavedMapFlagCheck[offsetof(GameSceneSavedMapPrefix, unk_98) == 0x98 ? 1 : -1];
@@ -122,78 +143,65 @@ typedef char GameSceneSavedMapPrefixSizeCheck[sizeof(GameSceneSavedMapPrefix) ==
 typedef char GameSceneCameraCoordinateSizeCheck[sizeof(GameSceneCameraCoordinate) == 4 ? 1 : -1];
 typedef char GameSceneCameraIntegerCheck[offsetof(GameSceneCameraCoordinate, parts.integer) == 2 ? 1 : -1];
 typedef char GameSceneCameraPointSizeCheck[sizeof(Vec2) == 4 ? 1 : -1];
-typedef char GameSceneCameraMapDataIdCheck[offsetof(GameSceneWorldMapPrefix, map_data_id) == 4 ? 1 : -1];
-typedef char GameSceneCameraXCheck[offsetof(GameSceneWorldMapPrefix, x) == 8 ? 1 : -1];
-typedef char GameSceneCameraYCheck[offsetof(GameSceneWorldMapPrefix, y) == 0xC ? 1 : -1];
-typedef char GameSceneMapTileLayersCheck[offsetof(GameSceneWorldMapPrefix, tile_layers) == 0x10 ? 1 : -1];
-typedef char GameSceneMapTileAttributesCheck[offsetof(GameSceneWorldMapPrefix, tile_attributes) == 0x2C ? 1 : -1];
-typedef char GameSceneMapViewportCommandCheck[offsetof(GameSceneWorldMapPrefix, viewport_command) == 0x5C ? 1 : -1];
+typedef char GameSceneCameraMapDataIdCheck[offsetof(GameSceneWorldMap, map_data_id) == 4 ? 1 : -1];
+typedef char GameSceneCameraXCheck[offsetof(GameSceneWorldMap, x) == 8 ? 1 : -1];
+typedef char GameSceneCameraYCheck[offsetof(GameSceneWorldMap, y) == 0xC ? 1 : -1];
+typedef char GameSceneMapTileLayersCheck[offsetof(GameSceneWorldMap, tile_layers) == 0x10 ? 1 : -1];
+typedef char GameSceneMapTileAttributesCheck[offsetof(GameSceneWorldMap, tile_attributes) == 0x2C ? 1 : -1];
+typedef char GameSceneMapViewportCommandCheck[offsetof(GameSceneWorldMap, viewport_command) == 0x5C ? 1 : -1];
 
-typedef char GameSceneMapUnk58Check[offsetof(GameSceneWorldMapPrefix, unk_58) == 0x58 ? 1 : -1];
-typedef char GameSceneMapViewChangedCheck[offsetof(GameSceneWorldMapPrefix, view_changed) == 0x29 ? 1 : -1];
-typedef char GameSceneCameraStepXCheck[offsetof(GameSceneWorldMapPrefix, step_x_q16) == 0x84 ? 1 : -1];
-typedef char GameSceneCameraStepYCheck[offsetof(GameSceneWorldMapPrefix, step_y_q16) == 0x88 ? 1 : -1];
-typedef char GameSceneCameraFramesCheck[offsetof(GameSceneWorldMapPrefix, movement_frames) == 0x8C ? 1 : -1];
-typedef char GameSceneWorldMapPrefixSizeCheck[sizeof(GameSceneWorldMapPrefix) == 0x94 ? 1 : -1];
+typedef char GameSceneMapUnk58Check[offsetof(GameSceneWorldMap, unk_58) == 0x58 ? 1 : -1];
+typedef char GameSceneMapViewChangedCheck[offsetof(GameSceneWorldMap, view_changed) == 0x29 ? 1 : -1];
+typedef char GameSceneCameraStepXCheck[offsetof(GameSceneWorldMap, step_x_q16) == 0x84 ? 1 : -1];
+typedef char GameSceneCameraStepYCheck[offsetof(GameSceneWorldMap, step_y_q16) == 0x88 ? 1 : -1];
+typedef char GameSceneCameraFramesCheck[offsetof(GameSceneWorldMap, movement_frames) == 0x8C ? 1 : -1];
+typedef char GameSceneWorldMapSizeCheck[sizeof(GameSceneWorldMap) == 0x94 ? 1 : -1];
 
 EXTERN_C
-void ApplyMapTilePatch(GameSceneWorldMapPrefix * map,
+void ApplyMapTilePatch(GameSceneWorldMap * map,
     FieldRenderRectDescriptor const & patch, u32 x, u32 y);
-void func_080A601C(GameSceneWorldMapPrefix * map);
-void RefreshCoopFeedTrough(GameSceneWorldMapPrefix * map, u32 index);
+void func_080A601C(GameSceneWorldMap * map);
+void RefreshCoopFeedTrough(GameSceneWorldMap * map, u32 index);
 // This barn dispatcher retains its native implementation and unchecked index.
-void func_080A607C(GameSceneWorldMapPrefix * map, u32 index);
-void func_080A6138(GameSceneWorldMapPrefix * map);
-void func_080A6194(GameSceneWorldMapPrefix * map);
-void func_080A61F0(GameSceneWorldMapPrefix * map);
-void func_080A6234(GameSceneWorldMapPrefix * map);
-void func_080A6278(GameSceneWorldMapPrefix * map);
-void func_080A62BC(GameSceneWorldMapPrefix * map);
-void func_080A6300(GameSceneWorldMapPrefix * map);
-void func_080A635C(GameSceneWorldMapPrefix * map);
-void func_080A63B8(GameSceneWorldMapPrefix * map, u32 unk);
-u32 SelectDefaultWorldMapData(GameSceneWorldMapPrefix const * map);
-FieldRenderTileAttributes * GetWorldMapTileAttributes(GameSceneWorldMapPrefix * map, u32 x, u32 y);
-u32 GetWorldMapDataId(GameSceneWorldMapPrefix const * map);
-u32 GetWorldMapId(GameSceneWorldMapPrefix const * map);
-i32 GetWorldMapViewY(GameSceneWorldMapPrefix const * map);
-i32 GetWorldMapViewX(GameSceneWorldMapPrefix const * map);
+void func_080A607C(GameSceneWorldMap * map, u32 index);
+void func_080A6138(GameSceneWorldMap * map);
+void func_080A6194(GameSceneWorldMap * map);
+void func_080A61F0(GameSceneWorldMap * map);
+void func_080A6234(GameSceneWorldMap * map);
+void func_080A6278(GameSceneWorldMap * map);
+void func_080A62BC(GameSceneWorldMap * map);
+void func_080A6300(GameSceneWorldMap * map);
+void func_080A635C(GameSceneWorldMap * map);
+void func_080A63B8(GameSceneWorldMap * map, u32 unk);
+FieldRenderTileAttributes * GetWorldMapTileAttributes(GameSceneWorldMap * map, u32 x, u32 y);
+u32 GetWorldMapDataId(GameSceneWorldMap const * map);
+u32 GetWorldMapId(GameSceneWorldMap const * map);
+i32 GetWorldMapViewY(GameSceneWorldMap const * map);
+i32 GetWorldMapViewX(GameSceneWorldMap const * map);
 void UpdateSavedMapTileAnimationTimers(GameSceneSavedMapPrefix * map);
-// The base draw implementation remains native. Keep its fourth argument
-// opaque until that consumer interface is recovered.
-void func_080A4F50(GameSceneWorldMapPrefix * map, HardwareDmaQueue & queue,
-    HardwareDisplayState & display, void * unk);
-void QueueMapTilePatch(GameSceneWorldMapPrefix * map,
+void QueueMapTilePatch(GameSceneWorldMap * map,
     FarmHouseTilePatchDescriptor const & patch, u32 frame, HardwareDmaQueue & queue);
 void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queue,
-    HardwareDisplayState & display, void * unk);
+    HardwareDisplayState & display, HardwareLinkedList & commands);
 void RefreshSavedWorldMapAppearance(GameSceneSavedMapPrefix * map, i32 period,
     u32 first_weight, u32 second_weight);
-// Per-frame movement is C++; appearance refresh still has a native base.
-// Appearance also refreshes tile data and forwards both encoded palette weights.
-void UpdateWorldMap(GameSceneWorldMapPrefix * map);
-void RefreshWorldMapAppearance(GameSceneWorldMapPrefix * map, i32 period,
-    u32 first_weight, u32 second_weight);
 void func_080AA850(GameSceneSavedMapPrefix * map, u32 index);
-void func_080AA89C(GameSceneWorldMapPrefix * map);
-void func_080AA8BC(GameSceneWorldMapPrefix * map);
+void func_080AA89C(GameSceneWorldMap * map);
+void func_080AA8BC(GameSceneWorldMap * map);
 void func_080AA8DC(GameSceneSavedMapPrefix * map);
-void LoadWorldMapTilemaps(GameSceneWorldMapPrefix & map);
-void LoadWorldMapTiles(GameSceneWorldMapPrefix & map);
-bool func_080A5EB8(GameSceneWorldMapPrefix * map, Location const & location);
-void SetWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period);
-void LoadWorldMapTimeOfDayPalette(GameSceneWorldMapPrefix & map, i32 period, u32 buffer_index);
-void func_080A5F78(GameSceneWorldMapPrefix * map, u32 layer,
+bool func_080A5EB8(GameSceneWorldMap * map, Location const & location);
+void SetWorldMapTimeOfDayPalette(GameSceneWorldMap & map, i32 period);
+void func_080A5F78(GameSceneWorldMap * map, u32 layer,
     Vec2 const & position, u32 width, u32 height);
-void RefreshFieldPlotTiles(GameSceneWorldMapPrefix * map, u32 x, u32 y,
+void RefreshFieldPlotTiles(GameSceneWorldMap * map, u32 x, u32 y,
     FieldPlot const * plot, FieldPlotRenderData const * render_data);
 
 // A requested screen-center position is clamped to the map's camera origin.
 // Set applies it immediately; Pan keeps the native integer frame arithmetic.
-Vec2 ClampWorldMapCameraPosition(GameSceneWorldMapPrefix const * map, i32 x, i32 y);
-void SetWorldMapCameraPosition(GameSceneWorldMapPrefix * map, i32 x, i32 y);
-void PanWorldMapCameraTo(GameSceneWorldMapPrefix * map, i32 x, i32 y, u32 speed);
-bool IsWorldMapCameraMovementComplete(GameSceneWorldMapPrefix const * map);
+Vec2 ClampWorldMapCameraPosition(GameSceneWorldMap const * map, i32 x, i32 y);
+void SetWorldMapCameraPosition(GameSceneWorldMap * map, i32 x, i32 y);
+void PanWorldMapCameraTo(GameSceneWorldMap * map, i32 x, i32 y, u32 speed);
+bool IsWorldMapCameraMovementComplete(GameSceneWorldMap const * map);
 
 EXTERN_C_END
 

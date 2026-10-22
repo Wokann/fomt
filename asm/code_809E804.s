@@ -5613,191 +5613,12 @@ func_080A45A8: @ 0x080A3FE0
 	bx r1
 	.align 2, 0
 
-    .section .text.game_scene_indexed_sprite_after, "ax", %progbits
-
-    .global func_080A4A94
-    .thumb_func
-func_080A4A94: @ 0x080A44CC
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r1, r4, #0
-	adds r1, #0x90
-	ldr r0, .Ljp_080A4B64 @ =vtable_unk_080E82E4
-	str r0, [r1]
-	movs r0, #0x8d
-	lsls r0, r0, #2
-	str r0, [r4]
-	movs r0, #0x42
-	str r0, [r4, #4]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r0, [r4, #0xc]
-	subs r1, #0x68
-	strb r0, [r1]
-	adds r1, #1
-	strb r0, [r1]
-	adds r1, #1
-	strb r0, [r1]
-	str r0, [r4, #0x2c]
-	adds r1, #6
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	adds r2, r4, #0
-	adds r2, #0x5c
-	str r0, [r4, #0x5c]
-	str r0, [r2, #4]
-	ldr r1, .Ljp_080A4B68 @ =vtable_unk_080E830C
-	str r1, [r2, #8]
-	adds r1, r4, #0
-	adds r1, #0x8c
-	str r0, [r1]
-	movs r5, #0
-	adds r6, r4, #0
-	adds r6, #0x1c
-.Ljp_080A4B2A:
-	movs r0, #0xf0
-	lsls r0, r0, #1
-	bl __builtin_vec_new
-	stm r6!, {r0}
-	adds r5, #1
-	cmp r5, #2
-	bls .Ljp_080A4B2A
-	movs r5, #0
-	adds r6, r4, #0
-	adds r6, #0x10
-.Ljp_080A4B40:
-	movs r0, #0xf2
-	lsls r0, r0, #7
-	bl __builtin_vec_new
-	stm r6!, {r0}
-	adds r5, #1
-	cmp r5, #2
-	bls .Ljp_080A4B40
-	movs r0, #0xf2
-	lsls r0, r0, #8
-	bl __builtin_vec_new
-	str r0, [r4, #0x2c]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_080A4B64: .4byte vtable_unk_080E82D4
-.Ljp_080A4B68: .4byte __vt_25MapViewportTilemapCommand
-
-    .global func_080A4B6C
-    .thumb_func
-func_080A4B6C: @ 0x080A45A4
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	adds r6, r0, #0
-	mov sb, r1
-	adds r1, r6, #0
-	adds r1, #0x90
-	ldr r0, .Ljp_080A4BE8 @ =vtable_unk_080E82E4
-	str r0, [r1]
-	ldr r0, [r6, #0x2c]
-	cmp r0, #0
-	beq .Ljp_080A4B8A
-	bl __builtin_vec_delete
-.Ljp_080A4B8A:
-	movs r5, #0
-	adds r7, r6, #0
-	adds r7, #0x1c
-	movs r0, #0x5c
-	adds r0, r0, r6
-	mov r8, r0
-	adds r4, r6, #0
-	adds r4, #0x10
-.Ljp_080A4B9A:
-	ldr r0, [r4]
-	cmp r0, #0
-	beq .Ljp_080A4BA4
-	bl __builtin_vec_delete
-.Ljp_080A4BA4:
-	adds r4, #4
-	adds r5, #1
-	cmp r5, #2
-	bls .Ljp_080A4B9A
-	movs r5, #0
-	adds r4, r7, #0
-.Ljp_080A4BB0:
-	ldr r0, [r4]
-	cmp r0, #0
-	beq .Ljp_080A4BBA
-	bl __builtin_vec_delete
-.Ljp_080A4BBA:
-	adds r4, #4
-	adds r5, #1
-	cmp r5, #2
-	bls .Ljp_080A4BB0
-	mov r0, r8
-	movs r1, #2
-	bl func_080098AC
-	movs r0, #1
-	mov r1, sb
-	ands r0, r1
-	cmp r0, #0
-	beq .Ljp_080A4BDA
-	adds r0, r6, #0
-	bl __builtin_delete
-.Ljp_080A4BDA:
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A4BE8: .4byte vtable_unk_080E82D4
-
     .section .text.game_map_after_update, "ax", %progbits
     .align 2, 0
 
-    .global func_080A4F50
+    .global Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList
     .thumb_func
-func_080A4F50: @ 0x080A4988
+Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList: @ 0x080A4988
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -6745,9 +6566,9 @@ func_080A56DC: @ 0x080A5114
 	.align 2, 0
 .Ljp_080A575C: .4byte 0x000003FF
 
-    .global RefreshWorldMapAppearance
+    .global RefreshAppearance__17GameSceneWorldMapiUiUi
     .thumb_func
-RefreshWorldMapAppearance: @ 0x080A5198
+RefreshAppearance__17GameSceneWorldMapiUiUi: @ 0x080A5198
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -7403,7 +7224,7 @@ func_080A6474: @ 0x080A5EAC
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
-	bl func_080A4A94
+	bl __17GameSceneWorldMap
 	adds r1, r5, #0
 	adds r1, #0x90
 	ldr r0, .Ljp_080A64B4 @ =vtable_unk_080E830C
@@ -7445,7 +7266,7 @@ func_080A6098: @ 0x080A6098
 	push {r5, r6, r7}
 	sub sp, #0x2c
 	mov r8, r0
-	bl LoadWorldMapTilemaps
+	bl LoadTilemaps__17GameSceneWorldMap
 	mov r0, r8
 	adds r0, #0x94
 	ldr r0, [r0]
@@ -9121,7 +8942,7 @@ func_080A6EC4: @ 0x080A6EC4
 	sub sp, #0x1c4
 	str r0, [sp, #0x190]
 	adds r7, r1, #0
-	bl LoadWorldMapTiles
+	bl LoadTiles__17GameSceneWorldMap
 	ldr r0, [sp, #0x190]
 	adds r0, #0x94
 	ldr r0, [r0]
@@ -76221,7 +76042,7 @@ func_080CF2BC:
 func_080CF3AC:
     push {r4, r5, r6, r7, lr}
     adds r6, r0, #0
-    bl func_080A4A94
+    bl __17GameSceneWorldMap
     adds r1, r6, #0
     adds r1, #0x90
     ldr r0, [pc, #0x20]
@@ -76290,7 +76111,7 @@ func_080CF430:
     push {r5, r6, r7}
     sub sp, #0xc
     str r0, [sp, #4]
-    bl LoadWorldMapTilemaps
+    bl LoadTilemaps__17GameSceneWorldMap
     ldr r1, [sp, #4]
     ldr r0, [r1, #4]
     cmp r0, #0x3e
@@ -76404,7 +76225,7 @@ func_080CF500:
     sub sp, #0x24
     adds r4, r0, #0
     adds r5, r1, #0
-    bl LoadWorldMapTiles
+    bl LoadTiles__17GameSceneWorldMap
     ldr r0, [r4, #4]
     cmp r0, #0x3e
     beq .Lauto_080CF51C
@@ -82976,188 +82797,11 @@ func_080A45A8: @ 0x080A45A8
 	bx r1
 	.align 2, 0
 
-    .section .text.game_scene_indexed_sprite_after, "ax", %progbits
-
-	thumb_func_start func_080A4A94
-func_080A4A94: @ 0x080A4A94
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r1, r4, #0
-	adds r1, #0x90
-	ldr r0, .L080A4B64 @ =vtable_unk_080E82E4
-	str r0, [r1]
-	movs r0, #0x8d
-	lsls r0, r0, #2
-	str r0, [r4]
-	movs r0, #0x42
-	str r0, [r4, #4]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r0, [r4, #0xc]
-	subs r1, #0x68
-	strb r0, [r1]
-	adds r1, #1
-	strb r0, [r1]
-	adds r1, #1
-	strb r0, [r1]
-	str r0, [r4, #0x2c]
-	adds r1, #6
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	strb r0, [r1, #2]
-	adds r1, #4
-	strb r0, [r1]
-	adds r2, r4, #0
-	adds r2, #0x5c
-	str r0, [r4, #0x5c]
-	str r0, [r2, #4]
-	ldr r1, .L080A4B68 @ =__vt_25MapViewportTilemapCommand
-	str r1, [r2, #8]
-	adds r1, r4, #0
-	adds r1, #0x8c
-	str r0, [r1]
-	movs r5, #0
-	adds r6, r4, #0
-	adds r6, #0x1c
-.L080A4B2A:
-	movs r0, #0xf0
-	lsls r0, r0, #1
-	bl __builtin_vec_new
-	stm r6!, {r0}
-	adds r5, #1
-	cmp r5, #2
-	bls .L080A4B2A
-	movs r5, #0
-	adds r6, r4, #0
-	adds r6, #0x10
-.L080A4B40:
-	movs r0, #0xf2
-	lsls r0, r0, #7
-	bl __builtin_vec_new
-	stm r6!, {r0}
-	adds r5, #1
-	cmp r5, #2
-	bls .L080A4B40
-	movs r0, #0xf2
-	lsls r0, r0, #8
-	bl __builtin_vec_new
-	str r0, [r4, #0x2c]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080A4B64: .4byte vtable_unk_080E82E4
-.L080A4B68: .4byte __vt_25MapViewportTilemapCommand
-
-	thumb_func_start func_080A4B6C
-func_080A4B6C: @ 0x080A4B6C
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	adds r6, r0, #0
-	mov sb, r1
-	adds r1, r6, #0
-	adds r1, #0x90
-	ldr r0, .L080A4BE8 @ =vtable_unk_080E82E4
-	str r0, [r1]
-	ldr r0, [r6, #0x2c]
-	cmp r0, #0
-	beq .L080A4B8A
-	bl __builtin_vec_delete
-.L080A4B8A:
-	movs r5, #0
-	adds r7, r6, #0
-	adds r7, #0x1c
-	movs r0, #0x5c
-	adds r0, r0, r6
-	mov r8, r0
-	adds r4, r6, #0
-	adds r4, #0x10
-.L080A4B9A:
-	ldr r0, [r4]
-	cmp r0, #0
-	beq .L080A4BA4
-	bl __builtin_vec_delete
-.L080A4BA4:
-	adds r4, #4
-	adds r5, #1
-	cmp r5, #2
-	bls .L080A4B9A
-	movs r5, #0
-	adds r4, r7, #0
-.L080A4BB0:
-	ldr r0, [r4]
-	cmp r0, #0
-	beq .L080A4BBA
-	bl __builtin_vec_delete
-.L080A4BBA:
-	adds r4, #4
-	adds r5, #1
-	cmp r5, #2
-	bls .L080A4BB0
-	mov r0, r8
-	movs r1, #2
-	bl func_080098AC
-	movs r0, #1
-	mov r1, sb
-	ands r0, r1
-	cmp r0, #0
-	beq .L080A4BDA
-	adds r0, r6, #0
-	bl __builtin_delete
-.L080A4BDA:
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A4BE8: .4byte vtable_unk_080E82E4
-
     .section .text.game_map_after_update, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080A4F50
-func_080A4F50: @ 0x080A4F50
+	thumb_func_start Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList
+Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList: @ 0x080A4F50
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -84104,8 +83748,8 @@ func_080A56DC: @ 0x080A56DC
 	.align 2, 0
 .L080A575C: .4byte 0x000003FF
 
-	thumb_func_start RefreshWorldMapAppearance
-RefreshWorldMapAppearance: @ 0x080A5760
+	thumb_func_start RefreshAppearance__17GameSceneWorldMapiUiUi
+RefreshAppearance__17GameSceneWorldMapiUiUi: @ 0x080A5760
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -84757,7 +84401,7 @@ func_080A6474: @ 0x080A6474
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
-	bl func_080A4A94
+	bl __17GameSceneWorldMap
 	adds r1, r5, #0
 	adds r1, #0x90
 	ldr r0, .L080A64B4 @ =vtable_unk_080E831C
@@ -84798,7 +84442,7 @@ func_080A6660: @ 0x080A6660
 	push {r5, r6, r7}
 	sub sp, #0x2c
 	mov r8, r0
-	bl LoadWorldMapTilemaps
+	bl LoadTilemaps__17GameSceneWorldMap
 	mov r0, r8
 	adds r0, #0x94
 	ldr r0, [r0]
@@ -86474,7 +86118,7 @@ func_080A748C: @ 0x080A748C
 	sub sp, #0x1c4
 	str r0, [sp, #0x190]
 	adds r7, r1, #0
-	bl LoadWorldMapTiles
+	bl LoadTiles__17GameSceneWorldMap
 	ldr r0, [sp, #0x190]
 	adds r0, #0x94
 	ldr r0, [r0]
@@ -165915,7 +165559,7 @@ func_080CFA38: @ 0x080CFA38
 func_080CFB28: @ 0x080CFB28
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
-	bl func_080A4A94
+	bl __17GameSceneWorldMap
 	adds r1, r6, #0
 	adds r1, #0x90
 	ldr r0, .L080CFB58 @ =vtable_unk_080E85E8
@@ -165987,7 +165631,7 @@ func_080CFBAC: @ 0x080CFBAC
 	push {r5, r6, r7}
 	sub sp, #0xc
 	str r0, [sp, #4]
-	bl LoadWorldMapTilemaps
+	bl LoadTilemaps__17GameSceneWorldMap
 	ldr r1, [sp, #4]
 	ldr r0, [r1, #4]
 	cmp r0, #0x3e
@@ -166101,7 +165745,7 @@ func_080CFC7C: @ 0x080CFC7C
 	sub sp, #0x24
 	adds r4, r0, #0
 	adds r5, r1, #0
-	bl LoadWorldMapTiles
+	bl LoadTiles__17GameSceneWorldMap
 	ldr r0, [r4, #4]
 	cmp r0, #0x3e
 	beq .L080CFC98

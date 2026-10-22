@@ -71,12 +71,12 @@ struct GameSceneWorldUnkOwner {
 // This one-word owner is passed by value to the native data constructor.
 // Transfer clears the source slot; destruction uses the map's real virtual ABI.
 struct GameSceneWorldMapOwner {
-    GameSceneWorldMapPrefix * value;
+    GameSceneWorldMap * value;
 
-    explicit GameSceneWorldMapOwner(GameSceneWorldMapPrefix * input) : value(input) {}
-    GameSceneWorldMapPrefix * Release()
+    explicit GameSceneWorldMapOwner(GameSceneWorldMap * input) : value(input) {}
+    GameSceneWorldMap * Release()
     {
-        GameSceneWorldMapPrefix * result = value;
+        GameSceneWorldMap * result = value;
         value = nullptr;
         return result;
     }
