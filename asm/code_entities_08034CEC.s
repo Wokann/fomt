@@ -5963,7 +5963,7 @@ func_08038110:
     cmn	r1, r0
     bge .Ljp_08037F54
     adds	r0, r5, #0
-    bl func_080AB5FC
+    bl RefreshUp__21TerrainMovementBounds
     ldr	r0, [sp, #16]
     b .Ljp_08037F56
 .Ljp_08037F54:
@@ -5984,7 +5984,7 @@ func_08038110:
     cmp	r1, r0
     ble .Ljp_08037F7A
     adds	r0, r5, #0
-    bl func_080AB5D8
+    bl RefreshDown__21TerrainMovementBounds
     ldr	r0, [sp, #12]
     b .Ljp_08037F7C
 .Ljp_08037F7A:
@@ -6012,7 +6012,7 @@ func_08038110:
     cmp	r1, r0
     ble .Ljp_08037FAA
     adds	r0, r5, #0
-    bl func_080AB64C
+    bl RefreshRight__21TerrainMovementBounds
     ldr	r0, [sp, #24]
     b .Ljp_08037FAC
 .Ljp_08037FAA:
@@ -6037,7 +6037,7 @@ func_08038110:
     cmn	r1, r0
     bge .Ljp_08037FD6
     adds	r0, r5, #0
-    bl func_080AB624
+    bl RefreshLeft__21TerrainMovementBounds
     ldr	r0, [sp, #20]
     b .Ljp_08037FD8
 .Ljp_08037FD6:
@@ -16643,7 +16643,7 @@ func_08038110:
     cmn	r1, r0
     bge .Leu_080381D4
     adds	r0, r5, #0
-    bl func_080ABBC4
+    bl RefreshUp__21TerrainMovementBounds
     ldr	r0, [sp, #16]
     b .Leu_080381D6
 .Leu_080381D4:
@@ -16664,7 +16664,7 @@ func_08038110:
     cmp	r1, r0
     ble .Leu_080381FA
     adds	r0, r5, #0
-    bl func_080ABBA0
+    bl RefreshDown__21TerrainMovementBounds
     ldr	r0, [sp, #12]
     b .Leu_080381FC
 .Leu_080381FA:
@@ -16692,7 +16692,7 @@ func_08038110:
     cmp	r1, r0
     ble .Leu_0803822A
     adds	r0, r5, #0
-    bl func_080ABC14
+    bl RefreshRight__21TerrainMovementBounds
     ldr	r0, [sp, #24]
     b .Leu_0803822C
 .Leu_0803822A:
@@ -16717,7 +16717,7 @@ func_08038110:
     cmn	r1, r0
     bge .Leu_08038256
     adds	r0, r5, #0
-    bl func_080ABBEC
+    bl RefreshLeft__21TerrainMovementBounds
     ldr	r0, [sp, #20]
     b .Leu_08038258
 .Leu_08038256:
@@ -27493,7 +27493,7 @@ func_08038110:
     cmn	r1, r0
     bge .Lde_080380D4
     adds	r0, r5, #0
-    bl func_080ABBC4
+    bl RefreshUp__21TerrainMovementBounds
     ldr	r0, [sp, #16]
     b .Lde_080380D6
 .Lde_080380D4:
@@ -27514,7 +27514,7 @@ func_08038110:
     cmp	r1, r0
     ble .Lde_080380FA
     adds	r0, r5, #0
-    bl func_080ABBA0
+    bl RefreshDown__21TerrainMovementBounds
     ldr	r0, [sp, #12]
     b .Lde_080380FC
 .Lde_080380FA:
@@ -27542,7 +27542,7 @@ func_08038110:
     cmp	r1, r0
     ble .Lde_0803812A
     adds	r0, r5, #0
-    bl func_080ABC14
+    bl RefreshRight__21TerrainMovementBounds
     ldr	r0, [sp, #24]
     b .Lde_0803812C
 .Lde_0803812A:
@@ -27567,7 +27567,7 @@ func_08038110:
     cmn	r1, r0
     bge .Lde_08038156
     adds	r0, r5, #0
-    bl func_080ABBEC
+    bl RefreshLeft__21TerrainMovementBounds
     ldr	r0, [sp, #20]
     b .Lde_08038158
 .Lde_08038156:
@@ -38342,7 +38342,7 @@ func_08038110:
     cmn	r1, r0
     bge .Lus_080381C0
     adds	r0, r5, #0
-    bl func_080ABBC4
+    bl RefreshUp__21TerrainMovementBounds
     ldr	r0, [sp, #16]
     b .Lus_080381C2
 .Lus_080381C0:
@@ -38363,7 +38363,7 @@ func_08038110:
     cmp	r1, r0
     ble .Lus_080381E6
     adds	r0, r5, #0
-    bl func_080ABBA0
+    bl RefreshDown__21TerrainMovementBounds
     ldr	r0, [sp, #12]
     b .Lus_080381E8
 .Lus_080381E6:
@@ -38391,7 +38391,7 @@ func_08038110:
     cmp	r1, r0
     ble .Lus_08038216
     adds	r0, r5, #0
-    bl func_080ABC14
+    bl RefreshRight__21TerrainMovementBounds
     ldr	r0, [sp, #24]
     b .Lus_08038218
 .Lus_08038216:
@@ -38416,7 +38416,7 @@ func_08038110:
     cmn	r1, r0
     bge .Lus_08038242
     adds	r0, r5, #0
-    bl func_080ABBEC
+    bl RefreshLeft__21TerrainMovementBounds
     ldr	r0, [sp, #20]
     b .Lus_08038244
 .Lus_08038242:
