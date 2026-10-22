@@ -336,6 +336,9 @@ SECTIONS
             .text.SetWorldCameraPosition);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
+        src/entity_actor.o(.text.entity_actor_movement);
+        asm/code_entities.o(.text.entity_actor_sound);
+        src/entity_actor.o(.text.entity_actor_animation_complete);
         asm/code_entities.o(.text);
         src/livestock_actor.o(.text.IsSick__C12ChickenActor);
         asm/code_entities.o(.text.livestock_actor_chicken_after_sick_check);

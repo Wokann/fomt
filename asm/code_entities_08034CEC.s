@@ -8889,7 +8889,7 @@ func_080398A4:
     bl func_08039D5C
     adds	r1, r0, #0
     adds	r0, r6, #0
-    bl func_0801FE14
+    bl SetMovementSpeed__12AActorEntityi
     adds	r0, r6, #0
     adds	r1, r4, #0
     bl func_08039D4C
@@ -9302,7 +9302,7 @@ func_08039A60:
     bl func_08039D5C
     adds	r1, r0, #0
     adds	r0, r7, #0
-    bl func_0801FE14
+    bl SetMovementSpeed__12AActorEntityi
 .Ljp_08039A4C:
     ldr	r0, [r7, #76]	@ 0x4c
     cmp	r4, r0
@@ -19590,7 +19590,7 @@ func_080398A4:
     bl func_08039D5C
     adds	r1, r0, #0
     adds	r0, r6, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
     adds	r0, r6, #0
     adds	r1, r4, #0
     bl func_08039D4C
@@ -20003,7 +20003,7 @@ func_08039A60:
     bl func_08039D5C
     adds	r1, r0, #0
     adds	r0, r7, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
 .Leu_08039CCC:
     ldr	r0, [r7, #76]	@ 0x4c
     cmp	r4, r0
@@ -30440,7 +30440,7 @@ func_080398A4:
     bl func_08039D5C
     adds	r1, r0, #0
     adds	r0, r6, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
     adds	r0, r6, #0
     adds	r1, r4, #0
     bl func_08039D4C
@@ -30853,7 +30853,7 @@ func_08039A60:
     bl func_08039D5C
     adds	r1, r0, #0
     adds	r0, r7, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
 .Lde_08039BCC:
     ldr	r0, [r7, #76]	@ 0x4c
     cmp	r4, r0
@@ -41289,7 +41289,7 @@ func_080398A4:
     bl func_08039D5C
     adds	r1, r0, #0
     adds	r0, r6, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
     adds	r0, r6, #0
     adds	r1, r4, #0
     bl func_08039D4C
@@ -41702,7 +41702,7 @@ func_08039A60:
     bl func_08039D5C
     adds	r1, r0, #0
     adds	r0, r7, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
 .Lus_08039CB8:
     ldr	r0, [r7, #76]	@ 0x4c
     cmp	r4, r0

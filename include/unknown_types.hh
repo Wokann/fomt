@@ -5,6 +5,7 @@
 
 #include "fomt_constants.hh"
 #include "map_data.hh"
+#include "resource_handle.hh"
 
 // TODO: move elsewhere
 struct UnkBarnAnimal2C
@@ -155,11 +156,6 @@ struct GameObject
     /* +00 */ // vtable
 };
 
-struct SpriteAnimator
-{
-    /* +00 */ STRUCT_PAD(0x00, 0x14);
-};
-
 struct UnknownEntityThingBase
 {
     virtual ~UnknownEntityThingBase();
@@ -174,7 +170,7 @@ struct UnknownEntityThingBase
 struct UnknownEntityThing : public UnknownEntityThingBase
 {
     /* +08 */ STRUCT_PAD(0x08, 0x30);
-    /* +30 */ SpriteAnimator sprite_animator;
+    /* +30 */ IndexedResourceHandle sprite_animator;
     /* +44 */ u8 unk_44;
     /* +45 */ u8 unk_45;
     /* +46 */ u8 unk_46;
@@ -184,7 +180,7 @@ struct UnknownEntityThing : public UnknownEntityThingBase
 
     /* +48 */ STRUCT_PAD(0x48, 0x70);
 
-    /* +70 */ SpriteAnimator sprite_animator_70;
+    /* +70 */ IndexedResourceHandle sprite_animator_70;
     /* +84 */ u8 unk_84;
     /* +85 */ STRUCT_PAD(0x85, 0x86);
     /* +86 */ u8 unk_86;
@@ -194,6 +190,9 @@ struct UnknownEntityThing : public UnknownEntityThingBase
     /* +8A */ u8 unk_8A_0 : 2;
     /* +8A */ u8 unk_8A_2 : 6;
 };
+
+typedef char EntitySpriteAnimationOffsetCheck[offsetof(UnknownEntityThing, sprite_animator) == 0x30 ? 1 : -1];
+typedef char EntitySecondSpriteAnimationOffsetCheck[offsetof(UnknownEntityThing, sprite_animator_70) == 0x70 ? 1 : -1];
 
 // Calendar day values. Shift these left by two bits when forming a GameDate
 // byte, whose low two bits hold a Season.

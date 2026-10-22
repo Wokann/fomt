@@ -19,6 +19,10 @@ struct AActorEntity : public AEntity
     /* vt+34 */ virtual u32 vfunc_34();
     /* vt+38 */ virtual void SetEventScript(MaryScriptId script_id);
 
+    bool IsOnCurrentMap() const SECTION(".text.entity_actor_movement");
+    void SetMovementSpeed(i32 speed_q16) SECTION(".text.entity_actor_movement");
+    bool IsAnimationComplete() const SECTION(".text.entity_actor_animation_complete");
+
     void SetLocation(ActorLocation const & location);
     ActorLocation GetLocation() const;
     void SetAnimFacing(u32 facing);

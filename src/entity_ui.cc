@@ -471,7 +471,6 @@ extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
                                HarvestSprite::Task task,
                                EntityUiHarvestSpriteEntry const * entries);
 
-extern "C" void ResolveIndexedResourceHandle(void * handle, u32 index);
 extern "C" void func_080324BC(EntityUiConstructorState * state, void * arg_1,
                                u32 arg_2, u32 arg_3, u32 arg_4, u32 arg_5,
                                u32 arg_6, bool arg_7);
@@ -632,7 +631,7 @@ extern "C" void func_08034BFC(EntityUiResourceSetupState * state,
 {
     u16 const * table = gUnk_080F14F0;
     u16 resource_id = table[table_index];
-    ResolveIndexedResourceHandle(state->resource_handle, resource_id);
+    ResolveIndexedResourceHandle(&state->resource_handle, resource_id);
 
     state->enabled = 1;
     state->active = 0;

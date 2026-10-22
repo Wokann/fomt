@@ -63,7 +63,7 @@ struct EntityUiAnimationState
 struct EntityUiResourceSetupState
 {
     u8 unknown_00[0xB4];
-    u8 resource_handle[0x14];
+    IndexedResourceHandle resource_handle;
     u8 enabled;
     u8 unknown_C9;
     u8 active;
@@ -72,6 +72,10 @@ struct EntityUiResourceSetupState
     u16 second_value;
     u16 duration;
 };
+
+typedef char EntityUiResourceHandleOffsetCheck[offsetof(EntityUiResourceSetupState, resource_handle) == 0xB4 ? 1 : -1];
+typedef char EntityUiResourceEnabledOffsetCheck[offsetof(EntityUiResourceSetupState, enabled) == 0xC8 ? 1 : -1];
+typedef char EntityUiResourceDurationOffsetCheck[offsetof(EntityUiResourceSetupState, duration) == 0xD0 ? 1 : -1];
 
 struct EntityUiCallbackState
 {

@@ -2,8 +2,46 @@
 
 #include <stdlib.h>
 
-extern "C" void ResolveIndexedResourceHandle(SpriteAnimator * self, u32 anim_id);
 extern "C" u32 func_08032090(void * sprite, u32 anim_id); // Sprite
+
+bool AActorEntity::IsOnCurrentMap() const
+{
+    return game_object->vfunc_14() == location_map;
+}
+
+void AActorEntity::SetMovementSpeed(i32 speed_q16)
+{
+    i32 x_speed = 0;
+    i32 y_speed = 0;
+    if (speed_q16 != 0) {
+        fu8 direction = facing;
+        switch (direction) {
+        case FACING_DOWN: y_speed = speed_q16; break;
+        case FACING_UP: y_speed = -speed_q16; break;
+        case FACING_LEFT: x_speed = -speed_q16; break;
+        case FACING_RIGHT: x_speed = speed_q16; break;
+        }
+    }
+    x_speed_q16 = x_speed;
+    y_speed_q16 = y_speed;
+}
+
+// A missing sprite or stopped traversal is complete; otherwise predict the next wrap.
+bool AActorEntity::IsAnimationComplete() const
+{
+    UnknownEntityThing * sprite = unk_10.Get();
+    if (sprite != 0) {
+        bool complete = false;
+        IndexedResourceHandle const * animation = &sprite->sprite_animator;
+        u32 active = 0;
+        if (animation->metric_scaled != 0)
+            active = animation->scroll_delta != 0;
+        if (active == 0 || WouldIndexedResourceHandleWrap(animation))
+            complete = true;
+        return complete;
+    }
+    return true;
+}
 
 AActorEntity::AActorEntity(GameObject * game_object, ActorLocation const & location, u32 arg_2, u32 anim_id)
     : AEntity(game_object, location), x_speed_q16(0), y_speed_q16(0), facing(location.facing), unk_21(arg_2)

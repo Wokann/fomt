@@ -10,67 +10,7 @@
     .thumb_func
 
 
-    .global func_0801FDF4
-    .thumb_func
-func_0801FDF4:
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, [r4]
-    ldr r1, [r0]
-    ldr r1, [r1, #0x14]
-    bl _call_via_r1
-    movs r1, #0
-    ldrh r4, [r4, #4]
-    cmp r0, r4
-    bne .Ljp_0801FE0C
-    movs r1, #1
-.Ljp_0801FE0C:
-    adds r0, r1, #0
-    pop {r4}
-    pop {r1}
-    bx r1
-    .global func_0801FE14
-    .thumb_func
-func_0801FE14:
-    push {r4, r5, lr}
-    adds r3, r0, #0
-    movs r4, #0
-    movs r5, #0
-    cmp r1, #0
-    beq .Ljp_0801FE4C
-    adds r0, #0x20
-    ldrb r0, [r0]
-    adds r2, r0, #0
-    cmp r0, #1
-    beq .Ljp_0801FE42
-    cmp r0, #1
-    bgt .Ljp_0801FE34
-    cmp r0, #0
-    beq .Ljp_0801FE3E
-    b .Ljp_0801FE4C
-.Ljp_0801FE34:
-    cmp r2, #2
-    beq .Ljp_0801FE46
-    cmp r2, #3
-    beq .Ljp_0801FE4A
-    b .Ljp_0801FE4C
-.Ljp_0801FE3E:
-    adds r5, r1, #0
-    b .Ljp_0801FE4C
-.Ljp_0801FE42:
-    rsbs r5, r1, #0
-    b .Ljp_0801FE4C
-.Ljp_0801FE46:
-    rsbs r4, r1, #0
-    b .Ljp_0801FE4C
-.Ljp_0801FE4A:
-    adds r4, r1, #0
-.Ljp_0801FE4C:
-    str r4, [r3, #0x18]
-    str r5, [r3, #0x1c]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
+    .section .text.entity_actor_sound, "ax", %progbits
     .align 2, 0
 
     .global func_0801FE58
@@ -87,7 +27,7 @@ func_0801FE58:
     cmp r0, #0
     bne .Ljp_0801FEBA
     adds r0, r4, #0
-    bl func_0801FDF4
+    bl IsOnCurrentMap__C12AActorEntity
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0801FEBA
@@ -132,44 +72,7 @@ func_0801FE58:
     pop {r0}
     bx r0
 
-    .global func_0801FEC4
-    .thumb_func
-func_0801FEC4:
-    push {r4, lr}
-    ldr r0, [r0, #0x10]
-    cmp r0, #0
-    beq .Ljp_0801FEFA
-    movs r4, #0
-    adds r2, r0, #0
-    adds r2, #0x30
-    movs r1, #0
-    ldrh r0, [r2, #0xe]
-    cmp r0, #0
-    beq .Ljp_0801FEE4
-    movs r0, #0x10
-    ldrsh r1, [r2, r0]
-    rsbs r0, r1, #0
-    orrs r0, r1
-    lsrs r1, r0, #0x1f
-.Ljp_0801FEE4:
-    cmp r1, #0
-    beq .Ljp_0801FEF4
-    adds r0, r2, #0
-    bl WouldIndexedResourceHandleWrap
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Ljp_0801FEF6
-.Ljp_0801FEF4:
-    movs r4, #1
-.Ljp_0801FEF6:
-    adds r0, r4, #0
-    b .Ljp_0801FEFC
-.Ljp_0801FEFA:
-    movs r0, #1
-.Ljp_0801FEFC:
-    pop {r4}
-    pop {r1}
-    bx r1
+    .section .text
     .align 2, 0
 
     .global func_0801FF04
@@ -1321,7 +1224,7 @@ func_08020260:
     cmp r0, #0
     bne .Ljp_080207DC
     adds r0, r6, #0
-    bl func_0801FEC4
+    bl IsAnimationComplete__C12AActorEntity
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_080207DC
@@ -2452,7 +2355,7 @@ func_08020F78:
     bl func_08020EC4
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0801FE14
+    bl SetMovementSpeed__12AActorEntityi
     adds r0, r4, #0
     adds r0, #0x41
     adds r6, r0, #0
@@ -3666,7 +3569,7 @@ func_08021580:
     cmp r0, #0
     bne .Lauto_08021A12
     adds r0, r6, #0
-    bl func_0801FEC4
+    bl IsAnimationComplete__C12AActorEntity
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Lauto_08021A12
@@ -4232,7 +4135,7 @@ func_08021DDC:
     bl func_08021D40
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0801FE14
+    bl SetMovementSpeed__12AActorEntityi
     adds r0, r4, #0
     adds r0, #0x3c
     adds r6, r0, #0
@@ -4958,7 +4861,7 @@ func_08022250:
     b .Lauto_0802253E
     .Lauto_0802249A:
     mov r0, sb
-    bl func_0801FEC4
+    bl IsAnimationComplete__C12AActorEntity
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Lauto_0802253E
@@ -5055,7 +4958,7 @@ func_08022648:
     bl loc_08022738
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0801FE14
+    bl SetMovementSpeed__12AActorEntityi
     adds r0, r4, #0
     adds r0, #0x38
     adds r7, r0, #0
@@ -5812,7 +5715,7 @@ func_08022A8C:
     b loc_08022D9A
     .Lauto_08022CE2:
     mov r0, r8
-    bl func_0801FEC4
+    bl IsAnimationComplete__C12AActorEntity
     lsls r0, r0, #0x18
     cmp r0, #0
     beq loc_08022D9A
@@ -6242,7 +6145,7 @@ func_0802309C:
     bl loc_08023194
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0801FE14
+    bl SetMovementSpeed__12AActorEntityi
     adds r0, r4, #0
     adds r0, #0x38
     adds r6, r0, #0
@@ -7208,7 +7111,7 @@ func_08023720:
     b loc_08023A42
     .Lauto_08023976:
     mov r0, r8
-    bl func_0801FEC4
+    bl IsAnimationComplete__C12AActorEntity
     lsls r0, r0, #0x18
     cmp r0, #0
     beq loc_08023A42
@@ -7649,7 +7552,7 @@ func_08023D44:
     bl loc_08023E50
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0801FE14
+    bl SetMovementSpeed__12AActorEntityi
     adds r0, r4, #0
     adds r0, #0x38
     adds r6, r0, #0
@@ -36351,66 +36254,7 @@ func_08032090:
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
-    thumb_func_start func_08020060
-func_08020060: @ 0x08020060
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, [r4]
-    ldr r1, [r0]
-    ldr r1, [r1, #0x14]
-    bl _call_via_r1
-    movs r1, #0
-    ldrh r4, [r4, #4]
-    cmp r0, r4
-    bne .L08020078
-    movs r1, #1
-.L08020078:
-    adds r0, r1, #0
-    pop {r4}
-    pop {r1}
-    bx r1
-
-    thumb_func_start func_08020080
-func_08020080: @ 0x08020080
-    push {r4, r5, lr}
-    adds r3, r0, #0
-    movs r4, #0
-    movs r5, #0
-    cmp r1, #0
-    beq .L080200B8
-    adds r0, #0x20
-    ldrb r0, [r0]
-    adds r2, r0, #0
-    cmp r0, #1
-    beq .L080200AE
-    cmp r0, #1
-    bgt .L080200A0
-    cmp r0, #0
-    beq .L080200AA
-    b .L080200B8
-.L080200A0:
-    cmp r2, #2
-    beq .L080200B2
-    cmp r2, #3
-    beq .L080200B6
-    b .L080200B8
-.L080200AA:
-    adds r5, r1, #0
-    b .L080200B8
-.L080200AE:
-    rsbs r5, r1, #0
-    b .L080200B8
-.L080200B2:
-    rsbs r4, r1, #0
-    b .L080200B8
-.L080200B6:
-    adds r4, r1, #0
-.L080200B8:
-    str r4, [r3, #0x18]
-    str r5, [r3, #0x1c]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
+    .section .text.entity_actor_sound, "ax", %progbits
     .align 2, 0
 
     thumb_func_start func_080200C4
@@ -36426,7 +36270,7 @@ func_080200C4: @ 0x080200C4
     cmp r0, #0
     bne .L08020126
     adds r0, r4, #0
-    bl func_08020060
+    bl IsOnCurrentMap__C12AActorEntity
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08020126
@@ -36471,43 +36315,7 @@ func_080200C4: @ 0x080200C4
     pop {r0}
     bx r0
 
-    thumb_func_start func_08020130
-func_08020130: @ 0x08020130
-    push {r4, lr}
-    ldr r0, [r0, #0x10]
-    cmp r0, #0
-    beq .L08020166
-    movs r4, #0
-    adds r2, r0, #0
-    adds r2, #0x30
-    movs r1, #0
-    ldrh r0, [r2, #0xe]
-    cmp r0, #0
-    beq .L08020150
-    movs r0, #0x10
-    ldrsh r1, [r2, r0]
-    rsbs r0, r1, #0
-    orrs r0, r1
-    lsrs r1, r0, #0x1f
-.L08020150:
-    cmp r1, #0
-    beq .L08020160
-    adds r0, r2, #0
-    bl WouldIndexedResourceHandleWrap
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L08020162
-.L08020160:
-    movs r4, #1
-.L08020162:
-    adds r0, r4, #0
-    b .L08020168
-.L08020166:
-    movs r0, #1
-.L08020168:
-    pop {r4}
-    pop {r1}
-    bx r1
+    .section .text
     .align 2, 0
 
     thumb_func_start func_08020170
@@ -37612,7 +37420,7 @@ func_080204CC: @ 0x080204CC
     cmp r0, #0
     bne .L08020A48
     adds r0, r6, #0
-    bl func_08020130
+    bl IsAnimationComplete__C12AActorEntity
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08020A48
@@ -38739,7 +38547,7 @@ func_080211E4: @ 0x080211E4
     bl func_08021130
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
     adds r0, r4, #0
     adds r0, #0x41
     adds r6, r0, #0
@@ -39601,7 +39409,7 @@ func_080217EC:
     .byte 0x05, 0x98, 0x00, 0xE0, 0x08, 0x1C
     .byte 0x0F, 0x28, 0x01, 0xDC, 0x01, 0x21, 0x88, 0x46, 0x42, 0x46, 0x00, 0x2A, 0x01, 0xD0, 0x00, 0x24
     .byte 0x4D, 0xE0, 0x01, 0x3C, 0x4B, 0xE0, 0x35, 0x9B, 0x18, 0x78, 0x00, 0x28, 0x47, 0xD1, 0x30, 0x1C
-    bl func_08020130
+    bl IsAnimationComplete__C12AActorEntity
     .byte 0x00, 0x06, 0x00, 0x28, 0x41, 0xD0, 0x54, 0x46, 0x20, 0x68, 0xA2, 0x25
     .byte 0x6D, 0x00, 0x40, 0x19, 0x01, 0x68, 0x50, 0x46
     bl _call_via_r1
@@ -39933,7 +39741,7 @@ func_08022048: @ 0x08022048
     bl func_08021FAC
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
     adds r0, r4, #0
     adds r0, #0x3c
     adds r6, r0, #0
@@ -40656,7 +40464,7 @@ func_080224E4: @ 0x080224E4
     b .L080227AA
 .L08022706:
     mov r0, sb
-    bl func_08020130
+    bl IsAnimationComplete__C12AActorEntity
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080227AA
@@ -40894,7 +40702,7 @@ func_080228B4: @ 0x080228B4
     bl func_080229A4
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
     adds r0, r4, #0
     adds r0, #0x38
     adds r7, r0, #0
@@ -41378,7 +41186,7 @@ func_08022CF8:
     bl func_080AB85C
     .byte 0x05, 0x98, 0x00, 0xE0, 0x08, 0x1C, 0x0F, 0x28, 0x00, 0xDC
     .byte 0x01, 0x27, 0x00, 0x2F, 0x01, 0xD0, 0x00, 0x24, 0x5D, 0xE0, 0x01, 0x3C, 0x5B, 0xE0, 0x40, 0x46
-    bl func_08020130
+    bl IsAnimationComplete__C12AActorEntity
     .byte 0x00, 0x06, 0x00, 0x28, 0x55, 0xD0, 0x38, 0x68, 0xA2, 0x21, 0x49, 0x00
     .byte 0x40, 0x18, 0x01, 0x68, 0x38, 0x1C
     bl _call_via_r1
@@ -41521,7 +41329,7 @@ func_08023308: @ 0x08023308
     bl func_08023400
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
     adds r0, r4, #0
     adds r0, #0x38
     adds r6, r0, #0
@@ -42191,7 +41999,7 @@ func_0802398C:
     .byte 0x05, 0x98, 0x00, 0xE0, 0x08, 0x1C
     .byte 0x0F, 0x28, 0x00, 0xDC, 0x01, 0x27, 0x00, 0x2F, 0x01, 0xD0, 0x00, 0x24, 0x67, 0xE0, 0x01, 0x3C
     .byte 0x65, 0xE0, 0x40, 0x46
-    bl func_08020130
+    bl IsAnimationComplete__C12AActorEntity
     .byte 0x00, 0x06, 0x00, 0x28, 0x5F, 0xD0, 0x38, 0x68
     .byte 0xA2, 0x21, 0x49, 0x00, 0x40, 0x18, 0x01, 0x68, 0x38, 0x1C
     bl _call_via_r1
@@ -42339,7 +42147,7 @@ func_08023FB0: @ 0x08023FB0
     bl func_080240BC
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_08020080
+    bl SetMovementSpeed__12AActorEntityi
     adds r0, r4, #0
     adds r0, #0x38
     adds r6, r0, #0
