@@ -11,29 +11,59 @@
 
 struct HardwareManagerVBlankBinding;
 
-// This native subobject's full class hierarchy is not yet recovered.
+EXTERN_C
+extern struct HardwareManagerVBlankBinding * gCurrentHardwareVBlankBinding;
+EXTERN_C_END
+
+#ifdef __cplusplus
+// Restore the binding that was active before this scoped registration.
+struct HardwareManagerBindingRestore {
+    HardwareManagerVBlankBinding * previous;
+
+    explicit HardwareManagerBindingRestore(HardwareManagerVBlankBinding * binding)
+    {
+        HardwareManagerVBlankBinding * old = gCurrentHardwareVBlankBinding;
+        gCurrentHardwareVBlankBinding = binding;
+        previous = old;
+    }
+
+    virtual ~HardwareManagerBindingRestore()
+    {
+        gCurrentHardwareVBlankBinding = previous;
+    }
+};
+
+struct HardwareManagerPreviousBinding : HardwareManagerBindingRestore {
+    explicit HardwareManagerPreviousBinding(HardwareManagerVBlankBinding * binding)
+        : HardwareManagerBindingRestore(binding) {}
+};
+#else
 struct HardwareManagerPreviousBinding {
     struct HardwareManagerVBlankBinding * previous;
     HardwareLinkVirtualFunction const * vtable;
 };
+#endif
 
 // Save the previous VBlank callback and enable bit while this manager owns
 // IRQ slot zero. The halfword's following two bytes are natural padding.
 #ifdef __cplusplus
-// Its virtual destructor is defined in native assembly, so explicitly own
-// this class's table here rather than relying on C++ key-function inference.
+// The native key destructor still needs this translation unit to own its table.
 #pragma interface "hardware_manager.hh"
 #endif
 struct HardwareManagerVBlankBinding {
     struct HardwareLinkedList * commands;
+#ifdef __cplusplus
+    InterruptGuard guard;
+#else
     u16 enabled;
+#endif
     struct HardwareManagerPreviousBinding previous;
     InterruptHandler previous_handler;
 #ifdef __cplusplus
     HardwareManagerVBlankBinding(HardwareLinkedList * const & list)
-        asm("func_080D78F8") SECTION(".text.hardware_manager_vblank_binding");
-    // This virtual destructor's body is still the original Thumb assembly.
-    virtual ~HardwareManagerVBlankBinding() asm("func_080D7944");
+        SECTION(".text.hardware_manager_vblank_binding");
+    // The real destructor entry remains native until its C++ body matches.
+    virtual ~HardwareManagerVBlankBinding();
 #else
     HardwareLinkVirtualFunction const * vtable;
 #endif
@@ -88,8 +118,8 @@ struct HardwareManagerState {
 struct HardwareManagerOwner {
     struct HardwareManagerState * state;
 #ifdef __cplusplus
-    HardwareManagerOwner() asm("func_08008980");
-    ~HardwareManagerOwner() asm("func_08008A68");
+    HardwareManagerOwner();
+    ~HardwareManagerOwner();
 #endif
 };
 
@@ -124,31 +154,17 @@ typedef char HardwareManagerState_vblank_offset_check[
 
 EXTERN_C
 
-extern struct HardwareManagerVBlankBinding * gUnk_03000410;
-extern HardwareLinkVirtualFunction const vtable_unk_080E5B48[];
-extern HardwareLinkVirtualFunction const vtable_unk_080E5B54[];
-
-struct HardwareManagerOwner * func_08008980(struct HardwareManagerOwner * owner);
-void func_08008A68(struct HardwareManagerOwner * owner, u32 flags);
-void func_080D78E0(void) SECTION(".text.hardware_manager_vblank_binding");
-struct HardwareManagerVBlankBinding * func_080D78F8(
-    struct HardwareManagerVBlankBinding * binding, struct HardwareLinkedList * const * list);
-void func_080D7944(struct HardwareManagerVBlankBinding * binding, u32 flags);
+void RunHardwareManagerVBlankCommands(void) SECTION(".text.hardware_manager_vblank_binding");
 
 // Distinct retained callbacks; these are not aliases to the earlier methods.
-void func_080D7990(struct HardwareLinkedList * list, struct HardwareLinkBase * link)
+void AppendHardwareVBlankCommand(struct HardwareLinkedList * list, struct HardwareLinkBase * link)
     SECTION(".text.hardware_manager_vblank_append");
-void func_080D79F8(struct HardwareLinkedList * list, struct HardwareLinkBase * link)
+void RemoveHardwareVBlankCommand(struct HardwareLinkedList * list, struct HardwareLinkBase * link)
     SECTION(".text.hardware_manager_vblank_after");
-void func_080D7A34(struct HardwareLinkedList * list, struct HardwareLinkedList * source)
+void SpliceHardwareVBlankCommands(struct HardwareLinkedList * list, struct HardwareLinkedList * source)
     SECTION(".text.hardware_manager_vblank_after");
-void func_080D7A70(struct HardwareLinkedList * list, struct HardwareLinkedList * other)
+void SwapHardwareVBlankCommands(struct HardwareLinkedList * list, struct HardwareLinkedList * other)
     SECTION(".text.hardware_manager_vblank_after");
-void func_080D7AAC(struct HardwareManagerPreviousBinding * binding, u32 flags)
-    SECTION(".text.hardware_manager_binding_cleanup");
-void func_080D7B04(struct HardwareManagerPreviousBinding * binding, u32 flags)
-    SECTION(".text.hardware_manager_cleanup_after");
-
 EXTERN_C_END
 
 #endif // HARDWARE_MANAGER_HH

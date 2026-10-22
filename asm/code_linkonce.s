@@ -4225,45 +4225,6 @@ Unreserve__19HardwareTileTree256UiUi:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .section .text.hardware_manager_vblank_after, "ax", %progbits
-    .align 2, 0
-
-    .global func_080D7944
-    .thumb_func
-func_080D7944:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, [pc, #0x38]
-    str r0, [r4, #0x14]
-    movs r0, #1
-    bl DisableInterrupts
-    ldr r1, [r4, #0x10]
-    movs r0, #0
-    bl ExchangeInterruptHandler
-    ldr r0, [pc, #0x28]
-    str r0, [r4, #0xc]
-    ldr r1, [pc, #0x28]
-    ldr r0, [r4, #8]
-    str r0, [r1]
-    ldrh r0, [r4, #4]
-    cmp r0, #0
-    beq .Lauto_080D7128
-    bl EnableInterrupts
-    .Lauto_080D7128:
-    movs r0, #1
-    ands r5, r0
-    cmp r5, #0
-    beq .Lauto_080D7136
-    adds r0, r4, #0
-    bl __builtin_delete
-    .Lauto_080D7136:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .4byte __vt_28HardwareManagerVBlankBinding
-    .4byte vtable_unk_080E5B54
-    .4byte gUnk_03000410
 
 
 
@@ -4615,45 +4576,6 @@ Unreserve__19HardwareTileTree256UiUi: @ 0x080D72C4
 	bx r0
 	.align 2, 0
 
-    .section .text.hardware_manager_vblank_after, "ax", %progbits
-    .align 2, 0
-
-	thumb_func_start func_080D7944
-func_080D7944: @ 0x080D7944
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L080D7984 @ =__vt_28HardwareManagerVBlankBinding
-	str r0, [r4, #0x14]
-	movs r0, #1
-	bl DisableInterrupts
-	ldr r1, [r4, #0x10]
-	movs r0, #0
-	bl ExchangeInterruptHandler
-	ldr r0, .L080D7988 @ =vtable_unk_080E5B54
-	str r0, [r4, #0xc]
-	ldr r1, .L080D798C @ =gUnk_03000410
-	ldr r0, [r4, #8]
-	str r0, [r1]
-	ldrh r0, [r4, #4]
-	cmp r0, #0
-	beq .L080D7970
-	bl EnableInterrupts
-.L080D7970:
-	movs r0, #1
-	ands r5, r0
-	cmp r5, #0
-	beq .L080D797E
-	adds r0, r4, #0
-	bl __builtin_delete
-.L080D797E:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080D7984: .4byte __vt_28HardwareManagerVBlankBinding
-.L080D7988: .4byte vtable_unk_080E5B54
-.L080D798C: .4byte gUnk_03000410
 
     .endif
 	.section ".text.code_080D7CFC"

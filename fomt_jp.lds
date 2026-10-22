@@ -47,7 +47,7 @@ SECTIONS
         . = 0x000404; src/hardware.o(.bss COMMON);
         . = 0x000408; src/hardware_refcount.o(.bss COMMON);
         . = 0x00040C; gUnk_0300040C = .;
-        . = 0x000410; gUnk_03000410 = .;
+        . = 0x000410; src/hardware_manager.o(.bss COMMON);
         . = 0x000414; gUnk_03000414 = .;
         . = 0x000418; src/heap.o(.bss COMMON);
         . = 0x00041C; src/joy_bus.o(.bss);
@@ -909,13 +909,13 @@ SECTIONS
         *(.gnu.linkonce.t._._22HardwareDisplayCommand);
         src/hardware_interrupt_guard.o(.text.hardware_frame_commands_after);
         src/hardware_manager.o(.text.hardware_manager_vblank_binding);
-        asm/code_linkonce.o(.text.hardware_manager_vblank_after);
+        asm/hardware_manager.o(.text);
         src/hardware_manager.o(.text.hardware_manager_vblank_append);
         *(.gnu.linkonce.t.__thunk_28__._27HardwareManagerCommandGroup);
         src/hardware_manager.o(.text.hardware_manager_vblank_after);
-        src/hardware_manager.o(.text.hardware_manager_binding_cleanup);
+        *(.gnu.linkonce.t._._29HardwareManagerBindingRestore);
         *(.gnu.linkonce.t._._27HardwareManagerCommandGroup);
-        src/hardware_manager.o(.text.hardware_manager_cleanup_after);
+        *(.gnu.linkonce.t._._30HardwareManagerPreviousBinding);
         *(.gnu.linkonce.t._._24HardwareSoundMainCommand);
         *(.gnu.linkonce.t._._25HardwareSoundVSyncCommand);
         *(.gnu.linkonce.t._._12HardwareLink);
@@ -1024,7 +1024,8 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_27HardwareManagerCommandGroup.28HardwareManagerVBlankBinding);
         *(.gnu.linkonce.d.__vt_27HardwareManagerCommandGroup);
         *(.gnu.linkonce.d.__vt_28HardwareManagerVBlankBinding);
-        src/hardware_manager.o(.rodata);
+        *(.gnu.linkonce.d.__vt_30HardwareManagerPreviousBinding);
+        *(.gnu.linkonce.d.__vt_29HardwareManagerBindingRestore);
         *(.gnu.linkonce.d.__vt_24HardwareSoundMainCommand);
         *(.gnu.linkonce.d.__vt_25HardwareSoundVSyncCommand);
         *(.gnu.linkonce.d.__vt_19HardwareBlendObject);
