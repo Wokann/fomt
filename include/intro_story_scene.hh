@@ -32,8 +32,10 @@ struct IntroStorySceneCore : HardwareBootstrap
     u8 object_tiles[20][0x500];
     u16 unk_6420;
     u16 unk_6422;
-    u16 unk_6424;
-    u16 unk_6426;
+    // Animation and dialogue share the story index. The dialogue coordinator
+    // keeps its original numeric states until the complete animation loop is recovered.
+    i16 story_step;
+    i16 dialogue_state;
     IntroStoryTextVariables variables;
 private:
     IntroStorySceneCore();
@@ -53,6 +55,9 @@ typedef char IntroStorySavedOffsetCheck[offsetof(IntroStorySceneCore, saved) == 
 typedef char IntroStoryMusicOffsetCheck[offsetof(IntroStorySceneCore, music_players) == 0x14 ? 1 : -1];
 typedef char IntroStoryObjectTilesOffsetCheck[offsetof(IntroStorySceneCore, object_tiles) == 0x20 ? 1 : -1];
 typedef char IntroStoryControlOffsetCheck[offsetof(IntroStorySceneCore, unk_6420) == 0x6420 ? 1 : -1];
+typedef char IntroStoryStepOffsetCheck[offsetof(IntroStorySceneCore, story_step) == 0x6424 ? 1 : -1];
+typedef char IntroStoryDialogueStateOffsetCheck[offsetof(IntroStorySceneCore, dialogue_state) == 0x6426 ? 1 : -1];
+typedef char IntroStoryMusicSlotsSizeCheck[sizeof(((IntroStorySceneCore *)0)->music_players) == 3 * sizeof(MusicPlayer *) ? 1 : -1];
 typedef char IntroStoryVTableSizeCheck[sizeof(IntroStorySceneCoreVTable) == 12 ? 1 : -1];
 typedef char IntroStoryDestroySlotCheck[offsetof(IntroStorySceneCoreVTable, destroy) == 8 ? 1 : -1];
 

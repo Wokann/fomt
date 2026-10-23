@@ -508,6 +508,8 @@ SECTIONS
         src/resource_handle.o(.text.indexed_resource_sprite_transform);
         src/intro_story_scene.o(.text.InitializeIntroStorySceneCore);
         asm/intro_story_scene.o(.text);
+        src/intro_story_scene.o(.text.UpdateIntroStoryUi);
+        asm/intro_story_scene.o(.text.intro_story_graphics);
         src/intro_story_scene.o(.text.__15IntroStorySceneRP15SceneTransitionP18GameStateSaveImage .text._._15IntroStoryScene .text.Run__15IntroStoryScene);
         asm/code_0803EE94.o(.text.intro_story_scene_after);
         src/new_game.o(.text.new_game_birthday_core);

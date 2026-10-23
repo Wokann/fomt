@@ -400,6 +400,8 @@ UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index)
 void func_08050D5C(UiStateOwner const * object) SECTION(".text.ui_state_adapters");
 void func_08050D68(UiStateOwner const * object) SECTION(".text.ui_state_adapters");
 void func_08050D74(void * const * object) SECTION(".text.ui_state_adapters");
+void func_08050DA0(UiStateOwner const * object, char const * text,
+    ScriptTextVariableStore * variables) SECTION(".text.ui_state_adapters");
 void * func_08050DF0(void * const * object) SECTION(".text.ui_state_adapters");
 void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
     u32 arg_r3) SECTION(".text.ui_state_adapters");

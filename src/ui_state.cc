@@ -270,8 +270,6 @@ EC void func_08050D80(void * const * object)
     SECTION(".text.ui_state_adapters");
 EC void func_08050D8C(void * const * object, u32 arg_r1)
     SECTION(".text.ui_state_adapters");
-EC void func_08050DA0(void * const * object, u32 arg_r1, u32 arg_r2)
-    SECTION(".text.ui_state_adapters");
 EC void func_08050DB4(void * const * object, u32 arg_r1, u16 arg_r2)
     SECTION(".text.ui_state_adapters");
 EC u8 func_08050DD8(void * const * object)
@@ -306,11 +304,10 @@ EC void func_08050D8C(void * const * object, u32 arg_r1)
         reinterpret_cast<char const *>(arg_r1), 0x100, nullptr);
 }
 
-EC void func_08050DA0(void * const * object, u32 arg_r1, u32 arg_r2)
+EC void func_08050DA0(UiStateOwner const * object, char const * text,
+    ScriptTextVariableStore * variables)
 {
-    static_cast<UiStatePayload *>(*object)->SetText(
-        reinterpret_cast<char const *>(arg_r1), 0x100,
-        reinterpret_cast<ScriptTextVariableStore *>(arg_r2));
+    object->value->SetText(text, 0x100, variables);
 }
 
 EC void func_08050DB4(void * const * object, u32 arg_r1, u16 arg_r2)
