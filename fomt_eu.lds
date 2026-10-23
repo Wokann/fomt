@@ -428,7 +428,7 @@ SECTIONS
         src/code_0803C540.o(.text);
         . = 0x3C560; /* US ROM 0x0803C54C, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803C54C);
-        src/map_clock_status.o(.text._._24MapClockStatusHudContent);
+        src/map_clock_status.o(.text.__24MapClockStatusHudContent .text._._24MapClockStatusHudContent);
         asm/code_0803A8A4.o(.text.map_clock_status_renderer_calendar);
         src/map_clock_status.o(.text.SetMapClockStatusHud* .text.ClearMapClockStatusHud*);
         asm/code_0803A8A4.o(.text.map_clock_status_hud_adapters);
@@ -935,7 +935,7 @@ SECTIONS
         asm/code_linkonce.o(.text.npc_timed_path_search_after);
         src/ui_state.o(.text.Lookup__23ScriptTextVariableStoreUi .text._._23ScriptTextVariableStore);
         asm/code_linkonce.o(.text.script_text_variables_after);
-        src/hardware_dma_link.o(.text .gnu.linkonce.t._._19HardwareDmaCopyLink);
+        src/hardware_dma_link.o(.text.Run__19HardwareDmaCopyLink .gnu.linkonce.t._._19HardwareDmaCopyLink);
         src/map_clock_status.o(.gnu.linkonce.t._._21MapClockStatusHudData);
         asm/code_linkonce.o(.text.map_clock_status_lifecycle_after);
         *(.gnu.linkonce.t.__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01);

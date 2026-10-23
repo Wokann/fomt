@@ -2,54 +2,45 @@
 #define MAP_CLOCK_STATUS_HH
 
 #include "prelude.h"
-
 #include "hardware_dma_link.hh"
 #include "hardware_resource.hh"
 #include "hardware_state_clear.hh"
 #include "resource_handle.hh"
+#include <string.h>
 
 #pragma interface "map_clock_status.hh"
 
-// Native allocation is 0x35C in all four regions. Resource/handle/link members
-// are confirmed independently by construction and reverse-order destruction.
+// Confirmed by both native rendering paths: each buffer uploads eight OBJ
+// tiles when dirty and when its DMA node is no longer linked.
+// The state entry owns eight OBJ tiles; the DMA link follows its dirty byte.
+struct MapClockStatusHudTileBuffer {
+    u32 tiles[8][8];
+    HardwareStateEntry state;
+    u8 dirty;
+    HardwareDmaCopyLink upload;
+
+    MapClockStatusHudTileBuffer() : state(3), dirty(1) {}
+    void SetTile(u32 (&tile)[8], u8 const * glyph)
+    {
+        memcpy(tile, glyph, 32);
+        dirty = 1;
+    }
+    void SetTile(u32 index, u8 const * glyph)
+    {
+        memcpy(tiles[index], glyph, 32);
+        dirty = 1;
+    }
+};
+
+// Full native 0x35C allocation; unresolved selector/value storage stays unk.
 struct MapClockStatusHudData {
     IndexedResourceArchive unk_archive_000;
     IndexedResourceArchive unk_archive_030;
-    HardwareResourceEntry unk_pool_060;
-    HardwareDmaCopyLink date_dma;
-    u8 unk_080;
-    u32 season_tiles[2][8];
-    u32 day_digit_tiles[2][8];
-#if defined(REGION_DE)
-    u32 unk_104[24];
-    u32 hour_tens_tile[8];
-#else
-    u32 meridiem_tile[8];
-    u32 unk_124[8];
-    u32 hour_tens_tile[8];
-    u32 hour_ones_tile[8];
-#endif
-    HardwareStateEntry date_tiles_state;
-    u8 date_tiles_dirty;
-    HardwareDmaCopyLink time_dma;
-#if defined(REGION_JP)
-    u32 unk_1A8[16];
-    u32 weekday_tiles[1][8];
-#else
-    u32 weekday_tiles[3][8];
-#endif
-    u32 unk_208[8];
-#if defined(REGION_DE)
-    u32 hour_ones_tile[8];
-#endif
-    u32 colon_tile[8];
-    u32 minute_digit_tiles[2][8];
-#if !defined(REGION_DE)
-    u32 unk_288[8];
-#endif
-    HardwareStateEntry time_tiles_state;
-    u8 time_tiles_dirty;
-    HardwareDmaCopyLink unk_dma_2B4;
+    HardwareResourceEntry palette;
+    HardwareDmaCopyLink palette_upload;
+    u8 palette_dirty;
+    MapClockStatusHudTileBuffer date_tiles;
+    MapClockStatusHudTileBuffer time_tiles;
     u8 unk_selector;
     HardwareStateEntry unk_state_2D0;
     HardwareDmaCopyLink unk_dma_2D8;
@@ -66,47 +57,41 @@ struct MapClockStatusHudData {
     u8 unk_358;
 
 private:
-    // The still-native content constructor initializes this aggregate.
+    friend struct MapClockStatusHudContent;
     MapClockStatusHudData();
 };
 
 struct MapClockStatusHudContent {
     MapClockStatusHudData * state;
-    // This constructor remains native while its member initialization is recovered.
     MapClockStatusHudContent();
     ~MapClockStatusHudContent() { delete state; }
 };
 
-typedef char MapClockStatusHudDataSize[sizeof(MapClockStatusHudData) == 0x35C ? 1 : -1];
-typedef char MapClockStatusArchiveOffset[offsetof(MapClockStatusHudData, unk_archive_030) == 0x30 ? 1 : -1];
-typedef char MapClockStatusDateDmaOffset[offsetof(MapClockStatusHudData, date_dma) == 0x68 ? 1 : -1];
-typedef char MapClockStatusDateStateOffset[offsetof(MapClockStatusHudData, date_tiles_state) == 0x184 ? 1 : -1];
-typedef char MapClockStatusTimeDmaOffset[offsetof(MapClockStatusHudData, time_dma) == 0x190 ? 1 : -1];
-typedef char MapClockStatusTimeStateOffset[offsetof(MapClockStatusHudData, time_tiles_state) == 0x2A8 ? 1 : -1];
-typedef char MapClockStatusUnknownStateOffset[offsetof(MapClockStatusHudData, unk_state_338) == 0x338 ? 1 : -1];
-typedef char MapClockStatusLastDmaOffset[offsetof(MapClockStatusHudData, unk_dma_340) == 0x340 ? 1 : -1];
-
-typedef char MapClockStatusSeasonTilesOffset[offsetof(MapClockStatusHudData, season_tiles) == 0x84 ? 1 : -1];
-typedef char MapClockStatusDayDigitsOffset[offsetof(MapClockStatusHudData, day_digit_tiles) == 0xC4 ? 1 : -1];
-#if defined(REGION_JP)
-typedef char MapClockStatusWeekdayOffset[offsetof(MapClockStatusHudData, weekday_tiles) == 0x1E8 ? 1 : -1];
-#else
-typedef char MapClockStatusWeekdayOffset[offsetof(MapClockStatusHudData, weekday_tiles) == 0x1A8 ? 1 : -1];
-#endif
-typedef char MapClockStatusDateDirtyOffset[offsetof(MapClockStatusHudData, date_tiles_dirty) == 0x18C ? 1 : -1];
+enum {
 #if defined(REGION_DE)
-typedef char MapClockStatusHourTensOffset[offsetof(MapClockStatusHudData, hour_tens_tile) == 0x164 ? 1 : -1];
-typedef char MapClockStatusHourOnesOffset[offsetof(MapClockStatusHudData, hour_ones_tile) == 0x228 ? 1 : -1];
-typedef char MapClockStatusColonOffset[offsetof(MapClockStatusHudData, colon_tile) == 0x248 ? 1 : -1];
-typedef char MapClockStatusMinuteDigitsOffset[offsetof(MapClockStatusHudData, minute_digit_tiles) == 0x268 ? 1 : -1];
+    MAP_CLOCK_DATE_HOUR_TENS_TILE = 7,
+    MAP_CLOCK_TIME_COLON_TILE = 5,
+    MAP_CLOCK_TIME_MINUTE_TENS_TILE = 6,
 #else
-typedef char MapClockStatusMeridiemOffset[offsetof(MapClockStatusHudData, meridiem_tile) == 0x104 ? 1 : -1];
-typedef char MapClockStatusHourTensOffset[offsetof(MapClockStatusHudData, hour_tens_tile) == 0x144 ? 1 : -1];
-typedef char MapClockStatusHourOnesOffset[offsetof(MapClockStatusHudData, hour_ones_tile) == 0x164 ? 1 : -1];
-typedef char MapClockStatusColonOffset[offsetof(MapClockStatusHudData, colon_tile) == 0x228 ? 1 : -1];
-typedef char MapClockStatusMinuteDigitsOffset[offsetof(MapClockStatusHudData, minute_digit_tiles) == 0x248 ? 1 : -1];
+    MAP_CLOCK_DATE_HOUR_TENS_TILE = 6,
+    MAP_CLOCK_TIME_COLON_TILE = 4,
+    MAP_CLOCK_TIME_MINUTE_TENS_TILE = 5,
 #endif
-typedef char MapClockStatusTimeDirtyOffset[offsetof(MapClockStatusHudData, time_tiles_dirty) == 0x2B0 ? 1 : -1];
+#if defined(REGION_JP)
+    MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE = 2,
+#else
+    MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE = 0,
+#endif
+};
+
+typedef char MapClockStatusHudDataSize[sizeof(MapClockStatusHudData) == 0x35C ? 1 : -1];
+typedef char MapClockStatusBufferSize[sizeof(MapClockStatusHudTileBuffer) == 0x124 ? 1 : -1];
+typedef char MapClockStatusBufferStateOffset[offsetof(MapClockStatusHudTileBuffer, state) == 0x100 ? 1 : -1];
+typedef char MapClockStatusBufferDirtyOffset[offsetof(MapClockStatusHudTileBuffer, dirty) == 0x108 ? 1 : -1];
+typedef char MapClockStatusBufferUploadOffset[offsetof(MapClockStatusHudTileBuffer, upload) == 0x10C ? 1 : -1];
+typedef char MapClockStatusDateOffset[offsetof(MapClockStatusHudData, date_tiles) == 0x84 ? 1 : -1];
+typedef char MapClockStatusTimeOffset[offsetof(MapClockStatusHudData, time_tiles) == 0x1A8 ? 1 : -1];
+typedef char MapClockStatusPaletteUploadOffset[offsetof(MapClockStatusHudData, palette_upload) == 0x68 ? 1 : -1];
 typedef char MapClockStatusSelectorOffset[offsetof(MapClockStatusHudData, unk_selector) == 0x2CC ? 1 : -1];
 typedef char MapClockStatusSelectorDirtyOffset[offsetof(MapClockStatusHudData, unk_selector_dirty) == 0x2F0 ? 1 : -1];
 typedef char MapClockStatusValueActiveOffset[offsetof(MapClockStatusHudData, unk_value_active) == 0x2F1 ? 1 : -1];
@@ -115,6 +100,13 @@ typedef char MapClockStatusValueDirtyOffset[offsetof(MapClockStatusHudData, unk_
 typedef char MapClockStatusContentSize[sizeof(MapClockStatusHudContent) == 4 ? 1 : -1];
 
 EXTERN_C
+extern u8 const gUnk_0875B444[];
+#if defined(REGION_JP)
+extern u8 const gUnk_083ED9FC[];
+#else
+extern u8 const gUnk_086678A0[];
+#endif
+
 // Invalid signed values use the spring tile pair, as in the native switch.
 void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season);
 // The day is one-based. JP callers provide weekday 0..6; overseas invalid

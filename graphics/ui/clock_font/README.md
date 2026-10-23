@@ -33,8 +33,10 @@ data, not a font header. This boundary was checked against the project's
 assembled data object; PNG-to-4bpp round trips preserve all bytes.
 
 The PNG palette is an editor-only grey ramp that represents indices 0 through
-15.  It is **not** the game's runtime palette, which has not been proven by
-the direct-copy consumer.  Rebuilding deliberately ignores PNG palette
+15. It is **not** an exported game palette. The recovered HUD constructor and
+native renderer identify a separate resource-archive palette upload to OBJ
+palette RAM; that resource has not been converted into this PNG's authoring
+palette. Rebuilding deliberately ignores PNG palette
 colours and preserves only tile indices. Overseas `shared/tail.bin` is the final four
 bytes of the native `0x1004`-byte record; it is retained verbatim instead of
 being misrepresented as a glyph.
@@ -62,7 +64,10 @@ consumer and physical boundary above. The one-time JP source conversion used
 the existing assembled project bytes; normal builds read only the maintained
 PNG and generated source-adjacent 4bpp file, not an original ROM or a template.
 
-The DE HUD record has one additional tile slot before its colon and minute
-digits. `include/map_clock_status.hh` describes the real regional field layout;
-the common C++ implementation accesses the same field names without adding
-an offset to a different region's pointer.
+The HUD contains separate date and time buffers, each with eight tiles, a
+shared-state handle, a dirty byte and a DMA upload node. DE uses an additional
+fixed date-label tile and keeps its hour ones digit in the time buffer, shifting
+the colon/minute element indices there. `include/map_clock_status.hh` models
+the shared buffer and the actual regional array indices, without adding an
+offset to a different region's pointer. JP's fixed glyph 20 initializes time
+slot 3, while its weekday setter writes slot 2; these are distinct native slots.

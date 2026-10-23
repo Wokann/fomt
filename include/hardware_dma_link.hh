@@ -13,6 +13,8 @@ struct HardwareDmaCopyLink : HardwareLinkBase {
     void * destination;
     u32 byte_count;
 
+    HardwareDmaCopyLink() : source(0), destination(0), byte_count(0) {}
+
     virtual bool Run()
     {
         CopyHardwareDma3(source, destination, byte_count);
