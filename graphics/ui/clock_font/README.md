@@ -54,6 +54,9 @@ four-byte `shared/tail.bin` overseas; JP has no such trailing word.
 No dedicated clock-font build script or
 intermediate combined binary is needed.
 
+The PNG files are tracked authoring sources. Regional `glyph_indices.4bpp`
+files remain beside them as ignored, regenerable build outputs.
+
 The earlier overseas-only classification is superseded by the verified JP
 consumer and physical boundary above. The one-time JP source conversion used
 the existing assembled project bytes; normal builds read only the maintained
