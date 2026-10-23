@@ -231,6 +231,8 @@ EXTERN_C
 // The first update reports GROUP_CHANGED and clears the initialized byte.
 // A zero metric stops traversal; the other bits describe the whole update,
 // including any boundary crossed while consuming more than one entry.
+// Traversal requires a nonempty resolved range and a valid current index;
+// inactive handles do not read entries.
 enum IndexedResourceUpdateFlag
 {
     INDEXED_RESOURCE_ENTRY_ADVANCED = 1,
@@ -238,7 +240,8 @@ enum IndexedResourceUpdateFlag
     INDEXED_RESOURCE_WRAPPED = 4,
 };
 
-u32 UpdateIndexedResourceHandle(IndexedResourceHandle *);
+u32 UpdateIndexedResourceHandle(IndexedResourceHandle *)
+    SECTION(".text.indexed_resource_handle_update");
 
 // Non-affine sprites are clipped to the screen; affine records use the
 // selected OAM matrix. Copy attributes only, preserving matrix coefficients.

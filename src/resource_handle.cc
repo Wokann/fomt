@@ -175,6 +175,86 @@ extern "C" bool WouldIndexedResourceHandleWrap(IndexedResourceHandle const * han
     return false;
 }
 
+static inline IndexedResourceEntry const & GetIndexedResourceEntry(
+    IndexedResourceEntry const * data, u32 index)
+{
+    return data[index];
+}
+
+extern "C" u32 UpdateIndexedResourceHandle(IndexedResourceHandle * handle)
+{
+    IndexedResourceUpdateFlag result = static_cast<IndexedResourceUpdateFlag>(0);
+    if (handle->initialized != 0)
+    {
+        result = INDEXED_RESOURCE_GROUP_CHANGED;
+        handle->initialized = 0;
+    }
+    i32 delta = handle->scroll_delta;
+    i32 remaining = handle->metric_scaled;
+    if (delta != 0 && remaining != 0)
+    {
+        remaining -= delta < 0 ? -delta : delta;
+        if (remaining <= 0)
+        {
+            u32 index = handle->current_entry_index;
+            IndexedResourceResult const & entries = handle->resolved_resource;
+            u16 previous_group = entries[index].group_index;
+            result = static_cast<IndexedResourceUpdateFlag>(
+                result | INDEXED_RESOURCE_ENTRY_ADVANCED);
+            IndexedResourceEntry * data;
+            u32 count;
+            // Cache both parts of the borrowed, nullable entry range before
+            // walking it. The scoped value is the count returned by that read.
+            {
+                u32 available = 0;
+                data = entries.entries;
+                if (data != 0)
+                    available = entries.entry_count;
+                count = available;
+            }
+            do
+            {
+                if (delta > 0)
+                {
+                    ++index;
+                    if (index >= count)
+                    {
+                        index = 0;
+                        result = static_cast<IndexedResourceUpdateFlag>(
+                            result | INDEXED_RESOURCE_WRAPPED);
+                    }
+                }
+                else
+                {
+                    if (index == 0)
+                    {
+                        index = count;
+                        result = static_cast<IndexedResourceUpdateFlag>(
+                            result | INDEXED_RESOURCE_WRAPPED);
+                    }
+                    --index;
+                }
+                u16 metric = GetIndexedResourceEntry(data, index).metric;
+                if (metric != 0)
+                {
+                    remaining += metric << 8;
+                }
+                else
+                {
+                    remaining = 0;
+                    break;
+                }
+            } while (remaining <= 0);
+            if (GetIndexedResourceEntry(data, index).group_index != previous_group)
+                result = static_cast<IndexedResourceUpdateFlag>(
+                    result | INDEXED_RESOURCE_GROUP_CHANGED);
+            handle->current_entry_index = index;
+        }
+        handle->metric_scaled = remaining;
+    }
+    return static_cast<u32>(result);
+}
+
 extern "C" void TransformIndexedResourceSpritePosition(
     i32 * x, i32 * y, u32 width, u32 height,
     IndexedResourceSpriteMatrix const * matrix)

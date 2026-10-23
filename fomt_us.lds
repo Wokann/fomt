@@ -504,6 +504,7 @@ SECTIONS
         . = 0x5E860; /* JP/US-shared indexed resource-handle resolver. */
         src/resource_handle.o(.text.resolve_indexed_resource_handle);
         . = 0x5E894; src/resource_handle.o(.text.indexed_resource_handle_predict_wrap);
+        src/resource_handle.o(.text.indexed_resource_handle_update);
         asm/code_0803EE94.o(.text.indexed_resource_handle_constructor_after);
         src/resource_handle.o(.text.indexed_resource_sprite_transform);
         src/intro_story_scene.o(.text.InitializeIntroStorySceneCore);
