@@ -9,7 +9,16 @@ struct MapClockStatusHudDataPrefix {
     u8 unk_000[0x84];
     u8 season_tiles[2][32];
     u8 day_digit_tiles[2][32];
-    u8 unk_104[0x88];
+#if defined(REGION_DE)
+    u8 unk_104[0x60];
+    u8 hour_tens_tile[32];
+#else
+    u8 meridiem_tile[32];
+    u8 unk_124[32];
+    u8 hour_tens_tile[32];
+    u8 hour_ones_tile[32];
+#endif
+    u8 unk_184[8];
     u8 date_tiles_dirty;
 #if defined(REGION_JP)
     u8 unk_18D[0x5B];
@@ -19,9 +28,9 @@ struct MapClockStatusHudDataPrefix {
     u8 weekday_tiles[3][32];
 #endif
     u8 unk_208[0x20];
-    // The native DE record has one extra tile slot before the colon.
+    // DE puts the hour ones digit in this separate time-component slot.
 #if defined(REGION_DE)
-    u8 unk_228[32];
+    u8 hour_ones_tile[32];
 #endif
     u8 colon_tile[32];
     u8 minute_digit_tiles[2][32];
@@ -54,9 +63,14 @@ typedef char MapClockStatusWeekdayOffset[offsetof(MapClockStatusHudDataPrefix, w
 #endif
 typedef char MapClockStatusDateDirtyOffset[offsetof(MapClockStatusHudDataPrefix, date_tiles_dirty) == 0x18C ? 1 : -1];
 #if defined(REGION_DE)
+typedef char MapClockStatusHourTensOffset[offsetof(MapClockStatusHudDataPrefix, hour_tens_tile) == 0x164 ? 1 : -1];
+typedef char MapClockStatusHourOnesOffset[offsetof(MapClockStatusHudDataPrefix, hour_ones_tile) == 0x228 ? 1 : -1];
 typedef char MapClockStatusColonOffset[offsetof(MapClockStatusHudDataPrefix, colon_tile) == 0x248 ? 1 : -1];
 typedef char MapClockStatusMinuteDigitsOffset[offsetof(MapClockStatusHudDataPrefix, minute_digit_tiles) == 0x268 ? 1 : -1];
 #else
+typedef char MapClockStatusMeridiemOffset[offsetof(MapClockStatusHudDataPrefix, meridiem_tile) == 0x104 ? 1 : -1];
+typedef char MapClockStatusHourTensOffset[offsetof(MapClockStatusHudDataPrefix, hour_tens_tile) == 0x144 ? 1 : -1];
+typedef char MapClockStatusHourOnesOffset[offsetof(MapClockStatusHudDataPrefix, hour_ones_tile) == 0x164 ? 1 : -1];
 typedef char MapClockStatusColonOffset[offsetof(MapClockStatusHudDataPrefix, colon_tile) == 0x228 ? 1 : -1];
 typedef char MapClockStatusMinuteDigitsOffset[offsetof(MapClockStatusHudDataPrefix, minute_digit_tiles) == 0x248 ? 1 : -1];
 #endif
@@ -77,6 +91,9 @@ void SetMapClockStatusHudDayAndWeekday(MapClockStatusHudContent const * hud,
     u32 day, u32 weekday);
 // Regional native atlas: 31 tiles in JP, 128 overseas; no shared count.
 extern u8 const gMapClockStatusGlyphTiles[][32];
+// DE retains 24-hour digits; JP and US/EU keep their distinct 12-hour rules.
+// Callers own the valid-hour policy: this setter does not clamp or wrap.
+void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour);
 // Nonzero byte copies the colon glyph; zero clears its entire tile.
 void SetMapClockStatusHudColonVisible(MapClockStatusHudContent const * hud, u8 visible);
 // Copies both decimal tiles; rounding and range policy belong to callers.

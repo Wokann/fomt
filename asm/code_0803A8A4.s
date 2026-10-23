@@ -4655,100 +4655,6 @@ func_0803CB10:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_hour, "ax", %progbits
-    .align 2, 0
-.Ljp_0803CEA4:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r9
-    mov	r6, r8
-    push	{r6, r7}
-    sub	sp, #32
-    adds	r4, r1, #0
-    ldr	r6, [r0, #0]
-    movs	r1, #30
-    cmp	r4, #11
-    bhi .Ljp_0803CEBA
-    movs	r1, #28
-.Ljp_0803CEBA:
-    lsls	r1, r1, #5
-    ldr r0, .Ljp_0803CF14
-    mov	r9, r0
-    add	r1, r9
-    movs	r2, #130	@ 0x82
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r1, #198	@ 0xc6
-    lsls	r1, r1, #1
-    adds	r0, r6, r1
-    movs	r2, #1
-    mov	r8, r2
-    mov	r1, r8
-    strb	r1, [r0, #0]
-    adds	r7, r0, #0
-    cmp	r4, #11
-    bls .Ljp_0803CEE4
-    subs	r4, #12
-.Ljp_0803CEE4:
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __udivsi3
-    adds	r5, r0, #0
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __umodsi3
-    adds	r4, r0, #0
-    cmp	r5, #0
-    ble .Ljp_0803CF18
-    lsls	r1, r5, #5
-    add	r1, r9
-    movs	r2, #162	@ 0xa2
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    movs	r2, #32
-    bl memcpy
-    mov	r0, r8
-    strb	r0, [r7, #0]
-    b .Ljp_0803CF34
-    .align 2, 0
-.Ljp_0803CF14:
-    .4byte gMapClockStatusGlyphTiles
-.Ljp_0803CF18:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    movs	r1, #162	@ 0xa2
-    lsls	r1, r1, #1
-    adds	r0, r6, r1
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    mov	r2, r8
-    strb	r2, [r7, #0]
-.Ljp_0803CF34:
-    lsls	r1, r4, #5
-    ldr r0, .Ljp_0803CF58
-    adds	r1, r1, r0
-    movs	r2, #178	@ 0xb2
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #1
-    strb	r0, [r7, #0]
-    add	sp, #32
-    pop	{r3, r4}
-    mov	r8, r3
-    mov	r9, r4
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-.Ljp_0803CF58:
-    .4byte gMapClockStatusGlyphTiles
-
-
     .section .text.map_clock_status_hud_adapters, "ax", %progbits
     .align 2, 0
     push	{lr}
@@ -4780,7 +4686,7 @@ func_0803CB10:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl .Ljp_0803CEA4
+    bl SetMapClockStatusHudHour
     pop	{r0}
     bx	r0
     push	{lr}
@@ -12415,95 +12321,6 @@ func_0803CD4C:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_hour, "ax", %progbits
-    .align 2, 0
-    .global func_0803D240
-    .thumb_func
-func_0803D240:
-    push	{r4, r5, r6, r7, lr}
-    sub	sp, #32
-    adds	r5, r1, #0
-    ldr	r6, [r0, #0]
-    movs	r1, #30
-    cmp	r5, #11
-    bhi .Leu_0803D264
-    movs	r1, #28
-.Leu_0803D264:
-    lsls	r1, r1, #5
-    ldr r0, .Leu_0803D2B8
-    adds	r1, r1, r0
-    movs	r2, #130	@ 0x82
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r1, r6, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    movs	r4, #12
-    adds	r7, r1, #0
-    cmp	r5, #12
-    beq .Leu_0803D290
-    adds	r4, r5, #0
-    cmp	r4, #11
-    bls .Leu_0803D290
-    subs	r4, #12
-.Leu_0803D290:
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __udivsi3
-    adds	r5, r0, #0
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __umodsi3
-    adds	r4, r0, #0
-    cmp	r5, #0
-    ble .Leu_0803D2BC
-    lsls	r1, r5, #5
-    ldr r0, .Leu_0803D2B8
-    adds	r1, r1, r0
-    movs	r2, #162	@ 0xa2
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    b .Leu_0803D2CE
-    .align 2, 0
-.Leu_0803D2B8:
-    .4byte gMapClockStatusGlyphTiles
-.Leu_0803D2BC:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    movs	r1, #162	@ 0xa2
-    lsls	r1, r1, #1
-    adds	r0, r6, r1
-    mov	r1, sp
-.Leu_0803D2CE:
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #1
-    strb	r0, [r7, #0]
-    lsls	r1, r4, #5
-    ldr r0, .Leu_0803D2F8
-    adds	r1, r1, r0
-    movs	r2, #178	@ 0xb2
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #1
-    strb	r0, [r7, #0]
-    add	sp, #32
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Leu_0803D2F8:
-    .4byte gMapClockStatusGlyphTiles
-
-
     .section .text.map_clock_status_hud_adapters, "ax", %progbits
     .align 2, 0
     push	{lr}
@@ -12535,7 +12352,7 @@ func_0803D240:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D240
+    bl SetMapClockStatusHudHour
     pop	{r0}
     bx	r0
     push	{lr}
@@ -20125,79 +19942,6 @@ func_0803CD4C:
     pop	{r0}
     bx	r0
 
-    .section .text.map_clock_status_hour, "ax", %progbits
-    .align 2, 0
-    .global func_0803D240
-    .thumb_func
-func_0803D240:
-    push	{r4, r5, r6, lr}
-    sub	sp, #32
-    adds	r4, r1, #0
-    ldr	r6, [r0, #0]
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __udivsi3
-    adds	r5, r0, #0
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __umodsi3
-    adds	r4, r0, #0
-    cmp	r5, #0
-    ble .Lde_0803D194
-    lsls	r1, r5, #5
-    ldr r0, .Lde_0803D190
-    adds	r1, r1, r0
-    movs	r2, #178	@ 0xb2
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r1, r6, r0
-    b .Lde_0803D1B2
-    .align 2, 0
-.Lde_0803D190:
-    .4byte gMapClockStatusGlyphTiles
-.Lde_0803D194:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    movs	r1, #178	@ 0xb2
-    lsls	r1, r1, #1
-    adds	r0, r6, r1
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #198	@ 0xc6
-    lsls	r2, r2, #1
-    adds	r1, r6, r2
-.Lde_0803D1B2:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    lsls	r1, r4, #5
-    ldr r0, .Lde_0803D1DC
-    adds	r1, r1, r0
-    movs	r2, #138	@ 0x8a
-    lsls	r2, r2, #2
-    adds	r0, r6, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #172	@ 0xac
-    lsls	r0, r0, #2
-    adds	r1, r6, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    add	sp, #32
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Lde_0803D1DC:
-    .4byte gMapClockStatusGlyphTiles
-
-
     .section .text.map_clock_status_hud_adapters, "ax", %progbits
     .align 2, 0
     .4byte 0x3008B500
@@ -20224,7 +19968,7 @@ func_0803D240:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D240
+    bl SetMapClockStatusHudHour
     pop	{r0}
     bx	r0
     push	{lr}
@@ -27819,95 +27563,6 @@ func_0803CD4C:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_hour, "ax", %progbits
-    .align 2, 0
-    .global func_0803D240
-    .thumb_func
-func_0803D240:
-    push	{r4, r5, r6, r7, lr}
-    sub	sp, #32
-    adds	r5, r1, #0
-    ldr	r6, [r0, #0]
-    movs	r1, #30
-    cmp	r5, #11
-    bhi .Lus_0803D250
-    movs	r1, #28
-.Lus_0803D250:
-    lsls	r1, r1, #5
-    ldr r0, .Lus_0803D2A4
-    adds	r1, r1, r0
-    movs	r2, #130	@ 0x82
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r1, r6, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    movs	r4, #12
-    adds	r7, r1, #0
-    cmp	r5, #12
-    beq .Lus_0803D27C
-    adds	r4, r5, #0
-    cmp	r4, #11
-    bls .Lus_0803D27C
-    subs	r4, #12
-.Lus_0803D27C:
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __udivsi3
-    adds	r5, r0, #0
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __umodsi3
-    adds	r4, r0, #0
-    cmp	r5, #0
-    ble .Lus_0803D2A8
-    lsls	r1, r5, #5
-    ldr r0, .Lus_0803D2A4
-    adds	r1, r1, r0
-    movs	r2, #162	@ 0xa2
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    b .Lus_0803D2BA
-    .align 2, 0
-.Lus_0803D2A4:
-    .4byte gMapClockStatusGlyphTiles
-.Lus_0803D2A8:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    movs	r1, #162	@ 0xa2
-    lsls	r1, r1, #1
-    adds	r0, r6, r1
-    mov	r1, sp
-.Lus_0803D2BA:
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #1
-    strb	r0, [r7, #0]
-    lsls	r1, r4, #5
-    ldr r0, .Lus_0803D2E4
-    adds	r1, r1, r0
-    movs	r2, #178	@ 0xb2
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #1
-    strb	r0, [r7, #0]
-    add	sp, #32
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Lus_0803D2E4:
-    .4byte gMapClockStatusGlyphTiles
-
-
     .section .text.map_clock_status_hud_adapters, "ax", %progbits
     .align 2, 0
     push	{lr}
@@ -27939,7 +27594,7 @@ func_0803D240:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D240
+    bl SetMapClockStatusHudHour
     pop	{r0}
     bx	r0
     push	{lr}

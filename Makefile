@@ -349,10 +349,6 @@ $(BUILD_DIR)/src/iwram_sort.o: $(ARM_CC1PLUS)
 $(BUILD_DIR)/src/m4a.o: CC1 := $(OLD_CC1)
 $(BUILD_DIR)/src/m4a.o: $(OLD_CC1)
 
-# The season setter is separated from minute setters by native date/time code.
-# Keep one functional module with compiler-owned function sections.
-$(BUILD_DIR)/src/map_clock_status.o: CXXFLAGS += -ffunction-sections
-
 # Matched font-buffer helpers surround still-unmatched native compositors.
 # The linker orders compiler-owned function sections around their assembly.
 $(BUILD_DIR)/src/font_draw.o: CXXFLAGS += -ffunction-sections

@@ -74,6 +74,67 @@ void SetMapClockStatusHudDayAndWeekday(MapClockStatusHudContent const * hud,
 #endif
 }
 
+void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
+{
+    MapClockStatusHudDataPrefix * state = hud->state;
+#if !defined(REGION_DE)
+    u32 meridiem = 30;
+    if (hour <= 11)
+        meridiem = 28;
+    u8 const * meridiem_tile = GetMapClockStatusGlyph(meridiem);
+    memcpy(state->meridiem_tile, meridiem_tile, 32);
+    state->date_tiles_dirty = 1;
+#if defined(REGION_JP)
+    u32 display_hour = hour;
+#else
+    u32 display_hour = 12;
+#endif
+    // Meridiem and both digits share this date-component dirty byte.
+    u8 & date_dirty = state->date_tiles_dirty;
+#if defined(REGION_JP)
+    if (display_hour > 11)
+        display_hour -= 12;
+#else
+    if (hour != 12) {
+        display_hour = hour;
+        if (display_hour > 11)
+            display_hour -= 12;
+    }
+#endif
+#else
+    u32 display_hour = hour;
+#endif
+    i32 tens = display_hour / 10;
+    u32 ones = display_hour % 10;
+    if (tens > 0) {
+        u8 const * tile = GetMapClockStatusGlyph(tens);
+        memcpy(state->hour_tens_tile, tile, 32);
+#if defined(REGION_DE)
+        state->date_tiles_dirty = 1;
+#else
+        date_dirty = 1;
+#endif
+    } else {
+        u8 blank[32];
+        memset(blank, 0, sizeof(blank));
+        u8 const * pixels = blank;
+        memcpy(state->hour_tens_tile, pixels, 32);
+#if defined(REGION_DE)
+        state->date_tiles_dirty = 1;
+#else
+        date_dirty = 1;
+#endif
+    }
+    u8 const * ones_tile = GetMapClockStatusGlyph(ones);
+    memcpy(state->hour_ones_tile, ones_tile, 32);
+#if defined(REGION_DE)
+    // The DE ones digit belongs to the separate time component.
+    state->time_tiles_dirty = 1;
+#else
+    date_dirty = 1;
+#endif
+}
+
 void SetMapClockStatusHudColonVisible(MapClockStatusHudContent const * hud, u8 visible)
 {
     MapClockStatusHudDataPrefix * state = hud->state;
