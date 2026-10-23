@@ -2,6 +2,7 @@
 #define UI_STATE_HH
 
 #include "prelude.h"
+#include "ui_text_stream.hh"
 #include "resource_handle.hh"
 #include "hardware_resource.hh"
 #include "hardware_dma_descriptor.hh"
@@ -80,42 +81,10 @@ inline ScriptTextVariableStore::~ScriptTextVariableStore() {}
 typedef char UiTextSubstitutionSizeCheck[sizeof(UiTextSubstitution) == 36 ? 1 : -1];
 typedef char UiTextSubstitutionTextCheck[offsetof(UiTextSubstitution, text) == 4 ? 1 : -1];
 
-// Native text reader: 0 is idle, 1 reads text and 2 waits for input.
-// The parser temporarily switches from cursor to replacement_cursor while
-// consuming a substituted value stored in the inline 32-byte buffer.
-struct UiTextStream
-{
-    u32 phase;
-    u16 speed;
-    u16 progress;
-    char const * cursor;
-    ScriptTextVariableStore * variables;
-    char const * replacement_cursor;
-    FixedStr<31> replacement;
-
-    UiTextStream() SECTION(".text.ui_text_stream_setup");
-};
-
-typedef char UiTextStreamSizeCheck[sizeof(UiTextStream) == 0x34 ? 1 : -1];
-typedef char UiTextStreamSpeedCheck[offsetof(UiTextStream, speed) == 4 ? 1 : -1];
-typedef char UiTextStreamProgressCheck[offsetof(UiTextStream, progress) == 6 ? 1 : -1];
-typedef char UiTextStreamCursorCheck[offsetof(UiTextStream, cursor) == 8 ? 1 : -1];
-typedef char UiTextStreamVariablesCheck[offsetof(UiTextStream, variables) == 0x0C ? 1 : -1];
-typedef char UiTextStreamReplacementCursorCheck[offsetof(UiTextStream, replacement_cursor) == 0x10 ? 1 : -1];
-typedef char UiTextStreamReplacementCheck[offsetof(UiTextStream, replacement) == 0x14 ? 1 : -1];
-
 EXTERN_C
 u32 GetUiPortraitCount() SECTION(".text.ui_portrait_group");
 extern u8 const gPortraitIndexedResourceArchive[];
 extern u8 const gUiHeartIndicatorArchive[];
-
-void SetUiTextStreamText(UiTextStream *, char const *, ScriptTextVariableStore *)
-    SECTION(".text.ui_text_stream_setup");
-void SetUiTextStreamSpeed(UiTextStream *, u16) SECTION(".text.ui_text_stream_setup");
-u32 UpdateUiTextStream(UiTextStream *, UiTextOutput *, UiTextInput *)
-    SECTION(".text.ui_text_stream_update");
-// This dependency keeps its original 44-byte assembly body.
-int AdvanceUiTextStreamClock(UiTextStream *);
 EXTERN_C_END
 
 // Verified views of the state fields consumed by the native UI adapters.

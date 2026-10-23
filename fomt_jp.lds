@@ -829,8 +829,7 @@ SECTIONS
         asm/world_runtime.o(.text);
         asm/code_809E804.o(.text.world_runtime_after);
         src/ui_state.o(.text.ui_portrait_group);
-        src/ui_state.o(.text.ui_text_stream_setup);
-        src/ui_state.o(.text.ui_text_stream_update);
+        src/ui_text_stream.o(.text);
         asm/code_809E804.o(.text.ui_text_stream_update_after);
         src/game_menu.o(.text.GetMenuGridLeftCellPosition__FPC28GameSceneMenuOwnedDataPrefixi);
         src/game_menu.o(.text.GetMenuGridLeftHeaderPosition__FPC28GameSceneMenuOwnedDataPrefix);
