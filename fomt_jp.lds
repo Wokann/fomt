@@ -478,7 +478,8 @@ SECTIONS
         src/map_clock_status.o(.text.__24MapClockStatusHudContent .text._._24MapClockStatusHudContent .text.DrawMapClockStatusHud);
         asm/code_0803A8A4.o(.text.map_clock_status_calendar);
         src/map_clock_status.o(.text.SetMapClockStatusHud* .text.ClearMapClockStatusHud*);
-        asm/code_0803A8A4.o(.text.map_clock_status_hud_adapters);
+        src/map_clock_status.o(.text.*MapClockStatusWidget*);
+        asm/code_0803A8A4.o(.text.map_clock_status_after_widget_settings);
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
         src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
         asm/code_0803A8A4.o(.text.npc_schedule_after);

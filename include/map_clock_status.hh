@@ -99,7 +99,33 @@ typedef char MapClockStatusValueOffset[offsetof(MapClockStatusHudData, unk_value
 typedef char MapClockStatusValueDirtyOffset[offsetof(MapClockStatusHudData, unk_value_dirty) == 0x334 ? 1 : -1];
 typedef char MapClockStatusContentSize[sizeof(MapClockStatusHudContent) == 4 ? 1 : -1];
 
+// The native widget's eight-byte base remains unresolved. Every settings
+// entry forwards to the confirmed four-byte content owner at +8.
+struct MapClockStatusHudWidget {
+    u8 unk_00[8];
+    MapClockStatusHudContent content;
+};
+
+struct GameCalendar;
+typedef char MapClockStatusWidgetContentOffset[offsetof(MapClockStatusHudWidget, content) == 8 ? 1 : -1];
+typedef char MapClockStatusWidgetSize[sizeof(MapClockStatusHudWidget) == 12 ? 1 : -1];
+
 EXTERN_C
+// Calendar composition remains native; its callers use this one shared name.
+void UpdateMapClockStatusHudCalendar(MapClockStatusHudContent const * hud,
+    GameCalendar const & calendar, u8 show_colon);
+
+void ClearMapClockStatusWidgetUnkValue(MapClockStatusHudWidget const * widget);
+void SetMapClockStatusWidgetUnkValue(MapClockStatusHudWidget const * widget, u32 value);
+void SetMapClockStatusWidgetUnkSelector(MapClockStatusHudWidget const * widget, u32 value);
+void SetMapClockStatusWidgetMinuteDigits(MapClockStatusHudWidget const * widget, u32 value);
+void SetMapClockStatusWidgetColonVisible(MapClockStatusHudWidget const * widget, u8 visible);
+void SetMapClockStatusWidgetHour(MapClockStatusHudWidget const * widget, u32 hour);
+void SetMapClockStatusWidgetDayAndWeekday(MapClockStatusHudWidget const * widget, u32 day, u32 weekday);
+void SetMapClockStatusWidgetSeason(MapClockStatusHudWidget const * widget, int season);
+void UpdateMapClockStatusWidgetCalendar(MapClockStatusHudWidget const * widget,
+    GameCalendar const & calendar, u8 show_colon);
+
 extern u8 const gUnk_0875B444[];
 #if defined(REGION_JP)
 extern u8 const gUnk_083ED9FC[];

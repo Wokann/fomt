@@ -380,3 +380,49 @@ void ClearMapClockStatusHudUnkValue(MapClockStatusHudContent const * hud)
         state->unk_value_dirty = 1;
     }
 }
+
+void ClearMapClockStatusWidgetUnkValue(MapClockStatusHudWidget const * widget)
+{
+    ClearMapClockStatusHudUnkValue(&widget->content);
+}
+
+void SetMapClockStatusWidgetUnkValue(MapClockStatusHudWidget const * widget, u32 value)
+{
+    SetMapClockStatusHudUnkValue(&widget->content, value);
+}
+
+void SetMapClockStatusWidgetUnkSelector(MapClockStatusHudWidget const * widget, u32 value)
+{
+    SetMapClockStatusHudUnkSelector(&widget->content, value);
+}
+
+void SetMapClockStatusWidgetMinuteDigits(MapClockStatusHudWidget const * widget, u32 value)
+{
+    SetMapClockStatusHudMinuteDigits(&widget->content, value);
+}
+
+void SetMapClockStatusWidgetColonVisible(MapClockStatusHudWidget const * widget, u8 visible)
+{
+    SetMapClockStatusHudColonVisible(&widget->content, visible);
+}
+
+void SetMapClockStatusWidgetHour(MapClockStatusHudWidget const * widget, u32 hour)
+{
+    SetMapClockStatusHudHour(&widget->content, hour);
+}
+
+void SetMapClockStatusWidgetDayAndWeekday(MapClockStatusHudWidget const * widget, u32 day, u32 weekday)
+{
+    SetMapClockStatusHudDayAndWeekday(&widget->content, day, weekday);
+}
+
+void SetMapClockStatusWidgetSeason(MapClockStatusHudWidget const * widget, int season)
+{
+    SetMapClockStatusHudSeason(&widget->content, season);
+}
+
+void UpdateMapClockStatusWidgetCalendar(MapClockStatusHudWidget const * widget,
+    GameCalendar const & calendar, u8 show_colon)
+{
+    UpdateMapClockStatusHudCalendar(&widget->content, calendar, show_colon);
+}

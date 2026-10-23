@@ -3363,9 +3363,9 @@ func_0803C588:
     .4byte vtable_unk_080E77E0
     .section .text.map_clock_status_calendar, "ax", %progbits
     .align 2, 0
-    .global func_0803CB10
+    .global UpdateMapClockStatusHudCalendar
     .thumb_func
-func_0803CB10:
+UpdateMapClockStatusHudCalendar:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -3676,57 +3676,8 @@ func_0803CB10:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_hud_adapters, "ax", %progbits
+    .section .text.map_clock_status_after_widget_settings, "ax", %progbits
     .align 2, 0
-    push	{lr}
-    adds	r0, #8
-    bl ClearMapClockStatusHudUnkValue
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudUnkValue
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudUnkSelector
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudMinuteDigits
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    lsls	r1, r1, #24
-    lsrs	r1, r1, #24
-    adds	r0, #8
-    bl SetMapClockStatusHudColonVisible
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudHour
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudDayAndWeekday
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudSeason
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    lsls	r2, r2, #24
-    lsrs	r2, r2, #24
-    adds	r0, #8
-    bl func_0803CB10
-    pop	{r0}
-    bx	r0
     .global func_0803D4D8
     .thumb_func
 func_0803D4D8:
@@ -9998,9 +9949,9 @@ func_0803C588:
     .4byte vtable_unk_080E77E0
     .section .text.map_clock_status_calendar, "ax", %progbits
     .align 2, 0
-    .global func_0803CD4C
+    .global UpdateMapClockStatusHudCalendar
     .thumb_func
-func_0803CD4C:
+UpdateMapClockStatusHudCalendar:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -10385,54 +10336,8 @@ func_0803CD4C:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_hud_adapters, "ax", %progbits
+    .section .text.map_clock_status_after_widget_settings, "ax", %progbits
     .align 2, 0
-    push	{lr}
-    adds	r0, #8
-    bl ClearMapClockStatusHudUnkValue
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudUnkValue
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudUnkSelector
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudMinuteDigits
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    lsls	r1, r1, #24
-    lsrs	r1, r1, #24
-    adds	r0, #8
-    bl SetMapClockStatusHudColonVisible
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudHour
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudDayAndWeekday
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudSeason
-    pop	{r0}
-    bx	r0
-    .4byte 0x0612B500
-    .4byte 0x30080E12
-    .4byte 0xFC3CF7FF
-    .4byte 0x4700BC01
     .global func_0803D4D8
     .thumb_func
 func_0803D4D8:
@@ -16665,9 +16570,9 @@ func_0803C588:
     .4byte vtable_unk_080E77E0
     .section .text.map_clock_status_calendar, "ax", %progbits
     .align 2, 0
-    .global func_0803CD4C
+    .global UpdateMapClockStatusHudCalendar
     .thumb_func
-func_0803CD4C:
+UpdateMapClockStatusHudCalendar:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -17027,52 +16932,8 @@ func_0803CD4C:
     pop	{r0}
     bx	r0
 
-    .section .text.map_clock_status_hud_adapters, "ax", %progbits
+    .section .text.map_clock_status_after_widget_settings, "ax", %progbits
     .align 2, 0
-    .4byte 0x3008B500
-    bl ClearMapClockStatusHudUnkValue
-    .4byte 0x4700BC01
-    .4byte 0x3008B500
-    bl SetMapClockStatusHudUnkValue
-    .4byte 0x4700BC01
-    .4byte 0x3008B500
-    bl SetMapClockStatusHudUnkSelector
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudMinuteDigits
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    lsls	r1, r1, #24
-    lsrs	r1, r1, #24
-    adds	r0, #8
-    bl SetMapClockStatusHudColonVisible
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudHour
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudDayAndWeekday
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudSeason
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    lsls	r2, r2, #24
-    lsrs	r2, r2, #24
-    adds	r0, #8
-    bl func_0803CD4C
-    pop	{r0}
-    bx	r0
     .global func_0803D4D8
     .thumb_func
 func_0803D4D8:
@@ -23304,9 +23165,9 @@ func_0803C588:
     .4byte vtable_unk_080E77E0
     .section .text.map_clock_status_calendar, "ax", %progbits
     .align 2, 0
-    .global func_0803CD4C
+    .global UpdateMapClockStatusHudCalendar
     .thumb_func
-func_0803CD4C:
+UpdateMapClockStatusHudCalendar:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -23691,54 +23552,8 @@ func_0803CD4C:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_hud_adapters, "ax", %progbits
+    .section .text.map_clock_status_after_widget_settings, "ax", %progbits
     .align 2, 0
-    push	{lr}
-    adds	r0, #8
-    bl ClearMapClockStatusHudUnkValue
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudUnkValue
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudUnkSelector
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudMinuteDigits
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    lsls	r1, r1, #24
-    lsrs	r1, r1, #24
-    adds	r0, #8
-    bl SetMapClockStatusHudColonVisible
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudHour
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudDayAndWeekday
-    pop	{r0}
-    bx	r0
-    push	{lr}
-    adds	r0, #8
-    bl SetMapClockStatusHudSeason
-    pop	{r0}
-    bx	r0
-    .4byte 0x0612B500
-    .4byte 0x30080E12
-    .4byte 0xFC3CF7FF
-    .4byte 0x4700BC01
     .global func_0803D4D8
     .thumb_func
 func_0803D4D8:
