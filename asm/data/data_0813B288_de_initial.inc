@@ -99357,69 +99357,69 @@ gUnk_08740908:
 	.global gUnk_087409E4
 gUnk_087409E4:
 	.include "graphics/shared_resource_087409e4/archive.inc"
-	@ These payloads are addressed by gIntroSceneUnpackSources.  They occupy
+	@ These BG3/BG2 maps are addressed by gIntroStoryTilemapSources. They occupy
 	@ one physical DE stream, so expose direct labels at their native offsets
 	@ instead of assigning US-stream aliases to the regional data.
-	.global gUnk_IntroSceneUnpackSource_000
-gUnk_IntroSceneUnpackSource_000:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_00.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_001
-gUnk_IntroSceneUnpackSource_001:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_01.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_002
-gUnk_IntroSceneUnpackSource_002:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_02.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_003
-gUnk_IntroSceneUnpackSource_003:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_03.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_004
-gUnk_IntroSceneUnpackSource_004:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_04.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_005
-gUnk_IntroSceneUnpackSource_005:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_05.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_006
-gUnk_IntroSceneUnpackSource_006:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_06.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_007
-gUnk_IntroSceneUnpackSource_007:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_07.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_008
-gUnk_IntroSceneUnpackSource_008:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_08.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_009
-gUnk_IntroSceneUnpackSource_009:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_09.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_010
-gUnk_IntroSceneUnpackSource_010:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_10.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_011
-gUnk_IntroSceneUnpackSource_011:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_11.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_012
-gUnk_IntroSceneUnpackSource_012:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_12.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_013
-gUnk_IntroSceneUnpackSource_013:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_13.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_014
-gUnk_IntroSceneUnpackSource_014:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_14.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_015
-gUnk_IntroSceneUnpackSource_015:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_15.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_016
-gUnk_IntroSceneUnpackSource_016:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_16.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_017
-gUnk_IntroSceneUnpackSource_017:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_17.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_018
-gUnk_IntroSceneUnpackSource_018:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_18.4bpp.lz"
-	.global gUnk_IntroSceneUnpackSource_019
-gUnk_IntroSceneUnpackSource_019:
-	.incbin "graphics/intro_scene/shared/object_tiles/object_19.4bpp.lz"
+	.global gIntroStoryFrame00Bg3Tilemap
+gIntroStoryFrame00Bg3Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_00_bg3.tilemap.lz"
+	.global gIntroStoryFrame00Bg2Tilemap
+gIntroStoryFrame00Bg2Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_00_bg2.tilemap.lz"
+	.global gIntroStoryFrame01Bg3Tilemap
+gIntroStoryFrame01Bg3Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_01_bg3.tilemap.lz"
+	.global gIntroStoryFrame01Bg2Tilemap
+gIntroStoryFrame01Bg2Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_01_bg2.tilemap.lz"
+	.global gIntroStoryFrame02Bg3Tilemap
+gIntroStoryFrame02Bg3Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_02_bg3.tilemap.lz"
+	.global gIntroStoryFrame02Bg2Tilemap
+gIntroStoryFrame02Bg2Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_02_bg2.tilemap.lz"
+	.global gIntroStoryFrame03Bg3Tilemap
+gIntroStoryFrame03Bg3Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_03_bg3.tilemap.lz"
+	.global gIntroStoryFrame03Bg2Tilemap
+gIntroStoryFrame03Bg2Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_03_bg2.tilemap.lz"
+	.global gIntroStoryFrame04Bg3Tilemap
+gIntroStoryFrame04Bg3Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_04_bg3.tilemap.lz"
+	.global gIntroStoryFrame04Bg2Tilemap
+gIntroStoryFrame04Bg2Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_04_bg2.tilemap.lz"
+	.global gIntroStoryFrame05Bg3Tilemap
+gIntroStoryFrame05Bg3Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_05_bg3.tilemap.lz"
+	.global gIntroStoryFrame05Bg2Tilemap
+gIntroStoryFrame05Bg2Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_05_bg2.tilemap.lz"
+	.global gIntroStoryFrame06Bg3Tilemap
+gIntroStoryFrame06Bg3Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_06_bg3.tilemap.lz"
+	.global gIntroStoryFrame06Bg2Tilemap
+gIntroStoryFrame06Bg2Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_06_bg2.tilemap.lz"
+	.global gIntroStoryFrame07Bg3Tilemap
+gIntroStoryFrame07Bg3Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_07_bg3.tilemap.lz"
+	.global gIntroStoryFrame07Bg2Tilemap
+gIntroStoryFrame07Bg2Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_07_bg2.tilemap.lz"
+	.global gIntroStoryFrame08Bg3Tilemap
+gIntroStoryFrame08Bg3Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_08_bg3.tilemap.lz"
+	.global gIntroStoryFrame08Bg2Tilemap
+gIntroStoryFrame08Bg2Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_08_bg2.tilemap.lz"
+	.global gIntroStoryFrame09Bg3Tilemap
+gIntroStoryFrame09Bg3Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_09_bg3.tilemap.lz"
+	.global gIntroStoryFrame09Bg2Tilemap
+gIntroStoryFrame09Bg2Tilemap:
+	.incbin "graphics/intro_scene/shared/tilemaps/frame_09_bg2.tilemap.lz"
 	.global gUnk_08743058
 gUnk_08743058:
 	.incbin "graphics/intro_scene/shared/background_tiles.4bpp.lz"

@@ -41,11 +41,11 @@ INTRO_BACKGROUND_TILES_SOURCE := graphics/intro_scene/shared/background_tiles.pn
 INTRO_BACKGROUND_TILES_BIN := $(INTRO_BACKGROUND_TILES_SOURCE:.png=.4bpp)
 INTRO_BACKGROUND_PACKED_BIN := $(INTRO_BACKGROUND_TILES_BIN).lz
 
-# Intro Scene object tiles are twenty independently packed, byte-identical
-# Raw-LZ streams. Native PNG tile atlases generate each 0x500-byte .4bpp
-# through the shared suffix rule; OAM composition remains unproven.
-INTRO_OBJECTS_SOURCE_DIR := graphics/intro_scene/shared/object_tiles
-INTRO_OBJECTS_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
+# Childhood-story maps are twenty independent 32x20 halfword tilemaps.
+# They are authored map data, not PNG pixels. The ordinary compression suffix
+# rule packs their unchanged native Raw-LZ formats beside the sources.
+INTRO_TILEMAPS_SOURCE_DIR := graphics/intro_scene/shared/tilemaps
+INTRO_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
 
 # The earlier Intro Scene setup function creates two interleaved 32-by-32 BG
 # tilemaps from each 0x1000-byte Huffman-4/LZ3 source.  Keep the native
@@ -57,7 +57,7 @@ INTRO_STARTUP_TILEMAPS_SOURCE_DIR := graphics/intro_scene/shared/startup_tilemap
 # after the Intro Scene background data. Complete frames are composed from
 # the archive's own OAM records, so no JSON layout sidecar is necessary.
 INTRO_INDEXED_ARCHIVE_SOURCE_ROOT := graphics/intro_scene/indexed_archive
-INTRO_INDEXED_ARCHIVE_GROUP := $(if $(filter US EU,$(GAME_REGION)),us_eu,$(INTRO_OBJECTS_REGION))
+INTRO_INDEXED_ARCHIVE_GROUP := $(if $(filter US EU,$(GAME_REGION)),us_eu,$(INTRO_REGION))
 INTRO_INDEXED_ARCHIVE_SOURCE_DIR := $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)/$(INTRO_INDEXED_ARCHIVE_GROUP)
 INTRO_INDEXED_ARCHIVE_LAYOUT := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/archive.inc
 INTRO_INDEXED_ARCHIVE_TITLE_TILES := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/title_tiles.8bpp
@@ -249,30 +249,30 @@ $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_04.4bpp.lz: FOMT_LZ_ENCODE := encode-huff
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_05.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,8 0x364
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_06.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,8,12 0 --greedy --tie=exchange
 
-# All 17 of these retail Raw-LZ3 streams are rebuilt directly from source.
+# These eleven Raw-LZ3 maps are rebuilt directly from authored tilemaps.
 # Original comparison samples are kept outside the formal source tree.
-$(INTRO_OBJECTS_SOURCE_DIR)/object_01.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x54
-$(INTRO_OBJECTS_SOURCE_DIR)/object_03.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x6C
-$(INTRO_OBJECTS_SOURCE_DIR)/object_05.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x98
-$(INTRO_OBJECTS_SOURCE_DIR)/object_07.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x78
-$(INTRO_OBJECTS_SOURCE_DIR)/object_08.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,7 0x94
-$(INTRO_OBJECTS_SOURCE_DIR)/object_09.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x60
-$(INTRO_OBJECTS_SOURCE_DIR)/object_11.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x74
-$(INTRO_OBJECTS_SOURCE_DIR)/object_12.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x26C
-$(INTRO_OBJECTS_SOURCE_DIR)/object_14.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x274
-$(INTRO_OBJECTS_SOURCE_DIR)/object_17.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x50
-$(INTRO_OBJECTS_SOURCE_DIR)/object_19.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x68
-# These six Raw-LZ2 objects also match their original packed slots exactly.
-$(INTRO_OBJECTS_SOURCE_DIR)/object_02.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,9 0xF4
-$(INTRO_OBJECTS_SOURCE_DIR)/object_04.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,4,5,6,7,8,9 0x140
-$(INTRO_OBJECTS_SOURCE_DIR)/object_06.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,10 0x120
-$(INTRO_OBJECTS_SOURCE_DIR)/object_10.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,9 0xD8
-$(INTRO_OBJECTS_SOURCE_DIR)/object_13.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,10 0x24
-$(INTRO_OBJECTS_SOURCE_DIR)/object_15.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,6,8,10 0x38
-# The remaining three object slots use the same direct source-to-stream rule.
-$(INTRO_OBJECTS_SOURCE_DIR)/object_00.4bpp.lz: FOMT_LZ_ENCODE := encode-lz1 2,6,8,10 0x2FC
-$(INTRO_OBJECTS_SOURCE_DIR)/object_16.4bpp.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,8,10 0x304
-$(INTRO_OBJECTS_SOURCE_DIR)/object_18.4bpp.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,9,11 0x30C
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_00_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x54
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_01_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x6C
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_02_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x98
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_03_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x78
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_04_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,7 0x94
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_04_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x60
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_05_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x74
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_06_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x26C
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_07_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x274
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_08_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x50
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_09_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x68
+# These six Raw-LZ2 maps also match their original packed slots exactly.
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_01_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,9 0xF4
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_02_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,4,5,6,7,8,9 0x140
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_03_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,10 0x120
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_05_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,9 0xD8
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_06_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,10 0x24
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_07_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,6,8,10 0x38
+# The remaining three tilemap slots use the same direct source-to-stream rule.
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_00_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz1 2,6,8,10 0x2FC
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_08_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,8,10 0x304
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_09_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,9,11 0x30C
 # This complete MapData run is bounded by still-raw neighboring resources.
 # All six natural encodings already match; retain their verified storage
 # budgets until those neighboring references are also relocatable.

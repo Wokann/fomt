@@ -28,10 +28,11 @@ struct IntroStorySceneCore : HardwareBootstrap
     u32 unk_0C;
     UiStateOwner * ui_state;
     HardwareMusicPlayerSlot music_players[3];
-    // Twenty separately unpacked 4bpp object-tile buffers; initialization leaves them untouched.
-    u8 object_tiles[20][0x500];
-    u16 unk_6420;
-    u16 unk_6422;
+    // Twenty 32-column, 20-row BG maps. Consecutive pairs upload to BG3/BG2.
+    // Initialization leaves their storage untouched until the maps are unpacked.
+    u16 background_tilemaps[20][20][32];
+    i16 scene_step;
+    i16 transition_phase;
     // Animation and dialogue share the story index. The dialogue coordinator
     // keeps its original numeric states until the complete animation loop is recovered.
     i16 story_step;
@@ -53,8 +54,10 @@ typedef char IntroStoryUiOffsetCheck[offsetof(IntroStorySceneCore, ui_state) == 
 typedef char IntroStoryVariablesOffsetCheck[offsetof(IntroStorySceneCore, variables) == 0x6428 ? 1 : -1];
 typedef char IntroStorySavedOffsetCheck[offsetof(IntroStorySceneCore, saved) == 8 ? 1 : -1];
 typedef char IntroStoryMusicOffsetCheck[offsetof(IntroStorySceneCore, music_players) == 0x14 ? 1 : -1];
-typedef char IntroStoryObjectTilesOffsetCheck[offsetof(IntroStorySceneCore, object_tiles) == 0x20 ? 1 : -1];
-typedef char IntroStoryControlOffsetCheck[offsetof(IntroStorySceneCore, unk_6420) == 0x6420 ? 1 : -1];
+typedef char IntroStoryTilemapsOffsetCheck[offsetof(IntroStorySceneCore, background_tilemaps) == 0x20 ? 1 : -1];
+typedef char IntroStorySceneStepOffsetCheck[offsetof(IntroStorySceneCore, scene_step) == 0x6420 ? 1 : -1];
+typedef char IntroStoryTransitionPhaseOffsetCheck[offsetof(IntroStorySceneCore, transition_phase) == 0x6422 ? 1 : -1];
+typedef char IntroStoryTilemapSizeCheck[sizeof(((IntroStorySceneCore *)0)->background_tilemaps[0]) == 0x500 ? 1 : -1];
 typedef char IntroStoryStepOffsetCheck[offsetof(IntroStorySceneCore, story_step) == 0x6424 ? 1 : -1];
 typedef char IntroStoryDialogueStateOffsetCheck[offsetof(IntroStorySceneCore, dialogue_state) == 0x6426 ? 1 : -1];
 typedef char IntroStoryMusicSlotsSizeCheck[sizeof(((IntroStorySceneCore *)0)->music_players) == 3 * sizeof(MusicPlayer *) ? 1 : -1];

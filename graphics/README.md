@@ -339,34 +339,21 @@ repacked with the strict native-compatible encoder and must fit the original
 publisher's compressed bitstream after an edit, but it is strictly unpacked
 and tested before use.
 
-## Intro Scene object tiles
+## Childhood story background tilemaps
 
-`intro_scene/shared/object_tiles/object_00.png` through `object_19.png`
-are twenty native tile atlases for the inputs passed through `Unpack` by
-`func_0805FBB8`. Each 64-by-40-pixel grayscale PNG preserves 40 native tiles
-and their sixteen pixel indices. The shared suffix rules generate adjacent
-`.4bpp` and `.4bpp.lz` files; every decoded payload is `0x500` bytes.
-The runtime copies each into a fixed
-object-tile staging slot before the later OBJ upload path. Their packed and
-decoded bytes are identical in all four retail FoMT regions, so one shared
-native source set is authoritative.
+`intro_scene/shared/tilemaps/frame_00_bg3.tilemap` through
+`frame_09_bg2.tilemap` are twenty 32x20 halfword maps, paired in BG3/BG2
+order. The main loop uploads them to screen blocks 30/29, not OBJ VRAM.
+The previous interpretation as twenty PNG/4bpp object-tile atlases is
+superseded by this consumer evidence; see
+`intro_scene/TILEMAP_PIPELINE_AUDIT.md`.
 
-These files are linear native-tile views, not completed-sprite PNGs. The
-runtime OAM layout and palette binding remain unproven. Using a native tile
-grid does not require inventing either: unchanged conversion preserves every
-tile byte, and the grayscale view does not claim to be the game's palette.
-A future verified OAM tool can build full-frame editing views without
-replacing or guessing their native order. The old tracked `.4bpp` sources
-are now generated files, and no JSON layout sidecar is used.
-
-The build preserves each original stream byte-for-byte while its source is
-unchanged. After an edit it uses that stream's original Raw-LZ format and
-distance ladder, strictly validates the decoded result, and rejects an edit
-that no longer fits the native packed range.
-
-The background's committed `background_palettes.pal` is the editable color
-table; its PNG is a reference view. The shared gbagfx rule builds the adjacent
-`.gbapal` file, independently of the object-tile grayscale atlases.
+The existing generic compression rule builds adjacent `.tilemap.lz` streams
+with the original codec profiles and capacities. All decoded and packed
+bytes remain identical in all four regions. Editable background character
+tiles and `background_palettes.pal` remain separate inputs; map index, flip
+and palette bits are preserved in the native map source. No new build tool,
+ROM extraction, JSON layout or post-link patch is involved.
 
 ## Records Screen task icons
 

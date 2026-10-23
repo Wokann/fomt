@@ -5,7 +5,8 @@
 
 EXTERN_C
 
-extern u8 const * const gIntroSceneUnpackSources[];
+// Physical order is BG3 then BG2 for each of the ten background frames.
+extern u8 const * const gIntroStoryTilemapSources[10][2];
 
 EXTERN_C_END
 

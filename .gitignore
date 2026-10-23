@@ -17,7 +17,6 @@ graphics/maps/shared/map_*/*.4bpp
 graphics/map_state_palettes/shared/*.0x70
 graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp
 graphics/intro_scene/shared/background_tiles.4bpp
-graphics/intro_scene/shared/object_tiles/*.4bpp
 graphics/ui/scene_08077810/shared/tiles.4bpp
 graphics/ui/scene_08077810/jp/tiles.4bpp
 graphics/ui/scene_080b55d0_main/shared/main_tiles.4bpp

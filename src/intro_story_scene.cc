@@ -38,8 +38,8 @@ IntroStorySceneCore * InitializeIntroStorySceneCore(IntroStorySceneCore * core,
     new (&core->music_players[2]) HardwareMusicPlayerSlot(2);
     new (&core->variables) IntroStoryTextVariables;
     func_08050E98(*reinterpret_cast<FirstFieldUiOwner *>(core->ui_state), 0x0B);
-    core->unk_6420 = 0;
-    core->unk_6422 = 0;
+    core->scene_step = 0;
+    core->transition_phase = 0;
     core->dialogue_state = 2;
     core->story_step = 0;
     core->variables.player_name = func_0800E4E0(core->saved->farmer);

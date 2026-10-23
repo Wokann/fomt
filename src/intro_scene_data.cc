@@ -4,55 +4,44 @@ EXTERN_C
 
 #include FOMT_TEXT_INCLUDE(intro_scene_data_1.cc)
 
-// These twenty labels identify managed Raw-LZ object-tile streams.  Their
-// native OAM composition stays in the runtime object code; this table only
-// expresses the fixed loading order.
-extern u8 const gUnk_IntroSceneUnpackSource_000[];
-extern u8 const gUnk_IntroSceneUnpackSource_001[];
-extern u8 const gUnk_IntroSceneUnpackSource_002[];
-extern u8 const gUnk_IntroSceneUnpackSource_003[];
-extern u8 const gUnk_IntroSceneUnpackSource_004[];
-extern u8 const gUnk_IntroSceneUnpackSource_005[];
-extern u8 const gUnk_IntroSceneUnpackSource_006[];
-extern u8 const gUnk_IntroSceneUnpackSource_007[];
-extern u8 const gUnk_IntroSceneUnpackSource_008[];
-extern u8 const gUnk_IntroSceneUnpackSource_009[];
-extern u8 const gUnk_IntroSceneUnpackSource_010[];
-extern u8 const gUnk_IntroSceneUnpackSource_011[];
-extern u8 const gUnk_IntroSceneUnpackSource_012[];
-extern u8 const gUnk_IntroSceneUnpackSource_013[];
-extern u8 const gUnk_IntroSceneUnpackSource_014[];
-extern u8 const gUnk_IntroSceneUnpackSource_015[];
-extern u8 const gUnk_IntroSceneUnpackSource_016[];
-extern u8 const gUnk_IntroSceneUnpackSource_017[];
-extern u8 const gUnk_IntroSceneUnpackSource_018[];
-extern u8 const gUnk_IntroSceneUnpackSource_019[];
-u8 const * const gIntroSceneUnpackSources[] = {
-    gUnk_IntroSceneUnpackSource_000,
-    gUnk_IntroSceneUnpackSource_001,
-    gUnk_IntroSceneUnpackSource_002,
-    gUnk_IntroSceneUnpackSource_003,
-    gUnk_IntroSceneUnpackSource_004,
-    gUnk_IntroSceneUnpackSource_005,
-    gUnk_IntroSceneUnpackSource_006,
-    gUnk_IntroSceneUnpackSource_007,
-    gUnk_IntroSceneUnpackSource_008,
-    gUnk_IntroSceneUnpackSource_009,
-    gUnk_IntroSceneUnpackSource_010,
-    gUnk_IntroSceneUnpackSource_011,
-    gUnk_IntroSceneUnpackSource_012,
-    gUnk_IntroSceneUnpackSource_013,
-    gUnk_IntroSceneUnpackSource_014,
-    gUnk_IntroSceneUnpackSource_015,
-    gUnk_IntroSceneUnpackSource_016,
-    gUnk_IntroSceneUnpackSource_017,
-    gUnk_IntroSceneUnpackSource_018,
-    gUnk_IntroSceneUnpackSource_019,
+// Ten pairs of compressed 32x20 BG tilemaps, in the loader's exact order.
+// They are map entries, not 4bpp pixels or OAM descriptors.
+extern u8 const gIntroStoryFrame00Bg3Tilemap[];
+extern u8 const gIntroStoryFrame00Bg2Tilemap[];
+extern u8 const gIntroStoryFrame01Bg3Tilemap[];
+extern u8 const gIntroStoryFrame01Bg2Tilemap[];
+extern u8 const gIntroStoryFrame02Bg3Tilemap[];
+extern u8 const gIntroStoryFrame02Bg2Tilemap[];
+extern u8 const gIntroStoryFrame03Bg3Tilemap[];
+extern u8 const gIntroStoryFrame03Bg2Tilemap[];
+extern u8 const gIntroStoryFrame04Bg3Tilemap[];
+extern u8 const gIntroStoryFrame04Bg2Tilemap[];
+extern u8 const gIntroStoryFrame05Bg3Tilemap[];
+extern u8 const gIntroStoryFrame05Bg2Tilemap[];
+extern u8 const gIntroStoryFrame06Bg3Tilemap[];
+extern u8 const gIntroStoryFrame06Bg2Tilemap[];
+extern u8 const gIntroStoryFrame07Bg3Tilemap[];
+extern u8 const gIntroStoryFrame07Bg2Tilemap[];
+extern u8 const gIntroStoryFrame08Bg3Tilemap[];
+extern u8 const gIntroStoryFrame08Bg2Tilemap[];
+extern u8 const gIntroStoryFrame09Bg3Tilemap[];
+extern u8 const gIntroStoryFrame09Bg2Tilemap[];
+u8 const * const gIntroStoryTilemapSources[10][2] = {
+    { gIntroStoryFrame00Bg3Tilemap, gIntroStoryFrame00Bg2Tilemap },
+    { gIntroStoryFrame01Bg3Tilemap, gIntroStoryFrame01Bg2Tilemap },
+    { gIntroStoryFrame02Bg3Tilemap, gIntroStoryFrame02Bg2Tilemap },
+    { gIntroStoryFrame03Bg3Tilemap, gIntroStoryFrame03Bg2Tilemap },
+    { gIntroStoryFrame04Bg3Tilemap, gIntroStoryFrame04Bg2Tilemap },
+    { gIntroStoryFrame05Bg3Tilemap, gIntroStoryFrame05Bg2Tilemap },
+    { gIntroStoryFrame06Bg3Tilemap, gIntroStoryFrame06Bg2Tilemap },
+    { gIntroStoryFrame07Bg3Tilemap, gIntroStoryFrame07Bg2Tilemap },
+    { gIntroStoryFrame08Bg3Tilemap, gIntroStoryFrame08Bg2Tilemap },
+    { gIntroStoryFrame09Bg3Tilemap, gIntroStoryFrame09Bg2Tilemap },
 };
 
 EXTERN_C_END
 
-// The childhood-visit dialogue follows the unpack source table in both ROMs.
+// The childhood-visit dialogue follows the tilemap source table in the regional ROMs.
 #include FOMT_TEXT_INCLUDE(intro_scene_data_2.cc)
 
 EXTERN_C

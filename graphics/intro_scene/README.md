@@ -26,32 +26,19 @@ a `.0x70` pseudo-extension.
 The packed stream occupies 0x49BC bytes at JP 0x4C91C0, US 0x743058,
 EU 0x7430B4, and DE 0x4CA4CC.
 
-`shared/object_tiles/object_00.png` through `object_19.png` are the twenty
-native tile atlases consumed by the separate loader `func_0805FBB8`. Each
-64-by-40-pixel image holds 40 tiles in the original linear order. The shared
-PNG-to-4bpp suffix rule generates exactly `0x500` bytes beside each source;
-the existing Raw-LZ rule then generates its `.4bpp.lz`. The runtime stages
-the decoded tiles in RAM before the later OBJ upload path. All twenty packed
-streams and decoded payloads are byte-identical in JP, US, EU and DE.
+`shared/tilemaps/frame_00_bg3.tilemap` through `frame_09_bg2.tilemap` are
+twenty native 32-column, 20-row BG tilemaps for the childhood story. The
+loader stages each `0x500`-byte map in RAM; the main loop then queues paired
+maps to BG3 screen block 30 and BG2 screen block 29. The former PNG/4bpp/OBJ
+classification was incorrect: an unpacked byte count alone did not establish
+a pixel format. `TILEMAP_PIPELINE_AUDIT.md` records the actual consumers and
+the correction.
 
-The grayscale values preserve the sixteen native pixel indices, not an
-assumed game palette. These are editable tile sources, not reconstructed
-full sprites: OAM composition and per-object palette selection are still
-runtime data and have not yet been independently reconstructed. There is no
-JSON layout sidecar, new converter, or per-image Make rule.
-
-`OBJECT_PIPELINE_AUDIT.md` records the code-backed boundary: the twenty
-streams are a fixed RAM staging sequence, while the scene's actual frame,
-OAM-piece and palette selection come from runtime indexed-resource handles.
-
-All twenty objects now encode directly from `.4bpp` through the C compressor:
-eleven Raw-LZ3 streams (`01`, `03`, `05`, `07`, `08`, `09`, `11`, `12`, `14`,
-`17`, `19`), six Raw-LZ2 streams (`02`, `04`, `06`, `10`, `13`, `15`), and three
-Raw-LZ1 streams (`00`, `16`, `18`). Each rebuilt packed slot matches the retail
-bytes exactly; their `.original.lz` files remain only for independent
-comparison, not as build inputs. Edited streams are decoded for verification
-and rejected if they exceed their original packed slots. Assembly includes the
-generated `.4bpp.lz` files.
+The ordinary `.lz` suffix rule packs these map sources with the existing C
+compressor, preserving each original Raw-LZ1/2/3 profile, ladder and capacity.
+Assembly directly includes the generated `.tilemap.lz` files. All twenty
+decoded and compressed payloads are identical in JP, US, EU and DE; no new
+tool, source sidecar, ROM input or post-link patch is required.
 
 ## Regional indexed OAM archive
 
