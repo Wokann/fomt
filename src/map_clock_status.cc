@@ -1,6 +1,26 @@
 #include "map_clock_status.hh"
 
+#include "fomt_constants.mary.h"
+
 #include <string.h>
+
+void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season)
+{
+    MapClockStatusHudDataPrefix * state = hud->state;
+    u32 tiles[2];
+    switch (season) {
+    default:
+    case SEASON_SPRING: tiles[0] = 11; tiles[1] = 12; break;
+    case SEASON_SUMMER: tiles[0] = 13; tiles[1] = 14; break;
+    case SEASON_FALL:   tiles[0] = 15; tiles[1] = 16; break;
+    case SEASON_WINTER: tiles[0] = 17; tiles[1] = 18; break;
+    }
+    memcpy(state->season_tiles[0], gMapClockStatusGlyphTiles[tiles[0]], 32);
+    state->date_tiles_dirty = 1;
+    u8 const * second_tile = gMapClockStatusGlyphTiles[tiles[1]];
+    memcpy(state->season_tiles[1], second_tile, 32);
+    state->date_tiles_dirty = 1;
+}
 
 void SetMapClockStatusHudMinuteDigits(MapClockStatusHudContent const * hud, u32 value)
 {

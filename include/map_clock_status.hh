@@ -6,7 +6,11 @@
 // Only the prefix consumed by the recovered setters is modeled. This is not
 // the size or construction contract of the complete native HUD allocation.
 struct MapClockStatusHudDataPrefix {
-    u8 unk_000[0x228];
+    u8 unk_000[0x84];
+    u8 season_tiles[2][32];
+    u8 unk_0C4[0xC8];
+    u8 date_tiles_dirty;
+    u8 unk_18D[0x9B];
     // The native DE record has one extra tile slot before the colon.
 #if defined(REGION_DE)
     u8 unk_228[32];
@@ -33,6 +37,8 @@ struct MapClockStatusHudContent {
     MapClockStatusHudDataPrefix * state;
 };
 
+typedef char MapClockStatusSeasonTilesOffset[offsetof(MapClockStatusHudDataPrefix, season_tiles) == 0x84 ? 1 : -1];
+typedef char MapClockStatusDateDirtyOffset[offsetof(MapClockStatusHudDataPrefix, date_tiles_dirty) == 0x18C ? 1 : -1];
 #if defined(REGION_DE)
 typedef char MapClockStatusColonOffset[offsetof(MapClockStatusHudDataPrefix, colon_tile) == 0x248 ? 1 : -1];
 typedef char MapClockStatusMinuteDigitsOffset[offsetof(MapClockStatusHudDataPrefix, minute_digit_tiles) == 0x268 ? 1 : -1];
@@ -49,6 +55,8 @@ typedef char MapClockStatusValueDirtyOffset[offsetof(MapClockStatusHudDataPrefix
 typedef char MapClockStatusContentSize[sizeof(MapClockStatusHudContent) == 4 ? 1 : -1];
 
 EXTERN_C
+// Invalid signed values use the spring tile pair, as in the native switch.
+void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season);
 // Regional native atlas: 31 tiles in JP, 128 overseas; no shared count.
 extern u8 const gMapClockStatusGlyphTiles[][32];
 // This entry still has a native implementation; nonzero byte means visible.

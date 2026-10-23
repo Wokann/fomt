@@ -4654,68 +4654,9 @@ func_0803CB10:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803D080
-    .thumb_func
-func_0803D080:
-    push	{r4, r5, r6, r7, lr}
-    sub	sp, #8
-    ldr	r7, [r0, #0]
-    cmp	r1, #1
-    beq .Ljp_0803CDAE
-    cmp	r1, #1
-    ble .Ljp_0803CDA6
-    cmp	r1, #2
-    beq .Ljp_0803CDB6
-    cmp	r1, #3
-    beq .Ljp_0803CDBE
-.Ljp_0803CDA6:
-    movs	r0, #11
-    str	r0, [sp, #0]
-    movs	r2, #12
-    b .Ljp_0803CDC4
-.Ljp_0803CDAE:
-    movs	r0, #13
-    str	r0, [sp, #0]
-    movs	r2, #14
-    b .Ljp_0803CDC4
-.Ljp_0803CDB6:
-    movs	r0, #15
-    str	r0, [sp, #0]
-    movs	r2, #16
-    b .Ljp_0803CDC4
-.Ljp_0803CDBE:
-    movs	r0, #17
-    str	r0, [sp, #0]
-    movs	r2, #18
-.Ljp_0803CDC4:
-    str	r2, [sp, #4]
-    adds	r0, r7, #0
-    adds	r0, #132	@ 0x84
-    ldr	r2, [sp, #0]
-    lsls	r1, r2, #5
-    ldr r5, .Ljp_0803CDFC
-    adds	r1, r1, r5
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r6, r7, r0
-    movs	r4, #1
-    strb	r4, [r6, #0]
-    ldr	r2, [sp, #4]
-    lsls	r1, r2, #5
-    adds	r1, r1, r5
-    adds	r0, r7, #0
-    adds	r0, #164	@ 0xa4
-    movs	r2, #32
-    bl memcpy
-    strb	r4, [r6, #0]
-    add	sp, #8
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-.Ljp_0803CDFC:
-    .4byte gMapClockStatusGlyphTiles
+
+    .section .text.map_clock_status_date_time, "ax", %progbits
+    .align 2, 0
 .Ljp_0803CE00:
     push	{r4, r5, r6, r7, lr}
     sub	sp, #32
@@ -4973,7 +4914,7 @@ SetMapClockStatusHudColonVisible:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D080
+    bl SetMapClockStatusHudSeason
     pop	{r0}
     bx	r0
     push	{lr}
@@ -12597,68 +12538,9 @@ func_0803CD4C:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803D080
-    .thumb_func
-func_0803D080:
-    push	{r4, r5, r6, r7, lr}
-    sub	sp, #8
-    ldr	r7, [r0, #0]
-    cmp	r1, #1
-    beq .Leu_0803D0B2
-    cmp	r1, #1
-    ble .Leu_0803D0AA
-    cmp	r1, #2
-    beq .Leu_0803D0BA
-    cmp	r1, #3
-    beq .Leu_0803D0C2
-.Leu_0803D0AA:
-    movs	r0, #11
-    str	r0, [sp, #0]
-    movs	r2, #12
-    b .Leu_0803D0C8
-.Leu_0803D0B2:
-    movs	r0, #13
-    str	r0, [sp, #0]
-    movs	r2, #14
-    b .Leu_0803D0C8
-.Leu_0803D0BA:
-    movs	r0, #15
-    str	r0, [sp, #0]
-    movs	r2, #16
-    b .Leu_0803D0C8
-.Leu_0803D0C2:
-    movs	r0, #17
-    str	r0, [sp, #0]
-    movs	r2, #18
-.Leu_0803D0C8:
-    str	r2, [sp, #4]
-    adds	r0, r7, #0
-    adds	r0, #132	@ 0x84
-    ldr	r2, [sp, #0]
-    lsls	r1, r2, #5
-    ldr r5, .Leu_0803D100
-    adds	r1, r1, r5
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r6, r7, r0
-    movs	r4, #1
-    strb	r4, [r6, #0]
-    ldr	r2, [sp, #4]
-    lsls	r1, r2, #5
-    adds	r1, r1, r5
-    adds	r0, r7, #0
-    adds	r0, #164	@ 0xa4
-    movs	r2, #32
-    bl memcpy
-    strb	r4, [r6, #0]
-    add	sp, #8
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-.Leu_0803D100:
-    .4byte gMapClockStatusGlyphTiles
+
+    .section .text.map_clock_status_date_time, "ax", %progbits
+    .align 2, 0
     .global func_0803D0F0
     .thumb_func
 func_0803D0F0:
@@ -12982,7 +12864,7 @@ SetMapClockStatusHudColonVisible:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D080
+    bl SetMapClockStatusHudSeason
     pop	{r0}
     bx	r0
     .4byte 0x0612B500
@@ -20561,68 +20443,9 @@ func_0803CD4C:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_0803D080
-    .thumb_func
-func_0803D080:
-    push	{r4, r5, r6, r7, lr}
-    sub	sp, #8
-    ldr	r7, [r0, #0]
-    cmp	r1, #1
-    beq .Lde_0803CFB2
-    cmp	r1, #1
-    ble .Lde_0803CFAA
-    cmp	r1, #2
-    beq .Lde_0803CFBA
-    cmp	r1, #3
-    beq .Lde_0803CFC2
-.Lde_0803CFAA:
-    movs	r0, #11
-    str	r0, [sp, #0]
-    movs	r2, #12
-    b .Lde_0803CFC8
-.Lde_0803CFB2:
-    movs	r0, #13
-    str	r0, [sp, #0]
-    movs	r2, #14
-    b .Lde_0803CFC8
-.Lde_0803CFBA:
-    movs	r0, #15
-    str	r0, [sp, #0]
-    movs	r2, #16
-    b .Lde_0803CFC8
-.Lde_0803CFC2:
-    movs	r0, #17
-    str	r0, [sp, #0]
-    movs	r2, #18
-.Lde_0803CFC8:
-    str	r2, [sp, #4]
-    adds	r0, r7, #0
-    adds	r0, #132	@ 0x84
-    ldr	r2, [sp, #0]
-    lsls	r1, r2, #5
-    ldr r5, .Lde_0803D000
-    adds	r1, r1, r5
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r6, r7, r0
-    movs	r4, #1
-    strb	r4, [r6, #0]
-    ldr	r2, [sp, #4]
-    lsls	r1, r2, #5
-    adds	r1, r1, r5
-    adds	r0, r7, #0
-    adds	r0, #164	@ 0xa4
-    movs	r2, #32
-    bl memcpy
-    strb	r4, [r6, #0]
-    add	sp, #8
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-.Lde_0803D000:
-    .4byte gMapClockStatusGlyphTiles
+
+    .section .text.map_clock_status_date_time, "ax", %progbits
+    .align 2, 0
     .global func_0803D0F0
     .thumb_func
 func_0803D0F0:
@@ -20925,7 +20748,7 @@ SetMapClockStatusHudColonVisible:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D080
+    bl SetMapClockStatusHudSeason
     pop	{r0}
     bx	r0
     push	{lr}
@@ -28509,68 +28332,9 @@ func_0803CD4C:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803D080
-    .thumb_func
-func_0803D080:
-    push	{r4, r5, r6, r7, lr}
-    sub	sp, #8
-    ldr	r7, [r0, #0]
-    cmp	r1, #1
-    beq .Lus_0803D09E
-    cmp	r1, #1
-    ble .Lus_0803D096
-    cmp	r1, #2
-    beq .Lus_0803D0A6
-    cmp	r1, #3
-    beq .Lus_0803D0AE
-.Lus_0803D096:
-    movs	r0, #11
-    str	r0, [sp, #0]
-    movs	r2, #12
-    b .Lus_0803D0B4
-.Lus_0803D09E:
-    movs	r0, #13
-    str	r0, [sp, #0]
-    movs	r2, #14
-    b .Lus_0803D0B4
-.Lus_0803D0A6:
-    movs	r0, #15
-    str	r0, [sp, #0]
-    movs	r2, #16
-    b .Lus_0803D0B4
-.Lus_0803D0AE:
-    movs	r0, #17
-    str	r0, [sp, #0]
-    movs	r2, #18
-.Lus_0803D0B4:
-    str	r2, [sp, #4]
-    adds	r0, r7, #0
-    adds	r0, #132	@ 0x84
-    ldr	r2, [sp, #0]
-    lsls	r1, r2, #5
-    ldr r5, .Lus_0803D0EC
-    adds	r1, r1, r5
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r6, r7, r0
-    movs	r4, #1
-    strb	r4, [r6, #0]
-    ldr	r2, [sp, #4]
-    lsls	r1, r2, #5
-    adds	r1, r1, r5
-    adds	r0, r7, #0
-    adds	r0, #164	@ 0xa4
-    movs	r2, #32
-    bl memcpy
-    strb	r4, [r6, #0]
-    add	sp, #8
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-.Lus_0803D0EC:
-    .4byte gMapClockStatusGlyphTiles
+
+    .section .text.map_clock_status_date_time, "ax", %progbits
+    .align 2, 0
     .global func_0803D0F0
     .thumb_func
 func_0803D0F0:
@@ -28894,7 +28658,7 @@ SetMapClockStatusHudColonVisible:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D080
+    bl SetMapClockStatusHudSeason
     pop	{r0}
     bx	r0
     .4byte 0x0612B500

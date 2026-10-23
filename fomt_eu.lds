@@ -428,7 +428,14 @@ SECTIONS
         src/code_0803C540.o(.text);
         . = 0x3C560; /* US ROM 0x0803C54C, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803C54C);
-        src/map_clock_status.o(.text);
+        src/map_clock_status.o(.text.SetMapClockStatusHudSeason);
+        asm/code_0803A8A4.o(.text.map_clock_status_date_time);
+        src/map_clock_status.o(
+            .text.SetMapClockStatusHudMinuteDigits
+            .text.SetMapClockStatusHudUnkSelector
+            .text.SetMapClockStatusHudUnkValue
+            .text.ClearMapClockStatusHudUnkValue
+        );
         asm/code_0803A8A4.o(.text.map_clock_status_hud_adapters);
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
         src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
