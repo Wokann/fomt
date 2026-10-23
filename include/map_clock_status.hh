@@ -59,7 +59,7 @@ EXTERN_C
 void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season);
 // Regional native atlas: 31 tiles in JP, 128 overseas; no shared count.
 extern u8 const gMapClockStatusGlyphTiles[][32];
-// This entry still has a native implementation; nonzero byte means visible.
+// Nonzero byte copies the colon glyph; zero clears its entire tile.
 void SetMapClockStatusHudColonVisible(MapClockStatusHudContent const * hud, u8 visible);
 // Copies both decimal tiles; rounding and range policy belong to callers.
 void SetMapClockStatusHudMinuteDigits(MapClockStatusHudContent const * hud, u32 value);

@@ -4825,52 +4825,6 @@ func_0803CB10:
     bx	r0
 .Ljp_0803CF58:
     .4byte gMapClockStatusGlyphTiles
-    .global SetMapClockStatusHudColonVisible
-    .thumb_func
-SetMapClockStatusHudColonVisible:
-    push	{r4, lr}
-    sub	sp, #32
-    lsls	r1, r1, #24
-    ldr	r4, [r0, #0]
-    cmp	r1, #0
-    beq .Ljp_0803CF88
-    ldr r1, .Ljp_0803CF84
-    movs	r0, #160	@ 0xa0
-    lsls	r0, r0, #1
-    adds	r1, r1, r0
-    movs	r2, #138	@ 0x8a
-    lsls	r2, r2, #2
-    adds	r0, r4, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #172	@ 0xac
-    lsls	r0, r0, #2
-    adds	r1, r4, r0
-    b .Ljp_0803CFA6
-.Ljp_0803CF84:
-    .4byte gMapClockStatusGlyphTiles
-.Ljp_0803CF88:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    movs	r1, #138	@ 0x8a
-    lsls	r1, r1, #2
-    adds	r0, r4, r1
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #172	@ 0xac
-    lsls	r2, r2, #2
-    adds	r1, r4, r2
-.Ljp_0803CFA6:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    add	sp, #32
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
 
 
     .section .text.map_clock_status_hud_adapters, "ax", %progbits
@@ -12775,52 +12729,6 @@ func_0803D240:
     .align 2, 0
 .Leu_0803D2F8:
     .4byte gMapClockStatusGlyphTiles
-    .global SetMapClockStatusHudColonVisible
-    .thumb_func
-SetMapClockStatusHudColonVisible:
-    push	{r4, lr}
-    sub	sp, #32
-    lsls	r1, r1, #24
-    ldr	r4, [r0, #0]
-    cmp	r1, #0
-    beq .Leu_0803D328
-    ldr r1, .Leu_0803D324
-    movs	r0, #160	@ 0xa0
-    lsls	r0, r0, #1
-    adds	r1, r1, r0
-    movs	r2, #138	@ 0x8a
-    lsls	r2, r2, #2
-    adds	r0, r4, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #172	@ 0xac
-    lsls	r0, r0, #2
-    adds	r1, r4, r0
-    b .Leu_0803D346
-.Leu_0803D324:
-    .4byte gMapClockStatusGlyphTiles
-.Leu_0803D328:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    movs	r1, #138	@ 0x8a
-    lsls	r1, r1, #2
-    adds	r0, r4, r1
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #172	@ 0xac
-    lsls	r2, r2, #2
-    adds	r1, r4, r2
-.Leu_0803D346:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    add	sp, #32
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
 
 
     .section .text.map_clock_status_hud_adapters, "ax", %progbits
@@ -20664,52 +20572,6 @@ func_0803D240:
     .align 2, 0
 .Lde_0803D1DC:
     .4byte gMapClockStatusGlyphTiles
-    .global SetMapClockStatusHudColonVisible
-    .thumb_func
-SetMapClockStatusHudColonVisible:
-    push	{r4, lr}
-    sub	sp, #32
-    lsls	r1, r1, #24
-    ldr	r4, [r0, #0]
-    cmp	r1, #0
-    beq .Lde_0803D20C
-    ldr r1, .Lde_0803D208
-    movs	r0, #160	@ 0xa0
-    lsls	r0, r0, #1
-    adds	r1, r1, r0
-    movs	r2, #146	@ 0x92
-    lsls	r2, r2, #2
-    adds	r0, r4, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #172	@ 0xac
-    lsls	r0, r0, #2
-    adds	r1, r4, r0
-    b .Lde_0803D22A
-.Lde_0803D208:
-    .4byte gMapClockStatusGlyphTiles
-.Lde_0803D20C:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    movs	r1, #146	@ 0x92
-    lsls	r1, r1, #2
-    adds	r0, r4, r1
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #172	@ 0xac
-    lsls	r2, r2, #2
-    adds	r1, r4, r2
-.Lde_0803D22A:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    add	sp, #32
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
 
 
     .section .text.map_clock_status_hud_adapters, "ax", %progbits
@@ -28569,52 +28431,6 @@ func_0803D240:
     .align 2, 0
 .Lus_0803D2E4:
     .4byte gMapClockStatusGlyphTiles
-    .global SetMapClockStatusHudColonVisible
-    .thumb_func
-SetMapClockStatusHudColonVisible:
-    push	{r4, lr}
-    sub	sp, #32
-    lsls	r1, r1, #24
-    ldr	r4, [r0, #0]
-    cmp	r1, #0
-    beq .Lus_0803D314
-    ldr r1, .Lus_0803D310
-    movs	r0, #160	@ 0xa0
-    lsls	r0, r0, #1
-    adds	r1, r1, r0
-    movs	r2, #138	@ 0x8a
-    lsls	r2, r2, #2
-    adds	r0, r4, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #172	@ 0xac
-    lsls	r0, r0, #2
-    adds	r1, r4, r0
-    b .Lus_0803D332
-.Lus_0803D310:
-    .4byte gMapClockStatusGlyphTiles
-.Lus_0803D314:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    movs	r1, #138	@ 0x8a
-    lsls	r1, r1, #2
-    adds	r0, r4, r1
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #172	@ 0xac
-    lsls	r2, r2, #2
-    adds	r1, r4, r2
-.Lus_0803D332:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    add	sp, #32
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
 
 
     .section .text.map_clock_status_hud_adapters, "ax", %progbits

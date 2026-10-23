@@ -432,6 +432,7 @@ SECTIONS
         src/map_clock_status.o(.text.SetMapClockStatusHudSeason);
         asm/code_0803A8A4.o(.text.map_clock_status_date_time);
         src/map_clock_status.o(
+            .text.SetMapClockStatusHudColonVisible
             .text.SetMapClockStatusHudMinuteDigits
             .text.SetMapClockStatusHudUnkSelector
             .text.SetMapClockStatusHudUnkValue

@@ -4,6 +4,11 @@
 
 #include <string.h>
 
+static inline u8 const * GetMapClockStatusGlyph(u32 index)
+{
+    return gMapClockStatusGlyphTiles[index];
+}
+
 void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season)
 {
     MapClockStatusHudDataPrefix * state = hud->state;
@@ -20,6 +25,22 @@ void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season
     u8 const * second_tile = gMapClockStatusGlyphTiles[tiles[1]];
     memcpy(state->season_tiles[1], second_tile, 32);
     state->date_tiles_dirty = 1;
+}
+
+void SetMapClockStatusHudColonVisible(MapClockStatusHudContent const * hud, u8 visible)
+{
+    MapClockStatusHudDataPrefix * state = hud->state;
+    if (visible != 0) {
+        u8 const * colon = GetMapClockStatusGlyph(10);
+        memcpy(state->colon_tile, colon, 32);
+        state->time_tiles_dirty = 1;
+    } else {
+        u8 blank[32];
+        memset(blank, 0, sizeof(blank));
+        u8 const * pixels = blank;
+        memcpy(state->colon_tile, pixels, 32);
+        state->time_tiles_dirty = 1;
+    }
 }
 
 void SetMapClockStatusHudMinuteDigits(MapClockStatusHudContent const * hud, u32 value)
