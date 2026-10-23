@@ -1105,13 +1105,13 @@ mov	r5, r8
 push	{r5, r6, r7}
 sub	sp, #84
 mov	sl, r0
-ldr	r0, [pc, #472]
+ldr	r0, .LNewGameDE_08005ED4
 ldr	r0, [r0, #0]
-ldr	r1, [pc, #472]
-ldr	r2, [pc, #472]
+ldr	r1, .LNewGameDE_08005ED8
+ldr	r2, .LNewGameDE_08005EDC
 ldr	r2, [r2, #0]
 bl	CopyHardwareDma3
-ldr	r0, [pc, #468]
+ldr	r0, .LNewGameDE_08005EE0
 ldr	r0, [r0, #0]
 movs	r1, #160
 lsls	r1, r1, #19
@@ -1131,18 +1131,18 @@ mov	r0, sl
 bl	GetHardwareDisplayState
 .LNewGameDE_08005D30:
 add	r2, sp, #12
-ldr	r5, [pc, #432]
+ldr	r5, .LNewGameDE_08005EE4
 adds	r1, r5, #0
 strh	r1, [r2, #0]
 strh	r1, [r0, #10]
 mov	r0, sl
 bl	GetHardwareDisplayState
 add	r2, sp, #12
-ldr	r7, [pc, #420]
+ldr	r7, .LNewGameDE_08005EE8
 adds	r1, r7, #0
 strh	r1, [r2, #0]
 strh	r1, [r0, #12]
-ldr	r0, [pc, #416]
+ldr	r0, .LNewGameDE_08005EEC
 movs	r1, #20
 str	r1, [sp, #0]
 movs	r1, #155
@@ -1155,7 +1155,7 @@ movs	r3, #30
 bl	DrawUiTextWindowBorder
 movs	r0, #1
 negs	r0, r0
-ldr	r4, [pc, #392]
+ldr	r4, .LNewGameDE_08005EF0
 movs	r2, #128
 lsls	r2, r2, #4
 adds	r1, r4, #0
@@ -1173,7 +1173,7 @@ adds	r5, #48
 str	r5, [sp, #68]
 mov	r7, sl
 adds	r7, #12
-ldr	r0, [pc, #356]
+ldr	r0, .LNewGameDE_08005EF4
 add	r0, sl
 str	r0, [sp, #72]
 movs	r6, #28
@@ -1192,8 +1192,8 @@ adds	r1, r5, #0
 cmp	r1, #19
 bls.n	.LNewGameDE_08005D94
 movs	r3, #10
-ldr	r2, [pc, #328]
-ldr	r1, [pc, #328]
+ldr	r2, .LNewGameDE_08005EF8
+ldr	r1, .LNewGameDE_08005EFC
 .LNewGameDE_08005DB2:
 strh	r3, [r1, #0]
 adds	r0, r3, #0
@@ -1212,8 +1212,8 @@ adds	r5, r1, #0
 movs	r2, #255
 lsls	r2, r2, #1
 adds	r4, r2, #0
-ldr	r2, [pc, #300]
-ldr	r1, [pc, #300]
+ldr	r2, .LNewGameDE_08005F00
+ldr	r1, .LNewGameDE_08005F04
 .LNewGameDE_08005DD6:
 adds	r0, r3, r5
 strh	r0, [r1, #0]
@@ -1225,7 +1225,7 @@ adds	r3, #1
 cmp	r3, #26
 bls.n	.LNewGameDE_08005DD6
 movs	r1, #4
-ldr	r4, [pc, #260]
+ldr	r4, .LNewGameDE_08005EF0
 .LNewGameDE_08005DEC:
 movs	r3, #0
 lsls	r2, r1, #6
@@ -1249,10 +1249,10 @@ movs	r3, #18
 movs	r4, #135
 lsls	r4, r4, #2
 adds	r5, r4, #0
-ldr	r0, [pc, #240]
+ldr	r0, .LNewGameDE_08005F08
 adds	r4, r0, #0
-ldr	r2, [pc, #240]
-ldr	r1, [pc, #240]
+ldr	r2, .LNewGameDE_08005F0C
+ldr	r1, .LNewGameDE_08005F10
 .LNewGameDE_08005E1E:
 adds	r0, r3, r5
 strh	r0, [r1, #0]
@@ -1270,13 +1270,13 @@ ldr	r0, [r0, #0]
 cmp	r0, #0
 beq.n	.LNewGameDE_08005E5E
 movs	r3, #1
-ldr	r1, [pc, #212]
+ldr	r1, .LNewGameDE_08005F14
 adds	r5, r1, #0
 movs	r2, #152
 lsls	r2, r2, #2
 adds	r4, r2, #0
-ldr	r2, [pc, #204]
-ldr	r1, [pc, #208]
+ldr	r2, .LNewGameDE_08005F18
+ldr	r1, .LNewGameDE_08005F1C
 .LNewGameDE_08005E4C:
 adds	r0, r3, r5
 strh	r0, [r1, #0]
@@ -1288,7 +1288,7 @@ adds	r3, #1
 cmp	r3, #9
 bls.n	.LNewGameDE_08005E4C
 .LNewGameDE_08005E5E:
-ldr	r1, [pc, #192]
+ldr	r1, .LNewGameDE_08005F20
 movs	r0, #0
 movs	r2, #32
 bl	FillHardwareDma3
@@ -1302,7 +1302,7 @@ ldr	r0, [sp, #32]
 adds	r1, r7, #0
 movs	r2, #0
 bl	Clear2DGfxBuffer
-ldr	r1, [pc, #164]
+ldr	r1, .LNewGameDE_08005F24
 add	r0, sp, #36
 strh	r4, [r0, #0]
 mov	r4, r9
@@ -1477,11 +1477,11 @@ str	r7, [r6, #0]
 str	r5, [r6, #4]
 str	r0, [r6, #12]
 .LNewGameDE_08005FEE:
-ldr	r1, [pc, #152]
+ldr	r1, .LNewGameDE_08006088
 add	r1, sl
 movs	r0, #0
 str	r0, [r1, #0]
-ldr	r0, [pc, #148]
+ldr	r0, .LNewGameDE_0800608C
 add	r0, sl
 movs	r1, #1
 mov	r8, r1
@@ -1666,7 +1666,7 @@ str	r7, [r6, #0]
 str	r5, [r6, #4]
 str	r0, [r6, #12]
 .LNewGameDE_08006156:
-ldr	r0, [pc, #84]
+ldr	r0, .LNewGameDE_080061AC
 add	r0, sl
 ldr	r0, [r0, #0]
 mov	r9, r0
@@ -1684,7 +1684,7 @@ bl	GetHardwareCommandList
 adds	r4, r0, #0
 mov	r0, sl
 bl	GetHardwareInterruptList
-ldr	r1, [pc, #40]
+ldr	r1, .LNewGameDE_080061B0
 add	r1, sl
 str	r4, [sp, #0]
 str	r0, [sp, #4]
