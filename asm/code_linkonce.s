@@ -8052,7 +8052,7 @@ func_080DC840:
     adds r4, r7, #0
     stm r4!, {r0}
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     ldr r1, [r6, #4]
     adds r0, r4, #0
     bl RetainHardwareSharedStateHandle
@@ -12460,7 +12460,7 @@ func_080E0A94:
     movs r0, #0x34
     bl __builtin_new
     adds r5, r0, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     adds r0, r5, #0
     movs r1, #2
     bl AllocateHardwareSharedStateHandle
@@ -12504,7 +12504,7 @@ func_080E0A94:
     rsbs r6, r6, #0
     .Lauto_080E02CA:
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     mov r2, sb
     str r2, [r4, #4]
     adds r4, #8
@@ -12567,7 +12567,7 @@ func_080E0A94:
     adds r0, r0, r1
     ldr r5, [r0]
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     adds r0, r4, #0
     movs r1, #2
     bl AllocateHardwareSharedStateHandle
@@ -20061,7 +20061,7 @@ func_080DC840: @ 0x080DC840
 	adds r4, r7, #0
 	stm r4!, {r0}
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	ldr r1, [r6, #4]
 	adds r0, r4, #0
 	bl RetainHardwareSharedStateHandle
@@ -28494,7 +28494,7 @@ func_080E0A94: @ 0x080E0A94
 	movs r0, #0x34
 	bl __builtin_new
 	adds r5, r0, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	adds r0, r5, #0
 	movs r1, #2
 	bl AllocateHardwareSharedStateHandle
@@ -28538,7 +28538,7 @@ func_080E0A94: @ 0x080E0A94
 	rsbs r6, r6, #0
 .L080E0B2A:
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	mov r2, sb
 	str r2, [r4, #4]
 	adds r4, #8
@@ -28601,7 +28601,7 @@ func_080E0A94: @ 0x080E0A94
 	adds r0, r0, r1
 	ldr r5, [r0]
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	adds r0, r4, #0
 	movs r1, #2
 	bl AllocateHardwareSharedStateHandle
@@ -31494,7 +31494,7 @@ func_080E2568:
     push {r4, r5, r6, lr}
     sub sp, #0x10
     adds r6, r0, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     adds r4, r6, #4
     movs r5, #0
     str r5, [r4, #4]
@@ -35800,53 +35800,53 @@ func_080E4FF0:
     loc_080E4A38:
     push {r4, r5, r6, lr}
     adds r6, r0, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     movs r5, #0
     str r5, [r6, #4]
     adds r4, r6, #0
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str r5, [r4, #4]
     adds r0, r6, #0
     pop {r4, r5, r6}
@@ -39837,7 +39837,7 @@ func_080E2DC8: @ 0x080E2DC8
 	push {r4, r5, r6, lr}
 	sub sp, #0x10
 	adds r6, r0, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	adds r4, r6, #4
 	movs r5, #0
 	str r5, [r4, #4]
@@ -44235,53 +44235,53 @@ func_080E4FF0: @ 0x080E4FF0
 func_080E52A0: @ 0x080E52A0
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	movs r5, #0
 	str r5, [r6, #4]
 	adds r4, r6, #0
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007874
+	bl InitializeHardwareSharedStateOwner
 	str r5, [r4, #4]
 	adds r0, r6, #0
 	pop {r4, r5, r6}

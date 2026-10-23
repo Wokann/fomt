@@ -38,7 +38,7 @@ static inline void InitializeIntroSceneResourceState(
 static inline void InitializeIntroSceneHardwareStateHandle(
     IntroSceneHardwareStateHandle * owner, u32 group_index)
 {
-    func_08007874(owner);
+    InitializeHardwareSharedStateOwner(owner);
     owner->handle = AllocateHardwareSharedStateHandle(owner, group_index);
 }
 
@@ -51,7 +51,7 @@ static inline void InitializeIntroSceneHardwarePoolHandle(IntroSceneHardwarePool
 static inline void InitializeIntroSceneHardwareStateReservation(
     HardwareSharedStateOwner * owner, u32 first, u32 count)
 {
-    func_08007874(owner);
+    InitializeHardwareSharedStateOwner(owner);
     owner->Reserve(first, count);
 }
 

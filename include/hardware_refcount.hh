@@ -9,10 +9,10 @@
 struct HardwareSharedStateOwner {
     u32 unk_00;
 #ifdef __cplusplus
-    HardwareSharedStateOwner() asm("func_08007874");
+    HardwareSharedStateOwner() asm("InitializeHardwareSharedStateOwner");
     HardwareSharedStateOwner(HardwareSharedStateOwner const &);
     ~HardwareSharedStateOwner();
-    void Reserve(u32 first, u32 count) asm("func_08007A28");
+    void Reserve(u32 first, u32 count) asm("SetHardwareSharedStateTileReservation");
 #endif
 };
 
@@ -188,7 +188,7 @@ extern HardwareSharedState * gUnk_03000408;
 
 // The default constructor remains in assembly. Raw-storage initialization
 // sites use the same entry without invoking an enclosing C++ constructor.
-void * func_08007874(void * owner);
+void * InitializeHardwareSharedStateOwner(void * owner);
 
 // Allocate a 2^size_shift tile range and a generation-checked slot handle.
 // A failed slot allocation returns the tile range and yields the zero handle.

@@ -5,8 +5,8 @@
     .thumb
     .align 2, 0
 
-    thumb_func_start func_08007578
-func_08007578:
+    thumb_func_start InitializeHardwareResourceWithCount
+InitializeHardwareResourceWithCount:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, r9
@@ -223,8 +223,8 @@ func_08007578:
     .thumb
     .align 2, 0
 
-    thumb_func_start func_08007874
-func_08007874: @ 0x08007874
+    thumb_func_start InitializeHardwareSharedStateOwner
+InitializeHardwareSharedStateOwner: @ 0x08007874
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -404,8 +404,8 @@ func_08007874: @ 0x08007874
     .thumb
     .align 2, 0
 
-    thumb_func_start func_08007A28
-func_08007A28: @ 0x08007A28
+    thumb_func_start SetHardwareSharedStateTileReservation
+SetHardwareSharedStateTileReservation: @ 0x08007A28
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -561,8 +561,8 @@ func_08007A28: @ 0x08007A28
     .thumb
     .align 2, 0
 
-    thumb_func_start func_08008190
-func_08008190:
+    thumb_func_start InitializeHardwareStateOwnerGroups
+InitializeHardwareStateOwnerGroups:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, r9
@@ -618,7 +618,7 @@ func_08008190:
     mov r9, r1
 .L080081F8:
     mov r0, r9
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     mov r0, r9
     ldr r1, [sp, #0x20]
     bl AllocateHardwareSharedStateHandle
@@ -631,7 +631,7 @@ func_08008190:
     cmp r4, #0
     beq .L08008226
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     mov r2, r9
     ldr r1, [r2, #4]
     adds r0, r4, #0
@@ -692,7 +692,7 @@ func_08008190:
     cmp r4, #0
     beq .L08008294
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     ldr r1, [r5, #4]
     adds r0, r4, #0
     bl RetainHardwareSharedStateHandle
@@ -710,7 +710,7 @@ func_08008190:
     cmp r5, #0
     beq .L080082BA
     adds r0, r5, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     mov r0, r9
     ldr r1, [r0, #4]
     adds r0, r5, #0
@@ -729,7 +729,7 @@ func_08008190:
     cmp r4, #0
     beq .L080082DC
     adds r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     mov r2, r9
     ldr r1, [r2, #4]
     adds r0, r4, #0

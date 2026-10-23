@@ -482,7 +482,7 @@ func_0803AEA0:
     ldmia	r0!, {r2, r7}
     stmia	r1!, {r2, r7}
     adds	r0, r5, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     adds	r0, r5, #0
     movs	r1, #0
     bl AllocateHardwareSharedStateHandle
@@ -508,7 +508,7 @@ func_0803AEA0:
     stmia	r1!, {r2, r7}
     adds	r4, #32
     adds	r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     ldr	r1, [r5, #4]
     adds	r0, r4, #0
     bl RetainHardwareSharedStateHandle
@@ -7024,7 +7024,7 @@ func_0803AEA0:
     ldmia	r0!, {r2, r7}
     stmia	r1!, {r2, r7}
     adds	r0, r5, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     adds	r0, r5, #0
     movs	r1, #0
     bl AllocateHardwareSharedStateHandle
@@ -7050,7 +7050,7 @@ func_0803AEA0:
     stmia	r1!, {r2, r7}
     adds	r4, #32
     adds	r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     ldr	r1, [r5, #4]
     adds	r0, r4, #0
     bl RetainHardwareSharedStateHandle
@@ -13603,7 +13603,7 @@ func_0803AEA0:
     ldmia	r0!, {r2, r7}
     stmia	r1!, {r2, r7}
     adds	r0, r5, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     adds	r0, r5, #0
     movs	r1, #0
     bl AllocateHardwareSharedStateHandle
@@ -13629,7 +13629,7 @@ func_0803AEA0:
     stmia	r1!, {r2, r7}
     adds	r4, #32
     adds	r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     ldr	r1, [r5, #4]
     adds	r0, r4, #0
     bl RetainHardwareSharedStateHandle
@@ -20156,7 +20156,7 @@ func_0803AEA0:
     ldmia	r0!, {r2, r7}
     stmia	r1!, {r2, r7}
     adds	r0, r5, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     adds	r0, r5, #0
     movs	r1, #0
     bl AllocateHardwareSharedStateHandle
@@ -20182,7 +20182,7 @@ func_0803AEA0:
     stmia	r1!, {r2, r7}
     adds	r4, #32
     adds	r0, r4, #0
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     ldr	r1, [r5, #4]
     adds	r0, r4, #0
     bl RetainHardwareSharedStateHandle
@@ -26441,7 +26441,7 @@ __21GameSceneWorldUnk1020P10GameObject:
     strh	r5, [r4, #28]
     adds	r0, r6, #0
     adds	r0, #32
-    bl func_08007874
+    bl InitializeHardwareSharedStateOwner
     str	r5, [r4, #36]	@ 0x24
     adds	r4, #44	@ 0x2c
     adds	r6, #44	@ 0x2c
