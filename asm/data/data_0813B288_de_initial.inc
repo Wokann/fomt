@@ -100147,8 +100147,8 @@ gUnk_0875A424:
 	.global gUnk_0875A438
 gUnk_0875A438:
 	.byte 0xB0, 0x41, 0xB1, 0x41, 0xD0, 0x41, 0xD1, 0x41
-	.global gUnk_0875A440
-gUnk_0875A440:
+	.global gMapClockStatusGlyphTiles
+gMapClockStatusGlyphTiles:
 	.incbin "graphics/ui/clock_font/de/glyph_indices.4bpp"
 	.incbin "graphics/ui/clock_font/shared/tail.bin"
 	.global gUnk_0875B444

@@ -1,5 +1,20 @@
 #include "map_clock_status.hh"
 
+#include <string.h>
+
+void SetMapClockStatusHudMinuteDigits(MapClockStatusHudContent const * hud, u32 value)
+{
+    MapClockStatusHudDataPrefix * state = hud->state;
+    u32 tens = value / 10;
+    u32 ones = value % 10;
+    u8 const * tens_tile = gMapClockStatusGlyphTiles[tens];
+    memcpy(state->minute_digit_tiles[0], tens_tile, 32);
+    state->time_tiles_dirty = 1;
+    u8 const * ones_tile = gMapClockStatusGlyphTiles[ones];
+    memcpy(state->minute_digit_tiles[1], ones_tile, 32);
+    state->time_tiles_dirty = 1;
+}
+
 void SetMapClockStatusHudUnkSelector(MapClockStatusHudContent const * hud, u32 value)
 {
     MapClockStatusHudDataPrefix * state = hud->state;

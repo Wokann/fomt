@@ -6,7 +6,20 @@
 // Only the prefix consumed by the recovered setters is modeled. This is not
 // the size or construction contract of the complete native HUD allocation.
 struct MapClockStatusHudDataPrefix {
-    u8 unk_000[0x2CC];
+    u8 unk_000[0x228];
+    // The native DE record has one extra tile slot before the colon.
+#if defined(REGION_DE)
+    u8 unk_228[32];
+#endif
+    u8 colon_tile[32];
+    u8 minute_digit_tiles[2][32];
+#if defined(REGION_DE)
+    u8 unk_2A8[8];
+#else
+    u8 unk_288[0x28];
+#endif
+    u8 time_tiles_dirty;
+    u8 unk_2B1[0x1B];
     u8 unk_selector;
     u8 unk_2CD[0x23];
     u8 unk_selector_dirty;
@@ -20,6 +33,14 @@ struct MapClockStatusHudContent {
     MapClockStatusHudDataPrefix * state;
 };
 
+#if defined(REGION_DE)
+typedef char MapClockStatusColonOffset[offsetof(MapClockStatusHudDataPrefix, colon_tile) == 0x248 ? 1 : -1];
+typedef char MapClockStatusMinuteDigitsOffset[offsetof(MapClockStatusHudDataPrefix, minute_digit_tiles) == 0x268 ? 1 : -1];
+#else
+typedef char MapClockStatusColonOffset[offsetof(MapClockStatusHudDataPrefix, colon_tile) == 0x228 ? 1 : -1];
+typedef char MapClockStatusMinuteDigitsOffset[offsetof(MapClockStatusHudDataPrefix, minute_digit_tiles) == 0x248 ? 1 : -1];
+#endif
+typedef char MapClockStatusTimeDirtyOffset[offsetof(MapClockStatusHudDataPrefix, time_tiles_dirty) == 0x2B0 ? 1 : -1];
 typedef char MapClockStatusSelectorOffset[offsetof(MapClockStatusHudDataPrefix, unk_selector) == 0x2CC ? 1 : -1];
 typedef char MapClockStatusSelectorDirtyOffset[offsetof(MapClockStatusHudDataPrefix, unk_selector_dirty) == 0x2F0 ? 1 : -1];
 typedef char MapClockStatusValueActiveOffset[offsetof(MapClockStatusHudDataPrefix, unk_value_active) == 0x2F1 ? 1 : -1];
@@ -27,9 +48,15 @@ typedef char MapClockStatusValueOffset[offsetof(MapClockStatusHudDataPrefix, unk
 typedef char MapClockStatusValueDirtyOffset[offsetof(MapClockStatusHudDataPrefix, unk_value_dirty) == 0x334 ? 1 : -1];
 typedef char MapClockStatusContentSize[sizeof(MapClockStatusHudContent) == 4 ? 1 : -1];
 
+EXTERN_C
+// Regional native atlas: 31 tiles in JP, 128 overseas; no shared count.
+extern u8 const gMapClockStatusGlyphTiles[][32];
+// This entry still has a native implementation; nonzero byte means visible.
+void SetMapClockStatusHudColonVisible(MapClockStatusHudContent const * hud, u8 visible);
+// Copies both decimal tiles; rounding and range policy belong to callers.
+void SetMapClockStatusHudMinuteDigits(MapClockStatusHudContent const * hud, u32 value);
 // Values above 4 leave the selector unchanged. The visual meaning of
 // these five native states is not established; do not infer weather.
-EXTERN_C
 void SetMapClockStatusHudUnkSelector(MapClockStatusHudContent const * hud, u32 value);
 // Compare the full input word before storing its low 16 bits.
 void SetMapClockStatusHudUnkValue(MapClockStatusHudContent const * hud, u32 value);
