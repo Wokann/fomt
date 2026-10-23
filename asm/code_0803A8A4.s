@@ -4977,132 +4977,22 @@ func_0803D340:
     bx	r0
 .Ljp_0803D010:
     .4byte 0x084E03EC
-    .global func_0803D3A0
-    .thumb_func
-func_0803D3A0:
-    push	{lr}
-    ldr	r2, [r0, #0]
-    movs	r3, #179	@ 0xb3
-    lsls	r3, r3, #2
-    adds	r0, r2, r3
-    ldrb	r0, [r0, #0]
-    cmp	r1, #4
-    bhi .Ljp_0803D05A
-    lsls	r0, r1, #2
-    ldr r1, .Ljp_0803D030
-    adds	r0, r0, r1
-    ldr	r0, [r0, #0]
-    mov	pc, r0
+
+    .section .text.map_clock_status_hud_adapters, "ax", %progbits
     .align 2, 0
-.Ljp_0803D030:
-    .4byte .Ljp_0803D034
-.Ljp_0803D034:
-    .4byte .Ljp_0803D048
-    .4byte .Ljp_0803D04C
-    .4byte .Ljp_0803D050
-    .4byte .Ljp_0803D054
-    .4byte .Ljp_0803D058
-.Ljp_0803D048:
-    movs	r0, #0
-    b .Ljp_0803D05A
-.Ljp_0803D04C:
-    movs	r0, #1
-    b .Ljp_0803D05A
-.Ljp_0803D050:
-    movs	r0, #2
-    b .Ljp_0803D05A
-.Ljp_0803D054:
-    movs	r0, #3
-    b .Ljp_0803D05A
-.Ljp_0803D058:
-    movs	r0, #4
-.Ljp_0803D05A:
-    movs	r3, #179	@ 0xb3
-    lsls	r3, r3, #2
-    adds	r1, r2, r3
-    ldrb	r3, [r1, #0]
-    cmp	r0, r3
-    beq .Ljp_0803D072
-    strb	r0, [r1, #0]
-    movs	r0, #188	@ 0xbc
-    lsls	r0, r0, #2
-    adds	r1, r2, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-.Ljp_0803D072:
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    .global func_0803D404
-    .thumb_func
-func_0803D404:
-    push	{r4, lr}
-    adds	r3, r1, #0
-    ldr	r2, [r0, #0]
-    ldr r0, .Ljp_0803D0AC
-    adds	r1, r2, r0
-    ldrb	r0, [r1, #0]
-    cmp	r0, #0
-    beq .Ljp_0803D092
-    ldr r4, .Ljp_0803D0B0
-    adds	r0, r2, r4
-    ldrh	r0, [r0, #0]
-    cmp	r3, r0
-    beq .Ljp_0803D0A4
-.Ljp_0803D092:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    ldr r4, .Ljp_0803D0B0
-    adds	r1, r2, r4
-    strh	r3, [r1, #0]
-    movs	r3, #205	@ 0xcd
-    lsls	r3, r3, #2
-    adds	r1, r2, r3
-    strb	r0, [r1, #0]
-.Ljp_0803D0A4:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Ljp_0803D0AC:
-    .4byte 0x000002F1
-.Ljp_0803D0B0:
-    .4byte 0x000002F2
-    .global func_0803D440
-    .thumb_func
-func_0803D440:
-    push	{lr}
-    ldr	r1, [r0, #0]
-    ldr r0, .Ljp_0803D0D4
-    adds	r2, r1, r0
-    ldrb	r0, [r2, #0]
-    cmp	r0, #0
-    beq .Ljp_0803D0D0
-    movs	r0, #0
-    strb	r0, [r2, #0]
-    movs	r0, #205	@ 0xcd
-    lsls	r0, r0, #2
-    adds	r1, r1, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-.Ljp_0803D0D0:
-    pop	{r0}
-    bx	r0
-.Ljp_0803D0D4:
-    .4byte 0x000002F1
     push	{lr}
     adds	r0, #8
-    bl func_0803D440
+    bl ClearMapClockStatusHudUnkValue
     pop	{r0}
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D404
+    bl SetMapClockStatusHudUnkValue
     pop	{r0}
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D3A0
+    bl SetMapClockStatusHudUnkSelector
     pop	{r0}
     bx	r0
     push	{lr}
@@ -13142,128 +13032,22 @@ func_0803D340:
     bx	r0
 .Leu_0803D3B0:
     .4byte gUnk_0875A440
-    .global func_0803D3A0
-    .thumb_func
-func_0803D3A0:
-    push	{lr}
-    ldr	r2, [r0, #0]
-    movs	r3, #179	@ 0xb3
-    lsls	r3, r3, #2
-    adds	r0, r2, r3
-    ldrb	r0, [r0, #0]
-    cmp	r1, #4
-    bhi .Leu_0803D3FA
-    lsls	r0, r1, #2
-    ldr r1, .Leu_0803D3D0
-    adds	r0, r0, r1
-    ldr	r0, [r0, #0]
-    mov	pc, r0
+
+    .section .text.map_clock_status_hud_adapters, "ax", %progbits
     .align 2, 0
-.Leu_0803D3D0:
-    .4byte .Leu_0803D3D4
-.Leu_0803D3D4:
-    .4byte .Leu_0803D3E8
-    .4byte .Leu_0803D3EC
-    .4byte .Leu_0803D3F0
-    .4byte .Leu_0803D3F4
-    .4byte .Leu_0803D3F8
-.Leu_0803D3E8:
-    .4byte 0xE0062000
-.Leu_0803D3EC:
-    .4byte 0xE0042001
-.Leu_0803D3F0:
-    .4byte 0xE0022002
-.Leu_0803D3F4:
-    .4byte 0xE0002003
-.Leu_0803D3F8:
-    .hword 0x2004
-.Leu_0803D3FA:
-    movs	r3, #179	@ 0xb3
-    lsls	r3, r3, #2
-    adds	r1, r2, r3
-    ldrb	r3, [r1, #0]
-    cmp	r0, r3
-    beq .Leu_0803D412
-    strb	r0, [r1, #0]
-    movs	r0, #188	@ 0xbc
-    lsls	r0, r0, #2
-    adds	r1, r2, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-.Leu_0803D412:
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    .global func_0803D404
-    .thumb_func
-func_0803D404:
-    push	{r4, lr}
-    adds	r3, r1, #0
-    ldr	r2, [r0, #0]
-    ldr r0, .Leu_0803D44C
-    adds	r1, r2, r0
-    ldrb	r0, [r1, #0]
-    cmp	r0, #0
-    beq .Leu_0803D432
-    ldr r4, .Leu_0803D450
-    adds	r0, r2, r4
-    ldrh	r0, [r0, #0]
-    cmp	r3, r0
-    beq .Leu_0803D444
-.Leu_0803D432:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    ldr r4, .Leu_0803D450
-    adds	r1, r2, r4
-    strh	r3, [r1, #0]
-    movs	r3, #205	@ 0xcd
-    lsls	r3, r3, #2
-    adds	r1, r2, r3
-    strb	r0, [r1, #0]
-.Leu_0803D444:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Leu_0803D44C:
-    .4byte 0x000002F1
-.Leu_0803D450:
-    .4byte 0x000002F2
-    .global func_0803D440
-    .thumb_func
-func_0803D440:
-    push	{lr}
-    ldr	r1, [r0, #0]
-    ldr r0, .Leu_0803D474
-    adds	r2, r1, r0
-    ldrb	r0, [r2, #0]
-    cmp	r0, #0
-    beq .Leu_0803D470
-    movs	r0, #0
-    strb	r0, [r2, #0]
-    movs	r0, #205	@ 0xcd
-    lsls	r0, r0, #2
-    adds	r1, r1, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-.Leu_0803D470:
-    pop	{r0}
-    bx	r0
-.Leu_0803D474:
-    .4byte 0x000002F1
     push	{lr}
     adds	r0, #8
-    bl func_0803D440
+    bl ClearMapClockStatusHudUnkValue
     pop	{r0}
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D404
+    bl SetMapClockStatusHudUnkValue
     pop	{r0}
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D3A0
+    bl SetMapClockStatusHudUnkSelector
     pop	{r0}
     bx	r0
     push	{lr}
@@ -21242,123 +21026,17 @@ func_0803D340:
     bx	r0
 .Lde_0803D294:
     .4byte gUnk_0875A440
-    .global func_0803D3A0
-    .thumb_func
-func_0803D3A0:
-    push	{lr}
-    ldr	r2, [r0, #0]
-    movs	r3, #179	@ 0xb3
-    lsls	r3, r3, #2
-    adds	r0, r2, r3
-    ldrb	r0, [r0, #0]
-    cmp	r1, #4
-    bhi .Lde_0803D2DE
-    lsls	r0, r1, #2
-    ldr r1, .Lde_0803D2B4
-    adds	r0, r0, r1
-    ldr	r0, [r0, #0]
-    mov	pc, r0
+
+    .section .text.map_clock_status_hud_adapters, "ax", %progbits
     .align 2, 0
-.Lde_0803D2B4:
-    .4byte .Lde_0803D2B8
-.Lde_0803D2B8:
-    .4byte .Lde_0803D2CC
-    .4byte .Lde_0803D2D0
-    .4byte .Lde_0803D2D4
-    .4byte .Lde_0803D2D8
-    .4byte .Lde_0803D2DC
-.Lde_0803D2CC:
-    .4byte 0xE0062000
-.Lde_0803D2D0:
-    .4byte 0xE0042001
-.Lde_0803D2D4:
-    .4byte 0xE0022002
-.Lde_0803D2D8:
-    .4byte 0xE0002003
-.Lde_0803D2DC:
-    .hword 0x2004
-.Lde_0803D2DE:
-    movs	r3, #179	@ 0xb3
-    lsls	r3, r3, #2
-    adds	r1, r2, r3
-    ldrb	r3, [r1, #0]
-    cmp	r0, r3
-    beq .Lde_0803D2F6
-    strb	r0, [r1, #0]
-    movs	r0, #188	@ 0xbc
-    lsls	r0, r0, #2
-    adds	r1, r2, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-.Lde_0803D2F6:
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    .global func_0803D404
-    .thumb_func
-func_0803D404:
-    push	{r4, lr}
-    adds	r3, r1, #0
-    ldr	r2, [r0, #0]
-    ldr r0, .Lde_0803D330
-    adds	r1, r2, r0
-    ldrb	r0, [r1, #0]
-    cmp	r0, #0
-    beq .Lde_0803D316
-    ldr r4, .Lde_0803D334
-    adds	r0, r2, r4
-    ldrh	r0, [r0, #0]
-    cmp	r3, r0
-    beq .Lde_0803D328
-.Lde_0803D316:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    ldr r4, .Lde_0803D334
-    adds	r1, r2, r4
-    strh	r3, [r1, #0]
-    movs	r3, #205	@ 0xcd
-    lsls	r3, r3, #2
-    adds	r1, r2, r3
-    strb	r0, [r1, #0]
-.Lde_0803D328:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Lde_0803D330:
-    .4byte 0x000002F1
-.Lde_0803D334:
-    .4byte 0x000002F2
-    .global func_0803D440
-    .thumb_func
-func_0803D440:
-    push	{lr}
-    ldr	r1, [r0, #0]
-    ldr r0, .Lde_0803D358
-    adds	r2, r1, r0
-    ldrb	r0, [r2, #0]
-    cmp	r0, #0
-    beq .Lde_0803D354
-    movs	r0, #0
-    strb	r0, [r2, #0]
-    movs	r0, #205	@ 0xcd
-    lsls	r0, r0, #2
-    adds	r1, r1, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-.Lde_0803D354:
-    pop	{r0}
-    bx	r0
-.Lde_0803D358:
-    .4byte 0x000002F1
     .4byte 0x3008B500
-    .4byte 0xFFEAF7FF
+    bl ClearMapClockStatusHudUnkValue
     .4byte 0x4700BC01
     .4byte 0x3008B500
-    .4byte 0xFFC6F7FF
+    bl SetMapClockStatusHudUnkValue
     .4byte 0x4700BC01
     .4byte 0x3008B500
-    bl func_0803D3A0
+    bl SetMapClockStatusHudUnkSelector
     pop	{r0}
     bx	r0
     push	{lr}
@@ -29358,128 +29036,22 @@ func_0803D340:
     bx	r0
 .Lus_0803D39C:
     .4byte gUnk_0875A440
-    .global func_0803D3A0
-    .thumb_func
-func_0803D3A0:
-    push	{lr}
-    ldr	r2, [r0, #0]
-    movs	r3, #179	@ 0xb3
-    lsls	r3, r3, #2
-    adds	r0, r2, r3
-    ldrb	r0, [r0, #0]
-    cmp	r1, #4
-    bhi .Lus_0803D3E6
-    lsls	r0, r1, #2
-    ldr r1, .Lus_0803D3BC
-    adds	r0, r0, r1
-    ldr	r0, [r0, #0]
-    mov	pc, r0
+
+    .section .text.map_clock_status_hud_adapters, "ax", %progbits
     .align 2, 0
-.Lus_0803D3BC:
-    .4byte .Lus_0803D3C0
-.Lus_0803D3C0:
-    .4byte .Lus_0803D3D4
-    .4byte .Lus_0803D3D8
-    .4byte .Lus_0803D3DC
-    .4byte .Lus_0803D3E0
-    .4byte .Lus_0803D3E4
-.Lus_0803D3D4:
-    .4byte 0xE0062000
-.Lus_0803D3D8:
-    .4byte 0xE0042001
-.Lus_0803D3DC:
-    .4byte 0xE0022002
-.Lus_0803D3E0:
-    .4byte 0xE0002003
-.Lus_0803D3E4:
-    .hword 0x2004
-.Lus_0803D3E6:
-    movs	r3, #179	@ 0xb3
-    lsls	r3, r3, #2
-    adds	r1, r2, r3
-    ldrb	r3, [r1, #0]
-    cmp	r0, r3
-    beq .Lus_0803D3FE
-    strb	r0, [r1, #0]
-    movs	r0, #188	@ 0xbc
-    lsls	r0, r0, #2
-    adds	r1, r2, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-.Lus_0803D3FE:
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    .global func_0803D404
-    .thumb_func
-func_0803D404:
-    push	{r4, lr}
-    adds	r3, r1, #0
-    ldr	r2, [r0, #0]
-    ldr r0, .Lus_0803D438
-    adds	r1, r2, r0
-    ldrb	r0, [r1, #0]
-    cmp	r0, #0
-    beq .Lus_0803D41E
-    ldr r4, .Lus_0803D43C
-    adds	r0, r2, r4
-    ldrh	r0, [r0, #0]
-    cmp	r3, r0
-    beq .Lus_0803D430
-.Lus_0803D41E:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    ldr r4, .Lus_0803D43C
-    adds	r1, r2, r4
-    strh	r3, [r1, #0]
-    movs	r3, #205	@ 0xcd
-    lsls	r3, r3, #2
-    adds	r1, r2, r3
-    strb	r0, [r1, #0]
-.Lus_0803D430:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Lus_0803D438:
-    .4byte 0x000002F1
-.Lus_0803D43C:
-    .4byte 0x000002F2
-    .global func_0803D440
-    .thumb_func
-func_0803D440:
-    push	{lr}
-    ldr	r1, [r0, #0]
-    ldr r0, .Lus_0803D460
-    adds	r2, r1, r0
-    ldrb	r0, [r2, #0]
-    cmp	r0, #0
-    beq .Lus_0803D45C
-    movs	r0, #0
-    strb	r0, [r2, #0]
-    movs	r0, #205	@ 0xcd
-    lsls	r0, r0, #2
-    adds	r1, r1, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-.Lus_0803D45C:
-    pop	{r0}
-    bx	r0
-.Lus_0803D460:
-    .4byte 0x000002F1
     push	{lr}
     adds	r0, #8
-    bl func_0803D440
+    bl ClearMapClockStatusHudUnkValue
     pop	{r0}
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D404
+    bl SetMapClockStatusHudUnkValue
     pop	{r0}
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D3A0
+    bl SetMapClockStatusHudUnkSelector
     pop	{r0}
     bx	r0
     push	{lr}

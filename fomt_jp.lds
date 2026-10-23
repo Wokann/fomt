@@ -475,6 +475,8 @@ SECTIONS
         src/code_0803C540.o(.text);
         . = 0x3C2E0; /* JP ROM 0x0803C54C, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803C54C);
+        src/map_clock_status.o(.text);
+        asm/code_0803A8A4.o(.text.map_clock_status_hud_adapters);
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
         src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
         asm/code_0803A8A4.o(.text.npc_schedule_after);
