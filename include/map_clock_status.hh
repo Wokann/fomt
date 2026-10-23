@@ -8,9 +8,17 @@
 struct MapClockStatusHudDataPrefix {
     u8 unk_000[0x84];
     u8 season_tiles[2][32];
-    u8 unk_0C4[0xC8];
+    u8 day_digit_tiles[2][32];
+    u8 unk_104[0x88];
     u8 date_tiles_dirty;
-    u8 unk_18D[0x9B];
+#if defined(REGION_JP)
+    u8 unk_18D[0x5B];
+    u8 weekday_tiles[1][32];
+#else
+    u8 unk_18D[0x1B];
+    u8 weekday_tiles[3][32];
+#endif
+    u8 unk_208[0x20];
     // The native DE record has one extra tile slot before the colon.
 #if defined(REGION_DE)
     u8 unk_228[32];
@@ -38,6 +46,12 @@ struct MapClockStatusHudContent {
 };
 
 typedef char MapClockStatusSeasonTilesOffset[offsetof(MapClockStatusHudDataPrefix, season_tiles) == 0x84 ? 1 : -1];
+typedef char MapClockStatusDayDigitsOffset[offsetof(MapClockStatusHudDataPrefix, day_digit_tiles) == 0xC4 ? 1 : -1];
+#if defined(REGION_JP)
+typedef char MapClockStatusWeekdayOffset[offsetof(MapClockStatusHudDataPrefix, weekday_tiles) == 0x1E8 ? 1 : -1];
+#else
+typedef char MapClockStatusWeekdayOffset[offsetof(MapClockStatusHudDataPrefix, weekday_tiles) == 0x1A8 ? 1 : -1];
+#endif
 typedef char MapClockStatusDateDirtyOffset[offsetof(MapClockStatusHudDataPrefix, date_tiles_dirty) == 0x18C ? 1 : -1];
 #if defined(REGION_DE)
 typedef char MapClockStatusColonOffset[offsetof(MapClockStatusHudDataPrefix, colon_tile) == 0x248 ? 1 : -1];
@@ -57,6 +71,10 @@ typedef char MapClockStatusContentSize[sizeof(MapClockStatusHudContent) == 4 ? 1
 EXTERN_C
 // Invalid signed values use the spring tile pair, as in the native switch.
 void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season);
+// The day is one-based. JP callers provide weekday 0..6; overseas invalid
+// weekday values retain the native Sunday fallback. No day clamp is added.
+void SetMapClockStatusHudDayAndWeekday(MapClockStatusHudContent const * hud,
+    u32 day, u32 weekday);
 // Regional native atlas: 31 tiles in JP, 128 overseas; no shared count.
 extern u8 const gMapClockStatusGlyphTiles[][32];
 // Nonzero byte copies the colon glyph; zero clears its entire tile.

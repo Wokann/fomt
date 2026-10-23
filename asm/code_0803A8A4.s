@@ -4655,86 +4655,8 @@ func_0803CB10:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_date_time, "ax", %progbits
+    .section .text.map_clock_status_hour, "ax", %progbits
     .align 2, 0
-.Ljp_0803CE00:
-    push	{r4, r5, r6, r7, lr}
-    sub	sp, #32
-    adds	r4, r1, #0
-    adds	r7, r2, #0
-    ldr	r6, [r0, #0]
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __udivsi3
-    adds	r5, r0, #0
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __umodsi3
-    adds	r4, r0, #0
-    cmp	r5, #0
-    ble .Ljp_0803CE40
-    lsls	r1, r5, #5
-    ldr r0, .Ljp_0803CE3C
-    adds	r1, r1, r0
-    adds	r0, r6, #0
-    adds	r0, #196	@ 0xc4
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r1, r6, r0
-    b .Ljp_0803CE5C
-    .align 2, 0
-.Ljp_0803CE3C:
-    .4byte gMapClockStatusGlyphTiles
-.Ljp_0803CE40:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    adds	r0, r6, #0
-    adds	r0, #196	@ 0xc4
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #198	@ 0xc6
-    lsls	r2, r2, #1
-    adds	r1, r6, r2
-.Ljp_0803CE5C:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    lsls	r1, r4, #5
-    ldr r5, .Ljp_0803CEA0
-    adds	r1, r1, r5
-    adds	r0, r6, #0
-    adds	r0, #228	@ 0xe4
-    movs	r2, #32
-    bl memcpy
-    movs	r1, #198	@ 0xc6
-    lsls	r1, r1, #1
-    adds	r0, r6, r1
-    movs	r4, #1
-    strb	r4, [r0, #0]
-    adds	r1, r7, #0
-    adds	r1, #21
-    lsls	r1, r1, #5
-    adds	r1, r1, r5
-    movs	r2, #244	@ 0xf4
-    lsls	r2, r2, #1
-    adds	r0, r6, r2
-    movs	r2, #32
-    bl memcpy
-    movs	r1, #172	@ 0xac
-    lsls	r1, r1, #2
-    adds	r0, r6, r1
-    strb	r4, [r0, #0]
-    add	sp, #32
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Ljp_0803CEA0:
-    .4byte gMapClockStatusGlyphTiles
 .Ljp_0803CEA4:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r9
@@ -4863,7 +4785,7 @@ func_0803CB10:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl .Ljp_0803CE00
+    bl SetMapClockStatusHudDayAndWeekday
     pop	{r0}
     bx	r0
     push	{lr}
@@ -12493,157 +12415,8 @@ func_0803CD4C:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_date_time, "ax", %progbits
+    .section .text.map_clock_status_hour, "ax", %progbits
     .align 2, 0
-    .global func_0803D0F0
-    .thumb_func
-func_0803D0F0:
-    push	{r4, r5, r6, r7, lr}
-    sub	sp, #32
-    adds	r4, r1, #0
-    adds	r6, r2, #0
-    ldr	r7, [r0, #0]
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __udivsi3
-    adds	r5, r0, #0
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __umodsi3
-    adds	r4, r0, #0
-    cmp	r5, #0
-    ble .Leu_0803D144
-    lsls	r1, r5, #5
-    ldr r0, .Leu_0803D140
-    adds	r1, r1, r0
-    adds	r0, r7, #0
-    adds	r0, #196	@ 0xc4
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r1, r7, r0
-    b .Leu_0803D160
-    .align 2, 0
-.Leu_0803D140:
-    .4byte gMapClockStatusGlyphTiles
-.Leu_0803D144:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    adds	r0, r7, #0
-    adds	r0, #196	@ 0xc4
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #198	@ 0xc6
-    lsls	r2, r2, #1
-    adds	r1, r7, r2
-.Leu_0803D160:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    lsls	r1, r4, #5
-    ldr r0, .Leu_0803D18C
-    adds	r1, r1, r0
-    adds	r0, r7, #0
-    adds	r0, #228	@ 0xe4
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r1, r7, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    cmp	r6, #6
-    bhi .Leu_0803D1B0
-    lsls	r0, r6, #2
-    ldr r1, .Leu_0803D190
-    adds	r0, r0, r1
-    ldr	r0, [r0, #0]
-    mov	pc, r0
-.Leu_0803D18C:
-    .4byte gMapClockStatusGlyphTiles
-.Leu_0803D190:
-    .4byte .Leu_0803D194
-.Leu_0803D194:
-    .4byte .Leu_0803D1B0
-    .4byte .Leu_0803D1BC
-    .4byte .Leu_0803D1C8
-    .4byte .Leu_0803D1D4
-    .4byte .Leu_0803D1E0
-    .4byte .Leu_0803D1EC
-    .4byte .Leu_0803D1F8
-.Leu_0803D1B0:
-    movs	r0, #96	@ 0x60
-    str	r0, [sp, #0]
-    movs	r0, #97	@ 0x61
-    str	r0, [sp, #4]
-    movs	r0, #98	@ 0x62
-    b .Leu_0803D202
-.Leu_0803D1BC:
-    .4byte 0x90002063
-    .4byte 0x90012064
-    .4byte 0xE01C2065
-.Leu_0803D1C8:
-    .4byte 0x90002066
-    .4byte 0x90012067
-    .4byte 0xE0162068
-.Leu_0803D1D4:
-    .4byte 0x90002069
-    .4byte 0x9001206A
-    .4byte 0xE010206B
-.Leu_0803D1E0:
-    .4byte 0x9000206C
-    .4byte 0x9001206D
-    .4byte 0xE00A206E
-.Leu_0803D1EC:
-    .4byte 0x9000206F
-    .4byte 0x90012070
-    .4byte 0xE0042071
-.Leu_0803D1F8:
-    .4byte 0x90002072
-    .4byte 0x90012073
-    .hword 0x2074
-.Leu_0803D202:
-    str	r0, [sp, #8]
-    movs	r1, #212	@ 0xd4
-    lsls	r1, r1, #1
-    adds	r0, r7, r1
-    ldr	r1, [sp, #0]
-    lsls	r1, r1, #5
-    ldr r5, .Leu_0803D250
-    adds	r1, r1, r5
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #172	@ 0xac
-    lsls	r2, r2, #2
-    adds	r6, r7, r2
-    movs	r4, #1
-    strb	r4, [r6, #0]
-    ldr	r1, [sp, #4]
-    lsls	r1, r1, #5
-    adds	r1, r1, r5
-    subs	r2, #232	@ 0xe8
-    adds	r0, r7, r2
-    movs	r2, #32
-    bl memcpy
-    strb	r4, [r6, #0]
-    ldr	r1, [sp, #8]
-    lsls	r1, r1, #5
-    adds	r1, r1, r5
-    movs	r2, #244	@ 0xf4
-    lsls	r2, r2, #1
-    adds	r0, r7, r2
-    movs	r2, #32
-    bl memcpy
-    strb	r4, [r6, #0]
-    add	sp, #32
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-.Leu_0803D250:
-    .4byte gMapClockStatusGlyphTiles
     .global func_0803D240
     .thumb_func
 func_0803D240:
@@ -12767,7 +12540,7 @@ func_0803D240:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D0F0
+    bl SetMapClockStatusHudDayAndWeekday
     pop	{r0}
     bx	r0
     push	{lr}
@@ -20352,157 +20125,8 @@ func_0803CD4C:
     pop	{r0}
     bx	r0
 
-    .section .text.map_clock_status_date_time, "ax", %progbits
+    .section .text.map_clock_status_hour, "ax", %progbits
     .align 2, 0
-    .global func_0803D0F0
-    .thumb_func
-func_0803D0F0:
-    push	{r4, r5, r6, r7, lr}
-    sub	sp, #32
-    adds	r4, r1, #0
-    adds	r6, r2, #0
-    ldr	r7, [r0, #0]
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __udivsi3
-    adds	r5, r0, #0
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __umodsi3
-    adds	r4, r0, #0
-    cmp	r5, #0
-    ble .Lde_0803D044
-    lsls	r1, r5, #5
-    ldr r0, .Lde_0803D040
-    adds	r1, r1, r0
-    adds	r0, r7, #0
-    adds	r0, #196	@ 0xc4
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r1, r7, r0
-    b .Lde_0803D060
-    .align 2, 0
-.Lde_0803D040:
-    .4byte gMapClockStatusGlyphTiles
-.Lde_0803D044:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    adds	r0, r7, #0
-    adds	r0, #196	@ 0xc4
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #198	@ 0xc6
-    lsls	r2, r2, #1
-    adds	r1, r7, r2
-.Lde_0803D060:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    lsls	r1, r4, #5
-    ldr r0, .Lde_0803D08C
-    adds	r1, r1, r0
-    adds	r0, r7, #0
-    adds	r0, #228	@ 0xe4
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r1, r7, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    cmp	r6, #6
-    bhi .Lde_0803D0B0
-    lsls	r0, r6, #2
-    ldr r1, .Lde_0803D090
-    adds	r0, r0, r1
-    ldr	r0, [r0, #0]
-    mov	pc, r0
-.Lde_0803D08C:
-    .4byte gMapClockStatusGlyphTiles
-.Lde_0803D090:
-    .4byte .Lde_0803D094
-.Lde_0803D094:
-    .4byte .Lde_0803D0B0
-    .4byte .Lde_0803D0BC
-    .4byte .Lde_0803D0C8
-    .4byte .Lde_0803D0D4
-    .4byte .Lde_0803D0E0
-    .4byte .Lde_0803D0EC
-    .4byte .Lde_0803D0F8
-.Lde_0803D0B0:
-    movs	r0, #96	@ 0x60
-    str	r0, [sp, #0]
-    movs	r0, #97	@ 0x61
-    str	r0, [sp, #4]
-    movs	r0, #98	@ 0x62
-    b .Lde_0803D102
-.Lde_0803D0BC:
-    .4byte 0x90002063
-    .4byte 0x90012064
-    .4byte 0xE01C2065
-.Lde_0803D0C8:
-    .4byte 0x90002066
-    .4byte 0x90012067
-    .4byte 0xE0162068
-.Lde_0803D0D4:
-    .4byte 0x90002069
-    .4byte 0x9001206A
-    .4byte 0xE010206B
-.Lde_0803D0E0:
-    .4byte 0x9000206C
-    .4byte 0x9001206D
-    .4byte 0xE00A206E
-.Lde_0803D0EC:
-    .4byte 0x9000206F
-    .4byte 0x90012070
-    .4byte 0xE0042071
-.Lde_0803D0F8:
-    .4byte 0x90002072
-    .4byte 0x90012073
-    .hword 0x2074
-.Lde_0803D102:
-    str	r0, [sp, #8]
-    movs	r1, #212	@ 0xd4
-    lsls	r1, r1, #1
-    adds	r0, r7, r1
-    ldr	r1, [sp, #0]
-    lsls	r1, r1, #5
-    ldr r5, .Lde_0803D150
-    adds	r1, r1, r5
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #172	@ 0xac
-    lsls	r2, r2, #2
-    adds	r6, r7, r2
-    movs	r4, #1
-    strb	r4, [r6, #0]
-    ldr	r1, [sp, #4]
-    lsls	r1, r1, #5
-    adds	r1, r1, r5
-    subs	r2, #232	@ 0xe8
-    adds	r0, r7, r2
-    movs	r2, #32
-    bl memcpy
-    strb	r4, [r6, #0]
-    ldr	r1, [sp, #8]
-    lsls	r1, r1, #5
-    adds	r1, r1, r5
-    movs	r2, #244	@ 0xf4
-    lsls	r2, r2, #1
-    adds	r0, r7, r2
-    movs	r2, #32
-    bl memcpy
-    strb	r4, [r6, #0]
-    add	sp, #32
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-.Lde_0803D150:
-    .4byte gMapClockStatusGlyphTiles
     .global func_0803D240
     .thumb_func
 func_0803D240:
@@ -20605,7 +20229,7 @@ func_0803D240:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D0F0
+    bl SetMapClockStatusHudDayAndWeekday
     pop	{r0}
     bx	r0
     push	{lr}
@@ -28195,157 +27819,8 @@ func_0803CD4C:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_date_time, "ax", %progbits
+    .section .text.map_clock_status_hour, "ax", %progbits
     .align 2, 0
-    .global func_0803D0F0
-    .thumb_func
-func_0803D0F0:
-    push	{r4, r5, r6, r7, lr}
-    sub	sp, #32
-    adds	r4, r1, #0
-    adds	r6, r2, #0
-    ldr	r7, [r0, #0]
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __udivsi3
-    adds	r5, r0, #0
-    adds	r0, r4, #0
-    movs	r1, #10
-    bl __umodsi3
-    adds	r4, r0, #0
-    cmp	r5, #0
-    ble .Lus_0803D130
-    lsls	r1, r5, #5
-    ldr r0, .Lus_0803D12C
-    adds	r1, r1, r0
-    adds	r0, r7, #0
-    adds	r0, #196	@ 0xc4
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r1, r7, r0
-    b .Lus_0803D14C
-    .align 2, 0
-.Lus_0803D12C:
-    .4byte gMapClockStatusGlyphTiles
-.Lus_0803D130:
-    mov	r0, sp
-    movs	r1, #0
-    movs	r2, #32
-    bl memset
-    adds	r0, r7, #0
-    adds	r0, #196	@ 0xc4
-    mov	r1, sp
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #198	@ 0xc6
-    lsls	r2, r2, #1
-    adds	r1, r7, r2
-.Lus_0803D14C:
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    lsls	r1, r4, #5
-    ldr r0, .Lus_0803D178
-    adds	r1, r1, r0
-    adds	r0, r7, #0
-    adds	r0, #228	@ 0xe4
-    movs	r2, #32
-    bl memcpy
-    movs	r0, #198	@ 0xc6
-    lsls	r0, r0, #1
-    adds	r1, r7, r0
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    cmp	r6, #6
-    bhi .Lus_0803D19C
-    lsls	r0, r6, #2
-    ldr r1, .Lus_0803D17C
-    adds	r0, r0, r1
-    ldr	r0, [r0, #0]
-    mov	pc, r0
-.Lus_0803D178:
-    .4byte gMapClockStatusGlyphTiles
-.Lus_0803D17C:
-    .4byte .Lus_0803D180
-.Lus_0803D180:
-    .4byte .Lus_0803D19C
-    .4byte .Lus_0803D1A8
-    .4byte .Lus_0803D1B4
-    .4byte .Lus_0803D1C0
-    .4byte .Lus_0803D1CC
-    .4byte .Lus_0803D1D8
-    .4byte .Lus_0803D1E4
-.Lus_0803D19C:
-    movs	r0, #96	@ 0x60
-    str	r0, [sp, #0]
-    movs	r0, #97	@ 0x61
-    str	r0, [sp, #4]
-    movs	r0, #98	@ 0x62
-    b .Lus_0803D1EE
-.Lus_0803D1A8:
-    .4byte 0x90002063
-    .4byte 0x90012064
-    .4byte 0xE01C2065
-.Lus_0803D1B4:
-    .4byte 0x90002066
-    .4byte 0x90012067
-    .4byte 0xE0162068
-.Lus_0803D1C0:
-    .4byte 0x90002069
-    .4byte 0x9001206A
-    .4byte 0xE010206B
-.Lus_0803D1CC:
-    .4byte 0x9000206C
-    .4byte 0x9001206D
-    .4byte 0xE00A206E
-.Lus_0803D1D8:
-    .4byte 0x9000206F
-    .4byte 0x90012070
-    .4byte 0xE0042071
-.Lus_0803D1E4:
-    .4byte 0x90002072
-    .4byte 0x90012073
-    .hword 0x2074
-.Lus_0803D1EE:
-    str	r0, [sp, #8]
-    movs	r1, #212	@ 0xd4
-    lsls	r1, r1, #1
-    adds	r0, r7, r1
-    ldr	r1, [sp, #0]
-    lsls	r1, r1, #5
-    ldr r5, .Lus_0803D23C
-    adds	r1, r1, r5
-    movs	r2, #32
-    bl memcpy
-    movs	r2, #172	@ 0xac
-    lsls	r2, r2, #2
-    adds	r6, r7, r2
-    movs	r4, #1
-    strb	r4, [r6, #0]
-    ldr	r1, [sp, #4]
-    lsls	r1, r1, #5
-    adds	r1, r1, r5
-    subs	r2, #232	@ 0xe8
-    adds	r0, r7, r2
-    movs	r2, #32
-    bl memcpy
-    strb	r4, [r6, #0]
-    ldr	r1, [sp, #8]
-    lsls	r1, r1, #5
-    adds	r1, r1, r5
-    movs	r2, #244	@ 0xf4
-    lsls	r2, r2, #1
-    adds	r0, r7, r2
-    movs	r2, #32
-    bl memcpy
-    strb	r4, [r6, #0]
-    add	sp, #32
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-.Lus_0803D23C:
-    .4byte gMapClockStatusGlyphTiles
     .global func_0803D240
     .thumb_func
 func_0803D240:
@@ -28469,7 +27944,7 @@ func_0803D240:
     bx	r0
     push	{lr}
     adds	r0, #8
-    bl func_0803D0F0
+    bl SetMapClockStatusHudDayAndWeekday
     pop	{r0}
     bx	r0
     push	{lr}

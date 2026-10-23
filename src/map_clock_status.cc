@@ -27,6 +27,53 @@ void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season
     state->date_tiles_dirty = 1;
 }
 
+void SetMapClockStatusHudDayAndWeekday(MapClockStatusHudContent const * hud,
+    u32 day, u32 weekday)
+{
+    MapClockStatusHudDataPrefix * state = hud->state;
+    i32 tens = day / 10;
+    u32 ones = day % 10;
+    if (tens > 0) {
+        u8 const * tile = GetMapClockStatusGlyph(tens);
+        memcpy(state->day_digit_tiles[0], tile, 32);
+        state->date_tiles_dirty = 1;
+    } else {
+        u8 blank[32];
+        memset(blank, 0, sizeof(blank));
+        u8 const * pixels = blank;
+        memcpy(state->day_digit_tiles[0], pixels, 32);
+        state->date_tiles_dirty = 1;
+    }
+    u8 const * ones_tile = GetMapClockStatusGlyph(ones);
+    memcpy(state->day_digit_tiles[1], ones_tile, 32);
+    state->date_tiles_dirty = 1;
+#if defined(REGION_JP)
+    u8 const * weekday_tile = GetMapClockStatusGlyph(weekday + 21);
+    memcpy(state->weekday_tiles[0], weekday_tile, 32);
+    state->time_tiles_dirty = 1;
+#else
+    u32 tiles[3];
+    switch (weekday) {
+    default:
+    case DAY_OF_WEEK_SUNDAY:    tiles[0] = 96;  tiles[1] = 97;  tiles[2] = 98;  break;
+    case DAY_OF_WEEK_MONDAY:    tiles[0] = 99;  tiles[1] = 100; tiles[2] = 101; break;
+    case DAY_OF_WEEK_TUESDAY:   tiles[0] = 102; tiles[1] = 103; tiles[2] = 104; break;
+    case DAY_OF_WEEK_WEDNESDAY: tiles[0] = 105; tiles[1] = 106; tiles[2] = 107; break;
+    case DAY_OF_WEEK_THURSDAY:  tiles[0] = 108; tiles[1] = 109; tiles[2] = 110; break;
+    case DAY_OF_WEEK_FRIDAY:    tiles[0] = 111; tiles[1] = 112; tiles[2] = 113; break;
+    case DAY_OF_WEEK_SATURDAY:  tiles[0] = 114; tiles[1] = 115; tiles[2] = 116; break;
+    }
+    memcpy(state->weekday_tiles[0], gMapClockStatusGlyphTiles[tiles[0]], 32);
+    state->time_tiles_dirty = 1;
+    u8 const * second_tile = GetMapClockStatusGlyph(tiles[1]);
+    memcpy(state->weekday_tiles[1], second_tile, 32);
+    state->time_tiles_dirty = 1;
+    u8 const * third_tile = GetMapClockStatusGlyph(tiles[2]);
+    memcpy(state->weekday_tiles[2], third_tile, 32);
+    state->time_tiles_dirty = 1;
+#endif
+}
+
 void SetMapClockStatusHudColonVisible(MapClockStatusHudContent const * hud, u8 visible)
 {
     MapClockStatusHudDataPrefix * state = hud->state;

@@ -429,7 +429,8 @@ SECTIONS
         . = 0x3C560; /* US ROM 0x0803C54C, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803C54C);
         src/map_clock_status.o(.text.SetMapClockStatusHudSeason);
-        asm/code_0803A8A4.o(.text.map_clock_status_date_time);
+        src/map_clock_status.o(.text.SetMapClockStatusHudDayAndWeekday);
+        asm/code_0803A8A4.o(.text.map_clock_status_hour);
         src/map_clock_status.o(
             .text.SetMapClockStatusHudColonVisible
             .text.SetMapClockStatusHudMinuteDigits
