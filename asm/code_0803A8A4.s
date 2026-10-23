@@ -3331,7 +3331,7 @@ func_0803C54C:
     str	r0, [r4, #4]
     adds	r0, r4, #0
     adds	r0, #8
-    bl func_0803C5B0
+    bl __24MapClockStatusHudContent
     adds	r0, r4, #0
     add	sp, #20
     pop	{r4, r5}
@@ -3351,7 +3351,7 @@ func_0803C588:
     adds	r0, r4, #0
     adds	r0, #8
     movs	r1, #2
-    bl func_0803C7A0
+    bl _._24MapClockStatusHudContent
     adds	r0, r4, #0
     adds	r1, r5, #0
     bl func_0803BE50
@@ -3361,9 +3361,9 @@ func_0803C588:
     .align 2, 0
 .Ljp_0803C340:
     .4byte vtable_unk_080E77E0
-    .global func_0803C5B0
+    .global __24MapClockStatusHudContent
     .thumb_func
-func_0803C5B0:
+__24MapClockStatusHudContent:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -3608,33 +3608,12 @@ func_0803C5B0:
 .Ljp_0803C554:
     .4byte gUnk_083ED9FC
 .Ljp_0803C558:
-    .4byte vtable_unk_080E77D0
+    .4byte __vt_19HardwareDmaCopyLink
 .Ljp_0803C55C:
     .4byte 0x000002F1
 .Ljp_0803C560:
     .4byte gMapClockStatusGlyphTiles
-    .global func_0803C7A0
-    .thumb_func
-func_0803C7A0:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr	r0, [r4, #0]
-    cmp	r0, #0
-    beq .Ljp_0803C576
-    movs	r1, #3
-    bl func_080E0D70
-.Ljp_0803C576:
-    movs	r0, #1
-    ands	r0, r5
-    cmp	r0, #0
-    beq .Ljp_0803C584
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Ljp_0803C584:
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
+    .section .text.map_clock_status_renderer_calendar, "ax", %progbits
     .align 2, 0
     .global func_0803C7C8
     .thumb_func
@@ -10945,7 +10924,7 @@ func_0803C54C:
     str	r0, [r4, #4]
     adds	r0, r4, #0
     adds	r0, #8
-    bl func_0803C5B0
+    bl __24MapClockStatusHudContent
     adds	r0, r4, #0
     add	sp, #20
     pop	{r4, r5}
@@ -10965,7 +10944,7 @@ func_0803C588:
     adds	r0, r4, #0
     adds	r0, #8
     movs	r1, #2
-    bl func_0803C7A0
+    bl _._24MapClockStatusHudContent
     adds	r0, r4, #0
     adds	r1, r5, #0
     bl func_0803BE50
@@ -10975,9 +10954,9 @@ func_0803C588:
     .align 2, 0
 .Leu_0803C5C0:
     .4byte vtable_unk_080E77E0
-    .global func_0803C5B0
+    .global __24MapClockStatusHudContent
     .thumb_func
-func_0803C5B0:
+__24MapClockStatusHudContent:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -11200,33 +11179,12 @@ func_0803C5B0:
 .Leu_0803C7A4:
     .4byte gUnk_086678A0
 .Leu_0803C7A8:
-    .4byte vtable_unk_080E77D0
+    .4byte __vt_19HardwareDmaCopyLink
 .Leu_0803C7AC:
     .4byte 0x000002F1
 .Leu_0803C7B0:
     .4byte gMapClockStatusGlyphTiles
-    .global func_0803C7A0
-    .thumb_func
-func_0803C7A0:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr	r0, [r4, #0]
-    cmp	r0, #0
-    beq .Leu_0803C7C6
-    movs	r1, #3
-    bl func_080E0D70
-.Leu_0803C7C6:
-    movs	r0, #1
-    ands	r0, r5
-    cmp	r0, #0
-    beq .Leu_0803C7D4
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Leu_0803C7D4:
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
+    .section .text.map_clock_status_renderer_calendar, "ax", %progbits
     .align 2, 0
     .global func_0803C7C8
     .thumb_func
@@ -18569,7 +18527,7 @@ func_0803C54C:
     str	r0, [r4, #4]
     adds	r0, r4, #0
     adds	r0, #8
-    bl func_0803C5B0
+    bl __24MapClockStatusHudContent
     adds	r0, r4, #0
     add	sp, #20
     pop	{r4, r5}
@@ -18589,7 +18547,7 @@ func_0803C588:
     adds	r0, r4, #0
     adds	r0, #8
     movs	r1, #2
-    bl func_0803C7A0
+    bl _._24MapClockStatusHudContent
     adds	r0, r4, #0
     adds	r1, r5, #0
     bl func_0803BE50
@@ -18599,9 +18557,9 @@ func_0803C588:
     .align 2, 0
 .Lde_0803C4C0:
     .4byte vtable_unk_080E77E0
-    .global func_0803C5B0
+    .global __24MapClockStatusHudContent
     .thumb_func
-func_0803C5B0:
+__24MapClockStatusHudContent:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -18846,33 +18804,12 @@ func_0803C5B0:
 .Lde_0803C6D4:
     .4byte gUnk_086678A0
 .Lde_0803C6D8:
-    .4byte vtable_unk_080E77D0
+    .4byte __vt_19HardwareDmaCopyLink
 .Lde_0803C6DC:
     .4byte 0x000002F1
 .Lde_0803C6E0:
     .4byte gMapClockStatusGlyphTiles
-    .global func_0803C7A0
-    .thumb_func
-func_0803C7A0:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr	r0, [r4, #0]
-    cmp	r0, #0
-    beq .Lde_0803C6F6
-    movs	r1, #3
-    bl func_080E0D70
-.Lde_0803C6F6:
-    movs	r0, #1
-    ands	r0, r5
-    cmp	r0, #0
-    beq .Lde_0803C704
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Lde_0803C704:
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
+    .section .text.map_clock_status_renderer_calendar, "ax", %progbits
     .align 2, 0
     .global func_0803C7C8
     .thumb_func
@@ -26187,7 +26124,7 @@ func_0803C54C:
     str	r0, [r4, #4]
     adds	r0, r4, #0
     adds	r0, #8
-    bl func_0803C5B0
+    bl __24MapClockStatusHudContent
     adds	r0, r4, #0
     add	sp, #20
     pop	{r4, r5}
@@ -26207,7 +26144,7 @@ func_0803C588:
     adds	r0, r4, #0
     adds	r0, #8
     movs	r1, #2
-    bl func_0803C7A0
+    bl _._24MapClockStatusHudContent
     adds	r0, r4, #0
     adds	r1, r5, #0
     bl func_0803BE50
@@ -26217,9 +26154,9 @@ func_0803C588:
     .align 2, 0
 .Lus_0803C5AC:
     .4byte vtable_unk_080E77E0
-    .global func_0803C5B0
+    .global __24MapClockStatusHudContent
     .thumb_func
-func_0803C5B0:
+__24MapClockStatusHudContent:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -26442,33 +26379,12 @@ func_0803C5B0:
 .Lus_0803C790:
     .4byte gUnk_086678A0
 .Lus_0803C794:
-    .4byte vtable_unk_080E77D0
+    .4byte __vt_19HardwareDmaCopyLink
 .Lus_0803C798:
     .4byte 0x000002F1
 .Lus_0803C79C:
     .4byte gMapClockStatusGlyphTiles
-    .global func_0803C7A0
-    .thumb_func
-func_0803C7A0:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr	r0, [r4, #0]
-    cmp	r0, #0
-    beq .Lus_0803C7B2
-    movs	r1, #3
-    bl func_080E0D70
-.Lus_0803C7B2:
-    movs	r0, #1
-    ands	r0, r5
-    cmp	r0, #0
-    beq .Lus_0803C7C0
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Lus_0803C7C0:
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
+    .section .text.map_clock_status_renderer_calendar, "ax", %progbits
     .align 2, 0
     .global func_0803C7C8
     .thumb_func

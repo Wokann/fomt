@@ -1,3 +1,5 @@
+#include "prelude.h"
+#pragma implementation "map_clock_status.hh"
 #include "map_clock_status.hh"
 
 #include "fomt_constants.mary.h"
@@ -11,7 +13,7 @@ static inline u8 const * GetMapClockStatusGlyph(u32 index)
 
 void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season)
 {
-    MapClockStatusHudDataPrefix * state = hud->state;
+    MapClockStatusHudData * state = hud->state;
     u32 tiles[2];
     switch (season) {
     default:
@@ -30,7 +32,7 @@ void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season
 void SetMapClockStatusHudDayAndWeekday(MapClockStatusHudContent const * hud,
     u32 day, u32 weekday)
 {
-    MapClockStatusHudDataPrefix * state = hud->state;
+    MapClockStatusHudData * state = hud->state;
     i32 tens = day / 10;
     u32 ones = day % 10;
     if (tens > 0) {
@@ -76,7 +78,7 @@ void SetMapClockStatusHudDayAndWeekday(MapClockStatusHudContent const * hud,
 
 void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
 {
-    MapClockStatusHudDataPrefix * state = hud->state;
+    MapClockStatusHudData * state = hud->state;
 #if !defined(REGION_DE)
     u32 meridiem = 30;
     if (hour <= 11)
@@ -137,7 +139,7 @@ void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
 
 void SetMapClockStatusHudColonVisible(MapClockStatusHudContent const * hud, u8 visible)
 {
-    MapClockStatusHudDataPrefix * state = hud->state;
+    MapClockStatusHudData * state = hud->state;
     if (visible != 0) {
         u8 const * colon = GetMapClockStatusGlyph(10);
         memcpy(state->colon_tile, colon, 32);
@@ -153,7 +155,7 @@ void SetMapClockStatusHudColonVisible(MapClockStatusHudContent const * hud, u8 v
 
 void SetMapClockStatusHudMinuteDigits(MapClockStatusHudContent const * hud, u32 value)
 {
-    MapClockStatusHudDataPrefix * state = hud->state;
+    MapClockStatusHudData * state = hud->state;
     u32 tens = value / 10;
     u32 ones = value % 10;
     u8 const * tens_tile = gMapClockStatusGlyphTiles[tens];
@@ -166,7 +168,7 @@ void SetMapClockStatusHudMinuteDigits(MapClockStatusHudContent const * hud, u32 
 
 void SetMapClockStatusHudUnkSelector(MapClockStatusHudContent const * hud, u32 value)
 {
-    MapClockStatusHudDataPrefix * state = hud->state;
+    MapClockStatusHudData * state = hud->state;
     u32 next = state->unk_selector;
     switch (value) {
     case 0: next = 0; break;
@@ -183,7 +185,7 @@ void SetMapClockStatusHudUnkSelector(MapClockStatusHudContent const * hud, u32 v
 
 void SetMapClockStatusHudUnkValue(MapClockStatusHudContent const * hud, u32 value)
 {
-    MapClockStatusHudDataPrefix * state = hud->state;
+    MapClockStatusHudData * state = hud->state;
     if (state->unk_value_active == 0 || value != state->unk_value) {
         state->unk_value_active = 1;
         state->unk_value = value;
@@ -193,7 +195,7 @@ void SetMapClockStatusHudUnkValue(MapClockStatusHudContent const * hud, u32 valu
 
 void ClearMapClockStatusHudUnkValue(MapClockStatusHudContent const * hud)
 {
-    MapClockStatusHudDataPrefix * state = hud->state;
+    MapClockStatusHudData * state = hud->state;
     if (state->unk_value_active != 0) {
         state->unk_value_active = 0;
         state->unk_value_dirty = 1;

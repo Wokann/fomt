@@ -380,6 +380,10 @@ $(BUILD_DIR)/src/entity_event_effects.o: CXXFLAGS += -ffunction-sections
 # The static table accessor and terrain query retain their native code positions.
 $(BUILD_DIR)/src/map_data.o: CXXFLAGS += -ffunction-sections
 
+# The HUD content destructor precedes still-native drawing/calendar code.
+# Its setting methods remain one contiguous run in their source order.
+$(BUILD_DIR)/src/map_clock_status.o: CXXFLAGS += -ffunction-sections
+
 # Calendar helpers and the transition lookup occupy separate native code runs.
 $(BUILD_DIR)/src/time_of_day.o: CXXFLAGS += -ffunction-sections
 

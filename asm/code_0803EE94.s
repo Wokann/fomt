@@ -72982,7 +72982,7 @@ func_0807865C: @ 0x0807865C
 	bl _._18HardwareStateOwner
 	adds r0, r7, #0
 	adds r0, #0x1c
-	bl func_0803C5B0
+	bl __24MapClockStatusHudContent
 	adds r0, r7, #0
 	adds r0, #0x20
 	bl func_080756B0
@@ -226344,7 +226344,7 @@ func_0807865C: @ 0x0807865C
 	bl _._18HardwareStateOwner
 	adds r0, r7, #0
 	adds r0, #0x1c
-	bl func_0803C5B0
+	bl __24MapClockStatusHudContent
 	adds r0, r7, #0
 	adds r0, #0x20
 	bl func_080756B0

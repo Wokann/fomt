@@ -12618,7 +12618,9 @@ func_080E0A94:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00, 0x10, 0x49, 0x4A, 0x08, 0x10, 0x6C, 0x0E, 0x08, 0x28, 0x12, 0x0F, 0x08
+    .byte 0x00, 0x00, 0x10, 0x49, 0x4A, 0x08
+    .4byte __vt_19HardwareDmaCopyLink
+    .byte 0x28, 0x12, 0x0F, 0x08
     .global func_080E0C38
     .thumb_func
 func_080E0C38:
@@ -12754,143 +12756,8 @@ func_080E0C38:
     bx r0
     .byte 0x00, 0x00
     .4byte __vt_23IndexedResourceProvider
-    .global func_080E0D50
-    .thumb_func
-func_080E0D50:
-    push {lr}
-    ldr r3, [r0, #0xc]
-    ldr r1, [r0, #0x10]
-    ldr r2, [r0, #0x14]
-    adds r0, r3, #0
-    bl CopyHardwareDma3
-    movs r0, #0
-    pop {r1}
-    bx r1
-    .global func_080E0D64
-    .thumb_func
-func_080E0D64:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .global func_080E0D70
-    .thumb_func
-func_080E0D70:
-    push {r4, r5, r6, lr}
-    adds r6, r0, #0
-    adds r5, r1, #0
-    movs r1, #0xd0
-    lsls r1, r1, #2
-    adds r0, r6, r1
-    movs r1, #2
-    bl func_080098AC
-    movs r0, #0xce
-    lsls r0, r0, #2
-    adds r4, r6, r0
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    movs r1, #0xc7
-    lsls r1, r1, #2
-    adds r0, r6, r1
-    movs r1, #2
-    bl func_080098AC
-    movs r0, #0xc5
-    lsls r0, r0, #2
-    adds r4, r6, r0
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    movs r1, #0xbf
-    lsls r1, r1, #2
-    adds r0, r6, r1
-    movs r1, #2
-    bl func_080098AC
-    movs r0, #0xbd
-    lsls r0, r0, #2
-    adds r4, r6, r0
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl func_080073E0
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._17HardwarePoolOwner
-    movs r1, #0xb6
-    lsls r1, r1, #2
-    adds r0, r6, r1
-    movs r1, #2
-    bl func_080098AC
-    movs r0, #0xb4
-    lsls r0, r0, #2
-    adds r4, r6, r0
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    movs r1, #0xad
-    lsls r1, r1, #2
-    adds r0, r6, r1
-    movs r1, #2
-    bl func_080098AC
-    movs r0, #0xaa
-    lsls r0, r0, #2
-    adds r4, r6, r0
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    movs r1, #0xc8
-    lsls r1, r1, #1
-    adds r0, r6, r1
-    movs r1, #2
-    bl func_080098AC
-    movs r0, #0xc2
-    lsls r0, r0, #1
-    adds r4, r6, r0
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    adds r0, r6, #0
-    adds r0, #0x68
-    movs r1, #2
-    bl func_080098AC
-    adds r4, r6, #0
-    adds r4, #0x60
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl func_080073E0
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._17HardwarePoolOwner
-    ldr r0, [pc, #0x18]
-    str r0, [r6, #0x30]
-    str r0, [r6]
-    movs r0, #1
-    ands r0, r5
-    cmp r0, #0
-    beq .Lauto_080E0614
-    adds r0, r6, #0
-    bl __builtin_delete
-    .Lauto_080E0614:
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_23IndexedResourceProvider
+    .section .text.map_clock_status_lifecycle_after, "ax", %progbits
+    .align 2, 0
     .global func_080E0E80
     .thumb_func
 func_080E0E80:
@@ -28613,7 +28480,7 @@ func_080E0A94: @ 0x080E0A94
 	movs r4, #0
 	str r4, [r7, #0x38]
 	str r4, [r0, #4]
-	ldr r6, .L080E0C30 @ =vtable_unk_080E77D0
+	ldr r6, .L080E0C30 @ =__vt_19HardwareDmaCopyLink
 	str r6, [r0, #8]
 	str r4, [r0, #0xc]
 	str r4, [r0, #0x10]
@@ -28677,7 +28544,7 @@ func_080E0A94: @ 0x080E0A94
 	add r0, r8
 	movs r2, #5
 	movs r1, #0
-	ldr r4, .L080E0C30 @ =vtable_unk_080E77D0
+	ldr r4, .L080E0C30 @ =__vt_19HardwareDmaCopyLink
 	movs r3, #1
 	rsbs r3, r3, #0
 .L080E0B4C:
@@ -28737,7 +28604,7 @@ func_080E0A94: @ 0x080E0A94
 	adds r1, #8
 	str r6, [r4, #8]
 	str r6, [r1, #4]
-	ldr r0, .L080E0C30 @ =vtable_unk_080E77D0
+	ldr r0, .L080E0C30 @ =__vt_19HardwareDmaCopyLink
 	str r0, [r1, #8]
 	str r6, [r1, #0xc]
 	str r6, [r1, #0x10]
@@ -28787,7 +28654,7 @@ func_080E0A94: @ 0x080E0A94
 	bx r1
 	.align 2, 0
 .L080E0C2C: .4byte gUnk_0871E7A8
-.L080E0C30: .4byte vtable_unk_080E77D0
+.L080E0C30: .4byte __vt_19HardwareDmaCopyLink
 .L080E0C34: .4byte gMenuEntryIds
 
 	thumb_func_start func_080E0C38
@@ -28924,143 +28791,8 @@ func_080E0C38: @ 0x080E0C38
 	bx r0
 	.align 2, 0
 .L080E0D4C: .4byte __vt_23IndexedResourceProvider
-
-	thumb_func_start func_080E0D50
-func_080E0D50: @ 0x080E0D50
-	push {lr}
-	ldr r3, [r0, #0xc]
-	ldr r1, [r0, #0x10]
-	ldr r2, [r0, #0x14]
-	adds r0, r3, #0
-	bl CopyHardwareDma3
-	movs r0, #0
-	pop {r1}
-	bx r1
-
-	thumb_func_start func_080E0D64
-func_080E0D64: @ 0x080E0D64
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E0D70
-func_080E0D70: @ 0x080E0D70
-	push {r4, r5, r6, lr}
-	adds r6, r0, #0
-	adds r5, r1, #0
-	movs r1, #0xd0
-	lsls r1, r1, #2
-	adds r0, r6, r1
-	movs r1, #2
-	bl func_080098AC
-	movs r0, #0xce
-	lsls r0, r0, #2
-	adds r4, r6, r0
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	movs r1, #0xc7
-	lsls r1, r1, #2
-	adds r0, r6, r1
-	movs r1, #2
-	bl func_080098AC
-	movs r0, #0xc5
-	lsls r0, r0, #2
-	adds r4, r6, r0
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	movs r1, #0xbf
-	lsls r1, r1, #2
-	adds r0, r6, r1
-	movs r1, #2
-	bl func_080098AC
-	movs r0, #0xbd
-	lsls r0, r0, #2
-	adds r4, r6, r0
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl func_080073E0
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	movs r1, #0xb6
-	lsls r1, r1, #2
-	adds r0, r6, r1
-	movs r1, #2
-	bl func_080098AC
-	movs r0, #0xb4
-	lsls r0, r0, #2
-	adds r4, r6, r0
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	movs r1, #0xad
-	lsls r1, r1, #2
-	adds r0, r6, r1
-	movs r1, #2
-	bl func_080098AC
-	movs r0, #0xaa
-	lsls r0, r0, #2
-	adds r4, r6, r0
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	movs r1, #0xc8
-	lsls r1, r1, #1
-	adds r0, r6, r1
-	movs r1, #2
-	bl func_080098AC
-	movs r0, #0xc2
-	lsls r0, r0, #1
-	adds r4, r6, r0
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	adds r0, r6, #0
-	adds r0, #0x68
-	movs r1, #2
-	bl func_080098AC
-	adds r4, r6, #0
-	adds r4, #0x60
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl func_080073E0
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	ldr r0, .L080E0E7C @ =__vt_23IndexedResourceProvider
-	str r0, [r6, #0x30]
-	str r0, [r6]
-	movs r0, #1
-	ands r0, r5
-	cmp r0, #0
-	beq .L080E0E74
-	adds r0, r6, #0
-	bl __builtin_delete
-.L080E0E74:
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E0E7C: .4byte __vt_23IndexedResourceProvider
+    .section .text.map_clock_status_lifecycle_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E0E80
 func_080E0E80: @ 0x080E0E80
@@ -32530,7 +32262,7 @@ func_080E2A88:
     bl func_0807532C
     adds r0, r6, #0
     movs r1, #2
-    bl func_0803C7A0
+    bl _._24MapClockStatusHudContent
     adds r0, r7, #0
     movs r1, #2
     bl _._12UiStateOwner
@@ -40806,7 +40538,7 @@ func_080E32E8:
 	.byte 0x29, 0x18, 0x10, 0x48, 0x08, 0x60, 0xA8, 0x62, 0x20, 0x1C, 0x02, 0x21
 	bl func_080756D0
 	.byte 0x30, 0x1C, 0x02, 0x21
-	bl func_0803C7A0
+	bl _._24MapClockStatusHudContent
 	.byte 0x38, 0x1C, 0x02, 0x21
 	bl _._12UiStateOwner
 	.byte 0xE9, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF0, 0xF7
