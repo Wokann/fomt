@@ -459,14 +459,9 @@ SECTIONS
         asm/code_0803A8A4.o(.text.code_0803BDFC);
         . = 0x3BC30; /* JP counterpart of US function 0x0803BE9C. */
         src/code_0803BE9C.o(.text);
-        . = 0x3BC44; /* JP counterparts of US functions 0x0803BEB0..0x0803BEC8. */
-        src/code_0803BEB0.o(.text);
-        . = 0x3BC68; /* JP counterparts of US functions 0x0803BED4/0x0803BEE0. */
-        src/code_0803BED4.o(.text);
-        . = 0x3BC80; /* JP counterparts of US functions 0x0803BEEC/0x0803BEF4. */
-        src/code_0803BEEC.o(.text);
-        . = 0x3BC90; /* JP counterparts of US functions 0x0803BEFC/0x0803BF08. */
-        src/code_0803BEFC.o(.text);
+
+        . = 0x3BC44; /* Shared control callbacks, in ROM order. */
+        src/control_widget.o(.text);
         . = 0x3BCA8; /* JP ROM 0x0803BF14, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803BF14);
         . = 0x3C2AC; /* JP counterparts of US functions 0x0803C518/0x0803C52C. */
@@ -479,7 +474,7 @@ SECTIONS
         asm/code_0803A8A4.o(.text.map_clock_status_calendar);
         src/map_clock_status.o(.text.SetMapClockStatusHud* .text.ClearMapClockStatusHud*);
         src/map_clock_status.o(.text.*MapClockStatusWidget*);
-        asm/code_0803A8A4.o(.text.map_clock_status_after_widget_settings);
+        asm/code_0803A8A4.o(.text.farming_calendar_helpers);
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
         src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
         asm/code_0803A8A4.o(.text.npc_schedule_after);

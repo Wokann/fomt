@@ -2678,7 +2678,7 @@ func_0803C028:
     ldr	r3, [sp, #152]	@ 0x98
     ldr	r5, [sp, #156]	@ 0x9c
     ldr	r2, [sp, #148]	@ 0x94
-    bl func_0803BEB0
+    bl UpdateControlWidget
     str	r0, [sp, #72]	@ 0x48
     cmp	r0, #0
     bge .Ljp_0803BDE2
@@ -3676,49 +3676,7 @@ UpdateMapClockStatusHudCalendar:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_after_widget_settings, "ax", %progbits
-    .align 2, 0
-    .global func_0803D4D8
-    .thumb_func
-func_0803D4D8:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r8
-    push	{r7}
-    sub	sp, #4
-    adds	r5, r0, #0
-    mov	r8, r1
-    adds	r1, r2, #0
-    adds	r7, r3, #0
-    ldr	r3, [sp, #28]
-    adds	r2, r7, #0
-    bl func_0803BEB0
-    adds	r6, r0, #0
-    cmp	r6, #3
-    bne .Ljp_0803D190
-    ldr	r0, [r5, #4]
-    ldr	r1, [r0, #28]
-    adds	r0, r5, #0
-    bl _call_via_r1
-    adds	r4, r0, #0
-    ldr	r0, [r5, #4]
-    ldr	r1, [r0, #32]
-    adds	r0, r5, #0
-    bl _call_via_r1
-    adds	r2, r0, #0
-    adds	r0, r5, #0
-    adds	r0, #8
-    str	r7, [sp, #0]
-    adds	r1, r4, #0
-    mov	r3, r8
-    bl DrawMapClockStatusHud
-.Ljp_0803D190:
-    adds	r0, r6, #0
-    add	sp, #4
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
+    .section .text.farming_calendar_helpers, "ax", %progbits
     .align 2, 0
     .global func_0803D52C
     .thumb_func
@@ -9264,7 +9222,7 @@ func_0803C028:
     ldr	r3, [sp, #152]	@ 0x98
     ldr	r5, [sp, #156]	@ 0x9c
     ldr	r2, [sp, #148]	@ 0x94
-    bl func_0803BEB0
+    bl UpdateControlWidget
     str	r0, [sp, #72]	@ 0x48
     cmp	r0, #0
     bge .Leu_0803C062
@@ -10336,49 +10294,7 @@ UpdateMapClockStatusHudCalendar:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_after_widget_settings, "ax", %progbits
-    .align 2, 0
-    .global func_0803D4D8
-    .thumb_func
-func_0803D4D8:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r8
-    push	{r7}
-    sub	sp, #4
-    adds	r5, r0, #0
-    mov	r8, r1
-    adds	r1, r2, #0
-    adds	r7, r3, #0
-    ldr	r3, [sp, #28]
-    adds	r2, r7, #0
-    bl func_0803BEB0
-    adds	r6, r0, #0
-    cmp	r6, #3
-    bne .Leu_0803D530
-    ldr	r0, [r5, #4]
-    ldr	r1, [r0, #28]
-    adds	r0, r5, #0
-    bl _call_via_r1
-    adds	r4, r0, #0
-    ldr	r0, [r5, #4]
-    ldr	r1, [r0, #32]
-    adds	r0, r5, #0
-    bl _call_via_r1
-    adds	r2, r0, #0
-    adds	r0, r5, #0
-    adds	r0, #8
-    str	r7, [sp, #0]
-    adds	r1, r4, #0
-    mov	r3, r8
-    bl DrawMapClockStatusHud
-.Leu_0803D530:
-    adds	r0, r6, #0
-    add	sp, #4
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
+    .section .text.farming_calendar_helpers, "ax", %progbits
     .align 2, 0
     .global func_0803D52C
     .thumb_func
@@ -15885,7 +15801,7 @@ func_0803C028:
     ldr	r3, [sp, #152]	@ 0x98
     ldr	r5, [sp, #156]	@ 0x9c
     ldr	r2, [sp, #148]	@ 0x94
-    bl func_0803BEB0
+    bl UpdateControlWidget
     str	r0, [sp, #72]	@ 0x48
     cmp	r0, #0
     bge .Lde_0803BF62
@@ -16932,49 +16848,7 @@ UpdateMapClockStatusHudCalendar:
     pop	{r0}
     bx	r0
 
-    .section .text.map_clock_status_after_widget_settings, "ax", %progbits
-    .align 2, 0
-    .global func_0803D4D8
-    .thumb_func
-func_0803D4D8:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r8
-    push	{r7}
-    sub	sp, #4
-    adds	r5, r0, #0
-    mov	r8, r1
-    adds	r1, r2, #0
-    adds	r7, r3, #0
-    ldr	r3, [sp, #28]
-    adds	r2, r7, #0
-    bl func_0803BEB0
-    adds	r6, r0, #0
-    cmp	r6, #3
-    bne .Lde_0803D414
-    ldr	r0, [r5, #4]
-    ldr	r1, [r0, #28]
-    adds	r0, r5, #0
-    bl _call_via_r1
-    adds	r4, r0, #0
-    ldr	r0, [r5, #4]
-    ldr	r1, [r0, #32]
-    adds	r0, r5, #0
-    bl _call_via_r1
-    adds	r2, r0, #0
-    adds	r0, r5, #0
-    adds	r0, #8
-    str	r7, [sp, #0]
-    adds	r1, r4, #0
-    mov	r3, r8
-    bl DrawMapClockStatusHud
-.Lde_0803D414:
-    adds	r0, r6, #0
-    add	sp, #4
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
+    .section .text.farming_calendar_helpers, "ax", %progbits
     .align 2, 0
     .global func_0803D52C
     .thumb_func
@@ -22480,7 +22354,7 @@ func_0803C028:
     ldr	r3, [sp, #152]	@ 0x98
     ldr	r5, [sp, #156]	@ 0x9c
     ldr	r2, [sp, #148]	@ 0x94
-    bl func_0803BEB0
+    bl UpdateControlWidget
     str	r0, [sp, #72]	@ 0x48
     cmp	r0, #0
     bge .Lus_0803C04E
@@ -23552,49 +23426,7 @@ UpdateMapClockStatusHudCalendar:
     bx	r0
     .align 2, 0
 
-    .section .text.map_clock_status_after_widget_settings, "ax", %progbits
-    .align 2, 0
-    .global func_0803D4D8
-    .thumb_func
-func_0803D4D8:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r8
-    push	{r7}
-    sub	sp, #4
-    adds	r5, r0, #0
-    mov	r8, r1
-    adds	r1, r2, #0
-    adds	r7, r3, #0
-    ldr	r3, [sp, #28]
-    adds	r2, r7, #0
-    bl func_0803BEB0
-    adds	r6, r0, #0
-    cmp	r6, #3
-    bne .Lus_0803D51C
-    ldr	r0, [r5, #4]
-    ldr	r1, [r0, #28]
-    adds	r0, r5, #0
-    bl _call_via_r1
-    adds	r4, r0, #0
-    ldr	r0, [r5, #4]
-    ldr	r1, [r0, #32]
-    adds	r0, r5, #0
-    bl _call_via_r1
-    adds	r2, r0, #0
-    adds	r0, r5, #0
-    adds	r0, #8
-    str	r7, [sp, #0]
-    adds	r1, r4, #0
-    mov	r3, r8
-    bl DrawMapClockStatusHud
-.Lus_0803D51C:
-    adds	r0, r6, #0
-    add	sp, #4
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
+    .section .text.farming_calendar_helpers, "ax", %progbits
     .align 2, 0
     .global func_0803D52C
     .thumb_func

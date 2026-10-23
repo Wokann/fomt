@@ -7,6 +7,8 @@
 #include "font.hh"
 #include "ui_state.hh"
 #include "resource_handle.hh"
+#include "control_widget.hh"
+#include "map_clock_status.hh"
 
 EXTERN_C
 
@@ -4222,14 +4224,6 @@ extern RawVTableFunction const vtable_unk_080E7768[]
     };
 
 extern void func_0803BE50(void);
-extern void func_0803BEBC(void);
-extern void func_0803BEC8(void);
-extern void func_0803BED4(void);
-extern void func_0803BEE0(void);
-extern void func_0803BEEC(void);
-extern void func_0803BEF4(void);
-extern void func_0803BEFC(void);
-extern void func_0803BF08(void);
 
 // Preserve this eleven-slot table and its exact callbacks in ROM order.
 extern RawVTableFunction const vtable_unk_080E7778[]
@@ -4237,14 +4231,14 @@ extern RawVTableFunction const vtable_unk_080E7778[]
         nullptr,
         nullptr,
         func_0803BE50,
-        func_0803BEBC,
-        func_0803BEC8,
-        func_0803BED4,
-        func_0803BEE0,
-        func_0803BEEC,
-        func_0803BEF4,
-        func_0803BEFC,
-        func_0803BF08,
+        reinterpret_cast<RawVTableFunction>(func_0803BEBC),
+        reinterpret_cast<RawVTableFunction>(func_0803BEC8),
+        reinterpret_cast<RawVTableFunction>(func_0803BED4),
+        reinterpret_cast<RawVTableFunction>(func_0803BEE0),
+        reinterpret_cast<RawVTableFunction>(GetControlWidgetX),
+        reinterpret_cast<RawVTableFunction>(GetControlWidgetY),
+        reinterpret_cast<RawVTableFunction>(SetControlWidgetPosition),
+        reinterpret_cast<RawVTableFunction>(OffsetControlWidgetPosition),
     };
 
 extern void func_0803BFC8(void);
@@ -4259,16 +4253,15 @@ extern RawVTableFunction const vtable_unk_080E77A4[]
         func_0803BFC8,
         func_0803C518,
         func_0803C52C,
-        func_0803BED4,
-        func_0803BEE0,
-        func_0803BEEC,
-        func_0803BEF4,
-        func_0803BEFC,
-        func_0803BF08,
+        reinterpret_cast<RawVTableFunction>(func_0803BED4),
+        reinterpret_cast<RawVTableFunction>(func_0803BEE0),
+        reinterpret_cast<RawVTableFunction>(GetControlWidgetX),
+        reinterpret_cast<RawVTableFunction>(GetControlWidgetY),
+        reinterpret_cast<RawVTableFunction>(SetControlWidgetPosition),
+        reinterpret_cast<RawVTableFunction>(OffsetControlWidgetPosition),
     };
 
 extern void func_0803C588(void);
-extern void func_0803D4D8(void);
 
 // Preserve this twelve-slot table and its exact callbacks in ROM order.
 extern RawVTableFunction const vtable_unk_080E77E0[]
@@ -4276,15 +4269,15 @@ extern RawVTableFunction const vtable_unk_080E77E0[]
         nullptr,
         nullptr,
         func_0803C588,
-        func_0803BEBC,
-        func_0803BEC8,
-        func_0803BED4,
-        func_0803BEE0,
-        func_0803BEEC,
-        func_0803BEF4,
-        func_0803BEFC,
-        func_0803BF08,
-        func_0803D4D8,
+        reinterpret_cast<RawVTableFunction>(func_0803BEBC),
+        reinterpret_cast<RawVTableFunction>(func_0803BEC8),
+        reinterpret_cast<RawVTableFunction>(func_0803BED4),
+        reinterpret_cast<RawVTableFunction>(func_0803BEE0),
+        reinterpret_cast<RawVTableFunction>(GetControlWidgetX),
+        reinterpret_cast<RawVTableFunction>(GetControlWidgetY),
+        reinterpret_cast<RawVTableFunction>(SetControlWidgetPosition),
+        reinterpret_cast<RawVTableFunction>(OffsetControlWidgetPosition),
+        reinterpret_cast<RawVTableFunction>(DrawMapClockStatusWidget),
     };
 
 // The base Script Engine table follows the AScriptEngine table in both ROMs.

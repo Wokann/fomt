@@ -2,6 +2,7 @@
 #define MAP_CLOCK_STATUS_HH
 
 #include "prelude.h"
+#include "control_widget.hh"
 #include "hardware_dma_link.hh"
 #include "hardware_resource.hh"
 #include "hardware_state_clear.hh"
@@ -99,10 +100,9 @@ typedef char MapClockStatusValueOffset[offsetof(MapClockStatusHudData, unk_value
 typedef char MapClockStatusValueDirtyOffset[offsetof(MapClockStatusHudData, unk_value_dirty) == 0x334 ? 1 : -1];
 typedef char MapClockStatusContentSize[sizeof(MapClockStatusHudContent) == 4 ? 1 : -1];
 
-// The native widget's eight-byte base remains unresolved. Every settings
-// entry forwards to the confirmed four-byte content owner at +8.
-struct MapClockStatusHudWidget {
-    u8 unk_00[8];
+// The native control's state/table prefix occupies eight bytes; the
+// four-byte content owner follows it. Its remaining implementation is native.
+struct MapClockStatusHudWidget : ControlWidget {
     MapClockStatusHudContent content;
 };
 
@@ -132,6 +132,10 @@ extern u8 const gUnk_083ED9FC[];
 #else
 extern u8 const gUnk_086678A0[];
 #endif
+
+u32 DrawMapClockStatusWidget(MapClockStatusHudWidget * widget,
+    HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
+    HardwareLinkedList * uploads, HardwareLinkedList * commands);
 
 void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
     HardwareSpriteBufferState * buffer, HardwareLinkedList * queue);

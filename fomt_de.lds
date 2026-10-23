@@ -413,14 +413,9 @@ SECTIONS
         asm/code_0803A8A4.o(.text.code_0803BDFC);
         . = 0x3BDB0; /* DE ROM 0x0803BDB0, unpack a packed value. */
         src/code_0803BE9C.o(.text);
-        . = 0x3BDC4; /* DE ROM 0x0803BDC4, forward owned operations. */
-        src/code_0803BEB0.o(.text);
-        . = 0x3BDE8; /* DE ROM 0x0803BDE8, forward owned operations. */
-        src/code_0803BED4.o(.text);
-        . = 0x3BE00; /* DE ROM 0x0803BE00, read signed pair values. */
-        src/code_0803BEEC.o(.text);
-        . = 0x3BE10; /* DE ROM 0x0803BE10, forward pair operations. */
-        src/code_0803BEFC.o(.text);
+
+        . = 0x3BDC4; /* Shared control callbacks, in ROM order. */
+        src/control_widget.o(.text);
         . = 0x3BE28; /* DE ROM 0x0803BE28, remaining raw control code. */
         asm/code_0803A8A4.o(.text.code_0803BF14);
         . = 0x3C42C; /* DE ROM 0x0803C42C, activate control bytes. */
@@ -433,7 +428,7 @@ SECTIONS
         asm/code_0803A8A4.o(.text.map_clock_status_calendar);
         src/map_clock_status.o(.text.SetMapClockStatusHud* .text.ClearMapClockStatusHud*);
         src/map_clock_status.o(.text.*MapClockStatusWidget*);
-        asm/code_0803A8A4.o(.text.map_clock_status_after_widget_settings);
+        asm/code_0803A8A4.o(.text.farming_calendar_helpers);
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
         src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
         asm/code_0803A8A4.o(.text.npc_schedule_after);

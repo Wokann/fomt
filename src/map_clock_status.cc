@@ -426,3 +426,16 @@ void UpdateMapClockStatusWidgetCalendar(MapClockStatusHudWidget const * widget,
 {
     UpdateMapClockStatusHudCalendar(&widget->content, calendar, show_colon);
 }
+
+u32 DrawMapClockStatusWidget(MapClockStatusHudWidget * widget,
+    HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
+    HardwareLinkedList * uploads, HardwareLinkedList * commands)
+{
+    u32 const state = UpdateControlWidget(widget, display, uploads, commands);
+    if (state == 3) {
+        i32 x = widget->vtable->get_x(widget);
+        i32 y = widget->vtable->get_y(widget);
+        DrawMapClockStatusHud(&widget->content, x, y, sprites, uploads);
+    }
+    return state;
+}
