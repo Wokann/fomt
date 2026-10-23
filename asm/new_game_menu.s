@@ -419,7 +419,7 @@ FormatNewGameSaveSlotSummary:
 .Ljp_08003AF0:
     ldr	r0, .Ljp_08003B54
     add	r0, sl
-    bl func_0800E4E0
+    bl GetName__C6Farmer
     adds	r7, r0, #0
     adds	r4, r7, #0
     adds	r0, r6, #0
@@ -1776,7 +1776,7 @@ FormatNewGameSaveSlotSummary: @ Original US 0x08003788; body remains native.
     ldr r1, [sp, #0x24]
     ldr r2, .L08003B3C @ =0x00001BD8
     adds r0, r1, r2
-    bl func_0800E4E0
+    bl GetName__C6Farmer
     adds r7, r0, #0
     adds r4, r7, #0
     adds r0, r6, #0

@@ -36,12 +36,18 @@ struct Farmer
         MAX_COUNT_STEPS = 1000000000
     };
 
-    Farmer(char const * arg_1, GameDate const & arg_2);
+    Farmer(char const * player_name, GameDate const & birth_date);
     Farmer(Farmer const & other);
 
-    FixedStr<12> unk_00; /* name? */
-    FixedStr<12> unk_10;
-    GameDate unk_20; /* birthday */
+    char const * GetName() const;
+    char const * GetSpouseNickname() const;
+    GameDate GetBirthday() const;
+    // The limit is twelve encoded bytes, not twelve Unicode characters.
+    void SetSpouseNickname(char const * value);
+
+    FixedStr<12> name;
+    FixedStr<12> spouse_nickname;
+    GameDate birthday;
     ActorLocation location;
     ToolLevel unk_2C[6]; /* tool level */
     u32 num_power_berries : 4;
@@ -62,15 +68,16 @@ struct Farmer
     Rucksack rucksack;
 };
 
+typedef char FarmerNameOffsetCheck[offsetof(Farmer, name) == 0 ? 1 : -1];
+typedef char FarmerSpouseNicknameOffsetCheck[offsetof(Farmer, spouse_nickname) == 0x10 ? 1 : -1];
+typedef char FarmerBirthdayOffsetCheck[offsetof(Farmer, birthday) == 0x20 ? 1 : -1];
+
 typedef char FarmerToolLevelSizeCheck[sizeof(Farmer::ToolLevel) == 4 ? 1 : -1];
 typedef char FarmerHeldItemOffsetCheck[offsetof(Farmer, unk_54) == 0x54 ? 1 : -1];
 typedef char FarmerRucksackOffsetCheck[offsetof(Farmer, rucksack) == 0x60 ? 1 : -1];
 typedef char FarmerSizeCheck[sizeof(Farmer) == 0x98 ? 1 : -1];
 
 /* Farmer methods */
-EC char const * func_0800E4E0(Farmer const & self);
-EC char const * func_0800E4E4(Farmer const & self);
-EC GameDate func_0800E4E8(Farmer const & self);
 EC unsigned int func_0800E4F0(Farmer const & self);
 EC unsigned int func_0800E4FC(Farmer const & self);
 EC bool func_0800E504(Farmer const & self);
@@ -88,7 +95,6 @@ EC unsigned int func_0800E970(Farmer const & self);
 EC unsigned int GetDeepestMineFloor(Farmer const & self);
 EC unsigned int func_0800E988(Farmer const & self);
 EC unsigned int func_0800E9A0(Farmer const & self);
-EC void func_0800E9A8(Farmer & self, char const * arg_1);
 EC void func_0800E9E4(Farmer & self, int increase);
 EC void func_0800EA38(Farmer & self, int decrease);
 EC void func_0800EA44(Farmer & self);

@@ -1,8 +1,8 @@
 #include "farmer.hh"
 
-Farmer::Farmer(char const * arg_1, GameDate const & arg_2)
-    : unk_00(arg_1),
-      unk_20(arg_2),
+Farmer::Farmer(char const * player_name, GameDate const & birth_date)
+    : name(player_name),
+      birthday(birth_date),
       location(Location(2, 0, 0), 0),
       num_power_berries(0),
       unk_44_04(0),
@@ -21,9 +21,9 @@ Farmer::Farmer(char const * arg_1, GameDate const & arg_2)
 }
 
 Farmer::Farmer(Farmer const & other)
-    : unk_00(other.unk_00),
-      unk_10(other.unk_10),
-      unk_20(other.unk_20),
+    : name(other.name),
+      spouse_nickname(other.spouse_nickname),
+      birthday(other.birthday),
       location(other.location),
       unk_2C(other.unk_2C),
       num_power_berries(other.num_power_berries),
@@ -45,19 +45,19 @@ Farmer::Farmer(Farmer const & other)
 {
 }
 
-EC char const * func_0800E4E0(Farmer const & self)
+char const * Farmer::GetName() const
 {
-    return self.unk_00;
+    return name;
 }
 
-EC char const * func_0800E4E4(Farmer const & self)
+char const * Farmer::GetSpouseNickname() const
 {
-    return self.unk_10;
+    return spouse_nickname;
 }
 
-EC GameDate func_0800E4E8(Farmer const & self)
+GameDate Farmer::GetBirthday() const
 {
-    return self.unk_20;
+    return birthday;
 }
 
 EC unsigned int func_0800E4F0(Farmer const & self)
@@ -252,9 +252,9 @@ EC unsigned int func_0800E9A0(Farmer const & self)
     return self.unk_50_0D;
 }
 
-EC void func_0800E9A8(Farmer & self, char const * arg_1)
+void Farmer::SetSpouseNickname(char const * value)
 {
-    self.unk_10 = FixedStr<12>(arg_1);
+    spouse_nickname = FixedStr<12>(value);
 }
 
 EC void func_0800E9E4(Farmer & self, int increase)

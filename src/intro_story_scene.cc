@@ -42,7 +42,7 @@ IntroStorySceneCore * InitializeIntroStorySceneCore(IntroStorySceneCore * core,
     core->transition_phase = 0;
     core->dialogue_state = 2;
     core->story_step = 0;
-    core->variables.player_name = func_0800E4E0(core->saved->farmer);
+    core->variables.player_name = core->saved->farmer.GetName();
     return core;
 }
 

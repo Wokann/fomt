@@ -1344,7 +1344,7 @@ SceneTransitionOwner SavedNameEntryScene::Run()
         break;
     }
     case NAME_ENTRY_SPOUSE_NICKNAME:
-        func_0800E9A8(save->farmer, keyboard.GetName());
+        save->farmer.SetSpouseNickname(keyboard.GetName());
         break;
     default:
         return continuation;

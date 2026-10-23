@@ -1305,7 +1305,7 @@ func_0803B4DC:
     ldr	r0, [r5, #4]
     ldr r1, .Ljp_0803B300
     adds	r0, r0, r1
-    bl func_0800E4E0
+    bl GetName__C6Farmer
     adds	r5, r0, #0
     b .Ljp_0803B406
     .align 2, 0
@@ -1353,7 +1353,7 @@ func_0803B4DC:
     ldr	r0, [r5, #4]
     ldr r1, .Ljp_0803B360
     adds	r0, r0, r1
-    bl func_0800E4E4
+    bl GetSpouseNickname__C6Farmer
     adds	r5, r0, #0
     b .Ljp_0803B406
     .align 2, 0
@@ -9137,7 +9137,7 @@ func_0803B4DC:
     ldr	r0, [r5, #4]
     ldr r1, .Leu_0803B580
     adds	r0, r0, r1
-    bl func_0800E4E0
+    bl GetName__C6Farmer
     adds	r5, r0, #0
     b .Leu_0803B686
     .align 2, 0
@@ -9185,7 +9185,7 @@ func_0803B4DC:
     ldr	r0, [r5, #4]
     ldr r1, .Leu_0803B5E0
     adds	r0, r0, r1
-    bl func_0800E4E4
+    bl GetSpouseNickname__C6Farmer
     adds	r5, r0, #0
     b .Leu_0803B686
     .align 2, 0
@@ -17045,7 +17045,7 @@ func_0803B4DC:
     ldr	r0, [r5, #4]
     ldr r1, .Lde_0803B480
     adds	r0, r0, r1
-    bl func_0800E4E0
+    bl GetName__C6Farmer
     adds	r5, r0, #0
     b .Lde_0803B586
     .align 2, 0
@@ -17093,7 +17093,7 @@ func_0803B4DC:
     ldr	r0, [r5, #4]
     ldr r1, .Lde_0803B4E0
     adds	r0, r0, r1
-    bl func_0800E4E4
+    bl GetSpouseNickname__C6Farmer
     adds	r5, r0, #0
     b .Lde_0803B586
     .align 2, 0
@@ -24931,7 +24931,7 @@ func_0803B4DC:
     ldr	r0, [r5, #4]
     ldr r1, .Lus_0803B56C
     adds	r0, r0, r1
-    bl func_0800E4E0
+    bl GetName__C6Farmer
     adds	r5, r0, #0
     b .Lus_0803B672
     .align 2, 0
@@ -24979,7 +24979,7 @@ func_0803B4DC:
     ldr	r0, [r5, #4]
     ldr r1, .Lus_0803B5CC
     adds	r0, r0, r1
-    bl func_0800E4E4
+    bl GetSpouseNickname__C6Farmer
     adds	r5, r0, #0
     b .Lus_0803B672
     .align 2, 0
