@@ -15,6 +15,8 @@ struct HardwareDmaCopyLink : HardwareLinkBase {
 
     HardwareDmaCopyLink() : source(0), destination(0), byte_count(0) {}
 
+    bool IsQueued() const { return previous_slot != 0; }
+
     virtual bool Run()
     {
         CopyHardwareDma3(source, destination, byte_count);

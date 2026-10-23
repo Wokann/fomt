@@ -429,8 +429,8 @@ SECTIONS
         src/code_0803C540.o(.text);
         . = 0x3C460; /* DE ROM 0x0803C460, remaining raw control code. */
         asm/code_0803A8A4.o(.text.code_0803C54C);
-        src/map_clock_status.o(.text.__24MapClockStatusHudContent .text._._24MapClockStatusHudContent);
-        asm/code_0803A8A4.o(.text.map_clock_status_renderer_calendar);
+        src/map_clock_status.o(.text.__24MapClockStatusHudContent .text._._24MapClockStatusHudContent .text.DrawMapClockStatusHud);
+        asm/code_0803A8A4.o(.text.map_clock_status_calendar);
         src/map_clock_status.o(.text.SetMapClockStatusHud* .text.ClearMapClockStatusHud*);
         asm/code_0803A8A4.o(.text.map_clock_status_hud_adapters);
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);

@@ -34,7 +34,7 @@ assembled data object; PNG-to-4bpp round trips preserve all bytes.
 
 The PNG palette is an editor-only grey ramp that represents indices 0 through
 15. It is **not** an exported game palette. The recovered HUD constructor and
-native renderer identify a separate resource-archive palette upload to OBJ
+shared C++ renderer identify a separate resource-archive palette upload to OBJ
 palette RAM; that resource has not been converted into this PNG's authoring
 palette. Rebuilding deliberately ignores PNG palette
 colours and preserves only tile indices. Overseas `shared/tail.bin` is the final four

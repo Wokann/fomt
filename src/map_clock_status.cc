@@ -50,6 +50,142 @@ MapClockStatusHudContent::MapClockStatusHudContent()
 {
 }
 
+MapClockStatusHudContent::~MapClockStatusHudContent()
+{
+    delete state;
+}
+
+static inline bool HudHasHandle(HardwareResourceEntry const & entry)
+{
+    return entry.handle != 0;
+}
+
+static inline bool HudHasHandle(HardwareStateEntry const & entry)
+{
+    return entry.handle != 0;
+}
+
+static inline void QueueHudCopy(HardwareDmaCopyLink & link,
+    void const * source, void * destination, u32 bytes, HardwareLinkedList * queue)
+{
+    link.source = source;
+    link.destination = destination;
+    link.byte_count = bytes;
+    queue->Append(&link);
+}
+
+static inline void SubmitHudSprite(HardwareSpriteBufferState * buffer,
+    HardwareSpriteOamRecord const & sprite)
+{
+    u32 const & position_and_mode = reinterpret_cast<u32 const &>(sprite);
+    u32 count = buffer->sprite_count;
+    if (count < ARRAY_COUNT(buffer->sprites)) {
+        HardwareSpriteOamRecord & destination = buffer->sprites[count];
+        reinterpret_cast<u32 *>(&destination)[0] = position_and_mode;
+        reinterpret_cast<u16 *>(&destination)[2] = reinterpret_cast<u16 const *>(&sprite)[2];
+        buffer->sprite_count = count + 1;
+    }
+}
+
+static inline u32 HudPaletteBank(HardwareResourceEntry & entry)
+{
+    return func_080074C0(&entry, entry.handle);
+}
+
+static inline void DrawHudTileBuffer(MapClockStatusHudTileBuffer & tiles,
+    i32 x, i32 y, u32 palette, HardwareSpriteBufferState * buffer, HardwareLinkedList * queue)
+{
+    if (HudHasHandle(tiles.state)) {
+        u32 tile = tiles.state.GetTileIndex();
+        if (tiles.dirty && !tiles.upload.IsQueued()) {
+            QueueHudCopy(tiles.upload, tiles.tiles,
+                reinterpret_cast<void *>(0x06010000 + tile * 32), 256, queue);
+            tiles.dirty = 0;
+        }
+        HardwareSpriteOamRecord sprite = {};
+        sprite.mosaic = 1;
+        sprite.shape = 1;
+        sprite.size = 2;
+        sprite.y = y;
+        sprite.x = x;
+        sprite.tile_index = tile;
+        sprite.palette_bank = static_cast<u16>(palette);
+        SubmitHudSprite(buffer, sprite);
+    }
+}
+
+void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
+    HardwareSpriteBufferState * buffer, HardwareLinkedList * queue)
+{
+    MapClockStatusHudData * state = hud->state;
+    if (!HudHasHandle(state->palette)) return;
+    u32 palette = HudPaletteBank(state->palette);
+    if (state->palette_dirty && !state->palette_upload.IsQueued()) {
+        QueueHudCopy(state->palette_upload,
+            state->unk_archive_000.GetGroupData(0).fifth.data,
+            reinterpret_cast<void *>(0x05000200 + palette * 32), 32, queue);
+        state->palette_dirty = 0;
+    }
+    i32 draw_x = x + 4;
+    i32 draw_y = y + 4;
+    DrawHudTileBuffer(state->date_tiles, draw_x, draw_y, palette, buffer, queue);
+    DrawHudTileBuffer(state->time_tiles, draw_x + 32, draw_y, palette, buffer, queue);
+    HardwareSpriteOamRecord base = {};
+    base.mosaic = 1;
+    base.size = 1;
+    if (HudHasHandle(state->unk_state_2D0)) {
+        u32 tile = state->unk_state_2D0.GetTileIndex();
+        if (state->unk_selector_dirty && !state->unk_dma_2D8.IsQueued()) {
+            IndexedResourceGroupResult group = ResolveIndexedResourceGroup(&state->unk_archive_000, state->unk_selector);
+            QueueHudCopy(state->unk_dma_2D8, group.fourth.data,
+                reinterpret_cast<void *>(0x06010000 + tile * 32), 128, queue);
+            state->unk_selector_dirty = 0;
+        }
+        HardwareSpriteOamRecord sprite = base;
+        sprite.y = draw_y;
+        sprite.x = draw_x + 64;
+        sprite.tile_index = tile;
+        sprite.palette_bank = static_cast<u16>(palette);
+        SubmitHudSprite(buffer, sprite);
+    }
+    if (!HudHasHandle(state->unk_state_314) || !HudHasHandle(state->unk_pool_2F4)) return;
+    HardwareSpriteOamRecord sprite = base;
+    sprite.y = draw_y;
+    sprite.x = draw_x + 88;
+    if (state->unk_value_active) {
+        u32 tile = state->unk_state_314.GetTileIndex();
+        u32 value_palette = HudPaletteBank(state->unk_pool_2F4);
+        if (state->unk_value_dirty) {
+            IndexedResourceGroupResult group = ResolveIndexedResourceGroup(&state->unk_archive_030, state->unk_value);
+            if (!state->unk_dma_31C.IsQueued()) {
+                QueueHudCopy(state->unk_dma_31C, group.fourth.data,
+                    reinterpret_cast<void *>(0x06010000 + tile * 32), 128, queue);
+            }
+            if (!state->unk_dma_2FC.IsQueued()) {
+                QueueHudCopy(state->unk_dma_2FC, group.fifth.data,
+                    reinterpret_cast<void *>(0x05000200 + value_palette * 32), 32, queue);
+            }
+            state->unk_value_dirty = 0;
+        }
+        sprite.tile_index = tile;
+        sprite.palette_bank = static_cast<u16>(value_palette);
+        SubmitHudSprite(buffer, sprite);
+    }
+    if (HudHasHandle(state->unk_state_338)) {
+        u32 tile = state->unk_state_338.GetTileIndex();
+        if (state->unk_358 && !state->unk_dma_340.IsQueued()) {
+            IndexedResourceGroupResult group = ResolveIndexedResourceGroup(&state->unk_archive_000, 5);
+            QueueHudCopy(state->unk_dma_340, group.fourth.data,
+                reinterpret_cast<void *>(0x06010000 + tile * 32), 128, queue);
+            state->unk_358 = 0;
+        }
+        HardwareSpriteOamRecord & record = sprite;
+        record.tile_index = tile;
+        record.palette_bank = palette;
+        SubmitHudSprite(buffer, sprite);
+    }
+}
+
 void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season)
 {
     MapClockStatusHudData * state = hud->state;

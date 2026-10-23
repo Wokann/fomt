@@ -72911,7 +72911,7 @@ func_080785C8:
 	movs r1, #0x98
 	movs r2, #0x50
 	adds r3, r4, #0
-	bl func_0803C7C8
+	bl DrawMapClockStatusHud
 .Ljp_0807864E:
 	add sp, #0x24
 	pop {r4, r5, r6, r7}
@@ -226274,7 +226274,7 @@ func_080785C8: @ 0x080785C8
 	movs r1, #0x98
 	movs r2, #0x50
 	adds r3, r4, #0
-	bl func_0803C7C8
+	bl DrawMapClockStatusHud
 .L0807864E:
 	add sp, #0x24
 	pop {r4, r5, r6, r7}

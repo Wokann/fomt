@@ -64,7 +64,7 @@ private:
 struct MapClockStatusHudContent {
     MapClockStatusHudData * state;
     MapClockStatusHudContent();
-    ~MapClockStatusHudContent() { delete state; }
+    ~MapClockStatusHudContent();
 };
 
 enum {
@@ -106,6 +106,9 @@ extern u8 const gUnk_083ED9FC[];
 #else
 extern u8 const gUnk_086678A0[];
 #endif
+
+void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
+    HardwareSpriteBufferState * buffer, HardwareLinkedList * queue);
 
 // Invalid signed values use the spring tile pair, as in the native switch.
 void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season);
