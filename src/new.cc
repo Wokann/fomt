@@ -3,6 +3,7 @@
  */
 
 #include "new.hh"
+#include <new>
 
 #include <stddef.h>
 #include <stdlib.h>

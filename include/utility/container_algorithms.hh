@@ -13,8 +13,8 @@
 // Permission to modify the code and to distribute modified code is granted,
 // provided the above notices are retained, and a notice that the code was
 // modified is included with the above copyright notice.
-// Modified: retain the pointer-range copy and destruction algorithms using
-// the existing standard-library traits, without replacing its other headers.
+// Modified: retain pointer-range copy/destruction and reference-based
+// maximum selection, without replacing the other library headers.
 
 #include "prelude.h"
 #include <type_traits.h>
@@ -58,6 +58,12 @@ inline void destroy_range_inl(Iterator first, Iterator last,
 template<class Iterator>
 inline void destroy_range_inl(Iterator, Iterator, __true_type const &)
 {
+}
+
+template<class T>
+inline T const & max_ref_inl(T const & a, T const & b)
+{
+    return a < b ? b : a;
 }
 
 #endif // CONTAINER_ALGORITHMS_HH

@@ -1,6 +1,7 @@
 #include "new_game_name_input.hh"
 #include "new_game_data.hh"
 #include "hardware_state_accessors.hh"
+#include "new.hh"
 #include "hardware_blend_object.hh"
 #include "hardware_dma.hh"
 #include "hardware_music_player.hh"
@@ -174,6 +175,95 @@ void ResetNameInputCore(NewGameNameInputCore * core)
     core->keyboard_page = 0;
     core->sprites[1].unk_00[0] = 0;
     core->unk_463c = 0;
+}
+
+// The retail text rasterizers inline this descriptor-append path. Keep
+// its real allocation, copy construction and destruction order here.
+// Other queue consumers retain their separately recovered inline body.
+static inline void * AllocateTextDmaBytes(u32 bytes)
+{
+    void * memory = malloc(bytes);
+    if (memory == nullptr)
+        return RetryMemoryAllocation(bytes);
+    return memory;
+}
+
+static inline DmaTransferDescriptor * AllocateTextDmaDescriptors(u32 count)
+{
+    return count != 0 ? static_cast<DmaTransferDescriptor *>(
+        AllocateTextDmaBytes(count * sizeof(DmaTransferDescriptor))) : nullptr;
+}
+
+static inline DmaTransferDescriptor * CopyTextDmaDescriptors(DmaTransferDescriptor const * first,
+    DmaTransferDescriptor const * last, DmaTransferDescriptor * result)
+{
+    DmaTransferDescriptor * current = result;
+    for (; first != last; ++first, ++current)
+        if (current != nullptr)
+            new (current) DmaTransferDescriptor(*first);
+    return current;
+}
+
+static inline DmaTransferDescriptor * FillTextDmaDescriptors(DmaTransferDescriptor * first,
+    u32 count, DmaTransferDescriptor const & value)
+{
+    DmaTransferDescriptor * current = first;
+    for (; count != 0; --count, ++current)
+        if (current != nullptr)
+            new (current) DmaTransferDescriptor(value);
+    return current;
+}
+
+static inline void GrowTextDmaQueue(HardwareDmaQueue * queue,
+    DmaTransferDescriptor * old_end, u32 count, DmaTransferDescriptor const & value)
+{
+    u32 old_size = old_end - queue->first;
+    u32 new_size = old_size + max_ref_inl(old_size, count);
+    DmaTransferDescriptor * replacement = AllocateTextDmaDescriptors(new_size);
+    DmaTransferDescriptor * end = replacement;
+    end = CopyTextDmaDescriptors(queue->first, old_end, end);
+    if (count == 1) {
+        if (end != nullptr)
+            new (end) DmaTransferDescriptor(value);
+        ++end;
+    } else {
+        end = FillTextDmaDescriptors(end, count, value);
+    }
+    typedef __type_traits<DmaTransferDescriptor>::has_trivial_destructor TrivialDestructor;
+    DmaTransferDescriptor * old_last = queue->last;
+    DmaTransferDescriptor * const old_first = queue->first;
+    destroy_range_inl(old_first, old_last, TrivialDestructor());
+    if (old_first != nullptr)
+        free(old_first);
+    DmaTransferDescriptor * capacity_end = replacement + new_size;
+    queue->first = replacement;
+    queue->last = end;
+    queue->allocation.end = capacity_end;
+}
+
+static inline void AppendTextDmaTransfer(HardwareDmaQueue * queue,
+    DmaTransferDescriptor const & value)
+{
+    if (queue->last != queue->allocation.end) {
+        if (queue->last != nullptr)
+            new (queue->last) DmaTransferDescriptor(value);
+        ++queue->last;
+    } else {
+        GrowTextDmaQueue(queue, queue->last, 1, value);
+    }
+}
+
+// Refresh the editable name and queue its full two-tile-high buffer.
+void RenderNameInputName(NewGameNameInputCore * core)
+{
+    u32 bytes = sizeof(core->name_buffer.tiles);
+    NewGameTextTileBuffer<30> & buffer = core->name_buffer;
+    buffer.ClearRect(0, 0, 96, 16, 0);
+    buffer.DrawString(144, 0, core->name);
+    HardwareDmaQueue * queue = GetHardwareDmaQueue(reinterpret_cast<void * const *>(core));
+    DmaTransferDescriptor transfer(buffer.tiles,
+        reinterpret_cast<void *>(0x06000000 + bytes * ARRAY_COUNT(core->keyboard_buffers)), bytes);
+    AppendTextDmaTransfer(queue, transfer);
 }
 
 void SubmitNameInputCursorSprites(NewGameNameInputCore * core)

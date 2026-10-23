@@ -125,7 +125,7 @@ typedef char NewGameNameInputSceneCoreCheck[offsetof(NewGameNameInputScene, core
 EXTERN_C
 
 // Core construction, running and edit operations use the regional layout above.
-// Screen setup, current-name raster and keyboard raster still remain assembly.
+// Screen setup and keyboard raster still remain assembly.
 NewGameNameInputCore * InitializeNameInputCore(NewGameNameInputCore * core,
     char const * prompt, char const * initial_name)
     SECTION(".text.new_game_name_input_core_constructor");
@@ -139,7 +139,9 @@ void InitializeNameInputCursorSprites(NewGameNameInputCore * core, u32 tile_inde
 // Reset only the native control fields; sprite OAM and input text are untouched.
 void ResetNameInputCore(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_reset");
-void RenderNameInputName(NewGameNameInputCore * core);
+// Clear the name field, render its fixed-width RAM name and queue the tiles.
+void RenderNameInputName(NewGameNameInputCore * core)
+    SECTION(".text.new_game_name_input_name_raster");
 void RenderNameInputKeyboard(NewGameNameInputCore * core);
 void SubmitNameInputCursorSprites(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_submit_sprites");

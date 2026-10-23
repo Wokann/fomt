@@ -102,7 +102,8 @@ SECTIONS
         asm/new_game_name_input.o(.text.new_game_name_input_after_core_run);
         src/new_game_name_input.o(.text.new_game_name_input_sprites);
         src/new_game_name_input.o(.text.new_game_name_input_reset);
-        asm/new_game_name_input.o(.text.new_game_name_input_after_reset);
+        src/new_game_name_input.o(.text.new_game_name_input_name_raster);
+        asm/new_game_name_input.o(.text.new_game_name_input_keyboard_raster);
         src/new_game_name_input.o(.text.new_game_name_input_submit_sprites);
         src/new_game_name_input.o(.text.new_game_name_input_cursor_sprites);
         src/new_game_name_input.o(.text.new_game_name_input_keyboard_cursor);

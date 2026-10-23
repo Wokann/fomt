@@ -2,6 +2,7 @@
 #define NEW_GAME_HH
 
 #include "prelude.h"
+#include "font_draw.hh"
 #include "game_state.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_state_clear.hh"
@@ -186,6 +187,21 @@ struct NewGameNameEntryScene : AScene {
 template <u32 Width>
 struct NewGameTextTileBuffer {
     NewGameTextTileBuffer() {}
+
+    void ClearRect(u32 x, u32 y, u32 width, u32 height, u32 color)
+    {
+        UnkUiSelectionDimensions size(Width, 2);
+        Clear2DGfxBufferRect(reinterpret_cast<u32 const &>(size), tiles,
+            x, y, width, height, color);
+    }
+
+    void DrawString(i32 x, i32 y, char const * text)
+    {
+        UnkUiSelectionDimensions size(Width, 2);
+        DrawStringTo2DGfxBuffer(reinterpret_cast<u32 const &>(size), tiles,
+            x, y, reinterpret_cast<u8 const *>(text));
+    }
+
 
     u32 unk_00;
     u32 tiles[Width * 2 * 8];
