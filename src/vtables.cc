@@ -179,8 +179,6 @@ extern void func_08092CAC(void);
 extern void func_08093D4C(void);
 extern void func_08093D80(void);
 extern void func_080E14B8(void);
-extern void func_0805FA48(void);
-extern void func_0805FA88(void);
 extern void func_08063E58(void);
 extern void func_08093E4C(void);
 extern void func_08093E80(void);
@@ -430,8 +428,6 @@ extern void func_08081B00(void);
 extern void func_080E1E28(void);
 extern void func_0805E658(void);
 extern void func_0805E698(void);
-extern void func_0805FD04(void);
-extern void func_0805FD44(void);
 extern void func_08063E58(void);
 extern void func_08093308(void);
 extern void func_08093A88(void);
@@ -4491,29 +4487,16 @@ extern RawVTableFunction const vtable_unk_080E79B8[]
     };
 #endif
 
+// JP's following native table is a different object from the outer story scene.
 #if defined(REGION_JP)
-// This is JP's separate outer scene table, not the text-variable table.
-extern RawVTableFunction const vtable_unk_080E79E8[]
-    SECTION(".rodata.vtable_79e8") = {
-        nullptr,
-        nullptr,
-        func_0805FA48,
-        func_0805FA88,
-    };
-#endif
-
 extern RawVTableFunction const vtable_unk_080E79F8[]
     SECTION(".rodata.vtable_79f8") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
         func_080E11F4,
         func_080E11E8,
-#else
-        func_0805FD04,
-        func_0805FD44,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7A08[]
     SECTION(".rodata.vtable_7a08") = {

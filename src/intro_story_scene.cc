@@ -51,3 +51,24 @@ void DestroyIntroStorySceneCore(IntroStorySceneCore * core, u32 flags)
     delete core->ui_state;
     func_080086BC(core, flags);
 }
+
+inline IntroStoryCoreOwner::IntroStoryCoreOwner(GameStateSaveImage * saved)
+    : value(InitializeIntroStorySceneCore(static_cast<IntroStorySceneCore *>(
+        ::operator new(sizeof(IntroStorySceneCore))), saved)) {}
+
+inline IntroStoryCoreOwner::~IntroStoryCoreOwner()
+{
+    if (value != nullptr)
+        reinterpret_cast<IntroStorySceneCoreVTable const *>(value->vtable)->destroy(value, 3);
+}
+
+IntroStoryScene::IntroStoryScene(SceneTransitionOwner & next, GameStateSaveImage * saved)
+    : core(saved), continuation(next) {}
+
+IntroStoryScene::~IntroStoryScene() {}
+
+SceneTransitionOwner IntroStoryScene::Run()
+{
+    RunIntroStorySceneCore(core.value);
+    return continuation;
+}

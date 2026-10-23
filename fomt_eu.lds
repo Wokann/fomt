@@ -506,7 +506,9 @@ SECTIONS
         asm/code_0803EE94.o(.text.indexed_resource_handle_constructor_after);
         src/resource_handle.o(.text.indexed_resource_sprite_transform);
         src/intro_story_scene.o(.text.InitializeIntroStorySceneCore);
-        asm/code_0803EE94.o(.text.indexed_resource_sprite_transform_after);
+        asm/intro_story_scene.o(.text);
+        src/intro_story_scene.o(.text.__15IntroStorySceneR20SceneTransitionOwnerP18GameStateSaveImage .text._._15IntroStoryScene .text.Run__15IntroStoryScene);
+        asm/code_0803EE94.o(.text.intro_story_scene_after);
         src/new_game.o(.text.new_game_birthday_core);
         asm/code_0803EE94.o(.text.new_game_birthday_core_after);
         src/new_game.o(.text.new_game_birthday_ui);
@@ -1128,8 +1130,9 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79a8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79b8);
         . = ALIGN(4); src/resource_handle.o(.gnu.linkonce.d.__vt_22IndexedResourceArchive);
-        . = ALIGN(4); src/intro_story_scene.o(.rodata .gnu.linkonce.d.__vt_23IntroStoryTextVariables);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_79f8);
+        . = ALIGN(4); src/intro_story_scene.o(.rodata);
+        src/intro_story_scene.o(.gnu.linkonce.d.__vt_23IntroStoryTextVariables);
+        src/intro_story_scene.o(.gnu.linkonce.d.__vt_15IntroStoryScene);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7a08);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7a18);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7a28);

@@ -6622,7 +6622,7 @@ func_080DB394:
     bl __builtin_new
     add r1, sp, #4
     ldr r2, [r4, #8]
-    bl func_0805FCD0
+    bl __15IntroStorySceneR20SceneTransitionOwnerP18GameStateSaveImage
     str r0, [sp]
     mov r1, sp
     str r1, [sp, #8]
@@ -18990,7 +18990,7 @@ func_080DB394: @ 0x080DB394
 	bl __builtin_new
 	add r1, sp, #4
 	ldr r2, [r4, #8]
-	bl func_0805FCD0
+	bl __15IntroStorySceneR20SceneTransitionOwnerP18GameStateSaveImage
 	str r0, [sp]
 	mov r1, sp
 	str r1, [sp, #8]

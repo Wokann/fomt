@@ -4,6 +4,7 @@
 #include "hardware_bootstrap.hh"
 #include "hardware_music_player.hh"
 #include "ui_state.hh"
+#include "scene.hh"
 
 struct GameStateSaveImage;
 
@@ -27,8 +28,8 @@ struct IntroStorySceneCore : HardwareBootstrap
     u32 unk_0C;
     UiStateOwner * ui_state;
     HardwareMusicPlayerSlot music_players[3];
-    // Initialization leaves this not-yet-decoded storage untouched.
-    u8 unk_20[0x6400];
+    // Twenty separately unpacked 4bpp object-tile buffers; initialization leaves them untouched.
+    u8 object_tiles[20][0x500];
     u16 unk_6420;
     u16 unk_6422;
     u16 unk_6424;
@@ -50,7 +51,7 @@ typedef char IntroStoryUiOffsetCheck[offsetof(IntroStorySceneCore, ui_state) == 
 typedef char IntroStoryVariablesOffsetCheck[offsetof(IntroStorySceneCore, variables) == 0x6428 ? 1 : -1];
 typedef char IntroStorySavedOffsetCheck[offsetof(IntroStorySceneCore, saved) == 8 ? 1 : -1];
 typedef char IntroStoryMusicOffsetCheck[offsetof(IntroStorySceneCore, music_players) == 0x14 ? 1 : -1];
-typedef char IntroStoryUnknown20OffsetCheck[offsetof(IntroStorySceneCore, unk_20) == 0x20 ? 1 : -1];
+typedef char IntroStoryObjectTilesOffsetCheck[offsetof(IntroStorySceneCore, object_tiles) == 0x20 ? 1 : -1];
 typedef char IntroStoryControlOffsetCheck[offsetof(IntroStorySceneCore, unk_6420) == 0x6420 ? 1 : -1];
 typedef char IntroStoryVTableSizeCheck[sizeof(IntroStorySceneCoreVTable) == 12 ? 1 : -1];
 typedef char IntroStoryDestroySlotCheck[offsetof(IntroStorySceneCoreVTable, destroy) == 8 ? 1 : -1];
@@ -58,6 +59,36 @@ typedef char IntroStoryDestroySlotCheck[offsetof(IntroStorySceneCoreVTable, dest
 EXTERN_C
 IntroStorySceneCore * InitializeIntroStorySceneCore(IntroStorySceneCore *, GameStateSaveImage *);
 void DestroyIntroStorySceneCore(IntroStorySceneCore *, u32 flags);
+SceneTransitionOwner RunIntroStorySceneCore(IntroStorySceneCore *);
+void UpdateIntroStoryUi(IntroStorySceneCore *);
+void InitializeIntroStoryGraphics(IntroStorySceneCore *);
 EXTERN_C_END
+
+// Own the native core through its verified +4 callback table. The complete
+// C++ hierarchy of that core is still being recovered.
+struct IntroStoryCoreOwner
+{
+    IntroStorySceneCore * value;
+    explicit IntroStoryCoreOwner(GameStateSaveImage * saved);
+    ~IntroStoryCoreOwner();
+private:
+    IntroStoryCoreOwner(IntroStoryCoreOwner const &);
+    IntroStoryCoreOwner & operator=(IntroStoryCoreOwner const &);
+};
+
+struct IntroStoryScene : AScene
+{
+    IntroStoryCoreOwner core;
+    SceneTransitionOwner continuation;
+
+    IntroStoryScene(SceneTransitionOwner & next, GameStateSaveImage * saved);
+    virtual ~IntroStoryScene();
+    virtual SceneTransitionOwner Run();
+};
+
+typedef char IntroStoryCoreOwnerSizeCheck[sizeof(IntroStoryCoreOwner) == 4 ? 1 : -1];
+typedef char IntroStorySceneSizeCheck[sizeof(IntroStoryScene) == 12 ? 1 : -1];
+typedef char IntroStorySceneCoreOffsetCheck[offsetof(IntroStoryScene, core) == 4 ? 1 : -1];
+typedef char IntroStoryContinuationOffsetCheck[offsetof(IntroStoryScene, continuation) == 8 ? 1 : -1];
 
 #endif // INTRO_STORY_SCENE_HH
