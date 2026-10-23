@@ -2782,7 +2782,7 @@ func_0803C028:
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r2, r0, #0
     add	r1, sp, #20
     ldr	r0, [sp, #20]
@@ -2833,7 +2833,7 @@ func_0803C028:
     ldr	r4, [r0, #80]	@ 0x50
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r6, r4, #0
     mov	r9, r0
     adds	r5, r6, #0
@@ -2968,7 +2968,7 @@ func_0803C028:
     mov	r0, sl
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r6, r4, #0
     mov	r8, r0
     adds	r5, r6, #0
@@ -3123,7 +3123,7 @@ func_0803C028:
     mov	r0, r8
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     ldr	r3, [sp, #104]	@ 0x68
     ldr	r4, [sp, #76]	@ 0x4c
     orrs	r3, r4
@@ -9326,7 +9326,7 @@ func_0803C028:
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r2, r0, #0
     add	r1, sp, #20
     ldr	r0, [sp, #20]
@@ -9377,7 +9377,7 @@ func_0803C028:
     ldr	r4, [r0, #80]	@ 0x50
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r6, r4, #0
     mov	r9, r0
     adds	r5, r6, #0
@@ -9512,7 +9512,7 @@ func_0803C028:
     mov	r0, sl
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r6, r4, #0
     mov	r8, r0
     adds	r5, r6, #0
@@ -9667,7 +9667,7 @@ func_0803C028:
     mov	r0, r8
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     ldr	r3, [sp, #104]	@ 0x68
     ldr	r4, [sp, #76]	@ 0x4c
     orrs	r3, r4
@@ -15905,7 +15905,7 @@ func_0803C028:
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r2, r0, #0
     add	r1, sp, #20
     ldr	r0, [sp, #20]
@@ -15956,7 +15956,7 @@ func_0803C028:
     ldr	r4, [r0, #80]	@ 0x50
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r6, r4, #0
     mov	r9, r0
     adds	r5, r6, #0
@@ -16091,7 +16091,7 @@ func_0803C028:
     mov	r0, sl
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r6, r4, #0
     mov	r8, r0
     adds	r5, r6, #0
@@ -16246,7 +16246,7 @@ func_0803C028:
     mov	r0, r8
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     ldr	r3, [sp, #104]	@ 0x68
     ldr	r4, [sp, #76]	@ 0x4c
     orrs	r3, r4
@@ -22458,7 +22458,7 @@ func_0803C028:
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r2, r0, #0
     add	r1, sp, #20
     ldr	r0, [sp, #20]
@@ -22509,7 +22509,7 @@ func_0803C028:
     ldr	r4, [r0, #80]	@ 0x50
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r6, r4, #0
     mov	r9, r0
     adds	r5, r6, #0
@@ -22644,7 +22644,7 @@ func_0803C028:
     mov	r0, sl
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r6, r4, #0
     mov	r8, r0
     adds	r5, r6, #0
@@ -22799,7 +22799,7 @@ func_0803C028:
     mov	r0, r8
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     ldr	r3, [sp, #104]	@ 0x68
     ldr	r4, [sp, #76]	@ 0x4c
     orrs	r3, r4

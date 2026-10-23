@@ -57,7 +57,7 @@ struct IntroSceneHardwarePoolHandle : HardwarePoolOwner
 
     ~IntroSceneHardwarePoolHandle()
     {
-        func_080073E0(this, handle);
+        ReleaseHardwarePoolHandle(this, handle);
     }
 };
 

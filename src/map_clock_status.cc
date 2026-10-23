@@ -89,7 +89,7 @@ static inline void SubmitHudSprite(HardwareSpriteBufferState * buffer,
 
 static inline u32 HudPaletteBank(HardwareResourceEntry & entry)
 {
-    return func_080074C0(&entry, entry.handle);
+    return GetHardwarePoolHandleIndex(&entry, entry.handle);
 }
 
 static inline void DrawHudTileBuffer(MapClockStatusHudTileBuffer & tiles,

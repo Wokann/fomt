@@ -27,7 +27,7 @@ done:
     return result;
 }
 
-void func_080073E0(void * self, u32 handle)
+void ReleaseHardwarePoolHandle(void * self, u32 handle)
 {
     Unk_hardware_03000404 * h = gUnk_03000404;
     HardwareHandle packed;
@@ -54,7 +54,7 @@ void func_080073E0(void * self, u32 handle)
     }
 }
 
-u32 func_0800745C(void * self, u32 handle)
+u32 RetainHardwarePoolHandle(void * self, u32 handle)
 {
     Unk_hardware_03000404 * h = gUnk_03000404;
     HardwareHandle packed;
@@ -80,7 +80,7 @@ u32 func_0800745C(void * self, u32 handle)
     return 0;
 }
 
-u32 func_080074C0(void * self, u32 handle)
+u32 GetHardwarePoolHandleIndex(void * self, u32 handle)
 {
     Unk_hardware_03000404 * h = gUnk_03000404;
     HardwareHandle packed;
@@ -104,7 +104,7 @@ done:
     return result;
 }
 
-u32 func_08007510(void * self, u32 handle)
+u32 GetHardwarePoolHandleReferenceCount(void * self, u32 handle)
 {
     Unk_hardware_03000404 * h = gUnk_03000404;
     HardwareHandle packed;
@@ -125,12 +125,12 @@ u32 func_08007510(void * self, u32 handle)
     return 0;
 }
 
-u16 func_08007564(void)
+u16 GetHardwarePoolAllocatedCount(void)
 {
     return gUnk_03000404->unk_48;
 }
 
-u32 func_08007574(void)
+u32 GetHardwarePoolCapacity(void)
 {
     return 0x10;
 }

@@ -31,13 +31,19 @@ EXTERN_C
 
 // These entries use the shared allocator, not the receiver passed in r0.
 u32 AllocateHardwarePoolHandle(void * self);
-void func_080073E0(void * self, u32 handle);
-u32 func_0800745C(void * self, u32 handle);
-u32 func_080074C0(void * self, u32 handle);
-u32 func_08007510(void * self, u32 handle);
+// Null, inactive and stale-generation handles leave the pool unchanged.
+// Dropping the last reference returns the slot to the free list.
+void ReleaseHardwarePoolHandle(void * self, u32 handle);
+// Return the original handle on success, or zero on validation failure
+// or 16-bit reference-count overflow; overflow restores the old count.
+u32 RetainHardwarePoolHandle(void * self, u32 handle);
+// Invalid handles return UINT32_MAX here, but zero from the count query.
+u32 GetHardwarePoolHandleIndex(void * self, u32 handle);
+u32 GetHardwarePoolHandleReferenceCount(void * self, u32 handle);
 
-u16 func_08007564(void);
-u32 func_08007574(void);
+// Number of occupied pool slots, independent of each slot's references.
+u16 GetHardwarePoolAllocatedCount(void);
+u32 GetHardwarePoolCapacity(void);
 
 EXTERN_C_END
 

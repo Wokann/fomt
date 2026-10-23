@@ -15,12 +15,12 @@ struct HardwareResourceEntry {
 
     HardwareResourceEntry(HardwareResourceEntry const & value)
     {
-        handle = func_0800745C(this, value.handle);
+        handle = RetainHardwarePoolHandle(this, value.handle);
     }
 
     ~HardwareResourceEntry()
     {
-        func_080073E0(this, handle);
+        ReleaseHardwarePoolHandle(this, handle);
     }
 };
 

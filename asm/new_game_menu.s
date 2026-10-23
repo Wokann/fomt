@@ -729,7 +729,7 @@ RunNewGameMenuCore:
     adds	r0, r6, #0
     adds	r0, #84
     ldr	r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds	r1, r0, #0
     lsls	r1, r1, #5
     ldr r2, .Ljp_080046DC
@@ -2086,7 +2086,7 @@ RunNewGameMenuCore: @ 0x08004570
     adds r0, r6, #0
     adds r0, #0x54
     ldr r1, [r0, #4]
-    bl func_080074C0
+    bl GetHardwarePoolHandleIndex
     adds r1, r0, #0
     lsls r1, r1, #5
     ldr r2, .L080046C4 @ =0x05000200

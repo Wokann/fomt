@@ -630,7 +630,7 @@ static inline u32 GetIntroSceneTileIndex(IntroSceneHardwareStateHandle & state)
 
 static inline u32 GetIntroScenePaletteIndex(IntroSceneHardwarePoolHandle & state)
 {
-    return func_080074C0(&state, state.handle);
+    return GetHardwarePoolHandleIndex(&state, state.handle);
 }
 
 static inline IndexedResourceGroupResult LoadIntroSceneResourceGroup(IndexedResourceHandle const & handle)

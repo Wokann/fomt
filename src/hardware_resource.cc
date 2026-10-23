@@ -48,7 +48,7 @@ HardwareResourceEntry HardwareResource::Get() const
                 cursor++;
                 if (cursor == end)
                     cursor = current->start;
-                if (func_08007510(entry, entry->handle) == 1) {
+                if (GetHardwarePoolHandleReferenceCount(entry, entry->handle) == 1) {
                     current->cursor = cursor;
                     cursor = entry;
                     break;

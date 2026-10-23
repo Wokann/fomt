@@ -80,7 +80,7 @@ __18GameSceneWorldDataG22GameSceneWorldMapOwner:
 	adds r1, r0, #0
 	str r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_080074C0
+	bl GetHardwarePoolHandleIndex
 	strb r0, [r4, #8]
 	movs r0, #0xff
 	strb r0, [r4, #9]
@@ -395,7 +395,7 @@ _._18GameSceneWorldData:
 	subs r4, #0xc
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_080073E0
+	bl ReleaseHardwarePoolHandle
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._17HardwarePoolOwner

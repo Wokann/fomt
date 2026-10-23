@@ -56,7 +56,7 @@ func_08007578:
     mov r2, r9
     ldr r1, [r2, #4]
     adds r0, r4, #0
-    bl func_0800745C
+    bl RetainHardwarePoolHandle
     str r0, [r4, #4]
 .L080075F6:
     ldr r0, [r7, #4]
@@ -116,7 +116,7 @@ func_08007578:
     bl func_08007128
     ldr r1, [r5, #4]
     adds r0, r4, #0
-    bl func_0800745C
+    bl RetainHardwarePoolHandle
     str r0, [r4, #4]
 .L08007664:
     adds r5, #8
@@ -135,7 +135,7 @@ func_08007578:
     mov r0, r9
     ldr r1, [r0, #4]
     adds r0, r5, #0
-    bl func_0800745C
+    bl RetainHardwarePoolHandle
     str r0, [r5, #4]
 .L0800768A:
     adds r5, #8
@@ -154,7 +154,7 @@ func_08007578:
     mov r2, r9
     ldr r1, [r2, #4]
     adds r0, r4, #0
-    bl func_0800745C
+    bl RetainHardwarePoolHandle
     str r0, [r4, #4]
 .L080076AC:
     subs r6, #1
@@ -172,7 +172,7 @@ func_08007578:
 .L080076BE:
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_080073E0
+    bl ReleaseHardwarePoolHandle
     adds r0, r4, #0
     movs r1, #2
     bl _._17HardwarePoolOwner
@@ -194,7 +194,7 @@ func_08007578:
 .L080076EA:
     ldr r1, [sp, #8]
     mov r0, r9
-    bl func_080073E0
+    bl ReleaseHardwarePoolHandle
     mov r0, r9
     movs r1, #2
     bl _._17HardwarePoolOwner

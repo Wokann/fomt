@@ -55,7 +55,7 @@ static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
 
 static inline u32 SpritePaletteBank(HardwareResourceEntry & entry)
 {
-    return func_080074C0(&entry, entry.handle);
+    return GetHardwarePoolHandleIndex(&entry, entry.handle);
 }
 
 NewGameNameEntryScene::NewGameNameEntryScene() {}
