@@ -809,8 +809,8 @@ func_08008190:
     .thumb
     .align 2, 0
 
-    thumb_func_start func_080093AC
-func_080093AC: @ 0x080093AC
+    thumb_func_start Update__23HardwareBlendController
+Update__23HardwareBlendController:
     push {r4, r5, r6, r7, lr}
     ldr r5, [r0]
     movs r0, #4

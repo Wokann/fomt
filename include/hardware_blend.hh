@@ -35,7 +35,7 @@ struct HardwareBlendController {
     void Begin(i16 step, u32 mode, u32 mosaic);
     void End(i16 step, u32 mode, u32 mosaic);
     // The body remains native assembly; every exit returns false or true.
-    bool Update() asm("func_080093AC");
+    bool Update();
 #endif
 };
 
@@ -53,7 +53,6 @@ struct HardwareDisplayState * func_08009344(struct HardwareBlendController * con
 void func_0800934C(struct HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic);
 void func_08009378(struct HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic);
 i16 func_080093A0(struct HardwareBlendController * controller, i16 step);
-bool func_080093AC(struct HardwareBlendController * controller);
 
 EXTERN_C_END
 
