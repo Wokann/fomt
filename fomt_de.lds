@@ -508,7 +508,7 @@ SECTIONS
         src/resource_handle.o(.text.indexed_resource_sprite_transform);
         src/intro_story_scene.o(.text.InitializeIntroStorySceneCore);
         asm/intro_story_scene.o(.text);
-        src/intro_story_scene.o(.text.__15IntroStorySceneR20SceneTransitionOwnerP18GameStateSaveImage .text._._15IntroStoryScene .text.Run__15IntroStoryScene);
+        src/intro_story_scene.o(.text.__15IntroStorySceneRP15SceneTransitionP18GameStateSaveImage .text._._15IntroStoryScene .text.Run__15IntroStoryScene);
         asm/code_0803EE94.o(.text.intro_story_scene_after);
         src/new_game.o(.text.new_game_birthday_core);
         asm/code_0803EE94.o(.text.new_game_birthday_core_after);
@@ -901,6 +901,8 @@ SECTIONS
         asm/code_linkonce.o(.text.game_scene_state_callbacks_after);
         src/game_scene.o(.text._._14GameSceneState);
         asm/code_linkonce.o(.text.scene_calendar_before);
+        src/intro_story_scene.o(.text.CreateIntroStoryScene .text.DestroyIntroStoryTransition);
+        asm/code_linkonce.o(.text.intro_story_transition_after);
         src/game_scene.o(.text.CreateScene__24SavedNameEntryTransition .gnu.linkonce.t._._24SavedNameEntryTransition);
         asm/code_linkonce.o(.text.after_saved_name_transition);
         src/game_scene.o(.text.CreateScene__18CalendarTransition .gnu.linkonce.t._._18CalendarTransition);

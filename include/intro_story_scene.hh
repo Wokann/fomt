@@ -81,7 +81,7 @@ struct IntroStoryScene : AScene
     IntroStoryCoreOwner core;
     SceneTransitionOwner continuation;
 
-    IntroStoryScene(SceneTransitionOwner & next, GameStateSaveImage * saved);
+    IntroStoryScene(SceneTransition *& next, GameStateSaveImage * saved);
     virtual ~IntroStoryScene();
     virtual SceneTransitionOwner Run();
 };
@@ -90,5 +90,35 @@ typedef char IntroStoryCoreOwnerSizeCheck[sizeof(IntroStoryCoreOwner) == 4 ? 1 :
 typedef char IntroStorySceneSizeCheck[sizeof(IntroStoryScene) == 12 ? 1 : -1];
 typedef char IntroStorySceneCoreOffsetCheck[offsetof(IntroStoryScene, core) == 4 ? 1 : -1];
 typedef char IntroStoryContinuationOffsetCheck[offsetof(IntroStoryScene, continuation) == 8 ? 1 : -1];
+
+
+// Native transition layout. Its shared callback-table run is not yet a
+// complete recovered C++ class hierarchy; do not construct this ABI view.
+struct IntroStoryTransition : SceneTransition
+{
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * saved;
+private:
+    IntroStoryTransition();
+};
+typedef char IntroStoryTransitionSizeCheck[sizeof(IntroStoryTransition) == 12 ? 1 : -1];
+typedef char IntroStoryTransitionContinuationOffsetCheck[offsetof(IntroStoryTransition,continuation) == 4 ? 1 : -1];
+typedef char IntroStoryTransitionSavedOffsetCheck[offsetof(IntroStoryTransition,saved) == 8 ? 1 : -1];
+
+struct IntroStoryTransitionVTable
+{
+    void const * metadata[2];
+    void (*destroy)(IntroStoryTransition *, int flags);
+    SceneOwner (*create_scene)(IntroStoryTransition *);
+};
+typedef char IntroStoryTransitionVTableSizeCheck[sizeof(IntroStoryTransitionVTable) == 16 ? 1 : -1];
+typedef char IntroStoryTransitionDestroySlotCheck[offsetof(IntroStoryTransitionVTable,destroy) == 8 ? 1 : -1];
+typedef char IntroStoryTransitionCreateSlotCheck[offsetof(IntroStoryTransitionVTable,create_scene) == 12 ? 1 : -1];
+
+EXTERN_C
+SceneOwner CreateIntroStoryScene(IntroStoryTransition * transition);
+void DestroyIntroStoryTransition(IntroStoryTransition * transition, int flags);
+extern IntroStoryTransitionVTable const gIntroStoryTransitionVTable;
+EXTERN_C_END
 
 #endif // INTRO_STORY_SCENE_HH

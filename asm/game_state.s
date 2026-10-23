@@ -3629,7 +3629,7 @@ func_08013BDC:
     str r2, [sp, #0xc]
     str r4, [sp, #0x10]
     ldr r3, [r5]
-    ldr r1, .Ljp_08013B40 @ =vtable_unk_080E5C44
+    ldr r1, .Ljp_08013B40 @ =gIntroStoryTransitionVTable
     str r1, [r0]
     str r2, [sp, #0x10]
     str r4, [r0, #4]
@@ -3667,7 +3667,7 @@ func_08013BDC:
     bx r0
     .align 2, 0
 .Ljp_08013B3C: .4byte vtable_unk_080E5E74
-.Ljp_08013B40: .4byte vtable_unk_080E5C44
+.Ljp_08013B40: .4byte gIntroStoryTransitionVTable
 
     .global func_08013C70
     .thumb_func
@@ -19632,7 +19632,7 @@ func_08013BDC: @ 0x08013BDC
     str r2, [sp, #0xc]
     str r4, [sp, #0x10]
     ldr r3, [r5]
-    ldr r1, .L08013C6C @ =vtable_unk_080E5C44
+    ldr r1, .L08013C6C @ =gIntroStoryTransitionVTable
     str r1, [r0]
     str r2, [sp, #0x10]
     str r4, [r0, #4]
@@ -19670,7 +19670,7 @@ func_08013BDC: @ 0x08013BDC
     bx r0
     .align 2, 0
 .L08013C68: .4byte vtable_unk_080E5E74
-.L08013C6C: .4byte vtable_unk_080E5C44
+.L08013C6C: .4byte gIntroStoryTransitionVTable
 
     thumb_func_start func_08013C70
 func_08013C70: @ 0x08013C70

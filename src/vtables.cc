@@ -1,5 +1,6 @@
 #include "prelude.h"
 #include "intro_scene.hh"
+#include "intro_story_scene.hh"
 #include "new_game.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_manager.hh"
@@ -687,8 +688,6 @@ extern void func_080DB2EC(void);
 extern void func_080DB314(void);
 extern void func_080DB320(void);
 extern void func_080DB36C(void);
-extern void func_080DB394(void);
-extern void func_080DB3DC(void);
 extern void func_080DB404(void);
 extern void func_080DB44C(void);
 extern void func_080DB4F0(void);
@@ -787,11 +786,10 @@ extern RawVTableFunction const vtable_unk_080E5C34[] = {
     func_080DB320,
 };
 
-extern RawVTableFunction const vtable_unk_080E5C44[] = {
-    nullptr,
-    nullptr,
-    func_080DB3DC,
-    func_080DB394,
+// This typed native table remains in its original shared physical run.
+// The complete transition hierarchy has not yet been recovered.
+extern IntroStoryTransitionVTable const gIntroStoryTransitionVTable = {
+    { nullptr, nullptr }, DestroyIntroStoryTransition, CreateIntroStoryScene,
 };
 
 extern RawVTableFunction const vtable_unk_080E5C54[] = {

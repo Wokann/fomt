@@ -6607,65 +6607,9 @@ func_080DB36C:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DB394
-    .thumb_func
-func_080DB394:
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    adds r6, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    movs r5, #0
-    str r5, [r4, #4]
-    str r0, [sp, #4]
-    movs r0, #0xc
-    bl __builtin_new
-    add r1, sp, #4
-    ldr r2, [r4, #8]
-    bl __15IntroStorySceneR20SceneTransitionOwnerP18GameStateSaveImage
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r5, [r1]
-    str r0, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DAB84
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DAB84:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
-    .global func_080DB3DC
-    .thumb_func
-func_080DB3DC:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_080DABA8
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DABA8:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._15SceneTransition
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+
+    .section .text.intro_story_transition_after, "ax", %progbits
+    .align 2, 0
     .global func_080DB404
     .thumb_func
 func_080DB404:
@@ -18976,65 +18920,8 @@ func_080DB36C: @ 0x080DB36C
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DB394
-func_080DB394: @ 0x080DB394
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	adds r6, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	movs r5, #0
-	str r5, [r4, #4]
-	str r0, [sp, #4]
-	movs r0, #0xc
-	bl __builtin_new
-	add r1, sp, #4
-	ldr r2, [r4, #8]
-	bl __15IntroStorySceneR20SceneTransitionOwnerP18GameStateSaveImage
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r5, [r1]
-	str r0, [r6]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080DB3D0
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DB3D0:
-	adds r0, r6, #0
-	add sp, #0x10
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-	thumb_func_start func_080DB3DC
-func_080DB3DC: @ 0x080DB3DC
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080DB3F4
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DB3F4:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._15SceneTransition
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080DB404:
+    .section .text.intro_story_transition_after, "ax", %progbits
+    .align 2, 0
 	.global func_080DB404
 	.thumb_func
 func_080DB404:

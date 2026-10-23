@@ -1,4 +1,5 @@
 #include "intro_story_scene.hh"
+
 #include "hardware_state_accessors.hh"
 #include "hardware_input.hh"
 #include "game_state.hh"
@@ -62,8 +63,15 @@ inline IntroStoryCoreOwner::~IntroStoryCoreOwner()
         reinterpret_cast<IntroStorySceneCoreVTable const *>(value->vtable)->destroy(value, 3);
 }
 
-IntroStoryScene::IntroStoryScene(SceneTransitionOwner & next, GameStateSaveImage * saved)
-    : core(saved), continuation(next) {}
+static inline SceneTransition * TakeIntroStoryContinuation(SceneTransition *& next)
+{
+    SceneTransition * result = next;
+    next = nullptr;
+    return result;
+}
+
+IntroStoryScene::IntroStoryScene(SceneTransition *& next, GameStateSaveImage * saved)
+    : core(saved), continuation(TakeIntroStoryContinuation(next)) {}
 
 IntroStoryScene::~IntroStoryScene() {}
 
@@ -71,4 +79,16 @@ SceneTransitionOwner IntroStoryScene::Run()
 {
     RunIntroStorySceneCore(core.value);
     return continuation;
+}
+
+SceneOwner CreateIntroStoryScene(IntroStoryTransition * transition)
+{
+    SceneTransition * next = transition->continuation.release();
+    return SceneOwner(new IntroStoryScene(next, transition->saved));
+}
+
+void DestroyIntroStoryTransition(IntroStoryTransition * transition, int flags)
+{
+    transition->continuation.~SceneTransitionOwner();
+    DestroySceneTransitionBase(transition, flags);
 }
