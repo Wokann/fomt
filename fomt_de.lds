@@ -865,10 +865,8 @@ SECTIONS
         src/hardware.o(.text.hardware_free_list);
         src/hardware_resource.o(.text.code_080D6DB8);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree);
-        asm/code_linkonce.o(.text.hardware_shared_state_tile_tree_after);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_after);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_unreserve);
-        asm/code_linkonce.o(.text.hardware_shared_state_tile_tree_unreserve_after);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_unreserve_after);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_operations);
         src/hardware_refcount.o(.text.hardware_shared_state_free_list);

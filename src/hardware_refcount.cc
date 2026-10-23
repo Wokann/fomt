@@ -307,6 +307,65 @@ void HardwareTileTree64::Unreserve(u32 offset, u32 length)
     empty = active;
 }
 
+// Split a partial request at the child boundary; each child owns its
+// relative offset. The unchanged end is shared by the range check
+// and the second-child length calculation.
+void HardwareTileTree128::Reserve(u32 offset, u32 length)
+{
+    if (offset > 127 || length == 0)
+        return;
+    if (offset == 0 && length > 127) {
+        FillHardwareTileTree128(this);
+        return;
+    }
+    if (offset <= 63) {
+        u32 first_capacity = 64 - offset;
+        u32 count = std::min(length, first_capacity);
+        children[0].Reserve(offset, count);
+    }
+    u32 const end = offset + length;
+    if (end > 64) {
+        u32 second_offset = offset > 63 ? offset - 64 : 0;
+        u32 second_length = end;
+        second_length -= 64;
+        second_length -= second_offset;
+        children[1].Reserve(second_offset, second_length);
+    }
+    u32 active = 0;
+    if (children[0].full != 0)
+        active = (0u - children[1].full) >> 31;
+    full = active;
+    empty = false;
+}
+
+void HardwareTileTree256::Reserve(u32 offset, u32 length)
+{
+    if (offset > 255 || length == 0)
+        return;
+    if (offset == 0 && length > 255) {
+        FillHardwareTileTree256(this);
+        return;
+    }
+    if (offset <= 127) {
+        u32 first_capacity = 128 - offset;
+        u32 count = std::min(length, first_capacity);
+        children[0].Reserve(offset, count);
+    }
+    u32 const end = offset + length;
+    if (end > 128) {
+        u32 second_offset = offset > 127 ? offset - 128 : 0;
+        u32 second_length = end;
+        second_length -= 128;
+        second_length -= second_offset;
+        children[1].Reserve(second_offset, second_length);
+    }
+    u32 active = 0;
+    if (children[0].full != 0)
+        active = (0u - children[1].full) >> 31;
+    full = active;
+    empty = false;
+}
+
 void HardwareTileTree512::Reserve(u32 offset, u32 length)
 {
     if (offset > 511 || length == 0)
@@ -332,6 +391,68 @@ void HardwareTileTree512::Reserve(u32 offset, u32 length)
         active = (0u - children[1].full) >> 31;
     full = active;
     empty = false;
+}
+
+void HardwareTileTree128::Unreserve(u32 offset, u32 length)
+{
+    if (offset > 127 || length == 0)
+        return;
+    if (offset == 0 && length > 127) {
+        ClearHardwareTileTree128(this);
+        return;
+    }
+    HardwareTileTree64 * first = &children[0];
+    if (offset <= 63) {
+        u32 first_capacity = 64 - offset;
+        u32 count = std::min(length, first_capacity);
+        first->Unreserve(offset, count);
+    }
+    u32 const end = offset + length;
+    if (end > 64) {
+        u32 second_offset = offset > 63 ? offset - 64 : 0;
+        u32 second_length = end;
+        second_length -= 64;
+        second_length -= second_offset;
+        children[1].Unreserve(second_offset, second_length);
+    }
+    full = false;
+    u32 active = 0;
+    if (first->empty != 0) {
+        HardwareTileTree64 * second = &children[1];
+        active = (0u - second->empty) >> 31;
+    }
+    empty = active;
+}
+
+void HardwareTileTree256::Unreserve(u32 offset, u32 length)
+{
+    if (offset > 255 || length == 0)
+        return;
+    if (offset == 0 && length > 255) {
+        ClearHardwareTileTree256(this);
+        return;
+    }
+    HardwareTileTree128 * first = &children[0];
+    if (offset <= 127) {
+        u32 first_capacity = 128 - offset;
+        u32 count = std::min(length, first_capacity);
+        first->Unreserve(offset, count);
+    }
+    u32 const end = offset + length;
+    if (end > 128) {
+        u32 second_offset = offset > 127 ? offset - 128 : 0;
+        u32 second_length = end;
+        second_length -= 128;
+        second_length -= second_offset;
+        children[1].Unreserve(second_offset, second_length);
+    }
+    full = false;
+    u32 active = 0;
+    if (first->empty != 0) {
+        HardwareTileTree128 * second = &children[1];
+        active = (0u - second->empty) >> 31;
+    }
+    empty = active;
 }
 
 void HardwareTileTree512::Unreserve(u32 offset, u32 length)
