@@ -1769,13 +1769,13 @@ func_080A25B0: @ 0x080A1FE8
 	adds r5, r4, #0
 	adds r5, #0xc
 	adds r0, r5, #0
-	bl func_08009300
+	bl __23HardwareBlendControllerP20HardwareDisplayState
 	str r4, [sp, #4]
 	ldr r1, .Ljp_080A266C @ =0x00000889
 	adds r0, r5, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -2114,7 +2114,7 @@ func_080A25B0: @ 0x080A1FE8
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -19515,7 +19515,7 @@ func_080AD9A4:
     str r0, [r5, #8]
     adds r0, r5, #0
     adds r0, #0xc
-    bl func_08009300
+    bl __23HardwareBlendControllerP20HardwareDisplayState
     ldr r1, .Ljp_080ADDB0 @ =0x0000043C
     adds r0, r6, r1
     str r5, [r0]
@@ -20062,7 +20062,7 @@ func_080ADF1C:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_0800934C
+    bl BeginHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -20155,7 +20155,7 @@ func_080ADF1C:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_08009378
+    bl EndHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -25331,7 +25331,7 @@ sub_080B0704: @ 0x080B0704
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -25365,7 +25365,7 @@ sub_080B0704: @ 0x080B0704
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -31588,7 +31588,7 @@ func_080B3CC8: @ 0x080B36FC
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
-	bl func_08009300
+	bl __23HardwareBlendControllerP20HardwareDisplayState
 	movs r1, #0xf4
 	lsls r1, r1, #3
 	adds r0, r6, r1
@@ -33965,7 +33965,7 @@ func_080B469C: @ 0x080B40D0
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -36906,7 +36906,7 @@ func_080B5824: @ 0x080B5258
 	ldr r1, .Ljp_080B63F0 @ =0x00000889
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	ldr r0, [sp, #0x138]
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -36959,7 +36959,7 @@ func_080B5824: @ 0x080B5258
 	adds r0, #0xc
 	ldr r1, .Ljp_080B6600 @ =0x00000889
 	movs r2, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	ldr r0, [sp, #0x138]
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -41204,7 +41204,7 @@ func_080B888C: @ 0x080B82C0
 	ldr r1, .Ljp_080B8574 @ =0x00000889
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -49597,7 +49597,7 @@ func_080BC938: @ 0x080BC36C
 	str r0, [r5, #8]
 	adds r0, r5, #0
 	adds r0, #0xc
-	bl func_08009300
+	bl __23HardwareBlendControllerP20HardwareDisplayState
 	ldr r1, .L080BC6E4 @ =0x0000043C
 	adds r0, r6, r1
 	str r5, [r0]
@@ -49918,7 +49918,7 @@ func_080BCCD4:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_0800934C
+    bl BeginHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -49989,7 +49989,7 @@ func_080BCCD4:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_08009378
+    bl EndHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -53415,7 +53415,7 @@ func_080BEA34:
     .byte 0x04, 0x98, 0x05, 0x28, 0x00, 0xD0, 0x35, 0xE1, 0x0C, 0x49, 0x7C, 0x18, 0x22, 0x68, 0x11, 0x68
     .byte 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x0E, 0xDB, 0x09, 0x49, 0x10, 0x1C, 0x0C, 0x30, 0x01, 0x22
     .byte 0x01, 0x23
-    bl func_08009378
+    bl EndHardwareBlend
     .byte 0x38, 0x1C
     bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x21, 0x68
@@ -53425,7 +53425,7 @@ func_080BEA34:
     .byte 0x38, 0x1C, 0xFF, 0xF7, 0x5C, 0xF9, 0x0C, 0x4A
     .byte 0xB8, 0x18, 0x00, 0x68, 0x00, 0x68, 0x42, 0x42, 0x02, 0x43, 0x00, 0x2A, 0xF1, 0xDB, 0x08, 0x4B
     .byte 0xFC, 0x18, 0x20, 0x68, 0x08, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
-    bl func_0800934C
+    bl BeginHardwareBlend
     .byte 0x38, 0x1C
     bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x21, 0x68, 0x12, 0x69, 0x14, 0xF0, 0xEF, 0xFC
@@ -56682,7 +56682,7 @@ func_080C0D90:
     str r0, [r5, #8]
     adds r0, r5, #0
     adds r0, #0xc
-    bl func_08009300
+    bl __23HardwareBlendControllerP20HardwareDisplayState
     ldr r1, [pc, #0x300]
     adds r0, r6, r1
     str r5, [r0]
@@ -57135,7 +57135,7 @@ func_080C12B8:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_0800934C
+    bl BeginHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -57205,7 +57205,7 @@ func_080C12B8:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_08009378
+    bl EndHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -62185,7 +62185,7 @@ func_080C3C18:
     .byte 0x42, 0x70, 0x04, 0x30, 0x01, 0x39, 0x00, 0x29, 0xF9, 0xDA, 0x1F, 0x48, 0x3C, 0x18, 0x22, 0x68
     .byte 0x11, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x0E, 0xDB, 0x1C, 0x49, 0x10, 0x1C, 0x0C, 0x30
     .byte 0x01, 0x22, 0x01, 0x23
-    bl func_08009378
+    bl EndHardwareBlend
     .byte 0x38, 0x1C
     bl GetHardwareCommandList
     .byte 0x82, 0x68
@@ -62195,7 +62195,7 @@ func_080C3C18:
     .byte 0x20, 0x68
     .byte 0x00, 0x68, 0x42, 0x42, 0x02, 0x43, 0x00, 0x2A, 0xF6, 0xDB, 0x0B, 0x4A, 0xBC, 0x18, 0x20, 0x68
     .byte 0x0A, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
-    bl func_0800934C
+    bl BeginHardwareBlend
     .byte 0x38, 0x1C
     bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x21, 0x68, 0x12, 0x69, 0x0F, 0xF0, 0xC0, 0xFB, 0x06, 0xE1, 0x00, 0x00
@@ -62396,7 +62396,7 @@ func_080C3C18:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_08009378
+    bl EndHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -62432,7 +62432,7 @@ func_080C3C18:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_0800934C
+    bl BeginHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -62669,7 +62669,7 @@ func_080C3C18:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_08009378
+    bl EndHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -62705,7 +62705,7 @@ func_080C3C18:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_0800934C
+    bl BeginHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -63021,7 +63021,7 @@ sub_080C4BBC:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_08009378
+    bl EndHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -63057,7 +63057,7 @@ sub_080C4BBC:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_0800934C
+    bl BeginHardwareBlend
     adds r0, r7, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -63316,7 +63316,7 @@ sub_080C4BBC:
     .byte 0xC5, 0x08, 0x00, 0x00, 0x0A, 0x99, 0x0C, 0x9A, 0x91, 0x42, 0x18, 0xD1, 0x02, 0x20, 0x38, 0x60
     .byte 0x0D, 0x4B, 0xF4, 0x18, 0x22, 0x68, 0x11, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x0E, 0xDB
     .byte 0x10, 0x1C, 0x0C, 0x30, 0x09, 0x49, 0x01, 0x22, 0x01, 0x23
-    bl func_08009378
+    bl EndHardwareBlend
     .byte 0x30, 0x1C
     bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x21, 0x68, 0x12, 0x69, 0x0E, 0xF0, 0x5D, 0xF8, 0x0A, 0x98
@@ -63372,7 +63372,7 @@ func_080C5648:
     adds r0, #0xc
     movs r2, #1
     movs r3, #1
-    bl func_0800934C
+    bl BeginHardwareBlend
     adds r0, r5, #0
     bl GetHardwareCommandList
     ldr r2, [r0, #8]
@@ -63558,7 +63558,7 @@ func_080C5648:
     .byte 0x00, 0x68, 0x05, 0x28, 0x00, 0xD1, 0x4E, 0xE6, 0x54, 0x4C, 0x38, 0x19, 0x00, 0x68, 0x02, 0x28
     .byte 0x00, 0xD0, 0x13, 0xE1, 0x54, 0x4D, 0x7C, 0x19, 0x22, 0x68, 0x11, 0x68, 0x48, 0x42, 0x08, 0x43
     .byte 0x00, 0x28, 0x0E, 0xDB, 0x51, 0x49, 0x10, 0x1C, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
-    bl func_08009378
+    bl EndHardwareBlend
     .byte 0x38, 0x1C
     bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x21, 0x68, 0x12, 0x69, 0x0D, 0xF0
@@ -63569,7 +63569,7 @@ func_080C5648:
     .byte 0x38, 0x1C, 0xFC, 0xF7, 0x57, 0xFF
     .byte 0x3D, 0x4C, 0x38, 0x19, 0x00, 0x68, 0x00, 0x68, 0x41, 0x42, 0x01, 0x43, 0x00, 0x29, 0xF1, 0xDB
     .byte 0x39, 0x4D, 0x7C, 0x19, 0x20, 0x68, 0x38, 0x49, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
-    bl func_0800934C
+    bl BeginHardwareBlend
     .byte 0x38, 0x1C
     bl GetHardwareCommandList
     .byte 0x82, 0x68, 0x21, 0x68, 0x12, 0x69, 0x0D, 0xF0
@@ -78432,13 +78432,13 @@ func_080A25B0: @ 0x080A25B0
 	adds r5, r4, #0
 	adds r5, #0xc
 	adds r0, r5, #0
-	bl func_08009300
+	bl __23HardwareBlendControllerP20HardwareDisplayState
 	str r4, [sp, #4]
 	ldr r1, .L080A266C @ =0x00000889
 	adds r0, r5, #0
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -78777,7 +78777,7 @@ func_080A25B0: @ 0x080A25B0
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -96105,7 +96105,7 @@ func_080ADF6C: @ 0x080ADF6C
 	str r0, [r5, #8]
 	adds r0, r5, #0
 	adds r0, #0xc
-	bl func_08009300
+	bl __23HardwareBlendControllerP20HardwareDisplayState
 	ldr r1, .L080AE378 @ =0x0000043C
 	adds r0, r6, r1
 	str r5, [r0]
@@ -96650,7 +96650,7 @@ func_080AE4E4: @ 0x080AE4E4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -96743,7 +96743,7 @@ func_080AE4E4: @ 0x080AE4E4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -101911,7 +101911,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -101945,7 +101945,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -108165,7 +108165,7 @@ func_080B3CC8: @ 0x080B3CC8
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
-	bl func_08009300
+	bl __23HardwareBlendControllerP20HardwareDisplayState
 	movs r1, #0xf4
 	lsls r1, r1, #3
 	adds r0, r6, r1
@@ -110537,7 +110537,7 @@ func_080B469C: @ 0x080B469C
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -113475,7 +113475,7 @@ func_080B5824: @ 0x080B5824
 	ldr r1, .L080B69BC @ =0x00000889
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	ldr r0, [sp, #0x138]
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -113528,7 +113528,7 @@ func_080B5824: @ 0x080B5824
 	adds r0, #0xc
 	ldr r1, .L080B6BCC @ =0x00000889
 	movs r2, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	ldr r0, [sp, #0x138]
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -117767,7 +117767,7 @@ func_080B888C: @ 0x080B888C
 	ldr r1, .L080B8B40 @ =0x00000889
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -126127,7 +126127,7 @@ func_080BC938: @ 0x080BC938
 	str r0, [r5, #8]
 	adds r0, r5, #0
 	adds r0, #0xc
-	bl func_08009300
+	bl __23HardwareBlendControllerP20HardwareDisplayState
 	ldr r1, .L080BCCB0 @ =0x0000043C
 	adds r0, r6, r1
 	str r5, [r0]
@@ -126448,7 +126448,7 @@ func_080BCCE0: @ 0x080BCCE0
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -126543,7 +126543,7 @@ func_080BCCE0: @ 0x080BCCE0
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -130483,7 +130483,7 @@ func_080BEAD4: @ 0x080BEAD4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -130517,7 +130517,7 @@ func_080BEAD4: @ 0x080BEAD4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -134933,7 +134933,7 @@ func_080C0DCC: @ 0x080C0DCC
 	str r0, [r5, #8]
 	adds r0, r5, #0
 	adds r0, #0xc
-	bl func_08009300
+	bl __23HardwareBlendControllerP20HardwareDisplayState
 	ldr r1, .L080C1200 @ =0x00000544
 	adds r0, r6, r1
 	str r5, [r0]
@@ -135412,7 +135412,7 @@ func_080C12C4: @ 0x080C12C4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -135515,7 +135515,7 @@ func_080C12C4: @ 0x080C12C4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -141045,7 +141045,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -141078,7 +141078,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -141474,7 +141474,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -141510,7 +141510,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -142001,7 +142001,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -142037,7 +142037,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -142659,7 +142659,7 @@ sub_080C4BBC: @ 0x080C4BBC
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -142695,7 +142695,7 @@ sub_080C4BBC: @ 0x080C4BBC
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -143950,7 +143950,7 @@ func_080C5378: @ 0x080C5378
 	ldr r1, .L080C55FC @ =0x00000889
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r6, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -144047,7 +144047,7 @@ func_080C5648: @ 0x080C5648
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r5, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -145069,7 +145069,7 @@ func_080C5A6C: @ 0x080C5A6C
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -145115,7 +145115,7 @@ func_080C5A6C: @ 0x080C5A6C
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r7, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]

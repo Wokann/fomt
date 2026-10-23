@@ -20,30 +20,22 @@ struct HardwareBlendObject
 #endif
     struct HardwareBlendController blend;
 #ifdef __cplusplus
-    HardwareBlendObject(HardwareDisplayState * display) asm("func_08009548");
-    virtual bool Run() asm("func_080094AC");
+    HardwareBlendObject(HardwareDisplayState * display);
+    virtual bool Run();
     // Member destruction and base unlinking use the compiler's native ABI.
-    virtual ~HardwareBlendObject() asm("func_080094B8");
+    virtual ~HardwareBlendObject();
+    // Step state, not linked-list membership; a queued command may finish.
+    u32 IsActive() const;
+    i16 GetStep() const;
+    i16 SetStep(i16 step);
+    void End(i16 step, u32 mode, u32 mosaic);
+    void Begin(i16 step, u32 mode, u32 mosaic);
+    HardwareDisplayState * SetDisplay(HardwareDisplayState * display);
 #endif
 };
 
 typedef char HardwareBlendObject_size_check[(sizeof(struct HardwareBlendObject) == 0x10) ? 1 : -1];
 typedef char HardwareBlendObject_payload_check[(offsetof(struct HardwareBlendObject, blend) == 0x0C) ? 1 : -1];
-
-EXTERN_C
-
-i16 func_080094A4(struct HardwareBlendController * controller);
-u32 func_080094AC(struct HardwareBlendObject * object);
-void func_080094B8(struct HardwareBlendObject * object, u32 flags);
-u32 func_080094E0(struct HardwareBlendObject * object);
-i16 func_080094F8(struct HardwareBlendObject * object);
-i16 func_08009508(struct HardwareBlendObject * object, i16 step);
-void func_0800951C(struct HardwareBlendObject * object, i16 step, u32 mode, u32 mosaic);
-void func_0800952C(struct HardwareBlendObject * object, i16 step, u32 mode, u32 mosaic);
-struct HardwareDisplayState * func_0800953C(struct HardwareBlendObject * object, struct HardwareDisplayState * display);
-struct HardwareBlendObject * func_08009548(struct HardwareBlendObject * object, struct HardwareDisplayState * display);
-
-EXTERN_C_END
 
 #ifdef __cplusplus
 inline HardwareBlendObject::HardwareBlendObject(HardwareDisplayState * display)

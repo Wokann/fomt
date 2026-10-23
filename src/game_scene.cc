@@ -464,7 +464,7 @@ void GameScene::FadeScreen(u32 style, i32 speed, bool fade_out, bool call_scene_
     }
     // Start the original direction-specific controller and wait state.
     if (fade_out != 0) {
-        func_08009378(current->screen_blend.value, step, mode, mosaic);
+        EndHardwareBlend(current->screen_blend.value, step, mode, mosaic);
         current->script_state = 0x12;
         current->unk_E8 = 0;
         current->unk_E9 = mode == 2;
@@ -472,7 +472,7 @@ void GameScene::FadeScreen(u32 style, i32 speed, bool fade_out, bool call_scene_
         // The third callable uses this same path but suppresses the hook.
         if (call_scene_hook != 0)
             current->game_object.value->RefreshMapTimeOfDayPalette();
-        func_0800934C(current->screen_blend.value, step, mode, mosaic);
+        BeginHardwareBlend(current->screen_blend.value, step, mode, mosaic);
         current->script_state = 0x13;
         current->unk_E8 = fade_out;
         current->unk_E9 = mode == 2;

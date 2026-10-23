@@ -215,7 +215,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
 
     HardwareBlendOwner owner(new HardwareBlendObject(
         GetHardwareDisplayState(reinterpret_cast<void * const *>(core))));
-    func_0800934C(&owner.object->blend, 0x889, 1, 0);
+    BeginHardwareBlend(&owner.object->blend, 0x889, 1, 0);
     QueueIntroSceneBlend(core, owner);
     core->startup_phase = 0;
     func_08008B6C(core->music_players, 0);
@@ -241,7 +241,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
                 core->startup_hold_frames = 0;
             if (core->startup_hold_frames <= 0)
             {
-                func_08009378(&owner.object->blend, 0x889, 1, 0);
+                EndHardwareBlend(&owner.object->blend, 0x889, 1, 0);
                 QueueIntroSceneBlend(core, owner);
                 core->startup_phase = 2;
             }
@@ -261,7 +261,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
     GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
     HardwareBlendOwner owner(new HardwareBlendObject(
         GetHardwareDisplayState(reinterpret_cast<void * const *>(core))));
-    func_0800934C(&owner.object->blend, 0x889, 1, 0);
+    BeginHardwareBlend(&owner.object->blend, 0x889, 1, 0);
     QueueIntroSceneBlend(core, owner);
     func_08008B6C(core->music_players, 0x23);
     core->sprite_matrix.pa = 0x400;
@@ -501,7 +501,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
         {
             HardwareBlendObject * object = owner.object;
             i16 step = 0x889;
-            func_08009378(&object->blend, step, 1, 0);
+            EndHardwareBlend(&object->blend, step, 1, 0);
             QueueIntroSceneBlend(core, owner);
             core->startup_phase = 16;
             break;

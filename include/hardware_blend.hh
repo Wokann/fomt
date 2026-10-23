@@ -30,10 +30,14 @@ struct HardwareBlendState {
 struct HardwareBlendController {
     struct HardwareBlendState * state;
 #ifdef __cplusplus
-    HardwareBlendController(HardwareDisplayState * display) asm("func_08009300");
-    ~HardwareBlendController() asm("func_08009324");
+    HardwareBlendController(HardwareDisplayState * display);
+    ~HardwareBlendController();
+    HardwareDisplayState * SetDisplay(HardwareDisplayState * display);
+    // Begin decreases from full progress; End increases from zero.
     void Begin(i16 step, u32 mode, u32 mosaic);
     void End(i16 step, u32 mode, u32 mosaic);
+    i16 SetStep(i16 step);
+    i16 GetStep() const;
     // The body remains native assembly; every exit returns false or true.
     bool Update();
 #endif
@@ -47,24 +51,21 @@ EXTERN_C
 void BlendRgb5PaletteBank(u16 * destination, u16 const * first, u16 const * second,
     struct Rgb5BlendWeights weights) __attribute__((long_call));
 
-struct HardwareBlendController * func_08009300(struct HardwareBlendController * controller, struct HardwareDisplayState * display);
-void func_08009324(struct HardwareBlendController * controller, u32 flags);
-struct HardwareDisplayState * func_08009344(struct HardwareBlendController * controller, struct HardwareDisplayState * display);
-void func_0800934C(struct HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic);
-void func_08009378(struct HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic);
-i16 func_080093A0(struct HardwareBlendController * controller, i16 step);
+// Direction-specific implementations also called by native consumers.
+void BeginHardwareBlend(struct HardwareBlendController *, i16 step, u32 mode, u32 mosaic);
+void EndHardwareBlend(struct HardwareBlendController *, i16 step, u32 mode, u32 mosaic);
 
 EXTERN_C_END
 
 #ifdef __cplusplus
 inline void HardwareBlendController::Begin(i16 step, u32 mode, u32 mosaic)
 {
-    func_0800934C(this, step, mode, mosaic);
+    BeginHardwareBlend(this, step, mode, mosaic);
 }
 
 inline void HardwareBlendController::End(i16 step, u32 mode, u32 mosaic)
 {
-    func_08009378(this, step, mode, mosaic);
+    EndHardwareBlend(this, step, mode, mosaic);
 }
 #endif
 

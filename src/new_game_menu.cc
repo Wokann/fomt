@@ -41,7 +41,7 @@ void RunNewGameMenuOpeningBlend(HardwareBootstrap * core)
     GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
     HardwareBlendObject blend(GetHardwareDisplayState(reinterpret_cast<void * const *>(core)));
     i16 step = 0x889;
-    func_0800934C(&blend.blend, step, 1, 1);
+    BeginHardwareBlend(&blend.blend, step, 1, 1);
     QueueMenuBlend(core, blend);
     while (MenuBlendIsQueued(blend))
         UpdateHardwareFrame(core);
@@ -52,7 +52,7 @@ void RunNewGameMenuClosingBlend(HardwareBootstrap * core)
     GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
     HardwareBlendObject blend(GetHardwareDisplayState(reinterpret_cast<void * const *>(core)));
     i16 step = 0x889;
-    func_08009378(&blend.blend, step, 1, 1);
+    EndHardwareBlend(&blend.blend, step, 1, 1);
     QueueMenuBlend(core, blend);
     while (MenuBlendIsQueued(blend))
         UpdateHardwareFrame(core);

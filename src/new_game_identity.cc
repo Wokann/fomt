@@ -46,7 +46,7 @@ SceneTransitionOwner RunNewGameIdentityCore(NewGameIdentityCore * core)
 
     HardwareBlendOwner owner(new HardwareBlendObject(
         GetHardwareDisplayState(reinterpret_cast<void * const *>(core))));
-    func_0800934C(&owner.object->blend, 0x889, 1, 1);
+    BeginHardwareBlend(&owner.object->blend, 0x889, 1, 1);
     QueueIdentityBlend(core, owner);
 
     i16 phase = 0;
@@ -68,7 +68,7 @@ SceneTransitionOwner RunNewGameIdentityCore(NewGameIdentityCore * core)
                 phase = 2;
             break;
         case 2:
-            func_08009378(&owner.object->blend, 0x889, 1, 1);
+            EndHardwareBlend(&owner.object->blend, 0x889, 1, 1);
             QueueIdentityBlend(core, owner);
             phase = 3;
             break;

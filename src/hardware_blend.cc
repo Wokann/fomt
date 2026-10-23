@@ -13,14 +13,14 @@ HardwareBlendController::~HardwareBlendController()
     delete state;
 }
 
-struct HardwareDisplayState * func_08009344(struct HardwareBlendController * controller, struct HardwareDisplayState * display)
+HardwareDisplayState * HardwareBlendController::SetDisplay(HardwareDisplayState * display)
 {
-    struct HardwareDisplayState * previous = controller->state->display;
-    controller->state->display = display;
+    struct HardwareDisplayState * previous = this->state->display;
+    this->state->display = display;
     return previous;
 }
 
-void func_0800934C(struct HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic)
+void BeginHardwareBlend(HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic)
 {
     struct HardwareBlendState * state = controller->state;
     i32 magnitude = step < 0 ? -step : step;
@@ -32,7 +32,7 @@ void func_0800934C(struct HardwareBlendController * controller, i16 step, u32 mo
     state->progress = 0xffff;
 }
 
-void func_08009378(struct HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic)
+void EndHardwareBlend(HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic)
 {
     struct HardwareBlendState * state = controller->state;
     i32 magnitude = step < 0 ? -step : step;
@@ -43,9 +43,9 @@ void func_08009378(struct HardwareBlendController * controller, i16 step, u32 mo
     state->progress = 0;
 }
 
-i16 func_080093A0(struct HardwareBlendController * controller, i16 step)
+i16 HardwareBlendController::SetStep(i16 step)
 {
-    i16 previous = controller->state->step;
-    controller->state->step = step;
+    i16 previous = this->state->step;
+    this->state->step = step;
     return previous;
 }

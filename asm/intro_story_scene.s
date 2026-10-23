@@ -42,7 +42,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	str r0, [r4, #8]
 	adds r0, r4, #0
 	adds r0, #0xc
-	bl func_08009300
+	bl __23HardwareBlendControllerP20HardwareDisplayState
 	str r4, [sp, #4]
 	adds r0, r5, #0
 	bl InitializeIntroStoryGraphics
@@ -55,7 +55,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #0
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r5, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -114,7 +114,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	adds r0, #0xc
 	movs r2, #2
 	movs r3, #0
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r5, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -152,7 +152,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #0
-	bl func_0800934C
+	bl BeginHardwareBlend
 	adds r0, r5, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -388,7 +388,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #0
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r5, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -405,7 +405,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	adds r0, #0xc
 	movs r2, #2
 	movs r3, #0
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r5, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]
@@ -426,7 +426,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	adds r0, #0xc
 	movs r2, #1
 	movs r3, #1
-	bl func_08009378
+	bl EndHardwareBlend
 	adds r0, r5, #0
 	bl GetHardwareCommandList
 	ldr r2, [r0, #8]

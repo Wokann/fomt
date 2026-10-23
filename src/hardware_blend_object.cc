@@ -2,9 +2,9 @@
 #pragma implementation "hardware_blend_object.hh"
 #include "hardware_blend_object.hh"
 
-i16 func_080094A4(struct HardwareBlendController * controller)
+i16 HardwareBlendController::GetStep() const
 {
-    return controller->state->step;
+    return this->state->step;
 }
 
 bool HardwareBlendObject::Run()
@@ -16,32 +16,32 @@ HardwareBlendObject::~HardwareBlendObject()
 {
 }
 
-u32 func_080094E0(struct HardwareBlendObject * object)
+u32 HardwareBlendObject::IsActive() const
 {
-    return func_080094A4(&object->blend) != 0;
+    return blend.GetStep() != 0;
 }
 
-i16 func_080094F8(struct HardwareBlendObject * object)
+i16 HardwareBlendObject::GetStep() const
 {
-    return func_080094A4(&object->blend);
+    return blend.GetStep();
 }
 
-i16 func_08009508(struct HardwareBlendObject * object, i16 step)
+i16 HardwareBlendObject::SetStep(i16 step)
 {
-    return func_080093A0(&object->blend, step);
+    return blend.SetStep(step);
 }
 
-void func_0800951C(struct HardwareBlendObject * object, i16 step, u32 mode, u32 mosaic)
+void HardwareBlendObject::End(i16 step, u32 mode, u32 mosaic)
 {
-    func_08009378(&object->blend, step, mode, mosaic);
+    EndHardwareBlend(&blend, step, mode, mosaic);
 }
 
-void func_0800952C(struct HardwareBlendObject * object, i16 step, u32 mode, u32 mosaic)
+void HardwareBlendObject::Begin(i16 step, u32 mode, u32 mosaic)
 {
-    func_0800934C(&object->blend, step, mode, mosaic);
+    BeginHardwareBlend(&blend, step, mode, mosaic);
 }
 
-struct HardwareDisplayState * func_0800953C(struct HardwareBlendObject * object, struct HardwareDisplayState * display)
+HardwareDisplayState * HardwareBlendObject::SetDisplay(HardwareDisplayState * display)
 {
-    return func_08009344(&object->blend, display);
+    return blend.SetDisplay(display);
 }
