@@ -528,7 +528,7 @@ SECTIONS
         src/ui_state.o(.text.ui_state_adapters);
         asm/code_0803EE94.o(.text.code_08050E50);
         src/ui_state.o(.text.__18UiTextInputAdapterRCUiUc .text.func_08050F70 .text.func_08050F74);
-        asm/code_0803EE94.o(.text.ui_state_helpers_after);
+        src/ui_state.o(.text.DrawUiTextRows);
         src/ui_state.o(.text.func_080510E8);
         src/ui_state.o(.text.__18UnkUiSelectionDataP21HardwareResourceEntryRC18HardwareStateOwner);
         src/ui_state.o(.text.ui_state_selection);

@@ -352,9 +352,8 @@ extern u8 const gUnk_0872937C[];
 u8 func_08050F70(UnkUiSelectionData const * object);
 void func_08050F74(UnkUiSelectionData * object, u32 arg_1, u32 arg_2);
 
-// Native renderer: emits up to three rows of seven selection OAM entries.
-// Its body remains shared assembly until the C++ reconstruction matches.
-void func_08050FA0(UnkUiSelectionData * object, HardwareSpriteBufferState * sprites);
+// Emit the three visible rows, retaining OAM affine coefficients.
+void DrawUiTextRows(UnkUiSelectionData * object, HardwareSpriteBufferState * sprites);
 
 void func_080510E8(UnkUiSelectionData * object);
 int func_080512B8(UnkUiSelectionData const * object, int index)

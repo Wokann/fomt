@@ -402,6 +402,48 @@ static inline int GetUiTextPhysicalRow(UnkUiSelectionData const * object, int ro
     return result;
 }
 
+static inline void AppendUiTextRowSprite(HardwareSpriteBufferState * buffer,
+    HardwareSpriteOamRecord attributes, i32 const & x, u32 const & y, u32 palette)
+{
+    attributes.y = y;
+    // attr1 is a real 16-bit register view; a whole-word bitfield assignment
+    // would also rewrite attr0 with this old compiler.
+    reinterpret_cast<HardwareSpriteOamAttributes *>(&attributes)->horizontal.x = x;
+    u8 & palette_attribute = reinterpret_cast<u8 *>(&attributes)[5];
+    palette_attribute = (palette_attribute & 15) | (palette << 4);
+    u32 count = buffer->sprite_count;
+    if (count < ARRAY_COUNT(buffer->sprites)) {
+        HardwareSpriteOamRecord & destination = buffer->sprites[count];
+        reinterpret_cast<u32 *>(&destination)[0] = reinterpret_cast<u32 const &>(attributes);
+        reinterpret_cast<u16 *>(&destination)[2] = reinterpret_cast<u16 const *>(&attributes)[2];
+        buffer->sprite_count = count + 1;
+    }
+}
+
+void DrawUiTextRows(UnkUiSelectionData * object, HardwareSpriteBufferState * sprites)
+{
+    i32 palette = GetHardwarePoolHandleIndex(object->palette, object->palette->handle);
+    if (palette >= 0) {
+        for (int row = 0, y = 107; row <= 2; ++row, y += 17) {
+            int index = row + object->unk_18;
+            if (index > 2) index -= 3;
+            UnkUiSelectionRow * line = object->rows[index].Get();
+            for (int column = 0, x = 8; column <= 6; ++column, x += 32) {
+                UnkUiSelectionEntry & entry = line->Entry(column);
+                HardwareSpriteOamRecord attributes = {};
+                attributes.mosaic = 1;
+                attributes.shape = 1;
+                attributes.size = 2;
+                if (HasUiSelectionState(entry.state))
+                    attributes.tile_index = GetHardwareSharedStateTileIndex(&entry.state, entry.state.handle);
+                else
+                    attributes.affine_mode = 2;
+                AppendUiTextRowSprite(sprites, attributes, x, y, palette);
+            }
+        }
+    }
+}
+
 static inline UnkUiSelectionEntry & GetUiTextEntry(UnkUiSelectionData & object,
     int row, int column)
 {

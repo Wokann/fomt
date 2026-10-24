@@ -103,6 +103,31 @@ struct HardwareSpriteOamRecord {
     u16 affine_coefficient;
 };
 
+// The UI emitter updates attr1 as a halfword, not as the complete attr0/1
+// word. Bits 9..13 select an affine matrix; their upper two bits are the
+// non-affine horizontal/vertical flip flags. This view preserves both forms.
+struct HardwareSpriteHorizontalAttribute {
+    i16 x : 9;
+    u16 affine_index : 5;
+    u16 size : 2;
+} __attribute__((packed, aligned(2)));
+
+struct HardwareSpriteOamAttributes {
+    u16 vertical;
+    struct HardwareSpriteHorizontalAttribute horizontal;
+    u16 tile_palette;
+    u16 affine_coefficient;
+};
+
+typedef char HardwareSpriteHorizontalAttribute_size_check[
+    sizeof(struct HardwareSpriteHorizontalAttribute) == 2 ? 1 : -1];
+typedef char HardwareSpriteOamAttributes_size_check[
+    sizeof(struct HardwareSpriteOamAttributes) == 8 ? 1 : -1];
+typedef char HardwareSpriteOamAttributes_horizontal_offset_check[
+    offsetof(struct HardwareSpriteOamAttributes, horizontal) == 2 ? 1 : -1];
+typedef char HardwareSpriteOamAttributes_coefficient_offset_check[
+    offsetof(struct HardwareSpriteOamAttributes, affine_coefficient) == 6 ? 1 : -1];
+
 struct HardwareSpriteBufferState {
     u8 sprite_count;
     u8 reset_sprite_count;
