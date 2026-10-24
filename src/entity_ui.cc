@@ -471,11 +471,6 @@ extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
                                HarvestSprite::Task task,
                                EntityUiHarvestSpriteEntry const * entries);
 
-// The ROM leaf unconditionally returns false.  Its caller-facing purpose is
-// not mapped yet.
-extern "C" bool func_080324B8()
-    SECTION(".text.entity_ui_default_no_action");
-
 // For kind 2, x=0x110..0x3BF and y=0xB0..0x24F return 1; other coordinates
 // return 2.  Every other kind returns 0.  The caller's domain remains unmapped.
 extern "C" u32 func_08032900(u32 kind, u32 x, i32 y)
@@ -495,11 +490,6 @@ extern "C" bool func_08033B24(EntityUiHarvestSpriteState * state)
 // state-byte categories have not been named yet.
 extern "C" u32 func_08034248(EntityUiAnimationState const * state, u32 value)
     SECTION(".text.entity_ui_animation_lookup");
-
-extern "C" bool func_080324B8()
-{
-    return false;
-}
 
 extern "C" void ClearEntityUiUnknownFlag41(void * entity)
 {

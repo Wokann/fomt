@@ -1238,10 +1238,10 @@ extern void vfunc_1C__7AEntityUi(void);
 extern void vfunc_20__7AEntity(void);
 extern void vfunc_24__7AEntity(void);
 extern void vfunc_28__C7AEntity(void);
-extern void func_0803242C(void);
+extern void vfunc_2C__12AActorEntityUi(void);
 extern void func_08024280(void);
-extern void func_080324B8(void);
-extern void func_080328D4(void);
+extern void vfunc_34__12AActorEntity(void);
+extern void SetEventScript__12AActorEntityi(void);
 extern void func_08023E64(void);
 extern void func_08023F40(void);
 extern void func_08023F8C(void);
@@ -1272,10 +1272,10 @@ extern void vfunc_1C__7AEntityUi(void);
 extern void vfunc_20__7AEntity(void);
 extern void vfunc_24__7AEntity(void);
 extern void vfunc_28__C7AEntity(void);
-extern void func_0803242C(void);
+extern void vfunc_2C__12AActorEntityUi(void);
 extern void func_080244EC(void);
-extern void func_080324B8(void);
-extern void func_08032B40(void);
+extern void vfunc_34__12AActorEntity(void);
+extern void SetEventScript__12AActorEntityi(void);
 extern void func_080240D0(void);
 extern void func_080241AC(void);
 extern void func_080241F8(void);
@@ -1313,10 +1313,10 @@ extern RawVTableFunction const vtable_unk_080E6284[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08024280,
-        func_080324B8,
-        func_080328D4,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_08023E64,
         func_08023F40,
         func_08023F8C,
@@ -1349,10 +1349,10 @@ extern RawVTableFunction const vtable_unk_080E6284[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080244EC,
-        func_080324B8,
-        func_08032B40,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_080240D0,
         func_080241AC,
         func_080241F8,
@@ -1441,10 +1441,10 @@ extern RawVTableFunction const vtable_unk_080E6310[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080235B4,
-        func_080324B8,
-        func_080328D4,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_080231A8,
         func_0802328C,
         func_080232D8,
@@ -1477,10 +1477,10 @@ extern RawVTableFunction const vtable_unk_080E6310[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08023820,
-        func_080324B8,
-        func_08032B40,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_08023414,
         func_080234F8,
         func_08023544,
@@ -1559,8 +1559,8 @@ extern RawVTableFunction const vtable_unk_080E639C[]
         vfunc_28__C7AEntity,
         func_08022250,
         func_08022904,
-        func_080324B8,
-        func_080328D4,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_08020058,
         func_0802005C,
         func_0802274C,
@@ -1595,8 +1595,8 @@ extern RawVTableFunction const vtable_unk_080E639C[]
         vfunc_28__C7AEntity,
         func_080224BC,
         func_08022B70,
-        func_080324B8,
-        func_08032B40,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_080202C4,
         func_080202C8,
         func_080229B8,
@@ -1671,8 +1671,8 @@ extern RawVTableFunction const vtable_unk_080E6428[]
         vfunc_28__C7AEntity,
         func_08021C3C,
         func_080220DC,
-        func_080324B8,
-        func_080328D4,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_08020058,
         func_08021E94,
         func_08020060,
@@ -1707,8 +1707,8 @@ extern RawVTableFunction const vtable_unk_080E6428[]
         vfunc_28__C7AEntity,
         func_08021EA8,
         func_08022348,
-        func_080324B8,
-        func_08032B40,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_080202C4,
         func_08022100,
         func_080202CC,
@@ -1791,8 +1791,8 @@ extern RawVTableFunction const vtable_unk_080E64C8[]
         vfunc_28__C7AEntity,
         func_0802023C,
         func_080213C8,
-        func_080324B8,
-        func_080328D4,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_08020058,
         func_0802005C,
         func_08021138,
@@ -1827,8 +1827,8 @@ extern RawVTableFunction const vtable_unk_080E64C8[]
         vfunc_28__C7AEntity,
         func_080204A8,
         func_08021634,
-        func_080324B8,
-        func_08032B40,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_080202C4,
         func_080202C8,
         func_080213A4,
@@ -1881,13 +1881,13 @@ extern RawVTableFunction const __vt_15Entity_080E6554[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         __pure_virtual,
-        func_080324B8,
+        vfunc_34__12AActorEntity,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
 #endif
 #if defined(REGION_JP)
         func_08020058,
@@ -1934,8 +1934,8 @@ extern RawVTableFunction const __vt_15Entity_080E6554[]
     };
 
 extern void func_080DC6F0(void);
-extern void func_0803240C(void);
-extern void func_08032A30(void);
+extern void GetBox__C12AActorEntity(void);
+extern void vfunc_18__12AActorEntity(void);
 #if defined(REGION_JP)
 extern void func_0802B7BC(void);
 extern void func_0802B7A4(void);
@@ -1960,10 +1960,10 @@ extern RawVTableFunction const vtable_unk_080E65F4[]
         nullptr,
         nullptr,
         func_080DC6F0,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        func_08032A30,
+        vfunc_18__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -1975,16 +1975,16 @@ extern RawVTableFunction const vtable_unk_080E65F4[]
         func_0802BA28,
         func_0802BA10,
 #endif
-        func_080324B8,
+        vfunc_34__12AActorEntity,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
         func_0802C068,
         func_0802BA38,
         func_0802BAE4,
         func_0802BBFC,
         func_0802BC90,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
         func_0802C2D4,
         func_0802BCA4,
         func_0802BD50,
@@ -2112,8 +2112,8 @@ extern RawVTableFunction const vtable_unk_080E6658[]
         vfunc_28__C7AEntity,
         func_08024DAC,
         func_08024930,
-        func_080324B8,
-        func_080328D4,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_08031E08,
         func_08031DF0,
         func_08031DE8,
@@ -2157,8 +2157,8 @@ extern RawVTableFunction const vtable_unk_080E6658[]
         vfunc_28__C7AEntity,
         func_08025018,
         func_08024B9C,
-        func_080324B8,
-        func_08032B40,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
         func_08032074,
         func_0803205C,
         func_08032054,
@@ -2215,22 +2215,22 @@ extern RawVTableFunction const vtable_unk_080E6708[]
 #endif
     };
 
-extern void func_0803240C(void);
+extern void GetBox__C12AActorEntity(void);
 extern void vfunc_10__7AEntity(void);
 extern void vfunc_14__7AEntity(void);
-extern void func_08032A30(void);
+extern void vfunc_18__12AActorEntity(void);
 extern void vfunc_1C__7AEntityUi(void);
 extern void vfunc_20__7AEntity(void);
 extern void vfunc_24__7AEntity(void);
 extern void vfunc_28__C7AEntity(void);
-extern void func_0803242C(void);
-extern void func_080324B8(void);
+extern void vfunc_2C__12AActorEntityUi(void);
+extern void vfunc_34__12AActorEntity(void);
 #if defined(REGION_JP)
 extern void func_080DBF80(void);
-extern void func_080328D4(void);
+extern void SetEventScript__12AActorEntityi(void);
 #else
 extern void func_080DC7CC(void);
-extern void func_08032B40(void);
+extern void SetEventScript__12AActorEntityi(void);
 #endif
 
 // Preserve this 20-slot table and its region-specific callbacks in ROM order.
@@ -2243,21 +2243,21 @@ extern RawVTableFunction const vtable_unk_080E671C[]
 #else
         func_080DC7CC,
 #endif
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        func_08032A30,
+        vfunc_18__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         __pure_virtual,
-        func_080324B8,
+        vfunc_34__12AActorEntity,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
 #endif
         __pure_virtual,
         __pure_virtual,
@@ -2282,21 +2282,21 @@ extern RawVTableFunction const vtable_unk_080E676C[]
 #else
         func_080DC800,
 #endif
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        func_08032A30,
+        vfunc_18__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         __pure_virtual,
-        func_080324B8,
+        vfunc_34__12AActorEntity,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
 #endif
         __pure_virtual,
         __pure_virtual,
@@ -2357,12 +2357,12 @@ extern RawVTableFunction const vtable_unk_080E6828[]
 #endif
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        func_08032A30,
+        vfunc_18__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
 #if defined(REGION_JP)
         func_08032748,
         func_08032760,
@@ -2377,39 +2377,6 @@ extern RawVTableFunction const vtable_unk_080E6828[]
 extern void Update__22EntitySpriteController(void);
 extern void Draw__22EntitySpriteControllerPv(void);
 
-#if defined(REGION_JP)
-extern void func_080DC078(void);
-#else
-extern void func_080DC8C4(void);
-#endif
-
-// Preserve AActorEntity's 15 ABI slots in original ROM order.
-extern RawVTableFunction const __vt_12AActorEntity[]
-    SECTION(".rodata.vtable_aactor_entity") = {
-        nullptr,
-        nullptr,
-#if defined(REGION_JP)
-        func_080DC078,
-#else
-        func_080DC8C4,
-#endif
-        func_0803240C,
-        vfunc_10__7AEntity,
-        vfunc_14__7AEntity,
-        func_08032A30,
-        vfunc_1C__7AEntityUi,
-        vfunc_20__7AEntity,
-        vfunc_24__7AEntity,
-        vfunc_28__C7AEntity,
-        func_0803242C,
-        __pure_virtual,
-        func_080324B8,
-#if defined(REGION_JP)
-        func_080328D4,
-#else
-        func_08032B40,
-#endif
-    };
 
 
 extern void func_08033A2C(void);
@@ -2425,7 +2392,7 @@ extern RawVTableFunction const vtable_unk_080E68C8[]
         nullptr,
         nullptr,
         func_08033A2C,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08033B10,
         func_08033B94,
@@ -2433,13 +2400,13 @@ extern RawVTableFunction const vtable_unk_080E68C8[]
         vfunc_20__7AEntity,
         func_08033AE4,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08033A80,
         func_08033AFC,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
 #endif
     };
 
@@ -2480,7 +2447,7 @@ extern RawVTableFunction const vtable_unk_080E6918[]
         nullptr,
         nullptr,
         func_080DC9A8,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08036F68,
@@ -2488,7 +2455,7 @@ extern RawVTableFunction const vtable_unk_080E6918[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036F0C,
         func_08034EE0,
         func_08034EF8,
@@ -2506,7 +2473,7 @@ extern RawVTableFunction const vtable_unk_080E6958[]
         nullptr,
         nullptr,
         func_080DC9B4,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2514,7 +2481,7 @@ extern RawVTableFunction const vtable_unk_080E6958[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036E00,
         func_08034EE0,
         func_08034EF8,
@@ -2530,7 +2497,7 @@ extern RawVTableFunction const vtable_unk_080E6998[]
         nullptr,
         nullptr,
         func_080DC9C0,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2538,7 +2505,7 @@ extern RawVTableFunction const vtable_unk_080E6998[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036D98,
         func_08034EE0,
         func_08034EF8,
@@ -2554,7 +2521,7 @@ extern RawVTableFunction const vtable_unk_080E69D8[]
         nullptr,
         nullptr,
         func_080DC9CC,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2562,7 +2529,7 @@ extern RawVTableFunction const vtable_unk_080E69D8[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036D3C,
         func_08034EE0,
         func_08034EF8,
@@ -2578,7 +2545,7 @@ extern RawVTableFunction const vtable_unk_080E6A18[]
         nullptr,
         nullptr,
         func_080DC9D8,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2586,7 +2553,7 @@ extern RawVTableFunction const vtable_unk_080E6A18[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036CDC,
         func_08034EE0,
         func_08034EF8,
@@ -2602,7 +2569,7 @@ extern RawVTableFunction const vtable_unk_080E6A58[]
         nullptr,
         nullptr,
         func_080DC9E4,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2610,7 +2577,7 @@ extern RawVTableFunction const vtable_unk_080E6A58[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036C80,
         func_08034EE0,
         func_08034EF8,
@@ -2628,7 +2595,7 @@ extern RawVTableFunction const vtable_unk_080E6A98[]
         nullptr,
         nullptr,
         func_080DC9F0,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08036BB0,
@@ -2636,7 +2603,7 @@ extern RawVTableFunction const vtable_unk_080E6A98[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036B80,
         func_08034EE0,
         func_08034EF8,
@@ -2653,7 +2620,7 @@ extern RawVTableFunction const vtable_unk_080E6AD8[]
         nullptr,
         nullptr,
         func_080DC9FC,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2661,7 +2628,7 @@ extern RawVTableFunction const vtable_unk_080E6AD8[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036B1C,
         func_08034EE0,
         func_08034EF8,
@@ -2677,7 +2644,7 @@ extern RawVTableFunction const vtable_unk_080E6B18[]
         nullptr,
         nullptr,
         func_080DCA08,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2685,7 +2652,7 @@ extern RawVTableFunction const vtable_unk_080E6B18[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036A4C,
         func_08034EE0,
         func_08034EF8,
@@ -2702,7 +2669,7 @@ extern RawVTableFunction const vtable_unk_080E6B58[]
         nullptr,
         nullptr,
         func_080DCA14,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2710,7 +2677,7 @@ extern RawVTableFunction const vtable_unk_080E6B58[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080369E0,
         func_08034EE0,
         func_08034EF8,
@@ -2726,7 +2693,7 @@ extern RawVTableFunction const vtable_unk_080E6B98[]
         nullptr,
         nullptr,
         func_080DCA20,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2734,7 +2701,7 @@ extern RawVTableFunction const vtable_unk_080E6B98[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036898,
         func_08034EE0,
         func_08034EF8,
@@ -2750,7 +2717,7 @@ extern RawVTableFunction const vtable_unk_080E6BD8[]
         nullptr,
         nullptr,
         func_080DCA2C,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2758,7 +2725,7 @@ extern RawVTableFunction const vtable_unk_080E6BD8[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036834,
         func_08034EE0,
         func_08034EF8,
@@ -2775,7 +2742,7 @@ extern RawVTableFunction const vtable_unk_080E6C18[]
         nullptr,
         nullptr,
         func_080DCA38,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2783,7 +2750,7 @@ extern RawVTableFunction const vtable_unk_080E6C18[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080367C8,
         func_08034EE0,
         func_08034EF8,
@@ -2799,7 +2766,7 @@ extern RawVTableFunction const vtable_unk_080E6C58[]
         nullptr,
         nullptr,
         func_080DCA44,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2807,7 +2774,7 @@ extern RawVTableFunction const vtable_unk_080E6C58[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036704,
         func_08034EE0,
         func_08034EF8,
@@ -2824,7 +2791,7 @@ extern RawVTableFunction const vtable_unk_080E6C98[]
         nullptr,
         nullptr,
         func_080DCA50,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2832,7 +2799,7 @@ extern RawVTableFunction const vtable_unk_080E6C98[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_0803669C,
         func_08034EE0,
         func_08034EF8,
@@ -2848,7 +2815,7 @@ extern RawVTableFunction const vtable_unk_080E6CD8[]
         nullptr,
         nullptr,
         func_080DCA5C,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2856,7 +2823,7 @@ extern RawVTableFunction const vtable_unk_080E6CD8[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036564,
         func_08034EE0,
         func_08034EF8,
@@ -2873,7 +2840,7 @@ extern RawVTableFunction const vtable_unk_080E6D18[]
         nullptr,
         nullptr,
         func_080DCA68,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2881,7 +2848,7 @@ extern RawVTableFunction const vtable_unk_080E6D18[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036500,
         func_08034EE0,
         func_08034EF8,
@@ -2897,7 +2864,7 @@ extern RawVTableFunction const vtable_unk_080E6D58[]
         nullptr,
         nullptr,
         func_080DCA74,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2905,7 +2872,7 @@ extern RawVTableFunction const vtable_unk_080E6D58[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080363CC,
         func_08034EE0,
         func_08034EF8,
@@ -2921,7 +2888,7 @@ extern RawVTableFunction const vtable_unk_080E6D98[]
         nullptr,
         nullptr,
         func_080DCA80,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2929,7 +2896,7 @@ extern RawVTableFunction const vtable_unk_080E6D98[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036364,
         func_08034EE0,
         func_08034EF8,
@@ -2945,7 +2912,7 @@ extern RawVTableFunction const vtable_unk_080E6DD8[]
         nullptr,
         nullptr,
         func_080DCA8C,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2953,7 +2920,7 @@ extern RawVTableFunction const vtable_unk_080E6DD8[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080362FC,
         func_08034EE0,
         func_08034EF8,
@@ -2969,7 +2936,7 @@ extern RawVTableFunction const vtable_unk_080E6E18[]
         nullptr,
         nullptr,
         func_080DCA98,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -2977,7 +2944,7 @@ extern RawVTableFunction const vtable_unk_080E6E18[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036290,
         func_08034EE0,
         func_08034EF8,
@@ -2993,7 +2960,7 @@ extern RawVTableFunction const vtable_unk_080E6E58[]
         nullptr,
         nullptr,
         func_080DCAA4,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3001,7 +2968,7 @@ extern RawVTableFunction const vtable_unk_080E6E58[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036228,
         func_08034EE0,
         func_08034EF8,
@@ -3017,7 +2984,7 @@ extern RawVTableFunction const vtable_unk_080E6E98[]
         nullptr,
         nullptr,
         func_080DCAB0,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3025,7 +2992,7 @@ extern RawVTableFunction const vtable_unk_080E6E98[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080361C0,
         func_08034EE0,
         func_08034EF8,
@@ -3042,7 +3009,7 @@ extern RawVTableFunction const vtable_unk_080E6ED8[]
         nullptr,
         nullptr,
         func_080DCABC,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3050,7 +3017,7 @@ extern RawVTableFunction const vtable_unk_080E6ED8[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08036154,
         func_08034EE0,
         func_08034EF8,
@@ -3066,7 +3033,7 @@ extern RawVTableFunction const vtable_unk_080E6F18[]
         nullptr,
         nullptr,
         func_080DCAC8,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3074,7 +3041,7 @@ extern RawVTableFunction const vtable_unk_080E6F18[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_0803601C,
         func_08034EE0,
         func_08034EF8,
@@ -3090,7 +3057,7 @@ extern RawVTableFunction const vtable_unk_080E6F58[]
         nullptr,
         nullptr,
         func_080DCAD4,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3098,7 +3065,7 @@ extern RawVTableFunction const vtable_unk_080E6F58[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08035FB0,
         func_08034EE0,
         func_08034EF8,
@@ -3114,7 +3081,7 @@ extern RawVTableFunction const vtable_unk_080E6F98[]
         nullptr,
         nullptr,
         func_080DCAE0,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3122,7 +3089,7 @@ extern RawVTableFunction const vtable_unk_080E6F98[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08035F48,
         func_08034EE0,
         func_08034EF8,
@@ -3138,7 +3105,7 @@ extern RawVTableFunction const vtable_unk_080E6FD8[]
         nullptr,
         nullptr,
         func_080DCAEC,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3146,7 +3113,7 @@ extern RawVTableFunction const vtable_unk_080E6FD8[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08035EE4,
         func_08034EE0,
         func_08034EF8,
@@ -3162,7 +3129,7 @@ extern RawVTableFunction const vtable_unk_080E7018[]
         nullptr,
         nullptr,
         func_080DCAF8,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3170,7 +3137,7 @@ extern RawVTableFunction const vtable_unk_080E7018[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08035E7C,
         func_08034EE0,
         func_08034EF8,
@@ -3186,7 +3153,7 @@ extern RawVTableFunction const vtable_unk_080E7058[]
         nullptr,
         nullptr,
         func_080DCB04,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3194,7 +3161,7 @@ extern RawVTableFunction const vtable_unk_080E7058[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08035E14,
         func_08034EE0,
         func_08034EF8,
@@ -3210,7 +3177,7 @@ extern RawVTableFunction const vtable_unk_080E7098[]
         nullptr,
         nullptr,
         func_080DCB10,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3218,7 +3185,7 @@ extern RawVTableFunction const vtable_unk_080E7098[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08035DAC,
         func_08034EE0,
         func_08034EF8,
@@ -3234,7 +3201,7 @@ extern RawVTableFunction const vtable_unk_080E70D8[]
         nullptr,
         nullptr,
         func_080DCB1C,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3242,7 +3209,7 @@ extern RawVTableFunction const vtable_unk_080E70D8[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08035D40,
         func_08034EE0,
         func_08034EF8,
@@ -3259,7 +3226,7 @@ extern RawVTableFunction const vtable_unk_080E7118[]
         nullptr,
         nullptr,
         func_080DCB28,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3267,7 +3234,7 @@ extern RawVTableFunction const vtable_unk_080E7118[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08035CD4,
         func_08034EE0,
         func_08034EF8,
@@ -3283,7 +3250,7 @@ extern RawVTableFunction const vtable_unk_080E7158[]
         nullptr,
         nullptr,
         func_080DCB34,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3291,7 +3258,7 @@ extern RawVTableFunction const vtable_unk_080E7158[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08035B9C,
         func_08034EE0,
         func_08034EF8,
@@ -3307,7 +3274,7 @@ extern RawVTableFunction const vtable_unk_080E7198[]
         nullptr,
         nullptr,
         func_080DCB40,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3315,7 +3282,7 @@ extern RawVTableFunction const vtable_unk_080E7198[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08035B38,
         func_08034EE0,
         func_08034EF8,
@@ -3332,7 +3299,7 @@ extern RawVTableFunction const __vt_10ANpcEntity[]
         nullptr,
         nullptr,
         destructor_ANpcEntity,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08034E8C,
         func_08034EB4,
@@ -3340,7 +3307,7 @@ extern RawVTableFunction const __vt_10ANpcEntity[]
         vfunc_20__7AEntity,
         func_08034EA0,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         __pure_virtual,
         func_08034EE0,
         func_08034EF8,
@@ -3371,13 +3338,13 @@ extern RawVTableFunction const vtable_unk_080E7218[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080379D8,
         func_08037430,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
 #endif
         func_08037A04,
         func_08037958,
@@ -3402,13 +3369,13 @@ extern RawVTableFunction const vtable_unk_080E725C[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_0803788C,
         func_08037430,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
 #endif
         func_080378B8,
         func_080377E8,
@@ -3433,13 +3400,13 @@ extern RawVTableFunction const vtable_unk_080E72A0[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080376E4,
         func_08037430,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
 #endif
         func_08037714,
         func_0803763C,
@@ -3464,13 +3431,13 @@ extern RawVTableFunction const vtable_unk_080E72E4[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_0803753C,
         func_08037430,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
 #endif
         func_08037568,
         func_08037494,
@@ -3492,13 +3459,13 @@ extern RawVTableFunction const vtable_unk_080E7328[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         __pure_virtual,
         func_08037430,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
 #endif
         __pure_virtual,
         __pure_virtual,
@@ -3715,7 +3682,7 @@ extern RawVTableFunction const vtable_unk_080E74CC[]
 extern void func_080399C0(void);
 extern void func_08039A60(void);
 extern void func_08039A30(void);
-extern void func_080324B8(void);
+extern void vfunc_34__12AActorEntity(void);
 extern void func_08039D98(void);
 extern void func_08039DA8(void);
 extern void func_08039E18(void);
@@ -3723,7 +3690,7 @@ extern void func_08039A5C(void);
 
 #if defined(REGION_JP)
 extern void func_08020034(void);
-extern void func_080328D4(void);
+extern void SetEventScript__12AActorEntityi(void);
 extern void func_08020058(void);
 extern void func_0802005C(void);
 extern void func_08020064(void);
@@ -3742,7 +3709,7 @@ extern void func_08020098(void);
 extern void func_080200A0(void);
 #else
 extern void func_080202A0(void);
-extern void func_08032B40(void);
+extern void SetEventScript__12AActorEntityi(void);
 extern void func_080202C4(void);
 extern void func_080202C8(void);
 extern void func_080202D0(void);
@@ -3779,15 +3746,15 @@ extern RawVTableFunction const vtable_unk_080E74DC[]
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_08039A30,
-        func_080324B8,
+        vfunc_34__12AActorEntity,
 #if defined(REGION_JP)
-        func_080328D4,
+        SetEventScript__12AActorEntityi,
         func_08020058,
         func_0802005C,
 #else
-        func_08032B40,
+        SetEventScript__12AActorEntityi,
         func_080202C4,
         func_080202C8,
 #endif
@@ -6320,7 +6287,7 @@ extern void func_080AD370(void);
 extern void func_080AD2FC(void);
 extern void func_080AD1B4(void);
 extern void func_080E3CA8(void);
-extern void func_0803240C(void);
+extern void GetBox__C12AActorEntity(void);
 #else
 extern void func_080E44B8(void);
 extern void func_080ACAF0(void);
@@ -6480,37 +6447,37 @@ extern RawVTableFunction const vtable_unk_080E7834[]
         nullptr,
         nullptr,
         func_080E3CA8,
-        func_0803240C,
+        GetBox__C12AActorEntity,
     };
 #endif
 
 #if defined(REGION_JP)
 extern void vfunc_10__7AEntity(void);
 extern void vfunc_14__7AEntity(void);
-extern void func_08032A30(void);
+extern void vfunc_18__12AActorEntity(void);
 extern void vfunc_1C__7AEntityUi(void);
 extern void vfunc_20__7AEntity(void);
 extern void vfunc_24__7AEntity(void);
 extern void vfunc_28__C7AEntity(void);
-extern void func_0803242C(void);
+extern void vfunc_2C__12AActorEntityUi(void);
 extern void func_080E3C7C(void);
-extern void func_080324B8(void);
-extern void func_080328D4(void);
+extern void vfunc_34__12AActorEntity(void);
+extern void SetEventScript__12AActorEntityi(void);
 extern void func_080E3CDC(void);
 #else
 extern void func_080E4510(void);
-extern void func_0803240C(void);
+extern void GetBox__C12AActorEntity(void);
 extern void vfunc_10__7AEntity(void);
 extern void vfunc_14__7AEntity(void);
-extern void func_08032A30(void);
+extern void vfunc_18__12AActorEntity(void);
 extern void vfunc_1C__7AEntityUi(void);
 extern void vfunc_20__7AEntity(void);
 extern void vfunc_24__7AEntity(void);
 extern void vfunc_28__C7AEntity(void);
-extern void func_0803242C(void);
+extern void vfunc_2C__12AActorEntityUi(void);
 extern void func_080E44E4(void);
-extern void func_080324B8(void);
-extern void func_08032B40(void);
+extern void vfunc_34__12AActorEntity(void);
+extern void SetEventScript__12AActorEntityi(void);
 #endif
 
 // This short table has a region-dependent slot layout. Retain the opaque
@@ -6520,15 +6487,15 @@ extern RawVTableFunction const vtable_unk_080E8404[]
     SECTION(".rodata.vtable_8404") = {
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        func_08032A30,
+        vfunc_18__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080E3C7C,
-        func_080324B8,
-        func_080328D4,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
     };
 
 // The JP object constructor uses this tail as a distinct base-subobject
@@ -6546,18 +6513,18 @@ extern RawVTableFunction const vtable_unk_080E8404[]
         nullptr,
         nullptr,
         func_080E4510,
-        func_0803240C,
+        GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        func_08032A30,
+        vfunc_18__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
         vfunc_28__C7AEntity,
-        func_0803242C,
+        vfunc_2C__12AActorEntityUi,
         func_080E44E4,
-        func_080324B8,
-        func_08032B40,
+        vfunc_34__12AActorEntity,
+        SetEventScript__12AActorEntityi,
     };
 #endif
 

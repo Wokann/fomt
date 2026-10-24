@@ -4,7 +4,16 @@
 
 #include <stdlib.h>
 
-extern "C" u32 func_08032090(void * sprite, u32 anim_id); // Sprite
+extern "C" u32 GetActorAnimationDuration(IndexedResourceProvider * resource, u32 index)
+{
+    IndexedResourceResult const & entries = resource->Resolve(index);
+    u32 duration = 0;
+    u32 entry = 0;
+    u32 count = entries.Count();
+    for (; entry < count; ++entry)
+        duration += entries[entry].metric;
+    return duration;
+}
 
 bool AActorEntity::IsOnCurrentMap() const
 {
@@ -114,7 +123,7 @@ void AActorEntity::RefreshSprite(u32 sprite_anim)
         ptr->SetAnimation(sprite_anim);
     }
 
-    unk_24 = func_08032090(game_object->vfunc_68(), sprite_anim);
+    unk_24 = GetActorAnimationDuration(game_object->vfunc_68(), sprite_anim);
     unk_26 = unk_24;
 }
 
@@ -250,14 +259,30 @@ EC void func_080323F0(AActorEntity & self, u32 value)
     }
 }
 
-EC Box func_0803240C(AActorEntity & self)
+Box AActorEntity::GetBox() const
 {
-    return Box(self.x_q16 >> 16, self.y_q16 >> 16, 14, 9);
+    return Box(x_q16 >> 16, y_q16 >> 16, 14, 9);
 }
 
-#if 0
+void AActorEntity::vfunc_18()
+{
+    if (unk_24 != 0)
+        --unk_24;
+    else
+        unk_24 = unk_26;
+    EntityVisualController * visual = unk_10.Get();
+    if (visual != nullptr)
+        visual->Update();
+}
 
-EC void func_0803242C(AActorEntity & self, u32 arg_1)
+u32 AActorEntity::vfunc_34()
+{
+    return 0;
+}
+
+#if 0 // Unmatched motion-tick candidate; the actual member remains native.
+
+EC void vfunc_2C__12AActorEntityUi(AActorEntity & self, u32 arg_1)
 {
     if (self.unk_24 == 0)
     {
@@ -302,8 +327,6 @@ EC void func_0803242C(AActorEntity & self, u32 arg_1)
 }
 
 #endif
-
-// this goes up to func_08032BB4
 
 // Shared lazy terrain probes follow the actor operations in ROM.
 

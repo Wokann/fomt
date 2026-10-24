@@ -112,8 +112,13 @@ struct AActorEntity : public AEntity
 {
     AActorEntity(GameObject * game_object, ActorLocation const & location, u32 arg_2, u32 arg_3);
 
-    /* vt+34 */ virtual u32 vfunc_34();
-    /* vt+38 */ virtual void SetEventScript(MaryScriptId script_id);
+    virtual Box GetBox() const;
+    // Tick the countdown, then update the owned visual controller.
+    virtual void vfunc_18() SECTION(".text.entity_actor_update");
+    virtual void vfunc_2C(u32 dummy);
+
+    /* vt+34 */ virtual u32 vfunc_34() SECTION(".text.entity_actor_default_no_action");
+    /* vt+38 */ virtual void SetEventScript(MaryScriptId script_id) SECTION(".text.entity_actor_animation_status");
 
     bool IsOnCurrentMap() const SECTION(".text.entity_actor_movement");
     void SetMovementSpeed(i32 speed_q16) SECTION(".text.entity_actor_movement");
@@ -126,6 +131,10 @@ struct AActorEntity : public AEntity
     void SetAnim(u32 anim);
     // Resource index combines the base animation and raw facing byte.
     u32 GetAnimationIndex() const SECTION(".text.entity_actor_animation_index");
+    u16 GetAnimationCountdown() const SECTION(".text.entity_actor_animation_status");
+    bool IsAnimationCountdownZero() const SECTION(".text.entity_actor_animation_status");
+    void SetAnimIfChanged(u32 animation) SECTION(".text.entity_actor_animation_status");
+    u16 GetAnim() const SECTION(".text.entity_actor_animation_status");
     void RefreshSprite(u32 sprite_anim);
     void method_08032208();
 
@@ -134,8 +143,8 @@ struct AActorEntity : public AEntity
     /* +20 */ u8 facing;
     /* +21 */ u8 unk_21; // Default OBJ priority; rendering uses its low two bits.
     /* +22 */ u16 anim_id;
-    /* +24 */ u16 unk_24;
-    /* +26 */ u16 unk_26;
+    /* +24 */ u16 unk_24; // Remaining animation-entry metric sum.
+    /* +26 */ u16 unk_26; // Reload value, truncated to the native halfword.
     /* +28 */ UnkActorEntity28 unk_28;
     /* +2C */ u16 unk_2C;
     /* +2E */ u8 unk_2E;
@@ -143,9 +152,11 @@ struct AActorEntity : public AEntity
 
 #pragma implementation
 
-// These native movement commands take an integer target and raw Q16.16
-// speed. A new axis command replaces the actor's previous movement command.
 EXTERN_C
+
+// Sum the resolved animation's unscaled entry metrics; a null range is empty.
+u32 GetActorAnimationDuration(IndexedResourceProvider * resource, u32 index);
+// Native movement commands replace the previous command on their axis.
 void func_08032308(AActorEntity & self, u32 target, i32 speed_q16);
 void func_0803233C(AActorEntity & self, u32 target, i32 speed_q16);
 void StartActorSpriteEffect(AActorEntity & self, u32 effect, bool persistent);
@@ -156,6 +167,35 @@ EXTERN_C_END
 inline u32 AActorEntity::GetAnimationIndex() const
 {
     return anim_id + facing;
+}
+
+inline u16 AActorEntity::GetAnim() const
+{
+    return anim_id;
+}
+
+inline void AActorEntity::SetAnimIfChanged(u32 animation)
+{
+    if (anim_id != animation)
+        SetAnim(animation);
+}
+
+// Base actors deliberately ignore script assignment; concrete actors override it.
+inline void AActorEntity::SetEventScript(MaryScriptId script_id)
+{
+}
+
+inline bool AActorEntity::IsAnimationCountdownZero() const
+{
+    bool zero = false;
+    if (unk_24 == 0)
+        zero = true;
+    return zero;
+}
+
+inline u16 AActorEntity::GetAnimationCountdown() const
+{
+    return unk_24;
 }
 
 #endif // ENTITY_ACTOR_HH

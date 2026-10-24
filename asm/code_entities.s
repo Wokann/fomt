@@ -446,7 +446,7 @@ func_0802023C:
 .Ljp_08020252:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0803242C
+    bl vfunc_2C__12AActorEntityUi
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -3749,7 +3749,7 @@ func_08021C3C:
 .Ljp_08021C66:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0803242C
+    bl vfunc_2C__12AActorEntityUi
 .Ljp_08021C6E:
     pop {r4, r5}
     pop {r0}
@@ -4426,7 +4426,7 @@ func_08022250:
     .Lauto_08022268:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0803242C
+    bl vfunc_2C__12AActorEntityUi
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -8901,7 +8901,7 @@ func_08024990:
 .L080249CC:
     add r0, sp, #8
     adds r1, r4, #0
-    bl func_0803240C
+    bl GetBox__C12AActorEntity
     ldr r0, [sp, #8]
     ldr r1, [sp, #0xC]
 .L080249D8:
@@ -9478,7 +9478,7 @@ func_08024DAC:
 .L08024DEE:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0803242C
+    bl vfunc_2C__12AActorEntityUi
 .L08024DF6:
     pop {r4, r5}
     pop {r0}
@@ -22876,7 +22876,7 @@ func_0802B7BC:
 .Ljp_0802B7F8:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0803242C
+    bl vfunc_2C__12AActorEntityUi
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -36063,51 +36063,6 @@ func_08031E10:
     adds r2, #5
     strh r2, [r0, #6]
     bx lr
-    .global func_08032090
-    .thumb_func
-func_08032090:
-    push {r4, lr}
-    sub sp, #0x10
-    adds r4, r0, #0
-    adds r2, r1, #0
-    ldr r1, [r4]
-    mov r0, sp
-    ldr r3, [r1, #0xc]
-    adds r1, r4, #0
-    bl _call_via_r3
-    ldr r0, [sp]
-    ldr r1, [sp, #4]
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    add r2, sp, #8
-    movs r4, #0
-    movs r3, #0
-    ldr r0, [sp, #8]
-    movs r1, #0
-    cmp r0, #0
-    beq .Ljp_08031E50
-    ldrh r1, [r2, #4]
-.Ljp_08031E50:
-    adds r2, r1, #0
-    cmp r4, r2
-    bhs .Ljp_08031E64
-    adds r1, r0, #0
-.Ljp_08031E58:
-    ldrh r0, [r1, #2]
-    adds r4, r4, r0
-    adds r1, #4
-    adds r3, #1
-    cmp r3, r2
-    bcc .Ljp_08031E58
-.Ljp_08031E64:
-    adds r0, r4, #0
-    add sp, #0x10
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-
     @ All JP raw-table targets above are direct physical labels.
     .else
     .INCLUDE "asm/macro.inc"
@@ -36503,7 +36458,7 @@ func_080204A8:
 .L080204BE:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0803242C
+    bl vfunc_2C__12AActorEntityUi
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -39209,7 +39164,7 @@ func_08021EA8:
 .L08021ED2:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0803242C
+    bl vfunc_2C__12AActorEntityUi
 .L08021EDA:
     pop {r4, r5}
     pop {r0}
@@ -39880,7 +39835,7 @@ func_080224BC:
     .byte 0x00, 0x06, 0x00, 0x28, 0x03, 0xD0, 0x20, 0x1C, 0x29, 0x1C
     bl func_080224E4
     .byte 0x20, 0x1C, 0x29, 0x1C
-    bl func_0803242C
+    bl vfunc_2C__12AActorEntityUi
     .byte 0x30, 0xBC, 0x01, 0xBC
     .byte 0x00, 0x47, 0x00, 0x00
 
@@ -43267,7 +43222,7 @@ func_08024BFC: @ 0x08024BFC
 .L08024C38:
     add r0, sp, #8
     adds r1, r4, #0
-    bl func_0803240C
+    bl GetBox__C12AActorEntity
     ldr r0, [sp, #8]
     ldr r1, [sp, #0xc]
 .L08024C44:
@@ -43839,7 +43794,7 @@ func_08025018: @ 0x08025018
 .L0802505A:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0803242C
+    bl vfunc_2C__12AActorEntityUi
 .L08025062:
     pop {r4, r5}
     pop {r0}
@@ -57207,7 +57162,7 @@ func_0802BA28:
 .L0802BA64:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0803242C
+    bl vfunc_2C__12AActorEntityUi
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -70363,49 +70318,6 @@ func_0803207C:
     adds r2, #5
     strh r2, [r0, #6]
     bx lr
-
-    thumb_func_start func_08032090
-func_08032090: @ 0x08032090
-    push {r4, lr}
-    sub sp, #0x10
-    adds r4, r0, #0
-    adds r2, r1, #0
-    ldr r1, [r4]
-    mov r0, sp
-    ldr r3, [r1, #0xc]
-    adds r1, r4, #0
-    bl _call_via_r3
-    ldr r0, [sp]
-    ldr r1, [sp, #4]
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    add r2, sp, #8
-    movs r4, #0
-    movs r3, #0
-    ldr r0, [sp, #8]
-    movs r1, #0
-    cmp r0, #0
-    beq .L080320BC
-    ldrh r1, [r2, #4]
-.L080320BC:
-    adds r2, r1, #0
-    cmp r4, r2
-    bhs .L080320D0
-    adds r1, r0, #0
-.L080320C4:
-    ldrh r0, [r1, #2]
-    adds r4, r4, r0
-    adds r1, #4
-    adds r3, #1
-    cmp r3, r2
-    blo .L080320C4
-.L080320D0:
-	adds r0, r4, #0
-	add sp, #0x10
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
 
     @ All overseas raw-table targets above are direct physical labels.
     @ No assembly entry aliases are retained in this module.

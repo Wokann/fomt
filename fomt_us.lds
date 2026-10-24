@@ -357,8 +357,8 @@ SECTIONS
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);
         asm/code_entities_080320DC.o(.text);
-        . = 0x324B8; /* JP/US-shared default entity-UI false handler. */
-        src/entity_ui.o(.text.entity_ui_default_no_action);
+        . = 0x324B8; /* Default actor action query. */
+        src/entity_actor.o(.text.entity_actor_default_no_action);
         . = 0x324BC; /* Entity sprite constructors, then native virtual methods. */
         src/entity_sprite.o(.text.entity_sprite_constructors);
         asm/code_entities_080320DC.o(.text.entity_sprite_constructor_after);
@@ -368,10 +368,10 @@ SECTIONS
         asm/code_entities_080320DC.o(.text.entity_ui_region_classification_after);
         . = 0x32A00; /* Default entity sprite preset. */
         src/entity_sprite.o(.text.entity_sprite_default_constructor);
-        . = 0x32A30; /* Continue the surrounding entity-UI ROM block. */
-        asm/code_entities_080320DC.o(.text.entity_ui_constructor_after);
+        . = 0x32A30; /* Actor animation countdown and visual update. */
+        src/entity_actor.o(.text.entity_actor_update);
         src/entity_sprite.o(.text);
-        asm/code_entities_080320DC.o(.text.entity_sprite_after);
+        src/entity_actor.o(.text.entity_actor_animation_status);
         src/entity_actor.o(.text.entity_actor_animation_index);
         asm/code_entities_080320DC.o(.text.entity_actor_animation_index_after);
         . = 0x33914; /* JP/US-shared Harvest Sprite task experience transform. */
@@ -913,7 +913,7 @@ SECTIONS
         src/scene_sprite.o(.gnu.linkonce.t._._22GameSceneIndexedSprite);
         asm/code_linkonce.o(.text.game_scene_indexed_sprite_dtor_after);
         src/entity_sprite.o(.gnu.linkonce.t._._29DefaultEntitySpriteController);
-        asm/code_linkonce.o(.text.entity_sprite_default_cleanup_after);
+        src/entity_actor.o(.gnu.linkonce.t._._12AActorEntity);
         src/entity_sprite.o(.gnu.linkonce.t._._22EntitySpriteController);
         asm/code_linkonce.o(.text.entity_sprite_cleanup_after);
         src/npc_entity.o(.text.FindTimedPathPointUpperBound);
@@ -1014,7 +1014,7 @@ SECTIONS
         . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_22GameSceneIndexedSprite);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6828);
         . = ALIGN(4); src/entity_sprite.o(.gnu.linkonce.d.__vt_29DefaultEntitySpriteController);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_aactor_entity);
+        . = ALIGN(4); src/entity_actor.o(.gnu.linkonce.d.__vt_12AActorEntity);
         . = ALIGN(4); src/entity_sprite.o(.gnu.linkonce.d.__vt_22EntitySpriteController);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_68c8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6904);

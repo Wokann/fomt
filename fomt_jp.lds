@@ -396,12 +396,11 @@ SECTIONS
         asm/code_entities.o(.text.livestock_actor_sheep_after_cure);
         src/player_actor.o(.text);
         asm/code_entities.o(.text.player_actor_update_state_after);
-        . = 0x31E70; /* JP ROM 0x08031E70, independently matched */
         src/entity_actor.o(.text);
         . = 0x321C0; /* JP ROM 0x080321C0, independently matched */
         asm/code_entities_080320DC.o(.text);
-        . = 0x3224C; /* JP counterpart of default entity-UI false handler. */
-        src/entity_ui.o(.text.entity_ui_default_no_action);
+        . = 0x3224C; /* Default actor action query. */
+        src/entity_actor.o(.text.entity_actor_default_no_action);
         . = 0x32250; /* Entity sprite constructors, then native virtual methods. */
         src/entity_sprite.o(.text.entity_sprite_constructors);
         asm/code_entities_080320DC.o(.text.entity_sprite_constructor_after);
@@ -411,10 +410,10 @@ SECTIONS
         asm/code_entities_080320DC.o(.text.entity_ui_region_classification_after);
         . = 0x32794; /* Default entity sprite preset. */
         src/entity_sprite.o(.text.entity_sprite_default_constructor);
-        . = 0x327C4; /* Continue the surrounding entity-UI ROM block. */
-        asm/code_entities_080320DC.o(.text.entity_ui_constructor_after);
+        . = 0x327C4; /* Actor animation countdown and visual update. */
+        src/entity_actor.o(.text.entity_actor_update);
         src/entity_sprite.o(.text);
-        asm/code_entities_080320DC.o(.text.entity_sprite_after);
+        src/entity_actor.o(.text.entity_actor_animation_status);
         src/entity_actor.o(.text.entity_actor_animation_index);
         asm/code_entities_080320DC.o(.text.entity_actor_animation_index_after);
         . = 0x336A8; /* JP counterpart of Harvest Sprite task experience transform. */
@@ -989,7 +988,7 @@ SECTIONS
         src/scene_sprite.o(.gnu.linkonce.t._._22GameSceneIndexedSprite);
         asm/code_linkonce.o(.text.game_scene_indexed_sprite_dtor_after);
         src/entity_sprite.o(.gnu.linkonce.t._._29DefaultEntitySpriteController);
-        asm/code_linkonce.o(.text.entity_sprite_default_cleanup_after);
+        src/entity_actor.o(.gnu.linkonce.t._._12AActorEntity);
         src/entity_sprite.o(.gnu.linkonce.t._._22EntitySpriteController);
         asm/code_linkonce.o(.text.entity_sprite_cleanup_after);
         src/npc_entity.o(.text.FindTimedPathPointUpperBound);
@@ -1092,7 +1091,7 @@ SECTIONS
         . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_22GameSceneIndexedSprite);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6828);
         . = ALIGN(4); src/entity_sprite.o(.gnu.linkonce.d.__vt_29DefaultEntitySpriteController);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_aactor_entity);
+        . = ALIGN(4); src/entity_actor.o(.gnu.linkonce.d.__vt_12AActorEntity);
         . = ALIGN(4); src/entity_sprite.o(.gnu.linkonce.d.__vt_22EntitySpriteController);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_68c8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6904);

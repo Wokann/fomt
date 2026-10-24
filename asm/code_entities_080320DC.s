@@ -7,9 +7,9 @@
     .syntax unified
     .thumb
     .align 2, 0
-    .global func_0803242C
+    .global vfunc_2C__12AActorEntityUi
     .thumb_func
-func_0803242C:
+vfunc_2C__12AActorEntityUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -616,73 +616,6 @@ func_08032770:
     bx	r2
     .align 2, 0
 
-    .section .text.entity_ui_constructor_after
-    .syntax unified
-    .thumb
-    .align 2, 0
-    .global func_08032A30
-    .thumb_func
-func_08032A30:
-    push	{lr}
-    adds	r1, r0, #0
-    ldrh	r0, [r1, #36]	@ 0x24
-    cmp	r0, #0
-    beq .Ljp_080327D2
-    subs	r0, #1
-    b .Ljp_080327D4
-.Ljp_080327D2:
-    ldrh	r0, [r1, #38]	@ 0x26
-.Ljp_080327D4:
-    strh	r0, [r1, #36]	@ 0x24
-    ldr	r2, [r1, #16]
-    cmp	r2, #0
-    beq .Ljp_080327E6
-    ldr	r0, [r2, #4]
-    ldr	r1, [r0, #12]
-    adds	r0, r2, #0
-    bl _call_via_r1
-.Ljp_080327E6:
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    .section .text.entity_sprite_after, "ax", %progbits
-    .syntax unified
-    .thumb
-    .align 2, 0
-.Ljp_080328BC:
-    ldrh	r0, [r0, #36]	@ 0x24
-    bx	lr
-.Ljp_080328C0:
-    push	{lr}
-    movs	r1, #0
-    ldrh	r0, [r0, #36]	@ 0x24
-    cmp	r0, #0
-    bne .Ljp_080328CC
-    movs	r1, #1
-.Ljp_080328CC:
-    adds	r0, r1, #0
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-    .global func_080328D4
-    .thumb_func
-func_080328D4:
-    bx	lr
-    .align 2, 0
-.Ljp_080328D8:
-    push	{lr}
-    adds	r2, r0, #0
-    ldrh	r0, [r2, #34]	@ 0x22
-    cmp	r0, r1
-    beq .Ljp_080328E8
-    adds	r0, r2, #0
-    bl SetAnim__12AActorEntityUi
-.Ljp_080328E8:
-    pop	{r0}
-    bx	r0
-.Ljp_080328EC:
-    ldrh	r0, [r0, #34]	@ 0x22
-    bx	lr
     .section .text.entity_actor_animation_index_after, "ax", %progbits
     .align 2, 0
 .Ljp_080328FC:
@@ -4865,9 +4798,9 @@ func_08034AE8:
     .thumb
     .align 2, 0
 
-    .global func_0803242C
+    .global vfunc_2C__12AActorEntityUi
     .thumb_func
-func_0803242C:
+vfunc_2C__12AActorEntityUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -5479,57 +5412,6 @@ func_080329DC:
     .align 2, 0
 
     @ EU entity UI code, actual Thumb instructions and relocations.
-    .section .text.entity_ui_constructor_after
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_08032A30
-    .thumb_func
-func_08032A30:
-    push	{lr}
-    adds	r1, r0, #0
-    ldrh	r0, [r1, #36]	@ 0x24
-    cmp	r0, #0
-    beq .Leu_08032A52
-    subs	r0, #1
-    b .Leu_08032A54
-.Leu_08032A52:
-    ldrh	r0, [r1, #38]	@ 0x26
-.Leu_08032A54:
-    strh	r0, [r1, #36]	@ 0x24
-    ldr	r2, [r1, #16]
-    cmp	r2, #0
-    beq .Leu_08032A66
-    ldr	r0, [r2, #4]
-    ldr	r1, [r0, #12]
-    adds	r0, r2, #0
-    bl _call_via_r1
-.Leu_08032A66:
-    pop	{r0}
-    bx	r0
-    .hword 0x0000
-    .section .text.entity_sprite_after, "ax", %progbits
-    .syntax unified
-    .thumb
-    .align 2, 0
-    .4byte 0x47708C80
-    .4byte 0x2100B500
-    .4byte 0x28008C80
-    .4byte 0x2101D100
-    .4byte 0xBC021C08
-    .4byte 0x00004708
-    .global func_08032B40
-    .thumb_func
-func_08032B40:
-    bx	lr
-    .hword 0x0000
-    .4byte 0x1C02B500
-    .4byte 0x42888C50
-    .4byte 0x1C10D002
-    .4byte 0xFB2EF7FF
-    .4byte 0x4700BC01
-    .4byte 0x47708C40
     .section .text.entity_actor_animation_index_after, "ax", %progbits
     .align 2, 0
     .4byte 0x1C02B500
@@ -8911,9 +8793,9 @@ func_08034AE8:
     .thumb
     .align 2, 0
 
-    .global func_0803242C
+    .global vfunc_2C__12AActorEntityUi
     .thumb_func
-func_0803242C:
+vfunc_2C__12AActorEntityUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -9525,57 +9407,6 @@ func_080329DC:
     .align 2, 0
 
     @ DE entity UI code, actual Thumb instructions and relocations.
-    .section .text.entity_ui_constructor_after
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_08032A30
-    .thumb_func
-func_08032A30:
-    push	{lr}
-    adds	r1, r0, #0
-    ldrh	r0, [r1, #36]	@ 0x24
-    cmp	r0, #0
-    beq .Lde_08032952
-    subs	r0, #1
-    b .Lde_08032954
-.Lde_08032952:
-    ldrh	r0, [r1, #38]	@ 0x26
-.Lde_08032954:
-    strh	r0, [r1, #36]	@ 0x24
-    ldr	r2, [r1, #16]
-    cmp	r2, #0
-    beq .Lde_08032966
-    ldr	r0, [r2, #4]
-    ldr	r1, [r0, #12]
-    adds	r0, r2, #0
-    bl _call_via_r1
-.Lde_08032966:
-    pop	{r0}
-    bx	r0
-    .hword 0x0000
-    .section .text.entity_sprite_after, "ax", %progbits
-    .syntax unified
-    .thumb
-    .align 2, 0
-    .4byte 0x47708C80
-    .4byte 0x2100B500
-    .4byte 0x28008C80
-    .4byte 0x2101D100
-    .4byte 0xBC021C08
-    .4byte 0x00004708
-    .global func_08032B40
-    .thumb_func
-func_08032B40:
-    bx	lr
-    .hword 0x0000
-    .4byte 0x1C02B500
-    .4byte 0x42888C50
-    .4byte 0x1C10D002
-    .4byte 0xFB2EF7FF
-    .4byte 0x4700BC01
-    .4byte 0x47708C40
     .section .text.entity_actor_animation_index_after, "ax", %progbits
     .align 2, 0
     .4byte 0x1C02B500
@@ -12956,9 +12787,9 @@ func_08034AE8:
     .thumb
     .align 2, 0
 
-    .global func_0803242C
+    .global vfunc_2C__12AActorEntityUi
     .thumb_func
-func_0803242C:
+vfunc_2C__12AActorEntityUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -13570,57 +13401,6 @@ func_080329DC:
     .align 2, 0
 
     @ US/EU/DE entity UI code, actual Thumb instructions and relocations.
-    .section .text.entity_ui_constructor_after
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_08032A30
-    .thumb_func
-func_08032A30:
-    push	{lr}
-    adds	r1, r0, #0
-    ldrh	r0, [r1, #36]	@ 0x24
-    cmp	r0, #0
-    beq .Lus_08032A3E
-    subs	r0, #1
-    b .Lus_08032A40
-.Lus_08032A3E:
-    ldrh	r0, [r1, #38]	@ 0x26
-.Lus_08032A40:
-    strh	r0, [r1, #36]	@ 0x24
-    ldr	r2, [r1, #16]
-    cmp	r2, #0
-    beq .Lus_08032A52
-    ldr	r0, [r2, #4]
-    ldr	r1, [r0, #12]
-    adds	r0, r2, #0
-    bl _call_via_r1
-.Lus_08032A52:
-    pop	{r0}
-    bx	r0
-    .hword 0x0000
-    .section .text.entity_sprite_after, "ax", %progbits
-    .syntax unified
-    .thumb
-    .align 2, 0
-    .4byte 0x47708C80
-    .4byte 0x2100B500
-    .4byte 0x28008C80
-    .4byte 0x2101D100
-    .4byte 0xBC021C08
-    .4byte 0x00004708
-    .global func_08032B40
-    .thumb_func
-func_08032B40:
-    bx	lr
-    .hword 0x0000
-    .4byte 0x1C02B500
-    .4byte 0x42888C50
-    .4byte 0x1C10D002
-    .4byte 0xFB2EF7FF
-    .4byte 0x4700BC01
-    .4byte 0x47708C40
     .section .text.entity_actor_animation_index_after, "ax", %progbits
     .align 2, 0
     .4byte 0x1C02B500

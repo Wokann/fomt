@@ -7410,36 +7410,6 @@ func_080DC840:
     bx r1
     .byte 0x00, 0x00
     .4byte __vt_19GameSceneSpriteBase
-    .section .text.entity_sprite_default_cleanup_after, "ax", %progbits
-    .align 2, 0
-    .global func_080DC078
-    .thumb_func
-func_080DC078:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, [pc, #0x28]
-    str r0, [r4, #0x14]
-    ldr r1, [r4, #0x10]
-    cmp r1, #0
-    beq .Lauto_080DC094
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DC094:
-    movs r0, #1
-    ands r0, r5
-    cmp r0, #0
-    beq .Lauto_080DC0A2
-    adds r0, r4, #0
-    bl __builtin_delete
-    .Lauto_080DC0A2:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x90, 0x56, 0x0E, 0x08
     .section .text.entity_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
     .global func_080DC0E0
@@ -19383,18 +19353,6 @@ func_080DC840: @ 0x080DC840
 	bx r1
 	.align 2, 0
 .L080DC88C: .4byte __vt_19GameSceneSpriteBase
-    .section .text.entity_sprite_default_cleanup_after, "ax", %progbits
-    .align 2, 0
-	.global func_080DC8C4
-	.thumb_func
-func_080DC8C4:
-	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x0A, 0x48, 0x60, 0x61, 0x21, 0x69
-	.byte 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF7, 0xF7, 0x1A, 0xF8
-	.byte 0x01, 0x20, 0x28, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x20, 0x1C
-	bl __builtin_delete
-	.byte 0x30, 0xBC
-	.byte 0x01, 0xBC, 0x00, 0x47
-	.4byte __vt_7AEntity
     .section .text.entity_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
 	.global func_080DC92C
