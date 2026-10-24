@@ -6580,7 +6580,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     ldr r0, [r7, #8]
     cmp r0, #0
     bne .Ljp_0804F756
-    bl sub_080500CE
+    bl .Ljp_ui_payload_inactive_exit
 .Ljp_0804F756:
     cmp r0, #6
     beq .Ljp_0804F76E
@@ -7782,11 +7782,9 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     bl _call_via_r2
     b .Ljp_0805010E
 
-    .global sub_080500CE
-    .thumb
-    .thumb_func
-    .type sub_080500CE, function
-sub_080500CE: @ 0x080500CE
+    @ A long Thumb BL enters this block with the parent's r7 and stack.
+    @ It exits through the enclosing UI update's epilogue, not back to LR.
+.Ljp_ui_payload_inactive_exit:
     ldrb r0, [r7]
     lsls r0, r0, #0x1e
     lsrs r0, r0, #0x1e
@@ -146876,7 +146874,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	ldr r0, [r7, #8]
 	cmp r0, #0
 	bne .L0804F9CA
-	bl sub_08050342
+	bl .Lui_payload_inactive_exit
 .L0804F9CA:
 	cmp r0, #6
 	beq .L0804F9E2
@@ -148078,8 +148076,9 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	bl _call_via_r2
 	b .L08050382
 
-	non_word_aligned_thumb_func_start sub_08050342
-sub_08050342: @ 0x08050342
+	@ Intra-function long branch: retain BL encoding, not a C-callable entry.
+	@ This block shares the UI update's r7, stack and final epilogue.
+.Lui_payload_inactive_exit:
 	ldrb r0, [r7]
 	lsls r0, r0, #0x1e
 	lsrs r0, r0, #0x1e
