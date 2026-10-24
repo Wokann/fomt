@@ -8,7 +8,7 @@
 #include "more_items.hh"
 #include "time_of_day.hh"
 #include "money_account.hh"
-#include "actor_state.hh"
+#include "mine_floor.hh"
 #include "cursed_tool.hh"
 #include "cooking_recipe_inventory.hh"
 #include "event_state.hh"
@@ -193,7 +193,7 @@ struct GameStateSaveImage {
     AnimalFestivalOpponents animal_festival_opponents;
     TVShoppingOrderState tv_shopping;
     FishingRecords fishing_records;
-    ActorStateGrid actor_state_grid;
+    MineFloorState mine_floor;
     CursedToolState cursed_tools;
     GameStateActorRecord actor_records[3];
     // Event-control mode also gates player stamina/fatigue action paths.
@@ -229,7 +229,7 @@ typedef char GameStateSaveImageUnknown2C48Check[offsetof(GameStateSaveImage, unk
 typedef char GameStateSaveImageAnimalFestivalOpponentsCheck[offsetof(GameStateSaveImage, animal_festival_opponents) == 0x2C4C ? 1 : -1];
 typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
 typedef char GameStateSaveImageFishingRecordsCheck[offsetof(GameStateSaveImage, fishing_records) == 0x2C80 ? 1 : -1];
-typedef char GameStateSaveImageActorGridCheck[offsetof(GameStateSaveImage, actor_state_grid) == 0x2E58 ? 1 : -1];
+typedef char GameStateSaveImageMineFloorCheck[offsetof(GameStateSaveImage, mine_floor) == 0x2E58 ? 1 : -1];
 typedef char GameStateSaveImageCursedToolsCheck[offsetof(GameStateSaveImage, cursed_tools) == 0x3480 ? 1 : -1];
 typedef char GameStateSaveImageActorRecordsCheck[offsetof(GameStateSaveImage, actor_records) == 0x3494 ? 1 : -1];
 typedef char GameStateSaveImageScriptedNpcControlCheck[offsetof(GameStateSaveImage, scripted_npc_control) == 0x34C4 ? 1 : -1];

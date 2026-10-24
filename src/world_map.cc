@@ -1,4 +1,5 @@
 #include "world_map.hh"
+#include "actor_state.hh"
 #include "compression.hh"
 #include "game_state.hh"
 #include "map_data.hh"

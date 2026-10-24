@@ -95585,20 +95585,20 @@ gUnk_MapDataResource_361:
 	.global gUnk_MapDataResource_362
 gUnk_MapDataResource_362:
     .incbin "graphics/maps/shared/map_60/layer_5.tilemap.lz"
-	.global gActorStateGridCellType0Data
-gActorStateGridCellType0Data:
+	.global gMineFloorCellType0Tilemap
+gMineFloorCellType0Tilemap:
 	.byte 0xFF, 0x03, 0xFF, 0x03, 0xFF, 0x03, 0xFF, 0x03, 0xFF, 0x03, 0xFF, 0x03
-	.global gActorStateGridCellType1Data
-gActorStateGridCellType1Data:
+	.global gMineFloorCellType1Tilemap
+gMineFloorCellType1Tilemap:
 	.byte 0xFF, 0x03, 0xFF, 0x03, 0xAA, 0x60, 0xAB, 0x60, 0xAC, 0x60, 0xAD, 0x60
-	.global gActorStateGridCellType2Data
-gActorStateGridCellType2Data:
+	.global gMineFloorCellType2Tilemap
+gMineFloorCellType2Tilemap:
 	.byte 0xFF, 0x03, 0xFF, 0x03, 0xB4, 0x20, 0xB5, 0x20, 0xB6, 0x20, 0xB7, 0x20
-	.global gActorStateGridCellType3Data
-gActorStateGridCellType3Data:
+	.global gMineFloorCellType3Tilemap
+gMineFloorCellType3Tilemap:
 	.byte 0xFF, 0x03, 0xFF, 0x03, 0xB0, 0x20, 0xB1, 0x20, 0xB2, 0x20, 0xB3, 0x20
-	.global gActorStateGridCellType4Data
-gActorStateGridCellType4Data:
+	.global gMineFloorCellType4Tilemap
+gMineFloorCellType4Tilemap:
 	.byte 0xFF, 0x03, 0xFF, 0x03, 0xB8, 0x70, 0xB9, 0x70, 0xBA, 0x70, 0xBB, 0x70
 	.global gUnk_MapDataResource_365
 gUnk_MapDataResource_365:

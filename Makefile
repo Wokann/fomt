@@ -369,7 +369,7 @@ $(BUILD_DIR)/src/entity_location.o $(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/sr
 $(BUILD_DIR)/src/livestock_actor.o: CXXFLAGS += -ffunction-sections
 
 # Grid methods are interleaved with unrecovered actor routines in the ROM.
-$(BUILD_DIR)/src/actor_state.o: CXXFLAGS += -ffunction-sections
+$(BUILD_DIR)/src/actor_state.o $(BUILD_DIR)/src/mine_floor.o: CXXFLAGS += -ffunction-sections
 
 # Relative-facing conversion precedes the movement-bound-dependent selectors.
 $(BUILD_DIR)/src/actor_facing.o: CXXFLAGS += -ffunction-sections

@@ -613,44 +613,29 @@ SECTIONS
         . = 0x9CCD8; /* Fishing-record storage and queries. */
         src/fishing_results_data.o(.text);
         . = 0x9CDEC; /* DE ROM 0x0809CDEC, remaining raw actor code */
-        src/actor_state.o(.text.__14ActorStateGrid);
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809CF34);
-        . = 0x9D378; /* DE ROM 0x0809D378, map a segmented input value */
-        src/code_actor_0809D418.o(.text);
-        . = 0x9D3D0; /* DE ROM 0x0809D3D0, remaining raw actor code */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809D470);
-        . = 0x9D738; /* DE ROM 0x0809D738, classify actor-state value */
-        src/code_actor_0809D7D8.o(.text);
-        . = 0x9D800; /* DE ROM 0x0809D800, read state value */
-        src/code_actor_0809D8A0.o(.text);
-        . = 0x9D804; /* DE ROM 0x0809D804, map one state value */
-        src/code_actor_0809D8A4.o(.text);
-        . = 0x9D818; /* DE ROM 0x0809D818, map two state values */
-        src/code_actor_0809D8B8.o(.text);
-        . = 0x9D834; /* DE ROM 0x0809D834, read packed grid-cell value */
-        src/actor_state.o(.text.func_0809D8D4);
-        . = 0x9D848; /* DE ROM 0x0809D848, remaining raw actor code */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809D8E8);
-        . = 0x9DE8C; /* DE ROM 0x0809DE8C, query tool availability by group */
-        src/code_actor_0809DF2C.o(.text);
-        . = 0x9DF0C; /* DE ROM 0x0809DF0C, count actor-state flag bits */
-        src/actor_state.o(.text.func_0809DFAC);
-        . = 0x9DF8C; /* DE ROM 0x0809DF8C, count actor-state flag bits */
-        src/actor_state.o(.text.func_0809E02C);
-        . = 0x9E00C; /* DE ROM 0x0809E00C, select actor-state cell-type data */
-        src/actor_state.o(.text.func_0809E0AC);
-        . = 0x9E078; /* DE ROM 0x0809E078, remaining raw actor code */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809E118);
-        . = 0x9E0D4; /* DE ROM 0x0809E0D4, read actor-state bit 0 */
-        src/actor_state.o(.text.func_0809E174);
-        . = 0x9E0E4; /* DE ROM 0x0809E0E4, read actor-state bit 2 */
-        src/actor_state.o(.text.func_0809E184);
-        . = 0x9E0F4; /* DE ROM 0x0809E0F4, read actor-state bit 3 */
-        src/actor_state.o(.text.func_0809E194);
-        . = 0x9E104; /* DE ROM 0x0809E104, read actor-state bit 4 */
-        src/actor_state.o(.text.func_0809E1A4);
-        . = 0x9E114; /* DE ROM 0x0809E114, remaining raw actor code */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809E1B4);
+        /* Mine layout storage, generation, lookup and cell operations. */
+        src/mine_floor.o(.text.__14MineFloorState);
+        asm/mine_floor.o(.text.mine_floor_generation);
+        src/mine_floor.o(.text.GetSpringBuriedItemTableIndex__C14MineFloorStateUi);
+        asm/mine_floor.o(.text.mine_floor_placement);
+        src/mine_floor.o(
+            .text.GetLakeRockTableIndex__C14MineFloorStateUi
+            .text.GetLayoutKind__C14MineFloorState
+            .text.GetWidth__C14MineFloorState
+            .text.GetHeight__C14MineFloorState
+            .text.GetCellType__C14MineFloorStateUiUi);
+        asm/mine_floor.o(.text.mine_floor_cell_actions);
+        src/mine_floor.o(
+            .text.HasCursedTool__C14MineFloorStateUiRC18GameStateSaveImage
+            .text.CountFlags13To21__C14MineFloorState
+            .text.CountFlags1To9__C14MineFloorState
+            .text.GetCellTilemap__C14MineFloorStateUiUi
+            .text.CountCellValues__C14MineFloorStatePUc
+            .text.GetFlag0__C14MineFloorState
+            .text.GetFlag10__C14MineFloorState
+            .text.GetFlag11__C14MineFloorState
+            .text.GetFlag12__C14MineFloorState);
+        asm/mine_floor.o(.text.mine_floor_item_weights);
         src/npc.o(.text .text.*);
         src/bachelorette.o(.text);
         src/harvest_sprite.o(.text .text.*__*);
@@ -1347,7 +1332,8 @@ SECTIONS
         /* Fishing-record regional data: names, lookup, trailer. */
          src/fishing_results_data.o(.rodata);
         FILL(0x00);
-         src/actor_runtime_data.o(.rodata);
+         src/mine_floor.o(.rodata);
+        src/actor_runtime_data.o(.rodata);
          src/character_names_empty.o(.rodata);
          src/bachelorette.o(.rodata);
         /* Character-name regional data: names, lookup, trailer. */

@@ -21594,7 +21594,7 @@ func_0802ADE8: @ 0x0802ADE8
     ldr r0, [r5, #0x34]
     ldr r1, .Ljp_0802AEC4 @ =0x00002E58
     adds r0, r0, r1
-    bl func_0809DFAC
+    bl CountFlags13To21__C14MineFloorState
     lsls r0, r0, #0x18
     lsrs r0, r0, #0x18
     cmp r0, #9
@@ -21638,7 +21638,7 @@ func_0802ADE8: @ 0x0802ADE8
     ldr r0, [r5, #0x34]
     ldr r1, .Ljp_0802AEC4 @ =0x00002E58
     adds r0, r0, r1
-    bl func_0809E02C
+    bl CountFlags1To9__C14MineFloorState
     lsls r0, r0, #0x18
     lsrs r0, r0, #0x18
     cmp r0, #9
@@ -21717,25 +21717,25 @@ func_0802ADE8: @ 0x0802ADE8
     ldr r0, [r5, #0x34]
     ldr r4, .Ljp_0802AF68 @ =0x00002E58
     adds r0, r0, r4
-    bl func_0809E184
+    bl GetFlag10__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802AF50
     ldr r0, [r5, #0x34]
     adds r0, r0, r4
-    bl func_0809E194
+    bl GetFlag11__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802AF50
     ldr r0, [r5, #0x34]
     adds r0, r0, r4
-    bl func_0809DFAC
+    bl CountFlags13To21__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802AF50
     ldr r0, [r5, #0x34]
     adds r0, r0, r4
-    bl func_0809E1A4
+    bl GetFlag12__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802AF50
@@ -21798,14 +21798,14 @@ func_0802ADE8: @ 0x0802ADE8
     ldr r0, [r5, #0x34]
     ldr r1, .Ljp_0802AFEC @ =0x00002E58
     adds r0, r0, r1
-    bl func_0809E174
+    bl GetFlag0__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802AFE4
     ldr r0, [r5, #0x34]
     ldr r1, .Ljp_0802AFEC @ =0x00002E58
     adds r0, r0, r1
-    bl func_0809E02C
+    bl CountFlags1To9__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802AFE4
@@ -55883,7 +55883,7 @@ func_0802B054: @ 0x0802B054
     ldr r0, [r5, #0x34]
     ldr r1, .L0802B130 @ =0x00002E58
     adds r0, r0, r1
-    bl func_0809DFAC
+    bl CountFlags13To21__C14MineFloorState
     lsls r0, r0, #0x18
     lsrs r0, r0, #0x18
     cmp r0, #9
@@ -55927,7 +55927,7 @@ func_0802B054: @ 0x0802B054
     ldr r0, [r5, #0x34]
     ldr r1, .L0802B130 @ =0x00002E58
     adds r0, r0, r1
-    bl func_0809E02C
+    bl CountFlags1To9__C14MineFloorState
     lsls r0, r0, #0x18
     lsrs r0, r0, #0x18
     cmp r0, #9
@@ -56006,25 +56006,25 @@ func_0802B054: @ 0x0802B054
     ldr r0, [r5, #0x34]
     ldr r4, .L0802B1D4 @ =0x00002E58
     adds r0, r0, r4
-    bl func_0809E184
+    bl GetFlag10__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802B1BC
     ldr r0, [r5, #0x34]
     adds r0, r0, r4
-    bl func_0809E194
+    bl GetFlag11__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802B1BC
     ldr r0, [r5, #0x34]
     adds r0, r0, r4
-    bl func_0809DFAC
+    bl CountFlags13To21__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802B1BC
     ldr r0, [r5, #0x34]
     adds r0, r0, r4
-    bl func_0809E1A4
+    bl GetFlag12__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802B1BC
@@ -56087,14 +56087,14 @@ func_0802B054: @ 0x0802B054
     ldr r0, [r5, #0x34]
     ldr r1, .L0802B258 @ =0x00002E58
     adds r0, r0, r1
-    bl func_0809E174
+    bl GetFlag0__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802B250
     ldr r0, [r5, #0x34]
     ldr r1, .L0802B258 @ =0x00002E58
     adds r0, r0, r1
-    bl func_0809E02C
+    bl CountFlags1To9__C14MineFloorState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802B250
