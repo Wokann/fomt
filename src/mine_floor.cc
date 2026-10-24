@@ -348,6 +348,39 @@ u32 MineFloorState::GetCellType(u32 column, u32 row) const
     return cells[row][column].type;
 }
 
+u32 MineFloorState::DigSoil(u32 column, u32 row, GameStateSaveImage & game)
+{
+    u32 result = 0;
+    if (cells[row][column].type == 0) {
+        result = ProcessItemCode(cells[row][column].buried_item, game);
+        if (result == 1) {
+            cells[row][column].type = 2;
+            result = 0;
+            for (i32 clear_row = 0; clear_row < static_cast<i32>(GetHeight()); ++clear_row) {
+                for (i32 clear_column = 0; clear_column < static_cast<i32>(GetWidth()); ++clear_column) {
+                    if (cells[clear_row][clear_column].buried_item == 1)
+                        cells[clear_row][clear_column].buried_item = 0;
+                }
+            }
+        } else {
+            cells[row][column].type = 1;
+        }
+        cells[row][column].buried_item = 0;
+    }
+    return result;
+}
+
+u32 MineFloorState::BreakRock(u32 column, u32 row, GameStateSaveImage & game)
+{
+    u32 result = 0;
+    if (cells[row][column].type == 4) {
+        result = ProcessItemCode(cells[row][column].rock_item, game);
+        cells[row][column].type = 0;
+        cells[row][column].rock_item = 0;
+    }
+    return result;
+}
+
 bool MineFloorState::HasCursedTool(u32 group, GameStateSaveImage const & game) const
 {
     bool available = false;

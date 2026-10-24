@@ -616,6 +616,9 @@ SECTIONS
             .text.GetWidth__C14MineFloorState
             .text.GetHeight__C14MineFloorState
             .text.GetCellType__C14MineFloorStateUiUi);
+        src/mine_floor.o(
+            .text.DigSoil__14MineFloorStateUiUiR18GameStateSaveImage
+            .text.BreakRock__14MineFloorStateUiUiR18GameStateSaveImage);
         asm/mine_floor.o(.text.mine_floor_cell_actions);
         src/mine_floor.o(
             .text.HasCursedTool__C14MineFloorStateUiRC18GameStateSaveImage

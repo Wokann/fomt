@@ -27,6 +27,12 @@ struct MineFloorState
     u32 GetWidth() const;
     u32 GetHeight() const;
     u32 GetCellType(u32 column, u32 row) const;
+    // These return mine-local result codes, not global ITEM_* IDs. A revealed
+    // down ladder is consumed by DigSoil and reported as zero to its caller.
+    u32 DigSoil(u32 column, u32 row, GameStateSaveImage & game);
+    u32 BreakRock(u32 column, u32 row, GameStateSaveImage & game);
+    // Eligibility checks and their side effects still have a native body.
+    u32 ProcessItemCode(u32 code, GameStateSaveImage & game);
     bool HasCursedTool(u32 group, GameStateSaveImage const & game) const;
     // These count exactly the indicated saved bits; their item identities
     // are not yet established here and are deliberately not guessed.
