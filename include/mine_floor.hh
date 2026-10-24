@@ -19,6 +19,7 @@ struct MineFloorState
 {
     MineFloorState();
     u32 GetSpringBuriedItemTableIndex(u32 floor) const;
+    u32 GetSpringRockTableIndex(u32 floor) const;
     // Still a native Thumb body; no source-level table approximation.
     u32 GetLakeBuriedItemTableIndex(u32 floor) const;
     u32 GetLakeRockTableIndex(u32 floor) const;

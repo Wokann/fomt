@@ -234,6 +234,46 @@ u32 MineFloorState::GetSpringBuriedItemTableIndex(u32 value) const
     return result;
 }
 
+// Selects one of the 21 spring-mine rock-weight rows.
+u32 MineFloorState::GetSpringRockTableIndex(u32 floor) const
+{
+    u32 result;
+    switch (floor) {
+    case 20: result = 12; break;
+    case 30: result = 14; break;
+    case 40: result = 16; break;
+    case 60:
+    case 102:
+    case 123:
+    case 152:
+    case 155:
+    case 171:
+    case 190:
+    case 202:
+    case 222:
+        result = 18; break;
+    case 255: result = 20; break;
+    default:
+        result = floor;
+        if (floor > 10) {
+            result = 11;
+            if (floor > 19) {
+                result = 13;
+                if (floor > 29) {
+                    result = 15;
+                    if (floor > 39) {
+                        result = 19;
+                        if (floor <= 230)
+                            result = 17;
+                    }
+                }
+            }
+        }
+        break;
+    }
+    return result;
+}
+
 u32 MineFloorState::GetLakeRockTableIndex(u32 value) const
 {
     switch (value)

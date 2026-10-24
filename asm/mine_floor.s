@@ -272,7 +272,7 @@ func_0809CF34:
     mov	r1, r8
     mov	r2, sl
     mov	r3, sp
-    bl func_0809D470 + 0x90
+    bl func_0809D500
 .Ljp_0809CB66:
     mov	r0, r8
     cmp	r0, #0
@@ -500,7 +500,7 @@ func_0809CF34:
 .Ljp_0809CD12:
     mov	r0, sl
     ldr	r1, [sp, #0]
-    bl func_0809D470
+    bl GetSpringRockTableIndex__C14MineFloorStateUi
     str	r0, [sp, #20]
     ldr	r1, [sp, #4]
     cmp	r1, #0
@@ -664,94 +664,8 @@ func_0809CF34:
 
     .section .text.mine_floor_placement
     .align 2, 0
-    .Lcode_actor_0809D470:
-    .global func_0809D470
-    .thumb_func
-func_0809D470:
-    push	{lr}
-    cmp	r1, #152	@ 0x98
-    beq .Ljp_0809CF0A
-    cmp	r1, #152	@ 0x98
-    bhi .Ljp_0809CED8
-    cmp	r1, #40	@ 0x28
-    beq .Ljp_0809CF06
-    cmp	r1, #40	@ 0x28
-    bhi .Ljp_0809CEC4
-    cmp	r1, #20
-    beq .Ljp_0809CEFE
-    cmp	r1, #30
-    beq .Ljp_0809CF02
-    b .Ljp_0809CF12
-.Ljp_0809CEC4:
-    cmp	r1, #102	@ 0x66
-    beq .Ljp_0809CF0A
-    cmp	r1, #102	@ 0x66
-    bhi .Ljp_0809CED2
-    cmp	r1, #60	@ 0x3c
-    beq .Ljp_0809CF0A
-    b .Ljp_0809CF12
-.Ljp_0809CED2:
-    cmp	r1, #123	@ 0x7b
-    beq .Ljp_0809CF0A
-    b .Ljp_0809CF12
-.Ljp_0809CED8:
-    cmp	r1, #190	@ 0xbe
-    beq .Ljp_0809CF0A
-    cmp	r1, #190	@ 0xbe
-    bhi .Ljp_0809CEEA
-    cmp	r1, #155	@ 0x9b
-    beq .Ljp_0809CF0A
-    cmp	r1, #171	@ 0xab
-    beq .Ljp_0809CF0A
-    b .Ljp_0809CF12
-.Ljp_0809CEEA:
-    cmp	r1, #222	@ 0xde
-    beq .Ljp_0809CF0A
-    cmp	r1, #222	@ 0xde
-    bhi .Ljp_0809CEF8
-    cmp	r1, #202	@ 0xca
-    beq .Ljp_0809CF0A
-    b .Ljp_0809CF12
-.Ljp_0809CEF8:
-    cmp	r1, #255	@ 0xff
-    beq .Ljp_0809CF0E
-    b .Ljp_0809CF12
-.Ljp_0809CEFE:
-    movs	r0, #12
-    b .Ljp_0809CF32
-.Ljp_0809CF02:
-    movs	r0, #14
-    b .Ljp_0809CF32
-.Ljp_0809CF06:
-    movs	r0, #16
-    b .Ljp_0809CF32
-.Ljp_0809CF0A:
-    movs	r0, #18
-    b .Ljp_0809CF32
-.Ljp_0809CF0E:
-    movs	r0, #20
-    b .Ljp_0809CF32
-.Ljp_0809CF12:
-    adds	r0, r1, #0
-    cmp	r0, #10
-    bls .Ljp_0809CF32
-    movs	r0, #11
-    cmp	r1, #19
-    bls .Ljp_0809CF32
-    movs	r0, #13
-    cmp	r1, #29
-    bls .Ljp_0809CF32
-    movs	r0, #15
-    cmp	r1, #39	@ 0x27
-    bls .Ljp_0809CF32
-    movs	r0, #19
-    cmp	r1, #230	@ 0xe6
-    bhi .Ljp_0809CF32
-    movs	r0, #17
-.Ljp_0809CF32:
-    pop	{r1}
-    bx	r1
-    .align 2, 0
+    thumb_func_start func_0809D500
+func_0809D500:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -2090,7 +2004,7 @@ CopyCurrentItemWeights__C14MineFloorStatePUcRC18GameStateSaveImage:
     bge .Ljp_0809DCBA
     adds	r0, r7, #0
     adds	r1, r4, #0
-    bl func_0809D470
+    bl GetSpringRockTableIndex__C14MineFloorStateUi
     adds	r2, r0, #0
     ldr r1, .Ljp_0809DD04
     lsls	r0, r2, #2
@@ -2618,7 +2532,7 @@ func_0809D168: @ 0x0809D168
 .L0809D2DA:
     mov r0, sl
     ldr r1, [sp]
-    bl func_0809D470
+    bl GetSpringRockTableIndex__C14MineFloorStateUi
     str r0, [sp, #0x14]
     ldr r1, [sp, #4]
     cmp r1, #0
@@ -2779,93 +2693,6 @@ func_0809D168: @ 0x0809D168
 .L0809D414: .4byte gSpringMineRockItemWeights
 
     .section .text.mine_floor_placement
-    thumb_func_start func_0809D470
-func_0809D470: @ 0x0809D470
-    push {lr}
-    cmp r1, #0x98
-    beq .L0809D4D2
-    cmp r1, #0x98
-    bhi .L0809D4A0
-    cmp r1, #0x28
-    beq .L0809D4CE
-    cmp r1, #0x28
-    bhi .L0809D48C
-    cmp r1, #0x14
-    beq .L0809D4C6
-    cmp r1, #0x1e
-    beq .L0809D4CA
-    b .L0809D4DA
-.L0809D48C:
-    cmp r1, #0x66
-    beq .L0809D4D2
-    cmp r1, #0x66
-    bhi .L0809D49A
-    cmp r1, #0x3c
-    beq .L0809D4D2
-    b .L0809D4DA
-.L0809D49A:
-    cmp r1, #0x7b
-    beq .L0809D4D2
-    b .L0809D4DA
-.L0809D4A0:
-    cmp r1, #0xbe
-    beq .L0809D4D2
-    cmp r1, #0xbe
-    bhi .L0809D4B2
-    cmp r1, #0x9b
-    beq .L0809D4D2
-    cmp r1, #0xab
-    beq .L0809D4D2
-    b .L0809D4DA
-.L0809D4B2:
-    cmp r1, #0xde
-    beq .L0809D4D2
-    cmp r1, #0xde
-    bhi .L0809D4C0
-    cmp r1, #0xca
-    beq .L0809D4D2
-    b .L0809D4DA
-.L0809D4C0:
-    cmp r1, #0xff
-    beq .L0809D4D6
-    b .L0809D4DA
-.L0809D4C6:
-    movs r0, #0xc
-    b .L0809D4FA
-.L0809D4CA:
-    movs r0, #0xe
-    b .L0809D4FA
-.L0809D4CE:
-    movs r0, #0x10
-    b .L0809D4FA
-.L0809D4D2:
-    movs r0, #0x12
-    b .L0809D4FA
-.L0809D4D6:
-    movs r0, #0x14
-    b .L0809D4FA
-.L0809D4DA:
-    adds r0, r1, #0
-    cmp r0, #0xa
-    bls .L0809D4FA
-    movs r0, #0xb
-    cmp r1, #0x13
-    bls .L0809D4FA
-    movs r0, #0xd
-    cmp r1, #0x1d
-    bls .L0809D4FA
-    movs r0, #0xf
-    cmp r1, #0x27
-    bls .L0809D4FA
-    movs r0, #0x13
-    cmp r1, #0xe6
-    bhi .L0809D4FA
-    movs r0, #0x11
-.L0809D4FA:
-    pop {r1}
-    bx r1
-    .align 2, 0
-
     thumb_func_start func_0809D500
 func_0809D500: @ 0x0809D500
     push {r4, r5, r6, r7, lr}
@@ -4089,7 +3916,7 @@ CopyCurrentItemWeights__C14MineFloorStatePUcRC18GameStateSaveImage:
     .byte 0x02, 0x1C, 0x13, 0x49, 0x90, 0x00, 0x80, 0x18, 0x42, 0x18, 0x12, 0x4D
     .byte 0x09, 0x23, 0x01, 0xCD, 0x30, 0x18, 0x11, 0x78, 0x01, 0x70, 0x01, 0x32, 0x01, 0x3B, 0x00, 0x2B
     .byte 0xF7, 0xDA, 0x38, 0x1C, 0x21, 0x1C
-    bl func_0809D470
+    bl GetSpringRockTableIndex__C14MineFloorStateUi
     .byte 0x02, 0x1C, 0x0B, 0x49, 0x90, 0x00
     .byte 0x80, 0x18, 0x40, 0x00, 0x42, 0x18, 0x0A, 0x4C, 0x0D, 0x23, 0x01, 0xCC, 0x30, 0x18, 0x11, 0x78
     .byte 0x01, 0x70, 0x01, 0x32, 0x01, 0x3B, 0x00, 0x2B, 0xF7, 0xDA, 0x04, 0xB0, 0xF0, 0xBC, 0x01, 0xBC
