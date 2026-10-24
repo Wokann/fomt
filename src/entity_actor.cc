@@ -1,3 +1,5 @@
+#include "prelude.h"
+#pragma implementation "entity_actor.hh"
 #include "entity_actor.hh"
 
 #include <stdlib.h>

@@ -359,8 +359,9 @@ SECTIONS
         asm/code_entities_080320DC.o(.text);
         . = 0x324B8; /* JP/US-shared default entity-UI false handler. */
         src/entity_ui.o(.text.entity_ui_default_no_action);
-        . = 0x324BC; /* Continue the surrounding entity-UI ROM block. */
-        asm/code_entities_080320DC.o(.text.entity_ui_default_no_action_after);
+        . = 0x324BC; /* Entity sprite constructors, then native virtual methods. */
+        src/entity_sprite.o(.text.entity_sprite_constructors);
+        asm/code_entities_080320DC.o(.text.entity_sprite_constructor_after);
         . = 0x32900; /* JP/US-shared entity-UI coordinate classifier. */
         src/entity_ui.o(.text.entity_ui_region_classification);
         . = 0x32934; /* Continue the surrounding entity-UI ROM block. */
@@ -371,6 +372,8 @@ SECTIONS
         asm/code_entities_080320DC.o(.text.entity_ui_constructor_after);
         src/entity_sprite.o(.text);
         asm/code_entities_080320DC.o(.text.entity_sprite_after);
+        src/entity_actor.o(.text.entity_actor_animation_index);
+        asm/code_entities_080320DC.o(.text.entity_actor_animation_index_after);
         . = 0x33914; /* JP/US-shared Harvest Sprite task experience transform. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_task_experience);
         . = 0x33928; /* Continue the surrounding entity-UI ROM block. */

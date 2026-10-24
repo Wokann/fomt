@@ -107,6 +107,7 @@ typedef char ActorMovementBoundsFlagsCheck[offsetof(ActorMovementBounds, unk_10)
 typedef char ActorMovementBoundsXProbeCheck[offsetof(ActorMovementBounds, x_probe) == 0x2C ? 1 : -1];
 typedef char ActorMovementBoundsYProbeCheck[offsetof(ActorMovementBounds, y_probe) == 0x30 ? 1 : -1];
 
+#pragma interface "entity_actor.hh"
 struct AActorEntity : public AEntity
 {
     AActorEntity(GameObject * game_object, ActorLocation const & location, u32 arg_2, u32 arg_3);
@@ -123,6 +124,8 @@ struct AActorEntity : public AEntity
     ActorLocation GetLocation() const;
     void SetAnimFacing(u32 facing);
     void SetAnim(u32 anim);
+    // Resource index combines the base animation and raw facing byte.
+    u32 GetAnimationIndex() const SECTION(".text.entity_actor_animation_index");
     void RefreshSprite(u32 sprite_anim);
     void method_08032208();
 
@@ -138,6 +141,8 @@ struct AActorEntity : public AEntity
     /* +2E */ u8 unk_2E;
 };
 
+#pragma implementation
+
 // These native movement commands take an integer target and raw Q16.16
 // speed. A new axis command replaces the actor's previous movement command.
 EXTERN_C
@@ -147,5 +152,10 @@ void StartActorSpriteEffect(AActorEntity & self, u32 effect, bool persistent);
 void StopActorSpriteEffect(AActorEntity & self);
 void SetActorAuxRenderProfile(AActorEntity & self, u32 profile);
 EXTERN_C_END
+
+inline u32 AActorEntity::GetAnimationIndex() const
+{
+    return anim_id + facing;
+}
 
 #endif // ENTITY_ACTOR_HH

@@ -92,176 +92,10 @@ func_0803242C:
     pop	{r0}
     bx	r0
 
-    .section .text.entity_ui_default_no_action_after
+    .section .text.entity_sprite_constructor_after
     .syntax unified
     .thumb
     .align 2, 0
-    .global __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
-    .thumb_func
-__22EntitySpriteControllerP12AActorEntityUiUiUiUiUib:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r9
-    mov	r6, r8
-    push	{r6, r7}
-    sub	sp, #12
-    adds	r7, r0, #0
-    adds	r4, r1, #0
-    adds	r5, r2, #0
-    mov	r9, r3
-    add	r0, sp, #52	@ 0x34
-    ldrb	r0, [r0, #0]
-    mov	r8, r0
-    str	r4, [r7, #0]
-    ldr r0, .Ljp_080322F0
-    str	r0, [r7, #4]
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #104]	@ 0x68
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldrh	r2, [r4, #34]	@ 0x22
-    adds	r0, r4, #0
-    adds	r0, #32
-    ldrb	r0, [r0, #0]
-    adds	r2, r2, r0
-    ldr	r3, [r4, #0]
-    adds	r0, r7, #0
-    adds	r0, #8
-    str	r5, [sp, #0]
-    mov	r5, r9
-    str	r5, [sp, #4]
-    add	r5, sp, #8
-    mov	r6, r8
-    strb	r6, [r5, #0]
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #108]	@ 0x6c
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldr	r3, [r4, #0]
-    adds	r0, r7, #0
-    adds	r0, #72	@ 0x48
-    movs	r2, #2
-    str	r2, [sp, #0]
-    movs	r2, #14
-    str	r2, [sp, #4]
-    movs	r2, #0
-    strb	r2, [r5, #0]
-    movs	r2, #0
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    adds	r0, r7, #0
-    adds	r0, #136	@ 0x88
-    movs	r1, #0
-    add	r2, sp, #40	@ 0x28
-    ldrb	r2, [r2, #0]
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    adds	r0, #1
-    ldr	r3, [sp, #44]	@ 0x2c
-    lsls	r6, r3, #2
-    strb	r6, [r0, #0]
-    adds	r0, #1
-    add	r5, sp, #48	@ 0x30
-    ldrb	r5, [r5, #0]
-    strb	r5, [r0, #0]
-    adds	r0, r7, #0
-    add	sp, #12
-    pop	{r3, r4}
-    mov	r8, r3
-    mov	r9, r4
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Ljp_080322F0:
-    .4byte __vt_22EntitySpriteController
-    .global __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
-    .thumb_func
-__22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r9
-    mov	r6, r8
-    push	{r6, r7}
-    sub	sp, #20
-    adds	r7, r0, #0
-    adds	r5, r1, #0
-    adds	r4, r2, #0
-    mov	r9, r3
-    ldr	r6, [sp, #48]	@ 0x30
-    add	r0, sp, #64	@ 0x40
-    ldrb	r0, [r0, #0]
-    mov	r8, r0
-    str	r5, [r7, #0]
-    ldr r0, .Ljp_0803239C
-    str	r0, [r7, #4]
-    ldr	r0, [r5, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #104]	@ 0x68
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldrh	r2, [r5, #34]	@ 0x22
-    adds	r0, r5, #0
-    adds	r0, #32
-    ldrb	r0, [r0, #0]
-    adds	r2, r2, r0
-    ldr	r3, [r5, #0]
-    adds	r0, r7, #0
-    adds	r0, #8
-    str	r4, [sp, #0]
-    mov	r4, r9
-    str	r4, [sp, #4]
-    str	r6, [sp, #8]
-    add	r4, sp, #12
-    mov	r6, r8
-    strb	r6, [r4, #0]
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
-    ldr	r0, [r5, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #108]	@ 0x6c
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldr	r3, [r5, #0]
-    adds	r0, r7, #0
-    adds	r0, #72	@ 0x48
-    movs	r2, #2
-    str	r2, [sp, #0]
-    movs	r2, #14
-    str	r2, [sp, #4]
-    add	r4, sp, #8
-    movs	r2, #0
-    strb	r2, [r4, #0]
-    movs	r2, #0
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    adds	r0, r7, #0
-    adds	r0, #136	@ 0x88
-    movs	r1, #0
-    add	r2, sp, #52	@ 0x34
-    ldrb	r2, [r2, #0]
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    adds	r0, #1
-    ldr	r3, [sp, #56]	@ 0x38
-    lsls	r3, r3, #2
-    str	r3, [sp, #16]
-    strb	r3, [r0, #0]
-    adds	r0, #1
-    add	r6, sp, #60	@ 0x3c
-    ldrb	r6, [r6, #0]
-    strb	r6, [r0, #0]
-    adds	r0, r7, #0
-    add	sp, #20
-    pop	{r3, r4}
-    mov	r8, r3
-    mov	r9, r4
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Ljp_0803239C:
-    .4byte __vt_22EntitySpriteController
     .global Update__22EntitySpriteController
     .thumb_func
 Update__22EntitySpriteController:
@@ -849,13 +683,8 @@ func_080328D4:
 .Ljp_080328EC:
     ldrh	r0, [r0, #34]	@ 0x22
     bx	lr
-.Ljp_080328F0:
-    ldrh	r1, [r0, #34]	@ 0x22
-    adds	r0, #32
-    ldrb	r0, [r0, #0]
-    adds	r1, r1, r0
-    adds	r0, r1, #0
-    bx	lr
+    .section .text.entity_actor_animation_index_after, "ax", %progbits
+    .align 2, 0
 .Ljp_080328FC:
     push	{lr}
     adds	r2, r0, #0
@@ -5122,177 +4951,11 @@ func_0803242C:
     bx	r0
 
     @ EU entity UI code, actual Thumb instructions and relocations.
-    .section .text.entity_ui_default_no_action_after
+    .section .text.entity_sprite_constructor_after
     .syntax unified
     .thumb
     .align 2, 0
 
-    .global __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
-    .thumb_func
-__22EntitySpriteControllerP12AActorEntityUiUiUiUiUib:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r9
-    mov	r6, r8
-    push	{r6, r7}
-    sub	sp, #12
-    adds	r7, r0, #0
-    adds	r4, r1, #0
-    adds	r5, r2, #0
-    mov	r9, r3
-    add	r0, sp, #52	@ 0x34
-    ldrb	r0, [r0, #0]
-    mov	r8, r0
-    str	r4, [r7, #0]
-    ldr r0, .Leu_08032570
-    str	r0, [r7, #4]
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #104]	@ 0x68
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldrh	r2, [r4, #34]	@ 0x22
-    adds	r0, r4, #0
-    adds	r0, #32
-    ldrb	r0, [r0, #0]
-    adds	r2, r2, r0
-    ldr	r3, [r4, #0]
-    adds	r0, r7, #0
-    adds	r0, #8
-    str	r5, [sp, #0]
-    mov	r5, r9
-    str	r5, [sp, #4]
-    add	r5, sp, #8
-    mov	r6, r8
-    strb	r6, [r5, #0]
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #108]	@ 0x6c
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldr	r3, [r4, #0]
-    adds	r0, r7, #0
-    adds	r0, #72	@ 0x48
-    movs	r2, #2
-    str	r2, [sp, #0]
-    movs	r2, #14
-    str	r2, [sp, #4]
-    movs	r2, #0
-    strb	r2, [r5, #0]
-    movs	r2, #0
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    adds	r0, r7, #0
-    adds	r0, #136	@ 0x88
-    movs	r1, #0
-    add	r2, sp, #40	@ 0x28
-    ldrb	r2, [r2, #0]
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    adds	r0, #1
-    ldr	r3, [sp, #44]	@ 0x2c
-    lsls	r6, r3, #2
-    strb	r6, [r0, #0]
-    adds	r0, #1
-    add	r5, sp, #48	@ 0x30
-    ldrb	r5, [r5, #0]
-    strb	r5, [r0, #0]
-    adds	r0, r7, #0
-    add	sp, #12
-    pop	{r3, r4}
-    mov	r8, r3
-    mov	r9, r4
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Leu_08032570:
-    .4byte __vt_22EntitySpriteController
-    .global __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
-    .thumb_func
-__22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r9
-    mov	r6, r8
-    push	{r6, r7}
-    sub	sp, #20
-    adds	r7, r0, #0
-    adds	r5, r1, #0
-    adds	r4, r2, #0
-    mov	r9, r3
-    ldr	r6, [sp, #48]	@ 0x30
-    add	r0, sp, #64	@ 0x40
-    ldrb	r0, [r0, #0]
-    mov	r8, r0
-    str	r5, [r7, #0]
-    ldr r0, .Leu_0803261C
-    str	r0, [r7, #4]
-    ldr	r0, [r5, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #104]	@ 0x68
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldrh	r2, [r5, #34]	@ 0x22
-    adds	r0, r5, #0
-    adds	r0, #32
-    ldrb	r0, [r0, #0]
-    adds	r2, r2, r0
-    ldr	r3, [r5, #0]
-    adds	r0, r7, #0
-    adds	r0, #8
-    str	r4, [sp, #0]
-    mov	r4, r9
-    str	r4, [sp, #4]
-    str	r6, [sp, #8]
-    add	r4, sp, #12
-    mov	r6, r8
-    strb	r6, [r4, #0]
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
-    ldr	r0, [r5, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #108]	@ 0x6c
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldr	r3, [r5, #0]
-    adds	r0, r7, #0
-    adds	r0, #72	@ 0x48
-    movs	r2, #2
-    str	r2, [sp, #0]
-    movs	r2, #14
-    str	r2, [sp, #4]
-    add	r4, sp, #8
-    movs	r2, #0
-    strb	r2, [r4, #0]
-    movs	r2, #0
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    adds	r0, r7, #0
-    adds	r0, #136	@ 0x88
-    movs	r1, #0
-    add	r2, sp, #52	@ 0x34
-    ldrb	r2, [r2, #0]
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    adds	r0, #1
-    ldr	r3, [sp, #56]	@ 0x38
-    lsls	r3, r3, #2
-    str	r3, [sp, #16]
-    strb	r3, [r0, #0]
-    adds	r0, #1
-    add	r6, sp, #60	@ 0x3c
-    ldrb	r6, [r6, #0]
-    strb	r6, [r0, #0]
-    adds	r0, r7, #0
-    add	sp, #20
-    pop	{r3, r4}
-    mov	r8, r3
-    mov	r9, r4
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Leu_0803261C:
-    .4byte __vt_22EntitySpriteController
     .global Update__22EntitySpriteController
     .thumb_func
 Update__22EntitySpriteController:
@@ -5867,9 +5530,8 @@ func_08032B40:
     .4byte 0xFB2EF7FF
     .4byte 0x4700BC01
     .4byte 0x47708C40
-    .4byte 0x30208C41
-    .4byte 0x18097800
-    .4byte 0x47701C08
+    .section .text.entity_actor_animation_index_after, "ax", %progbits
+    .align 2, 0
     .4byte 0x1C02B500
     .4byte 0x78003020
     .4byte 0xD0024288
@@ -9335,177 +8997,11 @@ func_0803242C:
     bx	r0
 
     @ DE entity UI code, actual Thumb instructions and relocations.
-    .section .text.entity_ui_default_no_action_after
+    .section .text.entity_sprite_constructor_after
     .syntax unified
     .thumb
     .align 2, 0
 
-    .global __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
-    .thumb_func
-__22EntitySpriteControllerP12AActorEntityUiUiUiUiUib:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r9
-    mov	r6, r8
-    push	{r6, r7}
-    sub	sp, #12
-    adds	r7, r0, #0
-    adds	r4, r1, #0
-    adds	r5, r2, #0
-    mov	r9, r3
-    add	r0, sp, #52	@ 0x34
-    ldrb	r0, [r0, #0]
-    mov	r8, r0
-    str	r4, [r7, #0]
-    ldr r0, .Lde_08032470
-    str	r0, [r7, #4]
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #104]	@ 0x68
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldrh	r2, [r4, #34]	@ 0x22
-    adds	r0, r4, #0
-    adds	r0, #32
-    ldrb	r0, [r0, #0]
-    adds	r2, r2, r0
-    ldr	r3, [r4, #0]
-    adds	r0, r7, #0
-    adds	r0, #8
-    str	r5, [sp, #0]
-    mov	r5, r9
-    str	r5, [sp, #4]
-    add	r5, sp, #8
-    mov	r6, r8
-    strb	r6, [r5, #0]
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #108]	@ 0x6c
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldr	r3, [r4, #0]
-    adds	r0, r7, #0
-    adds	r0, #72	@ 0x48
-    movs	r2, #2
-    str	r2, [sp, #0]
-    movs	r2, #14
-    str	r2, [sp, #4]
-    movs	r2, #0
-    strb	r2, [r5, #0]
-    movs	r2, #0
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    adds	r0, r7, #0
-    adds	r0, #136	@ 0x88
-    movs	r1, #0
-    add	r2, sp, #40	@ 0x28
-    ldrb	r2, [r2, #0]
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    adds	r0, #1
-    ldr	r3, [sp, #44]	@ 0x2c
-    lsls	r6, r3, #2
-    strb	r6, [r0, #0]
-    adds	r0, #1
-    add	r5, sp, #48	@ 0x30
-    ldrb	r5, [r5, #0]
-    strb	r5, [r0, #0]
-    adds	r0, r7, #0
-    add	sp, #12
-    pop	{r3, r4}
-    mov	r8, r3
-    mov	r9, r4
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Lde_08032470:
-    .4byte __vt_22EntitySpriteController
-    .global __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
-    .thumb_func
-__22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r9
-    mov	r6, r8
-    push	{r6, r7}
-    sub	sp, #20
-    adds	r7, r0, #0
-    adds	r5, r1, #0
-    adds	r4, r2, #0
-    mov	r9, r3
-    ldr	r6, [sp, #48]	@ 0x30
-    add	r0, sp, #64	@ 0x40
-    ldrb	r0, [r0, #0]
-    mov	r8, r0
-    str	r5, [r7, #0]
-    ldr r0, .Lde_0803251C
-    str	r0, [r7, #4]
-    ldr	r0, [r5, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #104]	@ 0x68
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldrh	r2, [r5, #34]	@ 0x22
-    adds	r0, r5, #0
-    adds	r0, #32
-    ldrb	r0, [r0, #0]
-    adds	r2, r2, r0
-    ldr	r3, [r5, #0]
-    adds	r0, r7, #0
-    adds	r0, #8
-    str	r4, [sp, #0]
-    mov	r4, r9
-    str	r4, [sp, #4]
-    str	r6, [sp, #8]
-    add	r4, sp, #12
-    mov	r6, r8
-    strb	r6, [r4, #0]
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
-    ldr	r0, [r5, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #108]	@ 0x6c
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldr	r3, [r5, #0]
-    adds	r0, r7, #0
-    adds	r0, #72	@ 0x48
-    movs	r2, #2
-    str	r2, [sp, #0]
-    movs	r2, #14
-    str	r2, [sp, #4]
-    add	r4, sp, #8
-    movs	r2, #0
-    strb	r2, [r4, #0]
-    movs	r2, #0
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    adds	r0, r7, #0
-    adds	r0, #136	@ 0x88
-    movs	r1, #0
-    add	r2, sp, #52	@ 0x34
-    ldrb	r2, [r2, #0]
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    adds	r0, #1
-    ldr	r3, [sp, #56]	@ 0x38
-    lsls	r3, r3, #2
-    str	r3, [sp, #16]
-    strb	r3, [r0, #0]
-    adds	r0, #1
-    add	r6, sp, #60	@ 0x3c
-    ldrb	r6, [r6, #0]
-    strb	r6, [r0, #0]
-    adds	r0, r7, #0
-    add	sp, #20
-    pop	{r3, r4}
-    mov	r8, r3
-    mov	r9, r4
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Lde_0803251C:
-    .4byte __vt_22EntitySpriteController
     .global Update__22EntitySpriteController
     .thumb_func
 Update__22EntitySpriteController:
@@ -10080,9 +9576,8 @@ func_08032B40:
     .4byte 0xFB2EF7FF
     .4byte 0x4700BC01
     .4byte 0x47708C40
-    .4byte 0x30208C41
-    .4byte 0x18097800
-    .4byte 0x47701C08
+    .section .text.entity_actor_animation_index_after, "ax", %progbits
+    .align 2, 0
     .4byte 0x1C02B500
     .4byte 0x78003020
     .4byte 0xD0024288
@@ -13547,177 +13042,11 @@ func_0803242C:
     bx	r0
 
     @ US/EU/DE entity UI code, actual Thumb instructions and relocations.
-    .section .text.entity_ui_default_no_action_after
+    .section .text.entity_sprite_constructor_after
     .syntax unified
     .thumb
     .align 2, 0
 
-    .global __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
-    .thumb_func
-__22EntitySpriteControllerP12AActorEntityUiUiUiUiUib:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r9
-    mov	r6, r8
-    push	{r6, r7}
-    sub	sp, #12
-    adds	r7, r0, #0
-    adds	r4, r1, #0
-    adds	r5, r2, #0
-    mov	r9, r3
-    add	r0, sp, #52	@ 0x34
-    ldrb	r0, [r0, #0]
-    mov	r8, r0
-    str	r4, [r7, #0]
-    ldr r0, .Lus_0803255C
-    str	r0, [r7, #4]
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #104]	@ 0x68
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldrh	r2, [r4, #34]	@ 0x22
-    adds	r0, r4, #0
-    adds	r0, #32
-    ldrb	r0, [r0, #0]
-    adds	r2, r2, r0
-    ldr	r3, [r4, #0]
-    adds	r0, r7, #0
-    adds	r0, #8
-    str	r5, [sp, #0]
-    mov	r5, r9
-    str	r5, [sp, #4]
-    add	r5, sp, #8
-    mov	r6, r8
-    strb	r6, [r5, #0]
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #108]	@ 0x6c
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldr	r3, [r4, #0]
-    adds	r0, r7, #0
-    adds	r0, #72	@ 0x48
-    movs	r2, #2
-    str	r2, [sp, #0]
-    movs	r2, #14
-    str	r2, [sp, #4]
-    movs	r2, #0
-    strb	r2, [r5, #0]
-    movs	r2, #0
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    adds	r0, r7, #0
-    adds	r0, #136	@ 0x88
-    movs	r1, #0
-    add	r2, sp, #40	@ 0x28
-    ldrb	r2, [r2, #0]
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    adds	r0, #1
-    ldr	r3, [sp, #44]	@ 0x2c
-    lsls	r6, r3, #2
-    strb	r6, [r0, #0]
-    adds	r0, #1
-    add	r5, sp, #48	@ 0x30
-    ldrb	r5, [r5, #0]
-    strb	r5, [r0, #0]
-    adds	r0, r7, #0
-    add	sp, #12
-    pop	{r3, r4}
-    mov	r8, r3
-    mov	r9, r4
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Lus_0803255C:
-    .4byte __vt_22EntitySpriteController
-    .global __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
-    .thumb_func
-__22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r9
-    mov	r6, r8
-    push	{r6, r7}
-    sub	sp, #20
-    adds	r7, r0, #0
-    adds	r5, r1, #0
-    adds	r4, r2, #0
-    mov	r9, r3
-    ldr	r6, [sp, #48]	@ 0x30
-    add	r0, sp, #64	@ 0x40
-    ldrb	r0, [r0, #0]
-    mov	r8, r0
-    str	r5, [r7, #0]
-    ldr r0, .Lus_08032608
-    str	r0, [r7, #4]
-    ldr	r0, [r5, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #104]	@ 0x68
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldrh	r2, [r5, #34]	@ 0x22
-    adds	r0, r5, #0
-    adds	r0, #32
-    ldrb	r0, [r0, #0]
-    adds	r2, r2, r0
-    ldr	r3, [r5, #0]
-    adds	r0, r7, #0
-    adds	r0, #8
-    str	r4, [sp, #0]
-    mov	r4, r9
-    str	r4, [sp, #4]
-    str	r6, [sp, #8]
-    add	r4, sp, #12
-    mov	r6, r8
-    strb	r6, [r4, #0]
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
-    ldr	r0, [r5, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #108]	@ 0x6c
-    bl _call_via_r1
-    adds	r1, r0, #0
-    ldr	r3, [r5, #0]
-    adds	r0, r7, #0
-    adds	r0, #72	@ 0x48
-    movs	r2, #2
-    str	r2, [sp, #0]
-    movs	r2, #14
-    str	r2, [sp, #4]
-    add	r4, sp, #8
-    movs	r2, #0
-    strb	r2, [r4, #0]
-    movs	r2, #0
-    bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    adds	r0, r7, #0
-    adds	r0, #136	@ 0x88
-    movs	r1, #0
-    add	r2, sp, #52	@ 0x34
-    ldrb	r2, [r2, #0]
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    adds	r0, #1
-    ldr	r3, [sp, #56]	@ 0x38
-    lsls	r3, r3, #2
-    str	r3, [sp, #16]
-    strb	r3, [r0, #0]
-    adds	r0, #1
-    add	r6, sp, #60	@ 0x3c
-    ldrb	r6, [r6, #0]
-    strb	r6, [r0, #0]
-    adds	r0, r7, #0
-    add	sp, #20
-    pop	{r3, r4}
-    mov	r8, r3
-    mov	r9, r4
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Lus_08032608:
-    .4byte __vt_22EntitySpriteController
     .global Update__22EntitySpriteController
     .thumb_func
 Update__22EntitySpriteController:
@@ -14292,9 +13621,8 @@ func_08032B40:
     .4byte 0xFB2EF7FF
     .4byte 0x4700BC01
     .4byte 0x47708C40
-    .4byte 0x30208C41
-    .4byte 0x18097800
-    .4byte 0x47701C08
+    .section .text.entity_actor_animation_index_after, "ax", %progbits
+    .align 2, 0
     .4byte 0x1C02B500
     .4byte 0x78003020
     .4byte 0xD0024288

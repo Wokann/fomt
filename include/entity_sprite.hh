@@ -18,23 +18,26 @@ enum EntitySpriteEffectMode {
 // contain sprite members. Draw receives the native renderer context;
 // its complete type is not recovered yet.
 struct EntityVisualController {
+    EntityVisualController(AEntity * owner) SECTION(".text.entity_visual_controller_constructor");
     virtual ~EntityVisualController() SECTION(".text.entity_visual_controller_cleanup");
     virtual void Update() = 0;
     virtual void Draw(void * draw_context) = 0;
     AEntity * entity;
 };
 
+inline EntityVisualController::EntityVisualController(AEntity * owner) : entity(owner) {}
+
 inline EntityVisualController::~EntityVisualController() {}
 
 // Two independently allocated OBJ resources: the actor animation and
-// its attached effect. Native constructors and virtual bodies remain
-// assembly; the shared members and cleanup are ordinary C++.
+// its attached effect. Virtual Update/Draw bodies remain assembly;
+// construction, controls and cleanup use the observed member lifetimes.
 struct EntitySpriteController : EntityVisualController {
     EntitySpriteController(AActorEntity * entity, u32 size_shift, u32 palette_kind,
-        u32 aux_render_profile, u32 unknown_8A2, u32 unknown_8B, bool sprite_unknown_3D);
+        u32 aux_render_profile, u32 unknown_8A2, u32 unknown_8B, bool sprite_unknown_3D) SECTION(".text.entity_sprite_constructors");
     EntitySpriteController(AActorEntity * entity, u32 size_shift, i32 const * palette_kinds,
         u32 palette_count, u32 aux_render_profile, u32 unknown_8A2, u32 unknown_8B,
-        bool sprite_unknown_3D);
+        bool sprite_unknown_3D) SECTION(".text.entity_sprite_constructors");
 
     virtual void Update();
     virtual void Draw(void * draw_context);
