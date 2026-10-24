@@ -256,7 +256,7 @@ bool UiTextWindowSetupCommand::Run()
         0, 3, 30, 7, command->first_tile, command->background_palette);
     u32 palette = command->background_palette;
     CpuFastSet(gUiSharedPalette, reinterpret_cast<void *>(0x05000000 + palette * 32), 8);
-    CpuFastSet(IndexedResourceArchive(gUiHandCursorArchive).GetGroupData(0).fifth.data,
+    CpuFastSet(IndexedResourceArchive(gUiHandCursorArchive).GetGroupData(0).palettes.data,
         reinterpret_cast<void *>(0x05000200 + command->cursor_palette * 32), 8);
     return false;
 }

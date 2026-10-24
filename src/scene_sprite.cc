@@ -29,9 +29,9 @@ GameSceneSpriteBase::~GameSceneSpriteBase()
 }
 
 void GameSceneSpriteBase::QueueTileUpload(HardwareDmaQueue & queue,
-    IndexedResourceDescriptor32Range const & range)
+    IndexedResourceTileRange const & range)
 {
-    IndexedResourceArchiveDescriptor32 const * source = range.data;
+    IndexedResourceTileUnit const * source = range.data;
     u32 byte_count = 0;
     if (source != nullptr)
         byte_count = range.byte_count;
@@ -42,7 +42,7 @@ void GameSceneSpriteBase::QueueTileUpload(HardwareDmaQueue & queue,
     }
 }
 
-void GameSceneSpriteBase::UploadPalettes(IndexedResourceDescriptor32Range const & range, u8 unk)
+void GameSceneSpriteBase::UploadPalettes(IndexedResourcePaletteRange const & range, u8 unk)
 {
     u32 byte_count = range.data ? range.byte_count : 0;
     if (byte_count != 0) {

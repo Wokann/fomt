@@ -27,7 +27,10 @@ struct IndexedResourceResult
 };
 
 struct IndexedResourceArchiveDescriptor8 { u8 unknown_00[8]; };
-struct IndexedResourceArchiveDescriptor32 { u8 unknown_00[32]; };
+// A tile offset is measured in 32-byte hardware OBJ tile units. An 8bpp
+// tile spans two units; this is not a promise that every tile is 4bpp.
+struct IndexedResourceTileUnit { u8 bytes[32]; };
+struct IndexedResourcePaletteBank { u16 colors[16]; };
 
 struct IndexedResourceSpriteRange
 {
@@ -53,32 +56,41 @@ struct IndexedResourceDescriptor8Range
     u16 count;
 };
 
-struct IndexedResourceDescriptor32Range
+struct IndexedResourceTileRange
 {
-    IndexedResourceDescriptor32Range(IndexedResourceArchiveDescriptor32 * a_data, u16 a_byte_count)
+    IndexedResourceTileRange(IndexedResourceTileUnit * a_data, u16 a_byte_count)
         : data(a_data), byte_count(a_byte_count) {}
 
-    IndexedResourceArchiveDescriptor32 * data;
+    IndexedResourceTileUnit * data;
     u16 byte_count;
 };
 
-// The third table contains native OAM records; the sixth descriptor format
-// remains unresolved. Both lengths count eight-byte entries. Fourth/fifth lengths
-// are bytes, as consumed by the resource upload routines. The two-byte
-// gaps in each range are ordinary ABI padding, not additional stored data.
+struct IndexedResourcePaletteRange
+{
+    IndexedResourcePaletteRange(IndexedResourcePaletteBank * a_data, u16 a_byte_count)
+        : data(a_data), byte_count(a_byte_count) {}
+
+    IndexedResourcePaletteBank * data;
+    u16 byte_count;
+};
+
+// OAM and sixth-range lengths count eight-byte entries. Tile/palette range
+// lengths are bytes, not unit/bank counts; the archive descriptor counts are
+// converted when resolving a group. The sixth format remains unresolved.
+// Each range's trailing two bytes are ABI padding, not stored metadata.
 struct IndexedResourceGroupResult
 {
     IndexedResourceGroupResult(
         HardwareSpriteOamRecord * sprite_data, u16 sprite_count,
-        IndexedResourceArchiveDescriptor32 * fourth_data, u16 fourth_byte_count,
-        IndexedResourceArchiveDescriptor32 * fifth_data, u16 fifth_byte_count,
+        IndexedResourceTileUnit * tile_data, u16 tile_byte_count,
+        IndexedResourcePaletteBank * palette_data, u16 palette_byte_count,
         IndexedResourceArchiveDescriptor8 * sixth_data, u16 sixth_count)
-        : sprites(sprite_data, sprite_count), fourth(fourth_data, fourth_byte_count),
-          fifth(fifth_data, fifth_byte_count), sixth(sixth_data, sixth_count) {}
+        : sprites(sprite_data, sprite_count), tiles(tile_data, tile_byte_count),
+          palettes(palette_data, palette_byte_count), sixth(sixth_data, sixth_count) {}
 
     IndexedResourceSpriteRange sprites;
-    IndexedResourceDescriptor32Range fourth;
-    IndexedResourceDescriptor32Range fifth;
+    IndexedResourceTileRange tiles;
+    IndexedResourcePaletteRange palettes;
     IndexedResourceDescriptor8Range sixth;
 };
 
@@ -112,10 +124,10 @@ struct IndexedResourceArchiveGroupDescriptor
 {
     u16 sprite_count;
     u16 sprite_first_index;
-    u16 fourth_count;
-    u16 fourth_first_index;
-    u16 fifth_count;
-    u16 fifth_first_index;
+    u16 tile_unit_count;
+    u16 tile_first_index;
+    u16 palette_bank_count;
+    u16 palette_first_index;
     u16 sixth_count;
     u16 sixth_first_index;
 };
@@ -130,15 +142,15 @@ struct IndexedResourceArchive : IndexedResourceProvider
     IndexedResourceArchiveEntry * entry_descriptors;
     IndexedResourceArchiveGroupDescriptor * group_descriptors;
     HardwareSpriteOamRecord * sprite_descriptors;
-    IndexedResourceArchiveDescriptor32 * fourth_descriptors;
-    IndexedResourceArchiveDescriptor32 * fifth_descriptors;
+    IndexedResourceTileUnit * tile_units;
+    IndexedResourcePaletteBank * palette_banks;
     IndexedResourceArchiveDescriptor8 * sixth_descriptors;
     IndexedResourceEntry * entries;
     u16 entry_descriptor_count;
     u16 group_descriptor_count;
     u16 sprite_descriptor_count;
-    u16 fourth_descriptor_count;
-    u16 fifth_descriptor_count;
+    u16 tile_unit_count;
+    u16 palette_bank_count;
     u16 sixth_descriptor_count;
     u16 entry_count;
 
@@ -156,16 +168,23 @@ inline u16 IndexedResourceArchive::GetEntryDescriptorCount() const
 
 typedef char IndexedResourceProviderSizeCheck[sizeof(IndexedResourceProvider) == 4 ? 1 : -1];
 typedef char IndexedResourceArchiveEntriesOffsetCheck[offsetof(IndexedResourceArchive, entry_descriptors) == 4 ? 1 : -1];
+typedef char IndexedResourceArchiveTilesOffsetCheck[offsetof(IndexedResourceArchive, tile_units) == 0x10 ? 1 : -1];
+typedef char IndexedResourceArchivePalettesOffsetCheck[offsetof(IndexedResourceArchive, palette_banks) == 0x14 ? 1 : -1];
 typedef char IndexedResourceArchiveCountOffsetCheck[offsetof(IndexedResourceArchive, entry_descriptor_count) == 0x20 ? 1 : -1];
 typedef char IndexedResourceArchiveSizeCheck[sizeof(IndexedResourceArchive) == 0x30 ? 1 : -1];
 typedef char IndexedResourceResultSizeCheck[sizeof(IndexedResourceResult) == 8 ? 1 : -1];
 typedef char IndexedResourceGroupDescriptorSizeCheck[sizeof(IndexedResourceArchiveGroupDescriptor) == 16 ? 1 : -1];
 typedef char IndexedResourceDescriptor8RangeSizeCheck[sizeof(IndexedResourceDescriptor8Range) == 8 ? 1 : -1];
 typedef char IndexedResourceSpriteRangeSizeCheck[sizeof(IndexedResourceSpriteRange) == 8 ? 1 : -1];
-typedef char IndexedResourceDescriptor32RangeSizeCheck[sizeof(IndexedResourceDescriptor32Range) == 8 ? 1 : -1];
+typedef char IndexedResourceTileUnitSizeCheck[sizeof(IndexedResourceTileUnit) == 32 ? 1 : -1];
+typedef char IndexedResourcePaletteBankSizeCheck[sizeof(IndexedResourcePaletteBank) == 32 ? 1 : -1];
+typedef char IndexedResourceTileRangeSizeCheck[sizeof(IndexedResourceTileRange) == 8 ? 1 : -1];
+typedef char IndexedResourcePaletteRangeSizeCheck[sizeof(IndexedResourcePaletteRange) == 8 ? 1 : -1];
+typedef char IndexedResourceTileByteCountOffsetCheck[offsetof(IndexedResourceTileRange, byte_count) == 4 ? 1 : -1];
+typedef char IndexedResourcePaletteByteCountOffsetCheck[offsetof(IndexedResourcePaletteRange, byte_count) == 4 ? 1 : -1];
 typedef char IndexedResourceGroupResultSizeCheck[sizeof(IndexedResourceGroupResult) == 32 ? 1 : -1];
-typedef char IndexedResourceGroupFourthOffsetCheck[offsetof(IndexedResourceGroupResult, fourth) == 8 ? 1 : -1];
-typedef char IndexedResourceGroupFifthOffsetCheck[offsetof(IndexedResourceGroupResult, fifth) == 16 ? 1 : -1];
+typedef char IndexedResourceGroupTilesOffsetCheck[offsetof(IndexedResourceGroupResult, tiles) == 8 ? 1 : -1];
+typedef char IndexedResourceGroupPalettesOffsetCheck[offsetof(IndexedResourceGroupResult, palettes) == 16 ? 1 : -1];
 typedef char IndexedResourceGroupSixthOffsetCheck[offsetof(IndexedResourceGroupResult, sixth) == 24 ? 1 : -1];
 
 EXTERN_C

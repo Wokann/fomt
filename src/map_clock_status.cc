@@ -122,7 +122,7 @@ void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
     u32 palette = HudPaletteBank(state->palette);
     if (state->palette_dirty && !state->palette_upload.IsQueued()) {
         QueueHudCopy(state->palette_upload,
-            state->unk_archive_000.GetGroupData(0).fifth.data,
+            state->unk_archive_000.GetGroupData(0).palettes.data,
             reinterpret_cast<void *>(0x05000200 + palette * 32), 32, queue);
         state->palette_dirty = 0;
     }
@@ -137,7 +137,7 @@ void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
         u32 tile = state->unk_state_2D0.GetTileIndex();
         if (state->unk_selector_dirty && !state->unk_dma_2D8.IsQueued()) {
             IndexedResourceGroupResult group = ResolveIndexedResourceGroup(&state->unk_archive_000, state->unk_selector);
-            QueueHudCopy(state->unk_dma_2D8, group.fourth.data,
+            QueueHudCopy(state->unk_dma_2D8, group.tiles.data,
                 reinterpret_cast<void *>(0x06010000 + tile * 32), 128, queue);
             state->unk_selector_dirty = 0;
         }
@@ -158,11 +158,11 @@ void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
         if (state->unk_value_dirty) {
             IndexedResourceGroupResult group = ResolveIndexedResourceGroup(&state->unk_archive_030, state->unk_value);
             if (!state->unk_dma_31C.IsQueued()) {
-                QueueHudCopy(state->unk_dma_31C, group.fourth.data,
+                QueueHudCopy(state->unk_dma_31C, group.tiles.data,
                     reinterpret_cast<void *>(0x06010000 + tile * 32), 128, queue);
             }
             if (!state->unk_dma_2FC.IsQueued()) {
-                QueueHudCopy(state->unk_dma_2FC, group.fifth.data,
+                QueueHudCopy(state->unk_dma_2FC, group.palettes.data,
                     reinterpret_cast<void *>(0x05000200 + value_palette * 32), 32, queue);
             }
             state->unk_value_dirty = 0;
@@ -175,7 +175,7 @@ void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
         u32 tile = state->unk_state_338.GetTileIndex();
         if (state->unk_358 && !state->unk_dma_340.IsQueued()) {
             IndexedResourceGroupResult group = ResolveIndexedResourceGroup(&state->unk_archive_000, 5);
-            QueueHudCopy(state->unk_dma_340, group.fourth.data,
+            QueueHudCopy(state->unk_dma_340, group.tiles.data,
                 reinterpret_cast<void *>(0x06010000 + tile * 32), 128, queue);
             state->unk_358 = 0;
         }

@@ -21,15 +21,15 @@ IndexedResourceArchive::IndexedResourceArchive(u8 const * data)
         sprite_descriptors = (HardwareSpriteOamRecord *)data;
         data += sprite_descriptor_count * sizeof(HardwareSpriteOamRecord);
 
-        fourth_descriptor_count = *(u16 const *)data;
+        tile_unit_count = *(u16 const *)data;
         data += 4;
-        fourth_descriptors = (IndexedResourceArchiveDescriptor32 *)data;
-        data += fourth_descriptor_count * 32;
+        tile_units = (IndexedResourceTileUnit *)data;
+        data += tile_unit_count * 32;
 
-        fifth_descriptor_count = *(u16 const *)data;
+        palette_bank_count = *(u16 const *)data;
         data += 4;
-        fifth_descriptors = (IndexedResourceArchiveDescriptor32 *)data;
-        data += fifth_descriptor_count * 32;
+        palette_banks = (IndexedResourcePaletteBank *)data;
+        data += palette_bank_count * 32;
 
         sixth_descriptor_count = *(u16 const *)data;
         data += 4;
@@ -47,10 +47,10 @@ IndexedResourceArchive::IndexedResourceArchive(u8 const * data)
         group_descriptors = 0;
         sprite_descriptor_count = 0;
         sprite_descriptors = 0;
-        fourth_descriptor_count = 0;
-        fourth_descriptors = 0;
-        fifth_descriptor_count = 0;
-        fifth_descriptors = 0;
+        tile_unit_count = 0;
+        tile_units = 0;
+        palette_bank_count = 0;
+        palette_banks = 0;
         sixth_descriptor_count = 0;
         sixth_descriptors = 0;
         entry_count = 0;
@@ -81,12 +81,12 @@ IndexedResourceGroupResult IndexedResourceArchive::GetGroupData(u32 index) const
         IndexedResourceArchiveGroupDescriptor const * descriptor = group_descriptors + index;
         u16 sprite_first_index = descriptor->sprite_first_index;
         u16 sprite_count = descriptor->sprite_count;
-        u32 fourth_address = descriptor->fourth_first_index << 5;
-        fourth_address += (u32)fourth_descriptors;
-        u16 fourth_count = descriptor->fourth_count;
-        u32 fifth_address = descriptor->fifth_first_index << 5;
-        fifth_address += (u32)fifth_descriptors;
-        u16 fifth_count = descriptor->fifth_count;
+        u32 tile_address = descriptor->tile_first_index << 5;
+        tile_address += (u32)tile_units;
+        u16 tile_unit_count = descriptor->tile_unit_count;
+        u32 palette_address = descriptor->palette_first_index << 5;
+        palette_address += (u32)palette_banks;
+        u16 palette_bank_count = descriptor->palette_bank_count;
         u16 sixth_first_index = descriptor->sixth_first_index;
         u16 sixth_count = descriptor->sixth_count;
         u32 sprite_address = sprite_first_index * sizeof(HardwareSpriteOamRecord);
@@ -94,8 +94,8 @@ IndexedResourceGroupResult IndexedResourceArchive::GetGroupData(u32 index) const
 
         return IndexedResourceGroupResult(
             (HardwareSpriteOamRecord *)sprite_address, sprite_count,
-            (IndexedResourceArchiveDescriptor32 *)fourth_address, fourth_count << 5,
-            (IndexedResourceArchiveDescriptor32 *)fifth_address, fifth_count << 5,
+            (IndexedResourceTileUnit *)tile_address, tile_unit_count << 5,
+            (IndexedResourcePaletteBank *)palette_address, palette_bank_count << 5,
             sixth_descriptors + sixth_first_index, sixth_count);
     }
 

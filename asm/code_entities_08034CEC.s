@@ -5455,12 +5455,12 @@ func_08037D74:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Ljp_08037BA0:
@@ -5737,12 +5737,12 @@ func_08037F7C:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Ljp_08037DB0:
@@ -6603,7 +6603,7 @@ func_080385B0:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -6613,7 +6613,7 @@ func_080385B0:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Ljp_0803849E
 .Ljp_08038484:
     adds	r4, r6, #0
@@ -6625,7 +6625,7 @@ func_080385B0:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Ljp_0803849E:
@@ -7151,7 +7151,7 @@ func_08038A70:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     ldrb	r0, [r5, #1]
     cmp	r0, #0
     beq .Ljp_080388FC
@@ -7159,7 +7159,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Ljp_08038912
 .Ljp_080388FC:
     ldrb	r0, [r5, #2]
@@ -7169,7 +7169,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r5, #2]
 .Ljp_08038912:
@@ -7257,12 +7257,12 @@ func_08038A70:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Ljp_080389C4:
@@ -7333,12 +7333,12 @@ func_08038A70:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #0
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Ljp_08038A5C:
@@ -7442,7 +7442,7 @@ func_08038A70:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -7452,7 +7452,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Ljp_08038B56
 .Ljp_08038B3C:
     adds	r4, r6, #0
@@ -7464,7 +7464,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Ljp_08038B56:
@@ -9663,7 +9663,7 @@ func_08039F90:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -9673,7 +9673,7 @@ func_08039F90:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Ljp_08039E38
 .Ljp_08039E1E:
     adds	r4, r6, #0
@@ -9685,7 +9685,7 @@ func_08039F90:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Ljp_08039E38:
@@ -9753,12 +9753,12 @@ func_08039F90:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r7, #0
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Ljp_08039EC8:
@@ -16011,12 +16011,12 @@ func_08037D74:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Leu_08037E20:
@@ -16293,12 +16293,12 @@ func_08037F7C:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Leu_08038030:
@@ -17159,7 +17159,7 @@ func_080385B0:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -17169,7 +17169,7 @@ func_080385B0:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Leu_0803871E
 .Leu_08038704:
     adds	r4, r6, #0
@@ -17181,7 +17181,7 @@ func_080385B0:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Leu_0803871E:
@@ -17707,7 +17707,7 @@ func_08038A70:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     ldrb	r0, [r5, #1]
     cmp	r0, #0
     beq .Leu_08038B7C
@@ -17715,7 +17715,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Leu_08038B92
 .Leu_08038B7C:
     ldrb	r0, [r5, #2]
@@ -17725,7 +17725,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r5, #2]
 .Leu_08038B92:
@@ -17813,12 +17813,12 @@ func_08038A70:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Leu_08038C44:
@@ -17889,12 +17889,12 @@ func_08038A70:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #0
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Leu_08038CDC:
@@ -17998,7 +17998,7 @@ func_08038A70:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -18008,7 +18008,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Leu_08038DD6
 .Leu_08038DBC:
     adds	r4, r6, #0
@@ -18020,7 +18020,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Leu_08038DD6:
@@ -20242,7 +20242,7 @@ func_08039F90:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -20252,7 +20252,7 @@ func_08039F90:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Leu_0803A0B8
 .Leu_0803A09E:
     adds	r4, r6, #0
@@ -20264,7 +20264,7 @@ func_08039F90:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Leu_0803A0B8:
@@ -20332,12 +20332,12 @@ func_08039F90:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r7, #0
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Leu_0803A148:
@@ -26736,12 +26736,12 @@ func_08037D74:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Lde_08037D20:
@@ -27018,12 +27018,12 @@ func_08037F7C:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Lde_08037F30:
@@ -27884,7 +27884,7 @@ func_080385B0:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -27894,7 +27894,7 @@ func_080385B0:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Lde_0803861E
 .Lde_08038604:
     adds	r4, r6, #0
@@ -27906,7 +27906,7 @@ func_080385B0:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Lde_0803861E:
@@ -28432,7 +28432,7 @@ func_08038A70:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     ldrb	r0, [r5, #1]
     cmp	r0, #0
     beq .Lde_08038A7C
@@ -28440,7 +28440,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Lde_08038A92
 .Lde_08038A7C:
     ldrb	r0, [r5, #2]
@@ -28450,7 +28450,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r5, #2]
 .Lde_08038A92:
@@ -28538,12 +28538,12 @@ func_08038A70:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Lde_08038B44:
@@ -28614,12 +28614,12 @@ func_08038A70:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #0
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Lde_08038BDC:
@@ -28723,7 +28723,7 @@ func_08038A70:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -28733,7 +28733,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Lde_08038CD6
 .Lde_08038CBC:
     adds	r4, r6, #0
@@ -28745,7 +28745,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Lde_08038CD6:
@@ -30967,7 +30967,7 @@ func_08039F90:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -30977,7 +30977,7 @@ func_08039F90:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Lde_08039FB8
 .Lde_08039F9E:
     adds	r4, r6, #0
@@ -30989,7 +30989,7 @@ func_08039F90:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Lde_08039FB8:
@@ -31057,12 +31057,12 @@ func_08039F90:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r7, #0
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Lde_0803A048:
@@ -37460,12 +37460,12 @@ func_08037D74:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Lus_08037E0C:
@@ -37742,12 +37742,12 @@ func_08037F7C:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Lus_0803801C:
@@ -38608,7 +38608,7 @@ func_080385B0:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -38618,7 +38618,7 @@ func_080385B0:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Lus_0803870A
 .Lus_080386F0:
     adds	r4, r6, #0
@@ -38630,7 +38630,7 @@ func_080385B0:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Lus_0803870A:
@@ -39156,7 +39156,7 @@ func_08038A70:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     ldrb	r0, [r5, #1]
     cmp	r0, #0
     beq .Lus_08038B68
@@ -39164,7 +39164,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Lus_08038B7E
 .Lus_08038B68:
     ldrb	r0, [r5, #2]
@@ -39174,7 +39174,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r5, #2]
 .Lus_08038B7E:
@@ -39262,12 +39262,12 @@ func_08038A70:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Lus_08038C30:
@@ -39338,12 +39338,12 @@ func_08038A70:
     adds	r2, r6, #0
     adds	r2, #8
     adds	r0, r5, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r6, #0
     adds	r1, #16
     adds	r0, r5, #0
     movs	r2, #0
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Lus_08038CC8:
@@ -39447,7 +39447,7 @@ func_08038A70:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -39457,7 +39457,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Lus_08038DC2
 .Lus_08038DA8:
     adds	r4, r6, #0
@@ -39469,7 +39469,7 @@ func_08038A70:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Lus_08038DC2:
@@ -41691,7 +41691,7 @@ func_08039F90:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r0, r6, #0
     adds	r0, #61	@ 0x3d
     ldrb	r0, [r0, #0]
@@ -41701,7 +41701,7 @@ func_08039F90:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     b .Lus_0803A0A4
 .Lus_0803A08A:
     adds	r4, r6, #0
@@ -41713,7 +41713,7 @@ func_08039F90:
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #1
     strb	r0, [r4, #0]
 .Lus_0803A0A4:
@@ -41781,12 +41781,12 @@ func_08039F90:
     adds	r2, r7, #0
     adds	r2, #8
     adds	r0, r6, #0
-    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
+    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
     adds	r1, r7, #0
     adds	r1, #16
     adds	r0, r6, #0
     movs	r2, #1
-    bl UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
     movs	r0, #0
     strb	r0, [r4, #0]
 .Lus_0803A134:

@@ -696,8 +696,8 @@ SECTIONS
             .text.__19GameSceneSpriteBaseP10GameObjectUiPCiUi
             .text.__19GameSceneSpriteBaseP10GameObjectUii
             .text._._19GameSceneSpriteBase
-            .text.QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC32IndexedResourceDescriptor32Range
-            .text.UploadPalettes__19GameSceneSpriteBaseRC32IndexedResourceDescriptor32RangeUc
+            .text.QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange
+            .text.UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc
             .text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiPCiUib
             .text.__22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
             .text.Submit__C19GameSceneSpriteBaseP21WorldSpriteDrawBufferiiUiUiRC26IndexedResourceSpriteRangeP10GameObject

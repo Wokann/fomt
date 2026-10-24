@@ -22,8 +22,8 @@ struct GameSceneSpriteBase {
     GameSceneSpriteBase(GameObject * world, u32 size_shift, i32 palette_kind);
     virtual ~GameSceneSpriteBase();
 
-    void QueueTileUpload(HardwareDmaQueue & queue, IndexedResourceDescriptor32Range const & range);
-    void UploadPalettes(IndexedResourceDescriptor32Range const & range, u8 unk);
+    void QueueTileUpload(HardwareDmaQueue & queue, IndexedResourceTileRange const & range);
+    void UploadPalettes(IndexedResourcePaletteRange const & range, u8 unk);
 
     u32 Submit(WorldSpriteDrawBuffer * buffer, i32 x, i32 y, u32 priorities,
         u32 sort_key, IndexedResourceSpriteRange const & range, GameObject * palette_source) const;
