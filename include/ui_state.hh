@@ -166,7 +166,7 @@ typedef char UiStateOwnerSizeCheck[sizeof(UiStateOwner) == 4 ? 1 : -1];
 // bits retain their previous value and still have no established meaning.
 struct UiTextWindowSetupCommand : HardwareLinkBase
 {
-    UiTextWindowSetupCommand(u32, u32, u32, u32) SECTION(".text.ui_state_adapters");
+    inline UiTextWindowSetupCommand(u32, u32, u32, u32) SECTION(".text.ui_state_adapters");
     virtual bool Run() SECTION(".text.ui_text_window_setup");
     unsigned screen_block : 5;
     unsigned first_tile : 10;
@@ -195,6 +195,8 @@ struct UiTextInputAdapter : UiTextInput
 // entries. The buffer prefix and scalar control fields remain unknown.
 struct UnkUiSelectionTileBuffer
 {
+    // Buffers intentionally start uninitialized, including the inline array.
+    UnkUiSelectionTileBuffer() {}
     u32 unk_00;
     u32 tiles[64];
 };
@@ -239,8 +241,7 @@ struct UnkUiSelectionRowOwner
 
 struct UnkUiSelectionData : UiTextOutput
 {
-    UnkUiSelectionData(HardwareResourceEntry *, HardwareStateOwner const &)
-        SECTION(".text.ui_state_selection");
+    inline UnkUiSelectionData(HardwareResourceEntry *, HardwareStateOwner const &);
     // Keep the implicit virtual destructor: row ownership supplies its body.
     virtual bool Emit(u32) SECTION(".text.ui_text_output_callbacks");
     virtual void CarriageReturn() SECTION(".text.ui_text_output_callbacks");
@@ -269,6 +270,7 @@ struct UnkUiSelectionDimensions
 // this queued command. The output storage and its resource handles are borrowed.
 struct UiTextOutputUploadCommand : HardwareLinkBase
 {
+    UiTextOutputUploadCommand(UnkUiSelectionData * const & value) : output(value) {}
     virtual bool Run() SECTION(".text.ui_text_output_upload");
     UnkUiSelectionData * output;
 };
@@ -282,7 +284,7 @@ typedef char UiTextOutputUploadCommandOutputCheck[
 // run; it is not compression. That mode requires at least one 32-byte tile.
 struct UiTextTileCopyCommand : HardwareLinkBase
 {
-    UiTextTileCopyCommand(u32 const *, u32 *, u32, bool) SECTION(".text.ui_state_selection");
+    inline UiTextTileCopyCommand(u32 const *, u32 *, u32, bool);
     virtual bool Run() SECTION(".text.ui_text_tile_copy");
     u32 const * source;
     u32 * destination;
@@ -341,6 +343,11 @@ typedef char UiTextTileCopyCommandDestinationCheck[
 EXTERN_C
 
 extern u8 const gUiHandCursorArchive[];
+#if defined(REGION_JP)
+extern u8 const gUnk_084AF4E4[];
+#else
+extern u8 const gUnk_0872937C[];
+#endif
 
 u8 func_08050F70(UnkUiSelectionData const * object);
 void func_08050F74(UnkUiSelectionData * object, u32 arg_1, u32 arg_2);
@@ -349,8 +356,7 @@ void func_08050F74(UnkUiSelectionData * object, u32 arg_1, u32 arg_2);
 // Its body remains shared assembly until the C++ reconstruction matches.
 void func_08050FA0(UnkUiSelectionData * object, HardwareSpriteBufferState * sprites);
 
-void func_080510E8(UnkUiSelectionData * object)
-    SECTION(".text.ui_state_selection");
+void func_080510E8(UnkUiSelectionData * object);
 int func_080512B8(UnkUiSelectionData const * object, int index)
     SECTION(".text.ui_state_selection");
 UnkUiSelectionRow * func_080512C8(UnkUiSelectionData const * object, u32 index)
@@ -490,6 +496,7 @@ struct UiDmaTransferQueue
 #pragma interface "ui_state.hh"
 struct UiDmaTransferCommand : HardwareLinkBase
 {
+    UiDmaTransferCommand(UiDmaTransferQueue & value) : queue(&value) {}
     UiDmaTransferQueue * queue;
     virtual bool Run();
 };
@@ -514,7 +521,7 @@ struct UnkUiPayloadLowFlags
 // constructor and destructor. Opening and destruction are recovered in C++.
 struct UiStatePayload
 {
-    // Construction and Update retain their original native assembly bodies.
+    // Construction follows these owned members; Update remains native.
     UiStatePayload(u32, u32, u32, u32, HardwareStateOwner const &, HardwareResource const &);
     ~UiStatePayload() SECTION(".text.ui_payload_destructor");
     void Open() SECTION(".text.ui_payload_open");

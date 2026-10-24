@@ -1,3 +1,4 @@
+#include "hardware_resource.hh"
 #include "prelude.h"
 #pragma implementation "ui_state.hh"
 #include "ui_state.hh"
@@ -261,25 +262,6 @@ bool UiTextWindowSetupCommand::Run()
     return false;
 }
 
-#include FOMT_TEXT_INCLUDE(ui_state.cc)
-
-UiTextLayoutPositionTable const gUiTextLayoutPositionTable = {
-    0x00,
-    {
-        { 0x08, 0x09, 0x00, 0x00, 0x00, 0x00 },
-        { 0x08, 0x09, 0x0A, 0x00, 0x00, 0x00 },
-        { 0x08, 0x09, 0x40, 0x41, 0x00, 0x00 },
-        { 0x08, 0x09, 0x0A, 0x40, 0x41, 0x00 },
-        { 0x08, 0x09, 0x0A, 0x40, 0x41, 0x42 },
-        { 0x09, 0x0A, 0x00, 0x00, 0x00, 0x00 },
-        { 0x09, 0x0A, 0x41, 0x00, 0x00, 0x00 },
-        { 0x09, 0x0A, 0x41, 0x42, 0x00, 0x00 },
-    },
-};
-
-u8 const * const gUiSharedTiles = gUnk_UiSharedResourceData_000;
-u32 const gUiSharedTileByteCount = 0x120;
-u8 const * const gUiSharedPalette = gUnk_UiSharedResourceData_001;
 
 EC void func_08050E0C(UiStateOwner const * object, char const * first, char const * second,
     char const * third, char const * fourth, char const * fifth, char const * sixth,
@@ -341,7 +323,7 @@ EC u32 func_08050EBC(FirstFieldUiOwner & object, u32 const flag_mask)
     return old_flags;
 }
 
-UiTextWindowSetupCommand::UiTextWindowSetupCommand(u32 screen, u32 tile, u32 background, u32 cursor)
+inline UiTextWindowSetupCommand::UiTextWindowSetupCommand(u32 screen, u32 tile, u32 background, u32 cursor)
     : HardwareLinkBase(), screen_block(screen), first_tile(tile),
       background_palette(background), cursor_palette(cursor)
 {
@@ -557,7 +539,7 @@ bool UiTextOutputUploadCommand::Run()
     return false;
 }
 
-UnkUiSelectionData::UnkUiSelectionData(HardwareResourceEntry * palette,
+inline UnkUiSelectionData::UnkUiSelectionData(HardwareResourceEntry * palette,
     HardwareStateOwner const & state)
     : palette(palette), unk_14(0), unk_16(0), unk_18(0), unk_19(0), unk_1a(0), unk_1b(0)
 {
@@ -600,7 +582,7 @@ EC UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 inde
     return object->rows[index].Get();
 }
 
-UiTextTileCopyCommand::UiTextTileCopyCommand(u32 const * source, u32 * destination,
+inline UiTextTileCopyCommand::UiTextTileCopyCommand(u32 const * source, u32 * destination,
     u32 tile_count, bool alternate_nibbles)
     : HardwareLinkBase(), source(source), destination(destination), tile_count(tile_count),
       nibble_phase(0), alternate_nibbles(alternate_nibbles)
@@ -992,3 +974,53 @@ void UiStatePayload::HideHeartIndicator()
 {
     heart_indicator_visible = 0;
 }
+
+UiStatePayload::UiStatePayload(u32 background, u32 screen, u32 palette_bank,
+    u32 mode, HardwareStateOwner const & shared, HardwareResource const & resources)
+    : background(background), screen_block(screen), character_block(screen >> 3),
+      first_tile((screen & 7) * 64 + 20), background_palette(palette_bank),
+      mode(mode), state(0), unk_0c(0), allow_resume(1),
+      palette(resources.Get()), background_state(shared.Get(2)),
+      commands(), records(), records_command(records), output(&palette, shared),
+      text(), output_command(&output),
+      tile_copy(reinterpret_cast<u32 const *>(gUiSharedTiles),
+          &reinterpret_cast<u32 (*)[512][8]>(0x06000000)[character_block][first_tile][0],
+          gUiSharedTileByteCount / 32, mode == 1),
+      window(screen_block, first_tile, background_palette,
+          palette.GetIndex()),
+      choice_index(0), hand_cursor(gUiHandCursorArchive),
+#if defined(REGION_JP)
+      choice_cursor(gUnk_084AF4E4),
+#else
+      choice_cursor(gUnk_0872937C),
+#endif
+      choice_handle(&choice_cursor, 0, 256), choice_state(shared.Get(7)),
+      portrait_flags(), portrait(), portrait_palette(resources.Get()), nameplate_flags(),
+      nameplate_tiles(), heart_indicator_visible(0),
+      heart_indicator_archive(gUiHeartIndicatorArchive),
+      heart_indicator_handle(&heart_indicator_archive, 0, 256),
+      heart_indicator_palette(resources.Get()), low_flags()
+{
+}
+
+// Keep the native text/table/pointer order. Definitions follow their consumers
+// so the old compiler retains accesses through the named pointer/count objects.
+#include FOMT_TEXT_INCLUDE(ui_state.cc)
+
+UiTextLayoutPositionTable const gUiTextLayoutPositionTable = {
+    0x00,
+    {
+        { 0x08, 0x09, 0x00, 0x00, 0x00, 0x00 },
+        { 0x08, 0x09, 0x0A, 0x00, 0x00, 0x00 },
+        { 0x08, 0x09, 0x40, 0x41, 0x00, 0x00 },
+        { 0x08, 0x09, 0x0A, 0x40, 0x41, 0x00 },
+        { 0x08, 0x09, 0x0A, 0x40, 0x41, 0x42 },
+        { 0x09, 0x0A, 0x00, 0x00, 0x00, 0x00 },
+        { 0x09, 0x0A, 0x41, 0x00, 0x00, 0x00 },
+        { 0x09, 0x0A, 0x41, 0x42, 0x00, 0x00 },
+    },
+};
+
+u8 const * const gUiSharedTiles = gUnk_UiSharedResourceData_000;
+u32 const gUiSharedTileByteCount = 0x120;
+u8 const * const gUiSharedPalette = gUnk_UiSharedResourceData_001;

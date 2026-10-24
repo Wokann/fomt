@@ -18,6 +18,11 @@ struct HardwareResourceEntry {
         handle = RetainHardwarePoolHandle(this, value.handle);
     }
 
+    u32 GetIndex()
+    {
+        return GetHardwarePoolHandleIndex(this, handle);
+    }
+
     ~HardwareResourceEntry()
     {
         ReleaseHardwarePoolHandle(this, handle);

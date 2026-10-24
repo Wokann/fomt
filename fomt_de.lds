@@ -459,7 +459,7 @@ SECTIONS
         src/ui_state.o(.text.ui_text_output_callbacks);
         src/ui_state.o(.text.ui_text_input_callbacks);
         src/ui_state.o(.text.ui_text_window_setup);
-        asm/code_0803EE94.o(.text.ui_text_window_setup_after);
+        src/ui_state.o(.text.__14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource);
         src/ui_state.o(.text.ui_payload_destructor);
         asm/code_0803EE94.o(.text.ui_payload_destructor_after);
         src/ui_state.o(.text.ui_payload_open);
@@ -483,7 +483,10 @@ SECTIONS
         asm/code_0803EE94.o(.text.code_08050E50);
         src/ui_state.o(.text.__18UiTextInputAdapterRCUiUc .text.func_08050F70 .text.func_08050F74);
         asm/code_0803EE94.o(.text.ui_state_helpers_after);
+        src/ui_state.o(.text.func_080510E8);
+        src/ui_state.o(.text.__18UnkUiSelectionDataP21HardwareResourceEntryRC18HardwareStateOwner);
         src/ui_state.o(.text.ui_state_selection);
+        src/ui_state.o(.text.__21UiTextTileCopyCommandPCUiPUiUib);
         src/ui_text_window.o(.text);
         asm/code_0803EE94.o(.text.ui_state_selection_after);
         src/animal_festival_ranking.o(.text);
