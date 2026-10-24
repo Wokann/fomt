@@ -1281,7 +1281,7 @@ RunNewGameMenuCore:
     b.n .Ljp_0800468C
 .Ljp_08004ACA:
     adds	r0, r4, #0
-    bl func_08050DF0
+    bl GetChoiceResult__C12UiStateOwner
     cmp	r0, #1
     bne.n .Ljp_08004B1C
 .Ljp_08004AD4:
@@ -1300,7 +1300,7 @@ RunNewGameMenuCore:
     b.n .Ljp_0800468C
 .Ljp_08004AF0:
     adds	r0, r4, #0
-    bl func_08050DF0
+    bl GetChoiceResult__C12UiStateOwner
     cmp	r0, #1
     bne.n .Ljp_08004B1C
     adds	r0, r6, #0
@@ -2638,7 +2638,7 @@ RunNewGameMenuCore: @ 0x08004570
     b .L08004674
 .L08004AB2:
     adds r0, r4, #0
-    bl func_08050DF0
+    bl GetChoiceResult__C12UiStateOwner
     cmp r0, #1
     bne .L08004B04
 .L08004ABC:
@@ -2657,7 +2657,7 @@ RunNewGameMenuCore: @ 0x08004570
     b .L08004674
 .L08004AD8:
     adds r0, r4, #0
-    bl func_08050DF0
+    bl GetChoiceResult__C12UiStateOwner
     cmp r0, #1
     bne .L08004B04
     adds r0, r6, #0

@@ -108,20 +108,6 @@ struct UiActionState
     UiActionStateFlags flags_01f0;
 };
 
-struct FirstFieldStatusByte
-{
-    u8 unused_00[0x0D];
-    u8 value;
-};
-
-struct FirstFieldQueryData
-{
-    u8 unused_00[8];
-    u32 mode;
-    u8 unused_0c[0x14C];
-    void * result;
-};
-
 struct FirstFieldUiFlags
 {
     u8 unused_00[0x550];
@@ -148,11 +134,18 @@ struct UiStateOwner
         SECTION(".text.ui_state_adapters");
     ~UiStateOwner() SECTION(".text.ui_state_adapters");
     i32 GetState() const SECTION(".text.ui_state_adapters");
+    // Preserve the previous raw gate byte, rather than normalizing it to bool.
+    u8 DisableResume() const SECTION(".text.ui_state_adapters");
+    u8 EnableResume() const SECTION(".text.ui_state_adapters");
+    // Zero while choosing; otherwise the stored choice index, not a pointer.
+    // This is not a completion query for unrelated window phases.
+    u32 GetChoiceResult() const SECTION(".text.ui_state_adapters");
     i32 Update(HardwareCoreState * state, HardwareSpriteBufferState * sprites,
         HardwareDisplayState * display, u8 * links, u8 * manager,
         MusicPlayer ** music) const SECTION(".text.ui_state_adapters");
     // These take an archive level index, not a character ID. GameScene owns
     // the love-value to level mapping used by the script-facing operation.
+    void ShowPortrait(u32 index) const SECTION(".text.ui_state_adapters");
     void ShowHeartIndicator(u32 level) const SECTION(".text.ui_state_adapters");
     void HideHeartIndicator() const SECTION(".text.ui_state_adapters");
 
@@ -370,7 +363,6 @@ void func_08050D68(UiStateOwner const * object) SECTION(".text.ui_state_adapters
 void func_08050D74(void * const * object) SECTION(".text.ui_state_adapters");
 void func_08050DA0(UiStateOwner const * object, char const * text,
     ScriptTextVariableStore * variables) SECTION(".text.ui_state_adapters");
-void * func_08050DF0(void * const * object) SECTION(".text.ui_state_adapters");
 void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
     u32 arg_r3) SECTION(".text.ui_state_adapters");
 // Selection rows are encoded text pointers, not integer IDs. Both adapters
@@ -381,8 +373,6 @@ void func_08050E0C(UiStateOwner const * object, char const * first, char const *
 void func_08050E30(UiStateOwner const * object, char const * prompt, char const * first,
     char const * second, char const * third, char const * fourth,
     ScriptTextVariableStore * variables) SECTION(".text.ui_state_adapters");
-void func_08050E50(void * const * object, u32 arg_r1)
-    SECTION(".text.ui_state_adapters");
 void func_08050E5C(void * const * object)
     SECTION(".text.ui_state_adapters");
 void func_08050E68(void * const * object, char const * text)
@@ -535,6 +525,8 @@ struct UiStatePayload
         ScriptTextVariableStore *) SECTION(".text.ui_payload_choices");
     i32 Update(HardwareCoreState *, HardwareSpriteBufferState *, HardwareDisplayState *,
         u8 *, u8 *, MusicPlayer **);
+    // Known portrait operation; its body remains native until byte-matched.
+    void ShowPortrait(u32 index);
     void ShowHeartIndicator(u32 level) SECTION(".text.ui_heart_indicator");
     void HideHeartIndicator() SECTION(".text.ui_heart_indicator");
     unsigned background : 2;
@@ -577,6 +569,7 @@ struct UiStatePayload
 };
 typedef char UiStatePayloadSizeCheck[sizeof(UiStatePayload) == 0x554 ? 1 : -1];
 typedef char UiPayload_state[offsetof(UiStatePayload, state) == 8 ? 1 : -1];
+typedef char UiPayload_allow_resume[offsetof(UiStatePayload, allow_resume) == 0x0D ? 1 : -1];
 typedef char UiPayload_palette[offsetof(UiStatePayload, palette) == 16 ? 1 : -1];
 typedef char UiPayload_background_state[offsetof(UiStatePayload, background_state) == 24 ? 1 : -1];
 typedef char UiPayload_commands[offsetof(UiStatePayload, commands) == 32 ? 1 : -1];

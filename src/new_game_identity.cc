@@ -129,9 +129,7 @@ void UpdateNewGameIdentityDialog(NewGameIdentityCore * core)
                 gText_NewGameIdentity_No, nullptr, nullptr, nullptr);
             break;
         case 6:
-            // This form reads the adapter's address-sized result as a choice.
-            switch (reinterpret_cast<u32>(func_08050DF0(
-                reinterpret_cast<void * const *>(core->ui_state))))
+            switch (core->ui_state->GetChoiceResult())
             {
             case 1:
                 core->unk_1A75 = 1;

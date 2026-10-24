@@ -5294,8 +5294,9 @@ sub_080D8178:
     bl GetState__C12UiStateOwner
     .byte 0x06, 0x28, 0x0F, 0xD1, 0x04, 0xA8, 0x80, 0x88
     .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x01, 0xD1, 0x01, 0xF0, 0x7B, 0xF8, 0x20, 0x68, 0x77, 0xF7
-    .byte 0xAB, 0xFC, 0x0A, 0x20, 0x00, 0xF0, 0x04, 0xFF, 0x5C, 0x05, 0x00, 0x00, 0x20, 0x68, 0x77, 0xF7
-    .byte 0xE1, 0xFC, 0x02, 0x28, 0x50, 0xD0, 0x02, 0x28, 0x03, 0xDC, 0x01, 0x28, 0x09, 0xD0, 0x01, 0xF0
+    .byte 0xAB, 0xFC, 0x0A, 0x20, 0x00, 0xF0, 0x04, 0xFF, 0x5C, 0x05, 0x00, 0x00, 0x20, 0x68
+    bl GetChoiceResult__C12UiStateOwner
+    .byte 0x02, 0x28, 0x50, 0xD0, 0x02, 0x28, 0x03, 0xDC, 0x01, 0x28, 0x09, 0xD0, 0x01, 0xF0
     .byte 0x68, 0xF8, 0x03, 0x28, 0x00, 0xD1, 0x91, 0xE0, 0x04, 0x28, 0x00, 0xD1, 0xFC, 0xE0, 0x01, 0xF0
     .byte 0x60, 0xF8, 0x1D, 0x4C, 0x6C, 0x44, 0x24, 0x68, 0x20, 0x68, 0x1C, 0x49, 0x01, 0x22, 0x01, 0x23
     bl EndHardwareBlend
@@ -5587,7 +5588,8 @@ sub_080D8178:
     .byte 0x6D, 0x44, 0x2D, 0x68, 0x28, 0x60, 0xA4, 0xE1, 0x55, 0x46, 0xAC, 0x35, 0x28, 0x68
     bl GetState__C12UiStateOwner
     .byte 0x06, 0x28, 0x00, 0xD1, 0x9C, 0xE1, 0x05, 0x48, 0x04, 0x68, 0x08, 0x34, 0x28, 0x68
-    .byte 0x76, 0xF7, 0x08, 0xFE, 0x01, 0x1C, 0x20, 0x1C, 0x65, 0xF7, 0xDC, 0xFA, 0x62, 0xE1, 0x00, 0x00
+    bl GetChoiceResult__C12UiStateOwner
+    .byte 0x01, 0x1C, 0x20, 0x1C, 0x65, 0xF7, 0xDC, 0xFA, 0x62, 0xE1, 0x00, 0x00
     .byte 0x0C, 0x04, 0x00, 0x03, 0x04, 0x4F, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x68, 0x01, 0x68, 0x89, 0x6A
     .byte 0xF9, 0xF7, 0x9E, 0xF8, 0x6B, 0xE1, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x0B, 0x4A, 0x6A, 0x44
     .byte 0x12, 0x68, 0x10, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x00, 0x21, 0xF9, 0xF7, 0x93, 0xF8, 0x41, 0x69
@@ -11383,7 +11385,8 @@ func_080E0094:
     .byte 0x7C, 0x19, 0x20, 0x68
     bl GetState__C12UiStateOwner
     .byte 0x06, 0x28, 0x00, 0xD1, 0x85, 0xE0, 0x20, 0x68
-    .byte 0x70, 0xF7, 0xC2, 0xFE, 0x01, 0x1C, 0x38, 0x1C, 0x00, 0xF0, 0xC2, 0xF9, 0x62, 0xE0, 0xDC, 0x21
+    bl GetChoiceResult__C12UiStateOwner
+    .byte 0x01, 0x1C, 0x38, 0x1C, 0x00, 0xF0, 0xC2, 0xF9, 0x62, 0xE0, 0xDC, 0x21
     .byte 0x89, 0x00, 0x78, 0x18, 0x00, 0x68
     bl GetStep__C23HardwareBlendController
     .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42
@@ -14958,7 +14961,7 @@ sub_080D8178: @ 0x080D8178
 .L080D99FC: .4byte 0x0000055C
 .L080D9A00:
 	ldr r0, [r4]
-	bl func_08050DF0
+	bl GetChoiceResult__C12UiStateOwner
 	cmp r0, #2
 	beq .L080D9AAC
 	cmp r0, #2
@@ -16661,7 +16664,7 @@ sub_080DA76C: @ 0x080DA76C
 	ldr r4, [r0]
 	adds r4, #8
 	ldr r0, [r5]
-	bl func_08050DF0
+	bl GetChoiceResult__C12UiStateOwner
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl Push__12ScriptEnginei
@@ -27134,7 +27137,7 @@ func_080E0094: @ 0x080E0094
 	b .L080E075E
 .L080E0646:
 	ldr r0, [r4]
-	bl func_08050DF0
+	bl GetChoiceResult__C12UiStateOwner
 	adds r1, r0, #0
 	adds r0, r7, #0
 	bl func_080E09E4
@@ -31675,7 +31678,7 @@ func_080E2D88:
     bl func_08050DC8
     adds r0, r4, #0
     movs r1, #0x39
-    bl func_08050E50
+    bl ShowPortrait__C12UiStateOwnerUi
     pop {r4}
     pop {r0}
     bx r0
@@ -31709,7 +31712,7 @@ func_080E2DC8:
     bl func_08050DC8
     adds r0, r4, #0
     movs r1, #0x38
-    bl func_08050E50
+    bl ShowPortrait__C12UiStateOwnerUi
     pop {r4}
     pop {r0}
     bx r0
@@ -31729,7 +31732,7 @@ func_080E2DF0:
     bl func_08050DC8
     adds r0, r4, #0
     movs r1, #0x38
-    bl func_08050E50
+    bl ShowPortrait__C12UiStateOwnerUi
     pop {r4}
     pop {r0}
     bx r0
@@ -31758,7 +31761,7 @@ func_080E2E18:
     bl func_08050DC8
     adds r0, r4, #0
     movs r1, #0x3a
-    bl func_08050E50
+    bl ShowPortrait__C12UiStateOwnerUi
     pop {r4}
     pop {r0}
     bx r0
@@ -31810,7 +31813,7 @@ func_080E2E54:
     cmp r0, #3
     bne .Lauto_080E2EC6
     adds r0, r4, #0
-    bl func_08050DF0
+    bl GetChoiceResult__C12UiStateOwner
     cmp r0, #1
     beq .Lauto_080E2EC0
     cmp r0, #2
@@ -31850,7 +31853,7 @@ func_080E2ED4:
     bl func_08050DC8
     adds r0, r4, #0
     movs r1, #0x38
-    bl func_08050E50
+    bl ShowPortrait__C12UiStateOwnerUi
     pop {r4}
     pop {r0}
     bx r0
@@ -31885,7 +31888,7 @@ func_080E2F14:
     bl func_08050D8C
     adds r0, r4, #0
     movs r1, #0x38
-    bl func_08050E50
+    bl ShowPortrait__C12UiStateOwnerUi
     pop {r4}
     pop {r0}
     bx r0
@@ -31917,7 +31920,7 @@ func_080E2F3C:
     bl func_08050D8C
     adds r0, r4, #0
     movs r1, #0x3a
-    bl func_08050E50
+    bl ShowPortrait__C12UiStateOwnerUi
     pop {r4}
     pop {r0}
     bx r0
@@ -31973,7 +31976,7 @@ func_080E2F74_vtable_target:
     movs r2, #0xe4
     lsls r2, r2, #1
     adds r0, r1, r2
-    bl func_08050DF0
+    bl GetChoiceResult__C12UiStateOwner
     cmp r0, #1
     beq .Lauto_080E2FE0
     cmp r0, #2
@@ -39943,7 +39946,7 @@ func_080E35E8: @ 0x080E35E8
 	bl func_08050DC8
 	adds r0, r4, #0
 	movs r1, #0x39
-	bl func_08050E50
+	bl ShowPortrait__C12UiStateOwnerUi
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -39978,7 +39981,7 @@ func_080E3628: @ 0x080E3628
 	bl func_08050DC8
 	adds r0, r4, #0
 	movs r1, #0x38
-	bl func_08050E50
+	bl ShowPortrait__C12UiStateOwnerUi
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -39999,7 +40002,7 @@ func_080E3650: @ 0x080E3650
 	bl func_08050DC8
 	adds r0, r4, #0
 	movs r1, #0x38
-	bl func_08050E50
+	bl ShowPortrait__C12UiStateOwnerUi
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -40029,7 +40032,7 @@ func_080E3678: @ 0x080E3678
 	bl func_08050DC8
 	adds r0, r4, #0
 	movs r1, #0x3a
-	bl func_08050E50
+	bl ShowPortrait__C12UiStateOwnerUi
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -40082,7 +40085,7 @@ func_080E36B4: @ 0x080E36B4
 	cmp r0, #3
 	bne .L080E3726
 	adds r0, r4, #0
-	bl func_08050DF0
+	bl GetChoiceResult__C12UiStateOwner
 	cmp r0, #1
 	beq .L080E3720
 	cmp r0, #2
@@ -40119,7 +40122,7 @@ func_080E3734: @ 0x080E3734
 	bl func_08050DC8
 	adds r0, r4, #0
 	movs r1, #0x38
-	bl func_08050E50
+	bl ShowPortrait__C12UiStateOwnerUi
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -40152,7 +40155,7 @@ func_080E3774: @ 0x080E3774
 	bl func_08050D8C
 	adds r0, r4, #0
 	movs r1, #0x38
-	bl func_08050E50
+	bl ShowPortrait__C12UiStateOwnerUi
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -40185,7 +40188,7 @@ func_080E379C: @ 0x080E379C
 	bl func_08050D8C
 	adds r0, r4, #0
 	movs r1, #0x3a
-	bl func_08050E50
+	bl ShowPortrait__C12UiStateOwnerUi
 	movs r2, #0xea
 	lsls r2, r2, #1
 	adds r1, r5, r2
@@ -40246,7 +40249,7 @@ func_080E37DC: @ 0x080E37DC
 	movs r2, #0xe4
 	lsls r2, r2, #1
 	adds r0, r1, r2
-	bl func_08050DF0
+	bl GetChoiceResult__C12UiStateOwner
 	cmp r0, #1
 	beq .L080E3848
 	cmp r0, #2

@@ -720,8 +720,7 @@ void UpdateNameInputConfirmation(NewGameNameInputCore * core)
                 break;
             case 6:
                 {
-                    u32 selection = reinterpret_cast<u32>(func_08050DF0(
-                        reinterpret_cast<void * const *>(core->ui_state)));
+                    u32 selection = core->ui_state->GetChoiceResult();
                     switch (selection) {
                     case 1:
                         core->unk_after_keyboard_redraw[1] = selection;

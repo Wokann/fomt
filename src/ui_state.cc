@@ -161,11 +161,6 @@ EC void func_08050D8C(void * const * object, u32 arg_r1)
     SECTION(".text.ui_state_adapters");
 EC void func_08050DB4(void * const * object, u32 arg_r1, u16 arg_r2)
     SECTION(".text.ui_state_adapters");
-EC u8 func_08050DD8(void * const * object)
-    SECTION(".text.ui_state_adapters");
-EC u8 func_08050DE4(void * const * object)
-    SECTION(".text.ui_state_adapters");
-EC void func_08050AD8(void * object, u32 arg_r1);
 
 EC void func_08050D5C(UiStateOwner const * object)
 {
@@ -213,30 +208,25 @@ EC void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
         reinterpret_cast<ScriptTextVariableStore *>(arg_r3));
 }
 
-EC u8 func_08050DD8(void * const * object)
+u8 UiStateOwner::DisableResume() const
 {
-    FirstFieldStatusByte * const status = static_cast<FirstFieldStatusByte *>(*object);
-    u8 const value = status->value;
-    status->value = 0;
-    return value;
+    u8 const previous = value->allow_resume;
+    value->allow_resume = 0;
+    return previous;
 }
 
-EC u8 func_08050DE4(void * const * object)
+u8 UiStateOwner::EnableResume() const
 {
-    FirstFieldStatusByte * const status = static_cast<FirstFieldStatusByte *>(*object);
-    u8 const value = status->value;
-    status->value = 1;
-    return value;
+    u8 const previous = value->allow_resume;
+    value->allow_resume = 1;
+    return previous;
 }
 
-EC void * func_08050DF0(void * const * object)
+u32 UiStateOwner::GetChoiceResult() const
 {
-    FirstFieldQueryData * const data = static_cast<FirstFieldQueryData *>(*object);
-
-    if (data->mode == 6)
-        return nullptr;
-
-    return data->result;
+    if (value->state == 6)
+        return 0;
+    return value->choice_index;
 }
 
 static inline void FillUiFastWords(u32 value, void * destination, u32 count)
@@ -277,9 +267,9 @@ EC void func_08050E30(UiStateOwner const * object, char const * prompt, char con
     object->value->SetPromptChoices(prompt, first, second, third, fourth, variables);
 }
 
-EC void func_08050E50(void * const * object, u32 arg_r1)
+void UiStateOwner::ShowPortrait(u32 index) const
 {
-    func_08050AD8(*object, arg_r1);
+    value->ShowPortrait(index);
 }
 
 EC void func_08050E5C(void * const * object)

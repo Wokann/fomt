@@ -610,7 +610,7 @@ void UpdateBirthdayInputUi(NewGameBirthdayInputCore * core)
             func_08050D74(reinterpret_cast<void * const *>(core->ui_state));
             core->dialogue_state = 1;
         } else if (core->dialogue_state == 4) {
-            u32 selection = reinterpret_cast<u32>(func_08050DF0(reinterpret_cast<void * const *>(core->ui_state)));
+            u32 selection = core->ui_state->GetChoiceResult();
             core->dialogue_state = 5;
             if (selection == 1) core->dialogue_choice = 0;
             else if (selection == 2) core->dialogue_choice = 1;

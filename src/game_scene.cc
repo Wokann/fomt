@@ -344,7 +344,7 @@ void GameScene::TalkSetPortrait(u32 id)
     GameSceneState * current = state;
     UiStateOwner * window = current->talk_window.Get();
     if (window != nullptr && current->save->display_options.show_portrait)
-        func_08050E50(reinterpret_cast<void * const *>(window), id);
+        window->ShowPortrait(id);
 }
 
 void GameScene::TalkClearPortrait()
