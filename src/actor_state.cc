@@ -1,10 +1,6 @@
 #include "actor_state.hh"
 #include "field_render_rect_descriptors.hh"
 
-u8 const gActorStateMaxValues[] = {
-    10, 10, 255, 10, 10, 255,
-};
-
 #include FOMT_TEXT_INCLUDE(actor_state_1.cc)
 
 ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
@@ -46,28 +42,6 @@ EC FieldRenderPatchPlacement SelectMapFlagPatch(u32 const & flags, u32 index, bo
     }
     return FieldRenderPatchPlacement(gActorDataSelectionEntries[index].absent_patch,
         gActorDataSelectionEntries[index].tile_x, gActorDataSelectionEntries[index].tile_y);
-}
-
-extern "C" u32 func_0809C3E0(ActorStateSlots & self, u32 index)
-{
-    u32 result = 0;
-
-    if (self.unk_00[index] != 0)
-    {
-        u8 * const values = self.unk_0C;
-        u8 & value = values[index];
-
-        if (value < gActorStateMaxValues[index])
-            ++value;
-        else
-        {
-            self.unk_00[index] = 0;
-            self.unk_06[index] = 1;
-            result = 1;
-        }
-    }
-
-    return result;
 }
 
 // Initializing the 22 known flags preserves the two unknown upper bits at

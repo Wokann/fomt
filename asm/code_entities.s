@@ -21791,7 +21791,7 @@ func_0802ADE8: @ 0x0802ADE8
     movs r1, #0xd2
     lsls r1, r1, #6
     adds r0, r0, r1
-    bl func_0809C32C
+    bl HaveFoundAllTools__C15CursedToolState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802AFE4
@@ -31321,7 +31321,7 @@ sub_0802F990: @ 0x0802F990
     lsls r4, r4, #6
     adds r0, r0, r4
     movs r1, #0x15
-    bl func_0809C4B4
+    bl AdvanceToolUses__15CursedToolStateUi
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802FB2E
@@ -31365,7 +31365,7 @@ sub_0802F990: @ 0x0802F990
     lsls r5, r5, #6
     adds r0, r0, r5
     movs r1, #0x2d
-    bl func_0809C4B4
+    bl AdvanceToolUses__15CursedToolStateUi
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802FB2E
@@ -56080,7 +56080,7 @@ func_0802B054: @ 0x0802B054
     movs r1, #0xd2
     lsls r1, r1, #6
     adds r0, r0, r1
-    bl func_0809C32C
+    bl HaveFoundAllTools__C15CursedToolState
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802B250
@@ -65583,7 +65583,7 @@ sub_0802FBFC: @ 0x0802FBFC
     lsls r4, r4, #6
     adds r0, r0, r4
     movs r1, #0x15
-    bl func_0809C4B4
+    bl AdvanceToolUses__15CursedToolStateUi
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802FD9A
@@ -65627,7 +65627,7 @@ sub_0802FBFC: @ 0x0802FBFC
     lsls r5, r5, #6
     adds r0, r0, r5
     movs r1, #0x2d
-    bl func_0809C4B4
+    bl AdvanceToolUses__15CursedToolStateUi
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802FD9A

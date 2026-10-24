@@ -9,6 +9,7 @@
 #include "time_of_day.hh"
 #include "money_account.hh"
 #include "actor_state.hh"
+#include "cursed_tool.hh"
 #include "cooking_recipe_inventory.hh"
 #include "event_state.hh"
 #include "npc_collection.hh"
@@ -76,7 +77,7 @@ typedef char GameStateLinkRecordName14Check[offsetof(GameStateLinkRecord, name_1
 typedef char GameStateLinkRecordName24Check[offsetof(GameStateLinkRecord, name_24) == 0x24 ? 1 : -1];
 typedef char GameStateLinkRecordName34Check[offsetof(GameStateLinkRecord, name_34) == 0x34 ? 1 : -1];
 
-// Three 16-byte records follow ActorStateSlots in the saved actor state.
+// Three 16-byte records follow CursedToolState in the saved actor state.
 // Initialization clears only each record's low nibble, not the other words.
 struct GameStateActorRecord {
     GameStateActorRecord() : unk_00_low(0) {}
@@ -193,7 +194,7 @@ struct GameStateSaveImage {
     TVShoppingOrderState tv_shopping;
     FishingRecords fishing_records;
     ActorStateGrid actor_state_grid;
-    ActorStateSlots actor_slots;
+    CursedToolState cursed_tools;
     GameStateActorRecord actor_records[3];
     // Event-control mode also gates player stamina/fatigue action paths.
     u8 scripted_npc_control;
@@ -229,7 +230,7 @@ typedef char GameStateSaveImageAnimalFestivalOpponentsCheck[offsetof(GameStateSa
 typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
 typedef char GameStateSaveImageFishingRecordsCheck[offsetof(GameStateSaveImage, fishing_records) == 0x2C80 ? 1 : -1];
 typedef char GameStateSaveImageActorGridCheck[offsetof(GameStateSaveImage, actor_state_grid) == 0x2E58 ? 1 : -1];
-typedef char GameStateSaveImageActorStateCheck[offsetof(GameStateSaveImage, actor_slots) == 0x3480 ? 1 : -1];
+typedef char GameStateSaveImageCursedToolsCheck[offsetof(GameStateSaveImage, cursed_tools) == 0x3480 ? 1 : -1];
 typedef char GameStateSaveImageActorRecordsCheck[offsetof(GameStateSaveImage, actor_records) == 0x3494 ? 1 : -1];
 typedef char GameStateSaveImageScriptedNpcControlCheck[offsetof(GameStateSaveImage, scripted_npc_control) == 0x34C4 ? 1 : -1];
 typedef char GameStateSaveImageShippingBonusCheck[offsetof(GameStateSaveImage, shooting_star_shipping_bonus) == 0x34C5 ? 1 : -1];

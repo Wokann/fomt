@@ -64,25 +64,6 @@ extern "C" void func_0809C0D4(Unk_Actor_0809BFE8 & self)
     self.unk_08_0 = 100;
 }
 
-extern "C" ActorStateSlots * func_0809C144(ActorStateSlots & self)
-{
-    u32 i = 0;
-    u8 zero = 0;
-    u8 * ptr = self.unk_00;
-
-    do
-    {
-        ptr[0] = zero;
-        ptr[12] = zero;
-        ptr[6] = zero;
-        ++ptr;
-        ++i;
-    }
-    while (i <= 5);
-
-    return &self;
-}
-
 // The raw actor routine at func_0809D500 indexes this order table directly.
 // Its element meanings are not decoded yet, so its original ROM label is
 // retained.

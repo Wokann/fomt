@@ -586,30 +586,8 @@ SECTIONS
         src/sheep.o(.text);
         . = 0x9BFE8; /* US ROM 0x0809BFE8, independently matched */
         src/actor_runtime_data.o(.text);
-        . = 0x9C160; /* US ROM 0x0809C160, unlabelled raw helper */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809C160);
-        . = 0x9C22C; /* US ROM 0x0809C22C, shared selector */
-        src/code_actor_0809C22C.o(.text);
-        . = 0x9C304; /* US ROM 0x0809C304, shared table accessor */
-        src/code_actor_0809C304.o(.text);
-        . = 0x9C318; /* US ROM 0x0809C318, raw actor helper */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809C318);
-        . = 0x9C32C; /* US ROM 0x0809C32C, shared paired-state predicate */
-        src/code_actor_0809C32C.o(.text);
-        . = 0x9C38C; /* US ROM 0x0809C38C, shared nonzero-state predicate */
-        src/code_actor_0809C38C.o(.text);
-        . = 0x9C3BC; /* US ROM 0x0809C3BC, shared state initializer */
-        src/code_actor_0809C3BC.o(.text);
-        . = 0x9C3E0; /* US ROM 0x0809C3E0, shared state advancement */
-        src/actor_state.o(.text.func_0809C3E0);
-        . = 0x9C420; /* US ROM 0x0809C420, shared state reset */
-        src/code_actor_0809C420.o(.text);
-        . = 0x9C444; /* US ROM 0x0809C444, shared conditional state advance */
-        src/code_actor_0809C444.o(.text);
-        . = 0x9C474; /* US ROM 0x0809C474, shared state-update dispatcher */
-        src/code_actor_0809C474.o(.text);
-        . = 0x9C4B4; /* US ROM 0x0809C4B4, shared state-update dispatcher */
-        src/code_actor_0809C4B4.o(.text);
+        /* Six cursed-tool states and their lift-method dispatchers. */
+        src/cursed_tool.o(.text);
         . = 0x9C4E4; /* US ROM 0x0809C4E4, shared word clear */
         src/code_actor_0809C4E4.o(.text);
         . = 0x9C4EC; /* US ROM 0x0809C4EC, shared selection helper and raw actor code */
@@ -1354,7 +1332,8 @@ SECTIONS
         . = ABSOLUTE(0x081010E8); src/cooking_recipe_inventory.o(.rodata);
         src/animal.o(.rodata);
         . = ABSOLUTE(0x08103660); src/livestock_day_update_data.o(.rodata);
-        . = ABSOLUTE(0x081036C0); src/actor_state.o(.rodata);
+        . = ABSOLUTE(0x081036C0); src/cursed_tool.o(.rodata);
+        src/actor_state.o(.rodata);
         /* Fishing-record regional data: names, lookup, trailer. */
         . = ABSOLUTE(0x08103788); src/fishing_results_data.o(.rodata);
         FILL(0x00);

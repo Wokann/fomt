@@ -595,30 +595,8 @@ SECTIONS
         src/sheep.o(.text);
         . = 0x9BF48; /* DE ROM 0x0809BF48, independently matched */
         src/actor_runtime_data.o(.text);
-        . = 0x9C0C0; /* DE ROM 0x0809C0C0, unlabelled raw helper */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809C160);
-        . = 0x9C18C; /* DE ROM 0x0809C18C, shared selector */
-        src/code_actor_0809C22C.o(.text);
-        . = 0x9C264; /* DE ROM 0x0809C264, shared table accessor */
-        src/code_actor_0809C304.o(.text);
-        . = 0x9C278; /* DE ROM 0x0809C278, raw actor helper */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809C318);
-        . = 0x9C28C; /* DE ROM 0x0809C28C, shared paired-state predicate */
-        src/code_actor_0809C32C.o(.text);
-        . = 0x9C2EC; /* DE ROM 0x0809C2EC, shared nonzero-state predicate */
-        src/code_actor_0809C38C.o(.text);
-        . = 0x9C31C; /* DE ROM 0x0809C31C, shared state initializer */
-        src/code_actor_0809C3BC.o(.text);
-        . = 0x9C340; /* DE ROM 0x0809C340, shared state advancement */
-        src/actor_state.o(.text.func_0809C3E0);
-        . = 0x9C380; /* DE ROM 0x0809C380, shared state reset */
-        src/code_actor_0809C420.o(.text);
-        . = 0x9C3A4; /* DE ROM 0x0809C3A4, shared conditional state advance */
-        src/code_actor_0809C444.o(.text);
-        . = 0x9C3D4; /* DE ROM 0x0809C3D4, shared state-update dispatcher */
-        src/code_actor_0809C474.o(.text);
-        . = 0x9C414; /* DE ROM 0x0809C414, shared state-update dispatcher */
-        src/code_actor_0809C4B4.o(.text);
+        /* Six cursed-tool states and their lift-method dispatchers. */
+        src/cursed_tool.o(.text);
         . = 0x9C444; /* DE ROM 0x0809C444, shared word clear */
         src/code_actor_0809C4E4.o(.text);
         . = 0x9C44C; /* DE ROM 0x0809C44C, shared selection helper and raw actor code */
@@ -1364,7 +1342,8 @@ SECTIONS
          src/cooking_recipe_inventory.o(.rodata);
         src/animal.o(.rodata);
          src/livestock_day_update_data.o(.rodata);
-         src/actor_state.o(.rodata);
+         src/cursed_tool.o(.rodata);
+        src/actor_state.o(.rodata);
         /* Fishing-record regional data: names, lookup, trailer. */
          src/fishing_results_data.o(.rodata);
         FILL(0x00);

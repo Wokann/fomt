@@ -3,296 +3,9 @@
     @ Actor behavior uses region-specific tables and branch targets.  The JP
     @ object stays byte-exact, with each external entry at its real location.
 
-    .section .text.code_actor_0809C160
+    .section .text.code_actor_0809C4E4
     .syntax unified
     .thumb
-    .align 2, 0
-    .Lcode_actor_0809C160:
-    push	{lr}
-    adds	r0, r1, #0
-    bl GetId__C4Tool
-    subs	r0, #5
-    cmp	r0, #40	@ 0x28
-    bhi .Ljp_0809BC5C
-    lsls	r0, r0, #2
-    ldr r1, .Ljp_0809BBB0
-    adds	r0, r0, r1
-    ldr	r0, [r0, #0]
-    mov	pc, r0
-.Ljp_0809BBB0:
-    .4byte .Ljp_0809BBB4
-.Ljp_0809BBB4:
-    .4byte .Ljp_0809BC58
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC58
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC58
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC58
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC58
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC5C
-    .4byte .Ljp_0809BC58
-.Ljp_0809BC58:
-    movs	r0, #1
-    b .Ljp_0809BC5E
-.Ljp_0809BC5C:
-    movs	r0, #0
-.Ljp_0809BC5E:
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-
-    .section .text.code_actor_0809C318
-    .align 2, 0
-    .Lcode_actor_0809C318:
-    push	{r4, lr}
-    adds	r4, r0, #0
-    bl func_0809C22C
-    adds	r4, #6
-    adds	r4, r4, r0
-    ldrb	r0, [r4, #0]
-    pop	{r4}
-    pop	{r1}
-    bx	r1
-
-    .section .text.code_actor_0809C38C
-    .align 2, 0
-    .Lcode_actor_0809C38C:
-    push	{lr}
-    adds	r1, r0, #0
-    movs	r2, #0
-    ldrb	r0, [r1, #7]
-    cmp	r0, #0
-    beq .Ljp_0809BDEE
-    ldrb	r0, [r1, #6]
-    cmp	r0, #0
-    beq .Ljp_0809BDEE
-    ldrb	r0, [r1, #8]
-    cmp	r0, #0
-    beq .Ljp_0809BDEE
-    ldrb	r0, [r1, #9]
-    cmp	r0, #0
-    beq .Ljp_0809BDEE
-    ldrb	r0, [r1, #10]
-    cmp	r0, #0
-    beq .Ljp_0809BDEE
-    ldrb	r0, [r1, #11]
-    negs	r0, r0
-    lsrs	r2, r0, #31
-.Ljp_0809BDEE:
-    adds	r0, r2, #0
-    pop	{r1}
-    bx	r1
-
-    .section .text.code_actor_0809C3BC
-    .align 2, 0
-    .Lcode_actor_0809C3BC:
-    push	{r4, lr}
-    adds	r4, r0, #0
-    bl func_0809C22C
-    adds	r3, r0, #0
-    adds	r1, r4, r3
-    ldrb	r2, [r1, #0]
-    cmp	r2, #0
-    bne .Ljp_0809BE12
-    movs	r0, #1
-    strb	r0, [r1, #0]
-    adds	r0, r4, #0
-    adds	r0, #12
-    adds	r0, r0, r3
-    strb	r2, [r0, #0]
-.Ljp_0809BE12:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-
-    .section .text.code_actor_0809C3E0
-    .align 2, 0
-    .Lcode_actor_0809C3E0:
-    push	{r4, r5, r6, lr}
-    adds	r2, r0, #0
-    movs	r5, #0
-    adds	r6, r2, r1
-    ldrb	r0, [r6, #0]
-    cmp	r0, #0
-    beq .Ljp_0809BE50
-    adds	r0, r2, #0
-    adds	r0, #12
-    adds	r4, r0, r1
-    ldr r0, .Ljp_0809BE40
-    adds	r0, r1, r0
-    ldrb	r3, [r4, #0]
-    ldrb	r0, [r0, #0]
-    cmp	r3, r0
-    bcs .Ljp_0809BE44
-    adds	r0, r3, #1
-    strb	r0, [r4, #0]
-    b .Ljp_0809BE50
-    .align 2, 0
-.Ljp_0809BE40:
-    .4byte gActorStateMaxValues
-.Ljp_0809BE44:
-    strb	r5, [r6, #0]
-    adds	r0, r2, #6
-    adds	r0, r0, r1
-    movs	r1, #1
-    strb	r1, [r0, #0]
-    movs	r5, #1
-.Ljp_0809BE50:
-    adds	r0, r5, #0
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-
-    .section .text.code_actor_0809C420
-    .align 2, 0
-    .Lcode_actor_0809C420:
-    push	{lr}
-    adds	r2, r0, #0
-    adds	r0, r2, r1
-    ldrb	r0, [r0, #0]
-    cmp	r0, #0
-    beq .Ljp_0809BE76
-    cmp	r1, #0
-    beq .Ljp_0809BE6C
-    cmp	r1, #3
-    bne .Ljp_0809BE76
-.Ljp_0809BE6C:
-    adds	r0, r2, #0
-    adds	r0, #12
-    adds	r0, r0, r1
-    movs	r1, #0
-    strb	r1, [r0, #0]
-.Ljp_0809BE76:
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-
-    .section .text.code_actor_0809C444
-    .align 2, 0
-    .Lcode_actor_0809C444:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    movs	r5, #0
-    bl func_0809C22C
-    adds	r1, r0, #0
-    adds	r0, r4, r1
-    ldrb	r0, [r0, #0]
-    cmp	r0, #0
-    beq .Ljp_0809BEA2
-    cmp	r1, #0
-    beq .Ljp_0809BE98
-    cmp	r1, #3
-    bne .Ljp_0809BEA2
-.Ljp_0809BE98:
-    adds	r0, r4, #0
-    bl func_0809C3E0
-    lsls	r0, r0, #24
-    lsrs	r5, r0, #24
-.Ljp_0809BEA2:
-    adds	r0, r5, #0
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-
-    .section .text.code_actor_0809C474
-    .align 2, 0
-    .Lcode_actor_0809C474:
-    push	{r4, r5, r6, lr}
-    adds	r5, r0, #0
-    bl func_0809C22C
-    adds	r4, r0, #0
-    movs	r6, #0
-    adds	r0, r5, r4
-    ldrb	r0, [r0, #0]
-    cmp	r0, #0
-    beq .Ljp_0809BEE4
-    cmp	r4, #1
-    beq .Ljp_0809BEC8
-    cmp	r4, #4
-    bne .Ljp_0809BED4
-.Ljp_0809BEC8:
-    adds	r0, r5, #0
-    adds	r1, r4, #0
-    bl func_0809C3E0
-    lsls	r0, r0, #24
-    lsrs	r6, r0, #24
-.Ljp_0809BED4:
-    cmp	r4, #0
-    beq .Ljp_0809BEDC
-    cmp	r4, #3
-    bne .Ljp_0809BEE4
-.Ljp_0809BEDC:
-    adds	r0, r5, #0
-    adds	r1, r4, #0
-    bl func_0809C420
-.Ljp_0809BEE4:
-    adds	r0, r6, #0
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-
-    .section .text.code_actor_0809C4B4
-    .align 2, 0
-    .Lcode_actor_0809C4B4:
-    push	{r4, lr}
-    adds	r4, r0, #0
-    bl func_0809C22C
-    adds	r1, r0, #0
-    movs	r2, #0
-    adds	r0, r4, r1
-    ldrb	r0, [r0, #0]
-    cmp	r0, #0
-    beq .Ljp_0809BF12
-    cmp	r1, #5
-    beq .Ljp_0809BF08
-    cmp	r1, #2
-    bne .Ljp_0809BF12
-.Ljp_0809BF08:
-    adds	r0, r4, #0
-    bl func_0809C3E0
-    lsls	r0, r0, #24
-    lsrs	r2, r0, #24
-.Ljp_0809BF12:
-    adds	r0, r2, #0
-    pop	{r4}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-
-    .section .text.code_actor_0809C4E4
     .align 2, 0
     .Lcode_actor_0809C4E4:
     movs	r1, #0
@@ -1816,7 +1529,7 @@ func_0809DA00:
     movs	r2, #210	@ 0xd2
     lsls	r2, r2, #6
     adds	r0, r6, r2
-    bl func_0809C3BC
+    bl StartCurse__15CursedToolStateUi
     b .Ljp_0809D954
 .Ljp_0809D5D4:
     movs	r7, #0
@@ -1875,7 +1588,7 @@ func_0809DA00:
     movs	r1, #210	@ 0xd2
     lsls	r1, r1, #6
     adds	r0, r6, r1
-    bl func_0809C38C
+    bl HaveBlessedAllTools__C15CursedToolState
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_0809D648
@@ -2544,73 +2257,6 @@ func_0809DA00:
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
     .thumb
-
-.section .text.code_actor_0809C160
-.L0809C160:
-    @ The dispatcher is byte-identical in the western releases.  Its table
-    @ contains only intra-section addresses, so emit real local relocations
-    @ instead of retaining US absolute words in the EU/DE builds.
-    push {lr}
-    adds r0, r1, #0
-    bl GetId__C4Tool
-    subs r0, #5
-    cmp r0, #0x28
-    bhi .L0809C160_false
-    lsls r0, r0, #2
-    ldr r1, .L0809C160_dispatch_table_literal
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-.L0809C160_dispatch_table_literal:
-    .4byte .L0809C160_dispatch_table
-.L0809C160_dispatch_table:
-    .4byte .L0809C160_true
-    .4byte .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false
-    .4byte .L0809C160_true
-    .4byte .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false
-    .4byte .L0809C160_true
-    .4byte .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false
-    .4byte .L0809C160_true
-    .4byte .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false
-    .4byte .L0809C160_true
-    .4byte .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false, .L0809C160_false
-    .4byte .L0809C160_true
-.L0809C160_true:
-    movs r0, #1
-    b .L0809C160_return
-.L0809C160_false:
-    movs r0, #0
-.L0809C160_return:
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    .section .text.code_actor_0809C318
-.L0809C318:
-    .byte 0x10, 0xB5, 0x04, 0x1C
-    bl func_0809C22C
-    .byte 0x06, 0x34, 0x24, 0x18, 0x20, 0x78, 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47
-
-    .section .text.code_actor_0809C38C
-.L0809C38C:
-
-    .section .text.code_actor_0809C3BC
-.L0809C3BC:
-
-    .section .text.code_actor_0809C3E0
-.L0809C3E0:
-
-    .section .text.code_actor_0809C420
-.L0809C420:
-
-    .section .text.code_actor_0809C444
-.L0809C444:
-
-    .section .text.code_actor_0809C474
-.L0809C474:
-
-    .section .text.code_actor_0809C4B4
-.L0809C4B4:
 
     .section .text.code_actor_0809C4E4
 .L0809C4E4:
@@ -4095,7 +3741,7 @@ func_0809DA00: @ 0x0809DA00
     movs r2, #0xd2
     lsls r2, r2, #6
     adds r0, r6, r2
-    bl func_0809C3BC
+    bl StartCurse__15CursedToolStateUi
     b .L0809DF1C
 .L0809DB9C:
     movs r7, #0
@@ -4153,7 +3799,7 @@ func_0809DA00: @ 0x0809DA00
     movs r1, #0xd2
     lsls r1, r1, #6
     adds r0, r6, r1
-    bl func_0809C38C
+    bl HaveBlessedAllTools__C15CursedToolState
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0809DC10

@@ -3,24 +3,6 @@
 
 #include "prelude.h"
 
-// Three parallel six-entry state arrays used by the actor-state helpers.
-struct ActorStateSlots
-{
-    ActorStateSlots();
-
-    u8 unk_00[6];
-    u8 unk_06[6];
-    u8 unk_0C[6];
-};
-
-extern "C" ActorStateSlots * func_0809C144(ActorStateSlots &);
-inline ActorStateSlots::ActorStateSlots() { func_0809C144(*this); }
-
-typedef char ActorStateSlotsSizeCheck[sizeof(ActorStateSlots) == 0x14 ? 1 : -1];
-typedef char ActorStateSlotsDataEndCheck[offsetof(ActorStateSlots, unk_0C) + sizeof(((ActorStateSlots *) 0)->unk_0C) == 0x12 ? 1 : -1];
-
-extern u8 const gActorStateMaxValues[];
-extern "C" u32 func_0809C3E0(ActorStateSlots & self, u32 index);
 extern char const gCppRuntimeBadAlloc_ActorDataSelectionPrefix[];
 
 // Each flag selects an absent/present map rectangle at the stored tile position.

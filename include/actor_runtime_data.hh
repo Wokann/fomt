@@ -2,7 +2,6 @@
 #define ACTOR_RUNTIME_DATA_HH
 
 #include "actor.hh"
-#include "actor_state.hh"
 
 struct Unk_Actor_0809BFE8 : Actor
 {

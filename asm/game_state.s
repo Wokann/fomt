@@ -794,7 +794,7 @@ func_08011650:
     movs r3, #0xd2
     lsls r3, r3, #6
     adds r0, r7, r3
-    bl func_0809C144
+    bl __15CursedToolState
     ldr r0, .Ljp_080118A0 @ =0x00003494
     adds r2, r7, r0
     movs r3, #2
@@ -16834,7 +16834,7 @@ func_08011650: @ 0x08011650
     movs r3, #0xd2
     lsls r3, r3, #6
     adds r0, r7, r3
-    bl func_0809C144
+    bl __15CursedToolState
     ldr r0, .L080118C0 @ =0x00003494
     adds r2, r7, r0
     movs r3, #2
