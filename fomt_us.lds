@@ -478,6 +478,7 @@ SECTIONS
         src/ui_state.o(.text.__18UiTextInputAdapterRCUiUc .text.func_08050F70 .text.func_08050F74);
         asm/code_0803EE94.o(.text.ui_state_helpers_after);
         src/ui_state.o(.text.ui_state_selection);
+        src/ui_text_window.o(.text);
         asm/code_0803EE94.o(.text.ui_state_selection_after);
         src/animal_festival_ranking.o(.text);
         . = 0x522F8; asm/code_0803EE94.o(.text.animal_festival_ranking_after);

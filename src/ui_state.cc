@@ -1,6 +1,7 @@
 #include "prelude.h"
 #pragma implementation "ui_state.hh"
 #include "ui_state.hh"
+#include "ui_text_window.hh"
 #include "font.hh"
 #include "resource_handle.hh"
 #include "gbasvc.h"
