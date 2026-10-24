@@ -4,7 +4,7 @@
 #include "scene_sprite.hh"
 
 struct AEntity;
-struct UnknownEntityThing;
+struct EntityVisualController;
 
 // The native factory embeds a group sprite; it does not install a derived
 // sunrise vtable. The meanings of +0x4C and +0x51 remain unestablished.
@@ -61,7 +61,7 @@ extern "C" void CreateControllerNewYearSunriseEffect(EntityEventEffectController
 extern "C" void PlayControllerNewYearSunriseEffect(EntityEventEffectControllerPrefix & controller);
 extern "C" bool IsControllerNewYearSunriseEffectComplete(EntityEventEffectControllerPrefix & controller);
 extern "C" void DestroyControllerNewYearSunriseEffect(EntityEventEffectControllerPrefix & controller);
-extern "C" void PlayControllerStarSparkleEffect(UnknownEntityThing * controller);
-extern "C" bool HasControllerStarSparkleEffect(UnknownEntityThing * controller);
+extern "C" void PlayControllerStarSparkleEffect(EntityVisualController * controller);
+extern "C" bool HasControllerStarSparkleEffect(EntityVisualController * controller);
 
 #endif // ENTITY_EVENT_EFFECTS_HH

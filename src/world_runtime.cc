@@ -1,6 +1,6 @@
 #include "prelude.h"
-#include "entity_actor.hh"
 #pragma implementation "world_runtime.hh"
+#include "entity_actor.hh"
 #include "world_runtime.hh"
 #include "game_world.hh"
 

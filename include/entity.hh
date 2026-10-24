@@ -22,7 +22,7 @@ struct AEntity
     /* vt+24 */ virtual void vfunc_24();
     /* vt+28 */ virtual bool vfunc_28() const;
     /* vt+2C */ virtual void vfunc_2C(u32 dummy);
-    /* vt+30 */ virtual UnknownEntityThing * vfunc_30() = 0;
+    /* vt+30 */ virtual EntityVisualController * vfunc_30() = 0;
 
     void SetLocation(u32 map, i32 x, i32 y);
     Location GetLocation() const;
@@ -42,7 +42,7 @@ struct AEntity
     /* +06 */ bool unk_06; // enabled?
     /* +08 */ i32 x_q16;
     /* +0C */ i32 y_q16;
-    /* +10 */ SmartPtr<UnknownEntityThing> unk_10;
+    /* +10 */ SmartPtr<EntityVisualController> unk_10;
     /* +14 */ // vtable
 };
 

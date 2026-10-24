@@ -365,12 +365,12 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_region_classification);
         . = 0x32934; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_region_classification_after);
-        . = 0x32A00; /* JP/US-shared entity-UI constructor. */
-        src/entity_ui.o(.text.entity_ui_constructor);
+        . = 0x32A00; /* Default entity sprite preset. */
+        src/entity_sprite.o(.text.entity_sprite_default_constructor);
         . = 0x32A30; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_constructor_after);
         src/entity_sprite.o(.text);
-        asm/code_entities_080320DC.o(.text.entity_sprite_animation_queries_after);
+        asm/code_entities_080320DC.o(.text.entity_sprite_after);
         . = 0x33914; /* JP/US-shared Harvest Sprite task experience transform. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_task_experience);
         . = 0x33928; /* Continue the surrounding entity-UI ROM block. */
@@ -905,8 +905,14 @@ SECTIONS
         asm/code_linkonce.o(.text.scene_return_after);
         src/scene_sprite.o(.gnu.linkonce.t._._20GameSceneGroupSprite);
         asm/code_linkonce.o(.text.scene_group_sprite_cleanup_after);
+        src/entity_sprite.o(.text.entity_visual_controller_cleanup);
+        asm/code_linkonce.o(.text.entity_visual_controller_cleanup_after);
         src/scene_sprite.o(.gnu.linkonce.t._._22GameSceneIndexedSprite);
         asm/code_linkonce.o(.text.game_scene_indexed_sprite_dtor_after);
+        src/entity_sprite.o(.gnu.linkonce.t._._29DefaultEntitySpriteController);
+        asm/code_linkonce.o(.text.entity_sprite_default_cleanup_after);
+        src/entity_sprite.o(.gnu.linkonce.t._._22EntitySpriteController);
+        asm/code_linkonce.o(.text.entity_sprite_cleanup_after);
         src/npc_entity.o(.text.FindTimedPathPointUpperBound);
         asm/code_linkonce.o(.text.npc_timed_path_search_after);
         src/ui_state.o(.text.Lookup__23ScriptTextVariableStoreUi .text._._23ScriptTextVariableStore);
@@ -995,7 +1001,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_64b4);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_64c8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6554);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_65e0);
+        . = ALIGN(4); src/entity_sprite.o(.gnu.linkonce.d.__vt_22EntityVisualController);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_65f4);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6644);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6658);
@@ -1004,9 +1010,9 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_676c);
         . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_22GameSceneIndexedSprite);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6828);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_6864);
+        . = ALIGN(4); src/entity_sprite.o(.gnu.linkonce.d.__vt_29DefaultEntitySpriteController);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_aactor_entity);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_68b4);
+        . = ALIGN(4); src/entity_sprite.o(.gnu.linkonce.d.__vt_22EntitySpriteController);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_68c8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6904);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6918);

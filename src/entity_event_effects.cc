@@ -10,21 +10,21 @@ inline NewYearSunriseEffectState::NewYearSunriseEffectState(GameObject * world)
 
 extern "C" void CreateEntityNewYearSunriseEffect(AEntity * entity)
 {
-    UnknownEntityThing * controller = entity->unk_10.Get();
+    EntityVisualController * controller = entity->unk_10.Get();
     if (controller != nullptr)
         CreateControllerNewYearSunriseEffect(reinterpret_cast<EntityEventEffectControllerPrefix &>(*controller));
 }
 
 extern "C" void PlayEntityNewYearSunriseEffect(AEntity * entity)
 {
-    UnknownEntityThing * controller = entity->unk_10.Get();
+    EntityVisualController * controller = entity->unk_10.Get();
     if (controller != nullptr)
         PlayControllerNewYearSunriseEffect(reinterpret_cast<EntityEventEffectControllerPrefix &>(*controller));
 }
 
 extern "C" bool IsEntityNewYearSunriseEffectComplete(AEntity * entity)
 {
-    UnknownEntityThing * controller = entity->unk_10.Get();
+    EntityVisualController * controller = entity->unk_10.Get();
     if (controller != nullptr)
         return IsControllerNewYearSunriseEffectComplete(reinterpret_cast<EntityEventEffectControllerPrefix &>(*controller));
     return true;
@@ -32,21 +32,21 @@ extern "C" bool IsEntityNewYearSunriseEffectComplete(AEntity * entity)
 
 extern "C" void DestroyEntityNewYearSunriseEffect(AEntity * entity)
 {
-    UnknownEntityThing * controller = entity->unk_10.Get();
+    EntityVisualController * controller = entity->unk_10.Get();
     if (controller != nullptr)
         DestroyControllerNewYearSunriseEffect(reinterpret_cast<EntityEventEffectControllerPrefix &>(*controller));
 }
 
 extern "C" void PlayEntityStarSparkleEffect(AEntity * entity)
 {
-    UnknownEntityThing * controller = entity->unk_10.Get();
+    EntityVisualController * controller = entity->unk_10.Get();
     if (controller != nullptr)
         PlayControllerStarSparkleEffect(controller);
 }
 
 extern "C" bool HasEntityStarSparkleEffect(AEntity * entity)
 {
-    UnknownEntityThing * controller = entity->unk_10.Get();
+    EntityVisualController * controller = entity->unk_10.Get();
     if (controller != nullptr)
         return HasControllerStarSparkleEffect(controller);
     return false;

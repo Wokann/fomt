@@ -1379,7 +1379,7 @@ func_08020260:
     b .Ljp_08020E34
 .Ljp_08020984:
     adds r0, r6, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     ldr r2, .Ljp_080209A0 @ =0xFFFF0000
     add r1, sp, #0xb4
     ldr r0, [r1]
@@ -2205,11 +2205,11 @@ func_08020F78:
     blt .Ljp_08020FEA
     adds r0, r4, #0
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .Ljp_08020FF0
 .Ljp_08020FEA:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .Ljp_08020FF0:
     strb r5, [r6]
     pop {r4, r5, r6}
@@ -2451,7 +2451,7 @@ func_08021144:
     adds r0, r4, #0
     movs r1, #2
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xaa
     bl func_0801FE58
@@ -2757,7 +2757,7 @@ func_080213C8:
     adds r1, r5, #0
     movs r2, #2
     movs r3, #6
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     adds r4, r0, #0
     mov r8, r4
     adds r5, #0x41
@@ -4001,11 +4001,11 @@ func_08021DDC:
     blt .Ljp_08021E58
     adds r0, r4, #0
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .Ljp_08021E5E
 .Ljp_08021E58:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .Ljp_08021E5E:
     strb r5, [r6]
     pop {r4, r5, r6}
@@ -4119,7 +4119,7 @@ func_08021EF8:
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa7
     bl func_0801FE58
@@ -4212,7 +4212,7 @@ func_08021F84:
     mov r1, r8
     movs r2, #5
     movs r3, #0xd
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     ldr r0, [pc, #0x10]
     str r0, [r6, #4]
     adds r0, r6, #0
@@ -4241,7 +4241,7 @@ func_08022088:
     strb r0, [r1]
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_08032690
+    bl Draw__22EntitySpriteControllerPv
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -4848,11 +4848,11 @@ func_08022648:
     adds r0, r4, #0
     adds r1, r6, #0
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .Lauto_080226DA
     .Lauto_080226D4:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     .Lauto_080226DA:
     strb r5, [r7]
     pop {r4, r5, r6, r7}
@@ -5002,7 +5002,7 @@ func_0802278C:
     adds r0, r4, #0
     movs r1, #2
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     ldr r0, [r4, #0x34]
     bl GetGrowthStage__C7Chicken
     movs r1, #0xa5
@@ -5073,7 +5073,7 @@ func_08022840:
     adds r0, r4, #0
     movs r1, #2
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     ldr r0, [r4, #0x34]
     bl GetGrowthStage__C7Chicken
     movs r1, #0xa5
@@ -5160,7 +5160,7 @@ func_08022904:
     adds r1, r7, #0
     movs r2, #2
     movs r3, #9
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     adds r4, r0, #0
     ldr r0, [r7, #0x34]
     bl GetGrowthStage__C7Chicken
@@ -6016,11 +6016,11 @@ func_0802309C:
     blt .Lauto_080230FC
     adds r0, r4, #0
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .Lauto_08023102
     .Lauto_080230FC:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     .Lauto_08023102:
     strb r5, [r6]
     pop {r4, r5, r6}
@@ -6310,7 +6310,7 @@ func_0802335C:
     adds r0, r4, #0
     movs r1, #0
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa2
     bl func_0801FE58
@@ -6371,7 +6371,7 @@ func_080233F8:
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa1
     bl func_0801FE58
@@ -6387,7 +6387,7 @@ func_08023458:
     adds r4, r0, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa1
     bl func_0801FE58
@@ -6450,7 +6450,7 @@ func_0802349C:
     adds r0, r4, #0
     movs r1, #0
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa2
     bl func_0801FE58
@@ -6578,7 +6578,7 @@ func_080235B4:
     adds r1, r5, #0
     movs r2, #4
     movs r3, #0xc
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     adds r4, r0, #0
     mov r8, r4
     adds r5, #0x38
@@ -7427,11 +7427,11 @@ func_08023D44:
     blt .Lauto_08023DA4
     adds r0, r4, #0
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .Lauto_08023DAA
     .Lauto_08023DA4:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     .Lauto_08023DAA:
     strb r5, [r6]
     pop {r4, r5, r6}
@@ -7705,7 +7705,7 @@ func_08024010:
     adds r0, r4, #0
     movs r1, #0
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa4
     bl func_0801FE58
@@ -7759,7 +7759,7 @@ func_080240AC:
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA3
     bl func_0801FE58
@@ -7775,7 +7775,7 @@ func_0802410C:
     adds r4, r0, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA3
     bl func_0801FE58
@@ -7853,7 +7853,7 @@ func_08024170:
     adds r0, r4, #0
     movs r1, #0
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA4
     bl func_0801FE58
@@ -7976,7 +7976,7 @@ func_08024280:
     adds r1, r5, #0
     movs r2, #4
     movs r3, #0xB
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     adds r4, r0, #0
     mov r8, r4
     adds r5, #0x38
@@ -8919,7 +8919,7 @@ func_080249E8:
     push {lr}
     movs r1, #1
     strb r1, [r0, #6]
-    bl func_080323C8
+    bl StopActorSpriteEffect
     pop {r0}
     bx r0
     .align 2, 0
@@ -8930,7 +8930,7 @@ func_080249F8:
     push {lr}
     movs r1, #0
     strb r1, [r0, #6]
-    bl func_080323C8
+    bl StopActorSpriteEffect
     pop {r0}
     bx r0
     .align 2, 0
@@ -21853,7 +21853,7 @@ func_0802AFF4:
     strb r4, [r0]
     mov r0, sb
     movs r2, #6
-    bl func_08032560
+    bl __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
     ldr r0, .Ljp_0802B13C @ =vtable_unk_080E6708
     mov r1, sb
     str r0, [r1, #4]
@@ -22001,7 +22001,7 @@ func_0802B148:
     push {r4, r5, r6, r7, lr}
     sub sp, #4
     adds r5, r0, #0
-    bl func_0803260C
+    bl Update__22EntitySpriteController
     ldr r4, [r5]
     adds r0, r5, #0
     adds r0, #0x44
@@ -22545,7 +22545,7 @@ func_0802B2B0:
     bls .Ljp_0802B476
     ldr	r0, [sp, #76]
     ldr	r1, [sp, #80]
-    bl func_08032690
+    bl Draw__22EntitySpriteControllerPv
     ldr	r3, [sp, #88]
     cmp	r3, #0
     bne .Ljp_0802B576
@@ -23541,7 +23541,7 @@ func_0802BCC0:
     strb r5, [r0]
     mov r0, r8
     movs r2, #6
-    bl func_08032560
+    bl __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
     ldr r0, .Ljp_0802BD2C @ =vtable_unk_080E6644
     mov r1, r8
     str r0, [r1, #4]
@@ -23581,7 +23581,7 @@ func_0802BCC0:
 func_0802BD34:
     push {r4, lr}
     adds r4, r0, #0
-    bl func_0803260C
+    bl Update__22EntitySpriteController
     ldr r0, [r4]
     adds r0, #0x38
     movs r1, #0
@@ -23836,7 +23836,7 @@ func_0802BD78:
 .Ljp_0802BF20:
     adds r0, r6, #0
     mov r1, r8
-    bl func_08032690
+    bl Draw__22EntitySpriteControllerPv
     ldr r2, [sp, #0x48]
     cmp r2, #0
     beq .Ljp_0802BF90
@@ -26721,7 +26721,7 @@ func_0802D5D8:
     beq .Ljp_0802D676
 .Ljp_0802D5F6:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     adds r1, r4, #0
     adds r1, #0x3c
     movs r0, #0x18
@@ -28281,7 +28281,7 @@ func_0802DE90:
     adds r0, r4, #0
     movs r1, #5
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
 .Ljp_0802E278:
     ldr r0, [r5]
     movs r1, #0xa6
@@ -30456,7 +30456,7 @@ func_0802EE80: @ 0x0802EE80
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
 .Ljp_0802F3A8:
     ldr r0, [r5]
     movs r1, #0xa6
@@ -30634,7 +30634,7 @@ func_0802EE80: @ 0x0802EE80
     movs r1, #6
 .Ljp_0802F51C:
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     bl .Ljp_08031B0C
 .Ljp_0802F526:
     ldr r4, [r4]
@@ -30645,7 +30645,7 @@ func_0802EE80: @ 0x0802EE80
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
 .Ljp_0802F538:
     ldr r0, [r5]
     movs r2, #0xa6
@@ -33601,7 +33601,7 @@ sub_08030B9E: @ 0x08030B9E
     mov r0, sl
     movs r1, #2
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     mov r1, sl
     adds r1, #0x78
     movs r0, #1
@@ -35053,7 +35053,7 @@ sub_080316C2: @ 0x080316C2
     mov r0, sl
     movs r1, #8
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .Ljp_08031CA2
 .Ljp_08031774:
     movs r1, #0
@@ -37435,7 +37435,7 @@ func_080204CC: @ 0x080204CC
     b .L080210A0
 .L08020BF0:
     adds r0, r6, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     ldr r2, .L08020C0C @ =0xFFFF0000
     add r1, sp, #0xb4
     ldr r0, [r1]
@@ -38257,11 +38257,11 @@ func_080211E4: @ 0x080211E4
     blt .L08021256
     adds r0, r4, #0
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .L0802125C
 .L08021256:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .L0802125C:
     strb r5, [r6]
     pop {r4, r5, r6}
@@ -38503,7 +38503,7 @@ func_080213B0:
     adds r0, r4, #0
     movs r1, #2
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xaa
     bl func_080200C4
@@ -38801,7 +38801,7 @@ func_08021634:
     adds r1, r5, #0
     movs r2, #2
     movs r3, #6
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     adds r4, r0, #0
     mov r8, r4
     adds r5, #0x41
@@ -39456,11 +39456,11 @@ func_08022048: @ 0x08022048
     blt .L080220C4
     adds r0, r4, #0
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .L080220CA
 .L080220C4:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .L080220CA:
     strb r5, [r6]
     pop {r4, r5, r6}
@@ -39573,7 +39573,7 @@ func_08022164:
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa7
     bl func_080200C4
@@ -39711,7 +39711,7 @@ func_080222A8: @ 0x080222A8
     mov r1, r8
     movs r2, #5
     movs r3, #0xd
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     ldr r0, .L080222F0 @ =vtable_unk_080E64B4
     str r0, [r6, #4]
     adds r0, r6, #0
@@ -39742,7 +39742,7 @@ func_080222F4:
     strb r0, [r1]
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_08032690
+    bl Draw__22EntitySpriteControllerPv
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -40433,11 +40433,11 @@ func_080228B4: @ 0x080228B4
     adds r0, r4, #0
     adds r1, r6, #0
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .L08022946
 .L08022940:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .L08022946:
     strb r5, [r7]
     pop {r4, r5, r6, r7}
@@ -40572,7 +40572,7 @@ func_080229F8:
     adds r0, r4, #0
     movs r1, #2
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     ldr r0, [r4, #0x34]
     bl GetGrowthStage__C7Chicken
     movs r1, #0xa5
@@ -40643,7 +40643,7 @@ func_08022AAC:
     adds r0, r4, #0
     movs r1, #2
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     ldr r0, [r4, #0x34]
     bl GetGrowthStage__C7Chicken
     movs r1, #0xa5
@@ -40717,7 +40717,7 @@ func_08022B70:
     bl func_08022B5C
     .byte 0x00, 0x94, 0x01, 0x90, 0x00, 0x25, 0x02, 0x95, 0x03, 0xA8, 0x05, 0x70
     .byte 0x30, 0x1C, 0x39, 0x1C, 0x02, 0x22, 0x09, 0x23
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     .byte 0x04, 0x1C, 0x78, 0x6B
     bl GetGrowthStage__C7Chicken
     .byte 0x00, 0x21, 0x00, 0x28, 0x00, 0xD0, 0x03, 0x21, 0x38, 0x1C, 0x38, 0x30
@@ -41039,11 +41039,11 @@ func_08023308: @ 0x08023308
     blt .L08023368
     adds r0, r4, #0
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .L0802336E
 .L08023368:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .L0802336E:
     strb r5, [r6]
     pop {r4, r5, r6}
@@ -41280,7 +41280,7 @@ func_080235C8:
     adds r0, r4, #0
     movs r1, #0
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa2
     bl func_080200C4
@@ -41339,7 +41339,7 @@ func_08023664:
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa1
     bl func_080200C4
@@ -41355,7 +41355,7 @@ func_080236C4:
     adds r4, r0, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa1
     bl func_080200C4
@@ -41418,7 +41418,7 @@ func_08023708:
     adds r0, r4, #0
     movs r1, #0
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa2
     bl func_080200C4
@@ -41532,7 +41532,7 @@ func_08023820:
     bl func_08023804
     .byte 0x00, 0x94, 0x01, 0x90, 0x00, 0x26, 0x02, 0x96
     .byte 0x03, 0xA8, 0x06, 0x70, 0x40, 0x46, 0x29, 0x1C, 0x04, 0x22, 0x0C, 0x23
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     .byte 0x04, 0x1C, 0xA0, 0x46, 0x38, 0x35, 0x28, 0x78, 0x04, 0x28, 0x15, 0xD1, 0x20, 0x1C, 0x70, 0x30
     .byte 0x08, 0x21
     bl ResolveIndexedResourceHandle
@@ -41857,11 +41857,11 @@ func_08023FB0: @ 0x08023FB0
     blt .L08024010
     adds r0, r4, #0
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .L08024016
 .L08024010:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .L08024016:
     strb r5, [r6]
     pop {r4, r5, r6}
@@ -42083,7 +42083,7 @@ func_0802427C:
     .byte 0x60, 0x6B
     bl SetUnhappy__9Livestock
     .byte 0x20, 0x1C, 0x00, 0x21, 0x00, 0x22
-    bl func_08032384
+    bl StartActorSpriteEffect
     .byte 0x20, 0x1C, 0xA4, 0x21
     bl func_080200C4
     .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF
@@ -42130,7 +42130,7 @@ func_08024318:
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA3
     bl func_080200C4
@@ -42146,7 +42146,7 @@ func_08024378:
     adds r4, r0, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA3
     bl func_080200C4
@@ -42224,7 +42224,7 @@ func_080243DC:
     adds r0, r4, #0
     movs r1, #0
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA4
     bl func_080200C4
@@ -42348,7 +42348,7 @@ func_080244EC:
     adds r1, r5, #0
     movs r2, #4
     movs r3, #0xB
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     adds r4, r0, #0
     mov r8, r4
     adds r5, #0x38
@@ -43285,7 +43285,7 @@ func_08024C54: @ 0x08024C54
     push {lr}
     movs r1, #1
     strb r1, [r0, #6]
-    bl func_080323C8
+    bl StopActorSpriteEffect
     pop {r0}
     bx r0
     .align 2, 0
@@ -43295,7 +43295,7 @@ func_08024C64: @ 0x08024C64
     push {lr}
     movs r1, #0
     strb r1, [r0, #6]
-    bl func_080323C8
+    bl StopActorSpriteEffect
     pop {r0}
     bx r0
     .align 2, 0
@@ -56187,7 +56187,7 @@ func_0802B260: @ 0x0802B260
     strb r4, [r0]
     mov r0, sb
     movs r2, #6
-    bl func_08032560
+    bl __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
     ldr r0, .L0802B3A8 @ =vtable_unk_080E6708
     mov r1, sb
     str r0, [r1, #4]
@@ -56335,7 +56335,7 @@ func_0802B3B4: @ 0x0802B3B4
     push {r4, r5, r6, r7, lr}
     sub sp, #4
     adds r5, r0, #0
-    bl func_0803260C
+    bl Update__22EntitySpriteController
     ldr r4, [r5]
     adds r0, r5, #0
     adds r0, #0x44
@@ -56879,7 +56879,7 @@ func_0802B51C:
     bls .L802B6E2
     ldr	r0, [sp, #76]
     ldr	r1, [sp, #80]
-    bl func_08032690
+    bl Draw__22EntitySpriteControllerPv
     ldr	r3, [sp, #88]
     cmp	r3, #0
     bne .L802B7E2
@@ -57869,7 +57869,7 @@ func_0802BF2C: @ 0x0802BF2C
     strb r5, [r0]
     mov r0, r8
     movs r2, #6
-    bl func_08032560
+    bl __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
     ldr r0, .L0802BF98 @ =vtable_unk_080E6644
     mov r1, r8
     str r0, [r1, #4]
@@ -57908,7 +57908,7 @@ func_0802BF2C: @ 0x0802BF2C
 func_0802BFA0: @ 0x0802BFA0
     push {r4, lr}
     adds r4, r0, #0
-    bl func_0803260C
+    bl Update__22EntitySpriteController
     ldr r0, [r4]
     adds r0, #0x38
     movs r1, #0
@@ -58162,7 +58162,7 @@ func_0802BFE4: @ 0x0802BFE4
 .L0802C18C:
     adds r0, r6, #0
     mov r1, r8
-    bl func_08032690
+    bl Draw__22EntitySpriteControllerPv
     ldr r2, [sp, #0x48]
     cmp r2, #0
     beq .L0802C1FC
@@ -61036,7 +61036,7 @@ func_0802D844: @ 0x0802D844
     beq .L0802D8E2
 .L0802D862:
     adds r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     adds r1, r4, #0
     adds r1, #0x3c
     movs r0, #0x18
@@ -62591,7 +62591,7 @@ func_0802E0FC: @ 0x0802E0FC
     adds r0, r4, #0
     movs r1, #5
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
 .L0802E4E4:
     ldr r0, [r5]
     movs r1, #0xa6
@@ -64764,7 +64764,7 @@ func_0802F0EC: @ 0x0802F0EC
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
 .L0802F614:
     ldr r0, [r5]
     movs r1, #0xa6
@@ -64942,7 +64942,7 @@ func_0802F0EC: @ 0x0802F0EC
     movs r1, #6
 .L0802F788:
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     bl .L08031D78
 .L0802F792:
     ldr r4, [r4]
@@ -64953,7 +64953,7 @@ func_0802F0EC: @ 0x0802F0EC
     adds r0, r4, #0
     movs r1, #1
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
 .L0802F7A4:
     ldr r0, [r5]
     movs r2, #0xa6
@@ -67907,7 +67907,7 @@ sub_08030E0A: @ 0x08030E0A
     mov r0, sl
     movs r1, #2
     movs r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     mov r1, sl
     adds r1, #0x78
     movs r0, #1
@@ -69358,7 +69358,7 @@ sub_0803192E: @ 0x0803192E
     mov r0, sl
     movs r1, #8
     movs r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .L08031F0E
 .L080319E0:
     movs r1, #0

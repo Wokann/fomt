@@ -471,20 +471,10 @@ extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
                                HarvestSprite::Task task,
                                EntityUiHarvestSpriteEntry const * entries);
 
-extern "C" void func_080324BC(EntityUiConstructorState * state, void * arg_1,
-                               u32 arg_2, u32 arg_3, u32 arg_4, u32 arg_5,
-                               u32 arg_6, bool arg_7);
-extern "C" u8 const vtable_unk_080E6864[];
-
 // The ROM leaf unconditionally returns false.  Its caller-facing purpose is
 // not mapped yet.
 extern "C" bool func_080324B8()
     SECTION(".text.entity_ui_default_no_action");
-
-// Initializes an unmapped entity-UI object, then assigns its verified vtable.
-extern "C" EntityUiConstructorState * func_08032A00(
-    EntityUiConstructorState * state, void * arg_1)
-    SECTION(".text.entity_ui_constructor");
 
 // For kind 2, x=0x110..0x3BF and y=0xB0..0x24F return 1; other coordinates
 // return 2.  Every other kind returns 0.  The caller's domain remains unmapped.
@@ -509,14 +499,6 @@ extern "C" u32 func_08034248(EntityUiAnimationState const * state, u32 value)
 extern "C" bool func_080324B8()
 {
     return false;
-}
-
-extern "C" EntityUiConstructorState * func_08032A00(
-    EntityUiConstructorState * state, void * arg_1)
-{
-    func_080324BC(state, arg_1, 6, 0x20, 1, 0, 0, false);
-    state->vtable = vtable_unk_080E6864;
-    return state;
 }
 
 extern "C" void ClearEntityUiUnknownFlag41(void * entity)

@@ -23,13 +23,13 @@ void AEntity::vfunc_14()
 void AEntity::vfunc_1C(u32 dummy)
 {
     if (unk_10.Get() != nullptr)
-        unk_10->vfunc_10(dummy);
+        unk_10->Draw(reinterpret_cast<void *>(dummy));
 }
 
 void AEntity::vfunc_2C(u32 dummy)
 {
     if (unk_10.Get() != nullptr)
-        unk_10->vfunc_0C();
+        unk_10->Update();
 }
 
 void AEntity::SetLocation(u32 map, i32 x, i32 y)
@@ -61,7 +61,7 @@ void AEntity::SetMap(u32 map)
 void AEntity::vfunc_18()
 {
     if (unk_10.Get() != nullptr)
-        unk_10->vfunc_0C();
+        unk_10->Update();
 }
 
 bool AEntity::vfunc_28() const

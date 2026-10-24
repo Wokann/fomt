@@ -930,7 +930,7 @@ func_08035B38:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -983,7 +983,7 @@ func_08035B9C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1143,7 +1143,7 @@ func_08035CD4:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1199,7 +1199,7 @@ func_08035D40:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1255,7 +1255,7 @@ func_08035DAC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1310,7 +1310,7 @@ func_08035E14:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1366,7 +1366,7 @@ func_08035E7C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1420,7 +1420,7 @@ func_08035EE4:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1473,7 +1473,7 @@ func_08035F48:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1529,7 +1529,7 @@ func_08035FB0:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1585,7 +1585,7 @@ func_0803601C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1745,7 +1745,7 @@ func_08036154:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1800,7 +1800,7 @@ func_080361C0:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1856,7 +1856,7 @@ func_08036228:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1911,7 +1911,7 @@ func_08036290:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -1967,7 +1967,7 @@ func_080362FC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2022,7 +2022,7 @@ func_08036364:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2077,7 +2077,7 @@ func_080363CC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2235,7 +2235,7 @@ func_08036500:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2286,7 +2286,7 @@ func_08036564:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2446,7 +2446,7 @@ func_0803669C:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2499,7 +2499,7 @@ func_08036704:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2605,7 +2605,7 @@ func_080367C8:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2660,7 +2660,7 @@ func_08036834:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2713,7 +2713,7 @@ func_08036898:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2881,7 +2881,7 @@ func_080369E0:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -2936,7 +2936,7 @@ func_08036A4C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -3050,7 +3050,7 @@ func_08036B1C:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -3102,7 +3102,7 @@ func_08036B80:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -3238,7 +3238,7 @@ func_08036C80:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -3288,7 +3288,7 @@ func_08036CDC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -3338,7 +3338,7 @@ func_08036D3C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -3387,7 +3387,7 @@ func_08036D98:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -3442,7 +3442,7 @@ func_08036E00:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -3597,7 +3597,7 @@ func_08036F0C:
     adds	r1, r5, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     b .Ljp_08036CF2
     .align 2, 0
 .Ljp_08036CEC:
@@ -4397,7 +4397,7 @@ func_0803753C:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #9
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -4614,7 +4614,7 @@ func_080376E4:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #12
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -4829,7 +4829,7 @@ func_0803788C:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -4989,7 +4989,7 @@ func_080379D8:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -8558,7 +8558,7 @@ func_08039708:
     b .Ljp_08039620
 .Ljp_0803955A:
     adds	r0, r6, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     ldr	r4, [r6, #52]	@ 0x34
     movs	r5, #100	@ 0x64
     adds	r0, r4, #0
@@ -8877,7 +8877,7 @@ func_08039A30:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -9346,7 +9346,7 @@ func_08039DA8:
     adds	r0, r4, #0
     movs	r1, #2
     movs	r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
     bl func_0801FE58
@@ -9402,7 +9402,7 @@ func_08039E18:
     adds	r0, r4, #0
     movs	r1, #2
     movs	r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
     bl func_0801FE58
@@ -11399,7 +11399,7 @@ func_08035B38:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -11452,7 +11452,7 @@ func_08035B9C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -11612,7 +11612,7 @@ func_08035CD4:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -11668,7 +11668,7 @@ func_08035D40:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -11724,7 +11724,7 @@ func_08035DAC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -11779,7 +11779,7 @@ func_08035E14:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -11835,7 +11835,7 @@ func_08035E7C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -11889,7 +11889,7 @@ func_08035EE4:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -11942,7 +11942,7 @@ func_08035F48:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -11998,7 +11998,7 @@ func_08035FB0:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12054,7 +12054,7 @@ func_0803601C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12214,7 +12214,7 @@ func_08036154:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12269,7 +12269,7 @@ func_080361C0:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12325,7 +12325,7 @@ func_08036228:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12380,7 +12380,7 @@ func_08036290:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12436,7 +12436,7 @@ func_080362FC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12491,7 +12491,7 @@ func_08036364:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12546,7 +12546,7 @@ func_080363CC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12704,7 +12704,7 @@ func_08036500:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12755,7 +12755,7 @@ func_08036564:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12915,7 +12915,7 @@ func_0803669C:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -12968,7 +12968,7 @@ func_08036704:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13074,7 +13074,7 @@ func_080367C8:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13129,7 +13129,7 @@ func_08036834:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13182,7 +13182,7 @@ func_08036898:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13350,7 +13350,7 @@ func_080369E0:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13405,7 +13405,7 @@ func_08036A4C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13519,7 +13519,7 @@ func_08036B1C:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13571,7 +13571,7 @@ func_08036B80:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13707,7 +13707,7 @@ func_08036C80:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13757,7 +13757,7 @@ func_08036CDC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13807,7 +13807,7 @@ func_08036D3C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13856,7 +13856,7 @@ func_08036D98:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -13911,7 +13911,7 @@ func_08036E00:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -14066,7 +14066,7 @@ func_08036F0C:
     adds	r1, r5, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     b .Leu_08036F72
     .align 2, 0
 .Leu_08036F6C:
@@ -14892,7 +14892,7 @@ func_0803753C:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #9
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -15109,7 +15109,7 @@ func_080376E4:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #12
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -15324,7 +15324,7 @@ func_0803788C:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -15484,7 +15484,7 @@ func_080379D8:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -19134,7 +19134,7 @@ func_08039708:
     b .Leu_080398A0
 .Leu_080397DA:
     adds	r0, r6, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     ldr	r4, [r6, #52]	@ 0x34
     movs	r5, #100	@ 0x64
     adds	r0, r4, #0
@@ -19453,7 +19453,7 @@ func_08039A30:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -19922,7 +19922,7 @@ func_08039DA8:
     adds	r0, r4, #0
     movs	r1, #2
     movs	r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
     bl func_080200C4
@@ -19978,7 +19978,7 @@ func_08039E18:
     adds	r0, r4, #0
     movs	r1, #2
     movs	r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
     bl func_080200C4
@@ -22124,7 +22124,7 @@ func_08035B38:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22177,7 +22177,7 @@ func_08035B9C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22337,7 +22337,7 @@ func_08035CD4:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22393,7 +22393,7 @@ func_08035D40:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22449,7 +22449,7 @@ func_08035DAC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22504,7 +22504,7 @@ func_08035E14:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22560,7 +22560,7 @@ func_08035E7C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22614,7 +22614,7 @@ func_08035EE4:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22667,7 +22667,7 @@ func_08035F48:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22723,7 +22723,7 @@ func_08035FB0:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22779,7 +22779,7 @@ func_0803601C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22939,7 +22939,7 @@ func_08036154:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -22994,7 +22994,7 @@ func_080361C0:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23050,7 +23050,7 @@ func_08036228:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23105,7 +23105,7 @@ func_08036290:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23161,7 +23161,7 @@ func_080362FC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23216,7 +23216,7 @@ func_08036364:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23271,7 +23271,7 @@ func_080363CC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23429,7 +23429,7 @@ func_08036500:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23480,7 +23480,7 @@ func_08036564:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23640,7 +23640,7 @@ func_0803669C:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23693,7 +23693,7 @@ func_08036704:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23799,7 +23799,7 @@ func_080367C8:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23854,7 +23854,7 @@ func_08036834:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -23907,7 +23907,7 @@ func_08036898:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -24075,7 +24075,7 @@ func_080369E0:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -24130,7 +24130,7 @@ func_08036A4C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -24244,7 +24244,7 @@ func_08036B1C:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -24296,7 +24296,7 @@ func_08036B80:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -24432,7 +24432,7 @@ func_08036C80:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -24482,7 +24482,7 @@ func_08036CDC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -24532,7 +24532,7 @@ func_08036D3C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -24581,7 +24581,7 @@ func_08036D98:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -24636,7 +24636,7 @@ func_08036E00:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -24791,7 +24791,7 @@ func_08036F0C:
     adds	r1, r5, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     b .Lde_08036E72
     .align 2, 0
 .Lde_08036E6C:
@@ -25617,7 +25617,7 @@ func_0803753C:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #9
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -25834,7 +25834,7 @@ func_080376E4:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #12
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -26049,7 +26049,7 @@ func_0803788C:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -26209,7 +26209,7 @@ func_080379D8:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -29859,7 +29859,7 @@ func_08039708:
     b .Lde_080397A0
 .Lde_080396DA:
     adds	r0, r6, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     ldr	r4, [r6, #52]	@ 0x34
     movs	r5, #100	@ 0x64
     adds	r0, r4, #0
@@ -30178,7 +30178,7 @@ func_08039A30:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -30647,7 +30647,7 @@ func_08039DA8:
     adds	r0, r4, #0
     movs	r1, #2
     movs	r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
     bl func_080200C4
@@ -30703,7 +30703,7 @@ func_08039E18:
     adds	r0, r4, #0
     movs	r1, #2
     movs	r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
     bl func_080200C4
@@ -32848,7 +32848,7 @@ func_08035B38:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -32901,7 +32901,7 @@ func_08035B9C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33061,7 +33061,7 @@ func_08035CD4:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33117,7 +33117,7 @@ func_08035D40:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33173,7 +33173,7 @@ func_08035DAC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33228,7 +33228,7 @@ func_08035E14:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33284,7 +33284,7 @@ func_08035E7C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33338,7 +33338,7 @@ func_08035EE4:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33391,7 +33391,7 @@ func_08035F48:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33447,7 +33447,7 @@ func_08035FB0:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33503,7 +33503,7 @@ func_0803601C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33663,7 +33663,7 @@ func_08036154:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33718,7 +33718,7 @@ func_080361C0:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33774,7 +33774,7 @@ func_08036228:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33829,7 +33829,7 @@ func_08036290:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33885,7 +33885,7 @@ func_080362FC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33940,7 +33940,7 @@ func_08036364:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -33995,7 +33995,7 @@ func_080363CC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -34153,7 +34153,7 @@ func_08036500:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -34204,7 +34204,7 @@ func_08036564:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -34364,7 +34364,7 @@ func_0803669C:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -34417,7 +34417,7 @@ func_08036704:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -34523,7 +34523,7 @@ func_080367C8:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -34578,7 +34578,7 @@ func_08036834:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -34631,7 +34631,7 @@ func_08036898:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -34799,7 +34799,7 @@ func_080369E0:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -34854,7 +34854,7 @@ func_08036A4C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -34968,7 +34968,7 @@ func_08036B1C:
     adds	r1, r4, #0
     movs	r2, #5
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -35020,7 +35020,7 @@ func_08036B80:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -35156,7 +35156,7 @@ func_08036C80:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -35206,7 +35206,7 @@ func_08036CDC:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -35256,7 +35256,7 @@ func_08036D3C:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -35305,7 +35305,7 @@ func_08036D98:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -35360,7 +35360,7 @@ func_08036E00:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -35515,7 +35515,7 @@ func_08036F0C:
     adds	r1, r5, #0
     movs	r2, #4
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     b .Lus_08036F5E
     .align 2, 0
 .Lus_08036F58:
@@ -36341,7 +36341,7 @@ func_0803753C:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #9
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -36558,7 +36558,7 @@ func_080376E4:
     adds	r1, r4, #0
     movs	r2, #4
     movs	r3, #12
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -36773,7 +36773,7 @@ func_0803788C:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -36933,7 +36933,7 @@ func_080379D8:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -40583,7 +40583,7 @@ func_08039708:
     b .Lus_0803988C
 .Lus_080397C6:
     adds	r0, r6, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
     ldr	r4, [r6, #52]	@ 0x34
     movs	r5, #100	@ 0x64
     adds	r0, r4, #0
@@ -40902,7 +40902,7 @@ func_08039A30:
     adds	r1, r4, #0
     movs	r2, #2
     movs	r3, #27
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add	sp, #16
     pop	{r4}
     pop	{r1}
@@ -41371,7 +41371,7 @@ func_08039DA8:
     adds	r0, r4, #0
     movs	r1, #2
     movs	r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
     bl func_080200C4
@@ -41427,7 +41427,7 @@ func_08039E18:
     adds	r0, r4, #0
     movs	r1, #2
     movs	r2, #0
-    bl func_08032384
+    bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
     bl func_080200C4

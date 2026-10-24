@@ -29,10 +29,10 @@ void AActorEntity::SetMovementSpeed(i32 speed_q16)
 // A missing sprite or stopped traversal is complete; otherwise predict the next wrap.
 bool AActorEntity::IsAnimationComplete() const
 {
-    UnknownEntityThing * sprite = unk_10.Get();
+    EntitySpriteController * sprite = static_cast<EntitySpriteController *>(unk_10.Get());
     if (sprite != 0) {
         bool complete = false;
-        IndexedResourceHandle const * animation = &sprite->sprite_animator;
+        IndexedResourceHandle const * animation = &sprite->sprite.handle;
         u32 active = 0;
         if (animation->metric_scaled != 0)
             active = animation->scroll_delta != 0;
@@ -105,14 +105,11 @@ void AActorEntity::SetAnim(u32 new_anim_id)
 
 void AActorEntity::RefreshSprite(u32 sprite_anim)
 {
-    UnknownEntityThing * ptr = unk_10.Get();
+    EntitySpriteController * ptr = static_cast<EntitySpriteController *>(unk_10.Get());
 
     if (ptr != nullptr)
     {
-        ResolveIndexedResourceHandle(&ptr->sprite_animator, sprite_anim);
-        ptr->unk_44 = 1;
-        ptr->unk_46 = 0;
-        ptr->unk_47 = 1;
+        ptr->SetAnimation(sprite_anim);
     }
 
     unk_24 = func_08032090(game_object->vfunc_68(), sprite_anim);
@@ -218,41 +215,36 @@ EC bool func_08032370(AActorEntity & self)
     return self.unk_28.unk_00 == 0;
 }
 
-EC void func_08032384(AActorEntity & self, u32 arg_1, bool arg_2)
+EC void StartActorSpriteEffect(AActorEntity & self, u32 effect, bool persistent)
 {
     if (self.unk_10.Get() != nullptr)
     {
-        // TODO: this may be an inlined method call?
-        UnknownEntityThing * ptr = self.unk_10.Get();
-        ResolveIndexedResourceHandle(&ptr->sprite_animator_70, arg_1);
-        ptr->unk_84 = 1;
-        ptr->unk_86 = 0;
-        ptr->unk_87 = 1;
-        ptr->unk_8A_0 = arg_2 ? 2 : 1;
+        EntitySpriteController * sprite = static_cast<EntitySpriteController *>(self.unk_10.Get());
+        sprite->StartEffect(effect, persistent);
     }
 }
 
-EC void func_080323C8(AActorEntity & self)
+EC void StopActorSpriteEffect(AActorEntity & self)
 {
     if (self.unk_10.Get() != nullptr)
     {
-        self.unk_10->unk_8A_0 = 0;
+        static_cast<EntitySpriteController *>(self.unk_10.Get())->StopEffect();
     }
 }
 
-EC void func_080323E0(AActorEntity & self, u32 arg_1)
+EC void SetActorAuxRenderProfile(AActorEntity & self, u32 profile)
 {
     if (self.unk_10.Get() != nullptr)
     {
-        self.unk_10->unk_88 = arg_1;
+        static_cast<EntitySpriteController *>(self.unk_10.Get())->SetAuxRenderProfile(profile);
     }
 }
 
-EC void func_080323F0(AActorEntity & self, u32 arg_1)
+EC void func_080323F0(AActorEntity & self, u32 value)
 {
     if (self.unk_10.Get() != nullptr)
     {
-        self.unk_10->unk_8A_2 = arg_1;
+        static_cast<EntitySpriteController *>(self.unk_10.Get())->SetUnknown8A2(value);
     }
 }
 

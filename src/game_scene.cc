@@ -236,21 +236,21 @@ void GameScene::StartEntityEffect(u32 id, u32 effect, u32 persistent)
 {
     AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr)
-        func_08032384(*entity, effect, persistent != 0);
+        StartActorSpriteEffect(*entity, effect, persistent != 0);
 }
 
 void GameScene::StopEntityEffect(u32 id)
 {
     AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr)
-        func_080323C8(*entity);
+        StopActorSpriteEffect(*entity);
 }
 
 void GameScene::SetEntityAuxRenderProfile(u32 id, u32 profile)
 {
     AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr)
-        func_080323E0(*entity, profile);
+        SetActorAuxRenderProfile(*entity, profile);
 }
 
 void GameScene::ChangeMap(u32 map, i32 x, i32 y)

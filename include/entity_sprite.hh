@@ -1,56 +1,129 @@
 #ifndef ENTITY_SPRITE_HH
 #define ENTITY_SPRITE_HH
 
-#include "resource_handle.hh"
+#include "scene_sprite.hh"
 
-// Partial actor-owned sprite layout. The native class identity and
-// unresolved virtual slots remain unknown; do not infer ownership or
-// a complete native allocation size from this borrowed state view.
-struct UnknownEntityThingBase
-{
-    virtual ~UnknownEntityThingBase();
-    virtual void vfunc_0C();
-    virtual void vfunc_10(u32 dummy);
+struct AEntity;
+struct AActorEntity;
 
-    /* +00 */ int * dummy;
-    /* +04 */ // vtable
+// Mode 1 clears at a wrap; mode 2 survives that automatic clear.
+enum EntitySpriteEffectMode {
+    ENTITY_SPRITE_EFFECT_NONE = 0,
+    ENTITY_SPRITE_EFFECT_UNTIL_WRAP = 1,
+    ENTITY_SPRITE_EFFECT_PERSISTENT = 2,
 };
 
-struct UnknownEntityThing : public UnknownEntityThingBase
-{
-    /* +08 */ STRUCT_PAD(0x08, 0x30);
-    /* +30 */ IndexedResourceHandle sprite_animator;
-    /* +44 */ u8 unk_44;
-    /* +45 */ u8 unk_45;
-    /* +46 */ u8 unk_46;
-    /* +47 */ u8 unk_47;
-
-    // The following fields may belong to a derived native sprite class.
-
-    /* +48 */ STRUCT_PAD(0x48, 0x70);
-
-    /* +70 */ IndexedResourceHandle sprite_animator_70;
-    /* +84 */ u8 unk_84;
-    /* +85 */ STRUCT_PAD(0x85, 0x86);
-    /* +86 */ u8 unk_86;
-    /* +87 */ u8 unk_87;
-    /* +88 */ u8 unk_88;
-    /* +89 */ STRUCT_PAD(0x89, 0x8A);
-    /* +8A */ u8 unk_8A_0 : 2;
-    /* +8A */ u8 unk_8A_2 : 6;
+#pragma interface "entity_sprite.hh"
+// The common actor-owned interface. Other entity controllers need not
+// contain sprite members. Draw receives the native renderer context;
+// its complete type is not recovered yet.
+struct EntityVisualController {
+    virtual ~EntityVisualController() SECTION(".text.entity_visual_controller_cleanup");
+    virtual void Update() = 0;
+    virtual void Draw(void * draw_context) = 0;
+    AEntity * entity;
 };
 
-typedef char EntitySpriteAnimationOffsetCheck[offsetof(UnknownEntityThing, sprite_animator) == 0x30 ? 1 : -1];
-typedef char EntitySecondSpriteAnimationOffsetCheck[offsetof(UnknownEntityThing, sprite_animator_70) == 0x70 ? 1 : -1];
+inline EntityVisualController::~EntityVisualController() {}
 
-EXTERN_C
+// Two independently allocated OBJ resources: the actor animation and
+// its attached effect. Native constructors and virtual bodies remain
+// assembly; the shared members and cleanup are ordinary C++.
+struct EntitySpriteController : EntityVisualController {
+    EntitySpriteController(AActorEntity * entity, u32 size_shift, u32 palette_kind,
+        u32 aux_render_profile, u32 unknown_8A2, u32 unknown_8B, bool sprite_unknown_3D);
+    EntitySpriteController(AActorEntity * entity, u32 size_shift, i32 const * palette_kinds,
+        u32 palette_count, u32 aux_render_profile, u32 unknown_8A2, u32 unknown_8B,
+        bool sprite_unknown_3D);
 
-// Neither query changes the animation. Wrap prediction requires the
-// same valid resolved entry range as WouldIndexedResourceHandleWrap.
-bool WouldEntitySpriteAnimationWrap(UnknownEntityThing const * sprite);
-// A zero metric or a zero signed traversal step means stopped.
-bool IsEntitySpriteAnimationPlaying(UnknownEntityThing const * sprite);
+    virtual void Update();
+    virtual void Draw(void * draw_context);
 
-EXTERN_C_END
+    GameSceneIndexedSprite sprite;
+    GameSceneIndexedSprite effect;
+    u8 aux_render_profile;
+    u8 unk_89;
+    u8 effect_mode : 2;
+    u8 unk_8A_2 : 6;
+    u8 unk_8B;
+
+    // The old compiler emits out-of-line inline copies in reverse
+    // definition order. Keep these definitions in native ROM order
+    // after that compiler traversal, without per-method sections.
+    void SetAnimation(u32 index)
+    {
+        ResolveIndexedResourceHandle(&this->sprite.handle, index);
+        this->sprite.unk_3C = 1;
+        this->sprite.unk_3E = 0;
+        this->sprite.unk_3F = 1;
+    }
+    void SetUnknown8A2(u32 value)
+    {
+        this->unk_8A_2 = value;
+    }
+    void StartEffect(u32 index, bool persistent)
+    {
+        ResolveIndexedResourceHandle(&this->effect.handle, index);
+        this->effect.unk_3C = 1;
+        this->effect.unk_3E = 0;
+        this->effect.unk_3F = 1;
+        this->effect_mode = persistent ? ENTITY_SPRITE_EFFECT_PERSISTENT : ENTITY_SPRITE_EFFECT_UNTIL_WRAP;
+    }
+    void StopEffect()
+    {
+        this->effect_mode = ENTITY_SPRITE_EFFECT_NONE;
+    }
+    // Canonical values are MaryEntityAuxRenderProfile. Native callers
+    // store the low byte without validation.
+    void SetAuxRenderProfile(u32 profile)
+    {
+        this->aux_render_profile = profile;
+    }
+    void SetUnknown89(u32 value)
+    {
+        this->unk_89 = value;
+    }
+    void SetUnknown8B(u32 value)
+    {
+        this->unk_8B = value;
+    }
+    // Update sets this byte when the primary resource group changes.
+    u8 GetFrameChangeFlag() const
+    {
+        return this->sprite.unk_3C;
+    }
+    bool IsAnimationPlaying() const
+    {
+        IndexedResourceHandle const & animation = this->sprite.handle;
+        bool playing = false;
+        if (animation.metric_scaled != 0)
+            playing = animation.scroll_delta != 0;
+        return playing;
+    }
+    // Requires the same valid resolved range as the handle predictor.
+    bool WouldAnimationWrap() const
+    {
+        return WouldIndexedResourceHandleWrap(&this->sprite.handle);
+    }
+};
+
+// Fixed native preset: size shift 6, palette kind 0x20, default auxiliary
+// rendering. No new members or alternate virtual operations.
+struct DefaultEntitySpriteController : EntitySpriteController {
+    DefaultEntitySpriteController(AActorEntity * entity)
+        SECTION(".text.entity_sprite_default_constructor");
+};
+
+#pragma implementation
+
+typedef char EntityVisualControllerSizeCheck[sizeof(EntityVisualController) == 8 ? 1 : -1];
+typedef char EntitySpriteControllerSizeCheck[sizeof(EntitySpriteController) == 0x8C ? 1 : -1];
+typedef char DefaultEntitySpriteControllerSizeCheck[sizeof(DefaultEntitySpriteController) == 0x8C ? 1 : -1];
+typedef char EntityVisualControllerOwnerOffset[offsetof(EntityVisualController, entity) == 0 ? 1 : -1];
+typedef char EntitySpriteControllerSpriteOffset[offsetof(EntitySpriteController, sprite) == 8 ? 1 : -1];
+typedef char EntitySpriteControllerEffectOffset[offsetof(EntitySpriteController, effect) == 0x48 ? 1 : -1];
+typedef char EntitySpriteControllerProfileOffset[offsetof(EntitySpriteController, aux_render_profile) == 0x88 ? 1 : -1];
+typedef char EntitySpriteControllerUnknown89Offset[offsetof(EntitySpriteController, unk_89) == 0x89 ? 1 : -1];
+typedef char EntitySpriteControllerUnknown8BOffset[offsetof(EntitySpriteController, unk_8B) == 0x8B ? 1 : -1];
 
 #endif // ENTITY_SPRITE_HH

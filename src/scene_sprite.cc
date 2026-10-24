@@ -1,9 +1,9 @@
 #include "prelude.h"
+#pragma implementation "scene_sprite.hh"
 #include "entity_actor.hh"
 #include "world_runtime.hh"
 #include "hardware_dma_queue.hh"
 
-#pragma implementation "scene_sprite.hh"
 #include "scene_sprite.hh"
 
 GameSceneSpriteBase::GameSceneSpriteBase(GameObject * source, u32 size_shift,

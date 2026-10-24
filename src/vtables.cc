@@ -1733,7 +1733,7 @@ extern RawVTableFunction const vtable_unk_080E6428[]
     };
 
 extern void func_080DC5F4(void);
-extern void func_0803260C(void);
+extern void Update__22EntitySpriteController(void);
 #if defined(REGION_JP)
 extern void func_08022088(void);
 #else
@@ -1746,7 +1746,7 @@ extern RawVTableFunction const vtable_unk_080E64B4[]
         nullptr,
         nullptr,
         func_080DC5F4,
-        func_0803260C,
+        Update__22EntitySpriteController,
 #if defined(REGION_JP)
         func_08022088,
 #else
@@ -1930,18 +1930,6 @@ extern RawVTableFunction const __vt_15Entity_080E6554[]
         func_08020308,
         func_0802030C,
 #endif
-        __pure_virtual,
-    };
-
-extern void func_080DC605C(void);
-
-// Preserve this five-slot table in ROM order.
-extern RawVTableFunction const vtable_unk_080E65E0[]
-    SECTION(".rodata.vtable_65e0") = {
-        nullptr,
-        nullptr,
-        func_080DC605C,
-        __pure_virtual,
         __pure_virtual,
     };
 
@@ -2386,27 +2374,8 @@ extern RawVTableFunction const vtable_unk_080E6828[]
 #endif
     };
 
-extern void func_0803260C(void);
-extern void func_08032690(void);
-#if defined(REGION_JP)
-extern void func_080DC044(void);
-#else
-extern void func_080DC890(void);
-#endif
-
-// Preserve this five-slot table and its regional callback in ROM order.
-extern RawVTableFunction const vtable_unk_080E6864[]
-    SECTION(".rodata.vtable_6864") = {
-        nullptr,
-        nullptr,
-#if defined(REGION_JP)
-        func_080DC044,
-#else
-        func_080DC890,
-#endif
-        func_0803260C,
-        func_08032690,
-    };
+extern void Update__22EntitySpriteController(void);
+extern void Draw__22EntitySpriteControllerPv(void);
 
 #if defined(REGION_JP)
 extern void func_080DC078(void);
@@ -2442,25 +2411,6 @@ extern RawVTableFunction const __vt_12AActorEntity[]
 #endif
     };
 
-#if defined(REGION_JP)
-extern void func_080DC0AC(void);
-#else
-extern void func_080DC8F8(void);
-#endif
-
-// Preserve this five-slot table and its regional callback in ROM order.
-extern RawVTableFunction const vtable_unk_080E68B4[]
-    SECTION(".rodata.vtable_68b4") = {
-        nullptr,
-        nullptr,
-#if defined(REGION_JP)
-        func_080DC0AC,
-#else
-        func_080DC8F8,
-#endif
-        func_0803260C,
-        func_08032690,
-    };
 
 extern void func_08033A2C(void);
 extern void func_08033B10(void);

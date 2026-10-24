@@ -1,15 +1,9 @@
+#include "prelude.h"
+#include "fomt_constants.hh"
+#pragma implementation "entity_sprite.hh"
 #include "entity_sprite.hh"
 
-bool WouldEntitySpriteAnimationWrap(UnknownEntityThing const * sprite)
+DefaultEntitySpriteController::DefaultEntitySpriteController(AActorEntity * entity)
+    : EntitySpriteController(entity, 6, 0x20, ENTITY_AUX_RENDER_DEFAULT, 0, 0, false)
 {
-    return WouldIndexedResourceHandleWrap(&sprite->sprite_animator);
-}
-
-bool IsEntitySpriteAnimationPlaying(UnknownEntityThing const * sprite)
-{
-    IndexedResourceHandle const & animation = sprite->sprite_animator;
-    bool playing = false;
-    if (animation.metric_scaled != 0)
-        playing = animation.scroll_delta != 0;
-    return playing;
 }

@@ -111,7 +111,7 @@ EC void func_08034EB4(ANpcEntity & self)
 
     if (self.unk_10.Get() != nullptr)
     {
-        self.unk_10->vfunc_0C();
+        self.unk_10->Update();
     }
 }
 
@@ -804,7 +804,7 @@ EC void func_08035A48(ANpcEntity & self, Location const & other)
     if (dy > 111)
         return;
     if (!func_08035978(self) && !self.vfunc_28()) {
-        func_08032384(self, ENTITY_EMOTE_EXCLAMATION, false);
+        StartActorSpriteEffect(self, ENTITY_EMOTE_EXCLAMATION, false);
         self.unk_3F = 120;
         self.vfunc_3C(1);
     }

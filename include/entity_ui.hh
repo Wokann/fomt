@@ -11,12 +11,6 @@ struct EntityUiUnknownState
     u8 unknown_41;
 };
 
-struct EntityUiConstructorState
-{
-    void * unknown_00;
-    void const * vtable;
-};
-
 struct EntityUiHarvestSpriteEntry
 {
     u8 flags;

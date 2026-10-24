@@ -7101,7 +7101,7 @@ func_080DC5F4:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x20, 0x5A, 0x0E, 0x08
+    .4byte __vt_22EntityVisualController
     .global func_080DC6028
     .thumb_func
 func_080DC6028:
@@ -7130,23 +7130,8 @@ func_080DC6028:
     pop {r0}
     bx r0
     .byte 0x90, 0x56, 0x0E, 0x08
-    .global func_080DC605C
-    .thumb_func
-func_080DC605C:
-    push {lr}
-    adds r2, r0, #0
-    ldr r0, [pc, #0x14]
-    str r0, [r2, #4]
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    beq .Lauto_080DBE26
-    adds r0, r2, #0
-    bl __builtin_delete
-    .Lauto_080DBE26:
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00, 0x20, 0x5A, 0x0E, 0x08
+    .section .text.entity_visual_controller_cleanup_after, "ax", %progbits
+    .align 2, 0
     .global func_080DC67C
     .thumb_func
 func_080DC67C:
@@ -7272,7 +7257,8 @@ func_080DC724:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x20, 0x5A, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_22EntityVisualController
     .global func_080DC764
     .thumb_func
 func_080DC764:
@@ -7323,7 +7309,8 @@ func_080DC764:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x20, 0x5A, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_22EntityVisualController
     .global func_080DBF80
     .thumb_func
 func_080DBF80:
@@ -7423,32 +7410,8 @@ func_080DC840:
     bx r1
     .byte 0x00, 0x00
     .4byte __vt_19GameSceneSpriteBase
-    .global func_080DC044
-    .thumb_func
-func_080DC044:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r4, r1, #0
-    adds r0, #0x48
-    movs r1, #2
-    bl _._19GameSceneSpriteBase
-    adds r0, r5, #0
-    adds r0, #8
-    movs r1, #2
-    bl _._19GameSceneSpriteBase
-    ldr r0, [pc, #0x14]
-    str r0, [r5, #4]
-    movs r0, #1
-    ands r0, r4
-    cmp r0, #0
-    beq .Lauto_080DC06E
-    adds r0, r5, #0
-    bl __builtin_delete
-    .Lauto_080DC06E:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x20, 0x5A, 0x0E, 0x08
+    .section .text.entity_sprite_default_cleanup_after, "ax", %progbits
+    .align 2, 0
     .global func_080DC078
     .thumb_func
 func_080DC078:
@@ -7477,32 +7440,8 @@ func_080DC078:
     pop {r0}
     bx r0
     .byte 0x90, 0x56, 0x0E, 0x08
-    .global func_080DC0AC
-    .thumb_func
-func_080DC0AC:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r4, r1, #0
-    adds r0, #0x48
-    movs r1, #2
-    bl _._19GameSceneSpriteBase
-    adds r0, r5, #0
-    adds r0, #8
-    movs r1, #2
-    bl _._19GameSceneSpriteBase
-    ldr r0, [pc, #0x14]
-    str r0, [r5, #4]
-    movs r0, #1
-    ands r0, r4
-    cmp r0, #0
-    beq .Lauto_080DC0D6
-    adds r0, r5, #0
-    bl __builtin_delete
-    .Lauto_080DC0D6:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x20, 0x5A, 0x0E, 0x08
+    .section .text.entity_sprite_cleanup_after, "ax", %progbits
+    .align 2, 0
     .global func_080DC0E0
     .thumb_func
 func_080DC0E0:
@@ -7532,7 +7471,8 @@ func_080DC0E0:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x20, 0x5A, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_22EntityVisualController
     .section .text.npc_timed_path_search_after, "ax", %progbits
 
     .global func_080DC9A8
@@ -8206,7 +8146,7 @@ func_080DCDB0:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x20, 0x5A, 0x0E, 0x08
+    .4byte __vt_22EntityVisualController
     .global func_080DCE60
     .thumb_func
 func_080DCE60:
@@ -8256,7 +8196,8 @@ func_080DCE94:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x20, 0x5A, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_22EntityVisualController
     .global func_080DCEC0
     .thumb_func
 func_080DCEC0:
@@ -8278,7 +8219,8 @@ func_080DCEC0:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x20, 0x5A, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_22EntityVisualController
     .global func_080DCEEC
     .thumb_func
 func_080DCEEC:
@@ -8328,7 +8270,8 @@ func_080DCF20:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x20, 0x5A, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_22EntityVisualController
     .global func_080DCF4C
     .thumb_func
 func_080DCF4C:
@@ -10205,7 +10148,7 @@ func_080DE1B4:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x20, 0x5A, 0x0E, 0x08
+    .4byte __vt_22EntityVisualController
     .global func_080DE220
     .thumb_func
 func_080DE220:
@@ -19206,7 +19149,7 @@ func_080DC5F4:
 	.byte 0x01, 0x20, 0x20, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
 	bl __builtin_delete
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte vtable_unk_080E65E0
+	.4byte __vt_22EntityVisualController
 	.global func_080DC6028
 	.thumb_func
 func_080DC6028:
@@ -19216,15 +19159,8 @@ func_080DC6028:
 	bl __builtin_delete
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
 	.4byte __vt_7AEntity
-	.global func_080DC605C
-	.thumb_func
-func_080DC605C:
-	.byte 0x00, 0xB5, 0x02, 0x1C, 0x05, 0x48
-	.byte 0x50, 0x60, 0x01, 0x20, 0x08, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x10, 0x1C
-	bl __builtin_delete
-	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	.4byte vtable_unk_080E65E0
-
+    .section .text.entity_visual_controller_cleanup_after, "ax", %progbits
+    .align 2, 0
 	thumb_func_start func_080DC67C
 func_080DC67C: @ 0x080DC67C
 	push {r4, r5, lr}
@@ -19319,7 +19255,7 @@ func_080DC724: @ 0x080DC724
 	adds r0, #8
 	movs r1, #2
 	bl _._19GameSceneSpriteBase
-	ldr r0, .L080DC760 @ =vtable_unk_080E65E0
+	ldr r0, .L080DC760 @ =__vt_22EntityVisualController
 	str r0, [r5, #4]
 	movs r0, #1
 	ands r0, r4
@@ -19332,7 +19268,7 @@ func_080DC724: @ 0x080DC724
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080DC760: .4byte vtable_unk_080E65E0
+.L080DC760: .4byte __vt_22EntityVisualController
 
 	thumb_func_start func_080DC764
 func_080DC764: @ 0x080DC764
@@ -19371,7 +19307,7 @@ func_080DC764: @ 0x080DC764
 	adds r0, #8
 	movs r1, #2
 	bl _._19GameSceneSpriteBase
-	ldr r0, .L080DC7C8 @ =vtable_unk_080E65E0
+	ldr r0, .L080DC7C8 @ =__vt_22EntityVisualController
 	str r0, [r6, #4]
 	movs r0, #1
 	ands r0, r7
@@ -19384,7 +19320,7 @@ func_080DC764: @ 0x080DC764
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080DC7C8: .4byte vtable_unk_080E65E0
+.L080DC7C8: .4byte __vt_22EntityVisualController
 .L080DC7CC:
 	.global func_080DC7CC
 	.thumb_func
@@ -19447,20 +19383,8 @@ func_080DC840: @ 0x080DC840
 	bx r1
 	.align 2, 0
 .L080DC88C: .4byte __vt_19GameSceneSpriteBase
-.L080DC890:
-	.global func_080DC890
-	.thumb_func
-func_080DC890:
-	.byte 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C, 0x48, 0x30, 0x02, 0x21
-	bl _._19GameSceneSpriteBase
-	.byte 0x28, 0x1C
-	.byte 0x08, 0x30, 0x02, 0x21
-	bl _._19GameSceneSpriteBase
-	.byte 0x05, 0x48, 0x68, 0x60, 0x01, 0x20, 0x20, 0x40
-	.byte 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
-	bl __builtin_delete
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte vtable_unk_080E65E0
+    .section .text.entity_sprite_default_cleanup_after, "ax", %progbits
+    .align 2, 0
 	.global func_080DC8C4
 	.thumb_func
 func_080DC8C4:
@@ -19471,18 +19395,8 @@ func_080DC8C4:
 	.byte 0x30, 0xBC
 	.byte 0x01, 0xBC, 0x00, 0x47
 	.4byte __vt_7AEntity
-	.global func_080DC8F8
-	.thumb_func
-func_080DC8F8:
-	.byte 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C, 0x48, 0x30
-	.byte 0x02, 0x21
-	bl _._19GameSceneSpriteBase
-	.byte 0x28, 0x1C, 0x08, 0x30, 0x02, 0x21
-	bl _._19GameSceneSpriteBase
-	.byte 0x05, 0x48, 0x68, 0x60, 0x01, 0x20, 0x20, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
-	bl __builtin_delete
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte vtable_unk_080E65E0
+    .section .text.entity_sprite_cleanup_after, "ax", %progbits
+    .align 2, 0
 	.global func_080DC92C
 	.thumb_func
 func_080DC92C:
@@ -19497,7 +19411,7 @@ func_080DC92C:
 	.byte 0x68, 0x60, 0x01, 0x20, 0x20, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
 	bl __builtin_delete
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	.4byte vtable_unk_080E65E0
+	.4byte __vt_22EntityVisualController
 
     .section .text.npc_timed_path_search_after, "ax", %progbits
 
@@ -20160,7 +20074,7 @@ func_080DCDB0: @ 0x080DCDB0
 	adds r0, r4, #0
 	bl __builtin_delete
 .L080DCE3E:
-	ldr r0, .L080DCE5C @ =vtable_unk_080E65E0
+	ldr r0, .L080DCE5C @ =__vt_22EntityVisualController
 	str r0, [r7, #4]
 	movs r0, #1
 	mov r1, r8
@@ -20176,7 +20090,7 @@ func_080DCDB0: @ 0x080DCDB0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080DCE5C: .4byte vtable_unk_080E65E0
+.L080DCE5C: .4byte __vt_22EntityVisualController
 
 	thumb_func_start func_080DCE60
 func_080DCE60: @ 0x080DCE60
@@ -20215,7 +20129,7 @@ func_080DCE94: @ 0x080DCE94
 	adds r0, #8
 	movs r1, #2
 	bl _._19GameSceneSpriteBase
-	ldr r0, .L080DCEBC @ =vtable_unk_080E65E0
+	ldr r0, .L080DCEBC @ =__vt_22EntityVisualController
 	str r0, [r5, #4]
 	movs r0, #1
 	ands r0, r4
@@ -20228,7 +20142,7 @@ func_080DCE94: @ 0x080DCE94
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080DCEBC: .4byte vtable_unk_080E65E0
+.L080DCEBC: .4byte __vt_22EntityVisualController
 
 	thumb_func_start func_080DCEC0
 func_080DCEC0: @ 0x080DCEC0
@@ -20238,7 +20152,7 @@ func_080DCEC0: @ 0x080DCEC0
 	adds r0, #8
 	movs r1, #2
 	bl _._19GameSceneSpriteBase
-	ldr r0, .L080DCEE8 @ =vtable_unk_080E65E0
+	ldr r0, .L080DCEE8 @ =__vt_22EntityVisualController
 	str r0, [r5, #4]
 	movs r0, #1
 	ands r0, r4
@@ -20251,7 +20165,7 @@ func_080DCEC0: @ 0x080DCEC0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080DCEE8: .4byte vtable_unk_080E65E0
+.L080DCEE8: .4byte __vt_22EntityVisualController
 
 	thumb_func_start func_080DCEEC
 func_080DCEEC: @ 0x080DCEEC
@@ -20290,7 +20204,7 @@ func_080DCF20: @ 0x080DCF20
 	adds r0, #8
 	movs r1, #2
 	bl _._19GameSceneSpriteBase
-	ldr r0, .L080DCF48 @ =vtable_unk_080E65E0
+	ldr r0, .L080DCF48 @ =__vt_22EntityVisualController
 	str r0, [r5, #4]
 	movs r0, #1
 	ands r0, r4
@@ -20303,7 +20217,7 @@ func_080DCF20: @ 0x080DCF20
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080DCF48: .4byte vtable_unk_080E65E0
+.L080DCF48: .4byte __vt_22EntityVisualController
 
 	thumb_func_start func_080DCF4C
 func_080DCF4C: @ 0x080DCF4C
@@ -22803,7 +22717,7 @@ func_080DE1B4: @ 0x080DE1B4
 .L080DE1FE:
 	cmp r1, #0
 	beq .L080DE1D8
-	ldr r0, .L080DE21C @ =vtable_unk_080E65E0
+	ldr r0, .L080DE21C @ =__vt_22EntityVisualController
 	str r0, [r4, #4]
 	movs r0, #1
 	ands r0, r5
@@ -22817,7 +22731,7 @@ func_080DE1B4: @ 0x080DE1B4
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080DE21C: .4byte vtable_unk_080E65E0
+.L080DE21C: .4byte __vt_22EntityVisualController
 
 	thumb_func_start func_080DE220
 func_080DE220: @ 0x080DE220
@@ -25459,7 +25373,7 @@ func_080DE298: @ 0x080DE298
 	b .L080E0080
 .L080DF8B6:
 	adds r1, r5, #0
-	bl func_080323E0
+	bl SetActorAuxRenderProfile
 	adds r0, r4, #0
 	adds r1, r6, #0
 	bl func_080323F0
@@ -26005,7 +25919,7 @@ func_080DE298: @ 0x080DE298
 	orrs r2, r5
 	lsrs r2, r2, #0x1f
 	adds r1, r6, #0
-	bl func_08032384
+	bl StartActorSpriteEffect
 	b .L080E0080
 .L080DFCC2:
 	movs r1, #0xe0
@@ -26032,7 +25946,7 @@ func_080DE298: @ 0x080DE298
 	bne .L080DFCF0
 	b .L080E0080
 .L080DFCF0:
-	bl func_080323C8
+	bl StopActorSpriteEffect
 	b .L080E0080
 .L080DFCF6:
 	movs r3, #0xe0
@@ -33673,7 +33587,7 @@ func_080E3C7C:
     adds r1, r4, #0
     movs r2, #5
     movs r3, #0x1b
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     add sp, #0x10
     pop {r4}
     pop {r1}
@@ -42008,7 +41922,7 @@ func_080E44E4: @ 0x080E44E4
 	adds r1, r4, #0
 	movs r2, #5
 	movs r3, #0x1b
-	bl func_080324BC
+	bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
 	add sp, #0x10
 	pop {r4}
 	pop {r1}

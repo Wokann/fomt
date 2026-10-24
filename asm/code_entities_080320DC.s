@@ -96,9 +96,9 @@ func_0803242C:
     .syntax unified
     .thumb
     .align 2, 0
-    .global func_080324BC
+    .global __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     .thumb_func
-func_080324BC:
+__22EntitySpriteControllerP12AActorEntityUiUiUiUiUib:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r9
     mov	r6, r8
@@ -176,10 +176,10 @@ func_080324BC:
     bx	r1
     .align 2, 0
 .Ljp_080322F0:
-    .4byte vtable_unk_080E68B4
-    .global func_08032560
+    .4byte __vt_22EntitySpriteController
+    .global __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
     .thumb_func
-func_08032560:
+__22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r9
     mov	r6, r8
@@ -261,10 +261,10 @@ func_08032560:
     bx	r1
     .align 2, 0
 .Ljp_0803239C:
-    .4byte vtable_unk_080E68B4
-    .global func_0803260C
+    .4byte __vt_22EntitySpriteController
+    .global Update__22EntitySpriteController
     .thumb_func
-func_0803260C:
+Update__22EntitySpriteController:
     push	{r4, r5, r6, r7, lr}
     adds	r4, r0, #0
     adds	r1, r4, #0
@@ -337,9 +337,9 @@ func_0803260C:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08032690
+    .global Draw__22EntitySpriteControllerPv
     .thumb_func
-func_08032690:
+Draw__22EntitySpriteControllerPv:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -741,7 +741,7 @@ func_08032748:
     movs	r0, #140	@ 0x8c
     bl __builtin_new
     adds	r1, r4, #0
-    bl func_08032A00
+    bl __29DefaultEntitySpriteControllerP12AActorEntity
     pop	{r4}
     pop	{r1}
     bx	r1
@@ -811,97 +811,9 @@ func_08032A30:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .section .text.entity_sprite_animation_queries_after, "ax", %progbits
+    .section .text.entity_sprite_after, "ax", %progbits
     .syntax unified
     .thumb
-    .align 2, 0
-    adds	r0, #68	@ 0x44
-    ldrb	r0, [r0, #0]
-    bx	lr
-    .align 2, 0
-.Ljp_08032820:
-    adds	r0, #139	@ 0x8b
-    strb	r1, [r0, #0]
-    bx	lr
-    .align 2, 0
-.Ljp_08032828:
-    adds	r0, #137	@ 0x89
-    strb	r1, [r0, #0]
-    bx	lr
-    .align 2, 0
-.Ljp_08032830:
-    adds	r0, #136	@ 0x88
-    strb	r1, [r0, #0]
-    bx	lr
-    .align 2, 0
-.Ljp_08032838:
-    adds	r0, #138	@ 0x8a
-    ldrb	r2, [r0, #0]
-    movs	r1, #4
-    negs	r1, r1
-    ands	r1, r2
-    strb	r1, [r0, #0]
-    bx	lr
-    .align 2, 0
-.Ljp_08032848:
-    push	{r4, r5, lr}
-    adds	r5, r0, #0
-    lsls	r4, r2, #24
-    lsrs	r4, r4, #24
-    adds	r0, #112	@ 0x70
-    bl ResolveIndexedResourceHandle
-    adds	r0, r5, #0
-    adds	r0, #132	@ 0x84
-    movs	r2, #0
-    movs	r1, #1
-    strb	r1, [r0, #0]
-    adds	r0, #2
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    movs	r3, #1
-    cmp	r4, #0
-    beq .Ljp_08032870
-    movs	r3, #2
-.Ljp_08032870:
-    adds	r2, r5, #0
-    adds	r2, #138	@ 0x8a
-    ldrb	r1, [r2, #0]
-    movs	r0, #4
-    negs	r0, r0
-    ands	r0, r1
-    orrs	r0, r3
-    strb	r0, [r2, #0]
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Ljp_08032888:
-    adds	r0, #138	@ 0x8a
-    lsls	r1, r1, #2
-    ldrb	r3, [r0, #0]
-    movs	r2, #3
-    ands	r2, r3
-    orrs	r2, r1
-    strb	r2, [r0, #0]
-    bx	lr
-.Ljp_08032898:
-    push	{r4, lr}
-    adds	r4, r0, #0
-    adds	r0, #48	@ 0x30
-    bl ResolveIndexedResourceHandle
-    adds	r0, r4, #0
-    adds	r0, #68	@ 0x44
-    movs	r2, #0
-    movs	r1, #1
-    strb	r1, [r0, #0]
-    adds	r0, #2
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    pop	{r4}
-    pop	{r0}
-    bx	r0
     .align 2, 0
 .Ljp_080328BC:
     ldrh	r0, [r0, #36]	@ 0x24
@@ -3879,11 +3791,11 @@ func_08034180:
 .Ljp_08033FC2:
     adds	r0, r4, #0
     movs	r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .Ljp_08033FD2
 .Ljp_08033FCC:
     adds	r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .Ljp_08033FD2:
     strb	r7, [r5, #0]
     pop	{r4, r5, r6, r7}
@@ -4891,7 +4803,7 @@ func_08034A14:
     strb	r6, [r0, #0]
     mov	r0, r8
     movs	r2, #3
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     ldr r0, .Ljp_0803482C
     mov	r1, r8
     str	r0, [r1, #4]
@@ -4939,7 +4851,7 @@ func_08034A14:
 func_08034AA0:
     push	{r4, lr}
     adds	r4, r0, #0
-    bl func_0803260C
+    bl Update__22EntitySpriteController
     adds	r0, r4, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
@@ -4986,7 +4898,7 @@ func_08034AE8:
     sub	sp, #60	@ 0x3c
     adds	r5, r0, #0
     adds	r4, r1, #0
-    bl func_08032690
+    bl Draw__22EntitySpriteControllerPv
     adds	r0, r5, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
@@ -5215,9 +5127,9 @@ func_0803242C:
     .thumb
     .align 2, 0
 
-    .global func_080324BC
+    .global __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     .thumb_func
-func_080324BC:
+__22EntitySpriteControllerP12AActorEntityUiUiUiUiUib:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r9
     mov	r6, r8
@@ -5295,10 +5207,10 @@ func_080324BC:
     bx	r1
     .align 2, 0
 .Leu_08032570:
-    .4byte vtable_unk_080E68B4
-    .global func_08032560
+    .4byte __vt_22EntitySpriteController
+    .global __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
     .thumb_func
-func_08032560:
+__22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r9
     mov	r6, r8
@@ -5380,10 +5292,10 @@ func_08032560:
     bx	r1
     .align 2, 0
 .Leu_0803261C:
-    .4byte vtable_unk_080E68B4
-    .global func_0803260C
+    .4byte __vt_22EntitySpriteController
+    .global Update__22EntitySpriteController
     .thumb_func
-func_0803260C:
+Update__22EntitySpriteController:
     push	{r4, r5, r6, r7, lr}
     adds	r4, r0, #0
     adds	r1, r4, #0
@@ -5456,9 +5368,9 @@ func_0803260C:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08032690
+    .global Draw__22EntitySpriteControllerPv
     .thumb_func
-func_08032690:
+Draw__22EntitySpriteControllerPv:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -5862,7 +5774,7 @@ func_080329B4:
     movs	r0, #140	@ 0x8c
     bl __builtin_new
     adds	r1, r4, #0
-    bl func_08032A00
+    bl __29DefaultEntitySpriteControllerP12AActorEntity
     pop	{r4}
     pop	{r1}
     bx	r1
@@ -5934,53 +5846,10 @@ func_08032A30:
     pop	{r0}
     bx	r0
     .hword 0x0000
-    .section .text.entity_sprite_animation_queries_after, "ax", %progbits
+    .section .text.entity_sprite_after, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
-    .4byte 0x78003044
-    .4byte 0x00004770
-    .4byte 0x7001308B
-    .4byte 0x00004770
-    .4byte 0x70013089
-    .4byte 0x00004770
-    .4byte 0x70013088
-    .4byte 0x00004770
-    .4byte 0x7802308A
-    .4byte 0x42492104
-    .4byte 0x70014011
-    .4byte 0x00004770
-    .4byte 0x1C05B530
-    .4byte 0x0E240614
-    .byte 0x70, 0x30
-    bl ResolveIndexedResourceHandle
-    .byte 0x28, 0x1C
-    .4byte 0x22003084
-    .4byte 0x70012101
-    .4byte 0x70023002
-    .4byte 0x70013001
-    .4byte 0x2C002301
-    .4byte 0x2302D000
-    .4byte 0x328A1C2A
-    .4byte 0x20047811
-    .4byte 0x40084240
-    .4byte 0x70104318
-    .4byte 0xBC01BC30
-    .4byte 0x00004700
-    .4byte 0x0089308A
-    .4byte 0x22037803
-    .4byte 0x430A401A
-    .4byte 0x47707002
-    .4byte 0x1C04B510
-    .byte 0x30, 0x30
-    bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C
-    .4byte 0x22003044
-    .4byte 0x70012101
-    .4byte 0x70023002
-    .4byte 0x70013001
-    .4byte 0xBC01BC10
-    .4byte 0x00004700
     .4byte 0x47708C80
     .4byte 0x2100B500
     .4byte 0x28008C80
@@ -8387,11 +8256,11 @@ func_08034180:
 .Leu_08034242:
     adds	r0, r4, #0
     movs	r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .Leu_08034252
 .Leu_0803424C:
     adds	r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .Leu_08034252:
     strb	r7, [r5, #0]
     pop	{r4, r5, r6, r7}
@@ -9146,7 +9015,7 @@ func_08034A14:
     strb	r6, [r0, #0]
     mov	r0, r8
     movs	r2, #3
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     ldr r0, .Leu_08034AAC
     mov	r1, r8
     str	r0, [r1, #4]
@@ -9194,7 +9063,7 @@ func_08034A14:
 func_08034AA0:
     push	{r4, lr}
     adds	r4, r0, #0
-    bl func_0803260C
+    bl Update__22EntitySpriteController
     adds	r0, r4, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
@@ -9241,7 +9110,7 @@ func_08034AE8:
     sub	sp, #60	@ 0x3c
     adds	r5, r0, #0
     adds	r4, r1, #0
-    bl func_08032690
+    bl Draw__22EntitySpriteControllerPv
     adds	r0, r5, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
@@ -9471,9 +9340,9 @@ func_0803242C:
     .thumb
     .align 2, 0
 
-    .global func_080324BC
+    .global __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     .thumb_func
-func_080324BC:
+__22EntitySpriteControllerP12AActorEntityUiUiUiUiUib:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r9
     mov	r6, r8
@@ -9551,10 +9420,10 @@ func_080324BC:
     bx	r1
     .align 2, 0
 .Lde_08032470:
-    .4byte vtable_unk_080E68B4
-    .global func_08032560
+    .4byte __vt_22EntitySpriteController
+    .global __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
     .thumb_func
-func_08032560:
+__22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r9
     mov	r6, r8
@@ -9636,10 +9505,10 @@ func_08032560:
     bx	r1
     .align 2, 0
 .Lde_0803251C:
-    .4byte vtable_unk_080E68B4
-    .global func_0803260C
+    .4byte __vt_22EntitySpriteController
+    .global Update__22EntitySpriteController
     .thumb_func
-func_0803260C:
+Update__22EntitySpriteController:
     push	{r4, r5, r6, r7, lr}
     adds	r4, r0, #0
     adds	r1, r4, #0
@@ -9712,9 +9581,9 @@ func_0803260C:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08032690
+    .global Draw__22EntitySpriteControllerPv
     .thumb_func
-func_08032690:
+Draw__22EntitySpriteControllerPv:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -10118,7 +9987,7 @@ func_080329B4:
     movs	r0, #140	@ 0x8c
     bl __builtin_new
     adds	r1, r4, #0
-    bl func_08032A00
+    bl __29DefaultEntitySpriteControllerP12AActorEntity
     pop	{r4}
     pop	{r1}
     bx	r1
@@ -10190,53 +10059,10 @@ func_08032A30:
     pop	{r0}
     bx	r0
     .hword 0x0000
-    .section .text.entity_sprite_animation_queries_after, "ax", %progbits
+    .section .text.entity_sprite_after, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
-    .4byte 0x78003044
-    .4byte 0x00004770
-    .4byte 0x7001308B
-    .4byte 0x00004770
-    .4byte 0x70013089
-    .4byte 0x00004770
-    .4byte 0x70013088
-    .4byte 0x00004770
-    .4byte 0x7802308A
-    .4byte 0x42492104
-    .4byte 0x70014011
-    .4byte 0x00004770
-    .4byte 0x1C05B530
-    .4byte 0x0E240614
-    .byte 0x70, 0x30
-    bl ResolveIndexedResourceHandle
-    .byte 0x28, 0x1C
-    .4byte 0x22003084
-    .4byte 0x70012101
-    .4byte 0x70023002
-    .4byte 0x70013001
-    .4byte 0x2C002301
-    .4byte 0x2302D000
-    .4byte 0x328A1C2A
-    .4byte 0x20047811
-    .4byte 0x40084240
-    .4byte 0x70104318
-    .4byte 0xBC01BC30
-    .4byte 0x00004700
-    .4byte 0x0089308A
-    .4byte 0x22037803
-    .4byte 0x430A401A
-    .4byte 0x47707002
-    .4byte 0x1C04B510
-    .byte 0x30, 0x30
-    bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C
-    .4byte 0x22003044
-    .4byte 0x70012101
-    .4byte 0x70023002
-    .4byte 0x70013001
-    .4byte 0xBC01BC10
-    .4byte 0x00004700
     .4byte 0x47708C80
     .4byte 0x2100B500
     .4byte 0x28008C80
@@ -12643,11 +12469,11 @@ func_08034180:
 .Lde_08034142:
     adds	r0, r4, #0
     movs	r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .Lde_08034152
 .Lde_0803414C:
     adds	r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .Lde_08034152:
     strb	r7, [r5, #0]
     pop	{r4, r5, r6, r7}
@@ -13402,7 +13228,7 @@ func_08034A14:
     strb	r6, [r0, #0]
     mov	r0, r8
     movs	r2, #3
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     ldr r0, .Lde_080349AC
     mov	r1, r8
     str	r0, [r1, #4]
@@ -13450,7 +13276,7 @@ func_08034A14:
 func_08034AA0:
     push	{r4, lr}
     adds	r4, r0, #0
-    bl func_0803260C
+    bl Update__22EntitySpriteController
     adds	r0, r4, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
@@ -13497,7 +13323,7 @@ func_08034AE8:
     sub	sp, #60	@ 0x3c
     adds	r5, r0, #0
     adds	r4, r1, #0
-    bl func_08032690
+    bl Draw__22EntitySpriteControllerPv
     adds	r0, r5, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
@@ -13726,9 +13552,9 @@ func_0803242C:
     .thumb
     .align 2, 0
 
-    .global func_080324BC
+    .global __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     .thumb_func
-func_080324BC:
+__22EntitySpriteControllerP12AActorEntityUiUiUiUiUib:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r9
     mov	r6, r8
@@ -13806,10 +13632,10 @@ func_080324BC:
     bx	r1
     .align 2, 0
 .Lus_0803255C:
-    .4byte vtable_unk_080E68B4
-    .global func_08032560
+    .4byte __vt_22EntitySpriteController
+    .global __22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib
     .thumb_func
-func_08032560:
+__22EntitySpriteControllerP12AActorEntityUiPCiUiUiUiUib:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r9
     mov	r6, r8
@@ -13891,10 +13717,10 @@ func_08032560:
     bx	r1
     .align 2, 0
 .Lus_08032608:
-    .4byte vtable_unk_080E68B4
-    .global func_0803260C
+    .4byte __vt_22EntitySpriteController
+    .global Update__22EntitySpriteController
     .thumb_func
-func_0803260C:
+Update__22EntitySpriteController:
     push	{r4, r5, r6, r7, lr}
     adds	r4, r0, #0
     adds	r1, r4, #0
@@ -13967,9 +13793,9 @@ func_0803260C:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08032690
+    .global Draw__22EntitySpriteControllerPv
     .thumb_func
-func_08032690:
+Draw__22EntitySpriteControllerPv:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -14373,7 +14199,7 @@ func_080329B4:
     movs	r0, #140	@ 0x8c
     bl __builtin_new
     adds	r1, r4, #0
-    bl func_08032A00
+    bl __29DefaultEntitySpriteControllerP12AActorEntity
     pop	{r4}
     pop	{r1}
     bx	r1
@@ -14445,53 +14271,10 @@ func_08032A30:
     pop	{r0}
     bx	r0
     .hword 0x0000
-    .section .text.entity_sprite_animation_queries_after, "ax", %progbits
+    .section .text.entity_sprite_after, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
-    .4byte 0x78003044
-    .4byte 0x00004770
-    .4byte 0x7001308B
-    .4byte 0x00004770
-    .4byte 0x70013089
-    .4byte 0x00004770
-    .4byte 0x70013088
-    .4byte 0x00004770
-    .4byte 0x7802308A
-    .4byte 0x42492104
-    .4byte 0x70014011
-    .4byte 0x00004770
-    .4byte 0x1C05B530
-    .4byte 0x0E240614
-    .byte 0x70, 0x30
-    bl ResolveIndexedResourceHandle
-    .byte 0x28, 0x1C
-    .4byte 0x22003084
-    .4byte 0x70012101
-    .4byte 0x70023002
-    .4byte 0x70013001
-    .4byte 0x2C002301
-    .4byte 0x2302D000
-    .4byte 0x328A1C2A
-    .4byte 0x20047811
-    .4byte 0x40084240
-    .4byte 0x70104318
-    .4byte 0xBC01BC30
-    .4byte 0x00004700
-    .4byte 0x0089308A
-    .4byte 0x22037803
-    .4byte 0x430A401A
-    .4byte 0x47707002
-    .4byte 0x1C04B510
-    .byte 0x30, 0x30
-    bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C
-    .4byte 0x22003044
-    .4byte 0x70012101
-    .4byte 0x70023002
-    .4byte 0x70013001
-    .4byte 0xBC01BC10
-    .4byte 0x00004700
     .4byte 0x47708C80
     .4byte 0x2100B500
     .4byte 0x28008C80
@@ -17005,11 +16788,11 @@ func_08034180:
 .Lus_0803422E:
     adds	r0, r4, #0
     movs	r2, #1
-    bl func_08032384
+    bl StartActorSpriteEffect
     b .Lus_0803423E
 .Lus_08034238:
     adds	r0, r4, #0
-    bl func_080323C8
+    bl StopActorSpriteEffect
 .Lus_0803423E:
     strb	r7, [r5, #0]
     pop	{r4, r5, r6, r7}
@@ -17764,7 +17547,7 @@ func_08034A14:
     strb	r6, [r0, #0]
     mov	r0, r8
     movs	r2, #3
-    bl func_080324BC
+    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
     ldr r0, .Lus_08034A98
     mov	r1, r8
     str	r0, [r1, #4]
@@ -17812,7 +17595,7 @@ func_08034A14:
 func_08034AA0:
     push	{r4, lr}
     adds	r4, r0, #0
-    bl func_0803260C
+    bl Update__22EntitySpriteController
     adds	r0, r4, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
@@ -17859,7 +17642,7 @@ func_08034AE8:
     sub	sp, #60	@ 0x3c
     adds	r5, r0, #0
     adds	r4, r1, #0
-    bl func_08032690
+    bl Draw__22EntitySpriteControllerPv
     adds	r0, r5, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
