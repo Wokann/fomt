@@ -255,6 +255,103 @@ extern "C" u32 UpdateIndexedResourceHandle(IndexedResourceHandle * handle)
     return static_cast<u32>(result);
 }
 
+static inline IndexedResourceSpriteMatrix ReadIndexedSpriteMatrix(
+    HardwareSpriteOamRecord const * records)
+{
+    IndexedResourceSpriteMatrix result;
+    result.pa = records[0].affine_coefficient;
+    result.pb = records[1].affine_coefficient;
+    result.pc = records[2].affine_coefficient;
+    result.pd = records[3].affine_coefficient;
+    return result;
+}
+
+extern "C" void DrawIndexedResourceSprites(
+    HardwareSpriteBufferState * state, HardwareSpriteOamRecord const * sprites,
+    u32 count, IndexedResourceSpriteParameters const * parameters)
+{
+    HardwareSpriteOamRecord const * cursor = sprites;
+    HardwareSpriteOamRecord const * end = cursor + count;
+    for (; cursor != end; ++cursor)
+    {
+        HardwareSpriteOamRecord sprite = *cursor;
+        u32 const shape = sprite.shape;
+        u32 size = sprite.size;
+        i32 width, height;
+        if (shape == 0)
+            width = height = 8 << size;
+        else
+        {
+            u32 large = 8 << (((size + 1) >> 1) + 1);
+            u32 small = size == 1 ? 8 : large >> 1;
+            if (shape != 1)
+            {
+                height = large;
+                width = small;
+            }
+            else
+            {
+                height = small;
+                width = large;
+            }
+        }
+        // Decode the bounded relative offsets as signed halfwords, then
+        // widen them for the transform's 32-bit coordinate updates.
+        i32 x = static_cast<i16>(sprite.x);
+        i32 y = static_cast<i16>(sprite.y);
+        u32 affine_mode = parameters->affine_mode;
+        if (affine_mode == 0)
+        {
+            if (parameters->flips & 1)
+            {
+                x = -(x + width);
+                sprite.horizontal_flip ^= 1;
+            }
+            if (parameters->flips & 2)
+            {
+                y = -(y + height);
+                sprite.vertical_flip ^= 1;
+            }
+        }
+        else
+        {
+            u32 index = parameters->affine_index;
+            sprite.affine_index_low = index & 7;
+            sprite.horizontal_flip = (index & 8) >> 3;
+            sprite.vertical_flip = (index & 16) >> 4;
+            HardwareSpriteOamRecord const * matrix_records =
+                &state->sprites[(index & 31) * 4];
+            IndexedResourceSpriteMatrix matrix = ReadIndexedSpriteMatrix(matrix_records);
+            TransformIndexedResourceSpritePosition(&x, &y, width, height, &matrix);
+            if (affine_mode == 3)
+            {
+                x -= width / 2;
+                y -= height / 2;
+            }
+        }
+        x += parameters->x;
+        y += parameters->y;
+        if (affine_mode == 0 &&
+            (x + width <= 0 || x > 239 || y + height <= 0 || y > 159))
+            continue;
+        sprite.y = y;
+        sprite.affine_mode = affine_mode;
+        sprite.object_mode = parameters->object_mode;
+        sprite.mosaic = parameters->mosaic;
+        sprite.x = x;
+        sprite.tile_index += parameters->tile_offset;
+        sprite.priority = parameters->priority;
+        sprite.palette_bank += parameters->palette_offset;
+        u32 sprite_index = state->sprite_count;
+        if (sprite_index < 128)
+        {
+            HardwareSpriteOamRecord * destination = &state->sprites[sprite_index];
+            memcpy(destination, &sprite, offsetof(HardwareSpriteOamRecord, affine_coefficient));
+            state->sprite_count = sprite_index + 1;
+        }
+    }
+}
+
 extern "C" void TransformIndexedResourceSpritePosition(
     i32 * x, i32 * y, u32 width, u32 height,
     IndexedResourceSpriteMatrix const * matrix)

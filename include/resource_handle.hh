@@ -246,7 +246,8 @@ u32 UpdateIndexedResourceHandle(IndexedResourceHandle *)
 // Non-affine sprites are clipped to the screen; affine records use the
 // selected OAM matrix. Copy attributes only, preserving matrix coefficients.
 void DrawIndexedResourceSprites(HardwareSpriteBufferState *, HardwareSpriteOamRecord const *,
-    u32 count, IndexedResourceSpriteParameters const *);
+    u32 count, IndexedResourceSpriteParameters const *)
+    SECTION(".text.indexed_resource_handle_update");
 
 // Direct declarations of the existing lifecycle ABI, for owners whose
 // remaining lifecycle is still supplied by the original assembly routines.
