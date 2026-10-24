@@ -40,6 +40,7 @@ struct Farmer
     Farmer(Farmer const & other);
 
     char const * GetName() const;
+    ActorLocation GetLocation() const;
     char const * GetSpouseNickname() const;
     GameDate GetBirthday() const;
     // The limit is twelve encoded bytes, not twelve Unicode characters.
@@ -86,7 +87,6 @@ EC unsigned int func_0800E530(Farmer const & self);
 EC bool func_0800E53C(Farmer const & self);
 EC Farmer::ToolLevel const & func_0800E548(Farmer const & self, unsigned int idx);
 EC Tool func_0800E550(Farmer const & self, Tool tool);
-EC ActorLocation func_0800E924(Farmer const & self);
 EC bool func_0800E934(Farmer const & self);
 EC bool func_0800E940(Farmer const & self);
 EC unsigned int func_0800E94C(Farmer const & self);

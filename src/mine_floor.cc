@@ -1,5 +1,6 @@
 #include "mine_floor.hh"
 #include "game_state.hh"
+#include "unknown_inlines.hh"
 
 // Lake-mine buried-item codes and the matching per-floor weight rows.
 extern "C" u32 const gLakeMineBuriedItemCodes[] = {
@@ -379,6 +380,270 @@ u32 MineFloorState::BreakRock(u32 column, u32 row, GameStateSaveImage & game)
         cells[row][column].rock_item = 0;
     }
     return result;
+}
+
+u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
+{
+    // Both nine-piece collections share this availability/floor workspace.
+    bool collection_blocked;
+    i32 floor;
+    switch (code) {
+    case 3:
+        if (game.farmer.GetLocation().map <= static_cast<i32>(MAP_SPRING_MINE_FLOOR_255)) {
+            if (flag_625_2 == false) {
+                flag_625_2 = true;
+            } else {
+                code = 0;
+            }
+        } else {
+            if (flag_624_0 == false) {
+                flag_624_0 = true;
+            } else {
+                code = 0;
+            }
+        }
+        break;
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9: {
+        bool blocked = false;
+        if (game.farmer.rucksack.GetFirstFreeToolSlot() == static_cast<u32>(-1))
+            blocked = true;
+        if (!game.npcs.saibara.HasCollectedAllMystrileTools())
+            blocked = true;
+        if (HasCursedTool(code, game))
+            blocked = true;
+        if (blocked == true) {
+            code = 0;
+        } else {
+            u32 tool = ITEM_TOOL_NONE;
+            switch (code) {
+            case 4:
+                tool = ITEM_TOOL_SICKLE_CURSED;
+                break;
+            case 5:
+                tool = ITEM_TOOL_HOE_CURSED;
+                break;
+            case 6:
+                tool = ITEM_TOOL_AXE_CURSED;
+                break;
+            case 7:
+                tool = ITEM_TOOL_HAMMER_CURSED;
+                break;
+            case 8:
+                tool = ITEM_TOOL_WATERING_CAN_CURSED;
+                break;
+            case 9:
+                tool = ITEM_TOOL_FISHING_ROD_CURSED;
+                break;
+            }
+            if (tool != ITEM_TOOL_NONE)
+                game.cursed_tools.StartCurse(tool);
+        }
+        break;
+    }
+    case 10: {
+        bool blocked = false;
+        if (min_inl<u32 const &>(200, game.clock.calendar.GetYear()) <= 2)
+            blocked = true;
+        if (flag_625_4 == true)
+            blocked = true;
+        if (game.farmer.rucksack.GetFirstFreeToolSlot() == static_cast<u32>(-1))
+            blocked = true;
+        if (blocked)
+            code = 0;
+        else
+            flag_625_4 = true;
+        break;
+    }
+    case 23: {
+        bool blocked = false;
+        if (!game.cursed_tools.HaveBlessedAllTools())
+            blocked = true;
+        for (i32 group = 4; group <= 9; ++group) {
+            if (HasCursedTool(group, game))
+                blocked = true;
+        }
+        if (blocked == true)
+            code = 0;
+        break;
+    }
+    case 32: {
+        collection_blocked = false;
+        if (game.farm.farm_house.GetShelf() == 0)
+            collection_blocked = true;
+        if (CountFlags13To21() == 8
+            && game.farmer.rucksack.GetFirstFreeToolSlot() == static_cast<u32>(-1))
+            collection_blocked = true;
+        if (!collection_blocked) {
+            floor = game.farmer.GetLocation().map - static_cast<i32>(MAP_SPRING_MINE_FLOOR_0);
+            switch (floor) {
+            case 60:
+                if (flag_625_5 == false) {
+                    flag_625_5 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 102:
+                if (flag_625_6 == false) {
+                    flag_625_6 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 123:
+                if (flag_625_7 == false) {
+                    flag_625_7 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 152:
+                if (flag_626_0 == false) {
+                    flag_626_0 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 155:
+                if (flag_626_1 == false) {
+                    flag_626_1 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 171:
+                if (flag_626_2 == false) {
+                    flag_626_2 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 190:
+                if (flag_626_3 == false) {
+                    flag_626_3 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 202:
+                if (flag_626_4 == false) {
+                    flag_626_4 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 222:
+                if (flag_626_5 == false) {
+                    flag_626_5 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            default:
+                collection_blocked = true;
+                break;
+            }
+        }
+        if (collection_blocked == true)
+            code = 0;
+        break;
+    }
+    case 33: {
+        collection_blocked = false;
+        if (game.farm.farm_house.GetShelf() == 0)
+            collection_blocked = true;
+        if (CountFlags1To9() == 8
+            && game.farmer.rucksack.GetFirstFreeToolSlot() == static_cast<u32>(-1))
+            collection_blocked = true;
+        if (!collection_blocked) {
+            floor = game.farmer.GetLocation().map - static_cast<i32>(MAP_LAKE_MINE_FLOOR_0);
+            switch (floor) {
+            case 0:
+                if (flag_624_1 == false) {
+                    flag_624_1 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 40:
+                if (flag_624_2 == false) {
+                    flag_624_2 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 60:
+                if (flag_624_3 == false) {
+                    flag_624_3 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 80:
+                if (flag_624_4 == false) {
+                    flag_624_4 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 120:
+                if (flag_624_5 == false) {
+                    flag_624_5 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 140:
+                if (flag_624_6 == false) {
+                    flag_624_6 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 160:
+                if (flag_624_7 == false) {
+                    flag_624_7 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 180:
+                if (flag_625_0 == false) {
+                    flag_625_0 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            case 255:
+                if (flag_625_1 == false) {
+                    flag_625_1 = true;
+                } else {
+                    collection_blocked = true;
+                }
+                break;
+            default:
+                collection_blocked = true;
+                break;
+            }
+        }
+        if (collection_blocked == true)
+            code = 0;
+        break;
+    }
+    case 34:
+        if (flag_625_3 == false) {
+            flag_625_3 = true;
+        } else {
+            code = 0;
+        }
+        break;
+    }
+    return code;
 }
 
 bool MineFloorState::HasCursedTool(u32 group, GameStateSaveImage const & game) const

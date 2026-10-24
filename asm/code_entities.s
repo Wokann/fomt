@@ -22706,7 +22706,7 @@ func_0802B69C:
     ldr r0, .Ljp_0802B6D0 @ =0x00001BD8
     adds r1, r2, r0
     add r0, sp, #4
-    bl func_0800E924
+    bl GetLocation__C6Farmer
     movs r0, #0xc9
     lsls r0, r0, #1
     str r0, [sp]
@@ -56993,7 +56993,7 @@ func_0802B908: @ 0x0802B908
     ldr r0, .L0802B93C @ =0x00001BD8
     adds r1, r2, r0
     add r0, sp, #4
-    bl func_0800E924
+    bl GetLocation__C6Farmer
     movs r0, #0xc9
     lsls r0, r0, #1
     str r0, [sp]

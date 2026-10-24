@@ -99,7 +99,7 @@ Coop::Egg const * Coop::GetEgg(u32 ent_idx) const
 {
     if (ent_idx < GetCapacity())
     {
-        if (egg[ent_idx].location.map < MAP_NONE)
+        if (static_cast<u16>(egg[ent_idx].location.map) < MAP_NONE)
             return &egg[ent_idx];
     }
 

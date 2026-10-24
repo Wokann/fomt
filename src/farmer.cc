@@ -207,9 +207,9 @@ EC Tool func_0800E550(Farmer const & self, Tool tool)
     return result;
 }
 
-EC ActorLocation func_0800E924(Farmer const & self)
+ActorLocation Farmer::GetLocation() const
 {
-    return self.location;
+    return location;
 }
 
 EC bool func_0800E934(Farmer const & self)

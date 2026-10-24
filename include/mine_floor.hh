@@ -31,7 +31,7 @@ struct MineFloorState
     // down ladder is consumed by DigSoil and reported as zero to its caller.
     u32 DigSoil(u32 column, u32 row, GameStateSaveImage & game);
     u32 BreakRock(u32 column, u32 row, GameStateSaveImage & game);
-    // Eligibility checks and their side effects still have a native body.
+    // Apply eligibility checks and their saved-state side effects.
     u32 ProcessItemCode(u32 code, GameStateSaveImage & game);
     bool HasCursedTool(u32 group, GameStateSaveImage const & game) const;
     // These count exactly the indicated saved bits; their item identities

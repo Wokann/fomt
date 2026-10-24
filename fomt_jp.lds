@@ -678,8 +678,8 @@ SECTIONS
             .text.GetCellType__C14MineFloorStateUiUi);
         src/mine_floor.o(
             .text.DigSoil__14MineFloorStateUiUiR18GameStateSaveImage
-            .text.BreakRock__14MineFloorStateUiUiR18GameStateSaveImage);
-        asm/mine_floor.o(.text.mine_floor_cell_actions);
+            .text.BreakRock__14MineFloorStateUiUiR18GameStateSaveImage
+            .text.ProcessItemCode__14MineFloorStateUiR18GameStateSaveImage);
         src/mine_floor.o(
             .text.HasCursedTool__C14MineFloorStateUiRC18GameStateSaveImage
             .text.CountFlags13To21__C14MineFloorState

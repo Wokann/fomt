@@ -9,7 +9,7 @@ struct PACKED ALIGN(2) Location
     Location() {}
 
     Location(u32 map, u32 x, u32 y)
-        : map(map), x(x), y(y)
+        : map(static_cast<MaryMapId>(map)), x(x), y(y)
     {
     }
 
@@ -17,7 +17,7 @@ struct PACKED ALIGN(2) Location
     i16 GetX() const { return x; }
     i16 GetY() const { return y; }
 
-    /* +00 */ u16 map : 10;
+    /* +00 */ MaryMapId map : 10;
     /* +01 */ i16 x : 16;
     /* +03 */ i16 y : 16;
 };

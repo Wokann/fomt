@@ -17,7 +17,7 @@ struct CursedToolState
     u8 IsCursed(u32 tool_id) const;
     u8 IsBlessed(u32 tool_id) const;
     u32 HaveFoundAllTools() const;
-    u32 HaveBlessedAllTools() const;
+    bool HaveBlessedAllTools() const;
     void StartCurse(u32 tool_id);
     u32 AdvanceProgress(u32 index);
     void ResetConsecutiveDays(u32 index);

@@ -70,7 +70,7 @@ end:
     return result;
 }
 
-u32 CursedToolState::HaveBlessedAllTools() const
+bool CursedToolState::HaveBlessedAllTools() const
 {
     u32 result = 0;
     if (blessed[1] == 0) goto end;

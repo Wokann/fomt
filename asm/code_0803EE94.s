@@ -54795,7 +54795,7 @@ func_080701BC:
 	movs r4, #0
 	add r0, sp, #0x14
 	mov r1, r8
-	bl func_0800E924
+	bl GetLocation__C6Farmer
 	add r0, sp, #0xc
 	add r1, sp, #0x14
 	movs r2, #6
@@ -72084,7 +72084,7 @@ func_0807865C: @ 0x0807865C
 	adds r5, r4, r0
 	add r0, sp, #0x2c
 	adds r1, r5, #0
-	bl func_0800E924
+	bl GetLocation__C6Farmer
 	adds r0, r7, #0
 	add r1, sp, #0x2c
 	movs r2, #0
@@ -206398,7 +206398,7 @@ func_080701BC: @ 0x080701BC
 	movs r4, #0
 	add r0, sp, #0x14
 	mov r1, r8
-	bl func_0800E924
+	bl GetLocation__C6Farmer
 	add r0, sp, #0xc
 	add r1, sp, #0x14
 	movs r2, #6
@@ -224509,7 +224509,7 @@ func_0807865C: @ 0x0807865C
 	adds r5, r4, r0
 	add r0, sp, #0x2c
 	adds r1, r5, #0
-	bl func_0800E924
+	bl GetLocation__C6Farmer
 	adds r0, r7, #0
 	add r1, sp, #0x2c
 	movs r2, #0
