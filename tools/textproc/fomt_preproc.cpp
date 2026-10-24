@@ -1356,11 +1356,28 @@ std::string AlignExecutableSections(const std::string &assembly)
     return JoinLines(lines);
 }
 
+std::string NormalizeStackImmediateSyntax(const std::string &assembly)
+{
+    // agbcp can omit '#' on the three-operand stack adjustment in a
+    // by-value aggregate epilogue. GAS then parses the number as a shift.
+    // Supply only the missing lexical marker: keep the instruction and all
+    // operands unchanged. Do not infer immediates from symbols or registers.
+    static const std::regex pattern(
+        R"(^([\t ]*(?:add|sub)[\t ]+sp,[\t ]*sp,[\t ]*)([+-]?(?:0[xX][0-9a-fA-F]+|[0-9]+))([\t ]*(?:@.*)?)$)");
+    std::vector<std::string> lines = SplitLines(assembly);
+    for (std::string &line : lines) {
+        std::smatch match;
+        if (std::regex_match(line, match, pattern))
+            line = match[1].str() + "#" + match[2].str() + match[3].str();
+    }
+    return JoinLines(lines);
+}
+
 std::string PreprocessAssembly(const std::string &source, const std::string &assembly)
 {
     return AlignExecutableSections(NormalizeCompilerGeneratedRodataSections(source,
         HonorExplicitByteAlignedUnsectionedText(source,
-            FixupSameUnitConstCharReferences(source, assembly))));
+            FixupSameUnitConstCharReferences(source, NormalizeStackImmediateSyntax(assembly)))));
 }
 
 void Require(bool condition, const std::string &message)
@@ -1371,6 +1388,33 @@ void Require(bool condition, const std::string &message)
 
 void SelfTest()
 {
+    const std::string stack_immediate_assembly =
+        "\tadd\tsp, sp, 0x8\n"
+        "  sub sp,sp,20 @ argument save area\n"
+        "\tadd sp, sp, +0X10\n"
+        "\tadd sp, sp, #0x8\n"
+        "\tadd sp, sp, r2\n"
+        "\tadd sp, sp, external_size\n"
+        "\tadd r0, r1, 8\n"
+        "\t.ascii \"add sp, sp, 0x8\"\n"
+        "@ add sp, sp, 0x8\n";
+    const std::string stack_immediate_expected =
+        "\tadd\tsp, sp, #0x8\n"
+        "  sub sp,sp,#20 @ argument save area\n"
+        "\tadd sp, sp, #+0X10\n"
+        "\tadd sp, sp, #0x8\n"
+        "\tadd sp, sp, r2\n"
+        "\tadd sp, sp, external_size\n"
+        "\tadd r0, r1, 8\n"
+        "\t.ascii \"add sp, sp, 0x8\"\n"
+        "@ add sp, sp, 0x8\n";
+    Require(NormalizeStackImmediateSyntax(stack_immediate_assembly)
+            == stack_immediate_expected,
+        "missing stack-immediate markers must be supplied without changing operands");
+    Require(NormalizeStackImmediateSyntax(stack_immediate_expected)
+            == stack_immediate_expected,
+        "stack-immediate syntax normalization must be idempotent");
+
     const std::string source =
         "char const gNamedByteSequence[] = \"A\";\n"
         "char const * const gPointerToNamedByteSequence = gNamedByteSequence;\n"
