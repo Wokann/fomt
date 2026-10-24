@@ -73,15 +73,39 @@ typedef char EntityUiResourceDurationOffsetCheck[offsetof(EntityUiResourceSetupS
 struct EntityUiCallbackState
 {
     u8 unknown_00[0x10];
-    void * unknown_10;
+    EntityUiResourceSetupState * resource_setup;
     u8 unknown_14[0x1C];
     u8 value_30;
 };
 
-// Forward the native selector and two coordinate values to the entity's
-// visual resource controller. The selector's meaning remains unconfirmed.
-extern "C" void func_08033B84(EntityUiCallbackState * state, u32 value,
-                               u32 arg_1, u32 arg_2);
+typedef char EntityUiResourceSetupPointerOffsetCheck[
+    offsetof(EntityUiCallbackState, resource_setup) == 0x10 ? 1 : -1];
+typedef char EntityUiResourceSelectorOffsetCheck[
+    offsetof(EntityUiCallbackState, value_30) == 0x30 ? 1 : -1];
+
+// Byte 0x41 still has no confirmed game-level meaning.
+extern "C" void ClearEntityUiUnknownFlag41(void * entity)
+    SECTION(".text.entity_ui_actor_state");
+
+// A missing resource object is ignored. Otherwise forward the resource-table
+// index and both setup values unchanged; the initializer stores halfwords.
+extern "C" void SetEntityUiResource(EntityUiCallbackState * state,
+    u32 table_index, u32 first_value, u32 second_value)
+    SECTION(".text.entity_ui_actor_state");
+
+// Resolve the selected resource ID, set the two values and reset its native
+// duration to 60. The three control-byte meanings remain unconfirmed.
+extern "C" void InitializeEntityUiResourceFromTable(EntityUiResourceSetupState * state,
+    u32 table_index, u32 first_value, u32 second_value)
+    SECTION(".text.entity_ui_resource_setup");
+
+extern "C" u32 GetEntityUiResourceTableIndex(EntityUiCallbackState const * state)
+    SECTION(".text.entity_ui_resource_setup");
+extern "C" EntityUiResourceSetupState * GetEntityUiResourceSetup(EntityUiCallbackState const * state)
+    SECTION(".text.entity_ui_resource_setup");
+extern "C" void SetSelectedEntityUiResource(EntityUiCallbackState * state,
+    u32 first_value, u32 second_value)
+    SECTION(".text.entity_ui_resource_setup");
 
 struct EntityUiHarvestSpriteState : public AEntity
 {

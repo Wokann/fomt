@@ -228,7 +228,7 @@ void GameScene::OffsetEntityPosition(u32 id, i32 delta_x, i32 delta_y)
         i32 y = entity->GetQ16Y() >> 16;
         x += delta_x;
         y += delta_y;
-        func_08033B84(callback, callback->value_30, x, y);
+        SetEntityUiResource(callback, callback->value_30, x, y);
     }
 }
 

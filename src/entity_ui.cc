@@ -486,11 +486,6 @@ extern "C" EntityUiConstructorState * func_08032A00(
     EntityUiConstructorState * state, void * arg_1)
     SECTION(".text.entity_ui_constructor");
 
-// The semantic name of byte 0x41 is still unknown; preserve the exact leaf
-// write while its callers and owning entity layout are recovered.
-extern "C" void func_08033B7C(void * entity)
-    SECTION(".text.entity_ui_unknown_flag");
-
 // For kind 2, x=0x110..0x3BF and y=0xB0..0x24F return 1; other coordinates
 // return 2.  Every other kind returns 0.  The caller's domain remains unmapped.
 extern "C" u32 func_08032900(u32 kind, u32 x, i32 y)
@@ -511,21 +506,6 @@ extern "C" bool func_08033B24(EntityUiHarvestSpriteState * state)
 extern "C" u32 func_08034248(EntityUiAnimationState const * state, u32 value)
     SECTION(".text.entity_ui_animation_lookup");
 
-// Initializes the resource handle at +0xB4 and its following UI fields.  The
-// three control-byte meanings are not mapped yet.
-extern "C" void func_08034BFC(EntityUiResourceSetupState * state,
-                               u32 table_index, u32 first_value,
-                               u32 second_value)
-    SECTION(".text.entity_ui_resource_setup");
-
-extern "C" u32 func_08034C40(EntityUiCallbackState const * state)
-    SECTION(".text.entity_ui_get_value_30");
-extern "C" void * func_08034C48(EntityUiCallbackState const * state)
-    SECTION(".text.entity_ui_get_pointer_10");
-extern "C" void func_08034C4C(EntityUiCallbackState * state, u32 arg_1,
-                               u32 arg_2)
-    SECTION(".text.entity_ui_dispatch_value_30");
-
 extern "C" bool func_080324B8()
 {
     return false;
@@ -539,11 +519,19 @@ extern "C" EntityUiConstructorState * func_08032A00(
     return state;
 }
 
-extern "C" void func_08033B7C(void * entity)
+extern "C" void ClearEntityUiUnknownFlag41(void * entity)
 {
     EntityUiUnknownState * state = (EntityUiUnknownState *)entity;
 
     state->unknown_41 = 0;
+}
+
+extern "C" void SetEntityUiResource(EntityUiCallbackState * state,
+    u32 table_index, u32 first_value, u32 second_value)
+{
+    if (state->resource_setup != nullptr)
+        InitializeEntityUiResourceFromTable(state->resource_setup,
+            table_index, first_value, second_value);
 }
 
 extern "C" u32 func_08032900(u32 kind, u32 x, i32 y)
@@ -625,7 +613,7 @@ extern "C" u32 func_08034248(EntityUiAnimationState const * state, u32 value)
     return *(u16 const *)((u8 const *)table + table_offset);
 }
 
-extern "C" void func_08034BFC(EntityUiResourceSetupState * state,
+extern "C" void InitializeEntityUiResourceFromTable(EntityUiResourceSetupState * state,
                                u32 table_index, u32 first_value,
                                u32 second_value)
 {
@@ -641,18 +629,18 @@ extern "C" void func_08034BFC(EntityUiResourceSetupState * state,
     state->duration = 0x3C;
 }
 
-extern "C" u32 func_08034C40(EntityUiCallbackState const * state)
+extern "C" u32 GetEntityUiResourceTableIndex(EntityUiCallbackState const * state)
 {
     return state->value_30;
 }
 
-extern "C" void * func_08034C48(EntityUiCallbackState const * state)
+extern "C" EntityUiResourceSetupState * GetEntityUiResourceSetup(EntityUiCallbackState const * state)
 {
-    return state->unknown_10;
+    return state->resource_setup;
 }
 
-extern "C" void func_08034C4C(EntityUiCallbackState * state, u32 arg_1,
-                               u32 arg_2)
+extern "C" void SetSelectedEntityUiResource(EntityUiCallbackState * state,
+    u32 first_value, u32 second_value)
 {
-    func_08033B84(state, state->value_30, arg_1, arg_2);
+    SetEntityUiResource(state, state->value_30, first_value, second_value);
 }

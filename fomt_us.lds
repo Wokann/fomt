@@ -375,9 +375,8 @@ SECTIONS
         asm/code_entities_080320DC.o(.text.entity_ui_harvest_sprite_task_experience_after);
         . = 0x33B24; /* JP/US-shared Harvest Sprite UI entry test. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_selection);
-        . = 0x33B7C; /* JP/US-shared entity-UI byte-0x41 clearer. */
-        src/entity_ui.o(.text.entity_ui_unknown_flag);
-        . = 0x33B84; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x33B7C; /* Entity-UI actor state operations. */
+        src/entity_ui.o(.text.entity_ui_actor_state);
         asm/code_entities_080320DC.o(.text.entity_ui_unknown_flag_after);
         . = 0x34248; /* JP/US-shared entity-UI animation lookup. */
         src/entity_ui.o(.text.entity_ui_animation_lookup);
@@ -385,12 +384,6 @@ SECTIONS
         asm/code_entities_080320DC.o(.text.entity_ui_animation_lookup_after);
         . = 0x34BFC; /* JP/US-shared entity-UI resource setup. */
         src/entity_ui.o(.text.entity_ui_resource_setup);
-        . = 0x34C40; /* Continue the surrounding entity-UI ROM block. */
-        src/entity_ui.o(.text.entity_ui_get_value_30);
-        . = 0x34C48; /* Continue the surrounding entity-UI ROM block. */
-        src/entity_ui.o(.text.entity_ui_get_pointer_10);
-        . = 0x34C4C; /* Continue the surrounding entity-UI ROM block. */
-        src/entity_ui.o(.text.entity_ui_dispatch_value_30);
         . = 0x34C64; /* NPC schedule query and entity methods. */
         src/npc_entity.o(.text.func_08034C64 .text.*ANpcEntity* .text.func_08034E* .text.func_08034F00);
         asm/code_entities_08034CEC.o(.text);

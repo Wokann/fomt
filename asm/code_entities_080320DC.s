@@ -2998,7 +2998,7 @@ func_08033AE4:
     adds	r2, #66	@ 0x42
     movs	r1, #1
     strb	r1, [r2, #0]
-    bl func_08033B7C
+    bl ClearEntityUiUnknownFlag41
     pop	{r0}
     bx	r0
     .align 2, 0
@@ -3031,17 +3031,6 @@ func_08033B10:
     .syntax unified
     .thumb
     .align 2, 0
-    .global func_08033B84
-    .thumb_func
-func_08033B84:
-    push	{lr}
-    ldr	r0, [r0, #16]
-    cmp	r0, #0
-    beq .Ljp_08033924
-    bl func_08034BFC
-.Ljp_08033924:
-    pop	{r0}
-    bx	r0
     .global func_08033B94
     .thumb_func
 func_08033B94:
@@ -4151,7 +4140,7 @@ func_0803436C:
     movs	r4, #2
     ldrsh	r3, [r0, r4]
     adds	r0, r5, #0
-    bl func_08034BFC
+    bl InitializeEntityUiResourceFromTable
 .Ljp_080341AE:
     mov	r0, sp
     ldrb	r0, [r0, #0]
@@ -7808,7 +7797,7 @@ func_08033AE4:
     adds	r2, #66	@ 0x42
     movs	r1, #1
     strb	r1, [r2, #0]
-    bl func_08033B7C
+    bl ClearEntityUiUnknownFlag41
     pop	{r0}
     bx	r0
     .align 2, 0
@@ -7843,17 +7832,6 @@ func_08033B10:
     .thumb
     .align 2, 0
 
-    .global func_08033B84
-    .thumb_func
-func_08033B84:
-    push	{lr}
-    ldr	r0, [r0, #16]
-    cmp	r0, #0
-    beq .Leu_08033BA4
-    bl func_08034BFC
-.Leu_08033BA4:
-    pop	{r0}
-    bx	r0
     .global func_08033B94
     .thumb_func
 func_08033B94:
@@ -8677,7 +8655,7 @@ func_0803436C:
     movs	r4, #2
     ldrsh	r3, [r0, r4]
     adds	r0, r5, #0
-    bl func_08034BFC
+    bl InitializeEntityUiResourceFromTable
 .Leu_0803442E:
     mov	r0, sp
     ldrb	r0, [r0, #0]
@@ -12080,7 +12058,7 @@ func_08033AE4:
     adds	r2, #66	@ 0x42
     movs	r1, #1
     strb	r1, [r2, #0]
-    bl func_08033B7C
+    bl ClearEntityUiUnknownFlag41
     pop	{r0}
     bx	r0
     .align 2, 0
@@ -12115,17 +12093,6 @@ func_08033B10:
     .thumb
     .align 2, 0
 
-    .global func_08033B84
-    .thumb_func
-func_08033B84:
-    push	{lr}
-    ldr	r0, [r0, #16]
-    cmp	r0, #0
-    beq .Lde_08033AA4
-    bl func_08034BFC
-.Lde_08033AA4:
-    pop	{r0}
-    bx	r0
     .global func_08033B94
     .thumb_func
 func_08033B94:
@@ -12949,7 +12916,7 @@ func_0803436C:
     movs	r4, #2
     ldrsh	r3, [r0, r4]
     adds	r0, r5, #0
-    bl func_08034BFC
+    bl InitializeEntityUiResourceFromTable
 .Lde_0803432E:
     mov	r0, sp
     ldrb	r0, [r0, #0]
@@ -16458,7 +16425,7 @@ func_08033AE4:
     adds	r2, #66	@ 0x42
     movs	r1, #1
     strb	r1, [r2, #0]
-    bl func_08033B7C
+    bl ClearEntityUiUnknownFlag41
     pop	{r0}
     bx	r0
     .align 2, 0
@@ -16493,17 +16460,6 @@ func_08033B10:
     .thumb
     .align 2, 0
 
-    .global func_08033B84
-    .thumb_func
-func_08033B84:
-    push	{lr}
-    ldr	r0, [r0, #16]
-    cmp	r0, #0
-    beq .Lus_08033B90
-    bl func_08034BFC
-.Lus_08033B90:
-    pop	{r0}
-    bx	r0
     .global func_08033B94
     .thumb_func
 func_08033B94:
@@ -17327,7 +17283,7 @@ func_0803436C:
     movs	r4, #2
     ldrsh	r3, [r0, r4]
     adds	r0, r5, #0
-    bl func_08034BFC
+    bl InitializeEntityUiResourceFromTable
 .Lus_0803441A:
     mov	r0, sp
     ldrb	r0, [r0, #0]
