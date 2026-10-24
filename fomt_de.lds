@@ -618,7 +618,8 @@ SECTIONS
         asm/mine_floor.o(.text.mine_floor_generation);
         src/mine_floor.o(.text.GetSpringBuriedItemTableIndex__C14MineFloorStateUi);
         src/mine_floor.o(.text.GetSpringRockTableIndex__C14MineFloorStateUi);
-        asm/mine_floor.o(.text.mine_floor_placement);
+        src/mine_floor.o(.text.PlaceLakeMineItems__14MineFloorStateUiiPC21MineFloorExcludedCell);
+        asm/mine_floor.o(.text.GetLakeBuriedItemTableIndex__C14MineFloorStateUi);
         src/mine_floor.o(
             .text.GetLakeRockTableIndex__C14MineFloorStateUi
             .text.GetLayoutKind__C14MineFloorState

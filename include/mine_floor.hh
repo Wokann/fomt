@@ -15,11 +15,24 @@ struct PACKED ALIGN(2) MineFloorCell
     u32 buried_item : 6;
 };
 
+// The generator supplies twelve four-byte exclusion records. Only column
+// and row are consumed here; the remaining bytes are not identified.
+struct MineFloorExcludedCell {
+    u8 column;
+    u8 row;
+    u16 unk_02;
+};
+
+typedef char MineFloorExcludedCellSizeCheck[sizeof(MineFloorExcludedCell) == 4 ? 1 : -1];
+typedef char MineFloorExcludedCellRowCheck[offsetof(MineFloorExcludedCell, row) == 1 ? 1 : -1];
+
 struct MineFloorState
 {
     MineFloorState();
     u32 GetSpringBuriedItemTableIndex(u32 floor) const;
     u32 GetSpringRockTableIndex(u32 floor) const;
+    void PlaceLakeMineItems(u32 floor, i32 rock_count,
+        MineFloorExcludedCell const * excluded);
     // Still a native Thumb body; no source-level table approximation.
     u32 GetLakeBuriedItemTableIndex(u32 floor) const;
     u32 GetLakeRockTableIndex(u32 floor) const;
