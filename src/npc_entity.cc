@@ -104,10 +104,10 @@ EC void func_08034EB4(ANpcEntity & self)
 {
     func_08035380(self);
 
-    if (self.unk_24 != 0)
-        self.unk_24--;
+    if (self.animation_countdown != 0)
+        self.animation_countdown--;
     else
-        self.unk_24 = self.unk_26;
+        self.animation_countdown = self.animation_reload;
 
     if (self.unk_10.Get() != nullptr)
     {

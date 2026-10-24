@@ -5,12 +5,19 @@
 
 #include "entity.hh"
 
-struct UnkActorEntity28
+// One axis command at a time. Only speed is initialized by the native constructor.
+struct ActorAxisMotion
 {
-    UnkActorEntity28();
+    ActorAxisMotion();
 
-    /* +00 */ u32 unk_00;
+    u32 speed_q16;
+    i16 target_pixel;
+    u8 axis; // Zero selects X; every nonzero value selects Y.
 };
+
+typedef char ActorAxisMotionSizeCheck[sizeof(ActorAxisMotion) == 8 ? 1 : -1];
+typedef char ActorAxisMotionTargetCheck[offsetof(ActorAxisMotion, target_pixel) == 4 ? 1 : -1];
+typedef char ActorAxisMotionAxisCheck[offsetof(ActorAxisMotion, axis) == 6 ? 1 : -1];
 
 // Lazily cached pixel-distance limits for an actor collision box.
 // The four flag bytes are preserved without assigning an unverified gameplay meaning.
@@ -136,19 +143,21 @@ struct AActorEntity : public AEntity
     void SetAnimIfChanged(u32 animation) SECTION(".text.entity_actor_animation_status");
     u16 GetAnim() const SECTION(".text.entity_actor_animation_status");
     void RefreshSprite(u32 sprite_anim);
-    void method_08032208();
+    // Apply ordinary velocity with map-boundary and terrain checks.
+    void ApplyWorldMovement();
 
     /* +18 */ u32 x_speed_q16;
     /* +1C */ u32 y_speed_q16;
     /* +20 */ u8 facing;
     /* +21 */ u8 unk_21; // Default OBJ priority; rendering uses its low two bits.
     /* +22 */ u16 anim_id;
-    /* +24 */ u16 unk_24; // Remaining animation-entry metric sum.
-    /* +26 */ u16 unk_26; // Reload value, truncated to the native halfword.
-    /* +28 */ UnkActorEntity28 unk_28;
-    /* +2C */ u16 unk_2C;
-    /* +2E */ u8 unk_2E;
+    /* +24 */ u16 animation_countdown; // Remaining animation-entry metric sum.
+    /* +26 */ u16 animation_reload; // Reload value, truncated to the native halfword.
+    /* +28 */ ActorAxisMotion motion;
 };
+
+typedef char AActorEntitySizeCheck[sizeof(AActorEntity) == 0x30 ? 1 : -1];
+typedef char AActorEntityMotionOffsetCheck[offsetof(AActorEntity, motion) == 0x28 ? 1 : -1];
 
 #pragma implementation
 
@@ -157,8 +166,10 @@ EXTERN_C
 // Sum the resolved animation's unscaled entry metrics; a null range is empty.
 u32 GetActorAnimationDuration(IndexedResourceProvider * resource, u32 index);
 // Native movement commands replace the previous command on their axis.
-void func_08032308(AActorEntity & self, u32 target, i32 speed_q16);
-void func_0803233C(AActorEntity & self, u32 target, i32 speed_q16);
+void StartActorXMotion(AActorEntity & self, u32 target, i32 speed_q16);
+void StartActorYMotion(AActorEntity & self, u32 target, i32 speed_q16);
+// The command is complete exactly when its speed is zero.
+bool IsActorAxisMotionComplete(AActorEntity & self);
 void StartActorSpriteEffect(AActorEntity & self, u32 effect, bool persistent);
 void StopActorSpriteEffect(AActorEntity & self);
 void SetActorAuxRenderProfile(AActorEntity & self, u32 profile);
@@ -188,14 +199,14 @@ inline void AActorEntity::SetEventScript(MaryScriptId script_id)
 inline bool AActorEntity::IsAnimationCountdownZero() const
 {
     bool zero = false;
-    if (unk_24 == 0)
+    if (animation_countdown == 0)
         zero = true;
     return zero;
 }
 
 inline u16 AActorEntity::GetAnimationCountdown() const
 {
-    return unk_24;
+    return animation_countdown;
 }
 
 #endif // ENTITY_ACTOR_HH

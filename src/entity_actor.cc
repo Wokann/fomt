@@ -94,7 +94,7 @@ void AActorEntity::SetLocation(ActorLocation const & location)
     if (facing != new_facing)
         SetAnimFacing(new_facing);
 
-    unk_28.unk_00 = 0;
+    motion.speed_q16 = 0;
 }
 
 ActorLocation AActorEntity::GetLocation() const
@@ -123,11 +123,11 @@ void AActorEntity::RefreshSprite(u32 sprite_anim)
         ptr->SetAnimation(sprite_anim);
     }
 
-    unk_24 = GetActorAnimationDuration(game_object->vfunc_68(), sprite_anim);
-    unk_26 = unk_24;
+    animation_countdown = GetActorAnimationDuration(game_object->vfunc_68(), sprite_anim);
+    animation_reload = animation_countdown;
 }
 
-void AActorEntity::method_08032208()
+void AActorEntity::ApplyWorldMovement()
 {
     if (x_speed_q16 == 0 && y_speed_q16 == 0)
         return;
@@ -180,50 +180,50 @@ void AActorEntity::method_08032208()
     }
 }
 
-UnkActorEntity28::UnkActorEntity28()
-    : unk_00(0)
+ActorAxisMotion::ActorAxisMotion()
+    : speed_q16(0)
 {
 }
 
-EC void func_08032308(AActorEntity & self, u32 arg_1, i32 arg_2)
+EC void StartActorXMotion(AActorEntity & self, u32 target, i32 speed_q16)
 {
     i32 x = self.x_q16 >> 16;
 
     self.x_q16 = x << 16;
 
-    if (arg_2 != 0 && arg_1 != x)
+    if (speed_q16 != 0 && target != x)
     {
-        self.unk_28.unk_00 = abs(arg_2);
-        self.unk_2C = arg_1;
-        self.unk_2E = 0;
+        self.motion.speed_q16 = abs(speed_q16);
+        self.motion.target_pixel = target;
+        self.motion.axis = 0;
     }
     else
     {
-        self.unk_28.unk_00 = 0;
+        self.motion.speed_q16 = 0;
     }
 }
 
-EC void func_0803233C(AActorEntity & self, u32 arg_1, i32 arg_2)
+EC void StartActorYMotion(AActorEntity & self, u32 target, i32 speed_q16)
 {
     i32 y = self.y_q16 >> 16;
 
     self.y_q16 = y << 16;
 
-    if (arg_2 != 0 && arg_1 != y)
+    if (speed_q16 != 0 && target != y)
     {
-        self.unk_28.unk_00 = abs(arg_2);
-        self.unk_2C = arg_1;
-        self.unk_2E = 1;
+        self.motion.speed_q16 = abs(speed_q16);
+        self.motion.target_pixel = target;
+        self.motion.axis = 1;
     }
     else
     {
-        self.unk_28.unk_00 = 0;
+        self.motion.speed_q16 = 0;
     }
 }
 
-EC bool func_08032370(AActorEntity & self)
+EC bool IsActorAxisMotionComplete(AActorEntity & self)
 {
-    return self.unk_28.unk_00 == 0;
+    return self.motion.speed_q16 == 0;
 }
 
 EC void StartActorSpriteEffect(AActorEntity & self, u32 effect, bool persistent)
@@ -266,10 +266,10 @@ Box AActorEntity::GetBox() const
 
 void AActorEntity::vfunc_18()
 {
-    if (unk_24 != 0)
-        --unk_24;
+    if (animation_countdown != 0)
+        --animation_countdown;
     else
-        unk_24 = unk_26;
+        animation_countdown = animation_reload;
     EntityVisualController * visual = unk_10.Get();
     if (visual != nullptr)
         visual->Update();
@@ -279,54 +279,6 @@ u32 AActorEntity::vfunc_34()
 {
     return 0;
 }
-
-#if 0 // Unmatched motion-tick candidate; the actual member remains native.
-
-EC void vfunc_2C__12AActorEntityUi(AActorEntity & self, u32 arg_1)
-{
-    if (self.unk_24 == 0)
-    {
-        self.unk_24 = 0xFFFF;
-    }
-    else
-    {
-        self.unk_24 = self.unk_26;
-    }
-
-    if (self.unk_28.unk_00 != 0)
-    {
-        bool ip = self.unk_2E == 0;
-        i32 r2 = ip ? self.x_q16 : self.y_q16;
-        int r5 = r2 >> 16;
-        int r7 = self.unk_2C - r5;
-
-        if (r7 == 0)
-        {
-            self.unk_28.unk_00 = 0;
-        }
-        else
-        {
-            r2 = r7 > 0 ? r2 + self.unk_28.unk_00 : r2 - self.unk_28.unk_00;
-
-            if ((r2 >> 16) != r5)
-            {
-                if (r7 > 0 && self.unk_2C - (r2 >> 16) > 0)
-                    self.unk_28.unk_00 = 0;
-                else if (r7 < 0 && self.unk_2C - (r2 >> 16) < 0)
-                    self.unk_28.unk_00 = 0;
-            }
-
-            if (ip != 0)
-                self.x_q16 = r2;
-            else
-                self.y_q16 = r2;
-        }
-    }
-
-    self.AEntity::vfunc_2C(arg_1);
-}
-
-#endif
 
 // Shared lazy terrain probes follow the actor operations in ROM.
 

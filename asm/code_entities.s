@@ -437,7 +437,7 @@ func_0802023C:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    bl func_08032370
+    bl IsActorAxisMotionComplete
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08020252
@@ -4416,7 +4416,7 @@ func_08022250:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    bl func_08032370
+    bl IsActorAxisMotionComplete
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Lauto_08022268
@@ -36449,7 +36449,7 @@ func_080204A8:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    bl func_08032370
+    bl IsActorAxisMotionComplete
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080204BE
@@ -39831,7 +39831,7 @@ func_08022488:
 func_080224BC:
     .byte 0x30, 0xB5, 0x04, 0x1C
     .byte 0x0D, 0x1C
-    bl func_08032370
+    bl IsActorAxisMotionComplete
     .byte 0x00, 0x06, 0x00, 0x28, 0x03, 0xD0, 0x20, 0x1C, 0x29, 0x1C
     bl func_080224E4
     .byte 0x20, 0x1C, 0x29, 0x1C

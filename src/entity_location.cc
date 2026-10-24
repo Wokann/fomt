@@ -52,14 +52,14 @@ void GameScene::MoveEntityXTo(u32 id, u32 target, i32 speed_q16)
 {
     AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr)
-        func_08032308(*entity, target, speed_q16);
+        StartActorXMotion(*entity, target, speed_q16);
 }
 
 void GameScene::MoveEntityYTo(u32 id, u32 target, i32 speed_q16)
 {
     AActorEntity * entity = static_cast<AActorEntity *>(state->game_object.value->GetEntity(id));
     if (entity != nullptr)
-        func_0803233C(*entity, target, speed_q16);
+        StartActorYMotion(*entity, target, speed_q16);
 }
 
 void GameScene::WaitForEntityMovement(u32 id)
