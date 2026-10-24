@@ -154,7 +154,7 @@ bool TrySaveNewGameMenuSlot(NewGameMenuCore * core)
                     core->current_save);
                 func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
                     reinterpret_cast<u32>(core->save_slot_status[slot].Data()), 0, 0);
-                core->unk_8C = 3;
+                core->phase = NEW_GAME_MENU_NOTICE;
                 func_08008B6C(&core->music_players[1], 0xC5);
                 func_080003E8(&core->sram, slot);
                 func_08000470(&core->sram, slot);
@@ -164,7 +164,7 @@ bool TrySaveNewGameMenuSlot(NewGameMenuCore * core)
     }
     func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
         reinterpret_cast<u32>(gText_NewGameSave_SaveFailed), 0, 0);
-    core->unk_8C = 3;
+    core->phase = NEW_GAME_MENU_NOTICE;
     func_08008B6C(&core->music_players[1], 0xC7);
     return false;
 }
@@ -208,7 +208,7 @@ bool TryLoadNewGameMenuSlot(NewGameMenuCore * core)
 
     func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
         reinterpret_cast<u32>(gText_NewGameSave_LoadFailed), 0, 0);
-    core->unk_8C = 3;
+    core->phase = NEW_GAME_MENU_NOTICE;
     func_08008B6C(&core->music_players[1], 0xC7);
     return false;
 }
@@ -286,7 +286,7 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
     new (&core->selector_resource) IndexedResourceHandle(
         &core->resources, 0, 256);
     core->active_row = 0;
-    core->unk_8C = 0;
+    core->phase = NEW_GAME_MENU_SELECTION;
     func_08000640(&core->sram);
     new (core->save_slot_status) NewGameMenuSaveSlotStatus[2];
     new (core->saved_display_options) GameDisplayOptions[2];

@@ -45,6 +45,19 @@ struct NewGameMenuSaveSlotStatus {
 
 typedef char NewGameMenuSaveSlotStatusSizeCheck[sizeof(NewGameMenuSaveSlotStatus) == 0x80 ? 1 : -1];
 
+// The runner dispatches this separately from active_row and the UI window's
+// own animation state. Both confirmation phases return to ordinary selection
+// when cancelled; the notice phase waits for the result message to finish.
+enum NewGameMenuPhase
+{
+    NEW_GAME_MENU_SELECTION,
+    NEW_GAME_MENU_SAVE_CONFIRMATION,
+    NEW_GAME_MENU_LOAD_CONFIRMATION,
+    NEW_GAME_MENU_NOTICE,
+};
+
+typedef char NewGameMenuPhaseSizeCheck[sizeof(NewGameMenuPhase) == 4 ? 1 : -1];
+
 // The menu constructor allocates 0x1A0 bytes. Only fields confirmed by its
 // constructor, cleanup, and hardware/UI consumers are modeled here; the
 // remaining payload is not yet a recovered high-level class.
@@ -65,7 +78,7 @@ struct NewGameMenuCore : HardwareBootstrap {
     u32 active_row;
     u8 choices[6];
     u8 unk_8A[2];
-    u32 unk_8C;
+    NewGameMenuPhase phase;
     SramAccess sram;
     NewGameMenuSaveSlotStatus save_slot_status[2];
     GameDisplayOptions saved_display_options[2];
@@ -83,7 +96,7 @@ typedef char NewGameMenuCoreSelectorResourceCheck[offsetof(NewGameMenuCore, sele
 typedef char NewGameMenuCoreSelectorAttributesCheck[offsetof(NewGameMenuCore, selector_attributes) == 0x78 ? 1 : -1];
 typedef char NewGameMenuCoreActiveRowCheck[offsetof(NewGameMenuCore, active_row) == 0x80 ? 1 : -1];
 typedef char NewGameMenuCoreChoicesCheck[offsetof(NewGameMenuCore, choices) == 0x84 ? 1 : -1];
-typedef char NewGameMenuCoreUnk8CCheck[offsetof(NewGameMenuCore, unk_8C) == 0x8C ? 1 : -1];
+typedef char NewGameMenuCorePhaseCheck[offsetof(NewGameMenuCore, phase) == 0x8C ? 1 : -1];
 typedef char NewGameMenuCoreSramCheck[offsetof(NewGameMenuCore, sram) == 0x90 ? 1 : -1];
 typedef char NewGameMenuCoreSaveSlotStatusCheck[offsetof(NewGameMenuCore, save_slot_status) == 0x98 ? 1 : -1];
 typedef char NewGameMenuCoreSavedDisplayOptionsCheck[offsetof(NewGameMenuCore, saved_display_options) == 0x198 ? 1 : -1];

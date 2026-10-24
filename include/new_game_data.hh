@@ -3,9 +3,20 @@
 
 #include "prelude.h"
 
-// The new-game menu consumes this exact 18-entry pointer order. Text fields
-// are regional, while the table preserves the original regional pointer reuse.
-extern char const * const gNewGameMenuLabels[18];
+// The renderer advances by one three-pointer row and draws its labels at
+// X=16, 128 and 192. Keep the original regional text-pointer reuse.
+struct NewGameMenuLabelRow
+{
+    char const * label;
+    char const * left_choice;
+    char const * right_choice;
+};
+
+typedef char NewGameMenuLabelRowSizeCheck[sizeof(NewGameMenuLabelRow) == 12 ? 1 : -1];
+typedef char NewGameMenuLabelRowLeftCheck[offsetof(NewGameMenuLabelRow, left_choice) == 4 ? 1 : -1];
+typedef char NewGameMenuLabelRowRightCheck[offsetof(NewGameMenuLabelRow, right_choice) == 8 ? 1 : -1];
+
+extern NewGameMenuLabelRow const gNewGameMenuLabels[6];
 
 extern char const gText_NewGameMenu_Diary[];
 extern char const gText_NewGameMenu_Save[];
