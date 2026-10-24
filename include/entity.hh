@@ -6,6 +6,7 @@
 #include "actor.hh" // TODO: move Location
 #include "smart_ptr.hh"
 #include "unknown_types.hh"
+#include "entity_sprite.hh"
 
 struct AEntity
 {

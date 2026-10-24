@@ -369,6 +369,8 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_constructor);
         . = 0x32A44; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_constructor_after);
+        src/entity_sprite.o(.text);
+        asm/code_entities_080320DC.o(.text.entity_sprite_animation_queries_after);
         . = 0x33928; /* JP/US-shared Harvest Sprite task experience transform. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_task_experience);
         . = 0x3393C; /* Continue the surrounding entity-UI ROM block. */

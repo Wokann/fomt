@@ -811,31 +811,10 @@ func_08032A30:
     pop	{r0}
     bx	r0
     .align 2, 0
-.Ljp_080327EC:
-    push	{lr}
-    adds	r0, #48	@ 0x30
-    bl WouldIndexedResourceHandleWrap
-    pop	{r1}
-    bx	r1
-.Ljp_080327F8:
-    push	{lr}
-    adds	r1, r0, #0
-    adds	r1, #48	@ 0x30
-    movs	r2, #0
-    ldrh	r0, [r1, #14]
-    cmp	r0, #0
-    beq .Ljp_08032810
-    movs	r0, #16
-    ldrsh	r1, [r1, r0]
-    negs	r0, r1
-    orrs	r0, r1
-    lsrs	r2, r0, #31
-.Ljp_08032810:
-    adds	r0, r2, #0
-    pop	{r1}
-    bx	r1
-.Ljp_08032816:
-    movs	r0, r0
+    .section .text.entity_sprite_animation_queries_after, "ax", %progbits
+    .syntax unified
+    .thumb
+    .align 2, 0
     adds	r0, #68	@ 0x44
     ldrb	r0, [r0, #0]
     bx	lr
@@ -5955,17 +5934,10 @@ func_08032A30:
     pop	{r0}
     bx	r0
     .hword 0x0000
-    .4byte 0x3030B500
-    bl WouldIndexedResourceHandleWrap
-    .4byte 0x4708BC02
-    .4byte 0x1C01B500
-    .4byte 0x22003130
-    .4byte 0x280089C8
-    .4byte 0x2010D004
-    .4byte 0x42485E09
-    .4byte 0x0FC24308
-    .4byte 0xBC021C10
-    .4byte 0x00004708
+    .section .text.entity_sprite_animation_queries_after, "ax", %progbits
+    .syntax unified
+    .thumb
+    .align 2, 0
     .4byte 0x78003044
     .4byte 0x00004770
     .4byte 0x7001308B
@@ -10218,17 +10190,10 @@ func_08032A30:
     pop	{r0}
     bx	r0
     .hword 0x0000
-    .4byte 0x3030B500
-    bl WouldIndexedResourceHandleWrap
-    .4byte 0x4708BC02
-    .4byte 0x1C01B500
-    .4byte 0x22003130
-    .4byte 0x280089C8
-    .4byte 0x2010D004
-    .4byte 0x42485E09
-    .4byte 0x0FC24308
-    .4byte 0xBC021C10
-    .4byte 0x00004708
+    .section .text.entity_sprite_animation_queries_after, "ax", %progbits
+    .syntax unified
+    .thumb
+    .align 2, 0
     .4byte 0x78003044
     .4byte 0x00004770
     .4byte 0x7001308B
@@ -14480,17 +14445,10 @@ func_08032A30:
     pop	{r0}
     bx	r0
     .hword 0x0000
-    .4byte 0x3030B500
-    bl WouldIndexedResourceHandleWrap
-    .4byte 0x4708BC02
-    .4byte 0x1C01B500
-    .4byte 0x22003130
-    .4byte 0x280089C8
-    .4byte 0x2010D004
-    .4byte 0x42485E09
-    .4byte 0x0FC24308
-    .4byte 0xBC021C10
-    .4byte 0x00004708
+    .section .text.entity_sprite_animation_queries_after, "ax", %progbits
+    .syntax unified
+    .thumb
+    .align 2, 0
     .4byte 0x78003044
     .4byte 0x00004770
     .4byte 0x7001308B
