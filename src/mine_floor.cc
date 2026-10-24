@@ -767,3 +767,28 @@ bool MineFloorState::GetFlag12() const
 {
     return flag_625_4;
 }
+
+// Preserve the native copy counts, including the unvalidated spring-table
+// overruns. This method neither clears weights nor validates destination IDs.
+void MineFloorState::CopyCurrentItemWeights(u8 * weights, GameStateSaveImage const & game) const
+{
+    if (game.farmer.GetLocation().map > static_cast<i32>(MAP_SPRING_MINE_FLOOR_255)) {
+        u32 floor = game.farmer.GetLocation().map - static_cast<i32>(MAP_LAKE_MINE_FLOOR_0);
+        u32 index = GetLakeBuriedItemTableIndex(floor);
+        for (i32 i = 0; i < 5; ++i)
+            weights[gLakeMineBuriedItemCodes[i]] = gLakeMineBuriedItemWeights[index][i];
+
+        index = GetLakeRockTableIndex(floor);
+        for (i32 i = 0; i < 10; ++i)
+            weights[gLakeMineRockItemCodes[i]] = gLakeMineRockItemWeights[index][i];
+    } else {
+        u32 floor = game.farmer.GetLocation().map - static_cast<i32>(MAP_SPRING_MINE_FLOOR_0);
+        u32 index = GetSpringBuriedItemTableIndex(floor);
+        for (i32 i = 0; i < 10; ++i)
+            weights[gSpringMineBuriedItemCodes[i]] = gSpringMineBuriedItemWeights[index][i];
+
+        index = GetSpringRockTableIndex(floor);
+        for (i32 i = 0; i < 14; ++i)
+            weights[gSpringMineRockItemCodes[i]] = gSpringMineRockItemWeights[index][i];
+    }
+}

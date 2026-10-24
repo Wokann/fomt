@@ -690,7 +690,7 @@ SECTIONS
             .text.GetFlag10__C14MineFloorState
             .text.GetFlag11__C14MineFloorState
             .text.GetFlag12__C14MineFloorState);
-        asm/mine_floor.o(.text.mine_floor_item_weights);
+        src/mine_floor.o(.text.CopyCurrentItemWeights__C14MineFloorStatePUcRC18GameStateSaveImage);
         src/npc.o(.text .text.*);
         . = 0x9DE90; /* JP ROM 0x0809DE90, independently matched */
         src/bachelorette.o(.text);

@@ -40,9 +40,9 @@ struct MineFloorState
     u8 CountFlags1To9() const;
     u16 const * GetCellTilemap(u32 column, u32 row) const;
     void CountCellValues(u8 * counts) const;
-    // Native implementation with unchecked table/destination indices. This
-    // is not a validated general-purpose weight exporter; no bounds checks
-    // or mine-map validity checks have been added to the original behavior.
+    // Native unchecked counts: lake buried/rock 5/10, spring 10/14, even
+    // when these exceed a named table's length. No clearing, destination-ID
+    // bounds check or mine-map validation is added to this original behavior.
     void CopyCurrentItemWeights(u8 * weights, GameStateSaveImage const & game) const;
     bool GetFlag0() const;
     bool GetFlag10() const;

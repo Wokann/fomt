@@ -630,7 +630,7 @@ SECTIONS
             .text.GetFlag10__C14MineFloorState
             .text.GetFlag11__C14MineFloorState
             .text.GetFlag12__C14MineFloorState);
-        asm/mine_floor.o(.text.mine_floor_item_weights);
+        src/mine_floor.o(.text.CopyCurrentItemWeights__C14MineFloorStatePUcRC18GameStateSaveImage);
         src/npc.o(.text .text.*);
         src/bachelorette.o(.text);
         src/harvest_sprite.o(.text .text.*__*);
