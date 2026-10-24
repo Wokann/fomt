@@ -6,7 +6,7 @@
 #include "hardware_dma_link.hh"
 #include "hardware_resource.hh"
 #include "hardware_state_clear.hh"
-#include "resource_handle.hh"
+#include "resource_archive.hh"
 #include <string.h>
 
 #pragma interface "map_clock_status.hh"

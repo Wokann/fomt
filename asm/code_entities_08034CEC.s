@@ -3815,8 +3815,9 @@ func_08037098:
     .4byte 0x42485E11
     .4byte 0x0FC14308
     .4byte 0xD0052900
-    .4byte 0xF0271C10
-    .4byte 0x0600FBA1
+    .byte 0x10, 0x1C
+    bl WouldIndexedResourceHandleWrap
+    .byte 0x00, 0x06
     .4byte 0xD0002800
     .4byte 0x1C202401
     .4byte 0x2001E000
@@ -7648,8 +7649,9 @@ HasControllerStarSparkleEffect:
     bx	lr
     .hword 0x0000
     .4byte 0x1C04B510
-    .4byte 0xF0253030
-    .4byte 0x1C20FB95
+    .byte 0x30, 0x30
+    bl ResolveIndexedResourceHandle
+    .byte 0x20, 0x1C
     .4byte 0x22003044
     .4byte 0x70012101
     .4byte 0x70023002

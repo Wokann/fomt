@@ -2,6 +2,7 @@
 #define SCENE_SPRITE_HH
 
 #include "prelude.h"
+#include "resource_handle.hh"
 #include "world_runtime.hh"
 
 #pragma interface "scene_sprite.hh"

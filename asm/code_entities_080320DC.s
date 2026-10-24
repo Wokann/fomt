@@ -5956,7 +5956,7 @@ func_08032A30:
     bx	r0
     .hword 0x0000
     .4byte 0x3030B500
-    .4byte 0xFF1AF02B
+    bl WouldIndexedResourceHandleWrap
     .4byte 0x4708BC02
     .4byte 0x1C01B500
     .4byte 0x22003130
@@ -5980,8 +5980,9 @@ func_08032A30:
     .4byte 0x00004770
     .4byte 0x1C05B530
     .4byte 0x0E240614
-    .4byte 0xF02B3070
-    .4byte 0x1C28FECF
+    .byte 0x70, 0x30
+    bl ResolveIndexedResourceHandle
+    .byte 0x28, 0x1C
     .4byte 0x22003084
     .4byte 0x70012101
     .4byte 0x70023002
@@ -5999,8 +6000,9 @@ func_08032A30:
     .4byte 0x430A401A
     .4byte 0x47707002
     .4byte 0x1C04B510
-    .4byte 0xF02B3030
-    .4byte 0x1C20FEA9
+    .byte 0x30, 0x30
+    bl ResolveIndexedResourceHandle
+    .byte 0x20, 0x1C
     .4byte 0x22003044
     .4byte 0x70012101
     .4byte 0x70023002
@@ -10217,7 +10219,7 @@ func_08032A30:
     bx	r0
     .hword 0x0000
     .4byte 0x3030B500
-    .4byte 0xFF0CF02B
+    bl WouldIndexedResourceHandleWrap
     .4byte 0x4708BC02
     .4byte 0x1C01B500
     .4byte 0x22003130
@@ -10241,8 +10243,9 @@ func_08032A30:
     .4byte 0x00004770
     .4byte 0x1C05B530
     .4byte 0x0E240614
-    .4byte 0xF02B3070
-    .4byte 0x1C28FEC1
+    .byte 0x70, 0x30
+    bl ResolveIndexedResourceHandle
+    .byte 0x28, 0x1C
     .4byte 0x22003084
     .4byte 0x70012101
     .4byte 0x70023002
@@ -10260,8 +10263,9 @@ func_08032A30:
     .4byte 0x430A401A
     .4byte 0x47707002
     .4byte 0x1C04B510
-    .4byte 0xF02B3030
-    .4byte 0x1C20FE9B
+    .byte 0x30, 0x30
+    bl ResolveIndexedResourceHandle
+    .byte 0x20, 0x1C
     .4byte 0x22003044
     .4byte 0x70012101
     .4byte 0x70023002
@@ -14477,7 +14481,7 @@ func_08032A30:
     bx	r0
     .hword 0x0000
     .4byte 0x3030B500
-    .4byte 0xFF1AF02B
+    bl WouldIndexedResourceHandleWrap
     .4byte 0x4708BC02
     .4byte 0x1C01B500
     .4byte 0x22003130
@@ -14501,8 +14505,9 @@ func_08032A30:
     .4byte 0x00004770
     .4byte 0x1C05B530
     .4byte 0x0E240614
-    .4byte 0xF02B3070
-    .4byte 0x1C28FECF
+    .byte 0x70, 0x30
+    bl ResolveIndexedResourceHandle
+    .byte 0x28, 0x1C
     .4byte 0x22003084
     .4byte 0x70012101
     .4byte 0x70023002
@@ -14520,8 +14525,9 @@ func_08032A30:
     .4byte 0x430A401A
     .4byte 0x47707002
     .4byte 0x1C04B510
-    .4byte 0xF02B3030
-    .4byte 0x1C20FEA9
+    .byte 0x30, 0x30
+    bl ResolveIndexedResourceHandle
+    .byte 0x20, 0x1C
     .4byte 0x22003044
     .4byte 0x70012101
     .4byte 0x70023002

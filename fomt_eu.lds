@@ -482,24 +482,10 @@ SECTIONS
         asm/code_0803EE94.o(.text.ui_state_selection_after);
         src/animal_festival_ranking.o(.text);
         . = 0x5230C; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
-        . = 0x5E6E0; /* JP/US-shared indexed resource-archive constructor. */
-        src/resource_handle.o(.text.indexed_resource_archive_constructor);
-        . = 0x5E774; /* JP/US-shared indexed resource-archive resolver. */
-        src/resource_handle.o(.text.indexed_resource_archive_resolve);
-        . = 0x5E7A4; src/resource_handle.o(.text.indexed_resource_archive_get_group_data);
-        . = 0x5E830; /* JP/US-shared indexed resource-archive group count. */
-        src/resource_handle.o(.text.indexed_resource_archive_get_group_descriptor_count);
-        . = 0x5E834; /* JP/US-shared indexed resource-archive entry count. */
-        src/resource_handle.o(.text.indexed_resource_archive_get_entry_descriptor_count);
-        . = 0x5E838; /* JP/US-shared indexed resource-handle constructor. */
-        src/resource_handle.o(.text.indexed_resource_handle_constructor);
-        . = 0x5E864; /* JP/US-shared indexed resource-handle initializer. */
-        src/resource_handle.o(.text.initialize_indexed_resource_handle);
-        . = 0x5E874; /* JP/US-shared indexed resource-handle resolver. */
-        src/resource_handle.o(.text.resolve_indexed_resource_handle);
-        . = 0x5E8A8; src/resource_handle.o(.text.indexed_resource_handle_predict_wrap);
-        src/resource_handle.o(.text.indexed_resource_handle_update);
-        src/resource_handle.o(.text.indexed_resource_sprite_transform);
+        /* Indexed archive parsing, then resource playback and sprite rendering. */
+        . = 0x5E6E0; src/resource_archive.o(.text);
+        . = 0x5E838; src/resource_handle.o(.text);
+        . = 0x5ED60;
         src/intro_story_scene.o(.text.InitializeIntroStorySceneCore);
         asm/intro_story_scene.o(.text);
         src/intro_story_scene.o(.text.UpdateIntroStoryUi);
@@ -822,7 +808,7 @@ SECTIONS
         *(.gnu.linkonce.t._._19IntroMenuTransition);
         *(.gnu.linkonce.t._._24IntroNameEntryTransition);
         src/intro_scene.o(.text.intro_scene_core_cleanup);
-        src/resource_handle.o(.text.indexed_resource_provider_cleanup);
+        src/resource_archive.o(.text.indexed_resource_provider_cleanup);
         src/new_game_menu.o(.gnu.linkonce.t.CreateScene__27NewGameLoadedSaveTransition);
         src/intro_scene.o(.text.intro_scene_factory);
         src/intro_scene.o(.gnu.linkonce.t._._19MenuIntroTransition);
@@ -942,7 +928,7 @@ SECTIONS
         src/ui_state.o(.text.ui_text_output_defaults);
         src/ui_state.o(.text.ui_text_output_base_destructor);
         asm/code_linkonce.o(.text.ui_text_output_base_after);
-        src/resource_handle.o(.text);
+        src/resource_archive.o(.text.indexed_resource_archive_cleanup);
         src/intro_story_scene.o(.text.Lookup__23IntroStoryTextVariablesUi);
         src/intro_story_scene.o(.text.DestroyIntroStorySceneCore);
         src/intro_story_scene.o(.text._._23IntroStoryTextVariables);
@@ -973,7 +959,7 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_24IntroNameEntryTransition);
         . = ALIGN(4); src/intro_scene.o(.rodata);
         src/intro_scene.o(.gnu.linkonce.d.__vt_14GameIntroScene);
-        src/resource_handle.o(.gnu.linkonce.d.__vt_23IndexedResourceProvider);
+        src/resource_archive.o(.gnu.linkonce.d.__vt_23IndexedResourceProvider);
         src/intro_scene.o(.gnu.linkonce.d.__vt_19MenuIntroTransition);
         src/new_game_menu.o(.gnu.linkonce.d.__vt_27NewGameLoadedSaveTransition);
         src/new_game_menu.o(.rodata .gnu.linkonce.d.__vt_16NewGameMenuScene);
@@ -1128,7 +1114,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_799c);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79a8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79b8);
-        . = ALIGN(4); src/resource_handle.o(.gnu.linkonce.d.__vt_22IndexedResourceArchive);
+        . = ALIGN(4); src/resource_archive.o(.gnu.linkonce.d.__vt_22IndexedResourceArchive);
         . = ALIGN(4); src/intro_story_scene.o(.rodata);
         src/intro_story_scene.o(.gnu.linkonce.d.__vt_23IntroStoryTextVariables);
         src/intro_story_scene.o(.gnu.linkonce.d.__vt_15IntroStoryScene);

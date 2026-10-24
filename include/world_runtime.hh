@@ -4,7 +4,7 @@
 #include "prelude.h"
 #include "hardware_resource.hh"
 #include "hardware_state_clear.hh"
-#include "resource_handle.hh"
+#include "resource_archive.hh"
 #include "world_map.hh"
 #include <string.h>
 
