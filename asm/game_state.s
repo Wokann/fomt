@@ -7052,7 +7052,7 @@ func_08015744:
     add	r0, sp, #132
     adds	r2, r5, #0
     adds	r3, r6, #0
-    bl func_0809CF34
+    bl GenerateLayout__14MineFloorState12MaryMineKindUiPC17MineFloorPositionUi
     ldr	r0, [sp, #8]
     lsls	r0, r0, #2
     adds	r0, #4
@@ -7639,7 +7639,7 @@ func_08015BC4:
     add r0, sp, #0x88
     movs r2, #0
     adds r3, r6, #0
-    bl func_0809CF34
+    bl GenerateLayout__14MineFloorState12MaryMineKindUiPC17MineFloorPositionUi
     ldr r0, [sp, #8]
     lsls r0, r0, #2
     adds r0, #4
@@ -8199,7 +8199,7 @@ func_08015BC4:
     add r0, sp, #0xd4
     movs r2, #1
     adds r3, r6, #0
-    bl func_0809CF34
+    bl GenerateLayout__14MineFloorState12MaryMineKindUiPC17MineFloorPositionUi
     ldr r0, [sp, #8]
     lsls r0, r0, #2
     adds r0, #4
@@ -23358,7 +23358,7 @@ func_080159B0: @ 0x080159B0
     add r0, sp, #0x84
     adds r2, r5, #0
     adds r3, r6, #0
-    bl func_0809CF34
+    bl GenerateLayout__14MineFloorState12MaryMineKindUiPC17MineFloorPositionUi
     ldr r0, [sp, #8]
     lsls r0, r0, #2
     adds r0, #4
@@ -23946,7 +23946,7 @@ func_08015E30: @ 0x08015E30
     add r0, sp, #0x88
     movs r2, #0
     adds r3, r6, #0
-    bl func_0809CF34
+    bl GenerateLayout__14MineFloorState12MaryMineKindUiPC17MineFloorPositionUi
     ldr r0, [sp, #8]
     lsls r0, r0, #2
     adds r0, #4
@@ -24510,7 +24510,7 @@ func_08015E30: @ 0x08015E30
     add r0, sp, #0xd4
     movs r2, #1
     adds r3, r6, #0
-    bl func_0809CF34
+    bl GenerateLayout__14MineFloorState12MaryMineKindUiPC17MineFloorPositionUi
     ldr r0, [sp, #8]
     lsls r0, r0, #2
     adds r0, #4

@@ -185,8 +185,80 @@ MineFloorState::MineFloorState()
     }
 }
 
+MineFloorPosition MineFloorState::GenerateLayout(MaryMineKind mine_kind,
+    u32 floor, MineFloorPosition const * input, u32 count)
+{
+    MineFloorPosition result;
+    MineFloorPosition excluded[12];
+    for (u32 row = 0; row < 28; ++row) {
+        for (u32 column = 0; column < 28; ++column) {
+            cells[row][column].type = 0;
+            cells[row][column].rock_item = 0;
+            cells[row][column].buried_item = 0;
+        }
+    }
+    if (input != 0) {
+        for (u32 index = 0; index < count; ++index)
+            excluded[index] = input[index];
+    }
+    for (i32 index = 0; index < 12; ++index) {
+        if (static_cast<u8>(excluded[index].column - 2) > 55)
+            excluded[index].column = 0xFF;
+        else
+            excluded[index].column = (excluded[index].column - 2) >> 1;
+        if (static_cast<u8>(excluded[index].row - 7) > 55)
+            excluded[index].row = 0xFF;
+        else
+            excluded[index].row = (excluded[index].row - 7) >> 1;
+    }
+    i32 rocks;
+    if (floor == 0) {
+        layout_kind = 0;
+        rocks = 20;
+    } else if (floor == 9 && mine_kind == MINE_LAKE) {
+        layout_kind = 4;
+        rocks = 40;
+    } else if (floor % 5 == 0) {
+        layout_kind = 1;
+        rocks = 300;
+    } else if (floor % 3 == 0) {
+        layout_kind = 2;
+        rocks = 100;
+    } else {
+        layout_kind = 3;
+        rocks = 30;
+    }
+    if (floor != 0) {
+        i32 column = (rand() >> 8) % (GetWidth() - 2) + 1;
+        i32 row = (rand() >> 8) % (GetHeight() - 2) + 1;
+        cells[row][column].type = 3;
+        i32 const direction = (rand() >> 8) & 3;
+        if (direction & 2) {
+            if (direction & 1)
+                --column;
+            else
+                ++column;
+        } else {
+            if (direction & 1)
+                --row;
+            else
+                ++row;
+        }
+        result.column = column;
+        result.row = row;
+        cells[result.row][result.column].type = 1;
+    }
+    if (mine_kind == MINE_SPRING)
+        PlaceSpringMineItems(floor, rocks, excluded);
+    else
+        PlaceLakeMineItems(floor, rocks, excluded);
+    if (floor != 0)
+        cells[result.row][result.column].type = 0;
+    return result;
+}
+
 void MineFloorState::PlaceSpringMineItems(u32 floor, i32 rock_count,
-    MineFloorExcludedCell const * excluded)
+    MineFloorPosition const * excluded)
 {
     u32 const width = GetWidth();
     u32 const height = GetHeight();
@@ -367,7 +439,7 @@ u32 MineFloorState::GetSpringRockTableIndex(u32 floor) const
 }
 
 void MineFloorState::PlaceLakeMineItems(u32 floor, i32 rock_count,
-    MineFloorExcludedCell const * excluded)
+    MineFloorPosition const * excluded)
 {
     u32 const width = GetWidth();
     u32 const height = GetHeight();

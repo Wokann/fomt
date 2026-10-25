@@ -666,11 +666,11 @@ SECTIONS
         . = 0x9C8C4; /* JP ROM 0x0809C8C4, remaining raw actor code */
         /* Mine layout storage, generation, lookup and cell operations. */
         src/mine_floor.o(.text.__14MineFloorState);
-        asm/mine_floor.o(.text.mine_floor_generation);
-        src/mine_floor.o(.text.PlaceSpringMineItems__14MineFloorStateUiiPC21MineFloorExcludedCell);
+        src/mine_floor.o(.text.GenerateLayout__14MineFloorState12MaryMineKindUiPC17MineFloorPositionUi);
+        src/mine_floor.o(.text.PlaceSpringMineItems__14MineFloorStateUiiPC17MineFloorPosition);
         src/mine_floor.o(.text.GetSpringBuriedItemTableIndex__C14MineFloorStateUi);
         src/mine_floor.o(.text.GetSpringRockTableIndex__C14MineFloorStateUi);
-        src/mine_floor.o(.text.PlaceLakeMineItems__14MineFloorStateUiiPC21MineFloorExcludedCell);
+        src/mine_floor.o(.text.PlaceLakeMineItems__14MineFloorStateUiiPC17MineFloorPosition);
         asm/mine_floor.o(.text.GetLakeBuriedItemTableIndex__C14MineFloorStateUi);
         src/mine_floor.o(
             .text.GetLakeRockTableIndex__C14MineFloorStateUi

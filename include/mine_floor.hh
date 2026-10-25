@@ -2,6 +2,7 @@
 #define MINE_FLOOR_HH
 
 #include "prelude.h"
+#include "fomt_constants.hh"
 
 struct GameStateSaveImage;
 
@@ -15,25 +16,27 @@ struct PACKED ALIGN(2) MineFloorCell
     u32 buried_item : 6;
 };
 
-// The generator supplies twelve four-byte exclusion records. Only column
-// and row are consumed here; the remaining bytes are not identified.
-struct MineFloorExcludedCell {
+// GenerateLayout converts occupied map-tile coordinates to mine-cell
+// coordinates and returns its reserved neighboring cell. Only these two
+// bytes are known fields; the old C++ ABI supplies the remaining padding.
+struct MineFloorPosition {
+    MineFloorPosition() : column(0), row(0) {}
     u8 column;
     u8 row;
-    u16 unk_02;
 };
-
-typedef char MineFloorExcludedCellSizeCheck[sizeof(MineFloorExcludedCell) == 4 ? 1 : -1];
-typedef char MineFloorExcludedCellRowCheck[offsetof(MineFloorExcludedCell, row) == 1 ? 1 : -1];
+typedef char MineFloorPositionSizeCheck[sizeof(MineFloorPosition) == 4 ? 1 : -1];
+typedef char MineFloorPositionRowCheck[offsetof(MineFloorPosition, row) == 1 ? 1 : -1];
 
 struct MineFloorState
 {
     MineFloorState();
-    void PlaceSpringMineItems(u32 floor, i32 rock_count, MineFloorExcludedCell const * excluded);
+    MineFloorPosition GenerateLayout(MaryMineKind mine_kind, u32 floor,
+        MineFloorPosition const * input, u32 count);
+    void PlaceSpringMineItems(u32 floor, i32 rock_count, MineFloorPosition const * excluded);
     u32 GetSpringBuriedItemTableIndex(u32 floor) const;
     u32 GetSpringRockTableIndex(u32 floor) const;
     void PlaceLakeMineItems(u32 floor, i32 rock_count,
-        MineFloorExcludedCell const * excluded);
+        MineFloorPosition const * excluded);
     // Still a native Thumb body; no source-level table approximation.
     u32 GetLakeBuriedItemTableIndex(u32 floor) const;
     u32 GetLakeRockTableIndex(u32 floor) const;
