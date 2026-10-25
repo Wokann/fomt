@@ -185,6 +185,96 @@ MineFloorState::MineFloorState()
     }
 }
 
+void MineFloorState::PlaceSpringMineItems(u32 floor, i32 rock_count,
+    MineFloorExcludedCell const * excluded)
+{
+    u32 const width = GetWidth();
+    u32 const height = GetHeight();
+    u32 table = GetSpringBuriedItemTableIndex(floor);
+    i32 const random_start = rand() >> 4;
+    u32 const first = random_start % (height * width);
+    for (u32 visit = 0; visit < (height * width); ++visit) {
+        u32 index = first + visit;
+        if (index >= (height * width))
+            index -= (height * width);
+        i32 const column = index % width;
+        i32 const row = index / width;
+        i32 const type = cells[row][column].type;
+        if (type <= 1) {
+            i32 random = (rand() >> 4) & 0xFF;
+            for (i32 item_index = 0; item_index < 5; ++item_index) {
+                if (gSpringMineBuriedItemWeights[table][item_index] != 0) {
+                    if (random < gSpringMineBuriedItemWeights[table][item_index]) {
+                        u32 item = gSpringMineBuriedItemCodes[item_index];
+                        if (item == 1) {
+                            if (row != 0 && row < height - 1
+                                && column != 0 && column < width - 1) {
+                                for (i32 near_row = row - 1; near_row < row + 2; ++near_row) {
+                                    if (near_row < 0 || near_row >= static_cast<i32>(height))
+                                        continue;
+                                    for (i32 near_column = column - 1; near_column < column + 2; ++near_column) {
+                                        // Preserve the native conjunction, not an intended bounds fix.
+                                        if (near_column < 0 && near_column >= static_cast<i32>(width))
+                                            continue;
+                                        if (cells[near_row][near_column].type == 3) {
+                                            item = 0;
+                                            break;
+                                        }
+                                    }
+                                    if (item == 0)
+                                        break;
+                                }
+                            } else {
+                                item = 0;
+                            }
+                        }
+                        cells[row][column].buried_item = item;
+                        break;
+                    }
+                    random -= gSpringMineBuriedItemWeights[table][item_index];
+                    if (random < 0)
+                        break;
+                }
+            }
+        }
+    }
+
+    table = GetSpringRockTableIndex(floor);
+    for (; rock_count > 0; --rock_count) {
+        bool placed = false;
+        for (i32 attempts = 1; attempts <= 9; ++attempts) {
+            i32 const column = (rand() >> 8) % width;
+            i32 const row = (rand() >> 8) % height;
+            if (cells[row][column].type == 0) {
+                placed = true;
+                for (i32 index = 0; index < 12; ++index) {
+                    if (excluded[index].column == column && excluded[index].row == row) {
+                        placed = false;
+                        break;
+                    }
+                }
+                if (placed == true) {
+                    cells[row][column].type = 4;
+                    i32 random = (rand() >> 8) & 0xFF;
+                    for (i32 item_index = 0; item_index < 10; ++item_index) {
+                        if (gSpringMineRockItemWeights[table][item_index] != 0) {
+                            if (random < gSpringMineRockItemWeights[table][item_index]) {
+                                cells[row][column].rock_item = gSpringMineRockItemCodes[item_index];
+                                break;
+                            }
+                            random -= gSpringMineRockItemWeights[table][item_index];
+                            if (random < 0)
+                                break;
+                        }
+                    }
+                }
+            }
+            if (placed)
+                break;
+        }
+    }
+}
+
 u32 MineFloorState::GetSpringBuriedItemTableIndex(u32 value) const
 {
     u32 result = 0;

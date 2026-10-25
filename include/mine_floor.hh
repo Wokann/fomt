@@ -29,6 +29,7 @@ typedef char MineFloorExcludedCellRowCheck[offsetof(MineFloorExcludedCell, row) 
 struct MineFloorState
 {
     MineFloorState();
+    void PlaceSpringMineItems(u32 floor, i32 rock_count, MineFloorExcludedCell const * excluded);
     u32 GetSpringBuriedItemTableIndex(u32 floor) const;
     u32 GetSpringRockTableIndex(u32 floor) const;
     void PlaceLakeMineItems(u32 floor, i32 rock_count,
