@@ -111,7 +111,7 @@ SECTIONS
         asm/hardware.o(.text.hardware_state_properties_after);
         src/hardware_state_clear.o(.text);
         src/hardware_bootstrap.o(.text);
-        src/hardware_display_output.o(.text.hardware_display_control_commands);
+        src/hardware_display_commands.o(.text);
         src/hardware_bootstrap.o(.text.hardware_frame_update);
         src/hardware_state_accessors.o(.text);
         src/hardware_manager.o(.text);
@@ -127,8 +127,8 @@ SECTIONS
         asm/hardware.o(.text.hardware_blend_after);
         src/hardware_blend_object.o(.text);
         src/hardware_interrupt_guard.o(.text);
-        src/hardware_display_output.o(.text);
-        src/hardware_oam_state.o(.text);
+        src/hardware_display_state.o(.text);
+        src/hardware_sprite_buffer.o(.text);
         src/hardware_linked_list.o(.text);
         src/hardware_linked_list.o(.text.hardware_linked_list_constructor);
         src/hardware_linked_list.o(.text.hardware_linked_list_tail);
@@ -1376,7 +1376,7 @@ SECTIONS
     .iwram : ALIGN(4)
     {
         asm/code_iwram.o(.iwram);
-        src/hardware_oam_state.o(.rodata);
+        src/hardware_sprite_buffer.o(.rodata);
         asm/code_iwram.o(.iwram.after_dimensions);
         src/iwram_sort.o(.text);
         asm/code_iwram.o(.iwram.after_sort);

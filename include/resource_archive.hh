@@ -2,7 +2,7 @@
 #define RESOURCE_ARCHIVE_HH
 
 #include "prelude.h"
-#include "hardware_display_output.hh"
+#include "hardware_sprite_buffer.hh"
 
 struct IndexedResourceProvider;
 

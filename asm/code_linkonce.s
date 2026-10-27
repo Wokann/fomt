@@ -4022,7 +4022,7 @@ sub_080D8178:
     adds r0, r6, #0
     movs r1, #0
     movs r2, #0x20
-    bl func_08009744
+    bl __25HardwareSpriteBufferStateUcUc
     mov r7, sl
     adds r7, #0x10
     movs r2, #0
@@ -10781,7 +10781,7 @@ func_080E0094:
     adds r7, r1, #0
     adds r6, r7, #4
     adds r0, r6, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r6, #0
     bl GetHardwareDisplayState
     add r2, sp, #0xc
@@ -12108,7 +12108,7 @@ sub_080D8178: @ 0x080D8178
 	adds r0, r6, #0
 	movs r1, #0
 	movs r2, #0x20
-	bl func_08009744
+	bl __25HardwareSpriteBufferStateUcUc
 	mov r7, sl
 	adds r7, #0x10
 	movs r2, #0
@@ -26415,7 +26415,7 @@ func_080E0094: @ 0x080E0094
 	adds r7, r1, #0
 	adds r6, r7, #4
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
 	bl GetHardwareDisplayState
 	add r2, sp, #0xc

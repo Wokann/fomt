@@ -1,4 +1,5 @@
 #include "new_game_name_input.hh"
+#include "hardware_display_commands.hh"
 #include "new_game_data.hh"
 #include "hardware_state_accessors.hh"
 #include "new.hh"
@@ -75,7 +76,7 @@ NewGameNameInputCore::~NewGameNameInputCore()
 
 SceneTransitionOwner RunNameInputCore(NewGameNameInputCore * core)
 {
-    func_08008724(core);
+    EnableHardwareForcedBlank(core);
     HardwareStateEntry tiles;
     ReleaseHardwareSharedStateHandle(&tiles, tiles.handle);
     tiles.handle = AllocateHardwareSharedStateHandle(&tiles, 3);

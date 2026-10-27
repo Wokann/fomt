@@ -21,7 +21,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	movs r1, #0
 	str r1, [sp, #0x38]
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r5, #0
 	bl GetHardwareDisplayState
 	mov r1, sp

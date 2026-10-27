@@ -3,7 +3,8 @@
 
 #include "prelude.h"
 #include <stdlib.h>
-#include "hardware_display_output.hh"
+#include "hardware_display_state.hh"
+#include "hardware_sprite_buffer.hh"
 #include "hardware_input.hh"
 #include "hardware_linked_list.hh"
 #include "hardware_manager.hh"

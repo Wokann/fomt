@@ -3,7 +3,7 @@
 #include "hardware_bootstrap.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_nested_accessors.hh"
-#include "hardware_oam_state.hh"
+#include "hardware_sprite_buffer.hh"
 #include "gbaio.h"
 
 void * operator new(unsigned long);
@@ -89,7 +89,7 @@ bool HardwareDisplayCommand::Run()
 
 bool HardwareSpriteBufferCommand::Run()
 {
-    func_08009864(buffer);
+    WriteAndResetHardwareSpriteBuffer(buffer);
     return 0;
 }
 

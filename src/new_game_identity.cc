@@ -1,4 +1,5 @@
 #include "new_game_identity.hh"
+#include "hardware_display_commands.hh"
 #include "new_game_data.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_blend_object.hh"
@@ -83,7 +84,7 @@ SceneTransitionOwner RunNewGameIdentityCore(NewGameIdentityCore * core)
 
 void BlankNewGameIdentityDisplay(NewGameIdentityCore * core)
 {
-    func_08008724(core);
+    EnableHardwareForcedBlank(core);
 }
 
 void ResetNewGameIdentityControl(NewGameIdentityCore * core)

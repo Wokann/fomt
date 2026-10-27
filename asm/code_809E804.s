@@ -1743,7 +1743,7 @@ func_080A25B0: @ 0x080A1FE8
 	mov sl, r0
 	adds r7, r1, #0
 	adds r0, r7, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080A2BA4
 	adds r0, r7, #0
@@ -20254,7 +20254,7 @@ func_080ADF1C:
     .thumb_func
 func_080AE0F8:
     push {lr}
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     pop {r0}
     bx r0
     .align 2, 0
@@ -32386,7 +32386,7 @@ func_080B44EC: @ 0x080B3F20
 	.thumb_func
 func_080B45E4: @ 0x080B4018
 	push {lr}
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -34396,7 +34396,7 @@ func_080B55D0: @ 0x080B5004
 	ldr r4, .Ljp_080B516C @ =0xFFFFDFF0
 	add sp, r4
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	ldr r0, .Ljp_080B5170 @ =gUnk_0848339C
 	add r1, sp, #0xc
 	bl Unpack
@@ -37946,7 +37946,7 @@ func_080B7164: @ 0x080B6B98
 	sub sp, #0x7c
 	mov sb, r0
 	str r1, [sp, #0x40]
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	ldr r0, .Ljp_080B6D1C @ =gUiTwoLayerBackgroundMap0
 	ldr r1, .Ljp_080B6D20 @ =0x0600F000
 	bl Unpack
@@ -50081,7 +50081,7 @@ func_080BCCD4:
     .byte 0x00, 0x00, 0x3C, 0x04, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0x7C, 0x05, 0x00, 0x00
     .Lauto_080BC8F0:
     .byte 0x00, 0xB5
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     .byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
     .global func_080BCEC8
     .thumb_func
@@ -57319,7 +57319,7 @@ func_080C12B8:
     .byte 0x00, 0x00, 0x14, 0x08, 0x00, 0x00
     .Lauto_080C0EE8:
     .byte 0x00, 0xB5
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     .byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
     .global func_080C14C8
     .thumb_func
@@ -78458,7 +78458,7 @@ func_080A25B0: @ 0x080A25B0
 	mov sl, r0
 	adds r7, r1, #0
 	adds r0, r7, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080A2BA4
 	adds r0, r7, #0
@@ -96893,7 +96893,7 @@ func_080AE4E4: @ 0x080AE4E4
 	thumb_func_start func_080AE6C0
 func_080AE6C0: @ 0x080AE6C0
 	push {lr}
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -109012,7 +109012,7 @@ func_080B44EC: @ 0x080B44EC
 	thumb_func_start func_080B45E4
 func_080B45E4: @ 0x080B45E4
 	push {lr}
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -111016,7 +111016,7 @@ func_080B55D0: @ 0x080B55D0
 	ldr r4, .L080B5738 @ =0xFFFFDFF0
 	add sp, r4
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	ldr r0, .L080B573C @ =gUnk_086FD240
 	add r1, sp, #0xc
 	bl Unpack
@@ -114566,7 +114566,7 @@ func_080B7164: @ 0x080B7164
 	sub sp, #0x7c
 	mov sb, r0
 	str r1, [sp, #0x40]
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	ldr r0, .L080B72E8 @ =gUiTwoLayerBackgroundMap0
 	ldr r1, .L080B72EC @ =0x0600F000
 	bl Unpack
@@ -126692,7 +126692,7 @@ func_080BCCE0: @ 0x080BCCE0
 	thumb_func_start func_080BCEBC
 func_080BCEBC: @ 0x080BCEBC
 	push {lr}
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -135665,7 +135665,7 @@ func_080C12C4: @ 0x080C12C4
 	thumb_func_start func_080C14BC
 func_080C14BC: @ 0x080C14BC
 	push {lr}
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	pop {r0}
 	bx r0
 	.align 2, 0

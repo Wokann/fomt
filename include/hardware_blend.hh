@@ -1,7 +1,7 @@
 #ifndef HARDWARE_BLEND_HH
 #define HARDWARE_BLEND_HH
 
-#include "hardware_display_output.hh"
+#include "hardware_display_state.hh"
 
 // The ARM bank mixer reads only these ten bits. Each stored factor is
 // one less than its actual weight (1..32); channels are divided by 32.

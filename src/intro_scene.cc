@@ -6,7 +6,9 @@
 #include "hardware_allocator.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_blend_object.hh"
-#include "hardware_display_output.hh"
+#include "hardware_display_state.hh"
+#include "hardware_sprite_buffer.hh"
+#include "hardware_display_commands.hh"
 #include "hardware_state_accessors.hh"
 #include "sram_image.hh"
 #include "sram_access.hh"
@@ -209,7 +211,7 @@ static inline void QueueIntroSceneBlend(IntroSceneCore * core, HardwareBlendOwne
 
 void StartIntroSceneCore(IntroSceneCore * core)
 {
-    func_08008724(reinterpret_cast<HardwareBootstrap *>(core));
+    EnableHardwareForcedBlank(reinterpret_cast<HardwareBootstrap *>(core));
     InitializeIntroSceneBackground(core);
     GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
 
@@ -256,7 +258,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
 
 int RunIntroSceneSequence(IntroSceneCore * core)
 {
-    func_08008724(reinterpret_cast<HardwareBootstrap *>(core));
+    EnableHardwareForcedBlank(reinterpret_cast<HardwareBootstrap *>(core));
     InitializeIntroSceneSequenceResources(core);
     GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
     HardwareBlendOwner owner(new HardwareBlendObject(

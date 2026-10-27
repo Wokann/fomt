@@ -7400,7 +7400,7 @@ func_08051504: @ 0x08051290
     mov sb, r0
     adds r6, r1, #0
     adds r0, r6, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r6, #0
     bl GetHardwareDisplayState
     mov r1, sp
@@ -9155,7 +9155,7 @@ func_08052714:
     movs r0, #0
     str r0, [sp, #0x30]
     adds r0, r5, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r5, #0
     bl GetHardwareDisplayState
     mov r1, sp
@@ -15369,7 +15369,7 @@ func_08057CF4:
     str r0, [sp, #0x1c]
     adds r6, r1, #0
     adds r0, r6, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r6, #0
     bl GetHardwareDisplayState
     mov r1, sp
@@ -15637,7 +15637,7 @@ func_08057CF4:
     b .Lauto_0805878C
     .Lauto_08058BDC:
     adds r0, r6, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     movs r2, #0xc1
     lsls r2, r2, #3
     adds r4, r6, r2
@@ -15892,7 +15892,7 @@ func_08057CF4:
     b .Lauto_08058CDE
     .Lauto_080590E2:
     adds r0, r6, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     movs r2, #0
     mov sb, r2
     movs r3, #0xcd
@@ -20225,7 +20225,7 @@ func_0805CF70:
     mov sb, r0
     adds r6, r1, #0
     adds r0, r6, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r6, #0
     bl GetHardwareDisplayState
     mov r1, sp
@@ -43641,7 +43641,7 @@ func_0806A1F4:
 	str r0, [sp, #0x24c]
 	adds r7, r1, #0
 	adds r0, r7, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl GetHardwareDisplayState
 	add r2, sp, #0x10
@@ -50945,7 +50945,7 @@ func_0806DB38:
 	mov sl, r0
 	adds r5, r1, #0
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r5, #0
 	bl GetHardwareDisplayState
 	mov r1, sp
@@ -66829,7 +66829,7 @@ func_08075E7C:
 	mov r3, sl
 	strb r3, [r0]
 	adds r0, r7, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl GetHardwareDisplayState
 	add r2, sp, #0xc
@@ -69601,7 +69601,7 @@ func_08077490: @ 0x080770C8
 	mov sb, r0
 	adds r5, r1, #0
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r5, #0
 	bl GetHardwareDisplayState
 	mov r1, sp
@@ -72694,7 +72694,7 @@ func_080790E4: @ 0x080790E4
 	mov sl, r0
 	adds r5, r1, #0
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r5, #0
 	bl GetHardwareDisplayState
 	mov r1, sp
@@ -72737,7 +72737,7 @@ func_080790E4: @ 0x080790E4
 	b .Ljp_08079504
 .Ljp_08079154:
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	ldr r4, .Ljp_080791C8 @ =0x00000856
 	adds r0, r5, r4
 	ldrh r1, [r0]
@@ -73182,7 +73182,7 @@ func_080790E4: @ 0x080790E4
 	b .Ljp_0807980C
 .Ljp_08079504:
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r5, #0
 	bl func_08079F8C
 	ldr r0, [sp, #4]
@@ -78560,7 +78560,7 @@ func_0807BA6C:
 	push {r5, r6, r7}
 	sub sp, #0xa4
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C7FC4
 	movs r0, #0xa9
@@ -80792,7 +80792,7 @@ func_0807CD80: @ 0x0807CD80
 	push {r5, r6, r7}
 	sub sp, #0xe8
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C7FC4
 	ldr r0, [r7, #8]
@@ -82297,7 +82297,7 @@ func_0807DE3C: @ 0x0807D9A4
 	push {r5, r6, r7}
 	sub sp, #0xd8
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C7FC4
 	movs r0, #0x10
@@ -83147,7 +83147,7 @@ func_0807E0C0: @ 0x0807E0C0
 	push {r5, r6, r7}
 	sub sp, #0xec
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C7FC4
 	movs r0, #0xa9
@@ -84389,7 +84389,7 @@ func_0807EAF8:
 	push {r5, r6, r7}
 	sub sp, #0xf4
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C7FC4
 	movs r0, #0xa9
@@ -85578,7 +85578,7 @@ func_0807F430:
     push {r5, r6, r7}
     sub sp, #0x44
     adds r6, r0, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r6, #0
     bl func_080C7FC4
     movs r5, #1
@@ -85941,7 +85941,7 @@ func_080800A8:
 	push {r5, r6, r7}
 	sub sp, #0xec
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C7FC4
 	movs r0, #0xa9
@@ -87442,7 +87442,7 @@ func_08080CC4:
 	push {r5, r6, r7}
 	sub sp, #0x2c
 	adds r6, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
 	bl func_080C7FC4
 	movs r4, #0
@@ -88698,7 +88698,7 @@ func_08081734:
 	push {r5, r6, r7}
 	sub sp, #0xf8
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C7FC4
 	movs r0, #0xa9
@@ -90894,7 +90894,7 @@ func_08082CEC:
 	push {r6, r7}
 	sub sp, #0x50
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C7FC4
 	movs r0, #0xa9
@@ -93360,7 +93360,7 @@ func_08084228:
     push {r5, r6, r7}
     sub sp, #0x70
     adds r6, r0, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r6, #0
     bl func_080C7FC4
     movs r0, #0
@@ -96489,7 +96489,7 @@ func_08086A08:
     push {r5, r6, r7}
     sub sp, #0xb4
     adds r7, r0, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r7, #0
     bl func_080C7FC4
     movs r0, #0xa9
@@ -99692,7 +99692,7 @@ func_0808A09C:
     push {r5, r6, r7}
     sub sp, #0x1c
     adds r7, r0, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r7, #0
     bl func_080CE294
     movs r1, #0x80
@@ -102356,7 +102356,7 @@ func_0808BC14:
     push {r5, r6, r7}
     sub sp, #0x10
     adds r7, r0, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r7, #0
     bl func_080CE294
     movs r1, #0x82
@@ -103958,7 +103958,7 @@ func_0808E23C:
     push {r5, r6, r7}
     sub sp, #0x1c
     adds r7, r0, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r7, #0
     bl func_080CE294
     movs r1, #0x80
@@ -107411,7 +107411,7 @@ func_08090960:
     push	{r5, r6, r7}
     sub	sp, #20
     adds	r7, r0, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds	r0, r7, #0
     bl func_080CE294
     movs	r1, #128
@@ -108670,7 +108670,7 @@ func_0809106C:
     str r0, [sp, #0x40]
     adds r7, r1, #0
     adds r0, r7, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r7, #0
     bl func_080CE294
     movs r1, #0x82
@@ -110135,7 +110135,7 @@ func_08092D64:
     push {r5, r6, r7}
     sub sp, #0x14
     adds r7, r0, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r7, #0
     bl func_080CE294
     movs r1, #0x82
@@ -110826,7 +110826,7 @@ func_08092E30:
     push {r5, r6, r7}
     sub sp, #0x5c
     adds r7, r0, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     adds r0, r7, #0
     bl GetHardwareDisplayState
     add r2, sp, #0x10
@@ -114184,7 +114184,7 @@ func_08094A40:
     mov r8, r0
     adds r4, r1, #0
     adds r0, r4, #0
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     movs r7, #0
     add r0, sp, #4
     mov sb, r0
@@ -114266,7 +114266,7 @@ func_08094A40:
     bx r1
     .byte 0x00, 0x00, 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0x87, 0xB0, 0x06, 0x1C
     .byte 0x00, 0x20, 0x81, 0x46, 0x00, 0x27, 0x30, 0x1C
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     .byte 0xBA, 0x21, 0x89, 0x00
     .byte 0x74, 0x18, 0x61, 0x68, 0x20, 0x1C
     bl ReleaseHardwarePoolHandle
@@ -114433,7 +114433,7 @@ func_08094A40:
     .byte 0x00, 0x00, 0x67, 0x03, 0x00, 0x00, 0x6D, 0x03, 0x00, 0x00, 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46
     .byte 0x45, 0x46, 0xE0, 0xB4, 0x84, 0xB0, 0x06, 0x1C, 0x00, 0x20, 0x80, 0x46, 0x00, 0x27, 0x01, 0x21
     .byte 0x03, 0x91, 0x00, 0x22, 0x91, 0x46, 0x30, 0x1C
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     .byte 0xC8, 0x23, 0x9B, 0x00
     .byte 0xF4, 0x18, 0x61, 0x68, 0x20, 0x1C
     bl ReleaseHardwarePoolHandle
@@ -114547,7 +114547,7 @@ func_08094A40:
     .byte 0x3D, 0xF0, 0x41, 0xFC, 0x20, 0x1C, 0x04, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46
     .byte 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x46, 0x03, 0x00, 0x00, 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46
     .byte 0x45, 0x46, 0xE0, 0xB4, 0x87, 0xB0, 0x06, 0x1C, 0x00, 0x20, 0x02, 0x90, 0x82, 0x46, 0x30, 0x1C
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     .byte 0xC8, 0x21, 0x89, 0x00, 0x74, 0x18, 0x61, 0x68, 0x20, 0x1C
     bl ReleaseHardwarePoolHandle
     .byte 0x20, 0x1C
@@ -114710,7 +114710,7 @@ func_08094A40:
     .byte 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x5A, 0x03, 0x00, 0x00, 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46
     .byte 0x45, 0x46, 0xE0, 0xB4, 0xB1, 0xB0, 0x06, 0x1C, 0x00, 0x20, 0x28, 0x90, 0x00, 0x21, 0x29, 0x91
     .byte 0x01, 0xA8, 0x28, 0xAA, 0x12, 0x78, 0x02, 0x70, 0x30, 0x1C
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     .byte 0xBA, 0x20
     .byte 0x80, 0x00, 0x34, 0x18, 0x61, 0x68, 0x20, 0x1C
     bl ReleaseHardwarePoolHandle
@@ -115239,7 +115239,7 @@ func_08096EE8:
     .byte 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46
     .byte 0xE0, 0xB4, 0x83, 0xB0, 0x06, 0x1C, 0x00, 0x20, 0x80, 0x46, 0x00, 0x27, 0x01, 0x21, 0x02, 0x91
     .byte 0x00, 0x22, 0x91, 0x46, 0x30, 0x1C
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     .byte 0xC8, 0x23, 0x9B, 0x00, 0xF4, 0x18
     .byte 0x61, 0x68, 0x20, 0x1C
     bl ReleaseHardwarePoolHandle
@@ -115410,7 +115410,7 @@ func_08096EE8:
     .byte 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0xDE, 0x33, 0x00, 0x00, 0xDF, 0x33, 0x00, 0x00
     .byte 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x82, 0xB0, 0x06, 0x1C, 0x88, 0x46, 0x00, 0x20
     .byte 0x81, 0x46, 0x00, 0x27, 0x30, 0x1C
-    bl func_08008724
+    bl EnableHardwareForcedBlank
     .byte 0xC8, 0x21, 0x89, 0x00, 0x74, 0x18
     .byte 0x61, 0x68, 0x20, 0x1C
     bl ReleaseHardwarePoolHandle
@@ -147325,7 +147325,7 @@ func_08051504: @ 0x08051504
 	mov sb, r0
 	adds r6, r1, #0
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
 	bl GetHardwareDisplayState
 	mov r1, sp
@@ -149677,7 +149677,7 @@ func_08052984: @ 0x08052984
 	movs r0, #0
 	str r0, [sp, #0x30]
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r5, #0
 	bl GetHardwareDisplayState
 	mov r1, sp
@@ -161506,7 +161506,7 @@ func_080588AC: @ 0x080588AC
 	str r0, [sp, #0x1c]
 	adds r6, r1, #0
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
 	bl GetHardwareDisplayState
 	mov r1, sp
@@ -162168,7 +162168,7 @@ func_080588AC: @ 0x080588AC
 	b .L080589FC
 .L08058E4C:
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	movs r2, #0xc1
 	lsls r2, r2, #3
 	adds r4, r6, r2
@@ -162738,7 +162738,7 @@ func_080588AC: @ 0x080588AC
 	b .L08058F4E
 .L08059352:
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	movs r2, #0
 	mov sb, r2
 	movs r3, #0xcd
@@ -170439,7 +170439,7 @@ func_0805D170: @ 0x0805D170
 	mov sb, r0
 	adds r6, r1, #0
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
 	bl GetHardwareDisplayState
 	mov r1, sp
@@ -195229,7 +195229,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [sp, #0x20c]
 	adds r7, r1, #0
 	adds r0, r7, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl GetHardwareDisplayState
 	add r2, sp, #0x10
@@ -202478,7 +202478,7 @@ func_0806DB38: @ 0x0806DB38
 	mov sl, r0
 	adds r5, r1, #0
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r5, #0
 	bl GetHardwareDisplayState
 	mov r1, sp
@@ -219225,7 +219225,7 @@ func_08075E7C: @ 0x08075E7C
 	mov r3, sl
 	strb r3, [r0]
 	adds r0, r7, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl GetHardwareDisplayState
 	add r2, sp, #0xc
@@ -221991,7 +221991,7 @@ func_08077490: @ 0x08077490
 	mov sb, r0
 	adds r5, r1, #0
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r5, #0
 	bl GetHardwareDisplayState
 	mov r1, sp
@@ -225113,7 +225113,7 @@ func_080790E4: @ 0x080790E4
 	mov sl, r0
 	adds r5, r1, #0
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r5, #0
 	bl GetHardwareDisplayState
 	mov r1, sp
@@ -225156,7 +225156,7 @@ func_080790E4: @ 0x080790E4
 	b .L08079504
 .L08079154:
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	ldr r4, .L080791C8 @ =0x00000856
 	adds r0, r5, r4
 	ldrh r1, [r0]
@@ -225601,7 +225601,7 @@ func_080790E4: @ 0x080790E4
 	b .L0807980C
 .L08079504:
 	adds r0, r5, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r5, #0
 	bl func_08079F8C
 	ldr r0, [sp, #4]
@@ -230857,7 +230857,7 @@ func_0807BEC8: @ 0x0807BEC8
 	push {r5, r6, r7}
 	sub sp, #0xa4
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C85A0
 	movs r0, #0xa9
@@ -233095,7 +233095,7 @@ func_0807D218: @ 0x0807D218
 	push {r5, r6, r7}
 	sub sp, #0xe8
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C85A0
 	ldr r0, [r7, #8]
@@ -234577,7 +234577,7 @@ func_0807DE3C: @ 0x0807DE3C
 	push {r5, r6, r7}
 	sub sp, #0xd8
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C85A0
 	movs r0, #0x10
@@ -235421,7 +235421,7 @@ func_0807E558: @ 0x0807E558
 	push {r5, r6, r7}
 	sub sp, #0xec
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C85A0
 	movs r0, #0xa9
@@ -236656,7 +236656,7 @@ func_0807EF90: @ 0x0807EF90
 	push {r5, r6, r7}
 	sub sp, #0xf4
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C85A0
 	movs r0, #0xa9
@@ -237818,7 +237818,7 @@ func_0807F8C8: @ 0x0807F8C8
 	push {r5, r6, r7}
 	sub sp, #0x44
 	adds r6, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
 	bl func_080C85A0
 	movs r5, #1
@@ -239343,7 +239343,7 @@ func_08080540: @ 0x08080540
 	push {r5, r6, r7}
 	sub sp, #0xec
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C85A0
 	movs r0, #0xa9
@@ -240824,7 +240824,7 @@ func_0808114C: @ 0x0808114C
 	push {r5, r6, r7}
 	sub sp, #0x2c
 	adds r6, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
 	bl func_080C85A0
 	movs r4, #0
@@ -242077,7 +242077,7 @@ func_08081BBC: @ 0x08081BBC
 	push {r5, r6, r7}
 	sub sp, #0xf8
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C85A0
 	movs r0, #0xa9
@@ -244264,7 +244264,7 @@ func_08082CEC: @ 0x08082CEC
 	push {r6, r7}
 	sub sp, #0x50
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C85A0
 	movs r0, #0xa9
@@ -246726,7 +246726,7 @@ func_08084228: @ 0x08084228
 	push {r5, r6, r7}
 	sub sp, #0x70
 	adds r6, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
 	bl func_080C85A0
 	movs r0, #0
@@ -251108,7 +251108,7 @@ func_08086A08: @ 0x08086A08
 	push {r5, r6, r7}
 	sub sp, #0xb4
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080C85A0
 	movs r0, #0xa9
@@ -258275,7 +258275,7 @@ func_0808A55C: @ 0x0808A55C
 	push {r5, r6, r7}
 	sub sp, #0x1c
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080CE294
 	movs r1, #0x80
@@ -261454,7 +261454,7 @@ func_0808C0BC: @ 0x0808C0BC
 	push {r5, r6, r7}
 	sub sp, #0x10
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080CE294
 	movs r1, #0x82
@@ -265847,7 +265847,7 @@ func_0808E6FC: @ 0x0808E6FC
 	push {r5, r6, r7}
 	sub sp, #0x1c
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080CE294
 	movs r1, #0x80
@@ -269744,7 +269744,7 @@ func_08090960: @ 0x08090960
 	push {r5, r6, r7}
 	sub sp, #0x14
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080CE294
 	movs r1, #0x80
@@ -271162,7 +271162,7 @@ func_0809152C: @ 0x0809152C
 	str r0, [sp, #0x40]
 	adds r7, r1, #0
 	adds r0, r7, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080CE294
 	movs r1, #0x82
@@ -273982,7 +273982,7 @@ func_08092D64: @ 0x08092D64
 	push {r5, r6, r7}
 	sub sp, #0x14
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl func_080CE294
 	movs r1, #0x82
@@ -274685,7 +274685,7 @@ func_08093364: @ 0x08093364
 	push {r5, r6, r7}
 	sub sp, #0x5c
 	adds r7, r0, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
 	bl GetHardwareDisplayState
 	add r2, sp, #0x10
@@ -278431,7 +278431,7 @@ func_08094F6C: @ 0x08094F6C
 	mov r8, r0
 	adds r4, r1, #0
 	adds r0, r4, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	movs r7, #0
 	add r0, sp, #4
 	mov sb, r0
@@ -278736,7 +278736,7 @@ func_080951B4: @ 0x080951B4
 	mov sb, r0
 	movs r7, #0
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	movs r1, #0xba
 	lsls r1, r1, #2
 	adds r4, r6, r1
@@ -279628,7 +279628,7 @@ func_080958C0: @ 0x080958C0
 	movs r2, #0
 	mov sb, r2
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	movs r3, #0xc8
 	lsls r3, r3, #2
 	adds r4, r6, r3
@@ -280208,7 +280208,7 @@ func_08095D80: @ 0x08095D80
 	str r0, [sp, #8]
 	mov sl, r0
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	movs r1, #0xc8
 	lsls r1, r1, #2
 	adds r4, r6, r1
@@ -280883,7 +280883,7 @@ func_080962F0: @ 0x080962F0
 	ldrb r4, [r4]
 	strb r4, [r6]
 	adds r0, r7, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	movs r0, #0xba
 	lsls r0, r0, #2
 	adds r4, r7, r0
@@ -282847,7 +282847,7 @@ func_080972AC: @ 0x080972AC
 	movs r2, #0
 	mov sb, r2
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	movs r3, #0xc8
 	lsls r3, r3, #2
 	adds r4, r6, r3
@@ -283891,7 +283891,7 @@ func_08097AE4: @ 0x08097AE4
 	mov sb, r0
 	movs r7, #0
 	adds r0, r6, #0
-	bl func_08008724
+	bl EnableHardwareForcedBlank
 	movs r1, #0xc8
 	lsls r1, r1, #2
 	adds r4, r6, r1

@@ -3,7 +3,7 @@
 
 #include "prelude.h"
 #include "u16_pair.hh"
-#include "hardware_display_output.hh"
+#include "hardware_display_state.hh"
 
 struct ControlWidget;
 struct HardwareLinkedList;
