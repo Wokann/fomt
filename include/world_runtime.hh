@@ -107,13 +107,20 @@ private:
     }
 
 public:
+    GameScenePaletteIndices() : count(0) {}
+
     explicit GameScenePaletteIndices(u32 input_count)
     {
         Initialize(input_count, 0);
     }
 
     u32 count;
-    u8 values[16];
+    union {
+        u8 values[16];
+        u32 storage[4];
+    };
+
+    u8 * End() { return &reinterpret_cast<u8 *>(storage)[count]; }
 
     u8 & operator[](u32 index) { return values[index]; }
 };

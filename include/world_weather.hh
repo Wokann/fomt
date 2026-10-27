@@ -4,6 +4,7 @@
 #include "prelude.h"
 #include "resource_handle.hh"
 #include "hardware_state_clear.hh"
+#include "world_runtime.hh"
 
 struct GameObject;
 struct GameSceneWorldPrefix;
@@ -17,18 +18,18 @@ struct WorldWeatherMotion {
 // slots are aligned storage, so declaring this layout does not construct them.
 template <typename T, u32 Capacity>
 struct WorldWeatherRecords {
-    T * Begin() { return reinterpret_cast<T *>(&storage); }
-    T * End() { return Begin() + count; }
-    T & operator[](u32 index) { return Begin()[index]; }
+    WorldWeatherRecords() : count(0) {}
+    T * Begin() { return reinterpret_cast<T *>(storage); }
+    T * End() { return &reinterpret_cast<T *>(storage)[count]; }
+    T & operator[](u32 index) { return reinterpret_cast<T *>(storage)[index]; }
 
     u32 count;
-    union {
-        u32 alignment;
-        u8 bytes[Capacity * sizeof(T)];
-    } storage;
+    u32 storage[(Capacity * sizeof(T) + 3) / 4];
 };
 
 struct WorldWeatherResource {
+    WorldWeatherResource(IndexedResourceGroupResult const & source)
+        : group(source), tiles(0) {}
     IndexedResourceGroupResult group;
     HardwareStateEntry tiles;
 };
@@ -57,7 +58,7 @@ struct GameSceneWeatherEffect {
 
     GameObject * world;
     WorldWeatherRecords<WorldWeatherResource, 5> resources;
-    WorldWeatherRecords<u8, 16> palette_indices;
+    GameScenePaletteIndices palette_indices;
     u8 kind;
     u8 unk_E5;
     u8 draw_second_half;
