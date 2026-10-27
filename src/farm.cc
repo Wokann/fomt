@@ -54,7 +54,7 @@ bool Farm::GetUnkFlag11() const
     return unk_0010_11;
 }
 
-bool Farm::method_08009B20() const
+bool Farm::HasGoldenLumber() const
 {
     u32 row = 0, col = 0;
 

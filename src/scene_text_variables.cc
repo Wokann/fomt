@@ -24,7 +24,7 @@ UiTextSubstitution GameSceneTextVariables::Lookup(u32 code)
 {
     switch (code) {
     case PLAYER:
-        if (save->farm.method_08009B20() &&
+        if (save->farm.HasGoldenLumber() &&
             save->event_state.golden_lumber_was_on_farm_at_day_start)
             return MakeSceneTextSubstitution(gText_Moneybags);
         return MakeSceneTextSubstitution(save->farmer.GetName());

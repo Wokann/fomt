@@ -35,7 +35,7 @@ struct Farm
     u32 GetUnk10() const;
     Horse const * GetHorse() const;
     bool GetUnkFlag11() const;
-    bool method_08009B20() const;
+    bool HasGoldenLumber() const;
     bool GetUnkFlag12() const;
 
     void method_08009B68(u32 added);
