@@ -61,7 +61,11 @@ struct GameSceneWorldPrefix : GameObject {
     FieldRenderTileAttributes * farm_tile_attributes;
     GameScene * scene;
     SmartPtr<GameSceneIndexedSprite> unk_1058;
-    u8 unk_105C[0x20];
+    SmartPtr<GameSceneIndexedSprite> fireplace_sprite;
+    u8 unk_1060;
+    u8 unk_1061[7];
+    SmartPtr<GameSceneGroupSprite> vase_sprite;
+    u8 unk_106C[0x10];
     GameSceneWorldUnkOwner unk_107C;
     GameSceneWorldUnk1080Entry unk_1080[4];
     // The enclosing native object continues beyond the previously verified
@@ -113,7 +117,9 @@ typedef char GameSceneWorldFarmTerrainCheck[offsetof(GameSceneWorldPrefix, farm_
 
 typedef char GameSceneWorldSceneCheck[offsetof(GameSceneWorldPrefix, scene) == 0x1054 ? 1 : -1];
 typedef char GameSceneWorldSpriteCheck[offsetof(GameSceneWorldPrefix, unk_1058) == 0x1058 ? 1 : -1];
-typedef char GameSceneWorldUnk105CCheck[offsetof(GameSceneWorldPrefix, unk_105C) == 0x105C ? 1 : -1];
+typedef char GameSceneWorldFireplaceFlagCheck[offsetof(GameSceneWorldPrefix, unk_1060) == 0x1060 ? 1 : -1];
+typedef char GameSceneWorldVaseSpriteCheck[offsetof(GameSceneWorldPrefix, vase_sprite) == 0x1068 ? 1 : -1];
+typedef char GameSceneWorldFireplaceSpriteCheck[offsetof(GameSceneWorldPrefix, fireplace_sprite) == 0x105C ? 1 : -1];
 
 typedef char GameSceneWorldUnknown10C8Check[offsetof(GameSceneWorldPrefix, unk_10C8) == 0x10C8 ? 1 : -1];
 typedef char GameSceneWorldUnknown10C9Check[offsetof(GameSceneWorldPrefix, unk_10C9) == 0x10C9 ? 1 : -1];

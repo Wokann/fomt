@@ -678,8 +678,8 @@ extern void QueueWorldScript(void);
 extern void GetWorldClock(void);
 extern void SelectWorldBackgroundAudio(void);
 extern void GetWorldSongPlayerPool(void);
-extern void func_0801F518(void);
-extern void func_0801F5F0(void);
+extern void LightFireplaceAtLocation__20GameSceneWorldPrefix9MaryMapId(void);
+extern void SetVaseArticleId__20GameSceneWorldPrefix17MaryItemArticleId(void);
 extern void func_0801EE00(void);
 extern void func_0801F924(void);
 extern void CreateWorldEventIcon(void);
@@ -1152,8 +1152,8 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     GetWorldClock,
     SelectWorldBackgroundAudio,
     GetWorldSongPlayerPool,
-    func_0801F518,
-    func_0801F5F0,
+    LightFireplaceAtLocation__20GameSceneWorldPrefix9MaryMapId,
+    SetVaseArticleId__20GameSceneWorldPrefix17MaryItemArticleId,
     func_0801EE00,
     func_0801F924,
     CreateWorldEventIcon,

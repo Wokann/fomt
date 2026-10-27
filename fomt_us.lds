@@ -307,6 +307,8 @@ SECTIONS
             .text.SetWorldMapPatchFlag .text.ClearWorldMapPatchFlag .text.func_0801DE24 .text.func_0801DE30 .text.func_0801DE3C .text.func_0801DE48
             .text.SwapRecordPlayerAlbum);
         asm/game_state.o(.text.game_scene_after_record_player_album);
+        src/world_furniture.o(.text);
+        asm/game_state.o(.text.world_furniture_after);
         src/game_world.o(
             .text.func_0801FBDC
             .text.func_0801FBE8
