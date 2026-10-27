@@ -123,6 +123,10 @@ typedef char GameStateUnknown2C1CSizeCheck[sizeof(GameStateUnknown2C1C) == 0x30 
 // native copying remains unresolved; destruction uses real member lifetimes.
 struct GameStateSaveImage {
     GameStateSaveImage(char const *, char const *, GameDate, char const *);
+    // The native constructor initializes members, then reads the SRAM record.
+    // Status is cleared first; failures combine the stage and SRAM flags.
+    GameStateSaveImage(SramAccess & access, u32 offset, u32 & status);
+    GameStateSaveImage(GameStateSaveImage const & other);
     ~GameStateSaveImage();
 
     // Update tomorrow's weather and the farm/NPC/order state for the current
@@ -268,13 +272,6 @@ u32 GetSaveImageRecordSize();
 // offset. Zero denotes success; nonzero values carry the SRAM error flags.
 u32 WriteGameStateSaveImage(void const * snapshot, struct SramAccess * access, u32 offset);
 
-// Initializes and reads a save image into the supplied allocation. The
-// status output is zero on success; the complete image layout is unresolved.
-void * func_08011650(void * object, struct SramAccess * access, u32 offset,
-    u32 * status);
-// Native copy-construction into existing storage; no destructor alias.
-void * func_080D4178(void * object, void const * source);
-
 EXTERN_C_END
 
 // One-word owner of a native save image. Non-const copies transfer ownership,
@@ -282,8 +279,8 @@ EXTERN_C_END
 // Keep this game-specific lifetime here instead of a menu-only duplicate.
 class GameStateSaveImageOwner {
 public:
-    explicit GameStateSaveImageOwner(void * initial)
-        : value(static_cast<GameStateSaveImage *>(initial)) {}
+    explicit GameStateSaveImageOwner(GameStateSaveImage * initial)
+        : value(initial) {}
     GameStateSaveImageOwner(GameStateSaveImageOwner & other)
         : value(other.value) { other.value = nullptr; }
     ~GameStateSaveImageOwner()

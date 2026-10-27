@@ -189,13 +189,13 @@ bool TryLoadNewGameMenuSlot(NewGameMenuCore * core)
     u32 attempts = 3;
     do {
         InterruptGuard guard(0x1000);
-        GameStateSaveImageOwner loaded(func_08011650(::operator new(sizeof(GameStateSaveImage)),
-            &core->sram, offset, &status));
+        GameStateSaveImageOwner loaded(new GameStateSaveImage(
+            core->sram, offset, status));
         if (status == 0) {
             if (core->current_save != nullptr) {
                 core->current_save->~GameStateSaveImage();
                 if (core->current_save != nullptr)
-                    func_080D4178(core->current_save, loaded.get());
+                    new (core->current_save) GameStateSaveImage(*loaded.get());
             } else {
                 SetMenuContinuation(core->continuation, CreateLoadedMenuSaveTransition(loaded));
             }
@@ -302,12 +302,11 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
             u32 status = 0;
             int retries = 3;
             do {
-                GameStateSaveImageOwner loaded(func_08011650(
-                    ::operator new(sizeof(GameStateSaveImage)), &core->sram,
-                    offset, &status));
+                GameStateSaveImageOwner loaded(new GameStateSaveImage(
+                    core->sram, offset, status));
                 if (status == 0) {
                     FormatNewGameSaveSlotSummary(core, core->save_slot_status[slot],
-                        static_cast<GameStateSaveImage *>(loaded.get()));
+                        loaded.get());
                     CopySavedDisplayOptions(core->saved_display_options[slot], loaded.get());
                     break;
                 }

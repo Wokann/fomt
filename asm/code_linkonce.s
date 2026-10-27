@@ -4,8 +4,8 @@
 
 	.section .text.new_game_after_controller_records
 
-	thumb_func_start func_080D4178
-func_080D4178: @ 0x080D4178
+	thumb_func_start __18GameStateSaveImageRC18GameStateSaveImage
+__18GameStateSaveImageRC18GameStateSaveImage: @ 0x080D4178
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

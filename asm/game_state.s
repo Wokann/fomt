@@ -588,9 +588,9 @@ DayUpdate__18GameStateSaveImage:
 .Ljp_080113E8: .4byte 0x000034DC
     .section .text.game_state_after_display_options
 
-    .global func_08011650
+    .global __18GameStateSaveImageR10SramAccessUiRUi
     .thumb_func
-func_08011650:
+__18GameStateSaveImageR10SramAccessUiRUi:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -16639,8 +16639,8 @@ DayUpdate__18GameStateSaveImage: @ US 0x08010F54
 
     .section .text.game_state_after_display_options
 
-    thumb_func_start func_08011650
-func_08011650: @ 0x08011650
+    thumb_func_start __18GameStateSaveImageR10SramAccessUiRUi
+__18GameStateSaveImageR10SramAccessUiRUi: @ 0x08011650
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
