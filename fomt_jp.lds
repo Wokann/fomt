@@ -117,8 +117,8 @@ SECTIONS
         src/hardware.o(.text);
         . = 0x7374; /* JP ROM 0x08007374, independently matched */
         src/hardware_allocator.o(.text);
-        asm/hardware_resource.o(.text);
-        src/hardware_resource.o(.text.__16HardwareResource .text._._16HardwareResource
+        src/hardware_resource.o(.text.__16HardwareResourceRCUc
+            .text.__16HardwareResource .text._._16HardwareResource
             .text.Get__C16HardwareResource);
         src/hardware_mask.o(.text);
         asm/hardware.o(.text.hardware_mask_after);

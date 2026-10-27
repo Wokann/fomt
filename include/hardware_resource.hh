@@ -29,27 +29,51 @@ struct HardwareResourceEntry {
     }
 };
 
+// Neither native default nor copy construction writes these bytes.
+// Keep their meaning unknown rather than inventing allocator state.
+struct HardwareResourceStoragePrefix {
+    u8 unk_00[4];
+    HardwareResourceStoragePrefix() {}
+    HardwareResourceStoragePrefix(HardwareResourceStoragePrefix const &) {}
+};
+
+struct HardwareResourceStorageBounds {
+    HardwareResourceStoragePrefix prefix;
+    HardwareResourceEntry * end;
+    HardwareResourceStorageBounds(HardwareResourceStoragePrefix const & prefix)
+        : prefix(prefix), end(0) {}
+};
+
 struct HardwareResourceStorage {
+    explicit HardwareResourceStorage(u8 const & count, HardwareResourceStoragePrefix const & prefix = HardwareResourceStoragePrefix());
     ~HardwareResourceStorage();
     struct HardwareResourceEntry * start;
     struct HardwareResourceEntry * end;
-    u8 unk_08[4];
-    struct HardwareResourceEntry * capacity_end;
+    HardwareResourceStorageBounds allocation;
     struct HardwareResourceEntry * cursor;
 
     void Reserve(u32 count);
 
 private:
+    HardwareResourceEntry * CopyEntries(HardwareResourceEntry const * first,
+        HardwareResourceEntry const * last, HardwareResourceEntry * result);
+    HardwareResourceEntry * FillEntries(HardwareResourceEntry * first,
+        u32 count, HardwareResourceEntry const & value);
+    void Grow(HardwareResourceEntry * old_end, u32 count, HardwareResourceEntry const & value);
+    void PushBack(HardwareResourceEntry const & value);
     static void * AllocateBytes(u32 bytes);
     HardwareResourceEntry * Allocate(u32 count);
     HardwareResourceEntry * AllocateAndCopy(u32 count,
         HardwareResourceEntry * first, HardwareResourceEntry * last);
 };
 
+typedef char HardwareResourceStoragePrefixSizeCheck[sizeof(HardwareResourceStoragePrefix) == 4 ? 1 : -1];
+typedef char HardwareResourceStorageBoundsSizeCheck[sizeof(HardwareResourceStorageBounds) == 8 ? 1 : -1];
+typedef char HardwareResourceStorageBoundsEndCheck[offsetof(HardwareResourceStorageBounds, end) == 4 ? 1 : -1];
 typedef char HardwareResourceEntrySizeCheck[sizeof(HardwareResourceEntry) == 8 ? 1 : -1];
 typedef char HardwareResourceEntryHandleCheck[offsetof(HardwareResourceEntry, handle) == 4 ? 1 : -1];
 typedef char HardwareResourceStorageSizeCheck[sizeof(HardwareResourceStorage) == 20 ? 1 : -1];
-typedef char HardwareResourceStorageCapacityCheck[offsetof(HardwareResourceStorage, capacity_end) == 12 ? 1 : -1];
+typedef char HardwareResourceStorageCapacityCheck[(offsetof(HardwareResourceStorage, allocation) + offsetof(HardwareResourceStorageBounds, end)) == 12 ? 1 : -1];
 typedef char HardwareResourceStorageCursorCheck[offsetof(HardwareResourceStorage, cursor) == 16 ? 1 : -1];
 
 struct HardwareResource {

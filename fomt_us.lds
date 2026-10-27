@@ -99,8 +99,8 @@ SECTIONS
         src/new_game_name_input.o(.text.new_game_name_input_scene);
         src/hardware.o(.text);
         src/hardware_allocator.o(.text);
-        asm/hardware_resource.o(.text);
-        src/hardware_resource.o(.text.__16HardwareResource .text._._16HardwareResource
+        src/hardware_resource.o(.text.__16HardwareResourceRCUc
+            .text.__16HardwareResource .text._._16HardwareResource
             .text.Get__C16HardwareResource);
         src/hardware_mask.o(.text);
         asm/hardware.o(.text.hardware_mask_after);
