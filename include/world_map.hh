@@ -191,7 +191,7 @@ void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queue,
     HardwareDisplayState & display, HardwareLinkedList & commands);
 void RefreshSavedWorldMapAppearance(GameSceneSavedMapPrefix * map, i32 period,
     u32 first_weight, u32 second_weight);
-void func_080AA850(GameSceneSavedMapPrefix * map, u32 index);
+void RefreshWorldMapPatch(GameSceneSavedMapPrefix * map, u32 index);
 void func_080AA89C(GameSceneWorldMap * map);
 void func_080AA8BC(GameSceneWorldMap * map);
 void func_080AA8DC(GameSceneSavedMapPrefix * map);

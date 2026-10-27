@@ -1,7 +1,27 @@
-#ifndef ACTOR_STATE_HH
-#define ACTOR_STATE_HH
+#ifndef MAP_PATCH_FLAGS_HH
+#define MAP_PATCH_FLAGS_HH
 
 #include "prelude.h"
+
+// Saved at +0x34D8. Indices 0 through 13 select the absent/present
+// map patches below. Setting and clearing a flag preserve all other bits.
+struct MapPatchFlags
+{
+    MapPatchFlags();
+    bool IsClear(u32 index) const;
+    void Set(u32 index);
+    void Clear(u32 index);
+    void ClearAll();
+
+    bool IsSet(u32 index) const
+    {
+        return index <= 13 && (value & (1 << (index & 31))) != 0;
+    }
+
+    u32 value;
+};
+
+typedef char MapPatchFlagsSizeCheck[sizeof(MapPatchFlags) == 4 ? 1 : -1];
 
 extern char const gCppRuntimeBadAlloc_ActorDataSelectionPrefix[];
 
@@ -23,6 +43,6 @@ typedef char ActorDataSelectionEntryYCheck[offsetof(ActorDataSelectionEntry, til
 
 extern ActorDataSelectionEntry const gActorDataSelectionEntries[];
 extern char const gCppRuntimeBadAlloc_ActorDataSelectionTrailer[];
-extern "C" FieldRenderPatchPlacement SelectMapFlagPatch(u32 const & flags, u32 index, bool winter);
+extern "C" FieldRenderPatchPlacement SelectMapFlagPatch(MapPatchFlags const & flags, u32 index, bool winter);
 
-#endif // ACTOR_STATE_HH
+#endif // MAP_PATCH_FLAGS_HH

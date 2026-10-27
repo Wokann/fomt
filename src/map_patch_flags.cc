@@ -1,7 +1,7 @@
-#include "actor_state.hh"
+#include "map_patch_flags.hh"
 #include "field_render_rect_descriptors.hh"
 
-#include FOMT_TEXT_INCLUDE(actor_state_1.cc)
+#include FOMT_TEXT_INCLUDE(map_patch_flags_1.cc)
 
 ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
     { &gFieldRenderRectDescriptors[39], &gFieldRenderRectDescriptors[40], 0x15, 0x0C },
@@ -20,13 +20,20 @@ ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
     { &gFieldRenderRectDescriptors[63], &gFieldRenderRectDescriptors[64], 0x69, 0x3E },
 };
 
-#include FOMT_TEXT_INCLUDE(actor_state_2.cc)
+#include FOMT_TEXT_INCLUDE(map_patch_flags_2.cc)
 
-EC FieldRenderPatchPlacement SelectMapFlagPatch(u32 const & flags, u32 index, bool winter)
+MapPatchFlags::MapPatchFlags() : value(0)
 {
-    bool present = false;
-    if (index <= 13)
-        present = (flags & (1 << (index & 31))) != 0;
+}
+
+bool MapPatchFlags::IsClear(u32 index) const
+{
+    return !IsSet(index);
+}
+
+EC FieldRenderPatchPlacement SelectMapFlagPatch(MapPatchFlags const & flags, u32 index, bool winter)
+{
+    bool present = flags.IsSet(index);
 
     if (present) {
         if (index == 13 && winter) {
@@ -42,4 +49,21 @@ EC FieldRenderPatchPlacement SelectMapFlagPatch(u32 const & flags, u32 index, bo
     }
     return FieldRenderPatchPlacement(gActorDataSelectionEntries[index].absent_patch,
         gActorDataSelectionEntries[index].tile_x, gActorDataSelectionEntries[index].tile_y);
+}
+
+void MapPatchFlags::Set(u32 index)
+{
+    if (index <= 13)
+        value |= 1 << (index & 31);
+}
+
+void MapPatchFlags::Clear(u32 index)
+{
+    if (index <= 13)
+        value &= ~(1 << (index & 31));
+}
+
+void MapPatchFlags::ClearAll()
+{
+    value = 0;
 }

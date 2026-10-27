@@ -1,5 +1,5 @@
 #include "world_map.hh"
-#include "actor_state.hh"
+#include "map_patch_flags.hh"
 #include "compression.hh"
 #include "game_state.hh"
 #include "map_data.hh"
@@ -661,11 +661,11 @@ EC void RefreshFieldPlotTiles(GameSceneWorldMap * map, u32 x, u32 y,
         map->tile_attributes[x + 1 + (y + 1) * width].unk_02_01 = plot->method_0800A0A4();
 }
 
-EC void func_080AA850(GameSceneSavedMapPrefix * map, u32 index)
+EC void RefreshWorldMapPatch(GameSceneSavedMapPrefix * map, u32 index)
 {
     Season season = static_cast<Season>(func_0800E324(map->save->clock.calendar));
     FieldRenderPatchPlacement placement = SelectMapFlagPatch(
-        map->save->unk_34D8.value, index, season == SEASON_WINTER);
+        map->save->map_patch_flags, index, season == SEASON_WINTER);
     ApplyMapTilePatch(map, *placement.patch, placement.x, placement.y);
     map->view_changed = true;
 }

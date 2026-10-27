@@ -12,6 +12,29 @@
 
 JP 已将逐主题旧锚点合并为两片连续可变区域：`0x080E7A40`–`0x080F822F`（上界为 Mary 脚本总索引表）和 `0x080F96F4`–`0x08118D17`（上界为尚保留的原始静态资源）。两片区域内的文本、结构、指针表及其已知调用均随符号重定位；LDS 只保留真实对齐与填充值。
 
+## 地图补丁旗标：同名文本与连续选择表
+
+当前维护入口为 `src/map_patch_flags.cc`、`include/map_patch_flags.hh`
+和 `data/text/<region>/map_patch_flags_1.cc`、`map_patch_flags_2.cc`。
+前置 `bad_alloc`、14 行选择表、尾部 `bad_alloc` 按源码顺序自然
+进入同一对象的普通 `.rodata`，两个 include 之间确有非文本表。
+没有新增 section、文本容量、别名、本地化地址锚点或填充对象；
+文本字节和全部 28 个描述符重定位均保持不变。
+
+| 区域 | 本主题只读数据半开范围 | 前方六字节上限表的实际归属 |
+| --- | --- | --- |
+| JP | `0x08103204–0x081032C2` | `0x081031FC–0x08103202`，`src/cursed_tool.o(.rodata)` |
+| US | `0x081036C8–0x08103786` | `0x081036C0–0x081036C6`，`src/cursed_tool.o(.rodata)` |
+| EU | `0x08103720–0x081037DE` | `0x08103718–0x0810371E`，`src/cursed_tool.o(.rodata)` |
+| DE | `0x0810410C–0x081041CA` | `0x08104104–0x0810410A`，`src/cursed_tool.o(.rodata)` |
+
+下方四份物理表同步修正了这一边界：旧记录把相邻的
+`gCursedToolProgressLimits` 误算进原 `actor_state` 宿主；实际上
+它已归入 `cursed_tool.cc/.hh`，其后两字节为正常对齐。代码查询
+本次新增 36 字节 C++；世界接口与 JP 清空调用已使用真实符号，
+四版完整 ROM、分配节／重定位和运行对照通过，详见代码布局中
+“地图补丁旗标”条目。下方旧阶段叙述保留为历史归属记录。
+
 ## SRAM 镜像文本：与功能模块同名，物理布局不变
 
 当前宿主为 `src/sram_image.cc`，对应 `include/sram_image.hh` 与
@@ -1553,7 +1576,9 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | EU | `0x08101140`–`0x081036AD` | `src/cooking_recipe_inventory.o(.rodata)` | `src/cooking_recipe_inventory.cc`、`include/cooking_recipe_inventory.hh`、`data/text/eu/cooking_recipe_inventory.cc`；9 项掩码表、117 项配方定义及零终止项、连续配方载荷与两个运行时字符串按 ROM 顺序同属对象；定义中的所有载荷指针和汇编调用均为符号重定位 | 精确 |
 | EU | `0x081036B0`–`0x081036B6` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/eu/animal.cc`；`gText_Animal_Unnamed` 是 `Animal::GetName()` 的唯一回退文本，源码调用保留符号重定位 | 精确 |
 | EU | `0x081036B8`–`0x08103717` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh`；鸡、牛、羊三项 `LivestockDayUpdateInfo` 结构按 ROM 顺序同属对象，三个日更新调用均直接取对应符号地址 | 精确 |
-| EU | `0x08103718`–`0x081037DD` | `src/actor_state.o(.rodata)` | `src/actor_state.cc`、`include/actor_state.hh`、`data/text/{jp,us,eu,de}/actor_state_1.cc`、`data/text/{jp,us,eu,de}/actor_state_2.cc`；6 字节状态上限表、前置运行时文本、14 项选择表及尾部运行时文本按物理顺序同属对象；选择表的 28 个描述符字段和已知汇编调用均为符号重定位 | 精确 |
+| EU | `0x08103718`–`0x0810371D` | `src/cursed_tool.o(.rodata)` | `src/cursed_tool.cc`、`include/cursed_tool.hh`；`gCursedToolProgressLimits[6]`，实际属于诅咒农具状态 | 精确 |
+| EU | `0x0810371E`–`0x0810371F` | `*fill*` | 两字节 `00` 对齐填充 | 精确 |
+| EU | `0x08103720`–`0x081037DD` | `src/map_patch_flags.o(.rodata)` | `src/map_patch_flags.cc`、`include/map_patch_flags.hh`、`data/text/{jp,us,eu,de}/map_patch_flags_1.cc`、`data/text/{jp,us,eu,de}/map_patch_flags_2.cc`；前置运行时文本、14 项选择表及尾部运行时文本按物理顺序同属对象；选择表的 28 个描述符字段和已知汇编调用均为符号重定位 | 精确 |
 | EU | `0x081037E0`–`0x08103B65` | `src/fishing_results_data.o(.rodata)` | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`、`data/text/eu/fishing_results_data_1.cc`、`data/text/eu/fishing_results_data_2.cc`；58 条物理文本、59 项 `gFishingRecordNames` 指针表及尾部运行时文本按物理顺序同属对象；59 个表项均为命名文本的符号重定位，记录 37 复用记录 22 的文本 | 精确 |
 | EU | `0x08103B68`–`0x0810415F` | `src/actor_runtime_data.o(.rodata)` | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`、`data/text/eu/actor_runtime_data.cc`；9 个已命名原始数据表、夹在最后两表之间的运行时文本，均按物理顺序同属对象；所有已知汇编读取为表符号引用，构造函数调用直接指向真实 C++ 构造函数符号 | 精确 |
 | EU | `0x08104160`–`0x08104160` | `src/character_names_empty.o(.rodata)` | `src/character_names_empty.cc`、`include/character_names_empty.hh`、`data/text/eu/character_names_empty.cc`；唯一空字符串，姓名表和三处汇编均直接引用该符号；它与后续姓名表被 `bachelorette` 数据完整隔开 | 精确 |
@@ -1643,7 +1668,9 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | DE | `0x08101B2C`–`0x08104099` | `src/cooking_recipe_inventory.o(.rodata)` | `src/cooking_recipe_inventory.cc`、`include/cooking_recipe_inventory.hh`、`data/text/de/cooking_recipe_inventory.cc`；9 项掩码表、117 项配方定义及零终止项、连续配方载荷与两个运行时字符串按 ROM 顺序同属对象；定义中的所有载荷指针和汇编调用均为符号重定位 | 精确 |
 | DE | `0x0810409C`–`0x081040A2` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/de/animal.cc`；`gText_Animal_Unnamed` 是 `Animal::GetName()` 的唯一回退文本，源码调用保留符号重定位 | 精确 |
 | DE | `0x081040A4`–`0x08104103` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh`；鸡、牛、羊三项 `LivestockDayUpdateInfo` 结构按 ROM 顺序同属对象，三个日更新调用均直接取对应符号地址 | 精确 |
-| DE | `0x08104104`–`0x081041C9` | `src/actor_state.o(.rodata)` | `src/actor_state.cc`、`include/actor_state.hh`、`data/text/{jp,us,eu,de}/actor_state_1.cc`、`data/text/{jp,us,eu,de}/actor_state_2.cc`；6 字节状态上限表、前置运行时文本、14 项选择表及尾部运行时文本按物理顺序同属对象；选择表的 28 个描述符字段和已知汇编调用均为符号重定位 | 精确 |
+| DE | `0x08104104`–`0x08104109` | `src/cursed_tool.o(.rodata)` | `src/cursed_tool.cc`、`include/cursed_tool.hh`；`gCursedToolProgressLimits[6]`，实际属于诅咒农具状态 | 精确 |
+| DE | `0x0810410A`–`0x0810410B` | `*fill*` | 两字节 `00` 对齐填充 | 精确 |
+| DE | `0x0810410C`–`0x081041C9` | `src/map_patch_flags.o(.rodata)` | `src/map_patch_flags.cc`、`include/map_patch_flags.hh`、`data/text/{jp,us,eu,de}/map_patch_flags_1.cc`、`data/text/{jp,us,eu,de}/map_patch_flags_2.cc`；前置运行时文本、14 项选择表及尾部运行时文本按物理顺序同属对象；选择表的 28 个描述符字段和已知汇编调用均为符号重定位 | 精确 |
 | DE | `0x081041CC`–`0x08104565` | `src/fishing_results_data.o(.rodata)` | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`、`data/text/de/fishing_results_data_1.cc`、`data/text/de/fishing_results_data_2.cc`；57 条物理文本、59 项 `gFishingRecordNames` 指针表及尾部运行时文本按物理顺序同属对象；59 个表项均为命名文本的符号重定位，记录 37 复用记录 22，记录 46 复用 Bonito 文本 | 精确 |
 | DE | `0x08104568`–`0x08104B5F` | `src/actor_runtime_data.o(.rodata)` | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`、`data/text/de/actor_runtime_data.cc`；9 个已命名原始数据表、夹在最后两表之间的运行时文本，均按物理顺序同属对象；所有已知汇编读取为表符号引用，构造函数调用直接指向真实 C++ 构造函数符号 | 精确 |
 | DE | `0x08104B60`–`0x08104B60` | `src/character_names_empty.o(.rodata)` | `src/character_names_empty.cc`、`include/character_names_empty.hh`、`data/text/de/character_names_empty.cc`；唯一空字符串，姓名表和三处汇编均直接引用该符号；它与后续姓名表被 `bachelorette` 数据完整隔开 | 精确 |
@@ -1775,7 +1802,9 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08103194`–`0x0810319A` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/jp/animal.cc` | `gText_Animal_Unnamed`；`Animal::GetName()` 直接引用该符号，文本随本对象重定位 |
 | `0x0810319B`–`0x0810319B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x0810319C`–`0x081031FB` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo`；三个日更新调用均为对应对象的直接符号引用 |
-| `0x081031FC`–`0x081032C1` | `src/actor_state.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_state.cc`、`include/actor_state.hh`<br>`data/text/{jp,us,eu,de}/actor_state_1.cc`、`data/text/{jp,us,eu,de}/actor_state_2.cc` | `gActorStateMaxValues`（6 项）<br>前置 `bad_alloc`<br>`gActorDataSelectionEntries`（14 项；28 个 `gFieldRenderRectDescriptors + index` 重定位）<br>尾部 `bad_alloc`；已知汇编调用均为符号引用 |
+| `0x081031FC`–`0x08103201` | `src/cursed_tool.o(.rodata)` | [数据] | `src/cursed_tool.cc`、`include/cursed_tool.hh` | `gCursedToolProgressLimits[6]`，实际属于诅咒农具状态 |
+| `0x08103202`–`0x08103203` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
+| `0x08103204`–`0x081032C1` | `src/map_patch_flags.o(.rodata)` | [数据 / 嵌入文本] | `src/map_patch_flags.cc`、`include/map_patch_flags.hh`<br>`data/text/{jp,us,eu,de}/map_patch_flags_1.cc`、`data/text/{jp,us,eu,de}/map_patch_flags_2.cc` | 前置 `bad_alloc`<br>`gActorDataSelectionEntries`（14 项；28 个 `gFieldRenderRectDescriptors + index` 重定位）<br>尾部 `bad_alloc`；已知汇编调用均为符号引用 |
 | `0x081032C2`–`0x081032C3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081032C4`–`0x08103601` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/jp/fishing_results_data_1.cc`、`data/text/jp/fishing_results_data_2.cc` | 59 条文本（`0x081032C4`–`0x0810350B`）<br>`gFishingRecordNames`（59 项，`0x0810350C`–`0x081035F7`；每项为命名文本重定位）<br>尾部 `bad_alloc`（`0x081035F8`–`0x08103601`）；汇编通过真实 `FishingRecords::GetName` 读取表符号 |
 | `0x08103602`–`0x08103603` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3609,7 +3638,9 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08103658`–`0x0810365E` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/us/animal.cc` | `gText_Animal_Unnamed`；`Animal::GetName()` 直接引用该符号，文本随本对象重定位 |
 | `0x0810365F`–`0x0810365F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08103660`–`0x081036BF` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo`；三个日更新调用均为对应对象的直接符号引用 |
-| `0x081036C0`–`0x08103785` | `src/actor_state.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_state.cc`、`include/actor_state.hh`<br>`data/text/{jp,us,eu,de}/actor_state_1.cc`、`data/text/{jp,us,eu,de}/actor_state_2.cc` | `gActorStateMaxValues`（6 项）<br>前置 `bad_alloc`<br>`gActorDataSelectionEntries`（14 项；28 个 `gFieldRenderRectDescriptors + index` 重定位）<br>尾部 `bad_alloc`；已知汇编调用均为符号引用 |
+| `0x081036C0`–`0x081036C5` | `src/cursed_tool.o(.rodata)` | [数据] | `src/cursed_tool.cc`、`include/cursed_tool.hh` | `gCursedToolProgressLimits[6]`，实际属于诅咒农具状态 |
+| `0x081036C6`–`0x081036C7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
+| `0x081036C8`–`0x08103785` | `src/map_patch_flags.o(.rodata)` | [数据 / 嵌入文本] | `src/map_patch_flags.cc`、`include/map_patch_flags.hh`<br>`data/text/{jp,us,eu,de}/map_patch_flags_1.cc`、`data/text/{jp,us,eu,de}/map_patch_flags_2.cc` | 前置 `bad_alloc`<br>`gActorDataSelectionEntries`（14 项；28 个 `gFieldRenderRectDescriptors + index` 重定位）<br>尾部 `bad_alloc`；已知汇编调用均为符号引用 |
 | `0x08103786`–`0x08103787` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103788`–`0x08103B0D` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/us/fishing_results_data_1.cc`、`data/text/us/fishing_results_data_2.cc` | 58 条文本（`0x08103788`–`0x08103A17`）<br>`gFishingRecordNames`（59 项，`0x08103A18`–`0x08103B03`；每项为命名文本重定位，记录 37 复用记录 22 的文本）<br>尾部 `bad_alloc`（`0x08103B04`–`0x08103B0D`）；汇编通过真实 `FishingRecords::GetName` 读取表符号 |
 | `0x08103B0E`–`0x08103B0F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |

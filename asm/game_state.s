@@ -816,7 +816,7 @@ func_08011650:
     bl __14FieldItemState
     ldr r2, .Ljp_080118A8 @ =0x000034D8
     adds r0, r7, r2
-    bl func_0809C4E4
+    bl __13MapPatchFlags
     ldr r3, .Ljp_080118AC @ =0x000034DC
     adds r0, r7, r3
     bl __18Unk_Actor_0809BFE8
@@ -16866,7 +16866,7 @@ func_08011650: @ 0x08011650
     bl __14FieldItemState
     ldr r2, .L080118C8 @ =0x000034D8
     adds r0, r7, r2
-    bl func_0809C4E4
+    bl __13MapPatchFlags
     ldr r3, .L080118CC @ =0x000034DC
     adds r0, r7, r3
     bl __18Unk_Actor_0809BFE8

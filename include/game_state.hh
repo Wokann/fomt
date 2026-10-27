@@ -15,6 +15,7 @@
 #include "npc_collection.hh"
 #include "field_item_data.hh"
 #include "actor_runtime_data.hh"
+#include "map_patch_flags.hh"
 #include "fishing_results_data.hh"
 #include "animal_festival_ranking.hh"
 #include "utility/fixed_str.hh"
@@ -117,15 +118,6 @@ struct GameStateUnknown2C1C {
 };
 typedef char GameStateUnknown2C1CSizeCheck[sizeof(GameStateUnknown2C1C) == 0x30 ? 1 : -1];
 
-extern "C" void func_0809C4E4(u32 &);
-extern "C" void func_0809C5B4(u32 & flags, u32 index);
-extern "C" void func_0809C5D0(u32 & flags, u32 index);
-struct GameStateUnknown34D8 {
-    u32 value;
-    GameStateUnknown34D8() { func_0809C4E4(value); }
-};
-typedef char GameStateUnknown34D8SizeCheck[sizeof(GameStateUnknown34D8) == 4 ? 1 : -1];
-
 // The initializer, copy constructor and save-summary reader agree on these
 // member offsets. Unknown fields keep offset names. Initialization is recovered;
 // native copying remains unresolved; destruction uses real member lifetimes.
@@ -202,7 +194,7 @@ struct GameStateSaveImage {
     // The native initializer places this member at the next word boundary.
     // The two bytes after the preceding flags are padding, not array data.
     FieldItemState field_items ALIGN(4);
-    GameStateUnknown34D8 unk_34D8;
+    MapPatchFlags map_patch_flags;
     Unk_Actor_0809BFE8 unk_34DC;
 };
 
@@ -235,7 +227,7 @@ typedef char GameStateSaveImageActorRecordsCheck[offsetof(GameStateSaveImage, ac
 typedef char GameStateSaveImageScriptedNpcControlCheck[offsetof(GameStateSaveImage, scripted_npc_control) == 0x34C4 ? 1 : -1];
 typedef char GameStateSaveImageShippingBonusCheck[offsetof(GameStateSaveImage, shooting_star_shipping_bonus) == 0x34C5 ? 1 : -1];
 typedef char GameStateSaveImageFieldItemsCheck[offsetof(GameStateSaveImage, field_items) == 0x34C8 ? 1 : -1];
-typedef char GameStateSaveImageTailWordCheck[offsetof(GameStateSaveImage, unk_34D8) == 0x34D8 ? 1 : -1];
+typedef char GameStateSaveImageMapPatchFlagsCheck[offsetof(GameStateSaveImage, map_patch_flags) == 0x34D8 ? 1 : -1];
 typedef char GameStateSaveImageTailActorCheck[offsetof(GameStateSaveImage, unk_34DC) == 0x34DC ? 1 : -1];
 
 // The upper word records the failed write stage; these are stage IDs, not

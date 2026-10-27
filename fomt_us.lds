@@ -302,7 +302,7 @@ SECTIONS
             .text.UpdateWorldBackgroundAudio);
         src/game_world.o(.text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue
             .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78 .text.RemoveRecordPlayerAlbum
-            .text.func_0801DDCC .text.func_0801DDF8 .text.func_0801DE24 .text.func_0801DE30 .text.func_0801DE3C .text.func_0801DE48
+            .text.SetWorldMapPatchFlag .text.ClearWorldMapPatchFlag .text.func_0801DE24 .text.func_0801DE30 .text.func_0801DE3C .text.func_0801DE48
             .text.SwapRecordPlayerAlbum);
         asm/game_state.o(.text.game_scene_after_record_player_album);
         src/game_world.o(
@@ -588,17 +588,8 @@ SECTIONS
         src/actor_runtime_data.o(.text);
         /* Six cursed-tool states and their lift-method dispatchers. */
         src/cursed_tool.o(.text);
-        . = 0x9C4E4; /* US ROM 0x0809C4E4, shared word clear */
-        src/code_actor_0809C4E4.o(.text);
-        . = 0x9C4EC; /* US ROM 0x0809C4EC, shared selection helper and raw actor code */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809C4EC);
-        src/actor_state.o(.text.SelectMapFlagPatch);
-        . = 0x9C5B4; /* US ROM 0x0809C5B4, set bounded flag */
-        src/code_actor_0809C5B4.o(.text);
-        . = 0x9C5D0; /* US ROM 0x0809C5D0, clear bounded flag */
-        src/code_actor_0809C5D0.o(.text);
-        . = 0x9C5EC; /* US ROM 0x0809C5EC, clear flag word */
-        src/code_actor_0809C5EC.o(.text);
+        . = 0x9C4E4; /* Saved map patch flags and rectangle selection. */
+        src/map_patch_flags.o(.text);
         . = 0x9C5F4; /* Event-variable registrations, romance marker and packed save state. */
         src/event_state.o(.text);
         . = 0x9CD78; /* Fishing-record storage and queries. */
@@ -707,7 +698,7 @@ SECTIONS
         src/world_map.o(.text.DrawSavedWorldMap);
         src/world_map.o(.text.RefreshSavedWorldMapAppearance);
         asm/code_809E804.o(.text.game_map_after_animation_reset);
-        src/world_map.o(.text.RefreshFieldPlotTiles .text.func_080AA850 .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
+        src/world_map.o(.text.RefreshFieldPlotTiles .text.RefreshWorldMapPatch .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
         asm/code_809E804.o(.text.game_map_after_flag_updates);
         src/random.o(.text);
         src/actor_facing.o(.text.GetRelativeFacing);
@@ -1324,7 +1315,7 @@ SECTIONS
         src/animal.o(.rodata);
         . = ABSOLUTE(0x08103660); src/livestock_day_update_data.o(.rodata);
         . = ABSOLUTE(0x081036C0); src/cursed_tool.o(.rodata);
-        src/actor_state.o(.rodata);
+        src/map_patch_flags.o(.rodata);
         /* Fishing-record regional data: names, lookup, trailer. */
         . = ABSOLUTE(0x08103788); src/fishing_results_data.o(.rodata);
         FILL(0x00);

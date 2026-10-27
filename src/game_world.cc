@@ -12,7 +12,7 @@
 #include "field_render_rect_descriptors.hh"
 #include "field_render_farm_house_data.hh"
 #include "field_render_resource_data.hh"
-#include "actor_state.hh"
+#include "map_patch_flags.hh"
 #include "entity_actor.hh"
 #include "npc_entity.hh"
 #include "entity_ui.hh"
@@ -650,16 +650,16 @@ EC MaryItemArticleId RemoveRecordPlayerAlbum(GameSceneWorldPrefix & world)
     return static_cast<MaryItemArticleId>(album.GetArticle().GetId());
 }
 
-EC void func_0801DDCC(GameSceneWorldPrefix & world, u32 index)
+EC void SetWorldMapPatchFlag(GameSceneWorldPrefix & world, u32 index)
 {
-    func_0809C5B4(world.save->unk_34D8.value, index);
-    func_080AA850(static_cast<GameSceneSavedMapPrefix *>(world.data.map.value), index);
+    world.save->map_patch_flags.Set(index);
+    RefreshWorldMapPatch(static_cast<GameSceneSavedMapPrefix *>(world.data.map.value), index);
 }
 
-EC void func_0801DDF8(GameSceneWorldPrefix & world, u32 index)
+EC void ClearWorldMapPatchFlag(GameSceneWorldPrefix & world, u32 index)
 {
-    func_0809C5D0(world.save->unk_34D8.value, index);
-    func_080AA850(static_cast<GameSceneSavedMapPrefix *>(world.data.map.value), index);
+    world.save->map_patch_flags.Clear(index);
+    RefreshWorldMapPatch(static_cast<GameSceneSavedMapPrefix *>(world.data.map.value), index);
 }
 
 EC void func_0801DE24(GameSceneWorldPrefix & world, u32 unk)

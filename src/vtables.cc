@@ -661,8 +661,8 @@ extern void func_0801DE30(void);
 extern void func_0801DE3C(void);
 extern void func_0801DE48(void);
 extern void func_0801DEB4(void);
-extern void func_0801DDCC(void);
-extern void func_0801DDF8(void);
+extern void SetWorldMapPatchFlag(void);
+extern void ClearWorldMapPatchFlag(void);
 extern void CollectDailyShippingRevenue(void);
 extern void func_0801DC24(void);
 extern void func_0801DCA8(void);
@@ -1135,8 +1135,8 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801DE3C,
     func_0801DE48,
     func_0801DEB4,
-    func_0801DDCC,
-    func_0801DDF8,
+    SetWorldMapPatchFlag,
+    ClearWorldMapPatchFlag,
     CollectDailyShippingRevenue,
     func_0801DC24,
     func_0801DCA8,

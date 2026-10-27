@@ -12,7 +12,7 @@
 #include "field_render_rect_descriptors.hh"
 #include "field_render_farm_house_data.hh"
 #include "field_render_resource_data.hh"
-#include "actor_state.hh"
+#include "map_patch_flags.hh"
 #include "entity_actor.hh"
 #include "npc_entity.hh"
 #include "entity_ui.hh"

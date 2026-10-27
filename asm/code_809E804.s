@@ -7069,33 +7069,33 @@ func_080A6098: @ 0x080A6098
 .Ljp_080A69A8:
 	mov r0, r8
 	movs r1, #0
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .Ljp_080A746E
 .Ljp_080A69B4:
 	mov r0, r8
 	movs r1, #1
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .Ljp_080A746E
 .Ljp_080A69C0:
 	mov r0, r8
 	movs r1, #2
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	mov r0, r8
 	movs r1, #3
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .Ljp_080A746E
 .Ljp_080A69D4:
 	mov r0, r8
 	movs r1, #6
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	mov r0, r8
 	movs r1, #7
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .Ljp_080A746E
 .Ljp_080A69E8:
 	mov r0, r8
 	movs r1, #8
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .Ljp_080A746E
 .Ljp_080A69F4:
 	mov r3, sb
@@ -7143,10 +7143,10 @@ func_080A6098: @ 0x080A6098
 .Ljp_080A6A4A:
 	mov r0, r8
 	movs r1, #4
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	mov r0, r8
 	movs r1, #5
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .Ljp_080A746E
 	.align 2, 0
 .Ljp_080A6A60: .4byte 0x00002186
@@ -7233,15 +7233,15 @@ func_080A6098: @ 0x080A6098
 .Ljp_080A6B0C:
 	mov r0, r8
 	movs r1, #0xa
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	mov r0, r8
 	movs r1, #0xb
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .Ljp_080A746E
 .Ljp_080A6B20:
 	mov r0, r8
 	movs r1, #9
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	mov r1, sb
 	ldr r0, [r1]
 	ldr r2, .Ljp_080A6B40 @ =0x00001C38
@@ -8118,7 +8118,7 @@ func_080A6098: @ 0x080A6098
 .Ljp_080A723A:
 	mov r0, r8
 	movs r1, #0xc
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	b .Ljp_080A746E
 	.align 2, 0
 .Ljp_080A7244: .4byte gFieldRenderRectDescriptors + 0x90
@@ -83766,33 +83766,33 @@ func_080A6660: @ 0x080A6660
 .L080A69A8:
 	mov r0, r8
 	movs r1, #0
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .L080A746E
 .L080A69B4:
 	mov r0, r8
 	movs r1, #1
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .L080A746E
 .L080A69C0:
 	mov r0, r8
 	movs r1, #2
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	mov r0, r8
 	movs r1, #3
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .L080A746E
 .L080A69D4:
 	mov r0, r8
 	movs r1, #6
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	mov r0, r8
 	movs r1, #7
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .L080A746E
 .L080A69E8:
 	mov r0, r8
 	movs r1, #8
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .L080A746E
 .L080A69F4:
 	mov r3, sb
@@ -83840,10 +83840,10 @@ func_080A6660: @ 0x080A6660
 .L080A6A4A:
 	mov r0, r8
 	movs r1, #4
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	mov r0, r8
 	movs r1, #5
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .L080A746E
 	.align 2, 0
 .L080A6A60: .4byte 0x00002186
@@ -83930,15 +83930,15 @@ func_080A6660: @ 0x080A6660
 .L080A6B0C:
 	mov r0, r8
 	movs r1, #0xa
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	mov r0, r8
 	movs r1, #0xb
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	bl .L080A746E
 .L080A6B20:
 	mov r0, r8
 	movs r1, #9
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	mov r1, sb
 	ldr r0, [r1]
 	ldr r2, .L080A6B40 @ =0x00001C38
@@ -84815,7 +84815,7 @@ func_080A6660: @ 0x080A6660
 .L080A723A:
 	mov r0, r8
 	movs r1, #0xc
-	bl func_080AA850
+	bl RefreshWorldMapPatch
 	b .L080A746E
 	.align 2, 0
 .L080A7244: .4byte gFieldRenderRectDescriptors + 0x90
