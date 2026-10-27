@@ -2,6 +2,7 @@
 #define ENTITY_UI_HH
 
 #include "entity.hh"
+#include "world_weather.hh"
 #include "actor_behavior.hh"
 #include "harvest_sprite.hh"
 
@@ -169,7 +170,7 @@ extern "C" u16 const gUnk_080F16C2[];
 extern "C" i16 const gUnk_080F16D2[];
 extern "C" u8 const gUnk_080F18D2[];
 extern "C" u8 const gUnk_080F1904[];
-extern "C" u32 const gUnk_080F1948[];
+extern "C" WorldWeatherMotion const gWorldWeatherParticleMotion[2][2];
 
 // These runtime literals are physically interleaved with the native tables
 // above, so their declarations belong to this one UI module as well.

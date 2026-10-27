@@ -762,11 +762,6 @@ EC IndexedResourceArchive * GetWorldActorAnimationArchive(GameSceneWorldPrefix &
     return &world.data.actor_archive;
 }
 
-EC void func_0801FC78(GameSceneWorldPrefix & world)
-{
-    world.unk_107C = nullptr;
-}
-
 EC GameSceneWorldMap * func_0801FC9C(GameSceneWorldPrefix & world)
 {
     return world.data.map.value;

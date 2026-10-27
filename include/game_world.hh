@@ -3,6 +3,7 @@
 
 #include "prelude.h"
 #include "world_runtime.hh"
+#include "world_weather.hh"
 #include "entity_actor.hh"
 #include "hardware_resource.hh"
 #include "hardware_state_clear.hh"
@@ -70,7 +71,7 @@ struct GameSceneWorldPrefix : GameObject {
     SmartPtr<GameSceneIndexedSprite> unk_1070;
     SmartPtr<GameSceneIndexedSprite> unk_1074;
     SmartPtr<GameSceneIndexedSprite> unk_1078;
-    GameSceneWorldUnkOwner unk_107C;
+    SmartPtr<GameSceneWeatherEffect> weather_effect;
     GameSceneWorldUnk1080Entry unk_1080[4];
     // The enclosing native object continues beyond the previously verified
     // prefix. Do not infer the layout of these intervening bytes yet.
@@ -147,8 +148,8 @@ typedef char GameSceneWorldEntitiesCheck[offsetof(GameSceneWorldPrefix, data.ent
 typedef char GameSceneWorldPaletteCacheCheck[offsetof(GameSceneWorldPrefix, data.palette_cache) == 0x19C ? 1 : -1];
 typedef char GameSceneWorldActorArchiveCheck[offsetof(GameSceneWorldPrefix, data.actor_archive) == 0xDB4 ? 1 : -1];
 typedef char GameSceneWorldUnknownObjectCheck[offsetof(GameSceneWorldPrefix, data.unk_1020) == 0x1024 ? 1 : -1];
-typedef char GameSceneWorldUnkOwnerSizeCheck[sizeof(GameSceneWorldUnkOwner) == 4 ? 1 : -1];
-typedef char GameSceneWorldUnkOwnerCheck[offsetof(GameSceneWorldPrefix, unk_107C) == 0x107C ? 1 : -1];
+typedef char GameSceneWorldWeatherOwnerSizeCheck[sizeof(SmartPtr<GameSceneWeatherEffect>) == 4 ? 1 : -1];
+typedef char GameSceneWorldWeatherOwnerCheck[offsetof(GameSceneWorldPrefix, weather_effect) == 0x107C ? 1 : -1];
 typedef char GameSceneWorldSaveCheck[offsetof(GameSceneWorldPrefix, save) == 0x1038 ? 1 : -1];
 typedef char GameSceneWorldSuspensionCheck[offsetof(GameSceneWorldPrefix, updates_suspended) == 0x103C ? 1 : -1];
 typedef char GameSceneWorldCalendarCheck[offsetof(GameSceneWorldPrefix, calendar) == 0x1040 ? 1 : -1];
@@ -228,7 +229,6 @@ IndexedResourceArchive * func_0801FC48(GameSceneWorldPrefix & world);
 IndexedResourceArchive * func_0801FC54(GameSceneWorldPrefix & world);
 IndexedResourceArchive * func_0801FC60(GameSceneWorldPrefix & world);
 IndexedResourceArchive * GetWorldActorAnimationArchive(GameSceneWorldPrefix & world);
-void func_0801FC78(GameSceneWorldPrefix & world);
 GameSceneWorldMap * func_0801FC9C(GameSceneWorldPrefix & world);
 GameSceneWorldMap * func_0801FCA0(GameSceneWorldPrefix & world);
 void * func_0801FD30(GameSceneWorldPrefix & world);

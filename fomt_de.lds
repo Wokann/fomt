@@ -324,8 +324,9 @@ SECTIONS
             .text.func_0801FC48
             .text.func_0801FC54
             .text.func_0801FC60
-            .text.GetWorldActorAnimationArchive
-            .text.func_0801FC78
+            .text.GetWorldActorAnimationArchive);
+        src/world_weather.o(.text.ClearWorldWeatherEffect);
+        src/game_world.o(
             .text.func_0801FC9C
             .text.func_0801FCA0
             .text.GetWorldClock);
@@ -412,6 +413,10 @@ SECTIONS
         asm/code_0803A8A4.o(.text.world_sprite_groups_constructor);
         src/world_runtime.o(.text._._21GameSceneWorldUnk1020);
         asm/code_0803A8A4.o(.text.world_sprite_groups_after_destructor);
+        src/world_weather.o(.text.UpdateParticles__22GameSceneWeatherEffect);
+        asm/code_0803A8A4.o(.text.world_weather_after_update);
+        src/world_weather.o(.text.__20WorldWeatherParticleRC21IndexedResourceHandleii);
+        asm/code_0803A8A4.o(.text.world_weather_after_particle_ctor);
         . = 0x3BCF8; /* DE ROM 0x0803BCF8, set a u16 pair. */
         src/code_0803BDE4.o(.text);
         . = 0x3BD10; /* DE ROM 0x0803BD10, remaining raw control code. */

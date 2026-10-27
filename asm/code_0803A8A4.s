@@ -404,9 +404,9 @@ func_0803AE58:
     bx	r0
 .Ljp_0803AC30:
     .4byte SubmitWorldSpriteRecords
-    .global func_0803AEA0
+    .global __22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi
     .thumb_func
-func_0803AEA0:
+__22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -629,7 +629,7 @@ func_0803AEA0:
     mov	r1, sp
     ldr	r2, [sp, #92]	@ 0x5c
     mov	r3, r9
-    bl func_0803B454
+    bl __20WorldWeatherParticleRC21IndexedResourceHandleii
     adds	r2, r6, #0
     adds	r2, #232	@ 0xe8
     ldr	r1, [r2, #0]
@@ -670,9 +670,9 @@ func_0803AEA0:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    .global func_0803B0A8
+    .global _._22GameSceneWeatherEffect
     .thumb_func
-func_0803B0A8:
+_._22GameSceneWeatherEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -950,109 +950,7 @@ func_0803AEBC:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803B03C
-    .thumb_func
-func_0803B03C:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #12
-    adds	r4, r0, #0
-    adds	r0, #228	@ 0xe4
-    ldrb	r2, [r0, #0]
-    lsls	r1, r2, #4
-    ldr r0, .Ljp_0803B06C
-    adds	r1, r1, r0
-    mov	sl, r1
-    movs	r7, #0
-    movs	r0, #0
-    mov	r8, r0
-    cmp	r2, #0
-    beq .Ljp_0803B064
-    cmp	r2, #1
-    beq .Ljp_0803B070
-.Ljp_0803B064:
-    movs	r1, #2
-    str	r1, [sp, #0]
-    b .Ljp_0803B074
-    .align 2, 0
-.Ljp_0803B06C:
-    .4byte gUnk_080F1948
-.Ljp_0803B070:
-    movs	r0, #3
-    str	r0, [sp, #0]
-.Ljp_0803B074:
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #24]
-    bl _call_via_r1
-    str	r0, [sp, #4]
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #28]
-    bl _call_via_r1
-    str	r0, [sp, #8]
-    adds	r0, r4, #0
-    adds	r0, #232	@ 0xe8
-    ldr	r0, [r0, #0]
-    mov	r9, r0
-    movs	r6, #0
-    cmp	r6, r9
-    bcs .Ljp_0803B0EA
-    adds	r4, #236	@ 0xec
-    lsls	r0, r7, #3
-    mov	r1, sl
-    adds	r5, r0, r1
-.Ljp_0803B0A2:
-    adds	r0, r4, #0
-    bl UpdateIndexedResourceHandle
-    lsls	r0, r0, #29
-    cmp	r0, #0
-    bge .Ljp_0803B0B8
-    adds	r0, r4, #0
-    ldr	r1, [sp, #4]
-    ldr	r2, [sp, #8]
-    bl .Ljp_0803B208
-.Ljp_0803B0B8:
-    movs	r0, #1
-    add	r8, r0
-    ldr	r1, [sp, #0]
-    cmp	r8, r1
-    bcc .Ljp_0803B0D2
-    adds	r5, #8
-    adds	r7, #1
-    cmp	r7, #1
-    bls .Ljp_0803B0CE
-    mov	r5, sl
-    movs	r7, #0
-.Ljp_0803B0CE:
-    movs	r0, #0
-    mov	r8, r0
-.Ljp_0803B0D2:
-    ldr	r0, [r4, #20]
-    ldr	r1, [r5, #0]
-    adds	r0, r0, r1
-    str	r0, [r4, #20]
-    ldr	r0, [r4, #24]
-    ldr	r1, [r5, #4]
-    adds	r0, r0, r1
-    str	r0, [r4, #24]
-    adds	r4, #28
-    adds	r6, #1
-    cmp	r6, r9
-    bcc .Ljp_0803B0A2
-.Ljp_0803B0EA:
-    add	sp, #12
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
+    .section .text.world_weather_after_update, "ax", %progbits
     .global func_0803B0FC
     .thumb_func
 func_0803B0FC:
@@ -1175,25 +1073,10 @@ func_0803B0FC:
     .align 2, 0
 .Ljp_0803B1E4:
     .4byte SubmitWorldSpriteRecords
-    .global func_0803B454
+    .section .text.world_weather_after_particle_ctor, "ax", %progbits
+    .global ResetPosition__20WorldWeatherParticleii
     .thumb_func
-func_0803B454:
-    push	{r4, r5, r6, r7, lr}
-    adds	r4, r0, #0
-    ldmia	r1!, {r5, r6, r7}
-    stmia	r0!, {r5, r6, r7}
-    ldmia	r1!, {r5, r6}
-    stmia	r0!, {r5, r6}
-    adds	r0, r4, #0
-    adds	r1, r2, #0
-    adds	r2, r3, #0
-    bl .Ljp_0803B208
-    adds	r0, r4, #0
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Ljp_0803B208:
+ResetPosition__20WorldWeatherParticleii:
     push	{r4, r5, r6, lr}
     adds	r6, r0, #0
     adds	r4, r1, #0
@@ -6946,9 +6829,9 @@ func_0803AE58:
     bx	r0
 .Leu_0803AEB0:
     .4byte SubmitWorldSpriteRecords
-    .global func_0803AEA0
+    .global __22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi
     .thumb_func
-func_0803AEA0:
+__22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -7171,7 +7054,7 @@ func_0803AEA0:
     mov	r1, sp
     ldr	r2, [sp, #92]	@ 0x5c
     mov	r3, r9
-    bl func_0803B454
+    bl __20WorldWeatherParticleRC21IndexedResourceHandleii
     adds	r2, r6, #0
     adds	r2, #232	@ 0xe8
     ldr	r1, [r2, #0]
@@ -7212,9 +7095,9 @@ func_0803AEA0:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    .global func_0803B0A8
+    .global _._22GameSceneWeatherEffect
     .thumb_func
-func_0803B0A8:
+_._22GameSceneWeatherEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -7492,109 +7375,7 @@ func_0803B128:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803B2A8
-    .thumb_func
-func_0803B2A8:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #12
-    adds	r4, r0, #0
-    adds	r0, #228	@ 0xe4
-    ldrb	r2, [r0, #0]
-    lsls	r1, r2, #4
-    ldr r0, .Leu_0803B2EC
-    adds	r1, r1, r0
-    mov	sl, r1
-    movs	r7, #0
-    movs	r0, #0
-    mov	r8, r0
-    cmp	r2, #0
-    beq .Leu_0803B2E4
-    cmp	r2, #1
-    beq .Leu_0803B2F0
-.Leu_0803B2E4:
-    movs	r1, #2
-    str	r1, [sp, #0]
-    b .Leu_0803B2F4
-    .align 2, 0
-.Leu_0803B2EC:
-    .4byte gUnk_080F1948
-.Leu_0803B2F0:
-    movs	r0, #3
-    str	r0, [sp, #0]
-.Leu_0803B2F4:
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #24]
-    bl _call_via_r1
-    str	r0, [sp, #4]
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #28]
-    bl _call_via_r1
-    str	r0, [sp, #8]
-    adds	r0, r4, #0
-    adds	r0, #232	@ 0xe8
-    ldr	r0, [r0, #0]
-    mov	r9, r0
-    movs	r6, #0
-    cmp	r6, r9
-    bcs .Leu_0803B36A
-    adds	r4, #236	@ 0xec
-    lsls	r0, r7, #3
-    mov	r1, sl
-    adds	r5, r0, r1
-.Leu_0803B322:
-    adds	r0, r4, #0
-    bl UpdateIndexedResourceHandle
-    lsls	r0, r0, #29
-    cmp	r0, #0
-    bge .Leu_0803B338
-    adds	r0, r4, #0
-    ldr	r1, [sp, #4]
-    ldr	r2, [sp, #8]
-    bl func_0803B474
-.Leu_0803B338:
-    movs	r0, #1
-    add	r8, r0
-    ldr	r1, [sp, #0]
-    cmp	r8, r1
-    bcc .Leu_0803B352
-    adds	r5, #8
-    adds	r7, #1
-    cmp	r7, #1
-    bls .Leu_0803B34E
-    mov	r5, sl
-    movs	r7, #0
-.Leu_0803B34E:
-    movs	r0, #0
-    mov	r8, r0
-.Leu_0803B352:
-    ldr	r0, [r4, #20]
-    ldr	r1, [r5, #0]
-    adds	r0, r0, r1
-    str	r0, [r4, #20]
-    ldr	r0, [r4, #24]
-    ldr	r1, [r5, #4]
-    adds	r0, r0, r1
-    str	r0, [r4, #24]
-    adds	r4, #28
-    adds	r6, #1
-    cmp	r6, r9
-    bcc .Leu_0803B322
-.Leu_0803B36A:
-    add	sp, #12
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
+    .section .text.world_weather_after_update, "ax", %progbits
     .global func_0803B368
     .thumb_func
 func_0803B368:
@@ -7717,27 +7498,10 @@ func_0803B368:
     .align 2, 0
 .Leu_0803B464:
     .4byte SubmitWorldSpriteRecords
-    .global func_0803B454
+    .section .text.world_weather_after_particle_ctor, "ax", %progbits
+    .global ResetPosition__20WorldWeatherParticleii
     .thumb_func
-func_0803B454:
-    push	{r4, r5, r6, r7, lr}
-    adds	r4, r0, #0
-    ldmia	r1!, {r5, r6, r7}
-    stmia	r0!, {r5, r6, r7}
-    ldmia	r1!, {r5, r6}
-    stmia	r0!, {r5, r6}
-    adds	r0, r4, #0
-    adds	r1, r2, #0
-    adds	r2, r3, #0
-    bl func_0803B474
-    adds	r0, r4, #0
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-    .global func_0803B474
-    .thumb_func
-func_0803B474:
+ResetPosition__20WorldWeatherParticleii:
     push	{r4, r5, r6, lr}
     adds	r6, r0, #0
     adds	r4, r1, #0
@@ -13525,9 +13289,9 @@ func_0803AE58:
     bx	r0
 .Lde_0803ADB0:
     .4byte SubmitWorldSpriteRecords
-    .global func_0803AEA0
+    .global __22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi
     .thumb_func
-func_0803AEA0:
+__22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -13750,7 +13514,7 @@ func_0803AEA0:
     mov	r1, sp
     ldr	r2, [sp, #92]	@ 0x5c
     mov	r3, r9
-    bl func_0803B454
+    bl __20WorldWeatherParticleRC21IndexedResourceHandleii
     adds	r2, r6, #0
     adds	r2, #232	@ 0xe8
     ldr	r1, [r2, #0]
@@ -13791,9 +13555,9 @@ func_0803AEA0:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    .global func_0803B0A8
+    .global _._22GameSceneWeatherEffect
     .thumb_func
-func_0803B0A8:
+_._22GameSceneWeatherEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -14071,109 +13835,7 @@ func_0803B128:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803B2A8
-    .thumb_func
-func_0803B2A8:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #12
-    adds	r4, r0, #0
-    adds	r0, #228	@ 0xe4
-    ldrb	r2, [r0, #0]
-    lsls	r1, r2, #4
-    ldr r0, .Lde_0803B1EC
-    adds	r1, r1, r0
-    mov	sl, r1
-    movs	r7, #0
-    movs	r0, #0
-    mov	r8, r0
-    cmp	r2, #0
-    beq .Lde_0803B1E4
-    cmp	r2, #1
-    beq .Lde_0803B1F0
-.Lde_0803B1E4:
-    movs	r1, #2
-    str	r1, [sp, #0]
-    b .Lde_0803B1F4
-    .align 2, 0
-.Lde_0803B1EC:
-    .4byte gUnk_080F1948
-.Lde_0803B1F0:
-    movs	r0, #3
-    str	r0, [sp, #0]
-.Lde_0803B1F4:
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #24]
-    bl _call_via_r1
-    str	r0, [sp, #4]
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #28]
-    bl _call_via_r1
-    str	r0, [sp, #8]
-    adds	r0, r4, #0
-    adds	r0, #232	@ 0xe8
-    ldr	r0, [r0, #0]
-    mov	r9, r0
-    movs	r6, #0
-    cmp	r6, r9
-    bcs .Lde_0803B26A
-    adds	r4, #236	@ 0xec
-    lsls	r0, r7, #3
-    mov	r1, sl
-    adds	r5, r0, r1
-.Lde_0803B222:
-    adds	r0, r4, #0
-    bl UpdateIndexedResourceHandle
-    lsls	r0, r0, #29
-    cmp	r0, #0
-    bge .Lde_0803B238
-    adds	r0, r4, #0
-    ldr	r1, [sp, #4]
-    ldr	r2, [sp, #8]
-    bl func_0803B474
-.Lde_0803B238:
-    movs	r0, #1
-    add	r8, r0
-    ldr	r1, [sp, #0]
-    cmp	r8, r1
-    bcc .Lde_0803B252
-    adds	r5, #8
-    adds	r7, #1
-    cmp	r7, #1
-    bls .Lde_0803B24E
-    mov	r5, sl
-    movs	r7, #0
-.Lde_0803B24E:
-    movs	r0, #0
-    mov	r8, r0
-.Lde_0803B252:
-    ldr	r0, [r4, #20]
-    ldr	r1, [r5, #0]
-    adds	r0, r0, r1
-    str	r0, [r4, #20]
-    ldr	r0, [r4, #24]
-    ldr	r1, [r5, #4]
-    adds	r0, r0, r1
-    str	r0, [r4, #24]
-    adds	r4, #28
-    adds	r6, #1
-    cmp	r6, r9
-    bcc .Lde_0803B222
-.Lde_0803B26A:
-    add	sp, #12
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
+    .section .text.world_weather_after_update, "ax", %progbits
     .global func_0803B368
     .thumb_func
 func_0803B368:
@@ -14296,27 +13958,10 @@ func_0803B368:
     .align 2, 0
 .Lde_0803B364:
     .4byte SubmitWorldSpriteRecords
-    .global func_0803B454
+    .section .text.world_weather_after_particle_ctor, "ax", %progbits
+    .global ResetPosition__20WorldWeatherParticleii
     .thumb_func
-func_0803B454:
-    push	{r4, r5, r6, r7, lr}
-    adds	r4, r0, #0
-    ldmia	r1!, {r5, r6, r7}
-    stmia	r0!, {r5, r6, r7}
-    ldmia	r1!, {r5, r6}
-    stmia	r0!, {r5, r6}
-    adds	r0, r4, #0
-    adds	r1, r2, #0
-    adds	r2, r3, #0
-    bl func_0803B474
-    adds	r0, r4, #0
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-    .global func_0803B474
-    .thumb_func
-func_0803B474:
+ResetPosition__20WorldWeatherParticleii:
     push	{r4, r5, r6, lr}
     adds	r6, r0, #0
     adds	r4, r1, #0
@@ -20078,9 +19723,9 @@ func_0803AE58:
     bx	r0
 .Lus_0803AE9C:
     .4byte SubmitWorldSpriteRecords
-    .global func_0803AEA0
+    .global __22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi
     .thumb_func
-func_0803AEA0:
+__22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -20303,7 +19948,7 @@ func_0803AEA0:
     mov	r1, sp
     ldr	r2, [sp, #92]	@ 0x5c
     mov	r3, r9
-    bl func_0803B454
+    bl __20WorldWeatherParticleRC21IndexedResourceHandleii
     adds	r2, r6, #0
     adds	r2, #232	@ 0xe8
     ldr	r1, [r2, #0]
@@ -20344,9 +19989,9 @@ func_0803AEA0:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    .global func_0803B0A8
+    .global _._22GameSceneWeatherEffect
     .thumb_func
-func_0803B0A8:
+_._22GameSceneWeatherEffect:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -20624,109 +20269,7 @@ func_0803B128:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803B2A8
-    .thumb_func
-func_0803B2A8:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #12
-    adds	r4, r0, #0
-    adds	r0, #228	@ 0xe4
-    ldrb	r2, [r0, #0]
-    lsls	r1, r2, #4
-    ldr r0, .Lus_0803B2D8
-    adds	r1, r1, r0
-    mov	sl, r1
-    movs	r7, #0
-    movs	r0, #0
-    mov	r8, r0
-    cmp	r2, #0
-    beq .Lus_0803B2D0
-    cmp	r2, #1
-    beq .Lus_0803B2DC
-.Lus_0803B2D0:
-    movs	r1, #2
-    str	r1, [sp, #0]
-    b .Lus_0803B2E0
-    .align 2, 0
-.Lus_0803B2D8:
-    .4byte gUnk_080F1948
-.Lus_0803B2DC:
-    movs	r0, #3
-    str	r0, [sp, #0]
-.Lus_0803B2E0:
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #24]
-    bl _call_via_r1
-    str	r0, [sp, #4]
-    ldr	r0, [r4, #0]
-    ldr	r1, [r0, #0]
-    ldr	r1, [r1, #28]
-    bl _call_via_r1
-    str	r0, [sp, #8]
-    adds	r0, r4, #0
-    adds	r0, #232	@ 0xe8
-    ldr	r0, [r0, #0]
-    mov	r9, r0
-    movs	r6, #0
-    cmp	r6, r9
-    bcs .Lus_0803B356
-    adds	r4, #236	@ 0xec
-    lsls	r0, r7, #3
-    mov	r1, sl
-    adds	r5, r0, r1
-.Lus_0803B30E:
-    adds	r0, r4, #0
-    bl UpdateIndexedResourceHandle
-    lsls	r0, r0, #29
-    cmp	r0, #0
-    bge .Lus_0803B324
-    adds	r0, r4, #0
-    ldr	r1, [sp, #4]
-    ldr	r2, [sp, #8]
-    bl func_0803B474
-.Lus_0803B324:
-    movs	r0, #1
-    add	r8, r0
-    ldr	r1, [sp, #0]
-    cmp	r8, r1
-    bcc .Lus_0803B33E
-    adds	r5, #8
-    adds	r7, #1
-    cmp	r7, #1
-    bls .Lus_0803B33A
-    mov	r5, sl
-    movs	r7, #0
-.Lus_0803B33A:
-    movs	r0, #0
-    mov	r8, r0
-.Lus_0803B33E:
-    ldr	r0, [r4, #20]
-    ldr	r1, [r5, #0]
-    adds	r0, r0, r1
-    str	r0, [r4, #20]
-    ldr	r0, [r4, #24]
-    ldr	r1, [r5, #4]
-    adds	r0, r0, r1
-    str	r0, [r4, #24]
-    adds	r4, #28
-    adds	r6, #1
-    cmp	r6, r9
-    bcc .Lus_0803B30E
-.Lus_0803B356:
-    add	sp, #12
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
+    .section .text.world_weather_after_update, "ax", %progbits
     .global func_0803B368
     .thumb_func
 func_0803B368:
@@ -20849,27 +20392,10 @@ func_0803B368:
     .align 2, 0
 .Lus_0803B450:
     .4byte SubmitWorldSpriteRecords
-    .global func_0803B454
+    .section .text.world_weather_after_particle_ctor, "ax", %progbits
+    .global ResetPosition__20WorldWeatherParticleii
     .thumb_func
-func_0803B454:
-    push	{r4, r5, r6, r7, lr}
-    adds	r4, r0, #0
-    ldmia	r1!, {r5, r6, r7}
-    stmia	r0!, {r5, r6, r7}
-    ldmia	r1!, {r5, r6}
-    stmia	r0!, {r5, r6}
-    adds	r0, r4, #0
-    adds	r1, r2, #0
-    adds	r2, r3, #0
-    bl func_0803B474
-    adds	r0, r4, #0
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-    .global func_0803B474
-    .thumb_func
-func_0803B474:
+ResetPosition__20WorldWeatherParticleii:
     push	{r4, r5, r6, lr}
     adds	r6, r0, #0
     adds	r4, r1, #0

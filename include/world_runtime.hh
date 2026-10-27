@@ -52,22 +52,6 @@ typedef char GameScenePaletteCacheSlotsCheck[offsetof(GameScenePaletteCache,slot
 typedef char GameScenePaletteCacheCountCheck[offsetof(GameScenePaletteCache,used_slots) == 0xC14 ? 1 : -1];
 typedef char GameScenePaletteCacheSizeCheck[sizeof(GameScenePaletteCache) == 0xC18 ? 1 : -1];
 
-EC void func_0803B0A8(void * object, int flags);
-
-// The concrete pointee is still native; preserve its direct destruction ABI.
-struct GameSceneWorldUnkOwner {
-    void * value;
-    GameSceneWorldUnkOwner & operator=(void * next)
-    {
-        if (next != value) {
-            if (value != nullptr)
-                func_0803B0A8(value, 3);
-        }
-        value = next;
-        return *this;
-    }
-};
-
 // This one-word owner is passed by value to the native data constructor.
 // Transfer clears the source slot; destruction uses the map's real virtual ABI.
 struct GameSceneWorldMapOwner {

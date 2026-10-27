@@ -458,9 +458,10 @@ extern "C" u8 const gUnk_080F1904[] = {
 
 #include FOMT_TEXT_INCLUDE(entity_ui_9.cc)
 
-extern "C" u32 const gUnk_080F1948[] = {
-    0xFFFFCCCD, 0x00010000, 0x00003333, 0x00010000,
-    0xFFFFCCCD, 0x00040000, 0x0000CCCC, 0x00040000,
+// Q16.16 particle steps: two alternating directions for snow and rain.
+extern "C" WorldWeatherMotion const gWorldWeatherParticleMotion[2][2] = {
+    { { -0x3333, 0x10000 }, { 0x3333, 0x10000 } },
+    { { -0x3333, 0x40000 }, { 0xCCCC, 0x40000 } },
 };
 
 #include FOMT_TEXT_INCLUDE(entity_ui_10.cc)
