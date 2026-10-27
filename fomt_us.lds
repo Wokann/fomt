@@ -185,11 +185,13 @@ SECTIONS
         src/scene_audio.o(
             .text.PlayBGM__9GameScene* .text.StopBGM__9GameScene
             .text.PlaySong__9GameScene* .text.StopAllSongs__9GameScene);
-        asm/game_state.o(.text.game_scene_entity_commands_after);
+        asm/scene_dialogue.o(.text);
+        src/scene_dialogue.o(.text.Talk*__9GameScene*);
+        src/game_scene.o(.text.FadeScreen__9GameScene*);
+        src/scene_dialogue.o(.text.TextVariable*__9GameScene*);
         src/game_scene.o(
-            .text.Talk*__9GameScene* .text.FadeScreen__9GameScene*
-            .text.TextVariable*__9GameScene* .text.CallScript__9GameScene*
-            .text.QueueScript__9GameScene* .text.WaitFrames__9GameScene*);
+            .text.CallScript__9GameScene* .text.QueueScript__9GameScene*
+            .text.WaitFrames__9GameScene*);
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
         src/game_scene.o(
             .text.PrepareClockMenuTransition__9GameScene
@@ -858,6 +860,9 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080D7CFC);
         src/npc_entity.o(.text.FindScheduleEntryUpperBound);
         src/game_scene.o(.text.func_080D7F*);
+        src/scene_dialogue.o(
+            .text.HideSceneDialogueHeartIndicator .text.ClearSceneDialoguePortrait
+            .text.ClearSceneDialogueNameplate);
         src/entity_location.o(.text.RelocateEntityToMap__FP14GameSceneStateiUiiiUi);
         asm/code_linkonce.o(.text.game_scene_state_callbacks_after);
         src/game_scene.o(.text._._14GameSceneState);

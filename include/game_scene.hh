@@ -8,6 +8,7 @@
 #include "scene.hh"
 #include "entity_actor.hh"
 #include "ui_state.hh"
+#include "scene_dialogue.hh"
 #include "hardware_display_state.hh"
 #include "hardware_sprite_buffer.hh"
 #include "script_engine.hh"
@@ -875,6 +876,7 @@ struct GameScene : AScene {
     void StopBGM();
     void PlaySong(i32 mode, u32 sequence);
     void StopAllSongs();
+    void TalkOpen();
     void TalkResetUi();
     void TalkClose();
     void TalkMessage(char const * text, u32 rate);
@@ -1207,9 +1209,6 @@ ScriptEngine * GetSceneScriptEngine(void);
 // Recovered state callbacks retain address names where semantics are unresolved.
 void func_080D7F08(GameSceneState * state);
 void func_080D7F3C(GameSceneState * state);
-void func_080D7F60(GameSceneState * state);
-void func_080D7F74(GameSceneState * state);
-void func_080D7F88(GameSceneState * state);
 
 // The native scene runner still owns the underlying update loop.
 SceneTransitionOwner sub_080D8178(GameSceneState * state);
