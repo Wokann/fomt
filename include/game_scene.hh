@@ -45,8 +45,8 @@ struct HardwareDmaQueue;
 struct GameSceneUiComponent {
     u32 unk_00;
     // Actual existing bootstrap lifecycle ABI; these declarations emit no code.
-    GameSceneUiComponent() asm("func_08008444");
-    virtual ~GameSceneUiComponent() asm("func_080086BC");
+    GameSceneUiComponent() asm("__17HardwareBootstrap");
+    virtual ~GameSceneUiComponent() asm("_._17HardwareBootstrap");
 };
 
 struct GameSceneUiComponentOwner {

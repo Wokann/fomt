@@ -34,7 +34,7 @@ static inline bool NameInputBlendIsQueued(HardwareBlendObject const & blend)
 NewGameNameInputCore * InitializeNameInputCore(NewGameNameInputCore * core,
     char const * prompt, char const * initial_name)
 {
-    func_08008444(core);
+    ConstructHardwareBootstrap(core);
     core->vtable = reinterpret_cast<void **>(
         const_cast<NewGameSceneVTableFunction *>(gNewGameNameInputCoreVTable));
     new (core->keyboard_buffers) NewGameTextTileBuffer<30>[

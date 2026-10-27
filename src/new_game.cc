@@ -130,7 +130,7 @@ static inline void SetBirthdayInputDate(GameDate & destination, Season season,
 NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore * core, GameDate birthday)
 {
     HardwareInputRepeatParameters input(30, 1);
-    func_080084DC(core, &input);
+    ConstructHardwareBootstrapWithInput(core, &input);
 #if defined(REGION_JP)
     core->vtable = reinterpret_cast<void **>(const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E7AB4));
 #else
@@ -184,7 +184,7 @@ void DestroyBirthdayInputCore(NewGameBirthdayInputCore * core, u32 flags)
     core->glyph_tiles.~HardwareStateEntry();
     if (core->ui_state != nullptr)
         delete core->ui_state;
-    func_080086BC(core, flags);
+    DestroyHardwareBootstrap(core, flags);
 }
 
 NewGameBirthdayInputScene::NewGameBirthdayInputScene(GameDate birthday)

@@ -39,12 +39,12 @@ struct HardwareBootstrap {
     struct HardwareCoreState * state;
     void ** vtable;
 #ifdef __cplusplus
-    HardwareBootstrap() asm("func_08008444");
-    HardwareBootstrap(HardwareInputRepeatParameters const & input) asm("func_080084DC");
-    HardwareBootstrap(HardwareSpriteBufferParameters const & buffer) asm("func_08008574");
+    HardwareBootstrap();
+    HardwareBootstrap(HardwareInputRepeatParameters const & input);
+    HardwareBootstrap(HardwareSpriteBufferParameters const & buffer);
     HardwareBootstrap(HardwareInputRepeatParameters const & input,
-        HardwareSpriteBufferParameters const & buffer) asm("func_08008618");
-    ~HardwareBootstrap() asm("func_080086BC");
+        HardwareSpriteBufferParameters const & buffer);
+    ~HardwareBootstrap();
 #endif
 };
 
@@ -122,13 +122,14 @@ extern struct HardwareDmaQueueCommandVTable const __vt_23HardwareDmaQueueCommand
 #endif
 
 // Direct declarations of the actual member ABI for the scene classes whose
-// complete lifecycles are still being recovered. These are not wrappers.
-extern HardwareLinkVirtualFunction const vtable_unk_080E5B00[];
-struct HardwareBootstrap * func_08008444(struct HardwareBootstrap * owner);
-struct HardwareBootstrap * func_080084DC(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input);
-struct HardwareBootstrap * func_08008574(struct HardwareBootstrap * owner, struct HardwareSpriteBufferParameters const * buffer);
-struct HardwareBootstrap * func_08008618(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input, struct HardwareSpriteBufferParameters const * buffer);
-void func_080086BC(struct HardwareBootstrap * owner, u32 flags);
+// complete lifecycles are still being recovered. Each asm label names the
+// one compiler-defined constructor/destructor; no wrapper or alias is emitted.
+extern HardwareLinkVirtualFunction const gHardwareBootstrapVTable[];
+struct HardwareBootstrap * ConstructHardwareBootstrap(struct HardwareBootstrap * owner) asm("__17HardwareBootstrap");
+struct HardwareBootstrap * ConstructHardwareBootstrapWithInput(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input) asm("__17HardwareBootstrapRC29HardwareInputRepeatParameters");
+struct HardwareBootstrap * ConstructHardwareBootstrapWithSpriteBuffer(struct HardwareBootstrap * owner, struct HardwareSpriteBufferParameters const * buffer) asm("__17HardwareBootstrapRC30HardwareSpriteBufferParameters");
+struct HardwareBootstrap * ConstructHardwareBootstrapWithInputAndSpriteBuffer(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input, struct HardwareSpriteBufferParameters const * buffer) asm("__17HardwareBootstrapRC29HardwareInputRepeatParametersRC30HardwareSpriteBufferParameters");
+void DestroyHardwareBootstrap(struct HardwareBootstrap * owner, u32 flags) asm("_._17HardwareBootstrap");
 void UpdateHardwareFrame(struct HardwareBootstrap * owner) SECTION(".text.hardware_frame_update");
 u32 RunHardwareDisplayCommand(struct HardwareDisplayCommand * command) SECTION(".text.hardware_frame_commands");
 u32 RunHardwareSpriteBufferCommand(struct HardwareSpriteBufferCommand * command) SECTION(".text.hardware_frame_commands");

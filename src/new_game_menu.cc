@@ -264,7 +264,7 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
     SceneTransition *& continuation)
 {
     HardwareSpriteBufferParameters buffers(7, 0);
-    func_08008574(core, &buffers);
+    ConstructHardwareBootstrapWithSpriteBuffer(core, &buffers);
     core->vtable = reinterpret_cast<void **>(
         const_cast<NewGameMenuVTableEntry *>(gNewGameMenuCoreVTable));
     core->current_save = save;

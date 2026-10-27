@@ -1287,7 +1287,7 @@ func_080A220C: @ 0x080A1C44
 	strh r0, [r1]
 	strh r2, [r1, #2]
 	adds r0, r7, #0
-	bl func_080084DC
+	bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
 	ldr r0, .Ljp_080A245C @ =vtable_unk_080E825C
 	str r0, [r7, #4]
 	str r4, [r7, #8]
@@ -19388,7 +19388,7 @@ func_080AD9A4:
     sub sp, #0x40
     adds r6, r0, #0
     str r1, [sp, #0x14]
-    bl func_08008444
+    bl __17HardwareBootstrap
     ldr r0, .Ljp_080ADD78 @ =vtable_unk_080E7930
     str r0, [r6, #4]
     movs r0, #2
@@ -31314,7 +31314,7 @@ func_080B3CC8: @ 0x080B36FC
 	sub sp, #0x70
 	adds r6, r0, #0
 	mov sb, r1
-	bl func_08008444
+	bl __17HardwareBootstrap
 	ldr r0, .Ljp_080B3AC4 @ =vtable_unk_080E794C
 	str r0, [r6, #4]
 	movs r0, #0
@@ -49470,7 +49470,7 @@ func_080BC938: @ 0x080BC36C
 	sub sp, #0x14
 	adds r6, r0, #0
 	mov r8, r1
-	bl func_08008444
+	bl __17HardwareBootstrap
 	ldr r0, .L080BC6AC @ =vtable_unk_080E8528
 	str r0, [r6, #4]
 	movs r0, #2
@@ -56570,7 +56570,7 @@ func_080C0D90:
     sub sp, #0x50
     adds r6, r0, #0
     str r1, [sp, #0x14]
-    bl func_08008444
+    bl __17HardwareBootstrap
     ldr r0, [pc, #0x3dc]
     str r0, [r6, #4]
     movs r0, #3
@@ -64750,7 +64750,7 @@ func_080C797C:
     sub sp, #0x58
     adds r7, r0, #0
     adds r4, r1, #0
-    bl func_08008444
+    bl __17HardwareBootstrap
     ldr r0, [pc, #0x3a0]
     str r0, [r7, #4]
     str r4, [r7, #8]
@@ -65399,7 +65399,7 @@ func_080C8360:
     .Lauto_080C7F4C:
     adds r0, r5, #0
     mov r1, sb
-    bl func_080086BC
+    bl _._17HardwareBootstrap
     pop {r3, r4}
     mov r8, r3
     mov sb, r4
@@ -77988,7 +77988,7 @@ func_080A220C: @ 0x080A220C
 	strh r0, [r1]
 	strh r2, [r1, #2]
 	adds r0, r7, #0
-	bl func_080084DC
+	bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
 	ldr r0, .L080A245C @ =vtable_unk_080E825C
 	str r0, [r7, #4]
 	str r4, [r7, #8]
@@ -96015,7 +96015,7 @@ func_080ADF6C: @ 0x080ADF6C
 	sub sp, #0x40
 	adds r6, r0, #0
 	str r1, [sp, #0x14]
-	bl func_08008444
+	bl __17HardwareBootstrap
 	ldr r0, .L080AE340 @ =vtable_unk_080E8500
 	str r0, [r6, #4]
 	movs r0, #2
@@ -107928,7 +107928,7 @@ func_080B3CC8: @ 0x080B3CC8
 	sub sp, #0x70
 	adds r6, r0, #0
 	mov sb, r1
-	bl func_08008444
+	bl __17HardwareBootstrap
 	ldr r0, .L080B4090 @ =vtable_unk_080E851C
 	str r0, [r6, #4]
 	movs r0, #0
@@ -126037,7 +126037,7 @@ func_080BC938: @ 0x080BC938
 	sub sp, #0x14
 	adds r6, r0, #0
 	mov r8, r1
-	bl func_08008444
+	bl __17HardwareBootstrap
 	ldr r0, .L080BCC78 @ =vtable_unk_080E8538
 	str r0, [r6, #4]
 	movs r0, #2
@@ -134836,7 +134836,7 @@ func_080C0DCC: @ 0x080C0DCC
 	sub sp, #0x50
 	adds r6, r0, #0
 	str r1, [sp, #0x14]
-	bl func_08008444
+	bl __17HardwareBootstrap
 	ldr r0, .L080C11C0 @ =vtable_unk_080E8554
 	str r0, [r6, #4]
 	movs r0, #3
@@ -149382,7 +149382,7 @@ func_080C7F58: @ 0x080C7F58
 	sub sp, #0x58
 	adds r7, r0, #0
 	adds r4, r1, #0
-	bl func_08008444
+	bl __17HardwareBootstrap
 	ldr r0, .L080C8310 @ =vtable_unk_080E8570
 	str r0, [r7, #4]
 	str r4, [r7, #8]
@@ -150044,7 +150044,7 @@ func_080C8360: @ 0x080C8360
 .L080C8528:
 	adds r0, r5, #0
 	mov r1, sb
-	bl func_080086BC
+	bl _._17HardwareBootstrap
 	pop {r3, r4}
 	mov r8, r3
 	mov sb, r4

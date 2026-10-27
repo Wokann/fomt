@@ -19,7 +19,7 @@ InitializeNewGameIdentityCore:
     adds r6, r1, #0
     adds r7, r2, #0
     str r3, [sp, #0x24]
-    bl func_08008444
+    bl __17HardwareBootstrap
     ldr r0, .Ljp_0800510C
     mov r1, r8
     str r0, [r1, #4]
@@ -787,7 +787,7 @@ InitializeNewGameIdentityCore: @ US 0x08004EFC; body remains native.
     adds r6, r1, #0
     mov r8, r2
     str r3, [sp, #0x24]
-    bl func_08008444
+    bl __17HardwareBootstrap
     ldr r0, .L080050A4 @ =gNewGameIdentityCoreVTable
     str r0, [r7, #4]
     movs r0, #3

@@ -23,7 +23,7 @@ IntroStorySceneCore * InitializeIntroStorySceneCore(IntroStorySceneCore * core,
     GameStateSaveImage * saved)
 {
     HardwareInputRepeatParameters input(30, 1);
-    func_080084DC(core, &input);
+    ConstructHardwareBootstrapWithInput(core, &input);
     core->vtable = reinterpret_cast<void **>(const_cast<IntroStorySceneCoreVTable *>(&gIntroStorySceneCoreVTable));
     core->saved = saved;
     core->unk_0C = 0;
@@ -51,7 +51,7 @@ void DestroyIntroStorySceneCore(IntroStorySceneCore * core, u32 flags)
     // Destroy the concrete inline context before the UI can release its references.
     core->variables.IntroStoryTextVariables::~IntroStoryTextVariables();
     delete core->ui_state;
-    func_080086BC(core, flags);
+    DestroyHardwareBootstrap(core, flags);
 }
 
 inline IntroStoryCoreOwner::IntroStoryCoreOwner(GameStateSaveImage * saved)

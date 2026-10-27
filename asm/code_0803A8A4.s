@@ -780,7 +780,7 @@ func_0803B718:
     adds	r1, r5, #0
     stmia	r1!, {r0}
     adds	r0, r1, #0
-    bl func_08008444
+    bl __17HardwareBootstrap
     adds	r0, r5, #0
     adds	r0, #12
     bl __13AScriptEngine
@@ -6549,7 +6549,7 @@ func_0803B718:
     adds	r1, r5, #0
     stmia	r1!, {r0}
     adds	r0, r1, #0
-    bl func_08008444
+    bl __17HardwareBootstrap
     adds	r0, r5, #0
     adds	r0, #12
     bl __13AScriptEngine
@@ -12353,7 +12353,7 @@ func_0803B718:
     adds	r1, r5, #0
     stmia	r1!, {r0}
     adds	r0, r1, #0
-    bl func_08008444
+    bl __17HardwareBootstrap
     adds	r0, r5, #0
     adds	r0, #12
     bl __13AScriptEngine
@@ -18131,7 +18131,7 @@ func_0803B718:
     adds	r1, r5, #0
     stmia	r1!, {r0}
     adds	r0, r1, #0
-    bl func_08008444
+    bl __17HardwareBootstrap
     adds	r0, r5, #0
     adds	r0, #12
     bl __13AScriptEngine

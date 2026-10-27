@@ -60,7 +60,7 @@ static inline void InitializeIntroSceneHardwareStateReservation(
 IntroSceneCore * ConstructIntroSceneCore(void * object)
 {
     IntroSceneCore * core = static_cast<IntroSceneCore *>(object);
-    func_08008444(reinterpret_cast<HardwareBootstrap *>(core));
+    ConstructHardwareBootstrap(reinterpret_cast<HardwareBootstrap *>(core));
     core->vtable = &vtable_unk_080E5A0C;
     func_08008B54(&core->music_players[0], 0);
     func_08008B54(&core->music_players[1], 1);
@@ -156,7 +156,7 @@ void DestroyIntroSceneCore(IntroSceneCore * core, int flags)
     core->actor_archive.IndexedResourceArchive::~IndexedResourceArchive();
     core->small_archive.IndexedResourceArchive::~IndexedResourceArchive();
     core->intro_archive.IndexedResourceArchive::~IndexedResourceArchive();
-    func_080086BC(reinterpret_cast<HardwareBootstrap *>(core), flags);
+    DestroyHardwareBootstrap(reinterpret_cast<HardwareBootstrap *>(core), flags);
 }
 
 GameIntroScene::GameIntroScene()
