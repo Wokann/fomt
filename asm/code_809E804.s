@@ -38,7 +38,7 @@ func_0809FE3C: @ 0x0809F874
     cmp r1, #0x23
     bne .Ljp_0809F89C
     adds r0, #4
-    bl GetName__5Child
+    bl GetName__C5Child
     b .Ljp_0809F8A4
 .Ljp_0809F89C:
     ldr r0, .Ljp_0809F8A8
@@ -311,7 +311,7 @@ func_080A0030: @ 0x0809FA68
 	b .L080A01F0
 .L080A00F4:
 	adds r0, r2, #0
-	bl func_080A0384
+	bl GetChild__C13NpcCollection
 	b .L080A01F0
 .L080A00FC:
 	adds r0, r2, #0
@@ -618,24 +618,7 @@ func_080A01F8: @ 0x0809FC30
 	.align 2, 0
 .L080A0318: .4byte 0x00000414
 
-    .section .text.npc_after_sprite_const_lookup, "ax", %progbits
-    .align 2, 0
-    .global func_080A0384
-    .thumb_func
-func_080A0384: @ 0x0809FDBC
-	push {lr}
-	adds r1, r0, #0
-	ldrb r0, [r1, #3]
-	lsls r0, r0, #0x1e
-	movs r2, #0
-	cmp r0, #0
-	bge .L080A0394
-	adds r2, r1, #4
-.L080A0394:
-	adds r0, r2, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.npc_after_child_const_lookup, "ax", %progbits
 
     .global func_080A039C
     .thumb_func
@@ -76713,7 +76696,7 @@ func_0809FE3C: @ 0x0809FE3C
 	cmp r1, #0x23
 	bne .L0809FE64
 	adds r0, #4
-	bl GetName__5Child
+	bl GetName__C5Child
 	b .L0809FE6C
 .L0809FE64:
 	ldr r0, .L0809FE70 @ =gCharacterNameEntries
@@ -76985,7 +76968,7 @@ func_080A0030: @ 0x080A0030
 	b .L080A01F0
 .L080A00F4:
 	adds r0, r2, #0
-	bl func_080A0384
+	bl GetChild__C13NpcCollection
 	b .L080A01F0
 .L080A00FC:
 	adds r0, r2, #0
@@ -77348,22 +77331,7 @@ func_080A031C: @ 0x080A031C
 	bx r1
 	.align 2, 0
 .L080A0380: .4byte 0x00000414
-
-	thumb_func_start func_080A0384
-func_080A0384: @ 0x080A0384
-	push {lr}
-	adds r1, r0, #0
-	ldrb r0, [r1, #3]
-	lsls r0, r0, #0x1e
-	movs r2, #0
-	cmp r0, #0
-	bge .L080A0394
-	adds r2, r1, #4
-.L080A0394:
-	adds r0, r2, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.npc_after_child_const_lookup, "ax", %progbits
 
 	thumb_func_start func_080A039C
 func_080A039C: @ 0x080A039C

@@ -3205,7 +3205,7 @@ func_0803DA7C:
     ldrb	r6, [r0, #0]
     ldr r1, .Ljp_0803D798
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -3461,7 +3461,7 @@ func_0803DCB4:
     ldr r0, .Ljp_0803D958
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     bne .Ljp_0803D93E
     b .Ljp_0803DA52
@@ -3946,7 +3946,7 @@ func_0803DC5C:
     ldrb	r6, [r0, #0]
     ldr r1, .Ljp_0803DD14
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -4306,7 +4306,7 @@ func_0803DED8:
     ldrb	r4, [r0, #0]
     ldr r1, .Ljp_0803DFA8
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r7, r1, #31
@@ -4571,7 +4571,7 @@ func_0803E114:
 .Ljp_0803E188:
     ldr r1, .Ljp_0803E1BC
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -4977,7 +4977,7 @@ func_0803E3F4:
 .Ljp_0803E468:
     ldr r1, .Ljp_0803E49C
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -9048,7 +9048,7 @@ func_0803DA7C:
     ldrb	r6, [r0, #0]
     ldr r1, .Leu_0803DB38
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -9304,7 +9304,7 @@ func_0803DCB4:
     ldr r0, .Leu_0803DCF8
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     bne .Leu_0803DCDE
     b .Leu_0803DDF2
@@ -9782,7 +9782,7 @@ func_0803DFE8:
     ldrb	r6, [r0, #0]
     ldr r1, .Leu_0803E0B4
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -10142,7 +10142,7 @@ func_0803E264:
     ldrb	r4, [r0, #0]
     ldr r1, .Leu_0803E348
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r7, r1, #31
@@ -10407,7 +10407,7 @@ func_0803E4A0:
 .Leu_0803E528:
     ldr r1, .Leu_0803E55C
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -10810,7 +10810,7 @@ func_0803E780:
 .Leu_0803E808:
     ldr r1, .Leu_0803E83C
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -14827,7 +14827,7 @@ func_0803DA7C:
     ldrb	r6, [r0, #0]
     ldr r1, .Lde_0803DA1C
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -15083,7 +15083,7 @@ func_0803DCB4:
     ldr r0, .Lde_0803DBDC
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     bne .Lde_0803DBC2
     b .Lde_0803DCD6
@@ -15561,7 +15561,7 @@ func_0803DFE8:
     ldrb	r6, [r0, #0]
     ldr r1, .Lde_0803DF98
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -15921,7 +15921,7 @@ func_0803E264:
     ldrb	r4, [r0, #0]
     ldr r1, .Lde_0803E22C
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r7, r1, #31
@@ -16186,7 +16186,7 @@ func_0803E4A0:
 .Lde_0803E40C:
     ldr r1, .Lde_0803E440
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -16589,7 +16589,7 @@ func_0803E780:
 .Lde_0803E6EC:
     ldr r1, .Lde_0803E720
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -20630,7 +20630,7 @@ func_0803DA7C:
     ldrb	r6, [r0, #0]
     ldr r1, .Lus_0803DB24
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -20886,7 +20886,7 @@ func_0803DCB4:
     ldr r0, .Lus_0803DCE4
     adds	r4, r5, r0
     adds	r0, r4, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     bne .Lus_0803DCCA
     b .Lus_0803DDDE
@@ -21364,7 +21364,7 @@ func_0803DFE8:
     ldrb	r6, [r0, #0]
     ldr r1, .Lus_0803E0A0
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -21724,7 +21724,7 @@ func_0803E264:
     ldrb	r4, [r0, #0]
     ldr r1, .Lus_0803E334
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r7, r1, #31
@@ -21989,7 +21989,7 @@ func_0803E4A0:
 .Lus_0803E514:
     ldr r1, .Lus_0803E548
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31
@@ -22392,7 +22392,7 @@ func_0803E780:
 .Lus_0803E7F4:
     ldr r1, .Lus_0803E828
     adds	r0, r5, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     negs	r1, r0
     orrs	r1, r0
     lsrs	r4, r1, #31

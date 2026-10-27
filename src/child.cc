@@ -23,9 +23,9 @@ Child::Child(GameDate const & a_birthday, ActorLocation const & location)
     can_walk = false;
 }
 
-char * Child::GetName()
+char const * Child::GetName() const
 {
-    return &name[0];
+    return name;
 }
 
 u8 Child::GetBirthdayCode() const

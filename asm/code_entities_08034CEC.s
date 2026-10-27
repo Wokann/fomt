@@ -1068,7 +1068,7 @@ func_08035C04:
     .4byte 0x0000023F
 .Ljp_080359F0:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Ljp_08035A28
     bl GetAgeDays__C5Child
@@ -1670,7 +1670,7 @@ func_08036084:
     .4byte 0x00000827
 .Ljp_08035E70:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Ljp_08035EA8
     bl GetAgeDays__C5Child
@@ -2160,7 +2160,7 @@ func_08036430:
     .4byte 0x000006A1
 .Ljp_0803621C:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Ljp_08036254
     bl GetAgeDays__C5Child
@@ -2371,7 +2371,7 @@ func_080365CC:
     .4byte 0x0000089C
 .Ljp_080363B8:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Ljp_080363F0
     bl GetAgeDays__C5Child
@@ -2806,7 +2806,7 @@ func_08036900:
     .4byte 0x000007D2
 .Ljp_080366FC:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Ljp_08036734
     bl GetAgeDays__C5Child
@@ -3491,7 +3491,7 @@ func_08036E70:
     ldr	r0, [r4, #52]	@ 0x34
     ldr r1, .Ljp_08036C34
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     adds	r6, r0, #0
     cmp	r0, #0
     beq .Ljp_08036C74
@@ -3572,7 +3572,7 @@ func_08036F0C:
     ldr	r0, [r5, #52]	@ 0x34
     ldr r1, .Ljp_08036CEC
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     adds	r4, r0, #0
     cmp	r4, #0
     beq .Ljp_08036CF0
@@ -3623,7 +3623,7 @@ func_08036F68:
     ldr	r0, [r4, #52]	@ 0x34
     ldr r1, .Ljp_08036D3C
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Ljp_08036D86
     bl GetAgeDays__C5Child
@@ -11537,7 +11537,7 @@ func_08035C04:
     .4byte 0x0000023F
 .Leu_08035C70:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Leu_08035CA8
     bl GetAgeDays__C5Child
@@ -12139,7 +12139,7 @@ func_08036084:
     .4byte 0x00000827
 .Leu_080360F0:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Leu_08036128
     bl GetAgeDays__C5Child
@@ -12629,7 +12629,7 @@ func_08036430:
     .4byte 0x000006A1
 .Leu_0803649C:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Leu_080364D4
     bl GetAgeDays__C5Child
@@ -12840,7 +12840,7 @@ func_080365CC:
     .4byte 0x0000089C
 .Leu_08036638:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Leu_08036670
     bl GetAgeDays__C5Child
@@ -13275,7 +13275,7 @@ func_08036900:
     .4byte 0x000007D2
 .Leu_0803697C:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Leu_080369B4
     bl GetAgeDays__C5Child
@@ -13960,7 +13960,7 @@ func_08036E70:
     ldr	r0, [r4, #52]	@ 0x34
     ldr r1, .Leu_08036EB4
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     adds	r6, r0, #0
     cmp	r0, #0
     beq .Leu_08036EF4
@@ -14041,7 +14041,7 @@ func_08036F0C:
     ldr	r0, [r5, #52]	@ 0x34
     ldr r1, .Leu_08036F6C
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     adds	r4, r0, #0
     cmp	r4, #0
     beq .Leu_08036F70
@@ -14092,7 +14092,7 @@ func_08036F68:
     ldr	r0, [r4, #52]	@ 0x34
     ldr r1, .Leu_08036FBC
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Leu_08037006
     bl GetAgeDays__C5Child
@@ -22262,7 +22262,7 @@ func_08035C04:
     .4byte 0x0000023F
 .Lde_08035B70:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lde_08035BA8
     bl GetAgeDays__C5Child
@@ -22864,7 +22864,7 @@ func_08036084:
     .4byte 0x00000827
 .Lde_08035FF0:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lde_08036028
     bl GetAgeDays__C5Child
@@ -23354,7 +23354,7 @@ func_08036430:
     .4byte 0x000006A1
 .Lde_0803639C:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lde_080363D4
     bl GetAgeDays__C5Child
@@ -23565,7 +23565,7 @@ func_080365CC:
     .4byte 0x0000089C
 .Lde_08036538:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lde_08036570
     bl GetAgeDays__C5Child
@@ -24000,7 +24000,7 @@ func_08036900:
     .4byte 0x000007D2
 .Lde_0803687C:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lde_080368B4
     bl GetAgeDays__C5Child
@@ -24685,7 +24685,7 @@ func_08036E70:
     ldr	r0, [r4, #52]	@ 0x34
     ldr r1, .Lde_08036DB4
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     adds	r6, r0, #0
     cmp	r0, #0
     beq .Lde_08036DF4
@@ -24766,7 +24766,7 @@ func_08036F0C:
     ldr	r0, [r5, #52]	@ 0x34
     ldr r1, .Lde_08036E6C
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     adds	r4, r0, #0
     cmp	r4, #0
     beq .Lde_08036E70
@@ -24817,7 +24817,7 @@ func_08036F68:
     ldr	r0, [r4, #52]	@ 0x34
     ldr r1, .Lde_08036EBC
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lde_08036F06
     bl GetAgeDays__C5Child
@@ -32986,7 +32986,7 @@ func_08035C04:
     .4byte 0x0000023F
 .Lus_08035C5C:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lus_08035C94
     bl GetAgeDays__C5Child
@@ -33588,7 +33588,7 @@ func_08036084:
     .4byte 0x00000827
 .Lus_080360DC:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lus_08036114
     bl GetAgeDays__C5Child
@@ -34078,7 +34078,7 @@ func_08036430:
     .4byte 0x000006A1
 .Lus_08036488:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lus_080364C0
     bl GetAgeDays__C5Child
@@ -34289,7 +34289,7 @@ func_080365CC:
     .4byte 0x0000089C
 .Lus_08036624:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lus_0803665C
     bl GetAgeDays__C5Child
@@ -34724,7 +34724,7 @@ func_08036900:
     .4byte 0x000007D2
 .Lus_08036968:
     adds	r0, r6, #0
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lus_080369A0
     bl GetAgeDays__C5Child
@@ -35409,7 +35409,7 @@ func_08036E70:
     ldr	r0, [r4, #52]	@ 0x34
     ldr r1, .Lus_08036EA0
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     adds	r6, r0, #0
     cmp	r0, #0
     beq .Lus_08036EE0
@@ -35490,7 +35490,7 @@ func_08036F0C:
     ldr	r0, [r5, #52]	@ 0x34
     ldr r1, .Lus_08036F58
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     adds	r4, r0, #0
     cmp	r4, #0
     beq .Lus_08036F5C
@@ -35541,7 +35541,7 @@ func_08036F68:
     ldr	r0, [r4, #52]	@ 0x34
     ldr r1, .Lus_08036FA8
     adds	r0, r0, r1
-    bl func_080A0384
+    bl GetChild__C13NpcCollection
     cmp	r0, #0
     beq .Lus_08036FF2
     bl GetAgeDays__C5Child

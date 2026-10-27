@@ -40,7 +40,7 @@ struct UiTextSubstitution
     bool found;
     FixedStr<31> text;
 
-    UiTextSubstitution(bool value, FixedStr<31> const & replacement)
+    UiTextSubstitution(bool const & value, FixedStr<31> const & replacement)
         : found(value), text(replacement) {}
 };
 

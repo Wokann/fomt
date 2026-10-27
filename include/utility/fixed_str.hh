@@ -14,6 +14,17 @@ struct FixedStr
 
     FixedStr(FixedStr const & other) { operator=(other); }
 
+    // A smaller bounded source already fits; larger sources retain truncation.
+    template <size_t OtherMaxLen>
+    FixedStr(FixedStr<OtherMaxLen> const & other)
+    {
+        if (OtherMaxLen <= MaxLen)
+            strcpy(m_data, static_cast<char const *>(other));
+        else
+            operator=(static_cast<char const *>(other));
+    }
+
+
     FixedStr(char const * cstr) { operator=(cstr); }
 
     FixedStr & operator=(FixedStr const & other)

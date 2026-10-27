@@ -104,6 +104,7 @@ struct NpcCollection
     bool IsMarried() const;
 
     Child * GetChild();
+    Child const * GetChild() const;
 
     // Preserve native unsigned addition and the individual field ceilings.
     // The counter meanings are not established; do not infer them from size.

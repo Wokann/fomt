@@ -25060,7 +25060,7 @@ func_0805FF14:
 	ldr r0, [r0]
 	ldr r4, .L08061B30 @ =0x00001CD4
 	adds r0, r0, r4
-	bl func_080A0384
+	bl GetChild__C13NpcCollection
 	str r0, [sp, #0x1dc]
 	cmp r0, #0
 	bne .L08061ABC
@@ -25283,7 +25283,7 @@ func_0805FF14:
 	movs r2, #0
 	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0x1dc]
-	bl GetName__5Child
+	bl GetName__C5Child
 	adds r1, r0, #0
 	add r0, sp, #0x138
 	strh r4, [r0]
@@ -113237,7 +113237,7 @@ func_08094844:
     ldr r2, .Ljp_0809439C
     adds r0, r0, r2
     bl GetChild__13NpcCollection
-    bl GetName__5Child
+    bl GetName__C5Child
     mov r8, r0
     ldr r5, [r4]
     ldr r0, .Ljp_080943A0
@@ -176983,7 +176983,7 @@ func_0805FF14: @ 0x0805FF14
 	ldr r0, [r0]
 	ldr r4, .L08061B30 @ =0x00001CD4
 	adds r0, r0, r4
-	bl func_080A0384
+	bl GetChild__C13NpcCollection
 	str r0, [sp, #0x1dc]
 	cmp r0, #0
 	bne .L08061ABC
@@ -177206,7 +177206,7 @@ func_0805FF14: @ 0x0805FF14
 	movs r2, #0
 	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0x1dc]
-	bl GetName__5Child
+	bl GetName__C5Child
 	adds r1, r0, #0
 	add r0, sp, #0x138
 	strh r4, [r0]
@@ -277518,7 +277518,7 @@ func_08094844: @ 0x08094844
 	ldr r2, .L080948D8 @ =0x00001CD4
 	adds r0, r0, r2
 	bl GetChild__13NpcCollection
-	bl GetName__5Child
+	bl GetName__C5Child
 	mov r8, r0
 	ldr r5, [r4]
 	ldr r0, .L080948DC @ =0x000021DC

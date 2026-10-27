@@ -422,7 +422,7 @@ SECTIONS
             .text.__20WorldWeatherParticleRC21IndexedResourceHandleii
             .text.ResetPosition__20WorldWeatherParticleii);
         src/scene_text_variables.o(.text.__22GameSceneTextVariablesP18GameStateSaveImage);
-        asm/scene_text_variables.o(.text);
+        src/scene_text_variables.o(.text.Lookup__22GameSceneTextVariablesUi);
         src/scene_text_variables.o(.text.Set__22GameSceneTextVariablesUiPCc);
         asm/code_0803A8A4.o(.text.scene_text_variables_after);
         . = 0x3BDF8; /* US ROM 0x0803BDE4, set a u16 pair */
@@ -656,6 +656,8 @@ SECTIONS
         src/van.o(.text);
         src/npc_collection.o(.text.__13NpcCollection);
         asm/code_809E804.o(.text.npc_after_child);
+        src/npc_collection.o(.text.GetChild__C13NpcCollection);
+        asm/code_809E804.o(.text.npc_after_child_const_lookup);
         src/npc_collection.o(.text.GetPartnerCharacterId__C13NpcCollection .text.GetSpouseCharacterId__C13NpcCollection .text.IsMarried__C13NpcCollection);
         asm/code_809E804.o(.text.npc_after_partner_queries);
         src/npc_collection.o(.text.GetNpc__13NpcCollectionUi .text.GetBachelorette__13NpcCollectionUi .text.GetHarvestSpriteByCharacterId__13NpcCollectionUi .text.GetHarvestSpriteByIndex__13NpcCollectionUi);

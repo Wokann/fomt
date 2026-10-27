@@ -562,3 +562,8 @@ Child * NpcCollection::GetChild()
 {
     return has_child ? &child : nullptr;
 }
+
+Child const * NpcCollection::GetChild() const
+{
+    return has_child ? &child : nullptr;
+}
