@@ -382,6 +382,8 @@ $(BUILD_DIR)/src/entity_event_effects.o: CXXFLAGS += -ffunction-sections
 
 $(BUILD_DIR)/src/world_weather.o: CXXFLAGS += -ffunction-sections
 
+$(BUILD_DIR)/src/scene_text_variables.o: CXXFLAGS += -ffunction-sections
+
 # The static table accessor and terrain query retain their native code positions.
 $(BUILD_DIR)/src/map_data.o: CXXFLAGS += -ffunction-sections
 

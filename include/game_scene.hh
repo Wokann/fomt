@@ -25,6 +25,8 @@
 #include "player_actor.hh"
 #include "livestock_actor.hh"
 
+#include "scene_text_variables.hh"
+
 #pragma interface "game_scene.hh"
 
 struct GameObject;
@@ -795,8 +797,8 @@ struct GameSceneWorldOwner {
 };
 
 struct GameSceneTextVariablesOwner {
-    ScriptTextVariableStore * value;
-    explicit GameSceneTextVariablesOwner(ScriptTextVariableStore * input = nullptr) : value(input) {}
+    GameSceneTextVariables * value;
+    explicit GameSceneTextVariablesOwner(GameSceneTextVariables * input = nullptr) : value(input) {}
     ~GameSceneTextVariablesOwner() { delete value; }
 };
 
@@ -1208,10 +1210,6 @@ void func_080D7F3C(GameSceneState * state);
 void func_080D7F60(GameSceneState * state);
 void func_080D7F74(GameSceneState * state);
 void func_080D7F88(GameSceneState * state);
-
-// Native text-variable storage keeps its original byte-based truncation.
-// The scene wrappers do not add a slot check or width clamp.
-void func_0803B6B8(ScriptTextVariableStore * variables, u32 slot, char const * text);
 
 // The native scene runner still owns the underlying update loop.
 SceneTransitionOwner sub_080D8178(GameSceneState * state);

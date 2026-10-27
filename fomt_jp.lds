@@ -467,7 +467,10 @@ SECTIONS
         src/world_weather.o(
             .text.__20WorldWeatherParticleRC21IndexedResourceHandleii
             .text.ResetPosition__20WorldWeatherParticleii);
-        asm/code_0803A8A4.o(.text.world_weather_after_particle_ctor);
+        src/scene_text_variables.o(.text.__22GameSceneTextVariablesP18GameStateSaveImage);
+        asm/scene_text_variables.o(.text);
+        src/scene_text_variables.o(.text.Set__22GameSceneTextVariablesUiPCc);
+        asm/code_0803A8A4.o(.text.scene_text_variables_after);
         . = 0x3BB78; /* JP counterpart of US function 0x0803BDE4. */
         src/code_0803BDE4.o(.text);
         . = 0x3BB90; /* JP ROM 0x0803BDFC, remaining raw control code */
@@ -972,6 +975,7 @@ SECTIONS
         asm/code_linkonce.o(.text.entity_sprite_cleanup_after);
         src/npc_entity.o(.text.FindTimedPathPointUpperBound);
         asm/code_linkonce.o(.text.npc_timed_path_search_after);
+        src/scene_text_variables.o(.text._._22GameSceneTextVariables);
         src/ui_state.o(.text.Lookup__23ScriptTextVariableStoreUi .text._._23ScriptTextVariableStore);
         asm/code_linkonce.o(.text.script_text_variables_after);
         src/hardware_dma_link.o(.text.Run__19HardwareDmaCopyLink .gnu.linkonce.t._._19HardwareDmaCopyLink);
@@ -1144,7 +1148,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_76a4);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_76bc);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_76d4);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_76e8);
+        . = ALIGN(4); src/scene_text_variables.o(.gnu.linkonce.d.__vt_22GameSceneTextVariables);
         . = ALIGN(4); src/ui_state.o(.gnu.linkonce.d.__vt_23ScriptTextVariableStore);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7708);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7714);

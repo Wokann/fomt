@@ -499,12 +499,12 @@ void GameScene::TextVariableSetNumber(u32 slot, i32 value)
 #else
     FormatSignedDecimal(value, text, 0);
 #endif
-    func_0803B6B8(current->text_variables.value, slot, text);
+    current->text_variables.value->Set(slot, text);
 }
 
 void GameScene::TextVariableSetString(u32 slot, char const * text)
 {
-    func_0803B6B8(state->text_variables.value, slot, text);
+    state->text_variables.value->Set(slot, text);
 }
 
 void GameScene::TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width)
@@ -517,7 +517,7 @@ void GameScene::TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width)
 #else
     FormatSignedDecimal(value, text, width);
 #endif
-    func_0803B6B8(current->text_variables.value, slot, text);
+    current->text_variables.value->Set(slot, text);
 }
 
 void GameScene::CallScript(i32 script_id, i32 context_value)
