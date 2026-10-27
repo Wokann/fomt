@@ -169,6 +169,7 @@ SECTIONS
         src/game_state.o(.text.InitializeGameDisplayOptions);
         src/game_state.o(.text.__* .text.[A-Za-z]*);
         asm/game_state.o(.text.game_state_after_display_options);
+        asm/animal_memorial.o(.text);
         src/game_scene.o(.text.UpdateGameSceneHardwareFrame);
         src/game_scene.o(.text.__9GameSceneP18GameStateSaveImage*);
         src/game_scene.o(.text._._9GameScene);
