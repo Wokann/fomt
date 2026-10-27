@@ -183,6 +183,8 @@ struct GameSceneWorldData {
     void * unk_1024;
     GameSceneWorldUnk1028 unk_1028;
 
+    IndexedResourceArchive * GetMapSpriteArchive() { return &unk_F00; }
+
     GameSceneWorldData(GameSceneWorldMapOwner source);
     ~GameSceneWorldData();
 

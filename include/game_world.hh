@@ -65,7 +65,10 @@ struct GameSceneWorldPrefix : GameObject {
     u8 unk_1060;
     u8 unk_1061[7];
     SmartPtr<GameSceneGroupSprite> vase_sprite;
-    u8 unk_106C[0x10];
+    SmartPtr<GameSceneIndexedSprite> unk_106C;
+    SmartPtr<GameSceneIndexedSprite> unk_1070;
+    SmartPtr<GameSceneIndexedSprite> unk_1074;
+    SmartPtr<GameSceneIndexedSprite> unk_1078;
     GameSceneWorldUnkOwner unk_107C;
     GameSceneWorldUnk1080Entry unk_1080[4];
     // The enclosing native object continues beyond the previously verified
@@ -118,6 +121,10 @@ typedef char GameSceneWorldFarmTerrainCheck[offsetof(GameSceneWorldPrefix, farm_
 typedef char GameSceneWorldSceneCheck[offsetof(GameSceneWorldPrefix, scene) == 0x1054 ? 1 : -1];
 typedef char GameSceneWorldSpriteCheck[offsetof(GameSceneWorldPrefix, unk_1058) == 0x1058 ? 1 : -1];
 typedef char GameSceneWorldFireplaceFlagCheck[offsetof(GameSceneWorldPrefix, unk_1060) == 0x1060 ? 1 : -1];
+typedef char GameSceneWorldSprite106CCheck[offsetof(GameSceneWorldPrefix, unk_106C) == 0x106C ? 1 : -1];
+typedef char GameSceneWorldSprite1070Check[offsetof(GameSceneWorldPrefix, unk_1070) == 0x1070 ? 1 : -1];
+typedef char GameSceneWorldSprite1074Check[offsetof(GameSceneWorldPrefix, unk_1074) == 0x1074 ? 1 : -1];
+typedef char GameSceneWorldSprite1078Check[offsetof(GameSceneWorldPrefix, unk_1078) == 0x1078 ? 1 : -1];
 typedef char GameSceneWorldVaseSpriteCheck[offsetof(GameSceneWorldPrefix, vase_sprite) == 0x1068 ? 1 : -1];
 typedef char GameSceneWorldFireplaceSpriteCheck[offsetof(GameSceneWorldPrefix, fireplace_sprite) == 0x105C ? 1 : -1];
 
@@ -212,7 +219,7 @@ IndexedResourceArchive * func_0801FBE8(GameSceneWorldPrefix & world);
 IndexedResourceArchive * func_0801FBF4(GameSceneWorldPrefix & world);
 IndexedResourceArchive * func_0801FC00(GameSceneWorldPrefix & world);
 IndexedResourceArchive * func_0801FC0C(GameSceneWorldPrefix & world);
-IndexedResourceArchive * func_0801FC18(GameSceneWorldPrefix & world);
+IndexedResourceArchive * GetWorldMapSpriteArchive(GameSceneWorldPrefix & world);
 IndexedResourceArchive * func_0801FC24(GameSceneWorldPrefix & world);
 IndexedResourceArchive * func_0801FC30(GameSceneWorldPrefix & world);
 IndexedResourceArchive * func_0801FC3C(GameSceneWorldPrefix & world);

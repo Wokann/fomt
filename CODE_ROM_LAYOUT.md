@@ -63,6 +63,52 @@ ROM 进度，也不包含更早的启动头、其他代码、资源或只读数�
 后面的依赖完成或统计清理而前移。原始四区核对结果保存在上层
 `.codex_tmp/current-startup-audit-20261027/`，临时审计脚本不进入编译链。
 
+## 世界地图精灵：季节与壁炉状态
+
+原 `func_0801F614`、`func_0801F77C` 已分别恢复为
+`RefreshWorldHillSeasonalSprites` 与
+`RefreshWorldWinterAndFireplaceSprites`，按功能维护在
+`src/world_map_sprites.cc`／`include/world_map_sprites.hh`。
+两者在 ROM 中连续，共 **784 字节新 C++／版本**；四版 LDS 都只
+使用一个普通 `src/world_map_sprites.o(.text)` 输入，随后接回
+尚未恢复的原生代码，没有新增编译选项或修补步骤。
+
+| 实际入口 | JP 半开范围 | US 半开范围 | EU 半开范围 | DE 半开范围 |
+| --- | --- | --- | --- | --- |
+| `RefreshWorldHillSeasonalSprites` / 360 字节 | `0x0801F3A8–0x0801F510` | `0x0801F614–0x0801F77C` | `0x0801F628–0x0801F790` | `0x0801F528–0x0801F690` |
+| `RefreshWorldWinterAndFireplaceSprites` / 424 字节 | `0x0801F510–0x0801F6B8` | `0x0801F77C–0x0801F924` | `0x0801F790–0x0801F938` | `0x0801F690–0x0801F838` |
+
+第一项先释放 `+0x106C`、`+0x1070` 的旧所有者，仅在
+`MAP_MOTHERS_HILL_MIDDLE` 按冬季与其他季节选择资源索引 1 或 0，
+创建两个精灵。第二项先释放 `+0x1074`、`+0x1078` 的旧所有者，
+使用 Mary 的四个实际地图常量，根据冬季、农舍壁炉和两个已验证的
+存档位创建资源索引 2 的精灵；地图分支保留原生有符号比较。
+四个字段现为真实 `SmartPtr<GameSceneIndexedSprite>`，并各自检查
+结构偏移。精灵的具体图像内容尚未命名，字段继续采用 `unk`。
+
+共同资源由既有 `GameSceneWorldData` 的普通
+`GetMapSpriteArchive()` 方法访问。原有 12 字节 C++ 资源读取入口
+`func_0801FC18` 同步改名为 `GetWorldMapSpriteArchive`，复用此方法；
+这 12 字节不是本次新增覆盖。没有地址别名、固定偏移伪匹配、内联
+汇编或专门修正某条指令的预处理逻辑。
+
+JP 原来位于字节指令块中的四处调用均已转换为实际 BL 符号；
+两项函数的海外版入口和全部调用也使用相同功能名。四版 WSL
+`-j4 compare`、完整 8 MiB 字节与 SHA-1 核对通过。265 个既有
+对象逐一比较分配节、对齐与重定位，其他全局地址保持不变。
+编译器另生成了不进入 ROM 的部分世界前缀析构器更新和 8 字节
+内联访问方法；这两项均单独审查，未计入新增 ROM 覆盖。
+
+对两个完整函数区间的外部引用也已复查：四版各有四个外部 BL，
+全部落在两个真实入口并使用符号重定位，没有分支跳入函数中部。
+原始字节中形似内部地址的值已逐一按时段记录、波形采样和角色
+OAM 描述字段的实际范围排除；没有把这些普通数据误改成函数指针。
+
+本批沿上批家具代码之后的物理顺序继续恢复；普通文本、指南、
+Mary 脚本及资源数据地址保持不变。启动段最早的
+`InitializeIntroSceneBackground` 和上方十八项待办仍未完成，
+花瓶刷新 `RefreshWorldVase` 的 308 字节也仍保留原生正文。
+
 ## 世界家具：壁炉与花瓶设置
 
 新增的两个真实 C++ 入口按功能归入 `src/world_furniture.cc`，不再把

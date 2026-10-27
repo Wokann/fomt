@@ -722,9 +722,9 @@ EC IndexedResourceArchive * func_0801FC0C(GameSceneWorldPrefix & world)
     return &world.data.unk_F30;
 }
 
-EC IndexedResourceArchive * func_0801FC18(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * GetWorldMapSpriteArchive(GameSceneWorldPrefix & world)
 {
-    return &world.data.unk_F00;
+    return world.data.GetMapSpriteArchive();
 }
 
 EC IndexedResourceArchive * func_0801FC24(GameSceneWorldPrefix & world)
