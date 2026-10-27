@@ -347,7 +347,8 @@ SECTIONS
         asm/game_state.o(.text.game_scene_after_record_player_album);
         src/world_furniture.o(.text);
         src/world_map_sprites.o(.text);
-        asm/game_state.o(.text.world_map_sprites_after);
+        src/world_shipping.o(.text);
+        asm/game_state.o(.text.world_shipping_after);
         src/game_world.o(
             .text.func_0801FBDC
             .text.func_0801FBE8

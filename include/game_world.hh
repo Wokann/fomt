@@ -19,6 +19,7 @@ struct GameStateClock;
 struct GameStateSaveImage;
 struct RucksackItem;
 struct Article;
+struct Product;
 
 // Native construction clears four records; update/draw code uses a 12-byte stride.
 // Only the state bits and tile coordinates have been identified.
@@ -44,7 +45,7 @@ struct GameSceneWorldPrefix : GameObject {
     virtual void LightFireplaceAtLocation(MaryMapId map);
     virtual void SetVaseArticleId(MaryItemArticleId article);
     virtual void vfunc_158();
-    virtual void vfunc_15C();
+    virtual void ShipProduct(Product const & product);
     virtual void CreateEventIcon(MaryEventIconSlot slot, MaryMapSpaceX x,
         MaryMapSpaceY y, MaryEventIconLayer layer, u16 icon_id);
     virtual void RemoveEventIcon(MaryEventIconSlot slot);

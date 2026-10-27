@@ -681,7 +681,7 @@ extern void GetWorldSongPlayerPool(void);
 extern void LightFireplaceAtLocation__20GameSceneWorldPrefix9MaryMapId(void);
 extern void SetVaseArticleId__20GameSceneWorldPrefix17MaryItemArticleId(void);
 extern void func_0801EE00(void);
-extern void func_0801F924(void);
+extern void ShipProduct__20GameSceneWorldPrefixRC7Product(void);
 extern void CreateWorldEventIcon(void);
 extern void RemoveWorldEventIcon(void);
 extern void func_080DB1E4(void);
@@ -1155,7 +1155,7 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     LightFireplaceAtLocation__20GameSceneWorldPrefix9MaryMapId,
     SetVaseArticleId__20GameSceneWorldPrefix17MaryItemArticleId,
     func_0801EE00,
-    func_0801F924,
+    ShipProduct__20GameSceneWorldPrefixRC7Product,
     CreateWorldEventIcon,
     RemoveWorldEventIcon,
 };
