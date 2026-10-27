@@ -368,6 +368,9 @@ $(BUILD_DIR)/src/entity_location.o $(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/sr
 # Species health callbacks retain their distinct native function positions.
 $(BUILD_DIR)/src/livestock_actor.o: CXXFLAGS += -ffunction-sections
 
+# Resource accessors and later storage reservation retain compiler-owned positions.
+$(BUILD_DIR)/src/hardware_resource.o: CXXFLAGS += -ffunction-sections
+
 # Grid methods are interleaved with unrecovered actor routines in the ROM.
 $(BUILD_DIR)/src/mine_floor.o: CXXFLAGS += -ffunction-sections
 

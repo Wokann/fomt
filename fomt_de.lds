@@ -99,8 +99,9 @@ SECTIONS
         src/new_game_name_input.o(.text.new_game_name_input_scene);
         src/hardware.o(.text);
         src/hardware_allocator.o(.text);
-        asm/hardware.o(.text.hardware_allocator_after);
-        src/hardware_resource.o(.text);
+        asm/hardware_resource.o(.text);
+        src/hardware_resource.o(.text.__16HardwareResource .text._._16HardwareResource
+            .text.Get__C16HardwareResource);
         src/hardware_mask.o(.text);
         asm/hardware.o(.text.hardware_mask_after);
         src/hardware_refcount.o(.text);
@@ -810,7 +811,7 @@ SECTIONS
         src/money_account.o(.text._._12MoneyAccount);
         src/new_game.o(.text.new_game_fresh_save_callbacks);
         src/hardware.o(.text.hardware_free_list);
-        src/hardware_resource.o(.text.code_080D6DB8);
+        src/hardware_resource.o(.text.Reserve__23HardwareResourceStorageUi);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_after);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_unreserve);

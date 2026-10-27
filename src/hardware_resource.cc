@@ -7,8 +7,6 @@
 #include <new>
 #include <stdlib.h>
 
-extern void __builtin_delete(void * pointer);
-
 EXTERN_C
 
 extern void free(void * pointer);
@@ -19,20 +17,22 @@ HardwareResource::HardwareResource() : storage(0)
 {
 }
 
+inline HardwareResourceStorage::~HardwareResourceStorage()
+{
+    HardwareResourceEntry * last = end;
+    HardwareResourceEntry * current = start;
+    while (current != last) {
+        current->~HardwareResourceEntry();
+        ++current;
+    }
+    if (start != 0)
+        free(start);
+}
+
 HardwareResource::~HardwareResource()
 {
-    if (storage != 0) {
-        HardwareResourceStorage * saved = storage;
-        HardwareResourceEntry * end = saved->end;
-        HardwareResourceEntry * cursor = saved->start;
-        while (cursor != end) {
-            cursor->~HardwareResourceEntry();
-            cursor++;
-        }
-        if (saved->start != 0)
-            free(saved->start);
-        __builtin_delete(saved);
-    }
+    if (storage != 0)
+        delete storage;
 }
 
 HardwareResourceEntry HardwareResource::Get() const

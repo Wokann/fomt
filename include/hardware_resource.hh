@@ -30,13 +30,14 @@ struct HardwareResourceEntry {
 };
 
 struct HardwareResourceStorage {
+    ~HardwareResourceStorage();
     struct HardwareResourceEntry * start;
     struct HardwareResourceEntry * end;
     u8 unk_08[4];
     struct HardwareResourceEntry * capacity_end;
     struct HardwareResourceEntry * cursor;
 
-    void Reserve(u32 count) SECTION(".text.code_080D6DB8");
+    void Reserve(u32 count);
 
 private:
     static void * AllocateBytes(u32 bytes);
@@ -54,6 +55,7 @@ typedef char HardwareResourceStorageCursorCheck[offsetof(HardwareResourceStorage
 struct HardwareResource {
     struct HardwareResourceStorage * storage;
 
+    explicit HardwareResource(u8 const & count);
     HardwareResource();
     ~HardwareResource();
     // Copy a retained pool entry, or allocate one when storage is absent.
