@@ -673,7 +673,7 @@ extern void func_0801FAA8(void);
 extern void func_0801FAB8(void);
 extern void func_0801B498(void);
 extern void func_0801E084(void);
-extern void func_0801C0E0(void);
+extern void SetWorldPendingUnknownValue(void);
 extern void QueueWorldScript(void);
 extern void GetWorldClock(void);
 extern void SelectWorldBackgroundAudio(void);
@@ -1147,7 +1147,7 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801FAB8,
     func_0801B498,
     func_0801E084,
-    func_0801C0E0,
+    SetWorldPendingUnknownValue,
     QueueWorldScript,
     GetWorldClock,
     SelectWorldBackgroundAudio,

@@ -149,7 +149,8 @@ struct GameObject
     virtual void vfunc_130();
     virtual void vfunc_134();
     virtual void vfunc_138();
-    virtual void vfunc_13C();
+    // Sets a pending marker and one unknown byte in the native world.
+    virtual void SetPendingUnknownValue(u8 value);
     virtual void QueueScript(GameSceneScriptRequest const & request, i32 queue_kind);
     virtual GameStateClock const * GetClock() = 0;
 

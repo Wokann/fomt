@@ -416,6 +416,12 @@ EC u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind)
     return ARRAY_COUNT(cache.resources) - 1;
 }
 
+EC void SetWorldPendingUnknownValue(GameSceneWorldPrefix & world, u8 value)
+{
+    world.unk_10C8 = 1;
+    world.unk_10C9 = value;
+}
+
 EC bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & location,
     GameSceneFarmPlotLocation & output)
 {

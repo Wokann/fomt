@@ -64,6 +64,13 @@ struct GameSceneWorldPrefix : GameObject {
     u8 unk_105C[0x20];
     GameSceneWorldUnkOwner unk_107C;
     GameSceneWorldUnk1080Entry unk_1080[4];
+    // The enclosing native object continues beyond the previously verified
+    // prefix. Do not infer the layout of these intervening bytes yet.
+    u8 unk_10B0[0x18];
+    // The callback sets the first byte; native update consumes and clears it.
+    // The associated byte affects that pending path; its meaning is unknown.
+    u8 unk_10C8;
+    u8 unk_10C9;
 };
 
 // A successful farm lookup returns the plot and both tile/grid coordinates.
@@ -108,6 +115,9 @@ typedef char GameSceneWorldSceneCheck[offsetof(GameSceneWorldPrefix, scene) == 0
 typedef char GameSceneWorldSpriteCheck[offsetof(GameSceneWorldPrefix, unk_1058) == 0x1058 ? 1 : -1];
 typedef char GameSceneWorldUnk105CCheck[offsetof(GameSceneWorldPrefix, unk_105C) == 0x105C ? 1 : -1];
 
+typedef char GameSceneWorldUnknown10C8Check[offsetof(GameSceneWorldPrefix, unk_10C8) == 0x10C8 ? 1 : -1];
+typedef char GameSceneWorldUnknown10C9Check[offsetof(GameSceneWorldPrefix, unk_10C9) == 0x10C9 ? 1 : -1];
+
 typedef char GameSceneWorldUnk1080Check[offsetof(GameSceneWorldPrefix, unk_1080) == 0x1080 ? 1 : -1];
 
 typedef char GameSceneFarmPlotLocationSizeCheck[sizeof(GameSceneFarmPlotLocation) == 12 ? 1 : -1];
@@ -133,6 +143,10 @@ typedef char GameSceneWorldPaletteBlendCheck[offsetof(GameSceneWorldPrefix, time
 
 
 EXTERN_C
+
+// World virtual slot +0x13C. Preserve the native byte write and pending marker
+// without assigning an unverified gameplay meaning to either saved byte.
+void SetWorldPendingUnknownValue(GameSceneWorldPrefix & world, u8 value);
 u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind);
 // Native palette callback at virtual slot +0x54. The final byte
 // is retained by the resource; its complete meaning is still unknown.

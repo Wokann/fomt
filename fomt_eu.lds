@@ -291,6 +291,7 @@ SECTIONS
         asm/game_state.o(.text.game_scene_after_time_of_day_period);
         src/game_world.o(.text.func_0801B5C0);
         asm/game_state.o(.text.game_scene_palette_resource_selector_after);
+        src/game_world.o(.text.SetWorldPendingUnknownValue);
         src/game_world.o(.text.TryGetFarmPlotAtLocation);
         asm/game_state.o(.text.game_scene_farm_plot_query_after);
         src/game_world.o(.text.func_0801C29C);
