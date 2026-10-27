@@ -35,7 +35,7 @@ SECTIONS
     {
         . = ALIGN(4); src/m4a.o(.bss);
         . = ALIGN(4);
-        . = 0x000400; src/sram_proxy_2.o(.bss);
+        . = 0x000400; src/sram_access.o(.bss);
         . = 0x000404; src/hardware.o(.bss COMMON);
         . = 0x000408; src/hardware_refcount.o(.bss COMMON);
         . = 0x00040C; gUnk_0300040C = .;
@@ -51,11 +51,11 @@ SECTIONS
     {
         src/crt0.o(.rom_header);
         src/main.o(.text);
-        src/sram_proxy_1.o(.text);
+        src/sram_image.o(.text);
         src/interrupt.o(.text);
         src/new.o(.text);
         src/pure_virtual.o(.text);
-        src/sram_proxy_2.o(.text);
+        src/sram_access.o(.text);
         src/scene.o(.text);
         src/intro_scene.o(.text.intro_scene_core_constructor);
         src/intro_scene.o(.text.intro_scene_core_run);
@@ -1217,7 +1217,7 @@ SECTIONS
         . = ABSOLUTE(0x080E8610); src/crt0_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        src/sram_proxy_1.o(.rodata);
+        src/sram_image.o(.rodata);
         src/intro_scene_startup.o(.rodata);
         . = ABSOLUTE(0x080E86A8); src/new_game_data.o(.rodata);
         . = ABSOLUTE(0x080E8CC4); src/field_data.o(.rodata);

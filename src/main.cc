@@ -1,7 +1,7 @@
 #include "main.hh"
 #include "interrupt.hh"
-#include "sram_proxy_1.hh"
-#include "sram_proxy_2.hh"
+#include "sram_image.hh"
+#include "sram_access.hh"
 #include "hardware_manager.hh"
 #include "intro_scene.hh"
 #include "scene.hh"
@@ -19,8 +19,8 @@ void AgbMain(void)
     AcknowledgeAndEnableInterrupts(0x2000);
 
     SramAccess save;
-    if (!func_080002E0(&save))
-        func_08000358(&save);
+    if (!IsValidSramImage(&save))
+        InitializeSramImageHeader(&save);
 
     ExchangeInterruptHandler(12, func_08000240);
     REG_KEYCNT = 0xC00F;

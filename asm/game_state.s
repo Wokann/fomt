@@ -827,7 +827,7 @@ func_08011650:
     mov r1, sb
     mov r2, sl
     movs r3, #4
-    bl func_080006E4
+    bl Read__10SramAccessPvUiUi
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_080118EE
@@ -840,11 +840,11 @@ func_08011650:
     ldr r0, [sp, #0x14]
     adds r1, r7, #0
     adds r3, r4, #0
-    bl func_080006E4
+    bl Read__10SramAccessPvUiUi
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080118B8
-    ldr r2, .Ljp_080118B4 @ =gUnk_03000400
+    ldr r2, .Ljp_080118B4 @ =gSramAccessStatus
     ldr r0, [r6]
     movs r1, #0x80
     lsls r1, r1, #0xa
@@ -875,7 +875,7 @@ func_08011650:
 .Ljp_080118A8: .4byte 0x000034D8
 .Ljp_080118AC: .4byte 0x000034DC
 .Ljp_080118B0: .4byte 0x000034F4
-.Ljp_080118B4: .4byte gUnk_03000400
+.Ljp_080118B4: .4byte gSramAccessStatus
 .Ljp_080118B8:
     ldr r2, .Ljp_080118D8 @ =0x000034F8
     add r2, sl
@@ -883,18 +883,18 @@ func_08011650:
     add r1, sp, #0x10
     ldr r0, [sp, #0x14]
     movs r3, #4
-    bl func_080006E4
+    bl Read__10SramAccessPvUiUi
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080118E0
-    ldr r2, .Ljp_080118DC @ =gUnk_03000400
+    ldr r2, .Ljp_080118DC @ =gSramAccessStatus
     ldr r0, [r6]
     movs r1, #0xc0
     lsls r1, r1, #0xa
     b .Ljp_080118F6
     .align 2, 0
 .Ljp_080118D8: .4byte 0x000034F8
-.Ljp_080118DC: .4byte gUnk_03000400
+.Ljp_080118DC: .4byte gSramAccessStatus
 .Ljp_080118E0:
     adds r0, r7, #0
     adds r1, r4, #0
@@ -903,7 +903,7 @@ func_08011650:
     cmp r0, r1
     beq .Ljp_080118FE
 .Ljp_080118EE:
-    ldr r2, .Ljp_08011910 @ =gUnk_03000400
+    ldr r2, .Ljp_08011910 @ =gSramAccessStatus
     ldr r0, [r6]
     movs r1, #0x80
     lsls r1, r1, #9
@@ -923,7 +923,7 @@ func_08011650:
     pop {r1}
     bx r1
     .align 2, 0
-.Ljp_08011910: .4byte gUnk_03000400
+.Ljp_08011910: .4byte gSramAccessStatus
 
     .global func_08011934
     .thumb_func
@@ -16877,7 +16877,7 @@ func_08011650: @ 0x08011650
     mov r1, sb
     mov r2, sl
     movs r3, #4
-    bl func_080006E4
+    bl Read__10SramAccessPvUiUi
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0801190E
@@ -16890,11 +16890,11 @@ func_08011650: @ 0x08011650
     ldr r0, [sp, #0x14]
     adds r1, r7, #0
     adds r3, r4, #0
-    bl func_080006E4
+    bl Read__10SramAccessPvUiUi
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080118D8
-    ldr r2, .L080118D4 @ =gUnk_03000400
+    ldr r2, .L080118D4 @ =gSramAccessStatus
     ldr r0, [r6]
     movs r1, #0x80
     lsls r1, r1, #0xa
@@ -16925,7 +16925,7 @@ func_08011650: @ 0x08011650
 .L080118C8: .4byte 0x000034D8
 .L080118CC: .4byte 0x000034DC
 .L080118D0: .4byte 0x000034F4
-.L080118D4: .4byte gUnk_03000400
+.L080118D4: .4byte gSramAccessStatus
 .L080118D8:
     ldr r2, .L080118F8 @ =0x000034F8
     add r2, sl
@@ -16933,18 +16933,18 @@ func_08011650: @ 0x08011650
     add r1, sp, #0x10
     ldr r0, [sp, #0x14]
     movs r3, #4
-    bl func_080006E4
+    bl Read__10SramAccessPvUiUi
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08011900
-    ldr r2, .L080118FC @ =gUnk_03000400
+    ldr r2, .L080118FC @ =gSramAccessStatus
     ldr r0, [r6]
     movs r1, #0xc0
     lsls r1, r1, #0xa
     b .L08011916
     .align 2, 0
 .L080118F8: .4byte 0x000034F8
-.L080118FC: .4byte gUnk_03000400
+.L080118FC: .4byte gSramAccessStatus
 .L08011900:
     adds r0, r7, #0
     adds r1, r4, #0
@@ -16953,7 +16953,7 @@ func_08011650: @ 0x08011650
     cmp r0, r1
     beq .L0801191E
 .L0801190E:
-    ldr r2, .L08011930 @ =gUnk_03000400
+    ldr r2, .L08011930 @ =gSramAccessStatus
     ldr r0, [r6]
     movs r1, #0x80
     lsls r1, r1, #9
@@ -16973,7 +16973,7 @@ func_08011650: @ 0x08011650
     pop {r1}
     bx r1
     .align 2, 0
-.L08011930: .4byte gUnk_03000400
+.L08011930: .4byte gSramAccessStatus
 
     thumb_func_start func_08011934
 func_08011934: @ 0x08011934

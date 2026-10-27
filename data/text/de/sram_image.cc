@@ -1,4 +1,4 @@
-#include "sram_proxy_1.hh"
+#include "sram_image.hh"
 
 // Persisted SRAM image signature; its explicit bound is part of the format.
 char const gSramImageSignature[32] =

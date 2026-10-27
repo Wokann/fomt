@@ -1,6 +1,6 @@
 #include "game_state.hh"
 #include "unknown_types.hh"
-#include "sram_proxy_2.hh"
+#include "sram_access.hh"
 #include <stdlib.h>
 
 u32 GetNonzeroRandomValue()
@@ -251,14 +251,14 @@ u32 WriteGameStateSaveImage(void const * image, SramAccess * access, u32 offset)
     u32 checksum;
 
     if (!access->Write(offset, &size, sizeof(size))) {
-        error = gUnk_03000400;
+        error = gSramAccessStatus;
         stage = GAME_STATE_SAVE_WRITE_SIZE_ERROR;
         goto failed;
     }
 
     offset += sizeof(size);
     if (!access->Write(offset, image, size)) {
-        error = gUnk_03000400;
+        error = gSramAccessStatus;
         stage = GAME_STATE_SAVE_WRITE_IMAGE_ERROR;
         goto failed;
     }
@@ -268,7 +268,7 @@ u32 WriteGameStateSaveImage(void const * image, SramAccess * access, u32 offset)
     if (access->Write(offset, &checksum, sizeof(checksum)))
         return 0;
 
-    error = gUnk_03000400;
+    error = gSramAccessStatus;
     stage = GAME_STATE_SAVE_WRITE_CHECKSUM_ERROR;
 failed:
     return error | stage;

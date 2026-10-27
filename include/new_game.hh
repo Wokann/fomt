@@ -9,7 +9,7 @@
 #include "hardware_resource.hh"
 #include "resource_handle.hh"
 #include "scene.hh"
-#include "sram_proxy_2.hh"
+#include "sram_access.hh"
 #include "ui_state.hh"
 #include "new_game_menu.hh"
 #include "utility/fixed_str.hh"

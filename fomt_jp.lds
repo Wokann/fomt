@@ -43,7 +43,7 @@ SECTIONS
     {
         . = ALIGN(4); src/m4a.o(.bss);
         . = ALIGN(4);
-        . = 0x000400; src/sram_proxy_2.o(.bss);
+        . = 0x000400; src/sram_access.o(.bss);
         . = 0x000404; src/hardware.o(.bss COMMON);
         . = 0x000408; src/hardware_refcount.o(.bss COMMON);
         . = 0x00040C; gUnk_0300040C = .;
@@ -62,13 +62,13 @@ SECTIONS
         . = 0x18C; /* JP ROM 0x0800018C, independently matched */
         src/main.o(.text);
         . = 0x2E0; /* JP ROM 0x080002E0, independently matched */
-        src/sram_proxy_1.o(.text);
+        src/sram_image.o(.text);
         . = 0x4C4; /* JP ROM 0x080004C4, independently matched */
         src/interrupt.o(.text);
         src/new.o(.text);
         src/pure_virtual.o(.text);
         . = 0x63C; /* JP ROM 0x0800063C, independently matched */
-        src/sram_proxy_2.o(.text);
+        src/sram_access.o(.text);
         . = 0x7EC; /* JP ROM 0x080007EC, independently matched */
         src/scene.o(.text);
         . = 0x914; /* JP ROM 0x08000914, independently matched */
@@ -1301,7 +1301,7 @@ SECTIONS
         src/crt0_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        src/sram_proxy_1.o(.rodata);
+        src/sram_image.o(.rodata);
         src/intro_scene_startup.o(.rodata);
         src/new_game_data.o(.rodata);
         src/field_data.o(.rodata);

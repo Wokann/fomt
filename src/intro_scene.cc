@@ -8,8 +8,8 @@
 #include "hardware_blend_object.hh"
 #include "hardware_display_output.hh"
 #include "hardware_state_accessors.hh"
-#include "sram_proxy_1.hh"
-#include "sram_proxy_2.hh"
+#include "sram_image.hh"
+#include "sram_access.hh"
 
 void * operator new(unsigned long);
 
@@ -393,7 +393,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
         case 12:
         {
             SramAccess access;
-            if (func_080003A0(&access) == 0)
+            if (GetSramSaveSlotMask(&access) == 0)
             {
                 core->unk_6C6D = 1;
                 core->continuation = 0;

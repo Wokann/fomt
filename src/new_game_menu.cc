@@ -6,7 +6,7 @@
 #include "hardware_blend_object.hh"
 #include "hardware_interrupt_guard.hh"
 #include "hardware_music_player.hh"
-#include "sram_proxy_1.hh"
+#include "sram_image.hh"
 #include <string.h>
 
 void * operator new(unsigned long);
@@ -145,7 +145,7 @@ bool TrySaveNewGameMenuSlot(NewGameMenuCore * core)
 {
     if (core->current_save != nullptr) {
         u32 slot = core->choices[1];
-        u32 offset = func_080003DC(reinterpret_cast<u32>(&core->sram), slot);
+        u32 offset = GetSramSaveSlotOffset(&core->sram, slot);
         u32 attempts = 3;
         do {
             InterruptGuard guard(0x1000);
@@ -156,8 +156,8 @@ bool TrySaveNewGameMenuSlot(NewGameMenuCore * core)
                     reinterpret_cast<u32>(core->save_slot_status[slot].Data()), 0, 0);
                 core->phase = NEW_GAME_MENU_NOTICE;
                 func_08008B6C(&core->music_players[1], 0xC5);
-                func_080003E8(&core->sram, slot);
-                func_08000470(&core->sram, slot);
+                MarkSramSaveSlotPresent(&core->sram, slot);
+                SetLastUsedSramSaveSlot(&core->sram, slot);
                 return true;
             }
         } while (--attempts != 0);
@@ -184,7 +184,7 @@ static inline void SetMenuContinuation(SceneTransitionOwner & owner, SceneTransi
 bool TryLoadNewGameMenuSlot(NewGameMenuCore * core)
 {
     u32 slot = core->choices[1];
-    u32 offset = func_080003DC(reinterpret_cast<u32>(&core->sram), slot);
+    u32 offset = GetSramSaveSlotOffset(&core->sram, slot);
     u32 status = 0;
     u32 attempts = 3;
     do {
@@ -200,7 +200,7 @@ bool TryLoadNewGameMenuSlot(NewGameMenuCore * core)
                 SetMenuContinuation(core->continuation, CreateLoadedMenuSaveTransition(loaded));
             }
             func_08008B6C(&core->music_players[1], 0xC5);
-            func_08000470(&core->sram, slot);
+            SetLastUsedSramSaveSlot(&core->sram, slot);
             return true;
         }
         ::operator delete(loaded.release());
@@ -247,7 +247,7 @@ static inline void SetInitialChoices(NewGameMenuCore * core,
 
 static inline bool HasSaveSlot(SramAccess & access, u32 slot)
 {
-    return (1 << slot) & func_080003A0(&access);
+    return (1 << slot) & GetSramSaveSlotMask(&access);
 }
 
 static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
@@ -287,7 +287,7 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
         &core->resources, 0, 256);
     core->active_row = 0;
     core->phase = NEW_GAME_MENU_SELECTION;
-    func_08000640(&core->sram);
+    new (&core->sram) SramAccess;
     new (core->save_slot_status) NewGameMenuSaveSlotStatus[2];
     new (core->saved_display_options) GameDisplayOptions[2];
     IndexedResourceGroupResult group = core->resources.GetGroupData(0);
@@ -298,7 +298,7 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
     core->selector_attributes = core->option_attributes;
     for (u32 slot = 0; slot < 2; ++slot) {
         if (HasSaveSlot(core->sram, slot)) {
-            u32 offset = func_080003DC(reinterpret_cast<u32>(&core->sram), slot);
+            u32 offset = GetSramSaveSlotOffset(&core->sram, slot);
             u32 status = 0;
             int retries = 3;
             do {
@@ -315,7 +315,7 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
             } while (--retries != -1);
         }
     }
-    u32 recent_slot = func_08000488(&core->sram);
+    u32 recent_slot = GetLastUsedSramSaveSlot(&core->sram);
     if (core->current_save != nullptr) {
         core->choices[0] = 0;
         core->choices[1] = recent_slot != 0;

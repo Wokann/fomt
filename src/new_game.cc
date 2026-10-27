@@ -13,7 +13,7 @@
 #include "hardware_dma.hh"
 #include "hardware_interrupt_guard.hh"
 #include "hardware_music_player.hh"
-#include "sram_proxy_1.hh"
+#include "sram_image.hh"
 #include "ui_state.hh"
 #include <string.h>
 #include "game_scene.hh"

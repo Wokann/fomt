@@ -12,6 +12,28 @@
 
 JP 已将逐主题旧锚点合并为两片连续可变区域：`0x080E7A40`–`0x080F822F`（上界为 Mary 脚本总索引表）和 `0x080F96F4`–`0x08118D17`（上界为尚保留的原始静态资源）。两片区域内的文本、结构、指针表及其已知调用均随符号重定位；LDS 只保留真实对齐与填充值。
 
+## SRAM 镜像文本：与功能模块同名，物理布局不变
+
+当前宿主为 `src/sram_image.cc`，对应 `include/sram_image.hh` 与
+`data/text/<region>/sram_image.cc`。原 `sram_proxy_1.c` 升为普通
+C++，签名及相邻运行时文本仍按同一 include 的源码顺序存放；
+LDS 每版只链接一次 `src/sram_image.o(.rodata)`，没有新增段或锚点。
+下方物理表同步更新了对象及维护路径，原地址、字节、文本符号和
+编码均不变。32 字节签名的显式容量继续作为持久化格式保留。
+
+| 区域 | 签名及运行时文本的原半开范围 |
+| --- | --- |
+| JP | `0x080E7A5C–0x080E7AA1` |
+| US | `0x080E862C–0x080E8680` |
+| EU | `0x080E8678–0x080E86CC` |
+| DE | `0x080E8590–0x080E85E4` |
+
+读取和写入现在直接调用 `SramAccess` 成员，没有为文本或状态制造
+别名。四版完整字节／SHA-1、受影响分配节和真实重定位核对通过；
+代码范围、类型整理与运行测试边界见 `CODE_ROM_LAYOUT.md` 的
+“启动 SRAM：功能归属与直接成员符号”。下方旧阶段记录保留为历史，
+不代表当前仍使用 `sram_proxy_1/2` 的维护路径或保留写入汇编。
+
 ## 存读档菜单归位：文本不移动，虚表保持原次序
 
 菜单核心类型、存读档操作及生命周期统一归入 `new_game_menu.cc/.hh`，
@@ -1471,7 +1493,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | --- | --- | --- | --- | --- |
 | EU | `0x080E865C`–`0x080E8675` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0_data.hh`、`data/text/eu/crt0_data.cc` | 精确 |
 | EU | `0x080E8676`–`0x080E8677` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080E8678`–`0x080E86CC` | `src/sram_proxy_1.o(.rodata)` | `src/sram_proxy_1.c`、`include/sram_proxy_1.hh`、`data/text/eu/sram_proxy_1.cc` | 精确 |
+| EU | `0x080E8678`–`0x080E86CC` | `src/sram_image.o(.rodata)` | `src/sram_image.cc`、`include/sram_image.hh`、`data/text/eu/sram_image.cc` | 精确 |
 | EU | `0x080E86CD`–`0x080E86CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080E86D0`–`0x080E86F1` | `src/intro_scene_startup.o(.rodata)` | `src/intro_scene_startup.cc`、`include/intro_scene_startup.hh`、`data/text/eu/intro_scene_startup.cc`；四个启动资源入口均为资产容器中的真实标签 | 精确 |
 | EU | `0x080E86F2`–`0x080E86F3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -1560,7 +1582,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | EU | `0x08117C2C`–`0x08139ADF` | `asm/data/static_resources.o(.rodata)` | `asm/data/static_resources.s`、`include/static_resources.hh`；220 个地图、场景渲染和农舍原始资源以直接标签按物理顺序发射 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0_data.hh`、`data/text/de/crt0_data.cc` | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080E8590`–`0x080E85E4` | `src/sram_proxy_1.o(.rodata)` | `src/sram_proxy_1.c`、`include/sram_proxy_1.hh`、`data/text/de/sram_proxy_1.cc` | 精确 |
+| DE | `0x080E8590`–`0x080E85E4` | `src/sram_image.o(.rodata)` | `src/sram_image.cc`、`include/sram_image.hh`、`data/text/de/sram_image.cc` | 精确 |
 | DE | `0x080E85E5`–`0x080E85E7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080E85E8`–`0x080E8609` | `src/intro_scene_startup.o(.rodata)` | `src/intro_scene_startup.cc`、`include/intro_scene_startup.hh`、`data/text/de/intro_scene_startup.cc`；四个启动资源入口均为资产容器中的真实标签 | 精确 |
 | DE | `0x080E860A`–`0x080E860B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -1658,7 +1680,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | --- | --- | --- | --- | --- |
 | `0x080E7A40`–`0x080E7A59` | `src/crt0_data.o(.rodata)` | [嵌入文本 / 数据] | `src/crt0_data.cc`<br>`include/crt0_data.hh`<br>`data/text/jp/crt0_data.cc` | `init_array`、`gCppRuntimeBadAlloc_Crt0` |
 | `0x080E7A5A`–`0x080E7A5B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E7A5C`–`0x080E7AA1` | `src/sram_proxy_1.o(.rodata)` | [嵌入文本] | `src/sram_proxy_1.c`<br>`include/sram_proxy_1.hh`<br>`data/text/jp/sram_proxy_1.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird` |
+| `0x080E7A5C`–`0x080E7AA1` | `src/sram_image.o(.rodata)` | [嵌入文本] | `src/sram_image.cc`<br>`include/sram_image.hh`<br>`data/text/jp/sram_image.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird` |
 | `0x080E7AA2`–`0x080E7AA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E7AA4`–`0x080E7AC5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/jp/intro_scene_startup.cc` | `gIntroSceneStartupUnpackSources`（四个资产容器真实标签）<br>运行时字符串 `2` 项 |
 | `0x080E7AC6`–`0x080E7AC7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3494,7 +3516,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | --- | --- | --- | --- | --- |
 | `0x080E8610`–`0x080E8629` | `src/crt0_data.o(.rodata)` | [嵌入文本 / 数据] | `src/crt0_data.cc`<br>`include/crt0_data.hh`<br>`data/text/us/crt0_data.cc` | `init_array`、`gCppRuntimeBadAlloc_Crt0` |
 | `0x080E862A`–`0x080E862B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E862C`–`0x080E8680` | `src/sram_proxy_1.o(.rodata)` | [嵌入文本] | `src/sram_proxy_1.c`<br>`include/sram_proxy_1.hh`<br>`data/text/us/sram_proxy_1.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird`, `gUnk_SramSignatureTrailerError`, … +1 |
+| `0x080E862C`–`0x080E8680` | `src/sram_image.o(.rodata)` | [嵌入文本] | `src/sram_image.cc`<br>`include/sram_image.hh`<br>`data/text/us/sram_image.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird`, `gUnk_SramSignatureTrailerError`, … +1 |
 | `0x080E8681`–`0x080E8683` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x080E8684`–`0x080E86A5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/us/intro_scene_startup.cc` | `gIntroSceneStartupUnpackSources`（四个资产容器真实标签）<br>运行时字符串 `2` 项 |
 | `0x080E86A6`–`0x080E86A7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |

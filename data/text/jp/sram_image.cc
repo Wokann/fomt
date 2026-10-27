@@ -1,4 +1,4 @@
-#include "sram_proxy_1.hh"
+#include "sram_image.hh"
 
 // Persisted SRAM image signature; its explicit bound is part of the format.
 char const gSramImageSignature[32] =
@@ -15,9 +15,3 @@ char const gUnk_SramSignatureTrailerBadAllocSecond[] ALIGN(4) =
 
 char const gUnk_SramSignatureTrailerBadAllocThird[] ALIGN(4) =
     "bad_alloc";
-
-char const gUnk_SramSignatureTrailerError[] ALIGN(4) =
-    "Error";
-
-char const gUnk_SramSignatureTrailerNotAvailable[] ALIGN(4) =
-    "N/A ";

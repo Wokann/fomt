@@ -7,7 +7,7 @@
 #include "hardware_resource.hh"
 #include "resource_handle.hh"
 #include "scene.hh"
-#include "sram_proxy_2.hh"
+#include "sram_access.hh"
 #include "ui_state.hh"
 
 // Menu OAM coordinates use their wrapped hardware representation, not the
