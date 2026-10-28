@@ -59,6 +59,21 @@ typedef char GameCalendarSizeCheck[sizeof(GameCalendar) == 4 ? 1 : -1];
 typedef char GameCalendarDateCheck[offsetof(GameCalendar, date) == 1 ? 1 : -1];
 typedef char GameCalendarTimeCheck[offsetof(GameCalendar, time) == 2 ? 1 : -1];
 
+// Calendar date used by daily NPC schedules. The day is one-based, and
+// times before 06:00 still belong to the preceding game day.
+struct GameDayDate
+{
+    u8 year;
+    u8 season;
+    u8 day;
+    u8 weekday;
+};
+typedef char GameDayDateSizeCheck[sizeof(GameDayDate) == 4 ? 1 : -1];
+typedef char GameDayDateWeekdayCheck[offsetof(GameDayDate, weekday) == 3 ? 1 : -1];
+
+// Writes the decoded date and returns the supplied output pointer.
+extern "C" GameDayDate * DecodeGameDayDate(GameDayDate * output, GameCalendar const * calendar);
+
 // Borrowed ROM label, returned as one word and consumed through its C-string view.
 struct CalendarSeasonLabel
 {

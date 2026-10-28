@@ -499,10 +499,12 @@ SECTIONS
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
         src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
         asm/code_0803A8A4.o(.text.npc_schedule_after);
-        . = 0x3E080; /* JP counterpart of shared schedule gate func_0803E40C. */
-        src/code_0803E40C.o(.text);
-        . = 0x3E0BC; /* JP ROM 0x0803E448, remaining raw control code */
+        . = 0x3E080; /* JP Sunday schedule gate. */
+        src/npc_schedule.o(.text.IsLouSundayScheduleActive);
+        . = 0x3E0BC; /* Remaining native NPC schedule callbacks. */
         asm/code_0803A8A4.o(.text.code_0803E448);
+        src/npc_schedule.o(.text.IsVanWednesdayScheduleActive);
+        asm/code_0803A8A4.o(.text.npc_schedule_van_after);
         . = 0x3EB08; /* JP ROM 0x0803EB08, independently matched */
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
@@ -1345,7 +1347,7 @@ SECTIONS
         FILL(0x00);
         src/data_schedules.o(.rodata);
         /* Other NPC schedule records follow the individually declared schedules. */
-        . = ALIGN(4); src/npc_schedule_data.o(.rodata);
+        . = ALIGN(4); src/npc_schedule.o(.rodata);
         . = ABSOLUTE(0x080F8230); data/scripts/script_table.o(.rodata.mary_script_table);
         /* Source-owned localization island; raw static resources are its upper bound. */
         . = ABSOLUTE(0x080F96F4); src/script_engine.o(.rodata);

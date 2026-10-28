@@ -2,6 +2,48 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的模块。地址以各地区基准 ROM 的物理地址为准；源码按已核实的功能归属组织，不因来自同一个原始汇编文件就堆入同一个 C++ 文件。LDS 独立维持实际 ROM 顺序；新增高级语言覆盖、既有代码搬迁与语义改名分别统计。
 
+## 来访 NPC 日程：功能归属与 C++ 判断恢复（2026-10-29）
+
+Lou 与 Van 的日程判断统一归入 `src/npc_schedule.cc`，公开声明与既有
+日程结构集中在同名 `include/npc_schedule.hh`。日程描述符、表、路径与
+24 个穿插的运行时文本保持原 ROM 定义顺序，四区文本同步使用
+`data/text/<区域>/npc_schedule_1.cc` 至 `npc_schedule_24.cc`。
+删除旧地址命名的单函数 `src/code_0803E40C.cc`；没有增加数据模块。
+
+`IsLouSundayScheduleActive` 要求 Lou/Ruby 介绍状态为 2 且游戏星期为
+星期日；`IsVanWednesdayScheduleActive` 要求 Van 介绍状态为 2 且游戏
+星期为星期三。判断直接读取 `GameStateSaveImage` 已确认的位域与
+公共星期常量。Mary 的介绍事件写入和独立 NPC 表／动画审计均支持
+这些用途；US 对话中的星期翻译差异不影响此处对原生日程的还原。
+
+| 区域 | Lou（既有 C++，60 字节） | Van（新增 C++，60 字节） | 日期解码（仍为原生汇编） |
+| --- | --- | --- | --- |
+| JP | `0x0803E080` | `0x0803E6D0` | `0x0803D1A0` |
+| US | `0x0803E40C` | `0x0803EA5C` | `0x0803D52C` |
+| EU | `0x0803E420` | `0x0803EA70` | `0x0803D540` |
+| DE | `0x0803E304` | `0x0803E954` | `0x0803D424` |
+
+日期输出明确建模为四个字节的 `GameDayDate`，由
+`DecodeGameDayDate(GameDayDate *, GameCalendar const *)` 写出并返回
+输出指针。它接受只读日历；06:00 前按前一个游戏日解码。该接口
+采用已验证的显式输出 ABI，不借助别名模拟返回对象。解码正文尚未
+高级语言化，本批仅改为真实符号并更新全部调用。
+
+两个判断使用常规 `-ffunction-sections` 保持原来的不同代码位置；
+同一模块的全部只读数据仍只链接一次 `src/npc_schedule.o(.rodata)`。
+没有逐数据 section、固定寄存器、编译后补丁、工具链修改或伪别名。
+
+四区完整模块预检、WSL `make -j4 ... compare`、完整 ROM 逐字节与
+原版 SHA-1 均通过。全部既有符号地址、日程只读数据及重定位，
+原生前后代码和其他已选入对象的分配段／重定位保持；验证链接只
+省略最终 ELF 调试段，完整调试对象和符号表保留。
+原生局部跳转表的 section-relative 重定位已按切分后的输入段核对，
+链接目标地址不变；这只是对象审计，不是对构建输出做修补。
+每区实际新增 C++ 函数体为 **60 字节**；Lou 原有 60 字节及日期
+解码不重复计数。此处是启动代码所用日历接口的依赖补全，启动区间
+的 17 个原生入口仍保持，最早缺口仍为 `InitializeIntroSceneBackground`。
+证据记录在上层 `.codex_tmp/npc-schedule-cpp-20261029/`。
+
 ## 每日天气与角色状态重置：接口整理（2026-10-29）
 
 `GameStateClock` 的两个保存字明确命名为 `weather_today` 与
@@ -13518,8 +13560,8 @@ SHA-1 通过；840 个正常对象中其余 824 个分配段及重定位不变�
 
 32 处日程目录引用均为实际对象／首成员 `.descriptor` 的重定位。
 其中 25 个目录的数据原误命名为 `entity_ui_resource_selector`，
-此次按真实消费链将既有文件改名为 `src/npc_schedule_data.cc`／
-`include/npc_schedule_data.hh`，不增加数据模块。删除四种重复、
+此次按真实消费链将既有文件改名为 `src/npc_schedule.cc`／
+`include/npc_schedule.hh`，不增加数据模块。删除四种重复、
 猜测的资源类型，统一使用已有 `ScheduleInfo`（12 字节）、
 `Schedule`（8 字节）、`ScheduleEntry`（8 字节）和 `PathInfo`
 （12 字节）。335 个路径初始化分别写地图、朝向、路径种类位；

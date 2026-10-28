@@ -1,7 +1,7 @@
 #include "npc_collection.hh"
 #include "game_state.hh"
 #include "data_schedules.hh"
-#include "npc_schedule_data.hh"
+#include "npc_schedule.hh"
 
 #include <algorithm>
 #include <stdlib.h>

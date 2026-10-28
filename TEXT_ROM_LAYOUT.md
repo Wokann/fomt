@@ -12,6 +12,19 @@
 
 JP 已将逐主题旧锚点合并为两片连续可变区域：`0x080E7A40`–`0x080F822F`（上界为 Mary 脚本总索引表）和 `0x080F96F4`–`0x08118D17`（上界为尚保留的原始静态资源）。两片区域内的文本、结构、指针表及其已知调用均随符号重定位；LDS 只保留真实对齐与填充值。
 
+## NPC 日程模块统一：文本与指针表顺序保持（2026-10-29）
+
+日程数据与已恢复的 Lou／Van 日程判断统一归入 `src/npc_schedule.cc`
+及同名 `include/npc_schedule.hh`。四区各 24 份穿插文本同步改为
+`data/text/<区域>/npc_schedule_1.cc` 至 `npc_schedule_24.cc`，仍在原
+物理断点 include；描述符、表、路径、文本顺序不变，只读数据仅用
+一项 `src/npc_schedule.o(.rodata)` 链接。旧文件名不再是维护入口。
+
+完整 ROM 逐字节／SHA-1、既有地址、只读数据和内部／外部符号
+重定位均已核对四区。两个日程判断直接引用真实函数名，日期解码的
+原生正文保留并使用 `DecodeGameDayDate`，没有新增别名或地址偏移。
+功能证据与新增 60 字节 C++ 覆盖详见 `CODE_ROM_LAYOUT.md` 同主题。
+
 ## 天气与角色重置接口整理：文本物理布局保持（2026-10-29）
 
 本批只更新每日天气字段命名、既有角色辅助函数声明及重置函数的真实
@@ -1390,8 +1403,8 @@ EU／DE 的四处原指令字调用也恢复重定位，不留旧名别名。
 源文件中恢复为四区共享 C++，各区合计 600 字节。分派的真实
 消费链确认原 `entity_ui_resource_selector` 不是 UI 资源，
 其连续数据应归属 NPC 日程。原模块直接改名为
-`src/npc_schedule_data.cc`／`include/npc_schedule_data.hh`，
-四区各 24 份文本同步改名为 `data/text/<区域>/npc_schedule_data_N.cc`，
+`src/npc_schedule.cc`／`include/npc_schedule.hh`，
+四区各 24 份文本同步改名为 `data/text/<区域>/npc_schedule_N.cc`，
 在原交错位置 include；不新建额外数据主题或目录。
 
 | 区域 | 日程数据及交错运行时文本的连续半开区间 |
@@ -1406,7 +1419,7 @@ EU／DE 的四处原指令字调用也恢复重定位，不留旧名别名。
 335 个路径以真实位域初始化，带符号坐标及内部对象指针不变；
 四半字细节记录仍保留未知字段，不猜测功能。所有原全局数据
 标签、运行时文本标签及原文保持不变，不使用 `.set` 别名。
-每份 LDS 仍只链接一次 `src/npc_schedule_data.o(.rodata)`，
+每份 LDS 仍只链接一次 `src/npc_schedule.o(.rodata)`，
 输入对象的所有分配段字节、对齐及重定位与改名前完全相同。
 
 未新增文本子节、岛边界或固定地址。四版 WSL `-j4 compare`、
@@ -1732,7 +1745,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | EU | `0x080F1ACA`–`0x080F1ACB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080F1ACC`–`0x080F3401` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/eu/data_schedules_1.cc`–`data_schedules_7.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象，所有外部对象均由同名头文件声明并使用符号重定位 | 精确 |
 | EU | `0x080F3402`–`0x080F3403` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080F3404`–`0x080F8A1F` | `src/npc_schedule_data.o(.rodata)` | `src/npc_schedule_data.cc`、`include/npc_schedule_data.hh`、`data/text/eu/npc_schedule_data_1.cc`–`entity_ui_resource_selector_24.cc`；25 个连续选择器描述符、24 个运行时文本和全部内部指针均为同名对象内的符号重定位 | 精确 |
+| EU | `0x080F3404`–`0x080F8A1F` | `src/npc_schedule.o(.rodata)` | `src/npc_schedule.cc`、`include/npc_schedule.hh`、`data/text/eu/npc_schedule_1.cc`–`npc_schedule_24.cc`；25 个连续选择器描述符、24 个运行时文本和全部内部指针均为同名对象内的符号重定位 | 精确 |
 | EU | `0x080F8A20`–`0x080F9EE3` | `data/scripts/script_table.o(.rodata.mary_script_table)` | Mary 生成的 `gMaryScriptTable`；脚本本体由 Mary 独立管理 | 精确 |
 | EU | `0x080F9EE4`–`0x080F9F10` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/eu/script_engine.cc`；运行时字符串 `2` 项（首项为 `gCppRuntimeBadAlloc_ScriptEngine`）与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `data/text/eu/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（解包资源指针表）→ `data/text/eu/intro_scene_data_2.cc` → `data/text/eu/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh`；20 个解包资源入口均为资产容器中的直接标签；所有已知汇编读取为符号重定位 | 精确 |
@@ -1823,7 +1836,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | DE | `0x080F1F66`–`0x080F1F67` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080F1F68`–`0x080F389D` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/de/data_schedules_1.cc`–`data_schedules_7.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象，所有外部对象均由同名头文件声明并使用符号重定位 | 精确 |
 | DE | `0x080F389E`–`0x080F389F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080F38A0`–`0x080F8EBB` | `src/npc_schedule_data.o(.rodata)` | `src/npc_schedule_data.cc`、`include/npc_schedule_data.hh`、`data/text/de/npc_schedule_data_1.cc`–`entity_ui_resource_selector_24.cc`；25 个连续选择器描述符、24 个运行时文本和全部内部指针均为同名对象内的符号重定位 | 精确 |
+| DE | `0x080F38A0`–`0x080F8EBB` | `src/npc_schedule.o(.rodata)` | `src/npc_schedule.cc`、`include/npc_schedule.hh`、`data/text/de/npc_schedule_1.cc`–`npc_schedule_24.cc`；25 个连续选择器描述符、24 个运行时文本和全部内部指针均为同名对象内的符号重定位 | 精确 |
 | DE | `0x080F8EBC`–`0x080FA37F` | `data/scripts/script_table.o(.rodata.mary_script_table)` | Mary 生成的 `gMaryScriptTable`；脚本本体由 Mary 独立管理 | 精确 |
 | DE | `0x080FA380`–`0x080FA3AC` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/de/script_engine.cc`；运行时字符串 `2` 项（首项为 `gCppRuntimeBadAlloc_ScriptEngine`）与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `data/text/de/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（解包资源指针表）→ `data/text/de/intro_scene_data_2.cc` → `data/text/de/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh`；20 个解包资源入口均为资产容器中的直接标签；所有已知汇编读取为符号重定位 | 精确 |
@@ -1930,7 +1943,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080F12DA`–`0x080F12DB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F12DC`–`0x080F2C11` | `src/data_schedules.o(.rodata)` | [嵌入文本 / 数据] | `src/data_schedules.cc`<br>`include/data_schedules.hh`<br>`data/text/jp/data_schedules_1.cc`–`data_schedules_7.cc` | 运行时字符串 `7` 处（`gCppRuntimeBadAllocPrefix_FourthSchedule` 与 `gUnk_080F2DC0` 共同保持原 JP 的可重定位分界）<br>`ScheduleInfo_Unk_080F1A80`、`Unk_080F1A80_Schedules`、`Unk_080F1A80_Schedule_1`、`Unk_080F1A80_Schedule_2`、`Unk_080F1A80_Schedule_3`、`Unk_080F1A80_Schedule_4`，… +271<br>所有表、路径和外部声明均集中于同名模块并使用符号重定位；3 个 JP 汇编对象中的 15 个跨块调度指针也已拆为真实标签重定位；下一对象起点限制此连续块 |
 | `0x080F2C12`–`0x080F2C13` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F2C14`–`0x080F822F` | `src/npc_schedule_data.o(.rodata)` | [嵌入文本 / 数据] | `src/npc_schedule_data.cc`<br>`include/npc_schedule_data.hh`<br>`data/text/jp/npc_schedule_data_1.cc`–`entity_ui_resource_selector_24.cc` | 运行时字符串 `24` 项<br>25 个连续选择器描述符（由 `gUnk_080F33B8` 至 `gUnk_080F8678` 的物理顺序组成）<br>顶层描述符、表、条目、载荷、详情记录与运行时文本均由同名头文件声明；JP 的 50 个跨汇编选择器引用也已拆为真实标签重定位；内部和外部调用均为符号重定位 |
+| `0x080F2C14`–`0x080F822F` | `src/npc_schedule.o(.rodata)` | [嵌入文本 / 数据] | `src/npc_schedule.cc`<br>`include/npc_schedule.hh`<br>`data/text/jp/npc_schedule_1.cc`–`npc_schedule_24.cc` | 运行时字符串 `24` 项<br>25 个连续选择器描述符（由 `gUnk_080F33B8` 至 `gUnk_080F8678` 的物理顺序组成）<br>顶层描述符、表、条目、载荷、详情记录与运行时文本均由同名头文件声明；JP 的 50 个跨汇编选择器引用也已拆为真实标签重定位；内部和外部调用均为符号重定位 |
 | `0x080F8230`–`0x080F96F3` | `data/scripts/script_table.o(.rodata.mary_script_table)` | [Mary 脚本表] | Mary 生成的 `gMaryScriptTable` | 脚本本体继续由 Mary 独立维护；本表是常规源码调用脚本块的唯一入口；JP 的 3 个跨代码表入口均为 `gMaryScriptTable` 符号重定位 |
 | `0x080F96F4`–`0x080F9720` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/jp/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；首项为普通命名文本 `gCppRuntimeBadAlloc_ScriptEngine`，对象内四字节对齐零填充保持原字节布局；JP 的 1 个无效字符串提示与 39 个错误文本调用均为真实符号重定位 |
 | `0x080F9721`–`0x080F9734` | `src/cooking_festival.o(.rodata)` | [数据] | `src/cooking_festival.cc`<br>`include/cooking_festival.hh` | `gCookingFestivalDishCategoryRatingThresholds`；汇编调用为符号重定位 |
@@ -3768,7 +3781,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080F1A7E`–`0x080F1A7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F1A80`–`0x080F33B5` | `src/data_schedules.o(.rodata)` | [嵌入文本 / 数据] | `src/data_schedules.cc`<br>`include/data_schedules.hh`<br>`data/text/us/data_schedules_1.cc`–`data_schedules_7.cc` | 运行时字符串 `7` 处<br>`ScheduleInfo_Unk_080F1A80`、`Unk_080F1A80_Schedules`、`Unk_080F1A80_Schedule_1`、`Unk_080F1A80_Schedule_2`、`Unk_080F1A80_Schedule_3`、`Unk_080F1A80_Schedule_4`，… +271<br>所有表、路径和外部声明均集中于同名模块并使用符号重定位；下一对象起点限制此连续块 |
 | `0x080F33B6`–`0x080F33B7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F33B8`–`0x080F89D3` | `src/npc_schedule_data.o(.rodata)` | [嵌入文本 / 数据] | `src/npc_schedule_data.cc`<br>`include/npc_schedule_data.hh`<br>`data/text/us/npc_schedule_data_1.cc`–`entity_ui_resource_selector_24.cc` | 运行时字符串 `24` 项<br>25 个连续选择器描述符（由 `gUnk_080F33B8` 至 `gUnk_080F8678` 的物理顺序组成）<br>顶层描述符、表、条目、载荷、详情记录与运行时文本均由同名头文件声明；内部和外部调用均为符号重定位 |
+| `0x080F33B8`–`0x080F89D3` | `src/npc_schedule.o(.rodata)` | [嵌入文本 / 数据] | `src/npc_schedule.cc`<br>`include/npc_schedule.hh`<br>`data/text/us/npc_schedule_1.cc`–`npc_schedule_24.cc` | 运行时字符串 `24` 项<br>25 个连续选择器描述符（由 `gUnk_080F33B8` 至 `gUnk_080F8678` 的物理顺序组成）<br>顶层描述符、表、条目、载荷、详情记录与运行时文本均由同名头文件声明；内部和外部调用均为符号重定位 |
 | `0x080F89D4`–`0x080F9E97` | `data/scripts/script_table.o(.rodata.mary_script_table)` | [Mary 脚本表] | Mary 生成的 `gMaryScriptTable` | 脚本本体继续由 Mary 独立维护；本表是常规源码调用脚本块的唯一入口 |
 | `0x080F9E98`–`0x080F9EC4` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/us/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；首项为普通命名文本 `gCppRuntimeBadAlloc_ScriptEngine`，随后对象内两字节对齐填充与区域文本保持原字节布局 |
 | `0x080F9EC5`–`0x080F9ED8` | `src/cooking_festival.o(.rodata)` | [数据] | `src/cooking_festival.cc`<br>`include/cooking_festival.hh` | `gCookingFestivalDishCategoryRatingThresholds`；汇编调用为符号重定位 |

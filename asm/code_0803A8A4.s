@@ -2905,9 +2905,9 @@ UpdateMapClockStatusHudCalendar:
 
     .section .text.farming_calendar_helpers, "ax", %progbits
     .align 2, 0
-    .global func_0803D52C
+    .global DecodeGameDayDate
     .thumb_func
-func_0803D52C:
+DecodeGameDayDate:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -3114,7 +3114,7 @@ func_0803DA24:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -3163,7 +3163,7 @@ func_0803DA7C:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r0, [r4, #2]
     mov	r8, r0
@@ -3429,7 +3429,7 @@ func_0803DC64:
     adds	r1, r2, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -3485,7 +3485,7 @@ func_0803DCB4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -3608,7 +3608,7 @@ func_0803DDE8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     mov	r0, sp
     ldrb	r6, [r0, #0]
     ldrb	r7, [r4, #1]
@@ -3722,7 +3722,7 @@ func_0803DECC:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -3760,7 +3760,7 @@ func_0803DEF8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -3809,7 +3809,7 @@ func_0803DBC4:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -3847,7 +3847,7 @@ func_0803DC08:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -3900,7 +3900,7 @@ func_0803DC5C:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     mov	r8, r0
     ldrb	r7, [r4, #2]
@@ -4138,7 +4138,7 @@ func_0803DE18:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -4188,7 +4188,7 @@ func_0803DE70:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r4, [r4, #2]
     adds	r0, r6, #0
@@ -4246,7 +4246,7 @@ func_0803DED8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     mov	r8, r0
     ldrb	r6, [r4, #2]
@@ -4478,7 +4478,7 @@ func_0803E0BC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -4530,7 +4530,7 @@ func_0803E114:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r6, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -4734,7 +4734,7 @@ func_0803E294:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -4782,7 +4782,7 @@ func_0803E684:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     adds	r6, r0, #0
     ldrb	r0, [r4, #2]
@@ -4839,7 +4839,7 @@ func_0803E360:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r2, [r4, #1]
     ldrb	r3, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -4936,7 +4936,7 @@ func_0803E3F4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r6, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -5123,7 +5123,7 @@ func_0803E8E8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r2, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -5197,7 +5197,7 @@ func_0803E970:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -5262,7 +5262,7 @@ func_0803E658:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r2, [r4, #3]
@@ -5319,39 +5319,7 @@ func_0803E658:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803E6D0
-    .thumb_func
-func_0803E6D0:
-    push	{r4, r5, lr}
-    sub	sp, #4
-    adds	r4, r0, #0
-    mov	r5, sp
-    adds	r1, r4, #0
-    adds	r1, #16
-    mov	r0, sp
-    bl func_0803D52C
-    ldrb	r1, [r5, #3]
-    ldr r0, .Ljp_0803E6FC
-    adds	r4, r4, r0
-    ldrb	r0, [r4, #0]
-    lsls	r0, r0, #25
-    lsrs	r0, r0, #30
-    cmp	r0, #2
-    bne .Ljp_0803E700
-    cmp	r1, #3
-    bne .Ljp_0803E700
-    movs	r0, #1
-    b .Ljp_0803E702
-    .align 2, 0
-.Ljp_0803E6FC:
-    .4byte 0x00002186
-.Ljp_0803E700:
-    movs	r0, #0
-.Ljp_0803E702:
-    add	sp, #4
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
+    .section .text.npc_schedule_van_after, "ax", %progbits
     .align 2, 0
     .global func_0803E70C
     .thumb_func
@@ -5374,7 +5342,7 @@ func_0803E70C:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -5413,7 +5381,7 @@ func_0803E750:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -5467,7 +5435,7 @@ func_0803EB40:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -5530,7 +5498,7 @@ func_0803EB9C:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r0, [r4, #2]
     mov	r8, r0
@@ -5621,7 +5589,7 @@ func_0803E8B8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r6, [r4, #3]
@@ -5676,7 +5644,7 @@ func_0803E934:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r6, [r4, #3]
@@ -5811,7 +5779,7 @@ func_0803EA40:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r0, [r4, #2]
     adds	r7, r0, #0
@@ -5885,7 +5853,7 @@ func_0803EAC4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -8748,9 +8716,9 @@ UpdateMapClockStatusHudCalendar:
 
     .section .text.farming_calendar_helpers, "ax", %progbits
     .align 2, 0
-    .global func_0803D52C
+    .global DecodeGameDayDate
     .thumb_func
-func_0803D52C:
+DecodeGameDayDate:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -8957,7 +8925,7 @@ func_0803DA24:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -9006,7 +8974,7 @@ func_0803DA7C:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r0, [r4, #2]
     mov	r8, r0
@@ -9272,7 +9240,7 @@ func_0803DC64:
     adds	r1, r2, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -9328,7 +9296,7 @@ func_0803DCB4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -9444,7 +9412,7 @@ func_0803DDE8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     mov	r0, sp
     ldrb	r6, [r0, #0]
     ldrb	r7, [r4, #1]
@@ -9558,7 +9526,7 @@ func_0803DECC:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -9596,7 +9564,7 @@ func_0803DEF8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -9645,7 +9613,7 @@ func_0803DF50:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -9683,7 +9651,7 @@ func_0803DF94:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -9736,7 +9704,7 @@ func_0803DFE8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     mov	r8, r0
     ldrb	r7, [r4, #2]
@@ -9974,7 +9942,7 @@ func_0803E1A4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -10024,7 +9992,7 @@ func_0803E1FC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r4, [r4, #2]
     adds	r0, r6, #0
@@ -10082,7 +10050,7 @@ func_0803E264:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     mov	r8, r0
     ldrb	r6, [r4, #2]
@@ -10314,7 +10282,7 @@ func_0803E448:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -10366,7 +10334,7 @@ func_0803E4A0:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r6, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -10570,7 +10538,7 @@ func_0803E620:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -10615,7 +10583,7 @@ func_0803E684:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     adds	r6, r0, #0
     ldrb	r0, [r4, #2]
@@ -10672,7 +10640,7 @@ func_0803E6EC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r2, [r4, #1]
     ldrb	r3, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -10769,7 +10737,7 @@ func_0803E780:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r6, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -10953,7 +10921,7 @@ func_0803E8E8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r2, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -11024,7 +10992,7 @@ func_0803E970:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -11089,7 +11057,7 @@ func_0803E9E4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r2, [r4, #3]
@@ -11146,39 +11114,7 @@ func_0803E9E4:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803EA5C
-    .thumb_func
-func_0803EA5C:
-    push	{r4, r5, lr}
-    sub	sp, #4
-    adds	r4, r0, #0
-    mov	r5, sp
-    adds	r1, r4, #0
-    adds	r1, #16
-    mov	r0, sp
-    bl func_0803D52C
-    ldrb	r1, [r5, #3]
-    ldr r0, .Leu_0803EA9C
-    adds	r4, r4, r0
-    ldrb	r0, [r4, #0]
-    lsls	r0, r0, #25
-    lsrs	r0, r0, #30
-    cmp	r0, #2
-    bne .Leu_0803EAA0
-    cmp	r1, #3
-    bne .Leu_0803EAA0
-    movs	r0, #1
-    b .Leu_0803EAA2
-    .align 2, 0
-.Leu_0803EA9C:
-    .4byte 0x00002186
-.Leu_0803EAA0:
-    movs	r0, #0
-.Leu_0803EAA2:
-    add	sp, #4
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
+    .section .text.npc_schedule_van_after, "ax", %progbits
     .align 2, 0
     .global func_0803EA98
     .thumb_func
@@ -11201,7 +11137,7 @@ func_0803EA98:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -11240,7 +11176,7 @@ func_0803EADC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -11291,7 +11227,7 @@ func_0803EB40:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -11351,7 +11287,7 @@ func_0803EB9C:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r0, [r4, #2]
     mov	r8, r0
@@ -11442,7 +11378,7 @@ func_0803EC44:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r6, [r4, #3]
@@ -11497,7 +11433,7 @@ func_0803ECC0:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r6, [r4, #3]
@@ -11615,7 +11551,7 @@ func_0803EDCC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r0, [r4, #2]
     adds	r7, r0, #0
@@ -11689,7 +11625,7 @@ func_0803EE50:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -14527,9 +14463,9 @@ UpdateMapClockStatusHudCalendar:
 
     .section .text.farming_calendar_helpers, "ax", %progbits
     .align 2, 0
-    .global func_0803D52C
+    .global DecodeGameDayDate
     .thumb_func
-func_0803D52C:
+DecodeGameDayDate:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -14736,7 +14672,7 @@ func_0803DA24:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -14785,7 +14721,7 @@ func_0803DA7C:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r0, [r4, #2]
     mov	r8, r0
@@ -15051,7 +14987,7 @@ func_0803DC64:
     adds	r1, r2, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -15107,7 +15043,7 @@ func_0803DCB4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -15223,7 +15159,7 @@ func_0803DDE8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     mov	r0, sp
     ldrb	r6, [r0, #0]
     ldrb	r7, [r4, #1]
@@ -15337,7 +15273,7 @@ func_0803DECC:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -15375,7 +15311,7 @@ func_0803DEF8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -15424,7 +15360,7 @@ func_0803DF50:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -15462,7 +15398,7 @@ func_0803DF94:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -15515,7 +15451,7 @@ func_0803DFE8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     mov	r8, r0
     ldrb	r7, [r4, #2]
@@ -15753,7 +15689,7 @@ func_0803E1A4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -15803,7 +15739,7 @@ func_0803E1FC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r4, [r4, #2]
     adds	r0, r6, #0
@@ -15861,7 +15797,7 @@ func_0803E264:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     mov	r8, r0
     ldrb	r6, [r4, #2]
@@ -16093,7 +16029,7 @@ func_0803E448:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -16145,7 +16081,7 @@ func_0803E4A0:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r6, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -16349,7 +16285,7 @@ func_0803E620:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -16394,7 +16330,7 @@ func_0803E684:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     adds	r6, r0, #0
     ldrb	r0, [r4, #2]
@@ -16451,7 +16387,7 @@ func_0803E6EC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r2, [r4, #1]
     ldrb	r3, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -16548,7 +16484,7 @@ func_0803E780:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r6, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -16732,7 +16668,7 @@ func_0803E8E8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r2, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -16803,7 +16739,7 @@ func_0803E970:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -16868,7 +16804,7 @@ func_0803E9E4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r2, [r4, #3]
@@ -16925,39 +16861,7 @@ func_0803E9E4:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803EA5C
-    .thumb_func
-func_0803EA5C:
-    push	{r4, r5, lr}
-    sub	sp, #4
-    adds	r4, r0, #0
-    mov	r5, sp
-    adds	r1, r4, #0
-    adds	r1, #16
-    mov	r0, sp
-    bl func_0803D52C
-    ldrb	r1, [r5, #3]
-    ldr r0, .Lde_0803E980
-    adds	r4, r4, r0
-    ldrb	r0, [r4, #0]
-    lsls	r0, r0, #25
-    lsrs	r0, r0, #30
-    cmp	r0, #2
-    bne .Lde_0803E984
-    cmp	r1, #3
-    bne .Lde_0803E984
-    movs	r0, #1
-    b .Lde_0803E986
-    .align 2, 0
-.Lde_0803E980:
-    .4byte 0x00002186
-.Lde_0803E984:
-    movs	r0, #0
-.Lde_0803E986:
-    add	sp, #4
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
+    .section .text.npc_schedule_van_after, "ax", %progbits
     .align 2, 0
     .global func_0803EA98
     .thumb_func
@@ -16980,7 +16884,7 @@ func_0803EA98:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -17019,7 +16923,7 @@ func_0803EADC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -17070,7 +16974,7 @@ func_0803EB40:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -17130,7 +17034,7 @@ func_0803EB9C:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r0, [r4, #2]
     mov	r8, r0
@@ -17221,7 +17125,7 @@ func_0803EC44:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r6, [r4, #3]
@@ -17276,7 +17180,7 @@ func_0803ECC0:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r6, [r4, #3]
@@ -17394,7 +17298,7 @@ func_0803EDCC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r0, [r4, #2]
     adds	r7, r0, #0
@@ -17468,7 +17372,7 @@ func_0803EE50:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -20330,9 +20234,9 @@ UpdateMapClockStatusHudCalendar:
 
     .section .text.farming_calendar_helpers, "ax", %progbits
     .align 2, 0
-    .global func_0803D52C
+    .global DecodeGameDayDate
     .thumb_func
-func_0803D52C:
+DecodeGameDayDate:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -20539,7 +20443,7 @@ func_0803DA24:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -20588,7 +20492,7 @@ func_0803DA7C:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r0, [r4, #2]
     mov	r8, r0
@@ -20854,7 +20758,7 @@ func_0803DC64:
     adds	r1, r2, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -20910,7 +20814,7 @@ func_0803DCB4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -21026,7 +20930,7 @@ func_0803DDE8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     mov	r0, sp
     ldrb	r6, [r0, #0]
     ldrb	r7, [r4, #1]
@@ -21140,7 +21044,7 @@ func_0803DECC:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -21178,7 +21082,7 @@ func_0803DEF8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -21227,7 +21131,7 @@ func_0803DF50:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -21265,7 +21169,7 @@ func_0803DF94:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -21318,7 +21222,7 @@ func_0803DFE8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     mov	r8, r0
     ldrb	r7, [r4, #2]
@@ -21556,7 +21460,7 @@ func_0803E1A4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -21606,7 +21510,7 @@ func_0803E1FC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r4, [r4, #2]
     adds	r0, r6, #0
@@ -21664,7 +21568,7 @@ func_0803E264:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     mov	r8, r0
     ldrb	r6, [r4, #2]
@@ -21896,7 +21800,7 @@ func_0803E448:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -21948,7 +21852,7 @@ func_0803E4A0:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r6, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -22152,7 +22056,7 @@ func_0803E620:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -22197,7 +22101,7 @@ func_0803E684:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     adds	r6, r0, #0
     ldrb	r0, [r4, #2]
@@ -22254,7 +22158,7 @@ func_0803E6EC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r2, [r4, #1]
     ldrb	r3, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -22351,7 +22255,7 @@ func_0803E780:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r7, [r4, #1]
     ldrb	r6, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -22535,7 +22439,7 @@ func_0803E8E8:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r2, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -22606,7 +22510,7 @@ func_0803E970:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -22671,7 +22575,7 @@ func_0803E9E4:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r2, [r4, #3]
@@ -22728,39 +22632,7 @@ func_0803E9E4:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803EA5C
-    .thumb_func
-func_0803EA5C:
-    push	{r4, r5, lr}
-    sub	sp, #4
-    adds	r4, r0, #0
-    mov	r5, sp
-    adds	r1, r4, #0
-    adds	r1, #16
-    mov	r0, sp
-    bl func_0803D52C
-    ldrb	r1, [r5, #3]
-    ldr r0, .Lus_0803EA88
-    adds	r4, r4, r0
-    ldrb	r0, [r4, #0]
-    lsls	r0, r0, #25
-    lsrs	r0, r0, #30
-    cmp	r0, #2
-    bne .Lus_0803EA8C
-    cmp	r1, #3
-    bne .Lus_0803EA8C
-    movs	r0, #1
-    b .Lus_0803EA8E
-    .align 2, 0
-.Lus_0803EA88:
-    .4byte 0x00002186
-.Lus_0803EA8C:
-    movs	r0, #0
-.Lus_0803EA8E:
-    add	sp, #4
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
+    .section .text.npc_schedule_van_after, "ax", %progbits
     .align 2, 0
     .global func_0803EA98
     .thumb_func
@@ -22783,7 +22655,7 @@ func_0803EA98:
     mov	r4, sp
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     bl func_0803D644
@@ -22822,7 +22694,7 @@ func_0803EADC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -22873,7 +22745,7 @@ func_0803EB40:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]
@@ -22933,7 +22805,7 @@ func_0803EB9C:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r0, [r4, #2]
     mov	r8, r0
@@ -23024,7 +22896,7 @@ func_0803EC44:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r6, [r4, #3]
@@ -23079,7 +22951,7 @@ func_0803ECC0:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r6, [r4, #3]
@@ -23197,7 +23069,7 @@ func_0803EDCC:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r6, [r4, #1]
     ldrb	r0, [r4, #2]
     adds	r7, r0, #0
@@ -23271,7 +23143,7 @@ func_0803EE50:
     adds	r1, r5, #0
     adds	r1, #16
     mov	r0, sp
-    bl func_0803D52C
+    bl DecodeGameDayDate
     ldrb	r0, [r4, #1]
     ldrb	r1, [r4, #2]
     ldrb	r4, [r4, #3]

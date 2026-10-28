@@ -399,6 +399,9 @@ $(BUILD_DIR)/src/time_of_day.o: CXXFLAGS += -ffunction-sections
 # The NPC constructor and partner queries occupy separate native code runs.
 $(BUILD_DIR)/src/npc_collection.o: CXXFLAGS += -ffunction-sections
 
+# Visiting-NPC callbacks retain their distinct native code positions.
+$(BUILD_DIR)/src/npc_schedule.o: CXXFLAGS += -ffunction-sections
+
 # Schedule initialization precedes the existing contiguous NPC method run.
 $(BUILD_DIR)/src/npc.o: CXXFLAGS += -ffunction-sections
 

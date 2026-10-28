@@ -454,9 +454,11 @@ SECTIONS
         src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
         asm/code_0803A8A4.o(.text.npc_schedule_after);
         . = 0x3E40C; /* US ROM shared Lou/Ruby Sunday schedule gate. */
-        src/code_0803E40C.o(.text);
+        src/npc_schedule.o(.text.IsLouSundayScheduleActive);
         . = 0x3E448; /* US ROM 0x0803E448, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803E448);
+        src/npc_schedule.o(.text.IsVanWednesdayScheduleActive);
+        asm/code_0803A8A4.o(.text.npc_schedule_van_after);
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
         . = 0x4E4AC; /* Ordinary 2D glyph compositor. */
@@ -1262,7 +1264,7 @@ SECTIONS
         FILL(0x00);
         . = ABSOLUTE(0x080F1A80); src/data_schedules.o(.rodata);
         /* Other NPC schedule records follow the individually declared schedules. */
-        . = ALIGN(4); src/npc_schedule_data.o(.rodata);
+        . = ALIGN(4); src/npc_schedule.o(.rodata);
         . = ABSOLUTE(0x080F89D4); data/scripts/script_table.o(.rodata.mary_script_table);
         /* The ordinary source block bounds the preceding Mary script table. */
         . = ABSOLUTE(0x080F9E98); src/script_engine.o(.rodata);
