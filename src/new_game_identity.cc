@@ -4,6 +4,11 @@
 #include "hardware_state_accessors.hh"
 #include "hardware_blend_object.hh"
 #include "hardware_music_player.hh"
+#include "hardware_song.hh"
+#include "fomt_constants.hh"
+#include "font.hh"
+#include "time_of_day.hh"
+#include <string.h>
 #pragma implementation
 
 extern NewGameSceneVTableFunction const gNewGameIdentityCoreVTable[] = {
@@ -18,6 +23,71 @@ NewGameNativeVTableEntry __vt_20NewGameIdentityScene[4] = {
 
 void * operator new(unsigned long);
 void operator delete(void *);
+inline void * operator new(unsigned long, void * storage) { return storage; }
+inline void * operator new[](unsigned long, void * storage) { return storage; }
+
+static inline void AppendIdentityField(FixedStr<15> & field, char const * text)
+{
+    char * start = &field[0];
+    u32 size = strlen(start);
+    char * end = start + size;
+    u32 available = 15 - size;
+    if (available != 0) {
+        u32 length = strlen(text);
+        if (length > available)
+            length = available;
+        memcpy(end, text, length);
+        end[length] = '\0';
+    }
+}
+
+NewGameIdentityCore * InitializeNewGameIdentityCore(NewGameIdentityCore * core,
+    char const * player_name, GameDate birthday, char const * farm_name,
+    char const * dog_name)
+{
+    ConstructHardwareBootstrap(core);
+    core->vtable = reinterpret_cast<void **>(
+        const_cast<NewGameSceneVTableFunction *>(gNewGameIdentityCoreVTable));
+#if defined(REGION_JP)
+    new (core->buffers) NewGameTextTileBuffer<12>[8];
+#else
+    new (core->value_buffers) NewGameTextTileBuffer<12>[4];
+    new (core->label_buffers) NewGameTextTileBuffer<14>[4];
+#endif
+    core->unk_1A28 = 2;
+    UiStateOwner * storage = static_cast<UiStateOwner *>(::operator new(sizeof(UiStateOwner)));
+    {
+        HardwareStateOwner shared;
+        HardwareResource resources;
+        UiStateOwner * ui = new (storage) UiStateOwner(0, 28, 4, 0, shared, resources);
+        core->ui_state = ui;
+    }
+    // Borrow the player assigned to this SFX for the confirmation UI.
+    core->music = GetHardwareSongPlayerSlot(AUDIO_SFX_KAPPA_SURPRISE);
+    new (core->fields) FixedStr<15>[NEW_GAME_IDENTITY_FIELD_COUNT];
+    core->confirmed = 0;
+    core->fields[NEW_GAME_IDENTITY_PLAYER_NAME] = player_name;
+
+    char day[16];
+#if defined(REGION_JP)
+    FormatFullWidthDecimal(birthday.GetDay() + 1, day, 2);
+#else
+    FormatSignedDecimal(birthday.GetDay() + 1, day, 2);
+#endif
+    CalendarSeasonLabel season_name = GetCalendarSeasonLabel(birthday.GetSeason());
+    FixedStr<15> & date = core->fields[NEW_GAME_IDENTITY_BIRTHDAY];
+    AppendIdentityField(date, season_name);
+#if defined(REGION_JP)
+    AppendIdentityField(date, gText_NewGameIdentity_BirthMonthSuffix);
+#endif
+    AppendIdentityField(date, day);
+#if defined(REGION_JP)
+    AppendIdentityField(date, gText_NewGameIdentity_BirthDaySuffix);
+#endif
+    core->fields[NEW_GAME_IDENTITY_FARM_NAME] = farm_name;
+    core->fields[NEW_GAME_IDENTITY_DOG_NAME] = dog_name;
+    return core;
+}
 
 static inline void QueueIdentityBlend(HardwareBootstrap * core, HardwareBlendOwner const & owner)
 {

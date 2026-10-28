@@ -59,7 +59,16 @@ typedef char GameCalendarSizeCheck[sizeof(GameCalendar) == 4 ? 1 : -1];
 typedef char GameCalendarDateCheck[offsetof(GameCalendar, date) == 1 ? 1 : -1];
 typedef char GameCalendarTimeCheck[offsetof(GameCalendar, time) == 2 ? 1 : -1];
 
-extern "C" char const * func_0800E2E4(Season season);
+// Borrowed ROM label, returned as one word and consumed through its C-string view.
+struct CalendarSeasonLabel
+{
+    char const * value;
+    explicit CalendarSeasonLabel(char const * text) : value(text) {}
+    operator char const *() const { return value; }
+};
+typedef char CalendarSeasonLabelSizeCheck[sizeof(CalendarSeasonLabel) == 4 ? 1 : -1];
+
+CalendarSeasonLabel GetCalendarSeasonLabel(Season season);
 extern "C" char const * func_0800E304(unsigned int week_day);
 extern "C" u32 func_0800E324(GameCalendar const & arg_0);
 extern "C" u32 GetTimeOfDayTransitionValue(u8 hour, u8 minute, u32 season, TimeOfDayPeriod period);

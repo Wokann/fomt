@@ -97,7 +97,7 @@ FormatNewGameSaveSlotSummary:
     ldrb	r0, [r1, #1]
     lsls	r0, r0, #30
     lsrs	r0, r0, #30
-    bl func_0800E2E4
+    bl GetCalendarSeasonLabel__F6Season
     mov	r8, r0
     mov	r4, r8
     adds	r0, r6, #0
@@ -1477,7 +1477,7 @@ FormatNewGameSaveSlotSummary: @ Original US 0x08003788; body remains native.
     ldrb r0, [r2, #1]
     lsls r0, r0, #0x1e
     lsrs r0, r0, #0x1e
-    bl func_0800E2E4
+    bl GetCalendarSeasonLabel__F6Season
     mov r8, r0
     mov r4, r8
     adds r0, r6, #0

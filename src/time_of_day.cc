@@ -4,14 +4,14 @@
 #include "time_of_day.hh"
 #include "unknown_types.hh" // for GameDate and Time
 
-extern "C" char const * func_0800E2E4(Season season)
+CalendarSeasonLabel GetCalendarSeasonLabel(Season season)
 {
     if (season < NUM_SEASONS)
     {
-        return gText_Calendar_SeasonNames[season];
+        return CalendarSeasonLabel(gText_Calendar_SeasonNames[season]);
     }
 
-    return gText_Calendar_None;
+    return CalendarSeasonLabel(gText_Calendar_None);
 }
 
 extern "C" char const * func_0800E304(unsigned int week_day)

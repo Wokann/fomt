@@ -84,7 +84,7 @@ typedef char NewGameIdentitySceneCoreCheck[offsetof(NewGameIdentityScene, core) 
 
 EXTERN_C
 
-// Native form construction and UI setup still remain assembly. The
+// Form construction uses C++; UI setup remains native assembly. The
 // running core and scene below share their real allocation and return-owner ABI.
 // Both constructors pass the existing packed date by value: season in bits
 // 0..1 and the zero-based day in bits 2..6. Bit 7 is not part of the date.
@@ -93,7 +93,8 @@ EXTERN_C
 // encoded bytes plus NUL; JP appends its month/day suffixes. Only confirmed
 // is reset here: the running screen initializes its other control bytes.
 NewGameIdentityCore * InitializeNewGameIdentityCore(NewGameIdentityCore * core,
-    char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name);
+    char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name)
+    SECTION(".text.new_game_identity_core_constructor");
 void DestroyNewGameIdentityCore(NewGameIdentityCore * core, int flags)
     SECTION(".text.new_game_identity_core_cleanup");
 SceneTransitionOwner RunNewGameIdentityCore(NewGameIdentityCore * core)

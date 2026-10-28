@@ -73,7 +73,7 @@ SECTIONS
         src/new_game_menu.o(.text.new_game_menu_scene);
         src/new_game.o(.text.new_game_scene_lifecycle);
         src/new_game.o(.text.new_game_name_entry_workflow);
-        asm/new_game_identity.o(.text.new_game_identity_core_constructor);
+        src/new_game_identity.o(.text.new_game_identity_core_constructor);
         src/new_game_identity.o(.text.new_game_identity_core_cleanup);
         src/new_game_identity.o(.text.new_game_identity_core_run);
         src/new_game_identity.o(.text.new_game_identity_core_initialization);
@@ -144,7 +144,7 @@ SECTIONS
         src/coop.o(.text);
         src/barn.o(.text);
         src/item.o(.text);
-        src/time_of_day.o(.text.func_0800E2E4 .text.func_0800E304 .text.func_0800E324);
+        src/time_of_day.o(.text.GetCalendarSeasonLabel__F6Season .text.func_0800E304 .text.func_0800E324);
         src/farmer.o(.text .text.__6FarmerPCcRC8GameDate .text.__Q* .text.[A-Za-z]*);
         src/rucksack_item.o(.text);
         src/held_item.o(.text);
