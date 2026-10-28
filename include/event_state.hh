@@ -10,6 +10,10 @@
 // must not be silently cleared. All four regional layouts agree.
 struct GameEventState {
     GameEventState();
+    // Native copy construction copies only active registration IDs and saved
+    // fields; it leaves unk_0A and unused packed bits untouched. The body is
+    // still native assembly, not the compiler's implicit whole-member copy.
+    GameEventState(GameEventState const & other);
     bool HasRegisteredEvents() const;
     void RegisterEventVariable(u16 value);
     void RemoveEventVariable(u16 value);

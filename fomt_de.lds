@@ -819,9 +819,9 @@ SECTIONS
         src/game_scene.o(
             .text.__30GameSceneControllerActorRecord
             .text.__24GameSceneEventIconRecord);
-        asm/code_linkonce.o(.text.new_game_after_controller_records);
+        asm/game_state.o(.text.game_state_copy);
         src/game_state.o(.text._._18GameStateSaveImage);
-        asm/code_linkonce.o(.text.save_image_after_destructor);
+        asm/event_state.o(.text.event_state_copy);
         src/npc_collection.o(.text.__13NpcCollectionRC13NpcCollection);
         src/farm.o(.text.__4FarmRC4Farm);
         src/farm.o(.gnu.linkonce.t.__4BarnRC4Barn);
