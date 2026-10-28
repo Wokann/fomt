@@ -8,9 +8,9 @@
 EC u32 SelectWorldBackgroundAudio(GameSceneWorldPrefix & world)
 {
     GameStateClock const & clock = world.save->clock;
-    if (clock.unk_00 == WEATHER_RAIN)
+    if (clock.weather_today == WEATHER_RAIN)
         return AUDIO_AMBIENCE_RAIN;
-    if (clock.unk_00 == WEATHER_TYPHOON || clock.unk_00 == WEATHER_SNOWSTORM)
+    if (clock.weather_today == WEATHER_TYPHOON || clock.weather_today == WEATHER_SNOWSTORM)
         return AUDIO_AMBIENCE_STORM;
 
     RecordPlayer * record_player = world.save->farm.farm_house.GetRecordPlayer();

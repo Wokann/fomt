@@ -54,7 +54,7 @@ extern "C" void func_0809C0C8(Unk_Actor_0809BFE8 & self, u32 const & value)
     self.unk_0C = 4;
 }
 
-extern "C" void func_0809C0D4(Unk_Actor_0809BFE8 & self)
+extern "C" void ResetActorRuntimeState(Unk_Actor_0809BFE8 & self)
 {
     ActorLocation const location(Location(MAP_NONE, 0, 0), 0);
     u32 unused;

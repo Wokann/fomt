@@ -453,7 +453,7 @@ EC u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location)
     u32 result = 0;
     GameSceneFarmPlotLocation hit;
     if (TryGetFarmPlotAtLocation(world, location, hit)) {
-        result = hit.plot->method_0800A190(world.save->clock.unk_00 == WEATHER_SUNNY);
+        result = hit.plot->method_0800A190(world.save->clock.weather_today == WEATHER_SUNNY);
         if (world.vfunc_14() == location.GetMap()) {
             GameSceneWorldMap * map = world.data.map.value;
             FieldPlotRenderData const * render_data =

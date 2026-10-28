@@ -564,7 +564,7 @@ DayUpdate__18GameStateSaveImage:
     bl Reset__14FieldItemState
     ldr r5, .Ljp_080113E8 @ =0x000034DC
     adds r0, r6, r5
-    bl func_0809C0D4
+    bl ResetActorRuntimeState
     ldrb r1, [r6, #3]
     movs r0, #0x7f
     ands r0, r1
@@ -15660,7 +15660,7 @@ DayUpdate__18GameStateSaveImage: @ US 0x08010F54
     bl Reset__14FieldItemState
     ldr r5, .L08011408 @ =0x000034DC
     adds r0, r6, r5
-    bl func_0809C0D4
+    bl ResetActorRuntimeState
     ldrb r1, [r6, #3]
     movs r0, #0x7f
     ands r0, r1

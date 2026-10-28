@@ -91,12 +91,14 @@ struct GameStateActorRecord {
 typedef char GameStateActorRecordSizeCheck[sizeof(GameStateActorRecord) == 0x10 ? 1 : -1];
 typedef char GameStateActorRecordWordsCheck[offsetof(GameStateActorRecord, unk_04) == 4 ? 1 : -1];
 
-// The saved clock has two still-unknown words followed by the calendar.
+// DayUpdate promotes tomorrow's weather to today before choosing the next forecast.
+// Keep both saved words unvalidated, as with the native weather-variable interface.
 struct GameStateClock {
-    u32 unk_00, unk_04;
+    u32 weather_today;
+    u32 weather_tomorrow;
     GameCalendar calendar;
     GameStateClock(GameCalendar const & value)
-        : unk_00(0), unk_04(0), calendar(value) {}
+        : weather_today(WEATHER_SUNNY), weather_tomorrow(WEATHER_SUNNY), calendar(value) {}
 };
 typedef char GameStateClockSizeCheck[sizeof(GameStateClock) == 12 ? 1 : -1];
 
@@ -203,8 +205,8 @@ struct GameStateSaveImage {
 };
 
 typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
-typedef char GameStateSaveImageUnknown08Check[offsetof(GameStateSaveImage, clock) == 8 ? 1 : -1];
-typedef char GameStateSaveImageUnknown0CCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, unk_04) == 12 ? 1 : -1];
+typedef char GameStateSaveImageWeatherTodayCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, weather_today) == 8 ? 1 : -1];
+typedef char GameStateSaveImageWeatherTomorrowCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, weather_tomorrow) == 12 ? 1 : -1];
 typedef char GameStateSaveImageCalendarCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, calendar) == 0x10 ? 1 : -1];
 typedef char GameStateSaveImageFarmCheck[offsetof(GameStateSaveImage, farm) == 0x14 ? 1 : -1];
 typedef char GameStateSaveImageMoneyCheck[offsetof(GameStateSaveImage, money_account) == 0x1AA8 ? 1 : -1];
