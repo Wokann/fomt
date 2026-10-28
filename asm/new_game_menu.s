@@ -1317,7 +1317,7 @@ RunNewGameMenuCore:
     bl func_08008B54
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_08008BF8
+    bl FadeOut__23HardwareMusicPlayerSlotUs
     b.n .Ljp_08004B4E
 .Ljp_08004B1C:
     adds	r0, r6, #0
@@ -2674,7 +2674,7 @@ RunNewGameMenuCore: @ 0x08004570
     bl func_08008B54
     adds r0, r4, #0
     movs r1, #2
-    bl func_08008BF8
+    bl FadeOut__23HardwareMusicPlayerSlotUs
     b .L08004B36
 .L08004B04:
     adds r0, r6, #0

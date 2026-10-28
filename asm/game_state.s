@@ -8162,7 +8162,7 @@ func_080179CC:
     beq .Lauto_080177B8
     .Lauto_080177A6:
     ldr r0, [r4]
-    bl func_08008CD0
+    bl IsActive__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Lauto_08017804
@@ -8445,7 +8445,7 @@ func_08017C30:
     beq .Lauto_08017A4E
     .Lauto_08017A3C:
     ldr r0, [r4]
-    bl func_08008CD0
+    bl IsActive__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Lauto_08017B30
@@ -14764,7 +14764,7 @@ func_0801EE00:
     .byte 0x68, 0x46, 0x08, 0x30, 0x0D, 0x90, 0x0B, 0x99, 0x00, 0x29, 0x00, 0xD0, 0x98, 0xE0, 0x52, 0x46
     .byte 0x10, 0x68, 0xA6, 0x23, 0x5B, 0x00, 0xC0, 0x18, 0x01, 0x68, 0x50, 0x46, 0xB4, 0xF0, 0x56, 0xFA
     .byte 0x04, 0x68, 0x45, 0x68, 0xAC, 0x42, 0x08, 0xD0, 0x20, 0x68
-    bl func_08008CD0
+    bl IsActive__C23HardwareMusicPlayerSlot
     .byte 0x00, 0x06
     .byte 0x00, 0x28, 0x13, 0xD0, 0x04, 0x34, 0xAC, 0x42, 0xF6, 0xD1, 0x28, 0x1F, 0x00, 0x68, 0x6D, 0x21
     bl func_08008B6C
@@ -23992,7 +23992,7 @@ func_080179CC: @ 0x080179CC
     beq .L08017A24
 .L08017A12:
     ldr r0, [r4]
-    bl func_08008CD0
+    bl IsActive__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08017A70
@@ -24291,7 +24291,7 @@ func_08017C30: @ 0x08017C30
     beq .L08017CBA
 .L08017CA8:
     ldr r0, [r4]
-    bl func_08008CD0
+    bl IsActive__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08017D9C
@@ -33102,7 +33102,7 @@ func_0801EE00: @ 0x0801EE00
     beq .L0801EEA2
 .L0801EE90:
     ldr r0, [r4]
-    bl func_08008CD0
+    bl IsActive__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0801EEC4
