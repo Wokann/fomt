@@ -728,6 +728,8 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_after_animation_reset);
         src/world_map.o(.text.RefreshFieldPlotTiles .text.RefreshWorldMapPatch .text.func_080AA89C .text.func_080AA8BC .text.func_080AA8DC);
         asm/code_809E804.o(.text.game_map_after_flag_updates);
+        src/world_map.o(.text.ResetSavedMapTree);
+        asm/code_809E804.o(.text.saved_map_tree_reset_after);
         src/random.o(.text);
         src/actor_facing.o(.text.GetRelativeFacing);
         asm/actor_behavior.o(.text);

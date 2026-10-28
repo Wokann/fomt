@@ -688,6 +688,20 @@ EC void func_080AA8DC(GameSceneSavedMapPrefix * map)
         map->unk_98 = true;
 }
 
+EC void ResetSavedMapTree(SavedMapTree * tree, u32 unk_00, u32 unk_04)
+{
+    tree->unk_00 = unk_00;
+    tree->unk_04 = unk_04;
+    SavedMapTreeState * state = &tree->state;
+    if (state->node_count != 0) {
+        EraseSavedMapTreeNodes(state, state->header->parent);
+        state->header->left = state->header;
+        state->header->parent = nullptr;
+        state->header->right = state->header;
+        state->node_count = 0;
+    }
+}
+
 EC void EraseSavedMapTreeNodes(SavedMapTreeState * state, SavedMapTreeNode * node)
 {
     while (node != nullptr) {

@@ -2,6 +2,36 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的模块。地址以各地区基准 ROM 的物理地址为准；源码按已核实的功能归属组织，不因来自同一个原始汇编文件就堆入同一个 C++ 文件。LDS 独立维持实际 ROM 顺序；新增高级语言覆盖、既有代码搬迁与语义改名分别统计。
 
+## 保存地图树：配置重置与旧节点回收（2026-10-29）
+
+`ResetSavedMapTree` 已从两份区域汇编恢复为 `src/world_map.cc`
+中的共用 C++，声明归于同名头文件。它先保存两个 32 位配置值，
+再在树非空时调用实际节点回收函数，恢复哨兵的左右链接、清除根
+链接并清零节点计数；保留哨兵供后续复用。
+
+| 函数（半开区间） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| `ResetSavedMapTree` | `0x080AA84C–0x080AA87C` | `0x080AAE14–0x080AAE44` | `0x080AAE44–0x080AAE74` | `0x080AAD74–0x080AADA4` |
+
+原先容器开头的 8 字节未知区按实际字访问拆为 `unk_00`、`unk_04`
+两个 `u32`；具体含义仍未确认，不据数值猜测用途。容器大小和状态
+偏移保持，已有节点清理及析构的编译内容不变。
+
+每区新增 C/C++ ROM 覆盖 **48 字节**。旧区域入口标签与汇编正文
+移除；LDS 在保留原生前缀和尾段之间链接编译器函数段。扫描每区
+可执行段及完整 ROM，四处调用全部使用 `ResetSavedMapTree` 的真实
+Thumb BL 重定位，未发现字面函数指针或指向正文中间的固定引用。
+
+四区 WSL `make -j4 ... compare`、原版 ROM 逐字节/SHA-1、全部既有
+符号地址、每区 237 个实际链接对象及原生前后段重定位均核对通过。
+正式 Makefile、工具、文本、资源和只读数据排列未改动。验证时仅把
+预处理缓存放在 F 盘，及将 binutils 的临时 ELF 副本放入内存盘；
+编译与 strip 参数保持，完整调试对象及最终符号表保留。
+
+最早启动缺口仍为 `InitializeIntroSceneBackground`；后接树初始化
+函数也仍为原生汇编，不把这些未完成范围计入新增高级语言覆盖。
+证据：`I:/fomt-startup-20261029-58a7b895-832649fb/saved-map-reset-integration-a0d913c0/`。
+
 ## 保存地图树：节点清理与析构恢复（2026-10-29）
 
 节点清理和保存地图析构已恢复为既有 `src/world_map.cc` 中的共用
@@ -36,7 +66,7 @@ C++，类型与声明归于同名 `include/world_map.hh`。节点按原有顺序
 后接的 60 字节树初始化函数仍为原生汇编，未用虚构局部变量补齐
 尚未匹配的栈操作。最早启动缺口仍为 `InitializeIntroSceneBackground`。
 本批未修改文本、资源、Mary 脚本、只读数据顺序或正式编译工具。
-证据：`F:/fomt-startup-20261029-58a7b895-832649fb/saved-map-lifecycle-integration-24e820c0/`。
+证据：`I:/fomt-startup-20261029-58a7b895-832649fb/saved-map-lifecycle-integration-24e820c0/`。
 
 ## 世界实体查询：保留动态派发的 C++ 桥接（2026-10-29）
 
@@ -69,7 +99,7 @@ C++，类型与声明归于同名 `include/world_map.hh`。节点按原有顺序
 不计为源码化完成。最早缺口仍为 `InitializeIntroSceneBackground`，
 本批不表示此前的原生代码已全部恢复。
 
-证据：`F:/fomt-startup-20261029-58a7b895-832649fb/world-entity-dispatch-integration-v2/`。
+证据：`I:/fomt-startup-20261029-58a7b895-832649fb/world-entity-dispatch-integration-v2/`。
 
 ## 启动序列背景地图：BG0–BG3 的真实资源对应（2026-10-29）
 

@@ -15534,7 +15534,7 @@ func_080AA6F0: @ 080AA6F0
 	adds r0, #0x9c
 	ldr r1, .Ljp_map_080AA788 @ =0x000003E6
 	movs r2, #0xc
-	bl func_080AA84C
+	bl ResetSavedMapTree
 	b .Ljp_map_080AA7C8
 	.align 2, 0
 .Ljp_map_080AA788: .4byte 0x000003E6
@@ -15551,14 +15551,14 @@ func_080AA6F0: @ 080AA6F0
 	lsls r1, r1, #2
 .Ljp_map_080AA79E:
 	movs r2, #9
-	bl func_080AA84C
+	bl ResetSavedMapTree
 	b .Ljp_map_080AA7C8
 .Ljp_map_080AA7A6:
 	adds r0, r5, #0
 	adds r0, #0x9c
 	movs r1, #0
 	movs r2, #0
-	bl func_080AA84C
+	bl ResetSavedMapTree
 	mov r0, r8
 	cmp r0, #2
 	beq .Ljp_map_080AA7C8
@@ -15568,7 +15568,7 @@ func_080AA6F0: @ 080AA6F0
 	adds r0, #0x9c
 	movs r1, #0
 	movs r2, #0
-	bl func_080AA84C
+	bl ResetSavedMapTree
 	b .Ljp_map_080AA838
 .Ljp_map_080AA7C8:
 	adds r0, r5, #0
@@ -15637,33 +15637,8 @@ func_080AA6F0: @ 080AA6F0
 .Ljp_map_080AA844: .4byte 0x000034C8
 .Ljp_map_080AA848: .4byte gFieldRenderSeasonalRecordRanges
 
-    .global func_080AA84C
-    .thumb_func
-func_080AA84C: @ 080AA84C
-	push {r4, lr}
-	str r1, [r0]
-	str r2, [r0, #4]
-	adds r4, r0, #0
-	adds r4, #8
-	ldr r0, [r4, #8]
-	cmp r0, #0
-	beq .Ljp_map_080AA876
-	ldr r0, [r4, #4]
-	ldr r1, [r0, #4]
-	adds r0, r4, #0
-	bl EraseSavedMapTreeNodes
-	ldr r0, [r4, #4]
-	str r0, [r0, #8]
-	ldr r0, [r4, #4]
-	movs r1, #0
-	str r1, [r0, #4]
-	ldr r0, [r4, #4]
-	str r0, [r0, #0xc]
-	str r1, [r4, #8]
-.Ljp_map_080AA876:
-	pop {r4}
-	pop {r0}
-	bx r0
+    .section .text.saved_map_tree_reset_after, "ax", %progbits
+    .align 2, 0
 
     .global func_080AA87C
     .thumb_func
@@ -92182,7 +92157,7 @@ func_080AACB8: @ 0x080AACB8
 	adds r0, #0x9c
 	ldr r1, .L080AAD50 @ =0x000003E6
 	movs r2, #0xc
-	bl func_080AAE14
+	bl ResetSavedMapTree
 	b .L080AAD90
 	.align 2, 0
 .L080AAD50: .4byte 0x000003E6
@@ -92199,14 +92174,14 @@ func_080AACB8: @ 0x080AACB8
 	lsls r1, r1, #2
 .L080AAD66:
 	movs r2, #9
-	bl func_080AAE14
+	bl ResetSavedMapTree
 	b .L080AAD90
 .L080AAD6E:
 	adds r0, r5, #0
 	adds r0, #0x9c
 	movs r1, #0
 	movs r2, #0
-	bl func_080AAE14
+	bl ResetSavedMapTree
 	mov r0, r8
 	cmp r0, #2
 	beq .L080AAD90
@@ -92216,7 +92191,7 @@ func_080AACB8: @ 0x080AACB8
 	adds r0, #0x9c
 	movs r1, #0
 	movs r2, #0
-	bl func_080AAE14
+	bl ResetSavedMapTree
 	b .L080AAE00
 .L080AAD90:
 	adds r0, r5, #0
@@ -92285,32 +92260,8 @@ func_080AACB8: @ 0x080AACB8
 .L080AAE0C: .4byte 0x000034C8
 .L080AAE10: .4byte gFieldRenderSeasonalRecordRanges
 
-	thumb_func_start func_080AAE14
-func_080AAE14: @ 0x080AAE14
-	push {r4, lr}
-	str r1, [r0]
-	str r2, [r0, #4]
-	adds r4, r0, #0
-	adds r4, #8
-	ldr r0, [r4, #8]
-	cmp r0, #0
-	beq .L080AAE3E
-	ldr r0, [r4, #4]
-	ldr r1, [r0, #4]
-	adds r0, r4, #0
-	bl EraseSavedMapTreeNodes
-	ldr r0, [r4, #4]
-	str r0, [r0, #8]
-	ldr r0, [r4, #4]
-	movs r1, #0
-	str r1, [r0, #4]
-	ldr r0, [r4, #4]
-	str r0, [r0, #0xc]
-	str r1, [r4, #8]
-.L080AAE3E:
-	pop {r4}
-	pop {r0}
-	bx r0
+    .section .text.saved_map_tree_reset_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080AAE44
 func_080AAE44: @ 0x080AAE44

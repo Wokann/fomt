@@ -126,7 +126,8 @@ struct SavedMapTreeState {
 };
 
 struct SavedMapTree {
-    u8 unk_00[8];
+    u32 unk_00;
+    u32 unk_04;
     SavedMapTreeState state;
 };
 
@@ -198,6 +199,7 @@ typedef char GameSceneWorldMapSizeCheck[sizeof(GameSceneWorldMap) == 0x94 ? 1 : 
 EXTERN_C
 
 // These callbacks keep the native tree traversal and destruction flags.
+void ResetSavedMapTree(SavedMapTree * tree, u32 unk_00, u32 unk_04);
 void EraseSavedMapTreeNodes(SavedMapTreeState * state, SavedMapTreeNode * node);
 void DestroySavedWorldMap(GameSceneSavedMapPrefix * map, int flags);
 // Direct declaration of the existing C++ base destructor ABI, not a wrapper.
