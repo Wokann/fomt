@@ -159,6 +159,12 @@ typedef char GameSceneWorldPaletteBlendCheck[offsetof(GameSceneWorldPrefix, time
 
 EXTERN_C
 
+// Native virtual bridges at +0x12C/+0x130 dispatch through the selected
+// world's +0x40/+0x44 GetEntity implementation. Const qualifies the world;
+// the original return value is still an entity pointer.
+AEntity * GetWorldEntity(GameObject * world, u32 id);
+AEntity * GetWorldEntityConst(GameObject const * world, u32 id);
+
 // World virtual slot +0x13C. Preserve the native byte write and pending marker
 // without assigning an unverified gameplay meaning to either saved byte.
 void SetWorldPendingUnknownValue(GameSceneWorldPrefix & world, u8 value);

@@ -669,8 +669,8 @@ extern void func_0801DCA8(void);
 extern void func_08019F38(void);
 extern void SuspendWorldUpdates(void);
 extern void ResumeWorldUpdates(void);
-extern void func_0801FAA8(void);
-extern void func_0801FAB8(void);
+extern void GetWorldEntity(void);
+extern void GetWorldEntityConst(void);
 extern void func_0801B498(void);
 extern void func_0801E084(void);
 extern void SetWorldPendingUnknownValue(void);
@@ -1143,8 +1143,8 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_08019F38,
     SuspendWorldUpdates,
     ResumeWorldUpdates,
-    func_0801FAA8,
-    func_0801FAB8,
+    GetWorldEntity,
+    GetWorldEntityConst,
     func_0801B498,
     func_0801E084,
     SetWorldPendingUnknownValue,

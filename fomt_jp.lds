@@ -351,6 +351,7 @@ SECTIONS
         src/world_furniture.o(.text);
         src/world_map_sprites.o(.text);
         src/world_shipping.o(.text);
+        src/game_world.o(.text.GetWorldEntity .text.GetWorldEntityConst);
         asm/game_state.o(.text.world_shipping_after);
         src/game_world.o(
             .text.func_0801FBDC

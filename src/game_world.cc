@@ -697,6 +697,16 @@ EC MaryItemArticleId SwapRecordPlayerAlbum(GameSceneWorldPrefix & world, MaryIte
     return static_cast<MaryItemArticleId>(album.GetArticle().GetId());
 }
 
+EC AEntity * GetWorldEntity(GameObject * world, u32 id)
+{
+    return world->GetEntity(id);
+}
+
+EC AEntity * GetWorldEntityConst(GameObject const * world, u32 id)
+{
+    return world->GetEntity(id);
+}
+
 EC IndexedResourceArchive * func_0801FBDC(GameSceneWorldPrefix & world)
 {
     return &world.data.unk_FF0;

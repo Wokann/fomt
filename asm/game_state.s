@@ -15017,26 +15017,6 @@ func_0801EE00:
     .byte 0x68, 0x10, 0x00, 0x00
     .section .text.world_shipping_after, "ax", %progbits
 
-    .global func_0801FAA8
-    .thumb_func
-func_0801FAA8:
-    push {lr}
-    ldr r2, [r0]
-    ldr r2, [r2, #0x40]
-    bl _call_via_r2
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
-    .global func_0801FAB8
-    .thumb_func
-func_0801FAB8:
-    push {lr}
-    ldr r2, [r0]
-    ldr r2, [r2, #0x44]
-    bl _call_via_r2
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
     .byte 0xF0, 0xB5, 0x47, 0x46, 0x80, 0xB4, 0x81, 0xB0, 0x04, 0x1C, 0x0E, 0x1C, 0x00, 0x20, 0x80, 0x46
     .byte 0x00, 0x2E, 0x07, 0xD0, 0x01, 0x2E, 0x08, 0xD1, 0x01, 0x49, 0x09, 0x19, 0x88, 0x46, 0x04, 0xE0
     .byte 0xD4, 0x0E, 0x00, 0x00, 0x12, 0x48, 0x00, 0x19, 0x80, 0x46, 0x41, 0x46, 0x00, 0x29, 0x37, 0xD0
@@ -33883,26 +33863,6 @@ RefreshWorldVase: @ 0x0801F3E4
 .L0801F514: .4byte 0x00001068
 .L0801F518:
     .section .text.world_shipping_after, "ax", %progbits
-
-    thumb_func_start func_0801FAA8
-func_0801FAA8: @ 0x0801FAA8
-    push {lr}
-    ldr r2, [r0]
-    ldr r2, [r2, #0x40]
-    bl _call_via_r2
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_0801FAB8
-func_0801FAB8: @ 0x0801FAB8
-    push {lr}
-    ldr r2, [r0]
-    ldr r2, [r2, #0x44]
-    bl _call_via_r2
-    pop {r1}
-    bx r1
-    .align 2, 0
 
     thumb_func_start func_0801FAC8
 func_0801FAC8: @ 0x0801FAC8
