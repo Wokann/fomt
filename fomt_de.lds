@@ -909,6 +909,7 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__15ClockTransition .gnu.linkonce.t._._15ClockTransition);
         src/game_scene.o(.text.CreateScene__17ReturnToGameScene .gnu.linkonce.t._._17ReturnToGameScene);
         asm/code_linkonce.o(.text.scene_return_after);
+        src/world_map.o(.text.EraseSavedMapTreeNodes);
         src/scene_sprite.o(.gnu.linkonce.t._._20GameSceneGroupSprite);
         asm/code_linkonce.o(.text.scene_group_sprite_cleanup_after);
         src/entity_sprite.o(.text.entity_visual_controller_cleanup);
@@ -959,6 +960,8 @@ SECTIONS
         src/game_scene.o(.gnu.linkonce.t._._19SavedNameEntryScene);
         src/world_map.o(.gnu.linkonce.t._._25MapViewportTilemapCommand);
         asm/code_linkonce.o(.text.after_saved_name_scene_destructor);
+        src/world_map.o(.text.DestroySavedWorldMap);
+        asm/code_linkonce.o(.text.saved_world_map_destructor_after);
         src/game_menu.o(.text.ClearNodes__25GameSceneMenuCommandQueue);
         asm/code_linkonce.o(.text.after_menu_command_node_cleanup);
         src/game_menu.o(.gnu.linkonce.t._._23GameSceneMenuCorePrefix);

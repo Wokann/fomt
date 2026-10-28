@@ -687,3 +687,29 @@ EC void func_080AA8DC(GameSceneSavedMapPrefix * map)
     if (map->map == MAP_FARMHOUSE)
         map->unk_98 = true;
 }
+
+EC void EraseSavedMapTreeNodes(SavedMapTreeState * state, SavedMapTreeNode * node)
+{
+    while (node != nullptr) {
+        EraseSavedMapTreeNodes(state, node->right);
+        SavedMapTreeNode * left = node->left;
+        if (node != nullptr)
+            free(node);
+        node = left;
+    }
+}
+
+EC void DestroySavedWorldMap(GameSceneSavedMapPrefix * map, int flags)
+{
+    SavedMapTreeState * state = &map->saved_tree.state;
+    if (state->node_count != 0) {
+        EraseSavedMapTreeNodes(state, state->header->parent);
+        state->header->left = state->header;
+        state->header->parent = nullptr;
+        state->header->right = state->header;
+        state->node_count = 0;
+    }
+    if (state->header != nullptr)
+        free(state->header);
+    DestroyWorldMapBase(map, flags);
+}

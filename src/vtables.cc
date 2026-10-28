@@ -329,7 +329,7 @@ extern void func_080A3C8C(void);
 extern void func_080A37A8(void);
 extern void func_080E3980(void);
 extern void Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList(void);
-extern void func_080E3B50(void);
+extern void DestroySavedWorldMap(void);
 extern void func_080AA974(void);
 extern void func_080A6EC4(void);
 extern void func_080A6098(void);
@@ -580,7 +580,7 @@ extern void func_080A3900(void);
 extern void func_080E41E8(void);
 extern void func_080A37A8(void);
 extern void Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList(void);
-extern void func_080E43B8(void);
+extern void DestroySavedWorldMap(void);
 extern void func_080AAF3C(void);
 extern void func_080A748C(void);
 extern void func_080A6660(void);
@@ -6188,7 +6188,7 @@ extern RawVTableFunction const vtable_unk_080E830C[]
     SECTION(".rodata.vtable_830c") = {
         nullptr,
         nullptr,
-        func_080E3B50,
+        DestroySavedWorldMap,
         UpdateSavedMapTileAnimationTimers,
     };
 #endif
@@ -6218,7 +6218,7 @@ extern RawVTableFunction const vtable_unk_080E831C[]
     SECTION(".rodata.vtable_831c") = {
         nullptr,
         nullptr,
-        func_080E43B8,
+        DestroySavedWorldMap,
         UpdateSavedMapTileAnimationTimers,
         DrawSavedWorldMap,
         RefreshSavedWorldMapAppearance,

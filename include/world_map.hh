@@ -108,15 +108,47 @@ struct GameSceneWorldMap {
     GameSceneWorldMap();
 };
 
+// The saved-map sentinel owns a full node. Its links and node count are
+// known; the flag, payload and untouched container bytes remain unknown.
+struct SavedMapTreeNode {
+    u8 unk_00;
+    SavedMapTreeNode * parent;
+    SavedMapTreeNode * left;
+    SavedMapTreeNode * right;
+    u8 unk_10[8];
+};
+
+struct SavedMapTreeState {
+    u8 unk_00[4];
+    SavedMapTreeNode * header;
+    u32 node_count;
+    u32 unk_0C;
+};
+
+struct SavedMapTree {
+    u8 unk_00[8];
+    SavedMapTreeState state;
+};
+
+typedef char SavedMapTreeNodeSizeCheck[sizeof(SavedMapTreeNode) == 0x18 ? 1 : -1];
+typedef char SavedMapTreeNodeParentCheck[offsetof(SavedMapTreeNode, parent) == 4 ? 1 : -1];
+typedef char SavedMapTreeNodeLeftCheck[offsetof(SavedMapTreeNode, left) == 8 ? 1 : -1];
+typedef char SavedMapTreeNodeRightCheck[offsetof(SavedMapTreeNode, right) == 12 ? 1 : -1];
+typedef char SavedMapTreeStateSizeCheck[sizeof(SavedMapTreeState) == 16 ? 1 : -1];
+typedef char SavedMapTreeHeaderCheck[offsetof(SavedMapTreeState, header) == 4 ? 1 : -1];
+typedef char SavedMapTreeNodeCountCheck[offsetof(SavedMapTreeState, node_count) == 8 ? 1 : -1];
+typedef char SavedMapTreeSizeCheck[sizeof(SavedMapTree) == 0x18 ? 1 : -1];
+typedef char SavedMapTreeStateCheck[offsetof(SavedMapTree, state) == 8 ? 1 : -1];
+
 // The native saved-map constructor calls the base constructor, replaces its
 // vtable at +0x90, then stores the save pointer at +0x94 and this flag at +0x98.
-// The allocation is 0xBC bytes. The runtime member at +0x9C remains
-// opaque; the two verified animation states begin at +0xB4 and +0xB8.
+// The allocation is 0xBC bytes. The runtime member at +0x9C is now
+// modeled by SavedMapTree; the two animation states begin at +0xB4/+0xB8.
 // This borrowed view is never allocated or used to infer a native class size.
 struct GameSceneSavedMapPrefix : GameSceneWorldMap {
     GameStateSaveImage * save;
     bool unk_98;
-    u8 unk_9C[0x18] ALIGN(4);
+    SavedMapTree saved_tree;
     MapTilePatchAnimationState tile_animations[2];
 
 private:
@@ -140,7 +172,7 @@ typedef char GameSceneMapTimePaletteChangedCheck[offsetof(GameSceneWorldMap, tim
 
 typedef char GameSceneSavedMapSaveCheck[offsetof(GameSceneSavedMapPrefix, save) == 0x94 ? 1 : -1];
 typedef char GameSceneSavedMapFlagCheck[offsetof(GameSceneSavedMapPrefix, unk_98) == 0x98 ? 1 : -1];
-typedef char GameSceneSavedMapOpaqueMemberCheck[offsetof(GameSceneSavedMapPrefix, unk_9C) == 0x9C ? 1 : -1];
+typedef char GameSceneSavedMapTreeCheck[offsetof(GameSceneSavedMapPrefix, saved_tree) == 0x9C ? 1 : -1];
 typedef char GameSceneSavedMapAnimationsCheck[offsetof(GameSceneSavedMapPrefix, tile_animations) == 0xB4 ? 1 : -1];
 typedef char GameSceneSavedMapPrefixSizeCheck[sizeof(GameSceneSavedMapPrefix) == 0xBC ? 1 : -1];
 
@@ -164,6 +196,13 @@ typedef char GameSceneCameraFramesCheck[offsetof(GameSceneWorldMap, movement_fra
 typedef char GameSceneWorldMapSizeCheck[sizeof(GameSceneWorldMap) == 0x94 ? 1 : -1];
 
 EXTERN_C
+
+// These callbacks keep the native tree traversal and destruction flags.
+void EraseSavedMapTreeNodes(SavedMapTreeState * state, SavedMapTreeNode * node);
+void DestroySavedWorldMap(GameSceneSavedMapPrefix * map, int flags);
+// Direct declaration of the existing C++ base destructor ABI, not a wrapper.
+void DestroyWorldMapBase(GameSceneWorldMap * map, int flags)
+    asm("_._17GameSceneWorldMap");
 void ApplyMapTilePatch(GameSceneWorldMap * map,
     FieldRenderRectDescriptor const & patch, u32 x, u32 y);
 void StartWorldMapTilePatchCountdown(GameSceneWorldMap * map);

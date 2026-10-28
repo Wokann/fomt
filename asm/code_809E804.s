@@ -15651,7 +15651,7 @@ func_080AA84C: @ 080AA84C
 	ldr r0, [r4, #4]
 	ldr r1, [r0, #4]
 	adds r0, r4, #0
-	bl func_080DBD30
+	bl EraseSavedMapTreeNodes
 	ldr r0, [r4, #4]
 	str r0, [r0, #8]
 	ldr r0, [r4, #4]
@@ -92298,7 +92298,7 @@ func_080AAE14: @ 0x080AAE14
 	ldr r0, [r4, #4]
 	ldr r1, [r0, #4]
 	adds r0, r4, #0
-	bl func_080DC57C
+	bl EraseSavedMapTreeNodes
 	ldr r0, [r4, #4]
 	str r0, [r0, #8]
 	ldr r0, [r4, #4]

@@ -3096,33 +3096,6 @@ func_080DC554:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DBD30
-    .thumb_func
-func_080DBD30:
-    .Lauto_080DBD30:
-    push {r4, r5, r6, lr}
-    adds r6, r0, #0
-    adds r4, r1, #0
-    cmp r4, #0
-    beq .Lauto_080DBD54
-    .Lauto_080DBD3A:
-    ldr r1, [r4, #0xc]
-    adds r0, r6, #0
-    bl .Lauto_080DBD30
-    ldr r5, [r4, #8]
-    cmp r4, #0
-    beq .Lauto_080DBD4E
-    adds r0, r4, #0
-    bl free
-    .Lauto_080DBD4E:
-    adds r4, r5, #0
-    cmp r4, #0
-    bne .Lauto_080DBD3A
-    .Lauto_080DBD54:
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
     .section .text.scene_group_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
 
@@ -15138,31 +15111,6 @@ func_080DC554: @ 0x080DC554
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DC57C
-func_080DC57C: @ 0x080DC57C
-	push {r4, r5, r6, lr}
-	adds r6, r0, #0
-	adds r4, r1, #0
-	cmp r4, #0
-	beq .L080DC5A0
-.L080DC586:
-	ldr r1, [r4, #0xc]
-	adds r0, r6, #0
-	bl func_080DC57C
-	ldr r5, [r4, #8]
-	cmp r4, #0
-	beq .L080DC59A
-	adds r0, r4, #0
-	bl free
-.L080DC59A:
-	adds r4, r5, #0
-	cmp r4, #0
-	bne .L080DC586
-.L080DC5A0:
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
     .section .text.scene_group_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
 
@@ -29421,45 +29369,9 @@ func_080E3A9C:
     pop {r1}
     bx r1
     .byte 0x00, 0x00
-    .global func_080E43B8
-    .thumb_func
-func_080E43B8:
-    .global func_080E3B50
-    .thumb_func
-func_080E3B50:
-    push {r4, r5, r6, lr}
-    adds r5, r0, #0
-    adds r6, r1, #0
-    adds r4, r5, #0
-    adds r4, #0xa4
-    ldr r0, [r4, #8]
-    cmp r0, #0
-    beq .Lauto_080E3B7A
-    ldr r0, [r4, #4]
-    ldr r1, [r0, #4]
-    adds r0, r4, #0
-    bl func_080DBD30
-    ldr r0, [r4, #4]
-    str r0, [r0, #8]
-    ldr r0, [r4, #4]
-    movs r1, #0
-    str r1, [r0, #4]
-    ldr r0, [r4, #4]
-    str r0, [r0, #0xc]
-    str r1, [r4, #8]
-    .Lauto_080E3B7A:
-    ldr r0, [r4, #4]
-    cmp r0, #0
-    beq .Lauto_080E3B84
-    bl free
-    .Lauto_080E3B84:
-    adds r0, r5, #0
-    adds r1, r6, #0
-    bl _._17GameSceneWorldMap
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.saved_world_map_destructor_after, "ax", %progbits
+    .align 2, 0
+
     .global func_080E43FC
     .thumb_func
 func_080E43FC:
@@ -37759,41 +37671,8 @@ func_080E4304: @ 0x080E4304
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080E43B8
-func_080E43B8: @ 0x080E43B8
-	push {r4, r5, r6, lr}
-	adds r5, r0, #0
-	adds r6, r1, #0
-	adds r4, r5, #0
-	adds r4, #0xa4
-	ldr r0, [r4, #8]
-	cmp r0, #0
-	beq .L080E43E2
-	ldr r0, [r4, #4]
-	ldr r1, [r0, #4]
-	adds r0, r4, #0
-	bl func_080DC57C
-	ldr r0, [r4, #4]
-	str r0, [r0, #8]
-	ldr r0, [r4, #4]
-	movs r1, #0
-	str r1, [r0, #4]
-	ldr r0, [r4, #4]
-	str r0, [r0, #0xc]
-	str r1, [r4, #8]
-.L080E43E2:
-	ldr r0, [r4, #4]
-	cmp r0, #0
-	beq .L080E43EC
-	bl free
-.L080E43EC:
-	adds r0, r5, #0
-	adds r1, r6, #0
-	bl _._17GameSceneWorldMap
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.saved_world_map_destructor_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E43FC
 func_080E43FC: @ 0x080E43FC
