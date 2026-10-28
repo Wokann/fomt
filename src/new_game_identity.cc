@@ -21,8 +21,8 @@ void operator delete(void *);
 
 static inline void QueueIdentityBlend(HardwareBootstrap * core, HardwareBlendOwner const & owner)
 {
-    HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
-        GetHardwareCommandList(reinterpret_cast<void * const *>(core)));
+    HardwareLinkedList * list =
+        GetHardwareCommandList(reinterpret_cast<void * const *>(core));
     list->Append(owner.object);
 }
 
@@ -103,9 +103,9 @@ void UpdateNewGameIdentityDialog(NewGameIdentityCore * core)
         GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
     HardwareDisplayState * display =
         GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
-    u8 * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
-    u8 * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
-    MusicPlayer ** music = &core->music;
+    HardwareLinkedList * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
+    HardwareInterruptList * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
+    HardwareMusicPlayerSlot * music = &core->music;
     int action = owner->Update(hardware, sprites, display, links, manager, music);
 
     switch (action)

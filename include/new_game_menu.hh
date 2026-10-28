@@ -4,6 +4,7 @@
 #include "prelude.h"
 #include "game_state.hh"
 #include "hardware_bootstrap.hh"
+#include "hardware_music_player.hh"
 #include "hardware_resource.hh"
 #include "resource_handle.hh"
 #include "scene.hh"
@@ -68,7 +69,7 @@ struct NewGameMenuCore : HardwareBootstrap {
     GameStateSaveImage * current_save;
     SceneTransitionOwner continuation;
     UiStateOwner ui_state;
-    MusicPlayer * music_players[2];
+    HardwareMusicPlayerSlot music_players[2];
     IndexedResourceArchive resources;
     HardwareStateEntry state_entry;
     HardwareResourceEntry resource_entry;

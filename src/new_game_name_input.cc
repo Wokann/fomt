@@ -21,8 +21,8 @@ inline void * operator new[](unsigned long, void * location) { return location; 
 
 static inline void QueueNameInputBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
 {
-    HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
-        GetHardwareCommandList(reinterpret_cast<void * const *>(core)));
+    HardwareLinkedList * list =
+        GetHardwareCommandList(reinterpret_cast<void * const *>(core));
     list->Append(&blend);
 }
 
@@ -45,8 +45,8 @@ NewGameNameInputCore * InitializeNameInputCore(NewGameNameInputCore * core,
 #else
     new (&core->prompt_buffer) NewGameTextTileBuffer<9>;
 #endif
-    func_08008B54(&core->music_players[0], 1);
-    func_08008B54(&core->music_players[1], 2);
+    new (&core->music_players[0]) HardwareMusicPlayerSlot(1);
+    new (&core->music_players[1]) HardwareMusicPlayerSlot(2);
 
     // Publish the constructed UI before these temporary resource owners leave
     // scope, preserving the native allocation, construction and cleanup order.
@@ -358,7 +358,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
     u32 input = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core));
     u32 up = input & 0x40;
     if (static_cast<u8>(up)) {
-        func_08008B6C(&core->music_players[1], 0xCB);
+        core->music_players[1].Start(0xCB);
         core->sprites[0].unk_00[1]--;
         if (static_cast<i8>(core->sprites[0].unk_00[1]) < 0) {
             core->sprites[0].unk_00[1] = bottom_row;
@@ -376,7 +376,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
     } else {
         u32 down = input & 0x80;
         if (static_cast<u8>(down)) {
-            func_08008B6C(&core->music_players[1], 0xCB);
+            core->music_players[1].Start(0xCB);
             core->sprites[0].unk_00[1]++;
             if (static_cast<i8>(core->sprites[0].unk_00[1]) > bottom_row)
                 core->sprites[0].unk_00[1] = 0;
@@ -392,7 +392,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
                 core->sprites[0].unk_00[0] = 12;
 #endif
         } else if (input & 0x10) {
-            func_08008B6C(&core->music_players[1], 0xCB);
+            core->music_players[1].Start(0xCB);
             if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row) {
 #if defined(REGION_JP)
                 if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4)
@@ -421,7 +421,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
                     core->sprites[0].unk_00[0] = 0;
             }
         } else if (input & 0x20) {
-            func_08008B6C(&core->music_players[1], 0xCB);
+            core->music_players[1].Start(0xCB);
             if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row) {
 #if defined(REGION_JP)
                 if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4)
@@ -581,7 +581,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
 #else
         if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 5) {
 #endif
-            func_08008B6C(&core->music_players[1], 0x6A);
+            core->music_players[1].Start(0x6A);
             InsertNameInputCharacter(core);
         } else {
             if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4) {
@@ -590,27 +590,27 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
                 else
                     core->keyboard_page++;
                 core->keyboard_redraw_pending = 1;
-                func_08008B6C(&core->music_players[1], 0xCA);
+                core->music_players[1].Start(0xCA);
             } else if (static_cast<u8>(core->sprites[0].unk_00[0] - 5) <= 4) {
                 if (core->keyboard_page == 0)
                     core->keyboard_page = 2;
                 else
                     core->keyboard_page--;
                 core->keyboard_redraw_pending = 1;
-                func_08008B6C(&core->music_players[1], 0xCA);
+                core->music_players[1].Start(0xCA);
             } else {
                 if (NormalizeNameInput(core)) {
                     core->unk_463c = 1;
-                    func_08008B6C(&core->music_players[1], 0xC5);
+                    core->music_players[1].Start(0xC5);
                 } else
-                    func_08008B6C(&core->music_players[1], 0xC7);
+                    core->music_players[1].Start(0xC7);
             }
         }
     } else if (reinterpret_cast<u8 const *>(&input)[0] & 2) {
         if (core->sprites[1].unk_00[0] != 0) {
             core->sprites[1].unk_00[0]--;
             EraseNameInputCharacter(core, core->sprites[1].unk_00[0]);
-            func_08008B6C(&core->music_players[1], 0x6C);
+            core->music_players[1].Start(0x6C);
         } else {
             u8 placeholder_count = 0;
 #if defined(REGION_JP)
@@ -627,10 +627,10 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
                     placeholder_count++;
             if (placeholder_count == 12)
 #endif
-                func_08008B6C(&core->music_players[1], 0xC7);
+                core->music_players[1].Start(0xC7);
             else {
                 EraseNameInputCharacter(core, 0);
-                func_08008B6C(&core->music_players[1], 0x6C);
+                core->music_players[1].Start(0x6C);
             }
         }
 #if defined(REGION_JP)
@@ -640,7 +640,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
         else
             core->keyboard_page++;
         core->keyboard_redraw_pending = 1;
-        func_08008B6C(&core->music_players[1], 0xCA);
+        core->music_players[1].Start(0xCA);
 #endif
     } else if (reinterpret_cast<u8 const *>(&input)[0] & 8) {
 #if defined(REGION_DE)
@@ -652,7 +652,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
                 && static_cast<i8>(core->sprites[0].unk_00[0]) <= 14) {
             if (NormalizeNameInput(core))
                 core->unk_463c = 1;
-            func_08008B6C(&core->music_players[1], 0xC5);
+            core->music_players[1].Start(0xC5);
         } else {
             core->sprites[0].unk_00[0] = 12;
 #if defined(REGION_DE)
@@ -660,12 +660,12 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
 #else
             core->sprites[0].unk_00[1] = 6;
 #endif
-            func_08008B6C(&core->music_players[1], 0xCB);
+            core->music_players[1].Start(0xCB);
         }
     } else if (reinterpret_cast<u8 const *>(&input)[1] & 2) {
         if (core->sprites[1].unk_00[0] != 0)
             core->sprites[1].unk_00[0]--;
-        func_08008B6C(&core->music_players[1], 0xCB);
+        core->music_players[1].Start(0xCB);
     } else if (reinterpret_cast<u8 const *>(&input)[1] & 1) {
 #if defined(REGION_JP)
         if (core->sprites[1].unk_00[0] != 5)
@@ -673,7 +673,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
         if (core->sprites[1].unk_00[0] != 11)
 #endif
             core->sprites[1].unk_00[0]++;
-        func_08008B6C(&core->music_players[1], 0xCB);
+        core->music_players[1].Start(0xCB);
     }
 }
 
@@ -688,9 +688,9 @@ void UpdateNameInputConfirmation(NewGameNameInputCore * core)
             GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
         HardwareDisplayState * display =
             GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
-        u8 * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
-        u8 * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
-        MusicPlayer ** music = core->music_players;
+        HardwareLinkedList * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
+        HardwareInterruptList * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
+        HardwareMusicPlayerSlot * music = core->music_players;
         switch (ui->Update(state, sprites, display, links, manager, music)) {
         case 0:
             if (core->unk_after_keyboard_redraw[0]) {

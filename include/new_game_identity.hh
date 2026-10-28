@@ -37,7 +37,7 @@ struct NewGameIdentityCore : HardwareBootstrap {
 #endif
     u32 unk_1A28;
     UiStateOwner * ui_state;
-    MusicPlayer * music;
+    HardwareMusicPlayerSlot music;
     FixedStr<15> fields[NEW_GAME_IDENTITY_FIELD_COUNT];
     u8 unk_1A74;
     u8 unk_1A75;

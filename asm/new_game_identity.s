@@ -749,7 +749,7 @@ InitializeNewGameIdentityScreen:
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
     add sp, #0x70
     pop {r3, r4, r5}
     mov r8, r3
@@ -1680,7 +1680,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
     add sp, #0x94
     pop {r3, r4, r5}
     mov r8, r3

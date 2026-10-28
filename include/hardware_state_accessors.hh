@@ -129,8 +129,8 @@ struct HardwareSpriteBufferState * GetHardwareSpriteBuffer(void * const * state)
 u8 * func_08008928(void * const * state);
 struct HardwareDisplayState * func_08008930(void * const * state);
 struct HardwareSpriteBufferState * func_08008938(void * const * state);
-u8 * GetHardwareCommandList(void * const * state);
-u8 * GetHardwareInterruptList(void * const * state);
+struct HardwareLinkedList * GetHardwareCommandList(void * const * state);
+struct HardwareInterruptList * GetHardwareInterruptList(void * const * state);
 u8 * func_08008960(void * const * state);
 u8 * func_0800896C(void * const * state);
 

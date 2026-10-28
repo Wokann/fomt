@@ -17,7 +17,8 @@ struct HardwareDisplayState;
 struct HardwareStateOwner;
 struct HardwareResource;
 struct HardwareResourceEntry;
-struct MusicPlayer;
+struct HardwareMusicPlayerSlot;
+struct HardwareInterruptList;
 struct ScriptTextVariableStore;
 struct IndexedResourceGroupResult;
 
@@ -141,8 +142,8 @@ struct UiStateOwner
     // This is not a completion query for unrelated window phases.
     u32 GetChoiceResult() const SECTION(".text.ui_state_adapters");
     i32 Update(HardwareCoreState * state, HardwareSpriteBufferState * sprites,
-        HardwareDisplayState * display, u8 * links, u8 * manager,
-        MusicPlayer ** music) const SECTION(".text.ui_state_adapters");
+        HardwareDisplayState * display, HardwareLinkedList * links, HardwareInterruptList * manager,
+        HardwareMusicPlayerSlot * music) const SECTION(".text.ui_state_adapters");
     // These take an archive level index, not a character ID. GameScene owns
     // the love-value to level mapping used by the script-facing operation.
     void ShowPortrait(u32 index) const SECTION(".text.ui_state_adapters");
@@ -524,7 +525,7 @@ struct UiStatePayload
         char const * third, char const * fourth,
         ScriptTextVariableStore *) SECTION(".text.ui_payload_choices");
     i32 Update(HardwareCoreState *, HardwareSpriteBufferState *, HardwareDisplayState *,
-        u8 *, u8 *, MusicPlayer **);
+        HardwareLinkedList *, HardwareInterruptList *, HardwareMusicPlayerSlot *);
     // Known portrait operation; its body remains native until byte-matched.
     void ShowPortrait(u32 index);
     void ShowHeartIndicator(u32 level) SECTION(".text.ui_heart_indicator");

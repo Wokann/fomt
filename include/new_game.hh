@@ -5,6 +5,7 @@
 #include "font_draw.hh"
 #include "game_state.hh"
 #include "hardware_bootstrap.hh"
+#include "hardware_music_player.hh"
 #include "hardware_state_clear.hh"
 #include "hardware_resource.hh"
 #include "resource_handle.hh"
@@ -14,7 +15,6 @@
 #include "new_game_menu.hh"
 #include "utility/fixed_str.hh"
 
-struct MusicPlayer;
 
 // Partial-core tables retain their existing raw callback view. The compiler's
 // real C++ vtable symbols require its erased int(...) entry type instead.
@@ -63,7 +63,7 @@ struct PACKED ALIGN(2) NewGameBirthdayInputGlyph {
 struct NewGameBirthdayInputCore : HardwareBootstrap {
     u32 unk_08;
     UiStateOwner * ui_state;
-    MusicPlayer * music_players[2];
+    HardwareMusicPlayerSlot music_players[2];
     HardwareStateEntry glyph_tiles;
     HardwareResourceEntry glyph_palette;
     HardwareStateEntry cursor_tiles;

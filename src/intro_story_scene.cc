@@ -100,9 +100,9 @@ void UpdateIntroStoryUi(IntroStorySceneCore * core)
     HardwareCoreState * state = static_cast<HardwareCoreState *>(GetHardwareCoreState(reinterpret_cast<void * const *>(core)));
     HardwareSpriteBufferState * sprites = GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
     HardwareDisplayState * display = GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
-    u8 * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
-    u8 * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
-    MusicPlayer ** music = reinterpret_cast<MusicPlayer **>(core->music_players);
+    HardwareLinkedList * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
+    HardwareInterruptList * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
+    HardwareMusicPlayerSlot * music = core->music_players;
     switch (ui->Update(state, sprites, display, links, manager, music))
     {
     case 0:

@@ -1189,7 +1189,7 @@ sub_080D8178:
     bl func_08008AE0
     .byte 0x00, 0x94, 0x01, 0x90, 0x12, 0x48, 0x68, 0x44, 0x00, 0x68, 0x02, 0x90, 0x28, 0x1C
     .byte 0x04, 0xA9, 0x0D, 0xAA, 0x10, 0x4C, 0x6C, 0x44, 0x23, 0x68
-    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
     .byte 0x50, 0x46
     .byte 0xE8, 0x30, 0x00, 0x78, 0x00, 0x28, 0x00, 0xD0, 0xC7, 0xE0, 0x50, 0x46, 0xB4, 0x30, 0x06, 0x68
     .byte 0x00, 0x2E, 0x00, 0xD1, 0xC1, 0xE0, 0x55, 0x46, 0x6C, 0x35, 0x4C, 0x38
@@ -1200,7 +1200,7 @@ sub_080D8178:
     bl func_08008AE0
     .byte 0x00, 0x94, 0x01, 0x90, 0x06, 0x4F, 0x6F, 0x44, 0x3F, 0x68, 0x02, 0x97, 0x28, 0x1C, 0x04, 0xA9
     .byte 0x0D, 0xAA, 0x03, 0x4C, 0x6C, 0x44, 0x23, 0x68
-    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
     .byte 0x95, 0xE0, 0x6C, 0x05
     .byte 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x50, 0x46, 0xAC, 0x30, 0x05, 0x68, 0x00, 0x2D, 0x00, 0xD1
     .byte 0x8B, 0xE0, 0x04, 0xA8, 0x02, 0x89, 0x03, 0x20, 0x40, 0x42, 0x10, 0x40, 0x00, 0x06, 0x00, 0x0E
@@ -1213,7 +1213,7 @@ sub_080D8178:
     bl func_08008AE0
     .byte 0x00, 0x94, 0x01, 0x90, 0x08, 0x4E, 0x6E, 0x44, 0x36, 0x68, 0x02, 0x96, 0x28, 0x1C, 0x89, 0x21
     .byte 0xC9, 0x00, 0x69, 0x44, 0x0D, 0xAA, 0x04, 0x4F, 0x6F, 0x44, 0x3B, 0x68
-    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
     .byte 0x4B, 0xE0, 0x00, 0xFF, 0xFF, 0xFF, 0x6C, 0x05, 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x13, 0x49
     .byte 0x69, 0x44, 0x09, 0x68, 0x08, 0x68
     bl GetStep__C23HardwareBlendController
@@ -7401,7 +7401,7 @@ func_080E0094:
     bl GetHardwareInterruptList
     .byte 0xE0, 0x22, 0x92, 0x00, 0xB9, 0x18, 0x00, 0x94, 0x01, 0x90
     .byte 0x02, 0x91, 0x48, 0x46, 0x29, 0x1C, 0x42, 0x46, 0x33, 0x1C
-    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
     .Lauto_080DFCC6:
     movs r6, #0
     movs r3, #0xd9
@@ -10113,7 +10113,7 @@ sub_080D8178: @ 0x080D8178
 	ldr r4, .L080D9284 @ =0x00000544
 	add r4, sp
 	ldr r3, [r4]
-	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
 .L080D924C:
 	mov r0, sl
 	adds r0, #0xe8
@@ -10169,7 +10169,7 @@ sub_080D8178: @ 0x080D8178
 	ldr r4, .L080D92C0 @ =0x00000544
 	add r4, sp
 	ldr r3, [r4]
-	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
 	b .L080D93E8
 	.align 2, 0
 .L080D92BC: .4byte 0x0000056C
@@ -10242,7 +10242,7 @@ sub_080D8178: @ 0x080D8178
 	ldr r7, .L080D9358 @ =0x00000544
 	add r7, sp
 	ldr r3, [r7]
-	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
 	b .L080D93E8
 	.align 2, 0
 .L080D9350: .4byte 0xFFFFFF00
@@ -23034,7 +23034,7 @@ func_080E0094: @ 0x080E0094
 	adds r1, r5, #0
 	mov r2, r8
 	adds r3, r6, #0
-	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
 .L080E0518:
 	movs r6, #0
 	movs r4, #0xd9

@@ -77,14 +77,14 @@ struct HardwareSpriteBufferState * func_08008938(void * const * state)
     return &((struct HardwareCoreState *)*state)->sprite_buffer;
 }
 
-u8 * GetHardwareCommandList(void * const * state)
+struct HardwareLinkedList * GetHardwareCommandList(void * const * state)
 {
-    return (u8 *)&((struct HardwareCoreState *)*state)->links;
+    return &((struct HardwareCoreState *)*state)->links;
 }
 
-u8 * GetHardwareInterruptList(void * const * state)
+struct HardwareInterruptList * GetHardwareInterruptList(void * const * state)
 {
-    return (u8 *)func_08008AE0(&((struct HardwareCoreState *)*state)->manager);
+    return func_08008AE0(&((struct HardwareCoreState *)*state)->manager);
 }
 
 u8 * func_08008960(void * const * state)

@@ -147,7 +147,7 @@ i32 UiStateOwner::GetState() const
 
 i32 UiStateOwner::Update(HardwareCoreState * state,
     HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
-    u8 * links, u8 * manager, MusicPlayer ** music) const
+    HardwareLinkedList * links, HardwareInterruptList * manager, HardwareMusicPlayerSlot * music) const
 {
     return value->Update(state, sprites, display, links, manager, music);
 }

@@ -26,8 +26,8 @@ extern NewGameMenuVTableEntry const gNewGameMenuCoreVTable[] = {
 
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
 {
-    HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
-        GetHardwareCommandList(reinterpret_cast<void * const *>(core)));
+    HardwareLinkedList * list =
+        GetHardwareCommandList(reinterpret_cast<void * const *>(core));
     list->Append(&blend);
 }
 
@@ -64,10 +64,10 @@ void UpdateNewGameMenuUi(NewGameMenuCore * core)
     HardwareCoreState * state = static_cast<HardwareCoreState *>(GetHardwareCoreState(hardware));
     HardwareSpriteBufferState * sprites = GetHardwareSpriteBuffer(hardware);
     HardwareDisplayState * display = GetHardwareDisplayState(hardware);
-    u8 * links = GetHardwareCommandList(hardware);
-    u8 * manager = GetHardwareInterruptList(hardware);
+    HardwareLinkedList * links = GetHardwareCommandList(hardware);
+    HardwareInterruptList * manager = GetHardwareInterruptList(hardware);
     UiStateOwner const * owner = &core->ui_state;
-    MusicPlayer ** music = &core->music_players[0];
+    HardwareMusicPlayerSlot * music = &core->music_players[0];
     owner->Update(state, sprites, display, links, manager, music);
 }
 
@@ -155,7 +155,7 @@ bool TrySaveNewGameMenuSlot(NewGameMenuCore * core)
                 func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
                     reinterpret_cast<u32>(core->save_slot_status[slot].Data()), 0, 0);
                 core->phase = NEW_GAME_MENU_NOTICE;
-                func_08008B6C(&core->music_players[1], 0xC5);
+                core->music_players[1].Start(0xC5);
                 MarkSramSaveSlotPresent(&core->sram, slot);
                 SetLastUsedSramSaveSlot(&core->sram, slot);
                 return true;
@@ -165,7 +165,7 @@ bool TrySaveNewGameMenuSlot(NewGameMenuCore * core)
     func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
         reinterpret_cast<u32>(gText_NewGameSave_SaveFailed), 0, 0);
     core->phase = NEW_GAME_MENU_NOTICE;
-    func_08008B6C(&core->music_players[1], 0xC7);
+    core->music_players[1].Start(0xC7);
     return false;
 }
 
@@ -199,7 +199,7 @@ bool TryLoadNewGameMenuSlot(NewGameMenuCore * core)
             } else {
                 SetMenuContinuation(core->continuation, CreateLoadedMenuSaveTransition(loaded));
             }
-            func_08008B6C(&core->music_players[1], 0xC5);
+            core->music_players[1].Start(0xC5);
             SetLastUsedSramSaveSlot(&core->sram, slot);
             return true;
         }
@@ -209,7 +209,7 @@ bool TryLoadNewGameMenuSlot(NewGameMenuCore * core)
     func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
         reinterpret_cast<u32>(gText_NewGameSave_LoadFailed), 0, 0);
     core->phase = NEW_GAME_MENU_NOTICE;
-    func_08008B6C(&core->music_players[1], 0xC7);
+    core->music_players[1].Start(0xC7);
     return false;
 }
 
@@ -276,8 +276,8 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
         HardwareResource resources;
         new (&core->ui_state) UiStateOwner(0, 31, 15, 0, shared, resources);
     }
-    func_08008B54(&core->music_players[0], 1);
-    func_08008B54(&core->music_players[1], 2);
+    new (&core->music_players[0]) HardwareMusicPlayerSlot(1);
+    new (&core->music_players[1]) HardwareMusicPlayerSlot(2);
     new (&core->resources) IndexedResourceArchive(gUiHandCursorArchive);
     new (&core->state_entry) HardwareStateEntry(2);
     new (&core->resource_entry) HardwareResourceEntry;

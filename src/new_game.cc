@@ -39,8 +39,8 @@ inline void * operator new[](unsigned long, void * location) { return location; 
 
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
 {
-    HardwareLinkedList * list = reinterpret_cast<HardwareLinkedList *>(
-        GetHardwareCommandList(reinterpret_cast<void * const *>(core)));
+    HardwareLinkedList * list =
+        GetHardwareCommandList(reinterpret_cast<void * const *>(core));
     list->Append(&blend);
 }
 
@@ -144,8 +144,8 @@ NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore 
         HardwareResource resources;
         core->ui_state = new (storage) UiStateOwner(0, 31, 15, core->unk_08, shared, resources);
     }
-    func_08008B54(&core->music_players[0], 1);
-    func_08008B54(&core->music_players[1], 2);
+    new (&core->music_players[0]) HardwareMusicPlayerSlot(1);
+    new (&core->music_players[1]) HardwareMusicPlayerSlot(2);
     new (&core->glyph_tiles) HardwareStateEntry(7);
     new (&core->glyph_palette) HardwareResourceEntry;
     new (&core->cursor_tiles) HardwareStateEntry(3);
@@ -218,7 +218,7 @@ void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
     u32 input = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core));
     if (reinterpret_cast<u8 const *>(&input)[0] & 0x40) {
         if (core->cursor_row != 0) {
-            func_08008B6C(&core->music_players[1], 0xCB);
+            core->music_players[1].Start(0xCB);
             if (core->cursor_row > 1)
                 core->cursor_row--;
             else if (core->cursor_row == 1) {
@@ -237,7 +237,7 @@ void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
         }
     } else if (reinterpret_cast<u8 const *>(&input)[0] & 0x80) {
         if (core->cursor_row != 0) {
-            func_08008B6C(&core->music_players[1], 0xCB);
+            core->music_players[1].Start(0xCB);
             core->cursor_row++;
             if (core->cursor_row == 6 || (core->cursor_row == 5 &&
 #if defined(REGION_JP)
@@ -248,7 +248,7 @@ void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
                 core->cursor_row = 1;
         }
     } else if (reinterpret_cast<u8 const *>(&input)[0] & 0x20) {
-        func_08008B6C(&core->music_players[1], 0xCB);
+        core->music_players[1].Start(0xCB);
 #if defined(REGION_JP)
         core->cursor_column--;
         if (core->cursor_row == 0) {
@@ -280,7 +280,7 @@ void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
         }
 #endif
     } else if (reinterpret_cast<u8 const *>(&input)[0] & 0x10) {
-        func_08008B6C(&core->music_players[1], 0xCB);
+        core->music_players[1].Start(0xCB);
 #if defined(REGION_JP)
         core->cursor_column++;
         if (core->cursor_row == 0) {
@@ -324,7 +324,7 @@ bool ConfirmBirthdayInputSelection(NewGameBirthdayInputCore * core)
         (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core))) & 8))
         pressed = true;
     if (pressed) {
-        func_08008B6C(&core->music_players[1], 0x6A);
+        core->music_players[1].Start(0x6A);
         if (core->cursor_row == 0) {
             core->saved_season_column = core->cursor_column;
             core->cursor_row = (core->day - 1) / 7 + 1;
@@ -342,7 +342,7 @@ bool CancelBirthdayInputSelection(NewGameBirthdayInputCore * core)
 {
     bool cancelled = false;
     if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core))) & 2) {
-        func_08008B6C(&core->music_players[1], 0x6C);
+        core->music_players[1].Start(0x6C);
         if (core->cursor_row > 0) {
             core->cursor_column = core->saved_season_column;
             core->cursor_row = 0;
@@ -594,9 +594,9 @@ void UpdateBirthdayInputUi(NewGameBirthdayInputCore * core)
     HardwareCoreState * state = static_cast<HardwareCoreState *>(GetHardwareCoreState(reinterpret_cast<void * const *>(core)));
     HardwareSpriteBufferState * sprites = GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
     HardwareDisplayState * display = GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
-    u8 * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
-    u8 * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
-    MusicPlayer ** music = core->music_players;
+    HardwareLinkedList * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
+    HardwareInterruptList * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
+    HardwareMusicPlayerSlot * music = core->music_players;
     switch (ui->Update(state, sprites, display, links, manager, music)) {
     case 0:
         if (core->dialogue_state == 0) {

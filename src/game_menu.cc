@@ -25,9 +25,9 @@ void GameSceneMenuCorePrefix::Update()
     HardwareCoreState * hardware = static_cast<HardwareCoreState *>(GetHardwareCoreState(hardware_owner));
     HardwareSpriteBufferState * sprites = GetHardwareSpriteBuffer(hardware_owner);
     HardwareDisplayState * display = GetHardwareDisplayState(hardware_owner);
-    u8 * links = GetHardwareCommandList(hardware_owner);
-    u8 * manager = GetHardwareInterruptList(hardware_owner);
-    MusicPlayer ** music_player = &music.value;
+    HardwareLinkedList * links = GetHardwareCommandList(hardware_owner);
+    HardwareInterruptList * manager = GetHardwareInterruptList(hardware_owner);
+    HardwareMusicPlayerSlot * music_player = &music;
     unk_88 = ui.Update(hardware, sprites, display, links, manager, music_player);
     if (unk_78.value != nullptr)
         unk_78.value->vfunc_0C();

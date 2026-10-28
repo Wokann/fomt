@@ -35,7 +35,7 @@ struct NewGameNameInputCore : HardwareBootstrap {
 #else
     NewGameTextTileBuffer<9> prompt_buffer;
 #endif
-    MusicPlayer * music_players[2];
+    HardwareMusicPlayerSlot music_players[2];
     UiStateOwner * ui_state;
     char const * prompt;
     u32 keyboard_page;
