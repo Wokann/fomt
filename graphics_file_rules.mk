@@ -227,10 +227,10 @@ graphics/ui/seasonal_background/winter/winter_tiles.4bpp.lz: FOMT_LZ_ENCODE := e
 graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,5,8,10,11,12,14 0 --tie=exchange
 $(FARM_STATUS_WINTER_TILES_BIN).lz: FOMT_LZ_ENCODE := encode-huff8-lz2 3,5,7,8,10,12,14 0 --tie=exchange
 $(UI_SCENE_080B55D0_MAIN_SOURCE).lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,12 0x2198 --greedy --tie=exchange
-$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_00.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x3DC --parent-first
-$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x21C --tie=first
-$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_02.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0xF4
-$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_03.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,10 0 --tie=quick
+$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg0.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x3DC --parent-first
+$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg1.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x21C --tie=first
+$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0xF4
+$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,10 0 --tie=quick
 $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_00.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,12 0 --tie=heap
 $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,11 0x1D8
 $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_02.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,10 0 --tie=exchange

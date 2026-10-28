@@ -106135,18 +106135,26 @@ gIntroSceneIndexedArchiveCompressed:
 
     @ Four Huffman-4/LZ3 streams unpacked by the earlier Intro Scene startup
     @ path.  Each source is an interleaved pair of 32-by-32 BG tilemaps.
-    .global gUnk_IntroSceneStartupUnpackSource_000
-gUnk_IntroSceneStartupUnpackSource_000:
-    .incbin "graphics/intro_scene/shared/startup_tilemaps/startup_00.tilemap.lz"
-    .global gUnk_IntroSceneStartupUnpackSource_001
-gUnk_IntroSceneStartupUnpackSource_001:
-    .incbin "graphics/intro_scene/shared/startup_tilemaps/startup_01.tilemap.lz"
-    .global gUnk_IntroSceneStartupUnpackSource_002
-gUnk_IntroSceneStartupUnpackSource_002:
-    .incbin "graphics/intro_scene/shared/startup_tilemaps/startup_02.tilemap.lz"
-    .global gUnk_IntroSceneStartupUnpackSource_003
-gUnk_IntroSceneStartupUnpackSource_003:
-    .incbin "graphics/intro_scene/shared/startup_tilemaps/startup_03.tilemap.lz"
+    .global gIntroSceneStartupBg0Tilemap
+    .type gIntroSceneStartupBg0Tilemap, %object
+gIntroSceneStartupBg0Tilemap:
+    .incbin "graphics/intro_scene/shared/startup_tilemaps/bg0.tilemap.lz"
+    .size gIntroSceneStartupBg0Tilemap, . - gIntroSceneStartupBg0Tilemap
+    .global gIntroSceneStartupBg1Tilemap
+    .type gIntroSceneStartupBg1Tilemap, %object
+gIntroSceneStartupBg1Tilemap:
+    .incbin "graphics/intro_scene/shared/startup_tilemaps/bg1.tilemap.lz"
+    .size gIntroSceneStartupBg1Tilemap, . - gIntroSceneStartupBg1Tilemap
+    .global gIntroSceneStartupBg2Tilemap
+    .type gIntroSceneStartupBg2Tilemap, %object
+gIntroSceneStartupBg2Tilemap:
+    .incbin "graphics/intro_scene/shared/startup_tilemaps/bg2.tilemap.lz"
+    .size gIntroSceneStartupBg2Tilemap, . - gIntroSceneStartupBg2Tilemap
+    .global gIntroSceneStartupBg3Tilemap
+    .type gIntroSceneStartupBg3Tilemap, %object
+gIntroSceneStartupBg3Tilemap:
+    .incbin "graphics/intro_scene/shared/startup_tilemaps/bg3.tilemap.lz"
+    .size gIntroSceneStartupBg3Tilemap, . - gIntroSceneStartupBg3Tilemap
     .global gIntroSceneStartupTiles
     .type gIntroSceneStartupTiles, %object
 gIntroSceneStartupTiles:
@@ -305840,18 +305848,26 @@ gIntroSceneIndexedArchiveCompressed:
 
 	@ Four Huffman-4/LZ3 streams unpacked by the earlier Intro Scene startup
 	@ path. Each source is an interleaved pair of 32-by-32 BG tilemaps.
-	.global gUnk_IntroSceneStartupUnpackSource_000
-gUnk_IntroSceneStartupUnpackSource_000:
-	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_00.tilemap.lz"
-	.global gUnk_IntroSceneStartupUnpackSource_001
-gUnk_IntroSceneStartupUnpackSource_001:
-	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_01.tilemap.lz"
-	.global gUnk_IntroSceneStartupUnpackSource_002
-gUnk_IntroSceneStartupUnpackSource_002:
-	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_02.tilemap.lz"
-	.global gUnk_IntroSceneStartupUnpackSource_003
-gUnk_IntroSceneStartupUnpackSource_003:
-	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_03.tilemap.lz"
+	.global gIntroSceneStartupBg0Tilemap
+	.type gIntroSceneStartupBg0Tilemap, %object
+gIntroSceneStartupBg0Tilemap:
+	.incbin "graphics/intro_scene/shared/startup_tilemaps/bg0.tilemap.lz"
+	.size gIntroSceneStartupBg0Tilemap, . - gIntroSceneStartupBg0Tilemap
+	.global gIntroSceneStartupBg1Tilemap
+	.type gIntroSceneStartupBg1Tilemap, %object
+gIntroSceneStartupBg1Tilemap:
+	.incbin "graphics/intro_scene/shared/startup_tilemaps/bg1.tilemap.lz"
+	.size gIntroSceneStartupBg1Tilemap, . - gIntroSceneStartupBg1Tilemap
+	.global gIntroSceneStartupBg2Tilemap
+	.type gIntroSceneStartupBg2Tilemap, %object
+gIntroSceneStartupBg2Tilemap:
+	.incbin "graphics/intro_scene/shared/startup_tilemaps/bg2.tilemap.lz"
+	.size gIntroSceneStartupBg2Tilemap, . - gIntroSceneStartupBg2Tilemap
+	.global gIntroSceneStartupBg3Tilemap
+	.type gIntroSceneStartupBg3Tilemap, %object
+gIntroSceneStartupBg3Tilemap:
+	.incbin "graphics/intro_scene/shared/startup_tilemaps/bg3.tilemap.lz"
+	.size gIntroSceneStartupBg3Tilemap, . - gIntroSceneStartupBg3Tilemap
 
 	.global gIntroSceneStartupTiles
 	.type gIntroSceneStartupTiles, %object

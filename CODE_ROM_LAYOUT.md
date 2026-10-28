@@ -2,6 +2,39 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的模块。地址以各地区基准 ROM 的物理地址为准；源码按已核实的功能归属组织，不因来自同一个原始汇编文件就堆入同一个 C++ 文件。LDS 独立维持实际 ROM 顺序；新增高级语言覆盖、既有代码搬迁与语义改名分别统计。
 
+## 启动序列背景地图：BG0–BG3 的真实资源对应（2026-10-29）
+
+原生 `InitializeIntroSceneSequenceResources` 依次解压四份 4096 字节
+背景地图，将每行 64 个半字拆到两个 32×32 屏幕块，并设置 BG0–BG3
+控制寄存器。原来的编号资源现按真实层号维护为
+`graphics/intro_scene/shared/startup_tilemaps/bg0.tilemap` 至
+`bg3.tilemap`；四区共用同一份各层源数据。
+
+| 对象 | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| `gIntroSceneStartupBgTilemaps` | `0x080E7AA4` | `0x080E8684` | `0x080E86D0` | `0x080E85E8` |
+| `gIntroSceneStartupBg0Tilemap` | `0x084D096C` | `0x0874A1D8` | `0x0874A234` | `0x084D1644` |
+| `gIntroSceneStartupBg1Tilemap` | `0x084D0D48` | `0x0874A5B4` | `0x0874A610` | `0x084D1A20` |
+| `gIntroSceneStartupBg2Tilemap` | `0x084D0F64` | `0x0874A7D0` | `0x0874A82C` | `0x084D1C3C` |
+| `gIntroSceneStartupBg3Tilemap` | `0x084D1058` | `0x0874A8C4` | `0x0874A920` | `0x084D1D30` |
+
+16 字节 `gIntroSceneStartupBgTilemaps[4]` 仍由同名主题
+`src/intro_scene_startup.cc` 提供，公开声明在
+`include/intro_scene_startup.hh`。压缩流使用各层真实符号，直接引用
+原有通用 C 编码器生成的 `.tilemap.lz`；没有旧名别名、地址偏移、
+新增目录、工具、链接条目或编译后补丁。原有四份编码参数保持。
+
+四份源码各 4096 字节；压缩流依 BG 顺序为 988、540、244、252 字节。
+独立解压及重压均逐字节一致。四区 WSL `make -j4 ... compare`、
+完整 8 MiB ROM 逐字节与 SHA-1、所有既有地址及每区 237 个实际
+链接对象的分配段和重定位核对通过。最终验证 ELF 仅省略调试段，
+完整调试对象与符号表保留。
+
+本批完成四层资源语义对应，新增 C/C++ 函数体覆盖为 **0 字节**。
+初始化和整帧正文仍是显式原生汇编；最早 C++ 缺口仍为
+`InitializeIntroSceneBackground`，不将资源改名计为函数反编译完成。
+证据在上层 `.codex_tmp/intro-startup-bg-maps-20261029/`。
+
 ## UI 文本时钟：四版共用 C++ 叶子（2026-10-29）
 
 `AdvanceUiTextStreamClock` 已从原生汇编恢复为既有
@@ -18752,12 +18785,12 @@ compare` 与独立字节比较全部通过；不计作新增反编译或模板�
 
 ## 第四份启动 tilemap：通用三路快速排序独立编码
 
-`graphics/intro_scene/shared/startup_tilemaps/startup_03.tilemap` 现由既有
+`graphics/intro_scene/shared/startup_tilemaps/bg3.tilemap` 现由既有
 统一 `.lz` 规则调用 `encode-huff4-lz3 3,7,10 0 --tie=quick`。4096
 字节源数据自然生成完整 252 字节压缩流，不读取 `.original.lz`，
 不保存码树或同权符号列表，槽位参数为零，不为匹配追加固定填充。
 
-实际符号 `gUnk_IntroSceneStartupUnpackSource_003` 在四区仍保持
+实际符号 `gIntroSceneStartupBg3Tilemap` 在四区仍保持
 下列半开 ROM 区间，没有改变相邻资源、指针、汇编源码或 LDS：
 
 | JP | US | EU | DE | 源大小 / 压缩大小 |

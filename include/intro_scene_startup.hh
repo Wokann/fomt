@@ -5,14 +5,14 @@
 
 EXTERN_C
 
-extern u8 const gUnk_IntroSceneStartupUnpackSource_000[];
-extern u8 const gUnk_IntroSceneStartupUnpackSource_001[];
-extern u8 const gUnk_IntroSceneStartupUnpackSource_002[];
-extern u8 const gUnk_IntroSceneStartupUnpackSource_003[];
+extern u8 const gIntroSceneStartupBg0Tilemap[];
+extern u8 const gIntroSceneStartupBg1Tilemap[];
+extern u8 const gIntroSceneStartupBg2Tilemap[];
+extern u8 const gIntroSceneStartupBg3Tilemap[];
 extern u8 const gIntroSceneStartupTiles[];
 extern u8 const gIntroSceneStartupPaletteBanks[];
 
-extern u8 const * const gIntroSceneStartupUnpackSources[];
+extern u8 const * const gIntroSceneStartupBgTilemaps[4];
 extern char const gCppRuntimeBadAlloc_IntroSceneStartup[];
 extern char const gCppRuntimeError_IntroSceneStartup[];
 

@@ -194,7 +194,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     add r0, sp
     str r5, [r0]
 .L08001AC0:
-    ldr r1, .L08001E1C @ =gUnk_080E8684
+    ldr r1, .L08001E1C @ =gIntroSceneStartupBgTilemaps
     lsls r0, r4, #2
     adds r0, r0, r1
     ldr r0, [r0]
@@ -574,7 +574,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L08001E10: .4byte 0x00001018
 .L08001E14: .4byte 0x00006BE4
 .L08001E18: .4byte 0x00001024
-.L08001E1C: .4byte gIntroSceneStartupUnpackSources
+.L08001E1C: .4byte gIntroSceneStartupBgTilemaps
 .L08001E20: .4byte 0x00006C04
 .L08001E24: .4byte 0x00001028
 .L08001E28: .4byte 0x00006C24

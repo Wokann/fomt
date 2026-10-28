@@ -12,6 +12,19 @@
 
 JP 已将逐主题旧锚点合并为两片连续可变区域：`0x080E7A40`–`0x080F822F`（上界为 Mary 脚本总索引表）和 `0x080F96F4`–`0x08118D17`（上界为尚保留的原始静态资源）。两片区域内的文本、结构、指针表及其已知调用均随符号重定位；LDS 只保留真实对齐与填充值。
 
+## 启动序列背景地图：BG0–BG3 的真实资源对应（2026-10-29）
+
+启动背景的四份原始 tilemap 与压缩流现按 BG0–BG3 使用真实符号和
+`bg0.tilemap` 至 `bg3.tilemap` 文件名维护；16 字节总指针表改为
+`gIntroSceneStartupBgTilemaps[4]`，物理顺序及全部地址保持。
+表后的两条运行时文本继续在 `src/intro_scene_startup.cc` 原位置
+include 对应区域的同名文本，未合并、移动或改动文本内容。
+
+四区原版 ROM 字节、SHA-1、既有地址、237 个实际链接对象及重定位
+全部核对通过。LDS、文本岛、指南、Mary 脚本和资源内容均不变；
+下面的地址表仍有效。新资源符号和地址见 `CODE_ROM_LAYOUT.md`
+同主题章节；本批新增 C/C++ 函数体覆盖为零。
+
 ## UI 文本时钟恢复：文本物理布局保持（2026-10-29）
 
 `AdvanceUiTextStreamClock` 现由同名功能模块 `src/ui_text_stream.cc`
@@ -1931,7 +1944,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080E7A5A`–`0x080E7A5B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E7A5C`–`0x080E7AA1` | `src/sram_image.o(.rodata)` | [嵌入文本] | `src/sram_image.cc`<br>`include/sram_image.hh`<br>`data/text/jp/sram_image.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird` |
 | `0x080E7AA2`–`0x080E7AA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E7AA4`–`0x080E7AC5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/jp/intro_scene_startup.cc` | `gIntroSceneStartupUnpackSources`（四个资产容器真实标签）<br>运行时字符串 `2` 项 |
+| `0x080E7AA4`–`0x080E7AC5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/jp/intro_scene_startup.cc` | `gIntroSceneStartupBgTilemaps`（BG0–BG3 压缩地图真实标签）<br>运行时字符串 `2` 项 |
 | `0x080E7AC6`–`0x080E7AC7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E7AC8`–`0x080E8161` | `src/new_game_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_data.cc`<br>`include/new_game_data.hh`<br>`data/text/jp/new_game_data_1.cc` → `src/new_game_data.cc`（`gNewGameMenuLabels`）→ `data/text/jp/new_game_data_2.cc` | 文本 `51` 项（菜单 `12`、状态/帮助/保存/身份/姓名输入 `39`；详见下方索引）<br>`gNewGameMenuLabels`（JP 直接重复 `Data1` / `Data2` 指针）<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8162`–`0x080E8163` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3769,7 +3782,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080E862A`–`0x080E862B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E862C`–`0x080E8680` | `src/sram_image.o(.rodata)` | [嵌入文本] | `src/sram_image.cc`<br>`include/sram_image.hh`<br>`data/text/us/sram_image.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird`, `gUnk_SramSignatureTrailerError`, … +1 |
 | `0x080E8681`–`0x080E8683` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x080E8684`–`0x080E86A5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/us/intro_scene_startup.cc` | `gIntroSceneStartupUnpackSources`（四个资产容器真实标签）<br>运行时字符串 `2` 项 |
+| `0x080E8684`–`0x080E86A5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/us/intro_scene_startup.cc` | `gIntroSceneStartupBgTilemaps`（BG0–BG3 压缩地图真实标签）<br>运行时字符串 `2` 项 |
 | `0x080E86A6`–`0x080E86A7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E86A8`–`0x080E8CC1` | `src/new_game_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_data.cc`<br>`include/new_game_data.hh`<br>`data/text/us/new_game_data_1.cc` → `src/new_game_data.cc`（`gNewGameMenuLabels`）→ `data/text/us/new_game_data_2.cc` | 文本 `48` 项（菜单 `14`、状态/帮助/保存/身份/姓名输入 `34`；详见下方索引）<br>`gNewGameMenuLabels`<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8CC2`–`0x080E8CC3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |

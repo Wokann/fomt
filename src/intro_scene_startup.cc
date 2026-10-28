@@ -2,14 +2,14 @@
 
 EXTERN_C
 
-// InitializeIntroSceneSequenceResources unpacks these four payloads for
-// the opening sequence. The raw resource bytes retain region-specific labels in the
-// asset container; this table preserves their original relocation order.
-u8 const * const gIntroSceneStartupUnpackSources[] = {
-    gUnk_IntroSceneStartupUnpackSource_000,
-    gUnk_IntroSceneStartupUnpackSource_001,
-    gUnk_IntroSceneStartupUnpackSource_002,
-    gUnk_IntroSceneStartupUnpackSource_003,
+// BG0 through BG3 each use one 64-by-32 tilemap, stored as 64 entries
+// per row. The native loader sends each row's left/right halves to
+// the paired 32-by-32 screen blocks; table order is BG register order.
+u8 const * const gIntroSceneStartupBgTilemaps[4] = {
+    gIntroSceneStartupBg0Tilemap,
+    gIntroSceneStartupBg1Tilemap,
+    gIntroSceneStartupBg2Tilemap,
+    gIntroSceneStartupBg3Tilemap,
 };
 
 EXTERN_C_END
