@@ -19350,33 +19350,6 @@ func_080AD5EC:
     .section .text.ui_text_stream_update_after, "ax", %progbits
     .align 2, 0
 
-    .global AdvanceUiTextStreamClock
-    .thumb_func
-AdvanceUiTextStreamClock:
-    push {r4, r5, lr}
-    adds r2, r0, #0
-    ldrh r0, [r2, #6]
-    adds r5, r0, #0
-    ldrh r0, [r2, #4]
-    adds r1, r5, r0
-    adds r4, r1, #0
-    movs r0, #0xff
-    ands r0, r1
-    movs r3, #0
-    cmp r0, #0
-    beq .Ljp_080AD992
-    adds r3, r1, #0
-.Ljp_080AD992:
-    strh r3, [r2, #6]
-    adds r0, r4, #0
-    asrs r1, r0, #8
-    adds r0, r5, #0
-    asrs r0, r0, #8
-    subs r0, r1, r0
-    pop {r4, r5}
-    pop {r1}
-    bx r1
-
     .global func_080AD9A4
     .thumb_func
 func_080AD9A4:
@@ -95978,32 +95951,6 @@ func_080ADBB4: @ 0x080ADBB4
 
     .section .text.ui_text_stream_update_after, "ax", %progbits
     .align 2, 0
-
-	thumb_func_start AdvanceUiTextStreamClock
-AdvanceUiTextStreamClock: @ 0x080ADF40
-	push {r4, r5, lr}
-	adds r2, r0, #0
-	ldrh r0, [r2, #6]
-	adds r5, r0, #0
-	ldrh r0, [r2, #4]
-	adds r1, r5, r0
-	adds r4, r1, #0
-	movs r0, #0xff
-	ands r0, r1
-	movs r3, #0
-	cmp r0, #0
-	beq .L080ADF5A
-	adds r3, r1, #0
-.L080ADF5A:
-	strh r3, [r2, #6]
-	adds r0, r4, #0
-	asrs r1, r0, #8
-	adds r0, r5, #0
-	asrs r0, r0, #8
-	subs r0, r1, r0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
 
 	thumb_func_start func_080ADF6C
 func_080ADF6C: @ 0x080ADF6C

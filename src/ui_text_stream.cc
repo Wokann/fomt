@@ -115,3 +115,15 @@ finished:
     }
     return stream->phase;
 }
+
+int AdvanceUiTextStreamClock(UiTextStream * stream)
+{
+    UiTextStreamClockValue previous(stream->progress);
+    UiTextStreamClockValue next(previous.raw + stream->speed);
+    int fraction = next.raw & 0xFF;
+    int stored = 0;
+    if (fraction != 0)
+        stored = next.raw;
+    stream->progress = stored;
+    return next.Whole() - previous.Whole();
+}

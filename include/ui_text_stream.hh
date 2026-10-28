@@ -8,6 +8,16 @@ struct UiTextInput;
 struct UiTextOutput;
 struct ScriptTextVariableStore;
 
+// A calculation value is wider than the stored Q8 clock: count a carry
+// before narrowing the saved progress back to sixteen bits.
+struct UiTextStreamClockValue
+{
+    int raw;
+    explicit UiTextStreamClockValue(int input) : raw(input) {}
+    int Whole() const { return raw / 0x100; }
+};
+typedef char UiTextStreamClockValueSizeCheck[sizeof(UiTextStreamClockValue) == 4 ? 1 : -1];
+
 // Native text reader: 0 is idle, 1 reads text and 2 waits for input.
 // The parser temporarily switches from cursor to replacement_cursor while
 // consuming a substituted value stored in the inline 32-byte buffer.
@@ -36,7 +46,7 @@ EXTERN_C
 void SetUiTextStreamText(UiTextStream *, char const *, ScriptTextVariableStore *);
 void SetUiTextStreamSpeed(UiTextStream *, u16);
 u32 UpdateUiTextStream(UiTextStream *, UiTextOutput *, UiTextInput *);
-// This dependency keeps its original 44-byte assembly body.
+// Advance Q8 progress and return the number of whole character ticks crossed.
 int AdvanceUiTextStreamClock(UiTextStream *);
 EXTERN_C_END
 
