@@ -5,12 +5,17 @@
 
 struct MusicPlayer;
 
+#ifdef __cplusplus
+struct HardwareMusicPlayerSlot;
+// The native four-byte value return is the borrowed slot itself.
+HardwareMusicPlayerSlot GetHardwareSongPlayerSlot(u16 song_id);
+#endif
+
 EXTERN_C
 
 void func_08008D2C(u32 * value);
 void func_08008D34(u32 * value);
 
-struct MusicPlayer * func_08008D3C(u16 song_id);
 u8 func_08008D5C(u16 song_id);
 u8 func_08008D70(u16 song_id);
 void func_08008D84(void);

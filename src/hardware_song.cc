@@ -14,11 +14,9 @@ void func_08008D34(u32 * value)
     *value -= 0x40;
 }
 
-struct MusicPlayer * func_08008D3C(u16 song_id)
+HardwareMusicPlayerSlot GetHardwareSongPlayerSlot(u16 song_id)
 {
-    struct MusicPlayer * player;
-    func_08008B54(&player, (u8)gSongTable[song_id].ms);
-    return player;
+    return HardwareMusicPlayerSlot(static_cast<u8>(gSongTable[song_id].ms));
 }
 
 u8 func_08008D5C(u16 song_id)

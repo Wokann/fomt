@@ -66,7 +66,7 @@ InitializeNewGameIdentityCore:
     ldr r4, .Ljp_08005118
     add r4, r8
     movs r0, #0xc8
-    bl func_08008D3C
+    bl GetHardwareSongPlayerSlot__FUs
     str r0, [r4]
     ldr r0, .Ljp_0800511C
     add r0, r8
@@ -840,7 +840,7 @@ InitializeNewGameIdentityCore: @ US 0x08004EFC; body remains native.
     ldr r0, .L080050B0 @ =0x00001A30
     adds r4, r7, r0
     movs r0, #0xc8
-    bl func_08008D3C
+    bl GetHardwareSongPlayerSlot__FUs
     str r0, [r4]
     ldr r1, .L080050B4 @ =0x00001A34
     adds r0, r7, r1
