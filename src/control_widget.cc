@@ -48,20 +48,20 @@ void ControlWidget::CloseImmediate()
 
 i32 ControlWidget::GetX() const
 {
-    return static_cast<i16>(state->position.first);
+    return static_cast<i16>(state->position.x);
 }
 
 i32 ControlWidget::GetY() const
 {
-    return static_cast<i16>(state->position.second);
+    return static_cast<i16>(state->position.y);
 }
 
 void ControlWidget::SetPosition(u32 x, u32 y)
 {
-    func_0803BDE4(state->position, x, y);
+    state->position.Set(x, y);
 }
 
 void ControlWidget::OffsetPosition(u32 x, u32 y)
 {
-    func_0803BDEC(state->position, x, y);
+    state->position.Offset(x, y);
 }

@@ -496,7 +496,7 @@ SECTIONS
         asm/code_0803A8A4.o(.text.ui_text_window_native);
         src/ui_text_window.o(.text.ui_text_window_state);
         . = 0x3BB78; /* JP counterpart of US function 0x0803BDE4. */
-        src/code_0803BDE4.o(.text);
+        src/ui_position.o(.text);
         . = 0x3BB90; /* Control ownership lifecycle. */
         src/control_widget.o(.text.control_widget_constructor .text.control_widget_destructor);
         . = 0x3BC30; /* JP counterpart of US function 0x0803BE9C. */

@@ -450,7 +450,7 @@ SECTIONS
         asm/code_0803A8A4.o(.text.ui_text_window_native);
         src/ui_text_window.o(.text.ui_text_window_state);
         . = 0x3BDF8; /* US ROM 0x0803BDE4, set a u16 pair */
-        src/code_0803BDE4.o(.text);
+        src/ui_position.o(.text);
         . = 0x3BE10; /* Control ownership lifecycle. */
         src/control_widget.o(.text.control_widget_constructor .text.control_widget_destructor);
         . = 0x3BEB0; /* Read the owned window phase. */

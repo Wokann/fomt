@@ -2,7 +2,7 @@
 #define CONTROL_WIDGET_HH
 
 #include "prelude.h"
-#include "u16_pair.hh"
+#include "ui_position.hh"
 #include "hardware_display_state.hh"
 
 struct UiTextWindow;
@@ -30,11 +30,6 @@ struct ControlWidget {
 
 typedef char ControlWidgetSizeCheck[sizeof(ControlWidget) == 8 ? 1 : -1];
 typedef char ControlWidgetStateCheck[offsetof(ControlWidget, state) == 0 ? 1 : -1];
-
-EXTERN_C
-void func_0803BDE4(U16Pair & value, u32 first, u32 second);
-void func_0803BDEC(U16Pair & value, u32 first, u32 second);
-EXTERN_C_END
 
 #pragma implementation
 #endif // CONTROL_WIDGET_HH

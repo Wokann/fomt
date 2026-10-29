@@ -2,7 +2,7 @@
 #define UI_TEXT_WINDOW_HH
 
 #include "prelude.h"
-#include "u16_pair.hh"
+#include "ui_position.hh"
 
 EXTERN_C
 
@@ -70,7 +70,7 @@ struct UiTextWindow {
     void OpenImmediate() SECTION(".text.ui_text_window_state");
     void Close() SECTION(".text.ui_text_window_state");
     void CloseImmediate() SECTION(".text.ui_text_window_state");
-    U16Pair position;
+    UiPosition position;
     u16 width;
     u16 height;
     u8 background : 2;
