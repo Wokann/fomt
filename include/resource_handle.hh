@@ -71,7 +71,20 @@ enum IndexedResourceUpdateFlag
     INDEXED_RESOURCE_WRAPPED = 4,
 };
 
-u32 UpdateIndexedResourceHandle(IndexedResourceHandle *);
+// All callers share these three bits of one native result word.
+union IndexedResourceUpdateResult
+{
+    u32 value;
+    struct {
+        bool entry_advanced : 1;
+        bool group_changed : 1;
+        bool wrapped : 1;
+    } flags;
+};
+
+typedef char IndexedResourceUpdateResultSizeCheck[sizeof(IndexedResourceUpdateResult) == 4 ? 1 : -1];
+
+IndexedResourceUpdateResult UpdateIndexedResourceHandle(IndexedResourceHandle *);
 
 // Non-affine sprites are clipped to the screen; affine records use the
 // selected OAM matrix. Copy attributes only, preserving matrix coefficients.

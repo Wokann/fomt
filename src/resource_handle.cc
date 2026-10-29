@@ -74,7 +74,7 @@ static inline IndexedResourceEntry const & GetIndexedResourceEntry(
     return data[index];
 }
 
-extern "C" u32 UpdateIndexedResourceHandle(IndexedResourceHandle * handle)
+extern "C" IndexedResourceUpdateResult UpdateIndexedResourceHandle(IndexedResourceHandle * handle)
 {
     IndexedResourceUpdateFlag result = static_cast<IndexedResourceUpdateFlag>(0);
     if (handle->initialized != 0)
@@ -145,7 +145,9 @@ extern "C" u32 UpdateIndexedResourceHandle(IndexedResourceHandle * handle)
         }
         handle->metric_scaled = remaining;
     }
-    return static_cast<u32>(result);
+    IndexedResourceUpdateResult status;
+    status.value = result;
+    return status;
 }
 
 static inline IndexedResourceSpriteMatrix ReadIndexedSpriteMatrix(

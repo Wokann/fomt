@@ -357,8 +357,11 @@ void GameSceneMenuSpriteData::Show(i32 selection, u32 page)
 {
     unk_84 = 1;
     sprite.unk_34 = 1;
-    // The wrapped flag is bit 2 of the existing integer result.
-    while (static_cast<i32>(UpdateIndexedResourceHandle(&sprite.handle) << 29) >= 0) {}
+    // Wait until the current animation wraps.
+    for (;;) {
+        if (UpdateIndexedResourceHandle(&sprite.handle).flags.wrapped)
+            break;
+    }
     MenuGridPosition position = core->GetCursorPosition(selection);
     sprite.unk_00 = position.x + 8;
     sprite.unk_02 = position.y;

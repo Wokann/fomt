@@ -105,8 +105,8 @@ void GameSceneWeatherEffect::UpdateParticles()
     u32 count = particles.count;
     for (u32 index = 0; index < count; ++index) {
         WorldWeatherParticle & particle = particles[index];
-        // Move wrapped flag bit 2 to the sign bit, as other native consumers do.
-        if (static_cast<i32>(UpdateIndexedResourceHandle(&particle.animation) << 29) < 0)
+        // Restart each particle after its animation wraps.
+        if (UpdateIndexedResourceHandle(&particle.animation).flags.wrapped)
             particle.ResetPosition(camera_x, camera_y);
         ++group_particles;
         if (group_particles >= group_size) {
