@@ -22,6 +22,12 @@ GameSceneSpriteBase::GameSceneSpriteBase(GameObject * source, u32 size_shift, i3
     palettes[0] = source->vfunc_48(palette_kind);
 }
 
+GameSceneSpriteBase::GameSceneSpriteBase(GameSceneSpriteBase const & other)
+    : world(other.world), tiles(other.tiles), tile_index(other.tile_index),
+      palettes(other.palettes)
+{
+}
+
 GameSceneSpriteBase::~GameSceneSpriteBase()
 {
     for (u32 index = 0; index < palettes.count; ++index)

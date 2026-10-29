@@ -3426,49 +3426,6 @@ func_080DBFB4:
     pop {r0}
     bx r0
     .byte 0x90, 0x56, 0x0E, 0x08
-    .section .text.game_scene_indexed_sprite_dtor_after, "ax", %progbits
-    .align 2, 0
-
-    .global func_080DC840
-    .thumb_func
-func_080DC840:
-    push {r4, r5, r6, r7, lr}
-    adds r7, r0, #0
-    adds r5, r1, #0
-    ldr r0, [pc, #0x44]
-    str r0, [r7, #0x24]
-    adds r6, r5, #0
-    ldm r6!, {r0}
-    adds r4, r7, #0
-    stm r4!, {r0}
-    adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
-    ldr r1, [r6, #4]
-    adds r0, r4, #0
-    bl RetainHardwareSharedStateHandle
-    str r0, [r4, #4]
-    ldrh r0, [r5, #0xc]
-    movs r1, #0
-    strh r0, [r7, #0xc]
-    str r1, [r7, #0x10]
-    ldr r4, [r5, #0x10]
-    adds r1, r5, #0
-    adds r1, #0x14
-    adds r0, r7, #0
-    adds r0, #0x14
-    adds r2, r1, r4
-    cmp r2, r1
-    beq .Lauto_080DC034
-    subs r2, r2, r1
-    bl memmove
-    .Lauto_080DC034:
-    str r4, [r7, #0x10]
-    adds r0, r7, #0
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
-    .4byte __vt_19GameSceneSpriteBase
     .section .text.entity_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
     .global func_080DC0E0
@@ -4025,7 +3982,7 @@ func_080DCD2C:
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    bl func_080DC840
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     ldr r0, [pc, #0x74]
     str r0, [r4, #0x24]
     adds r1, r4, #0
@@ -15335,48 +15292,6 @@ func_080DC800:
 	bl __builtin_delete
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
 	.4byte __vt_7AEntity
-    .section .text.game_scene_indexed_sprite_dtor_after, "ax", %progbits
-    .align 2, 0
-
-	thumb_func_start func_080DC840
-func_080DC840: @ 0x080DC840
-	push {r4, r5, r6, r7, lr}
-	adds r7, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L080DC88C @ =__vt_19GameSceneSpriteBase
-	str r0, [r7, #0x24]
-	adds r6, r5, #0
-	ldm r6!, {r0}
-	adds r4, r7, #0
-	stm r4!, {r0}
-	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
-	ldr r1, [r6, #4]
-	adds r0, r4, #0
-	bl RetainHardwareSharedStateHandle
-	str r0, [r4, #4]
-	ldrh r0, [r5, #0xc]
-	movs r1, #0
-	strh r0, [r7, #0xc]
-	str r1, [r7, #0x10]
-	ldr r4, [r5, #0x10]
-	adds r1, r5, #0
-	adds r1, #0x14
-	adds r0, r7, #0
-	adds r0, #0x14
-	adds r2, r1, r4
-	cmp r2, r1
-	beq .L080DC880
-	subs r2, r2, r1
-	bl memmove
-.L080DC880:
-	str r4, [r7, #0x10]
-	adds r0, r7, #0
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080DC88C: .4byte __vt_19GameSceneSpriteBase
     .section .text.entity_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
 	.global func_080DC92C
@@ -15921,7 +15836,7 @@ func_080DCD2C: @ 0x080DCD2C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	bl func_080DC840
+	bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
 	ldr r0, .L080DCDAC @ =__vt_22GameSceneIndexedSprite
 	str r0, [r4, #0x24]
 	adds r1, r4, #0

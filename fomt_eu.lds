@@ -921,7 +921,7 @@ SECTIONS
         src/entity_sprite.o(.text.entity_visual_controller_cleanup);
         asm/code_linkonce.o(.text.entity_visual_controller_cleanup_after);
         src/scene_sprite.o(.gnu.linkonce.t._._22GameSceneIndexedSprite);
-        asm/code_linkonce.o(.text.game_scene_indexed_sprite_dtor_after);
+        src/scene_sprite.o(.text.__19GameSceneSpriteBaseRC19GameSceneSpriteBase);
         src/entity_sprite.o(.gnu.linkonce.t._._29DefaultEntitySpriteController);
         src/entity_actor.o(.gnu.linkonce.t._._12AActorEntity);
         src/entity_sprite.o(.gnu.linkonce.t._._22EntitySpriteController);

@@ -109,6 +109,17 @@ private:
 public:
     GameScenePaletteIndices() : count(0) {}
 
+    GameScenePaletteIndices(GameScenePaletteIndices const & other) : count(0)
+    {
+        u32 input_count = other.count;
+        u8 const * first = other.values;
+        u8 * destination = values;
+        u8 const * last = first + input_count;
+        if (last != first)
+            memmove(destination, first, last - first);
+        count = input_count;
+    }
+
     explicit GameScenePaletteIndices(u32 input_count)
     {
         Initialize(input_count, 0);

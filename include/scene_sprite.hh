@@ -20,6 +20,7 @@ struct GameSceneSpriteBase {
     GameSceneSpriteBase(GameObject * world, u32 size_shift,
         i32 const * palette_kinds, u32 palette_count);
     GameSceneSpriteBase(GameObject * world, u32 size_shift, i32 palette_kind);
+    GameSceneSpriteBase(GameSceneSpriteBase const & other);
     virtual ~GameSceneSpriteBase();
 
     void QueueTileUpload(HardwareDmaQueue & queue, IndexedResourceTileRange const & range);

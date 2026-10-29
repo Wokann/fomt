@@ -20793,7 +20793,7 @@ func_0802AFF4:
     adds r4, r5, #4
     adds r0, r4, #0
     add r1, sp, #0x18
-    bl func_080DC840
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     ldr r0, .Ljp_0802B144 @ =__vt_22GameSceneIndexedSprite
     str r0, [r4, #0x24]
     adds r1, r5, #0
@@ -53946,7 +53946,7 @@ func_0802B260: @ 0x0802B260
     adds r4, r5, #4
     adds r0, r4, #0
     add r1, sp, #0x18
-    bl func_080DC840
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     ldr r0, .L0802B3B0 @ =__vt_22GameSceneIndexedSprite
     str r0, [r4, #0x24]
     adds r1, r5, #0

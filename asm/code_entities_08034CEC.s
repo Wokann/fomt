@@ -7554,7 +7554,7 @@ PlayControllerStarSparkleEffect:
     .4byte 0x182C3004
     .4byte 0xD0222C00
     .4byte 0xA9031C20
-    .4byte 0xF96CF0A3
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     .4byte 0x62604813
     .4byte 0x31281C21
     .4byte 0xC88CA80D
@@ -7591,7 +7591,7 @@ PlayControllerStarSparkleEffect:
     .4byte 0x182C3004
     .4byte 0xD0222C00
     .4byte 0xA9031C20
-    .4byte 0xF924F0A3
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     .4byte 0x6260482C
     .4byte 0x31281C21
     .4byte 0xC88CA80D
@@ -18110,7 +18110,7 @@ PlayControllerStarSparkleEffect:
     .4byte 0x182C3004
     .4byte 0xD0222C00
     .4byte 0xA9031C20
-    .4byte 0xFC78F0A3
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     .4byte 0x62604813
     .4byte 0x31281C21
     .4byte 0xC88CA80D
@@ -18147,7 +18147,7 @@ PlayControllerStarSparkleEffect:
     .4byte 0x182C3004
     .4byte 0xD0222C00
     .4byte 0xA9031C20
-    .4byte 0xFC30F0A3
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     .4byte 0x6260482C
     .4byte 0x31281C21
     .4byte 0xC88CA80D
@@ -28835,7 +28835,7 @@ PlayControllerStarSparkleEffect:
     .4byte 0x182C3004
     .4byte 0xD0222C00
     .4byte 0xA9031C20
-    .4byte 0xFC84F0A3
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     .4byte 0x62604813
     .4byte 0x31281C21
     .4byte 0xC88CA80D
@@ -28872,7 +28872,7 @@ PlayControllerStarSparkleEffect:
     .4byte 0x182C3004
     .4byte 0xD0222C00
     .4byte 0xA9031C20
-    .4byte 0xFC3CF0A3
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     .4byte 0x6260482C
     .4byte 0x31281C21
     .4byte 0xC88CA80D
@@ -39559,7 +39559,7 @@ PlayControllerStarSparkleEffect:
     .4byte 0x182C3004
     .4byte 0xD0222C00
     .4byte 0xA9031C20
-    .4byte 0xFC5CF0A3
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     .4byte 0x62604813
     .4byte 0x31281C21
     .4byte 0xC88CA80D
@@ -39596,7 +39596,7 @@ PlayControllerStarSparkleEffect:
     .4byte 0x182C3004
     .4byte 0xD0222C00
     .4byte 0xA9031C20
-    .4byte 0xFC14F0A3
+    bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
     .4byte 0x6260482C
     .4byte 0x31281C21
     .4byte 0xC88CA80D
