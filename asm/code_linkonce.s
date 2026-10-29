@@ -1002,7 +1002,7 @@ sub_080D8178:
     .byte 0x36, 0x68, 0x34, 0x60, 0x10, 0x20
     bl __builtin_new
     .byte 0x00, 0x94, 0x04, 0x21, 0x01, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __13ControlObjectUiUiUiUiUi
+    bl __14MainMenuWidgetUiUiUiUiUi
     .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
     .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
     .byte 0x03, 0x21, 0xFA, 0xF7, 0x0A, 0xFF, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
@@ -1011,7 +1011,7 @@ sub_080D8178:
     .byte 0xAB, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x00, 0x68, 0x04, 0x60, 0x10, 0x20
     bl __builtin_new
     .byte 0x00, 0x94, 0x05, 0x21, 0x01, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __13ControlObjectUiUiUiUiUi
+    bl __14MainMenuWidgetUiUiUiUiUi
     .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
     .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
     .byte 0x03, 0x21, 0xFA, 0xF7, 0xDC, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
@@ -1019,7 +1019,7 @@ sub_080D8178:
     .byte 0xD2, 0x00, 0x6A, 0x44, 0x12, 0x68, 0x14, 0x60, 0x10, 0x20
     bl __builtin_new
     .byte 0x00, 0x94, 0x01, 0x94, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __13ControlObjectUiUiUiUiUi
+    bl __14MainMenuWidgetUiUiUiUiUi
     .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
     .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
     .byte 0x03, 0x21, 0xFA, 0xF7, 0xB6, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
@@ -1030,7 +1030,7 @@ sub_080D8178:
     .byte 0xC9, 0x19, 0x09, 0x68, 0xFA, 0xF7, 0x95, 0xFE, 0x10, 0x20
     bl __builtin_new
     .byte 0x00, 0x94, 0x00, 0x21, 0x01, 0x91, 0x1F, 0x22, 0x00, 0x23
-    bl __13ControlObjectUiUiUiUiUi
+    bl __14MainMenuWidgetUiUiUiUiUi
     .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
     .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
     .byte 0x03, 0x21, 0xFA, 0xF7, 0x7E, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
@@ -1039,7 +1039,7 @@ sub_080D8178:
     .byte 0x14, 0x60, 0x10, 0x20
     bl __builtin_new
     .byte 0x00, 0x94, 0x02, 0x21, 0x01, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __13ControlObjectUiUiUiUiUi
+    bl __14MainMenuWidgetUiUiUiUiUi
     .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
     .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
     .byte 0x03, 0x21, 0xFA, 0xF7, 0x54, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
@@ -1048,7 +1048,7 @@ sub_080D8178:
     .byte 0xAB, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2D, 0x68, 0x2C, 0x60, 0x10, 0x20
     bl __builtin_new
     .byte 0x00, 0x94, 0x03, 0x21, 0x01, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __13ControlObjectUiUiUiUiUi
+    bl __14MainMenuWidgetUiUiUiUiUi
     .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
     .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
     .byte 0x03, 0x21, 0xFA, 0xF7, 0x26, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
@@ -1470,7 +1470,7 @@ sub_080D8178:
     bl __builtin_new
     .byte 0x01, 0x21, 0x00, 0x91, 0x06, 0x21, 0x01, 0x91, 0x00, 0x21, 0x1F, 0x22
     .byte 0x00, 0x23
-    bl __13ControlObjectUiUiUiUiUi
+    bl __14MainMenuWidgetUiUiUiUiUi
     .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
     .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
     .byte 0x03, 0x21, 0xF9, 0xF7, 0x4A, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
@@ -1488,7 +1488,7 @@ sub_080D8178:
     .byte 0x08, 0x1C, 0x03, 0x21, 0xF9, 0xF7, 0x0D, 0xFE, 0x25, 0x60, 0x10, 0x20
     bl __builtin_new
     .byte 0x01, 0x21, 0x00, 0x91, 0x00, 0x21, 0x01, 0x91, 0x1F, 0x22, 0x00, 0x23
-    bl __13ControlObjectUiUiUiUiUi
+    bl __14MainMenuWidgetUiUiUiUiUi
     .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
     .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
     .byte 0x03, 0x21, 0xF9, 0xF7, 0xF2, 0xFD, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
@@ -1498,7 +1498,7 @@ sub_080D8178:
     .byte 0x27, 0x1C, 0x03, 0x28, 0x01, 0xD0, 0x00, 0xF0, 0xC6, 0xFE, 0x04, 0xA8
     .byte 0x82, 0x88, 0x01, 0x20, 0x10, 0x40, 0x00, 0x28, 0x00, 0xD1, 0xD9, 0xE1
     .byte 0x00, 0x23, 0x9F, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2B, 0x60, 0x20, 0x68
-    bl GetUnk0C__C13ControlObject
+    bl GetSelection__C14MainMenuWidget
     .byte 0x06, 0x28, 0x00, 0xD9, 0xB2, 0xE1, 0x80, 0x00, 0x01, 0x49, 0x40, 0x18
     .byte 0x00, 0x68, 0x87, 0x46, 0x40, 0x95, 0x0D, 0x08, 0x5C, 0x95, 0x0D, 0x08
     .byte 0xC8, 0x97, 0x0D, 0x08, 0xD0, 0x95, 0x0D, 0x08, 0x70, 0x96, 0x0D, 0x08
@@ -1579,7 +1579,7 @@ sub_080D8178:
     .byte 0x1E, 0xFC, 0x0D, 0x20, 0xAB, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x36, 0x68
     .byte 0x30, 0x60, 0x9F, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x00, 0x68, 0x00, 0x28
     .byte 0x01, 0xD0, 0x00, 0xF0, 0xF9, 0xFC, 0x38, 0x68
-    bl ClearUnk0F__13ControlObject
+    bl DisableInput__14MainMenuWidget
     .byte 0x06, 0x49, 0x69, 0x44, 0x09, 0x68, 0x08, 0x68, 0x05, 0x49, 0x01, 0x22
     .byte 0x01, 0x23
     bl EndHardwareBlend
@@ -7494,11 +7494,11 @@ Run__11ScriptScene:
     b loc_080DFBFE
     .byte 0x1F, 0x98, 0x2B, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC
     .byte 0x08, 0x47, 0x00, 0x00
-    .section .text.after_ui_text_window_border_cleanup, "ax", %progbits
+    .section .text.main_menu_data_constructor, "ax", %progbits
     .align 2, 0
-    .global func_080E0A94
+    .global __12MainMenuData
     .thumb_func
-func_080E0A94:
+__12MainMenuData:
     push {r4, r5, r6, r7, lr}
     mov r7, sb
     mov r6, r8
@@ -7693,141 +7693,6 @@ func_080E0A94:
     .byte 0x00, 0x00, 0x10, 0x49, 0x4A, 0x08
     .4byte __vt_19HardwareDmaCopyLink
     .byte 0x28, 0x12, 0x0F, 0x08
-    .global func_080E0C38
-    .thumb_func
-func_080E0C38:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    sub sp, #4
-    adds r6, r0, #0
-    str r1, [sp]
-    movs r0, #0x70
-    adds r0, r0, r6
-    mov r8, r0
-    movs r1, #0xe3
-    lsls r1, r1, #2
-    adds r0, r6, r1
-    cmp r0, #0
-    beq .Lauto_080E0418
-    adds r1, #0x90
-    adds r4, r6, r1
-    cmp r0, r4
-    beq .Lauto_080E0418
-    movs r0, #0xe3
-    lsls r0, r0, #2
-    adds r5, r6, r0
-    .Lauto_080E0406:
-    subs r4, #0x18
-    ldr r0, [r4, #8]
-    ldr r2, [r0, #0xc]
-    adds r0, r4, #0
-    movs r1, #0
-    bl _call_via_r2
-    cmp r5, r4
-    bne .Lauto_080E0406
-    .Lauto_080E0418:
-    movs r5, #0xc1
-    lsls r5, r5, #2
-    add r5, r8
-    adds r7, r6, #0
-    adds r7, #0x54
-    movs r1, #0x38
-    adds r1, r1, r6
-    mov sl, r1
-    movs r0, #0x30
-    adds r0, r0, r6
-    mov sb, r0
-    cmp r5, #0
-    beq .Lauto_080E0452
-    movs r4, #0xc7
-    lsls r4, r4, #2
-    add r4, r8
-    cmp r5, r4
-    beq .Lauto_080E0452
-    .Lauto_080E043C:
-    subs r4, #8
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    cmp r5, r4
-    bne .Lauto_080E043C
-    .Lauto_080E0452:
-    cmp r7, #0
-    beq .Lauto_080E0488
-    adds r5, r6, #0
-    adds r5, #0x70
-    .Lauto_080E045A:
-    cmp r7, r5
-    beq .Lauto_080E0488
-    subs r5, #4
-    ldr r4, [r5]
-    cmp r4, #0
-    beq .Lauto_080E045A
-    adds r0, r4, #0
-    adds r0, #8
-    movs r1, #2
-    bl func_080098AC
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    adds r0, r4, #0
-    bl __builtin_delete
-    b .Lauto_080E045A
-    .Lauto_080E0488:
-    ldr r4, [r6, #0x50]
-    cmp r4, #0
-    beq .Lauto_080E04AE
-    adds r0, r4, #0
-    adds r0, #8
-    movs r1, #2
-    bl func_080098AC
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    adds r0, r4, #0
-    bl __builtin_delete
-    .Lauto_080E04AE:
-    mov r0, sl
-    movs r1, #2
-    bl func_080098AC
-    mov r0, sb
-    ldr r1, [r0, #4]
-    bl ReleaseHardwarePoolHandle
-    mov r0, sb
-    movs r1, #2
-    bl _._17HardwarePoolOwner
-    ldr r0, [pc, #0x24]
-    str r0, [r6]
-    movs r0, #1
-    ldr r1, [sp]
-    ands r0, r1
-    cmp r0, #0
-    beq .Lauto_080E04DA
-    adds r0, r6, #0
-    bl __builtin_delete
-    .Lauto_080E04DA:
-    add sp, #4
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_23IndexedResourceProvider
     .section .text.map_clock_status_lifecycle_after, "ax", %progbits
     .align 2, 0
     .global func_080E0E80
@@ -8997,7 +8862,7 @@ sub_080D8178: @ 0x080D8178
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __13ControlObjectUiUiUiUiUi
+	bl __14MainMenuWidgetUiUiUiUiUi
 	mov r4, sl
 	adds r4, #0xb8
 	adds r5, r0, #0
@@ -9040,7 +8905,7 @@ sub_080D8178: @ 0x080D8178
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __13ControlObjectUiUiUiUiUi
+	bl __14MainMenuWidgetUiUiUiUiUi
 	mov r4, sl
 	adds r4, #0xb8
 	adds r5, r0, #0
@@ -9076,7 +8941,7 @@ sub_080D8178: @ 0x080D8178
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __13ControlObjectUiUiUiUiUi
+	bl __14MainMenuWidgetUiUiUiUiUi
 	mov r4, sl
 	adds r4, #0xb8
 	adds r5, r0, #0
@@ -9128,7 +8993,7 @@ sub_080D8178: @ 0x080D8178
 	str r1, [sp, #4]
 	movs r2, #0x1f
 	movs r3, #0
-	bl __13ControlObjectUiUiUiUiUi
+	bl __14MainMenuWidgetUiUiUiUiUi
 	mov r4, sl
 	adds r4, #0xb8
 	adds r5, r0, #0
@@ -9167,7 +9032,7 @@ sub_080D8178: @ 0x080D8178
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __13ControlObjectUiUiUiUiUi
+	bl __14MainMenuWidgetUiUiUiUiUi
 	mov r4, sl
 	adds r4, #0xb8
 	adds r5, r0, #0
@@ -9210,7 +9075,7 @@ sub_080D8178: @ 0x080D8178
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __13ControlObjectUiUiUiUiUi
+	bl __14MainMenuWidgetUiUiUiUiUi
 	mov r4, sl
 	adds r4, #0xb8
 	adds r5, r0, #0
@@ -11024,7 +10889,7 @@ sub_080D8178: @ 0x080D8178
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __13ControlObjectUiUiUiUiUi
+	bl __14MainMenuWidgetUiUiUiUiUi
 	mov r4, sl
 	adds r4, #0xb8
 	adds r5, r0, #0
@@ -11106,7 +10971,7 @@ sub_080D8178: @ 0x080D8178
 	str r1, [sp, #4]
 	movs r2, #0x1f
 	movs r3, #0
-	bl __13ControlObjectUiUiUiUiUi
+	bl __14MainMenuWidgetUiUiUiUiUi
 	mov r4, sl
 	adds r4, #0xb8
 	adds r5, r0, #0
@@ -11153,7 +11018,7 @@ sub_080D8178: @ 0x080D8178
 	add r5, sp
 	str r3, [r5]
 	ldr r0, [r4]
-	bl GetUnk0C__C13ControlObject
+	bl GetSelection__C14MainMenuWidget
 	cmp r0, #6
 	bls .L080D9D7E
 	b .L080DA0E4
@@ -11577,7 +11442,7 @@ sub_080D8178: @ 0x080D8178
 	bl .L080DAAE6
 .L080DA0F4:
 	ldr r0, [r7]
-	bl ClearUnk0F__13ControlObject
+	bl DisableInput__14MainMenuWidget
 	ldr r1, .L080DA114 @ =0x0000055C
 	add r1, sp
 	ldr r1, [r1]
@@ -23124,10 +22989,10 @@ Run__11ScriptScene: @ 0x080E0094
 	bx r1
 	.align 2, 0
 
-    .section .text.after_ui_text_window_border_cleanup, "ax", %progbits
+    .section .text.main_menu_data_constructor, "ax", %progbits
     .align 2, 0
-	thumb_func_start func_080E0A94
-func_080E0A94: @ 0x080E0A94
+	thumb_func_start __12MainMenuData
+__12MainMenuData: @ 0x080E0A94
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -23324,140 +23189,6 @@ func_080E0A94: @ 0x080E0A94
 .L080E0C30: .4byte __vt_19HardwareDmaCopyLink
 .L080E0C34: .4byte gMenuEntryIds
 
-	thumb_func_start func_080E0C38
-func_080E0C38: @ 0x080E0C38
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #4
-	adds r6, r0, #0
-	str r1, [sp]
-	movs r0, #0x70
-	adds r0, r0, r6
-	mov r8, r0
-	movs r1, #0xe3
-	lsls r1, r1, #2
-	adds r0, r6, r1
-	cmp r0, #0
-	beq .L080E0C78
-	adds r1, #0x90
-	adds r4, r6, r1
-	cmp r0, r4
-	beq .L080E0C78
-	movs r0, #0xe3
-	lsls r0, r0, #2
-	adds r5, r6, r0
-.L080E0C66:
-	subs r4, #0x18
-	ldr r0, [r4, #8]
-	ldr r2, [r0, #0xc]
-	adds r0, r4, #0
-	movs r1, #0
-	bl _call_via_r2
-	cmp r5, r4
-	bne .L080E0C66
-.L080E0C78:
-	movs r5, #0xc1
-	lsls r5, r5, #2
-	add r5, r8
-	adds r7, r6, #0
-	adds r7, #0x54
-	movs r1, #0x38
-	adds r1, r1, r6
-	mov sl, r1
-	movs r0, #0x30
-	adds r0, r0, r6
-	mov sb, r0
-	cmp r5, #0
-	beq .L080E0CB2
-	movs r4, #0xc7
-	lsls r4, r4, #2
-	add r4, r8
-	cmp r5, r4
-	beq .L080E0CB2
-.L080E0C9C:
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	cmp r5, r4
-	bne .L080E0C9C
-.L080E0CB2:
-	cmp r7, #0
-	beq .L080E0CE8
-	adds r5, r6, #0
-	adds r5, #0x70
-.L080E0CBA:
-	cmp r7, r5
-	beq .L080E0CE8
-	subs r5, #4
-	ldr r4, [r5]
-	cmp r4, #0
-	beq .L080E0CBA
-	adds r0, r4, #0
-	adds r0, #8
-	movs r1, #2
-	bl func_080098AC
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	adds r0, r4, #0
-	bl __builtin_delete
-	b .L080E0CBA
-.L080E0CE8:
-	ldr r4, [r6, #0x50]
-	cmp r4, #0
-	beq .L080E0D0E
-	adds r0, r4, #0
-	adds r0, #8
-	movs r1, #2
-	bl func_080098AC
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	adds r0, r4, #0
-	bl __builtin_delete
-.L080E0D0E:
-	mov r0, sl
-	movs r1, #2
-	bl func_080098AC
-	mov r0, sb
-	ldr r1, [r0, #4]
-	bl ReleaseHardwarePoolHandle
-	mov r0, sb
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	ldr r0, .L080E0D4C @ =__vt_23IndexedResourceProvider
-	str r0, [r6]
-	movs r0, #1
-	ldr r1, [sp]
-	ands r0, r1
-	cmp r0, #0
-	beq .L080E0D3A
-	adds r0, r6, #0
-	bl __builtin_delete
-.L080E0D3A:
-	add sp, #4
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E0D4C: .4byte __vt_23IndexedResourceProvider
     .section .text.map_clock_status_lifecycle_after, "ax", %progbits
     .align 2, 0
 

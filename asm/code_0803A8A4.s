@@ -926,68 +926,6 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     .thumb
     .align 2, 0
 
-    .global __13ControlObjectUiUiUiUiUi
-    .thumb_func
-__13ControlObjectUiUiUiUiUi:
-    push	{r4, r5, r6, lr}
-    sub	sp, #20
-    adds	r4, r0, #0
-    ldr	r5, [sp, #36]	@ 0x24
-    ldr	r6, [sp, #40]	@ 0x28
-    movs	r0, #24
-    str	r0, [sp, #0]
-    str	r1, [sp, #4]
-    str	r2, [sp, #8]
-    str	r3, [sp, #12]
-    str	r5, [sp, #16]
-    adds	r0, r4, #0
-    movs	r1, #0
-    movs	r2, #136	@ 0x88
-    movs	r3, #240	@ 0xf0
-    bl __13ControlWidgetiiUiUiUiUiUiUi
-    ldr r0, .Ljp_0803BD54
-    str	r0, [r4, #4]
-    ldr r0, .Ljp_0803BD58
-    bl __builtin_new
-    bl func_080E0A94
-    str	r0, [r4, #8]
-    movs	r0, #0
-    strb	r6, [r4, #12]
-    strb	r0, [r4, #13]
-    movs	r0, #1
-    strb	r0, [r4, #14]
-    strb	r0, [r4, #15]
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-.Ljp_0803BD54:
-    .4byte __vt_13ControlObject
-.Ljp_0803BD58:
-    .4byte 0x0000041C
-    .global _._13ControlObject
-    .thumb_func
-_._13ControlObject:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr r0, .Ljp_0803BD80
-    str	r0, [r4, #4]
-    ldr	r0, [r4, #8]
-    cmp	r0, #0
-    beq .Ljp_0803BD72
-    movs	r1, #3
-    bl func_080E0C38
-.Ljp_0803BD72:
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl _._13ControlWidget
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-.Ljp_0803BD80:
-    .4byte __vt_13ControlObject
     push	{r4, r5, lr}
     sub	sp, #12
     ldr	r4, [sp, #24]
@@ -5733,68 +5671,6 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     .thumb
     .align 2, 0
 
-    .global __13ControlObjectUiUiUiUiUi
-    .thumb_func
-__13ControlObjectUiUiUiUiUi:
-    push	{r4, r5, r6, lr}
-    sub	sp, #20
-    adds	r4, r0, #0
-    ldr	r5, [sp, #36]	@ 0x24
-    ldr	r6, [sp, #40]	@ 0x28
-    movs	r0, #24
-    str	r0, [sp, #0]
-    str	r1, [sp, #4]
-    str	r2, [sp, #8]
-    str	r3, [sp, #12]
-    str	r5, [sp, #16]
-    adds	r0, r4, #0
-    movs	r1, #0
-    movs	r2, #136	@ 0x88
-    movs	r3, #240	@ 0xf0
-    bl __13ControlWidgetiiUiUiUiUiUiUi
-    ldr r0, .Leu_0803BFD4
-    str	r0, [r4, #4]
-    ldr r0, .Leu_0803BFD8
-    bl __builtin_new
-    bl func_080E0A94
-    str	r0, [r4, #8]
-    movs	r0, #0
-    strb	r6, [r4, #12]
-    strb	r0, [r4, #13]
-    movs	r0, #1
-    strb	r0, [r4, #14]
-    strb	r0, [r4, #15]
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-.Leu_0803BFD4:
-    .4byte __vt_13ControlObject
-.Leu_0803BFD8:
-    .4byte 0x0000041C
-    .global _._13ControlObject
-    .thumb_func
-_._13ControlObject:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr r0, .Leu_0803C000
-    str	r0, [r4, #4]
-    ldr	r0, [r4, #8]
-    cmp	r0, #0
-    beq .Leu_0803BFF2
-    movs	r1, #3
-    bl func_080E0C38
-.Leu_0803BFF2:
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl _._13ControlWidget
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-.Leu_0803C000:
-    .4byte __vt_13ControlObject
     push	{r4, r5, lr}
     sub	sp, #12
     ldr	r4, [sp, #24]
@@ -10575,68 +10451,6 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     .thumb
     .align 2, 0
 
-    .global __13ControlObjectUiUiUiUiUi
-    .thumb_func
-__13ControlObjectUiUiUiUiUi:
-    push	{r4, r5, r6, lr}
-    sub	sp, #20
-    adds	r4, r0, #0
-    ldr	r5, [sp, #36]	@ 0x24
-    ldr	r6, [sp, #40]	@ 0x28
-    movs	r0, #24
-    str	r0, [sp, #0]
-    str	r1, [sp, #4]
-    str	r2, [sp, #8]
-    str	r3, [sp, #12]
-    str	r5, [sp, #16]
-    adds	r0, r4, #0
-    movs	r1, #0
-    movs	r2, #136	@ 0x88
-    movs	r3, #240	@ 0xf0
-    bl __13ControlWidgetiiUiUiUiUiUiUi
-    ldr r0, .Lde_0803BED4
-    str	r0, [r4, #4]
-    ldr r0, .Lde_0803BED8
-    bl __builtin_new
-    bl func_080E0A94
-    str	r0, [r4, #8]
-    movs	r0, #0
-    strb	r6, [r4, #12]
-    strb	r0, [r4, #13]
-    movs	r0, #1
-    strb	r0, [r4, #14]
-    strb	r0, [r4, #15]
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-.Lde_0803BED4:
-    .4byte __vt_13ControlObject
-.Lde_0803BED8:
-    .4byte 0x0000041C
-    .global _._13ControlObject
-    .thumb_func
-_._13ControlObject:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr r0, .Lde_0803BF00
-    str	r0, [r4, #4]
-    ldr	r0, [r4, #8]
-    cmp	r0, #0
-    beq .Lde_0803BEF2
-    movs	r1, #3
-    bl func_080E0C38
-.Lde_0803BEF2:
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl _._13ControlWidget
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-.Lde_0803BF00:
-    .4byte __vt_13ControlObject
     push	{r4, r5, lr}
     sub	sp, #12
     ldr	r4, [sp, #24]
@@ -15391,68 +15205,6 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     .thumb
     .align 2, 0
 
-    .global __13ControlObjectUiUiUiUiUi
-    .thumb_func
-__13ControlObjectUiUiUiUiUi:
-    push	{r4, r5, r6, lr}
-    sub	sp, #20
-    adds	r4, r0, #0
-    ldr	r5, [sp, #36]	@ 0x24
-    ldr	r6, [sp, #40]	@ 0x28
-    movs	r0, #24
-    str	r0, [sp, #0]
-    str	r1, [sp, #4]
-    str	r2, [sp, #8]
-    str	r3, [sp, #12]
-    str	r5, [sp, #16]
-    adds	r0, r4, #0
-    movs	r1, #0
-    movs	r2, #136	@ 0x88
-    movs	r3, #240	@ 0xf0
-    bl __13ControlWidgetiiUiUiUiUiUiUi
-    ldr r0, .Lus_0803BFC0
-    str	r0, [r4, #4]
-    ldr r0, .Lus_0803BFC4
-    bl __builtin_new
-    bl func_080E0A94
-    str	r0, [r4, #8]
-    movs	r0, #0
-    strb	r6, [r4, #12]
-    strb	r0, [r4, #13]
-    movs	r0, #1
-    strb	r0, [r4, #14]
-    strb	r0, [r4, #15]
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-.Lus_0803BFC0:
-    .4byte __vt_13ControlObject
-.Lus_0803BFC4:
-    .4byte 0x0000041C
-    .global _._13ControlObject
-    .thumb_func
-_._13ControlObject:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr r0, .Lus_0803BFEC
-    str	r0, [r4, #4]
-    ldr	r0, [r4, #8]
-    cmp	r0, #0
-    beq .Lus_0803BFDE
-    movs	r1, #3
-    bl func_080E0C38
-.Lus_0803BFDE:
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl _._13ControlWidget
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-.Lus_0803BFEC:
-    .4byte __vt_13ControlObject
     push	{r4, r5, lr}
     sub	sp, #12
     ldr	r4, [sp, #24]

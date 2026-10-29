@@ -460,9 +460,10 @@ SECTIONS
         src/control_widget.o(.text.control_widget_callbacks);
         . = 0x3BF14; /* Border constructor; remaining controls follow. */
         src/ui_text_window.o(.text.ui_text_window_border_constructor);
+        src/main_menu_widget.o(.text.main_menu_widget_lifetime);
         asm/code_0803A8A4.o(.text.control_widgets_native);
         . = 0x3C518; /* Derived control callbacks. */
-        src/control_object.o(.text.control_object_callbacks);
+        src/main_menu_widget.o(.text.main_menu_widget_callbacks);
         . = 0x3C54C; /* Clock-widget lifecycle. */
         src/map_clock_status.o(.text.map_clock_status_widget_lifetime);
         src/map_clock_status.o(.text.__24MapClockStatusHudContent .text._._24MapClockStatusHudContent .text.DrawMapClockStatusHud);
@@ -949,7 +950,8 @@ SECTIONS
         src/ui_text_window.o(.text.ui_text_window_tile_upload);
         src/ui_text_window.o(.gnu.linkonce.t._._25UiTextWindowBorderCommand);
         src/ui_text_window.o(.gnu.linkonce.t._._29UiTextWindowTileUploadCommand);
-        asm/code_linkonce.o(.text.after_ui_text_window_border_cleanup);
+        asm/code_linkonce.o(.text.main_menu_data_constructor);
+        src/main_menu_widget.o(.text.main_menu_data_destructor);
         src/hardware_dma_link.o(.text.Run__19HardwareDmaCopyLink .gnu.linkonce.t._._19HardwareDmaCopyLink);
         src/map_clock_status.o(.gnu.linkonce.t._._21MapClockStatusHudData);
         asm/code_linkonce.o(.text.map_clock_status_lifecycle_after);
@@ -1131,7 +1133,7 @@ SECTIONS
         . = ALIGN(4); src/ui_text_window.o(.gnu.linkonce.d.__vt_25UiTextWindowBorderCommand);
         . = ALIGN(4); src/ui_text_window.o(.gnu.linkonce.d.__vt_29UiTextWindowTileUploadCommand);
         . = ALIGN(4); src/control_widget.o(.gnu.linkonce.d.__vt_13ControlWidget);
-        . = ALIGN(4); src/control_object.o(.gnu.linkonce.d.__vt_13ControlObject);
+        . = ALIGN(4); src/main_menu_widget.o(.gnu.linkonce.d.__vt_14MainMenuWidget);
         . = ALIGN(4); src/hardware_dma_link.o(.gnu.linkonce.d.__vt_19HardwareDmaCopyLink);
         . = ALIGN(4); src/map_clock_status.o(.gnu.linkonce.d.__vt_23MapClockStatusHudWidget);
         *(.gnu.linkonce.d.__vt_13AScriptEngine);
