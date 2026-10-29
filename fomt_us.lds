@@ -446,6 +446,7 @@ SECTIONS
         src/scene_text_variables.o(.text.Set__22GameSceneTextVariablesUiPCc);
         src/script_scene.o(.text.__21ScriptSceneTransitionR20SceneTransitionOwnerUi);
         src/script_scene.o(.text.CreateScene__21ScriptSceneTransition);
+        src/ui_text_window.o(.text.ui_text_window_border_command);
         asm/code_0803A8A4.o(.text.scene_controls_native);
         . = 0x3BDE4; /* US ROM 0x0803BDE4, set a u16 pair */
         src/code_0803BDE4.o(.text);
@@ -944,6 +945,8 @@ SECTIONS
         src/script_scene.o(.gnu.linkonce.t._._15ScriptSceneBase);
         src/script_scene.o(.gnu.linkonce.t._._21ScriptSceneTransition);
         asm/code_linkonce.o(.text.after_script_scene_transition_cleanup);
+        src/ui_text_window.o(.gnu.linkonce.t._._25UiTextWindowBorderCommand);
+        asm/code_linkonce.o(.text.after_ui_text_window_border_cleanup);
         src/hardware_dma_link.o(.text.Run__19HardwareDmaCopyLink .gnu.linkonce.t._._19HardwareDmaCopyLink);
         src/map_clock_status.o(.gnu.linkonce.t._._21MapClockStatusHudData);
         asm/code_linkonce.o(.text.map_clock_status_lifecycle_after);
@@ -1122,7 +1125,7 @@ SECTIONS
         . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_11ScriptScene);
         . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_15ScriptSceneBase);
         . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_21ScriptSceneTransition);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_7758);
+        . = ALIGN(4); src/ui_text_window.o(.gnu.linkonce.d.__vt_25UiTextWindowBorderCommand);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7768);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7778);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_77a4);

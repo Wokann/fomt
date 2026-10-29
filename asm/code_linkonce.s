@@ -7522,14 +7522,8 @@ func_080E0A08:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .global func_080E0A7C
-    .thumb_func
-func_080E0A7C:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.after_ui_text_window_border_cleanup, "ax", %progbits
+    .align 2, 0
     .global func_080E0A88
     .thumb_func
 func_080E0A88:
@@ -23253,14 +23247,8 @@ func_080E0A08: @ 0x080E0A08
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080E0A7C
-func_080E0A7C: @ 0x080E0A7C
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
+    .section .text.after_ui_text_window_border_cleanup, "ax", %progbits
+    .align 2, 0
 	thumb_func_start func_080E0A88
 func_080E0A88: @ 0x080E0A88
 	push {lr}

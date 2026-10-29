@@ -4001,17 +4001,6 @@ extern RawVTableFunction const vtable_unk_080E76D4[]
         func_080DE134,
     };
 
-extern void func_0803B840(void);
-extern void func_080E0A7C(void);
-
-// Preserve this four-slot table and its exact callbacks in ROM order.
-extern RawVTableFunction const vtable_unk_080E7758[]
-    SECTION(".rodata.vtable_7758") = {
-        nullptr,
-        nullptr,
-        func_0803B840,
-        func_080E0A7C,
-    };
 
 extern void func_080E0A08(void);
 extern void func_080E0A88(void);

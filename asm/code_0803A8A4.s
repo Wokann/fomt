@@ -368,76 +368,6 @@ func_0803AEBC:
     .align 2, 0
     .section .text.scene_controls_native, "ax", %progbits
     .align 2, 0
-    .global func_0803B840
-    .thumb_func
-func_0803B840:
-    push	{r4, r5, lr}
-    sub	sp, #16
-    adds	r4, r0, #0
-    ldrh	r2, [r4, #28]
-    lsls	r2, r2, #17
-    lsrs	r2, r2, #22
-    adds	r2, #3
-    ldr r1, .Ljp_0803B654
-    adds	r0, r1, #0
-    ands	r2, r0
-    ldr	r0, [r4, #28]
-    lsls	r0, r0, #13
-    lsrs	r0, r0, #28
-    lsls	r0, r0, #12
-    orrs	r2, r0
-    lsls	r0, r2, #16
-    orrs	r2, r0
-    ldrb	r1, [r4, #28]
-    lsls	r1, r1, #27
-    lsrs	r1, r1, #16
-    movs	r5, #192	@ 0xc0
-    lsls	r5, r5, #19
-    adds	r1, r1, r5
-    str	r2, [sp, #12]
-    add	r0, sp, #12
-    ldr r2, .Ljp_0803B658
-    bl CpuFastSet
-    ldrb	r0, [r4, #28]
-    lsls	r0, r0, #27
-    lsrs	r0, r0, #16
-    adds	r0, r0, r5
-    ldr	r1, [r4, #12]
-    ldr	r3, [r4, #20]
-    ldr	r2, [r4, #24]
-    str	r2, [sp, #0]
-    ldrh	r2, [r4, #28]
-    lsls	r2, r2, #17
-    lsrs	r2, r2, #22
-    str	r2, [sp, #4]
-    ldr	r2, [r4, #28]
-    lsls	r2, r2, #13
-    lsrs	r2, r2, #28
-    str	r2, [sp, #8]
-    movs	r2, #0
-    bl DrawUiTextWindowBorder
-    ldr	r1, [r4, #28]
-    lsls	r1, r1, #13
-    lsrs	r1, r1, #28
-    ldr r0, .Ljp_0803B65C
-    ldr	r0, [r0, #0]
-    lsls	r1, r1, #5
-    movs	r2, #160	@ 0xa0
-    lsls	r2, r2, #19
-    adds	r1, r1, r2
-    movs	r2, #8
-    bl CpuFastSet
-    movs	r0, #0
-    add	sp, #16
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-.Ljp_0803B654:
-    .4byte 0x000003FF
-.Ljp_0803B658:
-    .4byte 0x010000A0
-.Ljp_0803B65C:
-    .4byte gUiSharedPalette
     .global func_0803B660
     .thumb_func
 func_0803B660:
@@ -679,7 +609,7 @@ func_0803B660:
 .Ljp_0803B830:
     .4byte vtable_unk_080E7768
 .Ljp_0803B834:
-    .4byte vtable_unk_080E7758
+    .4byte __vt_25UiTextWindowBorderCommand
 .Ljp_0803B838:
     .4byte 0xFFFF801F
 .Ljp_0803B83C:
@@ -1258,7 +1188,7 @@ func_0803BE50:
     pop	{r1}
     bx	r1
 .Ljp_0803BCFC:
-    .4byte vtable_unk_080E7758
+    .4byte __vt_25UiTextWindowBorderCommand
 .Ljp_0803BD00:
     .4byte 0x000003FF
 .Ljp_0803BD04:
@@ -5572,76 +5502,6 @@ func_0803B128:
     .align 2, 0
     .section .text.scene_controls_native, "ax", %progbits
     .align 2, 0
-    .global func_0803B840
-    .thumb_func
-func_0803B840:
-    push	{r4, r5, lr}
-    sub	sp, #16
-    adds	r4, r0, #0
-    ldrh	r2, [r4, #28]
-    lsls	r2, r2, #17
-    lsrs	r2, r2, #22
-    adds	r2, #3
-    ldr r1, .Leu_0803B8D4
-    adds	r0, r1, #0
-    ands	r2, r0
-    ldr	r0, [r4, #28]
-    lsls	r0, r0, #13
-    lsrs	r0, r0, #28
-    lsls	r0, r0, #12
-    orrs	r2, r0
-    lsls	r0, r2, #16
-    orrs	r2, r0
-    ldrb	r1, [r4, #28]
-    lsls	r1, r1, #27
-    lsrs	r1, r1, #16
-    movs	r5, #192	@ 0xc0
-    lsls	r5, r5, #19
-    adds	r1, r1, r5
-    str	r2, [sp, #12]
-    add	r0, sp, #12
-    ldr r2, .Leu_0803B8D8
-    bl CpuFastSet
-    ldrb	r0, [r4, #28]
-    lsls	r0, r0, #27
-    lsrs	r0, r0, #16
-    adds	r0, r0, r5
-    ldr	r1, [r4, #12]
-    ldr	r3, [r4, #20]
-    ldr	r2, [r4, #24]
-    str	r2, [sp, #0]
-    ldrh	r2, [r4, #28]
-    lsls	r2, r2, #17
-    lsrs	r2, r2, #22
-    str	r2, [sp, #4]
-    ldr	r2, [r4, #28]
-    lsls	r2, r2, #13
-    lsrs	r2, r2, #28
-    str	r2, [sp, #8]
-    movs	r2, #0
-    bl DrawUiTextWindowBorder
-    ldr	r1, [r4, #28]
-    lsls	r1, r1, #13
-    lsrs	r1, r1, #28
-    ldr r0, .Leu_0803B8DC
-    ldr	r0, [r0, #0]
-    lsls	r1, r1, #5
-    movs	r2, #160	@ 0xa0
-    lsls	r2, r2, #19
-    adds	r1, r1, r2
-    movs	r2, #8
-    bl CpuFastSet
-    movs	r0, #0
-    add	sp, #16
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-.Leu_0803B8D4:
-    .4byte 0x000003FF
-.Leu_0803B8D8:
-    .4byte 0x010000A0
-.Leu_0803B8DC:
-    .4byte gUiSharedPalette
     .global func_0803B8CC
     .thumb_func
 func_0803B8CC:
@@ -5883,7 +5743,7 @@ func_0803B8CC:
 .Leu_0803BAB0:
     .4byte vtable_unk_080E7768
 .Leu_0803BAB4:
-    .4byte vtable_unk_080E7758
+    .4byte __vt_25UiTextWindowBorderCommand
 .Leu_0803BAB8:
     .4byte 0xFFFF801F
 .Leu_0803BABC:
@@ -6462,7 +6322,7 @@ func_0803BE50:
     pop	{r1}
     bx	r1
 .Leu_0803BF7C:
-    .4byte vtable_unk_080E7758
+    .4byte __vt_25UiTextWindowBorderCommand
 .Leu_0803BF80:
     .4byte 0x000003FF
 .Leu_0803BF84:
@@ -10811,76 +10671,6 @@ func_0803B128:
     .align 2, 0
     .section .text.scene_controls_native, "ax", %progbits
     .align 2, 0
-    .global func_0803B840
-    .thumb_func
-func_0803B840:
-    push	{r4, r5, lr}
-    sub	sp, #16
-    adds	r4, r0, #0
-    ldrh	r2, [r4, #28]
-    lsls	r2, r2, #17
-    lsrs	r2, r2, #22
-    adds	r2, #3
-    ldr r1, .Lde_0803B7D4
-    adds	r0, r1, #0
-    ands	r2, r0
-    ldr	r0, [r4, #28]
-    lsls	r0, r0, #13
-    lsrs	r0, r0, #28
-    lsls	r0, r0, #12
-    orrs	r2, r0
-    lsls	r0, r2, #16
-    orrs	r2, r0
-    ldrb	r1, [r4, #28]
-    lsls	r1, r1, #27
-    lsrs	r1, r1, #16
-    movs	r5, #192	@ 0xc0
-    lsls	r5, r5, #19
-    adds	r1, r1, r5
-    str	r2, [sp, #12]
-    add	r0, sp, #12
-    ldr r2, .Lde_0803B7D8
-    bl CpuFastSet
-    ldrb	r0, [r4, #28]
-    lsls	r0, r0, #27
-    lsrs	r0, r0, #16
-    adds	r0, r0, r5
-    ldr	r1, [r4, #12]
-    ldr	r3, [r4, #20]
-    ldr	r2, [r4, #24]
-    str	r2, [sp, #0]
-    ldrh	r2, [r4, #28]
-    lsls	r2, r2, #17
-    lsrs	r2, r2, #22
-    str	r2, [sp, #4]
-    ldr	r2, [r4, #28]
-    lsls	r2, r2, #13
-    lsrs	r2, r2, #28
-    str	r2, [sp, #8]
-    movs	r2, #0
-    bl DrawUiTextWindowBorder
-    ldr	r1, [r4, #28]
-    lsls	r1, r1, #13
-    lsrs	r1, r1, #28
-    ldr r0, .Lde_0803B7DC
-    ldr	r0, [r0, #0]
-    lsls	r1, r1, #5
-    movs	r2, #160	@ 0xa0
-    lsls	r2, r2, #19
-    adds	r1, r1, r2
-    movs	r2, #8
-    bl CpuFastSet
-    movs	r0, #0
-    add	sp, #16
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-.Lde_0803B7D4:
-    .4byte 0x000003FF
-.Lde_0803B7D8:
-    .4byte 0x010000A0
-.Lde_0803B7DC:
-    .4byte gUiSharedPalette
     .global func_0803B8CC
     .thumb_func
 func_0803B8CC:
@@ -11122,7 +10912,7 @@ func_0803B8CC:
 .Lde_0803B9B0:
     .4byte vtable_unk_080E7768
 .Lde_0803B9B4:
-    .4byte vtable_unk_080E7758
+    .4byte __vt_25UiTextWindowBorderCommand
 .Lde_0803B9B8:
     .4byte 0xFFFF801F
 .Lde_0803B9BC:
@@ -11701,7 +11491,7 @@ func_0803BE50:
     pop	{r1}
     bx	r1
 .Lde_0803BE7C:
-    .4byte vtable_unk_080E7758
+    .4byte __vt_25UiTextWindowBorderCommand
 .Lde_0803BE80:
     .4byte 0x000003FF
 .Lde_0803BE84:
@@ -16024,76 +15814,6 @@ func_0803B128:
     .align 2, 0
     .section .text.scene_controls_native, "ax", %progbits
     .align 2, 0
-    .global func_0803B840
-    .thumb_func
-func_0803B840:
-    push	{r4, r5, lr}
-    sub	sp, #16
-    adds	r4, r0, #0
-    ldrh	r2, [r4, #28]
-    lsls	r2, r2, #17
-    lsrs	r2, r2, #22
-    adds	r2, #3
-    ldr r1, .Lus_0803B8C0
-    adds	r0, r1, #0
-    ands	r2, r0
-    ldr	r0, [r4, #28]
-    lsls	r0, r0, #13
-    lsrs	r0, r0, #28
-    lsls	r0, r0, #12
-    orrs	r2, r0
-    lsls	r0, r2, #16
-    orrs	r2, r0
-    ldrb	r1, [r4, #28]
-    lsls	r1, r1, #27
-    lsrs	r1, r1, #16
-    movs	r5, #192	@ 0xc0
-    lsls	r5, r5, #19
-    adds	r1, r1, r5
-    str	r2, [sp, #12]
-    add	r0, sp, #12
-    ldr r2, .Lus_0803B8C4
-    bl CpuFastSet
-    ldrb	r0, [r4, #28]
-    lsls	r0, r0, #27
-    lsrs	r0, r0, #16
-    adds	r0, r0, r5
-    ldr	r1, [r4, #12]
-    ldr	r3, [r4, #20]
-    ldr	r2, [r4, #24]
-    str	r2, [sp, #0]
-    ldrh	r2, [r4, #28]
-    lsls	r2, r2, #17
-    lsrs	r2, r2, #22
-    str	r2, [sp, #4]
-    ldr	r2, [r4, #28]
-    lsls	r2, r2, #13
-    lsrs	r2, r2, #28
-    str	r2, [sp, #8]
-    movs	r2, #0
-    bl DrawUiTextWindowBorder
-    ldr	r1, [r4, #28]
-    lsls	r1, r1, #13
-    lsrs	r1, r1, #28
-    ldr r0, .Lus_0803B8C8
-    ldr	r0, [r0, #0]
-    lsls	r1, r1, #5
-    movs	r2, #160	@ 0xa0
-    lsls	r2, r2, #19
-    adds	r1, r1, r2
-    movs	r2, #8
-    bl CpuFastSet
-    movs	r0, #0
-    add	sp, #16
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-.Lus_0803B8C0:
-    .4byte 0x000003FF
-.Lus_0803B8C4:
-    .4byte 0x010000A0
-.Lus_0803B8C8:
-    .4byte gUiSharedPalette
     .global func_0803B8CC
     .thumb_func
 func_0803B8CC:
@@ -16335,7 +16055,7 @@ func_0803B8CC:
 .Lus_0803BA9C:
     .4byte vtable_unk_080E7768
 .Lus_0803BAA0:
-    .4byte vtable_unk_080E7758
+    .4byte __vt_25UiTextWindowBorderCommand
 .Lus_0803BAA4:
     .4byte 0xFFFF801F
 .Lus_0803BAA8:
@@ -16914,7 +16634,7 @@ func_0803BE50:
     pop	{r1}
     bx	r1
 .Lus_0803BF68:
-    .4byte vtable_unk_080E7758
+    .4byte __vt_25UiTextWindowBorderCommand
 .Lus_0803BF6C:
     .4byte 0x000003FF
 .Lus_0803BF70:

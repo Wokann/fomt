@@ -1,4 +1,8 @@
+#include "prelude.h"
+#include "ui_state.hh"
+#pragma implementation "ui_text_window.hh"
 #include "ui_text_window.hh"
+#include "gbasvc.h"
 
 static inline void DrawUiTextWindowRow(u16 * row, u32 first, u32 width,
     u16 left, u16 middle, u16 right)
@@ -40,4 +44,27 @@ void DrawUiTextWindowBorder(u16 * tilemap, u32 x, u32 y,
     u16 const bottom_middle = base + 7;
     u16 const bottom_right = base + 6;
     DrawUiTextWindowRow(row, x, width, bottom_left, bottom_middle, bottom_right);
+}
+
+static inline void FillUiTextWindowTilemap(void * destination, u32 value)
+{
+    // The native window clears the first ten rows of its screen block.
+    CpuFastSet(&value, destination, 0x010000A0);
+}
+
+static inline void UploadUiTextWindowPalette(u32 palette)
+{
+    CpuFastSet(gUiSharedPalette, reinterpret_cast<void *>(0x05000000 + (palette << 5)), 8);
+}
+
+bool UiTextWindowBorderCommand::Run()
+{
+    u16 entry = ((style.first_tile + 3) & 0x3FF) | (style.palette << 12);
+    u32 value = entry | (static_cast<u32>(entry) << 16);
+    FillUiTextWindowTilemap(reinterpret_cast<void *>(0x06000000 + (style.screen_block << 11)),
+        value);
+    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(0x06000000 + (style.screen_block << 11)),
+        x, 0, width, height, style.first_tile, style.palette);
+    UploadUiTextWindowPalette(style.palette);
+    return false;
 }
