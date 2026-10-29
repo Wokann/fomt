@@ -51,10 +51,9 @@ struct MineFloorState
     // Apply eligibility checks and their saved-state side effects.
     u32 ProcessItemCode(u32 code, GameStateSaveImage & game);
     bool HasCursedTool(u32 group, GameStateSaveImage const & game) const;
-    // These count exactly the indicated saved bits; their item identities
-    // are not yet established here and are deliberately not guessed.
-    u8 CountFlags13To21() const;
-    u8 CountFlags1To9() const;
+    // Count persisted jewel discovery bits, not current inventory objects.
+    u8 CountHarvestGoddessJewels() const;
+    u8 CountKappaJewels() const;
     u16 const * GetCellTilemap(u32 column, u32 row) const;
     void CountCellValues(u8 * counts) const;
     // Native unchecked counts: lake buried/rock 5/10, spring 10/14, even

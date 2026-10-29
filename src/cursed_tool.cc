@@ -50,7 +50,7 @@ u8 CursedToolState::IsBlessed(u32 tool_id) const
     return blessed[GetToolIndex(tool_id)];
 }
 
-u32 CursedToolState::HaveFoundAllTools() const
+bool CursedToolState::HaveFoundAllTools() const
 {
     u32 result = 0;
     i32 value = blessed[1];

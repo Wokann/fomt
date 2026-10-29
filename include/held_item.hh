@@ -19,6 +19,9 @@ struct HeldItem
         KIND_5,
     };
 
+    Kind GetKind() const;
+    Article GetArticle() const;
+
     union PACKED Inner
     {
         struct
@@ -48,7 +51,6 @@ struct HeldItem
 };
 
 EC bool func_0800F190(HeldItem const * self);
-EC HeldItem::Kind func_0800F204(HeldItem const * self);
 EC RucksackItem func_0800F294(HeldItem const * self);
 EC void func_0800F390(HeldItem * self);
 EC void func_0800F418(HeldItem * self, RucksackItem rucksack_item);

@@ -67,7 +67,7 @@ struct Farmer
     u32 deepest_mine_floor : 8;
     u32 unk_4C_0F : 30;
     u32 unk_50_0D : 3;
-    HeldItem unk_54;  /* held item? */
+    HeldItem held_item;
     ToolStack unk_5C; /* held tool? */
     Rucksack rucksack;
 };
@@ -77,7 +77,7 @@ typedef char FarmerSpouseNicknameOffsetCheck[offsetof(Farmer, spouse_nickname) =
 typedef char FarmerBirthdayOffsetCheck[offsetof(Farmer, birthday) == 0x20 ? 1 : -1];
 
 typedef char FarmerToolLevelSizeCheck[sizeof(Farmer::ToolLevel) == 4 ? 1 : -1];
-typedef char FarmerHeldItemOffsetCheck[offsetof(Farmer, unk_54) == 0x54 ? 1 : -1];
+typedef char FarmerHeldItemOffsetCheck[offsetof(Farmer, held_item) == 0x54 ? 1 : -1];
 typedef char FarmerRucksackOffsetCheck[offsetof(Farmer, rucksack) == 0x60 ? 1 : -1];
 typedef char FarmerSizeCheck[sizeof(Farmer) == 0x98 ? 1 : -1];
 

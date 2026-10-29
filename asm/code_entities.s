@@ -8421,7 +8421,7 @@ func_08024814:
     cmp r0, #0
     bne .Ljp_080248FE
     adds r0, r6, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #5
     bhi .Ljp_080248FE
     lsls r0, r0, #2
@@ -8441,7 +8441,7 @@ func_08024814:
     .4byte .Ljp_080248FE @ case 5
 .Ljp_08024878:
     adds r0, r6, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     add r0, sp, #8
     strb r1, [r0]
@@ -11652,7 +11652,7 @@ func_08026058: @ 0x080262C4
     cmp r0, #0
     bne .Ljp_080260CC
     adds r0, r5, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #0
     beq .Ljp_08026090
     cmp r0, #1
@@ -11683,7 +11683,7 @@ func_08026058: @ 0x080262C4
     mov r4, sp
     adds r4, #5
     adds r0, r5, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     adds r0, r4, #0
     bl __7ProductG7Article
@@ -14773,7 +14773,7 @@ func_08027990: @ 0x08027990
     b .Ljp_08027F00
 .Ljp_080279B2:
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #4
     beq .Ljp_080279BE
     b .Ljp_08027F00
@@ -16675,7 +16675,7 @@ func_080288E4: @ 0x080288E4
     cmp r5, #0
     bne .Ljp_0802898E
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #3
     bgt .Ljp_0802898E
     cmp r0, #2
@@ -17313,11 +17313,11 @@ func_08028E10:
     cmp r0, #0
     bne .L08028E5A
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #1
     bne .L08028E4C
     adds r0, r4, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -19975,7 +19975,7 @@ func_0802A31C: @ 0x0802A31C
     b .Ljp_0802A550
 .Ljp_0802A392:
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #5
     bls .Ljp_0802A39E
     b .Ljp_0802A55E
@@ -20006,7 +20006,7 @@ func_0802A31C: @ 0x0802A31C
     b .Ljp_0802A52A
 .Ljp_0802A3DA:
     adds r0, r4, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     add r0, sp, #4
     strb r1, [r0]
@@ -20049,7 +20049,7 @@ func_0802A31C: @ 0x0802A31C
     b .Ljp_0802A550
 .Ljp_0802A438:
     adds r0, r4, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -20290,7 +20290,7 @@ func_0802A574: @ 0x0802A574
     bl _call_via_r3
     mov r5, sp
     mov r0, r8
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #5
     bls .Ljp_0802A61C
     b .Ljp_0802A806
@@ -20311,7 +20311,7 @@ func_0802A574: @ 0x0802A574
     .4byte .Ljp_0802A806 @ case 5
 .Ljp_0802A644:
     mov r0, r8
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     add r1, sp, #0x14
     strb r0, [r1]
     adds r0, r1, #0
@@ -20691,253 +20691,8 @@ func_0802A9C0: @ 0x0802A9C0
     bx r0
     .align 2, 0
 
-    .section .text.player_actor_after_terrain, "ax", %progbits
+    .section .text.player_actor_after_collection_events, "ax", %progbits
     .align 2, 0
-    .global func_0802ADE8
-    .thumb_func
-func_0802ADE8: @ 0x0802ADE8
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x28
-    adds r5, r0, #0
-    ldr r0, [r5, #0x34]
-    ldr r1, .Ljp_0802AEC4 @ =0x00002E58
-    adds r0, r0, r1
-    bl CountFlags13To21__C14MineFloorState
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    cmp r0, #9
-    bne .Ljp_0802AE4E
-    ldr r0, [r5, #0x34]
-    ldr r1, .Ljp_0802AEC8 @ =0x00002189
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    movs r4, #0x30
-    ands r4, r0
-    cmp r4, #0
-    bne .Ljp_0802AE4E
-    ldr r0, [r5, #0x38]
-    adds r0, #0x54
-    bl func_0800F204
-    cmp r0, #1
-    bne .Ljp_0802AE4E
-    ldr r0, [r5, #0x38]
-    adds r0, #0x54
-    bl func_0800F258
-    mov r1, sp
-    strb r0, [r1]
-    mov r0, sp
-    bl GetId__C7Article
-    cmp r0, #0x25
-    bne .Ljp_0802AE4E
-    ldr r0, [r5]
-    ldr r3, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r3, r3, r1
-    add r1, sp, #4
-    movs r2, #0xcc
-    lsls r2, r2, #2
-    str r2, [sp, #4]
-    str r4, [r1, #4]
-    ldr r3, [r3]
-    movs r2, #0
-    bl _call_via_r3
-.Ljp_0802AE4E:
-    ldr r0, [r5, #0x34]
-    ldr r1, .Ljp_0802AEC4 @ =0x00002E58
-    adds r0, r0, r1
-    bl CountFlags1To9__C14MineFloorState
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    cmp r0, #9
-    bne .Ljp_0802AEAC
-    ldr r0, [r5, #0x34]
-    ldr r1, .Ljp_0802AECC @ =0x0000218B
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    movs r4, #0x18
-    ands r4, r0
-    cmp r4, #0
-    bne .Ljp_0802AEAC
-    ldr r0, [r5, #0x38]
-    adds r0, #0x54
-    bl func_0800F204
-    cmp r0, #1
-    bne .Ljp_0802AEAC
-    ldr r0, [r5, #0x38]
-    adds r0, #0x54
-    bl func_0800F258
-    adds r1, r0, #0
-    add r0, sp, #0xc
-    strb r1, [r0]
-    bl GetId__C7Article
-    cmp r0, #0x26
-    bne .Ljp_0802AEAC
-    ldr r0, [r5]
-    ldr r3, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r3, r3, r1
-    add r1, sp, #0x10
-    ldr r2, .Ljp_0802AED0 @ =0x00000332
-    str r2, [sp, #0x10]
-    str r4, [r1, #4]
-    ldr r3, [r3]
-    movs r2, #0
-    bl _call_via_r3
-.Ljp_0802AEAC:
-    ldr r0, [r5, #0x34]
-    ldr r1, .Ljp_0802AED4 @ =0x00002194
-    adds r0, r0, r1
-    ldrb r1, [r0]
-    movs r0, #0xc0
-    ands r0, r1
-    cmp r0, #0
-    bne .Ljp_0802AF50
-    movs r7, #1
-    movs r6, #0
-    ldr r4, .Ljp_0802AED8 @ =gUnk_080F11BC
-    b .Ljp_0802AEE0
-    .align 2, 0
-.Ljp_0802AEC4: .4byte 0x00002E58
-.Ljp_0802AEC8: .4byte 0x00002189
-.Ljp_0802AECC: .4byte 0x0000218B
-.Ljp_0802AED0: .4byte 0x00000332
-.Ljp_0802AED4: .4byte 0x00002194
-.Ljp_0802AED8: .4byte gUnk_080F11BC
-.Ljp_0802AEDC:
-    adds r4, #4
-    adds r6, #1
-.Ljp_0802AEE0:
-    cmp r6, #8
-    bhi .Ljp_0802AEF6
-    ldr r0, [r5, #0x34]
-    adds r0, #0x54
-    ldr r1, [r4]
-    bl IsDisplayEnabled__C11ShippingBini
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .Ljp_0802AEDC
-    movs r7, #0
-.Ljp_0802AEF6:
-    cmp r7, #0
-    beq .Ljp_0802AF50
-    ldr r0, [r5, #0x34]
-    ldr r4, .Ljp_0802AF68 @ =0x00002E58
-    adds r0, r0, r4
-    bl GetFlag10__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Ljp_0802AF50
-    ldr r0, [r5, #0x34]
-    adds r0, r0, r4
-    bl GetFlag11__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Ljp_0802AF50
-    ldr r0, [r5, #0x34]
-    adds r0, r0, r4
-    bl CountFlags13To21__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Ljp_0802AF50
-    ldr r0, [r5, #0x34]
-    adds r0, r0, r4
-    bl GetFlag12__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Ljp_0802AF50
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x18
-    ldr r3, .Ljp_0802AF6C @ =0x0000034D
-    movs r4, #0
-    str r3, [sp, #0x18]
-    str r4, [r1, #4]
-    ldr r3, [r2]
-    movs r2, #0
-    bl _call_via_r3
-.Ljp_0802AF50:
-    ldr r0, [r5, #0x34]
-    ldr r1, .Ljp_0802AF70 @ =0x00002195
-    adds r0, r0, r1
-    ldrb r1, [r0]
-    movs r0, #3
-    ands r0, r1
-    cmp r0, #0
-    bne .Ljp_0802AFE4
-    movs r7, #1
-    movs r6, #0
-    ldr r4, .Ljp_0802AF74 @ =gUnk_080F11E0
-    b .Ljp_0802AF7C
-    .align 2, 0
-.Ljp_0802AF68: .4byte 0x00002E58
-.Ljp_0802AF6C: .4byte 0x0000034D
-.Ljp_0802AF70: .4byte 0x00002195
-.Ljp_0802AF74: .4byte gUnk_080F11E0
-.Ljp_0802AF78:
-    adds r4, #4
-    adds r6, #1
-.Ljp_0802AF7C:
-    cmp r6, #0xd
-    bhi .Ljp_0802AF92
-    ldr r0, [r5, #0x34]
-    adds r0, #0x54
-    ldr r1, [r4]
-    bl IsDisplayEnabled__C11ShippingBini
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .Ljp_0802AF78
-    movs r7, #0
-.Ljp_0802AF92:
-    cmp r7, #0
-    beq .Ljp_0802AFE4
-    ldr r0, [r5, #0x34]
-    movs r1, #0xd2
-    lsls r1, r1, #6
-    adds r0, r0, r1
-    bl HaveFoundAllTools__C15CursedToolState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Ljp_0802AFE4
-    ldr r0, [r5, #0x34]
-    ldr r1, .Ljp_0802AFEC @ =0x00002E58
-    adds r0, r0, r1
-    bl GetFlag0__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Ljp_0802AFE4
-    ldr r0, [r5, #0x34]
-    ldr r1, .Ljp_0802AFEC @ =0x00002E58
-    adds r0, r0, r1
-    bl CountFlags1To9__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Ljp_0802AFE4
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x20
-    ldr r3, .Ljp_0802AFF0 @ =0x0000034E
-    movs r4, #0
-    str r3, [sp, #0x20]
-    str r4, [r1, #4]
-    ldr r3, [r2]
-    movs r2, #0
-    bl _call_via_r3
-.Ljp_0802AFE4:
-    add sp, #0x28
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_0802AFEC: .4byte 0x00002E58
-.Ljp_0802AFF0: .4byte 0x0000034E
     .global func_0802AFF4
     .thumb_func
 func_0802AFF4:
@@ -26171,7 +25926,7 @@ func_0802D740:
     bne .Ljp_0802D94E
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #0
     bne .Ljp_0802D94E
     ldr r1, [r6, #0x38]
@@ -26477,7 +26232,7 @@ func_0802D984:
     bne .Ljp_0802DBA6
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #0
     bne .Ljp_0802DBA6
     ldr r1, [r6, #0x38]
@@ -26823,7 +26578,7 @@ func_0802DC28:
     bne .Ljp_0802DE42
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #0
     bne .Ljp_0802DE42
     ldr r1, [r6, #0x38]
@@ -28370,7 +28125,7 @@ func_0802E994:
     b .Ljp_0802EB36
 .Ljp_0802EA02:
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #5
     beq .Ljp_0802EA0E
     b .Ljp_0802EB36
@@ -29239,11 +28994,11 @@ func_0802EE80: @ 0x0802EE80
     bl .Ljp_08031B0C
 .Ljp_0802F0F8:
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #1
     bne .Ljp_0802F11C
     adds r0, r4, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     add r0, sp, #0x40
     strb r1, [r0]
@@ -29341,7 +29096,7 @@ func_0802EE80: @ 0x0802EE80
     adds r7, #0x10
 .Ljp_0802F1BC:
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #5
     bls .Ljp_0802F1CA
     bl .Ljp_08031B0C
@@ -29362,7 +29117,7 @@ func_0802EE80: @ 0x0802EE80
     .4byte .Ljp_08031B0C @ case 5
 .Ljp_0802F1F0:
     adds r0, r4, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     mov r6, sp
     adds r6, #0x41
     str r6, [sp, #0x128]
@@ -29911,7 +29666,7 @@ func_0802EE80: @ 0x0802EE80
     bl func_0800F294
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     mov r4, sl
     adds r4, #0xa8
     str r0, [r4]
@@ -29946,7 +29701,7 @@ func_0802EE80: @ 0x0802EE80
     mov r1, sl
     ldr r0, [r1, #0x38]
     adds r0, #0x54
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x42
@@ -34260,7 +34015,7 @@ sub_080317F2: @ 0x080317F2
     str r0, [r1, #8]
     str r2, [r1, #0x14]
     mov r0, sl
-    bl func_0802ADE8
+    bl CheckPlayerCollectionEvents
     b .Ljp_08031CA2
 .Ljp_08031826:
     movs r1, #0
@@ -34847,7 +34602,7 @@ sub_08031B9E: @ 0x08031B9E
     cmp r0, #0
     bne .Ljp_08031CA2
     mov r0, sl
-    bl func_0802ADE8
+    bl CheckPlayerCollectionEvents
     mov r4, sl
     ldr r0, [r4, #0x14]
 .Ljp_08031C38:
@@ -41849,7 +41604,7 @@ func_08024A80: @ 0x08024A80
     cmp r0, #0
     bne .L08024B6A
     adds r0, r6, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #5
     bhi .L08024B6A
     lsls r0, r0, #2
@@ -41869,7 +41624,7 @@ func_08024A80: @ 0x08024A80
     .4byte .L08024B6A @ case 5
 .L08024AE4:
     adds r0, r6, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     add r0, sp, #8
     strb r1, [r0]
@@ -45056,7 +44811,7 @@ func_080262C4: @ 0x080262C4
     cmp r0, #0
     bne .L08026338
     adds r0, r5, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #0
     beq .L080262FC
     cmp r0, #1
@@ -45087,7 +44842,7 @@ func_080262C4: @ 0x080262C4
     mov r4, sp
     adds r4, #5
     adds r0, r5, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     adds r0, r4, #0
     bl __7ProductG7Article
@@ -48176,7 +47931,7 @@ func_08027BFC: @ 0x08027BFC
     b .L0802816C
 .L08027C1E:
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #4
     beq .L08027C2A
     b .L0802816C
@@ -50078,7 +49833,7 @@ func_08028B50: @ 0x08028B50
     cmp r5, #0
     bne .L08028BFA
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #3
     bgt .L08028BFA
     cmp r0, #2
@@ -50716,11 +50471,11 @@ func_0802907C: @ 0x0802907C
     cmp r0, #0
     bne .L080290C6
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #1
     bne .L080290B8
     adds r0, r4, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -53376,7 +53131,7 @@ func_0802A588: @ 0x0802A588
     b .L0802A7BC
 .L0802A5FE:
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #5
     bls .L0802A60A
     b .L0802A7CA
@@ -53407,7 +53162,7 @@ func_0802A588: @ 0x0802A588
     b .L0802A796
 .L0802A646:
     adds r0, r4, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     add r0, sp, #4
     strb r1, [r0]
@@ -53450,7 +53205,7 @@ func_0802A588: @ 0x0802A588
     b .L0802A7BC
 .L0802A6A4:
     adds r0, r4, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -53690,7 +53445,7 @@ func_0802A7E0: @ 0x0802A7E0
     bl _call_via_r3
     mov r5, sp
     mov r0, r8
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #5
     bls .L0802A888
     b .L0802AA72
@@ -53711,7 +53466,7 @@ func_0802A7E0: @ 0x0802A7E0
     .4byte .L0802AA72 @ case 5
 .L0802A8B0:
     mov r0, r8
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     add r1, sp, #0x14
     strb r0, [r1]
     adds r0, r1, #0
@@ -54090,253 +53845,8 @@ func_0802AC2C: @ 0x0802AC2C
     bx r0
     .align 2, 0
 
-    .section .text.player_actor_after_terrain, "ax", %progbits
+    .section .text.player_actor_after_collection_events, "ax", %progbits
     .align 2, 0
-    thumb_func_start func_0802B054
-func_0802B054: @ 0x0802B054
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x28
-    adds r5, r0, #0
-    ldr r0, [r5, #0x34]
-    ldr r1, .L0802B130 @ =0x00002E58
-    adds r0, r0, r1
-    bl CountFlags13To21__C14MineFloorState
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    cmp r0, #9
-    bne .L0802B0BA
-    ldr r0, [r5, #0x34]
-    ldr r1, .L0802B134 @ =0x00002189
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    movs r4, #0x30
-    ands r4, r0
-    cmp r4, #0
-    bne .L0802B0BA
-    ldr r0, [r5, #0x38]
-    adds r0, #0x54
-    bl func_0800F204
-    cmp r0, #1
-    bne .L0802B0BA
-    ldr r0, [r5, #0x38]
-    adds r0, #0x54
-    bl func_0800F258
-    mov r1, sp
-    strb r0, [r1]
-    mov r0, sp
-    bl GetId__C7Article
-    cmp r0, #0x25
-    bne .L0802B0BA
-    ldr r0, [r5]
-    ldr r3, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r3, r3, r1
-    add r1, sp, #4
-    movs r2, #0xcc
-    lsls r2, r2, #2
-    str r2, [sp, #4]
-    str r4, [r1, #4]
-    ldr r3, [r3]
-    movs r2, #0
-    bl _call_via_r3
-.L0802B0BA:
-    ldr r0, [r5, #0x34]
-    ldr r1, .L0802B130 @ =0x00002E58
-    adds r0, r0, r1
-    bl CountFlags1To9__C14MineFloorState
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    cmp r0, #9
-    bne .L0802B118
-    ldr r0, [r5, #0x34]
-    ldr r1, .L0802B138 @ =0x0000218B
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    movs r4, #0x18
-    ands r4, r0
-    cmp r4, #0
-    bne .L0802B118
-    ldr r0, [r5, #0x38]
-    adds r0, #0x54
-    bl func_0800F204
-    cmp r0, #1
-    bne .L0802B118
-    ldr r0, [r5, #0x38]
-    adds r0, #0x54
-    bl func_0800F258
-    adds r1, r0, #0
-    add r0, sp, #0xc
-    strb r1, [r0]
-    bl GetId__C7Article
-    cmp r0, #0x26
-    bne .L0802B118
-    ldr r0, [r5]
-    ldr r3, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r3, r3, r1
-    add r1, sp, #0x10
-    ldr r2, .L0802B13C @ =0x00000332
-    str r2, [sp, #0x10]
-    str r4, [r1, #4]
-    ldr r3, [r3]
-    movs r2, #0
-    bl _call_via_r3
-.L0802B118:
-    ldr r0, [r5, #0x34]
-    ldr r1, .L0802B140 @ =0x00002194
-    adds r0, r0, r1
-    ldrb r1, [r0]
-    movs r0, #0xc0
-    ands r0, r1
-    cmp r0, #0
-    bne .L0802B1BC
-    movs r7, #1
-    movs r6, #0
-    ldr r4, .L0802B144 @ =gUnk_080F11BC
-    b .L0802B14C
-    .align 2, 0
-.L0802B130: .4byte 0x00002E58
-.L0802B134: .4byte 0x00002189
-.L0802B138: .4byte 0x0000218B
-.L0802B13C: .4byte 0x00000332
-.L0802B140: .4byte 0x00002194
-.L0802B144: .4byte gUnk_080F11BC
-.L0802B148:
-    adds r4, #4
-    adds r6, #1
-.L0802B14C:
-    cmp r6, #8
-    bhi .L0802B162
-    ldr r0, [r5, #0x34]
-    adds r0, #0x54
-    ldr r1, [r4]
-    bl IsDisplayEnabled__C11ShippingBini
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L0802B148
-    movs r7, #0
-.L0802B162:
-    cmp r7, #0
-    beq .L0802B1BC
-    ldr r0, [r5, #0x34]
-    ldr r4, .L0802B1D4 @ =0x00002E58
-    adds r0, r0, r4
-    bl GetFlag10__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L0802B1BC
-    ldr r0, [r5, #0x34]
-    adds r0, r0, r4
-    bl GetFlag11__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L0802B1BC
-    ldr r0, [r5, #0x34]
-    adds r0, r0, r4
-    bl CountFlags13To21__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L0802B1BC
-    ldr r0, [r5, #0x34]
-    adds r0, r0, r4
-    bl GetFlag12__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L0802B1BC
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x18
-    ldr r3, .L0802B1D8 @ =0x0000034D
-    movs r4, #0
-    str r3, [sp, #0x18]
-    str r4, [r1, #4]
-    ldr r3, [r2]
-    movs r2, #0
-    bl _call_via_r3
-.L0802B1BC:
-    ldr r0, [r5, #0x34]
-    ldr r1, .L0802B1DC @ =0x00002195
-    adds r0, r0, r1
-    ldrb r1, [r0]
-    movs r0, #3
-    ands r0, r1
-    cmp r0, #0
-    bne .L0802B250
-    movs r7, #1
-    movs r6, #0
-    ldr r4, .L0802B1E0 @ =gUnk_080F11E0
-    b .L0802B1E8
-    .align 2, 0
-.L0802B1D4: .4byte 0x00002E58
-.L0802B1D8: .4byte 0x0000034D
-.L0802B1DC: .4byte 0x00002195
-.L0802B1E0: .4byte gUnk_080F11E0
-.L0802B1E4:
-    adds r4, #4
-    adds r6, #1
-.L0802B1E8:
-    cmp r6, #0xd
-    bhi .L0802B1FE
-    ldr r0, [r5, #0x34]
-    adds r0, #0x54
-    ldr r1, [r4]
-    bl IsDisplayEnabled__C11ShippingBini
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L0802B1E4
-    movs r7, #0
-.L0802B1FE:
-    cmp r7, #0
-    beq .L0802B250
-    ldr r0, [r5, #0x34]
-    movs r1, #0xd2
-    lsls r1, r1, #6
-    adds r0, r0, r1
-    bl HaveFoundAllTools__C15CursedToolState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L0802B250
-    ldr r0, [r5, #0x34]
-    ldr r1, .L0802B258 @ =0x00002E58
-    adds r0, r0, r1
-    bl GetFlag0__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L0802B250
-    ldr r0, [r5, #0x34]
-    ldr r1, .L0802B258 @ =0x00002E58
-    adds r0, r0, r1
-    bl CountFlags1To9__C14MineFloorState
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L0802B250
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x20
-    ldr r3, .L0802B25C @ =0x0000034E
-    movs r4, #0
-    str r3, [sp, #0x20]
-    str r4, [r1, #4]
-    ldr r3, [r2]
-    movs r2, #0
-    bl _call_via_r3
-.L0802B250:
-    add sp, #0x28
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0802B258: .4byte 0x00002E58
-.L0802B25C: .4byte 0x0000034E
-
     thumb_func_start func_0802B260
 func_0802B260: @ 0x0802B260
     push {r4, r5, r6, r7, lr}
@@ -59548,7 +59058,7 @@ func_0802D9AC: @ 0x0802D9AC
     bne .L0802DBBA
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #0
     bne .L0802DBBA
     ldr r1, [r6, #0x38]
@@ -59853,7 +59363,7 @@ func_0802DBF0: @ 0x0802DBF0
     bne .L0802DE12
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #0
     bne .L0802DE12
     ldr r1, [r6, #0x38]
@@ -60198,7 +59708,7 @@ func_0802DE94: @ 0x0802DE94
     bne .L0802E0AE
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #0
     bne .L0802E0AE
     ldr r1, [r6, #0x38]
@@ -61743,7 +61253,7 @@ func_0802EC00: @ 0x0802EC00
     b .L0802EDA2
 .L0802EC6E:
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #5
     beq .L0802EC7A
     b .L0802EDA2
@@ -62611,11 +62121,11 @@ func_0802F0EC: @ 0x0802F0EC
     bl .L08031D78
 .L0802F364:
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #1
     bne .L0802F388
     adds r0, r4, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     add r0, sp, #0x40
     strb r1, [r0]
@@ -62713,7 +62223,7 @@ func_0802F0EC: @ 0x0802F0EC
     adds r7, #0x10
 .L0802F428:
     adds r0, r4, #0
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     cmp r0, #5
     bls .L0802F436
     bl .L08031D78
@@ -62734,7 +62244,7 @@ func_0802F0EC: @ 0x0802F0EC
     .4byte .L08031D78 @ case 5
 .L0802F45C:
     adds r0, r4, #0
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     mov r6, sp
     adds r6, #0x41
     str r6, [sp, #0x128]
@@ -63283,7 +62793,7 @@ func_0802F0EC: @ 0x0802F0EC
     bl func_0800F294
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F204
+    bl GetKind__C8HeldItem
     mov r4, sl
     adds r4, #0xa8
     str r0, [r4]
@@ -63318,7 +62828,7 @@ func_0802F0EC: @ 0x0802F0EC
     mov r1, sl
     ldr r0, [r1, #0x38]
     adds r0, #0x54
-    bl func_0800F258
+    bl GetArticle__C8HeldItem
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x42
@@ -67628,7 +67138,7 @@ sub_08031A5E: @ 0x08031A5E
     str r0, [r1, #8]
     str r2, [r1, #0x14]
     mov r0, sl
-    bl func_0802B054
+    bl CheckPlayerCollectionEvents
     b .L08031F0E
 .L08031A92:
     movs r1, #0
@@ -68213,7 +67723,7 @@ sub_08031E0A: @ 0x08031E0A
     cmp r0, #0
     bne .L08031F0E
     mov r0, sl
-    bl func_0802B054
+    bl CheckPlayerCollectionEvents
     mov r4, sl
     ldr r0, [r4, #0x14]
 .L08031EA4:

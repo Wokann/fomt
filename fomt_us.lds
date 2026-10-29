@@ -375,7 +375,8 @@ SECTIONS
         asm/code_entities.o(.text.player_actor_after_water_capacity);
         src/player_pedometer.o(.text.UpdatePlayerPedometer);
         src/actor_terrain.o(.text);
-        asm/code_entities.o(.text.player_actor_after_terrain);
+        src/player_collection_events.o(.text);
+        asm/code_entities.o(.text.player_actor_after_collection_events);
         src/player_actor.o(.text.GetUpdateSuspended__C11PlayerActor .text.SetUpdateSuspended__11PlayerActorUc);
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);
@@ -653,8 +654,8 @@ SECTIONS
             .text.ProcessItemCode__14MineFloorStateUiR18GameStateSaveImage);
         src/mine_floor.o(
             .text.HasCursedTool__C14MineFloorStateUiRC18GameStateSaveImage
-            .text.CountFlags13To21__C14MineFloorState
-            .text.CountFlags1To9__C14MineFloorState
+            .text.CountHarvestGoddessJewels__C14MineFloorState
+            .text.CountKappaJewels__C14MineFloorState
             .text.GetCellTilemap__C14MineFloorStateUiUi
             .text.CountCellValues__C14MineFloorStatePUc
             .text.GetFlag0__C14MineFloorState

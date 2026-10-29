@@ -728,7 +728,7 @@ u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
         collection_blocked = false;
         if (game.farm.farm_house.GetShelf() == 0)
             collection_blocked = true;
-        if (CountFlags13To21() == 8
+        if (CountHarvestGoddessJewels() == 8
             && game.farmer.rucksack.GetFirstFreeToolSlot() == static_cast<u32>(-1))
             collection_blocked = true;
         if (!collection_blocked) {
@@ -810,7 +810,7 @@ u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
         collection_blocked = false;
         if (game.farm.farm_house.GetShelf() == 0)
             collection_blocked = true;
-        if (CountFlags1To9() == 8
+        if (CountKappaJewels() == 8
             && game.farmer.rucksack.GetFirstFreeToolSlot() == static_cast<u32>(-1))
             collection_blocked = true;
         if (!collection_blocked) {
@@ -920,7 +920,7 @@ bool MineFloorState::HasCursedTool(u32 group, GameStateSaveImage const & game) c
     return available;
 }
 
-u8 MineFloorState::CountFlags13To21() const
+u8 MineFloorState::CountHarvestGoddessJewels() const
 {
     u8 result = flag_625_5;
     if (flag_625_6)
@@ -942,7 +942,7 @@ u8 MineFloorState::CountFlags13To21() const
     return result;
 }
 
-u8 MineFloorState::CountFlags1To9() const
+u8 MineFloorState::CountKappaJewels() const
 {
     u8 result = flag_624_1;
     if (flag_624_2)

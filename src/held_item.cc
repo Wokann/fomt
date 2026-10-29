@@ -34,9 +34,9 @@ EC bool func_0800F190(HeldItem const * self)
     }
 }
 
-EC HeldItem::Kind func_0800F204(HeldItem const * self)
+HeldItem::Kind HeldItem::GetKind() const
 {
-    return self->kind;
+    return kind;
 }
 
 EC Food func_0800F20C(HeldItem const * self)
@@ -53,11 +53,11 @@ EC Food func_0800F20C(HeldItem const * self)
     return Food(ITEM_FOOD_NONE);
 }
 
-EC Article func_0800F258(HeldItem const * self)
+Article HeldItem::GetArticle() const
 {
-    if (self->kind == HeldItem::KIND_ARTICLE && self->inner.article.id < ITEM_ARTICLE_NONE)
+    if (kind == HeldItem::KIND_ARTICLE && inner.article.id < ITEM_ARTICLE_NONE)
     {
-        return Article(self->inner.article.id);
+        return Article(inner.article.id);
     }
 
     return Article(ITEM_ARTICLE_NONE);

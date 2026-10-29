@@ -39,7 +39,7 @@ Farmer::Farmer(Farmer const & other)
       deepest_mine_floor(other.deepest_mine_floor),
       unk_4C_0F(other.unk_4C_0F),
       unk_50_0D(other.unk_50_0D),
-      unk_54(other.unk_54),
+      held_item(other.held_item),
       unk_5C(other.unk_5C),
       rucksack(other.rucksack)
 {
@@ -340,17 +340,17 @@ EC unsigned int func_0800EB3C(Farmer & self)
 
     RucksackItem item;
 
-    if (!func_0800F190(&self.unk_54))
+    if (!func_0800F190(&self.held_item))
     {
-        switch (func_0800F204(&self.unk_54))
+        switch (self.held_item.GetKind())
         {
             default:
                 return 0;
 
             case HeldItem::KIND_FOOD:
             case HeldItem::KIND_ARTICLE:
-                item = func_0800F294(&self.unk_54);
-                func_0800F390(&self.unk_54);
+                item = func_0800F294(&self.held_item);
+                func_0800F390(&self.held_item);
                 break;
         }
     }
@@ -363,7 +363,7 @@ EC unsigned int func_0800EB3C(Farmer & self)
         num_cycles++;
     } while (item.IsEmpty());
 
-    func_0800F418(&self.unk_54, item);
+    func_0800F418(&self.held_item, item);
 
     return num_cycles;
 }
@@ -377,17 +377,17 @@ EC unsigned int func_0800EBC4(Farmer & self)
 
     RucksackItem item;
 
-    if (!func_0800F190(&self.unk_54))
+    if (!func_0800F190(&self.held_item))
     {
-        switch (func_0800F204(&self.unk_54))
+        switch (self.held_item.GetKind())
         {
             default:
                 return 0;
 
             case HeldItem::KIND_FOOD:
             case HeldItem::KIND_ARTICLE:
-                item = func_0800F294(&self.unk_54);
-                func_0800F390(&self.unk_54);
+                item = func_0800F294(&self.held_item);
+                func_0800F390(&self.held_item);
                 break;
         }
     }
@@ -400,7 +400,7 @@ EC unsigned int func_0800EBC4(Farmer & self)
         num_cycles++;
     } while (item.IsEmpty());
 
-    func_0800F418(&self.unk_54, item);
+    func_0800F418(&self.held_item, item);
 
     return num_cycles;
 }
