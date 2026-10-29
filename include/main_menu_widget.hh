@@ -94,7 +94,7 @@ typedef char MainMenuWidgetDataCheck[offsetof(MainMenuWidget, data) == 8 ? 1 : -
 typedef char MainMenuWidgetSelectionCheck[offsetof(MainMenuWidget, selection) == 12 ? 1 : -1];
 
 extern "C" {
-extern u8 const gUnk_0871E7A8[];
+extern u8 const gMainMenuSpriteResourceArchive[];
 }
 
 #pragma implementation

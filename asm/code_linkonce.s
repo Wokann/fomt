@@ -7690,9 +7690,10 @@ __12MainMenuData:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00, 0x10, 0x49, 0x4A, 0x08
+    .byte 0x00, 0x00
+    .4byte gMainMenuSpriteResourceArchive
     .4byte __vt_19HardwareDmaCopyLink
-    .byte 0x28, 0x12, 0x0F, 0x08
+    .4byte gMenuEntryIds
     .section .text.map_clock_status_lifecycle_after, "ax", %progbits
     .align 2, 0
     .global func_080E0E80
@@ -22998,7 +22999,7 @@ __12MainMenuData: @ 0x080E0A94
 	mov r6, r8
 	push {r6, r7}
 	adds r7, r0, #0
-	ldr r1, .L080E0C2C @ =gUnk_0871E7A8
+	ldr r1, .L080E0C2C @ =gMainMenuSpriteResourceArchive
 	bl __22IndexedResourceArchivePCUc
 	adds r4, r7, #0
 	adds r4, #0x30
@@ -23185,7 +23186,7 @@ __12MainMenuData: @ 0x080E0A94
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080E0C2C: .4byte gUnk_0871E7A8
+.L080E0C2C: .4byte gMainMenuSpriteResourceArchive
 .L080E0C30: .4byte __vt_19HardwareDmaCopyLink
 .L080E0C34: .4byte gMenuEntryIds
 
