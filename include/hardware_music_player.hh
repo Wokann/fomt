@@ -8,9 +8,9 @@ struct MusicPlayer;
 #ifdef __cplusplus
 // This slot borrows an m4a player; it does not own or destroy the player.
 struct HardwareMusicPlayerSlot {
-    explicit HardwareMusicPlayerSlot(u8 index) asm("func_08008B54");
-    void Start(u16 song_id) asm("func_08008B6C");
-    void StartIfChangedOrInactive(u16 song_id) asm("func_08008B88");
+    explicit HardwareMusicPlayerSlot(u8 index);
+    void Start(u16 song_id);
+    void StartIfChangedOrInactive(u16 song_id);
     void StartOrContinue(u16 song_id);
     void Stop();
     void Continue();
@@ -39,11 +39,8 @@ typedef char HardwareMusicPlayerSlotValueCheck[offsetof(HardwareMusicPlayerSlot,
 
 EXTERN_C
 
-// Native member ABI entries for C and partially recovered enclosing classes.
-// These declarations do not introduce wrapper functions or symbol aliases.
-struct MusicPlayer ** func_08008B54(struct MusicPlayer ** holder, u8 index);
-void func_08008B6C(struct MusicPlayer ** holder, u16 song_id);
-void func_08008B88(struct MusicPlayer ** holder, u16 song_id);
+// The two remaining native player lookup entries retain their own ABI.
+// Their different index arguments are not assigned unverified audio roles.
 struct MusicPlayer * func_08008CFC(void);
 struct MusicPlayer * func_08008D10(void);
 

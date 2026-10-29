@@ -815,27 +815,27 @@ func_0803B718:
     adds	r1, #4
     adds	r0, r5, r1
     movs	r1, #0
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #222	@ 0xde
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #1
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #223	@ 0xdf
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #2
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #224	@ 0xe0
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #3
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #225	@ 0xe1
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #4
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #226	@ 0xe2
     lsls	r1, r1, #2
     adds	r0, r5, r1
@@ -1966,7 +1966,7 @@ func_0803C028:
     beq .Ljp_0803BE46
     adds	r0, r5, #0
     movs	r1, #203	@ 0xcb
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_0803BE46:
     ldr r0, .Ljp_0803BE58
     ldrb	r1, [r7, #12]
@@ -1988,7 +1988,7 @@ func_0803C028:
     beq .Ljp_0803BE70
     adds	r0, r5, #0
     movs	r1, #197	@ 0xc5
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_0803BE70:
     ldrb	r0, [r7, #13]
     cmp	r0, #0
@@ -6552,27 +6552,27 @@ func_0803B718:
     adds	r1, #4
     adds	r0, r5, r1
     movs	r1, #0
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #222	@ 0xde
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #1
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #223	@ 0xdf
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #2
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #224	@ 0xe0
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #3
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #225	@ 0xe1
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #4
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #226	@ 0xe2
     lsls	r1, r1, #2
     adds	r0, r5, r1
@@ -7703,7 +7703,7 @@ func_0803C028:
     beq .Leu_0803C0C6
     adds	r0, r5, #0
     movs	r1, #203	@ 0xcb
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
 .Leu_0803C0C6:
     ldr r0, .Leu_0803C0D8
     ldrb	r1, [r7, #12]
@@ -7725,7 +7725,7 @@ func_0803C028:
     beq .Leu_0803C0F0
     adds	r0, r5, #0
     movs	r1, #197	@ 0xc5
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
 .Leu_0803C0F0:
     ldrb	r0, [r7, #13]
     cmp	r0, #0
@@ -12324,27 +12324,27 @@ func_0803B718:
     adds	r1, #4
     adds	r0, r5, r1
     movs	r1, #0
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #222	@ 0xde
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #1
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #223	@ 0xdf
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #2
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #224	@ 0xe0
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #3
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #225	@ 0xe1
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #4
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #226	@ 0xe2
     lsls	r1, r1, #2
     adds	r0, r5, r1
@@ -13475,7 +13475,7 @@ func_0803C028:
     beq .Lde_0803BFC6
     adds	r0, r5, #0
     movs	r1, #203	@ 0xcb
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
 .Lde_0803BFC6:
     ldr r0, .Lde_0803BFD8
     ldrb	r1, [r7, #12]
@@ -13497,7 +13497,7 @@ func_0803C028:
     beq .Lde_0803BFF0
     adds	r0, r5, #0
     movs	r1, #197	@ 0xc5
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
 .Lde_0803BFF0:
     ldrb	r0, [r7, #13]
     cmp	r0, #0
@@ -18070,27 +18070,27 @@ func_0803B718:
     adds	r1, #4
     adds	r0, r5, r1
     movs	r1, #0
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #222	@ 0xde
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #1
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #223	@ 0xdf
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #2
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #224	@ 0xe0
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #3
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #225	@ 0xe1
     lsls	r1, r1, #2
     adds	r0, r5, r1
     movs	r1, #4
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs	r1, #226	@ 0xe2
     lsls	r1, r1, #2
     adds	r0, r5, r1
@@ -19221,7 +19221,7 @@ func_0803C028:
     beq .Lus_0803C0B2
     adds	r0, r5, #0
     movs	r1, #203	@ 0xcb
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
 .Lus_0803C0B2:
     ldr r0, .Lus_0803C0C4
     ldrb	r1, [r7, #12]
@@ -19243,7 +19243,7 @@ func_0803C028:
     beq .Lus_0803C0DC
     adds	r0, r5, #0
     movs	r1, #197	@ 0xc5
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
 .Lus_0803C0DC:
     ldrb	r0, [r7, #13]
     cmp	r0, #0

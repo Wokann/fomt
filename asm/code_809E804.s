@@ -1320,15 +1320,15 @@ func_080A220C: @ 0x080A1C44
 	adds r0, r7, #0
 	adds r0, #0x14
 	movs r1, #1
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	adds r0, r7, #0
 	adds r0, #0x18
 	movs r1, #0
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	adds r0, r7, #0
 	adds r0, #0x1c
 	movs r1, #2
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	adds r4, r7, #0
 	adds r4, #0x20
 	ldr r1, .Ljp_080A2460 @ =gUnk_0874F34C
@@ -1927,7 +1927,7 @@ func_080A25B0: @ 0x080A1FE8
 	adds r0, r7, #0
 	adds r0, #0x1c
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080A27A6
 	.align 2, 0
 .Ljp_080A2768: .4byte 0x000001E5
@@ -1959,7 +1959,7 @@ func_080A25B0: @ 0x080A1FE8
 	adds r0, r7, #0
 	adds r0, #0x1c
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080A27A6:
 	movs r0, #0xf2
 	lsls r0, r0, #1
@@ -19847,24 +19847,24 @@ func_080AD9A4:
     ldr r2, .Ljp_080ADEF0 @ =0x0000080C
     adds r0, r6, r2
     movs r1, #0
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs r1, #0x81
     lsls r1, r1, #4
     adds r0, r6, r1
     movs r1, #1
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     ldr r2, .Ljp_080ADEF4 @ =0x00000814
     adds r0, r6, r2
     movs r1, #2
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     ldr r1, .Ljp_080ADEF8 @ =0x00000818
     adds r0, r6, r1
     movs r1, #3
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     ldr r2, .Ljp_080ADEFC @ =0x0000081C
     adds r0, r6, r2
     movs r1, #4
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs r1, #0x82
     lsls r1, r1, #4
     adds r0, r6, r1
@@ -20011,7 +20011,7 @@ func_080ADF1C:
     ldr r1, .Ljp_080ADFBC @ =0x0000080C
     adds r0, r7, r1
     movs r1, #0x22
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     ldr r1, .Ljp_080ADFC0 @ =0x00000838
     adds r0, r7, r1
     ldr r0, [r0]
@@ -24646,7 +24646,7 @@ func_080B0140:
 	ldr r0, .Ljp_080B0374 @ =0x00000814
 	add r0, r9
 	movs r1, #0xbb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080B0356:
 	add sp, #0x44
 	pop {r3, r4, r5}
@@ -25684,7 +25684,7 @@ sub_080B0704: @ 0x080B0704
 	ldr r3, .Ljp_080B0BA8 @ =0x00000814
 	adds r0, r7, r3
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B0DC8
 	.align 2, 0
 .Ljp_080B0BA0: .4byte 0x00000864
@@ -25841,7 +25841,7 @@ sub_080B0704: @ 0x080B0704
 	ldr r3, .Ljp_080B0CF8 @ =0x00000814
 	adds r0, r7, r3
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B0DC8
 	.align 2, 0
 .Ljp_080B0CF0: .4byte 0x00000878
@@ -25875,7 +25875,7 @@ sub_080B0704: @ 0x080B0704
 .Ljp_080B0D2A:
 	adds r0, r7, r6
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B0DC8
 	.align 2, 0
 .Ljp_080B0D34: .4byte 0x00000844
@@ -25914,7 +25914,7 @@ sub_080B0704: @ 0x080B0704
 	adds r0, r7, r2
 .Ljp_080B0D7E:
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B0DC8
 	.align 2, 0
 .Ljp_080B0D88: .4byte 0x00000844
@@ -26084,7 +26084,7 @@ sub_080B0704: @ 0x080B0704
 	ldr r2, .Ljp_080B0EF0 @ =0x00000814
 	adds r0, r7, r2
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B0FD2
 	.align 2, 0
 .Ljp_080B0EE8: .4byte 0x00000848
@@ -26152,7 +26152,7 @@ sub_080B0704: @ 0x080B0704
 	ldr r5, .Ljp_080B0F8C @ =0x0000081C
 	adds r0, r7, r5
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B0FD2
 	.align 2, 0
 .Ljp_080B0F78: .4byte 0x000008E1
@@ -26193,7 +26193,7 @@ sub_080B0704: @ 0x080B0704
 	ldr r5, .Ljp_080B1034 @ =0x00000814
 	adds r0, r7, r5
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080B0FD2:
 	movs r6, #1
 	add sl, r6
@@ -26339,7 +26339,7 @@ sub_080B0704: @ 0x080B0704
 	ldr r1, .Ljp_080B1108 @ =0x00000814
 	adds r0, r7, r1
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B1138
 	.align 2, 0
 .Ljp_080B1100: .4byte 0x00000884
@@ -26553,7 +26553,7 @@ sub_080B0704: @ 0x080B0704
 	ldr r5, .Ljp_080B12E8 @ =0x00000814
 	adds r0, r7, r5
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080B12A6:
 	ldr r0, [sp, #0xac]
 	add r0, sl
@@ -26623,7 +26623,7 @@ sub_080B0704: @ 0x080B0704
 	subs r6, #0xcd
 	adds r0, r7, r6
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080B133A:
 	ldr r0, [sp, #0xac]
 	add r0, sl
@@ -26678,7 +26678,7 @@ sub_080B0704: @ 0x080B0704
 	adds r0, r7, r4
 .Ljp_080B13A6:
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B13E2
 	.align 2, 0
 .Ljp_080B13B0: .4byte 0x000008E1
@@ -26762,7 +26762,7 @@ sub_080B0704: @ 0x080B0704
 	ldr r1, .Ljp_080B1464 @ =0x00000814
 	adds r0, r7, r1
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B1518
 	.align 2, 0
 .Ljp_080B145C: .4byte 0x00000848
@@ -27146,7 +27146,7 @@ func_080B1768: @ 0x080B1768
 	ldr r1, .Ljp_080B17C0 @ =0x00000814
 	adds r0, r4, r1
 	movs r1, #0xbb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r3, .Ljp_080B17C4 @ =0x00000838
 	adds r0, r4, r3
 	ldr r0, [r0]
@@ -29600,7 +29600,7 @@ func_080B1B48: @ 0x080B1B48
 	ldr r0, .Ljp_080B2ACC @ =0x00000814
 	add r0, sl
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r0, [r4]
 	ldr r1, [sp, #0x110]
 	movs r2, #0
@@ -30157,7 +30157,7 @@ func_080B1B48: @ 0x080B1B48
 	ldr r0, .Ljp_080B2EA0 @ =0x00000814
 	add r0, sl
 	movs r1, #0xb7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B2EAE
 	.align 2, 0
 .Ljp_080B2E98: .4byte 0x0000092B
@@ -30167,7 +30167,7 @@ func_080B1B48: @ 0x080B1B48
 	ldr r0, .Ljp_080B2EC4 @ =0x00000814
 	add r0, sl
 	movs r1, #0xb6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080B2EAE:
 	ldr r4, [sp, #0xf4]
 	cmp r4, #0xf0
@@ -30620,7 +30620,7 @@ func_080B36B4: @ 0x080B30E8
 	ldr r1, .Ljp_080B3230 @ =0x00000814
 	adds r0, r5, r1
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B3358
 	.align 2, 0
 .Ljp_080B3220: .4byte 0x000008E1
@@ -30719,7 +30719,7 @@ func_080B36B4: @ 0x080B30E8
 	ldr r2, .Ljp_080B3300 @ =0x0000081C
 	adds r0, r5, r2
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B3358
 	.align 2, 0
 .Ljp_080B32EC: .4byte 0x000008E6
@@ -30769,7 +30769,7 @@ func_080B36B4: @ 0x080B30E8
 	ldr r4, .Ljp_080B3378 @ =0x00000814
 	adds r0, r5, r4
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080B3358:
 	adds r7, #1
 	cmp r7, #4
@@ -30981,7 +30981,7 @@ func_080B3A28: @ 0x080B345C
 	ldr r1, .Ljp_080B3504 @ =0x00000814
 	adds r0, r4, r1
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B35CC
 	.align 2, 0
 .Ljp_080B34EC: .4byte 0x00000844
@@ -31035,7 +31035,7 @@ func_080B3A28: @ 0x080B345C
 	ldr r1, .Ljp_080B3570 @ =0x00000814
 	adds r0, r4, r1
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B35CC
 	.align 2, 0
 .Ljp_080B3564: .4byte 0x00000915
@@ -31046,7 +31046,7 @@ func_080B3A28: @ 0x080B345C
 	ldr r2, .Ljp_080B35AC @ =0x00000814
 	adds r0, r4, r2
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r1, [r5]
 	lsls r0, r1, #2
 	adds r0, r6, r0
@@ -31101,7 +31101,7 @@ func_080B35DC: @ 0x080B35DC
 	ldr r1, .Ljp_080B3600 @ =0x00000818
 	adds r0, r4, r1
 	movs r1, #0xb8
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r0, .Ljp_080B3604 @ =0x0000083C
 	adds r1, r4, r0
 	ldr r0, [r1]
@@ -31278,25 +31278,25 @@ func_080B3CC8: @ 0x080B36FC
 	ldr r1, .Ljp_080B3AC8 @ =0x00000704
 	adds r0, r6, r1
 	movs r1, #0
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r2, #0xe1
 	lsls r2, r2, #3
 	adds r0, r6, r2
 	movs r1, #1
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r3, .Ljp_080B3ACC @ =0x0000070C
 	adds r0, r6, r3
 	movs r1, #2
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r4, #0xe2
 	lsls r4, r4, #3
 	adds r0, r6, r4
 	movs r1, #3
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r1, .Ljp_080B3AD0 @ =0x00000714
 	adds r0, r6, r1
 	movs r1, #4
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r0, #4
 	bl __builtin_new
 	adds r4, r0, #0
@@ -32212,7 +32212,7 @@ func_080B44EC: @ 0x080B3F20
 	ldr r1, .Ljp_080B3F7C @ =0x00000704
 	adds r0, r4, r1
 	movs r1, #0x21
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r1, .Ljp_080B3F80 @ =0x00000B32
 	adds r0, r4, r1
 	ldrb r0, [r0]
@@ -34031,7 +34031,7 @@ func_080B5318: @ 0x080B4D4C
 	ldr r1, .Ljp_080B4DDC @ =0x0000070C
 	adds r0, r4, r1
 	movs r1, #0xcc
-	bl func_08008B88
+	bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B4FEE
 	.align 2, 0
 .Ljp_080B4DD8: .4byte 0x00000B3B
@@ -34045,7 +34045,7 @@ func_080B5318: @ 0x080B4D4C
 	ldr r1, .Ljp_080B4E30 @ =0x0000070C
 	adds r0, r4, r1
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r2, #0x92
 	lsls r2, r2, #4
 	adds r0, r4, r2
@@ -34115,7 +34115,7 @@ func_080B5318: @ 0x080B4D4C
 	ldr r2, .Ljp_080B4EC0 @ =0x0000070C
 	adds r0, r4, r2
 	movs r1, #0xcc
-	bl func_08008B88
+	bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
 	ldr r1, .Ljp_080B4EC4 @ =0x00000B3B
 	adds r0, r4, r1
 	movs r1, #0
@@ -34179,7 +34179,7 @@ func_080B5318: @ 0x080B4D4C
 	ldr r1, .Ljp_080B4F24 @ =0x0000070C
 	adds r0, r4, r1
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080B4F00:
 	ldrb r0, [r5]
 	cmp r0, #0x3b
@@ -39775,7 +39775,7 @@ func_080B7648: @ 0x080B707C
 	ldr r1, .Ljp_080B7A58 @ =0x0000070C
 	adds r0, r7, r1
 	movs r1, #0xcc
-	bl func_08008B88
+	bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
 	adds r0, r7, #0
 	mov r1, sb
 	bl func_080B9B50
@@ -42324,7 +42324,7 @@ func_080B9428: @ 0x080B8E5C
 	ldr r2, .Ljp_080B8E94 @ =0x0000070C
 	adds r0, r1, r2
 	movs r1, #0xcc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080B8E8E:
 	pop {r4}
 	pop {r0}
@@ -42615,7 +42615,7 @@ func_080B94A8: @ 0x080B8EDC
 	lsls r7, r7, #3
 	adds r0, r5, r7
 	movs r1, #0xb5
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080B90D0:
 	add sp, #0x28
 	pop {r3, r4, r5}
@@ -42904,7 +42904,7 @@ func_080B9844: @ 0x080B9278
 	lsls r6, r6, #3
 	adds r0, r4, r6
 	movs r1, #0xb5
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B94E2
 .Ljp_080B92D4:
 	adds r1, r4, #0
@@ -43575,7 +43575,7 @@ func_080B9B50: @ 0x080B9584
 	ldr r0, .Ljp_080B97D8 @ =0x0000070C
 	add r0, r8
 	movs r1, #0xcc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .Ljp_080B982A
 	.align 2, 0
 .Ljp_080B97D8: .4byte 0x0000070C
@@ -44768,7 +44768,7 @@ func_080BA608: @ 0x080BA03C
 	ldr r1, .Ljp_080BA09C @ =0x00000714
 	adds r0, r4, r1
 	movs r1, #0xb8
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r3, .Ljp_080BA0A0 @ =0x00000B31
 	adds r2, r4, r3
 	ldrb r1, [r2]
@@ -44874,7 +44874,7 @@ func_080BA6B8: @ 0x080BA0EC
 	ldr r1, .Ljp_080BA160 @ =0x0000070C
 	adds r0, r4, r1
 	movs r1, #0xcc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .Ljp_080BA12C:
 	adds r0, r4, #0
 	adds r0, #0xdc
@@ -49690,20 +49690,20 @@ func_080BC938: @ 0x080BC36C
 	adds r2, #0x10
 	adds r0, r6, r2
 	movs r1, #0
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r1, .L080BC6E8 @ =0x0000057C
 	adds r0, r6, r1
 	movs r1, #1
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r2, #0xb0
 	lsls r2, r2, #3
 	adds r0, r6, r2
 	movs r1, #2
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r1, .L080BC6EC @ =0x00000584
 	adds r0, r6, r1
 	movs r1, #3
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r2, #0xb1
 	lsls r2, r2, #3
 	adds r0, r6, r2
@@ -49868,7 +49868,7 @@ func_080BCCD4:
     lsls r1, r1, #3
     adds r0, r7, r1
     movs r1, #0x22
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     movs r1, #0xb4
     lsls r1, r1, #3
     adds r0, r7, r1
@@ -53162,7 +53162,7 @@ func_080BCEC8:
     bl SetTempo__23HardwareMusicPlayerSlotUs
     .byte 0xB0, 0x20
     .byte 0xC0, 0x00, 0x48, 0x44, 0xBB, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x11, 0xB0, 0x38, 0xBC, 0x98, 0x46
     .byte 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFD, 0x05, 0x00, 0x00
     .byte 0xAC, 0x05, 0x00, 0x00
@@ -53417,11 +53417,11 @@ func_080BEA34:
     .byte 0x02, 0xDC, 0x02, 0x2C, 0x04, 0xD0, 0x06, 0xE1, 0x04, 0x2C, 0x00, 0xD1, 0x96, 0xE0, 0x02, 0xE1
     .byte 0x05, 0x9A, 0x00, 0x2A, 0x08, 0xD1, 0x08, 0x4B, 0xF8, 0x18, 0x01, 0x21, 0x01, 0x70, 0x07, 0x4A
     .byte 0xB8, 0x18, 0x01, 0x70, 0x01, 0x23, 0x05, 0x93, 0xB0, 0x21, 0xC9, 0x00, 0x78, 0x18, 0xBD, 0x21
-    bl func_08008B88
+    bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
     .byte 0xEF, 0xE0, 0x00, 0x00, 0x09, 0x06, 0x00, 0x00, 0x0E, 0x06, 0x00, 0x00
     .byte 0x0A, 0x4A, 0xBD, 0x18, 0x28, 0x78, 0x00, 0x28, 0x05, 0xD1, 0xB0, 0x23, 0xDB, 0x00, 0xF8, 0x18
     .byte 0xBD, 0x21
-    bl func_08008B88
+    bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
     .byte 0x05, 0x98, 0x1E, 0x28, 0x0D, 0xD1, 0x04, 0x49, 0x78, 0x18
     .byte 0x01, 0x21, 0x01, 0x60, 0x03, 0x4A, 0xB8, 0x18, 0x01, 0x70, 0x5E, 0xE0, 0x11, 0x06, 0x00, 0x00
     .byte 0xAC, 0x05, 0x00, 0x00, 0x0E, 0x06, 0x00, 0x00, 0x05, 0x9B, 0x3C, 0x2B, 0x06, 0xD1, 0x02, 0x48
@@ -53430,7 +53430,7 @@ func_080BEA34:
     .byte 0x43, 0xE0, 0x00, 0x00, 0xAC, 0x05, 0x00, 0x00, 0x0E, 0x06, 0x00, 0x00, 0x05, 0x9B, 0x78, 0x2B
     .byte 0x0E, 0xD1, 0x01, 0x20, 0x28, 0x70, 0x05, 0x4A, 0xB9, 0x18, 0x08, 0x70, 0xB0, 0x23, 0xDB, 0x00
     .byte 0xF8, 0x18, 0xC7, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x2F, 0xE0, 0x00, 0x00, 0x0E, 0x06, 0x00, 0x00
     .byte 0x05, 0x98, 0x79, 0x38, 0x1C, 0x28, 0x0A, 0xD8, 0x07, 0x98, 0x20, 0x30, 0x00, 0x04, 0x01, 0x0C
     .byte 0x07, 0x91, 0x00, 0x0E, 0xC1, 0x22, 0xD2, 0x00, 0xB9, 0x18, 0x08, 0x70, 0x1D, 0xE0, 0x05, 0x9B
@@ -53442,7 +53442,7 @@ func_080BEA34:
     .byte 0x05, 0x98, 0x01, 0x30, 0x05, 0x90
     .byte 0x71, 0xE0, 0x00, 0x00, 0xAC, 0x05, 0x00, 0x00, 0x0E, 0x06, 0x00, 0x00, 0x0A, 0x49, 0x7C, 0x18
     .byte 0x20, 0x78, 0x00, 0x28, 0x05, 0xD1, 0xB0, 0x22, 0xD2, 0x00, 0xB8, 0x18, 0xBD, 0x21
-    bl func_08008B88
+    bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
     .byte 0x05, 0x9B, 0x00, 0x2B, 0x0D, 0xD1, 0x23, 0x70, 0x04, 0x49, 0x78, 0x18, 0x05, 0x9A
     .byte 0x02, 0x60, 0x03, 0x4B, 0xF9, 0x18, 0x1E, 0xE0, 0x12, 0x06, 0x00, 0x00, 0xAC, 0x05, 0x00, 0x00
     .byte 0x0E, 0x06, 0x00, 0x00, 0x05, 0x98, 0x1E, 0x28, 0x1F, 0xD0, 0x05, 0x9B, 0x3C, 0x2B, 0x0C, 0xD0
@@ -53453,7 +53453,7 @@ func_080BEA34:
     .byte 0x01, 0x60, 0x03, 0x4A, 0xB8, 0x18, 0x01, 0x70, 0x22, 0xE0, 0x00, 0x00, 0xAC, 0x05, 0x00, 0x00
     .byte 0x0E, 0x06, 0x00, 0x00, 0x05, 0x9B, 0xB4, 0x2B, 0x0E, 0xD1, 0x01, 0x20, 0x20, 0x70, 0x05, 0x4A
     .byte 0xB9, 0x18, 0x08, 0x70, 0xB0, 0x23, 0xDB, 0x00, 0xF8, 0x18, 0xBC, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x0E, 0xE0, 0x00, 0x00, 0x0E, 0x06, 0x00, 0x00, 0x05, 0x98, 0xD2, 0x28, 0x08, 0xD1, 0x83, 0x21
     .byte 0xC9, 0x00, 0x78, 0x18, 0x00, 0x68
     bl EnableResume__C12UiStateOwner
@@ -53527,7 +53527,7 @@ func_080BEA34:
     bl GetHardwareDisplayState
     .byte 0x6A, 0x46, 0xB2, 0x23, 0x5B, 0x01, 0x19, 0x1C, 0x11, 0x80, 0x01, 0x80, 0x20, 0x1C, 0xFE, 0xF7
     .byte 0x1F, 0xFE, 0xB0, 0x21, 0xC9, 0x00, 0x60, 0x18, 0xBB, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0xB4, 0x23
     .byte 0xDB, 0x00, 0xE0, 0x18, 0x00, 0x68, 0x02, 0x28, 0x0E, 0xD1, 0xE5, 0x18, 0x03, 0x27, 0x20, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x080BED54
@@ -53603,7 +53603,7 @@ func_080BEA34:
     .byte 0x0C, 0x97, 0x28, 0x1C, 0x39, 0x1C, 0xFF, 0xF7, 0x5F, 0xF8, 0x3C, 0x2F, 0x01, 0xD1, 0x00, 0x20
     .byte 0x0C, 0x90, 0x07, 0x49, 0x68, 0x18, 0x00, 0x78, 0x00, 0x28, 0x55, 0xD0, 0xB0, 0x22, 0xD2, 0x00
     .byte 0xA8, 0x18, 0xBD, 0x21
-    bl func_08008B88
+    bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
     .byte 0x4E, 0xE0, 0x00, 0x00, 0xFB, 0x05, 0x00, 0x00
     .byte 0x09, 0x06, 0x00, 0x00, 0x28, 0x1C, 0x01, 0xF0, 0x01, 0xFB, 0x28, 0x1C
     bl GetHardwarePressedKeys
@@ -55270,7 +55270,7 @@ func_080BF764:
     lsls r0, r0, #3
     add r0, sl
     movs r1, #0x6a
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     ldr r0, [r4]
     add r1, sp, #0x28
     movs r2, #0
@@ -55826,7 +55826,7 @@ func_080BF764:
     lsls r0, r0, #3
     add r0, sl
     movs r1, #0xb7
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     b .Lauto_080C02E0
     .byte 0x0C, 0x06, 0x00, 0x00
     .Lauto_080C02D4:
@@ -55834,7 +55834,7 @@ func_080BF764:
     lsls r0, r0, #3
     add r0, sl
     movs r1, #0xb6
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .Lauto_080C02E0:
     ldr r4, [sp, #0xd8]
     cmp r4, #0xf0
@@ -55955,7 +55955,7 @@ func_080C0910: @ 0x080C033C
 	subs r2, #0x89
 	adds r0, r4, r2
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C03DA
 	.align 2, 0
 .L080C03B8: .4byte 0x000005F9
@@ -55971,7 +55971,7 @@ func_080C0910: @ 0x080C033C
 	lsls r1, r1, #3
 	adds r0, r4, r1
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C03DA:
 	ldr r2, .L080C03FC @ =0x000005AC
 	adds r1, r4, r2
@@ -56356,7 +56356,7 @@ func_080C0CA4: @ 0x080C06D0
 	ldr r1, .L080C0700 @ =0x00000584
 	adds r0, r4, r1
 	movs r1, #0xb8
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r0, .L080C0704 @ =0x000005A4
 	adds r1, r4, r0
 	ldr r0, [r1]
@@ -56985,7 +56985,7 @@ func_080C0D90:
     lsls r1, r1, #4
     adds r0, r6, r1
     movs r1, #0
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     ldr r2, [pc, #0x68]
     adds r0, r6, r2
     b .Lauto_080C0C54
@@ -56999,20 +56999,20 @@ func_080C0D90:
     .byte 0x00, 0x00, 0xEC, 0x07, 0x00, 0x00, 0x14, 0x08, 0x00, 0x00
     .Lauto_080C0C54:
     movs r1, #1
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     ldr r1, [pc, #0x6c]
     adds r0, r6, r1
     movs r1, #2
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     ldr r2, [pc, #0x64]
     adds r0, r6, r2
     movs r1, #3
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     movs r1, #0x82
     lsls r1, r1, #4
     adds r0, r6, r1
     movs r1, #4
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     ldr r2, [pc, #0x54]
     adds r0, r6, r2
     str r4, [r0]
@@ -57107,7 +57107,7 @@ func_080C12B8:
     lsls r1, r1, #4
     adds r0, r7, r1
     movs r1, #0x22
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     ldr r1, [pc, #0x34]
     adds r0, r7, r1
     ldr r0, [r0]
@@ -61885,7 +61885,7 @@ func_080C14C8:
     .byte 0x08, 0x60, 0x81, 0x20, 0x00, 0x01, 0x48, 0x44, 0x80, 0x21, 0x49, 0x00
     bl SetTempo__23HardwareMusicPlayerSlotUs
     .byte 0x09, 0x48, 0x48, 0x44, 0xBB, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x11, 0xB0, 0x38, 0xBC, 0x98, 0x46
     .byte 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x7B, 0x09, 0x00, 0x00
     .byte 0x7F, 0x09, 0x00, 0x00, 0x9C, 0x08, 0x00, 0x00, 0x18, 0x08, 0x00, 0x00
@@ -62239,7 +62239,7 @@ func_080C3C18:
     ldr r3, [pc, #0x38]
     adds r0, r7, r3
     movs r1, #0xbe
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     add r0, sp, #0x10
     adds r1, r7, #0
     movs r2, #1
@@ -62308,7 +62308,7 @@ func_080C3C18:
     adds r0, r7, r3
     .Lauto_080C3C2C:
     movs r1, #0xbe
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     movs r5, #0x1f
     bl loc_080C4B6C
     lsrs r5, r0, #3
@@ -62466,7 +62466,7 @@ func_080C3C18:
     .byte 0x24, 0x01, 0x39, 0x19, 0x02, 0x20, 0x08, 0x60, 0x15, 0x4E, 0xB9, 0x19, 0x08, 0x20, 0x08, 0x60
     .byte 0x14, 0x49, 0x78, 0x18, 0x01, 0x22, 0x02, 0x70, 0x13, 0x4B, 0xF9, 0x18, 0x08, 0x78, 0x0A, 0x38
     .byte 0x08, 0x70, 0x05, 0x34, 0x38, 0x19, 0x02, 0x70, 0xA4, 0x3E, 0xB8, 0x19, 0xBE, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x08, 0xA8, 0x39, 0x1C, 0x01, 0x22, 0x03, 0xF0, 0xE3, 0xFB, 0x08, 0x98, 0x08, 0x30
     .byte 0x0A, 0x4A, 0xB9, 0x18, 0x08, 0x70, 0x09, 0xA8, 0x39, 0x1C, 0x01, 0x22, 0x03, 0xF0, 0xD9, 0xFB
     .byte 0x09, 0x98, 0x00, 0x0A, 0x18, 0x30, 0x05, 0x4B, 0xF9, 0x18, 0x00, 0xF0, 0x2F, 0xFE, 0xBC, 0x08
@@ -62476,7 +62476,7 @@ func_080C3C18:
     .byte 0x06, 0x20, 0x08, 0x60, 0x15, 0x4A, 0xB9, 0x18, 0x08, 0x20, 0x08, 0x60, 0x14, 0x4B, 0xF8, 0x18
     .byte 0x01, 0x22, 0x02, 0x70, 0x13, 0x4C, 0x39, 0x19, 0x08, 0x78, 0x0A, 0x38, 0x08, 0x70, 0x11, 0x4E
     .byte 0xB8, 0x19, 0x02, 0x70, 0x11, 0x49, 0x78, 0x18, 0xBE, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x0A, 0xA8
     .byte 0x39, 0x1C, 0x17, 0x22, 0x03, 0xF0, 0x9D, 0xFB, 0x0A, 0x98, 0x08, 0x30, 0x0C, 0x4A, 0xB9, 0x18
     .byte 0x08, 0x70, 0x0B, 0xA8, 0x39, 0x1C, 0x17, 0x22, 0x03, 0xF0, 0x93, 0xFB, 0x0B, 0x98, 0x00, 0x0A
@@ -62542,7 +62542,7 @@ func_080C3C18:
     ldr r4, [pc, #0x1c]
     adds r0, r7, r4
     movs r1, #0xbe
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     movs r5, #1
     bl loc_080C4B6C
     movs r0, r0
@@ -62742,10 +62742,10 @@ func_080C3C18:
     .byte 0x9C, 0xF9, 0x10, 0x98, 0x08, 0x30, 0x10, 0x4A, 0xB9, 0x18, 0x08, 0x70, 0x11, 0xA8, 0x39, 0x1C
     .byte 0x03, 0x22, 0x03, 0xF0, 0x92, 0xF9, 0x11, 0x98, 0x00, 0x0A, 0x18, 0x30, 0x0C, 0x4B, 0xF9, 0x18
     .byte 0x08, 0x70, 0x95, 0x3C, 0x38, 0x19, 0xBC, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0xAD, 0x3E, 0xB8, 0x19
     .byte 0xBE, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x00, 0xF0, 0xDE, 0xFB, 0xBC, 0x08, 0x00, 0x00, 0xC4, 0x08
     .byte 0x00, 0x00, 0xB5, 0x08, 0x00, 0x00, 0xC5, 0x08, 0x00, 0x00, 0x7D, 0x09, 0x00, 0x00, 0x7E, 0x09
     .byte 0x00, 0x00, 0x03, 0x48, 0x39, 0x18, 0x05, 0x20, 0x08, 0x60, 0x02, 0x4A, 0xB9, 0x18, 0xC8, 0xE3
@@ -62756,9 +62756,9 @@ func_080C3C18:
     .byte 0x08, 0x30, 0x10, 0x4A, 0xB9, 0x18, 0x08, 0x70, 0x13, 0xA8, 0x39, 0x1C, 0x14, 0x22, 0x03, 0xF0
     .byte 0x44, 0xF9, 0x13, 0x98, 0x00, 0x0A, 0x18, 0x30, 0x0C, 0x4B, 0xF9, 0x18, 0x08, 0x70, 0x9C, 0x3C
     .byte 0x38, 0x19, 0xBC, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0xAC, 0x3E, 0xB8, 0x19, 0xBE, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x90, 0xE3, 0x00, 0x00, 0xBC, 0x08, 0x00, 0x00, 0xC4, 0x08, 0x00, 0x00, 0xB5, 0x08
     .byte 0x00, 0x00, 0xC5, 0x08, 0x00, 0x00, 0x7D, 0x09, 0x00, 0x00, 0x7E, 0x09, 0x00, 0x00, 0x09, 0x48
     .byte 0x39, 0x18, 0x08, 0x78, 0x01, 0x38, 0x08, 0x70, 0x00, 0x06, 0x00, 0x0E, 0x21, 0x9D, 0x01, 0x35
@@ -62778,7 +62778,7 @@ func_080C3C18:
     .byte 0x91, 0x26, 0x36, 0x01, 0xB9, 0x19, 0x0C, 0xE3, 0x21, 0x9D, 0x01, 0x35, 0x02, 0x28, 0x00, 0xD0
     .byte 0x91, 0xE3, 0x01, 0x48, 0x39, 0x18, 0x14, 0xE3, 0x00, 0x00, 0x54, 0x09, 0x00, 0x00, 0x22, 0x99
     .byte 0x32, 0x29, 0x1A, 0xD1, 0x82, 0x22, 0x12, 0x01, 0xB8, 0x18, 0x6C, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x8C, 0x23, 0x1B, 0x01, 0xF8, 0x18, 0x00, 0x68, 0x04, 0x28, 0x04, 0xD1, 0x01, 0x4C, 0x39, 0x19
     .byte 0xEF, 0xE2, 0x11, 0x09, 0x00, 0x00, 0x21, 0x9D, 0x01, 0x35, 0x02, 0x28, 0x00, 0xD0, 0x72, 0xE3
     .byte 0x01, 0x4E, 0xB9, 0x19, 0xF5, 0xE2, 0x55, 0x09, 0x00, 0x00, 0x21, 0x9D, 0x01, 0x35, 0x22, 0x98
@@ -62808,7 +62808,7 @@ sub_080C4AE0:
     ldr r1, [pc, #0x3c]
     adds r0, r7, r1
     movs r1, #0xbe
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     add r0, sp, #0x50
     adds r1, r7, #0
     movs r2, #5
@@ -62860,7 +62860,7 @@ sub_080C4AE0:
     ldr r3, [pc, #0x3c]
     adds r0, r7, r3
     movs r1, #0xbe
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     add r0, sp, #0x58
     adds r1, r7, #0
     movs r2, #0x17
@@ -62914,7 +62914,7 @@ sub_080C4BBC:
     ldr r6, [pc, #0x3c]
     adds r0, r7, r6
     movs r1, #0xbe
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     add r0, sp, #0x60
     adds r1, r7, #0
     movs r2, #0xd
@@ -63080,7 +63080,7 @@ sub_080C4BBC:
     .byte 0x0C, 0x08, 0x8C, 0x24, 0x24, 0x01, 0x39, 0x19, 0x06, 0x20, 0x08, 0x60, 0x07, 0x4E, 0xB9, 0x19
     .byte 0x09, 0x20, 0x08, 0x60, 0x06, 0x48, 0x39, 0x18, 0x01, 0x20, 0x08, 0x70, 0x82, 0x21, 0x09, 0x01
     .byte 0x78, 0x18, 0xC7, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x41, 0xE1, 0xBC, 0x08, 0x00, 0x00, 0xC4, 0x08
     .byte 0x00, 0x00, 0x02, 0x4A, 0xB9, 0x18, 0x06, 0x20, 0x08, 0x60, 0x01, 0x4B, 0x34, 0xE1, 0xBC, 0x08
     .byte 0x00, 0x00, 0xC4, 0x08, 0x00, 0x00, 0x1F, 0x4C, 0x39, 0x19, 0x08, 0x78, 0x01, 0x38, 0x08, 0x70
@@ -63091,14 +63091,14 @@ sub_080C4BBC:
     .byte 0xB0, 0xFE, 0x1A, 0x98, 0x08, 0x30, 0xBD, 0x36, 0xB9, 0x19, 0x08, 0x70, 0x1B, 0xA8, 0x39, 0x1C
     .byte 0x05, 0x22, 0x02, 0xF0, 0xA6, 0xFE, 0x1B, 0x98, 0x00, 0x0A, 0x18, 0x30, 0x0A, 0x4A, 0xB9, 0x18
     .byte 0x08, 0x70, 0x82, 0x23, 0x1B, 0x01, 0xF8, 0x18, 0xBC, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0xAD, 0x3C
     .byte 0x38, 0x19, 0xB6, 0xE0, 0x00, 0x00, 0xB4, 0x08, 0x00, 0x00, 0xBC, 0x08, 0x00, 0x00, 0xC4, 0x08
     .byte 0x00, 0x00, 0xB5, 0x08, 0x00, 0x00, 0x7E, 0x09, 0x00, 0x00, 0x0D, 0x4E, 0xB9, 0x19, 0x08, 0x78
     .byte 0x01, 0x30, 0x08, 0x70, 0x00, 0x06, 0x00, 0x0E, 0x68, 0x28, 0x16, 0xD1, 0x8C, 0x20, 0x00, 0x01
     .byte 0x3A, 0x18, 0x08, 0x4B, 0xF9, 0x18, 0x08, 0x68, 0x10, 0x60, 0x09, 0x20, 0x08, 0x60, 0x82, 0x24
     .byte 0x24, 0x01, 0x38, 0x19, 0xC7, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x10, 0x36, 0xB9, 0x19, 0xCC, 0xE0
     .byte 0x00, 0x00, 0xB4, 0x08, 0x00, 0x00, 0xBC, 0x08, 0x00, 0x00, 0x21, 0x9D, 0x01, 0x35, 0x88, 0x28
     .byte 0x00, 0xD0, 0x4C, 0xE1, 0x8C, 0x21, 0x09, 0x01, 0x78, 0x18, 0x01, 0x22, 0x02, 0x60, 0x15, 0x4B
@@ -63107,7 +63107,7 @@ sub_080C4BBC:
     .byte 0x17, 0x22, 0x02, 0xF0, 0x4E, 0xFE, 0x1C, 0x98, 0x08, 0x30, 0x0E, 0x4A, 0xB9, 0x18, 0x08, 0x70
     .byte 0x1D, 0xA8, 0x39, 0x1C, 0x17, 0x22, 0x02, 0xF0, 0x44, 0xFE, 0x1D, 0x98, 0x00, 0x0A, 0x18, 0x30
     .byte 0x0A, 0x4B, 0xF9, 0x18, 0x08, 0x70, 0xA4, 0x3C, 0x38, 0x19, 0xBC, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x9D, 0x3E, 0xB8, 0x19, 0x55, 0xE0, 0xBC, 0x08, 0x00, 0x00, 0xC4, 0x08, 0x00, 0x00, 0xB5, 0x08
     .byte 0x00, 0x00, 0xC5, 0x08, 0x00, 0x00, 0x7D, 0x09, 0x00, 0x00, 0x7E, 0x09, 0x00, 0x00, 0x07, 0x48
     .byte 0x3A, 0x18, 0x10, 0x78, 0x01, 0x38, 0x10, 0x70, 0x00, 0x06, 0x00, 0x0E, 0x41, 0x28, 0x0C, 0xD1
@@ -63119,10 +63119,10 @@ sub_080C4BBC:
     .byte 0x02, 0xF0, 0xF7, 0xFD, 0x1E, 0x98, 0x08, 0x30, 0x0F, 0x4B, 0xF9, 0x18, 0x08, 0x70, 0x1F, 0xA8
     .byte 0x39, 0x1C, 0x0D, 0x22, 0x02, 0xF0, 0xED, 0xFD, 0x1F, 0x98, 0x00, 0x0A, 0x18, 0x30, 0xBE, 0x34
     .byte 0x39, 0x19, 0x08, 0x70, 0x9C, 0x3E, 0xB8, 0x19, 0xBC, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x06, 0x49
     .byte 0x78, 0x18, 0xBE, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0xC1, 0xE0, 0xBC, 0x08, 0x00, 0x00, 0xC4, 0x08
     .byte 0x00, 0x00, 0xC5, 0x08, 0x00, 0x00, 0x7D, 0x09, 0x00, 0x00, 0x18, 0x08, 0x00, 0x00, 0x08, 0x4A
     .byte 0xB9, 0x18, 0x08, 0x78, 0x01, 0x30, 0x08, 0x70, 0x00, 0x06, 0x00, 0x0E, 0x21, 0x9D, 0x01, 0x35
@@ -63136,7 +63136,7 @@ sub_080C4BBC:
     .byte 0x22, 0x9E, 0x32, 0x2E, 0x15, 0xD1, 0x08, 0x49, 0x78, 0x18, 0x00, 0x78, 0x21, 0x9D, 0x01, 0x35
     .byte 0x37, 0x28, 0x6C, 0xD1, 0x06, 0x4A, 0xB8, 0x18, 0x01, 0x21, 0x01, 0x70, 0x82, 0x23, 0x1B, 0x01
     .byte 0xF8, 0x18, 0x6C, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x61, 0xE0, 0xB5, 0x08, 0x00, 0x00, 0x19, 0x09
     .byte 0x00, 0x00, 0x21, 0x9D, 0x01, 0x35, 0x22, 0x9C, 0x3C, 0x2C, 0x58, 0xD1, 0x00, 0x26, 0x22, 0x96
     .byte 0x19, 0x49, 0x78, 0x18, 0x06, 0x70, 0x18, 0x4C, 0x3B, 0x19, 0x8C, 0x26, 0x36, 0x01, 0xB8, 0x19
@@ -63267,7 +63267,7 @@ sub_080C4BBC:
     .byte 0x9C, 0x08, 0x00, 0x00, 0x02, 0x29, 0x00, 0xD1, 0x7A, 0xE0, 0x87, 0xE0, 0x50, 0x46, 0x00, 0x28
     .byte 0x30, 0xD1, 0x28, 0x78, 0x00, 0x28, 0x02, 0xD0, 0x01, 0x20, 0x38, 0x60, 0x7E, 0xE0, 0x10, 0x4A
     .byte 0xB1, 0x18, 0x01, 0x20, 0x08, 0x70, 0x0F, 0x4B, 0xF0, 0x18, 0xBE, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x0D, 0x4C, 0x44, 0x44, 0x22, 0x78, 0x08, 0xA8, 0x31, 0x1C, 0x02, 0xF0, 0x1F, 0xFB, 0x08, 0x98
     .byte 0x08, 0x30, 0x0A, 0x4A, 0xB1, 0x18, 0x08, 0x70, 0x22, 0x78, 0x09, 0xA8, 0x31, 0x1C, 0x02, 0xF0
     .byte 0x15, 0xFB, 0x09, 0x98, 0x00, 0x0A, 0x18, 0x30, 0x05, 0x4B, 0xF1, 0x18, 0x08, 0x70, 0x23, 0xE0
@@ -63347,7 +63347,7 @@ func_080C5648:
     ldr r1, [pc, #0x50]
     adds r0, r5, r1
     movs r1, #0xbb
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     ldr r3, [pc, #0x48]
     adds r0, r5, r3
     ldr r0, [r0]
@@ -63985,10 +63985,10 @@ func_080C5648:
     .byte 0x42, 0x96, 0x41, 0x9F, 0xBF, 0x00, 0x4C, 0x97, 0x14, 0x2E, 0x00, 0xD0, 0xFE, 0xE0, 0x00, 0x20
     .byte 0x42, 0x90, 0x45, 0x9A, 0xD1, 0x19, 0x08, 0x68, 0x01, 0x30, 0x08, 0x60, 0x41, 0x9B, 0x02, 0x2B
     .byte 0x08, 0xD0, 0x82, 0x20, 0x00, 0x01, 0x50, 0x44, 0xBF, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x07, 0xE0
     .byte 0x6B, 0x09, 0x00, 0x00, 0x82, 0x20, 0x00, 0x01, 0x50, 0x44, 0xC0, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x45, 0x9C, 0x4C, 0x9D, 0x60, 0x19, 0x00, 0x68, 0x0C, 0xA9, 0x00, 0x22, 0x87, 0xF7, 0xA4, 0xFE
     .byte 0x41, 0x9E, 0xB4, 0x01, 0xA0, 0x19, 0x85, 0x00, 0x57, 0x46, 0xE9, 0x19, 0x33, 0xA8, 0x04, 0x26
     .byte 0x02, 0x27, 0x00, 0x22, 0x90, 0x46, 0x06, 0x80, 0x47, 0x80, 0x00, 0x68, 0x88, 0x23, 0x5B, 0x00
@@ -64067,10 +64067,10 @@ func_080C5648:
     .byte 0xA8, 0x08, 0x00, 0x00, 0x40, 0x9B, 0x01, 0x33, 0x40, 0x93, 0x3C, 0x2B, 0x19, 0xD1, 0x07, 0x49
     .byte 0x51, 0x44, 0x01, 0x20, 0x08, 0x70, 0x06, 0x48, 0x50, 0x44, 0x00, 0x78, 0x00, 0x28, 0x0B, 0xD1
     .byte 0x04, 0x48, 0x50, 0x44, 0xB7, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x0A, 0xE0, 0x6D, 0x09, 0x00, 0x00
     .byte 0x6A, 0x09, 0x00, 0x00, 0x18, 0x08, 0x00, 0x00, 0x06, 0x48, 0x50, 0x44, 0xB6, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x40, 0x9C, 0xF0, 0x2C, 0x19, 0xD1, 0x00, 0x25, 0x40, 0x95, 0x02, 0x49, 0x51, 0x44
     .byte 0x03, 0x20, 0x12, 0xE0, 0x18, 0x08, 0x00, 0x00, 0xA8, 0x08, 0x00, 0x00, 0x40, 0x9E, 0x01, 0x36
     .byte 0x40, 0x96, 0x09, 0x20, 0x43, 0x9F, 0x38, 0x40, 0x00, 0x28, 0x03, 0xD1, 0x96, 0x20, 0x80, 0x00
@@ -64131,7 +64131,7 @@ func_080C5648:
     .byte 0x15, 0xE0, 0x00, 0x00, 0x04, 0x09, 0x00, 0x00, 0x32, 0x28, 0x10, 0xD1, 0x29, 0x4A, 0xA8, 0x18
     .byte 0x00, 0x78, 0x00, 0x28, 0x0B, 0xD1, 0x88, 0x00, 0x28, 0x18, 0x27, 0x4C, 0x00, 0x19, 0x01, 0x21
     .byte 0x01, 0x70, 0x82, 0x21, 0x09, 0x01, 0x68, 0x18, 0x6C, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x23, 0x4C
     .byte 0x2A, 0x19, 0x10, 0x78, 0x01, 0x30, 0x00, 0x23, 0x10, 0x70, 0x00, 0x06, 0x00, 0x0E, 0x3C, 0x28
     .byte 0x77, 0xD1, 0x1F, 0x48, 0x29, 0x18, 0x08, 0x78, 0x0A, 0x30, 0x08, 0x70, 0x1D, 0x49, 0x68, 0x18
@@ -64143,7 +64143,7 @@ func_080C5648:
     .byte 0x49, 0x00
     bl SetTempo__23HardwareMusicPlayerSlotUs
     .byte 0x0D, 0x4A, 0xA8, 0x18, 0xBB, 0x21
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .byte 0x3F, 0xE0, 0x00, 0x00, 0x69, 0x09, 0x00, 0x00, 0x05, 0x09, 0x00, 0x00, 0x79, 0x09, 0x00, 0x00
     .byte 0xB5, 0x08, 0x00, 0x00, 0xC5, 0x08, 0x00, 0x00, 0xBC, 0x08, 0x00, 0x00, 0xC4, 0x08, 0x00, 0x00
     .byte 0x7F, 0x09, 0x00, 0x00, 0xDC, 0x7A, 0x10, 0x08, 0x9C, 0x08, 0x00, 0x00, 0x18, 0x08, 0x00, 0x00
@@ -64347,7 +64347,7 @@ func_080C7BF0: @ 0x080C7614
 	adds r0, r4, r1
 .L080C76E2:
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C7752
 .L080C76EA:
 	strb r6, [r5]
@@ -64380,11 +64380,11 @@ func_080C7BF0: @ 0x080C7614
 	lsls r2, r2, #4
 	adds r0, r4, r2
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r1, .L080C773C @ =0x00000818
 	adds r0, r4, r1
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r2, .L080C7740 @ =0x0000097F
 	adds r1, r4, r2
 	ldrb r0, [r1]
@@ -64426,7 +64426,7 @@ func_080C7BF0: @ 0x080C7614
 	lsls r1, r1, #4
 	adds r0, r4, r1
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C7784:
 	pop {r3, r4}
 	mov r8, r3
@@ -64451,7 +64451,7 @@ func_080C7D78: @ 0x080C779C
 	ldr r1, .L080C77C8 @ =0x0000081C
 	adds r0, r4, r1
 	movs r1, #0xb8
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r2, .L080C77CC @ =0x000008A4
 	adds r1, r4, r2
 	ldr r2, [r1]
@@ -64711,7 +64711,7 @@ func_080C797C:
     adds r0, r7, #0
     adds r0, #0x18
     movs r1, #1
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     str r4, [r7, #0x1c]
     str r4, [r7, #0x20]
     movs r1, #0xa9
@@ -65951,7 +65951,7 @@ func_080C9020: @ 0x080C8A2C
 	adds r0, r4, #0
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C8C6E
 .L080C8C44:
 	movs r0, #0xc
@@ -65976,7 +65976,7 @@ func_080C9020: @ 0x080C8A2C
 	adds r0, r4, #0
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C8C6E:
 	ldr r0, [r4, #0x1c]
 	movs r2, #0xc
@@ -66352,7 +66352,7 @@ func_080C9020: @ 0x080C8A2C
 	adds r0, r4, #0
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C90C0
 .L080C8F08:
 	movs r6, #0
@@ -66421,7 +66421,7 @@ func_080C9020: @ 0x080C8A2C
 	adds r0, r4, #0
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r2, #0xc9
 	lsls r2, r2, #3
 	adds r1, r4, r2
@@ -66525,7 +66525,7 @@ func_080C9020: @ 0x080C8A2C
 	adds r0, r4, #0
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r2, #0xc9
 	lsls r2, r2, #3
 	adds r1, r4, r2
@@ -68952,7 +68952,7 @@ func_080CA98C:
     ldr r0, [r5, #0x18]
     adds r0, #0x18
     movs r1, #0xcb
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     .Lauto_080CA2F6:
     add sp, #4
     pop {r4, r5, r6}
@@ -77969,15 +77969,15 @@ func_080A220C: @ 0x080A220C
 	adds r0, r7, #0
 	adds r0, #0x14
 	movs r1, #1
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	adds r0, r7, #0
 	adds r0, #0x18
 	movs r1, #0
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	adds r0, r7, #0
 	adds r0, #0x1c
 	movs r1, #2
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	adds r4, r7, #0
 	adds r4, #0x20
 	ldr r1, .L080A2460 @ =gUnk_0874F34C
@@ -78575,7 +78575,7 @@ func_080A25B0: @ 0x080A25B0
 	adds r0, r7, #0
 	adds r0, #0x1c
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080A27A6
 	.align 2, 0
 .L080A2768: .4byte 0x000001E5
@@ -78607,7 +78607,7 @@ func_080A25B0: @ 0x080A25B0
 	adds r0, r7, #0
 	adds r0, #0x1c
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080A27A6:
 	movs r0, #0xf2
 	lsls r0, r0, #1
@@ -96424,24 +96424,24 @@ func_080ADF6C: @ 0x080ADF6C
 	ldr r2, .L080AE4B8 @ =0x0000080C
 	adds r0, r6, r2
 	movs r1, #0
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r1, #0x81
 	lsls r1, r1, #4
 	adds r0, r6, r1
 	movs r1, #1
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r2, .L080AE4BC @ =0x00000814
 	adds r0, r6, r2
 	movs r1, #2
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r1, .L080AE4C0 @ =0x00000818
 	adds r0, r6, r1
 	movs r1, #3
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r2, .L080AE4C4 @ =0x0000081C
 	adds r0, r6, r2
 	movs r1, #4
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r1, #0x82
 	lsls r1, r1, #4
 	adds r0, r6, r1
@@ -96586,7 +96586,7 @@ func_080AE4E4: @ 0x080AE4E4
 	ldr r1, .L080AE584 @ =0x0000080C
 	adds r0, r7, r1
 	movs r1, #0x22
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r1, .L080AE588 @ =0x00000838
 	adds r0, r7, r1
 	ldr r0, [r0]
@@ -101214,7 +101214,7 @@ func_080B0708: @ 0x080B0708
 	ldr r0, .L080B0930 @ =0x00000814
 	add r0, sb
 	movs r1, #0xbb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080B0912:
 	add sp, #0x40
 	pop {r3, r4, r5}
@@ -102251,7 +102251,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	ldr r3, .L080B1164 @ =0x00000814
 	adds r0, r7, r3
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B1384
 	.align 2, 0
 .L080B115C: .4byte 0x00000864
@@ -102408,7 +102408,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	ldr r3, .L080B12B4 @ =0x00000814
 	adds r0, r7, r3
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B1384
 	.align 2, 0
 .L080B12AC: .4byte 0x00000878
@@ -102442,7 +102442,7 @@ sub_080B0CC0: @ 0x080B0CC0
 .L080B12E6:
 	adds r0, r7, r6
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B1384
 	.align 2, 0
 .L080B12F0: .4byte 0x00000844
@@ -102481,7 +102481,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	adds r0, r7, r2
 .L080B133A:
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B1384
 	.align 2, 0
 .L080B1344: .4byte 0x00000844
@@ -102651,7 +102651,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	ldr r2, .L080B14AC @ =0x00000814
 	adds r0, r7, r2
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B158E
 	.align 2, 0
 .L080B14A4: .4byte 0x00000848
@@ -102719,7 +102719,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	ldr r5, .L080B1548 @ =0x0000081C
 	adds r0, r7, r5
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B158E
 	.align 2, 0
 .L080B1534: .4byte 0x000008E1
@@ -102760,7 +102760,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	ldr r5, .L080B15F0 @ =0x00000814
 	adds r0, r7, r5
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080B158E:
 	movs r6, #1
 	add sl, r6
@@ -102906,7 +102906,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	ldr r1, .L080B16C4 @ =0x00000814
 	adds r0, r7, r1
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B16F4
 	.align 2, 0
 .L080B16BC: .4byte 0x00000884
@@ -103120,7 +103120,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	ldr r5, .L080B18A4 @ =0x00000814
 	adds r0, r7, r5
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080B1862:
 	ldr r0, [sp, #0xac]
 	add r0, sl
@@ -103190,7 +103190,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	subs r6, #0xcd
 	adds r0, r7, r6
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080B18F6:
 	ldr r0, [sp, #0xac]
 	add r0, sl
@@ -103245,7 +103245,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	adds r0, r7, r4
 .L080B1962:
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B199E
 	.align 2, 0
 .L080B196C: .4byte 0x000008E1
@@ -103329,7 +103329,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	ldr r1, .L080B1A20 @ =0x00000814
 	adds r0, r7, r1
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B1AD4
 	.align 2, 0
 .L080B1A18: .4byte 0x00000848
@@ -103720,7 +103720,7 @@ func_080B1D34: @ 0x080B1D34
 	ldr r1, .L080B1D8C @ =0x00000814
 	adds r0, r4, r1
 	movs r1, #0xbb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r3, .L080B1D90 @ =0x00000838
 	adds r0, r4, r3
 	ldr r0, [r0]
@@ -106172,7 +106172,7 @@ func_080B2114: @ 0x080B2114
 	ldr r0, .L080B3098 @ =0x00000814
 	add r0, sl
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r0, [r4]
 	ldr r1, [sp, #0x110]
 	movs r2, #0
@@ -106729,7 +106729,7 @@ func_080B2114: @ 0x080B2114
 	ldr r0, .L080B346C @ =0x00000814
 	add r0, sl
 	movs r1, #0xb7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B347A
 	.align 2, 0
 .L080B3464: .4byte 0x0000092B
@@ -106739,7 +106739,7 @@ func_080B2114: @ 0x080B2114
 	ldr r0, .L080B3490 @ =0x00000814
 	add r0, sl
 	movs r1, #0xb6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080B347A:
 	ldr r4, [sp, #0xf4]
 	cmp r4, #0xf0
@@ -107188,7 +107188,7 @@ func_080B36B4: @ 0x080B36B4
 	ldr r1, .L080B37FC @ =0x00000814
 	adds r0, r5, r1
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B3924
 	.align 2, 0
 .L080B37EC: .4byte 0x000008E1
@@ -107287,7 +107287,7 @@ func_080B36B4: @ 0x080B36B4
 	ldr r2, .L080B38CC @ =0x0000081C
 	adds r0, r5, r2
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B3924
 	.align 2, 0
 .L080B38B8: .4byte 0x000008E6
@@ -107337,7 +107337,7 @@ func_080B36B4: @ 0x080B36B4
 	ldr r4, .L080B3944 @ =0x00000814
 	adds r0, r5, r4
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080B3924:
 	adds r7, #1
 	cmp r7, #4
@@ -107549,7 +107549,7 @@ func_080B3A28: @ 0x080B3A28
 	ldr r1, .L080B3AD0 @ =0x00000814
 	adds r0, r4, r1
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B3B98
 	.align 2, 0
 .L080B3AB8: .4byte 0x00000844
@@ -107603,7 +107603,7 @@ func_080B3A28: @ 0x080B3A28
 	ldr r1, .L080B3B3C @ =0x00000814
 	adds r0, r4, r1
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B3B98
 	.align 2, 0
 .L080B3B30: .4byte 0x00000915
@@ -107614,7 +107614,7 @@ func_080B3A28: @ 0x080B3A28
 	ldr r2, .L080B3B78 @ =0x00000814
 	adds r0, r4, r2
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r1, [r5]
 	lsls r0, r1, #2
 	adds r0, r6, r0
@@ -107669,7 +107669,7 @@ func_080B3BA8: @ 0x080B3BA8
 	ldr r1, .L080B3BCC @ =0x00000818
 	adds r0, r4, r1
 	movs r1, #0xb8
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r0, .L080B3BD0 @ =0x0000083C
 	adds r1, r4, r0
 	ldr r0, [r1]
@@ -107842,25 +107842,25 @@ func_080B3CC8: @ 0x080B3CC8
 	ldr r1, .L080B4094 @ =0x00000704
 	adds r0, r6, r1
 	movs r1, #0
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r2, #0xe1
 	lsls r2, r2, #3
 	adds r0, r6, r2
 	movs r1, #1
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r3, .L080B4098 @ =0x0000070C
 	adds r0, r6, r3
 	movs r1, #2
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r4, #0xe2
 	lsls r4, r4, #3
 	adds r0, r6, r4
 	movs r1, #3
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r1, .L080B409C @ =0x00000714
 	adds r0, r6, r1
 	movs r1, #4
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r0, #4
 	bl __builtin_new
 	adds r4, r0, #0
@@ -108774,7 +108774,7 @@ func_080B44EC: @ 0x080B44EC
 	ldr r1, .L080B4548 @ =0x00000704
 	adds r0, r4, r1
 	movs r1, #0x21
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r1, .L080B454C @ =0x00000B32
 	adds r0, r4, r1
 	ldrb r0, [r0]
@@ -110588,7 +110588,7 @@ func_080B5318: @ 0x080B5318
 	ldr r1, .L080B53A8 @ =0x0000070C
 	adds r0, r4, r1
 	movs r1, #0xcc
-	bl func_08008B88
+	bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
 	b .L080B55BA
 	.align 2, 0
 .L080B53A4: .4byte 0x00000B3B
@@ -110602,7 +110602,7 @@ func_080B5318: @ 0x080B5318
 	ldr r1, .L080B53FC @ =0x0000070C
 	adds r0, r4, r1
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r2, #0x92
 	lsls r2, r2, #4
 	adds r0, r4, r2
@@ -110672,7 +110672,7 @@ func_080B5318: @ 0x080B5318
 	ldr r2, .L080B548C @ =0x0000070C
 	adds r0, r4, r2
 	movs r1, #0xcc
-	bl func_08008B88
+	bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
 	ldr r1, .L080B5490 @ =0x00000B3B
 	adds r0, r4, r1
 	movs r1, #0
@@ -110736,7 +110736,7 @@ func_080B5318: @ 0x080B5318
 	ldr r1, .L080B54F0 @ =0x0000070C
 	adds r0, r4, r1
 	movs r1, #0xa6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080B54CC:
 	ldrb r0, [r5]
 	cmp r0, #0x3b
@@ -116328,7 +116328,7 @@ func_080B7648: @ 0x080B7648
 	ldr r1, .L080B8024 @ =0x0000070C
 	adds r0, r7, r1
 	movs r1, #0xcc
-	bl func_08008B88
+	bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
 	adds r0, r7, #0
 	mov r1, sb
 	bl func_080B9B50
@@ -118869,7 +118869,7 @@ func_080B9428: @ 0x080B9428
 	ldr r2, .L080B9460 @ =0x0000070C
 	adds r0, r1, r2
 	movs r1, #0xcc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080B945A:
 	pop {r4}
 	pop {r0}
@@ -119158,7 +119158,7 @@ func_080B94A8: @ 0x080B94A8
 	lsls r7, r7, #3
 	adds r0, r5, r7
 	movs r1, #0xb5
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080B969C:
 	add sp, #0x28
 	pop {r3, r4, r5}
@@ -119442,7 +119442,7 @@ func_080B9844: @ 0x080B9844
 	lsls r6, r6, #3
 	adds r0, r4, r6
 	movs r1, #0xb5
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B9AAE
 .L080B98A0:
 	adds r1, r4, #0
@@ -120111,7 +120111,7 @@ func_080B9B50: @ 0x080B9B50
 	ldr r0, .L080B9DA4 @ =0x0000070C
 	add r0, r8
 	movs r1, #0xcc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080B9DF6
 	.align 2, 0
 .L080B9DA4: .4byte 0x0000070C
@@ -121285,7 +121285,7 @@ func_080BA608: @ 0x080BA608
 	ldr r1, .L080BA668 @ =0x00000714
 	adds r0, r4, r1
 	movs r1, #0xb8
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r3, .L080BA66C @ =0x00000B31
 	adds r2, r4, r3
 	ldrb r1, [r2]
@@ -121391,7 +121391,7 @@ func_080BA6B8: @ 0x080BA6B8
 	ldr r1, .L080BA72C @ =0x0000070C
 	adds r0, r4, r1
 	movs r1, #0xcc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080BA6F8:
 	adds r0, r4, #0
 	adds r0, #0xdc
@@ -126207,20 +126207,20 @@ func_080BC938: @ 0x080BC938
 	adds r2, #0x10
 	adds r0, r6, r2
 	movs r1, #0
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r1, .L080BCCB4 @ =0x0000057C
 	adds r0, r6, r1
 	movs r1, #1
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r2, #0xb0
 	lsls r2, r2, #3
 	adds r0, r6, r2
 	movs r1, #2
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r1, .L080BCCB8 @ =0x00000584
 	adds r0, r6, r1
 	movs r1, #3
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r2, #0xb1
 	lsls r2, r2, #3
 	adds r0, r6, r2
@@ -126385,7 +126385,7 @@ func_080BCCE0: @ 0x080BCCE0
 	lsls r1, r1, #3
 	adds r0, r7, r1
 	movs r1, #0x22
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r1, #0xb4
 	lsls r1, r1, #3
 	adds r0, r7, r1
@@ -130019,7 +130019,7 @@ func_080BE728: @ 0x080BE728
 	lsls r0, r0, #3
 	add r0, sb
 	movs r1, #0xbb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080BE93A:
 	add sp, #0x40
 	pop {r3, r4, r5}
@@ -130712,7 +130712,7 @@ func_080BEAD4: @ 0x080BEAD4
 	lsls r1, r1, #3
 	adds r0, r7, r1
 	movs r1, #0xbd
-	bl func_08008B88
+	bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
 	b .L080BF0C6
 	.align 2, 0
 .L080BEEE8: .4byte 0x00000609
@@ -130727,7 +130727,7 @@ func_080BEAD4: @ 0x080BEAD4
 	lsls r3, r3, #3
 	adds r0, r7, r3
 	movs r1, #0xbd
-	bl func_08008B88
+	bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
 .L080BEF06:
 	ldr r0, [sp, #0x14]
 	cmp r0, #0x1e
@@ -130784,7 +130784,7 @@ func_080BEAD4: @ 0x080BEAD4
 	lsls r3, r3, #3
 	adds r0, r7, r3
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080BEFDA
 	.align 2, 0
 .L080BEF7C: .4byte 0x0000060E
@@ -130852,7 +130852,7 @@ func_080BEAD4: @ 0x080BEAD4
 	lsls r2, r2, #3
 	adds r0, r7, r2
 	movs r1, #0xbd
-	bl func_08008B88
+	bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
 .L080BF002:
 	ldr r3, [sp, #0x14]
 	cmp r3, #0
@@ -130933,7 +130933,7 @@ func_080BEAD4: @ 0x080BEAD4
 	lsls r3, r3, #3
 	adds r0, r7, r3
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080BF0C0
 	.align 2, 0
 .L080BF0A4: .4byte 0x0000060E
@@ -131238,7 +131238,7 @@ func_080BF2EC: @ 0x080BF2EC
 	lsls r1, r1, #3
 	adds r0, r4, r1
 	movs r1, #0xbb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r3, #0xb4
 	lsls r3, r3, #3
 	adds r0, r4, r3
@@ -131704,7 +131704,7 @@ func_080BF348: @ 0x080BF348
 	lsls r2, r2, #3
 	adds r0, r5, r2
 	movs r1, #0xbd
-	bl func_08008B88
+	bl StartIfChangedOrInactive__23HardwareMusicPlayerSlotUs
 	b .L080BF730
 	.align 2, 0
 .L080BF694: .4byte 0x000005FB
@@ -133495,7 +133495,7 @@ func_080BF764: @ 0x080BF764
 	lsls r0, r0, #3
 	add r0, sl
 	movs r1, #0x6a
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r0, [r4]
 	add r1, sp, #0x28
 	movs r2, #0
@@ -134052,7 +134052,7 @@ func_080BF764: @ 0x080BF764
 	lsls r0, r0, #3
 	add r0, sl
 	movs r1, #0xb7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C08B4
 	.align 2, 0
 .L080C08A4: .4byte 0x0000060C
@@ -134061,7 +134061,7 @@ func_080BF764: @ 0x080BF764
 	lsls r0, r0, #3
 	add r0, sl
 	movs r1, #0xb6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C08B4:
 	ldr r4, [sp, #0xd8]
 	cmp r4, #0xf0
@@ -134174,7 +134174,7 @@ func_080C0910: @ 0x080C0910
 	subs r2, #0x89
 	adds r0, r4, r2
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C09AE
 	.align 2, 0
 .L080C098C: .4byte 0x000005F9
@@ -134190,7 +134190,7 @@ func_080C0910: @ 0x080C0910
 	lsls r1, r1, #3
 	adds r0, r4, r1
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C09AE:
 	ldr r2, .L080C09D0 @ =0x000005AC
 	adds r1, r4, r2
@@ -134575,7 +134575,7 @@ func_080C0CA4: @ 0x080C0CA4
 	ldr r1, .L080C0CD4 @ =0x00000584
 	adds r0, r4, r1
 	movs r1, #0xb8
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r0, .L080C0CD8 @ =0x000005A4
 	adds r1, r4, r0
 	ldr r0, [r1]
@@ -135201,7 +135201,7 @@ func_080C0DCC: @ 0x080C0DCC
 	lsls r1, r1, #4
 	adds r0, r6, r1
 	movs r1, #0
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r2, .L080C1224 @ =0x00000814
 	adds r0, r6, r2
 	b .L080C1228
@@ -135234,20 +135234,20 @@ func_080C0DCC: @ 0x080C0DCC
 .L080C1224: .4byte 0x00000814
 .L080C1228:
 	movs r1, #1
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r1, .L080C129C @ =0x00000818
 	adds r0, r6, r1
 	movs r1, #2
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r2, .L080C12A0 @ =0x0000081C
 	adds r0, r6, r2
 	movs r1, #3
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	movs r1, #0x82
 	lsls r1, r1, #4
 	adds r0, r6, r1
 	movs r1, #4
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	ldr r2, .L080C12A4 @ =0x00000824
 	adds r0, r6, r2
 	str r4, [r0]
@@ -135349,7 +135349,7 @@ func_080C12C4: @ 0x080C12C4
 	lsls r1, r1, #4
 	adds r0, r7, r1
 	movs r1, #0x22
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r1, .L080C1368 @ =0x0000089C
 	adds r0, r7, r1
 	ldr r0, [r0]
@@ -140499,7 +140499,7 @@ func_080C38E4: @ 0x080C38E4
 	ldr r0, .L080C3B14 @ =0x00000818
 	add r0, sb
 	movs r1, #0xbb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C3AF6:
 	add sp, #0x40
 	pop {r3, r4, r5}
@@ -141283,7 +141283,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	ldr r3, .L080C419C @ =0x00000818
 	adds r0, r7, r3
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	add r0, sp, #0x10
 	adds r1, r7, #0
 	movs r2, #1
@@ -141348,7 +141348,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	adds r0, r7, r3
 .L080C41F8:
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r5, #0x1f
 	bl .L080C5138
 	.align 2, 0
@@ -141529,7 +141529,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	subs r6, #0xa4
 	adds r0, r7, r6
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	add r0, sp, #0x20
 	adds r1, r7, #0
 	movs r2, #1
@@ -141591,7 +141591,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	ldr r1, .L080C4464 @ =0x00000818
 	adds r0, r7, r1
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	add r0, sp, #0x28
 	adds r1, r7, #0
 	movs r2, #0x17
@@ -141832,7 +141832,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	ldr r4, .L080C464C @ =0x00000818
 	adds r0, r7, r4
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r5, #1
 	bl .L080C5138
 	.align 2, 0
@@ -142075,11 +142075,11 @@ sub_080C3DC4: @ 0x080C3DC4
 	subs r4, #0x95
 	adds r0, r7, r4
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	subs r6, #0xad
 	adds r0, r7, r6
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	bl .L080C5028
 	.align 2, 0
 .L080C486C: .4byte 0x000008BC
@@ -142143,11 +142143,11 @@ sub_080C3DC4: @ 0x080C3DC4
 	subs r4, #0x9c
 	adds r0, r7, r4
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	subs r6, #0xac
 	adds r0, r7, r6
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C5028
 	.align 2, 0
 .L080C4908: .4byte 0x000008BC
@@ -142291,7 +142291,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	lsls r2, r2, #4
 	adds r0, r7, r2
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r3, #0x8c
 	lsls r3, r3, #4
 	adds r0, r7, r3
@@ -142402,7 +142402,7 @@ sub_080C4AE0: @ 0x080C4AE0
 	ldr r1, .L080C4B34 @ =0x00000818
 	adds r0, r7, r1
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	add r0, sp, #0x50
 	adds r1, r7, #0
 	movs r2, #5
@@ -142454,7 +142454,7 @@ sub_080C4AE0: @ 0x080C4AE0
 	ldr r3, .L080C4BA4 @ =0x00000818
 	adds r0, r7, r3
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	add r0, sp, #0x58
 	adds r1, r7, #0
 	movs r2, #0x17
@@ -142507,7 +142507,7 @@ sub_080C4BBC: @ 0x080C4BBC
 	ldr r6, .L080C4C10 @ =0x00000818
 	adds r0, r7, r6
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	add r0, sp, #0x60
 	adds r1, r7, #0
 	movs r2, #0xd
@@ -142709,7 +142709,7 @@ sub_080C4BBC: @ 0x080C4BBC
 	lsls r1, r1, #4
 	adds r0, r7, r1
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C5028
 	.align 2, 0
 .L080C4DA4: .4byte 0x000008BC
@@ -142782,7 +142782,7 @@ sub_080C4BBC: @ 0x080C4BBC
 	lsls r3, r3, #4
 	adds r0, r7, r3
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	subs r4, #0xad
 	adds r0, r7, r4
 	b .L080C4FAC
@@ -142815,7 +142815,7 @@ sub_080C4BBC: @ 0x080C4BBC
 	lsls r4, r4, #4
 	adds r0, r7, r4
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	adds r6, #0x10
 	adds r1, r7, r6
 	b .L080C5024
@@ -142871,7 +142871,7 @@ sub_080C4BBC: @ 0x080C4BBC
 	subs r4, #0xa4
 	adds r0, r7, r4
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	subs r6, #0x9d
 	adds r0, r7, r6
 	b .L080C4FAC
@@ -142950,12 +142950,12 @@ sub_080C4BBC: @ 0x080C4BBC
 	subs r6, #0x9c
 	adds r0, r7, r6
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r1, .L080C4FC4 @ =0x00000818
 	adds r0, r7, r1
 .L080C4FAC:
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C5138
 	.align 2, 0
 .L080C4FB4: .4byte 0x000008BC
@@ -143055,7 +143055,7 @@ sub_080C4BBC: @ 0x080C4BBC
 	lsls r3, r3, #4
 	adds r0, r7, r3
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C5138
 	.align 2, 0
 .L080C5074: .4byte 0x000008B5
@@ -143786,7 +143786,7 @@ func_080C5378: @ 0x080C5378
 	ldr r3, .L080C5564 @ =0x00000818
 	adds r0, r6, r3
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r4, .L080C5568 @ =0x000008CA
 	add r4, r8
 	ldrb r2, [r4]
@@ -143977,7 +143977,7 @@ func_080C5648: @ 0x080C5648
 	ldr r1, .L080C5708 @ =0x00000818
 	adds r0, r5, r1
 	movs r1, #0xbb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r3, .L080C570C @ =0x0000089C
 	adds r0, r5, r3
 	ldr r0, [r0]
@@ -147531,7 +147531,7 @@ func_080C608C: @ 0x080C608C
 	lsls r0, r0, #4
 	add r0, sl
 	movs r1, #0xbf
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C7210
 	.align 2, 0
 .L080C7200: .4byte 0x0000096B
@@ -147540,7 +147540,7 @@ func_080C608C: @ 0x080C608C
 	lsls r0, r0, #4
 	add r0, sl
 	movs r1, #0xc0
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C7210:
 	ldr r4, [sp, #0x114]
 	ldr r5, [sp, #0x130]
@@ -148106,7 +148106,7 @@ func_080C608C: @ 0x080C608C
 	ldr r0, .L080C7664 @ =0x00000818
 	add r0, sl
 	movs r1, #0xb7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C7672
 	.align 2, 0
 .L080C765C: .4byte 0x0000096D
@@ -148116,7 +148116,7 @@ func_080C608C: @ 0x080C608C
 	ldr r0, .L080C7684 @ =0x00000818
 	add r0, sl
 	movs r1, #0xb6
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C7672:
 	ldr r4, [sp, #0x100]
 	cmp r4, #0xf0
@@ -148580,7 +148580,7 @@ func_080C76D4: @ 0x080C76D4
 	lsls r1, r1, #4
 	adds r0, r5, r1
 	movs r1, #0x6c
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C7A0E:
 	ldr r4, .L080C7A9C @ =0x00000979
 	adds r2, r5, r4
@@ -148645,7 +148645,7 @@ func_080C76D4: @ 0x080C76D4
 	ldr r2, .L080C7ABC @ =0x00000818
 	adds r0, r5, r2
 	movs r1, #0xbb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C7B12
 	.align 2, 0
 .L080C7A94: .4byte 0x00000969
@@ -148925,7 +148925,7 @@ func_080C7BF0: @ 0x080C7BF0
 	adds r0, r4, r1
 .L080C7CBE:
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C7D2E
 .L080C7CC6:
 	strb r6, [r5]
@@ -148958,11 +148958,11 @@ func_080C7BF0: @ 0x080C7BF0
 	lsls r2, r2, #4
 	adds r0, r4, r2
 	movs r1, #0xbc
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r1, .L080C7D18 @ =0x00000818
 	adds r0, r4, r1
 	movs r1, #0xbe
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r2, .L080C7D1C @ =0x0000097F
 	adds r1, r4, r2
 	ldrb r0, [r1]
@@ -149004,7 +149004,7 @@ func_080C7BF0: @ 0x080C7BF0
 	lsls r1, r1, #4
 	adds r0, r4, r1
 	movs r1, #0xc7
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C7D60:
 	pop {r3, r4}
 	mov r8, r3
@@ -149029,7 +149029,7 @@ func_080C7D78: @ 0x080C7D78
 	ldr r1, .L080C7DA4 @ =0x0000081C
 	adds r0, r4, r1
 	movs r1, #0xb8
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r2, .L080C7DA8 @ =0x000008A4
 	adds r1, r4, r2
 	ldr r2, [r1]
@@ -149293,7 +149293,7 @@ func_080C7F58: @ 0x080C7F58
 	adds r0, r7, #0
 	adds r0, #0x18
 	movs r1, #1
-	bl func_08008B54
+	bl __23HardwareMusicPlayerSlotUc
 	str r4, [r7, #0x1c]
 	str r4, [r7, #0x20]
 	movs r1, #0xa9
@@ -151637,7 +151637,7 @@ func_080C9020: @ 0x080C9020
 	adds r0, r4, #0
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C9262
 .L080C9238:
 	movs r0, #0xc
@@ -151662,7 +151662,7 @@ func_080C9020: @ 0x080C9020
 	adds r0, r4, #0
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080C9262:
 	ldr r0, [r4, #0x1c]
 	movs r2, #0xc
@@ -152038,7 +152038,7 @@ func_080C9020: @ 0x080C9020
 	adds r0, r4, #0
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	b .L080C96B4
 .L080C94FC:
 	movs r6, #0
@@ -152107,7 +152107,7 @@ func_080C9020: @ 0x080C9020
 	adds r0, r4, #0
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r2, #0xc9
 	lsls r2, r2, #3
 	adds r1, r4, r2
@@ -152211,7 +152211,7 @@ func_080C9020: @ 0x080C9020
 	adds r0, r4, #0
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	movs r2, #0xc9
 	lsls r2, r2, #3
 	adds r1, r4, r2
@@ -154948,7 +154948,7 @@ func_080CA98C: @ 0x080CA98C
 	ldr r0, [r5, #0x18]
 	adds r0, #0x18
 	movs r1, #0xcb
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 .L080CAAE6:
 	add sp, #4
 	pop {r4, r5, r6}

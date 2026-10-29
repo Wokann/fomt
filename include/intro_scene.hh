@@ -105,7 +105,7 @@ struct IntroSceneCore
 {
     HardwareCoreState * hardware_state;
     IntroSceneCoreVTable const * vtable;
-    MusicPlayer * music_players[2];
+    HardwareMusicPlayerSlot music_players[2];
     IntroSceneUnpackedResources unpacked_resources;
     IndexedResourceArchive intro_archive;
     IndexedResourceArchive small_archive;
@@ -153,6 +153,8 @@ struct IntroSceneCore
     i16 startup_phase;
 };
 
+typedef char IntroSceneCoreMusicPlayersOffsetCheck[offsetof(IntroSceneCore, music_players) == 8 ? 1 : -1];
+typedef char IntroSceneCoreMusicPlayersSizeCheck[sizeof(((IntroSceneCore *)0)->music_players) == 8 ? 1 : -1];
 typedef char IntroSceneCoreSizeCheck[(sizeof(IntroSceneCore) == 0x6D34) ? 1 : -1];
 typedef char IntroSceneCoreContinuationOffsetCheck[(offsetof(IntroSceneCore, continuation) == 0x6C6E) ? 1 : -1];
 typedef char IntroSceneCoreRunStateOffsetCheck[(offsetof(IntroSceneCore, run_state) == 0x6D28) ? 1 : -1];

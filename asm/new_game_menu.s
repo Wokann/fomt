@@ -870,7 +870,7 @@ RunNewGameMenuCore:
     adds	r0, r6, #0
     adds	r0, #24
     movs	r1, #198
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     movs	r0, #0
     str	r0, [r4, #0]
     adds	r0, r6, #0
@@ -892,7 +892,7 @@ RunNewGameMenuCore:
     adds	r0, r6, #0
     adds	r0, #24
     movs	r1, #198
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     add	r4, sp, #80
     b.n .Ljp_08004B0A
 .Ljp_080047C6:
@@ -924,7 +924,7 @@ RunNewGameMenuCore:
     adds	r0, r6, #0
     adds	r0, #24
     movs	r1, #197
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     b.n .Ljp_0800468C
 .Ljp_0800480A:
     cmp	r7, #1
@@ -977,7 +977,7 @@ RunNewGameMenuCore:
     adds	r0, r6, #0
     adds	r0, #24
     movs	r1, #199
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     b.n .Ljp_0800468C
     .align 2, 0
 .Ljp_08004878: .4byte gText_NewGameStatus_NoSavedData
@@ -1267,7 +1267,7 @@ RunNewGameMenuCore:
     adds	r0, r6, #0
     adds	r0, #24
     movs	r1, #203
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     b.n .Ljp_0800468C
 .Ljp_08004AB6:
     adds	r4, r6, #0
@@ -1314,7 +1314,7 @@ RunNewGameMenuCore:
 .Ljp_08004B0A:
     adds	r0, r4, #0
     movs	r1, #0
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     adds	r0, r4, #0
     movs	r1, #2
     bl FadeOut__23HardwareMusicPlayerSlotUs
@@ -1323,7 +1323,7 @@ RunNewGameMenuCore:
     adds	r0, r6, #0
     adds	r0, #24
     movs	r1, #197
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     adds	r0, r6, #0
     bl UpdateNewGameMenuStatusText
     movs	r0, #0
@@ -2227,7 +2227,7 @@ RunNewGameMenuCore: @ 0x08004570
     adds r0, r6, #0
     adds r0, #0x18
     movs r1, #0xc6
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     movs r0, #0
     str r0, [r4]
     adds r0, r6, #0
@@ -2249,7 +2249,7 @@ RunNewGameMenuCore: @ 0x08004570
     adds r0, r6, #0
     adds r0, #0x18
     movs r1, #0xc6
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     add r4, sp, #0x50
     b .L08004AF2
 .L080047AE:
@@ -2281,7 +2281,7 @@ RunNewGameMenuCore: @ 0x08004570
     adds r0, r6, #0
     adds r0, #0x18
     movs r1, #0xc5
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     b .L08004674
 .L080047F2:
     cmp r7, #1
@@ -2334,7 +2334,7 @@ RunNewGameMenuCore: @ 0x08004570
     adds r0, r6, #0
     adds r0, #0x18
     movs r1, #0xc7
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     b .L08004674
     .align 2, 0
 .L08004860: .4byte gText_NewGameStatus_NoSavedData
@@ -2624,7 +2624,7 @@ RunNewGameMenuCore: @ 0x08004570
     adds r0, r6, #0
     adds r0, #0x18
     movs r1, #0xcb
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     b .L08004674
 .L08004A9E:
     adds r4, r6, #0
@@ -2671,7 +2671,7 @@ RunNewGameMenuCore: @ 0x08004570
 .L08004AF2:
     adds r0, r4, #0
     movs r1, #0
-    bl func_08008B54
+    bl __23HardwareMusicPlayerSlotUc
     adds r0, r4, #0
     movs r1, #2
     bl FadeOut__23HardwareMusicPlayerSlotUs
@@ -2680,7 +2680,7 @@ RunNewGameMenuCore: @ 0x08004570
     adds r0, r6, #0
     adds r0, #0x18
     movs r1, #0xc5
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     adds r0, r6, #0
     bl UpdateNewGameMenuStatusText
     movs r0, #0

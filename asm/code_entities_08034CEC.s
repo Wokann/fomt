@@ -10088,7 +10088,7 @@ func_0803A350:
 .Ljp_0803A11A:
     lsls	r1, r6, #16
     lsrs	r1, r1, #16
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     pop	{r4, r5, r6}
     pop	{r0}
     bx	r0
@@ -20667,7 +20667,7 @@ func_0803A350:
 .Leu_0803A39A:
     lsls	r1, r6, #16
     lsrs	r1, r1, #16
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     pop	{r4, r5, r6}
     pop	{r0}
     bx	r0
@@ -31392,7 +31392,7 @@ func_0803A350:
 .Lde_0803A29A:
     lsls	r1, r6, #16
     lsrs	r1, r1, #16
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     pop	{r4, r5, r6}
     pop	{r0}
     bx	r0
@@ -42116,7 +42116,7 @@ func_0803A350:
 .Lus_0803A386:
     lsls	r1, r6, #16
     lsrs	r1, r1, #16
-    bl func_08008B6C
+    bl Start__23HardwareMusicPlayerSlotUs
     pop	{r4, r5, r6}
     pop	{r0}
     bx	r0

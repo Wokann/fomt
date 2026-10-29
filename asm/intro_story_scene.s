@@ -49,7 +49,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	adds r0, r5, #0
 	adds r0, #0x18
 	movs r1, #0x25
-	bl func_08008B6C
+	bl Start__23HardwareMusicPlayerSlotUs
 	ldr r0, [sp, #4]
 	ldr r1, .L0805EF04 @ =0x00000889
 	adds r0, #0xc
