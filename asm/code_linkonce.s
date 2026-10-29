@@ -6088,27 +6088,11 @@ func_080DE1B4:
     pop {r0}
     bx r0
     .4byte __vt_22EntityVisualController
-    .section .text.script_text_variables_after, "ax", %progbits
+    .section .text.script_scene_runtime, "ax", %progbits
     .align 2, 0
-    .global func_080DE280
+    .global __thunk_12_OnCall__11ScriptScenei
     .thumb_func
-func_080DE280:
-    push {lr}
-    subs r0, #4
-    bl func_080E0908
-    pop {r0}
-    bx r0
-    .global func_080DE28C
-    .thumb_func
-func_080DE28C:
-    push {lr}
-    subs r0, #0xc
-    bl func_080E0908
-    pop {r0}
-    bx r0
-    .global func_080DE298
-    .thumb_func
-func_080DE298:
+__thunk_12_OnCall__11ScriptScenei:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -6714,9 +6698,9 @@ func_080DE298:
     bx r1
     .byte 0x00, 0x00
 
-    .global func_080E0094
+    .global Run__11ScriptScene
     .thumb_func
-func_080E0094:
+Run__11ScriptScene:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -7452,93 +7436,6 @@ func_080E0094:
     b loc_080DFBFE
     .byte 0x1F, 0x98, 0x2B, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC
     .byte 0x08, 0x47, 0x00, 0x00
-    .global func_080E0908
-    .thumb_func
-func_080E0908:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, [pc, #0x94]
-    str r0, [r4, #8]
-    movs r0, #0xd6
-    lsls r0, r0, #2
-    adds r1, r4, r0
-    ldr r0, [pc, #0x8c]
-    str r0, [r1]
-    ldr r0, [pc, #0x8c]
-    str r0, [r4]
-    movs r1, #0xe2
-    lsls r1, r1, #2
-    adds r0, r4, r1
-    ldr r0, [r0]
-    cmp r0, #0
-    beq .Lauto_080E00D0
-    bl free
-    .Lauto_080E00D0:
-    movs r1, #0xdc
-    lsls r1, r1, #2
-    adds r0, r4, r1
-    ldr r0, [r0]
-    cmp r0, #0
-    beq .Lauto_080E00E2
-    movs r1, #3
-    bl _._23HardwareBlendController
-    .Lauto_080E00E2:
-    movs r1, #0xdb
-    lsls r1, r1, #2
-    adds r0, r4, r1
-    ldr r0, [r0]
-    cmp r0, #0
-    beq .Lauto_080E00F4
-    movs r1, #3
-    bl _._12UiStateOwner
-    .Lauto_080E00F4:
-    movs r1, #0xda
-    lsls r1, r1, #2
-    adds r0, r4, r1
-    ldr r1, [r0]
-    cmp r1, #0
-    beq .Lauto_080E010C
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080E010C:
-    movs r1, #0xd7
-    lsls r1, r1, #2
-    adds r0, r4, r1
-    ldr r1, [r0]
-    cmp r1, #0
-    beq .Lauto_080E0124
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080E0124:
-    adds r0, r4, #0
-    adds r0, #0xc
-    movs r1, #0
-    bl _._13AScriptEngine
-    adds r0, r4, #4
-    movs r1, #0
-    bl _._17HardwareBootstrap
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x48, 0x6B, 0x0E, 0x08, 0x54, 0x6B, 0x0E, 0x08, 0x68, 0x6B, 0x0E, 0x08
-    .global func_080E09B0
-    .thumb_func
-func_080E09B0:
-    push {lr}
-    bl _._6AScene
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
     .section .text.after_script_scene_transition_cleanup, "ax", %progbits
     .align 2, 0
     .global func_080E09E4
@@ -18512,27 +18409,10 @@ func_080DE1B4: @ 0x080DE1B4
 	bx r0
 	.align 2, 0
 .L080DE21C: .4byte __vt_22EntityVisualController
-    .section .text.script_text_variables_after, "ax", %progbits
+    .section .text.script_scene_runtime, "ax", %progbits
     .align 2, 0
-
-	thumb_func_start func_080DE280
-func_080DE280: @ 0x080DE280
-	push {lr}
-	subs r0, #4
-	bl func_080E0908
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_080DE28C
-func_080DE28C: @ 0x080DE28C
-	push {lr}
-	subs r0, #0xc
-	bl func_080E0908
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_080DE298
-func_080DE298: @ 0x080DE298
+	thumb_func_start __thunk_12_OnCall__11ScriptScenei
+__thunk_12_OnCall__11ScriptScenei: @ 0x080DE298
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -22193,8 +22073,8 @@ sub_080DFE84: @ 0x080DFE84
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080E0094
-func_080E0094: @ 0x080E0094
+	thumb_func_start Run__11ScriptScene
+Run__11ScriptScene: @ 0x080E0094
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -23284,96 +23164,6 @@ func_080E0094: @ 0x080E0094
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-	.align 2, 0
-
-	thumb_func_start func_080E0908
-func_080E0908: @ 0x080E0908
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L080E09A4 @ =vtable_unk_080E7708
-	str r0, [r4, #8]
-	movs r0, #0xd6
-	lsls r0, r0, #2
-	adds r1, r4, r0
-	ldr r0, .L080E09A8 @ =vtable_unk_080E7714
-	str r0, [r1]
-	ldr r0, .L080E09AC @ =vtable_unk_080E7728
-	str r0, [r4]
-	movs r1, #0xe2
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	ldr r0, [r0]
-	cmp r0, #0
-	beq .L080E0930
-	bl free
-.L080E0930:
-	movs r1, #0xdc
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	ldr r0, [r0]
-	cmp r0, #0
-	beq .L080E0942
-	movs r1, #3
-	bl _._23HardwareBlendController
-.L080E0942:
-	movs r1, #0xdb
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	ldr r0, [r0]
-	cmp r0, #0
-	beq .L080E0954
-	movs r1, #3
-	bl _._12UiStateOwner
-.L080E0954:
-	movs r1, #0xda
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	ldr r1, [r0]
-	cmp r1, #0
-	beq .L080E096C
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080E096C:
-	movs r1, #0xd7
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	ldr r1, [r0]
-	cmp r1, #0
-	beq .L080E0984
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080E0984:
-	adds r0, r4, #0
-	adds r0, #0xc
-	movs r1, #0
-	bl _._13AScriptEngine
-	adds r0, r4, #4
-	movs r1, #0
-	bl _._17HardwareBootstrap
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E09A4: .4byte vtable_unk_080E7708
-.L080E09A8: .4byte vtable_unk_080E7714
-.L080E09AC: .4byte vtable_unk_080E7728
-
-	thumb_func_start func_080E09B0
-func_080E09B0: @ 0x080E09B0
-	push {lr}
-	bl _._6AScene
-	pop {r0}
-	bx r0
 	.align 2, 0
 
     .section .text.after_script_scene_transition_cleanup, "ax", %progbits

@@ -4001,57 +4001,6 @@ extern RawVTableFunction const vtable_unk_080E76D4[]
         func_080DE134,
     };
 
-extern void func_080DE280(void);
-
-// Preserve this offset-bearing three-word table in ROM order.
-extern RawVTableWithOffset const vtable_unk_080E7708
-    SECTION(".rodata.vtable_7708") = {
-        -4,
-        {
-            nullptr,
-            func_080DE280,
-        },
-    };
-
-extern void func_080DE28C(void);
-extern void method_0803EFD8__13AScriptEngine(void);
-extern void func_080DE298(void);
-
-// Preserve this offset-bearing five-word table in ROM order.
-extern RawVTableWithOffsetFourEntries const vtable_unk_080E7714
-    SECTION(".rodata.vtable_7714") = {
-        -12,
-        {
-            nullptr,
-            func_080DE28C,
-            method_0803EFD8__13AScriptEngine,
-            func_080DE298,
-        },
-    };
-
-extern void func_080E0908(void);
-extern void func_080E0094(void);
-
-// Preserve this four-slot table and its exact callbacks in ROM order.
-extern RawVTableFunction const vtable_unk_080E7728[]
-    SECTION(".rodata.vtable_7728") = {
-        nullptr,
-        nullptr,
-        func_080E0908,
-        func_080E0094,
-    };
-
-extern void func_080E09B0(void);
-
-// Preserve this four-slot table and its exact callbacks in ROM order.
-extern RawVTableFunction const vtable_unk_080E7738[]
-    SECTION(".rodata.vtable_7738") = {
-        nullptr,
-        nullptr,
-        func_080E09B0,
-        __pure_virtual,
-    };
-
 extern void func_0803B840(void);
 extern void func_080E0A7C(void);
 
