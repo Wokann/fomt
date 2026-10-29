@@ -607,7 +607,7 @@ func_0803B660:
 .Ljp_0803B82C:
     .4byte gUiSharedTiles
 .Ljp_0803B830:
-    .4byte vtable_unk_080E7768
+    .4byte __vt_29UiTextWindowTileUploadCommand
 .Ljp_0803B834:
     .4byte __vt_25UiTextWindowBorderCommand
 .Ljp_0803B838:
@@ -5741,7 +5741,7 @@ func_0803B8CC:
 .Leu_0803BAAC:
     .4byte gUiSharedTiles
 .Leu_0803BAB0:
-    .4byte vtable_unk_080E7768
+    .4byte __vt_29UiTextWindowTileUploadCommand
 .Leu_0803BAB4:
     .4byte __vt_25UiTextWindowBorderCommand
 .Leu_0803BAB8:
@@ -10910,7 +10910,7 @@ func_0803B8CC:
 .Lde_0803B9AC:
     .4byte gUiSharedTiles
 .Lde_0803B9B0:
-    .4byte vtable_unk_080E7768
+    .4byte __vt_29UiTextWindowTileUploadCommand
 .Lde_0803B9B4:
     .4byte __vt_25UiTextWindowBorderCommand
 .Lde_0803B9B8:
@@ -16053,7 +16053,7 @@ func_0803B8CC:
 .Lus_0803BA98:
     .4byte gUiSharedTiles
 .Lus_0803BA9C:
-    .4byte vtable_unk_080E7768
+    .4byte __vt_29UiTextWindowTileUploadCommand
 .Lus_0803BAA0:
     .4byte __vt_25UiTextWindowBorderCommand
 .Lus_0803BAA4:

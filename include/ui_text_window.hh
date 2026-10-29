@@ -41,6 +41,23 @@ typedef char UiTextWindowBorderStyleSizeCheck[sizeof(UiTextWindowBorderStyle) ==
 typedef char UiTextWindowBorderCommandSizeCheck[sizeof(UiTextWindowBorderCommand) == 32 ? 1 : -1];
 typedef char UiTextWindowBorderCommandStyleCheck[offsetof(UiTextWindowBorderCommand, style) == 28 ? 1 : -1];
 
+// The enabled mode alternates the two pixel-nibble masks on each queued run.
+// It requires a nonzero tile count and an initial phase of zero or one.
+// Completion copies the original full tile data and removes the command.
+struct UiTextWindowTileUploadCommand : HardwareLinkBase {
+    virtual bool Run() SECTION(".text.ui_text_window_tile_upload");
+    u32 const * source;
+    u32 * destination;
+    u8 tile_count;
+    u8 dither;
+    u8 phase;
+};
+
+typedef char UiTextWindowTileUploadSizeCheck[sizeof(UiTextWindowTileUploadCommand) == 24 ? 1 : -1];
+typedef char UiTextWindowTileUploadSourceCheck[offsetof(UiTextWindowTileUploadCommand, source) == 0xC ? 1 : -1];
+typedef char UiTextWindowTileUploadCountCheck[offsetof(UiTextWindowTileUploadCommand, tile_count) == 0x14 ? 1 : -1];
+typedef char UiTextWindowTileUploadPhaseCheck[offsetof(UiTextWindowTileUploadCommand, phase) == 0x16 ? 1 : -1];
+
 #pragma implementation
 #endif
 

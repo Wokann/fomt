@@ -945,8 +945,9 @@ SECTIONS
         src/script_scene.o(.gnu.linkonce.t._._15ScriptSceneBase);
         src/script_scene.o(.gnu.linkonce.t._._21ScriptSceneTransition);
         src/script_scene.o(.text.Push__11ScriptScenei);
-        asm/code_linkonce.o(.text.after_script_scene_transition_cleanup);
+        src/ui_text_window.o(.text.ui_text_window_tile_upload);
         src/ui_text_window.o(.gnu.linkonce.t._._25UiTextWindowBorderCommand);
+        src/ui_text_window.o(.gnu.linkonce.t._._29UiTextWindowTileUploadCommand);
         asm/code_linkonce.o(.text.after_ui_text_window_border_cleanup);
         src/hardware_dma_link.o(.text.Run__19HardwareDmaCopyLink .gnu.linkonce.t._._19HardwareDmaCopyLink);
         src/map_clock_status.o(.gnu.linkonce.t._._21MapClockStatusHudData);
@@ -1127,7 +1128,7 @@ SECTIONS
         . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_15ScriptSceneBase);
         . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_21ScriptSceneTransition);
         . = ALIGN(4); src/ui_text_window.o(.gnu.linkonce.d.__vt_25UiTextWindowBorderCommand);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_7768);
+        . = ALIGN(4); src/ui_text_window.o(.gnu.linkonce.d.__vt_29UiTextWindowTileUploadCommand);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7778);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_77a4);
         . = ALIGN(4); src/hardware_dma_link.o(.gnu.linkonce.d.__vt_19HardwareDmaCopyLink);
