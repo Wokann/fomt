@@ -910,15 +910,6 @@ SceneTransitionOwner PoultryFarmShopScene::Run()
     return continuation;
 }
 
-SceneTransitionOwner ClinicShopScene::Run()
-{
-#if defined(REGION_JP)
-    func_0807E0C0(core);
-#else
-    func_0807E558(core);
-#endif
-    return continuation;
-}
 
 SceneTransitionOwner InnShopScene::Run()
 {
@@ -1194,15 +1185,6 @@ SceneOwner BeachCafeShopTransition::CreateScene()
 #endif
 }
 
-SceneOwner ClinicShopTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(func_0807E97C(::operator new(sizeof(ClinicShopScene)), &next, save));
-#else
-    return SceneOwner(func_0807EE14(::operator new(sizeof(ClinicShopScene)), &next, save));
-#endif
-}
 
 // These late scene factories stay in native ROM order. Returning a temporary
 // owner preserves the original two-word ownership-transfer ABI.

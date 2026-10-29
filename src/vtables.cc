@@ -25,7 +25,6 @@ extern void DestroySavedNameEntryTransition(void) asm("_._24SavedNameEntryTransi
 extern void Run__18ReferencePageScene(void);
 extern void Run__16SupermarketScene(void);
 extern void Run__24SupermarketPurchaseScene(void);
-extern void Run__15ClinicShopScene(void);
 extern void Run__12InnShopScene(void);
 extern void Run__12WonShopScene(void);
 extern void Run__15WineryShopScene(void);
@@ -150,7 +149,6 @@ extern void func_0807CD30(void);
 extern void func_0807D8D0(void);
 extern void func_0807DFE0(void);
 extern void func_0807E070(void);
-extern void func_0807E9AC(void);
 extern void func_0807EA3C(void);
 extern void func_0807F118(void);
 extern void func_0807F1D8(void);
@@ -413,7 +411,6 @@ extern void func_0807D1C8(void);
 extern void func_0807E478(void);
 extern void func_0807DD68(void);
 extern void func_0807E508(void);
-extern void func_0807EE44(void);
 extern void func_0807EED4(void);
 extern void func_0807F5B0(void);
 extern void func_0807F670(void);
@@ -977,7 +974,7 @@ extern RawVTableFunction const __vt_23CarpenterShopTransition[] = {
     CreateScene__23CarpenterShopTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5E04[] = {
+extern RawVTableFunction const __vt_20ClinicShopTransition[] = {
     nullptr,
     nullptr,
     DestroyClinicShopTransition,
@@ -4752,42 +4749,24 @@ extern RawVTableFunction const vtable_unk_080E7C30[]
 #endif
     };
 
-#if defined(REGION_JP)
-// This physical final null word is a separately referenced JP table tail.
-// Keeping it as its own object gives callers a real relocation target at the
-// original address, without a vtable + offset alias.
-extern RawVTableFunction const vtable_unk_080E7C30_NullTail[]
-    SECTION(".rodata.vtable_7c30") = {
-        nullptr,
-    };
-#endif
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7C40[]
     SECTION(".rodata.vtable_7c40") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_0807E9AC,
-        Run__15ClinicShopScene,
-#else
         nullptr,
         nullptr,
         func_0807E508,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7C4C[]
     SECTION(".rodata.vtable_7c4c") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_0807EA3C,
-#else
-        nullptr,
-        nullptr,
-        func_0807EE44,
-        Run__15ClinicShopScene,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7C4C_NullTail[]

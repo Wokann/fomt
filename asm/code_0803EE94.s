@@ -1288,8 +1288,10 @@ OnCall__12ScriptEnginei:
     bl OpenBlacksmithShop__9GameScene
     .byte 0xFF, 0xF7, 0xEC, 0xFA
 .LScriptCallJp_090:
-    .byte 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68
-    .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xE4, 0xFA, 0xD1, 0xF7, 0x2B, 0xF8, 0xFF, 0xF7, 0xE0, 0xFA
+    .byte 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
+    .byte 0xFF, 0xF7, 0xE4, 0xFA
+    bl OpenClinicShop__9GameScene
+    .byte 0xFF, 0xF7, 0xE0, 0xFA
 .LScriptCallJp_091:
     .byte 0xD5, 0x22, 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xD8, 0xFA
     .byte 0xD1, 0xF7, 0x69, 0xF8, 0xFF, 0xF7, 0xD4, 0xFA
@@ -83111,9 +83113,9 @@ func_0807DFE0:
     .section .text.after_supermarket_purchase_scene_run, "ax", %progbits
     .align 2, 0
 
-    .global func_0807E03C
+    .global ConstructClinicShopSceneCore
     .thumb_func
-func_0807E03C:
+ConstructClinicShopSceneCore:
     push {r4, lr}
     adds r4, r0, #0
     bl func_080C797C
@@ -83179,9 +83181,9 @@ func_0807E084:
     .align 2, 0
 .Ljp_0807E0BC: .4byte gClinicCatalog
 
-.global func_0807E0C0
+.global RunClinicShopSceneCore
 .thumb_func
-func_0807E0C0: @ 0x0807E0C0
+RunClinicShopSceneCore: @ 0x0807E0C0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -84230,67 +84232,6 @@ func_0807E0C0: @ 0x0807E0C0
 	bx r0
 	.align 2, 0
 .Ljp_0807E978: .4byte __vt_23IndexedResourceProvider
-
-.global func_0807E97C
-.thumb_func
-func_0807E97C: @ 0x0807E97C
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .Ljp_0807E9A8
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0807E03C
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_0807E9A8: .4byte vtable_unk_080E7C30_NullTail
-
-.global func_0807E9AC
-.thumb_func
-func_0807E9AC: @ 0x0807E9AC
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .Ljp_0807E9E8
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .Ljp_0807E9C8
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_0807E9C8:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .Ljp_0807E9DA
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_0807E9DA:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_0807E9E8: .4byte vtable_unk_080E7C30_NullTail
 
     .section .text.after_clinic_shop_scene_run, "ax", %progbits
     .align 2, 0
@@ -122317,7 +122258,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L080420C2
 	bl .L0804168A
 .L080420C2:
-	bl func_08012EC0
+	bl OpenClinicShop__9GameScene
 	bl .L0804168A
 .L080420CA:
 	movs r2, #0xd5
@@ -235305,8 +235246,8 @@ func_0807E478: @ 0x0807E478
     .section .text.after_supermarket_purchase_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_0807E4D4
-func_0807E4D4: @ 0x0807E4D4
+	thumb_func_start ConstructClinicShopSceneCore
+ConstructClinicShopSceneCore: @ 0x0807E4D4
 	push {r4, lr}
 	adds r4, r0, #0
 	bl func_080C7F58
@@ -235371,8 +235312,8 @@ func_0807E51C: @ 0x0807E51C
 	.align 2, 0
 .L0807E554: .4byte gClinicCatalog
 
-	thumb_func_start func_0807E558
-func_0807E558: @ 0x0807E558
+	thumb_func_start RunClinicShopSceneCore
+RunClinicShopSceneCore: @ 0x0807E558
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -236421,65 +236362,6 @@ func_0807E558: @ 0x0807E558
 	bx r0
 	.align 2, 0
 .L0807EE10: .4byte __vt_23IndexedResourceProvider
-
-	thumb_func_start func_0807EE14
-func_0807EE14: @ 0x0807EE14
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0807EE40 @ =vtable_unk_080E7C4C
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0807E4D4
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0807EE40: .4byte vtable_unk_080E7C4C
-
-	thumb_func_start func_0807EE44
-func_0807EE44: @ 0x0807EE44
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L0807EE80 @ =vtable_unk_080E7C4C
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L0807EE60
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0807EE60:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L0807EE72
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0807EE72:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0807EE80: .4byte vtable_unk_080E7C4C
 
     .section .text.after_clinic_shop_scene_run, "ax", %progbits
     .align 2, 0

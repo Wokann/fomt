@@ -274,12 +274,14 @@ struct GameSceneResumeRequest {
         AFTER_WON_SHOP = 11,
         AFTER_CARPENTER_SHOP = 12,
         AFTER_BLACKSMITH_SHOP = 13,
+        AFTER_CLINIC_SHOP = 14,
 #else
         AFTER_SUPERMARKET_SHOP = 10,
         AFTER_SUPERMARKET_PURCHASE = 11,
         AFTER_WON_SHOP = 12,
         AFTER_CARPENTER_SHOP = 13,
         AFTER_BLACKSMITH_SHOP = 14,
+        AFTER_CLINIC_SHOP = 15,
 #endif
     };
     i32 kind;
@@ -555,27 +557,6 @@ typedef char BeachCafeShopTransitionSizeCheck[sizeof(BeachCafeShopTransition) ==
 
 
 
-struct ClinicShopSceneCore;
-struct ClinicShopScene : AScene {
-    virtual ~ClinicShopScene();
-    virtual SceneTransitionOwner Run();
-
-    ClinicShopSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct ClinicShopTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-typedef char ClinicShopSceneSizeCheck[sizeof(ClinicShopScene) == 12 ? 1 : -1];
-typedef char ClinicShopSceneCoreCheck[offsetof(ClinicShopScene, core) == 4 ? 1 : -1];
-typedef char ClinicShopSceneContinuationCheck[offsetof(ClinicShopScene, continuation) == 8 ? 1 : -1];
-typedef char ClinicShopTransitionSizeCheck[sizeof(ClinicShopTransition) == 12 ? 1 : -1];
-
 // Verified nonuniform scene layouts; unknown scalar semantics stay unnamed.
 struct YodelRanchShopSceneCore;
 struct YodelRanchShopScene : AScene {
@@ -760,6 +741,7 @@ struct GameScene : AScene {
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
+    void OpenClinicShop();
     void TalkOpen();
     void TalkResetUi();
     void TalkClose();
@@ -943,11 +925,6 @@ void func_08081734(BeachCafeShopSceneCore * core);
 #else
 void func_08081BBC(BeachCafeShopSceneCore * core);
 #endif
-#if defined(REGION_JP)
-void func_0807E0C0(ClinicShopSceneCore * core);
-#else
-void func_0807E558(ClinicShopSceneCore * core);
-#endif
 
 
 // Ranch Run returns the purchased target slot or -1; the second core
@@ -1020,11 +997,6 @@ BeachCafeShopScene * func_08082114(void *, SceneTransition **, GameStateSaveImag
 
 
 
-#if defined(REGION_JP)
-ClinicShopScene * func_0807E97C(void *, SceneTransition **, GameStateSaveImage *);
-#else
-ClinicShopScene * func_0807EE14(void *, SceneTransition **, GameStateSaveImage *);
-#endif
 
 #if defined(REGION_JP)
 YodelRanchShopScene * loc_08087CA8(void *, SceneTransition **, GameStateSaveImage *, u32);
