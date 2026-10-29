@@ -1139,62 +1139,12 @@ func_0803BE50:
     bx	r0
 .Ljp_0803BC2C:
     .4byte vtable_unk_080E7778
-    @ ROM-verified JP Thumb code_0803A8A4/code_0803BF14
-    .section .text.code_0803BF14
+    @ Remaining control-widget code after the recovered border constructor.
+    .section .text.control_widgets_native, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
 
-    push	{r4, r5, r6, r7, lr}
-    ldr	r4, [sp, #20]
-    str	r4, [r0, #24]
-    ldr	r6, [sp, #24]
-    ldr	r5, [sp, #28]
-    ldr	r7, [sp, #32]
-    movs	r4, #0
-    str	r4, [r0, #0]
-    str	r4, [r0, #4]
-    ldr r4, .Ljp_0803BCFC
-    str	r4, [r0, #8]
-    str	r1, [r0, #12]
-    str	r2, [r0, #16]
-    str	r3, [r0, #20]
-    movs	r1, #31
-    ands	r6, r1
-    ldrb	r2, [r0, #28]
-    movs	r1, #32
-    negs	r1, r1
-    ands	r1, r2
-    orrs	r1, r6
-    strb	r1, [r0, #28]
-    ldr r2, .Ljp_0803BD00
-    adds	r1, r2, #0
-    ands	r5, r1
-    lsls	r5, r5, #5
-    ldrh	r2, [r0, #28]
-    ldr r1, .Ljp_0803BD04
-    ands	r1, r2
-    orrs	r1, r5
-    strh	r1, [r0, #28]
-    movs	r1, #15
-    ands	r7, r1
-    lsls	r3, r7, #15
-    ldr	r1, [r0, #28]
-    ldr r2, .Ljp_0803BD08
-    ands	r1, r2
-    orrs	r1, r3
-    str	r1, [r0, #28]
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-.Ljp_0803BCFC:
-    .4byte __vt_25UiTextWindowBorderCommand
-.Ljp_0803BD00:
-    .4byte 0x000003FF
-.Ljp_0803BD04:
-    .4byte 0xFFFF801F
-.Ljp_0803BD08:
-    .4byte 0xFFF87FFF
     .global func_0803BF78
     .thumb_func
 func_0803BF78:
@@ -6273,62 +6223,12 @@ func_0803BE50:
     bx	r0
 .Leu_0803BEAC:
     .4byte vtable_unk_080E7778
-    @ ROM-verified EU Thumb code_0803A8A4/code_0803BF14
-    .section .text.code_0803BF14
+    @ Remaining control-widget code after the recovered border constructor.
+    .section .text.control_widgets_native, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
 
-    push	{r4, r5, r6, r7, lr}
-    ldr	r4, [sp, #20]
-    str	r4, [r0, #24]
-    ldr	r6, [sp, #24]
-    ldr	r5, [sp, #28]
-    ldr	r7, [sp, #32]
-    movs	r4, #0
-    str	r4, [r0, #0]
-    str	r4, [r0, #4]
-    ldr r4, .Leu_0803BF7C
-    str	r4, [r0, #8]
-    str	r1, [r0, #12]
-    str	r2, [r0, #16]
-    str	r3, [r0, #20]
-    movs	r1, #31
-    ands	r6, r1
-    ldrb	r2, [r0, #28]
-    movs	r1, #32
-    negs	r1, r1
-    ands	r1, r2
-    orrs	r1, r6
-    strb	r1, [r0, #28]
-    ldr r2, .Leu_0803BF80
-    adds	r1, r2, #0
-    ands	r5, r1
-    lsls	r5, r5, #5
-    ldrh	r2, [r0, #28]
-    ldr r1, .Leu_0803BF84
-    ands	r1, r2
-    orrs	r1, r5
-    strh	r1, [r0, #28]
-    movs	r1, #15
-    ands	r7, r1
-    lsls	r3, r7, #15
-    ldr	r1, [r0, #28]
-    ldr r2, .Leu_0803BF88
-    ands	r1, r2
-    orrs	r1, r3
-    str	r1, [r0, #28]
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-.Leu_0803BF7C:
-    .4byte __vt_25UiTextWindowBorderCommand
-.Leu_0803BF80:
-    .4byte 0x000003FF
-.Leu_0803BF84:
-    .4byte 0xFFFF801F
-.Leu_0803BF88:
-    .4byte 0xFFF87FFF
     .global func_0803BF78
     .thumb_func
 func_0803BF78:
@@ -11442,62 +11342,12 @@ func_0803BE50:
     bx	r0
 .Lde_0803BDAC:
     .4byte vtable_unk_080E7778
-    @ ROM-verified DE Thumb code_0803A8A4/code_0803BF14
-    .section .text.code_0803BF14
+    @ Remaining control-widget code after the recovered border constructor.
+    .section .text.control_widgets_native, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
 
-    push	{r4, r5, r6, r7, lr}
-    ldr	r4, [sp, #20]
-    str	r4, [r0, #24]
-    ldr	r6, [sp, #24]
-    ldr	r5, [sp, #28]
-    ldr	r7, [sp, #32]
-    movs	r4, #0
-    str	r4, [r0, #0]
-    str	r4, [r0, #4]
-    ldr r4, .Lde_0803BE7C
-    str	r4, [r0, #8]
-    str	r1, [r0, #12]
-    str	r2, [r0, #16]
-    str	r3, [r0, #20]
-    movs	r1, #31
-    ands	r6, r1
-    ldrb	r2, [r0, #28]
-    movs	r1, #32
-    negs	r1, r1
-    ands	r1, r2
-    orrs	r1, r6
-    strb	r1, [r0, #28]
-    ldr r2, .Lde_0803BE80
-    adds	r1, r2, #0
-    ands	r5, r1
-    lsls	r5, r5, #5
-    ldrh	r2, [r0, #28]
-    ldr r1, .Lde_0803BE84
-    ands	r1, r2
-    orrs	r1, r5
-    strh	r1, [r0, #28]
-    movs	r1, #15
-    ands	r7, r1
-    lsls	r3, r7, #15
-    ldr	r1, [r0, #28]
-    ldr r2, .Lde_0803BE88
-    ands	r1, r2
-    orrs	r1, r3
-    str	r1, [r0, #28]
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-.Lde_0803BE7C:
-    .4byte __vt_25UiTextWindowBorderCommand
-.Lde_0803BE80:
-    .4byte 0x000003FF
-.Lde_0803BE84:
-    .4byte 0xFFFF801F
-.Lde_0803BE88:
-    .4byte 0xFFF87FFF
     .global func_0803BF78
     .thumb_func
 func_0803BF78:
@@ -16585,62 +16435,12 @@ func_0803BE50:
     bx	r0
 .Lus_0803BE98:
     .4byte vtable_unk_080E7778
-    @ ROM-verified US Thumb code_0803A8A4/code_0803BF14
-    .section .text.code_0803BF14
+    @ Remaining control-widget code after the recovered border constructor.
+    .section .text.control_widgets_native, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
 
-    push	{r4, r5, r6, r7, lr}
-    ldr	r4, [sp, #20]
-    str	r4, [r0, #24]
-    ldr	r6, [sp, #24]
-    ldr	r5, [sp, #28]
-    ldr	r7, [sp, #32]
-    movs	r4, #0
-    str	r4, [r0, #0]
-    str	r4, [r0, #4]
-    ldr r4, .Lus_0803BF68
-    str	r4, [r0, #8]
-    str	r1, [r0, #12]
-    str	r2, [r0, #16]
-    str	r3, [r0, #20]
-    movs	r1, #31
-    ands	r6, r1
-    ldrb	r2, [r0, #28]
-    movs	r1, #32
-    negs	r1, r1
-    ands	r1, r2
-    orrs	r1, r6
-    strb	r1, [r0, #28]
-    ldr r2, .Lus_0803BF6C
-    adds	r1, r2, #0
-    ands	r5, r1
-    lsls	r5, r5, #5
-    ldrh	r2, [r0, #28]
-    ldr r1, .Lus_0803BF70
-    ands	r1, r2
-    orrs	r1, r5
-    strh	r1, [r0, #28]
-    movs	r1, #15
-    ands	r7, r1
-    lsls	r3, r7, #15
-    ldr	r1, [r0, #28]
-    ldr r2, .Lus_0803BF74
-    ands	r1, r2
-    orrs	r1, r3
-    str	r1, [r0, #28]
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-.Lus_0803BF68:
-    .4byte __vt_25UiTextWindowBorderCommand
-.Lus_0803BF6C:
-    .4byte 0x000003FF
-.Lus_0803BF70:
-    .4byte 0xFFFF801F
-.Lus_0803BF74:
-    .4byte 0xFFF87FFF
     .global func_0803BF78
     .thumb_func
 func_0803BF78:

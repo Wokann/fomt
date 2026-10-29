@@ -19,27 +19,24 @@ EXTERN_C_END
 
 #pragma interface "ui_text_window.hh"
 
-struct PACKED UiTextWindowBorderStyle {
+// This queued command redraws a BG screen block and installs its palette.
+// The drawing callback currently ignores y; the constructor still stores it.
+struct UiTextWindowBorderCommand : HardwareLinkBase {
+    UiTextWindowBorderCommand(i32 x, i32 y, u32 width, u32 height,
+        u32 screen, u32 tile, u32 bank) SECTION(".text.ui_text_window_border_constructor");
+    virtual bool Run() SECTION(".text.ui_text_window_border_command");
+    u32 x;
+    u32 y;
+    u32 width;
+    u32 height;
     u8 screen_block : 5;
     u16 first_tile : 10;
     u32 palette : 4;
     u32 unk_high : 13;
 };
 
-// This queued command redraws a BG screen block and installs its palette.
-// The second payload word is not read by this drawing callback.
-struct UiTextWindowBorderCommand : HardwareLinkBase {
-    virtual bool Run() SECTION(".text.ui_text_window_border_command");
-    u32 x;
-    u32 unk_10;
-    u32 width;
-    u32 height;
-    UiTextWindowBorderStyle style;
-};
-
-typedef char UiTextWindowBorderStyleSizeCheck[sizeof(UiTextWindowBorderStyle) == 4 ? 1 : -1];
+typedef char UiTextWindowBorderCommandYCheck[offsetof(UiTextWindowBorderCommand, y) == 16 ? 1 : -1];
 typedef char UiTextWindowBorderCommandSizeCheck[sizeof(UiTextWindowBorderCommand) == 32 ? 1 : -1];
-typedef char UiTextWindowBorderCommandStyleCheck[offsetof(UiTextWindowBorderCommand, style) == 28 ? 1 : -1];
 
 // The enabled mode alternates the two pixel-nibble masks on each queued run.
 // It requires a nonzero tile count and an initial phase of zero or one.

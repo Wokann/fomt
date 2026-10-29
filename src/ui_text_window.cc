@@ -59,14 +59,21 @@ static inline void UploadUiTextWindowPalette(u32 palette)
 
 bool UiTextWindowBorderCommand::Run()
 {
-    u16 entry = ((style.first_tile + 3) & 0x3FF) | (style.palette << 12);
+    u16 entry = ((first_tile + 3) & 0x3FF) | (palette << 12);
     u32 value = entry | (static_cast<u32>(entry) << 16);
-    FillUiTextWindowTilemap(reinterpret_cast<void *>(0x06000000 + (style.screen_block << 11)),
+    FillUiTextWindowTilemap(reinterpret_cast<void *>(0x06000000 + (screen_block << 11)),
         value);
-    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(0x06000000 + (style.screen_block << 11)),
-        x, 0, width, height, style.first_tile, style.palette);
-    UploadUiTextWindowPalette(style.palette);
+    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(0x06000000 + (screen_block << 11)),
+        x, 0, width, height, first_tile, palette);
+    UploadUiTextWindowPalette(palette);
     return false;
+}
+
+UiTextWindowBorderCommand::UiTextWindowBorderCommand(i32 x, i32 y,
+    u32 width, u32 height, u32 screen, u32 tile, u32 bank)
+    : x(x), y(y), width(width), height(height), screen_block(screen),
+      first_tile(tile), palette(bank)
+{
 }
 
 bool UiTextWindowTileUploadCommand::Run()

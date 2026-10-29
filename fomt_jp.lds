@@ -503,8 +503,9 @@ SECTIONS
 
         . = 0x3BC44; /* Shared control callbacks, in ROM order. */
         src/control_widget.o(.text);
-        . = 0x3BCA8; /* JP ROM 0x0803BF14, remaining raw control code */
-        asm/code_0803A8A4.o(.text.code_0803BF14);
+        . = 0x3BCA8; /* Border constructor; remaining controls follow. */
+        src/ui_text_window.o(.text.ui_text_window_border_constructor);
+        asm/code_0803A8A4.o(.text.control_widgets_native);
         . = 0x3C2AC; /* JP counterparts of US functions 0x0803C518/0x0803C52C. */
         src/code_0803C518.o(.text);
         . = 0x3C2D4; /* JP counterparts of US functions 0x0803C540/0x0803C544. */

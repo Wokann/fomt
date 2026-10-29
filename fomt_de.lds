@@ -458,8 +458,9 @@ SECTIONS
 
         . = 0x3BDC4; /* Shared control callbacks, in ROM order. */
         src/control_widget.o(.text);
-        . = 0x3BE28; /* DE ROM 0x0803BE28, remaining raw control code. */
-        asm/code_0803A8A4.o(.text.code_0803BF14);
+        . = 0x3BE28; /* Border constructor; remaining controls follow. */
+        src/ui_text_window.o(.text.ui_text_window_border_constructor);
+        asm/code_0803A8A4.o(.text.control_widgets_native);
         . = 0x3C42C; /* DE ROM 0x0803C42C, activate control bytes. */
         src/code_0803C518.o(.text);
         . = 0x3C454; /* DE ROM 0x0803C454, read and clear control bytes. */
