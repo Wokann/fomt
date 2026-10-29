@@ -960,15 +960,6 @@ SceneTransitionOwner BeachCafeShopScene::Run()
     return continuation;
 }
 
-SceneTransitionOwner BlacksmithShopScene::Run()
-{
-    u32 result = func_08082CEC(core);
-    if (result == 0)
-        return continuation;
-    if (result == 1)
-        return SceneTransitionOwner(new BlacksmithShopResultTransition(continuation, save, 0));
-    return SceneTransitionOwner(new BlacksmithShopResultTransition(continuation, save, 1));
-}
 
 SceneTransitionOwner YodelRanchShopScene::Run()
 {
@@ -1009,25 +1000,8 @@ SceneTransitionOwner ShelfScene::Run()
     return continuation;
 }
 
-BlacksmithShopResultScene::BlacksmithShopResultScene(SceneTransitionOwner next,
-    GameStateSaveImage * image, u8 input)
-    : core(func_08090EE0(::operator new(sizeof(BlacksmithShopResultSceneCore)), next, image, input)),
-      continuation(next)
-{
-}
 
-BlacksmithShopResultScene::~BlacksmithShopResultScene()
-{
-}
 
-SceneTransitionOwner BlacksmithShopResultScene::Run()
-{
-#if defined(REGION_JP)
-    return func_0809106C(static_cast<BlacksmithShopResultSceneCore *>(core.value));
-#else
-    return func_0809152C(static_cast<BlacksmithShopResultSceneCore *>(core.value));
-#endif
-}
 
 SceneTransitionOwner GiftWrappingScene::Run()
 {
@@ -1232,11 +1206,6 @@ SceneOwner ClinicShopTransition::CreateScene()
 
 // These late scene factories stay in native ROM order. Returning a temporary
 // owner preserves the original two-word ownership-transfer ABI.
-SceneOwner BlacksmithShopTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-    return SceneOwner(func_08083A7C(::operator new(sizeof(BlacksmithShopScene)), &next, save, unk_1C, unk_0C, unk_10, unk_14, unk_18));
-}
 
 SceneOwner ClockTransition::CreateScene()
 {
@@ -1247,10 +1216,4 @@ SceneOwner ClockTransition::CreateScene()
 SceneOwner ReturnToGameScene::CreateScene()
 {
     return SceneOwner(new GameScene(save, request));
-}
-
-SceneOwner BlacksmithShopResultTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-    return SceneOwner(new BlacksmithShopResultScene(SceneTransitionOwner(next), save, unk_0C));
 }

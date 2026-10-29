@@ -1283,8 +1283,10 @@ OnCall__12ScriptEnginei:
     bl OpenCarpenterShop__9GameScene
     .byte 0xFF, 0xF7, 0xF8, 0xFA
 .LScriptCallJp_08F:
-    .byte 0xD5, 0x26, 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xF0, 0xFA
-    .byte 0xD0, 0xF7, 0xE5, 0xFF, 0xFF, 0xF7, 0xEC, 0xFA
+    .byte 0xD5, 0x26, 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
+    .byte 0xFF, 0xF7, 0xF0, 0xFA
+    bl OpenBlacksmithShop__9GameScene
+    .byte 0xFF, 0xF7, 0xEC, 0xFA
 .LScriptCallJp_090:
     .byte 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68
     .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xE4, 0xFA, 0xD1, 0xF7, 0x2B, 0xF8, 0xFF, 0xF7, 0xE0, 0xFA
@@ -89463,9 +89465,9 @@ func_08081D18:
 	pop {r1}
 	bx r1
 	.align 2, 0
-    .global func_080821D0
+    .global ConstructBlacksmithShopSceneCore
     .thumb_func
-func_080821D0:
+ConstructBlacksmithShopSceneCore:
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	adds r7, r3, #0
@@ -90909,9 +90911,9 @@ func_08082C74: @ 0x080827EC
 	.align 2, 0
 .Ljp_0808285C: .4byte 0x00001C38
 .Ljp_08082860: .4byte 0x00001C34
-.global func_08082CEC
+.global RunBlacksmithShopSceneCore
 .thumb_func
-func_08082CEC:
+RunBlacksmithShopSceneCore:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -92511,97 +92513,6 @@ sub_08082F50:
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-.global func_08083A7C
-.thumb_func
-func_08083A7C: @ 0x080835F4
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #0xc
-	adds r4, r0, #0
-	mov r8, r1
-	mov sb, r2
-	adds r5, r3, #0
-	ldr r6, [sp, #0x28]
-	ldr r7, [sp, #0x2c]
-	lsls r5, r5, #0x18
-	lsrs r5, r5, #0x18
-	ldr r0, .Ljp_0808365C @ =vtable_unk_080E7CF4
-	str r0, [r4]
-	ldr r0, .Ljp_08083660 @ =0x000048E8
-	bl __builtin_new
-	str r7, [sp]
-	ldr r1, [sp, #0x30]
-	str r1, [sp, #4]
-	ldr r2, [sp, #0x34]
-	str r2, [sp, #8]
-	mov r1, sb
-	adds r2, r5, #0
-	adds r3, r6, #0
-	bl func_080821D0
-	str r0, [r4, #4]
-	mov r0, r8
-	ldr r1, [r0]
-	movs r0, #0
-	mov r2, r8
-	str r0, [r2]
-	str r1, [r4, #8]
-	str r6, [r4, #0xc]
-	str r7, [r4, #0x10]
-	ldr r0, [sp, #0x30]
-	str r0, [r4, #0x14]
-	ldr r1, [sp, #0x34]
-	str r1, [r4, #0x18]
-	mov r2, sb
-	str r2, [r4, #0x1c]
-	adds r0, r4, #0
-	add sp, #0xc
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_0808365C: .4byte vtable_unk_080E7CF4
-.Ljp_08083660: .4byte 0x000048E8
-
-.global func_08083664
-.thumb_func
-func_08083664: @ 0x08083664
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .Ljp_080836A0 @ =vtable_unk_080E7CF4
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .Ljp_08083680
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_08083680:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .Ljp_08083692
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_08083692:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080836A0: .4byte vtable_unk_080E7CF4
-
     .section .text.after_blacksmith_shop_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -108079,9 +107990,9 @@ func_080909C4:
     .section .text.after_shelf_scene_run, "ax", %progbits
     .align 2, 0
 
-    .global func_08090EE0
+    .global ConstructBlacksmithShopResultCore
     .thumb_func
-func_08090EE0:
+ConstructBlacksmithShopResultCore:
     push {r4, r5, r6, r7, lr}
     adds r6, r0, #0
     adds r5, r1, #0
@@ -108692,9 +108603,9 @@ func_080914A0:
     pop {r1}
     bx r1
     .align 2, 0
-    .global func_0809106C
+    .global RunBlacksmithShopResultCore
     .thumb_func
-func_0809106C:
+RunBlacksmithShopResultCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -109005,7 +108916,8 @@ func_0809106C:
     .4byte gText_BlacksmithUpgrade_Items
     .4byte __vt_23IndexedResourceProvider
     .word __vt_19HardwareBlendObject
-    .byte 0x89, 0x08, 0x00, 0x00, 0x54, 0x52, 0x0E, 0x08
+    .byte 0x89, 0x08, 0x00, 0x00
+    .4byte __vt_24BlacksmithShopTransition
     .global loc_0809133C
     .thumb_func
     loc_0809133C:
@@ -109396,9 +109308,11 @@ func_0809106C:
     movs r1, #3
     bl _call_via_r2
     b .Lauto_08092028
-    .byte 0x54, 0x52, 0x0E, 0x08, 0x38, 0x1C, 0x88, 0x30, 0x00, 0x68, 0x03, 0x28, 0x01, 0xD0, 0xFF, 0xF7
-    .byte 0x6E, 0xF9, 0x05, 0x9A, 0x11, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x01, 0xDA, 0xFF, 0xF7
-    .byte 0x66, 0xF9, 0x01, 0x20, 0x17, 0x90, 0x08, 0x49, 0x10, 0x1C, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
+    .4byte __vt_24BlacksmithShopTransition
+    .byte 0x38, 0x1C, 0x88, 0x30, 0x00, 0x68, 0x03, 0x28, 0x01, 0xD0, 0xFF, 0xF7
+    .byte 0x6E, 0xF9, 0x05, 0x9A, 0x11, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28
+    .byte 0x01, 0xDA, 0xFF, 0xF7, 0x66, 0xF9, 0x01, 0x20, 0x17, 0x90, 0x08, 0x49
+    .byte 0x10, 0x1C, 0x0C, 0x30, 0x01, 0x22, 0x01, 0x23
     bl EndHardwareBlend
     .byte 0x38, 0x1C
     bl GetHardwareCommandList
@@ -122392,7 +122306,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L080420AA
 	bl .L0804168A
 .L080420AA:
-	bl func_08012E1C
+	bl OpenBlacksmithShop__9GameScene
 	bl .L0804168A
 .L080420B2:
 	movs r1, #0xd5
@@ -242841,8 +242755,8 @@ func_080821A0: @ 0x080821A0
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080821D0
-func_080821D0: @ 0x080821D0
+	thumb_func_start ConstructBlacksmithShopSceneCore
+ConstructBlacksmithShopSceneCore: @ 0x080821D0
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	adds r7, r3, #0
@@ -244280,8 +244194,8 @@ func_08082C74: @ 0x08082C74
 .L08082CE4: .4byte 0x00001C38
 .L08082CE8: .4byte 0x00001C34
 
-	thumb_func_start func_08082CEC
-func_08082CEC: @ 0x08082CEC
+	thumb_func_start RunBlacksmithShopSceneCore
+RunBlacksmithShopSceneCore: @ 0x08082CEC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -245880,95 +245794,6 @@ sub_08082F50: @ 0x08082F50
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-
-	thumb_func_start func_08083A7C
-func_08083A7C: @ 0x08083A7C
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #0xc
-	adds r4, r0, #0
-	mov r8, r1
-	mov sb, r2
-	adds r5, r3, #0
-	ldr r6, [sp, #0x28]
-	ldr r7, [sp, #0x2c]
-	lsls r5, r5, #0x18
-	lsrs r5, r5, #0x18
-	ldr r0, .L08083AE4 @ =vtable_unk_080E7D04
-	str r0, [r4]
-	ldr r0, .L08083AE8 @ =0x000048E8
-	bl __builtin_new
-	str r7, [sp]
-	ldr r1, [sp, #0x30]
-	str r1, [sp, #4]
-	ldr r2, [sp, #0x34]
-	str r2, [sp, #8]
-	mov r1, sb
-	adds r2, r5, #0
-	adds r3, r6, #0
-	bl func_080821D0
-	str r0, [r4, #4]
-	mov r0, r8
-	ldr r1, [r0]
-	movs r0, #0
-	mov r2, r8
-	str r0, [r2]
-	str r1, [r4, #8]
-	str r6, [r4, #0xc]
-	str r7, [r4, #0x10]
-	ldr r0, [sp, #0x30]
-	str r0, [r4, #0x14]
-	ldr r1, [sp, #0x34]
-	str r1, [r4, #0x18]
-	mov r2, sb
-	str r2, [r4, #0x1c]
-	adds r0, r4, #0
-	add sp, #0xc
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08083AE4: .4byte vtable_unk_080E7D04
-.L08083AE8: .4byte 0x000048E8
-
-	thumb_func_start func_08083AEC
-func_08083AEC: @ 0x08083AEC
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L08083B28 @ =vtable_unk_080E7D04
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L08083B08
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08083B08:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L08083B1A
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08083B1A:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08083B28: .4byte vtable_unk_080E7D04
 
     .section .text.after_blacksmith_shop_scene_run, "ax", %progbits
     .align 2, 0
@@ -270375,8 +270200,8 @@ func_08090E84: @ 0x08090E84
     .section .text.after_shelf_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_08090EE0
-func_08090EE0: @ 0x08090EE0
+	thumb_func_start ConstructBlacksmithShopResultCore
+ConstructBlacksmithShopResultCore: @ 0x08090EE0
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0
@@ -271154,8 +270979,8 @@ func_080914A0: @ 0x080914A0
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_0809152C
-func_0809152C: @ 0x0809152C
+	thumb_func_start RunBlacksmithShopResultCore
+RunBlacksmithShopResultCore: @ 0x0809152C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -271446,7 +271271,7 @@ func_0809152C: @ 0x0809152C
 	adds r1, r7, r2
 	ldrb r4, [r1]
 	ldr r2, [r7, #8]
-	ldr r1, .L080917F8 @ =vtable_unk_080E5E14
+	ldr r1, .L080917F8 @ =__vt_24BlacksmithShopTransition
 	str r1, [r0]
 	str r5, [sp, #0x1c]
 	str r3, [r0, #4]
@@ -271464,7 +271289,7 @@ func_0809152C: @ 0x0809152C
 .L080917EC: .4byte __vt_23IndexedResourceProvider
 .L080917F0: .4byte __vt_19HardwareBlendObject
 .L080917F4: .4byte 0x00000889
-.L080917F8: .4byte vtable_unk_080E5E14
+.L080917F8: .4byte __vt_24BlacksmithShopTransition
 .L080917FC:
 	ldr r2, [sp, #0x60]
 	ldr r0, [r2]
@@ -272968,7 +272793,7 @@ func_0809152C: @ 0x0809152C
 	adds r1, r7, r2
 	ldrb r4, [r1]
 	ldr r2, [r7, #8]
-	ldr r1, .L08092510 @ =vtable_unk_080E5E14
+	ldr r1, .L08092510 @ =__vt_24BlacksmithShopTransition
 	str r1, [r0]
 	str r5, [sp, #0x1c]
 	str r3, [r0, #4]
@@ -272996,7 +272821,7 @@ func_0809152C: @ 0x0809152C
 	bl _call_via_r2
 	b .L0809255C
 	.align 2, 0
-.L08092510: .4byte vtable_unk_080E5E14
+.L08092510: .4byte __vt_24BlacksmithShopTransition
 .L08092514:
 	adds r0, r7, #0
 	adds r0, #0x88

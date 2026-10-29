@@ -273,11 +273,13 @@ struct GameSceneResumeRequest {
         AFTER_SUPERMARKET_PURCHASE = 10,
         AFTER_WON_SHOP = 11,
         AFTER_CARPENTER_SHOP = 12,
+        AFTER_BLACKSMITH_SHOP = 13,
 #else
         AFTER_SUPERMARKET_SHOP = 10,
         AFTER_SUPERMARKET_PURCHASE = 11,
         AFTER_WON_SHOP = 12,
         AFTER_CARPENTER_SHOP = 13,
+        AFTER_BLACKSMITH_SHOP = 14,
 #endif
     };
     i32 kind;
@@ -653,73 +655,6 @@ typedef char PoultryFarmShopSceneSizeCheck[sizeof(PoultryFarmShopScene) == 20 ? 
 typedef char PoultryFarmShopSceneSaveCheck[offsetof(PoultryFarmShopScene, save) == 16 ? 1 : -1];
 typedef char PoultryFarmShopTransitionSizeCheck[sizeof(PoultryFarmShopTransition) == 16 ? 1 : -1];
 
-struct BlacksmithShopSceneCore;
-struct BlacksmithShopScene : AScene {
-    virtual ~BlacksmithShopScene();
-    virtual SceneTransitionOwner Run();
-    BlacksmithShopSceneCore * core;
-    SceneTransitionOwner continuation;
-    u32 unk_0C;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-    GameStateSaveImage * save;
-};
-
-struct BlacksmithShopTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-    u32 unk_0C;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-    u8 unk_1C;
-};
-typedef char BlacksmithShopSceneSizeCheck[sizeof(BlacksmithShopScene) == 32 ? 1 : -1];
-typedef char BlacksmithShopSceneSaveCheck[offsetof(BlacksmithShopScene, save) == 28 ? 1 : -1];
-typedef char BlacksmithShopTransitionSizeCheck[sizeof(BlacksmithShopTransition) == 32 ? 1 : -1];
-typedef char BlacksmithShopTransitionByteCheck[offsetof(BlacksmithShopTransition, unk_1C) == 28 ? 1 : -1];
-
-// This is the verified native destruction-prefix view, not the full core hierarchy.
-// The concrete core constructor, Run and destructor bodies remain native.
-struct BlacksmithShopResultSceneCore : GameSceneUiComponent {
-    u8 unk_008[0x108];
-    SceneTransitionOwner continuation;
-    u8 unk_114;
-    u8 unk_115[0xA3];
-};
-typedef char BlacksmithShopResultSceneCoreSizeCheck[sizeof(BlacksmithShopResultSceneCore) == 0x1B8 ? 1 : -1];
-typedef char BlacksmithShopResultSceneCorePayloadCheck[offsetof(BlacksmithShopResultSceneCore, unk_008) == 8 ? 1 : -1];
-typedef char BlacksmithShopResultSceneCoreContinuationCheck[offsetof(BlacksmithShopResultSceneCore, continuation) == 0x110 ? 1 : -1];
-typedef char BlacksmithShopResultSceneCoreByteCheck[offsetof(BlacksmithShopResultSceneCore, unk_114) == 0x114 ? 1 : -1];
-
-struct BlacksmithShopResultScene : AScene {
-    BlacksmithShopResultScene(SceneTransitionOwner next, GameStateSaveImage * image, u8 input);
-    virtual ~BlacksmithShopResultScene();
-    virtual SceneTransitionOwner Run();
-    GameSceneUiComponentOwner core;
-    SceneTransitionOwner continuation;
-};
-
-// This result transition is not the 32-byte shop-opening transition above.
-// Its byte is passed unchanged to the native result-scene constructor.
-struct BlacksmithShopResultTransition : SceneTransition {
-    BlacksmithShopResultTransition(SceneTransitionOwner next, GameStateSaveImage * image, u8 input)
-        : continuation(next), save(image), unk_0C(input) {}
-    virtual SceneOwner CreateScene();
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-    u8 unk_0C;
-};
-typedef char BlacksmithShopResultSceneSizeCheck[sizeof(BlacksmithShopResultScene) == 12 ? 1 : -1];
-typedef char BlacksmithShopResultSceneCoreCheck[offsetof(BlacksmithShopResultScene, core) == 4 ? 1 : -1];
-typedef char BlacksmithShopResultSceneContinuationCheck[offsetof(BlacksmithShopResultScene, continuation) == 8 ? 1 : -1];
-typedef char BlacksmithShopResultTransitionSizeCheck[sizeof(BlacksmithShopResultTransition) == 16 ? 1 : -1];
-typedef char BlacksmithShopResultTransitionContinuationCheck[offsetof(BlacksmithShopResultTransition, continuation) == 4 ? 1 : -1];
-typedef char BlacksmithShopResultTransitionSaveCheck[offsetof(BlacksmithShopResultTransition, save) == 8 ? 1 : -1];
-typedef char BlacksmithShopResultTransitionByteCheck[offsetof(BlacksmithShopResultTransition, unk_0C) == 12 ? 1 : -1];
-
 struct ClockTransition : SceneTransition {
     virtual SceneOwner CreateScene();
     GameStateSaveImage * save;
@@ -824,6 +759,7 @@ struct GameScene : AScene {
     void OpenSupermarketPurchase(MarySupermarketItemId item);
     void OpenWonShop();
     void OpenCarpenterShop();
+    void OpenBlacksmithShop();
     void TalkOpen();
     void TalkResetUi();
     void TalkClose();
@@ -1013,14 +949,6 @@ void func_0807E0C0(ClinicShopSceneCore * core);
 void func_0807E558(ClinicShopSceneCore * core);
 #endif
 
-// The core still has its native constructor and regional owning Run ABI.
-u32 func_08082CEC(BlacksmithShopSceneCore * core);
-BlacksmithShopResultSceneCore * func_08090EE0(void *, SceneTransitionOwner, GameStateSaveImage *, u8);
-#if defined(REGION_JP)
-SceneTransitionOwner func_0809106C(BlacksmithShopResultSceneCore * core);
-#else
-SceneTransitionOwner func_0809152C(BlacksmithShopResultSceneCore * core);
-#endif
 
 // Ranch Run returns the purchased target slot or -1; the second core
 // query selects the existing cow/sheep naming branch.
@@ -1108,7 +1036,6 @@ PoultryFarmShopScene * func_0807CBD8(void *, SceneTransition **, GameStateSaveIm
 #else
 PoultryFarmShopScene * func_0807D070(void *, SceneTransition **, GameStateSaveImage *, u32);
 #endif
-BlacksmithShopScene * func_08083A7C(void *, SceneTransition **, GameStateSaveImage *, u8, u32, u32, u32, u32);
 
 // The global controller and its subobjects are not yet fully recovered.
 extern u8 * gUnk_0300040C;

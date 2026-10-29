@@ -161,7 +161,6 @@ extern void func_080815E8(void);
 extern void func_08081678(void);
 extern void func_08081CBC(void);
 extern void func_08081DC8(void);
-extern void func_08083664(void);
 extern void func_080837C8(void);
 extern void func_080851A4(void);
 extern void func_08087CEC(void);
@@ -337,7 +336,6 @@ extern void func_080AC528(void);
 #else
 extern void func_08082144(void);
 extern void func_08082250(void);
-extern void func_08083AEC(void);
 extern void func_08083C50(void);
 extern void func_0808562C(void);
 extern void func_080881AC(void);
@@ -986,7 +984,7 @@ extern RawVTableFunction const vtable_unk_080E5E04[] = {
     CreateScene__20ClinicShopTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5E14[] = {
+extern RawVTableFunction const __vt_24BlacksmithShopTransition[] = {
     nullptr,
     nullptr,
     DestroyBlacksmithShopTransition,
@@ -4955,14 +4953,6 @@ extern RawVTableFunction const vtable_unk_080E7CE8[]
         nullptr,
         func_08082250,
     };
-#else
-extern RawVTableFunction const vtable_unk_080E7CF4[]
-    SECTION(".rodata.vtable_7cf4") = {
-        nullptr,
-        nullptr,
-        func_08083664,
-        Run__19BlacksmithShopScene,
-    };
 #endif
 
 #if defined(REGION_JP)
@@ -4973,14 +4963,6 @@ extern RawVTableFunction const vtable_unk_080E7D04[]
         func_080837C8,
     };
 
-#else
-extern RawVTableFunction const vtable_unk_080E7D04[]
-    SECTION(".rodata.vtable_7d04") = {
-        nullptr,
-        nullptr,
-        func_08083AEC,
-        Run__19BlacksmithShopScene,
-    };
 #endif
 
 #if !defined(REGION_JP)

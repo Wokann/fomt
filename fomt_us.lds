@@ -198,6 +198,7 @@ SECTIONS
             .text.OpenSupermarketPurchase__9GameScene21MarySupermarketItemId);
         src/scene_won_shop.o(.text.OpenWonShop__9GameScene);
         src/scene_carpenter_shop.o(.text.OpenCarpenterShop__9GameScene);
+        src/scene_blacksmith_shop.o(.text.OpenBlacksmithShop__9GameScene);
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
         src/game_scene.o(
             .text.PrepareClockMenuTransition__9GameScene
@@ -606,7 +607,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_special_merchant_shop_scene_run);
         src/game_scene.o(.text.Run__18BeachCafeShopScene);
         asm/code_0803EE94.o(.text.after_beach_cafe_shop_scene_run);
-        src/game_scene.o(.text.Run__19BlacksmithShopScene);
+        src/scene_blacksmith_shop.o(.text.__19BlacksmithShopSceneG20SceneTransitionOwnerP18GameStateSaveImageUcUiUiUiUi .text._._19BlacksmithShopScene);
+        src/scene_blacksmith_shop.o(.text.Run__19BlacksmithShopScene);
         asm/code_0803EE94.o(.text.after_blacksmith_shop_scene_run);
         src/scene_carpenter_shop.o(.text.__18CarpenterShopSceneG20SceneTransitionOwnerP18GameStateSaveImage);
         asm/code_0803EE94.o(.text.carpenter_shop_scene_destructor);
@@ -620,7 +622,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_refrigerator_scene_run);
         src/game_scene.o(.text.Run__10ShelfScene);
         asm/code_0803EE94.o(.text.after_shelf_scene_run);
-        src/game_scene.o(.text.__25BlacksmithShopResultSceneG20SceneTransitionOwnerP18GameStateSaveImageUc .text._._25BlacksmithShopResultScene .text.Run__25BlacksmithShopResultScene);
+        src/scene_blacksmith_shop.o(.text.__25BlacksmithShopResultSceneG20SceneTransitionOwnerP18GameStateSaveImageUc .text._._25BlacksmithShopResultScene .text.Run__25BlacksmithShopResultScene);
         asm/code_0803EE94.o(.text.after_blacksmith_shop_result_scene);
         src/game_scene.o(.text.Run__17GiftWrappingScene);
         asm/code_0803EE94.o(.text.after_gift_wrapping_scene_run);
@@ -926,7 +928,7 @@ SECTIONS
         src/scene_won_shop.o(.text.CreateScene__17WonShopTransition .gnu.linkonce.t._._17WonShopTransition);
         src/scene_carpenter_shop.o(.text.CreateScene__23CarpenterShopTransition .gnu.linkonce.t._._23CarpenterShopTransition);
         src/game_scene.o(.text.CreateScene__20ClinicShopTransition .gnu.linkonce.t._._20ClinicShopTransition);
-        src/game_scene.o(.text.CreateScene__24BlacksmithShopTransition .gnu.linkonce.t._._24BlacksmithShopTransition);
+        src/scene_blacksmith_shop.o(.text.CreateScene__24BlacksmithShopTransition .gnu.linkonce.t._._24BlacksmithShopTransition);
         src/scene_supermarket.o(.text.CreateScene__29SupermarketPurchaseTransition .gnu.linkonce.t._._29SupermarketPurchaseTransition);
         src/scene_supermarket.o(.text.CreateScene__21SupermarketTransition .gnu.linkonce.t._._21SupermarketTransition);
         asm/code_linkonce.o(.text.scene_supermarket_after);
@@ -988,7 +990,7 @@ SECTIONS
         asm/code_linkonce.o(.text.indexed_resource_archive_destructor_after);
         src/new_game.o(.text.new_game_birthday_core_cleanup);
         asm/code_linkonce.o(.text.new_game_birthday_core_cleanup_after);
-        src/game_scene.o(.text.CreateScene__30BlacksmithShopResultTransition .gnu.linkonce.t._._30BlacksmithShopResultTransition);
+        src/scene_blacksmith_shop.o(.text.CreateScene__30BlacksmithShopResultTransition .gnu.linkonce.t._._30BlacksmithShopResultTransition);
         asm/code_linkonce.o(.text.after_blacksmith_shop_result_transition);
         src/game_menu.o(.gnu.linkonce.t._._26GameSceneMenuSelectionCore);
         asm/code_linkonce.o(.text.after_menu_selection_core_destructor);
@@ -1225,8 +1227,8 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ccc);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7cd8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ce8);
-. = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_30BlacksmithShopResultTransition);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7d04);
+. = ALIGN(4); src/scene_blacksmith_shop.o(.gnu.linkonce.d.__vt_30BlacksmithShopResultTransition);
+. = ALIGN(4); src/scene_blacksmith_shop.o(.gnu.linkonce.d.__vt_19BlacksmithShopScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d14);
 . = ALIGN(4); src/scene_carpenter_shop.o(.gnu.linkonce.d.__vt_18CarpenterShopScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d30);
@@ -1240,7 +1242,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7da0);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dac);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dbc);
-. = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_25BlacksmithShopResultScene);
+. = ALIGN(4); src/scene_blacksmith_shop.o(.gnu.linkonce.d.__vt_25BlacksmithShopResultScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dd8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7de4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7df4);
