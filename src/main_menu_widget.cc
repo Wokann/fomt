@@ -48,3 +48,18 @@ void MainMenuWidget::DisableInput()
 MainMenuData::~MainMenuData()
 {
 }
+
+u32 MainMenuWidget::Update(HardwareCoreState * input,
+    HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
+    HardwareLinkedList * uploads, HardwareLinkedList * commands)
+{
+    return UpdateImpl(input, sprites, display, uploads, commands, nullptr);
+}
+
+u32 MainMenuWidget::Update(HardwareCoreState * input,
+    HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
+    HardwareLinkedList * uploads, HardwareLinkedList * commands,
+    HardwareMusicPlayerSlot * music)
+{
+    return UpdateImpl(input, sprites, display, uploads, commands, music);
+}

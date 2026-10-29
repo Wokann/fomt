@@ -462,7 +462,8 @@ SECTIONS
         . = 0x3BE28; /* Border constructor; remaining controls follow. */
         src/ui_text_window.o(.text.ui_text_window_border_constructor);
         src/main_menu_widget.o(.text.main_menu_widget_lifetime);
-        asm/code_0803A8A4.o(.text.control_widgets_native);
+        src/main_menu_widget.o(.text.main_menu_widget_update);
+        asm/code_0803A8A4.o(.text.main_menu_widget_update_impl);
         . = 0x3C42C; /* Derived control callbacks. */
         src/main_menu_widget.o(.text.main_menu_widget_callbacks);
         . = 0x3C460; /* Clock-widget lifecycle. */

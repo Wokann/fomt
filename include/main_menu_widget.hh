@@ -8,6 +8,10 @@
 #include "hardware_dma_link.hh"
 #include "common_ui.hh"
 
+struct HardwareCoreState;
+struct HardwareSpriteBufferState;
+struct HardwareMusicPlayerSlot;
+
 #pragma interface "main_menu_widget.hh"
 
 struct MainMenuSpriteResource {
@@ -70,11 +74,25 @@ struct MainMenuWidget : ControlWidget {
     u32 GetSelection() const SECTION(".text.main_menu_widget_callbacks");
     void DisableInput() SECTION(".text.main_menu_widget_callbacks");
 
+    // Return the window phase; a null music player suppresses menu SFX.
+    u32 Update(HardwareCoreState * input, HardwareSpriteBufferState * sprites,
+        HardwareDisplayState * display, HardwareLinkedList * uploads,
+        HardwareLinkedList * commands) SECTION(".text.main_menu_widget_update");
+    u32 Update(HardwareCoreState * input, HardwareSpriteBufferState * sprites,
+        HardwareDisplayState * display, HardwareLinkedList * uploads,
+        HardwareLinkedList * commands, HardwareMusicPlayerSlot * music)
+        SECTION(".text.main_menu_widget_update");
+
     MainMenuData * data;
     u8 selection;
     u8 refresh_pending;
     u8 blink_frame;
     u8 input_enabled;
+
+private:
+    u32 UpdateImpl(HardwareCoreState * input, HardwareSpriteBufferState * sprites,
+        HardwareDisplayState * display, HardwareLinkedList * uploads,
+        HardwareLinkedList * commands, HardwareMusicPlayerSlot * music);
 };
 
 typedef char MainMenuSpriteSizeCheck[sizeof(MainMenuSpriteResource) == 0x34 ? 1 : -1];

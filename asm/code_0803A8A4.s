@@ -921,43 +921,13 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     bx	r1
     .align 2, 0
     @ Remaining control-widget code after the recovered border constructor.
-    .section .text.control_widgets_native, "ax", %progbits
+    .section .text.main_menu_widget_update_impl, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
-
-    push	{r4, r5, lr}
-    sub	sp, #12
-    ldr	r4, [sp, #24]
-    ldr	r5, [sp, #28]
-    str	r4, [sp, #0]
-    str	r5, [sp, #4]
-    movs	r4, #0
-    str	r4, [sp, #8]
-    bl func_0803C028
-    add	sp, #12
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-    .global func_0803C00C
+    .global UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot
     .thumb_func
-func_0803C00C:
-    push	{r4, r5, r6, lr}
-    sub	sp, #12
-    ldr	r4, [sp, #28]
-    ldr	r5, [sp, #32]
-    ldr	r6, [sp, #36]	@ 0x24
-    str	r4, [sp, #0]
-    str	r5, [sp, #4]
-    str	r6, [sp, #8]
-    bl func_0803C028
-    add	sp, #12
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-    .global func_0803C028
-    .thumb_func
-func_0803C028:
+UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -5666,43 +5636,13 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     bx	r1
     .align 2, 0
     @ Remaining control-widget code after the recovered border constructor.
-    .section .text.control_widgets_native, "ax", %progbits
+    .section .text.main_menu_widget_update_impl, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
-
-    push	{r4, r5, lr}
-    sub	sp, #12
-    ldr	r4, [sp, #24]
-    ldr	r5, [sp, #28]
-    str	r4, [sp, #0]
-    str	r5, [sp, #4]
-    movs	r4, #0
-    str	r4, [sp, #8]
-    bl func_0803C028
-    add	sp, #12
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-    .global func_0803C00C
+    .global UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot
     .thumb_func
-func_0803C00C:
-    push	{r4, r5, r6, lr}
-    sub	sp, #12
-    ldr	r4, [sp, #28]
-    ldr	r5, [sp, #32]
-    ldr	r6, [sp, #36]	@ 0x24
-    str	r4, [sp, #0]
-    str	r5, [sp, #4]
-    str	r6, [sp, #8]
-    bl func_0803C028
-    add	sp, #12
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-    .global func_0803C028
-    .thumb_func
-func_0803C028:
+UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -10446,43 +10386,13 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     bx	r1
     .align 2, 0
     @ Remaining control-widget code after the recovered border constructor.
-    .section .text.control_widgets_native, "ax", %progbits
+    .section .text.main_menu_widget_update_impl, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
-
-    push	{r4, r5, lr}
-    sub	sp, #12
-    ldr	r4, [sp, #24]
-    ldr	r5, [sp, #28]
-    str	r4, [sp, #0]
-    str	r5, [sp, #4]
-    movs	r4, #0
-    str	r4, [sp, #8]
-    bl func_0803C028
-    add	sp, #12
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-    .global func_0803C00C
+    .global UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot
     .thumb_func
-func_0803C00C:
-    push	{r4, r5, r6, lr}
-    sub	sp, #12
-    ldr	r4, [sp, #28]
-    ldr	r5, [sp, #32]
-    ldr	r6, [sp, #36]	@ 0x24
-    str	r4, [sp, #0]
-    str	r5, [sp, #4]
-    str	r6, [sp, #8]
-    bl func_0803C028
-    add	sp, #12
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-    .global func_0803C028
-    .thumb_func
-func_0803C028:
+UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -15200,43 +15110,13 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     bx	r1
     .align 2, 0
     @ Remaining control-widget code after the recovered border constructor.
-    .section .text.control_widgets_native, "ax", %progbits
+    .section .text.main_menu_widget_update_impl, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
-
-    push	{r4, r5, lr}
-    sub	sp, #12
-    ldr	r4, [sp, #24]
-    ldr	r5, [sp, #28]
-    str	r4, [sp, #0]
-    str	r5, [sp, #4]
-    movs	r4, #0
-    str	r4, [sp, #8]
-    bl func_0803C028
-    add	sp, #12
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-    .global func_0803C00C
+    .global UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot
     .thumb_func
-func_0803C00C:
-    push	{r4, r5, r6, lr}
-    sub	sp, #12
-    ldr	r4, [sp, #28]
-    ldr	r5, [sp, #32]
-    ldr	r6, [sp, #36]	@ 0x24
-    str	r4, [sp, #0]
-    str	r5, [sp, #4]
-    str	r6, [sp, #8]
-    bl func_0803C028
-    add	sp, #12
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-    .global func_0803C028
-    .thumb_func
-func_0803C028:
+UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
