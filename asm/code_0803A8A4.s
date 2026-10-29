@@ -920,102 +920,15 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     pop	{r1}
     bx	r1
     .align 2, 0
-    @ ROM-verified JP Thumb code_0803A8A4/code_0803BDFC
-    .section .text.code_0803BDFC
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_0803BDFC
-    .thumb_func
-func_0803BDFC:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #20
-    adds	r4, r0, #0
-    mov	r8, r1
-    mov	r9, r2
-    mov	sl, r3
-    ldr	r5, [sp, #52]	@ 0x34
-    ldr	r6, [sp, #56]	@ 0x38
-    ldr	r7, [sp, #60]	@ 0x3c
-    ldr r0, .Ljp_0803BBE0
-    str	r0, [r4, #4]
-    movs	r0, #100	@ 0x64
-    bl __builtin_new
-    str	r5, [sp, #0]
-    str	r6, [sp, #4]
-    str	r7, [sp, #8]
-    ldr	r1, [sp, #64]	@ 0x40
-    str	r1, [sp, #12]
-    ldr	r1, [sp, #68]	@ 0x44
-    str	r1, [sp, #16]
-    mov	r1, r8
-    mov	r2, r9
-    mov	r3, sl
-    bl __12UiTextWindowiiUiUiUiUiUiUi
-    str	r0, [r4, #0]
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-.Ljp_0803BBE0:
-    .4byte vtable_unk_080E7778
-    .global func_0803BE50
-    .thumb_func
-func_0803BE50:
-    push	{r4, r5, r6, lr}
-    adds	r5, r0, #0
-    adds	r6, r1, #0
-    ldr r0, .Ljp_0803BC2C
-    str	r0, [r5, #4]
-    ldr	r4, [r5, #0]
-    cmp	r4, #0
-    beq .Ljp_0803BC18
-    adds	r0, r4, #0
-    adds	r0, #68	@ 0x44
-    movs	r1, #2
-    bl func_080098AC
-    adds	r0, r4, #0
-    adds	r0, #44	@ 0x2c
-    movs	r1, #2
-    bl func_080098AC
-    adds	r0, r4, #0
-    adds	r0, #16
-    movs	r1, #2
-    bl func_080098DC
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Ljp_0803BC18:
-    movs	r0, #1
-    ands	r0, r6
-    cmp	r0, #0
-    beq .Ljp_0803BC26
-    adds	r0, r5, #0
-    bl __builtin_delete
-.Ljp_0803BC26:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-.Ljp_0803BC2C:
-    .4byte vtable_unk_080E7778
     @ Remaining control-widget code after the recovered border constructor.
     .section .text.control_widgets_native, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
 
-    .global func_0803BF78
+    .global __13ControlObjectUiUiUiUiUi
     .thumb_func
-func_0803BF78:
+__13ControlObjectUiUiUiUiUi:
     push	{r4, r5, r6, lr}
     sub	sp, #20
     adds	r4, r0, #0
@@ -1031,7 +944,7 @@ func_0803BF78:
     movs	r1, #0
     movs	r2, #136	@ 0x88
     movs	r3, #240	@ 0xf0
-    bl func_0803BDFC
+    bl __13ControlWidgetiiUiUiUiUiUiUi
     ldr r0, .Ljp_0803BD54
     str	r0, [r4, #4]
     ldr r0, .Ljp_0803BD58
@@ -1050,12 +963,12 @@ func_0803BF78:
     pop	{r1}
     bx	r1
 .Ljp_0803BD54:
-    .4byte vtable_unk_080E77A4
+    .4byte __vt_13ControlObject
 .Ljp_0803BD58:
     .4byte 0x0000041C
-    .global func_0803BFC8
+    .global _._13ControlObject
     .thumb_func
-func_0803BFC8:
+_._13ControlObject:
     push	{r4, r5, lr}
     adds	r4, r0, #0
     adds	r5, r1, #0
@@ -1069,12 +982,12 @@ func_0803BFC8:
 .Ljp_0803BD72:
     adds	r0, r4, #0
     adds	r1, r5, #0
-    bl func_0803BE50
+    bl _._13ControlWidget
     pop	{r4, r5}
     pop	{r0}
     bx	r0
 .Ljp_0803BD80:
-    .4byte vtable_unk_080E77A4
+    .4byte __vt_13ControlObject
     push	{r4, r5, lr}
     sub	sp, #12
     ldr	r4, [sp, #24]
@@ -1120,7 +1033,7 @@ func_0803C028:
     ldr	r3, [sp, #152]	@ 0x98
     ldr	r5, [sp, #156]	@ 0x9c
     ldr	r2, [sp, #148]	@ 0x94
-    bl UpdateControlWidget
+    bl Update__13ControlWidgetP20HardwareDisplayStateP18HardwareLinkedListT2
     str	r0, [sp, #72]	@ 0x48
     cmp	r0, #0
     bge .Ljp_0803BDE2
@@ -1745,64 +1658,6 @@ func_0803C028:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    @ ROM-verified JP Thumb code_0803A8A4/code_0803C54C
-    .section .text.code_0803C54C
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_0803C54C
-    .thumb_func
-func_0803C54C:
-    push	{r4, r5, lr}
-    sub	sp, #20
-    adds	r4, r0, #0
-    ldr	r5, [sp, #32]
-    movs	r0, #24
-    str	r0, [sp, #0]
-    str	r1, [sp, #4]
-    str	r2, [sp, #8]
-    str	r3, [sp, #12]
-    str	r5, [sp, #16]
-    adds	r0, r4, #0
-    movs	r1, #128	@ 0x80
-    movs	r2, #136	@ 0x88
-    movs	r3, #112	@ 0x70
-    bl func_0803BDFC
-    ldr r0, .Ljp_0803C318
-    str	r0, [r4, #4]
-    adds	r0, r4, #0
-    adds	r0, #8
-    bl __24MapClockStatusHudContent
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Ljp_0803C318:
-    .4byte vtable_unk_080E77E0
-    .global func_0803C588
-    .thumb_func
-func_0803C588:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr r0, .Ljp_0803C340
-    str	r0, [r4, #4]
-    adds	r0, r4, #0
-    adds	r0, #8
-    movs	r1, #2
-    bl _._24MapClockStatusHudContent
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl func_0803BE50
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Ljp_0803C340:
-    .4byte vtable_unk_080E77E0
     .section .text.map_clock_status_calendar, "ax", %progbits
     .align 2, 0
     .global UpdateMapClockStatusHudCalendar
@@ -5872,102 +5727,15 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     pop	{r1}
     bx	r1
     .align 2, 0
-    @ ROM-verified EU Thumb code_0803A8A4/code_0803BDFC
-    .section .text.code_0803BDFC
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_0803BDFC
-    .thumb_func
-func_0803BDFC:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #20
-    adds	r4, r0, #0
-    mov	r8, r1
-    mov	r9, r2
-    mov	sl, r3
-    ldr	r5, [sp, #52]	@ 0x34
-    ldr	r6, [sp, #56]	@ 0x38
-    ldr	r7, [sp, #60]	@ 0x3c
-    ldr r0, .Leu_0803BE60
-    str	r0, [r4, #4]
-    movs	r0, #100	@ 0x64
-    bl __builtin_new
-    str	r5, [sp, #0]
-    str	r6, [sp, #4]
-    str	r7, [sp, #8]
-    ldr	r1, [sp, #64]	@ 0x40
-    str	r1, [sp, #12]
-    ldr	r1, [sp, #68]	@ 0x44
-    str	r1, [sp, #16]
-    mov	r1, r8
-    mov	r2, r9
-    mov	r3, sl
-    bl __12UiTextWindowiiUiUiUiUiUiUi
-    str	r0, [r4, #0]
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-.Leu_0803BE60:
-    .4byte vtable_unk_080E7778
-    .global func_0803BE50
-    .thumb_func
-func_0803BE50:
-    push	{r4, r5, r6, lr}
-    adds	r5, r0, #0
-    adds	r6, r1, #0
-    ldr r0, .Leu_0803BEAC
-    str	r0, [r5, #4]
-    ldr	r4, [r5, #0]
-    cmp	r4, #0
-    beq .Leu_0803BE98
-    adds	r0, r4, #0
-    adds	r0, #68	@ 0x44
-    movs	r1, #2
-    bl func_080098AC
-    adds	r0, r4, #0
-    adds	r0, #44	@ 0x2c
-    movs	r1, #2
-    bl func_080098AC
-    adds	r0, r4, #0
-    adds	r0, #16
-    movs	r1, #2
-    bl func_080098DC
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Leu_0803BE98:
-    movs	r0, #1
-    ands	r0, r6
-    cmp	r0, #0
-    beq .Leu_0803BEA6
-    adds	r0, r5, #0
-    bl __builtin_delete
-.Leu_0803BEA6:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-.Leu_0803BEAC:
-    .4byte vtable_unk_080E7778
     @ Remaining control-widget code after the recovered border constructor.
     .section .text.control_widgets_native, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
 
-    .global func_0803BF78
+    .global __13ControlObjectUiUiUiUiUi
     .thumb_func
-func_0803BF78:
+__13ControlObjectUiUiUiUiUi:
     push	{r4, r5, r6, lr}
     sub	sp, #20
     adds	r4, r0, #0
@@ -5983,7 +5751,7 @@ func_0803BF78:
     movs	r1, #0
     movs	r2, #136	@ 0x88
     movs	r3, #240	@ 0xf0
-    bl func_0803BDFC
+    bl __13ControlWidgetiiUiUiUiUiUiUi
     ldr r0, .Leu_0803BFD4
     str	r0, [r4, #4]
     ldr r0, .Leu_0803BFD8
@@ -6002,12 +5770,12 @@ func_0803BF78:
     pop	{r1}
     bx	r1
 .Leu_0803BFD4:
-    .4byte vtable_unk_080E77A4
+    .4byte __vt_13ControlObject
 .Leu_0803BFD8:
     .4byte 0x0000041C
-    .global func_0803BFC8
+    .global _._13ControlObject
     .thumb_func
-func_0803BFC8:
+_._13ControlObject:
     push	{r4, r5, lr}
     adds	r4, r0, #0
     adds	r5, r1, #0
@@ -6021,12 +5789,12 @@ func_0803BFC8:
 .Leu_0803BFF2:
     adds	r0, r4, #0
     adds	r1, r5, #0
-    bl func_0803BE50
+    bl _._13ControlWidget
     pop	{r4, r5}
     pop	{r0}
     bx	r0
 .Leu_0803C000:
-    .4byte vtable_unk_080E77A4
+    .4byte __vt_13ControlObject
     push	{r4, r5, lr}
     sub	sp, #12
     ldr	r4, [sp, #24]
@@ -6072,7 +5840,7 @@ func_0803C028:
     ldr	r3, [sp, #152]	@ 0x98
     ldr	r5, [sp, #156]	@ 0x9c
     ldr	r2, [sp, #148]	@ 0x94
-    bl UpdateControlWidget
+    bl Update__13ControlWidgetP20HardwareDisplayStateP18HardwareLinkedListT2
     str	r0, [sp, #72]	@ 0x48
     cmp	r0, #0
     bge .Leu_0803C062
@@ -6697,64 +6465,6 @@ func_0803C028:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    @ ROM-verified EU Thumb code_0803A8A4/code_0803C54C
-    .section .text.code_0803C54C
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_0803C54C
-    .thumb_func
-func_0803C54C:
-    push	{r4, r5, lr}
-    sub	sp, #20
-    adds	r4, r0, #0
-    ldr	r5, [sp, #32]
-    movs	r0, #24
-    str	r0, [sp, #0]
-    str	r1, [sp, #4]
-    str	r2, [sp, #8]
-    str	r3, [sp, #12]
-    str	r5, [sp, #16]
-    adds	r0, r4, #0
-    movs	r1, #128	@ 0x80
-    movs	r2, #136	@ 0x88
-    movs	r3, #112	@ 0x70
-    bl func_0803BDFC
-    ldr r0, .Leu_0803C598
-    str	r0, [r4, #4]
-    adds	r0, r4, #0
-    adds	r0, #8
-    bl __24MapClockStatusHudContent
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Leu_0803C598:
-    .4byte vtable_unk_080E77E0
-    .global func_0803C588
-    .thumb_func
-func_0803C588:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr r0, .Leu_0803C5C0
-    str	r0, [r4, #4]
-    adds	r0, r4, #0
-    adds	r0, #8
-    movs	r1, #2
-    bl _._24MapClockStatusHudContent
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl func_0803BE50
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Leu_0803C5C0:
-    .4byte vtable_unk_080E77E0
     .section .text.map_clock_status_calendar, "ax", %progbits
     .align 2, 0
     .global UpdateMapClockStatusHudCalendar
@@ -10859,102 +10569,15 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     pop	{r1}
     bx	r1
     .align 2, 0
-    @ ROM-verified DE Thumb code_0803A8A4/code_0803BDFC
-    .section .text.code_0803BDFC
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_0803BDFC
-    .thumb_func
-func_0803BDFC:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #20
-    adds	r4, r0, #0
-    mov	r8, r1
-    mov	r9, r2
-    mov	sl, r3
-    ldr	r5, [sp, #52]	@ 0x34
-    ldr	r6, [sp, #56]	@ 0x38
-    ldr	r7, [sp, #60]	@ 0x3c
-    ldr r0, .Lde_0803BD60
-    str	r0, [r4, #4]
-    movs	r0, #100	@ 0x64
-    bl __builtin_new
-    str	r5, [sp, #0]
-    str	r6, [sp, #4]
-    str	r7, [sp, #8]
-    ldr	r1, [sp, #64]	@ 0x40
-    str	r1, [sp, #12]
-    ldr	r1, [sp, #68]	@ 0x44
-    str	r1, [sp, #16]
-    mov	r1, r8
-    mov	r2, r9
-    mov	r3, sl
-    bl __12UiTextWindowiiUiUiUiUiUiUi
-    str	r0, [r4, #0]
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-.Lde_0803BD60:
-    .4byte vtable_unk_080E7778
-    .global func_0803BE50
-    .thumb_func
-func_0803BE50:
-    push	{r4, r5, r6, lr}
-    adds	r5, r0, #0
-    adds	r6, r1, #0
-    ldr r0, .Lde_0803BDAC
-    str	r0, [r5, #4]
-    ldr	r4, [r5, #0]
-    cmp	r4, #0
-    beq .Lde_0803BD98
-    adds	r0, r4, #0
-    adds	r0, #68	@ 0x44
-    movs	r1, #2
-    bl func_080098AC
-    adds	r0, r4, #0
-    adds	r0, #44	@ 0x2c
-    movs	r1, #2
-    bl func_080098AC
-    adds	r0, r4, #0
-    adds	r0, #16
-    movs	r1, #2
-    bl func_080098DC
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Lde_0803BD98:
-    movs	r0, #1
-    ands	r0, r6
-    cmp	r0, #0
-    beq .Lde_0803BDA6
-    adds	r0, r5, #0
-    bl __builtin_delete
-.Lde_0803BDA6:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-.Lde_0803BDAC:
-    .4byte vtable_unk_080E7778
     @ Remaining control-widget code after the recovered border constructor.
     .section .text.control_widgets_native, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
 
-    .global func_0803BF78
+    .global __13ControlObjectUiUiUiUiUi
     .thumb_func
-func_0803BF78:
+__13ControlObjectUiUiUiUiUi:
     push	{r4, r5, r6, lr}
     sub	sp, #20
     adds	r4, r0, #0
@@ -10970,7 +10593,7 @@ func_0803BF78:
     movs	r1, #0
     movs	r2, #136	@ 0x88
     movs	r3, #240	@ 0xf0
-    bl func_0803BDFC
+    bl __13ControlWidgetiiUiUiUiUiUiUi
     ldr r0, .Lde_0803BED4
     str	r0, [r4, #4]
     ldr r0, .Lde_0803BED8
@@ -10989,12 +10612,12 @@ func_0803BF78:
     pop	{r1}
     bx	r1
 .Lde_0803BED4:
-    .4byte vtable_unk_080E77A4
+    .4byte __vt_13ControlObject
 .Lde_0803BED8:
     .4byte 0x0000041C
-    .global func_0803BFC8
+    .global _._13ControlObject
     .thumb_func
-func_0803BFC8:
+_._13ControlObject:
     push	{r4, r5, lr}
     adds	r4, r0, #0
     adds	r5, r1, #0
@@ -11008,12 +10631,12 @@ func_0803BFC8:
 .Lde_0803BEF2:
     adds	r0, r4, #0
     adds	r1, r5, #0
-    bl func_0803BE50
+    bl _._13ControlWidget
     pop	{r4, r5}
     pop	{r0}
     bx	r0
 .Lde_0803BF00:
-    .4byte vtable_unk_080E77A4
+    .4byte __vt_13ControlObject
     push	{r4, r5, lr}
     sub	sp, #12
     ldr	r4, [sp, #24]
@@ -11059,7 +10682,7 @@ func_0803C028:
     ldr	r3, [sp, #152]	@ 0x98
     ldr	r5, [sp, #156]	@ 0x9c
     ldr	r2, [sp, #148]	@ 0x94
-    bl UpdateControlWidget
+    bl Update__13ControlWidgetP20HardwareDisplayStateP18HardwareLinkedListT2
     str	r0, [sp, #72]	@ 0x48
     cmp	r0, #0
     bge .Lde_0803BF62
@@ -11684,64 +11307,6 @@ func_0803C028:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    @ ROM-verified DE Thumb code_0803A8A4/code_0803C54C
-    .section .text.code_0803C54C
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_0803C54C
-    .thumb_func
-func_0803C54C:
-    push	{r4, r5, lr}
-    sub	sp, #20
-    adds	r4, r0, #0
-    ldr	r5, [sp, #32]
-    movs	r0, #24
-    str	r0, [sp, #0]
-    str	r1, [sp, #4]
-    str	r2, [sp, #8]
-    str	r3, [sp, #12]
-    str	r5, [sp, #16]
-    adds	r0, r4, #0
-    movs	r1, #128	@ 0x80
-    movs	r2, #136	@ 0x88
-    movs	r3, #112	@ 0x70
-    bl func_0803BDFC
-    ldr r0, .Lde_0803C498
-    str	r0, [r4, #4]
-    adds	r0, r4, #0
-    adds	r0, #8
-    bl __24MapClockStatusHudContent
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Lde_0803C498:
-    .4byte vtable_unk_080E77E0
-    .global func_0803C588
-    .thumb_func
-func_0803C588:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr r0, .Lde_0803C4C0
-    str	r0, [r4, #4]
-    adds	r0, r4, #0
-    adds	r0, #8
-    movs	r1, #2
-    bl _._24MapClockStatusHudContent
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl func_0803BE50
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Lde_0803C4C0:
-    .4byte vtable_unk_080E77E0
     .section .text.map_clock_status_calendar, "ax", %progbits
     .align 2, 0
     .global UpdateMapClockStatusHudCalendar
@@ -15820,102 +15385,15 @@ Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     pop	{r1}
     bx	r1
     .align 2, 0
-    @ ROM-verified US Thumb code_0803A8A4/code_0803BDFC
-    .section .text.code_0803BDFC
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_0803BDFC
-    .thumb_func
-func_0803BDFC:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, sl
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6, r7}
-    sub	sp, #20
-    adds	r4, r0, #0
-    mov	r8, r1
-    mov	r9, r2
-    mov	sl, r3
-    ldr	r5, [sp, #52]	@ 0x34
-    ldr	r6, [sp, #56]	@ 0x38
-    ldr	r7, [sp, #60]	@ 0x3c
-    ldr r0, .Lus_0803BE4C
-    str	r0, [r4, #4]
-    movs	r0, #100	@ 0x64
-    bl __builtin_new
-    str	r5, [sp, #0]
-    str	r6, [sp, #4]
-    str	r7, [sp, #8]
-    ldr	r1, [sp, #64]	@ 0x40
-    str	r1, [sp, #12]
-    ldr	r1, [sp, #68]	@ 0x44
-    str	r1, [sp, #16]
-    mov	r1, r8
-    mov	r2, r9
-    mov	r3, sl
-    bl __12UiTextWindowiiUiUiUiUiUiUi
-    str	r0, [r4, #0]
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r1}
-    bx	r1
-.Lus_0803BE4C:
-    .4byte vtable_unk_080E7778
-    .global func_0803BE50
-    .thumb_func
-func_0803BE50:
-    push	{r4, r5, r6, lr}
-    adds	r5, r0, #0
-    adds	r6, r1, #0
-    ldr r0, .Lus_0803BE98
-    str	r0, [r5, #4]
-    ldr	r4, [r5, #0]
-    cmp	r4, #0
-    beq .Lus_0803BE84
-    adds	r0, r4, #0
-    adds	r0, #68	@ 0x44
-    movs	r1, #2
-    bl func_080098AC
-    adds	r0, r4, #0
-    adds	r0, #44	@ 0x2c
-    movs	r1, #2
-    bl func_080098AC
-    adds	r0, r4, #0
-    adds	r0, #16
-    movs	r1, #2
-    bl func_080098DC
-    adds	r0, r4, #0
-    bl __builtin_delete
-.Lus_0803BE84:
-    movs	r0, #1
-    ands	r0, r6
-    cmp	r0, #0
-    beq .Lus_0803BE92
-    adds	r0, r5, #0
-    bl __builtin_delete
-.Lus_0803BE92:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-.Lus_0803BE98:
-    .4byte vtable_unk_080E7778
     @ Remaining control-widget code after the recovered border constructor.
     .section .text.control_widgets_native, "ax", %progbits
     .syntax unified
     .thumb
     .align 2, 0
 
-    .global func_0803BF78
+    .global __13ControlObjectUiUiUiUiUi
     .thumb_func
-func_0803BF78:
+__13ControlObjectUiUiUiUiUi:
     push	{r4, r5, r6, lr}
     sub	sp, #20
     adds	r4, r0, #0
@@ -15931,7 +15409,7 @@ func_0803BF78:
     movs	r1, #0
     movs	r2, #136	@ 0x88
     movs	r3, #240	@ 0xf0
-    bl func_0803BDFC
+    bl __13ControlWidgetiiUiUiUiUiUiUi
     ldr r0, .Lus_0803BFC0
     str	r0, [r4, #4]
     ldr r0, .Lus_0803BFC4
@@ -15950,12 +15428,12 @@ func_0803BF78:
     pop	{r1}
     bx	r1
 .Lus_0803BFC0:
-    .4byte vtable_unk_080E77A4
+    .4byte __vt_13ControlObject
 .Lus_0803BFC4:
     .4byte 0x0000041C
-    .global func_0803BFC8
+    .global _._13ControlObject
     .thumb_func
-func_0803BFC8:
+_._13ControlObject:
     push	{r4, r5, lr}
     adds	r4, r0, #0
     adds	r5, r1, #0
@@ -15969,12 +15447,12 @@ func_0803BFC8:
 .Lus_0803BFDE:
     adds	r0, r4, #0
     adds	r1, r5, #0
-    bl func_0803BE50
+    bl _._13ControlWidget
     pop	{r4, r5}
     pop	{r0}
     bx	r0
 .Lus_0803BFEC:
-    .4byte vtable_unk_080E77A4
+    .4byte __vt_13ControlObject
     push	{r4, r5, lr}
     sub	sp, #12
     ldr	r4, [sp, #24]
@@ -16020,7 +15498,7 @@ func_0803C028:
     ldr	r3, [sp, #152]	@ 0x98
     ldr	r5, [sp, #156]	@ 0x9c
     ldr	r2, [sp, #148]	@ 0x94
-    bl UpdateControlWidget
+    bl Update__13ControlWidgetP20HardwareDisplayStateP18HardwareLinkedListT2
     str	r0, [sp, #72]	@ 0x48
     cmp	r0, #0
     bge .Lus_0803C04E
@@ -16645,64 +16123,6 @@ func_0803C028:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    @ ROM-verified US Thumb code_0803A8A4/code_0803C54C
-    .section .text.code_0803C54C
-    .syntax unified
-    .thumb
-    .align 2, 0
-
-    .global func_0803C54C
-    .thumb_func
-func_0803C54C:
-    push	{r4, r5, lr}
-    sub	sp, #20
-    adds	r4, r0, #0
-    ldr	r5, [sp, #32]
-    movs	r0, #24
-    str	r0, [sp, #0]
-    str	r1, [sp, #4]
-    str	r2, [sp, #8]
-    str	r3, [sp, #12]
-    str	r5, [sp, #16]
-    adds	r0, r4, #0
-    movs	r1, #128	@ 0x80
-    movs	r2, #136	@ 0x88
-    movs	r3, #112	@ 0x70
-    bl func_0803BDFC
-    ldr r0, .Lus_0803C584
-    str	r0, [r4, #4]
-    adds	r0, r4, #0
-    adds	r0, #8
-    bl __24MapClockStatusHudContent
-    adds	r0, r4, #0
-    add	sp, #20
-    pop	{r4, r5}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Lus_0803C584:
-    .4byte vtable_unk_080E77E0
-    .global func_0803C588
-    .thumb_func
-func_0803C588:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr r0, .Lus_0803C5AC
-    str	r0, [r4, #4]
-    adds	r0, r4, #0
-    adds	r0, #8
-    movs	r1, #2
-    bl _._24MapClockStatusHudContent
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl func_0803BE50
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Lus_0803C5AC:
-    .4byte vtable_unk_080E77E0
     .section .text.map_clock_status_calendar, "ax", %progbits
     .align 2, 0
     .global UpdateMapClockStatusHudCalendar

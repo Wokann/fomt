@@ -451,26 +451,25 @@ SECTIONS
         src/ui_text_window.o(.text.ui_text_window_state);
         . = 0x3BDE4; /* US ROM 0x0803BDE4, set a u16 pair */
         src/code_0803BDE4.o(.text);
-        . = 0x3BDFC; /* US ROM 0x0803BDFC, remaining raw control code */
-        asm/code_0803A8A4.o(.text.code_0803BDFC);
+        . = 0x3BDFC; /* Control ownership lifecycle. */
+        src/control_widget.o(.text.control_widget_constructor .text.control_widget_destructor);
         . = 0x3BE9C; /* Read the owned window phase. */
         src/control_widget.o(.text.control_widget_phase);
 
         . = 0x3BEB0; /* Shared control callbacks, in ROM order. */
-        src/control_widget.o(.text);
+        src/control_widget.o(.text.control_widget_callbacks);
         . = 0x3BF14; /* Border constructor; remaining controls follow. */
         src/ui_text_window.o(.text.ui_text_window_border_constructor);
         asm/code_0803A8A4.o(.text.control_widgets_native);
-        . = 0x3C518; /* US ROM 0x0803C518, activate control bytes */
-        src/code_0803C518.o(.text);
-        . = 0x3C540; /* US ROM 0x0803C540, read and clear control bytes */
-        src/code_0803C540.o(.text);
-        . = 0x3C54C; /* US ROM 0x0803C54C, remaining raw control code */
-        asm/code_0803A8A4.o(.text.code_0803C54C);
+        . = 0x3C518; /* Derived control callbacks. */
+        src/control_object.o(.text.control_object_callbacks);
+        . = 0x3C54C; /* Clock-widget lifecycle. */
+        src/map_clock_status.o(.text.map_clock_status_widget_lifetime);
         src/map_clock_status.o(.text.__24MapClockStatusHudContent .text._._24MapClockStatusHudContent .text.DrawMapClockStatusHud);
         asm/code_0803A8A4.o(.text.map_clock_status_calendar);
         src/map_clock_status.o(.text.SetMapClockStatusHud* .text.ClearMapClockStatusHud*);
         src/map_clock_status.o(.text.*MapClockStatusWidget*);
+        src/map_clock_status.o(.text.map_clock_status_widget_draw);
         asm/code_0803A8A4.o(.text.farming_calendar_helpers);
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
         src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
@@ -1131,10 +1130,10 @@ SECTIONS
         . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_21ScriptSceneTransition);
         . = ALIGN(4); src/ui_text_window.o(.gnu.linkonce.d.__vt_25UiTextWindowBorderCommand);
         . = ALIGN(4); src/ui_text_window.o(.gnu.linkonce.d.__vt_29UiTextWindowTileUploadCommand);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_7778);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_77a4);
+        . = ALIGN(4); src/control_widget.o(.gnu.linkonce.d.__vt_13ControlWidget);
+        . = ALIGN(4); src/control_object.o(.gnu.linkonce.d.__vt_13ControlObject);
         . = ALIGN(4); src/hardware_dma_link.o(.gnu.linkonce.d.__vt_19HardwareDmaCopyLink);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_77e0);
+        . = ALIGN(4); src/map_clock_status.o(.gnu.linkonce.d.__vt_23MapClockStatusHudWidget);
         *(.gnu.linkonce.d.__vt_13AScriptEngine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
         . = ALIGN(4); src/font.o(.gnu.linkonce.d.__vt_*FontTilemap*DecimalCommand);

@@ -4003,62 +4003,8 @@ extern RawVTableFunction const vtable_unk_080E76D4[]
 
 
 
-extern void func_0803BE50(void);
 
-// Preserve this eleven-slot table and its exact callbacks in ROM order.
-extern RawVTableFunction const vtable_unk_080E7778[]
-    SECTION(".rodata.vtable_7778") = {
-        nullptr,
-        nullptr,
-        func_0803BE50,
-        reinterpret_cast<RawVTableFunction>(OpenControlWidget),
-        reinterpret_cast<RawVTableFunction>(OpenControlWidgetImmediate),
-        reinterpret_cast<RawVTableFunction>(CloseControlWidget),
-        reinterpret_cast<RawVTableFunction>(CloseControlWidgetImmediate),
-        reinterpret_cast<RawVTableFunction>(GetControlWidgetX),
-        reinterpret_cast<RawVTableFunction>(GetControlWidgetY),
-        reinterpret_cast<RawVTableFunction>(SetControlWidgetPosition),
-        reinterpret_cast<RawVTableFunction>(OffsetControlWidgetPosition),
-    };
 
-extern void func_0803BFC8(void);
-extern void func_0803C518(void);
-extern void func_0803C52C(void);
-
-// Preserve this eleven-slot table and its exact callbacks in ROM order.
-extern RawVTableFunction const vtable_unk_080E77A4[]
-    SECTION(".rodata.vtable_77a4") = {
-        nullptr,
-        nullptr,
-        func_0803BFC8,
-        func_0803C518,
-        func_0803C52C,
-        reinterpret_cast<RawVTableFunction>(CloseControlWidget),
-        reinterpret_cast<RawVTableFunction>(CloseControlWidgetImmediate),
-        reinterpret_cast<RawVTableFunction>(GetControlWidgetX),
-        reinterpret_cast<RawVTableFunction>(GetControlWidgetY),
-        reinterpret_cast<RawVTableFunction>(SetControlWidgetPosition),
-        reinterpret_cast<RawVTableFunction>(OffsetControlWidgetPosition),
-    };
-
-extern void func_0803C588(void);
-
-// Preserve this twelve-slot table and its exact callbacks in ROM order.
-extern RawVTableFunction const vtable_unk_080E77E0[]
-    SECTION(".rodata.vtable_77e0") = {
-        nullptr,
-        nullptr,
-        func_0803C588,
-        reinterpret_cast<RawVTableFunction>(OpenControlWidget),
-        reinterpret_cast<RawVTableFunction>(OpenControlWidgetImmediate),
-        reinterpret_cast<RawVTableFunction>(CloseControlWidget),
-        reinterpret_cast<RawVTableFunction>(CloseControlWidgetImmediate),
-        reinterpret_cast<RawVTableFunction>(GetControlWidgetX),
-        reinterpret_cast<RawVTableFunction>(GetControlWidgetY),
-        reinterpret_cast<RawVTableFunction>(SetControlWidgetPosition),
-        reinterpret_cast<RawVTableFunction>(OffsetControlWidgetPosition),
-        reinterpret_cast<RawVTableFunction>(DrawMapClockStatusWidget),
-    };
 
 // The base Script Engine table follows the AScriptEngine table in both ROMs.
 // The game-specific callback still has a native assembly implementation.

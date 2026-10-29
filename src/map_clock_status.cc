@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "control_widget.hh"
 #pragma implementation "map_clock_status.hh"
 #include "map_clock_status.hh"
 
@@ -427,15 +428,25 @@ void UpdateMapClockStatusWidgetCalendar(MapClockStatusHudWidget const * widget,
     UpdateMapClockStatusHudCalendar(&widget->content, calendar, show_colon);
 }
 
-u32 DrawMapClockStatusWidget(MapClockStatusHudWidget * widget,
+MapClockStatusHudWidget::MapClockStatusHudWidget(u32 background, u32 screen,
+    u32 palette, u32 mode)
+    : ControlWidget(128, 136, 112, 24, background, screen, palette, mode), content()
+{
+}
+
+MapClockStatusHudWidget::~MapClockStatusHudWidget()
+{
+}
+
+u32 MapClockStatusHudWidget::Draw(
     HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
     HardwareLinkedList * uploads, HardwareLinkedList * commands)
 {
-    u32 const state = UpdateControlWidget(widget, display, uploads, commands);
+    u32 const state = Update(display, uploads, commands);
     if (state == 3) {
-        i32 x = widget->vtable->get_x(widget);
-        i32 y = widget->vtable->get_y(widget);
-        DrawMapClockStatusHud(&widget->content, x, y, sprites, uploads);
+        i32 x = GetX();
+        i32 y = GetY();
+        DrawMapClockStatusHud(&content, x, y, sprites, uploads);
     }
     return state;
 }

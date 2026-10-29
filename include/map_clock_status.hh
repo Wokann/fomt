@@ -100,9 +100,16 @@ typedef char MapClockStatusValueOffset[offsetof(MapClockStatusHudData, unk_value
 typedef char MapClockStatusValueDirtyOffset[offsetof(MapClockStatusHudData, unk_value_dirty) == 0x334 ? 1 : -1];
 typedef char MapClockStatusContentSize[sizeof(MapClockStatusHudContent) == 4 ? 1 : -1];
 
-// The native control's state/table prefix occupies eight bytes; the
-// four-byte content owner follows it. Its remaining implementation is native.
+struct HardwareSpriteBufferState;
+
+// The clock owns its HUD content after the shared eight-byte control base.
 struct MapClockStatusHudWidget : ControlWidget {
+    MapClockStatusHudWidget(u32 background, u32 screen, u32 palette, u32 mode)
+        SECTION(".text.map_clock_status_widget_lifetime");
+    virtual ~MapClockStatusHudWidget() SECTION(".text.map_clock_status_widget_lifetime");
+    virtual u32 Draw(HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
+        HardwareLinkedList * uploads, HardwareLinkedList * commands)
+        SECTION(".text.map_clock_status_widget_draw");
     MapClockStatusHudContent content;
 };
 
@@ -133,9 +140,6 @@ extern u8 const gUnk_083ED9FC[];
 extern u8 const gUnk_086678A0[];
 #endif
 
-u32 DrawMapClockStatusWidget(MapClockStatusHudWidget * widget,
-    HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
-    HardwareLinkedList * uploads, HardwareLinkedList * commands);
 
 void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
     HardwareSpriteBufferState * buffer, HardwareLinkedList * queue);
