@@ -45,3 +45,8 @@ void AudioActorEntity::Update()
     if (visual != nullptr)
         visual->Update();
 }
+
+EC Box MakeAudioActorBounds(i32 x, i32 y)
+{
+    return Box(-7, -9, 7, 5, x, y);
+}

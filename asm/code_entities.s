@@ -7963,19 +7963,6 @@ func_0802431C:
     .align 2, 0
     .section .text.audio_actor_after_update, "ax", %progbits
     .align 2, 0
-    .global func_08024360
-    .thumb_func
-func_08024360:
-    subs r3, r1, #7
-    strh r3, [r0]
-    adds r3, r2, #0
-    subs r3, #9
-    strh r3, [r0, #2]
-    adds r1, #7
-    strh r1, [r0, #4]
-    adds r2, #5
-    strh r2, [r0, #6]
-    bx lr
     .global func_08024374
     .thumb_func
 func_08024374:
@@ -42181,20 +42168,6 @@ func_08024588:
     .align 2, 0
     .section .text.audio_actor_after_update, "ax", %progbits
     .align 2, 0
-    .global func_080245CC
-    .thumb_func
-func_080245CC:
-    subs r3, r1, #7
-    strh r3, [r0]
-    adds r3, r2, #0
-    subs r3, #9
-    strh r3, [r0, #2]
-    adds r1, #7
-    strh r1, [r0, #4]
-    adds r2, #5
-    strh r2, [r0, #6]
-    bx lr
-
     thumb_func_start func_080245E0
 func_080245E0: @ 0x080245E0
     push {lr}
