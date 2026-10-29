@@ -66,7 +66,7 @@ SECTIONS
         src/intro_scene.o(.text.intro_scene_sprite_submission);
         src/intro_scene.o(.text);
         asm/new_game_menu.o(.text);
-        src/new_game_menu.o(.text);
+        src/new_game_menu.o(.text.RunNewGameMenuOpeningBlend .text.RunNewGameMenuClosingBlend .text.UpdateNewGameMenuUi);
         asm/new_game_menu.o(.text.new_game_menu_label_tiles);
         src/new_game_menu.o(.text.new_game_menu_update);
         asm/new_game_menu.o(.text.new_game_menu_core_run);
@@ -834,11 +834,11 @@ SECTIONS
         *(.gnu.linkonce.t._._24IntroNameEntryTransition);
         src/intro_scene.o(.text.intro_scene_core_cleanup);
         src/resource_archive.o(.text.indexed_resource_provider_cleanup);
-        src/new_game_menu.o(.gnu.linkonce.t.CreateScene__27NewGameLoadedSaveTransition);
+        src/new_game_menu.o(.text.CreateScene__27NewGameLoadedSaveTransition);
         src/intro_scene.o(.text.intro_scene_factory);
         src/intro_scene.o(.gnu.linkonce.t._._19MenuIntroTransition);
         src/new_game_menu.o(.gnu.linkonce.t._._27NewGameLoadedSaveTransition);
-        src/new_game_menu.o(.text.new_game_menu_core_cleanup);
+        src/new_game_menu.o(.gnu.linkonce.t._._15NewGameMenuCore);
         src/game_scene.o(
             .text.__30GameSceneControllerActorRecord
             .text.__24GameSceneEventIconRecord);
@@ -1007,11 +1007,12 @@ SECTIONS
         src/new_game_menu.o(.rodata .gnu.linkonce.d.__vt_16NewGameMenuScene);
         src/new_game.o(.rodata);
         src/new_game_identity.o(.rodata);
-        src/new_game_name_input.o(.rodata .gnu.linkonce.d.__vt_21NewGameNameInputScene);
+        src/new_game_name_input.o(.gnu.linkonce.d.__vt_20NewGameNameInputCore);
+        src/new_game_name_input.o(.gnu.linkonce.d.__vt_21NewGameNameInputScene);
         *(.gnu.linkonce.d.__vt_23HardwareDmaQueueCommand);
         *(.gnu.linkonce.d.__vt_27HardwareSpriteBufferCommand);
         *(.gnu.linkonce.d.__vt_22HardwareDisplayCommand);
-        src/hardware_bootstrap.o(.rodata);
+        src/hardware_bootstrap.o(.gnu.linkonce.d.__vt_17HardwareBootstrap);
         *(.gnu.linkonce.d.__vt_27HardwareManagerCommandGroup.28HardwareManagerVBlankBinding);
         *(.gnu.linkonce.d.__vt_27HardwareManagerCommandGroup);
         *(.gnu.linkonce.d.__vt_28HardwareManagerVBlankBinding);

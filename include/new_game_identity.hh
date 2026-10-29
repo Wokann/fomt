@@ -26,8 +26,9 @@ enum NewGameIdentityField {
 // overseas core. JP uses eight equal-width buffers: four values followed by
 // four labels. Overseas labels are wider and form their own four-entry array.
 // The unknown scalar and control-byte names retain their original US offsets.
+#pragma interface "new_game_identity.hh"
 struct NewGameIdentityCore : HardwareBootstrap {
-    ~NewGameIdentityCore() asm("DestroyNewGameIdentityCore")
+    virtual ~NewGameIdentityCore() asm("DestroyNewGameIdentityCore")
         SECTION(".text.new_game_identity_core_cleanup");
 #if defined(REGION_JP)
     NewGameTextTileBuffer<12> buffers[8];
@@ -45,7 +46,6 @@ struct NewGameIdentityCore : HardwareBootstrap {
     u8 unk_1A77;
 };
 
-#pragma interface "new_game_identity.hh"
 struct NewGameIdentityScene : AScene {
     NewGameIdentityScene(char const * player_name, GameDate birthday,
         char const * farm_name, char const * dog_name)
@@ -109,7 +109,7 @@ void ResetNewGameIdentityControl(NewGameIdentityCore * core)
 void InitializeNewGameIdentityScreen(NewGameIdentityCore * core);
 void UpdateNewGameIdentityDialog(NewGameIdentityCore * core)
     SECTION(".text.new_game_identity_core_update");
-extern NewGameSceneVTableFunction const gNewGameIdentityCoreVTable[];
+extern int (*__vt_19NewGameIdentityCore[])(...);
 extern NewGameNativeVTableEntry __vt_20NewGameIdentityScene[4];
 
 // Native ABI declarations for the scene lifecycle and its byte-result accessors.

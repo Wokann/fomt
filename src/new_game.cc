@@ -132,9 +132,9 @@ NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore 
     HardwareInputRepeatParameters input(30, 1);
     ConstructHardwareBootstrapWithInput(core, &input);
 #if defined(REGION_JP)
-    core->vtable = reinterpret_cast<void **>(const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E7AB4));
+    InstallHardwareBootstrapNativeVTable(core, vtable_unk_080E7AB4);
 #else
-    core->vtable = reinterpret_cast<void **>(const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E7AC4));
+    InstallHardwareBootstrapNativeVTable(core, vtable_unk_080E7AC4);
 #endif
     core->unk_08 = 0;
     // Allocate the owner before acquiring its temporary shared resources.
@@ -195,11 +195,7 @@ NewGameBirthdayInputScene::NewGameBirthdayInputScene(GameDate birthday)
 
 NewGameBirthdayInputScene::~NewGameBirthdayInputScene()
 {
-    // The outer scene has its real C++ lifetime. Its core still has a partial
-    // bootstrap ABI view, so retain the verified virtual cleanup of that core.
-    NewGameBirthdayInputCore * object = core;
-    if (object != nullptr)
-        ((void (*)(NewGameBirthdayInputCore *, int))object->vtable[2])(object, 3);
+    delete core;
 }
 
 SceneTransitionOwner NewGameBirthdayInputScene::Run()

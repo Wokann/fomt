@@ -22,7 +22,9 @@ typedef char NewGameNameInputSpriteStateAttributesCheck[
 // Construction and the drawing/upload consumers confirm this physical order.
 // Remaining control fields keep their unknown names; name is RAM storage.
 struct NewGameNameInputCore : HardwareBootstrap {
-    ~NewGameNameInputCore() asm("DestroyNameInputCore")
+    NewGameNameInputCore(char const * prompt, char const * initial_name)
+        SECTION(".text.new_game_name_input_core_constructor");
+    virtual ~NewGameNameInputCore()
         SECTION(".text.new_game_name_input_core_cleanup");
 #if defined(REGION_DE)
     NewGameTextTileBuffer<30> keyboard_buffers[9];
@@ -35,7 +37,9 @@ struct NewGameNameInputCore : HardwareBootstrap {
 #else
     NewGameTextTileBuffer<9> prompt_buffer;
 #endif
-    HardwareMusicPlayerSlot music_players[2];
+    // The native UI borrows these two adjacent slots, starting with player 1.
+    HardwareMusicPlayerSlot music_player_1;
+    HardwareMusicPlayerSlot music_player_2;
     UiStateOwner * ui_state;
     char const * prompt;
     u32 keyboard_page;
@@ -49,8 +53,12 @@ struct NewGameNameInputCore : HardwareBootstrap {
     u32 unk_463c;
 };
 
-// The reusable keyboard is a real scene. Its core keeps the verified native
-// bootstrap interface until that separate hierarchy is fully recovered.
+typedef char NewGameNameInputMusicStrideCheck[
+    offsetof(NewGameNameInputCore, music_player_2) ==
+        offsetof(NewGameNameInputCore, music_player_1) + sizeof(HardwareMusicPlayerSlot) ? 1 : -1];
+
+// The reusable keyboard and its core have ordinary C++ lifetimes.
+// Keyboard raster and screen setup still use their existing native entries.
 struct NewGameNameInputScene : AScene {
     NewGameNameInputScene(char const * prompt, char const * initial_name)
         asm("ConstructNameInputScene") SECTION(".text.new_game_name_input_scene");
@@ -95,7 +103,7 @@ typedef char NewGameNameInputFinalWordCheck[
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4580 ? 1 : -1];
 typedef char NewGameNameInputCoreNameBufferCheck[offsetof(NewGameNameInputCore, name_buffer) == 0x3C28 ? 1 : -1];
 typedef char NewGameNameInputCorePromptBufferCheck[offsetof(NewGameNameInputCore, prompt_buffer) == 0x43AC ? 1 : -1];
-typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music_players) == 0x4530 ? 1 : -1];
+typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music_player_1) == 0x4530 ? 1 : -1];
 typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x4538 ? 1 : -1];
 typedef char NewGameNameInputCorePromptCheck[offsetof(NewGameNameInputCore, prompt) == 0x453C ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x455C ? 1 : -1];
@@ -104,7 +112,7 @@ typedef char NewGameNameInputCoreFinishedCheck[offsetof(NewGameNameInputCore, fi
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4DC4 ? 1 : -1];
 typedef char NewGameNameInputCoreNameBufferCheck[offsetof(NewGameNameInputCore, name_buffer) == 0x43AC ? 1 : -1];
 typedef char NewGameNameInputCorePromptBufferCheck[offsetof(NewGameNameInputCore, prompt_buffer) == 0x4B30 ? 1 : -1];
-typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music_players) == 0x4D74 ? 1 : -1];
+typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music_player_1) == 0x4D74 ? 1 : -1];
 typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x4D7C ? 1 : -1];
 typedef char NewGameNameInputCorePromptCheck[offsetof(NewGameNameInputCore, prompt) == 0x4D80 ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x4DA0 ? 1 : -1];
@@ -113,7 +121,7 @@ typedef char NewGameNameInputCoreFinishedCheck[offsetof(NewGameNameInputCore, fi
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4640 ? 1 : -1];
 typedef char NewGameNameInputCoreNameBufferCheck[offsetof(NewGameNameInputCore, name_buffer) == 0x3C28 ? 1 : -1];
 typedef char NewGameNameInputCorePromptBufferCheck[offsetof(NewGameNameInputCore, prompt_buffer) == 0x43AC ? 1 : -1];
-typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music_players) == 0x45F0 ? 1 : -1];
+typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music_player_1) == 0x45F0 ? 1 : -1];
 typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x45F8 ? 1 : -1];
 typedef char NewGameNameInputCorePromptCheck[offsetof(NewGameNameInputCore, prompt) == 0x45FC ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x461C ? 1 : -1];
@@ -124,13 +132,8 @@ typedef char NewGameNameInputSceneCoreCheck[offsetof(NewGameNameInputScene, core
 
 EXTERN_C
 
-// Core construction, running and edit operations use the regional layout above.
+// Running and edit operations use the regional layout above.
 // Screen setup and keyboard raster still remain assembly.
-NewGameNameInputCore * InitializeNameInputCore(NewGameNameInputCore * core,
-    char const * prompt, char const * initial_name)
-    SECTION(".text.new_game_name_input_core_constructor");
-void DestroyNameInputCore(NewGameNameInputCore * core, int flags)
-    SECTION(".text.new_game_name_input_core_cleanup");
 SceneTransitionOwner RunNameInputCore(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_core_run");
 void InitializeNameInputScreen(NewGameNameInputCore * core);
@@ -166,7 +169,6 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_keys");
 void UpdateNameInputConfirmation(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_confirmation");
-extern NewGameSceneVTableFunction const gNewGameNameInputCoreVTable[];
 
 // These C declarations name the actual member ABI for existing native
 // callers; they do not emit extra wrappers or alias symbols.

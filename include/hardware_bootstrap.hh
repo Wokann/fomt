@@ -37,16 +37,30 @@ struct HardwareDmaQueueCommandVTable {
 
 struct HardwareBootstrap {
     struct HardwareCoreState * state;
+#ifndef __cplusplus
     void ** vtable;
+#endif
 #ifdef __cplusplus
     HardwareBootstrap();
     HardwareBootstrap(HardwareInputRepeatParameters const & input);
     HardwareBootstrap(HardwareSpriteBufferParameters const & buffer);
     HardwareBootstrap(HardwareInputRepeatParameters const & input,
         HardwareSpriteBufferParameters const & buffer);
-    ~HardwareBootstrap();
+    virtual ~HardwareBootstrap();
 #endif
 };
+
+// Only the existing free native scene initializers install a table directly.
+// GCC 2.9 places this vptr immediately after state; normal C++ construction
+// and destruction use the compiler's own table. This is an ABI operation,
+// not a separate allocation or a substitute scene constructor.
+#ifdef __cplusplus
+static inline void InstallHardwareBootstrapNativeVTable(HardwareBootstrap * owner,
+    void const * table)
+{
+    *reinterpret_cast<void const **>(reinterpret_cast<u8 *>(owner) + sizeof(owner->state)) = table;
+}
+#endif
 
 struct HardwareDisplayCommand
 #ifdef __cplusplus
@@ -124,7 +138,6 @@ extern struct HardwareDmaQueueCommandVTable const __vt_23HardwareDmaQueueCommand
 // Direct declarations of the actual member ABI for the scene classes whose
 // complete lifecycles are still being recovered. Each asm label names the
 // one compiler-defined constructor/destructor; no wrapper or alias is emitted.
-extern HardwareLinkVirtualFunction const gHardwareBootstrapVTable[];
 struct HardwareBootstrap * ConstructHardwareBootstrap(struct HardwareBootstrap * owner) asm("__17HardwareBootstrap");
 struct HardwareBootstrap * ConstructHardwareBootstrapWithInput(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input) asm("__17HardwareBootstrapRC29HardwareInputRepeatParameters");
 struct HardwareBootstrap * ConstructHardwareBootstrapWithSpriteBuffer(struct HardwareBootstrap * owner, struct HardwareSpriteBufferParameters const * buffer) asm("__17HardwareBootstrapRC30HardwareSpriteBufferParameters");
@@ -169,6 +182,8 @@ typedef char HardwareDmaQueueCommandVTable_size_check[sizeof(struct HardwareDmaQ
 
 typedef char HardwareBootstrap_size_check[sizeof(struct HardwareBootstrap) == 8 ? 1 : -1];
 typedef char HardwareBootstrap_state_check[offsetof(struct HardwareBootstrap, state) == 0 ? 1 : -1];
+#ifndef __cplusplus
 typedef char HardwareBootstrap_vtable_check[offsetof(struct HardwareBootstrap, vtable) == 4 ? 1 : -1];
+#endif
 
 #endif // HARDWARE_BOOTSTRAP_HH

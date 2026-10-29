@@ -1,3 +1,5 @@
+#include "prelude.h"
+#pragma implementation "new_game_menu.hh"
 #include "new_game_menu.hh"
 #include "new_game_data.hh"
 #include "hardware_state_accessors.hh"
@@ -18,11 +20,6 @@ inline SceneOwner NewGameLoadedSaveTransition::CreateScene()
 {
     return SceneOwner(new GameSceneScriptController(state));
 }
-
-extern NewGameMenuVTableEntry const gNewGameMenuCoreVTable[] = {
-    nullptr, nullptr,
-    reinterpret_cast<NewGameMenuVTableEntry>(DestroyNewGameMenuCore),
-};
 
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
 {
@@ -265,8 +262,7 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
 {
     HardwareSpriteBufferParameters buffers(7, 0);
     ConstructHardwareBootstrapWithSpriteBuffer(core, &buffers);
-    core->vtable = reinterpret_cast<void **>(
-        const_cast<NewGameMenuVTableEntry *>(gNewGameMenuCoreVTable));
+    InstallHardwareBootstrapNativeVTable(core, __vt_15NewGameMenuCore);
     core->current_save = save;
     SceneTransition * next = continuation;
     continuation = nullptr;
@@ -356,17 +352,10 @@ NewGameMenuScene::NewGameMenuScene(GameStateSaveImage * save, SceneTransition *&
 
 NewGameMenuScene::~NewGameMenuScene()
 {
-    NewGameMenuCore * object = core;
-    if (object != nullptr)
-        ((void (*)(NewGameMenuCore *, int))object->vtable[2])(object, 3);
+    delete core;
 }
 
 SceneTransitionOwner NewGameMenuScene::Run()
 {
     return RunNewGameMenuCore(core);
-}
-
-// The members and the bootstrap base unwind in reverse construction order.
-NewGameMenuCore::~NewGameMenuCore()
-{
 }

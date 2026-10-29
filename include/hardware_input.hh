@@ -3,6 +3,11 @@
 
 #include "prelude.h"
 
+// This small parameter constructor is inlined by its native call sites.
+// A scene's implementation pragma must not emit a second strong copy.
+#ifdef __cplusplus
+#pragma interface "hardware_input.hh"
+#endif
 struct HardwareInputRepeatParameters {
     u16 delay;
     u16 interval;
@@ -11,6 +16,10 @@ struct HardwareInputRepeatParameters {
         : delay(delay), interval(interval) {}
 #endif
 };
+
+#ifdef __cplusplus
+#pragma implementation
+#endif
 
 typedef char HardwareInputRepeatParameters_size_check[sizeof(struct HardwareInputRepeatParameters) == 4 ? 1 : -1];
 typedef char HardwareInputRepeatParameters_interval_check[offsetof(struct HardwareInputRepeatParameters, interval) == 2 ? 1 : -1];

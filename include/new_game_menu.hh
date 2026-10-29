@@ -62,9 +62,9 @@ typedef char NewGameMenuPhaseSizeCheck[sizeof(NewGameMenuPhase) == 4 ? 1 : -1];
 // The menu constructor allocates 0x1A0 bytes. Only fields confirmed by its
 // constructor, cleanup, and hardware/UI consumers are modeled here; the
 // remaining payload is not yet a recovered high-level class.
+#pragma interface "new_game_menu.hh"
 struct NewGameMenuCore : HardwareBootstrap {
-    ~NewGameMenuCore() asm("DestroyNewGameMenuCore")
-        SECTION(".text.new_game_menu_core_cleanup");
+    // Implicit cleanup unwinds the members and bootstrap in reverse order.
     // Borrowed active snapshot; null when opening the title-screen load menu.
     GameStateSaveImage * current_save;
     SceneTransitionOwner continuation;
@@ -176,10 +176,7 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
     SceneTransition *& continuation)
     SECTION(".text.new_game_menu_update");
 SceneTransitionOwner RunNewGameMenuCore(struct NewGameMenuCore * core);
-extern NewGameMenuVTableEntry const gNewGameMenuCoreVTable[];
-
-// Raw C/assembly view of the real C++ destructor entry and flags.
-void DestroyNewGameMenuCore(NewGameMenuCore * core, int flags);
+extern int (*__vt_15NewGameMenuCore[])(...);
 
 EXTERN_C_END
 

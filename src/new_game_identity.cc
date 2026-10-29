@@ -1,3 +1,5 @@
+#include "prelude.h"
+#pragma implementation "new_game_identity.hh"
 #include "new_game_identity.hh"
 #include "hardware_display_commands.hh"
 #include "new_game_data.hh"
@@ -10,16 +12,6 @@
 #include "time_of_day.hh"
 #include <string.h>
 #pragma implementation
-
-extern NewGameSceneVTableFunction const gNewGameIdentityCoreVTable[] = {
-    nullptr, nullptr,
-    reinterpret_cast<NewGameSceneVTableFunction>(DestroyNewGameIdentityCore),
-};
-NewGameNativeVTableEntry __vt_20NewGameIdentityScene[4] = {
-    nullptr, nullptr,
-    reinterpret_cast<NewGameNativeVTableEntry>(DestroyNewGameIdentityScene),
-    reinterpret_cast<NewGameNativeVTableEntry>(RunNewGameIdentityScene),
-};
 
 void * operator new(unsigned long);
 void operator delete(void *);
@@ -46,8 +38,7 @@ NewGameIdentityCore * InitializeNewGameIdentityCore(NewGameIdentityCore * core,
     char const * dog_name)
 {
     ConstructHardwareBootstrap(core);
-    core->vtable = reinterpret_cast<void **>(
-        const_cast<NewGameSceneVTableFunction *>(gNewGameIdentityCoreVTable));
+    InstallHardwareBootstrapNativeVTable(core, __vt_19NewGameIdentityCore);
 #if defined(REGION_JP)
     new (core->buffers) NewGameTextTileBuffer<12>[8];
 #else
@@ -98,8 +89,6 @@ static inline void QueueIdentityBlend(HardwareBootstrap * core, HardwareBlendOwn
 
 NewGameIdentityCore::~NewGameIdentityCore()
 {
-    vtable = reinterpret_cast<void **>(
-        const_cast<NewGameSceneVTableFunction *>(gNewGameIdentityCoreVTable));
     if (ui_state != nullptr)
         delete ui_state;
 }
@@ -238,9 +227,7 @@ NewGameIdentityScene::NewGameIdentityScene(char const * player_name,
 
 NewGameIdentityScene::~NewGameIdentityScene()
 {
-    NewGameIdentityCore * object = core;
-    if (object != nullptr)
-        ((void (*)(NewGameIdentityCore *, int))object->vtable[2])(object, 3);
+    delete core;
 }
 
 SceneTransitionOwner NewGameIdentityScene::Run()

@@ -24,6 +24,7 @@ typedef char IntroStoryPlayerNameOffsetCheck[offsetof(IntroStoryTextVariables, p
 // Verified native layout, not yet a complete C++ polymorphic scene class.
 struct IntroStorySceneCore : HardwareBootstrap
 {
+    virtual ~IntroStorySceneCore() asm("DestroyIntroStorySceneCore");
     GameStateSaveImage * saved;
     u32 unk_0C;
     UiStateOwner * ui_state;

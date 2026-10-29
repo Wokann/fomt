@@ -61,6 +61,7 @@ struct PACKED ALIGN(2) NewGameBirthdayInputGlyph {
 };
 
 struct NewGameBirthdayInputCore : HardwareBootstrap {
+    virtual ~NewGameBirthdayInputCore() asm("DestroyBirthdayInputCore");
     u32 unk_08;
     UiStateOwner * ui_state;
     HardwareMusicPlayerSlot music_players[2];

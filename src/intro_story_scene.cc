@@ -24,7 +24,7 @@ IntroStorySceneCore * InitializeIntroStorySceneCore(IntroStorySceneCore * core,
 {
     HardwareInputRepeatParameters input(30, 1);
     ConstructHardwareBootstrapWithInput(core, &input);
-    core->vtable = reinterpret_cast<void **>(const_cast<IntroStorySceneCoreVTable *>(&gIntroStorySceneCoreVTable));
+    InstallHardwareBootstrapNativeVTable(core, &gIntroStorySceneCoreVTable);
     core->saved = saved;
     core->unk_0C = 0;
     void * storage = operator new(sizeof(UiStateOwner));
@@ -60,8 +60,7 @@ inline IntroStoryCoreOwner::IntroStoryCoreOwner(GameStateSaveImage * saved)
 
 inline IntroStoryCoreOwner::~IntroStoryCoreOwner()
 {
-    if (value != nullptr)
-        reinterpret_cast<IntroStorySceneCoreVTable const *>(value->vtable)->destroy(value, 3);
+    delete value;
 }
 
 static inline SceneTransition * TakeIntroStoryContinuation(SceneTransition *& next)

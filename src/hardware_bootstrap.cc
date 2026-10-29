@@ -11,7 +11,6 @@ void operator delete(void *);
 
 HardwareBootstrap::HardwareBootstrap()
 {
-    this->vtable = (void **)gHardwareBootstrapVTable;
     struct HardwareCoreState * state = new HardwareCoreState(30, 4, 0, 0x20);
     u16 status = state->display.status;
     status |= 8;
@@ -22,7 +21,6 @@ HardwareBootstrap::HardwareBootstrap()
 
 HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input)
 {
-    this->vtable = (void **)gHardwareBootstrapVTable;
     struct HardwareCoreState * state = new HardwareCoreState(input.delay, input.interval, 0, 0x20);
     u16 status = state->display.status;
     status |= 8;
@@ -33,7 +31,6 @@ HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input
 
 HardwareBootstrap::HardwareBootstrap(HardwareSpriteBufferParameters const & buffer)
 {
-    this->vtable = (void **)gHardwareBootstrapVTable;
     struct HardwareCoreState * state = new HardwareCoreState(30, 4, buffer);
     u16 status = state->display.status;
     status |= 8;
@@ -45,7 +42,6 @@ HardwareBootstrap::HardwareBootstrap(HardwareSpriteBufferParameters const & buff
 HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input,
     HardwareSpriteBufferParameters const & buffer)
 {
-    this->vtable = (void **)gHardwareBootstrapVTable;
     struct HardwareCoreState * state = new HardwareCoreState(input.delay, input.interval, buffer);
     u16 status = state->display.status;
     status |= 8;
@@ -56,7 +52,6 @@ HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input
 
 HardwareBootstrap::~HardwareBootstrap()
 {
-    this->vtable = (void **)gHardwareBootstrapVTable;
     delete state;
 }
 
@@ -102,10 +97,3 @@ bool HardwareDmaQueueCommand::Run()
     }
     return 0;
 }
-
-// Bootstrap itself is still a partial ABI view, unlike the command classes.
-extern HardwareLinkVirtualFunction const gHardwareBootstrapVTable[] = {
-    nullptr,
-    nullptr,
-    reinterpret_cast<HardwareLinkVirtualFunction>(DestroyHardwareBootstrap),
-};
