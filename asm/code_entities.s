@@ -20691,156 +20691,8 @@ func_0802A9C0: @ 0x0802A9C0
     bx r0
     .align 2, 0
 
-    .global func_0802AB14
-    .thumb_func
-func_0802AB14: @ 0x0802AB14
-    push {r4, r5, lr}
-    sub sp, #0x30
-    adds r5, r0, #0
-    ldr r0, [r5, #0x38]
-    bl func_0800E958
-    adds r4, r0, #0
-    ldr r0, [r5, #0x38]
-    bl func_0800ED8C
-    ldr r0, [r5, #0x38]
-    bl func_0800E958
-    cmp r4, r0
-    bne .Ljp_0802AB34
-    b .Ljp_0802AC2C
-.Ljp_0802AB34:
-    ldr r0, [r5, #0x38]
-    bl func_0800E958
-    adds r1, r0, #0
-    ldr r0, .Ljp_0802AB54 @ =0x000F4240
-    cmp r1, r0
-    beq .Ljp_0802ABBC
-    cmp r1, r0
-    bhi .Ljp_0802AB60
-    ldr r0, .Ljp_0802AB58 @ =0x00002710
-    cmp r1, r0
-    beq .Ljp_0802AB88
-    ldr r0, .Ljp_0802AB5C @ =0x000186A0
-    cmp r1, r0
-    beq .Ljp_0802ABA4
-    b .Ljp_0802AC2C
+    .section .text.player_actor_after_pedometer, "ax", %progbits
     .align 2, 0
-.Ljp_0802AB54: .4byte 0x000F4240
-.Ljp_0802AB58: .4byte 0x00002710
-.Ljp_0802AB5C: .4byte 0x000186A0
-.Ljp_0802AB60:
-    ldr r0, .Ljp_0802AB74 @ =0x05F5E100
-    cmp r1, r0
-    beq .Ljp_0802ABEC
-    cmp r1, r0
-    bhi .Ljp_0802AB7C
-    ldr r0, .Ljp_0802AB78 @ =0x00989680
-    cmp r1, r0
-    beq .Ljp_0802ABD2
-    b .Ljp_0802AC2C
-    .align 2, 0
-.Ljp_0802AB74: .4byte 0x05F5E100
-.Ljp_0802AB78: .4byte 0x00989680
-.Ljp_0802AB7C:
-    ldr r0, .Ljp_0802AB84 @ =0x3B9ACA00
-    cmp r1, r0
-    beq .Ljp_0802AC10
-    b .Ljp_0802AC2C
-    .align 2, 0
-.Ljp_0802AB84: .4byte 0x3B9ACA00
-.Ljp_0802AB88:
-    ldr r0, [r5]
-    ldr r1, [r0]
-    movs r2, #0xa0
-    lsls r2, r2, #1
-    adds r1, r1, r2
-    ldr r2, .Ljp_0802ABA0 @ =0x00000336
-    movs r3, #0
-    str r2, [sp]
-    str r3, [sp, #4]
-    ldr r3, [r1]
-    mov r1, sp
-    b .Ljp_0802AC02
-    .align 2, 0
-.Ljp_0802ABA0: .4byte 0x00000336
-.Ljp_0802ABA4:
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #8
-    ldr r3, .Ljp_0802ABB8 @ =0x00000337
-    movs r4, #0
-    str r3, [sp, #8]
-    b .Ljp_0802ABFE
-    .align 2, 0
-.Ljp_0802ABB8: .4byte 0x00000337
-.Ljp_0802ABBC:
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x10
-    movs r3, #0xce
-    lsls r3, r3, #2
-    movs r4, #0
-    str r3, [sp, #0x10]
-    b .Ljp_0802ABFE
-.Ljp_0802ABD2:
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x18
-    ldr r3, .Ljp_0802ABE8 @ =0x00000339
-    movs r4, #0
-    str r3, [sp, #0x18]
-    b .Ljp_0802ABFE
-    .align 2, 0
-.Ljp_0802ABE8: .4byte 0x00000339
-.Ljp_0802ABEC:
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x20
-    ldr r3, .Ljp_0802AC0C @ =0x0000033A
-    movs r4, #0
-    str r3, [sp, #0x20]
-.Ljp_0802ABFE:
-    str r4, [r1, #4]
-    ldr r3, [r2]
-.Ljp_0802AC02:
-    movs r2, #1
-    bl _call_via_r3
-    b .Ljp_0802AC2C
-    .align 2, 0
-.Ljp_0802AC0C: .4byte 0x0000033A
-.Ljp_0802AC10:
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x28
-    ldr r3, .Ljp_0802AC34 @ =0x0000033B
-    movs r4, #0
-    str r3, [sp, #0x28]
-    str r4, [r1, #4]
-    ldr r3, [r2]
-    movs r2, #1
-    bl _call_via_r3
-.Ljp_0802AC2C:
-    add sp, #0x30
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_0802AC34: .4byte 0x0000033B
-
     .global func_0802AC38
     .thumb_func
 func_0802AC38: @ 0x0802AC38
@@ -29351,15 +29203,15 @@ func_0802E994:
     cmp r0, #1
     bne .Ljp_0802EE60
     adds r0, r7, #0
-    bl func_0802AB14
+    bl UpdatePlayerPedometer
     b .Ljp_0802EE70
 .Ljp_0802EE60:
     cmp r0, #2
     bne .Ljp_0802EE70
     adds r0, r7, #0
-    bl func_0802AB14
+    bl UpdatePlayerPedometer
     adds r0, r7, #0
-    bl func_0802AB14
+    bl UpdatePlayerPedometer
 .Ljp_0802EE70:
     add sp, #0x14
     pop {r3, r4, r5}
@@ -34850,7 +34702,7 @@ sub_080317F2: @ 0x080317F2
     str r2, [r3, #0x14]
 .Ljp_08031982:
     mov r0, sl
-    bl func_0802AB14
+    bl UpdatePlayerPedometer
     b .Ljp_08031CA2
 .Ljp_0803198A:
     mov r5, sl
@@ -54482,155 +54334,8 @@ func_0802AC2C: @ 0x0802AC2C
     bx r0
     .align 2, 0
 
-    thumb_func_start func_0802AD80
-func_0802AD80: @ 0x0802AD80
-    push {r4, r5, lr}
-    sub sp, #0x30
-    adds r5, r0, #0
-    ldr r0, [r5, #0x38]
-    bl func_0800E958
-    adds r4, r0, #0
-    ldr r0, [r5, #0x38]
-    bl func_0800ED8C
-    ldr r0, [r5, #0x38]
-    bl func_0800E958
-    cmp r4, r0
-    bne .L0802ADA0
-    b .L0802AE98
-.L0802ADA0:
-    ldr r0, [r5, #0x38]
-    bl func_0800E958
-    adds r1, r0, #0
-    ldr r0, .L0802ADC0 @ =0x000F4240
-    cmp r1, r0
-    beq .L0802AE28
-    cmp r1, r0
-    bhi .L0802ADCC
-    ldr r0, .L0802ADC4 @ =0x00002710
-    cmp r1, r0
-    beq .L0802ADF4
-    ldr r0, .L0802ADC8 @ =0x000186A0
-    cmp r1, r0
-    beq .L0802AE10
-    b .L0802AE98
+    .section .text.player_actor_after_pedometer, "ax", %progbits
     .align 2, 0
-.L0802ADC0: .4byte 0x000F4240
-.L0802ADC4: .4byte 0x00002710
-.L0802ADC8: .4byte 0x000186A0
-.L0802ADCC:
-    ldr r0, .L0802ADE0 @ =0x05F5E100
-    cmp r1, r0
-    beq .L0802AE58
-    cmp r1, r0
-    bhi .L0802ADE8
-    ldr r0, .L0802ADE4 @ =0x00989680
-    cmp r1, r0
-    beq .L0802AE3E
-    b .L0802AE98
-    .align 2, 0
-.L0802ADE0: .4byte 0x05F5E100
-.L0802ADE4: .4byte 0x00989680
-.L0802ADE8:
-    ldr r0, .L0802ADF0 @ =0x3B9ACA00
-    cmp r1, r0
-    beq .L0802AE7C
-    b .L0802AE98
-    .align 2, 0
-.L0802ADF0: .4byte 0x3B9ACA00
-.L0802ADF4:
-    ldr r0, [r5]
-    ldr r1, [r0]
-    movs r2, #0xa0
-    lsls r2, r2, #1
-    adds r1, r1, r2
-    ldr r2, .L0802AE0C @ =0x00000336
-    movs r3, #0
-    str r2, [sp]
-    str r3, [sp, #4]
-    ldr r3, [r1]
-    mov r1, sp
-    b .L0802AE6E
-    .align 2, 0
-.L0802AE0C: .4byte 0x00000336
-.L0802AE10:
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #8
-    ldr r3, .L0802AE24 @ =0x00000337
-    movs r4, #0
-    str r3, [sp, #8]
-    b .L0802AE6A
-    .align 2, 0
-.L0802AE24: .4byte 0x00000337
-.L0802AE28:
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x10
-    movs r3, #0xce
-    lsls r3, r3, #2
-    movs r4, #0
-    str r3, [sp, #0x10]
-    b .L0802AE6A
-.L0802AE3E:
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x18
-    ldr r3, .L0802AE54 @ =0x00000339
-    movs r4, #0
-    str r3, [sp, #0x18]
-    b .L0802AE6A
-    .align 2, 0
-.L0802AE54: .4byte 0x00000339
-.L0802AE58:
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x20
-    ldr r3, .L0802AE78 @ =0x0000033A
-    movs r4, #0
-    str r3, [sp, #0x20]
-.L0802AE6A:
-    str r4, [r1, #4]
-    ldr r3, [r2]
-.L0802AE6E:
-    movs r2, #1
-    bl _call_via_r3
-    b .L0802AE98
-    .align 2, 0
-.L0802AE78: .4byte 0x0000033A
-.L0802AE7C:
-    ldr r0, [r5]
-    ldr r2, [r0]
-    movs r1, #0xa0
-    lsls r1, r1, #1
-    adds r2, r2, r1
-    add r1, sp, #0x28
-    ldr r3, .L0802AEA0 @ =0x0000033B
-    movs r4, #0
-    str r3, [sp, #0x28]
-    str r4, [r1, #4]
-    ldr r3, [r2]
-    movs r2, #1
-    bl _call_via_r3
-.L0802AE98:
-    add sp, #0x30
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0802AEA0: .4byte 0x0000033B
-
     thumb_func_start func_0802AEA4
 func_0802AEA4: @ 0x0802AEA4
     push {r4, r5, r6, lr}
@@ -63114,15 +62819,15 @@ func_0802EC00: @ 0x0802EC00
     cmp r0, #1
     bne .L0802F0CC
     adds r0, r7, #0
-    bl func_0802AD80
+    bl UpdatePlayerPedometer
     b .L0802F0DC
 .L0802F0CC:
     cmp r0, #2
     bne .L0802F0DC
     adds r0, r7, #0
-    bl func_0802AD80
+    bl UpdatePlayerPedometer
     adds r0, r7, #0
-    bl func_0802AD80
+    bl UpdatePlayerPedometer
 .L0802F0DC:
     add sp, #0x14
     pop {r3, r4, r5}
@@ -68608,7 +68313,7 @@ sub_08031A5E: @ 0x08031A5E
     str r2, [r3, #0x14]
 .L08031BEE:
     mov r0, sl
-    bl func_0802AD80
+    bl UpdatePlayerPedometer
     b .L08031F0E
 .L08031BF6:
     mov r5, sl

@@ -44,6 +44,8 @@ struct Farmer
     char const * GetSpouseNickname() const;
     GameDate GetBirthday() const;
     Tool GetUpgradedTool(Tool tool) const;
+    u32 GetStepCount() const;
+    void RecordPedometerStep();
     // The limit is twelve encoded bytes, not twelve Unicode characters.
     void SetSpouseNickname(char const * value);
 
@@ -90,7 +92,6 @@ EC Farmer::ToolLevel const & func_0800E548(Farmer const & self, unsigned int idx
 EC bool func_0800E934(Farmer const & self);
 EC bool func_0800E940(Farmer const & self);
 EC unsigned int func_0800E94C(Farmer const & self);
-EC unsigned int func_0800E958(Farmer const & self);
 EC unsigned int func_0800E970(Farmer const & self);
 EC unsigned int GetDeepestMineFloor(Farmer const & self);
 EC unsigned int func_0800E988(Farmer const & self);
@@ -114,7 +115,6 @@ EC void func_0800ED20(Farmer & self);
 EC void func_0800ED2C(Farmer & self);
 EC void func_0800ED3C(Farmer & self, unsigned int arg_1);
 EC void func_0800ED54(Farmer & self, int arg_1);
-EC void func_0800ED8C(Farmer & self);
 EC bool func_0800EE2C(Farmer & self);
 EC void func_0800EE60(Farmer & self);
 EC bool UpdateDeepestMineFloor(Farmer & self, unsigned int floor);

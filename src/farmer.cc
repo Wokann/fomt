@@ -227,9 +227,9 @@ EC unsigned int func_0800E94C(Farmer const & self)
     return self.unk_44_17;
 }
 
-EC unsigned int func_0800E958(Farmer const & self)
+u32 Farmer::GetStepCount() const
 {
-    return self.step_count;
+    return step_count;
 }
 
 EC unsigned int func_0800E970(Farmer const & self)
@@ -469,16 +469,16 @@ EC void func_0800ED54(Farmer & self, int arg_1)
     self.unk_44_17 = r2;
 }
 
-EC void func_0800ED8C(Farmer & self)
+void Farmer::RecordPedometerStep()
 {
-    if (self.step_count < Farmer::MAX_COUNT_STEPS)
+    if (step_count < Farmer::MAX_COUNT_STEPS)
     {
         bool has_pedometer =
-            (!self.unk_5C.IsEmpty() && self.unk_5C.GetTool().GetId() == ITEM_TOOL_PEDOMETER) || self.rucksack.GetFirstSlotWithTool(ITEM_TOOL_PEDOMETER) != -1;
+            (!unk_5C.IsEmpty() && unk_5C.GetTool().GetId() == ITEM_TOOL_PEDOMETER) || rucksack.GetFirstSlotWithTool(ITEM_TOOL_PEDOMETER) != -1;
 
         if (has_pedometer)
         {
-            self.step_count++;
+            step_count++;
         }
     }
 }

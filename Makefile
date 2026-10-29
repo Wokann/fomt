@@ -366,7 +366,7 @@ $(BUILD_DIR)/src/game_state.o $(BUILD_DIR)/src/rucksack.o $(BUILD_DIR)/src/money
 $(BUILD_DIR)/src/entity_location.o $(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/src/game_world.o $(BUILD_DIR)/src/scene_sprite.o $(BUILD_DIR)/src/scene_audio.o $(BUILD_DIR)/src/world_audio.o $(BUILD_DIR)/src/world_control.o $(BUILD_DIR)/src/world_lighting.o $(BUILD_DIR)/src/world_runtime.o $(BUILD_DIR)/src/world_map.o $(BUILD_DIR)/src/game_menu.o $(BUILD_DIR)/src/ui_state.o $(BUILD_DIR)/src/intro_story_scene.o: CXXFLAGS += -ffunction-sections
 
 # Recovered audio and player methods surround still-native entity routines.
-$(BUILD_DIR)/src/entity_audio.o $(BUILD_DIR)/src/player_actor.o: CXXFLAGS += -ffunction-sections
+$(BUILD_DIR)/src/entity_audio.o $(BUILD_DIR)/src/player_actor.o $(BUILD_DIR)/src/player_pedometer.o: CXXFLAGS += -ffunction-sections
 
 # Species health callbacks retain their distinct native function positions.
 $(BUILD_DIR)/src/livestock_actor.o: CXXFLAGS += -ffunction-sections
