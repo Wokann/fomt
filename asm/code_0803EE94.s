@@ -1273,8 +1273,10 @@ OnCall__12ScriptEnginei:
     .byte 0xD5, 0x22, 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68
     .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x14, 0xFB, 0xD1, 0xF7, 0x65, 0xFA, 0xFF, 0xF7, 0x10, 0xFB
 .LScriptCallJp_08D:
-    .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x08, 0xFB
-    .byte 0xD0, 0xF7, 0x69, 0xFF, 0xFF, 0xF7, 0x04, 0xFB
+    .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
+    .byte 0xFF, 0xF7, 0x08, 0xFB
+    bl OpenWonShop__9GameScene
+    .byte 0xFF, 0xF7, 0x04, 0xFB
 .LScriptCallJp_08E:
     .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68
     .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xFC, 0xFA, 0xD0, 0xF7, 0xA7, 0xFF, 0xFF, 0xF7, 0xF8, 0xFA
@@ -85268,9 +85270,9 @@ func_0807F174: @ 0x0807F174
 	bx r1
 	.align 2, 0
 
-.global func_0807F1A4
+.global ConstructWonShopSceneCore
 .thumb_func
-func_0807F1A4: @ 0x0807F1A4
+ConstructWonShopSceneCore: @ 0x0807F1A4
 	push {r4, lr}
 	adds r4, r0, #0
 	bl func_080C797C
@@ -85604,9 +85606,9 @@ func_0807F250:
     pop {r1}
     bx r1
     .4byte __vt_23IndexedResourceProvider
-    .global func_0807F430
+    .global RunWonShopSceneCore
     .thumb_func
-func_0807F430:
+RunWonShopSceneCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -85858,33 +85860,13 @@ func_0807F430:
     .byte 0x99, 0xF8, 0xFF, 0xF7, 0xC0, 0xFB, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0x98, 0x68, 0xC2, 0x68
     .byte 0x18, 0x1C, 0x03, 0x21, 0x53, 0xF0, 0x8C, 0xF8, 0x11, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46
     .byte 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .global loc_0807FFC4
-    .thumb_func
-    loc_0807FFC4:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    adds r6, r1, #0
-    adds r5, r2, #0
-    ldr r0, [pc, #0x20]
-    str r0, [r4]
-    movs r0, #0xe2
-    lsls r0, r0, #3
-    bl __builtin_new
-    adds r1, r5, #0
-    bl func_0807F1A4
-    str r0, [r4, #4]
-    ldr r1, [r6]
-    movs r0, #0
-    str r0, [r6]
-    str r1, [r4, #8]
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0xB4, 0x70, 0x0E, 0x08
-.global func_0807FFF4
+    .section .text.won_shop_scene_destructor, "ax", %progbits
+    .thumb
+    .align 2, 0
+
+.global _._12WonShopScene
 .thumb_func
-func_0807FFF4: @ 0x0807FFF4
+_._12WonShopScene: @ 0x0807FFF4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -85915,7 +85897,7 @@ func_0807FFF4: @ 0x0807FFF4
 	pop {r0}
 	bx r0
 	.align 2, 0
-.Ljp_08080030: .4byte vtable_unk_080E7C68_NullTail
+.Ljp_08080030: .4byte __vt_12WonShopScene
 
     .section .text.after_won_shop_scene_run, "ax", %progbits
     .align 2, 0
@@ -122405,7 +122387,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L0804207A
 	bl .L0804168A
 .L0804207A:
-	bl func_08012CF4
+	bl OpenWonShop__9GameScene
 	bl .L0804168A
 .L08042082:
 	movs r4, #0xd5
@@ -237562,8 +237544,8 @@ func_0807F60C: @ 0x0807F60C
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_0807F63C
-func_0807F63C: @ 0x0807F63C
+	thumb_func_start ConstructWonShopSceneCore
+ConstructWonShopSceneCore: @ 0x0807F63C
 	push {r4, lr}
 	adds r4, r0, #0
 	bl func_080C7F58
@@ -237889,8 +237871,8 @@ func_0807F6E8: @ 0x0807F6E8
 	.align 2, 0
 .L0807F8C4: .4byte __vt_23IndexedResourceProvider
 
-	thumb_func_start func_0807F8C8
-func_0807F8C8: @ 0x0807F8C8
+	thumb_func_start RunWonShopSceneCore
+RunWonShopSceneCore: @ 0x0807F8C8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -239302,37 +239284,16 @@ sub_08080440: @ 0x08080440
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_0808045C
-func_0808045C: @ 0x0808045C
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08080488 @ =vtable_unk_080E7C84
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0807F63C
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08080488: .4byte vtable_unk_080E7C84
+    .section .text.won_shop_scene_destructor, "ax", %progbits
+    .thumb
+    .align 2, 0
 
-	thumb_func_start func_0808048C
-func_0808048C: @ 0x0808048C
+	thumb_func_start _._12WonShopScene
+_._12WonShopScene: @ 0x0808048C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	ldr r0, .L080804C8 @ =vtable_unk_080E7C84
+	ldr r0, .L080804C8 @ =__vt_12WonShopScene
 	str r0, [r4]
 	ldr r1, [r4, #8]
 	cmp r1, #0
@@ -239359,7 +239320,7 @@ func_0808048C: @ 0x0808048C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080804C8: .4byte vtable_unk_080E7C84
+.L080804C8: .4byte __vt_12WonShopScene
 
     .section .text.after_won_shop_scene_run, "ax", %progbits
     .align 2, 0

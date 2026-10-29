@@ -930,16 +930,6 @@ SceneTransitionOwner InnShopScene::Run()
     return continuation;
 }
 
-SceneTransitionOwner WonShopScene::Run()
-{
-#if defined(REGION_JP)
-    func_0807F430(core);
-#else
-    func_0807F8C8(core);
-#endif
-    return continuation;
-}
-
 SceneTransitionOwner WineryShopScene::Run()
 {
 #if defined(REGION_JP)
@@ -1233,16 +1223,6 @@ SceneOwner BeachCafeShopTransition::CreateScene()
     return SceneOwner(func_08081C8C(::operator new(sizeof(BeachCafeShopScene)), &next, save));
 #else
     return SceneOwner(func_08082114(::operator new(sizeof(BeachCafeShopScene)), &next, save));
-#endif
-}
-
-SceneOwner WonShopTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(loc_0807FFC4(::operator new(sizeof(WonShopScene)), &next, save));
-#else
-    return SceneOwner(func_0808045C(::operator new(sizeof(WonShopScene)), &next, save));
 #endif
 }
 

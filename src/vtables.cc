@@ -154,7 +154,6 @@ extern void func_0807E9AC(void);
 extern void func_0807EA3C(void);
 extern void func_0807F118(void);
 extern void func_0807F1D8(void);
-extern void func_0807FFF4(void);
 extern void func_08080094(void);
 extern void func_0808093C(void);
 extern void func_080809CC(void);
@@ -422,7 +421,6 @@ extern void func_0807EE44(void);
 extern void func_0807EED4(void);
 extern void func_0807F5B0(void);
 extern void func_0807F670(void);
-extern void func_0808048C(void);
 extern void func_0808052C(void);
 extern void func_08080DC4(void);
 extern void func_08080E54(void);
@@ -969,7 +967,7 @@ extern RawVTableFunction const vtable_unk_080E5DD4[] = {
     CreateScene__23BeachCafeShopTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5DE4[] = {
+extern RawVTableFunction const __vt_17WonShopTransition[] = {
     nullptr,
     nullptr,
     DestroyWonShopTransition,
@@ -4829,39 +4827,24 @@ extern RawVTableFunction const vtable_unk_080E7C68[]
 #endif
     };
 
-#if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E7C68_NullTail[]
-    SECTION(".rodata.vtable_7c68") = {
-        nullptr,
-    };
-#endif
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7C78[]
     SECTION(".rodata.vtable_7c78") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_0807FFF4,
-        Run__12WonShopScene,
-#else
         nullptr,
         nullptr,
         func_0807F670,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7C84[]
     SECTION(".rodata.vtable_7c84") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_08080094,
-#else
-        nullptr,
-        nullptr,
-        func_0808048C,
-        Run__12WonShopScene,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7C84_NullTail[]

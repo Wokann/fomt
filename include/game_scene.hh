@@ -271,9 +271,11 @@ struct GameSceneResumeRequest {
 #if defined(REGION_JP)
         AFTER_SUPERMARKET_SHOP = 9,
         AFTER_SUPERMARKET_PURCHASE = 10,
+        AFTER_WON_SHOP = 11,
 #else
         AFTER_SUPERMARKET_SHOP = 10,
         AFTER_SUPERMARKET_PURCHASE = 11,
+        AFTER_WON_SHOP = 12,
 #endif
     };
     i32 kind;
@@ -539,26 +541,10 @@ typedef char BeachCafeShopSceneCoreCheck[offsetof(BeachCafeShopScene, core) == 4
 typedef char BeachCafeShopSceneContinuationCheck[offsetof(BeachCafeShopScene, continuation) == 8 ? 1 : -1];
 typedef char BeachCafeShopTransitionSizeCheck[sizeof(BeachCafeShopTransition) == 12 ? 1 : -1];
 
-struct WonShopSceneCore;
-struct WonShopScene : AScene {
-    virtual ~WonShopScene();
-    virtual SceneTransitionOwner Run();
+#include "scene_won_shop.hh"
+#pragma interface "game_scene.hh"
 
-    WonShopSceneCore * core;
-    SceneTransitionOwner continuation;
-};
 
-struct WonShopTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-typedef char WonShopSceneSizeCheck[sizeof(WonShopScene) == 12 ? 1 : -1];
-typedef char WonShopSceneCoreCheck[offsetof(WonShopScene, core) == 4 ? 1 : -1];
-typedef char WonShopSceneContinuationCheck[offsetof(WonShopScene, continuation) == 8 ? 1 : -1];
-typedef char WonShopTransitionSizeCheck[sizeof(WonShopTransition) == 12 ? 1 : -1];
 
 struct CarpenterShopSceneCore;
 struct CarpenterShopScene : AScene {
@@ -848,6 +834,7 @@ struct GameScene : AScene {
     void StopBGM();
     void PlaySong(i32 mode, u32 sequence);
     void StopAllSongs();
+    void OpenWonShop();
     void OpenSupermarketShop();
     void OpenSupermarketPurchase(MarySupermarketItemId item);
     void TalkOpen();
@@ -1033,11 +1020,6 @@ void func_08081734(BeachCafeShopSceneCore * core);
 #else
 void func_08081BBC(BeachCafeShopSceneCore * core);
 #endif
-#if defined(REGION_JP)
-void func_0807F430(WonShopSceneCore * core);
-#else
-void func_0807F8C8(WonShopSceneCore * core);
-#endif
 void func_08084228(CarpenterShopSceneCore * core);
 #if defined(REGION_JP)
 void func_0807E0C0(ClinicShopSceneCore * core);
@@ -1122,11 +1104,6 @@ BeachCafeShopScene * func_08081C8C(void *, SceneTransition **, GameStateSaveImag
 BeachCafeShopScene * func_08082114(void *, SceneTransition **, GameStateSaveImage *);
 #endif
 
-#if defined(REGION_JP)
-WonShopScene * loc_0807FFC4(void *, SceneTransition **, GameStateSaveImage *);
-#else
-WonShopScene * func_0808045C(void *, SceneTransition **, GameStateSaveImage *);
-#endif
 
 #if defined(REGION_JP)
 CarpenterShopScene * loc_0808506C(void *, SceneTransition **, GameStateSaveImage *);

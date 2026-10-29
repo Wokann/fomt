@@ -196,6 +196,7 @@ SECTIONS
         src/scene_supermarket.o(
             .text.OpenSupermarketShop__9GameScene
             .text.OpenSupermarketPurchase__9GameScene21MarySupermarketItemId);
+        src/scene_won_shop.o(.text.OpenWonShop__9GameScene);
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
         src/game_scene.o(
             .text.PrepareClockMenuTransition__9GameScene
@@ -598,7 +599,9 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_clinic_shop_scene_run);
         src/game_scene.o(.text.Run__12InnShopScene);
         asm/code_0803EE94.o(.text.after_inn_shop_scene_run);
-        src/game_scene.o(.text.Run__12WonShopScene);
+        src/scene_won_shop.o(.text.__12WonShopSceneG20SceneTransitionOwnerP18GameStateSaveImage);
+        asm/code_0803EE94.o(.text.won_shop_scene_destructor);
+        src/scene_won_shop.o(.text.Run__12WonShopScene);
         asm/code_0803EE94.o(.text.after_won_shop_scene_run);
         src/game_scene.o(.text.Run__15WineryShopScene);
         asm/code_0803EE94.o(.text.after_winery_shop_scene_run);
@@ -926,7 +929,7 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__20WineryShopTransition .gnu.linkonce.t._._20WineryShopTransition);
         src/game_scene.o(.text.CreateScene__17InnShopTransition .gnu.linkonce.t._._17InnShopTransition);
         src/game_scene.o(.text.CreateScene__23BeachCafeShopTransition .gnu.linkonce.t._._23BeachCafeShopTransition);
-        src/game_scene.o(.text.CreateScene__17WonShopTransition .gnu.linkonce.t._._17WonShopTransition);
+        src/scene_won_shop.o(.text.CreateScene__17WonShopTransition .gnu.linkonce.t._._17WonShopTransition);
         src/game_scene.o(.text.CreateScene__23CarpenterShopTransition .gnu.linkonce.t._._23CarpenterShopTransition);
         src/game_scene.o(.text.CreateScene__20ClinicShopTransition .gnu.linkonce.t._._20ClinicShopTransition);
         src/game_scene.o(.text.CreateScene__24BlacksmithShopTransition .gnu.linkonce.t._._24BlacksmithShopTransition);
@@ -1220,7 +1223,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7c5c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7c68);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7c78);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7c84);
+. = ALIGN(4); src/scene_won_shop.o(.gnu.linkonce.d.__vt_12WonShopScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7c94);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ca0);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7cb0);
