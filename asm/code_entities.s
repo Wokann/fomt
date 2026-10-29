@@ -7963,176 +7963,6 @@ func_0802431C:
     .align 2, 0
     .section .text.audio_actor_after_update, "ax", %progbits
     .align 2, 0
-    .global func_08024374
-    .thumb_func
-func_08024374:
-    push {lr}
-    subs r0, #0x32
-    cmp r0, #0x13
-    bhi .Ljp_0802444A
-    lsls r0, r0, #2
-    ldr r1, .Ljp_08024388
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.Ljp_08024388:
-    .word .Ljp_0802438C
-.Ljp_0802438C:
-    .word .Ljp_080243DC
-    .word .Ljp_080243E0
-    .word .Ljp_080243E4
-    .word .Ljp_080243E8
-    .word .Ljp_080243EC
-    .word .Ljp_080243F0
-    .word .Ljp_080243F4
-    .word .Ljp_080243F8
-    .word .Ljp_080243FC
-    .word .Ljp_08024400
-    .word .Ljp_08024404
-    .word .Ljp_08024408
-    .word .Ljp_0802440C
-    .word .Ljp_08024410
-    .word .Ljp_08024414
-    .word .Ljp_08024418
-    .word .Ljp_0802441C
-    .word .Ljp_08024420
-    .word .Ljp_08024424
-    .word .Ljp_08024446
-.Ljp_080243DC:
-    movs r0, #0
-    b .Ljp_0802444C
-.Ljp_080243E0:
-    movs r0, #1
-    b .Ljp_0802444C
-.Ljp_080243E4:
-    movs r0, #2
-    b .Ljp_0802444C
-.Ljp_080243E8:
-    movs r0, #3
-    b .Ljp_0802444C
-.Ljp_080243EC:
-    movs r0, #4
-    b .Ljp_0802444C
-.Ljp_080243F0:
-    movs r0, #5
-    b .Ljp_0802444C
-.Ljp_080243F4:
-    movs r0, #6
-    b .Ljp_0802444C
-.Ljp_080243F8:
-    movs r0, #7
-    b .Ljp_0802444C
-.Ljp_080243FC:
-    movs r0, #8
-    b .Ljp_0802444C
-.Ljp_08024400:
-    movs r0, #9
-    b .Ljp_0802444C
-.Ljp_08024404:
-    movs r0, #0xA
-    b .Ljp_0802444C
-.Ljp_08024408:
-    movs r0, #0xB
-    b .Ljp_0802444C
-.Ljp_0802440C:
-    movs r0, #0xC
-    b .Ljp_0802444C
-.Ljp_08024410:
-    movs r0, #0xD
-    b .Ljp_0802444C
-.Ljp_08024414:
-    movs r0, #0xE
-    b .Ljp_0802444C
-.Ljp_08024418:
-    movs r0, #0x14
-    b .Ljp_0802444C
-.Ljp_0802441C:
-    movs r0, #0xF
-    b .Ljp_0802444C
-.Ljp_08024420:
-    movs r0, #0x10
-    b .Ljp_0802444C
-.Ljp_08024424:
-    bl rand
-    movs r1, #0xFA
-    lsls r1, r1, #2
-    bl __modsi3
-    movs r1, #0xA
-    bl __divsi3
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    cmp r0, #4
-    bhi .Ljp_08024442
-    movs r0, #0x12
-    b .Ljp_0802444C
-.Ljp_08024442:
-    movs r0, #0x11
-    b .Ljp_0802444C
-.Ljp_08024446:
-    movs r0, #0x13
-    b .Ljp_0802444C
-.Ljp_0802444A:
-    movs r0, #0x15
-.Ljp_0802444C:
-    pop {r1}
-    bx r1
-    .global func_08024450
-    .thumb_func
-func_08024450:
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, r1, #0
-    bl GetId__C4Tool
-    subs r0, #0x20
-    cmp r0, #7
-    bhi .Ljp_080244B0
-    lsls r0, r0, #2
-    ldr r1, .Ljp_0802446C
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.Ljp_0802446C:
-    .word .Ljp_08024470
-.Ljp_08024470:
-    .word .Ljp_08024490
-    .word .Ljp_08024494
-    .word .Ljp_08024498
-    .word .Ljp_0802449C
-    .word .Ljp_080244A0
-    .word .Ljp_080244A4
-    .word .Ljp_080244A4
-    .word .Ljp_080244A8
-.Ljp_08024490:
-    movs r0, #0
-    b .Ljp_080244AA
-.Ljp_08024494:
-    movs r0, #1
-    b .Ljp_080244AA
-.Ljp_08024498:
-    movs r0, #2
-    b .Ljp_080244AA
-.Ljp_0802449C:
-    movs r0, #3
-    b .Ljp_080244AA
-.Ljp_080244A0:
-    movs r0, #4
-    b .Ljp_080244AA
-.Ljp_080244A4:
-    movs r0, #5
-    b .Ljp_080244AA
-.Ljp_080244A8:
-    movs r0, #6
-.Ljp_080244AA:
-    cmp r0, r4
-    bls .Ljp_080244B0
-    adds r4, r0, #0
-.Ljp_080244B0:
-    adds r0, r4, #0
-    pop {r4}
-    pop {r1}
-    bx r1
     .global func_080244B8
     .thumb_func
 func_080244B8:
@@ -20714,7 +20544,7 @@ func_0802A818: @ 0x0802A818
     add r1, sp, #8
     strb r0, [r1]
     movs r0, #0
-    bl func_08024450
+    bl AccumulateMaxWateringCanTier
     mov sb, r0
 .Ljp_0802A85E:
     mov r1, r8
@@ -20749,7 +20579,7 @@ func_0802A818: @ 0x0802A818
     adds r1, #9
     strb r0, [r1]
     mov r0, sb
-    bl func_08024450
+    bl AccumulateMaxWateringCanTier
     mov sb, r0
 .Ljp_0802A8B0:
     adds r6, #1
@@ -20786,7 +20616,7 @@ func_0802A818: @ 0x0802A818
     adds r1, #0xa
     strb r0, [r1]
     mov r0, sb
-    bl func_08024450
+    bl AccumulateMaxWateringCanTier
     mov sb, r0
 .Ljp_0802A900:
     adds r6, #1
@@ -32678,7 +32508,7 @@ sub_0802F990: @ 0x0802F990
     mov r0, sp
     adds r0, #0xa5
     bl GetId__C4Tool
-    bl func_08024374
+    bl GetCropForSeed
     adds r2, r0, #0
     mov r3, sl
     ldr r0, [r3]
@@ -32771,7 +32601,7 @@ sub_0802F990: @ 0x0802F990
     adds r0, #0xa6
     strb r1, [r0]
     bl GetId__C4Tool
-    bl func_08024374
+    bl GetCropForSeed
     str r0, [sp, #0x118]
     movs r0, #0
     mov r7, sp
@@ -42168,174 +41998,6 @@ func_08024588:
     .align 2, 0
     .section .text.audio_actor_after_update, "ax", %progbits
     .align 2, 0
-    thumb_func_start func_080245E0
-func_080245E0: @ 0x080245E0
-    push {lr}
-    subs r0, #0x32
-    cmp r0, #0x13
-    bhi .L080246B6
-    lsls r0, r0, #2
-    ldr r1, .L080245F4 @ =.L080245F8
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L080245F4: .4byte .L080245F8
-.L080245F8: @ jump table
-    .4byte .L08024648 @ case 0
-    .4byte .L0802464C @ case 1
-    .4byte .L08024650 @ case 2
-    .4byte .L08024654 @ case 3
-    .4byte .L08024658 @ case 4
-    .4byte .L0802465C @ case 5
-    .4byte .L08024660 @ case 6
-    .4byte .L08024664 @ case 7
-    .4byte .L08024668 @ case 8
-    .4byte .L0802466C @ case 9
-    .4byte .L08024670 @ case 10
-    .4byte .L08024674 @ case 11
-    .4byte .L08024678 @ case 12
-    .4byte .L0802467C @ case 13
-    .4byte .L08024680 @ case 14
-    .4byte .L08024684 @ case 15
-    .4byte .L08024688 @ case 16
-    .4byte .L0802468C @ case 17
-    .4byte .L08024690 @ case 18
-    .4byte .L080246B2 @ case 19
-.L08024648:
-    movs r0, #0
-    b .L080246B8
-.L0802464C:
-    movs r0, #1
-    b .L080246B8
-.L08024650:
-    movs r0, #2
-    b .L080246B8
-.L08024654:
-    movs r0, #3
-    b .L080246B8
-.L08024658:
-    movs r0, #4
-    b .L080246B8
-.L0802465C:
-    movs r0, #5
-    b .L080246B8
-.L08024660:
-    movs r0, #6
-    b .L080246B8
-.L08024664:
-    movs r0, #7
-    b .L080246B8
-.L08024668:
-    movs r0, #8
-    b .L080246B8
-.L0802466C:
-    movs r0, #9
-    b .L080246B8
-.L08024670:
-    movs r0, #0xa
-    b .L080246B8
-.L08024674:
-    movs r0, #0xb
-    b .L080246B8
-.L08024678:
-    movs r0, #0xc
-    b .L080246B8
-.L0802467C:
-    movs r0, #0xd
-    b .L080246B8
-.L08024680:
-    movs r0, #0xe
-    b .L080246B8
-.L08024684:
-    movs r0, #0x14
-    b .L080246B8
-.L08024688:
-    movs r0, #0xf
-    b .L080246B8
-.L0802468C:
-    movs r0, #0x10
-    b .L080246B8
-.L08024690:
-    bl rand
-    movs r1, #0xfa
-    lsls r1, r1, #2
-    bl __modsi3
-    movs r1, #0xa
-    bl __divsi3
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    cmp r0, #4
-    bhi .L080246AE
-    movs r0, #0x12
-    b .L080246B8
-.L080246AE:
-    movs r0, #0x11
-    b .L080246B8
-.L080246B2:
-    movs r0, #0x13
-    b .L080246B8
-.L080246B6:
-    movs r0, #0x15
-.L080246B8:
-    pop {r1}
-    bx r1
-
-    thumb_func_start func_080246BC
-func_080246BC: @ 0x080246BC
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, r1, #0
-    bl GetId__C4Tool
-    subs r0, #0x20
-    cmp r0, #7
-    bhi .L0802471C
-    lsls r0, r0, #2
-    ldr r1, .L080246D8 @ =.L080246DC
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L080246D8: .4byte .L080246DC
-.L080246DC: @ jump table
-    .4byte .L080246FC @ case 0
-    .4byte .L08024700 @ case 1
-    .4byte .L08024704 @ case 2
-    .4byte .L08024708 @ case 3
-    .4byte .L0802470C @ case 4
-    .4byte .L08024710 @ case 5
-    .4byte .L08024710 @ case 6
-    .4byte .L08024714 @ case 7
-.L080246FC:
-    movs r0, #0
-    b .L08024716
-.L08024700:
-    movs r0, #1
-    b .L08024716
-.L08024704:
-    movs r0, #2
-    b .L08024716
-.L08024708:
-    movs r0, #3
-    b .L08024716
-.L0802470C:
-    movs r0, #4
-    b .L08024716
-.L08024710:
-    movs r0, #5
-    b .L08024716
-.L08024714:
-    movs r0, #6
-.L08024716:
-    cmp r0, r4
-    bls .L0802471C
-    adds r4, r0, #0
-.L0802471C:
-    adds r0, r4, #0
-    pop {r4}
-    pop {r1}
-    bx r1
-
     thumb_func_start func_08024724
 func_08024724: @ 0x08024724
     push {r4, r5, r6, r7, lr}
@@ -54885,7 +54547,7 @@ func_0802AA84: @ 0x0802AA84
     add r1, sp, #8
     strb r0, [r1]
     movs r0, #0
-    bl func_080246BC
+    bl AccumulateMaxWateringCanTier
     mov sb, r0
 .L0802AACA:
     mov r1, r8
@@ -54920,7 +54582,7 @@ func_0802AA84: @ 0x0802AA84
     adds r1, #9
     strb r0, [r1]
     mov r0, sb
-    bl func_080246BC
+    bl AccumulateMaxWateringCanTier
     mov sb, r0
 .L0802AB1C:
     adds r6, #1
@@ -54957,7 +54619,7 @@ func_0802AA84: @ 0x0802AA84
     adds r1, #0xa
     strb r0, [r1]
     mov r0, sb
-    bl func_080246BC
+    bl AccumulateMaxWateringCanTier
     mov sb, r0
 .L0802AB6C:
     adds r6, #1
@@ -66817,7 +66479,7 @@ sub_0802FBFC: @ 0x0802FBFC
     mov r0, sp
     adds r0, #0xa5
     bl GetId__C4Tool
-    bl func_080245E0
+    bl GetCropForSeed
     adds r2, r0, #0
     mov r3, sl
     ldr r0, [r3]
@@ -66910,7 +66572,7 @@ sub_0802FBFC: @ 0x0802FBFC
     adds r0, #0xa6
     strb r1, [r0]
     bl GetId__C4Tool
-    bl func_080245E0
+    bl GetCropForSeed
     str r0, [sp, #0x118]
     movs r0, #0
     mov r7, sp

@@ -368,6 +368,7 @@ SECTIONS
         asm/code_entities.o(.text.livestock_actor_sheep_after_cure);
         src/entity_audio.o(.text.Update__16AudioActorEntity);
         src/entity_audio.o(.text.MakeAudioActorBounds);
+        src/field_tool.o(.text);
         asm/code_entities.o(.text.audio_actor_after_update);
         src/player_actor.o(.text);
         asm/code_entities.o(.text.player_actor_update_state_after);
