@@ -6,23 +6,26 @@
 #include "hardware_display_state.hh"
 
 struct ControlWidget;
+struct UiTextWindow;
 struct HardwareLinkedList;
 
-// Native ABI view of the eleven-slot base table. The remaining callbacks
-// keep erased signatures until their complete arguments are established.
+// Native ABI view; the owning virtual hierarchy is still being recovered.
 struct ControlWidgetVTable {
     void * unk_00;
     void * unk_04;
-    void (*unk_08[5])();
+    void (*destroy)(ControlWidget *, u32 flags);
+    void (*open)(ControlWidget *);
+    void (*open_immediate)(ControlWidget *);
+    void (*close)(ControlWidget *);
+    void (*close_immediate)(ControlWidget *);
     i32 (*get_x)(ControlWidget const *);
     i32 (*get_y)(ControlWidget const *);
-    void (*unk_24[2])();
+    void (*set_position)(ControlWidget *, u32, u32);
+    void (*offset_position)(ControlWidget *, u32, u32);
 };
 
-// The owned control state is larger than its leading coordinate pair and
-// is still native. This raw view does not claim a recovered C++ hierarchy.
 struct ControlWidget {
-    void * state;
+    UiTextWindow * state;
     ControlWidgetVTable const * vtable;
 };
 
@@ -33,28 +36,24 @@ typedef char ControlWidgetVTableYCheck[offsetof(ControlWidgetVTable, get_y) == 0
 
 EXTERN_C
 
+u32 GetControlWidgetPhase(ControlWidget const * widget) SECTION(".text.control_widget_phase");
+
 // Preserve all three forwarded arguments: the native owned-state update
 // really consumes r1/r2/r3, even though the former one-argument view did not
 // describe them. It updates the display shadow, splices pending uploads,
 // and queues/removes its window command through the separate command list.
 u32 UpdateControlWidget(ControlWidget * widget, HardwareDisplayState * display,
     HardwareLinkedList * uploads, HardwareLinkedList * commands);
-void func_0803BEBC(ControlWidget * widget);
-void func_0803BEC8(ControlWidget * widget);
-void func_0803BED4(ControlWidget * widget);
-void func_0803BEE0(ControlWidget * widget);
+void OpenControlWidget(ControlWidget * widget);
+void OpenControlWidgetImmediate(ControlWidget * widget);
+void CloseControlWidget(ControlWidget * widget);
+void CloseControlWidgetImmediate(ControlWidget * widget);
 i32 GetControlWidgetX(ControlWidget const * widget);
 i32 GetControlWidgetY(ControlWidget const * widget);
 void SetControlWidgetPosition(ControlWidget * widget, u32 x, u32 y);
 void OffsetControlWidgetPosition(ControlWidget * widget, u32 x, u32 y);
 
-// Retained native owned-state services and shared halfword-pair operations.
-u32 func_0803BAAC(void * state, HardwareDisplayState * display,
-    HardwareLinkedList * uploads, HardwareLinkedList * commands);
-void func_0803BCF8(void * state);
-void func_0803BD60(void * state);
-void func_0803BD88(void * state);
-void func_0803BDB8(void * state);
+// Shared halfword-pair operations at the start of the owned window.
 void func_0803BDE4(U16Pair & value, u32 first, u32 second);
 void func_0803BDEC(U16Pair & value, u32 first, u32 second);
 

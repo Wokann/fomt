@@ -366,11 +366,11 @@ func_0803AEBC:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .section .text.scene_controls_native, "ax", %progbits
+    .section .text.ui_text_window_native, "ax", %progbits
     .align 2, 0
-    .global func_0803B660
+    .global __12UiTextWindowiiUiUiUiUiUiUi
     .thumb_func
-func_0803B660:
+__12UiTextWindowiiUiUiUiUiUiUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -614,9 +614,9 @@ func_0803B660:
     .4byte 0xFFFF801F
 .Ljp_0803B83C:
     .4byte 0xFFF87FFF
-    .global func_0803BAAC
+    .global Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2
     .thumb_func
-func_0803BAAC:
+Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -920,138 +920,6 @@ func_0803BAAC:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803BCF8
-    .thumb_func
-func_0803BCF8:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    ldrb	r0, [r4, #11]
-    lsrs	r0, r0, #7
-    ldrb	r1, [r4, #12]
-    movs	r2, #127	@ 0x7f
-    ands	r1, r2
-    lsls	r5, r1, #1
-    orrs	r5, r0
-    cmp	r5, #0
-    bne .Ljp_0803BAC6
-    ldrh	r0, [r4, #10]
-    lsls	r0, r0, #17
-    lsrs	r0, r0, #24
-    adds	r6, r4, #0
-    adds	r6, #16
-    cmp	r0, #1
-    beq .Ljp_0803BABA
-    adds	r1, r4, #0
-    adds	r1, #44	@ 0x2c
-    adds	r0, r6, #0
-    bl func_08009940
-.Ljp_0803BABA:
-    adds	r1, r4, #0
-    adds	r1, #68	@ 0x44
-    adds	r0, r6, #0
-    bl func_08009940
-    strb	r5, [r4, #13]
-.Ljp_0803BAC6:
-    ldrb	r3, [r4, #11]
-    lsrs	r0, r3, #7
-    ldrb	r1, [r4, #12]
-    movs	r2, #127	@ 0x7f
-    ands	r1, r2
-    lsls	r1, r1, #1
-    orrs	r1, r0
-    cmp	r1, #0
-    blt .Ljp_0803BAEC
-    cmp	r1, #2
-    bgt .Ljp_0803BAEC
-    movs	r0, #128	@ 0x80
-    orrs	r0, r3
-    strb	r0, [r4, #11]
-    ldrb	r1, [r4, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r4, #12]
-.Ljp_0803BAEC:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    .global func_0803BD60
-    .thumb_func
-func_0803BD60:
-    push	{r4, lr}
-    adds	r4, r0, #0
-    bl func_0803BCF8
-    ldrb	r0, [r4, #11]
-    movs	r1, #128	@ 0x80
-    orrs	r0, r1
-    strb	r0, [r4, #11]
-    ldrb	r1, [r4, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    movs	r1, #1
-    orrs	r0, r1
-    strb	r0, [r4, #12]
-    movs	r0, #9
-    strb	r0, [r4, #13]
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .global func_0803BD88
-    .thumb_func
-func_0803BD88:
-    push	{r4, lr}
-    adds	r2, r0, #0
-    ldrb	r3, [r2, #11]
-    lsrs	r1, r3, #7
-    ldrb	r0, [r2, #12]
-    movs	r4, #127	@ 0x7f
-    ands	r0, r4
-    lsls	r0, r0, #1
-    orrs	r0, r1
-    cmp	r0, #0
-    beq .Ljp_0803BB46
-    adds	r0, r4, #0
-    ands	r0, r3
-    strb	r0, [r2, #11]
-    ldrb	r1, [r2, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    movs	r1, #1
-    orrs	r0, r1
-    strb	r0, [r2, #12]
-.Ljp_0803BB46:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .global func_0803BDB8
-    .thumb_func
-func_0803BDB8:
-    push	{r4, lr}
-    adds	r2, r0, #0
-    ldrb	r3, [r2, #11]
-    lsrs	r1, r3, #7
-    ldrb	r0, [r2, #12]
-    movs	r4, #127	@ 0x7f
-    ands	r0, r4
-    lsls	r0, r0, #1
-    orrs	r0, r1
-    cmp	r0, #0
-    beq .Ljp_0803BB72
-    adds	r0, r4, #0
-    ands	r0, r3
-    strb	r0, [r2, #11]
-    ldrb	r1, [r2, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r2, #12]
-.Ljp_0803BB72:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
     @ ROM-verified JP Thumb code_0803A8A4/code_0803BDFC
     .section .text.code_0803BDFC
     .syntax unified
@@ -1088,7 +956,7 @@ func_0803BDFC:
     mov	r1, r8
     mov	r2, r9
     mov	r3, sl
-    bl func_0803B660
+    bl __12UiTextWindowiiUiUiUiUiUiUi
     str	r0, [r4, #0]
     adds	r0, r4, #0
     add	sp, #20
@@ -5450,11 +5318,11 @@ func_0803B128:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .section .text.scene_controls_native, "ax", %progbits
+    .section .text.ui_text_window_native, "ax", %progbits
     .align 2, 0
-    .global func_0803B8CC
+    .global __12UiTextWindowiiUiUiUiUiUiUi
     .thumb_func
-func_0803B8CC:
+__12UiTextWindowiiUiUiUiUiUiUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -5698,9 +5566,9 @@ func_0803B8CC:
     .4byte 0xFFFF801F
 .Leu_0803BABC:
     .4byte 0xFFF87FFF
-    .global func_0803BAAC
+    .global Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2
     .thumb_func
-func_0803BAAC:
+Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -6004,138 +5872,6 @@ func_0803BAAC:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803BCF8
-    .thumb_func
-func_0803BCF8:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    ldrb	r0, [r4, #11]
-    lsrs	r0, r0, #7
-    ldrb	r1, [r4, #12]
-    movs	r2, #127	@ 0x7f
-    ands	r1, r2
-    lsls	r5, r1, #1
-    orrs	r5, r0
-    cmp	r5, #0
-    bne .Leu_0803BD46
-    ldrh	r0, [r4, #10]
-    lsls	r0, r0, #17
-    lsrs	r0, r0, #24
-    adds	r6, r4, #0
-    adds	r6, #16
-    cmp	r0, #1
-    beq .Leu_0803BD3A
-    adds	r1, r4, #0
-    adds	r1, #44	@ 0x2c
-    adds	r0, r6, #0
-    bl func_08009940
-.Leu_0803BD3A:
-    adds	r1, r4, #0
-    adds	r1, #68	@ 0x44
-    adds	r0, r6, #0
-    bl func_08009940
-    strb	r5, [r4, #13]
-.Leu_0803BD46:
-    ldrb	r3, [r4, #11]
-    lsrs	r0, r3, #7
-    ldrb	r1, [r4, #12]
-    movs	r2, #127	@ 0x7f
-    ands	r1, r2
-    lsls	r1, r1, #1
-    orrs	r1, r0
-    cmp	r1, #0
-    blt .Leu_0803BD6C
-    cmp	r1, #2
-    bgt .Leu_0803BD6C
-    movs	r0, #128	@ 0x80
-    orrs	r0, r3
-    strb	r0, [r4, #11]
-    ldrb	r1, [r4, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r4, #12]
-.Leu_0803BD6C:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    .global func_0803BD60
-    .thumb_func
-func_0803BD60:
-    push	{r4, lr}
-    adds	r4, r0, #0
-    bl func_0803BCF8
-    ldrb	r0, [r4, #11]
-    movs	r1, #128	@ 0x80
-    orrs	r0, r1
-    strb	r0, [r4, #11]
-    ldrb	r1, [r4, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    movs	r1, #1
-    orrs	r0, r1
-    strb	r0, [r4, #12]
-    movs	r0, #9
-    strb	r0, [r4, #13]
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .global func_0803BD88
-    .thumb_func
-func_0803BD88:
-    push	{r4, lr}
-    adds	r2, r0, #0
-    ldrb	r3, [r2, #11]
-    lsrs	r1, r3, #7
-    ldrb	r0, [r2, #12]
-    movs	r4, #127	@ 0x7f
-    ands	r0, r4
-    lsls	r0, r0, #1
-    orrs	r0, r1
-    cmp	r0, #0
-    beq .Leu_0803BDC6
-    adds	r0, r4, #0
-    ands	r0, r3
-    strb	r0, [r2, #11]
-    ldrb	r1, [r2, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    movs	r1, #1
-    orrs	r0, r1
-    strb	r0, [r2, #12]
-.Leu_0803BDC6:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .global func_0803BDB8
-    .thumb_func
-func_0803BDB8:
-    push	{r4, lr}
-    adds	r2, r0, #0
-    ldrb	r3, [r2, #11]
-    lsrs	r1, r3, #7
-    ldrb	r0, [r2, #12]
-    movs	r4, #127	@ 0x7f
-    ands	r0, r4
-    lsls	r0, r0, #1
-    orrs	r0, r1
-    cmp	r0, #0
-    beq .Leu_0803BDF2
-    adds	r0, r4, #0
-    ands	r0, r3
-    strb	r0, [r2, #11]
-    ldrb	r1, [r2, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r2, #12]
-.Leu_0803BDF2:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
     @ ROM-verified EU Thumb code_0803A8A4/code_0803BDFC
     .section .text.code_0803BDFC
     .syntax unified
@@ -6172,7 +5908,7 @@ func_0803BDFC:
     mov	r1, r8
     mov	r2, r9
     mov	r3, sl
-    bl func_0803B8CC
+    bl __12UiTextWindowiiUiUiUiUiUiUi
     str	r0, [r4, #0]
     adds	r0, r4, #0
     add	sp, #20
@@ -10569,11 +10305,11 @@ func_0803B128:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .section .text.scene_controls_native, "ax", %progbits
+    .section .text.ui_text_window_native, "ax", %progbits
     .align 2, 0
-    .global func_0803B8CC
+    .global __12UiTextWindowiiUiUiUiUiUiUi
     .thumb_func
-func_0803B8CC:
+__12UiTextWindowiiUiUiUiUiUiUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -10817,9 +10553,9 @@ func_0803B8CC:
     .4byte 0xFFFF801F
 .Lde_0803B9BC:
     .4byte 0xFFF87FFF
-    .global func_0803BAAC
+    .global Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2
     .thumb_func
-func_0803BAAC:
+Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -11123,138 +10859,6 @@ func_0803BAAC:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803BCF8
-    .thumb_func
-func_0803BCF8:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    ldrb	r0, [r4, #11]
-    lsrs	r0, r0, #7
-    ldrb	r1, [r4, #12]
-    movs	r2, #127	@ 0x7f
-    ands	r1, r2
-    lsls	r5, r1, #1
-    orrs	r5, r0
-    cmp	r5, #0
-    bne .Lde_0803BC46
-    ldrh	r0, [r4, #10]
-    lsls	r0, r0, #17
-    lsrs	r0, r0, #24
-    adds	r6, r4, #0
-    adds	r6, #16
-    cmp	r0, #1
-    beq .Lde_0803BC3A
-    adds	r1, r4, #0
-    adds	r1, #44	@ 0x2c
-    adds	r0, r6, #0
-    bl func_08009940
-.Lde_0803BC3A:
-    adds	r1, r4, #0
-    adds	r1, #68	@ 0x44
-    adds	r0, r6, #0
-    bl func_08009940
-    strb	r5, [r4, #13]
-.Lde_0803BC46:
-    ldrb	r3, [r4, #11]
-    lsrs	r0, r3, #7
-    ldrb	r1, [r4, #12]
-    movs	r2, #127	@ 0x7f
-    ands	r1, r2
-    lsls	r1, r1, #1
-    orrs	r1, r0
-    cmp	r1, #0
-    blt .Lde_0803BC6C
-    cmp	r1, #2
-    bgt .Lde_0803BC6C
-    movs	r0, #128	@ 0x80
-    orrs	r0, r3
-    strb	r0, [r4, #11]
-    ldrb	r1, [r4, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r4, #12]
-.Lde_0803BC6C:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    .global func_0803BD60
-    .thumb_func
-func_0803BD60:
-    push	{r4, lr}
-    adds	r4, r0, #0
-    bl func_0803BCF8
-    ldrb	r0, [r4, #11]
-    movs	r1, #128	@ 0x80
-    orrs	r0, r1
-    strb	r0, [r4, #11]
-    ldrb	r1, [r4, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    movs	r1, #1
-    orrs	r0, r1
-    strb	r0, [r4, #12]
-    movs	r0, #9
-    strb	r0, [r4, #13]
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .global func_0803BD88
-    .thumb_func
-func_0803BD88:
-    push	{r4, lr}
-    adds	r2, r0, #0
-    ldrb	r3, [r2, #11]
-    lsrs	r1, r3, #7
-    ldrb	r0, [r2, #12]
-    movs	r4, #127	@ 0x7f
-    ands	r0, r4
-    lsls	r0, r0, #1
-    orrs	r0, r1
-    cmp	r0, #0
-    beq .Lde_0803BCC6
-    adds	r0, r4, #0
-    ands	r0, r3
-    strb	r0, [r2, #11]
-    ldrb	r1, [r2, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    movs	r1, #1
-    orrs	r0, r1
-    strb	r0, [r2, #12]
-.Lde_0803BCC6:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .global func_0803BDB8
-    .thumb_func
-func_0803BDB8:
-    push	{r4, lr}
-    adds	r2, r0, #0
-    ldrb	r3, [r2, #11]
-    lsrs	r1, r3, #7
-    ldrb	r0, [r2, #12]
-    movs	r4, #127	@ 0x7f
-    ands	r0, r4
-    lsls	r0, r0, #1
-    orrs	r0, r1
-    cmp	r0, #0
-    beq .Lde_0803BCF2
-    adds	r0, r4, #0
-    ands	r0, r3
-    strb	r0, [r2, #11]
-    ldrb	r1, [r2, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r2, #12]
-.Lde_0803BCF2:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
     @ ROM-verified DE Thumb code_0803A8A4/code_0803BDFC
     .section .text.code_0803BDFC
     .syntax unified
@@ -11291,7 +10895,7 @@ func_0803BDFC:
     mov	r1, r8
     mov	r2, r9
     mov	r3, sl
-    bl func_0803B8CC
+    bl __12UiTextWindowiiUiUiUiUiUiUi
     str	r0, [r4, #0]
     adds	r0, r4, #0
     add	sp, #20
@@ -15662,11 +15266,11 @@ func_0803B128:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .section .text.scene_controls_native, "ax", %progbits
+    .section .text.ui_text_window_native, "ax", %progbits
     .align 2, 0
-    .global func_0803B8CC
+    .global __12UiTextWindowiiUiUiUiUiUiUi
     .thumb_func
-func_0803B8CC:
+__12UiTextWindowiiUiUiUiUiUiUi:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -15910,9 +15514,9 @@ func_0803B8CC:
     .4byte 0xFFFF801F
 .Lus_0803BAA8:
     .4byte 0xFFF87FFF
-    .global func_0803BAAC
+    .global Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2
     .thumb_func
-func_0803BAAC:
+Update__12UiTextWindowP20HardwareDisplayStateP18HardwareLinkedListT2:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -16216,138 +15820,6 @@ func_0803BAAC:
     pop	{r1}
     bx	r1
     .align 2, 0
-    .global func_0803BCF8
-    .thumb_func
-func_0803BCF8:
-    push	{r4, r5, r6, lr}
-    adds	r4, r0, #0
-    ldrb	r0, [r4, #11]
-    lsrs	r0, r0, #7
-    ldrb	r1, [r4, #12]
-    movs	r2, #127	@ 0x7f
-    ands	r1, r2
-    lsls	r5, r1, #1
-    orrs	r5, r0
-    cmp	r5, #0
-    bne .Lus_0803BD32
-    ldrh	r0, [r4, #10]
-    lsls	r0, r0, #17
-    lsrs	r0, r0, #24
-    adds	r6, r4, #0
-    adds	r6, #16
-    cmp	r0, #1
-    beq .Lus_0803BD26
-    adds	r1, r4, #0
-    adds	r1, #44	@ 0x2c
-    adds	r0, r6, #0
-    bl func_08009940
-.Lus_0803BD26:
-    adds	r1, r4, #0
-    adds	r1, #68	@ 0x44
-    adds	r0, r6, #0
-    bl func_08009940
-    strb	r5, [r4, #13]
-.Lus_0803BD32:
-    ldrb	r3, [r4, #11]
-    lsrs	r0, r3, #7
-    ldrb	r1, [r4, #12]
-    movs	r2, #127	@ 0x7f
-    ands	r1, r2
-    lsls	r1, r1, #1
-    orrs	r1, r0
-    cmp	r1, #0
-    blt .Lus_0803BD58
-    cmp	r1, #2
-    bgt .Lus_0803BD58
-    movs	r0, #128	@ 0x80
-    orrs	r0, r3
-    strb	r0, [r4, #11]
-    ldrb	r1, [r4, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r4, #12]
-.Lus_0803BD58:
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    .global func_0803BD60
-    .thumb_func
-func_0803BD60:
-    push	{r4, lr}
-    adds	r4, r0, #0
-    bl func_0803BCF8
-    ldrb	r0, [r4, #11]
-    movs	r1, #128	@ 0x80
-    orrs	r0, r1
-    strb	r0, [r4, #11]
-    ldrb	r1, [r4, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    movs	r1, #1
-    orrs	r0, r1
-    strb	r0, [r4, #12]
-    movs	r0, #9
-    strb	r0, [r4, #13]
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .global func_0803BD88
-    .thumb_func
-func_0803BD88:
-    push	{r4, lr}
-    adds	r2, r0, #0
-    ldrb	r3, [r2, #11]
-    lsrs	r1, r3, #7
-    ldrb	r0, [r2, #12]
-    movs	r4, #127	@ 0x7f
-    ands	r0, r4
-    lsls	r0, r0, #1
-    orrs	r0, r1
-    cmp	r0, #0
-    beq .Lus_0803BDB2
-    adds	r0, r4, #0
-    ands	r0, r3
-    strb	r0, [r2, #11]
-    ldrb	r1, [r2, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    movs	r1, #1
-    orrs	r0, r1
-    strb	r0, [r2, #12]
-.Lus_0803BDB2:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .global func_0803BDB8
-    .thumb_func
-func_0803BDB8:
-    push	{r4, lr}
-    adds	r2, r0, #0
-    ldrb	r3, [r2, #11]
-    lsrs	r1, r3, #7
-    ldrb	r0, [r2, #12]
-    movs	r4, #127	@ 0x7f
-    ands	r0, r4
-    lsls	r0, r0, #1
-    orrs	r0, r1
-    cmp	r0, #0
-    beq .Lus_0803BDDE
-    adds	r0, r4, #0
-    ands	r0, r3
-    strb	r0, [r2, #11]
-    ldrb	r1, [r2, #12]
-    movs	r0, #128	@ 0x80
-    negs	r0, r0
-    ands	r0, r1
-    strb	r0, [r2, #12]
-.Lus_0803BDDE:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
     @ ROM-verified US Thumb code_0803A8A4/code_0803BDFC
     .section .text.code_0803BDFC
     .syntax unified
@@ -16384,7 +15856,7 @@ func_0803BDFC:
     mov	r1, r8
     mov	r2, r9
     mov	r3, sl
-    bl func_0803B8CC
+    bl __12UiTextWindowiiUiUiUiUiUiUi
     str	r0, [r4, #0]
     adds	r0, r4, #0
     add	sp, #20

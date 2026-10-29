@@ -69,6 +69,48 @@ bool UiTextWindowBorderCommand::Run()
     return false;
 }
 
+void UiTextWindow::Open()
+{
+    u32 previous = phase;
+    if (previous == HIDDEN) {
+        u32 copy_mode = mode;
+        if (copy_mode != 1)
+            pending_uploads.Append(&upload);
+        pending_uploads.Append(&border);
+        frame = previous;
+    }
+    switch (phase) {
+    case HIDDEN:
+    case OPENING:
+    case CLOSING:
+        phase = OPENING;
+        break;
+    case VISIBLE:
+        break;
+    default:
+        break;
+    }
+}
+
+void UiTextWindow::OpenImmediate()
+{
+    Open();
+    phase = VISIBLE;
+    frame = 9;
+}
+
+void UiTextWindow::Close()
+{
+    if (phase != HIDDEN)
+        phase = CLOSING;
+}
+
+void UiTextWindow::CloseImmediate()
+{
+    if (phase != HIDDEN)
+        phase = HIDDEN;
+}
+
 UiTextWindowBorderCommand::UiTextWindowBorderCommand(i32 x, i32 y,
     u32 width, u32 height, u32 screen, u32 tile, u32 bank)
     : x(x), y(y), width(width), height(height), screen_block(screen),

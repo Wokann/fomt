@@ -448,13 +448,14 @@ SECTIONS
         src/script_scene.o(.text.__21ScriptSceneTransitionR20SceneTransitionOwnerUi);
         src/script_scene.o(.text.CreateScene__21ScriptSceneTransition);
         src/ui_text_window.o(.text.ui_text_window_border_command);
-        asm/code_0803A8A4.o(.text.scene_controls_native);
+        asm/code_0803A8A4.o(.text.ui_text_window_native);
+        src/ui_text_window.o(.text.ui_text_window_state);
         . = 0x3BCF8; /* DE ROM 0x0803BCF8, set a u16 pair. */
         src/code_0803BDE4.o(.text);
         . = 0x3BD10; /* DE ROM 0x0803BD10, remaining raw control code. */
         asm/code_0803A8A4.o(.text.code_0803BDFC);
-        . = 0x3BDB0; /* DE ROM 0x0803BDB0, unpack a packed value. */
-        src/code_0803BE9C.o(.text);
+        . = 0x3BDB0; /* Read the owned window phase. */
+        src/control_widget.o(.text.control_widget_phase);
 
         . = 0x3BDC4; /* Shared control callbacks, in ROM order. */
         src/control_widget.o(.text);

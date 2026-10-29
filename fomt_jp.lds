@@ -493,13 +493,14 @@ SECTIONS
         src/script_scene.o(.text.__21ScriptSceneTransitionR20SceneTransitionOwnerUi);
         src/script_scene.o(.text.CreateScene__21ScriptSceneTransition);
         src/ui_text_window.o(.text.ui_text_window_border_command);
-        asm/code_0803A8A4.o(.text.scene_controls_native);
+        asm/code_0803A8A4.o(.text.ui_text_window_native);
+        src/ui_text_window.o(.text.ui_text_window_state);
         . = 0x3BB78; /* JP counterpart of US function 0x0803BDE4. */
         src/code_0803BDE4.o(.text);
         . = 0x3BB90; /* JP ROM 0x0803BDFC, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803BDFC);
         . = 0x3BC30; /* JP counterpart of US function 0x0803BE9C. */
-        src/code_0803BE9C.o(.text);
+        src/control_widget.o(.text.control_widget_phase);
 
         . = 0x3BC44; /* Shared control callbacks, in ROM order. */
         src/control_widget.o(.text);

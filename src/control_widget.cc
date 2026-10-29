@@ -1,47 +1,53 @@
 #include "control_widget.hh"
+#include "ui_text_window.hh"
+
+u32 GetControlWidgetPhase(ControlWidget const * widget)
+{
+    return widget->state->phase;
+}
 
 u32 UpdateControlWidget(ControlWidget * widget, HardwareDisplayState * display,
     HardwareLinkedList * uploads, HardwareLinkedList * commands)
 {
-    return func_0803BAAC(widget->state, display, uploads, commands);
+    return widget->state->Update(display, uploads, commands);
 }
 
-void func_0803BEBC(ControlWidget * widget)
+void OpenControlWidget(ControlWidget * widget)
 {
-    func_0803BCF8(widget->state);
+    widget->state->Open();
 }
 
-void func_0803BEC8(ControlWidget * widget)
+void OpenControlWidgetImmediate(ControlWidget * widget)
 {
-    func_0803BD60(widget->state);
+    widget->state->OpenImmediate();
 }
 
-void func_0803BED4(ControlWidget * widget)
+void CloseControlWidget(ControlWidget * widget)
 {
-    func_0803BD88(widget->state);
+    widget->state->Close();
 }
 
-void func_0803BEE0(ControlWidget * widget)
+void CloseControlWidgetImmediate(ControlWidget * widget)
 {
-    func_0803BDB8(widget->state);
+    widget->state->CloseImmediate();
 }
 
 i32 GetControlWidgetX(ControlWidget const * widget)
 {
-    return reinterpret_cast<i16 const *>(widget->state)[0];
+    return static_cast<i16>(widget->state->position.first);
 }
 
 i32 GetControlWidgetY(ControlWidget const * widget)
 {
-    return reinterpret_cast<i16 const *>(widget->state)[1];
+    return static_cast<i16>(widget->state->position.second);
 }
 
 void SetControlWidgetPosition(ControlWidget * widget, u32 x, u32 y)
 {
-    func_0803BDE4(*static_cast<U16Pair *>(widget->state), x, y);
+    func_0803BDE4(widget->state->position, x, y);
 }
 
 void OffsetControlWidgetPosition(ControlWidget * widget, u32 x, u32 y)
 {
-    func_0803BDEC(*static_cast<U16Pair *>(widget->state), x, y);
+    func_0803BDEC(widget->state->position, x, y);
 }
