@@ -235,6 +235,7 @@ SECTIONS
             .text.OpenSupermarketShop__9GameScene
             .text.OpenSupermarketPurchase__9GameScene21MarySupermarketItemId);
         src/scene_won_shop.o(.text.OpenWonShop__9GameScene);
+        src/scene_carpenter_shop.o(.text.OpenCarpenterShop__9GameScene);
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
         src/game_scene.o(
             .text.PrepareClockMenuTransition__9GameScene
@@ -656,7 +657,9 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_beach_cafe_shop_scene_run);
         src/game_scene.o(.text.Run__19BlacksmithShopScene);
         asm/code_0803EE94.o(.text.after_blacksmith_shop_scene_run);
-        src/game_scene.o(.text.Run__18CarpenterShopScene);
+        src/scene_carpenter_shop.o(.text.__18CarpenterShopSceneG20SceneTransitionOwnerP18GameStateSaveImage);
+        asm/code_0803EE94.o(.text.carpenter_shop_scene_destructor);
+        src/scene_carpenter_shop.o(.text.Run__18CarpenterShopScene);
         asm/code_0803EE94.o(.text.after_carpenter_shop_scene_run);
         src/game_scene.o(.text.Run__19YodelRanchShopScene);
         asm/code_0803EE94.o(.text.after_yodel_ranch_shop_scene_run);
@@ -994,7 +997,7 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__17InnShopTransition .gnu.linkonce.t._._17InnShopTransition);
         src/game_scene.o(.text.CreateScene__23BeachCafeShopTransition .gnu.linkonce.t._._23BeachCafeShopTransition);
         src/scene_won_shop.o(.text.CreateScene__17WonShopTransition .gnu.linkonce.t._._17WonShopTransition);
-        src/game_scene.o(.text.CreateScene__23CarpenterShopTransition .gnu.linkonce.t._._23CarpenterShopTransition);
+        src/scene_carpenter_shop.o(.text.CreateScene__23CarpenterShopTransition .gnu.linkonce.t._._23CarpenterShopTransition);
         src/game_scene.o(.text.CreateScene__20ClinicShopTransition .gnu.linkonce.t._._20ClinicShopTransition);
         src/game_scene.o(.text.CreateScene__24BlacksmithShopTransition .gnu.linkonce.t._._24BlacksmithShopTransition);
         src/scene_supermarket.o(.text.CreateScene__29SupermarketPurchaseTransition .gnu.linkonce.t._._29SupermarketPurchaseTransition);
@@ -1301,7 +1304,7 @@ SECTIONS
 . = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_30BlacksmithShopResultTransition);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7cf4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d04);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7d14);
+. = ALIGN(4); src/scene_carpenter_shop.o(.gnu.linkonce.d.__vt_18CarpenterShopScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d20);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d30);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d3c);

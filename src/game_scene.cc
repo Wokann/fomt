@@ -970,12 +970,6 @@ SceneTransitionOwner BlacksmithShopScene::Run()
     return SceneTransitionOwner(new BlacksmithShopResultTransition(continuation, save, 1));
 }
 
-SceneTransitionOwner CarpenterShopScene::Run()
-{
-    func_08084228(core);
-    return continuation;
-}
-
 SceneTransitionOwner YodelRanchShopScene::Run()
 {
     i32 result = func_08086A08(core);
@@ -1223,16 +1217,6 @@ SceneOwner BeachCafeShopTransition::CreateScene()
     return SceneOwner(func_08081C8C(::operator new(sizeof(BeachCafeShopScene)), &next, save));
 #else
     return SceneOwner(func_08082114(::operator new(sizeof(BeachCafeShopScene)), &next, save));
-#endif
-}
-
-SceneOwner CarpenterShopTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(loc_0808506C(::operator new(sizeof(CarpenterShopScene)), &next, save));
-#else
-    return SceneOwner(func_080854F4(::operator new(sizeof(CarpenterShopScene)), &next, save));
 #endif
 }
 

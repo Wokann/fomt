@@ -1,5 +1,59 @@
 # 代码 ROM 物理布局
 
+## 木匠商店入口、构造与完整类虚表（2026-10-30）
+
+承接 Won 商店进入命令，原 `func_08012D88` 现为
+`GameScene::OpenCarpenterShop()`；148 字节入口与 52 字节真实场景构造器
+统一归入 `src/scene_carpenter_shop.cc`／`include/scene_carpenter_shop.hh`。
+四区各新增 **200 字节 C++**，合计 **800 字节**；原有 Run、CreateScene
+及编译器生成转移析构仅迁移归属，未重复计入反编译量。
+
+| 区域 | OpenCarpenterShop / 148 字节 | CarpenterShopScene 构造 / 52 字节 | 完整类虚表 / 16 字节 |
+| --- | --- | --- | --- |
+| JP | `0x08012C58–0x08012CEC` | `0x0808506C–0x080850A0` | `0x080E7150–0x080E7160` |
+| US | `0x08012D88–0x08012E1C` | `0x080854F4–0x08085528` | `0x080E7D20–0x080E7D30` |
+| EU | `0x08012D9C–0x08012E30` | `0x08085508–0x0808553C` | `0x080E7D6C–0x080E7D7C` |
+| DE | `0x08012DA8–0x08012E3C` | `0x080853FC–0x08085430` | `0x080E7C84–0x080E7C94` |
+
+入口沿用已验证的 GameSceneResumeRequest 与 continuation 所有权转移；
+AFTER_CARPENTER_SHOP 为 JP 12、海外版 13。请求的八字节未知载荷仍保持
+原来的未初始化／整记录复制行为，不补零或臆测意义。构造按原版分配
+`0x61F4`（25,076）字节并调用 ConstructCarpenterShopSceneCore，随后保存
+continuation。核心仍为不透明类型，未伪造与真实布局无关的填充结构。
+
+已有工厂仍用实际 GCC 2.9 构造 ABI 的直接声明调用唯一的 C++ 构造符号
+`__18CarpenterShopSceneG20SceneTransitionOwnerP18GameStateSaveImage`，
+保留 caller-made owner 槽和返回 this 的约定，不新增包装函数、.set 别名或
+额外指令体。构造本体是普通 C++；这条明确的过渡 ABI 声明尚不能描述为
+工厂已完全改成可移植的普通 new 表达式。
+
+JP 原 `vtable_unk_080E7D04_NullTail` 的一个零字和随后
+`vtable_unk_080E7D14` 的三个字，实际上合为完整场景虚表：前两个空值
+是元数据，随后为析构与 Run。此处零字不是填充。JP 的旧
+`vtable_unk_080E7D20` 则属于相邻核心，仍按真实含义保留，不能套用
+海外版同名表的意义或加减偏移来匹配。无任何整 ROM 地址引用的 JP
+中间分片标签直接退役。
+
+四区直接链接编译器生成的 `.gnu.linkonce.d.__vt_18CarpenterShopScene`，
+数据、表头和两个方法槽均与原版一致；转移表使用真实
+`__vt_23CarpenterShopTransition` 符号，内容亦与编译器类表核对。
+源码没有新增自定义数据 section、地址锚点或用于匹配的别名。
+
+核心接口现按已证明的职责命名为 ConstructCarpenterShopSceneCore 与
+RunCarpenterShopSceneCore，仍保留原生指令。原 6,548 字节混合汇编段分为
+6,432 字节原生前缀、52 字节新 C++ 构造与 64 字节原生析构；析构直接
+使用真实 `_._18CarpenterShopScene` ABI 符号，边界明确且不计作新 C++。
+
+构建前审计了两项新增入口，JP callable 08E 在 `0x08041D06` 的原始 BL
+已换成成员符号。最终八处入调用全部具有真实重定位，无入口原始指针
+或内部 BL 候选；该结论仅覆盖这两个入口。
+
+验证：四版 WSL `make -j4 ... compare`、完整原版字节与 SHA-1、全部原有
+存活符号地址、245 个原输入对象的代码／数据／重定位通过；原有三段
+C++ 的迁移、保留汇编切片、完整类表与唯一 JP R10 增量分别核对。
+文本、脚本、图形与资源链未改。较早仍未匹配的启动／窗口代码继续据实
+保留，不能将本批地址当作整个 ROM 前缀都完成了的进度前沿。
+
 ## Won 商店：C++ 进入与构造、真实四槽虚表（2026-10-30）
 
 从上批超市入口后的 `func_08012CF4` 继续，现恢复

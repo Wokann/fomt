@@ -1278,8 +1278,10 @@ OnCall__12ScriptEnginei:
     bl OpenWonShop__9GameScene
     .byte 0xFF, 0xF7, 0x04, 0xFB
 .LScriptCallJp_08E:
-    .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68
-    .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xFC, 0xFA, 0xD0, 0xF7, 0xA7, 0xFF, 0xFF, 0xF7, 0xF8, 0xFA
+    .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
+    .byte 0xFF, 0xF7, 0xFC, 0xFA
+    bl OpenCarpenterShop__9GameScene
+    .byte 0xFF, 0xF7, 0xF8, 0xFA
 .LScriptCallJp_08F:
     .byte 0xD5, 0x26, 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xF0, 0xFA
     .byte 0xD0, 0xF7, 0xE5, 0xFF, 0xFF, 0xF7, 0xEC, 0xFA
@@ -92603,9 +92605,9 @@ func_08083664: @ 0x08083664
     .section .text.after_blacksmith_shop_scene_run, "ax", %progbits
     .align 2, 0
 
-.global func_0808374C
+.global ConstructCarpenterShopSceneCore
 .thumb_func
-func_0808374C: @ 0x0808374C
+ConstructCarpenterShopSceneCore: @ 0x0808374C
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	bl func_080C797C
@@ -93372,9 +93374,9 @@ func_080840F4: @ 0x08083C6C
 	.align 2, 0
 .Ljp_08083D9C:
 	.byte 0x70, 0x61, 0x00, 0x00
-.global func_08084228
+.global RunCarpenterShopSceneCore
 .thumb_func
-func_08084228:
+RunCarpenterShopSceneCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -93826,36 +93828,17 @@ func_08084228:
     .byte 0x30, 0x1C, 0x44, 0xF0, 0x45, 0xF8, 0xFE, 0xF7, 0xE3, 0xFF, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00
     .byte 0x98, 0x68, 0xC2, 0x68, 0x18, 0x1C, 0x03, 0x21, 0x4E, 0xF0, 0x38, 0xF8, 0x1C, 0xB0, 0x38, 0xBC
     .byte 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .global loc_0808506C
-    .thumb_func
-    loc_0808506C:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    adds r6, r1, #0
-    adds r5, r2, #0
-    ldr r0, [pc, #0x20]
-    str r0, [r4]
-    ldr r0, [pc, #0x20]
-    bl __builtin_new
-    adds r1, r5, #0
-    bl func_0808374C
-    str r0, [r4, #4]
-    ldr r1, [r6]
-    movs r0, #0
-    str r0, [r6]
-    str r1, [r4, #8]
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00, 0x50, 0x71, 0x0E, 0x08, 0xF4, 0x61, 0x00, 0x00
-.global func_080850A0
+    .section .text.carpenter_shop_scene_destructor, "ax", %progbits
+    .thumb
+    .align 2, 0
+
+.global _._18CarpenterShopScene
 .thumb_func
-func_080850A0: @ 0x080850A0
+_._18CarpenterShopScene: @ 0x080850A0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	ldr r0, .Ljp_080850DC @ =vtable_unk_080E7D04_NullTail
+	ldr r0, .Ljp_080850DC @ =__vt_18CarpenterShopScene
 	str r0, [r4]
 	ldr r1, [r4, #8]
 	cmp r1, #0
@@ -93882,7 +93865,7 @@ func_080850A0: @ 0x080850A0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.Ljp_080850DC: .4byte vtable_unk_080E7D04_NullTail
+.Ljp_080850DC: .4byte __vt_18CarpenterShopScene
     .section .text.after_carpenter_shop_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -122398,7 +122381,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042092
 	bl .L0804168A
 .L08042092:
-	bl func_08012D88
+	bl OpenCarpenterShop__9GameScene
 	bl .L0804168A
 .L0804209A:
 	movs r6, #0xd5
@@ -245990,8 +245973,8 @@ func_08083AEC: @ 0x08083AEC
     .section .text.after_blacksmith_shop_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_08083BD4
-func_08083BD4: @ 0x08083BD4
+	thumb_func_start ConstructCarpenterShopSceneCore
+ConstructCarpenterShopSceneCore: @ 0x08083BD4
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	bl func_080C7F58
@@ -246758,8 +246741,8 @@ func_080840F4: @ 0x080840F4
 .L08084224:
 	.byte 0x70, 0x61, 0x00, 0x00
 
-	thumb_func_start func_08084228
-func_08084228: @ 0x08084228
+	thumb_func_start RunCarpenterShopSceneCore
+RunCarpenterShopSceneCore: @ 0x08084228
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -248462,37 +248445,16 @@ sub_080854D8: @ 0x080854D8
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080854F4
-func_080854F4: @ 0x080854F4
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08085520 @ =vtable_unk_080E7D20
-	str r0, [r4]
-	ldr r0, .L08085524 @ =0x000061F4
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08083BD4
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08085520: .4byte vtable_unk_080E7D20
-.L08085524: .4byte 0x000061F4
+    .section .text.carpenter_shop_scene_destructor, "ax", %progbits
+    .thumb
+    .align 2, 0
 
-	thumb_func_start func_08085528
-func_08085528: @ 0x08085528
+	thumb_func_start _._18CarpenterShopScene
+_._18CarpenterShopScene: @ 0x08085528
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	ldr r0, .L08085564 @ =vtable_unk_080E7D20
+	ldr r0, .L08085564 @ =__vt_18CarpenterShopScene
 	str r0, [r4]
 	ldr r1, [r4, #8]
 	cmp r1, #0
@@ -248519,7 +248481,7 @@ func_08085528: @ 0x08085528
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08085564: .4byte vtable_unk_080E7D20
+.L08085564: .4byte __vt_18CarpenterShopScene
 
     .section .text.after_carpenter_shop_scene_run, "ax", %progbits
     .align 2, 0

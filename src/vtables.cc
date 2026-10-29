@@ -163,7 +163,6 @@ extern void func_08081CBC(void);
 extern void func_08081DC8(void);
 extern void func_08083664(void);
 extern void func_080837C8(void);
-extern void func_080850A0(void);
 extern void func_080851A4(void);
 extern void func_08087CEC(void);
 extern void func_08087E44(void);
@@ -340,7 +339,6 @@ extern void func_08082144(void);
 extern void func_08082250(void);
 extern void func_08083AEC(void);
 extern void func_08083C50(void);
-extern void func_08085528(void);
 extern void func_0808562C(void);
 extern void func_080881AC(void);
 extern void func_08088304(void);
@@ -974,7 +972,7 @@ extern RawVTableFunction const __vt_17WonShopTransition[] = {
     CreateScene__17WonShopTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5DF4[] = {
+extern RawVTableFunction const __vt_23CarpenterShopTransition[] = {
     nullptr,
     nullptr,
     DestroyCarpenterShopTransition,
@@ -4968,9 +4966,6 @@ extern RawVTableFunction const vtable_unk_080E7CF4[]
 #endif
 
 #if defined(REGION_JP)
-// The four-byte null tail is directly used as a vtable pointer by
-// func_080850A0.  Keep it as its own named object rather than referring to
-// the preceding table by an address offset.
 extern RawVTableFunction const vtable_unk_080E7D04[]
     SECTION(".rodata.vtable_7d04") = {
         nullptr,
@@ -4978,10 +4973,6 @@ extern RawVTableFunction const vtable_unk_080E7D04[]
         func_080837C8,
     };
 
-extern RawVTableFunction const vtable_unk_080E7D04_NullTail[]
-    SECTION(".rodata.vtable_7d04") = {
-        nullptr,
-    };
 #else
 extern RawVTableFunction const vtable_unk_080E7D04[]
     SECTION(".rodata.vtable_7d04") = {
@@ -4992,18 +4983,14 @@ extern RawVTableFunction const vtable_unk_080E7D04[]
     };
 #endif
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7D14[]
     SECTION(".rodata.vtable_7d14") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080850A0,
-        Run__18CarpenterShopScene,
-#else
         nullptr,
         nullptr,
         func_08083C50,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7D20[]
@@ -5019,14 +5006,6 @@ extern RawVTableFunction const vtable_unk_080E7D20[]
 extern RawVTableFunction const vtable_unk_080E7D20_NullTail[]
     SECTION(".rodata.vtable_7d20") = {
         nullptr,
-    };
-#else
-extern RawVTableFunction const vtable_unk_080E7D20[]
-    SECTION(".rodata.vtable_7d20") = {
-        nullptr,
-        nullptr,
-        func_08085528,
-        Run__18CarpenterShopScene,
     };
 #endif
 
