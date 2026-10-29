@@ -58,7 +58,7 @@ void AEntity::SetMap(u32 map)
     }
 }
 
-void AEntity::vfunc_18()
+void AEntity::Update()
 {
     if (unk_10.Get() != nullptr)
         unk_10->Update();

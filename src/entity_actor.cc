@@ -264,7 +264,7 @@ Box AActorEntity::GetBox() const
     return Box(x_q16 >> 16, y_q16 >> 16, 14, 9);
 }
 
-void AActorEntity::vfunc_18()
+void AActorEntity::Update()
 {
     if (animation_countdown != 0)
         --animation_countdown;

@@ -121,7 +121,7 @@ struct AActorEntity : public AEntity
 
     virtual Box GetBox() const;
     // Tick the countdown, then update the owned visual controller.
-    virtual void vfunc_18() SECTION(".text.entity_actor_update");
+    virtual void Update() SECTION(".text.entity_actor_update");
     virtual void vfunc_2C(u32 dummy);
 
     /* vt+34 */ virtual u32 vfunc_34() SECTION(".text.entity_actor_default_no_action");

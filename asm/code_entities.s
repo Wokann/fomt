@@ -9,94 +9,9 @@
     .thumb
     .thumb_func
 
-
-    .section .text.entity_actor_sound, "ax", %progbits
+.section .text
     .align 2, 0
 
-    .global func_0801FE58
-    .thumb_func
-func_0801FE58:
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    adds r4, r0, #0
-    mov r8, r1
-    adds r6, r4, #0
-    adds r6, #0x30
-    ldrb r0, [r6]
-    cmp r0, #0
-    bne .Ljp_0801FEBA
-    adds r0, r4, #0
-    bl IsOnCurrentMap__C12AActorEntity
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .Ljp_0801FEBA
-    ldr r0, [r4]
-    ldr r1, [r0]
-    movs r2, #0xa6
-    lsls r2, r2, #1
-    adds r1, r1, r2
-    ldr r1, [r1]
-    bl _call_via_r1
-    ldr r4, [r0]
-    ldr r5, [r0, #4]
-    adds r7, r6, #0
-    mov r0, r8
-    lsls r6, r0, #0x10
-    cmp r4, r5
-    beq .Ljp_0801FEAC
-.Ljp_0801FE96:
-    ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .Ljp_0801FEA6
-    ldr r0, [r4]
-    b .Ljp_0801FEB0
-.Ljp_0801FEA6:
-    adds r4, #4
-    cmp r4, r5
-    bne .Ljp_0801FE96
-.Ljp_0801FEAC:
-    subs r0, r5, #4
-    ldr r0, [r0]
-.Ljp_0801FEB0:
-    lsrs r1, r6, #0x10
-    bl Start__23HardwareMusicPlayerSlotUs
-    movs r0, #1
-    strb r0, [r7]
-.Ljp_0801FEBA:
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-
-    .section .text
-    .align 2, 0
-
-
-    .global func_08020034
-    .thumb_func
-func_08020034:
-    push {r4, lr}
-    movs r3, #0xa
-    ldrsh r2, [r1, r3]
-    movs r4, #0xe
-    ldrsh r3, [r1, r4]
-    subs r1, r2, #7
-    strh r1, [r0]
-    adds r1, r3, #0
-    subs r1, #9
-    strh r1, [r0, #2]
-    adds r2, #7
-    strh r2, [r0, #4]
-    adds r3, #5
-    strh r3, [r0, #6]
-    pop {r4}
-    pop {r2}
-    bx r2
-    .align 2, 0
 
     .global func_08020058
     .thumb_func
@@ -230,7 +145,7 @@ func_080200A4:
     adds r0, r6, #0
     adds r1, r7, #0
     add r2, sp, #4
-    bl __15Entity_080E6554P10GameObjectRC13ActorLocationUi
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .Ljp_0802010C
     str r0, [r6, #0x14]
     str r4, [r6, #0x34]
@@ -1079,7 +994,7 @@ func_08020260:
     bne .Ljp_0802075C
     adds r0, r6, #0
     movs r1, #0xa9
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     ldr r2, .Ljp_08020754 @ =0xFFFF0000
     add r1, sp, #0xac
     ldr r0, [r1]
@@ -1529,7 +1444,7 @@ func_08020260:
 .Ljp_08020AA6:
     adds r0, r6, #0
     movs r1, #0xaa
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_08020AAE:
     ldr r2, .Ljp_08020AC4 @ =0xFFFF0000
     add r1, sp, #0xbc
@@ -1569,7 +1484,7 @@ func_08020260:
     bne .Ljp_08020B4E
     adds r0, r6, #0
     movs r1, #0xa9
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     mov r0, sl
     bl GetAffection__C6Animal
     adds r1, r0, #0
@@ -1610,7 +1525,7 @@ func_08020260:
 .Ljp_08020B54:
     adds r0, r6, #0
     movs r1, #0xaa
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     ldr r2, .Ljp_08020B70 @ =0xFFFF0000
     add r1, sp, #0xc8
     ldr r0, [r1]
@@ -1749,7 +1664,7 @@ func_08020260:
 .Ljp_08020C62:
     adds r0, r6, #0
     movs r1, #0xa9
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     b .Ljp_08020C7E
 .Ljp_08020C6C:
     cmp r2, #0
@@ -1761,7 +1676,7 @@ func_08020260:
 .Ljp_08020C76:
     adds r0, r6, #0
     movs r1, #0xaa
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_08020C7E:
     adds r0, r6, #0
     bl func_08021054
@@ -1946,7 +1861,7 @@ func_08020260:
 .Ljp_08020DE4:
     adds r0, r6, #0
     movs r1, #0xd2
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     adds r0, r6, #0
     adds r0, #0x20
     ldrb r2, [r0]
@@ -2454,7 +2369,7 @@ func_08021144:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xaa
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_080211BE:
     add sp, #4
     pop {r4}
@@ -2492,7 +2407,7 @@ func_080211D8:
     adds r0, r1, #0
     bl GetAffection__C6Animal
     mov r8, r0
-    bl func_08020018
+    bl CalculateAnimalResponseRadius
     movs r1, #0xa
     ldrsh r3, [r6, r1]
     ldrb r1, [r7, #1]
@@ -2598,7 +2513,7 @@ func_080212B0:
     ldr r0, [r6, #0x34]
     bl GetAdequacy__C3Pet
     mov r8, r0
-    bl func_08020018
+    bl CalculateAnimalResponseRadius
     movs r1, #0xa
     ldrsh r3, [r6, r1]
     ldrb r1, [r7, #1]
@@ -2636,7 +2551,7 @@ func_080212B0:
     bgt .Ljp_08021380
     adds r0, r6, #0
     movs r1, #0xa9
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     ldr r0, [r6, #0x34]
     ldr r0, [r0, #0x20]
     cmp r0, #5
@@ -2810,7 +2725,7 @@ func_08021450:
     adds r0, r6, #0
     adds r1, r4, #0
     mov r2, sp
-    bl __15Entity_080E6554P10GameObjectRC13ActorLocationUi
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .Ljp_080214CC
     str r0, [r6, #0x14]
     str r5, [r6, #0x34]
@@ -4122,7 +4037,7 @@ func_08021EF8:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa7
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     pop {r4}
     pop {r0}
     bx r0
@@ -4177,7 +4092,9 @@ func_08021F84:
     adds r6, r0, #0
     adds r7, r1, #0
     .byte 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88, 0x88, 0x42, 0x4A, 0xD1, 0x70, 0x6B, 0x78, 0xF0
-    .byte 0x61, 0xFE, 0xFD, 0xF7, 0x05, 0xFF, 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88
+    .byte 0x61, 0xFE
+    bl CalculateAnimalResponseRadius
+    .byte 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88
     .byte 0x22, 0x4C, 0x22, 0x40, 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23
     .byte 0xF5, 0x5E, 0xFB, 0x78, 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04
     .byte 0x09, 0x14, 0x49, 0x1B, 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C, 0x4B, 0x43, 0x19, 0x1C
@@ -4328,8 +4245,9 @@ func_080220DC:
     pop {r1}
     bx r1
     .byte 0x00, 0x00, 0x70, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x68, 0x46, 0x31, 0x1C
-    .byte 0x78, 0xF0, 0xFF, 0xFC, 0xE4, 0x23, 0xDB, 0x00, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46, 0xFD, 0xF7
-    .byte 0x38, 0xFE, 0x08, 0x48, 0x60, 0x61, 0x66, 0x63, 0x20, 0x1C, 0x00, 0xF0, 0xBE, 0xFA, 0x01, 0x1C
+    .byte 0x78, 0xF0, 0xFF, 0xFC, 0xE4, 0x23, 0xDB, 0x00, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
+    .byte 0x08, 0x48, 0x60, 0x61, 0x66, 0x63, 0x20, 0x1C, 0x00, 0xF0, 0xBE, 0xFA, 0x01, 0x1C
     .byte 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x69, 0xFA, 0x20, 0x1C, 0x02, 0xB0
     .byte 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0xDC, 0x57, 0x0E, 0x08
     .global func_08022184
@@ -5011,7 +4929,7 @@ func_0802278C:
     movs r1, #0xa6
 .Ljp_080227FC:
     adds r0, r4, #0
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     add sp, #4
     pop {r4}
     pop {r0}
@@ -5082,7 +5000,7 @@ func_08022840:
     movs r1, #0xa6
 .Ljp_080228B2:
     adds r0, r4, #0
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     add sp, #4
     pop {r4}
     pop {r0}
@@ -5215,7 +5133,8 @@ func_08022904:
     pop {r1}
     bx r1
     .byte 0x70, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x68, 0x46, 0x31, 0x1C, 0x78, 0xF0
-    .byte 0xC7, 0xF8, 0xAC, 0x23, 0x9B, 0x00, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46, 0xFD, 0xF7, 0x00, 0xFA
+    .byte 0xC7, 0xF8, 0xAC, 0x23, 0x9B, 0x00, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     .byte 0x08, 0x48, 0x60, 0x61, 0x66, 0x63, 0x20, 0x1C, 0x00, 0xF0, 0x9A, 0xFB, 0x01, 0x1C, 0x20, 0x1C
     .byte 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x5B, 0xFB, 0x20, 0x1C, 0x02, 0xB0, 0x70, 0xBC
     .byte 0x02, 0xBC, 0x08, 0x47, 0x50, 0x57, 0x0E, 0x08
@@ -6137,7 +6056,8 @@ func_080231A8:
     adds r7, r1, #0
     .byte 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88, 0x88, 0x42, 0x5F, 0xD1, 0x70, 0x6B, 0x78, 0xF0
     .byte 0x91, 0xF8, 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1, 0x70, 0x6B, 0x77, 0xF0, 0x47, 0xFD, 0x80, 0x46
-    .byte 0xFC, 0xF7, 0xEA, 0xFD, 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88, 0x13, 0x4C
+    bl CalculateAnimalResponseRadius
+    .byte 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88, 0x13, 0x4C
     .byte 0x22, 0x40, 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23, 0xF5, 0x5E
     .byte 0xFB, 0x78, 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04, 0x09, 0x14
     .byte 0x49, 0x1B, 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C, 0x4B, 0x43, 0x19, 0x1C, 0x52, 0x18
@@ -6313,7 +6233,7 @@ func_0802335C:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa2
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     add sp, #4
     pop {r4}
     pop {r0}
@@ -6374,7 +6294,7 @@ func_080233F8:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa1
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_08023450:
     pop {r4}
     pop {r0}
@@ -6390,7 +6310,7 @@ func_08023458:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa1
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     ldr r0, [r4, #0x34]
     bl ConsumeProduct__3Cow
     pop {r4}
@@ -6453,7 +6373,7 @@ func_0802349C:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa2
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     add sp, #4
     pop {r4}
     pop {r0}
@@ -6615,7 +6535,8 @@ func_080235B4:
     pop {r1}
     bx r1
     .byte 0x00, 0x00, 0x70, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x68, 0x46, 0x31, 0x1C
-    .byte 0x77, 0xF0, 0x7F, 0xFA, 0x0C, 0x4B, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46, 0xFC, 0xF7, 0xB9, 0xFB
+    .byte 0x77, 0xF0, 0x7F, 0xFA, 0x0C, 0x4B, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     .byte 0x0A, 0x48, 0x60, 0x61, 0x66, 0x63, 0x20, 0x1C, 0x00, 0xF0, 0xA7, 0xFB, 0x01, 0x1C, 0x20, 0x1C
     .byte 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x68, 0xFB, 0x20, 0x1C, 0x02, 0xB0, 0x70, 0xBC
     .byte 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0x21, 0x09, 0x00, 0x00, 0xC4, 0x56, 0x0E, 0x08
@@ -7556,8 +7477,9 @@ func_08023E64:
     adds r6, r0, #0
     adds r7, r1, #0
     .byte 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88, 0x88, 0x42, 0x5F, 0xD1, 0x70, 0x6B, 0x77, 0xF0
-    .byte 0x35, 0xFA, 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1, 0x70, 0x6B, 0x76, 0xF0, 0xEB, 0xFE, 0xFB, 0xF7
-    .byte 0x8F, 0xFF, 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88, 0x12, 0x4C, 0x22, 0x40
+    .byte 0x35, 0xFA, 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1, 0x70, 0x6B, 0x76, 0xF0, 0xEB, 0xFE
+    bl CalculateAnimalResponseRadius
+    .byte 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88, 0x12, 0x4C, 0x22, 0x40
     .byte 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23, 0xF5, 0x5E, 0xFB, 0x78
     .byte 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04, 0x09, 0x14, 0x49, 0x1B
     .byte 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C, 0x4B, 0x43, 0x19, 0x1C, 0x52, 0x18, 0x01, 0x1C
@@ -7708,7 +7630,7 @@ func_08024010:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa4
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     add sp, #4
     pop {r4}
     pop {r0}
@@ -7762,7 +7684,7 @@ func_080240AC:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA3
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_08024104:
     pop {r4}
     pop {r0}
@@ -7778,7 +7700,7 @@ func_0802410C:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA3
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     ldr r0, [r4, #0x34]
     bl ConsumeProduct__5Sheep
     adds r5, r0, #0
@@ -7856,7 +7778,7 @@ func_08024170:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA4
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     add sp, #4
     pop {r4}
     pop {r0}
@@ -8039,34 +7961,7 @@ func_0802431C:
     strh r2, [r0, #6]
     bx lr
     .align 2, 0
-    .global func_08024330
-    .thumb_func
-func_08024330:
-    push {lr}
-    adds r2, r0, #0
-    adds r1, r2, #0
-    adds r1, #0x30
-    movs r0, #0
-    strb r0, [r1]
-    ldrh r0, [r2, #0x24]
-    cmp r0, #0
-    beq .Ljp_08024346
-    subs r0, #1
-    b .Ljp_08024348
-.Ljp_08024346:
-    ldrh r0, [r2, #0x26]
-.Ljp_08024348:
-    strh r0, [r2, #0x24]
-    ldr r2, [r2, #0x10]
-    cmp r2, #0
-    beq .Ljp_0802435A
-    ldr r0, [r2, #4]
-    ldr r1, [r0, #0xC]
-    adds r0, r2, #0
-    bl _call_via_r1
-.Ljp_0802435A:
-    pop {r0}
-    bx r0
+    .section .text.audio_actor_after_update, "ax", %progbits
     .align 2, 0
     .global func_08024360
     .thumb_func
@@ -36068,91 +35963,9 @@ func_08031E10:
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
-    .section .text.entity_actor_sound, "ax", %progbits
+.section .text
     .align 2, 0
 
-    thumb_func_start func_080200C4
-func_080200C4: @ 0x080200C4
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    adds r4, r0, #0
-    mov r8, r1
-    adds r6, r4, #0
-    adds r6, #0x30
-    ldrb r0, [r6]
-    cmp r0, #0
-    bne .L08020126
-    adds r0, r4, #0
-    bl IsOnCurrentMap__C12AActorEntity
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L08020126
-    ldr r0, [r4]
-    ldr r1, [r0]
-    movs r2, #0xa6
-    lsls r2, r2, #1
-    adds r1, r1, r2
-    ldr r1, [r1]
-    bl _call_via_r1
-    ldr r4, [r0]
-    ldr r5, [r0, #4]
-    adds r7, r6, #0
-    mov r0, r8
-    lsls r6, r0, #0x10
-    cmp r4, r5
-    beq .L08020118
-.L08020102:
-    ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L08020112
-    ldr r0, [r4]
-    b .L0802011C
-.L08020112:
-    adds r4, #4
-    cmp r4, r5
-    bne .L08020102
-.L08020118:
-    subs r0, r5, #4
-    ldr r0, [r0]
-.L0802011C:
-    lsrs r1, r6, #0x10
-    bl Start__23HardwareMusicPlayerSlotUs
-    movs r0, #1
-    strb r0, [r7]
-.L08020126:
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-
-    .section .text
-    .align 2, 0
-
-
-    thumb_func_start func_080202A0
-func_080202A0: @ 0x080202A0
-    push {r4, lr}
-    movs r3, #0xa
-    ldrsh r2, [r1, r3]
-    movs r4, #0xe
-    ldrsh r3, [r1, r4]
-    subs r1, r2, #7
-    strh r1, [r0]
-    adds r1, r3, #0
-    subs r1, #9
-    strh r1, [r0, #2]
-    adds r2, #7
-    strh r2, [r0, #4]
-    adds r3, #5
-    strh r3, [r0, #6]
-    pop {r4}
-    pop {r2}
-    bx r2
-    .align 2, 0
 
     thumb_func_start func_080202C4
 func_080202C4: @ 0x080202C4
@@ -36249,7 +36062,7 @@ func_08020310: @ 0x08020310
     adds r0, r6, #0
     adds r1, r7, #0
     add r2, sp, #4
-    bl __15Entity_080E6554P10GameObjectRC13ActorLocationUi
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .L08020378 @ =vtable_unk_080E64C8
     str r0, [r6, #0x14]
     str r4, [r6, #0x34]
@@ -37090,7 +36903,7 @@ func_080204CC: @ 0x080204CC
     bne .L080209C8
     adds r0, r6, #0
     movs r1, #0xa9
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     ldr r2, .L080209C0 @ =0xFFFF0000
     add r1, sp, #0xac
     ldr r0, [r1]
@@ -37540,7 +37353,7 @@ func_080204CC: @ 0x080204CC
 .L08020D12:
     adds r0, r6, #0
     movs r1, #0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .L08020D1A:
     ldr r2, .L08020D30 @ =0xFFFF0000
     add r1, sp, #0xbc
@@ -37580,7 +37393,7 @@ func_080204CC: @ 0x080204CC
     bne .L08020DBA
     adds r0, r6, #0
     movs r1, #0xa9
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     mov r0, sl
     bl GetAffection__C6Animal
     adds r1, r0, #0
@@ -37621,7 +37434,7 @@ func_080204CC: @ 0x080204CC
 .L08020DC0:
     adds r0, r6, #0
     movs r1, #0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     ldr r2, .L08020DDC @ =0xFFFF0000
     add r1, sp, #0xc8
     ldr r0, [r1]
@@ -37760,7 +37573,7 @@ func_080204CC: @ 0x080204CC
 .L08020ECE:
     adds r0, r6, #0
     movs r1, #0xa9
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     b .L08020EEA
 .L08020ED8:
     cmp r2, #0
@@ -37772,7 +37585,7 @@ func_080204CC: @ 0x080204CC
 .L08020EE2:
     adds r0, r6, #0
     movs r1, #0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .L08020EEA:
     adds r0, r6, #0
     bl func_080212C0
@@ -37957,7 +37770,7 @@ func_080204CC: @ 0x080204CC
 .L08021050:
     adds r0, r6, #0
     movs r1, #0xd2
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     adds r0, r6, #0
     adds r0, #0x20
     ldrb r2, [r0]
@@ -38461,7 +38274,7 @@ func_080213B0:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .L0802142A:
     add sp, #4
     pop {r4}
@@ -38494,7 +38307,7 @@ func_08021444: @ 0x08021444
     adds r0, r1, #0
     bl GetAffection__C6Animal
     mov r8, r0
-    bl func_08020018
+    bl CalculateAnimalResponseRadius
     movs r1, #0xa
     ldrsh r3, [r6, r1]
     ldrb r1, [r7, #1]
@@ -38599,7 +38412,7 @@ func_0802151C: @ 0x0802151C
     ldr r0, [r6, #0x34]
     bl GetAdequacy__C3Pet
     mov r8, r0
-    bl func_08020018
+    bl CalculateAnimalResponseRadius
     movs r1, #0xa
     ldrsh r3, [r6, r1]
     ldrb r1, [r7, #1]
@@ -38637,7 +38450,7 @@ func_0802151C: @ 0x0802151C
     bgt .L080215EC
     adds r0, r6, #0
     movs r1, #0xa9
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     ldr r0, [r6, #0x34]
     ldr r0, [r0, #0x20]
     cmp r0, #5
@@ -38808,7 +38621,7 @@ func_080216BC: @ 0x080216BC
     adds r0, r6, #0
     adds r1, r4, #0
     mov r2, sp
-    bl func_08020038
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .L08021738 @ =vtable_unk_080E6428
     str r0, [r6, #0x14]
     str r5, [r6, #0x34]
@@ -39531,7 +39344,7 @@ func_08022164:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa7
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     pop {r4}
     pop {r0}
     bx r0
@@ -39567,7 +39380,7 @@ func_080221F0: @ 0x080221F0
     bne .L0802229A
     ldr r0, [r6, #0x34]
     bl GetAffection__C6Animal
-    bl func_08020018
+    bl CalculateAnimalResponseRadius
     movs r1, #0xa
     ldrsh r3, [r6, r1]
     ldrb r1, [r7, #1]
@@ -39767,7 +39580,7 @@ func_080223A8: @ 0x080223A8
     adds r0, r4, #0
     adds r1, r5, #0
     mov r2, sp
-    bl func_08020038
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .L080223EC @ =vtable_unk_080E639C
     str r0, [r4, #0x14]
     str r6, [r4, #0x34]
@@ -40536,7 +40349,7 @@ func_080229F8:
     movs r1, #0xa6
 .L08022A68:
     adds r0, r4, #0
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     add sp, #4
     pop {r4}
     pop {r0}
@@ -40607,7 +40420,7 @@ func_08022AAC:
     movs r1, #0xa6
 .L08022B1E:
     adds r0, r4, #0
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     add sp, #4
     pop {r4}
     pop {r0}
@@ -40702,7 +40515,7 @@ func_08022C18: @ 0x08022C18
     adds r0, r4, #0
     adds r1, r5, #0
     mov r2, sp
-    bl func_08020038
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .L08022C5C @ =vtable_unk_080E6310
     str r0, [r4, #0x14]
     str r6, [r4, #0x34]
@@ -41110,7 +40923,7 @@ func_08023414:
     .byte 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1, 0x70, 0x6B
     bl GetAffection__C6Animal
     .byte 0x80, 0x46
-    bl func_08020018
+    bl CalculateAnimalResponseRadius
     .byte 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88, 0x13, 0x4C
     .byte 0x22, 0x40, 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23, 0xF5, 0x5E
     .byte 0xFB, 0x78, 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04, 0x09, 0x14
@@ -41238,7 +41051,7 @@ func_080235C8:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa2
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     add sp, #4
     pop {r4}
     pop {r0}
@@ -41297,7 +41110,7 @@ func_08023664:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa1
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .L080236BC:
     pop {r4}
     pop {r0}
@@ -41313,7 +41126,7 @@ func_080236C4:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa1
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     ldr r0, [r4, #0x34]
     bl ConsumeProduct__3Cow
     pop {r4}
@@ -41376,7 +41189,7 @@ func_08023708:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xa2
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .L08023780:
     add sp, #4
     pop {r4}
@@ -41510,7 +41323,7 @@ func_080238A8: @ 0x080238A8
     adds r0, r4, #0
     adds r1, r5, #0
     mov r2, sp
-    bl func_08020038
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .L080238F0 @ =vtable_unk_080E6284
     str r0, [r4, #0x14]
     str r6, [r4, #0x34]
@@ -41938,7 +41751,7 @@ func_080240D0:
     .byte 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1
     .byte 0x70, 0x6B
     bl GetAffection__C6Animal
-    bl func_08020018
+    bl CalculateAnimalResponseRadius
     .byte 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78
     .byte 0x89, 0x08, 0x7A, 0x88, 0x12, 0x4C, 0x22, 0x40, 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14
     .byte 0xD2, 0x1A, 0x0E, 0x23, 0xF5, 0x5E, 0xFB, 0x78, 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01
@@ -42040,7 +41853,7 @@ func_0802427C:
     .byte 0x20, 0x1C, 0x00, 0x21, 0x00, 0x22
     bl StartActorSpriteEffect
     .byte 0x20, 0x1C, 0xA4, 0x21
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF
     .byte 0xFF, 0xFF, 0x80, 0xFF, 0xFF, 0xFF, 0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0x00
     .global func_0802430C
@@ -42088,7 +41901,7 @@ func_08024318:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA3
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .L08024370:
     pop {r4}
     pop {r0}
@@ -42104,7 +41917,7 @@ func_08024378:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA3
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     ldr r0, [r4, #0x34]
     bl ConsumeProduct__5Sheep
     adds r5, r0, #0
@@ -42182,7 +41995,7 @@ func_080243DC:
     bl StartActorSpriteEffect
     adds r0, r4, #0
     movs r1, #0xA4
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     add sp, #4
     pop {r4}
     pop {r0}
@@ -42366,34 +42179,7 @@ func_08024588:
     strh r2, [r0, #6]
     bx lr
     .align 2, 0
-    .global func_0802459C
-    .thumb_func
-func_0802459C:
-    push {lr}
-    adds r2, r0, #0
-    adds r1, r2, #0
-    adds r1, #0x30
-    movs r0, #0
-    strb r0, [r1]
-    ldrh r0, [r2, #0x24]
-    cmp r0, #0
-    beq .L080245B2
-    subs r0, #1
-    b .L080245B4
-.L080245B2:
-    ldrh r0, [r2, #0x26]
-.L080245B4:
-    strh r0, [r2, #0x24]
-    ldr r2, [r2, #0x10]
-    cmp r2, #0
-    beq .L080245C6
-    ldr r0, [r2, #4]
-    ldr r1, [r0, #0xC]
-    adds r0, r2, #0
-    bl _call_via_r1
-.L080245C6:
-    pop {r0}
-    bx r0
+    .section .text.audio_actor_after_update, "ax", %progbits
     .align 2, 0
     .global func_080245CC
     .thumb_func

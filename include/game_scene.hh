@@ -942,7 +942,7 @@ struct GameScene : AScene {
     i32 GetPresentedItemId();
     bool IsPresentedItemGiftWrapped();
     GameSceneCaughtFish const * GetCaughtFish();
-    u32 IsBackgroundMusicActive();
+    bool IsBackgroundMusicActive();
     void StartWorldBackgroundMusic();
     // Returns whether a fade was requested; it does not wait for completion.
     bool FadeOutBackgroundMusic();

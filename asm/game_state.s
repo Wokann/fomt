@@ -8155,7 +8155,7 @@ func_080179CC:
     cmp r0, #0
     bne .Lauto_0801781A
     adds r0, r6, #0
-    bl GetWorldSongPlayerPool
+    bl GetSongPlayerPool__20GameSceneWorldPrefix
     ldr r4, [r0]
     ldr r5, [r0, #4]
     cmp r4, r5
@@ -23965,7 +23965,7 @@ func_080179CC: @ 0x080179CC
     cmp r0, #0
     bne .L08017A86
     adds r0, r6, #0
-    bl GetWorldSongPlayerPool
+    bl GetSongPlayerPool__20GameSceneWorldPrefix
     ldr r4, [r0]
     ldr r5, [r0, #4]
     cmp r4, r5

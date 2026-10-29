@@ -15,6 +15,7 @@
 #pragma interface "game_world.hh"
 
 struct GameScene;
+struct GameSceneSongPlayerPool;
 struct GameSceneScriptRequest;
 struct GameStateClock;
 struct GameStateSaveImage;
@@ -41,8 +42,8 @@ struct GameSceneWorldPrefix : GameObject {
     virtual AEntity * GetEntity(u32 index) const;
     // Native world slot +0x148 selects the default audio sequence.
     virtual u32 GetDefaultAudioSequence() = 0;
-    // Preserve the unrecovered slot before the world-only furniture hooks.
-    virtual void vfunc_14C();
+    // Native world slot +0x14C borrows the scene's sound-player pool.
+    virtual GameSceneSongPlayerPool & GetSongPlayerPool();
     virtual void LightFireplaceAtLocation(MaryMapId map);
     virtual void SetVaseArticleId(MaryItemArticleId article);
     virtual void vfunc_158();

@@ -62,9 +62,9 @@ night:
     return AUDIO_AMBIENCE_NIGHT;
 }
 
-EC GameSceneSongPlayerPool & GetWorldSongPlayerPool(GameSceneWorldPrefix & world)
+GameSceneSongPlayerPool & GameSceneWorldPrefix::GetSongPlayerPool()
 {
-    return GetSceneSongPlayerPool(*world.scene);
+    return GetSceneSongPlayerPool(*scene);
 }
 
 EC void UpdateWorldBackgroundAudio(GameSceneWorldPrefix & world)

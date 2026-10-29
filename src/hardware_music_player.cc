@@ -91,7 +91,7 @@ void HardwareMusicPlayerSlot::InitializeImmediately()
     m4aMPlayImmInit(value);
 }
 
-u32 HardwareMusicPlayerSlot::IsActive() const
+bool HardwareMusicPlayerSlot::IsActive() const
 {
     return (value->status >> 31) ^ 1;
 }

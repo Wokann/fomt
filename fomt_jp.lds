@@ -341,7 +341,7 @@ SECTIONS
             .text.PickUpFieldItemAtLocation .text.func_0801D7B0 .text.func_0801D88C);
         src/world_control.o(.text.SuspendWorldUpdates .text.ResumeWorldUpdates);
         src/game_world.o(.text.QueueWorldScript);
-        src/world_audio.o(.text.SelectWorldBackgroundAudio .text.GetWorldSongPlayerPool
+        src/world_audio.o(.text.SelectWorldBackgroundAudio .text.GetSongPlayerPool__20GameSceneWorldPrefix
             .text.UpdateWorldBackgroundAudio);
         src/game_world.o(.text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue
             .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78 .text.RemoveRecordPlayerAlbum
@@ -387,11 +387,13 @@ SECTIONS
         . = 0x1FB0C; /* JP ROM 0x0801FB0C, independently matched */
         src/entity.o(.text);
         . = 0x1FDAC; /* JP ROM 0x0801FDAC, independently matched */
-        src/code_entity_08020018.o(.text);
+        src/animal_response.o(.text);
+        src/entity_audio.o(.text.__16AudioActorEntityP10GameObjectRC13ActorLocationUi);
         . = 0x1FDF4; /* JP ROM 0x0801FDF4, independently matched */
         src/entity_actor.o(.text.entity_actor_movement);
-        asm/code_entities.o(.text.entity_actor_sound);
+        src/entity_audio.o(.text.RequestSound__16AudioActorEntityUi);
         src/entity_actor.o(.text.entity_actor_animation_complete .text.entity_actor_apply_movement);
+        src/entity_audio.o(.text.GetBox__C16AudioActorEntity);
         asm/code_entities.o(.text);
         src/livestock_actor.o(.text.IsSick__C12ChickenActor);
         asm/code_entities.o(.text.livestock_actor_chicken_after_sick_check);
@@ -405,6 +407,8 @@ SECTIONS
         asm/code_entities.o(.text.livestock_actor_sheep_after_sick_check);
         src/livestock_actor.o(.text.CureSickness__10SheepActor);
         asm/code_entities.o(.text.livestock_actor_sheep_after_cure);
+        src/entity_audio.o(.text.Update__16AudioActorEntity);
+        asm/code_entities.o(.text.audio_actor_after_update);
         src/player_actor.o(.text);
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);

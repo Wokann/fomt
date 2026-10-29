@@ -8125,7 +8125,7 @@ func_08039310:
     bl func_0809C0BC
     adds	r0, r5, #0
     movs	r1, #171	@ 0xab
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
     b .Ljp_080392DC
     .align 2, 0
 .Ljp_08039210:
@@ -8153,7 +8153,7 @@ func_08039310:
 .Ljp_0803923E:
     adds	r0, r5, #0
     movs	r1, #170	@ 0xaa
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_08039246:
     cmp	r6, #100	@ 0x64
     beq .Ljp_080392C8
@@ -8346,7 +8346,7 @@ func_0803955C:
 .Ljp_080393C0:
     adds	r0, r5, #0
     movs	r1, #170	@ 0xaa
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_080393C8:
     cmp	r6, #100	@ 0x64
     beq .Ljp_0803944C
@@ -8430,7 +8430,7 @@ func_0803955C:
     strb	r0, [r6, #2]
     adds	r0, r5, #0
     movs	r1, #171	@ 0xab
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_08039476:
     strh	r4, [r6, #0]
 .Ljp_08039478:
@@ -8577,7 +8577,7 @@ func_08039708:
 .Ljp_08039582:
     adds	r0, r6, #0
     movs	r1, #170	@ 0xaa
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_0803958A:
     cmp	r5, #100	@ 0x64
     beq .Ljp_0803960C
@@ -8681,7 +8681,7 @@ func_080398A4:
     adds	r0, r6, #0
     adds	r1, r4, #0
     mov	r2, sp
-    bl func_08020038
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .Ljp_0803973C
     str	r0, [r6, #20]
     str	r5, [r6, #52]	@ 0x34
@@ -9052,7 +9052,7 @@ func_08039A60:
     bl func_0809C0AC
     adds	r0, r7, #0
     movs	r1, #171	@ 0xab
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_08039940:
     ldrh	r5, [r7, #4]
     movs	r0, #141	@ 0x8d
@@ -9349,7 +9349,7 @@ func_08039DA8:
     bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_08039B94:
     add	sp, #4
     pop	{r4}
@@ -9405,7 +9405,7 @@ func_08039E18:
     bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
-    bl func_0801FE58
+    bl RequestSound__16AudioActorEntityUi
 .Ljp_08039C06:
     add	sp, #4
     pop	{r4}
@@ -18701,7 +18701,7 @@ func_08039310:
     bl func_0809C0BC
     adds	r0, r5, #0
     movs	r1, #171	@ 0xab
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     b .Leu_0803955C
     .align 2, 0
 .Leu_08039490:
@@ -18729,7 +18729,7 @@ func_08039310:
 .Leu_080394BE:
     adds	r0, r5, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Leu_080394C6:
     cmp	r6, #100	@ 0x64
     beq .Leu_08039548
@@ -18922,7 +18922,7 @@ func_0803955C:
 .Leu_08039640:
     adds	r0, r5, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Leu_08039648:
     cmp	r6, #100	@ 0x64
     beq .Leu_080396CC
@@ -19006,7 +19006,7 @@ func_0803955C:
     strb	r0, [r6, #2]
     adds	r0, r5, #0
     movs	r1, #171	@ 0xab
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Leu_080396F6:
     strh	r4, [r6, #0]
 .Leu_080396F8:
@@ -19153,7 +19153,7 @@ func_08039708:
 .Leu_08039802:
     adds	r0, r6, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Leu_0803980A:
     cmp	r5, #100	@ 0x64
     beq .Leu_0803988C
@@ -19257,7 +19257,7 @@ func_080398A4:
     adds	r0, r6, #0
     adds	r1, r4, #0
     mov	r2, sp
-    bl func_08020038
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .Leu_080399BC
     str	r0, [r6, #20]
     str	r5, [r6, #52]	@ 0x34
@@ -19628,7 +19628,7 @@ func_08039A60:
     bl func_0809C0AC
     adds	r0, r7, #0
     movs	r1, #171	@ 0xab
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Leu_08039BC0:
     ldrh	r5, [r7, #4]
     movs	r0, #141	@ 0x8d
@@ -19925,7 +19925,7 @@ func_08039DA8:
     bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Leu_08039E14:
     add	sp, #4
     pop	{r4}
@@ -19981,7 +19981,7 @@ func_08039E18:
     bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Leu_08039E86:
     add	sp, #4
     pop	{r4}
@@ -29426,7 +29426,7 @@ func_08039310:
     bl func_0809C0BC
     adds	r0, r5, #0
     movs	r1, #171	@ 0xab
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     b .Lde_0803945C
     .align 2, 0
 .Lde_08039390:
@@ -29454,7 +29454,7 @@ func_08039310:
 .Lde_080393BE:
     adds	r0, r5, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lde_080393C6:
     cmp	r6, #100	@ 0x64
     beq .Lde_08039448
@@ -29647,7 +29647,7 @@ func_0803955C:
 .Lde_08039540:
     adds	r0, r5, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lde_08039548:
     cmp	r6, #100	@ 0x64
     beq .Lde_080395CC
@@ -29731,7 +29731,7 @@ func_0803955C:
     strb	r0, [r6, #2]
     adds	r0, r5, #0
     movs	r1, #171	@ 0xab
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lde_080395F6:
     strh	r4, [r6, #0]
 .Lde_080395F8:
@@ -29878,7 +29878,7 @@ func_08039708:
 .Lde_08039702:
     adds	r0, r6, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lde_0803970A:
     cmp	r5, #100	@ 0x64
     beq .Lde_0803978C
@@ -29982,7 +29982,7 @@ func_080398A4:
     adds	r0, r6, #0
     adds	r1, r4, #0
     mov	r2, sp
-    bl func_08020038
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .Lde_080398BC
     str	r0, [r6, #20]
     str	r5, [r6, #52]	@ 0x34
@@ -30353,7 +30353,7 @@ func_08039A60:
     bl func_0809C0AC
     adds	r0, r7, #0
     movs	r1, #171	@ 0xab
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lde_08039AC0:
     ldrh	r5, [r7, #4]
     movs	r0, #141	@ 0x8d
@@ -30650,7 +30650,7 @@ func_08039DA8:
     bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lde_08039D14:
     add	sp, #4
     pop	{r4}
@@ -30706,7 +30706,7 @@ func_08039E18:
     bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lde_08039D86:
     add	sp, #4
     pop	{r4}
@@ -40150,7 +40150,7 @@ func_08039310:
     bl func_0809C0BC
     adds	r0, r5, #0
     movs	r1, #171	@ 0xab
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
     b .Lus_08039548
     .align 2, 0
 .Lus_0803947C:
@@ -40178,7 +40178,7 @@ func_08039310:
 .Lus_080394AA:
     adds	r0, r5, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lus_080394B2:
     cmp	r6, #100	@ 0x64
     beq .Lus_08039534
@@ -40371,7 +40371,7 @@ func_0803955C:
 .Lus_0803962C:
     adds	r0, r5, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lus_08039634:
     cmp	r6, #100	@ 0x64
     beq .Lus_080396B8
@@ -40455,7 +40455,7 @@ func_0803955C:
     strb	r0, [r6, #2]
     adds	r0, r5, #0
     movs	r1, #171	@ 0xab
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lus_080396E2:
     strh	r4, [r6, #0]
 .Lus_080396E4:
@@ -40602,7 +40602,7 @@ func_08039708:
 .Lus_080397EE:
     adds	r0, r6, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lus_080397F6:
     cmp	r5, #100	@ 0x64
     beq .Lus_08039878
@@ -40706,7 +40706,7 @@ func_080398A4:
     adds	r0, r6, #0
     adds	r1, r4, #0
     mov	r2, sp
-    bl func_08020038
+    bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
     ldr r0, .Lus_080399A8
     str	r0, [r6, #20]
     str	r5, [r6, #52]	@ 0x34
@@ -41077,7 +41077,7 @@ func_08039A60:
     bl func_0809C0AC
     adds	r0, r7, #0
     movs	r1, #171	@ 0xab
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lus_08039BAC:
     ldrh	r5, [r7, #4]
     movs	r0, #141	@ 0x8d
@@ -41374,7 +41374,7 @@ func_08039DA8:
     bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lus_08039E00:
     add	sp, #4
     pop	{r4}
@@ -41430,7 +41430,7 @@ func_08039E18:
     bl StartActorSpriteEffect
     adds	r0, r4, #0
     movs	r1, #170	@ 0xaa
-    bl func_080200C4
+    bl RequestSound__16AudioActorEntityUi
 .Lus_08039E72:
     add	sp, #4
     pop	{r4}

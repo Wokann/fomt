@@ -89,8 +89,7 @@ bool GameScene::FadeOutBackgroundMusic()
     return requested;
 }
 
-u32 GameScene::IsBackgroundMusicActive()
+bool GameScene::IsBackgroundMusicActive()
 {
-    // Preserve the native word-returning music-player query.
     return state->bgm_player.IsActive();
 }

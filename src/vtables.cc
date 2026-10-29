@@ -677,7 +677,7 @@ extern void SetWorldPendingUnknownValue(void);
 extern void QueueWorldScript(void);
 extern void GetWorldClock(void);
 extern void SelectWorldBackgroundAudio(void);
-extern void GetWorldSongPlayerPool(void);
+extern void GetSongPlayerPool__20GameSceneWorldPrefix(void);
 extern void LightFireplaceAtLocation__20GameSceneWorldPrefix9MaryMapId(void);
 extern void SetVaseArticleId__20GameSceneWorldPrefix17MaryItemArticleId(void);
 extern void func_0801EE00(void);
@@ -1151,7 +1151,7 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     QueueWorldScript,
     GetWorldClock,
     SelectWorldBackgroundAudio,
-    GetWorldSongPlayerPool,
+    GetSongPlayerPool__20GameSceneWorldPrefix,
     LightFireplaceAtLocation__20GameSceneWorldPrefix9MaryMapId,
     SetVaseArticleId__20GameSceneWorldPrefix17MaryItemArticleId,
     func_0801EE00,
@@ -1230,7 +1230,7 @@ extern RawVTableFunction const vtable_unk_080E61A0[] = {
 
 #if defined(REGION_JP)
 extern void func_08023688(void);
-extern void func_08020034(void);
+extern void GetBox__C16AudioActorEntity(void);
 extern void vfunc_10__7AEntity(void);
 extern void vfunc_14__7AEntity(void);
 extern void func_08023720(void);
@@ -1264,7 +1264,7 @@ extern void func_080241FC(void);
 extern void func_080236DC(void);
 #else
 extern void func_080238F4(void);
-extern void func_080202A0(void);
+extern void GetBox__C16AudioActorEntity(void);
 extern void vfunc_10__7AEntity(void);
 extern void vfunc_14__7AEntity(void);
 extern void func_0802398C(void);
@@ -1305,7 +1305,7 @@ extern RawVTableFunction const vtable_unk_080E6284[]
         nullptr,
         nullptr,
         func_08023688,
-        func_08020034,
+        GetBox__C16AudioActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
         func_08023720,
@@ -1341,7 +1341,7 @@ extern RawVTableFunction const vtable_unk_080E6284[]
         nullptr,
         nullptr,
         func_080238F4,
-        func_080202A0,
+        GetBox__C16AudioActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
         func_0802398C,
@@ -1433,7 +1433,7 @@ extern RawVTableFunction const vtable_unk_080E6310[]
         nullptr,
         nullptr,
         func_080229F4,
-        func_08020034,
+        GetBox__C16AudioActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
         func_08022A8C,
@@ -1469,7 +1469,7 @@ extern RawVTableFunction const vtable_unk_080E6310[]
         nullptr,
         nullptr,
         func_08022C60,
-        func_080202A0,
+        GetBox__C16AudioActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
         func_08022CF8,
@@ -1661,7 +1661,7 @@ extern RawVTableFunction const vtable_unk_080E6428[]
         nullptr,
         nullptr,
         func_080214D0,
-        func_08020034,
+        GetBox__C16AudioActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
         func_08021580,
@@ -1697,7 +1697,7 @@ extern RawVTableFunction const vtable_unk_080E6428[]
         nullptr,
         nullptr,
         func_0802173C,
-        func_080202A0,
+        GetBox__C16AudioActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
         func_080217EC,
@@ -1852,31 +1852,19 @@ extern RawVTableFunction const vtable_unk_080E64C8[]
 #endif
     };
 
-extern void func_080DC6028(void);
-#if defined(REGION_JP)
-extern void func_08024330(void);
-#else
-extern void func_0802459C(void);
-#endif
+extern void DestroyAudioActorEntity(void);
+extern void Update__16AudioActorEntity(void);
 
 // Preserve this 35-slot virtual table and its region-specific callbacks in ROM order.
-extern RawVTableFunction const __vt_15Entity_080E6554[]
+extern RawVTableFunction const __vt_16AudioActorEntity[]
     SECTION(".rodata.vtable_6554") = {
         nullptr,
         nullptr,
-        func_080DC6028,
-#if defined(REGION_JP)
-        func_08020034,
-#else
-        func_080202A0,
-#endif
+        DestroyAudioActorEntity,
+        GetBox__C16AudioActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-#if defined(REGION_JP)
-        func_08024330,
-#else
-        func_0802459C,
-#endif
+        Update__16AudioActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -1935,7 +1923,7 @@ extern RawVTableFunction const __vt_15Entity_080E6554[]
 
 extern void func_080DC6F0(void);
 extern void GetBox__C12AActorEntity(void);
-extern void vfunc_18__12AActorEntity(void);
+extern void Update__12AActorEntity(void);
 #if defined(REGION_JP)
 extern void func_0802B7BC(void);
 extern void func_0802B7A4(void);
@@ -1963,7 +1951,7 @@ extern RawVTableFunction const vtable_unk_080E65F4[]
         GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        vfunc_18__12AActorEntity,
+        Update__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -2218,7 +2206,7 @@ extern RawVTableFunction const vtable_unk_080E6708[]
 extern void GetBox__C12AActorEntity(void);
 extern void vfunc_10__7AEntity(void);
 extern void vfunc_14__7AEntity(void);
-extern void vfunc_18__12AActorEntity(void);
+extern void Update__12AActorEntity(void);
 extern void vfunc_1C__7AEntityUi(void);
 extern void vfunc_20__7AEntity(void);
 extern void vfunc_24__7AEntity(void);
@@ -2246,7 +2234,7 @@ extern RawVTableFunction const vtable_unk_080E671C[]
         GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        vfunc_18__12AActorEntity,
+        Update__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -2285,7 +2273,7 @@ extern RawVTableFunction const vtable_unk_080E676C[]
         GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        vfunc_18__12AActorEntity,
+        Update__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -2357,7 +2345,7 @@ extern RawVTableFunction const vtable_unk_080E6828[]
 #endif
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        vfunc_18__12AActorEntity,
+        Update__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -3487,7 +3475,7 @@ extern RawVTableFunction const vtable_unk_080E736C[]
 
 extern void func_080DCE60(void);
 extern void GetBox__C7AEntity(void);
-extern void vfunc_18__7AEntity(void);
+extern void Update__7AEntity(void);
 extern void vfunc_2C__7AEntityUi(void);
 extern void func_080387A0(void);
 
@@ -3500,7 +3488,7 @@ extern RawVTableFunction const vtable_unk_080E7380[]
         GetBox__C7AEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        vfunc_18__7AEntity,
+        Update__7AEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -3560,7 +3548,7 @@ extern RawVTableFunction const vtable_unk_080E73FC[]
         func_08037ED0,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        vfunc_18__7AEntity,
+        Update__7AEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -3596,7 +3584,7 @@ extern RawVTableFunction const vtable_unk_080E7444[]
         func_08037CDC,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        vfunc_18__7AEntity,
+        Update__7AEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -3689,7 +3677,7 @@ extern void func_08039E18(void);
 extern void func_08039A5C(void);
 
 #if defined(REGION_JP)
-extern void func_08020034(void);
+extern void GetBox__C16AudioActorEntity(void);
 extern void SetEventScript__12AActorEntityi(void);
 extern void func_08020058(void);
 extern void func_0802005C(void);
@@ -3708,7 +3696,7 @@ extern void func_08020094(void);
 extern void func_08020098(void);
 extern void func_080200A0(void);
 #else
-extern void func_080202A0(void);
+extern void GetBox__C16AudioActorEntity(void);
 extern void SetEventScript__12AActorEntityi(void);
 extern void func_080202C4(void);
 extern void func_080202C8(void);
@@ -3734,11 +3722,7 @@ extern RawVTableFunction const vtable_unk_080E74DC[]
         nullptr,
         nullptr,
         func_080399C0,
-#if defined(REGION_JP)
-        func_08020034,
-#else
-        func_080202A0,
-#endif
+        GetBox__C16AudioActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
         func_08039A60,
@@ -3814,7 +3798,7 @@ extern RawVTableFunction const vtable_unk_080E7568[]
         GetBox__C7AEntity,
         vfunc_10__7AEntity,
         func_080DCFCC,
-        vfunc_18__7AEntity,
+        Update__7AEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -6442,7 +6426,7 @@ extern RawVTableFunction const vtable_unk_080E7834[]
 #if defined(REGION_JP)
 extern void vfunc_10__7AEntity(void);
 extern void vfunc_14__7AEntity(void);
-extern void vfunc_18__12AActorEntity(void);
+extern void Update__12AActorEntity(void);
 extern void vfunc_1C__7AEntityUi(void);
 extern void vfunc_20__7AEntity(void);
 extern void vfunc_24__7AEntity(void);
@@ -6457,7 +6441,7 @@ extern void func_080E4510(void);
 extern void GetBox__C12AActorEntity(void);
 extern void vfunc_10__7AEntity(void);
 extern void vfunc_14__7AEntity(void);
-extern void vfunc_18__12AActorEntity(void);
+extern void Update__12AActorEntity(void);
 extern void vfunc_1C__7AEntityUi(void);
 extern void vfunc_20__7AEntity(void);
 extern void vfunc_24__7AEntity(void);
@@ -6475,7 +6459,7 @@ extern RawVTableFunction const vtable_unk_080E8404[]
     SECTION(".rodata.vtable_8404") = {
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        vfunc_18__12AActorEntity,
+        Update__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,
@@ -6504,7 +6488,7 @@ extern RawVTableFunction const vtable_unk_080E8404[]
         GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
-        vfunc_18__12AActorEntity,
+        Update__12AActorEntity,
         vfunc_1C__7AEntityUi,
         vfunc_20__7AEntity,
         vfunc_24__7AEntity,

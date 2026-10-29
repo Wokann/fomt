@@ -24,7 +24,7 @@ struct HardwareMusicPlayerSlot {
     void SetModulationDepth(u8 depth, u16 track_bits);
     void SetLfoSpeed(u8 speed, u16 track_bits);
     void InitializeImmediately();
-    u32 IsActive() const;
+    bool IsActive() const;
     u16 GetStatus() const;
     u8 GetTrackCount() const;
     u8 GetPriority() const;

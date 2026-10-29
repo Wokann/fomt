@@ -16,7 +16,7 @@ struct AEntity
     /* vt+0C */ virtual Box GetBox() const;
     /* vt+10 */ virtual void vfunc_10();
     /* vt+14 */ virtual void vfunc_14();
-    /* vt+18 */ virtual void vfunc_18();
+    /* vt+18 */ virtual void Update();
     /* vt+1C */ virtual void vfunc_1C(u32 dummy);
     /* vt+20 */ virtual void vfunc_20();
     /* vt+24 */ virtual void vfunc_24();
