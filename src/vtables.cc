@@ -2179,30 +2179,6 @@ extern RawVTableFunction const vtable_unk_080E6658[]
 #endif
     };
 
-extern void func_080DC764(void);
-#if defined(REGION_JP)
-extern void func_0802B148(void);
-extern void func_0802B2B0(void);
-#else
-extern void func_0802B3B4(void);
-extern void func_0802B51C(void);
-#endif
-
-// Preserve this five-slot table and its regional callbacks in ROM order.
-extern RawVTableFunction const vtable_unk_080E6708[]
-    SECTION(".rodata.vtable_6708") = {
-        nullptr,
-        nullptr,
-        func_080DC764,
-#if defined(REGION_JP)
-        func_0802B148,
-        func_0802B2B0,
-#else
-        func_0802B3B4,
-        func_0802B51C,
-#endif
-    };
-
 extern void GetBox__C12AActorEntity(void);
 extern void vfunc_10__7AEntity(void);
 extern void vfunc_14__7AEntity(void);

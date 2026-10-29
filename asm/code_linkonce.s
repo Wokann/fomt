@@ -3318,58 +3318,8 @@ func_080DC724:
     bx r0
     .byte 0x00, 0x00
     .4byte __vt_22EntityVisualController
-    .global func_080DC764
-    .thumb_func
-func_080DC764:
-    push {r4, r5, r6, r7, lr}
-    adds r6, r0, #0
-    adds r7, r1, #0
-    adds r2, r6, #0
-    adds r2, #0xcc
-    ldr r1, [r2]
-    lsls r0, r1, #3
-    adds r0, r0, r1
-    lsls r0, r0, #3
-    adds r0, #4
-    adds r5, r2, r0
-    adds r4, r6, #0
-    adds r4, #0xd0
-    cmp r4, r5
-    beq .Lauto_080DBF44
-    .Lauto_080DBF36:
-    adds r0, r4, #4
-    movs r1, #2
-    bl _._19GameSceneSpriteBase
-    adds r4, #0x48
-    cmp r4, r5
-    bne .Lauto_080DBF36
-    .Lauto_080DBF44:
-    adds r0, r6, #0
-    adds r0, #0x8c
-    movs r1, #2
-    bl _._19GameSceneSpriteBase
-    adds r0, r6, #0
-    adds r0, #0x48
-    movs r1, #2
-    bl _._19GameSceneSpriteBase
-    adds r0, r6, #0
-    adds r0, #8
-    movs r1, #2
-    bl _._19GameSceneSpriteBase
-    ldr r0, [pc, #0x18]
-    str r0, [r6, #4]
-    movs r0, #1
-    ands r0, r7
-    cmp r0, #0
-    beq .Lauto_080DBF74
-    adds r0, r6, #0
-    bl __builtin_delete
-    .Lauto_080DBF74:
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_22EntityVisualController
+    .section .text.player_sprite_cleanup_after, "ax", %progbits
+    .align 2, 0
     .global func_080DBF80
     .thumb_func
 func_080DBF80:
@@ -15221,58 +15171,8 @@ func_080DC724: @ 0x080DC724
 	.align 2, 0
 .L080DC760: .4byte __vt_22EntityVisualController
 
-	thumb_func_start func_080DC764
-func_080DC764: @ 0x080DC764
-	push {r4, r5, r6, r7, lr}
-	adds r6, r0, #0
-	adds r7, r1, #0
-	adds r2, r6, #0
-	adds r2, #0xcc
-	ldr r1, [r2]
-	lsls r0, r1, #3
-	adds r0, r0, r1
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r5, r2, r0
-	adds r4, r6, #0
-	adds r4, #0xd0
-	cmp r4, r5
-	beq .L080DC790
-.L080DC782:
-	adds r0, r4, #4
-	movs r1, #2
-	bl _._19GameSceneSpriteBase
-	adds r4, #0x48
-	cmp r4, r5
-	bne .L080DC782
-.L080DC790:
-	adds r0, r6, #0
-	adds r0, #0x8c
-	movs r1, #2
-	bl _._19GameSceneSpriteBase
-	adds r0, r6, #0
-	adds r0, #0x48
-	movs r1, #2
-	bl _._19GameSceneSpriteBase
-	adds r0, r6, #0
-	adds r0, #8
-	movs r1, #2
-	bl _._19GameSceneSpriteBase
-	ldr r0, .L080DC7C8 @ =__vt_22EntityVisualController
-	str r0, [r6, #4]
-	movs r0, #1
-	ands r0, r7
-	cmp r0, #0
-	beq .L080DC7C0
-	adds r0, r6, #0
-	bl __builtin_delete
-.L080DC7C0:
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080DC7C8: .4byte __vt_22EntityVisualController
-.L080DC7CC:
+    .section .text.player_sprite_cleanup_after, "ax", %progbits
+    .align 2, 0
 	.global func_080DC7CC
 	.thumb_func
 func_080DC7CC:

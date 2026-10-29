@@ -140,7 +140,7 @@ extern "C" u8 const gUnk_080F11AC[];
 extern "C" u8 const gWateringCanCapacityByTier[];
 extern "C" u32 const gSpringMineCollectionProducts[9];
 extern "C" u32 const gLakeMineCollectionProducts[14];
-extern "C" u32 const gUnk_080F1218[];
+extern "C" i32 const gPlayerSpritePaletteKinds[3];
 extern "C" u32 const gUnk_080F1224[];
 extern "C" u8 const gUnk_080F1230[];
 extern "C" EntityUiScreenOffset const gUnk_080F1328[];

@@ -164,7 +164,7 @@ extern "C" u32 const gLakeMineCollectionProducts[] ALIGN(1) = {
     PRODUCT_AMETHYST,
 };
 
-extern "C" u32 const gUnk_080F1218[] ALIGN(1) = {
+extern "C" i32 const gPlayerSpritePaletteKinds[] ALIGN(1) = {
     0x00000000, 0x00000002, 0x00000005,
 };
 

@@ -376,7 +376,8 @@ SECTIONS
         src/player_pedometer.o(.text.UpdatePlayerPedometer);
         src/actor_terrain.o(.text);
         src/player_collection_events.o(.text);
-        asm/code_entities.o(.text.player_actor_after_collection_events);
+        src/player_sprite.o(.text.__22PlayerSpriteControllerP11PlayerActor);
+        asm/code_entities.o(.text.player_sprite_after_constructor);
         src/player_actor.o(.text.GetUpdateSuspended__C11PlayerActor .text.SetUpdateSuspended__11PlayerActorUc);
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);
@@ -929,6 +930,8 @@ SECTIONS
         asm/code_linkonce.o(.text.scene_group_sprite_cleanup_after);
         src/entity_sprite.o(.text.entity_visual_controller_cleanup);
         asm/code_linkonce.o(.text.entity_visual_controller_cleanup_after);
+        src/player_sprite.o(.gnu.linkonce.t._._22PlayerSpriteController);
+        asm/code_linkonce.o(.text.player_sprite_cleanup_after);
         src/scene_sprite.o(.gnu.linkonce.t._._22GameSceneIndexedSprite);
         src/scene_sprite.o(.text.__19GameSceneSpriteBaseRC19GameSceneSpriteBase);
         src/entity_sprite.o(.gnu.linkonce.t._._29DefaultEntitySpriteController);
@@ -1030,7 +1033,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_65f4);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6644);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6658);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_6708);
+        . = ALIGN(4); src/player_sprite.o(.gnu.linkonce.d.__vt_22PlayerSpriteController);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_671c);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_676c);
         . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_22GameSceneIndexedSprite);
