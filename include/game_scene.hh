@@ -267,54 +267,34 @@ typedef char GameSceneControllerSizeCheck[sizeof(GameSceneScriptController) == 0
 // three-word record. Only its first word is initialized by the shop commands;
 // the remaining payload is not assumed to be zero or given guessed meanings.
 struct GameSceneResumeRequest {
+    enum Kind {
+#if defined(REGION_JP)
+        AFTER_SUPERMARKET_SHOP = 9,
+        AFTER_SUPERMARKET_PURCHASE = 10,
+#else
+        AFTER_SUPERMARKET_SHOP = 10,
+        AFTER_SUPERMARKET_PURCHASE = 11,
+#endif
+    };
     i32 kind;
     u8 unk_04[8];
 
     // Native requests initialize only kind; the remaining payload is opaque.
     GameSceneResumeRequest() {}
     explicit GameSceneResumeRequest(i32 value) : kind(value) {}
+    GameSceneResumeRequest(GameSceneResumeRequest const & other)
+    {
+        *this = other;
+    }
+
 };
 
-struct SupermarketSceneCore;
-struct SupermarketPurchaseSceneCore;
-
-// These two native scene constructors create an owned UI core at +4 and
-// consume the continuation at +8. Their UI cores and lifecycle remain native.
-struct SupermarketScene : AScene {
-    virtual ~SupermarketScene();
-    virtual SceneTransitionOwner Run();
-
-    SupermarketSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct SupermarketPurchaseScene : AScene {
-    virtual ~SupermarketPurchaseScene();
-    virtual SceneTransitionOwner Run();
-
-    SupermarketPurchaseSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-// Scene wrappers retain their native cleanup; recovered transition records use
-// implicit cleanup of their continuation owner and SceneTransition base.
-// Existing native-format tables reference these real methods and CreateScene.
-struct SupermarketPurchaseTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-    MarySupermarketItemId item_id;
-};
-
-struct SupermarketTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
+#include "scene_supermarket.hh"
+#pragma interface "game_scene.hh"
 
 struct ReturnToGameScene : SceneTransition {
+    ReturnToGameScene(GameStateSaveImage * image, GameSceneResumeRequest value)
+        : save(image), request(value) {}
     virtual SceneOwner CreateScene();
 
     GameStateSaveImage * save;
@@ -322,15 +302,6 @@ struct ReturnToGameScene : SceneTransition {
 };
 
 typedef char GameSceneResumeRequestSizeCheck[sizeof(GameSceneResumeRequest) == 12 ? 1 : -1];
-typedef char SupermarketSceneSizeCheck[sizeof(SupermarketScene) == 12 ? 1 : -1];
-typedef char SupermarketSceneCoreCheck[offsetof(SupermarketScene, core) == 4 ? 1 : -1];
-typedef char SupermarketSceneContinuationCheck[offsetof(SupermarketScene, continuation) == 8 ? 1 : -1];
-typedef char SupermarketPurchaseSceneSizeCheck[sizeof(SupermarketPurchaseScene) == 12 ? 1 : -1];
-typedef char SupermarketPurchaseSceneCoreCheck[offsetof(SupermarketPurchaseScene, core) == 4 ? 1 : -1];
-typedef char SupermarketPurchaseSceneContinuationCheck[offsetof(SupermarketPurchaseScene, continuation) == 8 ? 1 : -1];
-typedef char SupermarketPurchaseTransitionSizeCheck[sizeof(SupermarketPurchaseTransition) == 16 ? 1 : -1];
-typedef char SupermarketPurchaseTransitionItemCheck[offsetof(SupermarketPurchaseTransition, item_id) == 12 ? 1 : -1];
-typedef char SupermarketTransitionSizeCheck[sizeof(SupermarketTransition) == 12 ? 1 : -1];
 typedef char ReturnToGameSceneSizeCheck[sizeof(ReturnToGameScene) == 20 ? 1 : -1];
 typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) == 8 ? 1 : -1];
 
@@ -808,6 +779,7 @@ struct GameSceneTextVariablesOwner {
 // Other fields are typed only where native construction or use proves them.
 #pragma interface "game_scene.hh"
 struct GameSceneState {
+    GameStateSaveImage * GetSave() const { return save; }
     GameSceneState(GameScene * owner, GameStateSaveImage * image,
         GameSceneResumeRequest const & request);
     HardwareDmaQueue dma_queue;
@@ -876,6 +848,8 @@ struct GameScene : AScene {
     void StopBGM();
     void PlaySong(i32 mode, u32 sequence);
     void StopAllSongs();
+    void OpenSupermarketShop();
+    void OpenSupermarketPurchase(MarySupermarketItemId item);
     void TalkOpen();
     void TalkResetUi();
     void TalkClose();
@@ -1020,12 +994,6 @@ EXTERN_C
 // Native modal cores remain opaque here. Calendar, cooking and guide cores
 // return a temporary transition owner that the scene must destroy before
 // handing back its own continuation; the other listed calls return void.
-#if defined(REGION_JP)
-void func_0807CD80(SupermarketSceneCore * core);
-#else
-void func_0807D218(SupermarketSceneCore * core);
-#endif
-void func_0807DE3C(SupermarketPurchaseSceneCore * core);
 SceneTransitionOwner func_080A25B0(CalendarSceneCore * core);
 #if defined(REGION_JP)
 void func_0808A09C(ToolChestSceneCore * core);
@@ -1099,17 +1067,6 @@ i32 func_0807BEC8(PoultryFarmShopSceneCore * core);
 #endif
 
 // Native shop construction ABI: each constructor consumes *continuation.
-#if defined(REGION_JP)
-SupermarketScene * func_0807D8A0(void * object, SceneTransition ** continuation,
-    GameStateSaveImage * save);
-SupermarketPurchaseScene * func_0807DFA0(void * object, SceneTransition ** continuation,
-    GameStateSaveImage * save, MarySupermarketItemId item_id);
-#else
-SupermarketScene * func_0807DD38(void * object, SceneTransition ** continuation,
-    GameStateSaveImage * save);
-SupermarketPurchaseScene * func_0807E438(void * object, SceneTransition ** continuation,
-    GameStateSaveImage * save, MarySupermarketItemId item_id);
-#endif
 
 CalendarScene * func_080A3744(void *, SceneTransition **, GameStateSaveImage *);
 

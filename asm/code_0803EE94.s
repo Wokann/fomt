@@ -1255,13 +1255,17 @@ OnCall__12ScriptEnginei:
     bl ClearEntityEventScript__9GameSceneUi
     .byte 0x03, 0xF0, 0xBF, 0xFA
 .LScriptCallJp_08B:
-    .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18
-    .byte 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x43, 0xFB, 0xD0, 0xF7, 0x08, 0xFF, 0xFF, 0xF7
-    .byte 0x3F, 0xFB
+    .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
+    .byte 0xFF, 0xF7, 0x43, 0xFB
+    bl OpenSupermarketShop__9GameScene
+    .byte 0xFF, 0xF7, 0x3F, 0xFB
 .LScriptCallJp_08C:
-    .byte 0xDA, 0x24, 0x64, 0x00, 0x2B, 0x19, 0x1A, 0x68, 0x90, 0x00, 0x40, 0x19, 0x01, 0x6A
-    .byte 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xD5, 0x26, 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68
-    .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x2C, 0xFB, 0xD0, 0xF7, 0x3B, 0xFF, 0xFF, 0xF7, 0x28, 0xFB
+    .byte 0xDA, 0x24, 0x64, 0x00, 0x2B, 0x19, 0x1A, 0x68, 0x90, 0x00, 0x40, 0x19
+    .byte 0x01, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xD5, 0x26
+    .byte 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7
+    .byte 0x2C, 0xFB
+    bl OpenSupermarketPurchase__9GameScene21MarySupermarketItemId
+    .byte 0xFF, 0xF7, 0x28, 0xFB
 .LScriptCallJp_096:
     .byte 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x20, 0xFB
     .byte 0xD1, 0xF7, 0x27, 0xFA, 0xFF, 0xF7, 0x1C, 0xFB
@@ -80814,9 +80818,9 @@ func_0807CD44:
     bx r0
     .align 2, 0
 .Ljp_poultry_crop_seed_catalog: .4byte gSupermarketCropSeedCatalog
-    .global func_0807CD80
+    .global RunSupermarketSceneCore
     .thumb_func
-func_0807CD80: @ 0x0807CD80
+RunSupermarketSceneCore: @ 0x0807CD80
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -82193,9 +82197,9 @@ func_0807CD80: @ 0x0807CD80
 .Ljp_0807D89C: .4byte __vt_23IndexedResourceProvider
 
 
-    .global func_0807D8A0
+    .global ConstructSupermarketScene
     .thumb_func
-func_0807D8A0:
+ConstructSupermarketScene:
     push {r4, r5, r6, lr}
     adds r4, r0, #0
     adds r6, r1, #0
@@ -82319,9 +82323,9 @@ func_0807D974:
     bx r0
     .align 2, 0
 .Ljp_poultry_seed_catalog: .4byte gSupermarketAdditionalSeedCatalog
-.global func_0807DE3C
+.global RunSupermarketPurchaseSceneCore
 .thumb_func
-func_0807DE3C: @ 0x0807D9A4
+RunSupermarketPurchaseSceneCore: @ 0x0807D9A4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -83028,9 +83032,9 @@ func_0807DE3C: @ 0x0807D9A4
 	.align 2, 0
 .Ljp_0807DF9C: .4byte __vt_23IndexedResourceProvider
 
-	.global func_0807DFA0
+	.global ConstructSupermarketPurchaseScene
 	.thumb_func
-func_0807DFA0:
+ConstructSupermarketPurchaseScene:
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -122345,7 +122349,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042004
 	bl .L0804168A
 .L08042004:
-	bl func_08012BBC
+	bl OpenSupermarketShop__9GameScene
 	bl .L0804168A
 .L0804200C:
 	movs r4, #0xda
@@ -122368,7 +122372,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042032
 	bl .L0804168A
 .L08042032:
-	bl func_08012C50
+	bl OpenSupermarketPurchase__9GameScene21MarySupermarketItemId
 	bl .L0804168A
 .L0804203A:
 	movs r1, #0xd5
@@ -233162,8 +233166,8 @@ func_0807D1DC: @ 0x0807D1DC
 	.align 2, 0
 .L0807D214: .4byte gSupermarketCropSeedCatalog
 
-	thumb_func_start func_0807D218
-func_0807D218: @ 0x0807D218
+	thumb_func_start RunSupermarketSceneCore
+RunSupermarketSceneCore: @ 0x0807D218
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -234539,8 +234543,8 @@ func_0807D218: @ 0x0807D218
 	.align 2, 0
 .L0807DD34: .4byte __vt_23IndexedResourceProvider
 
-	thumb_func_start func_0807DD38
-func_0807DD38: @ 0x0807DD38
+	thumb_func_start ConstructSupermarketScene
+ConstructSupermarketScene: @ 0x0807DD38
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r6, r1, #0
@@ -234644,8 +234648,8 @@ func_0807DDF8:
 	.byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 	.4byte gSupermarketAdditionalSeedCatalog
 
-	thumb_func_start func_0807DE3C
-func_0807DE3C: @ 0x0807DE3C
+	thumb_func_start RunSupermarketPurchaseSceneCore
+RunSupermarketPurchaseSceneCore: @ 0x0807DE3C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -235352,8 +235356,8 @@ func_0807DE3C: @ 0x0807DE3C
 	.align 2, 0
 .L0807E434: .4byte __vt_23IndexedResourceProvider
 
-	thumb_func_start func_0807E438
-func_0807E438: @ 0x0807E438
+	thumb_func_start ConstructSupermarketPurchaseScene
+ConstructSupermarketPurchaseScene: @ 0x0807E438
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}

@@ -927,163 +927,6 @@ __18GameStateSaveImageR10SramAccessUiRUi:
 
     .section .text.game_scene_text_variable_commands_after, "ax", %progbits
 
-    .global func_08012BBC
-    .thumb_func
-func_08012BBC:
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x1c
-    ldr r6, [r0, #4]
-    movs r0, #9
-    str r0, [sp]
-    movs r0, #0x14
-    bl __builtin_new
-    adds r5, r6, #0
-    adds r5, #0x8c
-    ldr r1, [r5]
-    mov ip, r1
-    add r2, sp, #0x10
-    mov r1, sp
-    ldm r1!, {r3, r4, r7}
-    stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08012B18 @ =vtable_unk_080E5E74
-    str r1, [r0]
-    mov r1, ip
-    str r1, [r0, #4]
-    adds r2, r0, #0
-    adds r2, #8
-    add r1, sp, #0x10
-    ldm r1!, {r3, r4, r7}
-    stm r2!, {r3, r4, r7}
-    str r0, [sp, #0xc]
-    movs r0, #0xc
-    bl __builtin_new
-    ldr r4, [sp, #0xc]
-    movs r2, #0
-    str r2, [sp, #0xc]
-    str r4, [sp, #0x10]
-    ldr r3, [r5]
-    ldr r1, .Ljp_08012B1C @ =vtable_unk_080E5E34
-    str r1, [r0]
-    str r2, [sp, #0x10]
-    str r4, [r0, #4]
-    str r3, [r0, #8]
-    adds r5, #0x18
-    adds r4, r0, #0
-    ldr r1, [r5]
-    cmp r4, r1
-    beq .Ljp_08012AF4
-    cmp r1, #0
-    beq .Ljp_08012AF4
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08012AF4:
-    str r4, [r5]
-    adds r1, r6, #0
-    adds r1, #0x9c
-    movs r0, #0x18
-    str r0, [r1]
-    ldr r1, [sp, #0xc]
-    cmp r1, #0
-    beq .Ljp_08012B10
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08012B10:
-    add sp, #0x1c
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08012B18: .4byte vtable_unk_080E5E74
-.Ljp_08012B1C: .4byte vtable_unk_080E5E34
-
-    .global func_08012C50
-    .thumb_func
-func_08012C50:
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #0x1c
-    mov r8, r1
-    ldr r7, [r0, #4]
-    movs r0, #0xa
-    str r0, [sp]
-    movs r0, #0x14
-    bl __builtin_new
-    adds r5, r7, #0
-    adds r5, #0x8c
-    ldr r1, [r5]
-    mov ip, r1
-    add r2, sp, #0x10
-    mov r1, sp
-    ldm r1!, {r3, r4, r6}
-    stm r2!, {r3, r4, r6}
-    ldr r1, .Ljp_08012BBC @ =vtable_unk_080E5E74
-    str r1, [r0]
-    mov r1, ip
-    str r1, [r0, #4]
-    adds r2, r0, #0
-    adds r2, #8
-    add r1, sp, #0x10
-    ldm r1!, {r3, r4, r6}
-    stm r2!, {r3, r4, r6}
-    str r0, [sp, #0xc]
-    movs r0, #0x10
-    bl __builtin_new
-    ldr r4, [sp, #0xc]
-    movs r2, #0
-    str r2, [sp, #0xc]
-    str r4, [sp, #0x10]
-    ldr r3, [r5]
-    ldr r1, .Ljp_08012BC0 @ =vtable_unk_080E5E24
-    str r1, [r0]
-    str r2, [sp, #0x10]
-    str r4, [r0, #4]
-    str r3, [r0, #8]
-    mov r1, r8
-    str r1, [r0, #0xc]
-    adds r5, #0x18
-    adds r4, r0, #0
-    ldr r1, [r5]
-    cmp r4, r1
-    beq .Ljp_08012B92
-    cmp r1, #0
-    beq .Ljp_08012B92
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08012B92:
-    str r4, [r5]
-    adds r1, r7, #0
-    adds r1, #0x9c
-    movs r0, #0x18
-    str r0, [r1]
-    ldr r1, [sp, #0xc]
-    cmp r1, #0
-    beq .Ljp_08012BAE
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08012BAE:
-    add sp, #0x1c
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08012BBC: .4byte vtable_unk_080E5E74
-.Ljp_08012BC0: .4byte vtable_unk_080E5E24
-
     .global func_08012CF4
     .thumb_func
 func_08012CF4:
@@ -1102,7 +945,7 @@ func_08012CF4:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08012C50 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08012C50 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1156,7 +999,7 @@ func_08012CF4:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08012C50: .4byte vtable_unk_080E5E74
+.Ljp_08012C50: .4byte __vt_17ReturnToGameScene
 .Ljp_08012C54: .4byte vtable_unk_080E5DE4
 
     .global func_08012D88
@@ -1177,7 +1020,7 @@ func_08012D88:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08012CE4 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08012CE4 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1231,7 +1074,7 @@ func_08012D88:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08012CE4: .4byte vtable_unk_080E5E74
+.Ljp_08012CE4: .4byte __vt_17ReturnToGameScene
 .Ljp_08012CE8: .4byte vtable_unk_080E5DF4
 
     .global func_08012E1C
@@ -1252,7 +1095,7 @@ func_08012E1C:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08012D88 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08012D88 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1313,7 +1156,7 @@ func_08012E1C:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08012D88: .4byte vtable_unk_080E5E74
+.Ljp_08012D88: .4byte __vt_17ReturnToGameScene
 .Ljp_08012D8C: .4byte vtable_unk_080E5E14
 
     .global func_08012EC0
@@ -1334,7 +1177,7 @@ func_08012EC0:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08012E1C @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08012E1C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1388,7 +1231,7 @@ func_08012EC0:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08012E1C: .4byte vtable_unk_080E5E74
+.Ljp_08012E1C: .4byte __vt_17ReturnToGameScene
 .Ljp_08012E20: .4byte vtable_unk_080E5E04
 
     .global func_08012F54
@@ -1409,7 +1252,7 @@ func_08012F54:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08012EB0 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08012EB0 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1463,7 +1306,7 @@ func_08012F54:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08012EB0: .4byte vtable_unk_080E5E74
+.Ljp_08012EB0: .4byte __vt_17ReturnToGameScene
 .Ljp_08012EB4: .4byte vtable_unk_080E5DD4
 
     .global func_08012FE8
@@ -1484,7 +1327,7 @@ func_08012FE8:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08012F48 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08012F48 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1539,7 +1382,7 @@ func_08012FE8:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08012F48: .4byte vtable_unk_080E5E74
+.Ljp_08012F48: .4byte __vt_17ReturnToGameScene
 .Ljp_08012F4C: .4byte __vt_24YodelRanchShopTransition
 
     .global func_08013080
@@ -1560,7 +1403,7 @@ func_08013080:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08012FDC @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08012FDC @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1614,7 +1457,7 @@ func_08013080:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08012FDC: .4byte vtable_unk_080E5E74
+.Ljp_08012FDC: .4byte __vt_17ReturnToGameScene
 .Ljp_08012FE0: .4byte vtable_unk_080E5DB4
 
     .global func_08013114
@@ -1635,7 +1478,7 @@ func_08013114:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08013070 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013070 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1689,7 +1532,7 @@ func_08013114:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013070: .4byte vtable_unk_080E5E74
+.Ljp_08013070: .4byte __vt_17ReturnToGameScene
 .Ljp_08013074: .4byte vtable_unk_080E5DC4
 
     .global func_080131A8
@@ -1710,7 +1553,7 @@ func_080131A8:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08013104 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013104 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1765,7 +1608,7 @@ func_080131A8:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013104: .4byte vtable_unk_080E5E74
+.Ljp_08013104: .4byte __vt_17ReturnToGameScene
 .Ljp_08013108: .4byte __vt_25PoultryFarmShopTransition
 
     .global func_0801323C
@@ -1786,7 +1629,7 @@ func_0801323C:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_0801319C @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_0801319C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1840,7 +1683,7 @@ func_0801323C:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_0801319C: .4byte vtable_unk_080E5E74
+.Ljp_0801319C: .4byte __vt_17ReturnToGameScene
 .Ljp_080131A0: .4byte vtable_unk_080E5D64
 
     .global func_080132D0
@@ -1861,7 +1704,7 @@ func_080132D0:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08013230 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013230 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1915,7 +1758,7 @@ func_080132D0:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013230: .4byte vtable_unk_080E5E74
+.Ljp_08013230: .4byte __vt_17ReturnToGameScene
 .Ljp_08013234: .4byte vtable_unk_080E5D84
 
     .global func_08013364
@@ -1939,7 +1782,7 @@ func_08013364:
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .Ljp_080132D4 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_080132D4 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -1997,7 +1840,7 @@ func_08013364:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080132D4: .4byte vtable_unk_080E5E74
+.Ljp_080132D4: .4byte __vt_17ReturnToGameScene
 .Ljp_080132D8: .4byte vtable_unk_080E5D54
 
     .global func_08013408
@@ -2018,7 +1861,7 @@ func_08013408:
     mov r1, sp
     ldm r1!, {r3, r5, r7}
     stm r2!, {r3, r5, r7}
-    ldr r1, .Ljp_08013370 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013370 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2076,7 +1919,7 @@ func_08013408:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013370: .4byte vtable_unk_080E5E74
+.Ljp_08013370: .4byte __vt_17ReturnToGameScene
 .Ljp_08013374: .4byte vtable_unk_080E5D54
 
     .global func_080134A4
@@ -2097,7 +1940,7 @@ func_080134A4:
     mov r1, sp
     ldm r1!, {r3, r5, r7}
     stm r2!, {r3, r5, r7}
-    ldr r1, .Ljp_0801340C @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_0801340C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2154,7 +1997,7 @@ func_080134A4:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_0801340C: .4byte vtable_unk_080E5E74
+.Ljp_0801340C: .4byte __vt_17ReturnToGameScene
 .Ljp_08013410: .4byte 0x00001001
 .Ljp_08013414: .4byte vtable_unk_080E5D54
 
@@ -2176,7 +2019,7 @@ func_08013544:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_080134A4 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_080134A4 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2230,7 +2073,7 @@ func_08013544:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080134A4: .4byte vtable_unk_080E5E74
+.Ljp_080134A4: .4byte __vt_17ReturnToGameScene
 .Ljp_080134A8: .4byte vtable_unk_080E5CB4
 
     .global func_080135D8
@@ -2251,7 +2094,7 @@ func_080135D8:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08013538 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013538 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2305,7 +2148,7 @@ func_080135D8:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013538: .4byte vtable_unk_080E5E74
+.Ljp_08013538: .4byte __vt_17ReturnToGameScene
 .Ljp_0801353C: .4byte vtable_unk_080E5CE4
 
     .global func_0801366C
@@ -2326,7 +2169,7 @@ func_0801366C:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_080135CC @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_080135CC @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2380,7 +2223,7 @@ func_0801366C:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080135CC: .4byte vtable_unk_080E5E74
+.Ljp_080135CC: .4byte __vt_17ReturnToGameScene
 .Ljp_080135D0: .4byte vtable_unk_080E5CC4
 
     .global func_08013700
@@ -2401,7 +2244,7 @@ func_08013700:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08013660 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013660 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2455,7 +2298,7 @@ func_08013700:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013660: .4byte vtable_unk_080E5E74
+.Ljp_08013660: .4byte __vt_17ReturnToGameScene
 .Ljp_08013664: .4byte vtable_unk_080E5CD4
 
     .global func_08013794
@@ -2476,7 +2319,7 @@ func_08013794:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_080136F4 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_080136F4 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2530,7 +2373,7 @@ func_08013794:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080136F4: .4byte vtable_unk_080E5E74
+.Ljp_080136F4: .4byte __vt_17ReturnToGameScene
 .Ljp_080136F8: .4byte vtable_unk_080E5E54
 
     .global func_08013828
@@ -2551,7 +2394,7 @@ func_08013828:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_0801378C @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_0801378C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2606,7 +2449,7 @@ func_08013828:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_0801378C: .4byte vtable_unk_080E5E74
+.Ljp_0801378C: .4byte __vt_17ReturnToGameScene
 .Ljp_08013790: .4byte vtable_unk_080E5D44
 
     .global func_080138C0
@@ -2627,7 +2470,7 @@ func_080138C0:
     mov r1, sp
     ldm r1!, {r3, r5, r7}
     stm r2!, {r3, r5, r7}
-    ldr r1, .Ljp_08013828 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013828 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2684,7 +2527,7 @@ func_080138C0:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013828: .4byte vtable_unk_080E5E74
+.Ljp_08013828: .4byte __vt_17ReturnToGameScene
 .Ljp_0801382C: .4byte vtable_unk_080E5D44
 
     .global func_0801395C
@@ -2705,7 +2548,7 @@ func_0801395C:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_080138BC @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_080138BC @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2759,7 +2602,7 @@ func_0801395C:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080138BC: .4byte vtable_unk_080E5E74
+.Ljp_080138BC: .4byte __vt_17ReturnToGameScene
 .Ljp_080138C0: .4byte vtable_unk_080E5C34
 
     .global func_080139F0
@@ -2783,7 +2626,7 @@ func_080139F0:
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .Ljp_08013960 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013960 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2841,7 +2684,7 @@ func_080139F0:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013960: .4byte vtable_unk_080E5E74
+.Ljp_08013960: .4byte __vt_17ReturnToGameScene
 .Ljp_08013964: .4byte vtable_unk_080E5C94
 
     .global func_08013A94
@@ -2865,7 +2708,7 @@ func_08013A94:
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .Ljp_08013A04 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013A04 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -2923,7 +2766,7 @@ func_08013A94:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013A04: .4byte vtable_unk_080E5E74
+.Ljp_08013A04: .4byte __vt_17ReturnToGameScene
 .Ljp_08013A08: .4byte vtable_unk_080E5C84
 
     .global func_08013B38
@@ -2947,7 +2790,7 @@ func_08013B38:
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .Ljp_08013AA8 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013AA8 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -3005,7 +2848,7 @@ func_08013B38:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013AA8: .4byte vtable_unk_080E5E74
+.Ljp_08013AA8: .4byte __vt_17ReturnToGameScene
 .Ljp_08013AAC: .4byte vtable_unk_080E5C74
 
     .global func_08013BDC
@@ -3026,7 +2869,7 @@ func_08013BDC:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08013B3C @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013B3C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -3080,7 +2923,7 @@ func_08013BDC:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013B3C: .4byte vtable_unk_080E5E74
+.Ljp_08013B3C: .4byte __vt_17ReturnToGameScene
 .Ljp_08013B40: .4byte gIntroStoryTransitionVTable
 
     .global func_08013C70
@@ -3101,7 +2944,7 @@ func_08013C70:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08013BD0 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013BD0 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -3155,7 +2998,7 @@ func_08013C70:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013BD0: .4byte vtable_unk_080E5E74
+.Ljp_08013BD0: .4byte __vt_17ReturnToGameScene
 .Ljp_08013BD4: .4byte vtable_unk_080E5CF4
 
     .global func_08013D04
@@ -3275,7 +3118,7 @@ func_08013DC8:
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .Ljp_08013D38 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013D38 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -3333,7 +3176,7 @@ func_08013DC8:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013D38: .4byte vtable_unk_080E5E74
+.Ljp_08013D38: .4byte __vt_17ReturnToGameScene
 .Ljp_08013D3C: .4byte vtable_unk_080E5C54
 
     .global func_08013E6C
@@ -3353,7 +3196,7 @@ func_08013E6C:
     mov r1, sp
     ldm r1!, {r4, r5, r7}
     stm r2!, {r4, r5, r7}
-    ldr r1, .Ljp_08013DC4 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013DC4 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     str r3, [r0, #4]
     adds r2, r0, #0
@@ -3404,7 +3247,7 @@ func_08013E6C:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013DC4: .4byte vtable_unk_080E5E74
+.Ljp_08013DC4: .4byte __vt_17ReturnToGameScene
 .Ljp_08013DC8: .4byte vtable_unk_080E5D74
 
     .global func_08013EF8
@@ -3427,7 +3270,7 @@ func_08013EF8:
     mov r1, sp
     ldm r1!, {r4, r5, r7}
     stm r2!, {r4, r5, r7}
-    ldr r1, .Ljp_08013E58 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013E58 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     str r3, [r0, #4]
     adds r2, r0, #0
@@ -3478,7 +3321,7 @@ func_08013EF8:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013E58: .4byte vtable_unk_080E5E74
+.Ljp_08013E58: .4byte __vt_17ReturnToGameScene
 
     .global func_08013F88
     .thumb_func
@@ -3503,7 +3346,7 @@ func_08013F88:
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .Ljp_08013F00 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08013F00 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -3564,7 +3407,7 @@ func_08013F88:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08013F00: .4byte vtable_unk_080E5E74
+.Ljp_08013F00: .4byte __vt_17ReturnToGameScene
 .Ljp_08013F04: .4byte __vt_24SavedNameEntryTransition
 
     .section .text.game_scene_menu_hooks_after, "ax", %progbits
@@ -3640,7 +3483,7 @@ func_0801437C:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_080142DC @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_080142DC @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -3694,7 +3537,7 @@ func_0801437C:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080142DC: .4byte vtable_unk_080E5E74
+.Ljp_080142DC: .4byte __vt_17ReturnToGameScene
 .Ljp_080142E0: .4byte vtable_unk_080E5CA4
 
     .global func_08014410
@@ -3718,7 +3561,7 @@ func_08014410:
     mov r1, sp
     ldm r1!, {r3, r4, r5}
     stm r2!, {r3, r4, r5}
-    ldr r1, .Ljp_08014388 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08014388 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -3780,7 +3623,7 @@ func_08014410:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08014388: .4byte vtable_unk_080E5E74
+.Ljp_08014388: .4byte __vt_17ReturnToGameScene
 .Ljp_0801438C: .4byte vtable_unk_080E5D34
 
     .global func_080144BC
@@ -3801,7 +3644,7 @@ func_080144BC:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_0801441C @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_0801441C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -3855,7 +3698,7 @@ func_080144BC:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_0801441C: .4byte vtable_unk_080E5E74
+.Ljp_0801441C: .4byte __vt_17ReturnToGameScene
 .Ljp_08014420: .4byte vtable_unk_080E5D24
 
     .global func_08014550
@@ -3881,7 +3724,7 @@ func_08014550:
     mov r1, sp
     ldm r1!, {r3, r4, r5}
     stm r2!, {r3, r4, r5}
-    ldr r1, .Ljp_080144C4 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_080144C4 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -3940,7 +3783,7 @@ func_08014550:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080144C4: .4byte vtable_unk_080E5E74
+.Ljp_080144C4: .4byte __vt_17ReturnToGameScene
 .Ljp_080144C8: .4byte vtable_unk_080E5D14
 
     .global func_080145F8
@@ -3961,7 +3804,7 @@ func_080145F8:
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08014558 @ =vtable_unk_080E5E74
+    ldr r1, .Ljp_08014558 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -4015,7 +3858,7 @@ func_080145F8:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08014558: .4byte vtable_unk_080E5E74
+.Ljp_08014558: .4byte __vt_17ReturnToGameScene
 .Ljp_0801455C: .4byte vtable_unk_080E5D04
 
     .section .text.game_scene_song_players_after, "ax", %progbits
@@ -16011,161 +15854,6 @@ __18GameStateSaveImageR10SramAccessUiRUi: @ 0x08011650
 
     .section .text.game_scene_text_variable_commands_after, "ax", %progbits
 
-    thumb_func_start func_08012BBC
-func_08012BBC: @ 0x08012BBC
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x1c
-    ldr r6, [r0, #4]
-    movs r0, #0xa
-    str r0, [sp]
-    movs r0, #0x14
-    bl __builtin_new
-    adds r5, r6, #0
-    adds r5, #0x8c
-    ldr r1, [r5]
-    mov ip, r1
-    add r2, sp, #0x10
-    mov r1, sp
-    ldm r1!, {r3, r4, r7}
-    stm r2!, {r3, r4, r7}
-    ldr r1, .L08012C48 @ =vtable_unk_080E5E74
-    str r1, [r0]
-    mov r1, ip
-    str r1, [r0, #4]
-    adds r2, r0, #0
-    adds r2, #8
-    add r1, sp, #0x10
-    ldm r1!, {r3, r4, r7}
-    stm r2!, {r3, r4, r7}
-    str r0, [sp, #0xc]
-    movs r0, #0xc
-    bl __builtin_new
-    ldr r4, [sp, #0xc]
-    movs r2, #0
-    str r2, [sp, #0xc]
-    str r4, [sp, #0x10]
-    ldr r3, [r5]
-    ldr r1, .L08012C4C @ =vtable_unk_080E5E34
-    str r1, [r0]
-    str r2, [sp, #0x10]
-    str r4, [r0, #4]
-    str r3, [r0, #8]
-    adds r5, #0x18
-    adds r4, r0, #0
-    ldr r1, [r5]
-    cmp r4, r1
-    beq .L08012C24
-    cmp r1, #0
-    beq .L08012C24
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08012C24:
-    str r4, [r5]
-    adds r1, r6, #0
-    adds r1, #0x9c
-    movs r0, #0x18
-    str r0, [r1]
-    ldr r1, [sp, #0xc]
-    cmp r1, #0
-    beq .L08012C40
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08012C40:
-    add sp, #0x1c
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012C48: .4byte vtable_unk_080E5E74
-.L08012C4C: .4byte vtable_unk_080E5E34
-
-    thumb_func_start func_08012C50
-func_08012C50: @ 0x08012C50
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #0x1c
-    mov r8, r1
-    ldr r7, [r0, #4]
-    movs r0, #0xb
-    str r0, [sp]
-    movs r0, #0x14
-    bl __builtin_new
-    adds r5, r7, #0
-    adds r5, #0x8c
-    ldr r1, [r5]
-    mov ip, r1
-    add r2, sp, #0x10
-    mov r1, sp
-    ldm r1!, {r3, r4, r6}
-    stm r2!, {r3, r4, r6}
-    ldr r1, .L08012CEC @ =vtable_unk_080E5E74
-    str r1, [r0]
-    mov r1, ip
-    str r1, [r0, #4]
-    adds r2, r0, #0
-    adds r2, #8
-    add r1, sp, #0x10
-    ldm r1!, {r3, r4, r6}
-    stm r2!, {r3, r4, r6}
-    str r0, [sp, #0xc]
-    movs r0, #0x10
-    bl __builtin_new
-    ldr r4, [sp, #0xc]
-    movs r2, #0
-    str r2, [sp, #0xc]
-    str r4, [sp, #0x10]
-    ldr r3, [r5]
-    ldr r1, .L08012CF0 @ =vtable_unk_080E5E24
-    str r1, [r0]
-    str r2, [sp, #0x10]
-    str r4, [r0, #4]
-    str r3, [r0, #8]
-    mov r1, r8
-    str r1, [r0, #0xc]
-    adds r5, #0x18
-    adds r4, r0, #0
-    ldr r1, [r5]
-    cmp r4, r1
-    beq .L08012CC2
-    cmp r1, #0
-    beq .L08012CC2
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08012CC2:
-    str r4, [r5]
-    adds r1, r7, #0
-    adds r1, #0x9c
-    movs r0, #0x18
-    str r0, [r1]
-    ldr r1, [sp, #0xc]
-    cmp r1, #0
-    beq .L08012CDE
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08012CDE:
-    add sp, #0x1c
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08012CEC: .4byte vtable_unk_080E5E74
-.L08012CF0: .4byte vtable_unk_080E5E24
-
     thumb_func_start func_08012CF4
 func_08012CF4: @ 0x08012CF4
     push {r4, r5, r6, r7, lr}
@@ -16183,7 +15871,7 @@ func_08012CF4: @ 0x08012CF4
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08012D80 @ =vtable_unk_080E5E74
+    ldr r1, .L08012D80 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16237,7 +15925,7 @@ func_08012CF4: @ 0x08012CF4
     pop {r0}
     bx r0
     .align 2, 0
-.L08012D80: .4byte vtable_unk_080E5E74
+.L08012D80: .4byte __vt_17ReturnToGameScene
 .L08012D84: .4byte vtable_unk_080E5DE4
 
     thumb_func_start func_08012D88
@@ -16257,7 +15945,7 @@ func_08012D88: @ 0x08012D88
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08012E14 @ =vtable_unk_080E5E74
+    ldr r1, .L08012E14 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16311,7 +15999,7 @@ func_08012D88: @ 0x08012D88
     pop {r0}
     bx r0
     .align 2, 0
-.L08012E14: .4byte vtable_unk_080E5E74
+.L08012E14: .4byte __vt_17ReturnToGameScene
 .L08012E18: .4byte vtable_unk_080E5DF4
 
     thumb_func_start func_08012E1C
@@ -16331,7 +16019,7 @@ func_08012E1C: @ 0x08012E1C
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08012EB8 @ =vtable_unk_080E5E74
+    ldr r1, .L08012EB8 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16392,7 +16080,7 @@ func_08012E1C: @ 0x08012E1C
     pop {r0}
     bx r0
     .align 2, 0
-.L08012EB8: .4byte vtable_unk_080E5E74
+.L08012EB8: .4byte __vt_17ReturnToGameScene
 .L08012EBC: .4byte vtable_unk_080E5E14
 
     thumb_func_start func_08012EC0
@@ -16412,7 +16100,7 @@ func_08012EC0: @ 0x08012EC0
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08012F4C @ =vtable_unk_080E5E74
+    ldr r1, .L08012F4C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16466,7 +16154,7 @@ func_08012EC0: @ 0x08012EC0
     pop {r0}
     bx r0
     .align 2, 0
-.L08012F4C: .4byte vtable_unk_080E5E74
+.L08012F4C: .4byte __vt_17ReturnToGameScene
 .L08012F50: .4byte vtable_unk_080E5E04
 
     thumb_func_start func_08012F54
@@ -16486,7 +16174,7 @@ func_08012F54: @ 0x08012F54
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08012FE0 @ =vtable_unk_080E5E74
+    ldr r1, .L08012FE0 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16540,7 +16228,7 @@ func_08012F54: @ 0x08012F54
     pop {r0}
     bx r0
     .align 2, 0
-.L08012FE0: .4byte vtable_unk_080E5E74
+.L08012FE0: .4byte __vt_17ReturnToGameScene
 .L08012FE4: .4byte vtable_unk_080E5DD4
 
     thumb_func_start func_08012FE8
@@ -16560,7 +16248,7 @@ func_08012FE8: @ 0x08012FE8
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08013078 @ =vtable_unk_080E5E74
+    ldr r1, .L08013078 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16615,7 +16303,7 @@ func_08012FE8: @ 0x08012FE8
     pop {r0}
     bx r0
     .align 2, 0
-.L08013078: .4byte vtable_unk_080E5E74
+.L08013078: .4byte __vt_17ReturnToGameScene
 .L0801307C: .4byte __vt_24YodelRanchShopTransition
 
     thumb_func_start func_08013080
@@ -16635,7 +16323,7 @@ func_08013080: @ 0x08013080
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L0801310C @ =vtable_unk_080E5E74
+    ldr r1, .L0801310C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16689,7 +16377,7 @@ func_08013080: @ 0x08013080
     pop {r0}
     bx r0
     .align 2, 0
-.L0801310C: .4byte vtable_unk_080E5E74
+.L0801310C: .4byte __vt_17ReturnToGameScene
 .L08013110: .4byte vtable_unk_080E5DB4
 
     thumb_func_start func_08013114
@@ -16709,7 +16397,7 @@ func_08013114: @ 0x08013114
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L080131A0 @ =vtable_unk_080E5E74
+    ldr r1, .L080131A0 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16763,7 +16451,7 @@ func_08013114: @ 0x08013114
     pop {r0}
     bx r0
     .align 2, 0
-.L080131A0: .4byte vtable_unk_080E5E74
+.L080131A0: .4byte __vt_17ReturnToGameScene
 .L080131A4: .4byte vtable_unk_080E5DC4
 
     thumb_func_start func_080131A8
@@ -16782,7 +16470,7 @@ func_080131A8: @ 0x080131A8
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08013234 @ =vtable_unk_080E5E74
+    ldr r1, .L08013234 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16837,7 +16525,7 @@ func_080131A8: @ 0x080131A8
     pop {r0}
     bx r0
     .align 2, 0
-.L08013234: .4byte vtable_unk_080E5E74
+.L08013234: .4byte __vt_17ReturnToGameScene
 .L08013238: .4byte __vt_25PoultryFarmShopTransition
 
     thumb_func_start func_0801323C
@@ -16857,7 +16545,7 @@ func_0801323C: @ 0x0801323C
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L080132C8 @ =vtable_unk_080E5E74
+    ldr r1, .L080132C8 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16911,7 +16599,7 @@ func_0801323C: @ 0x0801323C
     pop {r0}
     bx r0
     .align 2, 0
-.L080132C8: .4byte vtable_unk_080E5E74
+.L080132C8: .4byte __vt_17ReturnToGameScene
 .L080132CC: .4byte vtable_unk_080E5D64
 
     thumb_func_start func_080132D0
@@ -16931,7 +16619,7 @@ func_080132D0: @ 0x080132D0
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L0801335C @ =vtable_unk_080E5E74
+    ldr r1, .L0801335C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -16985,7 +16673,7 @@ func_080132D0: @ 0x080132D0
     pop {r0}
     bx r0
     .align 2, 0
-.L0801335C: .4byte vtable_unk_080E5E74
+.L0801335C: .4byte __vt_17ReturnToGameScene
 .L08013360: .4byte vtable_unk_080E5D84
 
     thumb_func_start func_08013364
@@ -17008,7 +16696,7 @@ func_08013364: @ 0x08013364
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .L08013400 @ =vtable_unk_080E5E74
+    ldr r1, .L08013400 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17066,7 +16754,7 @@ func_08013364: @ 0x08013364
     pop {r0}
     bx r0
     .align 2, 0
-.L08013400: .4byte vtable_unk_080E5E74
+.L08013400: .4byte __vt_17ReturnToGameScene
 .L08013404: .4byte vtable_unk_080E5D54
 
     thumb_func_start func_08013408
@@ -17086,7 +16774,7 @@ func_08013408: @ 0x08013408
     mov r1, sp
     ldm r1!, {r3, r5, r7}
     stm r2!, {r3, r5, r7}
-    ldr r1, .L0801349C @ =vtable_unk_080E5E74
+    ldr r1, .L0801349C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17144,7 +16832,7 @@ func_08013408: @ 0x08013408
     pop {r0}
     bx r0
     .align 2, 0
-.L0801349C: .4byte vtable_unk_080E5E74
+.L0801349C: .4byte __vt_17ReturnToGameScene
 .L080134A0: .4byte vtable_unk_080E5D54
 
     thumb_func_start func_080134A4
@@ -17164,7 +16852,7 @@ func_080134A4: @ 0x080134A4
     mov r1, sp
     ldm r1!, {r3, r5, r7}
     stm r2!, {r3, r5, r7}
-    ldr r1, .L08013538 @ =vtable_unk_080E5E74
+    ldr r1, .L08013538 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17221,7 +16909,7 @@ func_080134A4: @ 0x080134A4
     pop {r0}
     bx r0
     .align 2, 0
-.L08013538: .4byte vtable_unk_080E5E74
+.L08013538: .4byte __vt_17ReturnToGameScene
 .L0801353C: .4byte 0x00001001
 .L08013540: .4byte vtable_unk_080E5D54
 
@@ -17242,7 +16930,7 @@ func_08013544: @ 0x08013544
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L080135D0 @ =vtable_unk_080E5E74
+    ldr r1, .L080135D0 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17296,7 +16984,7 @@ func_08013544: @ 0x08013544
     pop {r0}
     bx r0
     .align 2, 0
-.L080135D0: .4byte vtable_unk_080E5E74
+.L080135D0: .4byte __vt_17ReturnToGameScene
 .L080135D4: .4byte vtable_unk_080E5CB4
 
     thumb_func_start func_080135D8
@@ -17316,7 +17004,7 @@ func_080135D8: @ 0x080135D8
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08013664 @ =vtable_unk_080E5E74
+    ldr r1, .L08013664 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17370,7 +17058,7 @@ func_080135D8: @ 0x080135D8
     pop {r0}
     bx r0
     .align 2, 0
-.L08013664: .4byte vtable_unk_080E5E74
+.L08013664: .4byte __vt_17ReturnToGameScene
 .L08013668: .4byte vtable_unk_080E5CE4
 
     thumb_func_start func_0801366C
@@ -17390,7 +17078,7 @@ func_0801366C: @ 0x0801366C
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L080136F8 @ =vtable_unk_080E5E74
+    ldr r1, .L080136F8 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17444,7 +17132,7 @@ func_0801366C: @ 0x0801366C
     pop {r0}
     bx r0
     .align 2, 0
-.L080136F8: .4byte vtable_unk_080E5E74
+.L080136F8: .4byte __vt_17ReturnToGameScene
 .L080136FC: .4byte vtable_unk_080E5CC4
 
     thumb_func_start func_08013700
@@ -17464,7 +17152,7 @@ func_08013700: @ 0x08013700
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L0801378C @ =vtable_unk_080E5E74
+    ldr r1, .L0801378C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17518,7 +17206,7 @@ func_08013700: @ 0x08013700
     pop {r0}
     bx r0
     .align 2, 0
-.L0801378C: .4byte vtable_unk_080E5E74
+.L0801378C: .4byte __vt_17ReturnToGameScene
 .L08013790: .4byte vtable_unk_080E5CD4
 
     thumb_func_start func_08013794
@@ -17538,7 +17226,7 @@ func_08013794: @ 0x08013794
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08013820 @ =vtable_unk_080E5E74
+    ldr r1, .L08013820 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17592,7 +17280,7 @@ func_08013794: @ 0x08013794
     pop {r0}
     bx r0
     .align 2, 0
-.L08013820: .4byte vtable_unk_080E5E74
+.L08013820: .4byte __vt_17ReturnToGameScene
 .L08013824: .4byte vtable_unk_080E5E54
 
     thumb_func_start func_08013828
@@ -17612,7 +17300,7 @@ func_08013828: @ 0x08013828
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L080138B8 @ =vtable_unk_080E5E74
+    ldr r1, .L080138B8 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17667,7 +17355,7 @@ func_08013828: @ 0x08013828
     pop {r0}
     bx r0
     .align 2, 0
-.L080138B8: .4byte vtable_unk_080E5E74
+.L080138B8: .4byte __vt_17ReturnToGameScene
 .L080138BC: .4byte vtable_unk_080E5D44
 
     thumb_func_start func_080138C0
@@ -17687,7 +17375,7 @@ func_080138C0: @ 0x080138C0
     mov r1, sp
     ldm r1!, {r3, r5, r7}
     stm r2!, {r3, r5, r7}
-    ldr r1, .L08013954 @ =vtable_unk_080E5E74
+    ldr r1, .L08013954 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17744,7 +17432,7 @@ func_080138C0: @ 0x080138C0
     pop {r0}
     bx r0
     .align 2, 0
-.L08013954: .4byte vtable_unk_080E5E74
+.L08013954: .4byte __vt_17ReturnToGameScene
 .L08013958: .4byte vtable_unk_080E5D44
 
     thumb_func_start func_0801395C
@@ -17764,7 +17452,7 @@ func_0801395C: @ 0x0801395C
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L080139E8 @ =vtable_unk_080E5E74
+    ldr r1, .L080139E8 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17818,7 +17506,7 @@ func_0801395C: @ 0x0801395C
     pop {r0}
     bx r0
     .align 2, 0
-.L080139E8: .4byte vtable_unk_080E5E74
+.L080139E8: .4byte __vt_17ReturnToGameScene
 .L080139EC: .4byte vtable_unk_080E5C34
 
     thumb_func_start func_080139F0
@@ -17841,7 +17529,7 @@ func_080139F0: @ 0x080139F0
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .L08013A8C @ =vtable_unk_080E5E74
+    ldr r1, .L08013A8C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17899,7 +17587,7 @@ func_080139F0: @ 0x080139F0
     pop {r0}
     bx r0
     .align 2, 0
-.L08013A8C: .4byte vtable_unk_080E5E74
+.L08013A8C: .4byte __vt_17ReturnToGameScene
 .L08013A90: .4byte vtable_unk_080E5C94
 
     thumb_func_start func_08013A94
@@ -17922,7 +17610,7 @@ func_08013A94: @ 0x08013A94
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .L08013B30 @ =vtable_unk_080E5E74
+    ldr r1, .L08013B30 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -17980,7 +17668,7 @@ func_08013A94: @ 0x08013A94
     pop {r0}
     bx r0
     .align 2, 0
-.L08013B30: .4byte vtable_unk_080E5E74
+.L08013B30: .4byte __vt_17ReturnToGameScene
 .L08013B34: .4byte vtable_unk_080E5C84
 
     thumb_func_start func_08013B38
@@ -18003,7 +17691,7 @@ func_08013B38: @ 0x08013B38
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .L08013BD4 @ =vtable_unk_080E5E74
+    ldr r1, .L08013BD4 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -18061,7 +17749,7 @@ func_08013B38: @ 0x08013B38
     pop {r0}
     bx r0
     .align 2, 0
-.L08013BD4: .4byte vtable_unk_080E5E74
+.L08013BD4: .4byte __vt_17ReturnToGameScene
 .L08013BD8: .4byte vtable_unk_080E5C74
 
     thumb_func_start func_08013BDC
@@ -18081,7 +17769,7 @@ func_08013BDC: @ 0x08013BDC
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08013C68 @ =vtable_unk_080E5E74
+    ldr r1, .L08013C68 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -18135,7 +17823,7 @@ func_08013BDC: @ 0x08013BDC
     pop {r0}
     bx r0
     .align 2, 0
-.L08013C68: .4byte vtable_unk_080E5E74
+.L08013C68: .4byte __vt_17ReturnToGameScene
 .L08013C6C: .4byte gIntroStoryTransitionVTable
 
     thumb_func_start func_08013C70
@@ -18155,7 +17843,7 @@ func_08013C70: @ 0x08013C70
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08013CFC @ =vtable_unk_080E5E74
+    ldr r1, .L08013CFC @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -18209,7 +17897,7 @@ func_08013C70: @ 0x08013C70
     pop {r0}
     bx r0
     .align 2, 0
-.L08013CFC: .4byte vtable_unk_080E5E74
+.L08013CFC: .4byte __vt_17ReturnToGameScene
 .L08013D00: .4byte vtable_unk_080E5CF4
 
     thumb_func_start func_08013D04
@@ -18327,7 +18015,7 @@ func_08013DC8: @ 0x08013DC8
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .L08013E64 @ =vtable_unk_080E5E74
+    ldr r1, .L08013E64 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -18385,7 +18073,7 @@ func_08013DC8: @ 0x08013DC8
     pop {r0}
     bx r0
     .align 2, 0
-.L08013E64: .4byte vtable_unk_080E5E74
+.L08013E64: .4byte __vt_17ReturnToGameScene
 .L08013E68: .4byte vtable_unk_080E5C54
 
     thumb_func_start func_08013E6C
@@ -18404,7 +18092,7 @@ func_08013E6C: @ 0x08013E6C
     mov r1, sp
     ldm r1!, {r4, r5, r7}
     stm r2!, {r4, r5, r7}
-    ldr r1, .L08013EF0 @ =vtable_unk_080E5E74
+    ldr r1, .L08013EF0 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     str r3, [r0, #4]
     adds r2, r0, #0
@@ -18455,7 +18143,7 @@ func_08013E6C: @ 0x08013E6C
     pop {r0}
     bx r0
     .align 2, 0
-.L08013EF0: .4byte vtable_unk_080E5E74
+.L08013EF0: .4byte __vt_17ReturnToGameScene
 .L08013EF4: .4byte vtable_unk_080E5D74
 
     thumb_func_start func_08013EF8
@@ -18477,7 +18165,7 @@ func_08013EF8: @ 0x08013EF8
     mov r1, sp
     ldm r1!, {r4, r5, r7}
     stm r2!, {r4, r5, r7}
-    ldr r1, .L08013F84 @ =vtable_unk_080E5E74
+    ldr r1, .L08013F84 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     str r3, [r0, #4]
     adds r2, r0, #0
@@ -18528,7 +18216,7 @@ func_08013EF8: @ 0x08013EF8
     pop {r0}
     bx r0
     .align 2, 0
-.L08013F84: .4byte vtable_unk_080E5E74
+.L08013F84: .4byte __vt_17ReturnToGameScene
 
     thumb_func_start func_08013F88
 func_08013F88: @ 0x08013F88
@@ -18552,7 +18240,7 @@ func_08013F88: @ 0x08013F88
     mov r1, sp
     ldm r1!, {r3, r4, r6}
     stm r2!, {r3, r4, r6}
-    ldr r1, .L0801402C @ =vtable_unk_080E5E74
+    ldr r1, .L0801402C @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -18613,7 +18301,7 @@ func_08013F88: @ 0x08013F88
     pop {r0}
     bx r0
     .align 2, 0
-.L0801402C: .4byte vtable_unk_080E5E74
+.L0801402C: .4byte __vt_17ReturnToGameScene
 .L08014030: .4byte __vt_24SavedNameEntryTransition
 
     .section .text.game_scene_menu_hooks_after, "ax", %progbits
@@ -18687,7 +18375,7 @@ func_0801437C: @ 0x0801437C
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08014408 @ =vtable_unk_080E5E74
+    ldr r1, .L08014408 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -18741,7 +18429,7 @@ func_0801437C: @ 0x0801437C
     pop {r0}
     bx r0
     .align 2, 0
-.L08014408: .4byte vtable_unk_080E5E74
+.L08014408: .4byte __vt_17ReturnToGameScene
 .L0801440C: .4byte vtable_unk_080E5CA4
 
     thumb_func_start func_08014410
@@ -18764,7 +18452,7 @@ func_08014410: @ 0x08014410
     mov r1, sp
     ldm r1!, {r3, r4, r5}
     stm r2!, {r3, r4, r5}
-    ldr r1, .L080144B4 @ =vtable_unk_080E5E74
+    ldr r1, .L080144B4 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -18826,7 +18514,7 @@ func_08014410: @ 0x08014410
     pop {r0}
     bx r0
     .align 2, 0
-.L080144B4: .4byte vtable_unk_080E5E74
+.L080144B4: .4byte __vt_17ReturnToGameScene
 .L080144B8: .4byte vtable_unk_080E5D34
 
     thumb_func_start func_080144BC
@@ -18846,7 +18534,7 @@ func_080144BC: @ 0x080144BC
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08014548 @ =vtable_unk_080E5E74
+    ldr r1, .L08014548 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -18900,7 +18588,7 @@ func_080144BC: @ 0x080144BC
     pop {r0}
     bx r0
     .align 2, 0
-.L08014548: .4byte vtable_unk_080E5E74
+.L08014548: .4byte __vt_17ReturnToGameScene
 .L0801454C: .4byte vtable_unk_080E5D24
 
     thumb_func_start func_08014550
@@ -18925,7 +18613,7 @@ func_08014550: @ 0x08014550
     mov r1, sp
     ldm r1!, {r3, r4, r5}
     stm r2!, {r3, r4, r5}
-    ldr r1, .L080145F0 @ =vtable_unk_080E5E74
+    ldr r1, .L080145F0 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -18984,7 +18672,7 @@ func_08014550: @ 0x08014550
     pop {r0}
     bx r0
     .align 2, 0
-.L080145F0: .4byte vtable_unk_080E5E74
+.L080145F0: .4byte __vt_17ReturnToGameScene
 .L080145F4: .4byte vtable_unk_080E5D14
 
     thumb_func_start func_080145F8
@@ -19004,7 +18692,7 @@ func_080145F8: @ 0x080145F8
     mov r1, sp
     ldm r1!, {r3, r4, r7}
     stm r2!, {r3, r4, r7}
-    ldr r1, .L08014684 @ =vtable_unk_080E5E74
+    ldr r1, .L08014684 @ =__vt_17ReturnToGameScene
     str r1, [r0]
     mov r1, ip
     str r1, [r0, #4]
@@ -19058,7 +18746,7 @@ func_080145F8: @ 0x080145F8
     pop {r0}
     bx r0
     .align 2, 0
-.L08014684: .4byte vtable_unk_080E5E74
+.L08014684: .4byte __vt_17ReturnToGameScene
 .L08014688: .4byte vtable_unk_080E5D04
 
     .section .text.game_scene_song_players_after, "ax", %progbits

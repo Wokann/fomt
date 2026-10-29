@@ -80,6 +80,7 @@ struct SceneTransitionOwner
     SceneTransitionOwner(SceneTransitionOwnerTransfer transfer);
     ~SceneTransitionOwner();
 
+    SceneTransitionOwner & operator=(SceneTransition * transition);
     SceneTransition * get() const { return static_cast<SceneTransition *>(value); }
     SceneTransition * operator->() const { return static_cast<SceneTransition *>(value); }
     operator SceneTransitionOwnerTransfer()
@@ -167,4 +168,12 @@ extern "C" void DestroySceneBase(AScene * scene, int flags) asm("_._6AScene");
 extern "C" void DestroySceneTransitionBase(SceneTransition * transition, int flags)
     asm("_._15SceneTransition");
 
+
+inline SceneTransitionOwner & SceneTransitionOwner::operator=(SceneTransition * transition)
+{
+    if (transition != value)
+        delete static_cast<SceneTransition *>(value);
+    value = transition;
+    return *this;
+}
 #endif // SCENE_HH

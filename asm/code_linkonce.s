@@ -9993,7 +9993,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r5, #0
 	ldm r4!, {r2, r3, r6}
 	stm r1!, {r2, r3, r6}
-	ldr r1, .L080D96F8 @ =vtable_unk_080E5E74
+	ldr r1, .L080D96F8 @ =__vt_17ReturnToGameScene
 	str r1, [r0]
 	mov r1, sb
 	str r1, [r0, #4]
@@ -10056,7 +10056,7 @@ sub_080D8178: @ 0x080D8178
 	b .L080D98A0
 	.align 2, 0
 .L080D96F4: .4byte 0x0000055C
-.L080D96F8: .4byte vtable_unk_080E5E74
+.L080D96F8: .4byte __vt_17ReturnToGameScene
 .L080D96FC: .4byte 0x00000444
 .L080D9700: .4byte vtable_unk_080E5EB4
 .L080D9704: .4byte 0x000004DC
@@ -10195,7 +10195,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r5, #0
 	ldm r4!, {r2, r3, r7}
 	stm r1!, {r2, r3, r7}
-	ldr r1, .L080D98C4 @ =vtable_unk_080E5E74
+	ldr r1, .L080D98C4 @ =__vt_17ReturnToGameScene
 	str r1, [r0]
 	mov r1, r8
 	str r1, [r0, #4]
@@ -10269,7 +10269,7 @@ sub_080D8178: @ 0x080D8178
 	bl func_080DB0CC
 	.align 2, 0
 .L080D98C0: .4byte 0x0000055C
-.L080D98C4: .4byte vtable_unk_080E5E74
+.L080D98C4: .4byte __vt_17ReturnToGameScene
 .L080D98C8: .4byte 0x00000444
 .L080D98CC: .4byte vtable_unk_080E5E94
 .L080D98D0: .4byte 0x000004DC
@@ -10460,7 +10460,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r5, #0
 	ldm r4!, {r2, r3, r7}
 	stm r1!, {r2, r3, r7}
-	ldr r1, .L080D9AA4 @ =vtable_unk_080E5E74
+	ldr r1, .L080D9AA4 @ =__vt_17ReturnToGameScene
 	str r1, [r0]
 	mov r1, r8
 	str r1, [r0, #4]
@@ -10484,7 +10484,7 @@ sub_080D8178: @ 0x080D8178
 	.align 2, 0
 .L080D9A9C: .4byte 0x0000055C
 .L080D9AA0: .4byte 0x00000889
-.L080D9AA4: .4byte vtable_unk_080E5E74
+.L080D9AA4: .4byte __vt_17ReturnToGameScene
 .L080D9AA8: .4byte 0x00000444
 .L080D9AAC:
 	ldr r3, .L080D9B30 @ =0x0000055C
@@ -10520,7 +10520,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r5, #0
 	ldm r4!, {r2, r3, r7}
 	stm r1!, {r2, r3, r7}
-	ldr r1, .L080D9B38 @ =vtable_unk_080E5E74
+	ldr r1, .L080D9B38 @ =__vt_17ReturnToGameScene
 	str r1, [r0]
 	mov r4, r8
 	str r4, [r0, #4]
@@ -10551,7 +10551,7 @@ sub_080D8178: @ 0x080D8178
 	.align 2, 0
 .L080D9B30: .4byte 0x0000055C
 .L080D9B34: .4byte 0x00000889
-.L080D9B38: .4byte vtable_unk_080E5E74
+.L080D9B38: .4byte __vt_17ReturnToGameScene
 .L080D9B3C: .4byte 0x00000444
 .L080D9B40:
 	ldr r1, .L080D9C08 @ =0x0000055C
@@ -10587,7 +10587,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r5, #0
 	ldm r4!, {r2, r3, r7}
 	stm r1!, {r2, r3, r7}
-	ldr r1, .L080D9C10 @ =vtable_unk_080E5E74
+	ldr r1, .L080D9C10 @ =__vt_17ReturnToGameScene
 	str r1, [r0]
 	mov r4, r8
 	str r4, [r0, #4]
@@ -10654,7 +10654,7 @@ sub_080D8178: @ 0x080D8178
 	.align 2, 0
 .L080D9C08: .4byte 0x0000055C
 .L080D9C0C: .4byte 0x00000889
-.L080D9C10: .4byte vtable_unk_080E5E74
+.L080D9C10: .4byte __vt_17ReturnToGameScene
 .L080D9C14: .4byte 0x00000444
 .L080D9C18: .4byte vtable_unk_080E5D54
 .L080D9C1C:
@@ -10859,7 +10859,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r6, #0
 	ldm r4!, {r2, r3, r5}
 	stm r1!, {r2, r3, r5}
-	ldr r1, .L080D9E10 @ =vtable_unk_080E5E74
+	ldr r1, .L080D9E10 @ =__vt_17ReturnToGameScene
 	str r1, [r0]
 	mov r1, r8
 	str r1, [r0, #4]
@@ -10891,7 +10891,7 @@ sub_080D8178: @ 0x080D8178
 	str r5, [r0, #8]
 	b .L080DA07A
 	.align 2, 0
-.L080D9E10: .4byte vtable_unk_080E5E74
+.L080D9E10: .4byte __vt_17ReturnToGameScene
 .L080D9E14: .4byte 0x00000444
 .L080D9E18: .4byte vtable_unk_080E5E54
 .L080D9E1C:
@@ -10990,7 +10990,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r6, #0
 	ldm r4!, {r2, r3, r5}
 	stm r1!, {r2, r3, r5}
-	ldr r1, .L080D9F24 @ =vtable_unk_080E5E74
+	ldr r1, .L080D9F24 @ =__vt_17ReturnToGameScene
 	str r1, [r0]
 	mov r1, r8
 	str r1, [r0, #4]
@@ -11022,7 +11022,7 @@ sub_080D8178: @ 0x080D8178
 	str r5, [r0, #8]
 	b .L080DA07A
 	.align 2, 0
-.L080D9F24: .4byte vtable_unk_080E5E74
+.L080D9F24: .4byte __vt_17ReturnToGameScene
 .L080D9F28: .4byte 0x00000444
 .L080D9F2C: .4byte vtable_unk_080E5E94
 .L080D9F30:
@@ -11045,7 +11045,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r6, #0
 	ldm r4!, {r2, r3, r5}
 	stm r1!, {r2, r3, r5}
-	ldr r1, .L080D9F9C @ =vtable_unk_080E5E74
+	ldr r1, .L080D9F9C @ =__vt_17ReturnToGameScene
 	str r1, [r0]
 	mov r1, r8
 	str r1, [r0, #4]
@@ -11078,7 +11078,7 @@ sub_080D8178: @ 0x080D8178
 	strb r2, [r0, #0xc]
 	b .L080DA07A
 	.align 2, 0
-.L080D9F9C: .4byte vtable_unk_080E5E74
+.L080D9F9C: .4byte __vt_17ReturnToGameScene
 .L080D9FA0: .4byte 0x00000444
 .L080D9FA4: .4byte vtable_unk_080E5EB4
 .L080D9FA8:
@@ -11101,7 +11101,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r6, #0
 	ldm r4!, {r2, r3, r5}
 	stm r1!, {r2, r3, r5}
-	ldr r1, .L080DA008 @ =vtable_unk_080E5E74
+	ldr r1, .L080DA008 @ =__vt_17ReturnToGameScene
 	str r1, [r0]
 	mov r1, r8
 	str r1, [r0, #4]
@@ -11129,7 +11129,7 @@ sub_080D8178: @ 0x080D8178
 	ldr r1, .L080DA010 @ =vtable_unk_080E5EA4
 	b .L080DA072
 	.align 2, 0
-.L080DA008: .4byte vtable_unk_080E5E74
+.L080DA008: .4byte __vt_17ReturnToGameScene
 .L080DA00C: .4byte 0x00000444
 .L080DA010: .4byte vtable_unk_080E5EA4
 .L080DA014:
@@ -11152,7 +11152,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r6, #0
 	ldm r4!, {r2, r3, r5}
 	stm r1!, {r2, r3, r5}
-	ldr r1, .L080DA0B8 @ =vtable_unk_080E5E74
+	ldr r1, .L080DA0B8 @ =__vt_17ReturnToGameScene
 	str r1, [r0]
 	mov r1, r8
 	str r1, [r0, #4]
@@ -11214,7 +11214,7 @@ sub_080D8178: @ 0x080D8178
 	bl _call_via_r2
 	b .L080DA0E4
 	.align 2, 0
-.L080DA0B8: .4byte vtable_unk_080E5E74
+.L080DA0B8: .4byte __vt_17ReturnToGameScene
 .L080DA0BC: .4byte 0x00000444
 .L080DA0C0: .4byte vtable_unk_080E5CF4
 .L080DA0C4:

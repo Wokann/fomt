@@ -193,6 +193,9 @@ SECTIONS
         src/game_scene.o(
             .text.CallScript__9GameScene* .text.QueueScript__9GameScene*
             .text.WaitFrames__9GameScene*);
+        src/scene_supermarket.o(
+            .text.OpenSupermarketShop__9GameScene
+            .text.OpenSupermarketPurchase__9GameScene21MarySupermarketItemId);
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
         src/game_scene.o(
             .text.PrepareClockMenuTransition__9GameScene
@@ -587,9 +590,9 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_reference_page_scene_run);
         src/game_scene.o(.text.Run__20PoultryFarmShopScene);
         asm/code_0803EE94.o(.text.after_poultry_farm_shop_scene_run);
-        src/game_scene.o(.text.Run__16SupermarketScene);
+        src/scene_supermarket.o(.text.Run__16SupermarketScene);
         asm/code_0803EE94.o(.text.after_supermarket_scene_run);
-        src/game_scene.o(.text.Run__24SupermarketPurchaseScene);
+        src/scene_supermarket.o(.text.Run__24SupermarketPurchaseScene);
         asm/code_0803EE94.o(.text.after_supermarket_purchase_scene_run);
         src/game_scene.o(.text.Run__15ClinicShopScene);
         asm/code_0803EE94.o(.text.after_clinic_shop_scene_run);
@@ -927,8 +930,8 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__23CarpenterShopTransition .gnu.linkonce.t._._23CarpenterShopTransition);
         src/game_scene.o(.text.CreateScene__20ClinicShopTransition .gnu.linkonce.t._._20ClinicShopTransition);
         src/game_scene.o(.text.CreateScene__24BlacksmithShopTransition .gnu.linkonce.t._._24BlacksmithShopTransition);
-        src/game_scene.o(.text.CreateScene__29SupermarketPurchaseTransition .gnu.linkonce.t._._29SupermarketPurchaseTransition);
-        src/game_scene.o(.text.CreateScene__21SupermarketTransition .gnu.linkonce.t._._21SupermarketTransition);
+        src/scene_supermarket.o(.text.CreateScene__29SupermarketPurchaseTransition .gnu.linkonce.t._._29SupermarketPurchaseTransition);
+        src/scene_supermarket.o(.text.CreateScene__21SupermarketTransition .gnu.linkonce.t._._21SupermarketTransition);
         asm/code_linkonce.o(.text.scene_supermarket_after);
         src/game_scene.o(.text.CreateScene__15ClockTransition .gnu.linkonce.t._._15ClockTransition);
         src/game_scene.o(.text.CreateScene__17ReturnToGameScene .gnu.linkonce.t._._17ReturnToGameScene);

@@ -1,5 +1,64 @@
 # 代码 ROM 物理布局
 
+## 超市进入命令：独立功能模块与四区 C++ 恢复（2026-10-30）
+
+原 `asm/game_state.s` 中连续的两个菜单进入入口现由
+`src/scene_supermarket.cc`／`include/scene_supermarket.hh` 管理：
+`GameScene::OpenSupermarketShop()` 打开商品目录，
+`GameScene::OpenSupermarketPurchase(MarySupermarketItemId)` 打开指定商品的购买界面。
+参数直接使用共用 Mary 常量表中的商品枚举；没有额外 ID 映射或区域偏移补丁。
+
+| 区域 | 超市目录入口 | 指定商品购买入口 |
+| --- | --- | --- |
+| JP | `0x08012A8C–0x08012B20` / 148 | `0x08012B20–0x08012BC4` / 164 |
+| US | `0x08012BBC–0x08012C50` / 148 | `0x08012C50–0x08012CF4` / 164 |
+| EU | `0x08012BD0–0x08012C64` / 148 | `0x08012C64–0x08012D08` / 164 |
+| DE | `0x08012BDC–0x08012C70` / 148 | `0x08012C70–0x08012D14` / 164 |
+
+每区新增 C++ 为 **312 字节**，四区合计 **1,248 字节**。两项入口按
+源码顺序连续链接，后续原生输入仅缩去这 312 字节；其余函数物理地址、
+内容和重定位表达式不变。源码没有新增 section 属性，使用既有编译器
+函数分节规则与 LDS 中的标准成员符号选择。
+
+此模块也接管原已为 C++ 的两项 Scene::Run、两项 CreateScene 和两个
+编译器生成的转移对象析构段。它们按功能移出 `game_scene.cc`，在 LDS
+原位置选用新对象，**不重复计为新增反编译字节**。四个场景／转移类型、
+布局检查和原生 UI 核心接口统一放入同名头文件。头文件边界显式恢复
+旧编译器的 pragma interface 归属，使其他场景的虚表和析构仍由原模块提供。
+
+`GameSceneResumeRequest` 仍是共用的十二字节返回请求。两项菜单返回值
+分别为 JP 9／10、海外版 10／11，使用 AFTER_SUPERMARKET_SHOP 和
+AFTER_SUPERMARKET_PURCHASE 命名；未知的后八字节保持不初始化，并按
+完整对象复制。通过 `GetSave()` 取得借用的存档指针，转移对象按值接收
+continuation 所有者，转移后清空来源槽；给 pending_transition 赋值时，
+仅在指针不同时销毁旧对象。均由普通 C++ 生成，没有强制寄存器、volatile、
+填充指令、汇编别名或专用后处理。
+
+三张已有转移虚表直接使用实际类名符号：`__vt_17ReturnToGameScene`、
+`__vt_21SupermarketTransition`、`__vt_29SupermarketPurchaseTransition`。
+表体仍在原 `src/vtables.cc` 顺序中，不复制表，不保留旧地址名别名。
+三张十六字节物理表也与编译器实际生成的虚表逐槽核对，析构与 CreateScene
+重定位完全一致。JP 两处原始 BL 已替换为成员符号，额外只重建一个 JP 汇编对象。
+相关原生核心入口也统一为实际用途名称；以下四项仍为显式汇编，
+**不计作新增 C++**，其核心内部状态尚未恢复为完整高级语言类型。
+
+| 区域 | RunSupermarketSceneCore | ConstructSupermarketScene | RunSupermarketPurchaseSceneCore | ConstructSupermarketPurchaseScene |
+| --- | --- | --- | --- | --- |
+| JP | `0x0807CD80` | `0x0807D8A0` | `0x0807D9A4` | `0x0807DFA0` |
+| US | `0x0807D218` | `0x0807DD38` | `0x0807DE3C` | `0x0807E438` |
+| EU | `0x0807D22C` | `0x0807DD4C` | `0x0807DE50` | `0x0807E44C` |
+| DE | `0x0807D110` | `0x0807DC30` | `0x0807DD34` | `0x0807E330` |
+
+验证：四版 WSL `make -j4 ... compare`、完整 8 MiB 原版逐字节和 SHA-1
+均通过。每区冻结的 243 个原输入对象都已核对；新对象只接管上述指定
+范围，其他已链接字节、数据、符号地址和重定位保持一致。两个新增成员
+入口的八处外部调用均为真实符号引用，未发现对应原始入口指针或内部 BL
+候选。此调用审计针对这两个新入口，不扩大为整个 ROM 的动态化结论。
+
+这是明确的超市功能块完成，不代表此前所有代码都已恢复：最早尚未
+匹配的 InitializeIntroSceneBackground 156 字节以及窗口构造器等边界
+仍据实保留为原生汇编，不能将本批地址当成整个前缀的完成前沿。
+
 ## 窗口坐标：功能归属与标准成员符号（2026-10-30）
 
 原 `src/code_0803BDE4.cc` 中的两项操作已按窗口坐标调用关系归为

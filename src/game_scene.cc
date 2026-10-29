@@ -910,22 +910,6 @@ SceneTransitionOwner PoultryFarmShopScene::Run()
     return continuation;
 }
 
-SceneTransitionOwner SupermarketScene::Run()
-{
-#if defined(REGION_JP)
-    func_0807CD80(core);
-#else
-    func_0807D218(core);
-#endif
-    return continuation;
-}
-
-SceneTransitionOwner SupermarketPurchaseScene::Run()
-{
-    func_0807DE3C(core);
-    return continuation;
-}
-
 SceneTransitionOwner ClinicShopScene::Run()
 {
 #if defined(REGION_JP)
@@ -1288,28 +1272,6 @@ SceneOwner BlacksmithShopTransition::CreateScene()
 {
     SceneTransition * next = continuation.release();
     return SceneOwner(func_08083A7C(::operator new(sizeof(BlacksmithShopScene)), &next, save, unk_1C, unk_0C, unk_10, unk_14, unk_18));
-}
-
-SceneOwner SupermarketPurchaseTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(func_0807DFA0(::operator new(sizeof(SupermarketPurchaseScene)),
-        &next, save, item_id));
-#else
-    return SceneOwner(func_0807E438(::operator new(sizeof(SupermarketPurchaseScene)),
-        &next, save, item_id));
-#endif
-}
-
-SceneOwner SupermarketTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(func_0807D8A0(::operator new(sizeof(SupermarketScene)), &next, save));
-#else
-    return SceneOwner(func_0807DD38(::operator new(sizeof(SupermarketScene)), &next, save));
-#endif
 }
 
 SceneOwner ClockTransition::CreateScene()

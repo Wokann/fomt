@@ -997,14 +997,14 @@ extern RawVTableFunction const vtable_unk_080E5E14[] = {
     CreateScene__24BlacksmithShopTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5E24[] = {
+extern RawVTableFunction const __vt_29SupermarketPurchaseTransition[] = {
     nullptr,
     nullptr,
     DestroySupermarketPurchaseTransition,
     CreateScene__29SupermarketPurchaseTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5E34[] = {
+extern RawVTableFunction const __vt_21SupermarketTransition[] = {
     nullptr,
     nullptr,
     DestroySupermarketTransition,
@@ -1032,7 +1032,7 @@ extern RawVTableFunction const __vt_9GameScene[] = {
     Run__9GameScene,
 };
 
-extern RawVTableFunction const vtable_unk_080E5E74[] = {
+extern RawVTableFunction const __vt_17ReturnToGameScene[] = {
     nullptr,
     nullptr,
     DestroyReturnToGameScene,
