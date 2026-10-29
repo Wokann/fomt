@@ -48,9 +48,12 @@ struct MainMenuLabelRenderer {
     HardwareStateEntry tiles[3];
     HardwareDmaCopyLink uploads[6];
 
-private:
-    // Construction belongs to the still-native MainMenuData initializer.
-    MainMenuLabelRenderer();
+    MainMenuLabelRenderer()
+    {
+        for (u32 i = 0; i < 3; ++i) {
+            tiles[i].Reset(3);
+        }
+    }
 };
 
 struct MainMenuData {

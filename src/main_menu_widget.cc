@@ -63,3 +63,11 @@ u32 MainMenuWidget::Update(HardwareCoreState * input,
 {
     return UpdateImpl(input, sprites, display, uploads, commands, music);
 }
+
+MainMenuData::MainMenuData()
+    : archive(gMainMenuSpriteResourceArchive),
+      cursor(new MainMenuSpriteResource(&archive, 7, 256))
+{
+    for (u32 i = 0; i < 7; ++i)
+        icons[i] = new MainMenuSpriteResource(&archive, gMenuEntryIds[i], 256);
+}

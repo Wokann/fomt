@@ -960,7 +960,7 @@ SECTIONS
         src/ui_text_window.o(.text.ui_text_window_tile_upload);
         src/ui_text_window.o(.gnu.linkonce.t._._25UiTextWindowBorderCommand);
         src/ui_text_window.o(.gnu.linkonce.t._._29UiTextWindowTileUploadCommand);
-        asm/code_linkonce.o(.text.main_menu_data_constructor);
+        src/main_menu_widget.o(.text.main_menu_data_constructor);
         src/main_menu_widget.o(.text.main_menu_data_destructor);
         src/hardware_dma_link.o(.text.Run__19HardwareDmaCopyLink .gnu.linkonce.t._._19HardwareDmaCopyLink);
         src/map_clock_status.o(.gnu.linkonce.t._._21MapClockStatusHudData);

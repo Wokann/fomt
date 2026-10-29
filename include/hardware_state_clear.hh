@@ -33,6 +33,12 @@ struct HardwareStateEntry {
         handle = RetainHardwareSharedStateHandle(this, value.handle);
     }
 
+    void Reset(u32 size_shift)
+    {
+        ReleaseHardwareSharedStateHandle(this, handle);
+        handle = AllocateHardwareSharedStateHandle(this, size_shift);
+    }
+
     u32 GetTileIndex() const
     { return GetHardwareSharedStateTileIndex(this, handle); }
 
