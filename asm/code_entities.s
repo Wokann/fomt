@@ -20514,92 +20514,6 @@ func_0802A574: @ 0x0802A574
 
     .section .text.player_actor_after_water_capacity, "ax", %progbits
     .align 2, 0
-    .global func_0802A92C
-    .thumb_func
-func_0802A92C: @ 0x0802A92C
-    push {r4, lr}
-    adds r3, r0, #0
-    adds r0, r1, #0
-    cmp r2, #1
-    beq .Ljp_0802A94A
-    cmp r2, #1
-    bgt .Ljp_0802A940
-    cmp r2, #0
-    beq .Ljp_0802A960
-    b .Ljp_0802A9AE
-.Ljp_0802A940:
-    cmp r2, #2
-    beq .Ljp_0802A97A
-    cmp r2, #3
-    beq .Ljp_0802A992
-    b .Ljp_0802A9AE
-.Ljp_0802A94A:
-    movs r2, #0xa
-    ldrsh r1, [r0, r2]
-    movs r4, #0xe
-    ldrsh r2, [r0, r4]
-    subs r0, r1, #4
-    strh r0, [r3]
-    adds r0, r2, #0
-    subs r0, #0x14
-    strh r0, [r3, #2]
-    adds r1, #4
-    b .Ljp_0802A9A6
-.Ljp_0802A960:
-    movs r2, #0xa
-    ldrsh r1, [r0, r2]
-    movs r4, #0xe
-    ldrsh r2, [r0, r4]
-    subs r0, r1, #4
-    strh r0, [r3]
-    subs r0, r2, #6
-    strh r0, [r3, #2]
-    adds r1, #4
-    strh r1, [r3, #4]
-    adds r2, #0x12
-    strh r2, [r3, #6]
-    b .Ljp_0802A9B8
-.Ljp_0802A97A:
-    movs r2, #0xa
-    ldrsh r1, [r0, r2]
-    movs r4, #0xe
-    ldrsh r2, [r0, r4]
-    adds r0, r1, #0
-    subs r0, #0x14
-    strh r0, [r3]
-    adds r0, r2, #0
-    subs r0, #0xe
-    strh r0, [r3, #2]
-    adds r1, #4
-    b .Ljp_0802A9A6
-.Ljp_0802A992:
-    movs r2, #0xa
-    ldrsh r1, [r0, r2]
-    movs r4, #0xe
-    ldrsh r2, [r0, r4]
-    subs r0, r1, #4
-    strh r0, [r3]
-    adds r0, r2, #0
-    subs r0, #0xe
-    strh r0, [r3, #2]
-    adds r1, #0x14
-.Ljp_0802A9A6:
-    strh r1, [r3, #4]
-    adds r2, #2
-    strh r2, [r3, #6]
-    b .Ljp_0802A9B8
-.Ljp_0802A9AE:
-    movs r0, #0
-    strh r0, [r3]
-    strh r0, [r3, #2]
-    strh r0, [r3, #4]
-    strh r0, [r3, #6]
-.Ljp_0802A9B8:
-    adds r0, r3, #0
-    pop {r4}
-    pop {r2}
-    bx r2
-
     .global func_0802A9C0
     .thumb_func
 func_0802A9C0: @ 0x0802A9C0
@@ -20630,7 +20544,7 @@ func_0802A9C0: @ 0x0802A9C0
     ldrb r2, [r0]
     mov r0, sp
     mov r1, sb
-    bl func_0802A92C
+    bl GetActorInteractionBounds
     ldr r0, [sp]
     ldr r1, [sp, #4]
     str r0, [sp, #8]
@@ -27547,7 +27461,7 @@ func_0802DE90:
     ldrb r2, [r4]
     add r0, sp, #0x2c
     adds r1, r7, #0
-    bl func_0802A92C
+    bl GetActorInteractionBounds
     ldr r0, [sp, #0x2c]
     ldr r1, [sp, #0x30]
     str r0, [sp, #0x34]
@@ -30630,7 +30544,7 @@ func_0802EE80: @ 0x0802EE80
     ldrb r2, [r4]
     add r0, sp, #0x4c
     mov r1, sl
-    bl func_0802A92C
+    bl GetActorInteractionBounds
     ldr r0, [sp, #0x4c]
     ldr r1, [sp, #0x50]
     str r0, [sp, #0x54]
@@ -54392,91 +54306,6 @@ func_0802A7E0: @ 0x0802A7E0
 
     .section .text.player_actor_after_water_capacity, "ax", %progbits
     .align 2, 0
-    thumb_func_start func_0802AB98
-func_0802AB98: @ 0x0802AB98
-    push {r4, lr}
-    adds r3, r0, #0
-    adds r0, r1, #0
-    cmp r2, #1
-    beq .L0802ABB6
-    cmp r2, #1
-    bgt .L0802ABAC
-    cmp r2, #0
-    beq .L0802ABCC
-    b .L0802AC1A
-.L0802ABAC:
-    cmp r2, #2
-    beq .L0802ABE6
-    cmp r2, #3
-    beq .L0802ABFE
-    b .L0802AC1A
-.L0802ABB6:
-    movs r2, #0xa
-    ldrsh r1, [r0, r2]
-    movs r4, #0xe
-    ldrsh r2, [r0, r4]
-    subs r0, r1, #4
-    strh r0, [r3]
-    adds r0, r2, #0
-    subs r0, #0x14
-    strh r0, [r3, #2]
-    adds r1, #4
-    b .L0802AC12
-.L0802ABCC:
-    movs r2, #0xa
-    ldrsh r1, [r0, r2]
-    movs r4, #0xe
-    ldrsh r2, [r0, r4]
-    subs r0, r1, #4
-    strh r0, [r3]
-    subs r0, r2, #6
-    strh r0, [r3, #2]
-    adds r1, #4
-    strh r1, [r3, #4]
-    adds r2, #0x12
-    strh r2, [r3, #6]
-    b .L0802AC24
-.L0802ABE6:
-    movs r2, #0xa
-    ldrsh r1, [r0, r2]
-    movs r4, #0xe
-    ldrsh r2, [r0, r4]
-    adds r0, r1, #0
-    subs r0, #0x14
-    strh r0, [r3]
-    adds r0, r2, #0
-    subs r0, #0xe
-    strh r0, [r3, #2]
-    adds r1, #4
-    b .L0802AC12
-.L0802ABFE:
-    movs r2, #0xa
-    ldrsh r1, [r0, r2]
-    movs r4, #0xe
-    ldrsh r2, [r0, r4]
-    subs r0, r1, #4
-    strh r0, [r3]
-    adds r0, r2, #0
-    subs r0, #0xe
-    strh r0, [r3, #2]
-    adds r1, #0x14
-.L0802AC12:
-    strh r1, [r3, #4]
-    adds r2, #2
-    strh r2, [r3, #6]
-    b .L0802AC24
-.L0802AC1A:
-    movs r0, #0
-    strh r0, [r3]
-    strh r0, [r3, #2]
-    strh r0, [r3, #4]
-    strh r0, [r3, #6]
-.L0802AC24:
-    adds r0, r3, #0
-    pop {r4}
-    pop {r2}
-    bx r2
-
     thumb_func_start func_0802AC2C
 func_0802AC2C: @ 0x0802AC2C
     push {r4, r5, r6, r7, lr}
@@ -54506,7 +54335,7 @@ func_0802AC2C: @ 0x0802AC2C
     ldrb r2, [r0]
     mov r0, sp
     mov r1, sb
-    bl func_0802AB98
+    bl GetActorInteractionBounds
     ldr r0, [sp]
     ldr r1, [sp, #4]
     str r0, [sp, #8]
@@ -61396,7 +61225,7 @@ func_0802E0FC: @ 0x0802E0FC
     ldrb r2, [r4]
     add r0, sp, #0x2c
     adds r1, r7, #0
-    bl func_0802AB98
+    bl GetActorInteractionBounds
     ldr r0, [sp, #0x2c]
     ldr r1, [sp, #0x30]
     str r0, [sp, #0x34]
@@ -64477,7 +64306,7 @@ func_0802F0EC: @ 0x0802F0EC
     ldrb r2, [r4]
     add r0, sp, #0x4c
     mov r1, sl
-    bl func_0802AB98
+    bl GetActorInteractionBounds
     ldr r0, [sp, #0x4c]
     ldr r1, [sp, #0x50]
     str r0, [sp, #0x54]

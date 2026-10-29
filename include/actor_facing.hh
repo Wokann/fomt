@@ -4,8 +4,14 @@
 #include "prelude.h"
 
 struct ActorMovementBounds;
+struct AActorEntity;
+struct Box;
 
 EXTERN_C
+
+// Front-facing rectangle used by actor interaction and range selection.
+// Invalid directions produce the original zero rectangle.
+Box GetActorInteractionBounds(AActorEntity const & actor, i32 facing);
 
 // Relative order: forward, actor-left, actor-right, back.
 // Preserve the original switch fallthrough for values outside 0..3.

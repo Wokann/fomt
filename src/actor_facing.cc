@@ -4,6 +4,22 @@
 #include "fomt_constants.hh"
 #include "random.hh"
 
+extern "C" Box GetActorInteractionBounds(AActorEntity const & actor, i32 facing)
+{
+    switch (facing) {
+    case FACING_UP:
+        return Box(-4, -20, 4, 2, actor.x_q16 >> 16, actor.y_q16 >> 16);
+    case FACING_DOWN:
+        return Box(-4, -6, 4, 18, actor.x_q16 >> 16, actor.y_q16 >> 16);
+    case FACING_LEFT:
+        return Box(-20, -14, 4, 2, actor.x_q16 >> 16, actor.y_q16 >> 16);
+    case FACING_RIGHT:
+        return Box(-4, -14, 20, 2, actor.x_q16 >> 16, actor.y_q16 >> 16);
+    default:
+        return Box(0, 0);
+    }
+}
+
 extern "C" i32 GetRelativeFacing(i32 facing, i32 relative)
 {
     // Relative order is forward, left, right, back. Invalid relative values
