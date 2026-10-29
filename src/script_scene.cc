@@ -10,3 +10,8 @@ SceneOwner ScriptSceneTransition::CreateScene()
 {
     return SceneOwner(new ScriptScene(continuation, unk_08));
 }
+
+void ScriptScene::Push(i32 value)
+{
+    stack.Push(value);
+}

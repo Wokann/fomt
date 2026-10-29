@@ -7316,8 +7316,9 @@ Run__11ScriptScene:
     bl GetState__C12UiStateOwner
     .byte 0x06, 0x28, 0x00, 0xD1, 0x85, 0xE0, 0x20, 0x68
     bl GetChoiceResult__C12UiStateOwner
-    .byte 0x01, 0x1C, 0x38, 0x1C, 0x00, 0xF0, 0xC2, 0xF9, 0x62, 0xE0, 0xDC, 0x21
-    .byte 0x89, 0x00, 0x78, 0x18, 0x00, 0x68
+    .byte 0x01, 0x1C, 0x38, 0x1C
+    bl Push__11ScriptScenei
+    .byte 0x62, 0xE0, 0xDC, 0x21, 0x89, 0x00, 0x78, 0x18, 0x00, 0x68
     bl GetStep__C23HardwareBlendController
     .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42
     .byte 0x01, 0x43, 0xCC, 0x0F, 0x00, 0x2C, 0x70, 0xD1, 0xE8, 0x22, 0x92, 0x00, 0xB9, 0x18, 0x01, 0x20
@@ -7438,28 +7439,6 @@ Run__11ScriptScene:
     .byte 0x08, 0x47, 0x00, 0x00
     .section .text.after_script_scene_transition_cleanup, "ax", %progbits
     .align 2, 0
-    .global func_080E09E4
-    .thumb_func
-func_080E09E4:
-    push {r4, lr}
-    adds r4, r1, #0
-    adds r1, r0, #0
-    adds r1, #0x30
-    movs r2, #0xe0
-    lsls r2, r2, #1
-    adds r3, r0, r2
-    ldr r2, [r3]
-    cmp r2, #0x63
-    bhi .Lauto_080E01A2
-    lsls r0, r2, #2
-    adds r0, r1, r0
-    str r4, [r0]
-    adds r0, r2, #1
-    str r0, [r3]
-    .Lauto_080E01A2:
-    pop {r4}
-    pop {r0}
-    bx r0
     .global func_080E0A08
     .thumb_func
 func_080E0A08:
@@ -22804,7 +22783,7 @@ Run__11ScriptScene: @ 0x080E0094
 	bl GetChoiceResult__C12UiStateOwner
 	adds r1, r0, #0
 	adds r0, r7, #0
-	bl func_080E09E4
+	bl Push__11ScriptScenei
 	movs r2, #0xd9
 	lsls r2, r2, #2
 	adds r1, r7, r2
@@ -23162,28 +23141,6 @@ Run__11ScriptScene: @ 0x080E0094
 
     .section .text.after_script_scene_transition_cleanup, "ax", %progbits
     .align 2, 0
-	thumb_func_start func_080E09E4
-func_080E09E4: @ 0x080E09E4
-	push {r4, lr}
-	adds r4, r1, #0
-	adds r1, r0, #0
-	adds r1, #0x30
-	movs r2, #0xe0
-	lsls r2, r2, #1
-	adds r3, r0, r2
-	ldr r2, [r3]
-	cmp r2, #0x63
-	bhi .L080E0A02
-	lsls r0, r2, #2
-	adds r0, r1, r0
-	str r4, [r0]
-	adds r0, r2, #1
-	str r0, [r3]
-.L080E0A02:
-	pop {r4}
-	pop {r0}
-	bx r0
-
 	thumb_func_start func_080E0A08
 func_080E0A08: @ 0x080E0A08
 	push {r4, r5, lr}

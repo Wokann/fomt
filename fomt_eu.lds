@@ -944,6 +944,7 @@ SECTIONS
         src/script_scene.o(.gnu.linkonce.t._._11ScriptScene);
         src/script_scene.o(.gnu.linkonce.t._._15ScriptSceneBase);
         src/script_scene.o(.gnu.linkonce.t._._21ScriptSceneTransition);
+        src/script_scene.o(.text.Push__11ScriptScenei);
         asm/code_linkonce.o(.text.after_script_scene_transition_cleanup);
         src/ui_text_window.o(.gnu.linkonce.t._._25UiTextWindowBorderCommand);
         asm/code_linkonce.o(.text.after_ui_text_window_border_cleanup);

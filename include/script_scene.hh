@@ -28,6 +28,7 @@ struct ScriptScene : ScriptSceneBase, HardwareBootstrap, AScriptEngine {
           wait_frames(0), waiting_entity(nullptr), unk_3A0(1), unk_3A1(0) {}
     virtual SceneTransitionOwner Run();
     virtual int OnCall(int id);
+    void Push(i32 value);
 
     SceneTransitionOwner continuation;
     // Run resolves this selector through a u16 table before the Mary index.
@@ -48,6 +49,11 @@ struct ScriptScene : ScriptSceneBase, HardwareBootstrap, AScriptEngine {
     u8 unk_3A0;
     u8 unk_3A1;
 };
+typedef char ScriptSceneStackOffsetCheck[
+    sizeof(ScriptSceneBase) + sizeof(HardwareBootstrap) + offsetof(AScriptEngine, stack) == 0x30 ? 1 : -1];
+typedef char ScriptSceneStackTopOffsetCheck[
+    sizeof(ScriptSceneBase) + sizeof(HardwareBootstrap) + offsetof(AScriptEngine, stack) +
+        offsetof(ScriptStack, top) == 0x1C0 ? 1 : -1];
 typedef char ScriptSceneSizeCheck[sizeof(ScriptScene) == 0x3A4 ? 1 : -1];
 typedef char ScriptSceneContinuationOffsetCheck[offsetof(ScriptScene, continuation) == 0x35C ? 1 : -1];
 typedef char ScriptSceneObjectOffsetCheck[offsetof(ScriptScene, game_object) == 0x368 ? 1 : -1];
