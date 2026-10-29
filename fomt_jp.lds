@@ -377,7 +377,7 @@ SECTIONS
             .text.GetEntity__C20GameSceneWorldPrefixUi
             .text.GetEntity__20GameSceneWorldPrefixUi
             .text.RemoveWorldEntity
-            .text.func_0801FD30
+            .text.GetWorldEntityAuxiliarySprites
             .text.IsWorldCameraMovementComplete
             .text.GetWorldCameraY
             .text.GetWorldCameraX
@@ -475,8 +475,9 @@ SECTIONS
         asm/code_0803A8A4.o(.text);
         src/map_data.o(.text.SelectMapDataId);
         asm/code_0803A8A4.o(.text.world_sprite_groups_constructor);
-        src/world_runtime.o(.text._._21GameSceneWorldUnk1020);
+        src/entity_auxiliary_sprites.o(.text._._22EntityAuxiliarySprites);
         asm/code_0803A8A4.o(.text.world_sprite_groups_after_destructor);
+        src/entity_auxiliary_sprites.o(.text.Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi);
         src/world_weather.o(
             .text.__22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi
             .text._._22GameSceneWeatherEffect);

@@ -811,9 +811,9 @@ EC void RemoveWorldEntity(GameSceneWorldPrefix & world, u32 index)
     }
 }
 
-EC void * func_0801FD30(GameSceneWorldPrefix & world)
+EC EntityAuxiliarySprites * GetWorldEntityAuxiliarySprites(GameSceneWorldPrefix & world)
 {
-    return world.data.unk_1020;
+    return world.data.entity_auxiliary_sprites;
 }
 
 EC bool IsWorldCameraMovementComplete(GameSceneWorldPrefix const & world)

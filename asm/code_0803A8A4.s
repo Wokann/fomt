@@ -366,44 +366,6 @@ func_0803AA6C:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803AE58
-    .thumb_func
-func_0803AE58:
-    push	{r4, r5, r6, lr}
-    mov	r6, r8
-    push	{r6}
-    sub	sp, #20
-    ldr	r5, [sp, #40]	@ 0x28
-    movs	r4, #44	@ 0x2c
-    muls	r4, r5
-    adds	r4, #4
-    adds	r4, r0, r4
-    ldrh	r5, [r4, #40]	@ 0x28
-    mov	r8, r5
-    movs	r5, #128	@ 0x80
-    lsls	r5, r5, #8
-    ldr	r6, [r0, #0]
-    adds	r0, #136	@ 0x88
-    str	r5, [sp, #0]
-    str	r4, [sp, #4]
-    str	r6, [sp, #8]
-    mov	r4, r8
-    str	r4, [sp, #12]
-    str	r0, [sp, #16]
-    adds	r0, r1, #0
-    adds	r1, r2, #0
-    adds	r2, r3, #0
-    movs	r3, #170	@ 0xaa
-    ldr r4, .Ljp_0803AC30
-    bl _call_via_r4
-    add	sp, #20
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-.Ljp_0803AC30:
-    .4byte SubmitWorldSpriteRecords
     .section .text.world_weather_tile_uploads, "ax", %progbits
     .global func_0803AEBC
     .thumb_func
@@ -6103,44 +6065,6 @@ func_0803ACD8:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803AE58
-    .thumb_func
-func_0803AE58:
-    push	{r4, r5, r6, lr}
-    mov	r6, r8
-    push	{r6}
-    sub	sp, #20
-    ldr	r5, [sp, #40]	@ 0x28
-    movs	r4, #44	@ 0x2c
-    muls	r4, r5
-    adds	r4, #4
-    adds	r4, r0, r4
-    ldrh	r5, [r4, #40]	@ 0x28
-    mov	r8, r5
-    movs	r5, #128	@ 0x80
-    lsls	r5, r5, #8
-    ldr	r6, [r0, #0]
-    adds	r0, #136	@ 0x88
-    str	r5, [sp, #0]
-    str	r4, [sp, #4]
-    str	r6, [sp, #8]
-    mov	r4, r8
-    str	r4, [sp, #12]
-    str	r0, [sp, #16]
-    adds	r0, r1, #0
-    adds	r1, r2, #0
-    adds	r2, r3, #0
-    movs	r3, #170	@ 0xaa
-    ldr r4, .Leu_0803AEB0
-    bl _call_via_r4
-    add	sp, #20
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-.Leu_0803AEB0:
-    .4byte SubmitWorldSpriteRecords
     .section .text.world_weather_tile_uploads, "ax", %progbits
     .global func_0803B128
     .thumb_func
@@ -11875,44 +11799,6 @@ func_0803ACD8:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803AE58
-    .thumb_func
-func_0803AE58:
-    push	{r4, r5, r6, lr}
-    mov	r6, r8
-    push	{r6}
-    sub	sp, #20
-    ldr	r5, [sp, #40]	@ 0x28
-    movs	r4, #44	@ 0x2c
-    muls	r4, r5
-    adds	r4, #4
-    adds	r4, r0, r4
-    ldrh	r5, [r4, #40]	@ 0x28
-    mov	r8, r5
-    movs	r5, #128	@ 0x80
-    lsls	r5, r5, #8
-    ldr	r6, [r0, #0]
-    adds	r0, #136	@ 0x88
-    str	r5, [sp, #0]
-    str	r4, [sp, #4]
-    str	r6, [sp, #8]
-    mov	r4, r8
-    str	r4, [sp, #12]
-    str	r0, [sp, #16]
-    adds	r0, r1, #0
-    adds	r1, r2, #0
-    adds	r2, r3, #0
-    movs	r3, #170	@ 0xaa
-    ldr r4, .Lde_0803ADB0
-    bl _call_via_r4
-    add	sp, #20
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-.Lde_0803ADB0:
-    .4byte SubmitWorldSpriteRecords
     .section .text.world_weather_tile_uploads, "ax", %progbits
     .global func_0803B128
     .thumb_func
@@ -17621,44 +17507,6 @@ func_0803ACD8:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_0803AE58
-    .thumb_func
-func_0803AE58:
-    push	{r4, r5, r6, lr}
-    mov	r6, r8
-    push	{r6}
-    sub	sp, #20
-    ldr	r5, [sp, #40]	@ 0x28
-    movs	r4, #44	@ 0x2c
-    muls	r4, r5
-    adds	r4, #4
-    adds	r4, r0, r4
-    ldrh	r5, [r4, #40]	@ 0x28
-    mov	r8, r5
-    movs	r5, #128	@ 0x80
-    lsls	r5, r5, #8
-    ldr	r6, [r0, #0]
-    adds	r0, #136	@ 0x88
-    str	r5, [sp, #0]
-    str	r4, [sp, #4]
-    str	r6, [sp, #8]
-    mov	r4, r8
-    str	r4, [sp, #12]
-    str	r0, [sp, #16]
-    adds	r0, r1, #0
-    adds	r1, r2, #0
-    adds	r2, r3, #0
-    movs	r3, #170	@ 0xaa
-    ldr r4, .Lus_0803AE9C
-    bl _call_via_r4
-    add	sp, #20
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-.Lus_0803AE9C:
-    .4byte SubmitWorldSpriteRecords
     .section .text.world_weather_tile_uploads, "ax", %progbits
     .global func_0803B128
     .thumb_func
@@ -23183,9 +23031,9 @@ func_0803EE50:
     .syntax unified
     .thumb
     .align 2, 0
-    .global __21GameSceneWorldUnk1020P10GameObject
+    .global __22EntityAuxiliarySpritesP10GameObject
     .thumb_func
-__21GameSceneWorldUnk1020P10GameObject:
+__22EntityAuxiliarySpritesP10GameObject:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9

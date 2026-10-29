@@ -66,6 +66,7 @@ struct Location;
 struct GameStateClock;
 struct IndexedResourceArchive;
 struct GameSceneScriptRequest;
+struct EntityAuxiliarySprites;
 
 struct GameObject
 {
@@ -89,7 +90,7 @@ struct GameObject
     virtual void ClearSpritePaletteResourceFlag(u32 index);
     virtual i32 GetSpritePaletteBank(u32 index);
     virtual void SetSpritePaletteColors(u8 const * data, u32 palette_resource, u8 unk);
-    virtual void * vfunc_58();
+    virtual EntityAuxiliarySprites * GetEntityAuxiliarySprites();
     virtual IndexedResourceArchive * vfunc_5C();
     virtual IndexedResourceArchive * vfunc_60();
     virtual IndexedResourceArchive * vfunc_64();

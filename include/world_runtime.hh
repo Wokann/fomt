@@ -13,6 +13,7 @@
 struct AEntity;
 struct GameObject;
 struct GameSceneWorldPrefix;
+struct EntityAuxiliarySprites;
 
 // The native palette cache has 22 resource records and 13 retained banks.
 // Keep the remaining record bytes and flags opaque until their users are recovered.
@@ -87,14 +88,6 @@ struct GameSceneWorldUnk1028 {
     u8 unk_09;
 };
 
-// This native world member stores three resource groups and a counted
-// sixteen-byte index list. The constructor still uses native assembly.
-struct GameSceneWorldUnk1020Entry {
-    IndexedResourceGroupResult group;
-    HardwareStateEntry tiles;
-    u16 tile_index;
-};
-
 struct GameScenePaletteIndices {
 private:
     void Initialize(u32 input_count, u8 const & initial)
@@ -139,26 +132,6 @@ public:
 typedef char GameScenePaletteIndicesSizeCheck[sizeof(GameScenePaletteIndices) == 20 ? 1 : -1];
 typedef char GameScenePaletteIndexValuesCheck[offsetof(GameScenePaletteIndices, values) == 4 ? 1 : -1];
 
-struct GameSceneWorldUnk1020 {
-    GameObject * world;
-    GameSceneWorldUnk1020Entry entries[3];
-    GameScenePaletteIndices indices;
-    u8 unk_9C;
-
-    // The shared native constructor implements this real C++ ABI.
-    explicit GameSceneWorldUnk1020(GameObject * source);
-    ~GameSceneWorldUnk1020();
-};
-
-typedef char GameSceneWorldUnk1020EntrySizeCheck[sizeof(GameSceneWorldUnk1020Entry) == 44 ? 1 : -1];
-typedef char GameSceneWorldUnk1020EntryTilesCheck[offsetof(GameSceneWorldUnk1020Entry, tiles) == 32 ? 1 : -1];
-typedef char GameSceneWorldUnk1020EntryTileIndexCheck[offsetof(GameSceneWorldUnk1020Entry, tile_index) == 40 ? 1 : -1];
-typedef char GameSceneWorldUnk1020EntriesCheck[offsetof(GameSceneWorldUnk1020, entries) == 4 ? 1 : -1];
-typedef char GameSceneWorldUnk1020IndicesCheck[offsetof(GameSceneWorldUnk1020, indices) == 0x88 ? 1 : -1];
-typedef char GameSceneWorldUnk1020IndexValuesCheck[offsetof(GameSceneWorldUnk1020, indices.values) == 0x8C ? 1 : -1];
-typedef char GameSceneWorldUnk1020FlagCheck[offsetof(GameSceneWorldUnk1020, unk_9C) == 0x9C ? 1 : -1];
-typedef char GameSceneWorldUnk1020SizeCheck[sizeof(GameSceneWorldUnk1020) == 0xA0 ? 1 : -1];
-
 // The native constructor receives this member at world+4, not the complete
 // world object. Each archive has its own source and reverse-order destruction.
 // The constructor and destructor bodies remain native assembly under their
@@ -181,7 +154,7 @@ struct GameSceneWorldData {
     IndexedResourceArchive unk_F90;
     IndexedResourceArchive unk_FC0;
     IndexedResourceArchive unk_FF0;
-    GameSceneWorldUnk1020 * unk_1020;
+    EntityAuxiliarySprites * entity_auxiliary_sprites;
     void * unk_1024;
     GameSceneWorldUnk1028 unk_1028;
 
@@ -205,7 +178,7 @@ typedef char GameSceneWorldDataPaletteCacheCheck[offsetof(GameSceneWorldData, pa
 typedef char GameSceneWorldArchiveSizeCheck[sizeof(IndexedResourceArchive) == 0x30 ? 1 : -1];
 typedef char GameSceneWorldDataActorArchiveCheck[offsetof(GameSceneWorldData, actor_archive) == 0xDB0 ? 1 : -1];
 typedef char GameSceneWorldDataLastArchiveCheck[offsetof(GameSceneWorldData, unk_FF0) == 0xFF0 ? 1 : -1];
-typedef char GameSceneWorldDataUnknownObjectCheck[offsetof(GameSceneWorldData, unk_1020) == 0x1020 ? 1 : -1];
+typedef char GameSceneWorldDataEntityAuxiliarySpritesCheck[offsetof(GameSceneWorldData, entity_auxiliary_sprites) == 0x1020 ? 1 : -1];
 typedef char GameSceneWorldDataUnkRecordCheck[offsetof(GameSceneWorldData, unk_1028) == 0x1028 ? 1 : -1];
 typedef char GameSceneWorldDataSizeCheck[sizeof(GameSceneWorldData) == 0x1034 ? 1 : -1];
 

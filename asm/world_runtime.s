@@ -339,7 +339,7 @@ _._18GameSceneWorldData:
 	cmp r0, #0
 	beq .L080AC8B8
 	movs r1, #3
-	bl _._21GameSceneWorldUnk1020
+	bl _._22EntityAuxiliarySprites
 .L080AC8B8:
 	movs r2, #0xff
 	lsls r2, r2, #4

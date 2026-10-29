@@ -616,7 +616,7 @@ extern void func_0801B5C0(void);
 extern void ClearWorldSpritePaletteResourceFlag(void);
 extern void GetWorldSpritePaletteBank(void);
 extern void SetWorldSpritePaletteColors(void);
-extern void func_0801FD30(void);
+extern void GetWorldEntityAuxiliarySprites(void);
 extern void func_0801FC54(void);
 extern void func_0801FC48(void);
 extern void func_0801FC60(void);
@@ -1090,7 +1090,7 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     ClearWorldSpritePaletteResourceFlag,
     GetWorldSpritePaletteBank,
     SetWorldSpritePaletteColors,
-    func_0801FD30,
+    GetWorldEntityAuxiliarySprites,
     func_0801FC54,
     func_0801FC48,
     func_0801FC60,

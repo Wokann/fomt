@@ -6646,7 +6646,7 @@ func_080385B0:
     str	r5, [sp, #0]
     ldr	r2, [sp, #60]	@ 0x3c
     ldr	r3, [sp, #64]	@ 0x40
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .Ljp_080384C4:
     add	sp, #80	@ 0x50
     pop	{r3, r4, r5}
@@ -17202,7 +17202,7 @@ func_080385B0:
     str	r5, [sp, #0]
     ldr	r2, [sp, #60]	@ 0x3c
     ldr	r3, [sp, #64]	@ 0x40
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .Leu_08038744:
     add	sp, #80	@ 0x50
     pop	{r3, r4, r5}
@@ -27927,7 +27927,7 @@ func_080385B0:
     str	r5, [sp, #0]
     ldr	r2, [sp, #60]	@ 0x3c
     ldr	r3, [sp, #64]	@ 0x40
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .Lde_08038644:
     add	sp, #80	@ 0x50
     pop	{r3, r4, r5}
@@ -38651,7 +38651,7 @@ func_080385B0:
     str	r5, [sp, #0]
     ldr	r2, [sp, #60]	@ 0x3c
     ldr	r3, [sp, #64]	@ 0x40
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .Lus_08038730:
     add	sp, #80	@ 0x50
     pop	{r3, r4, r5}

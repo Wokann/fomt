@@ -148,7 +148,7 @@ typedef char GameSceneWorldMapCheck[offsetof(GameSceneWorldPrefix, data.map.valu
 typedef char GameSceneWorldEntitiesCheck[offsetof(GameSceneWorldPrefix, data.entities) == 8 ? 1 : -1];
 typedef char GameSceneWorldPaletteCacheCheck[offsetof(GameSceneWorldPrefix, data.palette_cache) == 0x19C ? 1 : -1];
 typedef char GameSceneWorldActorArchiveCheck[offsetof(GameSceneWorldPrefix, data.actor_archive) == 0xDB4 ? 1 : -1];
-typedef char GameSceneWorldUnknownObjectCheck[offsetof(GameSceneWorldPrefix, data.unk_1020) == 0x1024 ? 1 : -1];
+typedef char GameSceneWorldEntityAuxiliarySpritesCheck[offsetof(GameSceneWorldPrefix, data.entity_auxiliary_sprites) == 0x1024 ? 1 : -1];
 typedef char GameSceneWorldWeatherOwnerSizeCheck[sizeof(SmartPtr<GameSceneWeatherEffect>) == 4 ? 1 : -1];
 typedef char GameSceneWorldWeatherOwnerCheck[offsetof(GameSceneWorldPrefix, weather_effect) == 0x107C ? 1 : -1];
 typedef char GameSceneWorldSaveCheck[offsetof(GameSceneWorldPrefix, save) == 0x1038 ? 1 : -1];
@@ -238,7 +238,7 @@ IndexedResourceArchive * func_0801FC60(GameSceneWorldPrefix & world);
 IndexedResourceArchive * GetWorldActorAnimationArchive(GameSceneWorldPrefix & world);
 GameSceneWorldMap * func_0801FC9C(GameSceneWorldPrefix & world);
 GameSceneWorldMap * func_0801FCA0(GameSceneWorldPrefix & world);
-void * func_0801FD30(GameSceneWorldPrefix & world);
+EntityAuxiliarySprites * GetWorldEntityAuxiliarySprites(GameSceneWorldPrefix & world);
 
 GameStateClock const * GetWorldClock(GameSceneWorldPrefix const & world);
 void RemoveWorldEntity(GameSceneWorldPrefix & world, u32 index);

@@ -16968,7 +16968,7 @@ func_080AC424: @ 080AC424
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
-	bl __21GameSceneWorldUnk1020P10GameObject
+	bl __22EntityAuxiliarySpritesP10GameObject
 	ldr r1, .Ljp_map_080AC520 @ =0x00001024
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -16978,7 +16978,7 @@ func_080AC424: @ 080AC424
 	cmp r0, #0
 	beq .Ljp_map_080AC4A2
 	movs r1, #3
-	bl _._21GameSceneWorldUnk1020
+	bl _._22EntityAuxiliarySprites
 .Ljp_map_080AC4A2:
 	str r4, [r5]
 	ldr r0, .Ljp_map_080AC524 @ =0x00001028
@@ -18195,7 +18195,7 @@ func_080ACDE8:
 	cmp r0, #0
 	beq .Ljp_entity_080ACE2A
 	movs r1, #3
-	bl _._21GameSceneWorldUnk1020
+	bl _._22EntityAuxiliarySprites
 .Ljp_entity_080ACE2A:
 	str r5, [r4]
 	ldr r0, .Ljp_entity_080ACED0 @ =0x00001028
@@ -18220,7 +18220,7 @@ func_080ACDE8:
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
-	bl __21GameSceneWorldUnk1020P10GameObject
+	bl __22EntityAuxiliarySpritesP10GameObject
 	ldr r1, .Ljp_entity_080ACECC @ =0x00001024
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -18230,7 +18230,7 @@ func_080ACDE8:
 	cmp r0, #0
 	beq .Ljp_entity_080ACE76
 	movs r1, #3
-	bl _._21GameSceneWorldUnk1020
+	bl _._22EntityAuxiliarySprites
 .Ljp_entity_080ACE76:
 	str r4, [r5]
 	movs r0, #4
@@ -93585,7 +93585,7 @@ func_080AC9EC: @ 0x080AC9EC
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
-	bl __21GameSceneWorldUnk1020P10GameObject
+	bl __22EntityAuxiliarySpritesP10GameObject
 	ldr r1, .L080ACAE8 @ =0x00001024
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -93595,7 +93595,7 @@ func_080AC9EC: @ 0x080AC9EC
 	cmp r0, #0
 	beq .L080ACA6A
 	movs r1, #3
-	bl _._21GameSceneWorldUnk1020
+	bl _._22EntityAuxiliarySprites
 .L080ACA6A:
 	str r4, [r5]
 	ldr r0, .L080ACAEC @ =0x00001028
@@ -94811,7 +94811,7 @@ func_080AD3B0: @ 0x080AD3B0
 	cmp r0, #0
 	beq .L080AD3F2
 	movs r1, #3
-	bl _._21GameSceneWorldUnk1020
+	bl _._22EntityAuxiliarySprites
 .L080AD3F2:
 	str r5, [r4]
 	ldr r0, .L080AD498 @ =0x00001028
@@ -94836,7 +94836,7 @@ func_080AD3B0: @ 0x080AD3B0
 	movs r0, #0xa0
 	bl __builtin_new
 	adds r1, r6, #0
-	bl __21GameSceneWorldUnk1020P10GameObject
+	bl __22EntityAuxiliarySpritesP10GameObject
 	ldr r1, .L080AD494 @ =0x00001024
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -94846,7 +94846,7 @@ func_080AD3B0: @ 0x080AD3B0
 	cmp r0, #0
 	beq .L080AD43E
 	movs r1, #3
-	bl _._21GameSceneWorldUnk1020
+	bl _._22EntityAuxiliarySprites
 .L080AD43E:
 	str r4, [r5]
 	movs r0, #4

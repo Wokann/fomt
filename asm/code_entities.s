@@ -20884,7 +20884,7 @@ Draw__22PlayerSpriteControllerPv:
     str	r2, [sp, #0]
     ldr	r2, [sp, #92]
     adds	r3, r6, #0
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .Ljp_0802B36A:
     ldr	r0, [r5, #20]
     subs	r1, r4, r0
@@ -22305,7 +22305,7 @@ func_0802BD78:
     str r2, [sp]
     ldr r2, [sp, #0x54]
     adds r3, r7, #0
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .Ljp_0802BE30:
     mov r3, sl
     ldr r0, [r3, #0x14]
@@ -53770,7 +53770,7 @@ Draw__22PlayerSpriteControllerPv:
     str	r2, [sp, #0]
     ldr	r2, [sp, #92]
     adds	r3, r6, #0
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .L802B5D6:
     ldr	r0, [r5, #20]
     subs	r1, r4, r0
@@ -55183,7 +55183,7 @@ func_0802BFE4: @ 0x0802BFE4
     str r2, [sp]
     ldr r2, [sp, #0x54]
     adds r3, r7, #0
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .L0802C09C:
     mov r3, sl
     ldr r0, [r3, #0x14]

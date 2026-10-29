@@ -3,13 +3,7 @@
 #include "entity_actor.hh"
 #include "world_runtime.hh"
 #include "game_world.hh"
-
-GameSceneWorldUnk1020::~GameSceneWorldUnk1020()
-{
-    // Match native cleanup: release the first index, then destroy all three
-    // retained tile entries in reverse member-array order.
-    world->ClearSpritePaletteResourceFlag(indices[0]);
-}
+#include "entity_auxiliary_sprites.hh"
 
 EC i32 GetWorldSpritePaletteBank(GameSceneWorldPrefix & world, u32 index)
 {

@@ -484,7 +484,7 @@ Draw__22EntitySpriteControllerPv:
     adds	r3, r2, r3
     str	r4, [sp, #0]
     ldr	r2, [sp, #64]	@ 0x40
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .Ljp_08032684:
     add	sp, #80	@ 0x50
     pop	{r3, r4, r5}
@@ -5277,7 +5277,7 @@ Draw__22EntitySpriteControllerPv:
     adds	r3, r2, r3
     str	r4, [sp, #0]
     ldr	r2, [sp, #64]	@ 0x40
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .Leu_08032904:
     add	sp, #80	@ 0x50
     pop	{r3, r4, r5}
@@ -9272,7 +9272,7 @@ Draw__22EntitySpriteControllerPv:
     adds	r3, r2, r3
     str	r4, [sp, #0]
     ldr	r2, [sp, #64]	@ 0x40
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .Lde_08032804:
     add	sp, #80	@ 0x50
     pop	{r3, r4, r5}
@@ -13266,7 +13266,7 @@ Draw__22EntitySpriteControllerPv:
     adds	r3, r2, r3
     str	r4, [sp, #0]
     ldr	r2, [sp, #64]	@ 0x40
-    bl func_0803AE58
+    bl Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi
 .Lus_080328F0:
     add	sp, #80	@ 0x50
     pop	{r3, r4, r5}
