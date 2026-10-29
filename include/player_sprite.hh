@@ -19,6 +19,15 @@ struct PlayerSpriteSlot {
     GameSceneIndexedSprite sprite;
     // Native insertion captures the player's signed Q16 integer coordinates.
     Vec2 position;
+
+    void Update()
+    {
+        if (active) {
+            IndexedResourceUpdateResult const & result = sprite.UpdateAnimation();
+            if (result.flags.wrapped)
+                active = false;
+        }
+    }
 };
 
 // Only the first count records are live. Insertion constructs one record;
@@ -37,6 +46,10 @@ struct PlayerSpriteSlots {
     PlayerSpriteSlot * End()
     {
         return &reinterpret_cast<PlayerSpriteSlot *>(storage)[count];
+    }
+    PlayerSpriteSlot & operator[](u32 index)
+    {
+        return Data()[index];
     }
     ~PlayerSpriteSlots()
     {
@@ -62,7 +75,7 @@ struct PlayerSpriteController : EntitySpriteController {
     virtual void Update();
     virtual void Draw(void * draw_context);
 
-    GameSceneIndexedSprite unk_8C;
+    GameSceneIndexedSprite held_actor_sprite;
     PlayerSpriteSlots slots;
     u8 next_slot;
     u8 unk_281;
@@ -73,7 +86,7 @@ typedef char PlayerSpriteSlotSpriteCheck[offsetof(PlayerSpriteSlot, sprite) == 4
 typedef char PlayerSpriteSlotPositionCheck[offsetof(PlayerSpriteSlot, position) == 0x44 ? 1 : -1];
 typedef char PlayerSpriteSlotsSizeCheck[sizeof(PlayerSpriteSlots) == 0x1B4 ? 1 : -1];
 typedef char PlayerSpriteControllerSizeCheck[sizeof(PlayerSpriteController) == 0x284 ? 1 : -1];
-typedef char PlayerSpriteControllerSpriteCheck[offsetof(PlayerSpriteController, unk_8C) == 0x8C ? 1 : -1];
+typedef char PlayerSpriteControllerSpriteCheck[offsetof(PlayerSpriteController, held_actor_sprite) == 0x8C ? 1 : -1];
 typedef char PlayerSpriteControllerSlotsCheck[offsetof(PlayerSpriteController, slots) == 0xCC ? 1 : -1];
 typedef char PlayerSpriteControllerSlotIndexCheck[offsetof(PlayerSpriteController, next_slot) == 0x280 ? 1 : -1];
 typedef char PlayerSpriteControllerFlagCheck[offsetof(PlayerSpriteController, unk_281) == 0x281 ? 1 : -1];

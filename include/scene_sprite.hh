@@ -42,6 +42,20 @@ struct GameSceneIndexedSprite : GameSceneSpriteBase {
     u8 unk_3D;
     u8 unk_3E;
     u8 unk_3F;
+
+    IndexedResourceUpdateResult UpdateAnimation()
+    {
+        if (unk_3F == 0) {
+            IndexedResourceUpdateResult result = UpdateIndexedResourceHandle(&handle);
+            if (result.flags.group_changed)
+                unk_3C = 1;
+            return result;
+        }
+        unk_3F = 0;
+        IndexedResourceUpdateResult initial;
+        initial.value = INDEXED_RESOURCE_GROUP_CHANGED;
+        return initial;
+    }
 };
 
 typedef char GameSceneSpriteBaseSizeCheck[sizeof(GameSceneSpriteBase) == 0x28 ? 1 : -1];

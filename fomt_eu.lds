@@ -377,7 +377,8 @@ SECTIONS
         src/actor_terrain.o(.text);
         src/player_collection_events.o(.text);
         src/player_sprite.o(.text.__22PlayerSpriteControllerP11PlayerActor);
-        asm/code_entities.o(.text.player_sprite_after_constructor);
+        src/player_sprite.o(.text.Update__22PlayerSpriteController);
+        asm/code_entities.o(.text.player_sprite_after_update);
         src/player_actor.o(.text.GetUpdateSuspended__C11PlayerActor .text.SetUpdateSuspended__11PlayerActorUc);
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);

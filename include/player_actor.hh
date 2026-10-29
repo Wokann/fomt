@@ -53,7 +53,20 @@ struct PlayerActor : AActorEntity {
     u8 unk_30[4];
     GameStateSaveImage * save_image;
     Farmer * farmer;
-    u8 unk_3C[0x86];
+    bool IsHoldingActorGraphic() const
+    {
+        u8 const & state = held_actor_graphic_state;
+        bool holding = false;
+        if (state == 1)
+            holding = true;
+        return holding;
+    }
+
+    u8 unk_3C[0x40];
+    u16 unk_7C;
+    u8 unk_7E[0x0A];
+    u8 held_actor_graphic_state;
+    u8 unk_89[0x39];
     u8 update_suspended;
 
 private:
@@ -62,6 +75,8 @@ private:
 typedef char PlayerActorSaveImageOffsetCheck[offsetof(PlayerActor, save_image) == 0x34 ? 1 : -1];
 typedef char PlayerActorFarmerOffsetCheck[offsetof(PlayerActor, farmer) == 0x38 ? 1 : -1];
 typedef char PlayerActorBaseSizeCheck[sizeof(AActorEntity) == 0x30 ? 1 : -1];
+typedef char PlayerActorGraphicStateOffsetCheck[offsetof(PlayerActor, held_actor_graphic_state) == 0x88 ? 1 : -1];
+
 typedef char PlayerActorUpdateStateOffsetCheck[offsetof(PlayerActor, update_suspended) == 0xC2 ? 1 : -1];
 
 EXTERN_C
