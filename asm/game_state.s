@@ -3442,7 +3442,7 @@ func_08013EF8:
     bl __builtin_new
     add r1, sp, #0x10
     mov r2, r8
-    bl func_0803B6FC
+    bl __21ScriptSceneTransitionR20SceneTransitionOwnerUi
     adds r5, r6, #0
     adds r5, #0xa4
     adds r4, r0, #0
@@ -18492,7 +18492,7 @@ func_08013EF8: @ 0x08013EF8
     bl __builtin_new
     add r1, sp, #0x10
     mov r2, r8
-    bl func_0803B6FC
+    bl __21ScriptSceneTransitionR20SceneTransitionOwnerUi
     adds r5, r6, #0
     adds r5, #0xa4
     adds r4, r0, #0

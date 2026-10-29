@@ -366,27 +366,10 @@ func_0803AEBC:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .section .text.scene_text_variables_after, "ax", %progbits
-    .global func_0803B6FC
+    .section .text.script_scene_create, "ax", %progbits
+    .global CreateScene__21ScriptSceneTransition
     .thumb_func
-func_0803B6FC:
-    push	{r4, lr}
-    ldr r3, .Ljp_0803B4A8
-    str	r3, [r0, #0]
-    ldr	r4, [r1, #0]
-    movs	r3, #0
-    str	r3, [r1, #0]
-    str	r4, [r0, #4]
-    str	r2, [r0, #8]
-    pop	{r4}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Ljp_0803B4A8:
-    .4byte vtable_unk_080E7748
-    .global func_0803B718
-    .thumb_func
-func_0803B718:
+CreateScene__21ScriptSceneTransition:
     push	{r4, r5, r6, r7, lr}
     sub	sp, #20
     adds	r7, r0, #0
@@ -527,6 +510,8 @@ func_0803B718:
     .4byte vtable_unk_080E7728
 .Ljp_0803B5D0:
     .4byte 0x000003A1
+    .section .text.scene_controls_native, "ax", %progbits
+    .align 2, 0
     .global func_0803B840
     .thumb_func
 func_0803B840:
@@ -5729,27 +5714,10 @@ func_0803B128:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .section .text.scene_text_variables_after, "ax", %progbits
-    .global func_0803B6FC
+    .section .text.script_scene_create, "ax", %progbits
+    .global CreateScene__21ScriptSceneTransition
     .thumb_func
-func_0803B6FC:
-    push	{r4, lr}
-    ldr r3, .Leu_0803B728
-    str	r3, [r0, #0]
-    ldr	r4, [r1, #0]
-    movs	r3, #0
-    str	r3, [r1, #0]
-    str	r4, [r0, #4]
-    str	r2, [r0, #8]
-    pop	{r4}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Leu_0803B728:
-    .4byte vtable_unk_080E7748
-    .global func_0803B718
-    .thumb_func
-func_0803B718:
+CreateScene__21ScriptSceneTransition:
     push	{r4, r5, r6, r7, lr}
     sub	sp, #20
     adds	r7, r0, #0
@@ -5890,6 +5858,8 @@ func_0803B718:
     .4byte vtable_unk_080E7728
 .Leu_0803B850:
     .4byte 0x000003A1
+    .section .text.scene_controls_native, "ax", %progbits
+    .align 2, 0
     .global func_0803B840
     .thumb_func
 func_0803B840:
@@ -11127,27 +11097,10 @@ func_0803B128:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .section .text.scene_text_variables_after, "ax", %progbits
-    .global func_0803B6FC
+    .section .text.script_scene_create, "ax", %progbits
+    .global CreateScene__21ScriptSceneTransition
     .thumb_func
-func_0803B6FC:
-    push	{r4, lr}
-    ldr r3, .Lde_0803B628
-    str	r3, [r0, #0]
-    ldr	r4, [r1, #0]
-    movs	r3, #0
-    str	r3, [r1, #0]
-    str	r4, [r0, #4]
-    str	r2, [r0, #8]
-    pop	{r4}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Lde_0803B628:
-    .4byte vtable_unk_080E7748
-    .global func_0803B718
-    .thumb_func
-func_0803B718:
+CreateScene__21ScriptSceneTransition:
     push	{r4, r5, r6, r7, lr}
     sub	sp, #20
     adds	r7, r0, #0
@@ -11288,6 +11241,8 @@ func_0803B718:
     .4byte vtable_unk_080E7728
 .Lde_0803B750:
     .4byte 0x000003A1
+    .section .text.scene_controls_native, "ax", %progbits
+    .align 2, 0
     .global func_0803B840
     .thumb_func
 func_0803B840:
@@ -16499,27 +16454,10 @@ func_0803B128:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .section .text.scene_text_variables_after, "ax", %progbits
-    .global func_0803B6FC
+    .section .text.script_scene_create, "ax", %progbits
+    .global CreateScene__21ScriptSceneTransition
     .thumb_func
-func_0803B6FC:
-    push	{r4, lr}
-    ldr r3, .Lus_0803B714
-    str	r3, [r0, #0]
-    ldr	r4, [r1, #0]
-    movs	r3, #0
-    str	r3, [r1, #0]
-    str	r4, [r0, #4]
-    str	r2, [r0, #8]
-    pop	{r4}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Lus_0803B714:
-    .4byte vtable_unk_080E7748
-    .global func_0803B718
-    .thumb_func
-func_0803B718:
+CreateScene__21ScriptSceneTransition:
     push	{r4, r5, r6, r7, lr}
     sub	sp, #20
     adds	r7, r0, #0
@@ -16660,6 +16598,8 @@ func_0803B718:
     .4byte vtable_unk_080E7728
 .Lus_0803B83C:
     .4byte 0x000003A1
+    .section .text.scene_controls_native, "ax", %progbits
+    .align 2, 0
     .global func_0803B840
     .thumb_func
 func_0803B840:
