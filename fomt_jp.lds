@@ -415,7 +415,8 @@ SECTIONS
         src/actor_facing.o(.text.GetActorInteractionBounds);
         asm/code_entities.o(.text.player_actor_after_water_capacity);
         src/player_pedometer.o(.text.UpdatePlayerPedometer);
-        asm/code_entities.o(.text.player_actor_after_pedometer);
+        src/actor_terrain.o(.text);
+        asm/code_entities.o(.text.player_actor_after_terrain);
         src/player_actor.o(.text.GetUpdateSuspended__C11PlayerActor .text.SetUpdateSuspended__11PlayerActorUc);
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);
