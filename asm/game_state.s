@@ -9126,7 +9126,7 @@ func_080182C8:
     cmp r0, #0
     beq .Lauto_0801821E
     add r1, sp, #0x14
-    bl func_0803B0FC
+    bl Draw__22GameSceneWeatherEffectP21WorldSpriteDrawBuffer
     .Lauto_0801821E:
     ldr r0, [pc, #0x9c]
     add r0, sb
@@ -25282,7 +25282,7 @@ func_080182C8: @ 0x080182C8
     cmp r0, #0
     beq .L0801848A
     add r1, sp, #0x14
-    bl func_0803B368
+    bl Draw__22GameSceneWeatherEffectP21WorldSpriteDrawBuffer
 .L0801848A:
     ldr r0, .L08018528 @ =0x00001028
     add r0, sb

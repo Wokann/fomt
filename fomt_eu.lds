@@ -437,7 +437,7 @@ SECTIONS
             .text._._22GameSceneWeatherEffect);
         asm/code_0803A8A4.o(.text.world_weather_tile_uploads);
         src/world_weather.o(.text.UpdateParticles__22GameSceneWeatherEffect);
-        asm/code_0803A8A4.o(.text.world_weather_after_update);
+        src/world_weather.o(.text.Draw__22GameSceneWeatherEffectP21WorldSpriteDrawBuffer);
         src/world_weather.o(
             .text.__20WorldWeatherParticleRC21IndexedResourceHandleii
             .text.ResetPosition__20WorldWeatherParticleii);

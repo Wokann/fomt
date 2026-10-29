@@ -7,6 +7,7 @@
 #include "world_runtime.hh"
 
 struct GameObject;
+struct WorldSpriteDrawBuffer;
 struct GameSceneWorldPrefix;
 
 struct WorldWeatherMotion {
@@ -22,6 +23,7 @@ struct WorldWeatherRecords {
     T * Begin() { return reinterpret_cast<T *>(storage); }
     T * End() { return &reinterpret_cast<T *>(storage)[count]; }
     T & operator[](u32 index) { return reinterpret_cast<T *>(storage)[index]; }
+    T const & operator[](u32 index) const { return reinterpret_cast<T const *>(storage)[index]; }
 
     u32 count;
     u32 storage[(Capacity * sizeof(T) + 3) / 4];
@@ -55,6 +57,7 @@ struct GameSceneWeatherEffect {
         Kind kind, u32 particle_count);
     ~GameSceneWeatherEffect();
     void UpdateParticles();
+    void Draw(WorldSpriteDrawBuffer * buffer);
 
     GameObject * world;
     WorldWeatherRecords<WorldWeatherResource, 5> resources;

@@ -1,6 +1,7 @@
 #include "world_weather.hh"
 #include "game_world.hh"
 #include "entity_ui.hh"
+#include "scene_sprite.hh"
 #include <memory>
 #include <stdlib.h>
 
@@ -117,6 +118,47 @@ void GameSceneWeatherEffect::UpdateParticles()
         }
         particle.x_q16 += motion[group].x_q16;
         particle.y_q16 += motion[group].y_q16;
+    }
+}
+
+void GameSceneWeatherEffect::Draw(WorldSpriteDrawBuffer * buffer)
+{
+    // Alternate particle ranges on successive draw calls.
+    u32 count = particles.count;
+    u32 half = count / 2;
+    u32 first;
+    u32 end;
+    switch (draw_second_half) {
+    default:
+    case 0:
+        first = 0;
+        end = half;
+        draw_second_half = 1;
+        break;
+    case 1:
+        first = half;
+        end = count;
+        draw_second_half = 0;
+        break;
+    }
+    i32 camera_x = world->GetCameraX();
+    i32 camera_y = world->GetCameraY();
+    for (u32 index = first; index < end; ++index) {
+        WorldWeatherRecords<WorldWeatherResource, 5> const & groups = resources;
+        WorldWeatherParticle const & particle = particles[index];
+        u32 group = particle.animation.resolved_resource[
+            particle.animation.current_entry_index].group_index;
+        // Wrap camera-relative pixels to the native [-8, 247] range.
+        i32 x = (((particle.x_q16 >> 16) - camera_x + 8) & 255) - 8;
+        i32 y = (((particle.y_q16 >> 16) - camera_y + 8) & 255) - 8;
+        WorldWeatherResource const & resource = groups[group];
+        u32 tile_index = resource.tiles.GetTileIndex();
+        u32 sort_key = 0;
+        GameObject * source = world;
+        GameScenePaletteIndices const & palettes = palette_indices;
+        // All source priorities use hardware OBJ priority 1.
+        SubmitWorldSpriteRecords(buffer, x, y, 0x55, sort_key, resource.group.sprites,
+            source, tile_index, palettes);
     }
 }
 
