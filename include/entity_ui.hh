@@ -137,7 +137,7 @@ extern "C" u8 const gUnk_080F1194[];
 extern "C" u8 const gUnk_080F119C[];
 extern "C" u8 const gUnk_080F11A4[];
 extern "C" u8 const gUnk_080F11AC[];
-extern "C" u8 const gUnk_080F11B4[];
+extern "C" u8 const gWateringCanCapacityByTier[];
 extern "C" u32 const gUnk_080F11BC[];
 extern "C" u32 const gUnk_080F11E0[];
 extern "C" u32 const gUnk_080F1218[];

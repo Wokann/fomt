@@ -13,6 +13,8 @@ struct GameSceneCaughtFish;
 struct RucksackItem;
 struct Article;
 struct Food;
+struct GameStateSaveImage;
+struct Farmer;
 struct PlayerActor : AActorEntity {
     /* vt+3C */ virtual void vfunc_3C();
     /* vt+40 */ virtual bool IsRidingHorse();
@@ -46,12 +48,19 @@ struct PlayerActor : AActorEntity {
     /* vt+A4 */ virtual void vfunc_A4();
     /* vt+A8 */ virtual void EnterHotSpringBathingState();
     /* vt+AC */ virtual void ExitHotSpringBathingState();
-    u8 unk_30[0x92];
+    u32 GetMaxWateringCanCapacity() const;
+
+    u8 unk_30[4];
+    GameStateSaveImage * save_image;
+    Farmer * farmer;
+    u8 unk_3C[0x86];
     u8 update_suspended;
 
 private:
     PlayerActor();
 };
+typedef char PlayerActorSaveImageOffsetCheck[offsetof(PlayerActor, save_image) == 0x34 ? 1 : -1];
+typedef char PlayerActorFarmerOffsetCheck[offsetof(PlayerActor, farmer) == 0x38 ? 1 : -1];
 typedef char PlayerActorBaseSizeCheck[sizeof(AActorEntity) == 0x30 ? 1 : -1];
 typedef char PlayerActorUpdateStateOffsetCheck[offsetof(PlayerActor, update_suspended) == 0xC2 ? 1 : -1];
 

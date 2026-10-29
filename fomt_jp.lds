@@ -411,7 +411,9 @@ SECTIONS
         src/entity_audio.o(.text.MakeAudioActorBounds);
         src/field_tool.o(.text);
         asm/code_entities.o(.text.audio_actor_after_update);
-        src/player_actor.o(.text);
+        src/player_actor.o(.text.GetMaxWateringCanCapacity__C11PlayerActor);
+        asm/code_entities.o(.text.player_actor_after_water_capacity);
+        src/player_actor.o(.text.GetUpdateSuspended__C11PlayerActor .text.SetUpdateSuspended__11PlayerActorUc);
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);
         . = 0x321C0; /* JP ROM 0x080321C0, independently matched */

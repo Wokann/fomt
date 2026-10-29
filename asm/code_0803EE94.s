@@ -102029,7 +102029,7 @@ func_0808BC14:
     ldr r0, [r5, #8]
     ldr r2, [pc, #0x84]
     adds r0, r0, r2
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #8
     strb r1, [r0]
@@ -102063,7 +102063,7 @@ func_0808BC14:
     ldr r0, [r5, #8]
     ldr r2, [pc, #0x38]
     adds r0, r0, r2
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #9
@@ -104492,7 +104492,7 @@ func_0808E90C:
     ldr r0, [r5, #8]
     ldr r2, .Ljp_0808E9D4
     adds r0, r0, r2
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #8
     strb r1, [r0]
@@ -104526,7 +104526,7 @@ func_0808E90C:
     ldr r0, [r5, #8]
     ldr r2, .Ljp_0808E9D4
     adds r0, r0, r2
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #9
@@ -104588,7 +104588,7 @@ func_0808E9DC:
     ldr r0, [r6, #8]
     ldr r2, .Ljp_0808EA4C
     adds r0, r0, r2
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #8
     strb r1, [r0]
@@ -105223,7 +105223,7 @@ func_0808EBC0:
     ldr r4, [pc, #0x44]
     adds r0, r0, r4
     adds r1, r6, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x2e
@@ -105425,7 +105425,7 @@ func_0808EBC0:
     ldr r1, [pc, #0xac]
     adds r0, r0, r1
     adds r1, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x31
@@ -105434,7 +105434,9 @@ func_0808EBC0:
     .byte 0x04, 0x1C, 0x24, 0x04, 0x24, 0x0C, 0xBD, 0x6F, 0x01, 0xA8, 0x7E, 0xF7, 0x53, 0xFD, 0x03, 0x1C
     .byte 0x28, 0x1C, 0x22, 0x49, 0x22, 0x1C, 0x3C, 0xF0, 0xB9, 0xF8, 0x38, 0x1C, 0x94, 0x30, 0x00, 0x68
     .byte 0xBC, 0x30, 0x04, 0x68, 0x38, 0x1C, 0x90, 0x30, 0x00, 0x68, 0x3F, 0xF0, 0x61, 0xFB, 0x84, 0x42
-    .byte 0x20, 0xD1, 0xB8, 0x68, 0x18, 0x4A, 0x80, 0x18, 0x31, 0x1C, 0x7F, 0xF7, 0xBF, 0xF9, 0x01, 0x1C
+    .byte 0x20, 0xD1, 0xB8, 0x68, 0x18, 0x4A, 0x80, 0x18, 0x31, 0x1C
+    bl GetUpgradedTool__C6FarmerG4Tool
+    .byte 0x01, 0x1C
     .byte 0x68, 0x46, 0x32, 0x30, 0x01, 0x70, 0x7E, 0xF7, 0xC1, 0xFC, 0x04, 0x1C, 0x24, 0x04, 0x24, 0x0C
     .byte 0xFE, 0x6F, 0x38, 0x1C, 0x49, 0x46, 0x00, 0x22
     bl GetItemIndex__C23GameSceneMenuCorePrefixii
@@ -105469,7 +105471,7 @@ func_0808EBC0:
     ldr r1, [pc, #0x7c]
     adds r0, r0, r1
     adds r1, r5, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x33
@@ -106662,7 +106664,7 @@ func_0808F2C4:
     ldr r4, [pc, #0x2c]
     adds r0, r0, r4
     adds r1, r5, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x3a
@@ -106707,7 +106709,7 @@ func_0808F2C4:
     ldr r0, [r7, #8]
     ldr r3, [pc, #0x4c]
     adds r0, r0, r3
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x3b
@@ -106915,7 +106917,7 @@ func_0808F2C4:
     ldr r1, [pc, #0x90]
     adds r0, r0, r1
     adds r1, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x3e
@@ -106955,7 +106957,7 @@ func_0808F2C4:
     ldr r4, [pc, #0x38]
     adds r0, r0, r4
     mov r1, r8
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x3f
@@ -107055,7 +107057,7 @@ func_0808F2C4:
     ldr r2, [pc, #0x3c]
     adds r0, r0, r2
     adds r1, r5, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #0x40
     strb r1, [r0]
@@ -107108,7 +107110,7 @@ func_0808F2C4:
     ldr r0, [r7, #8]
     ldr r3, [pc, #0x48]
     adds r0, r0, r3
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x41
@@ -107301,7 +107303,7 @@ func_0808F2C4:
     ldr r2, [pc, #0xa4]
     adds r0, r0, r2
     adds r1, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #0x44
     strb r1, [r0]
@@ -107311,7 +107313,9 @@ func_0808F2C4:
     .byte 0x05, 0x1C, 0x01, 0xA8, 0x7D, 0xF7, 0x4F, 0xFC, 0x1F, 0x4B, 0x99, 0x46, 0x00, 0x90
     .byte 0x30, 0x1C, 0x29, 0x1C, 0x4A, 0x46, 0x23, 0x1C, 0x3B, 0xF0, 0xCE, 0xFD, 0x1C, 0x9C, 0x20, 0x68
     .byte 0xBC, 0x30, 0x04, 0x68, 0x1A, 0x99, 0x08, 0x68, 0x3E, 0xF0, 0x5C, 0xFA, 0x84, 0x42, 0x1F, 0xD1
-    .byte 0xB8, 0x68, 0x14, 0x4A, 0x80, 0x18, 0x51, 0x46, 0x7E, 0xF7, 0xBA, 0xF8, 0x01, 0x1C, 0x68, 0x46
+    .byte 0xB8, 0x68, 0x14, 0x4A, 0x80, 0x18, 0x51, 0x46
+    bl GetUpgradedTool__C6FarmerG4Tool
+    .byte 0x01, 0x1C, 0x68, 0x46
     .byte 0x45, 0x30, 0x01, 0x70, 0x7D, 0xF7, 0xBC, 0xFB, 0x04, 0x1C, 0x24, 0x04, 0x24, 0x0C, 0xFE, 0x6F
     .byte 0x38, 0x1C, 0x12, 0x99, 0x00, 0x22
     bl GetItemIndex__C23GameSceneMenuCorePrefixii
@@ -108199,7 +108203,7 @@ func_08090FCC:
     ldr r0, [r4, #8]
     ldr r2, [pc, #0x80]
     adds r0, r0, r2
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #8
     strb r1, [r0]
@@ -108233,7 +108237,7 @@ func_08090FCC:
     ldr r0, [r4, #8]
     ldr r2, [pc, #0x34]
     adds r0, r0, r2
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #9
@@ -109070,7 +109074,9 @@ func_0809106C:
     bl Show__23GameSceneMenuSpriteDataiUi
     .byte 0x28, 0x68, 0x7C, 0xF7, 0x4F, 0xFB, 0x01, 0x1C, 0x68, 0x46, 0x35, 0x30, 0x01, 0x70, 0x7C, 0xF7
     .byte 0xD9, 0xFA, 0x07, 0x21, 0x01, 0x40, 0x00, 0x29, 0x16, 0xD1, 0xBC, 0x68, 0x09, 0x48, 0x24, 0x18
-    .byte 0x28, 0x68, 0x7C, 0xF7, 0x3F, 0xFB, 0x01, 0x1C, 0x20, 0x1C, 0x7C, 0xF7, 0xDB, 0xFF, 0x01, 0x1C
+    .byte 0x28, 0x68, 0x7C, 0xF7, 0x3F, 0xFB, 0x01, 0x1C, 0x20, 0x1C
+    bl GetUpgradedTool__C6FarmerG4Tool
+    .byte 0x01, 0x1C
     .byte 0x68, 0x46, 0x36, 0x30, 0x01, 0x70, 0x7C, 0xF7, 0xC5, 0xFA, 0x13, 0x90, 0x01, 0x21, 0x16, 0x91
     .byte 0x0C, 0xE0, 0x00, 0x00, 0xD8, 0x1B, 0x00, 0x00, 0x28, 0x68, 0x7C, 0xF7, 0x2B, 0xFB, 0x01, 0x1C
     .byte 0x68, 0x46, 0x37, 0x30, 0x01, 0x70, 0x7C, 0xF7, 0xB5, 0xFA, 0x13, 0x90, 0x3C, 0x1C, 0x80, 0x34
@@ -109118,8 +109124,9 @@ func_0809106C:
     .byte 0x24, 0x18, 0x2D, 0x68, 0x38, 0x1C, 0x31, 0x1C, 0x00, 0x22
     bl GetItemIndex__C23GameSceneMenuCorePrefixii
     .byte 0x01, 0x1C
-    .byte 0x28, 0x1C, 0x7E, 0xF7, 0x7F, 0xFB, 0x7C, 0xF7, 0x79, 0xFA, 0x01, 0x1C, 0x20, 0x1C, 0x7C, 0xF7
-    .byte 0x15, 0xFF, 0x01, 0x1C, 0x68, 0x46, 0x3A, 0x30, 0x01, 0x70, 0x7C, 0xF7, 0xFF, 0xF9, 0x13, 0x90
+    .byte 0x28, 0x1C, 0x7E, 0xF7, 0x7F, 0xFB, 0x7C, 0xF7, 0x79, 0xFA, 0x01, 0x1C, 0x20, 0x1C
+    bl GetUpgradedTool__C6FarmerG4Tool
+    .byte 0x01, 0x1C, 0x68, 0x46, 0x3A, 0x30, 0x01, 0x70, 0x7C, 0xF7, 0xFF, 0xF9, 0x13, 0x90
     .byte 0x01, 0x21, 0x16, 0x91, 0x15, 0xE0, 0x00, 0x00, 0xD8, 0x1B, 0x00, 0x00, 0x2C, 0x68, 0x38, 0x1C
     .byte 0x31, 0x1C, 0x00, 0x22
     bl GetItemIndex__C23GameSceneMenuCorePrefixii
@@ -261010,7 +261017,7 @@ func_0808BCD0: @ 0x0808BCD0
 	ldr r0, [r5, #8]
 	ldr r2, .L0808BD98 @ =0x00001BD8
 	adds r0, r0, r2
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	add r0, sp, #8
 	strb r1, [r0]
@@ -261044,7 +261051,7 @@ func_0808BCD0: @ 0x0808BCD0
 	ldr r0, [r5, #8]
 	ldr r2, .L0808BD98 @ =0x00001BD8
 	adds r0, r0, r2
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #9
@@ -266677,7 +266684,7 @@ func_0808EDCC: @ 0x0808EDCC
 	ldr r0, [r5, #8]
 	ldr r2, .L0808EE94 @ =0x00001BD8
 	adds r0, r0, r2
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	add r0, sp, #8
 	strb r1, [r0]
@@ -266711,7 +266718,7 @@ func_0808EDCC: @ 0x0808EDCC
 	ldr r0, [r5, #8]
 	ldr r2, .L0808EE94 @ =0x00001BD8
 	adds r0, r0, r2
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #9
@@ -266772,7 +266779,7 @@ func_0808EE9C: @ 0x0808EE9C
 	ldr r0, [r6, #8]
 	ldr r2, .L0808EF0C @ =0x00001BD8
 	adds r0, r0, r2
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	add r0, sp, #8
 	strb r1, [r0]
@@ -267405,7 +267412,7 @@ func_0808F080: @ 0x0808F080
 	ldr r4, .L0808F490 @ =0x00001BD8
 	adds r0, r0, r4
 	adds r1, r6, #0
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x2e
@@ -267610,7 +267617,7 @@ func_0808F080: @ 0x0808F080
 	ldr r1, .L0808F6CC @ =0x00001BD8
 	adds r0, r0, r1
 	adds r1, r4, #0
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x31
@@ -267642,7 +267649,7 @@ func_0808F080: @ 0x0808F080
 	ldr r2, .L0808F6CC @ =0x00001BD8
 	adds r0, r0, r2
 	adds r1, r6, #0
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x32
@@ -267707,7 +267714,7 @@ func_0808F080: @ 0x0808F080
 	ldr r1, .L0808F77C @ =0x00001BD8
 	adds r0, r0, r1
 	adds r1, r5, #0
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x33
@@ -268917,7 +268924,7 @@ func_0808F784: @ 0x0808F784
 	ldr r4, .L08090220 @ =0x00001BD8
 	adds r0, r0, r4
 	adds r1, r5, #0
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x3a
@@ -268972,7 +268979,7 @@ func_0808F784: @ 0x0808F784
 	ldr r0, [r7, #8]
 	ldr r3, .L080902C4 @ =0x00001BD8
 	adds r0, r0, r3
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x3b
@@ -269182,7 +269189,7 @@ func_0808F784: @ 0x0808F784
 	ldr r1, .L080904F8 @ =0x00001BD8
 	adds r0, r0, r1
 	adds r1, r4, #0
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x3e
@@ -269222,7 +269229,7 @@ func_0808F784: @ 0x0808F784
 	ldr r4, .L080904F8 @ =0x00001BD8
 	adds r0, r0, r4
 	mov r1, r8
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x3f
@@ -269337,7 +269344,7 @@ func_0808F784: @ 0x0808F784
 	ldr r2, .L08090608 @ =0x00001BD8
 	adds r0, r0, r2
 	adds r1, r5, #0
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	add r0, sp, #0x40
 	strb r1, [r0]
@@ -269394,7 +269401,7 @@ func_0808F784: @ 0x0808F784
 	ldr r0, [r7, #8]
 	ldr r3, .L0809069C @ =0x00001BD8
 	adds r0, r0, r3
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x41
@@ -269589,7 +269596,7 @@ func_0808F784: @ 0x0808F784
 	ldr r2, .L080908C4 @ =0x00001BD8
 	adds r0, r0, r2
 	adds r1, r4, #0
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	add r0, sp, #0x44
 	strb r1, [r0]
@@ -269626,7 +269633,7 @@ func_0808F784: @ 0x0808F784
 	ldr r2, .L080908C4 @ =0x00001BD8
 	adds r0, r0, r2
 	mov r1, sl
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x45
@@ -270522,7 +270529,7 @@ func_08090FCC: @ 0x08090FCC
 	ldr r0, [r4, #8]
 	ldr r2, .L0809108C @ =0x00001BD8
 	adds r0, r0, r2
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	add r0, sp, #8
 	strb r1, [r0]
@@ -270556,7 +270563,7 @@ func_08090FCC: @ 0x08090FCC
 	ldr r0, [r4, #8]
 	ldr r2, .L0809108C @ =0x00001BD8
 	adds r0, r0, r2
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #9
@@ -271728,7 +271735,7 @@ func_0809152C: @ 0x0809152C
 	bl GetTool__C9ToolStack
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x36
@@ -271900,7 +271907,7 @@ func_0809152C: @ 0x0809152C
 	bl GetTool__C9ToolStack
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	mov r0, sp
 	adds r0, #0x3a
@@ -273152,7 +273159,7 @@ func_080926A4: @ 0x080926A4
 	ldr r0, [r5, #8]
 	ldr r2, .L08092750
 	adds r0, r0, r2
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	.endif
 	add r0, sp, #8
@@ -273210,7 +273217,7 @@ func_080926A4: @ 0x080926A4
 	ldr r0, [r5, #8]
 	ldr r2, .L08092750
 	adds r0, r0, r2
-	bl func_0800E550
+	bl GetUpgradedTool__C6FarmerG4Tool
 	adds r1, r0, #0
 	.endif
 	mov r0, sp

@@ -95,14 +95,14 @@ EC Farmer::ToolLevel const & func_0800E548(Farmer const & self, unsigned int idx
     return self.unk_2C[idx];
 }
 
-EC Tool func_0800E550(Farmer const & self, Tool tool)
+Tool Farmer::GetUpgradedTool(Tool tool) const
 {
     Tool result(tool);
 
     switch (result.GetId())
     {
         case ITEM_TOOL_SICKLE_IRON:
-            switch (func_0800EF6C(self.unk_2C[1]))
+            switch (func_0800EF6C(unk_2C[1]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
                     return Tool(ITEM_TOOL_SICKLE_COPPER);
@@ -119,7 +119,7 @@ EC Tool func_0800E550(Farmer const & self, Tool tool)
             break;
 
         case ITEM_TOOL_HOE_IRON:
-            switch (func_0800EF6C(self.unk_2C[0]))
+            switch (func_0800EF6C(unk_2C[0]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
                     return Tool(ITEM_TOOL_HOE_COPPER);
@@ -136,7 +136,7 @@ EC Tool func_0800E550(Farmer const & self, Tool tool)
             break;
 
         case ITEM_TOOL_AXE_IRON:
-            switch (func_0800EF6C(self.unk_2C[2]))
+            switch (func_0800EF6C(unk_2C[2]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
                     return Tool(ITEM_TOOL_AXE_COPPER);
@@ -153,7 +153,7 @@ EC Tool func_0800E550(Farmer const & self, Tool tool)
             break;
 
         case ITEM_TOOL_HAMMER_IRON:
-            switch (func_0800EF6C(self.unk_2C[3]))
+            switch (func_0800EF6C(unk_2C[3]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
                     return Tool(ITEM_TOOL_HAMMER_COPPER);
@@ -170,7 +170,7 @@ EC Tool func_0800E550(Farmer const & self, Tool tool)
             break;
 
         case ITEM_TOOL_WATERING_CAN_IRON:
-            switch (func_0800EF6C(self.unk_2C[4]))
+            switch (func_0800EF6C(unk_2C[4]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
                     return Tool(ITEM_TOOL_WATERING_CAN_COPPER);
@@ -187,7 +187,7 @@ EC Tool func_0800E550(Farmer const & self, Tool tool)
             break;
 
         case ITEM_TOOL_FISHING_ROD_IRON:
-            switch (func_0800EF6C(self.unk_2C[5]))
+            switch (func_0800EF6C(unk_2C[5]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
                     return Tool(ITEM_TOOL_FISHING_ROD_COPPER);

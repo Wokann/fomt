@@ -131,8 +131,8 @@ extern "C" u8 const gUnk_080F11AC[] ALIGN(1) = {
     0x00, 0x00, 0x18, 0x00, 0x14, 0x00, 0x00, 0x00,
 };
 
-extern "C" u8 const gUnk_080F11B4[] ALIGN(1) = {
-    0x1E, 0x2D, 0x3C, 0x5A, 0x96, 0xFF, 0xFF, 0x00,
+extern "C" u8 const gWateringCanCapacityByTier[] ALIGN(1) = {
+    30, 45, 60, 90, 150, 255, 255,
 };
 
 extern "C" u32 const gUnk_080F11BC[] ALIGN(1) = {

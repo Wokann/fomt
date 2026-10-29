@@ -10420,7 +10420,7 @@ func_080256D8: @ 0x08025944
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -11930,7 +11930,7 @@ func_080260E0: @ 0x080260E0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -11994,7 +11994,7 @@ func_080260E0: @ 0x080260E0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -12008,7 +12008,7 @@ func_080260E0: @ 0x080260E0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -12042,7 +12042,7 @@ func_080260E0: @ 0x080260E0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -12055,7 +12055,7 @@ func_080260E0: @ 0x080260E0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_08026438
@@ -12067,7 +12067,7 @@ func_080260E0: @ 0x080260E0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -12080,7 +12080,7 @@ func_080260E0: @ 0x080260E0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -12533,7 +12533,7 @@ func_080265C4: @ 0x080265C4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -12597,7 +12597,7 @@ func_080265C4: @ 0x080265C4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -12611,7 +12611,7 @@ func_080265C4: @ 0x080265C4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -12645,7 +12645,7 @@ func_080265C4: @ 0x080265C4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -12658,7 +12658,7 @@ func_080265C4: @ 0x080265C4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_0802691C
@@ -12670,7 +12670,7 @@ func_080265C4: @ 0x080265C4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -12683,7 +12683,7 @@ func_080265C4: @ 0x080265C4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -13180,7 +13180,7 @@ func_08026AA8: @ 0x08026AA8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -13244,7 +13244,7 @@ func_08026AA8: @ 0x08026AA8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -13258,7 +13258,7 @@ func_08026AA8: @ 0x08026AA8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -13292,7 +13292,7 @@ func_08026AA8: @ 0x08026AA8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -13305,7 +13305,7 @@ func_08026AA8: @ 0x08026AA8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_08026E44
@@ -13317,7 +13317,7 @@ func_08026AA8: @ 0x08026AA8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -13330,7 +13330,7 @@ func_08026AA8: @ 0x08026AA8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -13774,7 +13774,7 @@ func_08026FA0: @ 0x08026FA0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -13838,7 +13838,7 @@ func_08026FA0: @ 0x08026FA0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -13852,7 +13852,7 @@ func_08026FA0: @ 0x08026FA0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -13886,7 +13886,7 @@ func_08026FA0: @ 0x08026FA0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -13899,7 +13899,7 @@ func_08026FA0: @ 0x08026FA0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_0802731C
@@ -13911,7 +13911,7 @@ func_08026FA0: @ 0x08026FA0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -13924,7 +13924,7 @@ func_08026FA0: @ 0x08026FA0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -14377,7 +14377,7 @@ func_080274B0: @ 0x080274B0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -14441,7 +14441,7 @@ func_080274B0: @ 0x080274B0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -14455,7 +14455,7 @@ func_080274B0: @ 0x080274B0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -14489,7 +14489,7 @@ func_080274B0: @ 0x080274B0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -14502,7 +14502,7 @@ func_080274B0: @ 0x080274B0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_08027800
@@ -14514,7 +14514,7 @@ func_080274B0: @ 0x080274B0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -14527,7 +14527,7 @@ func_080274B0: @ 0x080274B0
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -15046,7 +15046,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -15110,7 +15110,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -15124,7 +15124,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -15158,7 +15158,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -15171,7 +15171,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
 .Ljp_08027D30:
@@ -15188,7 +15188,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -15206,7 +15206,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -15632,7 +15632,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #8
     b .Ljp_08028240
@@ -15695,7 +15695,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #9
@@ -15709,7 +15709,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xa
@@ -15743,7 +15743,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xb
@@ -15756,7 +15756,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #0xc
 .Ljp_080281F4:
@@ -15773,7 +15773,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xd
@@ -15791,7 +15791,7 @@ func_08027990: @ 0x08027990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xe
@@ -16277,7 +16277,7 @@ func_080283D8: @ 0x080283D8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -16341,7 +16341,7 @@ func_080283D8: @ 0x080283D8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -16355,7 +16355,7 @@ func_080283D8: @ 0x080283D8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -16389,7 +16389,7 @@ func_080283D8: @ 0x080283D8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -16402,7 +16402,7 @@ func_080283D8: @ 0x080283D8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_08028758
@@ -16414,7 +16414,7 @@ func_080283D8: @ 0x080283D8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -16427,7 +16427,7 @@ func_080283D8: @ 0x080283D8
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -16925,7 +16925,7 @@ func_080288E4: @ 0x080288E4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -16989,7 +16989,7 @@ func_080288E4: @ 0x080288E4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -17003,7 +17003,7 @@ func_080288E4: @ 0x080288E4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -17037,7 +17037,7 @@ func_080288E4: @ 0x080288E4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -17050,7 +17050,7 @@ func_080288E4: @ 0x080288E4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_08028C84
@@ -17062,7 +17062,7 @@ func_080288E4: @ 0x080288E4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -17075,7 +17075,7 @@ func_080288E4: @ 0x080288E4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -17552,7 +17552,7 @@ func_08028E68: @ 0x08028E68
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -17616,7 +17616,7 @@ func_08028E68: @ 0x08028E68
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -17630,7 +17630,7 @@ func_08028E68: @ 0x08028E68
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -17664,7 +17664,7 @@ func_08028E68: @ 0x08028E68
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -17677,7 +17677,7 @@ func_08028E68: @ 0x08028E68
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_08029198
@@ -17689,7 +17689,7 @@ func_08028E68: @ 0x08028E68
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -17702,7 +17702,7 @@ func_08028E68: @ 0x08028E68
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -18104,7 +18104,7 @@ func_080292EC: @ 0x080292EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -18168,7 +18168,7 @@ func_080292EC: @ 0x080292EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -18182,7 +18182,7 @@ func_080292EC: @ 0x080292EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -18216,7 +18216,7 @@ func_080292EC: @ 0x080292EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -18229,7 +18229,7 @@ func_080292EC: @ 0x080292EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_08029610
@@ -18241,7 +18241,7 @@ func_080292EC: @ 0x080292EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -18254,7 +18254,7 @@ func_080292EC: @ 0x080292EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -18776,7 +18776,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -18840,7 +18840,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -18854,7 +18854,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -18888,7 +18888,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -18901,7 +18901,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_08029B64
@@ -18913,7 +18913,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -18926,7 +18926,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -19369,7 +19369,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -19433,7 +19433,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -19447,7 +19447,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -19481,7 +19481,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_0802A038
@@ -19493,7 +19493,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -19506,7 +19506,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -19519,7 +19519,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #7
@@ -19881,7 +19881,7 @@ func_0802A2A4: @ 0x0802A2A4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -20512,134 +20512,8 @@ func_0802A574: @ 0x0802A574
     pop {r1}
     bx r1
 
-    .global func_0802A818
-    .thumb_func
-func_0802A818: @ 0x0802A818
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    sub sp, #0xc
-    mov r8, r0
-    movs r0, #0
-    mov sb, r0
-    mov r1, r8
-    ldr r0, [r1, #0x34]
-    ldr r1, .Ljp_0802A86C @ =0x00001C34
-    adds r5, r0, r1
-    adds r0, r5, #0
-    bl IsEmpty__C9ToolStack
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .Ljp_0802A85E
-    mov r0, r8
-    ldr r4, [r0, #0x34]
-    ldr r1, .Ljp_0802A870 @ =0x00001BD8
-    adds r4, r4, r1
-    adds r0, r5, #0
-    bl GetTool__C9ToolStack
-    adds r1, r0, #0
-    adds r0, r4, #0
-    bl func_0800E550
-    add r1, sp, #8
-    strb r0, [r1]
-    movs r0, #0
-    bl AccumulateMaxWateringCanTier
-    mov sb, r0
-.Ljp_0802A85E:
-    mov r1, r8
-    ldr r0, [r1, #0x34]
-    ldr r1, .Ljp_0802A874 @ =0x00001C38
-    adds r7, r0, r1
-    movs r6, #0
-    b .Ljp_0802A8B2
+    .section .text.player_actor_after_water_capacity, "ax", %progbits
     .align 2, 0
-.Ljp_0802A86C: .4byte 0x00001C34
-.Ljp_0802A870: .4byte 0x00001BD8
-.Ljp_0802A874: .4byte 0x00001C38
-.Ljp_0802A878:
-    adds r0, r7, #0
-    adds r1, r6, #0
-    bl GetToolAt__C8RucksackUi
-    adds r5, r0, #0
-    bl IsEmpty__C9ToolStack
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .Ljp_0802A8B0
-    mov r0, r8
-    ldr r4, [r0, #0x34]
-    ldr r1, .Ljp_0802A924 @ =0x00001BD8
-    adds r4, r4, r1
-    adds r0, r5, #0
-    bl GetTool__C9ToolStack
-    adds r1, r0, #0
-    adds r0, r4, #0
-    bl func_0800E550
-    mov r1, sp
-    adds r1, #9
-    strb r0, [r1]
-    mov r0, sb
-    bl AccumulateMaxWateringCanTier
-    mov sb, r0
-.Ljp_0802A8B0:
-    adds r6, #1
-.Ljp_0802A8B2:
-    adds r0, r7, #0
-    bl GetSize__C8Rucksack
-    cmp r6, r0
-    blo .Ljp_0802A878
-    mov r1, r8
-    ldr r0, [r1, #0x34]
-    movs r1, #0xe0
-    lsls r1, r1, #2
-    adds r7, r0, r1
-    movs r6, #0
-.Ljp_0802A8C8:
-    adds r0, r7, #0
-    adds r1, r6, #0
-    bl GetToolStackAt__C9ToolChestUi
-    adds r5, r0, #0
-    bl IsEmpty__C9ToolStack
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .Ljp_0802A900
-    mov r0, r8
-    ldr r4, [r0, #0x34]
-    ldr r1, .Ljp_0802A924 @ =0x00001BD8
-    adds r4, r4, r1
-    adds r0, r5, #0
-    bl GetTool__C9ToolStack
-    adds r1, r0, #0
-    adds r0, r4, #0
-    bl func_0800E550
-    mov r1, sp
-    adds r1, #0xa
-    strb r0, [r1]
-    mov r0, sb
-    bl AccumulateMaxWateringCanTier
-    mov sb, r0
-.Ljp_0802A900:
-    adds r6, #1
-    cmp r6, #0x3f
-    bls .Ljp_0802A8C8
-    ldr r1, .Ljp_0802A928 @ =gUnk_080F11B4
-    mov r0, sp
-    movs r2, #7
-    bl memcpy
-    mov r0, sp
-    add r0, sb
-    ldrb r0, [r0]
-    add sp, #0xc
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_0802A924: .4byte 0x00001BD8
-.Ljp_0802A928: .4byte gUnk_080F11B4
-
     .global func_0802A92C
     .thumb_func
 func_0802A92C: @ 0x0802A92C
@@ -24494,7 +24368,7 @@ func_0802C5F4:
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -24626,7 +24500,7 @@ func_0802C718:
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #0xc
     strb r1, [r0]
@@ -24940,7 +24814,7 @@ func_0802C718:
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xd
@@ -25703,7 +25577,7 @@ func_0802CEEC:
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -25767,7 +25641,7 @@ func_0802CEEC:
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -25781,7 +25655,7 @@ func_0802CEEC:
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -25815,7 +25689,7 @@ func_0802CEEC:
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -25828,7 +25702,7 @@ func_0802CEEC:
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .Ljp_0802D1E0
@@ -25840,7 +25714,7 @@ func_0802CEEC:
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -25853,7 +25727,7 @@ func_0802CEEC:
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -30707,7 +30581,7 @@ func_0802EE80: @ 0x0802EE80
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x43
@@ -31016,7 +30890,7 @@ sub_0802F990: @ 0x0802F990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #0x6c
     strb r1, [r0]
@@ -32475,7 +32349,7 @@ sub_0802F990: @ 0x0802F990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #0xa4
     strb r1, [r0]
@@ -32502,7 +32376,7 @@ sub_0802F990: @ 0x0802F990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     ldr r1, [sp, #0x168]
     strb r0, [r1]
     mov r0, sp
@@ -32595,7 +32469,7 @@ sub_0802F990: @ 0x0802F990
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xa6
@@ -34346,7 +34220,7 @@ sub_08030B9E: @ 0x08030B9E
     ldr r7, [sp, #0x13c]
     strb r0, [r7]
     mov r0, sl
-    bl func_0802A818
+    bl GetMaxWateringCanCapacity__C11PlayerActor
     adds r1, r0, #0
     mov r2, sl
     ldr r0, [r2, #0x38]
@@ -44437,7 +44311,7 @@ func_08025944: @ 0x08025944
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -45937,7 +45811,7 @@ func_0802634C: @ 0x0802634C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -46001,7 +45875,7 @@ func_0802634C: @ 0x0802634C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -46015,7 +45889,7 @@ func_0802634C: @ 0x0802634C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -46049,7 +45923,7 @@ func_0802634C: @ 0x0802634C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -46062,7 +45936,7 @@ func_0802634C: @ 0x0802634C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L080266A4
@@ -46074,7 +45948,7 @@ func_0802634C: @ 0x0802634C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -46087,7 +45961,7 @@ func_0802634C: @ 0x0802634C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -46540,7 +46414,7 @@ func_08026830: @ 0x08026830
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -46604,7 +46478,7 @@ func_08026830: @ 0x08026830
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -46618,7 +46492,7 @@ func_08026830: @ 0x08026830
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -46652,7 +46526,7 @@ func_08026830: @ 0x08026830
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -46665,7 +46539,7 @@ func_08026830: @ 0x08026830
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L08026B88
@@ -46677,7 +46551,7 @@ func_08026830: @ 0x08026830
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -46690,7 +46564,7 @@ func_08026830: @ 0x08026830
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -47187,7 +47061,7 @@ func_08026D14: @ 0x08026D14
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -47251,7 +47125,7 @@ func_08026D14: @ 0x08026D14
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -47265,7 +47139,7 @@ func_08026D14: @ 0x08026D14
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -47299,7 +47173,7 @@ func_08026D14: @ 0x08026D14
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -47312,7 +47186,7 @@ func_08026D14: @ 0x08026D14
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L080270B0
@@ -47324,7 +47198,7 @@ func_08026D14: @ 0x08026D14
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -47337,7 +47211,7 @@ func_08026D14: @ 0x08026D14
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -47781,7 +47655,7 @@ func_0802720C: @ 0x0802720C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -47845,7 +47719,7 @@ func_0802720C: @ 0x0802720C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -47859,7 +47733,7 @@ func_0802720C: @ 0x0802720C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -47893,7 +47767,7 @@ func_0802720C: @ 0x0802720C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -47906,7 +47780,7 @@ func_0802720C: @ 0x0802720C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L08027588
@@ -47918,7 +47792,7 @@ func_0802720C: @ 0x0802720C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -47931,7 +47805,7 @@ func_0802720C: @ 0x0802720C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -48384,7 +48258,7 @@ func_0802771C: @ 0x0802771C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -48448,7 +48322,7 @@ func_0802771C: @ 0x0802771C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -48462,7 +48336,7 @@ func_0802771C: @ 0x0802771C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -48496,7 +48370,7 @@ func_0802771C: @ 0x0802771C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -48509,7 +48383,7 @@ func_0802771C: @ 0x0802771C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L08027A6C
@@ -48521,7 +48395,7 @@ func_0802771C: @ 0x0802771C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -48534,7 +48408,7 @@ func_0802771C: @ 0x0802771C
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -49053,7 +48927,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -49117,7 +48991,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -49131,7 +49005,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -49165,7 +49039,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -49178,7 +49052,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
 .L08027F9C:
@@ -49195,7 +49069,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -49213,7 +49087,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -49639,7 +49513,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #8
     b .L080284AC
@@ -49702,7 +49576,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #9
@@ -49716,7 +49590,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xa
@@ -49750,7 +49624,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xb
@@ -49763,7 +49637,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #0xc
 .L08028460:
@@ -49780,7 +49654,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xd
@@ -49798,7 +49672,7 @@ func_08027BFC: @ 0x08027BFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xe
@@ -50284,7 +50158,7 @@ func_08028644: @ 0x08028644
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -50348,7 +50222,7 @@ func_08028644: @ 0x08028644
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -50362,7 +50236,7 @@ func_08028644: @ 0x08028644
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -50396,7 +50270,7 @@ func_08028644: @ 0x08028644
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -50409,7 +50283,7 @@ func_08028644: @ 0x08028644
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L080289C4
@@ -50421,7 +50295,7 @@ func_08028644: @ 0x08028644
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -50434,7 +50308,7 @@ func_08028644: @ 0x08028644
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -50932,7 +50806,7 @@ func_08028B50: @ 0x08028B50
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -50996,7 +50870,7 @@ func_08028B50: @ 0x08028B50
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -51010,7 +50884,7 @@ func_08028B50: @ 0x08028B50
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -51044,7 +50918,7 @@ func_08028B50: @ 0x08028B50
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -51057,7 +50931,7 @@ func_08028B50: @ 0x08028B50
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L08028EF0
@@ -51069,7 +50943,7 @@ func_08028B50: @ 0x08028B50
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -51082,7 +50956,7 @@ func_08028B50: @ 0x08028B50
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -51558,7 +51432,7 @@ func_080290D4: @ 0x080290D4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -51622,7 +51496,7 @@ func_080290D4: @ 0x080290D4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -51636,7 +51510,7 @@ func_080290D4: @ 0x080290D4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -51670,7 +51544,7 @@ func_080290D4: @ 0x080290D4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -51683,7 +51557,7 @@ func_080290D4: @ 0x080290D4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L08029404
@@ -51695,7 +51569,7 @@ func_080290D4: @ 0x080290D4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -51708,7 +51582,7 @@ func_080290D4: @ 0x080290D4
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -52110,7 +51984,7 @@ func_08029558: @ 0x08029558
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -52174,7 +52048,7 @@ func_08029558: @ 0x08029558
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -52188,7 +52062,7 @@ func_08029558: @ 0x08029558
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -52222,7 +52096,7 @@ func_08029558: @ 0x08029558
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -52235,7 +52109,7 @@ func_08029558: @ 0x08029558
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L0802987C
@@ -52247,7 +52121,7 @@ func_08029558: @ 0x08029558
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -52260,7 +52134,7 @@ func_08029558: @ 0x08029558
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -52782,7 +52656,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -52846,7 +52720,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -52860,7 +52734,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -52894,7 +52768,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -52907,7 +52781,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L08029DD0
@@ -52919,7 +52793,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -52932,7 +52806,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -53375,7 +53249,7 @@ PlayerShowHoldingTool: @ 0x08029F30
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -53439,7 +53313,7 @@ PlayerShowHoldingTool: @ 0x08029F30
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -53453,7 +53327,7 @@ PlayerShowHoldingTool: @ 0x08029F30
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -53487,7 +53361,7 @@ PlayerShowHoldingTool: @ 0x08029F30
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L0802A2A4
@@ -53499,7 +53373,7 @@ PlayerShowHoldingTool: @ 0x08029F30
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -53512,7 +53386,7 @@ PlayerShowHoldingTool: @ 0x08029F30
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -53525,7 +53399,7 @@ PlayerShowHoldingTool: @ 0x08029F30
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #7
@@ -53886,7 +53760,7 @@ func_0802A510: @ 0x0802A510
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -54516,133 +54390,8 @@ func_0802A7E0: @ 0x0802A7E0
     pop {r1}
     bx r1
 
-    thumb_func_start func_0802AA84
-func_0802AA84: @ 0x0802AA84
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    sub sp, #0xc
-    mov r8, r0
-    movs r0, #0
-    mov sb, r0
-    mov r1, r8
-    ldr r0, [r1, #0x34]
-    ldr r1, .L0802AAD8 @ =0x00001C34
-    adds r5, r0, r1
-    adds r0, r5, #0
-    bl IsEmpty__C9ToolStack
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L0802AACA
-    mov r0, r8
-    ldr r4, [r0, #0x34]
-    ldr r1, .L0802AADC @ =0x00001BD8
-    adds r4, r4, r1
-    adds r0, r5, #0
-    bl GetTool__C9ToolStack
-    adds r1, r0, #0
-    adds r0, r4, #0
-    bl func_0800E550
-    add r1, sp, #8
-    strb r0, [r1]
-    movs r0, #0
-    bl AccumulateMaxWateringCanTier
-    mov sb, r0
-.L0802AACA:
-    mov r1, r8
-    ldr r0, [r1, #0x34]
-    ldr r1, .L0802AAE0 @ =0x00001C38
-    adds r7, r0, r1
-    movs r6, #0
-    b .L0802AB1E
+    .section .text.player_actor_after_water_capacity, "ax", %progbits
     .align 2, 0
-.L0802AAD8: .4byte 0x00001C34
-.L0802AADC: .4byte 0x00001BD8
-.L0802AAE0: .4byte 0x00001C38
-.L0802AAE4:
-    adds r0, r7, #0
-    adds r1, r6, #0
-    bl GetToolAt__C8RucksackUi
-    adds r5, r0, #0
-    bl IsEmpty__C9ToolStack
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L0802AB1C
-    mov r0, r8
-    ldr r4, [r0, #0x34]
-    ldr r1, .L0802AB90 @ =0x00001BD8
-    adds r4, r4, r1
-    adds r0, r5, #0
-    bl GetTool__C9ToolStack
-    adds r1, r0, #0
-    adds r0, r4, #0
-    bl func_0800E550
-    mov r1, sp
-    adds r1, #9
-    strb r0, [r1]
-    mov r0, sb
-    bl AccumulateMaxWateringCanTier
-    mov sb, r0
-.L0802AB1C:
-    adds r6, #1
-.L0802AB1E:
-    adds r0, r7, #0
-    bl GetSize__C8Rucksack
-    cmp r6, r0
-    blo .L0802AAE4
-    mov r1, r8
-    ldr r0, [r1, #0x34]
-    movs r1, #0xe0
-    lsls r1, r1, #2
-    adds r7, r0, r1
-    movs r6, #0
-.L0802AB34:
-    adds r0, r7, #0
-    adds r1, r6, #0
-    bl GetToolStackAt__C9ToolChestUi
-    adds r5, r0, #0
-    bl IsEmpty__C9ToolStack
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L0802AB6C
-    mov r0, r8
-    ldr r4, [r0, #0x34]
-    ldr r1, .L0802AB90 @ =0x00001BD8
-    adds r4, r4, r1
-    adds r0, r5, #0
-    bl GetTool__C9ToolStack
-    adds r1, r0, #0
-    adds r0, r4, #0
-    bl func_0800E550
-    mov r1, sp
-    adds r1, #0xa
-    strb r0, [r1]
-    mov r0, sb
-    bl AccumulateMaxWateringCanTier
-    mov sb, r0
-.L0802AB6C:
-    adds r6, #1
-    cmp r6, #0x3f
-    bls .L0802AB34
-    ldr r1, .L0802AB94 @ =gUnk_080F11B4
-    mov r0, sp
-    movs r2, #7
-    bl memcpy
-    mov r0, sp
-    add r0, sb
-    ldrb r0, [r0]
-    add sp, #0xc
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L0802AB90: .4byte 0x00001BD8
-.L0802AB94: .4byte gUnk_080F11B4
-
     thumb_func_start func_0802AB98
 func_0802AB98: @ 0x0802AB98
     push {r4, lr}
@@ -58479,7 +58228,7 @@ func_0802C860: @ 0x0802C860
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -58609,7 +58358,7 @@ func_0802C984: @ 0x0802C984
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #0xc
     strb r1, [r0]
@@ -58923,7 +58672,7 @@ func_0802C984: @ 0x0802C984
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xd
@@ -59684,7 +59433,7 @@ func_0802D158: @ 0x0802D158
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     mov r1, sp
     strb r0, [r1]
     mov r0, sp
@@ -59748,7 +59497,7 @@ func_0802D158: @ 0x0802D158
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #1
@@ -59762,7 +59511,7 @@ func_0802D158: @ 0x0802D158
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #2
@@ -59796,7 +59545,7 @@ func_0802D158: @ 0x0802D158
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #3
@@ -59809,7 +59558,7 @@ func_0802D158: @ 0x0802D158
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #4
     b .L0802D44C
@@ -59821,7 +59570,7 @@ func_0802D158: @ 0x0802D158
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #5
@@ -59834,7 +59583,7 @@ func_0802D158: @ 0x0802D158
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #6
@@ -64679,7 +64428,7 @@ func_0802F0EC: @ 0x0802F0EC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0x43
@@ -64987,7 +64736,7 @@ sub_0802FBFC: @ 0x0802FBFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #0x6c
     strb r1, [r0]
@@ -66446,7 +66195,7 @@ sub_0802FBFC: @ 0x0802FBFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     add r0, sp, #0xa4
     strb r1, [r0]
@@ -66473,7 +66222,7 @@ sub_0802FBFC: @ 0x0802FBFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     ldr r1, [sp, #0x168]
     strb r0, [r1]
     mov r0, sp
@@ -66566,7 +66315,7 @@ sub_0802FBFC: @ 0x0802FBFC
     bl GetTool__C9ToolStack
     adds r1, r0, #0
     adds r0, r4, #0
-    bl func_0800E550
+    bl GetUpgradedTool__C6FarmerG4Tool
     adds r1, r0, #0
     mov r0, sp
     adds r0, #0xa6
@@ -68316,7 +68065,7 @@ sub_08030E0A: @ 0x08030E0A
     ldr r7, [sp, #0x13c]
     strb r0, [r7]
     mov r0, sl
-    bl func_0802AA84
+    bl GetMaxWateringCanCapacity__C11PlayerActor
     adds r1, r0, #0
     mov r2, sl
     ldr r0, [r2, #0x38]
