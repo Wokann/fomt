@@ -430,7 +430,7 @@ SECTIONS
         src/map_data.o(.text.SelectMapDataId);
         asm/code_0803A8A4.o(.text.world_sprite_groups_constructor);
         src/entity_auxiliary_sprites.o(.text._._22EntityAuxiliarySprites);
-        asm/code_0803A8A4.o(.text.world_sprite_groups_after_destructor);
+        src/entity_auxiliary_sprites.o(.text.PrepareResources__22EntityAuxiliarySpritesR16HardwareDmaQueue);
         src/entity_auxiliary_sprites.o(.text.Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi);
         src/world_weather.o(
             .text.__22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi

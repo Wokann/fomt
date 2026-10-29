@@ -8942,7 +8942,7 @@ func_080182C8:
     cmp r0, #0
     beq .Lauto_080180B4
     adds r0, r2, #0
-    bl func_0803AA6C
+    bl PrepareResources__22EntityAuxiliarySpritesR16HardwareDmaQueue
     movs r0, #0
     strb r0, [r4]
     .Lauto_080180B4:
@@ -25098,7 +25098,7 @@ func_080182C8: @ 0x080182C8
     cmp r0, #0
     beq .L08018320
     adds r0, r2, #0
-    bl func_0803ACD8
+    bl PrepareResources__22EntityAuxiliarySpritesR16HardwareDmaQueue
     movs r0, #0
     strb r0, [r4]
 .L08018320:

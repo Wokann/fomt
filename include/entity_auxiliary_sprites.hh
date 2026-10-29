@@ -6,6 +6,7 @@
 #pragma interface "entity_auxiliary_sprites.hh"
 
 struct WorldSpriteDrawBuffer;
+struct HardwareDmaQueue;
 
 // Three retained resource groups selected by the entity auxiliary render
 // profile. The constructor remains native; the last byte is not yet named.
@@ -24,6 +25,7 @@ struct EntityAuxiliarySprites {
     // The shared native constructor implements this real C++ ABI.
     explicit EntityAuxiliarySprites(GameObject * source);
     ~EntityAuxiliarySprites();
+    void PrepareResources(HardwareDmaQueue & queue);
     void Draw(WorldSpriteDrawBuffer * buffer, i32 x, i32 y, u32 kind) const;
 };
 
