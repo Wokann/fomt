@@ -785,6 +785,8 @@ SECTIONS
         asm/code_809E804.o(.text.ui_text_stream_update_after);
         src/ui_vcount.o(.text.UpdateUiVCount);
         asm/code_809E804.o(.text.after_ui_vcount_update);
+        src/ui_quantity_selector.o(.text.Configure__26UiPurchaseQuantitySelectorUiUiUi .text.Update__26UiPurchaseQuantitySelector .text.Hide__26UiPurchaseQuantitySelector);
+        asm/code_809E804.o(.text.after_ui_quantity_selector);
         src/game_menu.o(.text.GetMenuGridLeftCellPosition__FPC28GameSceneMenuOwnedDataPrefixi);
         src/game_menu.o(.text.GetMenuGridLeftHeaderPosition__FPC28GameSceneMenuOwnedDataPrefix);
         asm/code_809E804.o(.text.after_menu_grid_left_positions);

@@ -13,6 +13,7 @@ struct HardwareDisplayState;
 // One CPU-side tilemap row: 32 halfword entries, matching a BG screen block.
 struct ScrollBufferRow {
     u16 tiles[32];
+    u16 & operator[](u32 column) { return tiles[column]; }
 };
 
 struct ScrollBufferRows {
