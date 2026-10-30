@@ -7333,9 +7333,9 @@ func_08050F4C: @ 0x08050CD8
     .section .text.ui_state_selection_after
 
 
-    .global func_0805143C
+    .global __21FrisbeeTournamentCoreP18GameStateSaveImage
     .thumb_func
-func_0805143C: @ 0x080511C8
+__21FrisbeeTournamentCoreP18GameStateSaveImage: @ 0x080511C8
     push {r4, r5, r6, r7, lr}
     sub sp, #4
     adds r7, r0, #0
@@ -7426,9 +7426,9 @@ func_0805143C: @ 0x080511C8
 .Ljp_08051288: .4byte gUnk_08527094
 .Ljp_0805128C: .4byte 0x000008B8
 
-    .global func_08051504
+    .global Run__21FrisbeeTournamentCore
     .thumb_func
-func_08051504: @ 0x08051290
+Run__21FrisbeeTournamentCore: @ 0x08051290
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -8449,98 +8449,10 @@ func_08051B00:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global __22FrisbeeTournamentSceneG20SceneTransitionOwnerP18GameStateSaveImage
-    .thumb_func
-    __22FrisbeeTournamentSceneG20SceneTransitionOwnerP18GameStateSaveImage:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    adds r6, r1, #0
-    adds r5, r2, #0
-    ldr r0, [pc, #0x20]
-    str r0, [r4]
-    movs r0, #0x8c
-    lsls r0, r0, #4
-    bl __builtin_new
-    adds r1, r5, #0
-    bl func_0805143C
-    str r0, [r4, #4]
-    ldr r1, [r6]
-    movs r0, #0
-    str r0, [r6]
-    str r1, [r4, #8]
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x64, 0x6D, 0x0E, 0x08
-    .global func_080521BC
-    .thumb_func
-func_080521BC: @ 0x08051F4C
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_08051F88
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Ljp_08051F68
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08051F68:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_08051F7A
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08051F7A:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08051F88: .4byte gUnk_080E6D64
-
-    .global func_080521FC
-    .thumb_func
-func_080521FC: @ 0x08051F8C
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r1, [r4, #4]
-    mov r0, sp
-    bl func_08051504
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Ljp_08051FAE
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08051FAE:
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    add sp, #4
-    pop {r4, r5}
-    pop {r1}
-    bx r1
-
     .section .text.animal_festival_ranking_after
-    .global func_080522F8
+    .global __11FrisbeeCoreP18GameStateSaveImageb
     .thumb_func
-func_080522F8:
+__11FrisbeeCoreP18GameStateSaveImageb:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -9185,10 +9097,10 @@ func_080522F8:
     .byte 0x70, 0x1C, 0x00, 0x00, 0x66, 0x22, 0x00, 0x00, 0x5C, 0x22, 0x00, 0x00, 0x58, 0x1D, 0x00, 0x00
     .byte 0x59, 0x1D, 0x00, 0x00, 0xC8, 0x22, 0x00, 0x00, 0xCA, 0x22, 0x00, 0x00, 0xCC, 0x22, 0x00, 0x00
     .byte 0xCD, 0x22, 0x00, 0x00, 0x9D, 0x1C, 0x00, 0x00, 0x26, 0x23, 0x00, 0x00, 0x21, 0x23, 0x00, 0x00
-    @ Physical JP callee used by func_08057BEC; its body remains unlifted.
-    .global func_08052714
+    @ Physical JP callee used by Run__12FrisbeeScene; its body remains unlifted.
+    .global Run__11FrisbeeCore
     .thumb_func
-func_08052714:
+Run__11FrisbeeCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -14225,101 +14137,8 @@ func_08057D34:
     pop {r0}
     bx r0
     .byte 0x34, 0x23, 0x00, 0x00
-    .global __12FrisbeeSceneG20SceneTransitionOwnerP18GameStateSaveImageb
-    .thumb_func
-    __12FrisbeeSceneG20SceneTransitionOwnerP18GameStateSaveImageb:
-    push {r4, r5, r6, lr}
-    mov r6, r8
-    push {r6}
-    adds r5, r0, #0
-    mov r8, r1
-    adds r6, r2, #0
-    lsls r4, r3, #0x18
-    lsrs r4, r4, #0x18
-    ldr r0, [pc, #0x28]
-    str r0, [r5]
-    ldr r0, [pc, #0x28]
-    bl __builtin_new
-    adds r1, r6, #0
-    adds r2, r4, #0
-    bl func_080522F8
-    str r0, [r5, #4]
-    mov r0, r8
-    ldr r1, [r0]
-    movs r0, #0
-    mov r2, r8
-    str r0, [r2]
-    str r1, [r5, #8]
-    adds r0, r5, #0
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x90, 0x6D, 0x0E, 0x08, 0xA8, 0x23, 0x00, 0x00
-    .global func_08057BAC
-    .thumb_func
-func_08057BAC:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_08057BE8
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Ljp_08057BC8
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08057BC8:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_08057BDA
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08057BDA:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08057BE8: .4byte vtable_unk_080E7950
+    .section .text.after_frisbee_scene, "ax", %progbits
 
-    .global func_08057BEC
-    .thumb_func
-func_08057BEC:
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r1, [r4, #4]
-    mov r0, sp
-    bl func_08052714
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Ljp_08057C0E
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08057C0E:
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    add sp, #4
-    pop {r4, r5}
-    pop {r1}
-    bx r1
     .global func_08057C20
     .thumb_func
 func_08057C20:
@@ -20059,9 +19878,9 @@ func_0805CC84:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .global func_0805CF70
+    .global __26HorseRaceMedalExchangeCoreP18GameStateSaveImage
     .thumb_func
-func_0805CF70:
+__26HorseRaceMedalExchangeCoreP18GameStateSaveImage:
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -20264,9 +20083,9 @@ func_0805CF70:
     .4byte gUiHandCursorArchive
     .byte 0xEC, 0x0A, 0x00, 0x00, 0xD8, 0x6D, 0x0E, 0x08, 0x48, 0x2C, 0x00, 0x00
     .byte 0x9F, 0x86, 0x01, 0x00
-    .global loc_0805CEB8
+    .global Run__26HorseRaceMedalExchangeCore
     .thumb_func
-    loc_0805CEB8:
+    Run__26HorseRaceMedalExchangeCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -21094,90 +20913,6 @@ func_0805DF68:
     .byte 0xFF, 0xEF, 0xFF, 0xFF, 0xFF, 0xDF, 0xFF, 0xFF, 0xFF, 0x3F, 0xFF, 0x0F, 0xFF, 0xFF, 0xFF, 0xFF
     .byte 0x00, 0x00, 0xCE, 0x02, 0x00, 0x00, 0xFF, 0x01, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0xFE, 0x00, 0xFF
     .byte 0xFF, 0xFF, 0x00, 0xFC, 0xFF, 0xFF
-    .global __27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage
-    .thumb_func
-    __27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    adds r6, r1, #0
-    adds r5, r2, #0
-    ldr r0, [pc, #0x20]
-    str r0, [r4]
-    ldr r0, [pc, #0x20]
-    bl __builtin_new
-    adds r1, r5, #0
-    bl func_0805CF70
-    str r0, [r4, #4]
-    ldr r1, [r6]
-    movs r0, #0
-    str r0, [r6]
-    str r1, [r4, #8]
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00, 0xE8, 0x6D, 0x0E, 0x08, 0xF4, 0x0A, 0x00, 0x00
-    .global func_0805E39C
-    .thumb_func
-func_0805E39C:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, [pc, #0x34]
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Lauto_0805E3B8
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_0805E3B8:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_0805E3CA
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_0805E3CA:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0xE8, 0x6D, 0x0E, 0x08
-    .global func_0805E3DC
-    .thumb_func
-func_0805E3DC:
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r1, [r4, #4]
-    mov r0, sp
-    bl loc_0805CEB8
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_0805E3FE
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_0805E3FE:
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    add sp, #4
-    pop {r4, r5}
-    pop {r1}
-    bx r1
     .section .text.indexed_resource_handle_constructor_after
 
     .section .text.intro_story_scene_after, "ax", %progbits
@@ -147123,8 +146858,8 @@ func_08050F4C: @ 0x08050F4C
 	.section .text.ui_state_selection_after
 
 
-	thumb_func_start func_0805143C
-func_0805143C: @ 0x0805143C
+	thumb_func_start __21FrisbeeTournamentCoreP18GameStateSaveImage
+__21FrisbeeTournamentCoreP18GameStateSaveImage: @ 0x0805143C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r7, r0, #0
@@ -147215,8 +146950,8 @@ func_0805143C: @ 0x0805143C
 .L080514FC: .4byte gUnk_08527094
 .L08051500: .4byte 0x000008B8
 
-	thumb_func_start func_08051504
-func_08051504: @ 0x08051504
+	thumb_func_start Run__21FrisbeeTournamentCore
+Run__21FrisbeeTournamentCore: @ 0x08051504
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -148741,97 +148476,10 @@ func_08051D70: @ 0x08051D70
 	bx r0
 	.align 2, 0
 
-	thumb_func_start __22FrisbeeTournamentSceneG20SceneTransitionOwnerP18GameStateSaveImage
-__22FrisbeeTournamentSceneG20SceneTransitionOwnerP18GameStateSaveImage: @ 0x0805218C
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L080521B8 @ =vtable_unk_080E7934
-	str r0, [r4]
-	movs r0, #0x8c
-	lsls r0, r0, #4
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0805143C
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080521B8: .4byte vtable_unk_080E7934
-
-	thumb_func_start func_080521BC
-func_080521BC: @ 0x080521BC
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L080521F8 @ =vtable_unk_080E7934
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L080521D8
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080521D8:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080521EA
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080521EA:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080521F8: .4byte vtable_unk_080E7934
-
-	thumb_func_start func_080521FC
-func_080521FC: @ 0x080521FC
-	push {r4, r5, lr}
-	sub sp, #4
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r1, [r4, #4]
-	mov r0, sp
-	bl func_08051504
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L0805221E
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0805221E:
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	add sp, #4
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-
 	.section .text.animal_festival_ranking_after
 
-	thumb_func_start func_080522F8
-func_080522F8: @ 0x080522F8
+	thumb_func_start __11FrisbeeCoreP18GameStateSaveImageb
+__11FrisbeeCoreP18GameStateSaveImageb: @ 0x080522F8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -149565,8 +149213,8 @@ func_080522F8: @ 0x080522F8
 .L0805297C: .4byte 0x00002326
 .L08052980: .4byte 0x00002321
 
-	thumb_func_start func_08052984
-func_08052984: @ 0x08052984
+	thumb_func_start Run__11FrisbeeCore
+Run__11FrisbeeCore: @ 0x08052984
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -160108,101 +159756,7 @@ func_08057D34: @ 0x08057D34
 	.align 2, 0
 .L08057DD4: .4byte 0x00002334
 
-	thumb_func_start __12FrisbeeSceneG20SceneTransitionOwnerP18GameStateSaveImageb
-__12FrisbeeSceneG20SceneTransitionOwnerP18GameStateSaveImageb: @ 0x08057DD8
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	adds r5, r0, #0
-	mov r8, r1
-	adds r6, r2, #0
-	lsls r4, r3, #0x18
-	lsrs r4, r4, #0x18
-	ldr r0, .L08057E14 @ =vtable_unk_080E7960
-	str r0, [r5]
-	ldr r0, .L08057E18 @ =0x000023A8
-	bl __builtin_new
-	adds r1, r6, #0
-	adds r2, r4, #0
-	bl func_080522F8
-	str r0, [r5, #4]
-	mov r0, r8
-	ldr r1, [r0]
-	movs r0, #0
-	mov r2, r8
-	str r0, [r2]
-	str r1, [r5, #8]
-	adds r0, r5, #0
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08057E14: .4byte vtable_unk_080E7960
-.L08057E18: .4byte 0x000023A8
-
-	thumb_func_start func_08057E1C
-func_08057E1C: @ 0x08057E1C
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L08057E58 @ =vtable_unk_080E7960
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L08057E38
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08057E38:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L08057E4A
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08057E4A:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08057E58: .4byte vtable_unk_080E7960
-
-	thumb_func_start func_08057E5C
-func_08057E5C: @ 0x08057E5C
-	push {r4, r5, lr}
-	sub sp, #4
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r1, [r4, #4]
-	mov r0, sp
-	bl func_08052984
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L08057E7E
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08057E7E:
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	add sp, #4
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_frisbee_scene, "ax", %progbits
 
 	thumb_func_start func_08057E90
 func_08057E90: @ 0x08057E90
@@ -170103,8 +169657,8 @@ func_0805CF3C: @ 0x0805CF3C
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_0805CF70
-func_0805CF70: @ 0x0805CF70
+	thumb_func_start __26HorseRaceMedalExchangeCoreP18GameStateSaveImage
+__26HorseRaceMedalExchangeCoreP18GameStateSaveImage: @ 0x0805CF70
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -170329,8 +169883,8 @@ func_0805CF70: @ 0x0805CF70
 .L0805D168: .4byte 0x00002C48
 .L0805D16C: .4byte 0x0001869F
 
-	thumb_func_start func_0805D170
-func_0805D170: @ 0x0805D170
+	thumb_func_start Run__26HorseRaceMedalExchangeCore
+Run__26HorseRaceMedalExchangeCore: @ 0x0805D170
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -172863,93 +172417,6 @@ func_0805DFC4: @ 0x0805DFC4
 .L0805E618: .4byte 0xFE00FFFF
 .L0805E61C: .4byte 0xFFFFFF00
 .L0805E620: .4byte 0xFFFFFC00
-
-	thumb_func_start __27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage
-__27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage: @ 0x0805E624
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0805E650 @ =vtable_unk_080E79B8
-	str r0, [r4]
-	ldr r0, .L0805E654 @ =0x00000AF4
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0805CF70
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0805E650: .4byte vtable_unk_080E79B8
-.L0805E654: .4byte 0x00000AF4
-
-	thumb_func_start func_0805E658
-func_0805E658: @ 0x0805E658
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L0805E694 @ =vtable_unk_080E79B8
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L0805E674
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0805E674:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L0805E686
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0805E686:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0805E694: .4byte vtable_unk_080E79B8
-
-	thumb_func_start func_0805E698
-func_0805E698: @ 0x0805E698
-	push {r4, r5, lr}
-	sub sp, #4
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r1, [r4, #4]
-	mov r0, sp
-	bl func_0805D170
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L0805E6BA
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0805E6BA:
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	add sp, #4
-	pop {r4, r5}
-	pop {r1}
-	bx r1
 
 	.section .text.indexed_resource_handle_constructor_after
 

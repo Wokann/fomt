@@ -547,8 +547,12 @@ SECTIONS
         src/ui_state.o(.text.__21UiTextTileCopyCommandPCUiPUiUib);
         src/ui_text_window.o(.text);
         asm/code_0803EE94.o(.text.ui_state_selection_after);
+        src/scene_frisbee.o(.text.__22FrisbeeTournamentSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._22FrisbeeTournamentScene .text.Run__22FrisbeeTournamentScene);
         src/animal_festival_ranking.o(.text);
         . = 0x5230C; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
+        src/scene_frisbee.o(.text.__12FrisbeeSceneG20SceneTransitionOwnerP18GameStateSaveImageb .text._._12FrisbeeScene .text.Run__12FrisbeeScene);
+        asm/code_0803EE94.o(.text.after_frisbee_scene);
+        src/scene_horse_race.o(.text.__27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._27HorseRaceMedalExchangeScene .text.Run__27HorseRaceMedalExchangeScene);
         /* Indexed archive parsing, then resource playback and sprite rendering. */
         . = 0x5E6E0; src/resource_archive.o(.text);
         . = 0x5E838; src/resource_handle.o(.text);
@@ -1195,16 +1199,16 @@ SECTIONS
         src/ui_state.o(.gnu.linkonce.d.__vt_12UiTextOutput);
         src/vtables.o(.rodata.ui_output_base_after);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7928);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_7934);
+        . = ALIGN(4); src/scene_frisbee.o(.gnu.linkonce.d.__vt_22FrisbeeTournamentScene);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7944);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7950);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_7960);
+        . = ALIGN(4); src/scene_frisbee.o(.gnu.linkonce.d.__vt_12FrisbeeScene);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7970);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_797c);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_798c);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_799c);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_79a8);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_79b8);
+        . = ALIGN(4); src/scene_horse_race.o(.gnu.linkonce.d.__vt_27HorseRaceMedalExchangeScene);
         . = ALIGN(4); src/resource_archive.o(.gnu.linkonce.d.__vt_22IndexedResourceArchive);
         . = ALIGN(4); src/intro_story_scene.o(.rodata);
         src/intro_story_scene.o(.gnu.linkonce.d.__vt_23IntroStoryTextVariables);

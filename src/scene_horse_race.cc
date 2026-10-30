@@ -32,3 +32,18 @@ SceneOwner HorseRaceMedalExchangeTransition::CreateScene()
     return SceneOwner(__27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage(
         ::operator new(sizeof(HorseRaceMedalExchangeScene)), &next, save));
 }
+
+HorseRaceMedalExchangeScene::HorseRaceMedalExchangeScene(SceneTransitionOwner next, GameStateSaveImage * image)
+    : core(new HorseRaceMedalExchangeCore(image)), continuation(next)
+{
+}
+
+HorseRaceMedalExchangeScene::~HorseRaceMedalExchangeScene()
+{
+}
+
+SceneTransitionOwner HorseRaceMedalExchangeScene::Run()
+{
+    core->Run();
+    return continuation;
+}

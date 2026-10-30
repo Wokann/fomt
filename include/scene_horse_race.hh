@@ -2,6 +2,13 @@
 #define SCENE_HORSE_RACE_HH
 
 #include "scene.hh"
+#include "hardware_bootstrap.hh"
+#include "hardware_music_player.hh"
+#include "resource_archive.hh"
+#include "resource_handle.hh"
+
+struct UiStateOwner;
+
 
 struct GameStateSaveImage;
 struct HorseRaceCore;
@@ -36,14 +43,48 @@ typedef char HorseRaceTransitionContinuationCheck[offsetof(HorseRaceTransition, 
 typedef char HorseRaceTransitionSaveCheck[offsetof(HorseRaceTransition, save) == 8 ? 1 : -1];
 typedef char HorseRaceTransitionModeCheck[offsetof(HorseRaceTransition, player_competes) == 12 ? 1 : -1];
 
-// The scene shell and native constructor establish these pointer/owner fields.
-// Constructor, destructor, Run and the core body remain native assembly.
-struct HorseRaceMedalExchangeCore;
+// The allocation bound and initialized prefix agree in all four native ROMs.
+// unk_... is unparsed runtime storage, not padding or recovered ROM data.
+struct HorseRaceMedalExchangeCore : HardwareBootstrap {
+    HorseRaceMedalExchangeCore(GameStateSaveImage * image);
+    virtual ~HorseRaceMedalExchangeCore();
+    SceneTransitionOwner Run();
+    GameStateSaveImage * save;
+    u32 unk_00C;
+    UiStateOwner * ui_state;
+    HardwareMusicPlayerSlot music_players[3];
+    IndexedResourceArchive unk_archive_020;
+    IndexedResourceArchive cursor_archive;
+    u8 unk_080[0xAF4 - 0x80];
+};
+
+typedef char HorseRaceMedalExchangeCoreSizeCheck[sizeof(HorseRaceMedalExchangeCore) == 0xAF4 ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreSaveCheck[offsetof(HorseRaceMedalExchangeCore, save) == 8 ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreOffset_unk_00C[offsetof(HorseRaceMedalExchangeCore, unk_00C) == 0xC ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreOffset_ui_state[offsetof(HorseRaceMedalExchangeCore, ui_state) == 0x10 ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreOffset_music_players[offsetof(HorseRaceMedalExchangeCore, music_players) == 0x14 ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreOffset_unk_archive_020[offsetof(HorseRaceMedalExchangeCore, unk_archive_020) == 0x20 ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreOffset_cursor_archive[offsetof(HorseRaceMedalExchangeCore, cursor_archive) == 0x50 ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreOffset_unk_080[offsetof(HorseRaceMedalExchangeCore, unk_080) == 0x80 ? 1 : -1];
+
+// The scene destroys its continuation first, then this owned core.
+struct HorseRaceMedalExchangeCoreOwner {
+    explicit HorseRaceMedalExchangeCoreOwner(HorseRaceMedalExchangeCore * core) : value(core) {}
+    ~HorseRaceMedalExchangeCoreOwner() { delete value; }
+    HorseRaceMedalExchangeCore * operator->() const { return value; }
+    HorseRaceMedalExchangeCore * value;
+private:
+    HorseRaceMedalExchangeCoreOwner(HorseRaceMedalExchangeCoreOwner const &);
+    HorseRaceMedalExchangeCoreOwner & operator=(HorseRaceMedalExchangeCoreOwner const &);
+};
+typedef char HorseRaceMedalExchangeCoreOwnerSizeCheck[sizeof(HorseRaceMedalExchangeCoreOwner) == 4 ? 1 : -1];
+
+
 struct HorseRaceMedalExchangeScene : AScene {
     HorseRaceMedalExchangeScene(SceneTransitionOwner next, GameStateSaveImage * image);
     virtual ~HorseRaceMedalExchangeScene();
     virtual SceneTransitionOwner Run();
-    HorseRaceMedalExchangeCore * core;
+    HorseRaceMedalExchangeCoreOwner core;
     SceneTransitionOwner continuation;
 };
 
@@ -62,7 +103,8 @@ typedef char HorseRaceMedalExchangeTransitionSizeCheck[sizeof(HorseRaceMedalExch
 typedef char HorseRaceMedalExchangeTransitionContinuationCheck[offsetof(HorseRaceMedalExchangeTransition, continuation) == 4 ? 1 : -1];
 typedef char HorseRaceMedalExchangeTransitionSaveCheck[offsetof(HorseRaceMedalExchangeTransition, save) == 8 ? 1 : -1];
 
-// Direct ABI declaration of this still-native constructor, not a wrapper.
+// Direct ABI declaration of this compiler constructor, not a wrapper.
+// Retained until ordinary owner-return lowering matches the native factory.
 // The second argument is the actual single-word continuation transfer slot.
 extern "C" HorseRaceMedalExchangeScene * __27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage(
     void * storage, SceneTransition ** next, GameStateSaveImage * image);

@@ -108,14 +108,10 @@ extern void func_080E08C8(void);
 extern void func_080E11EC(void);
 extern void func_080E0C38_vtable_target(void);
 extern void func_080E118C(void);
-extern void func_08057BAC(void);
-extern void func_08057BEC(void);
 extern void func_0805CC44(void);
 extern void func_0805CC84(void);
 extern void func_080E0D60(void);
 extern void func_080E0FC4(void);
-extern void func_0805E39C(void);
-extern void func_0805E3DC(void);
 extern void func_080E1044(void);
 extern void func_080E0FE4(void);
 extern void func_080E1104(void);
@@ -364,13 +360,9 @@ extern void func_080931E0(void);
 extern void func_080E1118(void);
 extern void func_080E111C(void);
 extern void func_080E1120(void);
-extern void func_080521BC(void);
-extern void func_080521FC(void);
 extern void func_080E11EC(void);
 extern void func_080E1498(void);
 extern void func_080E118C(void);
-extern void func_08057E1C(void);
-extern void func_08057E5C(void);
 extern void func_080E15C0(void);
 extern void func_080E1824(void);
 extern void func_080E14B8(void);
@@ -431,8 +423,6 @@ extern void func_08080E54(void);
 extern void func_08081A70(void);
 extern void func_08081B00(void);
 extern void func_080E1E28(void);
-extern void func_0805E658(void);
-extern void func_0805E698(void);
 extern void func_08063E58(void);
 extern void func_08093308(void);
 extern void func_08093A88(void);
@@ -4024,52 +4014,36 @@ extern RawVTableFunction const vtable_unk_080E7918[]
         func_080E1148,
     };
 
-// This final physical slot is used directly as a JP object vtable pointer.
-// Its decoded type is not known yet, so retain an address-based unknown name
-// instead of representing it as vtable_unk_080E7918 + 0xC.
-extern RawVTableFunction const gUnk_080E6D64[]
-    SECTION(".rodata.ui_output_base_after") = {
-        nullptr,
-    };
+// The following full JP tournament table is now compiler-generated.
+
 #endif
 
 #if defined(REGION_JP)
-extern void func_080521BC(void);
-extern void func_080521FC(void);
 #else
 extern void func_080E1148(void);
 #endif
 
 // Preserve this three-slot region-specific callback table in ROM order.
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7928[]
     SECTION(".rodata.vtable_7928") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080521BC,
-        func_080521FC,
-#else
-        nullptr,
-        nullptr,
-        func_080E1148,
+    nullptr,
+    nullptr,
+    func_080E1148,
+};
 #endif
-    };
 
 // This following four-slot block stays between raw table ranges, so it is
 // emitted separately while retaining its original physical order.
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7934[]
     SECTION(".rodata.vtable_7934") = {
-#if defined(REGION_JP)
-        nullptr,
-        nullptr,
-        func_080E11EC,
-        nullptr,
-#else
-        nullptr,
-        nullptr,
-        func_080521BC,
-        func_080521FC,
+    nullptr,
+    nullptr,
+    func_080E11EC,
+    nullptr,
+};
 #endif
-    };
 
 extern RawVTableFunction const vtable_unk_080E7944[]
     SECTION(".rodata.vtable_7944") = {
@@ -4084,31 +4058,25 @@ extern RawVTableFunction const vtable_unk_080E7944[]
 #endif
     };
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7950[]
     SECTION(".rodata.vtable_7950") = {
-        nullptr,
-        nullptr,
-#if defined(REGION_JP)
-        func_08057BAC,
-        func_08057BEC,
-#else
-        func_080E1498,
-        func_080E118C,
+    nullptr,
+    nullptr,
+    func_080E1498,
+    func_080E118C,
+};
 #endif
-    };
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7960[]
     SECTION(".rodata.vtable_7960") = {
-        nullptr,
-        nullptr,
-#if defined(REGION_JP)
-        func_080E0D60,
-        nullptr,
-#else
-        func_08057E1C,
-        func_08057E5C,
+    nullptr,
+    nullptr,
+    func_080E0D60,
+    nullptr,
+};
 #endif
-    };
 
 extern RawVTableFunction const vtable_unk_080E7970[]
     SECTION(".rodata.vtable_7970") = {
@@ -4161,27 +4129,26 @@ extern RawVTableFunction const vtable_unk_080E799C[]
 #endif
     };
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E79A8[]
     SECTION(".rodata.vtable_79a8") = {
-        nullptr,
-        nullptr,
-#if defined(REGION_JP)
-        func_0805E39C,
-        func_0805E3DC,
-#else
-        func_080E1964,
-        func_080E1844,
+    nullptr,
+    nullptr,
+    func_080E1964,
+    func_080E1844,
+};
 #endif
-    };
 
 #if !defined(REGION_JP)
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E79B8[]
     SECTION(".rodata.vtable_79b8") = {
-        nullptr,
-        nullptr,
-        func_0805E658,
-        func_0805E698,
-    };
+    nullptr,
+    nullptr,
+    DestroyHorseRaceMedalExchangeScene,
+    Run__27HorseRaceMedalExchangeScene,
+};
+#endif
 #endif
 
 // JP's following native table is a different object from the outer story scene.

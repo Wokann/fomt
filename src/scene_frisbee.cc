@@ -32,3 +32,34 @@ SceneOwner FrisbeeTournamentTransition::CreateScene()
     return SceneOwner(__22FrisbeeTournamentSceneG20SceneTransitionOwnerP18GameStateSaveImage(
         ::operator new(sizeof(FrisbeeTournamentScene)), &next, save));
 }
+
+FrisbeeScene::FrisbeeScene(SceneTransitionOwner next, GameStateSaveImage * image, bool contest)
+    : core(new FrisbeeCore(image, contest)), continuation(next)
+{
+}
+
+FrisbeeScene::~FrisbeeScene()
+{
+}
+
+SceneTransitionOwner FrisbeeScene::Run()
+{
+    core->Run();
+    return continuation;
+}
+
+
+FrisbeeTournamentScene::FrisbeeTournamentScene(SceneTransitionOwner next, GameStateSaveImage * image)
+    : core(new FrisbeeTournamentCore(image)), continuation(next)
+{
+}
+
+FrisbeeTournamentScene::~FrisbeeTournamentScene()
+{
+}
+
+SceneTransitionOwner FrisbeeTournamentScene::Run()
+{
+    core->Run();
+    return continuation;
+}
