@@ -283,6 +283,7 @@ struct GameSceneResumeRequest {
         AFTER_POULTRY_FARM_SHOP = 0x13,
         AFTER_SPECIAL_MERCHANT_SHOP = 0x15,
         AFTER_GIFT_WRAPPING = 0x16,
+        AFTER_REFERENCE_PAGE = 0x17,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -302,6 +303,7 @@ struct GameSceneResumeRequest {
         AFTER_POULTRY_FARM_SHOP = 0x14,
         AFTER_SPECIAL_MERCHANT_SHOP = 0x16,
         AFTER_GIFT_WRAPPING = 0x17,
+        AFTER_REFERENCE_PAGE = 0x18,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -445,27 +447,8 @@ typedef char CookingSceneCoreCheck[offsetof(CookingScene, core) == 4 ? 1 : -1];
 typedef char CookingSceneContinuationCheck[offsetof(CookingScene, continuation) == 8 ? 1 : -1];
 typedef char CookingTransitionSizeCheck[sizeof(CookingTransition) == 16 ? 1 : -1];
 
-struct ReferencePageSceneCore;
-struct ReferencePageScene : AScene {
-    virtual ~ReferencePageScene();
-    virtual SceneTransitionOwner Run();
-
-    ReferencePageSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct ReferencePageTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-    i32 page_id;
-};
-
-typedef char ReferencePageSceneSizeCheck[sizeof(ReferencePageScene) == 12 ? 1 : -1];
-typedef char ReferencePageSceneCoreCheck[offsetof(ReferencePageScene, core) == 4 ? 1 : -1];
-typedef char ReferencePageSceneContinuationCheck[offsetof(ReferencePageScene, continuation) == 8 ? 1 : -1];
-typedef char ReferencePageTransitionSizeCheck[sizeof(ReferencePageTransition) == 16 ? 1 : -1];
+#include "scene_reference_page.hh"
+#pragma interface "game_scene.hh"
 
 #include "scene_special_merchant_shop.hh"
 #pragma interface "game_scene.hh"
@@ -641,6 +624,9 @@ struct GameScene : AScene {
     void OpenPoultryFarmShop();
     void OpenSpecialMerchantShop();
     void OpenGiftWrappingMenu();
+    void ShowReferencePage(i32 page_id);
+    void OpenBookList();
+    void OpenLetterList();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
@@ -813,7 +799,6 @@ SceneTransitionOwner func_08094A40(CookingSceneCore * core);
 #else
 SceneTransitionOwner func_08094F6C(CookingSceneCore * core);
 #endif
-SceneTransitionOwner func_080790E4(ReferencePageSceneCore * core);
 
 
 // The poultry core returns a signed target slot, with -1 meaning no purchase.
@@ -842,7 +827,6 @@ CookingScene * func_08099F0C(void *, SceneTransition **, GameStateSaveImage *, u
 CookingScene * func_0809A4D4(void *, SceneTransition **, GameStateSaveImage *, u8);
 #endif
 
-ReferencePageScene * func_0807B038(void *, SceneTransition **, GameStateSaveImage *, i32);
 
 
 

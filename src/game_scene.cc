@@ -880,11 +880,6 @@ EC void func_080D7F3C(GameSceneState * state)
 
 // Modal run methods follow their native ROM order. Returning the member
 // transfers its pointer and clears the source; it does not run the next scene.
-SceneTransitionOwner ReferencePageScene::Run()
-{
-    func_080790E4(core);
-    return continuation;
-}
 
 
 
@@ -1033,11 +1028,6 @@ SceneOwner CookingTransition::CreateScene()
 #endif
 }
 
-SceneOwner ReferencePageTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-    return SceneOwner(func_0807B038(::operator new(sizeof(ReferencePageScene)), &next, save, page_id));
-}
 
 
 

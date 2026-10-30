@@ -1315,17 +1315,19 @@ OnCall__12ScriptEnginei:
     bl OpenPoultryFarmShop__9GameScene
     .byte 0xFF, 0xF7, 0xA4, 0xFA
 .LScriptCallJp_098:
-    .byte 0xDA, 0x22, 0x52, 0x00, 0xAB, 0x18, 0x1A, 0x68
-    .byte 0x90, 0x00, 0x40, 0x19, 0x01, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xD5, 0x23
-    .byte 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x91, 0xFA, 0xD1, 0xF7
-    .byte 0x2C, 0xFA, 0xFF, 0xF7, 0x8D, 0xFA
+    .byte 0xDA, 0x22, 0x52, 0x00, 0xAB, 0x18, 0x1A, 0x68, 0x90, 0x00, 0x40, 0x19, 0x01, 0x6A, 0x00, 0x2A
+    .byte 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28
+    .byte 0x01, 0xD1, 0xFF, 0xF7, 0x91, 0xFA
+    bl ShowReferencePage__9GameScenei
+    .byte 0xFF, 0xF7, 0x8D, 0xFA
 .LScriptCallJp_099:
-    .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28
-    .byte 0x01, 0xD1, 0xFF, 0xF7, 0x85, 0xFA, 0xD1, 0xF7, 0x72, 0xFA, 0xFF, 0xF7, 0x81, 0xFA
+    .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x85, 0xFA
+    bl OpenBookList__9GameScene
+    .byte 0xFF, 0xF7, 0x81, 0xFA
 .LScriptCallJp_09A:
-    .byte 0xD5, 0x26
-    .byte 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x79, 0xFA, 0xD1, 0xF7
-    .byte 0xB4, 0xFA, 0xFF, 0xF7, 0x75, 0xFA
+    .byte 0xD5, 0x26, 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x79, 0xFA
+    bl OpenLetterList__9GameScene
+    .byte 0xFF, 0xF7, 0x75, 0xFA
 .LScriptCallJp_09B:
     .byte 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68, 0x00, 0x28
     .byte 0x01, 0xD1, 0xFF, 0xF7, 0x6D, 0xFA, 0xD1, 0xF7, 0xF8, 0xFA, 0xFF, 0xF7, 0x69, 0xFA
@@ -71885,9 +71887,9 @@ func_080786A0:
 	.byte 0x0D, 0x98
 	.byte 0x11, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
 
-    .global func_08078E40
+    .global ConstructReferencePageSceneCore
     .thumb_func
-func_08078E40: @ 0x08078E40
+ConstructReferencePageSceneCore: @ 0x08078E40
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -72192,9 +72194,9 @@ func_08078E40: @ 0x08078E40
 .Ljp_080790DC: .4byte 0x00000A56
 .Ljp_080790E0: .4byte 0x00000A58
 
-    .global func_080790E4
+    .global RunReferencePageSceneCore
     .thumb_func
-func_080790E4: @ 0x080790E4
+RunReferencePageSceneCore: @ 0x080790E4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -76201,74 +76203,6 @@ func_0807AFF4:
 	pop {r4}
 	pop {r1}
 	bx r1
-
-    .global func_0807B038
-    .thumb_func
-func_0807B038: @ 0x0807B038
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	adds r4, r0, #0
-	mov r8, r1
-	adds r5, r2, #0
-	adds r6, r3, #0
-	ldr r0, .Ljp_0807B074 @ =vtable_unk_080E700C
-	str r0, [r4]
-	ldr r0, .Ljp_0807B078 @ =0x00000A74
-	bl __builtin_new
-	adds r1, r5, #0
-	adds r2, r6, #0
-	bl func_08078E40
-	str r0, [r4, #4]
-	mov r0, r8
-	ldr r1, [r0]
-	movs r0, #0
-	mov r2, r8
-	str r0, [r2]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_0807B074: .4byte vtable_unk_080E700C
-.Ljp_0807B078: .4byte 0x00000A74
-.Ljp_0807B07C:
-    .global func_0807AC20
-    .thumb_func
-func_0807AC20: @ 0x0807AC20
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_0807AC5C
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Ljp_0807AC3C
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_0807AC3C:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_0807AC4E
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_0807AC4E:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-.Ljp_0807AC5C: .4byte vtable_unk_080E700C
 
     .section .text.after_reference_page_scene_run, "ax", %progbits
     .align 2, 0
@@ -121617,7 +121551,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042168
 	bl .L0804168A
 .L08042168:
-	bl func_08013364
+	bl ShowReferencePage__9GameScenei
 	bl .L0804168A
 .L08042170:
 	movs r4, #0xd5
@@ -121628,7 +121562,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042180
 	bl .L0804168A
 .L08042180:
-	bl func_08013408
+	bl OpenBookList__9GameScene
 	bl .L0804168A
 .L08042188:
 	movs r6, #0xd5
@@ -121639,7 +121573,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042198
 	bl .L0804168A
 .L08042198:
-	bl func_080134A4
+	bl OpenLetterList__9GameScene
 	bl .L0804168A
 .L080421A0:
 	movs r1, #0xd5
@@ -223429,8 +223363,8 @@ func_08078B18:
 	.byte 0x0D, 0x98
 	.byte 0x11, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
 
-	thumb_func_start func_08078E40
-func_08078E40: @ 0x08078E40
+	thumb_func_start ConstructReferencePageSceneCore
+ConstructReferencePageSceneCore: @ 0x08078E40
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -223735,8 +223669,8 @@ func_08078E40: @ 0x08078E40
 .L080790DC: .4byte 0x00000A56
 .L080790E0: .4byte 0x00000A58
 
-	thumb_func_start func_080790E4
-func_080790E4: @ 0x080790E4
+	thumb_func_start RunReferencePageSceneCore
+RunReferencePageSceneCore: @ 0x080790E4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -227654,52 +227588,6 @@ func_0807AFF4: @ 0x0807AFF4
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_0807B038
-func_0807B038: @ 0x0807B038
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	adds r4, r0, #0
-	mov r8, r1
-	adds r5, r2, #0
-	adds r6, r3, #0
-	ldr r0, .L0807B074 @ =vtable_unk_080E7BDC
-	str r0, [r4]
-	ldr r0, .L0807B078 @ =0x00000A74
-	bl __builtin_new
-	adds r1, r5, #0
-	adds r2, r6, #0
-	bl func_08078E40
-	str r0, [r4, #4]
-	mov r0, r8
-	ldr r1, [r0]
-	movs r0, #0
-	mov r2, r8
-	str r0, [r2]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0807B074: .4byte vtable_unk_080E7BDC
-.L0807B078: .4byte 0x00000A74
-.L0807B07C:
-	thumb_func_start func_0807B07C
-func_0807B07C:
-	.byte 0x30, 0xB5, 0x04, 0x1C
-	.byte 0x0D, 0x1C, 0x0D, 0x48, 0x20, 0x60, 0xA1, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68
-	.byte 0x08, 0x1C, 0x03, 0x21
-	bl _call_via_r2
-	.byte 0x61, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68
-	.byte 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
-	bl _call_via_r2
-	.byte 0x20, 0x1C, 0x29, 0x1C
-	bl _._6AScene
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte vtable_unk_080E7BDC
     .section .text.after_reference_page_scene_run, "ax", %progbits
     .align 2, 0
 
