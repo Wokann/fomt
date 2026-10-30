@@ -794,6 +794,10 @@ SECTIONS
         src/ui_state.o(.text.ui_portrait_group);
         src/ui_text_stream.o(.text);
         asm/code_809E804.o(.text.ui_text_stream_update_after);
+        src/scene_chicken_festival.o(.text.__22ChickenFestivalEntrant);
+        asm/code_809E804.o(.text.after_chicken_festival_entrant);
+        src/scene_chicken_festival.o(.text.HasWon__C28ChickenFestivalMinigameScene .text.Run__28ChickenFestivalMinigameScene);
+        asm/code_809E804.o(.text.after_chicken_festival_minigame_run);
         src/ui_vcount.o(.text.UpdateUiVCount);
         asm/code_809E804.o(.text.after_ui_vcount_update);
         src/ui_quantity_selector.o(.text.Configure__26UiPurchaseQuantitySelectorUiUiUi .text.Update__26UiPurchaseQuantitySelector .text.Hide__26UiPurchaseQuantitySelector);
@@ -1300,7 +1304,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8500);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_850c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_851c);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_8528);
+. = ALIGN(4); src/scene_chicken_festival.o(.gnu.linkonce.d.__vt_28ChickenFestivalMinigameScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8538);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8544);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8554);

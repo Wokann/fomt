@@ -6369,8 +6369,8 @@ extern RawVTableFunction const vtable_unk_080E8500[]
 
 #if defined(REGION_JP)
 extern void func_080E4940(void);
-// This physical JP table follows vtable_unk_080E850C. Its owner is still
-// unknown, so retain an address-based name rather than assigning semantics.
+// This native minigame core retains its three-slot table while its
+// complete class layout and lifecycle remain unrecovered.
 extern RawVTableFunction const vtable_unk_080E794C[]
     SECTION(".rodata.vtable_850c") = {
         nullptr,
@@ -6378,13 +6378,8 @@ extern RawVTableFunction const vtable_unk_080E794C[]
         func_080E4940,
     };
 
-// JP constructors at 0x080BC2CC and 0x080BC2F4 take this physical fourth
-// slot directly.  Keep it as a separately relocatable label rather than
-// describing it as an offset into the preceding three-slot object.
-extern RawVTableFunction const gUnk_080E7958[]
-    SECTION(".rodata.vtable_850c") = {
-        nullptr,
-    };
+// The next JP object is the complete compiler-generated minigame scene
+// table, beginning immediately after this 12-byte core table.
 #else
 extern void func_080B3C0C(void);
 extern void func_080B3C3C(void);
@@ -6400,33 +6395,16 @@ extern RawVTableFunction const vtable_unk_080E850C[]
     };
 #endif
 
-#if defined(REGION_JP)
-extern void func_080BC2F4(void);
-extern void func_080BC8FC(void);
-#else
+#if !defined(REGION_JP)
 extern void func_080E4940(void);
-#endif
-
-// Keep the exact three-slot region-dependent callback sequence. Its concrete
-// class is not yet known, so the source intentionally does not infer one.
 extern RawVTableFunction const vtable_unk_080E851C[]
     SECTION(".rodata.vtable_851c") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080BC2F4,
-        func_080BC8FC,
-#else
-        nullptr,
-        nullptr,
-        func_080E4940,
-#endif
+        nullptr, nullptr, func_080E4940,
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080E4D50(void);
-#else
-extern void func_080BC8C0(void);
-extern void func_080BC8FC(void);
 #endif
 
 // JP code also takes the address of the fourth physical slot directly. Keep
@@ -6443,16 +6421,6 @@ extern RawVTableFunction const vtable_unk_080E8528[]
 extern RawVTableFunction const gUnk_080E7974[]
     SECTION(".rodata.vtable_8528") = {
         nullptr,
-    };
-#else
-// Keep this four-slot table in physical order; only the function targets vary
-// between the western revisions.
-extern RawVTableFunction const vtable_unk_080E8528[]
-    SECTION(".rodata.vtable_8528") = {
-        nullptr,
-        nullptr,
-        func_080BC8C0,
-        func_080BC8FC,
     };
 #endif
 

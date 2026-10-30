@@ -4000,7 +4000,7 @@ Run__27ChickenFestivalContestScene: @ 0x080A31E0
 .Ljp_080A381E:
 	add r7, sp, #4
 	adds r0, r7, #0
-	bl func_080B36C4
+	bl __22ChickenFestivalEntrant
 	ldr r0, [r5, #8]
 	movs r3, #0xc8
 	str r3, [sp, #0x30]
@@ -4044,10 +4044,10 @@ Run__27ChickenFestivalContestScene: @ 0x080A31E0
 	add r6, sp, #0x18
 	adds r0, r6, #0
 	adds r1, r7, #0
-	bl func_080BC2CC
+	bl __28ChickenFestivalMinigameSceneRC22ChickenFestivalEntrant
 	mov r0, sp
 	adds r1, r6, #0
-	bl func_080BC8FC
+	bl Run__28ChickenFestivalMinigameScene
 	ldr r1, [sp]
 	cmp r1, #0
 	beq .Ljp_080A389E
@@ -4058,7 +4058,7 @@ Run__27ChickenFestivalContestScene: @ 0x080A31E0
 	bl _call_via_r2
 .Ljp_080A389E:
 	adds r0, r6, #0
-	bl func_080BC8F0
+	bl HasWon__C28ChickenFestivalMinigameScene
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .Ljp_080A38B0
@@ -4067,7 +4067,7 @@ Run__27ChickenFestivalContestScene: @ 0x080A31E0
 .Ljp_080A38B0:
 	ldr r4, [r5, #4]
 	adds r0, r6, #0
-	bl func_080BC8F0
+	bl HasWon__C28ChickenFestivalMinigameScene
 	strb r0, [r4, #0xc]
 	ldr r1, [r5, #4]
 	mov r0, sb
@@ -4092,7 +4092,7 @@ Run__27ChickenFestivalContestScene: @ 0x080A31E0
 .Ljp_080A38E4:
 	adds r0, r6, #0
 	movs r1, #2
-	bl func_080BC2F4
+	bl _._28ChickenFestivalMinigameScene
 .Ljp_080A38EC:
 	mov r0, sl
 	add sp, #0x40
@@ -31205,35 +31205,8 @@ func_080B3C84: @ 0x080B36B8
 	adds r0, r0, r1
 	ldr r0, [r0]
 	bx lr
-    .global func_080B36C4
-    .thumb_func
-func_080B36C4: @ 0x080B36C4
-	push {r4, r5, r6, lr}
-	adds r5, r0, #0
-	ldr r6, .Ljp_080B36F8 @ =gText_HarvestSpriteMiniGameAnimalHusbandryEmpty
-	adds r0, r6, #0
-	bl strlen
-	adds r4, r0, #0
-	cmp r4, #0xc
-	bls .Ljp_080B36D8
-	movs r4, #0xc
-.Ljp_080B36D8:
-	adds r0, r5, #0
-	adds r1, r6, #0
-	adds r2, r4, #0
-	bl memcpy
-	adds r0, r5, r4
-	movs r1, #0
-	strb r1, [r0]
-	movs r0, #0
-	strb r0, [r5, #0x10]
-	strb r0, [r5, #0x11]
-	adds r0, r5, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_080B36F8: .4byte gText_HarvestSpriteMiniGameAnimalHusbandryEmpty
+    .section .text.after_chicken_festival_entrant, "ax", %progbits
+    .align 2, 0
 
 	.global func_080B3CC8
 	.thumb_func
@@ -31951,7 +31924,7 @@ func_080B3CC8: @ 0x080B36FC
 	ldr r3, .Ljp_080B3ED0 @ =0x00000B1C
 	adds r5, r6, r3
 	adds r0, r5, #0
-	bl func_080B36C4
+	bl __22ChickenFestivalEntrant
 	movs r4, #0xb3
 	lsls r4, r4, #4
 	adds r0, r6, r4
@@ -32163,9 +32136,9 @@ func_080B3CC8: @ 0x080B36FC
 .Ljp_080B3F0C: .4byte 0x0000072C
 .Ljp_080B3F10: .4byte 0x0000073C
 
-    .global func_080B44E0
+    .global HasWonChickenFestivalMinigame
     .thumb_func
-func_080B44E0: @ 0x080B3F14
+HasWonChickenFestivalMinigame: @ 0x080B3F14
 	movs r1, #0xb3
 	lsls r1, r1, #4
 	adds r0, r0, r1
@@ -32173,9 +32146,9 @@ func_080B44E0: @ 0x080B3F14
 	bx lr
 	.align 2, 0
 
-    .global func_080B44EC
+    .global RunChickenFestivalMinigame
     .thumb_func
-func_080B44EC: @ 0x080B3F20
+RunChickenFestivalMinigame: @ 0x080B3F20
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -49308,13 +49281,13 @@ func_080BC288: @ 0x080BBCBC
 	.align 2, 0
 .Ljp_080BC2C4: .4byte 0x00000AA8
 .Ljp_080BC2C8: .4byte 0x00000AEC
-    .global func_080BC2CC
+    .global __28ChickenFestivalMinigameSceneRC22ChickenFestivalEntrant
     .thumb_func
-func_080BC2CC: @ 0x080BC2CC
+__28ChickenFestivalMinigameSceneRC22ChickenFestivalEntrant: @ 0x080BC2CC
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	ldr r0, .Ljp_080BC2EC @ =gUnk_080E7958
+	ldr r0, .Ljp_080BC2EC @ =__vt_28ChickenFestivalMinigameScene
 	str r0, [r4]
 	ldr r0, .Ljp_080BC2F0 @ =0x00000B78
 	bl __builtin_new
@@ -49326,15 +49299,15 @@ func_080BC2CC: @ 0x080BC2CC
 	pop {r1}
 	bx r1
 	.align 2, 0
-.Ljp_080BC2EC: .4byte gUnk_080E7958
+.Ljp_080BC2EC: .4byte __vt_28ChickenFestivalMinigameScene
 .Ljp_080BC2F0: .4byte 0x00000B78
-    .global func_080BC2F4
+    .global _._28ChickenFestivalMinigameScene
     .thumb_func
-func_080BC2F4: @ 0x080BC2F4
+_._28ChickenFestivalMinigameScene: @ 0x080BC2F4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	ldr r0, .Ljp_080BC320 @ =gUnk_080E7958
+	ldr r0, .Ljp_080BC320 @ =__vt_28ChickenFestivalMinigameScene
 	str r0, [r4]
 	ldr r1, [r4, #4]
 	cmp r1, #0
@@ -49352,47 +49325,10 @@ func_080BC2F4: @ 0x080BC2F4
 	pop {r0}
 	bx r0
 	.align 2, 0
-.Ljp_080BC320: .4byte gUnk_080E7958
-    .global func_080BC8F0
-    .thumb_func
-func_080BC8F0: @ 0x080BC324
-	push {lr}
-	ldr r0, [r0, #4]
-	bl func_080B44E0
-	pop {r1}
-	bx r1
-    .global func_080BC8FC
-    .thumb_func
-func_080BC8FC: @ 0x080BC330
-	push {r4, lr}
-	sub sp, #0xc
-	adds r4, r0, #0
-	ldr r1, [r1, #4]
-	mov r0, sp
-	bl func_080B44EC
-	ldr r2, [sp]
-	mov r0, sp
-	str r0, [sp, #4]
-	str r2, [sp, #8]
-	adds r1, r0, #0
-	movs r0, #0
-	str r0, [r1]
-	str r2, [r4]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080BC360
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080BC360:
-	adds r0, r4, #0
-	add sp, #0xc
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
+.Ljp_080BC320: .4byte __vt_28ChickenFestivalMinigameScene
+    .section .text.after_chicken_festival_minigame_run, "ax", %progbits
+    .align 2, 0
+
     .global func_080BC938
     .thumb_func
 func_080BC938: @ 0x080BC36C
@@ -80207,7 +80143,7 @@ Run__27ChickenFestivalContestScene: @ 0x080A37A8
 .L080A381E:
 	add r7, sp, #4
 	adds r0, r7, #0
-	bl func_080B3C90
+	bl __22ChickenFestivalEntrant
 	ldr r0, [r5, #8]
 	movs r3, #0xc8
 	str r3, [sp, #0x30]
@@ -80251,10 +80187,10 @@ Run__27ChickenFestivalContestScene: @ 0x080A37A8
 	add r6, sp, #0x18
 	adds r0, r6, #0
 	adds r1, r7, #0
-	bl func_080BC898
+	bl __28ChickenFestivalMinigameSceneRC22ChickenFestivalEntrant
 	mov r0, sp
 	adds r1, r6, #0
-	bl func_080BC8FC
+	bl Run__28ChickenFestivalMinigameScene
 	ldr r1, [sp]
 	cmp r1, #0
 	beq .L080A389E
@@ -80265,7 +80201,7 @@ Run__27ChickenFestivalContestScene: @ 0x080A37A8
 	bl _call_via_r2
 .L080A389E:
 	adds r0, r6, #0
-	bl func_080BC8F0
+	bl HasWon__C28ChickenFestivalMinigameScene
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A38B0
@@ -80274,7 +80210,7 @@ Run__27ChickenFestivalContestScene: @ 0x080A37A8
 .L080A38B0:
 	ldr r4, [r5, #4]
 	adds r0, r6, #0
-	bl func_080BC8F0
+	bl HasWon__C28ChickenFestivalMinigameScene
 	strb r0, [r4, #0xc]
 	ldr r1, [r5, #4]
 	mov r0, sb
@@ -80299,7 +80235,7 @@ Run__27ChickenFestivalContestScene: @ 0x080A37A8
 .L080A38E4:
 	adds r0, r6, #0
 	movs r1, #2
-	bl func_080BC8C0
+	bl _._28ChickenFestivalMinigameScene
 .L080A38EC:
 	mov r0, sl
 	add sp, #0x40
@@ -107334,34 +107270,8 @@ func_080B3C84: @ 0x080B3C84
 	ldr r0, [r0]
 	bx lr
 
-	thumb_func_start func_080B3C90
-func_080B3C90: @ 0x080B3C90
-	push {r4, r5, r6, lr}
-	adds r5, r0, #0
-	ldr r6, .L080B3CC4 @ =gText_HarvestSpriteMiniGameAnimalHusbandryEmpty
-	adds r0, r6, #0
-	bl strlen
-	adds r4, r0, #0
-	cmp r4, #0xc
-	bls .L080B3CA4
-	movs r4, #0xc
-.L080B3CA4:
-	adds r0, r5, #0
-	adds r1, r6, #0
-	adds r2, r4, #0
-	bl memcpy
-	adds r0, r5, r4
-	movs r1, #0
-	strb r1, [r0]
-	movs r0, #0
-	strb r0, [r5, #0x10]
-	strb r0, [r5, #0x11]
-	adds r0, r5, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080B3CC4: .4byte gText_HarvestSpriteMiniGameAnimalHusbandryEmpty
+    .section .text.after_chicken_festival_entrant, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080B3CC8
 func_080B3CC8: @ 0x080B3CC8
@@ -108078,7 +107988,7 @@ func_080B3CC8: @ 0x080B3CC8
 	ldr r3, .L080B449C @ =0x00000B1C
 	adds r5, r6, r3
 	adds r0, r5, #0
-	bl func_080B3C90
+	bl __22ChickenFestivalEntrant
 	movs r4, #0xb3
 	lsls r4, r4, #4
 	adds r0, r6, r4
@@ -108290,8 +108200,8 @@ func_080B3CC8: @ 0x080B3CC8
 .L080B44D8: .4byte 0x0000072C
 .L080B44DC: .4byte 0x0000073C
 
-	thumb_func_start func_080B44E0
-func_080B44E0: @ 0x080B44E0
+	thumb_func_start HasWonChickenFestivalMinigame
+HasWonChickenFestivalMinigame: @ 0x080B44E0
 	movs r1, #0xb3
 	lsls r1, r1, #4
 	adds r0, r0, r1
@@ -108299,8 +108209,8 @@ func_080B44E0: @ 0x080B44E0
 	bx lr
 	.align 2, 0
 
-	thumb_func_start func_080B44EC
-func_080B44EC: @ 0x080B44EC
+	thumb_func_start RunChickenFestivalMinigame
+RunChickenFestivalMinigame: @ 0x080B44EC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -125389,12 +125299,12 @@ func_080BC288: @ 0x080BC288
 .L080BC890: .4byte 0x00000AA8
 .L080BC894: .4byte 0x00000AEC
 
-	thumb_func_start func_080BC898
-func_080BC898: @ 0x080BC898
+	thumb_func_start __28ChickenFestivalMinigameSceneRC22ChickenFestivalEntrant
+__28ChickenFestivalMinigameSceneRC22ChickenFestivalEntrant: @ 0x080BC898
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	ldr r0, .L080BC8B8 @ =vtable_unk_080E8528
+	ldr r0, .L080BC8B8 @ =__vt_28ChickenFestivalMinigameScene
 	str r0, [r4]
 	ldr r0, .L080BC8BC @ =0x00000B78
 	bl __builtin_new
@@ -125406,15 +125316,15 @@ func_080BC898: @ 0x080BC898
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080BC8B8: .4byte vtable_unk_080E8528
+.L080BC8B8: .4byte __vt_28ChickenFestivalMinigameScene
 .L080BC8BC: .4byte 0x00000B78
 
-	thumb_func_start func_080BC8C0
-func_080BC8C0: @ 0x080BC8C0
+	thumb_func_start _._28ChickenFestivalMinigameScene
+_._28ChickenFestivalMinigameScene: @ 0x080BC8C0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	ldr r0, .L080BC8EC @ =vtable_unk_080E8528
+	ldr r0, .L080BC8EC @ =__vt_28ChickenFestivalMinigameScene
 	str r0, [r4]
 	ldr r1, [r4, #4]
 	cmp r1, #0
@@ -125432,47 +125342,10 @@ func_080BC8C0: @ 0x080BC8C0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080BC8EC: .4byte vtable_unk_080E8528
+.L080BC8EC: .4byte __vt_28ChickenFestivalMinigameScene
 
-	thumb_func_start func_080BC8F0
-func_080BC8F0: @ 0x080BC8F0
-	push {lr}
-	ldr r0, [r0, #4]
-	bl func_080B44E0
-	pop {r1}
-	bx r1
-
-	thumb_func_start func_080BC8FC
-func_080BC8FC: @ 0x080BC8FC
-	push {r4, lr}
-	sub sp, #0xc
-	adds r4, r0, #0
-	ldr r1, [r1, #4]
-	mov r0, sp
-	bl func_080B44EC
-	ldr r2, [sp]
-	mov r0, sp
-	str r0, [sp, #4]
-	str r2, [sp, #8]
-	adds r1, r0, #0
-	movs r0, #0
-	str r0, [r1]
-	str r2, [r4]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080BC92C
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080BC92C:
-	adds r0, r4, #0
-	add sp, #0xc
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.after_chicken_festival_minigame_run, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080BC938
 func_080BC938: @ 0x080BC938

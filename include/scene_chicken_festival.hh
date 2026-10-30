@@ -2,6 +2,7 @@
 #define SCENE_CHICKEN_FESTIVAL_HH
 
 #include "scene.hh"
+#include "utility/fixed_str.hh"
 
 struct GameStateSaveImage;
 
@@ -33,6 +34,36 @@ typedef char ChickenFestivalContestSceneSaveCheck[offsetof(ChickenFestivalContes
 typedef char ChickenFestivalContestTransitionSizeCheck[sizeof(ChickenFestivalContestTransition) == 12 ? 1 : -1];
 typedef char ChickenFestivalContestTransitionContinuationCheck[offsetof(ChickenFestivalContestTransition, continuation) == 4 ? 1 : -1];
 typedef char ChickenFestivalContestTransitionSaveCheck[offsetof(ChickenFestivalContestTransition, save) == 8 ? 1 : -1];
+
+// Copied into the minigame's participant records. The old ARM ABI rounds
+// FixedStr<12> to 16 bytes; year and affection are scalar byte fields.
+struct ChickenFestivalEntrant {
+    ChickenFestivalEntrant();
+    FixedStr<12> name;
+    u8 year;
+    u8 affection;
+};
+
+struct ChickenFestivalMinigameCore;
+struct ChickenFestivalMinigameScene : AScene {
+    ChickenFestivalMinigameScene(ChickenFestivalEntrant const & entrant);
+    virtual ~ChickenFestivalMinigameScene();
+    virtual SceneTransitionOwner Run();
+    bool HasWon() const;
+
+    ChickenFestivalMinigameCore * core;
+};
+
+// These are the actual remaining native core entries, not forwarding helpers.
+// The renderer's complete private layout and body remain unrecovered.
+extern "C" bool HasWonChickenFestivalMinigame(ChickenFestivalMinigameCore const * core);
+extern "C" SceneTransitionOwner RunChickenFestivalMinigame(ChickenFestivalMinigameCore * core);
+
+typedef char ChickenFestivalEntrantSizeCheck[sizeof(ChickenFestivalEntrant) == 20 ? 1 : -1];
+typedef char ChickenFestivalEntrantYearCheck[offsetof(ChickenFestivalEntrant, year) == 16 ? 1 : -1];
+typedef char ChickenFestivalEntrantAffectionCheck[offsetof(ChickenFestivalEntrant, affection) == 17 ? 1 : -1];
+typedef char ChickenFestivalMinigameSceneSizeCheck[sizeof(ChickenFestivalMinigameScene) == 8 ? 1 : -1];
+typedef char ChickenFestivalMinigameSceneCoreCheck[offsetof(ChickenFestivalMinigameScene, core) == 4 ? 1 : -1];
 
 // Direct declarations of the old GCC member ABI for the remaining transition
 // catalog. They bind the real methods and emit no alias or forwarding body.
