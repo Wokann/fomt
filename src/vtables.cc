@@ -131,7 +131,6 @@ extern void func_080755EC(void);
 extern void func_0807561C(void);
 extern void func_0807565C(void);
 extern void func_0807532C(void);
-extern void func_08075A5C(void);
 extern void func_08076E0C(void);
 extern void func_08076EA8(void);
 extern void func_080E260C(void);
@@ -392,7 +391,6 @@ extern void func_0807555C(void);
 extern void func_0807561C(void);
 extern void func_0807565C(void);
 extern void func_080756D0(void);
-extern void func_08075E00(void);
 extern void func_080E2E34(void);
 extern void func_080E2E6C(void);
 extern void func_08076E0C(void);
@@ -580,7 +578,6 @@ extern void func_080A95A4(void);
 extern void func_080E2018(void);
 extern void func_080713AC(void);
 extern void func_08070C88(void);
-extern void func_08075DEC(void);
 extern void func_08075328(void);
 extern void func_080E1128(void);
 extern void func_080E1148(void);
@@ -4478,36 +4475,18 @@ extern RawVTableFunction const vtable_unk_080E7B4C[]
 #endif
     };
 
-#if defined(REGION_JP)
-// This four-slot JP sub-vtable begins at the original physical address
-// 0x080E6F98. It directly follows the three-slot JP prefix above.
-extern RawVTableFunction const vtable_unk_080E6F98_Subtable[]
-    SECTION(".rodata.vtable_7b4c") = {
-        nullptr,
-        nullptr,
-        func_08075A5C,
-        func_08075DEC,
-    };
-#else
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7B5C[]
     SECTION(".rodata.vtable_7b5c") = {
         nullptr,
         nullptr,
         func_080756D0,
     };
-#endif
-
-extern RawVTableFunction const vtable_unk_080E7B68[]
-    SECTION(".rodata.vtable_7b68") = {
-#if defined(REGION_JP)
-        nullptr,
 #else
-        nullptr,
-        nullptr,
-        func_08075E00,
-        func_08075DEC,
+// First metadata word of the following native core table, not padding.
+extern RawVTableFunction const gUnk_080E6FA8
+    SECTION(".rodata.vtable_7b68") = nullptr;
 #endif
-    };
 
 #if defined(REGION_JP)
 extern void func_080E25D4(void);

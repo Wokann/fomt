@@ -24445,7 +24445,7 @@ func_080E15C8:
     adds r4, r0, #0
     adds r0, #0x28
     movs r1, #2
-    bl func_08075DEC
+    bl _._25ScrollBufferUploadCommand
     adds r0, r4, #0
     adds r0, #0x18
     ldr r2, [r0, #4]
@@ -31667,7 +31667,7 @@ func_080E1E28: @ 0x080E1E28
 	adds r4, r0, #0
 	adds r0, #0x28
 	movs r1, #2
-	bl func_08075DEC
+	bl _._25ScrollBufferUploadCommand
 	adds r0, r4, #0
 	adds r0, #0x18
 	ldr r2, [r0, #4]

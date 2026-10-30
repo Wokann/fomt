@@ -65333,7 +65333,7 @@ func_080C8360:
     adds r4, r0, #0
     adds r0, #0x28
     movs r1, #2
-    bl func_08075DEC
+    bl _._25ScrollBufferUploadCommand
     adds r0, r4, #0
     adds r0, #0x18
     ldr r2, [r0, #4]
@@ -65576,11 +65576,14 @@ func_080C7FC4:
     bl GetHardwareInterruptList
     .byte 0x04, 0x1C, 0x50, 0x46
     bl GetHardwareDisplayState
-    .byte 0x03, 0x1C, 0x44, 0x48, 0x00, 0x90, 0x28, 0x1C
-    .byte 0x64, 0x21, 0x22, 0x1C, 0xAD, 0xF7, 0xE0, 0xF8, 0x51, 0x9E, 0x05, 0x1C, 0x50, 0x46, 0xC4, 0x69
-    .byte 0xA5, 0x42, 0x17, 0xD0, 0x00, 0x2C, 0x15, 0xD0, 0x20, 0x1C, 0x28, 0x30, 0x02, 0x21, 0xAD, 0xF7
-    .byte 0x49, 0xFA, 0x20, 0x1C, 0x18, 0x30, 0x42, 0x68, 0xA1, 0x69, 0x91, 0x42, 0x02, 0xD0, 0x40, 0x31
-    .byte 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD0, 0x07, 0xF0, 0x89, 0xFA, 0x20, 0x1C
+    .byte 0x03, 0x1C, 0x44, 0x48, 0x00, 0x90, 0x28, 0x1C, 0x64, 0x21, 0x22, 0x1C
+    bl __11ScrollStateUiP18HardwareLinkedListP20HardwareDisplayStatePUc
+    .byte 0x51, 0x9E, 0x05, 0x1C, 0x50, 0x46, 0xC4, 0x69, 0xA5, 0x42, 0x17, 0xD0
+    .byte 0x00, 0x2C, 0x15, 0xD0, 0x20, 0x1C, 0x28, 0x30, 0x02, 0x21
+    bl _._25ScrollBufferUploadCommand
+    .byte 0x20, 0x1C, 0x18, 0x30, 0x42, 0x68, 0xA1, 0x69, 0x91, 0x42, 0x02, 0xD0
+    .byte 0x40, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD0
+    .byte 0x07, 0xF0, 0x89, 0xFA, 0x20, 0x1C
     bl __builtin_delete
     .byte 0x35, 0x60, 0x50, 0x46
     bl GetHardwareDisplayState
@@ -65989,7 +65992,7 @@ func_080C9020: @ 0x080C8A2C
 	ldr r0, [r4, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r4, r2]
-	bl func_08075C88
+	bl SetScrollPosition
 	b .L080C90C0
 .L080C8C7A:
 	movs r6, #0
@@ -68720,7 +68723,7 @@ func_080CA8B4:
     adds r2, r3, r4
     .Lauto_080CA186:
     asrs r2, r2, #3
-    bl func_08075BC8
+    bl UploadScrollBufferRows
     movs r0, #1
     strb r0, [r6, #8]
     add sp, #8
@@ -68899,7 +68902,7 @@ func_080CA98C:
     adds r2, r3, r4
     .Lauto_080CA2E6:
     asrs r2, r2, #3
-    bl func_08075BC8
+    bl UploadScrollBufferRows
     ldr r0, [r5, #0x18]
     adds r0, #0x18
     movs r1, #0xcb
@@ -68983,7 +68986,7 @@ func_080CAAF4:
     adds r2, r3, r4
     .Lauto_080CA392:
     asrs r2, r2, #3
-    bl func_08075BC8
+    bl UploadScrollBufferRows
     movs r0, #0
     strb r0, [r5, #8]
     str r0, [r5, #0xc]
@@ -149876,7 +149879,7 @@ func_080C8360: @ 0x080C8360
 	adds r4, r0, #0
 	adds r0, #0x28
 	movs r1, #2
-	bl func_08075DEC
+	bl _._25ScrollBufferUploadCommand
 	adds r0, r4, #0
 	adds r0, #0x18
 	ldr r2, [r0, #4]
@@ -150692,7 +150695,7 @@ func_080C85A0: @ 0x080C85A0
 	adds r0, r5, #0
 	movs r1, #0x64
 	adds r2, r4, #0
-	bl func_08075B00
+	bl __11ScrollStateUiP18HardwareLinkedListP20HardwareDisplayStatePUc
 	ldr r6, [sp, #0x134]
 	adds r5, r0, #0
 	ldr r4, [r7, #0x1c]
@@ -150703,7 +150706,7 @@ func_080C85A0: @ 0x080C85A0
 	adds r0, r4, #0
 	adds r0, #0x28
 	movs r1, #2
-	bl func_08075DEC
+	bl _._25ScrollBufferUploadCommand
 	adds r0, r4, #0
 	adds r0, #0x18
 	ldr r2, [r0, #4]
@@ -151623,7 +151626,7 @@ func_080C9020: @ 0x080C9020
 	ldr r0, [r4, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r4, r2]
-	bl func_08075C88
+	bl SetScrollPosition
 	b .L080C96B4
 .L080C926E:
 	movs r6, #0
@@ -154656,7 +154659,7 @@ func_080CA8B4: @ 0x080CA8B4
 	adds r2, r3, r4
 .L080CA974:
 	asrs r2, r2, #3
-	bl func_08075BC8
+	bl UploadScrollBufferRows
 	movs r0, #1
 	strb r0, [r6, #8]
 	add sp, #8
@@ -154836,7 +154839,7 @@ func_080CA98C: @ 0x080CA98C
 	adds r2, r3, r4
 .L080CAAD6:
 	asrs r2, r2, #3
-	bl func_08075BC8
+	bl UploadScrollBufferRows
 	ldr r0, [r5, #0x18]
 	adds r0, #0x18
 	movs r1, #0xcb
@@ -154921,7 +154924,7 @@ func_080CAAF4: @ 0x080CAAF4
 	adds r2, r3, r4
 .L080CAB82:
 	asrs r2, r2, #3
-	bl func_08075BC8
+	bl UploadScrollBufferRows
 	movs r0, #0
 	strb r0, [r5, #8]
 	str r0, [r5, #0xc]

@@ -615,11 +615,16 @@ SECTIONS
         src/new_game.o(.text.new_game_birthday_sprite_render);
         src/new_game.o(.text.new_game_birthday_input_scene);
         asm/code_0803EE94.o(.text.new_game_birthday_input_after);
-        . = 0x75A14; /* JP/US-shared scroll-position reset. */
-        src/scroll_state.o(.text.reset_scroll_position);
-        . = 0x75A30; /* JP/US-shared scroll-buffer clear. */
-        src/scroll_state.o(.text.clear_scroll_buffer);
-        . = 0x75A48; asm/code_0803EE94.o(.text.clear_scroll_buffer_after);
+        src/scroll_state.o(.text.UploadScrollBufferRows);
+        asm/code_0803EE94.o(.text.scroll_position_update);
+        src/scroll_state.o(.text.ResetScrollPosition);
+        src/scroll_state.o(.text.ClearScrollBuffer);
+        src/scroll_state.o(.text._._25ScrollBufferUploadCommand);
+        src/scroll_state.o(.text.Run__25ScrollBufferUploadCommand);
+        src/scroll_state.o(.text.SetScrollBottomLimit);
+        src/scroll_state.o(.text.SetTransfers__25ScrollBufferUploadCommandPCvPvUiT1T2Ui);
+        src/scroll_state.o(.text.__25ScrollBufferUploadCommand);
+        asm/code_0803EE94.o(.text.clear_scroll_buffer_after);
         . = 0x76840; /* JP/US-shared selection-index state setter. */
         src/selection_state.o(.text.set_selection_index);
         . = 0x7684C; /* JP/US-shared selection-index state getter. */
@@ -1281,6 +1286,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7b2c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7b3c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7b4c);
+. = ALIGN(4); src/scroll_state.o(.gnu.linkonce.d.__vt_25ScrollBufferUploadCommand);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7b5c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7b68);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_6fac);
