@@ -547,6 +547,7 @@ SECTIONS
         src/ui_state.o(.text.ui_state_selection);
         src/ui_state.o(.text.__21UiTextTileCopyCommandPCUiPUiUib);
         src/ui_text_window.o(.text);
+        src/scene_frisbee.o(.text.__21FrisbeeTournamentCoreP18GameStateSaveImage);
         asm/code_0803EE94.o(.text.ui_state_selection_after);
         src/scene_frisbee.o(.text.__22FrisbeeTournamentSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._22FrisbeeTournamentScene .text.Run__22FrisbeeTournamentScene);
         src/animal_festival_ranking.o(.text);
@@ -1023,6 +1024,7 @@ SECTIONS
         src/ui_state.o(.text.ui_text_input_base_destructor);
         src/ui_state.o(.text.ui_text_output_defaults);
         src/ui_state.o(.text.ui_text_output_base_destructor);
+        src/scene_frisbee.o(.gnu.linkonce.t._._21FrisbeeTournamentCore);
         asm/code_linkonce.o(.text.ui_text_output_base_after);
         src/resource_archive.o(.text.indexed_resource_archive_cleanup);
         src/intro_story_scene.o(.text.Lookup__23IntroStoryTextVariablesUi);
@@ -1207,7 +1209,7 @@ SECTIONS
         src/ui_state.o(.gnu.linkonce.d.__vt_11UiTextInput);
         src/ui_state.o(.gnu.linkonce.d.__vt_12UiTextOutput);
         src/vtables.o(.rodata.ui_output_base_after);
-        . = ALIGN(4); src/vtables.o(.rodata.vtable_7928);
+        . = ALIGN(4); src/scene_frisbee.o(.gnu.linkonce.d.__vt_21FrisbeeTournamentCore);
         . = ALIGN(4); src/scene_frisbee.o(.gnu.linkonce.d.__vt_22FrisbeeTournamentScene);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7944);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7950);

@@ -22299,37 +22299,6 @@ Run__20UiDmaTransferCommand:
     .byte 0x00, 0x00
     .section .text.ui_text_output_base_after, "ax", %progbits
     .align 2, 0
-    .global func_080E1148
-    .thumb_func
-func_080E1148:
-    push {r4, r5, r6, lr}
-    adds r5, r0, #0
-    adds r6, r1, #0
-    adds r4, r5, #0
-    adds r4, #0xb0
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._17HardwarePoolOwner
-    subs r4, #8
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    adds r0, r4, #0
-    movs r1, #2
-    bl _._24HardwareSharedStateOwner
-    ldr r0, [pc, #0x10]
-    str r0, [r5, #0x10]
-    adds r0, r5, #0
-    adds r1, r6, #0
-    bl _._17HardwareBootstrap
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_23IndexedResourceProvider
     .global func_080E118C
     .thumb_func
 func_080E118C:
@@ -29427,37 +29396,6 @@ Run__20UiDmaTransferCommand: @ 0x080E0F48
 
     .section .text.ui_text_output_base_after, "ax", %progbits
     .align 2, 0
-
-	thumb_func_start func_080E1148
-func_080E1148: @ 0x080E1148
-	push {r4, r5, r6, lr}
-	adds r5, r0, #0
-	adds r6, r1, #0
-	adds r4, r5, #0
-	adds r4, #0xb0
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._17HardwarePoolOwner
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	ldr r0, .L080E1188 @ =__vt_23IndexedResourceProvider
-	str r0, [r5, #0x10]
-	adds r0, r5, #0
-	adds r1, r6, #0
-	bl _._17HardwareBootstrap
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E1188: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E118C
 func_080E118C: @ 0x080E118C

@@ -6,6 +6,11 @@
 #include "hardware_music_player.hh"
 #include "resource_archive.hh"
 #include "resource_handle.hh"
+#include "hardware_input.hh"
+#include "hardware_resource.hh"
+#include "hardware_state_clear.hh"
+
+extern u8 const gUnk_08527094[];
 
 struct UiStateOwner;
 
@@ -74,25 +79,47 @@ typedef char FrisbeeTransitionContinuationCheck[offsetof(FrisbeeTransition, cont
 typedef char FrisbeeTransitionSaveCheck[offsetof(FrisbeeTransition, save) == 8 ? 1 : -1];
 typedef char FrisbeeTransitionModeCheck[offsetof(FrisbeeTransition, contest_mode) == 12 ? 1 : -1];
 
-// The allocation bound and initialized prefix agree in all four native ROMs.
-// unk_... is unparsed runtime storage, not padding or recovered ROM data.
+// Each resource handle is followed by its native sprite parameters.
+// The final word is not initialized by this constructor; its meaning is unknown.
+struct FrisbeeTournamentSpriteState {
+    IndexedResourceHandle resource;
+    IndexedResourceSpriteParameters parameters;
+    u32 unk_30;
+    FrisbeeTournamentSpriteState(IndexedResourceProvider * archive, u32 index)
+        : resource(archive, index, 256), parameters() {}
+};
+
+typedef char FrisbeeTournamentSpriteStateSizeCheck[sizeof(FrisbeeTournamentSpriteState) == 0x34 ? 1 : -1];
+typedef char FrisbeeTournamentSpriteParametersCheck[offsetof(FrisbeeTournamentSpriteState, parameters) == 0x14 ? 1 : -1];
+typedef char FrisbeeTournamentSpriteUnknownCheck[offsetof(FrisbeeTournamentSpriteState, unk_30) == 0x30 ? 1 : -1];
+
+// Unknown bytes below are runtime RAM, not recovered ROM data or padding.
 struct FrisbeeTournamentCore : HardwareBootstrap {
     FrisbeeTournamentCore(GameStateSaveImage * image);
-    virtual ~FrisbeeTournamentCore();
     SceneTransitionOwner Run();
     GameStateSaveImage * save;
     HardwareMusicPlayerSlot music_player;
     IndexedResourceArchive unk_archive_010;
-    IndexedResourceHandle unk_handle_040;
-    u8 unk_054[0x8C0 - 0x54];
+    FrisbeeTournamentSpriteState sprite_040;
+    FrisbeeTournamentSpriteState sprite_074;
+    HardwareStateEntry sprite_tiles;
+    HardwareResourceEntry hardware_resource;
+    u8 unk_0B8[0x800];
+    u16 unk_8B8;
+    u32 unk_8BC;
 };
 
 typedef char FrisbeeTournamentCoreSizeCheck[sizeof(FrisbeeTournamentCore) == 0x8C0 ? 1 : -1];
-typedef char FrisbeeTournamentCoreSaveCheck[offsetof(FrisbeeTournamentCore, save) == 8 ? 1 : -1];
+typedef char FrisbeeTournamentCoreOffset_save[offsetof(FrisbeeTournamentCore, save) == 0x8 ? 1 : -1];
 typedef char FrisbeeTournamentCoreOffset_music_player[offsetof(FrisbeeTournamentCore, music_player) == 0xC ? 1 : -1];
 typedef char FrisbeeTournamentCoreOffset_unk_archive_010[offsetof(FrisbeeTournamentCore, unk_archive_010) == 0x10 ? 1 : -1];
-typedef char FrisbeeTournamentCoreOffset_unk_handle_040[offsetof(FrisbeeTournamentCore, unk_handle_040) == 0x40 ? 1 : -1];
-typedef char FrisbeeTournamentCoreOffset_unk_054[offsetof(FrisbeeTournamentCore, unk_054) == 0x54 ? 1 : -1];
+typedef char FrisbeeTournamentCoreOffset_sprite_040[offsetof(FrisbeeTournamentCore, sprite_040) == 0x40 ? 1 : -1];
+typedef char FrisbeeTournamentCoreOffset_sprite_074[offsetof(FrisbeeTournamentCore, sprite_074) == 0x74 ? 1 : -1];
+typedef char FrisbeeTournamentCoreOffset_sprite_tiles[offsetof(FrisbeeTournamentCore, sprite_tiles) == 0xA8 ? 1 : -1];
+typedef char FrisbeeTournamentCoreOffset_hardware_resource[offsetof(FrisbeeTournamentCore, hardware_resource) == 0xB0 ? 1 : -1];
+typedef char FrisbeeTournamentCoreOffset_unk_0B8[offsetof(FrisbeeTournamentCore, unk_0B8) == 0xB8 ? 1 : -1];
+typedef char FrisbeeTournamentCoreOffset_unk_8B8[offsetof(FrisbeeTournamentCore, unk_8B8) == 0x8B8 ? 1 : -1];
+typedef char FrisbeeTournamentCoreOffset_unk_8BC[offsetof(FrisbeeTournamentCore, unk_8BC) == 0x8BC ? 1 : -1];
 
 // The scene destroys its continuation first, then this owned core.
 struct FrisbeeTournamentCoreOwner {

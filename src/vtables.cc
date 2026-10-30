@@ -581,7 +581,6 @@ extern void func_080713AC(void);
 extern void func_08070C88(void);
 extern void func_08075328(void);
 extern void func_080E1128(void);
-extern void func_080E1148(void);
 // Direct binding to the compiler's legacy destructor symbol, not an alias body.
 extern void destructor_GameScene(void) asm("_._9GameScene");
 extern void Run__9GameScene(void);
@@ -4006,32 +4005,7 @@ extern RawVTableFunction const __vt_12ScriptEngine[]
 // UiTextOutput supplies the next complete C++ table, including the four
 // words formerly split across two JP fragments. These following slots
 // belong to other objects, not to that base table.
-#if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E7918[]
-    SECTION(".rodata.ui_output_base_after") = {
-        nullptr,
-        nullptr,
-        func_080E1148,
-    };
-
-// The following full JP tournament table is now compiler-generated.
-
-#endif
-
-#if defined(REGION_JP)
-#else
-extern void func_080E1148(void);
-#endif
-
-// Preserve this three-slot region-specific callback table in ROM order.
-#if !defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E7928[]
-    SECTION(".rodata.vtable_7928") = {
-    nullptr,
-    nullptr,
-    func_080E1148,
-};
-#endif
+// The tournament core and scene class tables are compiler-generated.
 
 // This following four-slot block stays between raw table ranges, so it is
 // emitted separately while retaining its original physical order.

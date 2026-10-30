@@ -63,3 +63,11 @@ SceneTransitionOwner FrisbeeTournamentScene::Run()
     core->Run();
     return continuation;
 }
+
+FrisbeeTournamentCore::FrisbeeTournamentCore(GameStateSaveImage * image)
+    : HardwareBootstrap(HardwareInputRepeatParameters(30, 1)),
+      save(image), music_player(2), unk_archive_010(gUnk_08527094),
+      sprite_040(&unk_archive_010, 0), sprite_074(&unk_archive_010, 1),
+      sprite_tiles(4), unk_8B8(0)
+{
+}
