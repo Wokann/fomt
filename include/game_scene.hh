@@ -277,6 +277,7 @@ struct GameSceneResumeRequest {
         AFTER_BLACKSMITH_SHOP = 13,
         AFTER_CLINIC_SHOP = 14,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
+        AFTER_HORSE_RACE = 0x24,
 #else
         AFTER_SUPERMARKET_SHOP = 10,
         AFTER_SUPERMARKET_PURCHASE = 11,
@@ -285,6 +286,7 @@ struct GameSceneResumeRequest {
         AFTER_BLACKSMITH_SHOP = 14,
         AFTER_CLINIC_SHOP = 15,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
+        AFTER_HORSE_RACE = 0x25,
 #endif
     };
     i32 kind;
@@ -771,6 +773,7 @@ struct GameScene : AScene {
     // The native command borrows the script VM's packed hour/minute value.
     void SetGameTime(GameTime const & time);
     void RunChickenFestivalContest();
+    void RunHorseRace(MaryFestivalHorseRaceMode mode);
     void PrepareClockMenuTransition();
     void RestoreAfterClockMenu();
     void PrepareCookingMenuTransition();

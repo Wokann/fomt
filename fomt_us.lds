@@ -227,6 +227,7 @@ SECTIONS
             .text.DisableScriptedNpcControl__9GameScene);
         asm/scene_clock.o(.text);
         src/scene_chicken_festival.o(.text.RunChickenFestivalContest__9GameScene);
+        src/scene_horse_race.o(.text.RunHorseRace__9GameScene25MaryFestivalHorseRaceMode);
         asm/game_state.o(.text.game_scene_menu_hooks_after);
         src/scene_audio.o(.text.GetSceneSongPlayerPool);
         src/game_scene.o(
@@ -936,6 +937,7 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
         src/game_scene.o(.text.CreateScene__15ShelfTransition .gnu.linkonce.t._._15ShelfTransition);
         asm/code_linkonce.o(.text.scene_shelf_after);
+        src/scene_horse_race.o(.text.CreateScene__19HorseRaceTransition .gnu.linkonce.t._._19HorseRaceTransition);
         src/game_scene.o(.text.CreateScene__17CookingTransition .gnu.linkonce.t._._17CookingTransition);
         src/game_scene.o(.text.CreateScene__23ReferencePageTransition .gnu.linkonce.t._._23ReferencePageTransition);
         src/game_scene.o(.text.CreateScene__29SpecialMerchantShopTransition .gnu.linkonce.t._._29SpecialMerchantShopTransition);

@@ -1,3 +1,4 @@
+#include "scene_horse_race.hh"
 #include "scene_chicken_festival.hh"
 #include "prelude.h"
 #include "intro_scene.hh"
@@ -12,6 +13,10 @@
 #include "map_clock_status.hh"
 
 EXTERN_C
+
+// Address-only bindings to actual compiler member entries, not forwarding bodies.
+extern void CreateScene__19HorseRaceTransition(void);
+extern void DestroyHorseRaceTransition(void) asm("_._19HorseRaceTransition");
 
 extern void Update__17GameSceneWorldMap(void);
 extern void RefreshAppearance__17GameSceneWorldMapiUiUi(void);
@@ -699,8 +704,6 @@ extern void func_080DB96C(void);
 extern void func_080DB9B4(void);
 extern void func_080DB9DC(void);
 extern void func_080DBA24(void);
-extern void func_080DBA4C(void);
-extern void func_080DBA94(void);
 extern void DestroyCookingTransition(void) asm("_._17CookingTransition");
 extern void CreateScene__17CookingTransition(void);
 extern void DestroyReferencePageTransition(void) asm("_._23ReferencePageTransition");
@@ -877,11 +880,12 @@ extern RawVTableFunction const vtable_unk_080E5D24[] = {
     func_080DB9DC,
 };
 
-extern RawVTableFunction const vtable_unk_080E5D34[] = {
-    nullptr,
-    nullptr,
-    func_080DBA94,
-    func_080DBA4C,
+// Retain the original continuous transition catalog and native GCC slot type.
+// These entries directly reference the recovered C++ members.
+int (* __vt_19HorseRaceTransition[4])(...) = {
+    nullptr, nullptr,
+    reinterpret_cast<int (*)(...)>(DestroyHorseRaceTransition),
+    reinterpret_cast<int (*)(...)>(CreateScene__19HorseRaceTransition),
 };
 
 extern RawVTableFunction const vtable_unk_080E5D44[] = {
