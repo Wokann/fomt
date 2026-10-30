@@ -51571,7 +51571,7 @@ func_0806EC94:
 	mov sb, r0
 	ldr r0, [r0, #8]
 	adds r0, #0x10
-	bl func_0800E324
+	bl GetCalendarEffectiveSeason
 	movs r1, #0
 	cmp r0, #3
 	bne .Ljp_0806E90E
@@ -55239,7 +55239,7 @@ func_080701BC:
 	bl func_0806F168
 	ldr r0, [r7, #8]
 	adds r0, #0x10
-	bl func_0800E324
+	bl GetCalendarEffectiveSeason
 	cmp r0, #2
 	bne .Ljp_080705C2
 	ldr r0, [r7, #8]
@@ -70244,7 +70244,7 @@ func_08077EC0: @ 0x08077EC0
 	adds r4, r0, #0
 	ldr r0, [r4, #8]
 	adds r0, #0x10
-	bl func_0800E324
+	bl GetCalendarEffectiveSeason
 	adds r6, r0, #0
 	movs r0, #0
 	cmp r6, #3
@@ -202691,7 +202691,7 @@ func_0806EC94: @ 0x0806EC94
 	mov sb, r0
 	ldr r0, [r0, #8]
 	adds r0, #0x10
-	bl func_0800E324
+	bl GetCalendarEffectiveSeason
 	movs r1, #0
 	cmp r0, #3
 	bne .L0806ECB2
@@ -206312,7 +206312,7 @@ func_080701BC: @ 0x080701BC
 	bl func_0806F168
 	ldr r0, [r7, #8]
 	adds r0, #0x10
-	bl func_0800E324
+	bl GetCalendarEffectiveSeason
 	cmp r0, #2
 	bne .L08070966
 	ldr r0, [r7, #8]
@@ -222164,7 +222164,7 @@ func_08077EC0: @ 0x08077EC0
 	adds r4, r0, #0
 	ldr r0, [r4, #8]
 	adds r0, #0x10
-	bl func_0800E324
+	bl GetCalendarEffectiveSeason
 	adds r6, r0, #0
 	movs r0, #0
 	cmp r6, #3

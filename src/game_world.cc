@@ -143,7 +143,7 @@ failure:
 EC bool func_08019F38(GameSceneWorldPrefix & world, Location const & location)
 {
     if (GetMapData(world.data.map.value->map_data_id)->flags != 0
-        || (func_0800E324(world.save->clock.calendar) != SEASON_WINTER
+        || (GetCalendarEffectiveSeason(world.save->clock.calendar) != SEASON_WINTER
             && !func_080A5EB8(world.data.map.value, location)))
         return false;
     return true;
@@ -151,7 +151,7 @@ EC bool func_08019F38(GameSceneWorldPrefix & world, Location const & location)
 
 EC i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map)
 {
-    u32 season = func_0800E324(world.save->clock.calendar);
+    u32 season = GetCalendarEffectiveSeason(world.save->clock.calendar);
     u32 house = world.save->farm.farm_house.GetUpgradeLevel();
     u32 coop = world.save->farm.coop.GetUpgradeLevel();
     u32 barn = world.save->farm.barn.GetUpgradeLevel();
@@ -161,7 +161,7 @@ EC i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map)
 
 EC i32 GetWorldMapPixelHeight(GameSceneWorldPrefix & world, u32 map)
 {
-    u32 season = func_0800E324(world.save->clock.calendar);
+    u32 season = GetCalendarEffectiveSeason(world.save->clock.calendar);
     u32 house = world.save->farm.farm_house.GetUpgradeLevel();
     u32 coop = world.save->farm.coop.GetUpgradeLevel();
     u32 barn = world.save->farm.barn.GetUpgradeLevel();
@@ -181,7 +181,7 @@ EC MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id)
     if (current_map == map_id) {
         data_id = world.data.map.value->map_data_id;
     } else {
-        u32 season = func_0800E324(world.save->clock.calendar);
+        u32 season = GetCalendarEffectiveSeason(world.save->clock.calendar);
         u32 house = world.save->farm.farm_house.GetUpgradeLevel();
         u32 coop = world.save->farm.coop.GetUpgradeLevel();
         u32 barn = world.save->farm.barn.GetUpgradeLevel();
@@ -525,7 +525,7 @@ EC void func_0801D5BC(GameSceneWorldPrefix & world, Location const & location,
 EC RucksackItem PickUpFieldItemAtLocation(GameSceneWorldPrefix & world, Location const & location)
 {
     FieldItemState & items = world.save->field_items;
-    i32 season = func_0800E324(world.save->clock.calendar);
+    i32 season = GetCalendarEffectiveSeason(world.save->clock.calendar);
     Box area(location.GetX(), location.GetY(), 1, 1);
     i32 index = items.Find(location.GetMap(), area, season);
     RucksackItem item;

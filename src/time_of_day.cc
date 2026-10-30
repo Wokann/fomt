@@ -14,7 +14,7 @@ CalendarSeasonLabel GetCalendarSeasonLabel(Season season)
     return CalendarSeasonLabel(gText_Calendar_None);
 }
 
-extern "C" char const * func_0800E304(unsigned int week_day)
+extern "C" char const * GetCalendarWeekdayLabel(unsigned int week_day)
 {
     if (week_day < 7)
     {
@@ -24,17 +24,13 @@ extern "C" char const * func_0800E304(unsigned int week_day)
     return gText_Calendar_None;
 }
 
-extern "C" u32 func_0800E324(GameCalendar const & arg_0)
+extern "C" u32 GetCalendarEffectiveSeason(GameCalendar const & calendar)
 {
-    GameDate const & date = arg_0.date;
-    GameTime const & time = arg_0.time;
+    GameDate const & date = calendar.date;
+    GameTime const & time = calendar.time;
 
     if (date.GetDay() == 0 && time.GetHour() < 6)
-    {
-        /* get previous season
-         * TODO: inline GetPreviousSeason(season)? */
         return (date.GetSeason() % NUM_SEASONS - 1u) % NUM_SEASONS;
-    }
 
     return date.GetSeason();
 }

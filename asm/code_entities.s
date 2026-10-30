@@ -28339,7 +28339,7 @@ func_0802E994:
 .Ljp_0802ED88:
     ldr r0, [r7, #0x34]
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     cmp r0, #3
     beq .Ljp_0802EDD4
     ldr r0, [r7]
@@ -61200,7 +61200,7 @@ func_0802EC00: @ 0x0802EC00
 .L0802EFF4:
     ldr r0, [r7, #0x34]
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     cmp r0, #3
     beq .L0802F040
     ldr r0, [r7]

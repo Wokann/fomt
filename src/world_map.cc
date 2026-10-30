@@ -663,7 +663,7 @@ EC void RefreshFieldPlotTiles(GameSceneWorldMap * map, u32 x, u32 y,
 
 EC void RefreshWorldMapPatch(GameSceneSavedMapPrefix * map, u32 index)
 {
-    Season season = static_cast<Season>(func_0800E324(map->save->clock.calendar));
+    Season season = static_cast<Season>(GetCalendarEffectiveSeason(map->save->clock.calendar));
     FieldRenderPatchPlacement placement = SelectMapFlagPatch(
         map->save->map_patch_flags, index, season == SEASON_WINTER);
     ApplyMapTilePatch(map, *placement.patch, placement.x, placement.y);

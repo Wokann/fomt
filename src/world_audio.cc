@@ -33,7 +33,7 @@ EC u32 SelectWorldBackgroundAudio(GameSceneWorldPrefix & world)
         if (static_cast<u8>(hour - 6) <= 13) {
             if (record_player != nullptr && record_player->HasAlbum())
                 return record_player->GetAudioSequenceId();
-            switch (static_cast<i32>(func_0800E324(clock.calendar))) {
+            switch (static_cast<i32>(GetCalendarEffectiveSeason(clock.calendar))) {
             case SEASON_SPRING:
             default:
                 return AUDIO_BGM_SPRING;

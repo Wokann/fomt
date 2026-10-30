@@ -1,5 +1,17 @@
 # 文本 ROM 物理地址布局
 
+## 日历查询的语义符号（2026-10-30）
+
+星期文本的实际调用入口现为 `GetCalendarWeekdayLabel`，其返回值仍
+直接指向 `gText_Calendar_WeekdayNames` 的对应行或
+`gText_Calendar_None`。四语定义仍在
+`data/text/<region>/game_state_1.cc`，没有重新拆分或新增文本对象。
+
+存档摘要汇编与其他调用改用真实的新符号，实际文本、数据布局和
+函数地址保持。四版完整原版对比及全部 256 个输入对象的分配段和
+重定位核对均通过。具体函数范围与季节查询 ABI 见
+`CODE_ROM_LAYOUT.md` 的同名记录；本批没有增加文本提取或 C++ 正文覆盖。
+
 ## 新游戏菜单标签调用恢复（2026-10-30）
 
 六项 `NewGameMenuLabelRow` 的读取、三列绘字和上传现在由

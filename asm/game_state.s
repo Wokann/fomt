@@ -12100,7 +12100,7 @@ func_0801CBB0:
     add r4, sb
     ldr r0, [r4]
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     mov r8, r0
     ldr r0, [r4]
     ldr r3, [pc, #0xa4]
@@ -12630,7 +12630,7 @@ func_0801CFB8:
     adds r4, r0, r1
     ldr r0, [r4]
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     mov r8, r0
     ldr r0, [r4]
     ldr r2, [pc, #0xa4]
@@ -13473,7 +13473,7 @@ func_0801E084:
     adds r4, r0, #0
     adds r4, #0x14
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     movs r2, #0
     cmp r0, #3
     bne .Lauto_0801E812
@@ -21700,7 +21700,7 @@ func_080175B4: @ 0x080175B4
     mov r2, r8
     ldr r0, [r2]
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     adds r2, r0, #0
     mov r0, sb
     ldr r3, [r0]
@@ -21830,7 +21830,7 @@ func_080175B4: @ 0x080175B4
     adds r4, r0, #0
     adds r4, #0x14
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     movs r2, #0
     cmp r0, #3
     bne .L08017746
@@ -27577,7 +27577,7 @@ UpdateWorldTimeOfDayPalettes: @ 0x0801A13C
     adds r0, r1, r2
     ldr r0, [r0]
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     adds r2, r0, #0
     ldr r3, [sp, #0x90]
     ldr r1, .L0801A8AC @ =0x00001048
@@ -29260,7 +29260,7 @@ func_0801CBB0:
     .4byte gUnk_080F0800
     .byte 0x38, 0x10, 0x00, 0x00, 0xDC, 0x09, 0x00, 0x00
     .byte 0x2C, 0x4C, 0x4C, 0x44, 0x20, 0x68, 0x10, 0x30
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     .byte 0x80, 0x46, 0x20, 0x68
     .byte 0x29, 0x4B, 0xC7, 0x18, 0x60, 0x25, 0x07, 0xAC, 0x28, 0x48, 0x82, 0x44, 0x38, 0x1C, 0x29, 0x1C
     .byte 0x42, 0x46
@@ -29596,7 +29596,7 @@ func_0801CFB8:
     .4byte gUnk_080F0800 + 7
     .byte 0xDC, 0x09, 0x00, 0x00
     .byte 0x0E, 0x98, 0x2C, 0x49, 0x44, 0x18, 0x20, 0x68, 0x10, 0x30
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     .byte 0x80, 0x46
     .byte 0x20, 0x68, 0x29, 0x4A, 0x87, 0x18, 0x60, 0x25, 0x07, 0xAC, 0x28, 0x48, 0x82, 0x44, 0x38, 0x1C
     .byte 0x29, 0x1C, 0x42, 0x46
@@ -29641,7 +29641,7 @@ func_0801D104: @ 0x0801D104
     ldr r1, .L0801D1D8 @ =0x000034C8
     adds r6, r0, r1
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     mov r8, r0
     ldrb r0, [r5, #1]
     lsrs r0, r0, #2
@@ -30733,7 +30733,7 @@ func_0801E90C: @ 0x0801E90C
     adds r4, r0, #0
     adds r4, #0x14
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     movs r2, #0
     cmp r0, #3
     bne .L0801EA7E
@@ -31727,7 +31727,7 @@ func_0801F14C: @ 0x0801F14C
     adds r0, r6, r1
     ldr r0, [r0]
     adds r0, #0x10
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     movs r5, #0
     cmp r0, #3
     bne .L0801F280

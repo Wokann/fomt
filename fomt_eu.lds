@@ -144,7 +144,7 @@ SECTIONS
         src/coop.o(.text);
         src/barn.o(.text);
         src/item.o(.text);
-        src/time_of_day.o(.text.GetCalendarSeasonLabel__F6Season .text.func_0800E304 .text.func_0800E324);
+        src/time_of_day.o(.text.GetCalendarSeasonLabel__F6Season .text.GetCalendarWeekdayLabel .text.GetCalendarEffectiveSeason);
         src/farmer.o(.text .text.__6FarmerPCcRC8GameDate .text.__Q* .text.[A-Za-z]*);
         src/rucksack_item.o(.text);
         src/held_item.o(.text);

@@ -252,7 +252,7 @@ FormatNewGameSaveSlotSummary:
     movs	r0, #7
     ands	r2, r0
     adds	r0, r2, #0
-    bl func_0800E304
+    bl GetCalendarWeekdayLabel
     mov	r8, r0
     mov	r9, r6
     mov	r4, r8
@@ -1435,7 +1435,7 @@ FormatNewGameSaveSlotSummary: @ Original US 0x08003788; body remains native.
     movs r0, #7
     ands r2, r0
     adds r0, r2, #0
-    bl func_0800E304
+    bl GetCalendarWeekdayLabel
     mov r8, r0
     mov sb, r6
     mov r4, r8

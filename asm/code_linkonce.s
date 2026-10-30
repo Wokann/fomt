@@ -4208,7 +4208,7 @@ func_080DCFE0:
     adds r0, r4, #0
     bl _call_via_r1
     adds r0, #8
-    bl func_0800E324
+    bl GetCalendarEffectiveSeason
     adds r2, r0, #0
     adds r0, r5, #0
     adds r1, r4, #0
@@ -15415,7 +15415,7 @@ func_080DCFE0: @ 0x080DCFE0
 	adds r0, r4, #0
 	bl _call_via_r1
 	adds r0, #8
-	bl func_0800E324
+	bl GetCalendarEffectiveSeason
 	adds r2, r0, #0
 	adds r0, r5, #0
 	adds r1, r4, #0
