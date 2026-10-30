@@ -27,6 +27,7 @@
 #include "livestock_actor.hh"
 
 #include "scene_text_variables.hh"
+#include "scene_clock.hh"
 
 #pragma interface "game_scene.hh"
 
@@ -40,8 +41,8 @@ struct FieldRenderRectDescriptor;
 struct FieldRenderTileAttributes;
 struct HardwareDmaQueue;
 
-// Only the shared destruction prefix is recovered. The concrete Time Window
-// and pause-menu selector payloads and their destructors remain native.
+// Unrecovered scene UI components keep their shared destruction prefix.
+// The time window uses the real MapClockStatusHudWidget owner in scene_clock.hh.
 struct GameSceneUiComponent {
     u32 unk_00;
     // Actual existing bootstrap lifecycle ABI; these declarations emit no code.
@@ -683,7 +684,7 @@ struct GameSceneState {
     GameSceneWorldOwner game_object;
     GameSceneTalkWindowOwner talk_window;
     GameSceneTextVariablesOwner text_variables;
-    GameSceneUiComponentOwner time_window;
+    GameSceneClockWindowOwner time_window;
     GameSceneUiComponentOwner pause_menu_selector;
     HardwareMusicPlayerSlot bgm_player;
     HardwareMusicPlayerSlot music_player_1;
@@ -765,6 +766,8 @@ struct GameScene : AScene {
     void CallScript(i32 script_id, i32 context_value);
     void QueueScript(GameSceneScriptRequest const & request, i32 queue_kind);
     void WaitFrames(i32 frames);
+    // The native command borrows the script VM's packed hour/minute value.
+    void SetGameTime(GameTime const & time);
     void PrepareClockMenuTransition();
     void RestoreAfterClockMenu();
     void PrepareCookingMenuTransition();

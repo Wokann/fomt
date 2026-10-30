@@ -347,16 +347,6 @@ void GameScene::WaitFrames(i32 frames)
     current->script_state = 0x15;
 }
 
-void GameScene::PrepareClockMenuTransition()
-{
-    state->game_object.value->PrepareClockMenuTransition();
-}
-
-void GameScene::RestoreAfterClockMenu()
-{
-    state->game_object.value->RestoreAfterClockMenu();
-}
-
 void GameScene::PrepareCookingMenuTransition()
 {
     state->game_object.value->PrepareCookingMenuTransition();

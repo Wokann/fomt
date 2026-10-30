@@ -239,9 +239,8 @@ SECTIONS
         src/scene_blacksmith_shop.o(.text.OpenBlacksmithShop__9GameScene);
         src/scene_clinic_shop.o(.text.OpenClinicShop__9GameScene);
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
+        src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/game_scene.o(
-            .text.PrepareClockMenuTransition__9GameScene
-            .text.RestoreAfterClockMenu__9GameScene
             .text.PrepareCookingMenuTransition__9GameScene
             .text.RestoreAfterCookingMenu__9GameScene
             .text.PrepareRecipeMenuTransition__9GameScene
@@ -264,6 +263,7 @@ SECTIONS
             .text.EndTelevisionProgram__9GameScene
             .text.EnableScriptedNpcControl__9GameScene
             .text.DisableScriptedNpcControl__9GameScene);
+        asm/scene_clock.o(.text);
         asm/game_state.o(.text.game_scene_menu_hooks_after);
         src/scene_audio.o(.text.GetSceneSongPlayerPool);
         src/game_scene.o(

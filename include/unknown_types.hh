@@ -68,6 +68,8 @@ struct IndexedResourceArchive;
 struct GameSceneScriptRequest;
 struct EntityAuxiliarySprites;
 
+struct GameTime;
+
 struct GameObject
 {
     virtual ~GameObject();
@@ -116,7 +118,8 @@ struct GameObject
     virtual void ChangeMap(Location const & location, bool unk);
     virtual void RefreshMapTimeOfDayPalette();
     // Unrecovered slots retain their offsets; only the television pair is named.
-    virtual void vfunc_BC();
+    // Script SetGameTime forwards a borrowed packed time at this slot.
+    virtual void vfunc_BC(GameTime const & time);
     virtual void vfunc_C0();
     virtual void vfunc_C4();
     virtual void vfunc_C8();
