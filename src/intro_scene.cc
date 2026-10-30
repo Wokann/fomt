@@ -1,7 +1,8 @@
 #include "intro_scene.hh"
 #include "compression.hh"
 #include "random.hh"
-#include "new_game.hh"
+#include "new_game_name_entry.hh"
+#include "new_game_menu.hh"
 #include "hardware.hh"
 #include "hardware_allocator.hh"
 #include "hardware_bootstrap.hh"
@@ -676,7 +677,7 @@ void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
 SceneOwner IntroNameEntryTransition::CreateScene()
 {
     // The existing constructor installs the name-entry scene's vtable.
-    return SceneOwner(func_08004C48(::operator new(4)));
+    return SceneOwner(new NewGameNameEntryScene);
 }
 
 SceneOwner IntroMenuTransition::CreateScene()

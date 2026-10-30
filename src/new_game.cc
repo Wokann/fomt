@@ -20,18 +20,6 @@
 #include "game_scene.hh"
 #pragma implementation
 
-// Keep the GNU C++ tables and partial-core tables in retail ROM order.
-// Their real ABI labels have one definition each; no aliases are used.
-NewGameNativeVTableEntry __vt_26NewGameFreshSaveTransition[4] = {
-    nullptr, nullptr,
-    reinterpret_cast<NewGameNativeVTableEntry>(DestroyFreshSaveGameTransition),
-    reinterpret_cast<NewGameNativeVTableEntry>(CreateFreshSaveGameScene),
-};
-NewGameNativeVTableEntry __vt_21NewGameNameEntryScene[4] = {
-    nullptr, nullptr,
-    reinterpret_cast<NewGameNativeVTableEntry>(func_08004C54),
-    reinterpret_cast<NewGameNativeVTableEntry>(func_08004C68),
-};
 void * operator new(unsigned long);
 void operator delete(void *);
 inline void * operator new(unsigned long, void * location) { return location; }
@@ -57,62 +45,6 @@ static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
 static inline u32 SpritePaletteBank(HardwareResourceEntry & entry)
 {
     return GetHardwarePoolHandleIndex(&entry, entry.handle);
-}
-
-NewGameNameEntryScene::NewGameNameEntryScene() {}
-
-NewGameNameEntryScene::~NewGameNameEntryScene() {}
-
-SceneTransitionOwner NewGameNameEntryScene::Run()
-{
-    HardwareManagerOwner manager;
-    func_08008DB8(0x23);
-    FixedStr<12> player_name ALIGN(4);
-    FixedStr<12> farm_name ALIGN(4);
-    FixedStr<12> dog_name ALIGN(4);
-    GameDate birthday(SEASON_SPRING, 0);
-    u8 confirmed;
-    do {
-        {
-            NewGameNameInputScene input(gText_NewGameIdentity_PlayerPrefix, player_name);
-            input.Run();
-            player_name = input.GetName();
-        }
-        {
-            NewGameBirthdayInputScene input(birthday);
-            input.Run();
-            birthday = input.GetDate();
-        }
-        {
-            NewGameNameInputScene input(gText_NewGameIdentity_FarmPrefix, farm_name);
-            input.Run();
-            farm_name = input.GetName();
-        }
-        {
-            NewGameNameInputScene input(gText_NewGameIdentity_DogPrefix, dog_name);
-            input.Run();
-            dog_name = input.GetName();
-        }
-        {
-            NewGameIdentityScene input(player_name, birthday, farm_name, dog_name);
-            input.Run();
-            confirmed = input.GetConfirmed();
-        }
-    } while (!confirmed);
-    return SceneTransitionOwner(new NewGameFreshSaveTransition(
-        farm_name, player_name, birthday, dog_name));
-}
-
-SceneOwner NewGameFreshSaveTransition::CreateScene()
-{
-    return SceneOwner(new GameSceneScriptController(farm_name,
-        player_name, birthday, dog_name));
-}
-
-// The native slot forwards to base cleanup; the fixed strings have trivial destruction.
-void DestroyFreshSaveGameTransition(NewGameFreshSaveTransition * transition, int flags)
-{
-    DestroySceneTransitionBase(reinterpret_cast<SceneTransition *>(transition), flags);
 }
 
 // The birthday UI wraps invalid day fields; ordinary GameDate construction

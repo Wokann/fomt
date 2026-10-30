@@ -15,41 +15,13 @@
 #include "new_game_menu.hh"
 #include "utility/fixed_str.hh"
 
-
-// Partial-core tables retain their existing raw callback view. The compiler's
-// real C++ vtable symbols require its erased int(...) entry type instead.
-// Call code uses the typed scene interfaces, not these erased signatures.
-typedef void (*NewGameSceneVTableFunction)(void);
-typedef int (*NewGameNativeVTableEntry)(...);
-
-// The workflow creates this transition after all four fields are confirmed.
-// Each name is limited to twelve encoded bytes, with word-aligned members.
-// Retain the explicit GNU ABI table beside the neighboring partial-core tables;
-// the interface pragma prevents a second compiler-emitted table.
-#pragma interface "new_game.hh"
-struct NewGameFreshSaveTransition : SceneTransition {
-    NewGameFreshSaveTransition(char const * farm, char const * player,
-        GameDate date, char const * dog)
-        : farm_name(farm), player_name(player), birthday(date), dog_name(dog) {}
-    // This real native entry forwards the trivial name fields to base cleanup.
-    virtual ~NewGameFreshSaveTransition() asm("DestroyFreshSaveGameTransition")
-        SECTION(".text.new_game_fresh_save_callbacks");
-    virtual SceneOwner CreateScene() asm("CreateFreshSaveGameScene")
-        SECTION(".text.new_game_fresh_save_callbacks");
-
-    FixedStr<12> farm_name ALIGN(4);
-    FixedStr<12> player_name ALIGN(4);
-    GameDate birthday ALIGN(4);
-    FixedStr<12> dog_name ALIGN(4);
-};
+// The remaining birthday classes are implemented in new_game.cc.
 #pragma implementation
 
 
-typedef char NewGameFreshSaveTransitionSizeCheck[sizeof(NewGameFreshSaveTransition) == 0x38 ? 1 : -1];
-typedef char NewGameFreshSaveFarmCheck[offsetof(NewGameFreshSaveTransition, farm_name) == 4 ? 1 : -1];
-typedef char NewGameFreshSavePlayerCheck[offsetof(NewGameFreshSaveTransition, player_name) == 0x14 ? 1 : -1];
-typedef char NewGameFreshSaveBirthdayCheck[offsetof(NewGameFreshSaveTransition, birthday) == 0x24 ? 1 : -1];
-typedef char NewGameFreshSaveDogCheck[offsetof(NewGameFreshSaveTransition, dog_name) == 0x28 ? 1 : -1];
+// The birthday core and identity scene retain native callback views.
+typedef void (*NewGameSceneVTableFunction)(void);
+typedef int (*NewGameNativeVTableEntry)(...);
 
 // Halfword-aligned records written by the append routine and read by OAM
 // rendering. Only priority's low two bits are consumed by that renderer.
@@ -171,16 +143,6 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore *)
     SECTION(".text.new_game_birthday_sprite_render");
 }
 
-// The complete form workflow is this scene's native virtual Run method.
-#pragma interface "new_game.hh"
-struct NewGameNameEntryScene : AScene {
-    NewGameNameEntryScene() asm("func_08004C48") SECTION(".text.new_game_scene_lifecycle");
-    virtual ~NewGameNameEntryScene() asm("func_08004C54") SECTION(".text.new_game_scene_lifecycle");
-    virtual SceneTransitionOwner Run() asm("func_08004C68")
-        SECTION(".text.new_game_name_entry_workflow");
-};
-#pragma implementation
-
 // Clear2DGfxBuffer and DrawStringTo2DGfxBuffer consume the tile words after
 // the untouched four-byte prefix. Each 4bpp tile occupies eight words and
 // these new-game text buffers are two tiles high. Their native construction
@@ -207,27 +169,5 @@ struct NewGameTextTileBuffer {
     u32 unk_00;
     u32 tiles[Width * 2 * 8];
 };
-
-typedef char NewGameNameEntrySceneSizeCheck[sizeof(NewGameNameEntryScene) == 4 ? 1 : -1];
-
-EXTERN_C
-
-extern NewGameNativeVTableEntry __vt_21NewGameNameEntryScene[4];
-
-AScene * func_08004C48(void * object)
-    SECTION(".text.new_game_scene_lifecycle");
-void func_08004C54(struct NewGameNameEntryScene * scene, int flags)
-    SECTION(".text.new_game_scene_lifecycle");
-
-// C/assembly declarations of the real member entries used by the ABI tables.
-SceneTransitionOwner func_08004C68(NewGameNameEntryScene *);
-SceneOwner CreateFreshSaveGameScene(NewGameFreshSaveTransition * transition)
-    SECTION(".text.new_game_fresh_save_callbacks");
-void DestroyFreshSaveGameTransition(NewGameFreshSaveTransition * transition, int flags)
-    SECTION(".text.new_game_fresh_save_callbacks");
-
-extern NewGameNativeVTableEntry __vt_26NewGameFreshSaveTransition[4];
-
-EXTERN_C_END
 
 #endif // NEW_GAME_HH

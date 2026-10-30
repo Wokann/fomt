@@ -71,8 +71,8 @@ SECTIONS
         src/new_game_menu.o(.text.new_game_menu_update);
         asm/new_game_menu.o(.text.new_game_menu_core_run);
         src/new_game_menu.o(.text.new_game_menu_scene);
-        src/new_game.o(.text.new_game_scene_lifecycle);
-        src/new_game.o(.text.new_game_name_entry_workflow);
+        src/new_game_name_entry.o(.text.__21NewGameNameEntryScene .text._._21NewGameNameEntryScene);
+        src/new_game_name_entry.o(.text.Run__21NewGameNameEntryScene);
         src/new_game_identity.o(.text.new_game_identity_core_constructor);
         src/new_game_identity.o(.text.new_game_identity_core_cleanup);
         src/new_game_identity.o(.text.new_game_identity_core_run);
@@ -882,7 +882,7 @@ SECTIONS
         src/rucksack.o(.text._._8Rucksack);
         src/money_account.o(.text.__12MoneyAccountRC12MoneyAccount);
         src/money_account.o(.text._._12MoneyAccount);
-        src/new_game.o(.text.new_game_fresh_save_callbacks);
+        src/new_game_name_entry.o(.text.CreateScene__26NewGameFreshSaveTransition .gnu.linkonce.t._._26NewGameFreshSaveTransition);
         src/hardware.o(.text.hardware_free_list);
         src/hardware_resource.o(.text.Reserve__23HardwareResourceStorageUi);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree);
@@ -1044,7 +1044,7 @@ SECTIONS
         src/intro_scene.o(.gnu.linkonce.d.__vt_19MenuIntroTransition);
         src/new_game_menu.o(.gnu.linkonce.d.__vt_27NewGameLoadedSaveTransition);
         src/new_game_menu.o(.rodata .gnu.linkonce.d.__vt_16NewGameMenuScene);
-        src/new_game.o(.rodata);
+        src/new_game_name_entry.o(.gnu.linkonce.d.__vt_26NewGameFreshSaveTransition .gnu.linkonce.d.__vt_21NewGameNameEntryScene);
         src/new_game_identity.o(.rodata);
         src/new_game_name_input.o(.gnu.linkonce.d.__vt_20NewGameNameInputCore);
         src/new_game_name_input.o(.gnu.linkonce.d.__vt_21NewGameNameInputScene);
