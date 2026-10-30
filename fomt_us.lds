@@ -228,7 +228,9 @@ SECTIONS
         asm/scene_clock.o(.text);
         src/scene_chicken_festival.o(.text.RunChickenFestivalContest__9GameScene);
         src/scene_horse_race.o(.text.RunHorseRace__9GameScene25MaryFestivalHorseRaceMode);
-        asm/game_state.o(.text.game_scene_menu_hooks_after);
+        src/scene_horse_race.o(.text.OpenHorseRaceMedalExchange__9GameScene);
+        src/scene_frisbee.o(.text.RunFrisbeeGame__9GameSceneb);
+        src/scene_frisbee.o(.text.RunFrisbeeTournamentRound__9GameScene);
         src/scene_audio.o(.text.GetSceneSongPlayerPool);
         src/game_scene.o(
             .text.LightFireplaceAtLocation__9GameScene9MaryMapId
@@ -937,6 +939,9 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
         src/game_scene.o(.text.CreateScene__15ShelfTransition .gnu.linkonce.t._._15ShelfTransition);
         asm/code_linkonce.o(.text.scene_shelf_after);
+        src/scene_frisbee.o(.text.CreateScene__27FrisbeeTournamentTransition .gnu.linkonce.t._._27FrisbeeTournamentTransition);
+        src/scene_frisbee.o(.text.CreateScene__17FrisbeeTransition .gnu.linkonce.t._._17FrisbeeTransition);
+        src/scene_horse_race.o(.text.CreateScene__32HorseRaceMedalExchangeTransition .gnu.linkonce.t._._32HorseRaceMedalExchangeTransition);
         src/scene_horse_race.o(.text.CreateScene__19HorseRaceTransition .gnu.linkonce.t._._19HorseRaceTransition);
         src/game_scene.o(.text.CreateScene__17CookingTransition .gnu.linkonce.t._._17CookingTransition);
         src/game_scene.o(.text.CreateScene__23ReferencePageTransition .gnu.linkonce.t._._23ReferencePageTransition);

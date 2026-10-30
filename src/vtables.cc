@@ -1,3 +1,4 @@
+#include "scene_frisbee.hh"
 #include "scene_horse_race.hh"
 #include "scene_chicken_festival.hh"
 #include "prelude.h"
@@ -13,6 +14,14 @@
 #include "map_clock_status.hh"
 
 EXTERN_C
+
+// Address-only declarations of the real member entries; no wrapper bodies.
+extern void CreateScene__32HorseRaceMedalExchangeTransition(void);
+extern void DestroyHorseRaceMedalExchangeTransition(void) asm("_._32HorseRaceMedalExchangeTransition");
+extern void CreateScene__17FrisbeeTransition(void);
+extern void DestroyFrisbeeTransition(void) asm("_._17FrisbeeTransition");
+extern void CreateScene__27FrisbeeTournamentTransition(void);
+extern void DestroyFrisbeeTournamentTransition(void) asm("_._27FrisbeeTournamentTransition");
 
 // Address-only bindings to actual compiler member entries, not forwarding bodies.
 extern void CreateScene__19HorseRaceTransition(void);
@@ -698,12 +707,6 @@ extern void DestroyShelfTransition(void) asm("_._15ShelfTransition");
 extern void CreateScene__15ShelfTransition(void);
 extern void func_080DB88C(void);
 extern void func_080DB8D4(void);
-extern void func_080DB8FC(void);
-extern void func_080DB944(void);
-extern void func_080DB96C(void);
-extern void func_080DB9B4(void);
-extern void func_080DB9DC(void);
-extern void func_080DBA24(void);
 extern void DestroyCookingTransition(void) asm("_._17CookingTransition");
 extern void CreateScene__17CookingTransition(void);
 extern void DestroyReferencePageTransition(void) asm("_._23ReferencePageTransition");
@@ -859,25 +862,25 @@ extern RawVTableFunction const vtable_unk_080E5CF4[] = {
     func_080DB88C,
 };
 
-extern RawVTableFunction const vtable_unk_080E5D04[] = {
-    nullptr,
-    nullptr,
-    func_080DB944,
-    func_080DB8FC,
+// Preserve the continuous catalog with actual GCC slots and direct members.
+int (* __vt_27FrisbeeTournamentTransition[4])(...) = {
+    nullptr, nullptr,
+    reinterpret_cast<int (*)(...)>(DestroyFrisbeeTournamentTransition),
+    reinterpret_cast<int (*)(...)>(CreateScene__27FrisbeeTournamentTransition),
 };
 
-extern RawVTableFunction const vtable_unk_080E5D14[] = {
-    nullptr,
-    nullptr,
-    func_080DB9B4,
-    func_080DB96C,
+// Preserve the continuous catalog with actual GCC slots and direct members.
+int (* __vt_17FrisbeeTransition[4])(...) = {
+    nullptr, nullptr,
+    reinterpret_cast<int (*)(...)>(DestroyFrisbeeTransition),
+    reinterpret_cast<int (*)(...)>(CreateScene__17FrisbeeTransition),
 };
 
-extern RawVTableFunction const vtable_unk_080E5D24[] = {
-    nullptr,
-    nullptr,
-    func_080DBA24,
-    func_080DB9DC,
+// Preserve the continuous catalog with actual GCC slots and direct members.
+int (* __vt_32HorseRaceMedalExchangeTransition[4])(...) = {
+    nullptr, nullptr,
+    reinterpret_cast<int (*)(...)>(DestroyHorseRaceMedalExchangeTransition),
+    reinterpret_cast<int (*)(...)>(CreateScene__32HorseRaceMedalExchangeTransition),
 };
 
 // Retain the original continuous transition catalog and native GCC slot type.
