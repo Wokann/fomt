@@ -909,11 +909,6 @@ SceneTransitionOwner RefrigeratorScene::Run()
     return continuation;
 }
 
-SceneTransitionOwner ShelfScene::Run()
-{
-    func_08090960(core);
-    return continuation;
-}
 
 
 
@@ -1002,11 +997,6 @@ SceneOwner RefrigeratorTransition::CreateScene()
 #endif
 }
 
-SceneOwner ShelfTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-    return SceneOwner(func_08090E54(::operator new(sizeof(ShelfScene)), &next, save));
-}
 
 SceneOwner CookingTransition::CreateScene()
 {

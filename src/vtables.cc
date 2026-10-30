@@ -43,7 +43,6 @@ extern void Run__12WonShopScene(void);
 extern void Run__18CarpenterShopScene(void);
 extern void Run__14ToolChestScene(void);
 extern void Run__17RefrigeratorScene(void);
-extern void Run__10ShelfScene(void);
 extern void Run__12CookingScene(void);
 
 extern void DrawSavedWorldMap(void);
@@ -166,7 +165,6 @@ extern void func_0808C5DC(void);
 extern void func_0808C190(void);
 extern void func_0808E848(void);
 extern void func_0808E8F8(void);
-extern void func_080909C4(void);
 extern void func_08090F58(void);
 extern void func_0809215C(void);
 extern void func_08093D4C(void);
@@ -335,7 +333,6 @@ extern void func_0808C5DC(void);
 extern void func_0808C650(void);
 extern void func_0808ED08(void);
 extern void func_0808EDB8(void);
-extern void func_08090E84(void);
 extern void func_08090F58(void);
 extern void func_08092690(void);
 extern void func_080E1118(void);
@@ -813,7 +810,8 @@ extern RawVTableFunction const vtable_unk_080E5CD4[] = {
     CreateScene__22RefrigeratorTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5CE4[] = {
+// The actual GCC member table stays in this continuous native catalog.
+extern RawVTableFunction const __vt_15ShelfTransition[] = {
     nullptr,
     nullptr,
     DestroyShelfTransition,
@@ -4876,9 +4874,6 @@ extern RawVTableFunction const vtable_unk_080E7D90[]
         func_0808E8F8,
     };
 
-// JP code directly takes the physical fourth entry rather than the table base.
-extern RawVTableFunction const gUnk_080E71DC
-    SECTION(".rodata.vtable_7d90") = nullptr;
 #else
 extern RawVTableFunction const vtable_unk_080E7D90[]
     SECTION(".rodata.vtable_7d90") = {
@@ -4889,32 +4884,23 @@ extern RawVTableFunction const vtable_unk_080E7D90[]
     };
 #endif
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7DA0[]
     SECTION(".rodata.vtable_7da0") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080909C4,
-        Run__10ShelfScene,
-#else
         nullptr,
         nullptr,
         func_0808EDB8,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7DAC[]
     SECTION(".rodata.vtable_7dac") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_08090F58,
-#else
-        nullptr,
-        nullptr,
-        func_08090E84,
-        Run__10ShelfScene,
-#endif
     };
+#endif
 
 // The result scene owns its real compiler vtable. Preserve the different
 // overseas and JP following native core tables.

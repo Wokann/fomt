@@ -285,6 +285,7 @@ struct GameSceneResumeRequest {
         AFTER_GIFT_WRAPPING = 0x16,
         AFTER_REFERENCE_PAGE = 0x17,
         AFTER_CALENDAR = 0x18,
+        AFTER_SHELF = 0x19,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -306,6 +307,7 @@ struct GameSceneResumeRequest {
         AFTER_GIFT_WRAPPING = 0x17,
         AFTER_REFERENCE_PAGE = 0x18,
         AFTER_CALENDAR = 0x19,
+        AFTER_SHELF = 0x1A,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -388,26 +390,8 @@ typedef char RefrigeratorSceneCoreCheck[offsetof(RefrigeratorScene, core) == 4 ?
 typedef char RefrigeratorSceneContinuationCheck[offsetof(RefrigeratorScene, continuation) == 8 ? 1 : -1];
 typedef char RefrigeratorTransitionSizeCheck[sizeof(RefrigeratorTransition) == 12 ? 1 : -1];
 
-struct ShelfSceneCore;
-struct ShelfScene : AScene {
-    virtual ~ShelfScene();
-    virtual SceneTransitionOwner Run();
-
-    ShelfSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct ShelfTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-typedef char ShelfSceneSizeCheck[sizeof(ShelfScene) == 12 ? 1 : -1];
-typedef char ShelfSceneCoreCheck[offsetof(ShelfScene, core) == 4 ? 1 : -1];
-typedef char ShelfSceneContinuationCheck[offsetof(ShelfScene, continuation) == 8 ? 1 : -1];
-typedef char ShelfTransitionSizeCheck[sizeof(ShelfTransition) == 12 ? 1 : -1];
+#include "scene_shelf.hh"
+#pragma interface "game_scene.hh"
 
 struct CookingSceneCore;
 struct CookingScene : AScene {
@@ -612,6 +596,7 @@ struct GameScene : AScene {
     void OpenBookList();
     void OpenLetterList();
     void OpenCalendar();
+    void OpenShelf();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
@@ -777,7 +762,6 @@ void func_0808E23C(RefrigeratorSceneCore * core);
 #else
 void func_0808E6FC(RefrigeratorSceneCore * core);
 #endif
-void func_08090960(ShelfSceneCore * core);
 #if defined(REGION_JP)
 SceneTransitionOwner func_08094A40(CookingSceneCore * core);
 #else
@@ -802,7 +786,6 @@ RefrigeratorScene * loc_0808E818(void *, SceneTransition **, GameStateSaveImage 
 RefrigeratorScene * func_0808ECD8(void *, SceneTransition **, GameStateSaveImage *);
 #endif
 
-ShelfScene * func_08090E54(void *, SceneTransition **, GameStateSaveImage *);
 
 #if defined(REGION_JP)
 CookingScene * func_08099F0C(void *, SceneTransition **, GameStateSaveImage *, u8);

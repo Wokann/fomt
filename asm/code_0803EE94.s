@@ -1333,9 +1333,9 @@ OnCall__12ScriptEnginei:
     bl OpenCalendar__9GameScene
     .byte 0xFF, 0xF7, 0x69, 0xFA
 .LScriptCallJp_09C:
-    .byte 0xD5, 0x22
-    .byte 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x61, 0xFA, 0xD1, 0xF7
-    .byte 0x36, 0xFB, 0xFF, 0xF7, 0x5D, 0xFA
+    .byte 0xD5, 0x22, 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x61, 0xFA
+    bl OpenShelf__9GameScene
+    .byte 0xFF, 0xF7, 0x5D, 0xFA
 .LScriptCallJp_09D:
     .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28
     .byte 0x01, 0xD1, 0xFF, 0xF7, 0x55, 0xFA, 0xD1, 0xF7, 0x74, 0xFB, 0xFF, 0xF7, 0x51, 0xFA
@@ -103545,9 +103545,9 @@ func_0808E848:
     .section .text.after_refrigerator_scene_run, "ax", %progbits
     .align 2, 0
 
-    .global func_0808E8A4
+    .global ConstructShelfSceneCore
     .thumb_func
-func_0808E8A4:
+ConstructShelfSceneCore:
     push {r4, r5, lr}
     adds r4, r0, #0
     bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
@@ -106550,9 +106550,9 @@ func_080908CC:
     .align 2, 0
 .L0809049C:
     .4byte gItemDiscardCannotDiscardTextRef
-    .global func_08090960
+    .global RunShelfSceneCore
     .thumb_func
-func_08090960:
+RunShelfSceneCore:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -107132,67 +107132,6 @@ func_08090960:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global func_08090E54
-    .thumb_func
-func_08090E54:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    adds r6, r1, #0
-    adds r5, r2, #0
-    ldr r0, .Ljp_080909C0
-    str r0, [r4]
-    movs r0, #0x86
-    lsls r0, r0, #1
-    bl __builtin_new
-    adds r1, r5, #0
-    bl func_0808E8A4
-    str r0, [r4, #4]
-    ldr r1, [r6]
-    movs r0, #0
-    str r0, [r6]
-    str r1, [r4, #8]
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_080909C0:
-    .4byte gUnk_080E71DC
-    .global func_080909C4
-    .thumb_func
-func_080909C4:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_08090A00
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Ljp_080909E0
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_080909E0:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_080909F2
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_080909F2:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08090A00:
-    .4byte gUnk_080E71DC
     .section .text.after_shelf_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -121596,7 +121535,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L080421C8
 	bl .L0804168A
 .L080421C8:
-	bl func_080135D8
+	bl OpenShelf__9GameScene
 	bl .L0804168A
 .L080421D0:
 	movs r3, #0xd5
@@ -264638,8 +264577,8 @@ func_0808ED08: @ 0x0808ED08
     .section .text.after_refrigerator_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_0808ED64
-func_0808ED64: @ 0x0808ED64
+	thumb_func_start ConstructShelfSceneCore
+ConstructShelfSceneCore: @ 0x0808ED64
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
@@ -267785,8 +267724,8 @@ func_080908CC: @ 0x080908CC
 	.align 2, 0
 .L0809095C: .4byte gItemDiscardCannotDiscardTextRef
 
-	thumb_func_start func_08090960
-func_08090960: @ 0x08090960
+	thumb_func_start RunShelfSceneCore
+RunShelfSceneCore: @ 0x08090960
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -268359,65 +268298,6 @@ func_08090960: @ 0x08090960
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-
-	thumb_func_start func_08090E54
-func_08090E54: @ 0x08090E54
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08090E80 @ =vtable_unk_080E7DAC
-	str r0, [r4]
-	movs r0, #0x86
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0808ED64
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08090E80: .4byte vtable_unk_080E7DAC
-
-	thumb_func_start func_08090E84
-func_08090E84: @ 0x08090E84
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L08090EC0 @ =vtable_unk_080E7DAC
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L08090EA0
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08090EA0:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L08090EB2
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08090EB2:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08090EC0: .4byte vtable_unk_080E7DAC
 
     .section .text.after_shelf_scene_run, "ax", %progbits
     .align 2, 0

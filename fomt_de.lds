@@ -209,7 +209,8 @@ SECTIONS
         src/scene_gift_wrapping.o(.text.OpenGiftWrappingMenu__9GameScene);
         src/scene_reference_page.o(.text.ShowReferencePage__9GameScenei .text.OpenBookList__9GameScene .text.OpenLetterList__9GameScene);
         src/scene_calendar.o(.text.OpenCalendar__9GameScene);
-        asm/game_state.o(.text.game_scene_after_calendar);
+        src/scene_shelf.o(.text.OpenShelf__9GameScene);
+        asm/game_state.o(.text.game_scene_after_shelf);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/game_scene.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -650,7 +651,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_tool_chest_scene_run);
         src/game_scene.o(.text.Run__17RefrigeratorScene);
         asm/code_0803EE94.o(.text.after_refrigerator_scene_run);
-        src/game_scene.o(.text.Run__10ShelfScene);
+        src/scene_shelf.o(.text.__10ShelfSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._10ShelfScene .text.Run__10ShelfScene);
         asm/code_0803EE94.o(.text.after_shelf_scene_run);
         src/scene_blacksmith_shop.o(.text.__25BlacksmithShopResultSceneG20SceneTransitionOwnerP18GameStateSaveImageUc .text._._25BlacksmithShopResultScene .text.Run__25BlacksmithShopResultScene);
         asm/code_0803EE94.o(.text.after_blacksmith_shop_result_scene);
@@ -960,7 +961,7 @@ SECTIONS
         src/scene_calendar.o(.text.CreateScene__18CalendarTransition .gnu.linkonce.t._._18CalendarTransition);
         src/game_scene.o(.text.CreateScene__19ToolChestTransition .gnu.linkonce.t._._19ToolChestTransition);
         src/game_scene.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
-        src/game_scene.o(.text.CreateScene__15ShelfTransition .gnu.linkonce.t._._15ShelfTransition);
+        src/scene_shelf.o(.text.CreateScene__15ShelfTransition .gnu.linkonce.t._._15ShelfTransition);
         asm/code_linkonce.o(.text.scene_shelf_after);
         src/frisbee_scoreboard.o(.text.CreateScene__27FrisbeeScoreboardTransition .gnu.linkonce.t._._27FrisbeeScoreboardTransition);
         src/scene_frisbee.o(.text.CreateScene__17FrisbeeTransition .gnu.linkonce.t._._17FrisbeeTransition);
@@ -1298,7 +1299,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d84);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d90);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7da0);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7dac);
+. = ALIGN(4); src/scene_shelf.o(.gnu.linkonce.d.__vt_10ShelfScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dbc);
 . = ALIGN(4); src/scene_blacksmith_shop.o(.gnu.linkonce.d.__vt_25BlacksmithShopResultScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dd8);
