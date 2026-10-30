@@ -1268,7 +1268,8 @@ OnCall__12ScriptEnginei:
     .byte 0xFF, 0xF7, 0x28, 0xFB
 .LScriptCallJp_096:
     .byte 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x20, 0xFB
-    .byte 0xD1, 0xF7, 0x27, 0xFA, 0xFF, 0xF7, 0x1C, 0xFB
+    bl OpenSpecialMerchantShop__9GameScene
+    .byte 0xFF, 0xF7, 0x1C, 0xFB
 .LScriptCallJp_097:
     .byte 0xD5, 0x22, 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68
     .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x14, 0xFB, 0xD1, 0xF7, 0x65, 0xFA, 0xFF, 0xF7, 0x10, 0xFB
@@ -86304,9 +86305,9 @@ RunWineryShopSceneCore:
     .section .text.after_winery_shop_scene_run, "ax", %progbits
     .align 2, 0
 
-.global func_08080998
+.global ConstructSpecialMerchantShopSceneCore
 .thumb_func
-func_08080998: @ 0x08080998
+ConstructSpecialMerchantShopSceneCore: @ 0x08080998
 	push {r4, lr}
 	adds r4, r0, #0
 	bl func_080C797C
@@ -86706,9 +86707,9 @@ func_08080C80:
 	bx r0
 	.align 2, 0
 .Ljp_08080CC0: .4byte gText_SpecialMerchantShop_RecordPlayerDescription
-	.global func_08080CC4
+	.global RunSpecialMerchantShopSceneCore
 	.thumb_func
-func_08080CC4:
+RunSpecialMerchantShopSceneCore:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -87774,67 +87775,6 @@ func_08080CC4:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-	.global func_080815B8
-	.thumb_func
-func_080815B8:
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .Ljp_080815E4
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08080998
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_080815E4: .4byte vtable_unk_080E7CA0_NullTail
-
-.global func_080815E8
-.thumb_func
-func_080815E8: @ 0x080815E8
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .Ljp_08081624
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .Ljp_08081604
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_08081604:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .Ljp_08081616
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_08081616:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_08081624: .4byte vtable_unk_080E7CA0_NullTail
-
     .section .text.after_special_merchant_shop_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -121602,7 +121542,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L0804204A
 	bl .L0804168A
 .L0804204A:
-	bl func_0801323C
+	bl OpenSpecialMerchantShop__9GameScene
 	bl .L0804168A
 .L08042052:
 	movs r2, #0xd5
@@ -238921,8 +238861,8 @@ RunWineryShopSceneCore: @ 0x08080540
     .section .text.after_winery_shop_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_08080E20
-func_08080E20: @ 0x08080E20
+	thumb_func_start ConstructSpecialMerchantShopSceneCore
+ConstructSpecialMerchantShopSceneCore: @ 0x08080E20
 	push {r4, lr}
 	adds r4, r0, #0
 	bl func_080C7F58
@@ -239322,8 +239262,8 @@ func_08081108: @ 0x08081108
 	.align 2, 0
 .L08081148: .4byte gText_SpecialMerchantShop_RecordPlayerDescription
 
-	thumb_func_start func_0808114C
-func_0808114C: @ 0x0808114C
+	thumb_func_start RunSpecialMerchantShopSceneCore
+RunSpecialMerchantShopSceneCore: @ 0x0808114C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -240390,65 +240330,6 @@ func_0808114C: @ 0x0808114C
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-
-	thumb_func_start func_08081A40
-func_08081A40: @ 0x08081A40
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08081A6C @ =vtable_unk_080E7CBC
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08080E20
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08081A6C: .4byte vtable_unk_080E7CBC
-
-	thumb_func_start func_08081A70
-func_08081A70: @ 0x08081A70
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L08081AAC @ =vtable_unk_080E7CBC
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L08081A8C
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08081A8C:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L08081A9E
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08081A9E:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08081AAC: .4byte vtable_unk_080E7CBC
 
     .section .text.after_special_merchant_shop_scene_run, "ax", %progbits
     .align 2, 0

@@ -41,7 +41,6 @@ extern void Run__18ReferencePageScene(void);
 extern void Run__16SupermarketScene(void);
 extern void Run__24SupermarketPurchaseScene(void);
 extern void Run__12WonShopScene(void);
-extern void Run__24SpecialMerchantShopScene(void);
 extern void Run__18CarpenterShopScene(void);
 extern void Run__14ToolChestScene(void);
 extern void Run__17RefrigeratorScene(void);
@@ -159,7 +158,6 @@ extern void func_0807EA3C(void);
 extern void func_0807F1D8(void);
 extern void func_08080094(void);
 extern void func_080809CC(void);
-extern void func_080815E8(void);
 extern void func_08081678(void);
 extern void func_08081DC8(void);
 extern void func_080837C8(void);
@@ -407,7 +405,6 @@ extern void func_0807EED4(void);
 extern void func_0807F670(void);
 extern void func_0808052C(void);
 extern void func_08080E54(void);
-extern void func_08081A70(void);
 extern void func_08081B00(void);
 extern void func_080E1E28(void);
 extern void func_08063E58(void);
@@ -881,7 +878,8 @@ extern RawVTableFunction const vtable_unk_080E5D54[] = {
     CreateScene__23ReferencePageTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5D64[] = {
+// The actual GCC member table stays in this continuous native catalog.
+extern RawVTableFunction const __vt_29SpecialMerchantShopTransition[] = {
     nullptr,
     nullptr,
     DestroySpecialMerchantShopTransition,
@@ -4722,39 +4720,23 @@ extern RawVTableFunction const vtable_unk_080E7CA0[]
     };
 #endif
 
-#if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E7CA0_NullTail[]
-    SECTION(".rodata.vtable_7ca0") = {
-        nullptr,
-    };
-#endif
-
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7CB0[]
     SECTION(".rodata.vtable_7cb0") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080815E8,
-        Run__24SpecialMerchantShopScene,
-#else
         nullptr,
         nullptr,
         func_08080E54,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7CBC[]
     SECTION(".rodata.vtable_7cbc") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_08081678,
-#else
-        nullptr,
-        nullptr,
-        func_08081A70,
-        Run__24SpecialMerchantShopScene,
-#endif
     };
+#endif
 
 #if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7CCC[]

@@ -890,15 +890,6 @@ SceneTransitionOwner ReferencePageScene::Run()
 
 
 
-SceneTransitionOwner SpecialMerchantShopScene::Run()
-{
-#if defined(REGION_JP)
-    func_08080CC4(core);
-#else
-    func_0808114C(core);
-#endif
-    return continuation;
-}
 
 
 
@@ -1053,15 +1044,6 @@ SceneOwner ReferencePageTransition::CreateScene()
     return SceneOwner(func_0807B038(::operator new(sizeof(ReferencePageScene)), &next, save, page_id));
 }
 
-SceneOwner SpecialMerchantShopTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(func_080815B8(::operator new(sizeof(SpecialMerchantShopScene)), &next, save));
-#else
-    return SceneOwner(func_08081A40(::operator new(sizeof(SpecialMerchantShopScene)), &next, save));
-#endif
-}
 
 SceneOwner GiftWrappingTransition::CreateScene()
 {
