@@ -226,6 +226,7 @@ SECTIONS
             .text.EnableScriptedNpcControl__9GameScene
             .text.DisableScriptedNpcControl__9GameScene);
         asm/scene_clock.o(.text);
+        src/scene_chicken_festival.o(.text.RunChickenFestivalContest__9GameScene);
         asm/game_state.o(.text.game_scene_menu_hooks_after);
         src/scene_audio.o(.text.GetSceneSongPlayerPool);
         src/game_scene.o(
@@ -717,6 +718,7 @@ SECTIONS
         asm/code_809E804.o(.text.field_item_after);
         src/game_scene.o(.text.Run__13CalendarScene);
         asm/code_809E804.o(.text.after_calendar_scene_run);
+        src/scene_chicken_festival.o(.text.__27ChickenFestivalContestSceneG20SceneTransitionOwnerP18GameStateSaveImage);
         src/game_scene.o(.text.Run__19SavedNameEntryScene .text.__19SavedNameEntrySceneG20SceneTransitionOwnerP18GameStateSaveImage17MaryNameEntryKindUc);
         asm/code_809E804.o(.text.after_saved_name_scene);
         src/time_of_day.o(.text.GetTimeOfDayTransitionValue);
@@ -921,6 +923,7 @@ SECTIONS
         asm/code_linkonce.o(.text.intro_story_transition_after);
         src/game_scene.o(.text.CreateScene__24SavedNameEntryTransition .gnu.linkonce.t._._24SavedNameEntryTransition);
         asm/code_linkonce.o(.text.after_saved_name_transition);
+        src/scene_chicken_festival.o(.text.CreateScene__32ChickenFestivalContestTransition .gnu.linkonce.t._._32ChickenFestivalContestTransition);
         src/game_scene.o(.text.CreateScene__18CalendarTransition .gnu.linkonce.t._._18CalendarTransition);
         src/game_scene.o(.text.CreateScene__19ToolChestTransition .gnu.linkonce.t._._19ToolChestTransition);
         src/game_scene.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
@@ -1007,6 +1010,7 @@ SECTIONS
         asm/code_linkonce.o(.text.after_menu_selection_core_destructor);
         src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);
         asm/code_linkonce.o(.text.sprite_work_target_search_after);
+        src/scene_chicken_festival.o(.gnu.linkonce.t._._27ChickenFestivalContestScene);
         src/game_scene.o(.gnu.linkonce.t._._19SavedNameEntryScene);
         src/world_map.o(.gnu.linkonce.t._._25MapViewportTilemapCommand);
         asm/code_linkonce.o(.text.after_saved_name_scene_destructor);
@@ -1275,7 +1279,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8288);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8298);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82a8);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_82b8);
+. = ALIGN(4); src/scene_chicken_festival.o(.gnu.linkonce.d.__vt_27ChickenFestivalContestScene);
 . = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_19SavedNameEntryScene);
 . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
 . = ALIGN(4); src/world_map.o(.gnu.linkonce.d.__vt_17GameSceneWorldMap);

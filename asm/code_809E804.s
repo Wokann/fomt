@@ -3936,9 +3936,9 @@ func_080A3744: @ 0x080A317C
     .section .text.after_calendar_scene_run, "ax", %progbits
     .align 2, 0
 
-    .global func_080A37A8
+    .global Run__27ChickenFestivalContestScene
     .thumb_func
-func_080A37A8: @ 0x080A31E0
+Run__27ChickenFestivalContestScene: @ 0x080A31E0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -4599,22 +4599,6 @@ func_080A3C8C: @ 0x080A36C4
 	pop {r1}
 	bx r1
 	.4byte vtable_unk_080E8298
-    .thumb_func
-.Ljp_080A3CD8:
-	push {r4, lr}
-	ldr r3, [pc, #20]
-	str r3, [r0]
-	ldr r4, [r1]
-	movs r3, #0
-	str r3, [r1]
-	str r4, [r0, #4]
-	str r2, [r0, #8]
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
-	.4byte vtable_unk_080E82A8
-
     .section .text.after_saved_name_scene, "ax", %progbits
     .align 2, 0
 
@@ -80160,8 +80144,8 @@ func_080A3744: @ 0x080A3744
     .section .text.after_calendar_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080A37A8
-func_080A37A8: @ 0x080A37A8
+	thumb_func_start Run__27ChickenFestivalContestScene
+Run__27ChickenFestivalContestScene: @ 0x080A37A8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -80816,22 +80800,6 @@ func_080A3C8C: @ 0x080A3C8C
 	pop {r1}
 	bx r1
 	.4byte vtable_unk_080E82A8
-    .thumb_func
-.L080A3CD8:
-	push {r4, lr}
-	ldr r3, [pc, #20]
-	str r3, [r0]
-	ldr r4, [r1]
-	movs r3, #0
-	str r3, [r1]
-	str r4, [r0, #4]
-	str r2, [r0, #8]
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
-	.4byte vtable_unk_080E82B8
-
     .section .text.after_saved_name_scene, "ax", %progbits
     .align 2, 0
 

@@ -1,3 +1,4 @@
+#include "scene_chicken_festival.hh"
 #include "prelude.h"
 #include "intro_scene.hh"
 #include "intro_story_scene.hh"
@@ -320,8 +321,6 @@ extern void func_080A39FC(void);
 extern void func_080A3C40(void);
 extern void func_080A3900(void);
 extern void func_080A3C8C(void);
-extern void func_080A37A8(void);
-extern void func_080E3980(void);
 extern void Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList(void);
 extern void DestroySavedWorldMap(void);
 extern void func_080AA974(void);
@@ -566,8 +565,6 @@ extern void func_080A3C40(void);
 extern void func_080A39FC(void);
 extern void func_080A3C8C(void);
 extern void func_080A3900(void);
-extern void func_080E41E8(void);
-extern void func_080A37A8(void);
 extern void Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList(void);
 extern void DestroySavedWorldMap(void);
 extern void func_080AAF3C(void);
@@ -686,8 +683,6 @@ extern void func_080DB568(void);
 extern void func_080DB5B8(void);
 extern void func_080DB5E0(void);
 extern void func_080DB630(void);
-extern void func_080DB658(void);
-extern void func_080DB6A4(void);
 extern void DestroyCalendarTransition(void) asm("_._18CalendarTransition");
 extern void CreateScene__18CalendarTransition(void);
 extern void DestroyToolChestTransition(void) asm("_._19ToolChestTransition");
@@ -817,11 +812,13 @@ extern RawVTableFunction const vtable_unk_080E5C94[] = {
     func_080DB5E0,
 };
 
-extern RawVTableFunction const vtable_unk_080E5CA4[] = {
-    nullptr,
-    nullptr,
-    func_080DB6A4,
-    func_080DB658,
+// Preserve this class table in the remaining continuous transition catalog.
+// Use the compiler's native slot type and actual member symbols; no alias or
+// forwarding body is emitted. The scene table is generated from its class.
+int (* __vt_32ChickenFestivalContestTransition[4])(...) = {
+    nullptr, nullptr,
+    reinterpret_cast<int (*)(...)>(DestroyChickenFestivalContestTransition),
+    reinterpret_cast<int (*)(...)>(CreateScene__32ChickenFestivalContestTransition),
 };
 
 extern RawVTableFunction const vtable_unk_080E5CB4[] = {
@@ -5881,30 +5878,17 @@ extern RawVTableFunction const vtable_unk_080E8298[]
 #endif
     };
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E82A8[]
     SECTION(".rodata.vtable_82a8") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
-        func_080E3980,
-        func_080A37A8,
-#else
         func_080A3C8C,
         func_080A3900,
-#endif
     };
+#endif
 
-// The naming scene and base map supply their real compiler tables.
-// This preceding overseas scene table still has its native representation.
-#if !defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E82B8[]
-    SECTION(".rodata.vtable_82b8") = {
-        nullptr,
-        nullptr,
-        func_080E41E8,
-        func_080A37A8,
-    };
-#endif
+// Chicken-contest, naming-scene and base-map tables come from their classes.
 
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E830C[]
