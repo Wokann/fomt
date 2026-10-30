@@ -787,7 +787,7 @@ SECTIONS
         asm/code_809E804.o(.text.ui_text_stream_update_after);
         src/scene_chicken_festival.o(.text.__22ChickenFestivalEntrant);
         asm/code_809E804.o(.text.after_chicken_festival_entrant);
-        src/scene_chicken_festival.o(.text.HasWon__C27ChickenFestivalMinigameCore);
+        src/scene_chicken_festival.o(.text.HasWon__C27ChickenFestivalMinigameCore .text.Run__27ChickenFestivalMinigameCore .text.PrepareDisplay__27ChickenFestivalMinigameCore);
         asm/code_809E804.o(.text.after_chicken_festival_core_winner);
         src/scene_chicken_festival.o(.text.__28ChickenFestivalMinigameSceneRC22ChickenFestivalEntrant .text._._28ChickenFestivalMinigameScene);
         src/scene_chicken_festival.o(.text.HasWon__C28ChickenFestivalMinigameScene .text.Run__28ChickenFestivalMinigameScene);

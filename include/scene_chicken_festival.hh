@@ -5,6 +5,7 @@
 #include "utility/fixed_str.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_music_player.hh"
+#include "hardware_blend_object.hh"
 
 struct GameStateSaveImage;
 
@@ -55,15 +56,27 @@ struct ChickenFestivalMinigameCore : HardwareBootstrap {
     virtual ~ChickenFestivalMinigameCore();
     bool HasWon() const;
     SceneTransitionOwner Run();
+    void PrepareDisplay();
+    void ResetRun();
+    void UpdateUnkPhase0();
+    void UpdateUnkPhase1();
+    void UpdateUnkPhase2();
+    void UpdateUnkPhase3();
 
     u8 unk_008;
     u8 unk_009[0x704 - 0x009];
     HardwareMusicPlayerSlot music_players[5];
     UiStateOwner * ui_state;
-    u8 unk_71C[0xB1C - 0x71C];
+    u8 unk_71C[0x7A0 - 0x71C];
+    HardwareBlendOwner blend;
+    u8 unk_7A4[0xB14 - 0x7A4];
+    i32 phase;
+    u32 unk_B18;
     ChickenFestivalEntrant unk_B1C;
     bool won;
-    u8 unk_B31[0xB78 - 0xB31];
+    u8 unk_B31;
+    bool finished;
+    u8 unk_B33[0xB78 - 0xB33];
 };
 
 typedef char ChickenFestivalMinigameCoreSizeCheck[sizeof(ChickenFestivalMinigameCore) == 0xB78 ? 1 : -1];
@@ -71,6 +84,9 @@ typedef char ChickenFestivalMinigameCoreFlagCheck[offsetof(ChickenFestivalMiniga
 typedef char ChickenFestivalMinigameCoreMusicCheck[offsetof(ChickenFestivalMinigameCore, music_players) == 0x704 ? 1 : -1];
 typedef char ChickenFestivalMinigameCoreUiStateCheck[offsetof(ChickenFestivalMinigameCore, ui_state) == 0x718 ? 1 : -1];
 typedef char ChickenFestivalMinigameCoreEntrantCheck[offsetof(ChickenFestivalMinigameCore, unk_B1C) == 0xB1C ? 1 : -1];
+typedef char ChickenFestivalMinigameCoreBlendCheck[offsetof(ChickenFestivalMinigameCore, blend) == 0x7A0 ? 1 : -1];
+typedef char ChickenFestivalMinigameCorePhaseCheck[offsetof(ChickenFestivalMinigameCore, phase) == 0xB14 ? 1 : -1];
+typedef char ChickenFestivalMinigameCoreFinishedCheck[offsetof(ChickenFestivalMinigameCore, finished) == 0xB32 ? 1 : -1];
 typedef char ChickenFestivalMinigameCoreWinnerCheck[offsetof(ChickenFestivalMinigameCore, won) == 0xB30 ? 1 : -1];
 
 struct ChickenFestivalMinigameScene : AScene {
