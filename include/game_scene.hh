@@ -276,6 +276,7 @@ struct GameSceneResumeRequest {
         AFTER_CARPENTER_SHOP = 12,
         AFTER_BLACKSMITH_SHOP = 13,
         AFTER_CLINIC_SHOP = 14,
+        AFTER_BEACH_CAFE_SHOP = 15,
         AFTER_YODEL_RANCH_SHOP = 0x10,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
@@ -289,6 +290,7 @@ struct GameSceneResumeRequest {
         AFTER_CARPENTER_SHOP = 13,
         AFTER_BLACKSMITH_SHOP = 14,
         AFTER_CLINIC_SHOP = 15,
+        AFTER_BEACH_CAFE_SHOP = 16,
         AFTER_YODEL_RANCH_SHOP = 0x11,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
@@ -539,26 +541,8 @@ typedef char InnShopSceneCoreCheck[offsetof(InnShopScene, core) == 4 ? 1 : -1];
 typedef char InnShopSceneContinuationCheck[offsetof(InnShopScene, continuation) == 8 ? 1 : -1];
 typedef char InnShopTransitionSizeCheck[sizeof(InnShopTransition) == 12 ? 1 : -1];
 
-struct BeachCafeShopSceneCore;
-struct BeachCafeShopScene : AScene {
-    virtual ~BeachCafeShopScene();
-    virtual SceneTransitionOwner Run();
-
-    BeachCafeShopSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct BeachCafeShopTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-typedef char BeachCafeShopSceneSizeCheck[sizeof(BeachCafeShopScene) == 12 ? 1 : -1];
-typedef char BeachCafeShopSceneCoreCheck[offsetof(BeachCafeShopScene, core) == 4 ? 1 : -1];
-typedef char BeachCafeShopSceneContinuationCheck[offsetof(BeachCafeShopScene, continuation) == 8 ? 1 : -1];
-typedef char BeachCafeShopTransitionSizeCheck[sizeof(BeachCafeShopTransition) == 12 ? 1 : -1];
+#include "scene_beach_cafe_shop.hh"
+#pragma interface "game_scene.hh"
 
 #include "scene_won_shop.hh"
 #pragma interface "game_scene.hh"
@@ -731,6 +715,7 @@ struct GameScene : AScene {
     void StopAllSongs();
     void OpenSupermarketShop();
     void OpenSupermarketPurchase(MarySupermarketItemId item);
+    void OpenBeachCafeShop();
     void OpenYodelRanchShop();
     void OpenWonShop();
     void OpenCarpenterShop();
@@ -921,11 +906,6 @@ void func_0807EAF8(InnShopSceneCore * core);
 #else
 void func_0807EF90(InnShopSceneCore * core);
 #endif
-#if defined(REGION_JP)
-void func_08081734(BeachCafeShopSceneCore * core);
-#else
-void func_08081BBC(BeachCafeShopSceneCore * core);
-#endif
 
 
 // The poultry core returns a signed target slot, with -1 meaning no purchase.
@@ -985,11 +965,6 @@ InnShopScene * func_0807F0E8(void *, SceneTransition **, GameStateSaveImage *);
 InnShopScene * func_0807F580(void *, SceneTransition **, GameStateSaveImage *);
 #endif
 
-#if defined(REGION_JP)
-BeachCafeShopScene * func_08081C8C(void *, SceneTransition **, GameStateSaveImage *);
-#else
-BeachCafeShopScene * func_08082114(void *, SceneTransition **, GameStateSaveImage *);
-#endif
 
 
 

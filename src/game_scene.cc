@@ -931,15 +931,6 @@ SceneTransitionOwner SpecialMerchantShopScene::Run()
     return continuation;
 }
 
-SceneTransitionOwner BeachCafeShopScene::Run()
-{
-#if defined(REGION_JP)
-    func_08081734(core);
-#else
-    func_08081BBC(core);
-#endif
-    return continuation;
-}
 
 
 
@@ -1144,15 +1135,6 @@ SceneOwner InnShopTransition::CreateScene()
 #endif
 }
 
-SceneOwner BeachCafeShopTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(func_08081C8C(::operator new(sizeof(BeachCafeShopScene)), &next, save));
-#else
-    return SceneOwner(func_08082114(::operator new(sizeof(BeachCafeShopScene)), &next, save));
-#endif
-}
 
 
 // These late scene factories stay in native ROM order. Returning a temporary

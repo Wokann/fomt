@@ -1294,7 +1294,8 @@ OnCall__12ScriptEnginei:
     .byte 0xFF, 0xF7, 0xE0, 0xFA
 .LScriptCallJp_091:
     .byte 0xD5, 0x22, 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xD8, 0xFA
-    .byte 0xD1, 0xF7, 0x69, 0xF8, 0xFF, 0xF7, 0xD4, 0xFA
+    bl OpenBeachCafeShop__9GameScene
+    .byte 0xFF, 0xF7, 0xD4, 0xFA
 .LScriptCallJp_092:
     .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xCC, 0xFA
     bl OpenYodelRanchShop__9GameScene
@@ -88023,9 +88024,9 @@ func_080815E8: @ 0x080815E8
     .section .text.after_special_merchant_shop_scene_run, "ax", %progbits
     .align 2, 0
 
-.global func_08081644
+.global ConstructBeachCafeShopSceneCore
 .thumb_func
-func_08081644: @ 0x08081644
+ConstructBeachCafeShopSceneCore: @ 0x08081644
 	push {r4, lr}
 	adds r4, r0, #0
 	bl func_080C797C
@@ -88147,9 +88148,9 @@ func_080816B8:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
-	.global func_08081734
+	.global RunBeachCafeShopSceneCore
 	.thumb_func
-func_08081734:
+RunBeachCafeShopSceneCore:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -88809,67 +88810,6 @@ func_08081734:
 	bx r0
 	.align 2, 0
 .Ljp_08081C88: .4byte __vt_23IndexedResourceProvider
-	.global func_08081C8C
-	.thumb_func
-func_08081C8C:
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .Ljp_08081CB8
-	str r0, [r4]
-	movs r0, #0xd6
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08081644
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_08081CB8: .4byte vtable_unk_080E7CBC_NullTail
-
-.global func_08081CBC
-.thumb_func
-func_08081CBC: @ 0x08081CBC
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .Ljp_08081CF8
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .Ljp_08081CD8
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_08081CD8:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .Ljp_08081CEA
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_08081CEA:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_08081CF8: .4byte vtable_unk_080E7CBC_NullTail
-
     .section .text.after_beach_cafe_shop_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -121914,7 +121854,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L080420DA
 	bl .L0804168A
 .L080420DA:
-	bl func_08012F54
+	bl OpenBeachCafeShop__9GameScene
 	bl .L0804168A
 .L080420E2:
 	movs r3, #0xd5
@@ -240863,8 +240803,8 @@ func_08081A70: @ 0x08081A70
     .section .text.after_special_merchant_shop_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_08081ACC
-func_08081ACC: @ 0x08081ACC
+	thumb_func_start ConstructBeachCafeShopSceneCore
+ConstructBeachCafeShopSceneCore: @ 0x08081ACC
 	push {r4, lr}
 	adds r4, r0, #0
 	bl func_080C7F58
@@ -240985,8 +240925,8 @@ func_08081B40: @ 0x08081B40
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_08081BBC
-func_08081BBC: @ 0x08081BBC
+	thumb_func_start RunBeachCafeShopSceneCore
+RunBeachCafeShopSceneCore: @ 0x08081BBC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -241646,65 +241586,6 @@ func_08081BBC: @ 0x08081BBC
 	bx r0
 	.align 2, 0
 .L08082110: .4byte __vt_23IndexedResourceProvider
-
-	thumb_func_start func_08082114
-func_08082114: @ 0x08082114
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08082140 @ =vtable_unk_080E7CD8
-	str r0, [r4]
-	movs r0, #0xd6
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08081ACC
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08082140: .4byte vtable_unk_080E7CD8
-
-	thumb_func_start func_08082144
-func_08082144: @ 0x08082144
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L08082180 @ =vtable_unk_080E7CD8
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L08082160
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08082160:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L08082172
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08082172:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08082180: .4byte vtable_unk_080E7CD8
 
     .section .text.after_beach_cafe_shop_scene_run, "ax", %progbits
     .align 2, 0

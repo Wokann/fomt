@@ -45,7 +45,6 @@ extern void Run__12InnShopScene(void);
 extern void Run__12WonShopScene(void);
 extern void Run__15WineryShopScene(void);
 extern void Run__24SpecialMerchantShopScene(void);
-extern void Run__18BeachCafeShopScene(void);
 extern void Run__18CarpenterShopScene(void);
 extern void Run__14ToolChestScene(void);
 extern void Run__17RefrigeratorScene(void);
@@ -168,7 +167,6 @@ extern void func_0808093C(void);
 extern void func_080809CC(void);
 extern void func_080815E8(void);
 extern void func_08081678(void);
-extern void func_08081CBC(void);
 extern void func_08081DC8(void);
 extern void func_080837C8(void);
 extern void func_080851A4(void);
@@ -340,7 +338,6 @@ extern void func_080A8FDC(void);
 extern void func_080E3C50(void);
 extern void func_080AC528(void);
 #else
-extern void func_08082144(void);
 extern void func_08082250(void);
 extern void func_08083C50(void);
 extern void func_0808562C(void);
@@ -942,7 +939,8 @@ extern RawVTableFunction const vtable_unk_080E5DC4[] = {
     CreateScene__17InnShopTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5DD4[] = {
+// The actual GCC member table stays in this continuous native catalog.
+extern RawVTableFunction const __vt_23BeachCafeShopTransition[] = {
     nullptr,
     nullptr,
     DestroyBeachCafeShopTransition,
@@ -4812,39 +4810,23 @@ extern RawVTableFunction const vtable_unk_080E7CBC[]
 #endif
     };
 
-#if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E7CBC_NullTail[]
-    SECTION(".rodata.vtable_7cbc") = {
-        nullptr,
-    };
-#endif
-
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7CCC[]
     SECTION(".rodata.vtable_7ccc") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_08081CBC,
-        Run__18BeachCafeShopScene,
-#else
         nullptr,
         nullptr,
         func_08081B00,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7CD8[]
     SECTION(".rodata.vtable_7cd8") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_08081DC8,
-#else
-        nullptr,
-        nullptr,
-        func_08082144,
-        Run__18BeachCafeShopScene,
-#endif
     };
+#endif
 
 // The blacksmith result transition now owns its actual compiler vtable.
 // Overseas retains the preceding unrelated core table; JP retains its shop.
