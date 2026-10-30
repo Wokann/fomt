@@ -925,85 +925,9 @@ __18GameStateSaveImageR10SramAccessUiRUi:
     .align 2, 0
 .Ljp_08011910: .4byte gSramAccessStatus
 
-    .section .text.game_scene_after_inn_shop, "ax", %progbits
+    .section .text.game_scene_after_poultry_farm_shop, "ax", %progbits
     .thumb
     .align 2, 0
-
-    .global func_080131A8
-    .thumb_func
-func_080131A8:
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x1c
-    ldr r6, [r0, #4]
-    movs r0, #0x13
-    str r0, [sp]
-    movs r0, #0x14
-    bl __builtin_new
-    adds r5, r6, #0
-    adds r5, #0x8c
-    ldr r1, [r5]
-    mov ip, r1
-    add r2, sp, #0x10
-    mov r1, sp
-    ldm r1!, {r3, r4, r7}
-    stm r2!, {r3, r4, r7}
-    ldr r1, .Ljp_08013104 @ =__vt_17ReturnToGameScene
-    str r1, [r0]
-    mov r1, ip
-    str r1, [r0, #4]
-    adds r2, r0, #0
-    adds r2, #8
-    add r1, sp, #0x10
-    ldm r1!, {r3, r4, r7}
-    stm r2!, {r3, r4, r7}
-    str r0, [sp, #0xc]
-    movs r0, #0x10
-    bl __builtin_new
-    ldr r4, [sp, #0xc]
-    movs r2, #0
-    str r2, [sp, #0xc]
-    str r4, [sp, #0x10]
-    ldr r3, [r5]
-    ldr r1, .Ljp_08013108 @ =__vt_25PoultryFarmShopTransition
-    str r1, [r0]
-    str r2, [sp, #0x10]
-    str r4, [r0, #4]
-    str r3, [r0, #8]
-    str r2, [r0, #0xc]
-    adds r5, #0x18
-    adds r4, r0, #0
-    ldr r1, [r5]
-    cmp r4, r1
-    beq .Ljp_080130E0
-    cmp r1, #0
-    beq .Ljp_080130E0
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_080130E0:
-    str r4, [r5]
-    adds r1, r6, #0
-    adds r1, #0x9c
-    movs r0, #0x18
-    str r0, [r1]
-    ldr r1, [sp, #0xc]
-    cmp r1, #0
-    beq .Ljp_080130FC
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_080130FC:
-    add sp, #0x1c
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08013104: .4byte __vt_17ReturnToGameScene
-.Ljp_08013108: .4byte __vt_25PoultryFarmShopTransition
 
     .global func_0801323C
     .thumb_func
@@ -14796,83 +14720,9 @@ __18GameStateSaveImageR10SramAccessUiRUi: @ 0x08011650
     .align 2, 0
 .L08011930: .4byte gSramAccessStatus
 
-    .section .text.game_scene_after_inn_shop, "ax", %progbits
+    .section .text.game_scene_after_poultry_farm_shop, "ax", %progbits
     .thumb
     .align 2, 0
-
-    thumb_func_start func_080131A8
-func_080131A8: @ 0x080131A8
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x1c
-    ldr r6, [r0, #4]
-    movs r0, #0x14
-    str r0, [sp]
-    bl __builtin_new
-    adds r5, r6, #0
-    adds r5, #0x8c
-    ldr r1, [r5]
-    mov ip, r1
-    add r2, sp, #0x10
-    mov r1, sp
-    ldm r1!, {r3, r4, r7}
-    stm r2!, {r3, r4, r7}
-    ldr r1, .L08013234 @ =__vt_17ReturnToGameScene
-    str r1, [r0]
-    mov r1, ip
-    str r1, [r0, #4]
-    adds r2, r0, #0
-    adds r2, #8
-    add r1, sp, #0x10
-    ldm r1!, {r3, r4, r7}
-    stm r2!, {r3, r4, r7}
-    str r0, [sp, #0xc]
-    movs r0, #0x10
-    bl __builtin_new
-    ldr r4, [sp, #0xc]
-    movs r2, #0
-    str r2, [sp, #0xc]
-    str r4, [sp, #0x10]
-    ldr r3, [r5]
-    ldr r1, .L08013238 @ =__vt_25PoultryFarmShopTransition
-    str r1, [r0]
-    str r2, [sp, #0x10]
-    str r4, [r0, #4]
-    str r3, [r0, #8]
-    str r2, [r0, #0xc]
-    adds r5, #0x18
-    adds r4, r0, #0
-    ldr r1, [r5]
-    cmp r4, r1
-    beq .L08013210
-    cmp r1, #0
-    beq .L08013210
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08013210:
-    str r4, [r5]
-    adds r1, r6, #0
-    adds r1, #0x9c
-    movs r0, #0x18
-    str r0, [r1]
-    ldr r1, [sp, #0xc]
-    cmp r1, #0
-    beq .L0801322C
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L0801322C:
-    add sp, #0x1c
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08013234: .4byte __vt_17ReturnToGameScene
-.L08013238: .4byte __vt_25PoultryFarmShopTransition
 
     thumb_func_start func_0801323C
 func_0801323C: @ 0x0801323C

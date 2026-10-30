@@ -886,19 +886,6 @@ SceneTransitionOwner ReferencePageScene::Run()
     return continuation;
 }
 
-SceneTransitionOwner PoultryFarmShopScene::Run()
-{
-#if defined(REGION_JP)
-    i32 result = func_0807BA6C(core);
-#else
-    i32 result = func_0807BEC8(core);
-#endif
-    if (result != -1) {
-        SceneTransitionOwner next(new PoultryFarmShopTransition(continuation, save, 1));
-        return SceneTransitionOwner(new SavedNameEntryTransition(next, save, NAME_ENTRY_CHICKEN, result));
-    }
-    return continuation;
-}
 
 
 
@@ -1087,15 +1074,6 @@ SceneOwner GiftWrappingTransition::CreateScene()
 }
 
 
-SceneOwner PoultryFarmShopTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(func_0807CBD8(::operator new(sizeof(PoultryFarmShopScene)), &next, save, unk_0C));
-#else
-    return SceneOwner(func_0807D070(::operator new(sizeof(PoultryFarmShopScene)), &next, save, unk_0C));
-#endif
-}
 
 
 

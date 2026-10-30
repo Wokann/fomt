@@ -280,6 +280,7 @@ struct GameSceneResumeRequest {
         AFTER_YODEL_RANCH_SHOP = 0x10,
         AFTER_WINERY_SHOP = 0x11,
         AFTER_INN_SHOP = 0x12,
+        AFTER_POULTRY_FARM_SHOP = 0x13,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -296,6 +297,7 @@ struct GameSceneResumeRequest {
         AFTER_YODEL_RANCH_SHOP = 0x11,
         AFTER_WINERY_SHOP = 0x12,
         AFTER_INN_SHOP = 0x13,
+        AFTER_POULTRY_FARM_SHOP = 0x14,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -559,27 +561,8 @@ typedef char SavedNameEntryTransitionKindCheck[offsetof(SavedNameEntryTransition
 typedef char SavedNameEntrySceneIndexCheck[offsetof(SavedNameEntryScene, target_index) == 16 ? 1 : -1];
 typedef char SavedNameEntryTransitionIndexCheck[offsetof(SavedNameEntryTransition, target_index) == 16 ? 1 : -1];
 
-struct PoultryFarmShopSceneCore;
-struct PoultryFarmShopScene : AScene {
-    virtual ~PoultryFarmShopScene();
-    virtual SceneTransitionOwner Run();
-    PoultryFarmShopSceneCore * core;
-    SceneTransitionOwner continuation;
-    u32 unk_0C;
-    GameStateSaveImage * save;
-};
-
-struct PoultryFarmShopTransition : SceneTransition {
-    PoultryFarmShopTransition(SceneTransitionOwner next, GameStateSaveImage * image, u32 input)
-        : continuation(next), save(image), unk_0C(input) {}
-    virtual SceneOwner CreateScene();
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-    u32 unk_0C;
-};
-typedef char PoultryFarmShopSceneSizeCheck[sizeof(PoultryFarmShopScene) == 20 ? 1 : -1];
-typedef char PoultryFarmShopSceneSaveCheck[offsetof(PoultryFarmShopScene, save) == 16 ? 1 : -1];
-typedef char PoultryFarmShopTransitionSizeCheck[sizeof(PoultryFarmShopTransition) == 16 ? 1 : -1];
+#include "scene_poultry_farm_shop.hh"
+#pragma interface "game_scene.hh"
 
 struct ClockTransition : SceneTransition {
     virtual SceneOwner CreateScene();
@@ -687,6 +670,7 @@ struct GameScene : AScene {
     void OpenYodelRanchShop();
     void OpenWineryShop();
     void OpenInnShop();
+    void OpenPoultryFarmShop();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
@@ -869,11 +853,6 @@ void func_08092D64(GiftWrappingSceneCore * core);
 
 
 // The poultry core returns a signed target slot, with -1 meaning no purchase.
-#if defined(REGION_JP)
-i32 func_0807BA6C(PoultryFarmShopSceneCore * core);
-#else
-i32 func_0807BEC8(PoultryFarmShopSceneCore * core);
-#endif
 
 // Native shop construction ABI: each constructor consumes *continuation.
 
@@ -919,11 +898,6 @@ GiftWrappingScene * func_080931B0(void *, SceneTransition **, GameStateSaveImage
 
 
 
-#if defined(REGION_JP)
-PoultryFarmShopScene * func_0807CBD8(void *, SceneTransition **, GameStateSaveImage *, u32);
-#else
-PoultryFarmShopScene * func_0807D070(void *, SceneTransition **, GameStateSaveImage *, u32);
-#endif
 
 // The global controller and its subobjects are not yet fully recovered.
 extern u8 * gUnk_0300040C;

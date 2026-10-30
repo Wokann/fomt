@@ -1310,7 +1310,8 @@ OnCall__12ScriptEnginei:
     .byte 0xFF, 0xF7, 0xB0, 0xFA
 .LScriptCallJp_095:
     .byte 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xA8, 0xFA
-    .byte 0xD1, 0xF7, 0x63, 0xF9, 0xFF, 0xF7, 0xA4, 0xFA
+    bl OpenPoultryFarmShop__9GameScene
+    .byte 0xFF, 0xF7, 0xA4, 0xFA
 .LScriptCallJp_098:
     .byte 0xDA, 0x22, 0x52, 0x00, 0xAB, 0x18, 0x1A, 0x68
     .byte 0x90, 0x00, 0x40, 0x19, 0x01, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xD5, 0x23
@@ -76270,9 +76271,9 @@ func_0807AC20: @ 0x0807AC20
     .section .text.after_reference_page_scene_run, "ax", %progbits
     .align 2, 0
 
-    .global func_0807AC94
+    .global ConstructPoultryFarmShopSceneCore
     .thumb_func
-func_0807AC94: @ 0x0807AC94
+ConstructPoultryFarmShopSceneCore: @ 0x0807AC94
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     adds r4, r2, #0
@@ -78057,9 +78058,9 @@ func_0807BE74: @ 0x0807BA18
     pop {r1}
     bx r1
 
-    .global func_0807BA6C
+    .global RunPoultryFarmShopSceneCore
     .thumb_func
-func_0807BA6C:
+RunPoultryFarmShopSceneCore:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -80152,74 +80153,6 @@ sub_0807BD78:
     pop {r1}
     bx r1
     .align 2, 0
-    .global func_0807CBD8
-    .thumb_func
-func_0807CBD8:
-    push {r4, r5, r6, lr}
-    mov r6, r8
-    push {r6}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    mov r8, r2
-    adds r6, r3, #0
-    ldr r0, .Ljp_poultry_transition_vtable
-    str r0, [r4]
-    ldr r0, .Ljp_poultry_transition_state_size
-    bl __builtin_new
-    mov r1, r8
-    adds r2, r6, #0
-    bl func_0807AC94
-    str r0, [r4, #4]
-    ldr r1, [r5]
-    movs r0, #0
-    str r0, [r5]
-    str r1, [r4, #8]
-    str r6, [r4, #0xc]
-    mov r0, r8
-    str r0, [r4, #0x10]
-    adds r0, r4, #0
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_poultry_transition_vtable: .4byte gUnk_080E7028
-.Ljp_poultry_transition_state_size: .4byte 0x0000231C
-    .global func_0807CC1C
-    .thumb_func
-func_0807CC1C:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_poultry_status_vtable
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Ljp_poultry_status_first_done
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_poultry_status_first_done:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_poultry_status_second_done
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_poultry_status_second_done:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_poultry_status_vtable: .4byte gUnk_080E7028
     .section .text.after_poultry_farm_shop_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -121779,7 +121712,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L0804213A
 	bl .L0804168A
 .L0804213A:
-	bl func_080131A8
+	bl OpenPoultryFarmShop__9GameScene
 	bl .L0804168A
 .L08042142:
 	movs r2, #0xda
@@ -227888,8 +227821,8 @@ func_0807B07C:
     .section .text.after_reference_page_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_0807B0F0
-func_0807B0F0: @ 0x0807B0F0
+	thumb_func_start ConstructPoultryFarmShopSceneCore
+ConstructPoultryFarmShopSceneCore: @ 0x0807B0F0
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r4, r2, #0
@@ -229666,8 +229599,8 @@ func_0807BE74: @ 0x0807BE74
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_0807BEC8
-func_0807BEC8: @ 0x0807BEC8
+	thumb_func_start RunPoultryFarmShopSceneCore
+RunPoultryFarmShopSceneCore: @ 0x0807BEC8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -231789,52 +231722,6 @@ sub_0807C194: @ 0x0807C194
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_0807D070
-func_0807D070: @ 0x0807D070
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	mov r8, r2
-	adds r6, r3, #0
-	ldr r0, .L0807D0AC @ =vtable_unk_080E7BF8
-	str r0, [r4]
-	ldr r0, .L0807D0B0 @ =0x0000231C
-	bl __builtin_new
-	mov r1, r8
-	adds r2, r6, #0
-	bl func_0807B0F0
-	str r0, [r4, #4]
-	ldr r1, [r5]
-	movs r0, #0
-	str r0, [r5]
-	str r1, [r4, #8]
-	str r6, [r4, #0xc]
-	mov r0, r8
-	str r0, [r4, #0x10]
-	adds r0, r4, #0
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0807D0AC: .4byte vtable_unk_080E7BF8
-.L0807D0B0: .4byte 0x0000231C
-.L0807D0B4:
-	thumb_func_start func_0807D0B4
-func_0807D0B4:
-	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x0D, 0x48, 0x20, 0x60, 0xA1, 0x68
-	.byte 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
-	bl _call_via_r2
-	.byte 0x61, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
-	bl _call_via_r2
-	.byte 0x20, 0x1C, 0x29, 0x1C
-	bl _._6AScene
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-
-	.4byte vtable_unk_080E7BF8
     .section .text.after_poultry_farm_shop_scene_run, "ax", %progbits
     .align 2, 0
 
