@@ -206,7 +206,8 @@ SECTIONS
         src/scene_inn_shop.o(.text.OpenInnShop__9GameScene);
         src/scene_poultry_farm_shop.o(.text.OpenPoultryFarmShop__9GameScene);
         src/scene_special_merchant_shop.o(.text.OpenSpecialMerchantShop__9GameScene);
-        asm/game_state.o(.text.game_scene_after_special_merchant_shop);
+        src/scene_gift_wrapping.o(.text.OpenGiftWrappingMenu__9GameScene);
+        asm/game_state.o(.text.game_scene_after_gift_wrapping);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/game_scene.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -646,7 +647,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_shelf_scene_run);
         src/scene_blacksmith_shop.o(.text.__25BlacksmithShopResultSceneG20SceneTransitionOwnerP18GameStateSaveImageUc .text._._25BlacksmithShopResultScene .text.Run__25BlacksmithShopResultScene);
         asm/code_0803EE94.o(.text.after_blacksmith_shop_result_scene);
-        src/game_scene.o(.text.Run__17GiftWrappingScene);
+        src/scene_gift_wrapping.o(.text.__17GiftWrappingSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._17GiftWrappingScene .text.Run__17GiftWrappingScene);
         asm/code_0803EE94.o(.text.after_gift_wrapping_scene_run);
         src/game_scene.o(.text.Run__12CookingScene);
         asm/code_0803EE94.o(.text.after_cooking_scene_run);
@@ -958,7 +959,7 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__23ReferencePageTransition .gnu.linkonce.t._._23ReferencePageTransition);
         src/scene_special_merchant_shop.o(.text.CreateScene__29SpecialMerchantShopTransition .gnu.linkonce.t._._29SpecialMerchantShopTransition);
         asm/code_linkonce.o(.text.scene_special_merchant_shop_after);
-        src/game_scene.o(.text.CreateScene__22GiftWrappingTransition .gnu.linkonce.t._._22GiftWrappingTransition);
+        src/scene_gift_wrapping.o(.text.CreateScene__22GiftWrappingTransition .gnu.linkonce.t._._22GiftWrappingTransition);
         src/scene_yodel_ranch_shop.o(.text.CreateScene__24YodelRanchShopTransition .gnu.linkonce.t._._24YodelRanchShopTransition);
         src/scene_poultry_farm_shop.o(.text.CreateScene__25PoultryFarmShopTransition .gnu.linkonce.t._._25PoultryFarmShopTransition);
         src/scene_winery_shop.o(.text.CreateScene__20WineryShopTransition .gnu.linkonce.t._._20WineryShopTransition);
@@ -1289,7 +1290,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dbc);
 . = ALIGN(4); src/scene_blacksmith_shop.o(.gnu.linkonce.d.__vt_25BlacksmithShopResultScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dd8);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7de4);
+. = ALIGN(4); src/scene_gift_wrapping.o(.gnu.linkonce.d.__vt_17GiftWrappingScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7df4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7f00);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7f0c);

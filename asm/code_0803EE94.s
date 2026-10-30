@@ -1271,8 +1271,9 @@ OnCall__12ScriptEnginei:
     bl OpenSpecialMerchantShop__9GameScene
     .byte 0xFF, 0xF7, 0x1C, 0xFB
 .LScriptCallJp_097:
-    .byte 0xD5, 0x22, 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68
-    .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x14, 0xFB, 0xD1, 0xF7, 0x65, 0xFA, 0xFF, 0xF7, 0x10, 0xFB
+    .byte 0xD5, 0x22, 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x14, 0xFB
+    bl OpenGiftWrappingMenu__9GameScene
+    .byte 0xFF, 0xF7, 0x10, 0xFB
 .LScriptCallJp_08D:
     .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
     .byte 0xFF, 0xF7, 0x08, 0xFB
@@ -108602,9 +108603,9 @@ RunBlacksmithShopResultCore:
     .section .text.after_blacksmith_shop_result_scene, "ax", %progbits
     .align 2, 0
 
-    .global func_0809210C
+    .global ConstructGiftWrappingSceneCore
     .thumb_func
-func_0809210C:
+ConstructGiftWrappingSceneCore:
     push {r4, r5, lr}
     adds r4, r0, #0
     bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
@@ -109354,9 +109355,9 @@ func_08092CD0:
 .Ljp_08092828: .4byte 0x00001AA8
 .Ljp_0809282C: .4byte 0x00001CD4
 
-	.global func_08092D64
+	.global RunGiftWrappingSceneCore
 	.thumb_func
-func_08092D64:
+RunGiftWrappingSceneCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -109853,65 +109854,6 @@ func_08092D64:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .global loc_08092C7C
-    .thumb_func
-    loc_08092C7C:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    adds r6, r1, #0
-    adds r5, r2, #0
-    ldr r0, [pc, #0x20]
-    str r0, [r4]
-    movs r0, #0x86
-    lsls r0, r0, #1
-    bl __builtin_new
-    adds r1, r5, #0
-    bl func_0809210C
-    str r0, [r4, #4]
-    ldr r1, [r6]
-    movs r0, #0
-    str r0, [r6]
-    str r1, [r4, #8]
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x14, 0x72, 0x0E, 0x08
-
-.global func_08092CAC
-.thumb_func
-func_08092CAC:
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .Ljp_08092CE8 @ =gUnk_080E7214
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .Ljp_08092CC8
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_08092CC8:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .Ljp_08092CDA
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_08092CDA:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_08092CE8: .4byte gUnk_080E7214
     .section .text.after_gift_wrapping_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -121553,7 +121495,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042062
 	bl .L0804168A
 .L08042062:
-	bl func_080132D0
+	bl OpenGiftWrappingMenu__9GameScene
 	bl .L0804168A
 .L0804206A:
 	movs r3, #0xd5
@@ -271261,8 +271203,8 @@ RunBlacksmithShopResultCore: @ 0x0809152C
     .section .text.after_blacksmith_shop_result_scene, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_08092640
-func_08092640: @ 0x08092640
+	thumb_func_start ConstructGiftWrappingSceneCore
+ConstructGiftWrappingSceneCore: @ 0x08092640
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
@@ -272192,8 +272134,8 @@ func_08092CD0: @ 0x08092CD0
 .L08092D5C: .4byte 0x00001AA8
 .L08092D60: .4byte 0x00001CD4
 
-	thumb_func_start func_08092D64
-func_08092D64: @ 0x08092D64
+	thumb_func_start RunGiftWrappingSceneCore
+RunGiftWrappingSceneCore: @ 0x08092D64
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -272696,65 +272638,6 @@ func_08092D64: @ 0x08092D64
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-
-	thumb_func_start func_080931B0
-func_080931B0: @ 0x080931B0
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L080931DC @ =vtable_unk_080E7DE4
-	str r0, [r4]
-	movs r0, #0x86
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08092640
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080931DC: .4byte vtable_unk_080E7DE4
-
-	thumb_func_start func_080931E0
-func_080931E0: @ 0x080931E0
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L0809321C @ =vtable_unk_080E7DE4
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L080931FC
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080931FC:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L0809320E
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0809320E:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0809321C: .4byte vtable_unk_080E7DE4
 
     .section .text.after_gift_wrapping_scene_run, "ax", %progbits
     .align 2, 0

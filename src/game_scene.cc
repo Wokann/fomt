@@ -923,11 +923,6 @@ SceneTransitionOwner ShelfScene::Run()
 
 
 
-SceneTransitionOwner GiftWrappingScene::Run()
-{
-    func_08092D64(core);
-    return continuation;
-}
 
 SceneTransitionOwner CookingScene::Run()
 {
@@ -1045,15 +1040,6 @@ SceneOwner ReferencePageTransition::CreateScene()
 }
 
 
-SceneOwner GiftWrappingTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(loc_08092C7C(::operator new(sizeof(GiftWrappingScene)), &next, save));
-#else
-    return SceneOwner(func_080931B0(::operator new(sizeof(GiftWrappingScene)), &next, save));
-#endif
-}
 
 
 

@@ -45,7 +45,6 @@ extern void Run__18CarpenterShopScene(void);
 extern void Run__14ToolChestScene(void);
 extern void Run__17RefrigeratorScene(void);
 extern void Run__10ShelfScene(void);
-extern void Run__17GiftWrappingScene(void);
 extern void Run__12CookingScene(void);
 extern void Run__13CalendarScene(void);
 
@@ -173,7 +172,6 @@ extern void func_0808E8F8(void);
 extern void func_080909C4(void);
 extern void func_08090F58(void);
 extern void func_0809215C(void);
-extern void func_08092CAC(void);
 extern void func_08093D4C(void);
 extern void func_08093D80(void);
 extern void func_080E14B8(void);
@@ -344,7 +342,6 @@ extern void func_0808EDB8(void);
 extern void func_08090E84(void);
 extern void func_08090F58(void);
 extern void func_08092690(void);
-extern void func_080931E0(void);
 extern void func_080E1118(void);
 extern void func_080E111C(void);
 extern void func_080E1120(void);
@@ -893,7 +890,8 @@ extern RawVTableFunction const vtable_unk_080E5D74[] = {
     func_080DBC0C,
 };
 
-extern RawVTableFunction const vtable_unk_080E5D84[] = {
+// The actual GCC member table stays in this continuous native catalog.
+extern RawVTableFunction const __vt_22GiftWrappingTransition[] = {
     nullptr,
     nullptr,
     DestroyGiftWrappingTransition,
@@ -4940,8 +4938,8 @@ extern RawVTableFunction const vtable_unk_080E7DAC[]
 #endif
     };
 
-// The result scene now owns its real compiler vtable. Preserve the different
-// overseas core table and the JP following core/null-tail physical objects.
+// The result scene owns its real compiler vtable. Preserve the different
+// overseas and JP following native core tables.
 #if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7DBC[]
     SECTION(".rodata.vtable_7dbc") = {
@@ -4957,41 +4955,28 @@ extern RawVTableFunction const vtable_unk_080E7DC8[]
         func_0809215C,
     };
 
-extern RawVTableFunction const gUnk_080E7214
-    SECTION(".rodata.vtable_7dc8") = nullptr;
 #endif
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7DD8[]
     SECTION(".rodata.vtable_7dd8") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_08092CAC,
-        Run__17GiftWrappingScene,
-#else
         nullptr,
         nullptr,
         func_08092690,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableWithOffsetThreeEntries const vtable_unk_080E7DE4
     SECTION(".rodata.vtable_7de4") = {
-#if defined(REGION_JP)
         -8,
         {
             nullptr,
             func_08093D4C,
             func_08093D80,
         },
-#else
-        0,
-        {
-            nullptr,
-            func_080931E0,
-            Run__17GiftWrappingScene,
-        },
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7DF4[]
