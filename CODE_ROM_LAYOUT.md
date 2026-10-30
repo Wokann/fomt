@@ -1,5 +1,40 @@
 # 代码 ROM 物理布局
 
+## 飞盘成绩表的功能归属与名称更正（2026-10-30）
+
+原 `FrisbeeTournamentCore/Scene/Transition` 负责显示大会成绩表：四语标题明确
+为记录表／Scoreboard，运行循环只处理上下滚动及 B／START 退出，箭头依据
+仍能否滚动显示。因此实际 C++ 类型改为 `FrisbeeScoreboardCore/Scene/Transition`，
+入口为 `GameScene::ShowFrisbeeScoreboard`，不再把该界面称为比赛操作回合。
+
+对应类、拥有者、字段布局及声明从 `scene_frisbee.hh` 移入已有的
+`include/frisbee_scoreboard.hh`；十个已链接输入（692 字节既有代码、28 字节
+既有编译器类表）移入已有 `src/frisbee_scoreboard.cc`，与该文件原先引用的
+四语标题归于同一模块。源码定义按入口、core 构造、场景构造／析构／Run、
+转场工厂的 ROM 顺序排列，仍只有一条同名文本 include。
+
+纵向位置恢复为有符号 `scroll_y`，其取值为 0–32、每次变化 4；`phase` 使用
+原生有符号比较下的 32 位状态类型。字段偏移和对象大小未变。原生显示初始化
+及箭头更新入口改用真正的 `FrisbeeScoreboardCore::InitializeDisplay/UpdateArrows`
+成员符号，其正文和 492 字节 Run 仍为汇编；未知 RAM 不增加语义覆盖率。
+
+Mary 的旧 callable `RunFrisbeeTournamentRound`、编号及脚本调用保留，原生
+分派改为调用正确命名的 C++ 入口。此处只更正 FoMT JP／US／EU／DE 的行为说明，
+不根据 FoMT 推断 MFoMT。复制来的 Mary 审计说明同步补充此区别。
+
+现存转场类表仍位于 `vtables.cc` 的连续旧目录中；该默认只读目录含 47 个
+输入、共 1,596 字节，尚有未恢复项目，本批保留其物理边界。目录补充正确的
+成绩表头文件依赖，以便旧 C++ 编译器识别其真实类表，未新增名称特例、工具
+补正、源码 section 属性、分段或地址锚点。一个工厂的直接构造 ABI 仍待收回。
+
+四版普通 WSL `make -j4 GAME_REGION=<区域> GAME_REVISION=0 compare`、完整
+8 MiB ROM 字节及原版 SHA-1 均通过。十四个相关符号以新名称保持原物理地址，
+全部既有已链接输入范围保持不变；修改对象的每个保留输入均核对指令／数据位
+及重定位，其余对象的分配段签名也保持一致。
+
+本批是已有实现的正确命名和功能归属整理，**新增 C++ 正文字节为 0**，不重复
+计算前批恢复量；真实运行循环、旧虚表目录及启动段缺口仍需继续恢复。
+
 ## 飞盘大会 core 的构造与资源释放（2026-10-30）
 
 `FrisbeeTournamentCore` 的初始化恢复到 `src/scene_frisbee.cc`，布局和外部

@@ -1574,7 +1574,7 @@ OnCall__12ScriptEnginei:
     .byte 0xFE, 0xF7, 0x4B, 0xFE
 .LScriptCallJp_0DB:
     .byte 0xD5, 0x26, 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFE, 0xF7, 0x43, 0xFE
-    bl RunFrisbeeTournamentRound__9GameScene
+    bl ShowFrisbeeScoreboard__9GameScene
     .byte 0xFE, 0xF7, 0x3F, 0xFE
 .LScriptCallJp_0DC:
     .byte 0xD4, 0x21
@@ -7333,9 +7333,9 @@ func_08050F4C: @ 0x08050CD8
     .section .text.ui_state_selection_after
 
 
-    .global Run__21FrisbeeTournamentCore
+    .global Run__21FrisbeeScoreboardCore
     .thumb_func
-Run__21FrisbeeTournamentCore: @ 0x08051290
+Run__21FrisbeeScoreboardCore: @ 0x08051290
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -7369,7 +7369,7 @@ Run__21FrisbeeTournamentCore: @ 0x08051290
     bl __23HardwareBlendControllerP20HardwareDisplayState
     str r4, [sp, #4]
     adds r0, r6, #0
-    bl func_0805147C
+    bl InitializeDisplay__21FrisbeeScoreboardCore
     ldr r0, [sp, #4]
     ldr r1, .Ljp_08051330
     adds r0, #0xc
@@ -7528,7 +7528,7 @@ Run__21FrisbeeTournamentCore: @ 0x08051290
     movs r7, #1
 .Ljp_08051426:
     adds r0, r6, #0
-    bl func_08051B00
+    bl UpdateArrows__21FrisbeeScoreboardCore
     cmp r7, #0
     bne .Ljp_08051432
     b .Ljp_08051310
@@ -7573,9 +7573,9 @@ Run__21FrisbeeTournamentCore: @ 0x08051290
 
     @ The following two physical entries are still raw, but are labelled so
     @ the decoded state machine above keeps real JP branch relocations.
-    .global func_0805147C
+    .global InitializeDisplay__21FrisbeeScoreboardCore
     .thumb_func
-func_0805147C:
+InitializeDisplay__21FrisbeeScoreboardCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -7816,9 +7816,9 @@ func_0805147C:
     .byte 0xDB, 0x19, 0x49, 0x00, 0xF8, 0x34, 0x0C, 0x19, 0x24, 0x18, 0x92, 0x01, 0xB8, 0x32, 0x89, 0x18
     .byte 0x09, 0x18, 0x70, 0x19, 0x08, 0x80, 0x23, 0x80, 0x01, 0x33, 0x02, 0x34, 0x02, 0x31, 0x01, 0x35
     .byte 0x01, 0x2D, 0xF6, 0xDD, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xC2, 0x20, 0x00, 0x00
-    .global func_08051B00
+    .global UpdateArrows__21FrisbeeScoreboardCore
     .thumb_func
-func_08051B00:
+UpdateArrows__21FrisbeeScoreboardCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -123047,7 +123047,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042A04
 	bl .L0804168A
 .L08042A04:
-	bl RunFrisbeeTournamentRound__9GameScene
+	bl ShowFrisbeeScoreboard__9GameScene
 	bl .L0804168A
 .L08042A0C:
 	movs r1, #0xd4
@@ -146765,8 +146765,8 @@ func_08050F4C: @ 0x08050F4C
 	.section .text.ui_state_selection_after
 
 
-	thumb_func_start Run__21FrisbeeTournamentCore
-Run__21FrisbeeTournamentCore: @ 0x08051504
+	thumb_func_start Run__21FrisbeeScoreboardCore
+Run__21FrisbeeScoreboardCore: @ 0x08051504
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -146800,7 +146800,7 @@ Run__21FrisbeeTournamentCore: @ 0x08051504
 	bl __23HardwareBlendControllerP20HardwareDisplayState
 	str r4, [sp, #4]
 	adds r0, r6, #0
-	bl func_080516F0
+	bl InitializeDisplay__21FrisbeeScoreboardCore
 	ldr r0, [sp, #4]
 	ldr r1, .L080515A4 @ =0x00000889
 	adds r0, #0xc
@@ -146959,7 +146959,7 @@ Run__21FrisbeeTournamentCore: @ 0x08051504
 	movs r7, #1
 .L0805169A:
 	adds r0, r6, #0
-	bl func_08051D70
+	bl UpdateArrows__21FrisbeeScoreboardCore
 	cmp r7, #0
 	bne .L080516A6
 	b .L08051584
@@ -147002,8 +147002,8 @@ Run__21FrisbeeTournamentCore: @ 0x08051504
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080516F0
-func_080516F0: @ 0x080516F0
+	thumb_func_start InitializeDisplay__21FrisbeeScoreboardCore
+InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -147747,8 +147747,8 @@ func_08051D30: @ 0x08051D30
 	.align 2, 0
 .L08051D6C: .4byte 0x000020C1
 
-	thumb_func_start func_08051D70
-func_08051D70: @ 0x08051D70
+	thumb_func_start UpdateArrows__21FrisbeeScoreboardCore
+UpdateArrows__21FrisbeeScoreboardCore: @ 0x08051D70
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

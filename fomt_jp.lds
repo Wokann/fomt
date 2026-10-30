@@ -268,7 +268,7 @@ SECTIONS
         src/scene_horse_race.o(.text.RunHorseRace__9GameScene25MaryFestivalHorseRaceMode);
         src/scene_horse_race.o(.text.OpenHorseRaceMedalExchange__9GameScene);
         src/scene_frisbee.o(.text.RunFrisbeeGame__9GameSceneb);
-        src/scene_frisbee.o(.text.RunFrisbeeTournamentRound__9GameScene);
+        src/frisbee_scoreboard.o(.text.ShowFrisbeeScoreboard__9GameScene);
         src/scene_audio.o(.text.GetSceneSongPlayerPool);
         src/game_scene.o(
             .text.LightFireplaceAtLocation__9GameScene9MaryMapId
@@ -593,9 +593,9 @@ SECTIONS
         src/ui_state.o(.text.ui_state_selection);
         src/ui_state.o(.text.__21UiTextTileCopyCommandPCUiPUiUib);
         src/ui_text_window.o(.text);
-        src/scene_frisbee.o(.text.__21FrisbeeTournamentCoreP18GameStateSaveImage);
+        src/frisbee_scoreboard.o(.text.__21FrisbeeScoreboardCoreP18GameStateSaveImage);
         asm/code_0803EE94.o(.text.ui_state_selection_after);
-        src/scene_frisbee.o(.text.__22FrisbeeTournamentSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._22FrisbeeTournamentScene .text.Run__22FrisbeeTournamentScene);
+        src/frisbee_scoreboard.o(.text.__22FrisbeeScoreboardSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._22FrisbeeScoreboardScene .text.Run__22FrisbeeScoreboardScene);
         src/animal_festival_ranking.o(.text);
         . = 0x52088; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
         src/scene_frisbee.o(.text.__12FrisbeeSceneG20SceneTransitionOwnerP18GameStateSaveImageb .text._._12FrisbeeScene .text.Run__12FrisbeeScene);
@@ -1017,7 +1017,7 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
         src/game_scene.o(.text.CreateScene__15ShelfTransition .gnu.linkonce.t._._15ShelfTransition);
         asm/code_linkonce.o(.text.scene_shelf_after);
-        src/scene_frisbee.o(.text.CreateScene__27FrisbeeTournamentTransition .gnu.linkonce.t._._27FrisbeeTournamentTransition);
+        src/frisbee_scoreboard.o(.text.CreateScene__27FrisbeeScoreboardTransition .gnu.linkonce.t._._27FrisbeeScoreboardTransition);
         src/scene_frisbee.o(.text.CreateScene__17FrisbeeTransition .gnu.linkonce.t._._17FrisbeeTransition);
         src/scene_horse_race.o(.text.CreateScene__32HorseRaceMedalExchangeTransition .gnu.linkonce.t._._32HorseRaceMedalExchangeTransition);
         src/scene_horse_race.o(.text.CreateScene__19HorseRaceTransition .gnu.linkonce.t._._19HorseRaceTransition);
@@ -1089,7 +1089,7 @@ SECTIONS
         src/ui_state.o(.text.ui_text_input_base_destructor);
         src/ui_state.o(.text.ui_text_output_defaults);
         src/ui_state.o(.text.ui_text_output_base_destructor);
-        src/scene_frisbee.o(.gnu.linkonce.t._._21FrisbeeTournamentCore);
+        src/frisbee_scoreboard.o(.gnu.linkonce.t._._21FrisbeeScoreboardCore);
         asm/code_linkonce.o(.text.ui_text_output_base_after);
         src/resource_archive.o(.text.indexed_resource_archive_cleanup);
         src/intro_story_scene.o(.text.Lookup__23IntroStoryTextVariablesUi);
@@ -1273,8 +1273,8 @@ SECTIONS
         src/ui_state.o(.gnu.linkonce.d.__vt_21UiTextTileCopyCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_11UiTextInput);
         src/ui_state.o(.gnu.linkonce.d.__vt_12UiTextOutput);
-        src/scene_frisbee.o(.gnu.linkonce.d.__vt_21FrisbeeTournamentCore);
-        . = ALIGN(4); src/scene_frisbee.o(.gnu.linkonce.d.__vt_22FrisbeeTournamentScene);
+        src/frisbee_scoreboard.o(.gnu.linkonce.d.__vt_21FrisbeeScoreboardCore);
+        . = ALIGN(4); src/frisbee_scoreboard.o(.gnu.linkonce.d.__vt_22FrisbeeScoreboardScene);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7934);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7944);
         . = ALIGN(4); src/scene_frisbee.o(.gnu.linkonce.d.__vt_12FrisbeeScene);

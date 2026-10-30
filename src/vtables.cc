@@ -1,4 +1,5 @@
 #include "scene_frisbee.hh"
+#include "frisbee_scoreboard.hh"
 #include "scene_horse_race.hh"
 #include "scene_chicken_festival.hh"
 #include "prelude.h"
@@ -20,8 +21,8 @@ extern void CreateScene__32HorseRaceMedalExchangeTransition(void);
 extern void DestroyHorseRaceMedalExchangeTransition(void) asm("_._32HorseRaceMedalExchangeTransition");
 extern void CreateScene__17FrisbeeTransition(void);
 extern void DestroyFrisbeeTransition(void) asm("_._17FrisbeeTransition");
-extern void CreateScene__27FrisbeeTournamentTransition(void);
-extern void DestroyFrisbeeTournamentTransition(void) asm("_._27FrisbeeTournamentTransition");
+extern void CreateScene__27FrisbeeScoreboardTransition(void);
+extern void DestroyFrisbeeScoreboardTransition(void) asm("_._27FrisbeeScoreboardTransition");
 
 // Address-only bindings to actual compiler member entries, not forwarding bodies.
 extern void CreateScene__19HorseRaceTransition(void);
@@ -852,10 +853,10 @@ extern RawVTableFunction const vtable_unk_080E5CF4[] = {
 };
 
 // Preserve the continuous catalog with actual GCC slots and direct members.
-int (* __vt_27FrisbeeTournamentTransition[4])(...) = {
+int (* __vt_27FrisbeeScoreboardTransition[4])(...) = {
     nullptr, nullptr,
-    reinterpret_cast<int (*)(...)>(DestroyFrisbeeTournamentTransition),
-    reinterpret_cast<int (*)(...)>(CreateScene__27FrisbeeTournamentTransition),
+    reinterpret_cast<int (*)(...)>(DestroyFrisbeeScoreboardTransition),
+    reinterpret_cast<int (*)(...)>(CreateScene__27FrisbeeScoreboardTransition),
 };
 
 // Preserve the continuous catalog with actual GCC slots and direct members.

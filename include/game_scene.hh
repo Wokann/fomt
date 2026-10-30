@@ -280,7 +280,7 @@ struct GameSceneResumeRequest {
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
         AFTER_FRISBEE_GAME = 0x26,
-        AFTER_FRISBEE_TOURNAMENT_ROUND = 0x27,
+        AFTER_FRISBEE_SCOREBOARD = 0x27,
 #else
         AFTER_SUPERMARKET_SHOP = 10,
         AFTER_SUPERMARKET_PURCHASE = 11,
@@ -292,7 +292,7 @@ struct GameSceneResumeRequest {
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
         AFTER_FRISBEE_GAME = 0x27,
-        AFTER_FRISBEE_TOURNAMENT_ROUND = 0x28,
+        AFTER_FRISBEE_SCOREBOARD = 0x28,
 #endif
     };
     i32 kind;
@@ -782,7 +782,7 @@ struct GameScene : AScene {
     void RunHorseRace(MaryFestivalHorseRaceMode mode);
     void OpenHorseRaceMedalExchange();
     void RunFrisbeeGame(bool contest);
-    void RunFrisbeeTournamentRound();
+    void ShowFrisbeeScoreboard();
     void PrepareClockMenuTransition();
     void RestoreAfterClockMenu();
     void PrepareCookingMenuTransition();
