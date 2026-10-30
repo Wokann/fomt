@@ -1337,8 +1337,9 @@ OnCall__12ScriptEnginei:
     bl OpenShelf__9GameScene
     .byte 0xFF, 0xF7, 0x5D, 0xFA
 .LScriptCallJp_09D:
-    .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28
-    .byte 0x01, 0xD1, 0xFF, 0xF7, 0x55, 0xFA, 0xD1, 0xF7, 0x74, 0xFB, 0xFF, 0xF7, 0x51, 0xFA
+    .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x55, 0xFA
+    bl OpenToolChest__9GameScene
+    .byte 0xFF, 0xF7, 0x51, 0xFA
 .LScriptCallJp_09E:
     .byte 0xD5, 0x24
     .byte 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x49, 0xFA, 0xD1, 0xF7
@@ -96575,9 +96576,9 @@ _._19YodelRanchShopScene: @ 0x08087CEC
     .section .text.after_yodel_ranch_shop_scene_run, "ax", %progbits
     .align 2, 0
 
-    .global func_08087DEC
+    .global ConstructToolChestSceneCore
     .thumb_func
-func_08087DEC: @ 0x08087DEC
+ConstructToolChestSceneCore: @ 0x08087DEC
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
@@ -98812,9 +98813,9 @@ func_08088BA0:
     bl GetItemIndex__C23GameSceneMenuCorePrefixii
     .byte 0x01, 0x1C, 0x20, 0x1C, 0x42, 0xF0, 0xB5, 0xFA, 0x01, 0xB0
     .byte 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .global func_0808A09C
+    .global RunToolChestSceneCore
     .thumb_func
-func_0808A09C:
+RunToolChestSceneCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -99202,66 +99203,6 @@ func_0808A09C:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .global loc_0808A678
-    .thumb_func
-    loc_0808A678:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    adds r6, r1, #0
-    adds r5, r2, #0
-    ldr r0, [pc, #0x20]
-    str r0, [r4]
-    movs r0, #0x86
-    lsls r0, r0, #1
-    bl __builtin_new
-    adds r1, r5, #0
-    bl func_08087DEC
-    str r0, [r4, #4]
-    ldr r1, [r6]
-    movs r0, #0
-    str r0, [r6]
-    str r1, [r4, #8]
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x88, 0x71, 0x0E, 0x08
-
-    .global func_0808A6A8
-    .thumb_func
-func_0808A6A8:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_0808A6E4
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Ljp_0808A6C4
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_0808A6C4:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_0808A6D6
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_0808A6D6:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_0808A6E4: .4byte gUnk_080E7188
-
     .section .text.after_tool_chest_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -121546,7 +121487,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L080421E0
 	bl .L0804168A
 .L080421E0:
-	bl func_0801366C
+	bl OpenToolChest__9GameScene
 	bl .L0804168A
 .L080421E8:
 	movs r4, #0xd5
@@ -252240,8 +252181,8 @@ _._19YodelRanchShopScene: @ 0x080881AC
     .section .text.after_yodel_ranch_shop_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080882AC
-func_080882AC: @ 0x080882AC
+	thumb_func_start ConstructToolChestSceneCore
+ConstructToolChestSceneCore: @ 0x080882AC
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
@@ -256255,8 +256196,8 @@ func_0808A4C0: @ 0x0808A4C0
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_0808A55C
-func_0808A55C: @ 0x0808A55C
+	thumb_func_start RunToolChestSceneCore
+RunToolChestSceneCore: @ 0x0808A55C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -256942,65 +256883,6 @@ func_0808A55C: @ 0x0808A55C
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-
-	thumb_func_start func_0808AB38
-func_0808AB38: @ 0x0808AB38
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0808AB64 @ =vtable_unk_080E7D58
-	str r0, [r4]
-	movs r0, #0x86
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_080882AC
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0808AB64: .4byte vtable_unk_080E7D58
-
-	thumb_func_start func_0808AB68
-func_0808AB68: @ 0x0808AB68
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L0808ABA4 @ =vtable_unk_080E7D58
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L0808AB84
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0808AB84:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L0808AB96
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0808AB96:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0808ABA4: .4byte vtable_unk_080E7D58
 
     .section .text.after_tool_chest_scene_run, "ax", %progbits
     .align 2, 0

@@ -286,6 +286,7 @@ struct GameSceneResumeRequest {
         AFTER_REFERENCE_PAGE = 0x17,
         AFTER_CALENDAR = 0x18,
         AFTER_SHELF = 0x19,
+        AFTER_TOOL_CHEST = 0x1A,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -308,6 +309,7 @@ struct GameSceneResumeRequest {
         AFTER_REFERENCE_PAGE = 0x18,
         AFTER_CALENDAR = 0x19,
         AFTER_SHELF = 0x1A,
+        AFTER_TOOL_CHEST = 0x1B,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -348,26 +350,8 @@ typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) 
 #include "scene_calendar.hh"
 #pragma interface "game_scene.hh"
 
-struct ToolChestSceneCore;
-struct ToolChestScene : AScene {
-    virtual ~ToolChestScene();
-    virtual SceneTransitionOwner Run();
-
-    ToolChestSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct ToolChestTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-typedef char ToolChestSceneSizeCheck[sizeof(ToolChestScene) == 12 ? 1 : -1];
-typedef char ToolChestSceneCoreCheck[offsetof(ToolChestScene, core) == 4 ? 1 : -1];
-typedef char ToolChestSceneContinuationCheck[offsetof(ToolChestScene, continuation) == 8 ? 1 : -1];
-typedef char ToolChestTransitionSizeCheck[sizeof(ToolChestTransition) == 12 ? 1 : -1];
+#include "scene_tool_chest.hh"
+#pragma interface "game_scene.hh"
 
 struct RefrigeratorSceneCore;
 struct RefrigeratorScene : AScene {
@@ -597,6 +581,7 @@ struct GameScene : AScene {
     void OpenLetterList();
     void OpenCalendar();
     void OpenShelf();
+    void OpenToolChest();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
@@ -753,11 +738,6 @@ EXTERN_C
 // return a temporary transition owner that the scene must destroy before
 // handing back its own continuation; the other listed calls return void.
 #if defined(REGION_JP)
-void func_0808A09C(ToolChestSceneCore * core);
-#else
-void func_0808A55C(ToolChestSceneCore * core);
-#endif
-#if defined(REGION_JP)
 void func_0808E23C(RefrigeratorSceneCore * core);
 #else
 void func_0808E6FC(RefrigeratorSceneCore * core);
@@ -774,11 +754,6 @@ SceneTransitionOwner func_08094F6C(CookingSceneCore * core);
 // Native shop construction ABI: each constructor consumes *continuation.
 
 
-#if defined(REGION_JP)
-ToolChestScene * loc_0808A678(void *, SceneTransition **, GameStateSaveImage *);
-#else
-ToolChestScene * func_0808AB38(void *, SceneTransition **, GameStateSaveImage *);
-#endif
 
 #if defined(REGION_JP)
 RefrigeratorScene * loc_0808E818(void *, SceneTransition **, GameStateSaveImage *);

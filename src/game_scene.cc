@@ -889,15 +889,6 @@ EC void func_080D7F3C(GameSceneState * state)
 
 
 
-SceneTransitionOwner ToolChestScene::Run()
-{
-#if defined(REGION_JP)
-    func_0808A09C(core);
-#else
-    func_0808A55C(core);
-#endif
-    return continuation;
-}
 
 SceneTransitionOwner RefrigeratorScene::Run()
 {
@@ -977,15 +968,6 @@ SceneOwner SavedNameEntryTransition::CreateScene()
 }
 
 
-SceneOwner ToolChestTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(loc_0808A678(::operator new(sizeof(ToolChestScene)), &next, save));
-#else
-    return SceneOwner(func_0808AB38(::operator new(sizeof(ToolChestScene)), &next, save));
-#endif
-}
 
 SceneOwner RefrigeratorTransition::CreateScene()
 {

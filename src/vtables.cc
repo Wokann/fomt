@@ -41,7 +41,6 @@ extern void Run__16SupermarketScene(void);
 extern void Run__24SupermarketPurchaseScene(void);
 extern void Run__12WonShopScene(void);
 extern void Run__18CarpenterShopScene(void);
-extern void Run__14ToolChestScene(void);
 extern void Run__17RefrigeratorScene(void);
 extern void Run__12CookingScene(void);
 
@@ -158,7 +157,6 @@ extern void func_08081DC8(void);
 extern void func_080837C8(void);
 extern void func_080851A4(void);
 extern void func_08087E44(void);
-extern void func_0808A6A8(void);
 extern void func_0808A754(void);
 extern void func_0808C0DC(void);
 extern void func_0808C5DC(void);
@@ -326,7 +324,6 @@ extern void func_08082250(void);
 extern void func_08083C50(void);
 extern void func_0808562C(void);
 extern void func_08088304(void);
-extern void func_0808AB68(void);
 extern void func_0808AC14(void);
 extern void func_0808C59C(void);
 extern void func_0808C5DC(void);
@@ -796,7 +793,8 @@ extern RawVTableFunction const __vt_18CalendarTransition[] = {
     CreateScene__18CalendarTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5CC4[] = {
+// The actual GCC member table stays in this continuous native catalog.
+extern RawVTableFunction const __vt_19ToolChestTransition[] = {
     nullptr,
     nullptr,
     DestroyToolChestTransition,
@@ -4788,38 +4786,25 @@ extern RawVTableFunction const vtable_unk_080E7D3C[]
     };
 #endif
 
-#if defined(REGION_JP)
-extern RawVTableFunction const gUnk_080E7188
-    SECTION(".rodata.vtable_7d3c") = nullptr;
-#endif
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7D4C[]
     SECTION(".rodata.vtable_7d4c") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_0808A6A8,
-        Run__14ToolChestScene,
-#else
         nullptr,
         nullptr,
         func_08088304,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7D58[]
     SECTION(".rodata.vtable_7d58") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_0808A754,
         nullptr,
-#else
-        nullptr,
-        nullptr,
-        func_0808AB68,
-        Run__14ToolChestScene,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7D68[]
     SECTION(".rodata.vtable_7d68") = {

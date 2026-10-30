@@ -248,7 +248,8 @@ SECTIONS
         src/scene_reference_page.o(.text.ShowReferencePage__9GameScenei .text.OpenBookList__9GameScene .text.OpenLetterList__9GameScene);
         src/scene_calendar.o(.text.OpenCalendar__9GameScene);
         src/scene_shelf.o(.text.OpenShelf__9GameScene);
-        asm/game_state.o(.text.game_scene_after_shelf);
+        src/scene_tool_chest.o(.text.OpenToolChest__9GameScene);
+        asm/game_state.o(.text.game_scene_after_tool_chest);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/game_scene.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -691,7 +692,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_carpenter_shop_scene_run);
         src/scene_yodel_ranch_shop.o(.text.Run__19YodelRanchShopScene);
         asm/code_0803EE94.o(.text.after_yodel_ranch_shop_scene_run);
-        src/game_scene.o(.text.Run__14ToolChestScene);
+        src/scene_tool_chest.o(.text.__14ToolChestSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._14ToolChestScene .text.Run__14ToolChestScene);
         asm/code_0803EE94.o(.text.after_tool_chest_scene_run);
         src/game_scene.o(.text.Run__17RefrigeratorScene);
         asm/code_0803EE94.o(.text.after_refrigerator_scene_run);
@@ -1023,7 +1024,7 @@ SECTIONS
         asm/code_linkonce.o(.text.after_saved_name_transition);
         src/scene_chicken_festival.o(.text.CreateScene__32ChickenFestivalContestTransition .gnu.linkonce.t._._32ChickenFestivalContestTransition);
         src/scene_calendar.o(.text.CreateScene__18CalendarTransition .gnu.linkonce.t._._18CalendarTransition);
-        src/game_scene.o(.text.CreateScene__19ToolChestTransition .gnu.linkonce.t._._19ToolChestTransition);
+        src/scene_tool_chest.o(.text.CreateScene__19ToolChestTransition .gnu.linkonce.t._._19ToolChestTransition);
         src/game_scene.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
         src/scene_shelf.o(.text.CreateScene__15ShelfTransition .gnu.linkonce.t._._15ShelfTransition);
         asm/code_linkonce.o(.text.scene_shelf_after);
@@ -1360,7 +1361,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d20);
 . = ALIGN(4); src/scene_yodel_ranch_shop.o(.gnu.linkonce.d.__vt_19YodelRanchShopScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d3c);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7d4c);
+. = ALIGN(4); src/scene_tool_chest.o(.gnu.linkonce.d.__vt_14ToolChestScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d58);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d68);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d74);
