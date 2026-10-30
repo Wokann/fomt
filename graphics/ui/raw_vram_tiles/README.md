@@ -6,6 +6,11 @@ OAM composition is not yet proven.  A `.4bpp` or `.gbapal` file is therefore
 the editable source; no arbitrary linear tile-grid PNG is treated as a source
 asset.
 
+The now-identified numeral/symbol atlas has moved to the ordinary editable
+PNG workflow at [number_glyphs/shared](../number_glyphs/shared/README.md).
+Its source is the native glyph-index sequence, without a speculative screen
+composition; no raw 08750c8c record or address-label alias remains here.
+
 ## Farm Status Tool Level List
 
 `func_08068344` loads the following four-region byte-identical records.  The

@@ -57,3 +57,4 @@ graphics/intro_scene/indexed_archive/*/archive.bin
 graphics/farm_house_visual/shared/*.4bpp
 __pycache__/
 tools/textproc/fomt-*
+graphics/ui/number_glyphs/shared/tiles.4bpp

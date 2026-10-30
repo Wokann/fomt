@@ -150,6 +150,10 @@ void DrawDecimalToTilemap(u32 value, u16 * right_tile, u32 base_tile,
 void FormatUnsignedDecimal(u32 value, char * output)
     SECTION(".text.font_unsigned_decimal");
 
+// Fourteen uncompressed 4bpp UI numeral/symbol tiles. The native DMA users
+// select their own character-RAM slot and runtime palette.
+extern u32 const gUiNumberGlyphTiles[];
+
 // Raw font payloads selected by the renderer. Single-width glyphs occupy
 // 12 bytes; double-width glyphs occupy 24 bytes.
 extern u8 const gFontSingleWidthGlyphData[];

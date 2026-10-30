@@ -99538,9 +99538,11 @@ gUnk_08750C4C:
 	.global gUnk_08750C6C
 gUnk_08750C6C:
 	.incbin "graphics/ui/farm_status/harvest_sprite_task_ui_tile/shared/harvest_sprite_task_ui_tile.gbapal"
-	.global gUnk_08750C8C
-gUnk_08750C8C:
-	.incbin "graphics/ui/raw_vram_tiles/08750c8c/shared/tiles.4bpp"
+	.global gUiNumberGlyphTiles
+    .type gUiNumberGlyphTiles, %object
+gUiNumberGlyphTiles:
+	.incbin "graphics/ui/number_glyphs/shared/tiles.4bpp"
+    .size gUiNumberGlyphTiles, . - gUiNumberGlyphTiles
 	.global gUnk_08750E4C
 gUnk_08750E4C:
 	.incbin "graphics/ui/raw_vram_tiles/08750e4c/shared/tiles.4bpp"
