@@ -28610,9 +28610,9 @@ func_080E4860:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .global func_080E4940
+    .global _._27ChickenFestivalMinigameCore
     .thumb_func
-func_080E4940:
+_._27ChickenFestivalMinigameCore:
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     adds r7, r1, #0
@@ -36801,8 +36801,8 @@ func_080E4860: @ 0x080E4860
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080E4940
-func_080E4940: @ 0x080E4940
+	thumb_func_start _._27ChickenFestivalMinigameCore
+_._27ChickenFestivalMinigameCore: @ 0x080E4940
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r7, r1, #0

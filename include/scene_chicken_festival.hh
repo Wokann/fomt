@@ -3,6 +3,8 @@
 
 #include "scene.hh"
 #include "utility/fixed_str.hh"
+#include "hardware_bootstrap.hh"
+#include "hardware_music_player.hh"
 
 struct GameStateSaveImage;
 
@@ -44,7 +46,33 @@ struct ChickenFestivalEntrant {
     u8 affection;
 };
 
-struct ChickenFestivalMinigameCore;
+struct UiStateOwner;
+
+// Native allocation and constructor/destructor accesses verify this layout.
+// Unrecovered fields remain RAM storage, not fabricated semantic objects.
+struct ChickenFestivalMinigameCore : HardwareBootstrap {
+    ChickenFestivalMinigameCore(ChickenFestivalEntrant const & entrant);
+    virtual ~ChickenFestivalMinigameCore();
+    bool HasWon() const;
+    SceneTransitionOwner Run();
+
+    u8 unk_008;
+    u8 unk_009[0x704 - 0x009];
+    HardwareMusicPlayerSlot music_players[5];
+    UiStateOwner * ui_state;
+    u8 unk_71C[0xB1C - 0x71C];
+    ChickenFestivalEntrant unk_B1C;
+    bool won;
+    u8 unk_B31[0xB78 - 0xB31];
+};
+
+typedef char ChickenFestivalMinigameCoreSizeCheck[sizeof(ChickenFestivalMinigameCore) == 0xB78 ? 1 : -1];
+typedef char ChickenFestivalMinigameCoreFlagCheck[offsetof(ChickenFestivalMinigameCore, unk_008) == 8 ? 1 : -1];
+typedef char ChickenFestivalMinigameCoreMusicCheck[offsetof(ChickenFestivalMinigameCore, music_players) == 0x704 ? 1 : -1];
+typedef char ChickenFestivalMinigameCoreUiStateCheck[offsetof(ChickenFestivalMinigameCore, ui_state) == 0x718 ? 1 : -1];
+typedef char ChickenFestivalMinigameCoreEntrantCheck[offsetof(ChickenFestivalMinigameCore, unk_B1C) == 0xB1C ? 1 : -1];
+typedef char ChickenFestivalMinigameCoreWinnerCheck[offsetof(ChickenFestivalMinigameCore, won) == 0xB30 ? 1 : -1];
+
 struct ChickenFestivalMinigameScene : AScene {
     ChickenFestivalMinigameScene(ChickenFestivalEntrant const & entrant);
     virtual ~ChickenFestivalMinigameScene();
@@ -53,11 +81,6 @@ struct ChickenFestivalMinigameScene : AScene {
 
     ChickenFestivalMinigameCore * core;
 };
-
-// These are the actual remaining native core entries, not forwarding helpers.
-// The renderer's complete private layout and body remain unrecovered.
-extern "C" bool HasWonChickenFestivalMinigame(ChickenFestivalMinigameCore const * core);
-extern "C" SceneTransitionOwner RunChickenFestivalMinigame(ChickenFestivalMinigameCore * core);
 
 typedef char ChickenFestivalEntrantSizeCheck[sizeof(ChickenFestivalEntrant) == 20 ? 1 : -1];
 typedef char ChickenFestivalEntrantYearCheck[offsetof(ChickenFestivalEntrant, year) == 16 ? 1 : -1];

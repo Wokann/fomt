@@ -17,14 +17,29 @@ ChickenFestivalEntrant::ChickenFestivalEntrant()
 {
 }
 
+bool ChickenFestivalMinigameCore::HasWon() const
+{
+    return won;
+}
+
+ChickenFestivalMinigameScene::ChickenFestivalMinigameScene(ChickenFestivalEntrant const & entrant)
+    : core(new ChickenFestivalMinigameCore(entrant))
+{
+}
+
+ChickenFestivalMinigameScene::~ChickenFestivalMinigameScene()
+{
+    delete core;
+}
+
 bool ChickenFestivalMinigameScene::HasWon() const
 {
-    return HasWonChickenFestivalMinigame(core);
+    return core->HasWon();
 }
 
 SceneTransitionOwner ChickenFestivalMinigameScene::Run()
 {
-    return RunChickenFestivalMinigame(core);
+    return core->Run();
 }
 
 SceneOwner ChickenFestivalContestTransition::CreateScene()

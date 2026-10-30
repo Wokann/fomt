@@ -850,6 +850,9 @@ SECTIONS
         asm/code_809E804.o(.text.ui_text_stream_update_after);
         src/scene_chicken_festival.o(.text.__22ChickenFestivalEntrant);
         asm/code_809E804.o(.text.after_chicken_festival_entrant);
+        src/scene_chicken_festival.o(.text.HasWon__C27ChickenFestivalMinigameCore);
+        asm/code_809E804.o(.text.after_chicken_festival_core_winner);
+        src/scene_chicken_festival.o(.text.__28ChickenFestivalMinigameSceneRC22ChickenFestivalEntrant .text._._28ChickenFestivalMinigameScene);
         src/scene_chicken_festival.o(.text.HasWon__C28ChickenFestivalMinigameScene .text.Run__28ChickenFestivalMinigameScene);
         asm/code_809E804.o(.text.after_chicken_festival_minigame_run);
         src/ui_vcount.o(.text.UpdateUiVCount);
@@ -1373,7 +1376,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7870);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_8440);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8500);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_850c);
+. = ALIGN(4); src/scene_chicken_festival.o(.gnu.linkonce.d.__vt_27ChickenFestivalMinigameCore);
 . = ALIGN(4); src/scene_chicken_festival.o(.gnu.linkonce.d.__vt_28ChickenFestivalMinigameScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8528);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8538);

@@ -6367,20 +6367,7 @@ extern RawVTableFunction const vtable_unk_080E8500[]
     };
 #endif
 
-#if defined(REGION_JP)
-extern void func_080E4940(void);
-// This native minigame core retains its three-slot table while its
-// complete class layout and lifecycle remain unrecovered.
-extern RawVTableFunction const vtable_unk_080E794C[]
-    SECTION(".rodata.vtable_850c") = {
-        nullptr,
-        nullptr,
-        func_080E4940,
-    };
-
-// The next JP object is the complete compiler-generated minigame scene
-// table, beginning immediately after this 12-byte core table.
-#else
+#if !defined(REGION_JP)
 extern void func_080B3C0C(void);
 extern void func_080B3C3C(void);
 
@@ -6392,14 +6379,6 @@ extern RawVTableFunction const vtable_unk_080E850C[]
         nullptr,
         func_080B3C0C,
         func_080B3C3C,
-    };
-#endif
-
-#if !defined(REGION_JP)
-extern void func_080E4940(void);
-extern RawVTableFunction const vtable_unk_080E851C[]
-    SECTION(".rodata.vtable_851c") = {
-        nullptr, nullptr, func_080E4940,
     };
 #endif
 
