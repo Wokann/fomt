@@ -291,6 +291,7 @@ struct GameSceneResumeRequest {
         AFTER_CLOCK = 0x1C,
         AFTER_COOKING_MENU = 0x1D,
         AFTER_RECIPE_LIST = 0x1E,
+        AFTER_GAMECUBE_LINK = 0x1F,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -318,6 +319,7 @@ struct GameSceneResumeRequest {
         AFTER_CLOCK = 0x1D,
         AFTER_COOKING_MENU = 0x1E,
         AFTER_RECIPE_LIST = 0x1F,
+        AFTER_GAMECUBE_LINK = 0x20,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -326,7 +328,10 @@ struct GameSceneResumeRequest {
 #endif
     };
     i32 kind;
-    u8 unk_04[8];
+    union {
+        u8 unk_04[8];
+        MaryGameCubeLinkResult gamecube_link_result;
+    };
 
     // Native requests initialize only kind; the remaining payload is opaque.
     GameSceneResumeRequest() {}
@@ -344,6 +349,10 @@ struct GameSceneResumeRequest {
 struct ReturnToGameScene : SceneTransition {
     ReturnToGameScene(GameStateSaveImage * image, GameSceneResumeRequest value)
         : save(image), request(value) {}
+    void SetGameCubeLinkResult(MaryGameCubeLinkResult value)
+    {
+        request.gamecube_link_result = value;
+    }
     virtual SceneOwner CreateScene();
 
     GameStateSaveImage * save;
@@ -368,6 +377,9 @@ typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) 
 #pragma interface "game_scene.hh"
 
 #include "scene_cooking.hh"
+#pragma interface "game_scene.hh"
+
+#include "scene_gamecube_link.hh"
 #pragma interface "game_scene.hh"
 
 #include "scene_reference_page.hh"
@@ -549,6 +561,7 @@ struct GameScene : AScene {
     void OpenClock();
     void OpenCookingMenu();
     void OpenRecipeList();
+    void RunGameCubeLink();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();

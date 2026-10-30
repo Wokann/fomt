@@ -2064,68 +2064,6 @@ func_080DB314:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DB320
-    .thumb_func
-func_080DB320:
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    adds r6, r0, #0
-    adds r4, r1, #0
-    movs r0, #0xc
-    bl __builtin_new
-    ldr r5, [r4, #4]
-    movs r2, #0
-    str r2, [r4, #4]
-    ldr r3, [r4, #8]
-    ldr r1, [pc, #0x30]
-    str r1, [r0]
-    str r2, [sp, #4]
-    str r5, [r0, #4]
-    str r3, [r0, #8]
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r2, [r1]
-    str r0, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DAB12
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DAB12:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0xC4, 0x52, 0x0E, 0x08
-    .global func_080DB36C
-    .thumb_func
-func_080DB36C:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_080DAB38
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DAB38:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._15SceneTransition
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-
     .section .text.intro_story_transition_after, "ax", %progbits
     .align 2, 0
     .global func_080DB404
@@ -2617,77 +2555,9 @@ func_080DC360:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080DC3A0
-    .thumb_func
-func_080DC3A0:
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #0x18
-    mov r8, r0
-    adds r5, r1, #0
-    add r6, sp, #0xc
-    movs r7, #0
-    str r7, [sp, #0xc]
-    ldr r2, [r5, #8]
-    mov r0, sp
-    adds r1, r6, #0
-    bl loc_08093524
-    adds r0, r6, #0
-    mov r1, sp
-    bl func_080935A0
-    ldr r1, [sp, #0xc]
-    cmp r1, #0
-    beq .Lauto_080DBB8A
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DBB8A:
-    ldr r4, [r5, #4]
-    mov r0, sp
-    bl func_08093AC8
-    str r0, [r4, #0xc]
-    ldr r0, [r5, #4]
-    str r7, [r5, #4]
-    str r6, [sp, #0x10]
-    str r0, [sp, #0x14]
-    str r7, [sp, #0xc]
-    mov r1, r8
-    str r0, [r1]
-    mov r0, sp
-    movs r1, #2
-    bl func_08093554
-    mov r0, r8
-    add sp, #0x18
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .global func_080DC404
-    .thumb_func
-func_080DC404:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_080DBBD0
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DBBD0:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.after_gamecube_link_scene, "ax", %progbits
+    .align 2, 0
+
     .global func_080DC42C
     .thumb_func
 func_080DC42C:
@@ -13188,68 +13058,6 @@ func_080DB314: @ 0x080DB314
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DB320
-func_080DB320: @ 0x080DB320
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	adds r6, r0, #0
-	adds r4, r1, #0
-	movs r0, #0xc
-	bl __builtin_new
-	ldr r5, [r4, #4]
-	movs r2, #0
-	str r2, [r4, #4]
-	ldr r3, [r4, #8]
-	ldr r1, .L080DB368 @ =vtable_unk_080E5E84
-	str r1, [r0]
-	str r2, [sp, #4]
-	str r5, [r0, #4]
-	str r3, [r0, #8]
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r2, [r1]
-	str r0, [r6]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080DB35E
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DB35E:
-	adds r0, r6, #0
-	add sp, #0x10
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080DB368: .4byte vtable_unk_080E5E84
-
-	thumb_func_start func_080DB36C
-func_080DB36C: @ 0x080DB36C
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080DB384
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DB384:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._15SceneTransition
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
     .section .text.intro_story_transition_after, "ax", %progbits
     .align 2, 0
 	.global func_080DB404
@@ -13685,76 +13493,8 @@ func_080DC360: @ 0x080DC360
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080DC3A0
-func_080DC3A0: @ 0x080DC3A0
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	sub sp, #0x18
-	mov r8, r0
-	adds r5, r1, #0
-	add r6, sp, #0xc
-	movs r7, #0
-	str r7, [sp, #0xc]
-	ldr r2, [r5, #8]
-	mov r0, sp
-	adds r1, r6, #0
-	bl func_08093A58
-	adds r0, r6, #0
-	mov r1, sp
-	bl func_08093AD4
-	ldr r1, [sp, #0xc]
-	cmp r1, #0
-	beq .L080DC3D6
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DC3D6:
-	ldr r4, [r5, #4]
-	mov r0, sp
-	bl func_08093AC8
-	str r0, [r4, #0xc]
-	ldr r0, [r5, #4]
-	str r7, [r5, #4]
-	str r6, [sp, #0x10]
-	str r0, [sp, #0x14]
-	str r7, [sp, #0xc]
-	mov r1, r8
-	str r0, [r1]
-	mov r0, sp
-	movs r1, #2
-	bl func_08093A88
-	mov r0, r8
-	add sp, #0x18
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-
-	thumb_func_start func_080DC404
-func_080DC404: @ 0x080DC404
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080DC41C
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DC41C:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_gamecube_link_scene, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080DC42C
 func_080DC42C: @ 0x080DC42C

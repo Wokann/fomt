@@ -245,8 +245,6 @@ extern void func_080941C8(void);
 extern void func_080941B8(void);
 extern void func_080941B4(void);
 extern void func_080941B0(void);
-extern void func_08093554(void);
-extern void func_080935A0(void);
 extern void func_08093D2C(void);
 extern void func_080938B0(void);
 extern void func_080938E4(void);
@@ -390,8 +388,6 @@ extern void func_08081B00(void);
 extern void func_080E1E28(void);
 extern void func_08063E58(void);
 extern void func_08093308(void);
-extern void func_08093A88(void);
-extern void func_08093AD4(void);
 extern void func_08094268(void);
 extern void func_08094288(void);
 extern void func_080942BC(void);
@@ -639,8 +635,8 @@ extern void func_080DB1E4(void);
 extern void func_080DB238(void);
 extern void func_080DB2EC(void);
 extern void func_080DB314(void);
-extern void func_080DB320(void);
-extern void func_080DB36C(void);
+extern void CreateScene__22GameCubeLinkTransition(void);
+extern void DestroyGameCubeLinkTransition(void) asm("_._22GameCubeLinkTransition");
 extern void func_080DB404(void);
 extern void func_080DB44C(void);
 extern void func_080DB4F0(void);
@@ -696,8 +692,8 @@ extern void DestroyClockTransition(void) asm("_._15ClockTransition");
 extern void CreateScene__15ClockTransition(void);
 extern void DestroyReturnToGameScene(void) asm("_._17ReturnToGameScene");
 extern void CreateScene__17ReturnToGameScene(void);
-extern void func_080DC3A0(void);
-extern void func_080DC404(void);
+extern void Run__17GameCubeLinkScene(void);
+extern void DestroyGameCubeLinkScene(void) asm("_._17GameCubeLinkScene");
 extern void func_080DC42C(void);
 extern void func_080DC474(void);
 extern void func_080DC49C(void);
@@ -722,11 +718,11 @@ extern RawVTableFunction const vtable_unk_080E5C24[] = {
     func_080DB238,
 };
 
-extern RawVTableFunction const vtable_unk_080E5C34[] = {
+extern RawVTableFunction const __vt_22GameCubeLinkTransition[] = {
     nullptr,
     nullptr,
-    func_080DB36C,
-    func_080DB320,
+    DestroyGameCubeLinkTransition,
+    CreateScene__22GameCubeLinkTransition,
 };
 
 // This typed native table remains in its original shared physical run.
@@ -993,11 +989,11 @@ extern RawVTableFunction const __vt_17ReturnToGameScene[] = {
     CreateScene__17ReturnToGameScene,
 };
 
-extern RawVTableFunction const vtable_unk_080E5E84[] = {
+extern RawVTableFunction const __vt_17GameCubeLinkScene[] = {
     nullptr,
     nullptr,
-    func_080DC404,
-    func_080DC3A0,
+    DestroyGameCubeLinkScene,
+    Run__17GameCubeLinkScene,
 };
 
 extern RawVTableFunction const vtable_unk_080E5E94[] = {
@@ -5209,30 +5205,15 @@ extern RawVTableFunction const vtable_unk_080E7F0C[]
 #endif
     };
 
-// JP keeps this four-entry virtual subtable at the physical tail of the
-// preceding table. Its address is used directly by func_08093554.
 #if defined(REGION_JP)
-extern RawVTableFunction const gUnk_080E7448[]
-    SECTION(".rodata.vtable_7f0c") = {
-        nullptr,
-        nullptr,
-        func_08093554,
-        func_080935A0,
-    };
-#endif
-
 extern RawVTableFunction const vtable_unk_080E8018[]
     SECTION(".rodata.vtable_8018") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
         func_08093D4C,
         func_08093D80,
-#else
-        func_08093A88,
-        func_08093AD4,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E8028[]
     SECTION(".rodata.vtable_8028") = {

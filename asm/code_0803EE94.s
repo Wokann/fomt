@@ -1450,8 +1450,9 @@ OnCall__12ScriptEnginei:
     bl OpenRecipeList__9GameScene
     .byte 0xFF, 0xF7, 0xB5, 0xF8
 .LScriptCallJp_0A2:
-    .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28
-    .byte 0x01, 0xD1, 0xFF, 0xF7, 0xAD, 0xF8, 0xD1, 0xF7, 0x44, 0xFB, 0xFF, 0xF7, 0xA9, 0xF8
+    .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xAD, 0xF8
+    bl RunGameCubeLink__9GameScene
+    .byte 0xFF, 0xF7, 0xA9, 0xF8
 .LScriptCallJp_0A4:
     .byte 0xD5, 0x24
     .byte 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xA1, 0xF8, 0xD1, 0xF7
@@ -109615,9 +109616,9 @@ RunGiftWrappingSceneCore:
     .section .text.after_gift_wrapping_scene_run, "ax", %progbits
     .align 2, 0
 
-	.global loc_08092D08
+	.global ConstructGameCubeLinkUiCore
 	.thumb_func
-	loc_08092D08:
+	ConstructGameCubeLinkUiCore:
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x14
 	adds r7, r0, #0
@@ -109745,9 +109746,9 @@ func_08092DD4:
 .Ljp_08092E28: .4byte gUnk_080E7330
 .Ljp_08092E2C: .4byte gUnk_080E733C
 
-    .global func_08092E30
+    .global RunGameCubeLinkUiCore
     .thumb_func
-func_08092E30:
+RunGameCubeLinkUiCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -109976,89 +109977,8 @@ func_08092E30:
     .byte 0x00, 0xD1, 0x43, 0xE5, 0x00, 0x28, 0x00, 0xD0, 0x40, 0xE5, 0x98, 0x68, 0xC2, 0x68, 0x18, 0x1C
     .byte 0x03, 0x21, 0x3F, 0xF0, 0xDF, 0xFD, 0x17, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46
     .byte 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00
-    .global loc_08093524
-    .thumb_func
-    loc_08093524:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    adds r6, r1, #0
-    adds r5, r2, #0
-    ldr r0, [pc, #0x20]
-    str r0, [r4]
-    movs r0, #0xfc
-    lsls r0, r0, #2
-    bl __builtin_new
-    adds r1, r5, #0
-    bl loc_08092D08
-    str r0, [r4, #4]
-    ldr r1, [r6]
-    movs r0, #0
-    str r0, [r6]
-    str r1, [r4, #8]
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0x48, 0x74, 0x0E, 0x08
-    .global func_08093554
-    .thumb_func
-func_08093554:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_08093590
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Ljp_08093570
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08093570:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_08093582
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08093582:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
+    .section .text.after_gamecube_link_ui_scene, "ax", %progbits
     .align 2, 0
-.Ljp_08093590: .4byte gUnk_080E7448
-.global func_08093AC8
-.thumb_func
-func_08093AC8:
-	ldr r0, [r0, #4]
-	movs r1, #0xe2
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	ldr r0, [r0]
-	bx lr
-    .global func_080935A0
-    .thumb_func
-func_080935A0:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    bl func_08092E30
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    pop {r4, r5}
-    pop {r1}
-    bx r1
 
     .global func_080935BC
     .thumb_func
@@ -121767,7 +121687,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042530
 	bl .L0804168A
 .L08042530:
-	bl func_0801395C
+	bl RunGameCubeLink__9GameScene
 	bl .L0804168A
 .L08042538:
 	movs r4, #0xd5
@@ -272108,8 +272028,8 @@ RunGiftWrappingSceneCore: @ 0x08092D64
     .section .text.after_gift_wrapping_scene_run, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_0809323C
-func_0809323C: @ 0x0809323C
+	thumb_func_start ConstructGameCubeLinkUiCore
+ConstructGameCubeLinkUiCore: @ 0x0809323C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x14
 	adds r7, r0, #0
@@ -272244,8 +272164,8 @@ func_08093308: @ 0x08093308
 .L0809335C: .4byte vtable_unk_080E7F00
 .L08093360: .4byte vtable_unk_080E7F0C
 
-	thumb_func_start func_08093364
-func_08093364: @ 0x08093364
+	thumb_func_start RunGameCubeLinkUiCore
+RunGameCubeLinkUiCore: @ 0x08093364
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -273046,89 +272966,9 @@ func_08093364: @ 0x08093364
 	.align 2, 0
 .L08093A54: .4byte 0x00000889
 
-	thumb_func_start func_08093A58
-func_08093A58: @ 0x08093A58
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08093A84 @ =vtable_unk_080E8018
-	str r0, [r4]
-	movs r0, #0xfc
-	lsls r0, r0, #2
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0809323C
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08093A84: .4byte vtable_unk_080E8018
+    .section .text.after_gamecube_link_ui_scene, "ax", %progbits
+    .align 2, 0
 
-	thumb_func_start func_08093A88
-func_08093A88: @ 0x08093A88
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L08093AC4 @ =vtable_unk_080E8018
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L08093AA4
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08093AA4:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L08093AB6
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08093AB6:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08093AC4: .4byte vtable_unk_080E8018
-
-	thumb_func_start func_08093AC8
-func_08093AC8: @ 0x08093AC8
-	ldr r0, [r0, #4]
-	movs r1, #0xe2
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	ldr r0, [r0]
-	bx lr
-
-	thumb_func_start func_08093AD4
-func_08093AD4: @ 0x08093AD4
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r0, [r4, #4]
-	bl func_08093364
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
 .L08093AF0:
 	movs r1, #0xfb
 	lsls r1, r1, #2

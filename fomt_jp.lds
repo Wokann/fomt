@@ -252,7 +252,8 @@ SECTIONS
         src/scene_refrigerator.o(.text.OpenRefrigerator__9GameScene);
         src/scene_clock.o(.text.OpenClock__9GameScene);
         src/scene_cooking.o(.text.OpenCookingMenu__9GameScene .text.OpenRecipeList__9GameScene);
-        asm/game_state.o(.text.game_scene_after_cooking);
+        src/scene_gamecube_link.o(.text.RunGameCubeLink__9GameScene);
+        asm/game_state.o(.text.game_scene_after_gamecube_link);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/scene_cooking.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -707,6 +708,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_blacksmith_shop_result_scene);
         src/scene_gift_wrapping.o(.text.__17GiftWrappingSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._17GiftWrappingScene .text.Run__17GiftWrappingScene);
         asm/code_0803EE94.o(.text.after_gift_wrapping_scene_run);
+        src/scene_gamecube_link.o(.text.__19GameCubeLinkUiSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._19GameCubeLinkUiScene .text.GetResult__19GameCubeLinkUiScene .text.Run__19GameCubeLinkUiScene);
+        asm/code_0803EE94.o(.text.after_gamecube_link_ui_scene);
         src/scene_cooking.o(.text.__12CookingSceneG20SceneTransitionOwnerP18GameStateSaveImageUc .text._._12CookingScene .text.Run__12CookingScene);
         asm/code_0803EE94.o(.text.after_cooking_scene_run);
         src/cooking_recipe_inventory.o(.text);
@@ -1023,6 +1026,7 @@ SECTIONS
         asm/code_linkonce.o(.text.game_scene_state_callbacks_after);
         src/game_scene.o(.text._._14GameSceneState);
         asm/code_linkonce.o(.text.scene_calendar_before);
+        src/scene_gamecube_link.o(.text.CreateScene__22GameCubeLinkTransition .gnu.linkonce.t._._22GameCubeLinkTransition);
         src/intro_story_scene.o(.text.CreateIntroStoryScene .text.DestroyIntroStoryTransition);
         asm/code_linkonce.o(.text.intro_story_transition_after);
         src/game_scene.o(.text.CreateScene__24SavedNameEntryTransition .gnu.linkonce.t._._24SavedNameEntryTransition);
@@ -1057,6 +1061,8 @@ SECTIONS
         src/scene_clock.o(.text.CreateScene__15ClockTransition .gnu.linkonce.t._._15ClockTransition);
         src/game_scene.o(.text.CreateScene__17ReturnToGameScene .gnu.linkonce.t._._17ReturnToGameScene);
         asm/code_linkonce.o(.text.scene_return_after);
+        src/scene_gamecube_link.o(.text.Run__17GameCubeLinkScene .gnu.linkonce.t._._17GameCubeLinkScene);
+        asm/code_linkonce.o(.text.after_gamecube_link_scene);
         src/world_map.o(.text.EraseSavedMapTreeNodes);
         src/scene_sprite.o(.gnu.linkonce.t._._20GameSceneGroupSprite);
         asm/code_linkonce.o(.text.scene_group_sprite_cleanup_after);
@@ -1381,6 +1387,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7df4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7f00);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7f0c);
+. = ALIGN(4); src/scene_gamecube_link.o(.gnu.linkonce.d.__vt_19GameCubeLinkUiScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8018);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8028);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_812c);
