@@ -278,6 +278,7 @@ struct GameSceneResumeRequest {
         AFTER_CLINIC_SHOP = 14,
         AFTER_BEACH_CAFE_SHOP = 15,
         AFTER_YODEL_RANCH_SHOP = 0x10,
+        AFTER_WINERY_SHOP = 0x11,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -292,6 +293,7 @@ struct GameSceneResumeRequest {
         AFTER_CLINIC_SHOP = 15,
         AFTER_BEACH_CAFE_SHOP = 16,
         AFTER_YODEL_RANCH_SHOP = 0x11,
+        AFTER_WINERY_SHOP = 0x12,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -499,26 +501,8 @@ typedef char GiftWrappingSceneCoreCheck[offsetof(GiftWrappingScene, core) == 4 ?
 typedef char GiftWrappingSceneContinuationCheck[offsetof(GiftWrappingScene, continuation) == 8 ? 1 : -1];
 typedef char GiftWrappingTransitionSizeCheck[sizeof(GiftWrappingTransition) == 12 ? 1 : -1];
 
-struct WineryShopSceneCore;
-struct WineryShopScene : AScene {
-    virtual ~WineryShopScene();
-    virtual SceneTransitionOwner Run();
-
-    WineryShopSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct WineryShopTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-typedef char WineryShopSceneSizeCheck[sizeof(WineryShopScene) == 12 ? 1 : -1];
-typedef char WineryShopSceneCoreCheck[offsetof(WineryShopScene, core) == 4 ? 1 : -1];
-typedef char WineryShopSceneContinuationCheck[offsetof(WineryShopScene, continuation) == 8 ? 1 : -1];
-typedef char WineryShopTransitionSizeCheck[sizeof(WineryShopTransition) == 12 ? 1 : -1];
+#include "scene_winery_shop.hh"
+#pragma interface "game_scene.hh"
 
 struct InnShopSceneCore;
 struct InnShopScene : AScene {
@@ -717,6 +701,7 @@ struct GameScene : AScene {
     void OpenSupermarketPurchase(MarySupermarketItemId item);
     void OpenBeachCafeShop();
     void OpenYodelRanchShop();
+    void OpenWineryShop();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
@@ -897,11 +882,6 @@ void func_0808114C(SpecialMerchantShopSceneCore * core);
 #endif
 void func_08092D64(GiftWrappingSceneCore * core);
 #if defined(REGION_JP)
-void func_080800A8(WineryShopSceneCore * core);
-#else
-void func_08080540(WineryShopSceneCore * core);
-#endif
-#if defined(REGION_JP)
 void func_0807EAF8(InnShopSceneCore * core);
 #else
 void func_0807EF90(InnShopSceneCore * core);
@@ -953,11 +933,6 @@ GiftWrappingScene * loc_08092C7C(void *, SceneTransition **, GameStateSaveImage 
 GiftWrappingScene * func_080931B0(void *, SceneTransition **, GameStateSaveImage *);
 #endif
 
-#if defined(REGION_JP)
-WineryShopScene * func_0808090C(void *, SceneTransition **, GameStateSaveImage *);
-#else
-WineryShopScene * func_08080D94(void *, SceneTransition **, GameStateSaveImage *);
-#endif
 
 #if defined(REGION_JP)
 InnShopScene * func_0807F0E8(void *, SceneTransition **, GameStateSaveImage *);

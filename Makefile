@@ -387,7 +387,7 @@ $(BUILD_DIR)/src/world_weather.o: CXXFLAGS += -ffunction-sections
 
 $(BUILD_DIR)/src/scene_text_variables.o: CXXFLAGS += -ffunction-sections
 
-$(BUILD_DIR)/src/scene_dialogue.o $(BUILD_DIR)/src/scene_supermarket.o $(BUILD_DIR)/src/scene_won_shop.o $(BUILD_DIR)/src/scene_carpenter_shop.o $(BUILD_DIR)/src/scene_blacksmith_shop.o $(BUILD_DIR)/src/scene_clinic_shop.o $(BUILD_DIR)/src/scene_yodel_ranch_shop.o $(BUILD_DIR)/src/scene_beach_cafe_shop.o: CXXFLAGS += -ffunction-sections
+$(BUILD_DIR)/src/scene_dialogue.o $(BUILD_DIR)/src/scene_supermarket.o $(BUILD_DIR)/src/scene_won_shop.o $(BUILD_DIR)/src/scene_carpenter_shop.o $(BUILD_DIR)/src/scene_blacksmith_shop.o $(BUILD_DIR)/src/scene_clinic_shop.o $(BUILD_DIR)/src/scene_yodel_ranch_shop.o $(BUILD_DIR)/src/scene_beach_cafe_shop.o $(BUILD_DIR)/src/scene_winery_shop.o: CXXFLAGS += -ffunction-sections
 
 # The static table accessor and terrain query retain their native code positions.
 $(BUILD_DIR)/src/map_data.o: CXXFLAGS += -ffunction-sections

@@ -1302,7 +1302,8 @@ OnCall__12ScriptEnginei:
     .byte 0xFF, 0xF7, 0xC8, 0xFA
 .LScriptCallJp_093:
     .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xC0, 0xFA
-    .byte 0xD1, 0xF7, 0xE7, 0xF8, 0xFF, 0xF7, 0xBC, 0xFA
+    bl OpenWineryShop__9GameScene
+    .byte 0xFF, 0xF7, 0xBC, 0xFA
 .LScriptCallJp_094:
     .byte 0xD5, 0x26, 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68
     .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xB4, 0xFA, 0xD1, 0xF7, 0x25, 0xF9, 0xFF, 0xF7, 0xB0, 0xFA
@@ -85353,9 +85354,9 @@ func_08080050: @ 0x08080050
 	bx r1
 	.align 2, 0
 
-.global func_08080060
+.global ConstructWineryShopSceneCore
 .thumb_func
-func_08080060: @ 0x08080060
+ConstructWineryShopSceneCore: @ 0x08080060
 	push {r4, lr}
 	adds r4, r0, #0
 	bl func_080C797C
@@ -85391,9 +85392,9 @@ func_08080094: @ 0x08080094
 	.align 2, 0
 .Ljp_080800A4: .4byte vtable_unk_080E7C84
 
-	.global func_080800A8
+	.global RunWineryShopSceneCore
 	.thumb_func
-func_080800A8:
+RunWineryShopSceneCore:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -86425,67 +86426,6 @@ func_080800A8:
 	bx r0
 .Ljp_08080908:
 	.4byte __vt_23IndexedResourceProvider
-
-	.global func_0808090C
-	.thumb_func
-func_0808090C: @ 0x0808090C
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .Ljp_08080938
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08080060
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-.Ljp_08080938:
-	.4byte vtable_unk_080E7C84_NullTail
-
-.global func_0808093C
-.thumb_func
-func_0808093C: @ 0x0808093C
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .Ljp_08080978
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .Ljp_08080958
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_08080958:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .Ljp_0808096A
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_0808096A:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_08080978: .4byte vtable_unk_080E7C84_NullTail
 
     .section .text.after_winery_shop_scene_run, "ax", %progbits
     .align 2, 0
@@ -121876,7 +121816,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L0804210A
 	bl .L0804168A
 .L0804210A:
-	bl func_08013080
+	bl OpenWineryShop__9GameScene
 	bl .L0804168A
 .L08042112:
 	movs r6, #0xd5
@@ -238154,8 +238094,8 @@ func_080804E8: @ 0x080804E8
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080804F8
-func_080804F8: @ 0x080804F8
+	thumb_func_start ConstructWineryShopSceneCore
+ConstructWineryShopSceneCore: @ 0x080804F8
 	push {r4, lr}
 	adds r4, r0, #0
 	bl func_080C7F58
@@ -238191,8 +238131,8 @@ func_0808052C: @ 0x0808052C
 	.align 2, 0
 .L0808053C: .4byte vtable_unk_080E7C94
 
-	thumb_func_start func_08080540
-func_08080540: @ 0x08080540
+	thumb_func_start RunWineryShopSceneCore
+RunWineryShopSceneCore: @ 0x08080540
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -239208,65 +239148,6 @@ func_08080540: @ 0x08080540
 	bx r0
 	.align 2, 0
 .L08080D90: .4byte __vt_23IndexedResourceProvider
-
-	thumb_func_start func_08080D94
-func_08080D94: @ 0x08080D94
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08080DC0 @ =vtable_unk_080E7CA0
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_080804F8
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08080DC0: .4byte vtable_unk_080E7CA0
-
-	thumb_func_start func_08080DC4
-func_08080DC4: @ 0x08080DC4
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L08080E00 @ =vtable_unk_080E7CA0
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L08080DE0
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08080DE0:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L08080DF2
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08080DF2:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08080E00: .4byte vtable_unk_080E7CA0
 
     .section .text.after_winery_shop_scene_run, "ax", %progbits
     .align 2, 0
