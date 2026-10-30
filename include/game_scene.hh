@@ -287,6 +287,7 @@ struct GameSceneResumeRequest {
         AFTER_CALENDAR = 0x18,
         AFTER_SHELF = 0x19,
         AFTER_TOOL_CHEST = 0x1A,
+        AFTER_REFRIGERATOR = 0x1B,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -310,6 +311,7 @@ struct GameSceneResumeRequest {
         AFTER_CALENDAR = 0x19,
         AFTER_SHELF = 0x1A,
         AFTER_TOOL_CHEST = 0x1B,
+        AFTER_REFRIGERATOR = 0x1C,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -353,26 +355,8 @@ typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) 
 #include "scene_tool_chest.hh"
 #pragma interface "game_scene.hh"
 
-struct RefrigeratorSceneCore;
-struct RefrigeratorScene : AScene {
-    virtual ~RefrigeratorScene();
-    virtual SceneTransitionOwner Run();
-
-    RefrigeratorSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct RefrigeratorTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-typedef char RefrigeratorSceneSizeCheck[sizeof(RefrigeratorScene) == 12 ? 1 : -1];
-typedef char RefrigeratorSceneCoreCheck[offsetof(RefrigeratorScene, core) == 4 ? 1 : -1];
-typedef char RefrigeratorSceneContinuationCheck[offsetof(RefrigeratorScene, continuation) == 8 ? 1 : -1];
-typedef char RefrigeratorTransitionSizeCheck[sizeof(RefrigeratorTransition) == 12 ? 1 : -1];
+#include "scene_refrigerator.hh"
+#pragma interface "game_scene.hh"
 
 #include "scene_shelf.hh"
 #pragma interface "game_scene.hh"
@@ -582,6 +566,7 @@ struct GameScene : AScene {
     void OpenCalendar();
     void OpenShelf();
     void OpenToolChest();
+    void OpenRefrigerator();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
@@ -738,11 +723,6 @@ EXTERN_C
 // return a temporary transition owner that the scene must destroy before
 // handing back its own continuation; the other listed calls return void.
 #if defined(REGION_JP)
-void func_0808E23C(RefrigeratorSceneCore * core);
-#else
-void func_0808E6FC(RefrigeratorSceneCore * core);
-#endif
-#if defined(REGION_JP)
 SceneTransitionOwner func_08094A40(CookingSceneCore * core);
 #else
 SceneTransitionOwner func_08094F6C(CookingSceneCore * core);
@@ -755,11 +735,6 @@ SceneTransitionOwner func_08094F6C(CookingSceneCore * core);
 
 
 
-#if defined(REGION_JP)
-RefrigeratorScene * loc_0808E818(void *, SceneTransition **, GameStateSaveImage *);
-#else
-RefrigeratorScene * func_0808ECD8(void *, SceneTransition **, GameStateSaveImage *);
-#endif
 
 
 #if defined(REGION_JP)

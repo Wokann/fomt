@@ -211,7 +211,8 @@ SECTIONS
         src/scene_calendar.o(.text.OpenCalendar__9GameScene);
         src/scene_shelf.o(.text.OpenShelf__9GameScene);
         src/scene_tool_chest.o(.text.OpenToolChest__9GameScene);
-        asm/game_state.o(.text.game_scene_after_tool_chest);
+        src/scene_refrigerator.o(.text.OpenRefrigerator__9GameScene);
+        asm/game_state.o(.text.game_scene_after_refrigerator);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/game_scene.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -650,7 +651,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_yodel_ranch_shop_scene_run);
         src/scene_tool_chest.o(.text.__14ToolChestSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._14ToolChestScene .text.Run__14ToolChestScene);
         asm/code_0803EE94.o(.text.after_tool_chest_scene_run);
-        src/game_scene.o(.text.Run__17RefrigeratorScene);
+        src/scene_refrigerator.o(.text.__17RefrigeratorSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._17RefrigeratorScene .text.Run__17RefrigeratorScene);
         asm/code_0803EE94.o(.text.after_refrigerator_scene_run);
         src/scene_shelf.o(.text.__10ShelfSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._10ShelfScene .text.Run__10ShelfScene);
         asm/code_0803EE94.o(.text.after_shelf_scene_run);
@@ -961,7 +962,7 @@ SECTIONS
         src/scene_chicken_festival.o(.text.CreateScene__32ChickenFestivalContestTransition .gnu.linkonce.t._._32ChickenFestivalContestTransition);
         src/scene_calendar.o(.text.CreateScene__18CalendarTransition .gnu.linkonce.t._._18CalendarTransition);
         src/scene_tool_chest.o(.text.CreateScene__19ToolChestTransition .gnu.linkonce.t._._19ToolChestTransition);
-        src/game_scene.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
+        src/scene_refrigerator.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
         src/scene_shelf.o(.text.CreateScene__15ShelfTransition .gnu.linkonce.t._._15ShelfTransition);
         asm/code_linkonce.o(.text.scene_shelf_after);
         src/frisbee_scoreboard.o(.text.CreateScene__27FrisbeeScoreboardTransition .gnu.linkonce.t._._27FrisbeeScoreboardTransition);
@@ -1298,7 +1299,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d68);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d74);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d84);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7d90);
+. = ALIGN(4); src/scene_refrigerator.o(.gnu.linkonce.d.__vt_17RefrigeratorScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7da0);
 . = ALIGN(4); src/scene_shelf.o(.gnu.linkonce.d.__vt_10ShelfScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dbc);

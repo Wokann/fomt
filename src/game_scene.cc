@@ -890,15 +890,6 @@ EC void func_080D7F3C(GameSceneState * state)
 
 
 
-SceneTransitionOwner RefrigeratorScene::Run()
-{
-#if defined(REGION_JP)
-    func_0808E23C(core);
-#else
-    func_0808E6FC(core);
-#endif
-    return continuation;
-}
 
 
 
@@ -969,15 +960,6 @@ SceneOwner SavedNameEntryTransition::CreateScene()
 
 
 
-SceneOwner RefrigeratorTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(loc_0808E818(::operator new(sizeof(RefrigeratorScene)), &next, save));
-#else
-    return SceneOwner(func_0808ECD8(::operator new(sizeof(RefrigeratorScene)), &next, save));
-#endif
-}
 
 
 SceneOwner CookingTransition::CreateScene()

@@ -1341,9 +1341,9 @@ OnCall__12ScriptEnginei:
     bl OpenToolChest__9GameScene
     .byte 0xFF, 0xF7, 0x51, 0xFA
 .LScriptCallJp_09E:
-    .byte 0xD5, 0x24
-    .byte 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x49, 0xFA, 0xD1, 0xF7
-    .byte 0xB2, 0xFB, 0xFF, 0xF7, 0x45, 0xFA
+    .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x49, 0xFA
+    bl OpenRefrigerator__9GameScene
+    .byte 0xFF, 0xF7, 0x45, 0xFA
 .LScriptCallJp_09F:
     .byte 0xD5, 0x26, 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68, 0x00, 0x28
     .byte 0x01, 0xD1, 0xFF, 0xF7, 0x3D, 0xFA, 0xD1, 0xF7, 0xF0, 0xFB, 0xFF, 0xF7, 0x39, 0xFA
@@ -102053,9 +102053,9 @@ func_0808C5DC:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .global loc_0808C138
+    .global ConstructRefrigeratorSceneCore
     .thumb_func
-    loc_0808C138:
+    ConstructRefrigeratorSceneCore:
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
@@ -103034,9 +103034,9 @@ func_0808C8F4:
     .byte 0x44, 0xF0, 0x96, 0xFF, 0xEC, 0x6F, 0x28, 0x1C, 0x31, 0x1C, 0x00, 0x22
     bl GetItemIndex__C23GameSceneMenuCorePrefixii
     .byte 0x01, 0x1C, 0x20, 0x1C, 0x3E, 0xF0, 0xE4, 0xF9, 0x01, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .global func_0808E23C
+    .global RunRefrigeratorSceneCore
     .thumb_func
-func_0808E23C:
+RunRefrigeratorSceneCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -103424,65 +103424,6 @@ func_0808E23C:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .global loc_0808E818
-    .thumb_func
-    loc_0808E818:
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    adds r6, r1, #0
-    adds r5, r2, #0
-    ldr r0, [pc, #0x20]
-    str r0, [r4]
-    movs r0, #0x86
-    lsls r0, r0, #1
-    bl __builtin_new
-    adds r1, r5, #0
-    bl loc_0808C138
-    str r0, [r4, #4]
-    ldr r1, [r6]
-    movs r0, #0
-    str r0, [r6]
-    str r1, [r4, #8]
-    adds r0, r4, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .byte 0xC0, 0x71, 0x0E, 0x08
-    .global func_0808E848
-    .thumb_func
-func_0808E848:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_0808E884
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Ljp_0808E864
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_0808E864:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_0808E876
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_0808E876:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_0808E884: .4byte gUnk_080E71C0
-
     .section .text.after_refrigerator_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -121498,7 +121439,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L080421F8
 	bl .L0804168A
 .L080421F8:
-	bl func_08013700
+	bl OpenRefrigerator__9GameScene
 	bl .L0804168A
 .L08042200:
 	movs r6, #0xd5
@@ -259943,8 +259884,8 @@ func_0808C5DC: @ 0x0808C5DC
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_0808C5F8
-func_0808C5F8: @ 0x0808C5F8
+	thumb_func_start ConstructRefrigeratorSceneCore
+ConstructRefrigeratorSceneCore: @ 0x0808C5F8
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage
@@ -263709,8 +263650,8 @@ func_0808E65C: @ 0x0808E65C
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_0808E6FC
-func_0808E6FC: @ 0x0808E6FC
+	thumb_func_start RunRefrigeratorSceneCore
+RunRefrigeratorSceneCore: @ 0x0808E6FC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -264396,65 +264337,6 @@ func_0808E6FC: @ 0x0808E6FC
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-
-	thumb_func_start func_0808ECD8
-func_0808ECD8: @ 0x0808ECD8
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0808ED04 @ =vtable_unk_080E7D90
-	str r0, [r4]
-	movs r0, #0x86
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0808C5F8
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0808ED04: .4byte vtable_unk_080E7D90
-
-	thumb_func_start func_0808ED08
-func_0808ED08: @ 0x0808ED08
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L0808ED44 @ =vtable_unk_080E7D90
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L0808ED24
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0808ED24:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L0808ED36
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0808ED36:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0808ED44: .4byte vtable_unk_080E7D90
 
     .section .text.after_refrigerator_scene_run, "ax", %progbits
     .align 2, 0
