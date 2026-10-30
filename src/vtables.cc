@@ -41,7 +41,6 @@ extern void DestroySavedNameEntryTransition(void) asm("_._24SavedNameEntryTransi
 extern void Run__18ReferencePageScene(void);
 extern void Run__16SupermarketScene(void);
 extern void Run__24SupermarketPurchaseScene(void);
-extern void Run__12InnShopScene(void);
 extern void Run__12WonShopScene(void);
 extern void Run__24SpecialMerchantShopScene(void);
 extern void Run__18CarpenterShopScene(void);
@@ -159,7 +158,6 @@ extern void func_0807D8D0(void);
 extern void func_0807DFE0(void);
 extern void func_0807E070(void);
 extern void func_0807EA3C(void);
-extern void func_0807F118(void);
 extern void func_0807F1D8(void);
 extern void func_08080094(void);
 extern void func_080809CC(void);
@@ -409,7 +407,6 @@ extern void func_0807E478(void);
 extern void func_0807DD68(void);
 extern void func_0807E508(void);
 extern void func_0807EED4(void);
-extern void func_0807F5B0(void);
 extern void func_0807F670(void);
 extern void func_0808052C(void);
 extern void func_08080E54(void);
@@ -930,7 +927,8 @@ extern RawVTableFunction const __vt_20WineryShopTransition[] = {
     CreateScene__20WineryShopTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5DC4[] = {
+// The actual GCC member table stays in this continuous native catalog.
+extern RawVTableFunction const __vt_17InnShopTransition[] = {
     nullptr,
     nullptr,
     DestroyInnShopTransition,
@@ -4687,39 +4685,23 @@ extern RawVTableFunction const vtable_unk_080E7C4C[]
     };
 #endif
 
-#if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E7C4C_NullTail[]
-    SECTION(".rodata.vtable_7c4c") = {
-        nullptr,
-    };
-#endif
-
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7C5C[]
     SECTION(".rodata.vtable_7c5c") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_0807F118,
-        Run__12InnShopScene,
-#else
         nullptr,
         nullptr,
         func_0807EED4,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7C68[]
     SECTION(".rodata.vtable_7c68") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_0807F1D8,
-#else
-        nullptr,
-        nullptr,
-        func_0807F5B0,
-        Run__12InnShopScene,
-#endif
     };
+#endif
 
 
 #if !defined(REGION_JP)

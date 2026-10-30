@@ -279,6 +279,7 @@ struct GameSceneResumeRequest {
         AFTER_BEACH_CAFE_SHOP = 15,
         AFTER_YODEL_RANCH_SHOP = 0x10,
         AFTER_WINERY_SHOP = 0x11,
+        AFTER_INN_SHOP = 0x12,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -294,6 +295,7 @@ struct GameSceneResumeRequest {
         AFTER_BEACH_CAFE_SHOP = 16,
         AFTER_YODEL_RANCH_SHOP = 0x11,
         AFTER_WINERY_SHOP = 0x12,
+        AFTER_INN_SHOP = 0x13,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -504,26 +506,8 @@ typedef char GiftWrappingTransitionSizeCheck[sizeof(GiftWrappingTransition) == 1
 #include "scene_winery_shop.hh"
 #pragma interface "game_scene.hh"
 
-struct InnShopSceneCore;
-struct InnShopScene : AScene {
-    virtual ~InnShopScene();
-    virtual SceneTransitionOwner Run();
-
-    InnShopSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct InnShopTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-typedef char InnShopSceneSizeCheck[sizeof(InnShopScene) == 12 ? 1 : -1];
-typedef char InnShopSceneCoreCheck[offsetof(InnShopScene, core) == 4 ? 1 : -1];
-typedef char InnShopSceneContinuationCheck[offsetof(InnShopScene, continuation) == 8 ? 1 : -1];
-typedef char InnShopTransitionSizeCheck[sizeof(InnShopTransition) == 12 ? 1 : -1];
+#include "scene_inn_shop.hh"
+#pragma interface "game_scene.hh"
 
 #include "scene_beach_cafe_shop.hh"
 #pragma interface "game_scene.hh"
@@ -702,6 +686,7 @@ struct GameScene : AScene {
     void OpenBeachCafeShop();
     void OpenYodelRanchShop();
     void OpenWineryShop();
+    void OpenInnShop();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
@@ -881,11 +866,6 @@ void func_08080CC4(SpecialMerchantShopSceneCore * core);
 void func_0808114C(SpecialMerchantShopSceneCore * core);
 #endif
 void func_08092D64(GiftWrappingSceneCore * core);
-#if defined(REGION_JP)
-void func_0807EAF8(InnShopSceneCore * core);
-#else
-void func_0807EF90(InnShopSceneCore * core);
-#endif
 
 
 // The poultry core returns a signed target slot, with -1 meaning no purchase.
@@ -934,11 +914,6 @@ GiftWrappingScene * func_080931B0(void *, SceneTransition **, GameStateSaveImage
 #endif
 
 
-#if defined(REGION_JP)
-InnShopScene * func_0807F0E8(void *, SceneTransition **, GameStateSaveImage *);
-#else
-InnShopScene * func_0807F580(void *, SceneTransition **, GameStateSaveImage *);
-#endif
 
 
 
