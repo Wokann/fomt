@@ -984,11 +984,6 @@ SceneOwner CookingTransition::CreateScene()
 // These late scene factories stay in native ROM order. Returning a temporary
 // owner preserves the original two-word ownership-transfer ABI.
 
-SceneOwner ClockTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-    return SceneOwner(new NewGameMenuScene(save, next));
-}
 
 SceneOwner ReturnToGameScene::CreateScene()
 {

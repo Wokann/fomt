@@ -288,6 +288,7 @@ struct GameSceneResumeRequest {
         AFTER_SHELF = 0x19,
         AFTER_TOOL_CHEST = 0x1A,
         AFTER_REFRIGERATOR = 0x1B,
+        AFTER_CLOCK = 0x1C,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -312,6 +313,7 @@ struct GameSceneResumeRequest {
         AFTER_SHELF = 0x1A,
         AFTER_TOOL_CHEST = 0x1B,
         AFTER_REFRIGERATOR = 0x1C,
+        AFTER_CLOCK = 0x1D,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -451,14 +453,6 @@ typedef char SavedNameEntryTransitionIndexCheck[offsetof(SavedNameEntryTransitio
 #include "scene_poultry_farm_shop.hh"
 #pragma interface "game_scene.hh"
 
-struct ClockTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-    GameStateSaveImage * save;
-    SceneTransitionOwner continuation;
-};
-typedef char ClockTransitionSizeCheck[sizeof(ClockTransition) == 12 ? 1 : -1];
-typedef char ClockTransitionOwnerCheck[offsetof(ClockTransition, continuation) == 8 ? 1 : -1];
-
 struct GameSceneBlendOwner {
     HardwareBlendController * value;
     explicit GameSceneBlendOwner(HardwareBlendController * input = nullptr) : value(input) {}
@@ -567,6 +561,7 @@ struct GameScene : AScene {
     void OpenShelf();
     void OpenToolChest();
     void OpenRefrigerator();
+    void OpenClock();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();

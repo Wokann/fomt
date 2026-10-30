@@ -250,7 +250,8 @@ SECTIONS
         src/scene_shelf.o(.text.OpenShelf__9GameScene);
         src/scene_tool_chest.o(.text.OpenToolChest__9GameScene);
         src/scene_refrigerator.o(.text.OpenRefrigerator__9GameScene);
-        asm/game_state.o(.text.game_scene_after_refrigerator);
+        src/scene_clock.o(.text.OpenClock__9GameScene);
+        asm/game_state.o(.text.game_scene_after_clock);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/game_scene.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -1050,7 +1051,7 @@ SECTIONS
         src/scene_supermarket.o(.text.CreateScene__29SupermarketPurchaseTransition .gnu.linkonce.t._._29SupermarketPurchaseTransition);
         src/scene_supermarket.o(.text.CreateScene__21SupermarketTransition .gnu.linkonce.t._._21SupermarketTransition);
         asm/code_linkonce.o(.text.scene_supermarket_after);
-        src/game_scene.o(.text.CreateScene__15ClockTransition .gnu.linkonce.t._._15ClockTransition);
+        src/scene_clock.o(.text.CreateScene__15ClockTransition .gnu.linkonce.t._._15ClockTransition);
         src/game_scene.o(.text.CreateScene__17ReturnToGameScene .gnu.linkonce.t._._17ReturnToGameScene);
         asm/code_linkonce.o(.text.scene_return_after);
         src/world_map.o(.text.EraseSavedMapTreeNodes);

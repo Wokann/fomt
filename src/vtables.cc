@@ -975,7 +975,7 @@ extern RawVTableFunction const vtable_unk_080E5E44[] = {
     __pure_virtual,
 };
 
-extern RawVTableFunction const vtable_unk_080E5E54[] = {
+extern RawVTableFunction const __vt_15ClockTransition[] = {
     nullptr,
     nullptr,
     DestroyClockTransition,
