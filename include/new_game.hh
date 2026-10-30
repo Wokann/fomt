@@ -145,29 +145,35 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore *)
 
 // Clear2DGfxBuffer and DrawStringTo2DGfxBuffer consume the tile words after
 // the untouched four-byte prefix. Each 4bpp tile occupies eight words and
-// these new-game text buffers are two tiles high. Their native construction
+// the default new-game text buffers are two tiles high. Native construction
 // leaves them uninitialized; the corresponding UI setup draws their tiles.
-template <u32 Width>
+template <u32 Width, u32 Height = 2>
 struct NewGameTextTileBuffer {
     NewGameTextTileBuffer() {}
 
+    void Clear()
+    {
+        UnkUiSelectionDimensions size(Width, Height);
+        Clear2DGfxBuffer(reinterpret_cast<u32 const &>(size), tiles, 0);
+    }
+
     void ClearRect(u32 x, u32 y, u32 width, u32 height, u32 color)
     {
-        UnkUiSelectionDimensions size(Width, 2);
+        UnkUiSelectionDimensions size(Width, Height);
         Clear2DGfxBufferRect(reinterpret_cast<u32 const &>(size), tiles,
             x, y, width, height, color);
     }
 
     void DrawString(i32 x, i32 y, char const * text)
     {
-        UnkUiSelectionDimensions size(Width, 2);
+        UnkUiSelectionDimensions size(Width, Height);
         DrawStringTo2DGfxBuffer(reinterpret_cast<u32 const &>(size), tiles,
             x, y, reinterpret_cast<u8 const *>(text));
     }
 
 
     u32 unk_00;
-    u32 tiles[Width * 2 * 8];
+    u32 tiles[Width * Height * 8];
 };
 
 #endif // NEW_GAME_HH

@@ -67,7 +67,7 @@ SECTIONS
         src/intro_scene.o(.text);
         asm/new_game_menu.o(.text);
         src/new_game_menu.o(.text.RunNewGameMenuOpeningBlend .text.RunNewGameMenuClosingBlend .text.UpdateNewGameMenuUi);
-        asm/new_game_menu.o(.text.new_game_menu_label_tiles);
+        src/new_game_menu.o(.text.RenderNewGameMenuLabelTiles);
         src/new_game_menu.o(.text.new_game_menu_update);
         asm/new_game_menu.o(.text.new_game_menu_core_run);
         src/new_game_menu.o(.text.new_game_menu_scene);
@@ -1190,7 +1190,7 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_13AScriptEngine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
         . = ALIGN(4); src/font.o(.gnu.linkonce.d.__vt_*FontTilemap*DecimalCommand);
-        src/font_draw.o(.gnu.linkonce.d.__vt_22FontTilemapRectCommand);
+        *(.gnu.linkonce.d.__vt_22FontTilemapRectCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_24UiTextWindowSetupCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_25UiTextOutputUploadCommand);
         src/ui_state.o(.gnu.linkonce.d.__vt_20UiDmaTransferCommand);

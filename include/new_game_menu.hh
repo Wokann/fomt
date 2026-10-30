@@ -139,7 +139,7 @@ EXTERN_C
 void UpdateNewGameMenuUi(NewGameMenuCore * core);
 
 // Draw the six rows of three labels and upload their 4bpp tiles. The native
-// entry ignores its core argument; its body still resides in asm/new_game_menu.s.
+// entry ignores its core argument and uses the shared software glyph renderer.
 void RenderNewGameMenuLabelTiles(NewGameMenuCore * core);
 
 void SubmitNewGameMenuChoiceSprite(struct NewGameMenuCore * core, u32 row,

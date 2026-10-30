@@ -2,6 +2,7 @@
 #pragma implementation "new_game_menu.hh"
 #include "new_game_menu.hh"
 #include "new_game_data.hh"
+#include "new_game.hh"
 #include "hardware_state_accessors.hh"
 #include "intro_scene.hh"
 #include "game_scene.hh"
@@ -74,6 +75,29 @@ static inline void StoreMenuSpriteAttributes(HardwareSpriteBufferState * buffer,
     HardwareSpriteOamRecord * destination = &buffer->sprites[index & 0x7F];
     memcpy(destination, &attributes,
         offsetof(HardwareSpriteOamRecord, affine_coefficient));
+}
+
+void RenderNewGameMenuLabelTiles(NewGameMenuCore *)
+{
+    u16 (*screen)[32] = reinterpret_cast<u16 (*)[32]>(0x0600E800);
+    FillHardwareDma3(0, reinterpret_cast<void *>(0x06007FE0), 32);
+    FillHardwareDma3(~u32(0), screen, 0x800);
+    NewGameTextTileBuffer<30, 12> buffer;
+    u32 tile = 0;
+    // The first tilemap row and two trailing columns keep the cleared blank tile.
+    for (u32 y = 0; y < 12; ++y) {
+        for (u32 x = 0; x < 30; ++x)
+            screen[y + 1][x] = tile++;
+    }
+    buffer.Clear();
+    for (u32 row = 0; row < 6; ++row) {
+        NewGameMenuLabelRow const & labels = gNewGameMenuLabels[row];
+        buffer.DrawString(16, row * 16, labels.label);
+        buffer.DrawString(128, row * 16, labels.left_choice);
+        buffer.DrawString(192, row * 16, labels.right_choice);
+    }
+    CopyHardwareDma3(buffer.tiles, reinterpret_cast<void *>(0x06000000),
+        sizeof(buffer.tiles));
 }
 
 void SubmitNewGameMenuChoiceSprite(NewGameMenuCore * core, u32 row,
