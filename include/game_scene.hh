@@ -289,6 +289,8 @@ struct GameSceneResumeRequest {
         AFTER_TOOL_CHEST = 0x1A,
         AFTER_REFRIGERATOR = 0x1B,
         AFTER_CLOCK = 0x1C,
+        AFTER_COOKING_MENU = 0x1D,
+        AFTER_RECIPE_LIST = 0x1E,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -314,6 +316,8 @@ struct GameSceneResumeRequest {
         AFTER_TOOL_CHEST = 0x1B,
         AFTER_REFRIGERATOR = 0x1C,
         AFTER_CLOCK = 0x1D,
+        AFTER_COOKING_MENU = 0x1E,
+        AFTER_RECIPE_LIST = 0x1F,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -363,27 +367,8 @@ typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) 
 #include "scene_shelf.hh"
 #pragma interface "game_scene.hh"
 
-struct CookingSceneCore;
-struct CookingScene : AScene {
-    virtual ~CookingScene();
-    virtual SceneTransitionOwner Run();
-
-    CookingSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct CookingTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-    u8 recipe_list;
-};
-
-typedef char CookingSceneSizeCheck[sizeof(CookingScene) == 12 ? 1 : -1];
-typedef char CookingSceneCoreCheck[offsetof(CookingScene, core) == 4 ? 1 : -1];
-typedef char CookingSceneContinuationCheck[offsetof(CookingScene, continuation) == 8 ? 1 : -1];
-typedef char CookingTransitionSizeCheck[sizeof(CookingTransition) == 16 ? 1 : -1];
+#include "scene_cooking.hh"
+#pragma interface "game_scene.hh"
 
 #include "scene_reference_page.hh"
 #pragma interface "game_scene.hh"
@@ -562,6 +547,8 @@ struct GameScene : AScene {
     void OpenToolChest();
     void OpenRefrigerator();
     void OpenClock();
+    void OpenCookingMenu();
+    void OpenRecipeList();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
@@ -714,14 +701,6 @@ typedef char GameSceneStatePointerCheck[offsetof(GameScene, state) == 4 ? 1 : -1
 
 EXTERN_C
 
-// Native modal cores remain opaque here. Calendar, cooking and guide cores
-// return a temporary transition owner that the scene must destroy before
-// handing back its own continuation; the other listed calls return void.
-#if defined(REGION_JP)
-SceneTransitionOwner func_08094A40(CookingSceneCore * core);
-#else
-SceneTransitionOwner func_08094F6C(CookingSceneCore * core);
-#endif
 
 
 // The poultry core returns a signed target slot, with -1 meaning no purchase.
@@ -732,11 +711,6 @@ SceneTransitionOwner func_08094F6C(CookingSceneCore * core);
 
 
 
-#if defined(REGION_JP)
-CookingScene * func_08099F0C(void *, SceneTransition **, GameStateSaveImage *, u8);
-#else
-CookingScene * func_0809A4D4(void *, SceneTransition **, GameStateSaveImage *, u8);
-#endif
 
 
 

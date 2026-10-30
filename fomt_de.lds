@@ -213,13 +213,16 @@ SECTIONS
         src/scene_tool_chest.o(.text.OpenToolChest__9GameScene);
         src/scene_refrigerator.o(.text.OpenRefrigerator__9GameScene);
         src/scene_clock.o(.text.OpenClock__9GameScene);
-        asm/game_state.o(.text.game_scene_after_clock);
+        src/scene_cooking.o(.text.OpenCookingMenu__9GameScene .text.OpenRecipeList__9GameScene);
+        asm/game_state.o(.text.game_scene_after_cooking);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
-        src/game_scene.o(
+        src/scene_cooking.o(
             .text.PrepareCookingMenuTransition__9GameScene
             .text.RestoreAfterCookingMenu__9GameScene
             .text.PrepareRecipeMenuTransition__9GameScene
             .text.RestoreAfterRecipeMenu__9GameScene
+        );
+        src/game_scene.o(
             .text.RefreshBarnFeedTrough__9GameScene23MaryBarnFeedTroughIndex
             .text.RefreshChickenFeedTrough__9GameScene30MaryChickenCoopFeedTroughIndex
             .text.StartShipmentBoxDepositAnimation__9GameScene
@@ -660,7 +663,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_blacksmith_shop_result_scene);
         src/scene_gift_wrapping.o(.text.__17GiftWrappingSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._17GiftWrappingScene .text.Run__17GiftWrappingScene);
         asm/code_0803EE94.o(.text.after_gift_wrapping_scene_run);
-        src/game_scene.o(.text.Run__12CookingScene);
+        src/scene_cooking.o(.text.__12CookingSceneG20SceneTransitionOwnerP18GameStateSaveImageUc .text._._12CookingScene .text.Run__12CookingScene);
         asm/code_0803EE94.o(.text.after_cooking_scene_run);
         src/cooking_recipe_inventory.o(.text);
         src/money_account.o(.text.money_account_update);
@@ -970,7 +973,7 @@ SECTIONS
         src/scene_frisbee.o(.text.CreateScene__17FrisbeeTransition .gnu.linkonce.t._._17FrisbeeTransition);
         src/scene_horse_race.o(.text.CreateScene__32HorseRaceMedalExchangeTransition .gnu.linkonce.t._._32HorseRaceMedalExchangeTransition);
         src/scene_horse_race.o(.text.CreateScene__19HorseRaceTransition .gnu.linkonce.t._._19HorseRaceTransition);
-        src/game_scene.o(.text.CreateScene__17CookingTransition .gnu.linkonce.t._._17CookingTransition);
+        src/scene_cooking.o(.text.CreateScene__17CookingTransition .gnu.linkonce.t._._17CookingTransition);
         src/scene_reference_page.o(.text.CreateScene__23ReferencePageTransition .gnu.linkonce.t._._23ReferencePageTransition);
         src/scene_special_merchant_shop.o(.text.CreateScene__29SpecialMerchantShopTransition .gnu.linkonce.t._._29SpecialMerchantShopTransition);
         asm/code_linkonce.o(.text.scene_special_merchant_shop_after);
@@ -1315,7 +1318,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_812c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8230);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_823c);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_824c);
+. = ALIGN(4); src/scene_cooking.o(.gnu.linkonce.d.__vt_12CookingScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_825c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8268);
 . = ALIGN(4); src/scene_calendar.o(.gnu.linkonce.d.__vt_13CalendarScene);

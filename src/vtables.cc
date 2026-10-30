@@ -41,7 +41,6 @@ extern void Run__16SupermarketScene(void);
 extern void Run__24SupermarketPurchaseScene(void);
 extern void Run__12WonShopScene(void);
 extern void Run__18CarpenterShopScene(void);
-extern void Run__12CookingScene(void);
 
 extern void DrawSavedWorldMap(void);
 
@@ -299,7 +298,6 @@ extern void func_08094218(void);
 extern void func_080E33D4(void);
 extern void func_080E352C(void);
 extern void func_080E3318(void);
-extern void func_08099F50(void);
 extern void func_080E3838(void);
 extern void func_080E3928(void);
 extern void func_080E36D8(void);
@@ -525,7 +523,6 @@ extern void func_08094754(void);
 extern void func_080E3C3C(void);
 extern void func_080E3D94(void);
 extern void func_080E3B80(void);
-extern void func_0809A518(void);
 extern void func_080E40A0(void);
 extern void func_080E4190(void);
 extern void func_080E3F40(void);
@@ -850,7 +847,7 @@ int (* __vt_19HorseRaceTransition[4])(...) = {
     reinterpret_cast<int (*)(...)>(CreateScene__19HorseRaceTransition),
 };
 
-extern RawVTableFunction const vtable_unk_080E5D44[] = {
+extern RawVTableFunction const __vt_17CookingTransition[] = {
     nullptr,
     nullptr,
     DestroyCookingTransition,
@@ -5544,31 +5541,25 @@ extern RawVTableFunction const vtable_unk_080E8230[]
 #endif
     };
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E823C[]
     SECTION(".rodata.vtable_823c") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
-        func_08099F50,
-        Run__12CookingScene,
-#else
         func_080E3D94,
         func_080E3B80,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E824C[]
     SECTION(".rodata.vtable_824c") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
         func_080E3838,
         nullptr,
-#else
-        func_0809A518,
-        Run__12CookingScene,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E825C[]
     SECTION(".rodata.vtable_825c") = {

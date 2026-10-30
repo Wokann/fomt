@@ -1442,12 +1442,13 @@ OnCall__12ScriptEnginei:
     bl RemoveRecordPlayerAlbum__9GameScene
     .byte 0x04, 0x1C, 0x2A, 0x1C, 0x24, 0x32, 0xDA, 0x20, 0x40, 0x00, 0x29, 0x18, 0x02, 0xF0, 0xE1, 0xFF
 .LScriptCallJp_0A0:
-    .byte 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68, 0x00, 0x28
-    .byte 0x01, 0xD1, 0xFF, 0xF7, 0xC5, 0xF8, 0xD1, 0xF7, 0xC2, 0xFA, 0xFF, 0xF7, 0xC1, 0xF8
+    .byte 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xC5, 0xF8
+    bl OpenCookingMenu__9GameScene
+    .byte 0xFF, 0xF7, 0xC1, 0xF8
 .LScriptCallJp_0A1:
-    .byte 0xD5, 0x22
-    .byte 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xB9, 0xF8, 0xD1, 0xF7
-    .byte 0x02, 0xFB, 0xFF, 0xF7, 0xB5, 0xF8
+    .byte 0xD5, 0x22, 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xB9, 0xF8
+    bl OpenRecipeList__9GameScene
+    .byte 0xFF, 0xF7, 0xB5, 0xF8
 .LScriptCallJp_0A2:
     .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28
     .byte 0x01, 0xD1, 0xFF, 0xF7, 0xAD, 0xF8, 0xD1, 0xF7, 0x44, 0xFB, 0xFF, 0xF7, 0xA9, 0xF8
@@ -112540,9 +112541,9 @@ func_08094A3C:
 .Ljp_0809458C: .4byte 0x00000814
 .Ljp_08094590: .4byte SortUnsignedWords
 
-    .global func_08094594
+    .global ConstructCookingSceneCore
     .thumb_func
-func_08094594:
+ConstructCookingSceneCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -113099,10 +113100,10 @@ func_08094594:
 .Ljp_08094A38: .4byte 0x00002BAF
 .Ljp_08094A3C: .4byte 0x000033D0
 
-    .global func_08094A40
+    .global RunCookingSceneCore
 
     .thumb_func
-func_08094A40:
+RunCookingSceneCore:
 
     push {r4, r5, r6, r7, lr}
     mov r7, sb
@@ -115703,75 +115704,6 @@ func_08099E18:
     .align 2, 0
 .Ljp_08099F08: .4byte 0x00000362
 
-    .global func_08099F0C
-    .thumb_func
-func_08099F0C:
-    push {r4, r5, r6, lr}
-    mov r6, r8
-    push {r6}
-    adds r5, r0, #0
-    mov r8, r1
-    adds r6, r2, #0
-    lsls r4, r3, #0x18
-    lsrs r4, r4, #0x18
-    ldr r0, .Ljp_08099F48
-    str r0, [r5]
-    ldr r0, .Ljp_08099F4C
-    bl __builtin_new
-    adds r1, r6, #0
-    adds r2, r4, #0
-    bl func_08094594
-    str r0, [r5, #4]
-    mov r0, r8
-    ldr r1, [r0]
-    movs r0, #0
-    mov r2, r8
-    str r0, [r2]
-    str r1, [r5, #8]
-    adds r0, r5, #0
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_08099F48: .4byte vtable_unk_080E823C
-.Ljp_08099F4C: .4byte 0x000033E0
-
-    .global func_08099F50
-    .thumb_func
-func_08099F50:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_08099F8C
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Ljp_08099F6C
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08099F6C:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_08099F7E
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08099F7E:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08099F8C: .4byte vtable_unk_080E823C
     .section .text.after_cooking_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -121813,7 +121745,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042500
 	bl .L0804168A
 .L08042500:
-	bl func_08013828
+	bl OpenCookingMenu__9GameScene
 	bl .L0804168A
 .L08042508:
 	movs r2, #0xd5
@@ -121824,7 +121756,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L08042518
 	bl .L0804168A
 .L08042518:
-	bl func_080138C0
+	bl OpenRecipeList__9GameScene
 	bl .L0804168A
 .L08042520:
 	movs r3, #0xd5
@@ -275499,8 +275431,8 @@ func_08094A3C: @ 0x08094A3C
 .L08094AB8: .4byte 0x00000814
 .L08094ABC: .4byte SortUnsignedWords
 
-	thumb_func_start func_08094AC0
-func_08094AC0: @ 0x08094AC0
+	thumb_func_start ConstructCookingSceneCore
+ConstructCookingSceneCore: @ 0x08094AC0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -276057,8 +275989,8 @@ func_08094AC0: @ 0x08094AC0
 .L08094F64: .4byte 0x00002BAF
 .L08094F68: .4byte 0x000033D0
 
-	thumb_func_start func_08094F6C
-func_08094F6C: @ 0x08094F6C
+	thumb_func_start RunCookingSceneCore
+RunCookingSceneCore: @ 0x08094F6C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -286731,74 +286663,6 @@ func_0809A3E0: @ 0x0809A3E0
 	bx r0
 	.align 2, 0
 .L0809A4D0: .4byte 0x00000362
-
-	thumb_func_start func_0809A4D4
-func_0809A4D4: @ 0x0809A4D4
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	adds r5, r0, #0
-	mov r8, r1
-	adds r6, r2, #0
-	lsls r4, r3, #0x18
-	lsrs r4, r4, #0x18
-	ldr r0, .L0809A510 @ =vtable_unk_080E824C
-	str r0, [r5]
-	ldr r0, .L0809A514 @ =0x000033E0
-	bl __builtin_new
-	adds r1, r6, #0
-	adds r2, r4, #0
-	bl func_08094AC0
-	str r0, [r5, #4]
-	mov r0, r8
-	ldr r1, [r0]
-	movs r0, #0
-	mov r2, r8
-	str r0, [r2]
-	str r1, [r5, #8]
-	adds r0, r5, #0
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0809A510: .4byte vtable_unk_080E824C
-.L0809A514: .4byte 0x000033E0
-
-	thumb_func_start func_0809A518
-func_0809A518: @ 0x0809A518
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L0809A554 @ =vtable_unk_080E824C
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L0809A534
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0809A534:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L0809A546
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0809A546:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0809A554: .4byte vtable_unk_080E824C
 
     .section .text.after_cooking_scene_run, "ax", %progbits
     .align 2, 0

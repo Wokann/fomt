@@ -347,25 +347,9 @@ void GameScene::WaitFrames(i32 frames)
     current->script_state = 0x15;
 }
 
-void GameScene::PrepareCookingMenuTransition()
-{
-    state->game_object.value->PrepareCookingMenuTransition();
-}
 
-void GameScene::RestoreAfterCookingMenu()
-{
-    state->game_object.value->RestoreAfterCookingMenu();
-}
 
-void GameScene::PrepareRecipeMenuTransition()
-{
-    state->game_object.value->PrepareRecipeMenuTransition();
-}
 
-void GameScene::RestoreAfterRecipeMenu()
-{
-    state->game_object.value->RestoreAfterRecipeMenu();
-}
 
 // These calls refresh map tiles after the caller updates feed storage.
 // The native path forwards the original index without another bounds check.
@@ -896,15 +880,6 @@ EC void func_080D7F3C(GameSceneState * state)
 
 
 
-SceneTransitionOwner CookingScene::Run()
-{
-#if defined(REGION_JP)
-    func_08094A40(core);
-#else
-    func_08094F6C(core);
-#endif
-    return continuation;
-}
 
 
 SceneTransitionOwner SavedNameEntryScene::Run()
@@ -962,15 +937,6 @@ SceneOwner SavedNameEntryTransition::CreateScene()
 
 
 
-SceneOwner CookingTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(func_08099F0C(::operator new(sizeof(CookingScene)), &next, save, recipe_list));
-#else
-    return SceneOwner(func_0809A4D4(::operator new(sizeof(CookingScene)), &next, save, recipe_list));
-#endif
-}
 
 
 
