@@ -172,7 +172,6 @@ extern void func_08081CBC(void);
 extern void func_08081DC8(void);
 extern void func_080837C8(void);
 extern void func_080851A4(void);
-extern void func_08087CEC(void);
 extern void func_08087E44(void);
 extern void func_0808A6A8(void);
 extern void func_0808A754(void);
@@ -345,7 +344,6 @@ extern void func_08082144(void);
 extern void func_08082250(void);
 extern void func_08083C50(void);
 extern void func_0808562C(void);
-extern void func_080881AC(void);
 extern void func_08088304(void);
 extern void func_0808AB68(void);
 extern void func_0808AC14(void);
@@ -4886,41 +4884,25 @@ extern RawVTableFunction const vtable_unk_080E7D20[]
         func_080851A4,
     };
 
-// The JP destructor func_08087CEC stores this final null slot as its vtable
-// pointer. Keep the original four-byte object addressable rather than using
-// an address offset into the preceding table.
-extern RawVTableFunction const vtable_unk_080E7D20_NullTail[]
-    SECTION(".rodata.vtable_7d20") = {
-        nullptr,
-    };
 #endif
 
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7D30[]
     SECTION(".rodata.vtable_7d30") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_08087CEC,
-        Run__19YodelRanchShopScene,
-#else
         nullptr,
         nullptr,
         func_0808562C,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7D3C[]
     SECTION(".rodata.vtable_7d3c") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_08087E44,
-#else
-        nullptr,
-        nullptr,
-        func_080881AC,
-        Run__19YodelRanchShopScene,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern RawVTableFunction const gUnk_080E7188

@@ -239,6 +239,8 @@ SECTIONS
         src/scene_blacksmith_shop.o(.text.OpenBlacksmithShop__9GameScene);
         src/scene_clinic_shop.o(.text.OpenClinicShop__9GameScene);
         asm/game_state.o(.text.game_scene_text_variable_commands_after);
+        src/scene_yodel_ranch_shop.o(.text.OpenYodelRanchShop__9GameScene);
+        asm/game_state.o(.text.game_scene_after_yodel_ranch_shop);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/game_scene.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -679,7 +681,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.carpenter_shop_scene_destructor);
         src/scene_carpenter_shop.o(.text.Run__18CarpenterShopScene);
         asm/code_0803EE94.o(.text.after_carpenter_shop_scene_run);
-        src/game_scene.o(.text.Run__19YodelRanchShopScene);
+        src/scene_yodel_ranch_shop.o(.text.Run__19YodelRanchShopScene);
         asm/code_0803EE94.o(.text.after_yodel_ranch_shop_scene_run);
         src/game_scene.o(.text.Run__14ToolChestScene);
         asm/code_0803EE94.o(.text.after_tool_chest_scene_run);
@@ -1026,7 +1028,7 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__29SpecialMerchantShopTransition .gnu.linkonce.t._._29SpecialMerchantShopTransition);
         asm/code_linkonce.o(.text.scene_special_merchant_shop_after);
         src/game_scene.o(.text.CreateScene__22GiftWrappingTransition .gnu.linkonce.t._._22GiftWrappingTransition);
-        src/game_scene.o(.text.CreateScene__24YodelRanchShopTransition .gnu.linkonce.t._._24YodelRanchShopTransition);
+        src/scene_yodel_ranch_shop.o(.text.CreateScene__24YodelRanchShopTransition .gnu.linkonce.t._._24YodelRanchShopTransition);
         src/game_scene.o(.text.CreateScene__25PoultryFarmShopTransition .gnu.linkonce.t._._25PoultryFarmShopTransition);
         src/game_scene.o(.text.CreateScene__20WineryShopTransition .gnu.linkonce.t._._20WineryShopTransition);
         src/game_scene.o(.text.CreateScene__17InnShopTransition .gnu.linkonce.t._._17InnShopTransition);
@@ -1347,7 +1349,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d04);
 . = ALIGN(4); src/scene_carpenter_shop.o(.gnu.linkonce.d.__vt_18CarpenterShopScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d20);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7d30);
+. = ALIGN(4); src/scene_yodel_ranch_shop.o(.gnu.linkonce.d.__vt_19YodelRanchShopScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d3c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d4c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d58);

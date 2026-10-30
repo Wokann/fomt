@@ -1296,8 +1296,9 @@ OnCall__12ScriptEnginei:
     .byte 0xD5, 0x22, 0x92, 0x00, 0xA8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xD8, 0xFA
     .byte 0xD1, 0xF7, 0x69, 0xF8, 0xFF, 0xF7, 0xD4, 0xFA
 .LScriptCallJp_092:
-    .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68
-    .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xCC, 0xFA, 0xD1, 0xF7, 0xA7, 0xF8, 0xFF, 0xF7, 0xC8, 0xFA
+    .byte 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xCC, 0xFA
+    bl OpenYodelRanchShop__9GameScene
+    .byte 0xFF, 0xF7, 0xC8, 0xFA
 .LScriptCallJp_093:
     .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0xC0, 0xFA
     .byte 0xD1, 0xF7, 0xE7, 0xF8, 0xFF, 0xF7, 0xBC, 0xFA
@@ -94531,9 +94532,9 @@ func_08085EC4: @ 0x08085A3C
 	pop {r1}
 	bx r1
 	.align 2, 0
-.global func_08085EEC
+.global GetYodelRanchShopAnimalChoice
 .thumb_func
-func_08085EEC: @ 0x08085A64
+GetYodelRanchShopAnimalChoice: @ 0x08085A64
 	push {lr}
 	ldr r1, .Ljp_08085A78 @ =0x000043D8
 	adds r0, r0, r1
@@ -95901,9 +95902,9 @@ func_080869A0: @ 0x08086518
     pop {r1}
     bx r1
     .align 2, 0
-    .global func_08086A08
+    .global RunYodelRanchShopCore
     .thumb_func
-func_08086A08:
+RunYodelRanchShopCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -96874,9 +96875,9 @@ func_08086A08:
     .Lauto_08087C96:
     .byte 0x2D, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
     .byte 0x00, 0x00
-    .global loc_08087CA8
+    .global __19YodelRanchShopSceneG20SceneTransitionOwnerP18GameStateSaveImageUi
     .thumb_func
-    loc_08087CA8:
+    __19YodelRanchShopSceneG20SceneTransitionOwnerP18GameStateSaveImageUi:
     push {r4, r5, r6, lr}
     mov r6, r8
     push {r6}
@@ -96905,14 +96906,15 @@ func_08086A08:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x6C, 0x71, 0x0E, 0x08, 0xE0, 0x43, 0x00, 0x00
-    .global func_08087CEC
+    .4byte __vt_19YodelRanchShopScene
+    .4byte 0x000043E0
+    .global _._19YodelRanchShopScene
     .thumb_func
-func_08087CEC: @ 0x08087CEC
+_._19YodelRanchShopScene: @ 0x08087CEC
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, .Ljp_08087D28 @ =vtable_unk_080E7D20_NullTail
+    ldr r0, .Ljp_08087D28 @ =__vt_19YodelRanchShopScene
     str r0, [r4]
     ldr r1, [r4, #8]
     cmp r1, #0
@@ -96939,7 +96941,7 @@ func_08087CEC: @ 0x08087CEC
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08087D28: .4byte vtable_unk_080E7D20_NullTail
+.Ljp_08087D28: .4byte __vt_19YodelRanchShopScene
     .section .text.after_yodel_ranch_shop_scene_run, "ax", %progbits
     .align 2, 0
 
@@ -121923,7 +121925,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L080420F2
 	bl .L0804168A
 .L080420F2:
-	bl func_08012FE8
+	bl OpenYodelRanchShop__9GameScene
 	bl .L0804168A
 .L080420FA:
 	movs r4, #0xd5
@@ -248537,8 +248539,8 @@ func_08085EC4: @ 0x08085EC4
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_08085EEC
-func_08085EEC: @ 0x08085EEC
+	thumb_func_start GetYodelRanchShopAnimalChoice
+GetYodelRanchShopAnimalChoice: @ 0x08085EEC
 	push {lr}
 	ldr r1, .L08085F00 @ =0x000043D8
 	adds r0, r0, r1
@@ -249904,8 +249906,8 @@ func_080869A0: @ 0x080869A0
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_08086A08
-func_08086A08: @ 0x08086A08
+	thumb_func_start RunYodelRanchShopCore
+RunYodelRanchShopCore: @ 0x08086A08
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -252985,8 +252987,8 @@ sub_08087710: @ 0x08087710
 	.section .text.town_map_hotspot_contains_after_de_tail
 	.endif
 
-	thumb_func_start func_08088168
-func_08088168: @ 0x08088168
+	thumb_func_start __19YodelRanchShopSceneG20SceneTransitionOwnerP18GameStateSaveImageUi
+__19YodelRanchShopSceneG20SceneTransitionOwnerP18GameStateSaveImageUi: @ 0x08088168
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -252994,7 +252996,7 @@ func_08088168: @ 0x08088168
 	adds r5, r1, #0
 	mov r8, r2
 	adds r6, r3, #0
-	ldr r0, .L080881A4 @ =vtable_unk_080E7D3C
+	ldr r0, .L080881A4 @ =__vt_19YodelRanchShopScene
 	str r0, [r4]
 	ldr r0, .L080881A8 @ =0x000043E0
 	bl __builtin_new
@@ -253016,15 +253018,15 @@ func_08088168: @ 0x08088168
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080881A4: .4byte vtable_unk_080E7D3C
+.L080881A4: .4byte __vt_19YodelRanchShopScene
 .L080881A8: .4byte 0x000043E0
 
-	thumb_func_start func_080881AC
-func_080881AC: @ 0x080881AC
+	thumb_func_start _._19YodelRanchShopScene
+_._19YodelRanchShopScene: @ 0x080881AC
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	ldr r0, .L080881E8 @ =vtable_unk_080E7D3C
+	ldr r0, .L080881E8 @ =__vt_19YodelRanchShopScene
 	str r0, [r4]
 	ldr r1, [r4, #8]
 	cmp r1, #0
@@ -253051,7 +253053,7 @@ func_080881AC: @ 0x080881AC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080881E8: .4byte vtable_unk_080E7D3C
+.L080881E8: .4byte __vt_19YodelRanchShopScene
 
     .section .text.after_yodel_ranch_shop_scene_run, "ax", %progbits
     .align 2, 0

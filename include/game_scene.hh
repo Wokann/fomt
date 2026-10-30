@@ -276,6 +276,7 @@ struct GameSceneResumeRequest {
         AFTER_CARPENTER_SHOP = 12,
         AFTER_BLACKSMITH_SHOP = 13,
         AFTER_CLINIC_SHOP = 14,
+        AFTER_YODEL_RANCH_SHOP = 0x10,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -288,6 +289,7 @@ struct GameSceneResumeRequest {
         AFTER_CARPENTER_SHOP = 13,
         AFTER_BLACKSMITH_SHOP = 14,
         AFTER_CLINIC_SHOP = 15,
+        AFTER_YODEL_RANCH_SHOP = 0x11,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -568,28 +570,8 @@ typedef char BeachCafeShopTransitionSizeCheck[sizeof(BeachCafeShopTransition) ==
 
 
 
-// Verified nonuniform scene layouts; unknown scalar semantics stay unnamed.
-struct YodelRanchShopSceneCore;
-struct YodelRanchShopScene : AScene {
-    virtual ~YodelRanchShopScene();
-    virtual SceneTransitionOwner Run();
-    YodelRanchShopSceneCore * core;
-    SceneTransitionOwner continuation;
-    u32 unk_0C;
-    GameStateSaveImage * save;
-};
-
-struct YodelRanchShopTransition : SceneTransition {
-    YodelRanchShopTransition(SceneTransitionOwner next, GameStateSaveImage * image, u32 input)
-        : continuation(next), save(image), unk_0C(input) {}
-    virtual SceneOwner CreateScene();
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-    u32 unk_0C;
-};
-typedef char YodelRanchShopSceneSizeCheck[sizeof(YodelRanchShopScene) == 20 ? 1 : -1];
-typedef char YodelRanchShopSceneSaveCheck[offsetof(YodelRanchShopScene, save) == 16 ? 1 : -1];
-typedef char YodelRanchShopTransitionSizeCheck[sizeof(YodelRanchShopTransition) == 16 ? 1 : -1];
+#include "scene_yodel_ranch_shop.hh"
+#pragma interface "game_scene.hh"
 
 // This saved-target naming operation is distinct from the reusable keyboard.
 // The native Run handles the six NAME_ENTRY_* cases and edits the save image.
@@ -749,6 +731,7 @@ struct GameScene : AScene {
     void StopAllSongs();
     void OpenSupermarketShop();
     void OpenSupermarketPurchase(MarySupermarketItemId item);
+    void OpenYodelRanchShop();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
@@ -945,11 +928,6 @@ void func_08081BBC(BeachCafeShopSceneCore * core);
 #endif
 
 
-// Ranch Run returns the purchased target slot or -1; the second core
-// query selects the existing cow/sheep naming branch.
-i32 func_08086A08(YodelRanchShopSceneCore * core);
-u32 func_08085EEC(YodelRanchShopSceneCore * core);
-
 // The poultry core returns a signed target slot, with -1 meaning no purchase.
 #if defined(REGION_JP)
 i32 func_0807BA6C(PoultryFarmShopSceneCore * core);
@@ -1016,11 +994,6 @@ BeachCafeShopScene * func_08082114(void *, SceneTransition **, GameStateSaveImag
 
 
 
-#if defined(REGION_JP)
-YodelRanchShopScene * loc_08087CA8(void *, SceneTransition **, GameStateSaveImage *, u32);
-#else
-YodelRanchShopScene * func_08088168(void *, SceneTransition **, GameStateSaveImage *, u32);
-#endif
 #if defined(REGION_JP)
 PoultryFarmShopScene * func_0807CBD8(void *, SceneTransition **, GameStateSaveImage *, u32);
 #else

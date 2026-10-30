@@ -942,18 +942,6 @@ SceneTransitionOwner BeachCafeShopScene::Run()
 }
 
 
-SceneTransitionOwner YodelRanchShopScene::Run()
-{
-    i32 result = func_08086A08(core);
-    if (result != -1) {
-        u32 selection = func_08085EEC(core);
-        MaryNameEntryKind kind = selection != 0 ? NAME_ENTRY_SHEEP : NAME_ENTRY_COW;
-        SceneTransitionOwner next(new YodelRanchShopTransition(continuation, save,
-            selection != 0 ? 2 : 1));
-        return SceneTransitionOwner(new SavedNameEntryTransition(next, save, kind, result));
-    }
-    return continuation;
-}
 
 SceneTransitionOwner ToolChestScene::Run()
 {
@@ -1125,15 +1113,6 @@ SceneOwner GiftWrappingTransition::CreateScene()
 #endif
 }
 
-SceneOwner YodelRanchShopTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-#if defined(REGION_JP)
-    return SceneOwner(loc_08087CA8(::operator new(sizeof(YodelRanchShopScene)), &next, save, unk_0C));
-#else
-    return SceneOwner(func_08088168(::operator new(sizeof(YodelRanchShopScene)), &next, save, unk_0C));
-#endif
-}
 
 SceneOwner PoultryFarmShopTransition::CreateScene()
 {
