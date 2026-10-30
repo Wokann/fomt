@@ -6566,14 +6566,13 @@ extern void func_080C7ED0(void);
 extern void func_080C7F1C(void);
 #endif
 
-// Keep this four-slot callback table in source order matching its ROM layout.
+// JP ends before the following VCount binding; the overseas core has four slots.
 extern RawVTableFunction const vtable_unk_080E8560[]
     SECTION(".rodata.vtable_8560") = {
 #if defined(REGION_JP)
         nullptr,
         nullptr,
         func_080C8360,
-        nullptr,
 #else
         nullptr,
         nullptr,
@@ -6583,76 +6582,16 @@ extern RawVTableFunction const vtable_unk_080E8560[]
     };
 
 #if defined(REGION_JP)
-extern void func_080E4C10(void);
-#else
-extern void func_080C8360(void);
-#endif
-
-// Preserve the original three-slot table, including the JP-only middle entry.
-extern RawVTableFunction const vtable_unk_080E8570[]
-    SECTION(".rodata.vtable_8570") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080E4C10,
-        nullptr,
-#else
-        nullptr,
-        nullptr,
-        func_080C8360,
-#endif
-    };
-
-#if defined(REGION_JP)
-extern void func_080E4C84(void);
-#else
-extern void func_080E5478(void);
-#endif
-
-// Preserve the region-specific placement of the only non-null callback.
-extern RawVTableFunction const vtable_unk_080E857C[]
-    SECTION(".rodata.vtable_857c") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080E4C84,
-        nullptr,
-#else
-        nullptr,
-        nullptr,
-        func_080E5478,
-#endif
-    };
-
-#if defined(REGION_JP)
-extern void func_080E4C5C(void);
-#else
-extern void func_080E5844(void);
-#endif
-
-// Keep the preceding physical callback bytes. JP's last null word and the
-// first two words of the next old record are now the real menu-core table.
-extern RawVTableFunction const vtable_unk_080E8588[]
-    SECTION(".rodata.vtable_8588") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080E4C5C,
-#else
-        nullptr,
-        nullptr,
-        func_080E5844,
-#endif
-    };
-
-#if defined(REGION_JP)
 // First metadata word of the following native core table, not padding.
 extern RawVTableFunction const gUnk_080E79DC
     SECTION(".rodata.vtable_8594") = nullptr;
 #else
-extern void func_080E581C(void);
-extern RawVTableFunction const vtable_unk_080E8594[]
-    SECTION(".rodata.vtable_8594") = {
+extern void func_080C8360(void);
+extern RawVTableFunction const vtable_unk_080E8570[]
+    SECTION(".rodata.vtable_8570") = {
         nullptr,
         nullptr,
-        func_080E581C,
+        func_080C8360,
     };
 #endif
 

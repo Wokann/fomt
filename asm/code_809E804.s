@@ -64934,7 +64934,7 @@ func_080C797C:
     adds r0, r7, r1
     str r7, [sp, #0x14]
     ldr r1, [sp, #0x50]
-    bl func_080E542C
+    bl __15UiVCountBindingRCP11UiSceneCore
     ldr r0, [pc, #0x1c0]
     adds r6, r7, r0
     ldr r1, [pc, #0x1c0]
@@ -65172,7 +65172,7 @@ func_080C8360:
     lsls r1, r1, #3
     adds r0, r5, r1
     movs r1, #2
-    bl func_080E4C10
+    bl _._15UiVCountBinding
     movs r2, #0xfb
     lsls r2, r2, #2
     adds r0, r5, r2
@@ -68425,66 +68425,9 @@ func_080C90D0:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .global func_080CA6F4
-    .thumb_func
-func_080CA6F4:
-    push {lr}
-    ldr r0, [pc, #0xc]
-    ldrb r0, [r0]
-    cmp r0, #0x17
-    beq .Lauto_080C9EF8
-    cmp r0, #0x9f
-    beq .Lauto_080C9F34
-    b .Lauto_080C9F50
-    .byte 0x06, 0x00, 0x00, 0x04
-    .Lauto_080C9EF8:
-    ldr r2, [pc, #0x2c]
-    ldrh r1, [r2]
-    movs r0, #2
-    ands r0, r1
-    cmp r0, #0
-    bne .Lauto_080C9F10
-    movs r3, #2
-    .Lauto_080C9F06:
-    ldrh r1, [r2]
-    adds r0, r3, #0
-    ands r0, r1
-    cmp r0, #0
-    beq .Lauto_080C9F06
-    .Lauto_080C9F10:
-    ldr r1, [pc, #0x18]
-    ldr r2, [pc, #0x1c]
-    adds r0, r2, #0
-    strh r0, [r1]
-    ldr r2, [pc, #0xc]
-    ldrh r1, [r2]
-    movs r0, #0xff
-    ands r0, r1
-    strh r0, [r2]
-    movs r0, #0x9f
-    lsls r0, r0, #8
-    b .Lauto_080C9F4A
-    .byte 0x04, 0x00, 0x00, 0x04, 0x0C, 0x00, 0x00, 0x04, 0x43, 0x3E, 0x00, 0x00
-    .Lauto_080C9F34:
-    ldr r1, [pc, #0x1c]
-    ldr r2, [pc, #0x20]
-    adds r0, r2, #0
-    strh r0, [r1]
-    ldr r2, [pc, #0x1c]
-    ldrh r1, [r2]
-    movs r0, #0xff
-    ands r0, r1
-    strh r0, [r2]
-    movs r0, #0xb8
-    lsls r0, r0, #5
-    .Lauto_080C9F4A:
-    ldrh r1, [r2]
-    orrs r0, r1
-    strh r0, [r2]
-    .Lauto_080C9F50:
-    pop {r0}
-    bx r0
-    .byte 0x0C, 0x00, 0x00, 0x04, 0x41, 0x3E, 0x00, 0x00, 0x04, 0x00, 0x00, 0x04
+    .section .text.after_ui_vcount_update, "ax", %progbits
+    .align 2, 0
+
     .global loc_080C9F60
     .thumb_func
     loc_080C9F60:
@@ -149523,7 +149466,7 @@ func_080C7F58: @ 0x080C7F58
 	adds r0, r7, r1
 	str r7, [sp, #0x14]
 	ldr r1, [sp, #0x50]
-	bl func_080E542C
+	bl __15UiVCountBindingRCP11UiSceneCore
 	ldr r0, .L080C8330 @ =0x000004D4
 	adds r6, r7, r0
 	ldr r1, .L080C8334 @ =gUnk_08527094
@@ -149772,7 +149715,7 @@ func_080C8360: @ 0x080C8360
 	lsls r1, r1, #3
 	adds r0, r5, r1
 	movs r1, #2
-	bl func_080E5478
+	bl _._15UiVCountBinding
 	movs r2, #0xfb
 	lsls r2, r2, #2
 	adds r0, r5, r2
@@ -154433,72 +154376,8 @@ func_080C96C4: @ 0x080C96C4
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080CA6F4
-func_080CA6F4: @ 0x080CA6F4
-	push {lr}
-	ldr r0, .L080CA704 @ =0x04000006
-	ldrb r0, [r0]
-	cmp r0, #0x17
-	beq .L080CA708
-	cmp r0, #0x9f
-	beq .L080CA744
-	b .L080CA760
-	.align 2, 0
-.L080CA704: .4byte 0x04000006
-.L080CA708:
-	ldr r2, .L080CA738 @ =0x04000004
-	ldrh r1, [r2]
-	movs r0, #2
-	ands r0, r1
-	cmp r0, #0
-	bne .L080CA720
-	movs r3, #2
-.L080CA716:
-	ldrh r1, [r2]
-	adds r0, r3, #0
-	ands r0, r1
-	cmp r0, #0
-	beq .L080CA716
-.L080CA720:
-	ldr r1, .L080CA73C @ =0x0400000C
-	ldr r2, .L080CA740 @ =0x00003E43
-	adds r0, r2, #0
-	strh r0, [r1]
-	ldr r2, .L080CA738 @ =0x04000004
-	ldrh r1, [r2]
-	movs r0, #0xff
-	ands r0, r1
-	strh r0, [r2]
-	movs r0, #0x9f
-	lsls r0, r0, #8
-	b .L080CA75A
-	.align 2, 0
-.L080CA738: .4byte 0x04000004
-.L080CA73C: .4byte 0x0400000C
-.L080CA740: .4byte 0x00003E43
-.L080CA744:
-	ldr r1, .L080CA764 @ =0x0400000C
-	ldr r2, .L080CA768 @ =0x00003E41
-	adds r0, r2, #0
-	strh r0, [r1]
-	ldr r2, .L080CA76C @ =0x04000004
-	ldrh r1, [r2]
-	movs r0, #0xff
-	ands r0, r1
-	strh r0, [r2]
-	movs r0, #0xb8
-	lsls r0, r0, #5
-.L080CA75A:
-	ldrh r1, [r2]
-	orrs r0, r1
-	strh r0, [r2]
-.L080CA760:
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080CA764: .4byte 0x0400000C
-.L080CA768: .4byte 0x00003E41
-.L080CA76C: .4byte 0x04000004
+    .section .text.after_ui_vcount_update, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080CA770
 func_080CA770: @ 0x080CA770

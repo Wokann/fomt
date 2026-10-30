@@ -48,7 +48,7 @@ SECTIONS
         . = 0x000408; src/hardware_refcount.o(.bss COMMON);
         . = 0x00040C; gUnk_0300040C = .;
         . = 0x000410; src/hardware_manager.o(.bss COMMON);
-        . = 0x000414; gUnk_03000414 = .;
+        . = 0x000414; src/ui_vcount.o(.bss COMMON);
         . = 0x000418; src/heap.o(.bss COMMON);
         . = 0x00041C; src/joy_bus.o(.bss);
         . = 0x000430; src/interrupt.o(.bss COMMON);
@@ -841,6 +841,8 @@ SECTIONS
         src/ui_state.o(.text.ui_portrait_group);
         src/ui_text_stream.o(.text);
         asm/code_809E804.o(.text.ui_text_stream_update_after);
+        src/ui_vcount.o(.text.UpdateUiVCount);
+        asm/code_809E804.o(.text.after_ui_vcount_update);
         src/game_menu.o(.text.GetMenuGridLeftCellPosition__FPC28GameSceneMenuOwnedDataPrefixi);
         src/game_menu.o(.text.GetMenuGridLeftHeaderPosition__FPC28GameSceneMenuOwnedDataPrefix);
         asm/code_809E804.o(.text.after_menu_grid_left_positions);
@@ -1077,6 +1079,9 @@ SECTIONS
         asm/code_linkonce.o(.text.after_saved_name_scene_destructor);
         src/world_map.o(.text.DestroySavedWorldMap);
         asm/code_linkonce.o(.text.saved_world_map_destructor_after);
+        src/ui_vcount.o(.text.HandleUiVCountInterrupt .text.__15UiVCountBindingRCP11UiSceneCore .text._._15UiVCountBinding);
+        src/ui_vcount.o(.text._._20UiVCountContextScope);
+        src/ui_vcount.o(.text._._27UiVCountContextRegistration);
         src/game_menu.o(.text.ClearNodes__25GameSceneMenuCommandQueue);
         asm/code_linkonce.o(.text.after_menu_command_node_cleanup);
         src/game_menu.o(.gnu.linkonce.t._._23GameSceneMenuCorePrefix);
@@ -1359,9 +1364,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8544);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8554);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8560);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_8570);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_857c);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_8588);
+. = ALIGN(4); src/ui_vcount.o(.gnu.linkonce.d.__vt_15UiVCountBinding .gnu.linkonce.d.__vt_27UiVCountContextRegistration .gnu.linkonce.d.__vt_20UiVCountContextScope);
 . = ALIGN(4); src/game_menu.o(.gnu.linkonce.d.__vt_23GameSceneMenuCorePrefix);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8594);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85a0);
