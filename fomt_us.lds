@@ -208,7 +208,8 @@ SECTIONS
         src/scene_special_merchant_shop.o(.text.OpenSpecialMerchantShop__9GameScene);
         src/scene_gift_wrapping.o(.text.OpenGiftWrappingMenu__9GameScene);
         src/scene_reference_page.o(.text.ShowReferencePage__9GameScenei .text.OpenBookList__9GameScene .text.OpenLetterList__9GameScene);
-        asm/game_state.o(.text.game_scene_after_reference_page);
+        src/scene_calendar.o(.text.OpenCalendar__9GameScene);
+        asm/game_state.o(.text.game_scene_after_calendar);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/game_scene.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -732,7 +733,7 @@ SECTIONS
         src/npc_locations.o(.text);
         src/field_item_data.o(.text);
         asm/code_809E804.o(.text.field_item_after);
-        src/game_scene.o(.text.Run__13CalendarScene);
+        src/scene_calendar.o(.text.__13CalendarSceneG20SceneTransitionOwnerP18GameStateSaveImage .text.Run__13CalendarScene);
         asm/code_809E804.o(.text.after_calendar_scene_run);
         src/scene_chicken_festival.o(.text.__27ChickenFestivalContestSceneG20SceneTransitionOwnerP18GameStateSaveImage);
         src/game_scene.o(.text.Run__19SavedNameEntryScene .text.__19SavedNameEntrySceneG20SceneTransitionOwnerP18GameStateSaveImage17MaryNameEntryKindUc);
@@ -947,7 +948,7 @@ SECTIONS
         src/game_scene.o(.text.CreateScene__24SavedNameEntryTransition .gnu.linkonce.t._._24SavedNameEntryTransition);
         asm/code_linkonce.o(.text.after_saved_name_transition);
         src/scene_chicken_festival.o(.text.CreateScene__32ChickenFestivalContestTransition .gnu.linkonce.t._._32ChickenFestivalContestTransition);
-        src/game_scene.o(.text.CreateScene__18CalendarTransition .gnu.linkonce.t._._18CalendarTransition);
+        src/scene_calendar.o(.text.CreateScene__18CalendarTransition .gnu.linkonce.t._._18CalendarTransition);
         src/game_scene.o(.text.CreateScene__19ToolChestTransition .gnu.linkonce.t._._19ToolChestTransition);
         src/game_scene.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
         src/game_scene.o(.text.CreateScene__15ShelfTransition .gnu.linkonce.t._._15ShelfTransition);
@@ -1038,6 +1039,7 @@ SECTIONS
         asm/code_linkonce.o(.text.after_menu_selection_core_destructor);
         src/harvest_sprite.o(.text.FindHarvestSpriteWorkTarget);
         asm/code_linkonce.o(.text.sprite_work_target_search_after);
+        src/scene_calendar.o(.gnu.linkonce.t._._13CalendarScene);
         src/scene_chicken_festival.o(.gnu.linkonce.t._._27ChickenFestivalContestScene);
         src/game_scene.o(.gnu.linkonce.t._._19SavedNameEntryScene);
         src/world_map.o(.gnu.linkonce.t._._25MapViewportTilemapCommand);
@@ -1303,7 +1305,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_824c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_825c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8268);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_8278);
+. = ALIGN(4); src/scene_calendar.o(.gnu.linkonce.d.__vt_13CalendarScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8288);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8298);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82a8);

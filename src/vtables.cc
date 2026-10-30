@@ -45,7 +45,6 @@ extern void Run__14ToolChestScene(void);
 extern void Run__17RefrigeratorScene(void);
 extern void Run__10ShelfScene(void);
 extern void Run__12CookingScene(void);
-extern void Run__13CalendarScene(void);
 
 extern void DrawSavedWorldMap(void);
 
@@ -310,7 +309,6 @@ extern void func_08099F50(void);
 extern void func_080E3838(void);
 extern void func_080E3928(void);
 extern void func_080E36D8(void);
-extern void func_080E3948(void);
 extern void func_080A3AF8(void);
 extern void func_080A3BF4(void);
 extern void func_080A39FC(void);
@@ -540,7 +538,6 @@ extern void func_0809A518(void);
 extern void func_080E40A0(void);
 extern void func_080E4190(void);
 extern void func_080E3F40(void);
-extern void func_080E41B0(void);
 extern void func_080A3BF4(void);
 extern void func_080A3AF8(void);
 extern void func_080A3C40(void);
@@ -794,7 +791,8 @@ int (* __vt_32ChickenFestivalContestTransition[4])(...) = {
     reinterpret_cast<int (*)(...)>(CreateScene__32ChickenFestivalContestTransition),
 };
 
-extern RawVTableFunction const vtable_unk_080E5CB4[] = {
+// Preserve the actual member table in the continuous native catalog.
+extern RawVTableFunction const __vt_18CalendarTransition[] = {
     nullptr,
     nullptr,
     DestroyCalendarTransition,
@@ -5632,31 +5630,27 @@ extern RawVTableFunction const vtable_unk_080E825C[]
 #endif
     };
 
+// The calendar wrapper owns its generated table at the regional slot.
+// Keep both different neighboring native core tables in their original order.
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E8268[]
     SECTION(".rodata.vtable_8268") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
-        func_080E3948,
-        Run__13CalendarScene,
-#else
         func_080E4190,
         func_080E3F40,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E8278[]
     SECTION(".rodata.vtable_8278") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
         func_080A3BF4,
         func_080A3AF8,
-#else
-        func_080E41B0,
-        Run__13CalendarScene,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E8288[]
     SECTION(".rodata.vtable_8288") = {

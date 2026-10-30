@@ -1267,9 +1267,9 @@ func_080A1484: @ 0x080A0EBC
 	.align 2, 0
     .section .text.field_item_after
 
-    .global func_080A220C
+    .global ConstructCalendarSceneCore
     .thumb_func
-func_080A220C: @ 0x080A1C44
+ConstructCalendarSceneCore: @ 0x080A1C44
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -1488,7 +1488,7 @@ func_080A220C: @ 0x080A1C44
 	movs r1, #0x87
 	lsls r1, r1, #2
 	adds r0, r7, r1
-	ldr r1, .Ljp_080A246C @ =vtable_unk_080E8268
+	ldr r1, .Ljp_080A246C @ =vtable_unk_080E824C + 0xC
 	str r1, [r0]
 	mov r2, r8
 	strb r2, [r0, #4]
@@ -1714,9 +1714,9 @@ func_080A220C: @ 0x080A1C44
 	pop {r1}
 	bx r1
 
-    .global func_080A25B0
+    .global RunCalendarSceneCore
     .thumb_func
-func_080A25B0: @ 0x080A1FE8
+RunCalendarSceneCore: @ 0x080A1FE8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -3906,32 +3906,6 @@ func_080A3618: @ 0x080A3050
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-
-    .global func_080A3744
-    .thumb_func
-func_080A3744: @ 0x080A317C
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .Ljp_080A3770 @ =vtable_unk_080E8268
-	str r0, [r4]
-	movs r0, #0x8a
-	lsls r0, r0, #2
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_080A220C
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_080A3770: .4byte vtable_unk_080E8268
 
     .section .text.after_calendar_scene_run, "ax", %progbits
     .align 2, 0
@@ -77231,8 +77205,8 @@ func_080A1484: @ 0x080A1484
 
     .section .text.field_item_after
 
-	thumb_func_start func_080A220C
-func_080A220C: @ 0x080A220C
+	thumb_func_start ConstructCalendarSceneCore
+ConstructCalendarSceneCore: @ 0x080A220C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -77677,8 +77651,8 @@ func_080A220C: @ 0x080A220C
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080A25B0
-func_080A25B0: @ 0x080A25B0
+	thumb_func_start RunCalendarSceneCore
+RunCalendarSceneCore: @ 0x080A25B0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -79866,31 +79840,6 @@ func_080A3618: @ 0x080A3618
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-
-	thumb_func_start func_080A3744
-func_080A3744: @ 0x080A3744
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L080A3770 @ =vtable_unk_080E8278
-	str r0, [r4]
-	movs r0, #0x8a
-	lsls r0, r0, #2
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_080A220C
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080A3770: .4byte vtable_unk_080E8278
 
     .section .text.after_calendar_scene_run, "ax", %progbits
     .align 2, 0

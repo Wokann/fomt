@@ -284,6 +284,7 @@ struct GameSceneResumeRequest {
         AFTER_SPECIAL_MERCHANT_SHOP = 0x15,
         AFTER_GIFT_WRAPPING = 0x16,
         AFTER_REFERENCE_PAGE = 0x17,
+        AFTER_CALENDAR = 0x18,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -304,6 +305,7 @@ struct GameSceneResumeRequest {
         AFTER_SPECIAL_MERCHANT_SHOP = 0x16,
         AFTER_GIFT_WRAPPING = 0x17,
         AFTER_REFERENCE_PAGE = 0x18,
+        AFTER_CALENDAR = 0x19,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -341,26 +343,8 @@ typedef char ReturnToGameSceneSizeCheck[sizeof(ReturnToGameScene) == 20 ? 1 : -1
 typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) == 8 ? 1 : -1];
 
 // Verified modal scene wrappers and transitions, in native factory order.
-struct CalendarSceneCore;
-struct CalendarScene : AScene {
-    virtual ~CalendarScene();
-    virtual SceneTransitionOwner Run();
-
-    CalendarSceneCore * core;
-    SceneTransitionOwner continuation;
-};
-
-struct CalendarTransition : SceneTransition {
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-typedef char CalendarSceneSizeCheck[sizeof(CalendarScene) == 12 ? 1 : -1];
-typedef char CalendarSceneCoreCheck[offsetof(CalendarScene, core) == 4 ? 1 : -1];
-typedef char CalendarSceneContinuationCheck[offsetof(CalendarScene, continuation) == 8 ? 1 : -1];
-typedef char CalendarTransitionSizeCheck[sizeof(CalendarTransition) == 12 ? 1 : -1];
+#include "scene_calendar.hh"
+#pragma interface "game_scene.hh"
 
 struct ToolChestSceneCore;
 struct ToolChestScene : AScene {
@@ -627,6 +611,7 @@ struct GameScene : AScene {
     void ShowReferencePage(i32 page_id);
     void OpenBookList();
     void OpenLetterList();
+    void OpenCalendar();
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();
@@ -782,7 +767,6 @@ EXTERN_C
 // Native modal cores remain opaque here. Calendar, cooking and guide cores
 // return a temporary transition owner that the scene must destroy before
 // handing back its own continuation; the other listed calls return void.
-SceneTransitionOwner func_080A25B0(CalendarSceneCore * core);
 #if defined(REGION_JP)
 void func_0808A09C(ToolChestSceneCore * core);
 #else
@@ -805,7 +789,6 @@ SceneTransitionOwner func_08094F6C(CookingSceneCore * core);
 
 // Native shop construction ABI: each constructor consumes *continuation.
 
-CalendarScene * func_080A3744(void *, SceneTransition **, GameStateSaveImage *);
 
 #if defined(REGION_JP)
 ToolChestScene * loc_0808A678(void *, SceneTransition **, GameStateSaveImage *);

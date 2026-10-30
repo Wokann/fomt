@@ -27244,36 +27244,6 @@ func_080E3928:
     bx r0
     .byte 0x00, 0x00
     .4byte __vt_23ScriptTextVariableStore
-    .global func_080E3948
-    .thumb_func
-func_080E3948:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Lauto_080E3960
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080E3960:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_080E3972
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080E3972:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
     .section .text.after_saved_name_scene_destructor, "ax", %progbits
     .align 2, 0
 
@@ -35386,36 +35356,6 @@ func_080E4190: @ 0x080E4190
 	bx r0
 	.align 2, 0
 .L080E41AC: .4byte __vt_23ScriptTextVariableStore
-
-	thumb_func_start func_080E41B0
-func_080E41B0: @ 0x080E41B0
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L080E41C8
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080E41C8:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080E41DA
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080E41DA:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
 
     .section .text.after_saved_name_scene_destructor, "ax", %progbits
     .align 2, 0

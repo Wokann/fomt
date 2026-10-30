@@ -929,11 +929,6 @@ SceneTransitionOwner CookingScene::Run()
     return continuation;
 }
 
-SceneTransitionOwner CalendarScene::Run()
-{
-    func_080A25B0(core);
-    return continuation;
-}
 
 SceneTransitionOwner SavedNameEntryScene::Run()
 {
@@ -986,11 +981,6 @@ SceneOwner SavedNameEntryTransition::CreateScene()
     return SceneOwner(new SavedNameEntryScene(continuation, save, kind, target_index));
 }
 
-SceneOwner CalendarTransition::CreateScene()
-{
-    SceneTransition * next = continuation.release();
-    return SceneOwner(func_080A3744(::operator new(sizeof(CalendarScene)), &next, save));
-}
 
 SceneOwner ToolChestTransition::CreateScene()
 {
