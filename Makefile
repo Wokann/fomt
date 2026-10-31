@@ -289,16 +289,14 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
-$(ROM): $(GBAFIX) config.mk
-
-%.gba: %.elf
+$(ROM): $(ELF) $(GBAFIX) config.mk
 	$(OBJCOPY) -O binary $< $@
 	@$(GBAFIX) $@ -p -t"$(TITLE)" -c$(GAME_CODE) -m$(MAKER_CODE) -r$(GAME_REVISION) --silent
 
 # ELF
 $(ELF): $(ALL_OBJS) $(LDS)
 	@echo "LD $(LDS) $(ALL_OBJS:$(BUILD_DIR)/%=%)"
-	@cd $(BUILD_DIR) && $(LD) -T $(LDS_LINK_PATH) -Map ../../$(MAP) -L../../tools/agbcc/lib -lgcc -lc $(ALL_OBJS:$(BUILD_DIR)/%=%) -o ../../$@
+	@cd $(BUILD_DIR) && $(LD) -T $(LDS_LINK_PATH) -Map "$(abspath $(MAP))" -L../../tools/agbcc/lib -lgcc -lc $(ALL_OBJS:$(BUILD_DIR)/%=%) -o "$(abspath $@)"
 	@$(STRIP) -N .gcc2_compiled. $(ELF)
 
 # C dependency file
