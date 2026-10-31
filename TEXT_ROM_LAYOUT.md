@@ -3118,7 +3118,9 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | EU | `0x080E9651`–`0x080E965F` | `src/record_player.o(.rodata)` | `src/record_player.cc`、`include/record_player.hh`；本地唱片至音频序号表 | 精确 |
 | EU | `0x080E9660`–`0x080F0539` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/eu/item_1.cc`–`item_4.cc` | 精确 |
 | EU | `0x080F053A`–`0x080F05D7` | `src/game_state.o(.rodata)` | `src/game_state.cc`、`include/game_state.hh` 与 `data/text/eu/game_state_1.cc`–`game_state_2.cc` | 精确 |
-| EU | `0x080F05D8`–`0x080F069F` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/eu/help_menu.cc` | 精确 |
+| EU | `0x080F05D8`–`0x080F0624` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/eu/help_menu.cc` | 精确 |
+| EU | `0x080F0625`–`0x080F069C` | `src/screen_flash.o(.rodata)` | `src/screen_flash.cc`、`include/screen_flash.hh`；120 帧闪色强度，ALIGN(1) | 精确 |
+| EU | `0x080F069D`–`0x080F069F` | 链接器对齐填充 | 下一个 `src/animal_data.o(.rodata)` 前的零填充，不是表元素或文本 | 精确 |
 | EU | `0x080F06A0`–`0x080F0ECB` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`include/animal_data.hh`、`data/text/eu/animal_data_1.cc`、`data/text/eu/animal_data_2.cc`、`data/text/eu/animal_data_3.cc` | 精确 |
 | EU | `0x080F0ECC`–`0x080F19BF` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/eu/entity_ui_1.cc`–`entity_ui_10.cc`；外部表和运行时文本均在同名头文件声明，汇编读取保持符号重定位 | 精确 |
 | EU | `0x080F19C0`–`0x080F1AC9` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/eu/common_ui_1.cc`–`common_ui_5.cc`；固定文本槽中的空标签以直接符号重定位 | 精确 |
@@ -3209,7 +3211,9 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | DE | `0x080E9611`–`0x080E961F` | `src/record_player.o(.rodata)` | `src/record_player.cc`、`include/record_player.hh`；本地唱片至音频序号表 | 精确 |
 | DE | `0x080E9620`–`0x080F09B1` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/de/item_1.cc`–`item_4.cc` | 精确 |
 | DE | `0x080F09B2`–`0x080F0A4F` | `src/game_state.o(.rodata)` | `src/game_state.cc`、`include/game_state.hh` 与 `data/text/de/game_state_1.cc`–`game_state_2.cc` | 精确 |
-| DE | `0x080F0A50`–`0x080F0B17` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/de/help_menu.cc` | 精确 |
+| DE | `0x080F0A50`–`0x080F0A9D` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/de/help_menu.cc` | 精确 |
+| DE | `0x080F0A9E`–`0x080F0B15` | `src/screen_flash.o(.rodata)` | `src/screen_flash.cc`、`include/screen_flash.hh`；120 帧闪色强度，ALIGN(1) | 精确 |
+| DE | `0x080F0B16`–`0x080F0B17` | 链接器对齐填充 | 下一个 `src/animal_data.o(.rodata)` 前的零填充，不是表元素或文本 | 精确 |
 | DE | `0x080F0B18`–`0x080F1367` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`include/animal_data.hh`、`data/text/de/animal_data_1.cc`、`data/text/de/animal_data_2.cc`、`data/text/de/animal_data_3.cc` | 精确 |
 | DE | `0x080F1368`–`0x080F1E5B` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/de/entity_ui_1.cc`–`entity_ui_10.cc`；外部表和运行时文本均在同名头文件声明，汇编读取保持符号重定位 | 精确 |
 | DE | `0x080F1E5C`–`0x080F1F65` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/de/common_ui_1.cc`–`common_ui_5.cc`；固定文本槽中的空标签以直接符号重定位 | 精确 |
