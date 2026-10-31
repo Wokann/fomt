@@ -299,7 +299,7 @@ SECTIONS
             .text.SetVaseArticleId__9GameScene17MaryItemArticleId
             .text.BeginEggIncubation__9GameScene29MaryChickenCoopIncubatorIndex);
         asm/screen_flash.o(.text);
-        asm/game_state.o(.text.game_scene_after_screen_flash);
+        src/world_rebuild.o(.text.RebuildMapEntitiesForNewDay__9GameScene);
         src/game_scene.o(
             .text.RefreshAllNpcSchedules__9GameScene
             .text.ChangePlayerStaminaAndFatigue__9GameSceneii

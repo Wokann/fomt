@@ -203,12 +203,26 @@ typedef char GameSceneEventIconIdOffsetCheck[offsetof(GameSceneEventIconRecord, 
 
 // The native clock slot has four-byte storage, unlike the packed GameTime.
 // Construction preserves its unknown bits; saving copies only the low halfword.
-struct GameScenePreservedClock {
-    u16 clock_hour : 5;
-    u16 clock_minute : 6;
-    u16 unk_11 : 5;
-
-    GameScenePreservedClock() : clock_hour(6), clock_minute(0) {}
+union GameScenePreservedClock {
+    struct Fields {
+        u16 clock_hour : 5;
+        u16 clock_minute : 6;
+        u16 unk_11 : 5;
+    } fields;
+    u16 encoded;
+    GameScenePreservedClock()
+    {
+        fields.clock_hour = 6;
+        fields.clock_minute = 0;
+    }
+    static unsigned int DecodeHour(u16 const & value)
+    {
+        return (static_cast<u32>(value) << (32 - 5)) >> (32 - 5);
+    }
+    unsigned int GetHour() const
+    {
+        return DecodeHour(encoded);
+    }
 };
 
 // This native overnight record saves the map and clock, not coordinates.
@@ -464,11 +478,32 @@ struct GameSceneBlendOwner {
     ~GameSceneBlendOwner() { delete value; }
 };
 
+#include "world_rebuild.hh"
+#pragma interface "game_scene.hh"
+
 struct GameSceneWorldOwner {
     GameObject * value;
     explicit GameSceneWorldOwner(GameObject * input = nullptr) : value(input) {}
+    GameSceneWorldOwner(GameSceneWorldOwnerTransfer other) : value(other.release()) {}
     ~GameSceneWorldOwner() { delete value; }
+    GameSceneWorldOwner & operator=(GameObject * world)
+    {
+        if (world != value)
+            delete value;
+        value = world;
+        return *this;
+    }
+    GameSceneWorldOwner & operator=(GameSceneWorldOwnerTransfer other)
+    {
+        GameObject * world = other.release();
+        if (world != value)
+            delete value;
+        value = world;
+        return *this;
+    }
 };
+
+typedef char GameSceneWorldOwnerSizeCheck[sizeof(GameSceneWorldOwner) == 4 ? 1 : -1];
 
 struct GameSceneTextVariablesOwner {
     GameSceneTextVariables * value;
@@ -581,6 +616,7 @@ struct GameScene : AScene {
     void OpenFarmingTutorial(MaryFarmingTutorialKind kind);
     void OpenNameEntry(MaryNameEntryKind kind, MaryNameEntryTargetIndex target_index);
     void FlashScreenColor(u32 color);
+    void RebuildMapEntitiesForNewDay();
     void RunHarvestSpriteAnimalCareMinigame(MaryCharacterId sprite_id);
     void RunHarvestSpriteHarvestingMinigame(MaryCharacterId sprite_id);
     void RunHarvestSpriteWateringMinigame(MaryCharacterId sprite_id);

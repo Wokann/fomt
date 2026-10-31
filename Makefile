@@ -397,6 +397,9 @@ $(BUILD_DIR)/src/map_clock_status.o $(BUILD_DIR)/src/hardware_dma_link.o: CXXFLA
 # Calendar helpers and the transition lookup occupy separate native code runs.
 $(BUILD_DIR)/src/time_of_day.o: CXXFLAGS += -ffunction-sections
 
+# The native new-day operation occupies one independent code span.
+$(BUILD_DIR)/src/world_rebuild.o: CXXFLAGS += -ffunction-sections
+
 # The NPC constructor and partner queries occupy separate native code runs.
 $(BUILD_DIR)/src/npc_collection.o: CXXFLAGS += -ffunction-sections
 

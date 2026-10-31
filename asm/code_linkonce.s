@@ -819,7 +819,7 @@ sub_080D8178:
     add r4, sp
     adds r0, r4, #0
     movs r3, #0
-    bl func_0801F910
+    bl CreateGameWorld
     ldr r2, [r4]
     ldr r1, [pc, #0x8c]
     add r1, sp
@@ -899,7 +899,7 @@ sub_080D8178:
     add r4, sp
     adds r0, r4, #0
     movs r3, #1
-    bl func_0801F910
+    bl CreateGameWorld
     ldr r2, [r4]
     ldr r1, [pc, #0x70]
     add r1, sp
@@ -7383,7 +7383,7 @@ sub_080D8178: @ 0x080D8178
 	add r4, sp
 	adds r0, r4, #0
 	movs r3, #0
-	bl func_0801FB7C
+	bl CreateGameWorld
 	ldr r2, [r4]
 	ldr r1, .L080D8810 @ =0x0000049C
 	add r1, sp
@@ -7468,7 +7468,7 @@ sub_080D8178: @ 0x080D8178
 	add r4, sp
 	adds r0, r4, #0
 	movs r3, #1
-	bl func_0801FB7C
+	bl CreateGameWorld
 	ldr r2, [r4]
 	ldr r1, .L080D88B0 @ =0x000004A4
 	add r1, sp

@@ -925,124 +925,6 @@ __18GameStateSaveImageR10SramAccessUiRUi:
     .align 2, 0
 .Ljp_08011910: .4byte gSramAccessStatus
 
-    .section .text.game_scene_after_screen_flash, "ax", %progbits
-    .thumb
-    .align 2, 0
-
-    .global func_08014AF8
-    .thumb_func
-func_08014AF8:
-    push {r4, r5, r6, lr}
-    sub sp, #0xc
-    ldr r5, [r0, #4]
-    adds r4, r5, #0
-    adds r4, #0xa8
-    movs r6, #0
-    ldr r1, [r4]
-    cmp r6, r1
-    beq .Ljp_080149EE
-    cmp r1, #0
-    beq .Ljp_080149EE
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_080149EE:
-    str r6, [r4]
-    adds r4, r5, #0
-    adds r4, #0x8c
-    ldr r0, [r4]
-    bl DayUpdate__18GameStateSaveImage
-    adds r6, r5, #0
-    adds r6, #0xa8
-    ldr r1, [r4]
-    adds r0, r5, #0
-    adds r0, #0x88
-    ldr r2, [r0]
-    mov r0, sp
-    movs r3, #0
-    bl func_0801F910
-    ldr r1, [sp]
-    mov r0, sp
-    str r0, [sp, #4]
-    str r1, [sp, #8]
-    movs r0, #0
-    str r0, [sp]
-    adds r4, r1, #0
-    ldr r1, [r6]
-    adds r5, r6, #0
-    cmp r4, r1
-    beq .Ljp_08014A34
-    cmp r1, #0
-    beq .Ljp_08014A34
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08014A34:
-    str r4, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Ljp_08014A48
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08014A48:
-    ldr r0, [r5]
-    ldr r1, [r0]
-    movs r2, #0x9c
-    lsls r2, r2, #1
-    adds r1, r1, r2
-    ldr r1, [r1]
-    bl _call_via_r1
-    ldr r0, [r5]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    adds r4, r0, #0
-    ldr r0, .Ljp_08014A88 @ =gUnk_0300040C
-    ldr r1, [r0]
-    movs r2, #0xdb
-    lsls r2, r2, #2
-    adds r0, r1, r2
-    ldrb r0, [r0]
-    cmp r0, #0
-    beq .Ljp_08014AA2
-    adds r2, #8
-    adds r0, r1, r2
-    ldrh r0, [r0]
-    lsls r0, r0, #0x1b
-    lsrs r1, r0, #0x1b
-    cmp r1, #5
-    bhi .Ljp_08014A8C
-    movs r0, #6
-    b .Ljp_08014A8E
-    .align 2, 0
-.Ljp_08014A88: .4byte gUnk_0300040C
-.Ljp_08014A8C:
-    movs r0, #0x1e
-.Ljp_08014A8E:
-    subs r2, r0, r1
-    ldr r0, [r4, #0x14]
-    lsls r1, r2, #3
-    subs r1, r1, r2
-    lsls r2, r2, #1
-    rsbs r2, r2, #0
-    ldr r3, [r0, #0x64]
-    adds r0, r4, #0
-    bl _call_via_r3
-.Ljp_08014AA2:
-    add sp, #0xc
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-
     .section .text.game_scene_after_actor_commands, "ax", %progbits
 
     .global func_08014C70
@@ -11400,9 +11282,9 @@ func_0801EE00:
     .byte 0x2C, 0x60
     .byte 0x01, 0xB0, 0x08, 0xBC, 0x98, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x6C, 0x04, 0x00, 0x00
     .byte 0x7C, 0x10, 0x00, 0x00
-    .global func_0801F910
+    .global CreateGameWorld
     .thumb_func
-func_0801F910:
+CreateGameWorld:
     push {r4, r5, r6, r7, lr}
     sub sp, #0x14
     adds r7, r0, #0
@@ -12365,123 +12247,6 @@ __18GameStateSaveImageR10SramAccessUiRUi: @ 0x08011650
     bx r1
     .align 2, 0
 .L08011930: .4byte gSramAccessStatus
-
-    .section .text.game_scene_after_screen_flash, "ax", %progbits
-    .thumb
-    .align 2, 0
-
-    thumb_func_start func_08014AF8
-func_08014AF8: @ 0x08014AF8
-    push {r4, r5, r6, lr}
-    sub sp, #0xc
-    ldr r5, [r0, #4]
-    adds r4, r5, #0
-    adds r4, #0xa8
-    movs r6, #0
-    ldr r1, [r4]
-    cmp r6, r1
-    beq .L08014B1A
-    cmp r1, #0
-    beq .L08014B1A
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08014B1A:
-    str r6, [r4]
-    adds r4, r5, #0
-    adds r4, #0x8c
-    ldr r0, [r4]
-    bl DayUpdate__18GameStateSaveImage
-    adds r6, r5, #0
-    adds r6, #0xa8
-    ldr r1, [r4]
-    adds r0, r5, #0
-    adds r0, #0x88
-    ldr r2, [r0]
-    mov r0, sp
-    movs r3, #0
-    bl func_0801FB7C
-    ldr r1, [sp]
-    mov r0, sp
-    str r0, [sp, #4]
-    str r1, [sp, #8]
-    movs r0, #0
-    str r0, [sp]
-    adds r4, r1, #0
-    ldr r1, [r6]
-    adds r5, r6, #0
-    cmp r4, r1
-    beq .L08014B60
-    cmp r1, #0
-    beq .L08014B60
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08014B60:
-    str r4, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .L08014B74
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08014B74:
-    ldr r0, [r5]
-    ldr r1, [r0]
-    movs r2, #0x9c
-    lsls r2, r2, #1
-    adds r1, r1, r2
-    ldr r1, [r1]
-    bl _call_via_r1
-    ldr r0, [r5]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    adds r4, r0, #0
-    ldr r0, .L08014BB4 @ =gUnk_0300040C
-    ldr r1, [r0]
-    movs r2, #0xdb
-    lsls r2, r2, #2
-    adds r0, r1, r2
-    ldrb r0, [r0]
-    cmp r0, #0
-    beq .L08014BCE
-    adds r2, #8
-    adds r0, r1, r2
-    ldrh r0, [r0]
-    lsls r0, r0, #0x1b
-    lsrs r1, r0, #0x1b
-    cmp r1, #5
-    bhi .L08014BB8
-    movs r0, #6
-    b .L08014BBA
-    .align 2, 0
-.L08014BB4: .4byte gUnk_0300040C
-.L08014BB8:
-    movs r0, #0x1e
-.L08014BBA:
-    subs r2, r0, r1
-    ldr r0, [r4, #0x14]
-    lsls r1, r2, #3
-    subs r1, r1, r2
-    lsls r2, r2, #1
-    rsbs r2, r2, #0
-    ldr r3, [r0, #0x64]
-    adds r0, r4, #0
-    bl _call_via_r3
-.L08014BCE:
-    add sp, #0xc
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
 
     .section .text.game_scene_after_actor_commands, "ax", %progbits
 
@@ -26726,8 +26491,8 @@ func_0801FAC8: @ 0x0801FAC8
 .L0801FB74: .4byte 0x0000046C
 .L0801FB78: .4byte 0x0000107C
 
-    thumb_func_start func_0801FB7C
-func_0801FB7C: @ 0x0801FB7C
+    thumb_func_start CreateGameWorld
+CreateGameWorld: @ 0x0801FB7C
     push {r4, r5, r6, r7, lr}
     sub sp, #0x14
     adds r7, r0, #0
