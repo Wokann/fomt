@@ -218,7 +218,8 @@ SECTIONS
         src/scene_harvest_sprite_minigames.o(.text.RunHarvestSpriteAnimalCareMinigame__9GameScene15MaryCharacterId .text.RunHarvestSpriteHarvestingMinigame__9GameScene15MaryCharacterId .text.RunHarvestSpriteWateringMinigame__9GameScene15MaryCharacterId);
         src/intro_story_scene.o(.text.StartFarmInheritanceFlashback__9GameScene);
         src/scene_rucksack.o(.text.OpenRucksackMenu__9GameScene);
-        asm/game_state.o(.text.game_scene_after_rucksack_menu);
+        src/town_map.o(.text.OpenTownMap__9GameSceneUc);
+        asm/game_state.o(.text.game_scene_after_town_map);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/scene_cooking.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -615,13 +616,13 @@ SECTIONS
         . = 0x76AF4; /* DE ROM 0x08076AF4, selection-index continuation. */
         asm/code_0803EE94.o(.text.get_selection_index_after);
         . = 0x77D2C; /* DE ROM 0x08077D2C, 30x13 BG map copier. */
-        src/town_map_data.o(.text.copy_bg_map_30x13);
+        src/town_map.o(.text.CopyBgMap30x13);
         . = 0x77D5C; /* DE ROM 0x08077D5C, rectangular BG map copier. */
-        src/town_map_data.o(.text.copy_bg_map_rect);
+        src/town_map.o(.text.CopyBgMapRect);
         . = 0x77DB8; /* DE ROM 0x08077DB8, town-map copy continuation. */
         asm/code_0803EE94.o(.text.copy_bg_map_rect_after);
         . = 0x781BC; /* DE ROM 0x080781BC, town-map cursor hit test. */
-        src/town_map_data.o(.text.town_map_hotspot_contains);
+        src/town_map.o(.text.TownMapHotspotContains);
         . = 0x781E4; /* DE ROM 0x080781E4, town-map continuation. */
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
         src/scene_reference_page.o(.text.__18ReferencePageSceneG20SceneTransitionOwnerP18GameStateSaveImagei .text._._18ReferencePageScene .text.Run__18ReferencePageScene);
@@ -977,7 +978,8 @@ SECTIONS
         src/entity_location.o(.text.RelocateEntityToMap__FP14GameSceneStateiUiiiUi);
         asm/code_linkonce.o(.text.game_scene_state_callbacks_after);
         src/game_scene.o(.text._._14GameSceneState);
-        asm/code_linkonce.o(.text.scene_calendar_before);
+        src/town_map.o(.text.CreateScene__17TownMapTransition .text.CreateScene__23TownMapReturnTransition);
+        src/town_map.o(.gnu.linkonce.t._._17TownMapTransition .gnu.linkonce.t._._23TownMapReturnTransition);
         src/scene_gamecube_link.o(.text.CreateScene__22GameCubeLinkTransition .gnu.linkonce.t._._22GameCubeLinkTransition);
         src/intro_story_scene.o(.text.CreateScene__20IntroStoryTransition);
         src/intro_story_scene.o(.gnu.linkonce.t._._20IntroStoryTransition);
@@ -1016,7 +1018,7 @@ SECTIONS
         src/scene_blacksmith_shop.o(.text.CreateScene__24BlacksmithShopTransition .gnu.linkonce.t._._24BlacksmithShopTransition);
         src/scene_supermarket.o(.text.CreateScene__29SupermarketPurchaseTransition .gnu.linkonce.t._._29SupermarketPurchaseTransition);
         src/scene_supermarket.o(.text.CreateScene__21SupermarketTransition .gnu.linkonce.t._._21SupermarketTransition);
-        asm/code_linkonce.o(.text.scene_supermarket_after);
+        src/town_map.o(.gnu.linkonce.t._._26TownMapSelectionTransition);
         src/scene_clock.o(.text.CreateScene__15ClockTransition .gnu.linkonce.t._._15ClockTransition);
         src/game_scene.o(.text.CreateScene__17ReturnToGameScene .gnu.linkonce.t._._17ReturnToGameScene);
         asm/code_linkonce.o(.text.scene_return_after);
@@ -1443,7 +1445,7 @@ SECTIONS
         . = ABSOLUTE(0x080FC580); src/records_screen_data.o(.rodata);
         . = ABSOLUTE(0x080FC7B0); src/staff_credits.o(.rodata);
         /* Town Map regional data: labels, hotspots, and lookup. */
-        . = ABSOLUTE(0x080FCDCE); src/town_map_data.o(.rodata);
+        . = ABSOLUTE(0x080FCDCE); src/town_map.o(.rodata);
          src/library_opening_hours_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/town_map_area_data.o(.rodata);

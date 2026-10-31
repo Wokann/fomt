@@ -136,8 +136,8 @@ extern void func_080E260C(void);
 extern void func_080777F4(void);
 extern void func_08077834(void);
 extern void func_080E2A88(void);
-extern void func_08078670(void);
-extern void func_080786A0(void);
+extern void DestroyTownMapUiScene(void) asm("_._14TownMapUiScene");
+extern void Run__14TownMapUiScene(void);
 extern void func_080E2B70(void);
 extern void func_0807AD18(void);
 extern void func_0807D960(void);
@@ -358,8 +358,8 @@ extern void func_08076EA8(void);
 extern void func_08077C6C(void);
 extern void func_08077CAC(void);
 extern void func_080E32E8(void);
-extern void func_08078AE8(void);
-extern void func_08078B18(void);
+extern void DestroyTownMapUiScene(void) asm("_._14TownMapUiScene");
+extern void Run__14TownMapUiScene(void);
 extern void func_080E33D0(void);
 extern void func_0807B174(void);
 extern void func_0807DDF8(void);
@@ -612,10 +612,10 @@ extern void func_0801EE00(void);
 extern void ShipProduct__20GameSceneWorldPrefixRC7Product(void);
 extern void CreateWorldEventIcon(void);
 extern void RemoveWorldEventIcon(void);
-extern void func_080DB1E4(void);
-extern void func_080DB238(void);
-extern void func_080DB2EC(void);
-extern void func_080DB314(void);
+extern void CreateScene__17TownMapTransition(void);
+extern void CreateScene__23TownMapReturnTransition(void);
+extern void DestroyTownMapTransition(void) asm("_._17TownMapTransition");
+extern void DestroyTownMapReturnTransition(void) asm("_._23TownMapReturnTransition");
 extern void CreateScene__22GameCubeLinkTransition(void);
 extern void DestroyGameCubeLinkTransition(void) asm("_._22GameCubeLinkTransition");
 extern void func_080DB404(void);
@@ -666,7 +666,7 @@ extern void DestroySupermarketPurchaseTransition(void) asm("_._29SupermarketPurc
 extern void CreateScene__29SupermarketPurchaseTransition(void);
 extern void DestroySupermarketTransition(void) asm("_._21SupermarketTransition");
 extern void CreateScene__21SupermarketTransition(void);
-extern void func_080DC1C8(void);
+extern void DestroyTownMapSelectionTransition(void) asm("_._26TownMapSelectionTransition");
 extern void DestroyClockTransition(void) asm("_._15ClockTransition");
 extern void CreateScene__15ClockTransition(void);
 extern void DestroyReturnToGameScene(void) asm("_._17ReturnToGameScene");
@@ -683,18 +683,18 @@ extern void func_080DC554(void);
 extern void DestroyGameSceneGroupSprite(void) asm("_._20GameSceneGroupSprite");
 extern void func_080DC5B4(void);
 extern void func_080DC5D4(void);
-extern RawVTableFunction const vtable_unk_080E5C14[] = {
+extern RawVTableFunction const __vt_17TownMapTransition[] = {
     nullptr,
     nullptr,
-    func_080DB2EC,
-    func_080DB1E4,
+    DestroyTownMapTransition,
+    CreateScene__17TownMapTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5C24[] = {
+extern RawVTableFunction const __vt_23TownMapReturnTransition[] = {
     nullptr,
     nullptr,
-    func_080DB314,
-    func_080DB238,
+    DestroyTownMapReturnTransition,
+    CreateScene__23TownMapReturnTransition,
 };
 
 extern RawVTableFunction const __vt_22GameCubeLinkTransition[] = {
@@ -946,10 +946,10 @@ extern RawVTableFunction const __vt_21SupermarketTransition[] = {
     CreateScene__21SupermarketTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5E44[] = {
+extern RawVTableFunction const __vt_26TownMapSelectionTransition[] = {
     nullptr,
     nullptr,
-    func_080DC1C8,
+    DestroyTownMapSelectionTransition,
     __pure_virtual,
 };
 
@@ -4460,14 +4460,13 @@ extern RawVTableFunction const vtable_unk_080E7BA4[]
     };
 
 #if defined(REGION_JP)
-// This JP virtual-method table begins at 0x080E6FF0. Its initial null also
-// terminates the preceding table, preserving the ROM's shared boundary word.
-extern RawVTableFunction const vtable_unk_080E6FF0[]
+// JP stores the Town Map scene table here; overseas stores a native core.
+extern RawVTableFunction const __vt_14TownMapUiScene[]
     SECTION(".rodata.vtable_7bb4") = {
         nullptr,
         nullptr,
-        func_08078670,
-        func_080786A0,
+        DestroyTownMapUiScene,
+        Run__14TownMapUiScene,
 #else
 extern RawVTableFunction const vtable_unk_080E7BB4[]
     SECTION(".rodata.vtable_7bb4") = {
@@ -4477,19 +4476,22 @@ extern RawVTableFunction const vtable_unk_080E7BB4[]
 #endif
     };
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7BC0[]
     SECTION(".rodata.vtable_7bc0") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_080E2B70,
-#else
-        nullptr,
-        nullptr,
-        func_08078AE8,
-        func_08078B18,
-#endif
     };
+#else
+extern RawVTableFunction const __vt_14TownMapUiScene[]
+    SECTION(".rodata.vtable_7bc0") = {
+        nullptr,
+        nullptr,
+        DestroyTownMapUiScene,
+        Run__14TownMapUiScene,
+    };
+#endif
 
 // The reference-page wrapper owns its compiler table at the regional slot.
 // Preserve the unrelated overseas core and the following JP poultry core.

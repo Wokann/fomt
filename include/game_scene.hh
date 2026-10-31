@@ -264,6 +264,19 @@ typedef char GameSceneControllerEventIconArrayCheck[offsetof(GameSceneScriptCont
 typedef char GameSceneControllerActorArrayCheck[offsetof(GameSceneScriptController, actor_records) == 0x524 ? 1 : -1];
 typedef char GameSceneControllerSizeCheck[sizeof(GameSceneScriptController) == 0x554 ? 1 : -1];
 
+// The town-map return packet stores a byte flag, a 16-bit map field and
+// signed coordinates. Its natural padding remains untouched when unused.
+struct GameSceneTownMapSelection {
+    bool has_selection;
+    MaryMapId map : 16;
+    i16 x;
+    i16 y;
+};
+typedef char GameSceneTownMapSelectionSizeCheck[sizeof(GameSceneTownMapSelection) == 8 ? 1 : -1];
+typedef char GameSceneTownMapSelectionFlagCheck[offsetof(GameSceneTownMapSelection, has_selection) == 0 ? 1 : -1];
+typedef char GameSceneTownMapSelectionXCheck[offsetof(GameSceneTownMapSelection, x) == 4 ? 1 : -1];
+typedef char GameSceneTownMapSelectionYCheck[offsetof(GameSceneTownMapSelection, y) == 6 ? 1 : -1];
+
 // The return transition and the native GameScene constructor copy this whole
 // three-word record. Only its first word is initialized by the shop commands;
 // the remaining payload is not assumed to be zero or given guessed meanings.
@@ -301,6 +314,7 @@ struct GameSceneResumeRequest {
         AFTER_FRISBEE_GAME = 0x26,
         AFTER_FRISBEE_SCOREBOARD = 0x27,
         AFTER_FARM_INHERITANCE_FLASHBACK = 0x28,
+        AFTER_TOWN_MAP = 0x29,
         AFTER_RUCKSACK_MENU = 0x2A,
 #else
         AFTER_SUPERMARKET_SHOP = 10,
@@ -334,12 +348,14 @@ struct GameSceneResumeRequest {
         AFTER_FRISBEE_GAME = 0x27,
         AFTER_FRISBEE_SCOREBOARD = 0x28,
         AFTER_FARM_INHERITANCE_FLASHBACK = 0x29,
+        AFTER_TOWN_MAP = 0x2A,
         AFTER_RUCKSACK_MENU = 0x2B,
 #endif
     };
     i32 kind;
     union {
         u8 unk_04[8];
+        GameSceneTownMapSelection town_map_selection;
         MaryGameCubeLinkResult gamecube_link_result;
         bool harvest_sprite_minigame_succeeded;
     };
@@ -582,6 +598,7 @@ struct GameScene : AScene {
     void RunGameCubeLink();
     void StartFarmInheritanceFlashback();
     void OpenRucksackMenu();
+    void OpenTownMap(u8 allow_teleport);
     void RunHarvestSpriteAnimalCareMinigame(MaryCharacterId sprite_id);
     void RunHarvestSpriteHarvestingMinigame(MaryCharacterId sprite_id);
     void RunHarvestSpriteWateringMinigame(MaryCharacterId sprite_id);
