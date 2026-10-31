@@ -318,6 +318,7 @@ struct GameSceneResumeRequest {
         AFTER_RUCKSACK_MENU = 0x2A,
         AFTER_FESTIVAL_ANIMAL_SELECTION = 0x2C,
         AFTER_STAFF_CREDITS = 0x2D,
+        AFTER_FARMING_TUTORIAL = 0x2E,
 #else
         AFTER_SUPERMARKET_SHOP = 10,
         AFTER_SUPERMARKET_PURCHASE = 11,
@@ -354,6 +355,7 @@ struct GameSceneResumeRequest {
         AFTER_RUCKSACK_MENU = 0x2B,
         AFTER_FESTIVAL_ANIMAL_SELECTION = 0x2D,
         AFTER_STAFF_CREDITS = 0x2E,
+        AFTER_FARMING_TUTORIAL = 0x2F,
 #endif
     };
     i32 kind;
@@ -605,6 +607,7 @@ struct GameScene : AScene {
     void OpenTownMap(u8 allow_teleport);
     void SelectFestivalAnimal(MaryFestivalAnimalKind kind);
     void RunStaffCredits();
+    void OpenFarmingTutorial(MaryFarmingTutorialKind kind);
     void RunHarvestSpriteAnimalCareMinigame(MaryCharacterId sprite_id);
     void RunHarvestSpriteHarvestingMinigame(MaryCharacterId sprite_id);
     void RunHarvestSpriteWateringMinigame(MaryCharacterId sprite_id);

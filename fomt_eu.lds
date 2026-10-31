@@ -221,7 +221,8 @@ SECTIONS
         src/town_map.o(.text.OpenTownMap__9GameSceneUc);
         src/animal_festival.o(.text.SelectFestivalAnimal__9GameScene22MaryFestivalAnimalKind);
         src/staff_credits.o(.text.RunStaffCredits__9GameScene);
-        asm/game_state.o(.text.game_scene_after_staff_credits);
+        src/farming_tutorial.o(.text.OpenFarmingTutorial__9GameScene23MaryFarmingTutorialKind);
+        asm/game_state.o(.text.game_scene_after_farming_tutorial);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/scene_cooking.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -478,8 +479,8 @@ SECTIONS
         src/scene_text_variables.o(.text.__22GameSceneTextVariablesP18GameStateSaveImage);
         src/scene_text_variables.o(.text.Lookup__22GameSceneTextVariablesUi);
         src/scene_text_variables.o(.text.Set__22GameSceneTextVariablesUiPCc);
-        src/script_scene.o(.text.__21ScriptSceneTransitionR20SceneTransitionOwnerUi);
-        src/script_scene.o(.text.CreateScene__21ScriptSceneTransition);
+        src/farming_tutorial.o(.text.__25FarmingTutorialTransitionG20SceneTransitionOwner23MaryFarmingTutorialKind);
+        src/farming_tutorial.o(.text.CreateScene__25FarmingTutorialTransition);
         src/ui_text_window.o(.text.ui_text_window_border_command);
         asm/code_0803A8A4.o(.text.ui_text_window_native);
         src/ui_text_window.o(.text.ui_text_window_state);
@@ -1040,13 +1041,13 @@ SECTIONS
         asm/code_linkonce.o(.text.npc_timed_path_search_after);
         src/scene_text_variables.o(.text._._22GameSceneTextVariables);
         src/ui_state.o(.text.Lookup__23ScriptTextVariableStoreUi .text._._23ScriptTextVariableStore);
-        src/script_scene.o(.gnu.linkonce.t.__thunk_4__._11ScriptScene);
-        src/script_scene.o(.gnu.linkonce.t.__thunk_12__._11ScriptScene);
-        asm/code_linkonce.o(.text.script_scene_runtime);
-        src/script_scene.o(.gnu.linkonce.t._._11ScriptScene);
-        src/script_scene.o(.gnu.linkonce.t._._15ScriptSceneBase);
-        src/script_scene.o(.gnu.linkonce.t._._21ScriptSceneTransition);
-        src/script_scene.o(.text.Push__11ScriptScenei);
+        src/farming_tutorial.o(.gnu.linkonce.t.__thunk_4__._20FarmingTutorialScene);
+        src/farming_tutorial.o(.gnu.linkonce.t.__thunk_12__._20FarmingTutorialScene);
+        asm/code_linkonce.o(.text.farming_tutorial_runtime);
+        src/farming_tutorial.o(.gnu.linkonce.t._._20FarmingTutorialScene);
+        src/farming_tutorial.o(.gnu.linkonce.t._._24FarmingTutorialSceneBase);
+        src/farming_tutorial.o(.gnu.linkonce.t._._25FarmingTutorialTransition);
+        src/farming_tutorial.o(.text.Push__20FarmingTutorialScenei);
         src/ui_text_window.o(.text.ui_text_window_tile_upload);
         src/ui_text_window.o(.gnu.linkonce.t._._25UiTextWindowBorderCommand);
         src/ui_text_window.o(.gnu.linkonce.t._._29UiTextWindowTileUploadCommand);
@@ -1234,11 +1235,11 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_76d4);
         . = ALIGN(4); src/scene_text_variables.o(.gnu.linkonce.d.__vt_22GameSceneTextVariables);
         . = ALIGN(4); src/ui_state.o(.gnu.linkonce.d.__vt_23ScriptTextVariableStore);
-        . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_11ScriptScene.17HardwareBootstrap);
-        . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_11ScriptScene.13AScriptEngine);
-        . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_11ScriptScene);
-        . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_15ScriptSceneBase);
-        . = ALIGN(4); src/script_scene.o(.gnu.linkonce.d.__vt_21ScriptSceneTransition);
+        . = ALIGN(4); src/farming_tutorial.o(.gnu.linkonce.d.__vt_20FarmingTutorialScene.17HardwareBootstrap);
+        . = ALIGN(4); src/farming_tutorial.o(.gnu.linkonce.d.__vt_20FarmingTutorialScene.13AScriptEngine);
+        . = ALIGN(4); src/farming_tutorial.o(.gnu.linkonce.d.__vt_20FarmingTutorialScene);
+        . = ALIGN(4); src/farming_tutorial.o(.gnu.linkonce.d.__vt_24FarmingTutorialSceneBase);
+        . = ALIGN(4); src/farming_tutorial.o(.gnu.linkonce.d.__vt_25FarmingTutorialTransition);
         . = ALIGN(4); src/ui_text_window.o(.gnu.linkonce.d.__vt_25UiTextWindowBorderCommand);
         . = ALIGN(4); src/ui_text_window.o(.gnu.linkonce.d.__vt_29UiTextWindowTileUploadCommand);
         . = ALIGN(4); src/control_widget.o(.gnu.linkonce.d.__vt_13ControlWidget);

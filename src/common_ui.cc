@@ -1,10 +1,23 @@
 #include "common_ui.hh"
 
+// These regional headers supply C/C++ IDs from the same list Mary compiles.
+#if defined(REGION_JP)
+#include "data/scripts/jp/fomt_scripts.mary.h"
+#elif defined(REGION_EU)
+#include "data/scripts/eu/fomt_scripts.mary.h"
+#elif defined(REGION_DE)
+#include "data/scripts/de/fomt_scripts.mary.h"
+#else
+#include "data/scripts/us/fomt_scripts.mary.h"
+#endif
+
 #include FOMT_TEXT_INCLUDE(common_ui_1.cc)
 
-// This halfword table is selected by an unresolved native caller.
-u16 const gUnk_080F19AE[] = {
-    0x0427, 0x0423, 0x0000,
+// Indexed by FARMING_TUTORIAL_CROPS / FARMING_TUTORIAL_ANIMALS.
+// The following runtime text retains the original alignment padding.
+u16 const gFarmingTutorialScriptIds[] = {
+    EventScript_TutorialEvent_CropFarmingInstructions,
+    EventScript_SystemMenu_SelectAnimalCategory,
 };
 
 #include FOMT_TEXT_INCLUDE(common_ui_2.cc)

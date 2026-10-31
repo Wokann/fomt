@@ -1,5 +1,60 @@
 # 代码 ROM 物理布局
 
+## 农场教程入口、实际所有权与功能命名（2026-10-31）
+
+原 `func_08013EF8` 恢复为
+`GameScene::OpenFarmingTutorial(MaryFarmingTutorialKind)`，按 ROM 顺序紧接
+工作人员名单入口。每版新增 **1 个 C++ 函数、144 字节**，四版合计 576
+字节；既有构造、工厂、析构、调整入口和 Push 的代码只迁移命名，不重复计数。
+
+| 区域 | 新 C++ 入口（144） | 既有构造（28） | 保留原生运行 | 两项脚本编号表 |
+| --- | --- | --- | --- | --- |
+| JP | `0x08013DCC–0x08013E5C` | `0x0803B490–0x0803B4AC` | `0x080DF848–0x080E00A8` | `0x080F120A` |
+| US | `0x08013EF8–0x08013F88` | `0x0803B6FC–0x0803B718` | `0x080E0094–0x080E0908` | `0x080F19AE` |
+| EU | `0x08013F0C–0x08013F9C` | `0x0803B710–0x0803B72C` | `0x080E00E0–0x080E0954` | `0x080F19FA` |
+| DE | `0x08013F18–0x08013FA8` | `0x0803B610–0x0803B62C` | `0x080DFFF8–0x080E086C` | `0x080F1E96` |
+
+以上代码范围为半开区间。请求种类为 JP 0x2E、海外 0x2F，
+未知请求载荷继续保持原生行为。四种语言的 Thomas 菜单以及游戏内菜单两组
+真实调用均选择种植 0／动物 1；类型复用 `MaryFarmingTutorialKind`。
+Mary 文档 `events/farming_tutorial_callable.md` 仅使用 FoMT 的结论，EU
+和 DE 的参数读取、入口与数据表另外按各自 ROM 核验。
+
+此前泛称 `ScriptScene` 的模块现在按完整消费链命名为
+`src/farming_tutorial.cc`／`include/farming_tutorial.hh`，类型为
+`FarmingTutorialScene`、`FarmingTutorialSceneBase` 和
+`FarmingTutorialTransition`。原脚本选择字段改为实际的 `kind` 及共享
+枚举类型。所有原成员、类表、汇编强符号和四份 LDS 均直接使用新真实名称，
+旧符号未以别名继续保留。
+
+这次从调用端的两个所有者临时对象确认，转场构造的后续转场参数应为
+**按值传递**，修正早期按引用声明。修正后仍为原有 28 字节构造，既有场景
+对象的全部 18 个已分配段（含零长度段）逐段一致；新入口自然生成原来的
+144 字节，不添加复制包装、内联汇编、优化选项或填充来凑长度。
+
+`gFarmingTutorialScriptIds[2]` 仍位于连续的 Common UI 数据对象，
+声明保持在 `include/common_ui.hh`。条目通过区域 `fomt_scripts.mary.h`
+读取实际 C/C++ 枚举：种植 `EventScript_TutorialEvent_CropFarmingInstructions`
+与动物分类 `EventScript_SystemMenu_SelectAnimalCategory`，不再写 0x0427／
+0x0423 裸编号。原尾部两字节零由紧随文本的原生对齐保留，不定义第三种教程。
+Common UI 全段重定位后字节、所有标签地址和相邻文本排列均保持原样。
+
+JP VM 0x0A9 的一处裸 BL 和原生运行中的一处脚本选择表地址已改为符号。
+原本已符号化的 `gMaryScriptTable` 读取继续保留。五张类表、全部关联函数
+以及有效选择表指针均具有真实重定位。字节搜索中，JP 另有三处选择表地址
+形似命中，EU、DE 各有一处函数地址形似命中；均以 `WaveData` 格式、size
+字段和载荷边界确认在 M4A PCM 采样数据内部，保留音频原样。
+
+运行循环及合并的 OnCall 分派仍为原生汇编，使用真实类成员／调整入口
+符号，不计为 C++。运行循环大小 JP 2144 字节、海外 2164 字节，OnCall
+分派各版 7676 字节；真实多继承布局、成员清理及所有权保持不变。
+
+四版普通 WSL `make -j4 GAME_REGION=<区域> GAME_REVISION=0 compare`
+全部通过，完整 8 MiB ROM 逐字节和 SHA-1 匹配。旧全局地址、有效重定位
+目标、保留输入段、每版 266 个未修改对象、GameScene 对象、既有教程代码
+和 Common UI 全段均核对通过。Mary 脚本正文、文本和音频／图形资源未改动。
+最早启动缺口仍为 `InitializeIntroSceneBackground` 的 156 字节。
+
 ## 工作人员名单核心、场景与后续转场（2026-10-31）
 
 紧接参赛动物选择的原 `func_08013E6C` 恢复为

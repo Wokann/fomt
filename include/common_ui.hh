@@ -12,7 +12,7 @@ extern char const gCppRuntimeBadAlloc_FixedLabels[];
 // Error fallback labels and the small native halfword table following them.
 extern char const gText_Fallback_Error[];
 extern char const gText_Fallback_None[];
-extern u16 const gUnk_080F19AE[];
+extern u16 const gFarmingTutorialScriptIds[2];
 extern char const gCppRuntimeBadAlloc_UiErrorFirst[];
 extern char const gCppRuntimeBadAlloc_UiErrorSecond[];
 
