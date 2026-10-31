@@ -154,9 +154,6 @@ extern void func_08081DC8(void);
 extern void func_080837C8(void);
 extern void func_080851A4(void);
 extern void func_08087E44(void);
-extern void func_0808A754(void);
-extern void func_0808C0DC(void);
-extern void func_0808C5DC(void);
 extern void func_0808C190(void);
 extern void func_0808E8F8(void);
 extern void func_08090F58(void);
@@ -311,9 +308,6 @@ extern void func_08082250(void);
 extern void func_08083C50(void);
 extern void func_0808562C(void);
 extern void func_08088304(void);
-extern void func_0808AC14(void);
-extern void func_0808C59C(void);
-extern void func_0808C5DC(void);
 extern void func_0808C650(void);
 extern void func_0808EDB8(void);
 extern void func_08090F58(void);
@@ -640,8 +634,6 @@ extern void DestroyRefrigeratorTransition(void) asm("_._22RefrigeratorTransition
 extern void CreateScene__22RefrigeratorTransition(void);
 extern void DestroyShelfTransition(void) asm("_._15ShelfTransition");
 extern void CreateScene__15ShelfTransition(void);
-extern void func_080DB88C(void);
-extern void func_080DB8D4(void);
 extern void DestroyCookingTransition(void) asm("_._17CookingTransition");
 extern void CreateScene__17CookingTransition(void);
 extern void DestroyReferencePageTransition(void) asm("_._23ReferencePageTransition");
@@ -798,11 +790,13 @@ extern RawVTableFunction const __vt_15ShelfTransition[] = {
     CreateScene__15ShelfTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5CF4[] = {
+extern void CreateScene__22RucksackMenuTransition(void);
+extern void DestroyRucksackMenuTransition(void) asm("_._22RucksackMenuTransition");
+extern RawVTableFunction const __vt_22RucksackMenuTransition[] = {
     nullptr,
     nullptr,
-    func_080DB8D4,
-    func_080DB88C,
+    DestroyRucksackMenuTransition,
+    CreateScene__22RucksackMenuTransition,
 };
 
 // Preserve the continuous catalog with actual GCC slots and direct members.
@@ -4778,43 +4772,16 @@ extern RawVTableFunction const vtable_unk_080E7D4C[]
     };
 #endif
 
+// The preceding core and scene tables are emitted by their actual C++ classes.
+// JP's next table is a different, still-native core and remains in the catalog.
 #if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E7D58[]
-    SECTION(".rodata.vtable_7d58") = {
-        nullptr,
-        nullptr,
-        func_0808A754,
-        nullptr,
-    };
-#endif
-
-extern RawVTableFunction const vtable_unk_080E7D68[]
-    SECTION(".rodata.vtable_7d68") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_0808C0DC,
-        func_0808C5DC,
-#else
-        nullptr,
-        nullptr,
-        func_0808AC14,
-#endif
-    };
-
 extern RawVTableFunction const vtable_unk_080E7D74[]
     SECTION(".rodata.vtable_7d74") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_0808C190,
-#else
-        nullptr,
-        nullptr,
-        func_0808C59C,
-        func_0808C5DC,
-#endif
     };
-
+#endif
 
 #if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7D84[]

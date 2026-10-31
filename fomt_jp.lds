@@ -255,7 +255,8 @@ SECTIONS
         src/scene_gamecube_link.o(.text.RunGameCubeLink__9GameScene);
         src/scene_harvest_sprite_minigames.o(.text.RunHarvestSpriteAnimalCareMinigame__9GameScene15MaryCharacterId .text.RunHarvestSpriteHarvestingMinigame__9GameScene15MaryCharacterId .text.RunHarvestSpriteWateringMinigame__9GameScene15MaryCharacterId);
         src/intro_story_scene.o(.text.StartFarmInheritanceFlashback__9GameScene);
-        asm/game_state.o(.text.game_scene_after_inheritance_flashback);
+        src/scene_rucksack.o(.text.OpenRucksackMenu__9GameScene);
+        asm/game_state.o(.text.game_scene_after_rucksack_menu);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/scene_cooking.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -702,6 +703,10 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_yodel_ranch_shop_scene_run);
         src/scene_tool_chest.o(.text.__14ToolChestSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._14ToolChestScene .text.Run__14ToolChestScene);
         asm/code_0803EE94.o(.text.after_tool_chest_scene_run);
+        src/scene_rucksack.o(.text.__16RucksackMenuCoreP18GameStateSaveImage .text._._16RucksackMenuCore);
+        asm/code_0803EE94.o(.text.after_rucksack_menu_core_lifecycle);
+        src/scene_rucksack.o(.text.__17RucksackMenuSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._17RucksackMenuScene .text.Run__17RucksackMenuScene);
+        asm/code_0803EE94.o(.text.after_rucksack_menu_scene);
         src/scene_refrigerator.o(.text.__17RefrigeratorSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._17RefrigeratorScene .text.Run__17RefrigeratorScene);
         asm/code_0803EE94.o(.text.after_refrigerator_scene_run);
         src/scene_shelf.o(.text.__10ShelfSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._10ShelfScene .text.Run__10ShelfScene);
@@ -1053,7 +1058,8 @@ SECTIONS
         src/scene_tool_chest.o(.text.CreateScene__19ToolChestTransition .gnu.linkonce.t._._19ToolChestTransition);
         src/scene_refrigerator.o(.text.CreateScene__22RefrigeratorTransition .gnu.linkonce.t._._22RefrigeratorTransition);
         src/scene_shelf.o(.text.CreateScene__15ShelfTransition .gnu.linkonce.t._._15ShelfTransition);
-        asm/code_linkonce.o(.text.scene_shelf_after);
+        asm/code_linkonce.o(.text.rucksack_menu_transition_factory);
+        src/scene_rucksack.o(.gnu.linkonce.t._._22RucksackMenuTransition);
         src/frisbee_scoreboard.o(.text.CreateScene__27FrisbeeScoreboardTransition .gnu.linkonce.t._._27FrisbeeScoreboardTransition);
         src/scene_frisbee.o(.text.CreateScene__17FrisbeeTransition .gnu.linkonce.t._._17FrisbeeTransition);
         src/scene_horse_race.o(.text.CreateScene__32HorseRaceMedalExchangeTransition .gnu.linkonce.t._._32HorseRaceMedalExchangeTransition);
@@ -1390,8 +1396,8 @@ SECTIONS
 . = ALIGN(4); src/scene_yodel_ranch_shop.o(.gnu.linkonce.d.__vt_19YodelRanchShopScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d3c);
 . = ALIGN(4); src/scene_tool_chest.o(.gnu.linkonce.d.__vt_14ToolChestScene);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7d58);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7d68);
+. = ALIGN(4); src/scene_rucksack.o(.gnu.linkonce.d.__vt_16RucksackMenuCore);
+. = ALIGN(4); src/scene_rucksack.o(.gnu.linkonce.d.__vt_17RucksackMenuScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d74);
 . = ALIGN(4); src/scene_refrigerator.o(.gnu.linkonce.d.__vt_17RefrigeratorScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7d90);
