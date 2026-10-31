@@ -258,7 +258,8 @@ SECTIONS
         src/scene_rucksack.o(.text.OpenRucksackMenu__9GameScene);
         src/town_map.o(.text.OpenTownMap__9GameSceneUc);
         src/animal_festival.o(.text.SelectFestivalAnimal__9GameScene22MaryFestivalAnimalKind);
-        asm/game_state.o(.text.game_scene_after_festival_animal_selection);
+        src/staff_credits.o(.text.RunStaffCredits__9GameScene);
+        asm/game_state.o(.text.game_scene_after_staff_credits);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/scene_cooking.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -663,6 +664,10 @@ SECTIONS
         . = 0x7684C; /* JP/US-shared selection-index state getter. */
         src/selection_state.o(.text.get_selection_index);
         . = 0x7685C; asm/code_0803EE94.o(.text.get_selection_index_after);
+        src/staff_credits.o(.text.__16StaffCreditsCore);
+        asm/code_0803EE94.o(.text.staff_credits_core_run);
+        src/staff_credits.o(.text.__17StaffCreditsSceneG20SceneTransitionOwner .text._._17StaffCreditsScene .text.Run__17StaffCreditsScene);
+        asm/code_0803EE94.o(.text.after_staff_credits_scene);
         . = 0x779BC; /* JP/US-shared 30x13 BG map copier. */
         src/town_map.o(.text.CopyBgMap30x13);
         . = 0x779EC; /* JP/US-shared rectangular BG map copier. */
@@ -1072,7 +1077,7 @@ SECTIONS
         src/scene_cooking.o(.text.CreateScene__17CookingTransition .gnu.linkonce.t._._17CookingTransition);
         src/scene_reference_page.o(.text.CreateScene__23ReferencePageTransition .gnu.linkonce.t._._23ReferencePageTransition);
         src/scene_special_merchant_shop.o(.text.CreateScene__29SpecialMerchantShopTransition .gnu.linkonce.t._._29SpecialMerchantShopTransition);
-        asm/code_linkonce.o(.text.scene_special_merchant_shop_after);
+        src/staff_credits.o(.text.CreateScene__22StaffCreditsTransition .gnu.linkonce.t._._22StaffCreditsTransition);
         src/scene_gift_wrapping.o(.text.CreateScene__22GiftWrappingTransition .gnu.linkonce.t._._22GiftWrappingTransition);
         src/scene_yodel_ranch_shop.o(.text.CreateScene__24YodelRanchShopTransition .gnu.linkonce.t._._24YodelRanchShopTransition);
         src/scene_poultry_farm_shop.o(.text.CreateScene__25PoultryFarmShopTransition .gnu.linkonce.t._._25PoultryFarmShopTransition);
@@ -1148,6 +1153,8 @@ SECTIONS
         asm/code_linkonce.o(.text.indexed_resource_archive_destructor_after);
         src/new_game.o(.text.new_game_birthday_core_cleanup);
         asm/code_linkonce.o(.text.new_game_birthday_core_cleanup_after);
+        src/staff_credits.o(.gnu.linkonce.t._._16StaffCreditsCore);
+        asm/code_linkonce.o(.text.after_staff_credits_core_destructor);
         src/scene_blacksmith_shop.o(.text.CreateScene__30BlacksmithShopResultTransition .gnu.linkonce.t._._30BlacksmithShopResultTransition);
         asm/code_linkonce.o(.text.after_blacksmith_shop_result_transition);
         src/game_menu.o(.gnu.linkonce.t._._26GameSceneMenuSelectionCore);
@@ -1368,8 +1375,8 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7b68);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_6fac);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7b78);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7b88);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_7b98);
+. = ALIGN(4); src/staff_credits.o(.gnu.linkonce.d.__vt_16StaffCreditsCore);
+. = ALIGN(4); src/staff_credits.o(.gnu.linkonce.d.__vt_17StaffCreditsScene);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ba4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7bb4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7bc0);

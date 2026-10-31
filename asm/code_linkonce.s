@@ -1965,65 +1965,6 @@ CreateScene__22RucksackMenuTransition:
 
     .section .text.scene_reference_page_after, "ax", %progbits
 
-    .section .text.scene_special_merchant_shop_after, "ax", %progbits
-
-    .global func_080DBC0C
-    .thumb_func
-func_080DBC0C:
-    push {r4, r5, lr}
-    sub sp, #0x10
-    adds r5, r0, #0
-    ldr r0, [r1, #4]
-    movs r4, #0
-    str r4, [r1, #4]
-    str r0, [sp, #4]
-    movs r0, #0xc
-    bl __builtin_new
-    add r1, sp, #4
-    bl func_08077C40
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r4, [r1]
-    str r0, [r5]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DB3F8
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DB3F8:
-    adds r0, r5, #0
-    add sp, #0x10
-    pop {r4, r5}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
-    .global func_080DBC50
-    .thumb_func
-func_080DBC50:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_080DB41C
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DB41C:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._15SceneTransition
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
     .section .text.scene_gift_wrapping_after, "ax", %progbits
 
     .section .text.scene_poultry_farm_shop_after, "ax", %progbits
@@ -12511,67 +12452,6 @@ CreateScene__22RucksackMenuTransition: @ 0x080DB88C
 
     .section .text.scene_reference_page_after, "ax", %progbits
 
-	.align 2, 0
-
-    .section .text.scene_special_merchant_shop_after, "ax", %progbits
-
-	.align 2, 0
-
-	thumb_func_start func_080DBC0C
-func_080DBC0C: @ 0x080DBC0C
-	push {r4, r5, lr}
-	sub sp, #0x10
-	adds r5, r0, #0
-	ldr r0, [r1, #4]
-	movs r4, #0
-	str r4, [r1, #4]
-	str r0, [sp, #4]
-	movs r0, #0xc
-	bl __builtin_new
-	add r1, sp, #4
-	bl func_08077C40
-	str r0, [sp]
-	mov r1, sp
-	str r1, [sp, #8]
-	str r0, [sp, #0xc]
-	str r4, [r1]
-	str r0, [r5]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L080DBC44
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DBC44:
-	adds r0, r5, #0
-	add sp, #0x10
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-	thumb_func_start func_080DBC50
-func_080DBC50: @ 0x080DBC50
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080DBC68
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080DBC68:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._15SceneTransition
-	pop {r4, r5}
-	pop {r0}
-	bx r0
 	.align 2, 0
 
     .section .text.scene_gift_wrapping_after, "ax", %progbits
@@ -23945,14 +23825,9 @@ func_080E25D4:
     .byte 0x00, 0x00
     .4byte __vt_23IndexedResourceProvider
     .byte 0xB4, 0x05, 0x00, 0x00
-    .global func_080E260C
-    .thumb_func
-func_080E260C:
-    push {lr}
-    bl _._17HardwareBootstrap
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.after_staff_credits_core_destructor, "ax", %progbits
+    .align 2, 0
+
     .global loc_080E2618
     .thumb_func
     loc_080E2618:
@@ -32046,12 +31921,8 @@ func_080E2E34:
 	.byte 0x00, 0x47, 0x00, 0x00
 	.4byte __vt_23IndexedResourceProvider
 	.byte 0xB4, 0x05, 0x00, 0x00
-	.global func_080E2E6C
-	.thumb_func
-func_080E2E6C:
-	.byte 0x00, 0xB5
-	bl _._17HardwareBootstrap
-	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    .section .text.after_staff_credits_core_destructor, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E2E78
 func_080E2E78: @ 0x080E2E78

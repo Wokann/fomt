@@ -1475,7 +1475,8 @@ OnCall__12ScriptEnginei:
     .byte 0xFF, 0xF7, 0x60, 0xF8
 .LScriptCallJp_0A8:
     .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x58, 0xF8
-    .byte 0xD1, 0xF7, 0x77, 0xFD, 0xFF, 0xF7, 0x54, 0xF8
+    bl RunStaffCredits__9GameScene
+    .byte 0xFF, 0xF7, 0x54, 0xF8
 .LScriptCallJp_0A9:
     .byte 0xDA, 0x26, 0x76, 0x00, 0xAB, 0x19, 0x1A, 0x68
     .byte 0x90, 0x00, 0x40, 0x19, 0x01, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xD5, 0x22
@@ -68979,88 +68980,12 @@ func_08076EA8: @ 0x08076AE0
     ldr r0, [r0]
     bx lr
 
-    .global func_080773E8
-    .thumb_func
-func_080773E8: @ 0x08077020
-    push {r4, r5, r6, lr}
-    sub sp, #8
-    adds r4, r0, #0
-    mov r3, sp
-    movs r1, #0x1e
-    movs r2, #1
-    movs r5, #0
-    mov r0, sp
-    strh r1, [r0]
-    movs r6, #1
-    strh r2, [r3, #2]
-    adds r0, r4, #0
-    mov r1, sp
-    bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
-    ldr r0, .Ljp_080770B0
-    str r0, [r4, #4]
-    adds r0, r4, #0
-    adds r0, #8
-    movs r1, #0
-    bl __23HardwareMusicPlayerSlotUc
-    adds r0, r4, #0
-    adds r0, #0xc
-    movs r1, #1
-    bl __23HardwareMusicPlayerSlotUc
-    add r2, sp, #4
-    movs r0, #0x1c
-    movs r1, #2
-    strh r0, [r2]
-    strh r1, [r2, #2]
-    ldr r0, [sp, #4]
-    adds r1, r4, #0
-    adds r1, #0x14
-    movs r2, #0
-    bl Clear2DGfxBuffer
-    ldr r0, .Ljp_080770B4
-    adds r1, r4, r0
-    ldr r0, .Ljp_080770B8
-    strh r0, [r1]
-    ldr r1, .Ljp_080770BC
-    adds r0, r4, r1
-    strh r5, [r0]
-    adds r1, #2
-    adds r0, r4, r1
-    strh r5, [r0]
-    adds r1, #4
-    adds r0, r4, r1
-    str r5, [r0]
-    adds r1, #4
-    adds r0, r4, r1
-    str r5, [r0]
-    adds r1, #4
-    adds r0, r4, r1
-    str r5, [r0]
-    adds r1, #4
-    adds r0, r4, r1
-    strb r6, [r0]
-    adds r1, #2
-    adds r0, r4, r1
-    strh r5, [r0]
-    ldr r0, .Ljp_080770C0
-    adds r1, r4, r0
-    ldr r0, .Ljp_080770C4
-    str r0, [r1]
-    adds r0, r4, #0
-    add sp, #8
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
+    .section .text.staff_credits_core_run, "ax", %progbits
     .align 2, 0
-.Ljp_080770B0: .4byte vtable_unk_080E7B88
-.Ljp_080770B4: .4byte 0x00000714
-.Ljp_080770B8: .4byte 0x0000FFA0
-.Ljp_080770BC: .4byte 0x00000716
-.Ljp_080770C0: .4byte 0x0000072C
-.Ljp_080770C4: .4byte gStaffCreditsLines
 
-    .global func_08077490
+    .global Run__16StaffCreditsCore
     .thumb_func
-func_08077490: @ 0x080770C8
+Run__16StaffCreditsCore: @ 0x080770C8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -69954,93 +69879,8 @@ func_08077A1C: @ 0x080775A4
     pop {r0}
     bx r0
 
-    .global func_08077C40
-    .thumb_func
-func_08077C40: @ 0x080777C8
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_080777F0
-    str r0, [r4]
-    movs r0, #0xe6
-    lsls r0, r0, #3
-    bl __builtin_new
-    bl func_080773E8
-    str r0, [r4, #4]
-    ldr r1, [r5]
-    movs r0, #0
-    str r0, [r5]
-    str r1, [r4, #8]
-    adds r0, r4, #0
-    pop {r4, r5}
-    pop {r1}
-    bx r1
+    .section .text.after_staff_credits_scene, "ax", %progbits
     .align 2, 0
-.Ljp_080777F0: .4byte vtable_unk_080E6FD4
-
-    .global func_080777F4
-    .thumb_func
-func_080777F4: @ 0x080777F4
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_08077830
-    str r0, [r4]
-    ldr r1, [r4, #8]
-    cmp r1, #0
-    beq .Ljp_08077810
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08077810:
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Ljp_08077822
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08077822:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._6AScene
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08077830: .4byte vtable_unk_080E6FD4
-
-    .global func_08077834
-    .thumb_func
-func_08077834: @ 0x08077834
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r5, r0, #0
-    adds r4, r1, #0
-    ldr r1, [r4, #4]
-    mov r0, sp
-    bl func_08077490
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Ljp_08077856
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08077856:
-    ldr r1, [r4, #8]
-    movs r0, #0
-    str r0, [r4, #8]
-    str r1, [r5]
-    adds r0, r5, #0
-    add sp, #4
-    pop {r4, r5}
-    pop {r1}
-    bx r1
 
     .global func_08077CE0
     .thumb_func
@@ -121601,7 +121441,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L080425DA
 	bl .L0804168A
 .L080425DA:
-	bl func_08013E6C
+	bl RunStaffCredits__9GameScene
 	bl .L0804168A
 .L080425E2:
 	movs r6, #0xda
@@ -219923,86 +219763,11 @@ func_08076EA8: @ 0x08076EA8
 	ldr r0, [r0]
 	bx lr
 
-	thumb_func_start func_080773E8
-func_080773E8: @ 0x080773E8
-	push {r4, r5, r6, lr}
-	sub sp, #8
-	adds r4, r0, #0
-	mov r3, sp
-	movs r1, #0x1e
-	movs r2, #1
-	movs r5, #0
-	mov r0, sp
-	strh r1, [r0]
-	movs r6, #1
-	strh r2, [r3, #2]
-	adds r0, r4, #0
-	mov r1, sp
-	bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
-	ldr r0, .L0807747C @ =vtable_unk_080E7B98
-	str r0, [r4, #4]
-	adds r0, r4, #0
-	adds r0, #8
-	movs r1, #0
-	bl __23HardwareMusicPlayerSlotUc
-	adds r0, r4, #0
-	adds r0, #0xc
-	movs r1, #1
-	bl __23HardwareMusicPlayerSlotUc
-	add r2, sp, #4
-	movs r0, #0x1c
-	movs r1, #2
-	strh r0, [r2]
-	strh r1, [r2, #2]
-	ldr r0, [sp, #4]
-	adds r1, r4, #0
-	adds r1, #0x14
-	movs r2, #0
-	bl Clear2DGfxBuffer
-	ldr r0, .L08077480 @ =0x00000714
-	adds r1, r4, r0
-	movs r0, #0x80
-	lsls r0, r0, #1
-	strh r0, [r1]
-	ldr r1, .L08077484 @ =0x00000716
-	adds r0, r4, r1
-	strh r5, [r0]
-	adds r1, #2
-	adds r0, r4, r1
-	strh r5, [r0]
-	adds r1, #4
-	adds r0, r4, r1
-	str r5, [r0]
-	adds r1, #4
-	adds r0, r4, r1
-	str r5, [r0]
-	adds r1, #4
-	adds r0, r4, r1
-	str r5, [r0]
-	adds r1, #4
-	adds r0, r4, r1
-	strb r6, [r0]
-	adds r1, #2
-	adds r0, r4, r1
-	strh r5, [r0]
-	ldr r0, .L08077488 @ =0x0000072C
-	adds r1, r4, r0
-	ldr r0, .L0807748C @ =gStaffCreditsLines
-	str r0, [r1]
-	adds r0, r4, #0
-	add sp, #8
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0807747C: .4byte vtable_unk_080E7B98
-.L08077480: .4byte 0x00000714
-.L08077484: .4byte 0x00000716
-.L08077488: .4byte 0x0000072C
-.L0807748C: .4byte gStaffCreditsLines
+    .section .text.staff_credits_core_run, "ax", %progbits
+    .align 2, 0
 
-	thumb_func_start func_08077490
-func_08077490: @ 0x08077490
+	thumb_func_start Run__16StaffCreditsCore
+Run__16StaffCreditsCore: @ 0x08077490
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -220939,90 +220704,8 @@ func_08077A1C: @ 0x08077A1C
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_08077C40
-func_08077C40: @ 0x08077C40
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L08077C68 @ =vtable_unk_080E7BA4
-	str r0, [r4]
-	movs r0, #0xe6
-	lsls r0, r0, #3
-	bl __builtin_new
-	bl func_080773E8
-	str r0, [r4, #4]
-	ldr r1, [r5]
-	movs r0, #0
-	str r0, [r5]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08077C68: .4byte vtable_unk_080E7BA4
-
-	thumb_func_start func_08077C6C
-func_08077C6C:
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L08077CA8
-	str r0, [r4]
-	ldr r1, [r4, #8]
-	cmp r1, #0
-	beq .L08077C88
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08077C88:
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L08077C9A
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08077C9A:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08077CA8: .4byte vtable_unk_080E7BA4
-
-	thumb_func_start func_08077CAC
-func_08077CAC:
-	push {r4, r5, lr}
-	sub sp, #4
-	adds r5, r0, #0
-	adds r4, r1, #0
-	ldr r1, [r4, #4]
-	mov r0, sp
-	bl func_08077490
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L08077CCE
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08077CCE:
-	ldr r1, [r4, #8]
-	movs r0, #0
-	str r0, [r4, #8]
-	str r1, [r5]
-	adds r0, r5, #0
-	add sp, #4
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+    .section .text.after_staff_credits_scene, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_08077CE0
 func_08077CE0: @ 0x08077CE0

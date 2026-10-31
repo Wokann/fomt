@@ -132,9 +132,6 @@ extern void func_0807565C(void);
 extern void func_0807532C(void);
 extern void func_08076E0C(void);
 extern void func_08076EA8(void);
-extern void func_080E260C(void);
-extern void func_080777F4(void);
-extern void func_08077834(void);
 extern void func_080E2A88(void);
 extern void DestroyTownMapUiScene(void) asm("_._14TownMapUiScene");
 extern void Run__14TownMapUiScene(void);
@@ -352,11 +349,8 @@ extern void func_0807561C(void);
 extern void func_0807565C(void);
 extern void func_080756D0(void);
 extern void func_080E2E34(void);
-extern void func_080E2E6C(void);
 extern void func_08076E0C(void);
 extern void func_08076EA8(void);
-extern void func_08077C6C(void);
-extern void func_08077CAC(void);
 extern void func_080E32E8(void);
 extern void DestroyTownMapUiScene(void) asm("_._14TownMapUiScene");
 extern void Run__14TownMapUiScene(void);
@@ -640,8 +634,8 @@ extern void DestroyReferencePageTransition(void) asm("_._23ReferencePageTransiti
 extern void CreateScene__23ReferencePageTransition(void);
 extern void DestroySpecialMerchantShopTransition(void) asm("_._29SpecialMerchantShopTransition");
 extern void CreateScene__29SpecialMerchantShopTransition(void);
-extern void func_080DBC0C(void);
-extern void func_080DBC50(void);
+extern void CreateScene__22StaffCreditsTransition(void);
+extern void DestroyStaffCreditsTransition(void) asm("_._22StaffCreditsTransition");
 extern void DestroyGiftWrappingTransition(void) asm("_._22GiftWrappingTransition");
 extern void CreateScene__22GiftWrappingTransition(void);
 extern void DestroyYodelRanchShopTransition(void) asm("_._24YodelRanchShopTransition");
@@ -851,11 +845,11 @@ extern RawVTableFunction const __vt_29SpecialMerchantShopTransition[] = {
     CreateScene__29SpecialMerchantShopTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5D74[] = {
+extern RawVTableFunction const __vt_22StaffCreditsTransition[] = {
     nullptr,
     nullptr,
-    func_080DBC50,
-    func_080DBC0C,
+    DestroyStaffCreditsTransition,
+    CreateScene__22StaffCreditsTransition,
 };
 
 // The actual GCC member table stays in this continuous native catalog.
@@ -4424,50 +4418,24 @@ extern RawVTableFunction const vtable_unk_080E7B78[]
 #endif
     };
 
+// The staff-credits core and scene now supply their real C++ vtables.
+// Retain only the neighboring, still-native regional objects here.
+#if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7B88[]
     SECTION(".rodata.vtable_7b88") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
-        func_080E260C,
-#else
         func_08076E0C,
         func_08076EA8,
-#endif
-    };
-
-#if defined(REGION_JP)
-// This JP table begins at the ROM pointer used by func_08077C40.  The first
-// null slot is physically adjacent to the preceding table, but belongs to
-// this object in the original layout.
-extern RawVTableFunction const vtable_unk_080E6FD4[]
-    SECTION(".rodata.vtable_7b98") = {
-        nullptr,
-        nullptr,
-        func_080777F4,
-        func_08077834,
     };
 #else
-extern RawVTableFunction const vtable_unk_080E7B98[]
-    SECTION(".rodata.vtable_7b98") = {
-        nullptr,
-        nullptr,
-        func_080E2E6C,
-    };
-#endif
-
 extern RawVTableFunction const vtable_unk_080E7BA4[]
     SECTION(".rodata.vtable_7ba4") = {
         nullptr,
-#if defined(REGION_JP)
         nullptr,
         func_080E2A88,
-#else
-        nullptr,
-        func_08077C6C,
-        func_08077CAC,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 // JP stores the Town Map scene table here; overseas stores a native core.
