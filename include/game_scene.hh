@@ -292,6 +292,9 @@ struct GameSceneResumeRequest {
         AFTER_COOKING_MENU = 0x1D,
         AFTER_RECIPE_LIST = 0x1E,
         AFTER_GAMECUBE_LINK = 0x1F,
+        AFTER_HARVEST_SPRITE_ANIMALCARE_MINIGAME = 0x20,
+        AFTER_HARVEST_SPRITE_HARVESTING_MINIGAME = 0x21,
+        AFTER_HARVEST_SPRITE_WATERING_MINIGAME = 0x22,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x23,
         AFTER_HORSE_RACE = 0x24,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x25,
@@ -320,6 +323,9 @@ struct GameSceneResumeRequest {
         AFTER_COOKING_MENU = 0x1E,
         AFTER_RECIPE_LIST = 0x1F,
         AFTER_GAMECUBE_LINK = 0x20,
+        AFTER_HARVEST_SPRITE_ANIMALCARE_MINIGAME = 0x21,
+        AFTER_HARVEST_SPRITE_HARVESTING_MINIGAME = 0x22,
+        AFTER_HARVEST_SPRITE_WATERING_MINIGAME = 0x23,
         AFTER_CHICKEN_FESTIVAL_CONTEST = 0x24,
         AFTER_HORSE_RACE = 0x25,
         AFTER_HORSE_RACE_MEDAL_EXCHANGE = 0x26,
@@ -331,6 +337,7 @@ struct GameSceneResumeRequest {
     union {
         u8 unk_04[8];
         MaryGameCubeLinkResult gamecube_link_result;
+        bool harvest_sprite_minigame_succeeded;
     };
 
     // Native requests initialize only kind; the remaining payload is opaque.
@@ -352,6 +359,10 @@ struct ReturnToGameScene : SceneTransition {
     void SetGameCubeLinkResult(MaryGameCubeLinkResult value)
     {
         request.gamecube_link_result = value;
+    }
+    void SetHarvestSpriteMinigameResult(bool value)
+    {
+        request.harvest_sprite_minigame_succeeded = value;
     }
     virtual SceneOwner CreateScene();
 
@@ -380,6 +391,9 @@ typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) 
 #pragma interface "game_scene.hh"
 
 #include "scene_gamecube_link.hh"
+#pragma interface "game_scene.hh"
+
+#include "scene_harvest_sprite_minigames.hh"
 #pragma interface "game_scene.hh"
 
 #include "scene_reference_page.hh"
@@ -562,6 +576,9 @@ struct GameScene : AScene {
     void OpenCookingMenu();
     void OpenRecipeList();
     void RunGameCubeLink();
+    void RunHarvestSpriteAnimalCareMinigame(MaryCharacterId sprite_id);
+    void RunHarvestSpriteHarvestingMinigame(MaryCharacterId sprite_id);
+    void RunHarvestSpriteWateringMinigame(MaryCharacterId sprite_id);
     void OpenWonShop();
     void OpenCarpenterShop();
     void OpenBlacksmithShop();

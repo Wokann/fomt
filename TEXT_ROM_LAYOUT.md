@@ -1,5 +1,31 @@
 # 文本 ROM 物理地址布局
 
+## 小矮人训练小游戏类表及目录（2026-10-31）
+
+`scene_harvest_sprite_minigames` 在四版实际槽位生成三个外层场景类表；
+三个转场类表继续处于连续目录，用真实 C++ 工厂／析构符号直接引用。
+六表均四个槽、16 字节，无原址别名或偏移匹配。
+
+| 区域 | 小游戏 | 外层场景类表半开范围 | 转场目录半开范围 |
+| --- | --- | --- | --- |
+| JP | AnimalCare | `0x080E76D8–0x080E76E8` | `0x080E50D4–0x080E50E4` |
+| JP | Harvesting | `0x080E76C8–0x080E76D8` | `0x080E50C4–0x080E50D4` |
+| JP | Watering | `0x080E76B8–0x080E76C8` | `0x080E50B4–0x080E50C4` |
+| US | AnimalCare | `0x080E82A8–0x080E82B8` | `0x080E5C94–0x080E5CA4` |
+| US | Harvesting | `0x080E8298–0x080E82A8` | `0x080E5C84–0x080E5C94` |
+| US | Watering | `0x080E8288–0x080E8298` | `0x080E5C74–0x080E5C84` |
+| EU | AnimalCare | `0x080E82F4–0x080E8304` | `0x080E5CE0–0x080E5CF0` |
+| EU | Harvesting | `0x080E82E4–0x080E82F4` | `0x080E5CD0–0x080E5CE0` |
+| EU | Watering | `0x080E82D4–0x080E82E4` | `0x080E5CC0–0x080E5CD0` |
+| DE | AnimalCare | `0x080E820C–0x080E821C` | `0x080E5BF8–0x080E5C08` |
+| DE | Harvesting | `0x080E81FC–0x080E820C` | `0x080E5BE8–0x080E5BF8` |
+| DE | Watering | `0x080E81EC–0x080E81FC` | `0x080E5BD8–0x080E5BE8` |
+
+UI 内部类表仍保留原生布局，只更新已核实的 15 个 UI API 成员符号；
+这部分不计入高级语言覆盖。本批没有移动文本、图片、脚本或图形资源。
+18 个函数新恢复 C++ 1,836 字节／版，四版字节、SHA-1、重定位及保留
+对象检查均通过，详细代码边界与审计范围见代码布局。
+
 ## GameCube 联机场景类表及目录（2026-10-31）
 
 `src/scene_gamecube_link.cc` 以正常 C++ 生成 UI 场景类表。JP 保留原 7f0c

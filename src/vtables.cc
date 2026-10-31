@@ -299,12 +299,6 @@ extern void func_080E3318(void);
 extern void func_080E3838(void);
 extern void func_080E3928(void);
 extern void func_080E36D8(void);
-extern void func_080A3AF8(void);
-extern void func_080A3BF4(void);
-extern void func_080A39FC(void);
-extern void func_080A3C40(void);
-extern void func_080A3900(void);
-extern void func_080A3C8C(void);
 extern void Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList(void);
 extern void DestroySavedWorldMap(void);
 extern void func_080AA974(void);
@@ -522,12 +516,6 @@ extern void func_080E3B80(void);
 extern void func_080E40A0(void);
 extern void func_080E4190(void);
 extern void func_080E3F40(void);
-extern void func_080A3BF4(void);
-extern void func_080A3AF8(void);
-extern void func_080A3C40(void);
-extern void func_080A39FC(void);
-extern void func_080A3C8C(void);
-extern void func_080A3900(void);
 extern void Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList(void);
 extern void DestroySavedWorldMap(void);
 extern void func_080AAF3C(void);
@@ -639,12 +627,12 @@ extern void CreateScene__22GameCubeLinkTransition(void);
 extern void DestroyGameCubeLinkTransition(void) asm("_._22GameCubeLinkTransition");
 extern void func_080DB404(void);
 extern void func_080DB44C(void);
-extern void func_080DB4F0(void);
-extern void func_080DB540(void);
-extern void func_080DB568(void);
-extern void func_080DB5B8(void);
-extern void func_080DB5E0(void);
-extern void func_080DB630(void);
+extern void CreateScene__31HarvestSpriteWateringTransition(void);
+extern void DestroyHarvestSpriteWateringTransition(void) asm("_._31HarvestSpriteWateringTransition");
+extern void CreateScene__33HarvestSpriteHarvestingTransition(void);
+extern void DestroyHarvestSpriteHarvestingTransition(void) asm("_._33HarvestSpriteHarvestingTransition");
+extern void CreateScene__33HarvestSpriteAnimalCareTransition(void);
+extern void DestroyHarvestSpriteAnimalCareTransition(void) asm("_._33HarvestSpriteAnimalCareTransition");
 extern void DestroyCalendarTransition(void) asm("_._18CalendarTransition");
 extern void CreateScene__18CalendarTransition(void);
 extern void DestroyToolChestTransition(void) asm("_._19ToolChestTransition");
@@ -745,25 +733,25 @@ extern RawVTableFunction const __vt_24SavedNameEntryTransition[] = {
     CreateScene__24SavedNameEntryTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5C74[] = {
+extern RawVTableFunction const __vt_31HarvestSpriteWateringTransition[] = {
     nullptr,
     nullptr,
-    func_080DB540,
-    func_080DB4F0,
+    DestroyHarvestSpriteWateringTransition,
+    CreateScene__31HarvestSpriteWateringTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5C84[] = {
+extern RawVTableFunction const __vt_33HarvestSpriteHarvestingTransition[] = {
     nullptr,
     nullptr,
-    func_080DB5B8,
-    func_080DB568,
+    DestroyHarvestSpriteHarvestingTransition,
+    CreateScene__33HarvestSpriteHarvestingTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5C94[] = {
+extern RawVTableFunction const __vt_33HarvestSpriteAnimalCareTransition[] = {
     nullptr,
     nullptr,
-    func_080DB630,
-    func_080DB5E0,
+    DestroyHarvestSpriteAnimalCareTransition,
+    CreateScene__33HarvestSpriteAnimalCareTransition,
 };
 
 // Preserve this class table in the remaining continuous transition catalog.
@@ -5566,52 +5554,6 @@ extern RawVTableFunction const vtable_unk_080E8268[]
     };
 #endif
 
-#if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E8278[]
-    SECTION(".rodata.vtable_8278") = {
-        nullptr,
-        nullptr,
-        func_080A3BF4,
-        func_080A3AF8,
-    };
-#endif
-
-extern RawVTableFunction const vtable_unk_080E8288[]
-    SECTION(".rodata.vtable_8288") = {
-        nullptr,
-        nullptr,
-#if defined(REGION_JP)
-        func_080A3C40,
-        func_080A39FC,
-#else
-        func_080A3BF4,
-        func_080A3AF8,
-#endif
-    };
-
-extern RawVTableFunction const vtable_unk_080E8298[]
-    SECTION(".rodata.vtable_8298") = {
-        nullptr,
-        nullptr,
-#if defined(REGION_JP)
-        func_080A3C8C,
-        func_080A3900,
-#else
-        func_080A3C40,
-        func_080A39FC,
-#endif
-    };
-
-#if !defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E82A8[]
-    SECTION(".rodata.vtable_82a8") = {
-        nullptr,
-        nullptr,
-        func_080A3C8C,
-        func_080A3900,
-    };
-#endif
-
 // Chicken-contest, naming-scene and base-map tables come from their classes.
 
 #if defined(REGION_JP)
@@ -6067,16 +6009,16 @@ extern RawVTableFunction const vtable_unk_080E7930[]
 #endif
 
 #if defined(REGION_JP)
-extern void func_080B3640(void);
-extern void func_080B3C3C(void);
+extern void DestroyHarvestSpriteAnimalCareUiScene(void) asm("_._30HarvestSpriteAnimalCareUiScene");
+extern void Run__30HarvestSpriteAnimalCareUiScene(void);
 // The JP counterpart of vtable_unk_080E850C starts at 0x080E793C. It is
 // physically adjacent to, but not part of, vtable_unk_080E7930.
 extern RawVTableFunction const vtable_unk_080E850C[]
     SECTION(".rodata.vtable_8500") = {
         nullptr,
         nullptr,
-        func_080B3640,
-        func_080B3C3C,
+        DestroyHarvestSpriteAnimalCareUiScene,
+        Run__30HarvestSpriteAnimalCareUiScene,
     };
 #else
 extern void func_080E4564(void);
@@ -6092,8 +6034,8 @@ extern RawVTableFunction const vtable_unk_080E8500[]
 #endif
 
 #if !defined(REGION_JP)
-extern void func_080B3C0C(void);
-extern void func_080B3C3C(void);
+extern void DestroyHarvestSpriteAnimalCareUiScene(void) asm("_._30HarvestSpriteAnimalCareUiScene");
+extern void Run__30HarvestSpriteAnimalCareUiScene(void);
 
 // Retain every slot of this four-entry region-dependent callback table in the
 // original ROM order until the owning type has been recovered.
@@ -6101,8 +6043,8 @@ extern RawVTableFunction const vtable_unk_080E850C[]
     SECTION(".rodata.vtable_850c") = {
         nullptr,
         nullptr,
-        func_080B3C0C,
-        func_080B3C3C,
+        DestroyHarvestSpriteAnimalCareUiScene,
+        Run__30HarvestSpriteAnimalCareUiScene,
     };
 #endif
 
@@ -6128,8 +6070,8 @@ extern RawVTableFunction const gUnk_080E7974[]
 #endif
 
 #if defined(REGION_JP)
-extern void func_080C0770(void);
-extern void func_080C0D90(void);
+extern void DestroyHarvestSpriteHarvestingUiScene(void) asm("_._30HarvestSpriteHarvestingUiScene");
+extern void Run__30HarvestSpriteHarvestingUiScene(void);
 #else
 extern void func_080E4D50(void);
 #endif
@@ -6139,8 +6081,8 @@ extern RawVTableFunction const vtable_unk_080E8538[]
     SECTION(".rodata.vtable_8538") = {
 #if defined(REGION_JP)
         nullptr,
-        func_080C0770,
-        func_080C0D90,
+        DestroyHarvestSpriteHarvestingUiScene,
+        Run__30HarvestSpriteHarvestingUiScene,
 #else
         nullptr,
         nullptr,
@@ -6151,8 +6093,8 @@ extern RawVTableFunction const vtable_unk_080E8538[]
 #if defined(REGION_JP)
 extern void func_080E4FF0(void);
 #else
-extern void func_080C0D44(void);
-extern void func_080C0D90(void);
+extern void DestroyHarvestSpriteHarvestingUiScene(void) asm("_._30HarvestSpriteHarvestingUiScene");
+extern void Run__30HarvestSpriteHarvestingUiScene(void);
 #endif
 
 // Preserve all four slots of this region-dependent table in ROM order.
@@ -6166,14 +6108,14 @@ extern RawVTableFunction const vtable_unk_080E8544[]
 #else
         nullptr,
         nullptr,
-        func_080C0D44,
-        func_080C0D90,
+        DestroyHarvestSpriteHarvestingUiScene,
+        Run__30HarvestSpriteHarvestingUiScene,
 #endif
     };
 
 #if defined(REGION_JP)
-extern void func_080C78F4(void);
-extern void func_080C7F1C(void);
+extern void DestroyHarvestSpriteWateringUiScene(void) asm("_._28HarvestSpriteWateringUiScene");
+extern void Run__28HarvestSpriteWateringUiScene(void);
 #else
 extern void func_080E4FF0(void);
 #endif
@@ -6184,8 +6126,8 @@ extern RawVTableFunction const vtable_unk_080E8554[]
     SECTION(".rodata.vtable_8554") = {
 #if defined(REGION_JP)
         nullptr,
-        func_080C78F4,
-        func_080C7F1C,
+        DestroyHarvestSpriteWateringUiScene,
+        Run__28HarvestSpriteWateringUiScene,
 #else
         nullptr,
         nullptr,
@@ -6196,8 +6138,8 @@ extern RawVTableFunction const vtable_unk_080E8554[]
 #if defined(REGION_JP)
 extern void func_080C8360(void);
 #else
-extern void func_080C7ED0(void);
-extern void func_080C7F1C(void);
+extern void DestroyHarvestSpriteWateringUiScene(void) asm("_._28HarvestSpriteWateringUiScene");
+extern void Run__28HarvestSpriteWateringUiScene(void);
 #endif
 
 // JP ends before the following VCount binding; the overseas core has four slots.
@@ -6210,8 +6152,8 @@ extern RawVTableFunction const vtable_unk_080E8560[]
 #else
         nullptr,
         nullptr,
-        func_080C7ED0,
-        func_080C7F1C,
+        DestroyHarvestSpriteWateringUiScene,
+        Run__28HarvestSpriteWateringUiScene,
 #endif
     };
 

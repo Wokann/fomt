@@ -4079,500 +4079,6 @@ Run__27ChickenFestivalContestScene: @ 0x080A31E0
 	bx r1
 	.align 2, 0
 
-    .global func_080A3900
-    .thumb_func
-func_080A3900: @ 0x080A3338
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #0x1c
-	mov sb, r0
-	adds r5, r1, #0
-	add r1, sp, #0xc
-	movs r0, #2
-	str r0, [sp, #0xc]
-	movs r0, #0x12
-	strb r0, [r1, #4]
-	ldr r0, [r5, #0xc]
-	subs r0, #0x24
-	adds r4, r1, #0
-	cmp r0, #6
-	bhi .Ljp_080A3968
-	lsls r0, r0, #2
-	ldr r1, .Ljp_080A392C @ =.Ljp_080A3930
-	adds r0, r0, r1
-	ldr r0, [r0]
-	mov pc, r0
-	.align 2, 0
-.Ljp_080A392C: .4byte .Ljp_080A3930
-.Ljp_080A3930: @ jump table
-	.4byte .Ljp_080A394C @ case 0
-	.4byte .Ljp_080A3950 @ case 1
-	.4byte .Ljp_080A3954 @ case 2
-	.4byte .Ljp_080A3958 @ case 3
-	.4byte .Ljp_080A395C @ case 4
-	.4byte .Ljp_080A3960 @ case 5
-	.4byte .Ljp_080A3964 @ case 6
-.Ljp_080A394C:
-	movs r0, #0
-	b .Ljp_080A3966
-.Ljp_080A3950:
-	movs r0, #2
-	b .Ljp_080A3966
-.Ljp_080A3954:
-	movs r0, #3
-	b .Ljp_080A3966
-.Ljp_080A3958:
-	movs r0, #4
-	b .Ljp_080A3966
-.Ljp_080A395C:
-	movs r0, #5
-	b .Ljp_080A3966
-.Ljp_080A3960:
-	movs r0, #6
-	b .Ljp_080A3966
-.Ljp_080A3964:
-	movs r0, #1
-.Ljp_080A3966:
-	str r0, [sp, #0xc]
-.Ljp_080A3968:
-	ldr r0, [r5, #8]
-	ldr r1, .Ljp_080A39F8 @ =0x00001CD4
-	adds r0, r0, r1
-	ldr r1, [r5, #0xc]
-	bl GetHarvestSpriteByCharacterId__13NpcCollectionUi
-	adds r6, r0, #0
-	movs r1, #2
-	bl GetMinigameExp__C13HarvestSpriteQ213HarvestSprite4Task
-	movs r1, #0
-	mov r8, r1
-	strb r0, [r4, #4]
-	mov r0, sp
-	adds r1, r4, #0
-	bl func_080B3618
-	add r7, sp, #8
-	adds r0, r7, #0
-	mov r1, sp
-	bl func_080B3C3C
-	ldr r1, [sp, #8]
-	cmp r1, #0
-	beq .Ljp_080A39A6
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_080A39A6:
-	mov r0, sp
-	bl func_080B36AC
-	adds r4, r0, #0
-	lsls r4, r4, #0x18
-	lsrs r4, r4, #0x18
-	adds r0, r6, #0
-	movs r1, #2
-	adds r2, r4, #0
-	bl SetPlayedMinigame__13HarvestSpriteQ213HarvestSprite4Taskb
-	ldr r0, [r5, #4]
-	strb r4, [r0, #0xc]
-	ldr r4, [r5, #8]
-	mov r0, sp
-	bl func_080B3C84
-	adds r1, r0, #0
-	adds r0, r4, #0
-	bl UpdateUnknown18__18GameStateSaveImageUi
-	ldr r0, [r5, #4]
-	mov r1, r8
-	str r1, [r5, #4]
-	str r7, [sp, #0x14]
-	str r0, [sp, #0x18]
-	str r1, [sp, #8]
-	mov r1, sb
-	str r0, [r1]
-	mov r0, sp
-	movs r1, #2
-	bl func_080B3640
-	mov r0, sb
-	add sp, #0x1c
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_080A39F8: .4byte 0x00001CD4
-
-    .global func_080A39FC
-    .thumb_func
-func_080A39FC: @ 0x080A3434
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #0x1c
-	mov sb, r0
-	adds r5, r1, #0
-	add r1, sp, #0xc
-	movs r0, #4
-	str r0, [sp, #0xc]
-	movs r0, #0x12
-	strb r0, [r1, #4]
-	ldr r0, [r5, #0xc]
-	subs r0, #0x24
-	adds r4, r1, #0
-	cmp r0, #6
-	bhi .Ljp_080A3A64
-	lsls r0, r0, #2
-	ldr r1, .Ljp_080A3A28 @ =.Ljp_080A3A2C
-	adds r0, r0, r1
-	ldr r0, [r0]
-	mov pc, r0
-	.align 2, 0
-.Ljp_080A3A28: .4byte .Ljp_080A3A2C
-.Ljp_080A3A2C: @ jump table
-	.4byte .Ljp_080A3A48 @ case 0
-	.4byte .Ljp_080A3A4C @ case 1
-	.4byte .Ljp_080A3A50 @ case 2
-	.4byte .Ljp_080A3A54 @ case 3
-	.4byte .Ljp_080A3A58 @ case 4
-	.4byte .Ljp_080A3A5C @ case 5
-	.4byte .Ljp_080A3A60 @ case 6
-.Ljp_080A3A48:
-	movs r0, #0
-	b .Ljp_080A3A62
-.Ljp_080A3A4C:
-	movs r0, #2
-	b .Ljp_080A3A62
-.Ljp_080A3A50:
-	movs r0, #3
-	b .Ljp_080A3A62
-.Ljp_080A3A54:
-	movs r0, #4
-	b .Ljp_080A3A62
-.Ljp_080A3A58:
-	movs r0, #5
-	b .Ljp_080A3A62
-.Ljp_080A3A5C:
-	movs r0, #6
-	b .Ljp_080A3A62
-.Ljp_080A3A60:
-	movs r0, #1
-.Ljp_080A3A62:
-	str r0, [sp, #0xc]
-.Ljp_080A3A64:
-	ldr r0, [r5, #8]
-	ldr r1, .Ljp_080A3AF4 @ =0x00001CD4
-	adds r0, r0, r1
-	ldr r1, [r5, #0xc]
-	bl GetHarvestSpriteByCharacterId__13NpcCollectionUi
-	adds r6, r0, #0
-	movs r1, #0
-	bl GetMinigameExp__C13HarvestSpriteQ213HarvestSprite4Task
-	movs r1, #0
-	mov r8, r1
-	strb r0, [r4, #4]
-	mov r0, sp
-	adds r1, r4, #0
-	bl func_080C0D1C
-	add r7, sp, #8
-	adds r0, r7, #0
-	mov r1, sp
-	bl func_080C0D90
-	ldr r1, [sp, #8]
-	cmp r1, #0
-	beq .Ljp_080A3AA2
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_080A3AA2:
-	mov r0, sp
-	bl func_080C07A0
-	adds r4, r0, #0
-	lsls r4, r4, #0x18
-	lsrs r4, r4, #0x18
-	adds r0, r6, #0
-	movs r1, #0
-	adds r2, r4, #0
-	bl SetPlayedMinigame__13HarvestSpriteQ213HarvestSprite4Taskb
-	ldr r0, [r5, #4]
-	strb r4, [r0, #0xc]
-	ldr r4, [r5, #8]
-	mov r0, sp
-	bl func_080C07AC
-	adds r1, r0, #0
-	adds r0, r4, #0
-	bl UpdateUnknown13__18GameStateSaveImageUi
-	ldr r0, [r5, #4]
-	mov r1, r8
-	str r1, [r5, #4]
-	str r7, [sp, #0x14]
-	str r0, [sp, #0x18]
-	str r1, [sp, #8]
-	mov r1, sb
-	str r0, [r1]
-	mov r0, sp
-	movs r1, #2
-	bl func_080C0770
-	mov r0, sb
-	add sp, #0x1c
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_080A3AF4: .4byte 0x00001CD4
-
-    .global func_080A3AF8
-    .thumb_func
-func_080A3AF8: @ 0x080A3530
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #0x1c
-	mov sb, r0
-	adds r5, r1, #0
-	add r1, sp, #0xc
-	movs r0, #3
-	str r0, [sp, #0xc]
-	movs r0, #0xf
-	strb r0, [r1, #4]
-	ldr r0, [r5, #0xc]
-	subs r0, #0x24
-	adds r4, r1, #0
-	cmp r0, #6
-	bhi .Ljp_080A3B60
-	lsls r0, r0, #2
-	ldr r1, .Ljp_080A3B24 @ =.Ljp_080A3B28
-	adds r0, r0, r1
-	ldr r0, [r0]
-	mov pc, r0
-	.align 2, 0
-.Ljp_080A3B24: .4byte .Ljp_080A3B28
-.Ljp_080A3B28: @ jump table
-	.4byte .Ljp_080A3B44 @ case 0
-	.4byte .Ljp_080A3B48 @ case 1
-	.4byte .Ljp_080A3B4C @ case 2
-	.4byte .Ljp_080A3B50 @ case 3
-	.4byte .Ljp_080A3B54 @ case 4
-	.4byte .Ljp_080A3B58 @ case 5
-	.4byte .Ljp_080A3B5C @ case 6
-.Ljp_080A3B44:
-	movs r0, #0
-	b .Ljp_080A3B5E
-.Ljp_080A3B48:
-	movs r0, #2
-	b .Ljp_080A3B5E
-.Ljp_080A3B4C:
-	movs r0, #3
-	b .Ljp_080A3B5E
-.Ljp_080A3B50:
-	movs r0, #4
-	b .Ljp_080A3B5E
-.Ljp_080A3B54:
-	movs r0, #5
-	b .Ljp_080A3B5E
-.Ljp_080A3B58:
-	movs r0, #6
-	b .Ljp_080A3B5E
-.Ljp_080A3B5C:
-	movs r0, #1
-.Ljp_080A3B5E:
-	str r0, [sp, #0xc]
-.Ljp_080A3B60:
-	ldr r0, [r5, #8]
-	ldr r1, .Ljp_080A3BF0 @ =0x00001CD4
-	adds r0, r0, r1
-	ldr r1, [r5, #0xc]
-	bl GetHarvestSpriteByCharacterId__13NpcCollectionUi
-	adds r6, r0, #0
-	movs r1, #1
-	bl GetMinigameExp__C13HarvestSpriteQ213HarvestSprite4Task
-	movs r1, #0
-	mov r8, r1
-	strb r0, [r4, #4]
-	mov r0, sp
-	adds r1, r4, #0
-	bl func_080C78CC
-	add r7, sp, #8
-	adds r0, r7, #0
-	mov r1, sp
-	bl func_080C7F1C
-	ldr r1, [sp, #8]
-	cmp r1, #0
-	beq .Ljp_080A3B9E
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_080A3B9E:
-	mov r0, sp
-	bl func_080C7924
-	adds r4, r0, #0
-	lsls r4, r4, #0x18
-	lsrs r4, r4, #0x18
-	adds r0, r6, #0
-	movs r1, #1
-	adds r2, r4, #0
-	bl SetPlayedMinigame__13HarvestSpriteQ213HarvestSprite4Taskb
-	ldr r0, [r5, #4]
-	strb r4, [r0, #0xc]
-	ldr r4, [r5, #8]
-	mov r0, sp
-	bl func_080C7930
-	adds r1, r0, #0
-	adds r0, r4, #0
-	bl UpdateUnknown25__18GameStateSaveImageUi
-	ldr r0, [r5, #4]
-	mov r1, r8
-	str r1, [r5, #4]
-	str r7, [sp, #0x14]
-	str r0, [sp, #0x18]
-	str r1, [sp, #8]
-	mov r1, sb
-	str r0, [r1]
-	mov r0, sp
-	movs r1, #2
-	bl func_080C78F4
-	mov r0, sb
-	add sp, #0x1c
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_080A3BF0: .4byte 0x00001CD4
-
-    .global func_080A3BF4
-    .thumb_func
-func_080A3BF4: @ 0x080A362C
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .Ljp_080A3C20 @ =vtable_unk_080E8278
-	str r0, [r4]
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .Ljp_080A3C10
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_080A3C10:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A3C20: .4byte vtable_unk_080E8278
-    .thumb_func
-.Ljp_080A3C24:
-	push {r4, r5, lr}
-	ldr r4, [pc, #20]
-	str r4, [r0]
-	ldr r5, [r1]
-	movs r4, #0
-	str r4, [r1]
-	str r5, [r0, #4]
-	str r2, [r0, #8]
-	str r3, [r0, #12]
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.4byte vtable_unk_080E8278
-
-    .global func_080A3C40
-    .thumb_func
-func_080A3C40: @ 0x080A3678
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .Ljp_080A3C6C @ =vtable_unk_080E8288
-	str r0, [r4]
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .Ljp_080A3C5C
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_080A3C5C:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A3C6C: .4byte vtable_unk_080E8288
-    .thumb_func
-.Ljp_080A3C70:
-	push {r4, r5, lr}
-	ldr r4, [pc, #20]
-	str r4, [r0]
-	ldr r5, [r1]
-	movs r4, #0
-	str r4, [r1]
-	str r5, [r0, #4]
-	str r2, [r0, #8]
-	str r3, [r0, #12]
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.4byte vtable_unk_080E8288
-
-    .global func_080A3C8C
-    .thumb_func
-func_080A3C8C: @ 0x080A36C4
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .Ljp_080A3CB8 @ =vtable_unk_080E8298
-	str r0, [r4]
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .Ljp_080A3CA8
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_080A3CA8:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_080A3CB8: .4byte vtable_unk_080E8298
-    .thumb_func
-.Ljp_080A3CBC:
-	push {r4, r5, lr}
-	ldr r4, [pc, #20]
-	str r4, [r0]
-	ldr r5, [r1]
-	movs r4, #0
-	str r4, [r1]
-	str r5, [r0, #4]
-	str r2, [r0, #8]
-	str r3, [r0, #12]
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.4byte vtable_unk_080E8298
     .section .text.after_saved_name_scene, "ax", %progbits
     .align 2, 0
 
@@ -31084,9 +30590,9 @@ func_080B35DC: @ 0x080B35DC
 	bx r0
 
 
-    .global func_080B3618
+    .global __30HarvestSpriteAnimalCareUiSceneRC28HarvestSpriteAnimalCareSetup
     .thumb_func
-func_080B3618: @ 0x080B3618
+__30HarvestSpriteAnimalCareUiSceneRC28HarvestSpriteAnimalCareSetup: @ 0x080B3618
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -31104,9 +30610,9 @@ func_080B3618: @ 0x080B3618
 	.align 2, 0
 .Ljp_080B3638: .4byte vtable_unk_080E850C
 .Ljp_080B363C: .4byte 0x0000093C
-    .global func_080B3640
+    .global _._30HarvestSpriteAnimalCareUiScene
     .thumb_func
-func_080B3640: @ 0x080B3640
+_._30HarvestSpriteAnimalCareUiScene: @ 0x080B3640
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -31129,9 +30635,9 @@ func_080B3640: @ 0x080B3640
 	bx r0
 	.align 2, 0
 .Ljp_080B366C: .4byte vtable_unk_080E850C
-    .global func_080B3C3C
+    .global Run__30HarvestSpriteAnimalCareUiScene
     .thumb_func
-func_080B3C3C: @ 0x080B3670
+Run__30HarvestSpriteAnimalCareUiScene: @ 0x080B3670
 	push {r4, lr}
 	sub sp, #0xc
 	adds r4, r0, #0
@@ -31161,18 +30667,18 @@ func_080B3C3C: @ 0x080B3670
 	pop {r1}
 	bx r1
 	.align 2, 0
-    .global func_080B36AC
+    .global Succeeded__30HarvestSpriteAnimalCareUiScene
     .thumb_func
-func_080B36AC: @ 0x080B36AC
+Succeeded__30HarvestSpriteAnimalCareUiScene: @ 0x080B36AC
 	push {lr}
 	ldr r0, [r0, #4]
 	bl func_080ADF10
 	pop {r1}
 	bx r1
 
-    .global func_080B3C84
+    .global GetUnkRecordValue__30HarvestSpriteAnimalCareUiScene
     .thumb_func
-func_080B3C84: @ 0x080B36B8
+GetUnkRecordValue__30HarvestSpriteAnimalCareUiScene: @ 0x080B36B8
 	ldr r0, [r0, #4]
 	movs r1, #0x91
 	lsls r1, r1, #4
@@ -56118,9 +55624,9 @@ func_080C0CA4: @ 0x080C06D0
 	pop {r0}
 	bx r0
 	.align 2, 0
-    .global func_080C0D1C
+    .global __30HarvestSpriteHarvestingUiSceneRC28HarvestSpriteHarvestingSetup
     .thumb_func
-func_080C0D1C: @ 0x080C0748
+__30HarvestSpriteHarvestingUiSceneRC28HarvestSpriteHarvestingSetup: @ 0x080C0748
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -56143,9 +55649,9 @@ func_080C0D1C: @ 0x080C0748
 	.else
 	.4byte vtable_unk_080E8544
 	.endif
-    .global func_080C0770
+    .global _._30HarvestSpriteHarvestingUiScene
     .thumb_func
-func_080C0770:
+_._30HarvestSpriteHarvestingUiScene:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
@@ -56167,26 +55673,26 @@ func_080C0770:
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0x74, 0x79, 0x0E, 0x08
-    .global func_080C07A0
+    .global Succeeded__30HarvestSpriteHarvestingUiScene
     .thumb_func
-func_080C07A0:
+Succeeded__30HarvestSpriteHarvestingUiScene:
     push {lr}
     ldr r0, [r0, #4]
     bl func_080BCCD4
     pop {r1}
     bx r1
-    .global func_080C07AC
+    .global GetUnkRecordValue__30HarvestSpriteHarvestingUiScene
     .thumb_func
-func_080C07AC:
+GetUnkRecordValue__30HarvestSpriteHarvestingUiScene:
     ldr r0, [r0, #4]
     ldr r1, [pc, #8]
     adds r0, r0, r1
     ldr r0, [r0]
     bx lr
     .byte 0x00, 0x00, 0x04, 0x06, 0x00, 0x00
-    .global func_080C0D90
+    .global Run__30HarvestSpriteHarvestingUiScene
     .thumb_func
-func_080C0D90:
+Run__30HarvestSpriteHarvestingUiScene:
     push {r4, lr}
     sub sp, #0xc
     adds r4, r0, #0
@@ -64311,9 +63817,9 @@ func_080C7DF8: @ 0x080C781C
 	.align 2, 0
 .L080C78C4: .4byte 0x000008BC
 .L080C78C8: .4byte 0x000008C4
-    .global func_080C78CC
+    .global __28HarvestSpriteWateringUiSceneRC26HarvestSpriteWateringSetup
     .thumb_func
-func_080C78CC:
+__28HarvestSpriteWateringUiSceneRC26HarvestSpriteWateringSetup:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
@@ -64329,9 +63835,9 @@ func_080C78CC:
     pop {r1}
     bx r1
     .byte 0x90, 0x79, 0x0E, 0x08, 0x8C, 0x09, 0x00, 0x00
-    .global func_080C78F4
+    .global _._28HarvestSpriteWateringUiScene
     .thumb_func
-func_080C78F4:
+_._28HarvestSpriteWateringUiScene:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
@@ -64353,26 +63859,26 @@ func_080C78F4:
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0x90, 0x79, 0x0E, 0x08
-    .global func_080C7924
+    .global Succeeded__28HarvestSpriteWateringUiScene
     .thumb_func
-func_080C7924:
+Succeeded__28HarvestSpriteWateringUiScene:
     push {lr}
     ldr r0, [r0, #4]
     bl func_080C12B8
     pop {r1}
     bx r1
-    .global func_080C7930
+    .global GetUnkRecordValue__28HarvestSpriteWateringUiScene
     .thumb_func
-func_080C7930:
+GetUnkRecordValue__28HarvestSpriteWateringUiScene:
     ldr r0, [r0, #4]
     ldr r1, [pc, #8]
     adds r0, r0, r1
     ldr r0, [r0]
     bx lr
     .byte 0x00, 0x00, 0x74, 0x09, 0x00, 0x00
-    .global func_080C7F1C
+    .global Run__28HarvestSpriteWateringUiScene
     .thumb_func
-func_080C7F1C:
+Run__28HarvestSpriteWateringUiScene:
     push {r4, lr}
     sub sp, #0xc
     adds r4, r0, #0
@@ -80012,494 +79518,6 @@ Run__27ChickenFestivalContestScene: @ 0x080A37A8
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080A3900
-func_080A3900: @ 0x080A3900
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #0x1c
-	mov sb, r0
-	adds r5, r1, #0
-	add r1, sp, #0xc
-	movs r0, #2
-	str r0, [sp, #0xc]
-	movs r0, #0x12
-	strb r0, [r1, #4]
-	ldr r0, [r5, #0xc]
-	subs r0, #0x24
-	adds r4, r1, #0
-	cmp r0, #6
-	bhi .L080A3968
-	lsls r0, r0, #2
-	ldr r1, .L080A392C @ =.L080A3930
-	adds r0, r0, r1
-	ldr r0, [r0]
-	mov pc, r0
-	.align 2, 0
-.L080A392C: .4byte .L080A3930
-.L080A3930: @ jump table
-	.4byte .L080A394C @ case 0
-	.4byte .L080A3950 @ case 1
-	.4byte .L080A3954 @ case 2
-	.4byte .L080A3958 @ case 3
-	.4byte .L080A395C @ case 4
-	.4byte .L080A3960 @ case 5
-	.4byte .L080A3964 @ case 6
-.L080A394C:
-	movs r0, #0
-	b .L080A3966
-.L080A3950:
-	movs r0, #2
-	b .L080A3966
-.L080A3954:
-	movs r0, #3
-	b .L080A3966
-.L080A3958:
-	movs r0, #4
-	b .L080A3966
-.L080A395C:
-	movs r0, #5
-	b .L080A3966
-.L080A3960:
-	movs r0, #6
-	b .L080A3966
-.L080A3964:
-	movs r0, #1
-.L080A3966:
-	str r0, [sp, #0xc]
-.L080A3968:
-	ldr r0, [r5, #8]
-	ldr r1, .L080A39F8 @ =0x00001CD4
-	adds r0, r0, r1
-	ldr r1, [r5, #0xc]
-	bl GetHarvestSpriteByCharacterId__13NpcCollectionUi
-	adds r6, r0, #0
-	movs r1, #2
-	bl GetMinigameExp__C13HarvestSpriteQ213HarvestSprite4Task
-	movs r1, #0
-	mov r8, r1
-	strb r0, [r4, #4]
-	mov r0, sp
-	adds r1, r4, #0
-	bl func_080B3BE4
-	add r7, sp, #8
-	adds r0, r7, #0
-	mov r1, sp
-	bl func_080B3C3C
-	ldr r1, [sp, #8]
-	cmp r1, #0
-	beq .L080A39A6
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080A39A6:
-	mov r0, sp
-	bl func_080B3C78
-	adds r4, r0, #0
-	lsls r4, r4, #0x18
-	lsrs r4, r4, #0x18
-	adds r0, r6, #0
-	movs r1, #2
-	adds r2, r4, #0
-	bl SetPlayedMinigame__13HarvestSpriteQ213HarvestSprite4Taskb
-	ldr r0, [r5, #4]
-	strb r4, [r0, #0xc]
-	ldr r4, [r5, #8]
-	mov r0, sp
-	bl func_080B3C84
-	adds r1, r0, #0
-	adds r0, r4, #0
-	bl UpdateUnknown18__18GameStateSaveImageUi
-	ldr r0, [r5, #4]
-	mov r1, r8
-	str r1, [r5, #4]
-	str r7, [sp, #0x14]
-	str r0, [sp, #0x18]
-	str r1, [sp, #8]
-	mov r1, sb
-	str r0, [r1]
-	mov r0, sp
-	movs r1, #2
-	bl func_080B3C0C
-	mov r0, sb
-	add sp, #0x1c
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080A39F8: .4byte 0x00001CD4
-
-	thumb_func_start func_080A39FC
-func_080A39FC: @ 0x080A39FC
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #0x1c
-	mov sb, r0
-	adds r5, r1, #0
-	add r1, sp, #0xc
-	movs r0, #4
-	str r0, [sp, #0xc]
-	movs r0, #0x12
-	strb r0, [r1, #4]
-	ldr r0, [r5, #0xc]
-	subs r0, #0x24
-	adds r4, r1, #0
-	cmp r0, #6
-	bhi .L080A3A64
-	lsls r0, r0, #2
-	ldr r1, .L080A3A28 @ =.L080A3A2C
-	adds r0, r0, r1
-	ldr r0, [r0]
-	mov pc, r0
-	.align 2, 0
-.L080A3A28: .4byte .L080A3A2C
-.L080A3A2C: @ jump table
-	.4byte .L080A3A48 @ case 0
-	.4byte .L080A3A4C @ case 1
-	.4byte .L080A3A50 @ case 2
-	.4byte .L080A3A54 @ case 3
-	.4byte .L080A3A58 @ case 4
-	.4byte .L080A3A5C @ case 5
-	.4byte .L080A3A60 @ case 6
-.L080A3A48:
-	movs r0, #0
-	b .L080A3A62
-.L080A3A4C:
-	movs r0, #2
-	b .L080A3A62
-.L080A3A50:
-	movs r0, #3
-	b .L080A3A62
-.L080A3A54:
-	movs r0, #4
-	b .L080A3A62
-.L080A3A58:
-	movs r0, #5
-	b .L080A3A62
-.L080A3A5C:
-	movs r0, #6
-	b .L080A3A62
-.L080A3A60:
-	movs r0, #1
-.L080A3A62:
-	str r0, [sp, #0xc]
-.L080A3A64:
-	ldr r0, [r5, #8]
-	ldr r1, .L080A3AF4 @ =0x00001CD4
-	adds r0, r0, r1
-	ldr r1, [r5, #0xc]
-	bl GetHarvestSpriteByCharacterId__13NpcCollectionUi
-	adds r6, r0, #0
-	movs r1, #0
-	bl GetMinigameExp__C13HarvestSpriteQ213HarvestSprite4Task
-	movs r1, #0
-	mov r8, r1
-	strb r0, [r4, #4]
-	mov r0, sp
-	adds r1, r4, #0
-	bl func_080C0D1C
-	add r7, sp, #8
-	adds r0, r7, #0
-	mov r1, sp
-	bl func_080C0D90
-	ldr r1, [sp, #8]
-	cmp r1, #0
-	beq .L080A3AA2
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080A3AA2:
-	mov r0, sp
-	bl func_080C0D74
-	adds r4, r0, #0
-	lsls r4, r4, #0x18
-	lsrs r4, r4, #0x18
-	adds r0, r6, #0
-	movs r1, #0
-	adds r2, r4, #0
-	bl SetPlayedMinigame__13HarvestSpriteQ213HarvestSprite4Taskb
-	ldr r0, [r5, #4]
-	strb r4, [r0, #0xc]
-	ldr r4, [r5, #8]
-	mov r0, sp
-	bl func_080C0D80
-	adds r1, r0, #0
-	adds r0, r4, #0
-	bl UpdateUnknown13__18GameStateSaveImageUi
-	ldr r0, [r5, #4]
-	mov r1, r8
-	str r1, [r5, #4]
-	str r7, [sp, #0x14]
-	str r0, [sp, #0x18]
-	str r1, [sp, #8]
-	mov r1, sb
-	str r0, [r1]
-	mov r0, sp
-	movs r1, #2
-	bl func_080C0D44
-	mov r0, sb
-	add sp, #0x1c
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080A3AF4: .4byte 0x00001CD4
-
-	thumb_func_start func_080A3AF8
-func_080A3AF8: @ 0x080A3AF8
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #0x1c
-	mov sb, r0
-	adds r5, r1, #0
-	add r1, sp, #0xc
-	movs r0, #3
-	str r0, [sp, #0xc]
-	movs r0, #0xf
-	strb r0, [r1, #4]
-	ldr r0, [r5, #0xc]
-	subs r0, #0x24
-	adds r4, r1, #0
-	cmp r0, #6
-	bhi .L080A3B60
-	lsls r0, r0, #2
-	ldr r1, .L080A3B24 @ =.L080A3B28
-	adds r0, r0, r1
-	ldr r0, [r0]
-	mov pc, r0
-	.align 2, 0
-.L080A3B24: .4byte .L080A3B28
-.L080A3B28: @ jump table
-	.4byte .L080A3B44 @ case 0
-	.4byte .L080A3B48 @ case 1
-	.4byte .L080A3B4C @ case 2
-	.4byte .L080A3B50 @ case 3
-	.4byte .L080A3B54 @ case 4
-	.4byte .L080A3B58 @ case 5
-	.4byte .L080A3B5C @ case 6
-.L080A3B44:
-	movs r0, #0
-	b .L080A3B5E
-.L080A3B48:
-	movs r0, #2
-	b .L080A3B5E
-.L080A3B4C:
-	movs r0, #3
-	b .L080A3B5E
-.L080A3B50:
-	movs r0, #4
-	b .L080A3B5E
-.L080A3B54:
-	movs r0, #5
-	b .L080A3B5E
-.L080A3B58:
-	movs r0, #6
-	b .L080A3B5E
-.L080A3B5C:
-	movs r0, #1
-.L080A3B5E:
-	str r0, [sp, #0xc]
-.L080A3B60:
-	ldr r0, [r5, #8]
-	ldr r1, .L080A3BF0 @ =0x00001CD4
-	adds r0, r0, r1
-	ldr r1, [r5, #0xc]
-	bl GetHarvestSpriteByCharacterId__13NpcCollectionUi
-	adds r6, r0, #0
-	movs r1, #1
-	bl GetMinigameExp__C13HarvestSpriteQ213HarvestSprite4Task
-	movs r1, #0
-	mov r8, r1
-	strb r0, [r4, #4]
-	mov r0, sp
-	adds r1, r4, #0
-	bl func_080C7EA8
-	add r7, sp, #8
-	adds r0, r7, #0
-	mov r1, sp
-	bl func_080C7F1C
-	ldr r1, [sp, #8]
-	cmp r1, #0
-	beq .L080A3B9E
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080A3B9E:
-	mov r0, sp
-	bl func_080C7F00
-	adds r4, r0, #0
-	lsls r4, r4, #0x18
-	lsrs r4, r4, #0x18
-	adds r0, r6, #0
-	movs r1, #1
-	adds r2, r4, #0
-	bl SetPlayedMinigame__13HarvestSpriteQ213HarvestSprite4Taskb
-	ldr r0, [r5, #4]
-	strb r4, [r0, #0xc]
-	ldr r4, [r5, #8]
-	mov r0, sp
-	bl func_080C7F0C
-	adds r1, r0, #0
-	adds r0, r4, #0
-	bl UpdateUnknown25__18GameStateSaveImageUi
-	ldr r0, [r5, #4]
-	mov r1, r8
-	str r1, [r5, #4]
-	str r7, [sp, #0x14]
-	str r0, [sp, #0x18]
-	str r1, [sp, #8]
-	mov r1, sb
-	str r0, [r1]
-	mov r0, sp
-	movs r1, #2
-	bl func_080C7ED0
-	mov r0, sb
-	add sp, #0x1c
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080A3BF0: .4byte 0x00001CD4
-
-	thumb_func_start func_080A3BF4
-func_080A3BF4: @ 0x080A3BF4
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L080A3C20 @ =vtable_unk_080E8288
-	str r0, [r4]
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080A3C10
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080A3C10:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A3C20: .4byte vtable_unk_080E8288
-    .thumb_func
-.L080A3C24:
-	push {r4, r5, lr}
-	ldr r4, [pc, #20]
-	str r4, [r0]
-	ldr r5, [r1]
-	movs r4, #0
-	str r4, [r1]
-	str r5, [r0, #4]
-	str r2, [r0, #8]
-	str r3, [r0, #12]
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.4byte vtable_unk_080E8288
-
-	thumb_func_start func_080A3C40
-func_080A3C40: @ 0x080A3C40
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L080A3C6C @ =vtable_unk_080E8298
-	str r0, [r4]
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080A3C5C
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080A3C5C:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A3C6C: .4byte vtable_unk_080E8298
-    .thumb_func
-.L080A3C70:
-	push {r4, r5, lr}
-	ldr r4, [pc, #20]
-	str r4, [r0]
-	ldr r5, [r1]
-	movs r4, #0
-	str r4, [r1]
-	str r5, [r0, #4]
-	str r2, [r0, #8]
-	str r3, [r0, #12]
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.4byte vtable_unk_080E8298
-
-	thumb_func_start func_080A3C8C
-func_080A3C8C: @ 0x080A3C8C
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L080A3CB8 @ =vtable_unk_080E82A8
-	str r0, [r4]
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L080A3CA8
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L080A3CA8:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080A3CB8: .4byte vtable_unk_080E82A8
-    .thumb_func
-.L080A3CBC:
-	push {r4, r5, lr}
-	ldr r4, [pc, #20]
-	str r4, [r0]
-	ldr r5, [r1]
-	movs r4, #0
-	str r4, [r1]
-	str r5, [r0, #4]
-	str r2, [r0, #8]
-	str r3, [r0, #12]
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.4byte vtable_unk_080E82A8
     .section .text.after_saved_name_scene, "ax", %progbits
     .align 2, 0
 
@@ -106940,8 +105958,8 @@ func_080B3BA8: @ 0x080B3BA8
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080B3BE4
-func_080B3BE4: @ 0x080B3BE4
+	thumb_func_start __30HarvestSpriteAnimalCareUiSceneRC28HarvestSpriteAnimalCareSetup
+__30HarvestSpriteAnimalCareUiSceneRC28HarvestSpriteAnimalCareSetup: @ 0x080B3BE4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -106960,8 +105978,8 @@ func_080B3BE4: @ 0x080B3BE4
 .L080B3C04: .4byte vtable_unk_080E850C
 .L080B3C08: .4byte 0x0000093C
 
-	thumb_func_start func_080B3C0C
-func_080B3C0C: @ 0x080B3C0C
+	thumb_func_start _._30HarvestSpriteAnimalCareUiScene
+_._30HarvestSpriteAnimalCareUiScene: @ 0x080B3C0C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -106985,8 +106003,8 @@ func_080B3C0C: @ 0x080B3C0C
 	.align 2, 0
 .L080B3C38: .4byte vtable_unk_080E850C
 
-	thumb_func_start func_080B3C3C
-func_080B3C3C: @ 0x080B3C3C
+	thumb_func_start Run__30HarvestSpriteAnimalCareUiScene
+Run__30HarvestSpriteAnimalCareUiScene: @ 0x080B3C3C
 	push {r4, lr}
 	sub sp, #0xc
 	adds r4, r0, #0
@@ -107017,16 +106035,16 @@ func_080B3C3C: @ 0x080B3C3C
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080B3C78
-func_080B3C78: @ 0x080B3C78
+	thumb_func_start Succeeded__30HarvestSpriteAnimalCareUiScene
+Succeeded__30HarvestSpriteAnimalCareUiScene: @ 0x080B3C78
 	push {lr}
 	ldr r0, [r0, #4]
 	bl func_080AE4D8
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080B3C84
-func_080B3C84: @ 0x080B3C84
+	thumb_func_start GetUnkRecordValue__30HarvestSpriteAnimalCareUiScene
+GetUnkRecordValue__30HarvestSpriteAnimalCareUiScene: @ 0x080B3C84
 	ldr r0, [r0, #4]
 	movs r1, #0x91
 	lsls r1, r1, #4
@@ -133631,8 +132649,8 @@ func_080C0CA4: @ 0x080C0CA4
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080C0D1C
-func_080C0D1C: @ 0x080C0D1C
+	thumb_func_start __30HarvestSpriteHarvestingUiSceneRC28HarvestSpriteHarvestingSetup
+__30HarvestSpriteHarvestingUiSceneRC28HarvestSpriteHarvestingSetup: @ 0x080C0D1C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -133651,8 +132669,8 @@ func_080C0D1C: @ 0x080C0D1C
 	.align 2, 0
 .L080C0D40: .4byte vtable_unk_080E8544
 
-	thumb_func_start func_080C0D44
-func_080C0D44: @ 0x080C0D44
+	thumb_func_start _._30HarvestSpriteHarvestingUiScene
+_._30HarvestSpriteHarvestingUiScene: @ 0x080C0D44
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -133676,16 +132694,16 @@ func_080C0D44: @ 0x080C0D44
 	.align 2, 0
 .L080C0D70: .4byte vtable_unk_080E8544
 
-	thumb_func_start func_080C0D74
-func_080C0D74: @ 0x080C0D74
+	thumb_func_start Succeeded__30HarvestSpriteHarvestingUiScene
+Succeeded__30HarvestSpriteHarvestingUiScene: @ 0x080C0D74
 	push {lr}
 	ldr r0, [r0, #4]
 	bl func_080BCCD4
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080C0D80
-func_080C0D80: @ 0x080C0D80
+	thumb_func_start GetUnkRecordValue__30HarvestSpriteHarvestingUiScene
+GetUnkRecordValue__30HarvestSpriteHarvestingUiScene: @ 0x080C0D80
 	ldr r0, [r0, #4]
 	ldr r1, .L080C0D8C @ =0x00000604
 	adds r0, r0, r1
@@ -133694,8 +132712,8 @@ func_080C0D80: @ 0x080C0D80
 	.align 2, 0
 .L080C0D8C: .4byte 0x00000604
 
-	thumb_func_start func_080C0D90
-func_080C0D90: @ 0x080C0D90
+	thumb_func_start Run__30HarvestSpriteHarvestingUiScene
+Run__30HarvestSpriteHarvestingUiScene: @ 0x080C0D90
 	push {r4, lr}
 	sub sp, #0xc
 	adds r4, r0, #0
@@ -148177,8 +147195,8 @@ func_080C7DF8: @ 0x080C7DF8
 .L080C7EA0: .4byte 0x000008BC
 .L080C7EA4: .4byte 0x000008C4
 
-	thumb_func_start func_080C7EA8
-func_080C7EA8: @ 0x080C7EA8
+	thumb_func_start __28HarvestSpriteWateringUiSceneRC26HarvestSpriteWateringSetup
+__28HarvestSpriteWateringUiSceneRC26HarvestSpriteWateringSetup: @ 0x080C7EA8
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -148197,8 +147215,8 @@ func_080C7EA8: @ 0x080C7EA8
 .L080C7EC8: .4byte vtable_unk_080E8560
 .L080C7ECC: .4byte 0x0000098C
 
-	thumb_func_start func_080C7ED0
-func_080C7ED0: @ 0x080C7ED0
+	thumb_func_start _._28HarvestSpriteWateringUiScene
+_._28HarvestSpriteWateringUiScene: @ 0x080C7ED0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -148222,16 +147240,16 @@ func_080C7ED0: @ 0x080C7ED0
 	.align 2, 0
 .L080C7EFC: .4byte vtable_unk_080E8560
 
-	thumb_func_start func_080C7F00
-func_080C7F00: @ 0x080C7F00
+	thumb_func_start Succeeded__28HarvestSpriteWateringUiScene
+Succeeded__28HarvestSpriteWateringUiScene: @ 0x080C7F00
 	push {lr}
 	ldr r0, [r0, #4]
 	bl func_080C12B8
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080C7F0C
-func_080C7F0C: @ 0x080C7F0C
+	thumb_func_start GetUnkRecordValue__28HarvestSpriteWateringUiScene
+GetUnkRecordValue__28HarvestSpriteWateringUiScene: @ 0x080C7F0C
 	ldr r0, [r0, #4]
 	ldr r1, .L080C7F18 @ =0x00000974
 	adds r0, r0, r1
@@ -148240,8 +147258,8 @@ func_080C7F0C: @ 0x080C7F0C
 	.align 2, 0
 .L080C7F18: .4byte 0x00000974
 
-	thumb_func_start func_080C7F1C
-func_080C7F1C: @ 0x080C7F1C
+	thumb_func_start Run__28HarvestSpriteWateringUiScene
+Run__28HarvestSpriteWateringUiScene: @ 0x080C7F1C
 	push {r4, lr}
 	sub sp, #0xc
 	adds r4, r0, #0

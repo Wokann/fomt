@@ -253,7 +253,8 @@ SECTIONS
         src/scene_clock.o(.text.OpenClock__9GameScene);
         src/scene_cooking.o(.text.OpenCookingMenu__9GameScene .text.OpenRecipeList__9GameScene);
         src/scene_gamecube_link.o(.text.RunGameCubeLink__9GameScene);
-        asm/game_state.o(.text.game_scene_after_gamecube_link);
+        src/scene_harvest_sprite_minigames.o(.text.RunHarvestSpriteAnimalCareMinigame__9GameScene15MaryCharacterId .text.RunHarvestSpriteHarvestingMinigame__9GameScene15MaryCharacterId .text.RunHarvestSpriteWateringMinigame__9GameScene15MaryCharacterId);
+        asm/game_state.o(.text.game_scene_after_sprite_minigames);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/scene_cooking.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -808,6 +809,15 @@ SECTIONS
         asm/code_809E804.o(.text.field_item_after);
         src/scene_calendar.o(.text.__13CalendarSceneG20SceneTransitionOwnerP18GameStateSaveImage .text.Run__13CalendarScene);
         asm/code_809E804.o(.text.after_calendar_scene_run);
+        src/scene_harvest_sprite_minigames.o(.text.Run__28HarvestSpriteAnimalCareScene);
+        src/scene_harvest_sprite_minigames.o(.text.Run__28HarvestSpriteHarvestingScene);
+        src/scene_harvest_sprite_minigames.o(.text.Run__26HarvestSpriteWateringScene);
+        src/scene_harvest_sprite_minigames.o(.text._._26HarvestSpriteWateringScene);
+        src/scene_harvest_sprite_minigames.o(.text.__26HarvestSpriteWateringSceneG20SceneTransitionOwnerP18GameStateSaveImage15MaryCharacterId);
+        src/scene_harvest_sprite_minigames.o(.text._._28HarvestSpriteHarvestingScene);
+        src/scene_harvest_sprite_minigames.o(.text.__28HarvestSpriteHarvestingSceneG20SceneTransitionOwnerP18GameStateSaveImage15MaryCharacterId);
+        src/scene_harvest_sprite_minigames.o(.text._._28HarvestSpriteAnimalCareScene);
+        src/scene_harvest_sprite_minigames.o(.text.__28HarvestSpriteAnimalCareSceneG20SceneTransitionOwnerP18GameStateSaveImage15MaryCharacterId);
         src/scene_chicken_festival.o(.text.__27ChickenFestivalContestSceneG20SceneTransitionOwnerP18GameStateSaveImage);
         src/game_scene.o(.text.Run__19SavedNameEntryScene .text.__19SavedNameEntrySceneG20SceneTransitionOwnerP18GameStateSaveImage17MaryNameEntryKindUc);
         asm/code_809E804.o(.text.after_saved_name_scene);
@@ -1030,7 +1040,12 @@ SECTIONS
         src/intro_story_scene.o(.text.CreateIntroStoryScene .text.DestroyIntroStoryTransition);
         asm/code_linkonce.o(.text.intro_story_transition_after);
         src/game_scene.o(.text.CreateScene__24SavedNameEntryTransition .gnu.linkonce.t._._24SavedNameEntryTransition);
-        asm/code_linkonce.o(.text.after_saved_name_transition);
+        src/scene_harvest_sprite_minigames.o(.text.CreateScene__31HarvestSpriteWateringTransition);
+        src/scene_harvest_sprite_minigames.o(.gnu.linkonce.t._._31HarvestSpriteWateringTransition);
+        src/scene_harvest_sprite_minigames.o(.text.CreateScene__33HarvestSpriteHarvestingTransition);
+        src/scene_harvest_sprite_minigames.o(.gnu.linkonce.t._._33HarvestSpriteHarvestingTransition);
+        src/scene_harvest_sprite_minigames.o(.text.CreateScene__33HarvestSpriteAnimalCareTransition);
+        src/scene_harvest_sprite_minigames.o(.gnu.linkonce.t._._33HarvestSpriteAnimalCareTransition);
         src/scene_chicken_festival.o(.text.CreateScene__32ChickenFestivalContestTransition .gnu.linkonce.t._._32ChickenFestivalContestTransition);
         src/scene_calendar.o(.text.CreateScene__18CalendarTransition .gnu.linkonce.t._._18CalendarTransition);
         src/scene_tool_chest.o(.text.CreateScene__19ToolChestTransition .gnu.linkonce.t._._19ToolChestTransition);
@@ -1396,9 +1411,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_824c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_825c);
 . = ALIGN(4); src/scene_calendar.o(.gnu.linkonce.d.__vt_13CalendarScene);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_8278);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_8288);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_8298);
+. = ALIGN(4); src/scene_harvest_sprite_minigames.o(.gnu.linkonce.d.__vt_26HarvestSpriteWateringScene .gnu.linkonce.d.__vt_28HarvestSpriteHarvestingScene .gnu.linkonce.d.__vt_28HarvestSpriteAnimalCareScene);
 . = ALIGN(4); src/scene_chicken_festival.o(.gnu.linkonce.d.__vt_27ChickenFestivalContestScene);
 . = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_19SavedNameEntryScene);
 . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
