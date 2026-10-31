@@ -510,7 +510,10 @@ struct GameSceneState {
     AActorEntity * waiting_entity;
     u8 unk_E8;
     u8 unk_E9;
-    u8 unk_EA[6];
+    u8 screen_flash_active;
+    u16 screen_flash_color;
+    u8 screen_flash_strength;
+    u8 screen_flash_frame;
     void * unk_F0;
     virtual ~GameSceneState();
 };
@@ -577,6 +580,7 @@ struct GameScene : AScene {
     void RunStaffCredits();
     void OpenFarmingTutorial(MaryFarmingTutorialKind kind);
     void OpenNameEntry(MaryNameEntryKind kind, MaryNameEntryTargetIndex target_index);
+    void FlashScreenColor(u32 color);
     void RunHarvestSpriteAnimalCareMinigame(MaryCharacterId sprite_id);
     void RunHarvestSpriteHarvestingMinigame(MaryCharacterId sprite_id);
     void RunHarvestSpriteWateringMinigame(MaryCharacterId sprite_id);
@@ -711,6 +715,10 @@ typedef char GameSceneStateBlendControlCheck[offsetof(GameSceneState, display) +
 typedef char GameSceneStateScreenBlendCheck[offsetof(GameSceneState, screen_blend) == 0xA0 ? 1 : -1];
 typedef char GameSceneStateFadeByteE8Check[offsetof(GameSceneState, unk_E8) == 0xE8 ? 1 : -1];
 typedef char GameSceneStateFadeByteE9Check[offsetof(GameSceneState, unk_E9) == 0xE9 ? 1 : -1];
+typedef char GameSceneStateScreenFlashActiveCheck[offsetof(GameSceneState, screen_flash_active) == 0xEA ? 1 : -1];
+typedef char GameSceneStateScreenFlashColorCheck[offsetof(GameSceneState, screen_flash_color) == 0xEC ? 1 : -1];
+typedef char GameSceneStateScreenFlashStrengthCheck[offsetof(GameSceneState, screen_flash_strength) == 0xEE ? 1 : -1];
+typedef char GameSceneStateScreenFlashFrameCheck[offsetof(GameSceneState, screen_flash_frame) == 0xEF ? 1 : -1];
 typedef char GameSceneStateSaveCheck[offsetof(GameSceneState, save) == 0x8C ? 1 : -1];
 typedef char GameSceneStateResumeRequestCheck[offsetof(GameSceneState, resume_request) == 0x90 ? 1 : -1];
 typedef char GameSceneStateScriptStateCheck[offsetof(GameSceneState, script_state) == 0x9C ? 1 : -1];

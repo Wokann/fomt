@@ -1,5 +1,31 @@
 # 文本 ROM 物理地址布局
 
+## 帮助菜单后相邻数据的实际归属：屏幕闪色（2026-10-31）
+
+纠正旧审计结论：原 `gUnk_HelpMenuByteTable` 是屏幕闪色的 120 帧透明
+强度表，和菜单文本的长度／布局没有关系。现为
+`gScreenFlashBlendStrengths[120]`，由 `src/screen_flash.cc` 定义、同名
+`include/screen_flash.hh` 声明；最后八个零是效果帧，不是多余填充。
+
+| 区域 | 共用原生入口（半开，1020 字节） | 强度序列（半开，120 字节） |
+| --- | --- | --- |
+| JP | `0x080145D0–0x080149CC` | `0x080EFE2B–0x080EFEA3` |
+| US | `0x080146FC–0x08014AF8` | `0x080F05D9–0x080F0651` |
+| EU | `0x08014710–0x08014B0C` | `0x080F0625–0x080F069D` |
+| DE | `0x0801471C–0x08014B18` | `0x080F0A9E–0x080F0B16` |
+
+所有帮助菜单及加载错误文本继续在原区域 `data/text/<语言>/help_menu.cc`
+中维护，仍只由 `src/help_menu.cc` 一次 include，内容和各标签地址均不变。
+只是将后面的非文本表交回实际功能模块，不把它算作可翻译文本，也不把这次
+重命名／移放计为新增解析字节。两部分在 LDS 中继续相邻排列，表保留原生
+单字节对齐；没有每项 section、固定填充数组或新地址锚点。
+
+闪色入口四版使用一份 1020 字节真实汇编；字段与调用符号具名，但 C++ 草稿
+尚未匹配，不冒充高级语言完成。JP 过去埋在原始字节中的 VM 调用及强度表
+指针均改为实际重定位。每区真实表引用一处，已排除并验证 US 四处、DE 六处
+PCM 字节碰撞。四版标准 -j4 compare、完整 ROM/SHA-1、旧指针目标和布局
+验证通过。Mary 剧情、图书指南、文本内容、字库及其他资源均未修改。
+
 ## 可配置 ELF 输出路径验证（2026-10-31）
 
 ROM 规则现在明确依赖并读取已有 `ELF` 变量，链接器的 ELF 与 MAP 路径按
@@ -3287,7 +3313,8 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080EFD5E`–`0x080EFD5F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080EFD60`–`0x080EFDCD` | `src/game_state.o(.rodata)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`include/game_state.hh`<br>`data/text/jp/game_state_1.cc`<br>`data/text/jp/game_state_2.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0566`（普通数据）<br>尾部运行时文本 `1` 项 |
 | `0x080EFDCE`–`0x080EFDCF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080EFDD0`–`0x080EFEA2` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`include/help_menu.hh`<br>`data/text/jp/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
+| `0x080EFDD0`–`0x080EFE2A` | `src/help_menu.o(.rodata)` | [嵌入文本] | `src/help_menu.cc`<br>`include/help_menu.hh`<br>`data/text/jp/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项 |
+| `0x080EFE2B`–`0x080EFEA2` | `src/screen_flash.o(.rodata)` | [非文本数据] | `src/screen_flash.cc`、`include/screen_flash.hh` | `gScreenFlashBlendStrengths[120]`，实际闪色强度序列，保留 ALIGN(1) |
 | `0x080EFEA3`–`0x080EFEA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080EFEA4`–`0x080F06DD` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`include/animal_data.hh`<br>`data/text/jp/animal_data_1.cc`<br>`data/text/jp/animal_data_2.cc`<br>`data/text/jp/animal_data_3.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
 | `0x080F06DE`–`0x080F06DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -5125,7 +5152,8 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080F050A`–`0x080F050B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F050C`–`0x080F0589` | `src/game_state.o(.rodata)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`include/game_state.hh`<br>`data/text/us/game_state_1.cc`<br>`data/text/us/game_state_2.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0566`（普通数据）<br>尾部运行时文本 `1` 项 |
 | `0x080F058A`–`0x080F058B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F058C`–`0x080F0650` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`include/help_menu.hh`<br>`data/text/us/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
+| `0x080F058C`–`0x080F05D8` | `src/help_menu.o(.rodata)` | [嵌入文本] | `src/help_menu.cc`<br>`include/help_menu.hh`<br>`data/text/us/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项 |
+| `0x080F05D9`–`0x080F0650` | `src/screen_flash.o(.rodata)` | [非文本数据] | `src/screen_flash.cc`、`include/screen_flash.hh` | `gScreenFlashBlendStrengths[120]`，实际闪色强度序列，保留 ALIGN(1) |
 | `0x080F0651`–`0x080F0653` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x080F0654`–`0x080F0E7D` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`include/animal_data.hh`<br>`data/text/us/animal_data_1.cc`<br>`data/text/us/animal_data_2.cc`<br>`data/text/us/animal_data_3.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
 | `0x080F0E7E`–`0x080F0E7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |

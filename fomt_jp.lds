@@ -298,7 +298,8 @@ SECTIONS
             .text.LightFireplaceAtLocation__9GameScene9MaryMapId
             .text.SetVaseArticleId__9GameScene17MaryItemArticleId
             .text.BeginEggIncubation__9GameScene29MaryChickenCoopIncubatorIndex);
-        asm/game_state.o(.text.game_scene_song_players_after);
+        asm/screen_flash.o(.text);
+        asm/game_state.o(.text.game_scene_after_screen_flash);
         src/game_scene.o(
             .text.RefreshAllNpcSchedules__9GameScene
             .text.ChangePlayerStaminaAndFatigue__9GameSceneii
@@ -1481,8 +1482,9 @@ SECTIONS
         /* Calendar rows, labels, and state data. */
         src/game_state.o(.rodata);
         FILL(0x00);
-        /* Help-menu text and byte table. */
+        /* Help-menu text, then the independent screen-flash strengths. */
         src/help_menu.o(.rodata);
+        src/screen_flash.o(.rodata);
         FILL(0x00);
         /* Animal memorial text and animal data. */
         . = ALIGN(4); src/animal_data.o(.rodata);

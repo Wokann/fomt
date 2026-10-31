@@ -121,7 +121,7 @@ inline GameSceneState::GameSceneState(GameScene * owner, GameStateSaveImage * im
       music_player_2(2), music_player_3(3), music_player_4(4)
 {
     unk_E8 = 0;
-    unk_EA[0] = 0;
+    screen_flash_active = 0;
     unk_F0 = nullptr;
 }
 

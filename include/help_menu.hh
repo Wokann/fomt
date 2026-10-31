@@ -14,6 +14,5 @@ extern char const gText_HelpMenu_Animals[];
 extern char const gText_HelpMenu_UsefulTips[];
 extern char const gText_HelpMenu_Exit[];
 
-extern u8 const gUnk_HelpMenuByteTable[];
 
 #endif // HELP_MENU_HH
