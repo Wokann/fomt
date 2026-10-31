@@ -1,5 +1,34 @@
 # 文本 ROM 物理地址布局
 
+## 存档目标命名提示并入实际功能模块（2026-10-31）
+
+六种存档目标的提示与相邻运行时字符串，现在由
+`src/name_entry.cc` 以 `FOMT_TEXT_INCLUDE(name_entry.cc)` 一次插入，
+对应 `include/name_entry.hh` 统一声明；四个语种分别维护同名文本文件。
+旧独立 possessive-labels 源文件和头文件实际删除，不留别名或二次链接。
+
+| 区域 | 新 C++ 入口（半开，172 字节） | 连续文本实体（半开） | 命名场景 16 字节类表 |
+| --- | --- | --- | --- |
+| JP | `0x08013E5C–0x08013F08` | `0x08104958–0x08104992` | `0x080E76F8` |
+| US | `0x08013F88–0x08014034` | `0x08104E0C–0x08104E4A` | `0x080E82C8` |
+| EU | `0x08013F9C–0x08014048` | `0x08104E64–0x08104EA2` | `0x080E8314` |
+| DE | `0x08013FA8–0x08014054` | `0x08105824–0x0810586E` | `0x080E822C` |
+
+表内文本范围包括正常 C 字符串终止符和对象间原有对齐，不把下一个
+模块之前的零填充当成额外文本。JP 58、US/EU 62、DE 74 字节的七个实体
+与各自原始 ROM 及七个命名对象地址完全一致；文本无需固定数组长度、专有
+section 或额外定义。编译器空段不作为实际文本对象计数。
+
+既有命名 Run 和工厂由 GameScene 大文件移入相应功能文件，C++ 代码、
+构造、析构、类表及重定位保持原样；只有前面的 172 字节入口是本批新增。
+Horse/Cow/Sheep/Chicken/Child/Player 提示仍直接关联六种实际命名分支。
+提示与两张类表每区 11 处实际调用／初始化指针均已核对为符号重定位。
+四份 LDS 各自只链接一次普通 `src/name_entry.o(.rodata)`，保持原物理排序
+和边界；图书指南、Mary 脚本正文、字库、图像及音频资源未改动。
+
+四版标准 WSL -j4 完整 ROM、SHA-1、旧全局地址、有效重定位和保留输入
+范围验证通过。JP VM 命名调用额外补齐一处重定位，其余三版不增加替代入口。
+
 ## 农场教程选择表与 Common UI 连续数据（2026-10-31）
 
 新恢复的教程入口以及原有脚本宿主，统一使用实际功能名称
@@ -3110,7 +3139,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | EU | `0x08104180`–`0x08104411` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/eu/character_names_data_1.cc`、`data/text/eu/character_names_data_2.cc`；41 条本地姓名文本、43 项 `gCharacterNameEntries` 和尾部运行时文本按物理顺序同属对象；43 个文本字段均为符号重定位，其中两项直接复用前一块的空文本 | 精确 |
 | EU | `0x08104414`–`0x0810498D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/eu/field_item_data.cc`；`gFieldItemRecords` 为连续 116 项、每项 12 字节的 kind／map／有符号坐标记录（无指针字段），后接运行时文本；所有已知读取均为表符号引用 | 精确 |
 | EU | `0x08104990`–`0x08104E61` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/eu/calendar_events.cc`；季名存储后连续放置 17 组日期/后续季节字节，所有外部读取均为符号或符号加偏移 | 节日文本 `20` 项（含 `NoPlans`）、回退文本 `1` 项、运行时字符串 `2` 项 |
-| EU | `0x08104E64`–`0x08104EA1` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/eu/possessive_labels.cc`；Horse/Cow/Sheep/Chicken/Child/Player 六条文本后接运行时字符串，六处汇编读取均为命名符号 | 文本 `6` 项、运行时字符串 `1` 项 |
+| EU | `0x08104E64`–`0x08104EA1` | `src/name_entry.o(.rodata)` | `src/name_entry.cc`、`include/name_entry.hh`、`data/text/eu/name_entry.cc`；Horse/Cow/Sheep/Chicken/Child/Player 六条文本后接运行时字符串，六条提示由 `SavedNameEntryScene::Run` 通过命名符号读取 | 文本 `6` 项、运行时字符串 `1` 项 |
 | EU | `0x08104EA2`–`0x08104EA3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x08104EA4`–`0x08104EA8` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/eu/random_item_unavailable.cc`；唯一调用为命名符号 `gText_RandomItem_NotAvailable` | `gText_RandomItem_NotAvailable` |
 | EU | `0x08104EA9`–`0x08104EAB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -3202,7 +3231,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | DE | `0x08104B80`–`0x08104E11` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/de/character_names_data_1.cc`、`data/text/de/character_names_data_2.cc`；41 条本地姓名文本、43 项 `gCharacterNameEntries` 和尾部运行时文本按物理顺序同属对象；43 个文本字段均为符号重定位，其中两项直接复用前一块的空文本 | 精确 |
 | DE | `0x08104E14`–`0x0810538D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/de/field_item_data.cc`；`gFieldItemRecords` 为连续 116 项、每项 12 字节的 kind／map／有符号坐标记录（无指针字段），后接运行时文本；所有已知读取均为表符号引用 | 精确 |
 | DE | `0x08105390`–`0x08105821` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/de/calendar_events.cc`；季名存储后连续放置 17 组日期/后续季节字节，所有外部读取均为符号或符号加偏移 | 节日文本 `20` 项（含 `NoPlans`）、回退文本 `1` 项、运行时字符串 `2` 项 |
-| DE | `0x08105824`–`0x0810586D` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/de/possessive_labels.cc`；Horse/Cow/Sheep/Chicken/Child/Player 六条文本后接运行时字符串，六处汇编读取均为命名符号 | 文本 `6` 项、运行时字符串 `1` 项 |
+| DE | `0x08105824`–`0x0810586D` | `src/name_entry.o(.rodata)` | `src/name_entry.cc`、`include/name_entry.hh`、`data/text/de/name_entry.cc`；Horse/Cow/Sheep/Chicken/Child/Player 六条文本后接运行时字符串，六条提示由 `SavedNameEntryScene::Run` 通过命名符号读取 | 文本 `6` 项、运行时字符串 `1` 项 |
 | DE | `0x0810586E`–`0x0810586F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x08105870`–`0x08105874` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/de/random_item_unavailable.cc`；唯一调用为命名符号 `gText_RandomItem_NotAvailable` | `gText_RandomItem_NotAvailable` |
 | DE | `0x08105875`–`0x08105877` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -3342,7 +3371,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x0810447A`–`0x0810447B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810447C`–`0x08104955` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/jp/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`（季名存储后紧接 17 组日期/后续季节字节；外部读取均为符号或符号加偏移）<br>节日文本 `20` 项、回退文本 `1` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104956`–`0x08104957` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104958`–`0x08104991` | `src/possessive_labels.o(.rodata)` | [嵌入文本] | `src/possessive_labels.cc`、`include/possessive_labels.hh`<br>`data/text/jp/possessive_labels.cc` | Horse/Cow/Sheep/Chicken/Child/Player 六条文本（详见下方索引）后接运行时字符串；六处汇编读取均为命名符号<br>运行时字符串 `1` 项 |
+| `0x08104958`–`0x08104991` | `src/name_entry.o(.rodata)` | [嵌入文本] | `src/name_entry.cc`、`include/name_entry.hh`<br>`data/text/jp/name_entry.cc` | Horse/Cow/Sheep/Chicken/Child/Player 六条文本（详见下方索引）后接运行时字符串；六条提示由 `SavedNameEntryScene::Run` 通过命名符号读取<br>运行时字符串 `1` 项 |
 | `0x08104992`–`0x08104993` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104994`–`0x08104998` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/jp/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable`；唯一调用为该命名符号 |
 | `0x08104999`–`0x0810499B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
@@ -4958,12 +4987,12 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x081048FC` | `gText_Calendar_Festival_WeddingAnniversary` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
 | `0x0810491C` | `gText_Calendar_Festival_NoPlans` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
 | `0x08104944` | `gText_Calendar_FallbackNone` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104958` | `gText_Possessive_Horse` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
-| `0x08104960` | `gText_Possessive_Cow` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
-| `0x08104968` | `gText_Possessive_Sheep` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
-| `0x08104970` | `gText_Possessive_Chicken` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
-| `0x08104978` | `gText_Possessive_Child` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
-| `0x08104980` | `gText_Possessive_Player` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104958` | `gText_Possessive_Horse` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
+| `0x08104960` | `gText_Possessive_Cow` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
+| `0x08104968` | `gText_Possessive_Sheep` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
+| `0x08104970` | `gText_Possessive_Chicken` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
+| `0x08104978` | `gText_Possessive_Child` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
+| `0x08104980` | `gText_Possessive_Player` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
 | `0x08104994` | `gText_RandomItem_NotAvailable` | `data/text/jp/random_item_unavailable.cc` | `src/random_item_unavailable.o(.rodata)` |
 | `0x0810702C` | `gText_FieldRenderFallbackNone` | `data/text/jp/field_render_runtime_data_1.cc` | `src/field_render_runtime_data.o(.rodata)` |
 | `0x081070AC` | `gText_080B0708DefaultGlyph` | `data/text/jp/field_render_runtime_data_3.cc` | `src/field_render_runtime_data.o(.rodata)` |
@@ -5178,7 +5207,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08104936`–`0x08104937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104938`–`0x08104E09` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/us/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`（季名存储后紧接 17 组日期/后续季节字节；外部读取均为符号或符号加偏移）<br>节日文本 `20` 项、回退文本 `1` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104E0A`–`0x08104E0B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104E0C`–`0x08104E49` | `src/possessive_labels.o(.rodata)` | [嵌入文本] | `src/possessive_labels.cc`、`include/possessive_labels.hh`<br>`data/text/us/possessive_labels.cc` | Horse/Cow/Sheep/Chicken/Child/Player 六条文本（详见下方索引）后接运行时字符串；六处汇编读取均为命名符号<br>运行时字符串 `1` 项 |
+| `0x08104E0C`–`0x08104E49` | `src/name_entry.o(.rodata)` | [嵌入文本] | `src/name_entry.cc`、`include/name_entry.hh`<br>`data/text/us/name_entry.cc` | Horse/Cow/Sheep/Chicken/Child/Player 六条文本（详见下方索引）后接运行时字符串；六条提示由 `SavedNameEntryScene::Run` 通过命名符号读取<br>运行时字符串 `1` 项 |
 | `0x08104E4A`–`0x08104E4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104E4C`–`0x08104E50` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/us/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable`；唯一调用为该命名符号 |
 | `0x08104E51`–`0x08104E53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
@@ -6785,12 +6814,12 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08104DB8` | `gText_Calendar_Festival_WeddingAnniversary` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
 | `0x08104DDC` | `gText_Calendar_Festival_NoPlans` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
 | `0x08104DF8` | `gText_Calendar_FallbackNone` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104E0C` | `gText_Possessive_Horse` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
-| `0x08104E14` | `gText_Possessive_Cow` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
-| `0x08104E1C` | `gText_Possessive_Sheep` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
-| `0x08104E24` | `gText_Possessive_Chicken` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
-| `0x08104E30` | `gText_Possessive_Child` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
-| `0x08104E38` | `gText_Possessive_Player` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104E0C` | `gText_Possessive_Horse` | `data/text/us/name_entry.cc` | `src/name_entry.o(.rodata)` |
+| `0x08104E14` | `gText_Possessive_Cow` | `data/text/us/name_entry.cc` | `src/name_entry.o(.rodata)` |
+| `0x08104E1C` | `gText_Possessive_Sheep` | `data/text/us/name_entry.cc` | `src/name_entry.o(.rodata)` |
+| `0x08104E24` | `gText_Possessive_Chicken` | `data/text/us/name_entry.cc` | `src/name_entry.o(.rodata)` |
+| `0x08104E30` | `gText_Possessive_Child` | `data/text/us/name_entry.cc` | `src/name_entry.o(.rodata)` |
+| `0x08104E38` | `gText_Possessive_Player` | `data/text/us/name_entry.cc` | `src/name_entry.o(.rodata)` |
 | `0x08104E4C` | `gText_RandomItem_NotAvailable` | `data/text/us/random_item_unavailable.cc` | `src/random_item_unavailable.o(.rodata)` |
 | `0x081074E4` | `gText_FieldRenderFallbackNone` | `data/text/us/field_render_runtime_data_1.cc` | `src/field_render_runtime_data.o(.rodata)` |
 | `0x08107568` | `gText_080B0708DefaultGlyph` | `data/text/us/field_render_runtime_data_3.cc` | `src/field_render_runtime_data.o(.rodata)` |

@@ -222,7 +222,7 @@ SECTIONS
         src/animal_festival.o(.text.SelectFestivalAnimal__9GameScene22MaryFestivalAnimalKind);
         src/staff_credits.o(.text.RunStaffCredits__9GameScene);
         src/farming_tutorial.o(.text.OpenFarmingTutorial__9GameScene23MaryFarmingTutorialKind);
-        asm/game_state.o(.text.game_scene_after_farming_tutorial);
+        src/name_entry.o(.text.OpenNameEntry__9GameScene17MaryNameEntryKindi);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/scene_cooking.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -772,7 +772,7 @@ SECTIONS
         src/scene_harvest_sprite_minigames.o(.text._._28HarvestSpriteAnimalCareScene);
         src/scene_harvest_sprite_minigames.o(.text.__28HarvestSpriteAnimalCareSceneG20SceneTransitionOwnerP18GameStateSaveImage15MaryCharacterId);
         src/scene_chicken_festival.o(.text.__27ChickenFestivalContestSceneG20SceneTransitionOwnerP18GameStateSaveImage);
-        src/game_scene.o(.text.Run__19SavedNameEntryScene .text.__19SavedNameEntrySceneG20SceneTransitionOwnerP18GameStateSaveImage17MaryNameEntryKindUc);
+        src/name_entry.o(.text.Run__19SavedNameEntryScene .text.__19SavedNameEntrySceneG20SceneTransitionOwnerP18GameStateSaveImage17MaryNameEntryKindUc);
         asm/code_809E804.o(.text.after_saved_name_scene);
         src/time_of_day.o(.text.GetTimeOfDayTransitionValue);
         . = 0xA46C8;
@@ -984,7 +984,7 @@ SECTIONS
         src/intro_story_scene.o(.text.CreateScene__20IntroStoryTransition);
         src/intro_story_scene.o(.gnu.linkonce.t._._20IntroStoryTransition);
         src/animal_festival.o(.text.CreateScene__33FestivalAnimalSelectionTransition .gnu.linkonce.t._._33FestivalAnimalSelectionTransition);
-        src/game_scene.o(.text.CreateScene__24SavedNameEntryTransition .gnu.linkonce.t._._24SavedNameEntryTransition);
+        src/name_entry.o(.text.CreateScene__24SavedNameEntryTransition .gnu.linkonce.t._._24SavedNameEntryTransition);
         src/scene_harvest_sprite_minigames.o(.text.CreateScene__31HarvestSpriteWateringTransition);
         src/scene_harvest_sprite_minigames.o(.gnu.linkonce.t._._31HarvestSpriteWateringTransition);
         src/scene_harvest_sprite_minigames.o(.text.CreateScene__33HarvestSpriteHarvestingTransition);
@@ -1090,7 +1090,7 @@ SECTIONS
         asm/code_linkonce.o(.text.sprite_work_target_search_after);
         src/scene_calendar.o(.gnu.linkonce.t._._13CalendarScene);
         src/scene_chicken_festival.o(.gnu.linkonce.t._._27ChickenFestivalContestScene);
-        src/game_scene.o(.gnu.linkonce.t._._19SavedNameEntryScene);
+        src/name_entry.o(.gnu.linkonce.t._._19SavedNameEntryScene);
         src/world_map.o(.gnu.linkonce.t._._25MapViewportTilemapCommand);
         asm/code_linkonce.o(.text.after_saved_name_scene_destructor);
         src/world_map.o(.text.DestroySavedWorldMap);
@@ -1357,7 +1357,7 @@ SECTIONS
 . = ALIGN(4); src/scene_calendar.o(.gnu.linkonce.d.__vt_13CalendarScene);
 . = ALIGN(4); src/scene_harvest_sprite_minigames.o(.gnu.linkonce.d.__vt_26HarvestSpriteWateringScene .gnu.linkonce.d.__vt_28HarvestSpriteHarvestingScene .gnu.linkonce.d.__vt_28HarvestSpriteAnimalCareScene);
 . = ALIGN(4); src/scene_chicken_festival.o(.gnu.linkonce.d.__vt_27ChickenFestivalContestScene);
-. = ALIGN(4); src/game_scene.o(.gnu.linkonce.d.__vt_19SavedNameEntryScene);
+. = ALIGN(4); src/name_entry.o(.gnu.linkonce.d.__vt_19SavedNameEntryScene);
 . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
 . = ALIGN(4); src/world_map.o(.gnu.linkonce.d.__vt_17GameSceneWorldMap);
 . = ALIGN(4); src/world_map.o(.gnu.linkonce.d.__vt_25MapViewportTilemapCommand);
@@ -1507,7 +1507,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         . = ABSOLUTE(0x08104990); src/calendar_events.o(.rodata);
-        . = ABSOLUTE(0x08104E64); src/possessive_labels.o(.rodata);
+        . = ABSOLUTE(0x08104E64); src/name_entry.o(.rodata);
         . = ABSOLUTE(0x08104EA4); src/random_item_unavailable.o(.rodata);
         . = ABSOLUTE(0x08104EAC); src/fishing_record_article_ids.o(.rodata);
         . = ABSOLUTE(0x08104ECC); src/field_plot_position_values.o(.rodata);

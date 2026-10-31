@@ -316,6 +316,7 @@ struct GameSceneResumeRequest {
         AFTER_FARM_INHERITANCE_FLASHBACK = 0x28,
         AFTER_TOWN_MAP = 0x29,
         AFTER_RUCKSACK_MENU = 0x2A,
+        AFTER_NAME_ENTRY = 0x2B,
         AFTER_FESTIVAL_ANIMAL_SELECTION = 0x2C,
         AFTER_STAFF_CREDITS = 0x2D,
         AFTER_FARMING_TUTORIAL = 0x2E,
@@ -353,6 +354,7 @@ struct GameSceneResumeRequest {
         AFTER_FARM_INHERITANCE_FLASHBACK = 0x29,
         AFTER_TOWN_MAP = 0x2A,
         AFTER_RUCKSACK_MENU = 0x2B,
+        AFTER_NAME_ENTRY = 0x2C,
         AFTER_FESTIVAL_ANIMAL_SELECTION = 0x2D,
         AFTER_STAFF_CREDITS = 0x2E,
         AFTER_FARMING_TUTORIAL = 0x2F,
@@ -452,40 +454,6 @@ typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) 
 
 #include "scene_yodel_ranch_shop.hh"
 #pragma interface "game_scene.hh"
-
-// This saved-target naming operation is distinct from the reusable keyboard.
-// The native Run handles the six NAME_ENTRY_* cases and edits the save image.
-struct SavedNameEntryScene : AScene {
-    SavedNameEntryScene(SceneTransitionOwner next, GameStateSaveImage * image,
-        MaryNameEntryKind input_kind, u8 index)
-        : continuation(next), save(image), kind(input_kind), target_index(index) {}
-    virtual SceneTransitionOwner Run();
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-    MaryNameEntryKind kind;
-    u8 target_index;
-};
-
-struct SavedNameEntryTransition : SceneTransition {
-    SavedNameEntryTransition(SceneTransitionOwner next, GameStateSaveImage * image,
-        MaryNameEntryKind input_kind, u8 index)
-        : continuation(next), save(image), kind(input_kind), target_index(index) {}
-    virtual SceneOwner CreateScene();
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-    MaryNameEntryKind kind;
-    u8 target_index;
-};
-typedef char SavedNameEntrySceneSizeCheck[sizeof(SavedNameEntryScene) == 20 ? 1 : -1];
-typedef char SavedNameEntryTransitionSizeCheck[sizeof(SavedNameEntryTransition) == 20 ? 1 : -1];
-typedef char SavedNameEntrySceneContinuationCheck[offsetof(SavedNameEntryScene, continuation) == 4 ? 1 : -1];
-typedef char SavedNameEntrySceneSaveCheck[offsetof(SavedNameEntryScene, save) == 8 ? 1 : -1];
-typedef char SavedNameEntrySceneKindCheck[offsetof(SavedNameEntryScene, kind) == 12 ? 1 : -1];
-typedef char SavedNameEntryTransitionContinuationCheck[offsetof(SavedNameEntryTransition, continuation) == 4 ? 1 : -1];
-typedef char SavedNameEntryTransitionSaveCheck[offsetof(SavedNameEntryTransition, save) == 8 ? 1 : -1];
-typedef char SavedNameEntryTransitionKindCheck[offsetof(SavedNameEntryTransition, kind) == 12 ? 1 : -1];
-typedef char SavedNameEntrySceneIndexCheck[offsetof(SavedNameEntryScene, target_index) == 16 ? 1 : -1];
-typedef char SavedNameEntryTransitionIndexCheck[offsetof(SavedNameEntryTransition, target_index) == 16 ? 1 : -1];
 
 #include "scene_poultry_farm_shop.hh"
 #pragma interface "game_scene.hh"
@@ -608,6 +576,7 @@ struct GameScene : AScene {
     void SelectFestivalAnimal(MaryFestivalAnimalKind kind);
     void RunStaffCredits();
     void OpenFarmingTutorial(MaryFarmingTutorialKind kind);
+    void OpenNameEntry(MaryNameEntryKind kind, MaryNameEntryTargetIndex target_index);
     void RunHarvestSpriteAnimalCareMinigame(MaryCharacterId sprite_id);
     void RunHarvestSpriteHarvestingMinigame(MaryCharacterId sprite_id);
     void RunHarvestSpriteWateringMinigame(MaryCharacterId sprite_id);

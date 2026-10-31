@@ -30,7 +30,6 @@
 #include "hardware_song.hh"
 #include "script_engine.hh"
 #include "font.hh"
-#include "possessive_labels.hh"
 #include "gbasvc.h"
 #include "gbaio.h"
 #include <iterator>

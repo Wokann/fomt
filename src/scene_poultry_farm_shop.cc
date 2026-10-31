@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "name_entry.hh"
 #pragma implementation "scene_poultry_farm_shop.hh"
 #include "scene_poultry_farm_shop.hh"
 

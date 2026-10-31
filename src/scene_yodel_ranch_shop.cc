@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "name_entry.hh"
 #pragma implementation "scene_yodel_ranch_shop.hh"
 #include "game_scene.hh"
 #include "scene_yodel_ranch_shop.hh"
