@@ -1,3 +1,5 @@
+#include "prelude.h"
+#pragma implementation "animal_festival.hh"
 #include "animal_festival.hh"
 
 extern AnimalFestivalRandomRangePair const gAnimalFestivalRandomRangePairs[] = {
@@ -54,3 +56,27 @@ extern u8 const gAnimalFestivalLivestockContestantValues[][4] = {
     { 30, 40, 40, 20 },
     { 60, 10, 40, 80 },
 };
+
+
+void GameScene::SelectFestivalAnimal(MaryFestivalAnimalKind kind)
+{
+    GameSceneState * current = state;
+    GameSceneResumeRequest request(GameSceneResumeRequest::AFTER_FESTIVAL_ANIMAL_SELECTION);
+    SceneTransitionOwner next(new ReturnToGameScene(current->GetSave(), request));
+    current->pending_transition = new FestivalAnimalSelectionTransition(next, current->save, kind);
+    current->script_state = 0x18;
+}
+
+SceneOwner FestivalAnimalSelectionTransition::CreateScene()
+{
+    return SceneOwner(new FestivalAnimalSelectionScene(continuation, save, kind));
+}
+
+FestivalAnimalSelectionScene::~FestivalAnimalSelectionScene()
+{
+}
+
+SceneTransitionOwner FestivalAnimalSelectionScene::Run()
+{
+    return RunFestivalAnimalSelectionCore(core.Get());
+}

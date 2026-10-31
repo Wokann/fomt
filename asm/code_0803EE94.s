@@ -1468,9 +1468,11 @@ OnCall__12ScriptEnginei:
     bl OpenTownMap__9GameSceneUc
     .byte 0xFF, 0xF7, 0x77, 0xF8
 .LScriptCallJp_0A7:
-    .byte 0xDA, 0x22, 0x52, 0x00, 0xAB, 0x18, 0x1A, 0x68, 0x90, 0x00, 0x40, 0x19, 0x01, 0x6A
-    .byte 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68
-    .byte 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x64, 0xF8, 0xD1, 0xF7, 0x31, 0xFD, 0xFF, 0xF7, 0x60, 0xF8
+    .byte 0xDA, 0x22, 0x52, 0x00, 0xAB, 0x18, 0x1A, 0x68, 0x90, 0x00, 0x40, 0x19, 0x01, 0x6A, 0x00, 0x2A
+    .byte 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xD5, 0x23, 0x9B, 0x00, 0xE8, 0x18, 0x00, 0x68, 0x00, 0x28
+    .byte 0x01, 0xD1, 0xFF, 0xF7, 0x64, 0xF8
+    bl SelectFestivalAnimal__9GameScene22MaryFestivalAnimalKind
+    .byte 0xFF, 0xF7, 0x60, 0xF8
 .LScriptCallJp_0A8:
     .byte 0xD5, 0x24, 0xA4, 0x00, 0x28, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFF, 0xF7, 0x58, 0xF8
     .byte 0xD1, 0xF7, 0x77, 0xFD, 0xFF, 0xF7, 0x54, 0xF8
@@ -42987,9 +42989,9 @@ func_08069EF4:
 	lsrs r0, r0, #0x1f
 	pop {r1}
 	bx r1
-	.global func_08069F14
+	.global ConstructFestivalAnimalSelectionCore
 	.thumb_func
-func_08069F14:
+ConstructFestivalAnimalSelectionCore:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -43340,9 +43342,9 @@ func_08069F14:
 	.4byte 0x00003B50
 .Ljp_0806A080:
 	.4byte 0x00003BA0
-	.global func_0806A1F4
+	.global RunFestivalAnimalSelectionCore
 	.thumb_func
-func_0806A1F4:
+RunFestivalAnimalSelectionCore:
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -50540,9 +50542,9 @@ func_0806A1F4:
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-	.global func_0806D8C8
+	.global __28FestivalAnimalSelectionSceneG20SceneTransitionOwnerP18GameStateSaveImage22MaryFestivalAnimalKind
 	.thumb_func
-func_0806D8C8:
+__28FestivalAnimalSelectionSceneG20SceneTransitionOwnerP18GameStateSaveImage22MaryFestivalAnimalKind:
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r7, r0, #0
@@ -50560,7 +50562,7 @@ func_0806D8C8:
 	mov r1, sp
 	adds r2, r5, #0
 	adds r3, r6, #0
-	bl func_08069F14
+	bl ConstructFestivalAnimalSelectionCore
 	str r0, [r7, #4]
 	ldr r4, [r4]
 	cmp r4, #0
@@ -50577,66 +50579,11 @@ func_0806D8C8:
 	pop {r1}
 	bx r1
 	.align 2, 0
-.Ljp_0806D708: .4byte vtable_unk_080E7AA8
+.Ljp_0806D708: .4byte __vt_28FestivalAnimalSelectionScene
 .Ljp_0806D70C: .4byte 0x00003BF8
-	.global func_0806D918
-	.thumb_func
-func_0806D918:
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .Ljp_0806D73C
-	str r0, [r4]
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .Ljp_0806D72C
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_0806D72C:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.Ljp_0806D73C: .4byte vtable_unk_080E7AA8
+    .section .text.after_festival_animal_selection_scene, "ax", %progbits
+    .align 2, 0
 
-	.global func_0806D948
-	.thumb_func
-func_0806D948:
-	push {r4, lr}
-	sub sp, #0xc
-	adds r4, r0, #0
-	ldr r1, [r1, #4]
-	mov r0, sp
-	bl func_0806A1F4
-	ldr r2, [sp]
-	mov r0, sp
-	str r0, [sp, #4]
-	str r2, [sp, #8]
-	adds r1, r0, #0
-	movs r0, #0
-	str r0, [r1]
-	str r2, [r4]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .Ljp_0806D770
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.Ljp_0806D770:
-	adds r0, r4, #0
-	add sp, #0xc
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
 .Ljp_0806D77C:
 	ldr r1, [r1, #4]
 	ldr r2, [r1, #0x18]
@@ -121643,7 +121590,7 @@ OnCall__12ScriptEnginei: @ 0x0803F8DC
 	bne .L080425C2
 	bl .L0804168A
 .L080425C2:
-	bl func_08013DC8
+	bl SelectFestivalAnimal__9GameScene22MaryFestivalAnimalKind
 	bl .L0804168A
 .L080425CA:
 	movs r4, #0xd5
@@ -193193,8 +193140,8 @@ func_08069EF4:
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_08069F14
-func_08069F14: @ 0x08069F14
+	thumb_func_start ConstructFestivalAnimalSelectionCore
+ConstructFestivalAnimalSelectionCore: @ 0x08069F14
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -193532,8 +193479,8 @@ func_08069F14: @ 0x08069F14
 .L0806A1EC: .4byte 0x000040D0
 .L0806A1F0: .4byte 0x00004120
 
-	thumb_func_start func_0806A1F4
-func_0806A1F4: @ 0x0806A1F4
+	thumb_func_start RunFestivalAnimalSelectionCore
+RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -200677,15 +200624,15 @@ sub_0806D8B2: @ 0x0806D8B2
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_0806D8C8
-func_0806D8C8: @ 0x0806D8C8
+	thumb_func_start __28FestivalAnimalSelectionSceneG20SceneTransitionOwnerP18GameStateSaveImage22MaryFestivalAnimalKind
+__28FestivalAnimalSelectionSceneG20SceneTransitionOwnerP18GameStateSaveImage22MaryFestivalAnimalKind: @ 0x0806D8C8
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r7, r0, #0
 	adds r4, r1, #0
 	adds r5, r2, #0
 	adds r6, r3, #0
-	ldr r0, .L0806D910 @ =vtable_unk_080E7AB4
+	ldr r0, .L0806D910 @ =__vt_28FestivalAnimalSelectionScene
 	str r0, [r7]
 	ldr r1, [r4]
 	movs r0, #0
@@ -200696,7 +200643,7 @@ func_0806D8C8: @ 0x0806D8C8
 	mov r1, sp
 	adds r2, r5, #0
 	adds r3, r6, #0
-	bl func_08069F14
+	bl ConstructFestivalAnimalSelectionCore
 	str r0, [r7, #4]
 	ldr r4, [r4]
 	cmp r4, #0
@@ -200713,65 +200660,12 @@ func_0806D8C8: @ 0x0806D8C8
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L0806D910: .4byte vtable_unk_080E7AB4
+.L0806D910: .4byte __vt_28FestivalAnimalSelectionScene
 .L0806D914: .4byte 0x00004178
 
-	thumb_func_start func_0806D918
-func_0806D918: @ 0x0806D918
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	ldr r0, .L0806D944 @ =vtable_unk_080E7AB4
-	str r0, [r4]
-	ldr r1, [r4, #4]
-	cmp r1, #0
-	beq .L0806D934
-	ldr r0, [r1, #4]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0806D934:
-	adds r0, r4, #0
-	adds r1, r5, #0
-	bl _._6AScene
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0806D944: .4byte vtable_unk_080E7AB4
+    .section .text.after_festival_animal_selection_scene, "ax", %progbits
+    .align 2, 0
 
-	thumb_func_start func_0806D948
-func_0806D948: @ 0x0806D948
-	push {r4, lr}
-	sub sp, #0xc
-	adds r4, r0, #0
-	ldr r1, [r1, #4]
-	mov r0, sp
-	bl func_0806A1F4
-	ldr r2, [sp]
-	mov r0, sp
-	str r0, [sp, #4]
-	str r2, [sp, #8]
-	adds r1, r0, #0
-	movs r0, #0
-	str r0, [r1]
-	str r2, [r4]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L0806D978
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L0806D978:
-	adds r0, r4, #0
-	add sp, #0xc
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
 .L0806D984:
 	ldr r1, [r1, #4]
 	ldr r2, [r1, #0x18]

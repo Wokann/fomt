@@ -82,8 +82,8 @@ extern void __pure_virtual(void);
 extern void func_08069D84(void);
 extern void func_08069E58(void);
 extern void func_08069E98(void);
-extern void func_0806D918(void);
-extern void func_0806D948(void);
+extern void DestroyFestivalAnimalSelectionScene(void) asm("_._28FestivalAnimalSelectionScene");
+extern void Run__28FestivalAnimalSelectionScene(void);
 extern void func_080E0EF0(void);
 extern void method_0803EFD8__13AScriptEngine(void);
 extern void OnCall__12ScriptEnginei(void);
@@ -618,8 +618,8 @@ extern void DestroyTownMapTransition(void) asm("_._17TownMapTransition");
 extern void DestroyTownMapReturnTransition(void) asm("_._23TownMapReturnTransition");
 extern void CreateScene__22GameCubeLinkTransition(void);
 extern void DestroyGameCubeLinkTransition(void) asm("_._22GameCubeLinkTransition");
-extern void func_080DB404(void);
-extern void func_080DB44C(void);
+extern void CreateScene__33FestivalAnimalSelectionTransition(void);
+extern void DestroyFestivalAnimalSelectionTransition(void) asm("_._33FestivalAnimalSelectionTransition");
 extern void CreateScene__31HarvestSpriteWateringTransition(void);
 extern void DestroyHarvestSpriteWateringTransition(void) asm("_._31HarvestSpriteWateringTransition");
 extern void CreateScene__33HarvestSpriteHarvestingTransition(void);
@@ -714,11 +714,11 @@ extern RawVTableFunction const __vt_20IntroStoryTransition[] = {
     CreateScene__20IntroStoryTransition,
 };
 
-extern RawVTableFunction const vtable_unk_080E5C54[] = {
+extern RawVTableFunction const __vt_33FestivalAnimalSelectionTransition[] = {
     nullptr,
     nullptr,
-    func_080DB44C,
-    func_080DB404,
+    DestroyFestivalAnimalSelectionTransition,
+    CreateScene__33FestivalAnimalSelectionTransition,
 };
 
 extern RawVTableFunction const __vt_24SavedNameEntryTransition[] = {
@@ -4219,29 +4219,39 @@ extern RawVTableFunction const vtable_unk_080E7A98[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern RawVTableFunction const __vt_28FestivalAnimalSelectionScene[]
+    SECTION(".rodata.vtable_7aa8") = {
+        nullptr,
+        nullptr,
+        DestroyFestivalAnimalSelectionScene,
+        Run__28FestivalAnimalSelectionScene,
+    };
+#else
 extern RawVTableFunction const vtable_unk_080E7AA8[]
     SECTION(".rodata.vtable_7aa8") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
-        func_0806D918,
-        func_0806D948,
-#else
         func_080E1E28,
-#endif
     };
+#endif
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7AB4[]
     SECTION(".rodata.vtable_7ab4") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
         reinterpret_cast<RawVTableFunction>(DestroyBirthdayInputCore),
-#else
-        func_0806D918,
-        func_0806D948,
-#endif
     };
+#else
+extern RawVTableFunction const __vt_28FestivalAnimalSelectionScene[]
+    SECTION(".rodata.vtable_7ab4") = {
+        nullptr,
+        nullptr,
+        DestroyFestivalAnimalSelectionScene,
+        Run__28FestivalAnimalSelectionScene,
+    };
+#endif
 
 #if !defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7AC4[]

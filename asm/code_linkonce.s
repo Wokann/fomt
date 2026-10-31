@@ -1916,67 +1916,6 @@ sub_080D8178:
     .byte 0x9D, 0x44, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
     .byte 0x00, 0x00, 0xDC, 0x04, 0x00, 0x00
 
-    .section .text.intro_story_transition_after, "ax", %progbits
-    .align 2, 0
-    .global func_080DB404
-    .thumb_func
-func_080DB404:
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    adds r6, r0, #0
-    adds r4, r1, #0
-    ldr r0, [r4, #4]
-    movs r5, #0
-    str r5, [r4, #4]
-    str r0, [sp, #4]
-    movs r0, #8
-    bl __builtin_new
-    add r1, sp, #4
-    ldr r2, [r4, #8]
-    ldr r3, [r4, #0xc]
-    bl func_0806D8C8
-    str r0, [sp]
-    mov r1, sp
-    str r1, [sp, #8]
-    str r0, [sp, #0xc]
-    str r5, [r1]
-    str r0, [r6]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .Lauto_080DABF6
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DABF6:
-    adds r0, r6, #0
-    add sp, #0x10
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .global func_080DB44C
-    .thumb_func
-func_080DB44C:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .Lauto_080DAC18
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    .Lauto_080DAC18:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl _._15SceneTransition
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
     .section .text.scene_calendar_after, "ax", %progbits
 
     .section .text.scene_tool_chest_after, "ax", %progbits
@@ -12513,27 +12452,6 @@ func_080DB0CC:
 	.align 2, 0
 .L080DB0E8: .4byte 0x000004DC
 
-    .section .text.intro_story_transition_after, "ax", %progbits
-    .align 2, 0
-	.global func_080DB404
-	.thumb_func
-func_080DB404:
-	.byte 0x70, 0xB5, 0x84, 0xB0, 0x06, 0x1C, 0x0C, 0x1C, 0x60, 0x68, 0x00, 0x25
-	.byte 0x65, 0x60, 0x01, 0x90, 0x08, 0x20
-	bl __builtin_new
-	.byte 0x01, 0xA9, 0xA2, 0x68, 0xE3, 0x68
-	bl func_0806D8C8
-	.byte 0x00, 0x90, 0x69, 0x46, 0x02, 0x91, 0x03, 0x90, 0x0D, 0x60, 0x30, 0x60
-	.byte 0x00, 0x99, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF8, 0xF7
-	.byte 0x69, 0xFA, 0x30, 0x1C, 0x04, 0xB0, 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47
-	.global func_080DB44C
-	.thumb_func
-func_080DB44C:
-	.byte 0x30, 0xB5, 0x04, 0x1C
-	.byte 0x0D, 0x1C, 0x61, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
-	.byte 0xF8, 0xF7, 0x58, 0xFA, 0x20, 0x1C, 0x29, 0x1C
-	bl _._15SceneTransition
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
     .section .text.scene_calendar_after, "ax", %progbits
 
 	.align 2, 0

@@ -925,91 +925,9 @@ __18GameStateSaveImageR10SramAccessUiRUi:
     .align 2, 0
 .Ljp_08011910: .4byte gSramAccessStatus
 
-    .section .text.game_scene_after_town_map, "ax", %progbits
+    .section .text.game_scene_after_festival_animal_selection, "ax", %progbits
     .thumb
     .align 2, 0
-
-    .global func_08013DC8
-    .thumb_func
-func_08013DC8:
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #0x1c
-    mov r8, r1
-    ldr r7, [r0, #4]
-    movs r0, #0x2c
-    str r0, [sp]
-    movs r0, #0x14
-    bl __builtin_new
-    adds r5, r7, #0
-    adds r5, #0x8c
-    ldr r1, [r5]
-    mov ip, r1
-    add r2, sp, #0x10
-    mov r1, sp
-    ldm r1!, {r3, r4, r6}
-    stm r2!, {r3, r4, r6}
-    ldr r1, .Ljp_08013D38 @ =__vt_17ReturnToGameScene
-    str r1, [r0]
-    mov r1, ip
-    str r1, [r0, #4]
-    adds r2, r0, #0
-    adds r2, #8
-    add r1, sp, #0x10
-    ldm r1!, {r3, r4, r6}
-    stm r2!, {r3, r4, r6}
-    str r0, [sp, #0xc]
-    movs r0, #0x10
-    bl __builtin_new
-    ldr r4, [sp, #0xc]
-    movs r2, #0
-    str r2, [sp, #0xc]
-    str r4, [sp, #0x10]
-    ldr r3, [r5]
-    ldr r1, .Ljp_08013D3C @ =vtable_unk_080E5C54
-    str r1, [r0]
-    str r2, [sp, #0x10]
-    str r4, [r0, #4]
-    str r3, [r0, #8]
-    mov r1, r8
-    str r1, [r0, #0xc]
-    adds r5, #0x18
-    adds r4, r0, #0
-    ldr r1, [r5]
-    cmp r4, r1
-    beq .Ljp_08013D0E
-    cmp r1, #0
-    beq .Ljp_08013D0E
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08013D0E:
-    str r4, [r5]
-    adds r1, r7, #0
-    adds r1, #0x9c
-    movs r0, #0x18
-    str r0, [r1]
-    ldr r1, [sp, #0xc]
-    cmp r1, #0
-    beq .Ljp_08013D2A
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_08013D2A:
-    add sp, #0x1c
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08013D38: .4byte __vt_17ReturnToGameScene
-.Ljp_08013D3C: .4byte vtable_unk_080E5C54
 
     .global func_08013E6C
     .thumb_func
@@ -13234,90 +13152,9 @@ __18GameStateSaveImageR10SramAccessUiRUi: @ 0x08011650
     .align 2, 0
 .L08011930: .4byte gSramAccessStatus
 
-    .section .text.game_scene_after_town_map, "ax", %progbits
+    .section .text.game_scene_after_festival_animal_selection, "ax", %progbits
     .thumb
     .align 2, 0
-
-    thumb_func_start func_08013DC8
-func_08013DC8: @ 0x08013DC8
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #0x1c
-    mov r8, r1
-    ldr r7, [r0, #4]
-    movs r0, #0x2d
-    str r0, [sp]
-    movs r0, #0x14
-    bl __builtin_new
-    adds r5, r7, #0
-    adds r5, #0x8c
-    ldr r1, [r5]
-    mov ip, r1
-    add r2, sp, #0x10
-    mov r1, sp
-    ldm r1!, {r3, r4, r6}
-    stm r2!, {r3, r4, r6}
-    ldr r1, .L08013E64 @ =__vt_17ReturnToGameScene
-    str r1, [r0]
-    mov r1, ip
-    str r1, [r0, #4]
-    adds r2, r0, #0
-    adds r2, #8
-    add r1, sp, #0x10
-    ldm r1!, {r3, r4, r6}
-    stm r2!, {r3, r4, r6}
-    str r0, [sp, #0xc]
-    movs r0, #0x10
-    bl __builtin_new
-    ldr r4, [sp, #0xc]
-    movs r2, #0
-    str r2, [sp, #0xc]
-    str r4, [sp, #0x10]
-    ldr r3, [r5]
-    ldr r1, .L08013E68 @ =vtable_unk_080E5C54
-    str r1, [r0]
-    str r2, [sp, #0x10]
-    str r4, [r0, #4]
-    str r3, [r0, #8]
-    mov r1, r8
-    str r1, [r0, #0xc]
-    adds r5, #0x18
-    adds r4, r0, #0
-    ldr r1, [r5]
-    cmp r4, r1
-    beq .L08013E3A
-    cmp r1, #0
-    beq .L08013E3A
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08013E3A:
-    str r4, [r5]
-    adds r1, r7, #0
-    adds r1, #0x9c
-    movs r0, #0x18
-    str r0, [r1]
-    ldr r1, [sp, #0xc]
-    cmp r1, #0
-    beq .L08013E56
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08013E56:
-    add sp, #0x1c
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08013E64: .4byte __vt_17ReturnToGameScene
-.L08013E68: .4byte vtable_unk_080E5C54
 
     thumb_func_start func_08013E6C
 func_08013E6C: @ 0x08013E6C

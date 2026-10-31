@@ -1,5 +1,54 @@
 # 代码 ROM 物理布局
 
+## 祭典参赛动物选择场景（2026-10-31）
+
+紧接城镇地图的原 `func_08013DC8` 恢复为
+`GameScene::SelectFestivalAnimal(MaryFestivalAnimalKind)`，与场景及转场一起
+归入已有 `src/animal_festival.cc`／`include/animal_festival.hh`，不按旧汇编
+文件名新增庞大模块。原有对手数据、文本 include 和只读数据顺序保持不变。
+
+| 区域 | 游戏入口（164） | 场景工厂（72） | 转场析构（40） | 场景析构／运行（108） |
+| --- | --- | --- | --- | --- |
+| JP | `0x08013C9C–0x08013D40` | `0x080DABB8–0x080DAC00` | `0x080DAC00–0x080DAC28` | `0x0806D710–0x0806D77C` |
+| US | `0x08013DC8–0x08013E6C` | `0x080DB404–0x080DB44C` | `0x080DB44C–0x080DB474` | `0x0806D918–0x0806D984` |
+| EU | `0x08013DDC–0x08013E80` | `0x080DB450–0x080DB498` | `0x080DB498–0x080DB4C0` | `0x0806D92C–0x0806D998` |
+| DE | `0x08013DE8–0x08013E8C` | `0x080DB368–0x080DB3B0` | `0x080DB3B0–0x080DB3D8` | `0x0806D810–0x0806D87C` |
+
+以上为半开物理范围。四版各新增 **5 个 C++ 函数、384 字节**，
+正文 380 字节及自然对齐 4 字节，四版共 1536 字节。运行函数正文为 58
+字节，末尾 2 字节由对齐产生；转场析构正文 38 字节，同样保留 2 字节对齐。
+
+参赛类别直接复用 `MaryFestivalAnimalKind`：鸡 0、牛 1、羊 2，与通用
+`MaryAnimalKind` 编号域不同。三类邀请脚本的实际调用和原生核心的类别字段
+共同支持这个类型；脚本将返回值作为家族内动物槽号使用，原生未选槽初值为 -1。
+入口建立 `ReturnToGameScene` 后续转场，JP／海外请求种类为 0x2C／0x2D，
+未使用的请求载荷保持原生不初始化行为。
+
+`FestivalAnimalSelectionTransition` 为 16 字节，拥有后续转场，并借用
+存档和保存参赛类别。8 字节 `FestivalAnimalSelectionScene` 通过现有
+`SmartPtr<HardwareBootstrap>` 拥有选择核心的真实多态基类：原生核心构造
+明确调用 `HardwareBootstrap`，析构通过其 +4 虚指针进行正常分派。
+这里没有使用临时假核心布局、手工 vptr 写入、固定大小的 C++ 分配或 ABI 包装。
+
+场景的 80 字节构造、736 字节核心构造及大型核心运行逻辑仍为原生汇编，
+分别直接使用真实成员名或 `ConstructFestivalAnimalSelectionCore`／
+`RunFestivalAnimalSelectionCore` 符号，不计入 C++。场景运行直接返回原生
+核心的真实拥有型转场结果。随后尚未重构的 12 字节双字段读取函数保持原位。
+
+两张真实类表留在原连续目录，直接引用实际成员；JP 与海外的场景表槽位
+不同，邻接的核心／生日输入表原样保留。JP VM 一处裸 BL 改为符号调用；
+海外原工厂和析构中两处裸 `_call_via_r2` 调用由 C++ 生成真实重定位。
+八个本批关联函数及两张类表的入向引用均已符号化，五个新 C++ 函数无外部
+BL 跳入内部。
+
+四版普通 WSL `make -j4 GAME_REGION=<区域> GAME_REVISION=0 compare`
+完整 8 MiB 逐字节及 SHA-1 一致。全部旧全局地址、重定位最终目标、保留
+输入范围、每版 266 个未修改对象、既有 GameScene 对象、原动物祭典数据
+及类表目录核对通过。Mary 脚本和资源内容未修改。
+
+最早连续启动缺口仍为 `InitializeIntroSceneBackground` 的 156 字节；
+这次推进的是后续已定位的连续游戏入口，不表示启动段已连续完成。
+
 ## 城镇地图入口与选址返回协议（2026-10-31）
 
 原 `func_08013D04` 按实际功能恢复为 `GameScene::OpenTownMap(u8)`。

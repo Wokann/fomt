@@ -219,7 +219,8 @@ SECTIONS
         src/intro_story_scene.o(.text.StartFarmInheritanceFlashback__9GameScene);
         src/scene_rucksack.o(.text.OpenRucksackMenu__9GameScene);
         src/town_map.o(.text.OpenTownMap__9GameSceneUc);
-        asm/game_state.o(.text.game_scene_after_town_map);
+        src/animal_festival.o(.text.SelectFestivalAnimal__9GameScene22MaryFestivalAnimalKind);
+        asm/game_state.o(.text.game_scene_after_festival_animal_selection);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/scene_cooking.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -586,6 +587,8 @@ SECTIONS
         asm/intro_story_scene.o(.text.intro_story_graphics);
         src/intro_story_scene.o(.text.__15IntroStorySceneRP15SceneTransitionP18GameStateSaveImage .text._._15IntroStoryScene .text.Run__15IntroStoryScene);
         asm/code_0803EE94.o(.text.intro_story_scene_after);
+        src/animal_festival.o(.text._._28FestivalAnimalSelectionScene .text.Run__28FestivalAnimalSelectionScene);
+        asm/code_0803EE94.o(.text.after_festival_animal_selection_scene);
         src/new_game.o(.text.new_game_birthday_core);
         asm/code_0803EE94.o(.text.new_game_birthday_core_after);
         src/new_game.o(.text.new_game_birthday_ui);
@@ -983,7 +986,7 @@ SECTIONS
         src/scene_gamecube_link.o(.text.CreateScene__22GameCubeLinkTransition .gnu.linkonce.t._._22GameCubeLinkTransition);
         src/intro_story_scene.o(.text.CreateScene__20IntroStoryTransition);
         src/intro_story_scene.o(.gnu.linkonce.t._._20IntroStoryTransition);
-        asm/code_linkonce.o(.text.intro_story_transition_after);
+        src/animal_festival.o(.text.CreateScene__33FestivalAnimalSelectionTransition .gnu.linkonce.t._._33FestivalAnimalSelectionTransition);
         src/game_scene.o(.text.CreateScene__24SavedNameEntryTransition .gnu.linkonce.t._._24SavedNameEntryTransition);
         src/scene_harvest_sprite_minigames.o(.text.CreateScene__31HarvestSpriteWateringTransition);
         src/scene_harvest_sprite_minigames.o(.gnu.linkonce.t._._31HarvestSpriteWateringTransition);
