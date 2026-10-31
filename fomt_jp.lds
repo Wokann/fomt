@@ -254,7 +254,8 @@ SECTIONS
         src/scene_cooking.o(.text.OpenCookingMenu__9GameScene .text.OpenRecipeList__9GameScene);
         src/scene_gamecube_link.o(.text.RunGameCubeLink__9GameScene);
         src/scene_harvest_sprite_minigames.o(.text.RunHarvestSpriteAnimalCareMinigame__9GameScene15MaryCharacterId .text.RunHarvestSpriteHarvestingMinigame__9GameScene15MaryCharacterId .text.RunHarvestSpriteWateringMinigame__9GameScene15MaryCharacterId);
-        asm/game_state.o(.text.game_scene_after_sprite_minigames);
+        src/intro_story_scene.o(.text.StartFarmInheritanceFlashback__9GameScene);
+        asm/game_state.o(.text.game_scene_after_inheritance_flashback);
         src/scene_clock.o(.text.PrepareClockMenuTransition__9GameScene .text.RestoreAfterClockMenu__9GameScene);
         src/scene_cooking.o(
             .text.PrepareCookingMenuTransition__9GameScene
@@ -1037,7 +1038,8 @@ SECTIONS
         src/game_scene.o(.text._._14GameSceneState);
         asm/code_linkonce.o(.text.scene_calendar_before);
         src/scene_gamecube_link.o(.text.CreateScene__22GameCubeLinkTransition .gnu.linkonce.t._._22GameCubeLinkTransition);
-        src/intro_story_scene.o(.text.CreateIntroStoryScene .text.DestroyIntroStoryTransition);
+        src/intro_story_scene.o(.text.CreateScene__20IntroStoryTransition);
+        src/intro_story_scene.o(.gnu.linkonce.t._._20IntroStoryTransition);
         asm/code_linkonce.o(.text.intro_story_transition_after);
         src/game_scene.o(.text.CreateScene__24SavedNameEntryTransition .gnu.linkonce.t._._24SavedNameEntryTransition);
         src/scene_harvest_sprite_minigames.o(.text.CreateScene__31HarvestSpriteWateringTransition);

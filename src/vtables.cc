@@ -4,7 +4,6 @@
 #include "scene_chicken_festival.hh"
 #include "prelude.h"
 #include "intro_scene.hh"
-#include "intro_story_scene.hh"
 #include "new_game.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_manager.hh"
@@ -713,10 +712,14 @@ extern RawVTableFunction const __vt_22GameCubeLinkTransition[] = {
     CreateScene__22GameCubeLinkTransition,
 };
 
-// This typed native table remains in its original shared physical run.
-// The complete transition hierarchy has not yet been recovered.
-extern IntroStoryTransitionVTable const gIntroStoryTransitionVTable = {
-    { nullptr, nullptr }, DestroyIntroStoryTransition, CreateIntroStoryScene,
+// The real transition class keeps its table in this continuous catalog.
+extern void CreateScene__20IntroStoryTransition(void);
+extern void DestroyIntroStoryTransition(void) asm("_._20IntroStoryTransition");
+extern RawVTableFunction const __vt_20IntroStoryTransition[] = {
+    nullptr,
+    nullptr,
+    DestroyIntroStoryTransition,
+    CreateScene__20IntroStoryTransition,
 };
 
 extern RawVTableFunction const vtable_unk_080E5C54[] = {

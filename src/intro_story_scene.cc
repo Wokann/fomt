@@ -1,9 +1,19 @@
 #include "intro_story_scene.hh"
+#include "game_scene.hh"
 
 #include "hardware_state_accessors.hh"
 #include "hardware_input.hh"
 #include "game_state.hh"
 #include "intro_scene_data.hh"
+
+void GameScene::StartFarmInheritanceFlashback()
+{
+    GameSceneState * current = state;
+    GameSceneResumeRequest request(GameSceneResumeRequest::AFTER_FARM_INHERITANCE_FLASHBACK);
+    SceneTransitionOwner next(new ReturnToGameScene(current->GetSave(), request));
+    current->pending_transition = new IntroStoryTransition(next, current->save);
+    current->script_state = 0x18;
+}
 
 void * operator new(unsigned long);
 inline void * operator new(unsigned long, void * destination) { return destination; }
@@ -81,17 +91,12 @@ SceneTransitionOwner IntroStoryScene::Run()
     return continuation;
 }
 
-SceneOwner CreateIntroStoryScene(IntroStoryTransition * transition)
+SceneOwner IntroStoryTransition::CreateScene()
 {
-    SceneTransition * next = transition->continuation.release();
-    return SceneOwner(new IntroStoryScene(next, transition->saved));
+    SceneTransition * next = continuation.release();
+    return SceneOwner(new IntroStoryScene(next, saved));
 }
 
-void DestroyIntroStoryTransition(IntroStoryTransition * transition, int flags)
-{
-    transition->continuation.~SceneTransitionOwner();
-    DestroySceneTransitionBase(transition, flags);
-}
 
 void UpdateIntroStoryUi(IntroStorySceneCore * core)
 {
