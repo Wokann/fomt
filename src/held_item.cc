@@ -2,12 +2,12 @@
 
 HeldItem::HeldItem()
 {
-    kind = HeldItem::KIND_5;
+    kind = HeldItem::KIND_ACTOR_GRAPHIC;
     wrapped = 0;
     inner.unk_k5_02 = UINT16_MAX;
 }
 
-EC bool func_0800F190(HeldItem const * self)
+EC bool IsHeldItemEmpty(HeldItem const * self)
 {
     switch (self->kind)
     {
@@ -20,16 +20,16 @@ EC bool func_0800F190(HeldItem const * self)
         case HeldItem::KIND_ARTICLE:
             return self->inner.article.id >= ITEM_ARTICLE_NONE;
 
-        case HeldItem::KIND_2:
+        case HeldItem::KIND_DOG:
             return false;
 
-        case HeldItem::KIND_3:
-            return self->inner.unk_k3.id >= 8;
+        case HeldItem::KIND_CHICKEN:
+            return self->inner.chicken.slot >= 8;
 
-        case HeldItem::KIND_4:
+        case HeldItem::KIND_BASKET:
             return false;
 
-        case HeldItem::KIND_5:
+        case HeldItem::KIND_ACTOR_GRAPHIC:
             return self->inner.unk_k5_02 == 0xFFFF;
     }
 }
@@ -98,17 +98,17 @@ EC RucksackItem func_0800F294(HeldItem const * self)
     return RucksackItem();
 }
 
-EC int func_0800F344(HeldItem const * self)
+EC int GetHeldChickenSlot(HeldItem const * self)
 {
-    if (self->kind == HeldItem::KIND_3 && self->inner.unk_k3.id < 8)
-        return self->inner.unk_k3.id;
+    if (self->kind == HeldItem::KIND_CHICKEN && self->inner.chicken.slot < 8)
+        return self->inner.chicken.slot;
 
     return -1;
 }
 
 EC int func_0800F360(HeldItem const * self)
 {
-    if (self->kind == HeldItem::KIND_5 && self->inner.unk_k5_02 < 0xFFFF)
+    if (self->kind == HeldItem::KIND_ACTOR_GRAPHIC && self->inner.unk_k5_02 < 0xFFFF)
         return self->inner.unk_k5_02;
 
     return -1;
@@ -119,9 +119,9 @@ EC bool func_0800F388(HeldItem const * self)
     return self->wrapped;
 }
 
-EC void func_0800F390(HeldItem * self)
+EC void ClearHeldItem(HeldItem * self)
 {
-    self->kind = HeldItem::KIND_5;
+    self->kind = HeldItem::KIND_ACTOR_GRAPHIC;
     self->wrapped = 0;
     self->inner.unk_k5_02 = UINT16_MAX;
 }
@@ -174,26 +174,26 @@ EC void func_0800F418(HeldItem * self, RucksackItem rucksack_item)
 
 EC void func_0800F4C0(HeldItem * self)
 {
-    self->kind = HeldItem::KIND_2;
+    self->kind = HeldItem::KIND_DOG;
     self->wrapped = 0;
 }
 
 EC void func_0800F4D8(HeldItem * self)
 {
-    self->kind = HeldItem::KIND_4;
+    self->kind = HeldItem::KIND_BASKET;
     self->wrapped = 0;
 }
 
-EC void func_0800F4F0(HeldItem * self, fu8 arg_1)
+EC void SetHeldChickenSlot(HeldItem * self, fu8 slot)
 {
-    self->kind = HeldItem::KIND_3;
+    self->kind = HeldItem::KIND_CHICKEN;
     self->wrapped = 0;
-    self->inner.unk_k3.id = arg_1 % 8;
+    self->inner.chicken.slot = slot % 8;
 }
 
 EC void func_0800F510(HeldItem * self, int arg_1)
 {
-    self->kind = HeldItem::KIND_5;
+    self->kind = HeldItem::KIND_ACTOR_GRAPHIC;
     self->wrapped = 0;
     self->inner.unk_k5_02 = arg_1;
 }

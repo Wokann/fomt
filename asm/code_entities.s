@@ -8416,7 +8416,7 @@ func_08024814:
     adds r6, r0, #0
     adds r6, #0x54
     adds r0, r6, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080248FE
@@ -8474,7 +8474,7 @@ func_08024814:
     lsls r0, r0, #3
     adds r4, r4, r0
     adds r0, r6, #0
-    bl func_0800F344
+    bl GetHeldChickenSlot
     adds r1, r0, #0
     adds r0, r4, #0
     bl GetChicken__4CoopUi
@@ -10346,7 +10346,7 @@ func_08025634: @ 0x080258A0
     str r1, [r0]
     ldr r0, [r4, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     adds r1, r4, #0
     adds r1, #0x3c
     movs r0, #0x12
@@ -11127,7 +11127,7 @@ func_08025C90: @ 0x08025EFC
     lsrs r1, r1, #0x18
     ldr r0, [r4, #0x38]
     adds r0, #0x54
-    bl func_0800F4F0
+    bl SetHeldChickenSlot
     adds r0, r4, #0
     bl func_0802A31C
     adds r1, r4, #0
@@ -11642,7 +11642,7 @@ func_08026058: @ 0x080262C4
     ldr r1, .Ljp_0802608C @ =0x00001C2C
     adds r5, r0, r1
     adds r0, r5, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080260CC
@@ -11833,7 +11833,7 @@ func_080260E0: @ 0x080260E0
 .Ljp_08026258:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802628A
@@ -11901,7 +11901,7 @@ func_080260E0: @ 0x080260E0
 .Ljp_080262CC:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080262DC
@@ -11940,7 +11940,7 @@ func_080260E0: @ 0x080260E0
 .Ljp_0802631C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -11952,7 +11952,7 @@ func_080260E0: @ 0x080260E0
 .Ljp_08026332:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -12199,7 +12199,7 @@ func_080260E0: @ 0x080260E0
 .Ljp_080264FE:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -12246,7 +12246,7 @@ func_080260E0: @ 0x080260E0
 .Ljp_08026552:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -12436,7 +12436,7 @@ func_080265C4: @ 0x080265C4
 .Ljp_0802673C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802676E
@@ -12504,7 +12504,7 @@ func_080265C4: @ 0x080265C4
 .Ljp_080267B0:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080267C0
@@ -12543,7 +12543,7 @@ func_080265C4: @ 0x080265C4
 .Ljp_08026800:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -12555,7 +12555,7 @@ func_080265C4: @ 0x080265C4
 .Ljp_08026816:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -12802,7 +12802,7 @@ func_080265C4: @ 0x080265C4
 .Ljp_080269E2:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -12849,7 +12849,7 @@ func_080265C4: @ 0x080265C4
 .Ljp_08026A36:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -13083,7 +13083,7 @@ func_08026AA8: @ 0x08026AA8
 .Ljp_08026C64:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08026C96
@@ -13151,7 +13151,7 @@ func_08026AA8: @ 0x08026AA8
 .Ljp_08026CD8:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08026CE8
@@ -13190,7 +13190,7 @@ func_08026AA8: @ 0x08026AA8
 .Ljp_08026D28:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -13202,7 +13202,7 @@ func_08026AA8: @ 0x08026AA8
 .Ljp_08026D3E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -13449,7 +13449,7 @@ func_08026AA8: @ 0x08026AA8
 .Ljp_08026F0A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -13496,7 +13496,7 @@ func_08026AA8: @ 0x08026AA8
 .Ljp_08026F5E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -13677,7 +13677,7 @@ func_08026FA0: @ 0x08026FA0
 .Ljp_0802713C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802716E
@@ -13745,7 +13745,7 @@ func_08026FA0: @ 0x08026FA0
 .Ljp_080271B0:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080271C0
@@ -13784,7 +13784,7 @@ func_08026FA0: @ 0x08026FA0
 .Ljp_08027200:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -13796,7 +13796,7 @@ func_08026FA0: @ 0x08026FA0
 .Ljp_08027216:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -14043,7 +14043,7 @@ func_08026FA0: @ 0x08026FA0
 .Ljp_080273E2:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -14090,7 +14090,7 @@ func_08026FA0: @ 0x08026FA0
 .Ljp_08027436:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -14280,7 +14280,7 @@ func_080274B0: @ 0x080274B0
 .Ljp_08027620:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08027652
@@ -14348,7 +14348,7 @@ func_080274B0: @ 0x080274B0
 .Ljp_08027694:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080276A4
@@ -14387,7 +14387,7 @@ func_080274B0: @ 0x080274B0
 .Ljp_080276E4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -14399,7 +14399,7 @@ func_080274B0: @ 0x080274B0
 .Ljp_080276FA:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -14646,7 +14646,7 @@ func_080274B0: @ 0x080274B0
 .Ljp_080278C6:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -14693,7 +14693,7 @@ func_080274B0: @ 0x080274B0
 .Ljp_0802791A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -14766,7 +14766,7 @@ func_08027990: @ 0x08027990
     ldr r1, .Ljp_08027A94 @ =0x00001C2C
     adds r4, r0, r1
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_080279B2
@@ -14949,7 +14949,7 @@ func_08027990: @ 0x08027990
 .Ljp_08027B88:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08027BBA
@@ -15017,7 +15017,7 @@ func_08027990: @ 0x08027990
 .Ljp_08027BFC:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08027C0C
@@ -15056,7 +15056,7 @@ func_08027990: @ 0x08027990
 .Ljp_08027C4C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -15068,7 +15068,7 @@ func_08027990: @ 0x08027990
 .Ljp_08027C62:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -15325,7 +15325,7 @@ func_08027990: @ 0x08027990
 .Ljp_08027E46:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -15372,7 +15372,7 @@ func_08027990: @ 0x08027990
 .Ljp_08027E9A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -15535,7 +15535,7 @@ func_08027990: @ 0x08027990
 .Ljp_0802804C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802807E
@@ -15603,7 +15603,7 @@ func_08027990: @ 0x08027990
 .Ljp_080280C0:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080280D0
@@ -15641,7 +15641,7 @@ func_08027990: @ 0x08027990
 .Ljp_08028110:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -15653,7 +15653,7 @@ func_08027990: @ 0x08027990
 .Ljp_08028126:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -15910,7 +15910,7 @@ func_08027990: @ 0x08027990
 .Ljp_0802830A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -15957,7 +15957,7 @@ func_08027990: @ 0x08027990
 .Ljp_0802835E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -16029,7 +16029,7 @@ func_080283D8: @ 0x080283D8
     ldr r0, [r6, #0x34]
     ldr r1, .Ljp_08028424 @ =0x00001C2C
     adds r0, r0, r1
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r4, r0, #0x18
     cmp r4, #0
@@ -16180,7 +16180,7 @@ func_080283D8: @ 0x080283D8
 .Ljp_08028578:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080285AA
@@ -16248,7 +16248,7 @@ func_080283D8: @ 0x080283D8
 .Ljp_080285EC:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080285FC
@@ -16287,7 +16287,7 @@ func_080283D8: @ 0x080283D8
 .Ljp_0802863C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -16299,7 +16299,7 @@ func_080283D8: @ 0x080283D8
 .Ljp_08028652:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -16546,7 +16546,7 @@ func_080283D8: @ 0x080283D8
 .Ljp_0802881E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -16593,7 +16593,7 @@ func_080283D8: @ 0x080283D8
 .Ljp_08028872:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -16669,7 +16669,7 @@ func_080288E4: @ 0x080288E4
     ldr r1, .Ljp_08028934 @ =0x00001C2C
     adds r4, r0, r1
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r5, r0, #0x18
     cmp r5, #0
@@ -16828,7 +16828,7 @@ func_080288E4: @ 0x080288E4
 .Ljp_08028AA4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08028AD6
@@ -16896,7 +16896,7 @@ func_080288E4: @ 0x080288E4
 .Ljp_08028B18:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08028B28
@@ -16935,7 +16935,7 @@ func_080288E4: @ 0x080288E4
 .Ljp_08028B68:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -16947,7 +16947,7 @@ func_080288E4: @ 0x080288E4
 .Ljp_08028B7E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -17194,7 +17194,7 @@ func_080288E4: @ 0x080288E4
 .Ljp_08028D4A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -17241,7 +17241,7 @@ func_080288E4: @ 0x080288E4
 .Ljp_08028D9E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -17308,7 +17308,7 @@ func_08028E10:
     ldr r1, .L08028E64
     adds r4, r0, r1
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08028E5A
@@ -17329,7 +17329,7 @@ func_08028E10:
 .L08028E4C:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     adds r0, r5, #0
     bl func_0802A56C
 .L08028E5A:
@@ -17355,7 +17355,7 @@ func_08028E68: @ 0x08028E68
     ldr r0, [r6, #0x34]
     ldr r1, .Ljp_08028E90 @ =0x00001C2C
     adds r0, r0, r1
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08028E94
@@ -17455,7 +17455,7 @@ func_08028E68: @ 0x08028E68
 .Ljp_08028FB8:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08028FEA
@@ -17523,7 +17523,7 @@ func_08028E68: @ 0x08028E68
 .Ljp_0802902C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802903C
@@ -17562,7 +17562,7 @@ func_08028E68: @ 0x08028E68
 .Ljp_0802907C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -17574,7 +17574,7 @@ func_08028E68: @ 0x08028E68
 .Ljp_08029092:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -17821,7 +17821,7 @@ func_08028E68: @ 0x08028E68
 .Ljp_0802925E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -17868,7 +17868,7 @@ func_08028E68: @ 0x08028E68
 .Ljp_080292B2:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -17909,7 +17909,7 @@ func_080292EC: @ 0x080292EC
     ldr r0, [r6, #0x34]
     ldr r1, .Ljp_0802930C @ =0x00001C2C
     adds r0, r0, r1
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08029310
@@ -18007,7 +18007,7 @@ func_080292EC: @ 0x080292EC
 .Ljp_08029430:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08029462
@@ -18075,7 +18075,7 @@ func_080292EC: @ 0x080292EC
 .Ljp_080294A4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080294B4
@@ -18114,7 +18114,7 @@ func_080292EC: @ 0x080292EC
 .Ljp_080294F4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -18126,7 +18126,7 @@ func_080292EC: @ 0x080292EC
 .Ljp_0802950A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -18373,7 +18373,7 @@ func_080292EC: @ 0x080292EC
 .Ljp_080296D6:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -18420,7 +18420,7 @@ func_080292EC: @ 0x080292EC
 .Ljp_0802972A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -18483,7 +18483,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     bl func_0802A31C
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08029864
@@ -18679,7 +18679,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
 .Ljp_08029984:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_080299B6
@@ -18747,7 +18747,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
 .Ljp_080299F8:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08029A08
@@ -18786,7 +18786,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
 .Ljp_08029A48:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -18798,7 +18798,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
 .Ljp_08029A5E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -19045,7 +19045,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
 .Ljp_08029C2A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -19092,7 +19092,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
 .Ljp_08029C7E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -19272,7 +19272,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
 .Ljp_08029E58:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08029E8A
@@ -19340,7 +19340,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
 .Ljp_08029ECC:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08029EDC
@@ -19379,7 +19379,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
 .Ljp_08029F1C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -19391,7 +19391,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
 .Ljp_08029F32:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -19637,7 +19637,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
 .Ljp_0802A0FE:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -19684,7 +19684,7 @@ PlayerShowHoldingTool: @ 0x08029CC4
 .Ljp_0802A152:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -19925,7 +19925,7 @@ func_0802A31C: @ 0x0802A31C
     adds r4, r0, #0
     adds r4, #0x54
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r7, r0, #0x18
     cmp r7, #0
@@ -20101,7 +20101,7 @@ func_0802A31C: @ 0x0802A31C
     b .Ljp_0802A53E
 .Ljp_0802A4A8:
     adds r0, r4, #0
-    bl func_0800F344
+    bl GetHeldChickenSlot
     adds r1, r0, #0
     ldr r0, [r6, #0x34]
     movs r2, #0x82
@@ -20216,7 +20216,7 @@ func_0802A574: @ 0x0802A574
     ldr r0, [r5, #0x38]
     adds r0, #0x54
     mov r8, r0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802A594
@@ -24489,7 +24489,7 @@ func_0802CEEC:
 .Ljp_0802D000:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802D032
@@ -24557,7 +24557,7 @@ func_0802CEEC:
 .Ljp_0802D074:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802D084
@@ -24596,7 +24596,7 @@ func_0802CEEC:
 .Ljp_0802D0C4:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r6, #0xc9
     lsls r6, r6, #1
@@ -24608,7 +24608,7 @@ func_0802CEEC:
 .Ljp_0802D0DA:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r6, #0xc9
     lsls r6, r6, #1
@@ -24857,7 +24857,7 @@ func_0802CEEC:
 .Ljp_0802D2AA:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r6, #0xa5
     lsls r6, r6, #1
@@ -24904,7 +24904,7 @@ func_0802CEEC:
 .Ljp_0802D2FE:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r6, #0xe3
     lsls r6, r6, #1
@@ -25535,7 +25535,7 @@ func_0802D740:
     beq .Ljp_0802D7B0
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802D7A6
@@ -25565,7 +25565,7 @@ func_0802D740:
     beq .Ljp_0802D7EE
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802D7E4
@@ -25646,7 +25646,7 @@ func_0802D740:
 .Ljp_0802D868:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802D958
@@ -25750,7 +25750,7 @@ func_0802D740:
     bl func_0802A56C
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     b .Ljp_0802D97A
 .Ljp_0802D94E:
     adds r1, r6, #0
@@ -25826,7 +25826,7 @@ func_0802D984:
     beq .Ljp_0802DA18
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r1, r0, #0x18
     cmp r1, #0
@@ -25874,7 +25874,7 @@ func_0802D984:
     beq .Ljp_0802DA76
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r1, r0, #0x18
     cmp r1, #0
@@ -25922,7 +25922,7 @@ func_0802D984:
     beq .Ljp_0802DAA6
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802DA9C
@@ -25944,7 +25944,7 @@ func_0802D984:
     beq .Ljp_0802DBB0
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802DACE
@@ -26056,7 +26056,7 @@ func_0802D984:
     bl func_0802A56C
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     b .Ljp_0802DC20
 .Ljp_0802DBA6:
     adds r1, r6, #0
@@ -26081,7 +26081,7 @@ func_0802D984:
 .Ljp_0802DBC6:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r1, r0, #0x18
     cmp r1, #0
@@ -26161,7 +26161,7 @@ func_0802DC28:
 .Ljp_0802DC56:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802DC6A
@@ -26290,7 +26290,7 @@ func_0802DC28:
 .Ljp_0802DD4E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802DD6A
@@ -26402,7 +26402,7 @@ func_0802DC28:
     bl func_0802A56C
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     b .Ljp_0802DE86
 .Ljp_0802DE42:
     adds r1, r6, #0
@@ -26413,7 +26413,7 @@ func_0802DC28:
 .Ljp_0802DE4C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802DE62
@@ -26516,7 +26516,7 @@ func_0802DE90:
     beq .Ljp_0802DF38
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802DF2C
@@ -26661,7 +26661,7 @@ func_0802DE90:
 .Ljp_0802E0B2:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802E0C2
@@ -26906,7 +26906,7 @@ func_0802DE90:
 .Ljp_0802E2AA:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802E2BA
@@ -26939,7 +26939,7 @@ func_0802DE90:
 .Ljp_0802E2F0:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802E316
@@ -27025,7 +27025,7 @@ func_0802DE90:
 .Ljp_0802E3A0:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802E3B0
@@ -27082,7 +27082,7 @@ func_0802DE90:
 .Ljp_0802E414:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802E424
@@ -27178,7 +27178,7 @@ func_0802DE90:
 .Ljp_0802E4D4:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802E54E
@@ -27422,7 +27422,7 @@ func_0802DE90:
 .Ljp_0802E6BC:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r5, r0, #0x18
     cmp r5, #0
@@ -27620,7 +27620,7 @@ func_0802DE90:
     bl func_0802A56C
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     ldr r4, [r7, #0x34]
     ldr r0, .Ljp_0802E8A4 @ =0x00001CCC
     adds r4, r4, r0
@@ -27850,7 +27850,7 @@ func_0802E994:
     adds r4, r0, #0
     adds r4, #0x54
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802EA02
@@ -27976,7 +27976,7 @@ func_0802E994:
     bl Start__23HardwareMusicPlayerSlotUs
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     ldr r0, .Ljp_0802EB08 @ =0xFFF80000
     movs r2, #0
     movs r1, #0x88
@@ -28016,7 +28016,7 @@ func_0802E994:
     strb r0, [r1]
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     b .Ljp_0802EE70
 .Ljp_0802EB36:
     adds r0, r7, #0
@@ -28026,7 +28026,7 @@ func_0802E994:
     cmp r5, #0
     bne .Ljp_0802EB70
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802EB70
@@ -28114,7 +28114,7 @@ func_0802E994:
     strh r1, [r6]
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802EBF4
@@ -28719,7 +28719,7 @@ func_0802EE80: @ 0x0802EE80
     adds r4, r0, #0
     adds r4, #0x54
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802F0F8
@@ -28743,7 +28743,7 @@ func_0802EE80: @ 0x0802EE80
     mov r1, sl
     ldr r0, [r1, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     bl .Ljp_08031B0C
 .Ljp_0802F12A:
     movs r1, #0
@@ -28857,7 +28857,7 @@ func_0802EE80: @ 0x0802EE80
     mov r1, sl
     ldr r0, [r1, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     mov r2, sl
     ldr r0, [r2]
     ldr r1, [r0]
@@ -28928,7 +28928,7 @@ func_0802EE80: @ 0x0802EE80
     mov r3, sl
     ldr r0, [r3, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     mov r4, sl
     ldr r0, [r4, #0x34]
     ldr r5, .Ljp_0802F37C @ =0x00001C70
@@ -29081,7 +29081,7 @@ func_0802EE80: @ 0x0802EE80
     bl sub_08031B08
 .Ljp_0802F3DC:
     adds r0, r4, #0
-    bl func_0800F344
+    bl GetHeldChickenSlot
     str r0, [sp, #0xfc]
     mov r2, sl
     ldr r0, [r2, #0x34]
@@ -29094,7 +29094,7 @@ func_0802EE80: @ 0x0802EE80
     mov r4, sl
     ldr r0, [r4, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     ldrh r2, [r4, #4]
     add r1, sp, #8
     ldr r5, .Ljp_0802F4E4 @ =0x000003FF
@@ -29279,7 +29279,7 @@ func_0802EE80: @ 0x0802EE80
     mov r3, sl
     ldr r0, [r3, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     mov r4, sl
     ldr r0, [r4, #0x34]
     movs r5, #0xe5
@@ -29448,7 +29448,7 @@ func_0802EE80: @ 0x0802EE80
     mov r2, sl
     ldr r0, [r2, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     ldr r0, [r5]
     cmp r0, #1
     bne .Ljp_0802F6F8
@@ -31959,7 +31959,7 @@ sub_0802F990: @ 0x0802F990
     ldr r0, [r4, #0x34]
     ldr r5, .Ljp_08030A98 @ =0x00001C2C
     adds r0, r0, r5
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08030A94
@@ -32058,7 +32058,7 @@ sub_0802F990: @ 0x0802F990
     ldr r0, [r1, #0x34]
     ldr r2, .Ljp_08030B64 @ =0x00001C2C
     adds r0, r0, r2
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_08030B5C
@@ -41331,7 +41331,7 @@ func_08024A80: @ 0x08024A80
     adds r6, r0, #0
     adds r6, #0x54
     adds r0, r6, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08024B6A
@@ -41389,7 +41389,7 @@ func_08024A80: @ 0x08024A80
     lsls r0, r0, #3
     adds r4, r4, r0
     adds r0, r6, #0
-    bl func_0800F344
+    bl GetHeldChickenSlot
     adds r1, r0, #0
     adds r0, r4, #0
     bl GetChicken__4CoopUi
@@ -43247,7 +43247,7 @@ func_080258A0: @ 0x080258A0
     str r1, [r0]
     ldr r0, [r4, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     adds r1, r4, #0
     adds r1, #0x3c
     movs r0, #0x12
@@ -44021,7 +44021,7 @@ func_08025EFC: @ 0x08025EFC
     lsrs r1, r1, #0x18
     ldr r0, [r4, #0x38]
     adds r0, #0x54
-    bl func_0800F4F0
+    bl SetHeldChickenSlot
     adds r0, r4, #0
     bl func_0802A588
     adds r1, r4, #0
@@ -44533,7 +44533,7 @@ func_080262C4: @ 0x080262C4
     ldr r1, .L080262F8 @ =0x00001C2C
     adds r5, r0, r1
     adds r0, r5, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08026338
@@ -44723,7 +44723,7 @@ func_0802634C: @ 0x0802634C
 .L080264C4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080264F6
@@ -44791,7 +44791,7 @@ func_0802634C: @ 0x0802634C
 .L08026538:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08026548
@@ -44830,7 +44830,7 @@ func_0802634C: @ 0x0802634C
 .L08026588:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -44842,7 +44842,7 @@ func_0802634C: @ 0x0802634C
 .L0802659E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -45089,7 +45089,7 @@ func_0802634C: @ 0x0802634C
 .L0802676A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -45136,7 +45136,7 @@ func_0802634C: @ 0x0802634C
 .L080267BE:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -45326,7 +45326,7 @@ func_08026830: @ 0x08026830
 .L080269A8:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080269DA
@@ -45394,7 +45394,7 @@ func_08026830: @ 0x08026830
 .L08026A1C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08026A2C
@@ -45433,7 +45433,7 @@ func_08026830: @ 0x08026830
 .L08026A6C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -45445,7 +45445,7 @@ func_08026830: @ 0x08026830
 .L08026A82:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -45692,7 +45692,7 @@ func_08026830: @ 0x08026830
 .L08026C4E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -45739,7 +45739,7 @@ func_08026830: @ 0x08026830
 .L08026CA2:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -45973,7 +45973,7 @@ func_08026D14: @ 0x08026D14
 .L08026ED0:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08026F02
@@ -46041,7 +46041,7 @@ func_08026D14: @ 0x08026D14
 .L08026F44:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08026F54
@@ -46080,7 +46080,7 @@ func_08026D14: @ 0x08026D14
 .L08026F94:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -46092,7 +46092,7 @@ func_08026D14: @ 0x08026D14
 .L08026FAA:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -46339,7 +46339,7 @@ func_08026D14: @ 0x08026D14
 .L08027176:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -46386,7 +46386,7 @@ func_08026D14: @ 0x08026D14
 .L080271CA:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -46567,7 +46567,7 @@ func_0802720C: @ 0x0802720C
 .L080273A8:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080273DA
@@ -46635,7 +46635,7 @@ func_0802720C: @ 0x0802720C
 .L0802741C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802742C
@@ -46674,7 +46674,7 @@ func_0802720C: @ 0x0802720C
 .L0802746C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -46686,7 +46686,7 @@ func_0802720C: @ 0x0802720C
 .L08027482:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -46933,7 +46933,7 @@ func_0802720C: @ 0x0802720C
 .L0802764E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -46980,7 +46980,7 @@ func_0802720C: @ 0x0802720C
 .L080276A2:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -47170,7 +47170,7 @@ func_0802771C: @ 0x0802771C
 .L0802788C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080278BE
@@ -47238,7 +47238,7 @@ func_0802771C: @ 0x0802771C
 .L08027900:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08027910
@@ -47277,7 +47277,7 @@ func_0802771C: @ 0x0802771C
 .L08027950:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -47289,7 +47289,7 @@ func_0802771C: @ 0x0802771C
 .L08027966:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -47536,7 +47536,7 @@ func_0802771C: @ 0x0802771C
 .L08027B32:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -47583,7 +47583,7 @@ func_0802771C: @ 0x0802771C
 .L08027B86:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -47656,7 +47656,7 @@ func_08027BFC: @ 0x08027BFC
     ldr r1, .L08027D00 @ =0x00001C2C
     adds r4, r0, r1
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08027C1E
@@ -47839,7 +47839,7 @@ func_08027BFC: @ 0x08027BFC
 .L08027DF4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08027E26
@@ -47907,7 +47907,7 @@ func_08027BFC: @ 0x08027BFC
 .L08027E68:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08027E78
@@ -47946,7 +47946,7 @@ func_08027BFC: @ 0x08027BFC
 .L08027EB8:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -47958,7 +47958,7 @@ func_08027BFC: @ 0x08027BFC
 .L08027ECE:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -48215,7 +48215,7 @@ func_08027BFC: @ 0x08027BFC
 .L080280B2:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -48262,7 +48262,7 @@ func_08027BFC: @ 0x08027BFC
 .L08028106:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -48425,7 +48425,7 @@ func_08027BFC: @ 0x08027BFC
 .L080282B8:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080282EA
@@ -48493,7 +48493,7 @@ func_08027BFC: @ 0x08027BFC
 .L0802832C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802833C
@@ -48531,7 +48531,7 @@ func_08027BFC: @ 0x08027BFC
 .L0802837C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -48543,7 +48543,7 @@ func_08027BFC: @ 0x08027BFC
 .L08028392:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -48800,7 +48800,7 @@ func_08027BFC: @ 0x08027BFC
 .L08028576:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -48847,7 +48847,7 @@ func_08027BFC: @ 0x08027BFC
 .L080285CA:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -48919,7 +48919,7 @@ func_08028644: @ 0x08028644
     ldr r0, [r6, #0x34]
     ldr r1, .L08028690 @ =0x00001C2C
     adds r0, r0, r1
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r4, r0, #0x18
     cmp r4, #0
@@ -49070,7 +49070,7 @@ func_08028644: @ 0x08028644
 .L080287E4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08028816
@@ -49138,7 +49138,7 @@ func_08028644: @ 0x08028644
 .L08028858:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08028868
@@ -49177,7 +49177,7 @@ func_08028644: @ 0x08028644
 .L080288A8:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -49189,7 +49189,7 @@ func_08028644: @ 0x08028644
 .L080288BE:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -49436,7 +49436,7 @@ func_08028644: @ 0x08028644
 .L08028A8A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -49483,7 +49483,7 @@ func_08028644: @ 0x08028644
 .L08028ADE:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -49559,7 +49559,7 @@ func_08028B50: @ 0x08028B50
     ldr r1, .L08028BA0 @ =0x00001C2C
     adds r4, r0, r1
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r5, r0, #0x18
     cmp r5, #0
@@ -49718,7 +49718,7 @@ func_08028B50: @ 0x08028B50
 .L08028D10:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08028D42
@@ -49786,7 +49786,7 @@ func_08028B50: @ 0x08028B50
 .L08028D84:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08028D94
@@ -49825,7 +49825,7 @@ func_08028B50: @ 0x08028B50
 .L08028DD4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -49837,7 +49837,7 @@ func_08028B50: @ 0x08028B50
 .L08028DEA:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -50084,7 +50084,7 @@ func_08028B50: @ 0x08028B50
 .L08028FB6:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -50131,7 +50131,7 @@ func_08028B50: @ 0x08028B50
 .L0802900A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -50198,7 +50198,7 @@ func_0802907C: @ 0x0802907C
     ldr r1, .L080290D0 @ =0x00001C2C
     adds r4, r0, r1
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080290C6
@@ -50219,7 +50219,7 @@ func_0802907C: @ 0x0802907C
 .L080290B8:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     adds r0, r5, #0
     bl func_0802A7D8
 .L080290C6:
@@ -50244,7 +50244,7 @@ func_080290D4: @ 0x080290D4
     ldr r0, [r6, #0x34]
     ldr r1, .L080290FC @ =0x00001C2C
     adds r0, r0, r1
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08029100
@@ -50344,7 +50344,7 @@ func_080290D4: @ 0x080290D4
 .L08029224:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08029256
@@ -50412,7 +50412,7 @@ func_080290D4: @ 0x080290D4
 .L08029298:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080292A8
@@ -50451,7 +50451,7 @@ func_080290D4: @ 0x080290D4
 .L080292E8:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -50463,7 +50463,7 @@ func_080290D4: @ 0x080290D4
 .L080292FE:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -50710,7 +50710,7 @@ func_080290D4: @ 0x080290D4
 .L080294CA:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -50757,7 +50757,7 @@ func_080290D4: @ 0x080290D4
 .L0802951E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -50798,7 +50798,7 @@ func_08029558: @ 0x08029558
     ldr r0, [r6, #0x34]
     ldr r1, .L08029578 @ =0x00001C2C
     adds r0, r0, r1
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802957C
@@ -50896,7 +50896,7 @@ func_08029558: @ 0x08029558
 .L0802969C:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L080296CE
@@ -50964,7 +50964,7 @@ func_08029558: @ 0x08029558
 .L08029710:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08029720
@@ -51003,7 +51003,7 @@ func_08029558: @ 0x08029558
 .L08029760:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -51015,7 +51015,7 @@ func_08029558: @ 0x08029558
 .L08029776:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -51262,7 +51262,7 @@ func_08029558: @ 0x08029558
 .L08029942:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -51309,7 +51309,7 @@ func_08029558: @ 0x08029558
 .L08029996:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -51372,7 +51372,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     bl func_0802A588
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08029AD0
@@ -51568,7 +51568,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
 .L08029BF0:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08029C22
@@ -51636,7 +51636,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
 .L08029C64:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08029C74
@@ -51675,7 +51675,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
 .L08029CB4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -51687,7 +51687,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
 .L08029CCA:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -51934,7 +51934,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
 .L08029E96:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -51981,7 +51981,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
 .L08029EEA:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -52161,7 +52161,7 @@ PlayerShowHoldingTool: @ 0x08029F30
 .L0802A0C4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802A0F6
@@ -52229,7 +52229,7 @@ PlayerShowHoldingTool: @ 0x08029F30
 .L0802A138:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802A148
@@ -52268,7 +52268,7 @@ PlayerShowHoldingTool: @ 0x08029F30
 .L0802A188:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -52280,7 +52280,7 @@ PlayerShowHoldingTool: @ 0x08029F30
 .L0802A19E:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xc9
     lsls r5, r5, #1
@@ -52526,7 +52526,7 @@ PlayerShowHoldingTool: @ 0x08029F30
 .L0802A36A:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xa5
     lsls r5, r5, #1
@@ -52573,7 +52573,7 @@ PlayerShowHoldingTool: @ 0x08029F30
 .L0802A3BE:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r5, #0xe3
     lsls r5, r5, #1
@@ -52813,7 +52813,7 @@ func_0802A588: @ 0x0802A588
     adds r4, r0, #0
     adds r4, #0x54
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r7, r0, #0x18
     cmp r7, #0
@@ -52989,7 +52989,7 @@ func_0802A588: @ 0x0802A588
     b .L0802A7AA
 .L0802A714:
     adds r0, r4, #0
-    bl func_0800F344
+    bl GetHeldChickenSlot
     adds r1, r0, #0
     ldr r0, [r6, #0x34]
     movs r2, #0x82
@@ -53103,7 +53103,7 @@ func_0802A7E0: @ 0x0802A7E0
     ldr r0, [r5, #0x38]
     adds r0, #0x54
     mov r8, r0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802A800
@@ -57358,7 +57358,7 @@ func_0802D158: @ 0x0802D158
 .L0802D26C:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802D29E
@@ -57426,7 +57426,7 @@ func_0802D158: @ 0x0802D158
 .L0802D2E0:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802D2F0
@@ -57465,7 +57465,7 @@ func_0802D158: @ 0x0802D158
 .L0802D330:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r6, #0xc9
     lsls r6, r6, #1
@@ -57477,7 +57477,7 @@ func_0802D158: @ 0x0802D158
 .L0802D346:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r6, #0xc9
     lsls r6, r6, #1
@@ -57726,7 +57726,7 @@ func_0802D158: @ 0x0802D158
 .L0802D516:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r6, #0xa5
     lsls r6, r6, #1
@@ -57773,7 +57773,7 @@ func_0802D158: @ 0x0802D158
 .L0802D56A:
     ldr r0, [r5, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     movs r6, #0xe3
     lsls r6, r6, #1
@@ -58400,7 +58400,7 @@ func_0802D9AC: @ 0x0802D9AC
     beq .L0802DA1C
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802DA12
@@ -58430,7 +58430,7 @@ func_0802D9AC: @ 0x0802D9AC
     beq .L0802DA5A
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802DA50
@@ -58511,7 +58511,7 @@ func_0802D9AC: @ 0x0802D9AC
 .L0802DAD4:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802DBC4
@@ -58615,7 +58615,7 @@ func_0802D9AC: @ 0x0802D9AC
     bl func_0802A7D8
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     b .L0802DBE6
 .L0802DBBA:
     adds r1, r6, #0
@@ -58690,7 +58690,7 @@ func_0802DBF0: @ 0x0802DBF0
     beq .L0802DC84
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r1, r0, #0x18
     cmp r1, #0
@@ -58738,7 +58738,7 @@ func_0802DBF0: @ 0x0802DBF0
     beq .L0802DCE2
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r1, r0, #0x18
     cmp r1, #0
@@ -58786,7 +58786,7 @@ func_0802DBF0: @ 0x0802DBF0
     beq .L0802DD12
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802DD08
@@ -58808,7 +58808,7 @@ func_0802DBF0: @ 0x0802DBF0
     beq .L0802DE1C
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802DD3A
@@ -58920,7 +58920,7 @@ func_0802DBF0: @ 0x0802DBF0
     bl func_0802A7D8
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     b .L0802DE8C
 .L0802DE12:
     adds r1, r6, #0
@@ -58945,7 +58945,7 @@ func_0802DBF0: @ 0x0802DBF0
 .L0802DE32:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r1, r0, #0x18
     cmp r1, #0
@@ -59024,7 +59024,7 @@ func_0802DE94: @ 0x0802DE94
 .L0802DEC2:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802DED6
@@ -59153,7 +59153,7 @@ func_0802DE94: @ 0x0802DE94
 .L0802DFBA:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802DFD6
@@ -59265,7 +59265,7 @@ func_0802DE94: @ 0x0802DE94
     bl func_0802A7D8
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     b .L0802E0F2
 .L0802E0AE:
     adds r1, r6, #0
@@ -59276,7 +59276,7 @@ func_0802DE94: @ 0x0802DE94
 .L0802E0B8:
     ldr r0, [r6, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802E0CE
@@ -59378,7 +59378,7 @@ func_0802E0FC: @ 0x0802E0FC
     beq .L0802E1A4
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802E198
@@ -59523,7 +59523,7 @@ func_0802E0FC: @ 0x0802E0FC
 .L0802E31E:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802E32E
@@ -59768,7 +59768,7 @@ func_0802E0FC: @ 0x0802E0FC
 .L0802E516:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802E526
@@ -59801,7 +59801,7 @@ func_0802E0FC: @ 0x0802E0FC
 .L0802E55C:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802E582
@@ -59887,7 +59887,7 @@ func_0802E0FC: @ 0x0802E0FC
 .L0802E60C:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802E61C
@@ -59944,7 +59944,7 @@ func_0802E0FC: @ 0x0802E0FC
 .L0802E680:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802E690
@@ -60040,7 +60040,7 @@ func_0802E0FC: @ 0x0802E0FC
 .L0802E740:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802E7BA
@@ -60284,7 +60284,7 @@ func_0802E0FC: @ 0x0802E0FC
 .L0802E928:
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     lsrs r5, r0, #0x18
     cmp r5, #0
@@ -60482,7 +60482,7 @@ func_0802E0FC: @ 0x0802E0FC
     bl func_0802A7D8
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     ldr r4, [r7, #0x34]
     ldr r0, .L0802EB10 @ =0x00001CCC
     adds r4, r4, r0
@@ -60711,7 +60711,7 @@ func_0802EC00: @ 0x0802EC00
     adds r4, r0, #0
     adds r4, #0x54
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802EC6E
@@ -60837,7 +60837,7 @@ func_0802EC00: @ 0x0802EC00
     bl Start__23HardwareMusicPlayerSlotUs
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     ldr r0, .L0802ED74 @ =0xFFF80000
     movs r2, #0
     movs r1, #0x88
@@ -60877,7 +60877,7 @@ func_0802EC00: @ 0x0802EC00
     strb r0, [r1]
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     b .L0802F0DC
 .L0802EDA2:
     adds r0, r7, #0
@@ -60887,7 +60887,7 @@ func_0802EC00: @ 0x0802EC00
     cmp r5, #0
     bne .L0802EDDC
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802EDDC
@@ -60975,7 +60975,7 @@ func_0802EC00: @ 0x0802EC00
     strh r1, [r6]
     ldr r0, [r7, #0x38]
     adds r0, #0x54
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802EE60
@@ -61579,7 +61579,7 @@ func_0802F0EC: @ 0x0802F0EC
     adds r4, r0, #0
     adds r4, #0x54
     adds r0, r4, #0
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802F364
@@ -61603,7 +61603,7 @@ func_0802F0EC: @ 0x0802F0EC
     mov r1, sl
     ldr r0, [r1, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     bl .L08031D78
 .L0802F396:
     movs r1, #0
@@ -61717,7 +61717,7 @@ func_0802F0EC: @ 0x0802F0EC
     mov r1, sl
     ldr r0, [r1, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     mov r2, sl
     ldr r0, [r2]
     ldr r1, [r0]
@@ -61788,7 +61788,7 @@ func_0802F0EC: @ 0x0802F0EC
     mov r3, sl
     ldr r0, [r3, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     mov r4, sl
     ldr r0, [r4, #0x34]
     ldr r5, .L0802F5E8 @ =0x00001C70
@@ -61941,7 +61941,7 @@ func_0802F0EC: @ 0x0802F0EC
     bl sub_08031D74
 .L0802F648:
     adds r0, r4, #0
-    bl func_0800F344
+    bl GetHeldChickenSlot
     str r0, [sp, #0xfc]
     mov r2, sl
     ldr r0, [r2, #0x34]
@@ -61954,7 +61954,7 @@ func_0802F0EC: @ 0x0802F0EC
     mov r4, sl
     ldr r0, [r4, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     ldrh r2, [r4, #4]
     add r1, sp, #8
     ldr r5, .L0802F750 @ =0x000003FF
@@ -62139,7 +62139,7 @@ func_0802F0EC: @ 0x0802F0EC
     mov r3, sl
     ldr r0, [r3, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     mov r4, sl
     ldr r0, [r4, #0x34]
     movs r5, #0xe5
@@ -62308,7 +62308,7 @@ func_0802F0EC: @ 0x0802F0EC
     mov r2, sl
     ldr r0, [r2, #0x38]
     adds r0, #0x54
-    bl func_0800F390
+    bl ClearHeldItem
     ldr r0, [r5]
     cmp r0, #1
     bne .L0802F964
@@ -64818,7 +64818,7 @@ sub_0802FBFC: @ 0x0802FBFC
     ldr r0, [r4, #0x34]
     ldr r5, .L08030D04 @ =0x00001C2C
     adds r0, r0, r5
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08030D00
@@ -64917,7 +64917,7 @@ sub_0802FBFC: @ 0x0802FBFC
     ldr r0, [r1, #0x34]
     ldr r2, .L08030DD0 @ =0x00001C2C
     adds r0, r0, r2
-    bl func_0800F190
+    bl IsHeldItemEmpty
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L08030DC8

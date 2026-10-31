@@ -340,7 +340,7 @@ EC unsigned int func_0800EB3C(Farmer & self)
 
     RucksackItem item;
 
-    if (!func_0800F190(&self.held_item))
+    if (!IsHeldItemEmpty(&self.held_item))
     {
         switch (self.held_item.GetKind())
         {
@@ -350,7 +350,7 @@ EC unsigned int func_0800EB3C(Farmer & self)
             case HeldItem::KIND_FOOD:
             case HeldItem::KIND_ARTICLE:
                 item = func_0800F294(&self.held_item);
-                func_0800F390(&self.held_item);
+                ClearHeldItem(&self.held_item);
                 break;
         }
     }
@@ -377,7 +377,7 @@ EC unsigned int func_0800EBC4(Farmer & self)
 
     RucksackItem item;
 
-    if (!func_0800F190(&self.held_item))
+    if (!IsHeldItemEmpty(&self.held_item))
     {
         switch (self.held_item.GetKind())
         {
@@ -387,7 +387,7 @@ EC unsigned int func_0800EBC4(Farmer & self)
             case HeldItem::KIND_FOOD:
             case HeldItem::KIND_ARTICLE:
                 item = func_0800F294(&self.held_item);
-                func_0800F390(&self.held_item);
+                ClearHeldItem(&self.held_item);
                 break;
         }
     }
