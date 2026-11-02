@@ -26336,9 +26336,9 @@ func_080E3A9C:
     .section .text.saved_world_map_destructor_after, "ax", %progbits
     .align 2, 0
 
-    .global func_080E43FC
+    .global __12SavedMapTree
     .thumb_func
-func_080E43FC:
+__12SavedMapTree:
     push {r4, r5, r6, lr}
     sub sp, #8
     adds r6, r0, #0
@@ -34445,8 +34445,8 @@ func_080E4304: @ 0x080E4304
     .section .text.saved_world_map_destructor_after, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080E43FC
-func_080E43FC: @ 0x080E43FC
+	thumb_func_start __12SavedMapTree
+__12SavedMapTree: @ 0x080E43FC
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r6, r0, #0

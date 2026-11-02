@@ -6131,47 +6131,12 @@ func_080A607C: @ 0x080A5AB4
     .section .text.game_map_after_patch_dispatchers, "ax", %progbits
     .align 2, 0
 
-    .global __17GameSceneSavedMapP18GameStateSaveImage
-    .thumb_func
-__17GameSceneSavedMapP18GameStateSaveImage: @ 0x080A5EAC
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	bl __17GameSceneWorldMap
-	adds r1, r5, #0
-	adds r1, #0x90
-	ldr r0, .Ljp_080A64B4 @ =vtable_unk_080E830C
-	str r0, [r1]
-	adds r0, r5, #0
-	adds r0, #0x94
-	str r4, [r0]
-	adds r0, #4
-	movs r4, #0
-	strb r4, [r0]
-	adds r0, #4
-	bl func_080E43FC
-	adds r0, r5, #0
-	adds r0, #0xb4
-	strb r4, [r0]
-	strb r4, [r0, #1]
-	strb r4, [r0, #2]
-	adds r0, #4
-	strb r4, [r0]
-	strb r4, [r0, #1]
-	strb r4, [r0, #2]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.Ljp_080A64B4: .4byte vtable_unk_080E830C
-
     .section .text.game_map_after_animation_reset, "ax", %progbits
     .align 2, 0
 
-    .global func_080A6098
+    .global LoadSavedWorldMapTilemaps
     .thumb_func
-func_080A6098: @ 0x080A6098
+LoadSavedWorldMapTilemaps: @ 0x080A6098
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -7844,9 +7809,9 @@ func_080A6098: @ 0x080A6098
 	.align 2, 0
 .Ljp_080A7484: .4byte gFieldRenderRectDescriptors + 0x228
 .Ljp_080A7488: .4byte gFieldRenderRectDescriptors + 0x2E8
-    .global func_080A6EC4
+    .global LoadSavedWorldMapTiles
     .thumb_func
-func_080A6EC4: @ 0x080A6EC4
+LoadSavedWorldMapTiles: @ 0x080A6EC4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -12278,9 +12243,9 @@ func_080A8B5A: @ 0x080A8B5A
 	.align 2, 0
 .Ljp_map_080A8FD8: .4byte __vt_23IndexedResourceProvider
 
-    .global func_080A8FDC
+    .global LoadSavedWorldMapTimeOfDayPalette
     .thumb_func
-func_080A8FDC: @ 0x080A8FDC
+LoadSavedWorldMapTimeOfDayPalette: @ 0x080A8FDC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -15255,9 +15220,9 @@ func_080AA960: @ 080AA960
 	.align 2, 0
 .Ljp_map_080AA970: .4byte gUnk_FieldRenderLookupValues
 
-    .global func_080AA974
+    .global SelectSavedWorldMapData
     .thumb_func
-func_080AA974: @ 080AA974
+SelectSavedWorldMapData: @ 080AA974
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
@@ -81565,45 +81530,12 @@ func_080A607C: @ 0x080A607C
     .section .text.game_map_after_patch_dispatchers, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start __17GameSceneSavedMapP18GameStateSaveImage
-__17GameSceneSavedMapP18GameStateSaveImage: @ 0x080A6474
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #0
-	bl __17GameSceneWorldMap
-	adds r1, r5, #0
-	adds r1, #0x90
-	ldr r0, .L080A64B4 @ =vtable_unk_080E831C
-	str r0, [r1]
-	adds r0, r5, #0
-	adds r0, #0x94
-	str r4, [r0]
-	adds r0, #4
-	movs r4, #0
-	strb r4, [r0]
-	adds r0, #4
-	bl func_080E43FC
-	adds r0, r5, #0
-	adds r0, #0xb4
-	strb r4, [r0]
-	strb r4, [r0, #1]
-	strb r4, [r0, #2]
-	adds r0, #4
-	strb r4, [r0]
-	strb r4, [r0, #1]
-	strb r4, [r0, #2]
-	adds r0, r5, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080A64B4: .4byte vtable_unk_080E831C
 
     .section .text.game_map_after_animation_reset, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080A6660
-func_080A6660: @ 0x080A6660
+	thumb_func_start LoadSavedWorldMapTilemaps
+LoadSavedWorldMapTilemaps: @ 0x080A6660
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -83277,8 +83209,8 @@ func_080A6660: @ 0x080A6660
 .L080A7484: .4byte gFieldRenderRectDescriptors + 0x228
 .L080A7488: .4byte gFieldRenderRectDescriptors + 0x2E8
 
-	thumb_func_start func_080A748C
-func_080A748C: @ 0x080A748C
+	thumb_func_start LoadSavedWorldMapTiles
+LoadSavedWorldMapTiles: @ 0x080A748C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -87709,8 +87641,8 @@ sub_080A9122: @ 0x080A9122
 	.align 2, 0
 .L080A95A0: .4byte __vt_23IndexedResourceProvider
 
-	thumb_func_start func_080A95A4
-func_080A95A4: @ 0x080A95A4
+	thumb_func_start LoadSavedWorldMapTimeOfDayPalette
+LoadSavedWorldMapTimeOfDayPalette: @ 0x080A95A4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -90676,8 +90608,8 @@ func_080AAF28: @ 0x080AAF28
 	.align 2, 0
 .L080AAF38: .4byte gUnk_FieldRenderLookupValues
 
-	thumb_func_start func_080AAF3C
-func_080AAF3C: @ 0x080AAF3C
+	thumb_func_start SelectSavedWorldMapData
+SelectSavedWorldMapData: @ 0x080AAF3C
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8

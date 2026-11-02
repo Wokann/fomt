@@ -827,7 +827,7 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_barn_feed);
         src/world_map.o(.text.func_080A6138 .text.func_080A6194 .text.func_080A61F0 .text.func_080A6234 .text.func_080A6278 .text.func_080A62BC .text.func_080A6300 .text.func_080A635C .text.func_080A63B8);
         src/world_map.o(.text.SelectMapData__17GameSceneWorldMap .text.GetWorldMapTileAttributes .text.GetWorldMapDataId .text.GetWorldMapId .text.GetWorldMapViewY .text.GetWorldMapViewX);
-        asm/code_809E804.o(.text.game_map_after_patch_dispatchers);
+        src/world_map.o(.text.__17GameSceneSavedMapP18GameStateSaveImage);
         src/world_map.o(.text.UpdateSavedMapTileAnimationTimers);
         src/world_map.o(.text.DrawSavedWorldMap);
         src/world_map.o(.text.RefreshSavedWorldMapAppearance);
@@ -1372,7 +1372,7 @@ SECTIONS
 . = ALIGN(4); src/scene_sprite.o(.gnu.linkonce.d.__vt_19GameSceneSpriteBase);
 . = ALIGN(4); src/world_map.o(.gnu.linkonce.d.__vt_17GameSceneWorldMap);
 . = ALIGN(4); src/world_map.o(.gnu.linkonce.d.__vt_25MapViewportTilemapCommand);
-. = ALIGN(4); src/vtables.o(.rodata.vtable_831c);
+. = ALIGN(4); src/world_map.o(.rodata.gGameSceneSavedMapVTable);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8344);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8404);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8440);

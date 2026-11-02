@@ -294,10 +294,10 @@ extern void func_080E3928(void);
 extern void func_080E36D8(void);
 extern void Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList(void);
 extern void DestroySavedWorldMap(void);
-extern void func_080AA974(void);
-extern void func_080A6EC4(void);
-extern void func_080A6098(void);
-extern void func_080A8FDC(void);
+extern void SelectSavedWorldMapData(void);
+extern void LoadSavedWorldMapTiles(void);
+extern void LoadSavedWorldMapTilemaps(void);
+extern void LoadSavedWorldMapTimeOfDayPalette(void);
 extern void func_080E3C50(void);
 extern void func_080AC528(void);
 #else
@@ -505,10 +505,10 @@ extern void func_080E4190(void);
 extern void func_080E3F40(void);
 extern void Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList(void);
 extern void DestroySavedWorldMap(void);
-extern void func_080AAF3C(void);
-extern void func_080A748C(void);
-extern void func_080A6660(void);
-extern void func_080A95A4(void);
+extern void SelectSavedWorldMapData(void);
+extern void LoadSavedWorldMapTiles(void);
+extern void LoadSavedWorldMapTilemaps(void);
+extern void LoadSavedWorldMapTimeOfDayPalette(void);
 #endif
 extern void func_080E2018(void);
 extern void func_080713AC(void);
@@ -5506,29 +5506,9 @@ extern RawVTableFunction const vtable_unk_080E8268[]
 
 // Chicken-contest, naming-scene and base-map tables come from their classes.
 
-#if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E830C[]
-    SECTION(".rodata.vtable_830c") = {
-        nullptr,
-        nullptr,
-        DestroySavedWorldMap,
-        UpdateSavedMapTileAnimationTimers,
-    };
-#endif
 
 #if defined(REGION_JP)
-extern RawVTableFunction const vtable_unk_080E831C[]
-    SECTION(".rodata.vtable_831c") = {
-        DrawSavedWorldMap,
-        RefreshSavedWorldMapAppearance,
-        func_080AA974,
-        func_080A6EC4,
-        func_080A6098,
-        func_080A8FDC,
-    };
-
-// This four-slot base-subobject table begins 0x18 bytes into the preceding
-// table in the JP ROM.  Keep it as a separately linkable physical object.
+// The next independent base-subobject table keeps its native slot.
 extern RawVTableFunction const vtable_unk_080E7774[]
     SECTION(".rodata.vtable_7774") = {
         nullptr,
@@ -5536,21 +5516,8 @@ extern RawVTableFunction const vtable_unk_080E7774[]
         func_080E3C50,
         func_080AC528,
     };
-#else
-extern RawVTableFunction const vtable_unk_080E831C[]
-    SECTION(".rodata.vtable_831c") = {
-        nullptr,
-        nullptr,
-        DestroySavedWorldMap,
-        UpdateSavedMapTileAnimationTimers,
-        DrawSavedWorldMap,
-        RefreshSavedWorldMapAppearance,
-        func_080AAF3C,
-        func_080A748C,
-        func_080A6660,
-        func_080A95A4,
-    };
 #endif
+
 
 #if defined(REGION_JP)
 extern void func_080AC648(void);

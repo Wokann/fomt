@@ -569,14 +569,20 @@ EC i32 GetWorldMapViewX(GameSceneWorldMap const * map)
     return map->x.parts.integer;
 }
 
+GameSceneSavedMap::GameSceneSavedMap(GameStateSaveImage * image)
+    : GameSceneWorldMap(), save(image), unk_98(false), saved_tree(),
+      tile_animation_0(), tile_animation_1()
+{
+}
+
 EC void UpdateSavedMapTileAnimationTimers(GameSceneSavedMap * map)
 {
     map->GameSceneWorldMap::Update();
     GameStateSaveImage * save = map->save;
     if (map->map == MAP_ROSE_SQUARE
         && save->event_state.harvest_festival_active == FESTIVAL_PHASE_INITIAL) {
-        map->tile_animations[0].Tick(gMapTilePatchAnimation0);
-        map->tile_animations[1].Tick(gMapTilePatchAnimation1);
+        map->tile_animation_0.Tick(gMapTilePatchAnimation0);
+        map->tile_animation_1.Tick(gMapTilePatchAnimation1);
     }
 }
 
@@ -620,8 +626,8 @@ EC void DrawSavedWorldMap(GameSceneSavedMap * map, HardwareDmaQueue & queue,
         break;
     case MAP_ROSE_SQUARE:
         if (save->event_state.harvest_festival_active == FESTIVAL_PHASE_INITIAL) {
-            QueueMapAnimationFrame(map->tile_animations[0], map, gMapTilePatchAnimation0, queue);
-            QueueMapAnimationFrame(map->tile_animations[1], map, gMapTilePatchAnimation1, queue);
+            QueueMapAnimationFrame(map->tile_animation_0, map, gMapTilePatchAnimation0, queue);
+            QueueMapAnimationFrame(map->tile_animation_1, map, gMapTilePatchAnimation1, queue);
         }
         break;
     }
@@ -631,8 +637,8 @@ EC void RefreshSavedWorldMapAppearance(GameSceneSavedMap * map, i32 period,
     u32 first_weight, u32 second_weight)
 {
     map->GameSceneWorldMap::RefreshAppearance(period, first_weight, second_weight);
-    map->tile_animations[0].ResetFrame();
-    map->tile_animations[1].ResetFrame();
+    map->tile_animation_0.ResetFrame();
+    map->tile_animation_1.ResetFrame();
 }
 
 EC void RefreshFieldPlotTiles(GameSceneWorldMap * map, u32 x, u32 y,
@@ -727,3 +733,17 @@ EC void DestroySavedWorldMap(GameSceneSavedMap * map, int flags)
         free(state->header);
     DestroyWorldMapBase(map, flags);
 }
+
+// Keep the original destructor adapter; normal C++ destruction would add a
+// vptr write absent from its native entry. No alternate table or alias is used.
+GameSceneSavedMapVTable const gGameSceneSavedMapVTable = {
+    0, 0,
+    DestroySavedWorldMap,
+    UpdateSavedMapTileAnimationTimers,
+    DrawSavedWorldMap,
+    RefreshSavedWorldMapAppearance,
+    SelectSavedWorldMapData,
+    LoadSavedWorldMapTiles,
+    LoadSavedWorldMapTilemaps,
+    LoadSavedWorldMapTimeOfDayPalette,
+};

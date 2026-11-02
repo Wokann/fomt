@@ -126,6 +126,8 @@ struct SavedMapTreeState {
 };
 
 struct SavedMapTree {
+    // Sentinel construction retains its native implementation.
+    SavedMapTree();
     u32 unk_00;
     u32 unk_04;
     SavedMapTreeState state;
@@ -146,15 +148,51 @@ typedef char SavedMapTreeStateCheck[offsetof(SavedMapTree, state) == 8 ? 1 : -1]
 // The allocation is 0xBC bytes. The runtime member at +0x9C is now
 // modeled by SavedMapTree; the two animation states begin at +0xB4/+0xB8.
 // Every byte of the native 0xBC allocation is covered by this class.
-// The native constructor and virtual table remain imported.
+// Its constructor uses normal C++ member initialization. The native
+// destructor adapter and exact ABI table remain explicit.
 struct GameSceneSavedMap : GameSceneWorldMap {
+    // These declarations bind the existing native ABI entries directly.
+    // The flag-taking destructor adapter still owns the native table below.
+    virtual ~GameSceneSavedMap() asm("DestroySavedWorldMap");
+    virtual void Update() asm("UpdateSavedMapTileAnimationTimers");
+    virtual void Draw(HardwareDmaQueue & queue, HardwareDisplayState & display,
+        HardwareLinkedList & commands) asm("DrawSavedWorldMap");
+    virtual void RefreshAppearance(i32 period, u32 first_weight, u32 second_weight)
+        asm("RefreshSavedWorldMapAppearance");
+    virtual u32 SelectMapData() asm("SelectSavedWorldMapData");
+    virtual void LoadTiles(HardwareDmaQueue & queue) asm("LoadSavedWorldMapTiles");
+    virtual void LoadTilemaps() asm("LoadSavedWorldMapTilemaps");
+    virtual void LoadTimeOfDayPalette(i32 period, u32 buffer_index)
+        asm("LoadSavedWorldMapTimeOfDayPalette");
+
     GameStateSaveImage * save;
     bool unk_98;
     SavedMapTree saved_tree;
-    MapTilePatchAnimationState tile_animations[2];
+    MapTilePatchAnimationState tile_animation_0;
+    MapTilePatchAnimationState tile_animation_1;
 
     GameSceneSavedMap(GameStateSaveImage * image);
 };
+
+// Layout of the imported flag-taking destructor and native virtual entries.
+// This is the one actual table referenced by the old GCC constructor ABI.
+struct GameSceneSavedMapVTable {
+    u32 unk_00;
+    u32 unk_04;
+    void (*destroy)(GameSceneSavedMap *, int);
+    void (*update)(GameSceneSavedMap *);
+    void (*draw)(GameSceneSavedMap *, HardwareDmaQueue &, HardwareDisplayState &,
+        HardwareLinkedList &);
+    void (*refresh_appearance)(GameSceneSavedMap *, i32, u32, u32);
+    u32 (*select_map_data)(GameSceneSavedMap *);
+    void (*load_tiles)(GameSceneSavedMap *, HardwareDmaQueue &);
+    void (*load_tilemaps)(GameSceneSavedMap *);
+    void (*load_time_of_day_palette)(GameSceneSavedMap *, i32, u32);
+};
+
+typedef char GameSceneSavedMapVTableSizeCheck[sizeof(GameSceneSavedMapVTable) == 40 ? 1 : -1];
+extern GameSceneSavedMapVTable const gGameSceneSavedMapVTable
+    asm("__vt_17GameSceneSavedMap");
 
 typedef char GameSceneMapLayoutAnimation0Check[offsetof(GameSceneWorldMap, layout_animation_0) == 0x30 ? 1 : -1];
 typedef char GameSceneMapLayoutAnimation1Check[offsetof(GameSceneWorldMap, layout_animation_1) == 0x34 ? 1 : -1];
@@ -174,7 +212,8 @@ typedef char GameSceneMapTimePaletteChangedCheck[offsetof(GameSceneWorldMap, tim
 typedef char GameSceneSavedMapSaveCheck[offsetof(GameSceneSavedMap, save) == 0x94 ? 1 : -1];
 typedef char GameSceneSavedMapFlagCheck[offsetof(GameSceneSavedMap, unk_98) == 0x98 ? 1 : -1];
 typedef char GameSceneSavedMapTreeCheck[offsetof(GameSceneSavedMap, saved_tree) == 0x9C ? 1 : -1];
-typedef char GameSceneSavedMapAnimationsCheck[offsetof(GameSceneSavedMap, tile_animations) == 0xB4 ? 1 : -1];
+typedef char GameSceneSavedMapAnimation0Check[offsetof(GameSceneSavedMap, tile_animation_0) == 0xB4 ? 1 : -1];
+typedef char GameSceneSavedMapAnimation1Check[offsetof(GameSceneSavedMap, tile_animation_1) == 0xB8 ? 1 : -1];
 typedef char GameSceneSavedMapSizeCheck[sizeof(GameSceneSavedMap) == 0xBC ? 1 : -1];
 
 
@@ -232,6 +271,12 @@ void DrawSavedWorldMap(GameSceneSavedMap * map, HardwareDmaQueue & queue,
     HardwareDisplayState & display, HardwareLinkedList & commands);
 void RefreshSavedWorldMapAppearance(GameSceneSavedMap * map, i32 period,
     u32 first_weight, u32 second_weight);
+// Native overrides keep real symbol entries while their bodies remain assembly.
+u32 SelectSavedWorldMapData(GameSceneSavedMap * map);
+void LoadSavedWorldMapTiles(GameSceneSavedMap * map, HardwareDmaQueue & queue);
+void LoadSavedWorldMapTilemaps(GameSceneSavedMap * map);
+void LoadSavedWorldMapTimeOfDayPalette(GameSceneSavedMap * map, i32 period,
+    u32 buffer_index);
 void RefreshWorldMapPatch(GameSceneSavedMap * map, u32 index);
 void func_080AA89C(GameSceneWorldMap * map);
 void func_080AA8BC(GameSceneWorldMap * map);
