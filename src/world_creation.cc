@@ -1,6 +1,6 @@
 #include "prelude.h"
 #include "game_scene.hh"
-#include "world_rebuild.hh"
+#include "world_creation.hh"
 
 void GameScene::RebuildMapEntitiesForNewDay()
 {
@@ -17,4 +17,10 @@ void GameScene::RebuildMapEntitiesForNewDay()
         i32 elapsed = (hour <= 5 ? 6 : 30) - hour;
         player->ChangeStaminaAndFatigue(7 * elapsed, -2 * elapsed);
     }
+}
+
+EC GameSceneWorldInstanceOwner CreateGameWorld(GameStateSaveImage * save, GameScene * scene, bool unk)
+{
+    return GameSceneWorldInstanceOwner(new GameSceneWorld(save, scene,
+        GameSceneWorldMapOwner(new GameSceneSavedMap(save)), unk));
 }

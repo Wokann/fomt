@@ -569,7 +569,7 @@ EC i32 GetWorldMapViewX(GameSceneWorldMap const * map)
     return map->x.parts.integer;
 }
 
-EC void UpdateSavedMapTileAnimationTimers(GameSceneSavedMapPrefix * map)
+EC void UpdateSavedMapTileAnimationTimers(GameSceneSavedMap * map)
 {
     map->GameSceneWorldMap::Update();
     GameStateSaveImage * save = map->save;
@@ -599,7 +599,7 @@ static inline void QueueMapAnimationFrame(MapTilePatchAnimationState & state,
     }
 }
 
-EC void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queue,
+EC void DrawSavedWorldMap(GameSceneSavedMap * map, HardwareDmaQueue & queue,
     HardwareDisplayState & display, HardwareLinkedList & commands)
 {
     map->GameSceneWorldMap::Draw(queue, display, commands);
@@ -627,7 +627,7 @@ EC void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queu
     }
 }
 
-EC void RefreshSavedWorldMapAppearance(GameSceneSavedMapPrefix * map, i32 period,
+EC void RefreshSavedWorldMapAppearance(GameSceneSavedMap * map, i32 period,
     u32 first_weight, u32 second_weight)
 {
     map->GameSceneWorldMap::RefreshAppearance(period, first_weight, second_weight);
@@ -661,7 +661,7 @@ EC void RefreshFieldPlotTiles(GameSceneWorldMap * map, u32 x, u32 y,
         map->tile_attributes[x + 1 + (y + 1) * width].unk_02_01 = plot->method_0800A0A4();
 }
 
-EC void RefreshWorldMapPatch(GameSceneSavedMapPrefix * map, u32 index)
+EC void RefreshWorldMapPatch(GameSceneSavedMap * map, u32 index)
 {
     Season season = static_cast<Season>(GetCalendarEffectiveSeason(map->save->clock.calendar));
     FieldRenderPatchPlacement placement = SelectMapFlagPatch(
@@ -682,7 +682,7 @@ EC void func_080AA8BC(GameSceneWorldMap * map)
     map->view_changed = true;
 }
 
-EC void func_080AA8DC(GameSceneSavedMapPrefix * map)
+EC void func_080AA8DC(GameSceneSavedMap * map)
 {
     if (map->map == MAP_FARMHOUSE)
         map->unk_98 = true;
@@ -713,7 +713,7 @@ EC void EraseSavedMapTreeNodes(SavedMapTreeState * state, SavedMapTreeNode * nod
     }
 }
 
-EC void DestroySavedWorldMap(GameSceneSavedMapPrefix * map, int flags)
+EC void DestroySavedWorldMap(GameSceneSavedMap * map, int flags)
 {
     SavedMapTreeState * state = &map->saved_tree.state;
     if (state->node_count != 0) {

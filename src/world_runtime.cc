@@ -5,7 +5,7 @@
 #include "game_world.hh"
 #include "entity_auxiliary_sprites.hh"
 
-EC i32 GetWorldSpritePaletteBank(GameSceneWorldPrefix & world, u32 index)
+EC i32 GetWorldSpritePaletteBank(GameSceneWorld & world, u32 index)
 {
     GameScenePaletteCache & cache = world.data.palette_cache;
     u8 & encoded = cache.encoded_palette_banks[index];
@@ -17,7 +17,7 @@ EC i32 GetWorldSpritePaletteBank(GameSceneWorldPrefix & world, u32 index)
     return bank;
 }
 
-EC void ClearWorldSpritePaletteResourceFlag(GameSceneWorldPrefix & world, u32 index)
+EC void ClearWorldSpritePaletteResourceFlag(GameSceneWorld & world, u32 index)
 {
     world.data.palette_cache.resources[index].unk_81 = 0;
 }

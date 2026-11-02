@@ -261,7 +261,7 @@ SECTIONS
             .text.SetVaseArticleId__9GameScene17MaryItemArticleId
             .text.BeginEggIncubation__9GameScene29MaryChickenCoopIncubatorIndex);
         asm/screen_flash.o(.text);
-        src/world_rebuild.o(.text.RebuildMapEntitiesForNewDay__9GameScene);
+        src/world_creation.o(.text.RebuildMapEntitiesForNewDay__9GameScene);
         src/game_scene.o(
             .text.RefreshAllNpcSchedules__9GameScene
             .text.ChangePlayerStaminaAndFatigue__9GameSceneii
@@ -339,7 +339,7 @@ SECTIONS
             .text.PickUpFieldItemAtLocation .text.func_0801D7B0 .text.func_0801D88C);
         src/world_control.o(.text.SuspendWorldUpdates .text.ResumeWorldUpdates);
         src/game_world.o(.text.QueueWorldScript);
-        src/world_audio.o(.text.SelectWorldBackgroundAudio .text.GetSongPlayerPool__20GameSceneWorldPrefix
+        src/world_audio.o(.text.SelectWorldBackgroundAudio .text.GetSongPlayerPool__14GameSceneWorld
             .text.UpdateWorldBackgroundAudio);
         src/game_world.o(.text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue
             .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78 .text.RemoveRecordPlayerAlbum
@@ -351,6 +351,7 @@ SECTIONS
         src/world_shipping.o(.text);
         src/game_world.o(.text.GetWorldEntity .text.GetWorldEntityConst);
         asm/game_state.o(.text.world_shipping_after);
+        src/world_creation.o(.text.CreateGameWorld);
         src/game_world.o(
             .text.func_0801FBDC
             .text.func_0801FBE8
@@ -372,8 +373,8 @@ SECTIONS
             .text.GetWorldClock);
         src/world_runtime.o(.text.GetWorldSpritePaletteBank .text.ClearWorldSpritePaletteResourceFlag);
         src/game_world.o(
-            .text.GetEntity__C20GameSceneWorldPrefixUi
-            .text.GetEntity__20GameSceneWorldPrefixUi
+            .text.GetEntity__C14GameSceneWorldUi
+            .text.GetEntity__14GameSceneWorldUi
             .text.RemoveWorldEntity
             .text.GetWorldEntityAuxiliarySprites
             .text.IsWorldCameraMovementComplete

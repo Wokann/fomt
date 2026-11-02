@@ -1,7 +1,7 @@
 #include "world_furniture.hh"
 #include "game_state.hh"
 
-void GameSceneWorldPrefix::LightFireplaceAtLocation(MaryMapId map)
+void GameSceneWorld::LightFireplaceAtLocation(MaryMapId map)
 {
     switch (map) {
     case MAP_FARMHOUSE:
@@ -24,7 +24,7 @@ void GameSceneWorldPrefix::LightFireplaceAtLocation(MaryMapId map)
     }
 }
 
-void GameSceneWorldPrefix::SetVaseArticleId(MaryItemArticleId article)
+void GameSceneWorld::SetVaseArticleId(MaryItemArticleId article)
 {
     save->farm.farm_house.SetVaseArticleId(article);
     RefreshWorldVase(*this);

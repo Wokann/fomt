@@ -162,7 +162,7 @@ void GameSceneWeatherEffect::Draw(WorldSpriteDrawBuffer * buffer)
     }
 }
 
-EC void ClearWorldWeatherEffect(GameSceneWorldPrefix & world)
+EC void ClearWorldWeatherEffect(GameSceneWorld & world)
 {
     world.weather_effect = nullptr;
 }

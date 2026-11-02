@@ -2,7 +2,7 @@
 #include "game_world.hh"
 #include "map_data.hh"
 
-EC void RefreshWorldMapTimeOfDayPalette(GameSceneWorldPrefix & world)
+EC void RefreshWorldMapTimeOfDayPalette(GameSceneWorld & world)
 {
     world.data.map.value->RefreshAppearance(world.time_of_day_period,
         world.time_palette_blend, 30 - world.time_palette_blend);
@@ -13,7 +13,7 @@ EC void RefreshWorldMapTimeOfDayPalette(GameSceneWorldPrefix & world)
     }
 }
 
-EC TimeOfDayPeriod GetWorldTimeOfDayPeriod(GameSceneWorldPrefix &, u32 hour)
+EC TimeOfDayPeriod GetWorldTimeOfDayPeriod(GameSceneWorld &, u32 hour)
 {
     if (hour <= 5)
         return TIME_OF_DAY_PERIOD_NIGHT;

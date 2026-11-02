@@ -1,5 +1,51 @@
 # 代码 ROM 物理布局
 
+## 世界创建工厂与完整对象存储边界（2026-11-03）
+
+`CreateGameWorld` 的四版原生入口已还原为同一份普通 C++：构造存档地图，
+将地图所有权按值交给世界构造器，再返回世界所有者。每版函数及常量池
+共 96 字节，四版新增高级语言代码共 384 字节。地图与世界的构造器本体
+仍为原生汇编，本批没有把它们计作 C++。
+
+| 区域 | 新 C++ 工厂（半开，96 字节） | 世界构造器入口（汇编） | 存档地图构造器入口（汇编） |
+| --- | --- | --- | --- |
+| JP | `0x0801F910–0x0801F970` | `0x08017348` | `0x080A5EAC` |
+| US | `0x0801FB7C–0x0801FBDC` | `0x080175B4` | `0x080A6474` |
+| EU | `0x0801FB90–0x0801FBF0` | `0x080175C8` | `0x080A64A4` |
+| DE | `0x0801FA90–0x0801FAF0` | `0x080174C8` | `0x080A63D4` |
+
+创建与此前的跨日重建统一放入 `src/world_creation.cc`，对应所有者、转移
+记录及工厂声明在同名 `include/world_creation.hh`；原 `world_rebuild`
+文件移入此模块。定义按 ROM 顺序排列，链接器用编译器生成的函数段保留
+两处代码位置，不增加只读数据子段、固定地址、ASSERT 或尾部填充。
+
+世界和存档地图的完整存储分别由 `GameSceneWorld`（0x10CC）及
+`GameSceneSavedMap`（0xBC）表示，归属原 `game_world.hh`、`world_map.hh`。
+两次原生分配、全部既有成员偏移和编译期大小检查相符；未确认成员继续
+保留 unk。原 prefix 名称退出源码。世界表的 `GetWorldClock` 和
+`SelectWorldBackgroundAudio` 是实际实现，具体类型相应声明两个虚接口，
+工厂以实际类型调用原生构造器。
+
+两个原生构造器直接在各区域真实入口改为 C++ 构造器符号；调用来自正常
+的 `new` 表达式。六个既有 C++ 世界成员的类型编码同步改名，旧地址函数
+标签及旧 prefix 成员名不保留别名，没有 set、固定偏移补偿或链接后补丁。
+
+末参数的角色尚不明确，保留 `bool unk`。原生调用仅传 false/true，构造器
+按零值分支；布尔类型对应实际第五参数的字节栈写入。返回所有者仍占四
+字节，其八字节同型转移记录保存源槽引用与缓存指针；接管时先缓存值，
+再清空源槽。与赋给场景基类所有者时的转移记录分别表达原有生命周期。
+没有修改通用 SmartPtr，也没有加入指令补正或寄存器约束。
+
+每版三处工厂调用及两个构造器的各一处调用均有真实符号重定位，未发现
+这些入口的绝对指针引用。四版标准 WSL `make -j4 ... compare`、完整
+8 MiB 逐字节及零售 SHA-1 一致；原全局地址和有效重定位全部保持。
+原链接输入仅将 276 字节汇编宿主尾部的 96 字节替换为 C++ 工厂，其余
+180 字节仍在原处；每区另逐项核对 4136–4152 个原输入段。
+
+此前跨日重建的 222 字节函数与两字节自然对齐保持，类型命名整理不重复
+计数。所有文本、资源、只读数据及其他段的字节和地址未变。最早启动背景
+156 字节仍未匹配，不能把本工厂地址视为已连续完成的 ROM 前沿。
+
 ## 手持鸡槽依赖接口与 JP 原始调用符号化（2026-10-31）
 
 四个入口原本已经由 `src/held_item.cc` 编译为 C++；本次恢复实际接口名与
@@ -43,7 +89,7 @@ JP 尚有 58 处 BL 埋在原始字节中：`asm/code_0803EE94.s` 52 处、
 
 Mary 0x128 的真实入口由 `func_08014AF8` 还原为
 `GameScene::RebuildMapEntitiesForNewDay()`，放入功能明确的
-`src/world_rebuild.cc`，对应接口／转移记录为 `include/world_rebuild.hh`。
+`src/world_creation.cc`，对应接口／转移记录为 `include/world_creation.hh`。
 四版使用同一份普通 C++；函数符号本体 222 字节，编译器自然对齐 2 字节，
 物理占用 224 字节。四份 LDS 在原顺序以该函数输入段替换旧汇编输入，
 没有新设固定地址、伪别名、汇编补丁或手工补齐函数字节。
@@ -3322,7 +3368,7 @@ LDS 将 `.text.MakeAudioActorBounds` 紧接在实体更新入口之后，原生
 | `AudioActorEntity::Update` | 48 | `0x08024330` | `0x0802459C` | `0x080245B0` | `0x080244B0` |
 | 已有构造函数，现归入同一模块 | 40 | `0x0801FDCC` | `0x08020038` | `0x0802004C` | `0x0801FF4C` |
 | 已有 `CalculateAnimalResponseRadius`，现归入 `animal_response` | 32 | `0x0801FDAC` | `0x08020018` | `0x0802002C` | `0x0801FF2C` |
-| 已有 `GameSceneWorldPrefix::GetSongPlayerPool` 虚接口 | 8 | `0x0801D8D8` | `0x0801DB44` | `0x0801DB58` | `0x0801DA58` |
+| 已有 `GameSceneWorld::GetSongPlayerPool` 虚接口 | 8 | `0x0801D8D8` | `0x0801DB44` | `0x0801DB58` | `0x0801DA58` |
 
 本批新增 C++ ROM 覆盖为 **192 字节／区，四区共 768 字节**。
 原来已有的 32 字节动物响应半径公式按其实际用途迁入
@@ -4086,7 +4132,7 @@ JP／海外槽容量、ASCII／SJIS／控制字节，核对源内容、结束符
 ## 世界出货：数量与成就脚本请求
 
 原 `func_0801F924` 已恢复为真正的
-`GameSceneWorldPrefix::ShipProduct(Product const &)`，正文按功能放在
+`GameSceneWorld::ShipProduct(Product const &)`，正文按功能放在
 `src/world_shipping.cc`。实际类接口继续在 `include/game_world.hh`
 统一声明，虚槽 `+0x15C` 的旧无参数占位声明已改为真实产品引用。
 四版均新增 **388 字节 C++**，LDS 只链接普通
@@ -4094,7 +4140,7 @@ JP／海外槽容量、ASCII／SJIS／控制字节，核对源内容、结束符
 
 | 实际入口 | JP 半开范围 | US 半开范围 | EU 半开范围 | DE 半开范围 |
 | --- | --- | --- | --- | --- |
-| `GameSceneWorldPrefix::ShipProduct` / 388 字节 | `0x0801F6B8–0x0801F83C` | `0x0801F924–0x0801FAA8` | `0x0801F938–0x0801FABC` | `0x0801F838–0x0801F9BC` |
+| `GameSceneWorld::ShipProduct` / 388 字节 | `0x0801F6B8–0x0801F83C` | `0x0801F924–0x0801FAA8` | `0x0801F938–0x0801FABC` | `0x0801F838–0x0801F9BC` |
 
 函数保留原有显示门控：该产品尚未在出货表显示时，出货前数量按
 零处理。调用真正的 `ShippingBin::Ship` 后，仅在数量增加且恰好
@@ -4180,8 +4226,8 @@ LDS 仅使用一条 `src/world_furniture.o(.text)`，没有新增编译选项、
 
 | C++ 实际入口 | JP 半开范围 | US 半开范围 | EU 半开范围 | DE 半开范围 |
 | --- | --- | --- | --- | --- |
-| `GameSceneWorldPrefix::LightFireplaceAtLocation` / 216 字节 | `0x0801F2AC–0x0801F384` | `0x0801F518–0x0801F5F0` | `0x0801F52C–0x0801F604` | `0x0801F42C–0x0801F504` |
-| `GameSceneWorldPrefix::SetVaseArticleId` / 36 字节 | `0x0801F384–0x0801F3A8` | `0x0801F5F0–0x0801F614` | `0x0801F604–0x0801F628` | `0x0801F504–0x0801F528` |
+| `GameSceneWorld::LightFireplaceAtLocation` / 216 字节 | `0x0801F2AC–0x0801F384` | `0x0801F518–0x0801F5F0` | `0x0801F52C–0x0801F604` | `0x0801F42C–0x0801F504` |
+| `GameSceneWorld::SetVaseArticleId` / 36 字节 | `0x0801F384–0x0801F3A8` | `0x0801F5F0–0x0801F614` | `0x0801F604–0x0801F628` | `0x0801F504–0x0801F528` |
 
 壁炉入口使用 Mary 的三个实际地图常量，分别更新农舍和两处别墅的
 已验证存档位；只有当前地图相同才创建壁炉精灵并替换旧所有者。
@@ -9293,7 +9339,7 @@ helper 为真实 C++，另与正式对象的指令和重定位认证；资源内
 `GameScene::state` 不会使后续操作转向另一场景。
 
 世界的 100 项实体容器及 `vt+0x40/0x44` 查找接口改为通用的
-`AEntity*`；两个已有查找函数恢复为 `GameSceneWorldPrefix::GetEntity`
+`AEntity*`；两个已有查找函数恢复为 `GameSceneWorld::GetEntity`
 的普通与 const 成员。角色专用调用保留明确的向下转换，坐标与
 地图读取不再错误要求角色派生类型。查找实现原有 24 字节不重复
 计入新增覆盖。已核实的模型语义同时落实为 `GetDeepestMineFloor`、
@@ -10040,7 +10086,7 @@ JP／海外两份原始汇编完整删除，四版共用同一实现，没有区
 | DE | `0x080146B4–0x0801471C` | 28 + 28 + 48 |
 
 壁炉和花瓶分别通过真实世界派生接口的虚槽 `+0x150`、`+0x154`
-转发原参数。这两个槽归属已有 `GameSceneWorldPrefix`，不能加到
+转发原参数。这两个槽归属已有 `GameSceneWorld`，不能加到
 `GameObject` 基类末尾，否则会挤动派生类已验证的 `+0x148`
 默认音乐选择槽。`+0x14C` 只保留未恢复的占位，不猜测其用途
 或调用 ABI。孵化入口先调用存档内 `Coop::BeginIncubation`，再
@@ -14457,10 +14503,10 @@ JP 另有三处调用仍是原始 BL 字节，位于 `0x0801DF8E`、
 不写标志，并不意味着整个场景调用无操作；后续刷新照常执行。
 本次没有补越界检查、修正原版边界行为或猜测各标志对应的设施。
 
-原 `func_080A6474` 构造会调用地图基类构造，再覆盖同一个 `+0x90`
+原 `__17GameSceneSavedMapP18GameStateSaveImage` 构造会调用地图基类构造，再覆盖同一个 `+0x90`
 虚表槽，将存档指针写在 `+0x94`、标志写在 `+0x98`。实际工厂
 分配大小为 `0xBC`；四版完整 68 字节构造的指令核心经重定位归一
-核对一致。由此建立 `GameSceneSavedMapPrefix` 的真实派生前缀，
+核对一致。由此建立 `GameSceneSavedMap` 的真实派生前缀，
 保留 `GameSceneWorldMapPrefix` 的 `0x94` 基类大小和虚表位置，
 不把存档指针塞入基类而移动虚表。派生视图只覆盖已确认的 `0x9C`
 前缀且不可构造，不用于推算完整对象大小；原生构造不计入 C++ 进度。
@@ -14579,7 +14625,7 @@ ABS32 跳转表数据；完整表值和真实分派目标均已核对，未误�
 ## 每日出货结算：真实脚本队列接口与共享脚本编号
 
 将原 `func_0801DCD4` 恢复为完整的四区共用
-`CollectDailyShippingRevenue(GameSceneWorldPrefix &)`，每版 68 字节。
+`CollectDailyShippingRevenue(GameSceneWorld &)`，每版 68 字节。
 它紧接上批两个对象所有权回调，定义和声明仍在
 `src/game_scene.cc`、`include/game_scene.hh`；两份原生定义直接删除，
 没有别名、原生包装层或新增固定地址。
@@ -15345,7 +15391,7 @@ JP 调用修正后仅补跑 JP，其余区域没有相应源码变化。
 | EU | `0x0801FCB8`–`0x0801FCC8` | `0x0801FD08`–`0x0801FD44` | `0x0801FD50`–`0x0801FD8C` | `0x080A5ACC`–`0x080A5AE0` |
 | DE | `0x0801FBB8`–`0x0801FBC8` | `0x0801FC08`–`0x0801FC44` | `0x0801FC50`–`0x0801FC8C` | `0x080A59FC`–`0x080A5A10` |
 
-`GameSceneWorldPrefix` 只描述已验证的对象前缀：地图控制器在
+`GameSceneWorld` 只描述已验证的对象前缀：地图控制器在
 `+4`，100 个实体指针从 `+8` 开始，存档指针在 `+0x1038`。
 时钟回调返回真正的 `&save->clock`；实体读取不添加原版没有的
 索引检查，清理只在槽非空时通过实体真实虚析构释放并置空。
@@ -27463,7 +27509,7 @@ JP `0x0801F910–0x0801F97C` 已由直接 Thumb 表示，对应海外
 计算入口也展开为实际 Thumb 指令与常量，而不是保留为 `.byte` 或 `incbin`。
 
 该函数调用的长运行时例程位于独立 JP 原始块 `0x08017348`；现已在其真实边界建立
-`func_08017348` 符号并经 `bl` 重定位调用，待该独立物理块轮到时再提升其函数正文。
+`__14GameSceneWorldP18GameStateSaveImageP9GameSceneG22GameSceneWorldMapOwnerb` 符号并经 `bl` 重定位调用，待该独立物理块轮到时再提升其函数正文。
 本批没有使用 `.set`、别名、固定分支地址或伪造偏移。
 
 本批仅修改 JP。WSL `-j4` 构建、资源补丁链稳定后的 SHA-1 为

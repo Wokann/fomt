@@ -4213,9 +4213,9 @@ func_08016890:
     .section .text.game_scene_field_item_tool_after, "ax", %progbits
     .align 2, 0
 
-    .global func_08017348
+    .global __14GameSceneWorldP18GameStateSaveImageP9GameSceneG22GameSceneWorldMapOwnerb
     .thumb_func
-func_08017348:
+__14GameSceneWorldP18GameStateSaveImageP9GameSceneG22GameSceneWorldMapOwnerb:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -4394,7 +4394,7 @@ func_080179CC:
     cmp r0, #0
     bne .Lauto_0801781A
     adds r0, r6, #0
-    bl GetSongPlayerPool__20GameSceneWorldPrefix
+    bl GetSongPlayerPool__14GameSceneWorld
     ldr r4, [r0]
     ldr r5, [r0, #4]
     cmp r4, r5
@@ -11287,53 +11287,6 @@ func_0801EE00:
     .byte 0x2C, 0x60
     .byte 0x01, 0xB0, 0x08, 0xBC, 0x98, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x6C, 0x04, 0x00, 0x00
     .byte 0x7C, 0x10, 0x00, 0x00
-    .global CreateGameWorld
-    .thumb_func
-CreateGameWorld:
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x14
-    adds r7, r0, #0
-    adds r5, r1, #0
-    adds r6, r2, #0
-    lsls r4, r3, #0x18
-    lsrs r4, r4, #0x18
-    movs r0, #0xbc
-    bl __builtin_new
-    adds r1, r5, #0
-    bl func_080A6474
-    str r0, [sp, #8]
-    ldr r0, .Ljp_0801F96C
-    bl __builtin_new
-    add r3, sp, #8
-    mov r1, sp
-    strb r4, [r1]
-    adds r1, r5, #0
-    adds r2, r6, #0
-    bl func_08017348
-    str r0, [sp, #4]
-    add r1, sp, #4
-    str r1, [sp, #0xc]
-    str r0, [sp, #0x10]
-    adds r2, r1, #0
-    movs r1, #0
-    str r1, [r2]
-    str r0, [r7]
-    ldr r1, [sp, #4]
-    cmp r1, #0
-    beq .Ljp_0801F962
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.Ljp_0801F962:
-    adds r0, r7, #0
-    add sp, #0x14
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_0801F96C: .4byte 0x000010CC
     .else
 
     .INCLUDE "asm/macro.inc"
@@ -15978,8 +15931,8 @@ func_08016AFC: @ 0x08016AFC
     .section .text.game_scene_field_item_tool_after, "ax", %progbits
     .align 2, 0
 
-    thumb_func_start func_080175B4
-func_080175B4: @ 0x080175B4
+    thumb_func_start __14GameSceneWorldP18GameStateSaveImageP9GameSceneG22GameSceneWorldMapOwnerb
+__14GameSceneWorldP18GameStateSaveImageP9GameSceneG22GameSceneWorldMapOwnerb: @ 0x080175B4
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -16499,7 +16452,7 @@ func_080179CC: @ 0x080179CC
     cmp r0, #0
     bne .L08017A86
     adds r0, r6, #0
-    bl GetSongPlayerPool__20GameSceneWorldPrefix
+    bl GetSongPlayerPool__14GameSceneWorld
     ldr r4, [r0]
     ldr r5, [r0, #4]
     cmp r4, r5
@@ -26496,52 +26449,6 @@ func_0801FAC8: @ 0x0801FAC8
 .L0801FB74: .4byte 0x0000046C
 .L0801FB78: .4byte 0x0000107C
 
-    thumb_func_start CreateGameWorld
-CreateGameWorld: @ 0x0801FB7C
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x14
-    adds r7, r0, #0
-    adds r5, r1, #0
-    adds r6, r2, #0
-    lsls r4, r3, #0x18
-    lsrs r4, r4, #0x18
-    movs r0, #0xbc
-    bl __builtin_new
-    adds r1, r5, #0
-    bl func_080A6474
-    str r0, [sp, #8]
-    ldr r0, .L0801FBD8 @ =0x000010CC
-    bl __builtin_new
-    add r3, sp, #8
-    mov r1, sp
-    strb r4, [r1]
-    adds r1, r5, #0
-    adds r2, r6, #0
-    bl func_080175B4
-    str r0, [sp, #4]
-    add r1, sp, #4
-    str r1, [sp, #0xc]
-    str r0, [sp, #0x10]
-    adds r2, r1, #0
-    movs r1, #0
-    str r1, [r2]
-    str r0, [r7]
-    ldr r1, [sp, #4]
-    cmp r1, #0
-    beq .L0801FBCE
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L0801FBCE:
-    adds r0, r7, #0
-    add sp, #0x14
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L0801FBD8: .4byte 0x000010CC
     @ All overseas virtual-table entries above are direct physical labels.
     @ The verified source positions are shared by US, EU, and DE.
 

@@ -2,7 +2,7 @@
 #include "game_world.hh"
 #include "game_state.hh"
 
-EC bool IsWorldTimePaused(GameSceneWorldPrefix const & world)
+EC bool IsWorldTimePaused(GameSceneWorld const & world)
 {
     if (world.updates_suspended == 0
         && GetMapData(world.data.map.value->map_data_id)->flags == 0)
@@ -10,7 +10,7 @@ EC bool IsWorldTimePaused(GameSceneWorldPrefix const & world)
     return true;
 }
 
-EC void SuspendWorldUpdates(GameSceneWorldPrefix & world)
+EC void SuspendWorldUpdates(GameSceneWorld & world)
 {
     world.updates_suspended = 1;
     if (world.save->scripted_npc_control) {
@@ -31,7 +31,7 @@ EC void SuspendWorldUpdates(GameSceneWorldPrefix & world)
     }
 }
 
-EC void ResumeWorldUpdates(GameSceneWorldPrefix & world)
+EC void ResumeWorldUpdates(GameSceneWorld & world)
 {
     world.updates_suspended = 0;
     if (world.save->scripted_npc_control) {

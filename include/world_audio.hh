@@ -3,11 +3,11 @@
 
 #include "prelude.h"
 
-struct GameSceneWorldPrefix;
+struct GameSceneWorld;
 
 EXTERN_C
-u32 SelectWorldBackgroundAudio(GameSceneWorldPrefix & world);
-void UpdateWorldBackgroundAudio(GameSceneWorldPrefix & world);
+u32 SelectWorldBackgroundAudio(GameSceneWorld & world);
+void UpdateWorldBackgroundAudio(GameSceneWorld & world);
 EXTERN_C_END
 
 #endif // WORLD_AUDIO_HH

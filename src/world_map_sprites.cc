@@ -1,7 +1,7 @@
 #include "world_map_sprites.hh"
 #include "game_state.hh"
 
-EC void RefreshWorldHillSeasonalSprites(GameSceneWorldPrefix & world)
+EC void RefreshWorldHillSeasonalSprites(GameSceneWorld & world)
 {
     world.unk_106C = nullptr;
     world.unk_1070 = nullptr;
@@ -21,7 +21,7 @@ EC void RefreshWorldHillSeasonalSprites(GameSceneWorldPrefix & world)
     }
 }
 
-EC void RefreshWorldWinterAndFireplaceSprites(GameSceneWorldPrefix & world)
+EC void RefreshWorldWinterAndFireplaceSprites(GameSceneWorld & world)
 {
     world.unk_1074 = nullptr;
     world.unk_1078 = nullptr;

@@ -8,7 +8,7 @@
 
 struct GameObject;
 struct WorldSpriteDrawBuffer;
-struct GameSceneWorldPrefix;
+struct GameSceneWorld;
 
 struct WorldWeatherMotion {
     i32 x_q16;
@@ -79,7 +79,7 @@ typedef char GameSceneWeatherEffectParticlesCheck[offsetof(GameSceneWeatherEffec
 typedef char GameSceneWeatherEffectSizeCheck[sizeof(GameSceneWeatherEffect) == 0x46C ? 1 : -1];
 
 EXTERN_C
-void ClearWorldWeatherEffect(GameSceneWorldPrefix & world);
+void ClearWorldWeatherEffect(GameSceneWorld & world);
 EXTERN_C_END
 
 #endif

@@ -532,8 +532,8 @@ extern void GetWorldMapPixelHeight(void);
 extern void GetWorldMapTerrain(void);
 extern void func_0801A8E0(void);
 extern void RemoveWorldEntity(void);
-extern void GetEntity__20GameSceneWorldPrefixUi(void);
-extern void GetEntity__C20GameSceneWorldPrefixUi(void);
+extern void GetEntity__14GameSceneWorldUi(void);
+extern void GetEntity__C14GameSceneWorldUi(void);
 extern void func_0801B5C0(void);
 extern void ClearWorldSpritePaletteResourceFlag(void);
 extern void GetWorldSpritePaletteBank(void);
@@ -599,11 +599,11 @@ extern void SetWorldPendingUnknownValue(void);
 extern void QueueWorldScript(void);
 extern void GetWorldClock(void);
 extern void SelectWorldBackgroundAudio(void);
-extern void GetSongPlayerPool__20GameSceneWorldPrefix(void);
-extern void LightFireplaceAtLocation__20GameSceneWorldPrefix9MaryMapId(void);
-extern void SetVaseArticleId__20GameSceneWorldPrefix17MaryItemArticleId(void);
+extern void GetSongPlayerPool__14GameSceneWorld(void);
+extern void LightFireplaceAtLocation__14GameSceneWorld9MaryMapId(void);
+extern void SetVaseArticleId__14GameSceneWorld17MaryItemArticleId(void);
 extern void func_0801EE00(void);
-extern void ShipProduct__20GameSceneWorldPrefixRC7Product(void);
+extern void ShipProduct__14GameSceneWorldRC7Product(void);
 extern void CreateWorldEventIcon(void);
 extern void RemoveWorldEventIcon(void);
 extern void CreateScene__17TownMapTransition(void);
@@ -1013,8 +1013,8 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     GetWorldMapTerrain,
     func_0801A8E0,
     RemoveWorldEntity,
-    GetEntity__20GameSceneWorldPrefixUi,
-    GetEntity__C20GameSceneWorldPrefixUi,
+    GetEntity__14GameSceneWorldUi,
+    GetEntity__C14GameSceneWorldUi,
     func_0801B5C0,
     ClearWorldSpritePaletteResourceFlag,
     GetWorldSpritePaletteBank,
@@ -1080,11 +1080,11 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     QueueWorldScript,
     GetWorldClock,
     SelectWorldBackgroundAudio,
-    GetSongPlayerPool__20GameSceneWorldPrefix,
-    LightFireplaceAtLocation__20GameSceneWorldPrefix9MaryMapId,
-    SetVaseArticleId__20GameSceneWorldPrefix17MaryItemArticleId,
+    GetSongPlayerPool__14GameSceneWorld,
+    LightFireplaceAtLocation__14GameSceneWorld9MaryMapId,
+    SetVaseArticleId__14GameSceneWorld17MaryItemArticleId,
     func_0801EE00,
-    ShipProduct__20GameSceneWorldPrefixRC7Product,
+    ShipProduct__14GameSceneWorldRC7Product,
     CreateWorldEventIcon,
     RemoveWorldEventIcon,
 };

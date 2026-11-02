@@ -12,7 +12,7 @@
 
 struct AEntity;
 struct GameObject;
-struct GameSceneWorldPrefix;
+struct GameSceneWorld;
 struct EntityAuxiliarySprites;
 
 // The native palette cache has 22 resource records and 13 retained banks.
@@ -183,9 +183,9 @@ typedef char GameSceneWorldDataUnkRecordCheck[offsetof(GameSceneWorldData, unk_1
 typedef char GameSceneWorldDataSizeCheck[sizeof(GameSceneWorldData) == 0x1034 ? 1 : -1];
 
 EXTERN_C
-i32 GetWorldSpritePaletteBank(GameSceneWorldPrefix & world, u32 index);
+i32 GetWorldSpritePaletteBank(GameSceneWorld & world, u32 index);
 // The exact role of resource byte +0x81 remains unknown; only clearing is known.
-void ClearWorldSpritePaletteResourceFlag(GameSceneWorldPrefix & world, u32 index);
+void ClearWorldSpritePaletteResourceFlag(GameSceneWorld & world, u32 index);
 EXTERN_C_END
 
 #endif // WORLD_RUNTIME_HH

@@ -24,7 +24,7 @@ void AudioActorEntity::RequestSound(u32 song_id)
     if (sound_requested || !IsOnCurrentMap())
         return;
     GameSceneSongPlayerPool & pool =
-        static_cast<GameSceneWorldPrefix *>(game_object)->GetSongPlayerPool();
+        static_cast<GameSceneWorld *>(game_object)->GetSongPlayerPool();
     FindActorSoundPlayer(pool)->Start(song_id);
     sound_requested = true;
 }

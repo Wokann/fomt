@@ -7,7 +7,7 @@ EXTERN_C
 
 // Still native: update/create the vase sprite in the farmhouse, or release it
 // outside that map. ITEM_ARTICLE_NONE leaves an existing vase sprite alone.
-void RefreshWorldVase(GameSceneWorldPrefix & world);
+void RefreshWorldVase(GameSceneWorld & world);
 
 EXTERN_C_END
 

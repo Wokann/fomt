@@ -72,7 +72,7 @@ void GameScene::StartWorldBackgroundMusic()
 {
     GameSceneState * current = state;
     HardwareMusicPlayerSlot & player = current->bgm_player;
-    u32 sequence = static_cast<GameSceneWorldPrefix *>(current->game_object.value)->GetDefaultAudioSequence();
+    u32 sequence = static_cast<GameSceneWorld *>(current->game_object.value)->GetDefaultAudioSequence();
     player.StartIfChangedOrInactive(static_cast<u16>(sequence));
 }
 

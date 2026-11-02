@@ -6,9 +6,9 @@
 EXTERN_C
 
 // Release the old two owners first, then create the map/season variants.
-void RefreshWorldHillSeasonalSprites(GameSceneWorldPrefix & world);
+void RefreshWorldHillSeasonalSprites(GameSceneWorld & world);
 // The supported maps combine winter state and the three actual fireplace bits.
-void RefreshWorldWinterAndFireplaceSprites(GameSceneWorldPrefix & world);
+void RefreshWorldWinterAndFireplaceSprites(GameSceneWorld & world);
 
 EXTERN_C_END
 

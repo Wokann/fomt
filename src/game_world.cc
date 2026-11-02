@@ -139,7 +139,7 @@ failure:
     return false;
 }
 
-EC bool func_08019F38(GameSceneWorldPrefix & world, Location const & location)
+EC bool func_08019F38(GameSceneWorld & world, Location const & location)
 {
     if (GetMapData(world.data.map.value->map_data_id)->flags != 0
         || (GetCalendarEffectiveSeason(world.save->clock.calendar) != SEASON_WINTER
@@ -148,7 +148,7 @@ EC bool func_08019F38(GameSceneWorldPrefix & world, Location const & location)
     return true;
 }
 
-EC i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map)
+EC i32 GetWorldMapPixelWidth(GameSceneWorld & world, u32 map)
 {
     u32 season = GetCalendarEffectiveSeason(world.save->clock.calendar);
     u32 house = world.save->farm.farm_house.GetUpgradeLevel();
@@ -158,7 +158,7 @@ EC i32 GetWorldMapPixelWidth(GameSceneWorldPrefix & world, u32 map)
     return GetMapData(data_id)->width * 8;
 }
 
-EC i32 GetWorldMapPixelHeight(GameSceneWorldPrefix & world, u32 map)
+EC i32 GetWorldMapPixelHeight(GameSceneWorld & world, u32 map)
 {
     u32 season = GetCalendarEffectiveSeason(world.save->clock.calendar);
     u32 house = world.save->farm.farm_house.GetUpgradeLevel();
@@ -168,7 +168,7 @@ EC i32 GetWorldMapPixelHeight(GameSceneWorldPrefix & world, u32 map)
     return GetMapData(data_id)->height * 8;
 }
 
-EC MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id)
+EC MapTerrainView GetWorldMapTerrain(GameSceneWorld & world, u32 map_id)
 {
     if (map_id > MAP_LAKE_MINE_FLOOR_255)
         return MapTerrainView(nullptr, 0, 0);
@@ -204,7 +204,7 @@ EC MapTerrainView GetWorldMapTerrain(GameSceneWorldPrefix & world, u32 map_id)
     return MapTerrainView(attributes, indices, width, height);
 }
 
-EC u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind)
+EC u32 func_0801B5C0(GameSceneWorld & world, i32 kind)
 {
     switch (kind) {
     case 0: return 0;
@@ -415,13 +415,13 @@ EC u32 func_0801B5C0(GameSceneWorldPrefix & world, i32 kind)
     return ARRAY_COUNT(cache.resources) - 1;
 }
 
-EC void SetWorldPendingUnknownValue(GameSceneWorldPrefix & world, u8 value)
+EC void SetWorldPendingUnknownValue(GameSceneWorld & world, u8 value)
 {
     world.unk_10C8 = 1;
     world.unk_10C9 = value;
 }
 
-EC bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & location,
+EC bool TryGetFarmPlotAtLocation(GameSceneWorld & world, Location const & location,
     GameSceneFarmPlotLocation & output)
 {
     // Each farm plot spans two 8-pixel tiles from the field origin.
@@ -447,7 +447,7 @@ EC bool TryGetFarmPlotAtLocation(GameSceneWorldPrefix & world, Location const & 
     return found;
 }
 
-EC u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location)
+EC u32 func_0801C29C(GameSceneWorld & world, Location const & location)
 {
     u32 result = 0;
     GameSceneFarmPlotLocation hit;
@@ -473,7 +473,7 @@ EC u32 func_0801C29C(GameSceneWorldPrefix & world, Location const & location)
     return result;
 }
 
-EC u32 func_0801D3FC(GameSceneWorldPrefix & world, Location const & location)
+EC u32 func_0801D3FC(GameSceneWorld & world, Location const & location)
 {
     GameSceneFarmPlotLocation hit;
     if (TryGetFarmPlotAtLocation(world, location, hit)) {
@@ -490,7 +490,7 @@ EC u32 func_0801D3FC(GameSceneWorldPrefix & world, Location const & location)
     return 0;
 }
 
-EC void func_0801D4E0(GameSceneWorldPrefix & world, Location const & location, i32 id)
+EC void func_0801D4E0(GameSceneWorld & world, Location const & location, i32 id)
 {
     GameSceneFarmPlotLocation hit;
     if (TryGetFarmPlotAtLocation(world, location, hit)) {
@@ -504,7 +504,7 @@ EC void func_0801D4E0(GameSceneWorldPrefix & world, Location const & location, i
     }
 }
 
-EC void func_0801D5BC(GameSceneWorldPrefix & world, Location const & location,
+EC void func_0801D5BC(GameSceneWorld & world, Location const & location,
     RucksackItem & output)
 {
     GameSceneFarmPlotLocation hit;
@@ -521,7 +521,7 @@ EC void func_0801D5BC(GameSceneWorldPrefix & world, Location const & location,
     }
 }
 
-EC RucksackItem PickUpFieldItemAtLocation(GameSceneWorldPrefix & world, Location const & location)
+EC RucksackItem PickUpFieldItemAtLocation(GameSceneWorld & world, Location const & location)
 {
     FieldItemState & items = world.save->field_items;
     i32 season = GetCalendarEffectiveSeason(world.save->clock.calendar);
@@ -540,7 +540,7 @@ EC RucksackItem PickUpFieldItemAtLocation(GameSceneWorldPrefix & world, Location
     return item;
 }
 
-EC void func_0801D7B0(GameSceneWorldPrefix & world, Location const & location,
+EC void func_0801D7B0(GameSceneWorld & world, Location const & location,
     Article const & article)
 {
     GameSceneFarmPlotLocation hit;
@@ -555,7 +555,7 @@ EC void func_0801D7B0(GameSceneWorldPrefix & world, Location const & location,
     }
 }
 
-EC u32 func_0801D88C(GameSceneWorldPrefix & world, Location const & location,
+EC u32 func_0801D88C(GameSceneWorld & world, Location const & location,
     Article const & article)
 {
     GameSceneFarmPlotLocation hit;
@@ -567,13 +567,13 @@ EC u32 func_0801D88C(GameSceneWorldPrefix & world, Location const & location,
     return 2;
 }
 
-EC void QueueWorldScript(GameSceneWorldPrefix & world,
+EC void QueueWorldScript(GameSceneWorld & world,
     GameSceneScriptRequest const & request, i32 queue_kind)
 {
     world.scene->QueueScript(request, queue_kind);
 }
 
-EC void func_0801DC24(GameSceneWorldPrefix & world, u32 index)
+EC void func_0801DC24(GameSceneWorld & world, u32 index)
 {
     GameSceneIndexedSprite * sprite = world.unk_1058.Get();
     if (sprite != nullptr) {
@@ -588,12 +588,12 @@ EC void func_0801DC24(GameSceneWorldPrefix & world, u32 index)
     }
 }
 
-EC void func_0801DCA8(GameSceneWorldPrefix & world)
+EC void func_0801DCA8(GameSceneWorld & world)
 {
     world.unk_1058 = nullptr;
 }
 
-EC void CollectDailyShippingRevenue(GameSceneWorldPrefix & world)
+EC void CollectDailyShippingRevenue(GameSceneWorld & world)
 {
     i32 value = world.save->farm.shipping_bin.GetValueShipped();
     world.save->CollectShippingRevenue();
@@ -601,52 +601,52 @@ EC void CollectDailyShippingRevenue(GameSceneWorldPrefix & world)
         EventScript_FarmEvent_Zack_DailyShippingPickup, value), 1);
 }
 
-EC void func_0801DD18(GameSceneWorldPrefix & world)
+EC void func_0801DD18(GameSceneWorld & world)
 {
     func_080A6138(world.data.map.value);
 }
 
-EC void func_0801DD24(GameSceneWorldPrefix & world)
+EC void func_0801DD24(GameSceneWorld & world)
 {
     func_080A6194(world.data.map.value);
 }
 
-EC void func_0801DD30(GameSceneWorldPrefix & world)
+EC void func_0801DD30(GameSceneWorld & world)
 {
     func_080A61F0(world.data.map.value);
 }
 
-EC void func_0801DD3C(GameSceneWorldPrefix & world)
+EC void func_0801DD3C(GameSceneWorld & world)
 {
     func_080A6234(world.data.map.value);
 }
 
-EC void func_0801DD48(GameSceneWorldPrefix & world)
+EC void func_0801DD48(GameSceneWorld & world)
 {
     func_080A6278(world.data.map.value);
 }
 
-EC void func_0801DD54(GameSceneWorldPrefix & world)
+EC void func_0801DD54(GameSceneWorld & world)
 {
     func_080A62BC(world.data.map.value);
 }
 
-EC void func_0801DD60(GameSceneWorldPrefix & world, u32 index)
+EC void func_0801DD60(GameSceneWorld & world, u32 index)
 {
     func_080A607C(world.data.map.value, index);
 }
 
-EC void func_0801DD6C(GameSceneWorldPrefix & world, u32 index)
+EC void func_0801DD6C(GameSceneWorld & world, u32 index)
 {
     RefreshCoopFeedTrough(world.data.map.value, index);
 }
 
-EC void func_0801DD78(GameSceneWorldPrefix & world)
+EC void func_0801DD78(GameSceneWorld & world)
 {
     StartWorldMapTilePatchCountdown(world.data.map.value);
 }
 
-EC MaryItemArticleId RemoveRecordPlayerAlbum(GameSceneWorldPrefix & world)
+EC MaryItemArticleId RemoveRecordPlayerAlbum(GameSceneWorld & world)
 {
     RecordPlayer * record_player = world.save->farm.farm_house.GetRecordPlayer();
     func_080A6300(world.data.map.value);
@@ -655,39 +655,39 @@ EC MaryItemArticleId RemoveRecordPlayerAlbum(GameSceneWorldPrefix & world)
     return static_cast<MaryItemArticleId>(album.GetArticle().GetId());
 }
 
-EC void SetWorldMapPatchFlag(GameSceneWorldPrefix & world, u32 index)
+EC void SetWorldMapPatchFlag(GameSceneWorld & world, u32 index)
 {
     world.save->map_patch_flags.Set(index);
-    RefreshWorldMapPatch(static_cast<GameSceneSavedMapPrefix *>(world.data.map.value), index);
+    RefreshWorldMapPatch(static_cast<GameSceneSavedMap *>(world.data.map.value), index);
 }
 
-EC void ClearWorldMapPatchFlag(GameSceneWorldPrefix & world, u32 index)
+EC void ClearWorldMapPatchFlag(GameSceneWorld & world, u32 index)
 {
     world.save->map_patch_flags.Clear(index);
-    RefreshWorldMapPatch(static_cast<GameSceneSavedMapPrefix *>(world.data.map.value), index);
+    RefreshWorldMapPatch(static_cast<GameSceneSavedMap *>(world.data.map.value), index);
 }
 
-EC void func_0801DE24(GameSceneWorldPrefix & world, u32 unk)
+EC void func_0801DE24(GameSceneWorld & world, u32 unk)
 {
     func_080A63B8(world.data.map.value, unk);
 }
 
-EC void func_0801DE30(GameSceneWorldPrefix & world)
+EC void func_0801DE30(GameSceneWorld & world)
 {
     func_080AA89C(world.data.map.value);
 }
 
-EC void func_0801DE3C(GameSceneWorldPrefix & world)
+EC void func_0801DE3C(GameSceneWorld & world)
 {
     func_080AA8BC(world.data.map.value);
 }
 
-EC void func_0801DE48(GameSceneWorldPrefix & world)
+EC void func_0801DE48(GameSceneWorld & world)
 {
-    func_080AA8DC(static_cast<GameSceneSavedMapPrefix *>(world.data.map.value));
+    func_080AA8DC(static_cast<GameSceneSavedMap *>(world.data.map.value));
 }
 
-EC MaryItemArticleId SwapRecordPlayerAlbum(GameSceneWorldPrefix & world, MaryItemArticleId article_id)
+EC MaryItemArticleId SwapRecordPlayerAlbum(GameSceneWorld & world, MaryItemArticleId article_id)
 {
     RecordPlayer * record_player = world.save->farm.farm_house.GetRecordPlayer();
     func_080A635C(world.data.map.value);
@@ -706,101 +706,101 @@ EC AEntity * GetWorldEntityConst(GameObject const * world, u32 id)
     return world->GetEntity(id);
 }
 
-EC IndexedResourceArchive * func_0801FBDC(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FBDC(GameSceneWorld & world)
 {
     return &world.data.unk_FF0;
 }
 
-EC IndexedResourceArchive * func_0801FBE8(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FBE8(GameSceneWorld & world)
 {
     return &world.data.unk_FC0;
 }
 
-EC IndexedResourceArchive * func_0801FBF4(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FBF4(GameSceneWorld & world)
 {
     return &world.data.unk_F90;
 }
 
-EC IndexedResourceArchive * func_0801FC00(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FC00(GameSceneWorld & world)
 {
     return &world.data.unk_F60;
 }
 
-EC IndexedResourceArchive * func_0801FC0C(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FC0C(GameSceneWorld & world)
 {
     return &world.data.unk_F30;
 }
 
-EC IndexedResourceArchive * GetWorldMapSpriteArchive(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * GetWorldMapSpriteArchive(GameSceneWorld & world)
 {
     return world.data.GetMapSpriteArchive();
 }
 
-EC IndexedResourceArchive * func_0801FC24(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FC24(GameSceneWorld & world)
 {
     return &world.data.unk_ED0;
 }
 
-EC IndexedResourceArchive * func_0801FC30(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FC30(GameSceneWorld & world)
 {
     return &world.data.unk_EA0;
 }
 
-EC IndexedResourceArchive * func_0801FC3C(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FC3C(GameSceneWorld & world)
 {
     return &world.data.unk_E70;
 }
 
-EC IndexedResourceArchive * func_0801FC48(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FC48(GameSceneWorld & world)
 {
     return &world.data.unk_E40;
 }
 
-EC IndexedResourceArchive * func_0801FC54(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FC54(GameSceneWorld & world)
 {
     return &world.data.unk_E10;
 }
 
-EC IndexedResourceArchive * func_0801FC60(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * func_0801FC60(GameSceneWorld & world)
 {
     return &world.data.unk_DE0;
 }
 
-EC IndexedResourceArchive * GetWorldActorAnimationArchive(GameSceneWorldPrefix & world)
+EC IndexedResourceArchive * GetWorldActorAnimationArchive(GameSceneWorld & world)
 {
     return &world.data.actor_archive;
 }
 
-EC GameSceneWorldMap * func_0801FC9C(GameSceneWorldPrefix & world)
+EC GameSceneWorldMap * func_0801FC9C(GameSceneWorld & world)
 {
     return world.data.map.value;
 }
 
-EC GameSceneWorldMap * func_0801FCA0(GameSceneWorldPrefix & world)
+EC GameSceneWorldMap * func_0801FCA0(GameSceneWorld & world)
 {
     return world.data.map.value;
 }
 
-EC GameStateClock const * GetWorldClock(GameSceneWorldPrefix const & world)
+EC GameStateClock const * GetWorldClock(GameSceneWorld const & world)
 {
     return &world.save->clock;
 }
 
-AEntity * GameSceneWorldPrefix::GetEntity(u32 index) const
+AEntity * GameSceneWorld::GetEntity(u32 index) const
 {
     AEntity * const * first = data.entities;
     std::advance(first, index);
     return *first;
 }
 
-AEntity * GameSceneWorldPrefix::GetEntity(u32 index)
+AEntity * GameSceneWorld::GetEntity(u32 index)
 {
     AEntity ** first = data.entities;
     std::advance(first, index);
     return *first;
 }
 
-EC void RemoveWorldEntity(GameSceneWorldPrefix & world, u32 index)
+EC void RemoveWorldEntity(GameSceneWorld & world, u32 index)
 {
     AEntity ** entity = world.data.entities;
     std::advance(entity, index);
@@ -810,37 +810,37 @@ EC void RemoveWorldEntity(GameSceneWorldPrefix & world, u32 index)
     }
 }
 
-EC EntityAuxiliarySprites * GetWorldEntityAuxiliarySprites(GameSceneWorldPrefix & world)
+EC EntityAuxiliarySprites * GetWorldEntityAuxiliarySprites(GameSceneWorld & world)
 {
     return world.data.entity_auxiliary_sprites;
 }
 
-EC bool IsWorldCameraMovementComplete(GameSceneWorldPrefix const & world)
+EC bool IsWorldCameraMovementComplete(GameSceneWorld const & world)
 {
     return IsWorldMapCameraMovementComplete(world.data.map.value);
 }
 
-EC i32 GetWorldCameraY(GameSceneWorldPrefix const & world)
+EC i32 GetWorldCameraY(GameSceneWorld const & world)
 {
     return world.data.map.value->y.parts.integer;
 }
 
-EC i32 GetWorldCameraX(GameSceneWorldPrefix const & world)
+EC i32 GetWorldCameraX(GameSceneWorld const & world)
 {
     return world.data.map.value->x.parts.integer;
 }
 
-EC u32 GetWorldCurrentMapId(GameSceneWorldPrefix const & world)
+EC u32 GetWorldCurrentMapId(GameSceneWorld const & world)
 {
     return world.data.map.value->map;
 }
 
-EC void PanWorldCameraTo(GameSceneWorldPrefix & world, i32 x, i32 y, u32 speed)
+EC void PanWorldCameraTo(GameSceneWorld & world, i32 x, i32 y, u32 speed)
 {
     PanWorldMapCameraTo(world.data.map.value, x, y, speed);
 }
 
-EC void SetWorldCameraPosition(GameSceneWorldPrefix & world, i32 x, i32 y)
+EC void SetWorldCameraPosition(GameSceneWorld & world, i32 x, i32 y)
 {
     SetWorldMapCameraPosition(world.data.map.value, x, y);
 }

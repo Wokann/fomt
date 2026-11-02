@@ -11,7 +11,7 @@
 #include "data/scripts/de/fomt_scripts.mary.h"
 #endif
 
-void GameSceneWorldPrefix::ShipProduct(Product const & product)
+void GameSceneWorld::ShipProduct(Product const & product)
 {
     ShippingBin & shipping = save->farm.shipping_bin;
     i32 product_id = product.GetId();

@@ -6131,9 +6131,9 @@ func_080A607C: @ 0x080A5AB4
     .section .text.game_map_after_patch_dispatchers, "ax", %progbits
     .align 2, 0
 
-    .global func_080A6474
+    .global __17GameSceneSavedMapP18GameStateSaveImage
     .thumb_func
-func_080A6474: @ 0x080A5EAC
+__17GameSceneSavedMapP18GameStateSaveImage: @ 0x080A5EAC
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -81565,8 +81565,8 @@ func_080A607C: @ 0x080A607C
     .section .text.game_map_after_patch_dispatchers, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080A6474
-func_080A6474: @ 0x080A6474
+	thumb_func_start __17GameSceneSavedMapP18GameStateSaveImage
+__17GameSceneSavedMapP18GameStateSaveImage: @ 0x080A6474
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0

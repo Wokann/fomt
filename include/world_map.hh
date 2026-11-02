@@ -145,15 +145,15 @@ typedef char SavedMapTreeStateCheck[offsetof(SavedMapTree, state) == 8 ? 1 : -1]
 // vtable at +0x90, then stores the save pointer at +0x94 and this flag at +0x98.
 // The allocation is 0xBC bytes. The runtime member at +0x9C is now
 // modeled by SavedMapTree; the two animation states begin at +0xB4/+0xB8.
-// This borrowed view is never allocated or used to infer a native class size.
-struct GameSceneSavedMapPrefix : GameSceneWorldMap {
+// Every byte of the native 0xBC allocation is covered by this class.
+// The native constructor and virtual table remain imported.
+struct GameSceneSavedMap : GameSceneWorldMap {
     GameStateSaveImage * save;
     bool unk_98;
     SavedMapTree saved_tree;
     MapTilePatchAnimationState tile_animations[2];
 
-private:
-    GameSceneSavedMapPrefix();
+    GameSceneSavedMap(GameStateSaveImage * image);
 };
 
 typedef char GameSceneMapLayoutAnimation0Check[offsetof(GameSceneWorldMap, layout_animation_0) == 0x30 ? 1 : -1];
@@ -171,11 +171,11 @@ typedef char GameSceneMapLayoutAnimation9Check[offsetof(GameSceneWorldMap, layou
 typedef char GameSceneMapTimePaletteBuffersCheck[offsetof(GameSceneWorldMap, time_palette_buffers) == 0x1C ? 1 : -1];
 typedef char GameSceneMapTimePaletteChangedCheck[offsetof(GameSceneWorldMap, time_palette_changed) == 0x2A ? 1 : -1];
 
-typedef char GameSceneSavedMapSaveCheck[offsetof(GameSceneSavedMapPrefix, save) == 0x94 ? 1 : -1];
-typedef char GameSceneSavedMapFlagCheck[offsetof(GameSceneSavedMapPrefix, unk_98) == 0x98 ? 1 : -1];
-typedef char GameSceneSavedMapTreeCheck[offsetof(GameSceneSavedMapPrefix, saved_tree) == 0x9C ? 1 : -1];
-typedef char GameSceneSavedMapAnimationsCheck[offsetof(GameSceneSavedMapPrefix, tile_animations) == 0xB4 ? 1 : -1];
-typedef char GameSceneSavedMapPrefixSizeCheck[sizeof(GameSceneSavedMapPrefix) == 0xBC ? 1 : -1];
+typedef char GameSceneSavedMapSaveCheck[offsetof(GameSceneSavedMap, save) == 0x94 ? 1 : -1];
+typedef char GameSceneSavedMapFlagCheck[offsetof(GameSceneSavedMap, unk_98) == 0x98 ? 1 : -1];
+typedef char GameSceneSavedMapTreeCheck[offsetof(GameSceneSavedMap, saved_tree) == 0x9C ? 1 : -1];
+typedef char GameSceneSavedMapAnimationsCheck[offsetof(GameSceneSavedMap, tile_animations) == 0xB4 ? 1 : -1];
+typedef char GameSceneSavedMapSizeCheck[sizeof(GameSceneSavedMap) == 0xBC ? 1 : -1];
 
 
 typedef char GameSceneCameraCoordinateSizeCheck[sizeof(GameSceneCameraCoordinate) == 4 ? 1 : -1];
@@ -201,7 +201,7 @@ EXTERN_C
 // These callbacks keep the native tree traversal and destruction flags.
 void ResetSavedMapTree(SavedMapTree * tree, u32 unk_00, u32 unk_04);
 void EraseSavedMapTreeNodes(SavedMapTreeState * state, SavedMapTreeNode * node);
-void DestroySavedWorldMap(GameSceneSavedMapPrefix * map, int flags);
+void DestroySavedWorldMap(GameSceneSavedMap * map, int flags);
 // Direct declaration of the existing C++ base destructor ABI, not a wrapper.
 void DestroyWorldMapBase(GameSceneWorldMap * map, int flags)
     asm("_._17GameSceneWorldMap");
@@ -225,17 +225,17 @@ u32 GetWorldMapDataId(GameSceneWorldMap const * map);
 u32 GetWorldMapId(GameSceneWorldMap const * map);
 i32 GetWorldMapViewY(GameSceneWorldMap const * map);
 i32 GetWorldMapViewX(GameSceneWorldMap const * map);
-void UpdateSavedMapTileAnimationTimers(GameSceneSavedMapPrefix * map);
+void UpdateSavedMapTileAnimationTimers(GameSceneSavedMap * map);
 void QueueMapTilePatch(GameSceneWorldMap * map,
     FarmHouseTilePatchDescriptor const & patch, u32 frame, HardwareDmaQueue & queue);
-void DrawSavedWorldMap(GameSceneSavedMapPrefix * map, HardwareDmaQueue & queue,
+void DrawSavedWorldMap(GameSceneSavedMap * map, HardwareDmaQueue & queue,
     HardwareDisplayState & display, HardwareLinkedList & commands);
-void RefreshSavedWorldMapAppearance(GameSceneSavedMapPrefix * map, i32 period,
+void RefreshSavedWorldMapAppearance(GameSceneSavedMap * map, i32 period,
     u32 first_weight, u32 second_weight);
-void RefreshWorldMapPatch(GameSceneSavedMapPrefix * map, u32 index);
+void RefreshWorldMapPatch(GameSceneSavedMap * map, u32 index);
 void func_080AA89C(GameSceneWorldMap * map);
 void func_080AA8BC(GameSceneWorldMap * map);
-void func_080AA8DC(GameSceneSavedMapPrefix * map);
+void func_080AA8DC(GameSceneSavedMap * map);
 bool func_080A5EB8(GameSceneWorldMap * map, Location const & location);
 void SetWorldMapTimeOfDayPalette(GameSceneWorldMap & map, i32 period);
 void ClearWorldMapTileRectangle(GameSceneWorldMap * map, u32 layer,

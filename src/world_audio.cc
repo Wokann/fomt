@@ -5,7 +5,7 @@
 #include "game_state.hh"
 #include "fomt_constants.hh"
 
-EC u32 SelectWorldBackgroundAudio(GameSceneWorldPrefix & world)
+EC u32 SelectWorldBackgroundAudio(GameSceneWorld & world)
 {
     GameStateClock const & clock = world.save->clock;
     if (clock.weather_today == WEATHER_RAIN)
@@ -62,12 +62,12 @@ night:
     return AUDIO_AMBIENCE_NIGHT;
 }
 
-GameSceneSongPlayerPool & GameSceneWorldPrefix::GetSongPlayerPool()
+GameSceneSongPlayerPool & GameSceneWorld::GetSongPlayerPool()
 {
     return GetSceneSongPlayerPool(*scene);
 }
 
-EC void UpdateWorldBackgroundAudio(GameSceneWorldPrefix & world)
+EC void UpdateWorldBackgroundAudio(GameSceneWorld & world)
 {
     GameSceneBgmSettings settings;
     i32 map = world.vfunc_14();

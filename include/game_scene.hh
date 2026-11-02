@@ -478,7 +478,7 @@ struct GameSceneBlendOwner {
     ~GameSceneBlendOwner() { delete value; }
 };
 
-#include "world_rebuild.hh"
+#include "world_creation.hh"
 #pragma interface "game_scene.hh"
 
 struct GameSceneWorldOwner {

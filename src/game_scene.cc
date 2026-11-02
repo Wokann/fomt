@@ -469,12 +469,12 @@ void GameScene::DisableScriptedNpcControl()
 
 void GameScene::LightFireplaceAtLocation(MaryMapId map)
 {
-    static_cast<GameSceneWorldPrefix *>(state->game_object.value)->LightFireplaceAtLocation(map);
+    static_cast<GameSceneWorld *>(state->game_object.value)->LightFireplaceAtLocation(map);
 }
 
 void GameScene::SetVaseArticleId(MaryItemArticleId article)
 {
-    static_cast<GameSceneWorldPrefix *>(state->game_object.value)->SetVaseArticleId(article);
+    static_cast<GameSceneWorld *>(state->game_object.value)->SetVaseArticleId(article);
 }
 
 void GameScene::BeginEggIncubation(MaryChickenCoopIncubatorIndex incubator)
@@ -796,13 +796,13 @@ void GameScene::CreateEventIcon(MaryEventIconSlot slot, MaryMapSpaceX x,
 {
     // Preserve native narrowing before obtaining the world dispatch target.
     u16 id = icon_id;
-    static_cast<GameSceneWorldPrefix *>(state->game_object.value)
+    static_cast<GameSceneWorld *>(state->game_object.value)
         ->CreateEventIcon(slot, x, y, layer, id);
 }
 
 void GameScene::RemoveEventIcon(MaryEventIconSlot slot)
 {
-    static_cast<GameSceneWorldPrefix *>(state->game_object.value)->RemoveEventIcon(slot);
+    static_cast<GameSceneWorld *>(state->game_object.value)->RemoveEventIcon(slot);
 }
 
 void GameScene::SetPlayerActorUpdateSuspended(MaryBool suspended)
