@@ -15220,52 +15220,9 @@ func_080AA960: @ 080AA960
 	.align 2, 0
 .Ljp_map_080AA970: .4byte gUnk_FieldRenderLookupValues
 
-    .global SelectSavedWorldMapData
-    .thumb_func
-SelectSavedWorldMapData: @ 080AA974
-	push {r4, r5, r6, lr}
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6}
-	sub sp, #4
-	adds r6, r0, #0
-	adds r4, r6, #0
-	adds r4, #0x94
-	ldr r0, [r4]
-	adds r0, #0x10
-	bl GetCalendarEffectiveSeason
-	mov sb, r0
-	ldr r0, [r4]
-	movs r1, #0xfa
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	bl GetUpgradeLevel__C9FarmHouse
-	mov r8, r0
-	ldr r0, [r4]
-	movs r1, #0x82
-	lsls r1, r1, #3
-	adds r0, r0, r1
-	bl GetUpgradeLevel__C4Coop
-	adds r5, r0, #0
-	ldr r0, [r4]
-	movs r1, #0xbe
-	lsls r1, r1, #3
-	adds r0, r0, r1
-	bl GetUpgradeLevel__C4Barn
-	ldr r1, [r6]
-	str r0, [sp]
-	adds r0, r1, #0
-	mov r1, sb
-	mov r2, r8
-	adds r3, r5, #0
-	bl SelectMapDataId
-	add sp, #4
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
+    .section .text.saved_map_selection_after, "ax", %progbits
+    .align 2, 0
+
     .global func_080AA9D4
     .thumb_func
 func_080AA9D4: @ 080AA9D4
@@ -90608,51 +90565,9 @@ func_080AAF28: @ 0x080AAF28
 	.align 2, 0
 .L080AAF38: .4byte gUnk_FieldRenderLookupValues
 
-	thumb_func_start SelectSavedWorldMapData
-SelectSavedWorldMapData: @ 0x080AAF3C
-	push {r4, r5, r6, lr}
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6}
-	sub sp, #4
-	adds r6, r0, #0
-	adds r4, r6, #0
-	adds r4, #0x94
-	ldr r0, [r4]
-	adds r0, #0x10
-	bl GetCalendarEffectiveSeason
-	mov sb, r0
-	ldr r0, [r4]
-	movs r1, #0xfa
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	bl GetUpgradeLevel__C9FarmHouse
-	mov r8, r0
-	ldr r0, [r4]
-	movs r1, #0x82
-	lsls r1, r1, #3
-	adds r0, r0, r1
-	bl GetUpgradeLevel__C4Coop
-	adds r5, r0, #0
-	ldr r0, [r4]
-	movs r1, #0xbe
-	lsls r1, r1, #3
-	adds r0, r0, r1
-	bl GetUpgradeLevel__C4Barn
-	ldr r1, [r6]
-	str r0, [sp]
-	adds r0, r1, #0
-	mov r1, sb
-	mov r2, r8
-	adds r3, r5, #0
-	bl SelectMapDataId
-	add sp, #4
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
+    .section .text.saved_map_selection_after, "ax", %progbits
+    .align 2, 0
+
 	thumb_func_start func_080AAF9C
 func_080AAF9C: @ 0x080AAF9C
 	push {lr}

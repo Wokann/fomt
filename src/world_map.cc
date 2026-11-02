@@ -708,6 +708,15 @@ EC void ResetSavedMapTree(SavedMapTree * tree, u32 unk_00, u32 unk_04)
     }
 }
 
+EC u32 SelectSavedWorldMapData(GameSceneSavedMap * map)
+{
+    u32 season = GetCalendarEffectiveSeason(map->save->clock.calendar);
+    u32 house = map->save->farm.farm_house.GetUpgradeLevel();
+    u32 coop = map->save->farm.coop.GetUpgradeLevel();
+    u32 barn = map->save->farm.barn.GetUpgradeLevel();
+    return SelectMapDataId(map->map, season, house, coop, barn);
+}
+
 EC void EraseSavedMapTreeNodes(SavedMapTreeState * state, SavedMapTreeNode * node)
 {
     while (node != nullptr) {

@@ -827,6 +827,8 @@ SECTIONS
         asm/code_809E804.o(.text.game_map_after_flag_updates);
         src/world_map.o(.text.ResetSavedMapTree);
         asm/code_809E804.o(.text.saved_map_tree_reset_after);
+        src/world_map.o(.text.SelectSavedWorldMapData);
+        asm/code_809E804.o(.text.saved_map_selection_after);
         src/random.o(.text);
         src/actor_facing.o(.text.GetRelativeFacing);
         asm/actor_behavior.o(.text);
