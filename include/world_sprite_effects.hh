@@ -7,6 +7,7 @@
 #include "unknown_types.hh"
 #include "resource_archive.hh"
 #include "hardware_state_clear.hh"
+#include "world_runtime.hh"
 
 struct WorldSpriteEffectFrames {
     // Allocated handles are released when every active instance expires.
@@ -40,13 +41,6 @@ struct WorldSpriteEffectInstance {
     u8 unk_07;
 };
 
-struct WorldSpriteEffectPaletteList {
-    u32 count;
-    u8 indices[16];
-    u32 unk_14;
-    u8 & operator[](u32 index) { return indices[index]; }
-};
-
 struct WorldSpriteEffectsState {
     GameObject * world;
     // Farm/forest/mountain-mid winter data select the snow resource variant.
@@ -54,7 +48,9 @@ struct WorldSpriteEffectsState {
     bool tiles_upload_pending;
     bool palette_upload_pending;
     WorldSpriteEffectFrames frames[10];
-    WorldSpriteEffectPaletteList palettes;
+    GameScenePaletteIndices palettes;
+    // Activation selects which cached frame supplies the next palette upload.
+    u8 palette_source_kind;
     WorldSpriteEffectInstance instances[16];
 
     // Release cached tiles only when all instances active at entry expire now.
@@ -102,6 +98,9 @@ typedef char WorldSpriteEffectsStateSizeCheck[sizeof(WorldSpriteEffectsState) ==
 typedef char WorldSpriteEffectInstanceSizeCheck[sizeof(WorldSpriteEffectInstance) == 8 ? 1 : -1];
 typedef char WorldSpriteEffectsStateFramesCheck[offsetof(WorldSpriteEffectsState, frames) == 8 ? 1 : -1];
 typedef char WorldSpriteEffectsStatePaletteCheck[offsetof(WorldSpriteEffectsState, palettes) == 0x350 ? 1 : -1];
+typedef char WorldSpriteEffectsStatePaletteSourceCheck[offsetof(WorldSpriteEffectsState, palette_source_kind) == 0x364 ? 1 : -1];
+typedef char WorldSpriteEffectsStatePaletteSourceSizeCheck[sizeof(((WorldSpriteEffectsState *)0)->palette_source_kind) == 1 ? 1 : -1];
+
 typedef char WorldSpriteEffectsStateInstancesCheck[offsetof(WorldSpriteEffectsState, instances) == 0x368 ? 1 : -1];
 typedef char WorldSpriteEffectsSizeCheck[sizeof(WorldSpriteEffects) == 4 ? 1 : -1];
 
