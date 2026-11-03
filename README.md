@@ -2,8 +2,8 @@
 
 This is a decompilation of the 2003 GBA game "Harvest Moon: Friends of Mineral Town".
 
-See [decompilation progress](PROGRESS.md) for verified C/C++ byte coverage,
-segment sizes, and the four-region module breakdown.
+See [decompilation progress](PROGRESS.md) for four-region code, function,
+data-object, BSS, and compilation-unit coverage, plus working-draft match scores.
 
 It builds the following ROM:
 
