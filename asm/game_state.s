@@ -4279,7 +4279,7 @@ func_080182C8:
     cmp r0, #0
     beq .Lauto_080180DA
     adds r0, r2, #0
-    bl func_0803AEBC
+    bl PrepareResources__22GameSceneWeatherEffectR16HardwareDmaQueue
     movs r0, #0
     strb r0, [r4]
     .Lauto_080180DA:
@@ -15417,7 +15417,7 @@ func_080182C8: @ 0x080182C8
     cmp r0, #0
     beq .L08018346
     adds r0, r2, #0
-    bl func_0803B128
+    bl PrepareResources__22GameSceneWeatherEffectR16HardwareDmaQueue
     movs r0, #0
     strb r0, [r4]
 .L08018346:

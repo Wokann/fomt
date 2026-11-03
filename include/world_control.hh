@@ -13,6 +13,8 @@ bool IsWorldTimePaused(GameSceneWorld const & world);
 // notifies entity zero; the ordinary resume path visits every live entity.
 void SuspendWorldUpdates(GameSceneWorld & world);
 void ResumeWorldUpdates(GameSceneWorld & world);
+// Release the weather object owned by the world, using its native lifetime.
+void ClearWorldWeatherEffect(GameSceneWorld & world);
 EXTERN_C_END
 
 #endif // WORLD_CONTROL_HH

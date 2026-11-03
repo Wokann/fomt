@@ -7,6 +7,7 @@
 #include "world_runtime.hh"
 
 struct GameObject;
+struct HardwareDmaQueue;
 struct WorldSpriteDrawBuffer;
 struct GameSceneWorld;
 
@@ -56,6 +57,7 @@ struct GameSceneWeatherEffect {
     GameSceneWeatherEffect(GameObject * world, IndexedResourceProvider * archive,
         Kind kind, u32 particle_count);
     ~GameSceneWeatherEffect();
+    void PrepareResources(HardwareDmaQueue & queue);
     void UpdateParticles();
     void Draw(WorldSpriteDrawBuffer * buffer);
 
@@ -63,7 +65,7 @@ struct GameSceneWeatherEffect {
     WorldWeatherRecords<WorldWeatherResource, 5> resources;
     GameScenePaletteIndices palette_indices;
     u8 kind;
-    u8 unk_E5;
+    u8 resources_need_upload;
     u8 draw_second_half;
     WorldWeatherRecords<WorldWeatherParticle, 32> particles;
 };
@@ -75,11 +77,9 @@ typedef char WorldWeatherParticlePositionCheck[offsetof(WorldWeatherParticle, x_
 typedef char GameSceneWeatherEffectResourcesCheck[offsetof(GameSceneWeatherEffect, resources) == 4 ? 1 : -1];
 typedef char GameSceneWeatherEffectPaletteCountCheck[offsetof(GameSceneWeatherEffect, palette_indices) == 0xD0 ? 1 : -1];
 typedef char GameSceneWeatherEffectKindCheck[offsetof(GameSceneWeatherEffect, kind) == 0xE4 ? 1 : -1];
+
+typedef char GameSceneWeatherEffectUploadFlagCheck[offsetof(GameSceneWeatherEffect, resources_need_upload) == 0xE5 ? 1 : -1];
 typedef char GameSceneWeatherEffectParticlesCheck[offsetof(GameSceneWeatherEffect, particles) == 0xE8 ? 1 : -1];
 typedef char GameSceneWeatherEffectSizeCheck[sizeof(GameSceneWeatherEffect) == 0x46C ? 1 : -1];
-
-EXTERN_C
-void ClearWorldWeatherEffect(GameSceneWorld & world);
-EXTERN_C_END
 
 #endif

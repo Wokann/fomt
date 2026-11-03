@@ -2,6 +2,7 @@
 #include "game_world.hh"
 #include "entity_ui.hh"
 #include "scene_sprite.hh"
+#include "hardware_dma_queue.hh"
 #include <memory>
 #include <stdlib.h>
 
@@ -25,7 +26,7 @@ static inline void AppendWeatherPalette(GameScenePaletteIndices & palettes, u32 
 
 GameSceneWeatherEffect::GameSceneWeatherEffect(GameObject * source,
     IndexedResourceProvider * archive, Kind mode, u32 count)
-    : world(source), palette_indices(), kind(mode), unk_E5(1), draw_second_half(0)
+    : world(source), palette_indices(), kind(mode), resources_need_upload(1), draw_second_half(0)
 {
     IndexedResourceResult entries = archive->Resolve(0);
     u32 resource_count = entries.Count();
@@ -71,19 +72,23 @@ GameSceneWeatherEffect::~GameSceneWeatherEffect()
     std::destroy(resources.Begin(), resources.End());
 }
 
-WorldWeatherParticle::WorldWeatherParticle(IndexedResourceHandle const & source,
-    i32 camera_x, i32 camera_y) : animation(source)
+void GameSceneWeatherEffect::PrepareResources(HardwareDmaQueue & queue)
 {
-    ResetPosition(camera_x, camera_y);
-}
-
-void WorldWeatherParticle::ResetPosition(i32 camera_x, i32 camera_y)
-{
-    x_q16 = (camera_x + rand() % 240) << 16;
-    y_q16 = (camera_y + rand() % 160) << 16;
-    animation.scroll_delta = rand();
-    animation.scroll_delta &= 0x90;
-    animation.scroll_delta += 0x60;
+    WorldWeatherResource * entry = resources.Begin();
+    WorldWeatherResource * end = resources.End();
+    for (; entry != end; ++entry) {
+        IndexedResourceTileRange const & range = entry->group.tiles;
+        IndexedResourceTileUnit const * source = range.data;
+        u32 byte_count = source ? range.byte_count : 0;
+        if (byte_count != 0) {
+            u32 tile_index = entry->tiles.GetTileIndex();
+            DmaTransferDescriptor transfer(source,
+                reinterpret_cast<void *>(0x06010000u + tile_index * 32), byte_count);
+            queue.PushBack(transfer);
+        }
+    }
+    world->SetSpritePaletteColors(
+        reinterpret_cast<u8 const *>(resources[0].group.palettes.data), palette_indices[0], 1);
 }
 
 void GameSceneWeatherEffect::UpdateParticles()
@@ -162,7 +167,17 @@ void GameSceneWeatherEffect::Draw(WorldSpriteDrawBuffer * buffer)
     }
 }
 
-EC void ClearWorldWeatherEffect(GameSceneWorld & world)
+WorldWeatherParticle::WorldWeatherParticle(IndexedResourceHandle const & source,
+    i32 camera_x, i32 camera_y) : animation(source)
 {
-    world.weather_effect = nullptr;
+    ResetPosition(camera_x, camera_y);
+}
+
+void WorldWeatherParticle::ResetPosition(i32 camera_x, i32 camera_y)
+{
+    x_q16 = (camera_x + rand() % 240) << 16;
+    y_q16 = (camera_y + rand() % 160) << 16;
+    animation.scroll_delta = rand();
+    animation.scroll_delta &= 0x90;
+    animation.scroll_delta += 0x60;
 }

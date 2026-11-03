@@ -406,7 +406,7 @@ SECTIONS
             .text.func_0801FC54
             .text.func_0801FC60
             .text.GetWorldActorAnimationArchive);
-        src/world_weather.o(.text.ClearWorldWeatherEffect);
+        src/world_control.o(.text.ClearWorldWeatherEffect);
         src/game_world.o(
             .text.func_0801FC9C
             .text.func_0801FCA0
@@ -517,15 +517,7 @@ SECTIONS
         src/entity_auxiliary_sprites.o(.text._._22EntityAuxiliarySprites);
         src/entity_auxiliary_sprites.o(.text.PrepareResources__22EntityAuxiliarySpritesR16HardwareDmaQueue);
         src/entity_auxiliary_sprites.o(.text.Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi);
-        src/world_weather.o(
-            .text.__22GameSceneWeatherEffectP10GameObjectP23IndexedResourceProviderQ222GameSceneWeatherEffect4KindUi
-            .text._._22GameSceneWeatherEffect);
-        asm/code_0803A8A4.o(.text.world_weather_tile_uploads);
-        src/world_weather.o(.text.UpdateParticles__22GameSceneWeatherEffect);
-        src/world_weather.o(.text.Draw__22GameSceneWeatherEffectP21WorldSpriteDrawBuffer);
-        src/world_weather.o(
-            .text.__20WorldWeatherParticleRC21IndexedResourceHandleii
-            .text.ResetPosition__20WorldWeatherParticleii);
+        src/world_weather.o(.text);
         src/scene_text_variables.o(.text.__22GameSceneTextVariablesP18GameStateSaveImage);
         src/scene_text_variables.o(.text.Lookup__22GameSceneTextVariablesUi);
         src/scene_text_variables.o(.text.Set__22GameSceneTextVariablesUiPCc);

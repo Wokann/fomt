@@ -45,3 +45,8 @@ EC void ResumeWorldUpdates(GameSceneWorld & world)
         }
     }
 }
+
+EC void ClearWorldWeatherEffect(GameSceneWorld & world)
+{
+    world.weather_effect = nullptr;
+}

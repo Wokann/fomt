@@ -381,8 +381,6 @@ $(BUILD_DIR)/src/actor_facing.o: CXXFLAGS += -ffunction-sections
 # Entity wrappers and their sunrise child operations surround native effects.
 $(BUILD_DIR)/src/entity_event_effects.o: CXXFLAGS += -ffunction-sections
 
-$(BUILD_DIR)/src/world_weather.o: CXXFLAGS += -ffunction-sections
-
 $(BUILD_DIR)/src/scene_text_variables.o: CXXFLAGS += -ffunction-sections
 
 $(BUILD_DIR)/src/scene_dialogue.o $(BUILD_DIR)/src/scene_supermarket.o $(BUILD_DIR)/src/scene_won_shop.o $(BUILD_DIR)/src/scene_carpenter_shop.o $(BUILD_DIR)/src/scene_blacksmith_shop.o $(BUILD_DIR)/src/scene_clinic_shop.o $(BUILD_DIR)/src/scene_yodel_ranch_shop.o $(BUILD_DIR)/src/scene_beach_cafe_shop.o $(BUILD_DIR)/src/scene_winery_shop.o $(BUILD_DIR)/src/scene_inn_shop.o $(BUILD_DIR)/src/scene_poultry_farm_shop.o $(BUILD_DIR)/src/scene_special_merchant_shop.o $(BUILD_DIR)/src/scene_gift_wrapping.o $(BUILD_DIR)/src/scene_reference_page.o $(BUILD_DIR)/src/scene_calendar.o $(BUILD_DIR)/src/scene_shelf.o $(BUILD_DIR)/src/scene_tool_chest.o $(BUILD_DIR)/src/scene_refrigerator.o $(BUILD_DIR)/src/scene_cooking.o $(BUILD_DIR)/src/scene_gamecube_link.o $(BUILD_DIR)/src/scene_harvest_sprite_minigames.o $(BUILD_DIR)/src/scene_rucksack.o $(BUILD_DIR)/src/town_map.o $(BUILD_DIR)/src/animal_festival.o $(BUILD_DIR)/src/staff_credits.o: CXXFLAGS += -ffunction-sections

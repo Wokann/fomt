@@ -58,7 +58,9 @@ inline void HardwareDmaQueue::Grow(DmaTransferDescriptor * old_end, u32 count,
     std::destroy(first, last);
     if (first != nullptr)
         free(first);
-    DmaTransferDescriptor * capacity_end = replacement + new_size;
+    // The raw allocator supplies a byte extent; retain that same boundary.
+    DmaTransferDescriptor * capacity_end = reinterpret_cast<DmaTransferDescriptor *>(
+        new_size * sizeof(DmaTransferDescriptor) + reinterpret_cast<uptr>(replacement));
     first = replacement;
     last = end;
     allocation.end = capacity_end;
