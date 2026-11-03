@@ -26,7 +26,7 @@ struct PlayerActor : AActorEntity {
     /* vt+58 */ virtual void EatFood(Food const & food);
     /* vt+5C */ virtual void SetHeldItem(RucksackItem const & item, bool wrapped);
     /* vt+60 */ virtual void GiveBasket();
-    /* vt+64 */ virtual void ChangeStaminaAndFatigue(MaryStaminaDelta stamina_delta,
+    /* vt+64 */ virtual bool ChangeStaminaAndFatigue(MaryStaminaDelta stamina_delta,
         MaryFatigueDelta fatigue_delta);
     /* vt+68 */ virtual void BeginHoldingActorGraphic(u16 animation_id);
     // Paired player hooks prepare and restore direct script animation control.
@@ -42,7 +42,8 @@ struct PlayerActor : AActorEntity {
     /* vt+90 */ virtual GameSceneCaughtFish const * GetCaughtFish();
     // Unrecovered intervening slots are not called by this partial interface.
     /* vt+94 */ virtual void vfunc_94();
-    /* vt+98 */ virtual void vfunc_98();
+    // World clock guard, distinct from the player update-suspension byte.
+    /* vt+98 */ virtual bool IsClockPausedByAction();
     /* vt+9C */ virtual void SetUpdateSuspended(u8 suspended);
     /* vt+A0 */ virtual u8 GetUpdateSuspended() const;
     /* vt+A4 */ virtual void vfunc_A4();
@@ -62,7 +63,8 @@ struct PlayerActor : AActorEntity {
         return holding;
     }
 
-    u8 unk_3C[0x40];
+    u8 action_state;
+    u8 unk_3D[0x3F];
     u16 unk_7C;
     u8 unk_7E[0x0A];
     u8 held_actor_graphic_state;
@@ -72,6 +74,7 @@ struct PlayerActor : AActorEntity {
 private:
     PlayerActor();
 };
+typedef char PlayerActorActionStateOffsetCheck[offsetof(PlayerActor, action_state) == 0x3C ? 1 : -1];
 typedef char PlayerActorSaveImageOffsetCheck[offsetof(PlayerActor, save_image) == 0x34 ? 1 : -1];
 typedef char PlayerActorFarmerOffsetCheck[offsetof(PlayerActor, farmer) == 0x38 ? 1 : -1];
 typedef char PlayerActorBaseSizeCheck[sizeof(AActorEntity) == 0x30 ? 1 : -1];

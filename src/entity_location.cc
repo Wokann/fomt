@@ -81,13 +81,13 @@ static inline void ApplyEntityLocation(GameSceneState * current, i32 entity_id,
             current->game_object.value->GetEntity(entity_id));
         if (entity != nullptr) {
             entity->SetLocation(ActorLocation(Location(map, x, y), facing));
-            entity->vfunc_20();
+            entity->SuspendNormalUpdates();
         }
     } else {
         AEntity * entity = current->game_object.value->GetEntity(entity_id);
         if (entity != nullptr) {
             entity->SetLocation(Location(map, x, y));
-            entity->vfunc_20();
+            entity->SuspendNormalUpdates();
         }
     }
 

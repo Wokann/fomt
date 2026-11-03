@@ -404,10 +404,12 @@ SECTIONS
         asm/code_entities.o(.text.livestock_actor_sheep_after_sick_check);
         src/livestock_actor.o(.text.CureSickness__10SheepActor);
         asm/code_entities.o(.text.livestock_actor_sheep_after_cure);
-        src/entity_audio.o(.text.Update__16AudioActorEntity);
+        src/entity_audio.o(.text.Update__16AudioActorEntityRC19EntityUpdateContext);
         src/entity_audio.o(.text.MakeAudioActorBounds);
         src/field_tool.o(.text);
         asm/code_entities.o(.text.audio_actor_after_update);
+        src/player_actor.o(.text.IsClockPausedByAction__11PlayerActor);
+        asm/code_entities.o(.text.player_actor_after_clock_pause_query);
         src/player_actor.o(.text.GetMaxWateringCanCapacity__C11PlayerActor);
         src/actor_facing.o(.text.GetActorInteractionBounds);
         asm/code_entities.o(.text.player_actor_after_water_capacity);
@@ -420,7 +422,6 @@ SECTIONS
         src/player_actor.o(.text.GetUpdateSuspended__C11PlayerActor .text.SetUpdateSuspended__11PlayerActorUc);
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);
-        asm/code_entities_080320DC.o(.text);
         . = 0x323CC; /* Default actor action query. */
         src/entity_actor.o(.text.entity_actor_default_no_action);
         . = 0x323D0; /* Entity sprite constructors, then native virtual methods. */

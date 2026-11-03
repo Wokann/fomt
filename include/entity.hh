@@ -8,6 +8,20 @@
 #include "unknown_types.hh"
 #include "entity_sprite.hh"
 
+// The scene supplies the input object; the world adds a zero-or-one minute tick.
+// Native world/entity callers copy this pointer word and read the flag at +4.
+struct HardwareInputState;
+struct EntityUpdateContext {
+    HardwareInputState * input;
+    bool minute_advanced;
+
+    EntityUpdateContext(HardwareInputState * state, bool advanced)
+        : input(state), minute_advanced(advanced) {}
+};
+
+typedef char EntityUpdateContextSizeCheck[sizeof(EntityUpdateContext) == 8 ? 1 : -1];
+typedef char EntityUpdateContextMinuteCheck[offsetof(EntityUpdateContext, minute_advanced) == 4 ? 1 : -1];
+
 struct AEntity
 {
     AEntity(GameObject * game_object, Location const & location);
@@ -16,12 +30,12 @@ struct AEntity
     /* vt+0C */ virtual Box GetBox() const;
     /* vt+10 */ virtual void vfunc_10();
     /* vt+14 */ virtual void vfunc_14();
-    /* vt+18 */ virtual void Update();
+    /* vt+18 */ virtual void Update(EntityUpdateContext const & context);
     /* vt+1C */ virtual void vfunc_1C(u32 dummy);
-    /* vt+20 */ virtual void vfunc_20();
-    /* vt+24 */ virtual void vfunc_24();
-    /* vt+28 */ virtual bool vfunc_28() const;
-    /* vt+2C */ virtual void vfunc_2C(u32 dummy);
+    /* vt+20 */ virtual void SuspendNormalUpdates();
+    /* vt+24 */ virtual void ResumeNormalUpdates();
+    /* vt+28 */ virtual bool IsNormalUpdateSuspended() const;
+    /* vt+2C */ virtual void UpdateWhileSuspended(EntityUpdateContext const & context);
     /* vt+30 */ virtual EntityVisualController * vfunc_30() = 0;
 
     void SetLocation(u32 map, i32 x, i32 y);
@@ -39,11 +53,13 @@ struct AEntity
 
     /* +00 */ GameObject * game_object;
     /* +04 */ u16 location_map;
-    /* +06 */ bool unk_06; // enabled?
+    /* +06 */ bool normal_update_suspended;
     /* +08 */ i32 x_q16;
     /* +0C */ i32 y_q16;
     /* +10 */ SmartPtr<EntityVisualController> unk_10;
     /* +14 */ // vtable
 };
+
+typedef char AEntityNormalUpdateFlagCheck[offsetof(AEntity, normal_update_suspended) == 6 ? 1 : -1];
 
 #endif // ENTITY_HH

@@ -6163,7 +6163,7 @@ func_08038300:
 func_08038320:
     push	{r4, lr}
     adds	r4, r0, #0
-    bl vfunc_2C__7AEntityUi
+    bl UpdateWhileSuspended__7AEntityRC19EntityUpdateContext
     adds	r0, r4, #0
     bl func_08038110
     pop	{r4}
@@ -16719,7 +16719,7 @@ func_08038300:
 func_08038320:
     push	{r4, lr}
     adds	r4, r0, #0
-    bl vfunc_2C__7AEntityUi
+    bl UpdateWhileSuspended__7AEntityRC19EntityUpdateContext
     adds	r0, r4, #0
     bl func_08038110
     pop	{r4}
@@ -27444,7 +27444,7 @@ func_08038300:
 func_08038320:
     push	{r4, lr}
     adds	r4, r0, #0
-    bl vfunc_2C__7AEntityUi
+    bl UpdateWhileSuspended__7AEntityRC19EntityUpdateContext
     adds	r0, r4, #0
     bl func_08038110
     pop	{r4}
@@ -38168,7 +38168,7 @@ func_08038300:
 func_08038320:
     push	{r4, lr}
     adds	r4, r0, #0
-    bl vfunc_2C__7AEntityUi
+    bl UpdateWhileSuspended__7AEntityRC19EntityUpdateContext
     adds	r0, r4, #0
     bl func_08038110
     pop	{r4}

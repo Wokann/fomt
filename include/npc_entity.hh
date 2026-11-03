@@ -58,7 +58,7 @@ void func_08034F00(ANpcEntity * self, int unk_arg_1);
 void func_08035380(ANpcEntity & self);
 
 // Replace a configured animation; update the live animation only while it
-// still uses the previous value and vfunc_28 is false. Inputs remain u32;
+// still uses the previous value and IsNormalUpdateSuspended is false. Inputs remain u32;
 // only the stored configuration truncates to the native halfword.
 void func_08035908(ANpcEntity & self, u32 animation);
 void func_08035940(ANpcEntity & self, u32 animation);
@@ -66,7 +66,7 @@ void func_08035940(ANpcEntity & self, u32 animation);
 // Still-native predicate: timed-path counter or the following schedule time.
 bool func_08035978(ANpcEntity & self);
 
-// Pause a nearby NPC only when the native path predicate and vfunc_28 allow it.
+// Pause a nearby NPC only when the native path predicate and IsNormalUpdateSuspended allow it.
 void func_08035A48(ANpcEntity & self, Location const & other);
 // The original animation selector distinguishes the farmhouse strip at Y <= 55.
 bool func_08035AE0(ANpcEntity & self);

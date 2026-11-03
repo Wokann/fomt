@@ -34,7 +34,7 @@ Box AudioActorEntity::GetBox() const
     return Box(-7, -9, 7, 5, x_q16 >> 16, y_q16 >> 16);
 }
 
-void AudioActorEntity::Update()
+void AudioActorEntity::Update(EntityUpdateContext const & context)
 {
     sound_requested = false;
     if (animation_countdown != 0)

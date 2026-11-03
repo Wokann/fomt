@@ -361,7 +361,7 @@ func_0802023C:
 .Ljp_08020252:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl vfunc_2C__12AActorEntityUi
+    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -3664,7 +3664,7 @@ func_08021C3C:
 .Ljp_08021C66:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl vfunc_2C__12AActorEntityUi
+    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
 .Ljp_08021C6E:
     pop {r4, r5}
     pop {r0}
@@ -4344,7 +4344,7 @@ func_08022250:
     .Lauto_08022268:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl vfunc_2C__12AActorEntityUi
+    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -8681,34 +8681,9 @@ func_08024A2C:
     strb r1, [r0]
     bx lr
 
-    .global func_08024A34
-    .thumb_func
-func_08024A34:
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, [r4, #0x14]
-    ldr r1, [r0, #0x28]
-    adds r0, r4, #0
-    bl _call_via_r1
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .Ljp_08024A5A
-    adds r0, r4, #0
-    adds r0, #0x3c
-    ldrb r0, [r0]
-    cmp r0, #0x2a
-    bgt .Ljp_08024A5A
-    cmp r0, #0x24
-    blt .Ljp_08024A5A
-    movs r0, #1
-    b .Ljp_08024A5C
-.Ljp_08024A5A:
-    movs r0, #0
-.Ljp_08024A5C:
-    pop {r4}
-    pop {r1}
-    bx r1
+    .section .text.player_actor_after_clock_pause_query, "ax", %progbits
     .align 2, 0
+
     .global func_08024A64
     .thumb_func
 func_08024A64:
@@ -9190,7 +9165,7 @@ func_08024DAC:
 .L08024DEE:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl vfunc_2C__12AActorEntityUi
+    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
 .L08024DF6:
     pop {r4, r5}
     pop {r0}
@@ -21471,7 +21446,7 @@ func_0802B7BC:
 .Ljp_0802B7F8:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl vfunc_2C__12AActorEntityUi
+    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -34971,7 +34946,7 @@ func_080204A8:
 .L080204BE:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl vfunc_2C__12AActorEntityUi
+    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -37677,7 +37652,7 @@ func_08021EA8:
 .L08021ED2:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl vfunc_2C__12AActorEntityUi
+    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
 .L08021EDA:
     pop {r4, r5}
     pop {r0}
@@ -38348,7 +38323,7 @@ func_080224BC:
     .byte 0x00, 0x06, 0x00, 0x28, 0x03, 0xD0, 0x20, 0x1C, 0x29, 0x1C
     bl func_080224E4
     .byte 0x20, 0x1C, 0x29, 0x1C
-    bl vfunc_2C__12AActorEntityUi
+    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
     .byte 0x30, 0xBC, 0x01, 0xBC
     .byte 0x00, 0x47, 0x00, 0x00
 
@@ -41590,33 +41565,7 @@ func_08024C98: @ 0x08024C98
     strb r1, [r0]
     bx lr
 
-    thumb_func_start func_08024CA0
-func_08024CA0: @ 0x08024CA0
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r0, [r4, #0x14]
-    ldr r1, [r0, #0x28]
-    adds r0, r4, #0
-    @ 08024CAA bl [vfunc_28__C7AEntity]
-    bl _call_via_r1
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L08024CC6
-    adds r0, r4, #0
-    adds r0, #0x3c
-    ldrb r0, [r0]
-    cmp r0, #0x2a
-    bgt .L08024CC6
-    cmp r0, #0x24
-    blt .L08024CC6
-    movs r0, #1
-    b .L08024CC8
-.L08024CC6:
-    movs r0, #0
-.L08024CC8:
-    pop {r4}
-    pop {r1}
-    bx r1
+    .section .text.player_actor_after_clock_pause_query, "ax", %progbits
     .align 2, 0
 
     thumb_func_start func_08024CD0
@@ -42098,7 +42047,7 @@ func_08025018: @ 0x08025018
 .L0802505A:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl vfunc_2C__12AActorEntityUi
+    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
 .L08025062:
     pop {r4, r5}
     pop {r0}
@@ -54354,7 +54303,7 @@ func_0802BA28:
 .L0802BA64:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl vfunc_2C__12AActorEntityUi
+    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
     pop {r4, r5}
     pop {r0}
     bx r0

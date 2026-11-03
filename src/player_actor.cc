@@ -8,6 +8,22 @@
 #include "entity_ui.hh"
 #include <string.h>
 
+// These native action states pause time; their complete state enum is unrecovered.
+// They are state-machine values, not sprite-animation resource IDs.
+static inline bool IsActionInRange(i32 state, i32 first, i32 last)
+{
+    if (state > last || state < first)
+        return false;
+    return true;
+}
+
+bool PlayerActor::IsClockPausedByAction()
+{
+    if (!IsNormalUpdateSuspended())
+        return IsActionInRange(action_state, 0x24, 0x2A);
+    return false;
+}
+
 u32 PlayerActor::GetMaxWateringCanCapacity() const
 {
     u32 max_tier = 0;

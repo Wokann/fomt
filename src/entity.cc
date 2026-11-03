@@ -1,7 +1,7 @@
 #include "entity.hh"
 
 AEntity::AEntity(GameObject * game_object, Location const & location)
-    : game_object(game_object), location_map(location.map), unk_06(false), x_q16(location.x << 16), y_q16(location.y << 16)
+    : game_object(game_object), location_map(location.map), normal_update_suspended(false), x_q16(location.x << 16), y_q16(location.y << 16)
 {
 }
 
@@ -26,7 +26,7 @@ void AEntity::vfunc_1C(u32 dummy)
         unk_10->Draw(reinterpret_cast<void *>(dummy));
 }
 
-void AEntity::vfunc_2C(u32 dummy)
+void AEntity::UpdateWhileSuspended(EntityUpdateContext const & context)
 {
     if (unk_10.Get() != nullptr)
         unk_10->Update();
@@ -58,23 +58,23 @@ void AEntity::SetMap(u32 map)
     }
 }
 
-void AEntity::Update()
+void AEntity::Update(EntityUpdateContext const & context)
 {
     if (unk_10.Get() != nullptr)
         unk_10->Update();
 }
 
-bool AEntity::vfunc_28() const
+bool AEntity::IsNormalUpdateSuspended() const
 {
-    return unk_06;
+    return normal_update_suspended;
 }
 
-void AEntity::vfunc_24()
+void AEntity::ResumeNormalUpdates()
 {
-    unk_06 = false;
+    normal_update_suspended = false;
 }
 
-void AEntity::vfunc_20()
+void AEntity::SuspendNormalUpdates()
 {
-    unk_06 = true;
+    normal_update_suspended = true;
 }

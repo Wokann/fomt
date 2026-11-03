@@ -19,14 +19,14 @@ EC void SuspendWorldUpdates(GameSceneWorld & world)
         AEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
         for (; it != end; ++it) {
             if (*it != nullptr)
-                (*it)->vfunc_20();
+                (*it)->SuspendNormalUpdates();
         }
     } else {
         AEntity ** it = world.data.entities;
         AEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
         for (; it != end; ++it) {
             if (*it != nullptr)
-                (*it)->vfunc_20();
+                (*it)->SuspendNormalUpdates();
         }
     }
 }
@@ -35,13 +35,13 @@ EC void ResumeWorldUpdates(GameSceneWorld & world)
 {
     world.updates_suspended = 0;
     if (world.save->scripted_npc_control) {
-        world.data.entities[0]->vfunc_24();
+        world.data.entities[0]->ResumeNormalUpdates();
     } else {
         AEntity ** it = world.data.entities;
         AEntity ** end = world.data.entities + ARRAY_COUNT(world.data.entities);
         for (; it != end; ++it) {
             if (*it != nullptr)
-                (*it)->vfunc_24();
+                (*it)->ResumeNormalUpdates();
         }
     }
 }

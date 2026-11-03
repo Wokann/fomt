@@ -518,8 +518,8 @@ void GameScene::CreateFarmHorse(MaryBool skip_creation, MaryAnimalHorseAgeStage 
         GameObject * & world = current->game_object.value;
         world->vfunc_38(ENTITY_FARM_HORSE);
         AActorEntity * horse = static_cast<AActorEntity *>(world->GetEntity(ENTITY_FARM_HORSE));
-        if (horse != nullptr && !horse->vfunc_28())
-            horse->vfunc_20();
+        if (horse != nullptr && !horse->IsNormalUpdateSuspended())
+            horse->SuspendNormalUpdates();
     }
 }
 
@@ -616,8 +616,8 @@ void GameScene::CreatePlayerChildEntity()
     GameObject * & world = current->game_object.value;
     world->vfunc_38(ENTITY_CHILD);
     AActorEntity * child = static_cast<AActorEntity *>(world->GetEntity(ENTITY_CHILD));
-    if (child != nullptr && !child->vfunc_28())
-        child->vfunc_20();
+    if (child != nullptr && !child->IsNormalUpdateSuspended())
+        child->SuspendNormalUpdates();
 }
 
 void GameScene::SetContestAnimal(MaryAnimalKind animal_kind, MaryAnimalSlotIndex animal_index)
@@ -712,8 +712,8 @@ void GameScene::RefreshEntity(MaryEntityId entity_id)
     GameObject * & world = state->game_object.value;
     world->vfunc_38(entity_id);
     AActorEntity * actor = static_cast<AActorEntity *>(world->GetEntity(entity_id));
-    if (actor != nullptr && !actor->vfunc_28())
-        actor->vfunc_20();
+    if (actor != nullptr && !actor->IsNormalUpdateSuspended())
+        actor->SuspendNormalUpdates();
 }
 
 void GameScene::RemoveEntity(MaryEntityId entity_id)

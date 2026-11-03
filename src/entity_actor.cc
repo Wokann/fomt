@@ -264,7 +264,7 @@ Box AActorEntity::GetBox() const
     return Box(x_q16 >> 16, y_q16 >> 16, 14, 9);
 }
 
-void AActorEntity::Update()
+void AActorEntity::Update(EntityUpdateContext const & context)
 {
     if (animation_countdown != 0)
         --animation_countdown;
@@ -350,4 +350,43 @@ void ActorMovementBounds::ClipAgainstBox(Box const & other, u32 clear_flags)
                 unk_13 = false;
         }
     }
+}
+
+// Suspended normal behavior still advances the commanded axis and visual.
+void AActorEntity::UpdateWhileSuspended(EntityUpdateContext const & context)
+{
+    if (animation_countdown != 0)
+        --animation_countdown;
+    else
+        animation_countdown = animation_reload;
+    u32 speed = motion.speed_q16;
+    if (speed != 0) {
+        u8 horizontal = motion.axis == 0;
+        i32 position = horizontal ? x_q16 : y_q16;
+        i32 previous = position >> 16;
+        i32 target = motion.target_pixel;
+        i32 remaining = target - previous;
+        i32 previous_remaining = remaining;
+        if (remaining == 0) {
+            motion.speed_q16 = 0;
+        } else {
+            i32 next = position + speed;
+            if (remaining <= 0)
+                next = position - speed;
+            position = next;
+            i32 pixel = position >> 16;
+            if (pixel != previous) {
+                remaining = target - pixel;
+                if ((previous_remaining > 0 && remaining <= 0)
+                    || (previous_remaining <= 0 && remaining >= 0)) {
+                    motion.speed_q16 = 0;
+                }
+            }
+            if (horizontal)
+                x_q16 = position;
+            else
+                y_q16 = position;
+        }
+    }
+    AEntity::UpdateWhileSuspended(context);
 }

@@ -8,7 +8,7 @@
 struct AudioActorEntity : AActorEntity {
     AudioActorEntity(GameObject * game_object, ActorLocation const & location, u32 animation);
     virtual Box GetBox() const;
-    virtual void Update();
+    virtual void Update(EntityUpdateContext const & context);
     void RequestSound(u32 song_id);
 
     bool sound_requested;

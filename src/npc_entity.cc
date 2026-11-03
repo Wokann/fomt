@@ -61,7 +61,7 @@ ANpcEntity::ANpcEntity(GameObject * game_object, Npc * npc, u32 arg_3, void cons
     }
     else
     {
-        unk_06 = true;
+        normal_update_suspended = true;
         TMP_ChangeAnim(*this, npc->anim_id);
     }
 }
@@ -70,7 +70,7 @@ ANpcEntity::~ANpcEntity()
 {
     npc->SetLocation(GetLocation());
 
-    if (unk_06)
+    if (normal_update_suspended)
     {
         npc->anim_id = TMP_GetAnim(*this);
     }
@@ -96,7 +96,7 @@ EC void func_08034E8C(ANpcEntity & self)
 
 EC void func_08034EA0(ANpcEntity & self)
 {
-    self.unk_06 = false;
+    self.normal_update_suspended = false;
     self.vfunc_3C(1);
 }
 
@@ -767,7 +767,7 @@ EC void func_08035908(ANpcEntity & self, u32 animation)
     u32 old_animation = self.unk_44;
     if (animation != old_animation) {
         self.unk_44 = animation;
-        if (!self.vfunc_28() && self.anim_id == old_animation) {
+        if (!self.IsNormalUpdateSuspended() && self.anim_id == old_animation) {
             if (self.anim_id != animation)
                 self.SetAnim(animation);
         }
@@ -779,7 +779,7 @@ EC void func_08035940(ANpcEntity & self, u32 animation)
     u32 old_animation = self.unk_46;
     if (animation != old_animation) {
         self.unk_46 = animation;
-        if (!self.vfunc_28() && self.anim_id == old_animation) {
+        if (!self.IsNormalUpdateSuspended() && self.anim_id == old_animation) {
             if (self.anim_id != animation)
                 self.SetAnim(animation);
         }
@@ -803,7 +803,7 @@ EC void func_08035A48(ANpcEntity & self, Location const & other)
         dy = -dy;
     if (dy > 111)
         return;
-    if (!func_08035978(self) && !self.vfunc_28()) {
+    if (!func_08035978(self) && !self.IsNormalUpdateSuspended()) {
         StartActorSpriteEffect(self, ENTITY_EMOTE_EXCLAMATION, false);
         self.unk_3F = 120;
         self.vfunc_3C(1);
