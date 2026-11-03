@@ -9,6 +9,9 @@
 #include "hardware_state_clear.hh"
 #include "world_runtime.hh"
 
+struct WorldSpriteDrawBuffer;
+struct HardwareDmaQueue;
+
 struct WorldSpriteEffectFrames {
     // Allocated handles are released when every active instance expires.
     bool tiles_allocated;
@@ -92,6 +95,8 @@ struct WorldSpriteEffects {
     WorldSpriteEffects(GameObject * world, i32 map_data);
     ~WorldSpriteEffects();
     void Update();
+    // Native drawing consumes the same shared priority buffer and DMA queue.
+    void Draw(WorldSpriteDrawBuffer * buffer, HardwareDmaQueue & queue);
 };
 
 typedef char WorldSpriteEffectsStateSizeCheck[sizeof(WorldSpriteEffectsState) == 0x3E8 ? 1 : -1];

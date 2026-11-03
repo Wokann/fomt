@@ -15575,9 +15575,9 @@ __18WorldSpriteEffectsP10GameObjecti: @ 080AAA00
     .align 2, 0
 
 
-    .global func_080AAE48
+    .global Draw__18WorldSpriteEffectsP21WorldSpriteDrawBufferR16HardwareDmaQueue
     .thumb_func
-func_080AAE48: @ 080AAE48
+Draw__18WorldSpriteEffectsP21WorldSpriteDrawBufferR16HardwareDmaQueue: @ 080AAE48
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -16547,7 +16547,7 @@ func_080AC648:
 	beq .Ljp_entity_080AC7F4
 	ldr r2, [r5]
 	add r1, sp, #0x14
-	bl func_080AAE48
+	bl Draw__18WorldSpriteEffectsP21WorldSpriteDrawBufferR16HardwareDmaQueue
 .Ljp_entity_080AC7F4:
 	ldr r3, .Ljp_entity_080AC8E0 @ =0x00000C6C
 	add r3, sp
@@ -16913,7 +16913,7 @@ func_080AC648:
 	mov r4, sb
 	ldr r1, [r4, #8]
 	add r0, sp, #0x14
-	bl func_08094A3C
+	bl WriteSprites__21WorldSpriteDrawBufferR25HardwareSpriteBufferState
 	ldr r5, .Ljp_entity_080ACBF0 @ =0x00000C98
 	add r5, sp
 	ldr r0, [r5]
@@ -90666,8 +90666,8 @@ __18WorldSpriteEffectsP10GameObjecti: @ 0x080AAFC8
     .align 2, 0
 
 
-	thumb_func_start func_080AB410
-func_080AB410: @ 0x080AB410
+	thumb_func_start Draw__18WorldSpriteEffectsP21WorldSpriteDrawBufferR16HardwareDmaQueue
+Draw__18WorldSpriteEffectsP21WorldSpriteDrawBufferR16HardwareDmaQueue: @ 0x080AB410
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -91635,7 +91635,7 @@ func_080ACC10: @ 0x080ACC10
 	beq .L080ACDBC
 	ldr r2, [r5]
 	add r1, sp, #0x14
-	bl func_080AB410
+	bl Draw__18WorldSpriteEffectsP21WorldSpriteDrawBufferR16HardwareDmaQueue
 .L080ACDBC:
 	ldr r3, .L080ACEA8 @ =0x00000C6C
 	add r3, sp
@@ -92001,7 +92001,7 @@ func_080ACC10: @ 0x080ACC10
 	mov r4, sb
 	ldr r1, [r4, #8]
 	add r0, sp, #0x14
-	bl func_08094A3C
+	bl WriteSprites__21WorldSpriteDrawBufferR25HardwareSpriteBufferState
 	ldr r5, .L080AD1B8 @ =0x00000C98
 	add r5, sp
 	ldr r0, [r5]

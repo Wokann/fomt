@@ -73,7 +73,7 @@ struct PlayerSpriteController : EntitySpriteController {
     PlayerSpriteController(PlayerActor * player);
 
     virtual void Update();
-    virtual void Draw(void * draw_context);
+    virtual void Draw(EntityDrawContext const & context);
 
     GameSceneIndexedSprite held_actor_sprite;
     PlayerSpriteSlots slots;

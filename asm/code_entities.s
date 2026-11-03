@@ -4158,7 +4158,7 @@ func_08022088:
     strb r0, [r1]
     adds r0, r4, #0
     adds r1, r5, #0
-    bl Draw__22EntitySpriteControllerPv
+    bl Draw__22EntitySpriteControllerRC17EntityDrawContext
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -20763,9 +20763,9 @@ func_0802B200: @ 0x0802B200
     bx r0
     .align 2, 0
 .Ljp_0802B2AC: .4byte 0x00000656
-    .global Draw__22PlayerSpriteControllerPv
+    .global Draw__22PlayerSpriteControllerRC17EntityDrawContext
     .thumb_func
-Draw__22PlayerSpriteControllerPv:
+Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -21115,7 +21115,7 @@ Draw__22PlayerSpriteControllerPv:
     bls .Ljp_0802B476
     ldr	r0, [sp, #76]
     ldr	r1, [sp, #80]
-    bl Draw__22EntitySpriteControllerPv
+    bl Draw__22EntitySpriteControllerRC17EntityDrawContext
     ldr	r3, [sp, #88]
     cmp	r3, #0
     bne .Ljp_0802B576
@@ -22406,7 +22406,7 @@ func_0802BD78:
 .Ljp_0802BF20:
     adds r0, r6, #0
     mov r1, r8
-    bl Draw__22EntitySpriteControllerPv
+    bl Draw__22EntitySpriteControllerRC17EntityDrawContext
     ldr r2, [sp, #0x48]
     cmp r2, #0
     beq .Ljp_0802BF90
@@ -38185,7 +38185,7 @@ func_080222F4:
     strb r0, [r1]
     adds r0, r4, #0
     adds r1, r5, #0
-    bl Draw__22EntitySpriteControllerPv
+    bl Draw__22EntitySpriteControllerRC17EntityDrawContext
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -53623,9 +53623,9 @@ func_0802B46C: @ 0x0802B46C
     .align 2, 0
 .L0802B518: .4byte 0x00000656
 .L0802B51C:
-    .global Draw__22PlayerSpriteControllerPv
+    .global Draw__22PlayerSpriteControllerRC17EntityDrawContext
     .thumb_func
-Draw__22PlayerSpriteControllerPv:
+Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -53975,7 +53975,7 @@ Draw__22PlayerSpriteControllerPv:
     bls .L802B6E2
     ldr	r0, [sp, #76]
     ldr	r1, [sp, #80]
-    bl Draw__22EntitySpriteControllerPv
+    bl Draw__22EntitySpriteControllerRC17EntityDrawContext
     ldr	r3, [sp, #88]
     cmp	r3, #0
     bne .L802B7E2
@@ -55258,7 +55258,7 @@ func_0802BFE4: @ 0x0802BFE4
 .L0802C18C:
     adds r0, r6, #0
     mov r1, r8
-    bl Draw__22EntitySpriteControllerPv
+    bl Draw__22EntitySpriteControllerRC17EntityDrawContext
     ldr r2, [sp, #0x48]
     cmp r2, #0
     beq .L0802C1FC

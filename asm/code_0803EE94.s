@@ -112093,9 +112093,9 @@ func_08094A00:
     bx r0
     .align 2, 0
 .Ljp_0809450C: .4byte gLinkCommunicationCharacterCodeTable
-    .global func_08094A3C
+    .global WriteSprites__21WorldSpriteDrawBufferR25HardwareSpriteBufferState
     .thumb_func
-func_08094A3C:
+WriteSprites__21WorldSpriteDrawBufferR25HardwareSpriteBufferState:
     push {r4, r5, r6, r7, lr}
     mov r7, r9
     mov r6, r8
@@ -274573,8 +274573,8 @@ func_08094A00: @ 0x08094A00
 	.align 2, 0
 .L08094A38: .4byte gLinkCommunicationCharacterCodeTable
 
-	thumb_func_start func_08094A3C
-func_08094A3C: @ 0x08094A3C
+	thumb_func_start WriteSprites__21WorldSpriteDrawBufferR25HardwareSpriteBufferState
+WriteSprites__21WorldSpriteDrawBufferR25HardwareSpriteBufferState: @ 0x08094A3C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8

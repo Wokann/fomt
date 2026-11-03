@@ -20,10 +20,10 @@ void AEntity::vfunc_14()
     unk_10 = nullptr;
 }
 
-void AEntity::vfunc_1C(u32 dummy)
+void AEntity::Draw(EntityDrawContext const & context)
 {
     if (unk_10.Get() != nullptr)
-        unk_10->Draw(reinterpret_cast<void *>(dummy));
+        unk_10->Draw(context);
 }
 
 void AEntity::UpdateWhileSuspended(EntityUpdateContext const & context)

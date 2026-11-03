@@ -22,6 +22,21 @@ struct EntityUpdateContext {
 typedef char EntityUpdateContextSizeCheck[sizeof(EntityUpdateContext) == 8 ? 1 : -1];
 typedef char EntityUpdateContextMinuteCheck[offsetof(EntityUpdateContext, minute_advanced) == 4 ? 1 : -1];
 
+// The world supplies shared queues/buffer and two signed camera pixels.
+struct HardwareDmaQueue;
+struct HardwareDisplayState;
+struct WorldSpriteDrawBuffer;
+struct EntityDrawContext {
+    HardwareDmaQueue * queue;
+    HardwareDisplayState * display;
+    WorldSpriteDrawBuffer * buffer;
+    i16 camera_x;
+    i16 camera_y;
+};
+typedef char EntityDrawContextSizeCheck[sizeof(EntityDrawContext) == 16 ? 1 : -1];
+typedef char EntityDrawBufferCheck[offsetof(EntityDrawContext, buffer) == 8 ? 1 : -1];
+typedef char EntityDrawCameraCheck[offsetof(EntityDrawContext, camera_x) == 12 ? 1 : -1];
+
 struct AEntity
 {
     AEntity(GameObject * game_object, Location const & location);
@@ -31,7 +46,7 @@ struct AEntity
     /* vt+10 */ virtual void vfunc_10();
     /* vt+14 */ virtual void vfunc_14();
     /* vt+18 */ virtual void Update(EntityUpdateContext const & context);
-    /* vt+1C */ virtual void vfunc_1C(u32 dummy);
+    /* vt+1C */ virtual void Draw(EntityDrawContext const & context);
     /* vt+20 */ virtual void SuspendNormalUpdates();
     /* vt+24 */ virtual void ResumeNormalUpdates();
     /* vt+28 */ virtual bool IsNormalUpdateSuspended() const;

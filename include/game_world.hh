@@ -111,6 +111,7 @@ struct GameSceneWorld : GameObject {
 
     virtual ~GameSceneWorld();
     virtual void Update(GameObjectUpdateContext const & input);
+    virtual void Draw(GameObjectDrawContext const & context);
 
     GameSceneWorld(GameStateSaveImage * save, GameScene * scene,
         GameSceneWorldMapOwner map, bool unk);

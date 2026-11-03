@@ -323,7 +323,7 @@ SECTIONS
         src/world_creation.o(.text._._14GameSceneWorld);
         src/world_control.o(.text.IsWorldTimePaused);
         src/world_update.o(.text);
-        asm/game_state.o(.text.world_after_update);
+        asm/world_draw.o(.text);
         src/world_lighting.o(.text.RefreshWorldMapTimeOfDayPalette);
         asm/game_state.o(.text.world_after_palette_refresh);
         src/game_world.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);

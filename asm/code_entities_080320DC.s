@@ -86,9 +86,9 @@ Update__22EntitySpriteController:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global Draw__22EntitySpriteControllerPv
+    .global Draw__22EntitySpriteControllerRC17EntityDrawContext
     .thumb_func
-Draw__22EntitySpriteControllerPv:
+Draw__22EntitySpriteControllerRC17EntityDrawContext:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -4575,7 +4575,7 @@ func_08034AE8:
     sub	sp, #60	@ 0x3c
     adds	r5, r0, #0
     adds	r4, r1, #0
-    bl Draw__22EntitySpriteControllerPv
+    bl Draw__22EntitySpriteControllerRC17EntityDrawContext
     adds	r0, r5, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
@@ -4793,9 +4793,9 @@ Update__22EntitySpriteController:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global Draw__22EntitySpriteControllerPv
+    .global Draw__22EntitySpriteControllerRC17EntityDrawContext
     .thumb_func
-Draw__22EntitySpriteControllerPv:
+Draw__22EntitySpriteControllerRC17EntityDrawContext:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -8483,7 +8483,7 @@ func_08034AE8:
     sub	sp, #60	@ 0x3c
     adds	r5, r0, #0
     adds	r4, r1, #0
-    bl Draw__22EntitySpriteControllerPv
+    bl Draw__22EntitySpriteControllerRC17EntityDrawContext
     adds	r0, r5, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
@@ -8702,9 +8702,9 @@ Update__22EntitySpriteController:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global Draw__22EntitySpriteControllerPv
+    .global Draw__22EntitySpriteControllerRC17EntityDrawContext
     .thumb_func
-Draw__22EntitySpriteControllerPv:
+Draw__22EntitySpriteControllerRC17EntityDrawContext:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -12392,7 +12392,7 @@ func_08034AE8:
     sub	sp, #60	@ 0x3c
     adds	r5, r0, #0
     adds	r4, r1, #0
-    bl Draw__22EntitySpriteControllerPv
+    bl Draw__22EntitySpriteControllerRC17EntityDrawContext
     adds	r0, r5, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]
@@ -12610,9 +12610,9 @@ Update__22EntitySpriteController:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .global Draw__22EntitySpriteControllerPv
+    .global Draw__22EntitySpriteControllerRC17EntityDrawContext
     .thumb_func
-Draw__22EntitySpriteControllerPv:
+Draw__22EntitySpriteControllerRC17EntityDrawContext:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -16407,7 +16407,7 @@ func_08034AE8:
     sub	sp, #60	@ 0x3c
     adds	r5, r0, #0
     adds	r4, r1, #0
-    bl Draw__22EntitySpriteControllerPv
+    bl Draw__22EntitySpriteControllerRC17EntityDrawContext
     adds	r0, r5, #0
     adds	r0, #208	@ 0xd0
     ldrh	r0, [r0, #0]

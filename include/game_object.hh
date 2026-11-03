@@ -15,6 +15,21 @@ struct GameObjectUpdateContext {
 };
 
 typedef char GameObjectUpdateContextSizeCheck[sizeof(GameObjectUpdateContext) == 4 ? 1 : -1];
+// Borrowed hardware state for one native world draw, at offsets 0/4/8/C.
+struct HardwareDmaQueue;
+struct HardwareDisplayState;
+struct HardwareSpriteBufferState;
+struct HardwareLinkedList;
+struct GameObjectDrawContext {
+    HardwareDmaQueue * queue;
+    HardwareDisplayState * display;
+    HardwareSpriteBufferState * sprites;
+    HardwareLinkedList * commands;
+};
+typedef char GameObjectDrawContextSizeCheck[sizeof(GameObjectDrawContext) == 16 ? 1 : -1];
+typedef char GameObjectDrawSpritesCheck[offsetof(GameObjectDrawContext, sprites) == 8 ? 1 : -1];
+typedef char GameObjectDrawCommandsCheck[offsetof(GameObjectDrawContext, commands) == 12 ? 1 : -1];
+
 struct AEntity;
 struct AActorEntity;
 struct Location;
@@ -31,7 +46,7 @@ struct GameObjectBase
 {
     virtual ~GameObjectBase() {}
     virtual void Update(GameObjectUpdateContext const & input);
-    virtual void vfunc_10();
+    virtual void Draw(GameObjectDrawContext const & context);
     virtual u32 vfunc_14(); // ok, get current map
     virtual i32 GetCameraX();
     virtual i32 GetCameraY();

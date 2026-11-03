@@ -4,6 +4,7 @@
 #include "scene_sprite.hh"
 
 struct AEntity;
+struct EntityDrawContext;
 struct AActorEntity;
 
 // Mode 1 clears at a wrap; mode 2 survives that automatic clear.
@@ -15,13 +16,13 @@ enum EntitySpriteEffectMode {
 
 #pragma interface "entity_sprite.hh"
 // The common actor-owned interface. Other entity controllers need not
-// contain sprite members. Draw receives the native renderer context;
-// its complete type is not recovered yet.
+// contain sprite members. Draw borrows the world renderer context; its
+// queues, shared sprite buffer and signed camera coordinates are verified.
 struct EntityVisualController {
     EntityVisualController(AEntity * owner) SECTION(".text.entity_visual_controller_constructor");
     virtual ~EntityVisualController() SECTION(".text.entity_visual_controller_cleanup");
     virtual void Update() = 0;
-    virtual void Draw(void * draw_context) = 0;
+    virtual void Draw(EntityDrawContext const & context) = 0;
     AEntity * entity;
 };
 
@@ -40,7 +41,7 @@ struct EntitySpriteController : EntityVisualController {
         bool sprite_unknown_3D) SECTION(".text.entity_sprite_constructors");
 
     virtual void Update();
-    virtual void Draw(void * draw_context);
+    virtual void Draw(EntityDrawContext const & context);
 
     GameSceneIndexedSprite sprite;
     GameSceneIndexedSprite effect;
