@@ -16,6 +16,14 @@ struct WorldSpriteEffectFrames {
     IndexedResourceGroupResult groups[2];
     HardwareStateEntry tiles[2];
 
+    void ReleaseTiles()
+    {
+        for (u32 index = 0; index < ARRAY_COUNT(tiles); ++index)
+            tiles[index].Clear();
+        tiles_allocated = false;
+        tiles_upload_pending = false;
+    }
+
     WorldSpriteEffectFrames & operator=(WorldSpriteEffectFrames const & other);
 };
 
@@ -49,6 +57,34 @@ struct WorldSpriteEffectsState {
     WorldSpriteEffectPaletteList palettes;
     WorldSpriteEffectInstance instances[16];
 
+    // Release cached tiles only when all instances active at entry expire now.
+    // No active instances is deliberately a no-op, matching the native update.
+    void Update()
+    {
+        u32 active_count = 0;
+        u32 expired_count = 0;
+        for (u32 index = 0; index < ARRAY_COUNT(instances); ++index) {
+            WorldSpriteEffectInstance & instance = instances[index];
+            if (instance.active) {
+                ++active_count;
+                if (instance.lifetime > 1)
+                    --instance.lifetime;
+                else {
+                    instance.active = false;
+                    ++expired_count;
+                }
+            }
+        }
+        if (active_count != 0 && expired_count == active_count) {
+            for (u32 kind = 0; kind < ARRAY_COUNT(frames); ++kind) {
+                WorldSpriteEffectFrames & frame = frames[kind];
+                if (frame.tiles_allocated) {
+                    frame.ReleaseTiles();
+                }
+            }
+        }
+    }
+
     ~WorldSpriteEffectsState()
     {
         world->ClearSpritePaletteResourceFlag(palettes[0]);
@@ -59,6 +95,7 @@ struct WorldSpriteEffects {
     WorldSpriteEffectsState * state;
     WorldSpriteEffects(GameObject * world, i32 map_data);
     ~WorldSpriteEffects();
+    void Update();
 };
 
 typedef char WorldSpriteEffectsStateSizeCheck[sizeof(WorldSpriteEffectsState) == 0x3E8 ? 1 : -1];

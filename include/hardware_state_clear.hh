@@ -33,6 +33,12 @@ struct HardwareStateEntry {
         handle = RetainHardwareSharedStateHandle(this, value.handle);
     }
 
+    void Clear()
+    {
+        ReleaseHardwareSharedStateHandle(this, handle);
+        handle = 0;
+    }
+
     void Reset(u32 size_shift)
     {
         ReleaseHardwareSharedStateHandle(this, handle);

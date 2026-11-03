@@ -31,3 +31,8 @@ WorldSpriteEffectFrames & WorldSpriteEffectFrames::operator=(WorldSpriteEffectFr
     }
     return *this;
 }
+
+void WorldSpriteEffects::Update()
+{
+    state->Update();
+}
