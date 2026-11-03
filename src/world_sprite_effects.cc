@@ -7,8 +7,8 @@ WorldSpriteEffects::~WorldSpriteEffects()
 
 WorldSpriteEffectFrames & WorldSpriteEffectFrames::operator=(WorldSpriteEffectFrames const & other)
 {
-    unk_00 = other.unk_00;
-    unk_01 = other.unk_01;
+    tiles_allocated = other.tiles_allocated;
+    tiles_upload_pending = other.tiles_upload_pending;
     {
         IndexedResourceGroupResult * target = groups;
         u32 count = ARRAY_COUNT(groups) - 1;

@@ -9,8 +9,10 @@
 #include "hardware_state_clear.hh"
 
 struct WorldSpriteEffectFrames {
-    u8 unk_00;
-    u8 unk_01;
+    // Allocated handles are released when every active instance expires.
+    bool tiles_allocated;
+    // Drawing clears this after uploading the cached groups.
+    bool tiles_upload_pending;
     IndexedResourceGroupResult groups[2];
     HardwareStateEntry tiles[2];
 
@@ -41,8 +43,8 @@ struct WorldSpriteEffectsState {
     GameObject * world;
     // Farm/forest/mountain-mid winter data select the snow resource variant.
     bool use_snow_resources;
-    u8 unk_05;
-    u8 unk_06;
+    bool tiles_upload_pending;
+    bool palette_upload_pending;
     WorldSpriteEffectFrames frames[10];
     WorldSpriteEffectPaletteList palettes;
     WorldSpriteEffectInstance instances[16];
