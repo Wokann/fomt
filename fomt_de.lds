@@ -787,6 +787,7 @@ SECTIONS
         src/scene_chicken_festival.o(.text.__27ChickenFestivalContestSceneG20SceneTransitionOwnerP18GameStateSaveImage);
         src/name_entry.o(.text.Run__19SavedNameEntryScene .text.__19SavedNameEntrySceneG20SceneTransitionOwnerP18GameStateSaveImage17MaryNameEntryKindUc);
         asm/code_809E804.o(.text.after_saved_name_scene);
+        src/field_plot_position_rules.o(.text);
         src/time_of_day.o(.text.GetTimeOfDayTransitionValue);
         . = 0xA45F8; /* DE ROM 0x080A45F8, map-data accessor. */
         src/map_data.o(.text.GetMapData);

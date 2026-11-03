@@ -150,7 +150,7 @@ GameSceneWorld::~GameSceneWorld()
         Location const & location = save->ball_location;
         if (unk_10C9 == 0) {
             FindWorldExitSoundPlayer(GetSongPlayerPool())->Start(AUDIO_SFX_THROWN_ITEM_LANDS);
-            if (func_080A45A8(location) != 2) {
+            if (GetFieldPlotPositionRuleResult(location) != 2) {
                 func_080A1484(save->npcs, location, save->event_state);
             } else {
                 QueueWorldScript(*this, GameSceneScriptRequest(

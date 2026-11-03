@@ -29751,7 +29751,7 @@ func_0802EE80: @ 0x0802EE80
     str r2, [sp]
 .Ljp_0802F96E:
     mov r0, sp
-    bl func_080A45A8
+    bl GetFieldPlotPositionRuleResult
     cmp r0, #2
     beq .Ljp_0802F97C
     bl .Ljp_08031CA2
@@ -62585,7 +62585,7 @@ func_0802F0EC: @ 0x0802F0EC
     str r2, [sp]
 .L0802FBDA:
     mov r0, sp
-    bl func_080A45A8
+    bl GetFieldPlotPositionRuleResult
     cmp r0, #2
     beq .L0802FBE8
     bl .L08031F0E

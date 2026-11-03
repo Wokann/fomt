@@ -1,4 +1,23 @@
 #include "field_plot_position_rules.hh"
+#include "actor.hh"
+
+extern "C" u32 GetFieldPlotPositionRuleResult(Location const & location)
+{
+    u32 result = 7;
+    i32 x = location.x / 8;
+    i32 y = location.y / 8;
+    for (i32 index = 0; index < static_cast<i32>(ARRAY_COUNT(gFieldPlotPositionRules)); ++index) {
+        if (location.map == gFieldPlotPositionRules[index].match_value
+            && x >= gFieldPlotPositionRules[index].minimum_x
+            && x <= gFieldPlotPositionRules[index].maximum_x
+            && y >= gFieldPlotPositionRules[index].minimum_y
+            && y <= gFieldPlotPositionRules[index].maximum_y) {
+            result = gFieldPlotPositionRules[index].result;
+            break;
+        }
+    }
+    return result;
+}
 
 FieldPlotPositionRule const gFieldPlotPositionRules[8] = {
     { 0x00000000, 0x00000021, 0x0000002A, 0x00000048, 0x00000044, 0x00000000 },

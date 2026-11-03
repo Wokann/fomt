@@ -15,9 +15,10 @@ struct FieldPlotPositionRule
 
 struct Location;
 
-// Native classifier returns the matching rule result, or 7 if none matches.
+// Compare Location.map and signed pixel coordinates / 8 against inclusive
+// table rectangles. Return the first matching result, or 7 when unmatched.
 EXTERN_C
-u32 func_080A45A8(Location const & location);
+u32 GetFieldPlotPositionRuleResult(Location const & location);
 EXTERN_C_END
 
 extern FieldPlotPositionRule const gFieldPlotPositionRules[8];

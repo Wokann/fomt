@@ -4090,7 +4090,7 @@ func_080A3E90: @ 0x080A38C8
 	adds r5, r0, #0
 	adds r0, r1, #0
 	adds r4, r2, #0
-	bl func_080A45A8
+	bl GetFieldPlotPositionRuleResult
 	str r0, [sp, #4]
 	cmp r0, #7
 	bne .Ljp_080A3EAA
@@ -4963,98 +4963,6 @@ func_080A3F4C: @ 0x080A3984
 	mov r8, r3
 	mov sb, r4
 	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-    .global func_080A45A8
-    .thumb_func
-func_080A45A8: @ 0x080A3FE0
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	adds r2, r0, #0
-	movs r0, #7
-	mov r8, r0
-	ldrb r1, [r2, #1]
-	lsrs r1, r1, #2
-	ldrh r0, [r2, #2]
-	ldr r3, .Ljp_080A4630 @ =0x000003FF
-	ands r0, r3
-	lsls r0, r0, #6
-	orrs r0, r1
-	lsls r0, r0, #0x10
-	asrs r0, r0, #0x10
-	cmp r0, #0
-	bge .Ljp_080A45CC
-	adds r0, #7
-.Ljp_080A45CC:
-	asrs r5, r0, #3
-	ldrb r1, [r2, #3]
-	lsrs r1, r1, #2
-	ldrh r0, [r2, #4]
-	ands r0, r3
-	lsls r0, r0, #6
-	orrs r0, r1
-	lsls r0, r0, #0x10
-	asrs r0, r0, #0x10
-	cmp r0, #0
-	bge .Ljp_080A45E4
-	adds r0, #7
-.Ljp_080A45E4:
-	asrs r3, r0, #3
-	movs r4, #0
-	ldrh r0, [r2]
-	ldr r6, .Ljp_080A4634 @ =gFieldPlotPositionRules
-	lsls r0, r0, #0x16
-	lsrs r7, r0, #0x16
-	adds r2, r6, #0
-	mov ip, r2
-	movs r1, #0
-.Ljp_080A45F6:
-	ldr r0, [r2]
-	cmp r7, r0
-	bne .Ljp_080A4638
-	adds r0, r6, #4
-	adds r0, r1, r0
-	ldr r0, [r0]
-	cmp r5, r0
-	blt .Ljp_080A4638
-	mov r0, ip
-	adds r0, #0xc
-	adds r0, r1, r0
-	ldr r0, [r0]
-	cmp r5, r0
-	bgt .Ljp_080A4638
-	mov r0, ip
-	adds r0, #8
-	adds r0, r1, r0
-	ldr r0, [r0]
-	cmp r3, r0
-	blt .Ljp_080A4638
-	mov r0, ip
-	adds r0, #0x10
-	adds r0, r1, r0
-	ldr r0, [r0]
-	cmp r3, r0
-	bgt .Ljp_080A4638
-	ldr r2, [r2, #0x14]
-	mov r8, r2
-	b .Ljp_080A4642
-	.align 2, 0
-.Ljp_080A4630: .4byte 0x000003FF
-.Ljp_080A4634: .4byte gFieldPlotPositionRules
-.Ljp_080A4638:
-	adds r2, #0x18
-	adds r1, #0x18
-	adds r4, #1
-	cmp r4, #7
-	ble .Ljp_080A45F6
-.Ljp_080A4642:
-	mov r0, r8
-	pop {r3}
-	mov r8, r3
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
@@ -79291,7 +79199,7 @@ func_080A3E90: @ 0x080A3E90
 	adds r5, r0, #0
 	adds r0, r1, #0
 	adds r4, r2, #0
-	bl func_080A45A8
+	bl GetFieldPlotPositionRuleResult
 	str r0, [sp, #4]
 	cmp r0, #7
 	bne .L080A3EAA
@@ -80163,97 +80071,6 @@ func_080A3F4C: @ 0x080A3F4C
 	mov r8, r3
 	mov sb, r4
 	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-	thumb_func_start func_080A45A8
-func_080A45A8: @ 0x080A45A8
-	push {r4, r5, r6, r7, lr}
-	mov r7, r8
-	push {r7}
-	adds r2, r0, #0
-	movs r0, #7
-	mov r8, r0
-	ldrb r1, [r2, #1]
-	lsrs r1, r1, #2
-	ldrh r0, [r2, #2]
-	ldr r3, .L080A4630 @ =0x000003FF
-	ands r0, r3
-	lsls r0, r0, #6
-	orrs r0, r1
-	lsls r0, r0, #0x10
-	asrs r0, r0, #0x10
-	cmp r0, #0
-	bge .L080A45CC
-	adds r0, #7
-.L080A45CC:
-	asrs r5, r0, #3
-	ldrb r1, [r2, #3]
-	lsrs r1, r1, #2
-	ldrh r0, [r2, #4]
-	ands r0, r3
-	lsls r0, r0, #6
-	orrs r0, r1
-	lsls r0, r0, #0x10
-	asrs r0, r0, #0x10
-	cmp r0, #0
-	bge .L080A45E4
-	adds r0, #7
-.L080A45E4:
-	asrs r3, r0, #3
-	movs r4, #0
-	ldrh r0, [r2]
-	ldr r6, .L080A4634 @ =gFieldPlotPositionRules
-	lsls r0, r0, #0x16
-	lsrs r7, r0, #0x16
-	adds r2, r6, #0
-	mov ip, r2
-	movs r1, #0
-.L080A45F6:
-	ldr r0, [r2]
-	cmp r7, r0
-	bne .L080A4638
-	adds r0, r6, #4
-	adds r0, r1, r0
-	ldr r0, [r0]
-	cmp r5, r0
-	blt .L080A4638
-	mov r0, ip
-	adds r0, #0xc
-	adds r0, r1, r0
-	ldr r0, [r0]
-	cmp r5, r0
-	bgt .L080A4638
-	mov r0, ip
-	adds r0, #8
-	adds r0, r1, r0
-	ldr r0, [r0]
-	cmp r3, r0
-	blt .L080A4638
-	mov r0, ip
-	adds r0, #0x10
-	adds r0, r1, r0
-	ldr r0, [r0]
-	cmp r3, r0
-	bgt .L080A4638
-	ldr r2, [r2, #0x14]
-	mov r8, r2
-	b .L080A4642
-	.align 2, 0
-.L080A4630: .4byte 0x000003FF
-.L080A4634: .4byte gFieldPlotPositionRules
-.L080A4638:
-	adds r2, #0x18
-	adds r1, #0x18
-	adds r4, #1
-	cmp r4, #7
-	ble .L080A45F6
-.L080A4642:
-	mov r0, r8
-	pop {r3}
-	mov r8, r3
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
