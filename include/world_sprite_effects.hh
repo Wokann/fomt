@@ -20,6 +20,8 @@ struct WorldSpriteEffectFrames {
     IndexedResourceGroupResult groups[2];
     HardwareStateEntry tiles[2];
 
+    void PrepareResources(HardwareDmaQueue & queue);
+
     void ReleaseTiles()
     {
         for (u32 index = 0; index < ARRAY_COUNT(tiles); ++index)
@@ -84,6 +86,8 @@ struct WorldSpriteEffectsState {
         }
     }
 
+    void Draw(WorldSpriteDrawBuffer * buffer, HardwareDmaQueue & queue);
+
     ~WorldSpriteEffectsState()
     {
         world->ClearSpritePaletteResourceFlag(palettes[0]);
@@ -95,7 +99,7 @@ struct WorldSpriteEffects {
     WorldSpriteEffects(GameObject * world, i32 map_data);
     ~WorldSpriteEffects();
     void Update();
-    // Native drawing consumes the same shared priority buffer and DMA queue.
+    // Drawing shares the world priority buffer and DMA queue.
     void Draw(WorldSpriteDrawBuffer * buffer, HardwareDmaQueue & queue);
 };
 

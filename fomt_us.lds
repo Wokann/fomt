@@ -827,6 +827,7 @@ SECTIONS
         asm/code_809E804.o(.text.saved_map_selection_after);
         src/world_sprite_effects.o(.text._._18WorldSpriteEffects);
         src/world_sprite_effects.o(.text.Update__18WorldSpriteEffects);
+        src/world_sprite_effects.o(.text.Draw__18WorldSpriteEffectsP21WorldSpriteDrawBufferR16HardwareDmaQueue);
         asm/code_809E804.o(.text.world_sprite_effects_after_destruction);
         src/random.o(.text);
         src/actor_facing.o(.text.GetRelativeFacing);

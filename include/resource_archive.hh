@@ -61,6 +61,9 @@ struct IndexedResourceTileRange
     IndexedResourceTileRange(IndexedResourceTileUnit * a_data, u16 a_byte_count)
         : data(a_data), byte_count(a_byte_count) {}
 
+    IndexedResourceTileUnit const * GetData() const { return data; }
+    u32 GetByteCount() const { return data ? byte_count : 0; }
+
     IndexedResourceTileUnit * data;
     u16 byte_count;
 };
@@ -69,6 +72,8 @@ struct IndexedResourcePaletteRange
 {
     IndexedResourcePaletteRange(IndexedResourcePaletteBank * a_data, u16 a_byte_count)
         : data(a_data), byte_count(a_byte_count) {}
+
+    IndexedResourcePaletteBank const * GetData() const { return data; }
 
     IndexedResourcePaletteBank * data;
     u16 byte_count;
