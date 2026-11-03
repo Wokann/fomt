@@ -327,5 +327,5 @@ ROM 中已有分散于后续功能模块的恢复内容，当前推进地址不�
 ## 参考统计方法
 
 - [pret/pokefirered calcrom.pl](https://github.com/pret/pokefirered/blob/master/.github/calcrom/calcrom.pl)：使用链接输入字节统计代码，数据另计。FoMT 另核验函数大小与源码归属，避免 `.cc` 内汇编被误算。
-- [zeldaret/tww project.py](https://github.com/zeldaret/tww/blob/main/tools/project.py)：分别展示匹配字节、函数、数据及模块，精确匹配与模糊匹配分别记录。
-- [objdiff report.rs](https://github.com/encounter/objdiff/blob/main/objdiff-cli/src/cmd/report.rs)：按函数大小加权；这里借鉴统计原则，当前快照没有安装或依赖 objdiff。
+- [zeldaret/tww project.py](https://github.com/zeldaret/tww/blob/main/tools/project.py#L2032)：分别输出近似匹配（fuzzy）、精确匹配（matched）、已完成单元的链接代码（linked），并列出代码字节、函数、数据及文件数。本文分别记录这些维度中已经实际审计的项目，不将对象数比例当成 linked 代码字节比例。
+- [objdiff 3.8.3 report.rs](https://github.com/encounter/objdiff/blob/v3.8.3/objdiff-cli/src/cmd/report.rs)：使用实际可重定位对象生成报告。本地已安装并用于上面的函数比较；它是反编译验证工具，不是 ROM 正式构建依赖。
