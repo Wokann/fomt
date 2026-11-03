@@ -7,6 +7,7 @@
 #include "resource_archive.hh"
 #include "world_map.hh"
 #include <string.h>
+#include "smart_ptr.hh"
 
 #pragma interface "world_runtime.hh"
 
@@ -60,6 +61,7 @@ struct GameSceneWorldMapOwner {
     GameSceneWorldMap * value;
 
     explicit GameSceneWorldMapOwner(GameSceneWorldMap * input) : value(input) {}
+    GameSceneWorldMap * operator->() const { return value; }
     GameSceneWorldMap * Release()
     {
         GameSceneWorldMap * result = value;
@@ -155,8 +157,8 @@ struct GameSceneWorldData {
     IndexedResourceArchive unk_F90;
     IndexedResourceArchive unk_FC0;
     IndexedResourceArchive unk_FF0;
-    EntityAuxiliarySprites * entity_auxiliary_sprites;
-    WorldSpriteEffects * sprite_effects;
+    SmartPtr<EntityAuxiliarySprites> entity_auxiliary_sprites;
+    SmartPtr<WorldSpriteEffects> sprite_effects;
     GameSceneWorldUnk1028 unk_1028;
 
     IndexedResourceArchive * GetMapSpriteArchive() { return &unk_F00; }

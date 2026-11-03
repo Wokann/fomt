@@ -26,6 +26,8 @@ struct Product;
 // Native construction clears four records; update/draw code uses a 12-byte stride.
 // Only the state bits and tile coordinates have been identified.
 struct GameSceneWorldUnk1080Entry {
+    GameSceneWorldUnk1080Entry() : state(0), unk_08(0) {}
+
     u8 unk_00;
     u8 state : 2;
     u8 unk_01_02 : 6;
@@ -35,9 +37,29 @@ struct GameSceneWorldUnk1080Entry {
     u32 unk_08;
 };
 
+// The native pair captures a calendar source and clears its extra byte.
+struct WorldCalendarSource {
+    explicit WorldCalendarSource(GameCalendar const & input) : source(&input), unk_04(0) {}
+    GameCalendar Value() const { return *source; }
+    GameCalendar const & operator*() const { return *source; }
+    GameCalendar const * source;
+    u8 unk_04;
+};
+
+typedef char WorldCalendarSourceSizeCheck[sizeof(WorldCalendarSource) == 8 ? 1 : -1];
+
+// Six retained event-icon sprite slots, with ordinary indexed access.
+struct GameSceneWorldEventIconSprites {
+    SmartPtr<GameSceneGroupSprite> slots[6];
+    SmartPtr<GameSceneGroupSprite> * Begin() { return slots; }
+    SmartPtr<GameSceneGroupSprite> & operator[](u32 index) { return *(Begin() + index); }
+};
+
+typedef char GameSceneWorldEventIconSpritesSizeCheck[sizeof(GameSceneWorldEventIconSprites) == 24 ? 1 : -1];
+
 // The native factory allocates exactly 0x10CC bytes. The complete storage
 // boundary is covered below; members without proven roles remain unknown.
-// Construction and the native virtual-table implementation are still imported.
+// Construction is shared C++; unrecovered virtual methods keep their native entries.
 struct GameSceneWorld : GameObject {
     virtual AEntity * GetEntity(u32 index);
     virtual AEntity * GetEntity(u32 index) const;
@@ -61,8 +83,7 @@ struct GameSceneWorld : GameObject {
     GameStateSaveImage * save;
     u8 updates_suspended;
     u8 unk_103D[3];
-    GameCalendar const * calendar;
-    u32 unk_1044;
+    WorldCalendarSource calendar;
     i32 time_of_day_period;
     u8 time_palette_blend;
     u8 unk_104D[3];
@@ -71,17 +92,16 @@ struct GameSceneWorld : GameObject {
     SmartPtr<GameSceneIndexedSprite> unk_1058;
     SmartPtr<GameSceneIndexedSprite> fireplace_sprite;
     u8 unk_1060;
-    u8 unk_1061[7];
+    u8 unk_1061[3];
+    SmartPtr<GameSceneIndexedSprite> beach_house_sprite;
     SmartPtr<GameSceneGroupSprite> vase_sprite;
-    SmartPtr<GameSceneIndexedSprite> unk_106C;
-    SmartPtr<GameSceneIndexedSprite> unk_1070;
-    SmartPtr<GameSceneIndexedSprite> unk_1074;
-    SmartPtr<GameSceneIndexedSprite> unk_1078;
+    SmartPtr<GameSceneIndexedSprite> hill_seasonal_sprites[2];
+    SmartPtr<GameSceneIndexedSprite> winter_and_fireplace_sprites[2];
     SmartPtr<GameSceneWeatherEffect> weather_effect;
+    SmartPtr<GameSceneWeatherEffect> & WeatherEffectOwner() { return weather_effect; }
     GameSceneWorldUnk1080Entry unk_1080[4];
-    // The enclosing native object continues beyond the previously verified
-    // prefix. Do not infer the layout of these intervening bytes yet.
-    u8 unk_10B0[0x18];
+    // Rebuild retained event icons from the scene controller during construction.
+    GameSceneWorldEventIconSprites event_icon_sprites;
     // The callback sets the first byte; native update consumes and clears it.
     // The associated byte affects that pending path; its meaning is unknown.
     u8 unk_10C8;
@@ -131,12 +151,16 @@ typedef char GameSceneWorldFarmTerrainCheck[offsetof(GameSceneWorld, farm_tile_a
 typedef char GameSceneWorldSceneCheck[offsetof(GameSceneWorld, scene) == 0x1054 ? 1 : -1];
 typedef char GameSceneWorldSpriteCheck[offsetof(GameSceneWorld, unk_1058) == 0x1058 ? 1 : -1];
 typedef char GameSceneWorldFireplaceFlagCheck[offsetof(GameSceneWorld, unk_1060) == 0x1060 ? 1 : -1];
-typedef char GameSceneWorldSprite106CCheck[offsetof(GameSceneWorld, unk_106C) == 0x106C ? 1 : -1];
-typedef char GameSceneWorldSprite1070Check[offsetof(GameSceneWorld, unk_1070) == 0x1070 ? 1 : -1];
-typedef char GameSceneWorldSprite1074Check[offsetof(GameSceneWorld, unk_1074) == 0x1074 ? 1 : -1];
-typedef char GameSceneWorldSprite1078Check[offsetof(GameSceneWorld, unk_1078) == 0x1078 ? 1 : -1];
+typedef char GameSceneWorldSprite106CCheck[offsetof(GameSceneWorld, hill_seasonal_sprites[0]) == 0x106C ? 1 : -1];
+typedef char GameSceneWorldSprite1070Check[offsetof(GameSceneWorld, hill_seasonal_sprites[1]) == 0x1070 ? 1 : -1];
+typedef char GameSceneWorldSprite1074Check[offsetof(GameSceneWorld, winter_and_fireplace_sprites[0]) == 0x1074 ? 1 : -1];
+typedef char GameSceneWorldSprite1078Check[offsetof(GameSceneWorld, winter_and_fireplace_sprites[1]) == 0x1078 ? 1 : -1];
 typedef char GameSceneWorldVaseSpriteCheck[offsetof(GameSceneWorld, vase_sprite) == 0x1068 ? 1 : -1];
 typedef char GameSceneWorldFireplaceSpriteCheck[offsetof(GameSceneWorld, fireplace_sprite) == 0x105C ? 1 : -1];
+
+typedef char GameSceneWorldCalendarFlagCheck[offsetof(GameSceneWorld, calendar) + offsetof(WorldCalendarSource, unk_04) == 0x1044 ? 1 : -1];
+typedef char GameSceneWorldBeachHouseSpriteCheck[offsetof(GameSceneWorld, beach_house_sprite) == 0x1064 ? 1 : -1];
+typedef char GameSceneWorldEventIconSpritesCheck[offsetof(GameSceneWorld, event_icon_sprites) == 0x10B0 ? 1 : -1];
 
 typedef char GameSceneWorldUnknown10C8Check[offsetof(GameSceneWorld, unk_10C8) == 0x10C8 ? 1 : -1];
 typedef char GameSceneWorldUnknown10C9Check[offsetof(GameSceneWorld, unk_10C9) == 0x10C9 ? 1 : -1];
@@ -197,6 +221,13 @@ void func_0801D7B0(GameSceneWorld & world, Location const & location,
     Article const & article);
 u32 func_0801D88C(GameSceneWorld & world, Location const & location,
     Article const & article);
+// Native world refresh dependencies. Their bodies remain assembly; the typed
+// interfaces expose the world, entity slot and weather renderer kind.
+void RefreshWorldEntitySlot(GameSceneWorld & world, u32 slot);
+void SetWorldWeatherEffect(GameSceneWorld & world, GameSceneWeatherEffect::Kind kind);
+void RefreshWorldFireplaceSprite(GameSceneWorld & world);
+void RefreshWorldBeachHouseSprite(GameSceneWorld & world);
+
 // These two world implementations remain native; their real callers and
 // virtual slots are named without replacing their bodies with approximations.
 void CreateWorldEventIcon(GameSceneWorld & world, MaryEventIconSlot slot,

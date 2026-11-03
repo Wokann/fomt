@@ -530,7 +530,7 @@ extern void IsWorldCameraMovementComplete(void);
 extern void GetWorldMapPixelWidth(void);
 extern void GetWorldMapPixelHeight(void);
 extern void GetWorldMapTerrain(void);
-extern void func_0801A8E0(void);
+extern void RefreshWorldEntitySlot(void);
 extern void RemoveWorldEntity(void);
 extern void GetEntity__14GameSceneWorldUi(void);
 extern void GetEntity__C14GameSceneWorldUi(void);
@@ -996,7 +996,7 @@ extern RawVTableFunction const vtable_unk_080E5EB4[] = {
     func_080DC50C,
 };
 
-extern RawVTableFunction const vtable_unk_080E5EC4[] = {
+extern RawVTableFunction const gGameSceneWorldVTable[] asm("__vt_14GameSceneWorld") = {
     nullptr,
     nullptr,
     func_080179CC,
@@ -1011,7 +1011,7 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     GetWorldMapPixelWidth,
     GetWorldMapPixelHeight,
     GetWorldMapTerrain,
-    func_0801A8E0,
+    RefreshWorldEntitySlot,
     RemoveWorldEntity,
     GetEntity__14GameSceneWorldUi,
     GetEntity__C14GameSceneWorldUi,
@@ -1095,7 +1095,7 @@ extern RawVTableFunction const __vt_20GameSceneGroupSprite[] = {
     DestroyGameSceneGroupSprite,
 };
 
-extern RawVTableFunction const vtable_unk_080E6038[] = {
+extern RawVTableFunction const gGameObjectVTable[] asm("__vt_10GameObject") = {
     nullptr,
     nullptr,
     func_080DC5B4,

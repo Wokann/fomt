@@ -183,6 +183,7 @@ struct GameSceneControllerActorRecord {
 // Construction initializes only state and location, preserving all other bits.
 // See docs/mary-native-audit/entities/event_icon_callables.md.
 struct GameSceneEventIconRecord {
+    u32 State() const { return state; }
     GameSceneEventIconRecord();
 
     u8 state : 2;
@@ -256,6 +257,7 @@ struct GameSceneScriptController : AScene {
     GameScenePreservedPlayerLocation preserved_player_location;
     GameSceneScriptQueues queues;
     GameSceneEventIconRecord event_icon_records[6];
+    u32 EventIconRecordCount() const { return ARRAY_COUNT(event_icon_records); }
     GameSceneControllerActorRecord actor_records[4];
 };
 

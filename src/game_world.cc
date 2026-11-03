@@ -812,7 +812,7 @@ EC void RemoveWorldEntity(GameSceneWorld & world, u32 index)
 
 EC EntityAuxiliarySprites * GetWorldEntityAuxiliarySprites(GameSceneWorld & world)
 {
-    return world.data.entity_auxiliary_sprites;
+    return world.data.entity_auxiliary_sprites.Get();
 }
 
 EC bool IsWorldCameraMovementComplete(GameSceneWorld const & world)
