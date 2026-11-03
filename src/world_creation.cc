@@ -10,6 +10,18 @@
 #include "world_furniture.hh"
 #include "world_control.hh"
 #include "farm_terrain.hh"
+#include "field_plot_position_rules.hh"
+#include "npc_collection.hh"
+
+#if defined(REGION_JP)
+#include "data/scripts/jp/fomt_scripts.mary.h"
+#elif defined(REGION_US)
+#include "data/scripts/us/fomt_scripts.mary.h"
+#elif defined(REGION_EU)
+#include "data/scripts/eu/fomt_scripts.mary.h"
+#else
+#include "data/scripts/de/fomt_scripts.mary.h"
+#endif
 
 void GameScene::RebuildMapEntitiesForNewDay()
 {
@@ -117,4 +129,34 @@ GameSceneWorld::GameSceneWorld(GameStateSaveImage * input_save, GameScene * inpu
         SuspendWorldUpdates(*this);
         ResumeWorldUpdates(*this);
     }
+}
+
+static inline HardwareMusicPlayerSlot * FindWorldExitSoundPlayer(GameSceneSongPlayerPool const & pool)
+{
+    HardwareMusicPlayerSlot ** current = pool.begin;
+    HardwareMusicPlayerSlot ** end = pool.end;
+    for (; current != end; ++current) {
+        if (!(*current)->IsActive())
+            return *current;
+    }
+    // Native callers provide a nonempty pool; saturation reuses its last slot.
+    return *(end - 1);
+}
+
+GameSceneWorld::~GameSceneWorld()
+{
+    if (unk_10C8 != 0) {
+        func_0800ED2C(save->farmer);
+        Location const & location = save->ball_location;
+        if (unk_10C9 == 0) {
+            FindWorldExitSoundPlayer(GetSongPlayerPool())->Start(AUDIO_SFX_THROWN_ITEM_LANDS);
+            if (func_080A45A8(location) != 2) {
+                func_080A1484(save->npcs, location, save->event_state);
+            } else {
+                QueueWorldScript(*this, GameSceneScriptRequest(
+                    EventScript_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices, 0), 0);
+            }
+        }
+    }
+    delete[] farm_tile_attributes;
 }

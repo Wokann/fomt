@@ -13,6 +13,13 @@ struct FieldPlotPositionRule
     u32 result;
 };
 
+struct Location;
+
+// Native classifier returns the matching rule result, or 7 if none matches.
+EXTERN_C
+u32 func_080A45A8(Location const & location);
+EXTERN_C_END
+
 extern FieldPlotPositionRule const gFieldPlotPositionRules[8];
 extern char const gCppRuntimeBadAlloc_FieldPlotPositionRules[];
 

@@ -23,10 +23,19 @@ struct RucksackItem;
 struct Article;
 struct Product;
 
+// Only the virtual-destruction prefix is known; never allocate this view.
+struct GameSceneWorldUnk1080Object {
+    u8 unk_00[0x24];
+    virtual ~GameSceneWorldUnk1080Object();
+private:
+    GameSceneWorldUnk1080Object();
+};
+
 // Native construction clears four records; update/draw code uses a 12-byte stride.
-// Only the state bits and tile coordinates have been identified.
+// State bits, tile coordinates and the retained destruction ABI are verified;
+// the concrete retained type and remaining fields are still unknown.
 struct GameSceneWorldUnk1080Entry {
-    GameSceneWorldUnk1080Entry() : state(0), unk_08(0) {}
+    GameSceneWorldUnk1080Entry() : state(0), unk_08(nullptr) {}
 
     u8 unk_00;
     u8 state : 2;
@@ -34,7 +43,7 @@ struct GameSceneWorldUnk1080Entry {
     u8 unk_02[2];
     u16 tile_x;
     u16 tile_y;
-    u32 unk_08;
+    SmartPtr<GameSceneWorldUnk1080Object> unk_08;
 };
 
 // The native pair captures a calendar source and clears its extra byte.
@@ -75,6 +84,8 @@ struct GameSceneWorld : GameObject {
     virtual void CreateEventIcon(MaryEventIconSlot slot, MaryMapSpaceX x,
         MaryMapSpaceY y, MaryEventIconLayer layer, u16 icon_id);
     virtual void RemoveEventIcon(MaryEventIconSlot slot);
+
+    virtual ~GameSceneWorld();
 
     GameSceneWorld(GameStateSaveImage * save, GameScene * scene,
         GameSceneWorldMapOwner map, bool unk);

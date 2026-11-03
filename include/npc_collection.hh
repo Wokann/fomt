@@ -207,4 +207,12 @@ extern "C" char const * func_0809FE3C(NpcCollection * collection, u32 character_
 // Existing native child construction; a saved calendar date is passed by reference.
 extern "C" void func_080A05E8(NpcCollection & npcs, GameDate const & date);
 
+struct GameEventState;
+
+// Native deferred-drop callback; its map-dependent friendship changes remain assembly.
+EXTERN_C
+void func_080A1484(NpcCollection & npcs, Location const & location,
+    GameEventState & events);
+EXTERN_C_END
+
 #endif // NPC_COLLECTION_HH

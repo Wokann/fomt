@@ -518,7 +518,7 @@ extern void func_080E1128(void);
 // Direct binding to the compiler's legacy destructor symbol, not an alias body.
 extern void destructor_GameScene(void) asm("_._9GameScene");
 extern void Run__9GameScene(void);
-extern void func_080179CC(void);
+extern void DestroyGameSceneWorld(void) asm("_._14GameSceneWorld");
 extern void func_08017C30(void);
 extern void func_080182C8(void);
 extern void GetWorldCurrentMapId(void);
@@ -675,8 +675,8 @@ extern void func_080DC50C(void);
 extern void func_080DC554(void);
 // Direct declaration of the C++ destructor ABI; no wrapper or alias is emitted.
 extern void DestroyGameSceneGroupSprite(void) asm("_._20GameSceneGroupSprite");
-extern void func_080DC5B4(void);
-extern void func_080DC5D4(void);
+extern void DestroyGameObject(void) asm("_._10GameObject");
+extern void DestroyGameObjectBase(void) asm("_._14GameObjectBase");
 extern RawVTableFunction const __vt_17TownMapTransition[] = {
     nullptr,
     nullptr,
@@ -999,7 +999,7 @@ extern RawVTableFunction const vtable_unk_080E5EB4[] = {
 extern RawVTableFunction const gGameSceneWorldVTable[] asm("__vt_14GameSceneWorld") = {
     nullptr,
     nullptr,
-    func_080179CC,
+    DestroyGameSceneWorld,
     func_08017C30,
     func_080182C8,
     GetWorldCurrentMapId,
@@ -1098,7 +1098,7 @@ extern RawVTableFunction const __vt_20GameSceneGroupSprite[] = {
 extern RawVTableFunction const gGameObjectVTable[] asm("__vt_10GameObject") = {
     nullptr,
     nullptr,
-    func_080DC5B4,
+    DestroyGameObject,
     // 0x03-0x0A: pure virtual slots.
     __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
     __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
@@ -1134,10 +1134,10 @@ extern RawVTableFunction const gGameObjectVTable[] asm("__vt_10GameObject") = {
     __pure_virtual, __pure_virtual, __pure_virtual,
 };
 
-extern RawVTableFunction const vtable_unk_080E61A0[] = {
+extern RawVTableFunction const gGameObjectBaseVTable[] asm("__vt_14GameObjectBase") = {
     nullptr,
     nullptr,
-    func_080DC5D4,
+    DestroyGameObjectBase,
     // 0x03-0x0A: pure virtual slots.
     __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
     __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,

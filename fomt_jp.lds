@@ -358,7 +358,7 @@ SECTIONS
         src/farm_terrain.o(.text);
         src/game_world.o(.text.func_0801740C .text.func_0801746C .text.func_080174C8);
         src/world_creation.o(.text.__14GameSceneWorldP18GameStateSaveImageP9GameSceneG22GameSceneWorldMapOwnerb);
-        asm/game_state.o(.text.game_scene_field_item_tool_after);
+        src/world_creation.o(.text._._14GameSceneWorld);
         src/world_control.o(.text.IsWorldTimePaused);
         asm/game_state.o(.text.world_update_after_pause_query);
         src/world_lighting.o(.text.RefreshWorldMapTimeOfDayPalette);

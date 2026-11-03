@@ -2246,40 +2246,44 @@ func_080DC554:
     .section .text.scene_group_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
 
-    .global func_080DC5B4
+    .global _._10GameObject
     .thumb_func
-func_080DC5B4:
+_._10GameObject:
     push {lr}
     adds r2, r0, #0
-    ldr r0, [pc, #0x14]
+    ldr r0, .Ldestroy_world_interface_jp_table
     str r0, [r2]
     movs r0, #1
     ands r0, r1
     cmp r0, #0
-    beq .Lauto_080DBD7E
+    beq .Ldestroy_world_interface_jp_done
     adds r0, r2, #0
     bl __builtin_delete
-    .Lauto_080DBD7E:
+.Ldestroy_world_interface_jp_done:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xE0, 0x55, 0x0E, 0x08
-    .global func_080DC5D4
+    .align 2, 0
+.Ldestroy_world_interface_jp_table: .4byte __vt_14GameObjectBase
+
+    .global _._14GameObjectBase
     .thumb_func
-func_080DC5D4:
+_._14GameObjectBase:
     push {lr}
     adds r2, r0, #0
-    ldr r0, [pc, #0x14]
+    ldr r0, .Ldestroy_common_interface_jp_table
     str r0, [r2]
     movs r0, #1
     ands r0, r1
     cmp r0, #0
-    beq .Lauto_080DBD9E
+    beq .Ldestroy_common_interface_jp_done
     adds r0, r2, #0
     bl __builtin_delete
-    .Lauto_080DBD9E:
+.Ldestroy_common_interface_jp_done:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xE0, 0x55, 0x0E, 0x08
+    .align 2, 0
+.Ldestroy_common_interface_jp_table: .4byte __vt_14GameObjectBase
+
     .global func_080DC5F4
     .thumb_func
 func_080DC5F4:
@@ -12820,21 +12824,44 @@ func_080DC554: @ 0x080DC554
     .section .text.scene_group_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
 
-	thumb_func_start func_080DC5B4
-func_080DC5B4: @ 0x080DC5B4
-	.byte 0x00, 0xB5, 0x02, 0x1C, 0x05, 0x48, 0x10, 0x60, 0x01, 0x20, 0x08, 0x40
-	.byte 0x00, 0x28, 0x02, 0xD0, 0x10, 0x1C
-	bl __builtin_delete
-	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	.4byte vtable_unk_080E61A0
+    .global _._10GameObject
+    .thumb_func
+_._10GameObject:
+    push {lr}
+    adds r2, r0, #0
+    ldr r0, .Ldestroy_world_interface_us_table
+    str r0, [r2]
+    movs r0, #1
+    ands r0, r1
+    cmp r0, #0
+    beq .Ldestroy_world_interface_us_done
+    adds r0, r2, #0
+    bl __builtin_delete
+.Ldestroy_world_interface_us_done:
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ldestroy_world_interface_us_table: .4byte __vt_14GameObjectBase
 
-	thumb_func_start func_080DC5D4
-func_080DC5D4: @ 0x080DC5D4
-	.byte 0x00, 0xB5, 0x02, 0x1C, 0x05, 0x48, 0x10, 0x60, 0x01, 0x20, 0x08, 0x40
-	.byte 0x00, 0x28, 0x02, 0xD0, 0x10, 0x1C
-	bl __builtin_delete
-	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	.4byte vtable_unk_080E61A0
+    .global _._14GameObjectBase
+    .thumb_func
+_._14GameObjectBase:
+    push {lr}
+    adds r2, r0, #0
+    ldr r0, .Ldestroy_common_interface_us_table
+    str r0, [r2]
+    movs r0, #1
+    ands r0, r1
+    cmp r0, #0
+    beq .Ldestroy_common_interface_us_done
+    adds r0, r2, #0
+    bl __builtin_delete
+.Ldestroy_common_interface_us_done:
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ldestroy_common_interface_us_table: .4byte __vt_14GameObjectBase
+
 	.global func_080DC5F4
 	.thumb_func
 func_080DC5F4:
@@ -26392,7 +26419,8 @@ func_080E3C50:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xE0, 0x55, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_14GameObjectBase
     .global func_080E3C7C
     .thumb_func
 func_080E3C7C:
@@ -26460,7 +26488,8 @@ func_080E3CDC:
     .Lauto_080E3CF2:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xE0, 0x55, 0x0E, 0x08
+    .byte 0x00, 0x00
+    .4byte __vt_14GameObjectBase
     .global func_080E4564
     .thumb_func
 func_080E4564:
@@ -34423,7 +34452,7 @@ func_080E44B8: @ 0x080E44B8
 	adds r0, r5, #4
 	movs r1, #2
 	bl _._18GameSceneWorldData
-	ldr r0, .L080E44E0 @ =vtable_unk_080E61A0
+	ldr r0, .L080E44E0 @ =__vt_14GameObjectBase
 	str r0, [r5]
 	movs r0, #1
 	ands r0, r4
@@ -34436,7 +34465,7 @@ func_080E44B8: @ 0x080E44B8
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E44E0: .4byte vtable_unk_080E61A0
+.L080E44E0: .4byte __vt_14GameObjectBase
 
 	thumb_func_start func_080E44E4
 func_080E44E4: @ 0x080E44E4
@@ -34494,7 +34523,7 @@ func_080E4510: @ 0x080E4510
 func_080E4544: @ 0x080E4544
 	push {lr}
 	adds r2, r0, #0
-	ldr r0, .L080E4560 @ =vtable_unk_080E61A0
+	ldr r0, .L080E4560 @ =__vt_14GameObjectBase
 	str r0, [r2]
 	movs r0, #1
 	ands r0, r1
@@ -34506,7 +34535,7 @@ func_080E4544: @ 0x080E4544
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E4560: .4byte vtable_unk_080E61A0
+.L080E4560: .4byte __vt_14GameObjectBase
 
 	thumb_func_start func_080E4564
 func_080E4564: @ 0x080E4564
