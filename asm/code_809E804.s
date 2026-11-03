@@ -15252,9 +15252,9 @@ func_080AA9F0: @ 080AA9F0
 	pop {r1}
 	bx r1
 
-    .global func_080AAA00
+    .global __18WorldSpriteEffectsP10GameObjecti
     .thumb_func
-func_080AAA00: @ 080AAA00
+__18WorldSpriteEffectsP10GameObjecti: @ 080AAA00
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -15606,7 +15606,7 @@ func_080AAA00: @ 080AAA00
 .Ljp_map_080AACAA:
 	ldr r0, [sp, #0x84]
 	mov r1, sp
-	bl func_080E4438
+	bl __as__23WorldSpriteEffectFramesRC23WorldSpriteEffectFrames
 	ldr r4, [sp, #0x90]
 	ldr r0, [sp, #0x8c]
 	cmp r0, r4
@@ -15663,88 +15663,9 @@ func_080AAA00: @ 080AAA00
 	pop {r1}
 	bx r1
 
-    .global func_080AAD1C
-    .thumb_func
-func_080AAD1C: @ 080AAD1C
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #4
-	mov sl, r0
-	str r1, [sp]
-	ldr r0, [r0]
-	cmp r0, #0
-	beq .Ljp_map_080AAD98
-	mov r8, r0
-	ldr r0, [r0]
-	ldr r2, [r0]
-	movs r4, #0xd4
-	lsls r4, r4, #2
-	add r4, r8
-	movs r1, #0xd5
-	lsls r1, r1, #2
-	add r1, r8
-	ldrb r1, [r1]
-	ldr r2, [r2, #0x4c]
-	bl _call_via_r2
-	mov r0, r8
-	adds r0, #8
-	cmp r0, #0
-	beq .Ljp_map_080AAD92
-	adds r6, r4, #0
-	cmp r0, r6
-	beq .Ljp_map_080AAD92
-	movs r5, #0xe5
-	lsls r5, r5, #2
-	add r5, r8
-.Ljp_map_080AAD60:
-	subs r5, #0x54
-	subs r6, #0x54
-	movs r0, #8
-	add r0, r8
-	mov sb, r0
-	cmp r5, #0
-	beq .Ljp_map_080AAD8E
-	adds r4, r6, #0
-	adds r4, #0x54
-	cmp r5, r4
-	beq .Ljp_map_080AAD8E
-	adds r7, r5, #0
-.Ljp_map_080AAD78:
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	cmp r7, r4
-	bne .Ljp_map_080AAD78
-.Ljp_map_080AAD8E:
-	cmp sb, r6
-	bne .Ljp_map_080AAD60
-.Ljp_map_080AAD92:
-	mov r0, r8
-	bl __builtin_delete
-.Ljp_map_080AAD98:
-	movs r0, #1
-	ldr r1, [sp]
-	ands r0, r1
-	cmp r0, #0
-	beq .Ljp_map_080AADA8
-	mov r0, sl
-	bl __builtin_delete
-.Ljp_map_080AADA8:
-	add sp, #4
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
+    .section .text.world_sprite_effects_after_destruction, "ax", %progbits
+    .align 2, 0
+
 
     .global func_080AADB8
     .thumb_func
@@ -16376,7 +16297,7 @@ func_080AC424: @ 080AC424
 	cmp r0, #0
 	beq .Ljp_map_080AC4BA
 	movs r1, #3
-	bl func_080AAD1C
+	bl _._18WorldSpriteEffects
 .Ljp_map_080AC4BA:
 	str r5, [r4]
 	movs r0, #4
@@ -16384,7 +16305,7 @@ func_080AC424: @ 080AC424
 	ldr r1, [r6, #4]
 	ldr r2, [r1, #4]
 	adds r1, r6, #0
-	bl func_080AAA00
+	bl __18WorldSpriteEffectsP10GameObjecti
 	ldr r1, .Ljp_map_080AC524 @ =0x00001028
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -16394,7 +16315,7 @@ func_080AC424: @ 080AC424
 	cmp r0, #0
 	beq .Ljp_map_080AC4E2
 	movs r1, #3
-	bl func_080AAD1C
+	bl _._18WorldSpriteEffects
 .Ljp_map_080AC4E2:
 	str r4, [r5]
 	movs r4, #0
@@ -17593,7 +17514,7 @@ func_080ACDE8:
 	cmp r0, #0
 	beq .Ljp_entity_080ACE42
 	movs r1, #3
-	bl func_080AAD1C
+	bl _._18WorldSpriteEffects
 .Ljp_entity_080ACE42:
 	str r5, [r4]
 	ldr r0, [r6, #4]
@@ -17624,7 +17545,7 @@ func_080ACDE8:
 	ldr r1, [r6, #4]
 	ldr r2, [r1, #4]
 	adds r1, r6, #0
-	bl func_080AAA00
+	bl __18WorldSpriteEffectsP10GameObjecti
 	ldr r1, .Ljp_entity_080ACED0 @ =0x00001028
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -17634,7 +17555,7 @@ func_080ACDE8:
 	cmp r0, #0
 	beq .Ljp_entity_080ACE9E
 	movs r1, #3
-	bl func_080AAD1C
+	bl _._18WorldSpriteEffects
 .Ljp_entity_080ACE9E:
 	str r4, [r5]
 	adds r4, r6, #0
@@ -90595,8 +90516,8 @@ func_080AAFB8: @ 0x080AAFB8
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080AAFC8
-func_080AAFC8: @ 0x080AAFC8
+	thumb_func_start __18WorldSpriteEffectsP10GameObjecti
+__18WorldSpriteEffectsP10GameObjecti: @ 0x080AAFC8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -90948,7 +90869,7 @@ func_080AAFC8: @ 0x080AAFC8
 .L080AB272:
 	ldr r0, [sp, #0x84]
 	mov r1, sp
-	bl func_080E4438
+	bl __as__23WorldSpriteEffectFramesRC23WorldSpriteEffectFrames
 	ldr r4, [sp, #0x90]
 	ldr r0, [sp, #0x8c]
 	cmp r0, r4
@@ -91005,87 +90926,9 @@ func_080AAFC8: @ 0x080AAFC8
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080AB2E4
-func_080AB2E4: @ 0x080AB2E4
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #4
-	mov sl, r0
-	str r1, [sp]
-	ldr r0, [r0]
-	cmp r0, #0
-	beq .L080AB360
-	mov r8, r0
-	ldr r0, [r0]
-	ldr r2, [r0]
-	movs r4, #0xd4
-	lsls r4, r4, #2
-	add r4, r8
-	movs r1, #0xd5
-	lsls r1, r1, #2
-	add r1, r8
-	ldrb r1, [r1]
-	ldr r2, [r2, #0x4c]
-	bl _call_via_r2
-	mov r0, r8
-	adds r0, #8
-	cmp r0, #0
-	beq .L080AB35A
-	adds r6, r4, #0
-	cmp r0, r6
-	beq .L080AB35A
-	movs r5, #0xe5
-	lsls r5, r5, #2
-	add r5, r8
-.L080AB328:
-	subs r5, #0x54
-	subs r6, #0x54
-	movs r0, #8
-	add r0, r8
-	mov sb, r0
-	cmp r5, #0
-	beq .L080AB356
-	adds r4, r6, #0
-	adds r4, #0x54
-	cmp r5, r4
-	beq .L080AB356
-	adds r7, r5, #0
-.L080AB340:
-	subs r4, #8
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	adds r0, r4, #0
-	movs r1, #2
-	bl _._24HardwareSharedStateOwner
-	cmp r7, r4
-	bne .L080AB340
-.L080AB356:
-	cmp sb, r6
-	bne .L080AB328
-.L080AB35A:
-	mov r0, r8
-	bl __builtin_delete
-.L080AB360:
-	movs r0, #1
-	ldr r1, [sp]
-	ands r0, r1
-	cmp r0, #0
-	beq .L080AB370
-	mov r0, sl
-	bl __builtin_delete
-.L080AB370:
-	add sp, #4
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
+    .section .text.world_sprite_effects_after_destruction, "ax", %progbits
+    .align 2, 0
+
 
 	thumb_func_start func_080AB380
 func_080AB380: @ 0x080AB380
@@ -91715,7 +91558,7 @@ func_080AC9EC: @ 0x080AC9EC
 	cmp r0, #0
 	beq .L080ACA82
 	movs r1, #3
-	bl func_080AB2E4
+	bl _._18WorldSpriteEffects
 .L080ACA82:
 	str r5, [r4]
 	movs r0, #4
@@ -91723,7 +91566,7 @@ func_080AC9EC: @ 0x080AC9EC
 	ldr r1, [r6, #4]
 	ldr r2, [r1, #4]
 	adds r1, r6, #0
-	bl func_080AAFC8
+	bl __18WorldSpriteEffectsP10GameObjecti
 	ldr r1, .L080ACAEC @ =0x00001028
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -91733,7 +91576,7 @@ func_080AC9EC: @ 0x080AC9EC
 	cmp r0, #0
 	beq .L080ACAAA
 	movs r1, #3
-	bl func_080AB2E4
+	bl _._18WorldSpriteEffects
 .L080ACAAA:
 	str r4, [r5]
 	movs r4, #0
@@ -92931,7 +92774,7 @@ func_080AD3B0: @ 0x080AD3B0
 	cmp r0, #0
 	beq .L080AD40A
 	movs r1, #3
-	bl func_080AB2E4
+	bl _._18WorldSpriteEffects
 .L080AD40A:
 	str r5, [r4]
 	ldr r0, [r6, #4]
@@ -92962,7 +92805,7 @@ func_080AD3B0: @ 0x080AD3B0
 	ldr r1, [r6, #4]
 	ldr r2, [r1, #4]
 	adds r1, r6, #0
-	bl func_080AAFC8
+	bl __18WorldSpriteEffectsP10GameObjecti
 	ldr r1, .L080AD498 @ =0x00001028
 	adds r5, r6, r1
 	adds r4, r0, #0
@@ -92972,7 +92815,7 @@ func_080AD3B0: @ 0x080AD3B0
 	cmp r0, #0
 	beq .L080AD466
 	movs r1, #3
-	bl func_080AB2E4
+	bl _._18WorldSpriteEffects
 .L080AD466:
 	str r4, [r5]
 	adds r4, r6, #0

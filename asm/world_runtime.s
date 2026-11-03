@@ -327,9 +327,9 @@ _._18GameSceneWorldData:
 	beq .L080AC8A6
 	movs r1, #3
     .ifdef REGION_JP
-    bl func_080AAD1C
+    bl _._18WorldSpriteEffects
     .else
-    bl func_080AB2E4
+    bl _._18WorldSpriteEffects
     .endif
 .L080AC8A6:
 	movs r1, #0x81

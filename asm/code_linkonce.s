@@ -26368,74 +26368,9 @@ __12SavedMapTree:
     pop {r1}
     bx r1
     .byte 0x00, 0x00
-    .global func_080E4438
-    .thumb_func
-func_080E4438:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    mov r8, r0
-    mov ip, r1
-    ldrb r0, [r1]
-    mov r1, r8
-    strb r0, [r1]
-    mov r5, ip
-    ldrb r0, [r5, #1]
-    strb r0, [r1, #1]
-    mov r3, r8
-    adds r3, #4
-    movs r4, #1
-    mov r2, ip
-    adds r2, #4
-    movs r6, #1
-    rsbs r6, r6, #0
-    mov sb, r6
-    .Lauto_080E3BF8:
-    adds r1, r3, #0
-    adds r0, r2, #0
-    ldm r0!, {r5, r6, r7}
-    stm r1!, {r5, r6, r7}
-    ldm r0!, {r5, r6, r7}
-    stm r1!, {r5, r6, r7}
-    ldm r0!, {r5, r7}
-    stm r1!, {r5, r7}
-    adds r3, #0x20
-    adds r2, #0x20
-    subs r4, #1
-    cmp r4, sb
-    bne .Lauto_080E3BF8
-    mov r4, r8
-    adds r4, #0x44
-    movs r6, #1
-    mov r5, ip
-    adds r5, #0x44
-    .Lauto_080E3C1C:
-    cmp r5, r4
-    beq .Lauto_080E3C32
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
-    ldr r1, [r5, #4]
-    adds r0, r4, #0
-    bl RetainHardwareSharedStateHandle
-    str r0, [r4, #4]
-    .Lauto_080E3C32:
-    adds r4, #8
-    adds r5, #8
-    subs r6, #1
-    movs r0, #1
-    rsbs r0, r0, #0
-    cmp r6, r0
-    bne .Lauto_080E3C1C
-    mov r0, r8
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
+    .section .text.world_sprite_effect_frames_after, "ax", %progbits
+    .align 2, 0
+
     .global func_080E3C50
     .thumb_func
 func_080E3C50:
@@ -34477,73 +34412,8 @@ __12SavedMapTree: @ 0x080E43FC
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080E4438
-func_080E4438: @ 0x080E4438
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	mov r8, r0
-	mov ip, r1
-	ldrb r0, [r1]
-	mov r1, r8
-	strb r0, [r1]
-	mov r5, ip
-	ldrb r0, [r5, #1]
-	strb r0, [r1, #1]
-	mov r3, r8
-	adds r3, #4
-	movs r4, #1
-	mov r2, ip
-	adds r2, #4
-	movs r6, #1
-	rsbs r6, r6, #0
-	mov sb, r6
-.L080E4460:
-	adds r1, r3, #0
-	adds r0, r2, #0
-	ldm r0!, {r5, r6, r7}
-	stm r1!, {r5, r6, r7}
-	ldm r0!, {r5, r6, r7}
-	stm r1!, {r5, r6, r7}
-	ldm r0!, {r5, r7}
-	stm r1!, {r5, r7}
-	adds r3, #0x20
-	adds r2, #0x20
-	subs r4, #1
-	cmp r4, sb
-	bne .L080E4460
-	mov r4, r8
-	adds r4, #0x44
-	movs r6, #1
-	mov r5, ip
-	adds r5, #0x44
-.L080E4484:
-	cmp r5, r4
-	beq .L080E449A
-	ldr r1, [r4, #4]
-	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
-	ldr r1, [r5, #4]
-	adds r0, r4, #0
-	bl RetainHardwareSharedStateHandle
-	str r0, [r4, #4]
-.L080E449A:
-	adds r4, #8
-	adds r5, #8
-	subs r6, #1
-	movs r0, #1
-	rsbs r0, r0, #0
-	cmp r6, r0
-	bne .L080E4484
-	mov r0, r8
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.world_sprite_effect_frames_after, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_080E44B8
 func_080E44B8: @ 0x080E44B8

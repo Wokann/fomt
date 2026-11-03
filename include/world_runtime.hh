@@ -14,6 +14,7 @@ struct AEntity;
 struct GameObject;
 struct GameSceneWorld;
 struct EntityAuxiliarySprites;
+struct WorldSpriteEffects;
 
 // The native palette cache has 22 resource records and 13 retained banks.
 // Keep the remaining record bytes and flags opaque until their users are recovered.
@@ -155,7 +156,7 @@ struct GameSceneWorldData {
     IndexedResourceArchive unk_FC0;
     IndexedResourceArchive unk_FF0;
     EntityAuxiliarySprites * entity_auxiliary_sprites;
-    void * unk_1024;
+    WorldSpriteEffects * sprite_effects;
     GameSceneWorldUnk1028 unk_1028;
 
     IndexedResourceArchive * GetMapSpriteArchive() { return &unk_F00; }
@@ -179,6 +180,8 @@ typedef char GameSceneWorldArchiveSizeCheck[sizeof(IndexedResourceArchive) == 0x
 typedef char GameSceneWorldDataActorArchiveCheck[offsetof(GameSceneWorldData, actor_archive) == 0xDB0 ? 1 : -1];
 typedef char GameSceneWorldDataLastArchiveCheck[offsetof(GameSceneWorldData, unk_FF0) == 0xFF0 ? 1 : -1];
 typedef char GameSceneWorldDataEntityAuxiliarySpritesCheck[offsetof(GameSceneWorldData, entity_auxiliary_sprites) == 0x1020 ? 1 : -1];
+typedef char GameSceneWorldDataSpriteEffectsCheck[offsetof(GameSceneWorldData, sprite_effects) == 0x1024 ? 1 : -1];
+
 typedef char GameSceneWorldDataUnkRecordCheck[offsetof(GameSceneWorldData, unk_1028) == 0x1028 ? 1 : -1];
 typedef char GameSceneWorldDataSizeCheck[sizeof(GameSceneWorldData) == 0x1034 ? 1 : -1];
 

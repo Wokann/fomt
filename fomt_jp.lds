@@ -892,6 +892,8 @@ SECTIONS
         asm/code_809E804.o(.text.saved_map_tree_reset_after);
         src/world_map.o(.text.SelectSavedWorldMapData);
         asm/code_809E804.o(.text.saved_map_selection_after);
+        src/world_sprite_effects.o(.text._._18WorldSpriteEffects);
+        asm/code_809E804.o(.text.world_sprite_effects_after_destruction);
         src/random.o(.text);
         src/actor_facing.o(.text.GetRelativeFacing);
         asm/actor_behavior.o(.text);
@@ -1173,6 +1175,8 @@ SECTIONS
         asm/code_linkonce.o(.text.after_saved_name_scene_destructor);
         src/world_map.o(.text.DestroySavedWorldMap);
         asm/code_linkonce.o(.text.saved_world_map_destructor_after);
+        src/world_sprite_effects.o(.text.__as__23WorldSpriteEffectFramesRC23WorldSpriteEffectFrames);
+        asm/code_linkonce.o(.text.world_sprite_effect_frames_after);
         src/ui_vcount.o(.text.HandleUiVCountInterrupt .text.__15UiVCountBindingRCP11UiSceneCore .text._._15UiVCountBinding);
         src/ui_vcount.o(.text._._20UiVCountContextScope);
         src/ui_vcount.o(.text._._27UiVCountContextRegistration);
