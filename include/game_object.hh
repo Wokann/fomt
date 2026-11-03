@@ -8,6 +8,13 @@
 
 #pragma interface "game_object.hh"
 
+// The scene passes one borrowed input-state pointer to its world update.
+struct HardwareInputState;
+struct GameObjectUpdateContext {
+    HardwareInputState * input;
+};
+
+typedef char GameObjectUpdateContextSizeCheck[sizeof(GameObjectUpdateContext) == 4 ? 1 : -1];
 struct AEntity;
 struct AActorEntity;
 struct Location;
@@ -23,7 +30,7 @@ struct GameTime;
 struct GameObjectBase
 {
     virtual ~GameObjectBase() {}
-    virtual void vfunc_0C();
+    virtual void Update(GameObjectUpdateContext const & input);
     virtual void vfunc_10();
     virtual u32 vfunc_14(); // ok, get current map
     virtual i32 GetCameraX();

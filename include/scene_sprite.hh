@@ -43,6 +43,14 @@ struct GameSceneIndexedSprite : GameSceneSpriteBase {
     u8 unk_3E;
     u8 unk_3F;
 
+    void SetAnimation(u32 index)
+    {
+        ResolveIndexedResourceHandle(&handle, index);
+        unk_3C = 1;
+        unk_3E = 0;
+        unk_3F = 1;
+    }
+
     IndexedResourceUpdateResult UpdateAnimation()
     {
         if (unk_3F == 0) {

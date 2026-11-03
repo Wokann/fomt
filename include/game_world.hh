@@ -23,36 +23,60 @@ struct RucksackItem;
 struct Article;
 struct Product;
 
-// Only the virtual-destruction prefix is known; never allocate this view.
-struct GameSceneWorldUnk1080Object {
-    u8 unk_00[0x24];
-    virtual ~GameSceneWorldUnk1080Object();
-private:
-    GameSceneWorldUnk1080Object();
-};
-
 // Native construction clears four records; update/draw code uses a 12-byte stride.
-// State bits, tile coordinates and the retained destruction ABI are verified;
-// the concrete retained type and remaining fields are still unknown.
+// The low state/phase bits, tile coordinates and indexed-sprite owner are
+// verified. The records' gameplay role and the remaining bits stay unknown.
 struct GameSceneWorldUnk1080Entry {
     GameSceneWorldUnk1080Entry() : state(0), unk_08(nullptr) {}
 
+    u8 State() const { return state; }
     u8 unk_00;
     u8 state : 2;
-    u8 unk_01_02 : 6;
+    u8 phase : 2;
+    u8 unk_01_04 : 4;
     u8 unk_02[2];
     u16 tile_x;
     u16 tile_y;
-    SmartPtr<GameSceneWorldUnk1080Object> unk_08;
+    SmartPtr<GameSceneIndexedSprite> unk_08;
 };
 
-// The native pair captures a calendar source and clears its extra byte.
+// A borrowed save calendar advances after 25 update ticks. Its packed
+// minute/hour/date/year carries retain the native save representation.
 struct WorldCalendarSource {
-    explicit WorldCalendarSource(GameCalendar const & input) : source(&input), unk_04(0) {}
+    explicit WorldCalendarSource(GameCalendar & input) : source(&input), tick_count(0) {}
     GameCalendar Value() const { return *source; }
     GameCalendar const & operator*() const { return *source; }
-    GameCalendar const * source;
-    u8 unk_04;
+    GameCalendar * source;
+    bool Tick(u32 updates_per_minute)
+    {
+        u32 ticks = tick_count + 1;
+        if (ticks < updates_per_minute) {
+            tick_count = ticks;
+            return false;
+        }
+        tick_count = 0;
+        if ((source->time.clock_minute = Value().time.clock_minute + 1) > 59) {
+            source->time.clock_minute = 0;
+            if ((source->time.clock_hour = Value().time.clock_hour + 1) > 23) {
+                source->time.clock_hour = 0;
+                source->date.AdvanceDay(30);
+                if (source->date == GameDate(SEASON_SPRING, 0)) {
+                    EncodedGameYear & year = source->year;
+                    u32 remainder = year.digits.remainder + 1;
+                    if (remainder > 6) {
+                        remainder = 0;
+                        u32 quotient = year.encoded >> 3;
+                        if (quotient <= 28)
+                            year.digits.quotient = quotient + 1;
+                    }
+                    year.digits.remainder = remainder;
+                }
+            }
+        }
+        return true;
+    }
+
+    u8 tick_count;
 };
 
 typedef char WorldCalendarSourceSizeCheck[sizeof(WorldCalendarSource) == 8 ? 1 : -1];
@@ -86,6 +110,7 @@ struct GameSceneWorld : GameObject {
     virtual void RemoveEventIcon(MaryEventIconSlot slot);
 
     virtual ~GameSceneWorld();
+    virtual void Update(GameObjectUpdateContext const & input);
 
     GameSceneWorld(GameStateSaveImage * save, GameScene * scene,
         GameSceneWorldMapOwner map, bool unk);
@@ -169,7 +194,7 @@ typedef char GameSceneWorldSprite1078Check[offsetof(GameSceneWorld, winter_and_f
 typedef char GameSceneWorldVaseSpriteCheck[offsetof(GameSceneWorld, vase_sprite) == 0x1068 ? 1 : -1];
 typedef char GameSceneWorldFireplaceSpriteCheck[offsetof(GameSceneWorld, fireplace_sprite) == 0x105C ? 1 : -1];
 
-typedef char GameSceneWorldCalendarFlagCheck[offsetof(GameSceneWorld, calendar) + offsetof(WorldCalendarSource, unk_04) == 0x1044 ? 1 : -1];
+typedef char GameSceneWorldCalendarFlagCheck[offsetof(GameSceneWorld, calendar) + offsetof(WorldCalendarSource, tick_count) == 0x1044 ? 1 : -1];
 typedef char GameSceneWorldBeachHouseSpriteCheck[offsetof(GameSceneWorld, beach_house_sprite) == 0x1064 ? 1 : -1];
 typedef char GameSceneWorldEventIconSpritesCheck[offsetof(GameSceneWorld, event_icon_sprites) == 0x10B0 ? 1 : -1];
 

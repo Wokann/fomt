@@ -16,6 +16,7 @@ struct GameObject;
 struct GameSceneWorld;
 struct EntityAuxiliarySprites;
 struct WorldSpriteEffects;
+struct GameSceneIndexedSprite;
 
 // The native palette cache has 22 resource records and 13 retained banks.
 // Keep the remaining record bytes and flags opaque until their users are recovered.
@@ -75,17 +76,10 @@ private:
     GameSceneWorldMapOwner & operator=(GameSceneWorldMapOwner const &);
 };
 
-// Only the virtual-destruction prefix is known. Never allocate this view.
-struct GameSceneWorldUnkObject {
-    u8 unk_00[0x24];
-    virtual ~GameSceneWorldUnkObject();
-
-private:
-    GameSceneWorldUnkObject();
-};
-
 struct GameSceneWorldUnk1028 {
-    GameSceneWorldUnkObject * value;
+    void Reset(IndexedResourceProvider * resource, u32 index,
+        GameObject * world, Vec2 const & position);
+    SmartPtr<GameSceneIndexedSprite> value;
     Vec2 unk_04;
     u8 unk_08;
     u8 unk_09;
@@ -172,7 +166,6 @@ private:
 };
 
 typedef char GameSceneWorldMapOwnerSizeCheck[sizeof(GameSceneWorldMapOwner) == 4 ? 1 : -1];
-typedef char GameSceneWorldUnkObjectPrefixSizeCheck[sizeof(GameSceneWorldUnkObject) == 0x28 ? 1 : -1];
 typedef char GameSceneWorldUnkRecordSizeCheck[sizeof(GameSceneWorldUnk1028) == 12 ? 1 : -1];
 typedef char GameSceneWorldUnkRecordPointCheck[offsetof(GameSceneWorldUnk1028, unk_04) == 4 ? 1 : -1];
 typedef char GameSceneWorldUnkRecordFlagCheck[offsetof(GameSceneWorldUnk1028, unk_09) == 9 ? 1 : -1];

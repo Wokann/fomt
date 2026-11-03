@@ -106,6 +106,23 @@ struct PACKED GameDate
 
     Season GetSeason() const { return season; }
     unsigned int GetDay() const { return day; }
+    bool operator==(GameDate const & other) const { return season == other.season && day == other.day; }
+    void AdvanceDay(u32 days_per_season)
+    {
+        u32 next_day = day + 1;
+        if (next_day == days_per_season) {
+            u8 & encoded = *reinterpret_cast<u8 *>(this);
+            u32 next_season = GetSeason();
+            // Keep the day and reserved high bit while carrying the season.
+            i32 preserve_mask = ~3;
+            ++next_season;
+            next_season &= 3;
+            i8 old_bits = static_cast<i8>(encoded) & preserve_mask;
+            encoded = old_bits | next_season;
+            next_day = 0;
+        }
+        day = next_day;
+    }
 };
 
 struct PACKED ALIGN(2) GameTime

@@ -45,14 +45,14 @@ typedef char EncodedGameYearSizeCheck[sizeof(EncodedGameYear) == 1 ? 1 : -1];
 // fields are the packed date and clock used by the calendar consumers.
 struct GameCalendar
 {
-    u8 encoded_year;
+    EncodedGameYear year;
     GameDate date;
     GameTime time;
 
     GameCalendar(u32 year, GameDate const & date, GameTime time)
-        : encoded_year((year / 7 << 3) | (year % 7)), date(date), time(time) {}
+        : year((year / 7 << 3) | (year % 7)), date(date), time(time) {}
 
-    u32 GetYear() const { return EncodedGameYear(encoded_year).GetYear(); }
+    u32 GetYear() const { return year.GetYear(); }
 };
 
 typedef char GameCalendarSizeCheck[sizeof(GameCalendar) == 4 ? 1 : -1];

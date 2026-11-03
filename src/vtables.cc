@@ -519,7 +519,7 @@ extern void func_080E1128(void);
 extern void destructor_GameScene(void) asm("_._9GameScene");
 extern void Run__9GameScene(void);
 extern void DestroyGameSceneWorld(void) asm("_._14GameSceneWorld");
-extern void func_08017C30(void);
+extern void Update__14GameSceneWorldRC23GameObjectUpdateContext(void);
 extern void func_080182C8(void);
 extern void GetWorldCurrentMapId(void);
 extern void GetWorldCameraX(void);
@@ -1000,7 +1000,7 @@ extern RawVTableFunction const gGameSceneWorldVTable[] asm("__vt_14GameSceneWorl
     nullptr,
     nullptr,
     DestroyGameSceneWorld,
-    func_08017C30,
+    Update__14GameSceneWorldRC23GameObjectUpdateContext,
     func_080182C8,
     GetWorldCurrentMapId,
     GetWorldCameraX,
