@@ -1,10 +1,15 @@
+#include "intro_scene.hh"
+
     @ JP Intro Scene IndexedResourceArchive: seven native tables.
     @ Format 120, ladder 36810121315; decoded SHA-256 f59d0e0791ea60134b32239b3108c09bfc53de6e384f024b7a0288df2af0c58a.
     @ Separate native 8bpp title and 4bpp frame PNGs preserve every tile.
     @ Complete OAM frame PNGs are references, not competing build inputs.
 
-    @ Table 1: 9 records, 4 bytes each.
-    .4byte 9
+.LIntroArchiveStart:
+
+    @ Table 1: 4-byte records.
+    .word (.LIntroTable1End - .LIntroTable1) / 4
+.LIntroTable1:
     .2byte 1, 0
     .2byte 1, 1
     .2byte 1, 2
@@ -14,9 +19,11 @@
     .2byte 4, 10
     .2byte 2, 14
     .2byte 1, 16
+.LIntroTable1End:
 
-    @ Table 2: 11 records, 16 bytes each.
-    .4byte 11
+    @ Table 2: 16-byte records.
+    .word (.LIntroTable2End - .LIntroTable2) / 16
+.LIntroTable2:
     .2byte 13, 0, 270, 0, 16, 0, 0, 0
     .2byte 10, 13, 452, 270, 16, 0, 0, 0
     .2byte 3, 23, 20, 722, 1, 16, 0, 0
@@ -28,9 +35,11 @@
     .2byte 3, 29, 20, 742, 1, 16, 0, 0
     .2byte 0, 0, 0, 0, 0, 0, 0, 0
     .2byte 6, 32, 48, 762, 1, 17, 0, 0
+.LIntroTable2End:
 
-    @ Table 3: 38 records, 8 bytes each.
-    .4byte 38
+    @ Table 3: 8-byte records.
+    .word (.LIntroTable3End - .LIntroTable3) / 8
+.LIntroTable3:
     .2byte 24586, 49580, 0, 0
     .2byte 24586, 49644, 64, 0
     .2byte 24618, 33196, 128, 0
@@ -69,36 +78,72 @@
     .2byte 16384, 32768, 24, 0
     .2byte 16384, 32800, 32, 0
     .2byte 16384, 32832, 40, 0
+.LIntroTable3End:
 
-    @ Table 4: 810 records, 32 bytes each.
-    .4byte 810
+    @ Table 4: 32-byte records.
+    .word (.LIntroTable4End - .LIntroTable4) / 32
+.LIntroTable4:
     .incbin "graphics/intro_scene/indexed_archive/jp/title_tiles.8bpp"
     .incbin "graphics/intro_scene/indexed_archive/jp/frame_tiles.4bpp"
+.LIntroTable4End:
 
-    @ Table 5: 18 records, 32 bytes each.
-    .4byte 18
+    @ Table 5: 32-byte records.
+    .word (.LIntroTable5End - .LIntroTable5) / 32
+.LIntroTable5:
     .incbin "graphics/intro_scene/indexed_archive/jp/palettes_00_15.gbapal"
     .incbin "graphics/intro_scene/indexed_archive/jp/palettes_16_17.gbapal"
+.LIntroTable5End:
 
-    @ Table 6: 0 records, 8 bytes each.
-    .4byte 0
+    @ Table 6: 8-byte records.
+    .word (.LIntroTable6End - .LIntroTable6) / 8
+.LIntroTable6:
+.LIntroTable6End:
 
-    @ Table 7: 17 records, 4 bytes each.
-    .4byte 17
-    .4byte 262144
-    .4byte 262145
-    .4byte 262146
-    .4byte 655362
-    .4byte 655363
-    .4byte 655364
-    .4byte 655363
-    .4byte 262146
-    .4byte 262149
-    .4byte 6
-    .4byte 655366
-    .4byte 655367
-    .4byte 655368
-    .4byte 655367
-    .4byte 262150
-    .4byte 262153
-    .4byte 10
+    @ Table 7: 4-byte records.
+    .word (.LIntroTable7End - .LIntroTable7) / 4
+.LIntroTable7:
+    .word 262144
+    .word 262145
+    .word 262146
+    .word 655362
+    .word 655363
+    .word 655364
+    .word 655363
+    .word 262146
+    .word 262149
+    .word 6
+    .word 655366
+    .word 655367
+    .word 655368
+    .word 655367
+    .word 262150
+    .word 262153
+    .word 10
+.LIntroTable7End:
+.LIntroArchiveEnd:
+
+    .if ((.LIntroTable1End - .LIntroTable1) % 4) != 0 || ((.LIntroTable1End - .LIntroTable1) / 4) > 0xFFFF
+    .error "Intro archive table 1 has an invalid record count or width"
+    .endif
+    .if ((.LIntroTable2End - .LIntroTable2) % 16) != 0 || ((.LIntroTable2End - .LIntroTable2) / 16) > 0xFFFF
+    .error "Intro archive table 2 has an invalid record count or width"
+    .endif
+    .if ((.LIntroTable3End - .LIntroTable3) % 8) != 0 || ((.LIntroTable3End - .LIntroTable3) / 8) > 0xFFFF
+    .error "Intro archive table 3 has an invalid record count or width"
+    .endif
+    .if ((.LIntroTable4End - .LIntroTable4) % 32) != 0 || ((.LIntroTable4End - .LIntroTable4) / 32) > 0xFFFF
+    .error "Intro archive table 4 has an invalid record count or width"
+    .endif
+    .if ((.LIntroTable5End - .LIntroTable5) % 32) != 0 || ((.LIntroTable5End - .LIntroTable5) / 32) > 0xFFFF
+    .error "Intro archive table 5 has an invalid record count or width"
+    .endif
+    .if ((.LIntroTable6End - .LIntroTable6) % 8) != 0 || ((.LIntroTable6End - .LIntroTable6) / 8) > 0xFFFF
+    .error "Intro archive table 6 has an invalid record count or width"
+    .endif
+    .if ((.LIntroTable7End - .LIntroTable7) % 4) != 0 || ((.LIntroTable7End - .LIntroTable7) / 4) > 0xFFFF
+    .error "Intro archive table 7 has an invalid record count or width"
+    .endif
+
+    .if (.LIntroArchiveEnd - .LIntroArchiveStart) > INTRO_SCENE_RESOURCE_CAPACITY
+    .error "Intro archive exceeds IntroSceneUnpackedResources capacity"
+    .endif

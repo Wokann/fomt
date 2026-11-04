@@ -53,7 +53,7 @@ INTRO_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
 # are proven.
 INTRO_STARTUP_TILEMAPS_SOURCE_DIR := graphics/intro_scene/shared/startup_tilemaps
 
-# func_08000914 expands this regional IndexedResourceArchive immediately
+# ConstructIntroSceneCore expands this regional IndexedResourceArchive immediately
 # after the Intro Scene background data. Complete frames are composed from
 # the archive's own OAM records, so no JSON layout sidecar is necessary.
 INTRO_INDEXED_ARCHIVE_SOURCE_ROOT := graphics/intro_scene/indexed_archive
@@ -564,9 +564,10 @@ $(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal.lz: $(MAP_STATE_PALETTE_SOURCE_DIR)/%.g
 $(INTRO_INDEXED_ARCHIVE_TITLE_TILES): GFX_TILE_COUNT := $(if $(filter jp,$(INTRO_INDEXED_ARCHIVE_GROUP)),361,237)
 $(INTRO_INDEXED_ARCHIVE_FRAME_TILES): GFX_TILE_COUNT := $(if $(filter jp,$(INTRO_INDEXED_ARCHIVE_GROUP)),88,$(if $(filter de,$(INTRO_INDEXED_ARCHIVE_GROUP)),97,95))
 $(filter-out $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/palettes_00_15.gbapal,$(INTRO_INDEXED_ARCHIVE_PALETTES)): GFX_PALETTE_COLORS := $(if $(filter jp,$(INTRO_INDEXED_ARCHIVE_GROUP)),32,48)
-$(INTRO_INDEXED_ARCHIVE_SOURCE_OBJ): $(INTRO_INDEXED_ARCHIVE_LAYOUT) $(INTRO_INDEXED_ARCHIVE_TITLE_TILES) $(INTRO_INDEXED_ARCHIVE_FRAME_TILES) $(INTRO_INDEXED_ARCHIVE_PALETTES)
+$(INTRO_INDEXED_ARCHIVE_SOURCE_OBJ): $(INTRO_INDEXED_ARCHIVE_LAYOUT) include/intro_scene.hh $(INTRO_INDEXED_ARCHIVE_TITLE_TILES) $(INTRO_INDEXED_ARCHIVE_FRAME_TILES) $(INTRO_INDEXED_ARCHIVE_PALETTES)
 	@mkdir -p $(dir $@)
-	@$(AS) $(ASFLAGS) $< -o $@
+	@$(CPP) $(CPPFLAGS) -D__ASSEMBLER__ -x assembler-with-cpp $< -o $(@:.o=.s)
+	@$(AS) $(ASFLAGS) $(@:.o=.s) -o $@
 $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN): $(INTRO_INDEXED_ARCHIVE_SOURCE_OBJ)
 	@$(OBJCOPY) -O binary $< $@
 ifeq ($(GAME_REGION),JP)

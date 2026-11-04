@@ -8,7 +8,7 @@
 > Removed helpers can be recovered from Git revision `31411d1d` if an old
 > audit must be reproduced. Normal builds do not read baserom or patch ROMs.
 
-`shared/background_tiles.png` and `shared/background_palettes.png` are the
+`shared/background_tiles.png` and `shared/background_palettes.pal` are the
 authoritative editable sources for the decoded linear 4bpp Intro Scene VRAM
 payload and its three BGR555 palette banks.
 
@@ -18,8 +18,7 @@ and possible composition remain distinct runtime data. The C tools rebuild
 the 4bpp tiles and their `0x70` Raw-LZ2 stream directly from the PNG. The
 `--literal-tail` encoder strategy reproduces the three final retail literal
 commands, so the resulting 0x49BC-byte stream matches the original byte for
-byte without reading it during the build. The checked-in
-`shared/background_tiles.original.lz` remains only for independent comparison.
+byte without reading it during the build. The old original-stream copy has been removed.
 `gbagfx` and `fomt-lz` generate adjacent `.4bpp` and `.4bpp.lz` files;
 assembly includes the latter directly, without a baserom build dependency or
 a `.0x70` pseudo-extension.
@@ -42,8 +41,8 @@ tool, source sidecar, ROM input or post-link patch is required.
 
 ## Regional indexed OAM archive
 
-`func_08000914` separately expands an `IndexedResourceArchive` immediately
-after the background stream. Unlike the twenty object-tile streams, this
+`ConstructIntroSceneCore` expands an `IndexedResourceArchive` following the
+background tiles and palettes. Unlike the twenty BG tilemap streams, this
 archive contains a complete native frame layout: animation selectors, 16-byte
 frame descriptors, eight-byte GBA OAM records, mixed-depth tiles, BGR555 palettes,
 and frame entries. The data proves complete OAM-composited PNG frames without
@@ -67,14 +66,17 @@ includes title tiles, frame tiles, then palettes in their physical order;
 descriptors without drawable OAM remain ordinary records. An assembly object
 under `build/` produces the source-adjacent decoded `archive.bin`; the
 compressed resource is `archive.bin.lz`, directly included by ROM assembly.
+The seven counts are computed from table boundary labels. The assembler checks
+record widths and the shared `INTRO_SCENE_RESOURCE_CAPACITY` from
+`include/intro_scene.hh`; decoded data must fit the actual C++ buffer.
 There is no Python frame overlay, duplicate decoded-edit stage, baserom
 extraction, or post-link patch in this archive's normal build.
 
 JP's `120` Huffman-4/LZ2 stream is now encoded directly from `archive.bin` by
 the generic C `encode-huff4-lz2` command. Its greedy matches, literal grouping,
 and frequency-derived Huffman tree reproduce all `0x2D90` retail bytes.
-The command verifies its decoded output and rejects overflow. JP's
-`archive.original.lz` is audit-only, not a build input.
+The command verifies its decoded output and rejects packed-slot overflow.
+The old original-stream copy has been removed.
 
 US/EU and DE use `220` Huffman-8/LZ2. Their authoring and assembly paths are
 the same; `encode-huff8-lz2` now reproduces their complete packed bytes with
@@ -108,47 +110,44 @@ The same initializer also consumes `small_indexed_archive/shared/full/`: a
 separate, raw `0x118`-byte archive with three complete 16-by-16 OAM frames.
 Its native bytes are identical in JP, US, EU, and DE. All three views share
 the same four native tiles and palette; their original PNG exports were
-byte-for-byte duplicates. One `frame_0000.png` therefore supplies both
-assets through the ordinary C `gbagfx` rules. The selection, descriptor,
+byte-for-byte duplicates. The ordinary C `gbagfx` rules compile tiles from
+`frame_0000.png` and the palette from the independent `frame_0000.pal`. The selection, descriptor,
 OAM, and animation records are written directly in the assembly source;
 there is no ROM-template rebuild or post-link patch for this archive.
 
 ## Startup background layers
 
-`func_080019D8` additionally expands a shared `0x8000`-byte 4bpp tile payload,
+`InitializeIntroSceneSequenceResources` additionally expands a shared `0x8000`-byte 4bpp tile payload,
 loads sixteen BGR555 palette banks, and then uses the four native startup-map
 sources.  The tiles and palette banks are verified byte-identically against
 the JP, US, EU and DE ROMs and are available under
 `shared/startup_visual/`.
 
-`shared/startup_tilemaps/startup_00.tilemap` through `startup_03.tilemap`
+`shared/startup_tilemaps/bg0.tilemap` through `bg3.tilemap`
 remain the authoritative editable layout sources.  Each `0x1000`-byte source
 contains two 32-by-32 BG maps in alternating 0x40-byte rows.  The eight PNGs
 under `reference/startup/` were rendered from that proven row split, tile IDs,
 flip bits and palette-bank fields; they are visual references only, because a
 flat PNG cannot preserve those native map fields.
 
-The C `fomt-lz` tool builds each `startup_NN.tilemap.lz` beside its editable
-`.tilemap`; assembly includes that generated stream directly. `startup_00`,
-`startup_01` and `startup_02` now encode directly from source with exact retail
-packed bytes; their `.original.lz` copies are audit-only. `startup_00` uses
-the C codec's generic `--parent-first` tie policy to build its Huffman tree
-from literal frequencies, not from a saved tree. `startup_03` still uses its
-source-adjacent original packing metadata. The resource test checks decoded
-content for all four and packed bytes for the three direct
-streams. Neither the resource build nor the link reads a retail ROM or patches
-the finished image.
+The C `fomt-lz` tool builds each `bgN.tilemap.lz` beside its editable
+`.tilemap`; assembly includes that generated stream directly. All four maps
+encode directly from source with exact retail packed bytes. `bg0` uses
+the codec's generic `--parent-first` Huffman tie policy, while `bg3` uses
+`--tie=quick`; neither reads a saved tree or original packing metadata.
+Neither the resource build nor the link reads a retail ROM or patches the
+finished image.
 
-`func_080019D8` writes the two maps from each source to fixed VRAM screen
+`InitializeIntroSceneSequenceResources` writes the two maps from each source to fixed VRAM screen
 blocks. This is a proven storage relationship, not an assertion about which
 map is visible at a particular point in the scene:
 
 | Editable source | First 32x32 map | Second 32x32 map |
 | --- | --- | --- |
-| `startup_00.tilemap` | screen block 24 (`0x0600C000`) | screen block 25 (`0x0600C800`) |
-| `startup_01.tilemap` | screen block 26 (`0x0600D000`) | screen block 27 (`0x0600D800`) |
-| `startup_02.tilemap` | screen block 28 (`0x0600E000`) | screen block 29 (`0x0600E800`) |
-| `startup_03.tilemap` | screen block 30 (`0x0600F000`) | screen block 31 (`0x0600F800`) |
+| `bg0.tilemap` | screen block 24 (`0x0600C000`) | screen block 25 (`0x0600C800`) |
+| `bg1.tilemap` | screen block 26 (`0x0600D000`) | screen block 27 (`0x0600D800`) |
+| `bg2.tilemap` | screen block 28 (`0x0600E000`) | screen block 29 (`0x0600E800`) |
+| `bg3.tilemap` | screen block 30 (`0x0600F000`) | screen block 31 (`0x0600F800`) |
 
 For each of the 32 rows, the first `0x40` bytes of the source's `0x80`-byte
 row go to the first screen block and the next `0x40` bytes go to the second.
@@ -156,7 +155,7 @@ The checked-in `.tilemap` files deliberately preserve this decoded native
 interleaving; the rendered layer PNGs must not replace them as source data.
 
 The startup tile payload uses the `230` Huffman-8/LZ3 family. `gbagfx` converts
-the tile and palette PNGs into source-adjacent `.4bpp` and `.gbapal` resources;
+the tile PNG and independent palette PAL into adjacent `.4bpp` and `.gbapal` resources;
 the C `fomt-lz` tool directly packs the tiles into `.4bpp.lz`, using ladder
 `5,10,14` and `--greedy --tie=exchange`. The complete 14704-byte retail stream
 matches without output-size padding; `startup_tiles.original.lz` is removed.
@@ -166,5 +165,5 @@ growth. Assembly links these generated resources directly,
 without reading a ROM or patching the linked image. The native startup maps
 remain independently editable through their Huffman-4/LZ3 path.
 
-启动图块已独立从源码重压为原版 14704 字节，旧模板移除；
-这不代表尚依赖模板的海外版开场索引资源归档也已完成。
+启动图块、四张启动地图和各地区开场索引归档均从现有源码与独立资源生成，
+不再依赖原始压缩流模板；区域归档的内部索引及运行时容量仍受实际格式约束。

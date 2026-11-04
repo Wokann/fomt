@@ -1,6 +1,11 @@
 #ifndef INTRO_SCENE_HH
 #define INTRO_SCENE_HH
 
+// Shared by the fixed native object layout and the unpacked archive build.
+#define INTRO_SCENE_RESOURCE_CAPACITY 0x6A00
+
+#ifndef __ASSEMBLER__
+
 #include "prelude.h"
 #include "scene.hh"
 #include "hardware_music_player.hh"
@@ -12,7 +17,7 @@ struct HardwareCoreState;
 
 struct IntroSceneUnpackedResources
 {
-    u8 bytes[0x6A00];
+    u8 bytes[INTRO_SCENE_RESOURCE_CAPACITY];
     void Initialize(u8 const * source);
 };
 
@@ -208,7 +213,7 @@ typedef char MenuIntroTransitionSizeCheck[sizeof(MenuIntroTransition) == 4 ? 1 :
 
 EXTERN_C
 
-extern IntroSceneCoreVTable const vtable_unk_080E5A0C;
+extern IntroSceneCoreVTable const gIntroSceneCoreVTable;
 extern u8 const gIntroSceneIndexedArchiveCompressed[];
 extern u8 const gIntroSceneSmallIndexedArchive[];
 extern u8 const gActorIndexedResourceArchive[];
@@ -230,5 +235,7 @@ SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene);
 SceneTransitionOwner RunIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_run");
 
 EXTERN_C_END
+
+#endif // !__ASSEMBLER__
 
 #endif // INTRO_SCENE_HH
