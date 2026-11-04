@@ -1,29 +1,37 @@
     .section .iwram, "awx"
     .syntax unified
 
-    .global func_03000490
-    .type func_03000490, function
+    .global HandleGamePakInterrupt
+    .type HandleGamePakInterrupt, function
     .thumb
-func_03000490:
+    .thumb_func
+HandleGamePakInterrupt:
     push {lr}
-    ldr r1, [pc, #0x20]
+    ldr r1, .LGamePakInterruptIme
     movs r0, #0
     strb r0, [r1]
-    ldr r0, [pc, #0x1c]
+    ldr r0, .LGamePakInterruptIe
     movs r2, #0
     strh r2, [r0]
     movs r1, #0x80
     lsls r1, r1, #0x13
     movs r0, #0x80
     strh r0, [r1]
-    ldr r0, [pc, #0x14]
+    ldr r0, .LGamePakInterruptSound
     strb r2, [r0]
     movs r0, #0
     svc #0x19
-    .Lauto_030004AE:
+    .LGamePakInterruptStop:
     svc #3
-    b .Lauto_030004AE
-    .byte 0x00, 0x00, 0x08, 0x02, 0x00, 0x04, 0x00, 0x02, 0x00, 0x04, 0x84, 0x00, 0x00, 0x04
+    b .LGamePakInterruptStop
+    .align 2, 0
+.LGamePakInterruptIme:
+    .word 0x04000208
+.LGamePakInterruptIe:
+    .word 0x04000200
+.LGamePakInterruptSound:
+    .word 0x04000084
+    .size HandleGamePakInterrupt, . - HandleGamePakInterrupt
 
     .global __new_handler
     .type __new_handler, object
@@ -358,10 +366,10 @@ DrawGlyph1Tile:
     pop {r4, r5, r6, r7, r8, lr}
     bx lr
 
-    .global func_03000958
-    .type func_03000958, function
+    .global DispatchInterrupt
+    .type DispatchInterrupt, function
     .arm
-func_03000958:
+DispatchInterrupt:
     mov r2, #0x4000000
     add r2, r2, #0x200
     ldrb r1, [r2, #8]
@@ -371,14 +379,14 @@ func_03000958:
     mov ip, #0
     mov r0, #1
     and r1, r3, r3, lsr #16
-    .Lauto_0300097C:
+    .LDispatchInterruptScan:
     tst r1, r0
-    bne .Lauto_03000994
+    bne .LDispatchInterruptHandle
     add ip, ip, #2
     adds r0, r0, r0
-    bne .Lauto_0300097C
-    b .Lauto_030009FC
-    .Lauto_03000994:
+    bne .LDispatchInterruptScan
+    b .LDispatchInterruptReturn
+    .LDispatchInterruptHandle:
     ldr r1, .LInterruptEnableMasks
     ldrh r1, [r1, ip]
     and r1, r1, r3
@@ -390,7 +398,7 @@ func_03000958:
     str r1, [r2]
     mov r1, #1
     strb r1, [r2, #8]
-    ldr r2, [pc, #0x50]
+    ldr r2, .LInterruptBiosFlags
     ldrh r1, [r2]
     orr r1, r1, r0
     strh r1, [r2]
@@ -405,7 +413,7 @@ func_03000958:
     bxne r3
     pop {r0, lr}
     msr cpsr_fc, r0
-    .Lauto_030009FC:
+    .LDispatchInterruptReturn:
     pop {r0, r1, r2, r3, lr}
     strh r3, [r2]
     msr spsr_fc, r0
@@ -415,7 +423,9 @@ func_03000958:
     .4byte gInterruptNestingMasks
 .LInterruptHandlers:
     .4byte gInterruptHandlers
-    .4byte 0x03007FF8
+.LInterruptBiosFlags:
+    .word 0x03007FF8
+    .size DispatchInterrupt, . - DispatchInterrupt
 
     .global ApplyInterruptEnableMask
     .type ApplyInterruptEnableMask, function
@@ -435,6 +445,7 @@ ApplyInterruptEnableMask:
     bx lr
 .LInterruptEnableRegister:
     .4byte 0x04000200
+    .size ApplyInterruptEnableMask, . - ApplyInterruptEnableMask
 
     @ The ROM image initializes rand's writable IWRAM seed to one.
     .global gRandomSeed

@@ -9,13 +9,11 @@
 #include "gbaio.h"
 #include "gbasvc.h"
 
-extern "C" void func_03000490(void);
-
 void AgbMain(void)
 {
     REG_WAITCNT = 0x4014;
     InitializeInterrupts();
-    ExchangeInterruptHandler(13, func_03000490);
+    ExchangeInterruptHandler(13, HandleGamePakInterrupt);
     AcknowledgeAndEnableInterrupts(0x2000);
 
     SramAccess save;

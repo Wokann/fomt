@@ -5,13 +5,11 @@
 u16 gInterruptNestingMasks[16];
 InterruptHandler gInterruptHandlers[16];
 
-extern void func_03000958(void);
-
 void InitializeInterrupts(void)
 {
     u32 index;
     DisableInterrupts(0xFFFF);
-    *(void (**)(void))0x03007FFC = func_03000958;
+    *(void (**)(void))0x03007FFC = DispatchInterrupt;
     for (index = 0; index <= 13; index++)
         ExchangeInterruptHandler(index, 0);
 }

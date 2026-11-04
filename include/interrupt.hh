@@ -23,6 +23,11 @@ u16 ExchangeInterruptNestingMask(u32 index, u16 value);
 // The entry executes in IWRAM: use the actual indirect interworking call.
 u16 ApplyInterruptEnableMask(u32 value) __attribute__((long_call));
 
+// Native IWRAM entries: the BIOS calls the ARM dispatcher; Game Pak IRQ uses
+// the Thumb handler. Both addresses are taken as callbacks, not called here.
+void DispatchInterrupt(void);
+void HandleGamePakInterrupt(void);
+
 void InitializeInterrupts(void);
 u16 EnableInterrupts(u32 value);
 u16 AcknowledgeAndEnableInterrupts(u16 value);
