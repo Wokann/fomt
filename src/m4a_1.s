@@ -532,7 +532,7 @@
 
 .LSoundMainRam_end:
     ldr    r0, [sp, 0x18]
-    ldr    r3, =ID_NUMBER
+    ldr    r3, .LSoundMainRamId
     str    r3, [r0]
     add    sp, 0x1C
     pop    {r0-r7}
@@ -544,6 +544,9 @@
 
 .Lcall_via_r3:
     bx     r3
+
+    .align 2, 0
+.LSoundMainRamId: .word ID_NUMBER
 
     endfn @ SoundMainRam_load
     endfn @ SoundMain

@@ -1095,6 +1095,7 @@ void m4aSoundInit(void)
 {
     int i;
 
+    // Retail copies the entire IWRAM buffer, including bytes past the mixer pool.
     CpuCopy32(((void *)(((iptr)SoundMainRam_load) & ~1)), SoundMainRam, sizeof(SoundMainRam));
 
     SoundInit(&gSoundInfo);

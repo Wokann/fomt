@@ -164,8 +164,10 @@ DE `0829F5B4`，五条轨道及声部表均通过输入对象重定位。
   `__iwram_lma + SIZEOF(.iwram)` 派生。JP/US 的旧尾长不是可扩展布局。
 - 启动 IWRAM 复制已经使用 `__iwram_lma/__iwram_vma/__iwram_vma_end`，
   LDS 通过 `LOADADDR/ADDR/SIZEOF` 计算，无须固定原 ROM 装载地址。
-- `SoundMainRam[0x400]` 的 RAM 容量和复制长度需要单独审核。入口符号移动
-  正确，不代表改变代码大小后复制和执行仍正确。
+- 混音器在 IWRAM 读取装载源最后一个四字节 `ID_NUMBER`，源码将该字置于
+  `SoundMainRam_load` 的结束点内。函数连同池长 `0x3A4`，原版复制整块
+  `0x400`。其后 `0x5C` 是邻接 ROM 辅助函数的部分副本；本次未发现执行或
+  数据引用进入这部分 RAM。扩大混音器仍受保留缓冲容量及下一 BSS 区间限制。
 - `0x03007FFC` BIOS IRQ 指针、`0x03007FF8` IRQ 标志、硬件寄存器及栈区域
   是平台地址，不能当作普通 ROM 漏指针消除。
 
