@@ -1,4 +1,6 @@
-    .INCLUDE "asm/macro.inc"
+    .include "asm/macro.inc"
+    .include "six/asm/hw/memory.s"
+    .include "six/asm/hw/video.s"
     .SYNTAX UNIFIED
 
     .section .text.hardware_mask_after, "ax", %progbits
@@ -608,35 +610,35 @@ Update__23HardwareBlendController:
     beq .L080093CE
     cmp r0, #2
     bne .L080093D0
-    movs r6, #0xc0
+    movs r6, #BLD_MODE_BLACK
     b .L080093D0
 .L080093CE:
-    movs r6, #0x80
+    movs r6, #BLD_MODE_WHITE
 .L080093D0:
     ldr r3, [r5]
     cmp r3, #0
     beq .L080093DC
     adds r2, r3, #0
-    adds r2, #0x50
+    adds r2, #OFF_BLDCNT
     b .L080093DE
 .L080093DC:
-    ldr r2, .L080093F4 @ =0x04000050
+    ldr r2, .L080093F4 @ =REG_BLDCNT
 .L080093DE:
     ldrh r1, [r2]
-    ldr r0, .L080093F8 @ =0x0000FF3F
+    ldr r0, .L080093F8 @ =(0xFFFF & ~(((1 << BF_BLD_MODE_LENGTH) - 1) << BF_BLD_MODE_OFFSET))
     ands r0, r1
     orrs r0, r6
     strh r0, [r2]
     cmp r3, #0
     beq .L080093FC
     adds r1, r3, #0
-    adds r1, #0x54
+    adds r1, #OFF_BLDCOEFF
     b .L080093FE
     .align 2, 0
-.L080093F4: .4byte 0x04000050
-.L080093F8: .4byte 0x0000FF3F
+.L080093F4: .word REG_BLDCNT
+.L080093F8: .word (0xFFFF & ~(((1 << BF_BLD_MODE_LENGTH) - 1) << BF_BLD_MODE_OFFSET))
 .L080093FC:
-    ldr r1, .L08009408 @ =0x04000054
+    ldr r1, .L08009408 @ =REG_BLDCOEFF
 .L080093FE:
     ldr r0, .L0800940C @ =0x0000FFFE
     cmp r4, r0
@@ -644,8 +646,8 @@ Update__23HardwareBlendController:
     movs r0, #0x10
     b .L08009420
     .align 2, 0
-.L08009408: .4byte 0x04000054
-.L0800940C: .4byte 0x0000FFFE
+.L08009408: .word REG_BLDCOEFF
+.L0800940C: .word 0x0000FFFE
 .L08009410:
     cmp r4, #0
     bne .L08009418
@@ -668,7 +670,7 @@ Update__23HardwareBlendController:
     movs r1, #0xf
     b .L0800944A
     .align 2, 0
-.L08009434: .4byte 0x0000FFFE
+.L08009434: .word 0x0000FFFE
 .L08009438:
     cmp r4, #0
     bne .L08009440
@@ -688,10 +690,10 @@ Update__23HardwareBlendController:
     ldr r0, [r5]
     cmp r0, #0
     beq .L0800945C
-    adds r0, #0x4c
+    adds r0, #OFF_MOSAIC
     b .L0800945E
 .L0800945C:
-    ldr r0, .L0800946C @ =0x0400004C
+    ldr r0, .L0800946C @ =REG_MOSAIC
 .L0800945E:
     strh r1, [r0]
 .L08009460:
@@ -702,8 +704,8 @@ Update__23HardwareBlendController:
     beq .L08009478
     b .L0800947E
     .align 2, 0
-.L0800946C: .4byte 0x0400004C
-.L08009470: .4byte 0x0000FFFF
+.L0800946C: .word REG_MOSAIC
+.L08009470: .word 0x0000FFFF
 .L08009474:
     cmp r4, #0
     bne .L0800947E
@@ -727,7 +729,7 @@ Update__23HardwareBlendController:
     movs r0, #1
     b .L0800949E
     .align 2, 0
-.L08009498: .4byte 0x0000FFFF
+.L08009498: .word 0x0000FFFF
 .L0800949C:
     movs r0, #0
 .L0800949E:

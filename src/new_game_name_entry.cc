@@ -8,6 +8,7 @@
 #include "game_scene.hh"
 #include "hardware_manager.hh"
 #include "hardware_song.hh"
+#include "fomt_constants.hh"
 #pragma implementation
 
 void * operator new(unsigned long);
@@ -20,7 +21,7 @@ NewGameNameEntryScene::~NewGameNameEntryScene() {}
 SceneTransitionOwner NewGameNameEntryScene::Run()
 {
     HardwareManagerOwner manager;
-    func_08008DB8(0x23);
+    func_08008DB8(AUDIO_BGM_TITLE_SCREEN);
     FixedStr<12> player_name ALIGN(4);
     FixedStr<12> farm_name ALIGN(4);
     FixedStr<12> dog_name ALIGN(4);

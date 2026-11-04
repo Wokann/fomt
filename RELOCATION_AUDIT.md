@@ -615,6 +615,33 @@ src/new_game_menu、src/ui_state、asm/new_game_menu 的 .d 均直接追踪此�
 menu-dependencies-native-validation.json；无移址、扩容或运行时测试。
 保留 JP 0x37A8 锚，因为后续姓名输入系列尚未完成本轮同等核查。
 
+## name_entry / identity 边界与硬件定义补齐（2026-11-05）
+
+name_entry 四版前部均 0x2B4；identity JP 0xA18、海外 0xB5C，具体范围见
+CODE_ROM_LAYOUT.md。本轮保留现有高级语言实现和地区布局差异，检查所有
+保留重定位及当前缓存中命中这两个范围的数值窗口。代码候选是跨真实指令
+或 switch 重定位的拼窗；资源候选由相应图块、压缩流、音频或实际 C 结构
+字段解释，Mary 候选是 JUMP 包头拼窗。没有把数值碰巧相等视为 ROM 指针。
+另对实际 .text 的 ARM/Thumb 分支定向补查，只发现已有符号的 name_entry
+构造调用和它对 identity 的四个方法调用。此结论不包含未知计算式地址证明。
+
+按本地 pokeemerald include/gba/defines.h、include/gba/io_reg.h 及
+src/title_screen.c 的实际用法，将明确硬件地址和位值写成现有宏表达。
+FoMT C++ 使用 gbaio.h；汇编复用 six/asm/hw/memory.s、video.s，未新增
+包装头或编译步骤。覆盖确认画面的 BG VRAM/screen、palette 单 bank 大小、
+DISPCNT/BGCNT/BLDCNT，以及所调用混合控制器的寄存器和 shadow 偏移。
+原 06FFC000 DMA 地址和 u16 清除掩码数值保持；固定点增量、未知标量和
+结构容量不机械替换为硬件宏。歌曲参数复用 AUDIO_BGM_TITLE_SCREEN。
+
+这只是已确认硬件常量及引用审计，identity 还保留 RAM 成员池偏移、0x304 /
+0x384 步长、0x300 / 0x380 上传量及真实四/八项布局依赖，尚未从实际类型
+派生。下一轮应继续该依赖，而不是直接删除 JP 菜单至 name_input 的锚点。
+四版 WSL make -j4 compare 通过；无移址、扩容或运行时测试。
+证据保存在私有 name-entry-94cd39e6 目录：四版 boundaries、重定位和定向
+分支报告、code-review.json、code-candidate-exclusions.json、
+resource_candidate_classification.json、resource_dependency_audit.json、
+mary_candidate_classification.json、hardware-native-validation.json 及四版日志。
+
 ## 本地参考工程的风格与流程（2026-11-05）
 
 系统审阅的参考是本地 pokeemerald `9a83a2bbe8`。范围覆盖启动及库汇编、

@@ -8,6 +8,7 @@
 #include "hardware_music_player.hh"
 #include "hardware_song.hh"
 #include "fomt_constants.hh"
+#include "gbaio.h"
 #include "font.hh"
 #include "time_of_day.hh"
 #include <string.h>
@@ -101,7 +102,7 @@ SceneTransitionOwner RunNewGameIdentityCore(NewGameIdentityCore * core)
 
     HardwareDisplayState * display =
         GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
-    HardwareDisplayRegisterValue control(0x3F);
+    HardwareDisplayRegisterValue control(BLDCNT_TGT1_ALL);
     display->SetBlendControl(control);
 
     HardwareBlendOwner owner(new HardwareBlendObject(

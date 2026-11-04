@@ -1,4 +1,6 @@
     .include "asm/macro.inc"
+    .include "six/asm/hw/memory.s"
+    .include "six/asm/hw/video.s"
     .syntax unified
     .thumb
 
@@ -6,8 +8,7 @@
     .section .text.new_game_identity_screen
     .align 2, 0
 
-    .global InitializeNewGameIdentityScreen
-    .thumb_func
+    thumb_func_start InitializeNewGameIdentityScreen
 InitializeNewGameIdentityScreen:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
@@ -24,14 +25,14 @@ InitializeNewGameIdentityScreen:
     bl CopyHardwareDma3
     ldr r0, .Ljp_080054BC
     ldr r0, [r0]
-    movs r1, #0xa0
+    movs r1, #(BG_PALETTE >> 19)
     lsls r1, r1, #0x13
-    movs r2, #0x20
+    movs r2, #PLTT_SIZE_4BPP
     bl CopyHardwareDma3
     mov r0, sl
     bl GetHardwareDisplayState
     add r1, sp, #0xc
-    movs r3, #0xba
+    movs r3, #((LCD_OBJ_MAPPING_1D | LCD_BG0_ENABLE | LCD_BG1_ENABLE | LCD_BG2_ENABLE | LCD_OBJ_ENABLE) >> 5)
     lsls r3, r3, #5
     adds r2, r3, #0
     strh r2, [r1]
@@ -226,38 +227,23 @@ InitializeNewGameIdentityScreen:
     adds r0, #0x10
     str r0, [r6, #4]
     b .Ljp_080055BA
-.Ljp_080054B0:
-    .4byte gUiSharedTiles
-.Ljp_080054B4:
-    .4byte 0x06004B00
-.Ljp_080054B8:
-    .4byte gUiSharedTileByteCount
-.Ljp_080054BC:
-    .4byte gUiSharedPalette
-.Ljp_080054C0:
-    .4byte 0x00001841
-.Ljp_080054C4:
-    .4byte 0x00001F01
-.Ljp_080054C8:
-    .4byte 0x0600F800
-.Ljp_080054CC:
-    .4byte 0x06FFC000
-.Ljp_080054D0:
-    .4byte 0x00000C1C
-.Ljp_080054D4:
-    .4byte 0x00001224
-.Ljp_080054D8:
-    .4byte 0x00001528
-.Ljp_080054DC:
-    .4byte 0x00001834
-.Ljp_080054E0:
-    .4byte gText_NewGameIdentity_PlayerName
-.Ljp_080054E4:
-    .4byte gText_NewGameIdentity_PlayerBirthday
-.Ljp_080054E8:
-    .4byte gText_NewGameIdentity_FarmName
-.Ljp_080054EC:
-    .4byte gText_NewGameIdentity_DogName
+.Ljp_080054B0: .word gUiSharedTiles
+.Ljp_080054B4: .word (MEM_VRAM + 0x4B00)
+.Ljp_080054B8: .word gUiSharedTileByteCount
+.Ljp_080054BC: .word gUiSharedPalette
+.Ljp_080054C0: .word (BG_PRIO_1 | BG_MOSAIC_ENABLE | (24 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256)
+.Ljp_080054C4: .word (BG_PRIO_1 | (31 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256)
+.Ljp_080054C8: .word (MEM_VRAM + 31 * BG_SCREEN_SIZE)
+@ Preserve the native mirrored VRAM destination; this is not BG screen block 24.
+.Ljp_080054CC: .word (MEM_VRAM + 0xFFC000)
+.Ljp_080054D0: .word 0x00000C1C
+.Ljp_080054D4: .word 0x00001224
+.Ljp_080054D8: .word 0x00001528
+.Ljp_080054DC: .word 0x00001834
+.Ljp_080054E0: .word gText_NewGameIdentity_PlayerName
+.Ljp_080054E4: .word gText_NewGameIdentity_PlayerBirthday
+.Ljp_080054E8: .word gText_NewGameIdentity_FarmName
+.Ljp_080054EC: .word gText_NewGameIdentity_DogName
 .Ljp_080054F0:
     mov r8, r1
     movs r0, #1
@@ -502,18 +488,12 @@ InitializeNewGameIdentityScreen:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-.Ljp_080056BC:
-    .4byte 0x0600C000
-.Ljp_080056C0:
-    .4byte 0x0600C080
-.Ljp_080056C4:
-    .4byte 0x0600C040
-.Ljp_080056C8:
-    .4byte 0x0000FFF0
-.Ljp_080056CC:
-    .4byte 0x0000182C
-.Ljp_080056D0:
-    .4byte 0x00001830
+.Ljp_080056BC: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE)
+.Ljp_080056C0: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x80)
+.Ljp_080056C4: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x40)
+.Ljp_080056C8: .word 0x0000FFF0
+.Ljp_080056CC: .word 0x0000182C
+.Ljp_080056D0: .word 0x00001830
 
     .else
     .section .text.new_game_identity_screen
@@ -530,20 +510,20 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     mov sl, r0
     ldr r0, .L08005488 @ =gUiSharedTiles
     ldr r0, [r0]
-    ldr r1, .L0800548C @ =0x06004B00
+    ldr r1, .L0800548C @ =(MEM_VRAM + 0x4B00)
     ldr r2, .L08005490 @ =gUiSharedTileByteCount
     ldr r2, [r2]
     bl CopyHardwareDma3
     ldr r0, .L08005494 @ =gUiSharedPalette
     ldr r0, [r0]
-    movs r1, #0xa0
+    movs r1, #(BG_PALETTE >> 19)
     lsls r1, r1, #0x13
-    movs r2, #0x20
+    movs r2, #PLTT_SIZE_4BPP
     bl CopyHardwareDma3
     mov r0, sl
     bl GetHardwareDisplayState
     add r1, sp, #0xc
-    movs r3, #0xba
+    movs r3, #((LCD_OBJ_MAPPING_1D | LCD_BG0_ENABLE | LCD_BG1_ENABLE | LCD_BG2_ENABLE | LCD_OBJ_ENABLE) >> 5)
     lsls r3, r3, #5
     adds r2, r3, #0
     strh r2, [r1]
@@ -552,18 +532,18 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     mov r0, sl
     bl GetHardwareDisplayState
     add r2, sp, #0xc
-    ldr r5, .L08005498 @ =0x00001841
+    ldr r5, .L08005498 @ =(BG_PRIO_1 | BG_MOSAIC_ENABLE | (24 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256)
     adds r1, r5, #0
     strh r1, [r2]
     strh r1, [r0, #0xa]
     mov r0, sl
     bl GetHardwareDisplayState
     add r2, sp, #0xc
-    ldr r7, .L0800549C @ =0x00001F01
+    ldr r7, .L0800549C @ =(BG_PRIO_1 | (31 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256)
     adds r1, r7, #0
     strh r1, [r2]
     strh r1, [r0, #0xc]
-    ldr r0, .L080054A0 @ =0x0600F800
+    ldr r0, .L080054A0 @ =(MEM_VRAM + 31 * BG_SCREEN_SIZE)
     movs r1, #0x14
     str r1, [sp]
     movs r1, #0x96
@@ -574,7 +554,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     movs r2, #0
     movs r3, #0x1e
     bl DrawUiTextWindowBorder
-    ldr r1, .L080054A4 @ =0x06FFC000
+    ldr r1, .L080054A4 @ =(MEM_VRAM + 0xFFC000)
     movs r0, #0
     movs r2, #0x20
     bl FillHardwareDma3
@@ -774,22 +754,23 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     str r5, [sp, #0x60]
     b .L08005596
     .align 2, 0
-.L08005488: .4byte gUiSharedTiles
-.L0800548C: .4byte 0x06004B00
-.L08005490: .4byte gUiSharedTileByteCount
-.L08005494: .4byte gUiSharedPalette
-.L08005498: .4byte 0x00001841
-.L0800549C: .4byte 0x00001F01
-.L080054A0: .4byte 0x0600F800
-.L080054A4: .4byte 0x06FFC000
-.L080054A8: .4byte 0x00000C1C
-.L080054AC: .4byte 0x00001324
-.L080054B0: .4byte 0x000016A8
-.L080054B4: .4byte 0x00001A34
-.L080054B8: .4byte gText_NewGameIdentity_PlayerName
-.L080054BC: .4byte gText_NewGameIdentity_PlayerBirthday
-.L080054C0: .4byte gText_NewGameIdentity_FarmName
-.L080054C4: .4byte gText_NewGameIdentity_DogName
+.L08005488: .word gUiSharedTiles
+.L0800548C: .word (MEM_VRAM + 0x4B00)
+.L08005490: .word gUiSharedTileByteCount
+.L08005494: .word gUiSharedPalette
+.L08005498: .word (BG_PRIO_1 | BG_MOSAIC_ENABLE | (24 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256)
+.L0800549C: .word (BG_PRIO_1 | (31 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256)
+.L080054A0: .word (MEM_VRAM + 31 * BG_SCREEN_SIZE)
+@ Preserve the native mirrored VRAM destination; this is not BG screen block 24.
+.L080054A4: .word (MEM_VRAM + 0xFFC000)
+.L080054A8: .word 0x00000C1C
+.L080054AC: .word 0x00001324
+.L080054B0: .word 0x000016A8
+.L080054B4: .word 0x00001A34
+.L080054B8: .word gText_NewGameIdentity_PlayerName
+.L080054BC: .word gText_NewGameIdentity_PlayerBirthday
+.L080054C0: .word gText_NewGameIdentity_FarmName
+.L080054C4: .word gText_NewGameIdentity_DogName
 .L080054C8:
     str r1, [sp, #0x8c]
     movs r0, #1
@@ -965,7 +946,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     str r0, [r6, #4]
     b .L080056CE
     .align 2, 0
-.L08005608: .4byte 0x00000C1C
+.L08005608: .word 0x00000C1C
 .L0800560C:
     str r1, [sp, #0x8c]
     movs r0, #1
@@ -1096,7 +1077,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
 .L080056EE:
     movs r0, #1
     rsbs r0, r0, #0
-    ldr r4, .L080057E8 @ =0x0600C000
+    ldr r4, .L080057E8 @ =(MEM_VRAM + 24 * BG_SCREEN_SIZE)
     movs r2, #0x80
     lsls r2, r2, #4
     adds r1, r4, #0
@@ -1121,7 +1102,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     cmp r5, #0x13
     bls .L08005704
     movs r5, #2
-    ldr r6, .L080057EC @ =0x0600C080
+    ldr r6, .L080057EC @ =(MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x80)
 .L08005724:
     movs r7, #0
     mov r8, r7
@@ -1130,7 +1111,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     adds r4, #0x6c
     adds r3, r5, #0
     adds r3, #0x5e
-    ldr r0, .L080057F0 @ =0x0600C040
+    ldr r0, .L080057F0 @ =(MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x40)
     adds r2, r1, r0
 .L08005736:
     strh r3, [r2]
@@ -1151,7 +1132,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     movs r5, #0x10
     ldr r1, .L080057F4 @ =0x0000FFF0
     adds r7, r1, #0
-    ldr r2, .L080057EC @ =0x0600C080
+    ldr r2, .L080057EC @ =(MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x80)
     mov sb, r2
 .L0800575E:
     movs r3, #0
@@ -1162,7 +1143,7 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     adds r0, #0xc
     adds r4, r0, r7
     adds r3, r5, r7
-    ldr r5, .L080057F0 @ =0x0600C040
+    ldr r5, .L080057F0 @ =(MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x40)
     adds r2, r1, r5
 .L08005772:
     strh r3, [r2]
@@ -1218,11 +1199,11 @@ InitializeNewGameIdentityScreen: @ US 0x08005278
     pop {r0}
     bx r0
     .align 2, 0
-.L080057E8: .4byte 0x0600C000
-.L080057EC: .4byte 0x0600C080
-.L080057F0: .4byte 0x0600C040
-.L080057F4: .4byte 0x0000FFF0
-.L080057F8: .4byte 0x00001A2C
-.L080057FC: .4byte 0x00001A30
+.L080057E8: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE)
+.L080057EC: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x80)
+.L080057F0: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x40)
+.L080057F4: .word 0x0000FFF0
+.L080057F8: .word 0x00001A2C
+.L080057FC: .word 0x00001A30
 
     .endif
