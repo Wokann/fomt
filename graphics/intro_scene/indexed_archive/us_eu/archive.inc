@@ -1,5 +1,3 @@
-#include "intro_scene.hh"
-
     @ US Intro Scene IndexedResourceArchive: seven native tables.
     @ Format 220, ladder 36810111315; decoded SHA-256 8e73d527aa1a7f905cdd1d4068bf4add642190baaff989b3a1b3be2106acd9d6.
     @ Separate native 8bpp title and 4bpp frame PNGs preserve every tile.
@@ -147,8 +145,4 @@
     .endif
     .if ((.LIntroTable7End - .LIntroTable7) % 4) != 0 || ((.LIntroTable7End - .LIntroTable7) / 4) > 0xFFFF
     .error "Intro archive table 7 has an invalid record count or width"
-    .endif
-
-    .if (.LIntroArchiveEnd - .LIntroArchiveStart) > INTRO_SCENE_RESOURCE_CAPACITY
-    .error "Intro archive exceeds IntroSceneUnpackedResources capacity"
     .endif

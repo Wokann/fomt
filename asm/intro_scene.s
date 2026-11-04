@@ -1,3 +1,5 @@
+#include "intro_scene.hh"
+
     .include "asm/macro.inc"
     .include "six/asm/hw/memory.s"
     .include "six/asm/hw/video.s"
@@ -136,54 +138,54 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r0, .L08001DD0 @ =0x00001034
     add r0, sp
     str r5, [r0]
-    ldr r1, .L08001DD4 @ =0x00006BA4
+    ldr r1, .L08001DD4 @ =INTRO_SCENE_RESOURCE_OFFSET(8) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r1, r7, r1
     ldr r2, .L08001DD8 @ =0x0000101C
     add r2, sp
     str r1, [r2]
-    ldr r3, .L08001DDC @ =0x00006BC4
+    ldr r3, .L08001DDC @ =INTRO_SCENE_RESOURCE_OFFSET(9) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r3, r7, r3
     movs r5, #0x81
     lsls r5, r5, #5
     add r5, sp
     str r3, [r5]
-    ldr r0, .L08001DE0 @ =0x00006AA4
+    ldr r0, .L08001DE0 @ =INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r0
     movs r1, #0x80
     lsls r1, r1, #5
     add r1, sp
     str r0, [r1]
-    ldr r2, .L08001DE4 @ =0x00006AC4
+    ldr r2, .L08001DE4 @ =INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r2, r7, r2
     ldr r3, .L08001DE8 @ =0x00001004
     add r3, sp
     str r2, [r3]
-    ldr r5, .L08001DEC @ =0x00006AE4
+    ldr r5, .L08001DEC @ =INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r5, r7, r5
     ldr r0, .L08001DF0 @ =0x00001008
     add r0, sp
     str r5, [r0]
-    ldr r1, .L08001DF4 @ =0x00006B04
+    ldr r1, .L08001DF4 @ =INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r1, r7, r1
     ldr r2, .L08001DF8 @ =0x0000100C
     add r2, sp
     str r1, [r2]
-    ldr r3, .L08001DFC @ =0x00006B24
+    ldr r3, .L08001DFC @ =INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r3, r7, r3
     ldr r5, .L08001E00 @ =0x00001010
     add r5, sp
     str r3, [r5]
-    ldr r0, .L08001E04 @ =0x00006B44
+    ldr r0, .L08001E04 @ =INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r0
     ldr r1, .L08001E08 @ =0x00001014
     add r1, sp
     str r0, [r1]
-    ldr r2, .L08001E0C @ =0x00006B84
+    ldr r2, .L08001E0C @ =INTRO_SCENE_RESOURCE_OFFSET(7) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r2, r7, r2
     ldr r3, .L08001E10 @ =0x00001018
     add r3, sp
     str r2, [r3]
-    ldr r5, .L08001E14 @ =0x00006BE4
+    ldr r5, .L08001E14 @ =INTRO_SCENE_RESOURCE_OFFSET(10) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r5, r7, r5
     ldr r0, .L08001E18 @ =0x00001024
     add r0, sp
@@ -199,12 +201,12 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     movs r3, #0
     adds r4, #1
     mov r8, r4
-    ldr r1, .L08001E20 @ =0x00006C04
+    ldr r1, .L08001E20 @ =INTRO_SCENE_RESOURCE_OFFSET(11) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r1, r7, r1
     ldr r2, .L08001E24 @ =0x00001028
     add r2, sp
     str r1, [r2]
-    ldr r4, .L08001E28 @ =0x00006C24
+    ldr r4, .L08001E28 @ =INTRO_SCENE_RESOURCE_OFFSET(12) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r4, r7, r4
     ldr r5, .L08001E2C @ =0x0000102C
     add r5, sp
@@ -336,7 +338,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     add r1, sp
     ldr r1, [r1]
     strh r4, [r1, #4]
-    ldr r2, .L08001E44 @ =0x00006BA0
+    ldr r2, .L08001E44 @ =INTRO_SCENE_RESOURCE_OFFSET(8)
     adds r0, r7, r2
     ldr r1, [r0]
     ldr r3, [r1]
@@ -390,16 +392,16 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldrh r1, [r4, #4]
 .L08001C6C:
     lsrs r0, r1, #5
-    ldr r5, .L08001E50 @ =0x00006C60
+    ldr r5, .L08001E50 @ =INTRO_SCENE_CORE_RESOURCE9_TILE_INDEX_OFFSET
     adds r4, r7, r5
     strh r0, [r4]
-    ldr r1, .L08001E54 @ =0x00006BB8
+    ldr r1, .L08001E54 @ =INTRO_SCENE_RESOURCE_OFFSET(8) + INTRO_SCENE_RESOURCE_X_OFFSET
     adds r0, r7, r1
     movs r2, #0xf0
     lsls r2, r2, #0xf
     mov r8, r2
     str r2, [r0]
-    ldr r3, .L08001E58 @ =0x00006BBC
+    ldr r3, .L08001E58 @ =INTRO_SCENE_RESOURCE_OFFSET(8) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r1, r7, r3
     ldr r0, .L08001E5C @ =0xFFA00000
     str r0, [r1]
@@ -447,16 +449,16 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L08001CDE:
     adds r0, r3, #0
     bl CopyHardwareDma3
-    ldr r5, .L08001E60 @ =0x00006BD8
+    ldr r5, .L08001E60 @ =INTRO_SCENE_RESOURCE_OFFSET(9) + INTRO_SCENE_RESOURCE_X_OFFSET
     adds r0, r7, r5
     mov r1, r8
     str r1, [r0]
-    ldr r2, .L08001E64 @ =0x00006BDC
+    ldr r2, .L08001E64 @ =INTRO_SCENE_RESOURCE_OFFSET(9) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r1, r7, r2
     movs r0, #0xb0
     lsls r0, r0, #0xf
     str r0, [r1]
-    ldr r3, .L08001E68 @ =0x00006AA0
+    ldr r3, .L08001E68 @ =INTRO_SCENE_RESOURCE_OFFSET(0)
     adds r4, r7, r3
     movs r1, #0xb0
     lsls r1, r1, #1
@@ -489,8 +491,12 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r3, r4}
     stm r1!, {r3, r4}
     ldr r4, [sp, #0x10]
-    movs r5, #0xd9
+#if ((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) % 128 == 0) && ((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) / 128 <= 255)
+    movs r5, #((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) / 128)
     lsls r5, r5, #7
+#else
+    ldr r5, .LIntroSequencePoolHandle6C80Offset
+#endif
     adds r0, r7, r5
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -506,18 +512,18 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L08001D5C:
     adds r0, r4, #0
     bl CopyHardwareDma3
-    ldr r4, .L08001E70 @ =0x00006AB8
+    ldr r4, .L08001E70 @ =INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_X_OFFSET
     adds r0, r7, r4
     movs r5, #0x84
     lsls r5, r5, #0x11
     str r5, [r0]
-    ldr r1, .L08001E74 @ =0x00006ABC
+    ldr r1, .L08001E74 @ =INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r0, r7, r1
     movs r2, #0x94
     lsls r2, r2, #0x10
     mov r8, r2
     str r2, [r0]
-    ldr r3, .L08001E78 @ =0x00006AC0
+    ldr r3, .L08001E78 @ =INTRO_SCENE_RESOURCE_OFFSET(1)
     adds r4, r7, r3
     ldr r1, .L08001E7C @ =0x00000342
     adds r0, r4, #0
@@ -541,6 +547,9 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     bl memcpy
     b .L08001E80
     .align 2, 0
+#if !(((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) % 128 == 0) && ((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) / 128 <= 255))
+.LIntroSequencePoolHandle6C80Offset: .word INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET
+#endif
 .L08001DAC: .word 0xFFFFEFC8
 .L08001DB0: .word (MEM_VRAM + 0x7FE0)
 .L08001DB4: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE)
@@ -551,53 +560,53 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L08001DC8: .word gIntroSceneStartupPaletteBanks
 .L08001DCC: .word 0x00001030
 .L08001DD0: .word 0x00001034
-.L08001DD4: .word 0x00006BA4
+.L08001DD4: .word INTRO_SCENE_RESOURCE_OFFSET(8) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08001DD8: .word 0x0000101C
-.L08001DDC: .word 0x00006BC4
-.L08001DE0: .word 0x00006AA4
-.L08001DE4: .word 0x00006AC4
+.L08001DDC: .word INTRO_SCENE_RESOURCE_OFFSET(9) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08001DE0: .word INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08001DE4: .word INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08001DE8: .word 0x00001004
-.L08001DEC: .word 0x00006AE4
+.L08001DEC: .word INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08001DF0: .word 0x00001008
-.L08001DF4: .word 0x00006B04
+.L08001DF4: .word INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08001DF8: .word 0x0000100C
-.L08001DFC: .word 0x00006B24
+.L08001DFC: .word INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08001E00: .word 0x00001010
-.L08001E04: .word 0x00006B44
+.L08001E04: .word INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08001E08: .word 0x00001014
-.L08001E0C: .word 0x00006B84
+.L08001E0C: .word INTRO_SCENE_RESOURCE_OFFSET(7) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08001E10: .word 0x00001018
-.L08001E14: .word 0x00006BE4
+.L08001E14: .word INTRO_SCENE_RESOURCE_OFFSET(10) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08001E18: .word 0x00001024
 .L08001E1C: .word gIntroSceneStartupBgTilemaps
-.L08001E20: .word 0x00006C04
+.L08001E20: .word INTRO_SCENE_RESOURCE_OFFSET(11) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08001E24: .word 0x00001028
-.L08001E28: .word 0x00006C24
+.L08001E28: .word INTRO_SCENE_RESOURCE_OFFSET(12) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08001E2C: .word 0x0000102C
 .L08001E30: .word (MEM_VRAM + BG_SCREEN_SIZE)
 .L08001E34: .word (BG_PRIO_3 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (24 << BF_BG_MAP_BASE_OFFSET))
 .L08001E38: .word (BG_PRIO_2 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (26 << BF_BG_MAP_BASE_OFFSET))
 .L08001E3C: .word (BG_PRIO_1 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (28 << BF_BG_MAP_BASE_OFFSET))
 .L08001E40: .word (BG_PRIO_0 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (30 << BF_BG_MAP_BASE_OFFSET))
-.L08001E44: .word 0x00006BA0
+.L08001E44: .word INTRO_SCENE_RESOURCE_OFFSET(8)
 .L08001E48: .word (OBJ_PALETTE + 9 * 32)
 .L08001E4C: .word OBJ_VRAM0
-.L08001E50: .word 0x00006C60
-.L08001E54: .word 0x00006BB8
-.L08001E58: .word 0x00006BBC
+.L08001E50: .word INTRO_SCENE_CORE_RESOURCE9_TILE_INDEX_OFFSET
+.L08001E54: .word INTRO_SCENE_RESOURCE_OFFSET(8) + INTRO_SCENE_RESOURCE_X_OFFSET
+.L08001E58: .word INTRO_SCENE_RESOURCE_OFFSET(8) + INTRO_SCENE_RESOURCE_Y_OFFSET
     @ Resource 8 starts at Y=-56 pixels in JP, -96 in the other releases.
-    .ifdef REGION_JP
+#if defined(REGION_JP)
 .L08001E5C: .word 0xFFC80000
-    .else
+#else
 .L08001E5C: .word 0xFFA00000
-    .endif
-.L08001E60: .word 0x00006BD8
-.L08001E64: .word 0x00006BDC
-.L08001E68: .word 0x00006AA0
+#endif
+.L08001E60: .word INTRO_SCENE_RESOURCE_OFFSET(9) + INTRO_SCENE_RESOURCE_X_OFFSET
+.L08001E64: .word INTRO_SCENE_RESOURCE_OFFSET(9) + INTRO_SCENE_RESOURCE_Y_OFFSET
+.L08001E68: .word INTRO_SCENE_RESOURCE_OFFSET(0)
 .L08001E6C: .word OBJ_PALETTE
-.L08001E70: .word 0x00006AB8
-.L08001E74: .word 0x00006ABC
-.L08001E78: .word 0x00006AC0
+.L08001E70: .word INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_X_OFFSET
+.L08001E74: .word INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_Y_OFFSET
+.L08001E78: .word INTRO_SCENE_RESOURCE_OFFSET(1)
 .L08001E7C: .word 0x00000342
 .L08001E80:
     mov r1, sp
@@ -609,7 +618,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r2, r3}
     stm r1!, {r2, r3}
     ldr r4, [sp, #0x10]
-    ldr r1, .L08002258 @ =0x00006CB8
+    ldr r1, .L08002258 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CB8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -625,14 +634,14 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L08001EAE:
     adds r0, r4, #0
     bl CopyHardwareDma3
-    ldr r4, .L08002260 @ =0x00006AD8
+    ldr r4, .L08002260 @ =INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_X_OFFSET
     adds r0, r7, r4
     str r5, [r0]
-    ldr r5, .L08002264 @ =0x00006ADC
+    ldr r5, .L08002264 @ =INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r0, r7, r5
     mov r1, r8
     str r1, [r0]
-    ldr r2, .L08002268 @ =0x00006AE0
+    ldr r2, .L08002268 @ =INTRO_SCENE_RESOURCE_OFFSET(2)
     adds r0, r7, r2
     ldr r1, [r0]
     ldr r3, [r1]
@@ -660,7 +669,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r3, r4}
     stm r1!, {r3, r4}
     ldr r4, [sp, #0x10]
-    ldr r5, .L08002270 @ =0x00006C90
+    ldr r5, .L08002270 @ =INTRO_SCENE_CORE_POOL_HANDLE_6C90_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -676,18 +685,22 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L08001F1A:
     adds r0, r4, #0
     bl CopyHardwareDma3
-    ldr r4, .L08002274 @ =0x00006AF8
+    ldr r4, .L08002274 @ =INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_X_OFFSET
     adds r0, r7, r4
     movs r5, #0xa0
     lsls r5, r5, #0xe
     str r5, [r0]
-    ldr r0, .L08002278 @ =0x00006AFC
+    ldr r0, .L08002278 @ =INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r1, r7, r0
     movs r0, #0xa8
     lsls r0, r0, #0xf
     str r0, [r1]
-    movs r1, #0xd6
+#if ((INTRO_SCENE_RESOURCE_OFFSET(3)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(3)) / 128 <= 255)
+    movs r1, #((INTRO_SCENE_RESOURCE_OFFSET(3)) / 128)
     lsls r1, r1, #7
+#else
+    ldr r1, .LIntroSequenceResource3Offset
+#endif
     adds r4, r7, r1
     ldr r1, .L0800227C @ =0x000002B2
     adds r0, r4, #0
@@ -718,7 +731,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r3, r4}
     stm r1!, {r3, r4}
     ldr r4, [sp, #0x10]
-    ldr r5, .L08002284 @ =0x00006CA0
+    ldr r5, .L08002284 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CA0_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -734,16 +747,16 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L08001F96:
     adds r0, r4, #0
     bl CopyHardwareDma3
-    ldr r4, .L08002288 @ =0x00006B18
+    ldr r4, .L08002288 @ =INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_X_OFFSET
     adds r1, r7, r4
     movs r0, #0x88
     lsls r0, r0, #0x11
     str r0, [r1]
-    ldr r5, .L0800228C @ =0x00006B1C
+    ldr r5, .L0800228C @ =INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r0, r7, r5
     mov r1, r8
     str r1, [r0]
-    ldr r2, .L08002290 @ =0x00006B20
+    ldr r2, .L08002290 @ =INTRO_SCENE_RESOURCE_OFFSET(4)
     adds r4, r7, r2
     ldr r1, .L08002294 @ =0x00000924
     adds r0, r4, #0
@@ -773,22 +786,22 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     stm r1!, {r2, r4, r5}
     ldm r0!, {r3, r4}
     stm r1!, {r3, r4}
-    ldr r5, .L0800229C @ =0x00006B38
+    ldr r5, .L0800229C @ =INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_X_OFFSET
     adds r1, r7, r5
     ldr r0, .L080022A0 @ =0xFFF00000
     str r0, [r1]
-    ldr r1, .L080022A4 @ =0x00006B3C
+    ldr r1, .L080022A4 @ =INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r0, r7, r1
     mov r2, r8
     str r2, [r0]
-    ldr r3, .L080022A8 @ =0x00006B40
+    ldr r3, .L080022A8 @ =INTRO_SCENE_RESOURCE_OFFSET(5)
     adds r4, r7, r3
     movs r5, #0xe6
     lsls r5, r5, #3
     adds r0, r4, #0
     adds r1, r5, #0
     bl ResolveIndexedResourceHandle
-    ldr r1, .L080022AC @ =0x00006B60
+    ldr r1, .L080022AC @ =INTRO_SCENE_RESOURCE_OFFSET(6)
     adds r0, r7, r1
     adds r1, r5, #0
     bl ResolveIndexedResourceHandle
@@ -818,7 +831,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r3, r4}
     stm r1!, {r3, r4}
     ldr r4, [sp, #0x10]
-    ldr r5, .L080022B4 @ =0x00006CC8
+    ldr r5, .L080022B4 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -834,17 +847,17 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L0800206E:
     adds r0, r4, #0
     bl CopyHardwareDma3
-    ldr r4, .L080022B8 @ =0x00006B58
+    ldr r4, .L080022B8 @ =INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_X_OFFSET
     adds r0, r7, r4
     movs r5, #0xa0
     lsls r5, r5, #0xe
     str r5, [r0]
-    ldr r1, .L080022BC @ =0x00006B5C
+    ldr r1, .L080022BC @ =INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r0, r7, r1
     movs r2, #0x80
     lsls r2, r2, #0xe
     str r2, [r0]
-    ldr r3, .L080022C0 @ =0x00006B78
+    ldr r3, .L080022C0 @ =INTRO_SCENE_RESOURCE_OFFSET(6) + INTRO_SCENE_RESOURCE_X_OFFSET
     adds r1, r7, r3
     movs r0, #0xc8
     lsls r0, r0, #0x10
@@ -852,8 +865,12 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     adds r4, #0x24
     adds r0, r7, r4
     str r2, [r0]
-    movs r5, #0xd7
+#if ((INTRO_SCENE_RESOURCE_OFFSET(7)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(7)) / 128 <= 255)
+    movs r5, #((INTRO_SCENE_RESOURCE_OFFSET(7)) / 128)
     lsls r5, r5, #7
+#else
+    ldr r5, .LIntroSequenceResource7Offset
+#endif
     adds r4, r7, r5
     ldr r1, .L080022C4 @ =0x0000091A
     adds r0, r4, #0
@@ -885,7 +902,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r2, r3}
     stm r1!, {r2, r3}
     ldr r5, [sp, #0x10]
-    ldr r1, .L080022CC @ =0x00006CE8
+    ldr r1, .L080022CC @ =INTRO_SCENE_CORE_POOL_HANDLE_6CE8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -902,7 +919,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     adds r0, r5, #0
     bl CopyHardwareDma3
     ldr r5, [sp, #8]
-    ldr r1, .L080022D0 @ =0x00006CD0
+    ldr r1, .L080022D0 @ =INTRO_SCENE_CORE_STATE_HANDLE_6CD0_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
@@ -945,7 +962,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r2, r3}
     stm r1!, {r2, r3}
     ldr r5, [sp, #8]
-    ldr r1, .L080022DC @ =0x00006CD8
+    ldr r1, .L080022DC @ =INTRO_SCENE_CORE_STATE_HANDLE_6CD8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
@@ -990,7 +1007,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r3, r4}
     stm r1!, {r3, r4}
     ldr r4, [sp, #8]
-    ldr r5, .L080022E4 @ =0x00006CE0
+    ldr r5, .L080022E4 @ =INTRO_SCENE_CORE_STATE_HANDLE_6CE0_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
@@ -1006,14 +1023,14 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L080021E0:
     adds r0, r4, #0
     bl CopyHardwareDma3
-    ldr r5, .L080022E8 @ =0x00006BE0
+    ldr r5, .L080022E8 @ =INTRO_SCENE_RESOURCE_OFFSET(10)
     adds r4, r7, r5
     adds r0, r4, #0
-    .ifdef REGION_JP
+#if defined(REGION_JP)
     movs r1, #2
-    .else
+#else
     movs r1, #1
-    .endif
+#endif
     bl ResolveIndexedResourceHandle
     ldr r1, [r4]
     ldr r3, [r1]
@@ -1041,8 +1058,12 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r3, r4}
     stm r1!, {r3, r4}
     ldr r4, [sp, #0x10]
-    movs r5, #0xda
+#if ((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) % 128 == 0) && ((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) / 128 <= 255)
+    movs r5, #((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) / 128)
     lsls r5, r5, #7
+#else
+    ldr r5, .LIntroSequencePoolHandle6D00Offset
+#endif
     adds r0, r7, r5
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -1059,50 +1080,59 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     adds r0, r4, #0
     bl CopyHardwareDma3
     ldr r4, [sp, #8]
-    ldr r5, .L080022F0 @ =0x00006CF0
+    ldr r5, .L080022F0 @ =INTRO_SCENE_CORE_STATE_HANDLE_6CF0_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
     b .L080022F4
     .align 2, 0
-.L08002258: .word 0x00006CB8
+#if !(((INTRO_SCENE_RESOURCE_OFFSET(3)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(3)) / 128 <= 255))
+.LIntroSequenceResource3Offset: .word INTRO_SCENE_RESOURCE_OFFSET(3)
+#endif
+#if !(((INTRO_SCENE_RESOURCE_OFFSET(7)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(7)) / 128 <= 255))
+.LIntroSequenceResource7Offset: .word INTRO_SCENE_RESOURCE_OFFSET(7)
+#endif
+#if !(((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) % 128 == 0) && ((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) / 128 <= 255))
+.LIntroSequencePoolHandle6D00Offset: .word INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET
+#endif
+.L08002258: .word INTRO_SCENE_CORE_POOL_HANDLE_6CB8_OFFSET
 .L0800225C: .word OBJ_PALETTE
-.L08002260: .word 0x00006AD8
-.L08002264: .word 0x00006ADC
-.L08002268: .word 0x00006AE0
+.L08002260: .word INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_X_OFFSET
+.L08002264: .word INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_Y_OFFSET
+.L08002268: .word INTRO_SCENE_RESOURCE_OFFSET(2)
 .L0800226C: .word 0x00001008
-.L08002270: .word 0x00006C90
-.L08002274: .word 0x00006AF8
-.L08002278: .word 0x00006AFC
+.L08002270: .word INTRO_SCENE_CORE_POOL_HANDLE_6C90_OFFSET
+.L08002274: .word INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_X_OFFSET
+.L08002278: .word INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_Y_OFFSET
 .L0800227C: .word 0x000002B2
 .L08002280: .word 0x0000100C
-.L08002284: .word 0x00006CA0
-.L08002288: .word 0x00006B18
-.L0800228C: .word 0x00006B1C
-.L08002290: .word 0x00006B20
+.L08002284: .word INTRO_SCENE_CORE_POOL_HANDLE_6CA0_OFFSET
+.L08002288: .word INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_X_OFFSET
+.L0800228C: .word INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_Y_OFFSET
+.L08002290: .word INTRO_SCENE_RESOURCE_OFFSET(4)
 .L08002294: .word 0x00000924
 .L08002298: .word 0x00001010
-.L0800229C: .word 0x00006B38
+.L0800229C: .word INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_X_OFFSET
 .L080022A0: .word 0xFFF00000
-.L080022A4: .word 0x00006B3C
-.L080022A8: .word 0x00006B40
-.L080022AC: .word 0x00006B60
+.L080022A4: .word INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_Y_OFFSET
+.L080022A8: .word INTRO_SCENE_RESOURCE_OFFSET(5)
+.L080022AC: .word INTRO_SCENE_RESOURCE_OFFSET(6)
 .L080022B0: .word 0x00001014
-.L080022B4: .word 0x00006CC8
-.L080022B8: .word 0x00006B58
-.L080022BC: .word 0x00006B5C
-.L080022C0: .word 0x00006B78
+.L080022B4: .word INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
+.L080022B8: .word INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_X_OFFSET
+.L080022BC: .word INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_Y_OFFSET
+.L080022C0: .word INTRO_SCENE_RESOURCE_OFFSET(6) + INTRO_SCENE_RESOURCE_X_OFFSET
 .L080022C4: .word 0x0000091A
 .L080022C8: .word 0x00001018
-.L080022CC: .word 0x00006CE8
-.L080022D0: .word 0x00006CD0
+.L080022CC: .word INTRO_SCENE_CORE_POOL_HANDLE_6CE8_OFFSET
+.L080022D0: .word INTRO_SCENE_CORE_STATE_HANDLE_6CD0_OFFSET
 .L080022D4: .word OBJ_VRAM0
 .L080022D8: .word 0x0000091B
-.L080022DC: .word 0x00006CD8
+.L080022DC: .word INTRO_SCENE_CORE_STATE_HANDLE_6CD8_OFFSET
 .L080022E0: .word 0x0000091C
-.L080022E4: .word 0x00006CE0
-.L080022E8: .word 0x00006BE0
+.L080022E4: .word INTRO_SCENE_CORE_STATE_HANDLE_6CE0_OFFSET
+.L080022E8: .word INTRO_SCENE_RESOURCE_OFFSET(10)
 .L080022EC: .word 0x00001024
-.L080022F0: .word 0x00006CF0
+.L080022F0: .word INTRO_SCENE_CORE_STATE_HANDLE_6CF0_OFFSET
 .L080022F4:
     bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
@@ -1117,20 +1147,24 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L0800230A:
     adds r0, r4, #0
     bl CopyHardwareDma3
-    ldr r4, .L080024A0 @ =0x00006BFC
+    ldr r4, .L080024A0 @ =INTRO_SCENE_RESOURCE_OFFSET(10) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r0, r7, r4
     movs r5, #0xe0
     lsls r5, r5, #0xf
     str r5, [r0]
-    movs r0, #0xd8
+#if ((INTRO_SCENE_RESOURCE_OFFSET(11)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(11)) / 128 <= 255)
+    movs r0, #((INTRO_SCENE_RESOURCE_OFFSET(11)) / 128)
     lsls r0, r0, #7
+#else
+    ldr r0, .LIntroSequenceResource11Offset
+#endif
     adds r4, r7, r0
     adds r0, r4, #0
-    .ifdef REGION_JP
+#if defined(REGION_JP)
     movs r1, #5
-    .else
+#else
     movs r1, #4
-    .endif
+#endif
     bl ResolveIndexedResourceHandle
     ldr r1, [r4]
     ldr r3, [r1]
@@ -1158,7 +1192,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r2, r3}
     stm r1!, {r2, r3}
     ldr r4, [sp, #8]
-    ldr r1, .L080024A8 @ =0x00006CF8
+    ldr r1, .L080024A8 @ =INTRO_SCENE_CORE_STATE_HANDLE_6CF8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
@@ -1174,10 +1208,10 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L0800237C:
     adds r0, r4, #0
     bl CopyHardwareDma3
-    ldr r4, .L080024AC @ =0x00006C1C
+    ldr r4, .L080024AC @ =INTRO_SCENE_RESOURCE_OFFSET(11) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r0, r7, r4
     str r5, [r0]
-    ldr r5, .L080024B0 @ =0x00006C20
+    ldr r5, .L080024B0 @ =INTRO_SCENE_RESOURCE_OFFSET(12)
     adds r0, r7, r5
     ldr r1, [r0]
     ldr r3, [r1]
@@ -1205,7 +1239,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r3, r4}
     stm r1!, {r3, r4}
     ldr r4, [sp, #0x10]
-    ldr r5, .L080024B8 @ =0x00006D10
+    ldr r5, .L080024B8 @ =INTRO_SCENE_CORE_POOL_HANDLE_6D10_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -1222,7 +1256,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     adds r0, r4, #0
     bl CopyHardwareDma3
     ldr r4, [sp, #8]
-    ldr r5, .L080024C0 @ =0x00006D08
+    ldr r5, .L080024C0 @ =INTRO_SCENE_CORE_STATE_HANDLE_6D08_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
@@ -1238,17 +1272,17 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L08002404:
     adds r0, r4, #0
     bl CopyHardwareDma3
-    ldr r4, .L080024C4 @ =0x00006C38
+    ldr r4, .L080024C4 @ =INTRO_SCENE_RESOURCE_OFFSET(12) + INTRO_SCENE_RESOURCE_X_OFFSET
     adds r0, r7, r4
     movs r5, #0xf0
     lsls r5, r5, #0xf
     str r5, [r0]
-    ldr r0, .L080024C8 @ =0x00006C3C
+    ldr r0, .L080024C8 @ =INTRO_SCENE_RESOURCE_OFFSET(12) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r1, r7, r0
     movs r0, #0x90
     lsls r0, r0, #0x10
     str r0, [r1]
-    ldr r2, .L080024CC @ =0x00006A40
+    ldr r2, .L080024CC @ =INTRO_SCENE_CORE_SMALL_ARCHIVE_OFFSET
     adds r1, r7, r2
     adds r0, r6, #0
     movs r2, #0
@@ -1262,7 +1296,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldm r0!, {r3, r4}
     stm r1!, {r3, r4}
     ldr r4, [sp, #0x10]
-    ldr r1, .L080024D0 @ =0x00006D20
+    ldr r1, .L080024D0 @ =INTRO_SCENE_CORE_POOL_HANDLE_6D20_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -1279,7 +1313,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     adds r0, r4, #0
     bl CopyHardwareDma3
     ldr r4, [sp, #8]
-    ldr r1, .L080024D4 @ =0x00006D18
+    ldr r1, .L080024D4 @ =INTRO_SCENE_CORE_STATE_HANDLE_6D18_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
@@ -1295,7 +1329,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L0800247C:
     adds r0, r4, #0
     bl CopyHardwareDma3
-    ldr r4, .L080024D8 @ =0x00006C5C
+    ldr r4, .L080024D8 @ =INTRO_SCENE_RESOURCE_OFFSET(13) + INTRO_SCENE_RESOURCE_Y_OFFSET
     adds r0, r7, r4
     str r5, [r0]
     ldr r3, .L080024DC @ =0x00001038
@@ -1308,22 +1342,25 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     pop {r0}
     bx r0
     .align 2, 0
+#if !(((INTRO_SCENE_RESOURCE_OFFSET(11)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(11)) / 128 <= 255))
+.LIntroSequenceResource11Offset: .word INTRO_SCENE_RESOURCE_OFFSET(11)
+#endif
 .L0800249C: .word OBJ_VRAM0
-.L080024A0: .word 0x00006BFC
+.L080024A0: .word INTRO_SCENE_RESOURCE_OFFSET(10) + INTRO_SCENE_RESOURCE_Y_OFFSET
 .L080024A4: .word 0x00001028
-.L080024A8: .word 0x00006CF8
-.L080024AC: .word 0x00006C1C
-.L080024B0: .word 0x00006C20
+.L080024A8: .word INTRO_SCENE_CORE_STATE_HANDLE_6CF8_OFFSET
+.L080024AC: .word INTRO_SCENE_RESOURCE_OFFSET(11) + INTRO_SCENE_RESOURCE_Y_OFFSET
+.L080024B0: .word INTRO_SCENE_RESOURCE_OFFSET(12)
 .L080024B4: .word 0x0000102C
-.L080024B8: .word 0x00006D10
+.L080024B8: .word INTRO_SCENE_CORE_POOL_HANDLE_6D10_OFFSET
 .L080024BC: .word OBJ_PALETTE
-.L080024C0: .word 0x00006D08
-.L080024C4: .word 0x00006C38
-.L080024C8: .word 0x00006C3C
-.L080024CC: .word 0x00006A40
-.L080024D0: .word 0x00006D20
-.L080024D4: .word 0x00006D18
-.L080024D8: .word 0x00006C5C
+.L080024C0: .word INTRO_SCENE_CORE_STATE_HANDLE_6D08_OFFSET
+.L080024C4: .word INTRO_SCENE_RESOURCE_OFFSET(12) + INTRO_SCENE_RESOURCE_X_OFFSET
+.L080024C8: .word INTRO_SCENE_RESOURCE_OFFSET(12) + INTRO_SCENE_RESOURCE_Y_OFFSET
+.L080024CC: .word INTRO_SCENE_CORE_SMALL_ARCHIVE_OFFSET
+.L080024D0: .word INTRO_SCENE_CORE_POOL_HANDLE_6D20_OFFSET
+.L080024D4: .word INTRO_SCENE_CORE_STATE_HANDLE_6D18_OFFSET
+.L080024D8: .word INTRO_SCENE_RESOURCE_OFFSET(13) + INTRO_SCENE_RESOURCE_Y_OFFSET
 .L080024DC: .word 0x00001038
 
     @ Frame drawing remains explicit Thumb until ordinary C++ matches.
@@ -1367,44 +1404,48 @@ RenderIntroSceneFrame:
     str r1, [sp, #0x34]
     mov r2, r8
     strh r2, [r0, #4]
-    ldr r3, .L080028E0 @ =0x00006AB4
+    ldr r3, .L080028E0 @ =INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r4, r7, r3
-    ldr r1, .L080028E4 @ =0x00006AA0
+    ldr r1, .L080028E4 @ =INTRO_SCENE_RESOURCE_OFFSET(0)
     adds r0, r7, r1
     bl UpdateIndexedResourceHandle
     str r0, [r4]
-    ldr r2, .L080028E8 @ =0x00006AD4
+    ldr r2, .L080028E8 @ =INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r4, r7, r2
-    ldr r3, .L080028EC @ =0x00006AC0
+    ldr r3, .L080028EC @ =INTRO_SCENE_RESOURCE_OFFSET(1)
     adds r0, r7, r3
     bl UpdateIndexedResourceHandle
     str r0, [r4]
-    ldr r0, .L080028F0 @ =0x00006AF4
+    ldr r0, .L080028F0 @ =INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r4, r7, r0
-    ldr r1, .L080028F4 @ =0x00006AE0
+    ldr r1, .L080028F4 @ =INTRO_SCENE_RESOURCE_OFFSET(2)
     adds r0, r7, r1
     bl UpdateIndexedResourceHandle
     str r0, [r4]
-    ldr r2, .L080028F8 @ =0x00006B14
+    ldr r2, .L080028F8 @ =INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r4, r7, r2
-    movs r3, #0xd6
+#if ((INTRO_SCENE_RESOURCE_OFFSET(3)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(3)) / 128 <= 255)
+    movs r3, #((INTRO_SCENE_RESOURCE_OFFSET(3)) / 128)
     lsls r3, r3, #7
+#else
+    ldr r3, .LIntroFrameResource3Offset
+#endif
     adds r0, r7, r3
     bl UpdateIndexedResourceHandle
     str r0, [r4]
-    ldr r0, .L080028FC @ =0x00006B34
+    ldr r0, .L080028FC @ =INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r4, r7, r0
-    ldr r1, .L08002900 @ =0x00006B20
+    ldr r1, .L08002900 @ =INTRO_SCENE_RESOURCE_OFFSET(4)
     adds r0, r7, r1
     bl UpdateIndexedResourceHandle
     str r0, [r4]
-    ldr r2, .L08002904 @ =0x00006B54
+    ldr r2, .L08002904 @ =INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r4, r7, r2
-    ldr r3, .L08002908 @ =0x00006B40
+    ldr r3, .L08002908 @ =INTRO_SCENE_RESOURCE_OFFSET(5)
     adds r0, r7, r3
     bl UpdateIndexedResourceHandle
     str r0, [r4]
-    ldr r4, .L0800290C @ =0x00006C6D
+    ldr r4, .L0800290C @ =INTRO_SCENE_CORE_UNK_6C6D_OFFSET
     adds r4, r4, r7
     mov sl, r4
     movs r0, #0
@@ -1415,12 +1456,12 @@ RenderIntroSceneFrame:
     bne .L08002596
     b .L080027C4
 .L08002596:
-    ldr r6, .L08002910 @ =0x00006C20
+    ldr r6, .L08002910 @ =INTRO_SCENE_RESOURCE_OFFSET(12)
     adds r4, r7, r6
     ldr r1, [r4]
     ldr r3, [r1]
     ldrh r2, [r4, #0xc]
-    ldr r5, .L08002914 @ =0x00006C24
+    ldr r5, .L08002914 @ =INTRO_SCENE_RESOURCE_OFFSET(12) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r5
     lsls r2, r2, #2
     ldr r0, [r0]
@@ -1451,13 +1492,13 @@ RenderIntroSceneFrame:
     strh r1, [r0, #2]
     mov r1, r8
     strh r1, [r0, #8]
-    ldr r2, .L08002918 @ =0x00006D08
+    ldr r2, .L08002918 @ =INTRO_SCENE_CORE_STATE_HANDLE_6D08_OFFSET
     adds r0, r7, r2
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
-    ldr r3, .L0800291C @ =0x00006D10
+    ldr r3, .L0800291C @ =INTRO_SCENE_CORE_POOL_HANDLE_6D10_OFFSET
     adds r0, r7, r3
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -1479,9 +1520,9 @@ RenderIntroSceneFrame:
     adds r0, r3, #0
     mov r3, sp
     bl DrawIndexedResourceSprites
-    ldr r5, .L08002920 @ =0x00006BF4
+    ldr r5, .L08002920 @ =INTRO_SCENE_RESOURCE_OFFSET(10) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r4, r7, r5
-    ldr r6, .L08002924 @ =0x00006BE0
+    ldr r6, .L08002924 @ =INTRO_SCENE_RESOURCE_OFFSET(10)
     adds r5, r7, r6
     adds r0, r5, #0
     bl UpdateIndexedResourceHandle
@@ -1489,7 +1530,7 @@ RenderIntroSceneFrame:
     ldr r1, [r5]
     ldr r3, [r1]
     ldrh r2, [r5, #0xc]
-    ldr r4, .L08002928 @ =0x00006BE4
+    ldr r4, .L08002928 @ =INTRO_SCENE_RESOURCE_OFFSET(10) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r4
     lsls r2, r2, #2
     ldr r0, [r0]
@@ -1518,14 +1559,18 @@ RenderIntroSceneFrame:
     ldrsh r1, [r5, r0]
     mov r0, sp
     strh r1, [r0, #2]
-    ldr r1, .L0800292C @ =0x00006CF0
+    ldr r1, .L0800292C @ =INTRO_SCENE_CORE_STATE_HANDLE_6CF0_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
-    movs r2, #0xda
+#if ((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) % 128 == 0) && ((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) / 128 <= 255)
+    movs r2, #((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) / 128)
     lsls r2, r2, #7
+#else
+    ldr r2, .LIntroFramePoolHandle6D00Offset
+#endif
     adds r6, r7, r2
     ldr r1, [r6, #4]
     adds r0, r6, #0
@@ -1548,10 +1593,14 @@ RenderIntroSceneFrame:
     ldrsb r0, [r4, r0]
     cmp r0, #2
     bne .L0800273E
-    ldr r5, .L08002930 @ =0x00006C14
+    ldr r5, .L08002930 @ =INTRO_SCENE_RESOURCE_OFFSET(11) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r4, r7, r5
-    movs r0, #0xd8
+#if ((INTRO_SCENE_RESOURCE_OFFSET(11)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(11)) / 128 <= 255)
+    movs r0, #((INTRO_SCENE_RESOURCE_OFFSET(11)) / 128)
     lsls r0, r0, #7
+#else
+    ldr r0, .LIntroFrameResource11Offset
+#endif
     adds r5, r7, r0
     adds r0, r5, #0
     bl UpdateIndexedResourceHandle
@@ -1559,7 +1608,7 @@ RenderIntroSceneFrame:
     ldr r1, [r5]
     ldr r3, [r1]
     ldrh r2, [r5, #0xc]
-    ldr r4, .L08002934 @ =0x00006C04
+    ldr r4, .L08002934 @ =INTRO_SCENE_RESOURCE_OFFSET(11) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r4
     lsls r2, r2, #2
     ldr r0, [r0]
@@ -1588,7 +1637,7 @@ RenderIntroSceneFrame:
     ldrsh r1, [r5, r0]
     mov r0, sp
     strh r1, [r0, #2]
-    ldr r1, .L08002938 @ =0x00006CF8
+    ldr r1, .L08002938 @ =INTRO_SCENE_CORE_STATE_HANDLE_6CF8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
@@ -1611,14 +1660,14 @@ RenderIntroSceneFrame:
     mov r3, sp
     bl DrawIndexedResourceSprites
 .L0800273E:
-    ldr r5, .L0800293C @ =0x00006C40
+    ldr r5, .L0800293C @ =INTRO_SCENE_RESOURCE_OFFSET(13)
     adds r4, r7, r5
     adds r0, r4, #0
     bl UpdateIndexedResourceHandle
     ldr r1, [r4]
     ldr r3, [r1]
     ldrh r2, [r4, #0xc]
-    ldr r6, .L08002940 @ =0x00006C44
+    ldr r6, .L08002940 @ =INTRO_SCENE_RESOURCE_OFFSET(13) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r6
     lsls r2, r2, #2
     ldr r0, [r0]
@@ -1646,13 +1695,13 @@ RenderIntroSceneFrame:
     movs r2, #0x1e
     ldrsh r1, [r4, r2]
     strh r1, [r0, #2]
-    ldr r3, .L08002944 @ =0x00006D18
+    ldr r3, .L08002944 @ =INTRO_SCENE_CORE_STATE_HANDLE_6D18_OFFSET
     adds r0, r7, r3
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
-    ldr r4, .L08002948 @ =0x00006D20
+    ldr r4, .L08002948 @ =INTRO_SCENE_CORE_POOL_HANDLE_6D20_OFFSET
     adds r0, r7, r4
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -1673,12 +1722,12 @@ RenderIntroSceneFrame:
     mov r3, sp
     bl DrawIndexedResourceSprites
 .L080027C4:
-    ldr r6, .L0800294C @ =0x00006BA0
+    ldr r6, .L0800294C @ =INTRO_SCENE_RESOURCE_OFFSET(8)
     adds r4, r7, r6
     ldr r1, [r4]
     ldr r3, [r1]
     ldrh r2, [r4, #0xc]
-    ldr r5, .L08002950 @ =0x00006BA4
+    ldr r5, .L08002950 @ =INTRO_SCENE_RESOURCE_OFFSET(8) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r5
     lsls r2, r2, #2
     ldr r0, [r0]
@@ -1728,7 +1777,7 @@ RenderIntroSceneFrame:
     adds r0, r3, #0
     mov r3, sp
     bl DrawIndexedResourceSprites
-    ldr r5, .L08002954 @ =0x00006D32
+    ldr r5, .L08002954 @ =INTRO_SCENE_CORE_STARTUP_PHASE_OFFSET
     adds r0, r7, r5
     movs r1, #0
     ldrsh r0, [r0, r1]
@@ -1738,7 +1787,7 @@ RenderIntroSceneFrame:
 .L08002846:
     adds r0, r7, #0
     bl GetHardwareSpriteBuffer
-    ldr r2, .L08002958 @ =0x00006C64
+    ldr r2, .L08002958 @ =INTRO_SCENE_CORE_SPRITE_MATRIX_OFFSET
     adds r5, r7, r2
     adds r0, #4
     ldrh r1, [r5]
@@ -1749,13 +1798,13 @@ RenderIntroSceneFrame:
     strh r1, [r0, #0x16]
     ldrh r1, [r5, #6]
     strh r1, [r0, #0x1e]
-    ldr r3, .L0800295C @ =0x00006BC0
+    ldr r3, .L0800295C @ =INTRO_SCENE_RESOURCE_OFFSET(9)
     adds r3, r3, r7
     mov r8, r3
     ldr r1, [r3]
     ldr r4, [r1]
     ldrh r2, [r3, #0xc]
-    ldr r3, .L08002960 @ =0x00006BC4
+    ldr r3, .L08002960 @ =INTRO_SCENE_RESOURCE_OFFSET(9) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r3
     lsls r2, r2, #2
     ldr r0, [r0]
@@ -1787,7 +1836,7 @@ RenderIntroSceneFrame:
     strh r1, [r0, #2]
     strh r6, [r0, #8]
     mov r1, sp
-    ldr r2, .L08002964 @ =0x00006C60
+    ldr r2, .L08002964 @ =INTRO_SCENE_CORE_RESOURCE9_TILE_INDEX_OFFSET
     adds r0, r7, r2
     ldrh r0, [r0]
     strh r0, [r1, #6]
@@ -1801,7 +1850,7 @@ RenderIntroSceneFrame:
     lsls r0, r0, #1
     cmp r1, r0
     bne .L0800296C
-    ldr r4, .L08002968 @ =0x00006C6A
+    ldr r4, .L08002968 @ =INTRO_SCENE_CORE_SPRITE_MATRIX_OFFSET + INTRO_SCENE_MATRIX_PD_OFFSET
     adds r0, r7, r4
     movs r5, #0
     ldrsh r0, [r0, r5]
@@ -1810,48 +1859,57 @@ RenderIntroSceneFrame:
     str r6, [sp, #0x14]
     b .L08002970
     .align 2, 0
-.L080028E0: .word 0x00006AB4
-.L080028E4: .word 0x00006AA0
-.L080028E8: .word 0x00006AD4
-.L080028EC: .word 0x00006AC0
-.L080028F0: .word 0x00006AF4
-.L080028F4: .word 0x00006AE0
-.L080028F8: .word 0x00006B14
-.L080028FC: .word 0x00006B34
-.L08002900: .word 0x00006B20
-.L08002904: .word 0x00006B54
-.L08002908: .word 0x00006B40
-.L0800290C: .word 0x00006C6D
-.L08002910: .word 0x00006C20
-.L08002914: .word 0x00006C24
-.L08002918: .word 0x00006D08
-.L0800291C: .word 0x00006D10
-.L08002920: .word 0x00006BF4
-.L08002924: .word 0x00006BE0
-.L08002928: .word 0x00006BE4
-.L0800292C: .word 0x00006CF0
-.L08002930: .word 0x00006C14
-.L08002934: .word 0x00006C04
-.L08002938: .word 0x00006CF8
-.L0800293C: .word 0x00006C40
-.L08002940: .word 0x00006C44
-.L08002944: .word 0x00006D18
-.L08002948: .word 0x00006D20
-.L0800294C: .word 0x00006BA0
-.L08002950: .word 0x00006BA4
-.L08002954: .word 0x00006D32
-.L08002958: .word 0x00006C64
-.L0800295C: .word 0x00006BC0
-.L08002960: .word 0x00006BC4
-.L08002964: .word 0x00006C60
-.L08002968: .word 0x00006C6A
+#if !(((INTRO_SCENE_RESOURCE_OFFSET(3)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(3)) / 128 <= 255))
+.LIntroFrameResource3Offset: .word INTRO_SCENE_RESOURCE_OFFSET(3)
+#endif
+#if !(((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) % 128 == 0) && ((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) / 128 <= 255))
+.LIntroFramePoolHandle6D00Offset: .word INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET
+#endif
+#if !(((INTRO_SCENE_RESOURCE_OFFSET(11)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(11)) / 128 <= 255))
+.LIntroFrameResource11Offset: .word INTRO_SCENE_RESOURCE_OFFSET(11)
+#endif
+.L080028E0: .word INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
+.L080028E4: .word INTRO_SCENE_RESOURCE_OFFSET(0)
+.L080028E8: .word INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
+.L080028EC: .word INTRO_SCENE_RESOURCE_OFFSET(1)
+.L080028F0: .word INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
+.L080028F4: .word INTRO_SCENE_RESOURCE_OFFSET(2)
+.L080028F8: .word INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
+.L080028FC: .word INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
+.L08002900: .word INTRO_SCENE_RESOURCE_OFFSET(4)
+.L08002904: .word INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
+.L08002908: .word INTRO_SCENE_RESOURCE_OFFSET(5)
+.L0800290C: .word INTRO_SCENE_CORE_UNK_6C6D_OFFSET
+.L08002910: .word INTRO_SCENE_RESOURCE_OFFSET(12)
+.L08002914: .word INTRO_SCENE_RESOURCE_OFFSET(12) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002918: .word INTRO_SCENE_CORE_STATE_HANDLE_6D08_OFFSET
+.L0800291C: .word INTRO_SCENE_CORE_POOL_HANDLE_6D10_OFFSET
+.L08002920: .word INTRO_SCENE_RESOURCE_OFFSET(10) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
+.L08002924: .word INTRO_SCENE_RESOURCE_OFFSET(10)
+.L08002928: .word INTRO_SCENE_RESOURCE_OFFSET(10) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L0800292C: .word INTRO_SCENE_CORE_STATE_HANDLE_6CF0_OFFSET
+.L08002930: .word INTRO_SCENE_RESOURCE_OFFSET(11) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
+.L08002934: .word INTRO_SCENE_RESOURCE_OFFSET(11) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002938: .word INTRO_SCENE_CORE_STATE_HANDLE_6CF8_OFFSET
+.L0800293C: .word INTRO_SCENE_RESOURCE_OFFSET(13)
+.L08002940: .word INTRO_SCENE_RESOURCE_OFFSET(13) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002944: .word INTRO_SCENE_CORE_STATE_HANDLE_6D18_OFFSET
+.L08002948: .word INTRO_SCENE_CORE_POOL_HANDLE_6D20_OFFSET
+.L0800294C: .word INTRO_SCENE_RESOURCE_OFFSET(8)
+.L08002950: .word INTRO_SCENE_RESOURCE_OFFSET(8) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002954: .word INTRO_SCENE_CORE_STARTUP_PHASE_OFFSET
+.L08002958: .word INTRO_SCENE_CORE_SPRITE_MATRIX_OFFSET
+.L0800295C: .word INTRO_SCENE_RESOURCE_OFFSET(9)
+.L08002960: .word INTRO_SCENE_RESOURCE_OFFSET(9) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002964: .word INTRO_SCENE_CORE_RESOURCE9_TILE_INDEX_OFFSET
+.L08002968: .word INTRO_SCENE_CORE_SPRITE_MATRIX_OFFSET + INTRO_SCENE_MATRIX_PD_OFFSET
 .L0800296C:
     movs r0, #1
     str r0, [sp, #0x14]
 .L08002970:
     @ JP submits resource 9 after setting its affine parameters. The overseas
     @ originals prepare those parameters but proceed without this submission.
-    .ifdef REGION_JP
+#if defined(REGION_JP)
     mov r0, sp
     movs r1, #1
     strb r1, [r0, #0x18]
@@ -1869,23 +1927,23 @@ RenderIntroSceneFrame:
     adds r0, r3, #0
     mov r3, sp
     bl DrawIndexedResourceSprites
-    .else
+#else
     mov r1, sp
     movs r0, #1
     strb r0, [r1, #0x18]
-    .endif
+#endif
 .L08002976:
-    .ifdef REGION_JP
-    ldr r0, .L08002A68 @ =0x00006AA0
+#if defined(REGION_JP)
+    ldr r0, .L08002A68 @ =INTRO_SCENE_RESOURCE_OFFSET(0)
     adds r4, r7, r0
-    .else
-    ldr r6, .L08002A68 @ =0x00006AA0
+#else
+    ldr r6, .L08002A68 @ =INTRO_SCENE_RESOURCE_OFFSET(0)
     adds r4, r7, r6
-    .endif
+#endif
     ldr r1, [r4]
     ldr r3, [r1]
     ldrh r2, [r4, #0xc]
-    ldr r5, .L08002A6C @ =0x00006AA4
+    ldr r5, .L08002A6C @ =INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r5
     lsls r2, r2, #2
     ldr r0, [r0]
@@ -1916,15 +1974,19 @@ RenderIntroSceneFrame:
     mov r0, sp
     strh r1, [r0, #2]
     strh r5, [r0, #8]
-    ldr r1, .L08002A70 @ =0x00006C78
+    ldr r1, .L08002A70 @ =INTRO_SCENE_CORE_STATE_HANDLE_6C78_OFFSET
     adds r4, r7, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
     bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
-    movs r2, #0xd9
+#if ((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) % 128 == 0) && ((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) / 128 <= 255)
+    movs r2, #((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) / 128)
     lsls r2, r2, #7
+#else
+    ldr r2, .LIntroFramePoolHandle6C80Offset
+#endif
     adds r0, r7, r2
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -1936,20 +1998,20 @@ RenderIntroSceneFrame:
     mov sl, r3
     mov r5, sl
     strb r5, [r0, #0x18]
-    ldr r6, .L08002A74 @ =0x00006AB4
+    ldr r6, .L08002A74 @ =INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r0, r7, r6
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
-    ldr r1, .L08002A78 @ =0x00006AC4
+    ldr r1, .L08002A78 @ =INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r1, r7, r1
     str r1, [sp, #0x8c]
-    ldr r2, .L08002A7C @ =0x00006AE4
+    ldr r2, .L08002A7C @ =INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r2, r7, r2
     str r2, [sp, #0x90]
-    ldr r3, .L08002A80 @ =0x00006B04
+    ldr r3, .L08002A80 @ =INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r3, r7, r3
     str r3, [sp, #0x94]
-    ldr r5, .L08002A84 @ =0x00006B24
+    ldr r5, .L08002A84 @ =INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r5, r7, r5
     str r5, [sp, #0x98]
     cmp r0, #0
@@ -1998,14 +2060,17 @@ RenderIntroSceneFrame:
     str r0, [r5, #4]
     b .L08002B84
     .align 2, 0
-.L08002A68: .word 0x00006AA0
-.L08002A6C: .word 0x00006AA4
-.L08002A70: .word 0x00006C78
-.L08002A74: .word 0x00006AB4
-.L08002A78: .word 0x00006AC4
-.L08002A7C: .word 0x00006AE4
-.L08002A80: .word 0x00006B04
-.L08002A84: .word 0x00006B24
+#if !(((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) % 128 == 0) && ((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) / 128 <= 255))
+.LIntroFramePoolHandle6C80Offset: .word INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET
+#endif
+.L08002A68: .word INTRO_SCENE_RESOURCE_OFFSET(0)
+.L08002A6C: .word INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002A70: .word INTRO_SCENE_CORE_STATE_HANDLE_6C78_OFFSET
+.L08002A74: .word INTRO_SCENE_RESOURCE_OFFSET(0) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
+.L08002A78: .word INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002A7C: .word INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002A80: .word INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002A84: .word INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08002A88: .word OBJ_VRAM0
 .L08002A8C:
     mov r8, r1
@@ -2045,16 +2110,16 @@ RenderIntroSceneFrame:
     ldr r3, [sp, #0x9c]
     ldr r2, [r3]
     adds r3, r5, #0
-    ldr r4, .L08002B24 @ =0x00006AC4
+    ldr r4, .L08002B24 @ =INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r4, r7, r4
     str r4, [sp, #0x8c]
-    ldr r5, .L08002B28 @ =0x00006AE4
+    ldr r5, .L08002B28 @ =INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r5, r7, r5
     str r5, [sp, #0x90]
-    ldr r6, .L08002B2C @ =0x00006B04
+    ldr r6, .L08002B2C @ =INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r6, r7, r6
     str r6, [sp, #0x94]
-    ldr r0, .L08002B30 @ =0x00006B24
+    ldr r0, .L08002B30 @ =INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r0
     str r0, [sp, #0x98]
     cmp r2, r8
@@ -2090,10 +2155,10 @@ RenderIntroSceneFrame:
     adds r5, #0x10
     b .L08002B5C
     .align 2, 0
-.L08002B24: .word 0x00006AC4
-.L08002B28: .word 0x00006AE4
-.L08002B2C: .word 0x00006B04
-.L08002B30: .word 0x00006B24
+.L08002B24: .word INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002B28: .word INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002B2C: .word INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002B30: .word INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
 .L08002B34:
     mov r8, r0
     adds r2, r5, #0
@@ -2164,7 +2229,7 @@ RenderIntroSceneFrame:
     adds r0, r7, #0
     movs r3, #1
     bl SubmitIntroSceneSprite
-    ldr r0, .L08002C88 @ =0x00006AC0
+    ldr r0, .L08002C88 @ =INTRO_SCENE_RESOURCE_OFFSET(1)
     adds r4, r7, r0
     ldr r1, [r4]
     ldr r3, [r1]
@@ -2199,14 +2264,14 @@ RenderIntroSceneFrame:
     mov r0, sp
     strh r1, [r0, #2]
     strh r2, [r0, #8]
-    ldr r1, .L08002C8C @ =0x00006CB0
+    ldr r1, .L08002C8C @ =INTRO_SCENE_CORE_STATE_HANDLE_6CB0_OFFSET
     adds r4, r7, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
     bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
-    ldr r2, .L08002C90 @ =0x00006CB8
+    ldr r2, .L08002C90 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CB8_OFFSET
     adds r0, r7, r2
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -2217,7 +2282,7 @@ RenderIntroSceneFrame:
     mov sl, r3
     mov r5, sl
     strb r5, [r0, #0x18]
-    ldr r6, .L08002C94 @ =0x00006AD4
+    ldr r6, .L08002C94 @ =INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r0, r7, r6
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -2267,10 +2332,10 @@ RenderIntroSceneFrame:
     str r0, [r3, #4]
     b .L08002D6A
     .align 2, 0
-.L08002C88: .word 0x00006AC0
-.L08002C8C: .word 0x00006CB0
-.L08002C90: .word 0x00006CB8
-.L08002C94: .word 0x00006AD4
+.L08002C88: .word INTRO_SCENE_RESOURCE_OFFSET(1)
+.L08002C8C: .word INTRO_SCENE_CORE_STATE_HANDLE_6CB0_OFFSET
+.L08002C90: .word INTRO_SCENE_CORE_POOL_HANDLE_6CB8_OFFSET
+.L08002C94: .word INTRO_SCENE_RESOURCE_OFFSET(1) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
 .L08002C98: .word OBJ_VRAM0
 .L08002C9C:
     mov r8, r1
@@ -2411,7 +2476,7 @@ RenderIntroSceneFrame:
     adds r0, r7, #0
     movs r3, #0
     bl SubmitIntroSceneSprite
-    ldr r1, .L08002E80 @ =0x00006C6C
+    ldr r1, .L08002E80 @ =INTRO_SCENE_CORE_UNK_6C6C_OFFSET
     adds r0, r7, r1
     ldrb r0, [r0]
     lsls r0, r0, #0x18
@@ -2420,12 +2485,12 @@ RenderIntroSceneFrame:
     bne .L08002DAA
     b .L08002FE2
 .L08002DAA:
-    ldr r2, .L08002E84 @ =0x00006B40
+    ldr r2, .L08002E84 @ =INTRO_SCENE_RESOURCE_OFFSET(5)
     adds r4, r7, r2
     ldr r1, [r4]
     ldr r3, [r1]
     ldrh r2, [r4, #0xc]
-    ldr r5, .L08002E88 @ =0x00006B44
+    ldr r5, .L08002E88 @ =INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
     adds r0, r7, r5
     lsls r2, r2, #2
     ldr r0, [r0]
@@ -2456,14 +2521,14 @@ RenderIntroSceneFrame:
     mov r0, sp
     strh r1, [r0, #2]
     strh r2, [r0, #8]
-    ldr r1, .L08002E8C @ =0x00006CC0
+    ldr r1, .L08002E8C @ =INTRO_SCENE_CORE_STATE_HANDLE_6CC0_OFFSET
     adds r4, r7, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
     bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
-    ldr r2, .L08002E90 @ =0x00006CC8
+    ldr r2, .L08002E90 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
     adds r0, r7, r2
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -2474,7 +2539,7 @@ RenderIntroSceneFrame:
     mov sl, r3
     mov r5, sl
     strb r5, [r0, #0x18]
-    ldr r6, .L08002E94 @ =0x00006B54
+    ldr r6, .L08002E94 @ =INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r0, r7, r6
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -2524,12 +2589,12 @@ RenderIntroSceneFrame:
     str r0, [r3, #4]
     b .L08002F6A
     .align 2, 0
-.L08002E80: .word 0x00006C6C
-.L08002E84: .word 0x00006B40
-.L08002E88: .word 0x00006B44
-.L08002E8C: .word 0x00006CC0
-.L08002E90: .word 0x00006CC8
-.L08002E94: .word 0x00006B54
+.L08002E80: .word INTRO_SCENE_CORE_UNK_6C6C_OFFSET
+.L08002E84: .word INTRO_SCENE_RESOURCE_OFFSET(5)
+.L08002E88: .word INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_RESOLVED_OFFSET
+.L08002E8C: .word INTRO_SCENE_CORE_STATE_HANDLE_6CC0_OFFSET
+.L08002E90: .word INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
+.L08002E94: .word INTRO_SCENE_RESOURCE_OFFSET(5) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
 .L08002E98: .word OBJ_VRAM0
 .L08002E9C:
     mov r8, r1
@@ -2674,7 +2739,7 @@ RenderIntroSceneFrame:
     movs r3, #0
     bl SubmitIntroSceneSprite
 .L08002FA0:
-    ldr r6, .L080030C0 @ =0x00006B60
+    ldr r6, .L080030C0 @ =INTRO_SCENE_RESOURCE_OFFSET(6)
     adds r2, r7, r6
     movs r0, #0x1a
     ldrsh r1, [r2, r0]
@@ -2706,7 +2771,7 @@ RenderIntroSceneFrame:
     movs r3, #0
     bl SubmitIntroSceneSprite
 .L08002FE2:
-    ldr r6, .L080030C4 @ =0x00006AE0
+    ldr r6, .L080030C4 @ =INTRO_SCENE_RESOURCE_OFFSET(2)
     adds r4, r7, r6
     ldr r1, [r4]
     ldr r3, [r1]
@@ -2734,7 +2799,7 @@ RenderIntroSceneFrame:
     movs r6, #0x1a
     ldrsh r1, [r4, r6]
     mov r2, sp
-    ldr r3, .L080030C8 @ =0x00006D30
+    ldr r3, .L080030C8 @ =INTRO_SCENE_CORE_UNK_6D30_OFFSET
     adds r0, r7, r3
     ldrh r0, [r0]
     subs r1, r1, r0
@@ -2745,14 +2810,14 @@ RenderIntroSceneFrame:
     mov r0, sp
     strh r1, [r0, #2]
     strh r3, [r0, #8]
-    ldr r6, .L080030CC @ =0x00006C88
+    ldr r6, .L080030CC @ =INTRO_SCENE_CORE_STATE_HANDLE_6C88_OFFSET
     adds r4, r7, r6
     ldr r1, [r4, #4]
     adds r0, r4, #0
     bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
-    ldr r1, .L080030D0 @ =0x00006C90
+    ldr r1, .L080030D0 @ =INTRO_SCENE_CORE_POOL_HANDLE_6C90_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -2763,7 +2828,7 @@ RenderIntroSceneFrame:
     mov sl, r2
     mov r3, sl
     strb r3, [r0, #0x18]
-    ldr r5, .L080030D4 @ =0x00006AF4
+    ldr r5, .L080030D4 @ =INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r0, r7, r5
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -2813,12 +2878,12 @@ RenderIntroSceneFrame:
     str r0, [r5, #4]
     b .L080031AC
     .align 2, 0
-.L080030C0: .word 0x00006B60
-.L080030C4: .word 0x00006AE0
-.L080030C8: .word 0x00006D30
-.L080030CC: .word 0x00006C88
-.L080030D0: .word 0x00006C90
-.L080030D4: .word 0x00006AF4
+.L080030C0: .word INTRO_SCENE_RESOURCE_OFFSET(6)
+.L080030C4: .word INTRO_SCENE_RESOURCE_OFFSET(2)
+.L080030C8: .word INTRO_SCENE_CORE_UNK_6D30_OFFSET
+.L080030CC: .word INTRO_SCENE_CORE_STATE_HANDLE_6C88_OFFSET
+.L080030D0: .word INTRO_SCENE_CORE_POOL_HANDLE_6C90_OFFSET
+.L080030D4: .word INTRO_SCENE_RESOURCE_OFFSET(2) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
 .L080030D8: .word OBJ_VRAM0
 .L080030DC:
     mov r8, r1
@@ -2960,8 +3025,12 @@ RenderIntroSceneFrame:
     adds r0, r7, #0
     movs r3, #2
     bl SubmitIntroSceneSprite
-    movs r0, #0xd6
+#if ((INTRO_SCENE_RESOURCE_OFFSET(3)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(3)) / 128 <= 255)
+    movs r0, #((INTRO_SCENE_RESOURCE_OFFSET(3)) / 128)
     lsls r0, r0, #7
+#else
+    ldr r0, .LIntroFrameResource3AfterSubmitOffset
+#endif
     adds r4, r7, r0
     ldr r1, [r4]
     ldr r3, [r1]
@@ -2996,14 +3065,14 @@ RenderIntroSceneFrame:
     mov r0, sp
     strh r1, [r0, #2]
     strh r2, [r0, #8]
-    ldr r1, .L080032B4 @ =0x00006C98
+    ldr r1, .L080032B4 @ =INTRO_SCENE_CORE_STATE_HANDLE_6C98_OFFSET
     adds r4, r7, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
     bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
-    ldr r2, .L080032B8 @ =0x00006CA0
+    ldr r2, .L080032B8 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CA0_OFFSET
     adds r0, r7, r2
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -3014,7 +3083,7 @@ RenderIntroSceneFrame:
     mov sl, r3
     mov r5, sl
     strb r5, [r0, #0x18]
-    ldr r6, .L080032BC @ =0x00006B14
+    ldr r6, .L080032BC @ =INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r0, r7, r6
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -3064,9 +3133,12 @@ RenderIntroSceneFrame:
     str r0, [r3, #4]
     b .L08003396
     .align 2, 0
-.L080032B4: .word 0x00006C98
-.L080032B8: .word 0x00006CA0
-.L080032BC: .word 0x00006B14
+#if !(((INTRO_SCENE_RESOURCE_OFFSET(3)) % 128 == 0) && ((INTRO_SCENE_RESOURCE_OFFSET(3)) / 128 <= 255))
+.LIntroFrameResource3AfterSubmitOffset: .word INTRO_SCENE_RESOURCE_OFFSET(3)
+#endif
+.L080032B4: .word INTRO_SCENE_CORE_STATE_HANDLE_6C98_OFFSET
+.L080032B8: .word INTRO_SCENE_CORE_POOL_HANDLE_6CA0_OFFSET
+.L080032BC: .word INTRO_SCENE_RESOURCE_OFFSET(3) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
 .L080032C0: .word OBJ_VRAM0
 .L080032C4:
     mov r8, r1
@@ -3209,7 +3281,7 @@ RenderIntroSceneFrame:
     adds r0, r7, #0
     movs r3, #2
     bl SubmitIntroSceneSprite
-    ldr r0, .L08003498 @ =0x00006B20
+    ldr r0, .L08003498 @ =INTRO_SCENE_RESOURCE_OFFSET(4)
     adds r5, r7, r0
     ldr r1, [r5]
     ldr r3, [r1]
@@ -3243,14 +3315,14 @@ RenderIntroSceneFrame:
     ldrsh r1, [r5, r6]
     strh r1, [r0, #2]
     strh r2, [r0, #8]
-    ldr r0, .L0800349C @ =0x00006CA8
+    ldr r0, .L0800349C @ =INTRO_SCENE_CORE_STATE_HANDLE_6CA8_OFFSET
     adds r4, r7, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
     bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
-    ldr r1, .L080034A0 @ =0x00006CC8
+    ldr r1, .L080034A0 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
@@ -3259,7 +3331,7 @@ RenderIntroSceneFrame:
     mov r0, sp
     movs r2, #1
     strb r2, [r0, #0x18]
-    ldr r3, .L080034A4 @ =0x00006B34
+    ldr r3, .L080034A4 @ =INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
     adds r0, r7, r3
     ldrb r0, [r0]
     lsls r0, r0, #0x1e
@@ -3310,10 +3382,10 @@ RenderIntroSceneFrame:
     str r0, [r5, #4]
     b .L0800357E
     .align 2, 0
-.L08003498: .word 0x00006B20
-.L0800349C: .word 0x00006CA8
-.L080034A0: .word 0x00006CC8
-.L080034A4: .word 0x00006B34
+.L08003498: .word INTRO_SCENE_RESOURCE_OFFSET(4)
+.L0800349C: .word INTRO_SCENE_CORE_STATE_HANDLE_6CA8_OFFSET
+.L080034A0: .word INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
+.L080034A4: .word INTRO_SCENE_RESOURCE_OFFSET(4) + INTRO_SCENE_RESOURCE_FLAGS_OFFSET
 .L080034A8: .word OBJ_VRAM0
 .L080034AC:
     mov r8, r1

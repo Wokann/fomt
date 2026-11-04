@@ -76,7 +76,7 @@ GFX_RANGE_VERIFY := tools/verify-gfx-range$(EXE)
 
 INCFLAGS     := $(foreach dir, $(INCLUDE_DIRS), -I "$(dir)")
 
-CPPFLAGS := $(INCFLAGS) -I . -iquote . -iquote include -Wno-trigraphs -fno-exceptions -D$(REGION_DEFINE)=1
+CPPFLAGS := $(INCFLAGS) -iquote $(BUILD_DIR) -I . -iquote . -iquote include -Wno-trigraphs -fno-exceptions -D$(REGION_DEFINE)=1
 CFLAGS   := -g -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm -fdata-sections
 CXXFLAGS := -quiet -fno-exceptions -fno-rtti -fvtable-thunks $(CFLAGS)
 ASFLAGS  := $(INCFLAGS) -I . -I include -mcpu=arm7tdmi --defsym $(REGION_DEFINE)=1
@@ -209,6 +209,10 @@ ALL_DEPS += $(REGION_TEXT_DEPS) $(GUIDE_GENERATED_DEP) $(MARY_BUNDLE_DEP)
 
 .SECONDARY: $(GUIDE_GENERATED_SOURCE) $(MARY_BUNDLE_OUTPUTS)
 
+# Bootstrap generated type metadata before scanning headers. Only actual
+# include users acquire a normal dependency on it in their compiler .d file.
+$(ALL_DEPS): | $(INTRO_SCENE_SIZE_HEADER)
+
 $(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
 
@@ -249,7 +253,7 @@ $(MARY_SCRIPT_TABLE_OBJ): $(MARY_SCRIPT_TABLE_ASM)
 # perform generic relocation repair and executable-section closing alignment.
 define FOMT_COMPILE_CPP
 @mkdir -p $(dir $(basename $@).fomt-preprocessed.cc)
-@$(CPP) -iquote $(BUILD_DIR) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.cc
+@$(CPP) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.cc
 @$(TEXT_TOOL) source $(TEXT_CHARMAP) $(GAME_REGION) $(basename $@).fomt-preprocessed.cc $(basename $@).fomt-text.cc $(FOMT_TEXT_SOURCE_ARGS)
 @($(CC1PLUS) $(CXXFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.cc || false)
 @$(TEXT_PREPROC) asm $(basename $@).fomt-text.cc $(basename $@).s
@@ -258,7 +262,7 @@ endef
 
 define FOMT_COMPILE_C
 @mkdir -p $(dir $(basename $@).fomt-preprocessed.c)
-@$(CPP) -iquote $(BUILD_DIR) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.c
+@$(CPP) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.c
 @$(TEXT_TOOL) source $(TEXT_CHARMAP) $(GAME_REGION) $(basename $@).fomt-preprocessed.c $(basename $@).fomt-text.c $(FOMT_TEXT_SOURCE_ARGS)
 @$(CC1) $(CFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.c
 @$(TEXT_PREPROC) asm $(basename $@).fomt-text.c $(basename $@).s
@@ -336,6 +340,18 @@ $(BUILD_DIR)/%.d: %.s $(SCANINC) Makefile config.mk
 $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 	@echo "AS $<"
 	@$(AS) $(ASFLAGS) $< -o $@
+
+# The remaining intro assembly consumes the same structure-layout constants
+# as C++. Preserve the normal GAS include scan alongside CPP header discovery.
+$(BUILD_DIR)/asm/intro_scene.d: asm/intro_scene.s $(SCANINC) Makefile config.mk
+	@mkdir -p $(dir $@)
+	@$(SCANINC) -M $@ $(SCANINC_DEFINES) $(INCFLAGS) -I . -I include $<
+	@$(CPP) $(CPPFLAGS) -D__ASSEMBLER__ -x assembler-with-cpp $< -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/asm/intro_scene.o >> $@
+
+$(BUILD_DIR)/asm/intro_scene.o: asm/intro_scene.s $(BUILD_DIR)/asm/intro_scene.d
+	@echo "AS $<"
+	@$(CPP) $(CPPFLAGS) -D__ASSEMBLER__ -x assembler-with-cpp $< -o $(basename $@).s
+	@$(AS) $(ASFLAGS) $(basename $@).s -o $@
 
 # overrides for matching
 # IWRAM sorting is native ARM code, not Thumb. Use the installed ARM frontend
