@@ -24,7 +24,7 @@ static inline HardwareMusicPlayerSlot * FindWorldUpdateSoundPlayer(GameSceneSong
     HardwareMusicPlayerSlot ** current = pool.begin;
     HardwareMusicPlayerSlot ** end = pool.end;
     for (; current != end; ++current) {
-        if (!(*current)->IsActive())
+        if (!(*current)->IsUnpaused())
             return *current;
     }
     return *(end - 1);

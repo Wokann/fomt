@@ -375,6 +375,7 @@ struct SongEnt
     /* +06 */ u16 me;
 };
 
+typedef char MusicPlayerEntSizeCheck[sizeof(struct MusicPlayerEnt) == 12 ? 1 : -1];
 typedef char SongEntSizeCheck[sizeof(struct SongEnt) == 8 ? 1 : -1];
 
 extern struct MusicPlayerEnt const gMusicPlayerTable[];

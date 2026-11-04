@@ -127,10 +127,10 @@ SECTIONS
         src/hardware_context.o(.text.hardware_frame_update);
         src/hardware_state_accessors.o(.text);
         src/hardware_manager.o(.text);
-        . = 0x8AF8; /* Next unaudited sound routines. */
         src/hardware_sound.o(.text);
         src/hardware_music_player.o(.text);
         src/hardware_song.o(.text);
+        . = 0x8E30; /* Next unaudited DMA routines. */
         src/hardware_dma.o(.text);
         src/hardware_dma_descriptor.o(.text);
         src/hardware_input.o(.text);

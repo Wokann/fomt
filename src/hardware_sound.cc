@@ -11,7 +11,7 @@ void WaitForHardwareVBlank(void * manager)
     WaitForNextInterrupt(INTR_FLAG_VBLANK);
 }
 
-void func_08008AFC(void)
+void InitializeHardwareSound(void)
 {
     m4aSoundInit();
     m4aSoundVSyncOff();

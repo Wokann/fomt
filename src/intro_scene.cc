@@ -1,4 +1,5 @@
 #include "intro_scene.hh"
+#include "fomt_constants.hh"
 #include "gbaio.h"
 #include "compression.hh"
 #include "random.hh"
@@ -221,7 +222,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
     BeginHardwareBlend(&owner.object->blend, 0x889, 1, 0);
     QueueIntroSceneBlend(core, owner);
     core->startup_phase = 0;
-    core->music_players[0].Start(0);
+    core->music_players[0].Start(AUDIO_UNUSED_SLOT_000);
 
     bool finished = false;
     do
@@ -266,7 +267,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
         GetHardwareDisplayState(reinterpret_cast<void * const *>(core))));
     BeginHardwareBlend(&owner.object->blend, 0x889, 1, 0);
     QueueIntroSceneBlend(core, owner);
-    core->music_players[0].Start(0x23);
+    core->music_players[0].Start(AUDIO_BGM_TITLE_SCREEN);
     core->sprite_matrix.pa = 0x400;
     core->sprite_matrix.pb = 0;
     core->sprite_matrix.pc = 0;
@@ -330,7 +331,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             if (core->startup_hold_frames <= 0)
             {
                 ResolveIndexedResourceHandle(&core->resources[0].handle, 0x1FD);
-                core->music_players[1].Start(0x67);
+                core->music_players[1].Start(AUDIO_SEQUENCE_103);
                 core->startup_phase = 6;
             }
             break;
@@ -459,7 +460,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
                         core->resources[13].x = 0x880000;
                     }
                     core->startup_hold_frames = 0x708;
-                    core->music_players[1].Start(0xCB);
+                    core->music_players[1].Start(AUDIO_SFX_MENU_CURSOR);
                 }
             }
 
@@ -486,7 +487,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
 #endif
                 }
                 core->startup_hold_frames = 60;
-                core->music_players[1].Start(0xC5);
+                core->music_players[1].Start(AUDIO_SFX_MENU_CONFIRM);
                 core->startup_phase = 14;
             }
             else if (--core->startup_hold_frames <= 0)
@@ -525,12 +526,12 @@ int RunIntroSceneSequence(IntroSceneCore * core)
         {
         case 1:
             ResolveIndexedResourceHandle(&core->resources[1].handle, 0x370);
-            core->music_players[1].Start(0xA9);
+            core->music_players[1].Start(AUDIO_SFX_DOG_BARK);
             sound_state = 2;
             break;
         case 2:
             if (core->resources[1].flags.bits.wrapped < 0)
-                core->music_players[1].StartIfChangedOrInactive(0xA9);
+                core->music_players[1].StartIfChangedOrPaused(AUDIO_SFX_DOG_BARK);
             break;
         case 3:
             if (core->resources[1].flags.bits.wrapped < 0)

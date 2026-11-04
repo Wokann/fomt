@@ -9,7 +9,7 @@ static inline void StartSceneSong(HardwareMusicPlayerSlot * player, i32 mode, u1
         player->Start(song_id);
         break;
     case AUDIO_START_WEAK:
-        player->StartIfChangedOrInactive(song_id);
+        player->StartIfChangedOrPaused(song_id);
         break;
     case AUDIO_START_OR_CONTINUE:
         player->StartOrContinue(song_id);
@@ -22,7 +22,7 @@ static inline HardwareMusicPlayerSlot * FindAvailableSceneSongPlayer(GameSceneSo
     HardwareMusicPlayerSlot ** it = pool.begin;
     HardwareMusicPlayerSlot ** end = pool.end;
     for (; it != end; ++it) {
-        if (static_cast<u8>((*it)->IsActive()) == 0)
+        if (static_cast<u8>((*it)->IsUnpaused()) == 0)
             return *it;
     }
     // The native path assumes a nonempty pool and reuses its final entry.
@@ -60,7 +60,7 @@ void GameScene::PlaySong(i32 mode, u32 sequence)
 
 void GameScene::StopAllSongs()
 {
-    func_08008DE8();
+    StopAllHardwareMusicPlayers();
 }
 
 EC GameSceneSongPlayerPool & GetSceneSongPlayerPool(GameScene & scene)
@@ -73,14 +73,14 @@ void GameScene::StartWorldBackgroundMusic()
     GameSceneState * current = state;
     HardwareMusicPlayerSlot & player = current->bgm_player;
     u32 sequence = static_cast<GameSceneWorld *>(current->game_object.value)->GetDefaultAudioSequence();
-    player.StartIfChangedOrInactive(static_cast<u16>(sequence));
+    player.StartIfChangedOrPaused(static_cast<u16>(sequence));
 }
 
 bool GameScene::FadeOutBackgroundMusic()
 {
     HardwareMusicPlayerSlot & player = state->bgm_player;
     bool requested;
-    if (static_cast<u8>(player.IsActive()) != 0) {
+    if (static_cast<u8>(player.IsUnpaused()) != 0) {
         player.FadeOut(5);
         requested = true;
     } else {
@@ -91,5 +91,5 @@ bool GameScene::FadeOutBackgroundMusic()
 
 bool GameScene::IsBackgroundMusicActive()
 {
-    return state->bgm_player.IsActive();
+    return state->bgm_player.IsUnpaused();
 }

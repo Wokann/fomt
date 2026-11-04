@@ -136,7 +136,7 @@ static inline HardwareMusicPlayerSlot * FindWorldExitSoundPlayer(GameSceneSongPl
     HardwareMusicPlayerSlot ** current = pool.begin;
     HardwareMusicPlayerSlot ** end = pool.end;
     for (; current != end; ++current) {
-        if (!(*current)->IsActive())
+        if (!(*current)->IsUnpaused())
             return *current;
     }
     // Native callers provide a nonempty pool; saturation reuses its last slot.

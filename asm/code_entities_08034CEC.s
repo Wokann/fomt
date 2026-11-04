@@ -10072,7 +10072,7 @@ func_0803A350:
     beq .Ljp_0803A116
 .Ljp_0803A100:
     ldr	r0, [r4, #0]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Ljp_0803A110
@@ -20651,7 +20651,7 @@ func_0803A350:
     beq .Leu_0803A396
 .Leu_0803A380:
     ldr	r0, [r4, #0]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Leu_0803A390
@@ -31376,7 +31376,7 @@ func_0803A350:
     beq .Lde_0803A296
 .Lde_0803A280:
     ldr	r0, [r4, #0]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lde_0803A290
@@ -42100,7 +42100,7 @@ func_0803A350:
     beq .Lus_0803A382
 .Lus_0803A36C:
     ldr	r0, [r4, #0]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls	r0, r0, #24
     cmp	r0, #0
     bne .Lus_0803A37C

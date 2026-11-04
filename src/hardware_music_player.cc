@@ -13,11 +13,11 @@ void HardwareMusicPlayerSlot::Start(u16 song_id)
     m4aMPlayStart(value, gSongTable[song_id].song);
 }
 
-void HardwareMusicPlayerSlot::StartIfChangedOrInactive(u16 song_id)
+void HardwareMusicPlayerSlot::StartIfChangedOrPaused(u16 song_id)
 {
     struct Song * song = gSongTable[song_id].song;
     struct MusicPlayer * player = value;
-    if (player->song != song || (i32)player->status < 0)
+    if (player->song != song || (player->status & MUSICPLAYER_STATUS_PAUSE) != 0)
         m4aMPlayStart(player, song);
 }
 
@@ -27,7 +27,7 @@ void HardwareMusicPlayerSlot::StartOrContinue(u16 song_id)
     struct MusicPlayer * player = value;
     if (player->song != song)
         m4aMPlayStart(player, song);
-    else if ((i32)player->status < 0)
+    else if ((player->status & MUSICPLAYER_STATUS_PAUSE) != 0)
         m4aMPlayContinue(player);
 }
 
@@ -91,14 +91,14 @@ void HardwareMusicPlayerSlot::InitializeImmediately()
     m4aMPlayImmInit(value);
 }
 
-bool HardwareMusicPlayerSlot::IsActive() const
+bool HardwareMusicPlayerSlot::IsUnpaused() const
 {
-    return (value->status >> 31) ^ 1;
+    return (value->status & MUSICPLAYER_STATUS_PAUSE) == 0;
 }
 
-u16 HardwareMusicPlayerSlot::GetStatus() const
+u16 HardwareMusicPlayerSlot::GetActiveTrackMask() const
 {
-    return (u16)value->status;
+    return value->status & MUSICPLAYER_STATUS_TRACK;
 }
 
 u8 HardwareMusicPlayerSlot::GetTrackCount() const
@@ -116,7 +116,7 @@ u32 HardwareMusicPlayerSlot::GetClock() const
     return value->clock;
 }
 
-struct MusicPlayer * func_08008CFC(void)
+struct MusicPlayer * GetFirstHardwareMusicPlayer(void)
 {
     HardwareMusicPlayerSlot player(0);
     return player.value;

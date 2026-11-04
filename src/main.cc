@@ -28,7 +28,7 @@ void AgbMain(void)
     REG_RCNT = 0;
 #endif
 
-    func_08008AFC();
+    InitializeHardwareSound();
     HardwareManagerOwner manager;
     SceneMain(SceneOwner(new GameIntroScene));
 }

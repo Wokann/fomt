@@ -10014,7 +10014,7 @@ func_08025100: @ 0x0802536C
     beq .Ljp_08025454
 .Ljp_08025442:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_080253A6
@@ -10216,7 +10216,7 @@ func_08025564: @ 0x080257D0
     beq .Ljp_080255BC
 .Ljp_080255AA:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08025576
@@ -10273,7 +10273,7 @@ func_080255CC: @ 0x08025838
     beq .Ljp_08025624
 .Ljp_08025612:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_080255DE
@@ -10341,7 +10341,7 @@ func_08025634: @ 0x080258A0
     beq .Ljp_080256AE
 .Ljp_0802569C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_080256BA
@@ -10489,7 +10489,7 @@ func_080257D4: @ 0x08025A40
     beq .Ljp_08025812
 .Ljp_08025800:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08025822
@@ -10545,7 +10545,7 @@ func_080257D4: @ 0x08025A40
     beq .Ljp_0802587E
 .Ljp_0802586C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08025832
@@ -10756,7 +10756,7 @@ func_080258F8: @ 0x08025B64
     beq .Ljp_08025A3A
 .Ljp_08025A28:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_080259F8
@@ -11076,7 +11076,7 @@ func_08025BCC: @ 0x08025E38
     beq .Ljp_08025C80
 .Ljp_08025C6E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08025C40
@@ -11186,7 +11186,7 @@ func_08025C90: @ 0x08025EFC
     beq .Ljp_08025D48
 .Ljp_08025D36:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08025D08
@@ -11294,7 +11294,7 @@ func_08025D58: @ 0x08025FC4
     beq .Ljp_08025E0C
 .Ljp_08025DFA:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08025DCC
@@ -11401,7 +11401,7 @@ func_08025D58: @ 0x08025FC4
     beq .Ljp_08025ED4
 .Ljp_08025EC2:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08025E94
@@ -11587,7 +11587,7 @@ func_08025EE4: @ 0x08026150
     beq .Ljp_08026040
 .Ljp_0802602E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08026000
@@ -12259,7 +12259,7 @@ func_080260E0: @ 0x080260E0
     beq .Ljp_080265AE
 .Ljp_0802659C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802656A
@@ -12862,7 +12862,7 @@ func_080265C4: @ 0x080265C4
     beq .Ljp_08026A92
 .Ljp_08026A80:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08026A4E
@@ -14103,7 +14103,7 @@ func_08026FA0: @ 0x08026FA0
     beq .Ljp_08027492
 .Ljp_08027480:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802744E
@@ -14708,7 +14708,7 @@ func_080274B0: @ 0x080274B0
     beq .Ljp_0802797A
 .Ljp_08027968:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08027932
@@ -15386,7 +15386,7 @@ func_08027990: @ 0x08027990
     beq .Ljp_08027EF8
 .Ljp_08027EE6:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08027EB2
@@ -15971,7 +15971,7 @@ func_08027990: @ 0x08027990
     beq .Ljp_080283BC
 .Ljp_080283AA:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08028376
@@ -16607,7 +16607,7 @@ func_080283D8: @ 0x080283D8
     beq .Ljp_080288D0
 .Ljp_080288BE:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802888A
@@ -17255,7 +17255,7 @@ func_080288E4: @ 0x080288E4
     beq .Ljp_08028DFC
 .Ljp_08028DEA:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08028DB6
@@ -18486,7 +18486,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x08029780
     beq .Ljp_080297EA
 .Ljp_080297D8:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802980E
@@ -22722,7 +22722,7 @@ func_0802C074:
     beq .Ljp_0802C19C
 .Ljp_0802C18A:
     ldr r0, [r6]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C140
@@ -22787,7 +22787,7 @@ func_0802C074:
     beq .Ljp_0802C220
 .Ljp_0802C20E:
     ldr r0, [r6]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C1D0
@@ -22863,7 +22863,7 @@ func_0802C074:
     beq .Ljp_0802C2B2
 .Ljp_0802C2A0:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C274
@@ -22922,7 +22922,7 @@ func_0802C074:
     beq .Ljp_0802C322
 .Ljp_0802C310:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C2E4
@@ -22962,7 +22962,7 @@ func_0802C074:
     beq .Ljp_0802C36E
 .Ljp_0802C35C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C334
@@ -23004,7 +23004,7 @@ func_0802C074:
     beq .Ljp_0802C3BC
 .Ljp_0802C3AA:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C37E
@@ -23079,7 +23079,7 @@ func_0802C074:
     beq .Ljp_0802C450
 .Ljp_0802C43E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C412
@@ -23121,7 +23121,7 @@ func_0802C074:
     beq .Ljp_0802C4A2
 .Ljp_0802C490:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C464
@@ -23197,7 +23197,7 @@ func_0802C074:
     beq .Ljp_0802C534
 .Ljp_0802C522:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C4FA
@@ -23236,7 +23236,7 @@ func_0802C074:
     beq .Ljp_0802C57E
 .Ljp_0802C56C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C540
@@ -23333,7 +23333,7 @@ func_0802C5F4:
     beq .Ljp_0802C638
 .Ljp_0802C626:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C67C
@@ -23435,7 +23435,7 @@ func_0802C69C:
     beq .Ljp_0802C708
 .Ljp_0802C6F2:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802C702
@@ -23708,7 +23708,7 @@ func_0802C718:
     beq .Ljp_0802C9A8
 .Ljp_0802C996:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802C946
@@ -25672,7 +25672,7 @@ func_0802D740:
     beq .Ljp_0802D8F2
 .Ljp_0802D8E0:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802D858
@@ -25707,7 +25707,7 @@ func_0802D740:
     beq .Ljp_0802D934
 .Ljp_0802D922:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802D8FE
@@ -25829,7 +25829,7 @@ func_0802D984:
     b .Ljp_0802DC0E
 .Ljp_0802DA02:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802DA10
@@ -25877,7 +25877,7 @@ func_0802D984:
     b .Ljp_0802DC0E
 .Ljp_0802DA60:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .Ljp_0802DA6E
@@ -25978,7 +25978,7 @@ func_0802D984:
     beq .Ljp_0802DB4A
 .Ljp_0802DB38:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802DACA
@@ -26013,7 +26013,7 @@ func_0802D984:
     beq .Ljp_0802DB8C
 .Ljp_0802DB7A:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802DB56
@@ -26081,7 +26081,7 @@ func_0802D984:
     beq .Ljp_0802DC0E
 .Ljp_0802DBFC:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802DBC2
@@ -26324,7 +26324,7 @@ func_0802DC28:
     beq .Ljp_0802DDE6
 .Ljp_0802DDD4:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802DD66
@@ -26359,7 +26359,7 @@ func_0802DC28:
     beq .Ljp_0802DE28
 .Ljp_0802DE16:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802DDF2
@@ -26866,7 +26866,7 @@ func_0802DE90:
     beq .Ljp_0802E38A
 .Ljp_0802E290:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802E312
@@ -26977,7 +26977,7 @@ func_0802DE90:
     beq .Ljp_0802E38A
 .Ljp_0802E378:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802E312
@@ -27490,7 +27490,7 @@ func_0802DE90:
     b .Ljp_0802E896
 .Ljp_0802E762:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802E816
@@ -27576,7 +27576,7 @@ func_0802DE90:
     beq .Ljp_0802E896
 .Ljp_0802E802:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802E816
@@ -27636,7 +27636,7 @@ func_0802DE90:
     beq .Ljp_0802E896
 .Ljp_0802E884:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802E816
@@ -27936,7 +27936,7 @@ func_0802E994:
     beq .Ljp_0802EAD4
 .Ljp_0802EAC2:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802EA90
@@ -28330,7 +28330,7 @@ func_0802E994:
     beq .Ljp_0802EDBE
 .Ljp_0802EDAC:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802ED22
@@ -28363,7 +28363,7 @@ func_0802E994:
     beq .Ljp_0802EDFE
 .Ljp_0802EDEC:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802EDD0
@@ -28394,7 +28394,7 @@ func_0802E994:
     beq .Ljp_0802EE38
 .Ljp_0802EE26:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802EE0A
@@ -29041,7 +29041,7 @@ func_0802EE80: @ 0x0802EE80
     beq .Ljp_0802F3D2
 .Ljp_0802F3C0:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802F388
@@ -29230,7 +29230,7 @@ func_0802EE80: @ 0x0802EE80
     beq .Ljp_0802F562
 .Ljp_0802F550:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0802F526
@@ -31153,7 +31153,7 @@ sub_0802F990: @ 0x0802F990
     beq .Ljp_08030440
 .Ljp_0803042E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_080303DC
@@ -32460,7 +32460,7 @@ sub_08030B9E: @ 0x08030B9E
     beq .Ljp_08030F72
 .Ljp_08030EA0:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08030F30
@@ -32560,7 +32560,7 @@ sub_08030B9E: @ 0x08030B9E
     beq .Ljp_08030F72
 .Ljp_08030F60:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08030F30
@@ -33577,7 +33577,7 @@ sub_080316C2: @ 0x080316C2
     beq .Ljp_0803172E
 .Ljp_0803171C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_080316E0
@@ -34065,7 +34065,7 @@ sub_080317F2: @ 0x080317F2
     beq .Ljp_08031A94
 .Ljp_08031A82:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08031A46
@@ -34126,7 +34126,7 @@ sub_080317F2: @ 0x080317F2
     beq .Ljp_08031B02
 .Ljp_08031AF0:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08031ABA
@@ -34209,7 +34209,7 @@ sub_08031B08: @ 0x08031B08
     beq .Ljp_08031B8E
 .Ljp_08031B7C:
     ldr r0, [r5]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08031B48
@@ -34279,7 +34279,7 @@ sub_08031B9E: @ 0x08031B9E
     beq .Ljp_08031C08
 .Ljp_08031BF6:
     ldr r0, [r5]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08031BC4
@@ -42892,7 +42892,7 @@ func_0802536C: @ 0x0802536C
     beq .L080256C0
 .L080256AE:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08025612
@@ -43093,7 +43093,7 @@ func_080257D0: @ 0x080257D0
     beq .L08025828
 .L08025816:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080257E2
@@ -43149,7 +43149,7 @@ func_08025838: @ 0x08025838
     beq .L08025890
 .L0802587E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802584A
@@ -43216,7 +43216,7 @@ func_080258A0: @ 0x080258A0
     beq .L0802591A
 .L08025908:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08025926
@@ -43362,7 +43362,7 @@ func_08025A40: @ 0x08025A40
     beq .L08025A7E
 .L08025A6C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08025A8E
@@ -43418,7 +43418,7 @@ func_08025A40: @ 0x08025A40
     beq .L08025AEA
 .L08025AD8:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08025A9E
@@ -43626,7 +43626,7 @@ func_08025B64: @ 0x08025B64
     beq .L08025CA6
 .L08025C94:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08025C64
@@ -43945,7 +43945,7 @@ func_08025E38: @ 0x08025E38
     beq .L08025EEC
 .L08025EDA:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08025EAC
@@ -44054,7 +44054,7 @@ func_08025EFC: @ 0x08025EFC
     beq .L08025FB4
 .L08025FA2:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08025F74
@@ -44161,7 +44161,7 @@ func_08025FC4: @ 0x08025FC4
     beq .L08026078
 .L08026066:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08026038
@@ -44268,7 +44268,7 @@ func_08025FC4: @ 0x08025FC4
     beq .L08026140
 .L0802612E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08026100
@@ -44453,7 +44453,7 @@ func_08026150: @ 0x08026150
     beq .L080262AC
 .L0802629A:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802626C
@@ -45123,7 +45123,7 @@ func_0802634C: @ 0x0802634C
     beq .L0802681A
 .L08026808:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080267D6
@@ -45726,7 +45726,7 @@ func_08026830: @ 0x08026830
     beq .L08026CFE
 .L08026CEC:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08026CBA
@@ -46967,7 +46967,7 @@ func_0802720C: @ 0x0802720C
     beq .L080276FE
 .L080276EC:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080276BA
@@ -47572,7 +47572,7 @@ func_0802771C: @ 0x0802771C
     beq .L08027BE6
 .L08027BD4:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08027B9E
@@ -48250,7 +48250,7 @@ func_08027BFC: @ 0x08027BFC
     beq .L08028164
 .L08028152:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802811E
@@ -48835,7 +48835,7 @@ func_08027BFC: @ 0x08027BFC
     beq .L08028628
 .L08028616:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L080285E2
@@ -49471,7 +49471,7 @@ func_08028644: @ 0x08028644
     beq .L08028B3C
 .L08028B2A:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08028AF6
@@ -50119,7 +50119,7 @@ func_08028B50: @ 0x08028B50
     beq .L08029068
 .L08029056:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08029022
@@ -51349,7 +51349,7 @@ PlayerRestoreAfterScriptedAnimation: @ 0x080299EC
     beq .L08029A56
 .L08029A44:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08029A7A
@@ -55570,7 +55570,7 @@ func_0802C2E0: @ 0x0802C2E0
     beq .L0802C408
 .L0802C3F6:
     ldr r0, [r6]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C3AC
@@ -55635,7 +55635,7 @@ func_0802C2E0: @ 0x0802C2E0
     beq .L0802C48C
 .L0802C47A:
     ldr r0, [r6]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C43C
@@ -55711,7 +55711,7 @@ func_0802C2E0: @ 0x0802C2E0
     beq .L0802C51E
 .L0802C50C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C4E0
@@ -55770,7 +55770,7 @@ func_0802C2E0: @ 0x0802C2E0
     beq .L0802C58E
 .L0802C57C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C550
@@ -55810,7 +55810,7 @@ func_0802C2E0: @ 0x0802C2E0
     beq .L0802C5DA
 .L0802C5C8:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C5A0
@@ -55852,7 +55852,7 @@ func_0802C2E0: @ 0x0802C2E0
     beq .L0802C628
 .L0802C616:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C5EA
@@ -55927,7 +55927,7 @@ func_0802C2E0: @ 0x0802C2E0
     beq .L0802C6BC
 .L0802C6AA:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C67E
@@ -55969,7 +55969,7 @@ func_0802C2E0: @ 0x0802C2E0
     beq .L0802C70E
 .L0802C6FC:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C6D0
@@ -56045,7 +56045,7 @@ func_0802C2E0: @ 0x0802C2E0
     beq .L0802C7A0
 .L0802C78E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C766
@@ -56084,7 +56084,7 @@ func_0802C2E0: @ 0x0802C2E0
     beq .L0802C7EA
 .L0802C7D8:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C7AC
@@ -56180,7 +56180,7 @@ func_0802C860: @ 0x0802C860
     beq .L0802C8A4
 .L0802C892:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802C8E8
@@ -56281,7 +56281,7 @@ func_0802C908: @ 0x0802C908
     beq .L0802C974
 .L0802C95E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802C96E
@@ -56553,7 +56553,7 @@ func_0802C984: @ 0x0802C984
     beq .L0802CC14
 .L0802CC02:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802CBB2
@@ -58511,7 +58511,7 @@ func_0802D9AC: @ 0x0802D9AC
     beq .L0802DB5E
 .L0802DB4C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802DAC4
@@ -58546,7 +58546,7 @@ func_0802D9AC: @ 0x0802D9AC
     beq .L0802DBA0
 .L0802DB8E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802DB6A
@@ -58667,7 +58667,7 @@ func_0802DBF0: @ 0x0802DBF0
     b .L0802DE7A
 .L0802DC6E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802DC7C
@@ -58715,7 +58715,7 @@ func_0802DBF0: @ 0x0802DBF0
     b .L0802DE7A
 .L0802DCCC:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     bne .L0802DCDA
@@ -58816,7 +58816,7 @@ func_0802DBF0: @ 0x0802DBF0
     beq .L0802DDB6
 .L0802DDA4:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802DD36
@@ -58851,7 +58851,7 @@ func_0802DBF0: @ 0x0802DBF0
     beq .L0802DDF8
 .L0802DDE6:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802DDC2
@@ -58919,7 +58919,7 @@ func_0802DBF0: @ 0x0802DBF0
     beq .L0802DE7A
 .L0802DE68:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802DE2E
@@ -59161,7 +59161,7 @@ func_0802DE94: @ 0x0802DE94
     beq .L0802E052
 .L0802E040:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802DFD2
@@ -59196,7 +59196,7 @@ func_0802DE94: @ 0x0802DE94
     beq .L0802E094
 .L0802E082:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802E05E
@@ -59702,7 +59702,7 @@ func_0802E0FC: @ 0x0802E0FC
     beq .L0802E5F6
 .L0802E4FC:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802E57E
@@ -59813,7 +59813,7 @@ func_0802E0FC: @ 0x0802E0FC
     beq .L0802E5F6
 .L0802E5E4:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802E57E
@@ -60326,7 +60326,7 @@ func_0802E0FC: @ 0x0802E0FC
     b .L0802EB02
 .L0802E9CE:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802EA82
@@ -60412,7 +60412,7 @@ func_0802E0FC: @ 0x0802E0FC
     beq .L0802EB02
 .L0802EA6E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802EA82
@@ -60472,7 +60472,7 @@ func_0802E0FC: @ 0x0802E0FC
     beq .L0802EB02
 .L0802EAF0:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802EA82
@@ -60771,7 +60771,7 @@ func_0802EC00: @ 0x0802EC00
     beq .L0802ED40
 .L0802ED2E:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802ECFC
@@ -61165,7 +61165,7 @@ func_0802EC00: @ 0x0802EC00
     beq .L0802F02A
 .L0802F018:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802EF8E
@@ -61198,7 +61198,7 @@ func_0802EC00: @ 0x0802EC00
     beq .L0802F06A
 .L0802F058:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802F03C
@@ -61229,7 +61229,7 @@ func_0802EC00: @ 0x0802EC00
     beq .L0802F0A4
 .L0802F092:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802F076
@@ -61875,7 +61875,7 @@ func_0802F0EC: @ 0x0802F0EC
     beq .L0802F63E
 .L0802F62C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802F5F4
@@ -62064,7 +62064,7 @@ func_0802F0EC: @ 0x0802F0EC
     beq .L0802F7CE
 .L0802F7BC:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0802F792
@@ -63986,7 +63986,7 @@ sub_0802FBFC: @ 0x0802FBFC
     beq .L080306AC
 .L0803069A:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08030648
@@ -65292,7 +65292,7 @@ sub_08030E0A: @ 0x08030E0A
     beq .L080311DE
 .L0803110C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0803119C
@@ -65392,7 +65392,7 @@ sub_08030E0A: @ 0x08030E0A
     beq .L080311DE
 .L080311CC:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0803119C
@@ -66408,7 +66408,7 @@ sub_0803192E: @ 0x0803192E
     beq .L0803199A
 .L08031988:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L0803194C
@@ -66895,7 +66895,7 @@ sub_08031A5E: @ 0x08031A5E
     beq .L08031D00
 .L08031CEE:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08031CB2
@@ -66956,7 +66956,7 @@ sub_08031A5E: @ 0x08031A5E
     beq .L08031D6E
 .L08031D5C:
     ldr r0, [r4]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08031D26
@@ -67038,7 +67038,7 @@ sub_08031D74: @ 0x08031D74
     beq .L08031DFA
 .L08031DE8:
     ldr r0, [r5]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08031DB4
@@ -67107,7 +67107,7 @@ sub_08031E0A: @ 0x08031E0A
     beq .L08031E74
 .L08031E62:
     ldr r0, [r5]
-    bl IsActive__C23HardwareMusicPlayerSlot
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08031E30

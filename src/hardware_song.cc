@@ -19,12 +19,12 @@ HardwareMusicPlayerSlot GetHardwareSongPlayerSlot(u16 song_id)
     return HardwareMusicPlayerSlot(static_cast<u8>(gSongTable[song_id].ms));
 }
 
-u8 func_08008D5C(u16 song_id)
+u8 GetHardwareSongTrackCount(u16 song_id)
 {
     return gSongTable[song_id].song->track_count;
 }
 
-u8 func_08008D70(u16 song_id)
+u8 GetHardwareSongPriority(u16 song_id)
 {
     return gSongTable[song_id].song->priority;
 }
@@ -44,37 +44,37 @@ u32 IsHardwareSoundDmaEnabled(void)
     return (REG_DMA1CNT & ((u32)DMA_ENABLE << 16)) != 0;
 }
 
-void func_08008DA8(u16 song_id)
+void StartHardwareSong(u16 song_id)
 {
     m4aSongNumStart(song_id);
 }
 
-void func_08008DB8(u16 song_id)
+void StartOrChangeHardwareSong(u16 song_id)
 {
     m4aSongNumStartOrChange(song_id);
 }
 
-void func_08008DC8(u16 song_id)
+void StartOrContinueHardwareSong(u16 song_id)
 {
     m4aSongNumStartOrContinue(song_id);
 }
 
-void func_08008DD8(u16 song_id)
+void StopHardwareSong(u16 song_id)
 {
     m4aSongNumStop(song_id);
 }
 
-void func_08008DE8(void)
+void StopAllHardwareMusicPlayers(void)
 {
     m4aMPlayAllStop();
 }
 
-void func_08008DF4(u16 song_id)
+void ContinueHardwareSong(u16 song_id)
 {
     m4aSongNumContinue(song_id);
 }
 
-void func_08008E04(void)
+void ContinueAllHardwareMusicPlayers(void)
 {
     m4aMPlayAllContinue();
 }

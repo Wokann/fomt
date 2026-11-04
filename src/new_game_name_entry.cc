@@ -21,7 +21,7 @@ NewGameNameEntryScene::~NewGameNameEntryScene() {}
 SceneTransitionOwner NewGameNameEntryScene::Run()
 {
     HardwareManagerOwner manager;
-    func_08008DB8(AUDIO_BGM_TITLE_SCREEN);
+    StartOrChangeHardwareSong(AUDIO_BGM_TITLE_SCREEN);
     FixedStr<12> player_name ALIGN(4);
     FixedStr<12> farm_name ALIGN(4);
     FixedStr<12> dog_name ALIGN(4);

@@ -675,11 +675,11 @@ u8 const gM4aCgbWaveData[] = {
 // ROM, so it has a distinct output section despite sharing this driver source.
 SECTION(".rodata.gMusicPlayerTable")
 struct MusicPlayerEnt const gMusicPlayerTable[] = {
-    { &gMusicPlayerA, gMusicPlayerTrackA, 8, 0 },
-    { &gMusicPlayerB, gMusicPlayerTrackB, 8, 0 },
-    { &gMusicPlayerC, gMusicPlayerTrackC, 8, 0 },
-    { &gMusicPlayerD, gMusicPlayerTrackD, 8, 0 },
-    { &gMusicPlayerE, gMusicPlayerTrackE, 8, 0 },
+    { &gMusicPlayerA, gMusicPlayerTrackA, ARRAY_COUNT(gMusicPlayerTrackA), 0 },
+    { &gMusicPlayerB, gMusicPlayerTrackB, ARRAY_COUNT(gMusicPlayerTrackB), 0 },
+    { &gMusicPlayerC, gMusicPlayerTrackC, ARRAY_COUNT(gMusicPlayerTrackC), 0 },
+    { &gMusicPlayerD, gMusicPlayerTrackD, ARRAY_COUNT(gMusicPlayerTrackD), 0 },
+    { &gMusicPlayerE, gMusicPlayerTrackE, ARRAY_COUNT(gMusicPlayerTrackE), 0 },
 };
 
 // Each row retains its original audio-ID slot.  Empty slots deliberately share

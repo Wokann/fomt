@@ -12,7 +12,7 @@ struct HardwareSoundVSyncCommand
 #endif
 {
 #ifdef __cplusplus
-    virtual bool Run() asm("func_08008B0C");
+    virtual bool Run();
 #else
     struct HardwareLinkBase base;
 #endif
@@ -24,7 +24,7 @@ struct HardwareSoundMainCommand
 #endif
 {
 #ifdef __cplusplus
-    virtual bool Run() asm("func_08008B18");
+    virtual bool Run();
 #else
     struct HardwareLinkBase base;
 #endif
@@ -37,9 +37,7 @@ EXTERN_C
 
 // Callers pass their manager; the wait itself only uses IRQ bit zero.
 void WaitForHardwareVBlank(void * manager);
-void func_08008AFC(void);
-u32 func_08008B0C(void);
-u32 func_08008B18(void);
+void InitializeHardwareSound(void);
 struct MusicPlayer * GetHardwareMusicPlayer(u32 index);
 
 EXTERN_C_END

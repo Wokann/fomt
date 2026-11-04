@@ -510,6 +510,20 @@ VSync、帧命令链表和声音主程序。构造时检查 DMA1 的使能位，
 四版均从 `gMusicPlayerTable` 的输入段长度计算播放器数量。原版表占 60 字节，
 每个 `MusicPlayerEnt` 占 12 字节，链接符号 `_M4aNumMusicPlayers` 的值为 5。
 
+## 声音命令、播放器与歌曲接口
+
+| 区域 | 连续代码范围（不含终点） | 下一入口 |
+| --- | --- | --- |
+| JP | 08008AF8–08008E30 | MakeHardwareDmaCopyControl |
+| US | 08008AF0–08008E28 | MakeHardwareDmaCopyControl |
+| EU | 08008B04–08008E3C | MakeHardwareDmaCopyControl |
+| DE | 08008B10–08008E48 | MakeHardwareDmaCopyControl |
+
+连续部分依次为声音命令（100 字节）、播放器操作（472 字节）及歌曲接口（252 字节）。
+两份位于后部的编译器析构各占 12 字节，两张声音命令虚表各占 16 字节。两张表现在直接
+引用各自的 `Run()` 成员及析构函数。播放器的暂停位与低 16 位轨道掩码分别读取。
+播放器和歌曲数量由链接表长生成，两个原生查询均只返回低 8 位。
+
 ## JP 原生代码中的数据指针重定位（2026-11-04）
 
 三个既有汇编对象中，330 个经原版字节及 Thumb PC 相对读取验证的数据指针，

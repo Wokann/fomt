@@ -10,7 +10,7 @@ struct MusicPlayer;
 struct HardwareMusicPlayerSlot {
     explicit HardwareMusicPlayerSlot(u8 index);
     void Start(u16 song_id);
-    void StartIfChangedOrInactive(u16 song_id);
+    void StartIfChangedOrPaused(u16 song_id);
     void StartOrContinue(u16 song_id);
     void Stop();
     void Continue();
@@ -24,8 +24,8 @@ struct HardwareMusicPlayerSlot {
     void SetModulationDepth(u8 depth, u16 track_bits);
     void SetLfoSpeed(u8 speed, u16 track_bits);
     void InitializeImmediately();
-    bool IsActive() const;
-    u16 GetStatus() const;
+    bool IsUnpaused() const;
+    u16 GetActiveTrackMask() const;
     u8 GetTrackCount() const;
     u8 GetPriority() const;
     u32 GetClock() const;
@@ -41,7 +41,7 @@ EXTERN_C
 
 // The two remaining native player lookup entries retain their own ABI.
 // Their different index arguments are not assigned unverified audio roles.
-struct MusicPlayer * func_08008CFC(void);
+struct MusicPlayer * GetFirstHardwareMusicPlayer(void);
 struct MusicPlayer * func_08008D10(void);
 
 EXTERN_C_END
