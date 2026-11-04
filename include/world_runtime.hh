@@ -36,12 +36,18 @@ struct GameScenePaletteSlot {
     u8 unk_0B;
 };
 
+// The retained-bank entries and both frame counters form one owned subobject.
+// Its entries release their hardware handles in reverse order on destruction.
+struct GameScenePaletteSlotPool {
+    GameScenePaletteSlot entries[13];
+    u8 used_slots;
+    u8 previous_slots;
+};
+
 struct GameScenePaletteCache {
     u8 encoded_palette_banks[32];
     GameScenePaletteResource resources[22];
-    GameScenePaletteSlot slots[13];
-    u8 used_slots;
-    u8 unk_C15;
+    GameScenePaletteSlotPool slot_pool;
 
     // Native implementation; returns a retained/new OBJ bank or -1.
     i32 AcquirePaletteBank(u32 index);
@@ -52,8 +58,10 @@ struct GameScenePaletteCache {
 typedef char GameScenePaletteResourceSizeCheck[sizeof(GameScenePaletteResource) == 132 ? 1 : -1];
 typedef char GameScenePaletteResourceFlagOffsetCheck[offsetof(GameScenePaletteResource, unk_81) == 0x81 ? 1 : -1];
 typedef char GameScenePaletteSlotSizeCheck[sizeof(GameScenePaletteSlot) == 12 ? 1 : -1];
-typedef char GameScenePaletteCacheSlotsCheck[offsetof(GameScenePaletteCache,slots) == 0xB78 ? 1 : -1];
-typedef char GameScenePaletteCacheCountCheck[offsetof(GameScenePaletteCache,used_slots) == 0xC14 ? 1 : -1];
+typedef char GameScenePaletteCacheSlotsCheck[offsetof(GameScenePaletteCache, slot_pool) == 0xB78 ? 1 : -1];
+typedef char GameScenePaletteCacheCountCheck[(offsetof(GameScenePaletteCache, slot_pool) + offsetof(GameScenePaletteSlotPool, used_slots)) == 0xC14 ? 1 : -1];
+typedef char GameScenePaletteSlotPoolSizeCheck[sizeof(GameScenePaletteSlotPool) == 0xA0 ? 1 : -1];
+typedef char GameScenePaletteCachePreviousCountCheck[(offsetof(GameScenePaletteCache, slot_pool) + offsetof(GameScenePaletteSlotPool, previous_slots)) == 0xC15 ? 1 : -1];
 typedef char GameScenePaletteCacheSizeCheck[sizeof(GameScenePaletteCache) == 0xC18 ? 1 : -1];
 
 // This one-word owner is passed by value to the native data constructor.
@@ -131,8 +139,8 @@ typedef char GameScenePaletteIndexValuesCheck[offsetof(GameScenePaletteIndices, 
 
 // The native constructor receives this member at world+4, not the complete
 // world object. Each archive has its own source and reverse-order destruction.
-// The constructor and destructor bodies remain native assembly under their
-// real C++ ABI names; declaring them does not count as C++ code recovery.
+// Construction remains native assembly under the real C++ ABI name.
+// Destruction releases entities first, then the owned members in reverse order.
 struct GameSceneWorldData {
     GameSceneWorldMapOwner map;
     AEntity * entities[100];

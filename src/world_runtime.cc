@@ -4,6 +4,7 @@
 #include "world_runtime.hh"
 #include "game_world.hh"
 #include "entity_auxiliary_sprites.hh"
+#include "world_sprite_effects.hh"
 
 EC i32 GetWorldSpritePaletteBank(GameSceneWorld & world, u32 index)
 {
@@ -20,4 +21,14 @@ EC i32 GetWorldSpritePaletteBank(GameSceneWorld & world, u32 index)
 EC void ClearWorldSpritePaletteResourceFlag(GameSceneWorld & world, u32 index)
 {
     world.data.palette_cache.resources[index].unk_81 = 0;
+}
+
+GameSceneWorldData::~GameSceneWorldData()
+{
+    u32 index = 0;
+    AEntity ** current = entities;
+    for (; index < ARRAY_COUNT(entities); ++index) {
+        delete *current;
+        ++current;
+    }
 }

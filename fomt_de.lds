@@ -847,6 +847,8 @@ SECTIONS
         src/map_data.o(.text.IsMapTerrainBoxBlocked .text.ClipMapTerrainMovement .text.ClipMapTerrainMovementIgnoringFlag1);
         asm/map_data.o(.text);
         asm/world_runtime.o(.text);
+        src/world_runtime.o(.text._._18GameSceneWorldData);
+        asm/world_runtime.o(.text.world_runtime_after_data_destruction);
         asm/code_809E804.o(.text.world_runtime_after);
         src/ui_state.o(.text.ui_portrait_group);
         src/ui_text_stream.o(.text);
