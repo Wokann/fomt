@@ -3084,7 +3084,7 @@ static void usage(void)
          "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
          "SOURCE OUTPUT LADDER SLOT_SIZE "
          "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select|heap|shell|quick|heap-sort|exchange] "
-         "[--parent-first] [--greedy] [--tail=FILE] | "
+         "[--parent-first] [--greedy] [--optimal] [--tail=FILE] | "
          "decode-lz1|decode-lz2|decode-lz3|decode-huff4-lz0|decode-huff4-lz3|decode-huff8-lz3|"
          "decode-huff4-lz2|decode-huff8-lz2 SOURCE OUTPUT | "
          "decode-native SOURCE OUTPUT [--info] | "
@@ -3280,6 +3280,7 @@ int main(int argc, char **argv)
         int parent_first = 0;
         int greedy = huff4;
         int greedy_seen = 0;
+        int optimal_lz2 = 0;
         unsigned tie_order = 0;
         int tie_seen = 0;
         unsigned filter = 0;
@@ -3296,6 +3297,11 @@ int main(int argc, char **argv)
                     usage();
                 filter = (unsigned)value;
                 filter_seen = 1;
+            } else if ((huff4_lz2 || huff8_lz2) && !optimal_lz2 && strcmp(argv[index], "--optimal") == 0) {
+                // The original greedy strategy remains the default. Changed
+                // assets can select the existing model/parse iteration to
+                // minimize size without changing the decoded data format.
+                optimal_lz2 = 1;
             } else if ((huff4 || huff8) && !greedy_seen && strcmp(argv[index], "--greedy") == 0) {
                 greedy = 1;
                 greedy_seen = 1;
@@ -3362,7 +3368,7 @@ int main(int argc, char **argv)
                          &packed_size)
             : huff4_lz2 || huff8_lz2
                 ? encode_huff_lz2_strategy(atoms, source_size, ladder,
-                                            huff4_lz2 ? 4 : 8, 0, 1,
+                                            huff4_lz2 ? 4 : 8, 0, !optimal_lz2,
                                             tie_order == 9 ? HUFF_BUILD_EXCHANGE_LAST
                                                 : tie_order == 3 ? HUFF_BUILD_LAST : HUFF_BUILD_FIRST,
                                             &packed_size)

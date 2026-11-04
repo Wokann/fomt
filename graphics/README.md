@@ -31,6 +31,13 @@ not build inputs. This does not make still-raw resource data semantic artwork
 or prove that every resource reference is relocatable. Do not substitute the
 GBA BIOS LZ format for FoMT's native format.
 
+`encode-huff4-lz2` and `encode-huff8-lz2` accept an optional `--optimal` flag.
+It enables the existing iterative parse/Huffman-model strategy while retaining
+the same native decoded format. Without it, the original greedy output is
+unchanged. This is useful when an edited resource needs a smaller packed
+stream; the slot-size argument still enforces its available space. No
+particular archive, ROM address or region is selected by this option.
+
 Files under `reference/` and OAM-composited `full/frame_NNNN.png` renderings
 are reference views unless a local README explicitly identifies them as
 authoring sources. In particular, actor and portrait archives are authored
