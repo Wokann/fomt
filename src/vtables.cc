@@ -3,6 +3,7 @@
 #include "scene_horse_race.hh"
 #include "scene_chicken_festival.hh"
 #include "prelude.h"
+#include "pure_virtual.h"
 #include "intro_scene.hh"
 #include "new_game.hh"
 #include "hardware_bootstrap.hh"
@@ -78,7 +79,6 @@ struct RawVTableWithOffsetAnd66Entries {
     RawVTableFunction entries[66];
 };
 
-extern void __pure_virtual(void);
 extern void func_08069D84(void);
 extern void func_08069E58(void);
 extern void func_08069E98(void);
@@ -4393,7 +4393,6 @@ extern RawVTableFunction const gUnk_080E6FA8
 
 #if defined(REGION_JP)
 extern void func_080E25D4(void);
-extern void __pure_virtual(void);
 
 // This three-slot table exists only in the JP vtable range.
 extern RawVTableFunction const vtable_unk_080E6FAC[]

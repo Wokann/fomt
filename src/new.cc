@@ -19,8 +19,6 @@ void DeallocateCppObjectMemory(void * pointer)
     ::operator delete(pointer);
 }
 
-extern std::new_handler __new_handler;
-
 static void * alloc(size_t size)
 {
     for (;;)
@@ -93,7 +91,7 @@ void * RetryMemoryAllocation(size_t size)
 {
     for (;;)
     {
-        std::new_handler handler = gUnk_03000CD4;
+        std::new_handler handler = gAllocationFailureHandler;
         if (handler == nullptr)
         {
             for (;;) {}

@@ -2,6 +2,7 @@
 #define SRAM_ACCESS_HH
 
 #include "prelude.h"
+#include "interrupt.hh"
 
 EXTERN_C
 
@@ -11,7 +12,8 @@ extern u16 gSramAccessStatus;
 extern u8 gSramAccessInitialized;
 
 void func_0800063C(void);
-u32 func_08000714(u8 const *context, void (*handler)(void));
+// The low two bits of context[4] select Timer 0..3. The other fields remain unknown.
+InterruptHandler ExchangeTimerInterruptHandler(u8 const *context, InterruptHandler handler);
 
 EXTERN_C_END
 

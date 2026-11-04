@@ -1,6 +1,5 @@
-/* defintion of the __pure_virtual dummy function
- * I don't know if this is good to put here or we want to make a runtime.cc file for this and new.cc */
+#include "pure_virtual.h"
 
-#include "prelude.h"
+// The original runtime hook returns immediately, without trapping or aborting.
 
 void __pure_virtual(void) {}

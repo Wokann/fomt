@@ -478,7 +478,7 @@ BlendRgb5PaletteBank:
     pop {r4, r5, r6, r7, r8, sb, sl, fp, lr}
     bx lr
 
-    .global gUnk_03000CD4
-    .type gUnk_03000CD4, object
-gUnk_03000CD4: @ new handler
-    .byte 0x00, 0x00, 0x00, 0x00
+    .global gAllocationFailureHandler
+    .type gAllocationFailureHandler, object
+gAllocationFailureHandler:
+    .word 0

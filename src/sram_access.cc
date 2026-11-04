@@ -1,6 +1,5 @@
 #include "sram_access.hh"
 #include "libsram.h"
-#include "interrupt.hh"
 
 // Shared by the SRAM access contexts; startup zeroes this ordinary BSS.
 u16 gSramAccessStatus;
@@ -26,7 +25,7 @@ bool SramAccess::Erase()
     u32 offset;
     u32 limit;
 
-    for (index = 0; index <= 7; index++)
+    for (index = 0; index < sizeof(bytes); index++)
         bytes[index] = 0xFF;
 
     offset = 0;
@@ -34,7 +33,7 @@ bool SramAccess::Erase()
     do
     {
         Write(offset, bytes, sizeof(bytes));
-        offset += 8;
+        offset += sizeof(bytes);
     } while (offset < limit);
 
     return true;
@@ -65,11 +64,11 @@ bool SramAccess::Read(void *destination, u32 offset, u32 size)
     return true;
 }
 
-u32 func_08000714(u8 const *context, void (*handler)(void))
+InterruptHandler ExchangeTimerInterruptHandler(u8 const *context, InterruptHandler handler)
 {
     u32 flags = context[4];
     u32 mask = 3;
-    return (u32)ExchangeInterruptHandler((flags & mask) + 3, handler);
+    return ExchangeInterruptHandler((flags & mask) + 3, handler);
 }
 
 void SramAccess::AddStatusFlag(u16 flag)
