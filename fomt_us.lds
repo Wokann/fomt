@@ -1,6 +1,5 @@
 OUTPUT_ARCH(arm)
 
-_M4aNumMusicPlayers = 5;
 _M4aMaxLines = 0x50;
 
 MEMORY
@@ -1538,6 +1537,8 @@ SECTIONS
         . = ABSOLUTE(0x08139A88); src/m4a.o(.rodata);
         . = ABSOLUTE(0x08139D60); src/m4a.o(.rodata.gM4aVoiceGroups);
         . = ABSOLUTE(0x0813ABB4); src/m4a.o(.rodata.gMusicPlayerTable);
+        /* MusicPlayerEnt is 12 bytes on the GBA. */
+        _M4aNumMusicPlayers = ABSOLUTE((. - gMusicPlayerTable) / 12);
         . = ALIGN(4); src/m4a.o(.rodata.gSongTable);
         /* SongEnt is eight bytes; use the actual table length, including unused slots. */
         _M4aNumSongs = ABSOLUTE((. - gSongTable) / 8);

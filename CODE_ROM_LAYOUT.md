@@ -505,6 +505,11 @@ VSync、帧命令链表和声音主程序。构造时检查 DMA1 的使能位，
 声音 VSync 时才在析构时关闭。第二个帧命令访问器保留独立入口。
 `gCurrentHardwareVBlankBinding` 在四版 IWRAM 的 03000410 各占四字节。
 
+## m4a 播放器表计数
+
+四版均从 `gMusicPlayerTable` 的输入段长度计算播放器数量。原版表占 60 字节，
+每个 `MusicPlayerEnt` 占 12 字节，链接符号 `_M4aNumMusicPlayers` 的值为 5。
+
 ## JP 原生代码中的数据指针重定位（2026-11-04）
 
 三个既有汇编对象中，330 个经原版字节及 Thumb PC 相对读取验证的数据指针，
