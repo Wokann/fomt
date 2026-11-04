@@ -4,14 +4,9 @@
 #include "game_state.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_dma.hh"
+#include "gbaio.h"
 #include "font.hh"
 #include "font_draw.hh"
-
-namespace {
-enum {
-    KEY_UP = 0x40, KEY_DOWN = 0x80, KEY_RIGHT = 0x10, KEY_LEFT = 0x20
-};
-}
 
 void UiPurchaseQuantitySelector::Configure(u32 price, u32 available, u32 new_column)
 {
@@ -40,19 +35,19 @@ void UiPurchaseQuantitySelector::Update()
     // Direction buttons occupy the low byte of the repeated-key ABI word.
     bool changed = false;
     u32 previous = quantity;
-    if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(scene))) & KEY_UP) {
+    if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(scene))) & DPAD_UP) {
         ++quantity;
         if (quantity > maximum) quantity = 1;
-    } else if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(scene))) & KEY_DOWN) {
+    } else if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(scene))) & DPAD_DOWN) {
         --quantity;
         if (quantity == 0) quantity = maximum;
-    } else if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(scene))) & KEY_RIGHT) {
+    } else if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(scene))) & DPAD_RIGHT) {
         if (quantity == maximum) quantity = 1;
         else {
             quantity += 10;
             if (quantity >= maximum) quantity = maximum;
         }
-    } else if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(scene))) & KEY_LEFT) {
+    } else if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(scene))) & DPAD_LEFT) {
         if (quantity == 1) quantity = maximum;
         else if (quantity <= 11) quantity = 1;
         else quantity -= 10;

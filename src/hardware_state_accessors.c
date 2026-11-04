@@ -2,97 +2,115 @@
 #include "hardware_nested_accessors.hh"
 #include "hardware_input_repeat.hh"
 
-void UpdateHardwareInput(void * const * state)
+void UpdateHardwareInput(void * const * state_slot)
 {
-    UpdateHardwareKeyRepeat(&((struct HardwareCoreState *)*state)->input);
+    struct HardwareCoreState * state = *state_slot;
+    UpdateHardwareKeyRepeat(&state->input);
 }
 
-u16 GetHardwareHeldKeys(void * const * state)
+u16 GetHardwareHeldKeys(void * const * state_slot)
 {
-    return ((struct HardwareCoreState *)*state)->input.held;
+    struct HardwareCoreState * state = *state_slot;
+    return state->input.held;
 }
 
-u32 GetHardwarePressedKeys(void * const * state)
+u32 GetHardwarePressedKeys(void * const * state_slot)
 {
-    return ((struct HardwareCoreState *)*state)->input.pressed;
+    struct HardwareCoreState * state = *state_slot;
+    return state->input.pressed;
 }
 
-u32 GetHardwareRepeatedKeys(void * const * state)
+u32 GetHardwareRepeatedKeys(void * const * state_slot)
 {
-    return ((struct HardwareCoreState *)*state)->input.repeated;
+    struct HardwareCoreState * state = *state_slot;
+    return state->input.repeated;
 }
 
-struct HardwareCoreState * GetHardwareCoreState(void * const * state)
+struct HardwareCoreState * GetHardwareCoreState(void * const * state_slot)
 {
-    return *state;
+    return *state_slot;
 }
 
-void SetHardwareRepeatDelay(void * const * state, u16 value)
+void SetHardwareRepeatDelay(void * const * state_slot, u16 value)
 {
-    SetHardwareKeyRepeatDelay(&((struct HardwareCoreState *)*state)->input, value);
+    struct HardwareCoreState * state = *state_slot;
+    SetHardwareKeyRepeatDelay(&state->input, value);
 }
 
-void SetHardwareRepeatInterval(void * const * state, u16 value)
+void SetHardwareRepeatInterval(void * const * state_slot, u16 value)
 {
-    SetHardwareKeyRepeatInterval(&((struct HardwareCoreState *)*state)->input, value);
+    struct HardwareCoreState * state = *state_slot;
+    SetHardwareKeyRepeatInterval(&state->input, value);
 }
 
-u16 GetHardwareRepeatDelay(void * const * state)
+u16 GetHardwareRepeatDelay(void * const * state_slot)
 {
-    return ((struct HardwareCoreState *)*state)->input.repeat_delay;
+    struct HardwareCoreState * state = *state_slot;
+    return state->input.repeat_delay;
 }
 
-u16 GetHardwareRepeatInterval(void * const * state)
+u16 GetHardwareRepeatInterval(void * const * state_slot)
 {
-    return ((struct HardwareCoreState *)*state)->input.repeat_interval;
+    struct HardwareCoreState * state = *state_slot;
+    return state->input.repeat_interval;
 }
 
-struct HardwareDmaQueue * GetHardwareDmaQueue(void * const * state)
+struct HardwareDmaQueue * GetHardwareDmaQueue(void * const * state_slot)
 {
-    return &((struct HardwareCoreState *)*state)->dma_queue;
+    struct HardwareCoreState * state = *state_slot;
+    return &state->dma_queue;
 }
 
-struct HardwareDisplayState * GetHardwareDisplayState(void * const * state)
+struct HardwareDisplayState * GetHardwareDisplayState(void * const * state_slot)
 {
-    return &((struct HardwareCoreState *)*state)->display;
+    struct HardwareCoreState * state = *state_slot;
+    return &state->display;
 }
 
-struct HardwareSpriteBufferState * GetHardwareSpriteBuffer(void * const * state)
+struct HardwareSpriteBufferState * GetHardwareSpriteBuffer(void * const * state_slot)
 {
-    return &((struct HardwareCoreState *)*state)->sprite_buffer;
+    struct HardwareCoreState * state = *state_slot;
+    return &state->sprite_buffer;
 }
 
-u8 * func_08008928(void * const * state)
+struct HardwareDmaQueue * func_08008928(void * const * state_slot)
 {
-    return (u8 *)&((struct HardwareCoreState *)*state)->dma_queue;
+    struct HardwareCoreState * state = *state_slot;
+    return &state->dma_queue;
 }
 
-struct HardwareDisplayState * func_08008930(void * const * state)
+struct HardwareDisplayState * func_08008930(void * const * state_slot)
 {
-    return &((struct HardwareCoreState *)*state)->display;
+    struct HardwareCoreState * state = *state_slot;
+    return &state->display;
 }
 
-struct HardwareSpriteBufferState * func_08008938(void * const * state)
+struct HardwareSpriteBufferState * func_08008938(void * const * state_slot)
 {
-    return &((struct HardwareCoreState *)*state)->sprite_buffer;
+    struct HardwareCoreState * state = *state_slot;
+    return &state->sprite_buffer;
 }
 
-struct HardwareLinkedList * GetHardwareCommandList(void * const * state)
+struct HardwareLinkedList * GetHardwareCommandList(void * const * state_slot)
 {
-    return &((struct HardwareCoreState *)*state)->links;
+    struct HardwareCoreState * state = *state_slot;
+    return &state->links;
 }
 
-struct HardwareInterruptList * GetHardwareInterruptList(void * const * state)
+struct HardwareInterruptList * GetHardwareInterruptList(void * const * state_slot)
 {
-    return func_08008AE0(&((struct HardwareCoreState *)*state)->manager);
+    struct HardwareCoreState * state = *state_slot;
+    return func_08008AE0(&state->manager);
 }
 
-u8 * func_08008960(void * const * state)
+struct HardwareLinkedList * func_08008960(void * const * state_slot)
 {
-    return (u8 *)&((struct HardwareCoreState *)*state)->links;
+    struct HardwareCoreState * state = *state_slot;
+    return &state->links;
 }
 
-u8 * func_0800896C(void * const * state)
+struct HardwareInterruptList * func_0800896C(void * const * state_slot)
 {
-    return (u8 *)func_08008AE0(&((struct HardwareCoreState *)*state)->manager);
+    struct HardwareCoreState * state = *state_slot;
+    return func_08008AE0(&state->manager);
 }

@@ -930,3 +930,32 @@ JP844C锚移至下一未审访问器主题88C0；未做移址/扩容/模拟器�
 不新增C/C++覆盖，也不据此声称后续ROM已经可自由移动。
 证据：私有hardware-bootstrap-8c5584a1的summary、audit-notes、候选分类、
 native-compares与最终map/对象核验；非匹配C++尝试保留在私有记录中。
+
+## 硬件状态访问器（2026-11-05）
+
+| 区域 | `hardware_state_accessors.o(.text)` 半开范围 | 外部调用 |
+| --- | --- | ---: |
+| JP | 080088C0–08008988 | 1572 |
+| US | 080088B8–08008980 | 1577 |
+| EU | 080088CC–08008994 | 1577 |
+| DE | 080088D8–080089A0 | 1577 |
+
+每版19个现有C函数实占174字节，13处双字节零对齐占26字节，共200字节。
+没有独立rodata、非空data或BSS。所有函数都读取持有者首槽内的状态指针，
+再访问真实成员。三个旧字节视图已分别恢复为DMA队列、命令链表和中断
+链表指针。五个重复入口仍分别保留；连同四个连发参数入口，均未查到原版
+入向调用。没有证据将它们命名为const重载或合并为别名。
+
+四版6303个外部直接调用均是实际THM_CALL；本块每版5个出向调用，无内部
+调用、ABS32或指向函数内部偏移的入向引用。90个地址形值候选已逐项排除：
+84个来自指令字节拼窗，6个来自角色图块像素或相邻u16记录；没有裸指针。
+购物数量界面使用共有DPAD_UP/DOWN/RIGHT/LEFT判断连发方向，保留原始读取宽度。
+
+JP移除88C0定位，下一未审hardware_manager的起点仍限定为8988。四版WSL
+-j4 compare、原版SHA-1、map及实际输入对象重定位核对通过；未做移址、
+扩容或模拟器测试。没有增加C/C++恢复字节，不将该结论扩大至完整场景继承
+或整个ROM。
+
+证据：私有hardware-state-accessors-a1b87a24下的summary.json、audit-notes.json、
+source-abi-layout-review.json、code-candidate-classification.json、
+resource_candidate_classification.json、native-map-validation.json及四版比较日志。

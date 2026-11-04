@@ -81,7 +81,7 @@ public:
 #endif
 };
 
-// Layout shared by the four bootstrap constructors and these accessors.
+// Runtime layout shared by the four HardwareContext constructors and these accessors.
 // Unresolved sprite parameters and display fields retain unknown names.
 struct HardwareCoreState {
     struct HardwareInputState input;
@@ -111,28 +111,33 @@ typedef char HardwareCoreState_links_check[offsetof(struct HardwareCoreState, li
 
 EXTERN_C
 
-void UpdateHardwareInput(void * const * state);
-u16 GetHardwareHeldKeys(void * const * state);
+// Several native scene prefixes store the core-state pointer in their first
+// word. The ABI accepts that slot, including prefixes not declared as subclasses.
+void UpdateHardwareInput(void * const * state_slot);
+u16 GetHardwareHeldKeys(void * const * state_slot);
 // The halfword input field is returned zero-extended in the ARM ABI word.
-u32 GetHardwarePressedKeys(void * const * state);
+u32 GetHardwarePressedKeys(void * const * state_slot);
 // The native repeated-key mask also returns a zero-extended ABI word.
-u32 GetHardwareRepeatedKeys(void * const * state);
-struct HardwareCoreState * GetHardwareCoreState(void * const * state);
+u32 GetHardwareRepeatedKeys(void * const * state_slot);
+struct HardwareCoreState * GetHardwareCoreState(void * const * state_slot);
 
-void SetHardwareRepeatDelay(void * const * state, u16 value);
-void SetHardwareRepeatInterval(void * const * state, u16 value);
-u16 GetHardwareRepeatDelay(void * const * state);
-u16 GetHardwareRepeatInterval(void * const * state);
-struct HardwareDmaQueue * GetHardwareDmaQueue(void * const * state);
-struct HardwareDisplayState * GetHardwareDisplayState(void * const * state);
-struct HardwareSpriteBufferState * GetHardwareSpriteBuffer(void * const * state);
-u8 * func_08008928(void * const * state);
-struct HardwareDisplayState * func_08008930(void * const * state);
-struct HardwareSpriteBufferState * func_08008938(void * const * state);
-struct HardwareLinkedList * GetHardwareCommandList(void * const * state);
-struct HardwareInterruptList * GetHardwareInterruptList(void * const * state);
-u8 * func_08008960(void * const * state);
-u8 * func_0800896C(void * const * state);
+void SetHardwareRepeatDelay(void * const * state_slot, u16 value);
+void SetHardwareRepeatInterval(void * const * state_slot, u16 value);
+u16 GetHardwareRepeatDelay(void * const * state_slot);
+u16 GetHardwareRepeatInterval(void * const * state_slot);
+struct HardwareDmaQueue * GetHardwareDmaQueue(void * const * state_slot);
+struct HardwareDisplayState * GetHardwareDisplayState(void * const * state_slot);
+struct HardwareSpriteBufferState * GetHardwareSpriteBuffer(void * const * state_slot);
+// Independent native entries return the same members as the three getters
+// above. No caller establishes a distinct contract such as a const overload.
+struct HardwareDmaQueue * func_08008928(void * const * state_slot);
+struct HardwareDisplayState * func_08008930(void * const * state_slot);
+struct HardwareSpriteBufferState * func_08008938(void * const * state_slot);
+struct HardwareLinkedList * GetHardwareCommandList(void * const * state_slot);
+struct HardwareInterruptList * GetHardwareInterruptList(void * const * state_slot);
+// The retail binary likewise retains a second entry for each list.
+struct HardwareLinkedList * func_08008960(void * const * state_slot);
+struct HardwareInterruptList * func_0800896C(void * const * state_slot);
 
 EXTERN_C_END
 
