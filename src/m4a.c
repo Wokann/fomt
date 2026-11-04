@@ -685,145 +685,145 @@ struct MusicPlayerEnt const gMusicPlayerTable[] = {
 // Each row retains its original audio-ID slot.  Empty slots deliberately share
 // the one zero track instead of inventing separate payloads.
 extern struct Song gSong_Unused;
-extern struct Song gSong_Audio001;
-extern struct Song gSong_Audio002;
-extern struct Song gSong_Audio003;
-extern struct Song gSong_Audio004;
-extern struct Song gSong_Audio005;
-extern struct Song gSong_Audio006;
-extern struct Song gSong_Audio007;
-extern struct Song gSong_Audio008;
-extern struct Song gSong_Audio009;
-extern struct Song gSong_Audio010;
-extern struct Song gSong_Audio011;
-extern struct Song gSong_Audio012;
-extern struct Song gSong_Audio013;
-extern struct Song gSong_Audio014;
-extern struct Song gSong_Audio015;
-extern struct Song gSong_Audio016;
-extern struct Song gSong_Audio017;
-extern struct Song gSong_Audio018;
-extern struct Song gSong_Audio019;
-extern struct Song gSong_Audio020;
-extern struct Song gSong_Audio021;
-extern struct Song gSong_Audio022;
-extern struct Song gSong_Audio023;
-extern struct Song gSong_Audio024;
-extern struct Song gSong_Audio025;
-extern struct Song gSong_Audio026;
-extern struct Song gSong_Audio027;
-extern struct Song gSong_Audio028;
-extern struct Song gSong_Audio029;
-extern struct Song gSong_Audio030;
-extern struct Song gSong_Audio031;
-extern struct Song gSong_Audio032;
-extern struct Song gSong_Audio033;
-extern struct Song gSong_Audio034;
-extern struct Song gSong_Audio035;
-extern struct Song gSong_Audio036;
-extern struct Song gSong_Audio037;
-extern struct Song gSong_Audio101;
-extern struct Song gSong_Audio102;
+extern struct Song gSong_BgmSpring;
+extern struct Song gSong_BgmSummer;
+extern struct Song gSong_BgmAutumn;
+extern struct Song gSong_BgmWinter;
+extern struct Song gSong_BgmSadness;
+extern struct Song gSong_BgmWedding;
+extern struct Song gSong_BgmFestival;
+extern struct Song gSong_BgmMusicFestival;
+extern struct Song gSong_BgmAnimalFestival;
+extern struct Song gSong_AmbienceRain;
+extern struct Song gSong_AmbienceStorm;
+extern struct Song gSong_AmbienceBeach;
+extern struct Song gSong_BgmMineralTown;
+extern struct Song gSong_AmbienceNight;
+extern struct Song gSong_BgmMusicFestivalPerformance;
+extern struct Song gSong_BgmRivalEvent;
+extern struct Song gSong_BgmLoveEvent;
+extern struct Song gSong_RecordSpringSong;
+extern struct Song gSong_RecordTownSpirit;
+extern struct Song gSong_RecordFlowerBudFall;
+extern struct Song gSong_Record64Memories;
+extern struct Song gSong_RecordMarineJazz;
+extern struct Song gSong_RecordButterfly;
+extern struct Song gSong_RecordSummerMemories;
+extern struct Song gSong_RecordAutumnJoy;
+extern struct Song gSong_RecordQuietWinter;
+extern struct Song gSong_RecordGriffinBlue;
+extern struct Song gSong_RecordAlbum11;
+extern struct Song gSong_RecordAlbum12;
+extern struct Song gSong_RecordAlbum13;
+extern struct Song gSong_RecordAlbum14;
+extern struct Song gSong_RecordAlbum15;
+extern struct Song gSong_BgmFestivalHorseRaceMinigame;
+extern struct Song gSong_BgmHarvestSpriteMinigame;
+extern struct Song gSong_BgmTitleScreen;
+extern struct Song gSong_BgmCredits;
+extern struct Song gSong_BgmChildhood;
+extern struct Song gSong_SfxEat;
+extern struct Song gSong_SfxDrink;
 extern struct Song gSong_Audio103;
 extern struct Song gSong_Audio104;
-extern struct Song gSong_Audio105;
-extern struct Song gSong_Audio106;
-extern struct Song gSong_Audio107;
-extern struct Song gSong_Audio108;
-extern struct Song gSong_Audio109;
-extern struct Song gSong_Audio110;
-extern struct Song gSong_Audio111;
-extern struct Song gSong_Audio112;
-extern struct Song gSong_Audio113;
-extern struct Song gSong_Audio114;
-extern struct Song gSong_Audio115;
-extern struct Song gSong_Audio116;
-extern struct Song gSong_Audio117;
-extern struct Song gSong_Audio118;
+extern struct Song gSong_SfxEnterHotSpring;
+extern struct Song gSong_SfxPickUpItem;
+extern struct Song gSong_SfxRucksackItemTransfer;
+extern struct Song gSong_SfxThrowItem;
+extern struct Song gSong_SfxThrownItemLands;
+extern struct Song gSong_SfxShipmentDeposit;
+extern struct Song gSong_SfxSickleCut;
+extern struct Song gSong_SfxSickleVariant1;
+extern struct Song gSong_SfxSickleVariant2;
+extern struct Song gSong_SfxSickleVariant3;
+extern struct Song gSong_SfxSickleVariant4;
+extern struct Song gSong_SfxSickleVariant5;
+extern struct Song gSong_SfxSickleVariant6;
+extern struct Song gSong_SfxHoeTill;
 extern struct Song gSong_Audio119;
 extern struct Song gSong_Audio120;
-extern struct Song gSong_Audio121;
+extern struct Song gSong_SfxLightFireplace;
 extern struct Song gSong_Audio122;
 extern struct Song gSong_Audio123;
-extern struct Song gSong_Audio124;
-extern struct Song gSong_Audio125;
-extern struct Song gSong_Audio126;
-extern struct Song gSong_Audio127;
-extern struct Song gSong_Audio128;
-extern struct Song gSong_Audio129;
-extern struct Song gSong_Audio130;
-extern struct Song gSong_Audio131;
-extern struct Song gSong_Audio132;
-extern struct Song gSong_Audio133;
-extern struct Song gSong_Audio134;
-extern struct Song gSong_Audio135;
-extern struct Song gSong_Audio136;
-extern struct Song gSong_Audio137;
-extern struct Song gSong_Audio138;
-extern struct Song gSong_Audio139;
-extern struct Song gSong_Audio140;
-extern struct Song gSong_Audio141;
-extern struct Song gSong_Audio142;
-extern struct Song gSong_Audio143;
-extern struct Song gSong_Audio144;
-extern struct Song gSong_Audio145;
-extern struct Song gSong_Audio146;
-extern struct Song gSong_Audio147;
-extern struct Song gSong_Audio148;
-extern struct Song gSong_Audio149;
+extern struct Song gSong_SfxAddItemToFire;
+extern struct Song gSong_SfxHammerSmallStone;
+extern struct Song gSong_SfxHammerLargeStone;
+extern struct Song gSong_SfxHammerHugeStone;
+extern struct Song gSong_SfxHammerVariant1;
+extern struct Song gSong_SfxHammerVariant2;
+extern struct Song gSong_SfxHammerVariant3;
+extern struct Song gSong_SfxHammerMaxChargedSwing;
+extern struct Song gSong_SfxAxeBranchChop;
+extern struct Song gSong_SfxAxeStumpChop;
+extern struct Song gSong_SfxAxeVariant1;
+extern struct Song gSong_SfxAxeVariant2;
+extern struct Song gSong_SfxAxeVariant3;
+extern struct Song gSong_SfxAxeVariant4;
+extern struct Song gSong_SfxAxeMaxChargedSwing;
+extern struct Song gSong_SfxWateringCanPour;
+extern struct Song gSong_SfxWateringCanPourVariant1;
+extern struct Song gSong_SfxWateringCanPourVariant2;
+extern struct Song gSong_SfxWateringCanPourVariant3;
+extern struct Song gSong_SfxWateringCanPourVariant4;
+extern struct Song gSong_SfxWateringCanPourVariant5;
+extern struct Song gSong_SfxWateringCanMaxChargedPour;
+extern struct Song gSong_SfxWaterSplash;
+extern struct Song gSong_SfxBrushLivestock;
+extern struct Song gSong_SfxSowSeeds;
+extern struct Song gSong_SfxDoctorExamination;
 extern struct Song gSong_Audio150;
 extern struct Song gSong_Audio151;
 extern struct Song gSong_Audio152;
 extern struct Song gSong_Audio153;
 extern struct Song gSong_Audio154;
 extern struct Song gSong_Audio155;
-extern struct Song gSong_Audio156;
-extern struct Song gSong_Audio157;
+extern struct Song gSong_SfxOpenDoor;
+extern struct Song gSong_SfxHealOrPurify;
 extern struct Song gSong_Audio158;
-extern struct Song gSong_Audio159;
-extern struct Song gSong_Audio160;
-extern struct Song gSong_Audio161;
+extern struct Song gSong_SfxMilkCow;
+extern struct Song gSong_SfxShearSheep;
+extern struct Song gSong_SfxCowMoo;
 extern struct Song gSong_Audio162;
-extern struct Song gSong_Audio163;
+extern struct Song gSong_SfxSheepBleat;
 extern struct Song gSong_Audio164;
 extern struct Song gSong_Audio165;
 extern struct Song gSong_Audio166;
-extern struct Song gSong_Audio167;
-extern struct Song gSong_Audio168;
-extern struct Song gSong_Audio169;
-extern struct Song gSong_Audio170;
+extern struct Song gSong_SfxFoalNeigh;
+extern struct Song gSong_SfxHorseNeigh;
+extern struct Song gSong_SfxDogBark;
+extern struct Song gSong_SfxMenuCancelDuplicate;
 extern struct Song gSong_Audio171;
-extern struct Song gSong_Audio172;
-extern struct Song gSong_Audio173;
-extern struct Song gSong_Audio174;
-extern struct Song gSong_Audio175;
-extern struct Song gSong_Audio176;
-extern struct Song gSong_Audio177;
-extern struct Song gSong_Audio178;
-extern struct Song gSong_Audio179;
+extern struct Song gSong_SfxBabyCry;
+extern struct Song gSong_SfxHarvestSpriteFusionFinish;
+extern struct Song gSong_SfxHarvestSpriteFusionPulse;
+extern struct Song gSong_SfxTimePasses;
+extern struct Song gSong_SfxSuccess;
+extern struct Song gSong_SfxFireworkLaunch;
+extern struct Song gSong_SfxFireworkExplosion;
+extern struct Song gSong_SfxCeremonialChime;
 extern struct Song gSong_Audio180;
-extern struct Song gSong_Audio181;
-extern struct Song gSong_Audio182;
+extern struct Song gSong_SfxVictory;
+extern struct Song gSong_SfxItemObtained;
 extern struct Song gSong_Audio183;
-extern struct Song gSong_Audio184;
+extern struct Song gSong_SfxAttentionChime;
 extern struct Song gSong_Audio185;
 extern struct Song gSong_Audio186;
-extern struct Song gSong_Audio187;
-extern struct Song gSong_Audio188;
+extern struct Song gSong_SfxMinigameTimeUp;
+extern struct Song gSong_SfxStarSparkle;
 extern struct Song gSong_Audio189;
-extern struct Song gSong_Audio190;
+extern struct Song gSong_SfxHarvestGoddessAppears;
 extern struct Song gSong_Audio191;
-extern struct Song gSong_Audio192;
-extern struct Song gSong_Audio193;
-extern struct Song gSong_Audio197;
-extern struct Song gSong_Audio198;
-extern struct Song gSong_Audio199;
-extern struct Song gSong_Audio200;
+extern struct Song gSong_SfxQuestionEmote;
+extern struct Song gSong_SfxApplause;
+extern struct Song gSong_SfxMenuConfirm;
+extern struct Song gSong_SfxMenuCancel;
+extern struct Song gSong_SfxIncorrectAnswer;
+extern struct Song gSong_SfxKappaSurprise;
 extern struct Song gSong_Audio201;
 extern struct Song gSong_Audio202;
-extern struct Song gSong_Audio203;
-extern struct Song gSong_Audio204;
-extern struct Song gSong_Audio205;
+extern struct Song gSong_SfxMenuCursor;
+extern struct Song gSong_SfxChickenCluck;
+extern struct Song gSong_SfxCloseDoor;
 extern struct Song gSong_Audio206;
 extern struct Song gSong_Audio207;
 extern struct Song gSong_Audio208;
@@ -833,43 +833,43 @@ extern struct Song gSong_Audio210;
 SECTION(".rodata.gSongTable")
 struct SongEnt const gSongTable[] = {
     /* 000: AUDIO_UNUSED_SLOT_000 */ { &gSong_Unused, 0, 0 },
-    /* 001: AUDIO_BGM_SPRING */ { &gSong_Audio001, 0, 0 },
-    /* 002: AUDIO_BGM_SUMMER */ { &gSong_Audio002, 0, 0 },
-    /* 003: AUDIO_BGM_AUTUMN */ { &gSong_Audio003, 0, 0 },
-    /* 004: AUDIO_BGM_WINTER */ { &gSong_Audio004, 0, 0 },
-    /* 005: AUDIO_BGM_SADNESS */ { &gSong_Audio005, 0, 0 },
-    /* 006: AUDIO_BGM_WEDDING */ { &gSong_Audio006, 0, 0 },
-    /* 007: AUDIO_BGM_FESTIVAL */ { &gSong_Audio007, 0, 0 },
-    /* 008: AUDIO_BGM_MUSIC_FESTIVAL */ { &gSong_Audio008, 0, 0 },
-    /* 009: AUDIO_BGM_ANIMAL_FESTIVAL */ { &gSong_Audio009, 0, 0 },
-    /* 010: AUDIO_AMBIENCE_RAIN */ { &gSong_Audio010, 0, 0 },
-    /* 011: AUDIO_AMBIENCE_STORM */ { &gSong_Audio011, 0, 0 },
-    /* 012: AUDIO_AMBIENCE_BEACH */ { &gSong_Audio012, 0, 0 },
-    /* 013: AUDIO_BGM_MINERAL_TOWN */ { &gSong_Audio013, 0, 0 },
-    /* 014: AUDIO_AMBIENCE_NIGHT */ { &gSong_Audio014, 0, 0 },
-    /* 015: AUDIO_BGM_MUSIC_FESTIVAL_PERFORMANCE */ { &gSong_Audio015, 0, 0 },
-    /* 016: AUDIO_BGM_RIVAL_EVENT */ { &gSong_Audio016, 0, 0 },
-    /* 017: AUDIO_BGM_LOVE_EVENT */ { &gSong_Audio017, 0, 0 },
-    /* 018: AUDIO_RECORD_SPRING_SONG */ { &gSong_Audio018, 0, 0 },
-    /* 019: AUDIO_RECORD_TOWN_SPIRIT */ { &gSong_Audio019, 0, 0 },
-    /* 020: AUDIO_RECORD_FLOWER_BUD_FALL */ { &gSong_Audio020, 0, 0 },
-    /* 021: AUDIO_RECORD_64_MEMORIES */ { &gSong_Audio021, 0, 0 },
-    /* 022: AUDIO_RECORD_MARINE_JAZZ */ { &gSong_Audio022, 0, 0 },
-    /* 023: AUDIO_RECORD_BUTTERFLY */ { &gSong_Audio023, 0, 0 },
-    /* 024: AUDIO_RECORD_SUMMER_MEMORIES */ { &gSong_Audio024, 0, 0 },
-    /* 025: AUDIO_RECORD_AUTUMN_JOY */ { &gSong_Audio025, 0, 0 },
-    /* 026: AUDIO_RECORD_QUIET_WINTER */ { &gSong_Audio026, 0, 0 },
-    /* 027: AUDIO_RECORD_GRIFFIN_BLUE */ { &gSong_Audio027, 0, 0 },
-    /* 028: AUDIO_RECORD_ALBUM_11 */ { &gSong_Audio028, 0, 0 },
-    /* 029: AUDIO_RECORD_ALBUM_12 */ { &gSong_Audio029, 0, 0 },
-    /* 030: AUDIO_RECORD_ALBUM_13 */ { &gSong_Audio030, 0, 0 },
-    /* 031: AUDIO_RECORD_ALBUM_14 */ { &gSong_Audio031, 0, 0 },
-    /* 032: AUDIO_RECORD_ALBUM_15 */ { &gSong_Audio032, 0, 0 },
-    /* 033: AUDIO_BGM_HORSE_RACE_MINIGAME */ { &gSong_Audio033, 0, 0 },
-    /* 034: AUDIO_BGM_HARVEST_SPRITE_MINIGAME */ { &gSong_Audio034, 0, 0 },
-    /* 035: AUDIO_BGM_TITLE_SCREEN */ { &gSong_Audio035, 0, 0 },
-    /* 036: AUDIO_BGM_CREDITS */ { &gSong_Audio036, 0, 0 },
-    /* 037: AUDIO_BGM_CHILDHOOD */ { &gSong_Audio037, 0, 0 },
+    /* 001: AUDIO_BGM_SPRING */ { &gSong_BgmSpring, 0, 0 },
+    /* 002: AUDIO_BGM_SUMMER */ { &gSong_BgmSummer, 0, 0 },
+    /* 003: AUDIO_BGM_AUTUMN */ { &gSong_BgmAutumn, 0, 0 },
+    /* 004: AUDIO_BGM_WINTER */ { &gSong_BgmWinter, 0, 0 },
+    /* 005: AUDIO_BGM_SADNESS */ { &gSong_BgmSadness, 0, 0 },
+    /* 006: AUDIO_BGM_WEDDING */ { &gSong_BgmWedding, 0, 0 },
+    /* 007: AUDIO_BGM_FESTIVAL */ { &gSong_BgmFestival, 0, 0 },
+    /* 008: AUDIO_BGM_MUSIC_FESTIVAL */ { &gSong_BgmMusicFestival, 0, 0 },
+    /* 009: AUDIO_BGM_ANIMAL_FESTIVAL */ { &gSong_BgmAnimalFestival, 0, 0 },
+    /* 010: AUDIO_AMBIENCE_RAIN */ { &gSong_AmbienceRain, 0, 0 },
+    /* 011: AUDIO_AMBIENCE_STORM */ { &gSong_AmbienceStorm, 0, 0 },
+    /* 012: AUDIO_AMBIENCE_BEACH */ { &gSong_AmbienceBeach, 0, 0 },
+    /* 013: AUDIO_BGM_MINERAL_TOWN */ { &gSong_BgmMineralTown, 0, 0 },
+    /* 014: AUDIO_AMBIENCE_NIGHT */ { &gSong_AmbienceNight, 0, 0 },
+    /* 015: AUDIO_BGM_MUSIC_FESTIVAL_PERFORMANCE */ { &gSong_BgmMusicFestivalPerformance, 0, 0 },
+    /* 016: AUDIO_BGM_RIVAL_EVENT */ { &gSong_BgmRivalEvent, 0, 0 },
+    /* 017: AUDIO_BGM_LOVE_EVENT */ { &gSong_BgmLoveEvent, 0, 0 },
+    /* 018: AUDIO_RECORD_SPRING_SONG */ { &gSong_RecordSpringSong, 0, 0 },
+    /* 019: AUDIO_RECORD_TOWN_SPIRIT */ { &gSong_RecordTownSpirit, 0, 0 },
+    /* 020: AUDIO_RECORD_FLOWER_BUD_FALL */ { &gSong_RecordFlowerBudFall, 0, 0 },
+    /* 021: AUDIO_RECORD_64_MEMORIES */ { &gSong_Record64Memories, 0, 0 },
+    /* 022: AUDIO_RECORD_MARINE_JAZZ */ { &gSong_RecordMarineJazz, 0, 0 },
+    /* 023: AUDIO_RECORD_BUTTERFLY */ { &gSong_RecordButterfly, 0, 0 },
+    /* 024: AUDIO_RECORD_SUMMER_MEMORIES */ { &gSong_RecordSummerMemories, 0, 0 },
+    /* 025: AUDIO_RECORD_AUTUMN_JOY */ { &gSong_RecordAutumnJoy, 0, 0 },
+    /* 026: AUDIO_RECORD_QUIET_WINTER */ { &gSong_RecordQuietWinter, 0, 0 },
+    /* 027: AUDIO_RECORD_GRIFFIN_BLUE */ { &gSong_RecordGriffinBlue, 0, 0 },
+    /* 028: AUDIO_RECORD_ALBUM_11 */ { &gSong_RecordAlbum11, 0, 0 },
+    /* 029: AUDIO_RECORD_ALBUM_12 */ { &gSong_RecordAlbum12, 0, 0 },
+    /* 030: AUDIO_RECORD_ALBUM_13 */ { &gSong_RecordAlbum13, 0, 0 },
+    /* 031: AUDIO_RECORD_ALBUM_14 */ { &gSong_RecordAlbum14, 0, 0 },
+    /* 032: AUDIO_RECORD_ALBUM_15 */ { &gSong_RecordAlbum15, 0, 0 },
+    /* 033: AUDIO_BGM_FESTIVAL_HORSE_RACE_MINIGAME */ { &gSong_BgmFestivalHorseRaceMinigame, 0, 0 },
+    /* 034: AUDIO_BGM_HARVEST_SPRITE_MINIGAME */ { &gSong_BgmHarvestSpriteMinigame, 0, 0 },
+    /* 035: AUDIO_BGM_TITLE_SCREEN */ { &gSong_BgmTitleScreen, 0, 0 },
+    /* 036: AUDIO_BGM_CREDITS */ { &gSong_BgmCredits, 0, 0 },
+    /* 037: AUDIO_BGM_CHILDHOOD */ { &gSong_BgmChildhood, 0, 0 },
     /* 038: AUDIO_UNUSED_SLOT_038 */ { &gSong_Unused, 0, 0 },
     /* 039: AUDIO_UNUSED_SLOT_039 */ { &gSong_Unused, 0, 0 },
     /* 040: AUDIO_UNUSED_SLOT_040 */ { &gSong_Unused, 0, 0 },
@@ -933,111 +933,111 @@ struct SongEnt const gSongTable[] = {
     /* 098: AUDIO_UNUSED_SLOT_098 */ { &gSong_Unused, 0, 0 },
     /* 099: AUDIO_UNUSED_SLOT_099 */ { &gSong_Unused, 0, 0 },
     /* 100: AUDIO_UNUSED_SLOT_100 */ { &gSong_Unused, 0, 0 },
-    /* 101: AUDIO_SFX_EAT */ { &gSong_Audio101, 3, 3 },
-    /* 102: AUDIO_SFX_DRINK */ { &gSong_Audio102, 3, 3 },
+    /* 101: AUDIO_SFX_EAT */ { &gSong_SfxEat, 3, 3 },
+    /* 102: AUDIO_SFX_DRINK */ { &gSong_SfxDrink, 3, 3 },
     /* 103: AUDIO_SEQUENCE_103 */ { &gSong_Audio103, 3, 3 },
     /* 104: AUDIO_SEQUENCE_104 */ { &gSong_Audio104, 3, 3 },
-    /* 105: AUDIO_SFX_ENTER_HOT_SPRING */ { &gSong_Audio105, 3, 3 },
-    /* 106: AUDIO_SFX_PICK_UP_ITEM */ { &gSong_Audio106, 3, 3 },
-    /* 107: AUDIO_SEQUENCE_107 */ { &gSong_Audio107, 3, 3 },
-    /* 108: AUDIO_SFX_THROW_ITEM */ { &gSong_Audio108, 3, 3 },
-    /* 109: AUDIO_SFX_THROWN_ITEM_LANDS */ { &gSong_Audio109, 3, 3 },
-    /* 110: AUDIO_SFX_SHIPMENT_DEPOSIT */ { &gSong_Audio110, 3, 3 },
-    /* 111: AUDIO_SFX_SICKLE_CUT */ { &gSong_Audio111, 3, 3 },
-    /* 112: AUDIO_SEQUENCE_112 */ { &gSong_Audio112, 3, 3 },
-    /* 113: AUDIO_SEQUENCE_113 */ { &gSong_Audio113, 3, 3 },
-    /* 114: AUDIO_SEQUENCE_114 */ { &gSong_Audio114, 3, 3 },
-    /* 115: AUDIO_SEQUENCE_115 */ { &gSong_Audio115, 3, 3 },
-    /* 116: AUDIO_SEQUENCE_116 */ { &gSong_Audio116, 3, 3 },
-    /* 117: AUDIO_SEQUENCE_117 */ { &gSong_Audio117, 3, 3 },
-    /* 118: AUDIO_SFX_HOE_TILL */ { &gSong_Audio118, 3, 3 },
+    /* 105: AUDIO_SFX_ENTER_HOT_SPRING */ { &gSong_SfxEnterHotSpring, 3, 3 },
+    /* 106: AUDIO_SFX_PICK_UP_ITEM */ { &gSong_SfxPickUpItem, 3, 3 },
+    /* 107: AUDIO_SFX_RUCKSACK_ITEM_TRANSFER */ { &gSong_SfxRucksackItemTransfer, 3, 3 },
+    /* 108: AUDIO_SFX_THROW_ITEM */ { &gSong_SfxThrowItem, 3, 3 },
+    /* 109: AUDIO_SFX_THROWN_ITEM_LANDS */ { &gSong_SfxThrownItemLands, 3, 3 },
+    /* 110: AUDIO_SFX_SHIPMENT_DEPOSIT */ { &gSong_SfxShipmentDeposit, 3, 3 },
+    /* 111: AUDIO_SFX_SICKLE_CUT */ { &gSong_SfxSickleCut, 3, 3 },
+    /* 112: AUDIO_SFX_SICKLE_VARIANT_1 */ { &gSong_SfxSickleVariant1, 3, 3 },
+    /* 113: AUDIO_SFX_SICKLE_VARIANT_2 */ { &gSong_SfxSickleVariant2, 3, 3 },
+    /* 114: AUDIO_SFX_SICKLE_VARIANT_3 */ { &gSong_SfxSickleVariant3, 3, 3 },
+    /* 115: AUDIO_SFX_SICKLE_VARIANT_4 */ { &gSong_SfxSickleVariant4, 3, 3 },
+    /* 116: AUDIO_SFX_SICKLE_VARIANT_5 */ { &gSong_SfxSickleVariant5, 3, 3 },
+    /* 117: AUDIO_SFX_SICKLE_VARIANT_6 */ { &gSong_SfxSickleVariant6, 3, 3 },
+    /* 118: AUDIO_SFX_HOE_TILL */ { &gSong_SfxHoeTill, 3, 3 },
     /* 119: AUDIO_SEQUENCE_119 */ { &gSong_Audio119, 3, 3 },
     /* 120: AUDIO_SEQUENCE_120 */ { &gSong_Audio120, 3, 3 },
-    /* 121: AUDIO_SFX_LIGHT_FIREPLACE */ { &gSong_Audio121, 3, 3 },
+    /* 121: AUDIO_SFX_LIGHT_FIREPLACE */ { &gSong_SfxLightFireplace, 3, 3 },
     /* 122: AUDIO_SEQUENCE_122 */ { &gSong_Audio122, 3, 3 },
     /* 123: AUDIO_SEQUENCE_123 */ { &gSong_Audio123, 3, 3 },
-    /* 124: AUDIO_SFX_ADD_ITEM_TO_FIRE */ { &gSong_Audio124, 3, 3 },
-    /* 125: AUDIO_SFX_HAMMER_SMALL_STONE */ { &gSong_Audio125, 3, 3 },
-    /* 126: AUDIO_SFX_HAMMER_LARGE_STONE */ { &gSong_Audio126, 3, 3 },
-    /* 127: AUDIO_SFX_HAMMER_HUGE_STONE */ { &gSong_Audio127, 3, 3 },
-    /* 128: AUDIO_SEQUENCE_128 */ { &gSong_Audio128, 3, 3 },
-    /* 129: AUDIO_SEQUENCE_129 */ { &gSong_Audio129, 3, 3 },
-    /* 130: AUDIO_SEQUENCE_130 */ { &gSong_Audio130, 3, 3 },
-    /* 131: AUDIO_SFX_HAMMER_MAX_CHARGED_SWING */ { &gSong_Audio131, 3, 3 },
-    /* 132: AUDIO_SFX_AXE_BRANCH_CHOP */ { &gSong_Audio132, 3, 3 },
-    /* 133: AUDIO_SFX_AXE_STUMP_CHOP */ { &gSong_Audio133, 3, 3 },
-    /* 134: AUDIO_SEQUENCE_134 */ { &gSong_Audio134, 3, 3 },
-    /* 135: AUDIO_SEQUENCE_135 */ { &gSong_Audio135, 3, 3 },
-    /* 136: AUDIO_SEQUENCE_136 */ { &gSong_Audio136, 3, 3 },
-    /* 137: AUDIO_SEQUENCE_137 */ { &gSong_Audio137, 3, 3 },
-    /* 138: AUDIO_SFX_AXE_MAX_CHARGED_SWING */ { &gSong_Audio138, 3, 3 },
-    /* 139: AUDIO_SFX_WATERING_CAN_POUR */ { &gSong_Audio139, 3, 3 },
-    /* 140: AUDIO_SEQUENCE_140 */ { &gSong_Audio140, 3, 3 },
-    /* 141: AUDIO_SEQUENCE_141 */ { &gSong_Audio141, 3, 3 },
-    /* 142: AUDIO_SEQUENCE_142 */ { &gSong_Audio142, 3, 3 },
-    /* 143: AUDIO_SEQUENCE_143 */ { &gSong_Audio143, 3, 3 },
-    /* 144: AUDIO_SEQUENCE_144 */ { &gSong_Audio144, 3, 3 },
-    /* 145: AUDIO_SFX_WATERING_CAN_MAX_CHARGED_POUR */ { &gSong_Audio145, 3, 3 },
-    /* 146: AUDIO_SFX_WATER_SPLASH */ { &gSong_Audio146, 3, 3 },
-    /* 147: AUDIO_SFX_BRUSH_LIVESTOCK */ { &gSong_Audio147, 3, 3 },
-    /* 148: AUDIO_SFX_SOW_SEEDS */ { &gSong_Audio148, 3, 3 },
-    /* 149: AUDIO_SFX_DOCTOR_EXAMINATION */ { &gSong_Audio149, 3, 3 },
+    /* 124: AUDIO_SFX_ADD_ITEM_TO_FIRE */ { &gSong_SfxAddItemToFire, 3, 3 },
+    /* 125: AUDIO_SFX_HAMMER_SMALL_STONE */ { &gSong_SfxHammerSmallStone, 3, 3 },
+    /* 126: AUDIO_SFX_HAMMER_LARGE_STONE */ { &gSong_SfxHammerLargeStone, 3, 3 },
+    /* 127: AUDIO_SFX_HAMMER_HUGE_STONE */ { &gSong_SfxHammerHugeStone, 3, 3 },
+    /* 128: AUDIO_SFX_HAMMER_VARIANT_1 */ { &gSong_SfxHammerVariant1, 3, 3 },
+    /* 129: AUDIO_SFX_HAMMER_VARIANT_2 */ { &gSong_SfxHammerVariant2, 3, 3 },
+    /* 130: AUDIO_SFX_HAMMER_VARIANT_3 */ { &gSong_SfxHammerVariant3, 3, 3 },
+    /* 131: AUDIO_SFX_HAMMER_MAX_CHARGED_SWING */ { &gSong_SfxHammerMaxChargedSwing, 3, 3 },
+    /* 132: AUDIO_SFX_AXE_BRANCH_CHOP */ { &gSong_SfxAxeBranchChop, 3, 3 },
+    /* 133: AUDIO_SFX_AXE_STUMP_CHOP */ { &gSong_SfxAxeStumpChop, 3, 3 },
+    /* 134: AUDIO_SFX_AXE_VARIANT_1 */ { &gSong_SfxAxeVariant1, 3, 3 },
+    /* 135: AUDIO_SFX_AXE_VARIANT_2 */ { &gSong_SfxAxeVariant2, 3, 3 },
+    /* 136: AUDIO_SFX_AXE_VARIANT_3 */ { &gSong_SfxAxeVariant3, 3, 3 },
+    /* 137: AUDIO_SFX_AXE_VARIANT_4 */ { &gSong_SfxAxeVariant4, 3, 3 },
+    /* 138: AUDIO_SFX_AXE_MAX_CHARGED_SWING */ { &gSong_SfxAxeMaxChargedSwing, 3, 3 },
+    /* 139: AUDIO_SFX_WATERING_CAN_POUR */ { &gSong_SfxWateringCanPour, 3, 3 },
+    /* 140: AUDIO_SFX_WATERING_CAN_POUR_VARIANT_1 */ { &gSong_SfxWateringCanPourVariant1, 3, 3 },
+    /* 141: AUDIO_SFX_WATERING_CAN_POUR_VARIANT_2 */ { &gSong_SfxWateringCanPourVariant2, 3, 3 },
+    /* 142: AUDIO_SFX_WATERING_CAN_POUR_VARIANT_3 */ { &gSong_SfxWateringCanPourVariant3, 3, 3 },
+    /* 143: AUDIO_SFX_WATERING_CAN_POUR_VARIANT_4 */ { &gSong_SfxWateringCanPourVariant4, 3, 3 },
+    /* 144: AUDIO_SFX_WATERING_CAN_POUR_VARIANT_5 */ { &gSong_SfxWateringCanPourVariant5, 3, 3 },
+    /* 145: AUDIO_SFX_WATERING_CAN_MAX_CHARGED_POUR */ { &gSong_SfxWateringCanMaxChargedPour, 3, 3 },
+    /* 146: AUDIO_SFX_WATER_SPLASH */ { &gSong_SfxWaterSplash, 3, 3 },
+    /* 147: AUDIO_SFX_BRUSH_LIVESTOCK */ { &gSong_SfxBrushLivestock, 3, 3 },
+    /* 148: AUDIO_SFX_SOW_SEEDS */ { &gSong_SfxSowSeeds, 3, 3 },
+    /* 149: AUDIO_SFX_DOCTOR_EXAMINATION */ { &gSong_SfxDoctorExamination, 3, 3 },
     /* 150: AUDIO_SEQUENCE_150 */ { &gSong_Audio150, 3, 3 },
     /* 151: AUDIO_SEQUENCE_151 */ { &gSong_Audio151, 3, 3 },
     /* 152: AUDIO_SEQUENCE_152 */ { &gSong_Audio152, 3, 3 },
     /* 153: AUDIO_SEQUENCE_153 */ { &gSong_Audio153, 3, 3 },
     /* 154: AUDIO_SEQUENCE_154 */ { &gSong_Audio154, 3, 3 },
     /* 155: AUDIO_SEQUENCE_155 */ { &gSong_Audio155, 3, 3 },
-    /* 156: AUDIO_SFX_OPEN_DOOR */ { &gSong_Audio156, 3, 3 },
-    /* 157: AUDIO_SFX_HEAL_OR_PURIFY */ { &gSong_Audio157, 3, 3 },
+    /* 156: AUDIO_SFX_OPEN_DOOR */ { &gSong_SfxOpenDoor, 3, 3 },
+    /* 157: AUDIO_SFX_HEAL_OR_PURIFY */ { &gSong_SfxHealOrPurify, 3, 3 },
     /* 158: AUDIO_SEQUENCE_158 */ { &gSong_Audio158, 3, 3 },
-    /* 159: AUDIO_SFX_MILK_COW */ { &gSong_Audio159, 3, 3 },
-    /* 160: AUDIO_SFX_SHEAR_SHEEP */ { &gSong_Audio160, 3, 3 },
-    /* 161: AUDIO_SFX_COW_MOO */ { &gSong_Audio161, 3, 3 },
+    /* 159: AUDIO_SFX_MILK_COW */ { &gSong_SfxMilkCow, 3, 3 },
+    /* 160: AUDIO_SFX_SHEAR_SHEEP */ { &gSong_SfxShearSheep, 3, 3 },
+    /* 161: AUDIO_SFX_COW_MOO */ { &gSong_SfxCowMoo, 3, 3 },
     /* 162: AUDIO_SEQUENCE_162 */ { &gSong_Audio162, 3, 3 },
-    /* 163: AUDIO_SFX_SHEEP_BLEAT */ { &gSong_Audio163, 3, 3 },
+    /* 163: AUDIO_SFX_SHEEP_BLEAT */ { &gSong_SfxSheepBleat, 3, 3 },
     /* 164: AUDIO_SEQUENCE_164 */ { &gSong_Audio164, 3, 3 },
     /* 165: AUDIO_SEQUENCE_165 */ { &gSong_Audio165, 3, 3 },
     /* 166: AUDIO_SEQUENCE_166 */ { &gSong_Audio166, 3, 3 },
-    /* 167: AUDIO_SFX_FOAL_NEIGH */ { &gSong_Audio167, 3, 3 },
-    /* 168: AUDIO_SEQUENCE_168 */ { &gSong_Audio168, 3, 3 },
-    /* 169: AUDIO_SFX_DOG_BARK */ { &gSong_Audio169, 3, 3 },
-    /* 170: AUDIO_SEQUENCE_170 */ { &gSong_Audio170, 3, 3 },
+    /* 167: AUDIO_SFX_FOAL_NEIGH */ { &gSong_SfxFoalNeigh, 3, 3 },
+    /* 168: AUDIO_SFX_HORSE_NEIGH */ { &gSong_SfxHorseNeigh, 3, 3 },
+    /* 169: AUDIO_SFX_DOG_BARK */ { &gSong_SfxDogBark, 3, 3 },
+    /* 170: AUDIO_SFX_MENU_CANCEL_DUPLICATE */ { &gSong_SfxMenuCancelDuplicate, 3, 3 },
     /* 171: AUDIO_SEQUENCE_171 */ { &gSong_Audio171, 3, 3 },
-    /* 172: AUDIO_SFX_BABY_CRY */ { &gSong_Audio172, 3, 3 },
-    /* 173: AUDIO_SFX_HARVEST_SPRITE_FUSION_FINISH */ { &gSong_Audio173, 3, 3 },
-    /* 174: AUDIO_SFX_HARVEST_SPRITE_FUSION_PULSE */ { &gSong_Audio174, 3, 3 },
-    /* 175: AUDIO_SFX_TIME_PASSES */ { &gSong_Audio175, 3, 3 },
-    /* 176: AUDIO_SFX_SUCCESS */ { &gSong_Audio176, 3, 3 },
-    /* 177: AUDIO_SFX_FIREWORK_LAUNCH */ { &gSong_Audio177, 3, 3 },
-    /* 178: AUDIO_SFX_FIREWORK_EXPLOSION */ { &gSong_Audio178, 3, 3 },
-    /* 179: AUDIO_SFX_CEREMONIAL_CHIME */ { &gSong_Audio179, 3, 3 },
+    /* 172: AUDIO_SFX_BABY_CRY */ { &gSong_SfxBabyCry, 3, 3 },
+    /* 173: AUDIO_SFX_HARVEST_SPRITE_FUSION_FINISH */ { &gSong_SfxHarvestSpriteFusionFinish, 3, 3 },
+    /* 174: AUDIO_SFX_HARVEST_SPRITE_FUSION_PULSE */ { &gSong_SfxHarvestSpriteFusionPulse, 3, 3 },
+    /* 175: AUDIO_SFX_TIME_PASSES */ { &gSong_SfxTimePasses, 3, 3 },
+    /* 176: AUDIO_SFX_SUCCESS */ { &gSong_SfxSuccess, 3, 3 },
+    /* 177: AUDIO_SFX_FIREWORK_LAUNCH */ { &gSong_SfxFireworkLaunch, 3, 3 },
+    /* 178: AUDIO_SFX_FIREWORK_EXPLOSION */ { &gSong_SfxFireworkExplosion, 3, 3 },
+    /* 179: AUDIO_SFX_CEREMONIAL_CHIME */ { &gSong_SfxCeremonialChime, 3, 3 },
     /* 180: AUDIO_SEQUENCE_180 */ { &gSong_Audio180, 3, 3 },
-    /* 181: AUDIO_SFX_VICTORY */ { &gSong_Audio181, 3, 3 },
-    /* 182: AUDIO_SFX_ITEM_OBTAINED */ { &gSong_Audio182, 3, 3 },
+    /* 181: AUDIO_SFX_VICTORY */ { &gSong_SfxVictory, 3, 3 },
+    /* 182: AUDIO_SFX_ITEM_OBTAINED */ { &gSong_SfxItemObtained, 3, 3 },
     /* 183: AUDIO_SEQUENCE_183 */ { &gSong_Audio183, 3, 3 },
-    /* 184: AUDIO_SFX_ATTENTION_CHIME */ { &gSong_Audio184, 3, 3 },
+    /* 184: AUDIO_SFX_ATTENTION_CHIME */ { &gSong_SfxAttentionChime, 3, 3 },
     /* 185: AUDIO_SEQUENCE_185 */ { &gSong_Audio185, 3, 3 },
     /* 186: AUDIO_SEQUENCE_186 */ { &gSong_Audio186, 3, 3 },
-    /* 187: AUDIO_SEQUENCE_187 */ { &gSong_Audio187, 3, 3 },
-    /* 188: AUDIO_SFX_STAR_SPARKLE */ { &gSong_Audio188, 3, 3 },
+    /* 187: AUDIO_SFX_MINIGAME_TIME_UP */ { &gSong_SfxMinigameTimeUp, 3, 3 },
+    /* 188: AUDIO_SFX_STAR_SPARKLE */ { &gSong_SfxStarSparkle, 3, 3 },
     /* 189: AUDIO_SEQUENCE_189 */ { &gSong_Audio189, 3, 3 },
-    /* 190: AUDIO_SFX_HARVEST_GODDESS_APPEARS */ { &gSong_Audio190, 3, 3 },
+    /* 190: AUDIO_SFX_HARVEST_GODDESS_APPEARS */ { &gSong_SfxHarvestGoddessAppears, 3, 3 },
     /* 191: AUDIO_SEQUENCE_191 */ { &gSong_Audio191, 3, 3 },
-    /* 192: AUDIO_SFX_QUESTION_EMOTE */ { &gSong_Audio192, 3, 3 },
-    /* 193: AUDIO_SFX_APPLAUSE */ { &gSong_Audio193, 3, 3 },
+    /* 192: AUDIO_SFX_QUESTION_EMOTE */ { &gSong_SfxQuestionEmote, 3, 3 },
+    /* 193: AUDIO_SFX_APPLAUSE */ { &gSong_SfxApplause, 3, 3 },
     /* 194: AUDIO_UNUSED_SLOT_194 */ { &gSong_Unused, 0, 0 },
     /* 195: AUDIO_UNUSED_SLOT_195 */ { &gSong_Unused, 0, 0 },
     /* 196: AUDIO_UNUSED_SLOT_196 */ { &gSong_Unused, 0, 0 },
-    /* 197: AUDIO_SEQUENCE_197 */ { &gSong_Audio197, 3, 3 },
-    /* 198: AUDIO_SEQUENCE_198 */ { &gSong_Audio198, 3, 3 },
-    /* 199: AUDIO_SFX_INCORRECT_ANSWER */ { &gSong_Audio199, 3, 3 },
-    /* 200: AUDIO_SFX_KAPPA_SURPRISE */ { &gSong_Audio200, 3, 3 },
+    /* 197: AUDIO_SFX_MENU_CONFIRM */ { &gSong_SfxMenuConfirm, 3, 3 },
+    /* 198: AUDIO_SFX_MENU_CANCEL */ { &gSong_SfxMenuCancel, 3, 3 },
+    /* 199: AUDIO_SFX_INCORRECT_ANSWER */ { &gSong_SfxIncorrectAnswer, 3, 3 },
+    /* 200: AUDIO_SFX_KAPPA_SURPRISE */ { &gSong_SfxKappaSurprise, 3, 3 },
     /* 201: AUDIO_SEQUENCE_201 */ { &gSong_Audio201, 3, 3 },
     /* 202: AUDIO_SEQUENCE_202 */ { &gSong_Audio202, 3, 3 },
-    /* 203: AUDIO_SEQUENCE_203 */ { &gSong_Audio203, 3, 3 },
-    /* 204: AUDIO_SFX_CHICKEN_CLUCK */ { &gSong_Audio204, 3, 3 },
-    /* 205: AUDIO_SFX_CLOSE_DOOR */ { &gSong_Audio205, 3, 3 },
+    /* 203: AUDIO_SFX_MENU_CURSOR */ { &gSong_SfxMenuCursor, 3, 3 },
+    /* 204: AUDIO_SFX_CHICKEN_CLUCK */ { &gSong_SfxChickenCluck, 3, 3 },
+    /* 205: AUDIO_SFX_CLOSE_DOOR */ { &gSong_SfxCloseDoor, 3, 3 },
     /* 206: AUDIO_SEQUENCE_206 */ { &gSong_Audio206, 3, 3 },
     /* 207: AUDIO_SEQUENCE_207 */ { &gSong_Audio207, 3, 3 },
     /* 208: AUDIO_SEQUENCE_208 */ { &gSong_Audio208, 3, 3 },
