@@ -57,19 +57,19 @@ entrypoint:
     @ init .iwram
     ldr    r3, l_iwram_vma @ =__iwram_vma
     mov    r1, REG_BASE
-    str    r3, [r1, REG_DMA3DST - REG_BASE]
+    str    r3, [r1, OFF_DMA3DST]
     ldr    r2, l_iwram_vma_end @ =__iwram_vma_end
     sub    r3, r2, r3
     add    r3, #3
     lsrs   r3, #2
     orrne  r2, r3, (DMA_ENABLE | DMA_32BIT) << 16
     ldrne  r3, l_iwram_lma @ =__iwram_lma
-    strne  r3, [r1, REG_DMA3SRC - REG_BASE]
-    strne  r2, [r1, REG_DMA3LEN - REG_BASE]
+    strne  r3, [r1, OFF_DMA3SRC]
+    strne  r2, [r1, OFF_DMA3LEN]
 
     @ init heap
     ldr    r0, l_ewram_bss_end @ =__ewram_bss_end
-    ldr    r1, l_ewram_end @ =MEM_EWRAM + MEM_EWRAM_SIZE
+    ldr    r1, l_ewram_end @ =EWRAM_END
     sub    r1, r1, r0
     ldr    r2, l_set_heap @ =InitializeGameHeap
     mov    lr, pc
@@ -83,7 +83,7 @@ entrypoint:
     cmpne  r6, 0
     movne  lr, pc
     bxne   r6
-    subsne r5, 1 @ BUG: function call may have messed with N flag
+    subsne r5, 1 @ BUG: the constructor may have changed Z before this conditional decrement
     bne    1b
 
     @ call main
@@ -91,13 +91,13 @@ entrypoint:
     ldr    lr, l_exit @ =exit
     bx     r1
 
-l_sp_irq:        .word MEM_IWRAM + MEM_IWRAM_SIZE - 0x0060
-l_sp_usr:        .word MEM_IWRAM + MEM_IWRAM_SIZE - 0x0100
+l_sp_irq:        .word IWRAM_END - 0x60
+l_sp_usr:        .word IWRAM_END - 0x100
 l_iwram_vma:     .word __iwram_vma
 l_iwram_vma_end: .word __iwram_vma_end
 l_iwram_lma:     .word __iwram_lma
 l_ewram_bss_end: .word __ewram_bss_end
-l_ewram_end:     .word MEM_EWRAM + MEM_EWRAM_SIZE
+l_ewram_end:     .word EWRAM_END
 l_set_heap:      .word InitializeGameHeap
 l_init_array:    .word init_array
 l_main:          .word AgbMain

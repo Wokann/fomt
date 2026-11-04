@@ -285,7 +285,7 @@ enum
 #define DMA_START_SPECIAL 0x3000
 #define DMA_START_MASK 0x3000
 #define DMA_INTR_ENABLE 0x4000
-#define DMA_ENABLE 0x8000
+#define DMA_ENABLE 0x8000u
 
 // timer
 #define TIMER_1CLK 0x00

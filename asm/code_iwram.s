@@ -358,7 +358,7 @@ DrawGlyph1Tile:
     arm_func_start DispatchInterrupt
 DispatchInterrupt:
     mov r2, #REG_BASE
-    add r2, r2, #(REG_IE - REG_BASE)
+    add r2, r2, #OFF_IE
     ldrb r1, [r2, #(REG_IME - REG_IE)]
     mrs r0, spsr
     ldr r3, [r2]
@@ -408,7 +408,7 @@ DispatchInterrupt:
     bx lr
 .LInterruptEnableMasks: .word gInterruptNestingMasks
 .LInterruptHandlers: .word gInterruptHandlers
-.LInterruptBiosFlags: .word MEM_IWRAM + MEM_IWRAM_SIZE - 8
+.LInterruptBiosFlags: .word INTR_CHECK
 
     arm_func_start ApplyInterruptEnableMask
 ApplyInterruptEnableMask:

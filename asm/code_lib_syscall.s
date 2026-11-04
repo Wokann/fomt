@@ -38,7 +38,7 @@ SoftReset: @ 0x080D375C
 	movs r0, r0
 	.align 2, 0
 .L080D376C: .word REG_IME
-.L080D3770: .word MEM_IWRAM + MEM_IWRAM_SIZE - 0x100
+.L080D3770: .word IWRAM_END - 0x100
 
 	thumb_func_start Sqrt
 Sqrt: @ 0x080D3774

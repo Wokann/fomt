@@ -2,7 +2,7 @@
 
 EXTERN_C
 
-u32 const init_array[4] = {
+u32 const init_array[] = {
     0,
     0,
     0,

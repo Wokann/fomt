@@ -23213,7 +23213,7 @@ func_0805FF14:
 	adds r6, r0, #0
 	ldr r1, .L08060A8C @ =gUnk_087519EC
 	add r0, sp, #0x38
-	ldr r2, .L08060A90 @ =0x05000020
+	ldr r2, .L08060A90
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	mov sb, sl
@@ -23236,7 +23236,7 @@ func_0805FF14:
 	b .L08060B58
 	.align 2, 0
 .L08060A8C: .4byte gUnk_087519EC
-.L08060A90: .4byte 0x05000020
+.L08060A90: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08060A94:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -23502,7 +23502,7 @@ func_0805FF14:
 	adds r6, r0, #0
 	ldr r1, .L08060C9C @ =gUnk_087525CC
 	add r0, sp, #0x38
-	ldr r2, .L08060CA0 @ =0x05000040
+	ldr r2, .L08060CA0
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	mov sb, sl
@@ -23525,7 +23525,7 @@ func_0805FF14:
 	b .L08060D68
 	.align 2, 0
 .L08060C9C: .4byte gUnk_087525CC
-.L08060CA0: .4byte 0x05000040
+.L08060CA0: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .L08060CA4:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -23791,7 +23791,7 @@ func_0805FF14:
 	adds r6, r0, #0
 	ldr r1, .L08060EAC @ =gUnk_0875314C
 	add r0, sp, #0x38
-	ldr r2, .L08060EB0 @ =0x05000060
+	ldr r2, .L08060EB0
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	mov sb, sl
@@ -23814,7 +23814,7 @@ func_0805FF14:
 	b .L08060F78
 	.align 2, 0
 .L08060EAC: .4byte gUnk_0875314C
-.L08060EB0: .4byte 0x05000060
+.L08060EB0: .word BG_PALETTE + 3 * PLTT_SIZE_4BPP
 .L08060EB4:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -24080,7 +24080,7 @@ func_0805FF14:
 	adds r6, r0, #0
 	ldr r1, .L080610BC @ =gUnk_0875350C
 	add r0, sp, #0x38
-	ldr r2, .L080610C0 @ =0x05000080
+	ldr r2, .L080610C0
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	mov sb, sl
@@ -24103,7 +24103,7 @@ func_0805FF14:
 	b .L08061188
 	.align 2, 0
 .L080610BC: .4byte gUnk_0875350C
-.L080610C0: .4byte 0x05000080
+.L080610C0: .word BG_PALETTE + 4 * PLTT_SIZE_4BPP
 .L080610C4:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -29815,7 +29815,7 @@ func_08062E9C:
 .Ljp_08063850:
 	.4byte gUnk_084D7998
 .Ljp_08063854:
-	.4byte 0x05000020
+	.word BG_PALETTE + PLTT_SIZE_4BPP
 .Ljp_08063858:
 	str r1, [sp, #0xec]
 	movs r0, #1
@@ -30103,7 +30103,7 @@ func_08062E9C:
 .Ljp_08063A58:
 	.4byte gUnk_084D8578
 .Ljp_08063A5C:
-	.4byte 0x05000040
+	.word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .Ljp_08063A60:
 	str r1, [sp, #0xec]
 	movs r0, #1
@@ -32190,7 +32190,7 @@ func_080645F0: @ 0x080645F0
 	adds r6, r0, #0
 	ldr r1, .Ljp_08064C78 @ =gUnk_087525CC
 	add r0, sp, #8
-	ldr r2, .Ljp_08064C7C @ =0x05000020
+	ldr r2, .Ljp_08064C7C
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #8
@@ -32214,7 +32214,7 @@ func_080645F0: @ 0x080645F0
 	b .Ljp_08064D46
 	.align 2, 0
 .Ljp_08064C78: .4byte gUnk_087525CC
-.Ljp_08064C7C: .4byte 0x05000020
+.Ljp_08064C7C: .word BG_PALETTE + PLTT_SIZE_4BPP
 .Ljp_08064C80:
 	mov sl, r1
 	movs r0, #1
@@ -33227,7 +33227,7 @@ func_080645F0: @ 0x080645F0
 	adds r6, r0, #0
 	ldr r1, .Ljp_080653D8 @ =gUnk_0875298C
 	add r0, sp, #8
-	ldr r2, .Ljp_080653DC @ =0x05000040
+	ldr r2, .Ljp_080653DC
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #8
@@ -33251,7 +33251,7 @@ func_080645F0: @ 0x080645F0
 	b .Ljp_080654A8
 	.align 2, 0
 .Ljp_080653D8: .4byte gUnk_0875298C
-.Ljp_080653DC: .4byte 0x05000040
+.Ljp_080653DC: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .Ljp_080653E0:
 	str r1, [sp, #0x160]
 	movs r0, #1
@@ -33822,7 +33822,7 @@ func_080645F0: @ 0x080645F0
 	adds r6, r0, #0
 	ldr r1, .Ljp_08065820 @ =gUnk_08750F6C
 	add r0, sp, #8
-	ldr r2, .Ljp_08065824 @ =0x05000060
+	ldr r2, .Ljp_08065824
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #8
@@ -33846,7 +33846,7 @@ func_080645F0: @ 0x080645F0
 	b .Ljp_080658F0
 	.align 2, 0
 .Ljp_08065820: .4byte gUnk_08750F6C
-.Ljp_08065824: .4byte 0x05000060
+.Ljp_08065824: .word BG_PALETTE + 3 * PLTT_SIZE_4BPP
 .Ljp_08065828:
 	str r1, [sp, #0x160]
 	movs r0, #1
@@ -34114,7 +34114,7 @@ func_080645F0: @ 0x080645F0
 	adds r6, r0, #0
 	ldr r1, .Ljp_08065A3C @ =gUnk_08750C6C
 	add r0, sp, #8
-	ldr r2, .Ljp_08065A40 @ =0x05000220
+	ldr r2, .Ljp_08065A40
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #8
@@ -34138,7 +34138,7 @@ func_080645F0: @ 0x080645F0
 	b .Ljp_08065B0C
 	.align 2, 0
 .Ljp_08065A3C: .4byte gUnk_08750C6C
-.Ljp_08065A40: .4byte 0x05000220
+.Ljp_08065A40: .word OBJ_PALETTE + PLTT_SIZE_4BPP
 .Ljp_08065A44:
 	str r1, [sp, #0x160]
 	movs r0, #1
@@ -37823,7 +37823,7 @@ func_0806644C:
 .Ljp_phys_08067298:
 	.4byte gUnk_0875300C
 .Ljp_phys_0806729C:
-	.4byte 0x05000240
+	.word OBJ_PALETTE + 2 * PLTT_SIZE_4BPP
 .Ljp_phys_080672A0:
 	str r1, [sp, #0x19c]
 	movs r0, #1
@@ -38415,7 +38415,7 @@ func_0806644C:
 .Ljp_phys_080676D0:
 	.4byte gUnk_0875178C
 .Ljp_phys_080676D4:
-	.4byte 0x05000040
+	.word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .Ljp_phys_080676D8:
 	str r1, [sp, #0x19c]
 	movs r0, #1
@@ -38711,7 +38711,7 @@ func_0806644C:
 .Ljp_phys_080678EC:
 	.4byte gUnk_08750C6C
 .Ljp_phys_080678F0:
-	.4byte 0x05000220
+	.word OBJ_PALETTE + PLTT_SIZE_4BPP
 .Ljp_phys_080678F4:
 	str r1, [sp, #0x19c]
 	movs r0, #1
@@ -46125,7 +46125,7 @@ RunFestivalAnimalSelectionCore:
 .Ljp_0806B06C:
 	.4byte gUnk_084D7998
 .Ljp_0806B070:
-	.4byte 0x05000020
+	.word BG_PALETTE + PLTT_SIZE_4BPP
 .Ljp_0806B074:
 	mov r8, r1
 	movs r0, #1
@@ -46441,7 +46441,7 @@ RunFestivalAnimalSelectionCore:
 .Ljp_0806B2B0:
 	.4byte gUnk_084D8578
 .Ljp_0806B2B4:
-	.4byte 0x05000040
+	.word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .Ljp_0806B2B8:
 	mov r8, r1
 	movs r0, #1
@@ -51869,15 +51869,15 @@ func_0806E234:
 .Ljp_0806E190:
 	.4byte gUiSharedPalette
 .Ljp_0806E194:
-	.4byte 0x05000040
+	.word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .Ljp_0806E198:
 	.4byte 0x00004218
 .Ljp_0806E19C:
 	.word OBJ_PALETTE
 .Ljp_0806E1A0:
-	.4byte 0x05000202
+	.word OBJ_PALETTE + 2
 .Ljp_0806E1A4:
-	.4byte 0x05000204
+	.word OBJ_PALETTE + 2 * 2
 .Ljp_0806E1A8:
 	.4byte gFarmStatusScreenPreloadedGlyphs
 .Ljp_0806E1AC:
@@ -70157,7 +70157,7 @@ func_08077810: @ 0x080773A8
 .Ljp_08077524:
 	.4byte gSharedSceneBackgroundLayer1Tilemap
 .Ljp_08077528:
-	.4byte 0x05000042
+	.word BG_PALETTE + 2 * PLTT_SIZE_4BPP + 2
 .Ljp_0807752C:
 	.4byte 0x00007BDE
 .Ljp_08077530:
@@ -70704,7 +70704,7 @@ func_08077EC0: @ 0x08077EC0
 	beq .L08077EF2
 	ldr r0, .L08077F44 @ =gUnk_0875A358
 .L08077EF2:
-	ldr r1, .L08077F48 @ =0x05000020
+	ldr r1, .L08077F48
 	movs r2, #0xc0
 	bl CopyHardwareDma3
 	ldr r2, .L08077F4C @ =gUnk_08755230
@@ -70742,7 +70742,7 @@ func_08077EC0: @ 0x08077EC0
 .L08077F3C: .4byte gUnk_084DE1D8
 .L08077F40: .4byte gUnk_084DDA8C
 .L08077F44: .4byte gUnk_084E0304
-.L08077F48: .4byte 0x05000020
+.L08077F48: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08077F4C: .4byte gUnk_084DB1DC
 .L08077F50: .4byte gUnk_084DDBC0
 .L08077F54: .4byte gUnk_084DB4E8
@@ -73764,7 +73764,7 @@ func_08079860:
 .Ljp_lib_080795CC:
 	.4byte gUiSharedPalette
 .Ljp_lib_080795D0:
-	.4byte 0x05000040
+	.word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .Ljp_lib_080795D4:
 	.4byte 0x00004218
 .Ljp_lib_080795D8:
@@ -73772,9 +73772,9 @@ func_08079860:
 .Ljp_lib_080795DC:
 	.word OBJ_PALETTE
 .Ljp_lib_080795E0:
-	.4byte 0x05000202
+	.word OBJ_PALETTE + 2
 .Ljp_lib_080795E4:
-	.4byte 0x05000204
+	.word OBJ_PALETTE + 2 * 2
 .Ljp_lib_080795E8:
 	.4byte 0x00002060
     .global func_08079A64
@@ -77502,7 +77502,7 @@ func_0807AF54: @ 0x0807AF54
 	adds r6, r0, #0
 	add r0, sp, #0x1c
 	ldr r1, .Ljp_poultry_shop_B344 @ =gUnk_084D8578
-	ldr r2, .Ljp_poultry_shop_B348 @ =0x05000020
+	ldr r2, .Ljp_poultry_shop_B348
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #0x1c
@@ -77526,7 +77526,7 @@ func_0807AF54: @ 0x0807AF54
 	b .Ljp_poultry_shop_B412
 	.align 2, 0
 .Ljp_poultry_shop_B344: .4byte gUnk_084D8578
-.Ljp_poultry_shop_B348: .4byte 0x05000020
+.Ljp_poultry_shop_B348: .word BG_PALETTE + PLTT_SIZE_4BPP
 .Ljp_poultry_shop_B34C:
 	str r1, [sp, #0x68]
 	movs r0, #1
@@ -89421,7 +89421,7 @@ func_0808234C:
 	adds r6, r0, #0
 	mov r0, sl
 	lsls r2, r0, #5
-	ldr r3, .Ljp_080820F8 @ =0x05000020
+	ldr r3, .Ljp_080820F8
 	adds r2, r2, r3
 	add r0, sp, #0x90
 	movs r3, #0x20
@@ -89446,7 +89446,7 @@ func_0808234C:
 	str r0, [r6, #4]
 	b .Ljp_080821C4
 	.align 2, 0
-.Ljp_080820F8: .4byte 0x05000020
+.Ljp_080820F8: .word BG_PALETTE + PLTT_SIZE_4BPP
 .Ljp_080820FC:
 	str r1, [sp, #0xd8]
 	movs r0, #1
@@ -94377,7 +94377,7 @@ func_0808586C:
 	adds r5, r0, #0
 	add r0, sp, #0x1c
 	ldr r1, .Ljp_08085890 @ =gUnk_087525CC
-	ldr r2, .Ljp_08085894 @ =0x05000020
+	ldr r2, .Ljp_08085894
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r3, sp, #0x1c
@@ -94401,7 +94401,7 @@ func_0808586C:
 	b .Ljp_0808596A
 	.align 2, 0
 .Ljp_08085890: .4byte gUnk_087525CC
-.Ljp_08085894: .4byte 0x05000020
+.Ljp_08085894: .word BG_PALETTE + PLTT_SIZE_4BPP
 .Ljp_08085898:
 	str r1, [sp, #0x74]
 	movs r3, #1
@@ -146937,12 +146937,12 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
 	bl CopyHardwareDma3
-	ldr r1, .L080519EC @ =0x05000040
+	ldr r1, .L080519EC
 	movs r4, #0xf8
 	lsls r4, r4, #2
 	adds r0, r4, #0
 	strh r0, [r1]
-	ldr r0, .L080519F0 @ =0x05000042
+	ldr r0, .L080519F0
 	strh r6, [r0]
 	adds r1, #4
 	ldr r2, .L080519F4 @ =0x00004218
@@ -147143,8 +147143,8 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 .L080519E0: .word gUiSharedTileByteCount
 .L080519E4: .word 0x00030003
 .L080519E8: .word gUiSharedPalette
-.L080519EC: .word 0x05000040
-.L080519F0: .word 0x05000042
+.L080519EC: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
+.L080519F0: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP + 2
 .L080519F4: .word 0x00004218
 .L080519F8: .word 0x00000A1C
 .L080519FC: .word 0x00000A4C
@@ -163171,7 +163171,7 @@ func_08059C94: @ 0x08059C94
 	lsls r1, r1, #0x13
 	movs r2, #0x20
 	bl CopyHardwareDma3
-	ldr r0, .L08059FCC @ =0x05000040
+	ldr r0, .L08059FCC
 	movs r3, #0xf8
 	lsls r3, r3, #2
 	adds r6, r3, #0
@@ -163196,14 +163196,14 @@ func_08059C94: @ 0x08059C94
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L08059FD4 @ =0x05000202
+	ldr r2, .L08059FD4
 	adds r0, r0, r2
 	strh r5, [r0]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r3, .L08059FD8 @ =0x05000204
+	ldr r3, .L08059FD8
 	adds r0, r0, r3
 	mov r4, r8
 	strh r4, [r0]
@@ -163271,10 +163271,10 @@ func_08059C94: @ 0x08059C94
 .L08059FC0: .4byte gUiSharedTileByteCount
 .L08059FC4: .4byte 0x00030003
 .L08059FC8: .4byte gUiSharedPalette
-.L08059FCC: .4byte 0x05000040
+.L08059FCC: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .L08059FD0: .4byte 0x00004218
-.L08059FD4: .4byte 0x05000202
-.L08059FD8: .4byte 0x05000204
+.L08059FD4: .word OBJ_PALETTE + 2
+.L08059FD8: .word OBJ_PALETTE + 2 * 2
 .L08059FDC: .4byte gHorseRaceTicketCharacterCodes
 
 	thumb_func_start func_08059FE0
@@ -170642,7 +170642,7 @@ func_0805D9C0: @ 0x0805D9C0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
 	bl CopyHardwareDma3
-	ldr r0, .L0805DC08 @ =0x05000040
+	ldr r0, .L0805DC08
 	movs r1, #0xf8
 	lsls r1, r1, #2
 	mov r8, r1
@@ -170668,14 +170668,14 @@ func_0805D9C0: @ 0x0805D9C0
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r3, .L0805DC14 @ =0x05000202
+	ldr r3, .L0805DC14
 	adds r0, r0, r3
 	strh r5, [r0]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r1, .L0805DC18 @ =0x05000204
+	ldr r1, .L0805DC18
 	adds r0, r0, r1
 	mov r2, sb
 	strh r2, [r0]
@@ -170742,11 +170742,11 @@ func_0805D9C0: @ 0x0805D9C0
 .L0805DBFC: .4byte gUiSharedTileByteCount
 .L0805DC00: .4byte 0x00030003
 .L0805DC04: .4byte gUiSharedPalette
-.L0805DC08: .4byte 0x05000040
+.L0805DC08: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .L0805DC0C: .4byte 0x00004218
 .L0805DC10: .word OBJ_PALETTE
-.L0805DC14: .4byte 0x05000202
-.L0805DC18: .4byte 0x05000204
+.L0805DC14: .word OBJ_PALETTE + 2
+.L0805DC18: .word OBJ_PALETTE + 2 * 2
 .L0805DC1C: .4byte gHorseRacePrizeExchangeCharacterCodes
 .L0805DC20: .word OBJ_VRAM0
 
@@ -173767,7 +173767,7 @@ func_0805FF14: @ 0x0805FF14
 	adds r6, r0, #0
 	ldr r1, .L08060A8C @ =gUnk_087519EC
 	add r0, sp, #0x38
-	ldr r2, .L08060A90 @ =0x05000020
+	ldr r2, .L08060A90
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	mov sb, sl
@@ -173790,7 +173790,7 @@ func_0805FF14: @ 0x0805FF14
 	b .L08060B58
 	.align 2, 0
 .L08060A8C: .4byte gUnk_087519EC
-.L08060A90: .4byte 0x05000020
+.L08060A90: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08060A94:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -174056,7 +174056,7 @@ func_0805FF14: @ 0x0805FF14
 	adds r6, r0, #0
 	ldr r1, .L08060C9C @ =gUnk_087525CC
 	add r0, sp, #0x38
-	ldr r2, .L08060CA0 @ =0x05000040
+	ldr r2, .L08060CA0
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	mov sb, sl
@@ -174079,7 +174079,7 @@ func_0805FF14: @ 0x0805FF14
 	b .L08060D68
 	.align 2, 0
 .L08060C9C: .4byte gUnk_087525CC
-.L08060CA0: .4byte 0x05000040
+.L08060CA0: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .L08060CA4:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -174345,7 +174345,7 @@ func_0805FF14: @ 0x0805FF14
 	adds r6, r0, #0
 	ldr r1, .L08060EAC @ =gUnk_0875314C
 	add r0, sp, #0x38
-	ldr r2, .L08060EB0 @ =0x05000060
+	ldr r2, .L08060EB0
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	mov sb, sl
@@ -174368,7 +174368,7 @@ func_0805FF14: @ 0x0805FF14
 	b .L08060F78
 	.align 2, 0
 .L08060EAC: .4byte gUnk_0875314C
-.L08060EB0: .4byte 0x05000060
+.L08060EB0: .word BG_PALETTE + 3 * PLTT_SIZE_4BPP
 .L08060EB4:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -174634,7 +174634,7 @@ func_0805FF14: @ 0x0805FF14
 	adds r6, r0, #0
 	ldr r1, .L080610BC @ =gUnk_0875350C
 	add r0, sp, #0x38
-	ldr r2, .L080610C0 @ =0x05000080
+	ldr r2, .L080610C0
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	mov sb, sl
@@ -174657,7 +174657,7 @@ func_0805FF14: @ 0x0805FF14
 	b .L08061188
 	.align 2, 0
 .L080610BC: .4byte gUnk_0875350C
-.L080610C0: .4byte 0x05000080
+.L080610C0: .word BG_PALETTE + 4 * PLTT_SIZE_4BPP
 .L080610C4:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -180321,7 +180321,7 @@ func_08062E9C: @ 0x08062E9C
 .L08063AE6:
 	ldr r1, .L08063B18 @ =gUnk_087519EC
 	add r0, sp, #4
-	ldr r2, .L08063B1C @ =0x05000020
+	ldr r2, .L08063B1C
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #4
@@ -180345,7 +180345,7 @@ func_08062E9C: @ 0x08062E9C
 	b .L08063BEA
 	.align 2, 0
 .L08063B18: .4byte gUnk_087519EC
-.L08063B1C: .4byte 0x05000020
+.L08063B1C: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08063B20:
 	str r1, [sp, #0xec]
 	movs r0, #1
@@ -180605,7 +180605,7 @@ func_08062E9C: @ 0x08062E9C
 .L08063CEE:
 	ldr r1, .L08063D20 @ =gUnk_087525CC
 	add r0, sp, #4
-	ldr r2, .L08063D24 @ =0x05000040
+	ldr r2, .L08063D24
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #4
@@ -180629,7 +180629,7 @@ func_08062E9C: @ 0x08062E9C
 	b .L08063DF2
 	.align 2, 0
 .L08063D20: .4byte gUnk_087525CC
-.L08063D24: .4byte 0x05000040
+.L08063D24: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .L08063D28:
 	str r1, [sp, #0xec]
 	movs r0, #1
@@ -182712,7 +182712,7 @@ func_080645F0: @ 0x080645F0
 	adds r6, r0, #0
 	ldr r1, .L08064C78 @ =gUnk_087525CC
 	add r0, sp, #8
-	ldr r2, .L08064C7C @ =0x05000020
+	ldr r2, .L08064C7C
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #8
@@ -182736,7 +182736,7 @@ func_080645F0: @ 0x080645F0
 	b .L08064D46
 	.align 2, 0
 .L08064C78: .4byte gUnk_087525CC
-.L08064C7C: .4byte 0x05000020
+.L08064C7C: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08064C80:
 	mov sl, r1
 	movs r0, #1
@@ -183749,7 +183749,7 @@ func_080645F0: @ 0x080645F0
 	adds r6, r0, #0
 	ldr r1, .L080653D8 @ =gUnk_0875298C
 	add r0, sp, #8
-	ldr r2, .L080653DC @ =0x05000040
+	ldr r2, .L080653DC
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #8
@@ -183773,7 +183773,7 @@ func_080645F0: @ 0x080645F0
 	b .L080654A8
 	.align 2, 0
 .L080653D8: .4byte gUnk_0875298C
-.L080653DC: .4byte 0x05000040
+.L080653DC: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .L080653E0:
 	str r1, [sp, #0x160]
 	movs r0, #1
@@ -184344,7 +184344,7 @@ func_080645F0: @ 0x080645F0
 	adds r6, r0, #0
 	ldr r1, .L08065820 @ =gUnk_08750F6C
 	add r0, sp, #8
-	ldr r2, .L08065824 @ =0x05000060
+	ldr r2, .L08065824
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #8
@@ -184368,7 +184368,7 @@ func_080645F0: @ 0x080645F0
 	b .L080658F0
 	.align 2, 0
 .L08065820: .4byte gUnk_08750F6C
-.L08065824: .4byte 0x05000060
+.L08065824: .word BG_PALETTE + 3 * PLTT_SIZE_4BPP
 .L08065828:
 	str r1, [sp, #0x160]
 	movs r0, #1
@@ -184636,7 +184636,7 @@ func_080645F0: @ 0x080645F0
 	adds r6, r0, #0
 	ldr r1, .L08065A3C @ =gUnk_08750C6C
 	add r0, sp, #8
-	ldr r2, .L08065A40 @ =0x05000220
+	ldr r2, .L08065A40
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #8
@@ -184660,7 +184660,7 @@ func_080645F0: @ 0x080645F0
 	b .L08065B0C
 	.align 2, 0
 .L08065A3C: .4byte gUnk_08750C6C
-.L08065A40: .4byte 0x05000220
+.L08065A40: .word OBJ_PALETTE + PLTT_SIZE_4BPP
 .L08065A44:
 	str r1, [sp, #0x160]
 	movs r0, #1
@@ -188112,7 +188112,7 @@ func_0806644C: @ 0x0806644C
 	adds r6, r0, #0
 	ldr r1, .L08067424 @ =gUnk_0875300C
 	add r0, sp, #8
-	ldr r2, .L08067428 @ =0x05000240
+	ldr r2, .L08067428
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r3, sp, #8
@@ -188136,7 +188136,7 @@ func_0806644C: @ 0x0806644C
 	b .L080674F8
 	.align 2, 0
 .L08067424: .4byte gUnk_0875300C
-.L08067428: .4byte 0x05000240
+.L08067428: .word OBJ_PALETTE + 2 * PLTT_SIZE_4BPP
 .L0806742C:
 	str r1, [sp, #0x184]
 	movs r0, #1
@@ -188699,7 +188699,7 @@ func_0806644C: @ 0x0806644C
 	adds r6, r0, #0
 	ldr r1, .L0806785C @ =gUnk_0875178C
 	add r0, sp, #8
-	ldr r2, .L08067860 @ =0x05000040
+	ldr r2, .L08067860
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r3, sp, #8
@@ -188723,7 +188723,7 @@ func_0806644C: @ 0x0806644C
 	b .L08067930
 	.align 2, 0
 .L0806785C: .4byte gUnk_0875178C
-.L08067860: .4byte 0x05000040
+.L08067860: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .L08067864:
 	str r1, [sp, #0x184]
 	movs r0, #1
@@ -188991,7 +188991,7 @@ func_0806644C: @ 0x0806644C
 	adds r6, r0, #0
 	ldr r1, .L08067A78 @ =gUnk_08750C6C
 	add r0, sp, #8
-	ldr r2, .L08067A7C @ =0x05000220
+	ldr r2, .L08067A7C
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r3, sp, #8
@@ -189015,7 +189015,7 @@ func_0806644C: @ 0x0806644C
 	b .L08067B4C
 	.align 2, 0
 .L08067A78: .4byte gUnk_08750C6C
-.L08067A7C: .4byte 0x05000220
+.L08067A7C: .word OBJ_PALETTE + PLTT_SIZE_4BPP
 .L08067A80:
 	str r1, [sp, #0x184]
 	movs r0, #1
@@ -196317,7 +196317,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	str r0, [sp, #0x380]
 	ldr r1, .L0806B20C @ =gUnk_087519EC
 	add r0, sp, #0x60
-	ldr r2, .L0806B210 @ =0x05000020
+	ldr r2, .L0806B210
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	ldr r0, [sp, #0x2bc]
@@ -196343,7 +196343,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	b .L0806B2EC
 	.align 2, 0
 .L0806B20C: .4byte gUnk_087519EC
-.L0806B210: .4byte 0x05000020
+.L0806B210: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L0806B214:
 	mov r8, r1
 	movs r0, #1
@@ -196631,7 +196631,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	str r0, [sp, #0x380]
 	ldr r1, .L0806B450 @ =gUnk_087525CC
 	add r0, sp, #0x60
-	ldr r2, .L0806B454 @ =0x05000040
+	ldr r2, .L0806B454
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	ldr r3, [sp, #0x2bc]
@@ -196657,7 +196657,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	b .L0806B530
 	.align 2, 0
 .L0806B450: .4byte gUnk_087525CC
-.L0806B454: .4byte 0x05000040
+.L0806B454: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .L0806B458:
 	mov r8, r1
 	movs r0, #1
@@ -202041,7 +202041,7 @@ func_0806E234: @ 0x0806E234
 	lsls r1, r1, #0x13
 	movs r2, #0x20
 	bl CopyHardwareDma3
-	ldr r0, .L0806E420 @ =0x05000040
+	ldr r0, .L0806E420
 	movs r1, #0xf8
 	lsls r1, r1, #2
 	mov r8, r1
@@ -202066,14 +202066,14 @@ func_0806E234: @ 0x0806E234
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L0806E42C @ =0x05000202
+	ldr r2, .L0806E42C
 	adds r0, r0, r2
 	strh r5, [r0]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r3, .L0806E430 @ =0x05000204
+	ldr r3, .L0806E430
 	adds r0, r0, r3
 	mov r1, sb
 	strh r1, [r0]
@@ -202139,11 +202139,11 @@ func_0806E234: @ 0x0806E234
 .L0806E414: .4byte gUiSharedTileByteCount
 .L0806E418: .4byte 0x00030003
 .L0806E41C: .4byte gUiSharedPalette
-.L0806E420: .4byte 0x05000040
+.L0806E420: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .L0806E424: .4byte 0x00004218
 .L0806E428: .word OBJ_PALETTE
-.L0806E42C: .4byte 0x05000202
-.L0806E430: .4byte 0x05000204
+.L0806E42C: .word OBJ_PALETTE + 2
+.L0806E430: .word OBJ_PALETTE + 2 * 2
 .L0806E434: .4byte gFarmStatusScreenPreloadedGlyphs
 .L0806E438: .word OBJ_VRAM0
 
@@ -221156,7 +221156,7 @@ func_08077810: @ 0x08077810
 	bl Unpack
 	mov r0, sl
 	strh r0, [r4]
-	ldr r1, .L080779A0 @ =0x05000042
+	ldr r1, .L080779A0
 	ldr r2, .L080779A4 @ =0x00007BDE
 	adds r0, r2, #0
 	strh r0, [r1]
@@ -221231,7 +221231,7 @@ func_08077810: @ 0x08077810
 .L08077994: .4byte 0x06008000
 .L08077998: .4byte gSharedSceneBackgroundPalette
 .L0807799C: .4byte gSharedSceneBackgroundLayer0Tilemap
-.L080779A0: .4byte 0x05000042
+.L080779A0: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP + 2
 .L080779A4: .4byte 0x00007BDE
 .L080779A8: .4byte 0x00003DEF
 .L080779AC: .4byte 0x00002060
@@ -221771,7 +221771,7 @@ func_08077EC0: @ 0x08077EC0
 	beq .L08077EF2
 	ldr r0, .L08077F44 @ =gUnk_0875A358
 .L08077EF2:
-	ldr r1, .L08077F48 @ =0x05000020
+	ldr r1, .L08077F48
 	movs r2, #0xc0
 	bl CopyHardwareDma3
 	ldr r2, .L08077F4C @ =gUnk_08755230
@@ -221809,7 +221809,7 @@ func_08077EC0: @ 0x08077EC0
 .L08077F3C: .4byte gUnk_0875822C
 .L08077F40: .4byte gUnk_08757AE0
 .L08077F44: .4byte gUnk_0875A358
-.L08077F48: .4byte 0x05000020
+.L08077F48: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08077F4C: .4byte gUnk_08755230
 .L08077F50: .4byte gUnk_08757C14
 .L08077F54: .4byte gUnk_0875553C
@@ -224705,7 +224705,7 @@ func_08079860: @ 0x08079860
 	lsls r1, r1, #0x13
 	movs r2, #0x20
 	bl CopyHardwareDma3
-	ldr r0, .L08079A48 @ =0x05000040
+	ldr r0, .L08079A48
 	movs r7, #0xf8
 	lsls r7, r7, #2
 	adds r6, r7, #0
@@ -224729,14 +224729,14 @@ func_08079860: @ 0x08079860
 	adds r0, r5, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r1, .L08079A58 @ =0x05000202
+	ldr r1, .L08079A58
 	adds r0, r0, r1
 	strh r4, [r0]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r3, .L08079A5C @ =0x05000204
+	ldr r3, .L08079A5C
 	adds r0, r0, r3
 	mov r7, sb
 	strh r7, [r0]
@@ -224809,12 +224809,12 @@ func_08079860: @ 0x08079860
 .L08079A3C: .4byte gUiSharedTileByteCount
 .L08079A40: .4byte 0x00030003
 .L08079A44: .4byte gUiSharedPalette
-.L08079A48: .4byte 0x05000040
+.L08079A48: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
 .L08079A4C: .4byte 0x00004218
 .L08079A50: .4byte 0x00000828
 .L08079A54: .word OBJ_PALETTE
-.L08079A58: .4byte 0x05000202
-.L08079A5C: .4byte 0x05000204
+.L08079A58: .word OBJ_PALETTE + 2
+.L08079A5C: .word OBJ_PALETTE + 2 * 2
 .L08079A60: .4byte 0x00002060
 
 	thumb_func_start func_08079A64
@@ -228464,7 +228464,7 @@ func_0807B3B0: @ 0x0807B3B0
 	adds r6, r0, #0
 	add r0, sp, #0x1c
 	ldr r1, .L0807B7A0 @ =gUnk_087525CC
-	ldr r2, .L0807B7A4 @ =0x05000020
+	ldr r2, .L0807B7A4
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r2, sp, #0x1c
@@ -228488,7 +228488,7 @@ func_0807B3B0: @ 0x0807B3B0
 	b .L0807B86E
 	.align 2, 0
 .L0807B7A0: .4byte gUnk_087525CC
-.L0807B7A4: .4byte 0x05000020
+.L0807B7A4: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L0807B7A8:
 	str r1, [sp, #0x68]
 	movs r0, #1
@@ -241445,7 +241445,7 @@ func_0808234C: @ 0x0808234C
 	adds r6, r0, #0
 	mov r0, sl
 	lsls r2, r0, #5
-	ldr r3, .L08082580 @ =0x05000020
+	ldr r3, .L08082580
 	adds r2, r2, r3
 	add r0, sp, #0x90
 	movs r3, #0x20
@@ -241470,7 +241470,7 @@ func_0808234C: @ 0x0808234C
 	str r0, [r6, #4]
 	b .L0808264C
 	.align 2, 0
-.L08082580: .4byte 0x05000020
+.L08082580: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08082584:
 	str r1, [sp, #0xd8]
 	movs r0, #1
@@ -247520,7 +247520,7 @@ func_0808586C: @ 0x0808586C
 	adds r5, r0, #0
 	add r0, sp, #0x1c
 	ldr r1, .L08085D18 @ =gUnk_087525CC
-	ldr r2, .L08085D1C @ =0x05000020
+	ldr r2, .L08085D1C
 	movs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r3, sp, #0x1c
@@ -247544,7 +247544,7 @@ func_0808586C: @ 0x0808586C
 	b .L08085DF2
 	.align 2, 0
 .L08085D18: .4byte gUnk_087525CC
-.L08085D1C: .4byte 0x05000020
+.L08085D1C: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08085D20:
 	str r1, [sp, #0x74]
 	movs r3, #1
@@ -282245,12 +282245,12 @@ func_0809800C: @ 0x0809800C
 	lsls r1, r1, #0x13
 	movs r2, #0x20
 	bl CopyHardwareDma3
-	ldr r1, .L080983BC @ =0x05000040
+	ldr r1, .L080983BC
 	movs r7, #0xf8
 	lsls r7, r7, #2
 	adds r0, r7, #0
 	strh r0, [r1]
-	ldr r0, .L080983C0 @ =0x05000042
+	ldr r0, .L080983C0
 	strh r5, [r0]
 	adds r1, #4
 	ldr r2, .L080983C4 @ =0x00004218
@@ -282525,7 +282525,7 @@ func_0809800C: @ 0x0809800C
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r1, .L080983E0 @ =0x05000202
+	ldr r1, .L080983E0
 	adds r0, r0, r1
 	movs r1, #0
 	strh r1, [r0]
@@ -282533,7 +282533,7 @@ func_0809800C: @ 0x0809800C
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L080983E4 @ =0x05000204
+	ldr r2, .L080983E4
 	adds r0, r0, r2
 	ldr r3, .L080983C4 @ =0x00004218
 	adds r1, r3, #0
@@ -282557,8 +282557,8 @@ func_0809800C: @ 0x0809800C
 .L080983B0: .4byte gUiSharedTileByteCount
 .L080983B4: .4byte 0x00030003
 .L080983B8: .4byte gUiSharedPalette
-.L080983BC: .4byte 0x05000040
-.L080983C0: .4byte 0x05000042
+.L080983BC: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP
+.L080983C0: .word BG_PALETTE + 2 * PLTT_SIZE_4BPP + 2
 .L080983C4: .4byte 0x00004218
 .L080983C8: .4byte 0x00002BD0
 .L080983CC: .4byte 0x00002BD4
@@ -282566,8 +282566,8 @@ func_0809800C: @ 0x0809800C
 .L080983D4: .word OBJ_VRAM0
 .L080983D8: .word OBJ_PALETTE
 .L080983DC: .4byte gText_Cooking_Recipe_ListTitle
-.L080983E0: .4byte 0x05000202
-.L080983E4: .4byte 0x05000204
+.L080983E0: .word OBJ_PALETTE + 2
+.L080983E4: .word OBJ_PALETTE + 2 * 2
 
 	thumb_func_start func_080983E8
 func_080983E8: @ 0x080983E8
@@ -284037,7 +284037,7 @@ func_08098CE8: @ 0x08098CE8
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r3, .L08098FF4 @ =0x05000202
+	ldr r3, .L08098FF4
 	adds r0, r0, r3
 	movs r1, #0
 	strh r1, [r0]
@@ -284045,7 +284045,7 @@ func_08098CE8: @ 0x08098CE8
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r4, .L08098FF8 @ =0x05000204
+	ldr r4, .L08098FF8
 	adds r0, r0, r4
 	ldr r2, .L08098FFC @ =0x00004218
 	adds r1, r2, #0
@@ -284065,8 +284065,8 @@ func_08098CE8: @ 0x08098CE8
 .L08098FE8: .word OBJ_PALETTE
 .L08098FEC: .word OBJ_VRAM0
 .L08098FF0: .4byte gText_Cooking_Recipe_SelectionNames
-.L08098FF4: .4byte 0x05000202
-.L08098FF8: .4byte 0x05000204
+.L08098FF4: .word OBJ_PALETTE + 2
+.L08098FF8: .word OBJ_PALETTE + 2 * 2
 .L08098FFC: .4byte 0x00004218
 
 	thumb_func_start func_08099000
@@ -285339,7 +285339,7 @@ func_0809964C: @ 0x0809964C
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r3, .L08099AAC @ =0x05000202
+	ldr r3, .L08099AAC
 	adds r0, r0, r3
 	movs r1, #0
 	strh r1, [r0]
@@ -285347,7 +285347,7 @@ func_0809964C: @ 0x0809964C
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r4, .L08099AB0 @ =0x05000204
+	ldr r4, .L08099AB0
 	adds r0, r0, r4
 	ldr r2, .L08099AB4 @ =0x00004218
 	adds r1, r2, #0
@@ -285415,8 +285415,8 @@ func_0809964C: @ 0x0809964C
 .L08099AA0: .word OBJ_VRAM0
 .L08099AA4: .word OBJ_PALETTE
 .L08099AA8: .4byte gText_Cooking_Recipe_StorageHeader
-.L08099AAC: .4byte 0x05000202
-.L08099AB0: .4byte 0x05000204
+.L08099AAC: .word OBJ_PALETTE + 2
+.L08099AB0: .word OBJ_PALETTE + 2 * 2
 .L08099AB4: .4byte 0x00004218
 .L08099AB8: .4byte 0x00030003
 .L08099ABC: .4byte 0x00002BD0

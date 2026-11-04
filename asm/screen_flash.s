@@ -1,3 +1,4 @@
+    .include "six/asm/hw/video.s"
     .syntax unified
     .thumb
     .section .text, "ax", %progbits
@@ -47,7 +48,7 @@ FlashScreenColor__9GameSceneUi:
     ldrh r1, [r3]
     mov r8, r5
     add r0, sp, #4
-    ldr r2, .L080147A8 @ =0x05000002
+    ldr r2, .L080147A8
     movs r3, #2
     bl __21DmaTransferDescriptorUiPvUi
     add r2, sp, #4
@@ -94,7 +95,7 @@ FlashScreenColor__9GameSceneUi:
     b .L080148A0
     .align 2, 0
 .L080147A4: .4byte 0x00001F0C
-.L080147A8: .4byte 0x05000002
+.L080147A8: .word BG_PALETTE + 2
 .L080147AC:
     str r1, [sp, #0x4c]
     str r4, [sp, #0x18]

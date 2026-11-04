@@ -7,13 +7,14 @@
 .ifndef  _LIBSIX_ASM_HW_IRQ_S
 .equiv   _LIBSIX_ASM_HW_IRQ_S, 1
 
-.include "six/asm/base.s"
+.include "six/asm/hw/memory.s"
 
 REG     IE,             0x04000200
 REG     IF,             0x04000202
 REG     IME,            0x04000208
 REG     IFBIOS,         0x03FFFFF8
 
+CONST   INTR_CHECK,     IWRAM_END - 8
 CONST   IRQ_HANDLER,    0x03FFFFFC
 
 BIT     IRQ_VBLANK,     0

@@ -1005,33 +1005,33 @@
 
     ldr    r2, =REG_DMA1SRC
 
-    ldr    r1, [r2, 0x8] @ DMA1CNT
+    ldr    r1, [r2, #(REG_DMA1LEN - REG_DMA1SRC)]
     lsls   r1, 7
     bcc    .Lm4aSoundVSync_SkipDMA1 @ branch if repeat bit isn't set
 
     ldr    r1, =((DMA_ENABLE | DMA_START_NOW | DMA_32BIT | DMA_SRC_INCREMENT | DMA_DST_FIXED) << 16) | 4
-    str    r1, [r2, 0x8] @ DMA1CNT
+    str    r1, [r2, #(REG_DMA1LEN - REG_DMA1SRC)]
 
 .Lm4aSoundVSync_SkipDMA1:
-    ldr    r1, [r2, 0xC + 0x8] @ DMA2CNT
+    ldr    r1, [r2, #(REG_DMA2LEN - REG_DMA1SRC)]
     lsls   r1, 7
     bcc    .Lm4aSoundVSync_SkipDMA2 @ branch if repeat bit isn't set
 
     ldr    r1, =((DMA_ENABLE | DMA_START_NOW | DMA_32BIT | DMA_SRC_INCREMENT | DMA_DST_FIXED) << 16) | 4
-    str    r1, [r2, 0xC + 0x8] @ DMA2CNT
+    str    r1, [r2, #(REG_DMA2LEN - REG_DMA1SRC)]
 
 .Lm4aSoundVSync_SkipDMA2:
     @ turn off DMA1/DMA2
     movs   r1, DMA_32BIT >> 8
     lsls   r1, 8
-    strh   r1, [r2, 0xA]       @ DMA1CNT_H
-    strh   r1, [r2, 0xC + 0xA] @ DMA2CNT_H
+    strh   r1, [r2, #(REG_DMA1CNT - REG_DMA1SRC)]
+    strh   r1, [r2, #(REG_DMA2CNT - REG_DMA1SRC)]
 
     @ turn on DMA1/DMA2 direct-sound FIFO mode
     movs   r1, (DMA_ENABLE | DMA_START_SPECIAL | DMA_32BIT | DMA_REPEAT) >> 8
     lsls   r1, 8 @ LSB is 0, so DMA_SRC_INCREMENT is used (destination is always fixed in FIFO mode)
-    strh   r1, [r2, 0xA]       @ DMA1CNT_H
-    strh   r1, [r2, 0xC + 0xA] @ DMA2CNT_H
+    strh   r1, [r2, #(REG_DMA1CNT - REG_DMA1SRC)]
+    strh   r1, [r2, #(REG_DMA2CNT - REG_DMA1SRC)]
 
 .Lm4aSoundVSync_Done:
     bx     lr
