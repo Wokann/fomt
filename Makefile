@@ -142,6 +142,8 @@ TEXT_TOOL_DIR := tools/textproc
 TEXT_TOOL := $(TEXT_TOOL_DIR)/fomt-text$(EXE)
 TEXT_PREPROC := $(TEXT_TOOL_DIR)/fomt-preproc$(EXE)
 TEXT_TOOLS := $(TEXT_TOOL) $(TEXT_PREPROC)
+# Select one encoding table for C/C++, guides, and Mary scripts.
+TEXT_CHARMAP ?= charmap.txt
 
 ifeq ($(GAME_REGION),JP)
 TEXT_REGION := jp
@@ -225,9 +227,9 @@ $(GFX_RANGE_VERIFY): tools/verify_gfx_range.c
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
 # while the C/C++-shared constant table lives in include/.
-$(MARY_BUNDLE_STAMP): $(MARY_TOOL) $(MARY_SOURCES) $(MARY_LIBRARY) $(MARY_SCRIPT_TABLE) $(MARY_CONSTANTS) charmap.txt
+$(MARY_BUNDLE_STAMP): $(MARY_TOOL) $(MARY_SOURCES) $(MARY_LIBRARY) $(MARY_SCRIPT_TABLE) $(MARY_CONSTANTS) $(TEXT_CHARMAP)
 	@mkdir -p $(MARY_OUTPUT_DIR)
-	@$(MARY_TOOL) bundle $(MARY_SOURCE_DIR) -o $(MARY_OUTPUT_DIR) --layout packed --library $(MARY_LIBRARY) --script-table $(MARY_SCRIPT_TABLE) --constants $(MARY_CONSTANTS) --charmap charmap.txt -D MARY_FOMT_$(GAME_REGION)
+	@$(MARY_TOOL) bundle $(MARY_SOURCE_DIR) -o $(MARY_OUTPUT_DIR) --layout packed --library $(MARY_LIBRARY) --script-table $(MARY_SCRIPT_TABLE) --constants $(MARY_CONSTANTS) --charmap $(TEXT_CHARMAP) -D MARY_FOMT_$(GAME_REGION)
 	@touch $@
 
 $(MARY_BUNDLE_OUTPUTS): $(MARY_BUNDLE_STAMP)
@@ -248,7 +250,7 @@ $(MARY_SCRIPT_TABLE_OBJ): $(MARY_SCRIPT_TABLE_ASM)
 define FOMT_COMPILE_CPP
 @mkdir -p $(dir $(basename $@).fomt-preprocessed.cc)
 @$(CPP) -iquote $(BUILD_DIR) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.cc
-@$(TEXT_TOOL) source charmap.txt $(GAME_REGION) $(basename $@).fomt-preprocessed.cc $(basename $@).fomt-text.cc $(FOMT_TEXT_SOURCE_ARGS)
+@$(TEXT_TOOL) source $(TEXT_CHARMAP) $(GAME_REGION) $(basename $@).fomt-preprocessed.cc $(basename $@).fomt-text.cc $(FOMT_TEXT_SOURCE_ARGS)
 @($(CC1PLUS) $(CXXFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.cc || false)
 @$(TEXT_PREPROC) asm $(basename $@).fomt-text.cc $(basename $@).s
 @$(AS) $(ASFLAGS) $(basename $@).s -o $@
@@ -257,7 +259,7 @@ endef
 define FOMT_COMPILE_C
 @mkdir -p $(dir $(basename $@).fomt-preprocessed.c)
 @$(CPP) -iquote $(BUILD_DIR) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.c
-@$(TEXT_TOOL) source charmap.txt $(GAME_REGION) $(basename $@).fomt-preprocessed.c $(basename $@).fomt-text.c $(FOMT_TEXT_SOURCE_ARGS)
+@$(TEXT_TOOL) source $(TEXT_CHARMAP) $(GAME_REGION) $(basename $@).fomt-preprocessed.c $(basename $@).fomt-text.c $(FOMT_TEXT_SOURCE_ARGS)
 @$(CC1) $(CFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.c
 @$(TEXT_PREPROC) asm $(basename $@).fomt-text.c $(basename $@).s
 @$(AS) $(ASFLAGS) $(basename $@).s -o $@
@@ -266,14 +268,14 @@ endef
 # Every article remains a deliberately non-C++ text source.  One collection
 # invocation emits one physical C++ object: master directory, group text, and
 # the matching line-pointer tables in exact ROM order.
-$(GUIDE_GENERATED_SOURCE): $(GUIDE_COLLECTION_MANIFEST) $(GUIDE_PAGE_SOURCES) $(TEXT_TOOL) charmap.txt
+$(GUIDE_GENERATED_SOURCE): $(GUIDE_COLLECTION_MANIFEST) $(GUIDE_PAGE_SOURCES) $(TEXT_TOOL) $(TEXT_CHARMAP)
 	@mkdir -p $(dir $@)
-	$(TEXT_TOOL) guide-collection charmap.txt $(GAME_REGION) $(GUIDE_COLLECTION_MANIFEST) $@
+	$(TEXT_TOOL) guide-collection $(TEXT_CHARMAP) $(GAME_REGION) $(GUIDE_COLLECTION_MANIFEST) $@
 
 $(BUILD_DIR)/src/reference_guide.d: $(GUIDE_GENERATED_SOURCE)
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $(BUILD_DIR)/src/reference_guide.o
 
-$(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/reference_guide.d $(TEXT_TOOLS) charmap.txt $(CC1PLUS)
+$(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/reference_guide.d $(TEXT_TOOLS) $(TEXT_CHARMAP) $(CC1PLUS)
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
 
@@ -284,7 +286,7 @@ $(REGION_TEXT_ORDINARY_DEPS): $(BUILD_DIR)/data/text/%.d: data/text/$(TEXT_REGIO
 	@mkdir -p $(dir $@)
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/data/text/$*.o
 
-$(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt $(CC1PLUS)
+$(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) $(TEXT_CHARMAP) $(CC1PLUS)
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
 
@@ -305,7 +307,7 @@ $(BUILD_DIR)/%.d: %.c
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/$*.o
 
 # C object
-$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt $(CC1)
+$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d $(TEXT_TOOLS) $(TEXT_CHARMAP) $(CC1)
 	@echo "CC $<"
 	$(call FOMT_COMPILE_C,)
 
@@ -315,7 +317,7 @@ $(BUILD_DIR)/%.d: %.cc
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/$*.o
 
 # C++ object
-$(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt $(CC1PLUS)
+$(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d $(TEXT_TOOLS) $(TEXT_CHARMAP) $(CC1PLUS)
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
 

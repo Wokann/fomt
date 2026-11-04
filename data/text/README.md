@@ -42,6 +42,13 @@ Shift-JIS entries include ASCII, so regional text does not need separate
 character maps. It is intentionally outside `data/text` so script and
 non-script preprocessing use one explicit project-level encoding contract.
 
+The Makefile defaults `TEXT_CHARMAP` to `charmap.txt`. To select another
+project-level table, pass `TEXT_CHARMAP=path/to/table.txt` to `make`; ordinary
+C/C++, generated guide pages, and the Mary bundle all use that same file and
+record it as a dependency. This selects encoding only: it does not select a
+different region, translate sources, or relocate data. Native builds need no
+additional argument.
+
 Each source includes its owning declaration header and uses ordinary C++
 `char const` definitions. The host-side text preprocessor converts their UTF-8
 string literals with `charmap.txt` into generated escaped C++ source, which
