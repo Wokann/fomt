@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "gbaio.h"
 #pragma implementation "scene_sprite.hh"
 #include "entity_actor.hh"
 #include "world_runtime.hh"
@@ -43,7 +44,7 @@ void GameSceneSpriteBase::QueueTileUpload(HardwareDmaQueue & queue,
         byte_count = range.byte_count;
     if (byte_count != 0) {
         DmaTransferDescriptor transfer(source,
-            reinterpret_cast<void *>(0x06010000u + tiles.GetTileIndex() * 32), byte_count);
+            reinterpret_cast<void *>(OBJ_VRAM0 + tiles.GetTileIndex() * TILE_SIZE_4BPP), byte_count);
         queue.PushBack(transfer);
     }
 }
@@ -53,9 +54,9 @@ void GameSceneSpriteBase::UploadPalettes(IndexedResourcePaletteRange const & ran
     u32 byte_count = range.data ? range.byte_count : 0;
     if (byte_count != 0) {
         GameObject * object = world;
-        u32 count = byte_count / 32;
+        u32 count = byte_count / PLTT_SIZE_4BPP;
         u8 const * current = reinterpret_cast<u8 const *>(range.data);
-        for (u32 index = 0; index < count; ++index, current += 32) {
+        for (u32 index = 0; index < count; ++index, current += PLTT_SIZE_4BPP) {
             object->SetSpritePaletteColors(current, palettes[index], unk);
         }
     }

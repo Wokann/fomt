@@ -236,11 +236,11 @@ EC void QueueMapTilePatch(GameSceneWorldMap *,
     MapTilePatchFrameHeader const * header = reinterpret_cast<MapTilePatchFrameHeader const *>(data);
     u32 tile_count = header->tiles_per_frame;
     data += sizeof(MapTilePatchFrameHeader);
-    data += tile_count * frame * 32;
+    data += tile_count * frame * TILE_SIZE_4BPP;
     u32 destination_tile = patch.destination_tile;
-    u32 byte_count = tile_count * 32;
+    u32 byte_count = tile_count * TILE_SIZE_4BPP;
     DmaTransferDescriptor transfer(data,
-        reinterpret_cast<void *>(0x06000000u + destination_tile * 32), byte_count);
+        reinterpret_cast<void *>(BG_VRAM + destination_tile * TILE_SIZE_4BPP), byte_count);
     queue.PushBack(transfer);
 }
 
@@ -333,7 +333,7 @@ void GameSceneWorldMap::LoadTiles(HardwareDmaQueue &)
 {
     GameSceneWorldMap & map = *this;
     MapData const * data = GetMapData(map.map_data_id);
-    Unpack(data->tiles, reinterpret_cast<void *>(0x06000000));
+    Unpack(data->tiles, reinterpret_cast<void *>(BG_VRAM));
 }
 
 EC bool func_080A5EB8(GameSceneWorldMap * map, Location const & location)

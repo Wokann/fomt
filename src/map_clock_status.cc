@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "gbaio.h"
 #include "control_widget.hh"
 #pragma implementation "map_clock_status.hh"
 #include "map_clock_status.hh"
@@ -38,7 +39,7 @@ inline MapClockStatusHudData::MapClockStatusHudData()
     // Slot 2 belongs to the weekday setter; this fixed glyph occupies slot 3.
     time_tiles.SetTile(3, GetMapClockStatusGlyph(20));
 #endif
-    u8 blank[32];
+    u8 blank[TILE_SIZE_4BPP];
     memset(blank, 0, sizeof(blank));
     time_tiles.SetTile(7, blank);
 #if !defined(REGION_JP)
@@ -100,7 +101,7 @@ static inline void DrawHudTileBuffer(MapClockStatusHudTileBuffer & tiles,
         u32 tile = tiles.state.GetTileIndex();
         if (tiles.dirty && !tiles.upload.IsQueued()) {
             QueueHudCopy(tiles.upload, tiles.tiles,
-                reinterpret_cast<void *>(0x06010000 + tile * 32), 256, queue);
+                reinterpret_cast<void *>(OBJ_VRAM0 + tile * TILE_SIZE_4BPP), 256, queue);
             tiles.dirty = 0;
         }
         HardwareSpriteOamRecord sprite = {};
@@ -124,7 +125,7 @@ void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
     if (state->palette_dirty && !state->palette_upload.IsQueued()) {
         QueueHudCopy(state->palette_upload,
             state->unk_archive_000.GetGroupData(0).palettes.data,
-            reinterpret_cast<void *>(0x05000200 + palette * 32), 32, queue);
+            reinterpret_cast<void *>(OBJ_PLTT + palette * PLTT_SIZE_4BPP), PLTT_SIZE_4BPP, queue);
         state->palette_dirty = 0;
     }
     i32 draw_x = x + 4;
@@ -139,7 +140,7 @@ void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
         if (state->unk_selector_dirty && !state->unk_dma_2D8.IsQueued()) {
             IndexedResourceGroupResult group = ResolveIndexedResourceGroup(&state->unk_archive_000, state->unk_selector);
             QueueHudCopy(state->unk_dma_2D8, group.tiles.data,
-                reinterpret_cast<void *>(0x06010000 + tile * 32), 128, queue);
+                reinterpret_cast<void *>(OBJ_VRAM0 + tile * TILE_SIZE_4BPP), 128, queue);
             state->unk_selector_dirty = 0;
         }
         HardwareSpriteOamRecord sprite = base;
@@ -160,11 +161,11 @@ void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
             IndexedResourceGroupResult group = ResolveIndexedResourceGroup(&state->unk_archive_030, state->unk_value);
             if (!state->unk_dma_31C.IsQueued()) {
                 QueueHudCopy(state->unk_dma_31C, group.tiles.data,
-                    reinterpret_cast<void *>(0x06010000 + tile * 32), 128, queue);
+                    reinterpret_cast<void *>(OBJ_VRAM0 + tile * TILE_SIZE_4BPP), 128, queue);
             }
             if (!state->unk_dma_2FC.IsQueued()) {
                 QueueHudCopy(state->unk_dma_2FC, group.palettes.data,
-                    reinterpret_cast<void *>(0x05000200 + value_palette * 32), 32, queue);
+                    reinterpret_cast<void *>(OBJ_PLTT + value_palette * PLTT_SIZE_4BPP), PLTT_SIZE_4BPP, queue);
             }
             state->unk_value_dirty = 0;
         }
@@ -177,7 +178,7 @@ void DrawMapClockStatusHud(MapClockStatusHudContent const * hud, i32 x, i32 y,
         if (state->unk_358 && !state->unk_dma_340.IsQueued()) {
             IndexedResourceGroupResult group = ResolveIndexedResourceGroup(&state->unk_archive_000, 5);
             QueueHudCopy(state->unk_dma_340, group.tiles.data,
-                reinterpret_cast<void *>(0x06010000 + tile * 32), 128, queue);
+                reinterpret_cast<void *>(OBJ_VRAM0 + tile * TILE_SIZE_4BPP), 128, queue);
             state->unk_358 = 0;
         }
         HardwareSpriteOamRecord & record = sprite;
@@ -198,10 +199,10 @@ void SetMapClockStatusHudSeason(MapClockStatusHudContent const * hud, int season
     case SEASON_FALL:   tiles[0] = 15; tiles[1] = 16; break;
     case SEASON_WINTER: tiles[0] = 17; tiles[1] = 18; break;
     }
-    memcpy(state->date_tiles.tiles[0], gMapClockStatusGlyphTiles[tiles[0]], 32);
+    memcpy(state->date_tiles.tiles[0], gMapClockStatusGlyphTiles[tiles[0]], TILE_SIZE_4BPP);
     state->date_tiles.dirty = 1;
     u8 const * second_tile = gMapClockStatusGlyphTiles[tiles[1]];
-    memcpy(state->date_tiles.tiles[1], second_tile, 32);
+    memcpy(state->date_tiles.tiles[1], second_tile, TILE_SIZE_4BPP);
     state->date_tiles.dirty = 1;
 }
 
@@ -213,21 +214,21 @@ void SetMapClockStatusHudDayAndWeekday(MapClockStatusHudContent const * hud,
     u32 ones = day % 10;
     if (tens > 0) {
         u8 const * tile = GetMapClockStatusGlyph(tens);
-        memcpy(state->date_tiles.tiles[2], tile, 32);
+        memcpy(state->date_tiles.tiles[2], tile, TILE_SIZE_4BPP);
         state->date_tiles.dirty = 1;
     } else {
-        u8 blank[32];
+        u8 blank[TILE_SIZE_4BPP];
         memset(blank, 0, sizeof(blank));
         u8 const * pixels = blank;
-        memcpy(state->date_tiles.tiles[2], pixels, 32);
+        memcpy(state->date_tiles.tiles[2], pixels, TILE_SIZE_4BPP);
         state->date_tiles.dirty = 1;
     }
     u8 const * ones_tile = GetMapClockStatusGlyph(ones);
-    memcpy(state->date_tiles.tiles[3], ones_tile, 32);
+    memcpy(state->date_tiles.tiles[3], ones_tile, TILE_SIZE_4BPP);
     state->date_tiles.dirty = 1;
 #if defined(REGION_JP)
     u8 const * weekday_tile = GetMapClockStatusGlyph(weekday + 21);
-    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE], weekday_tile, 32);
+    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE], weekday_tile, TILE_SIZE_4BPP);
     state->time_tiles.dirty = 1;
 #else
     u32 tiles[3];
@@ -241,13 +242,13 @@ void SetMapClockStatusHudDayAndWeekday(MapClockStatusHudContent const * hud,
     case DAY_OF_WEEK_FRIDAY:    tiles[0] = 111; tiles[1] = 112; tiles[2] = 113; break;
     case DAY_OF_WEEK_SATURDAY:  tiles[0] = 114; tiles[1] = 115; tiles[2] = 116; break;
     }
-    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE], gMapClockStatusGlyphTiles[tiles[0]], 32);
+    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE], gMapClockStatusGlyphTiles[tiles[0]], TILE_SIZE_4BPP);
     state->time_tiles.dirty = 1;
     u8 const * second_tile = GetMapClockStatusGlyph(tiles[1]);
-    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE + 1], second_tile, 32);
+    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE + 1], second_tile, TILE_SIZE_4BPP);
     state->time_tiles.dirty = 1;
     u8 const * third_tile = GetMapClockStatusGlyph(tiles[2]);
-    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE + 2], third_tile, 32);
+    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE + 2], third_tile, TILE_SIZE_4BPP);
     state->time_tiles.dirty = 1;
 #endif
 }
@@ -260,7 +261,7 @@ void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
     if (hour <= 11)
         meridiem = 28;
     u8 const * meridiem_tile = GetMapClockStatusGlyph(meridiem);
-    memcpy(state->date_tiles.tiles[4], meridiem_tile, 32);
+    memcpy(state->date_tiles.tiles[4], meridiem_tile, TILE_SIZE_4BPP);
     state->date_tiles.dirty = 1;
 #if defined(REGION_JP)
     u32 display_hour = hour;
@@ -286,17 +287,17 @@ void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
     u32 ones = display_hour % 10;
     if (tens > 0) {
         u8 const * tile = GetMapClockStatusGlyph(tens);
-        memcpy(state->date_tiles.tiles[MAP_CLOCK_DATE_HOUR_TENS_TILE], tile, 32);
+        memcpy(state->date_tiles.tiles[MAP_CLOCK_DATE_HOUR_TENS_TILE], tile, TILE_SIZE_4BPP);
 #if defined(REGION_DE)
         state->date_tiles.dirty = 1;
 #else
         date_dirty = 1;
 #endif
     } else {
-        u8 blank[32];
+        u8 blank[TILE_SIZE_4BPP];
         memset(blank, 0, sizeof(blank));
         u8 const * pixels = blank;
-        memcpy(state->date_tiles.tiles[MAP_CLOCK_DATE_HOUR_TENS_TILE], pixels, 32);
+        memcpy(state->date_tiles.tiles[MAP_CLOCK_DATE_HOUR_TENS_TILE], pixels, TILE_SIZE_4BPP);
 #if defined(REGION_DE)
         state->date_tiles.dirty = 1;
 #else
@@ -305,9 +306,9 @@ void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
     }
     u8 const * ones_tile = GetMapClockStatusGlyph(ones);
 #if defined(REGION_DE)
-    memcpy(state->time_tiles.tiles[4], ones_tile, 32);
+    memcpy(state->time_tiles.tiles[4], ones_tile, TILE_SIZE_4BPP);
 #else
-    memcpy(state->date_tiles.tiles[7], ones_tile, 32);
+    memcpy(state->date_tiles.tiles[7], ones_tile, TILE_SIZE_4BPP);
 #endif
 #if defined(REGION_DE)
     // The DE ones digit belongs to the separate time component.
@@ -322,13 +323,13 @@ void SetMapClockStatusHudColonVisible(MapClockStatusHudContent const * hud, u8 v
     MapClockStatusHudData * state = hud->state;
     if (visible != 0) {
         u8 const * colon = GetMapClockStatusGlyph(10);
-        memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_COLON_TILE], colon, 32);
+        memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_COLON_TILE], colon, TILE_SIZE_4BPP);
         state->time_tiles.dirty = 1;
     } else {
-        u8 blank[32];
+        u8 blank[TILE_SIZE_4BPP];
         memset(blank, 0, sizeof(blank));
         u8 const * pixels = blank;
-        memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_COLON_TILE], pixels, 32);
+        memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_COLON_TILE], pixels, TILE_SIZE_4BPP);
         state->time_tiles.dirty = 1;
     }
 }
@@ -339,10 +340,10 @@ void SetMapClockStatusHudMinuteDigits(MapClockStatusHudContent const * hud, u32 
     u32 tens = value / 10;
     u32 ones = value % 10;
     u8 const * tens_tile = gMapClockStatusGlyphTiles[tens];
-    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_MINUTE_TENS_TILE], tens_tile, 32);
+    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_MINUTE_TENS_TILE], tens_tile, TILE_SIZE_4BPP);
     state->time_tiles.dirty = 1;
     u8 const * ones_tile = gMapClockStatusGlyphTiles[ones];
-    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_MINUTE_TENS_TILE + 1], ones_tile, 32);
+    memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_MINUTE_TENS_TILE + 1], ones_tile, TILE_SIZE_4BPP);
     state->time_tiles.dirty = 1;
 }
 

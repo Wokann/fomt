@@ -1,4 +1,5 @@
 #include "world_sprite_effects.hh"
+#include "gbaio.h"
 #include "scene_sprite.hh"
 #include "hardware_dma_queue.hh"
 
@@ -46,7 +47,7 @@ inline void WorldSpriteEffectFrames::PrepareResources(HardwareDmaQueue & queue)
         u32 tile_index = tiles[index].GetTileIndex();
         u32 byte_count = groups[index].tiles.GetByteCount();
         DmaTransferDescriptor transfer(source,
-            reinterpret_cast<void *>(0x06010000u + tile_index * 32), byte_count);
+            reinterpret_cast<void *>(OBJ_VRAM0 + tile_index * TILE_SIZE_4BPP), byte_count);
         queue.PushBack(transfer);
     }
     tiles_upload_pending = false;

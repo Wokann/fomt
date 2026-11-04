@@ -2,12 +2,13 @@
 #include "hardware_sound.hh"
 
 #include "interrupt.hh"
+#include "gbaio.h"
 #include "m4a.h"
 
 void func_08008AF0(void * manager)
 {
     (void)manager;
-    WaitForNextInterrupt(1);
+    WaitForNextInterrupt(INTR_FLAG_VBLANK);
 }
 
 void func_08008AFC(void)

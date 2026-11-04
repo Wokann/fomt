@@ -1,10 +1,11 @@
 #include "prelude.h"
 #pragma implementation "hardware_interrupt_guard.hh"
 #include "hardware_interrupt_guard.hh"
+#include "gbaio.h"
 
 void HardwareInterruptList::Clear()
 {
-    InterruptGuard guard(1);
+    InterruptGuard guard(INTR_FLAG_VBLANK);
     HardwareLinkedList::Clear();
 }
 
@@ -15,31 +16,31 @@ HardwareInterruptList::~HardwareInterruptList()
 
 void HardwareInterruptList::Append(HardwareLinkBase * link)
 {
-    InterruptGuard guard(1);
+    InterruptGuard guard(INTR_FLAG_VBLANK);
     HardwareLinkedList::Append(link);
 }
 
 void HardwareInterruptList::Remove(HardwareLinkBase * link)
 {
-    InterruptGuard guard(1);
+    InterruptGuard guard(INTR_FLAG_VBLANK);
     HardwareLinkedList::Remove(link);
 }
 
 void HardwareInterruptList::Splice(HardwareLinkedList * source)
 {
-    InterruptGuard guard(1);
+    InterruptGuard guard(INTR_FLAG_VBLANK);
     HardwareLinkedList::Splice(source);
 }
 
 void HardwareInterruptList::Swap(HardwareLinkedList * other)
 {
-    InterruptGuard guard(1);
+    InterruptGuard guard(INTR_FLAG_VBLANK);
     HardwareLinkedList::Swap(other);
 }
 
 void func_080D788C(struct HardwareLinkedList * list)
 {
-    InterruptGuard guard(1);
+    InterruptGuard guard(INTR_FLAG_VBLANK);
     func_08009984(list);
 }
 

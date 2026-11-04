@@ -1,4 +1,5 @@
 #include "new_game.hh"
+#include "gbaio.h"
 #include "new_game_identity.hh"
 #include "new_game_name_input.hh"
 #include "intro_scene.hh"
@@ -400,8 +401,8 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
 void InitializeBirthdayInputCursor(NewGameBirthdayInputCore * core)
 {
     CopyHardwareDma3(gUiSharedPalette,
-        reinterpret_cast<void *>(0x05000200 + SpritePaletteBank(core->cursor_palette) * 32), 32);
-    *reinterpret_cast<u16 *>(0x0500020E + SpritePaletteBank(core->cursor_palette) * 32) = 0x027F;
+        reinterpret_cast<void *>(OBJ_PLTT + SpritePaletteBank(core->cursor_palette) * PLTT_SIZE_4BPP), PLTT_SIZE_4BPP);
+    reinterpret_cast<u16 *>(OBJ_PLTT + SpritePaletteBank(core->cursor_palette) * PLTT_SIZE_4BPP)[7] = RGB(31, 19, 0);
     FillHardwareDma3(0, &core->cursor_attributes, sizeof(core->cursor_attributes));
 #if defined(REGION_JP)
     core->cursor_attributes.size = 2;
@@ -417,8 +418,8 @@ void InitializeBirthdayInputCursor(NewGameBirthdayInputCore * core)
     reinterpret_cast<HardwareSpriteOamRecord &>(core->cursor_attributes).priority = 3;
     for (int tile = 0; tile < 8; ++tile) {
         for (int row = 0; row < 8; ++row) {
-            *reinterpret_cast<u32 *>(0x06010000
-                + (SpriteTileIndex(core->cursor_tiles) + tile) * 32 + row * 4) = 0x77777777;
+            *reinterpret_cast<u32 *>(OBJ_VRAM0
+                + (SpriteTileIndex(core->cursor_tiles) + tile) * TILE_SIZE_4BPP + row * 4) = 0x77777777;
         }
     }
 #if defined(REGION_JP)

@@ -1,4 +1,5 @@
 #include "world_weather.hh"
+#include "gbaio.h"
 #include "game_world.hh"
 #include "entity_ui.hh"
 #include "scene_sprite.hh"
@@ -83,7 +84,7 @@ void GameSceneWeatherEffect::PrepareResources(HardwareDmaQueue & queue)
         if (byte_count != 0) {
             u32 tile_index = entry->tiles.GetTileIndex();
             DmaTransferDescriptor transfer(source,
-                reinterpret_cast<void *>(0x06010000u + tile_index * 32), byte_count);
+                reinterpret_cast<void *>(OBJ_VRAM0 + tile_index * TILE_SIZE_4BPP), byte_count);
             queue.PushBack(transfer);
         }
     }

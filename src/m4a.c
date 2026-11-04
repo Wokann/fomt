@@ -1276,7 +1276,7 @@ void MPlayExtender(struct CgbChannel * cgb_channels)
     REG_NR30 = 0;
     REG_NR50 = 0x77;
 
-    sound_info = *(struct SoundInfo **)0x3007FF0;
+    sound_info = SOUND_INFO_PTR;
 
     ident = sound_info->ident;
 
@@ -1354,7 +1354,7 @@ void SoundInit(struct SoundInfo * sound_info)
     REG_DMA2SAD = (uptr)sound_info->pcm_buffer + PCM_DMA_BUF_SIZE;
     REG_DMA2DAD = (uptr)&REG_FIFO_B;
 
-    *(struct SoundInfo **)0x3007FF0 = sound_info;
+    SOUND_INFO_PTR = sound_info;
     CpuFill32(0, sound_info, sizeof(struct SoundInfo));
 
     sound_info->max_channels = 8;
@@ -1376,7 +1376,7 @@ void SoundInit(struct SoundInfo * sound_info)
 
 void SampleFreqSet(u32 freq)
 {
-    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
+    struct SoundInfo * sound_info = SOUND_INFO_PTR;
 
     freq = (freq & 0xF0000) >> 16;
     sound_info->freq = freq;
@@ -1408,7 +1408,7 @@ void SampleFreqSet(u32 freq)
 
 void m4aSoundMode(u32 mode)
 {
-    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
+    struct SoundInfo * sound_info = SOUND_INFO_PTR;
     u32 temp;
 
     if (sound_info->ident != ID_NUMBER)
@@ -1466,7 +1466,7 @@ void m4aSoundMode(u32 mode)
 
 void SoundClear(void)
 {
-    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
+    struct SoundInfo * sound_info = SOUND_INFO_PTR;
     int i;
     void * chan;
 
@@ -1505,7 +1505,7 @@ void SoundClear(void)
 
 void m4aSoundVSyncOff(void)
 {
-    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
+    struct SoundInfo * sound_info = SOUND_INFO_PTR;
 
     if (sound_info->ident >= ID_NUMBER && sound_info->ident <= ID_NUMBER + 1)
     {
@@ -1526,7 +1526,7 @@ void m4aSoundVSyncOff(void)
 
 void m4aSoundVSyncOn(void)
 {
-    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
+    struct SoundInfo * sound_info = SOUND_INFO_PTR;
     u32 ident = sound_info->ident;
 
     if (ident == ID_NUMBER)
@@ -1549,7 +1549,7 @@ void MPlayOpen(struct MusicPlayer * music_player, struct MusicPlayerTrack * trac
     if (track_count > MAX_MUSICPLAYER_TRACKS)
         track_count = MAX_MUSICPLAYER_TRACKS;
 
-    sound_info = *(struct SoundInfo **)0x3007FF0;
+    sound_info = SOUND_INFO_PTR;
 
     if (sound_info->ident != ID_NUMBER)
         return;
@@ -1874,7 +1874,7 @@ static inline int CgbPan(struct CgbChannel * chan)
 
 void CgbModVol(struct CgbChannel * chan)
 {
-    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
+    struct SoundInfo * sound_info = SOUND_INFO_PTR;
 
     if (!CgbPan(chan))
     {
@@ -1899,7 +1899,7 @@ void CgbSound(void)
     int ch;
     struct CgbChannel * channels;
     int prev_c15;
-    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
+    struct SoundInfo * sound_info = SOUND_INFO_PTR;
     volatile u8 * nrx0ptr;
     volatile u8 * nrx1ptr;
     volatile u8 * nrx2ptr;

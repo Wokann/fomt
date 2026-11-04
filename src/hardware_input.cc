@@ -5,7 +5,7 @@
 
 u32 ReadHardwareKeys(void)
 {
-    return 0x3ff & ~REG_KEYINPUT;
+    return KEYS_MASK & ~REG_KEYINPUT;
 }
 
 u16 * InitializeHardwareHeldKeys(u16 * held)

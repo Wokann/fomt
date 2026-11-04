@@ -13,7 +13,7 @@ HardwareBootstrap::HardwareBootstrap()
 {
     struct HardwareCoreState * state = new HardwareCoreState(30, 4, 0, 0x20);
     u16 status = state->display.status;
-    status |= 8;
+    status |= DISPSTAT_VBLANK_INTR;
     state->display.status = status;
     REG_DISPSTAT = status;
     this->state = state;
@@ -23,7 +23,7 @@ HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input
 {
     struct HardwareCoreState * state = new HardwareCoreState(input.delay, input.interval, 0, 0x20);
     u16 status = state->display.status;
-    status |= 8;
+    status |= DISPSTAT_VBLANK_INTR;
     state->display.status = status;
     REG_DISPSTAT = status;
     this->state = state;
@@ -33,7 +33,7 @@ HardwareBootstrap::HardwareBootstrap(HardwareSpriteBufferParameters const & buff
 {
     struct HardwareCoreState * state = new HardwareCoreState(30, 4, buffer);
     u16 status = state->display.status;
-    status |= 8;
+    status |= DISPSTAT_VBLANK_INTR;
     state->display.status = status;
     REG_DISPSTAT = status;
     this->state = state;
@@ -44,7 +44,7 @@ HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input
 {
     struct HardwareCoreState * state = new HardwareCoreState(input.delay, input.interval, buffer);
     u16 status = state->display.status;
-    status |= 8;
+    status |= DISPSTAT_VBLANK_INTR;
     state->display.status = status;
     REG_DISPSTAT = status;
     this->state = state;

@@ -850,3 +850,26 @@ boundaries/incoming/outgoing/direct-branch 报告、source-layout-abi-review.jso
 code-candidate-exclusions.json、resource_candidate_classification.json、
 mary-candidate-classification.json、obj_tile_pool_semantics.json、source-edit-manifest.json、
 symbol-renames.json、native-validation.json、native-map-validation.json及compare日志。
+
+## 硬件常量使用补正（2026-11-05）
+
+对照本地 pokeemerald 9a83a2bbe8 的 include/gba/defines.h、io_reg.h、
+src/main.c、src/m4a.c，复核 FoMT 的 gbaio.h、gbasvc.h 与 six 汇编定义。
+显示/OAM 上传、按键与中断控制、UI/地图/精灵上传的已知硬件地址和尺寸，
+直接使用 REG_*、OAM/OAM_SIZE、BG_SCREEN_ADDR、BG_PLTT/OBJ_PLTT、
+BG_VRAM/OBJ_VRAM0、TILE_SIZE_4BPP、PLTT_SIZE_4BPP 和实际控制位宏。
+十处 m4a 固定 IWRAM 声音指针槽使用 SOUND_INFO_PTR；这是驱动 ABI 固定槽，
+不能作为可自由搬动的普通 RAM 对象。未另建硬件包装层。
+
+REG_BLDY 修正为半字视图；全源无依赖旧字节定义的调用，原先手写的半字
+访问改用此宏。VCOUNT 的原生字节读取仍显式保留 u8；IRQ 槽索引与位掩码
+保持区分。完整 u16 关闭掩码、软件计数、结构偏移及像素填充不机械宏化。
+six 的 DMA_START_HBLANK/VBLANK 原定义颠倒，现与 C 头和 pokeemerald 一致；
+检索未见当前汇编消费者，修正不改变原 ROM 指令。
+
+四版 WSL make -j4 compare 与原版 SHA-1 全部通过。没有改动 LDS、对象边界
+或 ROM 排列，也没有移址/扩容测试。本批不新增 C/C++ 覆盖，不代表后续模块
+的引用已全面闭合。顺序接续仍为 JP08008198 的 OBJ 分配组容器。
+证据位于私有 hardware-constants-8d823d55：source-hardware-replacements.json、
+parent-source-manifest.json、final-source-manifest.json、native-validation.json
+与四版 native-compare.log。

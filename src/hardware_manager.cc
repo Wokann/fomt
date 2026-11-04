@@ -1,6 +1,7 @@
 #include "prelude.h"
 #pragma implementation "hardware_manager.hh"
 #include "hardware_manager.hh"
+#include "gbaio.h"
 
 void * operator new(unsigned long);
 void operator delete(void *);
@@ -24,32 +25,32 @@ void RunHardwareManagerVBlankCommands(void)
 }
 
 HardwareManagerVBlankBinding::HardwareManagerVBlankBinding(HardwareLinkedList * const & list)
-    : commands(list), guard(1), previous(this),
+    : commands(list), guard(INTR_FLAG_VBLANK), previous(this),
       previous_handler(ExchangeInterruptHandler(0, RunHardwareManagerVBlankCommands))
 {
-    AcknowledgeAndEnableInterrupts(1);
+    AcknowledgeAndEnableInterrupts(INTR_FLAG_VBLANK);
 }
 
 void AppendHardwareVBlankCommand(HardwareLinkedList * list, HardwareLinkBase * link)
 {
-    InterruptGuard guard(1);
+    InterruptGuard guard(INTR_FLAG_VBLANK);
     list->HardwareLinkedList::Append(link);
 }
 
 void RemoveHardwareVBlankCommand(HardwareLinkedList * list, HardwareLinkBase * link)
 {
-    InterruptGuard guard(1);
+    InterruptGuard guard(INTR_FLAG_VBLANK);
     list->HardwareLinkedList::Remove(link);
 }
 
 void SpliceHardwareVBlankCommands(HardwareLinkedList * list, HardwareLinkedList * source)
 {
-    InterruptGuard guard(1);
+    InterruptGuard guard(INTR_FLAG_VBLANK);
     list->HardwareLinkedList::Splice(source);
 }
 
 void SwapHardwareVBlankCommands(HardwareLinkedList * list, HardwareLinkedList * other)
 {
-    InterruptGuard guard(1);
+    InterruptGuard guard(INTR_FLAG_VBLANK);
     list->HardwareLinkedList::Swap(other);
 }

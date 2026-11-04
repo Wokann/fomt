@@ -1,4 +1,5 @@
 #include "hardware_input_repeat.hh"
+#include "gbaio.h"
 
 u32 UpdateHardwareKeyRepeat(struct HardwareInputState * input)
 {
@@ -7,7 +8,7 @@ u32 UpdateHardwareKeyRepeat(struct HardwareInputState * input)
     u16 interval = input->repeat_interval;
     u16 delay = input->repeat_delay;
     u32 repeated = 0;
-    u32 mask = 0x200;
+    u32 mask = L_BUTTON;
     i16 * frames = &input->held_frames[9];
 
     do {
@@ -38,7 +39,7 @@ u32 UpdateHardwareKeyRepeat(struct HardwareInputState * input)
 void SetHardwareKeyRepeatDelay(struct HardwareInputState * input, u16 delay)
 {
     u16 held = input->held;
-    u32 mask = 0x200;
+    u32 mask = L_BUTTON;
     i16 * frames = &input->held_frames[9];
     i32 adjustment = delay - input->repeat_delay;
 

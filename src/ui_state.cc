@@ -1,4 +1,5 @@
 #include "obj_palette_collection.hh"
+#include "gbaio.h"
 #include "prelude.h"
 #pragma implementation "ui_state.hh"
 #include "ui_state.hh"
@@ -29,7 +30,7 @@ bool UiTextTileCopyCommand::Run()
     u32 const * source = command->source;
     u32 * destination = command->destination;
     if (command->alternate_nibbles) {
-        u32 * end = destination + command->tile_count * 8;
+        u32 * end = destination + command->tile_count * (TILE_SIZE_4BPP / sizeof(u32));
         u32 phase = command->nibble_phase ^ 1;
         command->nibble_phase = phase;
         u32 mask = 0x0F0F0F0Fu << (phase * 4);
@@ -46,7 +47,7 @@ bool UiTextTileCopyCommand::Run()
         } while (destination != end);
         return true;
     }
-    CpuFastSet(source, destination, command->tile_count * 8);
+    CpuFastSet(source, destination, command->tile_count * (TILE_SIZE_4BPP / sizeof(u32)));
     return false;
 }
 
@@ -240,16 +241,16 @@ bool UiTextWindowSetupCommand::Run()
     UiTextWindowSetupCommand * command = this;
     u16 tile = ((command->first_tile + 3) & 0x3FF) | (command->background_palette << 12);
     u32 fill = tile | (static_cast<u32>(tile) << 16);
-    FillUiFastWords(fill, reinterpret_cast<void *>(0x06000000 + command->screen_block * 0x800),
+    FillUiFastWords(fill, reinterpret_cast<void *>(BG_SCREEN_ADDR(command->screen_block)),
         160);
-    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(0x06000000 + command->screen_block * 0x800),
+    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(BG_SCREEN_ADDR(command->screen_block)),
         16, 0, 14, 3, command->first_tile, command->background_palette);
-    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(0x06000000 + command->screen_block * 0x800),
+    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(BG_SCREEN_ADDR(command->screen_block)),
         0, 3, 30, 7, command->first_tile, command->background_palette);
     u32 palette = command->background_palette;
-    CpuFastSet(gUiSharedPalette, reinterpret_cast<void *>(0x05000000 + palette * 32), 8);
+    CpuFastSet(gUiSharedPalette, reinterpret_cast<void *>(BG_PLTT + palette * PLTT_SIZE_4BPP), PLTT_SIZE_4BPP / sizeof(u32));
     CpuFastSet(IndexedResourceArchive(gUiHandCursorArchive).GetGroupData(0).palettes.data,
-        reinterpret_cast<void *>(0x05000200 + command->cursor_palette * 32), 8);
+        reinterpret_cast<void *>(OBJ_PLTT + command->cursor_palette * PLTT_SIZE_4BPP), PLTT_SIZE_4BPP / sizeof(u32));
     return false;
 }
 
@@ -548,7 +549,7 @@ static inline void UploadUiTextOutput(UnkUiSelectionData * object)
                 {
                     u32 const * pixels = entry.pixels.value->tiles;
                     u32 const index = UiSelectionTileIndex(entry.state);
-                    CpuFastSet(pixels, reinterpret_cast<void *>(0x06010000 + index * 32), 64);
+                    CpuFastSet(pixels, reinterpret_cast<void *>(OBJ_VRAM0 + index * TILE_SIZE_4BPP), 64);
                 }
                 entry.changed = false;
             }
@@ -1017,8 +1018,8 @@ UiStatePayload::UiStatePayload(u32 background, u32 screen, u32 palette_bank,
       commands(), records(), records_command(records), output(&palette, shared),
       text(), output_command(&output),
       tile_copy(reinterpret_cast<u32 const *>(gUiSharedTiles),
-          &reinterpret_cast<u32 (*)[512][8]>(0x06000000)[character_block][first_tile][0],
-          gUiSharedTileByteCount / 32, mode == 1),
+          &reinterpret_cast<u32 (*)[BG_CHAR_SIZE / TILE_SIZE_4BPP][TILE_SIZE_4BPP / sizeof(u32)]>(BG_VRAM)[character_block][first_tile][0],
+          gUiSharedTileByteCount / TILE_SIZE_4BPP, mode == 1),
       window(screen_block, first_tile, background_palette,
           palette.GetIndex()),
       choice_index(0), hand_cursor(gUiHandCursorArchive),

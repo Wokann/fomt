@@ -7,8 +7,9 @@
 HardwareDisplayState::HardwareDisplayState()
 {
     volatile u16 zero = 0;
-    CpuSet((void const *)&zero, this, 0x0100002B);
-    this->control.word = 0x80;
+    CpuSet((void const *)&zero, this, CPUSET_SRC_FIXED | CPUSET_16BIT
+        | (offsetof(HardwareDisplayState, unk_56) / sizeof(u16)));
+    this->control.word = DISPCNT_FORCED_BLANK;
     {
         u16 clear = 0;
         u16 identity = 0x100;
@@ -27,14 +28,13 @@ void WriteHardwareDisplayState(struct HardwareDisplayState * object)
 {
     CopyHardwareDma3(object, (void *)&REG_DISPCNT,
         offsetof(struct HardwareDisplayState, blend_brightness));
-    // The original routine writes BLDY as a halfword, not REG_BLDY's byte view.
-    REG(u16, 0x04000054) = object->blend_brightness;
+    REG_BLDY = object->blend_brightness;
 }
 
 void WriteHardwareDisplayStateWithBios(struct HardwareDisplayState * object)
 {
-    CpuFastSet(object, (void *)0x04000000, 0x10);
-    CpuSet((u8 *)object + 0x40, (void *)0x04000040, 0x04000005);
+    CpuFastSet(object, (void *)&REG_DISPCNT, 0x10);
+    CpuSet((u8 *)object + 0x40, (void *)&REG_WIN0H, CPUSET_32BIT | 5);
     // Keep this routine's distinct final BG1 write; it does not mirror BLDY.
     REG_BG1HOFS = object->background_scroll[1][0];
 }

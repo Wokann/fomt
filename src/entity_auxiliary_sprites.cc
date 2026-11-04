@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "gbaio.h"
 #pragma implementation "entity_auxiliary_sprites.hh"
 #include "game_world.hh"
 #include "scene_sprite.hh"
@@ -21,7 +22,7 @@ void EntityAuxiliarySprites::PrepareResources(HardwareDmaQueue & queue)
         u32 tile_index = entries[index].tiles.GetTileIndex();
         u32 byte_count = range.data ? range.byte_count : 0;
         DmaTransferDescriptor transfer(source,
-            reinterpret_cast<void *>(0x06010000u + tile_index * 32), byte_count);
+            reinterpret_cast<void *>(OBJ_VRAM0 + tile_index * TILE_SIZE_4BPP), byte_count);
         queue.PushBack(transfer);
     }
     // All three groups use the first group's palette and retained index.

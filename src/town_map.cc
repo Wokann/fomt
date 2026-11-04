@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "gbaio.h"
 #pragma implementation "town_map.hh"
 #include "game_scene.hh"
 #include "town_map.hh"
@@ -17,7 +18,7 @@ extern "C" void CopyBgMap30x13(void const *, u32 map_block, u16 const * source)
         next_row = row + 1;
 
         volatile u16 * destination = reinterpret_cast<volatile u16 *>(
-            0x06000000 + (map_block << 11) + row_offset);
+            BG_SCREEN_ADDR(map_block) + row_offset);
 
         for (; column <= 29; column++)
             destination[column] = *source++;
@@ -41,7 +42,7 @@ extern "C" void CopyBgMapRect(
         for (u32 column = x; column < max_x; column++)
         {
             volatile u16 * destination = reinterpret_cast<volatile u16 *>(
-                0x06000000 + (map_block << 11) + (y << 6) + (column << 1));
+                BG_SCREEN_ADDR(map_block) + (y << 6) + (column << 1));
 
             *destination = *source++;
         }

@@ -10,6 +10,7 @@ EXTERN_C
 #define IWRAM_START 0x03000000
 #define IWRAM_END (IWRAM_START + 0x8000)
 #define INTR_VECTOR (*(void (**)(void))(IWRAM_END - 4))
+#define SOUND_INFO_PTR (*(struct SoundInfo **)(IWRAM_END - 0x10))
 #define SRAM_BASE 0x0E000000
 // Native FoMT save image span on its SRAM cartridge.
 #define SRAM_SIZE 0x8000
@@ -31,6 +32,9 @@ EXTERN_C
 #define BG_SCREEN_ADDR(n) (BG_VRAM + BG_SCREEN_SIZE * (n))
 #define TILE_SIZE_4BPP 32
 #define TOTAL_OBJ_TILE_COUNT 1024
+
+#define OAM 0x07000000
+#define OAM_SIZE 0x400
 
 #define REG_DISPCNT REG(u16, 0x04000000)
 #define REG_DISPSTAT REG(u16, 0x04000004)
@@ -70,7 +74,7 @@ EXTERN_C
 #define REG_BLDALPHA REG(u16, 0x04000052)
 #define REG_BLDCA REG(u8, 0x04000052 + 0)
 #define REG_BLDCB REG(u8, 0x04000052 + 1)
-#define REG_BLDY REG(u8, 0x04000054)
+#define REG_BLDY REG(u16, 0x04000054)
 
 #define REG_SOUND1CNT_L REG(u16, 0x04000060)
 #define REG_NR10 REG(u8, 0x04000060)
@@ -177,6 +181,16 @@ EXTERN_C
 // DISPCNT
 #define DISPCNT_FORCED_BLANK (1 << 7)
 
+// DISPSTAT
+#define DISPSTAT_HBLANK (1 << 1)
+#define DISPSTAT_VBLANK_INTR (1 << 3)
+
+// BGCNT
+#define BGCNT_PRIORITY(n) (n)
+#define BGCNT_MOSAIC (1 << 6)
+#define BGCNT_SCREENBASE(n) ((n) << 8)
+#define BGCNT_WRAP (1 << 13)
+
 // BLDCNT
 #define BLDCNT_TGT1_BG0 (1 << 0)
 #define BLDCNT_TGT1_BG1 (1 << 1)
@@ -202,10 +216,13 @@ EXTERN_C
 #define DPAD_DOWN (1 << 7)
 #define R_BUTTON (1 << 8)
 #define L_BUTTON (1 << 9)
+#define KEYS_MASK 0x03FF
 #define KEY_INTR_ENABLE (1 << 14)
 #define KEY_AND_INTR (1 << 15)
 
 // IE / IF
+#define INTR_FLAG_VBLANK (1 << 0)
+#define INTR_FLAG_VCOUNT (1 << 2)
 #define INTR_FLAG_KEYPAD (1 << 12)
 #define INTR_FLAG_GAMEPAK (1 << 13)
 

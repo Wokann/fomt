@@ -1,4 +1,5 @@
 #include "hardware_display_commands.hh"
+#include "gbaio.h"
 
 #include "hardware_display_state.hh"
 #include "hardware_bootstrap.hh"
@@ -12,7 +13,7 @@ void EnableHardwareForcedBlank(struct HardwareBootstrap * owner)
     u16 * control = (u16 *)&state->display.control;
     struct HardwareDisplayCommand command;
     u32 zero = 0;
-    *control |= 0x80;
+    *control |= DISPCNT_FORCED_BLANK;
     command.previous_slot = (struct HardwareLink **)zero;
     command.next = (struct HardwareLink *)zero;
     command.vtable = &__vt_22HardwareDisplayCommand;
@@ -32,7 +33,7 @@ void DisableHardwareForcedBlank(struct HardwareBootstrap * owner)
     u16 * control = (u16 *)&state->display.control;
     struct HardwareDisplayCommand command;
     u32 zero = 0;
-    *control &= 0xFF7F;
+    *control &= (u16)~DISPCNT_FORCED_BLANK;
     command.previous_slot = (struct HardwareLink **)zero;
     command.next = (struct HardwareLink *)zero;
     command.vtable = &__vt_22HardwareDisplayCommand;

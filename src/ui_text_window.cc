@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "gbaio.h"
 #include "ui_state.hh"
 #pragma implementation "ui_text_window.hh"
 #include "ui_text_window.hh"
@@ -49,21 +50,21 @@ void DrawUiTextWindowBorder(u16 * tilemap, u32 x, u32 y,
 static inline void FillUiTextWindowTilemap(void * destination, u32 value)
 {
     // The native window clears the first ten rows of its screen block.
-    CpuFastSet(&value, destination, 0x010000A0);
+    CpuFastSet(&value, destination, (CPUSET_SRC_FIXED | 0xA0));
 }
 
 static inline void UploadUiTextWindowPalette(u32 palette)
 {
-    CpuFastSet(gUiSharedPalette, reinterpret_cast<void *>(0x05000000 + (palette << 5)), 8);
+    CpuFastSet(gUiSharedPalette, reinterpret_cast<void *>(BG_PLTT + palette * PLTT_SIZE_4BPP), PLTT_SIZE_4BPP / sizeof(u32));
 }
 
 bool UiTextWindowBorderCommand::Run()
 {
     u16 entry = ((first_tile + 3) & 0x3FF) | (palette << 12);
     u32 value = entry | (static_cast<u32>(entry) << 16);
-    FillUiTextWindowTilemap(reinterpret_cast<void *>(0x06000000 + (screen_block << 11)),
+    FillUiTextWindowTilemap(reinterpret_cast<void *>(BG_SCREEN_ADDR(screen_block)),
         value);
-    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(0x06000000 + (screen_block << 11)),
+    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(BG_SCREEN_ADDR(screen_block)),
         x, 0, width, height, first_tile, palette);
     UploadUiTextWindowPalette(palette);
     return false;
@@ -123,7 +124,7 @@ bool UiTextWindowTileUploadCommand::Run()
     u32 const * current_source = source;
     u32 * current_destination = destination;
     if (dither != 0) {
-        u32 * end = current_destination + tile_count * 8;
+        u32 * end = current_destination + tile_count * (TILE_SIZE_4BPP / sizeof(u32));
         u32 next_phase = phase;
         next_phase ^= 1;
         phase = next_phase;
@@ -141,6 +142,6 @@ bool UiTextWindowTileUploadCommand::Run()
         } while (current_destination != end);
         return true;
     }
-    CpuFastSet(current_source, current_destination, tile_count * 8);
+    CpuFastSet(current_source, current_destination, tile_count * (TILE_SIZE_4BPP / sizeof(u32)));
     return false;
 }

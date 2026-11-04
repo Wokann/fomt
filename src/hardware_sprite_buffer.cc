@@ -31,19 +31,19 @@ HardwareSpriteBufferState::HardwareSpriteBufferState(u8 byte1, u8 byte3)
 
 void WriteHardwareSpriteBuffer(HardwareSpriteBufferState * object)
 {
-    CopyHardwareDma3((u8 *)object + 4, (void *)0x07000000, 0x400);
+    CopyHardwareDma3((u8 *)object + 4, (void *)OAM, OAM_SIZE);
 }
 
 void WriteHardwareSpriteBufferWithBios(HardwareSpriteBufferState * object)
 {
-    CpuFastSet((u8 *)object + 4, (void *)0x07000000, 0x100);
+    CpuFastSet((u8 *)object + 4, (void *)OAM, OAM_SIZE / sizeof(u32));
 }
 
 void WritePrioritizedHardwareSpriteBuffer(HardwareSpriteBufferState * state)
 {
     u8 * buffer = reinterpret_cast<u8 *>(state);
     u8 * parameter_cursor = buffer + 4;
-    u8 * oam = (u8 *)0x07000000;
+    u8 * oam = (u8 *)OAM;
     u8 * end = buffer + 4 + ((struct HardwareSpriteBufferState *)buffer)->sprite_count *
         sizeof(struct HardwareSpriteOamRecord);
     u32 priority = 0;
@@ -65,9 +65,9 @@ void WritePrioritizedHardwareSpriteBuffer(HardwareSpriteBufferState * state)
         priority += 0x400;
     } while (priority <= 0xFFF);
 
-    if (oam != (u8 *)0x07000400) {
+    if (oam != (u8 *)(OAM + OAM_SIZE)) {
         u32 hidden = 0x200;
-        u8 * last = (u8 *)0x07000400;
+        u8 * last = (u8 *)(OAM + OAM_SIZE);
         do {
             *(u32 *)oam = hidden;
             *(u16 *)(oam + 6) = *(u16 *)(parameter_cursor + 6);
@@ -102,7 +102,7 @@ void WriteAndResetHardwareSpriteBuffer(HardwareSpriteBufferState * object)
 
 void WriteAndResetHardwareSpriteBufferWithBios(HardwareSpriteBufferState * object)
 {
-    CpuFastSet((u8 *)object + 4, (void *)0x07000000, 0x100);
+    CpuFastSet((u8 *)object + 4, (void *)OAM, OAM_SIZE / sizeof(u32));
     ResetHardwareSpriteBuffer(object);
 }
 
