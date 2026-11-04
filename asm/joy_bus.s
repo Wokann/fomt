@@ -1,4 +1,6 @@
     .include "asm/macro.inc"
+    .include "six/asm/hw/irq.s"
+    .include "six/asm/hw/sio.s"
     .syntax unified
     .thumb
 
@@ -498,7 +500,7 @@ func_080D0704: @ 0x080CFF88
 	push {r4, r5, lr}
 	sub sp, #4
 	movs r5, #0
-	ldr r0, .L080D0000 @ =0x04000140
+	ldr r0, .L080D0000 @ =REG_JOYCNT
 	ldrh r0, [r0]
 	adds r4, r0, #0
 	ldr r0, .L080D0004 @ =gJoyBusContext
@@ -513,7 +515,7 @@ func_080D0704: @ 0x080CFF88
 	ands r0, r4
 	cmp r0, #0
 	beq .L080CFFBA
-	ldr r0, .L080D0008 @ =0x04000150
+	ldr r0, .L080D0008 @ =REG_JOY_RECV
 	ldr r0, [r0]
 	str r0, [sp]
 	mov r0, sp
@@ -537,13 +539,13 @@ func_080D0704: @ 0x080CFF88
 .L080CFFD8:
 	cmp r5, #0
 	beq .L080CFFE8
-	ldr r1, .L080D000C @ =0x04000158
+	ldr r1, .L080D000C @ =REG_JOYSTAT
 	movs r0, #0
 	strh r0, [r1]
 	adds r0, r5, #0
 	bl FinishJoyBusCommand
 .L080CFFE8:
-	ldr r0, .L080D0000 @ =0x04000140
+	ldr r0, .L080D0000 @ =REG_JOYCNT
 	strh r4, [r0]
 	ldr r0, .L080D0004 @ =gJoyBusContext
 	ldr r1, [r0]
@@ -555,10 +557,10 @@ func_080D0704: @ 0x080CFF88
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080D0000: .4byte 0x04000140
+.L080D0000: .word REG_JOYCNT
 .L080D0004: .4byte gJoyBusContext
-.L080D0008: .4byte 0x04000150
-.L080D000C: .4byte 0x04000158
+.L080D0008: .word REG_JOY_RECV
+.L080D000C: .word REG_JOYSTAT
     .global func_080D078C
     .thumb_func
 func_080D078C: @ 0x080D0010
@@ -610,14 +612,14 @@ func_080D078C: @ 0x080D0010
 	.align 2, 0
 .L080D006C: .4byte gJoyBusContext
 .L080D0070:
-	ldr r1, .L080D007C @ =0x04000158
+	ldr r1, .L080D007C @ =REG_JOYSTAT
 	movs r0, #0x30
 	strh r0, [r1]
 .L080D0076:
 	bl ResetJoyBusCommandResult
 	b .L080D0194
 	.align 2, 0
-.L080D007C: .4byte 0x04000158
+.L080D007C: .word REG_JOYSTAT
 .L080D0080:
 	ldr r4, [r5]
 	ldr r0, [r4, #4]
@@ -757,7 +759,7 @@ func_080D078C: @ 0x080D0010
 	strb r0, [r1, #1]
 	strb r0, [r1, #2]
 	strb r0, [r1, #3]
-	ldr r1, .L080D0188 @ =0x04000154
+	ldr r1, .L080D0188 @ =REG_JOY_TRANS
 	ldr r0, [sp]
 	str r0, [r1]
 	ldr r0, [r4, #4]
@@ -765,7 +767,7 @@ func_080D078C: @ 0x080D0010
 	str r0, [r4, #4]
 	b .L080D0194
 	.align 2, 0
-.L080D0188: .4byte 0x04000154
+.L080D0188: .word REG_JOY_TRANS
 .L080D018C:
 	movs r0, #8
 	b .L080D0196
@@ -848,7 +850,7 @@ func_080D091C: @ 0x080D01A0
 	ldrh r0, [r5, #0x1c]
 	adds r1, r1, r0
 	strh r1, [r5, #0x1c]
-	ldr r1, .L080D024C @ =0x04000154
+	ldr r1, .L080D024C @ =REG_JOY_TRANS
 	ldr r0, [sp]
 	str r0, [r1]
 	ldr r0, [r5, #8]
@@ -867,7 +869,7 @@ func_080D091C: @ 0x080D01A0
 	str r0, [r1]
 	b .L080D028E
 	.align 2, 0
-.L080D024C: .4byte 0x04000154
+.L080D024C: .word REG_JOY_TRANS
 .L080D0250: .4byte gJoyBusContext
 .L080D0254:
 	ldrh r2, [r5, #0x1c]
@@ -879,7 +881,7 @@ func_080D091C: @ 0x080D01A0
 	strb r2, [r1, #2]
 	lsrs r2, r2, #8
 	strb r2, [r1, #3]
-	ldr r1, .L080D0274 @ =0x04000154
+	ldr r1, .L080D0274 @ =REG_JOY_TRANS
 	ldr r0, [sp]
 	str r0, [r1]
 	ldr r0, [r5, #4]
@@ -887,7 +889,7 @@ func_080D091C: @ 0x080D01A0
 	str r0, [r5, #4]
 	b .L080D028E
 	.align 2, 0
-.L080D0274: .4byte 0x04000154
+.L080D0274: .word REG_JOY_TRANS
 .L080D0278:
 	ldr r0, [r3]
 	ldr r0, [r0, #4]
@@ -919,9 +921,9 @@ func_080D0A14: @ 0x080D0298
 	ldr r0, [r2, #4]
 	cmp r0, #2
 	bhi .L080D02C4
-	ldr r0, .L080D02CC @ =0x04000150
+	ldr r0, .L080D02CC @ =REG_JOY_RECV
 	ldr r0, [r0]
-	ldr r1, .L080D02D0 @ =0x04000154
+	ldr r1, .L080D02D0 @ =REG_JOY_TRANS
 	ldr r0, .L080D02D4 @ =gJoyBusContext
 	ldr r0, [r0]
 	ldr r0, [r0, #4]
@@ -937,8 +939,8 @@ func_080D0A14: @ 0x080D0298
 	bx r0
 	.align 2, 0
 .L080D02C8: .4byte gCurrentJoyBusCommand
-.L080D02CC: .4byte 0x04000150
-.L080D02D0: .4byte 0x04000154
+.L080D02CC: .word REG_JOY_RECV
+.L080D02D0: .word REG_JOY_TRANS
 .L080D02D4: .4byte gJoyBusContext
     .section .text.joy_bus_flagged_result, "ax", %progbits
     .align 2, 0
@@ -972,50 +974,58 @@ func_080D0A94: @ 0x080D0318
 ConfigureJoyBusRegisters:
     push {r4, lr}
     adds r3, r1, #0
-    ldr r2, [pc, #0x28]
+    ldr r2, .LJoySetupIme
     ldrh r1, [r2]
     adds r4, r1, #0
     movs r1, #0
     strh r1, [r2]
     cmp r0, #0
     beq .Lauto_080D03B4
-    ldr r1, [pc, #0x20]
-    .byte 0x80, 0x22, 0x12, 0x02, 0x10, 0x1C, 0x08, 0x80
+    ldr r1, .LJoySetupRcnt
+    movs r2, #0x80
+    lsls r2, r2, #8
+    adds r0, r2, #0
+    strh r0, [r1]
     .Lauto_080D03B4:
-    ldr r1, [pc, #0x14]
+    ldr r1, .LJoySetupRcnt
     movs r2, #0xc0
     lsls r2, r2, #8
     adds r0, r2, #0
     strh r0, [r1]
     cmp r3, #0
     bne .Lauto_080D03D4
-    ldr r0, [pc, #0xc]
+    ldr r0, .LJoySetupStat
     strh r3, [r0]
     b .Lauto_080D03DA
-    .byte 0x08, 0x02, 0x00, 0x04, 0x34, 0x01, 0x00, 0x04, 0x58, 0x01, 0x00, 0x04
+.LJoySetupIme: .word REG_IME
+.LJoySetupRcnt: .word REG_RCNT
+.LJoySetupStat: .word REG_JOYSTAT
     .Lauto_080D03D4:
-    ldr r1, [pc, #0x24]
+    ldr r1, .LJoySetupStatAfter
     movs r0, #0x30
     strh r0, [r1]
     .Lauto_080D03DA:
-    ldr r0, [pc, #0x24]
+    ldr r0, .LJoySetupReceive
     ldr r0, [r0]
-    ldr r1, [pc, #0x24]
+    ldr r1, .LJoySetupTransmit
     movs r0, #0
     str r0, [r1]
-    subs r1, #0x14
+    subs r1, #(REG_JOY_TRANS - REG_JOYCNT)
     movs r0, #0x47
     strh r0, [r1]
-    adds r1, #0xc2
-    movs r0, #0x80
+    adds r1, #(REG_IF - REG_JOYCNT)
+    movs r0, #IRQ_SERIAL
     strh r0, [r1]
-    ldr r0, [pc, #0x14]
+    ldr r0, .LJoySetupRestoreIme
     strh r4, [r0]
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x58, 0x01, 0x00, 0x04, 0x50, 0x01, 0x00, 0x04, 0x54, 0x01, 0x00, 0x04, 0x08, 0x02
-    .byte 0x00, 0x04
+    .align 2, 0
+.LJoySetupStatAfter: .word REG_JOYSTAT
+.LJoySetupReceive: .word REG_JOY_RECV
+.LJoySetupTransmit: .word REG_JOY_TRANS
+.LJoySetupRestoreIme: .word REG_IME
     .else
     .section .text.joy_bus_link_reset, "ax", %progbits
     .align 2, 0
@@ -1029,12 +1039,12 @@ ResetJoyBusLinkRegisters: @ 0x080D02EC
 	lsls r2, r2, #7
 	adds r0, r2, #0
 	strh r0, [r1]
-	adds r1, #0xc
+	adds r1, #(REG_RCNT - REG_SIOCNT)
 	movs r0, #0
 	strh r0, [r1]
 	bx lr
 	.align 2, 0
-.L080D02EC_DE: .4byte 0x04000128
+.L080D02EC_DE: .word REG_SIOCNT
 	.else
 	.ifdef REGION_EU
 	@ EU places a small link-register reset here before the common runtime
@@ -1044,12 +1054,12 @@ ResetJoyBusLinkRegisters: @ 0x080D02EC
 	lsls r2, r2, #7
 	adds r0, r2, #0
 	strh r0, [r1]
-	adds r1, #0xc
+	adds r1, #(REG_RCNT - REG_SIOCNT)
 	movs r0, #0
 	strh r0, [r1]
 	bx lr
 	.align 2, 0
-.L080D02EC_EU: .4byte 0x04000128
+.L080D02EC_EU: .word REG_SIOCNT
 	.else
 	bx lr
 	.align 2, 0
@@ -1452,7 +1462,7 @@ func_080D0704: @ 0x080D0704
 	push {r4, r5, lr}
 	sub sp, #4
 	movs r5, #0
-	ldr r0, .L080D077C @ =0x04000140
+	ldr r0, .L080D077C @ =REG_JOYCNT
 	ldrh r0, [r0]
 	adds r4, r0, #0
 	ldr r0, .L080D0780 @ =gJoyBusContext
@@ -1467,7 +1477,7 @@ func_080D0704: @ 0x080D0704
 	ands r0, r4
 	cmp r0, #0
 	beq .L080D0736
-	ldr r0, .L080D0784 @ =0x04000150
+	ldr r0, .L080D0784 @ =REG_JOY_RECV
 	ldr r0, [r0]
 	str r0, [sp]
 	mov r0, sp
@@ -1491,13 +1501,13 @@ func_080D0704: @ 0x080D0704
 .L080D0754:
 	cmp r5, #0
 	beq .L080D0764
-	ldr r1, .L080D0788 @ =0x04000158
+	ldr r1, .L080D0788 @ =REG_JOYSTAT
 	movs r0, #0
 	strh r0, [r1]
 	adds r0, r5, #0
 	bl FinishJoyBusCommand
 .L080D0764:
-	ldr r0, .L080D077C @ =0x04000140
+	ldr r0, .L080D077C @ =REG_JOYCNT
 	strh r4, [r0]
 	ldr r0, .L080D0780 @ =gJoyBusContext
 	ldr r1, [r0]
@@ -1509,10 +1519,10 @@ func_080D0704: @ 0x080D0704
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080D077C: .4byte 0x04000140
+.L080D077C: .word REG_JOYCNT
 .L080D0780: .4byte gJoyBusContext
-.L080D0784: .4byte 0x04000150
-.L080D0788: .4byte 0x04000158
+.L080D0784: .word REG_JOY_RECV
+.L080D0788: .word REG_JOYSTAT
 
 	thumb_func_start func_080D078C
 func_080D078C: @ 0x080D078C
@@ -1564,14 +1574,14 @@ func_080D078C: @ 0x080D078C
 	.align 2, 0
 .L080D07E8: .4byte gJoyBusContext
 .L080D07EC:
-	ldr r1, .L080D07F8 @ =0x04000158
+	ldr r1, .L080D07F8 @ =REG_JOYSTAT
 	movs r0, #0x30
 	strh r0, [r1]
 .L080D07F2:
 	bl ResetJoyBusCommandResult
 	b .L080D0910
 	.align 2, 0
-.L080D07F8: .4byte 0x04000158
+.L080D07F8: .word REG_JOYSTAT
 .L080D07FC:
 	ldr r4, [r5]
 	ldr r0, [r4, #4]
@@ -1711,7 +1721,7 @@ func_080D078C: @ 0x080D078C
 	strb r0, [r1, #1]
 	strb r0, [r1, #2]
 	strb r0, [r1, #3]
-	ldr r1, .L080D0904 @ =0x04000154
+	ldr r1, .L080D0904 @ =REG_JOY_TRANS
 	ldr r0, [sp]
 	str r0, [r1]
 	ldr r0, [r4, #4]
@@ -1719,7 +1729,7 @@ func_080D078C: @ 0x080D078C
 	str r0, [r4, #4]
 	b .L080D0910
 	.align 2, 0
-.L080D0904: .4byte 0x04000154
+.L080D0904: .word REG_JOY_TRANS
 .L080D0908:
 	movs r0, #8
 	b .L080D0912
@@ -1802,7 +1812,7 @@ func_080D091C: @ 0x080D091C
 	ldrh r0, [r5, #0x1c]
 	adds r1, r1, r0
 	strh r1, [r5, #0x1c]
-	ldr r1, .L080D09C8 @ =0x04000154
+	ldr r1, .L080D09C8 @ =REG_JOY_TRANS
 	ldr r0, [sp]
 	str r0, [r1]
 	ldr r0, [r5, #8]
@@ -1821,7 +1831,7 @@ func_080D091C: @ 0x080D091C
 	str r0, [r1]
 	b .L080D0A0A
 	.align 2, 0
-.L080D09C8: .4byte 0x04000154
+.L080D09C8: .word REG_JOY_TRANS
 .L080D09CC: .4byte gJoyBusContext
 .L080D09D0:
 	ldrh r2, [r5, #0x1c]
@@ -1833,7 +1843,7 @@ func_080D091C: @ 0x080D091C
 	strb r2, [r1, #2]
 	lsrs r2, r2, #8
 	strb r2, [r1, #3]
-	ldr r1, .L080D09F0 @ =0x04000154
+	ldr r1, .L080D09F0 @ =REG_JOY_TRANS
 	ldr r0, [sp]
 	str r0, [r1]
 	ldr r0, [r5, #4]
@@ -1841,7 +1851,7 @@ func_080D091C: @ 0x080D091C
 	str r0, [r5, #4]
 	b .L080D0A0A
 	.align 2, 0
-.L080D09F0: .4byte 0x04000154
+.L080D09F0: .word REG_JOY_TRANS
 .L080D09F4:
 	ldr r0, [r3]
 	ldr r0, [r0, #4]
@@ -1873,9 +1883,9 @@ func_080D0A14: @ 0x080D0A14
 	ldr r0, [r2, #4]
 	cmp r0, #2
 	bhi .L080D0A40
-	ldr r0, .L080D0A48 @ =0x04000150
+	ldr r0, .L080D0A48 @ =REG_JOY_RECV
 	ldr r0, [r0]
-	ldr r1, .L080D0A4C @ =0x04000154
+	ldr r1, .L080D0A4C @ =REG_JOY_TRANS
 	ldr r0, .L080D0A50 @ =gJoyBusContext
 	ldr r0, [r0]
 	ldr r0, [r0, #4]
@@ -1891,8 +1901,8 @@ func_080D0A14: @ 0x080D0A14
 	bx r0
 	.align 2, 0
 .L080D0A44: .4byte gCurrentJoyBusCommand
-.L080D0A48: .4byte 0x04000150
-.L080D0A4C: .4byte 0x04000154
+.L080D0A48: .word REG_JOY_RECV
+.L080D0A4C: .word REG_JOY_TRANS
 .L080D0A50: .4byte gJoyBusContext
 
     .section .text.joy_bus_flagged_result, "ax", %progbits
@@ -1940,7 +1950,7 @@ ConfigureJoyBusRegisters: @ 0x080D0B14
 	lsls r2, r2, #7
 	adds r1, r2, #0
 	strh r1, [r0]
-	adds r0, #0xc
+	adds r0, #(REG_RCNT - REG_SIOCNT)
 	strh r3, [r0]
 .L080D0B14_DE_0134:
 	ldr r1, .L080D0B14_DE_0134_VALUE
@@ -1954,10 +1964,10 @@ ConfigureJoyBusRegisters: @ 0x080D0B14
 	strh r4, [r0]
 	b .L080D0B14_DE_0150_RESET
 	.align 2, 0
-.L080D0B14_DE_0208: .4byte 0x04000208
-.L080D0B14_DE_0128: .4byte 0x04000128
-.L080D0B14_DE_0134_VALUE: .4byte 0x04000134
-.L080D0B14_DE_0158: .4byte 0x04000158
+.L080D0B14_DE_0208: .word REG_IME
+.L080D0B14_DE_0128: .word REG_SIOCNT
+.L080D0B14_DE_0134_VALUE: .word REG_RCNT
+.L080D0B14_DE_0158: .word REG_JOYSTAT
 .L080D0B14_DE_0158_SET:
 	ldr r1, .L080D0B14_DE_0158_SET_VALUE
 	movs r0, #0x30
@@ -1968,11 +1978,11 @@ ConfigureJoyBusRegisters: @ 0x080D0B14
 	ldr r1, .L080D0B14_DE_0154
 	movs r0, #0
 	str r0, [r1]
-	subs r1, #0x14
+	subs r1, #(REG_JOY_TRANS - REG_JOYCNT)
 	movs r0, #0x47
 	strh r0, [r1]
-	adds r1, #0xc2
-	movs r0, #0x80
+	adds r1, #(REG_IF - REG_JOYCNT)
+	movs r0, #IRQ_SERIAL
 	strh r0, [r1]
 	ldr r0, .L080D0B14_DE_0208_END
 	strh r5, [r0]
@@ -1980,10 +1990,10 @@ ConfigureJoyBusRegisters: @ 0x080D0B14
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080D0B14_DE_0158_SET_VALUE: .4byte 0x04000158
-.L080D0B14_DE_0150: .4byte 0x04000150
-.L080D0B14_DE_0154: .4byte 0x04000154
-.L080D0B14_DE_0208_END: .4byte 0x04000208
+.L080D0B14_DE_0158_SET_VALUE: .word REG_JOYSTAT
+.L080D0B14_DE_0150: .word REG_JOY_RECV
+.L080D0B14_DE_0154: .word REG_JOY_TRANS
+.L080D0B14_DE_0208_END: .word REG_IME
 	.else
 	.ifdef REGION_EU
 	push {r4, r5, lr}
@@ -2000,7 +2010,7 @@ ConfigureJoyBusRegisters: @ 0x080D0B14
 	lsls r2, r2, #7
 	adds r1, r2, #0
 	strh r1, [r0]
-	adds r0, #0xc
+	adds r0, #(REG_RCNT - REG_SIOCNT)
 	strh r3, [r0]
 .L080D0B14_EU_0134:
 	ldr r1, .L080D0B14_EU_0134_VALUE
@@ -2014,10 +2024,10 @@ ConfigureJoyBusRegisters: @ 0x080D0B14
 	strh r4, [r0]
 	b .L080D0B14_EU_0150_RESET
 	.align 2, 0
-.L080D0B14_EU_0208: .4byte 0x04000208
-.L080D0B14_EU_0128: .4byte 0x04000128
-.L080D0B14_EU_0134_VALUE: .4byte 0x04000134
-.L080D0B14_EU_0158: .4byte 0x04000158
+.L080D0B14_EU_0208: .word REG_IME
+.L080D0B14_EU_0128: .word REG_SIOCNT
+.L080D0B14_EU_0134_VALUE: .word REG_RCNT
+.L080D0B14_EU_0158: .word REG_JOYSTAT
 .L080D0B14_EU_0158_SET:
 	ldr r1, .L080D0B14_EU_0158_SET_VALUE
 	movs r0, #0x30
@@ -2028,11 +2038,11 @@ ConfigureJoyBusRegisters: @ 0x080D0B14
 	ldr r1, .L080D0B14_EU_0154
 	movs r0, #0
 	str r0, [r1]
-	subs r1, #0x14
+	subs r1, #(REG_JOY_TRANS - REG_JOYCNT)
 	movs r0, #0x47
 	strh r0, [r1]
-	adds r1, #0xc2
-	movs r0, #0x80
+	adds r1, #(REG_IF - REG_JOYCNT)
+	movs r0, #IRQ_SERIAL
 	strh r0, [r1]
 	ldr r0, .L080D0B14_EU_0208_END
 	strh r5, [r0]
@@ -2040,66 +2050,66 @@ ConfigureJoyBusRegisters: @ 0x080D0B14
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080D0B14_EU_0158_SET_VALUE: .4byte 0x04000158
-.L080D0B14_EU_0150: .4byte 0x04000150
-.L080D0B14_EU_0154: .4byte 0x04000154
-.L080D0B14_EU_0208_END: .4byte 0x04000208
+.L080D0B14_EU_0158_SET_VALUE: .word REG_JOYSTAT
+.L080D0B14_EU_0150: .word REG_JOY_RECV
+.L080D0B14_EU_0154: .word REG_JOY_TRANS
+.L080D0B14_EU_0208_END: .word REG_IME
 	.else
 	push {r4, lr}
 	adds r3, r1, #0
-	ldr r2, .L080D0B44 @ =0x04000208
+	ldr r2, .L080D0B44 @ =REG_IME
 	ldrh r1, [r2]
 	adds r4, r1, #0
 	movs r1, #0
 	strh r1, [r2]
 	cmp r0, #0
 	beq .L080D0B30
-	ldr r1, .L080D0B48 @ =0x04000134
+	ldr r1, .L080D0B48 @ =REG_RCNT
 	movs r2, #0x80
 	lsls r2, r2, #8
 	adds r0, r2, #0
 	strh r0, [r1]
 .L080D0B30:
-	ldr r1, .L080D0B48 @ =0x04000134
+	ldr r1, .L080D0B48 @ =REG_RCNT
 	movs r2, #0xc0
 	lsls r2, r2, #8
 	adds r0, r2, #0
 	strh r0, [r1]
 	cmp r3, #0
 	bne .L080D0B50
-	ldr r0, .L080D0B4C @ =0x04000158
+	ldr r0, .L080D0B4C @ =REG_JOYSTAT
 	strh r3, [r0]
 	b .L080D0B56
 	.align 2, 0
-.L080D0B44: .4byte 0x04000208
-.L080D0B48: .4byte 0x04000134
-.L080D0B4C: .4byte 0x04000158
+.L080D0B44: .word REG_IME
+.L080D0B48: .word REG_RCNT
+.L080D0B4C: .word REG_JOYSTAT
 .L080D0B50:
-	ldr r1, .L080D0B78 @ =0x04000158
+	ldr r1, .L080D0B78 @ =REG_JOYSTAT
 	movs r0, #0x30
 	strh r0, [r1]
 .L080D0B56:
-	ldr r0, .L080D0B7C @ =0x04000150
+	ldr r0, .L080D0B7C @ =REG_JOY_RECV
 	ldr r0, [r0]
-	ldr r1, .L080D0B80 @ =0x04000154
+	ldr r1, .L080D0B80 @ =REG_JOY_TRANS
 	movs r0, #0
 	str r0, [r1]
-	subs r1, #0x14
+	subs r1, #(REG_JOY_TRANS - REG_JOYCNT)
 	movs r0, #0x47
 	strh r0, [r1]
-	adds r1, #0xc2
-	movs r0, #0x80
+	adds r1, #(REG_IF - REG_JOYCNT)
+	movs r0, #IRQ_SERIAL
 	strh r0, [r1]
-	ldr r0, .L080D0B84 @ =0x04000208
+	ldr r0, .L080D0B84 @ =REG_IME
 	strh r4, [r0]
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080D0B78: .4byte 0x04000158
-.L080D0B7C: .4byte 0x04000150
-.L080D0B80: .4byte 0x04000154
-.L080D0B84: .4byte 0x04000208
+.L080D0B78: .word REG_JOYSTAT
+.L080D0B7C: .word REG_JOY_RECV
+.L080D0B80: .word REG_JOY_TRANS
+.L080D0B84: .word REG_IME
 	.endif
 	.endif
     .endif

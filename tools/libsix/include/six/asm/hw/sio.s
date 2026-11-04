@@ -1,0 +1,13 @@
+.ifndef _LIBSIX_ASM_HW_SIO_S
+.equiv  _LIBSIX_ASM_HW_SIO_S, 1
+
+.include "six/asm/base.s"
+
+REG SIOCNT,    REG_BASE + 0x128
+REG RCNT,      REG_BASE + 0x134
+REG JOYCNT,    REG_BASE + 0x140
+REG JOY_RECV,  REG_BASE + 0x150
+REG JOY_TRANS, REG_BASE + 0x154
+REG JOYSTAT,   REG_BASE + 0x158
+
+.endif

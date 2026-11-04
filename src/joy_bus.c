@@ -62,7 +62,7 @@ void EnableJoyBusInterrupt(void)
 {
     u16 enabled = REG_IME;
     REG_IME = 0;
-    REG_IE |= 0x80;
+    REG_IE |= INTR_FLAG_SERIAL;
     REG_IME = enabled;
 }
 
@@ -70,8 +70,8 @@ void DisableJoyBusInterrupt(void)
 {
     u16 enabled = REG_IME;
     REG_IME = 0;
-    REG_IE &= 0xFF7F;
-    REG_IF = 0x80;
+    REG_IE &= (u16)~INTR_FLAG_SERIAL;
+    REG_IF = INTR_FLAG_SERIAL;
     REG_IME = enabled;
 }
 

@@ -69,7 +69,7 @@ InterruptHandler ExchangeTimerInterruptHandler(u8 const *context, InterruptHandl
 {
     u32 flags = context[4];
     u32 mask = 3;
-    return ExchangeInterruptHandler((flags & mask) + 3, handler);
+    return ExchangeInterruptHandler((flags & mask) + IRQ_INDEX_TIMER_0, handler);
 }
 
 void SramAccess::AddStatusFlag(u16 flag)

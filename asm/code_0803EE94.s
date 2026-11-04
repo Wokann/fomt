@@ -6058,7 +6058,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     adds r4, r7, #0
     adds r4, #0x3c
     lsls r2, r2, #5
-    ldr r6, .Ljp_0804F854 @ =0x06010000
+    ldr r6, .Ljp_0804F854 @ =OBJ_VRAM0
     adds r2, r2, r6
     add r0, sp, #0x2c
     adds r1, r5, #0
@@ -6129,7 +6129,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     str r0, [sp, #0x58]
     b .Ljp_0804F8BE
     .align 2, 0
-.Ljp_0804F854: .4byte 0x06010000
+.Ljp_0804F854: .word OBJ_VRAM0
 .Ljp_0804F858: .4byte 0xFFFFFF00
 .Ljp_0804F85C: .4byte 0x000001FF
 .Ljp_0804F860: .4byte 0xFE00FFFF
@@ -6613,7 +6613,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     bl GetObjPaletteBank
     adds r2, r0, #0
     lsls r2, r2, #5
-    ldr r3, .Ljp_0804FE08 @ =0x05000200
+    ldr r3, .Ljp_0804FE08 @ =OBJ_PALETTE
     adds r2, r2, r3
     add r0, sp, #0x2c
     mov r1, r8
@@ -6715,7 +6715,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     adds r4, r7, #0
     adds r4, #0x3c
     lsls r2, r2, #5
-    ldr r3, .Ljp_0804FE0C @ =0x06010000
+    ldr r3, .Ljp_0804FE0C @ =OBJ_VRAM0
     adds r2, r2, r3
     add r0, sp, #0x2c
     mov r1, r8
@@ -6759,7 +6759,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
     bl GetObjPaletteBank
     adds r2, r0, #0
     lsls r2, r2, #5
-    ldr r3, .Ljp_0804FE08 @ =0x05000200
+    ldr r3, .Ljp_0804FE08 @ =OBJ_PALETTE
     adds r2, r2, r3
     add r0, sp, #0x2c
     mov r1, r8
@@ -6858,8 +6858,8 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 .Ljp_0804FDFC: .4byte 0x000068A0
 .Ljp_0804FE00: .4byte 0x00000534
 .Ljp_0804FE04: .4byte 0x06010F00
-.Ljp_0804FE08: .4byte 0x05000200
-.Ljp_0804FE0C: .4byte 0x06010000
+.Ljp_0804FE08: .word OBJ_PALETTE
+.Ljp_0804FE0C: .word OBJ_VRAM0
 .Ljp_0804FE10:
     blt .Ljp_0804FE14
     b .Ljp_0804FFDC
@@ -48141,7 +48141,7 @@ RunFestivalAnimalSelectionCore:
 .Ljp_0806BFFC:
 	.4byte 0x00003B38
 .Ljp_0806C000:
-	.4byte 0x05000200
+	.word OBJ_PALETTE
 .Ljp_0806C004:
 	mov r8, r1
 	movs r0, #1
@@ -48325,7 +48325,7 @@ RunFestivalAnimalSelectionCore:
 .Ljp_0806C154:
 	.4byte 0x00003B48
 .Ljp_0806C158:
-	.4byte 0x05000200
+	.word OBJ_PALETTE
 .Ljp_0806C15C:
 	mov r8, r1
 	movs r0, #1
@@ -49903,7 +49903,7 @@ RunFestivalAnimalSelectionCore:
 .Ljp_0806CD6C:
 	.4byte 0x00003B30
 .Ljp_0806CD70:
-	.4byte 0x06010000
+	.word OBJ_VRAM0
 .Ljp_0806CD74:
 	mov r8, r1
 	add r1, sp, #0x218
@@ -50147,7 +50147,7 @@ RunFestivalAnimalSelectionCore:
 .Ljp_0806CF40:
 	.4byte 0x00003B48
 .Ljp_0806CF44:
-	.4byte 0x06010000
+	.word OBJ_VRAM0
 .Ljp_0806CF48:
 	mov r8, r1
 	add r1, sp, #0x220
@@ -50381,7 +50381,7 @@ RunFestivalAnimalSelectionCore:
 .Ljp_0806D100:
 	.4byte 0x00003B48
 .Ljp_0806D104:
-	.4byte 0x06010000
+	.word OBJ_VRAM0
 .Ljp_0806D108:
 	mov r8, r1
 	add r1, sp, #0x228
@@ -50621,7 +50621,7 @@ RunFestivalAnimalSelectionCore:
 .Ljp_0806D2C0:
 	.4byte 0x00003BA0
 .Ljp_0806D2C4:
-	.4byte 0x06010000
+	.word OBJ_VRAM0
 .Ljp_0806D2C8:
 	mov r8, r1
 	movs r0, #1
@@ -50784,7 +50784,7 @@ RunFestivalAnimalSelectionCore:
 	str r0, [r6, #4]
 	b .Ljp_0806D4C2
 .Ljp_0806D3F0:
-	.4byte 0x05000200
+	.word OBJ_PALETTE
 .Ljp_0806D3F4:
 	mov r8, r1
 	movs r0, #1
@@ -51873,7 +51873,7 @@ func_0806E234:
 .Ljp_0806E198:
 	.4byte 0x00004218
 .Ljp_0806E19C:
-	.4byte 0x05000200
+	.word OBJ_PALETTE
 .Ljp_0806E1A0:
 	.4byte 0x05000202
 .Ljp_0806E1A4:
@@ -51881,7 +51881,7 @@ func_0806E234:
 .Ljp_0806E1A8:
 	.4byte gFarmStatusScreenPreloadedGlyphs
 .Ljp_0806E1AC:
-	.4byte 0x06010000
+	.word OBJ_VRAM0
 
     .section .text.new_game_birthday_input_after, "ax", %progbits
 
@@ -66692,7 +66692,7 @@ SetScrollPosition: @ 0x080758E4
     strh r0, [r4, #0xc]
     b .Ljp_08075976
     .align 2, 0
-.Ljp_08075958: .4byte 0x04000016
+.Ljp_08075958: .word REG_BG1VOFS
 .Ljp_0807595C:
     adds r1, r2, #0
     adds r1, #0xd0
@@ -67176,7 +67176,7 @@ func_08075E7C:
 .Ljp_08075DF8:
 	.4byte gUiSharedPalette
 .Ljp_08075DFC:
-	.4byte 0x05000200
+	.word OBJ_PALETTE
 .Ljp_08075E00:
 	.4byte 0x06002400
 .Ljp_08075E04:
@@ -67478,7 +67478,7 @@ func_0807628C: @ 0x08075EEC
 	str r0, [sp, #0xc8]
 	b .Ljp_08076144
 .Ljp_08076038:
-	.4byte 0x06010000
+	.word OBJ_VRAM0
 .Ljp_0807603C:
 	str r1, [sp, #0xdc]
 	movs r0, #1
@@ -69016,7 +69016,7 @@ func_08076EA8: @ 0x08076AE0
     b .Ljp_08076CBC
     .align 2, 0
 .Ljp_08076BD8: .4byte 0x00000594
-.Ljp_08076BDC: .4byte 0x06010000
+.Ljp_08076BDC: .word OBJ_VRAM0
 .Ljp_08076BE0:
     str r1, [sp, #0x6c]
     movs r0, #1
@@ -69175,7 +69175,7 @@ func_08076EA8: @ 0x08076AE0
     str r0, [r5, #4]
     b .Ljp_08076DCA
     .align 2, 0
-.Ljp_08076D00: .4byte 0x05000200
+.Ljp_08076D00: .word OBJ_PALETTE
 .Ljp_08076D04:
     str r1, [sp, #0x6c]
     movs r0, #1
@@ -73770,7 +73770,7 @@ func_08079860:
 .Ljp_lib_080795D8:
 	.4byte 0x00000828
 .Ljp_lib_080795DC:
-	.4byte 0x05000200
+	.word OBJ_PALETTE
 .Ljp_lib_080795E0:
 	.4byte 0x05000202
 .Ljp_lib_080795E4:
@@ -74214,7 +74214,7 @@ func_08079A64:
 .Ljp_library_page_0807994C:
 	.4byte 0x06000C00
 .Ljp_library_page_08079950:
-	.4byte 0x06010000
+	.word OBJ_VRAM0
 .Ljp_library_page_08079954:
 	.4byte gText_Library_Menu
 .Ljp_library_page_08079958:
@@ -74878,7 +74878,7 @@ func_08079F8C:
 .Ljp_library_render_08079E4C:
 	.4byte 0x00000A5C
 .Ljp_library_render_08079E50:
-	.4byte 0x06010000
+	.word OBJ_VRAM0
     .global func_0807A2AC
     .thumb_func
 func_0807A2AC:
@@ -75689,7 +75689,7 @@ func_0807A878:
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r1, .Ljp_0807A97C @ =0x05000200
+	ldr r1, .Ljp_0807A97C @ =OBJ_PALETTE
 	mov r8, r1
 	adds r1, r0, r1
 	ldr r0, [sp, #0x10]
@@ -75736,7 +75736,7 @@ func_0807A878:
 	ldr r1, [r0, #4]
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r2, .Ljp_0807A988 @ =0x06010000
+	ldr r2, .Ljp_0807A988 @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -75757,10 +75757,10 @@ func_0807A878:
 	.align 2, 0
 .Ljp_0807A974: .4byte 0x00000774
 .Ljp_0807A978: .4byte 0x00000818
-.Ljp_0807A97C: .4byte 0x05000200
+.Ljp_0807A97C: .word OBJ_PALETTE
 .Ljp_0807A980: .4byte 0x00000744
 .Ljp_0807A984: .4byte 0x00000838
-.Ljp_0807A988: .4byte 0x06010000
+.Ljp_0807A988: .word OBJ_VRAM0
 
     .global func_0807A98C
     .thumb_func
@@ -76046,7 +76046,7 @@ func_0807A98C:
 .Ljp_library_selection_0807A76C:
 	.4byte 0x00000818
 .Ljp_library_selection_0807A770:
-	.4byte 0x06010000
+	.word OBJ_VRAM0
 .Ljp_library_selection_0807A774:
 	str r1, [sp, #0x74]
 	mov r6, sb
@@ -145246,7 +145246,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	adds r4, r7, #0
 	adds r4, #0x3c
 	lsls r2, r2, #5
-	ldr r6, .L0804FAC8 @ =0x06010000
+	ldr r6, .L0804FAC8 @ =OBJ_VRAM0
 	adds r2, r2, r6
 	add r0, sp, #0x2c
 	adds r1, r5, #0
@@ -145317,7 +145317,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	str r0, [sp, #0x58]
 	b .L0804FB32
 	.align 2, 0
-.L0804FAC8: .4byte 0x06010000
+.L0804FAC8: .word OBJ_VRAM0
 .L0804FACC: .4byte 0xFFFFFF00
 .L0804FAD0: .4byte 0x000001FF
 .L0804FAD4: .4byte 0xFE00FFFF
@@ -145801,7 +145801,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	bl GetObjPaletteBank
 	adds r2, r0, #0
 	lsls r2, r2, #5
-	ldr r3, .L0805007C @ =0x05000200
+	ldr r3, .L0805007C @ =OBJ_PALETTE
 	adds r2, r2, r3
 	add r0, sp, #0x2c
 	mov r1, r8
@@ -145903,7 +145903,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	adds r4, r7, #0
 	adds r4, #0x3c
 	lsls r2, r2, #5
-	ldr r3, .L08050080 @ =0x06010000
+	ldr r3, .L08050080 @ =OBJ_VRAM0
 	adds r2, r2, r3
 	add r0, sp, #0x2c
 	mov r1, r8
@@ -145947,7 +145947,7 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 	bl GetObjPaletteBank
 	adds r2, r0, #0
 	lsls r2, r2, #5
-	ldr r3, .L0805007C @ =0x05000200
+	ldr r3, .L0805007C @ =OBJ_PALETTE
 	adds r2, r2, r3
 	add r0, sp, #0x2c
 	mov r1, r8
@@ -146046,8 +146046,8 @@ Update__14UiStatePayloadP17HardwareCoreStateP25HardwareSpriteBufferStateP20Hardw
 .L08050070: .4byte 0x000068A0
 .L08050074: .4byte 0x00000534
 .L08050078: .4byte 0x06010F00
-.L0805007C: .4byte 0x05000200
-.L08050080: .4byte 0x06010000
+.L0805007C: .word OBJ_PALETTE
+.L08050080: .word OBJ_VRAM0
 .L08050084:
 	blt .L08050088
 	b .L08050250
@@ -147664,7 +147664,7 @@ UpdateArrows__21FrisbeeScoreboardCore: @ 0x08051D70
 .L08051E64:
 	str r5, [sp, #0x6c]
 	lsls r2, r2, #5
-	ldr r4, .L08051E9C @ =0x06010000
+	ldr r4, .L08051E9C @ =OBJ_VRAM0
 	adds r2, r2, r4
 	adds r0, r6, #0
 	mov r1, r8
@@ -147690,7 +147690,7 @@ UpdateArrows__21FrisbeeScoreboardCore: @ 0x08051D70
 	b .L08051F74
 	.align 2, 0
 .L08051E98: .4byte 0x000008B8
-.L08051E9C: .4byte 0x06010000
+.L08051E9C: .word OBJ_VRAM0
 .L08051EA0:
 	str r1, [sp, #0x70]
 	mov r4, sb
@@ -152598,7 +152598,7 @@ func_08053960: @ 0x08053960
 .L08054990:
 	str r4, [sp, #0x50]
 	lsls r2, r2, #5
-	ldr r1, .L080549D8 @ =0x05000200
+	ldr r1, .L080549D8 @ =OBJ_PALETTE
 	adds r2, r2, r1
 	add r0, sp, #0x20
 	adds r1, r5, #0
@@ -152628,7 +152628,7 @@ func_08053960: @ 0x08053960
 .L080549CC: .4byte gAnimalFestivalRewardArticleIds
 .L080549D0: .4byte 0x000023A4
 .L080549D4: .4byte 0x00001C38
-.L080549D8: .4byte 0x05000200
+.L080549D8: .word OBJ_PALETTE
 .L080549DC:
 	mov r8, r1
 	movs r0, #1
@@ -152763,7 +152763,7 @@ func_08053960: @ 0x08053960
 .L08054ACA:
 	str r4, [sp, #0x50]
 	lsls r2, r2, #5
-	ldr r0, .L08054B00 @ =0x06010000
+	ldr r0, .L08054B00 @ =OBJ_VRAM0
 	adds r2, r2, r0
 	add r0, sp, #0x20
 	adds r1, r5, #0
@@ -152789,7 +152789,7 @@ func_08053960: @ 0x08053960
 	str r0, [r5, #4]
 	b .L08054BCC
 	.align 2, 0
-.L08054B00: .4byte 0x06010000
+.L08054B00: .word OBJ_VRAM0
 .L08054B04:
 	mov r8, r1
 	movs r0, #1
@@ -153780,7 +153780,7 @@ func_08055264: @ 0x08055264
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r1, .L0805568C @ =0x05000200
+	ldr r1, .L0805568C @ =OBJ_PALETTE
 	mov sb, r1
 	adds r1, r0, r1
 	ldr r0, [sp, #0x10]
@@ -153907,7 +153907,7 @@ func_08055264: @ 0x08055264
 	bl GetObjTileIndex
 	adds r0, r0, r6
 	lsls r0, r0, #5
-	ldr r2, .L08055694 @ =0x06010000
+	ldr r2, .L08055694 @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -153963,7 +153963,7 @@ func_08055264: @ 0x08055264
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r6, .L0805568C @ =0x05000200
+	ldr r6, .L0805568C @ =OBJ_PALETTE
 	adds r1, r0, r6
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -154003,7 +154003,7 @@ func_08055264: @ 0x08055264
 	bl GetObjTileIndex
 	adds r0, r0, r6
 	lsls r0, r0, #5
-	ldr r2, .L08055694 @ =0x06010000
+	ldr r2, .L08055694 @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -154066,7 +154066,7 @@ func_08055264: @ 0x08055264
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L0805568C @ =0x05000200
+	ldr r2, .L0805568C @ =OBJ_PALETTE
 	adds r1, r0, r2
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -154088,7 +154088,7 @@ func_08055264: @ 0x08055264
 	adds r0, r5, #0
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r2, .L08055694 @ =0x06010000
+	ldr r2, .L08055694 @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -154174,7 +154174,7 @@ func_08055264: @ 0x08055264
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L0805568C @ =0x05000200
+	ldr r2, .L0805568C @ =OBJ_PALETTE
 	adds r1, r0, r2
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -154223,16 +154223,16 @@ func_08055264: @ 0x08055264
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L0805568C @ =0x05000200
+	ldr r2, .L0805568C @ =OBJ_PALETTE
 	adds r1, r0, r2
 	ldr r0, [sp, #0x10]
 	movs r2, #0
 	cmp r0, #0
 	b .L080556A4
 	.align 2, 0
-.L0805568C: .4byte 0x05000200
+.L0805568C: .word OBJ_PALETTE
 .L08055690: .4byte 0x00002334
-.L08055694: .4byte 0x06010000
+.L08055694: .word OBJ_VRAM0
 .L08055698: .4byte 0x0000091A
 .L0805569C: .4byte 0x0000091B
 .L080556A0: .4byte 0x06010040
@@ -154309,7 +154309,7 @@ func_08055264: @ 0x08055264
 	adds r0, r6, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L080557AC @ =0x05000200
+	ldr r2, .L080557AC @ =OBJ_PALETTE
 	adds r1, r0, r2
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -154325,7 +154325,7 @@ func_08055264: @ 0x08055264
 	adds r0, r5, #0
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r2, .L080557B0 @ =0x06010000
+	ldr r2, .L080557B0 @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -154363,8 +154363,8 @@ func_08055264: @ 0x08055264
 	.align 2, 0
 .L080557A4: .4byte 0x00002324
 .L080557A8: .4byte gUnk_080FA36C
-.L080557AC: .4byte 0x05000200
-.L080557B0: .4byte 0x06010000
+.L080557AC: .word OBJ_PALETTE
+.L080557B0: .word OBJ_VRAM0
 .L080557B4: .4byte 0x000022E0
 .L080557B8:
 	bl rand
@@ -154432,7 +154432,7 @@ func_08055264: @ 0x08055264
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r4, .L080558B4 @ =0x05000200
+	ldr r4, .L080558B4 @ =OBJ_PALETTE
 	adds r1, r0, r4
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -154450,7 +154450,7 @@ func_08055264: @ 0x08055264
 	ldr r1, [r0, #4]
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r2, .L080558B8 @ =0x06010000
+	ldr r2, .L080558B8 @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -154486,8 +154486,8 @@ func_08055264: @ 0x08055264
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080558B4: .4byte 0x05000200
-.L080558B8: .4byte 0x06010000
+.L080558B4: .word OBJ_PALETTE
+.L080558B8: .word OBJ_VRAM0
 .L080558BC: .4byte 0x0000042C
 .L080558C0: .4byte 0x00000464
 
@@ -154568,7 +154568,7 @@ func_080558C4: @ 0x080558C4
 .L08055958:
 	str r4, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r1, .L08055990 @ =0x06010000
+	ldr r1, .L08055990 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sb
 	adds r1, r5, #0
@@ -154593,7 +154593,7 @@ func_080558C4: @ 0x080558C4
 	b .L08055A5C
 	.align 2, 0
 .L0805598C: .4byte 0x00002321
-.L08055990: .4byte 0x06010000
+.L08055990: .word OBJ_VRAM0
 .L08055994:
 	mov r8, r1
 	movs r0, #1
@@ -154727,7 +154727,7 @@ func_080558C4: @ 0x080558C4
 .L08055A80:
 	str r4, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r0, .L08055AB8 @ =0x05000200
+	ldr r0, .L08055AB8 @ =OBJ_PALETTE
 	adds r2, r2, r0
 	add r0, sp, #0x40
 	adds r1, r5, #0
@@ -154753,7 +154753,7 @@ func_080558C4: @ 0x080558C4
 	str r0, [r5, #4]
 	b .L08055B84
 	.align 2, 0
-.L08055AB8: .4byte 0x05000200
+.L08055AB8: .word OBJ_PALETTE
 .L08055ABC:
 	mov r8, r1
 	movs r0, #1
@@ -154982,7 +154982,7 @@ func_080558C4: @ 0x080558C4
 .L08055C66:
 	str r5, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r0, .L08055C9C @ =0x06010000
+	ldr r0, .L08055C9C @ =OBJ_VRAM0
 	adds r2, r2, r0
 	mov r0, sb
 	mov r1, r8
@@ -155007,7 +155007,7 @@ func_080558C4: @ 0x080558C4
 	b .L08055D7E
 	.align 2, 0
 .L08055C98: .4byte 0x00002260
-.L08055C9C: .4byte 0x06010000
+.L08055C9C: .word OBJ_VRAM0
 .L08055CA0:
 	mov r8, r1
 	str r4, [sp, #0x74]
@@ -155152,7 +155152,7 @@ func_080558C4: @ 0x080558C4
 .L08055DA2:
 	str r4, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r0, .L08055DD8 @ =0x05000200
+	ldr r0, .L08055DD8 @ =OBJ_PALETTE
 	adds r2, r2, r0
 	add r0, sp, #0x40
 	adds r1, r5, #0
@@ -155178,7 +155178,7 @@ func_080558C4: @ 0x080558C4
 	str r0, [r5, #4]
 	b .L08055EA4
 	.align 2, 0
-.L08055DD8: .4byte 0x05000200
+.L08055DD8: .word OBJ_PALETTE
 .L08055DDC:
 	mov r8, r1
 	movs r0, #1
@@ -155340,7 +155340,7 @@ func_080558C4: @ 0x080558C4
 .L08055EFE:
 	str r4, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r1, .L08055F34 @ =0x06010000
+	ldr r1, .L08055F34 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sb
 	adds r1, r5, #0
@@ -155365,7 +155365,7 @@ func_080558C4: @ 0x080558C4
 	b .L0805601C
 	.align 2, 0
 .L08055F30: .4byte 0x00002260
-.L08055F34: .4byte 0x06010000
+.L08055F34: .word OBJ_VRAM0
 .L08055F38:
 	mov r8, r1
 	movs r0, #1
@@ -155513,7 +155513,7 @@ func_080558C4: @ 0x080558C4
 .L08056040:
 	str r4, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r0, .L08056078 @ =0x05000200
+	ldr r0, .L08056078 @ =OBJ_PALETTE
 	adds r2, r2, r0
 	add r0, sp, #0x40
 	adds r1, r5, #0
@@ -155539,7 +155539,7 @@ func_080558C4: @ 0x080558C4
 	str r0, [r5, #4]
 	b .L08056148
 	.align 2, 0
-.L08056078: .4byte 0x05000200
+.L08056078: .word OBJ_PALETTE
 .L0805607C:
 	mov r8, r1
 	movs r0, #1
@@ -155703,7 +155703,7 @@ func_080558C4: @ 0x080558C4
 .L080561A2:
 	str r4, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r1, .L080561D8 @ =0x06010000
+	ldr r1, .L080561D8 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sb
 	adds r1, r5, #0
@@ -155728,7 +155728,7 @@ func_080558C4: @ 0x080558C4
 	b .L080562C0
 	.align 2, 0
 .L080561D4: .4byte 0x00002260
-.L080561D8: .4byte 0x06010000
+.L080561D8: .word OBJ_VRAM0
 .L080561DC:
 	mov r8, r1
 	movs r0, #1
@@ -155876,7 +155876,7 @@ func_080558C4: @ 0x080558C4
 .L080562E4:
 	str r4, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r0, .L0805631C @ =0x05000200
+	ldr r0, .L0805631C @ =OBJ_PALETTE
 	adds r2, r2, r0
 	add r0, sp, #0x40
 	adds r1, r5, #0
@@ -155902,7 +155902,7 @@ func_080558C4: @ 0x080558C4
 	str r0, [r5, #4]
 	b .L080563EC
 	.align 2, 0
-.L0805631C: .4byte 0x05000200
+.L0805631C: .word OBJ_PALETTE
 .L08056320:
 	mov r8, r1
 	movs r0, #1
@@ -156458,7 +156458,7 @@ sub_08056442: @ 0x08056442
 .L08056776:
 	str r5, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r1, .L080567C4 @ =0x06010000
+	ldr r1, .L080567C4 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sb
 	mov r1, r8
@@ -156489,7 +156489,7 @@ sub_08056442: @ 0x08056442
 .L080567B8: .4byte 0x00002330
 .L080567BC: .4byte gUnk_080FA36C
 .L080567C0: .4byte 0x0000091B
-.L080567C4: .4byte 0x06010000
+.L080567C4: .word OBJ_VRAM0
 .L080567C8:
 	mov r8, r1
 	add r1, sp, #0xa4
@@ -156626,7 +156626,7 @@ sub_08056442: @ 0x08056442
 	lsrs r3, r3, #1
 	str r4, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r0, .L080568F0 @ =0x05000200
+	ldr r0, .L080568F0 @ =OBJ_PALETTE
 	adds r2, r2, r0
 	add r0, sp, #0x40
 	adds r1, r5, #0
@@ -156652,7 +156652,7 @@ sub_08056442: @ 0x08056442
 	str r0, [r5, #4]
 	b .L080569C0
 	.align 2, 0
-.L080568F0: .4byte 0x05000200
+.L080568F0: .word OBJ_PALETTE
 .L080568F4:
 	mov r8, r1
 	movs r0, #1
@@ -156798,7 +156798,7 @@ sub_08056442: @ 0x08056442
 	str r7, [sp, #0x120]
 	adds r1, r4, r5
 	lsls r2, r2, #5
-	ldr r4, .L08056A2C @ =0x05000200
+	ldr r4, .L08056A2C @ =OBJ_PALETTE
 	adds r2, r2, r4
 	add r0, sp, #0x40
 	bl __21DmaTransferDescriptorPCvPvUi
@@ -156823,7 +156823,7 @@ sub_08056442: @ 0x08056442
 	str r0, [r5, #4]
 	b .L08056AFC
 	.align 2, 0
-.L08056A2C: .4byte 0x05000200
+.L08056A2C: .word OBJ_PALETTE
 .L08056A30:
 	mov r8, r1
 	movs r0, #1
@@ -157066,7 +157066,7 @@ sub_08056442: @ 0x08056442
 .L08056BF8:
 	str r5, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r1, .L08056C38 @ =0x06010000
+	ldr r1, .L08056C38 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sb
 	mov r1, r8
@@ -157093,7 +157093,7 @@ sub_08056442: @ 0x08056442
 .L08056C2C: .4byte 0x00002268
 .L08056C30: .4byte 0x00002330
 .L08056C34: .4byte 0x0000226C
-.L08056C38: .4byte 0x06010000
+.L08056C38: .word OBJ_VRAM0
 .L08056C3C:
 	mov r8, r1
 	add r1, sp, #0xbc
@@ -157326,7 +157326,7 @@ sub_08056442: @ 0x08056442
 .L08056DF4:
 	str r5, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r1, .L08056E34 @ =0x06010000
+	ldr r1, .L08056E34 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sb
 	mov r1, r8
@@ -157353,7 +157353,7 @@ sub_08056442: @ 0x08056442
 .L08056E28: .4byte 0x00002268
 .L08056E2C: .4byte 0x00002330
 .L08056E30: .4byte 0x0000226C
-.L08056E34: .4byte 0x06010000
+.L08056E34: .word OBJ_VRAM0
 .L08056E38:
 	mov r8, r1
 	add r1, sp, #0xc4
@@ -157594,7 +157594,7 @@ sub_08056442: @ 0x08056442
 .L08057000:
 	str r5, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r1, .L08057048 @ =0x06010000
+	ldr r1, .L08057048 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sb
 	mov r1, r8
@@ -157623,7 +157623,7 @@ sub_08056442: @ 0x08056442
 .L0805703C: .4byte 0x00002268
 .L08057040: .4byte 0x00002330
 .L08057044: .4byte 0x0000226C
-.L08057048: .4byte 0x06010000
+.L08057048: .word OBJ_VRAM0
 .L0805704C:
 	mov r8, r1
 	add r1, sp, #0xcc
@@ -157867,7 +157867,7 @@ sub_08056442: @ 0x08056442
 .L08057218:
 	str r5, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r1, .L08057268 @ =0x06010000
+	ldr r1, .L08057268 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sb
 	mov r1, r8
@@ -157898,7 +157898,7 @@ sub_08056442: @ 0x08056442
 .L0805725C: .4byte 0x00002330
 .L08057260: .4byte 0x0000226C
 .L08057264: .4byte 0x0000228C
-.L08057268: .4byte 0x06010000
+.L08057268: .word OBJ_VRAM0
 .L0805726C:
 	mov r8, r1
 	add r1, sp, #0xd4
@@ -158140,7 +158140,7 @@ sub_08056442: @ 0x08056442
 .L08057434:
 	str r5, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r1, .L08057474 @ =0x06010000
+	ldr r1, .L08057474 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sb
 	mov r1, r8
@@ -158167,7 +158167,7 @@ sub_08056442: @ 0x08056442
 .L08057468: .4byte 0x00002294
 .L0805746C: .4byte 0x00002330
 .L08057470: .4byte 0x00002298
-.L08057474: .4byte 0x06010000
+.L08057474: .word OBJ_VRAM0
 .L08057478:
 	mov r8, r1
 	add r1, sp, #0xdc
@@ -158409,7 +158409,7 @@ sub_08056442: @ 0x08056442
 .L08057640:
 	str r5, [sp, #0x120]
 	lsls r2, r2, #5
-	ldr r1, .L08057680 @ =0x06010000
+	ldr r1, .L08057680 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sb
 	mov r1, r8
@@ -158436,7 +158436,7 @@ sub_08056442: @ 0x08056442
 .L08057674: .4byte 0x00002294
 .L08057678: .4byte 0x00002330
 .L0805767C: .4byte 0x00002298
-.L08057680: .4byte 0x06010000
+.L08057680: .word OBJ_VRAM0
 .L08057684:
 	mov r8, r1
 	add r1, sp, #0xe4
@@ -162983,7 +162983,7 @@ func_08059C94: @ 0x08059C94
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L08059F98 @ =0x05000200
+	ldr r2, .L08059F98 @ =OBJ_PALETTE
 	adds r1, r0, r2
 	ldr r0, [sp, #0x1c]
 	movs r2, #0
@@ -163045,7 +163045,7 @@ func_08059C94: @ 0x08059C94
 	bl GetObjTileIndex
 	add r0, sb
 	lsls r0, r0, #5
-	ldr r2, .L08059F9C @ =0x06010000
+	ldr r2, .L08059F9C @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #0x14]
 	movs r2, #0
@@ -163189,7 +163189,7 @@ func_08059C94: @ 0x08059C94
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r1, .L08059F98 @ =0x05000200
+	ldr r1, .L08059F98 @ =OBJ_PALETTE
 	adds r0, r0, r1
 	strh r6, [r0]
 	ldr r1, [r4, #4]
@@ -163241,7 +163241,7 @@ func_08059C94: @ 0x08059C94
 	adds r1, r0, #0
 	adds r1, r1, r4
 	lsls r1, r1, #5
-	ldr r4, .L08059F9C @ =0x06010000
+	ldr r4, .L08059F9C @ =OBJ_VRAM0
 	adds r1, r1, r4
 	ldr r0, [sp, #0x9c]
 	movs r2, #0x40
@@ -163258,8 +163258,8 @@ func_08059C94: @ 0x08059C94
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08059F98: .4byte 0x05000200
-.L08059F9C: .4byte 0x06010000
+.L08059F98: .word OBJ_PALETTE
+.L08059F9C: .word OBJ_VRAM0
 .L08059FA0: .4byte 0x06007FE0
 .L08059FA4: .4byte 0x0600E000
 .L08059FA8: .4byte 0x0600E800
@@ -163306,7 +163306,7 @@ func_08059FE0: @ 0x08059FE0
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r6, .L0805A098 @ =0x05000200
+	ldr r6, .L0805A098 @ =OBJ_PALETTE
 	adds r1, r0, r6
 	ldr r0, [sp, #0x1c]
 	movs r2, #0
@@ -163324,7 +163324,7 @@ func_08059FE0: @ 0x08059FE0
 	ldr r1, [r0, #4]
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r2, .L0805A09C @ =0x06010000
+	ldr r2, .L0805A09C @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #0x14]
 	movs r2, #0
@@ -163363,8 +163363,8 @@ func_08059FE0: @ 0x08059FE0
 	.align 2, 0
 .L0805A090: .4byte 0xFFFFF490
 .L0805A094: .4byte 0x00000B54
-.L0805A098: .4byte 0x05000200
-.L0805A09C: .4byte 0x06010000
+.L0805A098: .word OBJ_PALETTE
+.L0805A09C: .word OBJ_VRAM0
 .L0805A0A0: .4byte gUnk_08752F8C
 .L0805A0A4: .4byte 0x06010600
 .L0805A0A8: .4byte gUnk_0875300C
@@ -163390,7 +163390,7 @@ func_08059FE0: @ 0x08059FE0
 	bl GetObjPaletteBank
 	adds r1, r0, #0
 	lsls r1, r1, #5
-	ldr r0, .L0805A198 @ =0x05000200
+	ldr r0, .L0805A198 @ =OBJ_PALETTE
 	adds r1, r1, r0
 	adds r0, r4, #0
 	movs r2, #0x20
@@ -163481,7 +163481,7 @@ func_08059FE0: @ 0x08059FE0
 .L0805A18C: .4byte gUnk_0875196C
 .L0805A190: .4byte 0x06010600
 .L0805A194: .4byte gUnk_087519EC
-.L0805A198: .4byte 0x05000200
+.L0805A198: .word OBJ_PALETTE
 .L0805A19C: .4byte 0x0000142C
 .L0805A1A0: .4byte 0x00000B34
 .L0805A1A4: .4byte 0x00000B6C
@@ -165792,7 +165792,7 @@ func_0805B38C: @ 0x0805B38C
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L0805B6BC @ =0x05000200
+	ldr r2, .L0805B6BC @ =OBJ_PALETTE
 	adds r1, r0, r2
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -165886,7 +165886,7 @@ func_0805B38C: @ 0x0805B38C
 	bl GetObjTileIndex
 	adds r0, r0, r7
 	lsls r0, r0, #5
-	ldr r2, .L0805B6C8 @ =0x06010000
+	ldr r2, .L0805B6C8 @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -165942,7 +165942,7 @@ func_0805B38C: @ 0x0805B38C
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r5, .L0805B6BC @ =0x05000200
+	ldr r5, .L0805B6BC @ =OBJ_PALETTE
 	adds r1, r0, r5
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -166129,10 +166129,10 @@ func_0805B38C: @ 0x0805B38C
 	bl CopyHardwareDma3
 	b .L0805B766
 	.align 2, 0
-.L0805B6BC: .4byte 0x05000200
+.L0805B6BC: .word OBJ_PALETTE
 .L0805B6C0: .4byte 0x00000474
 .L0805B6C4: .4byte 0x0000058C
-.L0805B6C8: .4byte 0x06010000
+.L0805B6C8: .word OBJ_VRAM0
 .L0805B6CC: .4byte 0x0000140E
 .L0805B6D0:
 	movs r0, #0xba
@@ -166241,7 +166241,7 @@ func_0805B38C: @ 0x0805B38C
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r5, .L0805BB48 @ =0x05000200
+	ldr r5, .L0805BB48 @ =OBJ_PALETTE
 	adds r1, r0, r5
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -166316,7 +166316,7 @@ func_0805B38C: @ 0x0805B38C
 	adds r0, r4, #0
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r2, .L0805BB4C @ =0x06010000
+	ldr r2, .L0805BB4C @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -166408,7 +166408,7 @@ func_0805B38C: @ 0x0805B38C
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r3, .L0805BB48 @ =0x05000200
+	ldr r3, .L0805BB48 @ =OBJ_PALETTE
 	adds r1, r0, r3
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -166468,7 +166468,7 @@ func_0805B38C: @ 0x0805B38C
 	bl GetObjTileIndex
 	adds r0, r0, r7
 	lsls r0, r0, #5
-	ldr r2, .L0805BB4C @ =0x06010000
+	ldr r2, .L0805BB4C @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -166514,7 +166514,7 @@ func_0805B38C: @ 0x0805B38C
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r5, .L0805BB48 @ =0x05000200
+	ldr r5, .L0805BB48 @ =OBJ_PALETTE
 	adds r1, r0, r5
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -166532,7 +166532,7 @@ func_0805B38C: @ 0x0805B38C
 	ldr r1, [r0, #4]
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r2, .L0805BB4C @ =0x06010000
+	ldr r2, .L0805BB4C @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -166592,7 +166592,7 @@ func_0805B38C: @ 0x0805B38C
 	bl GetObjTileIndex
 	adds r0, r0, r7
 	lsls r0, r0, #5
-	ldr r2, .L0805BB4C @ =0x06010000
+	ldr r2, .L0805BB4C @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -166648,7 +166648,7 @@ func_0805B38C: @ 0x0805B38C
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r5, .L0805BB48 @ =0x05000200
+	ldr r5, .L0805BB48 @ =OBJ_PALETTE
 	adds r1, r0, r5
 	ldr r0, [sp, #0x10]
 	movs r2, #0
@@ -166686,8 +166686,8 @@ func_0805B38C: @ 0x0805B38C
 	ldrh r2, [r0]
 	b .L0805BB60
 	.align 2, 0
-.L0805BB48: .4byte 0x05000200
-.L0805BB4C: .4byte 0x06010000
+.L0805BB48: .word OBJ_PALETTE
+.L0805BB4C: .word OBJ_VRAM0
 .L0805BB50: .4byte 0x06010100
 .L0805BB54: .4byte 0x0000FFFF
 .L0805BB58: .4byte 0x00000BDA
@@ -166717,7 +166717,7 @@ func_0805B38C: @ 0x0805B38C
 	bl GetObjTileIndex
 	adds r0, r0, r7
 	lsls r0, r0, #5
-	ldr r2, .L0805BC30 @ =0x06010000
+	ldr r2, .L0805BC30 @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -166773,7 +166773,7 @@ func_0805B38C: @ 0x0805B38C
 	ldr r1, [r0, #4]
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r5, .L0805BC30 @ =0x06010000
+	ldr r5, .L0805BC30 @ =OBJ_VRAM0
 	adds r1, r0, r5
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -166793,7 +166793,7 @@ func_0805B38C: @ 0x0805B38C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0805BC30: .4byte 0x06010000
+.L0805BC30: .word OBJ_VRAM0
 
 	thumb_func_start func_0805BC34
 func_0805BC34: @ 0x0805BC34
@@ -167609,7 +167609,7 @@ func_0805BC34: @ 0x0805BC34
 	ldrh r3, [r4, #0x2c]
 .L0805C2AE:
 	lsls r2, r2, #5
-	ldr r0, .L0805C2E0 @ =0x06010000
+	ldr r0, .L0805C2E0 @ =OBJ_VRAM0
 	adds r2, r2, r0
 	ldr r0, [sp, #0x84]
 	adds r1, r7, #0
@@ -167633,7 +167633,7 @@ func_0805BC34: @ 0x0805BC34
 	b .L0805C3BA
 	.align 2, 0
 .L0805C2DC: .4byte 0x000013EC
-.L0805C2E0: .4byte 0x06010000
+.L0805C2E0: .word OBJ_VRAM0
 .L0805C2E4:
 	str r1, [sp, #0x98]
 	mov r7, sb
@@ -170660,7 +170660,7 @@ func_0805D9C0: @ 0x0805D9C0
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r1, .L0805DC10 @ =0x05000200
+	ldr r1, .L0805DC10 @ =OBJ_PALETTE
 	adds r0, r0, r1
 	mov r2, r8
 	strh r2, [r0]
@@ -170714,7 +170714,7 @@ func_0805D9C0: @ 0x0805D9C0
 	adds r1, r0, #0
 	adds r1, r1, r4
 	lsls r1, r1, #5
-	ldr r2, .L0805DC20 @ =0x06010000
+	ldr r2, .L0805DC20 @ =OBJ_VRAM0
 	adds r1, r1, r2
 	mov r0, r8
 	movs r2, #0x40
@@ -170744,11 +170744,11 @@ func_0805D9C0: @ 0x0805D9C0
 .L0805DC04: .4byte gUiSharedPalette
 .L0805DC08: .4byte 0x05000040
 .L0805DC0C: .4byte 0x00004218
-.L0805DC10: .4byte 0x05000200
+.L0805DC10: .word OBJ_PALETTE
 .L0805DC14: .4byte 0x05000202
 .L0805DC18: .4byte 0x05000204
 .L0805DC1C: .4byte gHorseRacePrizeExchangeCharacterCodes
-.L0805DC20: .4byte 0x06010000
+.L0805DC20: .word OBJ_VRAM0
 
 	thumb_func_start func_0805DC24
 func_0805DC24: @ 0x0805DC24
@@ -170807,7 +170807,7 @@ func_0805DC24: @ 0x0805DC24
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r7, .L0805DE10 @ =0x05000200
+	ldr r7, .L0805DE10 @ =OBJ_PALETTE
 	adds r1, r0, r7
 	ldr r0, [sp, #0x1c]
 	movs r2, #0
@@ -170853,7 +170853,7 @@ func_0805DC24: @ 0x0805DC24
 	ldr r1, [r0, #4]
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r7, .L0805DE14 @ =0x06010000
+	ldr r7, .L0805DE14 @ =OBJ_VRAM0
 	adds r1, r0, r7
 	ldr r0, [sp, #0x14]
 	movs r2, #0
@@ -170989,8 +170989,8 @@ func_0805DC24: @ 0x0805DC24
 	bx r0
 	.align 2, 0
 .L0805DE0C: .4byte 0xFFFFFC20
-.L0805DE10: .4byte 0x05000200
-.L0805DE14: .4byte 0x06010000
+.L0805DE10: .word OBJ_PALETTE
+.L0805DE14: .word OBJ_VRAM0
 .L0805DE18: .4byte 0x06002800
 .L0805DE1C: .4byte gHorseRacePrizeCatalog
 .L0805DE20: .4byte 0x0600F000
@@ -198354,7 +198354,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 .L0806C1CE:
 	str r4, [sp, #0x380]
 	lsls r2, r2, #5
-	ldr r0, .L0806C208 @ =0x05000200
+	ldr r0, .L0806C208 @ =OBJ_PALETTE
 	adds r2, r2, r0
 	add r0, sp, #0x60
 	adds r1, r5, #0
@@ -198381,7 +198381,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	b .L0806C2E4
 	.align 2, 0
 .L0806C204: .4byte 0x000040B8
-.L0806C208: .4byte 0x05000200
+.L0806C208: .word OBJ_PALETTE
 .L0806C20C:
 	mov r8, r1
 	movs r0, #1
@@ -198535,7 +198535,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 .L0806C322:
 	str r4, [sp, #0x380]
 	lsls r2, r2, #5
-	ldr r4, .L0806C360 @ =0x05000200
+	ldr r4, .L0806C360 @ =OBJ_PALETTE
 	adds r2, r2, r4
 	add r0, sp, #0x60
 	adds r1, r5, #0
@@ -198563,7 +198563,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	b .L0806C43C
 	.align 2, 0
 .L0806C35C: .4byte 0x000040C8
-.L0806C360: .4byte 0x05000200
+.L0806C360: .word OBJ_PALETTE
 .L0806C364:
 	mov r8, r1
 	movs r0, #1
@@ -200046,7 +200046,7 @@ sub_0806C492: @ 0x0806C492
 	ldrh r3, [r4, #4]
 .L0806CF30:
 	lsls r2, r2, #5
-	ldr r4, .L0806CF74 @ =0x06010000
+	ldr r4, .L0806CF74 @ =OBJ_VRAM0
 	adds r2, r2, r4
 	add r0, sp, #0x64
 	mov r1, r8
@@ -200075,7 +200075,7 @@ sub_0806C492: @ 0x0806C492
 .L0806CF68: .4byte 0x00003FA8
 .L0806CF6C: .4byte 0x000040B8
 .L0806CF70: .4byte 0x000040B0
-.L0806CF74: .4byte 0x06010000
+.L0806CF74: .word OBJ_VRAM0
 .L0806CF78:
 	mov r8, r1
 	add r1, sp, #0x1d8
@@ -200289,7 +200289,7 @@ sub_0806C492: @ 0x0806C492
 	ldrh r3, [r4, #4]
 .L0806D10E:
 	lsls r2, r2, #5
-	ldr r4, .L0806D148 @ =0x06010000
+	ldr r4, .L0806D148 @ =OBJ_VRAM0
 	adds r2, r2, r4
 	add r0, sp, #0x64
 	mov r1, r8
@@ -200316,7 +200316,7 @@ sub_0806C492: @ 0x0806C492
 	.align 2, 0
 .L0806D140: .4byte 0x000040C8
 .L0806D144: .4byte 0x000040C0
-.L0806D148: .4byte 0x06010000
+.L0806D148: .word OBJ_VRAM0
 .L0806D14C:
 	mov r8, r1
 	add r1, sp, #0x1e0
@@ -200522,7 +200522,7 @@ sub_0806C492: @ 0x0806C492
 	ldrh r3, [r4, #4]
 .L0806D2D0:
 	lsls r2, r2, #5
-	ldr r4, .L0806D30C @ =0x06010000
+	ldr r4, .L0806D30C @ =OBJ_VRAM0
 	adds r2, r2, r4
 	add r0, sp, #0x64
 	mov r1, r8
@@ -200549,7 +200549,7 @@ sub_0806C492: @ 0x0806C492
 	.align 2, 0
 .L0806D304: .4byte 0x000040C8
 .L0806D308: .4byte 0x000040C0
-.L0806D30C: .4byte 0x06010000
+.L0806D30C: .word OBJ_VRAM0
 .L0806D310:
 	mov r8, r1
 	add r1, sp, #0x1e8
@@ -200745,7 +200745,7 @@ sub_0806C492: @ 0x0806C492
 	ldr r1, [r5, #8]
 	ldr r3, [sp, #0x274]
 	lsls r2, r3, #5
-	ldr r4, .L0806D4CC @ =0x06010000
+	ldr r4, .L0806D4CC @ =OBJ_VRAM0
 	adds r2, r2, r4
 	add r0, sp, #0x64
 	movs r3, #0x80
@@ -200784,7 +200784,7 @@ sub_0806C492: @ 0x0806C492
 .L0806D4C0: .4byte 0x00003EA0
 .L0806D4C4: .4byte 0x000040D0
 .L0806D4C8: .4byte 0x00004120
-.L0806D4CC: .4byte 0x06010000
+.L0806D4CC: .word OBJ_VRAM0
 .L0806D4D0:
 	mov r8, r1
 	movs r0, #1
@@ -200922,7 +200922,7 @@ sub_0806C492: @ 0x0806C492
 	adds r1, r2, r1
 	adds r6, r0, #0
 	ldr r1, [r1, #0xc]
-	ldr r2, .L0806D5F8 @ =0x05000200
+	ldr r2, .L0806D5F8 @ =OBJ_PALETTE
 	add r2, sb
 	add r0, sp, #0x64
 	movs r3, #0x20
@@ -200947,7 +200947,7 @@ sub_0806C492: @ 0x0806C492
 	str r0, [r6, #4]
 	b .L0806D6CA
 	.align 2, 0
-.L0806D5F8: .4byte 0x05000200
+.L0806D5F8: .word OBJ_PALETTE
 .L0806D5FC:
 	mov r8, r1
 	movs r0, #1
@@ -202058,7 +202058,7 @@ func_0806E234: @ 0x0806E234
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r3, .L0806E428 @ =0x05000200
+	ldr r3, .L0806E428 @ =OBJ_PALETTE
 	adds r0, r0, r3
 	mov r1, r8
 	strh r1, [r0]
@@ -202110,7 +202110,7 @@ func_0806E234: @ 0x0806E234
 	adds r1, r0, #0
 	adds r1, r1, r4
 	lsls r1, r1, #5
-	ldr r2, .L0806E438 @ =0x06010000
+	ldr r2, .L0806E438 @ =OBJ_VRAM0
 	adds r1, r1, r2
 	mov r0, r8
 	movs r2, #0x40
@@ -202141,11 +202141,11 @@ func_0806E234: @ 0x0806E234
 .L0806E41C: .4byte gUiSharedPalette
 .L0806E420: .4byte 0x05000040
 .L0806E424: .4byte 0x00004218
-.L0806E428: .4byte 0x05000200
+.L0806E428: .word OBJ_PALETTE
 .L0806E42C: .4byte 0x05000202
 .L0806E430: .4byte 0x05000204
 .L0806E434: .4byte gFarmStatusScreenPreloadedGlyphs
-.L0806E438: .4byte 0x06010000
+.L0806E438: .word OBJ_VRAM0
 
 
 
@@ -217359,11 +217359,11 @@ func_080757E8: @ 0x080757E8
 	bl GetObjTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
-	ldr r2, .L080758E4 @ =0x06010000
+	ldr r2, .L080758E4 @ =OBJ_VRAM0
 	adds r1, r1, r2
 	b .L0807591E
 	.align 2, 0
-.L080758E4: .4byte 0x06010000
+.L080758E4: .word OBJ_VRAM0
 .L080758E8:
 	ldr r0, [sp]
 	ldr r1, [r0, #0x14]
@@ -217386,7 +217386,7 @@ func_080757E8: @ 0x080757E8
 	bl GetObjTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
-	ldr r0, .L0807592C @ =0x06010000
+	ldr r0, .L0807592C @ =OBJ_VRAM0
 	adds r1, r1, r0
 .L0807591E:
 	movs r2, #0x20
@@ -217395,7 +217395,7 @@ func_080757E8: @ 0x080757E8
 	bl CopyHardwareDma3
 	b .L08075956
 	.align 2, 0
-.L0807592C: .4byte 0x06010000
+.L0807592C: .word OBJ_VRAM0
 .L08075930:
 	ldr r0, [sp]
 	str r0, [sp, #8]
@@ -217494,7 +217494,7 @@ func_080757E8: @ 0x080757E8
 	bl GetObjPaletteBank
 	adds r1, r0, #0
 	lsls r1, r1, #5
-	ldr r2, .L08075A10 @ =0x05000200
+	ldr r2, .L08075A10 @ =OBJ_PALETTE
 	adds r1, r1, r2
 	adds r0, r4, #0
 	movs r2, #0x20
@@ -217515,7 +217515,7 @@ func_080757E8: @ 0x080757E8
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08075A10: .4byte 0x05000200
+.L08075A10: .word OBJ_PALETTE
 .L08075A14:
 	.byte 0xF0, 0xB5, 0x81, 0xB0, 0x05, 0x68, 0x00, 0x91, 0x2E, 0x1D, 0x6F, 0x46
 	.byte 0x74, 0x68, 0x62, 0x68, 0x00, 0x2A, 0x0B, 0xD0, 0x00, 0x23, 0x10, 0x69, 0x88, 0x42, 0x00, 0xD2
@@ -217697,7 +217697,7 @@ SetScrollPosition: @ 0x08075C88
 	strh r1, [r2, #0x16]
 	b .L08075CD6
 .L08075CD2:
-	ldr r0, .L08075CFC @ =0x04000016
+	ldr r0, .L08075CFC @ =REG_BG1VOFS
 	strh r1, [r0]
 .L08075CD6:
 	ldrh r0, [r4, #8]
@@ -217721,7 +217721,7 @@ SetScrollPosition: @ 0x08075C88
 	strh r0, [r4, #0xc]
 	b .L08075D1A
 	.align 2, 0
-.L08075CFC: .4byte 0x04000016
+.L08075CFC: .word REG_BG1VOFS
 .L08075D00:
 	adds r1, r2, #0
 	adds r1, #0xd0
@@ -218077,7 +218077,7 @@ func_08075E7C: @ 0x08075E7C
 	adds r0, r4, #0
 	movs r2, #0x20
 	bl CopyHardwareDma3
-	ldr r1, .L0807619C @ =0x05000200
+	ldr r1, .L0807619C @ =OBJ_PALETTE
 	adds r0, r4, #0
 	movs r2, #0x20
 	bl CopyHardwareDma3
@@ -218148,7 +218148,7 @@ func_08075E7C: @ 0x08075E7C
 .L08076128:
 	str r2, [sp, #0x9c]
 	add r0, sp, #0x74
-	ldr r2, .L0807619C @ =0x05000200
+	ldr r2, .L0807619C @ =OBJ_PALETTE
 	bl __21DmaTransferDescriptorPCvPvUi
 	ldr r5, [sp, #0x98]
 	mov sb, r5
@@ -218188,7 +218188,7 @@ func_08075E7C: @ 0x08075E7C
 .L08076190: .4byte 0x0600E008
 .L08076194: .4byte 0x0000FFFC
 .L08076198: .4byte gUiSharedPalette
-.L0807619C: .4byte 0x05000200
+.L0807619C: .word OBJ_PALETTE
 .L080761A0: .4byte 0x06002400
 .L080761A4: .4byte gUiPreloadedDigitGlyphCodes
 .L080761A8:
@@ -218437,7 +218437,7 @@ func_0807628C: @ 0x0807628C
 .L08076370:
 	str r0, [sp, #0xd8]
 	add r0, sp, #0x3c
-	ldr r2, .L080763D8 @ =0x06010000
+	ldr r2, .L080763D8 @ =OBJ_VRAM0
 	bl __21DmaTransferDescriptorPCvPvUi
 	add r6, sp, #0x3c
 	mov sl, r6
@@ -218488,7 +218488,7 @@ func_0807628C: @ 0x0807628C
 	str r0, [sp, #0xc8]
 	b .L080764E4
 	.align 2, 0
-.L080763D8: .4byte 0x06010000
+.L080763D8: .word OBJ_VRAM0
 .L080763DC:
 	str r1, [sp, #0xdc]
 	movs r0, #1
@@ -220008,7 +220008,7 @@ func_08076EA8: @ 0x08076EA8
 	ldr r1, [r1, #8]
 	ldr r4, [sp, #0x48]
 	lsls r2, r4, #5
-	ldr r6, .L08076FA4 @ =0x06010000
+	ldr r6, .L08076FA4 @ =OBJ_VRAM0
 	adds r2, r2, r6
 	add r0, sp, #0x10
 	movs r3, #0x80
@@ -220044,7 +220044,7 @@ func_08076EA8: @ 0x08076EA8
 	b .L08077084
 	.align 2, 0
 .L08076FA0: .4byte 0x00000594
-.L08076FA4: .4byte 0x06010000
+.L08076FA4: .word OBJ_VRAM0
 .L08076FA8:
 	str r1, [sp, #0x6c]
 	movs r0, #1
@@ -220178,7 +220178,7 @@ func_08076EA8: @ 0x08076EA8
 	adds r1, r1, r3
 	adds r5, r0, #0
 	ldr r1, [r1, #0xc]
-	ldr r2, .L080770C8 @ =0x05000200
+	ldr r2, .L080770C8 @ =OBJ_PALETTE
 	add r2, r8
 	add r0, sp, #0x10
 	movs r3, #0x20
@@ -220203,7 +220203,7 @@ func_08076EA8: @ 0x08076EA8
 	str r0, [r5, #4]
 	b .L08077192
 	.align 2, 0
-.L080770C8: .4byte 0x05000200
+.L080770C8: .word OBJ_PALETTE
 .L080770CC:
 	str r1, [sp, #0x6c]
 	movs r0, #1
@@ -224722,7 +224722,7 @@ func_08079860: @ 0x08079860
 	adds r0, r5, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r7, .L08079A54 @ =0x05000200
+	ldr r7, .L08079A54 @ =OBJ_PALETTE
 	adds r0, r0, r7
 	strh r6, [r0]
 	ldr r1, [r5, #4]
@@ -224812,7 +224812,7 @@ func_08079860: @ 0x08079860
 .L08079A48: .4byte 0x05000040
 .L08079A4C: .4byte 0x00004218
 .L08079A50: .4byte 0x00000828
-.L08079A54: .4byte 0x05000200
+.L08079A54: .word OBJ_PALETTE
 .L08079A58: .4byte 0x05000202
 .L08079A5C: .4byte 0x05000204
 .L08079A60: .4byte 0x00002060
@@ -225142,7 +225142,7 @@ func_08079A64: @ 0x08079A64
 	bl GetObjTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
-	ldr r2, .L08079DB4 @ =0x06010000
+	ldr r2, .L08079DB4 @ =OBJ_VRAM0
 	adds r1, r1, r2
 	movs r2, #0xe0
 	lsls r2, r2, #3
@@ -225203,7 +225203,7 @@ func_08079A64: @ 0x08079A64
 	lsls r0, r6, #1
 	adds r1, r1, r0
 	lsls r1, r1, #5
-	ldr r0, .L08079DB4 @ =0x06010000
+	ldr r0, .L08079DB4 @ =OBJ_VRAM0
 	adds r1, r1, r0
 	ldr r0, [sp, #0x80]
 	movs r2, #0x40
@@ -225234,7 +225234,7 @@ func_08079A64: @ 0x08079A64
 .L08079DA8: .4byte 0x0000084E
 .L08079DAC: .4byte gReferenceGuideTables
 .L08079DB0: .4byte 0x06000C00
-.L08079DB4: .4byte 0x06010000
+.L08079DB4: .word OBJ_VRAM0
 .L08079DB8: .4byte 0x00000A57
 .L08079DBC: .4byte gText_Library_Menu
 
@@ -225786,7 +225786,7 @@ func_08079F8C: @ 0x08079F8C
 	bl GetObjTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
-	ldr r3, .L0807A2A8 @ =0x06010000
+	ldr r3, .L0807A2A8 @ =OBJ_VRAM0
 	adds r1, r1, r3
 	movs r2, #0xe0
 	lsls r2, r2, #3
@@ -225849,7 +225849,7 @@ func_08079F8C: @ 0x08079F8C
 	lsls r0, r5, #1
 	adds r1, r1, r0
 	lsls r1, r1, #5
-	ldr r0, .L0807A2A8 @ =0x06010000
+	ldr r0, .L0807A2A8 @ =OBJ_VRAM0
 	adds r1, r1, r0
 	ldr r0, [sp, #0x90]
 	movs r2, #0x40
@@ -225878,7 +225878,7 @@ func_08079F8C: @ 0x08079F8C
 .L0807A29C: .4byte 0x06000C00
 .L0807A2A0: .4byte 0x06001A00
 .L0807A2A4: .4byte 0x00000A5C
-.L0807A2A8: .4byte 0x06010000
+.L0807A2A8: .word OBJ_VRAM0
 
 	thumb_func_start func_0807A2AC
 func_0807A2AC: @ 0x0807A2AC
@@ -226686,7 +226686,7 @@ func_0807A878: @ 0x0807A878
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r1, .L0807A97C @ =0x05000200
+	ldr r1, .L0807A97C @ =OBJ_PALETTE
 	mov r8, r1
 	adds r1, r0, r1
 	ldr r0, [sp, #0x10]
@@ -226733,7 +226733,7 @@ func_0807A878: @ 0x0807A878
 	ldr r1, [r0, #4]
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r2, .L0807A988 @ =0x06010000
+	ldr r2, .L0807A988 @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #8]
 	movs r2, #0
@@ -226754,10 +226754,10 @@ func_0807A878: @ 0x0807A878
 	.align 2, 0
 .L0807A974: .4byte 0x00000774
 .L0807A978: .4byte 0x00000818
-.L0807A97C: .4byte 0x05000200
+.L0807A97C: .word OBJ_PALETTE
 .L0807A980: .4byte 0x00000744
 .L0807A984: .4byte 0x00000838
-.L0807A988: .4byte 0x06010000
+.L0807A988: .word OBJ_VRAM0
 
 	thumb_func_start func_0807A98C
 func_0807A98C: @ 0x0807A98C
@@ -226983,7 +226983,7 @@ func_0807A98C: @ 0x0807A98C
 	ldrh r3, [r4, #0x28]
 .L0807AB52:
 	lsls r2, r2, #5
-	ldr r0, .L0807ABCC @ =0x06010000
+	ldr r0, .L0807ABCC @ =OBJ_VRAM0
 	adds r2, r2, r0
 	adds r0, r7, #0
 	adds r1, r6, #0
@@ -227025,7 +227025,7 @@ func_0807A98C: @ 0x0807A98C
 .L0807ABC0: .4byte 0x00000844
 .L0807ABC4: .4byte 0x00000774
 .L0807ABC8: .4byte 0x00000818
-.L0807ABCC: .4byte 0x06010000
+.L0807ABCC: .word OBJ_VRAM0
 .L0807ABD0:
 	str r1, [sp, #0x74]
 	mov r6, sb
@@ -282333,7 +282333,7 @@ func_0809800C: @ 0x0809800C
 	bl GetObjTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
-	ldr r7, .L080983D4 @ =0x06010000
+	ldr r7, .L080983D4 @ =OBJ_VRAM0
 	adds r1, r1, r7
 	movs r2, #0xe0
 	lsls r2, r2, #1
@@ -282384,7 +282384,7 @@ func_0809800C: @ 0x0809800C
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r5, .L080983D8 @ =0x05000200
+	ldr r5, .L080983D8 @ =OBJ_PALETTE
 	adds r1, r0, r5
 	ldr r0, [sp, #0x20]
 	movs r2, #0
@@ -282499,7 +282499,7 @@ func_0809800C: @ 0x0809800C
 	lsls r0, r5, #1
 	adds r1, r1, r0
 	lsls r1, r1, #5
-	ldr r2, .L080983D4 @ =0x06010000
+	ldr r2, .L080983D4 @ =OBJ_VRAM0
 	adds r1, r1, r2
 	ldr r0, [sp, #0x9c]
 	movs r2, #0x40
@@ -282515,7 +282515,7 @@ func_0809800C: @ 0x0809800C
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r3, .L080983D8 @ =0x05000200
+	ldr r3, .L080983D8 @ =OBJ_PALETTE
 	adds r0, r0, r3
 	movs r7, #0xf8
 	lsls r7, r7, #2
@@ -282563,8 +282563,8 @@ func_0809800C: @ 0x0809800C
 .L080983C8: .4byte 0x00002BD0
 .L080983CC: .4byte 0x00002BD4
 .L080983D0: .4byte gUiNumberGlyphTiles
-.L080983D4: .4byte 0x06010000
-.L080983D8: .4byte 0x05000200
+.L080983D4: .word OBJ_VRAM0
+.L080983D8: .word OBJ_PALETTE
 .L080983DC: .4byte gText_Cooking_Recipe_ListTitle
 .L080983E0: .4byte 0x05000202
 .L080983E4: .4byte 0x05000204
@@ -282909,7 +282909,7 @@ func_080983E8: @ 0x080983E8
 .L08098696:
 	adds r6, r5, #0
 	lsls r2, r2, #5
-	ldr r5, .L08098708 @ =0x06010000
+	ldr r5, .L08098708 @ =OBJ_VRAM0
 	adds r2, r2, r5
 	ldr r0, [sp, #0x80]
 	adds r1, r7, #0
@@ -282949,7 +282949,7 @@ func_080983E8: @ 0x080983E8
 .L080986FC: .4byte 0xFE00FFFF
 .L08098700: .4byte 0xFFFFFC00
 .L08098704: .4byte 0x00000369
-.L08098708: .4byte 0x06010000
+.L08098708: .word OBJ_VRAM0
 .L0809870C:
 	str r1, [sp, #0x88]
 	mov r5, sb
@@ -283675,7 +283675,7 @@ func_080989DC: @ 0x080989DC
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L08098CE4 @ =0x05000200
+	ldr r2, .L08098CE4 @ =OBJ_PALETTE
 	adds r1, r0, r2
 	ldr r0, [sp, #0x24]
 	movs r2, #0
@@ -283695,7 +283695,7 @@ func_080989DC: @ 0x080989DC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08098CE4: .4byte 0x05000200
+.L08098CE4: .word OBJ_PALETTE
 
 	thumb_func_start func_08098CE8
 func_08098CE8: @ 0x08098CE8
@@ -283883,7 +283883,7 @@ func_08098CE8: @ 0x08098CE8
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r6, .L08098FE8 @ =0x05000200
+	ldr r6, .L08098FE8 @ =OBJ_PALETTE
 	adds r1, r0, r6
 	ldr r0, [sp, #0x1c]
 	movs r2, #0
@@ -283929,7 +283929,7 @@ func_08098CE8: @ 0x08098CE8
 	ldr r1, [r0, #4]
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r5, .L08098FEC @ =0x06010000
+	ldr r5, .L08098FEC @ =OBJ_VRAM0
 	adds r1, r0, r5
 	ldr r0, [sp, #0x14]
 	movs r2, #0
@@ -284008,7 +284008,7 @@ func_08098CE8: @ 0x08098CE8
 	lsls r0, r6, #1
 	adds r1, r1, r0
 	lsls r1, r1, #5
-	ldr r3, .L08098FEC @ =0x06010000
+	ldr r3, .L08098FEC @ =OBJ_VRAM0
 	adds r1, r1, r3
 	ldr r0, [sp, #0xa4]
 	movs r2, #0x40
@@ -284027,7 +284027,7 @@ func_08098CE8: @ 0x08098CE8
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r1, .L08098FE8 @ =0x05000200
+	ldr r1, .L08098FE8 @ =OBJ_PALETTE
 	adds r0, r0, r1
 	movs r2, #0xf8
 	lsls r2, r2, #2
@@ -284062,8 +284062,8 @@ func_08098CE8: @ 0x08098CE8
 .L08098FDC: .4byte gText_Cooking_Recipe_Utensils
 .L08098FE0: .4byte gCookingRecipeInventoryUtensilValues
 .L08098FE4: .4byte gUnk_086678A0
-.L08098FE8: .4byte 0x05000200
-.L08098FEC: .4byte 0x06010000
+.L08098FE8: .word OBJ_PALETTE
+.L08098FEC: .word OBJ_VRAM0
 .L08098FF0: .4byte gText_Cooking_Recipe_SelectionNames
 .L08098FF4: .4byte 0x05000202
 .L08098FF8: .4byte 0x05000204
@@ -284362,7 +284362,7 @@ func_08099144: @ 0x08099144
 .L0809925E:
 	adds r6, r4, #0
 	lsls r2, r2, #5
-	ldr r0, .L08099294 @ =0x06010000
+	ldr r0, .L08099294 @ =OBJ_VRAM0
 	adds r2, r2, r0
 	add r0, sp, #0x3c
 	adds r1, r5, #0
@@ -284387,7 +284387,7 @@ func_08099144: @ 0x08099144
 	str r0, [r6, #4]
 	b .L0809935A
 	.align 2, 0
-.L08099294: .4byte 0x06010000
+.L08099294: .word OBJ_VRAM0
 .L08099298:
 	str r1, [sp, #0x78]
 	movs r5, #1
@@ -284710,7 +284710,7 @@ func_08099144: @ 0x08099144
 .L080994FC:
 	adds r6, r5, #0
 	lsls r2, r2, #5
-	ldr r5, .L08099534 @ =0x06010000
+	ldr r5, .L08099534 @ =OBJ_VRAM0
 	adds r2, r2, r5
 	add r0, sp, #0x3c
 	adds r1, r7, #0
@@ -284736,7 +284736,7 @@ func_08099144: @ 0x08099144
 	b .L080995FA
 	.align 2, 0
 .L08099530: .4byte gMenuGridHeaderPosition
-.L08099534: .4byte 0x06010000
+.L08099534: .word OBJ_VRAM0
 .L08099538:
 	str r1, [sp, #0x78]
 	mov r5, r8
@@ -285093,7 +285093,7 @@ func_0809964C: @ 0x0809964C
 	bl GetObjTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
-	ldr r0, .L08099AA0 @ =0x06010000
+	ldr r0, .L08099AA0 @ =OBJ_VRAM0
 	adds r1, r1, r0
 	movs r2, #0xe0
 	lsls r2, r2, #1
@@ -285147,7 +285147,7 @@ func_0809964C: @ 0x0809964C
 	ldr r1, [r0, #4]
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r2, .L08099AA4 @ =0x05000200
+	ldr r2, .L08099AA4 @ =OBJ_PALETTE
 	mov sb, r2
 	adds r1, r0, r2
 	ldr r0, [sp, #0x20]
@@ -285240,7 +285240,7 @@ func_0809964C: @ 0x0809964C
 	ldr r1, [r0, #4]
 	bl GetObjTileIndex
 	lsls r0, r0, #5
-	ldr r2, .L08099AA0 @ =0x06010000
+	ldr r2, .L08099AA0 @ =OBJ_VRAM0
 	adds r1, r0, r2
 	ldr r0, [sp, #0x18]
 	movs r2, #0
@@ -285258,7 +285258,7 @@ func_0809964C: @ 0x0809964C
 	bl GetObjTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
-	ldr r0, .L08099AA0 @ =0x06010000
+	ldr r0, .L08099AA0 @ =OBJ_VRAM0
 	adds r1, r1, r0
 	movs r2, #0xe0
 	lsls r2, r2, #3
@@ -285313,7 +285313,7 @@ func_0809964C: @ 0x0809964C
 	lsls r0, r5, #1
 	adds r1, r1, r0
 	lsls r1, r1, #5
-	ldr r4, .L08099AA0 @ =0x06010000
+	ldr r4, .L08099AA0 @ =OBJ_VRAM0
 	adds r1, r1, r4
 	ldr r0, [sp, #0xa8]
 	movs r2, #0x40
@@ -285329,7 +285329,7 @@ func_0809964C: @ 0x0809964C
 	adds r0, r4, #0
 	bl GetObjPaletteBank
 	lsls r0, r0, #5
-	ldr r1, .L08099AA4 @ =0x05000200
+	ldr r1, .L08099AA4 @ =OBJ_PALETTE
 	adds r0, r0, r1
 	movs r2, #0xf8
 	lsls r2, r2, #2
@@ -285412,8 +285412,8 @@ func_0809964C: @ 0x0809964C
 .L08099A94: .4byte gUnk_086678A0
 .L08099A98: .4byte gText_Cooking_Recipe_Empty
 .L08099A9C: .4byte gUiNumberGlyphTiles
-.L08099AA0: .4byte 0x06010000
-.L08099AA4: .4byte 0x05000200
+.L08099AA0: .word OBJ_VRAM0
+.L08099AA4: .word OBJ_PALETTE
 .L08099AA8: .4byte gText_Cooking_Recipe_StorageHeader
 .L08099AAC: .4byte 0x05000202
 .L08099AB0: .4byte 0x05000204
@@ -285868,7 +285868,7 @@ func_08099ACC: @ 0x08099ACC
 .L08099E44:
 	str r5, [sp, #0x90]
 	lsls r2, r2, #5
-	ldr r1, .L08099E8C @ =0x06010000
+	ldr r1, .L08099E8C @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sl
 	mov r1, r8
@@ -285897,7 +285897,7 @@ func_08099ACC: @ 0x08099ACC
 .L08099E80: .4byte 0x000003FF
 .L08099E84: .4byte 0xFFFFFC00
 .L08099E88: .4byte 0x00000369
-.L08099E8C: .4byte 0x06010000
+.L08099E8C: .word OBJ_VRAM0
 .L08099E90:
 	mov r8, r1
 	mov r6, sb
@@ -286182,7 +286182,7 @@ func_08099ACC: @ 0x08099ACC
 .L0809A0B2:
 	str r5, [sp, #0x90]
 	lsls r2, r2, #5
-	ldr r1, .L0809A0F4 @ =0x06010000
+	ldr r1, .L0809A0F4 @ =OBJ_VRAM0
 	adds r2, r2, r1
 	mov r0, sl
 	mov r1, r8
@@ -286210,7 +286210,7 @@ func_08099ACC: @ 0x08099ACC
 .L0809A0E8: .4byte 0x00002BB0
 .L0809A0EC: .4byte 0x00002B90
 .L0809A0F0: .4byte 0x00002BA7
-.L0809A0F4: .4byte 0x06010000
+.L0809A0F4: .word OBJ_VRAM0
 .L0809A0F8:
 	mov r8, r1
 	mov r6, sb

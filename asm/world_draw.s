@@ -1,3 +1,4 @@
+    .include "six/asm/hw/video.s"
     .INCLUDE "asm/macro.inc"
     .syntax unified
     .thumb
@@ -5116,7 +5117,7 @@ Draw__14GameSceneWorldRC21GameObjectDrawContext: @ 0x080182C8
     mov r3, sl
     ldrb r2, [r3, #8]
     lsls r2, r2, #5
-    ldr r5, .L080199A0 @ =0x05000200
+    ldr r5, .L080199A0 @ =OBJ_PALETTE
     adds r2, r2, r5
     add r0, sp, #0x14
     movs r3, #0x20
@@ -5164,7 +5165,7 @@ Draw__14GameSceneWorldRC21GameObjectDrawContext: @ 0x080182C8
 .L08019994: .4byte 0x00000CA8
 .L08019998: .4byte 0x00000B78
 .L0801999C: .4byte 0x00000CB4
-.L080199A0: .4byte 0x05000200
+.L080199A0: .word OBJ_PALETTE
 .L080199A4: .4byte 0x00000CAC
 .L080199A8:
     ldr r2, .L080199EC @ =0x00000CDC

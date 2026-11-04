@@ -223,6 +223,7 @@ EXTERN_C
 // IE / IF
 #define INTR_FLAG_VBLANK (1 << 0)
 #define INTR_FLAG_VCOUNT (1 << 2)
+#define INTR_FLAG_SERIAL (1 << 7)
 #define INTR_FLAG_KEYPAD (1 << 12)
 #define INTR_FLAG_GAMEPAK (1 << 13)
 

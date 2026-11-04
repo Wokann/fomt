@@ -1,3 +1,4 @@
+    .include "six/asm/hw/video.s"
     @ ROM-verified four-region Thumb implementation.
     @ Compiler-owned C++ functions are linked between the retained native runs.
     .ifdef REGION_JP
@@ -1315,11 +1316,11 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r2, [r0, #0]
     b .Ljp_0803C28C
 .Ljp_0803C264:
-    .4byte 0x05000200
+    .word OBJ_PALETTE
 .Ljp_0803C268:
     .4byte gMenuEntryLabels
 .Ljp_0803C26C:
-    .4byte 0x06010000
+    .word OBJ_VRAM0
 .Ljp_0803C270:
     .4byte 0x000001FF
 .Ljp_0803C274:
@@ -5817,11 +5818,11 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r2, [r0, #0]
     b .Leu_0803C50C
 .Leu_0803C4E4:
-    .4byte 0x05000200
+    .word OBJ_PALETTE
 .Leu_0803C4E8:
     .4byte gMenuEntryLabels
 .Leu_0803C4EC:
-    .4byte 0x06010000
+    .word OBJ_VRAM0
 .Leu_0803C4F0:
     .4byte 0x000001FF
 .Leu_0803C4F4:
@@ -10354,11 +10355,11 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r2, [r0, #0]
     b .Lde_0803C40C
 .Lde_0803C3E4:
-    .4byte 0x05000200
+    .word OBJ_PALETTE
 .Lde_0803C3E8:
     .4byte gMenuEntryLabels
 .Lde_0803C3EC:
-    .4byte 0x06010000
+    .word OBJ_VRAM0
 .Lde_0803C3F0:
     .4byte 0x000001FF
 .Lde_0803C3F4:
@@ -14865,11 +14866,11 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r2, [r0, #0]
     b .Lus_0803C4F8
 .Lus_0803C4D0:
-    .4byte 0x05000200
+    .word OBJ_PALETTE
 .Lus_0803C4D4:
     .4byte gMenuEntryLabels
 .Lus_0803C4D8:
-    .4byte 0x06010000
+    .word OBJ_VRAM0
 .Lus_0803C4DC:
     .4byte 0x000001FF
 .Lus_0803C4E0:

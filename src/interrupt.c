@@ -10,7 +10,7 @@ void InitializeInterrupts(void)
     u32 index;
     DisableInterrupts(0xFFFF);
     INTR_VECTOR = DispatchInterrupt;
-    for (index = 0; index <= 13; index++)
+    for (index = 0; index <= IRQ_INDEX_CARTRIDGE; index++)
         ExchangeInterruptHandler(index, 0);
 }
 

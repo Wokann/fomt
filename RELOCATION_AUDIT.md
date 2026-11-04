@@ -959,3 +959,12 @@ JP移除88C0定位，下一未审hardware_manager的起点仍限定为8988。四
 证据：私有hardware-state-accessors-a1b87a24下的summary.json、audit-notes.json、
 source-abi-layout-review.json、code-candidate-classification.json、
 resource_candidate_classification.json、native-map-validation.json及四版比较日志。
+
+## 硬件地址与回调表下标
+
+按 Thumb 加载与实际消费者核对了 276 个 OBJ 地址常量。326 次加载中，218 次
+传入 DMA 描述符，81 次传入 DMA/BIOS 复制或填充，16 次写入排队传输的目的字段，
+11 次用于直接写入。四份源文件各有 8、100、167、1 个常量池字，依次对应
+`code_0803A8A4.s`、`code_0803EE94.s`、`code_809E804.s`、`world_draw.s`。
+寄存器与显存使用硬件规定的常量地址。中断分发表按 IE/IF 位序索引，例如
+VBlank 的表下标为 0，使能掩码为 1。JoyBus 的使能与应答均使用串行中断位 7。

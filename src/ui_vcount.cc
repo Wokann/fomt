@@ -38,7 +38,7 @@ extern "C" void HandleUiVCountInterrupt()
 
 UiVCountBinding::UiVCountBinding(UiSceneCore * const & input)
     : value(input), guard(INTR_FLAG_VCOUNT), context(value),
-      previous_handler(ExchangeInterruptHandler(2, HandleUiVCountInterrupt))
+      previous_handler(ExchangeInterruptHandler(IRQ_INDEX_VCOUNT, HandleUiVCountInterrupt))
 {
     AcknowledgeAndEnableInterrupts(INTR_FLAG_VCOUNT);
 }
@@ -46,5 +46,5 @@ UiVCountBinding::UiVCountBinding(UiSceneCore * const & input)
 UiVCountBinding::~UiVCountBinding()
 {
     DisableInterrupts(INTR_FLAG_VCOUNT);
-    ExchangeInterruptHandler(2, previous_handler);
+    ExchangeInterruptHandler(IRQ_INDEX_VCOUNT, previous_handler);
 }

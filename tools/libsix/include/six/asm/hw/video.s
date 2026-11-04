@@ -7,7 +7,7 @@
 .ifndef  _LIBSIX_ASM_HW_VIDEO_S
 .equiv   _LIBSIX_ASM_HW_VIDEO_S, 1
 
-.include "six/asm/base.s"
+.include "six/asm/hw/memory.s"
 
 REG      DISPCNT,  0x04000000
 REG      GREENSWP, 0x04000002

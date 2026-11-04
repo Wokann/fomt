@@ -13,14 +13,14 @@ void AgbMain(void)
 {
     REG_WAITCNT = WAITCNT_WS0_N_3 | WAITCNT_WS0_S_1 | WAITCNT_PREFETCH_ENABLE;
     InitializeInterrupts();
-    ExchangeInterruptHandler(13, HandleGamePakInterrupt);
+    ExchangeInterruptHandler(IRQ_INDEX_CARTRIDGE, HandleGamePakInterrupt);
     AcknowledgeAndEnableInterrupts(INTR_FLAG_GAMEPAK);
 
     SramAccess save;
     if (!IsValidSramImage(&save))
         InitializeSramImageHeader(&save);
 
-    ExchangeInterruptHandler(12, HandleSoftResetKeyInterrupt);
+    ExchangeInterruptHandler(IRQ_INDEX_KEYPAD, HandleSoftResetKeyInterrupt);
     REG_KEYCNT = KEY_INTR_ENABLE | KEY_AND_INTR | A_BUTTON | B_BUTTON | SELECT_BUTTON | START_BUTTON;
     AcknowledgeAndEnableInterrupts(INTR_FLAG_KEYPAD);
 #if defined(REGION_EU) || defined(REGION_DE)

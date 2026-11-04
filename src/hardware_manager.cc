@@ -26,7 +26,7 @@ void RunHardwareManagerVBlankCommands(void)
 
 HardwareManagerVBlankBinding::HardwareManagerVBlankBinding(HardwareLinkedList * const & list)
     : commands(list), guard(INTR_FLAG_VBLANK), previous(this),
-      previous_handler(ExchangeInterruptHandler(0, RunHardwareManagerVBlankCommands))
+      previous_handler(ExchangeInterruptHandler(IRQ_INDEX_VBLANK, RunHardwareManagerVBlankCommands))
 {
     AcknowledgeAndEnableInterrupts(INTR_FLAG_VBLANK);
 }
