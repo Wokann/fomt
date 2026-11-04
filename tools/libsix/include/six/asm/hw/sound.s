@@ -26,6 +26,9 @@ REG SOUND4CNT,   REG_SOUND_BASE + 0x18
 REG SOUND4CNT_L, REG_SOUND4CNT  + 0
 REG SOUND4CNT_H, REG_SOUND4CNT  + 4
 
+@ Global sound master enable and channel status register.
+REG SOUNDCNT_X,  0x04000084
+
 .endif @ !_LIBSIX_ASM_HW_SOUND_S
 
 @ vim: ft=armv4 et sta sw=4 sts=8

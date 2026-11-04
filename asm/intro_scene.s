@@ -1,4 +1,6 @@
     .include "asm/macro.inc"
+    .include "six/asm/hw/memory.s"
+    .include "six/asm/hw/video.s"
     @ Background setup and regional animation helpers; the loop is in C++.
     .section .text
     .syntax unified
@@ -24,11 +26,11 @@ InitializeIntroSceneBackground:
     adds	r1, r4, #0
     bl FillHardwareDma3
     ldr r0, .L08000FE8
-    movs	r1, #192	@ 0xc0
+    movs	r1, #(MEM_VRAM >> 19)
     lsls	r1, r1, #19
     bl Unpack
     ldr r0, .L08000FEC
-    movs	r1, #160	@ 0xa0
+    movs	r1, #(BG_PALETTE >> 19)
     lsls	r1, r1, #19
     movs	r2, #32
     bl CopyHardwareDma3
@@ -38,7 +40,7 @@ InitializeIntroSceneBackground:
     adds	r0, r5, #0
     bl GetHardwareDisplayState
     mov	r1, sp
-    movs	r3, #132	@ 0x84
+    movs	r3, #((LCD_OBJ_MAPPING_1D | LCD_BG3_ENABLE) >> 4)
     lsls	r3, r3, #4
     adds	r2, r3, #0
     strh	r2, [r1, #0]
@@ -66,12 +68,12 @@ InitializeIntroSceneBackground:
     pop	{r0}
     bx	r0
     .align 2, 0
-.L08000FE0: .word 0x06007FE0
-.L08000FE4: .word 0x0600F800
+.L08000FE0: .word (MEM_VRAM + 0x7FE0)
+.L08000FE4: .word (MEM_VRAM + 31 * BG_SCREEN_SIZE)
 .L08000FE8: .word gSharedSceneBackgroundTiles
 .L08000FEC: .word gSharedSceneBackgroundPalette
 .L08000FF0: .word gSharedSceneBackgroundLayer1Tilemap
-.L08000FF4: .word 0x00001F43
+.L08000FF4: .word (BG_PRIO_3 | BG_MOSAIC_ENABLE | (31 << BF_BG_MAP_BASE_OFFSET))
 
     .section .text.intro_scene_core_after_sequence
 
@@ -85,36 +87,36 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r4, .L08001DAC @ =0xFFFFEFC8
     add sp, r4
     adds r7, r0, #0
-    ldr r1, .L08001DB0 @ =0x06007FE0
+    ldr r1, .L08001DB0 @ =(MEM_VRAM + 0x7FE0)
     movs r0, #0
     movs r2, #0x20
     bl FillHardwareDma3
     movs r4, #1
     rsbs r4, r4, #0
-    ldr r1, .L08001DB4 @ =0x0600C000
+    ldr r1, .L08001DB4 @ =(MEM_VRAM + 24 * BG_SCREEN_SIZE)
     movs r5, #0x80
     lsls r5, r5, #5
     adds r0, r4, #0
     adds r2, r5, #0
     bl FillHardwareDma3
-    ldr r1, .L08001DB8 @ =0x0600D000
+    ldr r1, .L08001DB8 @ =(MEM_VRAM + 26 * BG_SCREEN_SIZE)
     adds r0, r4, #0
     adds r2, r5, #0
     bl FillHardwareDma3
-    ldr r1, .L08001DBC @ =0x0600E000
+    ldr r1, .L08001DBC @ =(MEM_VRAM + 28 * BG_SCREEN_SIZE)
     adds r0, r4, #0
     adds r2, r5, #0
     bl FillHardwareDma3
-    ldr r1, .L08001DC0 @ =0x0600F000
+    ldr r1, .L08001DC0 @ =(MEM_VRAM + 30 * BG_SCREEN_SIZE)
     adds r0, r4, #0
     adds r2, r5, #0
     bl FillHardwareDma3
     ldr r0, .L08001DC4 @ =gIntroSceneStartupTiles
-    movs r1, #0xc0
+    movs r1, #(MEM_VRAM >> 19)
     lsls r1, r1, #0x13
     bl Unpack
     ldr r0, .L08001DC8 @ =gIntroSceneStartupPaletteBanks
-    movs r1, #0xa0
+    movs r1, #(BG_PALETTE >> 19)
     lsls r1, r1, #0x13
     movs r2, #0x80
     lsls r2, r2, #2
@@ -207,7 +209,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r5, .L08001E2C @ =0x0000102C
     add r5, sp
     str r4, [r5]
-    movs r1, #0xc0
+    movs r1, #((24 * BG_SCREEN_SIZE) >> 8)
     lsls r1, r1, #8
     adds r1, r1, r0
     mov ip, r1
@@ -222,12 +224,12 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     add r2, ip
     movs r5, #0x1f
 .L08001B04:
-    movs r0, #0xc0
+    movs r0, #(MEM_VRAM >> 19)
     lsls r0, r0, #0x13
     adds r1, r2, r0
     ldrh r0, [r3]
     strh r0, [r1]
-    ldr r0, .L08001E30 @ =0x06000800
+    ldr r0, .L08001E30 @ =(MEM_VRAM + BG_SCREEN_SIZE)
     adds r1, r2, r0
     ldrh r0, [r4]
     strh r0, [r1]
@@ -246,7 +248,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r1, sp
-    movs r3, #0xfa
+    movs r3, #((LCD_OBJ_MAPPING_1D | LCD_BG0_ENABLE | LCD_BG1_ENABLE | LCD_BG2_ENABLE | LCD_BG3_ENABLE | LCD_OBJ_ENABLE) >> 5)
     lsls r3, r3, #5
     adds r2, r3, #0
     strh r2, [r1]
@@ -255,28 +257,28 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r2, sp
-    ldr r5, .L08001E34 @ =0x00005843
+    ldr r5, .L08001E34 @ =(BG_PRIO_3 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (24 << BF_BG_MAP_BASE_OFFSET))
     adds r1, r5, #0
     strh r1, [r2]
     strh r1, [r0, #8]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r2, sp
-    ldr r3, .L08001E38 @ =0x00005A42
+    ldr r3, .L08001E38 @ =(BG_PRIO_2 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (26 << BF_BG_MAP_BASE_OFFSET))
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xa]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r2, sp
-    ldr r5, .L08001E3C @ =0x00005C41
+    ldr r5, .L08001E3C @ =(BG_PRIO_1 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (28 << BF_BG_MAP_BASE_OFFSET))
     adds r1, r5, #0
     strh r1, [r2]
     strh r1, [r0, #0xc]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r2, sp
-    ldr r3, .L08001E40 @ =0x00005E40
+    ldr r3, .L08001E40 @ =(BG_PRIO_0 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (30 << BF_BG_MAP_BASE_OFFSET))
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xe]
@@ -368,7 +370,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     movs r1, #0x90
     lsls r1, r1, #1
     adds r0, r0, r1
-    ldr r1, .L08001E48 @ =0x05000320
+    ldr r1, .L08001E48 @ =(OBJ_PALETTE + 9 * 32)
     movs r2, #0xe0
     bl CopyHardwareDma3
     ldr r0, [sp, #8]
@@ -378,7 +380,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     mov r3, sb
     ldrh r2, [r3, #4]
 .L08001C5A:
-    ldr r1, .L08001E4C @ =0x06010000
+    ldr r1, .L08001E4C @ =OBJ_VRAM0
     bl CopyHardwareDma3
     ldr r0, [sp, #8]
     movs r1, #0
@@ -435,7 +437,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     movs r5, #0
     ldrsh r0, [r4, r5]
     lsls r0, r0, #5
-    ldr r2, .L08001E4C @ =0x06010000
+    ldr r2, .L08001E4C @ =OBJ_VRAM0
     adds r1, r0, r2
     movs r2, #0
     cmp r3, #0
@@ -493,7 +495,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
     lsls r0, r0, #5
-    ldr r2, .L08001E6C @ =0x05000200
+    ldr r2, .L08001E6C @ =OBJ_PALETTE
     adds r1, r0, r2
     ldr r0, [sp, #0x10]
     movs r2, #0
@@ -540,11 +542,11 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     b .L08001E80
     .align 2, 0
 .L08001DAC: .word 0xFFFFEFC8
-.L08001DB0: .word 0x06007FE0
-.L08001DB4: .word 0x0600C000
-.L08001DB8: .word 0x0600D000
-.L08001DBC: .word 0x0600E000
-.L08001DC0: .word 0x0600F000
+.L08001DB0: .word (MEM_VRAM + 0x7FE0)
+.L08001DB4: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE)
+.L08001DB8: .word (MEM_VRAM + 26 * BG_SCREEN_SIZE)
+.L08001DBC: .word (MEM_VRAM + 28 * BG_SCREEN_SIZE)
+.L08001DC0: .word (MEM_VRAM + 30 * BG_SCREEN_SIZE)
 .L08001DC4: .word gIntroSceneStartupTiles
 .L08001DC8: .word gIntroSceneStartupPaletteBanks
 .L08001DCC: .word 0x00001030
@@ -572,14 +574,14 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L08001E24: .word 0x00001028
 .L08001E28: .word 0x00006C24
 .L08001E2C: .word 0x0000102C
-.L08001E30: .word 0x06000800
-.L08001E34: .word 0x00005843
-.L08001E38: .word 0x00005A42
-.L08001E3C: .word 0x00005C41
-.L08001E40: .word 0x00005E40
+.L08001E30: .word (MEM_VRAM + BG_SCREEN_SIZE)
+.L08001E34: .word (BG_PRIO_3 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (24 << BF_BG_MAP_BASE_OFFSET))
+.L08001E38: .word (BG_PRIO_2 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (26 << BF_BG_MAP_BASE_OFFSET))
+.L08001E3C: .word (BG_PRIO_1 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (28 << BF_BG_MAP_BASE_OFFSET))
+.L08001E40: .word (BG_PRIO_0 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (30 << BF_BG_MAP_BASE_OFFSET))
 .L08001E44: .word 0x00006BA0
-.L08001E48: .word 0x05000320
-.L08001E4C: .word 0x06010000
+.L08001E48: .word (OBJ_PALETTE + 9 * 32)
+.L08001E4C: .word OBJ_VRAM0
 .L08001E50: .word 0x00006C60
 .L08001E54: .word 0x00006BB8
 .L08001E58: .word 0x00006BBC
@@ -592,7 +594,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L08001E60: .word 0x00006BD8
 .L08001E64: .word 0x00006BDC
 .L08001E68: .word 0x00006AA0
-.L08001E6C: .word 0x05000200
+.L08001E6C: .word OBJ_PALETTE
 .L08001E70: .word 0x00006AB8
 .L08001E74: .word 0x00006ABC
 .L08001E78: .word 0x00006AC0
@@ -612,7 +614,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
     lsls r0, r0, #5
-    ldr r2, .L0800225C @ =0x05000200
+    ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
     ldr r0, [sp, #0x10]
     movs r2, #0
@@ -663,7 +665,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
     lsls r0, r0, #5
-    ldr r2, .L0800225C @ =0x05000200
+    ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
     ldr r0, [sp, #0x10]
     movs r2, #0
@@ -721,7 +723,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
     lsls r0, r0, #5
-    ldr r2, .L0800225C @ =0x05000200
+    ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
     ldr r0, [sp, #0x10]
     movs r2, #0
@@ -821,7 +823,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
     lsls r0, r0, #5
-    ldr r2, .L0800225C @ =0x05000200
+    ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
     ldr r0, [sp, #0x10]
     movs r2, #0
@@ -888,7 +890,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
     lsls r0, r0, #5
-    ldr r2, .L0800225C @ =0x05000200
+    ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
     ldr r0, [sp, #0x10]
     movs r2, #0
@@ -905,7 +907,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
-    ldr r2, .L080022D4 @ =0x06010000
+    ldr r2, .L080022D4 @ =OBJ_VRAM0
     adds r1, r0, r2
     ldr r0, [sp, #8]
     movs r2, #0
@@ -948,7 +950,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
-    ldr r2, .L080022D4 @ =0x06010000
+    ldr r2, .L080022D4 @ =OBJ_VRAM0
     adds r1, r0, r2
     ldr r0, [sp, #8]
     movs r2, #0
@@ -993,7 +995,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
-    ldr r2, .L080022D4 @ =0x06010000
+    ldr r2, .L080022D4 @ =OBJ_VRAM0
     adds r1, r0, r2
     ldr r0, [sp, #8]
     movs r2, #0
@@ -1045,7 +1047,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
     lsls r0, r0, #5
-    ldr r2, .L0800225C @ =0x05000200
+    ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
     ldr r0, [sp, #0x10]
     movs r2, #0
@@ -1063,7 +1065,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     b .L080022F4
     .align 2, 0
 .L08002258: .word 0x00006CB8
-.L0800225C: .word 0x05000200
+.L0800225C: .word OBJ_PALETTE
 .L08002260: .word 0x00006AD8
 .L08002264: .word 0x00006ADC
 .L08002268: .word 0x00006AE0
@@ -1093,7 +1095,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L080022C8: .word 0x00001018
 .L080022CC: .word 0x00006CE8
 .L080022D0: .word 0x00006CD0
-.L080022D4: .word 0x06010000
+.L080022D4: .word OBJ_VRAM0
 .L080022D8: .word 0x0000091B
 .L080022DC: .word 0x00006CD8
 .L080022E0: .word 0x0000091C
@@ -1104,7 +1106,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L080022F4:
     bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
-    ldr r2, .L0800249C @ =0x06010000
+    ldr r2, .L0800249C @ =OBJ_VRAM0
     adds r1, r0, r2
     ldr r0, [sp, #8]
     movs r2, #0
@@ -1161,7 +1163,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
-    ldr r2, .L0800249C @ =0x06010000
+    ldr r2, .L0800249C @ =OBJ_VRAM0
     adds r1, r0, r2
     ldr r0, [sp, #8]
     movs r2, #0
@@ -1208,7 +1210,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
     lsls r0, r0, #5
-    ldr r2, .L080024BC @ =0x05000200
+    ldr r2, .L080024BC @ =OBJ_PALETTE
     adds r1, r0, r2
     ldr r0, [sp, #0x10]
     movs r2, #0
@@ -1225,7 +1227,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
-    ldr r2, .L0800249C @ =0x06010000
+    ldr r2, .L0800249C @ =OBJ_VRAM0
     adds r1, r0, r2
     ldr r0, [sp, #8]
     movs r2, #0
@@ -1265,7 +1267,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwarePoolHandleIndex
     lsls r0, r0, #5
-    ldr r2, .L080024BC @ =0x05000200
+    ldr r2, .L080024BC @ =OBJ_PALETTE
     adds r1, r0, r2
     ldr r0, [sp, #0x10]
     movs r2, #0
@@ -1282,7 +1284,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, [r0, #4]
     bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
-    ldr r2, .L0800249C @ =0x06010000
+    ldr r2, .L0800249C @ =OBJ_VRAM0
     adds r1, r0, r2
     ldr r0, [sp, #8]
     movs r2, #0
@@ -1306,7 +1308,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     pop {r0}
     bx r0
     .align 2, 0
-.L0800249C: .word 0x06010000
+.L0800249C: .word OBJ_VRAM0
 .L080024A0: .word 0x00006BFC
 .L080024A4: .word 0x00001028
 .L080024A8: .word 0x00006CF8
@@ -1314,7 +1316,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L080024B0: .word 0x00006C20
 .L080024B4: .word 0x0000102C
 .L080024B8: .word 0x00006D10
-.L080024BC: .word 0x05000200
+.L080024BC: .word OBJ_PALETTE
 .L080024C0: .word 0x00006D08
 .L080024C4: .word 0x00006C38
 .L080024C8: .word 0x00006C3C
@@ -1972,7 +1974,7 @@ RenderIntroSceneFrame:
 .L08002A36:
     str r5, [sp, #0x9c]
     lsls r2, r2, #5
-    ldr r1, .L08002A88 @ =0x06010000
+    ldr r1, .L08002A88 @ =OBJ_VRAM0
     adds r2, r2, r1
     mov r0, sb
     mov r1, r8
@@ -2004,7 +2006,7 @@ RenderIntroSceneFrame:
 .L08002A7C: .word 0x00006AE4
 .L08002A80: .word 0x00006B04
 .L08002A84: .word 0x00006B24
-.L08002A88: .word 0x06010000
+.L08002A88: .word OBJ_VRAM0
 .L08002A8C:
     mov r8, r1
     mov r6, sl
@@ -2241,7 +2243,7 @@ RenderIntroSceneFrame:
 .L08002C56:
     str r5, [sp, #0x9c]
     lsls r2, r2, #5
-    ldr r4, .L08002C98 @ =0x06010000
+    ldr r4, .L08002C98 @ =OBJ_VRAM0
     adds r2, r2, r4
     mov r0, sb
     mov r1, r8
@@ -2269,7 +2271,7 @@ RenderIntroSceneFrame:
 .L08002C8C: .word 0x00006CB0
 .L08002C90: .word 0x00006CB8
 .L08002C94: .word 0x00006AD4
-.L08002C98: .word 0x06010000
+.L08002C98: .word OBJ_VRAM0
 .L08002C9C:
     mov r8, r1
     mov r4, sl
@@ -2498,7 +2500,7 @@ RenderIntroSceneFrame:
 .L08002E4E:
     str r5, [sp, #0x9c]
     lsls r2, r2, #5
-    ldr r4, .L08002E98 @ =0x06010000
+    ldr r4, .L08002E98 @ =OBJ_VRAM0
     adds r2, r2, r4
     mov r0, sb
     mov r1, r8
@@ -2528,7 +2530,7 @@ RenderIntroSceneFrame:
 .L08002E8C: .word 0x00006CC0
 .L08002E90: .word 0x00006CC8
 .L08002E94: .word 0x00006B54
-.L08002E98: .word 0x06010000
+.L08002E98: .word OBJ_VRAM0
 .L08002E9C:
     mov r8, r1
     mov r4, sl
@@ -2787,7 +2789,7 @@ RenderIntroSceneFrame:
 .L0800308C:
     str r5, [sp, #0x9c]
     lsls r2, r2, #5
-    ldr r1, .L080030D8 @ =0x06010000
+    ldr r1, .L080030D8 @ =OBJ_VRAM0
     adds r2, r2, r1
     mov r0, sb
     mov r1, r8
@@ -2817,7 +2819,7 @@ RenderIntroSceneFrame:
 .L080030CC: .word 0x00006C88
 .L080030D0: .word 0x00006C90
 .L080030D4: .word 0x00006AF4
-.L080030D8: .word 0x06010000
+.L080030D8: .word OBJ_VRAM0
 .L080030DC:
     mov r8, r1
     mov r6, sl
@@ -3038,7 +3040,7 @@ RenderIntroSceneFrame:
 .L08003280:
     str r5, [sp, #0x9c]
     lsls r2, r2, #5
-    ldr r4, .L080032C0 @ =0x06010000
+    ldr r4, .L080032C0 @ =OBJ_VRAM0
     adds r2, r2, r4
     mov r0, sb
     mov r1, r8
@@ -3065,7 +3067,7 @@ RenderIntroSceneFrame:
 .L080032B4: .word 0x00006C98
 .L080032B8: .word 0x00006CA0
 .L080032BC: .word 0x00006B14
-.L080032C0: .word 0x06010000
+.L080032C0: .word OBJ_VRAM0
 .L080032C4:
     mov r8, r1
     add r0, sp, #0x80
@@ -3283,7 +3285,7 @@ RenderIntroSceneFrame:
 .L08003462:
     str r5, [sp, #0x9c]
     lsls r2, r2, #5
-    ldr r1, .L080034A8 @ =0x06010000
+    ldr r1, .L080034A8 @ =OBJ_VRAM0
     adds r2, r2, r1
     mov r0, sb
     mov r1, r8
@@ -3312,7 +3314,7 @@ RenderIntroSceneFrame:
 .L0800349C: .word 0x00006CA8
 .L080034A0: .word 0x00006CC8
 .L080034A4: .word 0x00006B34
-.L080034A8: .word 0x06010000
+.L080034A8: .word OBJ_VRAM0
 .L080034AC:
     mov r8, r1
     add r1, sp, #0x88

@@ -7,6 +7,13 @@ EXTERN_C
 
 #define REG(type, addr) (*((type volatile *)(addr)))
 
+#define IWRAM_START 0x03000000
+#define IWRAM_END (IWRAM_START + 0x8000)
+#define INTR_VECTOR (*(void (**)(void))(IWRAM_END - 4))
+#define SRAM_BASE 0x0E000000
+// Native FoMT save image span on its SRAM cartridge.
+#define SRAM_SIZE 0x8000
+
 #define REG_DISPCNT REG(u16, 0x04000000)
 #define REG_DISPSTAT REG(u16, 0x04000004)
 #define REG_VCOUNT REG(u16, 0x04000006)
@@ -148,6 +155,42 @@ EXTERN_C
 #define REG_IME REG(u16, 0x04000208)
 
 #define REG_WAITCNT REG(u16, 0x04000204)
+
+// DISPCNT
+#define DISPCNT_FORCED_BLANK (1 << 7)
+
+// BLDCNT
+#define BLDCNT_TGT1_BG0 (1 << 0)
+#define BLDCNT_TGT1_BG1 (1 << 1)
+#define BLDCNT_TGT1_BG2 (1 << 2)
+#define BLDCNT_TGT1_BG3 (1 << 3)
+#define BLDCNT_TGT1_BG_ALL (BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3)
+#define BLDCNT_TGT1_OBJ (1 << 4)
+#define BLDCNT_TGT1_BD (1 << 5)
+#define BLDCNT_TGT1_ALL (BLDCNT_TGT1_BG_ALL | BLDCNT_TGT1_OBJ | BLDCNT_TGT1_BD)
+
+// SIOCNT
+#define SIO_MULTI_MODE (1 << 13)
+#define SIO_INTR_ENABLE (1 << 14)
+
+// KEYINPUT / KEYCNT
+#define A_BUTTON (1 << 0)
+#define B_BUTTON (1 << 1)
+#define SELECT_BUTTON (1 << 2)
+#define START_BUTTON (1 << 3)
+#define DPAD_RIGHT (1 << 4)
+#define DPAD_LEFT (1 << 5)
+#define KEY_INTR_ENABLE (1 << 14)
+#define KEY_AND_INTR (1 << 15)
+
+// IE / IF
+#define INTR_FLAG_KEYPAD (1 << 12)
+#define INTR_FLAG_GAMEPAK (1 << 13)
+
+// WAITCNT
+#define WAITCNT_WS0_N_3 (1 << 2)
+#define WAITCNT_WS0_S_1 (1 << 4)
+#define WAITCNT_PREFETCH_ENABLE (1 << 14)
 
 // SOUNDCNT_H
 

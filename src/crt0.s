@@ -43,10 +43,10 @@ _start:
     .type entrypoint, function
 entrypoint:
     @ init sp
-    mov    r0, 0x12
+    mov    r0, PSR_IRQ_MODE
     msr    cpsr, r0
     ldr    sp, l_sp_irq
-    mov    r0, 0x1F
+    mov    r0, PSR_SYS_MODE
     msr    cpsr, r0
     ldr    sp, l_sp_usr
 

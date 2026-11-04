@@ -9,7 +9,7 @@ void InitializeInterrupts(void)
 {
     u32 index;
     DisableInterrupts(0xFFFF);
-    *(void (**)(void))0x03007FFC = DispatchInterrupt;
+    INTR_VECTOR = DispatchInterrupt;
     for (index = 0; index <= 13; index++)
         ExchangeInterruptHandler(index, 0);
 }

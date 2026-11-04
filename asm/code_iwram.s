@@ -1,4 +1,7 @@
     .include "asm/macro.inc"
+    .include "six/asm/prelude.s"
+    .include "six/asm/hw/video.s"
+    .include "six/asm/hw/sound.s"
     .section .iwram, "awx"
     .syntax unified
 
@@ -11,21 +14,21 @@ HandleGamePakInterrupt:
     ldr r0, .LGamePakInterruptIe
     movs r2, #0
     strh r2, [r0]
-    movs r1, #0x80
-    lsls r1, r1, #0x13
-    movs r0, #0x80
+    movs r1, #(REG_DISPCNT >> 19)
+    lsls r1, r1, #19
+    movs r0, #LCD_FORCE_BLANK
     strh r0, [r1]
     ldr r0, .LGamePakInterruptSound
     strb r2, [r0]
     movs r0, #0
-    svc #0x19
+    svc #SVC_SOUNDBIAS
     .LGamePakInterruptStop:
-    svc #3
+    svc #SVC_STOP
     b .LGamePakInterruptStop
     .align 2, 0
-.LGamePakInterruptIme: .word 0x04000208
-.LGamePakInterruptIe: .word 0x04000200
-.LGamePakInterruptSound: .word 0x04000084
+.LGamePakInterruptIme: .word REG_IME
+.LGamePakInterruptIe: .word REG_IE
+.LGamePakInterruptSound: .word REG_SOUNDCNT_X
 
     .global __new_handler
     .type __new_handler, object
@@ -354,9 +357,9 @@ DrawGlyph1Tile:
 
     arm_func_start DispatchInterrupt
 DispatchInterrupt:
-    mov r2, #0x4000000
-    add r2, r2, #0x200
-    ldrb r1, [r2, #8]
+    mov r2, #REG_BASE
+    add r2, r2, #(REG_IE - REG_BASE)
+    ldrb r1, [r2, #(REG_IME - REG_IE)]
     mrs r0, spsr
     ldr r3, [r2]
     push {r0, r1, r2, r3, lr}
@@ -377,19 +380,19 @@ DispatchInterrupt:
     orr r1, r1, r0, lsl #16
     ldr r3, .LInterruptHandlers
     ldr r3, [r3, ip, lsl #1]
-    cmp r3, #0x8000000
-    orrhs r1, r1, #0x2000
+    cmp r3, #MEM_ROM
+    orrhs r1, r1, #IRQ_CARTRIDGE
     str r1, [r2]
     mov r1, #1
-    strb r1, [r2, #8]
+    strb r1, [r2, #(REG_IME - REG_IE)]
     ldr r2, .LInterruptBiosFlags
     ldrh r1, [r2]
     orr r1, r1, r0
     strh r1, [r2]
     mrs r0, apsr
     mov r1, r0
-    bic r1, r1, #0xdf
-    orr r1, r1, #0x1f
+    bic r1, r1, #(PSR_I_BIT | PSR_F_BIT | PSR_MODE_MASK)
+    orr r1, r1, #PSR_SYS_MODE
     msr cpsr_fc, r1
     push {r0, lr}
     cmp r3, #0
@@ -401,27 +404,27 @@ DispatchInterrupt:
     pop {r0, r1, r2, r3, lr}
     strh r3, [r2]
     msr spsr_fc, r0
-    strb r1, [r2, #8]
+    strb r1, [r2, #(REG_IME - REG_IE)]
     bx lr
 .LInterruptEnableMasks: .word gInterruptNestingMasks
 .LInterruptHandlers: .word gInterruptHandlers
-.LInterruptBiosFlags: .word 0x03007FF8
+.LInterruptBiosFlags: .word MEM_IWRAM + MEM_IWRAM_SIZE - 8
 
     arm_func_start ApplyInterruptEnableMask
 ApplyInterruptEnableMask:
-    cmp lr, #0x8000000
+    cmp lr, #MEM_ROM
     ldr r3, .LInterruptEnableRegister
-    ldrblo r2, [r3, #8]
+    ldrblo r2, [r3, #(REG_IME - REG_IE)]
     movhs r2, #1
-    orrhs ip, r0, #0x20000000
-    strb r3, [r3, #8]
+    orrhs ip, r0, #(IRQ_CARTRIDGE << 16)
+    strb r3, [r3, #(REG_IME - REG_IE)]
     ldrh r0, [r3]
     bic r1, r0, ip
     orr r1, r1, ip, lsr #16
     strh r1, [r3]
-    strb r2, [r3, #8]
+    strb r2, [r3, #(REG_IME - REG_IE)]
     bx lr
-.LInterruptEnableRegister: .word 0x04000200
+.LInterruptEnableRegister: .word REG_IE
 
     @ The ROM image initializes rand's writable IWRAM seed to one.
     .global gRandomSeed

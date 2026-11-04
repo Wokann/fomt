@@ -11,20 +11,20 @@
 
 void AgbMain(void)
 {
-    REG_WAITCNT = 0x4014;
+    REG_WAITCNT = WAITCNT_WS0_N_3 | WAITCNT_WS0_S_1 | WAITCNT_PREFETCH_ENABLE;
     InitializeInterrupts();
     ExchangeInterruptHandler(13, HandleGamePakInterrupt);
-    AcknowledgeAndEnableInterrupts(0x2000);
+    AcknowledgeAndEnableInterrupts(INTR_FLAG_GAMEPAK);
 
     SramAccess save;
     if (!IsValidSramImage(&save))
         InitializeSramImageHeader(&save);
 
     ExchangeInterruptHandler(12, HandleSoftResetKeyInterrupt);
-    REG_KEYCNT = 0xC00F;
-    AcknowledgeAndEnableInterrupts(0x1000);
+    REG_KEYCNT = KEY_INTR_ENABLE | KEY_AND_INTR | A_BUTTON | B_BUTTON | SELECT_BUTTON | START_BUTTON;
+    AcknowledgeAndEnableInterrupts(INTR_FLAG_KEYPAD);
 #if defined(REGION_EU) || defined(REGION_DE)
-    REG_SIOCNT = 0x6000;
+    REG_SIOCNT = SIO_MULTI_MODE | SIO_INTR_ENABLE;
     REG_RCNT = 0;
 #endif
 
@@ -38,36 +38,36 @@ void HandleSoftResetKeyInterrupt(void)
     volatile u16 *dma;
 
     DisableInterrupts(0xFFFF);
-    REG_DISPCNT = 0x80;
+    REG_DISPCNT = DISPCNT_FORCED_BLANK;
     *((volatile u8 *)&REG_SOUNDCNT_X) = 0;
 
-    while ((~REG_KEYINPUT & 0xF) != 0)
+    while ((~REG_KEYINPUT & (A_BUTTON | B_BUTTON | SELECT_BUTTON | START_BUTTON)) != 0)
     {
     }
 
     dma = (volatile u16 *)&REG_DMA0SAD;
-    dma[5] &= 0xC5FF;
-    dma[5] &= 0x7FFF;
+    dma[5] &= (u16)~(DMA_START_MASK | DMA_DREQ_ON | DMA_REPEAT);
+    dma[5] &= (u16)~DMA_ENABLE;
     (void)dma[5];
     dma += 6;
-    dma[5] &= 0xC5FF;
-    dma[5] &= 0x7FFF;
+    dma[5] &= (u16)~(DMA_START_MASK | DMA_DREQ_ON | DMA_REPEAT);
+    dma[5] &= (u16)~DMA_ENABLE;
     (void)dma[5];
     dma += 6;
-    dma[5] &= 0xC5FF;
-    dma[5] &= 0x7FFF;
+    dma[5] &= (u16)~(DMA_START_MASK | DMA_DREQ_ON | DMA_REPEAT);
+    dma[5] &= (u16)~DMA_ENABLE;
     (void)dma[5];
 
     {
         volatile u16 *dma3;
 
         dma3 = (volatile u16 *)&REG_DMA3SAD;
-        dma3[5] &= 0xC5FF;
-        dma3[5] &= 0x7FFF;
+        dma3[5] &= (u16)~(DMA_START_MASK | DMA_DREQ_ON | DMA_REPEAT);
+        dma3[5] &= (u16)~DMA_ENABLE;
         (void)dma3[5];
     }
 
-    SoftReset(0xFF);
+    SoftReset(GBA_RESET_ALL);
     while (1)
     {
     }

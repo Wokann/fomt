@@ -9,6 +9,13 @@
 
 .equiv REG_BASE, 0x04000000
 
+@ ARM processor modes and interrupt-disable bits.
+.equiv PSR_IRQ_MODE,  0x12
+.equiv PSR_SYS_MODE,  0x1F
+.equiv PSR_MODE_MASK, 0x1F
+.equiv PSR_F_BIT,     0x40
+.equiv PSR_I_BIT,     0x80
+
 .macro CONST id:req, v:req
     .equiv \id, \v
 .endm

@@ -1,4 +1,5 @@
 #include "intro_scene.hh"
+#include "gbaio.h"
 #include "compression.hh"
 #include "random.hh"
 #include "new_game_name_entry.hh"
@@ -215,7 +216,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
 {
     EnableHardwareForcedBlank(reinterpret_cast<HardwareBootstrap *>(core));
     InitializeIntroSceneBackground(core);
-    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(BLDCNT_TGT1_ALL);
 
     HardwareBlendOwner owner(new HardwareBlendObject(
         GetHardwareDisplayState(reinterpret_cast<void * const *>(core))));
@@ -241,7 +242,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
         case 1:
             --core->startup_hold_frames;
             // START skips the hold, but both fades still run to completion.
-            if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 8))
+            if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & START_BUTTON))
                 core->startup_hold_frames = 0;
             if (core->startup_hold_frames <= 0)
             {
@@ -262,7 +263,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
 {
     EnableHardwareForcedBlank(reinterpret_cast<HardwareBootstrap *>(core));
     InitializeIntroSceneSequenceResources(core);
-    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(BLDCNT_TGT1_ALL);
     HardwareBlendOwner owner(new HardwareBlendObject(
         GetHardwareDisplayState(reinterpret_cast<void * const *>(core))));
     BeginHardwareBlend(&owner.object->blend, 0x889, 1, 0);
@@ -290,9 +291,9 @@ int RunIntroSceneSequence(IntroSceneCore * core)
         if (!skipped)
         {
             bool pressed = false;
-            if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 1)
-                || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 2)
-                || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 8))
+            if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & A_BUTTON)
+                || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & B_BUTTON)
+                || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & START_BUTTON))
                 pressed = true;
             if (pressed)
                 core->startup_phase = 11;
@@ -431,8 +432,8 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             if (core->unk_6C6D == 2)
             {
                 bool moved = false;
-                if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 32)
-                    || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 16))
+                if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & DPAD_LEFT)
+                    || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & DPAD_RIGHT))
                     moved = true;
                 if (moved)
                 {
@@ -465,8 +466,8 @@ int RunIntroSceneSequence(IntroSceneCore * core)
             }
 
             bool pressed = false;
-            if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 1)
-                || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & 8))
+            if (static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & A_BUTTON)
+                || static_cast<u16>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & START_BUTTON))
                 pressed = true;
             if (pressed)
             {

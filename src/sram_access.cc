@@ -1,5 +1,6 @@
 #include "sram_access.hh"
 #include "libsram.h"
+#include "gbaio.h"
 
 // Shared by the SRAM access contexts; startup zeroes this ordinary BSS.
 u16 gSramAccessStatus;
@@ -29,7 +30,7 @@ bool SramAccess::Erase()
         bytes[index] = 0xFF;
 
     offset = 0;
-    limit = 0x8000;
+    limit = SRAM_SIZE;
     do
     {
         Write(offset, bytes, sizeof(bytes));
@@ -47,7 +48,7 @@ bool SramAccess::Write(u32 offset, void const *source, u32 size)
 
     bool success = true;
     if (WriteSramFastAndVerify(static_cast<u8 const *>(source),
-            reinterpret_cast<u8 *>(0x0E000000 | offset), size) != 0) {
+            reinterpret_cast<u8 *>(SRAM_BASE | offset), size) != 0) {
         AddStatusFlag(0x100);
         success = false;
     }
@@ -60,7 +61,7 @@ bool SramAccess::Read(void *destination, u32 offset, u32 size)
     if (size == 0)
         return false;
 
-    ReadSramFast((u8 const *)(0x0E000000 | offset), static_cast<u8 *>(destination), size);
+    ReadSramFast((u8 const *)(SRAM_BASE | offset), static_cast<u8 *>(destination), size);
     return true;
 }
 
