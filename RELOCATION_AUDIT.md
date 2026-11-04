@@ -615,32 +615,45 @@ src/new_game_menu、src/ui_state、asm/new_game_menu 的 .d 均直接追踪此�
 menu-dependencies-native-validation.json；无移址、扩容或运行时测试。
 保留 JP 0x37A8 锚，因为后续姓名输入系列尚未完成本轮同等核查。
 
-## name_entry / identity 边界与硬件定义补齐（2026-11-05）
+## name_entry / identity：引用审计与尺寸合同（2026-11-05）
 
 name_entry 四版前部均 0x2B4；identity JP 0xA18、海外 0xB5C，具体范围见
-CODE_ROM_LAYOUT.md。本轮保留现有高级语言实现和地区布局差异，检查所有
-保留重定位及当前缓存中命中这两个范围的数值窗口。代码候选是跨真实指令
-或 switch 重定位的拼窗；资源候选由相应图块、压缩流、音频或实际 C 结构
-字段解释，Mary 候选是 JUMP 包头拼窗。没有把数值碰巧相等视为 ROM 指针。
-另对实际 .text 的 ARM/Thumb 分支定向补查，只发现已有符号的 name_entry
-构造调用和它对 identity 的四个方法调用。此结论不包含未知计算式地址证明。
+CODE_ROM_LAYOUT.md。前轮已核查保留重定位、定向 ARM/Thumb 分支和既有
+数值候选缓存：代码项为真实指令或 switch 表项拼窗，资源项按图块、压缩流
+边界及实际 C 结构字段解释，Mary 项为 JUMP 包头拼窗。未将碰巧相同的数值
+直接视为 ROM 指针，未发现新的裸入向指针；该结论不覆盖未知计算式地址。
 
-按本地 pokeemerald include/gba/defines.h、include/gba/io_reg.h 及
-src/title_screen.c 的实际用法，将明确硬件地址和位值写成现有宏表达。
-FoMT C++ 使用 gbaio.h；汇编复用 six/asm/hw/memory.s、video.s，未新增
-包装头或编译步骤。覆盖确认画面的 BG VRAM/screen、palette 单 bank 大小、
-DISPCNT/BGCNT/BLDCNT，以及所调用混合控制器的寄存器和 shadow 偏移。
-原 06FFC000 DMA 地址和 u16 清除掩码数值保持；固定点增量、未知标量和
-结构容量不机械替换为硬件宏。歌曲参数复用 AUDIO_BGM_TITLE_SCREEN。
+本轮将 identity 的原生汇编布局与 C++ 类型建立编译期合同：同名头中的
+`NEW_GAME_IDENTITY_*` 字段数、宽度和 tile 高度参与模板实例化，并推导
+tile 字节数、完整缓冲步长、首个值/标签 tiles 及后续核心成员偏移。汇编经
+已有 CPP 通道读取这些整数表达式；`sizeof` / `offsetof` 检查它们与实际
+C++ 声明一致。没有为每个旧地址加补偿偏移，也没有引入新布局生成工具。
 
-这只是已确认硬件常量及引用审计，identity 还保留 RAM 成员池偏移、0x304 /
-0x384 步长、0x300 / 0x380 上传量及真实四/八项布局依赖，尚未从实际类型
-派生。下一轮应继续该依赖，而不是直接删除 JP 菜单至 name_input 的锚点。
-四版 WSL make -j4 compare 通过；无移址、扩容或运行时测试。
-证据保存在私有 name-entry-94cd39e6 目录：四版 boundaries、重定位和定向
-分支报告、code-review.json、code-candidate-exclusions.json、
-resource_candidate_classification.json、resource_dependency_audit.json、
-mary_candidate_classification.json、hardware-native-validation.json 及四版日志。
+清除、绘制、上传、目标递增和 tilemap 计算随上述尺寸关联。必须区分完整
+缓冲步长与仅 tiles 的上传量：前者含四字节前缀，后者不含。原指令可表达的
+立即数保持原写法；不满足编码条件时改用字面量加载，不强加额外对齐来匹配。
+JP 的八组等宽缓冲与海外两组各四项、宽度不同的缓冲保留真实布局差异。
+
+背景 tile 有已证实的内容依赖。JP 的狗名标签第二字为全角空格，对应 tile
+170；海外第一个标签第五字为 ASCII 空格，对应 tile 100。冻结 ROM 的编码、
+字库索引及 glyph 字节与绘制指令流共同证明它们生成全零 tile；这是静态证据，
+不是本轮模拟器截图。改变标签使该位置不再是空格，仍会改变背景图像，不能
+因为指针和尺寸已关联就声称任意文本替换安全。
+
+四个业务字段及两 tile 高的写图逻辑不支持仅改常量就任意增加字段或高度；
+`FixedStr<12>` / `<15>` 是编码字节容量加终止符，不能与 tile 宽度混为一谈。
+四字（16 字节）的 DMA 队列描述符、BG 地图行宽及 VRAM 分配也是实际契约。
+共享 UI 图块位于 `0x06004B00`，文本扩展仍须检查不与其及地图占用冲突。
+
+初始化入口的 C++ 草稿尚未达到匹配，提交仍使用原生汇编，不增加 C/C++
+覆盖。本轮原位验证：四版 WSL make -j4 compare 全部通过，原版 SHA-1 一致，汇编依赖文件均追踪共享头。原位匹配不代表已做
+移址、扩容或运行时验证；保留后续 LDS 锚点，接续审查 name_input。
+
+前轮引用证据位于私有 name-entry-94cd39e6：各版 boundaries、重定位、定向
+分支及 code/resource/Mary 分类记录。本轮补充位于 identity-layout-31dec354：
+identity_layout_review.json（实际缓冲、tilemap、空白 glyph 与限制），以及
+identity_asm_layout_dependencies.json（汇编消费者和类型对应）。后者最初
+列为待证的背景 tile 已由前者补证；最终原位验证以本轮四版日志为准。
 
 ## 本地参考工程的风格与流程（2026-11-05）
 

@@ -24,7 +24,7 @@ static inline void AppendIdentityField(FixedStr<15> & field, char const * text)
     char * start = &field[0];
     u32 size = strlen(start);
     char * end = start + size;
-    u32 available = 15 - size;
+    u32 available = sizeof(field) - 1 - size;
     if (available != 0) {
         u32 length = strlen(text);
         if (length > available)
@@ -41,10 +41,10 @@ NewGameIdentityCore * InitializeNewGameIdentityCore(NewGameIdentityCore * core,
     ConstructHardwareBootstrap(core);
     InstallHardwareBootstrapNativeVTable(core, __vt_19NewGameIdentityCore);
 #if defined(REGION_JP)
-    new (core->buffers) NewGameTextTileBuffer<12>[8];
+    new (core->buffers) NewGameIdentityValueBuffer[2 * NEW_GAME_IDENTITY_FIELD_COUNT];
 #else
-    new (core->value_buffers) NewGameTextTileBuffer<12>[4];
-    new (core->label_buffers) NewGameTextTileBuffer<14>[4];
+    new (core->value_buffers) NewGameIdentityValueBuffer[NEW_GAME_IDENTITY_FIELD_COUNT];
+    new (core->label_buffers) NewGameIdentityLabelBuffer[NEW_GAME_IDENTITY_FIELD_COUNT];
 #endif
     core->unk_1A28 = 2;
     UiStateOwner * storage = static_cast<UiStateOwner *>(::operator new(sizeof(UiStateOwner)));

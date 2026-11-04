@@ -1,15 +1,54 @@
 #ifndef NEW_GAME_IDENTITY_HH
 #define NEW_GAME_IDENTITY_HH
 
+// Four fixed form fields are rendered as two tile rows each. Widths are
+// shared with the remaining assembly; field count and height describe this
+// screen's actual format, not arbitrary additional rows or fields.
+#define NEW_GAME_IDENTITY_FIELD_COUNT 4
+#define NEW_GAME_IDENTITY_TILE_HEIGHT 2
+#define NEW_GAME_IDENTITY_VALUE_WIDTH 12
+#if defined(REGION_JP)
+#define NEW_GAME_IDENTITY_LABEL_WIDTH NEW_GAME_IDENTITY_VALUE_WIDTH
+#else
+#define NEW_GAME_IDENTITY_LABEL_WIDTH 14
+#endif
+
+// Each 4bpp tile is 32 bytes. The native buffer has one u32 prefix; the
+// bootstrap has two words. The C++ checks below verify these ABI facts.
+#define NEW_GAME_IDENTITY_VALUE_TILE_BYTES (NEW_GAME_IDENTITY_VALUE_WIDTH * NEW_GAME_IDENTITY_TILE_HEIGHT * 32)
+#define NEW_GAME_IDENTITY_LABEL_TILE_BYTES (NEW_GAME_IDENTITY_LABEL_WIDTH * NEW_GAME_IDENTITY_TILE_HEIGHT * 32)
+#define NEW_GAME_IDENTITY_VALUE_BUFFER_BYTES (4 + NEW_GAME_IDENTITY_VALUE_TILE_BYTES)
+#define NEW_GAME_IDENTITY_LABEL_BUFFER_BYTES (4 + NEW_GAME_IDENTITY_LABEL_TILE_BYTES)
+#define NEW_GAME_IDENTITY_VALUE_TILES_OFFSET (8 + 4)
+#define NEW_GAME_IDENTITY_LABEL_TILES_OFFSET (8 + NEW_GAME_IDENTITY_FIELD_COUNT * NEW_GAME_IDENTITY_VALUE_BUFFER_BYTES + 4)
+#define NEW_GAME_IDENTITY_CORE_DATA_OFFSET (8 + NEW_GAME_IDENTITY_FIELD_COUNT * (NEW_GAME_IDENTITY_VALUE_BUFFER_BYTES + NEW_GAME_IDENTITY_LABEL_BUFFER_BYTES))
+#define NEW_GAME_IDENTITY_CORE_UI_OFFSET (NEW_GAME_IDENTITY_CORE_DATA_OFFSET + 4)
+#define NEW_GAME_IDENTITY_CORE_MUSIC_OFFSET (NEW_GAME_IDENTITY_CORE_UI_OFFSET + 4)
+#define NEW_GAME_IDENTITY_CORE_FIELDS_OFFSET (NEW_GAME_IDENTITY_CORE_MUSIC_OFFSET + 4)
+
+#ifndef __ASSEMBLER__
+
 #include "new_game.hh"
 
+typedef NewGameTextTileBuffer<NEW_GAME_IDENTITY_VALUE_WIDTH, NEW_GAME_IDENTITY_TILE_HEIGHT> NewGameIdentityValueBuffer;
+typedef NewGameTextTileBuffer<NEW_GAME_IDENTITY_LABEL_WIDTH, NEW_GAME_IDENTITY_TILE_HEIGHT> NewGameIdentityLabelBuffer;
+
 typedef char NewGameIdentityValueBufferSizeCheck[
-    sizeof(NewGameTextTileBuffer<12>) == 0x304 ? 1 : -1];
+    sizeof(NewGameIdentityValueBuffer) == NEW_GAME_IDENTITY_VALUE_BUFFER_BYTES ? 1 : -1];
 typedef char NewGameIdentityLabelBufferSizeCheck[
-    sizeof(NewGameTextTileBuffer<14>) == 0x384 ? 1 : -1];
-typedef char NewGameIdentityTilesOffsetCheck[
-    offsetof(NewGameTextTileBuffer<12>, tiles) == 4 ? 1 : -1];
+    sizeof(NewGameIdentityLabelBuffer) == NEW_GAME_IDENTITY_LABEL_BUFFER_BYTES ? 1 : -1];
+typedef char NewGameIdentityValueTilesOffsetCheck[offsetof(NewGameIdentityValueBuffer, tiles) == 4 ? 1 : -1];
+typedef char NewGameIdentityLabelTilesOffsetCheck[offsetof(NewGameIdentityLabelBuffer, tiles) == 4 ? 1 : -1];
+typedef char NewGameIdentityValueTilesSizeCheck[
+    sizeof(((NewGameIdentityValueBuffer *)0)->tiles) == NEW_GAME_IDENTITY_VALUE_TILE_BYTES ? 1 : -1];
+typedef char NewGameIdentityLabelTilesSizeCheck[
+    sizeof(((NewGameIdentityLabelBuffer *)0)->tiles) == NEW_GAME_IDENTITY_LABEL_TILE_BYTES ? 1 : -1];
+typedef char NewGameIdentityBootstrapSizeCheck[sizeof(HardwareBootstrap) == 8 ? 1 : -1];
+typedef char NewGameIdentityWordSizeCheck[sizeof(u32) == 4 ? 1 : -1];
+typedef char NewGameIdentityUiPointerSizeCheck[sizeof(UiStateOwner *) == 4 ? 1 : -1];
+typedef char NewGameIdentityMusicSizeCheck[sizeof(HardwareMusicPlayerSlot) == 4 ? 1 : -1];
 typedef char NewGameIdentityTextBufferSizeCheck[sizeof(FixedStr<15>) == 0x10 ? 1 : -1];
+typedef char NewGameIdentityTileRowsCheck[NEW_GAME_IDENTITY_TILE_HEIGHT == 2 ? 1 : -1];
 
 // Physical field order: player name, birthday, farm name, dog name. Native
 // construction bounds each byte string to 15 bytes plus its terminator;
@@ -19,22 +58,24 @@ enum NewGameIdentityField {
     NEW_GAME_IDENTITY_BIRTHDAY,
     NEW_GAME_IDENTITY_FARM_NAME,
     NEW_GAME_IDENTITY_DOG_NAME,
-    NEW_GAME_IDENTITY_FIELD_COUNT,
 };
 
-// The identity-confirmation form owns a 0x1878-byte JP core or a 0x1A78-byte
-// overseas core. JP uses eight equal-width buffers: four values followed by
-// four labels. Overseas labels are wider and form their own four-entry array.
+typedef char NewGameIdentityFieldCountCheck[
+    NEW_GAME_IDENTITY_DOG_NAME + 1 == NEW_GAME_IDENTITY_FIELD_COUNT ? 1 : -1];
+
+// JP stores values followed by labels in one equal-width array. Overseas
+// labels are wider and form their own array; following members use the
+// resulting C++ layout.
 // The unknown scalar and control-byte names retain their original US offsets.
 #pragma interface "new_game_identity.hh"
 struct NewGameIdentityCore : HardwareBootstrap {
     virtual ~NewGameIdentityCore() asm("DestroyNewGameIdentityCore")
         SECTION(".text.new_game_identity_core_cleanup");
 #if defined(REGION_JP)
-    NewGameTextTileBuffer<12> buffers[8];
+    NewGameIdentityValueBuffer buffers[2 * NEW_GAME_IDENTITY_FIELD_COUNT];
 #else
-    NewGameTextTileBuffer<12> value_buffers[4];
-    NewGameTextTileBuffer<14> label_buffers[4];
+    NewGameIdentityValueBuffer value_buffers[NEW_GAME_IDENTITY_FIELD_COUNT];
+    NewGameIdentityLabelBuffer label_buffers[NEW_GAME_IDENTITY_FIELD_COUNT];
 #endif
     u32 unk_1A28;
     UiStateOwner * ui_state;
@@ -59,25 +100,39 @@ struct NewGameIdentityScene : AScene {
 
 
 #if defined(REGION_JP)
-typedef char NewGameIdentityCoreSizeCheck[sizeof(NewGameIdentityCore) == 0x1878 ? 1 : -1];
-typedef char NewGameIdentityCoreBuffersCheck[offsetof(NewGameIdentityCore, buffers) == 8 ? 1 : -1];
-typedef char NewGameIdentityCoreUnk1A28Check[offsetof(NewGameIdentityCore, unk_1A28) == 0x1828 ? 1 : -1];
-typedef char NewGameIdentityCoreUiCheck[offsetof(NewGameIdentityCore, ui_state) == 0x182C ? 1 : -1];
-typedef char NewGameIdentityCoreMusicCheck[offsetof(NewGameIdentityCore, music) == 0x1830 ? 1 : -1];
-typedef char NewGameIdentityCoreFieldsCheck[offsetof(NewGameIdentityCore, fields) == 0x1834 ? 1 : -1];
-typedef char NewGameIdentityCoreControlCheck[offsetof(NewGameIdentityCore, unk_1A74) == 0x1874 ? 1 : -1];
-typedef char NewGameIdentityCoreResultCheck[offsetof(NewGameIdentityCore, confirmed) == 0x1876 ? 1 : -1];
+typedef char NewGameIdentityCoreBuffersCheck[
+    offsetof(NewGameIdentityCore, buffers) == sizeof(HardwareBootstrap) ? 1 : -1];
+typedef char NewGameIdentityCoreValueTilesCheck[
+    offsetof(NewGameIdentityCore, buffers) + offsetof(NewGameIdentityValueBuffer, tiles)
+        == NEW_GAME_IDENTITY_VALUE_TILES_OFFSET ? 1 : -1];
+typedef char NewGameIdentityCoreLabelTilesCheck[
+    offsetof(NewGameIdentityCore, buffers) + NEW_GAME_IDENTITY_FIELD_COUNT * sizeof(NewGameIdentityValueBuffer)
+        + offsetof(NewGameIdentityValueBuffer, tiles) == NEW_GAME_IDENTITY_LABEL_TILES_OFFSET ? 1 : -1];
 #else
-typedef char NewGameIdentityCoreSizeCheck[sizeof(NewGameIdentityCore) == 0x1A78 ? 1 : -1];
-typedef char NewGameIdentityCoreValueBuffersCheck[offsetof(NewGameIdentityCore, value_buffers) == 8 ? 1 : -1];
-typedef char NewGameIdentityCoreLabelBuffersCheck[offsetof(NewGameIdentityCore, label_buffers) == 0xC18 ? 1 : -1];
-typedef char NewGameIdentityCoreUnk1A28Check[offsetof(NewGameIdentityCore, unk_1A28) == 0x1A28 ? 1 : -1];
-typedef char NewGameIdentityCoreUiCheck[offsetof(NewGameIdentityCore, ui_state) == 0x1A2C ? 1 : -1];
-typedef char NewGameIdentityCoreMusicCheck[offsetof(NewGameIdentityCore, music) == 0x1A30 ? 1 : -1];
-typedef char NewGameIdentityCoreFieldsCheck[offsetof(NewGameIdentityCore, fields) == 0x1A34 ? 1 : -1];
-typedef char NewGameIdentityCoreControlCheck[offsetof(NewGameIdentityCore, unk_1A74) == 0x1A74 ? 1 : -1];
-typedef char NewGameIdentityCoreResultCheck[offsetof(NewGameIdentityCore, confirmed) == 0x1A76 ? 1 : -1];
+typedef char NewGameIdentityCoreValueBuffersCheck[
+    offsetof(NewGameIdentityCore, value_buffers) == sizeof(HardwareBootstrap) ? 1 : -1];
+typedef char NewGameIdentityCoreValueTilesCheck[
+    offsetof(NewGameIdentityCore, value_buffers) + offsetof(NewGameIdentityValueBuffer, tiles)
+        == NEW_GAME_IDENTITY_VALUE_TILES_OFFSET ? 1 : -1];
+typedef char NewGameIdentityCoreLabelTilesCheck[
+    offsetof(NewGameIdentityCore, label_buffers) + offsetof(NewGameIdentityLabelBuffer, tiles)
+        == NEW_GAME_IDENTITY_LABEL_TILES_OFFSET ? 1 : -1];
 #endif
+typedef char NewGameIdentityCoreDataCheck[
+    offsetof(NewGameIdentityCore, unk_1A28) == NEW_GAME_IDENTITY_CORE_DATA_OFFSET ? 1 : -1];
+typedef char NewGameIdentityCoreUiCheck[
+    offsetof(NewGameIdentityCore, ui_state) == NEW_GAME_IDENTITY_CORE_UI_OFFSET ? 1 : -1];
+typedef char NewGameIdentityCoreMusicCheck[
+    offsetof(NewGameIdentityCore, music) == NEW_GAME_IDENTITY_CORE_MUSIC_OFFSET ? 1 : -1];
+typedef char NewGameIdentityCoreFieldsCheck[
+    offsetof(NewGameIdentityCore, fields) == NEW_GAME_IDENTITY_CORE_FIELDS_OFFSET ? 1 : -1];
+typedef char NewGameIdentityCoreControlCheck[
+    offsetof(NewGameIdentityCore, unk_1A74) == offsetof(NewGameIdentityCore, fields)
+        + sizeof(((NewGameIdentityCore *)0)->fields) ? 1 : -1];
+typedef char NewGameIdentityCoreResultCheck[
+    offsetof(NewGameIdentityCore, confirmed) == offsetof(NewGameIdentityCore, unk_1A74) + 2 ? 1 : -1];
+typedef char NewGameIdentityCoreSizeCheck[
+    sizeof(NewGameIdentityCore) == offsetof(NewGameIdentityCore, unk_1A77) + sizeof(u8) ? 1 : -1];
 typedef char NewGameIdentitySceneSizeCheck[sizeof(NewGameIdentityScene) == 8 ? 1 : -1];
 typedef char NewGameIdentitySceneCoreCheck[offsetof(NewGameIdentityScene, core) == 4 ? 1 : -1];
 
@@ -105,7 +160,7 @@ void ResetNewGameIdentityControl(NewGameIdentityCore * core)
     SECTION(".text.new_game_identity_core_initialization");
 // Configure the confirmation screen, draw the four values and labels, queue
 // all eight tile buffers, build their BG map, and update the UI owner once.
-// JP has eight 12x2 buffers; overseas labels use separate 14x2 buffers.
+// JP shares the value width for labels; overseas labels have their own width.
 void InitializeNewGameIdentityScreen(NewGameIdentityCore * core);
 void UpdateNewGameIdentityDialog(NewGameIdentityCore * core)
     SECTION(".text.new_game_identity_core_update");
@@ -126,5 +181,7 @@ u8 GetNewGameIdentityCoreConfirmed(NewGameIdentityCore const * core)
     SECTION(".text.new_game_identity_scene");
 
 EXTERN_C_END
+
+#endif // !__ASSEMBLER__
 
 #endif // NEW_GAME_IDENTITY_HH
