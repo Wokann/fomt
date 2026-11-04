@@ -1,17 +1,14 @@
+    .include "asm/macro.inc"
     .include "six/asm/prelude.s"
     .include "six/asm/hw/dma.s"
 
     .syntax unified
 
     .section ".rom_header", "ax", %progbits
-    .align 2, 0
 
-    .arm
-    .global _start
-    .type _start, function
+    arm_func_start _start
 _start:
     b      entrypoint      @ ROM entry point
-    .size _start, . - _start
 
                            @ Nintendo logo data
     .byte  0x24, 0xFF, 0xAE, 0x51, 0x69, 0x9A, 0xA2, 0x21
@@ -94,21 +91,19 @@ entrypoint:
     ldr    lr, l_exit @ =exit
     bx     r1
 
-    .size entrypoint, . - entrypoint
+l_sp_irq:        .word MEM_IWRAM + MEM_IWRAM_SIZE - 0x0060
+l_sp_usr:        .word MEM_IWRAM + MEM_IWRAM_SIZE - 0x0100
+l_iwram_vma:     .word __iwram_vma
+l_iwram_vma_end: .word __iwram_vma_end
+l_iwram_lma:     .word __iwram_lma
+l_ewram_bss_end: .word __ewram_bss_end
+l_ewram_end:     .word MEM_EWRAM + MEM_EWRAM_SIZE
+l_set_heap:      .word InitializeGameHeap
+l_init_array:    .word init_array
+l_main:          .word AgbMain
+l_exit:          .word exit
 
-l_sp_irq:        .4byte MEM_IWRAM + MEM_IWRAM_SIZE - 0x0060
-l_sp_usr:        .4byte MEM_IWRAM + MEM_IWRAM_SIZE - 0x0100
-l_iwram_vma:     .4byte __iwram_vma
-l_iwram_vma_end: .4byte __iwram_vma_end
-l_iwram_lma:     .4byte __iwram_lma
-l_ewram_bss_end: .4byte __ewram_bss_end
-l_ewram_end:     .4byte MEM_EWRAM + MEM_EWRAM_SIZE
-l_set_heap:      .4byte InitializeGameHeap
-l_init_array:    .4byte init_array
-l_main:          .4byte AgbMain
-l_exit:          .4byte exit
     .align 2, 0
-
     .thumb
     .type exit, function
     .thumb_func
@@ -118,6 +113,5 @@ exit:
     svc    SVC_SOFTRESET
     movs   r0, r0
     bx     lr
-    .size exit, . - exit
 
     .align 2, 0

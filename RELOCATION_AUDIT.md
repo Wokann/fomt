@@ -210,7 +210,9 @@ US/EU/DE 对应歌曲头分别位于 `0829D534`、`0829D58C`、`0829F5B4`，
 四版共用 `src/crt0.s`。保留硬件规定的 192 字节 `.rom_header`，启动代码、
 常量池和退出处理置于普通 `.text`；LDS 按头部、启动、main 的顺序链接。
 JP 删除 main 前的 `0x18C` 定位，其他尚未核查的锚点不变。没有新建模块、
-包装宏或每字段类型声明；只标明三个函数的真实边界和 exit 的 Thumb 入口。
+包装宏或每字段类型声明。按后续统一规则，启动与 IWRAM 函数入口直接使用
+项目既有 `arm_func_start` / `thumb_func_start`；仅局部入口保留局部声明，
+也不添加函数 `.size`。宏保留 ARM/Thumb 类型与必要对齐，边界由下表记录。
 
 | 原生 ROM 半开范围（四版相同） | 内容 |
 | --- | --- |
@@ -345,6 +347,60 @@ main 的 Game Pak 注册及 InitializeInterrupts 的 BIOS 入口赋值同步更�
 四版 WSL `make -j4 compare` 通过，代码/ROM 字节和入口地址保持。
 没有移址验证、LDS 锚点修改或 C/C++ 覆盖增加。后续顺序位置是 `src/new.cc`
 （JP/US `08000584`，EU/DE `08000598`）；控制流及其他块仍按实际覆盖范围继续审计。
+
+## 本地参考工程的风格与流程（2026-11-05）
+
+系统审阅的参考是本地 pokeemerald `9a83a2bbe8`。范围覆盖启动及库汇编、
+C/头文件和数据 include、普通文本、资源转换、依赖生成、编译、链接及 ROM
+输出，并以本地 pokeheartgold 的 function.inc 交叉核对入口宏。参考本身有
+局部惯例和版本差异，不能把其中一种写法推成 FoMT 必须增加的新机制。
+
+- 汇编：普通库函数使用 arm_func_start/thumb_func_start，统一处理类型、
+  模式和对齐；crt0 也有更简洁的全局标签写法。部分库使用 end 宏生成 size，
+  并非全库不用 size。FoMT 按用户要求不额外加函数 size，公开入口复用已有宏；
+  crt0 的 entrypoint/exit 保持局部符号，不能套含 global 的宏而意外导出。
+  不移植参考工具专有的 Name:: 语法，不额外创建宏。池使用真实局部标签，
+  标签和值同一行。参考同时存在 word/4byte；FoMT 的本轮启动/中断块选用 word，
+  旧内容在顺序处理时统一，不作无关的全库替换；编译器输出不作风格改写。
+- C/头文件：按实际功能组织，公开类型和声明进入对应头文件；数据、结构表和
+  函数使用直接符号关联，私有实现保持局部。大表可由所属模块 include 数据
+  文件，但不把每个对象单独分节或拆文件。FoMT 继续遵守同名 cc/hh、四语言
+  文本 include 和物理连续主题规则，不机械复制纯 C 的文件后缀和字段布局。
+- 文本：参考中带 _()/__() 标记的游戏文本通过 preproc/charmap 转码，保留命名数组，
+  指针表引用符号。FoMT 保留自身的单字节零结束、控制符和区域编码，以及
+  指南/Mary 的专门生成步骤；不能复制 Pokémon 的 FF 结束符。
+- 资源：PNG 图块、独立 PAL、map/bin、OAM 及其结构分别维护，通用工具负责
+  图块/色板转换和压缩，再由源码引用生成结果。参考也确实有从 PNG 读取内嵌
+  调色板的例子，不能概括成所有色板都来自 PNG，也不能说绝无此模式。
+- 本地版本同时保留原目录的传统转换规则和 INCGFX 的 build/assets 路线。
+  后者由 scaninc 写依赖/生成规则，preproc 读取结果，属于当前参考的资产接口；
+  与 MODERN 编译模式是不同维度。FoMT 按用户已有要求保留资源产物在原目录，
+  不另建 build/assets、INCGFX 包装或逐资源脚本，不恢复 baserom 依赖。
+- 编译：参考的旧编译器通道是 CPP → preproc → cc1 → as，对象留在 build；
+  scaninc 生成真实 include/资源依赖，工具先编译就绪。生成的代码继续进入
+  普通通道，不给每个模块单独发明处理链。FoMT 的 C++ ABI 与已需要的通用
+  文本/预处理步骤保留，不因参考主要用 C 就删掉必要处理或增加特例补丁。
+  参考在 as 前统一追加的是 text 段末对齐，并非给每个数据对象强制加对齐。
+- 链接：text、rodata、库与 RAM 区域按用途分别安排，普通对象主要按源模块
+  在 LDS 中显式列出的顺序链接，平台地址与确有用途的原版锚点另看。参考还用 extra 接纳剩余
+  text/rodata；通配编译新文件不等于已安排正确 ROM 位置。FoMT 只有静态
+  边界和引用核查支持时才移除旧定位，不以参考结构为理由盲删。
+- ROM 输出：ld → ELF/MAP → gbafix 修正头 → objcopy → gbafix 尾部 FF 填充，
+  不修补函数或资源指针。字节回归以受影响版本原位 compare 为准；
+  按用户最新要求不进行移址测试。
+
+本轮实际修改仅涉及 crt0、IWRAM 和中断交换函数的汇编声明风格，以及本记录；
+没有改动 Makefile、LDS、指令、指针目标或资源。JP/US/EU/DE 均已通过 WSL
+`make -j4 compare`，crt0 的 entrypoint/exit 仍为 LOCAL，_start 仍为 GLOBAL。
+验证日志为接续证据目录中的 `reference-style-{jp,us,eu,de}.log`；这不是引用
+完整性或 C/C++ 恢复进度的新增完成量。
+
+可复核参考路径（均相对本地 pokeemerald 根目录）：
+`asm/macros/function.inc`、`src/crt0.s`、`src/m4a_1.s`、`src/libgcnmultiboot.s`、
+`src/main.c` / `include/main.h`、`src/pokemon.c`、`src/strings.c`、
+`src/region_map.c`、`src/title_screen.c`、`include/sprite.h`、`Makefile`、
+`make_tools.mk`、`graphics_file_rules.mk`、`ld_script.ld`、
+`tools/preproc/c_file.cpp`、`tools/scaninc/scaninc.cpp`、`tools/gbafix/gbafix.c`。
 
 ## 接续资料
 

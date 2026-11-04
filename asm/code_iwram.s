@@ -1,10 +1,8 @@
+    .include "asm/macro.inc"
     .section .iwram, "awx"
     .syntax unified
 
-    .global HandleGamePakInterrupt
-    .type HandleGamePakInterrupt, function
-    .thumb
-    .thumb_func
+    thumb_func_start HandleGamePakInterrupt
 HandleGamePakInterrupt:
     push {lr}
     ldr r1, .LGamePakInterruptIme
@@ -32,15 +30,12 @@ HandleGamePakInterrupt:
     .global __new_handler
     .type __new_handler, object
 __new_handler:
-    .4byte 0
+    .word 0
     .size __new_handler, . - __new_handler
 
     .section .iwram.after_dimensions, "awx"
-    .align 2, 0
 
-    .global SubmitWorldSpriteRecords
-    .type SubmitWorldSpriteRecords, function
-    .arm
+    arm_func_start SubmitWorldSpriteRecords
 SubmitWorldSpriteRecords:
     push {r4, r5, r6, r7, r8, sb, sl, lr}
     mov ip, #0
@@ -186,15 +181,13 @@ SubmitWorldSpriteRecords:
     .Lauto_030006FC:
     ldr r0, [sp, #8]
     b .Lauto_03000708
-.LIwramSpriteDimensions: .4byte gHardwareSpriteDimensions
+.LIwramSpriteDimensions: .word gHardwareSpriteDimensions
     .Lauto_03000708:
     add sp, sp, #0x34
     pop {r4, r5, r6, r7, r8, sb, sl, lr}
     bx lr
 
-    .global DrawGlyph2Tile
-    .type DrawGlyph2Tile, function
-    .arm
+    arm_func_start DrawGlyph2Tile
 DrawGlyph2Tile:
     @ r0 is a 24-byte, 16-pixel-wide 1bpp glyph; r1 is the 16x16-tile
     @ scratch buffer. Each source row becomes 4bpp pixels plus its shadow.
@@ -286,9 +279,7 @@ DrawGlyph2Tile:
     pop {r4, r5, r6, r7, r8, r9, sl, lr}
     bx lr
 
-    .global DrawGlyph1Tile
-    .type DrawGlyph1Tile, function
-    .arm
+    arm_func_start DrawGlyph1Tile
 DrawGlyph1Tile:
     @ r0 is a 12-byte, 8-pixel-wide 1bpp glyph; r1 is the same scratch
     @ buffer. The right-hand tile receives the generated shadow pixels.
@@ -361,9 +352,7 @@ DrawGlyph1Tile:
     pop {r4, r5, r6, r7, r8, lr}
     bx lr
 
-    .global DispatchInterrupt
-    .type DispatchInterrupt, function
-    .arm
+    arm_func_start DispatchInterrupt
 DispatchInterrupt:
     mov r2, #0x4000000
     add r2, r2, #0x200
@@ -414,13 +403,11 @@ DispatchInterrupt:
     msr spsr_fc, r0
     strb r1, [r2, #8]
     bx lr
-.LInterruptEnableMasks: .4byte gInterruptNestingMasks
-.LInterruptHandlers: .4byte gInterruptHandlers
+.LInterruptEnableMasks: .word gInterruptNestingMasks
+.LInterruptHandlers: .word gInterruptHandlers
 .LInterruptBiosFlags: .word 0x03007FF8
 
-    .global ApplyInterruptEnableMask
-    .type ApplyInterruptEnableMask, function
-    .arm
+    arm_func_start ApplyInterruptEnableMask
 ApplyInterruptEnableMask:
     cmp lr, #0x8000000
     ldr r3, .LInterruptEnableRegister
@@ -434,22 +421,18 @@ ApplyInterruptEnableMask:
     strh r1, [r3]
     strb r2, [r3, #8]
     bx lr
-.LInterruptEnableRegister: .4byte 0x04000200
+.LInterruptEnableRegister: .word 0x04000200
 
     @ The ROM image initializes rand's writable IWRAM seed to one.
     .global gRandomSeed
     .type gRandomSeed, object
 gRandomSeed:
-    .4byte 1
+    .word 1
     .size gRandomSeed, . - gRandomSeed
 
     .section .iwram.after_sort, "awx"
-    .arm
-    .align 2, 0
 
-    .global BlendRgb5PaletteBank
-    .type BlendRgb5PaletteBank, function
-    .arm
+    arm_func_start BlendRgb5PaletteBank
 BlendRgb5PaletteBank:
     push {r4, r5, r6, r7, r8, sb, sl, fp, lr}
     and sb, r3, #0x1f

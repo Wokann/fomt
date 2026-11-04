@@ -14,7 +14,7 @@ ExchangeInterruptHandler:
 	str r1, [r2]
 	bx lr
 	.align 2, 0
-.LInterruptHandlerTable: .4byte gInterruptHandlers
+.LInterruptHandlerTable: .word gInterruptHandlers
 
 	thumb_func_start ExchangeInterruptNestingMask
 ExchangeInterruptNestingMask:
@@ -25,4 +25,4 @@ ExchangeInterruptNestingMask:
 	strh r1, [r2]
 	bx lr
 	.align 2, 0
-.LInterruptNestingMaskTable: .4byte gInterruptNestingMasks
+.LInterruptNestingMaskTable: .word gInterruptNestingMasks
