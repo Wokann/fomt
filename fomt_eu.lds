@@ -837,7 +837,7 @@ SECTIONS
         src/actor_facing.o(.text.SelectApproachFacing .text.SelectRetreatFacing);
         src/map_data.o(.text.IsMapTerrainBoxBlocked .text.ClipMapTerrainMovement .text.ClipMapTerrainMovementIgnoringFlag1);
         asm/map_data.o(.text);
-        asm/world_runtime.o(.text);
+        src/world_runtime.o(.text.__18GameSceneWorldDataG22GameSceneWorldMapOwner);
         src/world_runtime.o(.text._._18GameSceneWorldData);
         asm/world_runtime.o(.text.world_runtime_after_data_destruction);
         asm/code_809E804.o(.text.world_runtime_after);

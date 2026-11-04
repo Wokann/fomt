@@ -21,6 +21,9 @@ struct GameSceneIndexedSprite;
 // The native palette cache has 22 resource records and 13 retained banks.
 // Keep the remaining record bytes and flags opaque until their users are recovered.
 struct GameScenePaletteResource {
+    GameScenePaletteResource()
+        : palette_slot(-1), unk_81(0), unk_82(0), unk_83(1) {}
+
     u8 unk_00[0x80];
     i8 palette_slot : 8;
     u8 unk_81;
@@ -29,6 +32,9 @@ struct GameScenePaletteResource {
 };
 
 struct GameScenePaletteSlot {
+    GameScenePaletteSlot()
+        : palette_bank(allocation.GetIndex()), resource_index(-1), unk_0A(0) {}
+
     HardwareResourceEntry allocation;
     u8 palette_bank;
     i8 resource_index;
@@ -36,18 +42,20 @@ struct GameScenePaletteSlot {
     u8 unk_0B;
 };
 
-// The retained-bank entries and both frame counters form one owned subobject.
-// Its entries release their hardware handles in reverse order on destruction.
+// Retained entries own their hardware handles independently of the cache counters.
+// Entries release their hardware handles in reverse order on destruction.
 struct GameScenePaletteSlotPool {
     GameScenePaletteSlot entries[13];
-    u8 used_slots;
-    u8 previous_slots;
 };
 
 struct GameScenePaletteCache {
+    GameScenePaletteCache() : used_slots(0), previous_slots(0) {}
+
     u8 encoded_palette_banks[32];
     GameScenePaletteResource resources[22];
     GameScenePaletteSlotPool slot_pool;
+    u8 used_slots;
+    u8 previous_slots;
 
     // Native implementation; returns a retained/new OBJ bank or -1.
     i32 AcquirePaletteBank(u32 index);
@@ -59,9 +67,9 @@ typedef char GameScenePaletteResourceSizeCheck[sizeof(GameScenePaletteResource) 
 typedef char GameScenePaletteResourceFlagOffsetCheck[offsetof(GameScenePaletteResource, unk_81) == 0x81 ? 1 : -1];
 typedef char GameScenePaletteSlotSizeCheck[sizeof(GameScenePaletteSlot) == 12 ? 1 : -1];
 typedef char GameScenePaletteCacheSlotsCheck[offsetof(GameScenePaletteCache, slot_pool) == 0xB78 ? 1 : -1];
-typedef char GameScenePaletteCacheCountCheck[(offsetof(GameScenePaletteCache, slot_pool) + offsetof(GameScenePaletteSlotPool, used_slots)) == 0xC14 ? 1 : -1];
-typedef char GameScenePaletteSlotPoolSizeCheck[sizeof(GameScenePaletteSlotPool) == 0xA0 ? 1 : -1];
-typedef char GameScenePaletteCachePreviousCountCheck[(offsetof(GameScenePaletteCache, slot_pool) + offsetof(GameScenePaletteSlotPool, previous_slots)) == 0xC15 ? 1 : -1];
+typedef char GameScenePaletteCacheCountCheck[offsetof(GameScenePaletteCache, used_slots) == 0xC14 ? 1 : -1];
+typedef char GameScenePaletteSlotPoolSizeCheck[sizeof(GameScenePaletteSlotPool) == 0x9C ? 1 : -1];
+typedef char GameScenePaletteCachePreviousCountCheck[offsetof(GameScenePaletteCache, previous_slots) == 0xC15 ? 1 : -1];
 typedef char GameScenePaletteCacheSizeCheck[sizeof(GameScenePaletteCache) == 0xC18 ? 1 : -1];
 
 // This one-word owner is passed by value to the native data constructor.
@@ -85,6 +93,8 @@ private:
 };
 
 struct GameSceneWorldUnk1028 {
+    GameSceneWorldUnk1028();
+
     void Reset(IndexedResourceProvider * resource, u32 index,
         GameObject * world, Vec2 const & position);
     SmartPtr<GameSceneIndexedSprite> value;
@@ -139,7 +149,7 @@ typedef char GameScenePaletteIndexValuesCheck[offsetof(GameScenePaletteIndices, 
 
 // The native constructor receives this member at world+4, not the complete
 // world object. Each archive has its own source and reverse-order destruction.
-// Construction remains native assembly under the real C++ ABI name.
+// Construction takes the map owner and initializes the retained resources.
 // Destruction releases entities first, then the owned members in reverse order.
 struct GameSceneWorldData {
     GameSceneWorldMapOwner map;
@@ -162,6 +172,8 @@ struct GameSceneWorldData {
     SmartPtr<EntityAuxiliarySprites> entity_auxiliary_sprites;
     SmartPtr<WorldSpriteEffects> sprite_effects;
     GameSceneWorldUnk1028 unk_1028;
+
+    AEntity ** EntitiesEnd() { return entities + ARRAY_COUNT(entities); }
 
     IndexedResourceArchive * GetMapSpriteArchive() { return &unk_F00; }
 
@@ -192,6 +204,34 @@ EXTERN_C
 i32 GetWorldSpritePaletteBank(GameSceneWorld & world, u32 index);
 // The exact role of resource byte +0x81 remains unknown; only clearing is known.
 void ClearWorldSpritePaletteResourceFlag(GameSceneWorld & world, u32 index);
+EXTERN_C_END
+
+EXTERN_C
+extern u8 const gActorIndexedResourceArchive[];
+extern u8 const gUnk_083ED9FC[];
+extern u8 const gUnk_086678A0[];
+extern u8 const gUnk_084A5068[];
+extern u8 const gUnk_0871EF00[];
+extern u8 const gUnk_08480BDC[];
+extern u8 const gUnk_086FAA80[];
+extern u8 const gUnk_084A3678[];
+extern u8 const gUnk_0871D51C[];
+extern u8 const gUnk_084A4F3C[];
+extern u8 const gUnk_0871EDD4[];
+extern u8 const gUnk_084A4E14[];
+extern u8 const gUnk_0871ECAC[];
+extern u8 const gUnk_083ED1BC[];
+extern u8 const gUnk_08667060[];
+extern u8 const gUnk_084ADBDC[];
+extern u8 const gUnk_08727A74[];
+extern u8 const gUnk_084ACE34[];
+extern u8 const gUnk_08726CCC[];
+extern u8 const gUnk_084AD4D0[];
+extern u8 const gUnk_08727368[];
+extern u8 const gUnk_084ABF08[];
+extern u8 const gUnk_08725DA0[];
+extern u8 const gUnk_08479108[];
+extern u8 const gUnk_086F2FAC[];
 EXTERN_C_END
 
 #endif // WORLD_RUNTIME_HH
