@@ -51,7 +51,7 @@ entrypoint:
     ldr    sp, l_sp_usr
 
     @ clear memory
-    mov    r0, 3
+    mov    r0, GBA_RESET_EWRAM | GBA_RESET_IWRAM
     svc    SVC_REGISTERRAMRESET << 16
 
     @ init .iwram
@@ -68,8 +68,8 @@ entrypoint:
     strne  r2, [r1, REG_DMA3LEN - REG_BASE]
 
     @ init heap
-    ldr    r0, l_ewram_bss_end @ =0x02001F10
-    ldr    r1, l_ewram_end @ =0x02040000
+    ldr    r0, l_ewram_bss_end @ =__ewram_bss_end
+    ldr    r1, l_ewram_end @ =MEM_EWRAM + MEM_EWRAM_SIZE
     sub    r1, r1, r0
     ldr    r2, l_set_heap @ =InitializeGameHeap
     mov    lr, pc
@@ -108,7 +108,7 @@ l_exit:          .word exit
     .type exit, function
     .thumb_func
 exit:
-    movs   r0, 0xE0
+    movs   r0, GBA_RESET_SIO_IO | GBA_RESET_SOUND_IO | GBA_RESET_IO
     svc    SVC_REGISTERRAMRESET
     svc    SVC_SOFTRESET
     movs   r0, r0

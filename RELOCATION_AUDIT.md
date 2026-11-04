@@ -523,6 +523,13 @@ BG/OBJ palette、背景屏幕块与显示控制组合、按键和混合目标也
 四版 WSL `make -j4 compare` 全部通过，日志 `hardware-constants-{region}.log`。
 此次不改变 ROM 布局或 C/C++ 覆盖，不进行移址测试。
 
+补充复核已将 crt0 的 RegisterRamReset 参数改用 EWRAM/IWRAM 和串行/声音/其他
+IO 位组合；位定义补在原有 six/asm/hw/svc.s，与既有 gbasvc.h 及本地参考工程
+include/gba/syscall.h 一致。IRQ 扫描起始位使用 IRQ_VBLANK，两个背景填充
+长度使用 BG_SCREEN_SIZE 推导，原移位造数指令保持。启动堆边界注释也改为
+实际链接符号。四版原位 compare 再次通过，日志 hardware-followup-{region}.log。
+没有把中断索引误换为位掩码，也没有把 0xFFFF 改成只包含有效 IRQ 位的 0x3FFF。
+
 用户同时指出 intro 的固定解包上限不满足尺寸联动目标，该项重新列为当前
 待办，不能因保护检查通过而跳过：0x6A00 来自原版内嵌 RAM 跨度，不是资源
 实际长度，也不是 GBA 硬件上限。Unpack 的格式头已包含 24 位解包长度；

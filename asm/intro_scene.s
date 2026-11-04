@@ -21,7 +21,7 @@ InitializeIntroSceneBackground:
     movs	r0, #1
     negs	r0, r0
     ldr r4, .L08000FE4
-    movs	r2, #128	@ 0x80
+    movs	r2, #(BG_SCREEN_SIZE >> 4)
     lsls	r2, r2, #4
     adds	r1, r4, #0
     bl FillHardwareDma3
@@ -94,7 +94,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     movs r4, #1
     rsbs r4, r4, #0
     ldr r1, .L08001DB4 @ =(MEM_VRAM + 24 * BG_SCREEN_SIZE)
-    movs r5, #0x80
+    movs r5, #((2 * BG_SCREEN_SIZE) >> 5)
     lsls r5, r5, #5
     adds r0, r4, #0
     adds r2, r5, #0

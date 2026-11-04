@@ -364,7 +364,7 @@ DispatchInterrupt:
     ldr r3, [r2]
     push {r0, r1, r2, r3, lr}
     mov ip, #0
-    mov r0, #1
+    mov r0, #IRQ_VBLANK
     and r1, r3, r3, lsr #16
     .LDispatchInterruptScan:
     tst r1, r0
