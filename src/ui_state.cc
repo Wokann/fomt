@@ -357,7 +357,7 @@ static inline bool HasUiSelectionState(HardwareStateEntry const & state)
 
 static inline u32 UiSelectionTileIndex(HardwareStateEntry & state)
 {
-    return GetHardwareSharedStateTileIndex(&state, state.handle);
+    return GetObjTileIndex(&state, state.handle);
 }
 
 // Three physical rows contain seven four-column glyph entries each.
@@ -426,7 +426,7 @@ void DrawUiTextRows(UnkUiSelectionData * object, HardwareSpriteBufferState * spr
                 attributes.shape = 1;
                 attributes.size = 2;
                 if (HasUiSelectionState(entry.state))
-                    attributes.tile_index = GetHardwareSharedStateTileIndex(&entry.state, entry.state.handle);
+                    attributes.tile_index = GetObjTileIndex(&entry.state, entry.state.handle);
                 else
                     attributes.affine_mode = 2;
                 AppendUiTextRowSprite(sprites, attributes, x, y, palette);

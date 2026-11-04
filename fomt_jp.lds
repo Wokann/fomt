@@ -45,7 +45,7 @@ SECTIONS
         . = ALIGN(4);
         . = 0x000400; src/sram_access.o(.bss);
         . = 0x000404; src/obj_palette_pool.o(.bss COMMON);
-        . = 0x000408; src/hardware_refcount.o(.bss COMMON);
+        . = 0x000408; src/obj_tile_pool.o(.bss COMMON);
         . = 0x00040C; gUnk_0300040C = .;
         . = 0x000410; src/hardware_manager.o(.bss COMMON);
         . = 0x000414; src/ui_vcount.o(.bss COMMON);
@@ -116,12 +116,12 @@ SECTIONS
             .text.__20ObjPaletteCollection .text._._20ObjPaletteCollection
             .text.Get__C20ObjPaletteCollection);
         src/obj_tile_bitmap.o(.text);
-        . = 0x787C; /* Next unaudited shared OBJ state. */
-        asm/hardware.o(.text.hardware_mask_after);
-        src/hardware_refcount.o(.text);
-        asm/hardware.o(.text.hardware_refcount_after);
-        src/hardware_refcount.o(.text.hardware_shared_state_handles);
-        src/hardware_state_properties.o(.text);
+        asm/obj_tile_pool.o(.text.obj_tile_pool_init);
+        src/obj_tile_pool.o(.text);
+        asm/obj_tile_pool.o(.text.obj_tile_pool_reservation);
+        src/obj_tile_pool.o(.text.obj_tile_pool_handles);
+        src/obj_tile_pool.o(.text.obj_tile_tree_root);
+        . = 0x8198; /* Next unaudited OBJ allocation groups. */
         asm/hardware.o(.text.hardware_state_properties_after);
         src/hardware_state_clear.o(.text);
         src/hardware_bootstrap.o(.text);
@@ -1011,12 +1011,12 @@ SECTIONS
         src/new_game_name_entry.o(.text.CreateScene__26NewGameFreshSaveTransition .gnu.linkonce.t._._26NewGameFreshSaveTransition);
         src/obj_palette_pool.o(.text.obj_palette_free_list);
         src/obj_palette_collection.o(.text.Reserve__27ObjPaletteCollectionStorageUi);
-        src/hardware_refcount.o(.text.hardware_shared_state_tile_tree);
-        src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_after);
-        src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_unreserve);
-        src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_unreserve_after);
-        src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_operations);
-        src/hardware_refcount.o(.text.hardware_shared_state_free_list);
+        src/obj_tile_pool.o(.text.obj_tile_tree);
+        src/obj_tile_pool.o(.text.obj_tile_tree_after);
+        src/obj_tile_pool.o(.text.obj_tile_tree_unreserve);
+        src/obj_tile_pool.o(.text.obj_tile_tree_unreserve_after);
+        src/obj_tile_pool.o(.text.obj_tile_tree_operations);
+        src/obj_tile_pool.o(.text.obj_tile_handle_free_list);
         src/hardware_state_clear.o(.text.hardware_shared_state_free_list_after);
         src/hardware_bootstrap.o(.text.hardware_frame_commands);
         src/hardware_bootstrap.o(.text.hardware_dma_command);

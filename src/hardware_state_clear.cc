@@ -101,7 +101,7 @@ HardwareStateEntry HardwareStateOwner::Get(u32 group_index) const
                 ++current;
                 if (current == end)
                     current = group->start;
-                if (GetHardwareSharedStateReferenceCount(candidate, candidate->handle) == 1) {
+                if (GetObjTileHandleReferenceCount(candidate, candidate->handle) == 1) {
                     group->cursor = current;
                     current = candidate;
                     break;

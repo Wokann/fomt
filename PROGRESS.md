@@ -2,15 +2,13 @@
 
 ## 当前优先目标：完整边界与动态链接（2026-11-04）
 
-当前接续：InitializeHardwareSharedStateOwner，起点 JP `0800787C`、US
-`08007874`、EU `08007888`、DE `08007894`。刚完成的 OBJ 调色板集合和
-图块位图已按实际功能拆成 obj_palette_collection.cc/.hh 与
-obj_tile_bitmap.cc/.hh；七个既有 C++ 函数、每版 988 字节（含后置 Reserve）
-的边界、调用及候选引用已核查，直接更新真实符号，没有别名。
-启动段同时补齐遗漏的声音寄存器、图块/调色板长度和 RGB 宏。
-四版 -j4 compare、原版 SHA-1 与 map 边界通过；JP 固定锚移至下一未审入口。
-本轮不增加 C/C++ 覆盖，不作任意扩容或可移植 C++ 保证，未进行移址测试。
-详细范围、原生行为限制与证据见 layout 和引用审计。
+当前接续：InitializeHardwareStateOwnerGroups，起点 JP `08008198`、US
+`08008190`、EU `080081A4`、DE `080081B0`。刚完成共享 OBJ 图块池完整主题：
+46 个入口、每版 4528 字节，包含前部接口和后置树/helper；44 个既有 C++
+与 2 个原生汇编按功能归入 obj_tile_pool.cc/.hh/.s。原有结构分配大小及
+汇编字段依赖已连到共享类型定义，全部核实调用直接使用新符号。
+四版 -j4 compare、原版 SHA-1、map/ELF 与头依赖通过；JP 固定锚移至下一
+主题。没有新增 C/C++ 恢复字节；原有格式限制与特殊行为见 layout。
 
 从 `30d912e5` 开始，优先审计四版整个 ROM 的代码/数据边界和布局依赖。
 已有 C/C++ 比例保持不变；可从源码构建及原版匹配不代表已经能够自由移动内容。
@@ -237,8 +235,7 @@ ROM 中已有分散于后续功能模块的恢复内容，当前推进地址不�
 | [src/obj_palette_pool.cc](src/obj_palette_pool.cc) | 1,132 | 1,132 | 1,132 | 1,132 |
 | [src/obj_palette_collection.cc](src/obj_palette_collection.cc) | 826 | 826 | 826 | 826 |
 | [src/obj_tile_bitmap.cc](src/obj_tile_bitmap.cc) | 148 | 148 | 148 | 148 |
-| [src/hardware_refcount.cc](src/hardware_refcount.cc) | 3,078 | 3,078 | 3,078 | 3,078 |
-| [src/hardware_state_properties.cc](src/hardware_state_properties.cc) | 764 | 764 | 764 | 764 |
+| [src/obj_tile_pool.cc](src/obj_tile_pool.cc) | 3,842 | 3,842 | 3,842 | 3,842 |
 | [src/hardware_state_clear.cc](src/hardware_state_clear.cc) | 450 | 450 | 450 | 450 |
 | [src/hardware_bootstrap.cc](src/hardware_bootstrap.cc) | 1,092 | 1,092 | 1,092 | 1,092 |
 | [src/hardware_display_commands.c](src/hardware_display_commands.c) | 164 | 164 | 164 | 164 |

@@ -825,3 +825,28 @@ agbcp/ARM 寄存器移位结果，其 C++ 移位 32 表达式不作可移植保�
 resource_candidate_classification.json、mary-candidate-classification.json、
 collection_and_bitmap_semantics.json、source-edit-manifest.json、type-renames.json、
 native-validation.json、native-map-validation.json 和四版 native-compare.log。
+
+## OBJ tile pool：完整连续主题（2026-11-05）
+
+原 hardware_refcount 与 hardware_state_properties 合并为 obj_tile_pool.cc/.hh；
+两个原生入口位于 asm/obj_tile_pool.s。各版 44 个既有 C++ 加 2 个 ASM，
+11 个 ROM 输入段共 4528B，BSS 指针4B原位。范围与原生语义约束见 layout。
+类型、实际函数、嵌套 GCC 名字、全局指针和 LDS 直接改名，不建替身别名。
+
+首两段汇编的分配大小、字段和节点步长已连到共享类型表达式，C++ sizeof/
+offsetof 保证二者一致；短指令生成偏移不再无条件丢弃低四位。硬件1024个
+OBJ单位与软件256个8bit槽位分别说明，数组查询由 ARRAY_COUNT 推导。
+原生未初始化字节、重叠预留撤销规则和旧编译器移位行为保持并记录。
+
+整体外部入向JP1046/海外1048，外部出向5，内部调用68；BSS11条真实ABS32
+均零加数。15906个候选全部分类，无新裸指针。已有指令流漏记的每版8条
+BL另以真实指令及THM_CALL证实，未把分析器覆盖视作完整引用证明。
+四版原位 -j4 compare、SHA-1、map/ELF及CPP汇编头依赖通过；JP787C锚移至
+下一未审主题8198。不作任意RAM镜像或整体ROM可自由移动的扩大结论。
+未做移址/改尺寸/模拟器测试；高级语言覆盖不增加。
+
+证据：私有 obj-tile-pool-f0f42bcd 下 audit-notes.json、summary.json、各版
+boundaries/incoming/outgoing/direct-branch 报告、source-layout-abi-review.json、
+code-candidate-exclusions.json、resource_candidate_classification.json、
+mary-candidate-classification.json、obj_tile_pool_semantics.json、source-edit-manifest.json、
+symbol-renames.json、native-validation.json、native-map-validation.json及compare日志。

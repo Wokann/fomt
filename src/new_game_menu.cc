@@ -276,7 +276,7 @@ static inline bool HasSaveSlot(SramAccess & access, u32 slot)
 
 static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
 {
-    return GetHardwareSharedStateTileIndex(&entry, entry.handle);
+    return GetObjTileIndex(&entry, entry.handle);
 }
 
 static inline u32 SpritePaletteBank(ObjPaletteCollectionEntry & entry)

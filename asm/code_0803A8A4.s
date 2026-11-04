@@ -908,7 +908,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [sp, #12]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds	r2, r0, #0
     add	r1, sp, #12
     ldr	r0, [sp, #12]
@@ -969,7 +969,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r0, [r4, #4]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls	r0, r0, #22
     lsrs	r0, r0, #22
     ldr r2, .Ljp_0803C280
@@ -1043,7 +1043,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [sp, #12]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds	r2, r0, #0
     add	r1, sp, #12
     ldr	r0, [sp, #12]
@@ -1106,7 +1106,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r0, [r4, #4]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls	r0, r0, #22
     lsrs	r0, r0, #22
     ldr r2, .Ljp_0803C280
@@ -1230,7 +1230,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     lsls	r5, r5, #2
     adds	r0, r0, r5
     ldr	r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov	r8, r0
     lsls	r0, r4, #5
     mov	sl, r0
@@ -5410,7 +5410,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [sp, #12]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds	r2, r0, #0
     add	r1, sp, #12
     ldr	r0, [sp, #12]
@@ -5471,7 +5471,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r0, [r4, #4]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls	r0, r0, #22
     lsrs	r0, r0, #22
     ldr r2, .Leu_0803C500
@@ -5545,7 +5545,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [sp, #12]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds	r2, r0, #0
     add	r1, sp, #12
     ldr	r0, [sp, #12]
@@ -5608,7 +5608,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r0, [r4, #4]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls	r0, r0, #22
     lsrs	r0, r0, #22
     ldr r2, .Leu_0803C500
@@ -5732,7 +5732,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     lsls	r5, r5, #2
     adds	r0, r0, r5
     ldr	r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov	r8, r0
     lsls	r0, r4, #5
     mov	sl, r0
@@ -9947,7 +9947,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [sp, #12]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds	r2, r0, #0
     add	r1, sp, #12
     ldr	r0, [sp, #12]
@@ -10008,7 +10008,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r0, [r4, #4]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls	r0, r0, #22
     lsrs	r0, r0, #22
     ldr r2, .Lde_0803C400
@@ -10082,7 +10082,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [sp, #12]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds	r2, r0, #0
     add	r1, sp, #12
     ldr	r0, [sp, #12]
@@ -10145,7 +10145,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r0, [r4, #4]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls	r0, r0, #22
     lsrs	r0, r0, #22
     ldr r2, .Lde_0803C400
@@ -10269,7 +10269,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     lsls	r5, r5, #2
     adds	r0, r0, r5
     ldr	r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov	r8, r0
     lsls	r0, r4, #5
     mov	sl, r0
@@ -14458,7 +14458,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [sp, #12]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds	r2, r0, #0
     add	r1, sp, #12
     ldr	r0, [sp, #12]
@@ -14519,7 +14519,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r0, [r4, #4]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls	r0, r0, #22
     lsrs	r0, r0, #22
     ldr r2, .Lus_0803C4EC
@@ -14593,7 +14593,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [sp, #12]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds	r2, r0, #0
     add	r1, sp, #12
     ldr	r0, [sp, #12]
@@ -14656,7 +14656,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     str	r0, [r4, #4]
     ldr	r1, [r6, #4]
     adds	r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls	r0, r0, #22
     lsrs	r0, r0, #22
     ldr r2, .Lus_0803C4EC
@@ -14780,7 +14780,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     lsls	r5, r5, #2
     adds	r0, r0, r5
     ldr	r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov	r8, r0
     lsls	r0, r4, #5
     mov	sl, r0
@@ -18275,7 +18275,7 @@ __22EntityAuxiliarySpritesP10GameObject:
     strh	r5, [r4, #28]
     adds	r0, r6, #0
     adds	r0, #32
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     str	r5, [r4, #36]	@ 0x24
     adds	r4, #44	@ 0x2c
     adds	r6, #44	@ 0x2c
@@ -18378,14 +18378,14 @@ __22EntityAuxiliarySpritesP10GameObject:
     adds	r4, #36	@ 0x24
     ldr	r1, [r4, #4]
     adds	r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds	r0, r4, #0
     movs	r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     adds	r1, r0, #0
     str	r1, [r4, #4]
     adds	r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh	r0, [r6, #44]	@ 0x2c
     adds	r7, #1
     cmp	r7, #2

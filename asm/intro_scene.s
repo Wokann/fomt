@@ -922,7 +922,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, .L080022D0 @ =INTRO_SCENE_CORE_STATE_HANDLE_6CD0_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls r0, r0, #5
     ldr r2, .L080022D4 @ =OBJ_VRAM0
     adds r1, r0, r2
@@ -965,7 +965,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, .L080022DC @ =INTRO_SCENE_CORE_STATE_HANDLE_6CD8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls r0, r0, #5
     ldr r2, .L080022D4 @ =OBJ_VRAM0
     adds r1, r0, r2
@@ -1010,7 +1010,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r5, .L080022E4 @ =INTRO_SCENE_CORE_STATE_HANDLE_6CE0_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls r0, r0, #5
     ldr r2, .L080022D4 @ =OBJ_VRAM0
     adds r1, r0, r2
@@ -1134,7 +1134,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .L080022EC: .word 0x00001024
 .L080022F0: .word INTRO_SCENE_CORE_STATE_HANDLE_6CF0_OFFSET
 .L080022F4:
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls r0, r0, #5
     ldr r2, .L0800249C @ =OBJ_VRAM0
     adds r1, r0, r2
@@ -1195,7 +1195,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, .L080024A8 @ =INTRO_SCENE_CORE_STATE_HANDLE_6CF8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls r0, r0, #5
     ldr r2, .L0800249C @ =OBJ_VRAM0
     adds r1, r0, r2
@@ -1259,7 +1259,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r5, .L080024C0 @ =INTRO_SCENE_CORE_STATE_HANDLE_6D08_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls r0, r0, #5
     ldr r2, .L0800249C @ =OBJ_VRAM0
     adds r1, r0, r2
@@ -1316,7 +1316,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, .L080024D4 @ =INTRO_SCENE_CORE_STATE_HANDLE_6D18_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls r0, r0, #5
     ldr r2, .L0800249C @ =OBJ_VRAM0
     adds r1, r0, r2
@@ -1495,7 +1495,7 @@ RenderIntroSceneFrame:
     ldr r2, .L08002918 @ =INTRO_SCENE_CORE_STATE_HANDLE_6D08_OFFSET
     adds r0, r7, r2
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     ldr r3, .L0800291C @ =INTRO_SCENE_CORE_POOL_HANDLE_6D10_OFFSET
@@ -1562,7 +1562,7 @@ RenderIntroSceneFrame:
     ldr r1, .L0800292C @ =INTRO_SCENE_CORE_STATE_HANDLE_6CF0_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
 #if ((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) % 128 == 0) && ((INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET) / 128 <= 255)
@@ -1640,7 +1640,7 @@ RenderIntroSceneFrame:
     ldr r1, .L08002938 @ =INTRO_SCENE_CORE_STATE_HANDLE_6CF8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     ldr r1, [r6, #4]
@@ -1698,7 +1698,7 @@ RenderIntroSceneFrame:
     ldr r3, .L08002944 @ =INTRO_SCENE_CORE_STATE_HANDLE_6D18_OFFSET
     adds r0, r7, r3
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     ldr r4, .L08002948 @ =INTRO_SCENE_CORE_POOL_HANDLE_6D20_OFFSET
@@ -1978,7 +1978,7 @@ RenderIntroSceneFrame:
     adds r4, r7, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
 #if ((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) % 128 == 0) && ((INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET) / 128 <= 255)
@@ -2025,7 +2025,7 @@ RenderIntroSceneFrame:
     mov r8, r6
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x24]
     movs r3, #0
@@ -2268,7 +2268,7 @@ RenderIntroSceneFrame:
     adds r4, r7, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     ldr r2, .L08002C90 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CB8_OFFSET
@@ -2297,7 +2297,7 @@ RenderIntroSceneFrame:
     mov r8, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x24]
     movs r3, #0
@@ -2525,7 +2525,7 @@ RenderIntroSceneFrame:
     adds r4, r7, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     ldr r2, .L08002E90 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
@@ -2554,7 +2554,7 @@ RenderIntroSceneFrame:
     mov r8, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x24]
     movs r3, #0
@@ -2814,7 +2814,7 @@ RenderIntroSceneFrame:
     adds r4, r7, r6
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     ldr r1, .L080030D0 @ =INTRO_SCENE_CORE_POOL_HANDLE_6C90_OFFSET
@@ -2843,7 +2843,7 @@ RenderIntroSceneFrame:
     mov r8, r6
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x24]
     movs r3, #0
@@ -3069,7 +3069,7 @@ RenderIntroSceneFrame:
     adds r4, r7, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     ldr r2, .L080032B8 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CA0_OFFSET
@@ -3098,7 +3098,7 @@ RenderIntroSceneFrame:
     mov r8, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x24]
     movs r3, #0
@@ -3319,7 +3319,7 @@ RenderIntroSceneFrame:
     adds r4, r7, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     ldr r1, .L080034A0 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
@@ -3346,7 +3346,7 @@ RenderIntroSceneFrame:
     mov r8, r6
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x24]
     movs r3, #0

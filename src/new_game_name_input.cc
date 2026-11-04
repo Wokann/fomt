@@ -61,9 +61,9 @@ SceneTransitionOwner RunNameInputCore(NewGameNameInputCore * core)
 {
     EnableHardwareForcedBlank(core);
     HardwareStateEntry tiles;
-    ReleaseHardwareSharedStateHandle(&tiles, tiles.handle);
-    tiles.handle = AllocateHardwareSharedStateHandle(&tiles, 3);
-    u32 tile_index = GetHardwareSharedStateTileIndex(&tiles, tiles.handle);
+    ReleaseObjTileHandle(&tiles, tiles.handle);
+    tiles.handle = AllocateObjTileHandle(&tiles, 3);
+    u32 tile_index = GetObjTileIndex(&tiles, tiles.handle);
     InitializeNameInputScreen(core);
     InitializeNameInputCursorSprites(core, tile_index);
     ResetNameInputCore(core);

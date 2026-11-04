@@ -1410,10 +1410,10 @@ ConstructCalendarSceneCore: @ 0x080A1C44
 	lsls r0, r0, #1
 	adds r4, r7, r0
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #7
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r1, #0xbe
 	lsls r1, r1, #1
@@ -1443,10 +1443,10 @@ ConstructCalendarSceneCore: @ 0x080A1C44
 	lsls r0, r0, #1
 	adds r4, r7, r0
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r1, #0xce
 	lsls r1, r1, #1
@@ -1460,10 +1460,10 @@ ConstructCalendarSceneCore: @ 0x080A1C44
 	lsls r2, r2, #1
 	adds r4, r7, r2
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #4
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r3, #0xd6
 	lsls r3, r3, #1
@@ -2614,7 +2614,7 @@ func_080A2BA4: @ 0x080A25DC
 	lsls r5, r5, #1
 	adds r0, r7, r5
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	lsls r0, r0, #5
 	ldr r6, .Ljp_080A2FF4 @ =0x06010000
 	adds r1, r0, r6
@@ -2814,7 +2814,7 @@ func_080A2BA4: @ 0x080A25DC
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, r0, r5
 	lsls r0, r0, #5
 	ldr r2, .Ljp_080A2FF4 @ =0x06010000
@@ -2933,7 +2933,7 @@ func_080A2BA4: @ 0x080A25DC
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	b .Ljp_080A2FF8
 	.align 2, 0
 .Ljp_080A2FC0: .4byte 0x06007FE0
@@ -3403,7 +3403,7 @@ func_080A32A4: @ 0x080A2CDC
 	lsls r2, r2, #1
 	adds r0, r6, r2
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	add r1, sp, #8
 	strh r0, [r1, #6]
 	movs r3, #0xd6
@@ -3507,7 +3507,7 @@ func_080A32A4: @ 0x080A2CDC
 	lsls r1, r1, #1
 	adds r0, r6, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	ldrb r2, [r4, #2]
 	lsls r2, r2, #0x1c
 	lsrs r2, r2, #0x1b
@@ -3837,7 +3837,7 @@ func_080A3618: @ 0x080A3050
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	mov r2, sp
 	lsls r5, r5, #1
 	movs r3, #0xa0
@@ -15255,7 +15255,7 @@ __18WorldSpriteEffectsP10GameObjecti: @ 080AAA00
 	adds r0, r4, #0
 	str r1, [sp, #0xa0]
 	str r3, [sp, #0xa4]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r1, [sp, #0xa0]
 	str r1, [r4, #4]
 	adds r4, #8
@@ -15454,7 +15454,7 @@ __18WorldSpriteEffectsP10GameObjecti: @ 080AAA00
 .Ljp_map_080AAC32:
 	adds r0, r4, #0
 	str r1, [sp, #0xa0]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r1, [sp, #0xa0]
 	str r1, [r4, #4]
 	adds r4, #8
@@ -15524,10 +15524,10 @@ __18WorldSpriteEffectsP10GameObjecti: @ 080AAA00
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	cmp r5, r4
 	bne .Ljp_map_080AACBC
 .Ljp_map_080AACD2:
@@ -15664,10 +15664,10 @@ func_080AB0C4: @ 080AB0C4
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
 	str r2, [sp]
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	mov r1, r8
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	rsbs r1, r0, #0
 	orrs r1, r0
@@ -18670,46 +18670,46 @@ func_080AD9A4:
     ldr r0, .Ljp_080ADF0C @ =0x00000888
     adds r5, r6, r0
     adds r0, r5, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     str r4, [r5, #4]
     ldr r0, [sp, #0x18]
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     ldr r1, [sp, #0x18]
     str r4, [r1, #4]
     ldr r0, [sp, #0x1c]
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     ldr r2, [sp, #0x1c]
     str r4, [r2, #4]
     ldr r0, [sp, #0x20]
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     ldr r0, [sp, #0x20]
     str r4, [r0, #4]
     ldr r0, [sp, #0x24]
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     ldr r1, [sp, #0x24]
     str r4, [r1, #4]
     ldr r0, [sp, #0x28]
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     ldr r2, [sp, #0x28]
     str r4, [r2, #4]
     ldr r0, [sp, #0x2c]
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     ldr r0, [sp, #0x2c]
     str r4, [r0, #4]
     ldr r0, [sp, #0x30]
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     ldr r1, [sp, #0x30]
     str r4, [r1, #4]
     ldr r0, [sp, #0x34]
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     ldr r2, [sp, #0x34]
     str r4, [r2, #4]
     ldr r0, [sp, #0x38]
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     ldr r0, [sp, #0x38]
     str r4, [r0, #4]
     ldr r0, [sp, #0x3c]
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     ldr r1, [sp, #0x3c]
     str r4, [r1, #4]
     movs r2, #0x91
@@ -18988,96 +18988,96 @@ func_080AE104:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #3
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0x89
     lsls r0, r0, #4
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #6
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0x8a
     lsls r0, r0, #4
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #5
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, .Ljp_080AE1F8 @ =0x000008A8
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0x8b
     lsls r0, r0, #4
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #4
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, .Ljp_080AE1FC @ =0x000008B8
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #5
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0x8c
     lsls r0, r0, #4
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #5
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, .Ljp_080AE200 @ =0x000008C8
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #5
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0x8d
     lsls r0, r0, #4
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #6
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, .Ljp_080AE204 @ =0x000008D8
     adds r5, r5, r0
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r5, #0
     movs r1, #6
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r5, #4]
     pop {r4, r5}
     pop {r0}
@@ -19270,7 +19270,7 @@ func_080AE2CC:
 	ldr r0, .Ljp_080AE420 @ =0x00000888
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
@@ -19457,7 +19457,7 @@ func_080AE2CC:
 	ldr r0, .Ljp_080AE648 @ =0x00000888
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	movs r0, #2
 	str r0, [sp]
@@ -19530,7 +19530,7 @@ func_080AE2CC:
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #3
@@ -19569,7 +19569,7 @@ func_080AE2CC:
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -19928,7 +19928,7 @@ func_080AE2CC:
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #4
@@ -19975,7 +19975,7 @@ func_080AE2CC:
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -20339,7 +20339,7 @@ func_080AE2CC:
 	lsls r0, r0, #4
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #5
@@ -20404,7 +20404,7 @@ func_080AE2CC:
 	ldr r0, .Ljp_080AEC98 @ =0x000008A8
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -20733,7 +20733,7 @@ func_080AE2CC:
 	ldr r0, .Ljp_080AF224 @ =0x000008A8
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #0xd
@@ -20789,7 +20789,7 @@ func_080AE2CC:
 	str r4, [r5]
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #0xd
@@ -20899,7 +20899,7 @@ func_080AE2CC:
 	ldr r0, .Ljp_080AF238 @ =0x000008B8
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, r0, r6
 	strh r0, [r4, #6]
 	adds r0, r6, r5
@@ -21014,7 +21014,7 @@ func_080AE2CC:
 	lsls r0, r0, #4
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, r0, r6
 	strh r0, [r4, #6]
 	mov r5, sb
@@ -21125,7 +21125,7 @@ func_080AE2CC:
 	ldr r0, .Ljp_080AF248 @ =0x000008C8
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, r0, r6
 	strh r0, [r4, #6]
 	mov r4, sb
@@ -21405,7 +21405,7 @@ func_080AF24C:
 	lsls r6, r6, #4
 	adds r0, r7, r6
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -21834,7 +21834,7 @@ func_080AF24C:
 	ldr r1, .Ljp_080AF7B8 @ =0x000008C8
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	ldr r3, [sp, #0x84]
 	adds r2, r3, r0
 	ldr r6, [sp, #0x8c]
@@ -22286,7 +22286,7 @@ func_080AF24C:
 	lsls r1, r1, #4
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	ldr r3, [sp, #0x74]
 	adds r2, r3, r0
 	ldr r0, [r6, #8]
@@ -22781,7 +22781,7 @@ func_080AF24C:
 	ldr r1, .Ljp_080AFEC0 @ =0x000008B8
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	ldr r3, [sp, #0x68]
 	adds r2, r3, r0
 	ldr r0, [r5]
@@ -23272,7 +23272,7 @@ func_080B0140:
 	ldr r0, .Ljp_080B0260 @ =0x00000888
 	add r0, r9
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
@@ -26048,7 +26048,7 @@ func_080B17C8: @ 0x080B17C8
 	lsls r1, r1, #4
 	adds r0, r6, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -26739,7 +26739,7 @@ func_080B1B48: @ 0x080B1B48
 	adds r4, r4, r7
 	ldr r0, [sp, #0xe8]
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	mov r1, sb
 	lsls r5, r1, #3
@@ -26912,7 +26912,7 @@ func_080B1B48: @ 0x080B1B48
 	ldr r6, [sp, #0xe8]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	ldr r7, [sp, #0x114]
 	adds r3, r3, r7
@@ -26939,7 +26939,7 @@ func_080B1B48: @ 0x080B1B48
 	ldr r6, [sp, #0xe8]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	adds r3, #0x10
 	mov r7, sb
@@ -27021,7 +27021,7 @@ func_080B1B48: @ 0x080B1B48
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, #0x24
 	strh r0, [r4, #6]
 	ldr r1, [r6]
@@ -27066,7 +27066,7 @@ func_080B1B48: @ 0x080B1B48
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -27426,7 +27426,7 @@ func_080B1B48: @ 0x080B1B48
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, #0x28
 	strh r0, [r4, #6]
 	ldr r1, [r6]
@@ -27471,7 +27471,7 @@ func_080B1B48: @ 0x080B1B48
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -27866,7 +27866,7 @@ func_080B1B48: @ 0x080B1B48
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r7]
 	movs r0, #0xc
@@ -27908,7 +27908,7 @@ func_080B1B48: @ 0x080B1B48
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -28476,7 +28476,7 @@ func_080B1B48: @ 0x080B1B48
 	lsls r0, r0, #4
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	lsls r2, r7, #3
 	adds r2, r2, r0
 	movs r3, #0x80
@@ -28751,7 +28751,7 @@ func_080B1B48: @ 0x080B1B48
 	lsls r0, r0, #4
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	mov r1, sb
 	lsls r2, r1, #3
 	adds r2, r2, r0
@@ -31091,58 +31091,58 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 	movs r1, #0
 	bl ShowPortrait__C12UiStateOwnerUi
 	add r0, sp, #0xc
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	movs r5, #0
 	str r5, [sp, #0x10]
 	add r6, sp, #0x14
 	adds r0, r6, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r5, [r6, #4]
 	add r4, sp, #0x1c
 	mov r8, r4
 	mov r0, r8
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r5, [r4, #4]
 	add r4, sp, #0x24
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r5, [r4, #4]
 	add r4, sp, #0x2c
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r5, [r4, #4]
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0xc
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x84]
 	ldr r1, [sp, #0x18]
 	adds r0, r6, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r6, #0
 	movs r1, #7
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x18]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x88]
 	ldr r1, [sp, #0x20]
 	mov r0, r8
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, r8
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x20]
 	mov r0, r8
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x8c]
 	add r0, sp, #0x34
 	bl ConstructObjPalettePoolOwner
@@ -32544,34 +32544,34 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x30]
 	add r0, sp, #0x2c
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x2c
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x28]
 	add r0, sp, #0x24
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x24
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x20]
 	add r0, sp, #0x1c
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x1c
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x18]
 	add r0, sp, #0x14
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x14
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	add sp, #0xb8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -33213,98 +33213,98 @@ UpdateUnkPhase0__27ChickenFestivalMinigameCore: @ 0x080B5258
 	str r0, [sp, #0x138]
 	add r5, sp, #0x30
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	movs r4, #0
 	str r4, [r5, #4]
 	add r6, sp, #0x38
 	adds r0, r6, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r6, #4]
 	add r0, sp, #0x40
 	mov r8, r0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r1, r8
 	str r4, [r1, #4]
 	add r2, sp, #0x48
 	mov sb, r2
 	mov r0, sb
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r3, sb
 	str r4, [r3, #4]
 	add r7, sp, #0x50
 	mov sl, r7
 	mov r0, sl
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r7, #4]
 	add r7, sp, #0x58
 	adds r0, r7, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r7, #4]
 	ldr r1, [sp, #0x34]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x34]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x13c]
 	ldr r1, [sp, #0x3c]
 	adds r0, r6, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r6, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x3c]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x140]
 	ldr r1, [sp, #0x44]
 	mov r0, r8
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, r8
 	movs r1, #8
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x44]
 	mov r0, r8
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x144]
 	ldr r1, [sp, #0x4c]
 	mov r0, sb
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sb
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x4c]
 	mov r0, sb
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x148]
 	ldr r1, [sp, #0x54]
 	mov r0, sl
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sl
 	movs r1, #7
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x54]
 	mov r0, sl
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x14c]
 	ldr r1, [sp, #0x5c]
 	adds r0, r7, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r7, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x5c]
 	adds r0, r7, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x150]
 	ldr r0, [sp, #0x138]
 	bl func_080B757C
@@ -36442,40 +36442,40 @@ UpdateUnkPhase0__27ChickenFestivalMinigameCore: @ 0x080B5258
 .Ljp_080B6B1E:
 	ldr r1, [sp, #0x5c]
 	add r0, sp, #0x58
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x58
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x54]
 	add r0, sp, #0x50
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x50
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x4c]
 	add r0, sp, #0x48
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x48
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x44]
 	add r0, sp, #0x40
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x40
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x3c]
 	add r0, sp, #0x38
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x38
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x34]
 	add r0, sp, #0x30
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x30
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	add sp, #0x1a4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -37127,95 +37127,95 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B707C
 	sub sp, #0xc0
 	adds r7, r0, #0
 	mov r0, sp
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	movs r0, #0
 	mov sl, r0
 	str r0, [sp, #4]
 	add r4, sp, #8
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r1, sl
 	str r1, [r4, #4]
 	add r5, sp, #0x10
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r2, sl
 	str r2, [r5, #4]
 	add r6, sp, #0x18
 	adds r0, r6, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r3, sl
 	str r3, [r6, #4]
 	add r0, sp, #0x20
 	mov r8, r0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r1, sl
 	mov r2, r8
 	str r1, [r2, #4]
 	add r3, sp, #0x28
 	mov sb, r3
 	mov r0, sb
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r0, sl
 	mov r1, sb
 	str r0, [r1, #4]
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sp
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #4]
 	mov r0, sp
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x90]
 	ldr r1, [sp, #0xc]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0xc]
 	adds r0, r4, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x94]
 	ldr r1, [sp, #0x14]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #7
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x14]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x98]
 	ldr r1, [sp, #0x1c]
 	adds r0, r6, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r6, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x1c]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x9c]
 	ldr r1, [sp, #0x24]
 	mov r0, r8
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, r8
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [sp, #0x24]
 	ldr r1, [sp, #0x2c]
 	mov r0, sb
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sb
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [sp, #0x2c]
 	add r0, sp, #0x30
 	bl ConstructObjPalettePoolOwner
@@ -37649,7 +37649,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B707C
 	mov r8, r6
 	ldr r1, [sp, #0x24]
 	add r0, sp, #0x20
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -37812,7 +37812,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B707C
 	mov r8, r6
 	ldr r1, [sp, #0x2c]
 	add r0, sp, #0x28
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -37986,7 +37986,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B707C
 	ldr r1, [sp, #0x24]
 	add r0, sp, #0x20
 .Ljp_080B7722:
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldm r5!, {r1}
 	movs r0, #1
@@ -39043,40 +39043,40 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B707C
 	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x2c]
 	add r0, sp, #0x28
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x28
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x24]
 	add r0, sp, #0x20
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x20
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x1c]
 	add r0, sp, #0x18
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x18
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x14]
 	add r0, sp, #0x10
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x10
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0xc]
 	add r0, sp, #8
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #8
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sp
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	add sp, #0xc0
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -39533,58 +39533,58 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B82C0
 	movs r1, #0
 	bl ShowPortrait__C12UiStateOwnerUi
 	add r0, sp, #0xc
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	movs r0, #0
 	mov sb, r0
 	str r0, [sp, #0x10]
 	add r5, sp, #0x14
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r1, sb
 	str r1, [r5, #4]
 	add r6, sp, #0x1c
 	adds r0, r6, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r2, sb
 	str r2, [r6, #4]
 	add r4, sp, #0x24
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r3, sb
 	str r3, [r4, #4]
 	add r4, sp, #0x2c
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r0, sb
 	str r0, [r4, #4]
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0xc
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x44]
 	ldr r1, [sp, #0x18]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #7
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x18]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x48]
 	ldr r1, [sp, #0x20]
 	adds r0, r6, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r6, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [sp, #0x20]
 	add r0, sp, #0x34
 	bl ConstructObjPalettePoolOwner
@@ -40031,34 +40031,34 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B82C0
 	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x30]
 	add r0, sp, #0x2c
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x2c
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x28]
 	add r0, sp, #0x24
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x24
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x20]
 	add r0, sp, #0x1c
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x1c
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x18]
 	add r0, sp, #0x14
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x14
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	add sp, #0x68
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -47181,26 +47181,26 @@ func_080BC288: @ 0x080BBCBC
 	mov r8, r0
 	str r1, [sp, #0x88]
 	mov r0, sp
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	movs r4, #0
 	str r4, [sp, #4]
 	add r5, sp, #8
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sp
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [sp, #4]
 	ldr r1, [sp, #0xc]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [sp, #0xc]
 	add r4, sp, #0x10
 	ldr r1, .Ljp_080BBDFC @ =gUnk_080BC288Values
@@ -47282,7 +47282,7 @@ func_080BC288: @ 0x080BBCBC
 	ldr r7, [r4]
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -47627,7 +47627,7 @@ func_080BC288: @ 0x080BBCBC
 	ldr r7, [r4]
 	ldr r1, [sp, #0xc]
 	add r0, sp, #8
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -47825,7 +47825,7 @@ func_080BC288: @ 0x080BBCBC
 	strh r0, [r4, #2]
 	ldr r1, [sp, #0xc]
 	add r0, sp, #8
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r4, [r5]
 	ldr r3, [sp, #0x88]
@@ -47868,7 +47868,7 @@ func_080BC288: @ 0x080BBCBC
 	strh r0, [r4, #2]
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r4, [r5]
 	ldr r0, [sp, #0x88]
@@ -47918,16 +47918,16 @@ func_080BC288: @ 0x080BBCBC
 .Ljp_080BC282:
 	ldr r1, [sp, #0xc]
 	add r0, sp, #8
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #8
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sp
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r5, [sp, #0x88]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
@@ -48260,55 +48260,55 @@ func_080BC938: @ 0x080BC36C
 	adds r2, #0x28
 	adds r5, r6, r2
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r0, #0xb7
 	lsls r0, r0, #3
 	adds r5, r6, r0
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r1, #0xb8
 	lsls r1, r1, #3
 	adds r5, r6, r1
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r2, #0xb9
 	lsls r2, r2, #3
 	adds r5, r6, r2
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r0, #0xba
 	lsls r0, r0, #3
 	adds r5, r6, r0
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r1, #0xbb
 	lsls r1, r1, #3
 	adds r5, r6, r1
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r2, #0xbc
 	lsls r2, r2, #3
 	adds r5, r6, r2
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r0, #0xbd
 	lsls r0, r0, #3
 	adds r5, r6, r0
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r1, #0xbe
 	lsls r1, r1, #3
 	adds r5, r6, r1
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	ldr r2, .L080BC6FC @ =0x00000604
 	adds r0, r6, r2
@@ -48565,90 +48565,90 @@ func_080BCEC8:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #3
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0xb7
     lsls r0, r0, #3
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #6
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0xb8
     lsls r0, r0, #3
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0xb9
     lsls r0, r0, #3
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #5
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0xba
     lsls r0, r0, #3
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #5
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0xbb
     lsls r0, r0, #3
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0xbe
     lsls r0, r0, #3
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #4
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0xbd
     lsls r0, r0, #3
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0xbc
     lsls r0, r0, #3
     adds r5, r5, r0
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r5, #0
     movs r1, #6
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r5, #4]
     pop {r4, r5}
     pop {r0}
@@ -48802,7 +48802,7 @@ func_080BCEC8:
     lsls r0, r0, #3
     add r0, sb
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     movs r3, #0x80
     lsls r3, r3, #1
@@ -48967,7 +48967,7 @@ func_080BCEC8:
     lsls r0, r0, #3
     add r0, sb
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r3, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -49040,7 +49040,7 @@ func_080BCEC8:
     add r5, sb
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r6]
     movs r0, #3
@@ -49079,7 +49079,7 @@ func_080BCEC8:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -49433,7 +49433,7 @@ func_080BCEC8:
     add r5, sb
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r6]
     movs r0, #5
@@ -49480,7 +49480,7 @@ func_080BCEC8:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -49835,7 +49835,7 @@ func_080BCEC8:
     add r5, sb
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r6]
     movs r0, #6
@@ -49874,7 +49874,7 @@ func_080BCEC8:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -50223,7 +50223,7 @@ func_080BCEC8:
     lsls r0, r0, #3
     add r0, sb
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r5]
     movs r0, #0xa
@@ -50283,7 +50283,7 @@ func_080BCEC8:
     add r5, sb
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r6]
     movs r0, #8
@@ -50328,7 +50328,7 @@ func_080BCEC8:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -50827,7 +50827,7 @@ func_080BCEC8:
     lsls r1, r1, #3
     adds r0, r5, r1
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -51267,7 +51267,7 @@ func_080BCEC8:
     lsls r3, r3, #3
     adds r0, r5, r3
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -51677,7 +51677,7 @@ func_080BCEC8:
     .byte 0x01, 0x96, 0x02, 0x91, 0x41, 0x46, 0x00, 0x22, 0x00, 0x23, 0x90, 0xF7, 0xAB, 0xFA, 0x48, 0x46
     bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0xB6, 0x20, 0xC0, 0x00, 0x48, 0x44, 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x80, 0x23, 0x5B, 0x00, 0x25, 0x1C, 0x52, 0x01, 0x0B, 0x4F, 0xD2, 0x19
     .byte 0x06, 0xA8, 0x41, 0x46
     bl __21DmaTransferDescriptorPCvPvUi
@@ -52092,7 +52092,7 @@ func_080BEA34:
     bl GetHardwareDmaQueue
     .byte 0x06, 0x1C, 0x8E, 0x27
     .byte 0xFF, 0x00, 0xEC, 0x19, 0x27, 0x68, 0xB7, 0x21, 0xC9, 0x00, 0x68, 0x18, 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x20, 0x68, 0x00, 0x23, 0x00, 0x28, 0x00, 0xD0, 0xA3, 0x88, 0x0F, 0x96
     .byte 0x52, 0x01, 0x0C, 0x4C, 0x12, 0x19, 0x68, 0x46, 0x39, 0x1C
     bl __21DmaTransferDescriptorPCvPvUi
@@ -52345,7 +52345,7 @@ func_080BF764:
     add r6, sl
     ldr r1, [r6, #4]
     adds r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r5]
     movs r0, #4
@@ -52389,7 +52389,7 @@ func_080BF764:
     ldr r7, [r4]
     ldr r1, [r6, #4]
     adds r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -52714,7 +52714,7 @@ func_080BF764:
     add r6, sl
     ldr r1, [r6, #4]
     adds r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r5, #6]
     ldr r0, [r4]
     movs r1, #1
@@ -52758,7 +52758,7 @@ func_080BF764:
     ldr r7, [r4]
     ldr r1, [r6, #4]
     adds r0, r6, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -53007,7 +53007,7 @@ func_080BF764:
     ldr r2, [sp, #0xd0]
     ldr r1, [r2, #4]
     adds r0, r2, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r3, [sp, #0xf4]
     adds r2, r3, r2
@@ -53167,7 +53167,7 @@ func_080BF764:
     ldr r2, [sp, #0xd0]
     ldr r1, [r2, #4]
     adds r0, r2, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r3, r0, #0
     ldr r5, [sp, #0xf4]
     adds r3, r3, r5
@@ -53194,7 +53194,7 @@ func_080BF764:
     ldr r2, [sp, #0xd0]
     ldr r1, [r2, #4]
     adds r0, r2, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r3, r0, #0
     adds r3, #0x10
     ldr r5, [sp, #0xc8]
@@ -53317,7 +53317,7 @@ func_080BF764:
     add r5, sl
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r7]
     movs r0, #7
@@ -53361,7 +53361,7 @@ func_080BF764:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -53897,7 +53897,7 @@ func_080BF764:
     lsls r0, r0, #3
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     lsls r2, r7, #3
     adds r2, r2, r0
     movs r3, #0x80
@@ -54172,7 +54172,7 @@ func_080BF764:
     lsls r0, r0, #3
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     ldr r3, [sp, #0xc8]
     lsls r2, r3, #3
     adds r2, r2, r0
@@ -55810,109 +55810,109 @@ func_080C14C8:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #3
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0xfc]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #6
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0xe8]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #3
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0xd8]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0xc4]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0xb4]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #5
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0xa0]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0x90]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #3
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0x7c]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0x6c]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #6
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0x58]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #5
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     ldr r0, [pc, #0x48]
     adds r5, r5, r0
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r5, #0
     movs r1, #3
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r5, #4]
     pop {r4, r5}
     pop {r0}
@@ -56096,7 +56096,7 @@ func_080C14C8:
     ldr r0, [pc, #0x7c]
     add r0, sb
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     movs r3, #0x80
     lsls r3, r3, #1
@@ -56261,7 +56261,7 @@ func_080C14C8:
     ldr r0, [pc, #0x140]
     add r0, sb
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r3, r0, #0
     movs r0, #2
     str r0, [sp]
@@ -56334,7 +56334,7 @@ func_080C14C8:
     add r5, sb
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r6]
     movs r0, #3
@@ -56376,7 +56376,7 @@ func_080C14C8:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -56727,7 +56727,7 @@ func_080C14C8:
     add r5, sb
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r6]
     movs r0, #7
@@ -56774,7 +56774,7 @@ func_080C14C8:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -57122,7 +57122,7 @@ func_080C14C8:
     add r5, sb
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r6]
     movs r0, #8
@@ -57166,7 +57166,7 @@ func_080C14C8:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -57516,7 +57516,7 @@ func_080C14C8:
     ldr r0, [pc, #0x138]
     add r0, sb
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r5]
     movs r0, #0xc
@@ -57575,7 +57575,7 @@ func_080C14C8:
     add r5, sb
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r6]
     movs r0, #0xa
@@ -57620,7 +57620,7 @@ func_080C14C8:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -57986,7 +57986,7 @@ func_080C14C8:
     ldr r0, [pc, #0x198]
     add r0, sb
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     ldr r1, [r5]
     movs r0, #4
@@ -58080,7 +58080,7 @@ func_080C14C8:
     add r5, sb
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     mov r1, sb
     adds r0, r6, r1
@@ -58140,7 +58140,7 @@ func_080C14C8:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -58536,7 +58536,7 @@ func_080C14C8:
     add r5, sb
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     mov r1, sb
     adds r0, r6, r1
@@ -58596,7 +58596,7 @@ func_080C14C8:
     ldr r7, [r4]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -59178,7 +59178,7 @@ func_080C14C8:
     ldr r0, [pc, #0x80]
     add r0, r8
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -59584,7 +59584,7 @@ func_080C14C8:
     ldr r0, [pc, #0x50]
     add r0, r8
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -59971,7 +59971,7 @@ func_080C14C8:
     ldr r0, [pc, #0x58]
     add r0, r8
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     ldr r0, [r4]
     movs r3, #0
@@ -60409,7 +60409,7 @@ func_080C14C8:
     .byte 0x01, 0x96, 0x02, 0x91, 0x41, 0x46, 0x00, 0x22, 0x00, 0x23, 0x8B, 0xF7, 0xD1, 0xF9, 0x48, 0x46
     bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0x11, 0x48, 0x48, 0x44, 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x80, 0x23, 0x5B, 0x00, 0x25, 0x1C, 0x52, 0x01, 0x0D, 0x4F, 0xD2, 0x19, 0x06, 0xA8
     .byte 0x41, 0x46
     bl __21DmaTransferDescriptorPCvPvUi
@@ -61945,7 +61945,7 @@ func_080C5648:
     bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0xAC, 0x27, 0xFF, 0x00, 0xF4, 0x19, 0x27, 0x68, 0x13, 0x49, 0x70, 0x18
     .byte 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x20, 0x68, 0x00, 0x23, 0x00, 0x28, 0x00, 0xD0
     .byte 0xA3, 0x88, 0x0D, 0x95, 0x52, 0x01, 0x0D, 0x4C, 0x12, 0x19, 0x68, 0x46, 0x39, 0x1C
     bl __21DmaTransferDescriptorPCvPvUi
@@ -62029,7 +62029,7 @@ func_080C5648:
     bl GetHardwareDmaQueue
     .byte 0x06, 0x1C, 0xAC, 0x20
     .byte 0xC0, 0x00, 0x3D, 0x18, 0x29, 0x68, 0x88, 0x46, 0x15, 0x4A, 0xB8, 0x18, 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x28, 0x68, 0x00, 0x23, 0x16, 0x94, 0x00, 0x28, 0x00, 0xD0, 0xAB, 0x88
     .byte 0x52, 0x01, 0x0F, 0x4C, 0x12, 0x19, 0x16, 0x98, 0x41, 0x46
     bl __21DmaTransferDescriptorPCvPvUi
@@ -62106,7 +62106,7 @@ func_080C5648:
     .byte 0x38, 0x1C
     bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0x16, 0x4D, 0x78, 0x19, 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x27, 0x1C, 0x52, 0x01, 0x13, 0x48, 0x12, 0x18, 0x05, 0xA8, 0x49, 0x46
     .byte 0x33, 0x1C
     bl __21DmaTransferDescriptorPCvPvUi
@@ -62195,7 +62195,7 @@ func_080C5648:
     bl ResolveIndexedResourceHandle
     .byte 0x28, 0x68, 0x40, 0x21
     .byte 0x01, 0x80, 0x28, 0x68, 0x41, 0x80, 0x2C, 0x68, 0x31, 0x4E, 0x56, 0x44, 0x71, 0x68, 0x30, 0x1C
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0xE0, 0x80, 0x29, 0x68, 0x09, 0x20, 0x88, 0x80, 0x28, 0x68, 0x01, 0x25
     .byte 0x05, 0x76, 0xEB, 0x25, 0xED, 0x00, 0x55, 0x44, 0x47, 0x46, 0x38, 0x68, 0x01, 0x68, 0x0B, 0x68
     .byte 0x82, 0x89, 0x92, 0x00, 0x40, 0x68, 0x80, 0x18, 0x02, 0x88, 0x10, 0xA8, 0x1B, 0x69, 0x0D, 0xF0
@@ -62203,7 +62203,7 @@ func_080C5648:
     .byte 0x07, 0xC5, 0x89, 0xCC, 0x89, 0xC5, 0x06, 0xCC, 0x06, 0xC5, 0x50, 0x46
     bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0xEC, 0x24, 0xE4, 0x00, 0x54, 0x44, 0x27, 0x68, 0x71, 0x68, 0x30, 0x1C
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x20, 0x68, 0x00, 0x23, 0x00, 0x28, 0x00, 0xD0, 0xA3, 0x88, 0x2E, 0x1C
     .byte 0x52, 0x01, 0x13, 0x4C, 0x12, 0x19, 0x0C, 0xA8, 0x39, 0x1C
     bl __21DmaTransferDescriptorPCvPvUi
@@ -62264,7 +62264,7 @@ func_080C5648:
     bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x3D, 0x98, 0x24, 0x18, 0xA4, 0x00, 0x54, 0x44, 0x88, 0x21, 0x49, 0x00
     .byte 0x64, 0x18, 0x3E, 0x9A, 0x51, 0x68, 0x10, 0x1C
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x49, 0x9B
     .byte 0x9A, 0x18, 0x52, 0x01, 0x0E, 0x4E, 0x92, 0x19, 0x0E, 0xA8, 0x21, 0x1C, 0x80, 0x23, 0x5B, 0x00
     bl __21DmaTransferDescriptorPCvPvUi
@@ -62285,12 +62285,12 @@ func_080C5648:
     .byte 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0x09, 0xF0, 0xE2, 0xFC, 0x4E, 0x98
     .byte 0x40, 0x44, 0x4E, 0x9F, 0x2F, 0x60, 0x6E, 0x60, 0xE8, 0x60, 0x3D, 0x98, 0x03, 0x28, 0x1D, 0xD0
     .byte 0x49, 0x9C, 0x54, 0x44, 0xEF, 0x21, 0xC9, 0x00, 0x64, 0x18, 0x3E, 0x9A, 0x51, 0x68, 0x10, 0x1C
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x03, 0x1C, 0x49, 0x9D, 0x5B, 0x19, 0x3D, 0x9E, 0x32, 0x01, 0x6D, 0x32
     .byte 0x02, 0x27, 0x00, 0x97, 0x00, 0x20, 0x01, 0x90, 0x02, 0x97, 0x01, 0x20, 0x03, 0x90, 0x21, 0xA8
     .byte 0x78, 0x21, 0x88, 0xF7, 0xAA, 0xFB, 0x21, 0x98, 0x22, 0x99, 0x18, 0xE0, 0xF2, 0x24, 0xE4, 0x00
     .byte 0x54, 0x44, 0x3E, 0x9A, 0x51, 0x68, 0x10, 0x1C
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x03, 0x1C, 0x18, 0x33
     .byte 0x02, 0x25, 0x00, 0x95, 0x00, 0x26, 0x01, 0x96, 0x02, 0x95, 0x01, 0x20, 0x03, 0x90, 0x23, 0xA8
     .byte 0xC8, 0x21, 0x8D, 0x22, 0x88, 0xF7, 0x91, 0xFB, 0x23, 0xA8, 0x41, 0x68, 0x00, 0x68, 0x20, 0x60
@@ -62314,7 +62314,7 @@ func_080C5648:
     .byte 0x31, 0x68
     .byte 0x70, 0x20, 0x08, 0x80, 0x31, 0x68, 0x85, 0x20, 0x48, 0x80, 0x34, 0x68, 0x2D, 0x4D, 0x55, 0x44
     .byte 0x69, 0x68, 0x28, 0x1C
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0xE0, 0x80, 0x31, 0x68, 0x04, 0x20, 0x88, 0x80
     .byte 0x30, 0x68, 0x01, 0x23, 0x98, 0x46, 0x44, 0x46, 0x04, 0x76, 0xF4, 0x24, 0xE4, 0x00, 0x54, 0x44
     .byte 0x38, 0x68, 0x01, 0x68, 0x0B, 0x68, 0x82, 0x89, 0x92, 0x00, 0x40, 0x68, 0x80, 0x18, 0x02, 0x88
@@ -62324,7 +62324,7 @@ func_080C5648:
     bl GetHardwareDmaQueue
     .byte 0x06, 0x1C, 0xF5, 0x24, 0xE4, 0x00, 0x54, 0x44, 0x27, 0x68
     .byte 0x69, 0x68, 0x28, 0x1C
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x20, 0x68, 0x00, 0x23, 0x00, 0x28
     .byte 0x00, 0xD0, 0xA3, 0x88, 0x52, 0x01, 0x0F, 0x4C, 0x12, 0x19, 0x45, 0x98, 0x39, 0x1C
     bl __21DmaTransferDescriptorPCvPvUi
@@ -62382,7 +62382,7 @@ func_080C5648:
     bl __builtin_delete
     .byte 0x34, 0x60
     .byte 0x68, 0x20, 0x20, 0x80, 0x7D, 0x20, 0x60, 0x80, 0x2C, 0x4D, 0x55, 0x44, 0x69, 0x68, 0x28, 0x1C
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0xE0, 0x80, 0x31, 0x68, 0x05, 0x20, 0x88, 0x80, 0x30, 0x68, 0x01, 0x21
     .byte 0x88, 0x46, 0x42, 0x46, 0x02, 0x76, 0xF9, 0x24, 0xE4, 0x00, 0x54, 0x44, 0x38, 0x68, 0x01, 0x68
     .byte 0x0B, 0x68, 0x82, 0x89, 0x92, 0x00, 0x40, 0x68, 0x80, 0x18, 0x02, 0x88, 0x0E, 0xA8, 0x1B, 0x69
@@ -62390,7 +62390,7 @@ func_080C5648:
     .byte 0xC8, 0xC8, 0xC8, 0xC4, 0x0E, 0xC8, 0x0E, 0xC4, 0xC0, 0xC8, 0xC0, 0xC4, 0x50, 0x46
     bl GetHardwareDmaQueue
     .byte 0x06, 0x1C, 0xFA, 0x24, 0xE4, 0x00, 0x54, 0x44, 0x27, 0x68, 0x69, 0x68, 0x28, 0x1C
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x20, 0x68, 0x00, 0x23, 0x00, 0x28, 0x00, 0xD0, 0xA3, 0x88
     .byte 0x52, 0x01, 0x0E, 0x48, 0x12, 0x18, 0x45, 0x98, 0x39, 0x1C
     bl __21DmaTransferDescriptorPCvPvUi
@@ -62439,7 +62439,7 @@ func_080C5648:
     bl __builtin_delete
     .byte 0x2C, 0x60, 0x68, 0x20, 0x20, 0x80, 0x8D, 0x20
     .byte 0x60, 0x80, 0x2E, 0x48, 0x50, 0x44, 0x80, 0x46, 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0xE0, 0x80
     .byte 0x29, 0x68, 0x08, 0x20, 0x88, 0x80, 0x28, 0x68, 0x01, 0x21, 0x01, 0x76, 0xFE, 0x24, 0xE4, 0x00
     .byte 0x54, 0x44, 0xA7, 0x20, 0xC0, 0x00, 0x50, 0x44, 0x05, 0x68, 0x2E, 0x68, 0x4A, 0x98, 0xF3, 0x68
@@ -62450,7 +62450,7 @@ func_080C5648:
     bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0xFF, 0x24, 0xE4, 0x00, 0x54, 0x44, 0x27, 0x68
     .byte 0x46, 0x46, 0x71, 0x68, 0x40, 0x46
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x20, 0x68, 0x00, 0x23
     .byte 0x00, 0x28, 0x00, 0xD0, 0xA3, 0x88, 0x2E, 0x1C, 0x52, 0x01, 0x0D, 0x48, 0x12, 0x18, 0x45, 0x98
     .byte 0x39, 0x1C
@@ -62554,7 +62554,7 @@ func_080C5648:
     bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x41, 0x9F, 0xE4, 0x19, 0xA4, 0x00, 0x54, 0x44, 0x88, 0x20
     .byte 0x40, 0x00, 0x24, 0x18, 0x11, 0x48, 0x50, 0x44, 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0xFA, 0x00
     .byte 0x12, 0x18, 0x80, 0x23, 0x5B, 0x00, 0x52, 0x01, 0x0D, 0x49, 0x52, 0x18, 0x12, 0xA8, 0x21, 0x1C
     bl __21DmaTransferDescriptorPCvPvUi
@@ -62592,7 +62592,7 @@ func_080C5648:
     bl GetHardwareDmaQueue
     .byte 0x05, 0x1C, 0x3D, 0x98, 0x24, 0x18
     .byte 0xA4, 0x00, 0x54, 0x44, 0x88, 0x21, 0x49, 0x00, 0x64, 0x18, 0x13, 0x48, 0x50, 0x44, 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x3D, 0x9B, 0xDA, 0x00, 0x12, 0x18, 0x52, 0x01, 0x0F, 0x4E, 0x92, 0x19
     .byte 0x12, 0xA8, 0x21, 0x1C, 0x80, 0x23, 0x5B, 0x00
     bl __21DmaTransferDescriptorPCvPvUi
@@ -63302,10 +63302,10 @@ func_080C797C:
     lsls r0, r0, #2
     adds r4, r7, r0
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r1, #0xd7
     lsls r1, r1, #2
@@ -63319,10 +63319,10 @@ func_080C797C:
     lsls r0, r0, #2
     adds r4, r7, r0
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r1, #0xdb
     lsls r1, r1, #2
@@ -63336,19 +63336,19 @@ func_080C797C:
     lsls r0, r0, #2
     adds r4, r7, r0
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     adds r0, r4, #0
     movs r1, #1
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r1, #0xdf
     lsls r1, r1, #2
     adds r4, r7, r1
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     adds r0, r4, #0
     movs r1, #1
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0xe1
     lsls r0, r0, #2
@@ -63362,19 +63362,19 @@ func_080C797C:
     lsls r1, r1, #2
     adds r4, r7, r1
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     adds r0, r4, #0
     movs r1, #1
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r0, #0xe5
     lsls r0, r0, #2
     adds r4, r7, r0
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     adds r0, r4, #0
     movs r1, #1
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r1, #0xe7
     lsls r1, r1, #2
@@ -63395,7 +63395,7 @@ func_080C797C:
     mov r8, r0
     .Lauto_080C7AD4:
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     mov r1, r8
     str r1, [r4, #4]
     adds r4, #8
@@ -63654,10 +63654,10 @@ func_080C797C:
     adds r4, r4, r1
     ldr r1, [r6]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r6]
     adds r5, r5, r7
     movs r0, #0xfb
@@ -63765,10 +63765,10 @@ func_080C8360:
     subs r4, #8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._24HardwareSharedStateOwner
+    bl _._16ObjTilePoolOwner
     cmp r6, r4
     bne .Lauto_080C7E08
     .Lauto_080C7E1E:
@@ -63786,19 +63786,19 @@ func_080C8360:
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._24HardwareSharedStateOwner
+    bl _._16ObjTilePoolOwner
     movs r2, #0xe3
     lsls r2, r2, #2
     adds r4, r5, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._24HardwareSharedStateOwner
+    bl _._16ObjTilePoolOwner
     movs r0, #0xe1
     lsls r0, r0, #2
     adds r4, r5, r0
@@ -63813,19 +63813,19 @@ func_080C8360:
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._24HardwareSharedStateOwner
+    bl _._16ObjTilePoolOwner
     movs r2, #0xdd
     lsls r2, r2, #2
     adds r4, r5, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._24HardwareSharedStateOwner
+    bl _._16ObjTilePoolOwner
     movs r0, #0xdb
     lsls r0, r0, #2
     adds r4, r5, r0
@@ -63840,10 +63840,10 @@ func_080C8360:
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._24HardwareSharedStateOwner
+    bl _._16ObjTilePoolOwner
     movs r2, #0xd7
     lsls r2, r2, #2
     adds r4, r5, r2
@@ -63858,10 +63858,10 @@ func_080C8360:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._24HardwareSharedStateOwner
+    bl _._16ObjTilePoolOwner
     movs r1, #0xd2
     lsls r1, r1, #2
     adds r0, r5, r1
@@ -64081,7 +64081,7 @@ func_080C7FC4:
     bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0xD5, 0x20
     .byte 0x80, 0x00, 0x50, 0x44, 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x02, 0x1C, 0x26, 0x1C, 0x0E, 0x49
     .byte 0x52, 0x01, 0x0E, 0x48, 0x12, 0x18, 0x25, 0xA8, 0x80, 0x23
     bl __21DmaTransferDescriptorPCvPvUi
@@ -65175,7 +65175,7 @@ func_080C90D0:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r4, r0, #0
     movs r0, #0xd7
     lsls r0, r0, #2
@@ -65320,7 +65320,7 @@ func_080C90D0:
     lsls r3, r3, #2
     adds r0, r0, r3
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     str r0, [sp, #0xac]
     add r4, sl
     movs r6, #0xfb
@@ -65860,7 +65860,7 @@ func_080C90D0:
     add r5, sl
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     ldr r2, [sp, #0xb8]
     strh r0, [r2, #6]
     strb r4, [r2, #0x18]
@@ -65880,7 +65880,7 @@ func_080C90D0:
     ldr r7, [sp, #0x44]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     add r1, sp, #0x44
     ldr r0, [sp, #0x44]
@@ -66096,7 +66096,7 @@ func_080C90D0:
     add r5, sl
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     ldr r2, [sp, #0xb8]
     strh r0, [r2, #6]
     strb r4, [r2, #0x18]
@@ -66116,7 +66116,7 @@ func_080C90D0:
     ldr r7, [sp, #0x44]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     add r1, sp, #0x44
     ldr r0, [sp, #0x44]
@@ -66333,7 +66333,7 @@ func_080C90D0:
     add r5, sl
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     ldr r2, [sp, #0xb8]
     strh r0, [r2, #6]
     strb r4, [r2, #0x18]
@@ -66353,7 +66353,7 @@ func_080C90D0:
     ldr r7, [sp, #0x44]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     add r1, sp, #0x44
     ldr r0, [sp, #0x44]
@@ -66562,7 +66562,7 @@ func_080C90D0:
     add r4, sl
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     ldr r6, [sp, #0xb8]
     strh r0, [r6, #6]
     movs r7, #1
@@ -66588,7 +66588,7 @@ func_080C90D0:
     ldr r7, [sp, #0x44]
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     add r1, sp, #0x44
     ldr r0, [sp, #0x44]
@@ -66796,7 +66796,7 @@ func_080C90D0:
     add r5, sl
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     strh r0, [r4, #6]
     movs r7, #1
     mov r8, r7
@@ -66821,7 +66821,7 @@ func_080C90D0:
     ldr r7, [sp, #0x44]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     add r1, sp, #0x44
     ldr r0, [sp, #0x44]
@@ -69599,7 +69599,7 @@ func_080CB96C:
     lsls r6, r6, #2
     adds r4, r7, r6
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     mov r0, r8
     str r0, [r4, #4]
     movs r1, #0xa9
@@ -69618,7 +69618,7 @@ func_080CB96C:
     rsbs r6, r6, #0
     .Lauto_080CBA56:
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     mov r1, r8
     str r1, [r4, #4]
     adds r4, #8
@@ -69655,10 +69655,10 @@ func_080CB96C:
     adds r4, r4, r1
     ldr r1, [r6]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r6]
     adds r5, r5, r7
     movs r4, #0xbb
@@ -69684,10 +69684,10 @@ func_080CB96C:
     adds r4, r7, r5
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwareSharedStateHandle
+    bl ReleaseObjTileHandle
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     movs r6, #0xa9
     lsls r6, r6, #2
@@ -69849,7 +69849,7 @@ func_080CBB20:
     adds r0, r0, r2
     mov r2, sb
     ldr r1, [r2]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r8, r0
     add r4, sl
     movs r0, #0xbb
@@ -69922,7 +69922,7 @@ func_080CBB20:
     lsls r5, r5, #0x18
     lsrs r5, r5, #0x15
     .byte 0x24, 0x0A, 0x24, 0x06, 0x64, 0x0D, 0xA7, 0x20, 0x80, 0x00, 0x50, 0x44, 0x41, 0x68
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     .byte 0x06, 0x1C, 0xA9, 0x20, 0x80, 0x00, 0x50, 0x44, 0x41, 0x68
     bl GetObjPaletteBank
     .byte 0x00, 0x90, 0x01, 0x20, 0x01, 0x90, 0x02, 0x90, 0x03, 0x97, 0x06, 0xAF, 0x38, 0x1C, 0x29, 0x1C
@@ -69993,7 +69993,7 @@ func_080CC728:
     lsls r3, r3, #2
     adds r0, r0, r3
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r6, r0, #0
     add r4, sl
     movs r7, #0xbb
@@ -70087,7 +70087,7 @@ func_080CC728:
     lsls r3, r3, #2
     adds r0, r0, r3
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r6, r0, #0
     add r4, sl
     movs r7, #0xbb
@@ -70232,7 +70232,7 @@ func_080CCE58:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r4, r0, #0
     movs r0, #0xa9
     lsls r0, r0, #2
@@ -70582,7 +70582,7 @@ func_080CCE58:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r4, r0, #0
     movs r0, #0xa9
     lsls r0, r0, #2
@@ -71321,7 +71321,7 @@ func_080CDDD4: @ 0x080CD5E4
 	adds r6, #0x14
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	mov r0, sp
@@ -71344,7 +71344,7 @@ func_080CDDD4: @ 0x080CD5E4
 	ldr r5, [sp, #0x24]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	add r1, sp, #0x24
 	ldr r0, [sp, #0x24]
@@ -71741,18 +71741,18 @@ func_080CE2FC:
     adds r4, r7, #0
     stm r4!, {r1}
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     adds r4, r7, #0
     adds r4, #0xc
     adds r0, r4, #0
-    bl InitializeHardwareSharedStateOwner
+    bl InitializeObjTilePoolOwner
     adds r0, r4, #0
     movs r1, #2
-    bl AllocateHardwareSharedStateHandle
+    bl AllocateObjTileHandle
     str r0, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
@@ -72323,7 +72323,7 @@ func_080CE598:
     adds r5, r6, #4
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     mov r0, sp
@@ -72344,7 +72344,7 @@ func_080CE598:
     ldr r7, [sp, #0x24]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     add r1, sp, #0x24
     ldr r0, [sp, #0x24]
@@ -72565,7 +72565,7 @@ func_080CE598:
     adds r5, #0xc
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     mov r0, sp
@@ -72586,7 +72586,7 @@ func_080CE598:
     ldr r6, [sp, #0x24]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl GetHardwareSharedStateTileIndex
+    bl GetObjTileIndex
     adds r2, r0, #0
     add r1, sp, #0x24
     ldr r0, [sp, #0x24]
@@ -72940,7 +72940,7 @@ func_080CECE8: @ 0x080CE4F8
 	adds r7, #0x6c
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r6, #6]
 	strb r5, [r6, #0x18]
 	mov r5, r8
@@ -72965,7 +72965,7 @@ func_080CECE8: @ 0x080CE4F8
 	mov sb, r2
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #8]
 	movs r3, #0
@@ -76233,10 +76233,10 @@ ConstructCalendarSceneCore: @ 0x080A220C
 	lsls r0, r0, #1
 	adds r4, r7, r0
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #7
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r1, #0xbe
 	lsls r1, r1, #1
@@ -76266,10 +76266,10 @@ ConstructCalendarSceneCore: @ 0x080A220C
 	lsls r0, r0, #1
 	adds r4, r7, r0
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r1, #0xce
 	lsls r1, r1, #1
@@ -76283,10 +76283,10 @@ ConstructCalendarSceneCore: @ 0x080A220C
 	lsls r2, r2, #1
 	adds r4, r7, r2
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #4
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r3, #0xd6
 	lsls r3, r3, #1
@@ -77434,7 +77434,7 @@ func_080A2BA4: @ 0x080A2BA4
 	lsls r5, r5, #1
 	adds r0, r7, r5
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	lsls r0, r0, #5
 	ldr r6, .L080A2FF4 @ =0x06010000
 	adds r1, r0, r6
@@ -77634,7 +77634,7 @@ func_080A2BA4: @ 0x080A2BA4
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, r0, r5
 	lsls r0, r0, #5
 	ldr r2, .L080A2FF4 @ =0x06010000
@@ -77753,7 +77753,7 @@ func_080A2BA4: @ 0x080A2BA4
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	b .L080A2FF8
 	.align 2, 0
 .L080A2FC0: .4byte 0x06007FE0
@@ -78225,7 +78225,7 @@ func_080A32A4: @ 0x080A32A4
 	lsls r2, r2, #1
 	adds r0, r6, r2
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	add r1, sp, #8
 	strh r0, [r1, #6]
 	movs r3, #0xd6
@@ -78329,7 +78329,7 @@ func_080A32A4: @ 0x080A32A4
 	lsls r1, r1, #1
 	adds r0, r6, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	ldrb r2, [r4, #2]
 	lsls r2, r2, #0x1c
 	lsrs r2, r2, #0x1b
@@ -78657,7 +78657,7 @@ func_080A3618: @ 0x080A3618
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	mov r2, sp
 	lsls r5, r5, #1
 	movs r3, #0xa0
@@ -90055,7 +90055,7 @@ __18WorldSpriteEffectsP10GameObjecti: @ 0x080AAFC8
 	adds r0, r4, #0
 	str r1, [sp, #0xa0]
 	str r3, [sp, #0xa4]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r1, [sp, #0xa0]
 	str r1, [r4, #4]
 	adds r4, #8
@@ -90254,7 +90254,7 @@ __18WorldSpriteEffectsP10GameObjecti: @ 0x080AAFC8
 .L080AB1FA:
 	adds r0, r4, #0
 	str r1, [sp, #0xa0]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r1, [sp, #0xa0]
 	str r1, [r4, #4]
 	adds r4, #8
@@ -90324,10 +90324,10 @@ __18WorldSpriteEffectsP10GameObjecti: @ 0x080AAFC8
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	cmp r5, r4
 	bne .L080AB284
 .L080AB29A:
@@ -90463,10 +90463,10 @@ func_080AB68C: @ 0x080AB68C
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
 	str r2, [sp]
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	mov r1, r8
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	rsbs r1, r0, #0
 	orrs r1, r0
@@ -93433,46 +93433,46 @@ func_080ADF6C: @ 0x080ADF6C
 	ldr r0, .L080AE4D4 @ =0x00000888
 	adds r5, r6, r0
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	ldr r0, [sp, #0x18]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r1, [sp, #0x18]
 	str r4, [r1, #4]
 	ldr r0, [sp, #0x1c]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r2, [sp, #0x1c]
 	str r4, [r2, #4]
 	ldr r0, [sp, #0x20]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r0, [sp, #0x20]
 	str r4, [r0, #4]
 	ldr r0, [sp, #0x24]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r1, [sp, #0x24]
 	str r4, [r1, #4]
 	ldr r0, [sp, #0x28]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r2, [sp, #0x28]
 	str r4, [r2, #4]
 	ldr r0, [sp, #0x2c]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r0, [sp, #0x2c]
 	str r4, [r0, #4]
 	ldr r0, [sp, #0x30]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r1, [sp, #0x30]
 	str r4, [r1, #4]
 	ldr r0, [sp, #0x34]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r2, [sp, #0x34]
 	str r4, [r2, #4]
 	ldr r0, [sp, #0x38]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r0, [sp, #0x38]
 	str r4, [r0, #4]
 	ldr r0, [sp, #0x3c]
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	ldr r1, [sp, #0x3c]
 	str r4, [r1, #4]
 	movs r2, #0x91
@@ -93747,96 +93747,96 @@ func_080AE6CC: @ 0x080AE6CC
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0x89
 	lsls r0, r0, #4
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0x8a
 	lsls r0, r0, #4
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080AE7C0 @ =0x000008A8
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0x8b
 	lsls r0, r0, #4
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #4
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080AE7C4 @ =0x000008B8
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0x8c
 	lsls r0, r0, #4
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080AE7C8 @ =0x000008C8
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0x8d
 	lsls r0, r0, #4
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080AE7CC @ =0x000008D8
 	adds r5, r5, r0
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r5, #4]
 	pop {r4, r5}
 	pop {r0}
@@ -94029,7 +94029,7 @@ func_080AE894: @ 0x080AE894
 	ldr r0, .L080AE9E8 @ =0x00000888
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
@@ -94216,7 +94216,7 @@ func_080AE894: @ 0x080AE894
 	ldr r0, .L080AEC10 @ =0x00000888
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	movs r0, #2
 	str r0, [sp]
@@ -94289,7 +94289,7 @@ func_080AE894: @ 0x080AE894
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #3
@@ -94328,7 +94328,7 @@ func_080AE894: @ 0x080AE894
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -94687,7 +94687,7 @@ func_080AE894: @ 0x080AE894
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #4
@@ -94734,7 +94734,7 @@ func_080AE894: @ 0x080AE894
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -95098,7 +95098,7 @@ func_080AE894: @ 0x080AE894
 	lsls r0, r0, #4
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #5
@@ -95163,7 +95163,7 @@ func_080AE894: @ 0x080AE894
 	ldr r0, .L080AF260 @ =0x000008A8
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -95492,7 +95492,7 @@ func_080AE894: @ 0x080AE894
 	ldr r0, .L080AF7EC @ =0x000008A8
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #0xd
@@ -95548,7 +95548,7 @@ func_080AE894: @ 0x080AE894
 	str r4, [r5]
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #0xd
@@ -95658,7 +95658,7 @@ func_080AE894: @ 0x080AE894
 	ldr r0, .L080AF800 @ =0x000008B8
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, r0, r6
 	strh r0, [r4, #6]
 	adds r0, r6, r5
@@ -95773,7 +95773,7 @@ func_080AE894: @ 0x080AE894
 	lsls r0, r0, #4
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, r0, r6
 	strh r0, [r4, #6]
 	mov r5, sb
@@ -95884,7 +95884,7 @@ func_080AE894: @ 0x080AE894
 	ldr r0, .L080AF810 @ =0x000008C8
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, r0, r6
 	strh r0, [r4, #6]
 	mov r4, sb
@@ -96164,7 +96164,7 @@ func_080AF814: @ 0x080AF814
 	lsls r6, r6, #4
 	adds r0, r7, r6
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -96593,7 +96593,7 @@ func_080AF814: @ 0x080AF814
 	ldr r1, .L080AFD80 @ =0x000008C8
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	ldr r3, [sp, #0x84]
 	adds r2, r3, r0
 	ldr r6, [sp, #0x8c]
@@ -97045,7 +97045,7 @@ func_080AF814: @ 0x080AF814
 	lsls r1, r1, #4
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	ldr r3, [sp, #0x74]
 	adds r2, r3, r0
 	ldr r0, [r6, #8]
@@ -97540,7 +97540,7 @@ func_080AF814: @ 0x080AF814
 	ldr r1, .L080B0488 @ =0x000008B8
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	ldr r3, [sp, #0x68]
 	adds r2, r3, r0
 	ldr r0, [r5]
@@ -98026,7 +98026,7 @@ func_080B0708: @ 0x080B0708
 	ldr r0, .L080B081C @ =0x00000888
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
@@ -100808,7 +100808,7 @@ func_080B1D94: @ 0x080B1D94
 	lsls r1, r1, #4
 	adds r0, r6, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -101497,7 +101497,7 @@ func_080B2114: @ 0x080B2114
 	adds r4, r4, r7
 	ldr r0, [sp, #0xe8]
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	mov r1, sb
 	lsls r5, r1, #3
@@ -101670,7 +101670,7 @@ func_080B2114: @ 0x080B2114
 	ldr r6, [sp, #0xe8]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	ldr r7, [sp, #0x114]
 	adds r3, r3, r7
@@ -101697,7 +101697,7 @@ func_080B2114: @ 0x080B2114
 	ldr r6, [sp, #0xe8]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	adds r3, #0x10
 	mov r7, sb
@@ -101779,7 +101779,7 @@ func_080B2114: @ 0x080B2114
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, #0x24
 	strh r0, [r4, #6]
 	ldr r1, [r6]
@@ -101824,7 +101824,7 @@ func_080B2114: @ 0x080B2114
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -102184,7 +102184,7 @@ func_080B2114: @ 0x080B2114
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r0, #0x28
 	strh r0, [r4, #6]
 	ldr r1, [r6]
@@ -102229,7 +102229,7 @@ func_080B2114: @ 0x080B2114
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -102624,7 +102624,7 @@ func_080B2114: @ 0x080B2114
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r7]
 	movs r0, #0xc
@@ -102666,7 +102666,7 @@ func_080B2114: @ 0x080B2114
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -103234,7 +103234,7 @@ func_080B2114: @ 0x080B2114
 	lsls r0, r0, #4
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	lsls r2, r7, #3
 	adds r2, r2, r0
 	movs r3, #0x80
@@ -103509,7 +103509,7 @@ func_080B2114: @ 0x080B2114
 	lsls r0, r0, #4
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	mov r1, sb
 	lsls r2, r1, #3
 	adds r2, r2, r0
@@ -105840,58 +105840,58 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 	movs r1, #0
 	bl ShowPortrait__C12UiStateOwnerUi
 	add r0, sp, #0xc
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	movs r5, #0
 	str r5, [sp, #0x10]
 	add r6, sp, #0x14
 	adds r0, r6, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r5, [r6, #4]
 	add r4, sp, #0x1c
 	mov r8, r4
 	mov r0, r8
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r5, [r4, #4]
 	add r4, sp, #0x24
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r5, [r4, #4]
 	add r4, sp, #0x2c
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r5, [r4, #4]
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0xc
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x84]
 	ldr r1, [sp, #0x18]
 	adds r0, r6, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r6, #0
 	movs r1, #7
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x18]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x88]
 	ldr r1, [sp, #0x20]
 	mov r0, r8
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, r8
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x20]
 	mov r0, r8
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x8c]
 	add r0, sp, #0x34
 	bl ConstructObjPalettePoolOwner
@@ -107293,34 +107293,34 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x30]
 	add r0, sp, #0x2c
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x2c
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x28]
 	add r0, sp, #0x24
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x24
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x20]
 	add r0, sp, #0x1c
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x1c
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x18]
 	add r0, sp, #0x14
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x14
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	add sp, #0xb8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -107955,98 +107955,98 @@ UpdateUnkPhase0__27ChickenFestivalMinigameCore: @ 0x080B5824
 	str r0, [sp, #0x138]
 	add r5, sp, #0x30
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	movs r4, #0
 	str r4, [r5, #4]
 	add r6, sp, #0x38
 	adds r0, r6, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r6, #4]
 	add r0, sp, #0x40
 	mov r8, r0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r1, r8
 	str r4, [r1, #4]
 	add r2, sp, #0x48
 	mov sb, r2
 	mov r0, sb
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r3, sb
 	str r4, [r3, #4]
 	add r7, sp, #0x50
 	mov sl, r7
 	mov r0, sl
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r7, #4]
 	add r7, sp, #0x58
 	adds r0, r7, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r7, #4]
 	ldr r1, [sp, #0x34]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x34]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x13c]
 	ldr r1, [sp, #0x3c]
 	adds r0, r6, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r6, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x3c]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x140]
 	ldr r1, [sp, #0x44]
 	mov r0, r8
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, r8
 	movs r1, #8
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x44]
 	mov r0, r8
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x144]
 	ldr r1, [sp, #0x4c]
 	mov r0, sb
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sb
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x4c]
 	mov r0, sb
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x148]
 	ldr r1, [sp, #0x54]
 	mov r0, sl
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sl
 	movs r1, #7
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x54]
 	mov r0, sl
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x14c]
 	ldr r1, [sp, #0x5c]
 	adds r0, r7, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r7, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x5c]
 	adds r0, r7, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x150]
 	ldr r0, [sp, #0x138]
 	bl func_080B757C
@@ -111188,40 +111188,40 @@ UpdateUnkPhase0__27ChickenFestivalMinigameCore: @ 0x080B5824
 .L080B70EA:
 	ldr r1, [sp, #0x5c]
 	add r0, sp, #0x58
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x58
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x54]
 	add r0, sp, #0x50
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x50
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x4c]
 	add r0, sp, #0x48
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x48
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x44]
 	add r0, sp, #0x40
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x40
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x3c]
 	add r0, sp, #0x38
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x38
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x34]
 	add r0, sp, #0x30
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x30
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	add sp, #0x1a4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -111870,95 +111870,95 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B7648
 	sub sp, #0xc0
 	adds r7, r0, #0
 	mov r0, sp
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	movs r0, #0
 	mov sl, r0
 	str r0, [sp, #4]
 	add r4, sp, #8
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r1, sl
 	str r1, [r4, #4]
 	add r5, sp, #0x10
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r2, sl
 	str r2, [r5, #4]
 	add r6, sp, #0x18
 	adds r0, r6, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r3, sl
 	str r3, [r6, #4]
 	add r0, sp, #0x20
 	mov r8, r0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r1, sl
 	mov r2, r8
 	str r1, [r2, #4]
 	add r3, sp, #0x28
 	mov sb, r3
 	mov r0, sb
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r0, sl
 	mov r1, sb
 	str r0, [r1, #4]
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sp
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #4]
 	mov r0, sp
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x90]
 	ldr r1, [sp, #0xc]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0xc]
 	adds r0, r4, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x94]
 	ldr r1, [sp, #0x14]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #7
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x14]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x98]
 	ldr r1, [sp, #0x1c]
 	adds r0, r6, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r6, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x1c]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x9c]
 	ldr r1, [sp, #0x24]
 	mov r0, r8
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, r8
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [sp, #0x24]
 	ldr r1, [sp, #0x2c]
 	mov r0, sb
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sb
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [sp, #0x2c]
 	add r0, sp, #0x30
 	bl ConstructObjPalettePoolOwner
@@ -112392,7 +112392,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B7648
 	mov r8, r6
 	ldr r1, [sp, #0x24]
 	add r0, sp, #0x20
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -112555,7 +112555,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B7648
 	mov r8, r6
 	ldr r1, [sp, #0x2c]
 	add r0, sp, #0x28
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -112729,7 +112729,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B7648
 	ldr r1, [sp, #0x24]
 	add r0, sp, #0x20
 .L080B7CEE:
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldm r5!, {r1}
 	movs r0, #1
@@ -113786,40 +113786,40 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B7648
 	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x2c]
 	add r0, sp, #0x28
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x28
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x24]
 	add r0, sp, #0x20
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x20
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x1c]
 	add r0, sp, #0x18
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x18
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x14]
 	add r0, sp, #0x10
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x10
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0xc]
 	add r0, sp, #8
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #8
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sp
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	add sp, #0xc0
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -114273,58 +114273,58 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B888C
 	movs r1, #0
 	bl ShowPortrait__C12UiStateOwnerUi
 	add r0, sp, #0xc
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	movs r0, #0
 	mov sb, r0
 	str r0, [sp, #0x10]
 	add r5, sp, #0x14
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r1, sb
 	str r1, [r5, #4]
 	add r6, sp, #0x1c
 	adds r0, r6, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r2, sb
 	str r2, [r6, #4]
 	add r4, sp, #0x24
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r3, sb
 	str r3, [r4, #4]
 	add r4, sp, #0x2c
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r0, sb
 	str r0, [r4, #4]
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0xc
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x44]
 	ldr r1, [sp, #0x18]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #7
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	adds r1, r0, #0
 	str r1, [sp, #0x18]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0x48]
 	ldr r1, [sp, #0x20]
 	adds r0, r6, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r6, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [sp, #0x20]
 	add r0, sp, #0x34
 	bl ConstructObjPalettePoolOwner
@@ -114771,34 +114771,34 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B888C
 	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x30]
 	add r0, sp, #0x2c
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x2c
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x28]
 	add r0, sp, #0x24
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x24
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x20]
 	add r0, sp, #0x1c
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x1c
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x18]
 	add r0, sp, #0x14
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0x14
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #0x10]
 	add r0, sp, #0xc
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	add sp, #0x68
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -121888,26 +121888,26 @@ func_080BC288: @ 0x080BC288
 	mov r8, r0
 	str r1, [sp, #0x88]
 	mov r0, sp
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	movs r4, #0
 	str r4, [sp, #4]
 	add r5, sp, #8
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sp
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [sp, #4]
 	ldr r1, [sp, #0xc]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [sp, #0xc]
 	add r4, sp, #0x10
 	ldr r1, .L080BC3C8 @ =gUnk_080BC288Values
@@ -121989,7 +121989,7 @@ func_080BC288: @ 0x080BC288
 	ldr r7, [r4]
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -122334,7 +122334,7 @@ func_080BC288: @ 0x080BC288
 	ldr r7, [r4]
 	ldr r1, [sp, #0xc]
 	add r0, sp, #8
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -122532,7 +122532,7 @@ func_080BC288: @ 0x080BC288
 	strh r0, [r4, #2]
 	ldr r1, [sp, #0xc]
 	add r0, sp, #8
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r4, [r5]
 	ldr r3, [sp, #0x88]
@@ -122575,7 +122575,7 @@ func_080BC288: @ 0x080BC288
 	strh r0, [r4, #2]
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r4, [r5]
 	ldr r0, [sp, #0x88]
@@ -122625,16 +122625,16 @@ func_080BC288: @ 0x080BC288
 .L080BC84E:
 	ldr r1, [sp, #0xc]
 	add r0, sp, #8
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	add r0, sp, #8
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r1, [sp, #4]
 	mov r0, sp
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	mov r0, sp
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	ldr r5, [sp, #0x88]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
@@ -122967,55 +122967,55 @@ func_080BC938: @ 0x080BC938
 	adds r2, #0x28
 	adds r5, r6, r2
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r0, #0xb7
 	lsls r0, r0, #3
 	adds r5, r6, r0
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r1, #0xb8
 	lsls r1, r1, #3
 	adds r5, r6, r1
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r2, #0xb9
 	lsls r2, r2, #3
 	adds r5, r6, r2
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r0, #0xba
 	lsls r0, r0, #3
 	adds r5, r6, r0
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r1, #0xbb
 	lsls r1, r1, #3
 	adds r5, r6, r1
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r2, #0xbc
 	lsls r2, r2, #3
 	adds r5, r6, r2
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r0, #0xbd
 	lsls r0, r0, #3
 	adds r5, r6, r0
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	movs r1, #0xbe
 	lsls r1, r1, #3
 	adds r5, r6, r1
 	adds r0, r5, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	str r4, [r5, #4]
 	ldr r2, .L080BCCC8 @ =0x00000604
 	adds r0, r6, r2
@@ -123302,90 +123302,90 @@ func_080BCEC8: @ 0x080BCEC8
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0xb7
 	lsls r0, r0, #3
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0xb8
 	lsls r0, r0, #3
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0xb9
 	lsls r0, r0, #3
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0xba
 	lsls r0, r0, #3
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0xbb
 	lsls r0, r0, #3
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0xbe
 	lsls r0, r0, #3
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #4
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0xbd
 	lsls r0, r0, #3
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0xbc
 	lsls r0, r0, #3
 	adds r5, r5, r0
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r5, #4]
 	pop {r4, r5}
 	pop {r0}
@@ -123569,7 +123569,7 @@ func_080BD064: @ 0x080BD064
 	lsls r0, r0, #3
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
@@ -123743,7 +123743,7 @@ func_080BD064: @ 0x080BD064
 	lsls r0, r0, #3
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	movs r0, #2
 	str r0, [sp]
@@ -123816,7 +123816,7 @@ func_080BD064: @ 0x080BD064
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #3
@@ -123855,7 +123855,7 @@ func_080BD064: @ 0x080BD064
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -124213,7 +124213,7 @@ func_080BD064: @ 0x080BD064
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #5
@@ -124260,7 +124260,7 @@ func_080BD064: @ 0x080BD064
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -124618,7 +124618,7 @@ func_080BD064: @ 0x080BD064
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #6
@@ -124657,7 +124657,7 @@ func_080BD064: @ 0x080BD064
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -125009,7 +125009,7 @@ func_080BD064: @ 0x080BD064
 	lsls r0, r0, #3
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #0xa
@@ -125069,7 +125069,7 @@ func_080BD064: @ 0x080BD064
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #8
@@ -125114,7 +125114,7 @@ func_080BD064: @ 0x080BD064
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -125618,7 +125618,7 @@ func_080BDF40: @ 0x080BDF40
 	lsls r1, r1, #3
 	adds r0, r5, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -126076,7 +126076,7 @@ func_080BDF40: @ 0x080BDF40
 	lsls r3, r3, #3
 	adds r0, r5, r3
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -126581,7 +126581,7 @@ func_080BE728: @ 0x080BE728
 	lsls r0, r0, #3
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
@@ -128071,7 +128071,7 @@ func_080BF348: @ 0x080BF348
 	lsls r1, r1, #3
 	adds r0, r5, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -128722,7 +128722,7 @@ func_080BF764: @ 0x080BF764
 	add r6, sl
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #4
@@ -128766,7 +128766,7 @@ func_080BF764: @ 0x080BF764
 	ldr r7, [r4]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -129098,7 +129098,7 @@ func_080BF764: @ 0x080BF764
 	add r6, sl
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r5, #6]
 	ldr r0, [r4]
 	movs r1, #1
@@ -129142,7 +129142,7 @@ func_080BF764: @ 0x080BF764
 	ldr r7, [r4]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -129393,7 +129393,7 @@ func_080BF764: @ 0x080BF764
 	ldr r2, [sp, #0xd0]
 	ldr r1, [r2, #4]
 	adds r0, r2, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r3, [sp, #0xf4]
 	adds r2, r3, r2
@@ -129554,7 +129554,7 @@ func_080BF764: @ 0x080BF764
 	ldr r2, [sp, #0xd0]
 	ldr r1, [r2, #4]
 	adds r0, r2, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	ldr r5, [sp, #0xf4]
 	adds r3, r3, r5
@@ -129581,7 +129581,7 @@ func_080BF764: @ 0x080BF764
 	ldr r2, [sp, #0xd0]
 	ldr r1, [r2, #4]
 	adds r0, r2, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	adds r3, #0x10
 	ldr r5, [sp, #0xc8]
@@ -129705,7 +129705,7 @@ func_080BF764: @ 0x080BF764
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r7]
 	movs r0, #7
@@ -129749,7 +129749,7 @@ func_080BF764: @ 0x080BF764
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -130311,7 +130311,7 @@ func_080BF764: @ 0x080BF764
 	lsls r0, r0, #3
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	lsls r2, r7, #3
 	adds r2, r2, r0
 	movs r3, #0x80
@@ -130587,7 +130587,7 @@ func_080BF764: @ 0x080BF764
 	lsls r0, r0, #3
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	ldr r3, [sp, #0xc8]
 	lsls r2, r3, #3
 	adds r2, r2, r0
@@ -132274,109 +132274,109 @@ func_080C14C8: @ 0x080C14C8
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C15E0 @ =0x00000844
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C15E4 @ =0x0000084C
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C15E8 @ =0x00000854
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C15EC @ =0x0000085C
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C15F0 @ =0x00000864
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C15F4 @ =0x0000086C
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C15F8 @ =0x0000087C
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C15FC @ =0x00000884
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C1600 @ =0x00000874
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #6
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C1604 @ =0x0000088C
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #5
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	ldr r0, .L080C1608 @ =0x00000894
 	adds r5, r5, r0
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r5, #0
 	movs r1, #3
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r5, #4]
 	pop {r4, r5}
 	pop {r0}
@@ -132576,7 +132576,7 @@ func_080C16D4: @ 0x080C16D4
 	ldr r0, .L080C181C @ =0x0000083C
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
@@ -132750,7 +132750,7 @@ func_080C16D4: @ 0x080C16D4
 	ldr r0, .L080C1A3C @ =0x0000083C
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	movs r0, #2
 	str r0, [sp]
@@ -132823,7 +132823,7 @@ func_080C16D4: @ 0x080C16D4
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #3
@@ -132865,7 +132865,7 @@ func_080C16D4: @ 0x080C16D4
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -133221,7 +133221,7 @@ func_080C16D4: @ 0x080C16D4
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #7
@@ -133268,7 +133268,7 @@ func_080C16D4: @ 0x080C16D4
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -133620,7 +133620,7 @@ func_080C16D4: @ 0x080C16D4
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #8
@@ -133664,7 +133664,7 @@ func_080C16D4: @ 0x080C16D4
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -134018,7 +134018,7 @@ func_080C16D4: @ 0x080C16D4
 	ldr r0, .L080C23C8 @ =0x0000087C
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #0xc
@@ -134077,7 +134077,7 @@ func_080C16D4: @ 0x080C16D4
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #0xa
@@ -134122,7 +134122,7 @@ func_080C16D4: @ 0x080C16D4
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -134496,7 +134496,7 @@ func_080C16D4: @ 0x080C16D4
 	ldr r0, .L080C27D8 @ =0x0000084C
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #4
@@ -134590,7 +134590,7 @@ func_080C16D4: @ 0x080C16D4
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	mov r1, sb
 	adds r0, r6, r1
@@ -134650,7 +134650,7 @@ func_080C16D4: @ 0x080C16D4
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -135055,7 +135055,7 @@ func_080C16D4: @ 0x080C16D4
 	add r5, sb
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	mov r1, sb
 	adds r0, r6, r1
@@ -135115,7 +135115,7 @@ func_080C16D4: @ 0x080C16D4
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -135701,7 +135701,7 @@ func_080C2D54: @ 0x080C2D54
 	ldr r0, .L080C2FE4 @ =0x0000086C
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -136126,7 +136126,7 @@ func_080C2D54: @ 0x080C2D54
 	ldr r0, .L080C32F8 @ =0x0000084C
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -136522,7 +136522,7 @@ func_080C2D54: @ 0x080C2D54
 	ldr r0, .L080C35F0 @ =0x0000087C
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -137062,7 +137062,7 @@ func_080C38E4: @ 0x080C38E4
 	ldr r0, .L080C39F8 @ =0x0000083C
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
@@ -140810,7 +140810,7 @@ func_080C5710: @ 0x080C5710
 	ldr r1, .L080C57E8 @ =0x00000844
 	adds r0, r6, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -141334,7 +141334,7 @@ func_080C5A6C: @ 0x080C5A6C
 	ldr r2, .L080C5BEC @ =0x00000844
 	adds r0, r7, r2
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r5]
 	movs r3, #0
@@ -141828,7 +141828,7 @@ func_080C5A6C: @ 0x080C5A6C
 	ldr r5, .L080C5FB0 @ =0x0000083C
 	adds r0, r7, r5
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	adds r7, r4, #0
 	lsls r2, r2, #5
@@ -142208,7 +142208,7 @@ func_080C608C: @ 0x080C608C
 	add r6, sl
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #9
@@ -142251,7 +142251,7 @@ func_080C608C: @ 0x080C608C
 	ldr r7, [r4]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -142674,7 +142674,7 @@ func_080C608C: @ 0x080C608C
 	ldr r2, [sp, #0xf8]
 	ldr r1, [r2, #4]
 	adds r0, r2, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r3, [sp, #0x124]
 	adds r2, r3, r2
@@ -142835,7 +142835,7 @@ func_080C608C: @ 0x080C608C
 	ldr r2, [sp, #0xf8]
 	ldr r1, [r2, #4]
 	adds r0, r2, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	ldr r5, [sp, #0x124]
 	adds r3, r3, r5
@@ -142862,7 +142862,7 @@ func_080C608C: @ 0x080C608C
 	ldr r2, [sp, #0xf8]
 	ldr r1, [r2, #4]
 	adds r0, r2, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r3, r0, #0
 	adds r3, #0x18
 	movs r5, #2
@@ -142952,7 +142952,7 @@ func_080C608C: @ 0x080C608C
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #4
@@ -142996,7 +142996,7 @@ func_080C608C: @ 0x080C608C
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -143351,7 +143351,7 @@ func_080C608C: @ 0x080C608C
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r6]
 	movs r0, #5
@@ -143395,7 +143395,7 @@ func_080C608C: @ 0x080C608C
 	ldr r7, [r4]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -143728,7 +143728,7 @@ func_080C608C: @ 0x080C608C
 	add r0, sl
 	mov r8, r0
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r4, #6]
 	ldr r1, [r5]
 	movs r0, #8
@@ -143777,7 +143777,7 @@ func_080C608C: @ 0x080C608C
 	mov r6, r8
 	ldr r1, [r6, #4]
 	mov r0, r8
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -144360,7 +144360,7 @@ func_080C608C: @ 0x080C608C
 	ldr r0, .L080C730C @ =0x0000088C
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	lsls r2, r7, #3
 	adds r2, r2, r0
 	movs r3, #0x80
@@ -144637,7 +144637,7 @@ func_080C608C: @ 0x080C608C
 	ldr r0, .L080C7528 @ =0x0000088C
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	ldr r3, [sp, #0xf4]
 	lsls r2, r3, #3
 	adds r2, r2, r0
@@ -146056,10 +146056,10 @@ func_080C7F58: @ 0x080C7F58
 	lsls r0, r0, #2
 	adds r4, r7, r0
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r1, #0xd7
 	lsls r1, r1, #2
@@ -146073,10 +146073,10 @@ func_080C7F58: @ 0x080C7F58
 	lsls r0, r0, #2
 	adds r4, r7, r0
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r1, #0xdb
 	lsls r1, r1, #2
@@ -146090,19 +146090,19 @@ func_080C7F58: @ 0x080C7F58
 	lsls r0, r0, #2
 	adds r4, r7, r0
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #1
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r1, #0xdf
 	lsls r1, r1, #2
 	adds r4, r7, r1
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #1
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0xe1
 	lsls r0, r0, #2
@@ -146116,19 +146116,19 @@ func_080C7F58: @ 0x080C7F58
 	lsls r1, r1, #2
 	adds r4, r7, r1
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #1
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r0, #0xe5
 	lsls r0, r0, #2
 	adds r4, r7, r0
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #1
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r1, #0xe7
 	lsls r1, r1, #2
@@ -146149,7 +146149,7 @@ func_080C7F58: @ 0x080C7F58
 	mov r8, r0
 .L080C80B0:
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r1, r8
 	str r1, [r4, #4]
 	adds r4, #8
@@ -146408,10 +146408,10 @@ func_080C7F58: @ 0x080C7F58
 	adds r4, r4, r1
 	ldr r1, [r6]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r6]
 	adds r5, r5, r7
 	movs r0, #0xfb
@@ -146530,10 +146530,10 @@ func_080C8360: @ 0x080C8360
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	cmp r6, r4
 	bne .L080C83E4
 .L080C83FA:
@@ -146551,19 +146551,19 @@ func_080C8360: @ 0x080C8360
 	adds r4, r5, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	movs r2, #0xe3
 	lsls r2, r2, #2
 	adds r4, r5, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	movs r0, #0xe1
 	lsls r0, r0, #2
 	adds r4, r5, r0
@@ -146578,19 +146578,19 @@ func_080C8360: @ 0x080C8360
 	adds r4, r5, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	movs r2, #0xdd
 	lsls r2, r2, #2
 	adds r4, r5, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	movs r0, #0xdb
 	lsls r0, r0, #2
 	adds r4, r5, r0
@@ -146605,10 +146605,10 @@ func_080C8360: @ 0x080C8360
 	adds r4, r5, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	movs r2, #0xd7
 	lsls r2, r2, #2
 	adds r4, r5, r2
@@ -146623,10 +146623,10 @@ func_080C8360: @ 0x080C8360
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._24HardwareSharedStateOwner
+	bl _._16ObjTilePoolOwner
 	movs r1, #0xd2
 	lsls r1, r1, #2
 	adds r0, r5, r1
@@ -147138,7 +147138,7 @@ func_080C85A0: @ 0x080C85A0
 	lsls r1, r1, #2
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	str r4, [sp, #0x138]
 	ldr r1, .L080C8958 @ =gUnk_08752F8C
@@ -149026,7 +149026,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r4, r0, #0
 	movs r0, #0xd7
 	lsls r0, r0, #2
@@ -149309,7 +149309,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r1, r1, #2
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0xc8]
 	mov r0, sl
 	bl GetHardwareDmaQueue
@@ -149471,7 +149471,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r1, r1, #2
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	str r0, [sp, #0xc8]
 .L080C9A44:
 	ldr r2, [sp, #0xc4]
@@ -150000,7 +150000,7 @@ func_080C96C4: @ 0x080C96C4
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	add r1, sp, #0x10
 	strh r0, [r1, #6]
 	adds r0, r1, #0
@@ -150021,7 +150021,7 @@ func_080C96C4: @ 0x080C96C4
 	ldr r7, [sp, #0x34]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	add r1, sp, #0x34
 	ldr r0, [sp, #0x34]
@@ -150241,7 +150241,7 @@ func_080C96C4: @ 0x080C96C4
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	add r1, sp, #0x10
 	strh r0, [r1, #6]
 	adds r0, r1, #0
@@ -150262,7 +150262,7 @@ func_080C96C4: @ 0x080C96C4
 	ldr r7, [sp, #0x34]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	add r1, sp, #0x34
 	ldr r0, [sp, #0x34]
@@ -150483,7 +150483,7 @@ func_080C96C4: @ 0x080C96C4
 	add r5, sl
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	add r1, sp, #0x10
 	strh r0, [r1, #6]
 	adds r0, r1, #0
@@ -150504,7 +150504,7 @@ func_080C96C4: @ 0x080C96C4
 	ldr r7, [sp, #0x34]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	add r1, sp, #0x34
 	ldr r0, [sp, #0x34]
@@ -150716,7 +150716,7 @@ func_080C96C4: @ 0x080C96C4
 	add r4, sl
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	add r1, sp, #0x10
 	strh r0, [r1, #6]
 	adds r0, r1, #0
@@ -150743,7 +150743,7 @@ func_080C96C4: @ 0x080C96C4
 	ldr r7, [sp, #0x34]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	add r1, sp, #0x34
 	ldr r0, [sp, #0x34]
@@ -150957,7 +150957,7 @@ func_080C96C4: @ 0x080C96C4
 	add r4, sl
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	add r1, sp, #0x10
 	strh r0, [r1, #6]
 	adds r0, r1, #0
@@ -150984,7 +150984,7 @@ func_080C96C4: @ 0x080C96C4
 	ldr r7, [sp, #0x34]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	add r1, sp, #0x34
 	ldr r0, [sp, #0x34]
@@ -154308,7 +154308,7 @@ func_080CC15C: @ 0x080CC15C
 	lsls r6, r6, #2
 	adds r4, r7, r6
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r0, r8
 	str r0, [r4, #4]
 	movs r1, #0xa9
@@ -154327,7 +154327,7 @@ func_080CC15C: @ 0x080CC15C
 	rsbs r6, r6, #0
 .L080CC246:
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	mov r1, r8
 	str r1, [r4, #4]
 	adds r4, #8
@@ -154364,10 +154364,10 @@ func_080CC15C: @ 0x080CC15C
 	adds r4, r4, r1
 	ldr r1, [r6]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r6]
 	adds r5, r5, r7
 	movs r4, #0xbb
@@ -154393,10 +154393,10 @@ func_080CC15C: @ 0x080CC15C
 	adds r4, r7, r5
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwareSharedStateHandle
+	bl ReleaseObjTileHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	movs r6, #0xa9
 	lsls r6, r6, #2
@@ -154812,7 +154812,7 @@ func_080CC58C: @ 0x080CC58C
 	adds r0, r0, r2
 	mov r2, sb
 	ldr r1, [r2]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	mov r8, r0
 	add r4, sl
 	movs r0, #0xbb
@@ -154891,7 +154891,7 @@ func_080CC58C: @ 0x080CC58C
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r6, r0, #0
 	movs r0, #0xa9
 	lsls r0, r0, #2
@@ -154995,7 +154995,7 @@ func_080CC728: @ 0x080CC728
 	lsls r3, r3, #2
 	adds r0, r0, r3
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r6, r0, #0
 	add r4, sl
 	movs r7, #0xbb
@@ -155407,7 +155407,7 @@ func_080CCA40: @ 0x080CCA40
 	lsls r3, r3, #2
 	adds r0, r0, r3
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r6, r0, #0
 	add r4, sl
 	movs r7, #0xbb
@@ -155943,7 +155943,7 @@ func_080CCE58: @ 0x080CCE58
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r4, r0, #0
 	movs r0, #0xa9
 	lsls r0, r0, #2
@@ -156343,7 +156343,7 @@ func_080CD14C: @ 0x080CD14C
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r4, r0, #0
 	movs r0, #0xa9
 	lsls r0, r0, #2
@@ -157354,7 +157354,7 @@ func_080CDDD4: @ 0x080CDDD4
 	adds r6, #0x14
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	mov r0, sp
@@ -157377,7 +157377,7 @@ func_080CDDD4: @ 0x080CDDD4
 	ldr r5, [sp, #0x24]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	add r1, sp, #0x24
 	ldr r0, [sp, #0x24]
@@ -157808,18 +157808,18 @@ func_080CE2FC: @ 0x080CE2FC
 	adds r4, r7, #0
 	stm r4!, {r1}
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	adds r4, r7, #0
 	adds r4, #0xc
 	adds r0, r4, #0
-	bl InitializeHardwareSharedStateOwner
+	bl InitializeObjTilePoolOwner
 	adds r0, r4, #0
 	movs r1, #2
-	bl AllocateHardwareSharedStateHandle
+	bl AllocateObjTileHandle
 	str r0, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
@@ -158394,7 +158394,7 @@ func_080CE790: @ 0x080CE790
 	adds r5, r6, #4
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	mov r0, sp
@@ -158415,7 +158415,7 @@ func_080CE790: @ 0x080CE790
 	ldr r7, [sp, #0x24]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	add r1, sp, #0x24
 	ldr r0, [sp, #0x24]
@@ -158637,7 +158637,7 @@ func_080CE790: @ 0x080CE790
 	adds r5, #0xc
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	mov r0, sp
@@ -158658,7 +158658,7 @@ func_080CE790: @ 0x080CE790
 	ldr r6, [sp, #0x24]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	add r1, sp, #0x24
 	ldr r0, [sp, #0x24]
@@ -159018,7 +159018,7 @@ func_080CECE8: @ 0x080CECE8
 	adds r7, #0x6c
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	strh r0, [r6, #6]
 	strb r5, [r6, #0x18]
 	mov r5, r8
@@ -159043,7 +159043,7 @@ func_080CECE8: @ 0x080CECE8
 	mov sb, r2
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl GetHardwareSharedStateTileIndex
+	bl GetObjTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #8]
 	movs r3, #0

@@ -39,7 +39,7 @@ static inline bool MenuBlendIsQueued(HardwareBlendObject const & blend)
 
 static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
 {
-    return GetHardwareSharedStateTileIndex(&entry, entry.handle);
+    return GetObjTileIndex(&entry, entry.handle);
 }
 
 static inline u32 SpritePaletteBank(ObjPaletteCollectionEntry & entry)

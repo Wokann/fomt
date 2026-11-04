@@ -2,10 +2,10 @@
 #define HARDWARE_STATE_CLEAR_HH
 
 #include "prelude.h"
-#include "hardware_refcount.hh"
+#include "obj_tile_pool.hh"
 
 struct HardwareStateEntry {
-    struct HardwareSharedStateOwner owner;
+    struct ObjTilePoolOwner owner;
     u32 handle;
 #ifdef __cplusplus
     HardwareStateEntry()
@@ -17,40 +17,40 @@ struct HardwareStateEntry {
     {
         if (&value != this)
         {
-            ReleaseHardwareSharedStateHandle(this, handle);
-            handle = RetainHardwareSharedStateHandle(this, value.handle);
+            ReleaseObjTileHandle(this, handle);
+            handle = RetainObjTileHandle(this, value.handle);
         }
         return *this;
     }
 
     HardwareStateEntry(u32 size_shift)
     {
-        handle = AllocateHardwareSharedStateHandle(this, size_shift);
+        handle = AllocateObjTileHandle(this, size_shift);
     }
 
     HardwareStateEntry(HardwareStateEntry const & value)
     {
-        handle = RetainHardwareSharedStateHandle(this, value.handle);
+        handle = RetainObjTileHandle(this, value.handle);
     }
 
     void Clear()
     {
-        ReleaseHardwareSharedStateHandle(this, handle);
+        ReleaseObjTileHandle(this, handle);
         handle = 0;
     }
 
     void Reset(u32 size_shift)
     {
-        ReleaseHardwareSharedStateHandle(this, handle);
-        handle = AllocateHardwareSharedStateHandle(this, size_shift);
+        ReleaseObjTileHandle(this, handle);
+        handle = AllocateObjTileHandle(this, size_shift);
     }
 
     u32 GetTileIndex() const
-    { return GetHardwareSharedStateTileIndex(this, handle); }
+    { return GetObjTileIndex(this, handle); }
 
     ~HardwareStateEntry()
     {
-        ReleaseHardwareSharedStateHandle(this, handle);
+        ReleaseObjTileHandle(this, handle);
     }
 #endif
 };

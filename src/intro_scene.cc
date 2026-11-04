@@ -42,8 +42,8 @@ static inline void InitializeIntroSceneResourceState(
 static inline void InitializeIntroSceneHardwareStateHandle(
     IntroSceneHardwareStateHandle * owner, u32 group_index)
 {
-    InitializeHardwareSharedStateOwner(owner);
-    owner->handle = AllocateHardwareSharedStateHandle(owner, group_index);
+    InitializeObjTilePoolOwner(owner);
+    owner->handle = AllocateObjTileHandle(owner, group_index);
 }
 
 static inline void InitializeIntroSceneHardwarePoolHandle(IntroSceneHardwarePoolHandle * owner)
@@ -53,9 +53,9 @@ static inline void InitializeIntroSceneHardwarePoolHandle(IntroSceneHardwarePool
 }
 
 static inline void InitializeIntroSceneHardwareStateReservation(
-    HardwareSharedStateOwner * owner, u32 first, u32 count)
+    ObjTilePoolOwner * owner, u32 first, u32 count)
 {
-    InitializeHardwareSharedStateOwner(owner);
+    InitializeObjTilePoolOwner(owner);
     owner->Reserve(first, count);
 }
 
@@ -151,7 +151,7 @@ void DestroyIntroSceneCore(IntroSceneCore * core, int flags)
     core->pool_handle_6C80.~IntroSceneHardwarePoolHandle();
     core->state_handle_6C78.~IntroSceneHardwareStateHandle();
     core->pool_reservation.~ObjPalettePoolOwner();
-    core->state_reservation.~HardwareSharedStateOwner();
+    core->state_reservation.~ObjTilePoolOwner();
 
     // These are concrete archive subobjects, not polymorphic owners.
     // Their payloads are borrowed; the unpacked bytes belong to core.
@@ -629,7 +629,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
 
 static inline u32 GetIntroSceneTileIndex(IntroSceneHardwareStateHandle & state)
 {
-    return GetHardwareSharedStateTileIndex(&state, state.handle);
+    return GetObjTileIndex(&state, state.handle);
 }
 
 static inline u32 GetIntroScenePaletteIndex(IntroSceneHardwarePoolHandle & state)
