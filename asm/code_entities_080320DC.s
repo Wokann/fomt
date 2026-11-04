@@ -7387,8 +7387,9 @@ func_08033B94:
     .4byte 0x18084240
     .4byte 0x18400FC1
     .4byte 0x04001040
-    .4byte 0xF09C1C31
-    .4byte 0xAB23FF81
+    adds r1, r6, #0
+    bl __divsi3
+    add r3, sp, #0x8C
     .4byte 0x22B46018
     .4byte 0x6002A822
     .4byte 0x428A6819
@@ -11296,8 +11297,9 @@ func_08033B94:
     .4byte 0x18084240
     .4byte 0x18400FC1
     .4byte 0x04001040
-    .4byte 0xF09C1C31
-    .4byte 0xAB23FF8D
+    adds r1, r6, #0
+    bl __divsi3
+    add r3, sp, #0x8C
     .4byte 0x22B46018
     .4byte 0x6002A822
     .4byte 0x428A6819
@@ -15311,8 +15313,9 @@ func_08033B94:
     .4byte 0x18084240
     .4byte 0x18400FC1
     .4byte 0x04001040
-    .4byte 0xF09C1C31
-    .4byte 0xAB23FF65
+    adds r1, r6, #0
+    bl __divsi3
+    add r3, sp, #0x8C
     .4byte 0x22B46018
     .4byte 0x6002A822
     .4byte 0x428A6819

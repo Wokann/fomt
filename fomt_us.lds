@@ -897,8 +897,9 @@ SECTIONS
         src/link_communication_data.o(.text);
         . = 0xD0CD4; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);
-        . = 0xD0EBC; /* Remaining font support code. */
-        asm/code_809E804.o(.text.font_after);
+        asm/hardware_dma.o(.text);
+        asm/integer_division.o(.text);
+        . = 0xD100C; /* Interrupt table accessors. */
         asm/interrupt.o(.text);
         asm/compression.o(.text.compression_stream);
         asm/random.o(.text);

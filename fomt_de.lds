@@ -906,8 +906,9 @@ SECTIONS
         src/link_communication_data.o(.text);
         . = 0xD0C38; /* DE ROM 0x080D0C38, glyph-map index converter and renderer. */
         src/font.o(.text);
-        . = 0xD0E20; /* DE ROM 0x080D0E20, remaining font support code. */
-        asm/code_809E804.o(.text.font_after);
+        asm/hardware_dma.o(.text);
+        asm/integer_division.o(.text);
+        . = 0xD0F70; /* Interrupt table accessors. */
         asm/interrupt.o(.text);
         asm/compression.o(.text.compression_stream);
         asm/random.o(.text);
