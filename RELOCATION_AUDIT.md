@@ -338,7 +338,7 @@ FieldPlotTypeDefinition、Path、Song、料理条目和 DE NPC 实际字段排�
 两个旧地址函数名替换为实际用途名称，声明集中在 `include/interrupt.hh`；
 main 的 Game Pak 注册及 InitializeInterrupts 的 BIOS 入口赋值同步更新。
 原数值 PC 读取使用真实局部池标签，14 个未分类字节明确拆为对齐与三个寄存器字。
-三个函数的 `.size` 包含各自附属常量池（48、196、52 字节），上述表另列指令
+按用户要求不添加函数 `.size`；常量池标签和值保持同一行，上述表记录指令
 和数据边界。Thumb 回调保持 `03000491`，ARM 分派保持 `03000958`，不加别名
 或手写 Thumb 位。两个 IRQ 数据表继续是真实符号，BIOS 和寄存器保持平台地址。
 

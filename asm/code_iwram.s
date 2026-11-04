@@ -25,13 +25,9 @@ HandleGamePakInterrupt:
     svc #3
     b .LGamePakInterruptStop
     .align 2, 0
-.LGamePakInterruptIme:
-    .word 0x04000208
-.LGamePakInterruptIe:
-    .word 0x04000200
-.LGamePakInterruptSound:
-    .word 0x04000084
-    .size HandleGamePakInterrupt, . - HandleGamePakInterrupt
+.LGamePakInterruptIme: .word 0x04000208
+.LGamePakInterruptIe: .word 0x04000200
+.LGamePakInterruptSound: .word 0x04000084
 
     .global __new_handler
     .type __new_handler, object
@@ -190,8 +186,7 @@ SubmitWorldSpriteRecords:
     .Lauto_030006FC:
     ldr r0, [sp, #8]
     b .Lauto_03000708
-.LIwramSpriteDimensions:
-    .4byte gHardwareSpriteDimensions
+.LIwramSpriteDimensions: .4byte gHardwareSpriteDimensions
     .Lauto_03000708:
     add sp, sp, #0x34
     pop {r4, r5, r6, r7, r8, sb, sl, lr}
@@ -419,13 +414,9 @@ DispatchInterrupt:
     msr spsr_fc, r0
     strb r1, [r2, #8]
     bx lr
-.LInterruptEnableMasks:
-    .4byte gInterruptNestingMasks
-.LInterruptHandlers:
-    .4byte gInterruptHandlers
-.LInterruptBiosFlags:
-    .word 0x03007FF8
-    .size DispatchInterrupt, . - DispatchInterrupt
+.LInterruptEnableMasks: .4byte gInterruptNestingMasks
+.LInterruptHandlers: .4byte gInterruptHandlers
+.LInterruptBiosFlags: .word 0x03007FF8
 
     .global ApplyInterruptEnableMask
     .type ApplyInterruptEnableMask, function
@@ -443,9 +434,7 @@ ApplyInterruptEnableMask:
     strh r1, [r3]
     strb r2, [r3, #8]
     bx lr
-.LInterruptEnableRegister:
-    .4byte 0x04000200
-    .size ApplyInterruptEnableMask, . - ApplyInterruptEnableMask
+.LInterruptEnableRegister: .4byte 0x04000200
 
     @ The ROM image initializes rand's writable IWRAM seed to one.
     .global gRandomSeed
