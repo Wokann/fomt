@@ -6,6 +6,8 @@
 #include "hardware_blend_object.hh"
 #include "hardware_dma.hh"
 #include "hardware_music_player.hh"
+#include "gbaio.h"
+#include "fomt_constants.hh"
 #include <string.h>
 #pragma implementation
 
@@ -44,7 +46,7 @@ NewGameNameInputCore::NewGameNameInputCore(char const * prompt,
     core->prompt = prompt;
     memcpy(core->name, gText_NewGameNameEntry_Placeholder, sizeof(core->name));
     if (initial_name != nullptr) {
-        for (int index = 0; index < 13 && initial_name[index]; ++index)
+        for (int index = 0; index < static_cast<int>(sizeof(core->name)) && initial_name[index]; ++index)
             core->name[index] = initial_name[index];
     }
 }
@@ -69,7 +71,7 @@ SceneTransitionOwner RunNameInputCore(NewGameNameInputCore * core)
 
     HardwareDisplayState * display =
         GetHardwareDisplayState(reinterpret_cast<void * const *>(core));
-    HardwareDisplayRegisterValue control(0x3F);
+    HardwareDisplayRegisterValue control(BLDCNT_TGT1_ALL);
     display->SetBlendControl(control);
     HardwareBlendObject blend(GetHardwareDisplayState(reinterpret_cast<void * const *>(core)));
     {
@@ -110,34 +112,34 @@ void InitializeNameInputCursorSprites(NewGameNameInputCore * core, u32 tile_inde
     FillHardwareDma3(0, &core->sprites[1].attributes,
         sizeof(core->sprites[1].attributes));
 #if defined(REGION_JP)
-    core->sprites[0].attributes.size = 1;
-    core->sprites[1].attributes.size = 1;
+    core->sprites[0].attributes.size = ST_OAM_SIZE_1;
+    core->sprites[1].attributes.size = ST_OAM_SIZE_1;
 #else
-    core->sprites[0].attributes.size = 0;
-    core->sprites[1].attributes.size = 0;
-    core->sprites[1].attributes.shape = 2;
+    core->sprites[0].attributes.size = ST_OAM_SIZE_0;
+    core->sprites[1].attributes.size = ST_OAM_SIZE_0;
+    core->sprites[1].attributes.shape = ST_OAM_V_RECTANGLE;
 #endif
-    core->sprites[0].attributes.object_mode = 1;
-    core->sprites[1].attributes.object_mode = 1;
+    core->sprites[0].attributes.object_mode = ST_OAM_OBJ_BLEND;
+    core->sprites[1].attributes.object_mode = ST_OAM_OBJ_BLEND;
     core->sprites[1].attributes.tile_index =
         core->sprites[0].attributes.tile_index = tile_index;
     core->sprites[0].attributes.palette_bank = 4;
     core->sprites[1].attributes.palette_bank = 4;
 
     u8 row = 0;
-    u32 const offset = tile_index * 32;
+    u32 const offset = tile_index * TILE_SIZE_4BPP;
     for (; row <= 7; ++row) {
         u32 const pixel_offset = offset + row * 4;
-        *reinterpret_cast<u32 *>(0x06010000 + pixel_offset) = 0x88888888;
-        *reinterpret_cast<u32 *>(0x06010020 + pixel_offset) = 0x88888888;
-        *reinterpret_cast<u32 *>(0x06010040 + pixel_offset) = 0x88888888;
-        *reinterpret_cast<u32 *>(0x06010060 + pixel_offset) = 0x88888888;
-        *reinterpret_cast<u32 *>(0x06010080 + pixel_offset) = 0x88888888;
-        *reinterpret_cast<u32 *>(0x060100A0 + pixel_offset) = 0x88888888;
-        *reinterpret_cast<u32 *>(0x060100C0 + pixel_offset) = 0x88888888;
-        *reinterpret_cast<u32 *>(0x060100E0 + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(OBJ_VRAM0 + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(OBJ_VRAM0 + 1 * TILE_SIZE_4BPP + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(OBJ_VRAM0 + 2 * TILE_SIZE_4BPP + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(OBJ_VRAM0 + 3 * TILE_SIZE_4BPP + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(OBJ_VRAM0 + 4 * TILE_SIZE_4BPP + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(OBJ_VRAM0 + 5 * TILE_SIZE_4BPP + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(OBJ_VRAM0 + 6 * TILE_SIZE_4BPP + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(OBJ_VRAM0 + 7 * TILE_SIZE_4BPP + pixel_offset) = 0x88888888;
     }
-    reinterpret_cast<u16 *>(0x05000200)[4 * 16 + 8] = 0x027F;
+    reinterpret_cast<u16 *>(OBJ_PLTT)[4 * 16 + 8] = 0x027F;
     core->sprites[1].attributes.x = 144;
     core->sprites[1].attributes.y = 8;
     core->sprites[0].attributes.x = 0;
@@ -239,12 +241,12 @@ static inline void AppendTextDmaTransfer(HardwareDmaQueue * queue,
 void RenderNameInputName(NewGameNameInputCore * core)
 {
     u32 bytes = sizeof(core->name_buffer.tiles);
-    NewGameTextTileBuffer<30> & buffer = core->name_buffer;
+    NewGameNameInputKeyboardBuffer & buffer = core->name_buffer;
     buffer.ClearRect(0, 0, 96, 16, 0);
     buffer.DrawString(144, 0, core->name);
     HardwareDmaQueue * queue = GetHardwareDmaQueue(reinterpret_cast<void * const *>(core));
     DmaTransferDescriptor transfer(buffer.tiles,
-        reinterpret_cast<void *>(0x06000000 + bytes * ARRAY_COUNT(core->keyboard_buffers)), bytes);
+        reinterpret_cast<void *>(VRAM + bytes * ARRAY_COUNT(core->keyboard_buffers)), bytes);
     AppendTextDmaTransfer(queue, transfer);
 }
 
@@ -291,19 +293,15 @@ void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
 #endif
     core->sprites[1].attributes.y = 8;
 
-#if defined(REGION_DE)
-    if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 6) {
-#else
-    if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 5) {
-#endif
+    if (static_cast<i8>(core->sprites[0].unk_00[1]) < NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE) {
         core->sprites[0].attributes.x = static_cast<i8>(core->sprites[0].unk_00[0]) * 16;
         core->sprites[0].attributes.y = static_cast<i8>(core->sprites[0].unk_00[1]) * 16 + 0x20;
 #if defined(REGION_JP)
-        core->sprites[0].attributes.size = 1;
-        core->sprites[0].attributes.shape = 0;
+        core->sprites[0].attributes.size = ST_OAM_SIZE_1;
+        core->sprites[0].attributes.shape = ST_OAM_SQUARE;
 #else
-        core->sprites[0].attributes.size = 0;
-        core->sprites[0].attributes.shape = 2;
+        core->sprites[0].attributes.size = ST_OAM_SIZE_0;
+        core->sprites[0].attributes.shape = ST_OAM_V_RECTANGLE;
 #endif
     } else {
         u8 group = 0;
@@ -318,28 +316,24 @@ void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
 #else
         core->sprites[0].attributes.y = 0x88;
 #endif
-        core->sprites[0].attributes.size = 2;
-        core->sprites[0].attributes.shape = 1;
+        core->sprites[0].attributes.size = ST_OAM_SIZE_2;
+        core->sprites[0].attributes.shape = ST_OAM_H_RECTANGLE;
     }
 }
 
 void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
 {
+    int const last_character_row = NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE - 1;
+    int const bottom_row = NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE;
 #if defined(REGION_DE)
-    int const last_character_row = 6;
-    int const bottom_row = 7;
     int const last_column = 4;
-#else
-    int const last_character_row = 5;
-    int const bottom_row = 6;
-#if !defined(REGION_JP)
+#elif !defined(REGION_JP)
     int const last_column = 12;
 #endif
-#endif
     u32 input = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core));
-    u32 up = input & 0x40;
+    u32 up = input & DPAD_UP;
     if (static_cast<u8>(up)) {
-        core->music_player_2.Start(0xCB);
+        core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
         core->sprites[0].unk_00[1]--;
         if (static_cast<i8>(core->sprites[0].unk_00[1]) < 0) {
             core->sprites[0].unk_00[1] = bottom_row;
@@ -355,9 +349,9 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
                 core->sprites[0].unk_00[1]--;
         }
     } else {
-        u32 down = input & 0x80;
+        u32 down = input & DPAD_DOWN;
         if (static_cast<u8>(down)) {
-            core->music_player_2.Start(0xCB);
+            core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
             core->sprites[0].unk_00[1]++;
             if (static_cast<i8>(core->sprites[0].unk_00[1]) > bottom_row)
                 core->sprites[0].unk_00[1] = 0;
@@ -372,8 +366,8 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
             if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row)
                 core->sprites[0].unk_00[0] = 12;
 #endif
-        } else if (input & 0x10) {
-            core->music_player_2.Start(0xCB);
+        } else if (input & DPAD_RIGHT) {
+            core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
             if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row) {
 #if defined(REGION_JP)
                 if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4)
@@ -401,8 +395,8 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
                 } else if (static_cast<i8>(core->sprites[0].unk_00[0]) > 14)
                     core->sprites[0].unk_00[0] = 0;
             }
-        } else if (input & 0x20) {
-            core->music_player_2.Start(0xCB);
+        } else if (input & DPAD_LEFT) {
+            core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
             if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row) {
 #if defined(REGION_JP)
                 if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4)
@@ -556,42 +550,38 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
         return;
     MoveNameInputKeyboardCursor(core);
     u32 input = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core));
-    if (reinterpret_cast<u8 const *>(&input)[0] & 1) {
-#if defined(REGION_DE)
-        if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 6) {
-#else
-        if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 5) {
-#endif
-            core->music_player_2.Start(0x6A);
+    if (reinterpret_cast<u8 const *>(&input)[0] & A_BUTTON) {
+        if (static_cast<i8>(core->sprites[0].unk_00[1]) < NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE) {
+            core->music_player_2.Start(AUDIO_SFX_PICK_UP_ITEM);
             InsertNameInputCharacter(core);
         } else {
             if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4) {
-                if (core->keyboard_page == 2)
+                if (core->keyboard_page == NEW_GAME_NAME_ENTRY_PAGE_COUNT - 1)
                     core->keyboard_page = 0;
                 else
                     core->keyboard_page++;
                 core->keyboard_redraw_pending = 1;
-                core->music_player_2.Start(0xCA);
+                core->music_player_2.Start(AUDIO_SEQUENCE_202);
             } else if (static_cast<u8>(core->sprites[0].unk_00[0] - 5) <= 4) {
                 if (core->keyboard_page == 0)
-                    core->keyboard_page = 2;
+                    core->keyboard_page = NEW_GAME_NAME_ENTRY_PAGE_COUNT - 1;
                 else
                     core->keyboard_page--;
                 core->keyboard_redraw_pending = 1;
-                core->music_player_2.Start(0xCA);
+                core->music_player_2.Start(AUDIO_SEQUENCE_202);
             } else {
                 if (NormalizeNameInput(core)) {
                     core->unk_463c = 1;
-                    core->music_player_2.Start(0xC5);
+                    core->music_player_2.Start(AUDIO_SFX_MENU_CONFIRM);
                 } else
-                    core->music_player_2.Start(0xC7);
+                    core->music_player_2.Start(AUDIO_SFX_INCORRECT_ANSWER);
             }
         }
-    } else if (reinterpret_cast<u8 const *>(&input)[0] & 2) {
+    } else if (reinterpret_cast<u8 const *>(&input)[0] & B_BUTTON) {
         if (core->sprites[1].unk_00[0] != 0) {
             core->sprites[1].unk_00[0]--;
             EraseNameInputCharacter(core, core->sprites[1].unk_00[0]);
-            core->music_player_2.Start(0x6C);
+            core->music_player_2.Start(AUDIO_SFX_THROW_ITEM);
         } else {
             u8 placeholder_count = 0;
 #if defined(REGION_JP)
@@ -608,53 +598,45 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
                     placeholder_count++;
             if (placeholder_count == 12)
 #endif
-                core->music_player_2.Start(0xC7);
+                core->music_player_2.Start(AUDIO_SFX_INCORRECT_ANSWER);
             else {
                 EraseNameInputCharacter(core, 0);
-                core->music_player_2.Start(0x6C);
+                core->music_player_2.Start(AUDIO_SFX_THROW_ITEM);
             }
         }
 #if defined(REGION_JP)
-    } else if (reinterpret_cast<u8 const *>(&input)[0] & 4) {
-        if (core->keyboard_page == 2)
+    } else if (reinterpret_cast<u8 const *>(&input)[0] & SELECT_BUTTON) {
+        if (core->keyboard_page == NEW_GAME_NAME_ENTRY_PAGE_COUNT - 1)
             core->keyboard_page = 0;
         else
             core->keyboard_page++;
         core->keyboard_redraw_pending = 1;
-        core->music_player_2.Start(0xCA);
+        core->music_player_2.Start(AUDIO_SEQUENCE_202);
 #endif
-    } else if (reinterpret_cast<u8 const *>(&input)[0] & 8) {
-#if defined(REGION_DE)
-        if (static_cast<i8>(core->sprites[0].unk_00[1]) == 7
-#else
-        if (static_cast<i8>(core->sprites[0].unk_00[1]) == 6
-#endif
+    } else if (reinterpret_cast<u8 const *>(&input)[0] & START_BUTTON) {
+        if (static_cast<i8>(core->sprites[0].unk_00[1]) == NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE
                 && static_cast<i8>(core->sprites[0].unk_00[0]) > 9
                 && static_cast<i8>(core->sprites[0].unk_00[0]) <= 14) {
             if (NormalizeNameInput(core))
                 core->unk_463c = 1;
-            core->music_player_2.Start(0xC5);
+            core->music_player_2.Start(AUDIO_SFX_MENU_CONFIRM);
         } else {
             core->sprites[0].unk_00[0] = 12;
-#if defined(REGION_DE)
-            core->sprites[0].unk_00[1] = 7;
-#else
-            core->sprites[0].unk_00[1] = 6;
-#endif
-            core->music_player_2.Start(0xCB);
+            core->sprites[0].unk_00[1] = NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE;
+            core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
         }
-    } else if (reinterpret_cast<u8 const *>(&input)[1] & 2) {
+    } else if (reinterpret_cast<u8 const *>(&input)[1] & (L_BUTTON >> 8)) {
         if (core->sprites[1].unk_00[0] != 0)
             core->sprites[1].unk_00[0]--;
-        core->music_player_2.Start(0xCB);
-    } else if (reinterpret_cast<u8 const *>(&input)[1] & 1) {
+        core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
+    } else if (reinterpret_cast<u8 const *>(&input)[1] & (R_BUTTON >> 8)) {
 #if defined(REGION_JP)
         if (core->sprites[1].unk_00[0] != 5)
 #else
         if (core->sprites[1].unk_00[0] != 11)
 #endif
             core->sprites[1].unk_00[0]++;
-        core->music_player_2.Start(0xCB);
+        core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
     }
 }
 

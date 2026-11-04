@@ -1,6 +1,20 @@
 #ifndef NEW_GAME_DATA_HH
 #define NEW_GAME_DATA_HH
 
+// The native keyboard stores three fixed-width pages. Each row has fifteen
+// two-byte cells (JP glyphs or overseas character/spacing pairs) plus NUL.
+// These storage dimensions are shared with the remaining assembly renderer.
+#define NEW_GAME_NAME_ENTRY_PAGE_COUNT 3
+#if defined(REGION_DE)
+#define NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE 7
+#else
+#define NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE 6
+#endif
+#define NEW_GAME_NAME_ENTRY_ROW_COUNT (NEW_GAME_NAME_ENTRY_PAGE_COUNT * NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE)
+#define NEW_GAME_NAME_ENTRY_ROW_WIDTH 31
+
+#ifndef __ASSEMBLER__
+
 #include "prelude.h"
 
 // The renderer advances by one three-pointer row and draws its labels at
@@ -85,18 +99,6 @@ extern char const gText_NewGameIdentity_BirthMonthSuffix[];
 extern char const gText_NewGameIdentity_BirthDaySuffix[];
 #endif
 
-enum
-{
-    NEW_GAME_NAME_ENTRY_PAGE_COUNT = 3,
-#if defined(REGION_DE)
-    NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE = 7,
-#else
-    NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE = 6,
-#endif
-    NEW_GAME_NAME_ENTRY_ROW_COUNT = NEW_GAME_NAME_ENTRY_PAGE_COUNT * NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE,
-    NEW_GAME_NAME_ENTRY_ROW_WIDTH = 31
-};
-
 // Rendering reads fixed-width, single-terminated rows; character insertion
 // addresses the same contiguous storage by page, row and byte-column offsets.
 union NewGameNameEntryCharacterTable {
@@ -138,5 +140,7 @@ extern char const gText_NewGameNameEntry_EndLatin[];
 extern char const gText_NewGameNameEntry_EndLatin[];
 extern char const gText_NewGameNameEntry_EndFullWidth[];
 #endif
+
+#endif // !__ASSEMBLER__
 
 #endif // NEW_GAME_DATA_HH

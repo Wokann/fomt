@@ -737,3 +737,33 @@ I:\fomt-startup-20261029-58a7b895-832649fb\dynamic-link-audit-261104
 
 启动块原位验证和分类证据位于同级 `startup-relocation-261104`；其中旧移址
 检查仅留作已完成记录，不属于后续必做步骤或正式编译链。
+
+## name_input：原生键盘布局与 IO 定义（2026-11-05）
+
+完整范围及真实限制见 CODE_ROM_LAYOUT.md 同日章节。每版 17 节、21 个函数，
+19 个既有 C++ 与 2 个原生汇编；每版 161 条出向、48 条入向重定位，其中
+外部 19 个直接调用和 3 个虚表入口均为符号引用。251 个缓存数值候选逐项
+闭合，没有将压缩数据里的碰巧相同数字直接当作指针。跨归档/OAM/LZ 边界
+候选也按两侧实际对象及冻结原版字节核对，而非仅以“位于资源中”排除。
+
+DE 九个数字 PC 偏移改为真实池标签。两份现有头向 C++ 和 CPP 汇编提供
+页/行尺寸、buffer payload/stride 和后继成员位置；sizeof/offsetof 校验
+与实际类型一致。字符表索引、tilemap 图块编号和第二 tile 行、上传量均
+从相应布局推导，不只替换 RAM 指针。三种优化乘法保留原编码，其他尺寸
+通过正常常量乘法表示；不引入新的布局工具或原始容量上限。
+
+已知显存/调色板、按键、LCD/BG/混合与 OAM 位值复用硬件宏，音频复用 Mary
+常量。C++ 保持原有 byte 读取方式，L/R 上字节检查使用对应按键宏右移八位。
+姓名模板 13 字节包含终止符，是 12 字节存档名称格式的真实约束；文本数组
+本身仍不写固定长度。屏幕坐标、三页模式、部分行有效列、blank tile 内容
+及共享 UI VRAM 槽位仍有实际规则，不能宣称任意修改宽高或文案都安全。
+
+四版原位 WSL -j4 compare、原版 SHA-1 及三个汇编头依赖检查通过。此前
+保留 JP 0x37A8 的 name_input 审阅缺口已闭合，现移除该锚，让已审链连续
+排列；0x7130 及以后未审模块仍固定。未做移址/扩容/运行时测试，不提高
+C/C++ 覆盖率或宣称整个 ROM 已完全动态化。
+
+证据：私有 name-input-445c57a1 下 summary.json、pc-literal-review.json、
+code-candidate-exclusions.json、resource_candidate_classification.json、
+resource_dependency_audit.json、asm-default-review.json、tilemap-index-review.json、native-validation.json
+及四版 native-compare 日志。下一物理模块 hardware，起点见 layout。

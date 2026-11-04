@@ -23,3 +23,8 @@ NewGameMenuLabelRow const gNewGameMenuLabels[6] = {
 };
 
 #include FOMT_TEXT_INCLUDE(new_game_data_2.cc)
+
+// The editor copies a saved-name template: 12 encoded bytes and one NUL.
+// Keep the source array unsized; reject a template that cannot fill this format.
+typedef char NewGameNameEntryPlaceholderSizeCheck[
+    sizeof(gText_NewGameNameEntry_Placeholder) == 13 ? 1 : -1];

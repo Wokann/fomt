@@ -3,6 +3,18 @@
 
 #include "prelude.h"
 
+// OAM field values, using the hardware names shared with pokeemerald.
+#define ST_OAM_OBJ_NORMAL 0
+#define ST_OAM_OBJ_BLEND 1
+#define ST_OAM_OBJ_WINDOW 2
+#define ST_OAM_SQUARE 0
+#define ST_OAM_H_RECTANGLE 1
+#define ST_OAM_V_RECTANGLE 2
+#define ST_OAM_SIZE_0 0
+#define ST_OAM_SIZE_1 1
+#define ST_OAM_SIZE_2 2
+#define ST_OAM_SIZE_3 3
+
 // The indexed sprite archive and the hardware buffer use the same native
 // eight-byte OAM record. Coordinates are signed offsets in archive records;
 // hardware writes retain their wrapped eight-/nine-bit representation.

@@ -79,7 +79,6 @@ SECTIONS
         asm/intro_scene.o(.text.intro_scene_core_after_sequence);
         src/intro_scene.o(.text.intro_scene_sprite_submission);
         src/intro_scene.o(.text);
-        . = 0x37A8; /* JP ROM 0x080037A8, independently matched */
         asm/new_game_menu.o(.text);
         src/new_game_menu.o(.text.RunNewGameMenuOpeningBlend .text.RunNewGameMenuClosingBlend .text.UpdateNewGameMenuUi);
         src/new_game_menu.o(.text.RenderNewGameMenuLabelTiles);

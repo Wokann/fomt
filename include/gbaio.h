@@ -14,7 +14,13 @@ EXTERN_C
 // Native FoMT save image span on its SRAM cartridge.
 #define SRAM_SIZE 0x8000
 
+#define PLTT 0x05000000
+#define BG_PLTT PLTT
+#define BG_PLTT_SIZE 0x200
+#define OBJ_PLTT (PLTT + BG_PLTT_SIZE)
+
 #define VRAM 0x06000000
+#define OBJ_VRAM0 (VRAM + 0x10000)
 #define BG_VRAM VRAM
 #define BG_CHAR_SIZE 0x4000
 #define BG_SCREEN_SIZE 0x800
@@ -188,6 +194,10 @@ EXTERN_C
 #define START_BUTTON (1 << 3)
 #define DPAD_RIGHT (1 << 4)
 #define DPAD_LEFT (1 << 5)
+#define DPAD_UP (1 << 6)
+#define DPAD_DOWN (1 << 7)
+#define R_BUTTON (1 << 8)
+#define L_BUTTON (1 << 9)
 #define KEY_INTR_ENABLE (1 << 14)
 #define KEY_AND_INTR (1 << 15)
 
