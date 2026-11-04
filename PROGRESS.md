@@ -10,12 +10,10 @@
 本批核对手写汇编的 276 个 OBJ 地址常量和 JoyBus、BIOS 调用中的寄存器，
 以命名常量表示平台固定地址，JP JoyBus 的四条指令从原始字节恢复为汇编。
 
-当前接续：hardware_manager，起点JP `08008988`、US `08008980`、EU `08008994`、
-DE `080089A0`。已审阅硬件状态访问器19个既有C函数：每版174字节函数和26字节
-对齐，共200字节。四版6303条外部调用均已符号化，90个地址形值候选无裸指针。
-三处字节视图改为真实队列/链表类型，方向键消费者改用已有DPAD掩码。JP边界
-推进至下一管理器，四版WSL -j4 compare、原版SHA-1和当前对象核对通过。
-本块不增加C/C++字节覆盖，未做移址/扩容/模拟器测试。
+当前接续为 `WaitForHardwareVBlank` 及声音入口。起点为 JP `08008AF8`、
+US `08008AF0`、EU `08008B04`、DE `08008B10`。硬件管理器与紧邻的两个
+访问器现归属同一模块。每版审计覆盖 1040 字节 ROM 与 4 字节 IWRAM。
+合并的 12 字节访问器已在先前的高级语言覆盖统计中计入。
 
 从 `30d912e5` 开始，优先审计四版整个 ROM 的代码/数据边界和布局依赖。
 已有 C/C++ 比例保持不变；可从源码构建及原版匹配不代表已经能够自由移动内容。
@@ -247,8 +245,7 @@ ROM 中已有分散于后续功能模块的恢复内容，当前推进地址不�
 | [src/hardware_context.cc](src/hardware_context.cc) | 1,092 | 1,092 | 1,092 | 1,092 |
 | [src/hardware_display_commands.c](src/hardware_display_commands.c) | 164 | 164 | 164 | 164 |
 | [src/hardware_state_accessors.c](src/hardware_state_accessors.c) | 174 | 174 | 174 | 174 |
-| [src/hardware_manager.cc](src/hardware_manager.cc) | 856 | 856 | 856 | 856 |
-| [src/hardware_nested_accessors.c](src/hardware_nested_accessors.c) | 12 | 12 | 12 | 12 |
+| [src/hardware_manager.cc](src/hardware_manager.cc) | 868 | 868 | 868 | 868 |
 | [src/hardware_sound.cc](src/hardware_sound.cc) | 118 | 118 | 118 | 118 |
 | [src/hardware_music_player.cc](src/hardware_music_player.cc) | 452 | 452 | 452 | 452 |
 | [src/hardware_song.cc](src/hardware_song.cc) | 234 | 234 | 234 | 234 |

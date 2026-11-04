@@ -18,9 +18,9 @@ void func_08008D34(u32 * value);
 
 u8 func_08008D5C(u16 song_id);
 u8 func_08008D70(u16 song_id);
-void func_08008D84(void);
-void func_08008D90(void);
-u32 func_08008D9C(void);
+void EnableHardwareSoundVSync(void);
+void DisableHardwareSoundVSync(void);
+u32 IsHardwareSoundDmaEnabled(void);
 void func_08008DA8(u16 song_id);
 void func_08008DB8(u16 song_id);
 void func_08008DC8(u16 song_id);

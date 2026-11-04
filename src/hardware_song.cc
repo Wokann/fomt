@@ -29,19 +29,19 @@ u8 func_08008D70(u16 song_id)
     return gSongTable[song_id].song->priority;
 }
 
-void func_08008D84(void)
+void EnableHardwareSoundVSync(void)
 {
     m4aSoundVSyncOn();
 }
 
-void func_08008D90(void)
+void DisableHardwareSoundVSync(void)
 {
     m4aSoundVSyncOff();
 }
 
-u32 func_08008D9C(void)
+u32 IsHardwareSoundDmaEnabled(void)
 {
-    return REG_DMA1CNT >> 31;
+    return (REG_DMA1CNT & ((u32)DMA_ENABLE << 16)) != 0;
 }
 
 void func_08008DA8(u16 song_id)

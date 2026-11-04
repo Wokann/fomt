@@ -2,7 +2,7 @@
 #pragma implementation "hardware_context.hh"
 #include "hardware_context.hh"
 #include "hardware_state_accessors.hh"
-#include "hardware_nested_accessors.hh"
+#include "hardware_manager.hh"
 #include "hardware_sprite_buffer.hh"
 #include "gbaio.h"
 
@@ -69,9 +69,9 @@ void UpdateHardwareFrame(struct HardwareContext * owner)
     func_08009940(&commands, &sprite);
 
     HardwareManagerOwner * manager = &state->manager;
-    func_08008AE0(manager)->Append(&commands);
+    GetHardwareManagerFrameCommands(manager)->Append(&commands);
     WaitForHardwareVBlank(manager);
-    func_08008AE0(manager)->Remove(&commands);
+    GetHardwareManagerFrameCommands(manager)->Remove(&commands);
 
     // The list and commands unlink in reverse construction order at scope exit.
 }

@@ -90,27 +90,27 @@ struct HardwareManagerCommandGroup
 };
 
 struct HardwareManagerState {
-    struct HardwareSoundVSyncCommand unk_00;
-    struct HardwareInterruptList unk_0C;
-    struct HardwareSoundMainCommand unk_28;
+    struct HardwareSoundVSyncCommand sound_vsync;
+    struct HardwareInterruptList frame_commands;
+    struct HardwareSoundMainCommand sound_main;
     struct HardwareManagerCommandGroup command_group;
-    u8 unk_68;
+    u8 enabled_sound_vsync;
 #ifdef __cplusplus
     HardwareManagerState()
     {
-        u8 & enabled = unk_68;
-        enabled = func_08008D9C() ^ 1;
+        u8 & enabled = enabled_sound_vsync;
+        enabled = IsHardwareSoundDmaEnabled() ^ 1;
         if (enabled != 0)
-            func_08008D84();
-        command_group.Append(&unk_00);
-        command_group.Append(&unk_0C);
-        command_group.Append(&unk_28);
+            EnableHardwareSoundVSync();
+        command_group.Append(&sound_vsync);
+        command_group.Append(&frame_commands);
+        command_group.Append(&sound_main);
     }
 
     ~HardwareManagerState()
     {
-        if (unk_68 != 0)
-            func_08008D90();
+        if (enabled_sound_vsync != 0)
+            DisableHardwareSoundVSync();
     }
 #endif
 };
@@ -135,13 +135,13 @@ typedef char HardwareManagerCommandGroup_size_check[
     sizeof(struct HardwareManagerCommandGroup) == 0x34 ? 1 : -1];
 typedef char HardwareManagerState_size_check[sizeof(struct HardwareManagerState) == 0x6C ? 1 : -1];
 typedef char HardwareManagerState_first_list_offset_check[
-    offsetof(struct HardwareManagerState, unk_0C) == 0x0C ? 1 : -1];
+    offsetof(struct HardwareManagerState, frame_commands) == 0x0C ? 1 : -1];
 typedef char HardwareManagerState_link_offset_check[
-    offsetof(struct HardwareManagerState, unk_28) == 0x28 ? 1 : -1];
+    offsetof(struct HardwareManagerState, sound_main) == 0x28 ? 1 : -1];
 typedef char HardwareManagerState_group_offset_check[
     offsetof(struct HardwareManagerState, command_group) == 0x34 ? 1 : -1];
 typedef char HardwareManagerState_flag_offset_check[
-    offsetof(struct HardwareManagerState, unk_68) == 0x68 ? 1 : -1];
+    offsetof(struct HardwareManagerState, enabled_sound_vsync) == 0x68 ? 1 : -1];
 #ifndef __cplusplus
 typedef char HardwareManagerVBlankBinding_vtable_offset_check[
     offsetof(struct HardwareManagerVBlankBinding, vtable) == 0x14 ? 1 : -1];
@@ -153,6 +153,10 @@ typedef char HardwareManagerState_vblank_offset_check[
 #endif
 
 EXTERN_C
+
+struct HardwareInterruptList * GetHardwareManagerFrameCommands(struct HardwareManagerOwner const * owner);
+// Retail retains a second entry for this member view.
+struct HardwareInterruptList * func_08008AE8(struct HardwareManagerOwner const * owner);
 
 void RunHardwareManagerVBlankCommands(void) SECTION(".text.hardware_manager_vblank_binding");
 

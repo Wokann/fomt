@@ -127,9 +127,8 @@ SECTIONS
         src/hardware_display_commands.o(.text);
         src/hardware_context.o(.text.hardware_frame_update);
         src/hardware_state_accessors.o(.text);
-        . = 0x8988; /* Next unaudited hardware manager. */
         src/hardware_manager.o(.text);
-        src/hardware_nested_accessors.o(.text);
+        . = 0x8AF8; /* Next unaudited sound routines. */
         src/hardware_sound.o(.text);
         src/hardware_music_player.o(.text);
         src/hardware_song.o(.text);

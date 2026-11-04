@@ -18,6 +18,16 @@ HardwareManagerOwner::~HardwareManagerOwner()
     delete state;
 }
 
+HardwareInterruptList * GetHardwareManagerFrameCommands(HardwareManagerOwner const * owner)
+{
+    return &owner->state->frame_commands;
+}
+
+HardwareInterruptList * func_08008AE8(HardwareManagerOwner const * owner)
+{
+    return &owner->state->frame_commands;
+}
+
 void RunHardwareManagerVBlankCommands(void)
 {
     HardwareLinkedList * commands = gCurrentHardwareVBlankBinding->commands;

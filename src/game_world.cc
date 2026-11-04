@@ -6,7 +6,6 @@
 #include "hardware_manager.hh"
 #include "hardware_dma.hh"
 #include "hardware_context.hh"
-#include "hardware_nested_accessors.hh"
 #include "game_state.hh"
 #include "field_item_data.hh"
 #include "field_render_rect_descriptors.hh"

@@ -1,5 +1,5 @@
 #include "hardware_state_accessors.hh"
-#include "hardware_nested_accessors.hh"
+#include "hardware_manager.hh"
 #include "hardware_input_repeat.hh"
 
 void UpdateHardwareInput(void * const * state_slot)
@@ -100,7 +100,7 @@ struct HardwareLinkedList * GetHardwareCommandList(void * const * state_slot)
 struct HardwareInterruptList * GetHardwareInterruptList(void * const * state_slot)
 {
     struct HardwareCoreState * state = *state_slot;
-    return func_08008AE0(&state->manager);
+    return GetHardwareManagerFrameCommands(&state->manager);
 }
 
 struct HardwareLinkedList * func_08008960(void * const * state_slot)
@@ -112,5 +112,5 @@ struct HardwareLinkedList * func_08008960(void * const * state_slot)
 struct HardwareInterruptList * func_0800896C(void * const * state_slot)
 {
     struct HardwareCoreState * state = *state_slot;
-    return func_08008AE0(&state->manager);
+    return GetHardwareManagerFrameCommands(&state->manager);
 }

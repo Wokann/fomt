@@ -491,6 +491,20 @@ JP移除88C0定位，下一未审hardware_manager的起点仍限定为8988。四
 `REG_BG1VOFS`。JP JoyBus 初始化的四条 Thumb 指令和七个寄存器地址现已
 显式表示，保留原读取宽度与两个常量池的位置。
 
+## VBlank 硬件管理器
+
+| 版本 | 管理器与两个帧命令访问器的连续 ROM 范围 | 下一入口 |
+| --- | --- | --- |
+| JP | 08008988–08008AF8 | WaitForHardwareVBlank |
+| US | 08008980–08008AF0 | WaitForHardwareVBlank |
+| EU | 08008994–08008B04 | WaitForHardwareVBlank |
+| DE | 080089A0–08008B10 | WaitForHardwareVBlank |
+
+每版前部 368 字节、后部代码 588 字节、五张虚表 84 字节。管理器依次运行声音
+VSync、帧命令链表和声音主程序。构造时检查 DMA1 的使能位，仅当由管理器启动
+声音 VSync 时才在析构时关闭。第二个帧命令访问器保留独立入口。
+`gCurrentHardwareVBlankBinding` 在四版 IWRAM 的 03000410 各占四字节。
+
 ## JP 原生代码中的数据指针重定位（2026-11-04）
 
 三个既有汇编对象中，330 个经原版字节及 Thumb PC 相对读取验证的数据指针，

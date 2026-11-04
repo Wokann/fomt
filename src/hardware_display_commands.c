@@ -4,7 +4,7 @@
 #include "hardware_display_state.hh"
 #include "hardware_context.hh"
 #include "hardware_state_accessors.hh"
-#include "hardware_nested_accessors.hh"
+#include "hardware_manager.hh"
 
 // These C commands initialize the existing ABI view and clean it up explicitly.
 void EnableHardwareForcedBlank(struct HardwareContext * owner)
@@ -20,7 +20,7 @@ void EnableHardwareForcedBlank(struct HardwareContext * owner)
     command.display = &state->display;
     {
         struct HardwareManagerOwner * manager = &state->manager;
-        struct HardwareLinkedList * list = &func_08008AE0(manager)->list;
+        struct HardwareLinkedList * list = &GetHardwareManagerFrameCommands(manager)->list;
         list->vtable->append(list, (struct HardwareLinkBase *)&command);
         WaitForHardwareVBlank(manager);
     }
@@ -40,7 +40,7 @@ void DisableHardwareForcedBlank(struct HardwareContext * owner)
     command.display = &state->display;
     {
         struct HardwareManagerOwner * manager = &state->manager;
-        struct HardwareLinkedList * list = &func_08008AE0(manager)->list;
+        struct HardwareLinkedList * list = &GetHardwareManagerFrameCommands(manager)->list;
         list->vtable->append(list, (struct HardwareLinkBase *)&command);
         WaitForHardwareVBlank(manager);
     }

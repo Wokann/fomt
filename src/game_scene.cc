@@ -6,7 +6,6 @@
 #include "hardware_manager.hh"
 #include "hardware_dma.hh"
 #include "hardware_context.hh"
-#include "hardware_nested_accessors.hh"
 #include "game_state.hh"
 #include "field_item_data.hh"
 #include "field_render_rect_descriptors.hh"
@@ -171,9 +170,9 @@ void UpdateGameSceneHardwareFrame(GameSceneState * state, HardwareSpriteBufferSt
     func_08009940(&commands, &sprite);
 
     HardwareManagerOwner * manager = &state->manager;
-    func_08008AE0(manager)->Append(&commands);
+    GetHardwareManagerFrameCommands(manager)->Append(&commands);
     WaitForHardwareVBlank(manager);
-    func_08008AE0(manager)->Remove(&commands);
+    GetHardwareManagerFrameCommands(manager)->Remove(&commands);
 
     // The temporary list and commands unlink in reverse construction order.
 }
