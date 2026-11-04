@@ -3,7 +3,7 @@
 
 #include "prelude.h"
 #include "resource_handle.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 #include "world_runtime.hh"
 
 struct GameObject;
@@ -34,7 +34,7 @@ struct WorldWeatherResource {
     WorldWeatherResource(IndexedResourceGroupResult const & source)
         : group(source), tiles(0) {}
     IndexedResourceGroupResult group;
-    HardwareStateEntry tiles;
+    ObjTileCollectionEntry tiles;
 };
 
 struct WorldWeatherParticle {

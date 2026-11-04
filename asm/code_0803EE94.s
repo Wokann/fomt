@@ -8934,7 +8934,7 @@ __11FrisbeeCoreP18GameStateSaveImageb:
     bl __builtin_new
     mov r8, r0
     add r0, sp, #0xc
-    bl __18HardwareStateOwner
+    bl __17ObjTileCollection
     add r6, sp, #0x10
     adds r0, r6, #0
     bl __20ObjPaletteCollection
@@ -8947,14 +8947,14 @@ __11FrisbeeCoreP18GameStateSaveImageb:
     movs r1, #0
     movs r2, #0x1f
     movs r3, #0
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
     str r0, [r7, #0x10]
     adds r0, r6, #0
     movs r1, #2
     bl _._20ObjPaletteCollection
     add r0, sp, #0xc
     movs r1, #2
-    bl _._18HardwareStateOwner
+    bl _._17ObjTileCollection
     adds r0, r7, #0
     adds r0, #0x14
     movs r1, #1
@@ -14911,7 +14911,7 @@ func_08057CF4:
     bl __builtin_new
     mov r8, r0
     add r0, sp, #0xc
-    bl __18HardwareStateOwner
+    bl __17ObjTileCollection
     add r6, sp, #0x10
     adds r0, r6, #0
     bl __20ObjPaletteCollection
@@ -14925,7 +14925,7 @@ func_08057CF4:
     movs r1, #0
     movs r2, #0x1f
     movs r3, #0
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
     mov r1, sl
     str r0, [r1, #0x10]
     adds r0, r6, #0
@@ -14933,7 +14933,7 @@ func_08057CF4:
     bl _._20ObjPaletteCollection
     add r0, sp, #0xc
     movs r1, #2
-    bl _._18HardwareStateOwner
+    bl _._17ObjTileCollection
     mov r0, sl
     adds r0, #0x14
     movs r1, #1
@@ -20445,7 +20445,7 @@ __26HorseRaceMedalExchangeCoreP18GameStateSaveImage:
     bl __builtin_new
     adds r6, r0, #0
     add r0, sp, #0xc
-    bl __18HardwareStateOwner
+    bl __17ObjTileCollection
     add r4, sp, #0x10
     adds r0, r4, #0
     bl __20ObjPaletteCollection
@@ -20458,14 +20458,14 @@ __26HorseRaceMedalExchangeCoreP18GameStateSaveImage:
     movs r1, #0
     movs r2, #0x1f
     movs r3, #0
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
     str r0, [r7, #0x10]
     adds r0, r4, #0
     movs r1, #2
     bl _._20ObjPaletteCollection
     add r0, sp, #0xc
     movs r1, #2
-    bl _._18HardwareStateOwner
+    bl _._17ObjTileCollection
     adds r0, r7, #0
     adds r0, #0x14
     movs r1, #1
@@ -43746,7 +43746,7 @@ ConstructFestivalAnimalSelectionCore:
 	strb r0, [r1]
 	str r4, [r6, #0x3c]
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r5, sp, #0x10
 	adds r0, r5, #0
 	bl __20ObjPaletteCollection
@@ -43760,13 +43760,13 @@ ConstructFestivalAnimalSelectionCore:
 	movs r1, #0
 	movs r2, #0x1d
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	adds r0, r5, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r1, #0x9c
 	lsls r1, r1, #1
 	adds r0, r7, r1
@@ -71704,7 +71704,7 @@ __14TownMapUiSceneP18GameStateSaveImageG20SceneTransitionOwnerb: @ 0x0807865C
 	str r6, [r7, #0x10]
 	strb r1, [r7, #0x14]
 	adds r0, r5, #0
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r0, sp, #0x14
 	bl __20ObjPaletteCollection
 	add r4, sp, #0x14
@@ -71717,13 +71717,13 @@ __14TownMapUiSceneP18GameStateSaveImageG20SceneTransitionOwnerb: @ 0x0807865C
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0xf
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	adds r0, r5, #0
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	adds r0, r7, #0
 	adds r0, #0x1c
 	bl __24MapClockStatusHudContent
@@ -110139,7 +110139,7 @@ RunGiftWrappingSceneCore:
 	adds r0, r7, r1
 	str r5, [r0]
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -110154,13 +110154,13 @@ RunGiftWrappingSceneCore:
 	movs r1, #0
 	movs r2, #0x1d
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r2, #0xea
 	lsls r2, r2, #1
 	adds r0, r7, r2
@@ -148119,7 +148119,7 @@ __11FrisbeeCoreP18GameStateSaveImageb: @ 0x080522F8
 	bl __builtin_new
 	mov r8, r0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r6, sp, #0x10
 	adds r0, r6, #0
 	bl __20ObjPaletteCollection
@@ -148132,14 +148132,14 @@ __11FrisbeeCoreP18GameStateSaveImageb: @ 0x080522F8
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	str r0, [r7, #0x10]
 	adds r0, r6, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	adds r0, r7, #0
 	adds r0, #0x14
 	movs r1, #1
@@ -159654,7 +159654,7 @@ func_0805806C: @ 0x0805806C
 	bl __builtin_new
 	mov r8, r0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r6, sp, #0x10
 	adds r0, r6, #0
 	bl __20ObjPaletteCollection
@@ -159668,7 +159668,7 @@ func_0805806C: @ 0x0805806C
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	mov r1, sl
 	str r0, [r1, #0x10]
 	adds r0, r6, #0
@@ -159676,7 +159676,7 @@ func_0805806C: @ 0x0805806C
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	mov r0, sl
 	adds r0, #0x14
 	movs r1, #1
@@ -169294,7 +169294,7 @@ __26HorseRaceMedalExchangeCoreP18GameStateSaveImage: @ 0x0805CF70
 	bl __builtin_new
 	adds r6, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -169307,14 +169307,14 @@ __26HorseRaceMedalExchangeCoreP18GameStateSaveImage: @ 0x0805CF70
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	str r0, [r7, #0x10]
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	adds r0, r7, #0
 	adds r0, #0x14
 	movs r1, #1
@@ -193979,7 +193979,7 @@ ConstructFestivalAnimalSelectionCore: @ 0x08069F14
 	strb r0, [r1]
 	str r4, [r6, #0x3c]
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r5, sp, #0x10
 	adds r0, r5, #0
 	bl __20ObjPaletteCollection
@@ -193993,13 +193993,13 @@ ConstructFestivalAnimalSelectionCore: @ 0x08069F14
 	movs r1, #0
 	movs r2, #0x1d
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	adds r0, r5, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r1, #0x9c
 	lsls r1, r1, #1
 	adds r0, r7, r1
@@ -222768,7 +222768,7 @@ __14TownMapUiSceneP18GameStateSaveImageG20SceneTransitionOwnerb: @ 0x0807865C
 	str r6, [r7, #0x10]
 	strb r1, [r7, #0x14]
 	adds r0, r5, #0
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r0, sp, #0x14
 	bl __20ObjPaletteCollection
 	add r4, sp, #0x14
@@ -222781,13 +222781,13 @@ __14TownMapUiSceneP18GameStateSaveImageG20SceneTransitionOwnerb: @ 0x0807865C
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0xf
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	adds r0, r5, #0
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	adds r0, r7, #0
 	adds r0, #0x1c
 	bl __24MapClockStatusHudContent
@@ -272291,7 +272291,7 @@ ConstructGameCubeLinkUiCore: @ 0x0809323C
 	adds r0, r7, r1
 	str r5, [r0]
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -272306,13 +272306,13 @@ ConstructGameCubeLinkUiCore: @ 0x0809323C
 	movs r1, #0
 	movs r2, #0x1d
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r2, #0xea
 	lsls r2, r2, #1
 	adds r0, r7, r2

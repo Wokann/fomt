@@ -7,13 +7,13 @@
 四版 WSL -j4 compare 与 SHA-1 通过。仅源码表达修正，没有新增 C/C++
 恢复字节或扩大动态引用闭合范围，LDS 和顺序接续位置不变。
 
-当前接续：InitializeHardwareStateOwnerGroups，起点 JP `08008198`、US
-`08008190`、EU `080081A4`、DE `080081B0`。刚完成共享 OBJ 图块池完整主题：
-46 个入口、每版 4528 字节，包含前部接口和后置树/helper；44 个既有 C++
-与 2 个原生汇编按功能归入 obj_tile_pool.cc/.hh/.s。原有结构分配大小及
-汇编字段依赖已连到共享类型定义，全部核实调用直接使用新符号。
-四版 -j4 compare、原版 SHA-1、map/ELF 与头依赖通过；JP 固定锚移至下一
-主题。没有新增 C/C++ 恢复字节；原有格式限制与特殊行为见 layout。
+当前接续：hardware_bootstrap，起点 JP `0800844C`、US `08008444`、
+EU `08008458`、DE `08008464`。刚完成 OBJ 图块分配组容器：五个入口、
+三个输入段、每版916B，归入 obj_tile_collection.cc/.hh/.s；所有已核实
+调用与旧GCC嵌套参数符号直接改名。软件组数及汇编布局依赖与实际类型绑定，
+原生八字节Entry ABI及已知行为保留。四版 -j4 compare、原版SHA-1、
+map/ELF、输入.o重定位与CPP头依赖通过；JP边界推进到下一主题。
+本轮没有新增C/C++恢复字节，未做移址/扩容/模拟器测试。
 
 从 `30d912e5` 开始，优先审计四版整个 ROM 的代码/数据边界和布局依赖。
 已有 C/C++ 比例保持不变；可从源码构建及原版匹配不代表已经能够自由移动内容。
@@ -241,7 +241,7 @@ ROM 中已有分散于后续功能模块的恢复内容，当前推进地址不�
 | [src/obj_palette_collection.cc](src/obj_palette_collection.cc) | 826 | 826 | 826 | 826 |
 | [src/obj_tile_bitmap.cc](src/obj_tile_bitmap.cc) | 148 | 148 | 148 | 148 |
 | [src/obj_tile_pool.cc](src/obj_tile_pool.cc) | 3,842 | 3,842 | 3,842 | 3,842 |
-| [src/hardware_state_clear.cc](src/hardware_state_clear.cc) | 450 | 450 | 450 | 450 |
+| [src/obj_tile_collection.cc](src/obj_tile_collection.cc) | 450 | 450 | 450 | 450 |
 | [src/hardware_bootstrap.cc](src/hardware_bootstrap.cc) | 1,092 | 1,092 | 1,092 | 1,092 |
 | [src/hardware_display_commands.c](src/hardware_display_commands.c) | 164 | 164 | 164 | 164 |
 | [src/hardware_state_accessors.c](src/hardware_state_accessors.c) | 174 | 174 | 174 | 174 |

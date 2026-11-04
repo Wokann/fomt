@@ -6,7 +6,7 @@
 #include "world_weather.hh"
 #include "entity_actor.hh"
 #include "obj_palette_collection.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 #include "resource_handle.hh"
 #include "time_of_day.hh"
 #include "world_map.hh"

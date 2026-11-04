@@ -873,3 +873,24 @@ six 的 DMA_START_HBLANK/VBLANK 原定义颠倒，现与 C 头和 pokeemerald �
 证据位于私有 hardware-constants-8d823d55：source-hardware-replacements.json、
 parent-source-manifest.json、final-source-manifest.json、native-validation.json
 与四版 native-compare.log。
+
+## OBJ 图块分配组容器（2026-11-05）
+
+五个入口、三个ROM输入段、每版916B，按确认用途归入obj_tile_collection.cc/.hh
+及同名原生ASM。所有直接与嵌套旧GCC ABI、四版LDS同步改名；不建立别名。
+组数、分配大小、成员和步长依赖归入共享头，析构用ARRAY_COUNT；保留真实
+Entry八字节栈ABI与未知字段，不能据此称任意成员变更无需处理ABI。
+
+每版63个实际BL站点均由缓存真实指令与输入.o的THM_CALL核实，包含一个内部
+Reserve调用；整体外部入向62、出向37，无函数内部偏移或ABS32函数指针。
+187个数值候选（33资源/普通数据、154Mary文本）全部闭合，0新增裸指针。
+初始化入口0入向，真实counts配置未知。空组、全忙选择、Reserve游标行为
+保持原样，详见layout和语义审计，不借重命名修改游戏算法。
+
+四版WSL -j4 compare、原版SHA-1、map/ELF及输入对象重定位通过；新汇编依赖
+跟踪obj_tile_collection.hh。JP固定锚由8198移至下一主题844C；后置Reserve
+原位顺序不变。未做移址/扩容/运行测试；不增加C/C++恢复覆盖。
+证据位于私有obj-tile-collection-8d823d55：audit-notes.json、summary.json、
+source-abi-layout-review.json、obj_tile_collection_semantics.json、resource与Mary
+候选分类、source-edit-manifest.json、type-renames.json、native-validation.json、
+native-map-validation.json及四版native-compare.log。

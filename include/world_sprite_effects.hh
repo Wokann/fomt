@@ -6,7 +6,7 @@
 // imported until that whole body matches; unknown state remains unnamed.
 #include "unknown_types.hh"
 #include "resource_archive.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 #include "world_runtime.hh"
 
 struct WorldSpriteDrawBuffer;
@@ -18,7 +18,7 @@ struct WorldSpriteEffectFrames {
     // Drawing clears this after uploading the cached groups.
     bool tiles_upload_pending;
     IndexedResourceGroupResult groups[2];
-    HardwareStateEntry tiles[2];
+    ObjTileCollectionEntry tiles[2];
 
     void PrepareResources(HardwareDmaQueue & queue);
 

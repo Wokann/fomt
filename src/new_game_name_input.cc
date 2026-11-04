@@ -38,7 +38,7 @@ NewGameNameInputCore::NewGameNameInputCore(char const * prompt,
     // scope, preserving the native allocation, construction and cleanup order.
     void * ui_storage = ::operator new(sizeof(UiStateOwner));
     {
-        HardwareStateOwner shared;
+        ObjTileCollection shared;
         ObjPaletteCollection resources;
         UiStateOwner * ui = new (ui_storage) UiStateOwner(0, 15, 4, 0, shared, resources);
         core->ui_state = ui;
@@ -60,7 +60,7 @@ NewGameNameInputCore::~NewGameNameInputCore()
 SceneTransitionOwner RunNameInputCore(NewGameNameInputCore * core)
 {
     EnableHardwareForcedBlank(core);
-    HardwareStateEntry tiles;
+    ObjTileCollectionEntry tiles;
     ReleaseObjTileHandle(&tiles, tiles.handle);
     tiles.handle = AllocateObjTileHandle(&tiles, 3);
     u32 tile_index = GetObjTileIndex(&tiles, tiles.handle);

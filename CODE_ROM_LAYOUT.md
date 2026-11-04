@@ -393,6 +393,36 @@ JP 0x787C 锚移到下一 InitializeHardwareStateOwnerGroups 前的 0x8198，
 后置顺序及 BSS 原槽保持。未做移址、扩容或模拟器测试，C/C++ 覆盖不增加。
 证据位于私有 obj-tile-pool-f0f42bcd。下一主题为 OBJ 分配组及其容器生命周期。
 
+## OBJ 图块分配组容器（2026-11-05）
+
+已按用途将 hardware_state_clear.cc/.hh 整理为 obj_tile_collection.cc/.hh；
+初始化汇编从 hardware.s 首段移到同名 asm/obj_tile_collection.s 的普通 .text。
+类型为 ObjTileCollection、Entry、Group、Storage；旧 GCC 嵌套参数名字、实际
+调用和四版 LDS 同步使用新符号，不保留地址别名或兼容包装。
+
+| 区域 | 初始化及容器生命周期 | 后置 Group::Reserve |
+| --- | --- | --- |
+| JP | 08008198–0800844C | 080D6EE4–080D6FC4 |
+| US | 08008190–08008444 | 080D772C–080D780C |
+| EU | 080081A4–08008458 | 080D7778–080D7858 |
+| DE | 080081B0–08008464 | 080D7690–080D7770 |
+
+每版五个入口（四个既有 C++、一个汇编），三个 ROM 输入段共 916B：
+初始化 0x1CC、普通 C++ 0xE8、后置 Reserve 0xE0；无本模块额外 rodata/BSS。
+原生八组是软件 size_shift 分类0..7；单点组数驱动数组、分配大小及初始化
+循环，析构由 ARRAY_COUNT 推导。组字段/步长供 C++ 与汇编共用并核对。
+条目仍保留原生栈临时对象的八字节 ABI；未知四字节不擅自初始化。
+
+初始化入口未发现入向调用，未虚构 counts 配置表。实际 Get(2/3/7) 消费者
+使用默认空容器、独立分配。带存储路径保留空组不可 Get、全忙复用原游标
+条目、Reserve 不更新已有游标等原行为，不混入算法修正。
+
+已核实每版63条真实调用（含内部Reserve一次），整体外部入向62/出向37；
+187个缓存数值候选全部分类，无新增裸指针，未重新遍历Mary。四版原位
+WSL -j4 compare、SHA-1、新map/ELF、输入.o重定位及CPP头依赖通过。
+JP 0x8198锚移至下一hardware_bootstrap前0x844C，后置Reserve维持真实顺序。
+未做移址/扩容/模拟器测试，C/C++覆盖不增加；证据为私有obj-tile-collection-8d823d55。
+
 ## JP 原生代码中的数据指针重定位（2026-11-04）
 
 三个既有汇编对象中，330 个经原版字节及 Thumb PC 相对读取验证的数据指针，
@@ -4898,7 +4928,7 @@ ROM 进度，也不包含更早的启动头、其他代码、资源或只读数�
 | `RenderNameInputKeyboard` | `0x080063BC–0x08006734` / 888 | `0x080064E8–0x08006858` / 880 | `0x080064FC–0x0800686C` / 880 | `0x080064F8–0x08006870` / 888 | `asm/new_game_name_input.s` |
 | `InitializeHardwareSharedStateOwner` | `0x0800787C–0x080079D8` / 348 | `0x08007874–0x080079D0` / 348 | `0x08007888–0x080079E4` / 348 | `0x08007894–0x080079F0` / 348 | `asm/hardware.s` |
 | `SetHardwareSharedStateTileReservation` | `0x08007A30–0x08007B5C` / 300 | `0x08007A28–0x08007B54` / 300 | `0x08007A3C–0x08007B68` / 300 | `0x08007A48–0x08007B74` / 300 | `asm/hardware.s` |
-| `InitializeHardwareStateOwnerGroups` | `0x08008198–0x08008364` / 460 | `0x08008190–0x0800835C` / 460 | `0x080081A4–0x08008370` / 460 | `0x080081B0–0x0800837C` / 460 | `asm/hardware.s` |
+| `InitializeObjTileCollectionGroups` | `0x08008198–0x08008364` / 460 | `0x08008190–0x0800835C` / 460 | `0x080081A4–0x08008370` / 460 | `0x080081B0–0x0800837C` / 460 | `asm/obj_tile_collection.s` |
 | `Update__23HardwareBlendController` | `0x080093B4–0x080094AC` / 248 | `0x080093AC–0x080094A4` / 248 | `0x080093C0–0x080094B8` / 248 | `0x080093CC–0x080094C4` / 248 | `asm/hardware.s` |
 | `Clear__9MoreItems` | `0x08010004–0x0801002C` / 40 | `0x08010024–0x0801004C` / 40 | `0x08010038–0x08010060` / 40 | `0x08010044–0x0801006C` / 40 | `asm/more_items.s` |
 | `DayUpdate__18GameStateSaveImage` | `0x08010F34–0x080113EC` / 1208 | `0x08010F54–0x0801140C` / 1208 | `0x08010F68–0x08011420` / 1208 | `0x08010F74–0x0801142C` / 1208 | `asm/game_state.s` |

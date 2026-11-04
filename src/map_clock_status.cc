@@ -62,7 +62,7 @@ static inline bool HudHasHandle(ObjPaletteCollectionEntry const & entry)
     return entry.handle != 0;
 }
 
-static inline bool HudHasHandle(HardwareStateEntry const & entry)
+static inline bool HudHasHandle(ObjTileCollectionEntry const & entry)
 {
     return entry.handle != 0;
 }

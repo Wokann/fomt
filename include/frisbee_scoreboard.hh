@@ -8,7 +8,7 @@
 #include "resource_handle.hh"
 #include "hardware_input.hh"
 #include "obj_palette_collection.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 
 extern char const gText_Frisbee_TournamentScoreboard[];
 extern u8 const gUnk_08527094[];
@@ -40,7 +40,7 @@ struct FrisbeeScoreboardCore : HardwareBootstrap {
     IndexedResourceArchive unk_archive_010;
     FrisbeeScoreboardSpriteState sprite_040;
     FrisbeeScoreboardSpriteState sprite_074;
-    HardwareStateEntry sprite_tiles;
+    ObjTileCollectionEntry sprite_tiles;
     ObjPaletteCollectionEntry obj_palette_collection;
     u8 unk_0B8[0x800];
     i16 scroll_y;

@@ -8,13 +8,13 @@
 #include "hardware_dma_descriptor.hh"
 #include "utility/container_algorithms.hh"
 #include "hardware_linked_list.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 #include "utility/fixed_str.hh"
 
 struct HardwareCoreState;
 struct HardwareSpriteBufferState;
 struct HardwareDisplayState;
-struct HardwareStateOwner;
+struct ObjTileCollection;
 struct ObjPaletteCollection;
 struct ObjPaletteCollectionEntry;
 struct HardwareMusicPlayerSlot;
@@ -131,7 +131,7 @@ struct UiStatePayload;
 struct UiStateOwner
 {
     UiStateOwner(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
-        HardwareStateOwner const & shared, ObjPaletteCollection const & resources)
+        ObjTileCollection const & shared, ObjPaletteCollection const & resources)
         SECTION(".text.ui_state_adapters");
     ~UiStateOwner() SECTION(".text.ui_state_adapters");
     i32 GetState() const SECTION(".text.ui_state_adapters");
@@ -205,7 +205,7 @@ struct UnkUiSelectionPixels
 struct UnkUiSelectionEntry
 {
     UnkUiSelectionPixels pixels;
-    HardwareStateEntry state;
+    ObjTileCollectionEntry state;
     bool changed;
     UnkUiSelectionEntry() : changed(false) {}
 };
@@ -235,7 +235,7 @@ struct UnkUiSelectionRowOwner
 
 struct UnkUiSelectionData : UiTextOutput
 {
-    inline UnkUiSelectionData(ObjPaletteCollectionEntry *, HardwareStateOwner const &);
+    inline UnkUiSelectionData(ObjPaletteCollectionEntry *, ObjTileCollection const &);
     // Keep the implicit virtual destructor: row ownership supplies its body.
     virtual bool Emit(u32) SECTION(".text.ui_text_output_callbacks");
     virtual void CarriageReturn() SECTION(".text.ui_text_output_callbacks");
@@ -513,7 +513,7 @@ struct UnkUiPayloadLowFlags
 struct UiStatePayload
 {
     // Construction follows these owned members; Update remains native.
-    UiStatePayload(u32, u32, u32, u32, HardwareStateOwner const &, ObjPaletteCollection const &);
+    UiStatePayload(u32, u32, u32, u32, ObjTileCollection const &, ObjPaletteCollection const &);
     ~UiStatePayload() SECTION(".text.ui_payload_destructor");
     void Open() SECTION(".text.ui_payload_open");
     void OpenImmediately() SECTION(".text.ui_payload_open");
@@ -542,7 +542,7 @@ struct UiStatePayload
     u8 unk_0c;
     u8 allow_resume;
     ObjPaletteCollectionEntry palette;
-    HardwareStateEntry background_state;
+    ObjTileCollectionEntry background_state;
     HardwareLinkedList commands;
     UiDmaTransferQueue records;
     UiDmaTransferCommand records_command;
@@ -556,7 +556,7 @@ struct UiStatePayload
     IndexedResourceArchive hand_cursor;
     IndexedResourceArchive choice_cursor;
     IndexedResourceHandle choice_handle;
-    HardwareStateEntry choice_state;
+    ObjTileCollectionEntry choice_state;
     UiResourceChangeFlags portrait_flags;
     u32 portrait_id;
     UiPortraitGroupOwner portrait;

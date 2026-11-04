@@ -12,7 +12,7 @@ struct HardwareDmaQueue;
 // profile. The constructor remains native; the last byte is not yet named.
 struct EntityAuxiliarySpriteEntry {
     IndexedResourceGroupResult group;
-    HardwareStateEntry tiles;
+    ObjTileCollectionEntry tiles;
     u16 tile_index;
 };
 

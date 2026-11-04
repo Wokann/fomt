@@ -39,7 +39,7 @@ IntroStorySceneCore * InitializeIntroStorySceneCore(IntroStorySceneCore * core,
     core->unk_0C = 0;
     void * storage = operator new(sizeof(UiStateOwner));
     {
-        HardwareStateOwner shared;
+        ObjTileCollection shared;
         ObjPaletteCollection resources;
         core->ui_state = new (storage) UiStateOwner(0, 31, 15, core->unk_0C, shared, resources);
     }

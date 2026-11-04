@@ -3,7 +3,7 @@
 
 #include "prelude.h"
 #include "obj_palette_collection.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 #include "resource_archive.hh"
 #include "world_map.hh"
 #include <string.h>

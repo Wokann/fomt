@@ -132,7 +132,7 @@ extern "C" void ClearUiActionStateFlag01F0(void * object)
 }
 
 UiStateOwner::UiStateOwner(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
-    HardwareStateOwner const & shared, ObjPaletteCollection const & resources)
+    ObjTileCollection const & shared, ObjPaletteCollection const & resources)
 {
     value = new UiStatePayload(arg_1, arg_2, arg_3, arg_4, shared, resources);
 }
@@ -351,12 +351,12 @@ EC void func_08050F74(UnkUiSelectionData * object, u32 const arg_1,
     SetUiChoiceOutputPosition(object, arg_1, arg_2);
 }
 
-static inline bool HasUiSelectionState(HardwareStateEntry const & state)
+static inline bool HasUiSelectionState(ObjTileCollectionEntry const & state)
 {
     return state.handle != 0;
 }
 
-static inline u32 UiSelectionTileIndex(HardwareStateEntry & state)
+static inline u32 UiSelectionTileIndex(ObjTileCollectionEntry & state)
 {
     return GetObjTileIndex(&state, state.handle);
 }
@@ -574,7 +574,7 @@ bool UiTextOutputUploadCommand::Run()
 }
 
 inline UnkUiSelectionData::UnkUiSelectionData(ObjPaletteCollectionEntry * palette,
-    HardwareStateOwner const & state)
+    ObjTileCollection const & state)
     : palette(palette), unk_14(0), unk_16(0), unk_18(0), unk_19(0), unk_1a(0), unk_1b(0)
 {
     for (int row = 0; row <= 2; ++row)
@@ -1010,7 +1010,7 @@ void UiStatePayload::HideHeartIndicator()
 }
 
 UiStatePayload::UiStatePayload(u32 background, u32 screen, u32 palette_bank,
-    u32 mode, HardwareStateOwner const & shared, ObjPaletteCollection const & resources)
+    u32 mode, ObjTileCollection const & shared, ObjPaletteCollection const & resources)
     : background(background), screen_block(screen), character_block(screen >> 3),
       first_tile((screen & 7) * 64 + 20), background_palette(palette_bank),
       mode(mode), state(0), unk_0c(0), allow_resume(1),

@@ -4,7 +4,7 @@
 #include "control_widget.hh"
 #include "resource_handle.hh"
 #include "obj_palette_collection.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 #include "hardware_dma_link.hh"
 #include "common_ui.hh"
 
@@ -15,7 +15,7 @@ struct HardwareMusicPlayerSlot;
 #pragma interface "main_menu_widget.hh"
 
 struct MainMenuSpriteResource {
-    HardwareStateEntry tiles;
+    ObjTileCollectionEntry tiles;
     HardwareDmaCopyLink upload;
     IndexedResourceHandle handle;
 
@@ -45,7 +45,7 @@ struct MainMenuLabelTileBuffer {
 
 struct MainMenuLabelRenderer {
     MainMenuLabelTileBuffer buffer;
-    HardwareStateEntry tiles[3];
+    ObjTileCollectionEntry tiles[3];
     HardwareDmaCopyLink uploads[6];
 
     MainMenuLabelRenderer()

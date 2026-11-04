@@ -16,7 +16,7 @@
 #include "utility/vec2.hh"
 #include "resource_handle.hh"
 #include "obj_palette_collection.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_blend.hh"
 #include "hardware_music_player.hh"

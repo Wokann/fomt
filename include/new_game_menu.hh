@@ -71,7 +71,7 @@ struct NewGameMenuCore : HardwareBootstrap {
     UiStateOwner ui_state;
     HardwareMusicPlayerSlot music_players[2];
     IndexedResourceArchive resources;
-    HardwareStateEntry state_entry;
+    ObjTileCollectionEntry state_entry;
     ObjPaletteCollectionEntry resource_entry;
     HardwareSpriteOamRecord option_attributes;
     IndexedResourceHandle selector_resource;

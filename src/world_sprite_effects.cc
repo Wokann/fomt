@@ -23,9 +23,9 @@ WorldSpriteEffectFrames & WorldSpriteEffectFrames::operator=(WorldSpriteEffectFr
         } while (count-- != 0);
     }
     {
-        HardwareStateEntry * target = tiles;
+        ObjTileCollectionEntry * target = tiles;
         u32 count = ARRAY_COUNT(tiles) - 1;
-        HardwareStateEntry const * source = other.tiles;
+        ObjTileCollectionEntry const * source = other.tiles;
         do {
             *target = *source;
             ++target;
@@ -89,8 +89,8 @@ inline void WorldSpriteEffectsState::Draw(WorldSpriteDrawBuffer * buffer, Hardwa
             i32 y = world_y - camera_y;
             IndexedResourceGroupResult & group = frame.groups[frame_index];
             // Preserve agbcp's add order using the array's real byte extent.
-            HardwareStateEntry const * tile = reinterpret_cast<HardwareStateEntry const *>(
-                reinterpret_cast<uptr>(frame.tiles) + frame_index * sizeof(HardwareStateEntry));
+            ObjTileCollectionEntry const * tile = reinterpret_cast<ObjTileCollectionEntry const *>(
+                reinterpret_cast<uptr>(frame.tiles) + frame_index * sizeof(ObjTileCollectionEntry));
             u32 tile_index = tile->GetTileIndex();
             SubmitWorldSpriteRecords(buffer, x, y, 0xAA, sort_key,
                 group.sprites, world, tile_index, palette_indices);

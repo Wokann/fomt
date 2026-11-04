@@ -114,8 +114,8 @@ private:
 
 struct GameSceneMenuTilemapData {
     u32 unk_00;
-    HardwareStateEntry unk_04;
-    HardwareStateEntry unk_0C;
+    ObjTileCollectionEntry unk_04;
+    ObjTileCollectionEntry unk_0C;
     ObjPaletteCollectionEntry unk_14;
     IndexedResourceArchive archive;
     GameSceneMenuResourceState first;
@@ -162,7 +162,7 @@ struct GameSceneMenuCursorData {
     i32 previous;
     i32 left_limit;
     i32 right_limit;
-    HardwareStateEntry state;
+    ObjTileCollectionEntry state;
     ObjPaletteCollectionEntry resource;
     IndexedResourceArchive archive;
     GameSceneMenuResourceState sprite;
@@ -180,7 +180,7 @@ struct GameSceneMenuSpriteData {
     GameSceneMenuCorePrefix * core;
     IndexedResourceArchive archive;
     GameSceneMenuResourceState sprite;
-    HardwareStateEntry state;
+    ObjTileCollectionEntry state;
     ObjPaletteCollectionEntry resource;
     u32 unk_7C;
     u32 unk_80;

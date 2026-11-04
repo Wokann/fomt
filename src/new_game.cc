@@ -8,7 +8,7 @@
 #include "game_state.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_state_accessors.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 #include "hardware_blend_object.hh"
 #include "hardware_display_state.hh"
 #include "hardware_sprite_buffer.hh"
@@ -38,7 +38,7 @@ static inline bool MenuBlendIsQueued(HardwareBlendObject const & blend)
     return blend.previous_slot != nullptr;
 }
 
-static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
+static inline u32 SpriteTileIndex(ObjTileCollectionEntry & entry)
 {
     return GetObjTileIndex(&entry, entry.handle);
 }
@@ -73,15 +73,15 @@ NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore 
     // Allocate the owner before acquiring its temporary shared resources.
     void * storage = ::operator new(sizeof(UiStateOwner));
     {
-        HardwareStateOwner shared;
+        ObjTileCollection shared;
         ObjPaletteCollection resources;
         core->ui_state = new (storage) UiStateOwner(0, 31, 15, core->unk_08, shared, resources);
     }
     new (&core->music_players[0]) HardwareMusicPlayerSlot(1);
     new (&core->music_players[1]) HardwareMusicPlayerSlot(2);
-    new (&core->glyph_tiles) HardwareStateEntry(7);
+    new (&core->glyph_tiles) ObjTileCollectionEntry(7);
     new (&core->glyph_palette) ObjPaletteCollectionEntry;
-    new (&core->cursor_tiles) HardwareStateEntry(3);
+    new (&core->cursor_tiles) ObjTileCollectionEntry(3);
     new (&core->cursor_palette) ObjPaletteCollectionEntry;
     SetBirthdayInputDate(core->birthday, birthday.GetSeason(), birthday.GetDay());
     core->step = 0;
@@ -112,9 +112,9 @@ NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore 
 void DestroyBirthdayInputCore(NewGameBirthdayInputCore * core, u32 flags)
 {
     core->cursor_palette.~ObjPaletteCollectionEntry();
-    core->cursor_tiles.~HardwareStateEntry();
+    core->cursor_tiles.~ObjTileCollectionEntry();
     core->glyph_palette.~ObjPaletteCollectionEntry();
-    core->glyph_tiles.~HardwareStateEntry();
+    core->glyph_tiles.~ObjTileCollectionEntry();
     if (core->ui_state != nullptr)
         delete core->ui_state;
     DestroyHardwareBootstrap(core, flags);

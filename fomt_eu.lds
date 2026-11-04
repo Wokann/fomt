@@ -108,8 +108,8 @@ SECTIONS
         asm/obj_tile_pool.o(.text.obj_tile_pool_reservation);
         src/obj_tile_pool.o(.text.obj_tile_pool_handles);
         src/obj_tile_pool.o(.text.obj_tile_tree_root);
-        asm/hardware.o(.text.hardware_state_properties_after);
-        src/hardware_state_clear.o(.text);
+        asm/obj_tile_collection.o(.text);
+        src/obj_tile_collection.o(.text);
         src/hardware_bootstrap.o(.text);
         src/hardware_display_commands.o(.text);
         src/hardware_bootstrap.o(.text.hardware_frame_update);
@@ -538,7 +538,7 @@ SECTIONS
         src/ui_state.o(.text.ui_text_output_callbacks);
         src/ui_state.o(.text.ui_text_input_callbacks);
         src/ui_state.o(.text.ui_text_window_setup);
-        src/ui_state.o(.text.__14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection);
+        src/ui_state.o(.text.__14UiStatePayloadUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection);
         src/ui_state.o(.text.ui_payload_destructor);
         asm/code_0803EE94.o(.text.ui_payload_destructor_after);
         src/ui_state.o(.text.ui_payload_open);
@@ -563,7 +563,7 @@ SECTIONS
         src/ui_state.o(.text.__18UiTextInputAdapterRCUiUc .text.func_08050F70 .text.func_08050F74);
         src/ui_state.o(.text.DrawUiTextRows);
         src/ui_state.o(.text.func_080510E8);
-        src/ui_state.o(.text.__18UnkUiSelectionDataP25ObjPaletteCollectionEntryRC18HardwareStateOwner);
+        src/ui_state.o(.text.__18UnkUiSelectionDataP25ObjPaletteCollectionEntryRC17ObjTileCollection);
         src/ui_state.o(.text.ui_state_selection);
         src/ui_state.o(.text.__21UiTextTileCopyCommandPCUiPUiUib);
         src/ui_text_window.o(.text);
@@ -950,7 +950,7 @@ SECTIONS
         src/obj_tile_pool.o(.text.obj_tile_tree_unreserve_after);
         src/obj_tile_pool.o(.text.obj_tile_tree_operations);
         src/obj_tile_pool.o(.text.obj_tile_handle_free_list);
-        src/hardware_state_clear.o(.text.hardware_shared_state_free_list_after);
+        src/obj_tile_collection.o(.text.obj_tile_collection_reserve);
         src/hardware_bootstrap.o(.text.hardware_frame_commands);
         src/hardware_bootstrap.o(.text.hardware_dma_command);
         *(.gnu.linkonce.t._._23HardwareDmaQueueCommand);

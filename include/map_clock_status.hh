@@ -5,7 +5,7 @@
 #include "control_widget.hh"
 #include "hardware_dma_link.hh"
 #include "obj_palette_collection.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 #include "resource_archive.hh"
 #include <string.h>
 
@@ -16,7 +16,7 @@
 // The state entry owns eight OBJ tiles; the DMA link follows its dirty byte.
 struct MapClockStatusHudTileBuffer {
     u32 tiles[8][8];
-    HardwareStateEntry state;
+    ObjTileCollectionEntry state;
     u8 dirty;
     HardwareDmaCopyLink upload;
 
@@ -43,17 +43,17 @@ struct MapClockStatusHudData {
     MapClockStatusHudTileBuffer date_tiles;
     MapClockStatusHudTileBuffer time_tiles;
     u8 unk_selector;
-    HardwareStateEntry unk_state_2D0;
+    ObjTileCollectionEntry unk_state_2D0;
     HardwareDmaCopyLink unk_dma_2D8;
     u8 unk_selector_dirty;
     u8 unk_value_active;
     u16 unk_value;
     ObjPaletteCollectionEntry unk_pool_2F4;
     HardwareDmaCopyLink unk_dma_2FC;
-    HardwareStateEntry unk_state_314;
+    ObjTileCollectionEntry unk_state_314;
     HardwareDmaCopyLink unk_dma_31C;
     u8 unk_value_dirty;
-    HardwareStateEntry unk_state_338;
+    ObjTileCollectionEntry unk_state_338;
     HardwareDmaCopyLink unk_dma_340;
     u8 unk_358;
 

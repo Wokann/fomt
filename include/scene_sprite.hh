@@ -13,7 +13,7 @@ struct WorldSpriteDrawBuffer;
 // Native base owns OBJ tiles and the palette slots returned by GameObject.
 struct GameSceneSpriteBase {
     GameObject * world;
-    HardwareStateEntry tiles;
+    ObjTileCollectionEntry tiles;
     u16 tile_index;
     GameScenePaletteIndices palettes;
 

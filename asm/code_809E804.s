@@ -1296,7 +1296,7 @@ ConstructCalendarSceneCore: @ 0x080A1C44
 	bl __builtin_new
 	adds r6, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -1309,14 +1309,14 @@ ConstructCalendarSceneCore: @ 0x080A1C44
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0xf
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	str r0, [r7, #0x10]
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	adds r0, r7, #0
 	adds r0, #0x14
 	movs r1, #1
@@ -18140,7 +18140,7 @@ func_080AD9A4:
     bl __builtin_new
     adds r5, r0, #0
     add r0, sp, #0xc
-    bl __18HardwareStateOwner
+    bl __17ObjTileCollection
     adds r0, r7, #0
     bl __20ObjPaletteCollection
     movs r4, #0
@@ -18152,7 +18152,7 @@ func_080AD9A4:
     movs r1, #0
     movs r2, #0x18
     movs r3, #0
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
     movs r2, #0x83
     lsls r2, r2, #3
     adds r1, r6, r2
@@ -18162,7 +18162,7 @@ func_080AD9A4:
     bl _._20ObjPaletteCollection
     add r0, sp, #0xc
     movs r1, #2
-    bl _._18HardwareStateOwner
+    bl _._17ObjTileCollection
     movs r0, #0x30
     bl __builtin_new
     ldr r1, .Ljp_080ADD7C @ =gUnk_084C4718
@@ -26575,7 +26575,7 @@ func_080B1B48: @ 0x080B1B48
 	bl __builtin_new
 	adds r4, r0, #0
 	ldr r0, [sp, #0x110]
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	adds r0, r6, #0
 	bl __20ObjPaletteCollection
 	movs r0, #0
@@ -26587,7 +26587,7 @@ func_080B1B48: @ 0x080B1B48
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r5, #0x83
 	lsls r5, r5, #3
 	add r5, sl
@@ -26606,7 +26606,7 @@ func_080B1B48: @ 0x080B1B48
 	bl _._20ObjPaletteCollection
 	ldr r0, [sp, #0x110]
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r0, #0x83
 	lsls r0, r0, #3
 	add r0, sl
@@ -30063,7 +30063,7 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B36FC
 	bl __builtin_new
 	adds r4, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	adds r0, r7, #0
 	bl __20ObjPaletteCollection
 	movs r5, #0
@@ -30075,7 +30075,7 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B36FC
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r3, #0xe3
 	lsls r3, r3, #3
 	adds r1, r6, r3
@@ -30085,7 +30085,7 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B36FC
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	ldr r0, .Ljp_080B3AD4 @ =0x0000071C
 	adds r4, r6, r0
 	adds r0, r4, #0
@@ -31051,7 +31051,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -31064,7 +31064,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r2, #0xe3
 	lsls r2, r2, #3
 	adds r6, r7, r2
@@ -31083,7 +31083,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r3, #0xe3
 	lsls r3, r3, #3
 	adds r0, r7, r3
@@ -39493,7 +39493,7 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B82C0
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -39506,7 +39506,7 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B82C0
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r2, #0xe3
 	lsls r2, r2, #3
 	adds r6, r7, r2
@@ -39525,7 +39525,7 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B82C0
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r3, #0xe3
 	lsls r3, r3, #3
 	adds r0, r7, r3
@@ -47973,7 +47973,7 @@ func_080BC938: @ 0x080BC36C
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	adds r0, r7, #0
 	bl __20ObjPaletteCollection
 	movs r4, #0
@@ -47985,7 +47985,7 @@ func_080BC938: @ 0x080BC36C
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r2, #0x83
 	lsls r2, r2, #3
 	adds r1, r6, r2
@@ -47995,7 +47995,7 @@ func_080BC938: @ 0x080BC36C
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r0, #0x30
 	bl __builtin_new
 	ldr r1, .L080BC6B0 @ =gUnk_084C4718
@@ -52229,7 +52229,7 @@ func_080BF764:
     bl __builtin_new
     adds r5, r0, #0
     add r0, sp, #0x28
-    bl __18HardwareStateOwner
+    bl __17ObjTileCollection
     add r4, sp, #0x2c
     adds r0, r4, #0
     bl __20ObjPaletteCollection
@@ -52242,7 +52242,7 @@ func_080BF764:
     movs r1, #0
     movs r2, #0x18
     movs r3, #0
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
     movs r6, #0x83
     lsls r6, r6, #3
     add r6, sl
@@ -52261,7 +52261,7 @@ func_080BF764:
     bl _._20ObjPaletteCollection
     add r0, sp, #0x28
     movs r1, #2
-    bl _._18HardwareStateOwner
+    bl _._17ObjTileCollection
     movs r0, #0x83
     lsls r0, r0, #3
     add r0, sl
@@ -55075,7 +55075,7 @@ Run__30HarvestSpriteHarvestingUiScene:
     bl __builtin_new
     adds r5, r0, #0
     add r0, sp, #0xc
-    bl __18HardwareStateOwner
+    bl __17ObjTileCollection
     adds r0, r7, #0
     bl __20ObjPaletteCollection
     movs r4, #0
@@ -55087,7 +55087,7 @@ Run__30HarvestSpriteHarvestingUiScene:
     movs r1, #0
     movs r2, #0x18
     movs r3, #0
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
     ldr r2, [pc, #0x3a4]
     adds r1, r6, r2
     str r0, [r1]
@@ -55096,7 +55096,7 @@ Run__30HarvestSpriteHarvestingUiScene:
     bl _._20ObjPaletteCollection
     add r0, sp, #0xc
     movs r1, #2
-    bl _._18HardwareStateOwner
+    bl _._17ObjTileCollection
     movs r0, #0x30
     bl __builtin_new
     ldr r1, [pc, #0x38c]
@@ -62145,19 +62145,19 @@ func_080C5648:
     bl __builtin_new
     .byte 0x05, 0x1C
     .byte 0x0C, 0xA8
-    bl __18HardwareStateOwner
+    bl __17ObjTileCollection
     .byte 0x0D, 0xAC, 0x20, 0x1C
     bl __20ObjPaletteCollection
     .byte 0x00, 0x20
     .byte 0x00, 0x90, 0x0C, 0xAB, 0x01, 0x93, 0x02, 0x94, 0x28, 0x1C, 0x00, 0x21, 0x18, 0x22, 0x00, 0x23
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
     .byte 0x25, 0x4E, 0x56, 0x44, 0x05, 0x1C, 0x30, 0x68, 0x85, 0x42, 0x04, 0xD0
     .byte 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
     bl _._12UiStateOwner
     .byte 0x35, 0x60, 0x20, 0x1C, 0x02, 0x21
     bl _._20ObjPaletteCollection
     .byte 0x0C, 0xA8, 0x02, 0x21
-    bl _._18HardwareStateOwner
+    bl _._17ObjTileCollection
     .byte 0x1B, 0x48, 0x50, 0x44
     .byte 0x00, 0x68, 0x81, 0x46, 0x50, 0x46
     bl GetHardwareCoreState
@@ -63277,7 +63277,7 @@ func_080C797C:
     adds r0, r7, r1
     str r4, [r0]
     add r0, sp, #0xc
-    bl __18HardwareStateOwner
+    bl __17ObjTileCollection
     add r5, sp, #0x10
     adds r0, r5, #0
     bl __20ObjPaletteCollection
@@ -63291,13 +63291,13 @@ func_080C797C:
     movs r1, #0
     movs r2, #0x1c
     movs r3, #0
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
     adds r0, r5, #0
     movs r1, #2
     bl _._20ObjPaletteCollection
     add r0, sp, #0xc
     movs r1, #2
-    bl _._18HardwareStateOwner
+    bl _._17ObjTileCollection
     movs r0, #0xd5
     lsls r0, r0, #2
     adds r4, r7, r0
@@ -76119,7 +76119,7 @@ ConstructCalendarSceneCore: @ 0x080A220C
 	bl __builtin_new
 	adds r6, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -76132,14 +76132,14 @@ ConstructCalendarSceneCore: @ 0x080A220C
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0xf
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	str r0, [r7, #0x10]
 	adds r0, r4, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	adds r0, r7, #0
 	adds r0, #0x14
 	movs r1, #1
@@ -92903,7 +92903,7 @@ func_080ADF6C: @ 0x080ADF6C
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	adds r0, r7, #0
 	bl __20ObjPaletteCollection
 	movs r4, #0
@@ -92915,7 +92915,7 @@ func_080ADF6C: @ 0x080ADF6C
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r2, #0x83
 	lsls r2, r2, #3
 	adds r1, r6, r2
@@ -92925,7 +92925,7 @@ func_080ADF6C: @ 0x080ADF6C
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r0, #0x30
 	bl __builtin_new
 	ldr r1, .L080AE344 @ =gUnk_0873E5B0
@@ -101333,7 +101333,7 @@ func_080B2114: @ 0x080B2114
 	bl __builtin_new
 	adds r4, r0, #0
 	ldr r0, [sp, #0x110]
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	adds r0, r6, #0
 	bl __20ObjPaletteCollection
 	movs r0, #0
@@ -101345,7 +101345,7 @@ func_080B2114: @ 0x080B2114
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r5, #0x83
 	lsls r5, r5, #3
 	add r5, sl
@@ -101364,7 +101364,7 @@ func_080B2114: @ 0x080B2114
 	bl _._20ObjPaletteCollection
 	ldr r0, [sp, #0x110]
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r0, #0x83
 	lsls r0, r0, #3
 	add r0, sl
@@ -104814,7 +104814,7 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B3CC8
 	bl __builtin_new
 	adds r4, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	adds r0, r7, #0
 	bl __20ObjPaletteCollection
 	movs r5, #0
@@ -104826,7 +104826,7 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B3CC8
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r3, #0xe3
 	lsls r3, r3, #3
 	adds r1, r6, r3
@@ -104836,7 +104836,7 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B3CC8
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	ldr r0, .L080B40A0 @ =0x0000071C
 	adds r4, r6, r0
 	adds r0, r4, #0
@@ -105800,7 +105800,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -105813,7 +105813,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r2, #0xe3
 	lsls r2, r2, #3
 	adds r6, r7, r2
@@ -105832,7 +105832,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r3, #0xe3
 	lsls r3, r3, #3
 	adds r0, r7, r3
@@ -114233,7 +114233,7 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B888C
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -114246,7 +114246,7 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B888C
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r2, #0xe3
 	lsls r2, r2, #3
 	adds r6, r7, r2
@@ -114265,7 +114265,7 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B888C
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r3, #0xe3
 	lsls r3, r3, #3
 	adds r0, r7, r3
@@ -122680,7 +122680,7 @@ func_080BC938: @ 0x080BC938
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	adds r0, r7, #0
 	bl __20ObjPaletteCollection
 	movs r4, #0
@@ -122692,7 +122692,7 @@ func_080BC938: @ 0x080BC938
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r2, #0x83
 	lsls r2, r2, #3
 	adds r1, r6, r2
@@ -122702,7 +122702,7 @@ func_080BC938: @ 0x080BC938
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r0, #0x30
 	bl __builtin_new
 	ldr r1, .L080BCC7C @ =gUnk_0873E5B0
@@ -128606,7 +128606,7 @@ func_080BF764: @ 0x080BF764
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0x28
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x2c
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -128619,7 +128619,7 @@ func_080BF764: @ 0x080BF764
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	movs r6, #0x83
 	lsls r6, r6, #3
 	add r6, sl
@@ -128638,7 +128638,7 @@ func_080BF764: @ 0x080BF764
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0x28
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r0, #0x83
 	lsls r0, r0, #3
 	add r0, sl
@@ -131479,7 +131479,7 @@ func_080C0DCC: @ 0x080C0DCC
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	adds r0, r7, #0
 	bl __20ObjPaletteCollection
 	movs r4, #0
@@ -131491,7 +131491,7 @@ func_080C0DCC: @ 0x080C0DCC
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	ldr r2, .L080C11C4 @ =0x0000051C
 	adds r1, r6, r2
 	str r0, [r1]
@@ -131500,7 +131500,7 @@ func_080C0DCC: @ 0x080C0DCC
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r0, #0x30
 	bl __builtin_new
 	ldr r1, .L080C11C8 @ =gUnk_0873E5B0
@@ -142069,7 +142069,7 @@ func_080C608C: @ 0x080C608C
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0x30
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r4, sp, #0x34
 	adds r0, r4, #0
 	bl __20ObjPaletteCollection
@@ -142082,7 +142082,7 @@ func_080C608C: @ 0x080C608C
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	ldr r6, .L080C61E8 @ =0x0000051C
 	add r6, sl
 	adds r5, r0, #0
@@ -142100,7 +142100,7 @@ func_080C608C: @ 0x080C608C
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0x30
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	ldr r0, .L080C61E8 @ =0x0000051C
 	add r0, sl
 	ldr r0, [r0]
@@ -146031,7 +146031,7 @@ func_080C7F58: @ 0x080C7F58
 	adds r0, r7, r1
 	str r4, [r0]
 	add r0, sp, #0xc
-	bl __18HardwareStateOwner
+	bl __17ObjTileCollection
 	add r5, sp, #0x10
 	adds r0, r5, #0
 	bl __20ObjPaletteCollection
@@ -146045,13 +146045,13 @@ func_080C7F58: @ 0x080C7F58
 	movs r1, #0
 	movs r2, #0x1c
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
+	bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
 	adds r0, r5, #0
 	movs r1, #2
 	bl _._20ObjPaletteCollection
 	add r0, sp, #0xc
 	movs r1, #2
-	bl _._18HardwareStateOwner
+	bl _._17ObjTileCollection
 	movs r0, #0xd5
 	lsls r0, r0, #2
 	adds r4, r7, r0

@@ -2,7 +2,7 @@
 #include "control_widget.hh"
 #include "resource_handle.hh"
 #include "obj_palette_collection.hh"
-#include "hardware_state_clear.hh"
+#include "obj_tile_collection.hh"
 #include "hardware_dma_link.hh"
 #include "common_ui.hh"
 #pragma implementation "main_menu_widget.hh"

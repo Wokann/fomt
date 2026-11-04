@@ -274,7 +274,7 @@ static inline bool HasSaveSlot(SramAccess & access, u32 slot)
     return (1 << slot) & GetSramSaveSlotMask(&access);
 }
 
-static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
+static inline u32 SpriteTileIndex(ObjTileCollectionEntry & entry)
 {
     return GetObjTileIndex(&entry, entry.handle);
 }
@@ -295,14 +295,14 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
     continuation = nullptr;
     core->continuation.value = next;
     {
-        HardwareStateOwner shared;
+        ObjTileCollection shared;
         ObjPaletteCollection resources;
         new (&core->ui_state) UiStateOwner(0, 31, 15, 0, shared, resources);
     }
     new (&core->music_players[0]) HardwareMusicPlayerSlot(1);
     new (&core->music_players[1]) HardwareMusicPlayerSlot(2);
     new (&core->resources) IndexedResourceArchive(gUiHandCursorArchive);
-    new (&core->state_entry) HardwareStateEntry(UI_HAND_CURSOR_TILE_SIZE_SHIFT);
+    new (&core->state_entry) ObjTileCollectionEntry(UI_HAND_CURSOR_TILE_SIZE_SHIFT);
     new (&core->resource_entry) ObjPaletteCollectionEntry;
     HardwareSpriteOamRecord initial_sprite = {};
     core->option_attributes = initial_sprite;
