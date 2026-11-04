@@ -832,7 +832,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r2, r0, #0
     add	r1, sp, #20
     ldr	r0, [sp, #20]
@@ -883,7 +883,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [r0, #80]	@ 0x50
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r6, r4, #0
     mov	r9, r0
     adds	r5, r6, #0
@@ -1018,7 +1018,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     mov	r0, sl
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r6, r4, #0
     mov	r8, r0
     adds	r5, r6, #0
@@ -1173,7 +1173,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     mov	r0, r8
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     ldr	r3, [sp, #104]	@ 0x68
     ldr	r4, [sp, #76]	@ 0x4c
     orrs	r3, r4
@@ -5334,7 +5334,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r2, r0, #0
     add	r1, sp, #20
     ldr	r0, [sp, #20]
@@ -5385,7 +5385,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [r0, #80]	@ 0x50
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r6, r4, #0
     mov	r9, r0
     adds	r5, r6, #0
@@ -5520,7 +5520,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     mov	r0, sl
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r6, r4, #0
     mov	r8, r0
     adds	r5, r6, #0
@@ -5675,7 +5675,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     mov	r0, r8
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     ldr	r3, [sp, #104]	@ 0x68
     ldr	r4, [sp, #76]	@ 0x4c
     orrs	r3, r4
@@ -9871,7 +9871,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r2, r0, #0
     add	r1, sp, #20
     ldr	r0, [sp, #20]
@@ -9922,7 +9922,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [r0, #80]	@ 0x50
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r6, r4, #0
     mov	r9, r0
     adds	r5, r6, #0
@@ -10057,7 +10057,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     mov	r0, sl
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r6, r4, #0
     mov	r8, r0
     adds	r5, r6, #0
@@ -10212,7 +10212,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     mov	r0, r8
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     ldr	r3, [sp, #104]	@ 0x68
     ldr	r4, [sp, #76]	@ 0x4c
     orrs	r3, r4
@@ -14382,7 +14382,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     adds	r0, r4, #0
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r2, r0, #0
     add	r1, sp, #20
     ldr	r0, [sp, #20]
@@ -14433,7 +14433,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     ldr	r4, [r0, #80]	@ 0x50
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r6, r4, #0
     mov	r9, r0
     adds	r5, r6, #0
@@ -14568,7 +14568,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     mov	r0, sl
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds	r6, r4, #0
     mov	r8, r0
     adds	r5, r6, #0
@@ -14723,7 +14723,7 @@ UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20H
     mov	r0, r8
     adds	r0, #48	@ 0x30
     ldr	r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     ldr	r3, [sp, #104]	@ 0x68
     ldr	r4, [sp, #76]	@ 0x4c
     orrs	r3, r4

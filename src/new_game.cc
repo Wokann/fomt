@@ -44,7 +44,7 @@ static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
 
 static inline u32 SpritePaletteBank(HardwareResourceEntry & entry)
 {
-    return GetHardwarePoolHandleIndex(&entry, entry.handle);
+    return GetObjPaletteBank(&entry, entry.handle);
 }
 
 // The birthday UI wraps invalid day fields; ordinary GameDate construction

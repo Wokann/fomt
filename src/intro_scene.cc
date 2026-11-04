@@ -4,8 +4,7 @@
 #include "random.hh"
 #include "new_game_name_entry.hh"
 #include "new_game_menu.hh"
-#include "hardware.hh"
-#include "hardware_allocator.hh"
+#include "obj_palette_pool.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_blend_object.hh"
 #include "hardware_display_state.hh"
@@ -49,8 +48,8 @@ static inline void InitializeIntroSceneHardwareStateHandle(
 
 static inline void InitializeIntroSceneHardwarePoolHandle(IntroSceneHardwarePoolHandle * owner)
 {
-    func_08007128(owner);
-    owner->handle = AllocateHardwarePoolHandle(owner);
+    ConstructObjPalettePoolOwner(owner);
+    owner->handle = AllocateObjPaletteHandle(owner);
 }
 
 static inline void InitializeIntroSceneHardwareStateReservation(
@@ -96,7 +95,7 @@ IntroSceneCore * ConstructIntroSceneCore(void * object)
 #endif
     InitializeIntroSceneResourceState(&core->resources[13], small, 0);
     InitializeIntroSceneHardwareStateReservation(&core->state_reservation, 0, 0x300);
-    func_08007128(&core->pool_reservation);
+    ConstructObjPalettePoolOwner(&core->pool_reservation);
     core->pool_reservation.Reserve(9, 7);
     InitializeIntroSceneHardwareStateHandle(&core->state_handle_6C78, 4);
     InitializeIntroSceneHardwarePoolHandle(&core->pool_handle_6C80);
@@ -151,7 +150,7 @@ void DestroyIntroSceneCore(IntroSceneCore * core, int flags)
     core->state_handle_6C88.~IntroSceneHardwareStateHandle();
     core->pool_handle_6C80.~IntroSceneHardwarePoolHandle();
     core->state_handle_6C78.~IntroSceneHardwareStateHandle();
-    core->pool_reservation.~HardwarePoolOwner();
+    core->pool_reservation.~ObjPalettePoolOwner();
     core->state_reservation.~HardwareSharedStateOwner();
 
     // These are concrete archive subobjects, not polymorphic owners.
@@ -635,7 +634,7 @@ static inline u32 GetIntroSceneTileIndex(IntroSceneHardwareStateHandle & state)
 
 static inline u32 GetIntroScenePaletteIndex(IntroSceneHardwarePoolHandle & state)
 {
-    return GetHardwarePoolHandleIndex(&state, state.handle);
+    return GetObjPaletteBank(&state, state.handle);
 }
 
 static inline IndexedResourceGroupResult LoadIntroSceneResourceGroup(IndexedResourceHandle const & handle)

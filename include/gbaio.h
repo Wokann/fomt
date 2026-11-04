@@ -18,6 +18,8 @@ EXTERN_C
 #define BG_PLTT PLTT
 #define BG_PLTT_SIZE 0x200
 #define OBJ_PLTT (PLTT + BG_PLTT_SIZE)
+#define OBJ_PLTT_SIZE 0x200
+#define PLTT_SIZE_4BPP (16 * sizeof(u16))
 
 #define VRAM 0x06000000
 #define OBJ_VRAM0 (VRAM + 0x10000)

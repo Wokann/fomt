@@ -78,7 +78,7 @@
 #include "scene.hh"
 #include "hardware_music_player.hh"
 #include "hardware_refcount.hh"
-#include "hardware_allocator.hh"
+#include "obj_palette_pool.hh"
 #include "resource_handle.hh"
 
 struct HardwareCoreState;
@@ -124,13 +124,13 @@ struct IntroSceneHardwareStateHandle : HardwareSharedStateOwner
     }
 };
 
-struct IntroSceneHardwarePoolHandle : HardwarePoolOwner
+struct IntroSceneHardwarePoolHandle : ObjPalettePoolOwner
 {
     u32 handle;
 
     ~IntroSceneHardwarePoolHandle()
     {
-        ReleaseHardwarePoolHandle(this, handle);
+        ReleaseObjPaletteHandle(this, handle);
     }
 };
 
@@ -197,7 +197,7 @@ struct IntroSceneCore
     i8 continuation;
     u8 unk_6C6F;
     HardwareSharedStateOwner state_reservation;
-    HardwarePoolOwner pool_reservation;
+    ObjPalettePoolOwner pool_reservation;
     IntroSceneHardwareStateHandle state_handle_6C78;
     IntroSceneHardwarePoolHandle pool_handle_6C80;
     IntroSceneHardwareStateHandle state_handle_6C88;
@@ -230,7 +230,7 @@ typedef char IntroScenePointerSizeCheck[sizeof(void *) == 4 ? 1 : -1];
 typedef char IntroSceneMusicPlayerSizeCheck[sizeof(HardwareMusicPlayerSlot) == 4 ? 1 : -1];
 typedef char IntroSceneArchiveLayoutSizeCheck[sizeof(IndexedResourceArchive) == INTRO_SCENE_ARCHIVE_SIZE ? 1 : -1];
 typedef char IntroSceneStateOwnerSizeCheck[sizeof(HardwareSharedStateOwner) == INTRO_SCENE_OWNER_SIZE ? 1 : -1];
-typedef char IntroScenePoolOwnerSizeCheck[sizeof(HardwarePoolOwner) == INTRO_SCENE_OWNER_SIZE ? 1 : -1];
+typedef char IntroScenePoolOwnerSizeCheck[sizeof(ObjPalettePoolOwner) == INTRO_SCENE_OWNER_SIZE ? 1 : -1];
 typedef char IntroSceneUnpackedResourcesSizeCheck[sizeof(IntroSceneUnpackedResources) == INTRO_SCENE_RESOURCE_CAPACITY ? 1 : -1];
 typedef char IntroSceneCoreMusicPlayersSizeCheck[sizeof(((IntroSceneCore *)0)->music_players) == 2 * 4 ? 1 : -1];
 typedef char IntroSceneCoreResourcesSizeCheck[sizeof(((IntroSceneCore *)0)->resources) == 14 * INTRO_SCENE_RESOURCE_STATE_SIZE ? 1 : -1];

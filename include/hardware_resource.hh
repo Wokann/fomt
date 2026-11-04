@@ -2,30 +2,30 @@
 #define HARDWARE_RESOURCE_HH
 
 #include "prelude.h"
-#include "hardware_allocator.hh"
+#include "obj_palette_pool.hh"
 
 struct HardwareResourceEntry {
-    HardwarePoolOwner owner;
+    ObjPalettePoolOwner owner;
     u32 handle;
 
     HardwareResourceEntry()
     {
-        handle = AllocateHardwarePoolHandle(this);
+        handle = AllocateObjPaletteHandle(this);
     }
 
     HardwareResourceEntry(HardwareResourceEntry const & value)
     {
-        handle = RetainHardwarePoolHandle(this, value.handle);
+        handle = RetainObjPaletteHandle(this, value.handle);
     }
 
     u32 GetIndex()
     {
-        return GetHardwarePoolHandleIndex(this, handle);
+        return GetObjPaletteBank(this, handle);
     }
 
     ~HardwareResourceEntry()
     {
-        ReleaseHardwarePoolHandle(this, handle);
+        ReleaseObjPaletteHandle(this, handle);
     }
 };
 

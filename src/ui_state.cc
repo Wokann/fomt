@@ -413,7 +413,7 @@ static inline void AppendUiTextRowSprite(HardwareSpriteBufferState * buffer,
 
 void DrawUiTextRows(UnkUiSelectionData * object, HardwareSpriteBufferState * sprites)
 {
-    i32 palette = GetHardwarePoolHandleIndex(object->palette, object->palette->handle);
+    i32 palette = GetObjPaletteBank(object->palette, object->palette->handle);
     if (palette >= 0) {
         for (int row = 0, y = 107; row <= 2; ++row, y += 17) {
             int index = row + object->unk_18;

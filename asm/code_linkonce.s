@@ -21302,10 +21302,10 @@ func_080E11EC:
     subs r4, #8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     cmp r7, r4
     bne .Lauto_080E09BC
     .Lauto_080E09D2:
@@ -21339,10 +21339,10 @@ func_080E11EC:
     adds r4, #8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     ldr r1, [r5, #4]
     adds r0, r5, #0
     bl ReleaseHardwareSharedStateHandle
@@ -21360,10 +21360,10 @@ func_080E11EC:
     adds r4, r6, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0x9e
     lsls r1, r1, #3
     adds r4, r6, r1
@@ -21378,10 +21378,10 @@ func_080E11EC:
     adds r4, r6, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0x9c
     lsls r0, r0, #3
     adds r4, r6, r0
@@ -21396,10 +21396,10 @@ func_080E11EC:
     adds r4, r6, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r2, #0x9a
     lsls r2, r2, #3
     adds r4, r6, r2
@@ -21423,10 +21423,10 @@ func_080E11EC:
     adds r4, r6, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r2, #0x97
     lsls r2, r2, #3
     adds r4, r6, r2
@@ -21441,10 +21441,10 @@ func_080E11EC:
     adds r4, r6, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0x95
     lsls r1, r1, #3
     adds r4, r6, r1
@@ -21459,10 +21459,10 @@ func_080E11EC:
     adds r4, r6, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0x93
     lsls r0, r0, #3
     adds r4, r6, r0
@@ -21477,10 +21477,10 @@ func_080E11EC:
     adds r4, r6, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r2, #0x91
     lsls r2, r2, #3
     adds r4, r6, r2
@@ -21495,10 +21495,10 @@ func_080E11EC:
     adds r4, r6, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0x8f
     lsls r1, r1, #3
     adds r4, r6, r1
@@ -21513,10 +21513,10 @@ func_080E11EC:
     adds r4, r6, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0x8d
     lsls r0, r0, #3
     adds r4, r6, r0
@@ -21680,10 +21680,10 @@ func_080E0D60:
     subs r4, #8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     cmp r6, r4
     bne .Lauto_080E0D9C
     .Lauto_080E0DB2:
@@ -21713,10 +21713,10 @@ func_080E0D60:
     adds r4, r7, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0xc8
     lsls r1, r1, #3
     adds r4, r7, r1
@@ -21731,10 +21731,10 @@ func_080E0D60:
     adds r4, r7, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xc6
     lsls r0, r0, #3
     adds r4, r7, r0
@@ -21758,19 +21758,19 @@ func_080E0D60:
     adds r4, r7, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xc3
     lsls r0, r0, #3
     adds r4, r7, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0xc2
     lsls r1, r1, #3
     adds r4, r7, r1
@@ -21785,10 +21785,10 @@ func_080E0D60:
     adds r4, r7, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xc0
     lsls r0, r0, #3
     adds r4, r7, r0
@@ -21803,10 +21803,10 @@ func_080E0D60:
     adds r4, r7, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r2, #0xbe
     lsls r2, r2, #3
     adds r4, r7, r2
@@ -21821,10 +21821,10 @@ func_080E0D60:
     adds r4, r7, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0xbc
     lsls r1, r1, #3
     adds r4, r7, r1
@@ -21839,10 +21839,10 @@ func_080E0D60:
     adds r4, r7, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xba
     lsls r0, r0, #3
     adds r4, r7, r0
@@ -21857,10 +21857,10 @@ func_080E0D60:
     adds r4, r7, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r2, #0xb8
     lsls r2, r2, #3
     adds r4, r7, r2
@@ -21998,10 +21998,10 @@ func_080E1044:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0x9e
     lsls r0, r0, #1
     adds r4, r5, r0
@@ -22016,10 +22016,10 @@ func_080E1044:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0x96
     lsls r0, r0, #1
     adds r4, r5, r0
@@ -22034,10 +22034,10 @@ func_080E1044:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0x8e
     lsls r0, r0, #1
     adds r4, r5, r0
@@ -22633,10 +22633,10 @@ func_080E15C8:
     subs r4, #8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     cmp r6, r4
     bne .Lauto_080E15E8
     .Lauto_080E15FE:
@@ -22670,10 +22670,10 @@ func_080E15C8:
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xed
     lsls r0, r0, #6
     adds r4, r5, r0
@@ -22687,10 +22687,10 @@ func_080E15C8:
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     ldr r0, [pc, #0xc8]
     adds r4, r5, r0
     ldr r1, [r4, #4]
@@ -23756,7 +23756,7 @@ func_080E2BB4:
     .byte 0x20, 0x69, 0x81, 0x42, 0x00, 0xD2, 0x01, 0x22, 0x00, 0x2A, 0x00, 0xD0, 0x1C, 0x1C, 0x60, 0x46
     .byte 0x41, 0x68, 0x61, 0x40, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x06, 0xDA, 0x61, 0x69, 0x50, 0x46
     .byte 0x14, 0x30
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     .byte 0x04, 0x1C, 0x01, 0xE0, 0x01, 0x24, 0x64, 0x42, 0x00, 0x2C
     .byte 0x2C, 0xDB, 0x41, 0x46, 0x08, 0x06, 0x00, 0x0E, 0x1B, 0x49, 0x00, 0x9B, 0x0B, 0x40, 0x03, 0x43
     .byte 0x1A, 0x48, 0x06, 0x40, 0x31, 0x04, 0x1A, 0x48, 0x03, 0x40, 0x0B, 0x43, 0x00, 0x93, 0x49, 0x46
@@ -23809,7 +23809,7 @@ func_080E2568:
     str r0, [r0, #0xc]
     adds r0, r6, #0
     adds r0, #0x14
-    bl func_08007128
+    bl ConstructObjPalettePoolOwner
     adds r4, r6, #0
     adds r4, #0x18
     str r5, [r4, #4]
@@ -24631,10 +24631,10 @@ func_080E2B70:
     adds r4, r5, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0x83
     lsls r0, r0, #4
     adds r4, r5, r0
@@ -24648,10 +24648,10 @@ func_080E2B70:
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r2, #0x82
     lsls r2, r2, #4
     adds r4, r5, r2
@@ -24665,10 +24665,10 @@ func_080E2B70:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0x81
     lsls r1, r1, #4
     adds r4, r5, r1
@@ -25580,10 +25580,10 @@ func_080E33D4:
     adds r4, r5, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xc6
     lsls r0, r0, #2
     adds r4, r5, r0
@@ -25607,10 +25607,10 @@ func_080E33D4:
     adds r4, r5, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xc0
     lsls r0, r0, #2
     adds r4, r5, r0
@@ -25625,10 +25625,10 @@ func_080E33D4:
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r2, #0xbc
     lsls r2, r2, #2
     adds r4, r5, r2
@@ -25643,10 +25643,10 @@ func_080E33D4:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0xb8
     lsls r1, r1, #2
     adds r4, r5, r1
@@ -26065,10 +26065,10 @@ func_080E3838:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xd2
     lsls r0, r0, #1
     adds r4, r5, r0
@@ -26083,10 +26083,10 @@ func_080E3838:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xca
     lsls r0, r0, #1
     adds r4, r5, r0
@@ -26101,28 +26101,28 @@ func_080E3838:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xc2
     lsls r0, r0, #1
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xbe
     lsls r0, r0, #1
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xba
     lsls r0, r0, #1
     adds r4, r5, r0
@@ -27333,10 +27333,10 @@ _._27ChickenFestivalMinigameCore:
     subs r4, #8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     cmp r6, r4
     bne .Lauto_080E43E0
     .Lauto_080E43F6:
@@ -27364,10 +27364,10 @@ _._27ChickenFestivalMinigameCore:
     subs r4, #8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     cmp r6, r4
     bne .Lauto_080E447E
     .Lauto_080E4494:
@@ -27375,18 +27375,18 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     ldr r0, [pc, #0x38]
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0xe3
     lsls r1, r1, #3
     adds r0, r5, r1
@@ -28088,10 +28088,10 @@ func_080E5898:
     subs r4, #8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     cmp r6, r4
     bne .Lauto_080E4D04
     .Lauto_080E4D1A:
@@ -28125,10 +28125,10 @@ func_080E5898:
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xa7
     lsls r0, r0, #2
     adds r4, r5, r0
@@ -28311,10 +28311,10 @@ func_080E11EC: @ 0x080E11EC
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	cmp r7, r4
 	bne .L080E121C
 .L080E1232:
@@ -28348,10 +28348,10 @@ func_080E11EC: @ 0x080E11EC
 	adds r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
 	bl ReleaseHardwareSharedStateHandle
@@ -28369,10 +28369,10 @@ func_080E11EC: @ 0x080E11EC
 	adds r4, r6, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0x9e
 	lsls r1, r1, #3
 	adds r4, r6, r1
@@ -28387,10 +28387,10 @@ func_080E11EC: @ 0x080E11EC
 	adds r4, r6, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0x9c
 	lsls r0, r0, #3
 	adds r4, r6, r0
@@ -28405,10 +28405,10 @@ func_080E11EC: @ 0x080E11EC
 	adds r4, r6, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r2, #0x9a
 	lsls r2, r2, #3
 	adds r4, r6, r2
@@ -28432,10 +28432,10 @@ func_080E11EC: @ 0x080E11EC
 	adds r4, r6, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r2, #0x97
 	lsls r2, r2, #3
 	adds r4, r6, r2
@@ -28450,10 +28450,10 @@ func_080E11EC: @ 0x080E11EC
 	adds r4, r6, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0x95
 	lsls r1, r1, #3
 	adds r4, r6, r1
@@ -28468,10 +28468,10 @@ func_080E11EC: @ 0x080E11EC
 	adds r4, r6, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0x93
 	lsls r0, r0, #3
 	adds r4, r6, r0
@@ -28486,10 +28486,10 @@ func_080E11EC: @ 0x080E11EC
 	adds r4, r6, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r2, #0x91
 	lsls r2, r2, #3
 	adds r4, r6, r2
@@ -28504,10 +28504,10 @@ func_080E11EC: @ 0x080E11EC
 	adds r4, r6, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0x8f
 	lsls r1, r1, #3
 	adds r4, r6, r1
@@ -28522,10 +28522,10 @@ func_080E11EC: @ 0x080E11EC
 	adds r4, r6, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0x8d
 	lsls r0, r0, #3
 	adds r4, r6, r0
@@ -28764,10 +28764,10 @@ func_080E15C0: @ 0x080E15C0
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	cmp r6, r4
 	bne .L080E15FC
 .L080E1612:
@@ -28797,10 +28797,10 @@ func_080E15C0: @ 0x080E15C0
 	adds r4, r7, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0xc8
 	lsls r1, r1, #3
 	adds r4, r7, r1
@@ -28815,10 +28815,10 @@ func_080E15C0: @ 0x080E15C0
 	adds r4, r7, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xc6
 	lsls r0, r0, #3
 	adds r4, r7, r0
@@ -28842,19 +28842,19 @@ func_080E15C0: @ 0x080E15C0
 	adds r4, r7, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xc3
 	lsls r0, r0, #3
 	adds r4, r7, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0xc2
 	lsls r1, r1, #3
 	adds r4, r7, r1
@@ -28869,10 +28869,10 @@ func_080E15C0: @ 0x080E15C0
 	adds r4, r7, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	adds r4, r7, r0
@@ -28887,10 +28887,10 @@ func_080E15C0: @ 0x080E15C0
 	adds r4, r7, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r2, #0xbe
 	lsls r2, r2, #3
 	adds r4, r7, r2
@@ -28905,10 +28905,10 @@ func_080E15C0: @ 0x080E15C0
 	adds r4, r7, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0xbc
 	lsls r1, r1, #3
 	adds r4, r7, r1
@@ -28923,10 +28923,10 @@ func_080E15C0: @ 0x080E15C0
 	adds r4, r7, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xba
 	lsls r0, r0, #3
 	adds r4, r7, r0
@@ -28941,10 +28941,10 @@ func_080E15C0: @ 0x080E15C0
 	adds r4, r7, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r2, #0xb8
 	lsls r2, r2, #3
 	adds r4, r7, r2
@@ -29078,10 +29078,10 @@ func_080E18A4: @ 0x080E18A4
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0x9e
 	lsls r0, r0, #1
 	adds r4, r5, r0
@@ -29096,10 +29096,10 @@ func_080E18A4: @ 0x080E18A4
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0x96
 	lsls r0, r0, #1
 	adds r4, r5, r0
@@ -29114,10 +29114,10 @@ func_080E18A4: @ 0x080E18A4
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0x8e
 	lsls r0, r0, #1
 	adds r4, r5, r0
@@ -29715,10 +29715,10 @@ func_080E1E28: @ 0x080E1E28
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	cmp r6, r4
 	bne .L080E1E48
 .L080E1E5E:
@@ -29752,10 +29752,10 @@ func_080E1E28: @ 0x080E1E28
 	adds r4, r5, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	ldr r0, .L080E1F94 @ =0x000040C0
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
@@ -29768,10 +29768,10 @@ func_080E1E28: @ 0x080E1E28
 	adds r4, r5, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	ldr r0, .L080E1F9C @ =0x000040B0
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
@@ -31764,7 +31764,7 @@ func_080E2BB4: @ 0x080E2BB4
 	ldr r1, [r4, #0x14]
 	mov r0, sl
 	adds r0, #0x14
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r4, r0, #0
 	b .L080E2D3A
 .L080E2D36:
@@ -31867,7 +31867,7 @@ func_080E2DC8: @ 0x080E2DC8
 	str r0, [r0, #0xc]
 	adds r0, r6, #0
 	adds r0, #0x14
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r4, r6, #0
 	adds r4, #0x18
 	str r5, [r4, #4]
@@ -32611,10 +32611,10 @@ func_080E33D0:
 	adds r4, r5, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0x83
 	lsls r0, r0, #4
 	adds r4, r5, r0
@@ -32628,10 +32628,10 @@ func_080E33D0:
 	adds r4, r5, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r2, #0x82
 	lsls r2, r2, #4
 	adds r4, r5, r2
@@ -32645,10 +32645,10 @@ func_080E33D0:
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0x81
 	lsls r1, r1, #4
 	adds r4, r5, r1
@@ -33612,10 +33612,10 @@ func_080E3C3C: @ 0x080E3C3C
 	adds r4, r5, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xc6
 	lsls r0, r0, #2
 	adds r4, r5, r0
@@ -33639,10 +33639,10 @@ func_080E3C3C: @ 0x080E3C3C
 	adds r4, r5, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xc0
 	lsls r0, r0, #2
 	adds r4, r5, r0
@@ -33657,10 +33657,10 @@ func_080E3C3C: @ 0x080E3C3C
 	adds r4, r5, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r2, #0xbc
 	lsls r2, r2, #2
 	adds r4, r5, r2
@@ -33675,10 +33675,10 @@ func_080E3C3C: @ 0x080E3C3C
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0xb8
 	lsls r1, r1, #2
 	adds r4, r5, r1
@@ -34110,10 +34110,10 @@ func_080E40A0: @ 0x080E40A0
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xd2
 	lsls r0, r0, #1
 	adds r4, r5, r0
@@ -34128,10 +34128,10 @@ func_080E40A0: @ 0x080E40A0
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xca
 	lsls r0, r0, #1
 	adds r4, r5, r0
@@ -34146,28 +34146,28 @@ func_080E40A0: @ 0x080E40A0
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xc2
 	lsls r0, r0, #1
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xbe
 	lsls r0, r0, #1
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xba
 	lsls r0, r0, #1
 	adds r4, r5, r0
@@ -35393,10 +35393,10 @@ _._27ChickenFestivalMinigameCore: @ 0x080E4940
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	cmp r6, r4
 	bne .L080E4C48
 .L080E4C5E:
@@ -35445,10 +35445,10 @@ _._27ChickenFestivalMinigameCore: @ 0x080E4940
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	cmp r6, r4
 	bne .L080E4CE6
 .L080E4CFC:
@@ -35456,18 +35456,18 @@ _._27ChickenFestivalMinigameCore: @ 0x080E4940
 	adds r4, r5, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	ldr r0, .L080E4D4C @ =0x0000071C
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0xe3
 	lsls r1, r1, #3
 	adds r0, r5, r1
@@ -36749,10 +36749,10 @@ func_080E5898: @ 0x080E5898
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	cmp r6, r4
 	bne .L080E58C4
 .L080E58DA:
@@ -36786,10 +36786,10 @@ func_080E5898: @ 0x080E5898
 	adds r4, r5, r1
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xa7
 	lsls r0, r0, #2
 	adds r4, r5, r0

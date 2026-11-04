@@ -36,7 +36,7 @@ SECTIONS
         . = ALIGN(4); src/m4a.o(.bss);
         . = ALIGN(4);
         . = 0x000400; src/sram_access.o(.bss);
-        . = 0x000404; src/hardware.o(.bss COMMON);
+        . = 0x000404; src/obj_palette_pool.o(.bss COMMON);
         . = 0x000408; src/hardware_refcount.o(.bss COMMON);
         . = 0x00040C; gUnk_0300040C = .;
         . = 0x000410; src/hardware_manager.o(.bss COMMON);
@@ -98,8 +98,7 @@ SECTIONS
         src/new_game_name_input.o(.text.new_game_name_input_keys);
         src/new_game_name_input.o(.text.new_game_name_input_confirmation);
         src/new_game_name_input.o(.text.new_game_name_input_scene);
-        src/hardware.o(.text);
-        src/hardware_allocator.o(.text);
+        src/obj_palette_pool.o(.text);
         src/hardware_resource.o(.text.__16HardwareResourceRCUc
             .text.__16HardwareResource .text._._16HardwareResource
             .text.Get__C16HardwareResource);
@@ -943,7 +942,7 @@ SECTIONS
         src/money_account.o(.text.__12MoneyAccountRC12MoneyAccount);
         src/money_account.o(.text._._12MoneyAccount);
         src/new_game_name_entry.o(.text.CreateScene__26NewGameFreshSaveTransition .gnu.linkonce.t._._26NewGameFreshSaveTransition);
-        src/hardware.o(.text.hardware_free_list);
+        src/obj_palette_pool.o(.text.obj_palette_free_list);
         src/hardware_resource.o(.text.Reserve__23HardwareResourceStorageUi);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_after);

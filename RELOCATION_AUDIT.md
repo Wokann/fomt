@@ -767,3 +767,33 @@ C/C++ 覆盖率或宣称整个 ROM 已完全动态化。
 code-candidate-exclusions.json、resource_candidate_classification.json、
 resource_dependency_audit.json、asm-default-review.json、tilemap-index-review.json、native-validation.json
 及四版 native-compare 日志。下一物理模块 hardware，起点见 layout。
+
+## OBJ palette pool：原 hardware / allocator（2026-11-05）
+
+两个前部对象属于同一调色板池，已合并为 obj_palette_pool.cc/.hh；前部
+11 函数合计 0x450，另有后置 0x20 free-list helper。map_clock_status、
+new_game 的实际上传地址均为 05000200 + bank*32，ui_state 将同一索引写
+OAM 四位 palette，BG 调色板来源独立。语义命名基于消费者，不由容量16猜测。
+
+两个原输入内部不再有链接边界；各版 LDS 使用一次新的 .text 输入，BSS
+及后置 helper 仍在原顺序。三个地址式成员入口、原全局指针及相关 handle
+API 均直接命名，所有入向 C++/ASM 引用同步，没有别名或兼容包装。结构
+字段与计数含义明确：预留槽计入 occupied_mask，不计 allocated_count。
+世代号未初始化和引用数溢出回滚的原行为保持；硬件槽数、句柄位宽仍是真实
+格式限制。数组遍历/容量以 ARRAY_COUNT 推导，单 bank 大小复用硬件定义。
+
+生命周期每版 183 条直接调用，allocator JP461/海外462，helper每版1；
+全部有指令与 THM_CALL 证据，无新裸分支。全局指针每版十个 ABS32 全为
+实际符号加零。代码值候选 197 项、资源/RAM 值窗口 68 项全部闭合；PCM、
+地形索引和 actor 跨字段窗口均有原字段/资源边界证据。RAM 镜像未作新的
+全范围扫描，因此不将保持原 BSS 槽的本轮结果扩大成任意 RAM 移动保证。
+
+四版原位 WSL -j4 compare 和原 SHA-1 通过；map 中合并前部仍0x450、helper
+仍0x20且原地址、全局槽仍03000404。JP7130/7374锚已移除，但在下一未审
+模块前留下7580，避免顺带移动后续 hardware_resource/mask/refcount 链。
+无移址、扩容、运行测试；C/C++覆盖保持。下一步审阅 hardware_resource。
+
+证据：私有 hardware-pool-67a914e6 下 audit-notes.json、四版边界/重定位/
+直接分支报告、code-reference-audit.json、palette_pool_semantics.json、
+resource_candidate_classification.json、source-manifest.json、symbol-renames.json
+及 native-validation.json 和四版 compare 日志。

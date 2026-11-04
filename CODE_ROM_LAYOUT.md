@@ -250,6 +250,55 @@ tile（原编号 418）；DE 使用 Name 标签缓冲未写入的 tile 28。修�
 模拟器测试。下一连续主题是 hardware：JP 08007130、US 08007128、EU
 0800713C、DE 08007148。
 
+## OBJ 调色板池：连续模块合并与真实命名（2026-11-05）
+
+原 `hardware.cc` 和 `hardware_allocator.cc` 的前部是同一 OBJ 调色板池的
+生命周期、预留及句柄操作，现合并为 `src/obj_palette_pool.cc`，类型和全部
+外部声明统一于 `include/obj_palette_pool.hh`。旧四个源码/头文件已移除，
+不保留兼容别名或薄包装。下文历史条目中的旧文件名对应本次迁移前的状态。
+
+| 区域 | 连续前部范围（左闭右开） | 后置空闲链 helper（32 字节） |
+| --- | --- | --- |
+| JP | `08007130–08007580` | `080D6550–080D6570` |
+| US | `08007128–08007578` | `080D6D98–080D6DB8` |
+| EU | `0800713C–0800758C` | `080D6DE4–080D6E04` |
+| DE | `08007148–08007598` | `080D6CFC–080D6D1C` |
+
+每版前部均 11 个既有 C++ 函数、1104 字节。LDS 只以一个普通 .text 输入
+连接前部；InitializeObjPaletteFreeList 保持真实后置位置，使用原有独立
+代码节，不把它搬到前部。BSS 的 gObjPalettePool 是四字节全局指针，继续
+位于 03000404；它指向堆上的池，不能把此 RAM 槽误写成整个池结构。
+
+用途由两条独立实际调用链确认：map_clock_status 与 new_game 都把池索引
+用于 OBJ_PLTT + bank * 32 的调色板上传，并把同一索引写入 OAM palette
+字段。ui_state 的 BG palette 来自独立参数，OBJ palette 才来自这个池。
+因此新类型为 ObjPalettePoolOwner/State/Entry、ObjPaletteHandle；构造、
+复制构造、预留及句柄 API 均使用对应功能符号。所有 C++、汇编和 LDS 调用
+直接同步到这些符号，无 .set、偏移别名或包装函数。
+
+池字段已确定为 first_free、entries、occupied_mask、allocated_count、
+last_generation、owner_ref_count、reserved_first/count；条目 union 的两
+个 u16 为 reference_count 与 generation。occupied_mask 包含预留 bank，
+allocated_count 排除预留 bank；保留原生世代计数未初始化、16 位引用数
+溢出回滚及 free-list 初始化要求 count>0 的行为，不混入逻辑修复。
+
+16 个 bank 是 OBJ 调色板和 OAM 四位 palette 字段的真实容量，每 bank 为
+16 个 u16 颜色，共 32 字节。entries 数量从 OBJ_PLTT_SIZE / PLTT_SIZE_4BPP
+表达，构造、遍历、索引校验和容量返回值采用 ARRAY_COUNT；位图取位采用
+实际 u32 宽度。没有人为扩大槽数或把硬件格式当作可无限增长的软件数组。
+
+每版生命周期部分 183 条入向调用，allocator JP 461 条、其余 462 条，后置
+helper 各一条；全部有真实指令与调用重定位，未检出遗漏的裸分支或函数指针
+表。BSS 指针每版十处真实 ABS32 引用，加数均为零。265 个缓存数值候选
+已逐项分类（代码 49/49/49/50，资源/RAM 值窗口每版 17），未决为零；现有
+RAM 缓存仅覆盖规范 IWRAM 区，不据此宣称所有内存镜像引用均已审完。
+
+四版 WSL make -j4 compare 全部通过，ROM SHA-1 原版一致；map 确认合并
+.text 长度、后置 helper 与 BSS 槽均保持。JP 0x7130、0x7374 两锚移除，
+下一未审阅的 hardware_resource 前保留 0x7580 边界。未做移址/改尺寸或
+模拟器测试，不增加 C/C++ 覆盖。私有证据位于 hardware-pool-67a914e6。
+下一主题 hardware_resource 的前部起点为表格中连续范围的终点。
+
 ## JP 原生代码中的数据指针重定位（2026-11-04）
 
 三个既有汇编对象中，330 个经原版字节及 Thumb PC 相对读取验证的数据指针，

@@ -90,7 +90,7 @@ static inline void SubmitHudSprite(HardwareSpriteBufferState * buffer,
 
 static inline u32 HudPaletteBank(HardwareResourceEntry & entry)
 {
-    return GetHardwarePoolHandleIndex(&entry, entry.handle);
+    return GetObjPaletteBank(&entry, entry.handle);
 }
 
 static inline void DrawHudTileBuffer(MapClockStatusHudTileBuffer & tiles,

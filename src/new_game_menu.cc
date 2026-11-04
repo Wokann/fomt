@@ -281,7 +281,7 @@ static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
 
 static inline u32 SpritePaletteBank(HardwareResourceEntry & entry)
 {
-    return GetHardwarePoolHandleIndex(&entry, entry.handle);
+    return GetObjPaletteBank(&entry, entry.handle);
 }
 
 NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSaveImage * save,

@@ -1,6 +1,6 @@
 #include "hardware_resource.hh"
 
-#include "hardware_allocator.hh"
+#include "obj_palette_pool.hh"
 #include "new.hh"
 
 #include <memory>
@@ -146,7 +146,7 @@ HardwareResourceEntry HardwareResource::Get() const
                 cursor++;
                 if (cursor == end)
                     cursor = current->start;
-                if (GetHardwarePoolHandleReferenceCount(entry, entry->handle) == 1) {
+                if (GetObjPaletteHandleReferenceCount(entry, entry->handle) == 1) {
                     current->cursor = cursor;
                     cursor = entry;
                     break;

@@ -1419,25 +1419,25 @@ ConstructCalendarSceneCore: @ 0x080A1C44
 	lsls r1, r1, #1
 	adds r4, r7, r1
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r2, #0xc2
 	lsls r2, r2, #1
 	adds r4, r7, r2
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r3, #0xc6
 	lsls r3, r3, #1
 	adds r4, r7, r3
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r0, #0xca
 	lsls r0, r0, #1
@@ -1452,9 +1452,9 @@ ConstructCalendarSceneCore: @ 0x080A1C44
 	lsls r1, r1, #1
 	adds r4, r7, r1
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r2, #0xd2
 	lsls r2, r2, #1
@@ -1469,9 +1469,9 @@ ConstructCalendarSceneCore: @ 0x080A1C44
 	lsls r3, r3, #1
 	adds r4, r7, r3
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r0, #0xef
 	lsls r0, r0, #1
@@ -2595,7 +2595,7 @@ func_080A2BA4: @ 0x080A25DC
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	lsls r0, r0, #5
 	ldr r2, .Ljp_080A2FF0 @ =0x05000200
 	adds r1, r0, r2
@@ -2663,7 +2663,7 @@ func_080A2BA4: @ 0x080A25DC
 	lsls r3, r3, #1
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	lsls r0, r0, #5
 	ldr r5, .Ljp_080A2FF0 @ =0x05000200
 	adds r1, r0, r5
@@ -2709,7 +2709,7 @@ func_080A2BA4: @ 0x080A25DC
 	lsls r6, r6, #1
 	adds r0, r7, r6
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	lsls r0, r0, #5
 	ldr r2, .Ljp_080A2FF0 @ =0x05000200
 	adds r1, r0, r2
@@ -2753,7 +2753,7 @@ func_080A2BA4: @ 0x080A25DC
 	lsls r3, r3, #1
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	lsls r0, r0, #5
 	ldr r5, .Ljp_080A2FF0 @ =0x05000200
 	adds r1, r0, r5
@@ -2872,7 +2872,7 @@ func_080A2BA4: @ 0x080A25DC
 	lsls r5, r5, #1
 	adds r0, r7, r5
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	lsls r0, r0, #5
 	ldr r6, .Ljp_080A2FF0 @ =0x05000200
 	adds r1, r0, r6
@@ -3410,7 +3410,7 @@ func_080A32A4: @ 0x080A2CDC
 	lsls r3, r3, #1
 	adds r0, r6, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	add r1, sp, #8
 	strh r0, [r1, #4]
 	movs r2, #1
@@ -3522,7 +3522,7 @@ func_080A32A4: @ 0x080A2CDC
 	lsls r5, r5, #1
 	adds r0, r6, r5
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r7, #4]
 	movs r1, #1
 	movs r0, #1
@@ -3876,7 +3876,7 @@ func_080A3618: @ 0x080A3050
 	adds r0, r7, r3
 .Ljp_080A3704:
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	mov r1, sp
 	strh r0, [r1, #4]
 .Ljp_080A370E:
@@ -30089,12 +30089,12 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B36FC
 	ldr r0, .Ljp_080B3AD4 @ =0x0000071C
 	adds r4, r6, r0
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	str r5, [r4, #4]
 	ldr r1, .Ljp_080B3AD8 @ =0x00000724
 	adds r4, r6, r1
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	str r5, [r4, #4]
 	ldr r2, .Ljp_080B3ADC @ =0x0000072C
 	adds r4, r6, r2
@@ -30179,7 +30179,7 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B36FC
 	rsbs r7, r7, #0
 .Ljp_080B3858:
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	mov r0, r8
 	str r0, [r4, #4]
 	adds r4, #8
@@ -30195,7 +30195,7 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B36FC
 	rsbs r7, r7, #0
 .Ljp_080B3878:
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	mov r3, r8
 	str r3, [r4, #4]
 	adds r4, #8
@@ -30846,17 +30846,17 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B36FC
 	adds r4, r6, r3
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	ldr r0, .Ljp_080B3F08 @ =0x00000724
 	adds r4, r6, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r7, #0
 	movs r1, #0xe6
@@ -30869,9 +30869,9 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B36FC
 	adds r4, r4, r2
 	ldr r1, [r5]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r5]
 	adds r5, #8
 	adds r7, #1
@@ -30888,9 +30888,9 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B36FC
 	adds r4, r4, r0
 	ldr r1, [r5]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r5]
 	adds r5, #8
 	adds r7, #1
@@ -31145,9 +31145,9 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 	bl GetHardwareSharedStateTileIndex
 	str r0, [sp, #0x8c]
 	add r0, sp, #0x34
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	add r0, sp, #0x34
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [sp, #0x38]
 	movs r0, #0x79
 	str r0, [sp, #0x90]
@@ -31167,10 +31167,10 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 	adds r0, r7, #0
 	bl func_080B55D0
 	add r0, sp, #0x3c
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	ldr r1, [sp, #0x38]
 	add r0, sp, #0x3c
-	bl RetainHardwarePoolHandle
+	bl RetainObjPaletteHandle
 	str r0, [sp, #0x40]
 	add r4, sp, #0x3c
 	adds r0, r7, #0
@@ -31263,7 +31263,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 	ldr r5, .Ljp_080B4394 @ =0x0000071C
 	adds r0, r7, r5
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	ldr r0, [sp, #0x94]
 	lsls r6, r0, #5
@@ -31474,7 +31474,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 	ldr r3, .Ljp_080B44DC @ =0x0000071C
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0xa4]
 	adds r6, r0, r7
@@ -32241,7 +32241,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 	ldr r3, .Ljp_080B4ADC @ =0x0000071C
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0xb0]
 	adds r1, r0, r7
@@ -32538,10 +32538,10 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B40D0
 .Ljp_080B4CCC:
 	ldr r1, [sp, #0x38]
 	add r0, sp, #0x34
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	add r0, sp, #0x34
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x30]
 	add r0, sp, #0x2c
 	bl ReleaseHardwareSharedStateHandle
@@ -37218,9 +37218,9 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B707C
 	bl AllocateHardwareSharedStateHandle
 	str r0, [sp, #0x2c]
 	add r0, sp, #0x30
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	add r0, sp, #0x30
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [sp, #0x34]
 	movs r0, #0x14
 	bl __builtin_new
@@ -37281,7 +37281,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B707C
 	ldr r5, .Ljp_080B7288 @ =0x00000724
 	adds r0, r7, r5
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	ldr r0, .Ljp_080B728C @ =0x000008FC
 	adds r4, r7, r0
@@ -37480,7 +37480,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B707C
 	ldr r1, .Ljp_080B73C8 @ =0x00000724
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -38752,7 +38752,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B707C
 	ldr r3, .Ljp_080B7D4C @ =0x0000071C
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0xac]
 	adds r1, r0, r7
@@ -39037,10 +39037,10 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B707C
 .Ljp_080B7F20:
 	ldr r1, [sp, #0x34]
 	add r0, sp, #0x30
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	add r0, sp, #0x30
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x2c]
 	add r0, sp, #0x28
 	bl ReleaseHardwareSharedStateHandle
@@ -39587,9 +39587,9 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B82C0
 	bl AllocateHardwareSharedStateHandle
 	str r0, [sp, #0x20]
 	add r0, sp, #0x34
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	add r0, sp, #0x34
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [sp, #0x38]
 	mov r1, sb
 	strb r1, [r7, #8]
@@ -39642,10 +39642,10 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B82C0
 	adds r0, r7, #0
 	bl func_080B87C4
 	add r0, sp, #0x3c
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	ldr r1, [sp, #0x38]
 	add r0, sp, #0x3c
-	bl RetainHardwarePoolHandle
+	bl RetainObjPaletteHandle
 	str r0, [sp, #0x40]
 	add r1, sp, #0x3c
 	adds r0, r7, #0
@@ -40025,10 +40025,10 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B82C0
 .Ljp_080B8764:
 	ldr r1, [sp, #0x38]
 	add r0, sp, #0x34
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	add r0, sp, #0x34
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x30]
 	add r0, sp, #0x2c
 	bl ReleaseHardwareSharedStateHandle
@@ -40375,7 +40375,7 @@ func_080B8EBC: @ 0x080B88F0
 	ldr r2, .Ljp_080B8AD0 @ =0x0000072C
 	adds r0, r0, r2
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	movs r3, #1
 	mov sl, r3
@@ -40575,7 +40575,7 @@ func_080B8EBC: @ 0x080B88F0
 	ldr r1, .Ljp_080B8C00 @ =0x0000072C
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0x10]
 	movs r3, #0
@@ -44367,7 +44367,7 @@ func_080BAC9C: @ 0x080BA6D0
 	ldr r1, .Ljp_080BAA7C @ =0x0000073C
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r5, #4]
 	mov r2, sb
 	adds r0, r6, r2
@@ -44509,7 +44509,7 @@ func_080BAC9C: @ 0x080BA6D0
 	ldr r1, .Ljp_080BAA88 @ =0x00000764
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	mov r2, sb
 	adds r0, r6, r2
@@ -44620,7 +44620,7 @@ func_080BAC9C: @ 0x080BA6D0
 	ldr r0, .Ljp_080BAA90 @ =0x00000774
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	ldr r0, [r6]
 	movs r1, #1
@@ -44847,7 +44847,7 @@ func_080BAC9C: @ 0x080BA6D0
 	ldr r5, [r0]
 	ldr r0, [sp, #0xc4]
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r1, [sp, #0xc0]
 	add r1, sb
@@ -45272,7 +45272,7 @@ func_080BAC9C: @ 0x080BA6D0
 	ldr r2, .Ljp_080BAEF0 @ =0x00000764
 	adds r0, r0, r2
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r1, [sp, #0xb4]
 	add r1, sb
@@ -45647,7 +45647,7 @@ func_080BAC9C: @ 0x080BA6D0
 	ldr r0, .Ljp_080BB1B8 @ =0x00000774
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -46102,7 +46102,7 @@ func_080BB8EC: @ 0x080BB320
 	ldr r5, [r0]
 	ldr r0, [sp, #0x6c]
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r1, [sp, #0x68]
 	add r1, r8
@@ -46556,7 +46556,7 @@ func_080BB8EC: @ 0x080BB320
 	ldr r1, .Ljp_080BB878 @ =0x00000764
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r1, [sp, #0x64]
 	add r1, r8
@@ -46961,7 +46961,7 @@ func_080BB8EC: @ 0x080BB320
 	ldr r0, .Ljp_080BBB80 @ =0x00000774
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -47445,7 +47445,7 @@ func_080BC288: @ 0x080BBCBC
 	ldr r7, [r4]
 	ldr r0, [sp, #0x88]
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -47831,7 +47831,7 @@ func_080BC288: @ 0x080BBCBC
 	ldr r3, [sp, #0x88]
 	ldr r1, [r3, #4]
 	adds r0, r3, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	ldr r1, [r5]
 	movs r0, #2
@@ -47873,7 +47873,7 @@ func_080BC288: @ 0x080BBCBC
 	ldr r4, [r5]
 	ldr r0, [sp, #0x88]
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	ldr r1, [r5]
 	ldrh r0, [r6]
@@ -47931,10 +47931,10 @@ func_080BC288: @ 0x080BBCBC
 	ldr r5, [sp, #0x88]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	ldr r0, [sp, #0x88]
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	add sp, #0x98
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -63311,9 +63311,9 @@ func_080C797C:
     lsls r1, r1, #2
     adds r4, r7, r1
     adds r0, r4, #0
-    bl func_08007128
+    bl ConstructObjPalettePoolOwner
     adds r0, r4, #0
-    bl AllocateHardwarePoolHandle
+    bl AllocateObjPaletteHandle
     str r0, [r4, #4]
     movs r0, #0xd9
     lsls r0, r0, #2
@@ -63328,9 +63328,9 @@ func_080C797C:
     lsls r1, r1, #2
     adds r4, r7, r1
     adds r0, r4, #0
-    bl func_08007128
+    bl ConstructObjPalettePoolOwner
     adds r0, r4, #0
-    bl AllocateHardwarePoolHandle
+    bl AllocateObjPaletteHandle
     str r0, [r4, #4]
     movs r0, #0xdd
     lsls r0, r0, #2
@@ -63354,9 +63354,9 @@ func_080C797C:
     lsls r0, r0, #2
     adds r4, r7, r0
     adds r0, r4, #0
-    bl func_08007128
+    bl ConstructObjPalettePoolOwner
     adds r0, r4, #0
-    bl AllocateHardwarePoolHandle
+    bl AllocateObjPaletteHandle
     str r0, [r4, #4]
     movs r1, #0xe3
     lsls r1, r1, #2
@@ -63380,9 +63380,9 @@ func_080C797C:
     lsls r1, r1, #2
     adds r4, r7, r1
     adds r0, r4, #0
-    bl func_08007128
+    bl ConstructObjPalettePoolOwner
     adds r0, r4, #0
-    bl AllocateHardwarePoolHandle
+    bl AllocateObjPaletteHandle
     str r0, [r4, #4]
     movs r0, #0xe9
     lsls r0, r0, #2
@@ -63470,7 +63470,7 @@ func_080C797C:
     rsbs r6, r6, #0
     .Lauto_080C7B6A:
     adds r0, r4, #0
-    bl func_08007128
+    bl ConstructObjPalettePoolOwner
     mov r0, r8
     str r0, [r4, #4]
     adds r4, #8
@@ -63665,9 +63665,9 @@ func_080C797C:
     adds r5, r5, r0
     ldr r1, [r6, #0x48]
     adds r0, r5, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r5, #0
-    bl AllocateHardwarePoolHandle
+    bl AllocateObjPaletteHandle
     str r0, [r6, #0x48]
     adds r6, #8
     movs r1, #1
@@ -63737,10 +63737,10 @@ func_080C8360:
     subs r4, #8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     cmp r6, r4
     bne .Lauto_080C7DD0
     .Lauto_080C7DE6:
@@ -63777,10 +63777,10 @@ func_080C8360:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0xe5
     lsls r1, r1, #2
     adds r4, r5, r1
@@ -63804,10 +63804,10 @@ func_080C8360:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0xdf
     lsls r1, r1, #2
     adds r4, r5, r1
@@ -63831,10 +63831,10 @@ func_080C8360:
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r1, #0xd9
     lsls r1, r1, #2
     adds r4, r5, r1
@@ -63849,10 +63849,10 @@ func_080C8360:
     adds r4, r5, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
     movs r1, #2
-    bl _._17HardwarePoolOwner
+    bl _._19ObjPalettePoolOwner
     movs r0, #0xd5
     lsls r0, r0, #2
     adds r4, r5, r0
@@ -64104,7 +64104,7 @@ func_080C7FC4:
     .byte 0x4F, 0xFB, 0x5F, 0x98, 0x40, 0x44, 0x5F, 0x9F, 0x37, 0x60, 0x75, 0x60, 0xF0, 0x60, 0x50, 0x46
     bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0xD7, 0x20, 0x80, 0x00, 0x50, 0x44, 0x41, 0x68
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     .byte 0x02, 0x1C, 0x26, 0x1C, 0x0D, 0x49, 0x52, 0x01, 0x0D, 0x48, 0x12, 0x18, 0x25, 0xA8
     .byte 0x20, 0x23
     bl __21DmaTransferDescriptorPCvPvUi
@@ -64157,7 +64157,7 @@ func_080C7FC4:
     bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0x54, 0x9F, 0x3D, 0x68
     .byte 0xDB, 0x20, 0x80, 0x00, 0x50, 0x44, 0x41, 0x68
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     .byte 0x02, 0x1C, 0x38, 0x68
     .byte 0x00, 0x23, 0x00, 0x28, 0x00, 0xD0, 0xBB, 0x88, 0x26, 0x1C, 0x52, 0x01, 0x12, 0x48, 0x12, 0x18
     .byte 0x25, 0xA8, 0x29, 0x1C
@@ -64185,7 +64185,7 @@ func_080C7FC4:
     bl GetHardwareDmaQueue
     .byte 0x04, 0x1C
     .byte 0x57, 0x9F, 0x3D, 0x68, 0xE1, 0x20, 0x80, 0x00, 0x50, 0x44, 0x41, 0x68
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     .byte 0x02, 0x1C, 0x38, 0x68, 0x00, 0x23, 0x00, 0x28, 0x00, 0xD0, 0xBB, 0x88, 0x26, 0x1C, 0x52, 0x01
     .byte 0x0B, 0x48, 0x12, 0x18, 0x25, 0xA8, 0x29, 0x1C
     bl __21DmaTransferDescriptorPCvPvUi
@@ -64211,7 +64211,7 @@ func_080C7FC4:
     bl GetHardwareDmaQueue
     .byte 0x04, 0x1C, 0x59, 0x9F, 0x3D, 0x68, 0xE7, 0x20, 0x80, 0x00
     .byte 0x50, 0x44, 0x41, 0x68
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     .byte 0x02, 0x1C, 0x38, 0x68, 0x00, 0x23, 0x00, 0x28
     .byte 0x00, 0xD0, 0xBB, 0x88, 0x26, 0x1C, 0x52, 0x01, 0x0B, 0x48, 0x12, 0x18, 0x25, 0xA8, 0x29, 0x1C
     bl __21DmaTransferDescriptorPCvPvUi
@@ -65181,7 +65181,7 @@ func_080C90D0:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     str r0, [sp]
     movs r0, #0
     str r0, [sp, #4]
@@ -65328,7 +65328,7 @@ func_080C90D0:
     adds r4, r4, r6
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     str r0, [sp, #0xb0]
     mov r0, sl
     bl GetHardwareDmaQueue
@@ -65852,7 +65852,7 @@ func_080C90D0:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     ldr r1, [sp, #0xb8]
     strh r0, [r1, #4]
     movs r5, #0xd9
@@ -66088,7 +66088,7 @@ func_080C90D0:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     ldr r1, [sp, #0xb8]
     strh r0, [r1, #4]
     movs r5, #0xdd
@@ -66325,7 +66325,7 @@ func_080C90D0:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     ldr r1, [sp, #0xb8]
     strh r0, [r1, #4]
     movs r5, #0xdf
@@ -66554,7 +66554,7 @@ func_080C90D0:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     ldr r4, [sp, #0xb8]
     strh r0, [r4, #4]
     movs r4, #0xe5
@@ -66789,7 +66789,7 @@ func_080C90D0:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     strh r0, [r4, #4]
     movs r5, #0xe3
     lsls r5, r5, #2
@@ -69606,7 +69606,7 @@ func_080CB96C:
     lsls r1, r1, #2
     adds r4, r7, r1
     adds r0, r4, #0
-    bl func_08007128
+    bl ConstructObjPalettePoolOwner
     mov r5, r8
     str r5, [r4, #4]
     adds r6, #0x10
@@ -69634,7 +69634,7 @@ func_080CB96C:
     subs r6, #1
     .Lauto_080CBA76:
     adds r0, r4, #0
-    bl func_08007128
+    bl ConstructObjPalettePoolOwner
     mov r0, r8
     str r0, [r4, #4]
     adds r4, #8
@@ -69666,9 +69666,9 @@ func_080CB96C:
     adds r5, r5, r4
     ldr r1, [r6, #0x40]
     adds r0, r5, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r5, #0
-    bl AllocateHardwarePoolHandle
+    bl AllocateObjPaletteHandle
     str r0, [r6, #0x40]
     adds r6, #8
     movs r5, #1
@@ -69694,9 +69694,9 @@ func_080CB96C:
     adds r4, r7, r6
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl ReleaseHardwarePoolHandle
+    bl ReleaseObjPaletteHandle
     adds r0, r4, #0
-    bl AllocateHardwarePoolHandle
+    bl AllocateObjPaletteHandle
     str r0, [r4, #4]
     .Lauto_080CBB08:
     adds r0, r7, #0
@@ -69858,7 +69858,7 @@ func_080CBB20:
     mov r2, sb
     ldr r1, [r2, #0x40]
     adds r0, r4, #0
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     str r0, [sp]
     movs r0, #1
     str r0, [sp, #4]
@@ -69924,7 +69924,7 @@ func_080CBB20:
     .byte 0x24, 0x0A, 0x24, 0x06, 0x64, 0x0D, 0xA7, 0x20, 0x80, 0x00, 0x50, 0x44, 0x41, 0x68
     bl GetHardwareSharedStateTileIndex
     .byte 0x06, 0x1C, 0xA9, 0x20, 0x80, 0x00, 0x50, 0x44, 0x41, 0x68
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     .byte 0x00, 0x90, 0x01, 0x20, 0x01, 0x90, 0x02, 0x90, 0x03, 0x97, 0x06, 0xAF, 0x38, 0x1C, 0x29, 0x1C
     .byte 0x22, 0x1C, 0x33, 0x1C, 0x82, 0xF7, 0xEE, 0xFC, 0x08, 0x98, 0x02, 0x78, 0x7F, 0x2A, 0x0A, 0xD8
     .byte 0xD0, 0x00, 0x04, 0x30, 0x08, 0x99, 0x08, 0x18, 0x06, 0x99, 0x01, 0x60, 0xB9, 0x88, 0x81, 0x80
@@ -70001,7 +70001,7 @@ func_080CC728:
     adds r4, r4, r7
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     str r0, [sp, #0x3c]
     lsls r5, r5, #2
     ldr r0, [pc, #0x5c]
@@ -70095,7 +70095,7 @@ func_080CC728:
     adds r4, r4, r7
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     str r0, [sp, #0x34]
     lsls r5, r5, #2
     ldr r0, [pc, #0x5c]
@@ -70238,7 +70238,7 @@ func_080CCE58:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     str r0, [sp, #0x34]
     ldr r1, [r5, #4]
     movs r0, #0x9e
@@ -70588,7 +70588,7 @@ func_080CCE58:
     lsls r0, r0, #2
     add r0, sl
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     str r0, [sp, #0x34]
     ldr r1, [r5, #4]
     movs r0, #0x9e
@@ -71314,7 +71314,7 @@ func_080CDDD4: @ 0x080CD5E4
 	adds r4, #0x1c
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	mov r1, sp
 	strh r0, [r1, #4]
 	adds r6, r7, #0
@@ -71513,7 +71513,7 @@ func_080CDDD4: @ 0x080CD5E4
 	ldr r7, [sp, #0x60]
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0x2c]
 	movs r3, #0
@@ -71756,9 +71756,9 @@ func_080CE2FC:
     str r0, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
-    bl func_08007128
+    bl ConstructObjPalettePoolOwner
     adds r0, r4, #0
-    bl AllocateHardwarePoolHandle
+    bl AllocateObjPaletteHandle
     str r0, [r4, #4]
     adds r6, r7, #0
     adds r6, #0x1c
@@ -72007,7 +72007,7 @@ func_080CE598:
     adds r0, r6, #0
     adds r0, #0x14
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     adds r2, r0, #0
     ldr r0, [sp, #0x1c]
     movs r3, #0
@@ -72317,7 +72317,7 @@ func_080CE598:
     adds r0, r6, #0
     adds r0, #0x14
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     adds r5, r6, #4
@@ -72558,7 +72558,7 @@ func_080CE598:
     adds r0, r6, #0
     adds r0, #0x14
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     adds r5, r6, #0
@@ -72934,7 +72934,7 @@ func_080CECE8: @ 0x080CE4F8
 	adds r4, #0x74
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r6, #4]
 	mov r7, r8
 	adds r7, #0x6c
@@ -73128,7 +73128,7 @@ func_080CECE8: @ 0x080CE4F8
 	ldr r2, [sp, #0x5c]
 	ldr r1, [r2, #4]
 	adds r0, r2, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0x10]
 	movs r3, #0
@@ -76242,25 +76242,25 @@ ConstructCalendarSceneCore: @ 0x080A220C
 	lsls r1, r1, #1
 	adds r4, r7, r1
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r2, #0xc2
 	lsls r2, r2, #1
 	adds r4, r7, r2
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r3, #0xc6
 	lsls r3, r3, #1
 	adds r4, r7, r3
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r0, #0xca
 	lsls r0, r0, #1
@@ -76275,9 +76275,9 @@ ConstructCalendarSceneCore: @ 0x080A220C
 	lsls r1, r1, #1
 	adds r4, r7, r1
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r2, #0xd2
 	lsls r2, r2, #1
@@ -76292,9 +76292,9 @@ ConstructCalendarSceneCore: @ 0x080A220C
 	lsls r3, r3, #1
 	adds r4, r7, r3
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r0, #0xef
 	lsls r0, r0, #1
@@ -77415,7 +77415,7 @@ func_080A2BA4: @ 0x080A2BA4
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	lsls r0, r0, #5
 	ldr r2, .L080A2FF0 @ =0x05000200
 	adds r1, r0, r2
@@ -77483,7 +77483,7 @@ func_080A2BA4: @ 0x080A2BA4
 	lsls r3, r3, #1
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	lsls r0, r0, #5
 	ldr r5, .L080A2FF0 @ =0x05000200
 	adds r1, r0, r5
@@ -77529,7 +77529,7 @@ func_080A2BA4: @ 0x080A2BA4
 	lsls r6, r6, #1
 	adds r0, r7, r6
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	lsls r0, r0, #5
 	ldr r2, .L080A2FF0 @ =0x05000200
 	adds r1, r0, r2
@@ -77573,7 +77573,7 @@ func_080A2BA4: @ 0x080A2BA4
 	lsls r3, r3, #1
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	lsls r0, r0, #5
 	ldr r5, .L080A2FF0 @ =0x05000200
 	adds r1, r0, r5
@@ -77692,7 +77692,7 @@ func_080A2BA4: @ 0x080A2BA4
 	lsls r5, r5, #1
 	adds r0, r7, r5
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	lsls r0, r0, #5
 	ldr r6, .L080A2FF0 @ =0x05000200
 	adds r1, r0, r6
@@ -78232,7 +78232,7 @@ func_080A32A4: @ 0x080A32A4
 	lsls r3, r3, #1
 	adds r0, r6, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	add r1, sp, #8
 	strh r0, [r1, #4]
 	movs r2, #1
@@ -78344,7 +78344,7 @@ func_080A32A4: @ 0x080A32A4
 	lsls r5, r5, #1
 	adds r0, r6, r5
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r7, #4]
 	movs r1, #1
 	movs r0, #1
@@ -78696,7 +78696,7 @@ func_080A3618: @ 0x080A3618
 	adds r0, r7, r3
 .L080A3704:
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	mov r1, sp
 	strh r0, [r1, #4]
 .L080A370E:
@@ -104840,12 +104840,12 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B3CC8
 	ldr r0, .L080B40A0 @ =0x0000071C
 	adds r4, r6, r0
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	str r5, [r4, #4]
 	ldr r1, .L080B40A4 @ =0x00000724
 	adds r4, r6, r1
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	str r5, [r4, #4]
 	ldr r2, .L080B40A8 @ =0x0000072C
 	adds r4, r6, r2
@@ -104930,7 +104930,7 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B3CC8
 	rsbs r7, r7, #0
 .L080B3E24:
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	mov r0, r8
 	str r0, [r4, #4]
 	adds r4, #8
@@ -104946,7 +104946,7 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B3CC8
 	rsbs r7, r7, #0
 .L080B3E44:
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	mov r3, r8
 	str r3, [r4, #4]
 	adds r4, #8
@@ -105597,17 +105597,17 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B3CC8
 	adds r4, r6, r3
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	ldr r0, .L080B44D4 @ =0x00000724
 	adds r4, r6, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r7, #0
 	movs r1, #0xe6
@@ -105620,9 +105620,9 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B3CC8
 	adds r4, r4, r2
 	ldr r1, [r5]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r5]
 	adds r5, #8
 	adds r7, #1
@@ -105639,9 +105639,9 @@ __27ChickenFestivalMinigameCoreRC22ChickenFestivalEntrant: @ 0x080B3CC8
 	adds r4, r4, r0
 	ldr r1, [r5]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r5]
 	adds r5, #8
 	adds r7, #1
@@ -105894,9 +105894,9 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 	bl GetHardwareSharedStateTileIndex
 	str r0, [sp, #0x8c]
 	add r0, sp, #0x34
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	add r0, sp, #0x34
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [sp, #0x38]
 	movs r0, #0x79
 	str r0, [sp, #0x90]
@@ -105916,10 +105916,10 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 	adds r0, r7, #0
 	bl func_080B55D0
 	add r0, sp, #0x3c
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	ldr r1, [sp, #0x38]
 	add r0, sp, #0x3c
-	bl RetainHardwarePoolHandle
+	bl RetainObjPaletteHandle
 	str r0, [sp, #0x40]
 	add r4, sp, #0x3c
 	adds r0, r7, #0
@@ -106012,7 +106012,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 	ldr r5, .L080B4960 @ =0x0000071C
 	adds r0, r7, r5
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	ldr r0, [sp, #0x94]
 	lsls r6, r0, #5
@@ -106223,7 +106223,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 	ldr r3, .L080B4AA8 @ =0x0000071C
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0xa4]
 	adds r6, r0, r7
@@ -106990,7 +106990,7 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 	ldr r3, .L080B50A8 @ =0x0000071C
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0xb0]
 	adds r1, r0, r7
@@ -107287,10 +107287,10 @@ UpdateUnkPhase1__27ChickenFestivalMinigameCore: @ 0x080B469C
 .L080B5298:
 	ldr r1, [sp, #0x38]
 	add r0, sp, #0x34
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	add r0, sp, #0x34
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x30]
 	add r0, sp, #0x2c
 	bl ReleaseHardwareSharedStateHandle
@@ -111961,9 +111961,9 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B7648
 	bl AllocateHardwareSharedStateHandle
 	str r0, [sp, #0x2c]
 	add r0, sp, #0x30
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	add r0, sp, #0x30
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [sp, #0x34]
 	movs r0, #0x14
 	bl __builtin_new
@@ -112024,7 +112024,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B7648
 	ldr r5, .L080B7854 @ =0x00000724
 	adds r0, r7, r5
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	ldr r0, .L080B7858 @ =0x000008FC
 	adds r4, r7, r0
@@ -112223,7 +112223,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B7648
 	ldr r1, .L080B7994 @ =0x00000724
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -113495,7 +113495,7 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B7648
 	ldr r3, .L080B8318 @ =0x0000071C
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0xac]
 	adds r1, r0, r7
@@ -113780,10 +113780,10 @@ UpdateUnkPhase2__27ChickenFestivalMinigameCore: @ 0x080B7648
 .L080B84EC:
 	ldr r1, [sp, #0x34]
 	add r0, sp, #0x30
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	add r0, sp, #0x30
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x2c]
 	add r0, sp, #0x28
 	bl ReleaseHardwareSharedStateHandle
@@ -114327,9 +114327,9 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B888C
 	bl AllocateHardwareSharedStateHandle
 	str r0, [sp, #0x20]
 	add r0, sp, #0x34
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	add r0, sp, #0x34
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [sp, #0x38]
 	mov r1, sb
 	strb r1, [r7, #8]
@@ -114382,10 +114382,10 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B888C
 	adds r0, r7, #0
 	bl func_080B87C4
 	add r0, sp, #0x3c
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	ldr r1, [sp, #0x38]
 	add r0, sp, #0x3c
-	bl RetainHardwarePoolHandle
+	bl RetainObjPaletteHandle
 	str r0, [sp, #0x40]
 	add r1, sp, #0x3c
 	adds r0, r7, #0
@@ -114765,10 +114765,10 @@ UpdateUnkPhase3__27ChickenFestivalMinigameCore: @ 0x080B888C
 .L080B8D30:
 	ldr r1, [sp, #0x38]
 	add r0, sp, #0x34
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	add r0, sp, #0x34
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	ldr r1, [sp, #0x30]
 	add r0, sp, #0x2c
 	bl ReleaseHardwareSharedStateHandle
@@ -115112,7 +115112,7 @@ func_080B8EBC: @ 0x080B8EBC
 	ldr r2, .L080B909C @ =0x0000072C
 	adds r0, r0, r2
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	movs r3, #1
 	mov sl, r3
@@ -115312,7 +115312,7 @@ func_080B8EBC: @ 0x080B8EBC
 	ldr r1, .L080B91CC @ =0x0000072C
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0x10]
 	movs r3, #0
@@ -119074,7 +119074,7 @@ func_080BAC9C: @ 0x080BAC9C
 	ldr r1, .L080BB048 @ =0x0000073C
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r5, #4]
 	mov r2, sb
 	adds r0, r6, r2
@@ -119216,7 +119216,7 @@ func_080BAC9C: @ 0x080BAC9C
 	ldr r1, .L080BB054 @ =0x00000764
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	mov r2, sb
 	adds r0, r6, r2
@@ -119327,7 +119327,7 @@ func_080BAC9C: @ 0x080BAC9C
 	ldr r0, .L080BB05C @ =0x00000774
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	ldr r0, [r6]
 	movs r1, #1
@@ -119554,7 +119554,7 @@ func_080BAC9C: @ 0x080BAC9C
 	ldr r5, [r0]
 	ldr r0, [sp, #0xc4]
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r1, [sp, #0xc0]
 	add r1, sb
@@ -119979,7 +119979,7 @@ func_080BAC9C: @ 0x080BAC9C
 	ldr r2, .L080BB4BC @ =0x00000764
 	adds r0, r0, r2
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r1, [sp, #0xb4]
 	add r1, sb
@@ -120354,7 +120354,7 @@ func_080BAC9C: @ 0x080BAC9C
 	ldr r0, .L080BB784 @ =0x00000774
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -120809,7 +120809,7 @@ func_080BB8EC: @ 0x080BB8EC
 	ldr r5, [r0]
 	ldr r0, [sp, #0x6c]
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r1, [sp, #0x68]
 	add r1, r8
@@ -121263,7 +121263,7 @@ func_080BB8EC: @ 0x080BB8EC
 	ldr r1, .L080BBE44 @ =0x00000764
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r1, [sp, #0x64]
 	add r1, r8
@@ -121668,7 +121668,7 @@ func_080BB8EC: @ 0x080BB8EC
 	ldr r0, .L080BC14C @ =0x00000774
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -122152,7 +122152,7 @@ func_080BC288: @ 0x080BC288
 	ldr r7, [r4]
 	ldr r0, [sp, #0x88]
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -122538,7 +122538,7 @@ func_080BC288: @ 0x080BC288
 	ldr r3, [sp, #0x88]
 	ldr r1, [r3, #4]
 	adds r0, r3, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	ldr r1, [r5]
 	movs r0, #2
@@ -122580,7 +122580,7 @@ func_080BC288: @ 0x080BC288
 	ldr r4, [r5]
 	ldr r0, [sp, #0x88]
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r4, #4]
 	ldr r1, [r5]
 	ldrh r0, [r6]
@@ -122638,10 +122638,10 @@ func_080BC288: @ 0x080BC288
 	ldr r5, [sp, #0x88]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	ldr r0, [sp, #0x88]
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	add sp, #0x98
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -146065,9 +146065,9 @@ func_080C7F58: @ 0x080C7F58
 	lsls r1, r1, #2
 	adds r4, r7, r1
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r0, #0xd9
 	lsls r0, r0, #2
@@ -146082,9 +146082,9 @@ func_080C7F58: @ 0x080C7F58
 	lsls r1, r1, #2
 	adds r4, r7, r1
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r0, #0xdd
 	lsls r0, r0, #2
@@ -146108,9 +146108,9 @@ func_080C7F58: @ 0x080C7F58
 	lsls r0, r0, #2
 	adds r4, r7, r0
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r1, #0xe3
 	lsls r1, r1, #2
@@ -146134,9 +146134,9 @@ func_080C7F58: @ 0x080C7F58
 	lsls r1, r1, #2
 	adds r4, r7, r1
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	movs r0, #0xe9
 	lsls r0, r0, #2
@@ -146224,7 +146224,7 @@ func_080C7F58: @ 0x080C7F58
 	rsbs r6, r6, #0
 .L080C8146:
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	mov r0, r8
 	str r0, [r4, #4]
 	adds r4, #8
@@ -146419,9 +146419,9 @@ func_080C7F58: @ 0x080C7F58
 	adds r5, r5, r0
 	ldr r1, [r6, #0x48]
 	adds r0, r5, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r5, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r6, #0x48]
 	adds r6, #8
 	movs r1, #1
@@ -146502,10 +146502,10 @@ func_080C8360: @ 0x080C8360
 	subs r4, #8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	cmp r6, r4
 	bne .L080C83AC
 .L080C83C2:
@@ -146542,10 +146542,10 @@ func_080C8360: @ 0x080C8360
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0xe5
 	lsls r1, r1, #2
 	adds r4, r5, r1
@@ -146569,10 +146569,10 @@ func_080C8360: @ 0x080C8360
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0xdf
 	lsls r1, r1, #2
 	adds r4, r5, r1
@@ -146596,10 +146596,10 @@ func_080C8360: @ 0x080C8360
 	adds r4, r5, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r1, #0xd9
 	lsls r1, r1, #2
 	adds r4, r5, r1
@@ -146614,10 +146614,10 @@ func_080C8360: @ 0x080C8360
 	adds r4, r5, r2
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl _._17HardwarePoolOwner
+	bl _._19ObjPalettePoolOwner
 	movs r0, #0xd5
 	lsls r0, r0, #2
 	adds r4, r5, r0
@@ -147299,7 +147299,7 @@ func_080C85A0: @ 0x080C85A0
 	lsls r3, r3, #2
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	str r4, [sp, #0x138]
 	ldr r1, .L080C8A84 @ =gUnk_0875300C
@@ -147556,7 +147556,7 @@ func_080C85A0: @ 0x080C85A0
 	lsls r6, r6, #2
 	adds r0, r7, r6
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0x74]
 	movs r3, #0
@@ -147743,7 +147743,7 @@ func_080C85A0: @ 0x080C85A0
 	lsls r1, r1, #2
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [r6]
 	movs r3, #0
@@ -147923,7 +147923,7 @@ func_080C85A0: @ 0x080C85A0
 	lsls r1, r1, #2
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [r6]
 	movs r3, #0
@@ -149032,7 +149032,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	str r0, [sp]
 	movs r0, #0
 	str r0, [sp, #4]
@@ -149557,7 +149557,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r5, r5, #2
 	adds r0, r0, r5
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	mov sb, r0
 	mov r0, sl
 	bl GetHardwareDmaQueue
@@ -149718,7 +149718,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r1, r1, #2
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	mov sb, r0
 .L080C9C08:
 	ldr r2, [sp, #0xc8]
@@ -149992,7 +149992,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	add r1, sp, #0x10
 	strh r0, [r1, #4]
 	movs r5, #0xd9
@@ -150233,7 +150233,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	add r1, sp, #0x10
 	strh r0, [r1, #4]
 	movs r5, #0xdd
@@ -150475,7 +150475,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	add r1, sp, #0x10
 	strh r0, [r1, #4]
 	movs r5, #0xdf
@@ -150708,7 +150708,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	add r1, sp, #0x10
 	strh r0, [r1, #4]
 	movs r4, #0xe5
@@ -150949,7 +150949,7 @@ func_080C96C4: @ 0x080C96C4
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	add r1, sp, #0x10
 	strh r0, [r1, #4]
 	movs r4, #0xe3
@@ -154315,7 +154315,7 @@ func_080CC15C: @ 0x080CC15C
 	lsls r1, r1, #2
 	adds r4, r7, r1
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	mov r5, r8
 	str r5, [r4, #4]
 	adds r6, #0x10
@@ -154343,7 +154343,7 @@ func_080CC15C: @ 0x080CC15C
 	subs r6, #1
 .L080CC266:
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	mov r0, r8
 	str r0, [r4, #4]
 	adds r4, #8
@@ -154375,9 +154375,9 @@ func_080CC15C: @ 0x080CC15C
 	adds r5, r5, r4
 	ldr r1, [r6, #0x40]
 	adds r0, r5, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r5, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r6, #0x40]
 	adds r6, #8
 	movs r5, #1
@@ -154403,9 +154403,9 @@ func_080CC15C: @ 0x080CC15C
 	adds r4, r7, r6
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl ReleaseHardwarePoolHandle
+	bl ReleaseObjPaletteHandle
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 .L080CC2F8:
 	adds r0, r7, #0
@@ -154821,7 +154821,7 @@ func_080CC58C: @ 0x080CC58C
 	mov r2, sb
 	ldr r1, [r2, #0x40]
 	adds r0, r4, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	str r0, [sp]
 	movs r0, #1
 	str r0, [sp, #4]
@@ -154897,7 +154897,7 @@ func_080CC58C: @ 0x080CC58C
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	str r0, [sp]
 	movs r0, #1
 	str r0, [sp, #4]
@@ -155003,7 +155003,7 @@ func_080CC728: @ 0x080CC728
 	adds r4, r4, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	str r0, [sp, #0x3c]
 	lsls r5, r5, #2
 	ldr r0, .L080CC7EC @ =gUnk_08117860
@@ -155415,7 +155415,7 @@ func_080CCA40: @ 0x080CCA40
 	adds r4, r4, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	str r0, [sp, #0x34]
 	lsls r5, r5, #2
 	ldr r0, .L080CCAF4 @ =gUnk_08117860
@@ -155949,7 +155949,7 @@ func_080CCE58: @ 0x080CCE58
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	str r0, [sp, #0x34]
 	ldr r1, [r5, #4]
 	movs r0, #0x9e
@@ -156349,7 +156349,7 @@ func_080CD14C: @ 0x080CD14C
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	str r0, [sp, #0x34]
 	ldr r1, [r5, #4]
 	movs r0, #0x9e
@@ -157347,7 +157347,7 @@ func_080CDDD4: @ 0x080CDDD4
 	adds r4, #0x1c
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	mov r1, sp
 	strh r0, [r1, #4]
 	adds r6, r7, #0
@@ -157546,7 +157546,7 @@ func_080CDDD4: @ 0x080CDDD4
 	ldr r7, [sp, #0x60]
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0x2c]
 	movs r3, #0
@@ -157823,9 +157823,9 @@ func_080CE2FC: @ 0x080CE2FC
 	str r0, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
-	bl func_08007128
+	bl ConstructObjPalettePoolOwner
 	adds r0, r4, #0
-	bl AllocateHardwarePoolHandle
+	bl AllocateObjPaletteHandle
 	str r0, [r4, #4]
 	adds r6, r7, #0
 	adds r6, #0x1c
@@ -158074,7 +158074,7 @@ func_080CE598: @ 0x080CE598
 	adds r0, r6, #0
 	adds r0, #0x14
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0x1c]
 	movs r3, #0
@@ -158388,7 +158388,7 @@ func_080CE790: @ 0x080CE790
 	adds r0, r6, #0
 	adds r0, #0x14
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	mov r1, sp
 	strh r0, [r1, #4]
 	adds r5, r6, #4
@@ -158630,7 +158630,7 @@ func_080CE790: @ 0x080CE790
 	adds r0, r6, #0
 	adds r0, #0x14
 	ldr r1, [r0, #4]
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	mov r1, sp
 	strh r0, [r1, #4]
 	adds r5, r6, #0
@@ -159012,7 +159012,7 @@ func_080CECE8: @ 0x080CECE8
 	adds r4, #0x74
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	strh r0, [r6, #4]
 	mov r7, r8
 	adds r7, #0x6c
@@ -159206,7 +159206,7 @@ func_080CECE8: @ 0x080CECE8
 	ldr r2, [sp, #0x5c]
 	ldr r1, [r2, #4]
 	adds r0, r2, #0
-	bl GetHardwarePoolHandleIndex
+	bl GetObjPaletteBank
 	adds r2, r0, #0
 	ldr r0, [sp, #0x10]
 	movs r3, #0

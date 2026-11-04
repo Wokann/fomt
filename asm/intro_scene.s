@@ -499,7 +499,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 #endif
     adds r0, r7, r5
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     lsls r0, r0, #5
     ldr r2, .L08001E6C @ =OBJ_PALETTE
     adds r1, r0, r2
@@ -621,7 +621,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, .L08002258 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CB8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     lsls r0, r0, #5
     ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
@@ -672,7 +672,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r5, .L08002270 @ =INTRO_SCENE_CORE_POOL_HANDLE_6C90_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     lsls r0, r0, #5
     ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
@@ -734,7 +734,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r5, .L08002284 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CA0_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     lsls r0, r0, #5
     ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
@@ -834,7 +834,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r5, .L080022B4 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     lsls r0, r0, #5
     ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
@@ -905,7 +905,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, .L080022CC @ =INTRO_SCENE_CORE_POOL_HANDLE_6CE8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     lsls r0, r0, #5
     ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
@@ -1066,7 +1066,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 #endif
     adds r0, r7, r5
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     lsls r0, r0, #5
     ldr r2, .L0800225C @ =OBJ_PALETTE
     adds r1, r0, r2
@@ -1242,7 +1242,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r5, .L080024B8 @ =INTRO_SCENE_CORE_POOL_HANDLE_6D10_OFFSET
     adds r0, r7, r5
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     lsls r0, r0, #5
     ldr r2, .L080024BC @ =OBJ_PALETTE
     adds r1, r0, r2
@@ -1299,7 +1299,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r1, .L080024D0 @ =INTRO_SCENE_CORE_POOL_HANDLE_6D20_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     lsls r0, r0, #5
     ldr r2, .L080024BC @ =OBJ_PALETTE
     adds r1, r0, r2
@@ -1501,7 +1501,7 @@ RenderIntroSceneFrame:
     ldr r3, .L0800291C @ =INTRO_SCENE_CORE_POOL_HANDLE_6D10_OFFSET
     adds r0, r7, r3
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     movs r0, #1
@@ -1574,7 +1574,7 @@ RenderIntroSceneFrame:
     adds r6, r7, r2
     ldr r1, [r6, #4]
     adds r0, r6, #0
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     adds r0, r7, #0
@@ -1645,7 +1645,7 @@ RenderIntroSceneFrame:
     strh r0, [r1, #6]
     ldr r1, [r6, #4]
     adds r0, r6, #0
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     adds r0, r7, #0
@@ -1704,7 +1704,7 @@ RenderIntroSceneFrame:
     ldr r4, .L08002948 @ =INTRO_SCENE_CORE_POOL_HANDLE_6D20_OFFSET
     adds r0, r7, r4
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     adds r0, r7, #0
@@ -1989,7 +1989,7 @@ RenderIntroSceneFrame:
 #endif
     adds r0, r7, r2
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     str r5, [sp, #0x14]
@@ -2274,7 +2274,7 @@ RenderIntroSceneFrame:
     ldr r2, .L08002C90 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CB8_OFFSET
     adds r0, r7, r2
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     mov r0, sp
@@ -2531,7 +2531,7 @@ RenderIntroSceneFrame:
     ldr r2, .L08002E90 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
     adds r0, r7, r2
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     mov r0, sp
@@ -2820,7 +2820,7 @@ RenderIntroSceneFrame:
     ldr r1, .L080030D0 @ =INTRO_SCENE_CORE_POOL_HANDLE_6C90_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     mov r0, sp
@@ -3075,7 +3075,7 @@ RenderIntroSceneFrame:
     ldr r2, .L080032B8 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CA0_OFFSET
     adds r0, r7, r2
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     mov r0, sp
@@ -3325,7 +3325,7 @@ RenderIntroSceneFrame:
     ldr r1, .L080034A0 @ =INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl GetHardwarePoolHandleIndex
+    bl GetObjPaletteBank
     mov r1, sp
     strh r0, [r1, #4]
     mov r0, sp
