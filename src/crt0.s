@@ -11,6 +11,7 @@
     .type _start, function
 _start:
     b      entrypoint      @ ROM entry point
+    .size _start, . - _start
 
                            @ Nintendo logo data
     .byte  0x24, 0xFF, 0xAE, 0x51, 0x69, 0x9A, 0xA2, 0x21
@@ -38,6 +39,9 @@ _start:
     @ region-specific layout fragment or a duplicate set of assembler strings.
     .zero  0x20
 
+    @ Only the cartridge header has a fixed ROM position.
+    .text
+    .align 2, 0
     .arm
     .type entrypoint, function
 entrypoint:
@@ -90,6 +94,8 @@ entrypoint:
     ldr    lr, l_exit @ =exit
     bx     r1
 
+    .size entrypoint, . - entrypoint
+
 l_sp_irq:        .4byte MEM_IWRAM + MEM_IWRAM_SIZE - 0x0060
 l_sp_usr:        .4byte MEM_IWRAM + MEM_IWRAM_SIZE - 0x0100
 l_iwram_vma:     .4byte __iwram_vma
@@ -105,11 +111,13 @@ l_exit:          .4byte exit
 
     .thumb
     .type exit, function
+    .thumb_func
 exit:
     movs   r0, 0xE0
     svc    SVC_REGISTERRAMRESET
     svc    SVC_SOFTRESET
     movs   r0, r0
     bx     lr
+    .size exit, . - exit
 
     .align 2, 0

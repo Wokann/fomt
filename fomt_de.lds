@@ -50,6 +50,7 @@ SECTIONS
     .text : ALIGN(4)
     {
         src/crt0.o(.rom_header);
+        src/crt0.o(.text);
         src/main.o(.text);
         src/sram_image.o(.text);
         src/interrupt.o(.text);
