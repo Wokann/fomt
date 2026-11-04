@@ -3,13 +3,13 @@
 #include "sram_image.hh"
 #include "sram_access.hh"
 #include "hardware_manager.hh"
+#include "hardware_sound.hh"
 #include "intro_scene.hh"
 #include "scene.hh"
 #include "gbaio.h"
 #include "gbasvc.h"
 
 extern "C" void func_03000490(void);
-extern "C" void func_08008AFC(void);
 
 void AgbMain(void)
 {
@@ -22,7 +22,7 @@ void AgbMain(void)
     if (!IsValidSramImage(&save))
         InitializeSramImageHeader(&save);
 
-    ExchangeInterruptHandler(12, func_08000240);
+    ExchangeInterruptHandler(12, HandleSoftResetKeyInterrupt);
     REG_KEYCNT = 0xC00F;
     AcknowledgeAndEnableInterrupts(0x1000);
 #if defined(REGION_EU) || defined(REGION_DE)
@@ -35,7 +35,7 @@ void AgbMain(void)
     SceneMain(SceneOwner(new GameIntroScene));
 }
 
-void func_08000240(void)
+void HandleSoftResetKeyInterrupt(void)
 {
     volatile u16 *dma;
 

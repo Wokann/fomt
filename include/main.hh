@@ -6,7 +6,7 @@
 EXTERN_C
 
 void AgbMain(void);
-void func_08000240(void);
+void HandleSoftResetKeyInterrupt(void);
 
 EXTERN_C_END
 
