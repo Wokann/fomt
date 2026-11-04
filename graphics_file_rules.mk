@@ -68,6 +68,11 @@ INTRO_INDEXED_ARCHIVE_SOURCE_BIN := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/archive.
 INTRO_INDEXED_ARCHIVE_OUTPUT := $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN).lz
 INTRO_SCENE_SIZE_HEADER := $(BUILD_DIR)/intro_scene_resource_size.hh
 
+# The menu's three poses share the complete tile stream from group zero.
+UI_HAND_CURSOR_DOMAIN := $(if $(filter JP,$(GAME_REGION)),jp,overseas)
+UI_HAND_CURSOR_TILES := graphics/regional_resource_08728208/$(UI_HAND_CURSOR_DOMAIN)/full/group_000.4bpp
+UI_GRAPHICS_SIZE_HEADER := $(BUILD_DIR)/ui_graphics_sizes.hh
+
 # func_080A2BA4 loads three 32-by-20 BG tilemaps and one 160-tile 4bpp
 # character stream into fixed VRAM locations. Its adjacent palette bytes are
 # also part of an indexed archive, so native tile/tilemap sources are kept
@@ -580,6 +585,15 @@ $(INTRO_INDEXED_ARCHIVE_OUTPUT): FOMT_LZ_ENCODE := encode-huff4-lz2 3,6,8,10,12,
 else
 $(INTRO_INDEXED_ARCHIVE_OUTPUT): FOMT_LZ_ENCODE := encode-huff8-lz2 3,6,8,10,11,13,15 0 --tie=exchange
 endif
+
+# Reuse the existing generated-size-header mechanism. The allocator reserves
+# a power-of-two count of 32-byte OBJ tile units, rounded up for the payload.
+$(UI_GRAPHICS_SIZE_HEADER): graphics/ui/shared_resource/shared_resource.4bpp graphics/ui/shared_resource/shared_resource.gbapal $(UI_HAND_CURSOR_TILES) graphics_file_rules.mk
+	@mkdir -p $(dir $@)
+	@shared_tiles=$$(wc -c < graphics/ui/shared_resource/shared_resource.4bpp); shared_palettes=$$(wc -c < graphics/ui/shared_resource/shared_resource.gbapal); \
+	bytes=$$(wc -c < $(UI_HAND_CURSOR_TILES)); units=$$((($$bytes + 31) / 32)); shift=0; capacity=1; \
+	while [ $$capacity -lt $$units ]; do capacity=$$(($$capacity * 2)); shift=$$(($$shift + 1)); done; \
+	printf '#define UI_SHARED_TILE_BYTES %s\n#define UI_SHARED_PALETTE_BYTES %s\n#define UI_HAND_CURSOR_TILE_BYTES %s\n#define UI_HAND_CURSOR_TILE_SIZE_SHIFT %s\n' "$$shared_tiles" "$$shared_palettes" "$$bytes" "$$shift" > $@
 
 # Standard source-adjacent conversions mirror pret's graphics_file_rules.mk.
 # Assets that need exact record packing or a retail-compatible compressor keep

@@ -1,3 +1,7 @@
+    .include "asm/macro.inc"
+    .include "six/asm/hw/memory.s"
+    .include "six/asm/hw/video.s"
+
     .syntax unified
     .thumb
 
@@ -7612,17 +7616,14 @@ Run__21FrisbeeScoreboardCore: @ 0x08051290
     bx r1
     .align 2, 0
 
-    @ The following two physical entries are still raw, but are labelled so
-    @ the decoded state machine above keeps real JP branch relocations.
-    .global InitializeDisplay__21FrisbeeScoreboardCore
-    .thumb_func
+    thumb_func_start InitializeDisplay__21FrisbeeScoreboardCore
 InitializeDisplay__21FrisbeeScoreboardCore:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
     mov r5, r8
     push {r5, r6, r7}
-    ldr r4, [pc, #0x2b8]
+    ldr r4, .Ljp_FrisbeeDisplay_08051740
     add sp, r4
     mov sl, r0
     bl GetHardwareDisplayState
@@ -7666,13 +7667,13 @@ InitializeDisplay__21FrisbeeScoreboardCore:
     add r1, sp, #0xc
     strh r4, [r1]
     strh r4, [r0, #0x1e]
-    ldr r1, [pc, #0x254]
+    ldr r1, .Ljp_FrisbeeDisplay_08051744
     movs r0, #0
     movs r2, #0x20
     bl FillHardwareDma3
     movs r4, #1
     rsbs r4, r4, #0
-    ldr r0, [pc, #0x248]
+    ldr r0, .Ljp_FrisbeeDisplay_08051748
     mov r8, r0
     movs r5, #0x80
     lsls r5, r5, #4
@@ -7680,16 +7681,16 @@ InitializeDisplay__21FrisbeeScoreboardCore:
     mov r1, r8
     adds r2, r5, #0
     bl FillHardwareDma3
-    ldr r1, [pc, #0x23c]
+    ldr r1, .Ljp_FrisbeeDisplay_0805174C
     mov sb, r1
     adds r0, r4, #0
     adds r2, r5, #0
     bl FillHardwareDma3
-    ldr r1, [pc, #0x234]
+    ldr r1, .Ljp_FrisbeeDisplay_08051750
     adds r0, r4, #0
     adds r2, r5, #0
     bl FillHardwareDma3
-    ldr r1, [pc, #0x22c]
+    ldr r1, .Ljp_FrisbeeDisplay_08051754
     adds r0, r4, #0
     adds r2, r5, #0
     bl FillHardwareDma3
@@ -7705,21 +7706,21 @@ InitializeDisplay__21FrisbeeScoreboardCore:
     mov r0, sl
     bl GetHardwareDisplayState
     add r2, sp, #0xc
-    ldr r3, [pc, #0x20c]
+    ldr r3, .Ljp_FrisbeeDisplay_08051758
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xe]
     mov r0, sl
     bl GetHardwareDisplayState
     add r2, sp, #0xc
-    ldr r3, [pc, #0x200]
+    ldr r3, .Ljp_FrisbeeDisplay_0805175C
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xc]
     mov r0, sl
     bl GetHardwareDisplayState
     add r2, sp, #0xc
-    ldr r3, [pc, #0x1f4]
+    ldr r3, .Ljp_FrisbeeDisplay_08051760
     adds r1, r3, #0
     strh r1, [r2]
     strh r1, [r0, #0xa]
@@ -7728,14 +7729,14 @@ InitializeDisplay__21FrisbeeScoreboardCore:
     add r1, sp, #0xc
     strh r4, [r1]
     strh r4, [r0, #8]
-    ldr r0, [pc, #0x1e4]
+    ldr r0, .Ljp_FrisbeeDisplay_08051764
     ldr r0, [r0]
     movs r1, #0xc0
     lsls r1, r1, #0x13
-    ldr r2, [pc, #0x1e0]
+    ldr r2, .Ljp_FrisbeeDisplay_08051768
     ldr r2, [r2]
     bl CopyHardwareDma3
-    ldr r0, [pc, #0x1dc]
+    ldr r0, .Ljp_FrisbeeDisplay_0805176C
     mov r1, r8
     adds r2, r5, #0
     bl FillHardwareDma3
@@ -7748,119 +7749,619 @@ InitializeDisplay__21FrisbeeScoreboardCore:
     movs r2, #0
     movs r3, #0x20
     bl DrawUiTextWindowBorder
-    ldr r0, [pc, #0x1c0]
+    ldr r0, .Ljp_FrisbeeDisplay_08051770
     ldr r0, [r0]
-    .byte 0xA0, 0x21, 0xC9, 0x04, 0x20, 0x22
+    movs r1, #0xa0
+    lsls r1, r1, #0x13
+    movs r2, #0x20
     bl CopyHardwareDma3
-    .byte 0x6E, 0x49, 0xF8, 0x24, 0xA4, 0x00
-    .byte 0x20, 0x1C, 0x08, 0x80, 0x6C, 0x48, 0x06, 0x80, 0x04, 0x31, 0x6C, 0x4A, 0x10, 0x1C, 0x08, 0x80
-    .byte 0x00, 0x23, 0x99, 0x46, 0x6A, 0x4F, 0x6F, 0x44, 0x6C, 0x46, 0x14, 0x34, 0x69, 0x48, 0x68, 0x44
-    .byte 0x04, 0x60, 0x92, 0x21, 0x09, 0x01, 0x69, 0x44, 0x67, 0x4A, 0x6A, 0x44, 0x11, 0x60, 0x67, 0x4B
-    .byte 0x6B, 0x44, 0x94, 0x24, 0x24, 0x01, 0x6C, 0x44, 0x23, 0x60, 0x68, 0x46, 0x98, 0x30, 0x97, 0x21
-    .byte 0x09, 0x01, 0x69, 0x44, 0x08, 0x60, 0x93, 0x22, 0x12, 0x01, 0x6A, 0x44, 0x60, 0x4B, 0x6B, 0x44
-    .byte 0x1A, 0x60, 0x60, 0x4C, 0x6C, 0x44, 0x60, 0x48, 0x68, 0x44, 0x04, 0x60, 0xE7, 0x21, 0x89, 0x00
-    .byte 0x69, 0x44, 0x5E, 0x4A, 0x6A, 0x44, 0x11, 0x60, 0x6B, 0x46, 0x1C, 0x33, 0x5C, 0x4C, 0x6C, 0x44
-    .byte 0x23, 0x60, 0x02, 0x20, 0x80, 0x46, 0x5B, 0x4D, 0x3E, 0x1C, 0x5B, 0x4C, 0x21, 0x88, 0x42, 0x46
-    .byte 0x32, 0x80, 0x7A, 0x80, 0x30, 0x68, 0x00, 0x91, 0x00, 0x23, 0x01, 0x93, 0x01, 0x21, 0x02, 0x91
-    .byte 0x05, 0xA9, 0x00, 0x22, 0xFC, 0xF7, 0xBE, 0xFE, 0x4A, 0x4A, 0x6A, 0x44, 0x10, 0x68, 0x29, 0x1C
-    .byte 0x80, 0x22
+    ldr r1, .Ljp_FrisbeeDisplay_08051774
+    movs r4, #0xf8
+    lsls r4, r4, #2
+    adds r0, r4, #0
+    strh r0, [r1]
+    ldr r0, .Ljp_FrisbeeDisplay_08051778
+    strh r6, [r0]
+    adds r1, #4
+    ldr r2, .Ljp_FrisbeeDisplay_0805177C
+    adds r0, r2, #0
+    strh r0, [r1]
+    movs r3, #0
+    mov sb, r3
+    ldr r7, .Ljp_FrisbeeDisplay_08051780
+    add r7, sp
+    mov r4, sp
+    adds r4, #0x14
+    ldr r0, .Ljp_FrisbeeDisplay_08051784
+    add r0, sp
+    str r4, [r0]
+    movs r1, #0x92
+    lsls r1, r1, #4
+    add r1, sp
+    ldr r2, .Ljp_FrisbeeDisplay_08051788
+    add r2, sp
+    str r1, [r2]
+    ldr r3, .Ljp_FrisbeeDisplay_0805178C
+    add r3, sp
+    movs r4, #0x94
+    lsls r4, r4, #4
+    add r4, sp
+    str r3, [r4]
+    mov r0, sp
+    adds r0, #0x98
+    movs r1, #0x97
+    lsls r1, r1, #4
+    add r1, sp
+    str r0, [r1]
+    movs r2, #0x93
+    lsls r2, r2, #4
+    add r2, sp
+    ldr r3, .Ljp_FrisbeeDisplay_08051790
+    add r3, sp
+    str r2, [r3]
+    ldr r4, .Ljp_FrisbeeDisplay_08051794
+    add r4, sp
+    ldr r0, .Ljp_FrisbeeDisplay_08051798
+    add r0, sp
+    str r4, [r0]
+    movs r1, #0xe7
+    lsls r1, r1, #2
+    add r1, sp
+    ldr r2, .Ljp_FrisbeeDisplay_0805179C
+    add r2, sp
+    str r1, [r2]
+    mov r3, sp
+    adds r3, #0x1c
+    ldr r4, .Ljp_FrisbeeDisplay_080517A0
+    add r4, sp
+    str r3, [r4]
+    movs r0, #2
+    mov r8, r0
+    ldr r5, .Ljp_FrisbeeDisplay_080517A4
+    adds r6, r7, #0
+    ldr r4, .Ljp_FrisbeeDisplay_080517A8
+.Ljp_FrisbeeDisplay_0805163C:
+    ldrh r1, [r4]
+    mov r2, r8
+    strh r2, [r6]
+    strh r2, [r7, #2]
+    ldr r0, [r6]
+    str r1, [sp]
+    movs r3, #0
+    str r3, [sp, #4]
+    movs r1, #1
+    str r1, [sp, #8]
+    add r1, sp, #0x14
+    movs r2, #0
+    bl DrawCharacterGlyphTo2DGfxBufferExt
+    ldr r2, .Ljp_FrisbeeDisplay_08051784
+    add r2, sp
+    ldr r0, [r2]
+    adds r1, r5, #0
+    movs r2, #0x80
     bl CopyHardwareDma3
-    .byte 0x80, 0x35, 0x02, 0x34, 0x01, 0x23, 0x99, 0x44, 0x48, 0x46
-    .byte 0x0C, 0x28, 0xE3, 0xDD, 0x4D, 0x48, 0x54, 0x46, 0xB8, 0x34, 0x80, 0x22, 0x12, 0x01, 0x21, 0x1C
+    adds r5, #0x80
+    adds r4, #2
+    movs r3, #1
+    add sb, r3
+    mov r0, sb
+    cmp r0, #0xc
+    ble .Ljp_FrisbeeDisplay_0805163C
+    ldr r0, .Ljp_FrisbeeDisplay_080517AC
+    mov r4, sl
+    adds r4, #0xb8
+    movs r2, #0x80
+    lsls r2, r2, #4
+    adds r1, r4, #0
     bl FillHardwareDma3
-    .byte 0x00, 0x21, 0x92, 0x20, 0x00, 0x01, 0x68, 0x44, 0x01, 0x70, 0x3E, 0x4A
-    .byte 0x6A, 0x44, 0x12, 0x68, 0x51, 0x80, 0x46, 0x4B, 0x6B, 0x44, 0x19, 0x60, 0xFA, 0x20, 0x80, 0x00
-    .byte 0x44, 0x49, 0x69, 0x44, 0x08, 0x60, 0x00, 0x22, 0x90, 0x46, 0x95, 0x23, 0x1B, 0x01, 0x6B, 0x44
-    .byte 0x1C, 0x60, 0x40, 0x34, 0x40, 0x48, 0x68, 0x44, 0x04, 0x60, 0x51, 0x46, 0x40, 0x31, 0x3F, 0x4A
-    .byte 0x6A, 0x44, 0x11, 0x60, 0x53, 0x46, 0xB0, 0x33, 0x3D, 0x4C, 0x6C, 0x44, 0x23, 0x60, 0x3D, 0x48
-    .byte 0x68, 0x44, 0x81, 0x46, 0x51, 0x46, 0x88, 0x68, 0x3B, 0x4A, 0x80, 0x18, 0x2A, 0x4B, 0x6B, 0x44
-    .byte 0x19, 0x68, 0x42, 0x46, 0x00, 0xF0, 0xC0, 0xFC, 0x28, 0x48, 0x68, 0x44, 0x0C, 0x24, 0x04, 0x80
-    .byte 0x02, 0x22, 0x94, 0x21, 0x09, 0x01, 0x69, 0x44, 0x09, 0x68, 0x4A, 0x80, 0x00, 0x68, 0x26, 0xA9
-    .byte 0x00, 0x22, 0xFC, 0xF7, 0x61, 0xFF, 0x92, 0x20, 0x00, 0x01, 0x68, 0x44, 0x04, 0x78, 0x00, 0x2C
-    .byte 0x5E, 0xD1, 0x52, 0x46, 0x90, 0x68, 0x2D, 0x4B, 0xC0, 0x18, 0x49, 0xF0, 0x87, 0xFA, 0x0C, 0x22
-    .byte 0x49, 0x46, 0x0A, 0x80, 0x02, 0x23, 0x4B, 0x80, 0x09, 0x68, 0x00, 0x90, 0x01, 0x94, 0x01, 0x24
-    .byte 0x02, 0x94, 0x08, 0x1C, 0x26, 0xA9, 0x00, 0x22, 0x00, 0x23, 0xFD, 0xF7, 0x21, 0xF8, 0x5D, 0xE0
-    .byte 0x8C, 0xF6, 0xFF, 0xFF, 0xE0, 0x7F, 0x00, 0x06, 0x00, 0xE0, 0x00, 0x06, 0x00, 0xE8, 0x00, 0x06
-    .byte 0x00, 0xF0, 0x00, 0x06, 0x00, 0xF8, 0x00, 0x06, 0x43, 0x1C, 0x00, 0x00, 0x41, 0x1D, 0x00, 0x00
-    .byte 0x42, 0x1E, 0x00, 0x00
-    .4byte gUiSharedTiles
-    .4byte gUiSharedTileByteCount
-    .byte 0x03, 0x00, 0x03, 0x00
-    .4byte gUiSharedPalette
-    .byte 0x40, 0x00, 0x00, 0x05, 0x42, 0x00, 0x00, 0x05, 0x18, 0x42, 0x00, 0x00
-    .byte 0x1C, 0x09, 0x00, 0x00, 0x58, 0x09, 0x00, 0x00, 0x6C, 0x09, 0x00, 0x00, 0x24, 0x09, 0x00, 0x00
-    .byte 0x44, 0x09, 0x00, 0x00, 0x34, 0x09, 0x00, 0x00, 0x48, 0x09, 0x00, 0x00, 0x68, 0x09, 0x00, 0x00
-    .byte 0x5C, 0x09, 0x00, 0x00, 0x00, 0x18, 0x00, 0x06
-    .word gNewGameNameEntryUiCharacterCodes
-    .byte 0xFF, 0x03, 0xFF, 0x03
-    .byte 0x38, 0x09, 0x00, 0x00, 0x3C, 0x09, 0x00, 0x00, 0x54, 0x09, 0x00, 0x00, 0x64, 0x09, 0x00, 0x00
-    .byte 0x4C, 0x09, 0x00, 0x00, 0x28, 0x09, 0x00, 0x00, 0x4C, 0x2C, 0x00, 0x00, 0x70, 0x1C, 0x00, 0x00
-    .byte 0x01, 0x78, 0x0D, 0x20, 0x41, 0x43, 0xA5, 0x48, 0x09, 0x18, 0xA5, 0x48, 0x68, 0x44, 0x0C, 0x22
-    .byte 0x02, 0x80, 0x02, 0x23, 0x43, 0x80, 0x00, 0x68, 0x00, 0x91, 0x00, 0x24, 0x01, 0x94, 0x01, 0x21
-    .byte 0x02, 0x91, 0x26, 0xA9, 0x00, 0x22, 0x00, 0x23, 0xFC, 0xF7, 0xC2, 0xFF, 0x42, 0x46, 0x55, 0x00
-    .byte 0xAC, 0x18, 0x21, 0x02, 0x9B, 0x4B, 0xC9, 0x18, 0x97, 0x22, 0x12, 0x01, 0x6A, 0x44, 0x10, 0x68
-    .byte 0xC0, 0x22, 0x92, 0x00
+    movs r1, #0
+    movs r0, #0x92
+    lsls r0, r0, #4
+    add r0, sp
+    strb r1, [r0]
+    ldr r2, .Ljp_FrisbeeDisplay_08051788
+    add r2, sp
+    ldr r2, [r2]
+    strh r1, [r2, #2]
+    ldr r3, .Ljp_FrisbeeDisplay_080517B0
+    add r3, sp
+    str r1, [r3]
+    movs r0, #0xfa
+    lsls r0, r0, #2
+    ldr r1, .Ljp_FrisbeeDisplay_080517B4
+    add r1, sp
+    str r0, [r1]
+    movs r2, #0
+    mov r8, r2
+    movs r3, #0x95
+    lsls r3, r3, #4
+    add r3, sp
+    str r4, [r3]
+    adds r4, #0x40
+    ldr r0, .Ljp_FrisbeeDisplay_080517B8
+    add r0, sp
+    str r4, [r0]
+    mov r1, sl
+    adds r1, #0x40
+    ldr r2, .Ljp_FrisbeeDisplay_080517BC
+    add r2, sp
+    str r1, [r2]
+    mov r3, sl
+    adds r3, #0xb0
+    ldr r4, .Ljp_FrisbeeDisplay_080517C0
+    add r4, sp
+    str r3, [r4]
+    ldr r0, .Ljp_FrisbeeDisplay_080517C4
+    add r0, sp
+    mov sb, r0
+.Ljp_FrisbeeDisplay_080516D4:
+    mov r1, sl
+    ldr r0, [r1, #8]
+    ldr r2, .Ljp_FrisbeeDisplay_080517C8
+    adds r0, r0, r2
+    ldr r3, .Ljp_FrisbeeDisplay_08051788
+    add r3, sp
+    ldr r1, [r3]
+    mov r2, r8
+    bl CopyAnimalFestivalRankingEntry
+    ldr r0, .Ljp_FrisbeeDisplay_0805178C
+    add r0, sp
+    movs r4, #0xc
+    strh r4, [r0]
+    movs r2, #2
+    movs r1, #0x94
+    lsls r1, r1, #4
+    add r1, sp
+    ldr r1, [r1]
+    strh r2, [r1, #2]
+    ldr r0, [r0]
+    add r1, sp, #0x98
+    movs r2, #0
+    bl Clear2DGfxBuffer
+    movs r0, #0x92
+    lsls r0, r0, #4
+    add r0, sp
+    ldrb r4, [r0]
+    cmp r4, #0
+    bne .Ljp_FrisbeeDisplay_080517D0
+    mov r2, sl
+    ldr r0, [r2, #8]
+    ldr r3, .Ljp_FrisbeeDisplay_080517CC
+    adds r0, r0, r3
+    bl GetName__C6Animal
+    movs r2, #0xc
+    mov r1, sb
+    strh r2, [r1]
+    movs r3, #2
+    strh r3, [r1, #2]
+    ldr r1, [r1]
+    str r0, [sp]
+    str r4, [sp, #4]
+    movs r4, #1
+    str r4, [sp, #8]
+    adds r0, r1, #0
+    add r1, sp, #0x98
+    movs r2, #0
+    movs r3, #0
+    bl DrawStringTo2DGfxBufferExt
+    b .Ljp_FrisbeeDisplay_080517FC
+    .align 2, 0
+.Ljp_FrisbeeDisplay_08051740: .word 0xFFFFF68C
+.Ljp_FrisbeeDisplay_08051744: .word MEM_VRAM + 2 * BG_CHAR_SIZE - 32
+.Ljp_FrisbeeDisplay_08051748: .word MEM_VRAM + 28 * BG_SCREEN_SIZE
+.Ljp_FrisbeeDisplay_0805174C: .word MEM_VRAM + 29 * BG_SCREEN_SIZE
+.Ljp_FrisbeeDisplay_08051750: .word MEM_VRAM + 30 * BG_SCREEN_SIZE
+.Ljp_FrisbeeDisplay_08051754: .word MEM_VRAM + 31 * BG_SCREEN_SIZE
+.Ljp_FrisbeeDisplay_08051758: .word BG_PRIO_3 | BG_MOSAIC_ENABLE | (28 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256
+.Ljp_FrisbeeDisplay_0805175C: .word BG_PRIO_1 | BG_MOSAIC_ENABLE | (29 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256
+.Ljp_FrisbeeDisplay_08051760: .word BG_PRIO_2 | BG_MOSAIC_ENABLE | (30 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256
+.Ljp_FrisbeeDisplay_08051764: .word gUiSharedTiles
+.Ljp_FrisbeeDisplay_08051768: .word gUiSharedTileByteCount
+.Ljp_FrisbeeDisplay_0805176C: .word 0x00030003
+.Ljp_FrisbeeDisplay_08051770: .word gUiSharedPalette
+.Ljp_FrisbeeDisplay_08051774: .word BG_PALETTE + 2 * 32
+.Ljp_FrisbeeDisplay_08051778: .word BG_PALETTE + 2 * 32 + 2
+.Ljp_FrisbeeDisplay_0805177C: .word 0x00004218
+.Ljp_FrisbeeDisplay_08051780: .word 0x0000091C
+.Ljp_FrisbeeDisplay_08051784: .word 0x00000958
+.Ljp_FrisbeeDisplay_08051788: .word 0x0000096C
+.Ljp_FrisbeeDisplay_0805178C: .word 0x00000924
+.Ljp_FrisbeeDisplay_08051790: .word 0x00000944
+.Ljp_FrisbeeDisplay_08051794: .word 0x00000934
+.Ljp_FrisbeeDisplay_08051798: .word 0x00000948
+.Ljp_FrisbeeDisplay_0805179C: .word 0x00000968
+.Ljp_FrisbeeDisplay_080517A0: .word 0x0000095C
+.Ljp_FrisbeeDisplay_080517A4: .word MEM_VRAM + 3 * BG_SCREEN_SIZE
+.Ljp_FrisbeeDisplay_080517A8: .word gNewGameNameEntryUiCharacterCodes
+.Ljp_FrisbeeDisplay_080517AC: .word 0x03FF03FF
+.Ljp_FrisbeeDisplay_080517B0: .word 0x00000938
+.Ljp_FrisbeeDisplay_080517B4: .word 0x0000093C
+.Ljp_FrisbeeDisplay_080517B8: .word 0x00000954
+.Ljp_FrisbeeDisplay_080517BC: .word 0x00000964
+.Ljp_FrisbeeDisplay_080517C0: .word 0x0000094C
+.Ljp_FrisbeeDisplay_080517C4: .word 0x00000928
+.Ljp_FrisbeeDisplay_080517C8: .word 0x00002C4C
+.Ljp_FrisbeeDisplay_080517CC: .word 0x00001C70
+.Ljp_FrisbeeDisplay_080517D0:
+    ldrb r1, [r0]
+    movs r0, #0xd
+    muls r1, r0, r1
+    ldr r0, .Ljp_FrisbeeDisplay_08051A6C
+    adds r1, r1, r0
+    ldr r0, .Ljp_FrisbeeDisplay_08051A70
+    add r0, sp
+    movs r2, #0xc
+    strh r2, [r0]
+    movs r3, #2
+    strh r3, [r0, #2]
+    ldr r0, [r0]
+    str r1, [sp]
+    movs r4, #0
+    str r4, [sp, #4]
+    movs r1, #1
+    str r1, [sp, #8]
+    add r1, sp, #0x98
+    movs r2, #0
+    movs r3, #0
+    bl DrawStringTo2DGfxBufferExt
+.Ljp_FrisbeeDisplay_080517FC:
+    mov r2, r8
+    lsls r5, r2, #1
+    adds r4, r5, r2
+    lsls r1, r4, #8
+    ldr r3, .Ljp_FrisbeeDisplay_08051A74
+    adds r1, r1, r3
+    movs r2, #0x97
+    lsls r2, r2, #4
+    add r2, sp
+    ldr r0, [r2]
+    movs r2, #0xc0
+    lsls r2, r2, #2
     bl CopyHardwareDma3
-    .byte 0xE4, 0x04, 0x85, 0x23, 0x9B, 0x05, 0xE4, 0x18
-    .byte 0x27, 0x0C, 0x00, 0x24, 0x40, 0x46, 0x01, 0x30, 0x96, 0x21, 0x09, 0x01, 0x69, 0x44, 0x08, 0x60
-    .byte 0x2A, 0x1D, 0x92, 0x01, 0x68, 0x1D, 0x80, 0x01, 0x3E, 0x1C, 0x0C, 0x36, 0x95, 0x23, 0x1B, 0x01
-    .byte 0x6B, 0x44, 0x19, 0x68, 0x0E, 0x31, 0x43, 0x18, 0x52, 0x18, 0x38, 0x19, 0x10, 0x80, 0x1E, 0x80
-    .byte 0x01, 0x36, 0x02, 0x33, 0x02, 0x32, 0x01, 0x34, 0x0B, 0x2C, 0xF6, 0xDD, 0x44, 0x46, 0x00, 0x2C
-    .byte 0x09, 0xD0, 0x85, 0x49, 0x69, 0x44, 0x09, 0x68, 0x02, 0x22, 0x88, 0x5E, 0x83, 0x4A, 0x6A, 0x44
-    .byte 0x12, 0x68, 0x90, 0x42, 0x0B, 0xD0, 0x43, 0x46, 0x81, 0x4C, 0x6C, 0x44, 0x23, 0x60, 0x7E, 0x48
-    .byte 0x68, 0x44, 0x00, 0x68, 0x02, 0x21, 0x40, 0x5E, 0x7C, 0x49, 0x69, 0x44, 0x08, 0x60, 0x7C, 0x49
-    .byte 0x69, 0x44, 0x09, 0x68, 0x09, 0x29, 0x05, 0xD1, 0x2A, 0x1D, 0x50, 0x46, 0x00, 0x21, 0x01, 0x23
-    .byte 0x00, 0xF0, 0x0E, 0xF9, 0x2E, 0x1D, 0x76, 0x4A, 0x6A, 0x44, 0x10, 0x68, 0x01, 0x30, 0x0A, 0x21
-    .byte 0x7E, 0xF0, 0xEA, 0xFE, 0x03, 0x1C, 0x50, 0x46, 0x02, 0x21, 0x32, 0x1C, 0x00, 0xF0, 0x00, 0xF9
-    .byte 0x50, 0x46, 0x04, 0x21, 0x32, 0x1C, 0x0C, 0x23, 0x00, 0xF0, 0xFA, 0xF8, 0x6A, 0x4B, 0x6B, 0x44
-    .byte 0x1B, 0x68, 0x58, 0x88, 0x00, 0x04, 0x07, 0x14, 0x64, 0x25, 0x38, 0x1C, 0x64, 0x21, 0x7E, 0xF0
-    .byte 0xCF, 0xFE, 0x04, 0x04, 0x23, 0x14, 0x00, 0x2B, 0x04, 0xD0, 0x50, 0x46, 0x14, 0x21, 0x32, 0x1C
-    .byte 0x00, 0xF0, 0xE6, 0xF8, 0x20, 0x14, 0x45, 0x43, 0x7D, 0x1B, 0x2D, 0x04, 0x2D, 0x14, 0x28, 0x1C
-    .byte 0x0A, 0x21, 0x7E, 0xF0, 0xBD, 0xFE, 0x04, 0x1C, 0x24, 0x04, 0x23, 0x14, 0x50, 0x46, 0x16, 0x21
-    .byte 0x32, 0x1C, 0x00, 0xF0, 0xD5, 0xF8, 0x50, 0x46, 0x18, 0x21, 0x32, 0x1C, 0x0A, 0x23, 0x00, 0xF0
-    .byte 0xCF, 0xF8, 0x24, 0x14, 0xA0, 0x00, 0x00, 0x19, 0x40, 0x00, 0x2D, 0x1A, 0x2D, 0x04, 0x2D, 0x14
-    .byte 0x50, 0x46, 0x19, 0x21, 0x32, 0x1C, 0x2B, 0x1C, 0x00, 0xF0, 0xC2, 0xF8, 0x50, 0x46, 0x1B, 0x21
-    .byte 0x32, 0x1C, 0x0B, 0x23, 0x00, 0xF0, 0xBC, 0xF8, 0x96, 0x24, 0x24, 0x01, 0x6C, 0x44, 0x24, 0x68
-    .byte 0xA0, 0x46, 0x09, 0x2C, 0x00, 0xDC, 0xBD, 0xE6, 0x4A, 0x49, 0x80, 0x24, 0x24, 0x01, 0x95, 0x22
-    .byte 0x12, 0x01, 0x6A, 0x44, 0x10, 0x68, 0x22, 0x1C
+    lsls r4, r4, #0x13
+    movs r3, #0x85
+    lsls r3, r3, #0x16
+    adds r4, r4, r3
+    lsrs r7, r4, #0x10
+    movs r4, #0
+    mov r0, r8
+    adds r0, #1
+    movs r1, #0x96
+    lsls r1, r1, #4
+    add r1, sp
+    str r0, [r1]
+    adds r2, r5, #4
+    lsls r2, r2, #6
+    adds r0, r5, #5
+    lsls r0, r0, #6
+    adds r6, r7, #0
+    adds r6, #0xc
+    movs r3, #0x95
+    lsls r3, r3, #4
+    add r3, sp
+    ldr r1, [r3]
+    adds r1, #0xe
+    adds r3, r0, r1
+    adds r2, r2, r1
+.Ljp_FrisbeeDisplay_0805184A:
+    adds r0, r7, r4
+    strh r0, [r2]
+    strh r6, [r3]
+    adds r6, #1
+    adds r3, #2
+    adds r2, #2
+    adds r4, #1
+    cmp r4, #0xb
+    ble .Ljp_FrisbeeDisplay_0805184A
+    mov r4, r8
+    cmp r4, #0
+    beq .Ljp_FrisbeeDisplay_08051876
+    ldr r1, .Ljp_FrisbeeDisplay_08051A78
+    add r1, sp
+    ldr r1, [r1]
+    movs r2, #2
+    ldrsh r0, [r1, r2]
+    ldr r2, .Ljp_FrisbeeDisplay_08051A7C
+    add r2, sp
+    ldr r2, [r2]
+    cmp r0, r2
+    beq .Ljp_FrisbeeDisplay_0805188E
+.Ljp_FrisbeeDisplay_08051876:
+    mov r3, r8
+    ldr r4, .Ljp_FrisbeeDisplay_08051A80
+    add r4, sp
+    str r3, [r4]
+    ldr r0, .Ljp_FrisbeeDisplay_08051A78
+    add r0, sp
+    ldr r0, [r0]
+    movs r1, #2
+    ldrsh r0, [r0, r1]
+    ldr r1, .Ljp_FrisbeeDisplay_08051A7C
+    add r1, sp
+    str r0, [r1]
+.Ljp_FrisbeeDisplay_0805188E:
+    ldr r1, .Ljp_FrisbeeDisplay_08051A80
+    add r1, sp
+    ldr r1, [r1]
+    cmp r1, #9
+    bne .Ljp_FrisbeeDisplay_080518A4
+    adds r2, r5, #4
+    mov r0, sl
+    movs r1, #0
+    movs r3, #1
+    bl WriteFrisbeeScoreboardGlyphTiles
+.Ljp_FrisbeeDisplay_080518A4:
+    adds r6, r5, #4
+    ldr r2, .Ljp_FrisbeeDisplay_08051A80
+    add r2, sp
+    ldr r0, [r2]
+    adds r0, #1
+    movs r1, #0xa
+    bl __modsi3
+    adds r3, r0, #0
+    mov r0, sl
+    movs r1, #2
+    adds r2, r6, #0
+    bl WriteFrisbeeScoreboardGlyphTiles
+    mov r0, sl
+    movs r1, #4
+    adds r2, r6, #0
+    movs r3, #0xc
+    bl WriteFrisbeeScoreboardGlyphTiles
+    ldr r3, .Ljp_FrisbeeDisplay_08051A78
+    add r3, sp
+    ldr r3, [r3]
+    ldrh r0, [r3, #2]
+    lsls r0, r0, #0x10
+    asrs r7, r0, #0x10
+    movs r5, #0x64
+    adds r0, r7, #0
+    movs r1, #0x64
+    bl __divsi3
+    lsls r4, r0, #0x10
+    asrs r3, r4, #0x10
+    cmp r3, #0
+    beq .Ljp_FrisbeeDisplay_080518F4
+    mov r0, sl
+    movs r1, #0x14
+    adds r2, r6, #0
+    bl WriteFrisbeeScoreboardGlyphTiles
+.Ljp_FrisbeeDisplay_080518F4:
+    asrs r0, r4, #0x10
+    muls r5, r0, r5
+    subs r5, r7, r5
+    lsls r5, r5, #0x10
+    asrs r5, r5, #0x10
+    adds r0, r5, #0
+    movs r1, #0xa
+    bl __divsi3
+    adds r4, r0, #0
+    lsls r4, r4, #0x10
+    asrs r3, r4, #0x10
+    mov r0, sl
+    movs r1, #0x16
+    adds r2, r6, #0
+    bl WriteFrisbeeScoreboardGlyphTiles
+    mov r0, sl
+    movs r1, #0x18
+    adds r2, r6, #0
+    movs r3, #0xa
+    bl WriteFrisbeeScoreboardGlyphTiles
+    asrs r4, r4, #0x10
+    lsls r0, r4, #2
+    adds r0, r0, r4
+    lsls r0, r0, #1
+    subs r5, r5, r0
+    lsls r5, r5, #0x10
+    asrs r5, r5, #0x10
+    mov r0, sl
+    movs r1, #0x19
+    adds r2, r6, #0
+    adds r3, r5, #0
+    bl WriteFrisbeeScoreboardGlyphTiles
+    mov r0, sl
+    movs r1, #0x1b
+    adds r2, r6, #0
+    movs r3, #0xb
+    bl WriteFrisbeeScoreboardGlyphTiles
+    movs r4, #0x96
+    lsls r4, r4, #4
+    add r4, sp
+    ldr r4, [r4]
+    mov r8, r4
+    cmp r4, #9
+    bgt .Ljp_FrisbeeDisplay_08051958
+    b .Ljp_FrisbeeDisplay_080516D4
+.Ljp_FrisbeeDisplay_08051958:
+    ldr r1, .Ljp_FrisbeeDisplay_08051A84
+    movs r4, #0x80
+    lsls r4, r4, #4
+    movs r2, #0x95
+    lsls r2, r2, #4
+    add r2, sp
+    ldr r0, [r2]
+    adds r2, r4, #0
     bl CopyHardwareDma3
-    .byte 0x46, 0x48, 0x95, 0x23
-    .byte 0x1B, 0x01, 0x6B, 0x44, 0x19, 0x68, 0x22, 0x1C
+    ldr r0, .Ljp_FrisbeeDisplay_08051A88
+    movs r3, #0x95
+    lsls r3, r3, #4
+    add r3, sp
+    ldr r1, [r3]
+    adds r2, r4, #0
     bl FillHardwareDma3
-    .byte 0x16, 0x24, 0x02, 0x25
-    .byte 0x00, 0x26, 0x93, 0x20, 0x00, 0x01, 0x68, 0x44, 0x04, 0x80, 0x40, 0x49, 0x69, 0x44, 0x09, 0x68
-    .byte 0x4D, 0x80, 0x00, 0x68, 0xE7, 0xA9, 0x00, 0x22, 0xFC, 0xF7, 0x16, 0xFE, 0x3C, 0x49, 0x01, 0x22
-    .byte 0x3C, 0x48, 0x68, 0x44, 0x04, 0x80, 0x3C, 0x4B, 0x6B, 0x44, 0x1B, 0x68, 0x5D, 0x80, 0x00, 0x68
-    .byte 0x00, 0x91, 0x01, 0x96, 0x02, 0x92, 0xE7, 0xA9, 0x00, 0x22, 0x00, 0x23, 0xFC, 0xF7, 0xE0, 0xFE
-    .byte 0x36, 0x49, 0xB0, 0x22, 0xD2, 0x00, 0x36, 0x4C, 0x6C, 0x44, 0x20, 0x68
+    movs r4, #0x16
+    movs r5, #2
+    movs r6, #0
+    movs r0, #0x93
+    lsls r0, r0, #4
+    add r0, sp
+    strh r4, [r0]
+    ldr r1, .Ljp_FrisbeeDisplay_08051A8C
+    add r1, sp
+    ldr r1, [r1]
+    strh r5, [r1, #2]
+    ldr r0, [r0]
+    add r1, sp, #0x39c
+    movs r2, #0
+    bl Clear2DGfxBuffer
+    ldr r1, .Ljp_FrisbeeDisplay_08051A90
+    movs r2, #1
+    ldr r0, .Ljp_FrisbeeDisplay_08051A94
+    add r0, sp
+    strh r4, [r0]
+    ldr r3, .Ljp_FrisbeeDisplay_08051A98
+    add r3, sp
+    ldr r3, [r3]
+    strh r5, [r3, #2]
+    ldr r0, [r0]
+    str r1, [sp]
+    str r6, [sp, #4]
+    str r2, [sp, #8]
+    add r1, sp, #0x39c
+    movs r2, #0
+    movs r3, #0
+    bl DrawStringTo2DGfxBufferExt
+    ldr r1, .Ljp_FrisbeeDisplay_08051A9C
+    movs r2, #0xb0
+    lsls r2, r2, #3
+    ldr r4, .Ljp_FrisbeeDisplay_08051AA0
+    add r4, sp
+    ldr r0, [r4]
     bl CopyHardwareDma3
-    .byte 0x84, 0x25, 0xAD, 0x01, 0x00, 0x23, 0x2C, 0x1C, 0x16, 0x34, 0xA0, 0x22, 0x52, 0x00, 0x52, 0x44
-    .byte 0x30, 0x48, 0x68, 0x44, 0x01, 0x68, 0x08, 0x31, 0xE8, 0x18, 0x08, 0x80, 0x14, 0x80, 0x01, 0x34
-    .byte 0x02, 0x32, 0x02, 0x31, 0x01, 0x33, 0x15, 0x2B, 0xF6, 0xDD, 0x2B, 0x49, 0x80, 0x22, 0x12, 0x01
-    .byte 0x95, 0x23, 0x1B, 0x01, 0x6B, 0x44, 0x18, 0x68
+    movs r5, #0x84
+    lsls r5, r5, #6
+    movs r3, #0
+    adds r4, r5, #0
+    adds r4, #0x16
+    movs r2, #0xa0
+    lsls r2, r2, #1
+    add r2, sl
+    ldr r0, .Ljp_FrisbeeDisplay_08051AA4
+    add r0, sp
+    ldr r1, [r0]
+    adds r1, #8
+.Ljp_FrisbeeDisplay_080519E8:
+    adds r0, r5, r3
+    strh r0, [r1]
+    strh r4, [r2]
+    adds r4, #1
+    adds r2, #2
+    adds r1, #2
+    adds r3, #1
+    cmp r3, #0x15
+    ble .Ljp_FrisbeeDisplay_080519E8
+    ldr r1, .Ljp_FrisbeeDisplay_08051AA8
+    movs r2, #0x80
+    lsls r2, r2, #4
+    movs r3, #0x95
+    lsls r3, r3, #4
+    add r3, sp
+    ldr r0, [r3]
     bl CopyHardwareDma3
-    .byte 0x54, 0x46, 0x21, 0x6C
-    .byte 0x0B, 0x68, 0x26, 0x48, 0x68, 0x44, 0x00, 0x68, 0x82, 0x89, 0x92, 0x00, 0x60, 0x6C, 0x80, 0x18
-    .byte 0x02, 0x88, 0x03, 0xA8, 0x1B, 0x69, 0x81, 0xF0, 0x53, 0xFB, 0x07, 0x9C, 0x20, 0x4A, 0x6A, 0x44
-    .byte 0x12, 0x68, 0x51, 0x68, 0x1E, 0x4B, 0x6B, 0x44, 0x18, 0x68
+    mov r4, sl
+    ldr r1, [r4, #0x40]
+    ldr r3, [r1]
+    ldr r0, .Ljp_FrisbeeDisplay_08051AAC
+    add r0, sp
+    ldr r0, [r0]
+    ldrh r2, [r0, #0xc]
+    lsls r2, r2, #2
+    ldr r0, [r4, #0x44]
+    adds r0, r0, r2
+    ldrh r2, [r0]
+    add r0, sp, #0xc
+    ldr r3, [r3, #0x10]
+    bl _call_via_r3
+    ldr r4, [sp, #0x1c]
+    ldr r2, .Ljp_FrisbeeDisplay_08051AB0
+    add r2, sp
+    ldr r2, [r2]
+    ldr r1, [r2, #4]
+    ldr r3, .Ljp_FrisbeeDisplay_08051AB0
+    add r3, sp
+    ldr r0, [r3]
     bl GetHardwarePoolHandleIndex
-    .byte 0x40, 0x01
-    .byte 0x1C, 0x4A, 0x81, 0x18, 0x07, 0x98, 0x00, 0x22, 0x00, 0x28, 0x03, 0xD0, 0x1A, 0x4B, 0x6B, 0x44
-    .byte 0x1B, 0x68, 0x9A, 0x88, 0x20, 0x1C
+    lsls r0, r0, #5
+    ldr r2, .Ljp_FrisbeeDisplay_08051AB4
+    adds r1, r0, r2
+    ldr r0, [sp, #0x1c]
+    movs r2, #0
+    cmp r0, #0
+    beq .Ljp_FrisbeeDisplay_08051A54
+    ldr r3, .Ljp_FrisbeeDisplay_08051AB8
+    add r3, sp
+    ldr r3, [r3]
+    ldrh r2, [r3, #4]
+.Ljp_FrisbeeDisplay_08051A54:
+    adds r0, r4, #0
     bl CopyHardwareDma3
-    .byte 0x18, 0x4B, 0x9D, 0x44, 0x38, 0xBC
-    .byte 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .word gText_NameEntry_PresetAnimalNames - 13 @ one-based fixed 13-byte name rows
-    .byte 0x2C, 0x09, 0x00, 0x00, 0x00, 0x28, 0x00, 0x06, 0x6C, 0x09, 0x00, 0x00, 0x3C, 0x09, 0x00, 0x00
-    .byte 0x38, 0x09, 0x00, 0x00, 0x00, 0xF0, 0x00, 0x06, 0xFF, 0x03, 0xFF, 0x03, 0x44, 0x09, 0x00, 0x00
-    .word gText_Frisbee_TournamentScoreboard
-    .byte 0x34, 0x09, 0x00, 0x00, 0x48, 0x09, 0x00, 0x00, 0x00, 0x20, 0x00, 0x06
-    .byte 0x68, 0x09, 0x00, 0x00, 0x54, 0x09, 0x00, 0x00, 0x00, 0xF8, 0x00, 0x06, 0x64, 0x09, 0x00, 0x00
-    .byte 0x4C, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x05, 0x5C, 0x09, 0x00, 0x00, 0x74, 0x09, 0x00, 0x00
-    .byte 0xF0, 0xB5, 0x9B, 0x00, 0x83, 0x24, 0xA4, 0x01, 0x1E, 0x19, 0x00, 0x25, 0x94, 0x01, 0x0B, 0x4F
-    .byte 0xDB, 0x19, 0x49, 0x00, 0xF8, 0x34, 0x0C, 0x19, 0x24, 0x18, 0x92, 0x01, 0xB8, 0x32, 0x89, 0x18
-    .byte 0x09, 0x18, 0x70, 0x19, 0x08, 0x80, 0x23, 0x80, 0x01, 0x33, 0x02, 0x34, 0x02, 0x31, 0x01, 0x35
-    .byte 0x01, 0x2D, 0xF6, 0xDD, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xC2, 0x20, 0x00, 0x00
+    ldr r3, .Ljp_FrisbeeDisplay_08051ABC
+    add sp, r3
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_FrisbeeDisplay_08051A6C: .word gText_NameEntry_PresetAnimalNames - 13 @ names[id - 1], 13-byte rows
+.Ljp_FrisbeeDisplay_08051A70: .word 0x0000092C
+.Ljp_FrisbeeDisplay_08051A74: .word MEM_VRAM + 5 * BG_SCREEN_SIZE
+.Ljp_FrisbeeDisplay_08051A78: .word 0x0000096C
+.Ljp_FrisbeeDisplay_08051A7C: .word 0x0000093C
+.Ljp_FrisbeeDisplay_08051A80: .word 0x00000938
+.Ljp_FrisbeeDisplay_08051A84: .word MEM_VRAM + 30 * BG_SCREEN_SIZE
+.Ljp_FrisbeeDisplay_08051A88: .word 0x03FF03FF
+.Ljp_FrisbeeDisplay_08051A8C: .word 0x00000944
+.Ljp_FrisbeeDisplay_08051A90: .word gText_Frisbee_TournamentScoreboard
+.Ljp_FrisbeeDisplay_08051A94: .word 0x00000934
+.Ljp_FrisbeeDisplay_08051A98: .word 0x00000948
+.Ljp_FrisbeeDisplay_08051A9C: .word MEM_VRAM + 4 * BG_SCREEN_SIZE
+.Ljp_FrisbeeDisplay_08051AA0: .word 0x00000968
+.Ljp_FrisbeeDisplay_08051AA4: .word 0x00000954
+.Ljp_FrisbeeDisplay_08051AA8: .word MEM_VRAM + 31 * BG_SCREEN_SIZE
+.Ljp_FrisbeeDisplay_08051AAC: .word 0x00000964
+.Ljp_FrisbeeDisplay_08051AB0: .word 0x0000094C
+.Ljp_FrisbeeDisplay_08051AB4: .word OBJ_PALETTE
+.Ljp_FrisbeeDisplay_08051AB8: .word 0x0000095C
+.Ljp_FrisbeeDisplay_08051ABC: .word 0x00000974
+
+    thumb_func_start WriteFrisbeeScoreboardGlyphTiles
+WriteFrisbeeScoreboardGlyphTiles:
+    push {r4, r5, r6, r7, lr}
+    lsls r3, r3, #2
+    movs r4, #0x83
+    lsls r4, r4, #6
+    adds r6, r3, r4
+    movs r5, #0
+    lsls r4, r2, #6
+    ldr r7, .Ljp_FrisbeeDisplay_08051AFC
+    adds r3, r3, r7
+    lsls r1, r1, #1
+    adds r4, #0xf8
+    adds r4, r1, r4
+    adds r4, r4, r0
+    lsls r2, r2, #6
+    adds r2, #0xb8
+    adds r1, r1, r2
+    adds r1, r1, r0
+.Ljp_FrisbeeDisplay_08051AE2:
+    adds r0, r6, r5
+    strh r0, [r1]
+    strh r3, [r4]
+    adds r3, #1
+    adds r4, #2
+    adds r1, #2
+    adds r5, #1
+    cmp r5, #1
+    ble .Ljp_FrisbeeDisplay_08051AE2
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_FrisbeeDisplay_08051AFC: .word 0x000020C2
+
     .global UpdateArrows__21FrisbeeScoreboardCore
     .thumb_func
 UpdateArrows__21FrisbeeScoreboardCore:
@@ -116364,7 +116865,6 @@ UpdateMoneyAccountRecordHistory:
     bx r0
     .else
 
-    .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
 	thumb_func_start OnCall__12ScriptEnginei
@@ -146355,7 +146855,7 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	bl FillHardwareDma3
 	movs r4, #1
 	rsbs r4, r4, #0
-	ldr r0, .L080519C0 @ =0x0600E000
+	ldr r0, .L080519C0 @ =(MEM_VRAM + 28 * BG_SCREEN_SIZE)
 	mov r8, r0
 	movs r5, #0x80
 	lsls r5, r5, #4
@@ -146368,11 +146868,11 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl FillHardwareDma3
-	ldr r1, .L080519C8 @ =0x0600F000
+	ldr r1, .L080519C8 @ =(MEM_VRAM + 30 * BG_SCREEN_SIZE)
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl FillHardwareDma3
-	ldr r1, .L080519CC @ =0x0600F800
+	ldr r1, .L080519CC @ =(MEM_VRAM + 31 * BG_SCREEN_SIZE)
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl FillHardwareDma3
@@ -146499,7 +146999,7 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	str r3, [r4]
 	movs r0, #1
 	mov r8, r0
-	ldr r5, .L08051A1C @ =0x06001800
+	ldr r5, .L08051A1C @ =(MEM_VRAM + 3 * BG_SCREEN_SIZE)
 	adds r6, r7, #0
 	ldr r4, .L08051A20 @ =gNewGameNameEntryUiCharacterCodes
 .L080518B0:
@@ -146630,47 +147130,47 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	bl DrawStringTo2DGfxBufferExt
 	b .L08051A72
 	.align 2, 0
-.L080519B8: .4byte 0xFFFFF58C
-.L080519BC: .4byte 0x06007FE0
-.L080519C0: .4byte 0x0600E000
-.L080519C4: .4byte 0x0600E800
-.L080519C8: .4byte 0x0600F000
-.L080519CC: .4byte 0x0600F800
-.L080519D0: .4byte 0x00001C43
-.L080519D4: .4byte 0x00001D41
-.L080519D8: .4byte 0x00001E42
-.L080519DC: .4byte gUiSharedTiles
-.L080519E0: .4byte gUiSharedTileByteCount
-.L080519E4: .4byte 0x00030003
-.L080519E8: .4byte gUiSharedPalette
-.L080519EC: .4byte 0x05000040
-.L080519F0: .4byte 0x05000042
-.L080519F4: .4byte 0x00004218
-.L080519F8: .4byte 0x00000A1C
-.L080519FC: .4byte 0x00000A4C
-.L08051A00: .4byte 0x00000A64
-.L08051A04: .4byte 0x00000A24
-.L08051A08: .4byte 0x00000A68
-.L08051A0C: .4byte 0x00000A5C
-.L08051A10: .4byte 0x00000A6C
-.L08051A14: .4byte 0x00000A34
-.L08051A18: .4byte 0x00000A54
-.L08051A1C: .4byte 0x06001800
-.L08051A20: .4byte gNewGameNameEntryUiCharacterCodes
-.L08051A24: .4byte 0x03FF03FF
-.L08051A28: .4byte 0x00000A38
-.L08051A2C: .4byte 0x00000A3C
-.L08051A30: .4byte 0x00000A44
-.L08051A34: .4byte 0x00000A48
-.L08051A38: .4byte 0x00000A28
-.L08051A3C: .4byte 0x00002C4C
-.L08051A40: .4byte 0x00001C70
+.L080519B8: .word 0xFFFFF58C
+.L080519BC: .word 0x06007FE0
+.L080519C0: .word (MEM_VRAM + 28 * BG_SCREEN_SIZE)
+.L080519C4: .word 0x0600E800
+.L080519C8: .word (MEM_VRAM + 30 * BG_SCREEN_SIZE)
+.L080519CC: .word (MEM_VRAM + 31 * BG_SCREEN_SIZE)
+.L080519D0: .word 0x00001C43
+.L080519D4: .word 0x00001D41
+.L080519D8: .word 0x00001E42
+.L080519DC: .word gUiSharedTiles
+.L080519E0: .word gUiSharedTileByteCount
+.L080519E4: .word 0x00030003
+.L080519E8: .word gUiSharedPalette
+.L080519EC: .word 0x05000040
+.L080519F0: .word 0x05000042
+.L080519F4: .word 0x00004218
+.L080519F8: .word 0x00000A1C
+.L080519FC: .word 0x00000A4C
+.L08051A00: .word 0x00000A64
+.L08051A04: .word 0x00000A24
+.L08051A08: .word 0x00000A68
+.L08051A0C: .word 0x00000A5C
+.L08051A10: .word 0x00000A6C
+.L08051A14: .word 0x00000A34
+.L08051A18: .word 0x00000A54
+.L08051A1C: .word (MEM_VRAM + 3 * BG_SCREEN_SIZE)
+.L08051A20: .word gNewGameNameEntryUiCharacterCodes
+.L08051A24: .word 0x03FF03FF
+.L08051A28: .word 0x00000A38
+.L08051A2C: .word 0x00000A3C
+.L08051A30: .word 0x00000A44
+.L08051A34: .word 0x00000A48
+.L08051A38: .word 0x00000A28
+.L08051A3C: .word 0x00002C4C
+.L08051A40: .word 0x00001C70
 .L08051A44:
 	ldrb r0, [r0]
 	lsls r1, r0, #3
 	subs r1, r1, r0
 	lsls r1, r1, #1
-	ldr r0, .L08051CE0 @ =gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
+	ldr r0, .L08051CE0 @ names[id - 1], with 14-byte rows
 	adds r1, r1, r0
 	ldr r0, .L08051CE4 @ =0x00000A2C
 	add r0, sp
@@ -146693,7 +147193,7 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	lsls r5, r2, #1
 	adds r4, r5, r2
 	lsls r1, r4, #8
-	ldr r3, .L08051CE8 @ =0x06002800
+	ldr r3, .L08051CE8 @ =(MEM_VRAM + 5 * BG_SCREEN_SIZE)
 	adds r1, r1, r3
 	ldr r2, .L08051CEC @ =0x00000A5C
 	add r2, sp
@@ -146770,7 +147270,7 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	mov r0, sl
 	movs r1, #2
 	movs r3, #1
-	bl func_08051D30
+	bl WriteFrisbeeScoreboardGlyphTiles
 .L08051B14:
 	adds r6, r5, #4
 	ldr r2, .L08051D00 @ =0x00000A38
@@ -146783,12 +147283,12 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	mov r0, sl
 	movs r1, #4
 	adds r2, r6, #0
-	bl func_08051D30
+	bl WriteFrisbeeScoreboardGlyphTiles
 	mov r0, sl
 	movs r1, #1
 	adds r2, r6, #0
 	movs r3, #0xc
-	bl func_08051D30
+	bl WriteFrisbeeScoreboardGlyphTiles
 	ldr r3, .L08051CF8 @ =0x00000A64
 	add r3, sp
 	ldr r3, [r3]
@@ -146806,7 +147306,7 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	mov r0, sl
 	movs r1, #0x14
 	adds r2, r6, #0
-	bl func_08051D30
+	bl WriteFrisbeeScoreboardGlyphTiles
 .L08051B64:
 	asrs r0, r4, #0x10
 	muls r5, r0, r5
@@ -146822,12 +147322,12 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	mov r0, sl
 	movs r1, #0x16
 	adds r2, r6, #0
-	bl func_08051D30
+	bl WriteFrisbeeScoreboardGlyphTiles
 	mov r0, sl
 	movs r1, #0x18
 	adds r2, r6, #0
 	movs r3, #0xa
-	bl func_08051D30
+	bl WriteFrisbeeScoreboardGlyphTiles
 	asrs r4, r4, #0x10
 	lsls r0, r4, #2
 	adds r0, r0, r4
@@ -146839,12 +147339,12 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	movs r1, #0x19
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08051D30
+	bl WriteFrisbeeScoreboardGlyphTiles
 	mov r0, sl
 	movs r1, #0x1b
 	adds r2, r6, #0
 	movs r3, #0xb
-	bl func_08051D30
+	bl WriteFrisbeeScoreboardGlyphTiles
 	ldr r4, .L08051CF0 @ =0x00000A58
 	add r4, sp
 	ldr r4, [r4]
@@ -146853,7 +147353,7 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	bgt .L08051BC6
 	b .L0805194E
 .L08051BC6:
-	ldr r1, .L08051D04 @ =0x0600F000
+	ldr r1, .L08051D04 @ =(MEM_VRAM + 30 * BG_SCREEN_SIZE)
 	movs r4, #0x80
 	lsls r4, r4, #4
 	ldr r2, .L08051CF4 @ =0x00000A44
@@ -146900,7 +147400,7 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	movs r2, #0
 	movs r3, #0
 	bl DrawStringTo2DGfxBufferExt
-	ldr r1, .L08051D18 @ =0x06002000
+	ldr r1, .L08051D18 @ =(MEM_VRAM + 4 * BG_SCREEN_SIZE)
 	movs r2, #0xd8
 	lsls r2, r2, #3
 	ldr r4, .L08051D1C @ =0x00000A54
@@ -146929,7 +147429,7 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	adds r3, #1
 	cmp r3, #0x1a
 	ble .L08051C54
-	ldr r1, .L08051D24 @ =0x0600F800
+	ldr r1, .L08051D24 @ =(MEM_VRAM + 31 * BG_SCREEN_SIZE)
 	movs r2, #0x80
 	lsls r2, r2, #4
 	ldr r3, .L08051CF4 @ =0x00000A44
@@ -146963,7 +147463,7 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	ldr r0, [r3]
 	bl GetHardwarePoolHandleIndex
 	lsls r0, r0, #5
-	ldr r2, .L08051D28 @ =0x05000200
+	ldr r2, .L08051D28 @ =OBJ_PALETTE
 	adds r1, r0, r2
 	ldr r0, [sp, #0x1c]
 	movs r2, #0
@@ -146987,29 +147487,29 @@ InitializeDisplay__21FrisbeeScoreboardCore: @ 0x080516F0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08051CE0: .4byte gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
-.L08051CE4: .4byte 0x00000A2C
-.L08051CE8: .4byte 0x06002800
-.L08051CEC: .4byte 0x00000A5C
-.L08051CF0: .4byte 0x00000A58
-.L08051CF4: .4byte 0x00000A44
-.L08051CF8: .4byte 0x00000A64
-.L08051CFC: .4byte 0x00000A3C
-.L08051D00: .4byte 0x00000A38
-.L08051D04: .4byte 0x0600F000
-.L08051D08: .4byte 0x03FF03FF
-.L08051D0C: .4byte 0x00000A6C
-.L08051D10: .4byte gText_Frisbee_TournamentScoreboard
-.L08051D14: .4byte 0x00000A34
-.L08051D18: .4byte 0x06002000
-.L08051D1C: .4byte 0x00000A54
-.L08051D20: .4byte 0x00000A48
-.L08051D24: .4byte 0x0600F800
-.L08051D28: .4byte 0x05000200
-.L08051D2C: .4byte 0x00000A74
+.L08051CE0: .word gText_NameEntry_PresetAnimalNames - 14 @ one-based fixed 14-byte name rows
+.L08051CE4: .word 0x00000A2C
+.L08051CE8: .word (MEM_VRAM + 5 * BG_SCREEN_SIZE)
+.L08051CEC: .word 0x00000A5C
+.L08051CF0: .word 0x00000A58
+.L08051CF4: .word 0x00000A44
+.L08051CF8: .word 0x00000A64
+.L08051CFC: .word 0x00000A3C
+.L08051D00: .word 0x00000A38
+.L08051D04: .word (MEM_VRAM + 30 * BG_SCREEN_SIZE)
+.L08051D08: .word 0x03FF03FF
+.L08051D0C: .word 0x00000A6C
+.L08051D10: .word gText_Frisbee_TournamentScoreboard
+.L08051D14: .word 0x00000A34
+.L08051D18: .word (MEM_VRAM + 4 * BG_SCREEN_SIZE)
+.L08051D1C: .word 0x00000A54
+.L08051D20: .word 0x00000A48
+.L08051D24: .word (MEM_VRAM + 31 * BG_SCREEN_SIZE)
+.L08051D28: .word OBJ_PALETTE
+.L08051D2C: .word 0x00000A74
 
-	thumb_func_start func_08051D30
-func_08051D30: @ 0x08051D30
+	thumb_func_start WriteFrisbeeScoreboardGlyphTiles
+WriteFrisbeeScoreboardGlyphTiles: @ 0x08051D30
 	push {r4, r5, r6, r7, lr}
 	lsls r3, r3, #1
 	movs r4, #0x83
@@ -147041,7 +147541,7 @@ func_08051D30: @ 0x08051D30
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08051D6C: .4byte 0x000020C1
+.L08051D6C: .word 0x000020C1
 
 	thumb_func_start UpdateArrows__21FrisbeeScoreboardCore
 UpdateArrows__21FrisbeeScoreboardCore: @ 0x08051D70

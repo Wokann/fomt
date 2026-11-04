@@ -211,7 +211,7 @@ ALL_DEPS += $(REGION_TEXT_DEPS) $(GUIDE_GENERATED_DEP) $(MARY_BUNDLE_DEP)
 
 # Bootstrap generated type metadata before scanning headers. Only actual
 # include users acquire a normal dependency on it in their compiler .d file.
-$(ALL_DEPS): | $(INTRO_SCENE_SIZE_HEADER)
+$(ALL_DEPS): | $(INTRO_SCENE_SIZE_HEADER) $(UI_GRAPHICS_SIZE_HEADER)
 
 $(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
@@ -341,14 +341,15 @@ $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 	@echo "AS $<"
 	@$(AS) $(ASFLAGS) $< -o $@
 
-# The remaining intro assembly consumes the same structure-layout constants
-# as C++. Preserve the normal GAS include scan alongside CPP header discovery.
-$(BUILD_DIR)/asm/intro_scene.d: asm/intro_scene.s $(SCANINC) Makefile config.mk
+# Assembly sharing generated layout/size constants with C++. Preserve the
+# normal GAS include scan alongside CPP header discovery.
+CPP_ASM_SOURCES := asm/intro_scene.s asm/new_game_menu.s
+$(patsubst %.s,$(BUILD_DIR)/%.d,$(CPP_ASM_SOURCES)): $(BUILD_DIR)/%.d: %.s $(SCANINC) Makefile config.mk
 	@mkdir -p $(dir $@)
 	@$(SCANINC) -M $@ $(SCANINC_DEFINES) $(INCFLAGS) -I . -I include $<
-	@$(CPP) $(CPPFLAGS) -D__ASSEMBLER__ -x assembler-with-cpp $< -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/asm/intro_scene.o >> $@
+	@$(CPP) $(CPPFLAGS) -D__ASSEMBLER__ -x assembler-with-cpp $< -MM -MG -MP -MT $@ -MT $(@:.d=.o) >> $@
 
-$(BUILD_DIR)/asm/intro_scene.o: asm/intro_scene.s $(BUILD_DIR)/asm/intro_scene.d
+$(patsubst %.s,$(BUILD_DIR)/%.o,$(CPP_ASM_SOURCES)): $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 	@echo "AS $<"
 	@$(CPP) $(CPPFLAGS) -D__ASSEMBLER__ -x assembler-with-cpp $< -o $(basename $@).s
 	@$(AS) $(ASFLAGS) $(basename $@).s -o $@

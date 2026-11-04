@@ -458,6 +458,7 @@ extern u8 const gUnk_UiSharedResourceData_001[];
 extern u8 const * const gUiSharedTiles;
 extern u32 const gUiSharedTileByteCount;
 extern u8 const * const gUiSharedPalette;
+extern u32 const gUiSharedPaletteByteCount;
 
 // Eight 16-byte DMA descriptors; only the counted range has an active lifetime.
 struct UiDmaTransferQueue

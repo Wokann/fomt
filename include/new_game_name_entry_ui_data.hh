@@ -13,16 +13,12 @@ enum
 #endif
 };
 
-// Both name-entry screens index this fixed-width list with values 1..30.
-// The JP and western encodings have different row widths. The native metadata
-// base is a separate 14-byte prefix immediately before this array.
+// Both name-entry screens use one-based IDs: names[id - 1]. JP and western
+// encodings have different fixed row widths; the rows do not belong to the
+// preceding shared UI palette metadata or runtime string.
 extern char const gText_NameEntry_PresetAnimalNames[NEW_GAME_NAME_ENTRY_PRESET_ANIMAL_NAME_COUNT][NEW_GAME_NAME_ENTRY_PRESET_ANIMAL_NAME_WIDTH];
 
-// Native code dereferences this exact word through the lookup base located
-// before the regional fixed-stride name rows. Its high-level role is unknown.
-extern u32 const gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue;
-
-// Runtime string stored after the prefix word and before the name rows.
+// Runtime string stored immediately before the name rows.
 extern char const gCppRuntimeBadAlloc_NewGameNameEntryPresetNames[];
 
 // The native name-entry path reads the first thirteen glyph codes. The fixed

@@ -2,6 +2,7 @@
 #include "prelude.h"
 #pragma implementation "ui_state.hh"
 #include "ui_state.hh"
+#include "ui_graphics_sizes.hh"
 #include "ui_text_window.hh"
 #include "font.hh"
 #include "resource_handle.hh"
@@ -1054,5 +1055,6 @@ UiTextLayoutPositionTable const gUiTextLayoutPositionTable = {
 };
 
 u8 const * const gUiSharedTiles = gUnk_UiSharedResourceData_000;
-u32 const gUiSharedTileByteCount = 0x120;
+u32 const gUiSharedTileByteCount = UI_SHARED_TILE_BYTES;
 u8 const * const gUiSharedPalette = gUnk_UiSharedResourceData_001;
+u32 const gUiSharedPaletteByteCount = UI_SHARED_PALETTE_BYTES;

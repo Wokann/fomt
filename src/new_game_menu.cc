@@ -2,6 +2,7 @@
 #include "gbaio.h"
 #pragma implementation "new_game_menu.hh"
 #include "new_game_menu.hh"
+#include "ui_graphics_sizes.hh"
 #include "new_game_data.hh"
 #include "new_game.hh"
 #include "hardware_state_accessors.hh"
@@ -301,7 +302,7 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
     new (&core->music_players[0]) HardwareMusicPlayerSlot(1);
     new (&core->music_players[1]) HardwareMusicPlayerSlot(2);
     new (&core->resources) IndexedResourceArchive(gUiHandCursorArchive);
-    new (&core->state_entry) HardwareStateEntry(2);
+    new (&core->state_entry) HardwareStateEntry(UI_HAND_CURSOR_TILE_SIZE_SHIFT);
     new (&core->resource_entry) HardwareResourceEntry;
     HardwareSpriteOamRecord initial_sprite = {};
     core->option_attributes = initial_sprite;

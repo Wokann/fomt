@@ -1435,7 +1435,7 @@ SECTIONS
         . = ALIGN(4);
         src/ui_state.o(.rodata);
         /* Bounded New Game preset localization island: names and UI glyphs. */
-        . = ABSOLUTE(0x080F9F7C); src/new_game_name_entry_ui_data.o(.rodata);
+        . = ABSOLUTE(0x080F9F80); src/new_game_name_entry_ui_data.o(.rodata);
         FILL(0x00);
         . = ABSOLUTE(0x080FA158); src/frisbee_scoreboard.o(.rodata);
         . = ABSOLUTE(0x080FA174); src/animal_festival_ranking_score_data.o(.rodata);

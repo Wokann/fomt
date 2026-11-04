@@ -1,5 +1,22 @@
 # 文本 ROM 物理地址布局
 
+## 共享 UI 长度与姓名表边界更正（2026-11-05）
+
+共享 UI palette 指针后的长度 word 属于 ui_state.cc，现名为
+gUiSharedPaletteByteCount；它不属于姓名表。文本内容及每个原始标签地址均未移动。
+
+| 区域 | 长度字段原址（值 32） | 姓名模块真实起点 | 姓名数组起点 |
+| --- | --- | --- | --- |
+| JP | 080F97D8 | 080F97DC | 080F97E6 |
+| US | 080F9F7C | 080F9F80 | 080F9F8A |
+| EU | 080F9FC8 | 080F9FCC | 080F9FD6 |
+| DE | 080FA464 | 080FA468 | 080FA472 |
+
+菜单按独立符号读取长度；姓名消费者使用二维数组的 names[id - 1]，保留
+JP 13B/海外 14B 的真实固定行宽，解除其对 palette/runtime 字符串邻接的依赖。
+US/EU LDS 中姓名模块起点相应对准 runtime 字符串；后续块位置不变。
+四版原位 compare 与新旧地址/重定位核对通过。该结论不代表全部文本可任意搬移。
+
 ## JP 原生代码的数据引用补全（2026-11-04）
 
 `asm/code_0803EE94.s`、`asm/code_809E804.s` 和 `asm/code_linkonce.s` 中的
@@ -3573,8 +3590,8 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080F973C`–`0x080F974F` | `src/spouse_gift.o(.rodata)` | [数据] | `src/spouse_gift.cc`<br>`include/spouse_gift.hh` | `gSpouseGiftArticleSelectionEntries`；汇编调用为符号重定位 |
 | `0x080F9750`–`0x080F9755` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.cc`<br>`include/farm_house.hh` | `gFarmHouseBedXPositions`；唯一汇编调用为符号重定位 |
 | `0x080F9756`–`0x080F9757` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F9758`–`0x080F97D7` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/jp/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedResourceData`<br>两个原始资源入口为 `data_0813B288.s` 中的直接标签，所有已知使用处均为符号重定位 |
-| `0x080F97D8`–`0x080F9993` | `src/new_game_name_entry_ui_data.o(.rodata)` | [文本与数据] | `data/text/jp/new_game_name_entry_ui_data.cc` → `src/new_game_name_entry_ui_data.cc`<br>`include/new_game_name_entry_ui_data.hh` | `gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`、运行时字符串 `1` 项、30 行固定宽度 `gText_NameEntry_PresetAnimalNames`、`gNewGameNameEntryUiCharacterCodes`<br>前缀、文本和字形表在同一对象中按 ROM 顺序排列；所有已知汇编读取为符号重定位 |
+| `0x080F9758`–`0x080F97DB` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/jp/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedTiles`, `gUiSharedTileByteCount`, `gUiSharedPalette`, `gUiSharedPaletteByteCount`<br>两个原始资源入口为 `data_0813B288.s` 中的直接标签，所有已知使用处均为符号重定位 |
+| `0x080F97DC`–`0x080F9993` | `src/new_game_name_entry_ui_data.o(.rodata)` | [文本与数据] | `data/text/jp/new_game_name_entry_ui_data.cc` → `src/new_game_name_entry_ui_data.cc`<br>`include/new_game_name_entry_ui_data.hh` | 运行时字符串 `1` 项、30 行固定宽度 `gText_NameEntry_PresetAnimalNames`、`gNewGameNameEntryUiCharacterCodes`<br>runtime 文本、姓名数组和字形表在同一对象中按 ROM 顺序排列；所有已知汇编读取为符号重定位 |
 | `0x080F9994`–`0x080F99AA` | `src/frisbee_scoreboard.o(.rodata)` | [嵌入文本] | `data/text/jp/frisbee_scoreboard.cc` → `src/frisbee_scoreboard.cc`<br>`include/frisbee_scoreboard.hh` | `gText_Frisbee_TournamentScoreboard`；唯一汇编调用为符号重定位<br>后续飞盘文本与本对象之间夹有动物节数据，故保持独立模块 |
 | `0x080F99AB`–`0x080F99AB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080F99AC`–`0x080F9BD3` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/jp/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
@@ -5412,8 +5429,8 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080F9EE0`–`0x080F9EF3` | `src/spouse_gift.o(.rodata)` | [数据] | `src/spouse_gift.cc`<br>`include/spouse_gift.hh` | `gSpouseGiftArticleSelectionEntries`；汇编调用为符号重定位 |
 | `0x080F9EF4`–`0x080F9EF9` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.cc`<br>`include/farm_house.hh` | `gFarmHouseBedXPositions`；唯一汇编调用为符号重定位 |
 | `0x080F9EFA`–`0x080F9EFB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F9EFC`–`0x080F9F7B` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/us/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedResourceData`<br>两个原始资源入口为 `data_0813B288.s` 中的直接标签，所有已知使用处均为符号重定位 |
-| `0x080F9F7C`–`0x080FA157` | `src/new_game_name_entry_ui_data.o(.rodata)` | [文本与数据] | `data/text/us/new_game_name_entry_ui_data.cc` → `src/new_game_name_entry_ui_data.cc`<br>`include/new_game_name_entry_ui_data.hh` | `gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`、运行时字符串 `1` 项、30 行固定宽度 `gText_NameEntry_PresetAnimalNames`、`gNewGameNameEntryUiCharacterCodes`<br>前缀、文本和字形表在同一对象中按 ROM 顺序排列；所有已知汇编读取为符号重定位 |
+| `0x080F9EFC`–`0x080F9F7F` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/us/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedTiles`, `gUiSharedTileByteCount`, `gUiSharedPalette`, `gUiSharedPaletteByteCount`<br>两个原始资源入口为 `data_0813B288.s` 中的直接标签，所有已知使用处均为符号重定位 |
+| `0x080F9F80`–`0x080FA157` | `src/new_game_name_entry_ui_data.o(.rodata)` | [文本与数据] | `data/text/us/new_game_name_entry_ui_data.cc` → `src/new_game_name_entry_ui_data.cc`<br>`include/new_game_name_entry_ui_data.hh` | 运行时字符串 `1` 项、30 行固定宽度 `gText_NameEntry_PresetAnimalNames`、`gNewGameNameEntryUiCharacterCodes`<br>runtime 文本、姓名数组和字形表在同一对象中按 ROM 顺序排列；所有已知汇编读取为符号重定位 |
 | `0x080FA158`–`0x080FA173` | `src/frisbee_scoreboard.o(.rodata)` | [嵌入文本] | `data/text/us/frisbee_scoreboard.cc` → `src/frisbee_scoreboard.cc`<br>`include/frisbee_scoreboard.hh` | `gText_Frisbee_TournamentScoreboard`；唯一汇编调用为符号重定位<br>后续飞盘文本与本对象之间夹有动物节数据，故保持独立模块 |
 | `0x080FA174`–`0x080FA39B` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/us/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
 | `0x080FA39C`–`0x080FA719` | `src/frisbee.o(.rodata)` | [嵌入文本] | `data/text/us/frisbee.cc` → `src/frisbee.cc`<br>`include/frisbee.hh` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |

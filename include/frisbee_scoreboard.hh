@@ -47,6 +47,11 @@ struct FrisbeeScoreboardCore : HardwareBootstrap {
     i32 phase;
 };
 
+// Place one pre-rendered glyph in the core's 32-column tilemap. JP glyphs
+// occupy two columns; western glyphs occupy one. Both use two tile rows.
+extern "C" void WriteFrisbeeScoreboardGlyphTiles(FrisbeeScoreboardCore * core,
+    unsigned x, unsigned y, unsigned glyph);
+
 typedef char FrisbeeScoreboardCoreSizeCheck[sizeof(FrisbeeScoreboardCore) == 0x8C0 ? 1 : -1];
 typedef char FrisbeeScoreboardCoreOffset_save[offsetof(FrisbeeScoreboardCore, save) == 0x8 ? 1 : -1];
 typedef char FrisbeeScoreboardCoreOffset_music_player[offsetof(FrisbeeScoreboardCore, music_player) == 0xC ? 1 : -1];
