@@ -1380,6 +1380,98 @@ std::string PreprocessAssembly(const std::string &source, const std::string &ass
             FixupSameUnitConstCharReferences(source, NormalizeStackImmediateSyntax(assembly)))));
 }
 
+// Optional localization reservations are generated from a verified native
+// layout. They pad data input sections without changing source declarations,
+// linker section names, object symbol sizes, relocations, or instructions.
+std::string ReserveDataSections(const std::string &assembly,
+    const std::string &plan, const std::string &owner)
+{
+    std::map<std::string, std::size_t> capacities;
+    for (const auto &line : SplitLines(plan)) {
+        if (Trim(line).empty() || Trim(line).front() == '#')
+            continue;
+        std::istringstream fields(line);
+        std::string file, name, bytes, extra;
+        if (!(fields >> file >> name >> bytes) || (fields >> extra))
+            throw std::runtime_error("invalid data reservation row: " + line);
+        if (file == owner && !capacities.emplace(name, std::stoul(bytes, nullptr, 0)).second)
+            throw std::runtime_error("duplicate data reservation: " + name);
+    }
+    if (capacities.empty())
+        return assembly;
+
+    struct Part {
+        std::string directive;
+        std::size_t begin, end;
+        std::set<std::string> objects;
+    };
+    const auto lines = SplitLines(assembly);
+    std::vector<Part> parts;
+    std::map<std::string, std::size_t> sections;
+    const std::regex data_section(R"(^\s*\.section\s+\.rodata(?:[.,\s].*)?$)");
+    const std::regex object_type(R"(^\s*\.type\s+([^,\s]+)\s*,\s*object\s*$)");
+    std::size_t active = std::string::npos;
+    for (std::size_t index = 0; index <= lines.size(); ++index) {
+        if (index == lines.size() || IsAssemblyDataSectionTransition(lines[index])) {
+            if (active != std::string::npos)
+                parts[active].end = index;
+            active = std::string::npos;
+            if (index == lines.size() || !std::regex_match(lines[index], data_section))
+                continue;
+            const std::string directive = Trim(lines[index]);
+            auto found = sections.find(directive);
+            if (found == sections.end()) {
+                active = parts.size();
+                sections.emplace(directive, active);
+                parts.push_back({directive, index + 1, index + 1, {}});
+            } else {
+                active = found->second;
+            }
+        } else if (active != std::string::npos) {
+            std::smatch match;
+            if (std::regex_match(lines[index], match, object_type))
+                parts[active].objects.insert(match[1].str());
+        }
+    }
+    std::map<std::size_t, std::vector<std::string>> insertions;
+    std::set<std::string> used;
+    for (std::size_t index = 0; index < parts.size(); ++index) {
+        const Part &part = parts[index];
+        std::vector<std::string> matches;
+        for (const auto &name : part.objects) {
+            if (capacities.count(name))
+                matches.push_back(name);
+        }
+        if (matches.empty() && part.objects.empty()
+            && part.directive.find("unique") == std::string::npos
+            && capacities.count("@plain"))
+            matches.push_back("@plain");
+        if (matches.size() != 1)
+            continue;
+        const std::string &name = matches.front();
+        if (!used.insert(name).second)
+            throw std::runtime_error("ambiguous data reservation: " + name);
+        const std::string size = std::to_string(capacities.at(name));
+        auto &tail = insertions[part.end];
+        // .org is relative to this individual input section. GAS rejects a
+        // backwards .org, so an oversized object fails even with relaxation
+        // fragments from compiler alignment directives.
+        tail.push_back("\t.org " + size + ", 0 @ localization reservation: " + name);
+    }
+    for (const auto &[name, size] : capacities) {
+        if (!used.count(name))
+            throw std::runtime_error("data reservation object is missing: " + owner + ":" + name);
+    }
+    std::ostringstream output;
+    for (std::size_t index = 0; index <= lines.size(); ++index) {
+        for (const auto &line : insertions[index])
+            output << line << '\n';
+        if (index != lines.size())
+            output << lines[index] << '\n';
+    }
+    return output.str();
+}
+
 void Require(bool condition, const std::string &message)
 {
     if (!condition)
@@ -1388,6 +1480,23 @@ void Require(bool condition, const std::string &message)
 
 void SelfTest()
 {
+    const std::string reservation_input =
+        "\t.section .rodata,\"a\",%progbits,unique,1\n"
+        "\t.type gText,object\ngText:\n\t.ascii \"A\\000\"\n"
+        "\t.section .text.example,\"ax\",%progbits\n"
+        "example:\n\tbx lr\n"
+        "\t.section .rodata,\"a\",%progbits,unique,2\n"
+        "\t.type gTable,object\ngTable:\n\t.word gText\n";
+    const std::string reserved = ReserveDataSections(reservation_input,
+        "src/test.o gText 12\nsrc/test.o gTable 8\n", "src/test.o");
+    Require(reserved.find(".org 12, 0 @ localization reservation: gText") != std::string::npos
+        && reserved.find(".org 8, 0 @ localization reservation: gTable") != std::string::npos,
+        "data reservations did not preserve separate input sections");
+    Require(reserved.find("example:\n\tbx lr\n") != std::string::npos
+        && reserved.find("\t.word gText\n") != std::string::npos,
+        "data reservations changed an instruction or pointer");
+    Require(ReserveDataSections(reservation_input, "other.o gText 8\n", "src/test.o")
+        == reservation_input, "unselected objects were reserved");
     const std::string stack_immediate_assembly =
         "\tadd\tsp, sp, 0x8\n"
         "  sub sp,sp,20 @ argument save area\n"
@@ -1888,7 +1997,8 @@ const char *Usage()
 {
     return "usage:\n"
            "  fomt-preproc self-test\n"
-           "  fomt-preproc asm SOURCE ASSEMBLY\n";
+           "  fomt-preproc asm SOURCE ASSEMBLY\n"
+           "  fomt-preproc reserve PLAN OWNER ASSEMBLY\n";
 }
 
 int Run(int argc, char **argv)
@@ -1902,6 +2012,12 @@ int Run(int argc, char **argv)
         const std::filesystem::path source = argv[2];
         const std::filesystem::path assembly = argv[3];
         WriteTextFile(assembly, PreprocessAssembly(ReadTextFile(source), ReadTextFile(assembly)));
+        return 0;
+    }
+    if (argc == 5 && std::string(argv[1]) == "reserve") {
+        const std::filesystem::path assembly = argv[4];
+        WriteTextFile(assembly, ReserveDataSections(ReadTextFile(assembly),
+            ReadTextFile(argv[2]), argv[3]));
         return 0;
     }
     throw std::runtime_error(Usage());

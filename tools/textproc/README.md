@@ -17,6 +17,27 @@
 
     make -C tools/textproc test
 
+An optional data-layout pass accepts an explicitly supplied reservation plan:
+
+    tools/textproc/fomt-preproc reserve PLAN OWNER ASSEMBLY
+
+Each non-comment row has three whitespace-separated fields: the object owner,
+the actual data symbol, and its input-section capacity in bytes. For example:
+
+    src/example.o gText_Example 32
+    src/example.o gExampleTable 16
+
+Only rows matching OWNER are applied. A named object must identify exactly
+one `.rodata` input section; `@plain` can identify an unnamed, non-unique
+`.rodata` section. Missing or ambiguous reservations fail. The pass appends
+zero-filled `.org` capacity directives to selected input sections; GAS rejects
+an object that no longer fits. It preserves section names, object `.size`,
+instructions and symbolic pointer relocations. It neither determines safe
+capacities nor moves objects, so the caller must supply a verified plan.
+
+This is a separate, opt-in command. `fomt-preproc asm` and native builds keep
+their existing behavior without a reservation pass.
+
 生成游戏资源前可校验版本化 map：
 
     tools/textproc/fomt-text validate charmap.txt JP
