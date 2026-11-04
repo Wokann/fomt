@@ -1,13 +1,13 @@
-#ifndef HARDWARE_MASK_HH
-#define HARDWARE_MASK_HH
+#ifndef OBJ_TILE_BITMAP_HH
+#define OBJ_TILE_BITMAP_HH
 
 #include "prelude.h"
 
 // The leaves of the OBJ tile tree each track 32 contiguous tiles.
-typedef struct HardwareTileBitmap32 {
+typedef struct ObjTileBitmap32 {
     u32 bits;
 #ifdef __cplusplus
-    HardwareTileBitmap32() : bits(0) {}
+    ObjTileBitmap32() : bits(0) {}
     bool IsFull() const { return bits + 1 == 0; }
     bool IsEmpty() const { return bits == 0; }
     // Allocate 2^size_shift tiles, or return 32 when no range is available.
@@ -15,8 +15,8 @@ typedef struct HardwareTileBitmap32 {
     // The offset remains relative to the tree; only its low five bits matter.
     void Free(u32 offset, u32 size_shift);
 #endif
-} HardwareTileBitmap32;
+} ObjTileBitmap32;
 
-typedef char HardwareTileBitmap32SizeCheck[sizeof(HardwareTileBitmap32) == 4 ? 1 : -1];
+typedef char ObjTileBitmap32SizeCheck[sizeof(ObjTileBitmap32) == 4 ? 1 : -1];
 
-#endif // HARDWARE_MASK_HH
+#endif // OBJ_TILE_BITMAP_HH

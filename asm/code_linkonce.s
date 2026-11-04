@@ -1061,15 +1061,15 @@ sub_080D8178:
     bl __18HardwareStateOwner
     .byte 0x1F, 0x4C, 0x6C, 0x44
     .byte 0x20, 0x1C
-    bl __16HardwareResource
+    bl __20ObjPaletteCollection
     .byte 0x01, 0x20, 0x00, 0x90, 0x01, 0x95, 0x02, 0x94, 0x30, 0x1C
     .byte 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
     .byte 0x54, 0x46, 0xAC, 0x34, 0x05, 0x1C
     .byte 0x20, 0x68, 0x26, 0x1C, 0x85, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
     bl _._12UiStateOwner
     .byte 0x25, 0x60, 0x11, 0x48, 0x68, 0x44, 0x02, 0x21
-    bl _._16HardwareResource
+    bl _._20ObjPaletteCollection
     .byte 0x87, 0x20
     .byte 0xC0, 0x00, 0x68, 0x44, 0x02, 0x21
     bl _._18HardwareStateOwner
@@ -1385,16 +1385,16 @@ sub_080D8178:
     .byte 0x06, 0x1C, 0x87, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x28, 0x1C
     bl __18HardwareStateOwner
     .byte 0x16, 0x4C, 0x6C, 0x44, 0x20, 0x1C
-    bl __16HardwareResource
+    bl __20ObjPaletteCollection
     .byte 0x01, 0x20, 0x00, 0x90, 0x01, 0x95
     .byte 0x02, 0x94, 0x30, 0x1C, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
     .byte 0x54, 0x46
     .byte 0xAC, 0x34, 0x05, 0x1C, 0x20, 0x68, 0x26, 0x1C, 0x85, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0
     .byte 0x03, 0x21
     bl _._12UiStateOwner
     .byte 0x25, 0x60, 0x08, 0x48, 0x68, 0x44, 0x02, 0x21
-    bl _._16HardwareResource
+    bl _._20ObjPaletteCollection
     .byte 0x87, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x02, 0x21
     bl _._18HardwareStateOwner
     .byte 0x30, 0x68
@@ -5354,16 +5354,16 @@ __thunk_12_OnCall__20FarmingTutorialScenei:
     .byte 0x04, 0x1C, 0x04, 0xA8
     bl __18HardwareStateOwner
     .byte 0x05, 0xA8
-    bl __16HardwareResource
+    bl __20ObjPaletteCollection
     .byte 0x05, 0xA9, 0x01, 0x20, 0x00, 0x90, 0x04, 0xA8, 0x01, 0x90, 0x02, 0x91, 0x20, 0x1C, 0x00, 0x21
     .byte 0x1F, 0x22, 0x00, 0x23
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
     .byte 0x35, 0x1C, 0x04, 0x1C, 0x30, 0x68, 0x84, 0x42
     .byte 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
     bl _._12UiStateOwner
     .byte 0x2C, 0x60, 0x05, 0xA8
     .byte 0x02, 0x21
-    bl _._16HardwareResource
+    bl _._20ObjPaletteCollection
     .byte 0x04, 0xA8, 0x02, 0x21
     bl _._18HardwareStateOwner
     .byte 0x27, 0xE0
@@ -5372,16 +5372,16 @@ __thunk_12_OnCall__20FarmingTutorialScenei:
     .byte 0x04, 0x1C, 0x04, 0xA8
     bl __18HardwareStateOwner
     .byte 0x05, 0xA8
-    bl __16HardwareResource
+    bl __20ObjPaletteCollection
     .byte 0x05, 0xA8, 0x00, 0x95, 0x04, 0xA9, 0x01, 0x91, 0x02, 0x90, 0x20, 0x1C
     .byte 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
     .byte 0x35, 0x1C, 0x04, 0x1C, 0x30, 0x68
     .byte 0x84, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
     bl _._12UiStateOwner
     .byte 0x2C, 0x60
     .byte 0x05, 0xA8, 0x02, 0x21
-    bl _._16HardwareResource
+    bl _._20ObjPaletteCollection
     .byte 0x04, 0xA8, 0x02, 0x21
     bl _._18HardwareStateOwner
     .byte 0x30, 0x68
@@ -8020,7 +8020,7 @@ sub_080D8178: @ 0x080D8178
 	ldr r4, .L080D8D88 @ =0x0000043C
 	add r4, sp
 	adds r0, r4, #0
-	bl __16HardwareResource
+	bl __20ObjPaletteCollection
 	movs r0, #1
 	str r0, [sp]
 	str r5, [sp, #4]
@@ -8029,7 +8029,7 @@ sub_080D8178: @ 0x080D8178
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
 	mov r4, sl
 	adds r4, #0xac
 	adds r5, r0, #0
@@ -8046,7 +8046,7 @@ sub_080D8178: @ 0x080D8178
 	ldr r0, .L080D8D88 @ =0x0000043C
 	add r0, sp
 	movs r1, #2
-	bl _._16HardwareResource
+	bl _._20ObjPaletteCollection
 	movs r0, #0x87
 	lsls r0, r0, #3
 	add r0, sp
@@ -9404,7 +9404,7 @@ sub_080D8178: @ 0x080D8178
 	ldr r4, .L080D9970 @ =0x0000043C
 	add r4, sp
 	adds r0, r4, #0
-	bl __16HardwareResource
+	bl __20ObjPaletteCollection
 	movs r0, #1
 	str r0, [sp]
 	str r5, [sp, #4]
@@ -9413,7 +9413,7 @@ sub_080D8178: @ 0x080D8178
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
 	mov r4, sl
 	adds r4, #0xac
 	adds r5, r0, #0
@@ -9430,7 +9430,7 @@ sub_080D8178: @ 0x080D8178
 	ldr r0, .L080D9970 @ =0x0000043C
 	add r0, sp
 	movs r1, #2
-	bl _._16HardwareResource
+	bl _._20ObjPaletteCollection
 	movs r0, #0x87
 	lsls r0, r0, #3
 	add r0, sp
@@ -16731,7 +16731,7 @@ __thunk_12_OnCall__20FarmingTutorialScenei: @ 0x080DE298
 	add r0, sp, #0x10
 	bl __18HardwareStateOwner
 	add r0, sp, #0x14
-	bl __16HardwareResource
+	bl __20ObjPaletteCollection
 	add r1, sp, #0x14
 	movs r0, #1
 	str r0, [sp]
@@ -16742,7 +16742,7 @@ __thunk_12_OnCall__20FarmingTutorialScenei: @ 0x080DE298
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
 	adds r5, r6, #0
 	adds r4, r0, #0
 	ldr r0, [r6]
@@ -16756,7 +16756,7 @@ __thunk_12_OnCall__20FarmingTutorialScenei: @ 0x080DE298
 	str r4, [r5]
 	add r0, sp, #0x14
 	movs r1, #2
-	bl _._16HardwareResource
+	bl _._20ObjPaletteCollection
 	add r0, sp, #0x10
 	movs r1, #2
 	bl _._18HardwareStateOwner
@@ -16768,7 +16768,7 @@ __thunk_12_OnCall__20FarmingTutorialScenei: @ 0x080DE298
 	add r0, sp, #0x10
 	bl __18HardwareStateOwner
 	add r0, sp, #0x14
-	bl __16HardwareResource
+	bl __20ObjPaletteCollection
 	add r0, sp, #0x14
 	str r5, [sp]
 	add r1, sp, #0x10
@@ -16778,7 +16778,7 @@ __thunk_12_OnCall__20FarmingTutorialScenei: @ 0x080DE298
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0
-	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
 	adds r5, r6, #0
 	adds r4, r0, #0
 	ldr r0, [r6]
@@ -16792,7 +16792,7 @@ __thunk_12_OnCall__20FarmingTutorialScenei: @ 0x080DE298
 	str r4, [r5]
 	add r0, sp, #0x14
 	movs r1, #2
-	bl _._16HardwareResource
+	bl _._20ObjPaletteCollection
 	add r0, sp, #0x10
 	movs r1, #2
 	bl _._18HardwareStateOwner

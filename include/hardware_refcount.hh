@@ -2,7 +2,7 @@
 #define HARDWARE_REFCOUNT_HH
 
 #include "prelude.h"
-#include "hardware_mask.hh"
+#include "obj_tile_bitmap.hh"
 
 // This lifetime owner only retains/reserves the shared state. Its original
 // constructor does not write the owner's four-byte storage.
@@ -74,7 +74,7 @@ typedef u8 HardwareTileTreeFlag;
 typedef struct HardwareTileTree64 {
     HardwareTileTreeFlag full;
     HardwareTileTreeFlag empty;
-    HardwareTileBitmap32 children[2];
+    ObjTileBitmap32 children[2];
 #ifdef __cplusplus
     HardwareTileTree64() : full(false), empty(true) {}
     // Allocate 2^size_shift tiles, or return this node's capacity on failure.

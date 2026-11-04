@@ -40,7 +40,7 @@ IntroStorySceneCore * InitializeIntroStorySceneCore(IntroStorySceneCore * core,
     void * storage = operator new(sizeof(UiStateOwner));
     {
         HardwareStateOwner shared;
-        HardwareResource resources;
+        ObjPaletteCollection resources;
         core->ui_state = new (storage) UiStateOwner(0, 31, 15, core->unk_0C, shared, resources);
     }
     new (&core->music_players[0]) HardwareMusicPlayerSlot(1);

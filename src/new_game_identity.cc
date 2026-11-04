@@ -50,7 +50,7 @@ NewGameIdentityCore * InitializeNewGameIdentityCore(NewGameIdentityCore * core,
     UiStateOwner * storage = static_cast<UiStateOwner *>(::operator new(sizeof(UiStateOwner)));
     {
         HardwareStateOwner shared;
-        HardwareResource resources;
+        ObjPaletteCollection resources;
         UiStateOwner * ui = new (storage) UiStateOwner(0, 28, 4, 0, shared, resources);
         core->ui_state = ui;
     }

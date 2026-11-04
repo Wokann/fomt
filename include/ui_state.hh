@@ -4,7 +4,7 @@
 #include "prelude.h"
 #include "ui_text_stream.hh"
 #include "resource_handle.hh"
-#include "hardware_resource.hh"
+#include "obj_palette_collection.hh"
 #include "hardware_dma_descriptor.hh"
 #include "utility/container_algorithms.hh"
 #include "hardware_linked_list.hh"
@@ -15,8 +15,8 @@ struct HardwareCoreState;
 struct HardwareSpriteBufferState;
 struct HardwareDisplayState;
 struct HardwareStateOwner;
-struct HardwareResource;
-struct HardwareResourceEntry;
+struct ObjPaletteCollection;
+struct ObjPaletteCollectionEntry;
 struct HardwareMusicPlayerSlot;
 struct HardwareInterruptList;
 struct ScriptTextVariableStore;
@@ -131,7 +131,7 @@ struct UiStatePayload;
 struct UiStateOwner
 {
     UiStateOwner(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
-        HardwareStateOwner const & shared, HardwareResource const & resources)
+        HardwareStateOwner const & shared, ObjPaletteCollection const & resources)
         SECTION(".text.ui_state_adapters");
     ~UiStateOwner() SECTION(".text.ui_state_adapters");
     i32 GetState() const SECTION(".text.ui_state_adapters");
@@ -235,7 +235,7 @@ struct UnkUiSelectionRowOwner
 
 struct UnkUiSelectionData : UiTextOutput
 {
-    inline UnkUiSelectionData(HardwareResourceEntry *, HardwareStateOwner const &);
+    inline UnkUiSelectionData(ObjPaletteCollectionEntry *, HardwareStateOwner const &);
     // Keep the implicit virtual destructor: row ownership supplies its body.
     virtual bool Emit(u32) SECTION(".text.ui_text_output_callbacks");
     virtual void CarriageReturn() SECTION(".text.ui_text_output_callbacks");
@@ -243,7 +243,7 @@ struct UnkUiSelectionData : UiTextOutput
     virtual void NextPage() SECTION(".text.ui_text_output_callbacks");
     // Return the stored byte unchanged; do not normalize it to a C++ bool.
     virtual u8 ShouldStop() SECTION(".text.ui_text_output_callbacks");
-    HardwareResourceEntry * palette;
+    ObjPaletteCollectionEntry * palette;
     UnkUiSelectionRowOwner rows[3];
     u16 unk_14;
     u16 unk_16;
@@ -513,7 +513,7 @@ struct UnkUiPayloadLowFlags
 struct UiStatePayload
 {
     // Construction follows these owned members; Update remains native.
-    UiStatePayload(u32, u32, u32, u32, HardwareStateOwner const &, HardwareResource const &);
+    UiStatePayload(u32, u32, u32, u32, HardwareStateOwner const &, ObjPaletteCollection const &);
     ~UiStatePayload() SECTION(".text.ui_payload_destructor");
     void Open() SECTION(".text.ui_payload_open");
     void OpenImmediately() SECTION(".text.ui_payload_open");
@@ -541,7 +541,7 @@ struct UiStatePayload
     i32 state;
     u8 unk_0c;
     u8 allow_resume;
-    HardwareResourceEntry palette;
+    ObjPaletteCollectionEntry palette;
     HardwareStateEntry background_state;
     HardwareLinkedList commands;
     UiDmaTransferQueue records;
@@ -560,13 +560,13 @@ struct UiStatePayload
     UiResourceChangeFlags portrait_flags;
     u32 portrait_id;
     UiPortraitGroupOwner portrait;
-    HardwareResourceEntry portrait_palette;
+    ObjPaletteCollectionEntry portrait_palette;
     UiResourceChangeFlags nameplate_flags;
     UnkUiSelectionTileBuffer nameplate_tiles[UI_NAMEPLATE_TILE_BUFFER_COUNT];
     u8 heart_indicator_visible;
     IndexedResourceArchive heart_indicator_archive;
     IndexedResourceHandle heart_indicator_handle;
-    HardwareResourceEntry heart_indicator_palette;
+    ObjPaletteCollectionEntry heart_indicator_palette;
     UnkUiPayloadLowFlags low_flags;
 };
 typedef char UiStatePayloadSizeCheck[sizeof(UiStatePayload) == 0x554 ? 1 : -1];

@@ -42,7 +42,7 @@ static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
     return GetHardwareSharedStateTileIndex(&entry, entry.handle);
 }
 
-static inline u32 SpritePaletteBank(HardwareResourceEntry & entry)
+static inline u32 SpritePaletteBank(ObjPaletteCollectionEntry & entry)
 {
     return GetObjPaletteBank(&entry, entry.handle);
 }
@@ -73,15 +73,15 @@ NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore 
     void * storage = ::operator new(sizeof(UiStateOwner));
     {
         HardwareStateOwner shared;
-        HardwareResource resources;
+        ObjPaletteCollection resources;
         core->ui_state = new (storage) UiStateOwner(0, 31, 15, core->unk_08, shared, resources);
     }
     new (&core->music_players[0]) HardwareMusicPlayerSlot(1);
     new (&core->music_players[1]) HardwareMusicPlayerSlot(2);
     new (&core->glyph_tiles) HardwareStateEntry(7);
-    new (&core->glyph_palette) HardwareResourceEntry;
+    new (&core->glyph_palette) ObjPaletteCollectionEntry;
     new (&core->cursor_tiles) HardwareStateEntry(3);
-    new (&core->cursor_palette) HardwareResourceEntry;
+    new (&core->cursor_palette) ObjPaletteCollectionEntry;
     SetBirthdayInputDate(core->birthday, birthday.GetSeason(), birthday.GetDay());
     core->step = 0;
     core->dialogue_state = 2;
@@ -110,9 +110,9 @@ NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore 
 // the existing base destructor rather than inventing another deletion layer.
 void DestroyBirthdayInputCore(NewGameBirthdayInputCore * core, u32 flags)
 {
-    core->cursor_palette.~HardwareResourceEntry();
+    core->cursor_palette.~ObjPaletteCollectionEntry();
     core->cursor_tiles.~HardwareStateEntry();
-    core->glyph_palette.~HardwareResourceEntry();
+    core->glyph_palette.~ObjPaletteCollectionEntry();
     core->glyph_tiles.~HardwareStateEntry();
     if (core->ui_state != nullptr)
         delete core->ui_state;

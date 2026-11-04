@@ -279,7 +279,7 @@ static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
     return GetHardwareSharedStateTileIndex(&entry, entry.handle);
 }
 
-static inline u32 SpritePaletteBank(HardwareResourceEntry & entry)
+static inline u32 SpritePaletteBank(ObjPaletteCollectionEntry & entry)
 {
     return GetObjPaletteBank(&entry, entry.handle);
 }
@@ -296,14 +296,14 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
     core->continuation.value = next;
     {
         HardwareStateOwner shared;
-        HardwareResource resources;
+        ObjPaletteCollection resources;
         new (&core->ui_state) UiStateOwner(0, 31, 15, 0, shared, resources);
     }
     new (&core->music_players[0]) HardwareMusicPlayerSlot(1);
     new (&core->music_players[1]) HardwareMusicPlayerSlot(2);
     new (&core->resources) IndexedResourceArchive(gUiHandCursorArchive);
     new (&core->state_entry) HardwareStateEntry(UI_HAND_CURSOR_TILE_SIZE_SHIFT);
-    new (&core->resource_entry) HardwareResourceEntry;
+    new (&core->resource_entry) ObjPaletteCollectionEntry;
     HardwareSpriteOamRecord initial_sprite = {};
     core->option_attributes = initial_sprite;
     new (&core->selector_resource) IndexedResourceHandle(

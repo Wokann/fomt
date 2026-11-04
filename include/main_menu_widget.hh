@@ -3,7 +3,7 @@
 
 #include "control_widget.hh"
 #include "resource_handle.hh"
-#include "hardware_resource.hh"
+#include "obj_palette_collection.hh"
 #include "hardware_state_clear.hh"
 #include "hardware_dma_link.hh"
 #include "common_ui.hh"
@@ -58,7 +58,7 @@ struct MainMenuLabelRenderer {
 
 struct MainMenuData {
     IndexedResourceArchive archive;
-    HardwareResourceEntry palette;
+    ObjPaletteCollectionEntry palette;
     HardwareDmaCopyLink palette_upload;
     MainMenuSpriteOwner cursor;
     MainMenuSpriteOwner icons[7];

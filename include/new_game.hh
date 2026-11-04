@@ -7,7 +7,7 @@
 #include "hardware_bootstrap.hh"
 #include "hardware_music_player.hh"
 #include "hardware_state_clear.hh"
-#include "hardware_resource.hh"
+#include "obj_palette_collection.hh"
 #include "resource_handle.hh"
 #include "scene.hh"
 #include "sram_access.hh"
@@ -38,9 +38,9 @@ struct NewGameBirthdayInputCore : HardwareBootstrap {
     UiStateOwner * ui_state;
     HardwareMusicPlayerSlot music_players[2];
     HardwareStateEntry glyph_tiles;
-    HardwareResourceEntry glyph_palette;
+    ObjPaletteCollectionEntry glyph_palette;
     HardwareStateEntry cursor_tiles;
-    HardwareResourceEntry cursor_palette;
+    ObjPaletteCollectionEntry cursor_palette;
     i8 cursor_column;
     i8 cursor_row;
     i8 saved_season_column;

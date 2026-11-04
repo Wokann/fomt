@@ -1,6 +1,6 @@
-#include "hardware_mask.hh"
+#include "obj_tile_bitmap.hh"
 
-u32 HardwareTileBitmap32::Allocate(u32 size_shift)
+u32 ObjTileBitmap32::Allocate(u32 size_shift)
 {
     u32 full = 0;
     u32 current_bits = bits;
@@ -12,6 +12,8 @@ u32 HardwareTileBitmap32::Allocate(u32 size_shift)
     empty = current_bits == 0;
     if (empty) {
         u32 width = 1u << size_shift;
+        // size_shift == 5 uses the original agbcp/ARM register-shift result:
+        // LSL by 32 yields zero. This expression is not portable C++.
         current_bits |= (1u << width) - 1;
         bits = current_bits;
         return 0;
@@ -32,7 +34,7 @@ u32 HardwareTileBitmap32::Allocate(u32 size_shift)
     return 0x20;
 }
 
-void HardwareTileBitmap32::Free(u32 offset, u32 size_shift)
+void ObjTileBitmap32::Free(u32 offset, u32 size_shift)
 {
     if (size_shift <= 4) {
         u32 width = 1u << size_shift;

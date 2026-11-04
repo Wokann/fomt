@@ -2,7 +2,7 @@
 #define WORLD_RUNTIME_HH
 
 #include "prelude.h"
-#include "hardware_resource.hh"
+#include "obj_palette_collection.hh"
 #include "hardware_state_clear.hh"
 #include "resource_archive.hh"
 #include "world_map.hh"
@@ -35,7 +35,7 @@ struct GameScenePaletteSlot {
     GameScenePaletteSlot()
         : palette_bank(allocation.GetIndex()), resource_index(-1), unk_0A(0) {}
 
-    HardwareResourceEntry allocation;
+    ObjPaletteCollectionEntry allocation;
     u8 palette_bank;
     i8 resource_index;
     u8 unk_0A;

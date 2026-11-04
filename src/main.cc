@@ -39,7 +39,7 @@ void HandleSoftResetKeyInterrupt(void)
 
     DisableInterrupts(0xFFFF);
     REG_DISPCNT = DISPCNT_FORCED_BLANK;
-    *((volatile u8 *)&REG_SOUNDCNT_X) = 0;
+    REG_NR52 = 0;
 
     while ((~REG_KEYINPUT & (A_BUTTON | B_BUTTON | SELECT_BUTTON | START_BUTTON)) != 0)
     {

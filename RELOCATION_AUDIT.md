@@ -797,3 +797,31 @@ API 均直接命名，所有入向 C++/ASM 引用同步，没有别名或兼容�
 直接分支报告、code-reference-audit.json、palette_pool_semantics.json、
 resource_candidate_classification.json、source-manifest.json、symbol-renames.json
 及 native-validation.json 和四版 compare 日志。
+
+## OBJ palette collection / tile bitmap（2026-11-05）
+
+hardware_resource、hardware_mask 已按确认用途直接更名为
+obj_palette_collection.cc/.hh、obj_tile_bitmap.cc/.hh。七个既有函数，六个
+保留输入段，每版总 988B；详细各版范围见同日 CODE_ROM_LAYOUT.md。
+旧 GCC 嵌套参数类型的编码长度与四版 LDS 同步，所有实际调用直接引用新符号，
+没有 set、偏移别名或兼容包装。分配大小仍由元素数和类型推导。
+
+每版整体外部入向 63、外部出向 37，全部 THM_CALL。分块统计分别为入向
+64、出向 38（各含同一内部 Reserve 调用）。无 ABS32 函数指针/虚表/内部
+偏移入向；2161 个数值候选全部分类，另四个跨 ISA 疑似分支确认为 Thumb
+指令误读。未把压缩字节或 Mary 文本中的同值窗口直接当作指针。
+
+原行为保留并记录：全忙时 Get 仍选原游标条目；已分配的零长度集合不能 Get；
+Reserve 不更新已有游标；prefix 四字节保持未知；整叶 Allocate 使用旧
+agbcp/ARM 寄存器移位结果，其 C++ 移位 32 表达式不作可移植保证。
+
+启动段补齐 REG_NR52、图块/调色板长度及 RGB 宏。与本地 pokeemerald 定义、
+实际消费者和原位产物交叉核对；未用硬件宏替代普通对象偏移或 UI 业务坐标。
+四版 WSL -j4 compare、SHA-1 与 map 原位边界通过。JP7580锚移到下一未审
+入口787C，后置 Reserve 保留。无移址/尺寸变化/运行测试，覆盖率保持。
+
+证据：私有 hardware-resource-133d2199 下 audit-notes.json、summary.json、
+四版 boundaries/incoming/outgoing/direct-branch 报告、code-candidate-exclusions.json、
+resource_candidate_classification.json、mary-candidate-classification.json、
+collection_and_bitmap_semantics.json、source-edit-manifest.json、type-renames.json、
+native-validation.json、native-map-validation.json 和四版 native-compare.log。

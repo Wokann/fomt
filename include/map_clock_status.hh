@@ -4,7 +4,7 @@
 #include "prelude.h"
 #include "control_widget.hh"
 #include "hardware_dma_link.hh"
-#include "hardware_resource.hh"
+#include "obj_palette_collection.hh"
 #include "hardware_state_clear.hh"
 #include "resource_archive.hh"
 #include <string.h>
@@ -37,7 +37,7 @@ struct MapClockStatusHudTileBuffer {
 struct MapClockStatusHudData {
     IndexedResourceArchive unk_archive_000;
     IndexedResourceArchive unk_archive_030;
-    HardwareResourceEntry palette;
+    ObjPaletteCollectionEntry palette;
     HardwareDmaCopyLink palette_upload;
     u8 palette_dirty;
     MapClockStatusHudTileBuffer date_tiles;
@@ -48,7 +48,7 @@ struct MapClockStatusHudData {
     u8 unk_selector_dirty;
     u8 unk_value_active;
     u16 unk_value;
-    HardwareResourceEntry unk_pool_2F4;
+    ObjPaletteCollectionEntry unk_pool_2F4;
     HardwareDmaCopyLink unk_dma_2FC;
     HardwareStateEntry unk_state_314;
     HardwareDmaCopyLink unk_dma_31C;

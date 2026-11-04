@@ -13,7 +13,7 @@ GameSceneMenuCorePrefix::GameSceneMenuCorePrefix(GameStateSaveImage * image)
       archive(gUnk_08754C0C),
 #endif
       resource_state(&archive, 0, 0x100), unk_78(), unk_7C(),
-      ui(0, 29, 0, 0, HardwareStateOwner(), HardwareResource())
+      ui(0, 29, 0, 0, HardwareStateOwner(), ObjPaletteCollection())
 {
 }
 

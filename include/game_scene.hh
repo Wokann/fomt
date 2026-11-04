@@ -15,7 +15,7 @@
 #include "fomt_constants.hh"
 #include "utility/vec2.hh"
 #include "resource_handle.hh"
-#include "hardware_resource.hh"
+#include "obj_palette_collection.hh"
 #include "hardware_state_clear.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_blend.hh"

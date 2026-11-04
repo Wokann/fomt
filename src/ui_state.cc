@@ -1,4 +1,4 @@
-#include "hardware_resource.hh"
+#include "obj_palette_collection.hh"
 #include "prelude.h"
 #pragma implementation "ui_state.hh"
 #include "ui_state.hh"
@@ -131,7 +131,7 @@ extern "C" void ClearUiActionStateFlag01F0(void * object)
 }
 
 UiStateOwner::UiStateOwner(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
-    HardwareStateOwner const & shared, HardwareResource const & resources)
+    HardwareStateOwner const & shared, ObjPaletteCollection const & resources)
 {
     value = new UiStatePayload(arg_1, arg_2, arg_3, arg_4, shared, resources);
 }
@@ -572,7 +572,7 @@ bool UiTextOutputUploadCommand::Run()
     return false;
 }
 
-inline UnkUiSelectionData::UnkUiSelectionData(HardwareResourceEntry * palette,
+inline UnkUiSelectionData::UnkUiSelectionData(ObjPaletteCollectionEntry * palette,
     HardwareStateOwner const & state)
     : palette(palette), unk_14(0), unk_16(0), unk_18(0), unk_19(0), unk_1a(0), unk_1b(0)
 {
@@ -1009,7 +1009,7 @@ void UiStatePayload::HideHeartIndicator()
 }
 
 UiStatePayload::UiStatePayload(u32 background, u32 screen, u32 palette_bank,
-    u32 mode, HardwareStateOwner const & shared, HardwareResource const & resources)
+    u32 mode, HardwareStateOwner const & shared, ObjPaletteCollection const & resources)
     : background(background), screen_block(screen), character_block(screen >> 3),
       first_tile((screen & 7) * 64 + 20), background_palette(palette_bank),
       mode(mode), state(0), unk_0c(0), allow_resume(1),

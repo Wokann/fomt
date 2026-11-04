@@ -5,7 +5,7 @@
 #include "game_state.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_music_player.hh"
-#include "hardware_resource.hh"
+#include "obj_palette_collection.hh"
 #include "resource_handle.hh"
 #include "scene.hh"
 #include "sram_access.hh"
@@ -72,7 +72,7 @@ struct NewGameMenuCore : HardwareBootstrap {
     HardwareMusicPlayerSlot music_players[2];
     IndexedResourceArchive resources;
     HardwareStateEntry state_entry;
-    HardwareResourceEntry resource_entry;
+    ObjPaletteCollectionEntry resource_entry;
     HardwareSpriteOamRecord option_attributes;
     IndexedResourceHandle selector_resource;
     HardwareSpriteOamRecord selector_attributes;

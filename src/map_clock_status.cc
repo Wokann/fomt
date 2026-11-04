@@ -56,7 +56,7 @@ MapClockStatusHudContent::~MapClockStatusHudContent()
     delete state;
 }
 
-static inline bool HudHasHandle(HardwareResourceEntry const & entry)
+static inline bool HudHasHandle(ObjPaletteCollectionEntry const & entry)
 {
     return entry.handle != 0;
 }
@@ -88,7 +88,7 @@ static inline void SubmitHudSprite(HardwareSpriteBufferState * buffer,
     }
 }
 
-static inline u32 HudPaletteBank(HardwareResourceEntry & entry)
+static inline u32 HudPaletteBank(ObjPaletteCollectionEntry & entry)
 {
     return GetObjPaletteBank(&entry, entry.handle);
 }

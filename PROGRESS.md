@@ -2,13 +2,15 @@
 
 ## 当前优先目标：完整边界与动态链接（2026-11-04）
 
-当前接续：`hardware_resource` 前部，起点 JP `08007580`、US `08007578`、
-EU `0800758C`、DE `08007598`。刚完成的 OBJ 调色板池将连续的 hardware/
-allocator 合并为 `obj_palette_pool.cc/.hh`，11 个既有 C++ 函数共 1104
-字节，后置 32 字节 helper 与 BSS 原位保留；真实用途、字段、全部已核实
-调用与数值候选已梳理。四版 -j4 compare 和 map 检查通过，JP 原两内部锚
-改为下一未审主题前的一个边界。本次不增加 C/C++ 覆盖，不作任意 RAM 镜像
-或 UI 扩容保证。详细证据见 layout 与引用审计。
+当前接续：InitializeHardwareSharedStateOwner，起点 JP `0800787C`、US
+`08007874`、EU `08007888`、DE `08007894`。刚完成的 OBJ 调色板集合和
+图块位图已按实际功能拆成 obj_palette_collection.cc/.hh 与
+obj_tile_bitmap.cc/.hh；七个既有 C++ 函数、每版 988 字节（含后置 Reserve）
+的边界、调用及候选引用已核查，直接更新真实符号，没有别名。
+启动段同时补齐遗漏的声音寄存器、图块/调色板长度和 RGB 宏。
+四版 -j4 compare、原版 SHA-1 与 map 边界通过；JP 固定锚移至下一未审入口。
+本轮不增加 C/C++ 覆盖，不作任意扩容或可移植 C++ 保证，未进行移址测试。
+详细范围、原生行为限制与证据见 layout 和引用审计。
 
 从 `30d912e5` 开始，优先审计四版整个 ROM 的代码/数据边界和布局依赖。
 已有 C/C++ 比例保持不变；可从源码构建及原版匹配不代表已经能够自由移动内容。
@@ -216,6 +218,7 @@ ROM 中已有分散于后续功能模块的恢复内容，当前推进地址不�
 以下数值是各模块已经确认的 C/C++ 函数体字节，不是该模块的完成百分比。模块的
 其他函数可能仍在原汇编对象中；没有经过完整归属审计前，不使用单个 `.o` 的大小
 充当该功能模块的总分母。表内按 US 的首个函数地址排序，IWRAM 排序模块单独置末。
+已更名或合并的模块按当前文件归属展示，函数体字节仍沿用上述统计基线。
 
 | 源模块 | JP 字节 | US 字节 | EU 字节 | DE 字节 |
 | --- | ---: | ---: | ---: | ---: |
@@ -231,10 +234,9 @@ ROM 中已有分散于后续功能模块的恢复内容，当前推进地址不�
 | [src/new_game_name_entry.cc](src/new_game_name_entry.cc) | 1,010 | 1,010 | 1,010 | 1,010 |
 | [src/new_game_identity.cc](src/new_game_identity.cc) | 1,574 | 1,486 | 1,486 | 1,486 |
 | [src/new_game_name_input.cc](src/new_game_name_input.cc) | 4,034 | 3,738 | 3,738 | 3,738 |
-| [src/hardware.cc](src/hardware.cc) | 612 | 612 | 612 | 612 |
-| [src/hardware_allocator.cc](src/hardware_allocator.cc) | 520 | 520 | 520 | 520 |
-| [src/hardware_resource.cc](src/hardware_resource.cc) | 826 | 826 | 826 | 826 |
-| [src/hardware_mask.cc](src/hardware_mask.cc) | 148 | 148 | 148 | 148 |
+| [src/obj_palette_pool.cc](src/obj_palette_pool.cc) | 1,132 | 1,132 | 1,132 | 1,132 |
+| [src/obj_palette_collection.cc](src/obj_palette_collection.cc) | 826 | 826 | 826 | 826 |
+| [src/obj_tile_bitmap.cc](src/obj_tile_bitmap.cc) | 148 | 148 | 148 | 148 |
 | [src/hardware_refcount.cc](src/hardware_refcount.cc) | 3,078 | 3,078 | 3,078 | 3,078 |
 | [src/hardware_state_properties.cc](src/hardware_state_properties.cc) | 764 | 764 | 764 | 764 |
 | [src/hardware_state_clear.cc](src/hardware_state_clear.cc) | 450 | 450 | 450 | 450 |

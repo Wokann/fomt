@@ -389,7 +389,7 @@ $(BUILD_DIR)/src/entity_audio.o $(BUILD_DIR)/src/player_actor.o $(BUILD_DIR)/src
 $(BUILD_DIR)/src/livestock_actor.o: CXXFLAGS += -ffunction-sections
 
 # Resource accessors and later storage reservation retain compiler-owned positions.
-$(BUILD_DIR)/src/hardware_resource.o: CXXFLAGS += -ffunction-sections
+$(BUILD_DIR)/src/obj_palette_collection.o: CXXFLAGS += -ffunction-sections
 
 # Grid methods are interleaved with unrecovered actor routines in the ROM.
 $(BUILD_DIR)/src/mine_floor.o: CXXFLAGS += -ffunction-sections

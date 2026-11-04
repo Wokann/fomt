@@ -490,7 +490,7 @@ void HardwareTileTree512::Unreserve(u32 offset, u32 length)
 u32 HardwareTileTree64::Allocate(u32 size_shift)
 {
     u32 index;
-    HardwareTileBitmap32 * child;
+    ObjTileBitmap32 * child;
     if (size_shift <= 5) {
         for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
             u8 const child_full = child->IsFull();
@@ -610,8 +610,8 @@ void HardwareTileTree64::Free(u32 offset, u32 size_shift)
 {
     if (size_shift <= 5) {
         u32 use_second = offset & 32;
-        HardwareTileBitmap32 * first = &children[0];
-        HardwareTileBitmap32 * child = first;
+        ObjTileBitmap32 * first = &children[0];
+        ObjTileBitmap32 * child = first;
         if (use_second)
             child = &children[1];
         child->Free(offset, size_shift);

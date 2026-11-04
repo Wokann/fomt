@@ -18,7 +18,7 @@ InitializeIntroSceneBackground:
     adds	r5, r0, #0
     ldr r1, .L08000FE0
     movs	r0, #0
-    movs	r2, #32
+    movs	r2, #TILE_SIZE_4BPP
     bl FillHardwareDma3
     movs	r0, #1
     negs	r0, r0
@@ -34,7 +34,7 @@ InitializeIntroSceneBackground:
     ldr r0, .L08000FEC
     movs	r1, #(BG_PALETTE >> 19)
     lsls	r1, r1, #19
-    movs	r2, #32
+    movs	r2, #PLTT_SIZE_4BPP
     bl CopyHardwareDma3
     ldr r0, .L08000FF0
     adds	r1, r4, #0
@@ -91,7 +91,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     adds r7, r0, #0
     ldr r1, .L08001DB0 @ =(MEM_VRAM + 0x7FE0)
     movs r0, #0
-    movs r2, #0x20
+    movs r2, #TILE_SIZE_4BPP
     bl FillHardwareDma3
     movs r4, #1
     rsbs r4, r4, #0
@@ -120,7 +120,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r0, .L08001DC8 @ =gIntroSceneStartupPaletteBanks
     movs r1, #(BG_PALETTE >> 19)
     lsls r1, r1, #0x13
-    movs r2, #0x80
+    movs r2, #(BG_PLTT_SIZE >> 2)
     lsls r2, r2, #2
     bl CopyHardwareDma3
     movs r4, #0

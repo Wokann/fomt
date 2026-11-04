@@ -7,7 +7,7 @@
 #include "resource_archive.hh"
 #include "resource_handle.hh"
 #include "hardware_input.hh"
-#include "hardware_resource.hh"
+#include "obj_palette_collection.hh"
 #include "hardware_state_clear.hh"
 
 extern char const gText_Frisbee_TournamentScoreboard[];
@@ -41,7 +41,7 @@ struct FrisbeeScoreboardCore : HardwareBootstrap {
     FrisbeeScoreboardSpriteState sprite_040;
     FrisbeeScoreboardSpriteState sprite_074;
     HardwareStateEntry sprite_tiles;
-    HardwareResourceEntry hardware_resource;
+    ObjPaletteCollectionEntry obj_palette_collection;
     u8 unk_0B8[0x800];
     i16 scroll_y;
     i32 phase;
@@ -59,7 +59,7 @@ typedef char FrisbeeScoreboardCoreOffset_unk_archive_010[offsetof(FrisbeeScorebo
 typedef char FrisbeeScoreboardCoreOffset_sprite_040[offsetof(FrisbeeScoreboardCore, sprite_040) == 0x40 ? 1 : -1];
 typedef char FrisbeeScoreboardCoreOffset_sprite_074[offsetof(FrisbeeScoreboardCore, sprite_074) == 0x74 ? 1 : -1];
 typedef char FrisbeeScoreboardCoreOffset_sprite_tiles[offsetof(FrisbeeScoreboardCore, sprite_tiles) == 0xA8 ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_hardware_resource[offsetof(FrisbeeScoreboardCore, hardware_resource) == 0xB0 ? 1 : -1];
+typedef char FrisbeeScoreboardCoreOffset_obj_palette_collection[offsetof(FrisbeeScoreboardCore, obj_palette_collection) == 0xB0 ? 1 : -1];
 typedef char FrisbeeScoreboardCoreOffset_unk_0B8[offsetof(FrisbeeScoreboardCore, unk_0B8) == 0xB8 ? 1 : -1];
 typedef char FrisbeeScoreboardCoreOffset_scroll_y[offsetof(FrisbeeScoreboardCore, scroll_y) == 0x8B8 ? 1 : -1];
 typedef char FrisbeeScoreboardCoreOffset_phase[offsetof(FrisbeeScoreboardCore, phase) == 0x8BC ? 1 : -1];

@@ -56,7 +56,7 @@ TalkOpen__9GameScene: @ 0x080124D0
     add r0, sp, #0xc
     bl __18HardwareStateOwner
     add r0, sp, #0x10
-    bl __16HardwareResource
+    bl __20ObjPaletteCollection
     add r1, sp, #0x10
     movs r0, #1
     str r0, [sp]
@@ -67,7 +67,7 @@ TalkOpen__9GameScene: @ 0x080124D0
     movs r1, #0
     movs r2, #0x1f
     movs r3, #0
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
     adds r5, r6, #0
     adds r4, r0, #0
     ldr r0, [r6]
@@ -81,7 +81,7 @@ TalkOpen__9GameScene: @ 0x080124D0
     str r4, [r5]
     add r0, sp, #0x10
     movs r1, #2
-    bl _._16HardwareResource
+    bl _._20ObjPaletteCollection
     add r0, sp, #0xc
     movs r1, #2
     bl _._18HardwareStateOwner
@@ -93,7 +93,7 @@ TalkOpen__9GameScene: @ 0x080124D0
     add r0, sp, #0xc
     bl __18HardwareStateOwner
     add r0, sp, #0x10
-    bl __16HardwareResource
+    bl __20ObjPaletteCollection
     add r0, sp, #0x10
     str r5, [sp]
     add r1, sp, #0xc
@@ -103,7 +103,7 @@ TalkOpen__9GameScene: @ 0x080124D0
     movs r1, #0
     movs r2, #0x1f
     movs r3, #0
-    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC20ObjPaletteCollection
     adds r5, r6, #0
     adds r4, r0, #0
     ldr r0, [r6]
@@ -117,7 +117,7 @@ TalkOpen__9GameScene: @ 0x080124D0
     str r4, [r5]
     add r0, sp, #0x10
     movs r1, #2
-    bl _._16HardwareResource
+    bl _._20ObjPaletteCollection
     add r0, sp, #0xc
     movs r1, #2
     bl _._18HardwareStateOwner

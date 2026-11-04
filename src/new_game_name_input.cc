@@ -39,7 +39,7 @@ NewGameNameInputCore::NewGameNameInputCore(char const * prompt,
     void * ui_storage = ::operator new(sizeof(UiStateOwner));
     {
         HardwareStateOwner shared;
-        HardwareResource resources;
+        ObjPaletteCollection resources;
         UiStateOwner * ui = new (ui_storage) UiStateOwner(0, 15, 4, 0, shared, resources);
         core->ui_state = ui;
     }
@@ -139,7 +139,7 @@ void InitializeNameInputCursorSprites(NewGameNameInputCore * core, u32 tile_inde
         *reinterpret_cast<u32 *>(OBJ_VRAM0 + 6 * TILE_SIZE_4BPP + pixel_offset) = 0x88888888;
         *reinterpret_cast<u32 *>(OBJ_VRAM0 + 7 * TILE_SIZE_4BPP + pixel_offset) = 0x88888888;
     }
-    reinterpret_cast<u16 *>(OBJ_PLTT)[4 * 16 + 8] = 0x027F;
+    reinterpret_cast<u16 *>(OBJ_PLTT)[4 * 16 + 8] = RGB(31, 19, 0);
     core->sprites[1].attributes.x = 144;
     core->sprites[1].attributes.y = 8;
     core->sprites[0].attributes.x = 0;
