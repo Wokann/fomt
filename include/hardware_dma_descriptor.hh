@@ -19,6 +19,8 @@ struct DmaTransferDescriptor {
         u32 fill_value;
     } source_or_value;
     void * destination;
+    // DMA3 and CpuSet use the same bits for word transfers (26) and fixed
+    // sources (24). The constructors store the transfer count in bits 0-15.
     u32 control;
 };
 

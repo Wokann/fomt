@@ -130,9 +130,9 @@ SECTIONS
         src/hardware_sound.o(.text);
         src/hardware_music_player.o(.text);
         src/hardware_song.o(.text);
-        . = 0x8E30; /* Next unaudited DMA routines. */
         src/hardware_dma.o(.text);
         src/hardware_dma_descriptor.o(.text);
+        . = 0x9134; /* Hardware key input. */
         src/hardware_input.o(.text);
         src/hardware_input_repeat.o(.text);
         src/hardware_blend.o(.text);
