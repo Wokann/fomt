@@ -1,16 +1,18 @@
     .include "asm/macro.inc"
+    .include "six/asm/hw/memory.s"
+    .include "six/asm/hw/video.s"
+    .include "six/asm/hw/input.s"
     .syntax unified
     .thumb
 
-    @ Native menu formatting, label raster and scene loop. These have not
+    @ Native menu formatting and scene loop. These have not
     @ been recovered as matching C++; their real callers live in the menu module.
     .ifdef REGION_JP
     .section .text
     .syntax unified
     .thumb
 
-    .global FormatNewGameSaveSlotSummary
-    .thumb_func
+    thumb_func_start FormatNewGameSaveSlotSummary
 FormatNewGameSaveSlotSummary:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
@@ -453,17 +455,16 @@ FormatNewGameSaveSlotSummary:
     pop	{r0}
     bx	r0
     .align 2, 0
-.Ljp_08003B3C: .4byte gText_NewGameStatus_YearSuffix
-.Ljp_08003B40: .4byte gText_NewGameStatus_SeasonSeparator
-.Ljp_08003B44: .4byte gText_NewGameStatus_DaySuffix
-.Ljp_08003B48: .4byte gText_NewGameStatus_OpenParen
-.Ljp_08003B4C: .4byte gText_NewGameStatus_CloseParen
-.Ljp_08003B50: .4byte gText_NewGameStatus_FarmSuffix
-.Ljp_08003B54: .4byte 0x00001BD8
+.Ljp_08003B3C: .word gText_NewGameStatus_YearSuffix
+.Ljp_08003B40: .word gText_NewGameStatus_SeasonSeparator
+.Ljp_08003B44: .word gText_NewGameStatus_DaySuffix
+.Ljp_08003B48: .word gText_NewGameStatus_OpenParen
+.Ljp_08003B4C: .word gText_NewGameStatus_CloseParen
+.Ljp_08003B50: .word gText_NewGameStatus_FarmSuffix
+.Ljp_08003B54: .word 0x00001BD8
     .section .text.new_game_menu_core_run
 
-    .global RunNewGameMenuCore
-    .thumb_func
+    thumb_func_start RunNewGameMenuCore
 RunNewGameMenuCore:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
@@ -479,7 +480,7 @@ RunNewGameMenuCore:
     bl GetHardwareDisplayState
     adds	r5, r0, #0
     add	r0, sp, #12
-    movs	r2, #226
+    movs	r2, #((LCD_OBJ_MAPPING_1D | LCD_BG2_ENABLE | LCD_BG3_ENABLE | LCD_OBJ_ENABLE) >> 5)
     lsls	r2, r2, #5
     adds	r1, r2, #0
     strh	r1, [r0, #0]
@@ -487,7 +488,7 @@ RunNewGameMenuCore:
     strh	r1, [r5, #0]
     ldr r0, .Ljp_080046BC
     ldr	r0, [r0, #0]
-    movs	r1, #160
+    movs	r1, #(BG_PALETTE >> 19)
     lsls	r1, r1, #19
     ldr r2, .Ljp_080046C0
     ldr	r2, [r2, #0]
@@ -513,7 +514,7 @@ RunNewGameMenuCore:
     movs	r3, #30
     bl DrawUiTextWindowBorder
     add	r1, sp, #12
-    movs	r2, #234
+    movs	r2, #((BG_PRIO_0 | BG_MOSAIC_ENABLE | (29 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256) >> 5)
     lsls	r2, r2, #5
     adds	r0, r2, #0
     strh	r0, [r1, #0]
@@ -530,7 +531,7 @@ RunNewGameMenuCore:
     adds	r0, r6, #0
     bl UpdateNewGameMenuUi
     ldrh	r0, [r5, #8]
-    movs	r1, #64
+    movs	r1, #BG_MOSAIC_ENABLE
     orrs	r0, r1
     strh	r0, [r5, #8]
     adds	r0, r6, #0
@@ -601,15 +602,15 @@ RunNewGameMenuCore:
     beq.n .Ljp_080046EE
     b.n .Ljp_0800468C
     .align 2, 0
-.Ljp_080046BC: .4byte gUiSharedPalette
-.Ljp_080046C0: .4byte gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
-.Ljp_080046C4: .4byte 0x00001E4C
-.Ljp_080046C8: .4byte gUiSharedTiles
-.Ljp_080046CC: .4byte 0x0600C000
-.Ljp_080046D0: .4byte gUiSharedTileByteCount
-.Ljp_080046D4: .4byte 0x0600F000
-.Ljp_080046D8: .4byte 0x06010000
-.Ljp_080046DC: .4byte 0x05000200
+.Ljp_080046BC: .word gUiSharedPalette
+.Ljp_080046C0: .word gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
+.Ljp_080046C4: .word (BG_PRIO_0 | (3 << BF_BG_GFX_BASE_OFFSET) | BG_MOSAIC_ENABLE | (30 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256)
+.Ljp_080046C8: .word gUiSharedTiles
+.Ljp_080046CC: .word (MEM_VRAM + 3 * BG_CHAR_SIZE)
+.Ljp_080046D0: .word gUiSharedTileByteCount
+.Ljp_080046D4: .word (MEM_VRAM + 30 * BG_SCREEN_SIZE)
+.Ljp_080046D8: .word OBJ_VRAM0
+.Ljp_080046DC: .word OBJ_PALETTE
 .Ljp_080046E0:
     cmp	r0, #2
     bne.n .Ljp_080046E6
@@ -714,7 +715,7 @@ RunNewGameMenuCore:
     bl SubmitNewGameMenuChoiceSprite
     b.n .Ljp_0800468C
     .align 2, 0
-.Ljp_080047B4: .4byte 0xFFFFFE00
+.Ljp_080047B4: .word 0xFFFFFE00
 .Ljp_080047B8:
     adds	r0, r6, #0
     adds	r0, #24
@@ -788,9 +789,9 @@ RunNewGameMenuCore:
     mov	r0, r9
     b.n .Ljp_08004B48
     .align 2, 0
-.Ljp_0800484C: .4byte gText_NewGameSave_LoadPrompt
-.Ljp_08004850: .4byte gText_NewGameSave_Affirmative
-.Ljp_08004854: .4byte gText_NewGameSave_Negative
+.Ljp_0800484C: .word gText_NewGameSave_LoadPrompt
+.Ljp_08004850: .word gText_NewGameSave_Affirmative
+.Ljp_08004854: .word gText_NewGameSave_Negative
 .Ljp_08004858:
     adds	r0, r6, #0
     adds	r0, #16
@@ -807,7 +808,7 @@ RunNewGameMenuCore:
     bl Start__23HardwareMusicPlayerSlotUs
     b.n .Ljp_0800468C
     .align 2, 0
-.Ljp_08004878: .4byte gText_NewGameStatus_NoSavedData
+.Ljp_08004878: .word gText_NewGameStatus_NoSavedData
 .Ljp_0800487C:
     lsls	r0, r1, #7
     adds	r0, r0, r6
@@ -835,13 +836,13 @@ RunNewGameMenuCore:
     str	r7, [r0, #0]
     b.n .Ljp_0800468C
     .align 2, 0
-.Ljp_080048AC: .4byte gText_NewGameSave_OverwritePrompt
-.Ljp_080048B0: .4byte gText_NewGameSave_Affirmative
-.Ljp_080048B4: .4byte gText_NewGameSave_Negative
+.Ljp_080048AC: .word gText_NewGameSave_OverwritePrompt
+.Ljp_080048B0: .word gText_NewGameSave_Affirmative
+.Ljp_080048B4: .word gText_NewGameSave_Negative
 .Ljp_080048B8:
     adds	r0, r7, #0
-    lsls	r1, r0, #27
-    lsls	r0, r0, #26
+    lsls	r1, r0, #(31 - KEY_INDEX_RIGHT)
+    lsls	r0, r0, #(31 - KEY_INDEX_LEFT)
     lsrs	r1, r1, #31
     lsrs	r0, r0, #31
     cmp	r1, r0
@@ -873,14 +874,14 @@ RunNewGameMenuCore:
     ldr	r0, [r0, #0]
     mov	pc, r0
     .align 2, 0
-.Ljp_080048F8: .4byte .Ljp_080048FC
+.Ljp_080048F8: .word .Ljp_080048FC
 .Ljp_080048FC:
-    .4byte .Ljp_08004914
-    .4byte .Ljp_08004914
-    .4byte .Ljp_0800491C
-    .4byte .Ljp_0800493C
-    .4byte .Ljp_08004958
-    .4byte .Ljp_08004974
+    .word .Ljp_08004914
+    .word .Ljp_08004914
+    .word .Ljp_0800491C
+    .word .Ljp_0800493C
+    .word .Ljp_08004958
+    .word .Ljp_08004974
 .Ljp_08004914:
     adds	r0, r6, #0
     bl UpdateNewGameMenuStatusText
@@ -900,7 +901,7 @@ RunNewGameMenuCore:
     strb	r0, [r3, #0]
     b.n .Ljp_08004A20
     .align 2, 0
-.Ljp_08004938: .4byte 0x00002210
+.Ljp_08004938: .word 0x00002210
 .Ljp_0800493C:
     ldr	r2, [r6, #8]
     movs	r3, #1
@@ -916,7 +917,7 @@ RunNewGameMenuCore:
     negs	r0, r0
     b.n .Ljp_0800498A
     .align 2, 0
-.Ljp_08004954: .4byte 0x00002210
+.Ljp_08004954: .word 0x00002210
 .Ljp_08004958:
     ldr	r2, [r6, #8]
     movs	r3, #1
@@ -932,7 +933,7 @@ RunNewGameMenuCore:
     negs	r0, r0
     b.n .Ljp_0800498A
     .align 2, 0
-.Ljp_08004970: .4byte 0x00002210
+.Ljp_08004970: .word 0x00002210
 .Ljp_08004974:
     ldr	r2, [r6, #8]
     movs	r3, #1
@@ -952,7 +953,7 @@ RunNewGameMenuCore:
     strb	r0, [r2, #0]
     b.n .Ljp_08004A20
     .align 2, 0
-.Ljp_08004994: .4byte 0x00002210
+.Ljp_08004994: .word 0x00002210
 .Ljp_08004998:
     adds	r0, r6, #0
     bl UpdateNewGameMenuStatusText
@@ -1031,8 +1032,8 @@ RunNewGameMenuCore:
     bne.n .Ljp_08004A36
     b.n .Ljp_0800468C
 .Ljp_08004A36:
-    lsls	r1, r7, #24
-    lsls	r0, r7, #25
+    lsls	r1, r7, #(31 - KEY_INDEX_DOWN)
+    lsls	r0, r7, #(31 - KEY_INDEX_UP)
     lsrs	r1, r1, #31
     lsrs	r0, r0, #31
     cmp	r1, r0
@@ -1042,7 +1043,7 @@ RunNewGameMenuCore:
     adds	r1, r6, #0
     adds	r1, #128
     ldr	r4, [r1, #0]
-    movs	r0, #128
+    movs	r0, #KEY_DOWN
     ands	r0, r7
     lsls	r0, r0, #24
     lsrs	r0, r0, #24
@@ -1637,13 +1638,13 @@ FormatNewGameSaveSlotSummary: @ Original US 0x08003788; body remains native.
     pop {r0}
     bx r0
     .align 2, 0
-.L08003B24: .4byte gText_NewGameStatus_YearSuffix
-.L08003B28: .4byte gText_NewGameStatus_SeasonSeparator
-.L08003B2C: .4byte gText_NewGameStatus_DaySuffix
-.L08003B30: .4byte gText_NewGameStatus_OpenParen
-.L08003B34: .4byte gText_NewGameStatus_CloseParen
-.L08003B38: .4byte gText_NewGameStatus_FarmSuffix
-.L08003B3C: .4byte 0x00001BD8
+.L08003B24: .word gText_NewGameStatus_YearSuffix
+.L08003B28: .word gText_NewGameStatus_SeasonSeparator
+.L08003B2C: .word gText_NewGameStatus_DaySuffix
+.L08003B30: .word gText_NewGameStatus_OpenParen
+.L08003B34: .word gText_NewGameStatus_CloseParen
+.L08003B38: .word gText_NewGameStatus_FarmSuffix
+.L08003B3C: .word 0x00001BD8
 
     .section .text.new_game_menu_core_run
 
@@ -1663,7 +1664,7 @@ RunNewGameMenuCore: @ 0x08004570
     bl GetHardwareDisplayState
     adds r5, r0, #0
     add r0, sp, #0xc
-    movs r2, #0xe2
+    movs r2, #((LCD_OBJ_MAPPING_1D | LCD_BG2_ENABLE | LCD_BG3_ENABLE | LCD_OBJ_ENABLE) >> 5)
     lsls r2, r2, #5
     adds r1, r2, #0
     strh r1, [r0]
@@ -1671,23 +1672,23 @@ RunNewGameMenuCore: @ 0x08004570
     strh r1, [r5]
     ldr r0, .L080046A4 @ =gUiSharedPalette
     ldr r0, [r0]
-    movs r1, #0xa0
+    movs r1, #(BG_PALETTE >> 19)
     lsls r1, r1, #0x13
     ldr r2, .L080046A8 @ =gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
     ldr r2, [r2]
     bl CopyHardwareDma3
     add r1, sp, #0xc
-    ldr r2, .L080046AC @ =0x00001E4C
+    ldr r2, .L080046AC @ =(BG_PRIO_0 | (3 << BF_BG_GFX_BASE_OFFSET) | BG_MOSAIC_ENABLE | (30 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256)
     adds r0, r2, #0
     strh r0, [r1]
     strh r0, [r5, #0xe]
     ldr r0, .L080046B0 @ =gUiSharedTiles
     ldr r0, [r0]
-    ldr r1, .L080046B4 @ =0x0600C000
+    ldr r1, .L080046B4 @ =(MEM_VRAM + 3 * BG_CHAR_SIZE)
     ldr r2, .L080046B8 @ =gUiSharedTileByteCount
     ldr r2, [r2]
     bl CopyHardwareDma3
-    ldr r0, .L080046BC @ =0x0600F000
+    ldr r0, .L080046BC @ =(MEM_VRAM + 30 * BG_SCREEN_SIZE)
     movs r1, #0x14
     str r1, [sp]
     str r4, [sp, #4]
@@ -1697,7 +1698,7 @@ RunNewGameMenuCore: @ 0x08004570
     movs r3, #0x1e
     bl DrawUiTextWindowBorder
     add r1, sp, #0xc
-    movs r2, #0xea
+    movs r2, #((BG_PRIO_0 | BG_MOSAIC_ENABLE | (29 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256) >> 5)
     lsls r2, r2, #5
     adds r0, r2, #0
     strh r0, [r1]
@@ -1714,7 +1715,7 @@ RunNewGameMenuCore: @ 0x08004570
     adds r0, r6, #0
     bl UpdateNewGameMenuUi
     ldrh r0, [r5, #8]
-    movs r1, #0x40
+    movs r1, #BG_MOSAIC_ENABLE
     orrs r0, r1
     strh r0, [r5, #8]
     adds r0, r6, #0
@@ -1731,7 +1732,7 @@ RunNewGameMenuCore: @ 0x08004570
     bl GetHardwareSharedStateTileIndex
     adds r1, r0, #0
     lsls r1, r1, #5
-    ldr r0, .L080046C0 @ =0x06010000
+    ldr r0, .L080046C0 @ =OBJ_VRAM0
     adds r1, r1, r0
     adds r0, r4, #0
     movs r2, #0x80
@@ -1743,7 +1744,7 @@ RunNewGameMenuCore: @ 0x08004570
     bl GetHardwarePoolHandleIndex
     adds r1, r0, #0
     lsls r1, r1, #5
-    ldr r2, .L080046C4 @ =0x05000200
+    ldr r2, .L080046C4 @ =OBJ_PALETTE
     adds r1, r1, r2
     adds r0, r4, #0
     movs r2, #0x20
@@ -1785,15 +1786,15 @@ RunNewGameMenuCore: @ 0x08004570
     beq .L080046D6
     b .L08004674
     .align 2, 0
-.L080046A4: .4byte gUiSharedPalette
-.L080046A8: .4byte gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
-.L080046AC: .4byte 0x00001E4C
-.L080046B0: .4byte gUiSharedTiles
-.L080046B4: .4byte 0x0600C000
-.L080046B8: .4byte gUiSharedTileByteCount
-.L080046BC: .4byte 0x0600F000
-.L080046C0: .4byte 0x06010000
-.L080046C4: .4byte 0x05000200
+.L080046A4: .word gUiSharedPalette
+.L080046A8: .word gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
+.L080046AC: .word (BG_PRIO_0 | (3 << BF_BG_GFX_BASE_OFFSET) | BG_MOSAIC_ENABLE | (30 << BF_BG_MAP_BASE_OFFSET) | BG_SIZE_256x256)
+.L080046B0: .word gUiSharedTiles
+.L080046B4: .word (MEM_VRAM + 3 * BG_CHAR_SIZE)
+.L080046B8: .word gUiSharedTileByteCount
+.L080046BC: .word (MEM_VRAM + 30 * BG_SCREEN_SIZE)
+.L080046C0: .word OBJ_VRAM0
+.L080046C4: .word OBJ_PALETTE
 .L080046C8:
     cmp r0, #2
     bne .L080046CE
@@ -1898,7 +1899,7 @@ RunNewGameMenuCore: @ 0x08004570
     bl SubmitNewGameMenuChoiceSprite
     b .L08004674
     .align 2, 0
-.L0800479C: .4byte 0xFFFFFE00
+.L0800479C: .word 0xFFFFFE00
 .L080047A0:
     adds r0, r6, #0
     adds r0, #0x18
@@ -1972,9 +1973,9 @@ RunNewGameMenuCore: @ 0x08004570
     mov r0, sb
     b .L08004B30
     .align 2, 0
-.L08004834: .4byte gText_NewGameSave_LoadPrompt
-.L08004838: .4byte gText_NewGameMenu_Yes
-.L0800483C: .4byte gText_NewGameMenu_No
+.L08004834: .word gText_NewGameSave_LoadPrompt
+.L08004838: .word gText_NewGameMenu_Yes
+.L0800483C: .word gText_NewGameMenu_No
 .L08004840:
     adds r0, r6, #0
     adds r0, #0x10
@@ -1991,7 +1992,7 @@ RunNewGameMenuCore: @ 0x08004570
     bl Start__23HardwareMusicPlayerSlotUs
     b .L08004674
     .align 2, 0
-.L08004860: .4byte gText_NewGameStatus_NoSavedData
+.L08004860: .word gText_NewGameStatus_NoSavedData
 .L08004864:
     lsls r0, r1, #7
     adds r0, r0, r6
@@ -2019,13 +2020,13 @@ RunNewGameMenuCore: @ 0x08004570
     str r7, [r0]
     b .L08004674
     .align 2, 0
-.L08004894: .4byte gText_NewGameSave_OverwritePrompt
-.L08004898: .4byte gText_NewGameMenu_Yes
-.L0800489C: .4byte gText_NewGameMenu_No
+.L08004894: .word gText_NewGameSave_OverwritePrompt
+.L08004898: .word gText_NewGameMenu_Yes
+.L0800489C: .word gText_NewGameMenu_No
 .L080048A0:
     adds r0, r7, #0
-    lsls r1, r0, #0x1b
-    lsls r0, r0, #0x1a
+    lsls r1, r0, #(31 - KEY_INDEX_RIGHT)
+    lsls r0, r0, #(31 - KEY_INDEX_LEFT)
     lsrs r1, r1, #0x1f
     lsrs r0, r0, #0x1f
     cmp r1, r0
@@ -2057,14 +2058,14 @@ RunNewGameMenuCore: @ 0x08004570
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L080048E0: .4byte .L080048E4
+.L080048E0: .word .L080048E4
 .L080048E4: @ jump table
-    .4byte .L080048FC @ case 0
-    .4byte .L080048FC @ case 1
-    .4byte .L08004904 @ case 2
-    .4byte .L08004924 @ case 3
-    .4byte .L08004940 @ case 4
-    .4byte .L0800495C @ case 5
+    .word .L080048FC @ case 0
+    .word .L080048FC @ case 1
+    .word .L08004904 @ case 2
+    .word .L08004924 @ case 3
+    .word .L08004940 @ case 4
+    .word .L0800495C @ case 5
 .L080048FC:
     adds r0, r6, #0
     bl UpdateNewGameMenuStatusText
@@ -2084,7 +2085,7 @@ RunNewGameMenuCore: @ 0x08004570
     strb r0, [r3]
     b .L08004A08
     .align 2, 0
-.L08004920: .4byte 0x00002210
+.L08004920: .word 0x00002210
 .L08004924:
     ldr r2, [r6, #8]
     movs r3, #1
@@ -2100,7 +2101,7 @@ RunNewGameMenuCore: @ 0x08004570
     rsbs r0, r0, #0
     b .L08004972
     .align 2, 0
-.L0800493C: .4byte 0x00002210
+.L0800493C: .word 0x00002210
 .L08004940:
     ldr r2, [r6, #8]
     movs r3, #1
@@ -2116,7 +2117,7 @@ RunNewGameMenuCore: @ 0x08004570
     rsbs r0, r0, #0
     b .L08004972
     .align 2, 0
-.L08004958: .4byte 0x00002210
+.L08004958: .word 0x00002210
 .L0800495C:
     ldr r2, [r6, #8]
     movs r3, #1
@@ -2136,7 +2137,7 @@ RunNewGameMenuCore: @ 0x08004570
     strb r0, [r2]
     b .L08004A08
     .align 2, 0
-.L0800497C: .4byte 0x00002210
+.L0800497C: .word 0x00002210
 .L08004980:
     adds r0, r6, #0
     bl UpdateNewGameMenuStatusText
@@ -2215,8 +2216,8 @@ RunNewGameMenuCore: @ 0x08004570
     bne .L08004A1E
     b .L08004674
 .L08004A1E:
-    lsls r1, r7, #0x18
-    lsls r0, r7, #0x19
+    lsls r1, r7, #(31 - KEY_INDEX_DOWN)
+    lsls r0, r7, #(31 - KEY_INDEX_UP)
     lsrs r1, r1, #0x1f
     lsrs r0, r0, #0x1f
     cmp r1, r0
@@ -2226,7 +2227,7 @@ RunNewGameMenuCore: @ 0x08004570
     adds r1, r6, #0
     adds r1, #0x80
     ldr r4, [r1]
-    movs r0, #0x80
+    movs r0, #KEY_DOWN
     ands r0, r7
     lsls r0, r0, #0x18
     lsrs r0, r0, #0x18

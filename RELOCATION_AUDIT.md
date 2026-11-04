@@ -561,6 +561,25 @@ include/gba/syscall.h 一致。IRQ 扫描起始位使用 IRQ_VBLANK，两个背�
 同一个内嵌数组，原版跨度作为下限，成员和分配大小同步计算。图块裁切数量、
 OAM 索引及后续资源消费者仍需按真实格式独立处理。
 
+## 新游戏菜单的硬件常量补齐（2026-11-05）
+
+此前硬件整理仅覆盖启动至开场，未完整延伸至本块。已对照本地 pokeemerald
+include/gba/defines.h 的 BG_CHAR_ADDR/BG_SCREEN_ADDR 及现有硬件头，补齐
+菜单中仍裸写的 VRAM、OBJ palette、BG control、方向键和 KEYPAD 掩码。
+DISPCNT 为 0x1C40，BG2/BG3 控制分别为 0x1D40/0x1E4C；以实际硬件位组合
+表达，保留原先 mov/lsl 序列。BG screen 29、字符块 2 前的空白图块分别仍为
+0600E800/06007FE0。没有将存档成员偏移 0x1BD8/0x2210 或业务数值误命名为 IO。
+
+四版原位 make -j4 compare 通过，日志位于私有接续目录 new-game-menu-a771feb6
+的 hardware-macros-{region}.log。无移址、资源扩展或运行时测试。本次不新增
+逐模块常量文件、固定数组长度或验证工具。
+
+并行只读审计发现两项真实后续工作：gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
+实际提供共享 UI palette 长度，但还有消费者用它作为 index * 14 姓名查找基点；
+gUiHandCursorArchive 的表计数、128/32 字节上传量及 size_shift=2 分配尚未联动。
+完整资源/代码分类证据保存在同一私有目录。18 个菜单标签指针已有 ABS32，
+但这不足以证明以上跨对象或尺寸依赖已解决，故本轮没有删除菜单或后续定位。
+
 ## 本地参考工程的风格与流程（2026-11-05）
 
 系统审阅的参考是本地 pokeemerald `9a83a2bbe8`。范围覆盖启动及库汇编、

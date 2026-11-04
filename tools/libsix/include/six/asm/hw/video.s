@@ -204,6 +204,7 @@ CONST    BF_COLRO_B_LENGTH, 5
     CONST \id, (((\r) >> 3) & 31) | ((((\g) >> 3) & 31) << 5) | ((((\b) >> 3) & 31) << 10)
 .endm
 
+CONST    BG_CHAR_SIZE, 0x4000
 CONST    BG_SCREEN_SIZE, 0x800
 CONST    OBJ_VRAM0, MEM_VRAM+0x10000
 

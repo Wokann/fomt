@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "gbaio.h"
 #pragma implementation "new_game_menu.hh"
 #include "new_game_menu.hh"
 #include "new_game_data.hh"
@@ -36,7 +37,7 @@ static inline bool MenuBlendIsQueued(HardwareBlendObject const & blend)
 
 void RunNewGameMenuOpeningBlend(HardwareBootstrap * core)
 {
-    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(BLDCNT_TGT1_ALL);
     HardwareBlendObject blend(GetHardwareDisplayState(reinterpret_cast<void * const *>(core)));
     i16 step = 0x889;
     BeginHardwareBlend(&blend.blend, step, 1, 1);
@@ -47,7 +48,7 @@ void RunNewGameMenuOpeningBlend(HardwareBootstrap * core)
 
 void RunNewGameMenuClosingBlend(HardwareBootstrap * core)
 {
-    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(BLDCNT_TGT1_ALL);
     HardwareBlendObject blend(GetHardwareDisplayState(reinterpret_cast<void * const *>(core)));
     i16 step = 0x889;
     EndHardwareBlend(&blend.blend, step, 1, 1);
@@ -79,9 +80,10 @@ static inline void StoreMenuSpriteAttributes(HardwareSpriteBufferState * buffer,
 
 void RenderNewGameMenuLabelTiles(NewGameMenuCore *)
 {
-    u16 (*screen)[32] = reinterpret_cast<u16 (*)[32]>(0x0600E800);
-    FillHardwareDma3(0, reinterpret_cast<void *>(0x06007FE0), 32);
-    FillHardwareDma3(~u32(0), screen, 0x800);
+    u16 (*screen)[32] = reinterpret_cast<u16 (*)[32]>(BG_SCREEN_ADDR(29));
+    FillHardwareDma3(0, reinterpret_cast<void *>(BG_CHAR_ADDR(2) - TILE_SIZE_4BPP),
+        TILE_SIZE_4BPP);
+    FillHardwareDma3(~u32(0), screen, BG_SCREEN_SIZE);
     NewGameTextTileBuffer<30, 12> buffer;
     u32 tile = 0;
     // The first tilemap row and two trailing columns keep the cleared blank tile.
@@ -96,7 +98,7 @@ void RenderNewGameMenuLabelTiles(NewGameMenuCore *)
         buffer.DrawString(128, row * 16, labels.left_choice);
         buffer.DrawString(192, row * 16, labels.right_choice);
     }
-    CopyHardwareDma3(buffer.tiles, reinterpret_cast<void *>(0x06000000),
+    CopyHardwareDma3(buffer.tiles, reinterpret_cast<void *>(BG_CHAR_ADDR(0)),
         sizeof(buffer.tiles));
 }
 
@@ -169,7 +171,7 @@ bool TrySaveNewGameMenuSlot(NewGameMenuCore * core)
         u32 offset = GetSramSaveSlotOffset(&core->sram, slot);
         u32 attempts = 3;
         do {
-            InterruptGuard guard(0x1000);
+            InterruptGuard guard(INTR_FLAG_KEYPAD);
             if (WriteGameStateSaveImage(core->current_save, &core->sram, offset) == 0) {
                 FormatNewGameSaveSlotSummary(core, core->save_slot_status[slot],
                     core->current_save);
@@ -209,7 +211,7 @@ bool TryLoadNewGameMenuSlot(NewGameMenuCore * core)
     u32 status = 0;
     u32 attempts = 3;
     do {
-        InterruptGuard guard(0x1000);
+        InterruptGuard guard(INTR_FLAG_KEYPAD);
         GameStateSaveImageOwner loaded(new GameStateSaveImage(
             core->sram, offset, status));
         if (status == 0) {

@@ -14,6 +14,14 @@ EXTERN_C
 // Native FoMT save image span on its SRAM cartridge.
 #define SRAM_SIZE 0x8000
 
+#define VRAM 0x06000000
+#define BG_VRAM VRAM
+#define BG_CHAR_SIZE 0x4000
+#define BG_SCREEN_SIZE 0x800
+#define BG_CHAR_ADDR(n) (BG_VRAM + BG_CHAR_SIZE * (n))
+#define BG_SCREEN_ADDR(n) (BG_VRAM + BG_SCREEN_SIZE * (n))
+#define TILE_SIZE_4BPP 32
+
 #define REG_DISPCNT REG(u16, 0x04000000)
 #define REG_DISPSTAT REG(u16, 0x04000004)
 #define REG_VCOUNT REG(u16, 0x04000006)
