@@ -1,7 +1,7 @@
 #include "prelude.h"
 #pragma implementation "new_game_identity.hh"
 #include "new_game_identity.hh"
-#include "hardware_display_commands.hh"
+#include "hardware_context.hh"
 #include "new_game_data.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_blend_object.hh"
@@ -38,8 +38,8 @@ NewGameIdentityCore * InitializeNewGameIdentityCore(NewGameIdentityCore * core,
     char const * player_name, GameDate birthday, char const * farm_name,
     char const * dog_name)
 {
-    ConstructHardwareBootstrap(core);
-    InstallHardwareBootstrapNativeVTable(core, __vt_19NewGameIdentityCore);
+    ConstructHardwareContext(core);
+    InstallHardwareContextNativeVTable(core, __vt_19NewGameIdentityCore);
 #if defined(REGION_JP)
     new (core->buffers) NewGameIdentityValueBuffer[2 * NEW_GAME_IDENTITY_FIELD_COUNT];
 #else
@@ -81,7 +81,7 @@ NewGameIdentityCore * InitializeNewGameIdentityCore(NewGameIdentityCore * core,
     return core;
 }
 
-static inline void QueueIdentityBlend(HardwareBootstrap * core, HardwareBlendOwner const & owner)
+static inline void QueueIdentityBlend(HardwareContext * core, HardwareBlendOwner const & owner)
 {
     HardwareLinkedList * list =
         GetHardwareCommandList(reinterpret_cast<void * const *>(core));

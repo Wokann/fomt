@@ -1,5 +1,5 @@
 #include "new_game_name_input.hh"
-#include "hardware_display_commands.hh"
+#include "hardware_context.hh"
 #include "new_game_data.hh"
 #include "hardware_state_accessors.hh"
 #include "new.hh"
@@ -16,7 +16,7 @@ void operator delete(void *);
 inline void * operator new(unsigned long, void * location) { return location; }
 inline void * operator new[](unsigned long, void * location) { return location; }
 
-static inline void QueueNameInputBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
+static inline void QueueNameInputBlend(HardwareContext * core, HardwareBlendObject & blend)
 {
     HardwareLinkedList * list =
         GetHardwareCommandList(reinterpret_cast<void * const *>(core));
@@ -30,7 +30,7 @@ static inline bool NameInputBlendIsQueued(HardwareBlendObject const & blend)
 
 NewGameNameInputCore::NewGameNameInputCore(char const * prompt,
     char const * initial_name)
-    : HardwareBootstrap(), music_player_1(1), music_player_2(2)
+    : HardwareContext(), music_player_1(1), music_player_2(2)
 {
     NewGameNameInputCore * core = this;
 

@@ -2,7 +2,7 @@
 #define FRISBEE_SCOREBOARD_HH
 
 #include "scene.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_music_player.hh"
 #include "resource_archive.hh"
 #include "resource_handle.hh"
@@ -30,7 +30,7 @@ typedef char FrisbeeScoreboardSpriteParametersCheck[offsetof(FrisbeeScoreboardSp
 typedef char FrisbeeScoreboardSpriteUnknownCheck[offsetof(FrisbeeScoreboardSpriteState, unk_30) == 0x30 ? 1 : -1];
 
 // Unknown bytes below are runtime RAM, not recovered ROM data or padding.
-struct FrisbeeScoreboardCore : HardwareBootstrap {
+struct FrisbeeScoreboardCore : HardwareContext {
     FrisbeeScoreboardCore(GameStateSaveImage * image);
     SceneTransitionOwner Run();
     void InitializeDisplay();

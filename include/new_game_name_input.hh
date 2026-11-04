@@ -56,7 +56,7 @@ typedef char NewGameNameInputSpriteStateAttributesCheck[
 // (nine in DE), followed by the current name and optional prompt buffers.
 // Construction and the drawing/upload consumers confirm this physical order.
 // Remaining control fields keep their unknown names; name is RAM storage.
-struct NewGameNameInputCore : HardwareBootstrap {
+struct NewGameNameInputCore : HardwareContext {
     NewGameNameInputCore(char const * prompt, char const * initial_name)
         SECTION(".text.new_game_name_input_core_constructor");
     virtual ~NewGameNameInputCore()
@@ -114,7 +114,7 @@ typedef char NewGameNameInputKeyboardTileBytesCheck[
     sizeof(((NewGameNameInputKeyboardBuffer *)0)->tiles) == NEW_GAME_NAME_INPUT_TILE_BYTES ? 1 : -1];
 typedef char NewGameNameInputPromptTileBytesCheck[
     sizeof(((NewGameNameInputPromptBuffer *)0)->tiles) == NEW_GAME_NAME_INPUT_PROMPT_TILE_BYTES ? 1 : -1];
-typedef char NewGameNameInputBootstrapSizeCheck[sizeof(HardwareBootstrap) == 8 ? 1 : -1];
+typedef char NewGameNameInputBootstrapSizeCheck[sizeof(HardwareContext) == 8 ? 1 : -1];
 typedef char NewGameNameInputMusicSizeCheck[sizeof(HardwareMusicPlayerSlot) == 4 ? 1 : -1];
 typedef char NewGameNameInputPointerSizeCheck[sizeof(UiStateOwner *) == 4 ? 1 : -1];
 typedef char NewGameNameInputWordSizeCheck[sizeof(u32) == 4 ? 1 : -1];

@@ -43,7 +43,7 @@ typedef char NewGameIdentityValueTilesSizeCheck[
     sizeof(((NewGameIdentityValueBuffer *)0)->tiles) == NEW_GAME_IDENTITY_VALUE_TILE_BYTES ? 1 : -1];
 typedef char NewGameIdentityLabelTilesSizeCheck[
     sizeof(((NewGameIdentityLabelBuffer *)0)->tiles) == NEW_GAME_IDENTITY_LABEL_TILE_BYTES ? 1 : -1];
-typedef char NewGameIdentityBootstrapSizeCheck[sizeof(HardwareBootstrap) == 8 ? 1 : -1];
+typedef char NewGameIdentityBootstrapSizeCheck[sizeof(HardwareContext) == 8 ? 1 : -1];
 typedef char NewGameIdentityWordSizeCheck[sizeof(u32) == 4 ? 1 : -1];
 typedef char NewGameIdentityUiPointerSizeCheck[sizeof(UiStateOwner *) == 4 ? 1 : -1];
 typedef char NewGameIdentityMusicSizeCheck[sizeof(HardwareMusicPlayerSlot) == 4 ? 1 : -1];
@@ -68,7 +68,7 @@ typedef char NewGameIdentityFieldCountCheck[
 // resulting C++ layout.
 // The unknown scalar and control-byte names retain their original US offsets.
 #pragma interface "new_game_identity.hh"
-struct NewGameIdentityCore : HardwareBootstrap {
+struct NewGameIdentityCore : HardwareContext {
     virtual ~NewGameIdentityCore() asm("DestroyNewGameIdentityCore")
         SECTION(".text.new_game_identity_core_cleanup");
 #if defined(REGION_JP)
@@ -101,7 +101,7 @@ struct NewGameIdentityScene : AScene {
 
 #if defined(REGION_JP)
 typedef char NewGameIdentityCoreBuffersCheck[
-    offsetof(NewGameIdentityCore, buffers) == sizeof(HardwareBootstrap) ? 1 : -1];
+    offsetof(NewGameIdentityCore, buffers) == sizeof(HardwareContext) ? 1 : -1];
 typedef char NewGameIdentityCoreValueTilesCheck[
     offsetof(NewGameIdentityCore, buffers) + offsetof(NewGameIdentityValueBuffer, tiles)
         == NEW_GAME_IDENTITY_VALUE_TILES_OFFSET ? 1 : -1];
@@ -110,7 +110,7 @@ typedef char NewGameIdentityCoreLabelTilesCheck[
         + offsetof(NewGameIdentityValueBuffer, tiles) == NEW_GAME_IDENTITY_LABEL_TILES_OFFSET ? 1 : -1];
 #else
 typedef char NewGameIdentityCoreValueBuffersCheck[
-    offsetof(NewGameIdentityCore, value_buffers) == sizeof(HardwareBootstrap) ? 1 : -1];
+    offsetof(NewGameIdentityCore, value_buffers) == sizeof(HardwareContext) ? 1 : -1];
 typedef char NewGameIdentityCoreValueTilesCheck[
     offsetof(NewGameIdentityCore, value_buffers) + offsetof(NewGameIdentityValueBuffer, tiles)
         == NEW_GAME_IDENTITY_VALUE_TILES_OFFSET ? 1 : -1];

@@ -5,7 +5,7 @@
 #include "gbaio.h"
 #include "m4a.h"
 
-void func_08008AF0(void * manager)
+void WaitForHardwareVBlank(void * manager)
 {
     (void)manager;
     WaitForNextInterrupt(INTR_FLAG_VBLANK);

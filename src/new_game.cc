@@ -6,7 +6,7 @@
 #include "new_game_data.hh"
 #include "farm_status_screen_data.hh"
 #include "game_state.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_state_accessors.hh"
 #include "obj_tile_collection.hh"
 #include "hardware_blend_object.hh"
@@ -26,7 +26,7 @@ void operator delete(void *);
 inline void * operator new(unsigned long, void * location) { return location; }
 inline void * operator new[](unsigned long, void * location) { return location; }
 
-static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
+static inline void QueueMenuBlend(HardwareContext * core, HardwareBlendObject & blend)
 {
     HardwareLinkedList * list =
         GetHardwareCommandList(reinterpret_cast<void * const *>(core));
@@ -63,11 +63,11 @@ static inline void SetBirthdayInputDate(GameDate & destination, Season season,
 NewGameBirthdayInputCore * InitializeBirthdayInputCore(NewGameBirthdayInputCore * core, GameDate birthday)
 {
     HardwareInputRepeatParameters input(30, 1);
-    ConstructHardwareBootstrapWithInput(core, &input);
+    ConstructHardwareContextWithInput(core, &input);
 #if defined(REGION_JP)
-    InstallHardwareBootstrapNativeVTable(core, vtable_unk_080E7AB4);
+    InstallHardwareContextNativeVTable(core, vtable_unk_080E7AB4);
 #else
-    InstallHardwareBootstrapNativeVTable(core, vtable_unk_080E7AC4);
+    InstallHardwareContextNativeVTable(core, vtable_unk_080E7AC4);
 #endif
     core->unk_08 = 0;
     // Allocate the owner before acquiring its temporary shared resources.
@@ -117,7 +117,7 @@ void DestroyBirthdayInputCore(NewGameBirthdayInputCore * core, u32 flags)
     core->glyph_tiles.~ObjTileCollectionEntry();
     if (core->ui_state != nullptr)
         delete core->ui_state;
-    DestroyHardwareBootstrap(core, flags);
+    DestroyHardwareContext(core, flags);
 }
 
 NewGameBirthdayInputScene::NewGameBirthdayInputScene(GameDate birthday)

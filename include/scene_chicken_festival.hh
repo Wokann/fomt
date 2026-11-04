@@ -3,7 +3,7 @@
 
 #include "scene.hh"
 #include "utility/fixed_str.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_music_player.hh"
 #include "hardware_blend_object.hh"
 
@@ -51,7 +51,7 @@ struct UiStateOwner;
 
 // Native allocation and constructor/destructor accesses verify this layout.
 // Unrecovered fields remain RAM storage, not fabricated semantic objects.
-struct ChickenFestivalMinigameCore : HardwareBootstrap {
+struct ChickenFestivalMinigameCore : HardwareContext {
     ChickenFestivalMinigameCore(ChickenFestivalEntrant const & entrant);
     virtual ~ChickenFestivalMinigameCore();
     bool HasWon() const;

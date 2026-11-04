@@ -2,7 +2,7 @@
 #define SCENE_FRISBEE_HH
 
 #include "scene.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_music_player.hh"
 #include "resource_archive.hh"
 
@@ -13,7 +13,7 @@ struct GameStateSaveImage;
 
 // The allocation bound and initialized prefix agree in all four native ROMs.
 // unk_... is unparsed runtime storage, not padding or recovered ROM data.
-struct FrisbeeCore : HardwareBootstrap {
+struct FrisbeeCore : HardwareContext {
     FrisbeeCore(GameStateSaveImage * image, bool contest);
     virtual ~FrisbeeCore();
     SceneTransitionOwner Run();

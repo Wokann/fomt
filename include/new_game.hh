@@ -4,7 +4,7 @@
 #include "prelude.h"
 #include "font_draw.hh"
 #include "game_state.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_music_player.hh"
 #include "obj_tile_collection.hh"
 #include "obj_palette_collection.hh"
@@ -32,7 +32,7 @@ struct PACKED ALIGN(2) NewGameBirthdayInputGlyph {
     u16 priority;
 };
 
-struct NewGameBirthdayInputCore : HardwareBootstrap {
+struct NewGameBirthdayInputCore : HardwareContext {
     virtual ~NewGameBirthdayInputCore() asm("DestroyBirthdayInputCore");
     u32 unk_08;
     UiStateOwner * ui_state;

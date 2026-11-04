@@ -2,7 +2,7 @@
 #define FARMING_TUTORIAL_HH
 #include "scene.hh"
 
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "script_engine.hh"
 #include "game_scene.hh"
 #pragma interface "farming_tutorial.hh"
@@ -20,7 +20,7 @@ struct FarmingTutorialTransition : SceneTransition {
 struct FarmingTutorialSceneBase : AScene {
 };
 
-struct FarmingTutorialScene : FarmingTutorialSceneBase, HardwareBootstrap, AScriptEngine {
+struct FarmingTutorialScene : FarmingTutorialSceneBase, HardwareContext, AScriptEngine {
     FarmingTutorialScene(SceneTransitionOwner next, MaryFarmingTutorialKind value)
         : continuation(next), kind(value), game_object(nullptr),
           talk_window(), screen_blend(nullptr), music_player_0(0),
@@ -50,9 +50,9 @@ struct FarmingTutorialScene : FarmingTutorialSceneBase, HardwareBootstrap, AScri
     u8 unk_3A1;
 };
 typedef char FarmingTutorialSceneStackOffsetCheck[
-    sizeof(FarmingTutorialSceneBase) + sizeof(HardwareBootstrap) + offsetof(AScriptEngine, stack) == 0x30 ? 1 : -1];
+    sizeof(FarmingTutorialSceneBase) + sizeof(HardwareContext) + offsetof(AScriptEngine, stack) == 0x30 ? 1 : -1];
 typedef char FarmingTutorialSceneStackTopOffsetCheck[
-    sizeof(FarmingTutorialSceneBase) + sizeof(HardwareBootstrap) + offsetof(AScriptEngine, stack) +
+    sizeof(FarmingTutorialSceneBase) + sizeof(HardwareContext) + offsetof(AScriptEngine, stack) +
         offsetof(ScriptStack, top) == 0x1C0 ? 1 : -1];
 typedef char FarmingTutorialSceneSizeCheck[sizeof(FarmingTutorialScene) == 0x3A4 ? 1 : -1];
 typedef char FarmingTutorialSceneContinuationOffsetCheck[offsetof(FarmingTutorialScene, continuation) == 0x35C ? 1 : -1];

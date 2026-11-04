@@ -5,11 +5,10 @@
 #include "new_game_name_entry.hh"
 #include "new_game_menu.hh"
 #include "obj_palette_pool.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_blend_object.hh"
 #include "hardware_display_state.hh"
 #include "hardware_sprite_buffer.hh"
-#include "hardware_display_commands.hh"
 #include "hardware_state_accessors.hh"
 #include "sram_image.hh"
 #include "sram_access.hh"
@@ -62,7 +61,7 @@ static inline void InitializeIntroSceneHardwareStateReservation(
 IntroSceneCore * ConstructIntroSceneCore(void * object)
 {
     IntroSceneCore * core = static_cast<IntroSceneCore *>(object);
-    ConstructHardwareBootstrap(reinterpret_cast<HardwareBootstrap *>(core));
+    ConstructHardwareContext(reinterpret_cast<HardwareContext *>(core));
     core->vtable = &gIntroSceneCoreVTable;
     new (&core->music_players[0]) HardwareMusicPlayerSlot(0);
     new (&core->music_players[1]) HardwareMusicPlayerSlot(1);
@@ -158,7 +157,7 @@ void DestroyIntroSceneCore(IntroSceneCore * core, int flags)
     core->actor_archive.IndexedResourceArchive::~IndexedResourceArchive();
     core->small_archive.IndexedResourceArchive::~IndexedResourceArchive();
     core->intro_archive.IndexedResourceArchive::~IndexedResourceArchive();
-    DestroyHardwareBootstrap(reinterpret_cast<HardwareBootstrap *>(core), flags);
+    DestroyHardwareContext(reinterpret_cast<HardwareContext *>(core), flags);
 }
 
 GameIntroScene::GameIntroScene()
@@ -213,7 +212,7 @@ static inline void QueueIntroSceneBlend(IntroSceneCore * core, HardwareBlendOwne
 
 void StartIntroSceneCore(IntroSceneCore * core)
 {
-    EnableHardwareForcedBlank(reinterpret_cast<HardwareBootstrap *>(core));
+    EnableHardwareForcedBlank(reinterpret_cast<HardwareContext *>(core));
     InitializeIntroSceneBackground(core);
     GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(BLDCNT_TGT1_ALL);
 
@@ -227,7 +226,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
     bool finished = false;
     do
     {
-        UpdateHardwareFrame(reinterpret_cast<HardwareBootstrap *>(core));
+        UpdateHardwareFrame(reinterpret_cast<HardwareContext *>(core));
         UpdateHardwareInput(reinterpret_cast<void * const *>(core));
         switch (core->startup_phase)
         {
@@ -260,7 +259,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
 
 int RunIntroSceneSequence(IntroSceneCore * core)
 {
-    EnableHardwareForcedBlank(reinterpret_cast<HardwareBootstrap *>(core));
+    EnableHardwareForcedBlank(reinterpret_cast<HardwareContext *>(core));
     InitializeIntroSceneSequenceResources(core);
     GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(BLDCNT_TGT1_ALL);
     HardwareBlendOwner owner(new HardwareBlendObject(
@@ -285,7 +284,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
     do
     {
         rand();
-        UpdateHardwareFrame(reinterpret_cast<HardwareBootstrap *>(core));
+        UpdateHardwareFrame(reinterpret_cast<HardwareContext *>(core));
         UpdateHardwareInput(reinterpret_cast<void * const *>(core));
         if (!skipped)
         {

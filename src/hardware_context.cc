@@ -1,6 +1,6 @@
 #include "prelude.h"
-#pragma implementation "hardware_bootstrap.hh"
-#include "hardware_bootstrap.hh"
+#pragma implementation "hardware_context.hh"
+#include "hardware_context.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_nested_accessors.hh"
 #include "hardware_sprite_buffer.hh"
@@ -9,7 +9,7 @@
 void * operator new(unsigned long);
 void operator delete(void *);
 
-HardwareBootstrap::HardwareBootstrap()
+HardwareContext::HardwareContext()
 {
     struct HardwareCoreState * state = new HardwareCoreState(30, 4, 0, 0x20);
     u16 status = state->display.status;
@@ -19,7 +19,7 @@ HardwareBootstrap::HardwareBootstrap()
     this->state = state;
 }
 
-HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input)
+HardwareContext::HardwareContext(HardwareInputRepeatParameters const & input)
 {
     struct HardwareCoreState * state = new HardwareCoreState(input.delay, input.interval, 0, 0x20);
     u16 status = state->display.status;
@@ -29,7 +29,7 @@ HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input
     this->state = state;
 }
 
-HardwareBootstrap::HardwareBootstrap(HardwareSpriteBufferParameters const & buffer)
+HardwareContext::HardwareContext(HardwareSpriteBufferParameters const & buffer)
 {
     struct HardwareCoreState * state = new HardwareCoreState(30, 4, buffer);
     u16 status = state->display.status;
@@ -39,7 +39,7 @@ HardwareBootstrap::HardwareBootstrap(HardwareSpriteBufferParameters const & buff
     this->state = state;
 }
 
-HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input,
+HardwareContext::HardwareContext(HardwareInputRepeatParameters const & input,
     HardwareSpriteBufferParameters const & buffer)
 {
     struct HardwareCoreState * state = new HardwareCoreState(input.delay, input.interval, buffer);
@@ -50,12 +50,12 @@ HardwareBootstrap::HardwareBootstrap(HardwareInputRepeatParameters const & input
     this->state = state;
 }
 
-HardwareBootstrap::~HardwareBootstrap()
+HardwareContext::~HardwareContext()
 {
     delete state;
 }
 
-void UpdateHardwareFrame(struct HardwareBootstrap * owner)
+void UpdateHardwareFrame(struct HardwareContext * owner)
 {
     struct HardwareCoreState * state = owner->state;
     HardwareDisplayCommand display(&state->display);
@@ -70,7 +70,7 @@ void UpdateHardwareFrame(struct HardwareBootstrap * owner)
 
     HardwareManagerOwner * manager = &state->manager;
     func_08008AE0(manager)->Append(&commands);
-    func_08008AF0(manager);
+    WaitForHardwareVBlank(manager);
     func_08008AE0(manager)->Remove(&commands);
 
     // The list and commands unlink in reverse construction order at scope exit.

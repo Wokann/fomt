@@ -28,18 +28,18 @@ extern u8 const gAnimalFestivalLivestockContestantValues[][4];
 
 
 #include "game_scene.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "smart_ptr.hh"
 #pragma interface "animal_festival.hh"
 
-// The large native selection core derives from HardwareBootstrap. Its full
+// The large native selection core derives from HardwareContext. Its full
 // roster and UI storage remain native; only its real base is owned here.
 struct FestivalAnimalSelectionScene : AScene {
     FestivalAnimalSelectionScene(SceneTransitionOwner next, GameStateSaveImage * image,
         MaryFestivalAnimalKind kind);
     virtual ~FestivalAnimalSelectionScene();
     virtual SceneTransitionOwner Run();
-    SmartPtr<HardwareBootstrap> core;
+    SmartPtr<HardwareContext> core;
 };
 typedef char FestivalAnimalSelectionSceneSizeCheck[sizeof(FestivalAnimalSelectionScene) == 8 ? 1 : -1];
 typedef char FestivalAnimalSelectionSceneCoreCheck[offsetof(FestivalAnimalSelectionScene, core) == 4 ? 1 : -1];
@@ -60,7 +60,7 @@ typedef char FestivalAnimalSelectionTransitionKindCheck[offsetof(FestivalAnimalS
 #pragma implementation
 
 EXTERN_C
-SceneTransitionOwner RunFestivalAnimalSelectionCore(HardwareBootstrap * core);
+SceneTransitionOwner RunFestivalAnimalSelectionCore(HardwareContext * core);
 EXTERN_C_END
 
 #endif // ANIMAL_FESTIVAL_HH

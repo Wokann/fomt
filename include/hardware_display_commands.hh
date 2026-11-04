@@ -3,13 +3,13 @@
 
 #include "prelude.h"
 
-struct HardwareBootstrap;
+struct HardwareContext;
 
 EXTERN_C
 
 // Update the shadow's forced-blank bit and enqueue its VBlank upload.
-void EnableHardwareForcedBlank(struct HardwareBootstrap * owner);
-void DisableHardwareForcedBlank(struct HardwareBootstrap * owner);
+void EnableHardwareForcedBlank(struct HardwareContext * owner);
+void DisableHardwareForcedBlank(struct HardwareContext * owner);
 
 EXTERN_C_END
 

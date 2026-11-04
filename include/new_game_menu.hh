@@ -3,7 +3,7 @@
 
 #include "prelude.h"
 #include "game_state.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_music_player.hh"
 #include "obj_palette_collection.hh"
 #include "resource_handle.hh"
@@ -63,7 +63,7 @@ typedef char NewGameMenuPhaseSizeCheck[sizeof(NewGameMenuPhase) == 4 ? 1 : -1];
 // constructor, cleanup, and hardware/UI consumers are modeled here; the
 // remaining payload is not yet a recovered high-level class.
 #pragma interface "new_game_menu.hh"
-struct NewGameMenuCore : HardwareBootstrap {
+struct NewGameMenuCore : HardwareContext {
     // Implicit cleanup unwinds the members and bootstrap in reverse order.
     // Borrowed active snapshot; null when opening the title-screen load menu.
     GameStateSaveImage * current_save;
@@ -153,8 +153,8 @@ void UpdateNewGameMenuStatusText(struct NewGameMenuCore * core)
 
 // Both menu transitions wait until their stack-owned blend command leaves
 // the hardware queue. The first decreases progress; the second increases it.
-void RunNewGameMenuOpeningBlend(struct HardwareBootstrap * core);
-void RunNewGameMenuClosingBlend(struct HardwareBootstrap * core);
+void RunNewGameMenuOpeningBlend(struct HardwareContext * core);
+void RunNewGameMenuClosingBlend(struct HardwareContext * core);
 
 // Saving, loading and core construction retain their native order.
 bool TrySaveNewGameMenuSlot(struct NewGameMenuCore * core)

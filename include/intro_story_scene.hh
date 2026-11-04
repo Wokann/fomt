@@ -1,7 +1,7 @@
 #ifndef INTRO_STORY_SCENE_HH
 #define INTRO_STORY_SCENE_HH
 
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_music_player.hh"
 #include "ui_state.hh"
 #include "scene.hh"
@@ -22,7 +22,7 @@ typedef char IntroStoryTextVariablesSizeCheck[sizeof(IntroStoryTextVariables) ==
 typedef char IntroStoryPlayerNameOffsetCheck[offsetof(IntroStoryTextVariables, player_name) == 4 ? 1 : -1];
 
 // Verified native layout, not yet a complete C++ polymorphic scene class.
-struct IntroStorySceneCore : HardwareBootstrap
+struct IntroStorySceneCore : HardwareContext
 {
     virtual ~IntroStorySceneCore() asm("DestroyIntroStorySceneCore");
     GameStateSaveImage * saved;

@@ -1,7 +1,7 @@
 #include "game_scene.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_display_state.hh"
-#include "hardware_display_commands.hh"
+#include "hardware_context.hh"
 #pragma implementation "scene_chicken_festival.hh"
 #include "scene_chicken_festival.hh"
 #include "harvest_sprite.hh"

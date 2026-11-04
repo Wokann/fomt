@@ -6,7 +6,7 @@
 #include "pure_virtual.h"
 #include "intro_scene.hh"
 #include "new_game.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_manager.hh"
 #include "font.hh"
 #include "ui_state.hh"

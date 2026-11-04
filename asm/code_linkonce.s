@@ -116,7 +116,7 @@ sub_080D8178:
     add r4, sp
     str r2, [r4]
     str r2, [r4, #4]
-    ldr r0, [pc, #0x120]
+    ldr r0, .LHardwareDisplayCommandVTable
     str r0, [r4, #8]
     str r7, [r4, #0xc]
     mov r5, sl
@@ -128,7 +128,7 @@ sub_080D8178:
     adds r1, r4, #0
     bl _call_via_r2
     adds r0, r5, #0
-    bl func_08008AF0
+    bl WaitForHardwareVBlank
     adds r0, r4, #0
     movs r1, #2
     bl func_080098AC
@@ -253,7 +253,9 @@ sub_080D8178:
     add r0, sp
     str r7, [r0]
     b .Lauto_080D7BF2
-    .byte 0x00, 0x00, 0x70, 0xFA, 0xFF, 0xFF, 0xDC, 0x04, 0x00, 0x00, 0x30, 0x4F, 0x0E, 0x08, 0x6C, 0x04
+    .byte 0x00, 0x00, 0x70, 0xFA, 0xFF, 0xFF, 0xDC, 0x04, 0x00, 0x00
+.LHardwareDisplayCommandVTable: .word __vt_22HardwareDisplayCommand
+    .byte 0x6C, 0x04
     .byte 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x6C, 0x05, 0x00, 0x00, 0x84, 0x04, 0x00, 0x00, 0x3C, 0x05
     .byte 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x54, 0x05, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x4C, 0x05
     .byte 0x00, 0x00
@@ -6679,7 +6681,7 @@ sub_080D8178: @ 0x080D8178
 	adds r1, r4, #0
 	bl _call_via_r2
 	adds r0, r5, #0
-	bl func_08008AF0
+	bl WaitForHardwareVBlank
 	adds r0, r4, #0
 	movs r1, #2
 	bl func_080098AC
@@ -21558,7 +21560,7 @@ func_080E11EC:
     .Lauto_080E0C14:
     adds r0, r6, #0
     mov r1, sl
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r3, r4, r5}
     mov r8, r3
     mov sb, r4
@@ -21902,7 +21904,7 @@ func_080E0D60:
     .Lauto_080E0FAA:
     adds r0, r7, #0
     mov r1, r8
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r3}
     mov r8, r3
     pop {r4, r5, r6, r7}
@@ -22058,7 +22060,7 @@ func_080E1044:
     .Lauto_080E10E8:
     adds r0, r5, #0
     adds r1, r6, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -22604,7 +22606,7 @@ func_080E1574:
     .Lauto_080E15B2:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -22774,7 +22776,7 @@ func_080E15C8:
     .Lauto_080E170E:
     adds r0, r5, #0
     mov r1, sb
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r3, r4}
     mov r8, r3
     mov sb, r4
@@ -22847,7 +22849,7 @@ func_080E2018:
     .Lauto_080E1822:
     adds r0, r5, #0
     adds r1, r7, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
@@ -22970,7 +22972,7 @@ func_080E18BC:
     .Lauto_080E18FA:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -23856,7 +23858,7 @@ func_080E25D4:
     .Lauto_080E25F4:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -24571,7 +24573,7 @@ func_080E2A88:
     .Lauto_080E2B22:
     adds r0, r5, #0
     mov r1, r8
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r3}
     mov r8, r3
     pop {r4, r5, r6, r7}
@@ -24687,7 +24689,7 @@ func_080E2B70:
     str r1, [r0]
     adds r0, r5, #0
     adds r1, r6, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -25698,7 +25700,7 @@ func_080E33D4:
     str r4, [r5, #0x10]
     adds r0, r5, #0
     adds r1, r6, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -26146,7 +26148,7 @@ func_080E3838:
     .Lauto_080E3910:
     adds r0, r5, #0
     adds r1, r6, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -26841,7 +26843,7 @@ func_080E4564:
     .Lauto_080E3FA2:
     adds r0, r5, #0
     adds r1, r7, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
@@ -27398,7 +27400,7 @@ _._27ChickenFestivalMinigameCore:
     .Lauto_080E44CE:
     adds r0, r5, #0
     adds r1, r7, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
@@ -27600,7 +27602,7 @@ func_080E4D50:
     .Lauto_080E468A:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -27930,7 +27932,7 @@ func_080E4FF0:
     .Lauto_080E49D8:
     adds r0, r5, #0
     adds r1, r7, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
@@ -28567,7 +28569,7 @@ func_080E11EC: @ 0x080E11EC
 .L080E1474:
 	adds r0, r6, #0
 	mov r1, sl
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov sb, r4
@@ -28986,7 +28988,7 @@ func_080E15C0: @ 0x080E15C0
 .L080E180A:
 	adds r0, r7, #0
 	mov r1, r8
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6, r7}
@@ -29138,7 +29140,7 @@ func_080E18A4: @ 0x080E18A4
 .L080E1948:
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -29685,7 +29687,7 @@ func_080E1DD4: @ 0x080E1DD4
 .L080E1E12:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -29855,7 +29857,7 @@ func_080E1E28: @ 0x080E1E28
 .L080E1F6C:
 	adds r0, r5, #0
 	mov r1, sb
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r3, r4}
 	mov r8, r3
 	mov sb, r4
@@ -29936,7 +29938,7 @@ func_080E2018: @ 0x080E2018
 .L080E2082:
 	adds r0, r5, #0
 	adds r1, r7, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
@@ -30060,7 +30062,7 @@ func_080E211C: @ 0x080E211C
 .L080E215A:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -31899,7 +31901,7 @@ func_080E2E34:
 	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x0A, 0x48, 0xE0, 0x60, 0xA1, 0x68
 	.byte 0x00, 0x29, 0x07, 0xD0, 0x08, 0x4A, 0x88, 0x18, 0x00, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
 	.byte 0xF0, 0xF7, 0x60, 0xFD, 0x20, 0x1C, 0x29, 0x1C
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	.byte 0x30, 0xBC, 0x01, 0xBC
 	.byte 0x00, 0x47, 0x00, 0x00
 	.4byte __vt_23IndexedResourceProvider
@@ -32553,7 +32555,7 @@ func_080E32E8:
 	bl _._12UiStateOwner
 	.byte 0xE9, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF0, 0xF7
 	.byte 0xC9, 0xFA, 0x28, 0x1C, 0x41, 0x46
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	.byte 0x08, 0xBC, 0x98, 0x46, 0xF0, 0xBC
 	.byte 0x01, 0xBC, 0x00, 0x47
 	.4byte __vt_23IndexedResourceProvider
@@ -32667,7 +32669,7 @@ func_080E33D0:
 	str r1, [r0]
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -33730,7 +33732,7 @@ func_080E3C3C: @ 0x080E3C3C
 	str r4, [r5, #0x10]
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -34191,7 +34193,7 @@ func_080E40A0: @ 0x080E40A0
 .L080E4178:
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -34887,7 +34889,7 @@ func_080E4564: @ 0x080E4564
 .L080E480A:
 	adds r0, r5, #0
 	adds r1, r7, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
@@ -35479,7 +35481,7 @@ _._27ChickenFestivalMinigameCore: @ 0x080E4940
 .L080E4D36:
 	adds r0, r5, #0
 	adds r1, r7, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
@@ -35684,7 +35686,7 @@ func_080E4D50: @ 0x080E4D50
 .L080E4EF2:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -36059,7 +36061,7 @@ func_080E4FF0: @ 0x080E4FF0
 .L080E5240:
 	adds r0, r5, #0
 	adds r1, r7, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0

@@ -894,3 +894,39 @@ Reserve调用；整体外部入向62、出向37，无函数内部偏移或ABS32�
 source-abi-layout-review.json、obj_tile_collection_semantics.json、resource与Mary
 候选分类、source-edit-manifest.json、type-renames.json、native-validation.json、
 native-map-validation.json及四版native-compare.log。
+
+## 硬件上下文与帧命令引用（2026-11-05）
+
+按实际场景生命周期将 HardwareBootstrap 改为 HardwareContext，归入
+src/hardware_context.cc 与 include/hardware_context.hh；实际构造、析构、
+场景基类、嵌套 GCC 名称及汇编调用同步改名，不保留旧符号别名。
+WaitForHardwareVBlank 命名对应已有同步等待行为，未改其原生调用约定。
+
+| 区域 | 前段：构造、析构、强制空白、帧提交 | 后置命令 Run/析构 | 编译器虚表 |
+| --- | --- | --- | --- |
+| JP | 0800844C–080088C0 | 080D6FC4–080D7044 | 080E4F10–080E4F4C |
+| US | 08008444–080088B8 | 080D780C–080D788C | 080E5AD0–080E5B0C |
+| EU | 08008458–080088CC | 080D7858–080D78D8 | 080E5B1C–080E5B58 |
+| DE | 08008464–080088D8 | 080D7770–080D77F0 | 080E5A34–080E5A70 |
+
+每版14个函数、4张虚表、12个实际输入节，共1328B。前段仍是构造/析构
+736B、hardware_display_commands.c 的两个匹配 C 入口164B、帧提交240B。
+自然 C++ 合并尝试存在30字节指令次序差异，未纳入最终代码；没有添加
+寄存器强制、手写替身或编译后补正。后置回调与虚表仍保持真实物理顺序。
+
+JP080D7A98此前仍是原始字节中的080E4F30虚表指针，现改为真实
+__vt_22HardwareDisplayCommand重定位，读取指令也指向该literal标签。
+该后置调用段本身只有2字节section对齐保证；本批仅修该引用，不将整段
+列入已审可移动范围，后续仍需按它自身的边界与常量池规则处理。
+188个原地址形值候选中187个按指令/资源/字段/完整字符串证据排除，
+这一项确认为缺口并修复；无未分类项，不将数值相似当作指针。
+修复后每版入向222（201 THM_CALL、21 ABS32），其中模块内部17、
+外部205；出向80，其中外部63。均使用真实对象/函数起点，无入向内部偏移。
+
+已知I/O使用REG_DISPSTAT、DISPSTAT_VBLANK_INTR、DISPCNT_FORCED_BLANK。
+30/4是软件连发默认值，0/0x20是精灵缓冲参数，不能机械套用OAM容量宏。
+四版WSL -j4 compare及原版SHA-1通过，实际对象引用和边界见本批验证记录。
+JP844C锚移至下一未审访问器主题88C0；未做移址/扩容/模拟器测试，
+不新增C/C++覆盖，也不据此声称后续ROM已经可自由移动。
+证据：私有hardware-bootstrap-8c5584a1的summary、audit-notes、候选分类、
+native-compares与最终map/对象核验；非匹配C++尝试保留在私有记录中。

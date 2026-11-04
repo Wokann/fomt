@@ -110,9 +110,9 @@ SECTIONS
         src/obj_tile_pool.o(.text.obj_tile_tree_root);
         asm/obj_tile_collection.o(.text);
         src/obj_tile_collection.o(.text);
-        src/hardware_bootstrap.o(.text);
+        src/hardware_context.o(.text);
         src/hardware_display_commands.o(.text);
-        src/hardware_bootstrap.o(.text.hardware_frame_update);
+        src/hardware_context.o(.text.hardware_frame_update);
         src/hardware_state_accessors.o(.text);
         src/hardware_manager.o(.text);
         src/hardware_nested_accessors.o(.text);
@@ -951,8 +951,8 @@ SECTIONS
         src/obj_tile_pool.o(.text.obj_tile_tree_operations);
         src/obj_tile_pool.o(.text.obj_tile_handle_free_list);
         src/obj_tile_collection.o(.text.obj_tile_collection_reserve);
-        src/hardware_bootstrap.o(.text.hardware_frame_commands);
-        src/hardware_bootstrap.o(.text.hardware_dma_command);
+        src/hardware_context.o(.text.hardware_frame_commands);
+        src/hardware_context.o(.text.hardware_dma_command);
         *(.gnu.linkonce.t._._23HardwareDmaQueueCommand);
         *(.gnu.linkonce.t._._27HardwareSpriteBufferCommand);
         *(.gnu.linkonce.t._._22HardwareDisplayCommand);
@@ -1133,7 +1133,7 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_23HardwareDmaQueueCommand);
         *(.gnu.linkonce.d.__vt_27HardwareSpriteBufferCommand);
         *(.gnu.linkonce.d.__vt_22HardwareDisplayCommand);
-        src/hardware_bootstrap.o(.gnu.linkonce.d.__vt_17HardwareBootstrap);
+        src/hardware_context.o(.gnu.linkonce.d.__vt_15HardwareContext);
         *(.gnu.linkonce.d.__vt_27HardwareManagerCommandGroup.28HardwareManagerVBlankBinding);
         *(.gnu.linkonce.d.__vt_27HardwareManagerCommandGroup);
         *(.gnu.linkonce.d.__vt_28HardwareManagerVBlankBinding);
@@ -1243,7 +1243,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_76d4);
         . = ALIGN(4); src/scene_text_variables.o(.gnu.linkonce.d.__vt_22GameSceneTextVariables);
         . = ALIGN(4); src/ui_state.o(.gnu.linkonce.d.__vt_23ScriptTextVariableStore);
-        . = ALIGN(4); src/farming_tutorial.o(.gnu.linkonce.d.__vt_20FarmingTutorialScene.17HardwareBootstrap);
+        . = ALIGN(4); src/farming_tutorial.o(.gnu.linkonce.d.__vt_20FarmingTutorialScene.15HardwareContext);
         . = ALIGN(4); src/farming_tutorial.o(.gnu.linkonce.d.__vt_20FarmingTutorialScene.13AScriptEngine);
         . = ALIGN(4); src/farming_tutorial.o(.gnu.linkonce.d.__vt_20FarmingTutorialScene);
         . = ALIGN(4); src/farming_tutorial.o(.gnu.linkonce.d.__vt_24FarmingTutorialSceneBase);

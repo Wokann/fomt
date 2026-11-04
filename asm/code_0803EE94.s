@@ -8925,7 +8925,7 @@ __11FrisbeeCoreP18GameStateSaveImageb:
     strh r0, [r1]
     strh r2, [r1, #2]
     adds r0, r7, #0
-    bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
+    bl __15HardwareContextRC29HardwareInputRepeatParameters
     ldr r0, [pc, #0x3ec]
     str r0, [r7, #4]
     str r6, [r7, #8]
@@ -14901,7 +14901,7 @@ func_08057CF4:
     strh r0, [r1]
     strh r2, [r1, #2]
     mov r0, sl
-    bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
+    bl __15HardwareContextRC29HardwareInputRepeatParameters
     ldr r0, [pc, #0x3e8]
     mov r1, sl
     str r0, [r1, #4]
@@ -20436,7 +20436,7 @@ __26HorseRaceMedalExchangeCoreP18GameStateSaveImage:
     strh r0, [r1]
     strh r2, [r1, #2]
     adds r0, r7, #0
-    bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
+    bl __15HardwareContextRC29HardwareInputRepeatParameters
     ldr r0, [pc, #0x1c0]
     str r0, [r7, #4]
     str r4, [r7, #8]
@@ -43636,7 +43636,7 @@ ConstructFestivalAnimalSelectionCore:
 	mov sb, r1
 	adds r5, r2, #0
 	mov sl, r3
-	bl __17HardwareBootstrap
+	bl __15HardwareContext
 	ldr r0, .Ljp_08069FB4
 	str r0, [r7, #4]
 	mov r1, sb
@@ -54973,7 +54973,7 @@ func_080701BC:
 	str r5, [r2]
 	str r1, [sp, #4]
 	adds r7, r0, #0
-	bl __17HardwareBootstrap
+	bl __15HardwareContext
 	ldr r0, .Ljp_0807014C
 	str r0, [r7, #4]
 	str r4, [r7, #8]
@@ -66813,7 +66813,7 @@ func_08075E7C:
 	lsrs r0, r0, #0x18
 	mov sl, r0
 	adds r0, r7, #0
-	bl __17HardwareBootstrap
+	bl __15HardwareContext
 	ldr r0, .Ljp_08075DBC
 	str r0, [r7, #4]
 	movs r4, #0
@@ -71693,7 +71693,7 @@ __14TownMapUiSceneP18GameStateSaveImageG20SceneTransitionOwnerb: @ 0x0807865C
 	add r5, sp, #0x10
 	adds r7, r1, #0
 	adds r0, r7, #0
-	bl __17HardwareBootstrap
+	bl __15HardwareContext
 	ldr r0, .Ljp_080789FC @ =vtable_unk_080E7BA4
 	str r0, [r7, #4]
 	str r4, [r7, #8]
@@ -72340,7 +72340,7 @@ ConstructReferencePageSceneCore: @ 0x08078E40
 	mov sl, r0
 	strh r2, [r1, #2]
 	adds r0, r6, #0
-	bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
+	bl __15HardwareContextRC29HardwareInputRepeatParameters
 	ldr r0, .Ljp_0807900C @ =vtable_unk_080E7BC0
 	str r0, [r6, #4]
 	str r4, [r6, #8]
@@ -110104,7 +110104,7 @@ RunGiftWrappingSceneCore:
 	sub sp, #0x14
 	adds r7, r0, #0
 	adds r5, r1, #0
-	bl __17HardwareBootstrap
+	bl __15HardwareContext
 	adds r4, r7, #0
 	adds r4, #8
 	adds r0, r4, #0
@@ -110218,7 +110218,7 @@ func_08092DD4:
     bl func_08093D2C
     adds r0, r5, #0
     adds r1, r6, #0
-    bl _._17HardwareBootstrap
+    bl _._15HardwareContext
     pop {r4, r5, r6}
     pop {r0}
     bx r0
@@ -148110,7 +148110,7 @@ __11FrisbeeCoreP18GameStateSaveImageb: @ 0x080522F8
 	strh r0, [r1]
 	strh r2, [r1, #2]
 	adds r0, r7, #0
-	bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
+	bl __15HardwareContextRC29HardwareInputRepeatParameters
 	ldr r0, .L08052710 @ =vtable_unk_080E7944
 	str r0, [r7, #4]
 	str r6, [r7, #8]
@@ -159644,7 +159644,7 @@ func_0805806C: @ 0x0805806C
 	strh r0, [r1]
 	strh r2, [r1, #2]
 	mov r0, sl
-	bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
+	bl __15HardwareContextRC29HardwareInputRepeatParameters
 	ldr r0, .L08058480 @ =vtable_unk_080E7970
 	mov r1, sl
 	str r0, [r1, #4]
@@ -169285,7 +169285,7 @@ __26HorseRaceMedalExchangeCoreP18GameStateSaveImage: @ 0x0805CF70
 	strh r0, [r1]
 	strh r2, [r1, #2]
 	adds r0, r7, #0
-	bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
+	bl __15HardwareContextRC29HardwareInputRepeatParameters
 	ldr r0, .L0805D154 @ =vtable_unk_080E799C
 	str r0, [r7, #4]
 	str r4, [r7, #8]
@@ -193869,7 +193869,7 @@ ConstructFestivalAnimalSelectionCore: @ 0x08069F14
 	mov sb, r1
 	adds r5, r2, #0
 	mov sl, r3
-	bl __17HardwareBootstrap
+	bl __15HardwareContext
 	ldr r0, .L0806A120 @ =vtable_unk_080E7AA8
 	str r0, [r7, #4]
 	mov r1, sb
@@ -205209,7 +205209,7 @@ func_080701BC: @ 0x080701BC
 	str r5, [r2]
 	str r1, [sp, #4]
 	adds r7, r0, #0
-	bl __17HardwareBootstrap
+	bl __15HardwareContext
 	ldr r0, .L080704F0 @ =vtable_unk_080E7AE0
 	str r0, [r7, #4]
 	str r4, [r7, #8]
@@ -217844,7 +217844,7 @@ func_08075E7C: @ 0x08075E7C
 	lsrs r0, r0, #0x18
 	mov sl, r0
 	adds r0, r7, #0
-	bl __17HardwareBootstrap
+	bl __15HardwareContext
 	ldr r0, .L0807615C @ =vtable_unk_080E7B78
 	str r0, [r7, #4]
 	movs r4, #0
@@ -222757,7 +222757,7 @@ __14TownMapUiSceneP18GameStateSaveImageG20SceneTransitionOwnerb: @ 0x0807865C
 	add r5, sp, #0x10
 	adds r7, r1, #0
 	adds r0, r7, #0
-	bl __17HardwareBootstrap
+	bl __15HardwareContext
 	ldr r0, .L080789FC @ =vtable_unk_080E7BB4
 	str r0, [r7, #4]
 	str r4, [r7, #8]
@@ -223399,7 +223399,7 @@ ConstructReferencePageSceneCore: @ 0x08078E40
 	mov sl, r0
 	strh r2, [r1, #2]
 	adds r0, r6, #0
-	bl __17HardwareBootstrapRC29HardwareInputRepeatParameters
+	bl __15HardwareContextRC29HardwareInputRepeatParameters
 	ldr r0, .L0807900C @ =vtable_unk_080E7BD0
 	str r0, [r6, #4]
 	str r4, [r6, #8]
@@ -272252,7 +272252,7 @@ ConstructGameCubeLinkUiCore: @ 0x0809323C
 	sub sp, #0x14
 	adds r7, r0, #0
 	adds r5, r1, #0
-	bl __17HardwareBootstrap
+	bl __15HardwareContext
 	adds r4, r7, #0
 	adds r4, #8
 	adds r0, r4, #0
@@ -272373,7 +272373,7 @@ func_08093308: @ 0x08093308
 	bl func_08094268
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl _._17HardwareBootstrap
+	bl _._15HardwareContext
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0

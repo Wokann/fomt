@@ -2,7 +2,7 @@
 #define SCENE_HORSE_RACE_HH
 
 #include "scene.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_music_player.hh"
 #include "resource_archive.hh"
 #include "resource_handle.hh"
@@ -45,7 +45,7 @@ typedef char HorseRaceTransitionModeCheck[offsetof(HorseRaceTransition, player_c
 
 // The allocation bound and initialized prefix agree in all four native ROMs.
 // unk_... is unparsed runtime storage, not padding or recovered ROM data.
-struct HorseRaceMedalExchangeCore : HardwareBootstrap {
+struct HorseRaceMedalExchangeCore : HardwareContext {
     HorseRaceMedalExchangeCore(GameStateSaveImage * image);
     virtual ~HorseRaceMedalExchangeCore();
     SceneTransitionOwner Run();

@@ -17,14 +17,14 @@ extern char const gCppRuntimeBadAlloc_StaffCredits[];
 
 
 #include "game_scene.hh"
-#include "hardware_bootstrap.hh"
+#include "hardware_context.hh"
 #include "hardware_input.hh"
 #include "hardware_music_player.hh"
 #include "font_draw.hh"
 #include "smart_ptr.hh"
 #pragma interface "staff_credits.hh"
 
-struct StaffCreditsCore : HardwareBootstrap {
+struct StaffCreditsCore : HardwareContext {
     StaffCreditsCore();
     SceneTransitionOwner Run();
     HardwareMusicPlayerSlot music_player_0;

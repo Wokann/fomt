@@ -33,8 +33,8 @@ IntroStorySceneCore * InitializeIntroStorySceneCore(IntroStorySceneCore * core,
     GameStateSaveImage * saved)
 {
     HardwareInputRepeatParameters input(30, 1);
-    ConstructHardwareBootstrapWithInput(core, &input);
-    InstallHardwareBootstrapNativeVTable(core, &gIntroStorySceneCoreVTable);
+    ConstructHardwareContextWithInput(core, &input);
+    InstallHardwareContextNativeVTable(core, &gIntroStorySceneCoreVTable);
     core->saved = saved;
     core->unk_0C = 0;
     void * storage = operator new(sizeof(UiStateOwner));
@@ -61,7 +61,7 @@ void DestroyIntroStorySceneCore(IntroStorySceneCore * core, u32 flags)
     // Destroy the concrete inline context before the UI can release its references.
     core->variables.IntroStoryTextVariables::~IntroStoryTextVariables();
     delete core->ui_state;
-    DestroyHardwareBootstrap(core, flags);
+    DestroyHardwareContext(core, flags);
 }
 
 inline IntroStoryCoreOwner::IntroStoryCoreOwner(GameStateSaveImage * saved)

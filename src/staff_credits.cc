@@ -22,7 +22,7 @@ void GameScene::RunStaffCredits()
 }
 
 StaffCreditsCore::StaffCreditsCore()
-    : HardwareBootstrap(HardwareInputRepeatParameters(30, 1)),
+    : HardwareContext(HardwareInputRepeatParameters(30, 1)),
       music_player_0(0), music_player_1(1)
 {
     UnkUiSelectionDimensions size(28, 2);

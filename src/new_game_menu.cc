@@ -24,7 +24,7 @@ inline SceneOwner NewGameLoadedSaveTransition::CreateScene()
     return SceneOwner(new GameSceneScriptController(state));
 }
 
-static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
+static inline void QueueMenuBlend(HardwareContext * core, HardwareBlendObject & blend)
 {
     HardwareLinkedList * list =
         GetHardwareCommandList(reinterpret_cast<void * const *>(core));
@@ -36,7 +36,7 @@ static inline bool MenuBlendIsQueued(HardwareBlendObject const & blend)
     return blend.previous_slot != nullptr;
 }
 
-void RunNewGameMenuOpeningBlend(HardwareBootstrap * core)
+void RunNewGameMenuOpeningBlend(HardwareContext * core)
 {
     GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(BLDCNT_TGT1_ALL);
     HardwareBlendObject blend(GetHardwareDisplayState(reinterpret_cast<void * const *>(core)));
@@ -47,7 +47,7 @@ void RunNewGameMenuOpeningBlend(HardwareBootstrap * core)
         UpdateHardwareFrame(core);
 }
 
-void RunNewGameMenuClosingBlend(HardwareBootstrap * core)
+void RunNewGameMenuClosingBlend(HardwareContext * core)
 {
     GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBlendControl(BLDCNT_TGT1_ALL);
     HardwareBlendObject blend(GetHardwareDisplayState(reinterpret_cast<void * const *>(core)));
@@ -288,8 +288,8 @@ NewGameMenuCore * InitializeNewGameMenuCore(NewGameMenuCore * core, GameStateSav
     SceneTransition *& continuation)
 {
     HardwareSpriteBufferParameters buffers(7, 0);
-    ConstructHardwareBootstrapWithSpriteBuffer(core, &buffers);
-    InstallHardwareBootstrapNativeVTable(core, __vt_15NewGameMenuCore);
+    ConstructHardwareContextWithSpriteBuffer(core, &buffers);
+    InstallHardwareContextNativeVTable(core, __vt_15NewGameMenuCore);
     core->current_save = save;
     SceneTransition * next = continuation;
     continuation = nullptr;

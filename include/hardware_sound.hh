@@ -36,7 +36,7 @@ typedef char HardwareSoundMainCommand_size_check[sizeof(struct HardwareSoundMain
 EXTERN_C
 
 // Callers pass their manager; the wait itself only uses IRQ bit zero.
-void func_08008AF0(void * manager);
+void WaitForHardwareVBlank(void * manager);
 void func_08008AFC(void);
 u32 func_08008B0C(void);
 u32 func_08008B18(void);
