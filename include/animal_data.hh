@@ -26,12 +26,22 @@ extern char const gText_AnimalMemorial_DeathFarmPrefix[];
 #if defined(REGION_JP)
 extern char const gText_AnimalMemorial_PassedNaturalLife[];
 #endif
-// These raw records remain address-named until their native callers establish
-// their game-level meaning.
-extern u8 const gUnk_080F06FD[];
-extern u8 const gUnk_080F0704[];
-extern u8 const gUnk_080F0718[];
-extern u8 const gUnk_080F0730[];
+struct PACKED FarmHouseDrawTilePosition
+{
+    u8 x;
+    u8 y;
+};
+
+struct FarmHouseEntityPosition
+{
+    i16 x;
+    i16 y;
+};
+
+extern FarmHouseDrawTilePosition const gFarmHouseUpgradeDrawPositions[];
+extern FarmHouseEntityPosition const gFarmHouseOriginalRelocationPositions[];
+extern FarmHouseEntityPosition const gFarmHouseFirstExtensionRelocationPositions[];
+extern FarmHouseEntityPosition const gFarmHouseSecondExtensionRelocationPositions[];
 
 extern u8 const gUnk_080F0748[];
 extern u8 const gUnk_080F0770[];

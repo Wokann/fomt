@@ -2,29 +2,36 @@
 
 #include FOMT_TEXT_INCLUDE(animal_data_1.cc)
 
-// These adjacent raw records are read at different widths by native code.
-// Their individual semantics remain unresolved, so the original gUnk names
-// are retained rather than assigning speculative game meanings.
-u8 const gUnk_080F06FD[] ALIGN(1) = {
-    0x0F, 0x04, 0x1E, 0x04, 0x26, 0x04, 0x00,
+FarmHouseDrawTilePosition const gFarmHouseUpgradeDrawPositions[] ALIGN(1) = {
+    { 15, 4 },
+    { 30, 4 },
+    { 38, 4 },
 };
 
-u8 const gUnk_080F0704[] ALIGN(1) = {
-    0xD1, 0x00, 0x79, 0x00, 0x41, 0x00, 0x9D, 0x00,
-    0xB0, 0x00, 0x40, 0x00, 0x78, 0x00, 0xD0, 0x00,
-    0xD4, 0x00, 0x88, 0x00,
+FarmHouseEntityPosition const gFarmHouseOriginalRelocationPositions[] = {
+    { 209, 121 },
+    { 65, 157 },
+    { 176, 64 },
+    { 120, 208 },
+    { 212, 136 },
 };
 
-u8 const gUnk_080F0718[] ALIGN(1) = {
-    0x38, 0x00, 0x97, 0x00, 0x87, 0x00, 0x6A, 0x00,
-    0x2A, 0x01, 0x7D, 0x00, 0x28, 0x01, 0x40, 0x00,
-    0xF0, 0x00, 0xD0, 0x00, 0x4C, 0x01, 0x88, 0x00,
+FarmHouseEntityPosition const gFarmHouseFirstExtensionRelocationPositions[] = {
+    { 56, 151 },
+    { 135, 106 },
+    { 298, 125 },
+    { 296, 64 },
+    { 240, 208 },
+    { 332, 136 },
 };
 
-u8 const gUnk_080F0730[] ALIGN(1) = {
-    0x95, 0x01, 0x83, 0x00, 0xCF, 0x00, 0x6D, 0x00,
-    0x25, 0x00, 0x64, 0x00, 0x68, 0x01, 0x40, 0x00,
-    0x30, 0x01, 0xD0, 0x00, 0xBC, 0x01, 0x88, 0x00,
+FarmHouseEntityPosition const gFarmHouseSecondExtensionRelocationPositions[] = {
+    { 405, 131 },
+    { 207, 109 },
+    { 37, 100 },
+    { 360, 64 },
+    { 304, 208 },
+    { 444, 136 },
 };
 
 u8 const gUnk_080F0748[] ALIGN(1) = {
