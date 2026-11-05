@@ -422,40 +422,40 @@ SECTIONS
         src/player_actor.o(.text.GetUpdateSuspended__C11PlayerActor .text.SetUpdateSuspended__11PlayerActorUc);
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);
-        . = 0x324B8; /* Default actor action query. */
+        /* Default actor action query. */
         src/entity_actor.o(.text.entity_actor_default_no_action);
-        . = 0x324BC; /* Entity sprite constructors, then native virtual methods. */
+        /* Entity sprite constructors, then native virtual methods. */
         src/entity_sprite.o(.text.entity_sprite_constructors);
         asm/code_entities_080320DC.o(.text.entity_sprite_constructor_after);
-        . = 0x32900; /* JP/US-shared entity-UI coordinate classifier. */
+        /* JP/US-shared entity-UI coordinate classifier. */
         src/entity_ui.o(.text.entity_ui_region_classification);
-        . = 0x32934; /* Continue the surrounding entity-UI ROM block. */
+        /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_region_classification_after);
-        . = 0x32A00; /* Default entity sprite preset. */
+        /* Default entity sprite preset. */
         src/entity_sprite.o(.text.entity_sprite_default_constructor);
-        . = 0x32A30; /* Actor animation countdown and visual update. */
+        /* Actor animation countdown and visual update. */
         src/entity_actor.o(.text.entity_actor_update);
         src/entity_sprite.o(.text);
         src/entity_actor.o(.text.entity_actor_animation_status);
         src/entity_actor.o(.text.entity_actor_animation_index);
         asm/code_entities_080320DC.o(.text.entity_actor_animation_index_after);
-        . = 0x33914; /* JP/US-shared Harvest Sprite task experience transform. */
+        /* JP/US-shared Harvest Sprite task experience transform. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_task_experience);
-        . = 0x33928; /* Continue the surrounding entity-UI ROM block. */
+        /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_harvest_sprite_task_experience_after);
-        . = 0x33B24; /* JP/US-shared Harvest Sprite UI entry test. */
+        /* JP/US-shared Harvest Sprite UI entry test. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_selection);
-        . = 0x33B7C; /* Entity-UI actor state operations. */
+        /* Entity-UI actor state operations. */
         src/entity_ui.o(.text.entity_ui_actor_state);
         asm/harvest_sprite_actor.o(.text);
         asm/code_entities_080320DC.o(.text.entity_ui_unknown_flag_after);
-        . = 0x34248; /* JP/US-shared entity-UI animation lookup. */
+        /* JP/US-shared entity-UI animation lookup. */
         src/entity_ui.o(.text.entity_ui_animation_lookup);
-        . = 0x34260; /* Continue the surrounding entity-UI ROM block. */
+        /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_animation_lookup_after);
-        . = 0x34BFC; /* JP/US-shared entity-UI resource setup. */
+        /* JP/US-shared entity-UI resource setup. */
         src/entity_ui.o(.text.entity_ui_resource_setup);
-        . = 0x34C64; /* NPC schedule query and entity methods. */
+        /* NPC schedule query and entity methods. */
         src/npc_entity.o(.text.func_08034C64 .text.*ANpcEntity* .text.func_08034E* .text.func_08034F00);
         asm/code_entities_08034CEC.o(.text);
         src/npc_entity.o(.text.func_08035908 .text.func_08035940);
@@ -481,23 +481,23 @@ SECTIONS
         src/ui_text_window.o(.text.ui_text_window_border_command);
         asm/code_0803A8A4.o(.text.ui_text_window_native);
         src/ui_text_window.o(.text.ui_text_window_state);
-        . = 0x3BDE4; /* US ROM 0x0803BDE4, set a u16 pair */
+        /* US ROM 0x0803BDE4, set a u16 pair */
         src/ui_position.o(.text);
-        . = 0x3BDFC; /* Control ownership lifecycle. */
+        /* Control ownership lifecycle. */
         src/control_widget.o(.text.control_widget_constructor .text.control_widget_destructor);
-        . = 0x3BE9C; /* Read the owned window phase. */
+        /* Read the owned window phase. */
         src/control_widget.o(.text.control_widget_phase);
 
-        . = 0x3BEB0; /* Shared control callbacks, in ROM order. */
+        /* Shared control callbacks, in ROM order. */
         src/control_widget.o(.text.control_widget_callbacks);
-        . = 0x3BF14; /* Border constructor; remaining controls follow. */
+        /* Border constructor; remaining controls follow. */
         src/ui_text_window.o(.text.ui_text_window_border_constructor);
         src/main_menu_widget.o(.text.main_menu_widget_lifetime);
         src/main_menu_widget.o(.text.main_menu_widget_update);
         asm/code_0803A8A4.o(.text.main_menu_widget_update_impl);
-        . = 0x3C518; /* Derived control callbacks. */
+        /* Derived control callbacks. */
         src/main_menu_widget.o(.text.main_menu_widget_callbacks);
-        . = 0x3C54C; /* Clock-widget lifecycle. */
+        /* Clock-widget lifecycle. */
         src/map_clock_status.o(.text.map_clock_status_widget_lifetime);
         src/map_clock_status.o(.text.__24MapClockStatusHudContent .text._._24MapClockStatusHudContent .text.DrawMapClockStatusHud);
         asm/code_0803A8A4.o(.text.map_clock_status_calendar);
@@ -508,9 +508,9 @@ SECTIONS
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
         src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
         asm/code_0803A8A4.o(.text.npc_schedule_after);
-        . = 0x3E40C; /* US ROM shared Lou/Ruby Sunday schedule gate. */
+        /* US ROM shared Lou/Ruby Sunday schedule gate. */
         src/npc_schedule.o(.text.IsLouSundayScheduleActive);
-        . = 0x3E448; /* US ROM 0x0803E448, remaining raw control code */
+        /* US ROM 0x0803E448, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803E448);
         src/npc_schedule.o(.text.IsVanWednesdayScheduleActive);
         asm/code_0803A8A4.o(.text.npc_schedule_van_after);
@@ -520,18 +520,18 @@ SECTIONS
         asm/script_variable_get.o(.text);
         asm/script_variable_set.o(.text);
         asm/code_0803EE94.o(.text.script_engine_after_var_set);
-        . = 0x4E4AC; /* Ordinary 2D glyph compositor. */
+        /* Ordinary 2D glyph compositor. */
         asm/font_draw.o(.text.font_draw_normal);
-        . = 0x4E5AC; /* Extended palette glyph compositor. */
+        /* Extended palette glyph compositor. */
         asm/font_draw.o(.text.font_draw_ext);
-        . = 0x4E7A0; /* Shared 2D tile-buffer fillers and Shift-JIS renderers. */
+        /* Shared 2D tile-buffer fillers and Shift-JIS renderers. */
         src/font_draw.o(.text.Clear2DGfxBuffer);
         asm/font_draw.o(.text.font_draw_clear_rectangle);
         src/font_draw.o(.text.DrawStringTo2DGfxBuffer);
         src/font_draw.o(.text.DrawStringTo2DGfxBufferExt);
         src/font_draw.o(.text.DrawCharacterGlyphTo2DGfxBufferUnaligned);
         src/font_draw.o(.text.DrawCharacterGlyphTo2DGfxBufferExtUnaligned);
-        . = 0x4E9D0; src/font_draw.o(.text.Copy2DGfxBuffer);
+        src/font_draw.o(.text.Copy2DGfxBuffer);
         src/font_draw.o(.text.Fill2DGfxTilemapRect);
         src/font_draw.o(.text.__22FontTilemapRectCommandPUsUsUiUiUsUi);
         src/font_draw.o(.text._._22FontTilemapRectCommand);
@@ -546,22 +546,22 @@ SECTIONS
         src/ui_state.o(.text.ui_payload_destructor);
         asm/code_0803EE94.o(.text.ui_payload_destructor_after);
         src/ui_state.o(.text.ui_payload_open);
-        . = 0x503FC; /* JP/US-shared nonzero UI-state setter. */
+        /* JP/US-shared nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
-        . = 0x50410; /* JP/US-shared nonzero UI-state clearer. */
+        /* JP/US-shared nonzero UI-state clearer. */
         src/ui_state.o(.text.clear_ui_object_state_if_nonzero);
         src/ui_state.o(.text.ui_payload_text);
         src/ui_state.o(.text.ui_payload_choices);
         src/ui_state.o(.text.ui_choice_labels);
         asm/code_0803EE94.o(.text.ui_choice_labels_after);
-        . = 0x50B3C; /* JP/US-shared UI action-state first-flag clearer. */
+        /* JP/US-shared UI action-state first-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01dc);
         src/ui_state.o(.text.ui_nameplate);
-        . = 0x50C18; /* JP/US-shared UI action-state second-flag clearer. */
+        /* JP/US-shared UI action-state second-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01f0);
         src/ui_state.o(.text.ui_heart_indicator);
         asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
-        . = 0x50CC0; /* US ROM contiguous UI owner and adapter block. */
+        /* US ROM contiguous UI owner and adapter block. */
         src/ui_state.o(.text.ui_state_adapters);
         asm/code_0803EE94.o(.text.code_08050E50);
         src/ui_state.o(.text.__18UiTextInputAdapterRCUiUc .text.func_08050F70 .text.func_08050F74);
@@ -575,16 +575,15 @@ SECTIONS
         asm/code_0803EE94.o(.text.ui_state_selection_after);
         src/frisbee_scoreboard.o(.text.__22FrisbeeScoreboardSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._22FrisbeeScoreboardScene .text.Run__22FrisbeeScoreboardScene);
         src/animal_festival_ranking.o(.text);
-        . = 0x522F8; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
+        asm/code_0803EE94.o(.text.animal_festival_ranking_after);
         src/scene_frisbee.o(.text.__12FrisbeeSceneG20SceneTransitionOwnerP18GameStateSaveImageb .text._._12FrisbeeScene .text.Run__12FrisbeeScene);
         asm/code_0803EE94.o(.text.after_frisbee_scene);
         asm/horse_race_ticket.o(.text);
         asm/code_0803EE94.o(.text.after_horse_race_ticket_screen);
         src/scene_horse_race.o(.text.__27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._27HorseRaceMedalExchangeScene .text.Run__27HorseRaceMedalExchangeScene);
         /* Indexed archive parsing, then resource playback and sprite rendering. */
-        . = 0x5E6CC; src/resource_archive.o(.text);
-        . = 0x5E824; src/resource_handle.o(.text);
-        . = 0x5ED4C;
+        src/resource_archive.o(.text);
+        src/resource_handle.o(.text);
         src/intro_story_scene.o(.text.InitializeIntroStorySceneCore);
         asm/intro_story_scene.o(.text);
         src/intro_story_scene.o(.text.UpdateIntroStoryUi);
@@ -616,23 +615,23 @@ SECTIONS
         src/scroll_state.o(.text.SetTransfers__25ScrollBufferUploadCommandPCvPvUiT1T2Ui);
         src/scroll_state.o(.text.__25ScrollBufferUploadCommand);
         asm/code_0803EE94.o(.text.clear_scroll_buffer_after);
-        . = 0x76BE0; /* JP/US-shared selection-index state setter. */
+        /* JP/US-shared selection-index state setter. */
         src/selection_state.o(.text.set_selection_index);
-        . = 0x76BEC; /* JP/US-shared selection-index state getter. */
+        /* JP/US-shared selection-index state getter. */
         src/selection_state.o(.text.get_selection_index);
-        . = 0x76BFC; asm/code_0803EE94.o(.text.get_selection_index_after);
+        asm/code_0803EE94.o(.text.get_selection_index_after);
         src/staff_credits.o(.text.__16StaffCreditsCore);
         asm/code_0803EE94.o(.text.staff_credits_core_run);
         src/staff_credits.o(.text.__17StaffCreditsSceneG20SceneTransitionOwner .text._._17StaffCreditsScene .text.Run__17StaffCreditsScene);
         asm/code_0803EE94.o(.text.after_staff_credits_scene);
-        . = 0x77E34; /* JP/US-shared 30x13 BG map copier. */
+        /* JP/US-shared 30x13 BG map copier. */
         src/town_map.o(.text.CopyBgMap30x13);
-        . = 0x77E64; /* JP/US-shared rectangular BG map copier. */
+        /* JP/US-shared rectangular BG map copier. */
         src/town_map.o(.text.CopyBgMapRect);
-        . = 0x77EC0; asm/code_0803EE94.o(.text.copy_bg_map_rect_after);
-        . = 0x782C4; /* JP/US-shared town-map cursor hit test. */
+        asm/code_0803EE94.o(.text.copy_bg_map_rect_after);
+        /* JP/US-shared town-map cursor hit test. */
         src/town_map.o(.text.TownMapHotspotContains);
-        . = 0x782EC; asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
+        asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
         src/scene_reference_page.o(.text.__18ReferencePageSceneG20SceneTransitionOwnerP18GameStateSaveImagei .text._._18ReferencePageScene .text.Run__18ReferencePageScene);
         asm/code_0803EE94.o(.text.after_reference_page_scene_run);
         src/scene_poultry_farm_shop.o(.text.__20PoultryFarmShopSceneG20SceneTransitionOwnerP18GameStateSaveImageUi .text._._20PoultryFarmShopScene .text.Run__20PoultryFarmShopScene);
@@ -698,17 +697,16 @@ SECTIONS
         src/chicken.o(.text);
         src/cow.o(.text);
         src/sheep.o(.text);
-        . = 0x9BFE8; /* US ROM 0x0809BFE8, independently matched */
         src/actor_runtime_data.o(.text);
         /* Six cursed-tool states and their lift-method dispatchers. */
         src/cursed_tool.o(.text);
-        . = 0x9C4E4; /* Saved map patch flags and rectangle selection. */
+        /* Saved map patch flags and rectangle selection. */
         src/map_patch_flags.o(.text);
-        . = 0x9C5F4; /* Event-variable registrations, romance marker and packed save state. */
+        /* Event-variable registrations, romance marker and packed save state. */
         src/event_state.o(.text);
-        . = 0x9CD78; /* Fishing-record storage and queries. */
+        /* Fishing-record storage and queries. */
         src/fishing_results_data.o(.text);
-        . = 0x9CE8C; /* US ROM 0x0809CE8C, remaining raw actor code */
+        /* US ROM 0x0809CE8C, remaining raw actor code */
         /* Mine layout storage, generation, lookup and cell operations. */
         src/mine_floor.o(.text.__14MineFloorState);
         src/mine_floor.o(.text.GenerateLayout__14MineFloorState12MaryMineKindUiPC17MineFloorPositionUi);
@@ -742,9 +740,9 @@ SECTIONS
         src/bachelorette.o(.text);
         src/harvest_sprite.o(.text .text.*__*);
 
-        . = 0x9E9B8; /* Child constructors, birthday, age and walking state. */
+        /* Child constructors, birthday, age and walking state. */
         src/child.o(.text);
-        . = 0x9EB4C; /* Gotz, Saibara and Van saved state. */
+        /* Gotz, Saibara and Van saved state. */
         src/gotz.o(.text);
         src/saibara.o(.text);
         src/van.o(.text);
@@ -779,9 +777,7 @@ SECTIONS
         asm/code_809E804.o(.text.after_saved_name_scene);
         src/field_plot_position_rules.o(.text);
         src/time_of_day.o(.text.GetTimeOfDayTransitionValue);
-        . = 0xA4698;
         src/map_data.o(.text.GetMapData);
-        . = 0xA46AC;
         src/scene_sprite.o(
             .text.__19GameSceneSpriteBaseP10GameObjectUiPCiUi
             .text.__19GameSceneSpriteBaseP10GameObjectUii
@@ -905,11 +901,11 @@ SECTIONS
         asm/joy_bus.o(.text.joy_bus_register_setup);
         src/joy_bus.o(.text.ResetJoyBusCommandQueue .text.EnqueueJoyBusCommand .text.AdvanceJoyBusCommandQueue .text.IsJoyBusCommandQueueEmpty .text.ClearJoyBusCommandQueue);
         src/link_communication_data.o(.text);
-        . = 0xD0CD4; /* Shift-JIS glyph-map index converter and renderer. */
+        /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);
         asm/hardware_dma.o(.text);
         asm/integer_division.o(.text);
-        . = 0xD100C; /* Interrupt table accessors. */
+        /* Interrupt table accessors. */
         asm/interrupt.o(.text);
         asm/compression.o(.text.compression_stream);
         asm/random.o(.text);

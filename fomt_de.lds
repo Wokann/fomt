@@ -422,40 +422,40 @@ SECTIONS
         src/player_actor.o(.text.GetUpdateSuspended__C11PlayerActor .text.SetUpdateSuspended__11PlayerActorUc);
         asm/code_entities.o(.text.player_actor_update_state_after);
         src/entity_actor.o(.text);
-        . = 0x323CC; /* Default actor action query. */
+        /* Default actor action query. */
         src/entity_actor.o(.text.entity_actor_default_no_action);
-        . = 0x323D0; /* Entity sprite constructors, then native virtual methods. */
+        /* Entity sprite constructors, then native virtual methods. */
         src/entity_sprite.o(.text.entity_sprite_constructors);
         asm/code_entities_080320DC.o(.text.entity_sprite_constructor_after);
-        . = 0x32814; /* DE ROM 0x08032814, entity-UI coordinate classifier. */
+        /* DE ROM 0x08032814, entity-UI coordinate classifier. */
         src/entity_ui.o(.text.entity_ui_region_classification);
-        . = 0x32848; /* DE ROM 0x08032848, entity-UI continuation. */
+        /* DE ROM 0x08032848, entity-UI continuation. */
         asm/code_entities_080320DC.o(.text.entity_ui_region_classification_after);
-        . = 0x32914; /* Default entity sprite preset. */
+        /* Default entity sprite preset. */
         src/entity_sprite.o(.text.entity_sprite_default_constructor);
-        . = 0x32944; /* Actor animation countdown and visual update. */
+        /* Actor animation countdown and visual update. */
         src/entity_actor.o(.text.entity_actor_update);
         src/entity_sprite.o(.text);
         src/entity_actor.o(.text.entity_actor_animation_status);
         src/entity_actor.o(.text.entity_actor_animation_index);
         asm/code_entities_080320DC.o(.text.entity_actor_animation_index_after);
-        . = 0x33828; /* DE ROM 0x08033828, Harvest Sprite task experience transform. */
+        /* DE ROM 0x08033828, Harvest Sprite task experience transform. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_task_experience);
-        . = 0x3383C; /* DE ROM 0x0803383C, entity-UI continuation. */
+        /* DE ROM 0x0803383C, entity-UI continuation. */
         asm/code_entities_080320DC.o(.text.entity_ui_harvest_sprite_task_experience_after);
-        . = 0x33A38; /* DE ROM 0x08033A38, Harvest Sprite UI entry test. */
+        /* DE ROM 0x08033A38, Harvest Sprite UI entry test. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_selection);
-        . = 0x33A90; /* Entity-UI actor state operations. */
+        /* Entity-UI actor state operations. */
         src/entity_ui.o(.text.entity_ui_actor_state);
         asm/harvest_sprite_actor.o(.text);
         asm/code_entities_080320DC.o(.text.entity_ui_unknown_flag_after);
-        . = 0x3415C; /* DE ROM 0x0803415C, entity-UI animation lookup. */
+        /* DE ROM 0x0803415C, entity-UI animation lookup. */
         src/entity_ui.o(.text.entity_ui_animation_lookup);
-        . = 0x34174; /* DE ROM 0x08034174, entity-UI continuation. */
+        /* DE ROM 0x08034174, entity-UI continuation. */
         asm/code_entities_080320DC.o(.text.entity_ui_animation_lookup_after);
-        . = 0x34B10; /* DE ROM 0x08034B10, entity-UI resource setup. */
+        /* DE ROM 0x08034B10, entity-UI resource setup. */
         src/entity_ui.o(.text.entity_ui_resource_setup);
-        . = 0x34B78; /* NPC schedule query and entity methods. */
+        /* NPC schedule query and entity methods. */
         src/npc_entity.o(.text.func_08034C64 .text.*ANpcEntity* .text.func_08034E* .text.func_08034F00);
         asm/code_entities_08034CEC.o(.text);
         src/npc_entity.o(.text.func_08035908 .text.func_08035940);
@@ -467,7 +467,7 @@ SECTIONS
         src/entity_event_effects.o(.text.CreateControllerNewYearSunriseEffect .text.PlayControllerNewYearSunriseEffect .text.IsControllerNewYearSunriseEffectComplete .text.DestroyControllerNewYearSunriseEffect);
         asm/code_entities_08034CEC.o(.text.entity_event_effects_after_sunrise);
 
-        . = 0x3A7B8; /* DE ROM 0x0803A7B8, remaining raw control code. */
+        /* DE ROM 0x0803A7B8, remaining raw control code. */
         src/map_data.o(.text.SelectMapDataId);
         asm/code_0803A8A4.o(.text.world_sprite_groups_constructor);
         src/entity_auxiliary_sprites.o(.text._._22EntityAuxiliarySprites);
@@ -482,23 +482,23 @@ SECTIONS
         src/ui_text_window.o(.text.ui_text_window_border_command);
         asm/code_0803A8A4.o(.text.ui_text_window_native);
         src/ui_text_window.o(.text.ui_text_window_state);
-        . = 0x3BCF8; /* DE ROM 0x0803BCF8, set a u16 pair. */
+        /* DE ROM 0x0803BCF8, set a u16 pair. */
         src/ui_position.o(.text);
-        . = 0x3BD10; /* Control ownership lifecycle. */
+        /* Control ownership lifecycle. */
         src/control_widget.o(.text.control_widget_constructor .text.control_widget_destructor);
-        . = 0x3BDB0; /* Read the owned window phase. */
+        /* Read the owned window phase. */
         src/control_widget.o(.text.control_widget_phase);
 
-        . = 0x3BDC4; /* Shared control callbacks, in ROM order. */
+        /* Shared control callbacks, in ROM order. */
         src/control_widget.o(.text.control_widget_callbacks);
-        . = 0x3BE28; /* Border constructor; remaining controls follow. */
+        /* Border constructor; remaining controls follow. */
         src/ui_text_window.o(.text.ui_text_window_border_constructor);
         src/main_menu_widget.o(.text.main_menu_widget_lifetime);
         src/main_menu_widget.o(.text.main_menu_widget_update);
         asm/code_0803A8A4.o(.text.main_menu_widget_update_impl);
-        . = 0x3C42C; /* Derived control callbacks. */
+        /* Derived control callbacks. */
         src/main_menu_widget.o(.text.main_menu_widget_callbacks);
-        . = 0x3C460; /* Clock-widget lifecycle. */
+        /* Clock-widget lifecycle. */
         src/map_clock_status.o(.text.map_clock_status_widget_lifetime);
         src/map_clock_status.o(.text.__24MapClockStatusHudContent .text._._24MapClockStatusHudContent .text.DrawMapClockStatusHud);
         asm/code_0803A8A4.o(.text.map_clock_status_calendar);
@@ -509,9 +509,9 @@ SECTIONS
         src/npc.o(.text.InitializeSchedule__3NpcRC12ScheduleInfoPCv);
         src/npc_collection.o(.text.InitializeSchedules__13NpcCollectionRC18GameStateSaveImage);
         asm/code_0803A8A4.o(.text.npc_schedule_after);
-        . = 0x3E304; /* DE ROM 0x0803E304, Lou/Ruby Sunday schedule gate. */
+        /* DE ROM 0x0803E304, Lou/Ruby Sunday schedule gate. */
         src/npc_schedule.o(.text.IsLouSundayScheduleActive);
-        . = 0x3E340; /* DE ROM 0x0803E340, remaining raw control code. */
+        /* DE ROM 0x0803E340, remaining raw control code. */
         asm/code_0803A8A4.o(.text.code_0803E448);
         src/npc_schedule.o(.text.IsVanWednesdayScheduleActive);
         asm/code_0803A8A4.o(.text.npc_schedule_van_after);
@@ -521,18 +521,18 @@ SECTIONS
         asm/script_variable_get.o(.text);
         asm/script_variable_set.o(.text);
         asm/code_0803EE94.o(.text.script_engine_after_var_set);
-        . = 0x4E3A4; /* DE ROM 0x0804E3A4, ordinary 2D glyph compositor. */
+        /* DE ROM 0x0804E3A4, ordinary 2D glyph compositor. */
         asm/font_draw.o(.text.font_draw_normal);
-        . = 0x4E4A4; /* DE ROM 0x0804E4A4, extended palette glyph compositor. */
+        /* DE ROM 0x0804E4A4, extended palette glyph compositor. */
         asm/font_draw.o(.text.font_draw_ext);
-        . = 0x4E698; /* DE ROM 0x0804E698, tile-buffer fillers and renderer. */
+        /* DE ROM 0x0804E698, tile-buffer fillers and renderer. */
         src/font_draw.o(.text.Clear2DGfxBuffer);
         asm/font_draw.o(.text.font_draw_clear_rectangle);
         src/font_draw.o(.text.DrawStringTo2DGfxBuffer);
         src/font_draw.o(.text.DrawStringTo2DGfxBufferExt);
         src/font_draw.o(.text.DrawCharacterGlyphTo2DGfxBufferUnaligned);
         src/font_draw.o(.text.DrawCharacterGlyphTo2DGfxBufferExtUnaligned);
-        . = 0x4E8C8; src/font_draw.o(.text.Copy2DGfxBuffer);
+        src/font_draw.o(.text.Copy2DGfxBuffer);
         src/font_draw.o(.text.Fill2DGfxTilemapRect);
         src/font_draw.o(.text.__22FontTilemapRectCommandPUsUsUiUiUsUi);
         src/font_draw.o(.text._._22FontTilemapRectCommand);
@@ -547,22 +547,22 @@ SECTIONS
         src/ui_state.o(.text.ui_payload_destructor);
         asm/code_0803EE94.o(.text.ui_payload_destructor_after);
         src/ui_state.o(.text.ui_payload_open);
-        . = 0x502F4; /* DE ROM 0x080502F4, nonzero UI-state setter. */
+        /* DE ROM 0x080502F4, nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
-        . = 0x50308; /* DE ROM 0x08050308, nonzero UI-state clearer. */
+        /* DE ROM 0x08050308, nonzero UI-state clearer. */
         src/ui_state.o(.text.clear_ui_object_state_if_nonzero);
         src/ui_state.o(.text.ui_payload_text);
         src/ui_state.o(.text.ui_payload_choices);
         src/ui_state.o(.text.ui_choice_labels);
         asm/code_0803EE94.o(.text.ui_choice_labels_after);
-        . = 0x50A34; /* DE ROM 0x08050A34, UI action-state first-flag clearer. */
+        /* DE ROM 0x08050A34, UI action-state first-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01dc);
         src/ui_state.o(.text.ui_nameplate);
-        . = 0x50B10; /* DE ROM 0x08050B10, UI action-state second-flag clearer. */
+        /* DE ROM 0x08050B10, UI action-state second-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01f0);
         src/ui_state.o(.text.ui_heart_indicator);
         asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
-        . = 0x50BB8; /* DE ROM 0x08050BB8, UI owner and adapter block. */
+        /* DE ROM 0x08050BB8, UI owner and adapter block. */
         src/ui_state.o(.text.ui_state_adapters);
         asm/code_0803EE94.o(.text.code_08050E50);
         src/ui_state.o(.text.__18UiTextInputAdapterRCUiUc .text.func_08050F70 .text.func_08050F74);
@@ -576,16 +576,15 @@ SECTIONS
         asm/code_0803EE94.o(.text.ui_state_selection_after);
         src/frisbee_scoreboard.o(.text.__22FrisbeeScoreboardSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._22FrisbeeScoreboardScene .text.Run__22FrisbeeScoreboardScene);
         src/animal_festival_ranking.o(.text);
-        . = 0x521F0; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
+        asm/code_0803EE94.o(.text.animal_festival_ranking_after);
         src/scene_frisbee.o(.text.__12FrisbeeSceneG20SceneTransitionOwnerP18GameStateSaveImageb .text._._12FrisbeeScene .text.Run__12FrisbeeScene);
         asm/code_0803EE94.o(.text.after_frisbee_scene);
         asm/horse_race_ticket.o(.text);
         asm/code_0803EE94.o(.text.after_horse_race_ticket_screen);
         src/scene_horse_race.o(.text.__27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._27HorseRaceMedalExchangeScene .text.Run__27HorseRaceMedalExchangeScene);
         /* Indexed archive parsing, then resource playback and sprite rendering. */
-        . = 0x5E5C4; src/resource_archive.o(.text);
-        . = 0x5E71C; src/resource_handle.o(.text);
-        . = 0x5EC44;
+        src/resource_archive.o(.text);
+        src/resource_handle.o(.text);
         src/intro_story_scene.o(.text.InitializeIntroStorySceneCore);
         asm/intro_story_scene.o(.text);
         src/intro_story_scene.o(.text.UpdateIntroStoryUi);
@@ -617,25 +616,25 @@ SECTIONS
         src/scroll_state.o(.text.SetTransfers__25ScrollBufferUploadCommandPCvPvUiT1T2Ui);
         src/scroll_state.o(.text.__25ScrollBufferUploadCommand);
         asm/code_0803EE94.o(.text.clear_scroll_buffer_after);
-        . = 0x76AD8; /* DE ROM 0x08076AD8, selection-index state setter. */
+        /* DE ROM 0x08076AD8, selection-index state setter. */
         src/selection_state.o(.text.set_selection_index);
-        . = 0x76AE4; /* DE ROM 0x08076AE4, selection-index state getter. */
+        /* DE ROM 0x08076AE4, selection-index state getter. */
         src/selection_state.o(.text.get_selection_index);
-        . = 0x76AF4; /* DE ROM 0x08076AF4, selection-index continuation. */
+        /* DE ROM 0x08076AF4, selection-index continuation. */
         asm/code_0803EE94.o(.text.get_selection_index_after);
         src/staff_credits.o(.text.__16StaffCreditsCore);
         asm/code_0803EE94.o(.text.staff_credits_core_run);
         src/staff_credits.o(.text.__17StaffCreditsSceneG20SceneTransitionOwner .text._._17StaffCreditsScene .text.Run__17StaffCreditsScene);
         asm/code_0803EE94.o(.text.after_staff_credits_scene);
-        . = 0x77D2C; /* DE ROM 0x08077D2C, 30x13 BG map copier. */
+        /* DE ROM 0x08077D2C, 30x13 BG map copier. */
         src/town_map.o(.text.CopyBgMap30x13);
-        . = 0x77D5C; /* DE ROM 0x08077D5C, rectangular BG map copier. */
+        /* DE ROM 0x08077D5C, rectangular BG map copier. */
         src/town_map.o(.text.CopyBgMapRect);
-        . = 0x77DB8; /* DE ROM 0x08077DB8, town-map copy continuation. */
+        /* DE ROM 0x08077DB8, town-map copy continuation. */
         asm/code_0803EE94.o(.text.copy_bg_map_rect_after);
-        . = 0x781BC; /* DE ROM 0x080781BC, town-map cursor hit test. */
+        /* DE ROM 0x080781BC, town-map cursor hit test. */
         src/town_map.o(.text.TownMapHotspotContains);
-        . = 0x781E4; /* DE ROM 0x080781E4, town-map continuation. */
+        /* DE ROM 0x080781E4, town-map continuation. */
         asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
         src/scene_reference_page.o(.text.__18ReferencePageSceneG20SceneTransitionOwnerP18GameStateSaveImagei .text._._18ReferencePageScene .text.Run__18ReferencePageScene);
         asm/code_0803EE94.o(.text.after_reference_page_scene_run);
@@ -696,7 +695,6 @@ SECTIONS
         /* DE places the shared actor constructor group after a 0x4C-byte
            regional code fragment in the preceding raw block.  Keep this
            group's physical start correct while that fragment is promoted. */
-        . = 0x9B064;
         src/actor.o(.text);
         src/animal.o(.text);
         src/pet.o(.text);
@@ -707,17 +705,16 @@ SECTIONS
         src/chicken.o(.text);
         src/cow.o(.text);
         src/sheep.o(.text);
-        . = 0x9BF48; /* DE ROM 0x0809BF48, independently matched */
         src/actor_runtime_data.o(.text);
         /* Six cursed-tool states and their lift-method dispatchers. */
         src/cursed_tool.o(.text);
-        . = 0x9C444; /* Saved map patch flags and rectangle selection. */
+        /* Saved map patch flags and rectangle selection. */
         src/map_patch_flags.o(.text);
-        . = 0x9C554; /* Event-variable registrations, romance marker and packed save state. */
+        /* Event-variable registrations, romance marker and packed save state. */
         src/event_state.o(.text);
-        . = 0x9CCD8; /* Fishing-record storage and queries. */
+        /* Fishing-record storage and queries. */
         src/fishing_results_data.o(.text);
-        . = 0x9CDEC; /* DE ROM 0x0809CDEC, remaining raw actor code */
+        /* DE ROM 0x0809CDEC, remaining raw actor code */
         /* Mine layout storage, generation, lookup and cell operations. */
         src/mine_floor.o(.text.__14MineFloorState);
         src/mine_floor.o(.text.GenerateLayout__14MineFloorState12MaryMineKindUiPC17MineFloorPositionUi);
@@ -751,9 +748,9 @@ SECTIONS
         src/bachelorette.o(.text);
         src/harvest_sprite.o(.text .text.*__*);
 
-        . = 0x9E918; /* Child constructors, birthday, age and walking state. */
+        /* Child constructors, birthday, age and walking state. */
         src/child.o(.text);
-        . = 0x9EAAC; /* Gotz, Saibara and Van saved state. */
+        /* Gotz, Saibara and Van saved state. */
         src/gotz.o(.text);
         src/saibara.o(.text);
         src/van.o(.text);
@@ -788,9 +785,9 @@ SECTIONS
         asm/code_809E804.o(.text.after_saved_name_scene);
         src/field_plot_position_rules.o(.text);
         src/time_of_day.o(.text.GetTimeOfDayTransitionValue);
-        . = 0xA45F8; /* DE ROM 0x080A45F8, map-data accessor. */
+        /* DE ROM 0x080A45F8, map-data accessor. */
         src/map_data.o(.text.GetMapData);
-        . = 0xA460C; /* DE ROM 0x080A460C, sprite constructors. */
+        /* DE ROM 0x080A460C, sprite constructors. */
         src/scene_sprite.o(
             .text.__19GameSceneSpriteBaseP10GameObjectUiPCiUi
             .text.__19GameSceneSpriteBaseP10GameObjectUii
@@ -914,11 +911,11 @@ SECTIONS
         asm/joy_bus.o(.text.joy_bus_register_setup);
         src/joy_bus.o(.text.ResetJoyBusCommandQueue .text.EnqueueJoyBusCommand .text.AdvanceJoyBusCommandQueue .text.IsJoyBusCommandQueueEmpty .text.ClearJoyBusCommandQueue);
         src/link_communication_data.o(.text);
-        . = 0xD0C38; /* DE ROM 0x080D0C38, glyph-map index converter and renderer. */
+        /* DE ROM 0x080D0C38, glyph-map index converter and renderer. */
         src/font.o(.text);
         asm/hardware_dma.o(.text);
         asm/integer_division.o(.text);
-        . = 0xD0F70; /* Interrupt table accessors. */
+        /* Interrupt table accessors. */
         asm/interrupt.o(.text);
         asm/compression.o(.text.compression_stream);
         asm/random.o(.text);
