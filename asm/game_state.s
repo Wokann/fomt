@@ -927,9 +927,9 @@ __18GameStateSaveImageR10SramAccessUiRUi:
 
     .section .text.game_scene_after_actor_commands, "ax", %progbits
 
-    .global func_08014C70
+    .global ShowLivestockNeglectDeathSummary
     .thumb_func
-func_08014C70:
+ShowLivestockNeglectDeathSummary:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, r9
@@ -1388,9 +1388,9 @@ func_08014C70:
     pop {r0}
     bx r0
     .align 2, 0
-    .global func_08015044
+    .global RemoveLivestockDeadFromNeglect
     .thumb_func
-func_08015044:
+RemoveLivestockDeadFromNeglect:
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -1516,9 +1516,9 @@ func_08015044:
     pop {r0}
     bx r0
 .Ljp_0801514C: .4byte 0x00001C2C
-    .global func_08015150
+    .global ShowNaturalLivestockDeathSummary
     .thumb_func
-func_08015150:
+ShowNaturalLivestockDeathSummary:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -1977,9 +1977,9 @@ func_08015150:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_08015524
+    .global RemoveNaturallyDeadLivestock
     .thumb_func
-func_08015524:
+RemoveNaturallyDeadLivestock:
     push	{r4, r5, r6, r7, lr}
     mov	r7, r8
     push	{r7}
@@ -6349,8 +6349,8 @@ __18GameStateSaveImageR10SramAccessUiRUi: @ 0x08011650
 
     .section .text.game_scene_after_actor_commands, "ax", %progbits
 
-    thumb_func_start func_08014D9C
-func_08014D9C: @ 0x08014D9C
+    thumb_func_start ShowLivestockNeglectDeathSummary
+ShowLivestockNeglectDeathSummary: @ 0x08014D9C
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -6972,8 +6972,8 @@ func_08014D9C: @ 0x08014D9C
 .L0801520C: .4byte gText_AnimalMemorial_Continue
 .endif
 
-    thumb_func_start func_08015210
-func_08015210: @ 0x08015210
+    thumb_func_start RemoveLivestockDeadFromNeglect
+RemoveLivestockDeadFromNeglect: @ 0x08015210
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -7101,8 +7101,8 @@ func_08015210: @ 0x08015210
     .align 2, 0
 .L08015318: .4byte 0x00001C2C
 
-    thumb_func_start func_0801531C
-func_0801531C: @ 0x0801531C
+    thumb_func_start ShowNaturalLivestockDeathSummary
+ShowNaturalLivestockDeathSummary: @ 0x0801531C
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -7678,7 +7678,7 @@ func_0801531C: @ 0x0801531C
     pop {r0}
     bx r0
     .ifdef REGION_DE
-    b func_08015790
+    b RemoveNaturallyDeadLivestock
     .align 2, 0
 .L0801568C: .4byte 0xFFFFFC70
 .L08015690: .4byte gText_AnimalMemorial_LineBreak
@@ -7697,8 +7697,8 @@ func_0801531C: @ 0x0801531C
 .L0801578C: .4byte gText_AnimalMemorial_Continue
     .endif
 
-    thumb_func_start func_08015790
-func_08015790: @ 0x08015790
+    thumb_func_start RemoveNaturallyDeadLivestock
+RemoveNaturallyDeadLivestock: @ 0x08015790
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}

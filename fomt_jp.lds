@@ -552,6 +552,7 @@ SECTIONS
         asm/code_0803A8A4.o(.text.npc_schedule_van_after);
         . = 0x3EB08; /* JP ROM 0x0803EB08, independently matched */
         src/script_engine.o(.text);
+        asm/script_command_dispatch.o(.text);
         asm/code_0803EE94.o(.text);
         asm/script_variable_get.o(.text);
         asm/script_variable_set.o(.text);
