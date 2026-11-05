@@ -1,5 +1,4 @@
 #include "prelude.h"
-#pragma implementation "ui_quantity_selector.hh"
 #include "ui_quantity_selector.hh"
 #include "game_state.hh"
 #include "hardware_state_accessors.hh"

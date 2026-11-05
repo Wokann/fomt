@@ -2,7 +2,7 @@
 #include "hardware_context.hh"
 #include "new_game_data.hh"
 #include "hardware_state_accessors.hh"
-#include "new.hh"
+#include "allocation_failure.hh"
 #include "hardware_blend_object.hh"
 #include "hardware_dma.hh"
 #include "hardware_music_player.hh"

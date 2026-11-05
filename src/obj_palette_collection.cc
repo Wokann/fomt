@@ -1,7 +1,7 @@
 #include "obj_palette_collection.hh"
 
 #include "obj_palette_pool.hh"
-#include "new.hh"
+#include "allocation_failure.hh"
 
 #include <memory>
 #include <algorithm>

@@ -4,7 +4,7 @@
 // Shared inline operations for the real DMA descriptor queue. Keep allocation
 // and construction headers scoped to consumers, not the general core layout.
 #include "hardware_state_accessors.hh"
-#include "new.hh"
+#include "allocation_failure.hh"
 #include <memory>
 #include <algorithm>
 

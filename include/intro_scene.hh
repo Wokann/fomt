@@ -325,22 +325,21 @@ extern IntroSceneCoreVTable const gIntroSceneCoreVTable;
 extern u8 const gIntroSceneIndexedArchiveCompressed[];
 extern u8 const gIntroSceneSmallIndexedArchive[];
 extern u8 const gActorIndexedResourceArchive[];
-IntroSceneCore * ConstructIntroSceneCore(void * core) SECTION(".text.intro_scene_core_constructor");
+IntroSceneCore * ConstructIntroSceneCore(void * core);
 void DestroyIntroSceneCore(IntroSceneCore * core, int flags) SECTION(".text.intro_scene_core_cleanup");
-void StartIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_startup");
+void StartIntroSceneCore(IntroSceneCore * core);
 void InitializeIntroSceneBackground(IntroSceneCore * core);
-int RunIntroSceneSequence(IntroSceneCore * core) SECTION(".text.intro_scene_core_sequence");
+int RunIntroSceneSequence(IntroSceneCore * core);
 // Native resource upload/setup; a full C++ replacement is not yet matched.
 void InitializeIntroSceneSequenceResources(IntroSceneCore * core);
 // Update resource playback, refresh changed OBJ data through the DMA queue,
 // and submit the opening scene's sprites. JP also submits resource 9.
 void RenderIntroSceneFrame(IntroSceneCore * core);
-void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
-    SECTION(".text.intro_scene_sprite_submission");
+void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type);
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
 void DestroyGameIntroScene(GameIntroScene * scene, int flags);
 SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene);
-SceneTransitionOwner RunIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_run");
+SceneTransitionOwner RunIntroSceneCore(IntroSceneCore * core);
 
 EXTERN_C_END
 

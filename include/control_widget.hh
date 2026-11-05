@@ -12,19 +12,19 @@ struct HardwareLinkedList;
 
 struct ControlWidget {
     ControlWidget(i32 x, i32 y, u32 width, u32 height, u32 background,
-        u32 screen, u32 palette, u32 mode) SECTION(".text.control_widget_constructor");
-    virtual ~ControlWidget() SECTION(".text.control_widget_destructor");
-    virtual void Open() SECTION(".text.control_widget_callbacks");
-    virtual void OpenImmediate() SECTION(".text.control_widget_callbacks");
-    virtual void Close() SECTION(".text.control_widget_callbacks");
-    virtual void CloseImmediate() SECTION(".text.control_widget_callbacks");
-    virtual i32 GetX() const SECTION(".text.control_widget_callbacks");
-    virtual i32 GetY() const SECTION(".text.control_widget_callbacks");
-    virtual void SetPosition(u32 x, u32 y) SECTION(".text.control_widget_callbacks");
-    virtual void OffsetPosition(u32 x, u32 y) SECTION(".text.control_widget_callbacks");
-    u32 GetPhase() const SECTION(".text.control_widget_phase");
+        u32 screen, u32 palette, u32 mode);
+    virtual ~ControlWidget();
+    virtual void Open();
+    virtual void OpenImmediate();
+    virtual void Close();
+    virtual void CloseImmediate();
+    virtual i32 GetX() const;
+    virtual i32 GetY() const;
+    virtual void SetPosition(u32 x, u32 y);
+    virtual void OffsetPosition(u32 x, u32 y);
+    u32 GetPhase() const;
     u32 Update(HardwareDisplayState * display, HardwareLinkedList * uploads,
-        HardwareLinkedList * commands) SECTION(".text.control_widget_callbacks");
+        HardwareLinkedList * commands);
     UiTextWindow * state;
 };
 

@@ -6,7 +6,7 @@
     .thumb
 
 #if defined(REGION_JP)
-    .section .text.new_game_identity_screen
+    .text
     .align 2, 0
 
     thumb_func_start InitializeNewGameIdentityScreen
@@ -540,7 +540,7 @@ InitializeNewGameIdentityScreen:
 .Ljp_080056D0: .word (NEW_GAME_IDENTITY_CORE_MUSIC_OFFSET)
 
 #else
-    .section .text.new_game_identity_screen
+    .text
     .align 2, 0
 
     thumb_func_start InitializeNewGameIdentityScreen

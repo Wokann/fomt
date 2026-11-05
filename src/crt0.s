@@ -4,7 +4,7 @@
 
     .syntax unified
 
-    .section ".rom_header", "ax", %progbits
+    .text
 
     arm_func_start _start
 _start:
@@ -36,8 +36,6 @@ _start:
     @ region-specific layout fragment or a duplicate set of assembler strings.
     .zero  0x20
 
-    @ Only the cartridge header has a fixed ROM position.
-    .text
     .align 2, 0
     .arm
     .type entrypoint, function

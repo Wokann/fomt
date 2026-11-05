@@ -57,7 +57,6 @@ SECTIONS
     .text : ALIGN(4)
     {
         . = 0x0; /* JP ROM 0x08000000, independently matched */
-        src/crt0.o(.rom_header);
         src/crt0.o(.text);
         src/main.o(.text);
         src/sram_image.o(.text);
@@ -66,13 +65,6 @@ SECTIONS
         src/pure_virtual.o(.text);
         src/sram_access.o(.text);
         src/scene.o(.text);
-        src/intro_scene.o(.text.intro_scene_core_constructor);
-        src/intro_scene.o(.text.intro_scene_core_run);
-        src/intro_scene.o(.text.intro_scene_core_startup);
-        asm/intro_scene.o(.text.intro_scene_core_after_startup);
-        src/intro_scene.o(.text.intro_scene_core_sequence);
-        asm/intro_scene.o(.text.intro_scene_core_after_sequence);
-        src/intro_scene.o(.text.intro_scene_sprite_submission);
         src/intro_scene.o(.text);
         asm/new_game_menu.o(.text);
         src/new_game_menu.o(.text.RunNewGameMenuOpeningBlend .text.RunNewGameMenuClosingBlend .text.UpdateNewGameMenuUi);
@@ -86,7 +78,7 @@ SECTIONS
         src/new_game_identity.o(.text.new_game_identity_core_cleanup);
         src/new_game_identity.o(.text.new_game_identity_core_run);
         src/new_game_identity.o(.text.new_game_identity_core_initialization);
-        asm/new_game_identity.o(.text.new_game_identity_screen);
+        asm/new_game_identity.o(.text);
         src/new_game_identity.o(.text.new_game_identity_core_update);
         src/new_game_identity.o(.text.new_game_identity_scene);
         src/new_game_name_input.o(.text.new_game_name_input_core_constructor);
@@ -130,7 +122,6 @@ SECTIONS
         src/hardware_dma_descriptor.o(.text);
         src/hardware_input.o(.text);
         src/hardware_blend.o(.text);
-        asm/hardware.o(.text.hardware_blend_after);
         src/hardware_blend_object.o(.text);
         src/hardware_interrupt_guard.o(.text);
         src/hardware_display_state.o(.text);
@@ -348,8 +339,7 @@ SECTIONS
             .text.PickUpFieldItemAtLocation .text.func_0801D7B0 .text.func_0801D88C);
         src/world_control.o(.text.SuspendWorldUpdates .text.ResumeWorldUpdates);
         src/game_world.o(.text.QueueWorldScript);
-        src/world_audio.o(.text.SelectWorldBackgroundAudio .text.GetSongPlayerPool__14GameSceneWorld
-            .text.UpdateWorldBackgroundAudio);
+        src/world_audio.o(.text);
         src/game_world.o(.text.func_0801DC24 .text.func_0801DCA8 .text.CollectDailyShippingRevenue
             .text.func_0801DD18 .text.func_0801DD24 .text.func_0801DD30 .text.func_0801DD3C .text.func_0801DD48 .text.func_0801DD54 .text.func_0801DD60 .text.func_0801DD6C .text.func_0801DD78 .text.RemoveRecordPlayerAlbum
             .text.SetWorldMapPatchFlag .text.ClearWorldMapPatchFlag .text.func_0801DE24 .text.func_0801DE30 .text.func_0801DE3C .text.func_0801DE48
@@ -423,7 +413,7 @@ SECTIONS
         src/player_actor.o(.text.GetMaxWateringCanCapacity__C11PlayerActor);
         src/actor_facing.o(.text.GetActorInteractionBounds);
         asm/code_entities.o(.text.player_actor_after_water_capacity);
-        src/player_pedometer.o(.text.UpdatePlayerPedometer);
+        src/player_pedometer.o(.text);
         src/actor_terrain.o(.text);
         src/player_collection_events.o(.text);
         src/player_sprite.o(.text.__22PlayerSpriteControllerP11PlayerActor);
@@ -479,9 +469,7 @@ SECTIONS
 
         src/map_data.o(.text.SelectMapDataId);
         asm/code_0803A8A4.o(.text.world_sprite_groups_constructor);
-        src/entity_auxiliary_sprites.o(.text._._22EntityAuxiliarySprites);
-        src/entity_auxiliary_sprites.o(.text.PrepareResources__22EntityAuxiliarySpritesR16HardwareDmaQueue);
-        src/entity_auxiliary_sprites.o(.text.Draw__C22EntityAuxiliarySpritesP21WorldSpriteDrawBufferiiUi);
+        src/entity_auxiliary_sprites.o(.text);
         src/world_weather.o(.text);
         src/scene_text_variables.o(.text.__22GameSceneTextVariablesP18GameStateSaveImage);
         src/scene_text_variables.o(.text.Lookup__22GameSceneTextVariablesUi);
@@ -493,13 +481,10 @@ SECTIONS
         src/ui_text_window.o(.text.ui_text_window_state);
         /* JP counterpart of US function 0x0803BDE4. */
         src/ui_position.o(.text);
-        /* Control ownership lifecycle. */
-        src/control_widget.o(.text.control_widget_constructor .text.control_widget_destructor);
+        /* Control ownership lifecycle and callbacks. */
+        src/control_widget.o(.text);
         /* JP counterpart of US function 0x0803BE9C. */
-        src/control_widget.o(.text.control_widget_phase);
 
-        /* Shared control callbacks, in ROM order. */
-        src/control_widget.o(.text.control_widget_callbacks);
         /* Border constructor; remaining controls follow. */
         src/ui_text_window.o(.text.ui_text_window_border_constructor);
         src/main_menu_widget.o(.text.main_menu_widget_lifetime);
@@ -625,10 +610,8 @@ SECTIONS
         src/scroll_state.o(.text.SetTransfers__25ScrollBufferUploadCommandPCvPvUiT1T2Ui);
         src/scroll_state.o(.text.__25ScrollBufferUploadCommand);
         asm/code_0803EE94.o(.text.clear_scroll_buffer_after);
-        /* JP/US-shared selection-index state setter. */
-        src/selection_state.o(.text.set_selection_index);
-        /* JP/US-shared selection-index state getter. */
-        src/selection_state.o(.text.get_selection_index);
+        /* Selection-index accessors. */
+        src/selection_state.o(.text);
         asm/code_0803EE94.o(.text.get_selection_index_after);
         src/staff_credits.o(.text.__16StaffCreditsCore);
         asm/code_0803EE94.o(.text.staff_credits_core_run);
@@ -699,7 +682,6 @@ SECTIONS
         asm/code_0803EE94.o(.text.money_account_history);
         src/money_account.o(.text .text.__12MoneyAccount .text.[A-Za-z]*);
 
-
         src/actor.o(.text);
         src/animal.o(.text);
         src/pet.o(.text);
@@ -727,7 +709,7 @@ SECTIONS
         src/mine_floor.o(.text.GetSpringBuriedItemTableIndex__C14MineFloorStateUi);
         src/mine_floor.o(.text.GetSpringRockTableIndex__C14MineFloorStateUi);
         src/mine_floor.o(.text.PlaceLakeMineItems__14MineFloorStateUiiPC17MineFloorPosition);
-        asm/mine_floor.o(.text.GetLakeBuriedItemTableIndex__C14MineFloorStateUi);
+        asm/mine_floor.o(.text);
         src/mine_floor.o(
             .text.GetLakeRockTableIndex__C14MineFloorStateUi
             .text.GetLayoutKind__C14MineFloorState
@@ -855,7 +837,7 @@ SECTIONS
         asm/map_data.o(.text);
         src/world_runtime.o(.text.__18GameSceneWorldDataG22GameSceneWorldMapOwner);
         src/world_runtime.o(.text._._18GameSceneWorldData);
-        asm/world_runtime.o(.text.world_runtime_after_data_destruction);
+        asm/world_runtime.o(.text);
         asm/code_809E804.o(.text.world_runtime_after);
         src/ui_state.o(.text.ui_portrait_group);
         src/ui_text_stream.o(.text);
@@ -871,7 +853,7 @@ SECTIONS
         asm/code_809E804.o(.text.after_shop_display_init);
         src/ui_vcount.o(.text.UpdateUiVCount);
         asm/code_809E804.o(.text.after_ui_vcount_update);
-        src/ui_quantity_selector.o(.text.Configure__26UiPurchaseQuantitySelectorUiUiUi .text.Update__26UiPurchaseQuantitySelector .text.Hide__26UiPurchaseQuantitySelector);
+        src/ui_quantity_selector.o(.text);
         asm/code_809E804.o(.text.after_ui_quantity_selector);
         src/game_menu.o(.text.GetMenuGridLeftCellPosition__FPC28GameSceneMenuOwnedDataPrefixi);
         src/game_menu.o(.text.GetMenuGridLeftHeaderPosition__FPC28GameSceneMenuOwnedDataPrefix);
@@ -925,7 +907,6 @@ SECTIONS
         asm/random.o(.text);
         asm/compression.o(.text.compression_packets);
 
-
         src/m4a_1.o(.text);
         src/m4a.o(.text);
         asm/code_lib_syscall.o(.text);
@@ -933,8 +914,7 @@ SECTIONS
         *libgcc.a:_call_via_rX.o(.text);
         src/libc_string.o(.text);
 
-
-        src/new.o(.text.new_retry);
+        src/allocation_failure.o(.text);
         src/intro_scene.o(.text.intro_scene_transitions);
         *(.gnu.linkonce.t._._19IntroMenuTransition);
         *(.gnu.linkonce.t._._24IntroNameEntryTransition);
@@ -950,7 +930,7 @@ SECTIONS
             .text.__24GameSceneEventIconRecord);
         asm/game_state.o(.text.game_state_copy);
         src/game_state.o(.text._._18GameStateSaveImage);
-        asm/event_state.o(.text.event_state_copy);
+        asm/event_state.o(.text);
         src/npc_collection.o(.text.__13NpcCollectionRC13NpcCollection);
         src/farm.o(.text.__4FarmRC4Farm);
         src/farm.o(.gnu.linkonce.t.__4BarnRC4Barn);
@@ -1571,13 +1551,10 @@ SECTIONS
         src/font.o(.rodata);
         asm/data/static_resources.o(.rodata);
         src/m4a.o(.rodata);
-        src/m4a.o(.rodata.gM4aVoiceGroups);
-        src/m4a.o(.rodata.gMusicPlayerTable);
         /* MusicPlayerEnt is 12 bytes on the GBA. */
-        _M4aNumMusicPlayers = ABSOLUTE((. - gMusicPlayerTable) / 12);
-        src/m4a.o(.rodata.gSongTable);
+        _M4aNumMusicPlayers = ABSOLUTE((gMusicPlayerTableEnd - gMusicPlayerTable) / 12);
         /* SongEnt is eight bytes; use the actual table length, including unused slots. */
-        _M4aNumSongs = ABSOLUTE((. - gSongTable) / 8);
+        _M4aNumSongs = ABSOLUTE((gSongTableEnd - gSongTable) / 8);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
         data/scripts/scripts.o(.rodata.mary_scripts);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata.mary_scripts_tail);

@@ -1,6 +1,6 @@
 #include "obj_tile_collection.hh"
 
-#include "new.hh"
+#include "allocation_failure.hh"
 
 #include <memory>
 #include <stdlib.h>

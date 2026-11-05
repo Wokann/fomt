@@ -5,8 +5,6 @@
 #include "hardware_music_player.hh"
 #include "scroll_state.hh"
 
-#pragma interface "ui_quantity_selector.hh"
-
 struct UiSceneCore;
 struct GameStateSaveImage;
 struct HardwareCoreState;

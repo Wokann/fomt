@@ -4,7 +4,7 @@
 
     @ Native retained OBJ palette-bank acquisition.
 
-    .section .text.world_runtime_after_data_destruction, "ax", %progbits
+    .text
 
     .global AcquirePaletteBank__21GameScenePaletteCacheUi
     .type AcquirePaletteBank__21GameScenePaletteCacheUi, %function

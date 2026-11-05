@@ -343,7 +343,7 @@ $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 
 # Assembly sharing generated layout/size constants with C++. Preserve the
 # normal GAS include scan alongside CPP header discovery.
-CPP_ASM_SOURCES := asm/obj_tile_pool.s asm/obj_tile_collection.s asm/intro_scene.s asm/new_game_menu.s asm/new_game_identity.s asm/new_game_name_input.s
+CPP_ASM_SOURCES := asm/obj_tile_pool.s asm/obj_tile_collection.s asm/new_game_menu.s asm/new_game_identity.s asm/new_game_name_input.s
 $(patsubst %.s,$(BUILD_DIR)/%.d,$(CPP_ASM_SOURCES)): $(BUILD_DIR)/%.d: %.s $(SCANINC) Makefile config.mk
 	@mkdir -p $(dir $@)
 	@$(SCANINC) -M $@ $(SCANINC_DEFINES) $(INCFLAGS) -I . -I include $<
@@ -380,10 +380,10 @@ $(BUILD_DIR)/src/game_state.o $(BUILD_DIR)/src/rucksack.o $(BUILD_DIR)/src/money
 
 # Recovered scene, world and map functions surround still-native routines.
 # Keep each functional module at its original compiler-owned code positions.
-$(BUILD_DIR)/src/entity_location.o $(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/src/scene_clock.o $(BUILD_DIR)/src/scene_chicken_festival.o $(BUILD_DIR)/src/scene_horse_race.o $(BUILD_DIR)/src/scene_frisbee.o $(BUILD_DIR)/src/frisbee_scoreboard.o $(BUILD_DIR)/src/game_world.o $(BUILD_DIR)/src/scene_sprite.o $(BUILD_DIR)/src/scene_audio.o $(BUILD_DIR)/src/world_audio.o $(BUILD_DIR)/src/world_control.o $(BUILD_DIR)/src/world_lighting.o $(BUILD_DIR)/src/world_runtime.o $(BUILD_DIR)/src/world_map.o $(BUILD_DIR)/src/game_menu.o $(BUILD_DIR)/src/new_game_menu.o $(BUILD_DIR)/src/new_game_name_entry.o $(BUILD_DIR)/src/farming_tutorial.o $(BUILD_DIR)/src/name_entry.o $(BUILD_DIR)/src/ui_state.o $(BUILD_DIR)/src/intro_story_scene.o $(BUILD_DIR)/src/ui_vcount.o $(BUILD_DIR)/src/scroll_state.o $(BUILD_DIR)/src/ui_quantity_selector.o: CXXFLAGS += -ffunction-sections
+$(BUILD_DIR)/src/entity_location.o $(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/src/scene_clock.o $(BUILD_DIR)/src/scene_chicken_festival.o $(BUILD_DIR)/src/scene_horse_race.o $(BUILD_DIR)/src/scene_frisbee.o $(BUILD_DIR)/src/frisbee_scoreboard.o $(BUILD_DIR)/src/game_world.o $(BUILD_DIR)/src/scene_sprite.o $(BUILD_DIR)/src/scene_audio.o $(BUILD_DIR)/src/world_control.o $(BUILD_DIR)/src/world_lighting.o $(BUILD_DIR)/src/world_runtime.o $(BUILD_DIR)/src/world_map.o $(BUILD_DIR)/src/game_menu.o $(BUILD_DIR)/src/new_game_menu.o $(BUILD_DIR)/src/new_game_name_entry.o $(BUILD_DIR)/src/farming_tutorial.o $(BUILD_DIR)/src/name_entry.o $(BUILD_DIR)/src/ui_state.o $(BUILD_DIR)/src/intro_story_scene.o $(BUILD_DIR)/src/ui_vcount.o $(BUILD_DIR)/src/scroll_state.o: CXXFLAGS += -ffunction-sections
 
 # Recovered audio and player methods surround still-native entity routines.
-$(BUILD_DIR)/src/entity_audio.o $(BUILD_DIR)/src/player_actor.o $(BUILD_DIR)/src/player_pedometer.o $(BUILD_DIR)/src/player_sprite.o $(BUILD_DIR)/src/entity_auxiliary_sprites.o: CXXFLAGS += -ffunction-sections
+$(BUILD_DIR)/src/entity_audio.o $(BUILD_DIR)/src/player_actor.o $(BUILD_DIR)/src/player_sprite.o: CXXFLAGS += -ffunction-sections
 
 # Species health callbacks retain their distinct native function positions.
 $(BUILD_DIR)/src/livestock_actor.o: CXXFLAGS += -ffunction-sections

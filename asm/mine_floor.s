@@ -4,7 +4,7 @@
 
     @ Only the lake buried-item row selector remains native.
     .ifdef REGION_JP
-    .section .text.GetLakeBuriedItemTableIndex__C14MineFloorStateUi
+    .text
     .align 2, 0
     .global GetLakeBuriedItemTableIndex__C14MineFloorStateUi
     .thumb_func
@@ -43,7 +43,7 @@ GetLakeBuriedItemTableIndex__C14MineFloorStateUi:
     .align 2, 0
 
     .else
-    .section .text.GetLakeBuriedItemTableIndex__C14MineFloorStateUi
+    .text
     .align 2, 0
     thumb_func_start GetLakeBuriedItemTableIndex__C14MineFloorStateUi
 GetLakeBuriedItemTableIndex__C14MineFloorStateUi: @ 0x0809D79C

@@ -22,6 +22,9 @@ EXTERN_C
 
 #define nullptr 0
 
+#define STRINGIFY_LITERAL(x) #x
+#define STRINGIFY(x) STRINGIFY_LITERAL(x)
+
 #define asm_unified(x) asm(".syntax unified\n" x "\n.syntax divided")
 
 #define NAKED __attribute__((naked))

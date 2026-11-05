@@ -6,7 +6,7 @@
     @ its active IDs and the remaining saved fields. The +0x0A halfword and
     @ unused packed bits are preserved. C++ matching of this body is pending.
 
-    .section .text.event_state_copy, "ax", %progbits
+    .text
 
 	thumb_func_start __14GameEventStateRC14GameEventState
 __14GameEventStateRC14GameEventState: @ 0x080D44D4
