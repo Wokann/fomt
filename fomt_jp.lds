@@ -60,7 +60,6 @@ SECTIONS
         src/crt0.o(.rom_header);
         src/crt0.o(.text);
         src/main.o(.text);
-        . = 0x2E0; /* JP ROM 0x080002E0, independently matched */
         src/sram_image.o(.text);
         . = 0x4C4; /* JP ROM 0x080004C4, independently matched */
         src/interrupt.o(.text);
