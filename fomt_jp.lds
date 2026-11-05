@@ -61,7 +61,6 @@ SECTIONS
         src/crt0.o(.text);
         src/main.o(.text);
         src/sram_image.o(.text);
-        . = 0x4C4; /* JP ROM 0x080004C4, independently matched */
         src/interrupt.o(.text);
         src/new.o(.text);
         src/pure_virtual.o(.text);
