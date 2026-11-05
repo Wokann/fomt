@@ -447,6 +447,7 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_harvest_sprite_selection);
         . = 0x33B90; /* Entity-UI actor state operations. */
         src/entity_ui.o(.text.entity_ui_actor_state);
+        asm/harvest_sprite_actor.o(.text);
         asm/code_entities_080320DC.o(.text.entity_ui_unknown_flag_after);
         . = 0x3425C; /* JP/US-shared entity-UI animation lookup. */
         src/entity_ui.o(.text.entity_ui_animation_lookup);

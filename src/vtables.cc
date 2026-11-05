@@ -2274,7 +2274,7 @@ extern void Draw__22EntitySpriteControllerRC17EntityDrawContext(void);
 
 extern void func_08033A2C(void);
 extern void func_08033B10(void);
-extern void func_08033B94(void);
+extern void UpdateHarvestSpriteActor(void);
 extern void func_08033AE4(void);
 extern void func_08033A80(void);
 extern void func_08033AFC(void);
@@ -2288,7 +2288,7 @@ extern RawVTableFunction const vtable_unk_080E68C8[]
         GetBox__C12AActorEntity,
         vfunc_10__7AEntity,
         func_08033B10,
-        func_08033B94,
+        UpdateHarvestSpriteActor,
         Draw__7AEntityRC17EntityDrawContext,
         SuspendNormalUpdates__7AEntity,
         func_08033AE4,
