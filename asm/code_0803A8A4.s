@@ -1,3 +1,4 @@
+    .include "asm/macro.inc"
     .include "six/asm/hw/video.s"
     @ ROM-verified four-region Thumb implementation.
     @ Compiler-owned C++ functions are linked between the retained native runs.
@@ -19,7 +20,10 @@ func_0803A8A4:
     pop	{r0}
     bx	r0
     .hword 0x0000
-    .4byte vtable_unk_080E759C
+    .word vtable_unk_080E759C
+
+    thumb_func_start CreateWorldSlot84Entity
+CreateWorldSlot84Entity:
     push	{r4, r5, r6, lr}
     mov	r6, r8
     push	{r6}

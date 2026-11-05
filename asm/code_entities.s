@@ -1,3 +1,4 @@
+    .include "asm/macro.inc"
     .ifdef REGION_JP
     @ JP revision 0 counterpart of asm/code_entities.s.
     @
@@ -128,9 +129,9 @@ func_080200A0:
     bx lr
     .align 2, 0
 
-    .global func_080200A4
+    .global InitWorldDogEntity
     .thumb_func
-func_080200A4:
+InitWorldDogEntity:
     push {r4, r5, r6, r7, lr}
     sub sp, #0xc
     adds r6, r0, #0
@@ -2710,9 +2711,9 @@ func_080213C8:
     bx r1
     .align 2, 0
 
-    .global func_08021450
+    .global InitWorldHorseEntity
     .thumb_func
-func_08021450:
+InitWorldHorseEntity:
     push {r4, r5, r6, lr}
     sub sp, #8
     adds r6, r0, #0
@@ -4244,12 +4245,41 @@ func_080220DC:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00, 0x70, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x68, 0x46, 0x31, 0x1C
-    .byte 0x78, 0xF0, 0xFF, 0xFC, 0xE4, 0x23, 0xDB, 0x00, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46
+
+    thumb_func_start InitWorldChickenEntity
+InitWorldChickenEntity:
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r6, r2, #0
+    mov r0, sp
+    adds r1, r6, #0
+    bl __5ActorRC5Actor
+    movs r3, #0xe4
+    lsls r3, r3, #3
+    adds r0, r4, #0
+    adds r1, r5, #0
+    mov r2, sp
     bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
-    .byte 0x08, 0x48, 0x60, 0x61, 0x66, 0x63, 0x20, 0x1C, 0x00, 0xF0, 0xBE, 0xFA, 0x01, 0x1C
-    .byte 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x69, 0xFA, 0x20, 0x1C, 0x02, 0xB0
-    .byte 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0xDC, 0x57, 0x0E, 0x08
+    ldr r0, .L08022180 @ =vtable_unk_080E639C
+    str r0, [r4, #0x14]
+    str r6, [r4, #0x34]
+    adds r0, r4, #0
+    bl func_080226E4
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08022648
+    adds r0, r4, #0
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.L08022180: .word vtable_unk_080E639C
     .global func_08022184
     .thumb_func
 func_08022184:
@@ -5132,12 +5162,41 @@ func_08022904:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x70, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x68, 0x46, 0x31, 0x1C, 0x78, 0xF0
-    .byte 0xC7, 0xF8, 0xAC, 0x23, 0x9B, 0x00, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46
+
+    thumb_func_start InitWorldCowEntity
+InitWorldCowEntity:
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r6, r2, #0
+    mov r0, sp
+    adds r1, r6, #0
+    bl __5ActorRC5Actor
+    movs r3, #0xac
+    lsls r3, r3, #2
+    adds r0, r4, #0
+    adds r1, r5, #0
+    mov r2, sp
     bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
-    .byte 0x08, 0x48, 0x60, 0x61, 0x66, 0x63, 0x20, 0x1C, 0x00, 0xF0, 0x9A, 0xFB, 0x01, 0x1C, 0x20, 0x1C
-    .byte 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x5B, 0xFB, 0x20, 0x1C, 0x02, 0xB0, 0x70, 0xBC
-    .byte 0x02, 0xBC, 0x08, 0x47, 0x50, 0x57, 0x0E, 0x08
+    ldr r0, .L080229F0 @ =vtable_unk_080E6310
+    str r0, [r4, #0x14]
+    str r6, [r4, #0x34]
+    adds r0, r4, #0
+    bl func_0802310C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_0802309C
+    adds r0, r4, #0
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.L080229F0: .word vtable_unk_080E6310
     .global func_080229F4
     .thumb_func
 func_080229F4:
@@ -6534,12 +6593,41 @@ func_080235B4:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00, 0x70, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x68, 0x46, 0x31, 0x1C
-    .byte 0x77, 0xF0, 0x7F, 0xFA, 0x0C, 0x4B, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46
+
+    thumb_func_start InitWorldSheepEntity
+InitWorldSheepEntity:
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r6, r2, #0
+    mov r0, sp
+    adds r1, r6, #0
+    bl __5ActorRC5Actor
+    ldr r3, .L08023680 @ =0x00000921
+    adds r0, r4, #0
+    adds r1, r5, #0
+    mov r2, sp
     bl __16AudioActorEntityP10GameObjectRC13ActorLocationUi
-    .byte 0x0A, 0x48, 0x60, 0x61, 0x66, 0x63, 0x20, 0x1C, 0x00, 0xF0, 0xA7, 0xFB, 0x01, 0x1C, 0x20, 0x1C
-    .byte 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x68, 0xFB, 0x20, 0x1C, 0x02, 0xB0, 0x70, 0xBC
-    .byte 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0x21, 0x09, 0x00, 0x00, 0xC4, 0x56, 0x0E, 0x08
+    ldr r0, .L08023684 @ =vtable_unk_080E6284
+    str r0, [r4, #0x14]
+    str r6, [r4, #0x34]
+    adds r0, r4, #0
+    bl func_08023DB4
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08023D44
+    adds r0, r4, #0
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.L08023680: .word 0x00000921
+.L08023684: .word vtable_unk_080E6284
     .global func_08023688
     .thumb_func
 func_08023688:
@@ -21250,9 +21338,9 @@ Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     .4byte 0x00000281
 .Ljp_0802B67C:
     .4byte 0x0000FFFF
-    .global func_0802B680
+    .global CreateWorldPlayerEntity
     .thumb_func
-func_0802B680:
+CreateWorldPlayerEntity:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
@@ -34635,7 +34723,6 @@ func_08031E10:
     bx lr
     @ All JP raw-table targets above are direct physical labels.
     .else
-    .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
 .section .text
@@ -34721,8 +34808,8 @@ func_08020308:
 func_0802030C:
     .byte 0x70, 0x47, 0x00, 0x00
 
-    thumb_func_start func_08020310
-func_08020310: @ 0x08020310
+    thumb_func_start InitWorldDogEntity
+InitWorldDogEntity: @ 0x08020310
     push {r4, r5, r6, r7, lr}
     sub sp, #0xc
     adds r6, r0, #0
@@ -37282,8 +37369,8 @@ func_08021634:
     bx r1
     .align 2, 0
 
-    thumb_func_start func_080216BC
-func_080216BC: @ 0x080216BC
+    thumb_func_start InitWorldHorseEntity
+InitWorldHorseEntity: @ 0x080216BC
     push {r4, r5, r6, lr}
     sub sp, #8
     adds r6, r0, #0
@@ -38240,8 +38327,8 @@ func_08022348:
     .byte 0x02, 0x23, 0x11, 0x78, 0x04, 0x20, 0x40, 0x42, 0x08, 0x40, 0x18, 0x43, 0x10, 0x70, 0x30, 0x1C
     .byte 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
 
-    thumb_func_start func_080223A8
-func_080223A8: @ 0x080223A8
+    thumb_func_start InitWorldChickenEntity
+InitWorldChickenEntity: @ 0x080223A8
     push {r4, r5, r6, lr}
     sub sp, #8
     adds r4, r0, #0
@@ -39175,8 +39262,8 @@ func_08022B70:
     .byte 0x02, 0x22, 0x19, 0x78, 0x04, 0x20, 0x40, 0x42, 0x08, 0x40, 0x10, 0x43, 0x18, 0x70, 0x20, 0x1C
     .byte 0x04, 0xB0, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
 
-    thumb_func_start func_08022C18
-func_08022C18: @ 0x08022C18
+    thumb_func_start InitWorldCowEntity
+InitWorldCowEntity: @ 0x08022C18
     push {r4, r5, r6, lr}
     sub sp, #8
     adds r4, r0, #0
@@ -39984,8 +40071,8 @@ func_08023820:
     .byte 0x40, 0x42, 0x08, 0x40, 0x18, 0x43, 0x10, 0x70, 0x40, 0x46, 0x04, 0xB0, 0x08, 0xBC, 0x98, 0x46
     .byte 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
 
-    thumb_func_start func_080238A8
-func_080238A8: @ 0x080238A8
+    thumb_func_start InitWorldSheepEntity
+InitWorldSheepEntity: @ 0x080238A8
     push {r4, r5, r6, lr}
     sub sp, #8
     adds r4, r0, #0
@@ -54110,8 +54197,8 @@ Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     .4byte 0x00000281
 .L802B8E8:
     .4byte 0x0000FFFF
-    thumb_func_start func_0802B8EC
-func_0802B8EC: @ 0x0802B8EC
+    thumb_func_start CreateWorldPlayerEntity
+CreateWorldPlayerEntity: @ 0x0802B8EC
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0

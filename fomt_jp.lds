@@ -360,7 +360,8 @@ SECTIONS
         src/game_world.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
         asm/world_palette_update.o(.text);
         src/world_lighting.o(.text.GetWorldTimeOfDayPeriod);
-        asm/game_state.o(.text.game_scene_after_time_of_day_period);
+        asm/world_entity_slots.o(.text);
+        asm/game_state.o(.text.world_entity_selection);
         src/game_world.o(.text.func_0801B5C0);
         asm/game_state.o(.text.game_scene_palette_resource_selector_after);
         src/game_world.o(.text.SetWorldPendingUnknownValue);

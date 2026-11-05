@@ -21053,9 +21053,9 @@ func_0803A394:
     bx	r0
     .hword 0x0000
     .4byte vtable_unk_080E759C
-    .global func_0803A798
+    .global CreateWorldSlot84Entity
     .thumb_func
-func_0803A798:
+CreateWorldSlot84Entity:
     push	{r4, r5, r6, lr}
     mov	r6, r8
     push	{r6}
@@ -31778,9 +31778,9 @@ func_0803A394:
     bx	r0
     .hword 0x0000
     .4byte vtable_unk_080E759C
-    .global func_0803A798
+    .global CreateWorldSlot84Entity
     .thumb_func
-func_0803A798:
+CreateWorldSlot84Entity:
     push	{r4, r5, r6, lr}
     mov	r6, r8
     push	{r6}
@@ -42502,9 +42502,9 @@ func_0803A394:
     bx	r0
     .hword 0x0000
     .4byte vtable_unk_080E759C
-    .global func_0803A798
+    .global CreateWorldSlot84Entity
     .thumb_func
-func_0803A798:
+CreateWorldSlot84Entity:
     push	{r4, r5, r6, lr}
     mov	r6, r8
     push	{r6}
