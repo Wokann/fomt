@@ -1253,3 +1253,160 @@ RefreshWorldEntitySlot:
     .align 2, 0
 .L0801B490: .word 0x00001038
 .L0801B494: .word 0x0000214C
+
+    thumb_func_start FindNearestOverlappingWorldEntitySlot
+FindNearestOverlappingWorldEntitySlot:
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x14
+    adds r7, r1, #0
+    mov sb, r2
+    movs r1, #0x64
+    str r1, [sp, #8]
+    movs r2, #1
+    str r2, [sp, #0xc]
+    adds r3, r0, #0
+    adds r3, #8
+    str r3, [sp, #0x10]
+    mov r8, sp
+    adds r0, #0xc
+    mov sl, r0
+.LentitySearch_loop:
+    mov r4, sl
+    ldr r5, [r4]
+    cmp r5, #0
+    beq .LentitySearch_next
+    ldrh r0, [r7]
+    lsls r0, r0, #0x16
+    lsrs r0, r0, #0x16
+    ldrh r1, [r5, #4]
+    cmp r0, r1
+    bne .LentitySearch_next
+    ldr r1, [r5, #0x14]
+    mov r0, sp
+    ldr r2, [r1, #0xc]
+    adds r1, r5, #0
+    bl _call_via_r2
+    mov r3, sb
+    movs r4, #0
+    ldrsh r2, [r3, r4]
+    mov r1, r8
+    movs r3, #4
+    ldrsh r0, [r1, r3]
+    subs r2, r2, r0
+    movs r4, #0
+    ldrsh r0, [r1, r4]
+    mov r3, sb
+    movs r4, #4
+    ldrsh r1, [r3, r4]
+    subs r0, r0, r1
+    ands r2, r0
+    movs r1, #2
+    ldrsh r0, [r3, r1]
+    mov r3, r8
+    movs r4, #6
+    ldrsh r1, [r3, r4]
+    subs r0, r0, r1
+    ands r2, r0
+    movs r1, #2
+    ldrsh r0, [r3, r1]
+    mov r3, sb
+    movs r4, #6
+    ldrsh r1, [r3, r4]
+    subs r0, r0, r1
+    ands r2, r0
+    cmp r2, #0
+    bge .LentitySearch_next
+    ldr r0, [sp, #8]
+    cmp r0, #0x64
+    beq .LentitySearch_set_best
+    lsls r0, r0, #2
+    ldr r1, [sp, #0x10]
+    adds r0, r1, r0
+    ldr r4, [r0]
+    movs r3, #0xa
+    ldrsh r2, [r4, r3]
+    ldrb r1, [r7, #1]
+    lsrs r1, r1, #2
+    ldrh r0, [r7, #2]
+    ldr r3, .LentitySearch_mask
+    mov ip, r3
+    ands r0, r3
+    lsls r0, r0, #6
+    orrs r0, r1
+    lsls r0, r0, #0x10
+    asrs r6, r0, #0x10
+    subs r3, r2, r6
+    cmp r3, #0
+    bge .LentitySearch_x_positive
+    negs r3, r3
+.LentitySearch_x_positive:
+    movs r0, #0xe
+    ldrsh r2, [r4, r0]
+    ldrb r1, [r7, #3]
+    lsrs r1, r1, #2
+    ldrh r0, [r7, #4]
+    mov r4, ip
+    ands r0, r4
+    lsls r0, r0, #6
+    orrs r0, r1
+    lsls r0, r0, #0x10
+    asrs r4, r0, #0x10
+    subs r1, r2, r4
+    cmp r1, #0
+    bge .LentitySearch_y_positive
+    negs r1, r1
+.LentitySearch_y_positive:
+    adds r0, r3, #0
+    muls r0, r3
+    adds r2, r1, #0
+    muls r2, r1
+    adds r1, r2, #0
+    adds r2, r0, r1
+    movs r3, #0xa
+    ldrsh r0, [r5, r3]
+    subs r3, r0, r6
+    cmp r3, #0
+    bge .LentitySearch_candidate_x_positive
+    negs r3, r3
+.LentitySearch_candidate_x_positive:
+    movs r1, #0xe
+    ldrsh r0, [r5, r1]
+    subs r1, r0, r4
+    cmp r1, #0
+    bge .LentitySearch_candidate_y_positive
+    negs r1, r1
+.LentitySearch_candidate_y_positive:
+    adds r0, r3, #0
+    muls r0, r3
+    adds r3, r1, #0
+    muls r3, r1
+    adds r1, r3, #0
+    adds r0, r0, r1
+    cmp r2, r0
+    blt .LentitySearch_next
+.LentitySearch_set_best:
+    ldr r4, [sp, #0xc]
+    str r4, [sp, #8]
+.LentitySearch_next:
+    movs r0, #4
+    add sl, r0
+    ldr r1, [sp, #0xc]
+    adds r1, #1
+    str r1, [sp, #0xc]
+    cmp r1, #0x63
+    bls .LentitySearch_loop
+    ldr r0, [sp, #8]
+    add sp, #0x14
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.LentitySearch_mask: .word 0x000003FF

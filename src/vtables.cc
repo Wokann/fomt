@@ -593,7 +593,7 @@ extern void SuspendWorldUpdates(void);
 extern void ResumeWorldUpdates(void);
 extern void GetWorldEntity(void);
 extern void GetWorldEntityConst(void);
-extern void func_0801B498(void);
+extern void FindNearestOverlappingWorldEntitySlot(void);
 extern void func_0801E084(void);
 extern void SetWorldPendingUnknownValue(void);
 extern void QueueWorldScript(void);
@@ -1074,7 +1074,7 @@ extern RawVTableFunction const gGameSceneWorldVTable[] asm("__vt_14GameSceneWorl
     ResumeWorldUpdates,
     GetWorldEntity,
     GetWorldEntityConst,
-    func_0801B498,
+    FindNearestOverlappingWorldEntitySlot,
     func_0801E084,
     SetWorldPendingUnknownValue,
     QueueWorldScript,
