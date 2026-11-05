@@ -96156,22 +96156,37 @@ gUnk_084C0850:
     .include "graphics/regional_resource_0873a6e8/archive.inc"
     .global gUnk_084C0FBC
 gUnk_084C0FBC:
-    .4byte 2                       @ selection count
-    .4byte 1                       @ first selection
-    .2byte 1, 1                    @ second selection
-    .4byte 2                       @ descriptor count
-    .2byte 1, 0, 4, 0, 1, 0, 0, 0  @ first descriptor
-    .2byte 1, 0, 4, 4, 1, 0, 0, 0  @ second descriptor
-    .4byte 1                       @ OAM count
-    .2byte 0x00F8, 0x41F8, 0, 0   @ OAM entry
-    .4byte 8                       @ tile count
+    .word (.LgUnk_084C0FBC_selections_end - .LgUnk_084C0FBC_selections) / 4
+.LgUnk_084C0FBC_selections:
+    .hword 1, 0
+    .hword 1, 1
+.LgUnk_084C0FBC_selections_end:
+    .word (.LgUnk_084C0FBC_groups_end - .LgUnk_084C0FBC_groups) / 16
+.LgUnk_084C0FBC_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+    .hword 1, 0, 4, 4, 1, 0, 0, 0
+.LgUnk_084C0FBC_groups_end:
+    .word (.LgUnk_084C0FBC_sprites_end - .LgUnk_084C0FBC_sprites) / 8
+.LgUnk_084C0FBC_sprites:
+    .hword 0x00F8, 0x41F8, 0x0000, 0x0000
+.LgUnk_084C0FBC_sprites_end:
+    .word (.LgUnk_084C0FBC_tiles_end - .LgUnk_084C0FBC_tiles) / 32
+.LgUnk_084C0FBC_tiles:
     .incbin "graphics/shared_resource_0873ae54/full/group_000.4bpp"
     .incbin "graphics/shared_resource_0873ae54/full/group_001.4bpp"
-    .4byte 1                       @ palette count
+.LgUnk_084C0FBC_tiles_end:
+    .word (.LgUnk_084C0FBC_palettes_end - .LgUnk_084C0FBC_palettes) / 32
+.LgUnk_084C0FBC_palettes:
     .incbin "graphics/shared_resource_0873ae54/full/group_000.gbapal"
-    .4byte 0                       @ empty table count
-    .4byte 2                       @ final table count
-    .4byte 0, 1                    @ final table entries
+.LgUnk_084C0FBC_palettes_end:
+    .word (.LgUnk_084C0FBC_sixth_end - .LgUnk_084C0FBC_sixth) / 8
+.LgUnk_084C0FBC_sixth:
+.LgUnk_084C0FBC_sixth_end:
+    .word (.LgUnk_084C0FBC_entries_end - .LgUnk_084C0FBC_entries) / 4
+.LgUnk_084C0FBC_entries:
+    .hword 0, 0
+    .hword 1, 0
+.LgUnk_084C0FBC_entries_end:
     .global gUnk_084C1130
 gUnk_084C1130:
     .include "graphics/shared_resource_0873afc8/archive.inc"
@@ -96201,19 +96216,33 @@ gUnk_084C339C:
     .include "graphics/shared_resource_0873d234/archive.inc"
     .global gUnk_084C3764
 gUnk_084C3764:
-    .4byte 1                      @ selection count
-    .4byte 1                      @ selection
-    .4byte 1                      @ descriptor count
-    .4byte 1, 4, 1, 0             @ descriptor
-    .4byte 1                      @ OAM count
-    .2byte 0, 0x4000, 0, 0        @ OAM entry
-    .4byte 4                      @ tile count
+    .word (.LgUnk_084C3764_selections_end - .LgUnk_084C3764_selections) / 4
+.LgUnk_084C3764_selections:
+    .hword 1, 0
+.LgUnk_084C3764_selections_end:
+    .word (.LgUnk_084C3764_groups_end - .LgUnk_084C3764_groups) / 16
+.LgUnk_084C3764_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_084C3764_groups_end:
+    .word (.LgUnk_084C3764_sprites_end - .LgUnk_084C3764_sprites) / 8
+.LgUnk_084C3764_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_084C3764_sprites_end:
+    .word (.LgUnk_084C3764_tiles_end - .LgUnk_084C3764_tiles) / 32
+.LgUnk_084C3764_tiles:
     .incbin "graphics/shared_resource_0873d5fc/full/group_000.4bpp"
-    .4byte 1                      @ palette count
+.LgUnk_084C3764_tiles_end:
+    .word (.LgUnk_084C3764_palettes_end - .LgUnk_084C3764_palettes) / 32
+.LgUnk_084C3764_palettes:
     .incbin "graphics/shared_resource_0873d5fc/full/group_000.gbapal"
-    .4byte 0                      @ empty table count
-    .4byte 1                      @ final table count
-    .4byte 0                      @ final table entry
+.LgUnk_084C3764_palettes_end:
+    .word (.LgUnk_084C3764_sixth_end - .LgUnk_084C3764_sixth) / 8
+.LgUnk_084C3764_sixth:
+.LgUnk_084C3764_sixth_end:
+    .word (.LgUnk_084C3764_entries_end - .LgUnk_084C3764_entries) / 4
+.LgUnk_084C3764_entries:
+    .hword 0, 0
+.LgUnk_084C3764_entries_end:
     .global gUnk_084C3840
 gUnk_084C3840:
     .include "graphics/regional_resource_0873d6d8/archive.inc"
@@ -96249,19 +96278,33 @@ gUnk_084C6708:
     .include "graphics/shared_resource_087405a0/archive.inc"
     .global gUnk_084C6A70
 gUnk_084C6A70:
-    .4byte 1                      @ selection count
-    .4byte 1                      @ selection
-    .4byte 1                      @ descriptor count
-    .4byte 1, 4, 1, 0             @ descriptor
-    .4byte 1                      @ OAM count
-    .2byte 0, 0x4000, 0, 0        @ OAM entry
-    .4byte 4                      @ tile count
+    .word (.LgUnk_084C6A70_selections_end - .LgUnk_084C6A70_selections) / 4
+.LgUnk_084C6A70_selections:
+    .hword 1, 0
+.LgUnk_084C6A70_selections_end:
+    .word (.LgUnk_084C6A70_groups_end - .LgUnk_084C6A70_groups) / 16
+.LgUnk_084C6A70_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_084C6A70_groups_end:
+    .word (.LgUnk_084C6A70_sprites_end - .LgUnk_084C6A70_sprites) / 8
+.LgUnk_084C6A70_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_084C6A70_sprites_end:
+    .word (.LgUnk_084C6A70_tiles_end - .LgUnk_084C6A70_tiles) / 32
+.LgUnk_084C6A70_tiles:
     .incbin "graphics/shared_resource_08740908/full/group_000.4bpp"
-    .4byte 1                      @ palette count
+.LgUnk_084C6A70_tiles_end:
+    .word (.LgUnk_084C6A70_palettes_end - .LgUnk_084C6A70_palettes) / 32
+.LgUnk_084C6A70_palettes:
     .incbin "graphics/shared_resource_08740908/full/group_000.gbapal"
-    .4byte 0                      @ empty table count
-    .4byte 1                      @ final table count
-    .4byte 0                      @ final table entry
+.LgUnk_084C6A70_palettes_end:
+    .word (.LgUnk_084C6A70_sixth_end - .LgUnk_084C6A70_sixth) / 8
+.LgUnk_084C6A70_sixth:
+.LgUnk_084C6A70_sixth_end:
+    .word (.LgUnk_084C6A70_entries_end - .LgUnk_084C6A70_entries) / 4
+.LgUnk_084C6A70_entries:
+    .hword 0, 0
+.LgUnk_084C6A70_entries_end:
     .global gUnk_084C6B4C
 gUnk_084C6B4C:
     .include "graphics/shared_resource_087409e4/archive.inc"
@@ -96372,23 +96415,40 @@ gIntroSceneStartupPaletteBanks:
     .size gIntroSceneStartupPaletteBanks, . - gIntroSceneStartupPaletteBanks
     .global gIntroSceneSmallIndexedArchive
 gIntroSceneSmallIndexedArchive:
-    .4byte 1                         @ selection count
-    .4byte 4                         @ selection
-    .4byte 3                         @ frame descriptor count
-    .4byte 1, 4, 1, 0               @ frame 0
-    .4byte 0x00010001, 4, 1, 0      @ frame 1
-    .4byte 0x00020001, 4, 1, 0      @ frame 2
-    .4byte 3                         @ OAM count
-    .2byte 0x00FA, 0x41F0, 0, 0
-    .2byte 0x00FA, 0x41F1, 0, 0
-    .2byte 0x00FA, 0x41F2, 0, 0
-    .4byte 4                         @ tile count
+    .word (.LgIntroSceneSmallIndexedArchive_selections_end - .LgIntroSceneSmallIndexedArchive_selections) / 4
+.LgIntroSceneSmallIndexedArchive_selections:
+    .hword 4, 0
+.LgIntroSceneSmallIndexedArchive_selections_end:
+    .word (.LgIntroSceneSmallIndexedArchive_groups_end - .LgIntroSceneSmallIndexedArchive_groups) / 16
+.LgIntroSceneSmallIndexedArchive_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+    .hword 1, 1, 4, 0, 1, 0, 0, 0
+    .hword 1, 2, 4, 0, 1, 0, 0, 0
+.LgIntroSceneSmallIndexedArchive_groups_end:
+    .word (.LgIntroSceneSmallIndexedArchive_sprites_end - .LgIntroSceneSmallIndexedArchive_sprites) / 8
+.LgIntroSceneSmallIndexedArchive_sprites:
+    .hword 0x00FA, 0x41F0, 0x0000, 0x0000
+    .hword 0x00FA, 0x41F1, 0x0000, 0x0000
+    .hword 0x00FA, 0x41F2, 0x0000, 0x0000
+.LgIntroSceneSmallIndexedArchive_sprites_end:
+    .word (.LgIntroSceneSmallIndexedArchive_tiles_end - .LgIntroSceneSmallIndexedArchive_tiles) / 32
+.LgIntroSceneSmallIndexedArchive_tiles:
     .incbin "graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.4bpp"
-    .4byte 1                         @ palette count
+.LgIntroSceneSmallIndexedArchive_tiles_end:
+    .word (.LgIntroSceneSmallIndexedArchive_palettes_end - .LgIntroSceneSmallIndexedArchive_palettes) / 32
+.LgIntroSceneSmallIndexedArchive_palettes:
     .incbin "graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.gbapal"
-    .4byte 0                         @ empty table count
-    .4byte 4                         @ animation entry count
-    .4byte 0x00060000, 0x00060001, 0x00060002, 0x00060001
+.LgIntroSceneSmallIndexedArchive_palettes_end:
+    .word (.LgIntroSceneSmallIndexedArchive_sixth_end - .LgIntroSceneSmallIndexedArchive_sixth) / 8
+.LgIntroSceneSmallIndexedArchive_sixth:
+.LgIntroSceneSmallIndexedArchive_sixth_end:
+    .word (.LgIntroSceneSmallIndexedArchive_entries_end - .LgIntroSceneSmallIndexedArchive_entries) / 4
+.LgIntroSceneSmallIndexedArchive_entries:
+    .hword 0, 6
+    .hword 1, 6
+    .hword 2, 6
+    .hword 1, 6
+.LgIntroSceneSmallIndexedArchive_entries_end:
     .global gSharedSceneBackgroundTiles
 gSharedSceneBackgroundTiles:
     .incbin "graphics/ui/scene_08077810/jp/tiles.4bpp.lz"
@@ -96400,19 +96460,33 @@ gSharedSceneBackgroundLayer1Tilemap:
     .incbin "graphics/ui/scene_08077810/jp/layer_1.tilemap.lz"
     .global gUnk_084D5354
 gUnk_084D5354:
-    .4byte 1                      @ selection count
-    .4byte 1                      @ selection
-    .4byte 1                      @ descriptor count
-    .4byte 1, 4, 1, 0             @ descriptor
-    .4byte 1                      @ OAM count
-    .2byte 0, 0x4000, 0, 0        @ OAM entry
-    .4byte 4                      @ tile count
+    .word (.LgUnk_084D5354_selections_end - .LgUnk_084D5354_selections) / 4
+.LgUnk_084D5354_selections:
+    .hword 1, 0
+.LgUnk_084D5354_selections_end:
+    .word (.LgUnk_084D5354_groups_end - .LgUnk_084D5354_groups) / 16
+.LgUnk_084D5354_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_084D5354_groups_end:
+    .word (.LgUnk_084D5354_sprites_end - .LgUnk_084D5354_sprites) / 8
+.LgUnk_084D5354_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_084D5354_sprites_end:
+    .word (.LgUnk_084D5354_tiles_end - .LgUnk_084D5354_tiles) / 32
+.LgUnk_084D5354_tiles:
     .incbin "graphics/shared_resource_0874ee38/full/group_000.4bpp"
-    .4byte 1                      @ palette count
+.LgUnk_084D5354_tiles_end:
+    .word (.LgUnk_084D5354_palettes_end - .LgUnk_084D5354_palettes) / 32
+.LgUnk_084D5354_palettes:
     .incbin "graphics/shared_resource_0874ee38/full/group_000.gbapal"
-    .4byte 0                      @ empty table count
-    .4byte 1                      @ final table count
-    .4byte 0                      @ final table entry
+.LgUnk_084D5354_palettes_end:
+    .word (.LgUnk_084D5354_sixth_end - .LgUnk_084D5354_sixth) / 8
+.LgUnk_084D5354_sixth:
+.LgUnk_084D5354_sixth_end:
+    .word (.LgUnk_084D5354_entries_end - .LgUnk_084D5354_entries) / 4
+.LgUnk_084D5354_entries:
+    .hword 0, 0
+.LgUnk_084D5354_entries_end:
     .global gUiSceneBackgroundLayer0Tilemap
 gUiSceneBackgroundLayer0Tilemap:
     .incbin "graphics/ui/scene_080a2ba4/shared/layer_0.tilemap.lz"
@@ -96763,34 +96837,62 @@ gUnk_0875350C:
     .incbin "graphics/ui/farm_status/creature_icons/shared/icon_19.gbapal"
     .global gUnk_084D94D8
 gUnk_084D94D8:
-    .4byte 1                      @ selection count
-    .4byte 1                      @ selection
-    .4byte 1                      @ descriptor count
-    .4byte 1, 4, 1, 0             @ descriptor
-    .4byte 1                      @ OAM count
-    .2byte 0, 0x4000, 0, 0        @ OAM entry
-    .4byte 4                      @ tile count
+    .word (.LgUnk_084D94D8_selections_end - .LgUnk_084D94D8_selections) / 4
+.LgUnk_084D94D8_selections:
+    .hword 1, 0
+.LgUnk_084D94D8_selections_end:
+    .word (.LgUnk_084D94D8_groups_end - .LgUnk_084D94D8_groups) / 16
+.LgUnk_084D94D8_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_084D94D8_groups_end:
+    .word (.LgUnk_084D94D8_sprites_end - .LgUnk_084D94D8_sprites) / 8
+.LgUnk_084D94D8_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_084D94D8_sprites_end:
+    .word (.LgUnk_084D94D8_tiles_end - .LgUnk_084D94D8_tiles) / 32
+.LgUnk_084D94D8_tiles:
     .incbin "graphics/shared_resource_0875352c/full/group_000.4bpp"
-    .4byte 1                      @ palette count
+.LgUnk_084D94D8_tiles_end:
+    .word (.LgUnk_084D94D8_palettes_end - .LgUnk_084D94D8_palettes) / 32
+.LgUnk_084D94D8_palettes:
     .incbin "graphics/shared_resource_0875352c/full/group_000.gbapal"
-    .4byte 0                      @ empty table count
-    .4byte 1                      @ final table count
-    .4byte 0                      @ final table entry
+.LgUnk_084D94D8_palettes_end:
+    .word (.LgUnk_084D94D8_sixth_end - .LgUnk_084D94D8_sixth) / 8
+.LgUnk_084D94D8_sixth:
+.LgUnk_084D94D8_sixth_end:
+    .word (.LgUnk_084D94D8_entries_end - .LgUnk_084D94D8_entries) / 4
+.LgUnk_084D94D8_entries:
+    .hword 0, 0
+.LgUnk_084D94D8_entries_end:
     .global gUnk_084D95B4
 gUnk_084D95B4:
-    .4byte 1                      @ selection count
-    .4byte 1                      @ selection
-    .4byte 1                      @ descriptor count
-    .4byte 1, 4, 1, 0             @ descriptor
-    .4byte 1                      @ OAM count
-    .2byte 0, 0x4000, 0, 0        @ OAM entry
-    .4byte 4                      @ tile count
+    .word (.LgUnk_084D95B4_selections_end - .LgUnk_084D95B4_selections) / 4
+.LgUnk_084D95B4_selections:
+    .hword 1, 0
+.LgUnk_084D95B4_selections_end:
+    .word (.LgUnk_084D95B4_groups_end - .LgUnk_084D95B4_groups) / 16
+.LgUnk_084D95B4_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_084D95B4_groups_end:
+    .word (.LgUnk_084D95B4_sprites_end - .LgUnk_084D95B4_sprites) / 8
+.LgUnk_084D95B4_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_084D95B4_sprites_end:
+    .word (.LgUnk_084D95B4_tiles_end - .LgUnk_084D95B4_tiles) / 32
+.LgUnk_084D95B4_tiles:
     .incbin "graphics/shared_resource_08753608/full/group_000.4bpp"
-    .4byte 1                      @ palette count
+.LgUnk_084D95B4_tiles_end:
+    .word (.LgUnk_084D95B4_palettes_end - .LgUnk_084D95B4_palettes) / 32
+.LgUnk_084D95B4_palettes:
     .incbin "graphics/shared_resource_08753608/full/group_000.gbapal"
-    .4byte 0                      @ empty table count
-    .4byte 1                      @ final table count
-    .4byte 0                      @ final table entry
+.LgUnk_084D95B4_palettes_end:
+    .word (.LgUnk_084D95B4_sixth_end - .LgUnk_084D95B4_sixth) / 8
+.LgUnk_084D95B4_sixth:
+.LgUnk_084D95B4_sixth_end:
+    .word (.LgUnk_084D95B4_entries_end - .LgUnk_084D95B4_entries) / 4
+.LgUnk_084D95B4_entries:
+    .hword 0, 0
+.LgUnk_084D95B4_entries_end:
     .global gUnk_084D9690
 gUnk_084D9690:
     .include "graphics/shared_resource_087536e4/archive.inc"
@@ -96806,19 +96908,33 @@ gUnk_084DABB8:
 
     .global gUnk_084DB100
 gUnk_084DB100:
-    .4byte 1                      @ selection count
-    .4byte 1                      @ selection
-    .4byte 1                      @ descriptor count
-    .4byte 1, 4, 1, 0             @ descriptor
-    .4byte 1                      @ OAM count
-    .2byte 0, 0x4000, 0, 0        @ OAM entry
-    .4byte 4                      @ tile count
+    .word (.LgUnk_084DB100_selections_end - .LgUnk_084DB100_selections) / 4
+.LgUnk_084DB100_selections:
+    .hword 1, 0
+.LgUnk_084DB100_selections_end:
+    .word (.LgUnk_084DB100_groups_end - .LgUnk_084DB100_groups) / 16
+.LgUnk_084DB100_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_084DB100_groups_end:
+    .word (.LgUnk_084DB100_sprites_end - .LgUnk_084DB100_sprites) / 8
+.LgUnk_084DB100_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_084DB100_sprites_end:
+    .word (.LgUnk_084DB100_tiles_end - .LgUnk_084DB100_tiles) / 32
+.LgUnk_084DB100_tiles:
     .incbin "graphics/shared_resource_08755154/full/group_000.4bpp"
-    .4byte 1                      @ palette count
+.LgUnk_084DB100_tiles_end:
+    .word (.LgUnk_084DB100_palettes_end - .LgUnk_084DB100_palettes) / 32
+.LgUnk_084DB100_palettes:
     .incbin "graphics/shared_resource_08755154/full/group_000.gbapal"
-    .4byte 0                      @ empty table count
-    .4byte 1                      @ final table count
-    .4byte 0                      @ final table entry
+.LgUnk_084DB100_palettes_end:
+    .word (.LgUnk_084DB100_sixth_end - .LgUnk_084DB100_sixth) / 8
+.LgUnk_084DB100_sixth:
+.LgUnk_084DB100_sixth_end:
+    .word (.LgUnk_084DB100_entries_end - .LgUnk_084DB100_entries) / 4
+.LgUnk_084DB100_entries:
+    .hword 0, 0
+.LgUnk_084DB100_entries_end:
     .global gUnk_084DB1DC
 gUnk_084DB1DC:
     .incbin "graphics/ui/seasonal_background/shared/bg_30.tilemap"
@@ -287575,23 +287691,37 @@ gUnk_0873A6E8:
     .include "graphics/regional_resource_0873a6e8/archive.inc"
 
 	non_de_asset_label gUnk_0873AE54
-	    .4byte 2                       @ selection count
-	    .4byte 1                       @ first selection
-	    .2byte 1, 1                    @ second selection
-	    .4byte 2                       @ descriptor count
-	    .2byte 1, 0, 4, 0, 1, 0, 0, 0  @ first descriptor
-	    .2byte 1, 0, 4, 4, 1, 0, 0, 0  @ second descriptor
-	    .4byte 1                       @ OAM count
-	    .2byte 0x00F8, 0x41F8, 0, 0   @ OAM entry
-	    .4byte 8                       @ tile count
+    .word (.LgUnk_0873AE54_selections_end - .LgUnk_0873AE54_selections) / 4
+.LgUnk_0873AE54_selections:
+    .hword 1, 0
+    .hword 1, 1
+.LgUnk_0873AE54_selections_end:
+    .word (.LgUnk_0873AE54_groups_end - .LgUnk_0873AE54_groups) / 16
+.LgUnk_0873AE54_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+    .hword 1, 0, 4, 4, 1, 0, 0, 0
+.LgUnk_0873AE54_groups_end:
+    .word (.LgUnk_0873AE54_sprites_end - .LgUnk_0873AE54_sprites) / 8
+.LgUnk_0873AE54_sprites:
+    .hword 0x00F8, 0x41F8, 0x0000, 0x0000
+.LgUnk_0873AE54_sprites_end:
+    .word (.LgUnk_0873AE54_tiles_end - .LgUnk_0873AE54_tiles) / 32
+.LgUnk_0873AE54_tiles:
 	    .incbin "graphics/shared_resource_0873ae54/full/group_000.4bpp"
 	    .incbin "graphics/shared_resource_0873ae54/full/group_001.4bpp"
-	    .4byte 1                       @ palette count
+.LgUnk_0873AE54_tiles_end:
+    .word (.LgUnk_0873AE54_palettes_end - .LgUnk_0873AE54_palettes) / 32
+.LgUnk_0873AE54_palettes:
 	    .incbin "graphics/shared_resource_0873ae54/full/group_000.gbapal"
-	    .4byte 0                       @ empty table count
-	    .4byte 2                       @ final table count
-	    .4byte 0, 1                    @ final table entries
-
+.LgUnk_0873AE54_palettes_end:
+    .word (.LgUnk_0873AE54_sixth_end - .LgUnk_0873AE54_sixth) / 8
+.LgUnk_0873AE54_sixth:
+.LgUnk_0873AE54_sixth_end:
+    .word (.LgUnk_0873AE54_entries_end - .LgUnk_0873AE54_entries) / 4
+.LgUnk_0873AE54_entries:
+    .hword 0, 0
+    .hword 1, 0
+.LgUnk_0873AE54_entries_end:
 	non_de_asset_label gUnk_0873AFC8
 	    .include "graphics/shared_resource_0873afc8/archive.inc"
 
@@ -287623,20 +287753,33 @@ gUnk_0873D234:
 	.include "graphics/shared_resource_0873d234/archive.inc"
 
 	non_de_asset_label gUnk_0873D5FC
-	    .4byte 1                      @ selection count
-	    .4byte 1                      @ selection
-	    .4byte 1                      @ descriptor count
-	    .4byte 1, 4, 1, 0             @ descriptor
-	    .4byte 1                      @ OAM count
-	    .2byte 0, 0x4000, 0, 0        @ OAM entry
-	    .4byte 4                      @ tile count
+    .word (.LgUnk_0873D5FC_selections_end - .LgUnk_0873D5FC_selections) / 4
+.LgUnk_0873D5FC_selections:
+    .hword 1, 0
+.LgUnk_0873D5FC_selections_end:
+    .word (.LgUnk_0873D5FC_groups_end - .LgUnk_0873D5FC_groups) / 16
+.LgUnk_0873D5FC_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_0873D5FC_groups_end:
+    .word (.LgUnk_0873D5FC_sprites_end - .LgUnk_0873D5FC_sprites) / 8
+.LgUnk_0873D5FC_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_0873D5FC_sprites_end:
+    .word (.LgUnk_0873D5FC_tiles_end - .LgUnk_0873D5FC_tiles) / 32
+.LgUnk_0873D5FC_tiles:
 	    .incbin "graphics/shared_resource_0873d5fc/full/group_000.4bpp"
-	    .4byte 1                      @ palette count
+.LgUnk_0873D5FC_tiles_end:
+    .word (.LgUnk_0873D5FC_palettes_end - .LgUnk_0873D5FC_palettes) / 32
+.LgUnk_0873D5FC_palettes:
 	    .incbin "graphics/shared_resource_0873d5fc/full/group_000.gbapal"
-	    .4byte 0                      @ empty table count
-	    .4byte 1                      @ final table count
-	    .4byte 0                      @ final table entry
-
+.LgUnk_0873D5FC_palettes_end:
+    .word (.LgUnk_0873D5FC_sixth_end - .LgUnk_0873D5FC_sixth) / 8
+.LgUnk_0873D5FC_sixth:
+.LgUnk_0873D5FC_sixth_end:
+    .word (.LgUnk_0873D5FC_entries_end - .LgUnk_0873D5FC_entries) / 4
+.LgUnk_0873D5FC_entries:
+    .hword 0, 0
+.LgUnk_0873D5FC_entries_end:
 	.global gUnk_0873D6D8
 gUnk_0873D6D8:
 	.include "graphics/regional_resource_0873d6d8/archive.inc"
@@ -287678,20 +287821,33 @@ gUnk_087405A0:
 	.include "graphics/shared_resource_087405a0/archive.inc"
 
 	non_de_asset_label gUnk_08740908
-	    .4byte 1                      @ selection count
-	    .4byte 1                      @ selection
-	    .4byte 1                      @ descriptor count
-	    .4byte 1, 4, 1, 0             @ descriptor
-	    .4byte 1                      @ OAM count
-	    .2byte 0, 0x4000, 0, 0        @ OAM entry
-	    .4byte 4                      @ tile count
+    .word (.LgUnk_08740908_selections_end - .LgUnk_08740908_selections) / 4
+.LgUnk_08740908_selections:
+    .hword 1, 0
+.LgUnk_08740908_selections_end:
+    .word (.LgUnk_08740908_groups_end - .LgUnk_08740908_groups) / 16
+.LgUnk_08740908_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_08740908_groups_end:
+    .word (.LgUnk_08740908_sprites_end - .LgUnk_08740908_sprites) / 8
+.LgUnk_08740908_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_08740908_sprites_end:
+    .word (.LgUnk_08740908_tiles_end - .LgUnk_08740908_tiles) / 32
+.LgUnk_08740908_tiles:
 	    .incbin "graphics/shared_resource_08740908/full/group_000.4bpp"
-	    .4byte 1                      @ palette count
+.LgUnk_08740908_tiles_end:
+    .word (.LgUnk_08740908_palettes_end - .LgUnk_08740908_palettes) / 32
+.LgUnk_08740908_palettes:
 	    .incbin "graphics/shared_resource_08740908/full/group_000.gbapal"
-	    .4byte 0                      @ empty table count
-	    .4byte 1                      @ final table count
-	    .4byte 0                      @ final table entry
-
+.LgUnk_08740908_palettes_end:
+    .word (.LgUnk_08740908_sixth_end - .LgUnk_08740908_sixth) / 8
+.LgUnk_08740908_sixth:
+.LgUnk_08740908_sixth_end:
+    .word (.LgUnk_08740908_entries_end - .LgUnk_08740908_entries) / 4
+.LgUnk_08740908_entries:
+    .hword 0, 0
+.LgUnk_08740908_entries_end:
 	non_de_asset_label gUnk_087409E4
 	.include "graphics/shared_resource_087409e4/archive.inc"
 	@ Ten BG3/BG2 frame pairs, each map containing twenty rows of 32 halfwords.
@@ -288395,24 +288551,40 @@ gIntroSceneStartupPaletteBanks:
 
 	.global gIntroSceneSmallIndexedArchive
 gIntroSceneSmallIndexedArchive:
-	.4byte 1                         @ selection count
-	.4byte 4                         @ selection
-	.4byte 3                         @ frame descriptor count
-	.4byte 1, 4, 1, 0               @ frame 0
-	.4byte 0x00010001, 4, 1, 0      @ frame 1
-	.4byte 0x00020001, 4, 1, 0      @ frame 2
-	.4byte 3                         @ OAM count
-	.2byte 0x00FA, 0x41F0, 0, 0
-	.2byte 0x00FA, 0x41F1, 0, 0
-	.2byte 0x00FA, 0x41F2, 0, 0
-	.4byte 4                         @ tile count
+    .word (.LgIntroSceneSmallIndexedArchive_selections_end - .LgIntroSceneSmallIndexedArchive_selections) / 4
+.LgIntroSceneSmallIndexedArchive_selections:
+    .hword 4, 0
+.LgIntroSceneSmallIndexedArchive_selections_end:
+    .word (.LgIntroSceneSmallIndexedArchive_groups_end - .LgIntroSceneSmallIndexedArchive_groups) / 16
+.LgIntroSceneSmallIndexedArchive_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+    .hword 1, 1, 4, 0, 1, 0, 0, 0
+    .hword 1, 2, 4, 0, 1, 0, 0, 0
+.LgIntroSceneSmallIndexedArchive_groups_end:
+    .word (.LgIntroSceneSmallIndexedArchive_sprites_end - .LgIntroSceneSmallIndexedArchive_sprites) / 8
+.LgIntroSceneSmallIndexedArchive_sprites:
+    .hword 0x00FA, 0x41F0, 0x0000, 0x0000
+    .hword 0x00FA, 0x41F1, 0x0000, 0x0000
+    .hword 0x00FA, 0x41F2, 0x0000, 0x0000
+.LgIntroSceneSmallIndexedArchive_sprites_end:
+    .word (.LgIntroSceneSmallIndexedArchive_tiles_end - .LgIntroSceneSmallIndexedArchive_tiles) / 32
+.LgIntroSceneSmallIndexedArchive_tiles:
 	.incbin "graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.4bpp"
-	.4byte 1                         @ palette count
+.LgIntroSceneSmallIndexedArchive_tiles_end:
+    .word (.LgIntroSceneSmallIndexedArchive_palettes_end - .LgIntroSceneSmallIndexedArchive_palettes) / 32
+.LgIntroSceneSmallIndexedArchive_palettes:
 	.incbin "graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.gbapal"
-	.4byte 0                         @ empty table count
-	.4byte 4                         @ animation entry count
-	.4byte 0x00060000, 0x00060001, 0x00060002, 0x00060001
-
+.LgIntroSceneSmallIndexedArchive_palettes_end:
+    .word (.LgIntroSceneSmallIndexedArchive_sixth_end - .LgIntroSceneSmallIndexedArchive_sixth) / 8
+.LgIntroSceneSmallIndexedArchive_sixth:
+.LgIntroSceneSmallIndexedArchive_sixth_end:
+    .word (.LgIntroSceneSmallIndexedArchive_entries_end - .LgIntroSceneSmallIndexedArchive_entries) / 4
+.LgIntroSceneSmallIndexedArchive_entries:
+    .hword 0, 6
+    .hword 1, 6
+    .hword 2, 6
+    .hword 1, 6
+.LgIntroSceneSmallIndexedArchive_entries_end:
 	.global gSharedSceneBackgroundTiles
 gSharedSceneBackgroundTiles:
 	.incbin "graphics/ui/scene_08077810/shared/tiles.4bpp.lz"
@@ -288431,20 +288603,33 @@ gSharedSceneBackgroundLayer0Tilemap:
 
 	.global gUnk_0874EE38
 gUnk_0874EE38:
-	    .4byte 1                      @ selection count
-	    .4byte 1                      @ selection
-	    .4byte 1                      @ descriptor count
-	    .4byte 1, 4, 1, 0             @ descriptor
-	    .4byte 1                      @ OAM count
-	    .2byte 0, 0x4000, 0, 0        @ OAM entry
-	    .4byte 4                      @ tile count
+    .word (.LgUnk_0874EE38_selections_end - .LgUnk_0874EE38_selections) / 4
+.LgUnk_0874EE38_selections:
+    .hword 1, 0
+.LgUnk_0874EE38_selections_end:
+    .word (.LgUnk_0874EE38_groups_end - .LgUnk_0874EE38_groups) / 16
+.LgUnk_0874EE38_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_0874EE38_groups_end:
+    .word (.LgUnk_0874EE38_sprites_end - .LgUnk_0874EE38_sprites) / 8
+.LgUnk_0874EE38_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_0874EE38_sprites_end:
+    .word (.LgUnk_0874EE38_tiles_end - .LgUnk_0874EE38_tiles) / 32
+.LgUnk_0874EE38_tiles:
 	    .incbin "graphics/shared_resource_0874ee38/full/group_000.4bpp"
-	    .4byte 1                      @ palette count
+.LgUnk_0874EE38_tiles_end:
+    .word (.LgUnk_0874EE38_palettes_end - .LgUnk_0874EE38_palettes) / 32
+.LgUnk_0874EE38_palettes:
 	    .incbin "graphics/shared_resource_0874ee38/full/group_000.gbapal"
-	    .4byte 0                      @ empty table count
-	    .4byte 1                      @ final table count
-	    .4byte 0                      @ final table entry
-
+.LgUnk_0874EE38_palettes_end:
+    .word (.LgUnk_0874EE38_sixth_end - .LgUnk_0874EE38_sixth) / 8
+.LgUnk_0874EE38_sixth:
+.LgUnk_0874EE38_sixth_end:
+    .word (.LgUnk_0874EE38_entries_end - .LgUnk_0874EE38_entries) / 4
+.LgUnk_0874EE38_entries:
+    .hword 0, 0
+.LgUnk_0874EE38_entries_end:
 	.global gUiSceneBackgroundLayer0Tilemap
 gUiSceneBackgroundLayer0Tilemap:
 	.incbin "graphics/ui/scene_080a2ba4/shared/layer_0.tilemap.lz"
@@ -288831,36 +289016,62 @@ gUnk_0875350C:
 	.incbin "graphics/ui/farm_status/creature_icons/shared/icon_19.gbapal"
 	.global gUnk_0875352C
 gUnk_0875352C:
-	    .4byte 1                      @ selection count
-	    .4byte 1                      @ selection
-	    .4byte 1                      @ descriptor count
-	    .4byte 1, 4, 1, 0             @ descriptor
-	    .4byte 1                      @ OAM count
-	    .2byte 0, 0x4000, 0, 0        @ OAM entry
-	    .4byte 4                      @ tile count
+    .word (.LgUnk_0875352C_selections_end - .LgUnk_0875352C_selections) / 4
+.LgUnk_0875352C_selections:
+    .hword 1, 0
+.LgUnk_0875352C_selections_end:
+    .word (.LgUnk_0875352C_groups_end - .LgUnk_0875352C_groups) / 16
+.LgUnk_0875352C_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_0875352C_groups_end:
+    .word (.LgUnk_0875352C_sprites_end - .LgUnk_0875352C_sprites) / 8
+.LgUnk_0875352C_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_0875352C_sprites_end:
+    .word (.LgUnk_0875352C_tiles_end - .LgUnk_0875352C_tiles) / 32
+.LgUnk_0875352C_tiles:
 	    .incbin "graphics/shared_resource_0875352c/full/group_000.4bpp"
-	    .4byte 1                      @ palette count
+.LgUnk_0875352C_tiles_end:
+    .word (.LgUnk_0875352C_palettes_end - .LgUnk_0875352C_palettes) / 32
+.LgUnk_0875352C_palettes:
 	    .incbin "graphics/shared_resource_0875352c/full/group_000.gbapal"
-	    .4byte 0                      @ empty table count
-	    .4byte 1                      @ final table count
-	    .4byte 0                      @ final table entry
-
+.LgUnk_0875352C_palettes_end:
+    .word (.LgUnk_0875352C_sixth_end - .LgUnk_0875352C_sixth) / 8
+.LgUnk_0875352C_sixth:
+.LgUnk_0875352C_sixth_end:
+    .word (.LgUnk_0875352C_entries_end - .LgUnk_0875352C_entries) / 4
+.LgUnk_0875352C_entries:
+    .hword 0, 0
+.LgUnk_0875352C_entries_end:
 	.global gUnk_08753608
 gUnk_08753608:
-	    .4byte 1                      @ selection count
-	    .4byte 1                      @ selection
-	    .4byte 1                      @ descriptor count
-	    .4byte 1, 4, 1, 0             @ descriptor
-	    .4byte 1                      @ OAM count
-	    .2byte 0, 0x4000, 0, 0        @ OAM entry
-	    .4byte 4                      @ tile count
+    .word (.LgUnk_08753608_selections_end - .LgUnk_08753608_selections) / 4
+.LgUnk_08753608_selections:
+    .hword 1, 0
+.LgUnk_08753608_selections_end:
+    .word (.LgUnk_08753608_groups_end - .LgUnk_08753608_groups) / 16
+.LgUnk_08753608_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_08753608_groups_end:
+    .word (.LgUnk_08753608_sprites_end - .LgUnk_08753608_sprites) / 8
+.LgUnk_08753608_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_08753608_sprites_end:
+    .word (.LgUnk_08753608_tiles_end - .LgUnk_08753608_tiles) / 32
+.LgUnk_08753608_tiles:
 	    .incbin "graphics/shared_resource_08753608/full/group_000.4bpp"
-	    .4byte 1                      @ palette count
+.LgUnk_08753608_tiles_end:
+    .word (.LgUnk_08753608_palettes_end - .LgUnk_08753608_palettes) / 32
+.LgUnk_08753608_palettes:
 	    .incbin "graphics/shared_resource_08753608/full/group_000.gbapal"
-	    .4byte 0                      @ empty table count
-	    .4byte 1                      @ final table count
-	    .4byte 0                      @ final table entry
-
+.LgUnk_08753608_palettes_end:
+    .word (.LgUnk_08753608_sixth_end - .LgUnk_08753608_sixth) / 8
+.LgUnk_08753608_sixth:
+.LgUnk_08753608_sixth_end:
+    .word (.LgUnk_08753608_entries_end - .LgUnk_08753608_entries) / 4
+.LgUnk_08753608_entries:
+    .hword 0, 0
+.LgUnk_08753608_entries_end:
 	.global gUnk_087536E4
 gUnk_087536E4:
 	.include "graphics/shared_resource_087536e4/archive.inc"
@@ -288879,20 +289090,33 @@ gUnk_08754C0C:
 
 	.global gUnk_08755154
 gUnk_08755154:
-	.4byte 1                      @ selection count
-	.4byte 1                      @ selection
-	.4byte 1                      @ descriptor count
-	.4byte 1, 4, 1, 0             @ descriptor
-	.4byte 1                      @ OAM count
-	.2byte 0, 0x4000, 0, 0        @ OAM entry
-	.4byte 4                      @ tile count
+    .word (.LgUnk_08755154_selections_end - .LgUnk_08755154_selections) / 4
+.LgUnk_08755154_selections:
+    .hword 1, 0
+.LgUnk_08755154_selections_end:
+    .word (.LgUnk_08755154_groups_end - .LgUnk_08755154_groups) / 16
+.LgUnk_08755154_groups:
+    .hword 1, 0, 4, 0, 1, 0, 0, 0
+.LgUnk_08755154_groups_end:
+    .word (.LgUnk_08755154_sprites_end - .LgUnk_08755154_sprites) / 8
+.LgUnk_08755154_sprites:
+    .hword 0x0000, 0x4000, 0x0000, 0x0000
+.LgUnk_08755154_sprites_end:
+    .word (.LgUnk_08755154_tiles_end - .LgUnk_08755154_tiles) / 32
+.LgUnk_08755154_tiles:
 	.incbin "graphics/shared_resource_08755154/full/group_000.4bpp"
-	.4byte 1                      @ palette count
+.LgUnk_08755154_tiles_end:
+    .word (.LgUnk_08755154_palettes_end - .LgUnk_08755154_palettes) / 32
+.LgUnk_08755154_palettes:
 	.incbin "graphics/shared_resource_08755154/full/group_000.gbapal"
-	.4byte 0                      @ empty table count
-	.4byte 1                      @ final table count
-	.4byte 0                      @ final table entry
-
+.LgUnk_08755154_palettes_end:
+    .word (.LgUnk_08755154_sixth_end - .LgUnk_08755154_sixth) / 8
+.LgUnk_08755154_sixth:
+.LgUnk_08755154_sixth_end:
+    .word (.LgUnk_08755154_entries_end - .LgUnk_08755154_entries) / 4
+.LgUnk_08755154_entries:
+    .hword 0, 0
+.LgUnk_08755154_entries_end:
 	.global gUnk_08755230
 gUnk_08755230:
 	.incbin "graphics/ui/seasonal_background/shared/bg_30.tilemap"
