@@ -21,7 +21,7 @@ entire surrounding `incbin` range is a standalone palette resource.
 
 | Consumer | Source label(s) | Copy destination / count | Classification |
 | --- | --- | --- | --- |
-| `func_08054F40` | `gUnk_087399C4` | `0x05000000`, `0x200` | Code-bounded palette used by the verified read-only reference of this UI scene. It remains a crossing resource rather than an independent editable palette source. |
+| `func_08054F40` | `gFrisbeeBackgroundPalettes` | `0x05000000`, `0x200` | Five actual palette banks (160 bytes), now authored as PAL; the native copy also reads 352 bytes of the adjacent `gFrisbeeBackgroundAnimationTiles` packed stream. Preserve both adjacency and the original copy length; see `UI_SCENE_08054F40_TILES.md`. |
 | `func_0805AB08` | `gUnk_0872FA9C` | `0x05000000`, `0x200` | Code-bounded palette for the UI-scene reference layers; native bytes remain owned by the enclosing ROM range. |
 | `func_0805FBB8` | `gUnk_08747A14` | `0x05000000`, `0x40` | Intro-scene background palette slice, already covered by the managed Intro Scene background pipeline. |
 | `func_0806EC94` | `gUnk_08529794`, `gUnk_0852CA40` | `0x05000000`, `0x200` | Non-winter and winter Farm Status palette selections. The former is managed with `base_palettes.png`; the overseas winter palettes remain region-aware references. |

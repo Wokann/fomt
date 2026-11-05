@@ -9728,6 +9728,7 @@ func_08054D34:
     movs r1, #0xc0
     lsls r1, r1, #0x13
     bl Unpack
+    @ Retail behavior: copy all BG banks, including 352 bytes of the next stream.
     ldr r0, .Lraw_code_0803EE94_6302_8
     movs r1, #0xa0
     lsls r1, r1, #0x13
@@ -9811,13 +9812,13 @@ func_08054D34:
 .Lraw_code_0803EE94_6300_8: .word 0x0600E000
 .Lraw_code_0803EE94_6300_12: .word 0x0600E800
 .Lraw_code_0803EE94_6301_0: .word 0x0600F000
-.Lraw_code_0803EE94_6301_4: .word gUnk_08738AD8
+.Lraw_code_0803EE94_6301_4: .word gFrisbeeBackgroundTilemap
 .Lraw_code_0803EE94_6301_8: .word 0x00001D5A
-.Lraw_code_0803EE94_6301_12: .word gUnk_08738CC8
-.Lraw_code_0803EE94_6302_0: .word gUnk_08738CF0
+.Lraw_code_0803EE94_6301_12: .word gFrisbeeOverlayTilemap
+.Lraw_code_0803EE94_6302_0: .word gFrisbeeOverlayTopTilemap
 .Lraw_code_0803EE94_6302_4: .word gBeachBackgroundTiles
-.Lraw_code_0803EE94_6302_8: .word gUnk_087399C4
-.Lraw_code_0803EE94_6302_12: .word gUnk_08739A64
+.Lraw_code_0803EE94_6302_8: .word gFrisbeeBackgroundPalettes
+.Lraw_code_0803EE94_6302_12: .word gFrisbeeBackgroundAnimationTiles
 .Lraw_code_0803EE94_6303_0: .word 0x00001C43
 .Lraw_code_0803EE94_6303_4: .word 0x00001D42
 .Lraw_code_0803EE94_6303_8: .word 0x00001E41
@@ -151980,7 +151981,7 @@ func_08054F40: @ 0x08054F40
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl FillHardwareDma3
-	ldr r0, .L08055084 @ =gUnk_08738AD8
+	ldr r0, .L08055084 @ =gFrisbeeBackgroundTilemap
 	ldr r2, .L08055088 @ =0x00001D5A
 	adds r4, r6, r2
 	adds r1, r4, #0
@@ -151994,23 +151995,24 @@ func_08054F40: @ 0x08054F40
 	mov r1, r8
 	movs r2, #0xc0
 	bl CopyHardwareDma3
-	ldr r0, .L0805508C @ =gUnk_08738CC8
+	ldr r0, .L0805508C @ =gFrisbeeOverlayTilemap
 	adds r1, r4, #0
 	bl Unpack
-	ldr r0, .L08055090 @ =gUnk_08738CF0
+	ldr r0, .L08055090 @ =gFrisbeeOverlayTopTilemap
 	adds r1, r4, #0
 	bl Unpack
 	ldr r0, .L08055094 @ =gBeachBackgroundTiles
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	bl Unpack
-	ldr r0, .L08055098 @ =gUnk_087399C4
+    @ Retail behavior: copy all BG banks, including 352 bytes of the next stream.
+	ldr r0, .L08055098 @ =gFrisbeeBackgroundPalettes
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x80
 	lsls r2, r2, #2
 	bl CopyHardwareDma3
-	ldr r0, .L0805509C @ =gUnk_08739A64
+	ldr r0, .L0805509C @ =gFrisbeeBackgroundAnimationTiles
 	movs r3, #0xab
 	lsls r3, r3, #3
 	adds r1, r6, r3
@@ -152087,13 +152089,13 @@ func_08054F40: @ 0x08054F40
 .L08055078: .4byte 0x0600E000
 .L0805507C: .4byte 0x0600E800
 .L08055080: .4byte 0x0600F000
-.L08055084: .4byte gUnk_08738AD8
+.L08055084: .word gFrisbeeBackgroundTilemap
 .L08055088: .4byte 0x00001D5A
-.L0805508C: .4byte gUnk_08738CC8
-.L08055090: .4byte gUnk_08738CF0
+.L0805508C: .word gFrisbeeOverlayTilemap
+.L08055090: .word gFrisbeeOverlayTopTilemap
 .L08055094: .4byte gBeachBackgroundTiles
-.L08055098: .4byte gUnk_087399C4
-.L0805509C: .4byte gUnk_08739A64
+.L08055098: .word gFrisbeeBackgroundPalettes
+.L0805509C: .word gFrisbeeBackgroundAnimationTiles
 .L080550A0: .4byte 0x00001C43
 .L080550A4: .4byte 0x00001D42
 .L080550A8: .4byte 0x00001E41

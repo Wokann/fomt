@@ -211,13 +211,13 @@ visible BG maps depend on palette operations that overlap other resource
 classes; the preview is a verified auxiliary-layer composition, not a claim to
 show the routine's full final screen. Regenerate it with:
 
-`ui/scene_08054f40_tiles/reference/` similarly exposes the routine's proven
-static beach BG3 base. Its map and palette are runtime inputs rather than
-editable sources: the map's packed encoder has not been independently
-reconstructed and the palette copy crosses the next labelled resource. The
-reversible 4bpp tile stream is included directly by the original
-`gUnk_08738D1C` assembly symbol. Regenerate the checked preview for all four
-retail regions with:
+`ui/scene_08054f40_tiles/shared/` contains the Frisbee scene's three tilemaps,
+static 4bpp tiles, five-bank PAL and four-frame animation PNG. All use the
+normal native conversion rules and real resource symbols. The original
+512-byte palette copy spans its 160-byte source and the following packed
+animation, so this adjacency is preserved. The `reference/` images show only
+the static beach BG3 base; see [the resource layout](UI_SCENE_08054F40_TILES.md)
+for the runtime formats and limits.
 
 `ui/scene_0805ab08_tiles/reference/` is a further code-backed static view:
 the initializer expands four row templates into three BG maps and configures

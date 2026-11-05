@@ -221,6 +221,13 @@ $(UI_SCENE_080B55D0_AUX_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5 0x16
 $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x110
 $(UI_SCENE_080B55D0_AUX_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,8,9,10,11,12 0xD60
 $(UI_SCENE_08054F40_TILES_OUTPUT): FOMT_LZ_ENCODE := encode-lz2 2,5,7,8,10,13,14 0xCA8
+
+# Frisbee BG maps and four-frame tile animation use the same native suffix rules.
+$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/background.tilemap.lz: FOMT_LZ_ENCODE := encode-lz0 4,6 0x1F0
+$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/overlay.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x28
+$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/overlay_top.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5 0x2C
+$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/animation.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 3,6,7,8,11,12,13 0xC84
+$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/palettes.gbapal: GFX_PALETTE_COLORS := 80
 $(UI_THREE_LAYER_BACKGROUND_DIR)/tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 3,5,7,10,11,12,14 0x880
 $(UI_THREE_LAYER_BACKGROUND_DIR)/layout_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5 0xA0
 $(UI_THREE_LAYER_BACKGROUND_DIR)/layout_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 0x30
