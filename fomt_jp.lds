@@ -1136,7 +1136,7 @@ SECTIONS
 
     .rodata : ALIGN(4)
     {
-        . = ABSOLUTE(0x080E4E0C); /* JP C++ table region begins after code_linkonce. */
+        /* JP C++ table region begins after code_linkonce. */
         *(.gnu.linkonce.d.__vt_6AScene);
         *(.gnu.linkonce.d.__vt_15SceneTransition);
         *(.gnu.linkonce.d.__vt_19IntroMenuTransition);
@@ -1419,8 +1419,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85dc);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85e8);
 
-        /* Source-owned localization island; Mary script table is its upper bound. */
-        . = ABSOLUTE(0x080E7A40);
+        /* Runtime text, tables and NPC schedules in physical ROM order. */
         src/crt0_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
@@ -1451,9 +1450,9 @@ SECTIONS
         src/data_schedules.o(.rodata);
         /* Other NPC schedule records follow the individually declared schedules. */
         . = ALIGN(4); src/npc_schedule.o(.rodata);
-        . = ABSOLUTE(0x080F8230); data/scripts/script_table.o(.rodata.mary_script_table);
-        /* Source-owned localization island; raw static resources are its upper bound. */
-        . = ABSOLUTE(0x080F96F4); src/script_engine.o(.rodata);
+        data/scripts/script_table.o(.rodata.mary_script_table);
+        /* Runtime text and tables continue in physical ROM order. */
+        src/script_engine.o(.rodata);
         src/cooking_festival.o(.rodata);
         src/thomas_stocking.o(.rodata);
         FILL(0x00);
@@ -1570,7 +1569,7 @@ SECTIONS
         src/reference_guide.o(.rodata.reference_guide);
         src/shop_common.o(.rodata);
         src/font.o(.rodata);
-        . = ABSOLUTE(0x08118D18); asm/data/static_resources.o(.rodata);
+        asm/data/static_resources.o(.rodata);
         . = ABSOLUTE(0x0813ABCC); src/m4a.o(.rodata);
         . = ABSOLUTE(0x0813AEA4); src/m4a.o(.rodata.gM4aVoiceGroups);
         . = ABSOLUTE(0x0813BCF8); src/m4a.o(.rodata.gMusicPlayerTable);

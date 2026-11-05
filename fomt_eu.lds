@@ -1395,76 +1395,76 @@ SECTIONS
 . = ALIGN(4); src/game_menu.o(.gnu.linkonce.d.__vt_26GameSceneMenuSelectionCore);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85e8);
 
-        /* Start of the source-owned localization islands. */
-        . = ABSOLUTE(0x080E865C); src/crt0_data.o(.rodata);
+        /* Runtime text and tables in physical ROM order. */
+        src/crt0_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/sram_image.o(.rodata);
         src/intro_scene_startup.o(.rodata);
-        . = ABSOLUTE(0x080E86F4); src/new_game_data.o(.rodata);
-        . = ABSOLUTE(0x080E8D10); src/field_data.o(.rodata);
+        src/new_game_data.o(.rodata);
+        src/field_data.o(.rodata);
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
         /* Item text, catalogs, products, and trailer. */
-        . = ABSOLUTE(0x080E9660); src/item.o(.rodata);
+        src/item.o(.rodata);
         /* Calendar rows, labels, and state data. */
-        . = ABSOLUTE(0x080F053A); src/game_state.o(.rodata);
+        src/game_state.o(.rodata);
         FILL(0x00);
         /* Help-menu text, then the independent screen-flash strengths. */
-        . = ABSOLUTE(0x080F05D8); src/help_menu.o(.rodata);
+        src/help_menu.o(.rodata);
         src/screen_flash.o(.rodata);
         /* Animal memorial text and animal data. */
         FILL(0x00);
         . = ALIGN(4); src/animal_data.o(.rodata);
         /* Entity UI labels and native UI data. */
-        . = ABSOLUTE(0x080F0ECC); src/entity_ui.o(.rodata);
+        src/entity_ui.o(.rodata);
         FILL(0x00);
         /* Common UI labels, fallback text, menu data, and pointer table. */
-        . = ABSOLUTE(0x080F19C0); src/common_ui.o(.rodata);
+        src/common_ui.o(.rodata);
         FILL(0x00);
-        . = ABSOLUTE(0x080F1ACC); src/data_schedules.o(.rodata);
+        src/data_schedules.o(.rodata);
         /* Other NPC schedule records follow the individually declared schedules. */
         . = ALIGN(4); src/npc_schedule.o(.rodata);
-        . = ABSOLUTE(0x080F8A20); data/scripts/script_table.o(.rodata.mary_script_table);
-        /* The ordinary source block bounds the preceding Mary script table. */
-        . = ABSOLUTE(0x080F9EE4); src/script_engine.o(.rodata);
-        . = ABSOLUTE(0x080F9F11); src/cooking_festival.o(.rodata);
+        data/scripts/script_table.o(.rodata.mary_script_table);
+        /* Runtime data follows the generated Mary script table. */
+        src/script_engine.o(.rodata);
+        src/cooking_festival.o(.rodata);
         src/thomas_stocking.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/spouse_gift.o(.rodata);
-        . = ABSOLUTE(0x080F9F40); src/farm_house.o(.rodata);
+        src/farm_house.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/ui_state.o(.rodata);
         /* New Game preset regional data: names and UI glyphs. */
-        . = ABSOLUTE(0x080F9FCC); src/new_game_name_entry_ui_data.o(.rodata);
+        src/new_game_name_entry_ui_data.o(.rodata);
         FILL(0x00);
-        . = ABSOLUTE(0x080FA1A4); src/frisbee_scoreboard.o(.rodata);
-        . = ABSOLUTE(0x080FA1C0); src/animal_festival_ranking_score_data.o(.rodata);
-        . = ABSOLUTE(0x080FA3E8); src/frisbee.o(.rodata);
+        src/frisbee_scoreboard.o(.rodata);
+        src/animal_festival_ranking_score_data.o(.rodata);
+        src/frisbee.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = ABSOLUTE(0x080FAA8C); src/horse_race_data.o(.rodata);
+        src/horse_race_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         /* Intro-scene resource table, dialogue, and runtime tail. */
-        . = ABSOLUTE(0x080FB224); src/intro_scene_data.o(.rodata);
+        src/intro_scene_data.o(.rodata);
         FILL(0x00);
         /* Farm Status screen data. */
-        . = ABSOLUTE(0x080FB870); src/farm_status_screen_data.o(.rodata);
+        src/farm_status_screen_data.o(.rodata);
         FILL(0x00);
-        . = ABSOLUTE(0x080FBEC8); src/records_screen_data.o(.rodata);
+        src/records_screen_data.o(.rodata);
         . = ALIGN(4); src/staff_credits.o(.rodata);
         /* Town Map regional data: labels, hotspots, and lookup. */
-        . = ABSOLUTE(0x080FC70E); src/town_map.o(.rodata);
-        . = ABSOLUTE(0x080FD59C); src/library_opening_hours_data.o(.rodata);
+        src/town_map.o(.rodata);
+        src/library_opening_hours_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/town_map_area_data.o(.rodata);
         src/library_data.o(.rodata);
-        . = ABSOLUTE(0x080FD9B0); src/poultry_shop_data.o(.rodata);
+        src/poultry_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/supermarket_data.o(.rodata);
         FILL(0x00);
@@ -1479,67 +1479,67 @@ SECTIONS
         . = ALIGN(4); src/special_merchant_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = ABSOLUTE(0x080FEB40); src/beach_cafe_shop_data.o(.rodata);
+        src/beach_cafe_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = ABSOLUTE(0x080FECC8); src/blacksmith_data.o(.rodata);
+        src/blacksmith_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = ABSOLUTE(0x080FF3B0); src/carpenter_data.o(.rodata);
+        src/carpenter_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         FILL(0x00);
-        . = ABSOLUTE(0x080FFBB4); src/livestock_shop.o(.rodata);
-        . = ABSOLUTE(0x08100078); src/home_storage.o(.rodata);
+        src/livestock_shop.o(.rodata);
+        src/home_storage.o(.rodata);
         FILL(0x00);
-        . = ABSOLUTE(0x081001BC); src/blacksmith_upgrade_data.o(.rodata);
-        . = ABSOLUTE(0x08100438); src/gift_wrap.o(.rodata);
+        src/blacksmith_upgrade_data.o(.rodata);
+        src/gift_wrap.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         /* Link-communication regional data: text, tables, codes. */
         FILL(0x00);
-        . = ABSOLUTE(0x08100534); src/link_communication_data.o(.rodata);
-        . = ABSOLUTE(0x08100B18); src/cooking_recipe_inventory_page_data.o(.rodata);
-        . = ABSOLUTE(0x08100B2A); src/recovery_status.o(.rodata);
-        . = ABSOLUTE(0x08100E3C); src/cooking.o(.rodata);
-        . = ABSOLUTE(0x08101140); src/cooking_recipe_inventory.o(.rodata);
+        src/link_communication_data.o(.rodata);
+        src/cooking_recipe_inventory_page_data.o(.rodata);
+        src/recovery_status.o(.rodata);
+        src/cooking.o(.rodata);
+        src/cooking_recipe_inventory.o(.rodata);
         src/animal.o(.rodata);
-        . = ABSOLUTE(0x081036B8); src/livestock_day_update_data.o(.rodata);
-        . = ABSOLUTE(0x08103718); src/cursed_tool.o(.rodata);
+        src/livestock_day_update_data.o(.rodata);
+        src/cursed_tool.o(.rodata);
         src/map_patch_flags.o(.rodata);
         /* Fishing-record regional data: names, lookup, trailer. */
-        . = ABSOLUTE(0x081037E0); src/fishing_results_data.o(.rodata);
+        src/fishing_results_data.o(.rodata);
         FILL(0x00);
-        . = ABSOLUTE(0x08103B68); src/mine_floor.o(.rodata);
+        src/mine_floor.o(.rodata);
         src/actor_runtime_data.o(.rodata);
-        . = ABSOLUTE(0x08104160); src/character_names_empty.o(.rodata);
-        . = ABSOLUTE(0x08104161); src/bachelorette.o(.rodata);
+        src/character_names_empty.o(.rodata);
+        src/bachelorette.o(.rodata);
         /* Character-name regional data: names, lookup, trailer. */
-        . = ABSOLUTE(0x08104180); src/character_names_data.o(.rodata);
+        src/character_names_data.o(.rodata);
         FILL(0x00);
-        . = ABSOLUTE(0x08104414); src/field_item_data.o(.rodata);
+        src/field_item_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = ABSOLUTE(0x08104990); src/calendar_events.o(.rodata);
-        . = ABSOLUTE(0x08104E64); src/name_entry.o(.rodata);
-        . = ABSOLUTE(0x08104EA4); src/random_item_unavailable.o(.rodata);
-        . = ABSOLUTE(0x08104EAC); src/fishing_record_article_ids.o(.rodata);
-        . = ABSOLUTE(0x08104ECC); src/field_plot_position_values.o(.rodata);
-        . = ABSOLUTE(0x08104F04); src/random_item_selection.o(.rodata);
-        . = ABSOLUTE(0x08105694); src/field_plot_position_rules.o(.rodata);
-        . = ABSOLUTE(0x08105760); src/time_of_day.o(.rodata);
-        . = ABSOLUTE(0x08105F34); src/map_data.o(.rodata);
-        . = ABSOLUTE(0x08106984); src/field_render_rect_descriptors.o(.rodata);
-        . = ABSOLUTE(0x08107134); src/field_render_farm_house_data.o(.rodata);
-        . = ABSOLUTE(0x081073A8); src/field_render_resource_data.o(.rodata);
+        src/calendar_events.o(.rodata);
+        src/name_entry.o(.rodata);
+        src/random_item_unavailable.o(.rodata);
+        src/fishing_record_article_ids.o(.rodata);
+        src/field_plot_position_values.o(.rodata);
+        src/random_item_selection.o(.rodata);
+        src/field_plot_position_rules.o(.rodata);
+        src/time_of_day.o(.rodata);
+        src/map_data.o(.rodata);
+        src/field_render_rect_descriptors.o(.rodata);
+        src/field_render_farm_house_data.o(.rodata);
+        src/field_render_resource_data.o(.rodata);
         FILL(0x00);
-        . = ABSOLUTE(0x08107490); src/bachelorette_marriage_candidate_data.o(.rodata);
-        . = ABSOLUTE(0x081074A8); src/field_render_runtime_data.o(.rodata);
-        . = ABSOLUTE(0x08107608); src/harvest_sprite.o(.rodata);
-        . = ABSOLUTE(0x081082E4); src/reference_guide.o(.rodata.reference_guide);
-        . = ABSOLUTE(0x08117844); src/shop_common.o(.rodata);
-        . = ABSOLUTE(0x08117B6C); src/font.o(.rodata);
-        . = ABSOLUTE(0x08117C2C); asm/data/static_resources.o(.rodata);
+        src/bachelorette_marriage_candidate_data.o(.rodata);
+        src/field_render_runtime_data.o(.rodata);
+        src/harvest_sprite.o(.rodata);
+        src/reference_guide.o(.rodata.reference_guide);
+        src/shop_common.o(.rodata);
+        src/font.o(.rodata);
+        asm/data/static_resources.o(.rodata);
         . = ABSOLUTE(0x08139AE0); src/m4a.o(.rodata);
         . = ABSOLUTE(0x08139DB8); src/m4a.o(.rodata.gM4aVoiceGroups);
         . = ABSOLUTE(0x0813AC0C); src/m4a.o(.rodata.gMusicPlayerTable);
