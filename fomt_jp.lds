@@ -309,7 +309,7 @@ SECTIONS
             .text.GetPresentedItemKind__9GameScene
             .text.GetPresentedItemId__9GameScene
             .text.IsPresentedItemGiftWrapped__9GameScene);
-        asm/game_state.o(.text.game_scene_after_player_presentation);
+        asm/scene_mine_floor.o(.text);
         src/scene_audio.o(.text.StartWorldBackgroundMusic__9GameScene .text.FadeOutBackgroundMusic__9GameScene);
         src/game_scene.o(.text.GetCaughtFish__9GameScene);
         src/scene_audio.o(.text.IsBackgroundMusicActive__9GameScene);
