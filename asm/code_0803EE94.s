@@ -77337,7 +77337,7 @@ RunPoultryFarmShopSceneCore:
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C7FC4
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -79501,7 +79501,7 @@ RunSupermarketSceneCore: @ 0x0807CD80
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C7FC4
+	bl InitializeShopScreenDisplay
 	ldr r0, [r7, #8]
 	adds r4, r0, #0
 	adds r4, #0x54
@@ -81006,7 +81006,7 @@ RunSupermarketPurchaseSceneCore: @ 0x0807D9A4
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C7FC4
+	bl InitializeShopScreenDisplay
 	movs r0, #0x10
 	str r0, [sp, #0xc]
 	add r6, sp, #0x18
@@ -81856,7 +81856,7 @@ RunClinicShopSceneCore: @ 0x0807E0C0
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C7FC4
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -83037,7 +83037,7 @@ RunInnShopSceneCore:
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C7FC4
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -84166,7 +84166,7 @@ RunWonShopSceneCore:
     adds r6, r0, #0
     bl EnableHardwareForcedBlank
     adds r0, r6, #0
-    bl func_080C7FC4
+    bl InitializeShopScreenDisplay
     movs r5, #1
     ldr r4, [r6, #8]
     movs r3, #0xc8
@@ -84551,7 +84551,7 @@ RunWineryShopSceneCore:
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C7FC4
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -85991,7 +85991,7 @@ RunSpecialMerchantShopSceneCore:
 	adds r6, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
-	bl func_080C7FC4
+	bl InitializeShopScreenDisplay
 	movs r4, #0
 	movs r1, #0
 .Ljp_08080CE0:
@@ -87186,7 +87186,7 @@ RunBeachCafeShopSceneCore:
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C7FC4
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -89321,7 +89321,7 @@ RunBlacksmithShopSceneCore:
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C7FC4
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -91696,7 +91696,7 @@ RunCarpenterShopSceneCore:
     adds r6, r0, #0
     bl EnableHardwareForcedBlank
     adds r0, r6, #0
-    bl func_080C7FC4
+    bl InitializeShopScreenDisplay
     movs r0, #0
     mov sl, r0
     mov r1, sp
@@ -94934,7 +94934,7 @@ RunYodelRanchShopCore:
     adds r7, r0, #0
     bl EnableHardwareForcedBlank
     adds r0, r7, #0
-    bl func_080C7FC4
+    bl InitializeShopScreenDisplay
     movs r0, #0xa9
     lsls r0, r0, #2
     adds r1, r7, r0
@@ -218522,7 +218522,7 @@ RunPoultryFarmShopSceneCore: @ 0x0807BEC8
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -220714,7 +220714,7 @@ RunSupermarketSceneCore: @ 0x0807D218
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	ldr r0, [r7, #8]
 	adds r4, r0, #0
 	adds r4, #0x54
@@ -222196,7 +222196,7 @@ RunSupermarketPurchaseSceneCore: @ 0x0807DE3C
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r0, #0x10
 	str r0, [sp, #0xc]
 	add r6, sp, #0x18
@@ -223040,7 +223040,7 @@ RunClinicShopSceneCore: @ 0x0807E558
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -224216,7 +224216,7 @@ RunInnShopSceneCore: @ 0x0807EF90
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -225319,7 +225319,7 @@ RunWonShopSceneCore: @ 0x0807F8C8
 	adds r6, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r5, #1
 	ldr r4, [r6, #8]
 	movs r3, #0xc8
@@ -226823,7 +226823,7 @@ RunWineryShopSceneCore: @ 0x08080540
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -228245,7 +228245,7 @@ RunSpecialMerchantShopSceneCore: @ 0x0808114C
 	adds r6, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r4, #0
 	movs r1, #0
 .L08081168:
@@ -229439,7 +229439,7 @@ RunBeachCafeShopSceneCore: @ 0x08081BBC
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -231567,7 +231567,7 @@ RunBlacksmithShopSceneCore: @ 0x08082CEC
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0
@@ -233940,7 +233940,7 @@ RunCarpenterShopSceneCore: @ 0x08084228
 	adds r6, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r6, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r0, #0
 	mov sl, r0
 	mov r1, sp
@@ -238301,7 +238301,7 @@ RunYodelRanchShopCore: @ 0x08086A08
 	adds r7, r0, #0
 	bl EnableHardwareForcedBlank
 	adds r0, r7, #0
-	bl func_080C85A0
+	bl InitializeShopScreenDisplay
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r1, r7, r0

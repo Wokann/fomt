@@ -863,6 +863,8 @@ SECTIONS
         src/scene_chicken_festival.o(.text.__28ChickenFestivalMinigameSceneRC22ChickenFestivalEntrant .text._._28ChickenFestivalMinigameScene);
         src/scene_chicken_festival.o(.text.HasWon__C28ChickenFestivalMinigameScene .text.Run__28ChickenFestivalMinigameScene);
         asm/code_809E804.o(.text.after_chicken_festival_minigame_run);
+        asm/shop_common.o(.text);
+        asm/code_809E804.o(.text.after_shop_display_init);
         src/ui_vcount.o(.text.UpdateUiVCount);
         asm/code_809E804.o(.text.after_ui_vcount_update);
         src/ui_quantity_selector.o(.text.Configure__26UiPurchaseQuantitySelectorUiUiUi .text.Update__26UiPurchaseQuantitySelector .text.Hide__26UiPurchaseQuantitySelector);

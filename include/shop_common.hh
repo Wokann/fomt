@@ -4,7 +4,7 @@
 #include "prelude.h"
 
 extern char const gCppRuntimeBadAlloc_ShopCommonDigitGlyphs[];
-extern u16 const gUnk_080C85A0DigitGlyphs[10];
+extern u16 const gShopDigitGlyphs[10];
 extern char const gCppRuntimeBadAlloc_ShopCommonPostText[];
 // Pixel-byte pairs retain the native four-byte record alignment.
 struct ALIGN(4) MenuGridPosition {
