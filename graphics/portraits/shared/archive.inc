@@ -3,7 +3,8 @@
     @ Complete OAM portraits are reference views, not build inputs.
 
     @ Table 1: 184 records, 4 bytes each.
-    .4byte 184
+    .word (.Lportraits_shared_selections_end - .Lportraits_shared_selections) / 4
+.Lportraits_shared_selections:
     .2byte 1, 0
     .2byte 1, 1
     .2byte 1, 2
@@ -190,7 +191,9 @@
     .2byte 1, 183
 
     @ Table 2: 184 records, 16 bytes each.
-    .4byte 184
+.Lportraits_shared_selections_end:
+    .word (.Lportraits_shared_groups_end - .Lportraits_shared_groups) / 16
+.Lportraits_shared_groups:
     .2byte 6, 0, 54, 0, 1, 0, 0, 0
     .2byte 7, 6, 62, 54, 1, 0, 0, 0
     .2byte 9, 13, 69, 116, 1, 0, 0, 0
@@ -377,7 +380,9 @@
     .2byte 5, 1032, 60, 11526, 1, 51, 0, 0
 
     @ Table 3: 1037 records, 8 bytes each.
-    .4byte 1037
+.Lportraits_shared_groups_end:
+    .word (.Lportraits_shared_sprites_end - .Lportraits_shared_sprites) / 8
+.Lportraits_shared_sprites:
     .2byte 224, 33256, 0, 0
     .2byte 32992, 32776, 16, 0
     .2byte 192, 33256, 24, 0
@@ -1417,205 +1422,214 @@
     .2byte 16568, 16880, 56, 0
 
     @ Table 4: 11586 records, 32 bytes each.
-    .4byte 11586
+.Lportraits_shared_sprites_end:
+    .word (.Lportraits_shared_tiles_end - .Lportraits_shared_tiles) / 32
+.Lportraits_shared_tiles:
     .incbin "graphics/portraits/shared/native_tiles.4bpp"
 
     @ Table 5: 52 records, 32 bytes each.
-    .4byte 52
+.Lportraits_shared_tiles_end:
+    .word (.Lportraits_shared_palettes_end - .Lportraits_shared_palettes) / 32
+.Lportraits_shared_palettes:
     .incbin "graphics/portraits/shared/palettes_00_15.gbapal"
     .incbin "graphics/portraits/shared/palettes_16_31.gbapal"
     .incbin "graphics/portraits/shared/palettes_32_47.gbapal"
     .incbin "graphics/portraits/shared/palettes_48_51.gbapal"
 
     @ Table 6: 0 records, 8 bytes each.
-    .4byte 0
+.Lportraits_shared_palettes_end:
+    .word (.Lportraits_shared_sixth_end - .Lportraits_shared_sixth) / 8
+.Lportraits_shared_sixth:
 
     @ Table 7: 184 records, 4 bytes each.
-    .4byte 184
-    .4byte 0
-    .4byte 1
-    .4byte 2
-    .4byte 3
-    .4byte 4
-    .4byte 5
-    .4byte 6
-    .4byte 7
-    .4byte 8
-    .4byte 9
-    .4byte 10
-    .4byte 11
-    .4byte 12
-    .4byte 13
-    .4byte 14
-    .4byte 15
-    .4byte 16
-    .4byte 17
-    .4byte 18
-    .4byte 19
-    .4byte 20
-    .4byte 21
-    .4byte 22
-    .4byte 23
-    .4byte 24
-    .4byte 25
-    .4byte 26
-    .4byte 27
-    .4byte 28
-    .4byte 29
-    .4byte 30
-    .4byte 31
-    .4byte 32
-    .4byte 33
-    .4byte 34
-    .4byte 35
-    .4byte 36
-    .4byte 37
-    .4byte 38
-    .4byte 39
-    .4byte 40
-    .4byte 41
-    .4byte 42
-    .4byte 43
-    .4byte 44
-    .4byte 45
-    .4byte 46
-    .4byte 47
-    .4byte 48
-    .4byte 49
-    .4byte 50
-    .4byte 51
-    .4byte 52
-    .4byte 53
-    .4byte 54
-    .4byte 55
-    .4byte 56
-    .4byte 57
-    .4byte 58
-    .4byte 59
-    .4byte 60
-    .4byte 61
-    .4byte 62
-    .4byte 63
-    .4byte 64
-    .4byte 65
-    .4byte 66
-    .4byte 67
-    .4byte 68
-    .4byte 69
-    .4byte 70
-    .4byte 71
-    .4byte 72
-    .4byte 73
-    .4byte 74
-    .4byte 75
-    .4byte 76
-    .4byte 77
-    .4byte 78
-    .4byte 79
-    .4byte 80
-    .4byte 81
-    .4byte 82
-    .4byte 83
-    .4byte 84
-    .4byte 85
-    .4byte 86
-    .4byte 87
-    .4byte 88
-    .4byte 89
-    .4byte 90
-    .4byte 91
-    .4byte 92
-    .4byte 93
-    .4byte 94
-    .4byte 95
-    .4byte 96
-    .4byte 97
-    .4byte 98
-    .4byte 99
-    .4byte 100
-    .4byte 101
-    .4byte 102
-    .4byte 103
-    .4byte 104
-    .4byte 105
-    .4byte 106
-    .4byte 107
-    .4byte 108
-    .4byte 109
-    .4byte 110
-    .4byte 111
-    .4byte 112
-    .4byte 113
-    .4byte 114
-    .4byte 115
-    .4byte 116
-    .4byte 117
-    .4byte 118
-    .4byte 119
-    .4byte 120
-    .4byte 121
-    .4byte 122
-    .4byte 123
-    .4byte 124
-    .4byte 125
-    .4byte 126
-    .4byte 127
-    .4byte 128
-    .4byte 129
-    .4byte 130
-    .4byte 131
-    .4byte 132
-    .4byte 133
-    .4byte 134
-    .4byte 135
-    .4byte 136
-    .4byte 137
-    .4byte 138
-    .4byte 139
-    .4byte 140
-    .4byte 141
-    .4byte 142
-    .4byte 143
-    .4byte 144
-    .4byte 145
-    .4byte 146
-    .4byte 147
-    .4byte 148
-    .4byte 149
-    .4byte 150
-    .4byte 151
-    .4byte 152
-    .4byte 153
-    .4byte 154
-    .4byte 155
-    .4byte 156
-    .4byte 157
-    .4byte 158
-    .4byte 159
-    .4byte 160
-    .4byte 161
-    .4byte 162
-    .4byte 163
-    .4byte 164
-    .4byte 165
-    .4byte 166
-    .4byte 167
-    .4byte 168
-    .4byte 169
-    .4byte 170
-    .4byte 171
-    .4byte 172
-    .4byte 173
-    .4byte 174
-    .4byte 175
-    .4byte 176
-    .4byte 177
-    .4byte 178
-    .4byte 179
-    .4byte 180
-    .4byte 181
-    .4byte 182
-    .4byte 183
+.Lportraits_shared_sixth_end:
+    .word (.Lportraits_shared_entries_end - .Lportraits_shared_entries) / 4
+.Lportraits_shared_entries:
+    .hword 0, 0
+    .hword 1, 0
+    .hword 2, 0
+    .hword 3, 0
+    .hword 4, 0
+    .hword 5, 0
+    .hword 6, 0
+    .hword 7, 0
+    .hword 8, 0
+    .hword 9, 0
+    .hword 10, 0
+    .hword 11, 0
+    .hword 12, 0
+    .hword 13, 0
+    .hword 14, 0
+    .hword 15, 0
+    .hword 16, 0
+    .hword 17, 0
+    .hword 18, 0
+    .hword 19, 0
+    .hword 20, 0
+    .hword 21, 0
+    .hword 22, 0
+    .hword 23, 0
+    .hword 24, 0
+    .hword 25, 0
+    .hword 26, 0
+    .hword 27, 0
+    .hword 28, 0
+    .hword 29, 0
+    .hword 30, 0
+    .hword 31, 0
+    .hword 32, 0
+    .hword 33, 0
+    .hword 34, 0
+    .hword 35, 0
+    .hword 36, 0
+    .hword 37, 0
+    .hword 38, 0
+    .hword 39, 0
+    .hword 40, 0
+    .hword 41, 0
+    .hword 42, 0
+    .hword 43, 0
+    .hword 44, 0
+    .hword 45, 0
+    .hword 46, 0
+    .hword 47, 0
+    .hword 48, 0
+    .hword 49, 0
+    .hword 50, 0
+    .hword 51, 0
+    .hword 52, 0
+    .hword 53, 0
+    .hword 54, 0
+    .hword 55, 0
+    .hword 56, 0
+    .hword 57, 0
+    .hword 58, 0
+    .hword 59, 0
+    .hword 60, 0
+    .hword 61, 0
+    .hword 62, 0
+    .hword 63, 0
+    .hword 64, 0
+    .hword 65, 0
+    .hword 66, 0
+    .hword 67, 0
+    .hword 68, 0
+    .hword 69, 0
+    .hword 70, 0
+    .hword 71, 0
+    .hword 72, 0
+    .hword 73, 0
+    .hword 74, 0
+    .hword 75, 0
+    .hword 76, 0
+    .hword 77, 0
+    .hword 78, 0
+    .hword 79, 0
+    .hword 80, 0
+    .hword 81, 0
+    .hword 82, 0
+    .hword 83, 0
+    .hword 84, 0
+    .hword 85, 0
+    .hword 86, 0
+    .hword 87, 0
+    .hword 88, 0
+    .hword 89, 0
+    .hword 90, 0
+    .hword 91, 0
+    .hword 92, 0
+    .hword 93, 0
+    .hword 94, 0
+    .hword 95, 0
+    .hword 96, 0
+    .hword 97, 0
+    .hword 98, 0
+    .hword 99, 0
+    .hword 100, 0
+    .hword 101, 0
+    .hword 102, 0
+    .hword 103, 0
+    .hword 104, 0
+    .hword 105, 0
+    .hword 106, 0
+    .hword 107, 0
+    .hword 108, 0
+    .hword 109, 0
+    .hword 110, 0
+    .hword 111, 0
+    .hword 112, 0
+    .hword 113, 0
+    .hword 114, 0
+    .hword 115, 0
+    .hword 116, 0
+    .hword 117, 0
+    .hword 118, 0
+    .hword 119, 0
+    .hword 120, 0
+    .hword 121, 0
+    .hword 122, 0
+    .hword 123, 0
+    .hword 124, 0
+    .hword 125, 0
+    .hword 126, 0
+    .hword 127, 0
+    .hword 128, 0
+    .hword 129, 0
+    .hword 130, 0
+    .hword 131, 0
+    .hword 132, 0
+    .hword 133, 0
+    .hword 134, 0
+    .hword 135, 0
+    .hword 136, 0
+    .hword 137, 0
+    .hword 138, 0
+    .hword 139, 0
+    .hword 140, 0
+    .hword 141, 0
+    .hword 142, 0
+    .hword 143, 0
+    .hword 144, 0
+    .hword 145, 0
+    .hword 146, 0
+    .hword 147, 0
+    .hword 148, 0
+    .hword 149, 0
+    .hword 150, 0
+    .hword 151, 0
+    .hword 152, 0
+    .hword 153, 0
+    .hword 154, 0
+    .hword 155, 0
+    .hword 156, 0
+    .hword 157, 0
+    .hword 158, 0
+    .hword 159, 0
+    .hword 160, 0
+    .hword 161, 0
+    .hword 162, 0
+    .hword 163, 0
+    .hword 164, 0
+    .hword 165, 0
+    .hword 166, 0
+    .hword 167, 0
+    .hword 168, 0
+    .hword 169, 0
+    .hword 170, 0
+    .hword 171, 0
+    .hword 172, 0
+    .hword 173, 0
+    .hword 174, 0
+    .hword 175, 0
+    .hword 176, 0
+    .hword 177, 0
+    .hword 178, 0
+    .hword 179, 0
+    .hword 180, 0
+    .hword 181, 0
+    .hword 182, 0
+    .hword 183, 0
+.Lportraits_shared_entries_end:
 
     @ Unindexed native palette trailer.
     .global gPortraitArchivePaletteTrailer

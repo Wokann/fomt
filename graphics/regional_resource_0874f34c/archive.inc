@@ -1,5 +1,6 @@
     @ Common selector table; physical order is shared by all regions.
-    .4byte 22
+    .word (.Lregional_resource_0874f34c_selections_end - .Lregional_resource_0874f34c_selections) / 4
+.Lregional_resource_0874f34c_selections:
     .2byte 0x0001, 0x0000
     .2byte 0x0001, 0x0001
     .2byte 0x0001, 0x0002
@@ -25,7 +26,9 @@
 
     .ifdef REGION_JP
     @ jp: descriptor, OAM, and native tile tables
-    .4byte 22
+.Lregional_resource_0874f34c_selections_end:
+    .word (.Lregional_resource_0874f34c_groups_end - .Lregional_resource_0874f34c_groups) / 16
+.Lregional_resource_0874f34c_groups:
     .2byte 0x0001, 0x0000, 0x0004, 0x0000, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0001, 0x0000, 0x0004, 0x0004, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0001, 0x0000, 0x0004, 0x0008, 0x0001, 0x0000, 0x0000, 0x0000
@@ -48,16 +51,22 @@
     .2byte 0x0001, 0x0000, 0x0004, 0x0050, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0001, 0x0000, 0x0004, 0x0054, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0001, 0x0000, 0x0004, 0x0058, 0x0001, 0x0002, 0x0000, 0x0000
-    .4byte 3
+.Lregional_resource_0874f34c_groups_end:
+    .word (.Lregional_resource_0874f34c_sprites_end - .Lregional_resource_0874f34c_sprites) / 8
+.Lregional_resource_0874f34c_sprites:
     .2byte 0x0000, 0x4000, 0x0000, 0x0000
     .2byte 0x40FF, 0x8000, 0x0000, 0x0000
     .2byte 0x00FF, 0x4000, 0x0000, 0x0000
-    .4byte 92
+.Lregional_resource_0874f34c_sprites_end:
+    .word (.Lregional_resource_0874f34c_tiles_end - .Lregional_resource_0874f34c_tiles) / 32
+.Lregional_resource_0874f34c_tiles:
     .incbin "graphics/regional_resource_0874f34c/jp/full/native.4bpp"
     .else
     .ifdef REGION_DE
     @ de: descriptor, OAM, and native tile tables
-    .4byte 22
+.Lregional_resource_0874f34c_selections_end:
+    .word (.Lregional_resource_0874f34c_groups_end - .Lregional_resource_0874f34c_groups) / 16
+.Lregional_resource_0874f34c_groups:
     .2byte 0x0001, 0x0000, 0x0004, 0x0000, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0001, 0x0000, 0x0004, 0x0004, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0001, 0x0000, 0x0004, 0x0008, 0x0001, 0x0000, 0x0000, 0x0000
@@ -80,7 +89,9 @@
     .2byte 0x0002, 0x0005, 0x0006, 0x007A, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0002, 0x0005, 0x0006, 0x0080, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0002, 0x0005, 0x0006, 0x0086, 0x0001, 0x0002, 0x0000, 0x0000
-    .4byte 7
+.Lregional_resource_0874f34c_groups_end:
+    .word (.Lregional_resource_0874f34c_sprites_end - .Lregional_resource_0874f34c_sprites) / 8
+.Lregional_resource_0874f34c_sprites:
     .2byte 0x0000, 0x4000, 0x0000, 0x0000
     .2byte 0x40FF, 0x8000, 0x0000, 0x0000
     .2byte 0x40FF, 0x8000, 0x0000, 0x0000
@@ -88,11 +99,15 @@
     .2byte 0x80FF, 0x0030, 0x000C, 0x0000
     .2byte 0x0000, 0x4000, 0x0000, 0x0000
     .2byte 0x8000, 0x0010, 0x0004, 0x0000
-    .4byte 140
+.Lregional_resource_0874f34c_sprites_end:
+    .word (.Lregional_resource_0874f34c_tiles_end - .Lregional_resource_0874f34c_tiles) / 32
+.Lregional_resource_0874f34c_tiles:
     .incbin "graphics/regional_resource_0874f34c/de/full/native.4bpp"
     .else
     @ us_eu: descriptor, OAM, and native tile tables
-    .4byte 22
+.Lregional_resource_0874f34c_selections_end:
+    .word (.Lregional_resource_0874f34c_groups_end - .Lregional_resource_0874f34c_groups) / 16
+.Lregional_resource_0874f34c_groups:
     .2byte 0x0001, 0x0000, 0x0004, 0x0000, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0001, 0x0000, 0x0004, 0x0004, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0001, 0x0000, 0x0004, 0x0008, 0x0001, 0x0000, 0x0000, 0x0000
@@ -115,7 +130,9 @@
     .2byte 0x0002, 0x0007, 0x0006, 0x0074, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0002, 0x0007, 0x0006, 0x007A, 0x0001, 0x0000, 0x0000, 0x0000
     .2byte 0x0002, 0x0007, 0x0006, 0x0080, 0x0001, 0x0002, 0x0000, 0x0000
-    .4byte 9
+.Lregional_resource_0874f34c_groups_end:
+    .word (.Lregional_resource_0874f34c_sprites_end - .Lregional_resource_0874f34c_sprites) / 8
+.Lregional_resource_0874f34c_sprites:
     .2byte 0x0000, 0x4000, 0x0000, 0x0000
     .2byte 0x40FF, 0x8000, 0x0000, 0x0000
     .2byte 0x40FF, 0x8000, 0x0000, 0x0000
@@ -125,16 +142,24 @@
     .2byte 0x80FF, 0x0018, 0x0006, 0x0000
     .2byte 0x0000, 0x4000, 0x0000, 0x0000
     .2byte 0x8000, 0x0010, 0x0004, 0x0000
-    .4byte 134
+.Lregional_resource_0874f34c_sprites_end:
+    .word (.Lregional_resource_0874f34c_tiles_end - .Lregional_resource_0874f34c_tiles) / 32
+.Lregional_resource_0874f34c_tiles:
     .incbin "graphics/regional_resource_0874f34c/us_eu/full/native.4bpp"
     .endif
     .endif
 
     @ Common three palettes, empty-table count, and final index.
-    .4byte 3
+.Lregional_resource_0874f34c_tiles_end:
+    .word (.Lregional_resource_0874f34c_palettes_end - .Lregional_resource_0874f34c_palettes) / 32
+.Lregional_resource_0874f34c_palettes:
     .incbin "graphics/regional_resource_0874f34c/native.gbapal"
-    .4byte 0
-    .4byte 22
+.Lregional_resource_0874f34c_palettes_end:
+    .word (.Lregional_resource_0874f34c_sixth_end - .Lregional_resource_0874f34c_sixth) / 8
+.Lregional_resource_0874f34c_sixth:
+.Lregional_resource_0874f34c_sixth_end:
+    .word (.Lregional_resource_0874f34c_entries_end - .Lregional_resource_0874f34c_entries) / 4
+.Lregional_resource_0874f34c_entries:
     .2byte 0x0000, 0x0000
     .2byte 0x0001, 0x0000
     .2byte 0x0002, 0x0000
@@ -157,3 +182,4 @@
     .2byte 0x0013, 0x0000
     .2byte 0x0014, 0x0000
     .2byte 0x0015, 0x0000
+.Lregional_resource_0874f34c_entries_end:

@@ -1,5 +1,6 @@
     @ Farm Status / Town Map IndexedResourceArchive in ROM order.
-    .4byte 20
+    .word (.Lui_farm_status_resource_archive_selections_end - .Lui_farm_status_resource_archive_selections) / 4
+.Lui_farm_status_resource_archive_selections:
     .2byte 2, 0
     .2byte 2, 2
     .2byte 2, 4
@@ -21,7 +22,9 @@
     .2byte 2, 36
     .2byte 2, 38
 
-    .4byte 40
+.Lui_farm_status_resource_archive_selections_end:
+    .word (.Lui_farm_status_resource_archive_groups_end - .Lui_farm_status_resource_archive_groups) / 16
+.Lui_farm_status_resource_archive_groups:
     .2byte 1, 0, 4, 0, 1, 0, 0, 0
     .2byte 1, 1, 4, 0, 1, 0, 0, 0
     .2byte 1, 0, 4, 4, 1, 1, 0, 0
@@ -63,7 +66,9 @@
     .2byte 1, 10, 4, 69, 1, 12, 0, 0
     .2byte 1, 4, 4, 69, 1, 12, 0, 0
 
-    .4byte 11
+.Lui_farm_status_resource_archive_groups_end:
+    .word (.Lui_farm_status_resource_archive_sprites_end - .Lui_farm_status_resource_archive_sprites) / 8
+.Lui_farm_status_resource_archive_sprites:
     .2byte 4345, 16889, 0, 0
     .2byte 4346, 16889, 0, 0
     .2byte 4349, 509, 0, 0
@@ -76,16 +81,24 @@
     .2byte 4346, 16891, 0, 0
     .2byte 4345, 16890, 0, 0
 
-    .4byte 73
+.Lui_farm_status_resource_archive_sprites_end:
+    .word (.Lui_farm_status_resource_archive_tiles_end - .Lui_farm_status_resource_archive_tiles) / 32
+.Lui_farm_status_resource_archive_tiles:
     .incbin "graphics/ui/farm_status/resource_archive/full/native_0.4bpp"
     .incbin "graphics/ui/farm_status/resource_archive/full/native_1.4bpp"
 
-    .4byte 13
+.Lui_farm_status_resource_archive_tiles_end:
+    .word (.Lui_farm_status_resource_archive_palettes_end - .Lui_farm_status_resource_archive_palettes) / 32
+.Lui_farm_status_resource_archive_palettes:
     .incbin "graphics/ui/farm_status/resource_archive/full/native.gbapal"
 
-    .4byte 0
+.Lui_farm_status_resource_archive_palettes_end:
+    .word (.Lui_farm_status_resource_archive_sixth_end - .Lui_farm_status_resource_archive_sixth) / 8
+.Lui_farm_status_resource_archive_sixth:
 
-    .4byte 40
+.Lui_farm_status_resource_archive_sixth_end:
+    .word (.Lui_farm_status_resource_archive_entries_end - .Lui_farm_status_resource_archive_entries) / 4
+.Lui_farm_status_resource_archive_entries:
     .2byte 0, 16
     .2byte 1, 16
     .2byte 2, 16
@@ -126,3 +139,4 @@
     .2byte 37, 16
     .2byte 38, 16
     .2byte 39, 16
+.Lui_farm_status_resource_archive_entries_end:

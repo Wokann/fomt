@@ -1,31 +1,45 @@
     @ Native IndexedResourceArchive tables in physical ROM order.
-    .4byte 4
+    .word (.Lshared_resource_0872ee78_selections_end - .Lshared_resource_0872ee78_selections) / 4
+.Lshared_resource_0872ee78_selections:
     .2byte 1, 0
     .2byte 1, 1
     .2byte 1, 2
     .2byte 1, 3
 
-    .4byte 4
+.Lshared_resource_0872ee78_selections_end:
+    .word (.Lshared_resource_0872ee78_groups_end - .Lshared_resource_0872ee78_groups) / 16
+.Lshared_resource_0872ee78_groups:
     .2byte 1, 0, 4, 0, 1, 0, 0, 0
     .2byte 1, 0, 4, 4, 1, 0, 0, 0
     .2byte 1, 0, 4, 8, 1, 0, 0, 0
     .2byte 1, 0, 4, 12, 1, 0, 0, 0
 
-    .4byte 1
+.Lshared_resource_0872ee78_groups_end:
+    .word (.Lshared_resource_0872ee78_sprites_end - .Lshared_resource_0872ee78_sprites) / 8
+.Lshared_resource_0872ee78_sprites:
     .2byte 0, 0x4000, 0, 0
 
-    .4byte 16
+.Lshared_resource_0872ee78_sprites_end:
+    .word (.Lshared_resource_0872ee78_tiles_end - .Lshared_resource_0872ee78_tiles) / 32
+.Lshared_resource_0872ee78_tiles:
     .incbin "graphics/shared_resource_0872ee78/full/group_000.4bpp"
     .incbin "graphics/shared_resource_0872ee78/full/group_001.4bpp"
     .incbin "graphics/shared_resource_0872ee78/full/group_002.4bpp"
     .incbin "graphics/shared_resource_0872ee78/full/group_003.4bpp"
 
-    .4byte 1
+.Lshared_resource_0872ee78_tiles_end:
+    .word (.Lshared_resource_0872ee78_palettes_end - .Lshared_resource_0872ee78_palettes) / 32
+.Lshared_resource_0872ee78_palettes:
     .incbin "graphics/shared_resource_0872ee78/full/group_000.gbapal"
 
-    .4byte 0
-    .4byte 4
+.Lshared_resource_0872ee78_palettes_end:
+    .word (.Lshared_resource_0872ee78_sixth_end - .Lshared_resource_0872ee78_sixth) / 8
+.Lshared_resource_0872ee78_sixth:
+.Lshared_resource_0872ee78_sixth_end:
+    .word (.Lshared_resource_0872ee78_entries_end - .Lshared_resource_0872ee78_entries) / 4
+.Lshared_resource_0872ee78_entries:
     .2byte 0, 0
     .2byte 1, 0
     .2byte 2, 0
     .2byte 3, 0
+.Lshared_resource_0872ee78_entries_end:

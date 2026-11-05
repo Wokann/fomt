@@ -3,7 +3,8 @@
     @ Complete OAM frames are reference views, not build inputs.
 
     @ Table 1: 2551 records, 4 bytes each.
-    .4byte 2551
+    .word (.Lsprites_actor_archive_selections_end - .Lsprites_actor_archive_selections) / 4
+.Lsprites_actor_archive_selections:
     .2byte 1, 0
     .2byte 1, 1
     .2byte 1, 1
@@ -2557,7 +2558,9 @@
     .2byte 4, 3986
 
     @ Table 2: 3009 records, 16 bytes each.
-    .4byte 3009
+.Lsprites_actor_archive_selections_end:
+    .word (.Lsprites_actor_archive_groups_end - .Lsprites_actor_archive_groups) / 16
+.Lsprites_actor_archive_groups:
     .2byte 1, 0, 4, 0, 1, 0, 0, 0
     .2byte 1, 0, 4, 4, 1, 0, 0, 0
     .2byte 1, 0, 4, 8, 1, 0, 0, 0
@@ -5569,7 +5572,9 @@
     .2byte 2, 4329, 12, 24386, 1, 161, 0, 0
 
     @ Table 3: 4795 records, 8 bytes each.
-    .4byte 4795
+.Lsprites_actor_archive_groups_end:
+    .word (.Lsprites_actor_archive_sprites_end - .Lsprites_actor_archive_sprites) / 8
+.Lsprites_actor_archive_sprites:
     .2byte 96, 16392, 0, 0
     .2byte 243, 16888, 1024, 0
     .2byte 243, 20984, 1024, 0
@@ -10367,11 +10372,15 @@
     .2byte 32994, 20980, 8, 0
 
     @ Table 4: 24398 records, 32 bytes each.
-    .4byte 24398
+.Lsprites_actor_archive_sprites_end:
+    .word (.Lsprites_actor_archive_tiles_end - .Lsprites_actor_archive_tiles) / 32
+.Lsprites_actor_archive_tiles:
     .incbin "graphics/sprites/actor_archive/native_tiles.4bpp"
 
     @ Table 5: 162 records, 32 bytes each.
-    .4byte 162
+.Lsprites_actor_archive_tiles_end:
+    .word (.Lsprites_actor_archive_palettes_end - .Lsprites_actor_archive_palettes) / 32
+.Lsprites_actor_archive_palettes:
     .incbin "graphics/sprites/actor_archive/palettes_000_015.gbapal"
     .incbin "graphics/sprites/actor_archive/palettes_016_031.gbapal"
     .incbin "graphics/sprites/actor_archive/palettes_032_047.gbapal"
@@ -10385,10 +10394,14 @@
     .incbin "graphics/sprites/actor_archive/palettes_160_161.gbapal"
 
     @ Table 6: 0 records, 8 bytes each.
-    .4byte 0
+.Lsprites_actor_archive_palettes_end:
+    .word (.Lsprites_actor_archive_sixth_end - .Lsprites_actor_archive_sixth) / 8
+.Lsprites_actor_archive_sixth:
 
     @ Table 7: 3990 records, 4 bytes each.
-    .4byte 3990
+.Lsprites_actor_archive_sixth_end:
+    .word (.Lsprites_actor_archive_entries_end - .Lsprites_actor_archive_entries) / 4
+.Lsprites_actor_archive_entries:
     .2byte 0, 1
     .2byte 0, 0
     .2byte 1, 24
@@ -14379,3 +14392,4 @@
     .2byte 3000, 12
     .2byte 3008, 12
     .2byte 3000, 12
+.Lsprites_actor_archive_entries_end:

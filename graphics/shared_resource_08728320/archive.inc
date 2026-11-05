@@ -1,5 +1,6 @@
     @ Native IndexedResourceArchive tables in physical ROM order.
-    .4byte 7
+    .word (.Lshared_resource_08728320_selections_end - .Lshared_resource_08728320_selections) / 4
+.Lshared_resource_08728320_selections:
     .2byte 3, 0
     .2byte 3, 3
     .2byte 3, 6
@@ -8,7 +9,9 @@
     .2byte 3, 15
     .2byte 3, 18
 
-    .4byte 21
+.Lshared_resource_08728320_selections_end:
+    .word (.Lshared_resource_08728320_groups_end - .Lshared_resource_08728320_groups) / 16
+.Lshared_resource_08728320_groups:
     .2byte 1, 0, 1, 0, 1, 0, 0, 0
     .2byte 1, 1, 4, 1, 1, 0, 0, 0
     .2byte 1, 1, 4, 5, 1, 0, 0, 0
@@ -31,7 +34,9 @@
     .2byte 5, 22, 7, 92, 1, 0, 0, 0
     .2byte 5, 27, 8, 99, 1, 0, 0, 0
 
-    .4byte 32
+.Lshared_resource_08728320_groups_end:
+    .word (.Lshared_resource_08728320_sprites_end - .Lshared_resource_08728320_sprites) / 8
+.Lshared_resource_08728320_sprites:
     .2byte 252, 508, 0, 0
     .2byte 248, 16888, 0, 0
     .2byte 248, 16887, 0, 0
@@ -65,15 +70,23 @@
     .2byte 16637, 500, 5, 0
     .2byte 253, 4, 7, 0
 
-    .4byte 107
+.Lshared_resource_08728320_sprites_end:
+    .word (.Lshared_resource_08728320_tiles_end - .Lshared_resource_08728320_tiles) / 32
+.Lshared_resource_08728320_tiles:
     .incbin "graphics/shared_resource_08728320/full/native.4bpp"
 
-    .4byte 1
+.Lshared_resource_08728320_tiles_end:
+    .word (.Lshared_resource_08728320_palettes_end - .Lshared_resource_08728320_palettes) / 32
+.Lshared_resource_08728320_palettes:
     .incbin "graphics/shared_resource_08728320/full/native.gbapal"
 
-    .4byte 0
+.Lshared_resource_08728320_palettes_end:
+    .word (.Lshared_resource_08728320_sixth_end - .Lshared_resource_08728320_sixth) / 8
+.Lshared_resource_08728320_sixth:
 
-    .4byte 21
+.Lshared_resource_08728320_sixth_end:
+    .word (.Lshared_resource_08728320_entries_end - .Lshared_resource_08728320_entries) / 4
+.Lshared_resource_08728320_entries:
     .2byte 0, 8
     .2byte 1, 8
     .2byte 2, 8
@@ -95,3 +108,4 @@
     .2byte 18, 8
     .2byte 19, 8
     .2byte 20, 8
+.Lshared_resource_08728320_entries_end:

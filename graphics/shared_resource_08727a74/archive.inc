@@ -1,11 +1,16 @@
     @ Native IndexedResourceArchive tables in physical ROM order.
-    .4byte 1
+    .word (.Lshared_resource_08727a74_selections_end - .Lshared_resource_08727a74_selections) / 4
+.Lshared_resource_08727a74_selections:
     .2byte 1, 0
 
-    .4byte 1
+.Lshared_resource_08727a74_selections_end:
+    .word (.Lshared_resource_08727a74_groups_end - .Lshared_resource_08727a74_groups) / 16
+.Lshared_resource_08727a74_groups:
     .2byte 36, 0, 49, 0, 1, 0, 0, 0
 
-    .4byte 36
+.Lshared_resource_08727a74_groups_end:
+    .word (.Lshared_resource_08727a74_sprites_end - .Lshared_resource_08727a74_sprites) / 8
+.Lshared_resource_08727a74_sprites:
     .2byte 200, 33224, 2048, 0
     .2byte 32968, 33256, 2064, 0
     .2byte 32968, 16888, 2072, 0
@@ -43,13 +48,22 @@
     .2byte 16384, 12296, 2094, 0
     .2byte 0, 12288, 2096, 0
 
-    .4byte 49
+.Lshared_resource_08727a74_sprites_end:
+    .word (.Lshared_resource_08727a74_tiles_end - .Lshared_resource_08727a74_tiles) / 32
+.Lshared_resource_08727a74_tiles:
     .incbin "graphics/shared_resource_08727a74/full/native.4bpp"
 
-    .4byte 1
+.Lshared_resource_08727a74_tiles_end:
+    .word (.Lshared_resource_08727a74_palettes_end - .Lshared_resource_08727a74_palettes) / 32
+.Lshared_resource_08727a74_palettes:
     .incbin "graphics/shared_resource_08727a74/full/native.gbapal"
 
-    .4byte 0
+.Lshared_resource_08727a74_palettes_end:
+    .word (.Lshared_resource_08727a74_sixth_end - .Lshared_resource_08727a74_sixth) / 8
+.Lshared_resource_08727a74_sixth:
 
-    .4byte 1
+.Lshared_resource_08727a74_sixth_end:
+    .word (.Lshared_resource_08727a74_entries_end - .Lshared_resource_08727a74_entries) / 4
+.Lshared_resource_08727a74_entries:
     .2byte 0, 200
+.Lshared_resource_08727a74_entries_end:

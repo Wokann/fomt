@@ -1,5 +1,6 @@
     @ Common IndexedResourceArchive in original ROM order.
-    .4byte 493
+    .word (.Lcommon_resource_archive_selections_end - .Lcommon_resource_archive_selections) / 4
+.Lcommon_resource_archive_selections:
     .2byte 1, 0
     .2byte 1, 1
     .2byte 1, 2
@@ -494,7 +495,9 @@
     .2byte 1, 530
     .2byte 1, 531
 
-    .4byte 500
+.Lcommon_resource_archive_selections_end:
+    .word (.Lcommon_resource_archive_groups_end - .Lcommon_resource_archive_groups) / 16
+.Lcommon_resource_archive_groups:
     .2byte 1, 0, 4, 0, 1, 0, 0, 0
     .2byte 1, 1, 4, 4, 1, 1, 0, 0
     .2byte 1, 2, 4, 8, 1, 2, 0, 0
@@ -996,7 +999,9 @@
     .2byte 1, 0, 4, 226, 1, 340, 0, 0
     .2byte 1, 0, 4, 1620, 1, 341, 0, 0
 
-    .4byte 101
+.Lcommon_resource_archive_groups_end:
+    .word (.Lcommon_resource_archive_sprites_end - .Lcommon_resource_archive_sprites) / 8
+.Lcommon_resource_archive_sprites:
     .2byte 244, 16888, 0, 0
     .2byte 247, 16888, 0, 0
     .2byte 247, 16889, 0, 0
@@ -1099,10 +1104,14 @@
     .2byte 240, 16885, 0, 0
     .2byte 33008, 5, 4, 0
 
-    .4byte 1624
+.Lcommon_resource_archive_sprites_end:
+    .word (.Lcommon_resource_archive_tiles_end - .Lcommon_resource_archive_tiles) / 32
+.Lcommon_resource_archive_tiles:
     .incbin "graphics/common_resource_archive/full/native.4bpp"
 
-    .4byte 342
+.Lcommon_resource_archive_tiles_end:
+    .word (.Lcommon_resource_archive_palettes_end - .Lcommon_resource_archive_palettes) / 32
+.Lcommon_resource_archive_palettes:
     .incbin "graphics/common_resource_archive/full/palettes_00.gbapal"
     .incbin "graphics/common_resource_archive/full/palettes_01.gbapal"
     .incbin "graphics/common_resource_archive/full/palettes_02.gbapal"
@@ -1126,9 +1135,13 @@
     .incbin "graphics/common_resource_archive/full/palettes_20.gbapal"
     .incbin "graphics/common_resource_archive/full/palettes_21.gbapal"
 
-    .4byte 0
+.Lcommon_resource_archive_palettes_end:
+    .word (.Lcommon_resource_archive_sixth_end - .Lcommon_resource_archive_sixth) / 8
+.Lcommon_resource_archive_sixth:
 
-    .4byte 532
+.Lcommon_resource_archive_sixth_end:
+    .word (.Lcommon_resource_archive_entries_end - .Lcommon_resource_archive_entries) / 4
+.Lcommon_resource_archive_entries:
     .2byte 0, 0
     .2byte 1, 0
     .2byte 2, 0
@@ -1661,3 +1674,4 @@
     .2byte 497, 0
     .2byte 498, 0
     .2byte 499, 0
+.Lcommon_resource_archive_entries_end:

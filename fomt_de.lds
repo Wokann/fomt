@@ -1552,17 +1552,17 @@ SECTIONS
          src/shop_common.o(.rodata);
          src/font.o(.rodata);
         asm/data/static_resources.o(.rodata);
-        . = ABSOLUTE(0x0813BB08); src/m4a.o(.rodata);
-        . = ABSOLUTE(0x0813BDE0); src/m4a.o(.rodata.gM4aVoiceGroups);
-        . = ABSOLUTE(0x0813CC34); src/m4a.o(.rodata.gMusicPlayerTable);
+        src/m4a.o(.rodata);
+        src/m4a.o(.rodata.gM4aVoiceGroups);
+        src/m4a.o(.rodata.gMusicPlayerTable);
         /* MusicPlayerEnt is 12 bytes on the GBA. */
         _M4aNumMusicPlayers = ABSOLUTE((. - gMusicPlayerTable) / 12);
         . = ALIGN(4); src/m4a.o(.rodata.gSongTable);
         /* SongEnt is eight bytes; use the actual table length, including unused slots. */
         _M4aNumSongs = ABSOLUTE((. - gSongTable) / 8);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
-        . = ABSOLUTE(0x084E2E74); data/scripts/scripts.o(.rodata.mary_scripts);
-        . = ABSOLUTE(0x0871DDD4); asm/data/data_0813B288.o(.rodata.mary_scripts_tail);
+        data/scripts/scripts.o(.rodata.mary_scripts);
+        . = ALIGN(4); asm/data/data_0813B288.o(.rodata.mary_scripts_tail);
         src/libsram.o(.rodata);
         asm/data/data_0813B288.o(.rodata.after_sram);
     } > ROM = 0xFF
