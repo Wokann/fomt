@@ -15160,7 +15160,7 @@ func_08057CF4:
     bl .Lauto_08059A24
     adds r0, r6, #0
     movs r1, #0
-    bl func_08059FE0
+    bl RenderHorseRaceTicketPurchaseScreen
     adds r0, r6, #0
     bl func_0805A3F0
     ldr r0, [sp, #4]
@@ -15641,7 +15641,7 @@ func_08057CF4:
     bl .Lauto_08059A24
     adds r0, r6, #0
     movs r1, #1
-    bl func_08059FE0
+    bl RenderHorseRaceTicketPurchaseScreen
     ldr r3, [pc, #0x58]
     adds r0, r6, r3
     movs r4, #0
@@ -16045,447 +16045,9 @@ func_08057CF4:
     .byte 0x40, 0x00, 0x00, 0x05, 0x18, 0x42, 0x00, 0x00, 0x02, 0x02, 0x00, 0x05
     .byte 0x04, 0x02, 0x00, 0x05
     .word gHorseRaceTicketCharacterCodes
-    .global func_08059FE0
-    .thumb_func
-func_08059FE0:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sl
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6, r7}
-    ldr r4, [pc, #0xa4]
-    add sp, r4
-    mov r8, r0
-    ldr r0, [pc, #0xa0]
-    add r0, sp
-    str r1, [r0]
-    cmp r1, #0
-    bne .Lauto_08059E38
-    movs r1, #0xb8
-    lsls r1, r1, #1
-    add r1, r8
-    add r0, sp, #0xc
-    movs r2, #0
-    bl GetGroupData__C22IndexedResourceArchiveUi
-    add r5, sp, #0x1c
-    ldr r4, [sp, #0x1c]
-    movs r0, #0xc9
-    lsls r0, r0, #3
-    add r0, r8
-    ldr r1, [r0, #4]
-    bl GetObjPaletteBank
-    lsls r0, r0, #5
-    ldr r6, [pc, #0x7c]
-    adds r1, r0, r6
-    ldr r0, [sp, #0x1c]
-    movs r2, #0
-    cmp r0, #0
-    beq .Lauto_08059DB4
-    ldrh r2, [r5, #4]
-    .Lauto_08059DB4:
-    adds r0, r4, #0
-    bl CopyHardwareDma3
-    add r4, sp, #0x14
-    ldr r5, [sp, #0x14]
-    movs r0, #0xc8
-    lsls r0, r0, #3
-    add r0, r8
-    ldr r1, [r0, #4]
-    bl GetObjTileIndex
-    lsls r0, r0, #5
-    ldr r2, [pc, #0x58]
-    adds r1, r0, r2
-    ldr r0, [sp, #0x14]
-    movs r2, #0
-    cmp r0, #0
-    beq .Lauto_08059DDA
-    ldrh r2, [r4, #4]
-    .Lauto_08059DDA:
-    adds r0, r5, #0
-    bl CopyHardwareDma3
-    ldr r4, [pc, #0x48]
-    movs r0, #0xc2
-    lsls r0, r0, #3
-    add r0, r8
-    ldr r1, [r0, #4]
-    bl GetObjTileIndex
-    adds r1, r0, #0
-    lsls r1, r1, #5
-    ldr r3, [pc, #0x3c]
-    adds r1, r1, r3
-    adds r0, r4, #0
-    movs r2, #0x80
-    bl CopyHardwareDma3
-    ldr r4, [pc, #0x34]
-    movs r0, #0xc4
-    lsls r0, r0, #3
-    add r0, r8
-    ldr r1, [r0, #4]
-    bl GetObjPaletteBank
-    adds r1, r0, #0
-    lsls r1, r1, #5
-    adds r1, r1, r6
-    adds r0, r4, #0
-    movs r2, #0x20
-    bl CopyHardwareDma3
-    b .Lauto_08059E74
-    .byte 0x90, 0xF4, 0xFF, 0xFF, 0x54, 0x0B, 0x00, 0x00, 0x00, 0x02, 0x00, 0x05, 0x00, 0x00, 0x01, 0x06
-    .byte 0x38, 0x8F, 0x4D, 0x08, 0x00, 0x0A, 0x01, 0x06, 0xB8, 0x8F, 0x4D, 0x08
-    .Lauto_08059E38:
-    ldr r4, [pc, #0xdc]
-    movs r0, #0xc2
-    lsls r0, r0, #3
-    add r0, r8
-    ldr r1, [r0, #4]
-    bl GetObjTileIndex
-    adds r1, r0, #0
-    lsls r1, r1, #5
-    ldr r7, [pc, #0xd0]
-    adds r1, r1, r7
-    adds r0, r4, #0
-    movs r2, #0x80
-    bl CopyHardwareDma3
-    ldr r4, [pc, #0xc8]
-    movs r0, #0xc4
-    lsls r0, r0, #3
-    add r0, r8
-    ldr r1, [r0, #4]
-    bl GetObjPaletteBank
-    adds r1, r0, #0
-    lsls r1, r1, #5
-    ldr r0, [pc, #0xb8]
-    adds r1, r1, r0
-    adds r0, r4, #0
-    movs r2, #0x20
-    bl CopyHardwareDma3
-    .Lauto_08059E74:
-    ldr r4, [pc, #0xb0]
-    add r4, r8
-    ldr r1, [pc, #0xb0]
-    add r1, sp
-    ldr r2, [pc, #0xb0]
-    add r2, sp
-    str r1, [r2]
-    mov r3, sp
-    adds r3, #0x30
-    ldr r7, [pc, #0xac]
-    add r7, sp
-    str r3, [r7]
-    movs r0, #0xb4
-    lsls r0, r0, #4
-    add r0, sp
-    ldr r1, [pc, #0xa4]
-    add r1, sp
-    str r0, [r1]
-    ldr r2, [pc, #0xa0]
-    add r2, sp
-    movs r3, #0xb6
-    lsls r3, r3, #4
-    add r3, sp
-    str r2, [r3]
-    movs r7, #0xcd
-    lsls r7, r7, #2
-    add r7, sp
-    ldr r0, [pc, #0x94]
-    add r0, sp
-    str r7, [r0]
-    ldr r1, [pc, #0x90]
-    add r1, sp
-    ldr r2, [pc, #0x90]
-    add r2, sp
-    str r1, [r2]
-    movs r3, #2
-    mov sl, r3
-    ldr r7, [pc, #0x8c]
-    mov sb, r7
-    ldr r6, [pc, #0x8c]
-    add r6, sp
-    ldr r5, [pc, #0x8c]
-    add r5, sp
-    movs r7, #3
-    .Lauto_08059ECC:
-    ldr r0, [pc, #0x5c]
-    add r0, sp
-    movs r1, #0xc
-    strh r1, [r0]
-    mov r3, sl
-    ldr r2, [pc, #0x58]
-    add r2, sp
-    ldr r2, [r2]
-    strh r3, [r2, #2]
-    ldr r0, [r0]
-    add r1, sp, #0x30
-    movs r2, #0
-    bl Clear2DGfxBuffer
-    ldrh r0, [r4, #0x20]
-    cmp r0, #0x27
-    bhi .Lauto_08059F5C
-    adds r1, r0, #0
-    movs r0, #0xd
-    muls r1, r0, r1
-    ldr r0, [pc, #0x60]
-    adds r1, r1, r0
-    movs r3, #0xc
-    strh r3, [r6]
-    mov r0, sl
-    strh r0, [r6, #2]
-    ldr r0, [r6]
-    str r1, [sp]
-    movs r1, #0
-    str r1, [sp, #4]
-    movs r2, #1
-    str r2, [sp, #8]
-    add r1, sp, #0x30
-    movs r2, #0
-    movs r3, #0
-    bl DrawStringTo2DGfxBufferExt
-    b .Lauto_08059F84
-    .byte 0x18, 0x79, 0x4D, 0x08, 0x00, 0x0A, 0x01, 0x06, 0x98, 0x79, 0x4D, 0x08, 0x00, 0x02, 0x00, 0x05
-    .byte 0x0C, 0x11, 0x00, 0x00, 0x34, 0x0B, 0x00, 0x00, 0x6C, 0x0B, 0x00, 0x00, 0x68, 0x0B, 0x00, 0x00
-    .byte 0x5C, 0x0B, 0x00, 0x00, 0x44, 0x0B, 0x00, 0x00, 0x58, 0x0B, 0x00, 0x00, 0x48, 0x0B, 0x00, 0x00
-    .byte 0x64, 0x0B, 0x00, 0x00, 0x00, 0x28, 0x00, 0x06, 0x38, 0x0B, 0x00, 0x00, 0x3C, 0x0B, 0x00, 0x00
-    .word gText_AnimalFestival_LivestockContestantNames
-    .Lauto_08059F5C:
-    ldr r0, [pc, #0xe4]
-    add r0, r8
-    ldr r0, [r0]
-    bl GetName__C6Animal
-    movs r3, #0xc
-    strh r3, [r5]
-    mov r1, sl
-    strh r1, [r5, #2]
-    ldr r1, [r5]
-    str r0, [sp]
-    movs r2, #0
-    str r2, [sp, #4]
-    movs r3, #1
-    str r3, [sp, #8]
-    adds r0, r1, #0
-    add r1, sp, #0x30
-    movs r3, #0
-    bl DrawStringTo2DGfxBufferExt
-    .Lauto_08059F84:
-    ldr r1, [pc, #0xc0]
-    add r1, sp
-    ldr r0, [r1]
-    mov r1, sb
-    movs r2, #0xc0
-    lsls r2, r2, #2
-    bl CopyHardwareDma3
-    movs r2, #0xc0
-    lsls r2, r2, #2
-    add sb, r2
-    subs r7, #1
-    adds r4, #0x2c
-    cmp r7, #0
-    bge .Lauto_08059ECC
-    movs r4, #0x20
-    movs r5, #2
-    movs r7, #0
-    movs r0, #0xb4
-    lsls r0, r0, #4
-    add r0, sp
-    strh r4, [r0]
-    ldr r3, [pc, #0x98]
-    add r3, sp
-    ldr r3, [r3]
-    strh r5, [r3, #2]
-    ldr r0, [r0]
-    add r1, sp, #0x334
-    movs r2, #0
-    bl Clear2DGfxBuffer
-    ldr r1, [pc, #0x8c]
-    movs r6, #1
-    ldr r0, [pc, #0x8c]
-    add r0, sp
-    strh r4, [r0]
-    movs r2, #0xb6
-    lsls r2, r2, #4
-    add r2, sp
-    ldr r2, [r2]
-    strh r5, [r2, #2]
-    ldr r0, [r0]
-    str r1, [sp]
-    str r7, [sp, #4]
-    str r6, [sp, #8]
-    add r1, sp, #0x334
-    movs r2, #0
-    movs r3, #0
-    bl DrawStringTo2DGfxBufferExt
-    ldr r1, [pc, #0x6c]
-    movs r2, #0x80
-    lsls r2, r2, #4
-    ldr r3, [pc, #0x6c]
-    add r3, sp
-    ldr r0, [r3]
-    bl CopyHardwareDma3
-    ldr r0, [pc, #0x64]
-    add r0, sp
-    strh r4, [r0]
-    ldr r1, [pc, #0x64]
-    add r1, sp
-    ldr r1, [r1]
-    strh r5, [r1, #2]
-    ldr r0, [r0]
-    ldr r2, [pc, #0x50]
-    add r2, sp
-    ldr r1, [r2]
-    movs r2, #0
-    bl Clear2DGfxBuffer
-    ldr r3, [pc, #0x50]
-    add r3, sp
-    ldr r3, [r3]
-    cmp r3, #0
-    bne .Lauto_0805A074
-    ldr r2, [pc, #0x4c]
-    ldr r1, [pc, #0x4c]
-    add r1, sp
-    ldr r0, [pc, #0x48]
-    add r0, sp
-    strh r4, [r0]
-    strh r5, [r1, #2]
-    ldr r0, [r0]
-    str r2, [sp]
-    str r7, [sp, #4]
-    str r6, [sp, #8]
-    ldr r7, [pc, #0x24]
-    add r7, sp
-    ldr r1, [r7]
-    movs r2, #0
-    movs r3, #0
-    bl DrawStringTo2DGfxBufferExt
-    b .Lauto_0805A09C
-    .byte 0xBC, 0x11, 0x00, 0x00, 0x68, 0x0B, 0x00, 0x00, 0x5C, 0x0B, 0x00, 0x00
-    .word gText_HorseRace_TicketPurchaseTitle
-    .byte 0x44, 0x0B, 0x00, 0x00, 0x00, 0x40, 0x00, 0x06, 0x58, 0x0B, 0x00, 0x00, 0x48, 0x0B, 0x00, 0x00
-    .byte 0x64, 0x0B, 0x00, 0x00, 0x54, 0x0B, 0x00, 0x00
-    .word gText_HorseRace_TicketPurchaseConfirm
-    .byte 0x4C, 0x0B, 0x00, 0x00
-    .Lauto_0805A074:
-    ldr r2, [pc, #0xec]
-    movs r1, #0xb5
-    lsls r1, r1, #4
-    add r1, sp
-    movs r0, #0xb5
-    lsls r0, r0, #4
-    add r0, sp
-    strh r4, [r0]
-    strh r5, [r1, #2]
-    ldr r0, [r0]
-    str r2, [sp]
-    str r7, [sp, #4]
-    str r6, [sp, #8]
-    ldr r2, [pc, #0xd8]
-    add r2, sp
-    ldr r1, [r2]
-    movs r2, #0
-    movs r3, #0
-    bl DrawStringTo2DGfxBufferExt
-    .Lauto_0805A09C:
-    ldr r1, [pc, #0xcc]
-    movs r4, #0x80
-    lsls r4, r4, #4
-    ldr r3, [pc, #0xc4]
-    add r3, sp
-    ldr r0, [r3]
-    adds r2, r4, #0
-    bl CopyHardwareDma3
-    movs r0, #1
-    rsbs r0, r0, #0
-    ldr r1, [pc, #0xbc]
-    add r1, r8
-    adds r2, r4, #0
-    bl FillHardwareDma3
-    movs r5, #0x85
-    lsls r5, r5, #6
-    movs r1, #0
-    ldr r7, [pc, #0xb0]
-    add r7, r8
-    mov ip, r7
-    .Lauto_0805A0C8:
-    movs r4, #0
-    lsls r0, r1, #1
-    adds r6, r5, #0
-    adds r6, #0x18
-    adds r1, #1
-    mov sb, r1
-    adds r1, r0, #6
-    lsls r1, r1, #6
-    adds r0, #7
-    lsls r0, r0, #6
-    adds r3, r5, #0
-    adds r3, #0xc
-    mov r7, ip
-    adds r2, r0, r7
-    add r1, ip
-    .Lauto_0805A0E6:
-    adds r0, r5, r4
-    strh r0, [r1]
-    strh r3, [r2]
-    adds r3, #1
-    adds r2, #2
-    adds r1, #2
-    adds r4, #1
-    cmp r4, #0xb
-    ble .Lauto_0805A0E6
-    lsls r0, r6, #0x10
-    lsrs r5, r0, #0x10
-    mov r1, sb
-    cmp r1, #3
-    ble .Lauto_0805A0C8
-    movs r4, #0
-    ldr r5, [pc, #0x68]
-    add r5, r8
-    movs r0, #0x88
-    lsls r0, r0, #6
-    adds r6, r0, #0
-    .Lauto_0805A10E:
-    adds r3, r4, #0
-    cmp r4, #0
-    bge .Lauto_0805A116
-    adds r3, #0x1f
-    .Lauto_0805A116:
-    asrs r3, r3, #5
-    lsls r2, r3, #5
-    subs r2, r4, r2
-    lsls r2, r2, #1
-    adds r0, r3, #4
-    lsls r0, r0, #6
-    adds r0, r2, r0
-    adds r0, r5, r0
-    adds r1, r4, r6
-    strh r1, [r0]
-    adds r3, #0xf
-    lsls r3, r3, #6
-    adds r2, r2, r3
-    adds r2, r5, r2
-    movs r1, #0x89
-    lsls r1, r1, #6
-    adds r0, r4, r1
-    strh r0, [r2]
-    adds r4, #1
-    cmp r4, #0x3f
-    ble .Lauto_0805A10E
-    ldr r0, [pc, #0x2c]
-    add r0, r8
-    ldr r1, [pc, #0x30]
-    movs r2, #0x80
-    lsls r2, r2, #4
-    bl CopyHardwareDma3
-    movs r3, #0xb7
-    lsls r3, r3, #4
-    add sp, r3
-    pop {r3, r4, r5}
-    mov r8, r3
-    mov sb, r4
-    mov sl, r5
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .word gText_HorseRace_TicketPurchaseMedalsToWin
-    .byte 0x58, 0x0B, 0x00, 0x00, 0x00, 0x48, 0x00, 0x06, 0xCA, 0x08
-    .byte 0x00, 0x00, 0xD2, 0x08, 0x00, 0x00, 0x00, 0xF0, 0x00, 0x06
+    .section .text.after_horse_race_ticket_screen, "ax", %progbits
+    .align 2, 0
+
     .global func_0805A3F0
     .thumb_func
 func_0805A3F0:
@@ -22403,7 +21965,7 @@ func_0805FF14:
 	ldr r0, [r1]
 	bl GetHardwareDmaQueue
 	adds r6, r0, #0
-	ldr r1, .L08060988 @ =gUnk_0875196C
+	ldr r1, .L08060988 @ =gAnimalFestivalIcon01Tiles
 	movs r3, #0x54
 	lsls r2, r3, #5
 	movs r0, #0xc0
@@ -22431,7 +21993,7 @@ func_0805FF14:
 	str r0, [r6, #4]
 	b .L08060A54
 	.align 2, 0
-.L08060988: .4byte gUnk_0875196C
+.L08060988: .4byte gAnimalFestivalIcon01Tiles
 .L0806098C:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -22550,7 +22112,7 @@ func_0805FF14:
 	ldr r0, [r2]
 	bl GetHardwareDmaQueue
 	adds r6, r0, #0
-	ldr r1, .L08060A8C @ =gUnk_087519EC
+	ldr r1, .L08060A8C @ =gAnimalFestivalIcon01Palette
 	add r0, sp, #0x38
 	ldr r2, .L08060A90
 	movs r3, #0x20
@@ -22574,7 +22136,7 @@ func_0805FF14:
 	str r0, [r6, #4]
 	b .L08060B58
 	.align 2, 0
-.L08060A8C: .4byte gUnk_087519EC
+.L08060A8C: .4byte gAnimalFestivalIcon01Palette
 .L08060A90: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08060A94:
 	str r1, [sp, #0x294]
@@ -23562,9 +23124,9 @@ func_0805FF14:
 	mov r2, sl
 	strh r0, [r2]
 	str r1, [r2, #4]
-	ldr r0, .L080611C8 @ =gUnk_08752F8C
+	ldr r0, .L080611C8 @ =gFarmStatusCreatureIcon11Tiles
 	str r0, [r2, #8]
-	ldr r0, .L080611CC @ =gUnk_0875300C
+	ldr r0, .L080611CC @ =gFarmStatusCreatureIcon11Palette
 	str r0, [r2, #0xc]
 	ldr r3, [sp, #0x1c4]
 	ldr r4, .L080611D0 @ =0x00000594
@@ -23589,8 +23151,8 @@ func_0805FF14:
 	str r3, [sp, #0x210]
 	b .L080612AC
 	.align 2, 0
-.L080611C8: .4byte gUnk_08752F8C
-.L080611CC: .4byte gUnk_0875300C
+.L080611C8: .4byte gFarmStatusCreatureIcon11Tiles
+.L080611CC: .4byte gFarmStatusCreatureIcon11Palette
 .L080611D0: .4byte 0x00000594
 .L080611D4:
 	str r1, [sp, #0x294]
@@ -29006,7 +28568,7 @@ func_08062E9C:
 	b .Ljp_0806381E
 	.align 2, 0
 .Ljp_08063748:
-	.4byte gUnk_084D7918
+	.4byte gAnimalFestivalIcon01Tiles
 .Ljp_0806374C:
 	.4byte 0x06000E80
 .Ljp_08063750:
@@ -29152,7 +28714,7 @@ func_08062E9C:
 	b .Ljp_08063922
 	.align 2, 0
 .Ljp_08063850:
-	.4byte gUnk_084D7998
+	.4byte gAnimalFestivalIcon01Palette
 .Ljp_08063854:
 	.word BG_PALETTE + PLTT_SIZE_4BPP
 .Ljp_08063858:
@@ -37013,7 +36575,7 @@ func_0806644C:
 	str r0, [r6, #4]
 	b .Ljp_phys_0806725C
 .Ljp_phys_0806718C:
-	.4byte gUnk_08752F8C
+	.4byte gFarmStatusCreatureIcon11Tiles
 .Ljp_phys_08067190:
 	.4byte 0x06010200
 .Ljp_phys_08067194:
@@ -37160,7 +36722,7 @@ func_0806644C:
 	b .Ljp_phys_0806736C
 	.align 2, 0
 .Ljp_phys_08067298:
-	.4byte gUnk_0875300C
+	.4byte gFarmStatusCreatureIcon11Palette
 .Ljp_phys_0806729C:
 	.word OBJ_PALETTE + 2 * PLTT_SIZE_4BPP
 .Ljp_phys_080672A0:
@@ -45305,7 +44867,7 @@ RunFestivalAnimalSelectionCore:
 	b .Ljp_0806B02E
 	.align 2, 0
 .Ljp_0806AF4C:
-	.4byte gUnk_084D7918
+	.4byte gAnimalFestivalIcon01Tiles
 .Ljp_0806AF50:
 	mov r8, r1
 	movs r0, #1
@@ -45462,7 +45024,7 @@ RunFestivalAnimalSelectionCore:
 	b .Ljp_0806B14C
 	.align 2, 0
 .Ljp_0806B06C:
-	.4byte gUnk_084D7998
+	.4byte gAnimalFestivalIcon01Palette
 .Ljp_0806B070:
 	.word BG_PALETTE + PLTT_SIZE_4BPP
 .Ljp_0806B074:
@@ -76422,9 +75984,9 @@ func_0807AF54: @ 0x0807AF54
 	beq .Ljp_poultry_shop_B024
 	movs r0, #0x20
 	str r0, [sp, #0x10]
-	ldr r0, .Ljp_poultry_shop_B0F0 @ =gUnk_084D7918
+	ldr r0, .Ljp_poultry_shop_B0F0 @ =gAnimalFestivalIcon01Tiles
 	str r0, [sp, #0x14]
-	ldr r0, .Ljp_poultry_shop_B0F4 @ =gUnk_084D7998
+	ldr r0, .Ljp_poultry_shop_B0F4 @ =gAnimalFestivalIcon01Palette
 	str r0, [sp, #0x18]
 	mov r7, r8
 	ldr r0, [r7, #0x20]
@@ -76543,8 +76105,8 @@ func_0807AF54: @ 0x0807AF54
 	.align 2, 0
 .Ljp_poultry_shop_B0E8: .4byte gUnk_084D8638
 .Ljp_poultry_shop_B0EC: .4byte gUnk_084D86B8
-.Ljp_poultry_shop_B0F0: .4byte gUnk_084D7918
-.Ljp_poultry_shop_B0F4: .4byte gUnk_084D7998
+.Ljp_poultry_shop_B0F0: .4byte gAnimalFestivalIcon01Tiles
+.Ljp_poultry_shop_B0F4: .4byte gAnimalFestivalIcon01Palette
 .Ljp_poultry_shop_B0F8:
 	str r1, [sp, #0x68]
 	movs r2, #1
@@ -93230,9 +92792,9 @@ func_0808586C:
 	beq .Ljp_08085524
 	movs r0, #0x20
 	str r0, [sp, #0x10]
-	ldr r0, .Ljp_080854E4 @ =gUnk_0875196C
+	ldr r0, .Ljp_080854E4 @ =gAnimalFestivalIcon01Tiles
 	str r0, [sp, #0x14]
-	ldr r0, .Ljp_080854E8 @ =gUnk_087519EC
+	ldr r0, .Ljp_080854E8 @ =gAnimalFestivalIcon01Palette
 	str r0, [sp, #0x18]
 	ldr r0, [r7, #0x20]
 	cmp r0, #0x27
@@ -93249,8 +92811,8 @@ func_0808586C:
 	.align 2, 0
 .Ljp_080854DC: .4byte gUnk_0875320C
 .Ljp_080854E0: .4byte gUnk_0875328C
-.Ljp_080854E4: .4byte gUnk_0875196C
-.Ljp_080854E8: .4byte gUnk_087519EC
+.Ljp_080854E4: .4byte gAnimalFestivalIcon01Tiles
+.Ljp_080854E8: .4byte gAnimalFestivalIcon01Palette
 .Ljp_080854EC:
 	ldr r0, [sp, #0x60]
 	bl IsFestivalWinner__C6Animal
@@ -93259,9 +92821,9 @@ func_0808586C:
 	beq .Ljp_08085524
 	movs r0, #0x20
 	str r0, [sp, #0x10]
-	ldr r0, .Ljp_08085584 @ =gUnk_0875196C
+	ldr r0, .Ljp_08085584 @ =gAnimalFestivalIcon01Tiles
 	str r0, [sp, #0x14]
-	ldr r0, .Ljp_08085588 @ =gUnk_087519EC
+	ldr r0, .Ljp_08085588 @ =gAnimalFestivalIcon01Palette
 	str r0, [sp, #0x18]
 	ldr r0, [r7, #0x20]
 	cmp r0, #0x27
@@ -93327,8 +92889,8 @@ func_0808586C:
 	bl DrawStringTo2DGfxBufferExt
 	b .Ljp_080855BA
 	.align 2, 0
-.Ljp_08085584: .4byte gUnk_0875196C
-.Ljp_08085588: .4byte gUnk_087519EC
+.Ljp_08085584: .4byte gAnimalFestivalIcon01Tiles
+.Ljp_08085588: .4byte gAnimalFestivalIcon01Palette
 .Ljp_0808558C: .4byte 0x00000774
 .Ljp_08085590:
 	ldr r0, [sp, #0x60]
@@ -150721,7 +150283,7 @@ func_080588AC: @ 0x080588AC
 	bl func_08059C94
 	adds r0, r6, #0
 	movs r1, #0
-	bl func_08059FE0
+	bl RenderHorseRaceTicketPurchaseScreen
 	adds r0, r6, #0
 	bl func_0805A3F0
 	ldr r0, [sp, #4]
@@ -151905,7 +151467,7 @@ func_080588AC: @ 0x080588AC
 	bl func_08059C94
 	adds r0, r6, #0
 	movs r1, #1
-	bl func_08059FE0
+	bl RenderHorseRaceTicketPurchaseScreen
 	ldr r3, .L0805944C @ =0x000013FE
 	adds r0, r6, r3
 	movs r4, #0
@@ -153310,475 +152872,8 @@ func_08059C94: @ 0x08059C94
 .L08059FD8: .word OBJ_PALETTE + 2 * 2
 .L08059FDC: .4byte gHorseRaceTicketCharacterCodes
 
-	thumb_func_start func_08059FE0
-func_08059FE0: @ 0x08059FE0
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	ldr r4, .L0805A090 @ =0xFFFFF490
-	add sp, r4
-	mov r8, r0
-	ldr r0, .L0805A094 @ =0x00000B54
-	add r0, sp
-	str r1, [r0]
-	cmp r1, #0
-	bne .L0805A0AC
-	movs r1, #0xb8
-	lsls r1, r1, #1
-	add r1, r8
-	add r0, sp, #0xc
-	movs r2, #0
-	bl GetGroupData__C22IndexedResourceArchiveUi
-	add r5, sp, #0x1c
-	ldr r4, [sp, #0x1c]
-	movs r0, #0xc9
-	lsls r0, r0, #3
-	add r0, r8
-	ldr r1, [r0, #4]
-	bl GetObjPaletteBank
-	lsls r0, r0, #5
-	ldr r6, .L0805A098 @ =OBJ_PALETTE
-	adds r1, r0, r6
-	ldr r0, [sp, #0x1c]
-	movs r2, #0
-	cmp r0, #0
-	beq .L0805A028
-	ldrh r2, [r5, #4]
-.L0805A028:
-	adds r0, r4, #0
-	bl CopyHardwareDma3
-	add r4, sp, #0x14
-	ldr r5, [sp, #0x14]
-	movs r0, #0xc8
-	lsls r0, r0, #3
-	add r0, r8
-	ldr r1, [r0, #4]
-	bl GetObjTileIndex
-	lsls r0, r0, #5
-	ldr r2, .L0805A09C @ =OBJ_VRAM0
-	adds r1, r0, r2
-	ldr r0, [sp, #0x14]
-	movs r2, #0
-	cmp r0, #0
-	beq .L0805A04E
-	ldrh r2, [r4, #4]
-.L0805A04E:
-	adds r0, r5, #0
-	bl CopyHardwareDma3
-	ldr r4, .L0805A0A0 @ =gUnk_08752F8C
-	movs r0, #0xc2
-	lsls r0, r0, #3
-	add r0, r8
-	ldr r1, [r0, #4]
-	bl GetObjTileIndex
-	adds r1, r0, #0
-	lsls r1, r1, #5
-	ldr r3, .L0805A0A4 @ =0x06010600
-	adds r1, r1, r3
-	adds r0, r4, #0
-	movs r2, #0x80
-	bl CopyHardwareDma3
-	ldr r4, .L0805A0A8 @ =gUnk_0875300C
-	movs r0, #0xc4
-	lsls r0, r0, #3
-	add r0, r8
-	ldr r1, [r0, #4]
-	bl GetObjPaletteBank
-	adds r1, r0, #0
-	lsls r1, r1, #5
-	adds r1, r1, r6
-	adds r0, r4, #0
-	movs r2, #0x20
-	bl CopyHardwareDma3
-	b .L0805A0E8
-	.align 2, 0
-.L0805A090: .4byte 0xFFFFF490
-.L0805A094: .4byte 0x00000B54
-.L0805A098: .word OBJ_PALETTE
-.L0805A09C: .word OBJ_VRAM0
-.L0805A0A0: .4byte gUnk_08752F8C
-.L0805A0A4: .4byte 0x06010600
-.L0805A0A8: .4byte gUnk_0875300C
-.L0805A0AC:
-	ldr r4, .L0805A18C @ =gUnk_0875196C
-	movs r0, #0xc2
-	lsls r0, r0, #3
-	add r0, r8
-	ldr r1, [r0, #4]
-	bl GetObjTileIndex
-	adds r1, r0, #0
-	lsls r1, r1, #5
-	ldr r7, .L0805A190 @ =0x06010600
-	adds r1, r1, r7
-	adds r0, r4, #0
-	movs r2, #0x80
-	bl CopyHardwareDma3
-	ldr r4, .L0805A194 @ =gUnk_087519EC
-	movs r0, #0xc4
-	lsls r0, r0, #3
-	add r0, r8
-	ldr r1, [r0, #4]
-	bl GetObjPaletteBank
-	adds r1, r0, #0
-	lsls r1, r1, #5
-	ldr r0, .L0805A198 @ =OBJ_PALETTE
-	adds r1, r1, r0
-	adds r0, r4, #0
-	movs r2, #0x20
-	bl CopyHardwareDma3
-.L0805A0E8:
-	ldr r4, .L0805A19C @ =0x0000142C
-	add r4, r8
-	ldr r1, .L0805A1A0 @ =0x00000B34
-	add r1, sp
-	ldr r2, .L0805A1A4 @ =0x00000B6C
-	add r2, sp
-	str r1, [r2]
-	mov r3, sp
-	adds r3, #0x30
-	ldr r7, .L0805A1A8 @ =0x00000B68
-	add r7, sp
-	str r3, [r7]
-	movs r0, #0xb4
-	lsls r0, r0, #4
-	add r0, sp
-	ldr r1, .L0805A1AC @ =0x00000B5C
-	add r1, sp
-	str r0, [r1]
-	ldr r2, .L0805A1B0 @ =0x00000B44
-	add r2, sp
-	movs r3, #0xb6
-	lsls r3, r3, #4
-	add r3, sp
-	str r2, [r3]
-	movs r7, #0xcd
-	lsls r7, r7, #2
-	add r7, sp
-	ldr r0, .L0805A1B4 @ =0x00000B58
-	add r0, sp
-	str r7, [r0]
-	ldr r1, .L0805A1B8 @ =0x00000B48
-	add r1, sp
-	ldr r2, .L0805A1BC @ =0x00000B64
-	add r2, sp
-	str r1, [r2]
-	movs r3, #2
-	mov sl, r3
-	ldr r7, .L0805A1C0 @ =0x06002800
-	mov sb, r7
-	ldr r6, .L0805A1C4 @ =0x00000B38
-	add r6, sp
-	ldr r5, .L0805A1C8 @ =0x00000B3C
-	add r5, sp
-	movs r7, #3
-.L0805A140:
-	ldr r0, .L0805A1A0 @ =0x00000B34
-	add r0, sp
-	movs r1, #0xc
-	strh r1, [r0]
-	mov r3, sl
-	ldr r2, .L0805A1A4 @ =0x00000B6C
-	add r2, sp
-	ldr r2, [r2]
-	strh r3, [r2, #2]
-	ldr r0, [r0]
-	add r1, sp, #0x30
-	movs r2, #0
-	bl Clear2DGfxBuffer
-	ldrh r0, [r4, #0x20]
-	cmp r0, #0x27
-	bhi .L0805A1D0
-	adds r1, r0, #0
-	movs r0, #0xd
-	muls r1, r0, r1
-	ldr r0, .L0805A1CC @ =gText_AnimalFestival_LivestockContestantNames
-	adds r1, r1, r0
-	movs r3, #0xc
-	strh r3, [r6]
-	mov r0, sl
-	strh r0, [r6, #2]
-	ldr r0, [r6]
-	str r1, [sp]
-	movs r1, #0
-	str r1, [sp, #4]
-	movs r2, #1
-	str r2, [sp, #8]
-	add r1, sp, #0x30
-	movs r2, #0
-	movs r3, #0
-	bl DrawStringTo2DGfxBufferExt
-	b .L0805A1F8
-	.align 2, 0
-.L0805A18C: .4byte gUnk_0875196C
-.L0805A190: .4byte 0x06010600
-.L0805A194: .4byte gUnk_087519EC
-.L0805A198: .word OBJ_PALETTE
-.L0805A19C: .4byte 0x0000142C
-.L0805A1A0: .4byte 0x00000B34
-.L0805A1A4: .4byte 0x00000B6C
-.L0805A1A8: .4byte 0x00000B68
-.L0805A1AC: .4byte 0x00000B5C
-.L0805A1B0: .4byte 0x00000B44
-.L0805A1B4: .4byte 0x00000B58
-.L0805A1B8: .4byte 0x00000B48
-.L0805A1BC: .4byte 0x00000B64
-.L0805A1C0: .4byte 0x06002800
-.L0805A1C4: .4byte 0x00000B38
-.L0805A1C8: .4byte 0x00000B3C
-.L0805A1CC: .4byte gText_AnimalFestival_LivestockContestantNames
-.L0805A1D0:
-	ldr r0, .L0805A2B8 @ =0x000014DC
-	add r0, r8
-	ldr r0, [r0]
-	bl GetName__C6Animal
-	movs r3, #0xc
-	strh r3, [r5]
-	mov r1, sl
-	strh r1, [r5, #2]
-	ldr r1, [r5]
-	str r0, [sp]
-	movs r2, #0
-	str r2, [sp, #4]
-	movs r3, #1
-	str r3, [sp, #8]
-	adds r0, r1, #0
-	add r1, sp, #0x30
-	movs r3, #0
-	bl DrawStringTo2DGfxBufferExt
-.L0805A1F8:
-	ldr r1, .L0805A2BC @ =0x00000B68
-	add r1, sp
-	ldr r0, [r1]
-	mov r1, sb
-	movs r2, #0xc0
-	lsls r2, r2, #2
-	bl CopyHardwareDma3
-	movs r2, #0xc0
-	lsls r2, r2, #2
-	add sb, r2
-	subs r7, #1
-	adds r4, #0x2c
-	cmp r7, #0
-	bge .L0805A140
-	movs r4, #0x20
-	movs r5, #2
-	movs r7, #0
-	movs r0, #0xb4
-	lsls r0, r0, #4
-	add r0, sp
-	strh r4, [r0]
-	ldr r3, .L0805A2C0 @ =0x00000B5C
-	add r3, sp
-	ldr r3, [r3]
-	strh r5, [r3, #2]
-	ldr r0, [r0]
-	add r1, sp, #0x334
-	movs r2, #0
-	bl Clear2DGfxBuffer
-	ldr r1, .L0805A2C4 @ =gText_HorseRace_TicketPurchaseTitle
-	movs r6, #1
-	ldr r0, .L0805A2C8 @ =0x00000B44
-	add r0, sp
-	strh r4, [r0]
-	movs r2, #0xb6
-	lsls r2, r2, #4
-	add r2, sp
-	ldr r2, [r2]
-	strh r5, [r2, #2]
-	ldr r0, [r0]
-	str r1, [sp]
-	str r7, [sp, #4]
-	str r6, [sp, #8]
-	add r1, sp, #0x334
-	movs r2, #0
-	movs r3, #0
-	bl DrawStringTo2DGfxBufferExt
-	ldr r1, .L0805A2CC @ =0x06004000
-	movs r2, #0x80
-	lsls r2, r2, #4
-	ldr r3, .L0805A2D0 @ =0x00000B58
-	add r3, sp
-	ldr r0, [r3]
-	bl CopyHardwareDma3
-	ldr r0, .L0805A2D4 @ =0x00000B48
-	add r0, sp
-	strh r4, [r0]
-	ldr r1, .L0805A2D8 @ =0x00000B64
-	add r1, sp
-	ldr r1, [r1]
-	strh r5, [r1, #2]
-	ldr r0, [r0]
-	ldr r2, .L0805A2D0 @ =0x00000B58
-	add r2, sp
-	ldr r1, [r2]
-	movs r2, #0
-	bl Clear2DGfxBuffer
-	ldr r3, .L0805A2DC @ =0x00000B54
-	add r3, sp
-	ldr r3, [r3]
-	cmp r3, #0
-	bne .L0805A2E8
-	ldr r2, .L0805A2E0 @ =gText_HorseRace_TicketPurchaseConfirm
-	ldr r1, .L0805A2E4 @ =0x00000B4C
-	add r1, sp
-	ldr r0, .L0805A2E4 @ =0x00000B4C
-	add r0, sp
-	strh r4, [r0]
-	strh r5, [r1, #2]
-	ldr r0, [r0]
-	str r2, [sp]
-	str r7, [sp, #4]
-	str r6, [sp, #8]
-	ldr r7, .L0805A2D0 @ =0x00000B58
-	add r7, sp
-	ldr r1, [r7]
-	movs r2, #0
-	movs r3, #0
-	bl DrawStringTo2DGfxBufferExt
-	b .L0805A310
-	.align 2, 0
-.L0805A2B8: .4byte 0x000014DC
-.L0805A2BC: .4byte 0x00000B68
-.L0805A2C0: .4byte 0x00000B5C
-.L0805A2C4: .4byte gText_HorseRace_TicketPurchaseTitle
-.L0805A2C8: .4byte 0x00000B44
-.L0805A2CC: .4byte 0x06004000
-.L0805A2D0: .4byte 0x00000B58
-.L0805A2D4: .4byte 0x00000B48
-.L0805A2D8: .4byte 0x00000B64
-.L0805A2DC: .4byte 0x00000B54
-.L0805A2E0: .4byte gText_HorseRace_TicketPurchaseConfirm
-.L0805A2E4: .4byte 0x00000B4C
-.L0805A2E8:
-	ldr r2, .L0805A3D8 @ =gText_HorseRace_TicketPurchaseMedalsToWin
-	movs r1, #0xb5
-	lsls r1, r1, #4
-	add r1, sp
-	movs r0, #0xb5
-	lsls r0, r0, #4
-	add r0, sp
-	strh r4, [r0]
-	strh r5, [r1, #2]
-	ldr r0, [r0]
-	str r2, [sp]
-	str r7, [sp, #4]
-	str r6, [sp, #8]
-	ldr r2, .L0805A3DC @ =0x00000B58
-	add r2, sp
-	ldr r1, [r2]
-	movs r2, #0
-	movs r3, #0
-	bl DrawStringTo2DGfxBufferExt
-.L0805A310:
-	ldr r1, .L0805A3E0 @ =0x06004800
-	movs r4, #0x80
-	lsls r4, r4, #4
-	ldr r3, .L0805A3DC @ =0x00000B58
-	add r3, sp
-	ldr r0, [r3]
-	adds r2, r4, #0
-	bl CopyHardwareDma3
-	movs r0, #1
-	rsbs r0, r0, #0
-	ldr r1, .L0805A3E4 @ =0x00000BEA
-	add r1, r8
-	adds r2, r4, #0
-	bl FillHardwareDma3
-	movs r5, #0x85
-	lsls r5, r5, #6
-	movs r1, #0
-	ldr r7, .L0805A3E8 @ =0x00000BF2
-	add r7, r8
-	mov ip, r7
-.L0805A33C:
-	movs r4, #0
-	lsls r0, r1, #1
-	adds r6, r5, #0
-	adds r6, #0x18
-	adds r1, #1
-	mov sb, r1
-	adds r1, r0, #6
-	lsls r1, r1, #6
-	adds r0, #7
-	lsls r0, r0, #6
-	adds r3, r5, #0
-	adds r3, #0xc
-	mov r7, ip
-	adds r2, r0, r7
-	add r1, ip
-.L0805A35A:
-	adds r0, r5, r4
-	strh r0, [r1]
-	strh r3, [r2]
-	adds r3, #1
-	adds r2, #2
-	adds r1, #2
-	adds r4, #1
-	cmp r4, #0xb
-	ble .L0805A35A
-	lsls r0, r6, #0x10
-	lsrs r5, r0, #0x10
-	mov r1, sb
-	cmp r1, #3
-	ble .L0805A33C
-	movs r4, #0
-	ldr r5, .L0805A3E4 @ =0x00000BEA
-	add r5, r8
-	movs r0, #0x88
-	lsls r0, r0, #6
-	adds r6, r0, #0
-.L0805A382:
-	adds r3, r4, #0
-	cmp r4, #0
-	bge .L0805A38A
-	adds r3, #0x1f
-.L0805A38A:
-	asrs r3, r3, #5
-	lsls r2, r3, #5
-	subs r2, r4, r2
-	lsls r2, r2, #1
-	adds r0, r3, #4
-	lsls r0, r0, #6
-	adds r0, r2, r0
-	adds r0, r5, r0
-	adds r1, r4, r6
-	strh r1, [r0]
-	adds r3, #0xf
-	lsls r3, r3, #6
-	adds r2, r2, r3
-	adds r2, r5, r2
-	movs r1, #0x89
-	lsls r1, r1, #6
-	adds r0, r4, r1
-	strh r0, [r2]
-	adds r4, #1
-	cmp r4, #0x3f
-	ble .L0805A382
-	ldr r0, .L0805A3E4 @ =0x00000BEA
-	add r0, r8
-	ldr r1, .L0805A3EC @ =0x0600F000
-	movs r2, #0x80
-	lsls r2, r2, #4
-	bl CopyHardwareDma3
-	movs r3, #0xb7
-	lsls r3, r3, #4
-	add sp, r3
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0805A3D8: .4byte gText_HorseRace_TicketPurchaseMedalsToWin
-.L0805A3DC: .4byte 0x00000B58
-.L0805A3E0: .4byte 0x06004800
-.L0805A3E4: .4byte 0x00000BEA
-.L0805A3E8: .4byte 0x00000BF2
-.L0805A3EC: .4byte 0x0600F000
+    .section .text.after_horse_race_ticket_screen, "ax", %progbits
+    .align 2, 0
 
 	thumb_func_start func_0805A3F0
 func_0805A3F0: @ 0x0805A3F0
@@ -163651,7 +162746,7 @@ func_0805FF14: @ 0x0805FF14
 	ldr r0, [r1]
 	bl GetHardwareDmaQueue
 	adds r6, r0, #0
-	ldr r1, .L08060988 @ =gUnk_0875196C
+	ldr r1, .L08060988 @ =gAnimalFestivalIcon01Tiles
 	movs r3, #0x54
 	lsls r2, r3, #5
 	movs r0, #0xc0
@@ -163679,7 +162774,7 @@ func_0805FF14: @ 0x0805FF14
 	str r0, [r6, #4]
 	b .L08060A54
 	.align 2, 0
-.L08060988: .4byte gUnk_0875196C
+.L08060988: .4byte gAnimalFestivalIcon01Tiles
 .L0806098C:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -163798,7 +162893,7 @@ func_0805FF14: @ 0x0805FF14
 	ldr r0, [r2]
 	bl GetHardwareDmaQueue
 	adds r6, r0, #0
-	ldr r1, .L08060A8C @ =gUnk_087519EC
+	ldr r1, .L08060A8C @ =gAnimalFestivalIcon01Palette
 	add r0, sp, #0x38
 	ldr r2, .L08060A90
 	movs r3, #0x20
@@ -163822,7 +162917,7 @@ func_0805FF14: @ 0x0805FF14
 	str r0, [r6, #4]
 	b .L08060B58
 	.align 2, 0
-.L08060A8C: .4byte gUnk_087519EC
+.L08060A8C: .4byte gAnimalFestivalIcon01Palette
 .L08060A90: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08060A94:
 	str r1, [sp, #0x294]
@@ -164810,9 +163905,9 @@ func_0805FF14: @ 0x0805FF14
 	mov r2, sl
 	strh r0, [r2]
 	str r1, [r2, #4]
-	ldr r0, .L080611C8 @ =gUnk_08752F8C
+	ldr r0, .L080611C8 @ =gFarmStatusCreatureIcon11Tiles
 	str r0, [r2, #8]
-	ldr r0, .L080611CC @ =gUnk_0875300C
+	ldr r0, .L080611CC @ =gFarmStatusCreatureIcon11Palette
 	str r0, [r2, #0xc]
 	ldr r3, [sp, #0x1c4]
 	ldr r4, .L080611D0 @ =0x00000594
@@ -164837,8 +163932,8 @@ func_0805FF14: @ 0x0805FF14
 	str r3, [sp, #0x210]
 	b .L080612AC
 	.align 2, 0
-.L080611C8: .4byte gUnk_08752F8C
-.L080611CC: .4byte gUnk_0875300C
+.L080611C8: .4byte gFarmStatusCreatureIcon11Tiles
+.L080611CC: .4byte gFarmStatusCreatureIcon11Palette
 .L080611D0: .4byte 0x00000594
 .L080611D4:
 	str r1, [sp, #0x294]
@@ -170210,7 +169305,7 @@ func_08062E9C: @ 0x08062E9C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L080639E2:
-	ldr r1, .L08063A14 @ =gUnk_0875196C
+	ldr r1, .L08063A14 @ =gAnimalFestivalIcon01Tiles
 	add r0, sp, #4
 	ldr r2, .L08063A18 @ =0x06001400
 	movs r3, #0x80
@@ -170235,7 +169330,7 @@ func_08062E9C: @ 0x08062E9C
 	str r0, [r7, #4]
 	b .L08063AE6
 	.align 2, 0
-.L08063A14: .4byte gUnk_0875196C
+.L08063A14: .4byte gAnimalFestivalIcon01Tiles
 .L08063A18: .4byte 0x06001400
 .L08063A1C:
 	str r1, [sp, #0xec]
@@ -170352,7 +169447,7 @@ func_08062E9C: @ 0x08062E9C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L08063AE6:
-	ldr r1, .L08063B18 @ =gUnk_087519EC
+	ldr r1, .L08063B18 @ =gAnimalFestivalIcon01Palette
 	add r0, sp, #4
 	ldr r2, .L08063B1C
 	movs r3, #0x20
@@ -170377,7 +169472,7 @@ func_08062E9C: @ 0x08062E9C
 	str r0, [r7, #4]
 	b .L08063BEA
 	.align 2, 0
-.L08063B18: .4byte gUnk_087519EC
+.L08063B18: .4byte gAnimalFestivalIcon01Palette
 .L08063B1C: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L08063B20:
 	str r1, [sp, #0xec]
@@ -177998,7 +177093,7 @@ func_0806644C: @ 0x0806644C
 	ldr r0, [r1]
 	bl GetHardwareDmaQueue
 	adds r6, r0, #0
-	ldr r1, .L08067318 @ =gUnk_08752F8C
+	ldr r1, .L08067318 @ =gFarmStatusCreatureIcon11Tiles
 	add r0, sp, #8
 	ldr r2, .L0806731C @ =0x06010200
 	movs r3, #0x80
@@ -178023,7 +177118,7 @@ func_0806644C: @ 0x0806644C
 	str r0, [r6, #4]
 	b .L080673E8
 	.align 2, 0
-.L08067318: .4byte gUnk_08752F8C
+.L08067318: .4byte gFarmStatusCreatureIcon11Tiles
 .L0806731C: .4byte 0x06010200
 .L08067320:
 	str r1, [sp, #0x184]
@@ -178143,7 +177238,7 @@ func_0806644C: @ 0x0806644C
 	ldr r0, [r2]
 	bl GetHardwareDmaQueue
 	adds r6, r0, #0
-	ldr r1, .L08067424 @ =gUnk_0875300C
+	ldr r1, .L08067424 @ =gFarmStatusCreatureIcon11Palette
 	add r0, sp, #8
 	ldr r2, .L08067428
 	movs r3, #0x20
@@ -178168,7 +177263,7 @@ func_0806644C: @ 0x0806644C
 	str r0, [r6, #4]
 	b .L080674F8
 	.align 2, 0
-.L08067424: .4byte gUnk_0875300C
+.L08067424: .4byte gFarmStatusCreatureIcon11Palette
 .L08067428: .word OBJ_PALETTE + 2 * PLTT_SIZE_4BPP
 .L0806742C:
 	str r1, [sp, #0x184]
@@ -186185,7 +185280,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	adds r0, r7, #0
 	bl GetHardwareDmaQueue
 	str r0, [sp, #0x380]
-	ldr r1, .L0806B0EC @ =gUnk_0875196C
+	ldr r1, .L0806B0EC @ =gAnimalFestivalIcon01Tiles
 	ldr r3, [sp, #0x220]
 	lsls r2, r3, #5
 	movs r4, #0xc0
@@ -186219,7 +185314,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	str r6, [sp, #0x2dc]
 	b .L0806B1CE
 	.align 2, 0
-.L0806B0EC: .4byte gUnk_0875196C
+.L0806B0EC: .4byte gAnimalFestivalIcon01Tiles
 .L0806B0F0:
 	mov r8, r1
 	movs r0, #1
@@ -186348,7 +185443,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	adds r0, r7, #0
 	bl GetHardwareDmaQueue
 	str r0, [sp, #0x380]
-	ldr r1, .L0806B20C @ =gUnk_087519EC
+	ldr r1, .L0806B20C @ =gAnimalFestivalIcon01Palette
 	add r0, sp, #0x60
 	ldr r2, .L0806B210
 	movs r3, #0x20
@@ -186375,7 +185470,7 @@ RunFestivalAnimalSelectionCore: @ 0x0806A1F4
 	str r0, [r6, #4]
 	b .L0806B2EC
 	.align 2, 0
-.L0806B20C: .4byte gUnk_087519EC
+.L0806B20C: .4byte gAnimalFestivalIcon01Palette
 .L0806B210: .word BG_PALETTE + PLTT_SIZE_4BPP
 .L0806B214:
 	mov r8, r1
@@ -218078,9 +217173,9 @@ func_0807B3B0: @ 0x0807B3B0
 	beq .L0807B480
 	movs r0, #0x20
 	str r0, [sp, #0x10]
-	ldr r0, .L0807B54C @ =gUnk_0875196C
+	ldr r0, .L0807B54C @ =gAnimalFestivalIcon01Tiles
 	str r0, [sp, #0x14]
-	ldr r0, .L0807B550 @ =gUnk_087519EC
+	ldr r0, .L0807B550 @ =gAnimalFestivalIcon01Palette
 	str r0, [sp, #0x18]
 	mov r7, r8
 	ldr r0, [r7, #0x20]
@@ -218199,8 +217294,8 @@ func_0807B3B0: @ 0x0807B3B0
 	.align 2, 0
 .L0807B544: .4byte gUnk_0875268C
 .L0807B548: .4byte gUnk_0875270C
-.L0807B54C: .4byte gUnk_0875196C
-.L0807B550: .4byte gUnk_087519EC
+.L0807B54C: .4byte gAnimalFestivalIcon01Tiles
+.L0807B550: .4byte gAnimalFestivalIcon01Palette
 .L0807B554:
 	str r1, [sp, #0x68]
 	movs r2, #1
@@ -237067,9 +236162,9 @@ func_0808586C: @ 0x0808586C
 	beq .L080859AC
 	movs r0, #0x20
 	str r0, [sp, #0x10]
-	ldr r0, .L0808596C @ =gUnk_0875196C
+	ldr r0, .L0808596C @ =gAnimalFestivalIcon01Tiles
 	str r0, [sp, #0x14]
-	ldr r0, .L08085970 @ =gUnk_087519EC
+	ldr r0, .L08085970 @ =gAnimalFestivalIcon01Palette
 	str r0, [sp, #0x18]
 	ldr r0, [r7, #0x20]
 	cmp r0, #0x27
@@ -237086,8 +236181,8 @@ func_0808586C: @ 0x0808586C
 	.align 2, 0
 .L08085964: .4byte gUnk_0875320C
 .L08085968: .4byte gUnk_0875328C
-.L0808596C: .4byte gUnk_0875196C
-.L08085970: .4byte gUnk_087519EC
+.L0808596C: .4byte gAnimalFestivalIcon01Tiles
+.L08085970: .4byte gAnimalFestivalIcon01Palette
 .L08085974:
 	ldr r0, [sp, #0x60]
 	bl IsFestivalWinner__C6Animal
@@ -237096,9 +236191,9 @@ func_0808586C: @ 0x0808586C
 	beq .L080859AC
 	movs r0, #0x20
 	str r0, [sp, #0x10]
-	ldr r0, .L08085A0C @ =gUnk_0875196C
+	ldr r0, .L08085A0C @ =gAnimalFestivalIcon01Tiles
 	str r0, [sp, #0x14]
-	ldr r0, .L08085A10 @ =gUnk_087519EC
+	ldr r0, .L08085A10 @ =gAnimalFestivalIcon01Palette
 	str r0, [sp, #0x18]
 	ldr r0, [r7, #0x20]
 	cmp r0, #0x27
@@ -237164,8 +236259,8 @@ func_0808586C: @ 0x0808586C
 	bl DrawStringTo2DGfxBufferExt
 	b .L08085A42
 	.align 2, 0
-.L08085A0C: .4byte gUnk_0875196C
-.L08085A10: .4byte gUnk_087519EC
+.L08085A0C: .4byte gAnimalFestivalIcon01Tiles
+.L08085A10: .4byte gAnimalFestivalIcon01Palette
 .L08085A14: .4byte 0x00000774
 .L08085A18:
 	ldr r0, [sp, #0x60]

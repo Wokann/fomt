@@ -576,6 +576,8 @@ SECTIONS
         . = 0x521F0; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
         src/scene_frisbee.o(.text.__12FrisbeeSceneG20SceneTransitionOwnerP18GameStateSaveImageb .text._._12FrisbeeScene .text.Run__12FrisbeeScene);
         asm/code_0803EE94.o(.text.after_frisbee_scene);
+        asm/horse_race_ticket.o(.text);
+        asm/code_0803EE94.o(.text.after_horse_race_ticket_screen);
         src/scene_horse_race.o(.text.__27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage .text._._27HorseRaceMedalExchangeScene .text.Run__27HorseRaceMedalExchangeScene);
         /* Indexed archive parsing, then resource playback and sprite rendering. */
         . = 0x5E5C4; src/resource_archive.o(.text);

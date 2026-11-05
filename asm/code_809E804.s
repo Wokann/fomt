@@ -146934,7 +146934,7 @@ func_080C85A0: @ 0x080C85A0
 	bl GetObjTileIndex
 	adds r2, r0, #0
 	str r4, [sp, #0x138]
-	ldr r1, .L080C8958 @ =gUnk_08752F8C
+	ldr r1, .L080C8958 @ =gFarmStatusCreatureIcon11Tiles
 	lsls r2, r2, #5
 	ldr r3, .L080C895C @ =OBJ_VRAM0
 	adds r2, r2, r3
@@ -146964,7 +146964,7 @@ func_080C85A0: @ 0x080C85A0
 	b .L080C8A32
 	.align 2, 0
 .L080C8954: .4byte 0x0600FFB4
-.L080C8958: .4byte gUnk_08752F8C
+.L080C8958: .4byte gFarmStatusCreatureIcon11Tiles
 .L080C895C: .word OBJ_VRAM0
 .L080C8960:
 	mov r8, r1
@@ -147095,7 +147095,7 @@ func_080C85A0: @ 0x080C85A0
 	bl GetObjPaletteBank
 	adds r2, r0, #0
 	str r4, [sp, #0x138]
-	ldr r1, .L080C8A84 @ =gUnk_0875300C
+	ldr r1, .L080C8A84 @ =gFarmStatusCreatureIcon11Palette
 	lsls r2, r2, #5
 	ldr r4, .L080C8A88 @ =OBJ_PALETTE
 	adds r2, r2, r4
@@ -147124,7 +147124,7 @@ func_080C85A0: @ 0x080C85A0
 	str r0, [r5, #4]
 	b .L080C8B5E
 	.align 2, 0
-.L080C8A84: .4byte gUnk_0875300C
+.L080C8A84: .4byte gFarmStatusCreatureIcon11Palette
 .L080C8A88: .word OBJ_PALETTE
 .L080C8A8C:
 	mov r8, r1

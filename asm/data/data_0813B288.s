@@ -97250,15 +97250,11 @@ gUnk_087518CC:
     .global gUnk_0875194C
 gUnk_0875194C:
     .incbin "graphics/ui/animal_festival/shared/icon_00.gbapal"
-    .global gUnk_0875196C
-gUnk_0875196C:
-.global gUnk_084D7918
-gUnk_084D7918:
+    .global gAnimalFestivalIcon01Tiles
+gAnimalFestivalIcon01Tiles:
     .incbin "graphics/ui/animal_festival/shared/icon_01.4bpp"
-    .global gUnk_087519EC
-gUnk_087519EC:
-    .global gUnk_084D7998
-gUnk_084D7998:
+    .global gAnimalFestivalIcon01Palette
+gAnimalFestivalIcon01Palette:
     .incbin "graphics/ui/animal_festival/shared/icon_01.gbapal"
     .global gUnk_08751A0C
 gUnk_08751A0C:
@@ -97504,11 +97500,11 @@ gUnk_08752EEC:
     .global gUnk_08752F6C
 gUnk_08752F6C:
     .incbin "graphics/ui/farm_status/creature_icons/shared/icon_10.gbapal"
-    .global gUnk_08752F8C
-gUnk_08752F8C:
+    .global gFarmStatusCreatureIcon11Tiles
+gFarmStatusCreatureIcon11Tiles:
     .incbin "graphics/ui/farm_status/creature_icons/shared/icon_11.4bpp"
-    .global gUnk_0875300C
-gUnk_0875300C:
+    .global gFarmStatusCreatureIcon11Palette
+gFarmStatusCreatureIcon11Palette:
     .incbin "graphics/ui/farm_status/creature_icons/shared/icon_11.gbapal"
     .global gUnk_0875302C
 gUnk_0875302C:
@@ -288799,11 +288795,11 @@ gUnk_087518CC:
 	.global gUnk_0875194C
 gUnk_0875194C:
 	.incbin "graphics/ui/animal_festival/shared/icon_00.gbapal"
-	.global gUnk_0875196C
-gUnk_0875196C:
+	.global gAnimalFestivalIcon01Tiles
+gAnimalFestivalIcon01Tiles:
 	.incbin "graphics/ui/animal_festival/shared/icon_01.4bpp"
-	.global gUnk_087519EC
-gUnk_087519EC:
+	.global gAnimalFestivalIcon01Palette
+gAnimalFestivalIcon01Palette:
 	.incbin "graphics/ui/animal_festival/shared/icon_01.gbapal"
 	.global gUnk_08751A0C
 gUnk_08751A0C:
@@ -289063,11 +289059,11 @@ gUnk_08752EEC:
 	.global gUnk_08752F6C
 gUnk_08752F6C:
 	.incbin "graphics/ui/farm_status/creature_icons/shared/icon_10.gbapal"
-	.global gUnk_08752F8C
-gUnk_08752F8C:
+	.global gFarmStatusCreatureIcon11Tiles
+gFarmStatusCreatureIcon11Tiles:
 	.incbin "graphics/ui/farm_status/creature_icons/shared/icon_11.4bpp"
-	.global gUnk_0875300C
-gUnk_0875300C:
+	.global gFarmStatusCreatureIcon11Palette
+gFarmStatusCreatureIcon11Palette:
 	.incbin "graphics/ui/farm_status/creature_icons/shared/icon_11.gbapal"
 	.global gUnk_0875302C
 gUnk_0875302C:
