@@ -65,7 +65,6 @@ SECTIONS
         src/new.o(.text);
         src/pure_virtual.o(.text);
         src/sram_access.o(.text);
-        . = 0x7EC; /* JP ROM 0x080007EC, independently matched */
         src/scene.o(.text);
         src/intro_scene.o(.text.intro_scene_core_constructor);
         src/intro_scene.o(.text.intro_scene_core_run);
