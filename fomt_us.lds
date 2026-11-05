@@ -516,6 +516,7 @@ SECTIONS
         asm/code_0803A8A4.o(.text.npc_schedule_van_after);
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
+        asm/script_variable_get.o(.text);
         asm/script_variable_set.o(.text);
         asm/code_0803EE94.o(.text.script_engine_after_var_set);
         . = 0x4E4AC; /* Ordinary 2D glyph compositor. */

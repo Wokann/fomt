@@ -553,6 +553,7 @@ SECTIONS
         . = 0x3EB08; /* JP ROM 0x0803EB08, independently matched */
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
+        asm/script_variable_get.o(.text);
         asm/script_variable_set.o(.text);
         asm/code_0803EE94.o(.text.script_engine_after_var_set);
         . = 0x4E2D4; /* JP ordinary 2D glyph compositor. */

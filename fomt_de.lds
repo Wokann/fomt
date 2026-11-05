@@ -517,6 +517,7 @@ SECTIONS
         asm/code_0803A8A4.o(.text.npc_schedule_van_after);
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
+        asm/script_variable_get.o(.text);
         asm/script_variable_set.o(.text);
         asm/code_0803EE94.o(.text.script_engine_after_var_set);
         . = 0x4E3A4; /* DE ROM 0x0804E3A4, ordinary 2D glyph compositor. */
