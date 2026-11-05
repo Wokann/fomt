@@ -1,6 +1,6 @@
 #include "hardware_state_accessors.hh"
 #include "hardware_manager.hh"
-#include "hardware_input_repeat.hh"
+#include "hardware_input.hh"
 
 void UpdateHardwareInput(void * const * state_slot)
 {

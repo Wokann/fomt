@@ -13,9 +13,10 @@
 本批核对手写汇编的 276 个 OBJ 地址常量和 JoyBus、BIOS 调用中的寄存器，
 以命名常量表示平台固定地址，JP JoyBus 的四条指令从原始字节恢复为汇编。
 
-当前接续为 `ReadHardwareKeys`。JP 起点 `08009134`、US `0800912C`、
-EU `08009140`、DE `0800914C`。前部每版 9 个 DMA 入口覆盖 772 字节，JP 取消
-DMA 起点的固定定位。这是已有 C/C++ 的边界和引用核查，新增高级语言覆盖为零。
+当前接续为硬件混合效果模块。JP 起点 `08009308`、US `08009300`、
+EU `08009314`、DE `08009320`。前一块的按键采样、构造与连发计时合并为
+`hardware_input.cc`，13 个入口共 468 字节。此项整理了已有高级语言代码和
+调用关系，新增高级语言覆盖为零。此前核实的 9 个前部 DMA 入口共 772 字节。
 
 已核对声音命令、播放器与歌曲接口每版
 47 个函数和 2 张虚表，共 880 字节。JP 的两个原始虚表指针现为符号引用。
@@ -267,8 +268,7 @@ ROM 中已有分散于后续功能模块的恢复内容，当前推进地址不�
 | [src/hardware_song.cc](src/hardware_song.cc) | 234 | 234 | 234 | 234 |
 | [src/hardware_dma.c](src/hardware_dma.c) | 226 | 226 | 226 | 226 |
 | [src/hardware_dma_descriptor.cc](src/hardware_dma_descriptor.cc) | 538 | 538 | 538 | 538 |
-| [src/hardware_input.cc](src/hardware_input.cc) | 310 | 310 | 310 | 310 |
-| [src/hardware_input_repeat.c](src/hardware_input_repeat.c) | 150 | 150 | 150 | 150 |
+| [src/hardware_input.cc](src/hardware_input.cc) | 460 | 460 | 460 | 460 |
 | [src/hardware_blend.cc](src/hardware_blend.cc) | 172 | 172 | 172 | 172 |
 | [src/hardware_blend_object.cc](src/hardware_blend_object.cc) | 200 | 200 | 200 | 200 |
 | [src/hardware_interrupt_guard.cc](src/hardware_interrupt_guard.cc) | 396 | 396 | 396 | 396 |

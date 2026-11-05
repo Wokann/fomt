@@ -50,6 +50,10 @@ struct HardwareInputState * InitializeHardwareInputSnapshot(struct HardwareInput
 struct HardwareInputState * InitializeHardwareInputSnapshotFromKeys(struct HardwareInputState * input, u32 value);
 u32 UpdateHardwareKeySnapshot(struct HardwareInputState * input);
 
+u32 UpdateHardwareKeyRepeat(struct HardwareInputState * input);
+void SetHardwareKeyRepeatDelay(struct HardwareInputState * input, u16 delay);
+void SetHardwareKeyRepeatInterval(struct HardwareInputState * input, u16 interval);
+
 EXTERN_C_END
 
 #endif // HARDWARE_INPUT_HH
