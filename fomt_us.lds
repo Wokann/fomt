@@ -324,7 +324,7 @@ SECTIONS
         src/world_lighting.o(.text.RefreshWorldMapTimeOfDayPalette);
         asm/world_map_change.o(.text);
         src/game_world.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
-        asm/game_state.o(.text.game_scene_after_map_terrain);
+        asm/world_palette_update.o(.text);
         src/world_lighting.o(.text.GetWorldTimeOfDayPeriod);
         asm/game_state.o(.text.game_scene_after_time_of_day_period);
         src/game_world.o(.text.func_0801B5C0);
