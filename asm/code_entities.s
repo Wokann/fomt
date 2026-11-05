@@ -180,8 +180,7 @@ InitWorldDogEntity:
     adds r0, r4, #0
     bl func_08038374
     b .Ljp_08020118
-.Ljp_0802010C:
-    .4byte vtable_unk_080E64C8
+.Ljp_0802010C: .4byte vtable_unk_080E64C8
 .Ljp_08020110:
     adds r0, r6, #0
     movs r1, #0
@@ -254,10 +253,8 @@ func_08020138:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-.Ljp_0802019C:
-    .4byte vtable_unk_080E64C8
-.Ljp_080201A0:
-    .4byte __vt_7AEntity
+.Ljp_0802019C: .4byte vtable_unk_080E64C8
+.Ljp_080201A0: .4byte __vt_7AEntity
 
     .global func_080201A4
     .thumb_func
@@ -296,10 +293,8 @@ func_080201A4:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080201EC:
-    .4byte 0xFFFF0000
-.Ljp_080201F0:
-    .4byte 0xFF00FFFF
+.Ljp_080201EC: .4byte 0xFFFF0000
+.Ljp_080201F0: .4byte 0xFF00FFFF
 
     .global func_080201F4
     .thumb_func
@@ -1973,8 +1968,7 @@ func_08020EA0:
     pop {r1}
     bx r1
     .align 2, 0
-.Ljp_08020EC0:
-    .word gUnk_080F0908
+.Ljp_08020EC0: .word gUnk_080F0908
 
     .global func_08020EC4
     .thumb_func
@@ -1990,10 +1984,8 @@ func_08020EC4:
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.Ljp_08020ED8:
-    .word .Ljp_08020EDC
-.Ljp_08020EDC:
-    .word .Ljp_08020F10
+.Ljp_08020ED8: .word .Ljp_08020EDC
+.Ljp_08020EDC: .word .Ljp_08020F10
     .word .Ljp_08020F14
     .word .Ljp_08020F1A
     .word .Ljp_08020F10
@@ -2146,10 +2138,8 @@ func_08020FF8:
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.Ljp_08021010:
-    .word .Ljp_08021014
-.Ljp_08021014:
-    .word .Ljp_08021034
+.Ljp_08021010: .word .Ljp_08021014
+.Ljp_08021014: .word .Ljp_08021034
     .word .Ljp_0802103C
     .word .Ljp_0802103C
     .word .Ljp_0802103C
@@ -2377,14 +2367,10 @@ func_08021144:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080211C8:
-    .4byte 0xFFFF0000
-.Ljp_080211CC:
-    .4byte 0xFF80FFFF
-.Ljp_080211D0:
-    .4byte 0xFF7FFFFF
-.Ljp_080211D4:
-    .4byte 0x00FFFFFF
+.Ljp_080211C8: .4byte 0xFFFF0000
+.Ljp_080211CC: .4byte 0xFF80FFFF
+.Ljp_080211D0: .4byte 0xFF7FFFFF
+.Ljp_080211D4: .4byte 0x00FFFFFF
 
     .global func_080211D8
     .thumb_func
@@ -2490,8 +2476,7 @@ func_080211D8:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080212AC:
-    .word 0x000003FF
+.Ljp_080212AC: .word 0x000003FF
     .global func_080212B0
     .thumb_func
 func_080212B0:
@@ -2599,8 +2584,7 @@ func_080212B0:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_0802138C:
-    .4byte 0x000003FF
+.Ljp_0802138C: .4byte 0x000003FF
     .global func_08021390
     .thumb_func
 func_08021390:
@@ -3000,26 +2984,103 @@ func_08021580:
     ldr r1, [sp, #0xd4]
     strb r0, [r1]
     movs r2, #0x38
-    .byte 0xB0, 0x5E, 0x00, 0x04, 0xB0, 0x60, 0x3A, 0x23, 0xF0, 0x5E, 0x00, 0x04, 0xF0, 0x60, 0x71, 0x69
-    .byte 0x21, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x31, 0x1C, 0xB1, 0xF0, 0x14, 0xFD, 0x20, 0x68, 0x61, 0x68
-    .byte 0x1F, 0x90, 0x20, 0x91, 0x44, 0x46, 0x04, 0x20, 0x25, 0x5E, 0x00, 0x21, 0x60, 0x5E, 0x2D, 0x1A
-    .byte 0x10, 0x35, 0xAA, 0x46, 0x06, 0x22, 0xA4, 0x5E, 0x43, 0x46, 0x02, 0x25, 0x58, 0x5F, 0x24, 0x1A
-    .byte 0x10, 0x34, 0xA0, 0x46, 0x12, 0xA9, 0x21, 0x20, 0x12, 0x90, 0x21, 0x22, 0x52, 0x42, 0x4A, 0x60
-    .byte 0x8A, 0x60, 0xC8, 0x60, 0x17, 0xAA, 0x02, 0xA8, 0x38, 0xC8, 0x38, 0xC2, 0x1F, 0x9A, 0x20, 0x9B
-    .byte 0x1A, 0x92, 0x1B, 0x93, 0x20, 0x20, 0x88, 0x62, 0x52, 0x46, 0x1D, 0x92, 0x43, 0x46, 0x1E, 0x93
-    .byte 0x05, 0xA8, 0x34, 0x22, 0xB1, 0xF0, 0x26, 0xFD, 0x4C, 0x46, 0x00, 0x2C, 0x0F, 0xD0, 0xA0, 0x88
-    .byte 0x30, 0x9D, 0xA8, 0x42, 0x0B, 0xD1, 0x61, 0x69, 0x23, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x49, 0x46
-    .byte 0xB1, 0xF0, 0xD8, 0xFC
+    ldrsh r0, [r6, r2]
+    lsls r0, r0, #0x10
+    str r0, [r6, #8]
+    movs r3, #0x3a
+    ldrsh r0, [r6, r3]
+    lsls r0, r0, #0x10
+    str r0, [r6, #0xc]
+    ldr r1, [r6, #0x14]
+    add r4, sp, #0x84
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r6, #0
+    bl _call_via_r2
+    ldr r0, [r4]
+    ldr r1, [r4, #4]
+    str r0, [sp, #0x7c]
+    str r1, [sp, #0x80]
+    mov r4, r8
+    movs r0, #4
+    ldrsh r5, [r4, r0]
+    movs r1, #0
+    ldrsh r0, [r4, r1]
+    subs r5, r5, r0
+    adds r5, #0x10
+    mov sl, r5
+    movs r2, #6
+    ldrsh r4, [r4, r2]
+    mov r3, r8
+    movs r5, #2
+    ldrsh r0, [r3, r5]
+    subs r4, r4, r0
+    adds r4, #0x10
+    mov r8, r4
+    add r1, sp, #0x48
+    movs r0, #0x21
+    str r0, [sp, #0x48]
+    movs r2, #0x21
+    rsbs r2, r2, #0
+    str r2, [r1, #4]
+    str r2, [r1, #8]
+    str r0, [r1, #0xc]
+    add r2, sp, #0x5c
+    add r0, sp, #8
+    ldm r0!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldr r2, [sp, #0x7c]
+    ldr r3, [sp, #0x80]
+    str r2, [sp, #0x68]
+    str r3, [sp, #0x6c]
+    movs r0, #0x20
+    str r0, [r1, #0x28]
+    mov r2, sl
+    str r2, [sp, #0x74]
+    mov r3, r8
+    str r3, [sp, #0x78]
+    add r0, sp, #0x14
+    movs r2, #0x34
+    bl memcpy
+    mov r4, sb
+    cmp r4, #0
+    beq .Lraw_code_entities_3017_0
+    ldrh r0, [r4, #4]
+    ldr r5, [sp, #0xc0]
+    cmp r0, r5
+    bne .Lraw_code_entities_3017_0
+    ldr r1, [r4, #0x14]
+    add r4, sp, #0x8c
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    mov r1, sb
+    bl _call_via_r2
     add r0, sp, #0x14
     adds r1, r4, #0
     movs r2, #1
     bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
+.Lraw_code_entities_3017_0:
     cmp r7, #0
-    .byte 0x00, 0xD1, 0xE2, 0xE1, 0xB8, 0x88, 0x30, 0x99, 0x88, 0x42, 0x00, 0xD0, 0xDD, 0xE1, 0x79, 0x69
-    .byte 0x25, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x39, 0x1C, 0xB1, 0xF0, 0xC4, 0xFC, 0x05, 0xA8, 0x21, 0x1C
+    bne .Lraw_code_entities_3018_4
+    b .Lraw_code_entities_3473_0
+.Lraw_code_entities_3018_4:
+    ldrh r0, [r7, #4]
+    ldr r1, [sp, #0xc0]
+    cmp r0, r1
+    beq .Lraw_code_entities_3018_14
+    b .Lraw_code_entities_3473_0
+.Lraw_code_entities_3018_14:
+    ldr r1, [r7, #0x14]
+    add r4, sp, #0x94
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r7, #0
+    bl _call_via_r2
+    add r0, sp, #0x14
+    adds r1, r4, #0
     movs r2, #0
     bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
-    .byte 0xD0, 0xE1
+    b .Lraw_code_entities_3473_0
     .Lauto_08021750:
     mov r2, sb
     cmp r2, #0
@@ -3337,23 +3398,64 @@ func_08021580:
     ldr r1, [r0]
     mov r0, sl
     bl _call_via_r1
-    .byte 0x80, 0x7A, 0xC0, 0x06, 0xC0, 0x0E, 0x00, 0x25, 0x06, 0x38, 0x0E, 0x28, 0x00, 0xD9, 0x01, 0x25
-    .byte 0x2F, 0x98, 0x79, 0xF0, 0x49, 0xFE, 0xEC, 0x00, 0x64, 0x1B, 0xE4, 0x00, 0xC1, 0x00, 0x09, 0x1A
-    .byte 0x89, 0x00, 0x15, 0x48, 0x09, 0x18, 0x64, 0x18, 0x20, 0x1C, 0x07, 0x21
+    ldrb r0, [r0, #0xa]
+    lsls r0, r0, #0x1b
+    lsrs r0, r0, #0x1b
+    movs r5, #0
+    subs r0, #6
+    cmp r0, #0xe
+    bls .Lraw_code_entities_3341_0
+    movs r5, #1
+.Lraw_code_entities_3341_0:
+    ldr r0, [sp, #0xbc]
+    bl GetGrowthStage__C5Horse
+    lsls r4, r5, #3
+    subs r4, r4, r5
+    lsls r4, r4, #3
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r1, r1, #2
+    ldr r0, .Lraw_code_entities_3356_0
+    adds r1, r1, r0
+    adds r4, r4, r1
+    adds r0, r4, #0
+    movs r1, #7
     bl SelectActorBehaviorTimingIndex
-    .byte 0x07, 0x1C, 0xB8, 0x00, 0x24, 0x18, 0x3C, 0x25, 0xA0, 0x78, 0x68, 0x43
+    adds r7, r0, #0
+    lsls r0, r7, #2
+    adds r4, r4, r0
+    movs r5, #0x3c
+    ldrb r0, [r4, #2]
+    muls r0, r5, r0
     bl RandomBelow
-    .byte 0x61, 0x78, 0x69, 0x43, 0x0C, 0x18, 0x30, 0x1C, 0x20, 0x30, 0x05, 0x78, 0x04, 0x20
+    ldrb r1, [r4, #1]
+    muls r1, r5, r1
+    adds r4, r1, r0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r5, [r0]
+    movs r0, #4
     bl RandomBelow
-    .byte 0x01, 0x1C, 0x00, 0x29, 0x05, 0xD0, 0x03, 0x29, 0x03, 0xD0, 0x28, 0x1C
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Lraw_code_entities_3350_2
+    cmp r1, #3
+    beq .Lraw_code_entities_3350_2
+    adds r0, r5, #0
     bl GetRelativeFacing
-    .byte 0x05, 0x1C, 0x48, 0x46, 0x87, 0x70, 0x30, 0x1C, 0x39, 0x1C, 0x2A, 0x1C, 0x00, 0xF0
-    .byte 0xE5, 0xF9
+    adds r5, r0, #0
+.Lraw_code_entities_3350_2:
+    mov r0, sb
+    strb r7, [r0, #2]
+    adds r0, r6, #0
+    adds r1, r7, #0
+    adds r2, r5, #0
+    bl func_08021DDC
     .Lauto_08021A12:
     mov r1, sb
     strh r4, [r1]
     b loc_08021BEC
-    .4byte gUnk_080F093C
+.Lraw_code_entities_3356_0: .4byte gUnk_080F093C
     .global loc_08021A1C
     .thumb_func
     loc_08021A1C:
@@ -3459,17 +3561,18 @@ func_08021580:
     strh r2, [r4, #2]
     b .Lauto_08021BEC
     .Lauto_08021ADA:
-    ldr r2, [pc, #0x2c]
+    ldr r2, .Lraw_code_entities_3482_0
     add r1, sp, #0xac
     ldr r0, [r1]
     ands r0, r2
     movs r2, #0xb4
     orrs r0, r2
-    ldr r2, [pc, #0x24]
+    ldr r2, .Lraw_code_entities_3482_4
     ands r0, r2
     str r0, [r1]
     ldr r0, [sp, #0xbc]
     bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
+.Lraw_code_entities_3473_0:
     adds r0, r6, #0
     bl func_08021E68
     adds r1, r0, #0
@@ -3479,7 +3582,8 @@ func_08021580:
     adds r0, r6, #0
     bl func_08021DDC
     b .Lauto_08021BEC
-    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+.Lraw_code_entities_3482_0: .word 0xFFFF0000
+.Lraw_code_entities_3482_4: .word 0xFF00FFFF
     .global loc_08021B10
     .thumb_func
     loc_08021B10:
@@ -3576,13 +3680,13 @@ func_08021580:
     strh r0, [r2]
     b .Lauto_08021BEC
     .Lauto_08021BC2:
-    ldr r2, [pc, #0x4c]
+    ldr r2, .Lraw_code_entities_3622_0
     add r1, sp, #0xb8
     ldr r0, [r1]
     ands r0, r2
     movs r2, #0xb4
     orrs r0, r2
-    ldr r2, [pc, #0x44]
+    ldr r2, .Lraw_code_entities_3622_4
     ands r0, r2
     str r0, [r1]
     ldr r0, [sp, #0xbc]
@@ -3619,7 +3723,8 @@ func_08021580:
     beq .Lauto_08021C18
     subs r0, #1
     b .Lauto_08021C1A
-    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+.Lraw_code_entities_3622_0: .word 0xFFFF0000
+.Lraw_code_entities_3622_4: .word 0xFF00FFFF
     .Lauto_08021C18:
     ldrh r0, [r6, #0x26]
     .Lauto_08021C1A:
@@ -3788,8 +3893,7 @@ func_08021D40:
     mov pc, r0
     .align 2, 0
 .Ljp_08021D54: .4byte .Ljp_08021D58
-.Ljp_08021D58:
-    .4byte .Ljp_08021D74
+.Ljp_08021D58: .4byte .Ljp_08021D74
     .4byte .Ljp_08021D78
     .4byte .Ljp_08021D7E
     .4byte .Ljp_08021D74
@@ -4001,10 +4105,8 @@ func_08021E94:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08021EE0:
-    .word 0xFFFF0000
-.Ljp_08021EE4:
-    .word 0xFF00FFFF
+.Ljp_08021EE0: .word 0xFFFF0000
+.Ljp_08021EE4: .word 0xFF00FFFF
     .global func_08021EE8
     .thumb_func
 func_08021EE8:
@@ -4059,7 +4161,7 @@ func_08021F30:
     adds r0, r4, #0
     bl SetAnimFacing__12AActorEntityUi
     .Lauto_08021F4A:
-    ldr r1, [pc, #0x34]
+    ldr r1, .Lraw_code_entities_4087_0
     ldr r0, [sp]
     ands r0, r1
     movs r1, #0x3c
@@ -4084,7 +4186,7 @@ func_08021F30:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xFF, 0xFF
+.Lraw_code_entities_4087_0: .word 0xFFFF0000
     .global func_08021F84
     .thumb_func
 func_08021F84:
@@ -4092,19 +4194,88 @@ func_08021F84:
     sub sp, #8
     adds r6, r0, #0
     adds r7, r1, #0
-    .byte 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88, 0x88, 0x42, 0x4A, 0xD1, 0x70, 0x6B, 0x78, 0xF0
-    .byte 0x61, 0xFE
+    ldrh r0, [r7]
+    lsls r0, r0, #0x16
+    lsrs r0, r0, #0x16
+    ldrh r1, [r6, #4]
+    cmp r0, r1
+    bne .Lraw_code_entities_4107_2
+    ldr r0, [r6, #0x34]
+    bl GetAffection__C6Animal
     bl CalculateAnimalResponseRadius
-    .byte 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88
-    .byte 0x22, 0x4C, 0x22, 0x40, 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23
-    .byte 0xF5, 0x5E, 0xFB, 0x78, 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04
-    .byte 0x09, 0x14, 0x49, 0x1B, 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C, 0x4B, 0x43, 0x19, 0x1C
-    .byte 0x52, 0x18, 0x01, 0x1C, 0x41, 0x43, 0x08, 0x1C, 0x82, 0x42, 0x22, 0xDC, 0x70, 0x6B, 0x78, 0xF0
-    .byte 0x39, 0xFE, 0x01, 0x01, 0x09, 0x1A, 0x89, 0x01, 0x09, 0x0A, 0xF0, 0x23, 0x5B, 0x00, 0xC9, 0x18
-    .byte 0x09, 0x04, 0x09, 0x0C, 0x00, 0x91, 0x70, 0x6B, 0x69, 0x46, 0x79, 0xF0, 0x2F, 0xFB, 0x30, 0x1C
-    .byte 0x3D, 0x30, 0x00, 0x78, 0x00, 0x28, 0x09, 0xD1, 0x30, 0x1C, 0xFF, 0xF7, 0x27, 0xFF, 0x01, 0x1C
-    .byte 0x30, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x30, 0x1C, 0xFF, 0xF7, 0xDA, 0xFE, 0x70, 0x6B, 0x78, 0xF0
-    .byte 0xE3, 0xFE, 0x02, 0xB0, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0x03, 0x00, 0x00
+    movs r1, #0xa
+    ldrsh r3, [r6, r1]
+    ldrb r1, [r7, #1]
+    lsrs r1, r1, #2
+    ldrh r2, [r7, #2]
+    ldr r4, .Lraw_code_entities_4107_12
+    ands r2, r4
+    lsls r2, r2, #6
+    orrs r2, r1
+    lsls r2, r2, #0x10
+    asrs r2, r2, #0x10
+    subs r2, r2, r3
+    movs r3, #0xe
+    ldrsh r5, [r6, r3]
+    ldrb r3, [r7, #3]
+    lsrs r3, r3, #2
+    ldrh r1, [r7, #4]
+    ands r1, r4
+    lsls r1, r1, #6
+    orrs r1, r3
+    lsls r1, r1, #0x10
+    asrs r1, r1, #0x10
+    subs r1, r1, r5
+    adds r3, r2, #0
+    muls r3, r2, r3
+    adds r2, r3, #0
+    adds r3, r1, #0
+    muls r3, r1, r3
+    adds r1, r3, #0
+    adds r2, r2, r1
+    adds r1, r0, #0
+    muls r1, r0, r1
+    adds r0, r1, #0
+    cmp r2, r0
+    bgt .Lraw_code_entities_4107_2
+    ldr r0, [r6, #0x34]
+    bl GetAffection__C6Animal
+    lsls r1, r0, #4
+    subs r1, r1, r0
+    lsls r1, r1, #6
+    lsrs r1, r1, #8
+    movs r3, #0xf0
+    lsls r3, r3, #1
+    adds r1, r1, r3
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    str r1, [sp]
+    ldr r0, [r6, #0x34]
+    mov r1, sp
+    bl method_0809BC30__5HorsePC18UnkBarnAnimal2C_x2
+    adds r0, r6, #0
+    adds r0, #0x3d
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_entities_4106_12
+    adds r0, r6, #0
+    bl func_08021E68
+    adds r1, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
+    bl func_08021DDC
+.Lraw_code_entities_4106_12:
+    ldr r0, [r6, #0x34]
+    bl SetHasTalkedToday__3Pet
+.Lraw_code_entities_4107_2:
+    add sp, #8
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_4107_12: .word 0x000003FF
     .global loc_0802203C
     .thumb_func
     loc_0802203C:
@@ -4131,7 +4302,7 @@ func_08021F84:
     movs r2, #5
     movs r3, #0xd
     bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
-    ldr r0, [pc, #0x10]
+    ldr r0, .Lraw_code_entities_4143_2
     str r0, [r6, #4]
     adds r0, r6, #0
     add sp, #0x10
@@ -4140,7 +4311,8 @@ func_08021F84:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00, 0xF4, 0x58, 0x0E, 0x08
+    .align 2, 0
+.Lraw_code_entities_4143_2: .word vtable_unk_080E64B4
     .global func_08022088
     .thumb_func
 func_08022088:
@@ -4287,7 +4459,7 @@ func_08022184:
     sub sp, #8
     adds r5, r0, #0
     adds r6, r1, #0
-    ldr r0, [pc, #0x40]
+    ldr r0, .Lraw_code_entities_4321_2
     str r0, [r5, #0x14]
     ldr r4, [r5, #0x34]
     mov r0, sp
@@ -4296,7 +4468,7 @@ func_08022184:
     adds r0, r4, #0
     mov r1, sp
     bl SetLocation__5ActorRC13ActorLocation
-    ldr r0, [pc, #0x30]
+    ldr r0, .Lraw_code_entities_4321_6
     str r0, [r5, #0x14]
     ldr r1, [r5, #0x10]
     cmp r1, #0
@@ -4318,16 +4490,41 @@ func_08022184:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xDC, 0x57, 0x0E, 0x08, 0x90, 0x56, 0x0E, 0x08
+    .align 2, 0
+.Lraw_code_entities_4321_2: .word vtable_unk_080E639C
+.Lraw_code_entities_4321_6: .word __vt_7AEntity
     .global func_080221D8
     .thumb_func
 func_080221D8:
     push {r4, lr}
     sub sp, #4
-    .byte 0x04, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x0C, 0x4A, 0x00, 0x98, 0x10, 0x40, 0x08, 0x43, 0x0B, 0x49
-    .byte 0x08, 0x40, 0x00, 0x90, 0x60, 0x6B, 0x69, 0x46, 0x79, 0xF0, 0xB0, 0xFA, 0x20, 0x1C, 0x00, 0xF0
-    .byte 0x73, 0xFA, 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x1E, 0xFA
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    adds r4, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r2, .Lraw_code_entities_4330_8
+    ldr r0, [sp]
+    ands r0, r2
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_4330_12
+    ands r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809BD20__7ChickenPC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_080226E4
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08022648
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+.Lraw_code_entities_4330_8: .word 0xFFFF0000
+.Lraw_code_entities_4330_12: .word 0xFF00FFFF
     .global func_0802221C
     .thumb_func
 func_0802221C:
@@ -4378,7 +4575,7 @@ func_08022250:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global loc_08022278
     .thumb_func
     loc_08022278:
@@ -4440,7 +4637,7 @@ func_08022250:
     adds r0, r7, #0
     bl SetFed__7Chicken
     .Lauto_080222F4:
-    ldr r0, [pc, #0x10c]
+    ldr r0, .Lraw_code_entities_4571_0
     cmp r5, r0
     bhi .Lauto_0802233A
     cmp r4, r0
@@ -4568,7 +4765,7 @@ func_08022250:
     b loc_08022548
     .Lauto_08022402:
     b loc_08022628
-    .byte 0x2B, 0x01, 0x00, 0x00
+.Lraw_code_entities_4571_0: .word 0x0000012B
     .Lauto_08022408:
     movs r3, #0x28
     adds r3, r3, r7
@@ -4665,26 +4862,73 @@ func_08022250:
     ldr r1, [r0]
     mov r0, r8
     bl _call_via_r1
-    .byte 0x80, 0x7A, 0xC0, 0x06, 0xC0, 0x0E, 0x00, 0x26, 0x06, 0x38, 0x0E, 0x28, 0x00, 0xD9, 0x01, 0x26
-    .byte 0x38, 0x1C, 0x79, 0xF0, 0x0B, 0xF9, 0x05, 0x1C, 0x38, 0x1C, 0x78, 0xF0, 0x37, 0xFD, 0xB4, 0x00
-    .byte 0xA4, 0x19, 0x24, 0x01, 0xA9, 0x00, 0x49, 0x19, 0xC9, 0x00, 0x18, 0x4A, 0x89, 0x18, 0x64, 0x18
-    .byte 0x00, 0x06, 0x00, 0x0E, 0x81, 0x00, 0x09, 0x18, 0x89, 0x00, 0x64, 0x18, 0x20, 0x1C, 0x05, 0x21
+    ldrb r0, [r0, #0xa]
+    lsls r0, r0, #0x1b
+    lsrs r0, r0, #0x1b
+    movs r6, #0
+    subs r0, #6
+    cmp r0, #0xe
+    bls .Lraw_code_entities_4669_0
+    movs r6, #1
+.Lraw_code_entities_4669_0:
+    adds r0, r7, #0
+    bl GetGrowthStage__C7Chicken
+    adds r5, r0, #0
+    adds r0, r7, #0
+    bl IsSick__C9Livestock
+    lsls r4, r6, #2
+    adds r4, r4, r6
+    lsls r4, r4, #4
+    lsls r1, r5, #2
+    adds r1, r1, r5
+    lsls r1, r1, #3
+    ldr r2, .Lraw_code_entities_4687_0
+    adds r1, r1, r2
+    adds r4, r4, r1
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    lsls r1, r0, #2
+    adds r1, r1, r0
+    lsls r1, r1, #2
+    adds r4, r4, r1
+    adds r0, r4, #0
+    movs r1, #5
     bl SelectActorBehaviorTimingIndex
-    .byte 0x06, 0x1C, 0xB0, 0x00, 0x24, 0x18, 0x3C, 0x25, 0xA0, 0x78, 0x68, 0x43
+    adds r6, r0, #0
+    lsls r0, r6, #2
+    adds r4, r4, r0
+    movs r5, #0x3c
+    ldrb r0, [r4, #2]
+    muls r0, r5, r0
     bl RandomBelow
-    .byte 0x61, 0x78, 0x69, 0x43, 0x0C, 0x18, 0x48, 0x46, 0x20, 0x30, 0x05, 0x78
-    .byte 0x04, 0x20
+    ldrb r1, [r4, #1]
+    muls r1, r5, r1
+    adds r4, r1, r0
+    mov r0, sb
+    adds r0, #0x20
+    ldrb r5, [r0]
+    movs r0, #4
     bl RandomBelow
-    .byte 0x01, 0x1C, 0x00, 0x29, 0x05, 0xD0, 0x03, 0x29, 0x03, 0xD0
-    .byte 0x28, 0x1C
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Lraw_code_entities_4681_2
+    cmp r1, #3
+    beq .Lraw_code_entities_4681_2
+    adds r0, r5, #0
     bl GetRelativeFacing
-    .byte 0x05, 0x1C, 0x48, 0x46, 0x31, 0x1C, 0x2A, 0x1C, 0x00, 0xF0
-    .byte 0x87, 0xF8, 0x53, 0x46, 0x9E, 0x70
+    adds r5, r0, #0
+.Lraw_code_entities_4681_2:
+    mov r0, sb
+    adds r1, r6, #0
+    adds r2, r5, #0
+    bl func_08022648
+    mov r3, sl
+    strb r6, [r3, #2]
     .Lauto_0802253E:
     mov r6, sl
     strh r4, [r6]
     b loc_08022628
-    .4byte gUnk_080F09C8
+.Lraw_code_entities_4687_0: .4byte gUnk_080F09C8
     .global loc_08022548
     .thumb_func
     loc_08022548:
@@ -4699,21 +4943,108 @@ func_08022250:
     rsbs r2, r2, #0
     add sl, r2
     .Lauto_0802255C:
-    .byte 0xB9, 0x6A, 0x48, 0x02, 0x45, 0x0E, 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D, 0x1A, 0x9B, 0xDC, 0x78
-    .byte 0x00, 0x2C, 0x00, 0xD0, 0x01, 0x3C, 0x50, 0x46, 0x00, 0x28, 0x41, 0xD0, 0x08, 0x02, 0x00, 0x28
-    .byte 0x08, 0xDA, 0x41, 0x46, 0x08, 0x68, 0x02, 0x6C, 0x40, 0x46, 0x2D, 0x21, 0xB0, 0xF0, 0xA0, 0xFD
-    .byte 0x01, 0x1C, 0x00, 0xE0, 0x31, 0x1C, 0x00, 0x29, 0x32, 0xD0, 0x88, 0x88, 0x19, 0x9A, 0x90, 0x42
-    .byte 0x2E, 0xD1, 0x00, 0x2C, 0x1F, 0xD1, 0x4B, 0x46, 0x0A, 0x20, 0x1E, 0x5E, 0x0E, 0x22, 0x9C, 0x5E
-    .byte 0x0A, 0x23, 0xCA, 0x5E, 0x0E, 0x20, 0x0B, 0x5E, 0x01, 0x27, 0x00, 0x2D, 0x00, 0xD0, 0x04, 0x27
-    .byte 0x48, 0x46, 0x20, 0x30, 0x00, 0x78, 0x05, 0xA9, 0x00, 0x91, 0x01, 0x90, 0x30, 0x1C, 0x21, 0x1C
+    ldr r1, [r7, #0x28]
+    lsls r0, r1, #9
+    lsrs r5, r0, #0x19
+    cmp r5, #0
+    beq .Lraw_code_entities_4702_12
+    subs r5, #1
+.Lraw_code_entities_4702_12:
+    ldr r3, [sp, #0x68]
+    ldrb r4, [r3, #3]
+    cmp r4, #0
+    beq .Lraw_code_entities_4703_6
+    subs r4, #1
+.Lraw_code_entities_4703_6:
+    mov r0, sl
+    cmp r0, #0
+    beq .Lraw_code_entities_4714_0
+    lsls r0, r1, #8
+    cmp r0, #0
+    bge .Lraw_code_entities_4705_4
+    mov r1, r8
+    ldr r0, [r1]
+    ldr r2, [r0, #0x40]
+    mov r0, r8
+    movs r1, #0x2d
+    bl _call_via_r2
+    adds r1, r0, #0
+    b .Lraw_code_entities_4705_6
+.Lraw_code_entities_4705_4:
+    adds r1, r6, #0
+.Lraw_code_entities_4705_6:
+    cmp r1, #0
+    beq .Lraw_code_entities_4714_0
+    ldrh r0, [r1, #4]
+    ldr r2, [sp, #0x64]
+    cmp r0, r2
+    bne .Lraw_code_entities_4714_0
+    cmp r4, #0
+    bne .Lraw_code_entities_4712_2
+    mov r3, sb
+    movs r0, #0xa
+    ldrsh r6, [r3, r0]
+    movs r2, #0xe
+    ldrsh r4, [r3, r2]
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r0, #0xe
+    ldrsh r3, [r1, r0]
+    movs r7, #1
+    cmp r5, #0
+    beq .Lraw_code_entities_4708_0
+    movs r7, #4
+.Lraw_code_entities_4708_0:
+    mov r0, sb
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r1, sp, #0x14
+    str r1, [sp]
+    str r0, [sp, #4]
+    adds r0, r6, #0
+    adds r1, r4, #0
     bl SelectRetreatFacing
-    .byte 0x02, 0x1C, 0x48, 0x46, 0x39, 0x1C, 0x00, 0xF0, 0x37, 0xF8, 0x1E, 0x20
+    adds r2, r0, #0
+    mov r0, sb
+    adds r1, r7, #0
+    bl func_08022648
+    movs r0, #0x1e
     bl RandomBelow
-    .byte 0x44, 0x1C, 0x53, 0x46, 0x1A, 0x9A, 0x13, 0x80, 0x7F, 0x20, 0x05, 0x40
-    .byte 0x91, 0x78, 0x80, 0x20, 0x40, 0x42, 0x08, 0x40, 0x28, 0x43, 0x90, 0x70, 0xD4, 0x70, 0x15, 0xE0
-    .byte 0x10, 0x49, 0x18, 0x98, 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43, 0x0F, 0x49, 0x08, 0x40, 0x18, 0x90
-    .byte 0x18, 0xA9, 0x38, 0x1C, 0x79, 0xF0, 0xA2, 0xF8, 0x48, 0x46, 0x00, 0xF0, 0x65, 0xF8, 0x01, 0x1C
-    .byte 0x48, 0x46, 0x20, 0x30, 0x02, 0x78, 0x48, 0x46, 0x00, 0xF0, 0x10, 0xF8
+    adds r4, r0, #1
+.Lraw_code_entities_4712_2:
+    mov r3, sl
+    ldr r2, [sp, #0x68]
+    strh r3, [r2]
+    movs r0, #0x7f
+    ands r5, r0
+    ldrb r1, [r2, #2]
+    movs r0, #0x80
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r5
+    strb r0, [r2, #2]
+    strb r4, [r2, #3]
+    b loc_08022628
+.Lraw_code_entities_4714_0:
+    ldr r1, .Lraw_code_entities_4731_0
+    ldr r0, [sp, #0x60]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_4731_4
+    ands r0, r1
+    str r0, [sp, #0x60]
+    add r1, sp, #0x60
+    adds r0, r7, #0
+    bl method_0809BD20__7ChickenPC15UnkBarnAnimal2C
+    mov r0, sb
+    bl func_080226E4
+    adds r1, r0, #0
+    mov r0, sb
+    adds r0, #0x20
+    ldrb r2, [r0]
+    mov r0, sb
+    bl func_08022648
     .global loc_08022628
     .thumb_func
     loc_08022628:
@@ -4728,7 +5059,8 @@ func_08022250:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+.Lraw_code_entities_4731_0: .word 0xFFFF0000
+.Lraw_code_entities_4731_4: .word 0xFF00FFFF
     .global func_08022648
     .thumb_func
 func_08022648:
@@ -4806,7 +5138,7 @@ func_08022648:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080226E4
     .thumb_func
 func_080226E4:
@@ -4837,13 +5169,13 @@ func_080226E4:
     .Lauto_0802270E:
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global loc_08022714
     .thumb_func
     loc_08022714:
     push {r4, r5, lr}
     adds r4, r1, #0
-    ldr r5, [pc, #0x18]
+    ldr r5, .Lraw_code_entities_4859_0
     ldr r0, [r0, #0x34]
     bl GetGrowthStage__C7Chicken
     lsls r1, r0, #2
@@ -4855,8 +5187,8 @@ func_080226E4:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
-    .4byte gUnk_080F0A68
+    .align 2, 0
+.Lraw_code_entities_4859_0: .4byte gUnk_080F0A68
     .global loc_08022738
     .thumb_func
     loc_08022738:
@@ -4871,7 +5203,7 @@ func_080226E4:
     .Lauto_08022746:
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_0802274C
     .thumb_func
 func_0802274C:
@@ -4905,7 +5237,7 @@ func_0802275C:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_0802278C
     .thumb_func
 func_0802278C:
@@ -4965,14 +5297,10 @@ func_0802278C:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_0802280C:
-    .word 0xFFFF0000
-.Ljp_08022810:
-    .word 0xFF80FFFF
-.Ljp_08022814:
-    .word 0xFF7FFFFF
-.Ljp_08022818:
-    .word 0x00FFFFFF
+.Ljp_0802280C: .word 0xFFFF0000
+.Ljp_08022810: .word 0xFF80FFFF
+.Ljp_08022814: .word 0xFF7FFFFF
+.Ljp_08022818: .word 0x00FFFFFF
     .section .text.livestock_actor_chicken_after_cure, "ax", %progbits
     .align 2, 0
 
@@ -5035,12 +5363,9 @@ func_08022840:
     pop {r4}
     pop {r0}
     bx r0
-.Ljp_080228C0:
-    .word 0xFFFF0000
-.Ljp_080228C4:
-    .word 0xFF80FFFF
-.Ljp_080228C8:
-    .word 0x00FFFFFF
+.Ljp_080228C0: .word 0xFFFF0000
+.Ljp_080228C4: .word 0xFF80FFFF
+.Ljp_080228C8: .word 0x00FFFFFF
     .global func_080228CC
     .thumb_func
 func_080228CC:
@@ -5204,7 +5529,7 @@ func_080229F4:
     sub sp, #8
     adds r5, r0, #0
     adds r6, r1, #0
-    ldr r0, [pc, #0x40]
+    ldr r0, .Lraw_code_entities_5238_2
     str r0, [r5, #0x14]
     ldr r4, [r5, #0x34]
     mov r0, sp
@@ -5213,7 +5538,7 @@ func_080229F4:
     adds r0, r4, #0
     mov r1, sp
     bl SetLocation__5ActorRC13ActorLocation
-    ldr r0, [pc, #0x30]
+    ldr r0, .Lraw_code_entities_5238_6
     str r0, [r5, #0x14]
     ldr r1, [r5, #0x10]
     cmp r1, #0
@@ -5235,16 +5560,41 @@ func_080229F4:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x50, 0x57, 0x0E, 0x08, 0x90, 0x56, 0x0E, 0x08
+    .align 2, 0
+.Lraw_code_entities_5238_2: .word vtable_unk_080E6310
+.Lraw_code_entities_5238_6: .word __vt_7AEntity
     .global func_08022A48
     .thumb_func
 func_08022A48:
     push {r4, lr}
     sub sp, #4
-    .byte 0x04, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x0C, 0x4A, 0x00, 0x98, 0x10, 0x40, 0x08, 0x43, 0x0B, 0x49
-    .byte 0x08, 0x40, 0x00, 0x90, 0x60, 0x6B, 0x69, 0x46, 0x78, 0xF0, 0x88, 0xFC, 0x20, 0x1C, 0x00, 0xF0
-    .byte 0x4F, 0xFB, 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x10, 0xFB
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    adds r4, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r2, .Lraw_code_entities_5247_8
+    ldr r0, [sp]
+    ands r0, r2
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_5247_12
+    ands r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_0802310C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_0802309C
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+.Lraw_code_entities_5247_8: .word 0xFFFF0000
+.Lraw_code_entities_5247_12: .word 0xFF00FFFF
     .global func_08022A8C
     .thumb_func
 func_08022A8C:
@@ -5322,7 +5672,7 @@ func_08022A8C:
     mov r0, sb
     bl SetFed__10BarnAnimal
     .Lauto_08022B2C:
-    ldr r0, [pc, #0x10c]
+    ldr r0, .Lraw_code_entities_5452_2
     cmp r5, r0
     bhi .Lauto_08022B70
     cmp r4, r0
@@ -5449,7 +5799,8 @@ func_08022A8C:
     cmp r0, #0
     beq .Lauto_08022C4E
     b loc_0802304C
-    .byte 0x00, 0x00, 0x2B, 0x01, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_entities_5452_2: .word 0x0000012B
     .Lauto_08022C40:
     cmp r0, #2
     bne .Lauto_08022C46
@@ -5568,7 +5919,7 @@ func_08022A8C:
     lsls r0, r1, #3
     subs r0, r0, r1
     lsls r0, r0, #5
-    ldr r1, [pc, #0x24]
+    ldr r1, .Lraw_code_entities_5589_0
     adds r5, r0, r1
     mov r0, sb
     bl IsSick__C9Livestock
@@ -5586,7 +5937,7 @@ func_08022A8C:
     adds r0, #0xa8
     adds r5, r5, r0
     b loc_08022D50
-    .4byte gUnk_080F0A7C
+.Lraw_code_entities_5589_0: .4byte gUnk_080F0A7C
     .global loc_08022D40
     .thumb_func
     loc_08022D40:
@@ -5655,20 +6006,101 @@ func_08022A8C:
     add sl, r2
     .Lauto_08022DB6:
     mov r3, sb
-    .byte 0xD9, 0x6A, 0x48, 0x02, 0x45, 0x0E, 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D, 0x25, 0x98, 0xC4, 0x78
-    .byte 0x00, 0x2C, 0x00, 0xD0, 0x01, 0x3C, 0x52, 0x46, 0x00, 0x2A, 0x40, 0xD0, 0x08, 0x02, 0x00, 0x28
-    .byte 0x07, 0xDA, 0x38, 0x68, 0x02, 0x6C, 0x38, 0x1C, 0x2D, 0x21, 0xB0, 0xF0, 0x73, 0xF9, 0x01, 0x1C
-    .byte 0x00, 0xE0, 0x31, 0x1C, 0x00, 0x29, 0x32, 0xD0, 0x88, 0x88, 0x24, 0x9B, 0x98, 0x42, 0x2E, 0xD1
-    .byte 0x00, 0x2C, 0x1F, 0xD1, 0x47, 0x46, 0x0A, 0x20, 0x3E, 0x5E, 0x0E, 0x22, 0xBC, 0x5E, 0x0A, 0x23
-    .byte 0xCA, 0x5E, 0x0E, 0x27, 0xCB, 0x5F, 0x01, 0x27, 0x00, 0x2D, 0x00, 0xD0, 0x06, 0x27, 0x40, 0x46
-    .byte 0x20, 0x30, 0x00, 0x78, 0x05, 0xA9, 0x00, 0x91, 0x01, 0x90, 0x30, 0x1C, 0x21, 0x1C
+    ldr r1, [r3, #0x2c]
+    lsls r0, r1, #9
+    lsrs r5, r0, #0x19
+    cmp r5, #0
+    beq .Lraw_code_entities_5658_12
+    subs r5, #1
+.Lraw_code_entities_5658_12:
+    ldr r0, [sp, #0x94]
+    ldrb r4, [r0, #3]
+    cmp r4, #0
+    beq .Lraw_code_entities_5659_6
+    subs r4, #1
+.Lraw_code_entities_5659_6:
+    mov r2, sl
+    cmp r2, #0
+    beq .Lraw_code_entities_5669_14
+    lsls r0, r1, #8
+    cmp r0, #0
+    bge .Lraw_code_entities_5661_2
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0x2d
+    bl _call_via_r2
+    adds r1, r0, #0
+    b .Lraw_code_entities_5661_4
+.Lraw_code_entities_5661_2:
+    adds r1, r6, #0
+.Lraw_code_entities_5661_4:
+    cmp r1, #0
+    beq .Lraw_code_entities_5669_14
+    ldrh r0, [r1, #4]
+    ldr r3, [sp, #0x90]
+    cmp r0, r3
+    bne .Lraw_code_entities_5669_14
+    cmp r4, #0
+    bne .Lraw_code_entities_5668_2
+    mov r7, r8
+    movs r0, #0xa
+    ldrsh r6, [r7, r0]
+    movs r2, #0xe
+    ldrsh r4, [r7, r2]
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r7, #0xe
+    ldrsh r3, [r1, r7]
+    movs r7, #1
+    cmp r5, #0
+    beq .Lraw_code_entities_5663_14
+    movs r7, #6
+.Lraw_code_entities_5663_14:
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r1, sp, #0x14
+    str r1, [sp]
+    str r0, [sp, #4]
+    adds r0, r6, #0
+    adds r1, r4, #0
     bl SelectRetreatFacing
-    .byte 0x02, 0x1C, 0x40, 0x46, 0x39, 0x1C, 0x00, 0xF0, 0x34, 0xF9, 0x1E, 0x20
+    adds r2, r0, #0
+    mov r0, r8
+    adds r1, r7, #0
+    bl func_0802309C
+    movs r0, #0x1e
     bl RandomBelow
-    .byte 0x44, 0x1C, 0x53, 0x46, 0x25, 0x9A, 0x13, 0x80, 0x7F, 0x20, 0x05, 0x40, 0x91, 0x78
-    .byte 0x80, 0x20, 0x40, 0x42, 0x08, 0x40, 0x28, 0x43, 0x90, 0x70, 0xD4, 0x70, 0xFA, 0xE0, 0x05, 0x49
-    .byte 0x19, 0x98, 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43, 0x03, 0x49, 0x08, 0x40, 0x19, 0x90, 0x19, 0xA9
-    .byte 0x63, 0xE0, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    adds r4, r0, #1
+.Lraw_code_entities_5668_2:
+    mov r3, sl
+    ldr r2, [sp, #0x94]
+    strh r3, [r2]
+    movs r0, #0x7f
+    ands r5, r0
+    ldrb r1, [r2, #2]
+    movs r0, #0x80
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r5
+    strb r0, [r2, #2]
+    strb r4, [r2, #3]
+    b loc_0802304C
+.Lraw_code_entities_5669_14:
+    ldr r1, .Lraw_code_entities_5671_4
+    ldr r0, [sp, #0x64]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_5671_8
+    ands r0, r1
+    str r0, [sp, #0x64]
+    add r1, sp, #0x64
+    b .Lraw_code_entities_5777_0
+    .align 2, 0
+.Lraw_code_entities_5671_4: .word 0xFFFF0000
+.Lraw_code_entities_5671_8: .word 0xFF00FFFF
     .global loc_08022E74
     .thumb_func
     loc_08022E74:
@@ -5765,15 +6197,16 @@ func_08022A8C:
     strh r2, [r4, #2]
     b .Lauto_0802304C
     .Lauto_08022F20:
-    ldr r1, [pc, #0x2c]
+    ldr r1, .Lraw_code_entities_5788_2
     ldr r0, [sp, #0x68]
     ands r0, r1
     movs r1, #0xb4
     orrs r0, r1
-    ldr r1, [pc, #0x28]
+    ldr r1, .Lraw_code_entities_5788_6
     ands r0, r1
     str r0, [sp, #0x68]
     add r1, sp, #0x68
+.Lraw_code_entities_5777_0:
     mov r0, sb
     bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
     mov r0, r8
@@ -5785,7 +6218,9 @@ func_08022A8C:
     mov r0, r8
     bl func_0802309C
     b .Lauto_0802304C
-    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .align 2, 0
+.Lraw_code_entities_5788_2: .word 0xFFFF0000
+.Lraw_code_entities_5788_6: .word 0xFF00FFFF
     .global loc_08022F58
     .thumb_func
     loc_08022F58:
@@ -5890,13 +6325,13 @@ func_08022A8C:
     strh r0, [r6]
     b .Lauto_0802304C
     .Lauto_08023024:
-    ldr r2, [pc, #0x44]
+    ldr r2, .Lraw_code_entities_5928_2
     add r1, sp, #0x8c
     ldr r0, [r1]
     ands r0, r2
     movs r2, #0xb4
     orrs r0, r2
-    ldr r2, [pc, #0x3c]
+    ldr r2, .Lraw_code_entities_5928_6
     ands r0, r2
     str r0, [r1]
     mov r0, sb
@@ -5925,7 +6360,9 @@ func_08022A8C:
     subs r0, #1
     strh r0, [r2, #0x24]
     b .Lauto_0802307A
-    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .align 2, 0
+.Lraw_code_entities_5928_2: .word 0xFFFF0000
+.Lraw_code_entities_5928_6: .word 0xFF00FFFF
     .Lauto_08023074:
     mov r3, r8
     ldrh r0, [r3, #0x26]
@@ -6004,7 +6441,7 @@ func_0802309C:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_0802310C
     .thumb_func
 func_0802310C:
@@ -6063,15 +6500,15 @@ func_0802310C:
     orrs r1, r0
     lsrs r6, r1, #0x1f
     .Lauto_08023168:
-    ldr r7, [pc, #0xc]
+    ldr r7, .Lraw_code_entities_6074_0
     lsls r5, r5, #1
     cmp r6, #0
     beq loc_0802317C
     adds r0, r5, #0
     adds r0, #0x2a
     b loc_0802318A
-    .byte 0x00, 0x00
-    .4byte gUnk_080F0C3C
+    .align 2, 0
+.Lraw_code_entities_6074_0: .4byte gUnk_080F0C3C
     .global loc_0802317C
     .thumb_func
     loc_0802317C:
@@ -6103,7 +6540,7 @@ func_0802310C:
     .Lauto_080231A2:
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080231A8
     .thumb_func
 func_080231A8:
@@ -6113,23 +6550,107 @@ func_080231A8:
     sub sp, #8
     adds r6, r0, #0
     adds r7, r1, #0
-    .byte 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88, 0x88, 0x42, 0x5F, 0xD1, 0x70, 0x6B, 0x78, 0xF0
-    .byte 0x91, 0xF8, 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1, 0x70, 0x6B, 0x77, 0xF0, 0x47, 0xFD, 0x80, 0x46
+    ldrh r0, [r7]
+    lsls r0, r0, #0x16
+    lsrs r0, r0, #0x16
+    ldrh r1, [r6, #4]
+    cmp r0, r1
+    bne .Lraw_code_entities_6131_12
+    ldr r0, [r6, #0x34]
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_6131_12
+    ldr r0, [r6, #0x34]
+    bl GetAffection__C6Animal
+    mov r8, r0
     bl CalculateAnimalResponseRadius
-    .byte 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88, 0x13, 0x4C
-    .byte 0x22, 0x40, 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23, 0xF5, 0x5E
-    .byte 0xFB, 0x78, 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04, 0x09, 0x14
-    .byte 0x49, 0x1B, 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C, 0x4B, 0x43, 0x19, 0x1C, 0x52, 0x18
-    .byte 0x01, 0x1C, 0x41, 0x43, 0x08, 0x1C, 0x82, 0x42, 0x30, 0xDC, 0x70, 0x6B, 0x77, 0xF0, 0x90, 0xFE
-    .byte 0x00, 0x06, 0x00, 0x28, 0x04, 0xD0, 0x1E, 0x24, 0x0A, 0xE0, 0x00, 0x00, 0xFF, 0x03, 0x00, 0x00
-    .byte 0x70, 0x6B, 0x77, 0xF0, 0x81, 0xFE, 0x00, 0x06, 0x64, 0x24, 0x00, 0x28, 0x00, 0xD0, 0x46, 0x24
-    .byte 0x64, 0x20
+    movs r1, #0xa
+    ldrsh r3, [r6, r1]
+    ldrb r1, [r7, #1]
+    lsrs r1, r1, #2
+    ldrh r2, [r7, #2]
+    ldr r4, .Lraw_code_entities_6124_12
+    ands r2, r4
+    lsls r2, r2, #6
+    orrs r2, r1
+    lsls r2, r2, #0x10
+    asrs r2, r2, #0x10
+    subs r2, r2, r3
+    movs r3, #0xe
+    ldrsh r5, [r6, r3]
+    ldrb r3, [r7, #3]
+    lsrs r3, r3, #2
+    ldrh r1, [r7, #4]
+    ands r1, r4
+    lsls r1, r1, #6
+    orrs r1, r3
+    lsls r1, r1, #0x10
+    asrs r1, r1, #0x10
+    subs r1, r1, r5
+    adds r3, r2, #0
+    muls r3, r2, r3
+    adds r2, r3, #0
+    adds r3, r1, #0
+    muls r3, r1, r3
+    adds r1, r3, #0
+    adds r2, r2, r1
+    adds r1, r0, #0
+    muls r1, r0, r1
+    adds r0, r1, #0
+    cmp r2, r0
+    bgt .Lraw_code_entities_6131_12
+    ldr r0, [r6, #0x34]
+    bl IsSick__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_6125_0
+    movs r4, #0x1e
+    b .Lraw_code_entities_6126_0
+    .align 2, 0
+.Lraw_code_entities_6124_12: .word 0x000003FF
+.Lraw_code_entities_6125_0:
+    ldr r0, [r6, #0x34]
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    movs r4, #0x64
+    cmp r0, #0
+    beq .Lraw_code_entities_6126_0
+    movs r4, #0x46
+.Lraw_code_entities_6126_0:
+    movs r0, #0x64
     bl RandomBelow
-    .byte 0xA0, 0x42, 0x18, 0xD2, 0x43, 0x46, 0x18, 0x01, 0xC0, 0x1A
-    .byte 0x80, 0x01, 0x00, 0x0A, 0xF0, 0x21, 0x49, 0x00, 0x40, 0x18, 0x00, 0x04, 0x00, 0x0C, 0x00, 0x90
-    .byte 0x70, 0x6B, 0x69, 0x46, 0x78, 0xF0, 0x92, 0xF8, 0x30, 0x1C, 0xFF, 0xF7, 0x4D, 0xFF, 0x01, 0x1C
-    .byte 0x30, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x30, 0x1C, 0xFF, 0xF7, 0x0E, 0xFF, 0x02, 0xB0, 0x08, 0xBC
-    .byte 0x98, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
+    cmp r0, r4
+    bhs .Lraw_code_entities_6131_12
+    mov r3, r8
+    lsls r0, r3, #4
+    subs r0, r0, r3
+    lsls r0, r0, #6
+    lsrs r0, r0, #8
+    movs r1, #0xf0
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    str r0, [sp]
+    ldr r0, [r6, #0x34]
+    mov r1, sp
+    bl method_0809B958__10BarnAnimalPC18UnkBarnAnimal2C_x2
+    adds r0, r6, #0
+    bl func_0802310C
+    adds r1, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
+    bl func_0802309C
+.Lraw_code_entities_6131_12:
+    add sp, #8
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     .global func_0802328C
     .thumb_func
 func_0802328C:
@@ -6140,12 +6661,12 @@ func_0802328C:
     ldr r0, [r2, #0x28]
     cmp r0, #3
     bne .Lauto_080232C6
-    ldr r1, [pc, #0x34]
+    ldr r1, .Lraw_code_entities_6167_2
     ldr r0, [sp]
     ands r0, r1
     movs r1, #0xb4
     orrs r0, r1
-    ldr r1, [pc, #0x2c]
+    ldr r1, .Lraw_code_entities_6167_6
     ands r0, r1
     str r0, [sp]
     adds r0, r2, #0
@@ -6164,7 +6685,9 @@ func_0802328C:
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .align 2, 0
+.Lraw_code_entities_6167_2: .word 0xFFFF0000
+.Lraw_code_entities_6167_6: .word 0xFF00FFFF
     .global func_080232D8
     .thumb_func
 func_080232D8:
@@ -6238,7 +6761,7 @@ func_0802332C:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_0802335C
     .thumb_func
 func_0802335C:
@@ -6298,14 +6821,10 @@ func_0802335C:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080233DC:
-    .word 0xFFFF0000
-.Ljp_080233E0:
-    .word 0xFF80FFFF
-.Ljp_080233E4:
-    .word 0xFF7FFFFF
-.Ljp_080233E8:
-    .word 0x00FFFFFF
+.Ljp_080233DC: .word 0xFFFF0000
+.Ljp_080233E0: .word 0xFF80FFFF
+.Ljp_080233E4: .word 0xFF7FFFFF
+.Ljp_080233E8: .word 0x00FFFFFF
     .global func_080233EC
     .thumb_func
 func_080233EC:
@@ -6438,12 +6957,9 @@ func_0802349C:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_0802351C:
-    .word 0xFFFF0000
-.Ljp_08023520:
-    .word 0xFF80FFFF
-.Ljp_08023524:
-    .word 0x00FFFFFF
+.Ljp_0802351C: .word 0xFFFF0000
+.Ljp_08023520: .word 0xFF80FFFF
+.Ljp_08023524: .word 0x00FFFFFF
     .global func_08023528
     .thumb_func
 func_08023528:
@@ -6489,8 +7005,7 @@ func_08023528:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08023580:
-    .word 0xFFFF0000
+.Ljp_08023580: .word 0xFFFF0000
     .global func_08023584
     .thumb_func
 func_08023584:
@@ -6635,7 +7150,7 @@ func_08023688:
     sub sp, #8
     adds r5, r0, #0
     adds r6, r1, #0
-    ldr r0, [pc, #0x40]
+    ldr r0, .Lraw_code_entities_6669_2
     str r0, [r5, #0x14]
     ldr r4, [r5, #0x34]
     mov r0, sp
@@ -6644,7 +7159,7 @@ func_08023688:
     adds r0, r4, #0
     mov r1, sp
     bl SetLocation__5ActorRC13ActorLocation
-    ldr r0, [pc, #0x30]
+    ldr r0, .Lraw_code_entities_6669_6
     str r0, [r5, #0x14]
     ldr r1, [r5, #0x10]
     cmp r1, #0
@@ -6666,16 +7181,41 @@ func_08023688:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xC4, 0x56, 0x0E, 0x08, 0x90, 0x56, 0x0E, 0x08
+    .align 2, 0
+.Lraw_code_entities_6669_2: .word vtable_unk_080E6284
+.Lraw_code_entities_6669_6: .word __vt_7AEntity
     .global func_080236DC
     .thumb_func
 func_080236DC:
     push {r4, lr}
     sub sp, #4
-    .byte 0x04, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x0C, 0x4A, 0x00, 0x98, 0x10, 0x40, 0x08, 0x43, 0x0B, 0x49
-    .byte 0x08, 0x40, 0x00, 0x90, 0x60, 0x6B, 0x69, 0x46, 0x77, 0xF0, 0x3E, 0xFE, 0x20, 0x1C, 0x00, 0xF0
-    .byte 0x59, 0xFB, 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x1A, 0xFB
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    adds r4, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r2, .Lraw_code_entities_6678_8
+    ldr r0, [sp]
+    ands r0, r2
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_6678_12
+    ands r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_08023DB4
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08023D44
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+.Lraw_code_entities_6678_8: .word 0xFFFF0000
+.Lraw_code_entities_6678_12: .word 0xFF00FFFF
     .global func_08023720
     .thumb_func
 func_08023720:
@@ -6753,7 +7293,7 @@ func_08023720:
     mov r0, sb
     bl SetFed__10BarnAnimal
     .Lauto_080237C0:
-    ldr r0, [pc, #0x10c]
+    ldr r0, .Lraw_code_entities_6883_2
     cmp r5, r0
     bhi .Lauto_08023804
     cmp r4, r0
@@ -6880,7 +7420,8 @@ func_08023720:
     cmp r0, #0
     beq .Lauto_080238E2
     b loc_08023CF4
-    .byte 0x00, 0x00, 0x2B, 0x01, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_entities_6883_2: .word 0x0000012B
     .Lauto_080238D4:
     cmp r0, #2
     bne .Lauto_080238DA
@@ -6999,7 +7540,7 @@ func_08023720:
     lsls r0, r1, #3
     subs r0, r0, r1
     lsls r0, r0, #5
-    ldr r1, [pc, #0x24]
+    ldr r1, .Lraw_code_entities_7020_0
     adds r5, r0, r1
     mov r0, sb
     bl IsSick__C9Livestock
@@ -7017,7 +7558,7 @@ func_08023720:
     adds r0, #0xa8
     adds r5, r5, r0
     b loc_080239F8
-    .4byte gUnk_080F0C74
+.Lraw_code_entities_7020_0: .4byte gUnk_080F0C74
     .global loc_080239D4
     .thumb_func
     loc_080239D4:
@@ -7097,20 +7638,101 @@ func_08023720:
     add sl, r2
     .Lauto_08023A5E:
     mov r3, sb
-    .byte 0xD9, 0x6A, 0x48, 0x02, 0x45, 0x0E, 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D, 0x25, 0x98, 0xC4, 0x78
-    .byte 0x00, 0x2C, 0x00, 0xD0, 0x01, 0x3C, 0x52, 0x46, 0x00, 0x2A, 0x40, 0xD0, 0x08, 0x02, 0x00, 0x28
-    .byte 0x07, 0xDA, 0x38, 0x68, 0x02, 0x6C, 0x38, 0x1C, 0x2D, 0x21, 0xAF, 0xF0, 0x1F, 0xFB, 0x01, 0x1C
-    .byte 0x00, 0xE0, 0x31, 0x1C, 0x00, 0x29, 0x32, 0xD0, 0x88, 0x88, 0x24, 0x9B, 0x98, 0x42, 0x2E, 0xD1
-    .byte 0x00, 0x2C, 0x1F, 0xD1, 0x47, 0x46, 0x0A, 0x20, 0x3E, 0x5E, 0x0E, 0x22, 0xBC, 0x5E, 0x0A, 0x23
-    .byte 0xCA, 0x5E, 0x0E, 0x27, 0xCB, 0x5F, 0x01, 0x27, 0x00, 0x2D, 0x00, 0xD0, 0x06, 0x27, 0x40, 0x46
-    .byte 0x20, 0x30, 0x00, 0x78, 0x05, 0xA9, 0x00, 0x91, 0x01, 0x90, 0x30, 0x1C, 0x21, 0x1C
+    ldr r1, [r3, #0x2c]
+    lsls r0, r1, #9
+    lsrs r5, r0, #0x19
+    cmp r5, #0
+    beq .Lraw_code_entities_7100_12
+    subs r5, #1
+.Lraw_code_entities_7100_12:
+    ldr r0, [sp, #0x94]
+    ldrb r4, [r0, #3]
+    cmp r4, #0
+    beq .Lraw_code_entities_7101_6
+    subs r4, #1
+.Lraw_code_entities_7101_6:
+    mov r2, sl
+    cmp r2, #0
+    beq .Lraw_code_entities_7111_14
+    lsls r0, r1, #8
+    cmp r0, #0
+    bge .Lraw_code_entities_7103_2
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0x2d
+    bl _call_via_r2
+    adds r1, r0, #0
+    b .Lraw_code_entities_7103_4
+.Lraw_code_entities_7103_2:
+    adds r1, r6, #0
+.Lraw_code_entities_7103_4:
+    cmp r1, #0
+    beq .Lraw_code_entities_7111_14
+    ldrh r0, [r1, #4]
+    ldr r3, [sp, #0x90]
+    cmp r0, r3
+    bne .Lraw_code_entities_7111_14
+    cmp r4, #0
+    bne .Lraw_code_entities_7110_2
+    mov r7, r8
+    movs r0, #0xa
+    ldrsh r6, [r7, r0]
+    movs r2, #0xe
+    ldrsh r4, [r7, r2]
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r7, #0xe
+    ldrsh r3, [r1, r7]
+    movs r7, #1
+    cmp r5, #0
+    beq .Lraw_code_entities_7105_14
+    movs r7, #6
+.Lraw_code_entities_7105_14:
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r1, sp, #0x14
+    str r1, [sp]
+    str r0, [sp, #4]
+    adds r0, r6, #0
+    adds r1, r4, #0
     bl SelectRetreatFacing
-    .byte 0x02, 0x1C, 0x40, 0x46, 0x39, 0x1C, 0x00, 0xF0, 0x34, 0xF9, 0x1E, 0x20
+    adds r2, r0, #0
+    mov r0, r8
+    adds r1, r7, #0
+    bl func_08023D44
+    movs r0, #0x1e
     bl RandomBelow
-    .byte 0x44, 0x1C, 0x53, 0x46, 0x25, 0x9A, 0x13, 0x80, 0x7F, 0x20, 0x05, 0x40, 0x91, 0x78
-    .byte 0x80, 0x20, 0x40, 0x42, 0x08, 0x40, 0x28, 0x43, 0x90, 0x70, 0xD4, 0x70, 0xFA, 0xE0, 0x05, 0x49
-    .byte 0x19, 0x98, 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43, 0x03, 0x49, 0x08, 0x40, 0x19, 0x90, 0x19, 0xA9
-    .byte 0x63, 0xE0, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    adds r4, r0, #1
+.Lraw_code_entities_7110_2:
+    mov r3, sl
+    ldr r2, [sp, #0x94]
+    strh r3, [r2]
+    movs r0, #0x7f
+    ands r5, r0
+    ldrb r1, [r2, #2]
+    movs r0, #0x80
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r5
+    strb r0, [r2, #2]
+    strb r4, [r2, #3]
+    b loc_08023CF4
+.Lraw_code_entities_7111_14:
+    ldr r1, .Lraw_code_entities_7113_4
+    ldr r0, [sp, #0x64]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_7113_8
+    ands r0, r1
+    str r0, [sp, #0x64]
+    add r1, sp, #0x64
+    b .Lraw_code_entities_7219_0
+    .align 2, 0
+.Lraw_code_entities_7113_4: .word 0xFFFF0000
+.Lraw_code_entities_7113_8: .word 0xFF00FFFF
     .global loc_08023B1C
     .thumb_func
     loc_08023B1C:
@@ -7207,15 +7829,16 @@ func_08023720:
     strh r2, [r4, #2]
     b .Lauto_08023CF4
     .Lauto_08023BC8:
-    ldr r1, [pc, #0x2c]
+    ldr r1, .Lraw_code_entities_7230_2
     ldr r0, [sp, #0x68]
     ands r0, r1
     movs r1, #0xb4
     orrs r0, r1
-    ldr r1, [pc, #0x28]
+    ldr r1, .Lraw_code_entities_7230_6
     ands r0, r1
     str r0, [sp, #0x68]
     add r1, sp, #0x68
+.Lraw_code_entities_7219_0:
     mov r0, sb
     bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
     mov r0, r8
@@ -7227,7 +7850,9 @@ func_08023720:
     mov r0, r8
     bl func_08023D44
     b .Lauto_08023CF4
-    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .align 2, 0
+.Lraw_code_entities_7230_2: .word 0xFFFF0000
+.Lraw_code_entities_7230_6: .word 0xFF00FFFF
     .global loc_08023C00
     .thumb_func
     loc_08023C00:
@@ -7332,13 +7957,13 @@ func_08023720:
     strh r0, [r6]
     b .Lauto_08023CF4
     .Lauto_08023CCC:
-    ldr r2, [pc, #0x44]
+    ldr r2, .Lraw_code_entities_7370_2
     add r1, sp, #0x8c
     ldr r0, [r1]
     ands r0, r2
     movs r2, #0xb4
     orrs r0, r2
-    ldr r2, [pc, #0x3c]
+    ldr r2, .Lraw_code_entities_7370_6
     ands r0, r2
     str r0, [r1]
     mov r0, sb
@@ -7367,7 +7992,9 @@ func_08023720:
     subs r0, #1
     strh r0, [r2, #0x24]
     b .Lauto_08023D22
-    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .align 2, 0
+.Lraw_code_entities_7370_2: .word 0xFFFF0000
+.Lraw_code_entities_7370_6: .word 0xFF00FFFF
     .Lauto_08023D1C:
     mov r3, r8
     ldrh r0, [r3, #0x26]
@@ -7446,7 +8073,7 @@ func_08023D44:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_08023DB4
     .thumb_func
 func_08023DB4:
@@ -7505,15 +8132,15 @@ func_08023DF0:
     orrs r1, r0
     lsrs r6, r1, #0x1f
     .Lauto_08023E10:
-    ldr r7, [pc, #0xc]
+    ldr r7, .Lraw_code_entities_7516_0
     lsls r4, r4, #1
     cmp r6, #0
     beq loc_08023E24
     adds r0, r4, #0
     adds r0, #0x2a
     b loc_08023E44
-    .byte 0x00, 0x00
-    .4byte gUnk_080F0E34
+    .align 2, 0
+.Lraw_code_entities_7516_0: .4byte gUnk_080F0E34
     .global loc_08023E24
     .thumb_func
     loc_08023E24:
@@ -7541,7 +8168,7 @@ func_08023DF0:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global loc_08023E50
     .thumb_func
     loc_08023E50:
@@ -7556,7 +8183,7 @@ func_08023DF0:
     .Lauto_08023E5E:
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_08023E64
     .thumb_func
 func_08023E64:
@@ -7564,22 +8191,104 @@ func_08023E64:
     sub sp, #8
     adds r6, r0, #0
     adds r7, r1, #0
-    .byte 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88, 0x88, 0x42, 0x5F, 0xD1, 0x70, 0x6B, 0x77, 0xF0
-    .byte 0x35, 0xFA, 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1, 0x70, 0x6B, 0x76, 0xF0, 0xEB, 0xFE
+    ldrh r0, [r7]
+    lsls r0, r0, #0x16
+    lsrs r0, r0, #0x16
+    ldrh r1, [r6, #4]
+    cmp r0, r1
+    bne .Lraw_code_entities_7581_12
+    ldr r0, [r6, #0x34]
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_7581_12
+    ldr r0, [r6, #0x34]
+    bl GetAffection__C6Animal
     bl CalculateAnimalResponseRadius
-    .byte 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88, 0x12, 0x4C, 0x22, 0x40
-    .byte 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23, 0xF5, 0x5E, 0xFB, 0x78
-    .byte 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04, 0x09, 0x14, 0x49, 0x1B
-    .byte 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C, 0x4B, 0x43, 0x19, 0x1C, 0x52, 0x18, 0x01, 0x1C
-    .byte 0x41, 0x43, 0x08, 0x1C, 0x82, 0x42, 0x31, 0xDC, 0x70, 0x6B, 0x77, 0xF0, 0x35, 0xF8, 0x00, 0x06
-    .byte 0x00, 0x28, 0x03, 0xD0, 0x1E, 0x24, 0x09, 0xE0, 0xFF, 0x03, 0x00, 0x00, 0x70, 0x6B, 0x77, 0xF0
-    .byte 0x27, 0xF8, 0x00, 0x06, 0x64, 0x24, 0x00, 0x28, 0x00, 0xD0, 0x46, 0x24, 0x64, 0x20
+    movs r1, #0xa
+    ldrsh r3, [r6, r1]
+    ldrb r1, [r7, #1]
+    lsrs r1, r1, #2
+    ldrh r2, [r7, #2]
+    ldr r4, .Lraw_code_entities_7575_8
+    ands r2, r4
+    lsls r2, r2, #6
+    orrs r2, r1
+    lsls r2, r2, #0x10
+    asrs r2, r2, #0x10
+    subs r2, r2, r3
+    movs r3, #0xe
+    ldrsh r5, [r6, r3]
+    ldrb r3, [r7, #3]
+    lsrs r3, r3, #2
+    ldrh r1, [r7, #4]
+    ands r1, r4
+    lsls r1, r1, #6
+    orrs r1, r3
+    lsls r1, r1, #0x10
+    asrs r1, r1, #0x10
+    subs r1, r1, r5
+    adds r3, r2, #0
+    muls r3, r2, r3
+    adds r2, r3, #0
+    adds r3, r1, #0
+    muls r3, r1, r3
+    adds r1, r3, #0
+    adds r2, r2, r1
+    adds r1, r0, #0
+    muls r1, r0, r1
+    adds r0, r1, #0
+    cmp r2, r0
+    bgt .Lraw_code_entities_7581_12
+    ldr r0, [r6, #0x34]
+    bl IsSick__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_7575_12
+    movs r4, #0x1e
+    b .Lraw_code_entities_7576_12
+.Lraw_code_entities_7575_8: .word 0x000003FF
+.Lraw_code_entities_7575_12:
+    ldr r0, [r6, #0x34]
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    movs r4, #0x64
+    cmp r0, #0
+    beq .Lraw_code_entities_7576_12
+    movs r4, #0x46
+.Lraw_code_entities_7576_12:
+    movs r0, #0x64
     bl RandomBelow
-    .byte 0xA0, 0x42, 0x1A, 0xD2, 0x70, 0x6B, 0x76, 0xF0, 0xAC, 0xFE, 0x01, 0x01, 0x09, 0x1A
-    .byte 0x89, 0x01, 0x09, 0x0A, 0xF0, 0x23, 0x5B, 0x00, 0xC9, 0x18, 0x09, 0x04, 0x09, 0x0C, 0x00, 0x91
-    .byte 0x70, 0x6B, 0x69, 0x46, 0x77, 0xF0, 0x36, 0xFA, 0x30, 0x1C, 0xFF, 0xF7, 0x45, 0xFF, 0x01, 0x1C
-    .byte 0x30, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x30, 0x1C, 0xFF, 0xF7, 0x06, 0xFF, 0x02, 0xB0, 0xF0, 0xBC
-    .byte 0x01, 0xBC, 0x00, 0x47
+    cmp r0, r4
+    bhs .Lraw_code_entities_7581_12
+    ldr r0, [r6, #0x34]
+    bl GetAffection__C6Animal
+    lsls r1, r0, #4
+    subs r1, r1, r0
+    lsls r1, r1, #6
+    lsrs r1, r1, #8
+    movs r3, #0xf0
+    lsls r3, r3, #1
+    adds r1, r1, r3
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    str r1, [sp]
+    ldr r0, [r6, #0x34]
+    mov r1, sp
+    bl method_0809B958__10BarnAnimalPC18UnkBarnAnimal2C_x2
+    adds r0, r6, #0
+    bl func_08023DB4
+    adds r1, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
+    bl func_08023D44
+.Lraw_code_entities_7581_12:
+    add sp, #8
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     .global func_08023F40
     .thumb_func
 func_08023F40:
@@ -7590,12 +8299,12 @@ func_08023F40:
     ldr r0, [r2, #0x28]
     cmp r0, #3
     bne .Lauto_08023F7A
-    ldr r1, [pc, #0x34]
+    ldr r1, .Lraw_code_entities_7617_2
     ldr r0, [sp]
     ands r0, r1
     movs r1, #0xb4
     orrs r0, r1
-    ldr r1, [pc, #0x2c]
+    ldr r1, .Lraw_code_entities_7617_6
     ands r0, r1
     str r0, [sp]
     adds r0, r2, #0
@@ -7614,7 +8323,9 @@ func_08023F40:
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .align 2, 0
+.Lraw_code_entities_7617_2: .word 0xFFFF0000
+.Lraw_code_entities_7617_6: .word 0xFF00FFFF
     .global func_08023F8C
     .thumb_func
 func_08023F8C:
@@ -7688,7 +8399,7 @@ func_08023FE0:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_08024010
     .thumb_func
 func_08024010:
@@ -7702,10 +8413,34 @@ func_08024010:
     bne .Lauto_08024066
     movs r0, #0x78
     bl RandomBelow
-    .byte 0xF0, 0x30, 0x00, 0x04, 0x00, 0x0C, 0x18, 0x4A, 0x00, 0x99, 0x11, 0x40, 0x01, 0x43, 0x17, 0x48
-    .byte 0x01, 0x40, 0xF0, 0x20, 0x80, 0x03, 0x01, 0x43, 0x15, 0x48, 0x01, 0x40, 0x15, 0x48, 0x01, 0x40
-    .byte 0x00, 0x91, 0x60, 0x6B, 0x69, 0x46, 0x77, 0xF0, 0x99, 0xF9, 0x20, 0x1C, 0xFF, 0xF7, 0xAE, 0xFE
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0xFF, 0xF7, 0x6F, 0xFE
+    adds r0, #0xf0
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    ldr r2, .Lraw_code_entities_7726_2
+    ldr r1, [sp]
+    ands r1, r2
+    orrs r1, r0
+    ldr r0, .Lraw_code_entities_7726_6
+    ands r1, r0
+    movs r0, #0xf0
+    lsls r0, r0, #0xe
+    orrs r1, r0
+    ldr r0, .Lraw_code_entities_7726_10
+    ands r1, r0
+    ldr r0, .Lraw_code_entities_7726_14
+    ands r1, r0
+    str r1, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809B94C__10BarnAnimalPC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_08023DB4
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08023D44
     .Lauto_08024066:
     ldr r0, [r4, #0x34]
     movs r1, #0xa
@@ -7723,8 +8458,11 @@ func_08024010:
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0xFF, 0xFF, 0xFF, 0x7F, 0xFF, 0xFF, 0xFF
-    .byte 0xFF, 0x00
+    .align 2, 0
+.Lraw_code_entities_7726_2: .word 0xFFFF0000
+.Lraw_code_entities_7726_6: .word 0xFF80FFFF
+.Lraw_code_entities_7726_10: .word 0xFF7FFFFF
+.Lraw_code_entities_7726_14: .word 0x00FFFFFF
     .global func_080240A0
     .thumb_func
 func_080240A0:
@@ -7872,12 +8610,9 @@ func_08024170:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_080241F0:
-    .word 0xFFFF0000
-.Ljp_080241F4:
-    .word 0xFF80FFFF
-.Ljp_080241F8:
-    .word 0x00FFFFFF
+.Ljp_080241F0: .word 0xFFFF0000
+.Ljp_080241F4: .word 0xFF80FFFF
+.Ljp_080241F8: .word 0x00FFFFFF
     .global func_080241FC
     .thumb_func
 func_080241FC:
@@ -7923,8 +8658,7 @@ func_080241FC:
     pop {r0}
     bx r0
     .align 2, 0
-.Ljp_08024254:
-    .word 0xFFFF0000
+.Ljp_08024254: .word 0xFFFF0000
     .global func_08024258
     .thumb_func
 func_08024258:
@@ -8653,8 +9387,7 @@ func_08024930:
     pop {r1}
     bx r1
     .align 2, 0
-.L08024978:
-    .word 0x00002171
+.L08024978: .word 0x00002171
     .global func_0802497C
     .thumb_func
 func_0802497C:
@@ -17401,8 +18134,7 @@ func_08028E10:
     pop {r0}
     bx r0
     .align 2, 0
-.L08028E64:
-    .word 0x00001C2C
+.L08028E64: .word 0x00001C2C
     .global func_08028E68
     .thumb_func
 func_08028E68: @ 0x08028E68
@@ -21022,8 +21754,7 @@ Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     bl _call_via_r4
     b .Ljp_0802B402
     .align 2, 0
-.Ljp_0802B3FC:
-    .4byte SubmitWorldSpriteRecords
+.Ljp_0802B3FC: .4byte SubmitWorldSpriteRecords
 .Ljp_0802B400:
     movs	r0, #0
 .Ljp_0802B402:
@@ -21139,8 +21870,7 @@ Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     bl _call_via_r4
     b .Ljp_0802B4EA
     .align 2, 0
-.Ljp_0802B4E4:
-    .4byte SubmitWorldSpriteRecords
+.Ljp_0802B4E4: .4byte SubmitWorldSpriteRecords
 .Ljp_0802B4E8:
     movs	r0, #0
 .Ljp_0802B4EA:
@@ -21234,10 +21964,8 @@ Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     movs	r3, #1
     bl _call_via_r4
     b .Ljp_0802B606
-.Ljp_0802B5A4:
-    .4byte 0x00000281
-.Ljp_0802B5A8:
-    .4byte gPortraitArchivePaletteTrailer
+.Ljp_0802B5A4: .4byte 0x00000281
+.Ljp_0802B5A8: .4byte gPortraitArchivePaletteTrailer
 .Ljp_0802B5AC:
     ldr	r4, [sp, #76]
     ldr r5, .Ljp_0802B678
@@ -21334,10 +22062,8 @@ Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     pop	{r0}
     bx	r0
     .align 2, 0
-.Ljp_0802B678:
-    .4byte 0x00000281
-.Ljp_0802B67C:
-    .4byte 0x0000FFFF
+.Ljp_0802B678: .4byte 0x00000281
+.Ljp_0802B67C: .4byte 0x0000FFFF
     .global CreateWorldPlayerEntity
     .thumb_func
 CreateWorldPlayerEntity:
@@ -34742,71 +35468,88 @@ func_080202C8: @ 0x080202C8
     .global func_080202CC
     .thumb_func
 func_080202CC:
-    .byte 0x00, 0x20, 0x70, 0x47
+    movs r0, #0
+    bx lr
     .global func_080202D0
     .thumb_func
 func_080202D0:
-    .byte 0x00, 0x20, 0x70, 0x47
+    movs r0, #0
+    bx lr
     .global func_080202D4
     .thumb_func
 func_080202D4:
-    .byte 0x00, 0x20, 0x70, 0x47
+    movs r0, #0
+    bx lr
     .global func_080202D8
     .thumb_func
 func_080202D8:
-    .byte 0x00, 0x20, 0x70, 0x47
+    movs r0, #0
+    bx lr
     .global func_080202DC
     .thumb_func
 func_080202DC:
-    .byte 0x00, 0x20, 0x70, 0x47
+    movs r0, #0
+    bx lr
     .global func_080202E0
     .thumb_func
 func_080202E0:
-    .byte 0x00, 0x20, 0x70, 0x47
+    movs r0, #0
+    bx lr
     .global func_080202E4
     .thumb_func
 func_080202E4:
-    .byte 0x00, 0x20, 0x70, 0x47
+    movs r0, #0
+    bx lr
     .global func_080202E8
     .thumb_func
 func_080202E8:
-    .byte 0x00, 0x20, 0x70, 0x47
+    movs r0, #0
+    bx lr
     .global func_080202EC
     .thumb_func
 func_080202EC:
-    .byte 0x70, 0x47, 0x00, 0x00
+    bx lr
+    .align 2, 0
     .global func_080202F0
     .thumb_func
 func_080202F0:
-    .byte 0x70, 0x47, 0x00, 0x00
+    bx lr
+    .align 2, 0
     .global func_080202F4
     .thumb_func
 func_080202F4:
-    .byte 0x70, 0x47, 0x00, 0x00
+    bx lr
+    .align 2, 0
     .global func_080202F8
     .thumb_func
 func_080202F8:
-    .byte 0x70, 0x47, 0x00, 0x00
+    bx lr
+    .align 2, 0
     .global func_080202FC
     .thumb_func
 func_080202FC:
-    .byte 0x05, 0x20, 0x70, 0x47
+    movs r0, #5
+    bx lr
     .global func_08020300
     .thumb_func
 func_08020300:
-    .byte 0x05, 0x20, 0x70, 0x47
+    movs r0, #5
+    bx lr
     .global func_08020304
     .thumb_func
 func_08020304:
-    .byte 0x70, 0x47, 0x00, 0x00
+    bx lr
+    .align 2, 0
     .global func_08020308
     .thumb_func
 func_08020308:
-    .byte 0x70, 0x47, 0x00, 0x00
+    bx lr
+    .align 2, 0
     .global func_0802030C
     .thumb_func
 func_0802030C:
-    .byte 0x70, 0x47, 0x00, 0x00
+    bx lr
+    .align 2, 0
 
     thumb_func_start InitWorldDogEntity
 InitWorldDogEntity: @ 0x08020310
@@ -37522,198 +38265,893 @@ func_080217A8:
     .global func_080217EC
     .thumb_func
 func_080217EC:
-    .byte 0xF0, 0xB5, 0x57, 0x46
-    .byte 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0xB6, 0xB0, 0x06, 0x1C, 0x30, 0x68, 0x82, 0x46, 0x30, 0x1C
-    .byte 0x3E, 0x30, 0x00, 0x78, 0x00, 0x28, 0x00, 0xD0, 0x2F, 0xE3, 0x71, 0x6B, 0x2F, 0x91, 0x08, 0x1C
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0xd8
+    adds r6, r0, #0
+    ldr r0, [r6]
+    mov sl, r0
+    adds r0, r6, #0
+    adds r0, #0x3e
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Lraw_code_entities_37527_10
+    b .Lraw_code_entities_37710_0
+.Lraw_code_entities_37527_10:
+    ldr r1, [r6, #0x34]
+    str r1, [sp, #0xbc]
+    adds r0, r1, #0
     bl GetGrowthStage__C5Horse
-    .byte 0x05, 0x1C, 0xB2, 0x88, 0x30, 0x92, 0x53, 0x46, 0x19, 0x68, 0x02, 0xA8
-    .byte 0x4B, 0x6B, 0x51, 0x46
+    adds r5, r0, #0
+    ldrh r2, [r6, #4]
+    str r2, [sp, #0xc0]
+    mov r3, sl
+    ldr r1, [r3]
+    add r0, sp, #8
+    ldr r3, [r1, #0x34]
+    mov r1, sl
     bl _call_via_r3
-    .byte 0x71, 0x69, 0x1F, 0xAC, 0x20, 0x1C, 0xCA, 0x68
-    .byte 0x31, 0x1C
+    ldr r1, [r6, #0x14]
+    add r4, sp, #0x7c
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r6, #0
     bl _call_via_r2
-    .byte 0x00, 0x21, 0x00, 0x20, 0xA0, 0x46, 0x30, 0x9C, 0x08, 0x2C
-    .byte 0x00, 0xDC, 0x01, 0x20, 0x00, 0x28, 0x02, 0xD0, 0x01, 0x2D, 0x00, 0xD1, 0x01, 0x21, 0x0A, 0x1C
-    .byte 0x00, 0x2A, 0x09, 0xD0, 0x47, 0x46, 0x04, 0x21, 0x78, 0x5E, 0x1F, 0xA9, 0x00, 0x23, 0xC9, 0x5E
-    .byte 0x40, 0x1A, 0x10, 0x30, 0x31, 0x90, 0x01, 0xE0, 0x00, 0x24, 0x31, 0x94, 0x00, 0x2A, 0x08, 0xD0
-    .byte 0x47, 0x46, 0x06, 0x21, 0x78, 0x5E, 0x02, 0x22, 0xB9, 0x5E, 0x40, 0x1A, 0x10, 0x30, 0x32, 0x90
-    .byte 0x01, 0xE0, 0x00, 0x23, 0x32, 0x93, 0x05, 0xAC, 0x21, 0x27, 0x05, 0x97, 0x21, 0x20, 0x40, 0x42
-    .byte 0x60, 0x60, 0xA0, 0x60, 0xE7, 0x60, 0x0A, 0xA9, 0x02, 0xA8, 0x8C, 0xC8, 0x8C, 0xC1, 0x1F, 0x98
-    .byte 0x20, 0x99, 0x0D, 0x90, 0x0E, 0x91, 0x20, 0x20, 0xA0, 0x62, 0x31, 0x99, 0x10, 0x91, 0x32, 0x9A
-    .byte 0x11, 0x92, 0x53, 0x46, 0x18, 0x68, 0x02, 0x6C, 0x50, 0x46, 0x00, 0x21
+    movs r1, #0
+    movs r0, #0
+    mov r8, r4
+    ldr r4, [sp, #0xc0]
+    cmp r4, #8
+    bgt .Lraw_code_entities_37536_4
+    movs r0, #1
+.Lraw_code_entities_37536_4:
+    cmp r0, #0
+    beq .Lraw_code_entities_37536_14
+    cmp r5, #1
+    bne .Lraw_code_entities_37536_14
+    movs r1, #1
+.Lraw_code_entities_37536_14:
+    adds r2, r1, #0
+    cmp r2, #0
+    beq .Lraw_code_entities_37538_8
+    mov r7, r8
+    movs r1, #4
+    ldrsh r0, [r7, r1]
+    add r1, sp, #0x7c
+    movs r3, #0
+    ldrsh r1, [r1, r3]
+    subs r0, r0, r1
+    adds r0, #0x10
+    str r0, [sp, #0xc4]
+    b .Lraw_code_entities_37538_12
+.Lraw_code_entities_37538_8:
+    movs r4, #0
+    str r4, [sp, #0xc4]
+.Lraw_code_entities_37538_12:
+    cmp r2, #0
+    beq .Lraw_code_entities_37540_2
+    mov r7, r8
+    movs r1, #6
+    ldrsh r0, [r7, r1]
+    movs r2, #2
+    ldrsh r1, [r7, r2]
+    subs r0, r0, r1
+    adds r0, #0x10
+    str r0, [sp, #0xc8]
+    b .Lraw_code_entities_37540_6
+.Lraw_code_entities_37540_2:
+    movs r3, #0
+    str r3, [sp, #0xc8]
+.Lraw_code_entities_37540_6:
+    add r4, sp, #0x14
+    movs r7, #0x21
+    str r7, [sp, #0x14]
+    movs r0, #0x21
+    rsbs r0, r0, #0
+    str r0, [r4, #4]
+    str r0, [r4, #8]
+    str r7, [r4, #0xc]
+    add r1, sp, #0x28
+    add r0, sp, #8
+    ldm r0!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldr r0, [sp, #0x7c]
+    ldr r1, [sp, #0x80]
+    str r0, [sp, #0x34]
+    str r1, [sp, #0x38]
+    movs r0, #0x20
+    str r0, [r4, #0x28]
+    ldr r1, [sp, #0xc4]
+    str r1, [sp, #0x40]
+    ldr r2, [sp, #0xc8]
+    str r2, [sp, #0x44]
+    mov r3, sl
+    ldr r0, [r3]
+    ldr r2, [r0, #0x40]
+    mov r0, sl
+    movs r1, #0
     bl _call_via_r2
-    .byte 0x81, 0x46, 0x57, 0x46, 0x38, 0x68, 0x02, 0x6C, 0x50, 0x46, 0x4A, 0x21
+    mov sb, r0
+    mov r7, sl
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    mov r0, sl
+    movs r1, #0x4a
     bl _call_via_r2
-    .byte 0x07, 0x1C, 0x30, 0x1C, 0x3D, 0x30, 0x01, 0x78, 0x35, 0x90, 0x00, 0x29, 0x6E, 0xD0, 0x00, 0x21
-    .byte 0xB0, 0x8C, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x67, 0xD0, 0x00, 0x20, 0x35, 0x99
-    .byte 0x08, 0x70, 0x38, 0x22, 0xB0, 0x5E, 0x00, 0x04, 0xB0, 0x60, 0x3A, 0x23, 0xF0, 0x5E, 0x00, 0x04
-    .byte 0xF0, 0x60, 0x71, 0x69, 0x21, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x31, 0x1C
+    adds r7, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x3d
+    ldrb r1, [r0]
+    str r0, [sp, #0xd4]
+    cmp r1, #0
+    beq .Lraw_code_entities_37570_2
+    movs r1, #0
+    ldrh r0, [r6, #0x24]
+    cmp r0, #0
+    bne .Lraw_code_entities_37548_8
+    movs r1, #1
+.Lraw_code_entities_37548_8:
+    cmp r1, #0
+    beq .Lraw_code_entities_37570_2
+    movs r0, #0
+    ldr r1, [sp, #0xd4]
+    strb r0, [r1]
+    movs r2, #0x38
+    ldrsh r0, [r6, r2]
+    lsls r0, r0, #0x10
+    str r0, [r6, #8]
+    movs r3, #0x3a
+    ldrsh r0, [r6, r3]
+    lsls r0, r0, #0x10
+    str r0, [r6, #0xc]
+    ldr r1, [r6, #0x14]
+    add r4, sp, #0x84
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r6, #0
     bl _call_via_r2
-    .byte 0x20, 0x68, 0x61, 0x68, 0x1F, 0x90, 0x20, 0x91, 0x44, 0x46, 0x04, 0x20, 0x25, 0x5E, 0x00, 0x21
-    .byte 0x60, 0x5E, 0x2D, 0x1A, 0x10, 0x35, 0xAA, 0x46, 0x06, 0x22, 0xA4, 0x5E, 0x43, 0x46, 0x02, 0x25
-    .byte 0x58, 0x5F, 0x24, 0x1A, 0x10, 0x34, 0xA0, 0x46, 0x12, 0xA9, 0x21, 0x20, 0x12, 0x90, 0x21, 0x22
-    .byte 0x52, 0x42, 0x4A, 0x60, 0x8A, 0x60, 0xC8, 0x60, 0x17, 0xAA, 0x02, 0xA8, 0x38, 0xC8, 0x38, 0xC2
-    .byte 0x1F, 0x9A, 0x20, 0x9B, 0x1A, 0x92, 0x1B, 0x93, 0x20, 0x20, 0x88, 0x62, 0x52, 0x46, 0x1D, 0x92
-    .byte 0x43, 0x46, 0x1E, 0x93, 0x05, 0xA8, 0x34, 0x22
+    ldr r0, [r4]
+    ldr r1, [r4, #4]
+    str r0, [sp, #0x7c]
+    str r1, [sp, #0x80]
+    mov r4, r8
+    movs r0, #4
+    ldrsh r5, [r4, r0]
+    movs r1, #0
+    ldrsh r0, [r4, r1]
+    subs r5, r5, r0
+    adds r5, #0x10
+    mov sl, r5
+    movs r2, #6
+    ldrsh r4, [r4, r2]
+    mov r3, r8
+    movs r5, #2
+    ldrsh r0, [r3, r5]
+    subs r4, r4, r0
+    adds r4, #0x10
+    mov r8, r4
+    add r1, sp, #0x48
+    movs r0, #0x21
+    str r0, [sp, #0x48]
+    movs r2, #0x21
+    rsbs r2, r2, #0
+    str r2, [r1, #4]
+    str r2, [r1, #8]
+    str r0, [r1, #0xc]
+    add r2, sp, #0x5c
+    add r0, sp, #8
+    ldm r0!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldr r2, [sp, #0x7c]
+    ldr r3, [sp, #0x80]
+    str r2, [sp, #0x68]
+    str r3, [sp, #0x6c]
+    movs r0, #0x20
+    str r0, [r1, #0x28]
+    mov r2, sl
+    str r2, [sp, #0x74]
+    mov r3, r8
+    str r3, [sp, #0x78]
+    add r0, sp, #0x14
+    movs r2, #0x34
     bl memcpy
-    .byte 0x4C, 0x46, 0x00, 0x2C
-    .byte 0x0F, 0xD0, 0xA0, 0x88, 0x30, 0x9D, 0xA8, 0x42, 0x0B, 0xD1, 0x61, 0x69, 0x23, 0xAC, 0x20, 0x1C
-    .byte 0xCA, 0x68, 0x49, 0x46
+    mov r4, sb
+    cmp r4, #0
+    beq .Lraw_code_entities_37565_0
+    ldrh r0, [r4, #4]
+    ldr r5, [sp, #0xc0]
+    cmp r0, r5
+    bne .Lraw_code_entities_37565_0
+    ldr r1, [r4, #0x14]
+    add r4, sp, #0x8c
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    mov r1, sb
     bl _call_via_r2
-    .byte 0x05, 0xA8, 0x21, 0x1C, 0x01, 0x22
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #1
     bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
-    .byte 0x00, 0x2F, 0x00, 0xD1, 0xE2, 0xE1, 0xB8, 0x88, 0x30, 0x99, 0x88, 0x42, 0x00, 0xD0
-    .byte 0xDD, 0xE1, 0x79, 0x69, 0x25, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x39, 0x1C
+.Lraw_code_entities_37565_0:
+    cmp r7, #0
+    bne .Lraw_code_entities_37565_6
+    b .Lraw_code_entities_37680_0
+.Lraw_code_entities_37565_6:
+    ldrh r0, [r7, #4]
+    ldr r1, [sp, #0xc0]
+    cmp r0, r1
+    beq .Lraw_code_entities_37566_2
+    b .Lraw_code_entities_37680_0
+.Lraw_code_entities_37566_2:
+    ldr r1, [r7, #0x14]
+    add r4, sp, #0x94
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r7, #0
     bl _call_via_r2
-    .byte 0x05, 0xA8, 0x21, 0x1C, 0x00, 0x22
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
     bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
-    .byte 0xD0, 0xE1, 0x4A, 0x46, 0x00, 0x2A
-    .byte 0x0F, 0xD0, 0x90, 0x88, 0x30, 0x9B, 0x98, 0x42, 0x0B, 0xD1, 0x51, 0x69, 0x27, 0xAC, 0x20, 0x1C
-    .byte 0xCA, 0x68, 0x49, 0x46
+    b .Lraw_code_entities_37680_0
+.Lraw_code_entities_37570_2:
+    mov r2, sb
+    cmp r2, #0
+    beq .Lraw_code_entities_37576_0
+    ldrh r0, [r2, #4]
+    ldr r3, [sp, #0xc0]
+    cmp r0, r3
+    bne .Lraw_code_entities_37576_0
+    ldr r1, [r2, #0x14]
+    add r4, sp, #0x9c
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    mov r1, sb
     bl _call_via_r2
-    .byte 0x05, 0xA8, 0x21, 0x1C, 0x01, 0x22
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #1
     bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
-    .byte 0x00, 0x2F, 0x0F, 0xD0, 0xB8, 0x88, 0x30, 0x9C, 0xA0, 0x42, 0x0B, 0xD1, 0x79, 0x69
-    .byte 0x29, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x39, 0x1C
+.Lraw_code_entities_37576_0:
+    cmp r7, #0
+    beq .Lraw_code_entities_37582_0
+    ldrh r0, [r7, #4]
+    ldr r4, [sp, #0xc0]
+    cmp r0, r4
+    bne .Lraw_code_entities_37582_0
+    ldr r1, [r7, #0x14]
+    add r4, sp, #0xa4
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r7, #0
     bl _call_via_r2
-    .byte 0x05, 0xA8, 0x21, 0x1C
-    .byte 0x00, 0x22
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
     bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
-    .byte 0x35, 0x9F, 0x38, 0x78, 0x00, 0x28, 0x00, 0xD0, 0x90, 0xE0
-    .byte 0x01, 0x2D, 0x00, 0xD0, 0x8D, 0xE0, 0x0A, 0x21, 0x70, 0x5E, 0x33, 0x90, 0x0E, 0x23, 0xF2, 0x5E
-    .byte 0x34, 0x92, 0xB4, 0x69, 0xA0, 0x46, 0xF7, 0x69, 0x04, 0x1C, 0x15, 0x1C, 0x00, 0x2F, 0x18, 0xDD
-    .byte 0x05, 0x99, 0x0F, 0x98, 0x81, 0x42, 0x04, 0xDD, 0x05, 0xA8
+.Lraw_code_entities_37582_0:
+    ldr r7, [sp, #0xd4]
+    ldrb r0, [r7]
+    cmp r0, #0
+    beq .Lraw_code_entities_37583_0
+    b .Lraw_code_entities_37616_0
+.Lraw_code_entities_37583_0:
+    cmp r5, #1
+    beq .Lraw_code_entities_37583_6
+    b .Lraw_code_entities_37616_0
+.Lraw_code_entities_37583_6:
+    movs r1, #0xa
+    ldrsh r0, [r6, r1]
+    str r0, [sp, #0xcc]
+    movs r3, #0xe
+    ldrsh r2, [r6, r3]
+    str r2, [sp, #0xd0]
+    ldr r4, [r6, #0x18]
+    mov r8, r4
+    ldr r7, [r6, #0x1c]
+    adds r4, r0, #0
+    adds r5, r2, #0
+    cmp r7, #0
+    ble .Lraw_code_entities_37592_2
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lraw_code_entities_37588_2
+    add r0, sp, #0x14
     bl RefreshDown__19ActorMovementBounds
-    .byte 0x05, 0x98
-    .byte 0x00, 0xE0, 0x08, 0x1C, 0x00, 0x28, 0x0C, 0xD1, 0x05, 0x99, 0x0F, 0x98, 0x81, 0x42, 0x02, 0xDD
-    .byte 0x05, 0xA8
+    ldr r0, [sp, #0x14]
+    b .Lraw_code_entities_37588_4
+.Lraw_code_entities_37588_2:
+    adds r0, r1, #0
+.Lraw_code_entities_37588_4:
+    cmp r0, #0
+    bne .Lraw_code_entities_37592_2
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lraw_code_entities_37591_0
+    add r0, sp, #0x14
     bl RefreshDown__19ActorMovementBounds
-    .byte 0x09, 0xA9, 0x08, 0x78, 0x00, 0x28, 0x01, 0xD0, 0x32, 0x9A
-    .byte 0xAD, 0x18, 0x00, 0x2F, 0x19, 0xDA, 0x06, 0x99, 0x0F, 0x98, 0xC1, 0x42, 0x04, 0xDA, 0x05, 0xA8
+.Lraw_code_entities_37591_0:
+    add r1, sp, #0x24
+    ldrb r0, [r1]
+    cmp r0, #0
+    beq .Lraw_code_entities_37592_2
+    ldr r2, [sp, #0xc8]
+    adds r5, r5, r2
+.Lraw_code_entities_37592_2:
+    cmp r7, #0
+    bge .Lraw_code_entities_37598_10
+    ldr r1, [sp, #0x18]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lraw_code_entities_37594_4
+    add r0, sp, #0x14
     bl RefreshUp__19ActorMovementBounds
-    .byte 0x06, 0x98, 0x00, 0xE0, 0x08, 0x1C, 0x00, 0x28, 0x0D, 0xD1, 0x0F, 0x99
-    .byte 0x06, 0x98, 0xC8, 0x42, 0x02, 0xDA, 0x05, 0xA8
+    ldr r0, [sp, #0x18]
+    b .Lraw_code_entities_37594_6
+.Lraw_code_entities_37594_4:
+    adds r0, r1, #0
+.Lraw_code_entities_37594_6:
+    cmp r0, #0
+    bne .Lraw_code_entities_37598_10
+    ldr r1, [sp, #0x3c]
+    ldr r0, [sp, #0x18]
+    cmn r0, r1
+    bge .Lraw_code_entities_37597_0
+    add r0, sp, #0x14
     bl RefreshUp__19ActorMovementBounds
-    .byte 0x25, 0x23, 0x6B, 0x44
-    .byte 0x18, 0x78, 0x00, 0x28, 0x01, 0xD0, 0x32, 0x9F, 0xED, 0x1B, 0x40, 0x46, 0x00, 0x28, 0x19, 0xDA
-    .byte 0x07, 0x99, 0x0F, 0x98, 0xC1, 0x42, 0x04, 0xDA, 0x05, 0xA8
+.Lraw_code_entities_37597_0:
+    movs r3, #0x25
+    add r3, sp
+    ldrb r0, [r3]
+    cmp r0, #0
+    beq .Lraw_code_entities_37598_10
+    ldr r7, [sp, #0xc8]
+    subs r5, r5, r7
+.Lraw_code_entities_37598_10:
+    mov r0, r8
+    cmp r0, #0
+    bge .Lraw_code_entities_37606_4
+    ldr r1, [sp, #0x1c]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lraw_code_entities_37602_2
+    add r0, sp, #0x14
     bl RefreshLeft__19ActorMovementBounds
-    .byte 0x07, 0x98
-    .byte 0x00, 0xE0, 0x08, 0x1C, 0x00, 0x28, 0x0D, 0xD1, 0x0F, 0x99, 0x07, 0x98, 0xC8, 0x42, 0x02, 0xDA
-    .byte 0x05, 0xA8
+    ldr r0, [sp, #0x1c]
+    b .Lraw_code_entities_37602_4
+.Lraw_code_entities_37602_2:
+    adds r0, r1, #0
+.Lraw_code_entities_37602_4:
+    cmp r0, #0
+    bne .Lraw_code_entities_37606_4
+    ldr r1, [sp, #0x3c]
+    ldr r0, [sp, #0x1c]
+    cmn r0, r1
+    bge .Lraw_code_entities_37605_0
+    add r0, sp, #0x14
     bl RefreshLeft__19ActorMovementBounds
-    .byte 0x26, 0x21, 0x69, 0x44, 0x08, 0x78, 0x00, 0x28, 0x01, 0xD0
-    .byte 0x31, 0x9A, 0xA4, 0x1A, 0x43, 0x46, 0x00, 0x2B, 0x19, 0xDD, 0x08, 0x99, 0x0F, 0x98, 0x81, 0x42
-    .byte 0x04, 0xDD, 0x05, 0xA8
+.Lraw_code_entities_37605_0:
+    movs r1, #0x26
+    add r1, sp
+    ldrb r0, [r1]
+    cmp r0, #0
+    beq .Lraw_code_entities_37606_4
+    ldr r2, [sp, #0xc4]
+    subs r4, r4, r2
+.Lraw_code_entities_37606_4:
+    mov r3, r8
+    cmp r3, #0
+    ble .Lraw_code_entities_37612_14
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lraw_code_entities_37609_4
+    add r0, sp, #0x14
     bl RefreshRight__19ActorMovementBounds
-    .byte 0x08, 0x98, 0x00, 0xE0, 0x08, 0x1C, 0x00, 0x28
-    .byte 0x0D, 0xD1, 0x08, 0x99, 0x0F, 0x98, 0x81, 0x42, 0x02, 0xDD, 0x05, 0xA8
+    ldr r0, [sp, #0x20]
+    b .Lraw_code_entities_37609_6
+.Lraw_code_entities_37609_4:
+    adds r0, r1, #0
+.Lraw_code_entities_37609_6:
+    cmp r0, #0
+    bne .Lraw_code_entities_37612_14
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lraw_code_entities_37612_0
+    add r0, sp, #0x14
     bl RefreshRight__19ActorMovementBounds
-    .byte 0x27, 0x27, 0x6F, 0x44, 0x38, 0x78, 0x00, 0x28, 0x01, 0xD0, 0x31, 0x98, 0x24, 0x18, 0x33, 0x99
-    .byte 0x8C, 0x42, 0x02, 0xD1, 0x34, 0x9A, 0x95, 0x42, 0x0B, 0xD0, 0x34, 0x87, 0x75, 0x87, 0x01, 0x20
-    .byte 0x35, 0x9B, 0x18, 0x70, 0x30, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x30, 0x1C, 0x06, 0x21
+.Lraw_code_entities_37612_0:
+    movs r7, #0x27
+    add r7, sp
+    ldrb r0, [r7]
+    cmp r0, #0
+    beq .Lraw_code_entities_37612_14
+    ldr r0, [sp, #0xc4]
+    adds r4, r4, r0
+.Lraw_code_entities_37612_14:
+    ldr r1, [sp, #0xcc]
+    cmp r4, r1
+    bne .Lraw_code_entities_37613_10
+    ldr r2, [sp, #0xd0]
+    cmp r5, r2
+    beq .Lraw_code_entities_37616_0
+.Lraw_code_entities_37613_10:
+    strh r4, [r6, #0x38]
+    strh r5, [r6, #0x3a]
+    movs r0, #1
+    ldr r3, [sp, #0xd4]
+    strb r0, [r3]
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
+    movs r1, #6
     bl func_08022048
-    .byte 0x2F, 0x9C, 0x20, 0x6A, 0x01, 0x28, 0x00, 0xD1, 0xA5, 0xE0, 0x01, 0x28, 0x02, 0xDC
-    .byte 0x00, 0x28, 0x04, 0xD0, 0x88, 0xE1, 0x02, 0x28, 0x00, 0xD1, 0x17, 0xE1, 0x84, 0xE1, 0x2F, 0x9D
-    .byte 0x24, 0x35, 0xA9, 0x46, 0x2F, 0x9F, 0xBC, 0x8C, 0x00, 0x2C, 0x44, 0xD0, 0xB5, 0x69, 0xF7, 0x69
-    .byte 0x00, 0x20, 0x80, 0x46, 0x00, 0x2D, 0x0B, 0xDA, 0x07, 0x99, 0x0F, 0x98, 0xC1, 0x42, 0x03, 0xDA
-    .byte 0x05, 0xA8
+.Lraw_code_entities_37616_0:
+    ldr r4, [sp, #0xbc]
+    ldr r0, [r4, #0x20]
+    cmp r0, #1
+    bne .Lraw_code_entities_37616_10
+    b .Lraw_code_entities_37660_0
+.Lraw_code_entities_37616_10:
+    cmp r0, #1
+    bgt .Lraw_code_entities_37617_6
+    cmp r0, #0
+    beq .Lraw_code_entities_37617_14
+    b .Lraw_code_entities_37707_0
+.Lraw_code_entities_37617_6:
+    cmp r0, #2
+    bne .Lraw_code_entities_37617_12
+    b .Lraw_code_entities_37684_10
+.Lraw_code_entities_37617_12:
+    b .Lraw_code_entities_37707_0
+.Lraw_code_entities_37617_14:
+    ldr r5, [sp, #0xbc]
+    adds r5, #0x24
+    mov sb, r5
+    ldr r7, [sp, #0xbc]
+    ldrh r4, [r7, #0x24]
+    cmp r4, #0
+    beq .Lraw_code_entities_37634_6
+    ldr r5, [r6, #0x18]
+    ldr r7, [r6, #0x1c]
+    movs r0, #0
+    mov r8, r0
+    cmp r5, #0
+    bge .Lraw_code_entities_37623_0
+    ldr r1, [sp, #0x1c]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lraw_code_entities_37622_2
+    add r0, sp, #0x14
     bl RefreshLeft__19ActorMovementBounds
-    .byte 0x07, 0x99, 0x10, 0x20, 0x40, 0x42, 0x81, 0x42, 0x29, 0xDC
-    .byte 0x00, 0x2D, 0x0B, 0xDD, 0x08, 0x99, 0x0F, 0x98, 0x81, 0x42, 0x04, 0xDD, 0x05, 0xA8
+    ldr r1, [sp, #0x1c]
+.Lraw_code_entities_37622_2:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lraw_code_entities_37633_4
+.Lraw_code_entities_37623_0:
+    cmp r5, #0
+    ble .Lraw_code_entities_37625_10
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lraw_code_entities_37625_4
+    add r0, sp, #0x14
     bl RefreshRight__19ActorMovementBounds
-    .byte 0x08, 0x98, 0x00, 0xE0, 0x08, 0x1C, 0x0F, 0x28, 0x1B, 0xDD, 0x00, 0x2F, 0x0B, 0xDA
-    .byte 0x06, 0x99, 0x0F, 0x98, 0xC1, 0x42, 0x03, 0xDA, 0x05, 0xA8
+    ldr r0, [sp, #0x20]
+    b .Lraw_code_entities_37625_6
+.Lraw_code_entities_37625_4:
+    adds r0, r1, #0
+.Lraw_code_entities_37625_6:
+    cmp r0, #0xf
+    ble .Lraw_code_entities_37633_4
+.Lraw_code_entities_37625_10:
+    cmp r7, #0
+    bge .Lraw_code_entities_37629_8
+    ldr r1, [sp, #0x18]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lraw_code_entities_37629_0
+    add r0, sp, #0x14
     bl RefreshUp__19ActorMovementBounds
-    .byte 0x06, 0x99
-    .byte 0x10, 0x20, 0x40, 0x42, 0x81, 0x42, 0x0D, 0xDC, 0x00, 0x2F, 0x0D, 0xDD, 0x05, 0x99, 0x0F, 0x98
-    .byte 0x81, 0x42, 0x04, 0xDD, 0x05, 0xA8
+    ldr r1, [sp, #0x18]
+.Lraw_code_entities_37629_0:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lraw_code_entities_37633_4
+.Lraw_code_entities_37629_8:
+    cmp r7, #0
+    ble .Lraw_code_entities_37633_8
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lraw_code_entities_37632_4
+    add r0, sp, #0x14
     bl RefreshDown__19ActorMovementBounds
-    .byte 0x05, 0x98, 0x00, 0xE0, 0x08, 0x1C
-    .byte 0x0F, 0x28, 0x01, 0xDC, 0x01, 0x21, 0x88, 0x46, 0x42, 0x46, 0x00, 0x2A, 0x01, 0xD0, 0x00, 0x24
-    .byte 0x4D, 0xE0, 0x01, 0x3C, 0x4B, 0xE0, 0x35, 0x9B, 0x18, 0x78, 0x00, 0x28, 0x47, 0xD1, 0x30, 0x1C
+    ldr r0, [sp, #0x14]
+    b .Lraw_code_entities_37633_0
+.Lraw_code_entities_37632_4:
+    adds r0, r1, #0
+.Lraw_code_entities_37633_0:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_37633_8
+.Lraw_code_entities_37633_4:
+    movs r1, #1
+    mov r8, r1
+.Lraw_code_entities_37633_8:
+    mov r2, r8
+    cmp r2, #0
+    beq .Lraw_code_entities_37634_2
+    movs r4, #0
+    b .Lraw_code_entities_37657_0
+.Lraw_code_entities_37634_2:
+    subs r4, #1
+    b .Lraw_code_entities_37657_0
+.Lraw_code_entities_37634_6:
+    ldr r3, [sp, #0xd4]
+    ldrb r0, [r3]
+    cmp r0, #0
+    bne .Lraw_code_entities_37657_0
+    adds r0, r6, #0
     bl IsAnimationComplete__C12AActorEntity
-    .byte 0x00, 0x06, 0x00, 0x28, 0x41, 0xD0, 0x54, 0x46, 0x20, 0x68, 0xA2, 0x25
-    .byte 0x6D, 0x00, 0x40, 0x19, 0x01, 0x68, 0x50, 0x46
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_37657_0
+    mov r4, sl
+    ldr r0, [r4]
+    movs r5, #0xa2
+    lsls r5, r5, #1
+    adds r0, r0, r5
+    ldr r1, [r0]
+    mov r0, sl
     bl _call_via_r1
-    .byte 0x80, 0x7A, 0xC0, 0x06
-    .byte 0xC0, 0x0E, 0x00, 0x25, 0x06, 0x38, 0x0E, 0x28, 0x00, 0xD9, 0x01, 0x25, 0x2F, 0x98
+    ldrb r0, [r0, #0xa]
+    lsls r0, r0, #0x1b
+    lsrs r0, r0, #0x1b
+    movs r5, #0
+    subs r0, #6
+    cmp r0, #0xe
+    bls .Lraw_code_entities_37640_12
+    movs r5, #1
+.Lraw_code_entities_37640_12:
+    ldr r0, [sp, #0xbc]
     bl GetGrowthStage__C5Horse
-    .byte 0xEC, 0x00, 0x64, 0x1B, 0xE4, 0x00, 0xC1, 0x00, 0x09, 0x1A, 0x89, 0x00, 0x15, 0x48
-    .byte 0x09, 0x18, 0x64, 0x18, 0x20, 0x1C, 0x07, 0x21
+    lsls r4, r5, #3
+    subs r4, r4, r5
+    lsls r4, r4, #3
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r1, r1, #2
+    ldr r0, .Lraw_code_entities_37659_0
+    adds r1, r1, r0
+    adds r4, r4, r1
+    adds r0, r4, #0
+    movs r1, #7
     bl SelectActorBehaviorTimingIndex
-    .byte 0x07, 0x1C, 0xB8, 0x00
-    .byte 0x24, 0x18, 0x3C, 0x25, 0xA0, 0x78, 0x68, 0x43
+    adds r7, r0, #0
+    lsls r0, r7, #2
+    adds r4, r4, r0
+    movs r5, #0x3c
+    ldrb r0, [r4, #2]
+    muls r0, r5, r0
     bl RandomBelow
-    .byte 0x61, 0x78, 0x69, 0x43
-    .byte 0x0C, 0x18, 0x30, 0x1C, 0x20, 0x30, 0x05, 0x78, 0x04, 0x20
+    ldrb r1, [r4, #1]
+    muls r1, r5, r1
+    adds r4, r1, r0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r5, [r0]
+    movs r0, #4
     bl RandomBelow
-    .byte 0x01, 0x1C
-    .byte 0x00, 0x29, 0x05, 0xD0, 0x03, 0x29, 0x03, 0xD0, 0x28, 0x1C
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Lraw_code_entities_37655_0
+    cmp r1, #3
+    beq .Lraw_code_entities_37655_0
+    adds r0, r5, #0
     bl GetRelativeFacing
-    .byte 0x05, 0x1C
-    .byte 0x48, 0x46, 0x87, 0x70, 0x30, 0x1C, 0x39, 0x1C, 0x2A, 0x1C
+    adds r5, r0, #0
+.Lraw_code_entities_37655_0:
+    mov r0, sb
+    strb r7, [r0, #2]
+    adds r0, r6, #0
+    adds r1, r7, #0
+    adds r2, r5, #0
     bl func_08022048
-    .byte 0x49, 0x46
-    .byte 0x0C, 0x80, 0xE9, 0xE0
-    .4byte gUnk_080F093C
-    .byte 0x2F, 0x9C, 0x24, 0x34, 0x2F, 0x9A, 0x95, 0x8C
-    .byte 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D, 0x62, 0x88, 0x00, 0x2A, 0x00, 0xD0, 0x01, 0x3A, 0x00, 0x2D
-    .byte 0x51, 0xD0, 0x4B, 0x46, 0x00, 0x2B, 0x4E, 0xD0, 0x98, 0x88, 0x30, 0x9F, 0xB8, 0x42, 0x4A, 0xD1
-    .byte 0x0A, 0x20, 0x33, 0x5E, 0x0E, 0x27, 0xF1, 0x5F, 0x48, 0x46, 0x0A, 0x27, 0xC0, 0x5F, 0x80, 0x46
-    .byte 0x48, 0x46, 0x0E, 0x27, 0xC0, 0x5F, 0x81, 0x46, 0x47, 0x46, 0xF8, 0x1A, 0x00, 0x28, 0x00, 0xDA
-    .byte 0x40, 0x42, 0x0F, 0x28, 0x06, 0xDC, 0x4F, 0x46, 0x78, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42
-    .byte 0x0F, 0x28, 0x30, 0xDD, 0x35, 0x9F, 0x38, 0x78, 0x00, 0x28, 0x29, 0xD1, 0x00, 0x2A, 0x0F, 0xD0
-    .byte 0x04, 0x27, 0xE0, 0x5F, 0xC0, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x1F, 0xDC
-    .byte 0x06, 0x27, 0xE0, 0x5F, 0x40, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x17, 0xDC
-    .byte 0x30, 0x1C, 0x20, 0x30, 0x00, 0x78, 0x05, 0xAA, 0x00, 0x92, 0x01, 0x90, 0x18, 0x1C, 0x42, 0x46
-    .byte 0x4B, 0x46
+.Lraw_code_entities_37657_0:
+    mov r1, sb
+    strh r4, [r1]
+    b .Lraw_code_entities_37707_0
+.Lraw_code_entities_37659_0: .4byte gUnk_080F093C
+.Lraw_code_entities_37660_0:
+    ldr r4, [sp, #0xbc]
+    adds r4, #0x24
+    ldr r2, [sp, #0xbc]
+    ldrh r5, [r2, #0x24]
+    cmp r5, #0
+    beq .Lraw_code_entities_37661_6
+    subs r5, #1
+.Lraw_code_entities_37661_6:
+    ldrh r2, [r4, #2]
+    cmp r2, #0
+    beq .Lraw_code_entities_37661_14
+    subs r2, #1
+.Lraw_code_entities_37661_14:
+    cmp r5, #0
+    beq .Lraw_code_entities_37677_6
+    mov r3, sb
+    cmp r3, #0
+    beq .Lraw_code_entities_37677_6
+    ldrh r0, [r3, #4]
+    ldr r7, [sp, #0xc0]
+    cmp r0, r7
+    bne .Lraw_code_entities_37677_6
+    movs r0, #0xa
+    ldrsh r3, [r6, r0]
+    movs r7, #0xe
+    ldrsh r1, [r6, r7]
+    mov r0, sb
+    movs r7, #0xa
+    ldrsh r0, [r0, r7]
+    mov r8, r0
+    mov r0, sb
+    movs r7, #0xe
+    ldrsh r0, [r0, r7]
+    mov sb, r0
+    mov r7, r8
+    subs r0, r7, r3
+    cmp r0, #0
+    bge .Lraw_code_entities_37665_2
+    rsbs r0, r0, #0
+.Lraw_code_entities_37665_2:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_37666_4
+    mov r7, sb
+    subs r0, r7, r1
+    cmp r0, #0
+    bge .Lraw_code_entities_37666_0
+    rsbs r0, r0, #0
+.Lraw_code_entities_37666_0:
+    cmp r0, #0xf
+    ble .Lraw_code_entities_37677_6
+.Lraw_code_entities_37666_4:
+    ldr r7, [sp, #0xd4]
+    ldrb r0, [r7]
+    cmp r0, #0
+    bne .Lraw_code_entities_37677_0
+    cmp r2, #0
+    beq .Lraw_code_entities_37669_0
+    movs r7, #4
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r3
+    cmp r0, #0
+    bge .Lraw_code_entities_37667_12
+    rsbs r0, r0, #0
+.Lraw_code_entities_37667_12:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_37677_0
+    movs r7, #6
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r1
+    cmp r0, #0
+    bge .Lraw_code_entities_37668_12
+    rsbs r0, r0, #0
+.Lraw_code_entities_37668_12:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_37677_0
+.Lraw_code_entities_37669_0:
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r2, sp, #0x14
+    str r2, [sp]
+    str r0, [sp, #4]
+    adds r0, r3, #0
+    mov r2, r8
+    mov r3, sb
     bl SelectApproachFacing
-    .byte 0x02, 0x1C, 0x30, 0x1C, 0x02, 0x21
+    adds r2, r0, #0
+    adds r0, r6, #0
+    movs r1, #2
     bl func_08022048
-    .byte 0x1E, 0x20
+    movs r0, #0x1e
     bl RandomBelow
-    .byte 0x42, 0x1C, 0x43, 0x46, 0xA3, 0x80, 0x4F, 0x46, 0xE7, 0x80
-    .byte 0x25, 0x80, 0x62, 0x80, 0x88, 0xE0, 0x0B, 0x4A, 0x2B, 0xA9, 0x08, 0x68, 0x10, 0x40, 0xB4, 0x22
-    .byte 0x10, 0x43, 0x09, 0x4A, 0x10, 0x40, 0x08, 0x60, 0x2F, 0x98
+    adds r2, r0, #1
+    mov r3, r8
+    strh r3, [r4, #4]
+    mov r7, sb
+    strh r7, [r4, #6]
+.Lraw_code_entities_37677_0:
+    strh r5, [r4]
+    strh r2, [r4, #2]
+    b .Lraw_code_entities_37707_0
+.Lraw_code_entities_37677_6:
+    ldr r2, .Lraw_code_entities_37684_2
+    add r1, sp, #0xac
+    ldr r0, [r1]
+    ands r0, r2
+    movs r2, #0xb4
+    orrs r0, r2
+    ldr r2, .Lraw_code_entities_37684_6
+    ands r0, r2
+    str r0, [r1]
+    ldr r0, [sp, #0xbc]
     bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
-    .byte 0x30, 0x1C
+.Lraw_code_entities_37680_0:
+    adds r0, r6, #0
     bl func_080220D4
-    .byte 0x01, 0x1C, 0x30, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x30, 0x1C
+    adds r1, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
     bl func_08022048
-    .byte 0x71, 0xE0, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0x2F, 0x98, 0x24, 0x30
-    .byte 0x81, 0x46, 0x33, 0x1C, 0x20, 0x33, 0x1C, 0x78, 0x0A, 0x22, 0xB1, 0x5E, 0x8C, 0x46, 0x0E, 0x27
-    .byte 0xF5, 0x5F, 0x2C, 0xAA, 0x78, 0x20, 0xD0, 0x21, 0x10, 0x80, 0x51, 0x80, 0x2D, 0xA8, 0xBC, 0x21
-    .byte 0x89, 0x00, 0x88, 0x46, 0x84, 0x21, 0x47, 0x46, 0x07, 0x80, 0x41, 0x80, 0x9A, 0x46, 0x01, 0x1C
-    .byte 0x30, 0x98, 0x09, 0x28, 0x12, 0xD1, 0x00, 0x2C, 0x10, 0xD1, 0x02, 0x23, 0xD1, 0x5E, 0x28, 0x1C
-    .byte 0x08, 0x38, 0x08, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x07, 0x28, 0x28, 0xDC, 0x30, 0x1C
-    .byte 0x02, 0x21, 0x42, 0x46, 0x94, 0x23
+    b .Lraw_code_entities_37707_0
+.Lraw_code_entities_37684_2: .word 0xFFFF0000
+.Lraw_code_entities_37684_6: .word 0xFF00FFFF
+.Lraw_code_entities_37684_10:
+    ldr r0, [sp, #0xbc]
+    adds r0, #0x24
+    mov sb, r0
+    adds r3, r6, #0
+    adds r3, #0x20
+    ldrb r4, [r3]
+    movs r2, #0xa
+    ldrsh r1, [r6, r2]
+    mov ip, r1
+    movs r7, #0xe
+    ldrsh r5, [r6, r7]
+    add r2, sp, #0xb0
+    movs r0, #0x78
+    movs r1, #0xd0
+    strh r0, [r2]
+    strh r1, [r2, #2]
+    add r0, sp, #0xb4
+    movs r1, #0xbc
+    lsls r1, r1, #2
+    mov r8, r1
+    movs r1, #0x84
+    mov r7, r8
+    strh r7, [r0]
+    strh r1, [r0, #2]
+    mov sl, r3
+    adds r1, r0, #0
+    ldr r0, [sp, #0xc0]
+    cmp r0, #9
+    bne .Lraw_code_entities_37692_2
+    cmp r4, #0
+    bne .Lraw_code_entities_37692_2
+    movs r3, #2
+    ldrsh r1, [r2, r3]
+    adds r0, r5, #0
+    subs r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lraw_code_entities_37689_10
+    rsbs r0, r0, #0
+.Lraw_code_entities_37689_10:
+    cmp r0, #7
+    bgt .Lraw_code_entities_37698_0
+    adds r0, r6, #0
+    movs r1, #2
+    mov r2, r8
+    movs r3, #0x94
     bl SetLocation__7AEntityUiii
-    .byte 0x21, 0xE0, 0x30, 0x9F, 0x02, 0x2F
-    .byte 0x1E, 0xD1, 0x01, 0x2C, 0x1C, 0xD1, 0x00, 0x23, 0xC8, 0x5E, 0x64, 0x46, 0x00, 0x1B, 0x00, 0x28
-    .byte 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x13, 0xDC, 0x02, 0x27, 0xC9, 0x5F, 0x28, 0x1C, 0x08, 0x30
-    .byte 0x08, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x07, 0x28, 0x09, 0xDC, 0x00, 0x20, 0x12, 0x5E
-    .byte 0x2C, 0xA8, 0x02, 0x21, 0x43, 0x5E, 0x20, 0x3B, 0x30, 0x1C, 0x09, 0x21
+    b .Lraw_code_entities_37698_0
+.Lraw_code_entities_37692_2:
+    ldr r7, [sp, #0xc0]
+    cmp r7, #2
+    bne .Lraw_code_entities_37698_0
+    cmp r4, #1
+    bne .Lraw_code_entities_37698_0
+    movs r3, #0
+    ldrsh r0, [r1, r3]
+    mov r4, ip
+    subs r0, r0, r4
+    cmp r0, #0
+    bge .Lraw_code_entities_37694_4
+    rsbs r0, r0, #0
+.Lraw_code_entities_37694_4:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_37698_0
+    movs r7, #2
+    ldrsh r1, [r1, r7]
+    adds r0, r5, #0
+    adds r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lraw_code_entities_37695_8
+    rsbs r0, r0, #0
+.Lraw_code_entities_37695_8:
+    cmp r0, #7
+    bgt .Lraw_code_entities_37698_0
+    movs r0, #0
+    ldrsh r2, [r2, r0]
+    add r0, sp, #0xb0
+    movs r1, #2
+    ldrsh r3, [r0, r1]
+    subs r3, #0x20
+    adds r0, r6, #0
+    movs r1, #9
     bl SetLocation__7AEntityUiii
-    .byte 0x4A, 0x46, 0x10, 0x88, 0x00, 0x28, 0x02, 0xD0, 0x01, 0x38, 0x10, 0x80, 0x14, 0xE0, 0x13, 0x4A
-    .byte 0x2E, 0xA9, 0x08, 0x68, 0x10, 0x40, 0xB4, 0x22, 0x10, 0x43, 0x11, 0x4A, 0x10, 0x40, 0x08, 0x60
-    .byte 0x2F, 0x98
+.Lraw_code_entities_37698_0:
+    mov r2, sb
+    ldrh r0, [r2]
+    cmp r0, #0
+    beq .Lraw_code_entities_37698_14
+    subs r0, #1
+    strh r0, [r2]
+    b .Lraw_code_entities_37707_0
+.Lraw_code_entities_37698_14:
+    ldr r2, .Lraw_code_entities_37711_12
+    add r1, sp, #0xb8
+    ldr r0, [r1]
+    ands r0, r2
+    movs r2, #0xb4
+    orrs r0, r2
+    ldr r2, .Lraw_code_entities_37712_0
+    ands r0, r2
+    str r0, [r1]
+    ldr r0, [sp, #0xbc]
     bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
-    .byte 0x30, 0x1C
+    adds r0, r6, #0
     bl func_080220D4
-    .byte 0x01, 0x1C, 0x53, 0x46
-    .byte 0x1A, 0x78, 0x30, 0x1C
+    adds r1, r0, #0
+    mov r3, sl
+    ldrb r2, [r3]
+    adds r0, r6, #0
     bl func_08022048
-    .byte 0x35, 0x9C, 0x20, 0x78, 0x05, 0xA9, 0x00, 0x28
-    .byte 0x00, 0xD0, 0x00, 0x21, 0x30, 0x1C
+.Lraw_code_entities_37707_0:
+    ldr r4, [sp, #0xd4]
+    ldrb r0, [r4]
+    add r1, sp, #0x14
+    cmp r0, #0
+    beq .Lraw_code_entities_37708_4
+    movs r1, #0
+.Lraw_code_entities_37708_4:
+    adds r0, r6, #0
     bl ApplyMovement__12AActorEntityP19ActorMovementBounds
-    .byte 0x31, 0x1C, 0x30, 0x31, 0x00, 0x20
-    .byte 0x08, 0x70, 0xB0, 0x8C, 0x00, 0x28, 0x05, 0xD0, 0x01, 0x38, 0x04, 0xE0, 0x00, 0x00, 0xFF, 0xFF
-    .byte 0xFF, 0xFF, 0x00, 0xFF, 0xF0, 0x8C, 0xB0, 0x84, 0x33, 0x69, 0x00, 0x2B, 0x04, 0xD0, 0x58, 0x68
-    .byte 0xC1, 0x68, 0x18, 0x1C
+.Lraw_code_entities_37710_0:
+    adds r1, r6, #0
+    adds r1, #0x30
+    movs r0, #0
+    strb r0, [r1]
+    ldrh r0, [r6, #0x24]
+    cmp r0, #0
+    beq .Lraw_code_entities_37712_4
+    subs r0, #1
+    b .Lraw_code_entities_37712_6
+.Lraw_code_entities_37711_12: .word 0xFFFF0000
+.Lraw_code_entities_37712_0: .word 0xFF00FFFF
+.Lraw_code_entities_37712_4:
+    ldrh r0, [r6, #0x26]
+.Lraw_code_entities_37712_6:
+    strh r0, [r6, #0x24]
+    ldr r3, [r6, #0x10]
+    cmp r3, #0
+    beq .Lraw_code_entities_37715_0
+    ldr r0, [r3, #4]
+    ldr r1, [r0, #0xc]
+    adds r0, r3, #0
     bl _call_via_r1
-    .byte 0x36, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46
-    .byte 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
+.Lraw_code_entities_37715_0:
+    add sp, #0xd8
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     .global func_08021EA8
     .thumb_func
 func_08021EA8:
@@ -38069,10 +39507,8 @@ func_08022100:
     pop {r0}
     bx r0
     .align 2, 0
-.L0802214C:
-    .word 0xFFFF0000
-.L08022150:
-    .word 0xFF00FFFF
+.L0802214C: .word 0xFFFF0000
+.L08022150: .word 0xFF00FFFF
     .global func_08022154
     .thumb_func
 func_08022154:
@@ -38114,19 +39550,45 @@ func_08022164:
     .global func_0802219C
     .thumb_func
 func_0802219C:
-    .byte 0x30, 0xB5, 0x81, 0xB0
-    .byte 0x04, 0x1C, 0x3B, 0x2A, 0x1E, 0xD9, 0x25, 0x1C, 0x20, 0x35, 0x28, 0x78, 0x88, 0x42, 0x02, 0xD0
-    .byte 0x20, 0x1C
+    push {r4, r5, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    cmp r2, #0x3b
+    bls .Lraw_code_entities_38129_0
+    adds r5, r4, #0
+    adds r5, #0x20
+    ldrb r0, [r5]
+    cmp r0, r1
+    beq .Lraw_code_entities_38121_0
+    adds r0, r4, #0
     bl SetAnimFacing__12AActorEntityUi
-    .byte 0x0D, 0x49, 0x00, 0x98, 0x08, 0x40, 0x3C, 0x21, 0x08, 0x43
-    .byte 0x00, 0x90, 0x60, 0x6B, 0x69, 0x46
+.Lraw_code_entities_38121_0:
+    ldr r1, .Lraw_code_entities_38129_8
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0x3c
+    orrs r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
     bl method_0809BC40__5Horse
-    .byte 0x20, 0x1C, 0x3D, 0x30, 0x00, 0x78
-    .byte 0x00, 0x28, 0x07, 0xD1, 0x20, 0x1C
+    adds r0, r4, #0
+    adds r0, #0x3d
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_entities_38129_0
+    adds r0, r4, #0
     bl func_080220D4
-    .byte 0x01, 0x1C, 0x2A, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    ldrb r2, [r5]
+    adds r0, r4, #0
     bl func_08022048
-    .byte 0x01, 0xB0, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF
+.Lraw_code_entities_38129_0:
+    add sp, #4
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+.Lraw_code_entities_38129_8: .word 0xFFFF0000
 
     thumb_func_start func_080221F0
 func_080221F0: @ 0x080221F0
@@ -38313,19 +39775,51 @@ func_08022334: @ 0x08022334
     .global func_08022348
     .thumb_func
 func_08022348:
-    .byte 0x70, 0xB5, 0x04, 0x1C, 0x8C, 0x20
+    push {r4, r5, r6, lr}
+    adds r4, r0, #0
+    movs r0, #0x8c
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x60, 0x6B
+    adds r5, r0, #0
+    ldr r0, [r4, #0x34]
     bl GetGrowthStage__C5Horse
-    .byte 0x02, 0x1C, 0x28, 0x1C, 0x21, 0x1C
+    adds r2, r0, #0
+    adds r0, r5, #0
+    adds r1, r4, #0
     bl func_080222A8
-    .byte 0x05, 0x1C, 0x2E, 0x1C, 0x3C, 0x34, 0x20, 0x78, 0x04, 0x28, 0x16, 0xD1
-    .byte 0x28, 0x1C, 0x70, 0x30, 0x08, 0x21
+    adds r5, r0, #0
+    adds r6, r5, #0
+    adds r4, #0x3c
+    ldrb r0, [r4]
+    cmp r0, #4
+    bne .Lraw_code_entities_38327_14
+    adds r0, r5, #0
+    adds r0, #0x70
+    movs r1, #8
     bl ResolveIndexedResourceHandle
-    .byte 0x28, 0x1C, 0x84, 0x30, 0x00, 0x22
-    .byte 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x02, 0x70, 0x01, 0x30, 0x01, 0x70, 0x2A, 0x1C, 0x8A, 0x32
-    .byte 0x02, 0x23, 0x11, 0x78, 0x04, 0x20, 0x40, 0x42, 0x08, 0x40, 0x18, 0x43, 0x10, 0x70, 0x30, 0x1C
-    .byte 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+    adds r0, r5, #0
+    adds r0, #0x84
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r2, r5, #0
+    adds r2, #0x8a
+    movs r3, #2
+    ldrb r1, [r2]
+    movs r0, #4
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r3
+    strb r0, [r2]
+.Lraw_code_entities_38327_14:
+    adds r0, r6, #0
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
 
     thumb_func_start InitWorldChickenEntity
 InitWorldChickenEntity: @ 0x080223A8
@@ -38365,54 +39859,127 @@ InitWorldChickenEntity: @ 0x080223A8
     .global func_080223F0
     .thumb_func
 func_080223F0:
-    .byte 0x70, 0xB5, 0x82, 0xB0, 0x05, 0x1C, 0x0E, 0x1C, 0x10, 0x48, 0x68, 0x61, 0x6C, 0x6B, 0x68, 0x46
-    .byte 0x29, 0x1C
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r5, r0, #0
+    adds r6, r1, #0
+    ldr r0, .Lraw_code_entities_38379_0
+    str r0, [r5, #0x14]
+    ldr r4, [r5, #0x34]
+    mov r0, sp
+    adds r1, r5, #0
     bl GetLocation__C12AActorEntity
-    .byte 0x20, 0x1C, 0x69, 0x46
+    adds r0, r4, #0
+    mov r1, sp
     bl SetLocation__5ActorRC13ActorLocation
-    .byte 0x0C, 0x48
-    .byte 0x68, 0x61, 0x29, 0x69, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
+    ldr r0, .Lraw_code_entities_38380_0
+    str r0, [r5, #0x14]
+    ldr r1, [r5, #0x10]
+    cmp r1, #0
+    beq .Lraw_code_entities_38376_0
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
     bl _call_via_r2
-    .byte 0x01, 0x20, 0x30, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
+.Lraw_code_entities_38376_0:
+    movs r0, #1
+    ands r0, r6
+    cmp r0, #0
+    beq .Lraw_code_entities_38378_0
+    adds r0, r5, #0
     bl __builtin_delete
-    .byte 0x02, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .4byte vtable_unk_080E639C
-    .4byte __vt_7AEntity
+.Lraw_code_entities_38378_0:
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_38379_0: .4byte vtable_unk_080E639C
+.Lraw_code_entities_38380_0: .4byte __vt_7AEntity
     .global func_08022444
     .thumb_func
 func_08022444:
-    .byte 0x10, 0xB5, 0x81, 0xB0, 0x04, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x0C, 0x4A
-    .byte 0x00, 0x98, 0x10, 0x40, 0x08, 0x43, 0x0B, 0x49, 0x08, 0x40, 0x00, 0x90, 0x60, 0x6B, 0x69, 0x46
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r2, .Lraw_code_entities_38393_0
+    ldr r0, [sp]
+    ands r0, r2
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_38393_4
+    ands r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
     bl method_0809BD20__7ChickenPC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_08022950
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30
-    .byte 0x02, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_080228B4
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+.Lraw_code_entities_38393_0: .word 0xFFFF0000
+.Lraw_code_entities_38393_4: .word 0xFF00FFFF
     .global func_08022488
     .thumb_func
 func_08022488:
-    .byte 0x10, 0xB5, 0x04, 0x1C
+    push {r4, lr}
+    adds r4, r0, #0
     bl func_080224E4
-    .byte 0x21, 0x1C, 0x30, 0x31, 0x00, 0x20, 0x08, 0x70, 0xA0, 0x8C, 0x00, 0x28, 0x01, 0xD0, 0x01, 0x38
-    .byte 0x00, 0xE0, 0xE0, 0x8C, 0xA0, 0x84, 0x22, 0x69, 0x00, 0x2A, 0x04, 0xD0, 0x50, 0x68, 0xC1, 0x68
-    .byte 0x10, 0x1C
+    adds r1, r4, #0
+    adds r1, #0x30
+    movs r0, #0
+    strb r0, [r1]
+    ldrh r0, [r4, #0x24]
+    cmp r0, #0
+    beq .Lraw_code_entities_38400_2
+    subs r0, #1
+    b .Lraw_code_entities_38400_4
+.Lraw_code_entities_38400_2:
+    ldrh r0, [r4, #0x26]
+.Lraw_code_entities_38400_4:
+    strh r0, [r4, #0x24]
+    ldr r2, [r4, #0x10]
+    cmp r2, #0
+    beq .Lraw_code_entities_38403_0
+    ldr r0, [r2, #4]
+    ldr r1, [r0, #0xc]
+    adds r0, r2, #0
     bl _call_via_r1
-    .byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47
+.Lraw_code_entities_38403_0:
+    pop {r4}
+    pop {r0}
+    bx r0
     .global func_080224BC
     .thumb_func
 func_080224BC:
-    .byte 0x30, 0xB5, 0x04, 0x1C
-    .byte 0x0D, 0x1C
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
     bl IsActorAxisMotionComplete
-    .byte 0x00, 0x06, 0x00, 0x28, 0x03, 0xD0, 0x20, 0x1C, 0x29, 0x1C
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_38412_0
+    adds r0, r4, #0
+    adds r1, r5, #0
     bl func_080224E4
-    .byte 0x20, 0x1C, 0x29, 0x1C
+.Lraw_code_entities_38412_0:
+    adds r0, r4, #0
+    adds r1, r5, #0
     bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext
-    .byte 0x30, 0xBC, 0x01, 0xBC
-    .byte 0x00, 0x47, 0x00, 0x00
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
 
     thumb_func_start func_080224E4
 func_080224E4: @ 0x080224E4
@@ -39043,21 +40610,37 @@ func_080229A4: @ 0x080229A4
     .global func_080229B8
     .thumb_func
 func_080229B8:
-    .byte 0x01, 0x20, 0x70, 0x47
+    movs r0, #1
+    bx lr
     .section .text.livestock_actor_chicken_after_sick_check, "ax", %progbits
     .align 2, 0
 
     .global func_080229C8
     .thumb_func
 func_080229C8:
-    .byte 0x30, 0xB5, 0x04, 0x1C, 0x00, 0x25, 0xA0, 0x88
-    .byte 0x02, 0x28, 0x0C, 0xD1, 0x60, 0x6B
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #0
+    ldrh r0, [r4, #4]
+    cmp r0, #2
+    bne .Lraw_code_entities_39059_8
+    ldr r0, [r4, #0x34]
     bl IsSick__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x06, 0xD1
-    .byte 0x60, 0x6B
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_39059_8
+    ldr r0, [r4, #0x34]
     bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x25, 0x28, 0x1C
-    .byte 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_39059_8
+    movs r5, #1
+.Lraw_code_entities_39059_8:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_080229F8
     .thumb_func
 func_080229F8:
@@ -39117,14 +40700,10 @@ func_080229F8:
     pop {r0}
     bx r0
     .align 2, 0
-.L08022A78:
-    .word 0xFFFF0000
-.L08022A7C:
-    .word 0xFF80FFFF
-.L08022A80:
-    .word 0xFF7FFFFF
-.L08022A84:
-    .word 0x00FFFFFF
+.L08022A78: .word 0xFFFF0000
+.L08022A7C: .word 0xFF80FFFF
+.L08022A80: .word 0xFF7FFFFF
+.L08022A84: .word 0x00FFFFFF
     .section .text.livestock_actor_chicken_after_cure, "ax", %progbits
     .align 2, 0
 
@@ -39187,12 +40766,9 @@ func_08022AAC:
     pop {r4}
     pop {r0}
     bx r0
-.L08022B2C:
-    .word 0xFFFF0000
-.L08022B30:
-    .word 0xFF80FFFF
-.L08022B34:
-    .word 0x00FFFFFF
+.L08022B2C: .word 0xFFFF0000
+.L08022B30: .word 0xFF80FFFF
+.L08022B34: .word 0x00FFFFFF
     .global func_08022B38
     .thumb_func
 func_08022B38:
@@ -39237,30 +40813,84 @@ func_08022B5C: @ 0x08022B5C
     .global func_08022B70
     .thumb_func
 func_08022B70:
-    .byte 0xF0, 0xB5, 0x84, 0xB0, 0x07, 0x1C, 0x78, 0x6B
+    push {r4, r5, r6, r7, lr}
+    sub sp, #0x10
+    adds r7, r0, #0
+    ldr r0, [r7, #0x34]
     bl GetGrowthStage__C7Chicken
-    .byte 0x05, 0x1C, 0x8C, 0x20
+    adds r5, r0, #0
+    movs r0, #0x8c
     bl __builtin_new
-    .byte 0x06, 0x1C, 0x28, 0x1C
+    adds r6, r0, #0
+    adds r0, r5, #0
     bl func_08022B58
-    .byte 0x04, 0x1C, 0x28, 0x1C
+    adds r4, r0, #0
+    adds r0, r5, #0
     bl func_08022B5C
-    .byte 0x00, 0x94, 0x01, 0x90, 0x00, 0x25, 0x02, 0x95, 0x03, 0xA8, 0x05, 0x70
-    .byte 0x30, 0x1C, 0x39, 0x1C, 0x02, 0x22, 0x09, 0x23
+    str r4, [sp]
+    str r0, [sp, #4]
+    movs r5, #0
+    str r5, [sp, #8]
+    add r0, sp, #0xc
+    strb r5, [r0]
+    adds r0, r6, #0
+    adds r1, r7, #0
+    movs r2, #2
+    movs r3, #9
     bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
-    .byte 0x04, 0x1C, 0x78, 0x6B
+    adds r4, r0, #0
+    ldr r0, [r7, #0x34]
     bl GetGrowthStage__C7Chicken
-    .byte 0x00, 0x21, 0x00, 0x28, 0x00, 0xD0, 0x03, 0x21, 0x38, 0x1C, 0x38, 0x30
-    .byte 0x00, 0x78, 0x88, 0x42, 0x23, 0xD1, 0x38, 0x68, 0x01, 0x68, 0xA2, 0x22, 0x52, 0x00, 0x89, 0x18
-    .byte 0x09, 0x68
+    movs r1, #0
+    cmp r0, #0
+    beq .Lraw_code_entities_39253_8
+    movs r1, #3
+.Lraw_code_entities_39253_8:
+    adds r0, r7, #0
+    adds r0, #0x38
+    ldrb r0, [r0]
+    cmp r0, r1
+    bne .Lraw_code_entities_39262_14
+    ldr r0, [r7]
+    ldr r1, [r0]
+    movs r2, #0xa2
+    lsls r2, r2, #1
+    adds r1, r1, r2
+    ldr r1, [r1]
     bl _call_via_r1
-    .byte 0x80, 0x7A, 0xC0, 0x06, 0xC0, 0x0E, 0x06, 0x38, 0x0E, 0x28
-    .byte 0x15, 0xD9, 0x20, 0x1C, 0x70, 0x30, 0x08, 0x21
+    ldrb r0, [r0, #0xa]
+    lsls r0, r0, #0x1b
+    lsrs r0, r0, #0x1b
+    subs r0, #6
+    cmp r0, #0xe
+    bls .Lraw_code_entities_39262_14
+    adds r0, r4, #0
+    adds r0, #0x70
+    movs r1, #8
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C, 0x84, 0x30
-    .byte 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x05, 0x70, 0x01, 0x30, 0x01, 0x70, 0x23, 0x1C, 0x8A, 0x33
-    .byte 0x02, 0x22, 0x19, 0x78, 0x04, 0x20, 0x40, 0x42, 0x08, 0x40, 0x10, 0x43, 0x18, 0x70, 0x20, 0x1C
-    .byte 0x04, 0xB0, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
+    adds r0, r4, #0
+    adds r0, #0x84
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r5, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r3, r4, #0
+    adds r3, #0x8a
+    movs r2, #2
+    ldrb r1, [r3]
+    movs r0, #4
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r2
+    strb r0, [r3]
+.Lraw_code_entities_39262_14:
+    adds r0, r4, #0
+    add sp, #0x10
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
 
     thumb_func_start InitWorldCowEntity
 InitWorldCowEntity: @ 0x08022C18
@@ -39300,229 +40930,851 @@ InitWorldCowEntity: @ 0x08022C18
     .global func_08022C60
     .thumb_func
 func_08022C60:
-    .byte 0x70, 0xB5, 0x82, 0xB0, 0x05, 0x1C, 0x0E, 0x1C, 0x10, 0x48, 0x68, 0x61, 0x6C, 0x6B, 0x68, 0x46
-    .byte 0x29, 0x1C
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r5, r0, #0
+    adds r6, r1, #0
+    ldr r0, .Lraw_code_entities_39314_0
+    str r0, [r5, #0x14]
+    ldr r4, [r5, #0x34]
+    mov r0, sp
+    adds r1, r5, #0
     bl GetLocation__C12AActorEntity
-    .byte 0x20, 0x1C, 0x69, 0x46
+    adds r0, r4, #0
+    mov r1, sp
     bl SetLocation__5ActorRC13ActorLocation
-    .byte 0x0C, 0x48
-    .byte 0x68, 0x61, 0x29, 0x69, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
+    ldr r0, .Lraw_code_entities_39315_0
+    str r0, [r5, #0x14]
+    ldr r1, [r5, #0x10]
+    cmp r1, #0
+    beq .Lraw_code_entities_39311_0
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
     bl _call_via_r2
-    .byte 0x01, 0x20, 0x30, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
+.Lraw_code_entities_39311_0:
+    movs r0, #1
+    ands r0, r6
+    cmp r0, #0
+    beq .Lraw_code_entities_39313_0
+    adds r0, r5, #0
     bl __builtin_delete
-    .byte 0x02, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .4byte vtable_unk_080E6310
-    .4byte __vt_7AEntity
+.Lraw_code_entities_39313_0:
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_39314_0: .4byte vtable_unk_080E6310
+.Lraw_code_entities_39315_0: .4byte __vt_7AEntity
     .global func_08022CB4
     .thumb_func
 func_08022CB4:
-    .byte 0x10, 0xB5, 0x81, 0xB0, 0x04, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x0C, 0x4A
-    .byte 0x00, 0x98, 0x10, 0x40, 0x08, 0x43, 0x0B, 0x49, 0x08, 0x40, 0x00, 0x90, 0x60, 0x6B, 0x69, 0x46
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r2, .Lraw_code_entities_39328_0
+    ldr r0, [sp]
+    ands r0, r2
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_39328_4
+    ands r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
     bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_08023378
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30
-    .byte 0x02, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_08023308
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+.Lraw_code_entities_39328_0: .word 0xFFFF0000
+.Lraw_code_entities_39328_4: .word 0xFF00FFFF
     .global func_08022CF8
     .thumb_func
 func_08022CF8:
-    .byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46
-    .byte 0xE0, 0xB4, 0xA8, 0xB0, 0x80, 0x46, 0x07, 0x68, 0x40, 0x6B, 0x81, 0x46, 0x42, 0x46, 0x92, 0x88
-    .byte 0x24, 0x92, 0x02, 0x2A, 0x62, 0xD1, 0x08, 0x79, 0x00, 0x28, 0x5F, 0xD0, 0x48, 0x46
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0xa0
+    mov r8, r0
+    ldr r7, [r0]
+    ldr r0, [r0, #0x34]
+    mov sb, r0
+    mov r2, r8
+    ldrh r2, [r2, #4]
+    str r2, [sp, #0x90]
+    cmp r2, #2
+    bne .Lraw_code_entities_39367_0
+    ldrb r0, [r1, #4]
+    cmp r0, #0
+    beq .Lraw_code_entities_39367_0
+    mov r0, sb
     bl GetCurrentOutdoorMinutes__C9Livestock
-    .byte 0x05, 0x1C, 0x48, 0x46, 0x01, 0x21
+    adds r5, r0, #0
+    mov r0, sb
+    movs r1, #1
     bl AddOutdoorMinutes__9LivestockUi
-    .byte 0x48, 0x46
+    mov r0, sb
     bl GetCurrentOutdoorMinutes__C9Livestock
-    .byte 0x04, 0x1C, 0xB3, 0x2D, 0x15, 0xD8, 0xB3, 0x2C, 0x13, 0xD9, 0x38, 0x68, 0xA2, 0x23
-    .byte 0x5B, 0x00, 0xC0, 0x18, 0x01, 0x68, 0x38, 0x1C
+    adds r4, r0, #0
+    cmp r5, #0xb3
+    bhi .Lraw_code_entities_39348_0
+    cmp r4, #0xb3
+    bls .Lraw_code_entities_39348_0
+    ldr r0, [r7]
+    movs r3, #0xa2
+    lsls r3, r3, #1
+    adds r0, r0, r3
+    ldr r1, [r0]
+    adds r0, r7, #0
     bl _call_via_r1
-    .byte 0x00, 0x68, 0x00, 0x28
-    .byte 0x08, 0xD0, 0x48, 0x46
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Lraw_code_entities_39348_0
+    mov r0, sb
     bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x02, 0xD1, 0x48, 0x46
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_39348_0
+    mov r0, sb
     bl SetUnhappy__9Livestock
-    .byte 0xEF, 0x2D, 0x17, 0xD8, 0xEF, 0x2C, 0x15, 0xD9, 0x38, 0x68, 0x84, 0x26
-    .byte 0x76, 0x00, 0x80, 0x19, 0x41, 0x46, 0x0A, 0x23, 0xCA, 0x5E, 0x0E, 0x26, 0x8B, 0x5F, 0x12, 0xA9
-    .byte 0x0A, 0x80, 0x4B, 0x80, 0x02, 0x68, 0x38, 0x1C
+.Lraw_code_entities_39348_0:
+    cmp r5, #0xef
+    bhi .Lraw_code_entities_39355_0
+    cmp r4, #0xef
+    bls .Lraw_code_entities_39355_0
+    ldr r0, [r7]
+    movs r6, #0x84
+    lsls r6, r6, #1
+    adds r0, r0, r6
+    mov r1, r8
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r6, #0xe
+    ldrsh r3, [r1, r6]
+    add r1, sp, #0x48
+    strh r2, [r1]
+    strh r3, [r1, #2]
+    ldr r2, [r0]
+    adds r0, r7, #0
     bl _call_via_r2
-    .byte 0x00, 0x06, 0x00, 0x28
-    .byte 0x02, 0xD0, 0x48, 0x46
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_39355_0
+    mov r0, sb
     bl SetFed__10BarnAnimal
-    .byte 0x43, 0x48, 0x85, 0x42, 0x1E, 0xD8, 0x84, 0x42
-    .byte 0x1C, 0xD9, 0x38, 0x68, 0xA2, 0x21, 0x49, 0x00, 0x40, 0x18, 0x01, 0x68, 0x38, 0x1C
+.Lraw_code_entities_39355_0:
+    ldr r0, .Lraw_code_entities_39394_8
+    cmp r5, r0
+    bhi .Lraw_code_entities_39367_0
+    cmp r4, r0
+    bls .Lraw_code_entities_39367_0
+    ldr r0, [r7]
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    ldr r1, [r0]
+    adds r0, r7, #0
     bl _call_via_r1
-    .byte 0x00, 0x68, 0x00, 0x28, 0x11, 0xD1, 0x48, 0x46
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_entities_39367_0
+    mov r0, sb
     bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06
-    .byte 0x00, 0x28, 0x07, 0xD0, 0x64, 0x20
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_39365_0
+    movs r0, #0x64
     bl RandomBelow
-    .byte 0x1D, 0x28, 0x02, 0xD8, 0x48, 0x46
+    cmp r0, #0x1d
+    bhi .Lraw_code_entities_39365_0
+    mov r0, sb
     bl ResetUnhappy__9Livestock
-    .byte 0x48, 0x46, 0x01, 0x21
+.Lraw_code_entities_39365_0:
+    mov r0, sb
+    movs r1, #1
     bl AddAffection__6Animali
-    .byte 0x39, 0x68, 0x02, 0xA8
-    .byte 0x4B, 0x6B, 0x39, 0x1C, 0x24, 0x9A
+.Lraw_code_entities_39367_0:
+    ldr r1, [r7]
+    add r0, sp, #8
+    ldr r3, [r1, #0x34]
+    adds r1, r7, #0
+    ldr r2, [sp, #0x90]
     bl _call_via_r3
-    .byte 0x42, 0x46, 0x51, 0x69, 0x13, 0xA8
-    .byte 0xCA, 0x68, 0x41, 0x46
+    mov r2, r8
+    ldr r1, [r2, #0x14]
+    add r0, sp, #0x4c
+    ldr r2, [r1, #0xc]
+    mov r1, r8
     bl _call_via_r2
-    .byte 0x13, 0x98, 0x14, 0x99, 0x26, 0x90, 0x27, 0x91
-    .byte 0x05, 0xAC, 0x10, 0x21, 0x8A, 0x46, 0x00, 0x25, 0x11, 0x21, 0x05, 0x91, 0x11, 0x20, 0x40, 0x42
-    .byte 0x60, 0x60, 0xA0, 0x60, 0xE1, 0x60, 0x0A, 0xA9, 0x02, 0xA8, 0x4C, 0xC8, 0x4C, 0xC1, 0x26, 0x98
-    .byte 0x27, 0x99, 0x0D, 0x90, 0x0E, 0x91, 0x51, 0x46, 0xA1, 0x62, 0xE5, 0x62, 0x25, 0x63, 0x38, 0x68
-    .byte 0x02, 0x6C, 0x38, 0x1C, 0x00, 0x21
+    ldr r0, [sp, #0x4c]
+    ldr r1, [sp, #0x50]
+    str r0, [sp, #0x98]
+    str r1, [sp, #0x9c]
+    add r4, sp, #0x14
+    movs r1, #0x10
+    mov sl, r1
+    movs r5, #0
+    movs r1, #0x11
+    str r1, [sp, #0x14]
+    movs r0, #0x11
+    rsbs r0, r0, #0
+    str r0, [r4, #4]
+    str r0, [r4, #8]
+    str r1, [r4, #0xc]
+    add r1, sp, #0x28
+    add r0, sp, #8
+    ldm r0!, {r2, r3, r6}
+    stm r1!, {r2, r3, r6}
+    ldr r0, [sp, #0x98]
+    ldr r1, [sp, #0x9c]
+    str r0, [sp, #0x34]
+    str r1, [sp, #0x38]
+    mov r1, sl
+    str r1, [r4, #0x28]
+    str r5, [r4, #0x2c]
+    str r5, [r4, #0x30]
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0
     bl _call_via_r2
-    .byte 0x06, 0x1C, 0x38, 0x68, 0x02, 0x6C
-    .byte 0x38, 0x1C, 0x4A, 0x21
+    adds r6, r0, #0
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0x4a
     bl _call_via_r2
-    .byte 0x05, 0x1C, 0x00, 0x2E, 0x0F, 0xD0, 0xB0, 0x88
-    .byte 0x24, 0x9A, 0x90, 0x42, 0x0B, 0xD1, 0x71, 0x69, 0x15, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x31, 0x1C
+    adds r5, r0, #0
+    cmp r6, #0
+    beq .Lraw_code_entities_39387_0
+    ldrh r0, [r6, #4]
+    ldr r2, [sp, #0x90]
+    cmp r0, r2
+    bne .Lraw_code_entities_39387_0
+    ldr r1, [r6, #0x14]
+    add r4, sp, #0x54
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r6, #0
     bl _call_via_r2
-    .byte 0x05, 0xA8, 0x21, 0x1C, 0x00, 0x22
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
     bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
-    .byte 0x00, 0x2D
-    .byte 0x0F, 0xD0, 0xA8, 0x88, 0x24, 0x9B, 0x98, 0x42, 0x0B, 0xD1, 0x69, 0x69, 0x17, 0xAC, 0x20, 0x1C
-    .byte 0xCA, 0x68, 0x29, 0x1C
+.Lraw_code_entities_39387_0:
+    cmp r5, #0
+    beq .Lraw_code_entities_39393_0
+    ldrh r0, [r5, #4]
+    ldr r3, [sp, #0x90]
+    cmp r0, r3
+    bne .Lraw_code_entities_39393_0
+    ldr r1, [r5, #0x14]
+    add r4, sp, #0x5c
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r5, #0
     bl _call_via_r2
-    .byte 0x05, 0xA8, 0x21, 0x1C, 0x00, 0x22
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
     bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
-    .byte 0x49, 0x46, 0x88, 0x6A, 0x01, 0x28, 0x00, 0xD1, 0xB7, 0xE0, 0x01, 0x28, 0x05, 0xDC
-    .byte 0x00, 0x28, 0x0A, 0xD0, 0x08, 0xE2, 0x00, 0x00, 0x2B, 0x01, 0x00, 0x00, 0x02, 0x28, 0x00, 0xD1
-    .byte 0x16, 0xE1, 0x03, 0x28, 0x00, 0xD1, 0x85, 0xE1, 0xFE, 0xE1, 0x2C, 0x22, 0x4A, 0x44, 0x92, 0x46
-    .byte 0x4B, 0x46, 0x9C, 0x8D, 0x00, 0x2C, 0x42, 0xD0, 0x46, 0x46, 0xB5, 0x69, 0xF6, 0x69, 0x00, 0x27
-    .byte 0x00, 0x2D, 0x0B, 0xDA, 0x07, 0x99, 0x0F, 0x98, 0xC1, 0x42, 0x03, 0xDA, 0x05, 0xA8
+.Lraw_code_entities_39393_0:
+    mov r1, sb
+    ldr r0, [r1, #0x28]
+    cmp r0, #1
+    bne .Lraw_code_entities_39393_10
+    b .Lraw_code_entities_39440_10
+.Lraw_code_entities_39393_10:
+    cmp r0, #1
+    bgt .Lraw_code_entities_39394_12
+    cmp r0, #0
+    beq .Lraw_code_entities_39395_10
+    b .Lraw_code_entities_39517_0
+    .align 2, 0
+.Lraw_code_entities_39394_8: .word 0x0000012B
+.Lraw_code_entities_39394_12:
+    cmp r0, #2
+    bne .Lraw_code_entities_39395_2
+    b .Lraw_code_entities_39460_0
+.Lraw_code_entities_39395_2:
+    cmp r0, #3
+    bne .Lraw_code_entities_39395_8
+    b .Lraw_code_entities_39485_4
+.Lraw_code_entities_39395_8:
+    b .Lraw_code_entities_39517_0
+.Lraw_code_entities_39395_10:
+    movs r2, #0x2c
+    add r2, sb
+    mov sl, r2
+    mov r3, sb
+    ldrh r4, [r3, #0x2c]
+    cmp r4, #0
+    beq .Lraw_code_entities_39411_14
+    mov r6, r8
+    ldr r5, [r6, #0x18]
+    ldr r6, [r6, #0x1c]
+    movs r7, #0
+    cmp r5, #0
+    bge .Lraw_code_entities_39399_10
+    ldr r1, [sp, #0x1c]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lraw_code_entities_39399_2
+    add r0, sp, #0x14
     bl RefreshLeft__19ActorMovementBounds
-    .byte 0x07, 0x99, 0x10, 0x20, 0x40, 0x42, 0x81, 0x42, 0x29, 0xDC, 0x00, 0x2D, 0x0B, 0xDD
-    .byte 0x08, 0x99, 0x0F, 0x98, 0x81, 0x42, 0x04, 0xDD, 0x05, 0xA8
+    ldr r1, [sp, #0x1c]
+.Lraw_code_entities_39399_2:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lraw_code_entities_39411_0
+.Lraw_code_entities_39399_10:
+    cmp r5, #0
+    ble .Lraw_code_entities_39403_8
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lraw_code_entities_39403_2
+    add r0, sp, #0x14
     bl RefreshRight__19ActorMovementBounds
-    .byte 0x08, 0x98
-    .byte 0x00, 0xE0, 0x08, 0x1C, 0x0F, 0x28, 0x1B, 0xDD, 0x00, 0x2E, 0x0B, 0xDA, 0x06, 0x99, 0x0F, 0x98
-    .byte 0xC1, 0x42, 0x03, 0xDA, 0x05, 0xA8
+    ldr r0, [sp, #0x20]
+    b .Lraw_code_entities_39403_4
+.Lraw_code_entities_39403_2:
+    adds r0, r1, #0
+.Lraw_code_entities_39403_4:
+    cmp r0, #0xf
+    ble .Lraw_code_entities_39411_0
+.Lraw_code_entities_39403_8:
+    cmp r6, #0
+    bge .Lraw_code_entities_39407_4
+    ldr r1, [sp, #0x18]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lraw_code_entities_39406_2
+    add r0, sp, #0x14
     bl RefreshUp__19ActorMovementBounds
-    .byte 0x06, 0x99, 0x10, 0x20, 0x40, 0x42
-    .byte 0x81, 0x42, 0x0D, 0xDC, 0x00, 0x2E, 0x0C, 0xDD, 0x05, 0x99, 0x0F, 0x98, 0x81, 0x42, 0x04, 0xDD
-    .byte 0x05, 0xA8
+    ldr r1, [sp, #0x18]
+.Lraw_code_entities_39406_2:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lraw_code_entities_39411_0
+.Lraw_code_entities_39407_4:
+    cmp r6, #0
+    ble .Lraw_code_entities_39411_2
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lraw_code_entities_39410_4
+    add r0, sp, #0x14
     bl RefreshDown__19ActorMovementBounds
-    .byte 0x05, 0x98, 0x00, 0xE0, 0x08, 0x1C, 0x0F, 0x28, 0x00, 0xDC
-    .byte 0x01, 0x27, 0x00, 0x2F, 0x01, 0xD0, 0x00, 0x24, 0x5D, 0xE0, 0x01, 0x3C, 0x5B, 0xE0, 0x40, 0x46
+    ldr r0, [sp, #0x14]
+    b .Lraw_code_entities_39410_6
+.Lraw_code_entities_39410_4:
+    adds r0, r1, #0
+.Lraw_code_entities_39410_6:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_39411_2
+.Lraw_code_entities_39411_0:
+    movs r7, #1
+.Lraw_code_entities_39411_2:
+    cmp r7, #0
+    beq .Lraw_code_entities_39411_10
+    movs r4, #0
+    b .Lraw_code_entities_39440_4
+.Lraw_code_entities_39411_10:
+    subs r4, #1
+    b .Lraw_code_entities_39440_4
+.Lraw_code_entities_39411_14:
+    mov r0, r8
     bl IsAnimationComplete__C12AActorEntity
-    .byte 0x00, 0x06, 0x00, 0x28, 0x55, 0xD0, 0x38, 0x68, 0xA2, 0x21, 0x49, 0x00
-    .byte 0x40, 0x18, 0x01, 0x68, 0x38, 0x1C
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_39440_4
+    ldr r0, [r7]
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    ldr r1, [r0]
+    adds r0, r7, #0
     bl _call_via_r1
-    .byte 0x80, 0x7A, 0xC0, 0x06, 0xC0, 0x0E
-    .byte 0x00, 0x21, 0x06, 0x38, 0x0E, 0x28, 0x00, 0xD9, 0x01, 0x21, 0xC8, 0x00, 0x40, 0x1A, 0x40, 0x01
-    .byte 0x09, 0x49, 0x45, 0x18, 0x48, 0x46
+    ldrb r0, [r0, #0xa]
+    lsls r0, r0, #0x1b
+    lsrs r0, r0, #0x1b
+    movs r1, #0
+    subs r0, #6
+    cmp r0, #0xe
+    bls .Lraw_code_entities_39417_10
+    movs r1, #1
+.Lraw_code_entities_39417_10:
+    lsls r0, r1, #3
+    subs r0, r0, r1
+    lsls r0, r0, #5
+    ldr r1, .Lraw_code_entities_39425_0
+    adds r5, r0, r1
+    mov r0, sb
     bl IsSick__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x0E, 0xC1, 0x00
-    .byte 0x09, 0x1A, 0x8C, 0x00, 0x48, 0x46
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r4, r1, #2
+    mov r0, sb
     bl IsPregnant__C10BarnAnimal
-    .byte 0x00, 0x06, 0x00, 0x28, 0x05, 0xD0
-    .byte 0x20, 0x1C, 0xA8, 0x30, 0x2D, 0x18, 0x09, 0xE0
-    .4byte gUnk_080F0A7C
-    .byte 0x48, 0x46
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_39426_0
+    adds r0, r4, #0
+    adds r0, #0xa8
+    adds r5, r5, r0
+    b .Lraw_code_entities_39428_10
+.Lraw_code_entities_39425_0: .4byte gUnk_080F0A7C
+.Lraw_code_entities_39426_0:
+    mov r0, sb
     bl GetGrowthStage__C3Cow
-    .byte 0xC1, 0x00, 0x09, 0x1A, 0xC9, 0x00, 0x69, 0x18, 0x0D, 0x19, 0x28, 0x1C, 0x07, 0x21
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r1, r1, #3
+    adds r1, r5, r1
+    adds r5, r1, r4
+.Lraw_code_entities_39428_10:
+    adds r0, r5, #0
+    movs r1, #7
     bl SelectActorBehaviorTimingIndex
-    .byte 0x06, 0x1C, 0xB4, 0x00, 0x2C, 0x19, 0x3C, 0x25, 0xA0, 0x78, 0x68, 0x43
+    adds r6, r0, #0
+    lsls r4, r6, #2
+    adds r4, r5, r4
+    movs r5, #0x3c
+    ldrb r0, [r4, #2]
+    muls r0, r5, r0
     bl RandomBelow
-    .byte 0x61, 0x78, 0x69, 0x43, 0x0C, 0x18, 0x40, 0x46, 0x20, 0x30, 0x05, 0x78
-    .byte 0x04, 0x20
+    ldrb r1, [r4, #1]
+    muls r1, r5, r1
+    adds r4, r1, r0
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r5, [r0]
+    movs r0, #4
     bl RandomBelow
-    .byte 0x01, 0x1C, 0x00, 0x29, 0x05, 0xD0, 0x03, 0x29, 0x03, 0xD0
-    .byte 0x28, 0x1C
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Lraw_code_entities_39438_2
+    cmp r1, #3
+    beq .Lraw_code_entities_39438_2
+    adds r0, r5, #0
     bl GetRelativeFacing
-    .byte 0x05, 0x1C, 0x40, 0x46, 0x31, 0x1C, 0x2A, 0x1C
+    adds r5, r0, #0
+.Lraw_code_entities_39438_2:
+    mov r0, r8
+    adds r1, r6, #0
+    adds r2, r5, #0
     bl func_08023308
-    .byte 0x52, 0x46, 0x96, 0x70, 0x53, 0x46, 0x1C, 0x80, 0x55, 0xE1, 0x48, 0x46, 0x2C, 0x30
-    .byte 0x25, 0x90, 0x49, 0x46, 0x89, 0x8D, 0x8A, 0x46, 0x00, 0x29, 0x02, 0xD0, 0x01, 0x22, 0x52, 0x42
-    .byte 0x92, 0x44, 0x4B, 0x46, 0xD9, 0x6A, 0x48, 0x02, 0x45, 0x0E, 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D
-    .byte 0x25, 0x98, 0xC4, 0x78, 0x00, 0x2C, 0x00, 0xD0, 0x01, 0x3C, 0x52, 0x46, 0x00, 0x2A, 0x40, 0xD0
-    .byte 0x08, 0x02, 0x00, 0x28, 0x07, 0xDA, 0x38, 0x68, 0x02, 0x6C, 0x38, 0x1C, 0x2D, 0x21
+    mov r2, sl
+    strb r6, [r2, #2]
+.Lraw_code_entities_39440_4:
+    mov r3, sl
+    strh r4, [r3]
+    b .Lraw_code_entities_39517_0
+.Lraw_code_entities_39440_10:
+    mov r0, sb
+    adds r0, #0x2c
+    str r0, [sp, #0x94]
+    mov r1, sb
+    ldrh r1, [r1, #0x2c]
+    mov sl, r1
+    cmp r1, #0
+    beq .Lraw_code_entities_39442_2
+    movs r2, #1
+    rsbs r2, r2, #0
+    add sl, r2
+.Lraw_code_entities_39442_2:
+    mov r3, sb
+    ldr r1, [r3, #0x2c]
+    lsls r0, r1, #9
+    lsrs r5, r0, #0x19
+    cmp r5, #0
+    beq .Lraw_code_entities_39443_0
+    subs r5, #1
+.Lraw_code_entities_39443_0:
+    ldr r0, [sp, #0x94]
+    ldrb r4, [r0, #3]
+    cmp r4, #0
+    beq .Lraw_code_entities_39443_10
+    subs r4, #1
+.Lraw_code_entities_39443_10:
+    mov r2, sl
+    cmp r2, #0
+    beq .Lraw_code_entities_39458_2
+    lsls r0, r1, #8
+    cmp r0, #0
+    bge .Lraw_code_entities_39446_4
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0x2d
     bl _call_via_r2
-    .byte 0x01, 0x1C, 0x00, 0xE0, 0x31, 0x1C, 0x00, 0x29, 0x32, 0xD0, 0x88, 0x88, 0x24, 0x9B
-    .byte 0x98, 0x42, 0x2E, 0xD1, 0x00, 0x2C, 0x1F, 0xD1, 0x47, 0x46, 0x0A, 0x20, 0x3E, 0x5E, 0x0E, 0x22
-    .byte 0xBC, 0x5E, 0x0A, 0x23, 0xCA, 0x5E, 0x0E, 0x27, 0xCB, 0x5F, 0x01, 0x27, 0x00, 0x2D, 0x00, 0xD0
-    .byte 0x06, 0x27, 0x40, 0x46, 0x20, 0x30, 0x00, 0x78, 0x05, 0xA9, 0x00, 0x91, 0x01, 0x90, 0x30, 0x1C
-    .byte 0x21, 0x1C
+    adds r1, r0, #0
+    b .Lraw_code_entities_39446_6
+.Lraw_code_entities_39446_4:
+    adds r1, r6, #0
+.Lraw_code_entities_39446_6:
+    cmp r1, #0
+    beq .Lraw_code_entities_39458_2
+    ldrh r0, [r1, #4]
+    ldr r3, [sp, #0x90]
+    cmp r0, r3
+    bne .Lraw_code_entities_39458_2
+    cmp r4, #0
+    bne .Lraw_code_entities_39456_2
+    mov r7, r8
+    movs r0, #0xa
+    ldrsh r6, [r7, r0]
+    movs r2, #0xe
+    ldrsh r4, [r7, r2]
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r7, #0xe
+    ldrsh r3, [r1, r7]
+    movs r7, #1
+    cmp r5, #0
+    beq .Lraw_code_entities_39449_2
+    movs r7, #6
+.Lraw_code_entities_39449_2:
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r1, sp, #0x14
+    str r1, [sp]
+    str r0, [sp, #4]
+    adds r0, r6, #0
+    adds r1, r4, #0
     bl SelectRetreatFacing
-    .byte 0x02, 0x1C, 0x40, 0x46, 0x39, 0x1C
+    adds r2, r0, #0
+    mov r0, r8
+    adds r1, r7, #0
     bl func_08023308
-    .byte 0x1E, 0x20
+    movs r0, #0x1e
     bl RandomBelow
-    .byte 0x44, 0x1C, 0x53, 0x46, 0x25, 0x9A, 0x13, 0x80, 0x7F, 0x20
-    .byte 0x05, 0x40, 0x91, 0x78, 0x80, 0x20, 0x40, 0x42, 0x08, 0x40, 0x28, 0x43, 0x90, 0x70, 0xD4, 0x70
-    .byte 0xFA, 0xE0, 0x05, 0x49, 0x19, 0x98, 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43, 0x03, 0x49, 0x08, 0x40
-    .byte 0x19, 0x90, 0x19, 0xA9, 0x63, 0xE0, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
-    .byte 0x4C, 0x46, 0x2C, 0x34, 0x4F, 0x46, 0xBD, 0x8D, 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D, 0x62, 0x88
-    .byte 0x00, 0x2A, 0x00, 0xD0, 0x01, 0x3A, 0x00, 0x2D, 0x48, 0xD0, 0x00, 0x2E, 0x46, 0xD0, 0xB0, 0x88
-    .byte 0x24, 0x99, 0x88, 0x42, 0x42, 0xD1, 0x47, 0x46, 0x0A, 0x20, 0x3B, 0x5E, 0x0E, 0x20, 0x39, 0x5E
-    .byte 0x0A, 0x20, 0x37, 0x5E, 0xBA, 0x46, 0x0E, 0x27, 0xF6, 0x5F, 0x57, 0x46, 0xF8, 0x1A, 0x00, 0x28
-    .byte 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x05, 0xDC, 0x70, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42
-    .byte 0x0F, 0x28, 0x2B, 0xDD, 0x00, 0x2A, 0x0F, 0xD0, 0x04, 0x27, 0xE0, 0x5F, 0xC0, 0x1A, 0x00, 0x28
-    .byte 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x1E, 0xDC, 0x06, 0x27, 0xE0, 0x5F, 0x40, 0x1A, 0x00, 0x28
-    .byte 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x16, 0xDC, 0x40, 0x46, 0x20, 0x30, 0x00, 0x78, 0x05, 0xAA
-    .byte 0x00, 0x92, 0x01, 0x90, 0x18, 0x1C, 0x52, 0x46, 0x33, 0x1C
+    adds r4, r0, #1
+.Lraw_code_entities_39456_2:
+    mov r3, sl
+    ldr r2, [sp, #0x94]
+    strh r3, [r2]
+    movs r0, #0x7f
+    ands r5, r0
+    ldrb r1, [r2, #2]
+    movs r0, #0x80
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r5
+    strb r0, [r2, #2]
+    strb r4, [r2, #3]
+    b .Lraw_code_entities_39517_0
+.Lraw_code_entities_39458_2:
+    ldr r1, .Lraw_code_entities_39459_8
+    ldr r0, [sp, #0x64]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_39459_12
+    ands r0, r1
+    str r0, [sp, #0x64]
+    add r1, sp, #0x64
+    b .Lraw_code_entities_39477_14
+    .align 2, 0
+.Lraw_code_entities_39459_8: .word 0xFFFF0000
+.Lraw_code_entities_39459_12: .word 0xFF00FFFF
+.Lraw_code_entities_39460_0:
+    mov r4, sb
+    adds r4, #0x2c
+    mov r7, sb
+    ldrh r5, [r7, #0x2c]
+    cmp r5, #0
+    beq .Lraw_code_entities_39460_14
+    subs r5, #1
+.Lraw_code_entities_39460_14:
+    ldrh r2, [r4, #2]
+    cmp r2, #0
+    beq .Lraw_code_entities_39461_6
+    subs r2, #1
+.Lraw_code_entities_39461_6:
+    cmp r5, #0
+    beq .Lraw_code_entities_39476_12
+    cmp r6, #0
+    beq .Lraw_code_entities_39476_12
+    ldrh r0, [r6, #4]
+    ldr r1, [sp, #0x90]
+    cmp r0, r1
+    bne .Lraw_code_entities_39476_12
+    mov r7, r8
+    movs r0, #0xa
+    ldrsh r3, [r7, r0]
+    movs r0, #0xe
+    ldrsh r1, [r7, r0]
+    movs r0, #0xa
+    ldrsh r7, [r6, r0]
+    mov sl, r7
+    movs r7, #0xe
+    ldrsh r6, [r6, r7]
+    mov r7, sl
+    subs r0, r7, r3
+    cmp r0, #0
+    bge .Lraw_code_entities_39464_4
+    rsbs r0, r0, #0
+.Lraw_code_entities_39464_4:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_39465_4
+    subs r0, r6, r1
+    cmp r0, #0
+    bge .Lraw_code_entities_39465_0
+    rsbs r0, r0, #0
+.Lraw_code_entities_39465_0:
+    cmp r0, #0xf
+    ble .Lraw_code_entities_39476_12
+.Lraw_code_entities_39465_4:
+    cmp r2, #0
+    beq .Lraw_code_entities_39467_8
+    movs r7, #4
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r3
+    cmp r0, #0
+    bge .Lraw_code_entities_39466_4
+    rsbs r0, r0, #0
+.Lraw_code_entities_39466_4:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_39476_6
+    movs r7, #6
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r1
+    cmp r0, #0
+    bge .Lraw_code_entities_39467_4
+    rsbs r0, r0, #0
+.Lraw_code_entities_39467_4:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_39476_6
+.Lraw_code_entities_39467_8:
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r2, sp, #0x14
+    str r2, [sp]
+    str r0, [sp, #4]
+    adds r0, r3, #0
+    mov r2, sl
+    adds r3, r6, #0
     bl SelectApproachFacing
-    .byte 0x02, 0x1C
-    .byte 0x40, 0x46, 0x01, 0x21
+    adds r2, r0, #0
+    mov r0, r8
+    movs r1, #1
     bl func_08023308
-    .byte 0x1E, 0x20
+    movs r0, #0x1e
     bl RandomBelow
-    .byte 0x42, 0x1C
-    .byte 0x53, 0x46, 0xA3, 0x80, 0xE6, 0x80, 0x25, 0x80, 0x62, 0x80, 0x95, 0xE0, 0x0B, 0x49, 0x1A, 0x98
-    .byte 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43, 0x0A, 0x49, 0x08, 0x40, 0x1A, 0x90, 0x1A, 0xA9, 0x48, 0x46
+    adds r2, r0, #1
+    mov r3, sl
+    strh r3, [r4, #4]
+    strh r6, [r4, #6]
+.Lraw_code_entities_39476_6:
+    strh r5, [r4]
+    strh r2, [r4, #2]
+    b .Lraw_code_entities_39517_0
+.Lraw_code_entities_39476_12:
+    ldr r1, .Lraw_code_entities_39484_4
+    ldr r0, [sp, #0x68]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_39485_0
+    ands r0, r1
+    str r0, [sp, #0x68]
+    add r1, sp, #0x68
+.Lraw_code_entities_39477_14:
+    mov r0, sb
     bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
-    .byte 0x40, 0x46
+    mov r0, r8
     bl func_08023378
-    .byte 0x01, 0x1C, 0x40, 0x46, 0x20, 0x30
-    .byte 0x02, 0x78, 0x40, 0x46
+    adds r1, r0, #0
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r2, [r0]
+    mov r0, r8
     bl func_08023308
-    .byte 0x7E, 0xE0, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF
-    .byte 0xFF, 0xFF, 0x00, 0xFF, 0x4E, 0x46, 0x2C, 0x36, 0x40, 0x46, 0x20, 0x30, 0x01, 0x78, 0x47, 0x46
-    .byte 0x0A, 0x22, 0xBC, 0x5E, 0x0E, 0x23, 0xFD, 0x5E, 0x07, 0x1C, 0x24, 0x98, 0x25, 0x28, 0x21, 0xD1
-    .byte 0x00, 0x29, 0x1F, 0xD1, 0x1B, 0xA8
+    b .Lraw_code_entities_39517_0
+    .align 2, 0
+.Lraw_code_entities_39484_4: .word 0xFFFF0000
+.Lraw_code_entities_39485_0: .word 0xFF00FFFF
+.Lraw_code_entities_39485_4:
+    mov r6, sb
+    adds r6, #0x2c
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r1, [r0]
+    mov r7, r8
+    movs r2, #0xa
+    ldrsh r4, [r7, r2]
+    movs r3, #0xe
+    ldrsh r5, [r7, r3]
+    adds r7, r0, #0
+    ldr r0, [sp, #0x90]
+    cmp r0, #0x25
+    bne .Lraw_code_entities_39496_2
+    cmp r1, #0
+    bne .Lraw_code_entities_39496_2
+    add r0, sp, #0x6c
     bl method_0800CE58__4Barn
-    .byte 0x1B, 0x98, 0x1C, 0x90, 0x1C, 0xA8
-    .byte 0x02, 0x22, 0x81, 0x5E, 0x28, 0x1C, 0x08, 0x38, 0x08, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42
-    .byte 0x07, 0x28, 0x3F, 0xDC, 0x1D, 0xA8
+    ldr r0, [sp, #0x6c]
+    str r0, [sp, #0x70]
+    add r0, sp, #0x70
+    movs r2, #2
+    ldrsh r1, [r0, r2]
+    adds r0, r5, #0
+    subs r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lraw_code_entities_39491_0
+    rsbs r0, r0, #0
+.Lraw_code_entities_39491_0:
+    cmp r0, #7
+    bgt .Lraw_code_entities_39508_0
+    add r0, sp, #0x74
     bl smethod_08009ADC__4Farm
-    .byte 0x1D, 0x98, 0x1E, 0x90, 0x1E, 0xA8
-    .byte 0x00, 0x23, 0xC2, 0x5E, 0x02, 0x21, 0x43, 0x5E, 0x10, 0x33, 0x40, 0x46, 0x02, 0x21
+    ldr r0, [sp, #0x74]
+    str r0, [sp, #0x78]
+    add r0, sp, #0x78
+    movs r3, #0
+    ldrsh r2, [r0, r3]
+    movs r1, #2
+    ldrsh r3, [r0, r1]
+    adds r3, #0x10
+    mov r0, r8
+    movs r1, #2
     bl SetLocation__7AEntityUiii
-    .byte 0x2F, 0xE0, 0x24, 0x9A, 0x02, 0x2A, 0x2C, 0xD1, 0x01, 0x29, 0x2A, 0xD1, 0x1F, 0xA8
+    b .Lraw_code_entities_39508_0
+.Lraw_code_entities_39496_2:
+    ldr r2, [sp, #0x90]
+    cmp r2, #2
+    bne .Lraw_code_entities_39508_0
+    cmp r1, #1
+    bne .Lraw_code_entities_39508_0
+    add r0, sp, #0x7c
     bl smethod_08009ADC__4Farm
-    .byte 0x1F, 0x98, 0x20, 0x90, 0x20, 0xA8, 0x01, 0x1C, 0x00, 0x23, 0xC8, 0x5E
-    .byte 0x00, 0x1B, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x1B, 0xDC, 0x02, 0x20, 0x09, 0x5E
-    .byte 0x28, 0x1C, 0x08, 0x30, 0x08, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x07, 0x28, 0x11, 0xDC
-    .byte 0x21, 0xA8
+    ldr r0, [sp, #0x7c]
+    str r0, [sp, #0x80]
+    add r0, sp, #0x80
+    adds r1, r0, #0
+    movs r3, #0
+    ldrsh r0, [r1, r3]
+    subs r0, r0, r4
+    cmp r0, #0
+    bge .Lraw_code_entities_39499_8
+    rsbs r0, r0, #0
+.Lraw_code_entities_39499_8:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_39508_0
+    movs r0, #2
+    ldrsh r1, [r1, r0]
+    adds r0, r5, #0
+    adds r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lraw_code_entities_39500_12
+    rsbs r0, r0, #0
+.Lraw_code_entities_39500_12:
+    cmp r0, #7
+    bgt .Lraw_code_entities_39508_0
+    add r0, sp, #0x84
     bl method_0800CE58__4Barn
-    .byte 0x21, 0x99, 0x22, 0xA8, 0x01, 0x60, 0x00, 0x21, 0x42, 0x5E
-    .byte 0x02, 0x21, 0x43, 0x5E, 0x20, 0x3B, 0x40, 0x46, 0x25, 0x21
+    ldr r1, [sp, #0x84]
+    add r0, sp, #0x88
+    str r1, [r0]
+    movs r1, #0
+    ldrsh r2, [r0, r1]
+    movs r1, #2
+    ldrsh r3, [r0, r1]
+    subs r3, #0x20
+    mov r0, r8
+    movs r1, #0x25
     bl SetLocation__7AEntityUiii
-    .byte 0x48, 0x46
+    mov r0, sb
     bl ResetCurrentOutdoorMinutes__9Livestock
-    .byte 0x30, 0x88, 0x00, 0x28, 0x02, 0xD0, 0x01, 0x38, 0x30, 0x80, 0x13, 0xE0
-    .byte 0x11, 0x4A, 0x23, 0xA9, 0x08, 0x68, 0x10, 0x40, 0xB4, 0x22, 0x10, 0x43, 0x0F, 0x4A, 0x10, 0x40
-    .byte 0x08, 0x60, 0x48, 0x46
+.Lraw_code_entities_39508_0:
+    ldrh r0, [r6]
+    cmp r0, #0
+    beq .Lraw_code_entities_39509_0
+    subs r0, #1
+    strh r0, [r6]
+    b .Lraw_code_entities_39517_0
+.Lraw_code_entities_39509_0:
+    ldr r2, .Lraw_code_entities_39520_8
+    add r1, sp, #0x8c
+    ldr r0, [r1]
+    ands r0, r2
+    movs r2, #0xb4
+    orrs r0, r2
+    ldr r2, .Lraw_code_entities_39520_12
+    ands r0, r2
+    str r0, [r1]
+    mov r0, sb
     bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
-    .byte 0x40, 0x46
+    mov r0, r8
     bl func_08023378
-    .byte 0x01, 0x1C
-    .byte 0x3A, 0x78, 0x40, 0x46
+    adds r1, r0, #0
+    ldrb r2, [r7]
+    mov r0, r8
     bl func_08023308
-    .byte 0x40, 0x46, 0x05, 0xA9
+.Lraw_code_entities_39517_0:
+    mov r0, r8
+    add r1, sp, #0x14
     bl ApplyMovement__12AActorEntityP19ActorMovementBounds
-    .byte 0x41, 0x46, 0x30, 0x31, 0x00, 0x20, 0x08, 0x70, 0x42, 0x46, 0x90, 0x8C, 0x00, 0x28, 0x07, 0xD0
-    .byte 0x01, 0x38, 0x90, 0x84, 0x07, 0xE0, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
-    .byte 0x43, 0x46, 0xD8, 0x8C, 0x98, 0x84, 0x46, 0x46, 0x32, 0x69, 0x00, 0x2A, 0x04, 0xD0, 0x50, 0x68
-    .byte 0xC1, 0x68, 0x10, 0x1C
+    mov r1, r8
+    adds r1, #0x30
+    movs r0, #0
+    strb r0, [r1]
+    mov r2, r8
+    ldrh r0, [r2, #0x24]
+    cmp r0, #0
+    beq .Lraw_code_entities_39521_0
+    subs r0, #1
+    strh r0, [r2, #0x24]
+    b .Lraw_code_entities_39521_6
+    .align 2, 0
+.Lraw_code_entities_39520_8: .word 0xFFFF0000
+.Lraw_code_entities_39520_12: .word 0xFF00FFFF
+.Lraw_code_entities_39521_0:
+    mov r3, r8
+    ldrh r0, [r3, #0x26]
+    strh r0, [r3, #0x24]
+.Lraw_code_entities_39521_6:
+    mov r6, r8
+    ldr r2, [r6, #0x10]
+    cmp r2, #0
+    beq .Lraw_code_entities_39524_0
+    ldr r0, [r2, #4]
+    ldr r1, [r0, #0xc]
+    adds r0, r2, #0
     bl _call_via_r1
-    .byte 0x28, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46
-    .byte 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
+.Lraw_code_entities_39524_0:
+    add sp, #0xa0
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
 
     thumb_func_start func_08023308
 func_08023308: @ 0x08023308
@@ -39679,87 +41931,224 @@ func_08023400: @ 0x08023400
     .global func_08023414
     .thumb_func
 func_08023414:
-    .byte 0xF0, 0xB5, 0x47, 0x46, 0x80, 0xB4, 0x82, 0xB0, 0x06, 0x1C, 0x0F, 0x1C
-    .byte 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88, 0x88, 0x42, 0x5F, 0xD1, 0x70, 0x6B
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #8
+    adds r6, r0, #0
+    adds r7, r1, #0
+    ldrh r0, [r7]
+    lsls r0, r0, #0x16
+    lsrs r0, r0, #0x16
+    ldrh r1, [r6, #4]
+    cmp r0, r1
+    bne .Lraw_code_entities_39710_0
+    ldr r0, [r6, #0x34]
     bl IsPregnant__C10BarnAnimal
-    .byte 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1, 0x70, 0x6B
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_39710_0
+    ldr r0, [r6, #0x34]
     bl GetAffection__C6Animal
-    .byte 0x80, 0x46
+    mov r8, r0
     bl CalculateAnimalResponseRadius
-    .byte 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88, 0x13, 0x4C
-    .byte 0x22, 0x40, 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23, 0xF5, 0x5E
-    .byte 0xFB, 0x78, 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04, 0x09, 0x14
-    .byte 0x49, 0x1B, 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C, 0x4B, 0x43, 0x19, 0x1C, 0x52, 0x18
-    .byte 0x01, 0x1C, 0x41, 0x43, 0x08, 0x1C, 0x82, 0x42, 0x30, 0xDC, 0x70, 0x6B
+    movs r1, #0xa
+    ldrsh r3, [r6, r1]
+    ldrb r1, [r7, #1]
+    lsrs r1, r1, #2
+    ldrh r2, [r7, #2]
+    ldr r4, .Lraw_code_entities_39695_12
+    ands r2, r4
+    lsls r2, r2, #6
+    orrs r2, r1
+    lsls r2, r2, #0x10
+    asrs r2, r2, #0x10
+    subs r2, r2, r3
+    movs r3, #0xe
+    ldrsh r5, [r6, r3]
+    ldrb r3, [r7, #3]
+    lsrs r3, r3, #2
+    ldrh r1, [r7, #4]
+    ands r1, r4
+    lsls r1, r1, #6
+    orrs r1, r3
+    lsls r1, r1, #0x10
+    asrs r1, r1, #0x10
+    subs r1, r1, r5
+    adds r3, r2, #0
+    muls r3, r2, r3
+    adds r2, r3, #0
+    adds r3, r1, #0
+    muls r3, r1, r3
+    adds r1, r3, #0
+    adds r2, r2, r1
+    adds r1, r0, #0
+    muls r1, r0, r1
+    adds r0, r1, #0
+    cmp r2, r0
+    bgt .Lraw_code_entities_39710_0
+    ldr r0, [r6, #0x34]
     bl IsSick__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x04, 0xD0, 0x1E, 0x24, 0x0A, 0xE0, 0x00, 0x00, 0xFF, 0x03, 0x00, 0x00
-    .byte 0x70, 0x6B
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_39696_0
+    movs r4, #0x1e
+    b .Lraw_code_entities_39699_0
+    .align 2, 0
+.Lraw_code_entities_39695_12: .word 0x000003FF
+.Lraw_code_entities_39696_0:
+    ldr r0, [r6, #0x34]
     bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x64, 0x24, 0x00, 0x28, 0x00, 0xD0, 0x46, 0x24
-    .byte 0x64, 0x20
+    lsls r0, r0, #0x18
+    movs r4, #0x64
+    cmp r0, #0
+    beq .Lraw_code_entities_39699_0
+    movs r4, #0x46
+.Lraw_code_entities_39699_0:
+    movs r0, #0x64
     bl RandomBelow
-    .byte 0xA0, 0x42, 0x18, 0xD2, 0x43, 0x46, 0x18, 0x01, 0xC0, 0x1A
-    .byte 0x80, 0x01, 0x00, 0x0A, 0xF0, 0x21, 0x49, 0x00, 0x40, 0x18, 0x00, 0x04, 0x00, 0x0C, 0x00, 0x90
-    .byte 0x70, 0x6B, 0x69, 0x46
+    cmp r0, r4
+    bhs .Lraw_code_entities_39710_0
+    mov r3, r8
+    lsls r0, r3, #4
+    subs r0, r0, r3
+    lsls r0, r0, #6
+    lsrs r0, r0, #8
+    movs r1, #0xf0
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    str r0, [sp]
+    ldr r0, [r6, #0x34]
+    mov r1, sp
     bl method_0809B958__10BarnAnimalPC18UnkBarnAnimal2C_x2
-    .byte 0x30, 0x1C
+    adds r0, r6, #0
     bl func_08023378
-    .byte 0x01, 0x1C
-    .byte 0x30, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x30, 0x1C
+    adds r1, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
     bl func_08023308
-    .byte 0x02, 0xB0, 0x08, 0xBC
-    .byte 0x98, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
+.Lraw_code_entities_39710_0:
+    add sp, #8
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     .global func_080234F8
     .thumb_func
 func_080234F8:
-    .byte 0x10, 0xB5, 0x81, 0xB0, 0x04, 0x1C, 0x62, 0x6B
-    .byte 0x90, 0x6A, 0x03, 0x28, 0x15, 0xD1, 0x0D, 0x49, 0x00, 0x98, 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43
-    .byte 0x0B, 0x49, 0x08, 0x40, 0x00, 0x90, 0x10, 0x1C, 0x69, 0x46
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r2, [r4, #0x34]
+    ldr r0, [r2, #0x28]
+    cmp r0, #3
+    bne .Lraw_code_entities_39723_0
+    ldr r1, .Lraw_code_entities_39723_10
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_39724_0
+    ands r0, r1
+    str r0, [sp]
+    adds r0, r2, #0
+    mov r1, sp
     bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_08023378
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_08023308
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF
-    .byte 0xFF, 0xFF, 0x00, 0xFF
+.Lraw_code_entities_39723_0:
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_39723_10: .word 0xFFFF0000
+.Lraw_code_entities_39724_0: .word 0xFF00FFFF
     .global func_08023544
     .thumb_func
 func_08023544:
-    .byte 0x01, 0x20, 0x70, 0x47
+    movs r0, #1
+    bx lr
     .global func_08023548
     .thumb_func
 func_08023548:
-    .byte 0x30, 0xB5, 0x04, 0x1C, 0x00, 0x25, 0x60, 0x6B
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #0
+    ldr r0, [r4, #0x34]
     bl IsPregnant__C10BarnAnimal
-    .byte 0x00, 0x06, 0x00, 0x28, 0x06, 0xD1, 0x60, 0x6B
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_39736_8
+    ldr r0, [r4, #0x34]
     bl CanBeMadePregnant__C3Cow
-    .byte 0x00, 0x06, 0x00, 0x0E, 0x40, 0x42, 0xC5, 0x0F, 0x28, 0x1C, 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    rsbs r0, r0, #0
+    lsrs r5, r0, #0x1f
+.Lraw_code_entities_39736_8:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
     .global func_08023570
     .thumb_func
 func_08023570:
-    .byte 0x00, 0xB5, 0x40, 0x6B
+    push {lr}
+    ldr r0, [r0, #0x34]
     bl HasBeenBrushedToday__C6Animal
-    .byte 0x01, 0x21, 0x48, 0x40, 0x02, 0xBC, 0x08, 0x47
+    movs r1, #1
+    eors r0, r1
+    pop {r1}
+    bx r1
     .global func_08023580
     .thumb_func
 func_08023580:
-    .byte 0x00, 0xB5, 0x40, 0x6B
+    push {lr}
+    ldr r0, [r0, #0x34]
     bl CanBeMilked__C3Cow
-    .byte 0x02, 0xBC, 0x08, 0x47
+    pop {r1}
+    bx r1
     .section .text.livestock_actor_cow_after_sick_check, "ax", %progbits
     .align 2, 0
 
     .global func_08023598
     .thumb_func
 func_08023598:
-    .byte 0x30, 0xB5, 0x04, 0x1C, 0x00, 0x25, 0xA0, 0x88
-    .byte 0x02, 0x28, 0x0C, 0xD1, 0x60, 0x6B
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #0
+    ldrh r0, [r4, #4]
+    cmp r0, #2
+    bne .Lraw_code_entities_39761_8
+    ldr r0, [r4, #0x34]
     bl IsSick__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x06, 0xD1
-    .byte 0x60, 0x6B
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_39761_8
+    ldr r0, [r4, #0x34]
     bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x25, 0x28, 0x1C
-    .byte 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_39761_8
+    movs r5, #1
+.Lraw_code_entities_39761_8:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_080235C8
     .thumb_func
 func_080235C8:
@@ -39819,20 +42208,18 @@ func_080235C8:
     pop {r0}
     bx r0
     .align 2, 0
-.L08023648:
-    .word 0xFFFF0000
-.L0802364C:
-    .word 0xFF80FFFF
-.L08023650:
-    .word 0xFF7FFFFF
-.L08023654:
-    .word 0x00FFFFFF
+.L08023648: .word 0xFFFF0000
+.L0802364C: .word 0xFF80FFFF
+.L08023650: .word 0xFF7FFFFF
+.L08023654: .word 0x00FFFFFF
     .global func_08023658
     .thumb_func
 func_08023658:
-    .byte 0x00, 0xB5, 0x40, 0x6B
+    push {lr}
+    ldr r0, [r0, #0x34]
     bl StartPregnancy__10BarnAnimal
-    .byte 0x01, 0xBC, 0x00, 0x47
+    pop {r0}
+    bx r0
     .global func_08023664
     .thumb_func
 func_08023664:
@@ -39958,12 +42345,9 @@ func_08023708:
     pop {r0}
     bx r0
     .align 2, 0
-.L08023788:
-    .word 0xFFFF0000
-.L0802378C:
-    .word 0xFF80FFFF
-.L08023790:
-    .word 0x00FFFFFF
+.L08023788: .word 0xFFFF0000
+.L0802378C: .word 0xFF80FFFF
+.L08023790: .word 0x00FFFFFF
     .global func_08023794
     .thumb_func
 func_08023794:
@@ -40009,8 +42393,7 @@ func_08023794:
     pop {r0}
     bx r0
     .align 2, 0
-.L080237EC:
-    .word 0xFFFF0000
+.L080237EC: .word 0xFFFF0000
 
     thumb_func_start func_080237F0
 func_080237F0: @ 0x080237F0
@@ -40052,24 +42435,69 @@ func_08023804: @ 0x08023804
     .global func_08023820
     .thumb_func
 func_08023820:
-    .byte 0x70, 0xB5, 0x46, 0x46, 0x40, 0xB4, 0x84, 0xB0, 0x05, 0x1C, 0x68, 0x6B
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    sub sp, #0x10
+    adds r5, r0, #0
+    ldr r0, [r5, #0x34]
     bl GetGrowthStage__C3Cow
-    .byte 0x06, 0x1C, 0x8C, 0x20
+    adds r6, r0, #0
+    movs r0, #0x8c
     bl __builtin_new
-    .byte 0x80, 0x46, 0x30, 0x1C
+    mov r8, r0
+    adds r0, r6, #0
     bl func_080237F0
-    .byte 0x04, 0x1C, 0x30, 0x1C
+    adds r4, r0, #0
+    adds r0, r6, #0
     bl func_08023804
-    .byte 0x00, 0x94, 0x01, 0x90, 0x00, 0x26, 0x02, 0x96
-    .byte 0x03, 0xA8, 0x06, 0x70, 0x40, 0x46, 0x29, 0x1C, 0x04, 0x22, 0x0C, 0x23
+    str r4, [sp]
+    str r0, [sp, #4]
+    movs r6, #0
+    str r6, [sp, #8]
+    add r0, sp, #0xc
+    strb r6, [r0]
+    mov r0, r8
+    adds r1, r5, #0
+    movs r2, #4
+    movs r3, #0xc
     bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib
-    .byte 0x04, 0x1C, 0xA0, 0x46, 0x38, 0x35, 0x28, 0x78, 0x04, 0x28, 0x15, 0xD1, 0x20, 0x1C, 0x70, 0x30
-    .byte 0x08, 0x21
+    adds r4, r0, #0
+    mov r8, r4
+    adds r5, #0x38
+    ldrb r0, [r5]
+    cmp r0, #4
+    bne .Lraw_code_entities_40071_8
+    adds r0, r4, #0
+    adds r0, #0x70
+    movs r1, #8
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C, 0x84, 0x30, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30
-    .byte 0x06, 0x70, 0x01, 0x30, 0x01, 0x70, 0x22, 0x1C, 0x8A, 0x32, 0x02, 0x23, 0x11, 0x78, 0x04, 0x20
-    .byte 0x40, 0x42, 0x08, 0x40, 0x18, 0x43, 0x10, 0x70, 0x40, 0x46, 0x04, 0xB0, 0x08, 0xBC, 0x98, 0x46
-    .byte 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+    adds r0, r4, #0
+    adds r0, #0x84
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r6, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r2, r4, #0
+    adds r2, #0x8a
+    movs r3, #2
+    ldrb r1, [r2]
+    movs r0, #4
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r3
+    strb r0, [r2]
+.Lraw_code_entities_40071_8:
+    mov r0, r8
+    add sp, #0x10
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
 
     thumb_func_start InitWorldSheepEntity
 InitWorldSheepEntity: @ 0x080238A8
@@ -40109,238 +42537,861 @@ InitWorldSheepEntity: @ 0x080238A8
     .global func_080238F4
     .thumb_func
 func_080238F4:
-    .byte 0x70, 0xB5, 0x82, 0xB0, 0x05, 0x1C, 0x0E, 0x1C, 0x10, 0x48, 0x68, 0x61
-    .byte 0x6C, 0x6B, 0x68, 0x46, 0x29, 0x1C
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r5, r0, #0
+    adds r6, r1, #0
+    ldr r0, .Lraw_code_entities_40124_0
+    str r0, [r5, #0x14]
+    ldr r4, [r5, #0x34]
+    mov r0, sp
+    adds r1, r5, #0
     bl GetLocation__C12AActorEntity
-    .byte 0x20, 0x1C, 0x69, 0x46
+    adds r0, r4, #0
+    mov r1, sp
     bl SetLocation__5ActorRC13ActorLocation
-    .byte 0x0C, 0x48, 0x68, 0x61, 0x29, 0x69, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68
-    .byte 0x08, 0x1C, 0x03, 0x21
+    ldr r0, .Lraw_code_entities_40125_0
+    str r0, [r5, #0x14]
+    ldr r1, [r5, #0x10]
+    cmp r1, #0
+    beq .Lraw_code_entities_40120_0
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
     bl _call_via_r2
-    .byte 0x01, 0x20, 0x30, 0x40, 0x00, 0x28, 0x02, 0xD0
-    .byte 0x28, 0x1C
+.Lraw_code_entities_40120_0:
+    movs r0, #1
+    ands r0, r6
+    cmp r0, #0
+    beq .Lraw_code_entities_40123_0
+    adds r0, r5, #0
     bl __builtin_delete
-    .byte 0x02, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .4byte vtable_unk_080E6284
-    .4byte __vt_7AEntity
+.Lraw_code_entities_40123_0:
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_40124_0: .4byte vtable_unk_080E6284
+.Lraw_code_entities_40125_0: .4byte __vt_7AEntity
     .global func_08023948
     .thumb_func
 func_08023948:
-    .byte 0x10, 0xB5, 0x81, 0xB0, 0x04, 0x1C, 0x09, 0x04
-    .byte 0x09, 0x0C, 0x0C, 0x4A, 0x00, 0x98, 0x10, 0x40, 0x08, 0x43, 0x0B, 0x49, 0x08, 0x40, 0x00, 0x90
-    .byte 0x60, 0x6B, 0x69, 0x46
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r2, .Lraw_code_entities_40139_4
+    ldr r0, [sp]
+    ands r0, r2
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_40139_8
+    ands r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
     bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_08024020
-    .byte 0x01, 0x1C
-    .byte 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_08023FB0
-    .byte 0x01, 0xB0, 0x10, 0xBC
-    .byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+.Lraw_code_entities_40139_4: .word 0xFFFF0000
+.Lraw_code_entities_40139_8: .word 0xFF00FFFF
     .global func_0802398C
     .thumb_func
 func_0802398C:
-    .byte 0xF0, 0xB5, 0x57, 0x46
-    .byte 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0xA8, 0xB0, 0x80, 0x46, 0x07, 0x68, 0x40, 0x6B, 0x81, 0x46
-    .byte 0x42, 0x46, 0x92, 0x88, 0x24, 0x92, 0x02, 0x2A, 0x62, 0xD1, 0x08, 0x79, 0x00, 0x28, 0x5F, 0xD0
-    .byte 0x48, 0x46
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0xa0
+    mov r8, r0
+    ldr r7, [r0]
+    ldr r0, [r0, #0x34]
+    mov sb, r0
+    mov r2, r8
+    ldrh r2, [r2, #4]
+    str r2, [sp, #0x90]
+    cmp r2, #2
+    bne .Lraw_code_entities_40179_0
+    ldrb r0, [r1, #4]
+    cmp r0, #0
+    beq .Lraw_code_entities_40179_0
+    mov r0, sb
     bl GetCurrentOutdoorMinutes__C9Livestock
-    .byte 0x05, 0x1C, 0x48, 0x46, 0x01, 0x21
+    adds r5, r0, #0
+    mov r0, sb
+    movs r1, #1
     bl AddOutdoorMinutes__9LivestockUi
-    .byte 0x48, 0x46
+    mov r0, sb
     bl GetCurrentOutdoorMinutes__C9Livestock
-    .byte 0x04, 0x1C, 0xB3, 0x2D, 0x15, 0xD8, 0xB3, 0x2C, 0x13, 0xD9
-    .byte 0x38, 0x68, 0xA2, 0x23, 0x5B, 0x00, 0xC0, 0x18, 0x01, 0x68, 0x38, 0x1C
+    adds r4, r0, #0
+    cmp r5, #0xb3
+    bhi .Lraw_code_entities_40160_0
+    cmp r4, #0xb3
+    bls .Lraw_code_entities_40160_0
+    ldr r0, [r7]
+    movs r3, #0xa2
+    lsls r3, r3, #1
+    adds r0, r0, r3
+    ldr r1, [r0]
+    adds r0, r7, #0
     bl _call_via_r1
-    .byte 0x00, 0x68, 0x00, 0x28, 0x08, 0xD0, 0x48, 0x46
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Lraw_code_entities_40160_0
+    mov r0, sb
     bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28
-    .byte 0x02, 0xD1, 0x48, 0x46
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_40160_0
+    mov r0, sb
     bl SetUnhappy__9Livestock
-    .byte 0xEF, 0x2D, 0x17, 0xD8, 0xEF, 0x2C, 0x15, 0xD9
-    .byte 0x38, 0x68, 0x84, 0x26, 0x76, 0x00, 0x80, 0x19, 0x41, 0x46, 0x0A, 0x23, 0xCA, 0x5E, 0x0E, 0x26
-    .byte 0x8B, 0x5F, 0x12, 0xA9, 0x0A, 0x80, 0x4B, 0x80, 0x02, 0x68, 0x38, 0x1C
+.Lraw_code_entities_40160_0:
+    cmp r5, #0xef
+    bhi .Lraw_code_entities_40166_0
+    cmp r4, #0xef
+    bls .Lraw_code_entities_40166_0
+    ldr r0, [r7]
+    movs r6, #0x84
+    lsls r6, r6, #1
+    adds r0, r0, r6
+    mov r1, r8
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r6, #0xe
+    ldrsh r3, [r1, r6]
+    add r1, sp, #0x48
+    strh r2, [r1]
+    strh r3, [r1, #2]
+    ldr r2, [r0]
+    adds r0, r7, #0
     bl _call_via_r2
-    .byte 0x00, 0x06, 0x00, 0x28, 0x02, 0xD0, 0x48, 0x46
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_40166_0
+    mov r0, sb
     bl SetFed__10BarnAnimal
-    .byte 0x43, 0x48, 0x85, 0x42
-    .byte 0x1E, 0xD8, 0x84, 0x42, 0x1C, 0xD9, 0x38, 0x68, 0xA2, 0x21, 0x49, 0x00, 0x40, 0x18, 0x01, 0x68
-    .byte 0x38, 0x1C
+.Lraw_code_entities_40166_0:
+    ldr r0, .Lraw_code_entities_40206_12
+    cmp r5, r0
+    bhi .Lraw_code_entities_40179_0
+    cmp r4, r0
+    bls .Lraw_code_entities_40179_0
+    ldr r0, [r7]
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    ldr r1, [r0]
+    adds r0, r7, #0
     bl _call_via_r1
-    .byte 0x00, 0x68, 0x00, 0x28, 0x11, 0xD1, 0x48, 0x46
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_entities_40179_0
+    mov r0, sb
     bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x07, 0xD0, 0x64, 0x20
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_40177_0
+    movs r0, #0x64
     bl RandomBelow
-    .byte 0x1D, 0x28
-    .byte 0x02, 0xD8, 0x48, 0x46
+    cmp r0, #0x1d
+    bhi .Lraw_code_entities_40177_0
+    mov r0, sb
     bl ResetUnhappy__9Livestock
-    .byte 0x48, 0x46, 0x01, 0x21
+.Lraw_code_entities_40177_0:
+    mov r0, sb
+    movs r1, #1
     bl AddAffection__6Animali
-    .byte 0x39, 0x68, 0x02, 0xA8, 0x4B, 0x6B, 0x39, 0x1C, 0x24, 0x9A
+.Lraw_code_entities_40179_0:
+    ldr r1, [r7]
+    add r0, sp, #8
+    ldr r3, [r1, #0x34]
+    adds r1, r7, #0
+    ldr r2, [sp, #0x90]
     bl _call_via_r3
-    .byte 0x42, 0x46
-    .byte 0x51, 0x69, 0x13, 0xA8, 0xCA, 0x68, 0x41, 0x46
+    mov r2, r8
+    ldr r1, [r2, #0x14]
+    add r0, sp, #0x4c
+    ldr r2, [r1, #0xc]
+    mov r1, r8
     bl _call_via_r2
-    .byte 0x13, 0x98, 0x14, 0x99
-    .byte 0x26, 0x90, 0x27, 0x91, 0x05, 0xAC, 0x10, 0x21, 0x8A, 0x46, 0x00, 0x25, 0x11, 0x21, 0x05, 0x91
-    .byte 0x11, 0x20, 0x40, 0x42, 0x60, 0x60, 0xA0, 0x60, 0xE1, 0x60, 0x0A, 0xA9, 0x02, 0xA8, 0x4C, 0xC8
-    .byte 0x4C, 0xC1, 0x26, 0x98, 0x27, 0x99, 0x0D, 0x90, 0x0E, 0x91, 0x51, 0x46, 0xA1, 0x62, 0xE5, 0x62
-    .byte 0x25, 0x63, 0x38, 0x68, 0x02, 0x6C, 0x38, 0x1C, 0x00, 0x21
+    ldr r0, [sp, #0x4c]
+    ldr r1, [sp, #0x50]
+    str r0, [sp, #0x98]
+    str r1, [sp, #0x9c]
+    add r4, sp, #0x14
+    movs r1, #0x10
+    mov sl, r1
+    movs r5, #0
+    movs r1, #0x11
+    str r1, [sp, #0x14]
+    movs r0, #0x11
+    rsbs r0, r0, #0
+    str r0, [r4, #4]
+    str r0, [r4, #8]
+    str r1, [r4, #0xc]
+    add r1, sp, #0x28
+    add r0, sp, #8
+    ldm r0!, {r2, r3, r6}
+    stm r1!, {r2, r3, r6}
+    ldr r0, [sp, #0x98]
+    ldr r1, [sp, #0x9c]
+    str r0, [sp, #0x34]
+    str r1, [sp, #0x38]
+    mov r1, sl
+    str r1, [r4, #0x28]
+    str r5, [r4, #0x2c]
+    str r5, [r4, #0x30]
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0
     bl _call_via_r2
-    .byte 0x06, 0x1C
-    .byte 0x38, 0x68, 0x02, 0x6C, 0x38, 0x1C, 0x4A, 0x21
+    adds r6, r0, #0
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0x4a
     bl _call_via_r2
-    .byte 0x05, 0x1C, 0x00, 0x2E
-    .byte 0x0F, 0xD0, 0xB0, 0x88, 0x24, 0x9A, 0x90, 0x42, 0x0B, 0xD1, 0x71, 0x69, 0x15, 0xAC, 0x20, 0x1C
-    .byte 0xCA, 0x68, 0x31, 0x1C
+    adds r5, r0, #0
+    cmp r6, #0
+    beq .Lraw_code_entities_40199_0
+    ldrh r0, [r6, #4]
+    ldr r2, [sp, #0x90]
+    cmp r0, r2
+    bne .Lraw_code_entities_40199_0
+    ldr r1, [r6, #0x14]
+    add r4, sp, #0x54
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r6, #0
     bl _call_via_r2
-    .byte 0x05, 0xA8, 0x21, 0x1C, 0x00, 0x22
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
     bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
-    .byte 0x00, 0x2D, 0x0F, 0xD0, 0xA8, 0x88, 0x24, 0x9B, 0x98, 0x42, 0x0B, 0xD1, 0x69, 0x69
-    .byte 0x17, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x29, 0x1C
+.Lraw_code_entities_40199_0:
+    cmp r5, #0
+    beq .Lraw_code_entities_40205_0
+    ldrh r0, [r5, #4]
+    ldr r3, [sp, #0x90]
+    cmp r0, r3
+    bne .Lraw_code_entities_40205_0
+    ldr r1, [r5, #0x14]
+    add r4, sp, #0x5c
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r5, #0
     bl _call_via_r2
-    .byte 0x05, 0xA8, 0x21, 0x1C
-    .byte 0x00, 0x22
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
     bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi
-    .byte 0x49, 0x46, 0x88, 0x6A, 0x01, 0x28, 0x00, 0xD1, 0xC1, 0xE0
-    .byte 0x01, 0x28, 0x05, 0xDC, 0x00, 0x28, 0x0A, 0xD0, 0x12, 0xE2, 0x00, 0x00, 0x2B, 0x01, 0x00, 0x00
-    .byte 0x02, 0x28, 0x00, 0xD1, 0x20, 0xE1, 0x03, 0x28, 0x00, 0xD1, 0x8F, 0xE1, 0x08, 0xE2, 0x2C, 0x22
-    .byte 0x4A, 0x44, 0x92, 0x46, 0x4B, 0x46, 0x9C, 0x8D, 0x00, 0x2C, 0x42, 0xD0, 0x46, 0x46, 0xB5, 0x69
-    .byte 0xF6, 0x69, 0x00, 0x27, 0x00, 0x2D, 0x0B, 0xDA, 0x07, 0x99, 0x0F, 0x98, 0xC1, 0x42, 0x03, 0xDA
-    .byte 0x05, 0xA8
+.Lraw_code_entities_40205_0:
+    mov r1, sb
+    ldr r0, [r1, #0x28]
+    cmp r0, #1
+    bne .Lraw_code_entities_40206_0
+    b .Lraw_code_entities_40260_4
+.Lraw_code_entities_40206_0:
+    cmp r0, #1
+    bgt .Lraw_code_entities_40207_0
+    cmp r0, #0
+    beq .Lraw_code_entities_40207_14
+    b .Lraw_code_entities_40336_0
+    .align 2, 0
+.Lraw_code_entities_40206_12: .word 0x0000012B
+.Lraw_code_entities_40207_0:
+    cmp r0, #2
+    bne .Lraw_code_entities_40207_6
+    b .Lraw_code_entities_40281_8
+.Lraw_code_entities_40207_6:
+    cmp r0, #3
+    bne .Lraw_code_entities_40207_12
+    b .Lraw_code_entities_40304_12
+.Lraw_code_entities_40207_12:
+    b .Lraw_code_entities_40336_0
+.Lraw_code_entities_40207_14:
+    movs r2, #0x2c
+    add r2, sb
+    mov sl, r2
+    mov r3, sb
+    ldrh r4, [r3, #0x2c]
+    cmp r4, #0
+    beq .Lraw_code_entities_40224_2
+    mov r6, r8
+    ldr r5, [r6, #0x18]
+    ldr r6, [r6, #0x1c]
+    movs r7, #0
+    cmp r5, #0
+    bge .Lraw_code_entities_40213_0
+    ldr r1, [sp, #0x1c]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lraw_code_entities_40212_2
+    add r0, sp, #0x14
     bl RefreshLeft__19ActorMovementBounds
-    .byte 0x07, 0x99, 0x10, 0x20, 0x40, 0x42, 0x81, 0x42, 0x29, 0xDC
-    .byte 0x00, 0x2D, 0x0B, 0xDD, 0x08, 0x99, 0x0F, 0x98, 0x81, 0x42, 0x04, 0xDD, 0x05, 0xA8
+    ldr r1, [sp, #0x1c]
+.Lraw_code_entities_40212_2:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lraw_code_entities_40223_4
+.Lraw_code_entities_40213_0:
+    cmp r5, #0
+    ble .Lraw_code_entities_40215_10
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lraw_code_entities_40215_4
+    add r0, sp, #0x14
     bl RefreshRight__19ActorMovementBounds
-    .byte 0x08, 0x98, 0x00, 0xE0, 0x08, 0x1C, 0x0F, 0x28, 0x1B, 0xDD, 0x00, 0x2E, 0x0B, 0xDA
-    .byte 0x06, 0x99, 0x0F, 0x98, 0xC1, 0x42, 0x03, 0xDA, 0x05, 0xA8
+    ldr r0, [sp, #0x20]
+    b .Lraw_code_entities_40215_6
+.Lraw_code_entities_40215_4:
+    adds r0, r1, #0
+.Lraw_code_entities_40215_6:
+    cmp r0, #0xf
+    ble .Lraw_code_entities_40223_4
+.Lraw_code_entities_40215_10:
+    cmp r6, #0
+    bge .Lraw_code_entities_40219_8
+    ldr r1, [sp, #0x18]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lraw_code_entities_40219_0
+    add r0, sp, #0x14
     bl RefreshUp__19ActorMovementBounds
-    .byte 0x06, 0x99
-    .byte 0x10, 0x20, 0x40, 0x42, 0x81, 0x42, 0x0D, 0xDC, 0x00, 0x2E, 0x0C, 0xDD, 0x05, 0x99, 0x0F, 0x98
-    .byte 0x81, 0x42, 0x04, 0xDD, 0x05, 0xA8
+    ldr r1, [sp, #0x18]
+.Lraw_code_entities_40219_0:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lraw_code_entities_40223_4
+.Lraw_code_entities_40219_8:
+    cmp r6, #0
+    ble .Lraw_code_entities_40223_6
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lraw_code_entities_40222_4
+    add r0, sp, #0x14
     bl RefreshDown__19ActorMovementBounds
-    .byte 0x05, 0x98, 0x00, 0xE0, 0x08, 0x1C
-    .byte 0x0F, 0x28, 0x00, 0xDC, 0x01, 0x27, 0x00, 0x2F, 0x01, 0xD0, 0x00, 0x24, 0x67, 0xE0, 0x01, 0x3C
-    .byte 0x65, 0xE0, 0x40, 0x46
+    ldr r0, [sp, #0x14]
+    b .Lraw_code_entities_40223_0
+.Lraw_code_entities_40222_4:
+    adds r0, r1, #0
+.Lraw_code_entities_40223_0:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_40223_6
+.Lraw_code_entities_40223_4:
+    movs r7, #1
+.Lraw_code_entities_40223_6:
+    cmp r7, #0
+    beq .Lraw_code_entities_40223_14
+    movs r4, #0
+    b .Lraw_code_entities_40259_4
+.Lraw_code_entities_40223_14:
+    subs r4, #1
+    b .Lraw_code_entities_40259_4
+.Lraw_code_entities_40224_2:
+    mov r0, r8
     bl IsAnimationComplete__C12AActorEntity
-    .byte 0x00, 0x06, 0x00, 0x28, 0x5F, 0xD0, 0x38, 0x68
-    .byte 0xA2, 0x21, 0x49, 0x00, 0x40, 0x18, 0x01, 0x68, 0x38, 0x1C
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_40259_4
+    ldr r0, [r7]
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    ldr r1, [r0]
+    adds r0, r7, #0
     bl _call_via_r1
-    .byte 0x80, 0x7A
-    .byte 0xC0, 0x06, 0xC0, 0x0E, 0x00, 0x21, 0x06, 0x38, 0x0E, 0x28, 0x00, 0xD9, 0x01, 0x21, 0xC8, 0x00
-    .byte 0x40, 0x1A, 0x40, 0x01, 0x09, 0x49, 0x45, 0x18, 0x48, 0x46
+    ldrb r0, [r0, #0xa]
+    lsls r0, r0, #0x1b
+    lsrs r0, r0, #0x1b
+    movs r1, #0
+    subs r0, #6
+    cmp r0, #0xe
+    bls .Lraw_code_entities_40230_14
+    movs r1, #1
+.Lraw_code_entities_40230_14:
+    lsls r0, r1, #3
+    subs r0, r0, r1
+    lsls r0, r0, #5
+    ldr r1, .Lraw_code_entities_40238_0
+    adds r5, r0, r1
+    mov r0, sb
     bl IsSick__C9Livestock
-    .byte 0x00, 0x06
-    .byte 0x00, 0x0E, 0xC1, 0x00, 0x09, 0x1A, 0x8C, 0x00, 0x48, 0x46
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r4, r1, #2
+    mov r0, sb
     bl IsPregnant__C10BarnAnimal
-    .byte 0x00, 0x06
-    .byte 0x00, 0x28, 0x05, 0xD0, 0x20, 0x1C, 0xA8, 0x30, 0x2D, 0x18, 0x13, 0xE0
-    .4byte gUnk_080F0C74
-    .byte 0x48, 0x46
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_40239_0
+    adds r0, r4, #0
+    adds r0, #0xa8
+    adds r5, r5, r0
+    b .Lraw_code_entities_40245_4
+.Lraw_code_entities_40238_0: .4byte gUnk_080F0C74
+.Lraw_code_entities_40239_0:
+    mov r0, sb
     bl IsSheared__C5Sheep
-    .byte 0x00, 0x06, 0x00, 0x28, 0x03, 0xD0, 0x20, 0x1C, 0x70, 0x30
-    .byte 0x2D, 0x18, 0x07, 0xE0, 0x48, 0x46
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_40242_4
+    adds r0, r4, #0
+    adds r0, #0x70
+    adds r5, r5, r0
+    b .Lraw_code_entities_40245_4
+.Lraw_code_entities_40242_4:
+    mov r0, sb
     bl GetGrowthStage__C5Sheep
-    .byte 0xC1, 0x00, 0x09, 0x1A, 0xC9, 0x00
-    .byte 0x69, 0x18, 0x0D, 0x19, 0x28, 0x1C, 0x07, 0x21
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r1, r1, #3
+    adds r1, r5, r1
+    adds r5, r1, r4
+.Lraw_code_entities_40245_4:
+    adds r0, r5, #0
+    movs r1, #7
     bl SelectActorBehaviorTimingIndex
-    .byte 0x06, 0x1C, 0xB4, 0x00
-    .byte 0x2C, 0x19, 0x3C, 0x25, 0xA0, 0x78, 0x68, 0x43
+    adds r6, r0, #0
+    lsls r4, r6, #2
+    adds r4, r5, r4
+    movs r5, #0x3c
+    ldrb r0, [r4, #2]
+    muls r0, r5, r0
     bl RandomBelow
-    .byte 0x61, 0x78, 0x69, 0x43
-    .byte 0x0C, 0x18, 0x40, 0x46, 0x20, 0x30, 0x05, 0x78, 0x04, 0x20
+    ldrb r1, [r4, #1]
+    muls r1, r5, r1
+    adds r4, r1, r0
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r5, [r0]
+    movs r0, #4
     bl RandomBelow
-    .byte 0x01, 0x1C
-    .byte 0x00, 0x29, 0x05, 0xD0, 0x03, 0x29, 0x03, 0xD0, 0x28, 0x1C
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Lraw_code_entities_40257_0
+    cmp r1, #3
+    beq .Lraw_code_entities_40257_0
+    adds r0, r5, #0
     bl GetRelativeFacing
-    .byte 0x05, 0x1C
-    .byte 0x40, 0x46, 0x31, 0x1C, 0x2A, 0x1C
+    adds r5, r0, #0
+.Lraw_code_entities_40257_0:
+    mov r0, r8
+    adds r1, r6, #0
+    adds r2, r5, #0
     bl func_08023FB0
-    .byte 0x52, 0x46, 0x96, 0x70, 0x53, 0x46
-    .byte 0x1C, 0x80, 0x55, 0xE1, 0x48, 0x46, 0x2C, 0x30, 0x25, 0x90, 0x49, 0x46, 0x89, 0x8D, 0x8A, 0x46
-    .byte 0x00, 0x29, 0x02, 0xD0, 0x01, 0x22, 0x52, 0x42, 0x92, 0x44, 0x4B, 0x46, 0xD9, 0x6A, 0x48, 0x02
-    .byte 0x45, 0x0E, 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D, 0x25, 0x98, 0xC4, 0x78, 0x00, 0x2C, 0x00, 0xD0
-    .byte 0x01, 0x3C, 0x52, 0x46, 0x00, 0x2A, 0x40, 0xD0, 0x08, 0x02, 0x00, 0x28, 0x07, 0xDA, 0x38, 0x68
-    .byte 0x02, 0x6C, 0x38, 0x1C, 0x2D, 0x21
+    mov r2, sl
+    strb r6, [r2, #2]
+.Lraw_code_entities_40259_4:
+    mov r3, sl
+    strh r4, [r3]
+    b .Lraw_code_entities_40336_0
+.Lraw_code_entities_40260_4:
+    mov r0, sb
+    adds r0, #0x2c
+    str r0, [sp, #0x94]
+    mov r1, sb
+    ldrh r1, [r1, #0x2c]
+    mov sl, r1
+    cmp r1, #0
+    beq .Lraw_code_entities_40261_10
+    movs r2, #1
+    rsbs r2, r2, #0
+    add sl, r2
+.Lraw_code_entities_40261_10:
+    mov r3, sb
+    ldr r1, [r3, #0x2c]
+    lsls r0, r1, #9
+    lsrs r5, r0, #0x19
+    cmp r5, #0
+    beq .Lraw_code_entities_40262_8
+    subs r5, #1
+.Lraw_code_entities_40262_8:
+    ldr r0, [sp, #0x94]
+    ldrb r4, [r0, #3]
+    cmp r4, #0
+    beq .Lraw_code_entities_40263_2
+    subs r4, #1
+.Lraw_code_entities_40263_2:
+    mov r2, sl
+    cmp r2, #0
+    beq .Lraw_code_entities_40279_10
+    lsls r0, r1, #8
+    cmp r0, #0
+    bge .Lraw_code_entities_40266_4
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0x2d
     bl _call_via_r2
-    .byte 0x01, 0x1C, 0x00, 0xE0, 0x31, 0x1C
-    .byte 0x00, 0x29, 0x32, 0xD0, 0x88, 0x88, 0x24, 0x9B, 0x98, 0x42, 0x2E, 0xD1, 0x00, 0x2C, 0x1F, 0xD1
-    .byte 0x47, 0x46, 0x0A, 0x20, 0x3E, 0x5E, 0x0E, 0x22, 0xBC, 0x5E, 0x0A, 0x23, 0xCA, 0x5E, 0x0E, 0x27
-    .byte 0xCB, 0x5F, 0x01, 0x27, 0x00, 0x2D, 0x00, 0xD0, 0x06, 0x27, 0x40, 0x46, 0x20, 0x30, 0x00, 0x78
-    .byte 0x05, 0xA9, 0x00, 0x91, 0x01, 0x90, 0x30, 0x1C, 0x21, 0x1C
+    adds r1, r0, #0
+    b .Lraw_code_entities_40267_0
+.Lraw_code_entities_40266_4:
+    adds r1, r6, #0
+.Lraw_code_entities_40267_0:
+    cmp r1, #0
+    beq .Lraw_code_entities_40279_10
+    ldrh r0, [r1, #4]
+    ldr r3, [sp, #0x90]
+    cmp r0, r3
+    bne .Lraw_code_entities_40279_10
+    cmp r4, #0
+    bne .Lraw_code_entities_40278_0
+    mov r7, r8
+    movs r0, #0xa
+    ldrsh r6, [r7, r0]
+    movs r2, #0xe
+    ldrsh r4, [r7, r2]
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r7, #0xe
+    ldrsh r3, [r1, r7]
+    movs r7, #1
+    cmp r5, #0
+    beq .Lraw_code_entities_40269_10
+    movs r7, #6
+.Lraw_code_entities_40269_10:
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r1, sp, #0x14
+    str r1, [sp]
+    str r0, [sp, #4]
+    adds r0, r6, #0
+    adds r1, r4, #0
     bl SelectRetreatFacing
-    .byte 0x02, 0x1C
-    .byte 0x40, 0x46, 0x39, 0x1C
+    adds r2, r0, #0
+    mov r0, r8
+    adds r1, r7, #0
     bl func_08023FB0
-    .byte 0x1E, 0x20
+    movs r0, #0x1e
     bl RandomBelow
-    .byte 0x44, 0x1C
-    .byte 0x53, 0x46, 0x25, 0x9A, 0x13, 0x80, 0x7F, 0x20, 0x05, 0x40, 0x91, 0x78, 0x80, 0x20, 0x40, 0x42
-    .byte 0x08, 0x40, 0x28, 0x43, 0x90, 0x70, 0xD4, 0x70, 0xFA, 0xE0, 0x05, 0x49, 0x19, 0x98, 0x08, 0x40
-    .byte 0xB4, 0x21, 0x08, 0x43, 0x03, 0x49, 0x08, 0x40, 0x19, 0x90, 0x19, 0xA9, 0x63, 0xE0, 0x00, 0x00
-    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0x4C, 0x46, 0x2C, 0x34, 0x4F, 0x46, 0xBD, 0x8D
-    .byte 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D, 0x62, 0x88, 0x00, 0x2A, 0x00, 0xD0, 0x01, 0x3A, 0x00, 0x2D
-    .byte 0x48, 0xD0, 0x00, 0x2E, 0x46, 0xD0, 0xB0, 0x88, 0x24, 0x99, 0x88, 0x42, 0x42, 0xD1, 0x47, 0x46
-    .byte 0x0A, 0x20, 0x3B, 0x5E, 0x0E, 0x20, 0x39, 0x5E, 0x0A, 0x20, 0x37, 0x5E, 0xBA, 0x46, 0x0E, 0x27
-    .byte 0xF6, 0x5F, 0x57, 0x46, 0xF8, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x05, 0xDC
-    .byte 0x70, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x2B, 0xDD, 0x00, 0x2A, 0x0F, 0xD0
-    .byte 0x04, 0x27, 0xE0, 0x5F, 0xC0, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x1E, 0xDC
-    .byte 0x06, 0x27, 0xE0, 0x5F, 0x40, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x0F, 0x28, 0x16, 0xDC
-    .byte 0x40, 0x46, 0x20, 0x30, 0x00, 0x78, 0x05, 0xAA, 0x00, 0x92, 0x01, 0x90, 0x18, 0x1C, 0x52, 0x46
-    .byte 0x33, 0x1C
+    adds r4, r0, #1
+.Lraw_code_entities_40278_0:
+    mov r3, sl
+    ldr r2, [sp, #0x94]
+    strh r3, [r2]
+    movs r0, #0x7f
+    ands r5, r0
+    ldrb r1, [r2, #2]
+    movs r0, #0x80
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r5
+    strb r0, [r2, #2]
+    strb r4, [r2, #3]
+    b .Lraw_code_entities_40336_0
+.Lraw_code_entities_40279_10:
+    ldr r1, .Lraw_code_entities_40281_0
+    ldr r0, [sp, #0x64]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_40281_4
+    ands r0, r1
+    str r0, [sp, #0x64]
+    add r1, sp, #0x64
+    b .Lraw_code_entities_40298_6
+    .align 2, 0
+.Lraw_code_entities_40281_0: .word 0xFFFF0000
+.Lraw_code_entities_40281_4: .word 0xFF00FFFF
+.Lraw_code_entities_40281_8:
+    mov r4, sb
+    adds r4, #0x2c
+    mov r7, sb
+    ldrh r5, [r7, #0x2c]
+    cmp r5, #0
+    beq .Lraw_code_entities_40282_6
+    subs r5, #1
+.Lraw_code_entities_40282_6:
+    ldrh r2, [r4, #2]
+    cmp r2, #0
+    beq .Lraw_code_entities_40282_14
+    subs r2, #1
+.Lraw_code_entities_40282_14:
+    cmp r5, #0
+    beq .Lraw_code_entities_40297_4
+    cmp r6, #0
+    beq .Lraw_code_entities_40297_4
+    ldrh r0, [r6, #4]
+    ldr r1, [sp, #0x90]
+    cmp r0, r1
+    bne .Lraw_code_entities_40297_4
+    mov r7, r8
+    movs r0, #0xa
+    ldrsh r3, [r7, r0]
+    movs r0, #0xe
+    ldrsh r1, [r7, r0]
+    movs r0, #0xa
+    ldrsh r7, [r6, r0]
+    mov sl, r7
+    movs r7, #0xe
+    ldrsh r6, [r6, r7]
+    mov r7, sl
+    subs r0, r7, r3
+    cmp r0, #0
+    bge .Lraw_code_entities_40285_12
+    rsbs r0, r0, #0
+.Lraw_code_entities_40285_12:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_40286_12
+    subs r0, r6, r1
+    cmp r0, #0
+    bge .Lraw_code_entities_40286_8
+    rsbs r0, r0, #0
+.Lraw_code_entities_40286_8:
+    cmp r0, #0xf
+    ble .Lraw_code_entities_40297_4
+.Lraw_code_entities_40286_12:
+    cmp r2, #0
+    beq .Lraw_code_entities_40289_0
+    movs r7, #4
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r3
+    cmp r0, #0
+    bge .Lraw_code_entities_40287_12
+    rsbs r0, r0, #0
+.Lraw_code_entities_40287_12:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_40296_8
+    movs r7, #6
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r1
+    cmp r0, #0
+    bge .Lraw_code_entities_40288_12
+    rsbs r0, r0, #0
+.Lraw_code_entities_40288_12:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_40296_8
+.Lraw_code_entities_40289_0:
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r2, sp, #0x14
+    str r2, [sp]
+    str r0, [sp, #4]
+    adds r0, r3, #0
+    mov r2, sl
+    adds r3, r6, #0
     bl SelectApproachFacing
-    .byte 0x02, 0x1C, 0x40, 0x46, 0x01, 0x21
+    adds r2, r0, #0
+    mov r0, r8
+    movs r1, #1
     bl func_08023FB0
-    .byte 0x1E, 0x20
+    movs r0, #0x1e
     bl RandomBelow
-    .byte 0x42, 0x1C, 0x53, 0x46, 0xA3, 0x80, 0xE6, 0x80, 0x25, 0x80
-    .byte 0x62, 0x80, 0x95, 0xE0, 0x0B, 0x49, 0x1A, 0x98, 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43, 0x0A, 0x49
-    .byte 0x08, 0x40, 0x1A, 0x90, 0x1A, 0xA9, 0x48, 0x46
+    adds r2, r0, #1
+    mov r3, sl
+    strh r3, [r4, #4]
+    strh r6, [r4, #6]
+.Lraw_code_entities_40296_8:
+    strh r5, [r4]
+    strh r2, [r4, #2]
+    b .Lraw_code_entities_40336_0
+.Lraw_code_entities_40297_4:
+    ldr r1, .Lraw_code_entities_40304_4
+    ldr r0, [sp, #0x68]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_40304_8
+    ands r0, r1
+    str r0, [sp, #0x68]
+    add r1, sp, #0x68
+.Lraw_code_entities_40298_6:
+    mov r0, sb
     bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
-    .byte 0x40, 0x46
+    mov r0, r8
     bl func_08024020
-    .byte 0x01, 0x1C, 0x40, 0x46, 0x20, 0x30, 0x02, 0x78, 0x40, 0x46
+    adds r1, r0, #0
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r2, [r0]
+    mov r0, r8
     bl func_08023FB0
-    .byte 0x7E, 0xE0, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0x4E, 0x46, 0x2C, 0x36
-    .byte 0x40, 0x46, 0x20, 0x30, 0x01, 0x78, 0x47, 0x46, 0x0A, 0x22, 0xBC, 0x5E, 0x0E, 0x23, 0xFD, 0x5E
-    .byte 0x07, 0x1C, 0x24, 0x98, 0x25, 0x28, 0x21, 0xD1, 0x00, 0x29, 0x1F, 0xD1, 0x1B, 0xA8
+    b .Lraw_code_entities_40336_0
+    .align 2, 0
+.Lraw_code_entities_40304_4: .word 0xFFFF0000
+.Lraw_code_entities_40304_8: .word 0xFF00FFFF
+.Lraw_code_entities_40304_12:
+    mov r6, sb
+    adds r6, #0x2c
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r1, [r0]
+    mov r7, r8
+    movs r2, #0xa
+    ldrsh r4, [r7, r2]
+    movs r3, #0xe
+    ldrsh r5, [r7, r3]
+    adds r7, r0, #0
+    ldr r0, [sp, #0x90]
+    cmp r0, #0x25
+    bne .Lraw_code_entities_40314_2
+    cmp r1, #0
+    bne .Lraw_code_entities_40314_2
+    add r0, sp, #0x6c
     bl method_0800CE58__4Barn
-    .byte 0x1B, 0x98, 0x1C, 0x90, 0x1C, 0xA8, 0x02, 0x22, 0x81, 0x5E, 0x28, 0x1C, 0x08, 0x38
-    .byte 0x08, 0x1A, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42, 0x07, 0x28, 0x3F, 0xDC, 0x1D, 0xA8
+    ldr r0, [sp, #0x6c]
+    str r0, [sp, #0x70]
+    add r0, sp, #0x70
+    movs r2, #2
+    ldrsh r1, [r0, r2]
+    adds r0, r5, #0
+    subs r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lraw_code_entities_40309_8
+    rsbs r0, r0, #0
+.Lraw_code_entities_40309_8:
+    cmp r0, #7
+    bgt .Lraw_code_entities_40328_0
+    add r0, sp, #0x74
     bl smethod_08009ADC__4Farm
-    .byte 0x1D, 0x98, 0x1E, 0x90, 0x1E, 0xA8, 0x00, 0x23, 0xC2, 0x5E, 0x02, 0x21, 0x43, 0x5E
-    .byte 0x10, 0x33, 0x40, 0x46, 0x02, 0x21
+    ldr r0, [sp, #0x74]
+    str r0, [sp, #0x78]
+    add r0, sp, #0x78
+    movs r3, #0
+    ldrsh r2, [r0, r3]
+    movs r1, #2
+    ldrsh r3, [r0, r1]
+    adds r3, #0x10
+    mov r0, r8
+    movs r1, #2
     bl SetLocation__7AEntityUiii
-    .byte 0x2F, 0xE0, 0x24, 0x9A, 0x02, 0x2A
-    .byte 0x2C, 0xD1, 0x01, 0x29, 0x2A, 0xD1, 0x1F, 0xA8
+    b .Lraw_code_entities_40328_0
+.Lraw_code_entities_40314_2:
+    ldr r2, [sp, #0x90]
+    cmp r2, #2
+    bne .Lraw_code_entities_40328_0
+    cmp r1, #1
+    bne .Lraw_code_entities_40328_0
+    add r0, sp, #0x7c
     bl smethod_08009ADC__4Farm
-    .byte 0x1F, 0x98, 0x20, 0x90
-    .byte 0x20, 0xA8, 0x01, 0x1C, 0x00, 0x23, 0xC8, 0x5E, 0x00, 0x1B, 0x00, 0x28, 0x00, 0xDA, 0x40, 0x42
-    .byte 0x0F, 0x28, 0x1B, 0xDC, 0x02, 0x20, 0x09, 0x5E, 0x28, 0x1C, 0x08, 0x30, 0x08, 0x1A, 0x00, 0x28
-    .byte 0x00, 0xDA, 0x40, 0x42, 0x07, 0x28, 0x11, 0xDC, 0x21, 0xA8
+    ldr r0, [sp, #0x7c]
+    str r0, [sp, #0x80]
+    add r0, sp, #0x80
+    adds r1, r0, #0
+    movs r3, #0
+    ldrsh r0, [r1, r3]
+    subs r0, r0, r4
+    cmp r0, #0
+    bge .Lraw_code_entities_40319_0
+    rsbs r0, r0, #0
+.Lraw_code_entities_40319_0:
+    cmp r0, #0xf
+    bgt .Lraw_code_entities_40328_0
+    movs r0, #2
+    ldrsh r1, [r1, r0]
+    adds r0, r5, #0
+    adds r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lraw_code_entities_40320_4
+    rsbs r0, r0, #0
+.Lraw_code_entities_40320_4:
+    cmp r0, #7
+    bgt .Lraw_code_entities_40328_0
+    add r0, sp, #0x84
     bl method_0800CE58__4Barn
-    .byte 0x21, 0x99
-    .byte 0x22, 0xA8, 0x01, 0x60, 0x00, 0x21, 0x42, 0x5E, 0x02, 0x21, 0x43, 0x5E, 0x20, 0x3B, 0x40, 0x46
-    .byte 0x25, 0x21
+    ldr r1, [sp, #0x84]
+    add r0, sp, #0x88
+    str r1, [r0]
+    movs r1, #0
+    ldrsh r2, [r0, r1]
+    movs r1, #2
+    ldrsh r3, [r0, r1]
+    subs r3, #0x20
+    mov r0, r8
+    movs r1, #0x25
     bl SetLocation__7AEntityUiii
-    .byte 0x48, 0x46
+    mov r0, sb
     bl ResetCurrentOutdoorMinutes__9Livestock
-    .byte 0x30, 0x88, 0x00, 0x28
-    .byte 0x02, 0xD0, 0x01, 0x38, 0x30, 0x80, 0x13, 0xE0, 0x11, 0x4A, 0x23, 0xA9, 0x08, 0x68, 0x10, 0x40
-    .byte 0xB4, 0x22, 0x10, 0x43, 0x0F, 0x4A, 0x10, 0x40, 0x08, 0x60, 0x48, 0x46
+.Lraw_code_entities_40328_0:
+    ldrh r0, [r6]
+    cmp r0, #0
+    beq .Lraw_code_entities_40329_8
+    subs r0, #1
+    strh r0, [r6]
+    b .Lraw_code_entities_40336_0
+.Lraw_code_entities_40329_8:
+    ldr r2, .Lraw_code_entities_40340_0
+    add r1, sp, #0x8c
+    ldr r0, [r1]
+    ands r0, r2
+    movs r2, #0xb4
+    orrs r0, r2
+    ldr r2, .Lraw_code_entities_40340_4
+    ands r0, r2
+    str r0, [r1]
+    mov r0, sb
     bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
-    .byte 0x40, 0x46
+    mov r0, r8
     bl func_08024020
-    .byte 0x01, 0x1C, 0x3A, 0x78, 0x40, 0x46
+    adds r1, r0, #0
+    ldrb r2, [r7]
+    mov r0, r8
     bl func_08023FB0
-    .byte 0x40, 0x46, 0x05, 0xA9
+.Lraw_code_entities_40336_0:
+    mov r0, r8
+    add r1, sp, #0x14
     bl ApplyMovement__12AActorEntityP19ActorMovementBounds
-    .byte 0x41, 0x46, 0x30, 0x31, 0x00, 0x20, 0x08, 0x70
-    .byte 0x42, 0x46, 0x90, 0x8C, 0x00, 0x28, 0x07, 0xD0, 0x01, 0x38, 0x90, 0x84, 0x07, 0xE0, 0x00, 0x00
-    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0x43, 0x46, 0xD8, 0x8C, 0x98, 0x84, 0x46, 0x46
-    .byte 0x32, 0x69, 0x00, 0x2A, 0x04, 0xD0, 0x50, 0x68, 0xC1, 0x68, 0x10, 0x1C
+    mov r1, r8
+    adds r1, #0x30
+    movs r0, #0
+    strb r0, [r1]
+    mov r2, r8
+    ldrh r0, [r2, #0x24]
+    cmp r0, #0
+    beq .Lraw_code_entities_40340_8
+    subs r0, #1
+    strh r0, [r2, #0x24]
+    b .Lraw_code_entities_40340_14
+    .align 2, 0
+.Lraw_code_entities_40340_0: .word 0xFFFF0000
+.Lraw_code_entities_40340_4: .word 0xFF00FFFF
+.Lraw_code_entities_40340_8:
+    mov r3, r8
+    ldrh r0, [r3, #0x26]
+    strh r0, [r3, #0x24]
+.Lraw_code_entities_40340_14:
+    mov r6, r8
+    ldr r2, [r6, #0x10]
+    cmp r2, #0
+    beq .Lraw_code_entities_40343_0
+    ldr r0, [r2, #4]
+    ldr r1, [r0, #0xc]
+    adds r0, r2, #0
     bl _call_via_r1
-    .byte 0x28, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
+.Lraw_code_entities_40343_0:
+    add sp, #0xa0
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
 
     thumb_func_start func_08023FB0
 func_08023FB0: @ 0x08023FB0
@@ -40507,123 +43558,290 @@ func_080240BC: @ 0x080240BC
     .global func_080240D0
     .thumb_func
 func_080240D0:
-    .byte 0xF0, 0xB5, 0x82, 0xB0, 0x06, 0x1C, 0x0F, 0x1C, 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88
-    .byte 0x88, 0x42, 0x5F, 0xD1, 0x70, 0x6B
+    push {r4, r5, r6, r7, lr}
+    sub sp, #8
+    adds r6, r0, #0
+    adds r7, r1, #0
+    ldrh r0, [r7]
+    lsls r0, r0, #0x16
+    lsrs r0, r0, #0x16
+    ldrh r1, [r6, #4]
+    cmp r0, r1
+    bne .Lraw_code_entities_40539_0
+    ldr r0, [r6, #0x34]
     bl IsPregnant__C10BarnAnimal
-    .byte 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1
-    .byte 0x70, 0x6B
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_40539_0
+    ldr r0, [r6, #0x34]
     bl GetAffection__C6Animal
     bl CalculateAnimalResponseRadius
-    .byte 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78
-    .byte 0x89, 0x08, 0x7A, 0x88, 0x12, 0x4C, 0x22, 0x40, 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14
-    .byte 0xD2, 0x1A, 0x0E, 0x23, 0xF5, 0x5E, 0xFB, 0x78, 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01
-    .byte 0x19, 0x43, 0x09, 0x04, 0x09, 0x14, 0x49, 0x1B, 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C
-    .byte 0x4B, 0x43, 0x19, 0x1C, 0x52, 0x18, 0x01, 0x1C, 0x41, 0x43, 0x08, 0x1C, 0x82, 0x42, 0x31, 0xDC
-    .byte 0x70, 0x6B
+    movs r1, #0xa
+    ldrsh r3, [r6, r1]
+    ldrb r1, [r7, #1]
+    lsrs r1, r1, #2
+    ldrh r2, [r7, #2]
+    ldr r4, .Lraw_code_entities_40525_0
+    ands r2, r4
+    lsls r2, r2, #6
+    orrs r2, r1
+    lsls r2, r2, #0x10
+    asrs r2, r2, #0x10
+    subs r2, r2, r3
+    movs r3, #0xe
+    ldrsh r5, [r6, r3]
+    ldrb r3, [r7, #3]
+    lsrs r3, r3, #2
+    ldrh r1, [r7, #4]
+    ands r1, r4
+    lsls r1, r1, #6
+    orrs r1, r3
+    lsls r1, r1, #0x10
+    asrs r1, r1, #0x10
+    subs r1, r1, r5
+    adds r3, r2, #0
+    muls r3, r2, r3
+    adds r2, r3, #0
+    adds r3, r1, #0
+    muls r3, r1, r3
+    adds r1, r3, #0
+    adds r2, r2, r1
+    adds r1, r0, #0
+    muls r1, r0, r1
+    adds r0, r1, #0
+    cmp r2, r0
+    bgt .Lraw_code_entities_40539_0
+    ldr r0, [r6, #0x34]
     bl IsSick__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x03, 0xD0, 0x1E, 0x24, 0x09, 0xE0
-    .byte 0xFF, 0x03, 0x00, 0x00, 0x70, 0x6B
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_40525_4
+    movs r4, #0x1e
+    b .Lraw_code_entities_40528_4
+.Lraw_code_entities_40525_0: .word 0x000003FF
+.Lraw_code_entities_40525_4:
+    ldr r0, [r6, #0x34]
     bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x64, 0x24, 0x00, 0x28
-    .byte 0x00, 0xD0, 0x46, 0x24, 0x64, 0x20
+    lsls r0, r0, #0x18
+    movs r4, #0x64
+    cmp r0, #0
+    beq .Lraw_code_entities_40528_4
+    movs r4, #0x46
+.Lraw_code_entities_40528_4:
+    movs r0, #0x64
     bl RandomBelow
-    .byte 0xA0, 0x42, 0x1A, 0xD2, 0x70, 0x6B
+    cmp r0, r4
+    bhs .Lraw_code_entities_40539_0
+    ldr r0, [r6, #0x34]
     bl GetAffection__C6Animal
-    .byte 0x01, 0x01, 0x09, 0x1A, 0x89, 0x01, 0x09, 0x0A, 0xF0, 0x23, 0x5B, 0x00
-    .byte 0xC9, 0x18, 0x09, 0x04, 0x09, 0x0C, 0x00, 0x91, 0x70, 0x6B, 0x69, 0x46
+    lsls r1, r0, #4
+    subs r1, r1, r0
+    lsls r1, r1, #6
+    lsrs r1, r1, #8
+    movs r3, #0xf0
+    lsls r3, r3, #1
+    adds r1, r1, r3
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    str r1, [sp]
+    ldr r0, [r6, #0x34]
+    mov r1, sp
     bl method_0809B958__10BarnAnimalPC18UnkBarnAnimal2C_x2
-    .byte 0x30, 0x1C
+    adds r0, r6, #0
     bl func_08024020
-    .byte 0x01, 0x1C, 0x30, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x30, 0x1C
+    adds r1, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
     bl func_08023FB0
-    .byte 0x02, 0xB0, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
+.Lraw_code_entities_40539_0:
+    add sp, #8
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     .global func_080241AC
     .thumb_func
 func_080241AC:
-    .byte 0x10, 0xB5, 0x81, 0xB0
-    .byte 0x04, 0x1C, 0x62, 0x6B, 0x90, 0x6A, 0x03, 0x28, 0x15, 0xD1, 0x0D, 0x49, 0x00, 0x98, 0x08, 0x40
-    .byte 0xB4, 0x21, 0x08, 0x43, 0x0B, 0x49, 0x08, 0x40, 0x00, 0x90, 0x10, 0x1C, 0x69, 0x46
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r2, [r4, #0x34]
+    ldr r0, [r2, #0x28]
+    cmp r0, #3
+    bne .Lraw_code_entities_40552_0
+    ldr r1, .Lraw_code_entities_40553_0
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .Lraw_code_entities_40553_4
+    ands r0, r1
+    str r0, [sp]
+    adds r0, r2, #0
+    mov r1, sp
     bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_08024020
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78
-    .byte 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_08023FB0
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+.Lraw_code_entities_40552_0:
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_40553_0: .word 0xFFFF0000
+.Lraw_code_entities_40553_4: .word 0xFF00FFFF
     .global func_080241F8
     .thumb_func
 func_080241F8:
-    .byte 0x01, 0x20, 0x70, 0x47
+    movs r0, #1
+    bx lr
     .global func_080241FC
     .thumb_func
 func_080241FC:
-    .byte 0x30, 0xB5, 0x04, 0x1C
-    .byte 0x00, 0x25, 0x60, 0x6B
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #0
+    ldr r0, [r4, #0x34]
     bl IsPregnant__C10BarnAnimal
-    .byte 0x00, 0x06, 0x00, 0x28, 0x06, 0xD1, 0x60, 0x6B
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_40566_8
+    ldr r0, [r4, #0x34]
     bl CanBeMadePregnant__C5Sheep
-    .byte 0x00, 0x06, 0x00, 0x0E, 0x40, 0x42, 0xC5, 0x0F, 0x28, 0x1C, 0x30, 0xBC
-    .byte 0x02, 0xBC, 0x08, 0x47
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    rsbs r0, r0, #0
+    lsrs r5, r0, #0x1f
+.Lraw_code_entities_40566_8:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
     .global func_08024224
     .thumb_func
 func_08024224:
-    .byte 0x00, 0xB5, 0x40, 0x6B
+    push {lr}
+    ldr r0, [r0, #0x34]
     bl HasBeenBrushedToday__C6Animal
-    .byte 0x01, 0x21, 0x48, 0x40
-    .byte 0x02, 0xBC, 0x08, 0x47
+    movs r1, #1
+    eors r0, r1
+    pop {r1}
+    bx r1
     .global func_08024234
     .thumb_func
 func_08024234:
-    .byte 0x00, 0xB5, 0x40, 0x6B
+    push {lr}
+    ldr r0, [r0, #0x34]
     bl CanBeSheared__C5Sheep
-    .byte 0x02, 0xBC, 0x08, 0x47
+    pop {r1}
+    bx r1
     .section .text.livestock_actor_sheep_after_sick_check, "ax", %progbits
     .align 2, 0
 
     .global func_0802424C
     .thumb_func
 func_0802424C:
-    .byte 0x30, 0xB5, 0x04, 0x1C
-    .byte 0x00, 0x25, 0xA0, 0x88, 0x02, 0x28, 0x0C, 0xD1, 0x60, 0x6B
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #0
+    ldrh r0, [r4, #4]
+    cmp r0, #2
+    bne .Lraw_code_entities_40594_2
+    ldr r0, [r4, #0x34]
     bl IsSick__C9Livestock
-    .byte 0x00, 0x06
-    .byte 0x00, 0x28, 0x06, 0xD1, 0x60, 0x6B
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_40594_2
+    ldr r0, [r4, #0x34]
     bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x00, 0xD1
-    .byte 0x01, 0x25, 0x28, 0x1C, 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_40594_2
+    movs r5, #1
+.Lraw_code_entities_40594_2:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_0802427C
     .thumb_func
 func_0802427C:
-    .byte 0x10, 0xB5, 0x81, 0xB0
-    .byte 0x04, 0x1C, 0x60, 0x6B
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
     bl IsPregnant__C10BarnAnimal
-    .byte 0x00, 0x06, 0x00, 0x28, 0x21, 0xD1, 0x78, 0x20
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_40611_0
+    movs r0, #0x78
     bl RandomBelow
-    .byte 0xF0, 0x30, 0x00, 0x04, 0x00, 0x0C, 0x18, 0x4A, 0x00, 0x99, 0x11, 0x40
-    .byte 0x01, 0x43, 0x17, 0x48, 0x01, 0x40, 0xF0, 0x20, 0x80, 0x03, 0x01, 0x43, 0x15, 0x48, 0x01, 0x40
-    .byte 0x15, 0x48, 0x01, 0x40, 0x00, 0x91, 0x60, 0x6B, 0x69, 0x46
+    adds r0, #0xf0
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    ldr r2, .Lraw_code_entities_40619_10
+    ldr r1, [sp]
+    ands r1, r2
+    orrs r1, r0
+    ldr r0, .Lraw_code_entities_40620_0
+    ands r1, r0
+    movs r0, #0xf0
+    lsls r0, r0, #0xe
+    orrs r1, r0
+    ldr r0, .Lraw_code_entities_40620_4
+    ands r1, r0
+    ldr r0, .Lraw_code_entities_40620_8
+    ands r1, r0
+    str r1, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
     bl method_0809B94C__10BarnAnimalPC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_08024020
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_08023FB0
-    .byte 0x60, 0x6B, 0x0A, 0x21
+.Lraw_code_entities_40611_0:
+    ldr r0, [r4, #0x34]
+    movs r1, #0xa
     bl SubtractAffection__6Animali
-    .byte 0x60, 0x6B
+    ldr r0, [r4, #0x34]
     bl SetUnhappy__9Livestock
-    .byte 0x20, 0x1C, 0x00, 0x21, 0x00, 0x22
+    adds r0, r4, #0
+    movs r1, #0
+    movs r2, #0
     bl StartActorSpriteEffect
-    .byte 0x20, 0x1C, 0xA4, 0x21
+    adds r0, r4, #0
+    movs r1, #0xa4
     bl RequestSound__16AudioActorEntityUi
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF
-    .byte 0xFF, 0xFF, 0x80, 0xFF, 0xFF, 0xFF, 0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0x00
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_40619_10: .word 0xFFFF0000
+.Lraw_code_entities_40620_0: .word 0xFF80FFFF
+.Lraw_code_entities_40620_4: .word 0xFF7FFFFF
+.Lraw_code_entities_40620_8: .word 0x00FFFFFF
     .global func_0802430C
     .thumb_func
 func_0802430C:
-    .byte 0x00, 0xB5, 0x40, 0x6B
+    push {lr}
+    ldr r0, [r0, #0x34]
     bl StartPregnancy__10BarnAnimal
-    .byte 0x01, 0xBC, 0x00, 0x47
+    pop {r0}
+    bx r0
     .global func_08024318
     .thumb_func
 func_08024318:
@@ -40763,12 +43981,9 @@ func_080243DC:
     pop {r0}
     bx r0
     .align 2, 0
-.L0802445C:
-    .word 0xFFFF0000
-.L08024460:
-    .word 0xFF80FFFF
-.L08024464:
-    .word 0x00FFFFFF
+.L0802445C: .word 0xFFFF0000
+.L08024460: .word 0xFF80FFFF
+.L08024464: .word 0x00FFFFFF
     .global func_08024468
     .thumb_func
 func_08024468:
@@ -40814,8 +44029,7 @@ func_08024468:
     pop {r0}
     bx r0
     .align 2, 0
-.L080244C0:
-    .word 0xFFFF0000
+.L080244C0: .word 0xFFFF0000
 
     thumb_func_start func_080244C4
 func_080244C4: @ 0x080244C4
@@ -53881,8 +57095,7 @@ Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     bl _call_via_r4
     b .L802B66E
     .align 2, 0
-.L802B668:
-    .4byte SubmitWorldSpriteRecords
+.L802B668: .4byte SubmitWorldSpriteRecords
 .L802B66C:
     movs	r0, #0
 .L802B66E:
@@ -53998,8 +57211,7 @@ Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     bl _call_via_r4
     b .L802B756
     .align 2, 0
-.L802B750:
-    .4byte SubmitWorldSpriteRecords
+.L802B750: .4byte SubmitWorldSpriteRecords
 .L802B754:
     movs	r0, #0
 .L802B756:
@@ -54093,10 +57305,8 @@ Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     movs	r3, #1
     bl _call_via_r4
     b .L802B872
-.L802B810:
-    .4byte 0x00000281
-.L802B814:
-    .4byte gPortraitArchivePaletteTrailer
+.L802B810: .4byte 0x00000281
+.L802B814: .4byte gPortraitArchivePaletteTrailer
 .L802B818:
     ldr	r4, [sp, #76]
     ldr r5, .L802B8E4
@@ -54193,10 +57403,8 @@ Draw__22PlayerSpriteControllerRC17EntityDrawContext:
     pop	{r0}
     bx	r0
     .align 2, 0
-.L802B8E4:
-    .4byte 0x00000281
-.L802B8E8:
-    .4byte 0x0000FFFF
+.L802B8E4: .4byte 0x00000281
+.L802B8E8: .4byte 0x0000FFFF
     thumb_func_start CreateWorldPlayerEntity
 CreateWorldPlayerEntity: @ 0x0802B8EC
     push {r4, r5, lr}

@@ -1,3 +1,5 @@
+    .include "asm/macro.inc"
+
     .ifdef REGION_JP
     @ JP revision 0 counterpart, expressed as real Thumb instructions and relocations.
     @ Region-specific dispatch paths retain direct labels at their verified
@@ -4480,25 +4482,58 @@ func_080329DC:
     @ EU entity UI code, actual Thumb instructions and relocations.
     .section .text.entity_actor_animation_index_after, "ax", %progbits
     .align 2, 0
-    .4byte 0x1C02B500
-    .4byte 0x78003020
-    .4byte 0xD0024288
-    .4byte 0xF7FF1C10
-    .4byte 0xBC01FB0F
-    .4byte 0x00004700
-    .4byte 0x78003020
-    .4byte 0x00004770
-    .4byte 0x5E81220E
-    .4byte __ewram_bss_end + 0x170
-    .4byte 0x47701A40
-    .4byte 0x70013021
-    .4byte 0x00004770
-    .4byte 0x78003021
-    .4byte 0x00004770
-    .4byte 0x477061C1
-    .4byte 0x477069C0
-    .4byte 0x47706181
-    .4byte 0x47706980
+    push {lr}
+    adds r2, r0, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, r1
+    beq .Lraw_code_entities_080320DC_4487_2
+    adds r0, r2, #0
+    bl SetAnimFacing__12AActorEntityUi
+.Lraw_code_entities_080320DC_4487_2:
+    pop {r0}
+    bx r0
+    .align 2, 0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+    thumb_func_start func_08032B88
+func_08032B88:
+    movs r2, #14
+    ldrsh r1, [r0, r2]
+    movs r0, #128
+    lsls r0, r0, #8
+    subs r0, r0, r1
+    bx lr
+    thumb_func_start func_08032B94
+func_08032B94:
+    adds r0, #33
+    strb r1, [r0]
+    bx lr
+    .align 2, 0
+    thumb_func_start func_08032B9C
+func_08032B9C:
+    adds r0, #33
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+    thumb_func_start func_08032BA4
+func_08032BA4:
+    str r1, [r0, #28]
+    bx lr
+    thumb_func_start func_08032BA8
+func_08032BA8:
+    ldr r0, [r0, #28]
+    bx lr
+    thumb_func_start func_08032BAC
+func_08032BAC:
+    str r1, [r0, #24]
+    bx lr
+    thumb_func_start func_08032BB0
+func_08032BB0:
+    ldr r0, [r0, #24]
+    bx lr
     .global func_08032BB4
     .thumb_func
 func_08032BB4:
@@ -4648,16 +4683,23 @@ func_08032BB4:
     ldr	r2, [r0, #68]	@ 0x44
     mov	r0, sl
     bl _call_via_r2
-    .hword 0x2800
-    .4byte 0x8880D010
-    .4byte 0xD10D2825
-    .4byte 0xF0681C20
-    .4byte 0x0600FC17
-    .4byte 0xD1072800
-    .4byte 0xF0681C20
-    .4byte 0x0600FDEB
-    .4byte 0xD1012800
-    .4byte 0x44812001
+    cmp r0, #0
+    beq .Leu_08032D14
+    ldrh r0, [r0, #4]
+    cmp r0, #0x25
+    bne .Leu_08032D14
+    adds r0, r4, #0
+    bl HasBeenFed__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Leu_08032D14
+    adds r0, r4, #0
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Leu_08032D14
+    movs r0, #1
+    add sb, r0
 .Leu_08032D14:
     adds	r5, #1
     cmp	r5, r6
@@ -4849,13 +4891,18 @@ func_08032BB4:
     ldr	r2, [r0, #68]	@ 0x44
     mov	r0, sl
     bl _call_via_r2
-    .4byte 0xD00A2800
-    .4byte 0x28118880
-    .4byte 0x1C20D107
-    .4byte 0xFB50F068
-    .4byte 0x28000600
-    .4byte 0x2201D101
-    .hword 0x4491
+    cmp r0, #0
+    beq .Leu_08032E96
+    ldrh r0, [r0, #4]
+    cmp r0, #0x11
+    bne .Leu_08032E96
+    adds r0, r4, #0
+    bl HasBeenFed__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Leu_08032E96
+    movs r2, #1
+    add sb, r2
 .Leu_08032E96:
     adds	r5, #1
     cmp	r5, r6
@@ -5003,98 +5050,183 @@ func_08032BB4:
     movs	r6, #54	@ 0x36
     movs	r7, #16
     negs	r7, r7
+.Lraw_code_entities_080320DC_5006_0:
     mov	r1, sl
     ldr	r0, [r1, #0]
     ldr	r2, [r0, #68]	@ 0x44
     mov	r0, sl
     adds	r1, r6, #0
     bl _call_via_r2
-    .4byte 0x2C001C04
-    .4byte 0x88A0D049
-    .4byte 0x42909A0C
-    .4byte 0x6960D145
-    .4byte 0x1C206D01
-    .4byte 0xFCC8F0A0
-    .4byte 0x28000600
-    .4byte 0x6960D10F
-    .4byte 0x1C206D41
-    .4byte 0xFCC0F0A0
-    .4byte 0x28000600
-    .4byte 0x6960D107
-    .4byte 0x1C206D81
-    .4byte 0xFCB8F0A0
-    .4byte 0x28000600
-    .4byte 0x230AD02D
-    .4byte 0x981A5EE1
-    .4byte 0x220E1A09
-    .4byte 0x9B1B5EA0
-    .4byte 0x1C0A1AC0
-    .4byte 0x1C11434A
-    .4byte 0x43431C03
-    .4byte 0x18091C18
-    .4byte 0x46681C0D
-    .4byte 0x07007800
-    .4byte 0xD0022800
-    .4byte 0x4281980D
-    .4byte 0xAC02D215
-    .4byte 0x1C387821
-    .4byte 0x21064008
-    .4byte 0x70204308
-    .4byte 0x38361C30
-    .4byte 0x981C7060
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Lraw_code_entities_080320DC_5051_2
+    ldrh r0, [r4, #4]
+    ldr r2, [sp, #0x30]
+    cmp r0, r2
+    bne .Lraw_code_entities_080320DC_5051_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_5027_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x54]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_5027_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x58]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_5051_2
+.Lraw_code_entities_080320DC_5027_2:
+    movs r3, #0xa
+    ldrsh r1, [r4, r3]
+    ldr r0, [sp, #0x68]
+    subs r1, r1, r0
+    movs r2, #0xe
+    ldrsh r0, [r4, r2]
+    ldr r3, [sp, #0x6c]
+    subs r0, r0, r3
+    adds r2, r1, #0
+    muls r2, r1, r2
+    adds r1, r2, #0
+    adds r3, r0, #0
+    muls r3, r0, r3
+    adds r0, r3, #0
+    adds r1, r1, r0
+    adds r5, r1, #0
+    mov r0, sp
+    ldrb r0, [r0]
+    lsls r0, r0, #0x1c
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_5039_2
+    ldr r0, [sp, #0x34]
+    cmp r1, r0
+    bhs .Lraw_code_entities_080320DC_5051_2
+.Lraw_code_entities_080320DC_5039_2:
+    add r4, sp, #8
+    ldrb r1, [r4]
+    adds r0, r7, #0
+    ands r0, r1
+    movs r1, #6
+    orrs r0, r1
+    strb r0, [r4]
+    adds r0, r6, #0
+    subs r0, #0x36
+    strb r0, [r4, #1]
+    ldr r0, [sp, #0x70]
     adds r1, r4, #0
     bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls r0, r0, #24
-    .4byte 0xD1042800
-    .4byte 0x1C204669
-    .4byte 0xC10CC80C
-    .4byte 0x3601950D
-    .4byte 0xD9A82E45
-    .4byte 0x4656242E
-    .4byte 0x6C426830
-    .4byte 0x1C214650
-    .4byte 0xFC7EF0A0
-    .4byte 0x2C353401
-    .4byte 0x254CD9F5
-    .4byte 0x427F2710
-    .4byte 0x68084651
-    .4byte 0x46506C42
-    .4byte 0xF0A01C29
-    .4byte 0x1C02FC71
-    .4byte 0xD0312A00
-    .4byte 0x9B0C8890
-    .4byte 0xD12D4298
-    .4byte 0x5F91260A
-    .4byte 0x1A09981A
-    .4byte 0x5ED0230E
-    .4byte 0x1B809E1B
-    .4byte 0x434A1C0A
-    .4byte 0x1C031C11
-    .4byte 0x1C184343
-    .4byte 0x1C0E1809
-    .4byte 0x78004668
-    .4byte 0x28000700
-    .4byte 0x980DD002
-    .4byte 0xD2154281
-    .4byte 0x7821AC02
-    .4byte 0x40081C38
-    .4byte 0x43082108
-    .4byte 0x1C287020
-    .4byte 0x7060384C
-    .4byte 0x1C21981C
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_5051_2
+    mov r1, sp
+    adds r0, r4, #0
+    ldm r0!, {r2, r3}
+    stm r1!, {r2, r3}
+    str r5, [sp, #0x34]
+.Lraw_code_entities_080320DC_5051_2:
+    adds r6, #1
+    cmp r6, #0x45
+    bls .Lraw_code_entities_080320DC_5006_0
+    movs r4, #0x2e
+.Lraw_code_entities_080320DC_5053_2:
+    mov r6, sl
+    ldr r0, [r6]
+    ldr r2, [r0, #0x44]
+    mov r0, sl
+    adds r1, r4, #0
+    bl _call_via_r2
+    adds r4, #1
+    cmp r4, #0x35
+    bls .Lraw_code_entities_080320DC_5053_2
+    movs r5, #0x4c
+    movs r7, #0x10
+    rsbs r7, r7, #0
+.Lraw_code_entities_080320DC_5060_0:
+    mov r1, sl
+    ldr r0, [r1]
+    ldr r2, [r0, #0x44]
+    mov r0, sl
+    adds r1, r5, #0
+    bl _call_via_r2
+    adds r2, r0, #0
+    cmp r2, #0
+    beq .Lraw_code_entities_080320DC_5090_0
+    ldrh r0, [r2, #4]
+    ldr r3, [sp, #0x30]
+    cmp r0, r3
+    bne .Lraw_code_entities_080320DC_5090_0
+    movs r6, #0xa
+    ldrsh r1, [r2, r6]
+    ldr r0, [sp, #0x68]
+    subs r1, r1, r0
+    movs r3, #0xe
+    ldrsh r0, [r2, r3]
+    ldr r6, [sp, #0x6c]
+    subs r0, r0, r6
+    adds r2, r1, #0
+    muls r2, r1, r2
+    adds r1, r2, #0
+    adds r3, r0, #0
+    muls r3, r0, r3
+    adds r0, r3, #0
+    adds r1, r1, r0
+    adds r6, r1, #0
+    mov r0, sp
+    ldrb r0, [r0]
+    lsls r0, r0, #0x1c
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_5079_0
+    ldr r0, [sp, #0x34]
+    cmp r1, r0
+    bhs .Lraw_code_entities_080320DC_5090_0
+.Lraw_code_entities_080320DC_5079_0:
+    add r4, sp, #8
+    ldrb r1, [r4]
+    adds r0, r7, #0
+    ands r0, r1
+    movs r1, #8
+    orrs r0, r1
+    strb r0, [r4]
+    adds r0, r5, #0
+    subs r0, #0x4c
+    strb r0, [r4, #1]
+    ldr r0, [sp, #0x70]
+    adds r1, r4, #0
     bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
-    .4byte 0x28000600
-    .4byte 0x4669D104
-    .4byte 0xC80C1C20
-    .4byte 0x960DC10C
-    .4byte 0x2D533501
-    .4byte 0x990AD9C0
-    .4byte 0xC8444668
-    .4byte 0x980AC144
-    .4byte 0xBC38B012
-    .4byte 0x46A14698
-    .4byte 0xBCF046AA
-    .4byte 0x4708BC02
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_5090_0
+    mov r1, sp
+    adds r0, r4, #0
+    ldm r0!, {r2, r3}
+    stm r1!, {r2, r3}
+    str r6, [sp, #0x34]
+.Lraw_code_entities_080320DC_5090_0:
+    adds r5, #1
+    cmp r5, #0x53
+    bls .Lraw_code_entities_080320DC_5060_0
+    ldr r1, [sp, #0x28]
+    mov r0, sp
+    ldm r0!, {r2, r6}
+    stm r1!, {r2, r6}
+    ldr r0, [sp, #0x28]
+    add sp, #0x48
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
     .global func_080330F4
     .thumb_func
 func_080330F4:
@@ -5724,123 +5856,215 @@ func_08033584:
     .4byte .Leu_08033768
     .4byte .Leu_08033778
 .Leu_080335E0:
-    .4byte 0x480D78A2
-    .4byte 0x202B1829
-    .4byte 0x78644350
-    .4byte 0x00801900
-    .4byte 0x68091809
-    .4byte 0x0F020508
-    .4byte 0x07882300
-    .4byte 0x28010F80
-    .4byte 0x1E50D108
-    .4byte 0xD8052803
-    .4byte 0x0E800608
-    .4byte 0x40482114
-    .4byte 0x0FC34240
-    .4byte 0xE0BA1C18
+    ldrb r2, [r4, #2]
+    ldr r0, .Lraw_code_entities_080320DC_5741_0
+    adds r1, r5, r0
+    movs r0, #0x2b
+    muls r0, r2, r0
+    ldrb r4, [r4, #1]
+    adds r0, r0, r4
+    lsls r0, r0, #2
+    adds r1, r1, r0
+    ldr r1, [r1]
+    lsls r0, r1, #0x14
+    lsrs r2, r0, #0x1c
+    movs r3, #0
+    lsls r0, r1, #0x1e
+    lsrs r0, r0, #0x1e
+    cmp r0, #1
+    bne .Lraw_code_entities_080320DC_5740_0
+    subs r0, r2, #1
+    cmp r0, #3
+    bhi .Lraw_code_entities_080320DC_5740_0
+    lsls r0, r1, #0x18
+    lsrs r0, r0, #0x1a
+    movs r1, #0x14
+    eors r0, r1
+    rsbs r0, r0, #0
+    lsrs r3, r0, #0x1f
+.Lraw_code_entities_080320DC_5740_0:
+    adds r0, r3, #0
+    b .Leu_0803378E
+.Lraw_code_entities_080320DC_5741_0:
     .4byte 0x000009C8
 .Leu_0803361C:
-    .4byte 0x481078A2
-    .4byte 0x202B1829
-    .4byte 0x78644350
-    .4byte 0x00801900
-    .4byte 0x68091809
-    .4byte 0x0F000508
-    .4byte 0xD1112805
-    .4byte 0xA9029102
-    .4byte 0xF7D64668
-    .4byte 0x4668FF3B
-    .4byte 0xFD1CF7DB
-    .4byte 0x28000600
-    .4byte 0x4668D106
-    .4byte 0xFD2EF7DB
-    .4byte 0xD0052800
-    .4byte 0xD01D2801
+    ldrb r2, [r4, #2]
+    ldr r0, .Lraw_code_entities_080320DC_5762_0
+    adds r1, r5, r0
+    movs r0, #0x2b
+    muls r0, r2, r0
+    ldrb r4, [r4, #1]
+    adds r0, r0, r4
+    lsls r0, r0, #2
+    adds r1, r1, r0
+    ldr r1, [r1]
+    lsls r0, r1, #0x14
+    lsrs r0, r0, #0x1c
+    cmp r0, #5
+    bne .Leu_0803365C
+    str r1, [sp, #8]
+    add r1, sp, #8
+    mov r0, sp
+    bl method_0800A4A4__9FieldPlot
+    mov r0, sp
+    bl IsEmpty__C12RucksackItem
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Leu_0803365C
+    mov r0, sp
+    bl GetKind__C12RucksackItem
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_5763_0
+    cmp r0, #1
+    beq .Lraw_code_entities_080320DC_5776_0
 .Leu_0803365C:
     movs	r0, #0
     b .Leu_0803378E
+.Lraw_code_entities_080320DC_5762_0:
     .4byte 0x000009C8
-    .4byte 0xA801AC03
-    .4byte 0xF7DB4669
-    .4byte 0xA801FD25
-    .4byte 0x30017801
-    .4byte 0x02007800
-    .4byte 0x46694308
-    .4byte 0x78093106
-    .4byte 0x43010409
-    .4byte 0xF7DA1C20
-    .4byte 0x1C20FD43
-    .4byte 0xFD8EF7DA
-    .4byte 0x43014241
-    .4byte 0xE07A0FC8
-    .4byte 0x340D466C
-    .4byte 0xF7DB4668
-    .4byte 0x1C01FD2D
-    .4byte 0xF7DA1C20
-    .4byte 0x1C20FD59
-    .4byte 0xFD7EF7DA
-    .4byte 0x43014241
-    .4byte 0xE06A0FC8
+.Lraw_code_entities_080320DC_5763_0:
+    add r4, sp, #0xc
+    add r0, sp, #4
+    mov r1, sp
+    bl GetFood__C12RucksackItem
+    add r0, sp, #4
+    ldrb r1, [r0]
+    adds r0, #1
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #6
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r4, #0
+    bl __7ProductG4Food
+    adds r0, r4, #0
+    bl GetPrice__C7Product
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r0, r1, #0x1f
+    b .Leu_0803378E
+.Lraw_code_entities_080320DC_5776_0:
+    mov r4, sp
+    adds r4, #0xd
+    mov r0, sp
+    bl GetArticle__C12RucksackItem
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl __7ProductG7Article
+    adds r0, r4, #0
+    bl GetPrice__C7Product
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r0, r1, #0x1f
+    b .Leu_0803378E
 .Leu_080336B8:
-    .4byte 0x20FF2600
-    .4byte 0x182D0080
-    .4byte 0xF7D81C28
-    .4byte 0x2800FF5B
-    .4byte 0x7861D024
-    .4byte 0xF7D81C28
-    .4byte 0xE01BFF6D
+    movs r6, #0
+    movs r0, #0xff
+    lsls r0, r0, #2
+    adds r5, r5, r0
+    adds r0, r5, #0
+    bl GetStoredBushelCount__C4Coop
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_5810_0
+    ldrb r1, [r4, #1]
+    adds r0, r5, #0
+    bl HasBushelForEnt__C4CoopUi
+    b .Lraw_code_entities_080320DC_5808_0
 .Leu_080336D4:
-    .4byte 0x48062600
-    .4byte 0x1C28182D
-    .4byte 0xFBD0F7D9
-    .4byte 0xD0172800
-    .4byte 0x1C287861
-    .4byte 0xFBE8F7D9
-    .4byte 0x0000E00E
+    movs r6, #0
+    ldr r0, .Lraw_code_entities_080320DC_5800_0
+    adds r5, r5, r0
+    adds r0, r5, #0
+    bl GetStoredBushelCount__C4Barn
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_5810_0
+    ldrb r1, [r4, #1]
+    adds r0, r5, #0
+    bl HasBushelForStall__C4BarnUi
+    b .Lraw_code_entities_080320DC_5808_0
+    .align 2, 0
+.Lraw_code_entities_080320DC_5800_0:
     .4byte 0x000005DC
 .Leu_080336F4:
-    .4byte 0x48082600
-    .4byte 0x1C28182D
-    .4byte 0xFBC0F7D9
-    .4byte 0xD0072800
-    .4byte 0x1C287861
-    .4byte 0xFBEEF7D9
-    .4byte 0x28000600
-    .4byte 0x2601D100
-    .4byte 0xE03A1C30
+    movs r6, #0
+    ldr r0, .Lraw_code_entities_080320DC_5811_0
+    adds r5, r5, r0
+    adds r0, r5, #0
+    bl GetStoredBushelCount__C4Barn
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_5810_0
+    ldrb r1, [r4, #1]
+    adds r0, r5, #0
+    bl HasBushelForPregnancyStall__C4BarnUi
+.Lraw_code_entities_080320DC_5808_0:
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_5810_0
+    movs r6, #1
+.Lraw_code_entities_080320DC_5810_0:
+    adds r0, r6, #0
+    b .Leu_0803378E
+.Lraw_code_entities_080320DC_5811_0:
     .4byte 0x000005DC
 .Leu_0803371C:
-    .4byte 0x31367861
-    .4byte 0x6C426818
-    .4byte 0xF0A01C18
-    .4byte 0x1C04F91B
-    .4byte 0x2C002500
-    .4byte 0x6960D018
-    .4byte 0x1C206D01
-    .4byte 0xF910F0A0
-    .4byte 0x28000600
-    .4byte 0x6960D10F
-    .4byte 0x1C206D41
-    .4byte 0xF908F0A0
-    .4byte 0x28000600
-    .4byte 0x6960D107
-    .4byte 0x1C206D81
-    .4byte 0xF900F0A0
-    .4byte 0x28000600
-    .4byte 0x2501D000
-    .4byte 0xE0121C28
+    ldrb r1, [r4, #1]
+    adds r1, #0x36
+    ldr r0, [r3]
+    ldr r2, [r0, #0x44]
+    adds r0, r3, #0
+    bl _call_via_r2
+    adds r4, r0, #0
+    movs r5, #0
+    cmp r4, #0
+    beq .Lraw_code_entities_080320DC_5831_0
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_5830_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x54]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_5830_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x58]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_5831_0
+.Lraw_code_entities_080320DC_5830_2:
+    movs r5, #1
+.Lraw_code_entities_080320DC_5831_0:
+    adds r0, r5, #0
+    b .Leu_0803378E
 .Leu_08033768:
-    .4byte 0x312E7861
-    .4byte 0x6C426818
-    .4byte 0xF0A01C18
-    .4byte 0xE771F8F5
+    ldrb r1, [r4, #1]
+    adds r1, #0x2e
+    ldr r0, [r3]
+    ldr r2, [r0, #0x44]
+    adds r0, r3, #0
+    bl _call_via_r2
+    b .Leu_0803365C
 .Leu_08033778:
-    .4byte 0x314C7861
-    .4byte 0x6C426818
-    .4byte 0xF0A01C18
-    .4byte 0x1C01F8ED
-    .4byte 0x43084248
-    .hword 0x0FC0
+    ldrb r1, [r4, #1]
+    adds r1, #0x4c
+    ldr r0, [r3]
+    ldr r2, [r0, #0x44]
+    adds r0, r3, #0
+    bl _call_via_r2
+    adds r1, r0, #0
+    rsbs r0, r1, #0
+    orrs r0, r1
+    lsrs r0, r0, #0x1f
 .Leu_0803378E:
     add	sp, #16
     pop	{r4, r5, r6}
@@ -5877,28 +6101,38 @@ func_08033784:
     .4byte .Leu_080337EE
     .4byte .Leu_080337F4
 .Leu_080337DC:
-    .4byte 0xE0162002
+    movs r0, #2
+    b .Leu_0803380E
 .Leu_080337E0:
-    .4byte 0xE0142011
+    movs r0, #0x11
+    b .Leu_0803380E
 .Leu_080337E4:
-    .4byte 0xE0122025
+    movs r0, #0x25
+    b .Leu_0803380E
 .Leu_080337E8:
-    .4byte 0x31367859
-    .hword 0xE004
+    ldrb r1, [r3, #1]
+    adds r1, #0x36
+    b .Lraw_code_entities_080320DC_5893_0
 .Leu_080337EE:
-    .hword 0x7859
-    .4byte 0xE001312E
+    ldrb r1, [r3, #1]
+    adds r1, #0x2e
+    b .Lraw_code_entities_080320DC_5893_0
 .Leu_080337F4:
-    .4byte 0x314C7859
-    .4byte 0x6C426820
-    .4byte 0xF0A01C20
-    .4byte 0x2800F8AF
-    .hword 0xD102
+    ldrb r1, [r3, #1]
+    adds r1, #0x4c
+.Lraw_code_entities_080320DC_5893_0:
+    ldr r0, [r4]
+    ldr r2, [r0, #0x44]
+    adds r0, r4, #0
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_5901_0
 .Leu_08033806:
     movs	r0, #141	@ 0x8d
     lsls	r0, r0, #2
     b .Leu_0803380E
-    .hword 0x8880
+.Lraw_code_entities_080320DC_5901_0:
+    ldrh r0, [r0, #4]
 .Leu_0803380E:
     pop	{r4}
     pop	{r1}
@@ -5913,14 +6147,24 @@ func_08033800:
     ldr	r2, [r0, #0]
     ldr	r2, [r2, #68]	@ 0x44
     bl _call_via_r2
-    .4byte 0x29001C01
-    .4byte 0x220AD005
-    .4byte 0x220E5E88
-    .4byte 0x80205E89
-    .4byte 0x8021E000
-    .4byte 0x1C208061
-    .4byte 0xBC02BC10
-    .4byte 0x00004708
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Lraw_code_entities_080320DC_5920_2
+    movs r2, #0xa
+    ldrsh r0, [r1, r2]
+    movs r2, #0xe
+    ldrsh r1, [r1, r2]
+    strh r0, [r4]
+    b .Lraw_code_entities_080320DC_5921_0
+.Lraw_code_entities_080320DC_5920_2:
+    strh r1, [r4]
+.Lraw_code_entities_080320DC_5921_0:
+    strh r1, [r4, #2]
+    adds r0, r4, #0
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_08033830
     .thumb_func
 func_08033830:
@@ -5956,42 +6200,62 @@ func_08033830:
     strh	r0, [r5, #2]
     b .Leu_080338FC
 .Leu_08033890:
-    .4byte 0x78A17860
-    .4byte 0x228C0100
-    .4byte 0x18800052
-    .4byte 0x31B80109
-    .4byte 0x80698028
-    .hword 0xE02A
+    ldrb r0, [r4, #1]
+    ldrb r1, [r4, #2]
+    lsls r0, r0, #4
+    movs r2, #0x8c
+    lsls r2, r2, #1
+    adds r0, r0, r2
+    lsls r1, r1, #4
+    adds r1, #0xb8
+    strh r0, [r5]
+    strh r1, [r5, #2]
+    b .Leu_080338FC
 .Leu_080338A6:
-    .hword 0x20FF
-    .4byte 0x18110080
-    .4byte 0x1C287862
-    .4byte 0xFF28F7D8
-    .hword 0xE022
+    movs r0, #0xff
+    lsls r0, r0, #2
+    adds r1, r2, r0
+    ldrb r2, [r4, #1]
+    adds r0, r5, #0
+    bl method_0800C6F0__C4CoopUi
+    b .Leu_080338FC
 .Leu_080338B6:
-    .hword 0x4803
-    .4byte 0x78621811
-    .4byte 0xF7D91C28
-    .4byte 0xE01BFBE3
+    ldr r0, .Lraw_code_entities_080320DC_5976_0
+    adds r1, r2, r0
+    ldrb r2, [r4, #1]
+    adds r0, r5, #0
+    bl method_0800D074__C4BarnUi
+    b .Leu_080338FC
+.Lraw_code_entities_080320DC_5976_0:
     .4byte 0x000005DC
 .Leu_080338C8:
-    .4byte 0x18114803
-    .4byte 0x1C287862
-    .4byte 0xFC00F7D9
-    .4byte 0x0000E012
+    ldr r0, .Lraw_code_entities_080320DC_5982_0
+    adds r1, r2, r0
+    ldrb r2, [r4, #1]
+    adds r0, r5, #0
+    bl method_0800D0C0__C4BarnUi
+    b .Leu_080338FC
+    .align 2, 0
+.Lraw_code_entities_080320DC_5982_0:
     .4byte 0x000005DC
 .Leu_080338DC:
-    .4byte 0x32367862
-    .hword 0xE001
+    ldrb r2, [r4, #1]
+    adds r2, #0x36
+    b .Lraw_code_entities_080320DC_5988_2
 .Leu_080338E2:
-    .hword 0x7862
-    .4byte 0x1C28322E
-    .4byte 0xF7FF1C19
-    .4byte 0xE005FF93
+    ldrb r2, [r4, #1]
+    adds r2, #0x2e
+.Lraw_code_entities_080320DC_5988_2:
+    adds r0, r5, #0
+    adds r1, r3, #0
+    bl func_08033800
+    b .Leu_080338FC
 .Leu_080338F0:
-    .4byte 0x324C7862
-    .4byte 0x1C191C28
-    .4byte 0xFF8CF7FF
+    ldrb r2, [r4, #1]
+    adds r2, #0x4c
+    adds r0, r5, #0
+    adds r1, r3, #0
+    bl func_08033800
 .Leu_080338FC:
     adds	r0, r5, #0
     pop	{r4, r5}
@@ -6103,27 +6367,35 @@ func_08033928:
     .4byte .Leu_080339E0
     .4byte .Leu_08033A1A
 .Leu_080339E0:
-    .4byte 0xE01B2504
+    movs r5, #4
+    b .Leu_08033A1C
 .Leu_080339E4:
-    .4byte 0x30226B78
-    .4byte 0xE0177805
+    ldr r0, [r7, #0x34]
+    adds r0, #0x22
+    ldrb r5, [r0]
+    b .Leu_08033A1C
 .Leu_080339EC:
-    .4byte 0x1C20AC03
+    add r4, sp, #0xc
+    adds r0, r4, #0
     adds r1, r6, #0
     bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
     adds r0, r7, #0
-    .4byte 0xF7FE1C21
-    .4byte 0xE00DFB99
+    adds r1, r4, #0
+    bl SetLocation__12AActorEntityRC13ActorLocation
+    b .Leu_08033A1C
 .Leu_08033A00:
-    .4byte 0x6B7C2501
-    .4byte 0xF06A1C20
-    .4byte 0x1C01FE41
-    .4byte 0xF06A1C20
-    .4byte 0xF7FFFE45
-    .4byte 0x4680FF89
-    .hword 0xE000
+    movs r5, #1
+    ldr r4, [r7, #0x34]
+    adds r0, r4, #0
+    bl GetCurrentTask__C13HarvestSprite
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
+    bl func_08033914
+    mov r8, r0
+    b .Leu_08033A1C
 .Leu_08033A1A:
-    .hword 0x2501
+    movs r5, #1
 .Leu_08033A1C:
     mvns	r1, r5
     adds	r0, r7, #0
@@ -6662,175 +6934,320 @@ func_0803436C:
     .4byte .Leu_08034800
     .4byte .Leu_08034848
 .Leu_08034470:
-    .4byte 0x682D9D0A
-    .4byte 0x20D846A9
-    .4byte 0x99094481
-    .4byte 0x5E8E220A
-    .4byte 0x5F4C250E
-    .4byte 0xAC0246A0
-    .4byte 0x88212202
-    .4byte 0x1C184B19
-    .4byte 0x43104008
-    .4byte 0x04368020
-    .4byte 0x203F0C31
-    .4byte 0x40014682
-    .4byte 0x78650089
-    .4byte 0x1C102203
-    .4byte 0x43084028
-    .4byte 0x0DB67060
-    .4byte 0x1C188861
-    .4byte 0x43304008
-    .4byte 0x46418060
-    .4byte 0x46880409
-    .4byte 0x46550C08
-    .4byte 0x00804028
-    .4byte 0x400A78E1
-    .4byte 0x70E24302
-    .4byte 0x0D804640
-    .4byte 0x88A04680
-    .4byte 0x46414003
-    .4byte 0x80A3430B
-    .4byte 0x682A464D
-    .4byte 0x1C21980A
-    .4byte 0xFA3AF09F
-    .4byte 0x46A02601
-    .4byte 0x0000E20F
+    ldr r5, [sp, #0x28]
+    ldr r5, [r5]
+    mov sb, r5
+    movs r0, #0xd8
+    add sb, r0
+    ldr r1, [sp, #0x24]
+    movs r2, #0xa
+    ldrsh r6, [r1, r2]
+    movs r5, #0xe
+    ldrsh r4, [r1, r5]
+    mov r8, r4
+    add r4, sp, #8
+    movs r2, #2
+    ldrh r1, [r4]
+    ldr r3, .Lraw_code_entities_080320DC_6698_0
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r2
+    strh r0, [r4]
+    lsls r6, r6, #0x10
+    lsrs r1, r6, #0x10
+    movs r0, #0x3f
+    mov sl, r0
+    ands r1, r0
+    lsls r1, r1, #2
+    ldrb r5, [r4, #1]
+    movs r2, #3
+    adds r0, r2, #0
+    ands r0, r5
+    orrs r0, r1
+    strb r0, [r4, #1]
+    lsrs r6, r6, #0x16
+    ldrh r1, [r4, #2]
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r6
+    strh r0, [r4, #2]
+    mov r1, r8
+    lsls r1, r1, #0x10
+    mov r8, r1
+    lsrs r0, r1, #0x10
+    mov r5, sl
+    ands r0, r5
+    lsls r0, r0, #2
+    ldrb r1, [r4, #3]
+    ands r2, r1
+    orrs r2, r0
+    strb r2, [r4, #3]
+    mov r0, r8
+    lsrs r0, r0, #0x16
+    mov r8, r0
+    ldrh r0, [r4, #4]
+    ands r3, r0
+    mov r1, r8
+    orrs r3, r1
+    strh r3, [r4, #4]
+    mov r5, sb
+    ldr r2, [r5]
+    ldr r0, [sp, #0x28]
+    adds r1, r4, #0
+    bl _call_via_r2
+    movs r6, #1
+    mov r8, r4
+    b .Lraw_code_entities_080320DC_6994_0
+    .align 2, 0
+.Lraw_code_entities_080320DC_6698_0:
     .4byte 0xFFFFFC00
 .Leu_080344F8:
-    .4byte 0x4681A802
-    .4byte 0xFD80F7DA
-    .4byte 0x6809990A
-    .4byte 0x22E04688
-    .4byte 0x9C094490
-    .4byte 0x5E25200A
-    .4byte 0x5E66210E
-    .4byte 0x2202AF04
-    .4byte 0x4B1E8839
-    .4byte 0x40081C18
-    .4byte 0x80384310
-    .4byte 0x0C29042D
-    .4byte 0x4692223F
-    .4byte 0x00894011
-    .4byte 0x2203787C
-    .4byte 0x40201C10
-    .4byte 0x70784308
-    .4byte 0x88790DAD
-    .4byte 0x40081C18
-    .4byte 0x80784328
-    .4byte 0x0C300436
-    .4byte 0x40204654
-    .4byte 0x78F90080
-    .4byte 0x4302400A
-    .4byte 0x0DB670FA
-    .4byte 0x400388B8
-    .4byte 0x80BB4333
-    .4byte 0x682B4645
-    .4byte 0x1C39980A
-    .4byte 0xF09F464A
-    .4byte 0x4648F9F9
-    .4byte 0xFD84F7DA
-    .4byte 0x46C80600
-    .4byte 0xD0002800
-    .4byte 0x4640E1C5
-    .4byte 0xFD94F7DA
-    .4byte 0xD0052800
-    .4byte 0xD0212801
-    .4byte 0x0000E1BD
+    add r0, sp, #8
+    mov sb, r0
+    bl __12RucksackItem
+    ldr r1, [sp, #0x28]
+    ldr r1, [r1]
+    mov r8, r1
+    movs r2, #0xe0
+    add r8, r2
+    ldr r4, [sp, #0x24]
+    movs r0, #0xa
+    ldrsh r5, [r4, r0]
+    movs r1, #0xe
+    ldrsh r6, [r4, r1]
+    add r7, sp, #0x10
+    movs r2, #2
+    ldrh r1, [r7]
+    ldr r3, .Lraw_code_entities_080320DC_6739_0
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r2
+    strh r0, [r7]
+    lsls r5, r5, #0x10
+    lsrs r1, r5, #0x10
+    movs r2, #0x3f
+    mov sl, r2
+    ands r1, r2
+    lsls r1, r1, #2
+    ldrb r4, [r7, #1]
+    movs r2, #3
+    adds r0, r2, #0
+    ands r0, r4
+    orrs r0, r1
+    strb r0, [r7, #1]
+    lsrs r5, r5, #0x16
+    ldrh r1, [r7, #2]
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r5
+    strh r0, [r7, #2]
+    lsls r6, r6, #0x10
+    lsrs r0, r6, #0x10
+    mov r4, sl
+    ands r0, r4
+    lsls r0, r0, #2
+    ldrb r1, [r7, #3]
+    ands r2, r1
+    orrs r2, r0
+    strb r2, [r7, #3]
+    lsrs r6, r6, #0x16
+    ldrh r0, [r7, #4]
+    ands r3, r0
+    orrs r3, r6
+    strh r3, [r7, #4]
+    mov r5, r8
+    ldr r3, [r5]
+    ldr r0, [sp, #0x28]
+    adds r1, r7, #0
+    mov r2, sb
+    bl _call_via_r3
+    mov r0, sb
+    bl IsEmpty__C12RucksackItem
+    lsls r0, r0, #0x18
+    mov r8, sb
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_6734_2
+    b .Leu_0803490E
+.Lraw_code_entities_080320DC_6734_2:
+    mov r0, r8
+    bl GetKind__C12RucksackItem
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_6740_0
+    cmp r0, #1
+    beq .Lraw_code_entities_080320DC_6755_0
+    b .Leu_0803490E
+    .align 2, 0
+.Lraw_code_entities_080320DC_6739_0:
     .4byte 0xFFFFFC00
-    .4byte 0x6804980A
-    .4byte 0x004921AE
-    .4byte 0xAD071864
-    .4byte 0x46411C38
-    .4byte 0xFD86F7DA
-    .4byte 0x46687839
-    .4byte 0x78003011
-    .4byte 0x43080200
-    .4byte 0x31124669
-    .4byte 0x04097809
-    .4byte 0x1C284301
-    .4byte 0xFDA4F7D9
-    .4byte 0x980A6822
-    .4byte 0xF09F1C29
-    .4byte 0xE012F9C7
-    .4byte 0x68149A0A
-    .4byte 0x006D25AE
-    .4byte 0x466D1964
-    .4byte 0x4640351D
-    .4byte 0xFD8AF7DA
-    .4byte 0x1C281C01
-    .4byte 0xFDB6F7D9
-    .4byte 0x980A6822
-    .4byte 0xF09F1C29
-    .4byte 0x2600F9B3
-    .hword 0xE189
+.Lraw_code_entities_080320DC_6740_0:
+    ldr r0, [sp, #0x28]
+    ldr r4, [r0]
+    movs r1, #0xae
+    lsls r1, r1, #1
+    adds r4, r4, r1
+    add r5, sp, #0x1c
+    adds r0, r7, #0
+    mov r1, r8
+    bl GetFood__C12RucksackItem
+    ldrb r1, [r7]
+    mov r0, sp
+    adds r0, #0x11
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #0x12
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r5, #0
+    bl __7ProductG4Food
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r5, #0
+    bl _call_via_r2
+    b .Lraw_code_entities_080320DC_6764_2
+.Lraw_code_entities_080320DC_6755_0:
+    ldr r2, [sp, #0x28]
+    ldr r4, [r2]
+    movs r5, #0xae
+    lsls r5, r5, #1
+    adds r4, r4, r5
+    mov r5, sp
+    adds r5, #0x1d
+    mov r0, r8
+    bl GetArticle__C12RucksackItem
+    adds r1, r0, #0
+    adds r0, r5, #0
+    bl __7ProductG7Article
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r5, #0
+    bl _call_via_r2
+.Lraw_code_entities_080320DC_6764_2:
+    movs r6, #0
+    b .Lraw_code_entities_080320DC_6994_0
 .Leu_080345FE:
-    .hword 0x9909
-    .4byte 0x24FF6BC8
-    .4byte 0x190000A4
-    .4byte 0xF7D82101
-    .4byte 0x9A09F8EF
-    .4byte 0x19006BD0
-    .4byte 0x78494669
-    .4byte 0xF906F7D8
-    .4byte 0x68209C0A
-    .4byte 0x466930A0
-    .4byte 0x68027849
-    .hword 0xE02B
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1, #0x3c]
+    movs r4, #0xff
+    lsls r4, r4, #2
+    adds r0, r0, r4
+    movs r1, #1
+    bl SubtractStoredBushels__4CoopUi
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl SetEntBushel__4CoopUi
+    ldr r4, [sp, #0x28]
+    ldr r0, [r4]
+    adds r0, #0xa0
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    ldr r2, [r0]
+    b .Lraw_code_entities_080320DC_6803_2
 .Leu_0803462A:
-    .hword 0x9909
-    .4byte 0x4C096BC8
-    .4byte 0x21011900
-    .4byte 0xFE2EF7D8
-    .4byte 0x6BD09A09
-    .4byte 0x46691900
-    .4byte 0xF7D87849
-    .4byte 0x9C0AFE45
-    .4byte 0x309C6820
-    .4byte 0x78494669
-    .4byte 0xE0166802
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1, #0x3c]
+    ldr r4, .Lraw_code_entities_080320DC_6791_0
+    adds r0, r0, r4
+    movs r1, #1
+    bl SubtractStoredBushels__4BarnUi
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl SetBushelForStall__4BarnUi
+    ldr r4, [sp, #0x28]
+    ldr r0, [r4]
+    adds r0, #0x9c
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    ldr r2, [r0]
+    b .Lraw_code_entities_080320DC_6803_2
+.Lraw_code_entities_080320DC_6791_0:
     .4byte 0x000005DC
 .Leu_08034658:
-    .4byte 0x6BC89909
-    .4byte 0x19004C0C
-    .4byte 0xF7D82101
-    .4byte 0x9A09FE17
-    .4byte 0x19006BD0
-    .4byte 0x78494669
-    .4byte 0xFE6AF7D8
-    .4byte 0x68229C0A
-    .4byte 0x4668329C
-    .4byte 0x31107841
-    .4byte 0x1C206812
-    .4byte 0xF96CF09F
-    .4byte 0xAD022602
-    .4byte 0xE14046A8
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1, #0x3c]
+    ldr r4, .Lraw_code_entities_080320DC_6807_0
+    adds r0, r0, r4
+    movs r1, #1
+    bl SubtractStoredBushels__4BarnUi
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl SetBushelForPregnancyStall__4BarnUi
+    ldr r4, [sp, #0x28]
+    ldr r2, [r4]
+    adds r2, #0x9c
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r1, #0x10
+    ldr r2, [r2]
+.Lraw_code_entities_080320DC_6803_2:
+    adds r0, r4, #0
+    bl _call_via_r2
+    movs r6, #2
+    add r5, sp, #8
+    mov r8, r5
+    b .Lraw_code_entities_080320DC_6994_0
+.Lraw_code_entities_080320DC_6807_0:
     .4byte 0x000005DC
 .Leu_08034694:
-    .4byte 0x78414668
-    .4byte 0x9A0A3136
-    .4byte 0x6C026810
-    .4byte 0xF09F980A
-    .4byte 0x1C07F95D
-    .4byte 0xD1002F00
-    .4byte 0x6978E12F
-    .4byte 0x1C386D01
-    .4byte 0xF952F09F
-    .4byte 0x28000600
-    .4byte 0x6978D004
-    .4byte 0x1C386F01
-    .4byte 0xF94AF09F
-    .4byte 0x6D416978
-    .4byte 0xF09F1C38
-    .4byte 0x0600F945
-    .4byte 0x46A0AC02
-    .4byte 0xD0452800
-    .4byte 0x6F416978
-    .4byte 0xF09F1C38
-    .4byte 0x211CF93B
-    .4byte 0xD81E2805
-    .4byte 0x49020080
-    .4byte 0x68001840
-    .4byte 0x00004687
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r1, #0x36
+    ldr r2, [sp, #0x28]
+    ldr r0, [r2]
+    ldr r2, [r0, #0x40]
+    ldr r0, [sp, #0x28]
+    bl _call_via_r2
+    adds r7, r0, #0
+    cmp r7, #0
+    bne .Lraw_code_entities_080320DC_6815_2
+    b .Leu_0803490E
+.Lraw_code_entities_080320DC_6815_2:
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r7, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_6822_0
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x70]
+    adds r0, r7, #0
+    bl _call_via_r1
+.Lraw_code_entities_080320DC_6822_0:
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x54]
+    adds r0, r7, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    add r4, sp, #8
+    mov r8, r4
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_6869_0
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x74]
+    adds r0, r7, #0
+    bl _call_via_r1
+    movs r1, #0x1c
+    cmp r0, #5
+    bhi .Lraw_code_entities_080320DC_6853_2
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_entities_080320DC_6834_0
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Lraw_code_entities_080320DC_6834_0:
     .4byte .Leu_080346FC
 .Leu_080346FC:
     .4byte .Leu_08034714
@@ -6840,43 +7257,73 @@ func_0803436C:
     .4byte .Leu_08034724
     .4byte .Leu_08034728
 .Leu_08034714:
-    .4byte 0xE008211C
+    movs r1, #0x1c
+    b .Lraw_code_entities_080320DC_6853_2
 .Leu_08034718:
-    .4byte 0xE006211D
+    movs r1, #0x1d
+    b .Lraw_code_entities_080320DC_6853_2
 .Leu_0803471C:
-    .4byte 0xE004211E
+    movs r1, #0x1e
+    b .Lraw_code_entities_080320DC_6853_2
 .Leu_08034720:
-    .4byte 0xE002211F
+    movs r1, #0x1f
+    b .Lraw_code_entities_080320DC_6853_2
 .Leu_08034724:
-    .4byte 0xE0002120
+    movs r1, #0x20
+    b .Lraw_code_entities_080320DC_6853_2
 .Leu_08034728:
-    .4byte 0x9D0A2121
-    .4byte 0x20AE682C
-    .4byte 0x18240040
-    .4byte 0x361E466E
-    .4byte 0x1C28AD02
-    .4byte 0xFABEF7D9
-    .4byte 0x46687829
-    .4byte 0x78003009
-    .4byte 0x43080200
-    .4byte 0x310A4669
-    .4byte 0x04097809
-    .4byte 0x1C304301
-    .4byte 0xFCDAF7D9
-    .4byte 0x980A6822
-    .4byte 0xF09F1C31
-    .4byte 0x46A8F8FD
-    .4byte 0x6D816978
-    .4byte 0xF09F1C38
-    .4byte 0x0600F8F5
-    .4byte 0xD03A2800
-    .4byte 0x6F816978
-    .4byte 0xF09F1C38
-    .4byte 0x2105F8ED
-    .4byte 0xD81E2805
-    .4byte 0x49020080
-    .4byte 0x68001840
-    .4byte 0x00004687
+    movs r1, #0x21
+.Lraw_code_entities_080320DC_6853_2:
+    ldr r5, [sp, #0x28]
+    ldr r4, [r5]
+    movs r0, #0xae
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    mov r6, sp
+    adds r6, #0x1e
+    add r5, sp, #8
+    adds r0, r5, #0
+    bl __4FoodUi
+    ldrb r1, [r5]
+    mov r0, sp
+    adds r0, #9
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #0xa
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r6, #0
+    bl __7ProductG4Food
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r6, #0
+    bl _call_via_r2
+    mov r8, r5
+.Lraw_code_entities_080320DC_6869_0:
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x58]
+    adds r0, r7, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_6909_2
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x78]
+    adds r0, r7, #0
+    bl _call_via_r1
+    movs r1, #5
+    cmp r0, #5
+    bhi .Lraw_code_entities_080320DC_6899_2
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_entities_080320DC_6880_0
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Lraw_code_entities_080320DC_6880_0:
     .4byte .Leu_08034798
 .Leu_08034798:
     .4byte .Leu_080347B0
@@ -6886,63 +7333,108 @@ func_0803436C:
     .4byte .Leu_080347C0
     .4byte .Leu_080347C4
 .Leu_080347B0:
-    .4byte 0xE0082105
+    movs r1, #5
+    b .Lraw_code_entities_080320DC_6899_2
 .Leu_080347B4:
-    .4byte 0xE0062106
+    movs r1, #6
+    b .Lraw_code_entities_080320DC_6899_2
 .Leu_080347B8:
-    .4byte 0xE0042107
+    movs r1, #7
+    b .Lraw_code_entities_080320DC_6899_2
 .Leu_080347BC:
-    .4byte 0xE0022108
+    movs r1, #8
+    b .Lraw_code_entities_080320DC_6899_2
 .Leu_080347C0:
-    .4byte 0xE0002109
+    movs r1, #9
+    b .Lraw_code_entities_080320DC_6899_2
 .Leu_080347C4:
-    .4byte 0x9A0A210A
-    .4byte 0x24AE6815
-    .4byte 0x192D0064
-    .4byte 0x361F466E
-    .4byte 0x1C20AC08
-    .4byte 0xFBC4F7D9
-    .4byte 0x1C307821
-    .4byte 0xFCBCF7D9
-    .4byte 0x980A682A
-    .4byte 0xF09F1C31
-    .4byte 0x6978F8B9
-    .4byte 0x68023088
-    .4byte 0x213C1C38
-    .4byte 0xF8B2F09F
-    .4byte 0xE0882602
+    movs r1, #0xa
+.Lraw_code_entities_080320DC_6899_2:
+    ldr r2, [sp, #0x28]
+    ldr r5, [r2]
+    movs r4, #0xae
+    lsls r4, r4, #1
+    adds r5, r5, r4
+    mov r6, sp
+    adds r6, #0x1f
+    add r4, sp, #0x20
+    adds r0, r4, #0
+    bl __7ArticleUi
+    ldrb r1, [r4]
+    adds r0, r6, #0
+    bl __7ProductG7Article
+    ldr r2, [r5]
+    ldr r0, [sp, #0x28]
+    adds r1, r6, #0
+    bl _call_via_r2
+.Lraw_code_entities_080320DC_6909_2:
+    ldr r0, [r7, #0x14]
+    adds r0, #0x88
+    ldr r2, [r0]
+    adds r0, r7, #0
+    movs r1, #0x3c
+    bl _call_via_r2
+    movs r6, #2
+    b .Lraw_code_entities_080320DC_6994_0
 .Leu_08034800:
-    .4byte 0x78414668
-    .4byte 0x9D0A312E
-    .4byte 0x6C026828
-    .4byte 0xF09F1C28
-    .4byte 0x1C04F8A7
-    .4byte 0xD07A2C00
-    .4byte 0x6D016960
-    .4byte 0xF09F1C20
-    .4byte 0x0600F89D
-    .4byte 0xD0042800
-    .4byte 0x6F016960
-    .4byte 0xF09F1C20
-    .4byte 0x6960F895
-    .4byte 0x68023088
-    .4byte 0x213C1C20
-    .4byte 0xF890F09F
-    .4byte 0xA8022602
-    .4byte 0xE0644680
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r1, #0x2e
+    ldr r5, [sp, #0x28]
+    ldr r0, [r5]
+    ldr r2, [r0, #0x40]
+    adds r0, r5, #0
+    bl _call_via_r2
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Leu_0803490E
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_6927_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x70]
+    adds r0, r4, #0
+    bl _call_via_r1
+.Lraw_code_entities_080320DC_6927_2:
+    ldr r0, [r4, #0x14]
+    adds r0, #0x88
+    ldr r2, [r0]
+    adds r0, r4, #0
+    movs r1, #0x3c
+    bl _call_via_r2
+    movs r6, #2
+    add r0, sp, #8
+    mov r8, r0
+    b .Lraw_code_entities_080320DC_6994_0
 .Leu_08034848:
-    .4byte 0x78414668
-    .4byte 0x344C1C0C
-    .4byte 0x6BD09A09
-    .4byte 0x00AD25FF
-    .4byte 0xF7D71940
-    .4byte 0x2800FF2B
-    .4byte 0x7980D055
-    .4byte 0x0F400740
-    .4byte 0x2805270F
-    .4byte 0x0080D81D
-    .4byte 0x18404901
-    .4byte 0x46876800
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r4, r1, #0
+    adds r4, #0x4c
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    movs r5, #0xff
+    lsls r5, r5, #2
+    adds r0, r0, r5
+    bl GetEgg__C4CoopUi
+    cmp r0, #0
+    beq .Leu_0803490E
+    ldrb r0, [r0, #6]
+    lsls r0, r0, #0x1d
+    lsrs r0, r0, #0x1d
+    movs r7, #0xf
+    cmp r0, #5
+    bhi .Lraw_code_entities_080320DC_6965_2
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_entities_080320DC_6946_0
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+.Lraw_code_entities_080320DC_6946_0:
     .4byte .Leu_0803487C
 .Leu_0803487C:
     .4byte .Leu_08034894
@@ -6952,58 +7444,92 @@ func_0803436C:
     .4byte .Leu_080348A4
     .4byte .Leu_080348A8
 .Leu_08034894:
-    .4byte 0xE008270F
+    movs r7, #0xf
+    b .Lraw_code_entities_080320DC_6965_2
 .Leu_08034898:
-    .4byte 0xE0062710
+    movs r7, #0x10
+    b .Lraw_code_entities_080320DC_6965_2
 .Leu_0803489C:
-    .4byte 0xE0042711
+    movs r7, #0x11
+    b .Lraw_code_entities_080320DC_6965_2
 .Leu_080348A0:
-    .4byte 0xE0022712
+    movs r7, #0x12
+    b .Lraw_code_entities_080320DC_6965_2
 .Leu_080348A4:
-    .4byte 0xE0002713
+    movs r7, #0x13
+    b .Lraw_code_entities_080320DC_6965_2
 .Leu_080348A8:
-    .4byte 0x99092714
-    .4byte 0x68016808
-    .4byte 0x1C216BCA
-    .4byte 0xF854F09F
-    .4byte 0x6BD09A09
-    .4byte 0x00A424FF
-    .4byte 0x46691900
-    .4byte 0xF7D87849
-    .4byte 0x9D0AF881
-    .4byte 0x20AE682C
-    .4byte 0x18240040
-    .4byte 0x3621466E
-    .4byte 0x1C28AD02
-    .4byte 0xF7D91C39
-    .4byte 0x7829F9ED
-    .4byte 0x30094668
-    .4byte 0x02007800
-    .4byte 0x46694308
-    .4byte 0x7809310A
-    .4byte 0x43010409
-    .4byte 0xF7D91C30
-    .4byte 0x6822FC09
-    .4byte 0x1C31980A
-    .4byte 0xF82CF09F
-    .4byte 0x46A82602
-    .hword 0xE001
+    movs r7, #0x14
+.Lraw_code_entities_080320DC_6965_2:
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x3c]
+    adds r1, r4, #0
+    bl _call_via_r2
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    movs r4, #0xff
+    lsls r4, r4, #2
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl method_0800C9B8__4CoopUi
+    ldr r5, [sp, #0x28]
+    ldr r4, [r5]
+    movs r0, #0xae
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    mov r6, sp
+    adds r6, #0x21
+    add r5, sp, #8
+    adds r0, r5, #0
+    adds r1, r7, #0
+    bl __4FoodUi
+    ldrb r1, [r5]
+    mov r0, sp
+    adds r0, #9
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #0xa
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r6, #0
+    bl __7ProductG4Food
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r6, #0
+    bl _call_via_r2
+    movs r6, #2
+    mov r8, r5
+    b .Lraw_code_entities_080320DC_6994_0
 .Leu_0803490E:
     movs	r0, #0
     b .Leu_0803493E
-    .hword 0x490F
-    .4byte 0x22034640
-    .4byte 0xF862F09F
-    .4byte 0xD00D2E03
-    .byte 0xC8, 0x20
+.Lraw_code_entities_080320DC_6994_0:
+    ldr r1, .Lraw_code_entities_080320DC_7017_0
+    mov r0, r8
+    movs r2, #3
+    bl memcpy
+    cmp r6, #3
+    beq .Lraw_code_entities_080320DC_7006_0
+    movs r0, #0xc8
     bl RandomBelow
-    .byte 0x42, 0x46
-    .4byte 0x78091991
-    .4byte 0xD2054288
-    .4byte 0x6B609C09
-    .4byte 0x22011C31
-    .4byte 0xFEC8F069
-    .hword 0x2001
+    mov r2, r8
+    adds r1, r2, r6
+    ldrb r1, [r1]
+    cmp r0, r1
+    bhs .Lraw_code_entities_080320DC_7006_0
+    ldr r4, [sp, #0x24]
+    ldr r0, [r4, #0x34]
+    adds r1, r6, #0
+    movs r2, #1
+    bl AddTaskExp__13HarvestSpriteQ213HarvestSprite4Taski
+.Lraw_code_entities_080320DC_7006_0:
+    movs r0, #1
 .Leu_0803493E:
     add	sp, #44	@ 0x2c
     pop	{r3, r4, r5}
@@ -7013,7 +7539,8 @@ func_0803436C:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    .hword 0x0000
+    .align 2, 0
+.Lraw_code_entities_080320DC_7017_0:
     .4byte gUnk_080F1496
     .global func_08034940
     .thumb_func
@@ -7914,25 +8441,58 @@ func_080329DC:
     @ DE entity UI code, actual Thumb instructions and relocations.
     .section .text.entity_actor_animation_index_after, "ax", %progbits
     .align 2, 0
-    .4byte 0x1C02B500
-    .4byte 0x78003020
-    .4byte 0xD0024288
-    .4byte 0xF7FF1C10
-    .4byte 0xBC01FB0F
-    .4byte 0x00004700
-    .4byte 0x78003020
-    .4byte 0x00004770
-    .4byte 0x5E81220E
-    .4byte __ewram_bss_end + 0x170
-    .4byte 0x47701A40
-    .4byte 0x70013021
-    .4byte 0x00004770
-    .4byte 0x78003021
-    .4byte 0x00004770
-    .4byte 0x477061C1
-    .4byte 0x477069C0
-    .4byte 0x47706181
-    .4byte 0x47706980
+    push {lr}
+    adds r2, r0, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, r1
+    beq .Lraw_code_entities_080320DC_7921_2
+    adds r0, r2, #0
+    bl SetAnimFacing__12AActorEntityUi
+.Lraw_code_entities_080320DC_7921_2:
+    pop {r0}
+    bx r0
+    .align 2, 0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+    thumb_func_start func_08032B88
+func_08032B88:
+    movs r2, #14
+    ldrsh r1, [r0, r2]
+    movs r0, #128
+    lsls r0, r0, #8
+    subs r0, r0, r1
+    bx lr
+    thumb_func_start func_08032B94
+func_08032B94:
+    adds r0, #33
+    strb r1, [r0]
+    bx lr
+    .align 2, 0
+    thumb_func_start func_08032B9C
+func_08032B9C:
+    adds r0, #33
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+    thumb_func_start func_08032BA4
+func_08032BA4:
+    str r1, [r0, #28]
+    bx lr
+    thumb_func_start func_08032BA8
+func_08032BA8:
+    ldr r0, [r0, #28]
+    bx lr
+    thumb_func_start func_08032BAC
+func_08032BAC:
+    str r1, [r0, #24]
+    bx lr
+    thumb_func_start func_08032BB0
+func_08032BB0:
+    ldr r0, [r0, #24]
+    bx lr
     .global func_08032BB4
     .thumb_func
 func_08032BB4:
@@ -8082,16 +8642,23 @@ func_08032BB4:
     ldr	r2, [r0, #68]	@ 0x44
     mov	r0, sl
     bl _call_via_r2
-    .hword 0x2800
-    .4byte 0x8880D010
-    .4byte 0xD10D2825
-    .4byte 0xF0681C20
-    .4byte 0x0600FC2F
-    .4byte 0xD1072800
-    .4byte 0xF0681C20
-    .4byte 0x0600FE03
-    .4byte 0xD1012800
-    .4byte 0x44812001
+    cmp r0, #0
+    beq .Lde_08032C14
+    ldrh r0, [r0, #4]
+    cmp r0, #0x25
+    bne .Lde_08032C14
+    adds r0, r4, #0
+    bl HasBeenFed__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lde_08032C14
+    adds r0, r4, #0
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lde_08032C14
+    movs r0, #1
+    add sb, r0
 .Lde_08032C14:
     adds	r5, #1
     cmp	r5, r6
@@ -8283,13 +8850,18 @@ func_08032BB4:
     ldr	r2, [r0, #68]	@ 0x44
     mov	r0, sl
     bl _call_via_r2
-    .4byte 0xD00A2800
-    .4byte 0x28118880
-    .4byte 0x1C20D107
-    .4byte 0xFB68F068
-    .4byte 0x28000600
-    .4byte 0x2201D101
-    .hword 0x4491
+    cmp r0, #0
+    beq .Lde_08032D96
+    ldrh r0, [r0, #4]
+    cmp r0, #0x11
+    bne .Lde_08032D96
+    adds r0, r4, #0
+    bl HasBeenFed__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lde_08032D96
+    movs r2, #1
+    add sb, r2
 .Lde_08032D96:
     adds	r5, #1
     cmp	r5, r6
@@ -8437,98 +9009,183 @@ func_08032BB4:
     movs	r6, #54	@ 0x36
     movs	r7, #16
     negs	r7, r7
+.Lraw_code_entities_080320DC_8440_0:
     mov	r1, sl
     ldr	r0, [r1, #0]
     ldr	r2, [r0, #68]	@ 0x44
     mov	r0, sl
     adds	r1, r6, #0
     bl _call_via_r2
-    .4byte 0x2C001C04
-    .4byte 0x88A0D049
-    .4byte 0x42909A0C
-    .4byte 0x6960D145
-    .4byte 0x1C206D01
-    .4byte 0xFCD4F0A0
-    .4byte 0x28000600
-    .4byte 0x6960D10F
-    .4byte 0x1C206D41
-    .4byte 0xFCCCF0A0
-    .4byte 0x28000600
-    .4byte 0x6960D107
-    .4byte 0x1C206D81
-    .4byte 0xFCC4F0A0
-    .4byte 0x28000600
-    .4byte 0x230AD02D
-    .4byte 0x981A5EE1
-    .4byte 0x220E1A09
-    .4byte 0x9B1B5EA0
-    .4byte 0x1C0A1AC0
-    .4byte 0x1C11434A
-    .4byte 0x43431C03
-    .4byte 0x18091C18
-    .4byte 0x46681C0D
-    .4byte 0x07007800
-    .4byte 0xD0022800
-    .4byte 0x4281980D
-    .4byte 0xAC02D215
-    .4byte 0x1C387821
-    .4byte 0x21064008
-    .4byte 0x70204308
-    .4byte 0x38361C30
-    .4byte 0x981C7060
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Lraw_code_entities_080320DC_8485_2
+    ldrh r0, [r4, #4]
+    ldr r2, [sp, #0x30]
+    cmp r0, r2
+    bne .Lraw_code_entities_080320DC_8485_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_8461_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x54]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_8461_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x58]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_8485_2
+.Lraw_code_entities_080320DC_8461_2:
+    movs r3, #0xa
+    ldrsh r1, [r4, r3]
+    ldr r0, [sp, #0x68]
+    subs r1, r1, r0
+    movs r2, #0xe
+    ldrsh r0, [r4, r2]
+    ldr r3, [sp, #0x6c]
+    subs r0, r0, r3
+    adds r2, r1, #0
+    muls r2, r1, r2
+    adds r1, r2, #0
+    adds r3, r0, #0
+    muls r3, r0, r3
+    adds r0, r3, #0
+    adds r1, r1, r0
+    adds r5, r1, #0
+    mov r0, sp
+    ldrb r0, [r0]
+    lsls r0, r0, #0x1c
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_8473_2
+    ldr r0, [sp, #0x34]
+    cmp r1, r0
+    bhs .Lraw_code_entities_080320DC_8485_2
+.Lraw_code_entities_080320DC_8473_2:
+    add r4, sp, #8
+    ldrb r1, [r4]
+    adds r0, r7, #0
+    ands r0, r1
+    movs r1, #6
+    orrs r0, r1
+    strb r0, [r4]
+    adds r0, r6, #0
+    subs r0, #0x36
+    strb r0, [r4, #1]
+    ldr r0, [sp, #0x70]
     adds r1, r4, #0
     bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
     lsls r0, r0, #24
-    .4byte 0xD1042800
-    .4byte 0x1C204669
-    .4byte 0xC10CC80C
-    .4byte 0x3601950D
-    .4byte 0xD9A82E45
-    .4byte 0x4656242E
-    .4byte 0x6C426830
-    .4byte 0x1C214650
-    .4byte 0xFC8AF0A0
-    .4byte 0x2C353401
-    .4byte 0x254CD9F5
-    .4byte 0x427F2710
-    .4byte 0x68084651
-    .4byte 0x46506C42
-    .4byte 0xF0A01C29
-    .4byte 0x1C02FC7D
-    .4byte 0xD0312A00
-    .4byte 0x9B0C8890
-    .4byte 0xD12D4298
-    .4byte 0x5F91260A
-    .4byte 0x1A09981A
-    .4byte 0x5ED0230E
-    .4byte 0x1B809E1B
-    .4byte 0x434A1C0A
-    .4byte 0x1C031C11
-    .4byte 0x1C184343
-    .4byte 0x1C0E1809
-    .4byte 0x78004668
-    .4byte 0x28000700
-    .4byte 0x980DD002
-    .4byte 0xD2154281
-    .4byte 0x7821AC02
-    .4byte 0x40081C38
-    .4byte 0x43082108
-    .4byte 0x1C287020
-    .4byte 0x7060384C
-    .4byte 0x1C21981C
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_8485_2
+    mov r1, sp
+    adds r0, r4, #0
+    ldm r0!, {r2, r3}
+    stm r1!, {r2, r3}
+    str r5, [sp, #0x34]
+.Lraw_code_entities_080320DC_8485_2:
+    adds r6, #1
+    cmp r6, #0x45
+    bls .Lraw_code_entities_080320DC_8440_0
+    movs r4, #0x2e
+.Lraw_code_entities_080320DC_8487_2:
+    mov r6, sl
+    ldr r0, [r6]
+    ldr r2, [r0, #0x44]
+    mov r0, sl
+    adds r1, r4, #0
+    bl _call_via_r2
+    adds r4, #1
+    cmp r4, #0x35
+    bls .Lraw_code_entities_080320DC_8487_2
+    movs r5, #0x4c
+    movs r7, #0x10
+    rsbs r7, r7, #0
+.Lraw_code_entities_080320DC_8494_0:
+    mov r1, sl
+    ldr r0, [r1]
+    ldr r2, [r0, #0x44]
+    mov r0, sl
+    adds r1, r5, #0
+    bl _call_via_r2
+    adds r2, r0, #0
+    cmp r2, #0
+    beq .Lraw_code_entities_080320DC_8524_0
+    ldrh r0, [r2, #4]
+    ldr r3, [sp, #0x30]
+    cmp r0, r3
+    bne .Lraw_code_entities_080320DC_8524_0
+    movs r6, #0xa
+    ldrsh r1, [r2, r6]
+    ldr r0, [sp, #0x68]
+    subs r1, r1, r0
+    movs r3, #0xe
+    ldrsh r0, [r2, r3]
+    ldr r6, [sp, #0x6c]
+    subs r0, r0, r6
+    adds r2, r1, #0
+    muls r2, r1, r2
+    adds r1, r2, #0
+    adds r3, r0, #0
+    muls r3, r0, r3
+    adds r0, r3, #0
+    adds r1, r1, r0
+    adds r6, r1, #0
+    mov r0, sp
+    ldrb r0, [r0]
+    lsls r0, r0, #0x1c
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_8513_0
+    ldr r0, [sp, #0x34]
+    cmp r1, r0
+    bhs .Lraw_code_entities_080320DC_8524_0
+.Lraw_code_entities_080320DC_8513_0:
+    add r4, sp, #8
+    ldrb r1, [r4]
+    adds r0, r7, #0
+    ands r0, r1
+    movs r1, #8
+    orrs r0, r1
+    strb r0, [r4]
+    adds r0, r5, #0
+    subs r0, #0x4c
+    strb r0, [r4, #1]
+    ldr r0, [sp, #0x70]
+    adds r1, r4, #0
     bl HasHarvestSpriteWorkTarget__FPC23HarvestSpriteWorkTargetRC23HarvestSpriteWorkTarget
-    .4byte 0x28000600
-    .4byte 0x4669D104
-    .4byte 0xC80C1C20
-    .4byte 0x960DC10C
-    .4byte 0x2D533501
-    .4byte 0x990AD9C0
-    .4byte 0xC8444668
-    .4byte 0x980AC144
-    .4byte 0xBC38B012
-    .4byte 0x46A14698
-    .4byte 0xBCF046AA
-    .4byte 0x4708BC02
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_8524_0
+    mov r1, sp
+    adds r0, r4, #0
+    ldm r0!, {r2, r3}
+    stm r1!, {r2, r3}
+    str r6, [sp, #0x34]
+.Lraw_code_entities_080320DC_8524_0:
+    adds r5, #1
+    cmp r5, #0x53
+    bls .Lraw_code_entities_080320DC_8494_0
+    ldr r1, [sp, #0x28]
+    mov r0, sp
+    ldm r0!, {r2, r6}
+    stm r1!, {r2, r6}
+    ldr r0, [sp, #0x28]
+    add sp, #0x48
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
     .global func_080330F4
     .thumb_func
 func_080330F4:
@@ -9158,123 +9815,215 @@ func_08033584:
     .4byte .Lde_08033668
     .4byte .Lde_08033678
 .Lde_080334E0:
-    .4byte 0x480D78A2
-    .4byte 0x202B1829
-    .4byte 0x78644350
-    .4byte 0x00801900
-    .4byte 0x68091809
-    .4byte 0x0F020508
-    .4byte 0x07882300
-    .4byte 0x28010F80
-    .4byte 0x1E50D108
-    .4byte 0xD8052803
-    .4byte 0x0E800608
-    .4byte 0x40482114
-    .4byte 0x0FC34240
-    .4byte 0xE0BA1C18
+    ldrb r2, [r4, #2]
+    ldr r0, .Lraw_code_entities_080320DC_9175_0
+    adds r1, r5, r0
+    movs r0, #0x2b
+    muls r0, r2, r0
+    ldrb r4, [r4, #1]
+    adds r0, r0, r4
+    lsls r0, r0, #2
+    adds r1, r1, r0
+    ldr r1, [r1]
+    lsls r0, r1, #0x14
+    lsrs r2, r0, #0x1c
+    movs r3, #0
+    lsls r0, r1, #0x1e
+    lsrs r0, r0, #0x1e
+    cmp r0, #1
+    bne .Lraw_code_entities_080320DC_9174_0
+    subs r0, r2, #1
+    cmp r0, #3
+    bhi .Lraw_code_entities_080320DC_9174_0
+    lsls r0, r1, #0x18
+    lsrs r0, r0, #0x1a
+    movs r1, #0x14
+    eors r0, r1
+    rsbs r0, r0, #0
+    lsrs r3, r0, #0x1f
+.Lraw_code_entities_080320DC_9174_0:
+    adds r0, r3, #0
+    b .Lde_0803368E
+.Lraw_code_entities_080320DC_9175_0:
     .4byte 0x000009C8
 .Lde_0803351C:
-    .4byte 0x481078A2
-    .4byte 0x202B1829
-    .4byte 0x78644350
-    .4byte 0x00801900
-    .4byte 0x68091809
-    .4byte 0x0F000508
-    .4byte 0xD1112805
-    .4byte 0xA9029102
-    .4byte 0xF7D64668
-    .4byte 0x4668FFC1
-    .4byte 0xFDA2F7DB
-    .4byte 0x28000600
-    .4byte 0x4668D106
-    .4byte 0xFDB4F7DB
-    .4byte 0xD0052800
-    .4byte 0xD01D2801
+    ldrb r2, [r4, #2]
+    ldr r0, .Lraw_code_entities_080320DC_9196_0
+    adds r1, r5, r0
+    movs r0, #0x2b
+    muls r0, r2, r0
+    ldrb r4, [r4, #1]
+    adds r0, r0, r4
+    lsls r0, r0, #2
+    adds r1, r1, r0
+    ldr r1, [r1]
+    lsls r0, r1, #0x14
+    lsrs r0, r0, #0x1c
+    cmp r0, #5
+    bne .Lde_0803355C
+    str r1, [sp, #8]
+    add r1, sp, #8
+    mov r0, sp
+    bl method_0800A4A4__9FieldPlot
+    mov r0, sp
+    bl IsEmpty__C12RucksackItem
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lde_0803355C
+    mov r0, sp
+    bl GetKind__C12RucksackItem
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_9197_0
+    cmp r0, #1
+    beq .Lraw_code_entities_080320DC_9210_0
 .Lde_0803355C:
     movs	r0, #0
     b .Lde_0803368E
+.Lraw_code_entities_080320DC_9196_0:
     .4byte 0x000009C8
-    .4byte 0xA801AC03
-    .4byte 0xF7DB4669
-    .4byte 0xA801FDAB
-    .4byte 0x30017801
-    .4byte 0x02007800
-    .4byte 0x46694308
-    .4byte 0x78093106
-    .4byte 0x43010409
-    .4byte 0xF7DA1C20
-    .4byte 0x1C20FDC9
-    .4byte 0xFE14F7DA
-    .4byte 0x43014241
-    .4byte 0xE07A0FC8
-    .4byte 0x340D466C
-    .4byte 0xF7DB4668
-    .4byte 0x1C01FDB3
-    .4byte 0xF7DA1C20
-    .4byte 0x1C20FDDF
-    .4byte 0xFE04F7DA
-    .4byte 0x43014241
-    .4byte 0xE06A0FC8
+.Lraw_code_entities_080320DC_9197_0:
+    add r4, sp, #0xc
+    add r0, sp, #4
+    mov r1, sp
+    bl GetFood__C12RucksackItem
+    add r0, sp, #4
+    ldrb r1, [r0]
+    adds r0, #1
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #6
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r4, #0
+    bl __7ProductG4Food
+    adds r0, r4, #0
+    bl GetPrice__C7Product
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r0, r1, #0x1f
+    b .Lde_0803368E
+.Lraw_code_entities_080320DC_9210_0:
+    mov r4, sp
+    adds r4, #0xd
+    mov r0, sp
+    bl GetArticle__C12RucksackItem
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl __7ProductG7Article
+    adds r0, r4, #0
+    bl GetPrice__C7Product
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r0, r1, #0x1f
+    b .Lde_0803368E
 .Lde_080335B8:
-    .4byte 0x20FF2600
-    .4byte 0x182D0080
-    .4byte 0xF7D81C28
-    .4byte 0x2800FFE1
-    .4byte 0x7861D024
-    .4byte 0xF7D81C28
-    .4byte 0xE01BFFF3
+    movs r6, #0
+    movs r0, #0xff
+    lsls r0, r0, #2
+    adds r5, r5, r0
+    adds r0, r5, #0
+    bl GetStoredBushelCount__C4Coop
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_9244_0
+    ldrb r1, [r4, #1]
+    adds r0, r5, #0
+    bl HasBushelForEnt__C4CoopUi
+    b .Lraw_code_entities_080320DC_9242_0
 .Lde_080335D4:
-    .4byte 0x48062600
-    .4byte 0x1C28182D
-    .4byte 0xFC56F7D9
-    .4byte 0xD0172800
-    .4byte 0x1C287861
-    .4byte 0xFC6EF7D9
-    .4byte 0x0000E00E
+    movs r6, #0
+    ldr r0, .Lraw_code_entities_080320DC_9234_0
+    adds r5, r5, r0
+    adds r0, r5, #0
+    bl GetStoredBushelCount__C4Barn
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_9244_0
+    ldrb r1, [r4, #1]
+    adds r0, r5, #0
+    bl HasBushelForStall__C4BarnUi
+    b .Lraw_code_entities_080320DC_9242_0
+    .align 2, 0
+.Lraw_code_entities_080320DC_9234_0:
     .4byte 0x000005DC
 .Lde_080335F4:
-    .4byte 0x48082600
-    .4byte 0x1C28182D
-    .4byte 0xFC46F7D9
-    .4byte 0xD0072800
-    .4byte 0x1C287861
-    .4byte 0xFC74F7D9
-    .4byte 0x28000600
-    .4byte 0x2601D100
-    .4byte 0xE03A1C30
+    movs r6, #0
+    ldr r0, .Lraw_code_entities_080320DC_9245_0
+    adds r5, r5, r0
+    adds r0, r5, #0
+    bl GetStoredBushelCount__C4Barn
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_9244_0
+    ldrb r1, [r4, #1]
+    adds r0, r5, #0
+    bl HasBushelForPregnancyStall__C4BarnUi
+.Lraw_code_entities_080320DC_9242_0:
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_9244_0
+    movs r6, #1
+.Lraw_code_entities_080320DC_9244_0:
+    adds r0, r6, #0
+    b .Lde_0803368E
+.Lraw_code_entities_080320DC_9245_0:
     .4byte 0x000005DC
 .Lde_0803361C:
-    .4byte 0x31367861
-    .4byte 0x6C426818
-    .4byte 0xF0A01C18
-    .4byte 0x1C04F927
-    .4byte 0x2C002500
-    .4byte 0x6960D018
-    .4byte 0x1C206D01
-    .4byte 0xF91CF0A0
-    .4byte 0x28000600
-    .4byte 0x6960D10F
-    .4byte 0x1C206D41
-    .4byte 0xF914F0A0
-    .4byte 0x28000600
-    .4byte 0x6960D107
-    .4byte 0x1C206D81
-    .4byte 0xF90CF0A0
-    .4byte 0x28000600
-    .4byte 0x2501D000
-    .4byte 0xE0121C28
+    ldrb r1, [r4, #1]
+    adds r1, #0x36
+    ldr r0, [r3]
+    ldr r2, [r0, #0x44]
+    adds r0, r3, #0
+    bl _call_via_r2
+    adds r4, r0, #0
+    movs r5, #0
+    cmp r4, #0
+    beq .Lraw_code_entities_080320DC_9265_0
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_9264_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x54]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_9264_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x58]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_9265_0
+.Lraw_code_entities_080320DC_9264_2:
+    movs r5, #1
+.Lraw_code_entities_080320DC_9265_0:
+    adds r0, r5, #0
+    b .Lde_0803368E
 .Lde_08033668:
-    .4byte 0x312E7861
-    .4byte 0x6C426818
-    .4byte 0xF0A01C18
-    .4byte 0xE771F901
+    ldrb r1, [r4, #1]
+    adds r1, #0x2e
+    ldr r0, [r3]
+    ldr r2, [r0, #0x44]
+    adds r0, r3, #0
+    bl _call_via_r2
+    b .Lde_0803355C
 .Lde_08033678:
-    .4byte 0x314C7861
-    .4byte 0x6C426818
-    .4byte 0xF0A01C18
-    .4byte 0x1C01F8F9
-    .4byte 0x43084248
-    .hword 0x0FC0
+    ldrb r1, [r4, #1]
+    adds r1, #0x4c
+    ldr r0, [r3]
+    ldr r2, [r0, #0x44]
+    adds r0, r3, #0
+    bl _call_via_r2
+    adds r1, r0, #0
+    rsbs r0, r1, #0
+    orrs r0, r1
+    lsrs r0, r0, #0x1f
 .Lde_0803368E:
     add	sp, #16
     pop	{r4, r5, r6}
@@ -9311,28 +10060,38 @@ func_08033784:
     .4byte .Lde_080336EE
     .4byte .Lde_080336F4
 .Lde_080336DC:
-    .4byte 0xE0162002
+    movs r0, #2
+    b .Lde_0803370E
 .Lde_080336E0:
-    .4byte 0xE0142011
+    movs r0, #0x11
+    b .Lde_0803370E
 .Lde_080336E4:
-    .4byte 0xE0122025
+    movs r0, #0x25
+    b .Lde_0803370E
 .Lde_080336E8:
-    .4byte 0x31367859
-    .hword 0xE004
+    ldrb r1, [r3, #1]
+    adds r1, #0x36
+    b .Lraw_code_entities_080320DC_9327_0
 .Lde_080336EE:
-    .hword 0x7859
-    .4byte 0xE001312E
+    ldrb r1, [r3, #1]
+    adds r1, #0x2e
+    b .Lraw_code_entities_080320DC_9327_0
 .Lde_080336F4:
-    .4byte 0x314C7859
-    .4byte 0x6C426820
-    .4byte 0xF0A01C20
-    .4byte 0x2800F8BB
-    .hword 0xD102
+    ldrb r1, [r3, #1]
+    adds r1, #0x4c
+.Lraw_code_entities_080320DC_9327_0:
+    ldr r0, [r4]
+    ldr r2, [r0, #0x44]
+    adds r0, r4, #0
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_9335_0
 .Lde_08033706:
     movs	r0, #141	@ 0x8d
     lsls	r0, r0, #2
     b .Lde_0803370E
-    .hword 0x8880
+.Lraw_code_entities_080320DC_9335_0:
+    ldrh r0, [r0, #4]
 .Lde_0803370E:
     pop	{r4}
     pop	{r1}
@@ -9347,14 +10106,24 @@ func_08033800:
     ldr	r2, [r0, #0]
     ldr	r2, [r2, #68]	@ 0x44
     bl _call_via_r2
-    .4byte 0x29001C01
-    .4byte 0x220AD005
-    .4byte 0x220E5E88
-    .4byte 0x80205E89
-    .4byte 0x8021E000
-    .4byte 0x1C208061
-    .4byte 0xBC02BC10
-    .4byte 0x00004708
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Lraw_code_entities_080320DC_9354_2
+    movs r2, #0xa
+    ldrsh r0, [r1, r2]
+    movs r2, #0xe
+    ldrsh r1, [r1, r2]
+    strh r0, [r4]
+    b .Lraw_code_entities_080320DC_9355_0
+.Lraw_code_entities_080320DC_9354_2:
+    strh r1, [r4]
+.Lraw_code_entities_080320DC_9355_0:
+    strh r1, [r4, #2]
+    adds r0, r4, #0
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_08033830
     .thumb_func
 func_08033830:
@@ -9390,42 +10159,62 @@ func_08033830:
     strh	r0, [r5, #2]
     b .Lde_080337FC
 .Lde_08033790:
-    .4byte 0x78A17860
-    .4byte 0x228C0100
-    .4byte 0x18800052
-    .4byte 0x31B80109
-    .4byte 0x80698028
-    .hword 0xE02A
+    ldrb r0, [r4, #1]
+    ldrb r1, [r4, #2]
+    lsls r0, r0, #4
+    movs r2, #0x8c
+    lsls r2, r2, #1
+    adds r0, r0, r2
+    lsls r1, r1, #4
+    adds r1, #0xb8
+    strh r0, [r5]
+    strh r1, [r5, #2]
+    b .Lde_080337FC
 .Lde_080337A6:
-    .hword 0x20FF
-    .4byte 0x18110080
-    .4byte 0x1C287862
-    .4byte 0xFFAEF7D8
-    .hword 0xE022
+    movs r0, #0xff
+    lsls r0, r0, #2
+    adds r1, r2, r0
+    ldrb r2, [r4, #1]
+    adds r0, r5, #0
+    bl method_0800C6F0__C4CoopUi
+    b .Lde_080337FC
 .Lde_080337B6:
-    .hword 0x4803
-    .4byte 0x78621811
-    .4byte 0xF7D91C28
-    .4byte 0xE01BFC69
+    ldr r0, .Lraw_code_entities_080320DC_9410_0
+    adds r1, r2, r0
+    ldrb r2, [r4, #1]
+    adds r0, r5, #0
+    bl method_0800D074__C4BarnUi
+    b .Lde_080337FC
+.Lraw_code_entities_080320DC_9410_0:
     .4byte 0x000005DC
 .Lde_080337C8:
-    .4byte 0x18114803
-    .4byte 0x1C287862
-    .4byte 0xFC86F7D9
-    .4byte 0x0000E012
+    ldr r0, .Lraw_code_entities_080320DC_9416_0
+    adds r1, r2, r0
+    ldrb r2, [r4, #1]
+    adds r0, r5, #0
+    bl method_0800D0C0__C4BarnUi
+    b .Lde_080337FC
+    .align 2, 0
+.Lraw_code_entities_080320DC_9416_0:
     .4byte 0x000005DC
 .Lde_080337DC:
-    .4byte 0x32367862
-    .hword 0xE001
+    ldrb r2, [r4, #1]
+    adds r2, #0x36
+    b .Lraw_code_entities_080320DC_9422_2
 .Lde_080337E2:
-    .hword 0x7862
-    .4byte 0x1C28322E
-    .4byte 0xF7FF1C19
-    .4byte 0xE005FF93
+    ldrb r2, [r4, #1]
+    adds r2, #0x2e
+.Lraw_code_entities_080320DC_9422_2:
+    adds r0, r5, #0
+    adds r1, r3, #0
+    bl func_08033800
+    b .Lde_080337FC
 .Lde_080337F0:
-    .4byte 0x324C7862
-    .4byte 0x1C191C28
-    .4byte 0xFF8CF7FF
+    ldrb r2, [r4, #1]
+    adds r2, #0x4c
+    adds r0, r5, #0
+    adds r1, r3, #0
+    bl func_08033800
 .Lde_080337FC:
     adds	r0, r5, #0
     pop	{r4, r5}
@@ -9537,27 +10326,35 @@ func_08033928:
     .4byte .Lde_080338E0
     .4byte .Lde_0803391A
 .Lde_080338E0:
-    .4byte 0xE01B2504
+    movs r5, #4
+    b .Lde_0803391C
 .Lde_080338E4:
-    .4byte 0x30226B78
-    .4byte 0xE0177805
+    ldr r0, [r7, #0x34]
+    adds r0, #0x22
+    ldrb r5, [r0]
+    b .Lde_0803391C
 .Lde_080338EC:
-    .4byte 0x1C20AC03
+    add r4, sp, #0xc
+    adds r0, r4, #0
     adds r1, r6, #0
     bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
     adds r0, r7, #0
-    .4byte 0xF7FE1C21
-    .4byte 0xE00DFB99
+    adds r1, r4, #0
+    bl SetLocation__12AActorEntityRC13ActorLocation
+    b .Lde_0803391C
 .Lde_08033900:
-    .4byte 0x6B7C2501
-    .4byte 0xF06A1C20
-    .4byte 0x1C01FE59
-    .4byte 0xF06A1C20
-    .4byte 0xF7FFFE5D
-    .4byte 0x4680FF89
-    .hword 0xE000
+    movs r5, #1
+    ldr r4, [r7, #0x34]
+    adds r0, r4, #0
+    bl GetCurrentTask__C13HarvestSprite
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
+    bl func_08033914
+    mov r8, r0
+    b .Lde_0803391C
 .Lde_0803391A:
-    .hword 0x2501
+    movs r5, #1
 .Lde_0803391C:
     mvns	r1, r5
     adds	r0, r7, #0
@@ -10096,175 +10893,320 @@ func_0803436C:
     .4byte .Lde_08034700
     .4byte .Lde_08034748
 .Lde_08034370:
-    .4byte 0x682D9D0A
-    .4byte 0x20D846A9
-    .4byte 0x99094481
-    .4byte 0x5E8E220A
-    .4byte 0x5F4C250E
-    .4byte 0xAC0246A0
-    .4byte 0x88212202
-    .4byte 0x1C184B19
-    .4byte 0x43104008
-    .4byte 0x04368020
-    .4byte 0x203F0C31
-    .4byte 0x40014682
-    .4byte 0x78650089
-    .4byte 0x1C102203
-    .4byte 0x43084028
-    .4byte 0x0DB67060
-    .4byte 0x1C188861
-    .4byte 0x43304008
-    .4byte 0x46418060
-    .4byte 0x46880409
-    .4byte 0x46550C08
-    .4byte 0x00804028
-    .4byte 0x400A78E1
-    .4byte 0x70E24302
-    .4byte 0x0D804640
-    .4byte 0x88A04680
-    .4byte 0x46414003
-    .4byte 0x80A3430B
-    .4byte 0x682A464D
-    .4byte 0x1C21980A
-    .4byte 0xFA46F09F
-    .4byte 0x46A02601
-    .4byte 0x0000E20F
+    ldr r5, [sp, #0x28]
+    ldr r5, [r5]
+    mov sb, r5
+    movs r0, #0xd8
+    add sb, r0
+    ldr r1, [sp, #0x24]
+    movs r2, #0xa
+    ldrsh r6, [r1, r2]
+    movs r5, #0xe
+    ldrsh r4, [r1, r5]
+    mov r8, r4
+    add r4, sp, #8
+    movs r2, #2
+    ldrh r1, [r4]
+    ldr r3, .Lraw_code_entities_080320DC_10132_0
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r2
+    strh r0, [r4]
+    lsls r6, r6, #0x10
+    lsrs r1, r6, #0x10
+    movs r0, #0x3f
+    mov sl, r0
+    ands r1, r0
+    lsls r1, r1, #2
+    ldrb r5, [r4, #1]
+    movs r2, #3
+    adds r0, r2, #0
+    ands r0, r5
+    orrs r0, r1
+    strb r0, [r4, #1]
+    lsrs r6, r6, #0x16
+    ldrh r1, [r4, #2]
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r6
+    strh r0, [r4, #2]
+    mov r1, r8
+    lsls r1, r1, #0x10
+    mov r8, r1
+    lsrs r0, r1, #0x10
+    mov r5, sl
+    ands r0, r5
+    lsls r0, r0, #2
+    ldrb r1, [r4, #3]
+    ands r2, r1
+    orrs r2, r0
+    strb r2, [r4, #3]
+    mov r0, r8
+    lsrs r0, r0, #0x16
+    mov r8, r0
+    ldrh r0, [r4, #4]
+    ands r3, r0
+    mov r1, r8
+    orrs r3, r1
+    strh r3, [r4, #4]
+    mov r5, sb
+    ldr r2, [r5]
+    ldr r0, [sp, #0x28]
+    adds r1, r4, #0
+    bl _call_via_r2
+    movs r6, #1
+    mov r8, r4
+    b .Lraw_code_entities_080320DC_10428_0
+    .align 2, 0
+.Lraw_code_entities_080320DC_10132_0:
     .4byte 0xFFFFFC00
 .Lde_080343F8:
-    .4byte 0x4681A802
-    .4byte 0xFE06F7DA
-    .4byte 0x6809990A
-    .4byte 0x22E04688
-    .4byte 0x9C094490
-    .4byte 0x5E25200A
-    .4byte 0x5E66210E
-    .4byte 0x2202AF04
-    .4byte 0x4B1E8839
-    .4byte 0x40081C18
-    .4byte 0x80384310
-    .4byte 0x0C29042D
-    .4byte 0x4692223F
-    .4byte 0x00894011
-    .4byte 0x2203787C
-    .4byte 0x40201C10
-    .4byte 0x70784308
-    .4byte 0x88790DAD
-    .4byte 0x40081C18
-    .4byte 0x80784328
-    .4byte 0x0C300436
-    .4byte 0x40204654
-    .4byte 0x78F90080
-    .4byte 0x4302400A
-    .4byte 0x0DB670FA
-    .4byte 0x400388B8
-    .4byte 0x80BB4333
-    .4byte 0x682B4645
-    .4byte 0x1C39980A
-    .4byte 0xF09F464A
-    .4byte 0x4648FA05
-    .4byte 0xFE0AF7DA
-    .4byte 0x46C80600
-    .4byte 0xD0002800
-    .4byte 0x4640E1C5
-    .4byte 0xFE1AF7DA
-    .4byte 0xD0052800
-    .4byte 0xD0212801
-    .4byte 0x0000E1BD
+    add r0, sp, #8
+    mov sb, r0
+    bl __12RucksackItem
+    ldr r1, [sp, #0x28]
+    ldr r1, [r1]
+    mov r8, r1
+    movs r2, #0xe0
+    add r8, r2
+    ldr r4, [sp, #0x24]
+    movs r0, #0xa
+    ldrsh r5, [r4, r0]
+    movs r1, #0xe
+    ldrsh r6, [r4, r1]
+    add r7, sp, #0x10
+    movs r2, #2
+    ldrh r1, [r7]
+    ldr r3, .Lraw_code_entities_080320DC_10173_0
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r2
+    strh r0, [r7]
+    lsls r5, r5, #0x10
+    lsrs r1, r5, #0x10
+    movs r2, #0x3f
+    mov sl, r2
+    ands r1, r2
+    lsls r1, r1, #2
+    ldrb r4, [r7, #1]
+    movs r2, #3
+    adds r0, r2, #0
+    ands r0, r4
+    orrs r0, r1
+    strb r0, [r7, #1]
+    lsrs r5, r5, #0x16
+    ldrh r1, [r7, #2]
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r5
+    strh r0, [r7, #2]
+    lsls r6, r6, #0x10
+    lsrs r0, r6, #0x10
+    mov r4, sl
+    ands r0, r4
+    lsls r0, r0, #2
+    ldrb r1, [r7, #3]
+    ands r2, r1
+    orrs r2, r0
+    strb r2, [r7, #3]
+    lsrs r6, r6, #0x16
+    ldrh r0, [r7, #4]
+    ands r3, r0
+    orrs r3, r6
+    strh r3, [r7, #4]
+    mov r5, r8
+    ldr r3, [r5]
+    ldr r0, [sp, #0x28]
+    adds r1, r7, #0
+    mov r2, sb
+    bl _call_via_r3
+    mov r0, sb
+    bl IsEmpty__C12RucksackItem
+    lsls r0, r0, #0x18
+    mov r8, sb
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_10168_2
+    b .Lde_0803480E
+.Lraw_code_entities_080320DC_10168_2:
+    mov r0, r8
+    bl GetKind__C12RucksackItem
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_10174_0
+    cmp r0, #1
+    beq .Lraw_code_entities_080320DC_10189_0
+    b .Lde_0803480E
+    .align 2, 0
+.Lraw_code_entities_080320DC_10173_0:
     .4byte 0xFFFFFC00
-    .4byte 0x6804980A
-    .4byte 0x004921AE
-    .4byte 0xAD071864
-    .4byte 0x46411C38
-    .4byte 0xFE0CF7DA
-    .4byte 0x46687839
-    .4byte 0x78003011
-    .4byte 0x43080200
-    .4byte 0x31124669
-    .4byte 0x04097809
-    .4byte 0x1C284301
-    .4byte 0xFE2AF7D9
-    .4byte 0x980A6822
-    .4byte 0xF09F1C29
-    .4byte 0xE012F9D3
-    .4byte 0x68149A0A
-    .4byte 0x006D25AE
-    .4byte 0x466D1964
-    .4byte 0x4640351D
-    .4byte 0xFE10F7DA
-    .4byte 0x1C281C01
-    .4byte 0xFE3CF7D9
-    .4byte 0x980A6822
-    .4byte 0xF09F1C29
-    .4byte 0x2600F9BF
-    .hword 0xE189
+.Lraw_code_entities_080320DC_10174_0:
+    ldr r0, [sp, #0x28]
+    ldr r4, [r0]
+    movs r1, #0xae
+    lsls r1, r1, #1
+    adds r4, r4, r1
+    add r5, sp, #0x1c
+    adds r0, r7, #0
+    mov r1, r8
+    bl GetFood__C12RucksackItem
+    ldrb r1, [r7]
+    mov r0, sp
+    adds r0, #0x11
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #0x12
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r5, #0
+    bl __7ProductG4Food
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r5, #0
+    bl _call_via_r2
+    b .Lraw_code_entities_080320DC_10198_2
+.Lraw_code_entities_080320DC_10189_0:
+    ldr r2, [sp, #0x28]
+    ldr r4, [r2]
+    movs r5, #0xae
+    lsls r5, r5, #1
+    adds r4, r4, r5
+    mov r5, sp
+    adds r5, #0x1d
+    mov r0, r8
+    bl GetArticle__C12RucksackItem
+    adds r1, r0, #0
+    adds r0, r5, #0
+    bl __7ProductG7Article
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r5, #0
+    bl _call_via_r2
+.Lraw_code_entities_080320DC_10198_2:
+    movs r6, #0
+    b .Lraw_code_entities_080320DC_10428_0
 .Lde_080344FE:
-    .hword 0x9909
-    .4byte 0x24FF6BC8
-    .4byte 0x190000A4
-    .4byte 0xF7D82101
-    .4byte 0x9A09F975
-    .4byte 0x19006BD0
-    .4byte 0x78494669
-    .4byte 0xF98CF7D8
-    .4byte 0x68209C0A
-    .4byte 0x466930A0
-    .4byte 0x68027849
-    .hword 0xE02B
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1, #0x3c]
+    movs r4, #0xff
+    lsls r4, r4, #2
+    adds r0, r0, r4
+    movs r1, #1
+    bl SubtractStoredBushels__4CoopUi
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl SetEntBushel__4CoopUi
+    ldr r4, [sp, #0x28]
+    ldr r0, [r4]
+    adds r0, #0xa0
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    ldr r2, [r0]
+    b .Lraw_code_entities_080320DC_10237_2
 .Lde_0803452A:
-    .hword 0x9909
-    .4byte 0x4C096BC8
-    .4byte 0x21011900
-    .4byte 0xFEB4F7D8
-    .4byte 0x6BD09A09
-    .4byte 0x46691900
-    .4byte 0xF7D87849
-    .4byte 0x9C0AFECB
-    .4byte 0x309C6820
-    .4byte 0x78494669
-    .4byte 0xE0166802
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1, #0x3c]
+    ldr r4, .Lraw_code_entities_080320DC_10225_0
+    adds r0, r0, r4
+    movs r1, #1
+    bl SubtractStoredBushels__4BarnUi
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl SetBushelForStall__4BarnUi
+    ldr r4, [sp, #0x28]
+    ldr r0, [r4]
+    adds r0, #0x9c
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    ldr r2, [r0]
+    b .Lraw_code_entities_080320DC_10237_2
+.Lraw_code_entities_080320DC_10225_0:
     .4byte 0x000005DC
 .Lde_08034558:
-    .4byte 0x6BC89909
-    .4byte 0x19004C0C
-    .4byte 0xF7D82101
-    .4byte 0x9A09FE9D
-    .4byte 0x19006BD0
-    .4byte 0x78494669
-    .4byte 0xFEF0F7D8
-    .4byte 0x68229C0A
-    .4byte 0x4668329C
-    .4byte 0x31107841
-    .4byte 0x1C206812
-    .4byte 0xF978F09F
-    .4byte 0xAD022602
-    .4byte 0xE14046A8
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1, #0x3c]
+    ldr r4, .Lraw_code_entities_080320DC_10241_0
+    adds r0, r0, r4
+    movs r1, #1
+    bl SubtractStoredBushels__4BarnUi
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl SetBushelForPregnancyStall__4BarnUi
+    ldr r4, [sp, #0x28]
+    ldr r2, [r4]
+    adds r2, #0x9c
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r1, #0x10
+    ldr r2, [r2]
+.Lraw_code_entities_080320DC_10237_2:
+    adds r0, r4, #0
+    bl _call_via_r2
+    movs r6, #2
+    add r5, sp, #8
+    mov r8, r5
+    b .Lraw_code_entities_080320DC_10428_0
+.Lraw_code_entities_080320DC_10241_0:
     .4byte 0x000005DC
 .Lde_08034594:
-    .4byte 0x78414668
-    .4byte 0x9A0A3136
-    .4byte 0x6C026810
-    .4byte 0xF09F980A
-    .4byte 0x1C07F969
-    .4byte 0xD1002F00
-    .4byte 0x6978E12F
-    .4byte 0x1C386D01
-    .4byte 0xF95EF09F
-    .4byte 0x28000600
-    .4byte 0x6978D004
-    .4byte 0x1C386F01
-    .4byte 0xF956F09F
-    .4byte 0x6D416978
-    .4byte 0xF09F1C38
-    .4byte 0x0600F951
-    .4byte 0x46A0AC02
-    .4byte 0xD0452800
-    .4byte 0x6F416978
-    .4byte 0xF09F1C38
-    .4byte 0x211CF947
-    .4byte 0xD81E2805
-    .4byte 0x49020080
-    .4byte 0x68001840
-    .4byte 0x00004687
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r1, #0x36
+    ldr r2, [sp, #0x28]
+    ldr r0, [r2]
+    ldr r2, [r0, #0x40]
+    ldr r0, [sp, #0x28]
+    bl _call_via_r2
+    adds r7, r0, #0
+    cmp r7, #0
+    bne .Lraw_code_entities_080320DC_10249_2
+    b .Lde_0803480E
+.Lraw_code_entities_080320DC_10249_2:
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r7, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_10256_0
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x70]
+    adds r0, r7, #0
+    bl _call_via_r1
+.Lraw_code_entities_080320DC_10256_0:
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x54]
+    adds r0, r7, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    add r4, sp, #8
+    mov r8, r4
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_10303_0
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x74]
+    adds r0, r7, #0
+    bl _call_via_r1
+    movs r1, #0x1c
+    cmp r0, #5
+    bhi .Lraw_code_entities_080320DC_10287_2
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_entities_080320DC_10268_0
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Lraw_code_entities_080320DC_10268_0:
     .4byte .Lde_080345FC
 .Lde_080345FC:
     .4byte .Lde_08034614
@@ -10274,43 +11216,73 @@ func_0803436C:
     .4byte .Lde_08034624
     .4byte .Lde_08034628
 .Lde_08034614:
-    .4byte 0xE008211C
+    movs r1, #0x1c
+    b .Lraw_code_entities_080320DC_10287_2
 .Lde_08034618:
-    .4byte 0xE006211D
+    movs r1, #0x1d
+    b .Lraw_code_entities_080320DC_10287_2
 .Lde_0803461C:
-    .4byte 0xE004211E
+    movs r1, #0x1e
+    b .Lraw_code_entities_080320DC_10287_2
 .Lde_08034620:
-    .4byte 0xE002211F
+    movs r1, #0x1f
+    b .Lraw_code_entities_080320DC_10287_2
 .Lde_08034624:
-    .4byte 0xE0002120
+    movs r1, #0x20
+    b .Lraw_code_entities_080320DC_10287_2
 .Lde_08034628:
-    .4byte 0x9D0A2121
-    .4byte 0x20AE682C
-    .4byte 0x18240040
-    .4byte 0x361E466E
-    .4byte 0x1C28AD02
-    .4byte 0xFB44F7D9
-    .4byte 0x46687829
-    .4byte 0x78003009
-    .4byte 0x43080200
-    .4byte 0x310A4669
-    .4byte 0x04097809
-    .4byte 0x1C304301
-    .4byte 0xFD60F7D9
-    .4byte 0x980A6822
-    .4byte 0xF09F1C31
-    .4byte 0x46A8F909
-    .4byte 0x6D816978
-    .4byte 0xF09F1C38
-    .4byte 0x0600F901
-    .4byte 0xD03A2800
-    .4byte 0x6F816978
-    .4byte 0xF09F1C38
-    .4byte 0x2105F8F9
-    .4byte 0xD81E2805
-    .4byte 0x49020080
-    .4byte 0x68001840
-    .4byte 0x00004687
+    movs r1, #0x21
+.Lraw_code_entities_080320DC_10287_2:
+    ldr r5, [sp, #0x28]
+    ldr r4, [r5]
+    movs r0, #0xae
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    mov r6, sp
+    adds r6, #0x1e
+    add r5, sp, #8
+    adds r0, r5, #0
+    bl __4FoodUi
+    ldrb r1, [r5]
+    mov r0, sp
+    adds r0, #9
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #0xa
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r6, #0
+    bl __7ProductG4Food
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r6, #0
+    bl _call_via_r2
+    mov r8, r5
+.Lraw_code_entities_080320DC_10303_0:
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x58]
+    adds r0, r7, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_10343_2
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x78]
+    adds r0, r7, #0
+    bl _call_via_r1
+    movs r1, #5
+    cmp r0, #5
+    bhi .Lraw_code_entities_080320DC_10333_2
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_entities_080320DC_10314_0
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Lraw_code_entities_080320DC_10314_0:
     .4byte .Lde_08034698
 .Lde_08034698:
     .4byte .Lde_080346B0
@@ -10320,63 +11292,108 @@ func_0803436C:
     .4byte .Lde_080346C0
     .4byte .Lde_080346C4
 .Lde_080346B0:
-    .4byte 0xE0082105
+    movs r1, #5
+    b .Lraw_code_entities_080320DC_10333_2
 .Lde_080346B4:
-    .4byte 0xE0062106
+    movs r1, #6
+    b .Lraw_code_entities_080320DC_10333_2
 .Lde_080346B8:
-    .4byte 0xE0042107
+    movs r1, #7
+    b .Lraw_code_entities_080320DC_10333_2
 .Lde_080346BC:
-    .4byte 0xE0022108
+    movs r1, #8
+    b .Lraw_code_entities_080320DC_10333_2
 .Lde_080346C0:
-    .4byte 0xE0002109
+    movs r1, #9
+    b .Lraw_code_entities_080320DC_10333_2
 .Lde_080346C4:
-    .4byte 0x9A0A210A
-    .4byte 0x24AE6815
-    .4byte 0x192D0064
-    .4byte 0x361F466E
-    .4byte 0x1C20AC08
-    .4byte 0xFC4AF7D9
-    .4byte 0x1C307821
-    .4byte 0xFD42F7D9
-    .4byte 0x980A682A
-    .4byte 0xF09F1C31
-    .4byte 0x6978F8C5
-    .4byte 0x68023088
-    .4byte 0x213C1C38
-    .4byte 0xF8BEF09F
-    .4byte 0xE0882602
+    movs r1, #0xa
+.Lraw_code_entities_080320DC_10333_2:
+    ldr r2, [sp, #0x28]
+    ldr r5, [r2]
+    movs r4, #0xae
+    lsls r4, r4, #1
+    adds r5, r5, r4
+    mov r6, sp
+    adds r6, #0x1f
+    add r4, sp, #0x20
+    adds r0, r4, #0
+    bl __7ArticleUi
+    ldrb r1, [r4]
+    adds r0, r6, #0
+    bl __7ProductG7Article
+    ldr r2, [r5]
+    ldr r0, [sp, #0x28]
+    adds r1, r6, #0
+    bl _call_via_r2
+.Lraw_code_entities_080320DC_10343_2:
+    ldr r0, [r7, #0x14]
+    adds r0, #0x88
+    ldr r2, [r0]
+    adds r0, r7, #0
+    movs r1, #0x3c
+    bl _call_via_r2
+    movs r6, #2
+    b .Lraw_code_entities_080320DC_10428_0
 .Lde_08034700:
-    .4byte 0x78414668
-    .4byte 0x9D0A312E
-    .4byte 0x6C026828
-    .4byte 0xF09F1C28
-    .4byte 0x1C04F8B3
-    .4byte 0xD07A2C00
-    .4byte 0x6D016960
-    .4byte 0xF09F1C20
-    .4byte 0x0600F8A9
-    .4byte 0xD0042800
-    .4byte 0x6F016960
-    .4byte 0xF09F1C20
-    .4byte 0x6960F8A1
-    .4byte 0x68023088
-    .4byte 0x213C1C20
-    .4byte 0xF89CF09F
-    .4byte 0xA8022602
-    .4byte 0xE0644680
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r1, #0x2e
+    ldr r5, [sp, #0x28]
+    ldr r0, [r5]
+    ldr r2, [r0, #0x40]
+    adds r0, r5, #0
+    bl _call_via_r2
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Lde_0803480E
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_10361_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x70]
+    adds r0, r4, #0
+    bl _call_via_r1
+.Lraw_code_entities_080320DC_10361_2:
+    ldr r0, [r4, #0x14]
+    adds r0, #0x88
+    ldr r2, [r0]
+    adds r0, r4, #0
+    movs r1, #0x3c
+    bl _call_via_r2
+    movs r6, #2
+    add r0, sp, #8
+    mov r8, r0
+    b .Lraw_code_entities_080320DC_10428_0
 .Lde_08034748:
-    .4byte 0x78414668
-    .4byte 0x344C1C0C
-    .4byte 0x6BD09A09
-    .4byte 0x00AD25FF
-    .4byte 0xF7D71940
-    .4byte 0x2800FFB1
-    .4byte 0x7980D055
-    .4byte 0x0F400740
-    .4byte 0x2805270F
-    .4byte 0x0080D81D
-    .4byte 0x18404901
-    .4byte 0x46876800
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r4, r1, #0
+    adds r4, #0x4c
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    movs r5, #0xff
+    lsls r5, r5, #2
+    adds r0, r0, r5
+    bl GetEgg__C4CoopUi
+    cmp r0, #0
+    beq .Lde_0803480E
+    ldrb r0, [r0, #6]
+    lsls r0, r0, #0x1d
+    lsrs r0, r0, #0x1d
+    movs r7, #0xf
+    cmp r0, #5
+    bhi .Lraw_code_entities_080320DC_10399_2
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_entities_080320DC_10380_0
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+.Lraw_code_entities_080320DC_10380_0:
     .4byte .Lde_0803477C
 .Lde_0803477C:
     .4byte .Lde_08034794
@@ -10386,58 +11403,92 @@ func_0803436C:
     .4byte .Lde_080347A4
     .4byte .Lde_080347A8
 .Lde_08034794:
-    .4byte 0xE008270F
+    movs r7, #0xf
+    b .Lraw_code_entities_080320DC_10399_2
 .Lde_08034798:
-    .4byte 0xE0062710
+    movs r7, #0x10
+    b .Lraw_code_entities_080320DC_10399_2
 .Lde_0803479C:
-    .4byte 0xE0042711
+    movs r7, #0x11
+    b .Lraw_code_entities_080320DC_10399_2
 .Lde_080347A0:
-    .4byte 0xE0022712
+    movs r7, #0x12
+    b .Lraw_code_entities_080320DC_10399_2
 .Lde_080347A4:
-    .4byte 0xE0002713
+    movs r7, #0x13
+    b .Lraw_code_entities_080320DC_10399_2
 .Lde_080347A8:
-    .4byte 0x99092714
-    .4byte 0x68016808
-    .4byte 0x1C216BCA
-    .4byte 0xF860F09F
-    .4byte 0x6BD09A09
-    .4byte 0x00A424FF
-    .4byte 0x46691900
-    .4byte 0xF7D87849
-    .4byte 0x9D0AF907
-    .4byte 0x20AE682C
-    .4byte 0x18240040
-    .4byte 0x3621466E
-    .4byte 0x1C28AD02
-    .4byte 0xF7D91C39
-    .4byte 0x7829FA73
-    .4byte 0x30094668
-    .4byte 0x02007800
-    .4byte 0x46694308
-    .4byte 0x7809310A
-    .4byte 0x43010409
-    .4byte 0xF7D91C30
-    .4byte 0x6822FC8F
-    .4byte 0x1C31980A
-    .4byte 0xF838F09F
-    .4byte 0x46A82602
-    .hword 0xE001
+    movs r7, #0x14
+.Lraw_code_entities_080320DC_10399_2:
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x3c]
+    adds r1, r4, #0
+    bl _call_via_r2
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    movs r4, #0xff
+    lsls r4, r4, #2
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl method_0800C9B8__4CoopUi
+    ldr r5, [sp, #0x28]
+    ldr r4, [r5]
+    movs r0, #0xae
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    mov r6, sp
+    adds r6, #0x21
+    add r5, sp, #8
+    adds r0, r5, #0
+    adds r1, r7, #0
+    bl __4FoodUi
+    ldrb r1, [r5]
+    mov r0, sp
+    adds r0, #9
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #0xa
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r6, #0
+    bl __7ProductG4Food
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r6, #0
+    bl _call_via_r2
+    movs r6, #2
+    mov r8, r5
+    b .Lraw_code_entities_080320DC_10428_0
 .Lde_0803480E:
     movs	r0, #0
     b .Lde_0803483E
-    .hword 0x490F
-    .4byte 0x22034640
-    .4byte 0xF86EF09F
-    .4byte 0xD00D2E03
-    .byte 0xC8, 0x20
+.Lraw_code_entities_080320DC_10428_0:
+    ldr r1, .Lraw_code_entities_080320DC_10451_0
+    mov r0, r8
+    movs r2, #3
+    bl memcpy
+    cmp r6, #3
+    beq .Lraw_code_entities_080320DC_10440_0
+    movs r0, #0xc8
     bl RandomBelow
-    .byte 0x42, 0x46
-    .4byte 0x78091991
-    .4byte 0xD2054288
-    .4byte 0x6B609C09
-    .4byte 0x22011C31
-    .4byte 0xFEE0F069
-    .hword 0x2001
+    mov r2, r8
+    adds r1, r2, r6
+    ldrb r1, [r1]
+    cmp r0, r1
+    bhs .Lraw_code_entities_080320DC_10440_0
+    ldr r4, [sp, #0x24]
+    ldr r0, [r4, #0x34]
+    adds r1, r6, #0
+    movs r2, #1
+    bl AddTaskExp__13HarvestSpriteQ213HarvestSprite4Taski
+.Lraw_code_entities_080320DC_10440_0:
+    movs r0, #1
 .Lde_0803483E:
     add	sp, #44	@ 0x2c
     pop	{r3, r4, r5}
@@ -10447,7 +11498,8 @@ func_0803436C:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    .hword 0x0000
+    .align 2, 0
+.Lraw_code_entities_080320DC_10451_0:
     .4byte gUnk_080F1496
     .global func_08034940
     .thumb_func
@@ -11347,25 +12399,58 @@ func_080329DC:
     @ US/EU/DE entity UI code, actual Thumb instructions and relocations.
     .section .text.entity_actor_animation_index_after, "ax", %progbits
     .align 2, 0
-    .4byte 0x1C02B500
-    .4byte 0x78003020
-    .4byte 0xD0024288
-    .4byte 0xF7FF1C10
-    .4byte 0xBC01FB0F
-    .4byte 0x00004700
-    .4byte 0x78003020
-    .4byte 0x00004770
-    .4byte 0x5E81220E
-    .4byte __ewram_bss_end + 0x170
-    .4byte 0x47701A40
-    .4byte 0x70013021
-    .4byte 0x00004770
-    .4byte 0x78003021
-    .4byte 0x00004770
-    .4byte 0x477061C1
-    .4byte 0x477069C0
-    .4byte 0x47706181
-    .4byte 0x47706980
+    push {lr}
+    adds r2, r0, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, r1
+    beq .Lraw_code_entities_080320DC_11354_2
+    adds r0, r2, #0
+    bl SetAnimFacing__12AActorEntityUi
+.Lraw_code_entities_080320DC_11354_2:
+    pop {r0}
+    bx r0
+    .align 2, 0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+    thumb_func_start func_08032B88
+func_08032B88:
+    movs r2, #14
+    ldrsh r1, [r0, r2]
+    movs r0, #128
+    lsls r0, r0, #8
+    subs r0, r0, r1
+    bx lr
+    thumb_func_start func_08032B94
+func_08032B94:
+    adds r0, #33
+    strb r1, [r0]
+    bx lr
+    .align 2, 0
+    thumb_func_start func_08032B9C
+func_08032B9C:
+    adds r0, #33
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+    thumb_func_start func_08032BA4
+func_08032BA4:
+    str r1, [r0, #28]
+    bx lr
+    thumb_func_start func_08032BA8
+func_08032BA8:
+    ldr r0, [r0, #28]
+    bx lr
+    thumb_func_start func_08032BAC
+func_08032BAC:
+    str r1, [r0, #24]
+    bx lr
+    thumb_func_start func_08032BB0
+func_08032BB0:
+    ldr r0, [r0, #24]
+    bx lr
     .global func_08032BB4
     .thumb_func
 func_08032BB4:
@@ -12688,123 +13773,215 @@ func_08033584:
     .4byte .Lus_08033754
     .4byte .Lus_08033764
 .Lus_080335CC:
-    .4byte 0x480D78A2
-    .4byte 0x202B1829
-    .4byte 0x78644350
-    .4byte 0x00801900
-    .4byte 0x68091809
-    .4byte 0x0F020508
-    .4byte 0x07882300
-    .4byte 0x28010F80
-    .4byte 0x1E50D108
-    .4byte 0xD8052803
-    .4byte 0x0E800608
-    .4byte 0x40482114
-    .4byte 0x0FC34240
-    .4byte 0xE0BA1C18
+    ldrb r2, [r4, #2]
+    ldr r0, .Lraw_code_entities_080320DC_12705_0
+    adds r1, r5, r0
+    movs r0, #0x2b
+    muls r0, r2, r0
+    ldrb r4, [r4, #1]
+    adds r0, r0, r4
+    lsls r0, r0, #2
+    adds r1, r1, r0
+    ldr r1, [r1]
+    lsls r0, r1, #0x14
+    lsrs r2, r0, #0x1c
+    movs r3, #0
+    lsls r0, r1, #0x1e
+    lsrs r0, r0, #0x1e
+    cmp r0, #1
+    bne .Lraw_code_entities_080320DC_12704_0
+    subs r0, r2, #1
+    cmp r0, #3
+    bhi .Lraw_code_entities_080320DC_12704_0
+    lsls r0, r1, #0x18
+    lsrs r0, r0, #0x1a
+    movs r1, #0x14
+    eors r0, r1
+    rsbs r0, r0, #0
+    lsrs r3, r0, #0x1f
+.Lraw_code_entities_080320DC_12704_0:
+    adds r0, r3, #0
+    b .Lus_0803377A
+.Lraw_code_entities_080320DC_12705_0:
     .4byte 0x000009C8
 .Lus_08033608:
-    .4byte 0x481078A2
-    .4byte 0x202B1829
-    .4byte 0x78644350
-    .4byte 0x00801900
-    .4byte 0x68091809
-    .4byte 0x0F000508
-    .4byte 0xD1112805
-    .4byte 0xA9029102
-    .4byte 0xF7D64668
-    .4byte 0x4668FF3B
-    .4byte 0xFD1CF7DB
-    .4byte 0x28000600
-    .4byte 0x4668D106
-    .4byte 0xFD2EF7DB
-    .4byte 0xD0052800
-    .4byte 0xD01D2801
+    ldrb r2, [r4, #2]
+    ldr r0, .Lraw_code_entities_080320DC_12726_0
+    adds r1, r5, r0
+    movs r0, #0x2b
+    muls r0, r2, r0
+    ldrb r4, [r4, #1]
+    adds r0, r0, r4
+    lsls r0, r0, #2
+    adds r1, r1, r0
+    ldr r1, [r1]
+    lsls r0, r1, #0x14
+    lsrs r0, r0, #0x1c
+    cmp r0, #5
+    bne .Lus_08033648
+    str r1, [sp, #8]
+    add r1, sp, #8
+    mov r0, sp
+    bl method_0800A4A4__9FieldPlot
+    mov r0, sp
+    bl IsEmpty__C12RucksackItem
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lus_08033648
+    mov r0, sp
+    bl GetKind__C12RucksackItem
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_12727_0
+    cmp r0, #1
+    beq .Lraw_code_entities_080320DC_12740_0
 .Lus_08033648:
     movs	r0, #0
     b .Lus_0803377A
+.Lraw_code_entities_080320DC_12726_0:
     .4byte 0x000009C8
-    .4byte 0xA801AC03
-    .4byte 0xF7DB4669
-    .4byte 0xA801FD25
-    .4byte 0x30017801
-    .4byte 0x02007800
-    .4byte 0x46694308
-    .4byte 0x78093106
-    .4byte 0x43010409
-    .4byte 0xF7DA1C20
-    .4byte 0x1C20FD43
-    .4byte 0xFD8EF7DA
-    .4byte 0x43014241
-    .4byte 0xE07A0FC8
-    .4byte 0x340D466C
-    .4byte 0xF7DB4668
-    .4byte 0x1C01FD2D
-    .4byte 0xF7DA1C20
-    .4byte 0x1C20FD59
-    .4byte 0xFD7EF7DA
-    .4byte 0x43014241
-    .4byte 0xE06A0FC8
+.Lraw_code_entities_080320DC_12727_0:
+    add r4, sp, #0xc
+    add r0, sp, #4
+    mov r1, sp
+    bl GetFood__C12RucksackItem
+    add r0, sp, #4
+    ldrb r1, [r0]
+    adds r0, #1
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #6
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r4, #0
+    bl __7ProductG4Food
+    adds r0, r4, #0
+    bl GetPrice__C7Product
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r0, r1, #0x1f
+    b .Lus_0803377A
+.Lraw_code_entities_080320DC_12740_0:
+    mov r4, sp
+    adds r4, #0xd
+    mov r0, sp
+    bl GetArticle__C12RucksackItem
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl __7ProductG7Article
+    adds r0, r4, #0
+    bl GetPrice__C7Product
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r0, r1, #0x1f
+    b .Lus_0803377A
 .Lus_080336A4:
-    .4byte 0x20FF2600
-    .4byte 0x182D0080
-    .4byte 0xF7D81C28
-    .4byte 0x2800FF5B
-    .4byte 0x7861D024
-    .4byte 0xF7D81C28
-    .4byte 0xE01BFF6D
+    movs r6, #0
+    movs r0, #0xff
+    lsls r0, r0, #2
+    adds r5, r5, r0
+    adds r0, r5, #0
+    bl GetStoredBushelCount__C4Coop
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_12774_0
+    ldrb r1, [r4, #1]
+    adds r0, r5, #0
+    bl HasBushelForEnt__C4CoopUi
+    b .Lraw_code_entities_080320DC_12772_0
 .Lus_080336C0:
-    .4byte 0x48062600
-    .4byte 0x1C28182D
-    .4byte 0xFBD0F7D9
-    .4byte 0xD0172800
-    .4byte 0x1C287861
-    .4byte 0xFBE8F7D9
-    .4byte 0x0000E00E
+    movs r6, #0
+    ldr r0, .Lraw_code_entities_080320DC_12764_0
+    adds r5, r5, r0
+    adds r0, r5, #0
+    bl GetStoredBushelCount__C4Barn
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_12774_0
+    ldrb r1, [r4, #1]
+    adds r0, r5, #0
+    bl HasBushelForStall__C4BarnUi
+    b .Lraw_code_entities_080320DC_12772_0
+    .align 2, 0
+.Lraw_code_entities_080320DC_12764_0:
     .4byte 0x000005DC
 .Lus_080336E0:
-    .4byte 0x48082600
-    .4byte 0x1C28182D
-    .4byte 0xFBC0F7D9
-    .4byte 0xD0072800
-    .4byte 0x1C287861
-    .4byte 0xFBEEF7D9
-    .4byte 0x28000600
-    .4byte 0x2601D100
-    .4byte 0xE03A1C30
+    movs r6, #0
+    ldr r0, .Lraw_code_entities_080320DC_12775_0
+    adds r5, r5, r0
+    adds r0, r5, #0
+    bl GetStoredBushelCount__C4Barn
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_12774_0
+    ldrb r1, [r4, #1]
+    adds r0, r5, #0
+    bl HasBushelForPregnancyStall__C4BarnUi
+.Lraw_code_entities_080320DC_12772_0:
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_12774_0
+    movs r6, #1
+.Lraw_code_entities_080320DC_12774_0:
+    adds r0, r6, #0
+    b .Lus_0803377A
+.Lraw_code_entities_080320DC_12775_0:
     .4byte 0x000005DC
 .Lus_08033708:
-    .4byte 0x31367861
-    .4byte 0x6C426818
-    .4byte 0xF0A01C18
-    .4byte 0x1C04F8FF
-    .4byte 0x2C002500
-    .4byte 0x6960D018
-    .4byte 0x1C206D01
-    .4byte 0xF8F4F0A0
-    .4byte 0x28000600
-    .4byte 0x6960D10F
-    .4byte 0x1C206D41
-    .4byte 0xF8ECF0A0
-    .4byte 0x28000600
-    .4byte 0x6960D107
-    .4byte 0x1C206D81
-    .4byte 0xF8E4F0A0
-    .4byte 0x28000600
-    .4byte 0x2501D000
-    .4byte 0xE0121C28
+    ldrb r1, [r4, #1]
+    adds r1, #0x36
+    ldr r0, [r3]
+    ldr r2, [r0, #0x44]
+    adds r0, r3, #0
+    bl _call_via_r2
+    adds r4, r0, #0
+    movs r5, #0
+    cmp r4, #0
+    beq .Lraw_code_entities_080320DC_12795_0
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_12794_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x54]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_12794_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x58]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_12795_0
+.Lraw_code_entities_080320DC_12794_2:
+    movs r5, #1
+.Lraw_code_entities_080320DC_12795_0:
+    adds r0, r5, #0
+    b .Lus_0803377A
 .Lus_08033754:
-    .4byte 0x312E7861
-    .4byte 0x6C426818
-    .4byte 0xF0A01C18
-    .4byte 0xE771F8D9
+    ldrb r1, [r4, #1]
+    adds r1, #0x2e
+    ldr r0, [r3]
+    ldr r2, [r0, #0x44]
+    adds r0, r3, #0
+    bl _call_via_r2
+    b .Lus_08033648
 .Lus_08033764:
-    .4byte 0x314C7861
-    .4byte 0x6C426818
-    .4byte 0xF0A01C18
-    .4byte 0x1C01F8D1
-    .4byte 0x43084248
-    .hword 0x0FC0
+    ldrb r1, [r4, #1]
+    adds r1, #0x4c
+    ldr r0, [r3]
+    ldr r2, [r0, #0x44]
+    adds r0, r3, #0
+    bl _call_via_r2
+    adds r1, r0, #0
+    rsbs r0, r1, #0
+    orrs r0, r1
+    lsrs r0, r0, #0x1f
 .Lus_0803377A:
     add	sp, #16
     pop	{r4, r5, r6}
@@ -12841,28 +14018,38 @@ func_08033784:
     .4byte .Lus_080337DA
     .4byte .Lus_080337E0
 .Lus_080337C8:
-    .4byte 0xE0162002
+    movs r0, #2
+    b .Lus_080337FA
 .Lus_080337CC:
-    .4byte 0xE0142011
+    movs r0, #0x11
+    b .Lus_080337FA
 .Lus_080337D0:
-    .4byte 0xE0122025
+    movs r0, #0x25
+    b .Lus_080337FA
 .Lus_080337D4:
-    .4byte 0x31367859
-    .hword 0xE004
+    ldrb r1, [r3, #1]
+    adds r1, #0x36
+    b .Lraw_code_entities_080320DC_12857_0
 .Lus_080337DA:
-    .hword 0x7859
-    .4byte 0xE001312E
+    ldrb r1, [r3, #1]
+    adds r1, #0x2e
+    b .Lraw_code_entities_080320DC_12857_0
 .Lus_080337E0:
-    .4byte 0x314C7859
-    .4byte 0x6C426820
-    .4byte 0xF0A01C20
-    .4byte 0x2800F893
-    .hword 0xD102
+    ldrb r1, [r3, #1]
+    adds r1, #0x4c
+.Lraw_code_entities_080320DC_12857_0:
+    ldr r0, [r4]
+    ldr r2, [r0, #0x44]
+    adds r0, r4, #0
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_entities_080320DC_12865_0
 .Lus_080337F2:
     movs	r0, #141	@ 0x8d
     lsls	r0, r0, #2
     b .Lus_080337FA
-    .hword 0x8880
+.Lraw_code_entities_080320DC_12865_0:
+    ldrh r0, [r0, #4]
 .Lus_080337FA:
     pop	{r4}
     pop	{r1}
@@ -12930,42 +14117,62 @@ func_08033830:
     strh	r0, [r5, #2]
     b .Lus_080338E8
 .Lus_0803387C:
-    .4byte 0x78A17860
-    .4byte 0x228C0100
-    .4byte 0x18800052
-    .4byte 0x31B80109
-    .4byte 0x80698028
-    .hword 0xE02A
+    ldrb r0, [r4, #1]
+    ldrb r1, [r4, #2]
+    lsls r0, r0, #4
+    movs r2, #0x8c
+    lsls r2, r2, #1
+    adds r0, r0, r2
+    lsls r1, r1, #4
+    adds r1, #0xb8
+    strh r0, [r5]
+    strh r1, [r5, #2]
+    b .Lus_080338E8
 .Lus_08033892:
-    .hword 0x20FF
-    .4byte 0x18110080
-    .4byte 0x1C287862
-    .4byte 0xFF28F7D8
-    .hword 0xE022
+    movs r0, #0xff
+    lsls r0, r0, #2
+    adds r1, r2, r0
+    ldrb r2, [r4, #1]
+    adds r0, r5, #0
+    bl method_0800C6F0__C4CoopUi
+    b .Lus_080338E8
 .Lus_080338A2:
-    .hword 0x4803
-    .4byte 0x78621811
-    .4byte 0xF7D91C28
-    .4byte 0xE01BFBE3
+    ldr r0, .Lraw_code_entities_080320DC_12950_0
+    adds r1, r2, r0
+    ldrb r2, [r4, #1]
+    adds r0, r5, #0
+    bl method_0800D074__C4BarnUi
+    b .Lus_080338E8
+.Lraw_code_entities_080320DC_12950_0:
     .4byte 0x000005DC
 .Lus_080338B4:
-    .4byte 0x18114803
-    .4byte 0x1C287862
-    .4byte 0xFC00F7D9
-    .4byte 0x0000E012
+    ldr r0, .Lraw_code_entities_080320DC_12956_0
+    adds r1, r2, r0
+    ldrb r2, [r4, #1]
+    adds r0, r5, #0
+    bl method_0800D0C0__C4BarnUi
+    b .Lus_080338E8
+    .align 2, 0
+.Lraw_code_entities_080320DC_12956_0:
     .4byte 0x000005DC
 .Lus_080338C8:
-    .4byte 0x32367862
-    .hword 0xE001
+    ldrb r2, [r4, #1]
+    adds r2, #0x36
+    b .Lraw_code_entities_080320DC_12962_2
 .Lus_080338CE:
-    .hword 0x7862
-    .4byte 0x1C28322E
-    .4byte 0xF7FF1C19
-    .4byte 0xE005FF93
+    ldrb r2, [r4, #1]
+    adds r2, #0x2e
+.Lraw_code_entities_080320DC_12962_2:
+    adds r0, r5, #0
+    adds r1, r3, #0
+    bl func_08033800
+    b .Lus_080338E8
 .Lus_080338DC:
-    .4byte 0x324C7862
-    .4byte 0x1C191C28
-    .4byte 0xFF8CF7FF
+    ldrb r2, [r4, #1]
+    adds r2, #0x4c
+    adds r0, r5, #0
+    adds r1, r3, #0
+    bl func_08033800
 .Lus_080338E8:
     adds	r0, r5, #0
     pop	{r4, r5}
@@ -13077,27 +14284,35 @@ func_08033928:
     .4byte .Lus_080339CC
     .4byte .Lus_08033A06
 .Lus_080339CC:
-    .4byte 0xE01B2504
+    movs r5, #4
+    b .Lus_08033A08
 .Lus_080339D0:
-    .4byte 0x30226B78
-    .4byte 0xE0177805
+    ldr r0, [r7, #0x34]
+    adds r0, #0x22
+    ldrb r5, [r0]
+    b .Lus_08033A08
 .Lus_080339D8:
-    .4byte 0x1C20AC03
+    add r4, sp, #0xc
+    adds r0, r4, #0
     adds r1, r6, #0
     bl InitializeHarvestSpriteHutLocation__FP13ActorLocationUi
     adds r0, r7, #0
-    .4byte 0xF7FE1C21
-    .4byte 0xE00DFB99
+    adds r1, r4, #0
+    bl SetLocation__12AActorEntityRC13ActorLocation
+    b .Lus_08033A08
 .Lus_080339EC:
-    .4byte 0x6B7C2501
-    .4byte 0xF06A1C20
-    .4byte 0x1C01FE33
-    .4byte 0xF06A1C20
-    .4byte 0xF7FFFE37
-    .4byte 0x4680FF89
-    .hword 0xE000
+    movs r5, #1
+    ldr r4, [r7, #0x34]
+    adds r0, r4, #0
+    bl GetCurrentTask__C13HarvestSprite
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
+    bl func_08033914
+    mov r8, r0
+    b .Lus_08033A08
 .Lus_08033A06:
-    .hword 0x2501
+    movs r5, #1
 .Lus_08033A08:
     mvns	r1, r5
     adds	r0, r7, #0
@@ -13636,175 +14851,320 @@ func_0803436C:
     .4byte .Lus_080347EC
     .4byte .Lus_08034834
 .Lus_0803445C:
-    .4byte 0x682D9D0A
-    .4byte 0x20D846A9
-    .4byte 0x99094481
-    .4byte 0x5E8E220A
-    .4byte 0x5F4C250E
-    .4byte 0xAC0246A0
-    .4byte 0x88212202
-    .4byte 0x1C184B19
-    .4byte 0x43104008
-    .4byte 0x04368020
-    .4byte 0x203F0C31
-    .4byte 0x40014682
-    .4byte 0x78650089
-    .4byte 0x1C102203
-    .4byte 0x43084028
-    .4byte 0x0DB67060
-    .4byte 0x1C188861
-    .4byte 0x43304008
-    .4byte 0x46418060
-    .4byte 0x46880409
-    .4byte 0x46550C08
-    .4byte 0x00804028
-    .4byte 0x400A78E1
-    .4byte 0x70E24302
-    .4byte 0x0D804640
-    .4byte 0x88A04680
-    .4byte 0x46414003
-    .4byte 0x80A3430B
-    .4byte 0x682A464D
-    .4byte 0x1C21980A
-    .4byte 0xFA1EF09F
-    .4byte 0x46A02601
-    .4byte 0x0000E20F
+    ldr r5, [sp, #0x28]
+    ldr r5, [r5]
+    mov sb, r5
+    movs r0, #0xd8
+    add sb, r0
+    ldr r1, [sp, #0x24]
+    movs r2, #0xa
+    ldrsh r6, [r1, r2]
+    movs r5, #0xe
+    ldrsh r4, [r1, r5]
+    mov r8, r4
+    add r4, sp, #8
+    movs r2, #2
+    ldrh r1, [r4]
+    ldr r3, .Lraw_code_entities_080320DC_13672_0
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r2
+    strh r0, [r4]
+    lsls r6, r6, #0x10
+    lsrs r1, r6, #0x10
+    movs r0, #0x3f
+    mov sl, r0
+    ands r1, r0
+    lsls r1, r1, #2
+    ldrb r5, [r4, #1]
+    movs r2, #3
+    adds r0, r2, #0
+    ands r0, r5
+    orrs r0, r1
+    strb r0, [r4, #1]
+    lsrs r6, r6, #0x16
+    ldrh r1, [r4, #2]
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r6
+    strh r0, [r4, #2]
+    mov r1, r8
+    lsls r1, r1, #0x10
+    mov r8, r1
+    lsrs r0, r1, #0x10
+    mov r5, sl
+    ands r0, r5
+    lsls r0, r0, #2
+    ldrb r1, [r4, #3]
+    ands r2, r1
+    orrs r2, r0
+    strb r2, [r4, #3]
+    mov r0, r8
+    lsrs r0, r0, #0x16
+    mov r8, r0
+    ldrh r0, [r4, #4]
+    ands r3, r0
+    mov r1, r8
+    orrs r3, r1
+    strh r3, [r4, #4]
+    mov r5, sb
+    ldr r2, [r5]
+    ldr r0, [sp, #0x28]
+    adds r1, r4, #0
+    bl _call_via_r2
+    movs r6, #1
+    mov r8, r4
+    b .Lraw_code_entities_080320DC_13968_0
+    .align 2, 0
+.Lraw_code_entities_080320DC_13672_0:
     .4byte 0xFFFFFC00
 .Lus_080344E4:
-    .4byte 0x4681A802
-    .4byte 0xFD80F7DA
-    .4byte 0x6809990A
-    .4byte 0x22E04688
-    .4byte 0x9C094490
-    .4byte 0x5E25200A
-    .4byte 0x5E66210E
-    .4byte 0x2202AF04
-    .4byte 0x4B1E8839
-    .4byte 0x40081C18
-    .4byte 0x80384310
-    .4byte 0x0C29042D
-    .4byte 0x4692223F
-    .4byte 0x00894011
-    .4byte 0x2203787C
-    .4byte 0x40201C10
-    .4byte 0x70784308
-    .4byte 0x88790DAD
-    .4byte 0x40081C18
-    .4byte 0x80784328
-    .4byte 0x0C300436
-    .4byte 0x40204654
-    .4byte 0x78F90080
-    .4byte 0x4302400A
-    .4byte 0x0DB670FA
-    .4byte 0x400388B8
-    .4byte 0x80BB4333
-    .4byte 0x682B4645
-    .4byte 0x1C39980A
-    .4byte 0xF09F464A
-    .4byte 0x4648F9DD
-    .4byte 0xFD84F7DA
-    .4byte 0x46C80600
-    .4byte 0xD0002800
-    .4byte 0x4640E1C5
-    .4byte 0xFD94F7DA
-    .4byte 0xD0052800
-    .4byte 0xD0212801
-    .4byte 0x0000E1BD
+    add r0, sp, #8
+    mov sb, r0
+    bl __12RucksackItem
+    ldr r1, [sp, #0x28]
+    ldr r1, [r1]
+    mov r8, r1
+    movs r2, #0xe0
+    add r8, r2
+    ldr r4, [sp, #0x24]
+    movs r0, #0xa
+    ldrsh r5, [r4, r0]
+    movs r1, #0xe
+    ldrsh r6, [r4, r1]
+    add r7, sp, #0x10
+    movs r2, #2
+    ldrh r1, [r7]
+    ldr r3, .Lraw_code_entities_080320DC_13713_0
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r2
+    strh r0, [r7]
+    lsls r5, r5, #0x10
+    lsrs r1, r5, #0x10
+    movs r2, #0x3f
+    mov sl, r2
+    ands r1, r2
+    lsls r1, r1, #2
+    ldrb r4, [r7, #1]
+    movs r2, #3
+    adds r0, r2, #0
+    ands r0, r4
+    orrs r0, r1
+    strb r0, [r7, #1]
+    lsrs r5, r5, #0x16
+    ldrh r1, [r7, #2]
+    adds r0, r3, #0
+    ands r0, r1
+    orrs r0, r5
+    strh r0, [r7, #2]
+    lsls r6, r6, #0x10
+    lsrs r0, r6, #0x10
+    mov r4, sl
+    ands r0, r4
+    lsls r0, r0, #2
+    ldrb r1, [r7, #3]
+    ands r2, r1
+    orrs r2, r0
+    strb r2, [r7, #3]
+    lsrs r6, r6, #0x16
+    ldrh r0, [r7, #4]
+    ands r3, r0
+    orrs r3, r6
+    strh r3, [r7, #4]
+    mov r5, r8
+    ldr r3, [r5]
+    ldr r0, [sp, #0x28]
+    adds r1, r7, #0
+    mov r2, sb
+    bl _call_via_r3
+    mov r0, sb
+    bl IsEmpty__C12RucksackItem
+    lsls r0, r0, #0x18
+    mov r8, sb
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_13708_2
+    b .Lus_080348FA
+.Lraw_code_entities_080320DC_13708_2:
+    mov r0, r8
+    bl GetKind__C12RucksackItem
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_13714_0
+    cmp r0, #1
+    beq .Lraw_code_entities_080320DC_13729_0
+    b .Lus_080348FA
+    .align 2, 0
+.Lraw_code_entities_080320DC_13713_0:
     .4byte 0xFFFFFC00
-    .4byte 0x6804980A
-    .4byte 0x004921AE
-    .4byte 0xAD071864
-    .4byte 0x46411C38
-    .4byte 0xFD86F7DA
-    .4byte 0x46687839
-    .4byte 0x78003011
-    .4byte 0x43080200
-    .4byte 0x31124669
-    .4byte 0x04097809
-    .4byte 0x1C284301
-    .4byte 0xFDA4F7D9
-    .4byte 0x980A6822
-    .4byte 0xF09F1C29
-    .4byte 0xE012F9AB
-    .4byte 0x68149A0A
-    .4byte 0x006D25AE
-    .4byte 0x466D1964
-    .4byte 0x4640351D
-    .4byte 0xFD8AF7DA
-    .4byte 0x1C281C01
-    .4byte 0xFDB6F7D9
-    .4byte 0x980A6822
-    .4byte 0xF09F1C29
-    .4byte 0x2600F997
-    .hword 0xE189
+.Lraw_code_entities_080320DC_13714_0:
+    ldr r0, [sp, #0x28]
+    ldr r4, [r0]
+    movs r1, #0xae
+    lsls r1, r1, #1
+    adds r4, r4, r1
+    add r5, sp, #0x1c
+    adds r0, r7, #0
+    mov r1, r8
+    bl GetFood__C12RucksackItem
+    ldrb r1, [r7]
+    mov r0, sp
+    adds r0, #0x11
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #0x12
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r5, #0
+    bl __7ProductG4Food
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r5, #0
+    bl _call_via_r2
+    b .Lraw_code_entities_080320DC_13738_2
+.Lraw_code_entities_080320DC_13729_0:
+    ldr r2, [sp, #0x28]
+    ldr r4, [r2]
+    movs r5, #0xae
+    lsls r5, r5, #1
+    adds r4, r4, r5
+    mov r5, sp
+    adds r5, #0x1d
+    mov r0, r8
+    bl GetArticle__C12RucksackItem
+    adds r1, r0, #0
+    adds r0, r5, #0
+    bl __7ProductG7Article
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r5, #0
+    bl _call_via_r2
+.Lraw_code_entities_080320DC_13738_2:
+    movs r6, #0
+    b .Lraw_code_entities_080320DC_13968_0
 .Lus_080345EA:
-    .hword 0x9909
-    .4byte 0x24FF6BC8
-    .4byte 0x190000A4
-    .4byte 0xF7D82101
-    .4byte 0x9A09F8EF
-    .4byte 0x19006BD0
-    .4byte 0x78494669
-    .4byte 0xF906F7D8
-    .4byte 0x68209C0A
-    .4byte 0x466930A0
-    .4byte 0x68027849
-    .hword 0xE02B
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1, #0x3c]
+    movs r4, #0xff
+    lsls r4, r4, #2
+    adds r0, r0, r4
+    movs r1, #1
+    bl SubtractStoredBushels__4CoopUi
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl SetEntBushel__4CoopUi
+    ldr r4, [sp, #0x28]
+    ldr r0, [r4]
+    adds r0, #0xa0
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    ldr r2, [r0]
+    b .Lraw_code_entities_080320DC_13777_2
 .Lus_08034616:
-    .hword 0x9909
-    .4byte 0x4C096BC8
-    .4byte 0x21011900
-    .4byte 0xFE2EF7D8
-    .4byte 0x6BD09A09
-    .4byte 0x46691900
-    .4byte 0xF7D87849
-    .4byte 0x9C0AFE45
-    .4byte 0x309C6820
-    .4byte 0x78494669
-    .4byte 0xE0166802
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1, #0x3c]
+    ldr r4, .Lraw_code_entities_080320DC_13765_0
+    adds r0, r0, r4
+    movs r1, #1
+    bl SubtractStoredBushels__4BarnUi
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl SetBushelForStall__4BarnUi
+    ldr r4, [sp, #0x28]
+    ldr r0, [r4]
+    adds r0, #0x9c
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    ldr r2, [r0]
+    b .Lraw_code_entities_080320DC_13777_2
+.Lraw_code_entities_080320DC_13765_0:
     .4byte 0x000005DC
 .Lus_08034644:
-    .4byte 0x6BC89909
-    .4byte 0x19004C0C
-    .4byte 0xF7D82101
-    .4byte 0x9A09FE17
-    .4byte 0x19006BD0
-    .4byte 0x78494669
-    .4byte 0xFE6AF7D8
-    .4byte 0x68229C0A
-    .4byte 0x4668329C
-    .4byte 0x31107841
-    .4byte 0x1C206812
-    .4byte 0xF950F09F
-    .4byte 0xAD022602
-    .4byte 0xE14046A8
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1, #0x3c]
+    ldr r4, .Lraw_code_entities_080320DC_13781_0
+    adds r0, r0, r4
+    movs r1, #1
+    bl SubtractStoredBushels__4BarnUi
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl SetBushelForPregnancyStall__4BarnUi
+    ldr r4, [sp, #0x28]
+    ldr r2, [r4]
+    adds r2, #0x9c
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r1, #0x10
+    ldr r2, [r2]
+.Lraw_code_entities_080320DC_13777_2:
+    adds r0, r4, #0
+    bl _call_via_r2
+    movs r6, #2
+    add r5, sp, #8
+    mov r8, r5
+    b .Lraw_code_entities_080320DC_13968_0
+.Lraw_code_entities_080320DC_13781_0:
     .4byte 0x000005DC
 .Lus_08034680:
-    .4byte 0x78414668
-    .4byte 0x9A0A3136
-    .4byte 0x6C026810
-    .4byte 0xF09F980A
-    .4byte 0x1C07F941
-    .4byte 0xD1002F00
-    .4byte 0x6978E12F
-    .4byte 0x1C386D01
-    .4byte 0xF936F09F
-    .4byte 0x28000600
-    .4byte 0x6978D004
-    .4byte 0x1C386F01
-    .4byte 0xF92EF09F
-    .4byte 0x6D416978
-    .4byte 0xF09F1C38
-    .4byte 0x0600F929
-    .4byte 0x46A0AC02
-    .4byte 0xD0452800
-    .4byte 0x6F416978
-    .4byte 0xF09F1C38
-    .4byte 0x211CF91F
-    .4byte 0xD81E2805
-    .4byte 0x49020080
-    .4byte 0x68001840
-    .4byte 0x00004687
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r1, #0x36
+    ldr r2, [sp, #0x28]
+    ldr r0, [r2]
+    ldr r2, [r0, #0x40]
+    ldr r0, [sp, #0x28]
+    bl _call_via_r2
+    adds r7, r0, #0
+    cmp r7, #0
+    bne .Lraw_code_entities_080320DC_13789_2
+    b .Lus_080348FA
+.Lraw_code_entities_080320DC_13789_2:
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r7, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_13796_0
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x70]
+    adds r0, r7, #0
+    bl _call_via_r1
+.Lraw_code_entities_080320DC_13796_0:
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x54]
+    adds r0, r7, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    add r4, sp, #8
+    mov r8, r4
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_13843_0
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x74]
+    adds r0, r7, #0
+    bl _call_via_r1
+    movs r1, #0x1c
+    cmp r0, #5
+    bhi .Lraw_code_entities_080320DC_13827_2
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_entities_080320DC_13808_0
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Lraw_code_entities_080320DC_13808_0:
     .4byte .Lus_080346E8
 .Lus_080346E8:
     .4byte .Lus_08034700
@@ -13814,43 +15174,73 @@ func_0803436C:
     .4byte .Lus_08034710
     .4byte .Lus_08034714
 .Lus_08034700:
-    .4byte 0xE008211C
+    movs r1, #0x1c
+    b .Lraw_code_entities_080320DC_13827_2
 .Lus_08034704:
-    .4byte 0xE006211D
+    movs r1, #0x1d
+    b .Lraw_code_entities_080320DC_13827_2
 .Lus_08034708:
-    .4byte 0xE004211E
+    movs r1, #0x1e
+    b .Lraw_code_entities_080320DC_13827_2
 .Lus_0803470C:
-    .4byte 0xE002211F
+    movs r1, #0x1f
+    b .Lraw_code_entities_080320DC_13827_2
 .Lus_08034710:
-    .4byte 0xE0002120
+    movs r1, #0x20
+    b .Lraw_code_entities_080320DC_13827_2
 .Lus_08034714:
-    .4byte 0x9D0A2121
-    .4byte 0x20AE682C
-    .4byte 0x18240040
-    .4byte 0x361E466E
-    .4byte 0x1C28AD02
-    .4byte 0xFABEF7D9
-    .4byte 0x46687829
-    .4byte 0x78003009
-    .4byte 0x43080200
-    .4byte 0x310A4669
-    .4byte 0x04097809
-    .4byte 0x1C304301
-    .4byte 0xFCDAF7D9
-    .4byte 0x980A6822
-    .4byte 0xF09F1C31
-    .4byte 0x46A8F8E1
-    .4byte 0x6D816978
-    .4byte 0xF09F1C38
-    .4byte 0x0600F8D9
-    .4byte 0xD03A2800
-    .4byte 0x6F816978
-    .4byte 0xF09F1C38
-    .4byte 0x2105F8D1
-    .4byte 0xD81E2805
-    .4byte 0x49020080
-    .4byte 0x68001840
-    .4byte 0x00004687
+    movs r1, #0x21
+.Lraw_code_entities_080320DC_13827_2:
+    ldr r5, [sp, #0x28]
+    ldr r4, [r5]
+    movs r0, #0xae
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    mov r6, sp
+    adds r6, #0x1e
+    add r5, sp, #8
+    adds r0, r5, #0
+    bl __4FoodUi
+    ldrb r1, [r5]
+    mov r0, sp
+    adds r0, #9
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #0xa
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r6, #0
+    bl __7ProductG4Food
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r6, #0
+    bl _call_via_r2
+    mov r8, r5
+.Lraw_code_entities_080320DC_13843_0:
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x58]
+    adds r0, r7, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_13883_2
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x78]
+    adds r0, r7, #0
+    bl _call_via_r1
+    movs r1, #5
+    cmp r0, #5
+    bhi .Lraw_code_entities_080320DC_13873_2
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_entities_080320DC_13854_0
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Lraw_code_entities_080320DC_13854_0:
     .4byte .Lus_08034784
 .Lus_08034784:
     .4byte .Lus_0803479C
@@ -13860,63 +15250,108 @@ func_0803436C:
     .4byte .Lus_080347AC
     .4byte .Lus_080347B0
 .Lus_0803479C:
-    .4byte 0xE0082105
+    movs r1, #5
+    b .Lraw_code_entities_080320DC_13873_2
 .Lus_080347A0:
-    .4byte 0xE0062106
+    movs r1, #6
+    b .Lraw_code_entities_080320DC_13873_2
 .Lus_080347A4:
-    .4byte 0xE0042107
+    movs r1, #7
+    b .Lraw_code_entities_080320DC_13873_2
 .Lus_080347A8:
-    .4byte 0xE0022108
+    movs r1, #8
+    b .Lraw_code_entities_080320DC_13873_2
 .Lus_080347AC:
-    .4byte 0xE0002109
+    movs r1, #9
+    b .Lraw_code_entities_080320DC_13873_2
 .Lus_080347B0:
-    .4byte 0x9A0A210A
-    .4byte 0x24AE6815
-    .4byte 0x192D0064
-    .4byte 0x361F466E
-    .4byte 0x1C20AC08
-    .4byte 0xFBC4F7D9
-    .4byte 0x1C307821
-    .4byte 0xFCBCF7D9
-    .4byte 0x980A682A
-    .4byte 0xF09F1C31
-    .4byte 0x6978F89D
-    .4byte 0x68023088
-    .4byte 0x213C1C38
-    .4byte 0xF896F09F
-    .4byte 0xE0882602
+    movs r1, #0xa
+.Lraw_code_entities_080320DC_13873_2:
+    ldr r2, [sp, #0x28]
+    ldr r5, [r2]
+    movs r4, #0xae
+    lsls r4, r4, #1
+    adds r5, r5, r4
+    mov r6, sp
+    adds r6, #0x1f
+    add r4, sp, #0x20
+    adds r0, r4, #0
+    bl __7ArticleUi
+    ldrb r1, [r4]
+    adds r0, r6, #0
+    bl __7ProductG7Article
+    ldr r2, [r5]
+    ldr r0, [sp, #0x28]
+    adds r1, r6, #0
+    bl _call_via_r2
+.Lraw_code_entities_080320DC_13883_2:
+    ldr r0, [r7, #0x14]
+    adds r0, #0x88
+    ldr r2, [r0]
+    adds r0, r7, #0
+    movs r1, #0x3c
+    bl _call_via_r2
+    movs r6, #2
+    b .Lraw_code_entities_080320DC_13968_0
 .Lus_080347EC:
-    .4byte 0x78414668
-    .4byte 0x9D0A312E
-    .4byte 0x6C026828
-    .4byte 0xF09F1C28
-    .4byte 0x1C04F88B
-    .4byte 0xD07A2C00
-    .4byte 0x6D016960
-    .4byte 0xF09F1C20
-    .4byte 0x0600F881
-    .4byte 0xD0042800
-    .4byte 0x6F016960
-    .4byte 0xF09F1C20
-    .4byte 0x6960F879
-    .4byte 0x68023088
-    .4byte 0x213C1C20
-    .4byte 0xF874F09F
-    .4byte 0xA8022602
-    .4byte 0xE0644680
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r1, #0x2e
+    ldr r5, [sp, #0x28]
+    ldr r0, [r5]
+    ldr r2, [r0, #0x40]
+    adds r0, r5, #0
+    bl _call_via_r2
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Lus_080348FA
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x50]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_080320DC_13901_2
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x70]
+    adds r0, r4, #0
+    bl _call_via_r1
+.Lraw_code_entities_080320DC_13901_2:
+    ldr r0, [r4, #0x14]
+    adds r0, #0x88
+    ldr r2, [r0]
+    adds r0, r4, #0
+    movs r1, #0x3c
+    bl _call_via_r2
+    movs r6, #2
+    add r0, sp, #8
+    mov r8, r0
+    b .Lraw_code_entities_080320DC_13968_0
 .Lus_08034834:
-    .4byte 0x78414668
-    .4byte 0x344C1C0C
-    .4byte 0x6BD09A09
-    .4byte 0x00AD25FF
-    .4byte 0xF7D71940
-    .4byte 0x2800FF2B
-    .4byte 0x7980D055
-    .4byte 0x0F400740
-    .4byte 0x2805270F
-    .4byte 0x0080D81D
-    .4byte 0x18404901
-    .4byte 0x46876800
+    mov r0, sp
+    ldrb r1, [r0, #1]
+    adds r4, r1, #0
+    adds r4, #0x4c
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    movs r5, #0xff
+    lsls r5, r5, #2
+    adds r0, r0, r5
+    bl GetEgg__C4CoopUi
+    cmp r0, #0
+    beq .Lus_080348FA
+    ldrb r0, [r0, #6]
+    lsls r0, r0, #0x1d
+    lsrs r0, r0, #0x1d
+    movs r7, #0xf
+    cmp r0, #5
+    bhi .Lraw_code_entities_080320DC_13939_2
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_entities_080320DC_13920_0
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+.Lraw_code_entities_080320DC_13920_0:
     .4byte .Lus_08034868
 .Lus_08034868:
     .4byte .Lus_08034880
@@ -13926,58 +15361,92 @@ func_0803436C:
     .4byte .Lus_08034890
     .4byte .Lus_08034894
 .Lus_08034880:
-    .4byte 0xE008270F
+    movs r7, #0xf
+    b .Lraw_code_entities_080320DC_13939_2
 .Lus_08034884:
-    .4byte 0xE0062710
+    movs r7, #0x10
+    b .Lraw_code_entities_080320DC_13939_2
 .Lus_08034888:
-    .4byte 0xE0042711
+    movs r7, #0x11
+    b .Lraw_code_entities_080320DC_13939_2
 .Lus_0803488C:
-    .4byte 0xE0022712
+    movs r7, #0x12
+    b .Lraw_code_entities_080320DC_13939_2
 .Lus_08034890:
-    .4byte 0xE0002713
+    movs r7, #0x13
+    b .Lraw_code_entities_080320DC_13939_2
 .Lus_08034894:
-    .4byte 0x99092714
-    .4byte 0x68016808
-    .4byte 0x1C216BCA
-    .4byte 0xF838F09F
-    .4byte 0x6BD09A09
-    .4byte 0x00A424FF
-    .4byte 0x46691900
-    .4byte 0xF7D87849
-    .4byte 0x9D0AF881
-    .4byte 0x20AE682C
-    .4byte 0x18240040
-    .4byte 0x3621466E
-    .4byte 0x1C28AD02
-    .4byte 0xF7D91C39
-    .4byte 0x7829F9ED
-    .4byte 0x30094668
-    .4byte 0x02007800
-    .4byte 0x46694308
-    .4byte 0x7809310A
-    .4byte 0x43010409
-    .4byte 0xF7D91C30
-    .4byte 0x6822FC09
-    .4byte 0x1C31980A
-    .4byte 0xF810F09F
-    .4byte 0x46A82602
-    .hword 0xE001
+    movs r7, #0x14
+.Lraw_code_entities_080320DC_13939_2:
+    ldr r1, [sp, #0x24]
+    ldr r0, [r1]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x3c]
+    adds r1, r4, #0
+    bl _call_via_r2
+    ldr r2, [sp, #0x24]
+    ldr r0, [r2, #0x3c]
+    movs r4, #0xff
+    lsls r4, r4, #2
+    adds r0, r0, r4
+    mov r1, sp
+    ldrb r1, [r1, #1]
+    bl method_0800C9B8__4CoopUi
+    ldr r5, [sp, #0x28]
+    ldr r4, [r5]
+    movs r0, #0xae
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    mov r6, sp
+    adds r6, #0x21
+    add r5, sp, #8
+    adds r0, r5, #0
+    adds r1, r7, #0
+    bl __4FoodUi
+    ldrb r1, [r5]
+    mov r0, sp
+    adds r0, #9
+    ldrb r0, [r0]
+    lsls r0, r0, #8
+    orrs r0, r1
+    mov r1, sp
+    adds r1, #0xa
+    ldrb r1, [r1]
+    lsls r1, r1, #0x10
+    orrs r1, r0
+    adds r0, r6, #0
+    bl __7ProductG4Food
+    ldr r2, [r4]
+    ldr r0, [sp, #0x28]
+    adds r1, r6, #0
+    bl _call_via_r2
+    movs r6, #2
+    mov r8, r5
+    b .Lraw_code_entities_080320DC_13968_0
 .Lus_080348FA:
     movs	r0, #0
     b .Lus_0803492A
-    .hword 0x490F
-    .4byte 0x22034640
-    .4byte 0xF846F09F
-    .4byte 0xD00D2E03
-    .byte 0xC8, 0x20
+.Lraw_code_entities_080320DC_13968_0:
+    ldr r1, .Lraw_code_entities_080320DC_13991_0
+    mov r0, r8
+    movs r2, #3
+    bl memcpy
+    cmp r6, #3
+    beq .Lraw_code_entities_080320DC_13980_0
+    movs r0, #0xc8
     bl RandomBelow
-    .byte 0x42, 0x46
-    .4byte 0x78091991
-    .4byte 0xD2054288
-    .4byte 0x6B609C09
-    .4byte 0x22011C31
-    .4byte 0xFEBAF069
-    .hword 0x2001
+    mov r2, r8
+    adds r1, r2, r6
+    ldrb r1, [r1]
+    cmp r0, r1
+    bhs .Lraw_code_entities_080320DC_13980_0
+    ldr r4, [sp, #0x24]
+    ldr r0, [r4, #0x34]
+    adds r1, r6, #0
+    movs r2, #1
+    bl AddTaskExp__13HarvestSpriteQ213HarvestSprite4Taski
+.Lraw_code_entities_080320DC_13980_0:
+    movs r0, #1
 .Lus_0803492A:
     add	sp, #44	@ 0x2c
     pop	{r3, r4, r5}
@@ -13987,7 +15456,8 @@ func_0803436C:
     pop	{r4, r5, r6, r7}
     pop	{r1}
     bx	r1
-    .hword 0x0000
+    .align 2, 0
+.Lraw_code_entities_080320DC_13991_0:
     .4byte gUnk_080F1496
     .global func_08034940
     .thumb_func

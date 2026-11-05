@@ -17,15 +17,16 @@ The ordinary C `gbagfx` and `fomt-lz` tools produce `base_tiles.4bpp` and
 ladder `4,8,13` and `--greedy --tie=exchange`, matching all 8644 retail bytes
 directly from the current tile source, with no slot padding or compressed
 template. The obsolete `shared/base_tiles.original.lz` is removed. Assembly
-includes the packed resource directly; EU's real eight-byte header/payload
-labels remain in place and include the complete generated remainder.
+includes the complete packed resource at its actual entry in every region.
+The old EU labels eight bytes into the stream were misplaced resource labels,
+not separate header/payload objects; those labels and references are corrected.
 The original packed stream occupies 0x21C4 bytes at JP 0x2AD72C, US 0x5275D0,
 EU 0x52762C, and DE 0x2AE66C.
 
-`shared/base_palettes.png` is the editable sixteen-bank BGR555 palette source.
-Its 256 by 8 swatch arrangement is part of the source format: every row is
-the indices 0 through 255, so changing a swatch changes that exact native
-palette entry without renumbering any tile indices.
+`shared/base_palettes.pal` is the editable sixteen-bank palette source;
+`gbagfx` converts it to the adjacent `.gbapal` consumed by assembly. Palette
+indices remain independent of tile pixels. The old swatch PNG is a preview,
+not a palette input to the build.
 
 `shared/tilemaps/` contains the fourteen authoritative native BG tilemaps:
 the primary and alternate view for each farm house, coop, and barn level. Each
@@ -38,23 +39,23 @@ sidecar. `reference/` contains their convenient generated PNG previews.
 The shared C `encode-huff8-lz2` rule uses ladder `3,5,7,8,10,12,14` and
 `--tie=exchange` to reproduce the complete `0x1FD4`-byte stream directly
 from its `0x4800` source bytes. The old compressed template is removed.
-Slot zero permits a natural packed length; includes consume the full output,
-preserving EU's real eight-byte header/payload boundary without a fixed clip.
-Regional palettes remain separate resources rather than PNG-derived inputs.
+Slot zero permits a natural packed length; includes consume the full output.
+Every regional entry names the actual compressed-stream start. The adjacent
+512-byte palette has identical bytes in all four regions and remains separate
+from the tile stream.
 The stream is byte-identical at JP 0x2B0BC8, US 0x52AA6C, EU 0x52AAC8,
 and DE 0x2B1B08. JP's original 8148-byte `.byte` block now includes the same
 generated resource at its actual `gUnk_0852AA6C` label. The earlier statement
 that this stream was absent from JP was incorrect.
 
-The tilemap build verifies all fourteen payloads are byte-identical in JP, US,
-EU, and DE. The assembler then includes the selected regional bundle at each
-original table label, preserving the C++ pointer table without relocation.
+All fourteen payloads were verified byte-identical in JP, US, EU and DE.
+The assembler includes each native resource at its actual label; C++ pointer
+tables refer to these labels through ordinary relocations.
 
 `shared/secondary_tilemaps/` contains the six other native 64-by-44 BG
 tilemaps selected by `func_0806EC94`: two layouts, each containing three
 screen-block layers. They are source-order arrays of 16-bit BG entries, not
-rendered artwork or a sidecar layout description. The stream headers and the
-EU-only eight-byte labels remain in the assembly source. Each shared
+rendered artwork or a sidecar layout description. Each shared
 `.tilemap` is packed by the C codec, then included at its original runtime
 label. All six encode directly from the editable tilemaps through the shared
 suffix rule, without reading a compressed template.
@@ -63,16 +64,15 @@ suffix rule, without reading a compressed template.
 keep their separate resource identities. Both use native Huffman-4/LZ3, ladder
 widths `3,6,10`, and the generic `--tie=exchange` frequency sort. Their output is
 the exact original 176 bytes, with no fixed-size padding. Both obsolete
-`.original.lz` files have been removed; the EU map 02 header now comes from
-the generated stream, and its payload include consumes the entire remainder.
+`.original.lz` files have been removed. EU, like the other regions, includes
+each complete generated stream at its actual entry.
 
 `secondary_03` uses native Huffman-4/LZ3, ladder widths `3,8,12`, and
 `--tie=heap-sort`. Its 5632-byte source encodes to the exact original 276 bytes,
 without a compressed template or fixed-size padding. Its obsolete
-`secondary_03.original.lz` has been removed. The EU headers for maps 03-05 are
-included from the generated streams rather than hard-coded; their historical
-header/payload labels remain at the real eight-byte boundary. The payload
-includes consume the remainder of each generated stream, not a fixed byte count.
+`secondary_03.original.lz` has been removed. EU maps 03-05 now use their
+actual stream-entry labels and include complete generated streams, without
+an artificial split after eight bytes or a fixed byte count.
 
 农场状态的六份附加地图均已从可编辑 `.tilemap` 直接编码，不读取压缩模板。
 02、05 的源码内容相同，但保留各自的资源身份；通用交换排序策略将两份
@@ -99,7 +99,7 @@ editable indexed 4bpp PNGs in native tile order.  Their dimensions are 16 by
 runtime copies four doghouse tiles to BG IDs 22-25, two mailbox tiles to IDs
 26-27, and twenty-two window tiles to IDs 0-21.  The corresponding Farm
 Status maps prove their 2-by-2, 1-by-2, and 11-by-2 arrangements and select
-palette bank 5 from `base_palettes.png`. The existing C `gbagfx` tool converts
+palette bank 5 from `base_palettes.pal`. The existing C `gbagfx` tool converts
 each PNG to an adjacent `.4bpp`; assembly then writes the native two-word
 count header and includes the three styles in source order. No packing script
 or layout sidecar is used.
@@ -108,10 +108,8 @@ All three original physical ranges are byte-identical across the four retail
 ROMs, so one shared source tree is authoritative. The normal ROM compare checks
 the complete linked layout and byte content.
 
-`reference/winter/tiles_us_de.png` and `palettes_us_de.png`, together with the
-EU-specific `tiles_eu.png` and `palettes_eu.png`, remain verified readable
-exports. The selected palette is identical only in US/DE; EU supplies a
-different payload behind an eight-byte archive header, so the palette files
-are deliberately references rather than editable build inputs. The shared
-tile stream's identity does not imply that all regional palette/layout data
-are identical or fully converted.
+`reference/winter/` contains historical preview exports. The earlier claim
+that EU had a different palette behind an eight-byte header was caused by a
+misplaced label: the actual 512-byte palette is identical in all four ROMs.
+Those preview exports are not authoritative build inputs. The corrected
+entry is the shared `gUnk_0852CA40` symbol, with no regional +8 adjustment.

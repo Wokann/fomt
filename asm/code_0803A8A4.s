@@ -9,155 +9,6 @@
     .thumb
     .align 2, 0
 
-    .global func_0803A8A4
-    .thumb_func
-func_0803A8A4:
-    pop	{r3, r4, r5}
-    mov	r8, r3
-    mov	r9, r4
-    mov	sl, r5
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .hword 0x0000
-    .word vtable_unk_080E759C
-
-    thumb_func_start CreateWorldSlot84Entity
-CreateWorldSlot84Entity:
-    push	{r4, r5, r6, lr}
-    mov	r6, r8
-    push	{r6}
-    sub	sp, #8
-    adds	r6, r0, #0
-    mov	r8, r1
-    movs	r0, #32
-    bl __builtin_new
-    adds	r5, r0, #0
-    mov	r1, sp
-    ldrh	r2, [r1, #0]
-    ldr r3, .Ljp_0803A590
-    adds	r0, r3, #0
-    ands	r0, r2
-    strh	r0, [r1, #0]
-    ldrb	r4, [r1, #1]
-    movs	r2, #3
-    adds	r0, r2, #0
-    ands	r0, r4
-    strb	r0, [r1, #1]
-    ldrh	r4, [r1, #2]
-    adds	r0, r3, #0
-    ands	r0, r4
-    strh	r0, [r1, #2]
-    ldrb	r0, [r1, #3]
-    ands	r2, r0
-    strb	r2, [r1, #3]
-    ldrh	r0, [r1, #4]
-    ands	r3, r0
-    strh	r3, [r1, #4]
-    adds	r0, r5, #0
-    adds	r1, r6, #0
-    mov	r2, sp
-    bl __7AEntityP10GameObjectRC8Location
-    ldr r0, .Ljp_0803A594
-    str	r0, [r5, #20]
-    mov	r0, r8
-    str	r0, [r5, #24]
-    movs	r0, #1
-    strb	r0, [r5, #28]
-    adds	r0, r5, #0
-    add	sp, #8
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-.Ljp_0803A590:
-    .4byte 0xFFFFFC00
-.Ljp_0803A594:
-    .4byte vtable_unk_080E7568
-    adds	r0, #48	@ 0x30
-    movs	r1, #16
-    ldrsh	r0, [r0, r1]
-    bx	lr
-    adds	r0, #48	@ 0x30
-    strh	r1, [r0, #16]
-    bx	lr
-    .align 2, 0
-    push	{lr}
-    adds	r0, #48	@ 0x30
-    bl WouldIndexedResourceHandleWrap
-    pop	{r1}
-    bx	r1
-    push	{lr}
-    adds	r1, r0, #0
-    adds	r1, #48	@ 0x30
-    movs	r2, #0
-    ldrh	r0, [r1, #14]
-    cmp	r0, #0
-    beq .Ljp_0803A5CC
-    movs	r0, #16
-    ldrsh	r1, [r1, r0]
-    negs	r0, r1
-    orrs	r0, r1
-    lsrs	r2, r0, #31
-.Ljp_0803A5CC:
-    adds	r0, r2, #0
-    pop	{r1}
-    bx	r1
-    .align 2, 0
-    push	{r4, lr}
-    adds	r4, r0, #0
-    adds	r1, r4, #0
-    adds	r1, #71	@ 0x47
-    ldrb	r0, [r1, #0]
-    cmp	r0, #0
-    bne .Ljp_0803A5F8
-    adds	r0, r4, #0
-    adds	r0, #48	@ 0x30
-    bl UpdateIndexedResourceHandle
-    lsls	r0, r0, #30
-    cmp	r0, #0
-    bge .Ljp_0803A5FC
-    adds	r1, r4, #0
-    adds	r1, #68	@ 0x44
-    movs	r0, #1
-    b .Ljp_0803A5FA
-.Ljp_0803A5F8:
-    movs	r0, #0
-.Ljp_0803A5FA:
-    strb	r0, [r1, #0]
-.Ljp_0803A5FC:
-    pop	{r4}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldrh	r0, [r4, #4]
-    cmp	r0, r5
-    beq .Ljp_0803A62C
-    adds	r0, r4, #0
-    adds	r0, #48	@ 0x30
-    bl ResolveIndexedResourceHandle
-    adds	r0, r4, #0
-    adds	r0, #68	@ 0x44
-    movs	r2, #0
-    movs	r1, #1
-    strb	r1, [r0, #0]
-    adds	r0, #2
-    strb	r2, [r0, #0]
-    adds	r0, #1
-    strb	r1, [r0, #0]
-    strh	r5, [r4, #4]
-.Ljp_0803A62C:
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-    ldr	r0, [r0, #0]
-    bx	lr
     .section .text.ui_text_window_native, "ax", %progbits
     .align 2, 0
     .global __12UiTextWindowiiUiUiUiUiUiUi
@@ -6032,29 +5883,46 @@ UpdateMapClockStatusHudCalendar:
     movs	r0, #98	@ 0x62
     b .Leu_0803CEFE
 .Leu_0803CEB8:
-    .4byte 0x90002063
-    .4byte 0x90012064
-    .4byte 0xE01C2065
+    movs r0, #0x63
+    str r0, [sp]
+    movs r0, #0x64
+    str r0, [sp, #4]
+    movs r0, #0x65
+    b .Leu_0803CEFE
 .Leu_0803CEC4:
-    .4byte 0x90002066
-    .4byte 0x90012067
-    .4byte 0xE0162068
+    movs r0, #0x66
+    str r0, [sp]
+    movs r0, #0x67
+    str r0, [sp, #4]
+    movs r0, #0x68
+    b .Leu_0803CEFE
 .Leu_0803CED0:
-    .4byte 0x90002069
-    .4byte 0x9001206A
-    .4byte 0xE010206B
+    movs r0, #0x69
+    str r0, [sp]
+    movs r0, #0x6a
+    str r0, [sp, #4]
+    movs r0, #0x6b
+    b .Leu_0803CEFE
 .Leu_0803CEDC:
-    .4byte 0x9000206C
-    .4byte 0x9001206D
-    .4byte 0xE00A206E
+    movs r0, #0x6c
+    str r0, [sp]
+    movs r0, #0x6d
+    str r0, [sp, #4]
+    movs r0, #0x6e
+    b .Leu_0803CEFE
 .Leu_0803CEE8:
-    .4byte 0x9000206F
-    .4byte 0x90012070
-    .4byte 0xE0042071
+    movs r0, #0x6f
+    str r0, [sp]
+    movs r0, #0x70
+    str r0, [sp, #4]
+    movs r0, #0x71
+    b .Leu_0803CEFE
 .Leu_0803CEF4:
-    .4byte 0x90002072
-    .4byte 0x90012073
-    .hword 0x2074
+    movs r0, #0x72
+    str r0, [sp]
+    movs r0, #0x73
+    str r0, [sp, #4]
+    movs r0, #0x74
 .Leu_0803CEFE:
     str	r0, [sp, #8]
     movs	r2, #212	@ 0xd4
@@ -6897,25 +6765,32 @@ func_0803DCB4:
     .4byte .Leu_0803DDEA
     .4byte .Leu_0803DDEA
 .Leu_0803DDC0:
-    .4byte 0xD1122C01
+    cmp r4, #1
+    bne .Leu_0803DDEA
 .Leu_0803DDC4:
     movs	r0, #2
     b .Leu_0803DDF4
 .Leu_0803DDC8:
-    .4byte 0xD0FB2A00
-    .4byte 0xD10C2C00
-    .hword 0xE7F8
+    cmp r2, #0
+    beq .Leu_0803DDC4
+    cmp r4, #0
+    bne .Leu_0803DDEA
+    b .Leu_0803DDC4
 .Leu_0803DDD2:
-    .hword 0x2A00
-    .4byte 0x2C02D0F6
-    .4byte 0x2C00D0F4
-    .4byte 0xE7F1D105
+    cmp r2, #0
+    beq .Leu_0803DDC4
+    cmp r4, #2
+    beq .Leu_0803DDC4
+    cmp r4, #0
+    bne .Leu_0803DDEA
+    b .Leu_0803DDC4
 .Leu_0803DDE0:
-    .4byte 0xD1022C03
-    .hword 0xE7EE
+    cmp r4, #3
+    bne .Leu_0803DDEA
+    b .Leu_0803DDC4
 .Leu_0803DDE6:
-    .hword 0x2A00
-    .hword 0xD0EC
+    cmp r2, #0
+    beq .Leu_0803DDC4
 .Leu_0803DDEA:
     movs	r0, #1
     b .Leu_0803DDF4
@@ -9028,27 +8903,44 @@ func_0803ECC0:
     .4byte .Leu_0803EDB4
     .4byte .Leu_0803EDB4
 .Leu_0803ED7C:
-    .4byte 0x004921FA
-    .4byte 0xF7CD1868
-    .4byte 0x2801F8D1
-    .4byte 0x2801D006
-    .4byte 0x2802D302
-    .4byte 0xE011D004
-    .4byte 0xE01F2006
-    .4byte 0xE01D2007
-    .4byte 0xE01B200D
+    movs r1, #0xfa
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    bl GetUpgradeLevel__C9FarmHouse
+    cmp r0, #1
+    beq .Lraw_code_0803A8A4_9038_0
+    cmp r0, #1
+    blo .Lraw_code_0803A8A4_9037_0
+    cmp r0, #2
+    beq .Lraw_code_0803A8A4_9039_0
+    b .Leu_0803EDB8
+.Lraw_code_0803A8A4_9037_0:
+    movs r0, #6
+    b .Leu_0803EDD8
+.Lraw_code_0803A8A4_9038_0:
+    movs r0, #7
+    b .Leu_0803EDD8
+.Lraw_code_0803A8A4_9039_0:
+    movs r0, #0xd
+    b .Leu_0803EDD8
 .Leu_0803EDA0:
-    .4byte 0xE0192008
+    movs r0, #8
+    b .Leu_0803EDD8
 .Leu_0803EDA4:
-    .4byte 0xE0172009
+    movs r0, #9
+    b .Leu_0803EDD8
 .Leu_0803EDA8:
-    .4byte 0xE015200E
+    movs r0, #0xe
+    b .Leu_0803EDD8
 .Leu_0803EDAC:
-    .4byte 0xE013200A
+    movs r0, #0xa
+    b .Leu_0803EDD8
 .Leu_0803EDB0:
-    .4byte 0xE011200B
+    movs r0, #0xb
+    b .Leu_0803EDD8
 .Leu_0803EDB4:
-    .4byte 0xE00F200C
+    movs r0, #0xc
+    b .Leu_0803EDD8
 .Leu_0803EDB8:
     cmp	r6, #5
     bgt .Leu_0803EDC6
@@ -10569,29 +10461,46 @@ UpdateMapClockStatusHudCalendar:
     movs	r0, #98	@ 0x62
     b .Lde_0803CE2E
 .Lde_0803CDE8:
-    .4byte 0x90002063
-    .4byte 0x90012064
-    .4byte 0xE01C2065
+    movs r0, #0x63
+    str r0, [sp]
+    movs r0, #0x64
+    str r0, [sp, #4]
+    movs r0, #0x65
+    b .Lde_0803CE2E
 .Lde_0803CDF4:
-    .4byte 0x90002066
-    .4byte 0x90012067
-    .4byte 0xE0162068
+    movs r0, #0x66
+    str r0, [sp]
+    movs r0, #0x67
+    str r0, [sp, #4]
+    movs r0, #0x68
+    b .Lde_0803CE2E
 .Lde_0803CE00:
-    .4byte 0x90002069
-    .4byte 0x9001206A
-    .4byte 0xE010206B
+    movs r0, #0x69
+    str r0, [sp]
+    movs r0, #0x6a
+    str r0, [sp, #4]
+    movs r0, #0x6b
+    b .Lde_0803CE2E
 .Lde_0803CE0C:
-    .4byte 0x9000206C
-    .4byte 0x9001206D
-    .4byte 0xE00A206E
+    movs r0, #0x6c
+    str r0, [sp]
+    movs r0, #0x6d
+    str r0, [sp, #4]
+    movs r0, #0x6e
+    b .Lde_0803CE2E
 .Lde_0803CE18:
-    .4byte 0x9000206F
-    .4byte 0x90012070
-    .4byte 0xE0042071
+    movs r0, #0x6f
+    str r0, [sp]
+    movs r0, #0x70
+    str r0, [sp, #4]
+    movs r0, #0x71
+    b .Lde_0803CE2E
 .Lde_0803CE24:
-    .4byte 0x90002072
-    .4byte 0x90012073
-    .hword 0x2074
+    movs r0, #0x72
+    str r0, [sp]
+    movs r0, #0x73
+    str r0, [sp, #4]
+    movs r0, #0x74
 .Lde_0803CE2E:
     str	r0, [sp, #8]
     movs	r2, #212	@ 0xd4
@@ -11409,25 +11318,32 @@ func_0803DCB4:
     .4byte .Lde_0803DCCE
     .4byte .Lde_0803DCCE
 .Lde_0803DCA4:
-    .4byte 0xD1122C01
+    cmp r4, #1
+    bne .Lde_0803DCCE
 .Lde_0803DCA8:
     movs	r0, #2
     b .Lde_0803DCD8
 .Lde_0803DCAC:
-    .4byte 0xD0FB2A00
-    .4byte 0xD10C2C00
-    .hword 0xE7F8
+    cmp r2, #0
+    beq .Lde_0803DCA8
+    cmp r4, #0
+    bne .Lde_0803DCCE
+    b .Lde_0803DCA8
 .Lde_0803DCB6:
-    .hword 0x2A00
-    .4byte 0x2C02D0F6
-    .4byte 0x2C00D0F4
-    .4byte 0xE7F1D105
+    cmp r2, #0
+    beq .Lde_0803DCA8
+    cmp r4, #2
+    beq .Lde_0803DCA8
+    cmp r4, #0
+    bne .Lde_0803DCCE
+    b .Lde_0803DCA8
 .Lde_0803DCC4:
-    .4byte 0xD1022C03
-    .hword 0xE7EE
+    cmp r4, #3
+    bne .Lde_0803DCCE
+    b .Lde_0803DCA8
 .Lde_0803DCCA:
-    .hword 0x2A00
-    .hword 0xD0EC
+    cmp r2, #0
+    beq .Lde_0803DCA8
 .Lde_0803DCCE:
     movs	r0, #1
     b .Lde_0803DCD8
@@ -13540,27 +13456,44 @@ func_0803ECC0:
     .4byte .Lde_0803EC98
     .4byte .Lde_0803EC98
 .Lde_0803EC60:
-    .4byte 0x004921FA
-    .4byte 0xF7CD1868
-    .4byte 0x2801F965
-    .4byte 0x2801D006
-    .4byte 0x2802D302
-    .4byte 0xE011D004
-    .4byte 0xE01F2006
-    .4byte 0xE01D2007
-    .4byte 0xE01B200D
+    movs r1, #0xfa
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    bl GetUpgradeLevel__C9FarmHouse
+    cmp r0, #1
+    beq .Lraw_code_0803A8A4_13550_0
+    cmp r0, #1
+    blo .Lraw_code_0803A8A4_13549_0
+    cmp r0, #2
+    beq .Lraw_code_0803A8A4_13551_0
+    b .Lde_0803EC9C
+.Lraw_code_0803A8A4_13549_0:
+    movs r0, #6
+    b .Lde_0803ECBC
+.Lraw_code_0803A8A4_13550_0:
+    movs r0, #7
+    b .Lde_0803ECBC
+.Lraw_code_0803A8A4_13551_0:
+    movs r0, #0xd
+    b .Lde_0803ECBC
 .Lde_0803EC84:
-    .4byte 0xE0192008
+    movs r0, #8
+    b .Lde_0803ECBC
 .Lde_0803EC88:
-    .4byte 0xE0172009
+    movs r0, #9
+    b .Lde_0803ECBC
 .Lde_0803EC8C:
-    .4byte 0xE015200E
+    movs r0, #0xe
+    b .Lde_0803ECBC
 .Lde_0803EC90:
-    .4byte 0xE013200A
+    movs r0, #0xa
+    b .Lde_0803ECBC
 .Lde_0803EC94:
-    .4byte 0xE011200B
+    movs r0, #0xb
+    b .Lde_0803ECBC
 .Lde_0803EC98:
-    .4byte 0xE00F200C
+    movs r0, #0xc
+    b .Lde_0803ECBC
 .Lde_0803EC9C:
     cmp	r6, #5
     bgt .Lde_0803ECAA
@@ -15080,29 +15013,46 @@ UpdateMapClockStatusHudCalendar:
     movs	r0, #98	@ 0x62
     b .Lus_0803CEEA
 .Lus_0803CEA4:
-    .4byte 0x90002063
-    .4byte 0x90012064
-    .4byte 0xE01C2065
+    movs r0, #0x63
+    str r0, [sp]
+    movs r0, #0x64
+    str r0, [sp, #4]
+    movs r0, #0x65
+    b .Lus_0803CEEA
 .Lus_0803CEB0:
-    .4byte 0x90002066
-    .4byte 0x90012067
-    .4byte 0xE0162068
+    movs r0, #0x66
+    str r0, [sp]
+    movs r0, #0x67
+    str r0, [sp, #4]
+    movs r0, #0x68
+    b .Lus_0803CEEA
 .Lus_0803CEBC:
-    .4byte 0x90002069
-    .4byte 0x9001206A
-    .4byte 0xE010206B
+    movs r0, #0x69
+    str r0, [sp]
+    movs r0, #0x6a
+    str r0, [sp, #4]
+    movs r0, #0x6b
+    b .Lus_0803CEEA
 .Lus_0803CEC8:
-    .4byte 0x9000206C
-    .4byte 0x9001206D
-    .4byte 0xE00A206E
+    movs r0, #0x6c
+    str r0, [sp]
+    movs r0, #0x6d
+    str r0, [sp, #4]
+    movs r0, #0x6e
+    b .Lus_0803CEEA
 .Lus_0803CED4:
-    .4byte 0x9000206F
-    .4byte 0x90012070
-    .4byte 0xE0042071
+    movs r0, #0x6f
+    str r0, [sp]
+    movs r0, #0x70
+    str r0, [sp, #4]
+    movs r0, #0x71
+    b .Lus_0803CEEA
 .Lus_0803CEE0:
-    .4byte 0x90002072
-    .4byte 0x90012073
-    .hword 0x2074
+    movs r0, #0x72
+    str r0, [sp]
+    movs r0, #0x73
+    str r0, [sp, #4]
+    movs r0, #0x74
 .Lus_0803CEEA:
     str	r0, [sp, #8]
     movs	r2, #212	@ 0xd4
@@ -15945,25 +15895,32 @@ func_0803DCB4:
     .4byte .Lus_0803DDD6
     .4byte .Lus_0803DDD6
 .Lus_0803DDAC:
-    .4byte 0xD1122C01
+    cmp r4, #1
+    bne .Lus_0803DDD6
 .Lus_0803DDB0:
     movs	r0, #2
     b .Lus_0803DDE0
 .Lus_0803DDB4:
-    .4byte 0xD0FB2A00
-    .4byte 0xD10C2C00
-    .hword 0xE7F8
+    cmp r2, #0
+    beq .Lus_0803DDB0
+    cmp r4, #0
+    bne .Lus_0803DDD6
+    b .Lus_0803DDB0
 .Lus_0803DDBE:
-    .hword 0x2A00
-    .4byte 0x2C02D0F6
-    .4byte 0x2C00D0F4
-    .4byte 0xE7F1D105
+    cmp r2, #0
+    beq .Lus_0803DDB0
+    cmp r4, #2
+    beq .Lus_0803DDB0
+    cmp r4, #0
+    bne .Lus_0803DDD6
+    b .Lus_0803DDB0
 .Lus_0803DDCC:
-    .4byte 0xD1022C03
-    .hword 0xE7EE
+    cmp r4, #3
+    bne .Lus_0803DDD6
+    b .Lus_0803DDB0
 .Lus_0803DDD2:
-    .hword 0x2A00
-    .hword 0xD0EC
+    cmp r2, #0
+    beq .Lus_0803DDB0
 .Lus_0803DDD6:
     movs	r0, #1
     b .Lus_0803DDE0
@@ -18076,27 +18033,44 @@ func_0803ECC0:
     .4byte .Lus_0803EDA0
     .4byte .Lus_0803EDA0
 .Lus_0803ED68:
-    .4byte 0x004921FA
-    .4byte 0xF7CD1868
-    .4byte 0x2801F8D1
-    .4byte 0x2801D006
-    .4byte 0x2802D302
-    .4byte 0xE011D004
-    .4byte 0xE01F2006
-    .4byte 0xE01D2007
-    .4byte 0xE01B200D
+    movs r1, #0xfa
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    bl GetUpgradeLevel__C9FarmHouse
+    cmp r0, #1
+    beq .Lraw_code_0803A8A4_18086_0
+    cmp r0, #1
+    blo .Lraw_code_0803A8A4_18085_0
+    cmp r0, #2
+    beq .Lraw_code_0803A8A4_18087_0
+    b .Lus_0803EDA4
+.Lraw_code_0803A8A4_18085_0:
+    movs r0, #6
+    b .Lus_0803EDC4
+.Lraw_code_0803A8A4_18086_0:
+    movs r0, #7
+    b .Lus_0803EDC4
+.Lraw_code_0803A8A4_18087_0:
+    movs r0, #0xd
+    b .Lus_0803EDC4
 .Lus_0803ED8C:
-    .4byte 0xE0192008
+    movs r0, #8
+    b .Lus_0803EDC4
 .Lus_0803ED90:
-    .4byte 0xE0172009
+    movs r0, #9
+    b .Lus_0803EDC4
 .Lus_0803ED94:
-    .4byte 0xE015200E
+    movs r0, #0xe
+    b .Lus_0803EDC4
 .Lus_0803ED98:
-    .4byte 0xE013200A
+    movs r0, #0xa
+    b .Lus_0803EDC4
 .Lus_0803ED9C:
-    .4byte 0xE011200B
+    movs r0, #0xb
+    b .Lus_0803EDC4
 .Lus_0803EDA0:
-    .4byte 0xE00F200C
+    movs r0, #0xc
+    b .Lus_0803EDC4
 .Lus_0803EDA4:
     cmp	r6, #5
     bgt .Lus_0803EDB2

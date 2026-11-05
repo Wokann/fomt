@@ -89,9 +89,9 @@ sub_080D8178:
     mov r6, sb
     mov r5, r8
     push {r5, r6, r7}
-    ldr r4, [pc, #0x154]
+    ldr r4, .Lraw_code_linkonce_257_2
     add sp, r4
-    ldr r2, [pc, #0x154]
+    ldr r2, .Lraw_code_linkonce_257_6
     add r2, sp
     str r0, [r2]
     mov sl, r1
@@ -152,10 +152,10 @@ sub_080D8178:
     mov r5, sl
     adds r5, #0xd0
     adds r2, #0xc0
-    ldr r0, [pc, #0xd4]
+    ldr r0, .Lraw_code_linkonce_259_0
     add r0, sp
     str r2, [r0]
-    ldr r3, [pc, #0xd0]
+    ldr r3, .Lraw_code_linkonce_259_0
     add r3, sp
     movs r0, #0x9c
     lsls r0, r0, #3
@@ -172,7 +172,7 @@ sub_080D8178:
     ldr r0, [r5, #4]
     adds r0, #4
     str r0, [r5, #4]
-    ldr r1, [pc, #0xb4]
+    ldr r1, .Lraw_code_linkonce_260_2
     add r1, sp
     str r7, [r1]
     adds r6, r5, #0
@@ -188,12 +188,12 @@ sub_080D8178:
     str r3, [r4]
     mov r5, sl
     adds r5, #0xc8
-    ldr r7, [pc, #0x98]
+    ldr r7, .Lraw_code_linkonce_260_6
     add r7, sp
     str r5, [r7]
-    ldr r0, [pc, #0x94]
+    ldr r0, .Lraw_code_linkonce_260_10
     add r0, sp
-    ldr r1, [pc, #0x94]
+    ldr r1, .Lraw_code_linkonce_260_14
     add r1, sp
     str r0, [r1]
     mov r2, sl
@@ -211,7 +211,7 @@ sub_080D8178:
     str r4, [r5]
     mov r7, sl
     adds r7, #0xa0
-    ldr r0, [pc, #0x74]
+    ldr r0, .Lraw_code_linkonce_261_2
     add r0, sp
     str r7, [r0]
     mov r1, sl
@@ -228,17 +228,17 @@ sub_080D8178:
     str r3, [r4]
     mov r5, sl
     adds r5, #0x90
-    ldr r7, [pc, #0x58]
+    ldr r7, .Lraw_code_linkonce_261_6
     add r7, sp
     str r5, [r7]
     mov r0, sl
     adds r0, #0xa8
-    ldr r1, [pc, #0x50]
+    ldr r1, .Lraw_code_linkonce_261_10
     add r1, sp
     str r0, [r1]
     mov r2, sl
     adds r2, #0x88
-    ldr r3, [pc, #0x4c]
+    ldr r3, .Lraw_code_linkonce_261_14
     add r3, sp
     str r2, [r3]
     mov r4, sl
@@ -254,16 +254,23 @@ sub_080D8178:
     add r0, sp
     str r7, [r0]
     b .Lauto_080D7BF2
-    .byte 0x00, 0x00, 0x70, 0xFA, 0xFF, 0xFF, 0xDC, 0x04, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_257_2: .word 0xFFFFFA70
+.Lraw_code_linkonce_257_6: .word 0x000004DC
 .LHardwareDisplayCommandVTable: .word __vt_22HardwareDisplayCommand
-    .byte 0x6C, 0x04
-    .byte 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x6C, 0x05, 0x00, 0x00, 0x84, 0x04, 0x00, 0x00, 0x3C, 0x05
-    .byte 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x54, 0x05, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x4C, 0x05
-    .byte 0x00, 0x00
+.Lraw_code_linkonce_259_0: .word 0x0000046C
+.Lraw_code_linkonce_260_2: .word 0x00000544
+.Lraw_code_linkonce_260_6: .word 0x0000056C
+.Lraw_code_linkonce_260_10: .word 0x00000484
+.Lraw_code_linkonce_260_14: .word 0x0000053C
+.Lraw_code_linkonce_261_2: .word 0x0000055C
+.Lraw_code_linkonce_261_6: .word 0x00000554
+.Lraw_code_linkonce_261_10: .word 0x00000564
+.Lraw_code_linkonce_261_14: .word 0x0000054C
     .Lauto_080D7AC0:
     adds r6, r1, #0
     movs r0, #1
-    ldr r1, [pc, #0x40]
+    ldr r1, .Lraw_code_linkonce_299_0
     add r1, sp
     str r0, [r1]
     ldr r0, [r5]
@@ -273,7 +280,7 @@ sub_080D8178:
     lsls r0, r0, #3
     add r0, sp
     str r4, [r0]
-    ldr r2, [pc, #0x2c]
+    ldr r2, .Lraw_code_linkonce_299_0
     add r2, sp
     ldr r0, [r1]
     movs r1, #0x8e
@@ -296,7 +303,7 @@ sub_080D8178:
     mov r0, sb
     bl RetryMemoryAllocation
     b .Lauto_080D7B10
-    .byte 0x74, 0x04, 0x00, 0x00
+.Lraw_code_linkonce_299_0: .word 0x00000474
     .Lauto_080D7B0C:
     movs r0, #0
     mov sb, r0
@@ -313,12 +320,12 @@ sub_080D8178:
     .Lauto_080D7B24:
     adds r4, r7, #0
     .Lauto_080D7B26:
-    ldr r0, [pc, #0xfc]
+    ldr r0, .Lraw_code_linkonce_446_2
     add r0, sp
     ldr r1, [r0]
     mov r2, sl
     adds r2, #0x10
-    ldr r3, [pc, #0xf4]
+    ldr r3, .Lraw_code_linkonce_446_6
     add r3, sp
     str r2, [r3]
     mov r6, sl
@@ -336,12 +343,12 @@ sub_080D8178:
     str r3, [r0]
     mov r3, sl
     adds r3, #0xc8
-    ldr r0, [pc, #0xd4]
+    ldr r0, .Lraw_code_linkonce_446_10
     add r0, sp
     str r3, [r0]
-    ldr r3, [pc, #0xd4]
+    ldr r3, .Lraw_code_linkonce_446_14
     add r3, sp
-    ldr r0, [pc, #0xd4]
+    ldr r0, .Lraw_code_linkonce_447_2
     add r0, sp
     str r3, [r0]
     mov r3, sl
@@ -359,7 +366,7 @@ sub_080D8178:
     str r3, [r0]
     mov r3, sl
     adds r3, #0xa0
-    ldr r0, [pc, #0xb4]
+    ldr r0, .Lraw_code_linkonce_447_6
     add r0, sp
     str r3, [r0]
     subs r3, #0x14
@@ -373,15 +380,15 @@ sub_080D8178:
     add r0, sp
     str r3, [r0]
     subs r3, #0x20
-    ldr r0, [pc, #0x9c]
+    ldr r0, .Lraw_code_linkonce_447_10
     add r0, sp
     str r3, [r0]
     adds r3, #0x18
-    ldr r0, [pc, #0x98]
+    ldr r0, .Lraw_code_linkonce_447_14
     add r0, sp
     str r3, [r0]
     subs r3, #0x20
-    ldr r0, [pc, #0x94]
+    ldr r0, .Lraw_code_linkonce_448_2
     add r0, sp
     str r3, [r0]
     adds r3, #0x14
@@ -428,7 +435,7 @@ sub_080D8178:
     lsls r3, r3, #3
     add r3, sp
     ldr r3, [r3]
-    ldr r4, [pc, #0x40]
+    ldr r4, .Lraw_code_linkonce_448_6
     add r4, sp
     str r3, [r4]
     ldr r4, [r6, #4]
@@ -443,9 +450,17 @@ sub_080D8178:
     adds r0, #4
     str r0, [r6, #4]
     b .Lauto_080D7CEA
-    .byte 0x00, 0x00, 0x74, 0x04, 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x6C, 0x05, 0x00, 0x00, 0x84, 0x04
-    .byte 0x00, 0x00, 0x3C, 0x05, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x54, 0x05, 0x00, 0x00, 0x64, 0x05
-    .byte 0x00, 0x00, 0x4C, 0x05, 0x00, 0x00, 0xE4, 0x04, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_446_2: .word 0x00000474
+.Lraw_code_linkonce_446_6: .word 0x00000544
+.Lraw_code_linkonce_446_10: .word 0x0000056C
+.Lraw_code_linkonce_446_14: .word 0x00000484
+.Lraw_code_linkonce_447_2: .word 0x0000053C
+.Lraw_code_linkonce_447_6: .word 0x0000055C
+.Lraw_code_linkonce_447_10: .word 0x00000554
+.Lraw_code_linkonce_447_14: .word 0x00000564
+.Lraw_code_linkonce_448_2: .word 0x0000054C
+.Lraw_code_linkonce_448_6: .word 0x000004E4
     .Lauto_080D7C4C:
     adds r7, r4, #0
     movs r0, #1
@@ -456,14 +471,14 @@ sub_080D8178:
     ldr r0, [r6]
     subs r0, r7, r0
     asrs r4, r0, #2
-    ldr r0, [pc, #0x34]
+    ldr r0, .Lraw_code_linkonce_485_0
     add r0, sp
     str r4, [r0]
     movs r2, #0x90
     lsls r2, r2, #3
     add r2, sp
     ldr r0, [r1]
-    ldr r1, [pc, #0x24]
+    ldr r1, .Lraw_code_linkonce_485_0
     add r1, sp
     cmp r4, r0
     bhs .Lauto_080D7C76
@@ -482,7 +497,7 @@ sub_080D8178:
     mov r0, r8
     bl RetryMemoryAllocation
     b .Lauto_080D7C9C
-    .byte 0x7C, 0x04, 0x00, 0x00
+.Lraw_code_linkonce_485_0: .word 0x0000047C
     .Lauto_080D7C98:
     movs r0, #0
     mov r8, r0
@@ -509,7 +524,7 @@ sub_080D8178:
     cmp r1, #0
     beq .Lauto_080D7CD4
     .Lauto_080D7CC4:
-    ldr r3, [pc, #0x54]
+    ldr r3, .Lraw_code_linkonce_559_0
     add r3, sp
     ldr r3, [r3]
     ldr r0, [r3]
@@ -531,13 +546,13 @@ sub_080D8178:
     str r0, [r1, #0xc]
     .Lauto_080D7CEA:
     mov sb, r6
-    ldr r0, [pc, #0x30]
+    ldr r0, .Lraw_code_linkonce_559_4
     add r0, sp
-    ldr r2, [pc, #0x30]
+    ldr r2, .Lraw_code_linkonce_559_8
     add r2, sp
     ldr r2, [r2]
     str r2, [r0]
-    ldr r3, [pc, #0x2c]
+    ldr r3, .Lraw_code_linkonce_559_12
     add r3, sp
     ldr r3, [r3]
     movs r4, #0x9d
@@ -556,11 +571,14 @@ sub_080D8178:
     adds r0, #4
     str r0, [r6, #4]
     b .Lauto_080D7DCC
-    .byte 0xE4, 0x04, 0x00, 0x00, 0x84, 0x04, 0x00, 0x00, 0x6C, 0x05, 0x00, 0x00, 0x3C, 0x05, 0x00, 0x00
+.Lraw_code_linkonce_559_0: .word 0x000004E4
+.Lraw_code_linkonce_559_4: .word 0x00000484
+.Lraw_code_linkonce_559_8: .word 0x0000056C
+.Lraw_code_linkonce_559_12: .word 0x0000053C
     .Lauto_080D7D2C:
     adds r7, r4, #0
     movs r0, #1
-    ldr r1, [pc, #0x40]
+    ldr r1, .Lraw_code_linkonce_596_0
     add r1, sp
     str r0, [r1]
     ldr r0, [r6]
@@ -570,7 +588,7 @@ sub_080D8178:
     lsls r0, r0, #3
     add r0, sp
     str r4, [r0]
-    ldr r2, [pc, #0x2c]
+    ldr r2, .Lraw_code_linkonce_596_0
     add r2, sp
     ldr r0, [r1]
     movs r1, #0x91
@@ -593,7 +611,7 @@ sub_080D8178:
     mov r0, r8
     bl RetryMemoryAllocation
     b .Lauto_080D7D7C
-    .byte 0x8C, 0x04, 0x00, 0x00
+.Lraw_code_linkonce_596_0: .word 0x0000048C
     .Lauto_080D7D78:
     movs r0, #0
     mov r8, r0
@@ -612,7 +630,7 @@ sub_080D8178:
     .Lauto_080D7D94:
     adds r4, r5, #0
     .Lauto_080D7D96:
-    ldr r0, [pc, #0x68]
+    ldr r0, .Lraw_code_linkonce_671_2
     add r0, sp
     ldr r1, [r0]
     mov r3, sb
@@ -668,7 +686,8 @@ sub_080D8178:
     adds r0, #4
     str r0, [r5, #4]
     b .Lauto_080D7E98
-    .byte 0x00, 0x00, 0x8C, 0x04, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_671_2: .word 0x0000048C
     .Lauto_080D7E04:
     adds r7, r4, #0
     movs r0, #1
@@ -679,14 +698,14 @@ sub_080D8178:
     ldr r0, [r5]
     subs r0, r7, r0
     asrs r4, r0, #2
-    ldr r0, [pc, #0x34]
+    ldr r0, .Lraw_code_linkonce_708_0
     add r0, sp
     str r4, [r0]
     movs r2, #0x93
     lsls r2, r2, #3
     add r2, sp
     ldr r0, [r1]
-    ldr r1, [pc, #0x24]
+    ldr r1, .Lraw_code_linkonce_708_0
     add r1, sp
     cmp r4, r0
     bhs .Lauto_080D7E2E
@@ -705,7 +724,7 @@ sub_080D8178:
     mov r0, r8
     bl RetryMemoryAllocation
     b .Lauto_080D7E54
-    .byte 0x94, 0x04, 0x00, 0x00
+.Lraw_code_linkonce_708_0: .word 0x00000494
     .Lauto_080D7E50:
     movs r0, #0
     mov r8, r0
@@ -750,11 +769,11 @@ sub_080D8178:
     .Lauto_080D7E98:
     movs r0, #4
     bl __builtin_new
-    ldr r2, [pc, #0x114]
+    ldr r2, .Lraw_code_linkonce_885_2
     add r2, sp
     ldr r1, [r2]
     bl __23HardwareBlendControllerP20HardwareDisplayState
-    ldr r3, [pc, #0x10c]
+    ldr r3, .Lraw_code_linkonce_885_6
     add r3, sp
     ldr r5, [r3]
     adds r4, r0, #0
@@ -793,7 +812,7 @@ sub_080D8178:
     bl _call_via_r2
     .Lauto_080D7EF8:
     str r4, [r5]
-    ldr r2, [pc, #0xc0]
+    ldr r2, .Lraw_code_linkonce_885_10
     add r2, sp
     ldr r2, [r2]
     ldr r0, [r2]
@@ -805,7 +824,7 @@ sub_080D8178:
     adds r6, r0, #0
     cmp r1, #0
     beq .Lauto_080D7FCC
-    ldr r3, [pc, #0xac]
+    ldr r3, .Lraw_code_linkonce_885_14
     add r3, sp
     ldr r5, [r3]
     movs r4, #0xaa
@@ -813,7 +832,7 @@ sub_080D8178:
     add r4, sp
     ldr r4, [r4]
     ldr r1, [r4]
-    ldr r7, [pc, #0xa0]
+    ldr r7, .Lraw_code_linkonce_886_2
     add r7, sp
     ldr r7, [r7]
     ldr r2, [r7]
@@ -824,16 +843,16 @@ sub_080D8178:
     movs r3, #0
     bl CreateGameWorld
     ldr r2, [r4]
-    ldr r1, [pc, #0x8c]
+    ldr r1, .Lraw_code_linkonce_886_6
     add r1, sp
-    ldr r0, [pc, #0x88]
+    ldr r0, .Lraw_code_linkonce_886_6
     add r0, sp
     str r4, [r0]
     str r2, [r1, #4]
     movs r0, #0
     str r0, [r4]
     adds r4, r2, #0
-    ldr r0, [pc, #0x70]
+    ldr r0, .Lraw_code_linkonce_885_14
     add r0, sp
     ldr r0, [r0]
     ldr r1, [r0]
@@ -882,10 +901,15 @@ sub_080D8178:
     adds r3, r4, #0
     bl func_080DC360
     b .Lauto_080D803C
-    .byte 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x54, 0x05, 0x00, 0x00, 0x64, 0x05
-    .byte 0x00, 0x00, 0x4C, 0x05, 0x00, 0x00, 0x9C, 0x04, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_885_2: .word 0x00000544
+.Lraw_code_linkonce_885_6: .word 0x0000055C
+.Lraw_code_linkonce_885_10: .word 0x00000554
+.Lraw_code_linkonce_885_14: .word 0x00000564
+.Lraw_code_linkonce_886_2: .word 0x0000054C
+.Lraw_code_linkonce_886_6: .word 0x0000049C
     .Lauto_080D7FCC:
-    ldr r4, [pc, #0x90]
+    ldr r4, .Lraw_code_linkonce_962_0
     add r4, sp
     ldr r5, [r4]
     movs r6, #0xaa
@@ -893,7 +917,7 @@ sub_080D8178:
     add r6, sp
     ldr r6, [r6]
     ldr r1, [r6]
-    ldr r7, [pc, #0x84]
+    ldr r7, .Lraw_code_linkonce_962_4
     add r7, sp
     ldr r7, [r7]
     ldr r2, [r7]
@@ -904,16 +928,16 @@ sub_080D8178:
     movs r3, #1
     bl CreateGameWorld
     ldr r2, [r4]
-    ldr r1, [pc, #0x70]
+    ldr r1, .Lraw_code_linkonce_962_8
     add r1, sp
-    ldr r0, [pc, #0x6c]
+    ldr r0, .Lraw_code_linkonce_962_8
     add r0, sp
     str r4, [r0]
     str r2, [r1, #4]
     movs r0, #0
     str r0, [r4]
     adds r4, r2, #0
-    ldr r0, [pc, #0x58]
+    ldr r0, .Lraw_code_linkonce_962_0
     add r0, sp
     ldr r0, [r0]
     ldr r1, [r0]
@@ -946,7 +970,7 @@ sub_080D8178:
     add r1, sp
     ldr r1, [r1]
     str r0, [r1]
-    ldr r2, [pc, #0x20]
+    ldr r2, .Lraw_code_linkonce_962_12
     add r2, sp
     ldr r2, [r2]
     ldr r0, [r2]
@@ -955,176 +979,829 @@ sub_080D8178:
     b .Lauto_080D879C
     .Lauto_080D8056:
     lsls r0, r0, #2
-    ldr r1, [pc, #0x14]
+    ldr r1, .Lraw_code_linkonce_963_0
     adds r0, r0, r1
     ldr r0, [r0]
     mov pc, r0
-    .byte 0x64, 0x05, 0x00, 0x00, 0x4C, 0x05, 0x00, 0x00, 0xA4, 0x04, 0x00, 0x00, 0x54, 0x05, 0x00, 0x00
-    .byte 0x74, 0x80, 0x0D, 0x08, 0x30, 0x81, 0x0D, 0x08, 0x88, 0x81, 0x0D, 0x08, 0x7C, 0x83, 0x0D, 0x08
-    .byte 0x22, 0x83, 0x0D, 0x08, 0xE4, 0x83, 0x0D, 0x08, 0x40, 0x84, 0x0D, 0x08, 0x78, 0x82, 0x0D, 0x08
-    .byte 0xD4, 0x82, 0x0D, 0x08, 0x9C, 0x84, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08
-    .byte 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08
-    .byte 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08
-    .byte 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08
-    .byte 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08
-    .byte 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08
-    .byte 0xD8, 0x85, 0x0D, 0x08, 0x5C, 0x87, 0x0D, 0x08, 0x5C, 0x87, 0x0D, 0x08, 0x5C, 0x87, 0x0D, 0x08
-    .byte 0x5C, 0x87, 0x0D, 0x08, 0x20, 0x86, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0xF0, 0x86, 0x0D, 0x08
-    .byte 0x94, 0x85, 0x0D, 0x08, 0x58, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08
-    .byte 0x94, 0x85, 0x0D, 0x08, 0xA8, 0x86, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08, 0x94, 0x85, 0x0D, 0x08
-    .byte 0x10, 0x49, 0x50, 0x46, 0x00, 0x22, 0x03, 0xF0, 0x87, 0xFC, 0x0F, 0x48, 0x02, 0x68, 0xDB, 0x23
-    .byte 0x9B, 0x00, 0xD2, 0x18, 0x20, 0x20, 0x40, 0x42, 0x0C, 0x4C, 0x6C, 0x44, 0x24, 0x88, 0x20, 0x40
-    .byte 0x06, 0x21, 0x08, 0x43, 0x00, 0x06, 0x00, 0x0E, 0x09, 0x49, 0x08, 0x4D, 0x6D, 0x44, 0x2D, 0x88
-    .byte 0x29, 0x40, 0x01, 0x43, 0x07, 0x48, 0x01, 0x40, 0x1D, 0x23, 0x01, 0x20, 0x10, 0x70, 0x53, 0x60
-    .byte 0x11, 0x81, 0x13, 0xE3, 0x63, 0x03, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03, 0xEC, 0x04, 0x00, 0x00
-    .byte 0x00, 0xFF, 0xFF, 0xFF, 0x1F, 0xF8, 0xFF, 0xFF, 0x37, 0x4E, 0x6E, 0x44, 0x36, 0x68, 0x30, 0x68
-    .byte 0x01, 0x68, 0x94, 0x27, 0x7F, 0x00, 0xC9, 0x19, 0x09, 0x68, 0xFA, 0xF7, 0x95, 0xFF, 0x0C, 0x20
+.Lraw_code_linkonce_962_0: .word 0x00000564
+.Lraw_code_linkonce_962_4: .word 0x0000054C
+.Lraw_code_linkonce_962_8: .word 0x000004A4
+.Lraw_code_linkonce_962_12: .word 0x00000554
+.Lraw_code_linkonce_963_0: .word .Lswitch_080D8074
+.Lswitch_080D8074: .word .Lraw_code_linkonce_975_0
+    .word .Lraw_code_linkonce_980_8
+    .word .Lraw_code_linkonce_1030_10
+    .word .Lraw_code_linkonce_1021_8
+    .word .Lraw_code_linkonce_1041_2
+    .word .Lraw_code_linkonce_1050_10
+    .word .Lraw_code_linkonce_1004_8
+    .word .Lraw_code_linkonce_1013_10
+    .word .Lraw_code_linkonce_1059_10
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1097_8
+    .word .Lraw_code_linkonce_1123_12
+    .word .Lraw_code_linkonce_1123_12
+    .word .Lraw_code_linkonce_1123_12
+    .word .Lraw_code_linkonce_1123_12
+    .word .Lraw_code_linkonce_1102_0
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1115_0
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1089_8
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1110_8
+    .word .Lraw_code_linkonce_1093_4
+    .word .Lraw_code_linkonce_1093_4
+.Lraw_code_linkonce_975_0:
+    ldr r1, .Lraw_code_linkonce_979_4
+    mov r0, sl
+    movs r2, #0
+    bl .Lraw_code_linkonce_2011_0
+    ldr r0, .Lraw_code_linkonce_979_8
+    ldr r2, [r0]
+    movs r3, #0xdb
+    lsls r3, r3, #2
+    adds r2, r2, r3
+    movs r0, #0x20
+    rsbs r0, r0, #0
+    ldr r4, .Lraw_code_linkonce_979_12
+    add r4, sp
+    ldrh r4, [r4]
+    ands r0, r4
+    movs r1, #6
+    orrs r0, r1
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    ldr r1, .Lraw_code_linkonce_980_0
+    ldr r5, .Lraw_code_linkonce_979_12
+    add r5, sp
+    ldrh r5, [r5]
+    ands r1, r5
+    orrs r1, r0
+    ldr r0, .Lraw_code_linkonce_980_4
+    ands r1, r0
+    movs r3, #0x1d
+    movs r0, #1
+    strb r0, [r2]
+    str r3, [r2, #4]
+    strh r1, [r2, #8]
+    b .Lauto_080D879C
+.Lraw_code_linkonce_979_4: .word 0x00000363
+.Lraw_code_linkonce_979_8: .word gUnk_0300040C
+.Lraw_code_linkonce_979_12: .word 0x000004EC
+.Lraw_code_linkonce_980_0: .word 0xFFFFFF00
+.Lraw_code_linkonce_980_4: .word 0xFFFFF81F
+.Lraw_code_linkonce_980_8:
+    ldr r6, .Lraw_code_linkonce_1003_8
+    add r6, sp
+    ldr r6, [r6]
+    ldr r0, [r6]
+    ldr r1, [r0]
+    movs r7, #0x94
+    lsls r7, r7, #1
+    adds r1, r1, r7
+    ldr r1, [r1]
+    bl _call_via_r1
+    movs r0, #0xc
     bl __builtin_new
-    .byte 0x01, 0x21, 0x00, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
+    movs r1, #1
+    str r1, [sp]
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
     bl __23MapClockStatusHudWidgetUiUiUiUi
-    .byte 0x54, 0x46, 0xB4, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x26, 0x1C, 0x8D, 0x42
-    .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xFA, 0xF7, 0x7E, 0xFF, 0x25, 0x60, 0xAA, 0x20, 0xC0, 0x00
-    .byte 0x68, 0x44, 0x00, 0x68, 0x01, 0x68, 0x23, 0x4A, 0x88, 0x18, 0x00, 0x78
-    .byte 0x80, 0x07, 0x00, 0x28, 0x09, 0xDA, 0x21, 0x4B, 0xC8, 0x18, 0x00, 0x78
-    .byte 0x00, 0x28, 0x04, 0xD1, 0x30, 0x68, 0x41, 0x68, 0xC9, 0x68, 0xFA, 0xF7
-    .byte 0x66, 0xFF, 0x34, 0x68, 0x00, 0x25, 0x19, 0x4F, 0x6F, 0x44, 0x3F, 0x68
-    .byte 0x38, 0x68, 0x01, 0x68, 0xB0, 0x31, 0x09, 0x68, 0xFA, 0xF7, 0x5B, 0xFF
-    .byte 0x00, 0x06, 0x00, 0x28, 0x0B, 0xD1, 0xAA, 0x21, 0xC9, 0x00, 0x69, 0x44
-    .byte 0x09, 0x68, 0x08, 0x68, 0x41, 0x8A, 0x49, 0x05, 0x89, 0x0E, 0x01, 0x20
-    .byte 0x08, 0x40, 0x00, 0x28, 0x00, 0xD0, 0x01, 0x25, 0x2A, 0x1C, 0xAA, 0x23
-    .byte 0xDB, 0x00, 0x6B, 0x44, 0x1B, 0x68, 0x19, 0x68, 0x10, 0x31, 0x20, 0x1C
-    .byte 0x08, 0x30
+    mov r4, sl
+    adds r4, #0xb4
+    adds r5, r0, #0
+    ldr r1, [r4]
+    adds r6, r4, #0
+    cmp r5, r1
+    beq .Lraw_code_linkonce_987_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_987_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_987_6:
+    str r5, [r4]
+    movs r0, #0xaa
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, .Lraw_code_linkonce_1003_12
+    adds r0, r1, r2
+    ldrb r0, [r0]
+    lsls r0, r0, #0x1e
+    cmp r0, #0
+    bge .Lraw_code_linkonce_991_2
+    ldr r3, .Lraw_code_linkonce_1004_0
+    adds r0, r1, r3
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_991_2
+    ldr r0, [r6]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+.Lraw_code_linkonce_991_2:
+    ldr r4, [r6]
+    movs r5, #0
+    ldr r7, .Lraw_code_linkonce_1003_8
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    ldr r1, [r0]
+    adds r1, #0xb0
+    ldr r1, [r1]
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_linkonce_995_6
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r0, [r1]
+    ldrh r1, [r0, #0x12]
+    lsls r1, r1, #0x15
+    lsrs r1, r1, #0x1a
+    movs r0, #1
+    ands r0, r1
+    cmp r0, #0
+    beq .Lraw_code_linkonce_995_8
+.Lraw_code_linkonce_995_6:
+    movs r5, #1
+.Lraw_code_linkonce_995_8:
+    adds r2, r5, #0
+    movs r3, #0xaa
+    lsls r3, r3, #3
+    add r3, sp
+    ldr r3, [r3]
+    ldr r1, [r3]
+    adds r1, #0x10
+    adds r0, r4, #0
+    adds r0, #8
     bl UpdateMapClockStatusHudCalendar
-    .byte 0x30, 0x68, 0xAA, 0x24, 0xE4, 0x00, 0x6C, 0x44
-    .byte 0x24, 0x68, 0x21, 0x68, 0x89, 0x68, 0x08, 0x30
+    ldr r0, [r6]
+    movs r4, #0xaa
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    ldr r1, [r4]
+    ldr r1, [r1, #8]
+    adds r0, #8
     bl SetMapClockStatusHudUnkSelector
-    .byte 0x05, 0x4D, 0x6D, 0x44
-    .byte 0x2D, 0x68, 0x28, 0x68, 0x64, 0xE1, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x10, 0x22, 0x00, 0x00
-    .byte 0xC4, 0x34, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x01, 0x24, 0xAB, 0x26, 0xF6, 0x00, 0x6E, 0x44
-    .byte 0x36, 0x68, 0x34, 0x60, 0x10, 0x20
+    ldr r5, .Lraw_code_linkonce_1004_4
+    add r5, sp
+    ldr r5, [r5]
+    ldr r0, [r5]
+    b .Lraw_code_linkonce_1082_0
+    .align 2, 0
+.Lraw_code_linkonce_1003_8: .word 0x00000564
+.Lraw_code_linkonce_1003_12: .word 0x00002210
+.Lraw_code_linkonce_1004_0: .word 0x000034C4
+.Lraw_code_linkonce_1004_4: .word 0x0000055C
+.Lraw_code_linkonce_1004_8:
+    movs r4, #1
+    movs r6, #0xab
+    lsls r6, r6, #3
+    add r6, sp
+    ldr r6, [r6]
+    str r4, [r6]
+    movs r0, #0x10
     bl __builtin_new
-    .byte 0x00, 0x94, 0x04, 0x21, 0x01, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
+    str r4, [sp]
+    movs r1, #4
+    str r1, [sp, #4]
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
     bl __14MainMenuWidgetUiUiUiUiUi
-    .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
-    .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xFA, 0xF7, 0x0A, 0xFF, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
-    .byte 0xC9, 0x68, 0xFA, 0xF7, 0x02, 0xFF, 0x02, 0x4F, 0x6F, 0x44, 0x3F, 0x68
-    .byte 0x38, 0x68, 0x30, 0xE1, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x01, 0x24
-    .byte 0xAB, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x00, 0x68, 0x04, 0x60, 0x10, 0x20
+    mov r4, sl
+    adds r4, #0xb8
+    adds r5, r0, #0
+    ldr r1, [r4]
+    adds r7, r4, #0
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1011_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1011_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1011_6:
+    str r5, [r4]
+    ldr r0, [r7]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+    ldr r7, .Lraw_code_linkonce_1013_6
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    b .Lraw_code_linkonce_1082_0
+    .align 2, 0
+.Lraw_code_linkonce_1013_6: .word 0x0000055C
+.Lraw_code_linkonce_1013_10:
+    movs r4, #1
+    movs r0, #0xab
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r0, [r0]
+    str r4, [r0]
+    movs r0, #0x10
     bl __builtin_new
-    .byte 0x00, 0x94, 0x05, 0x21, 0x01, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
+    str r4, [sp]
+    movs r1, #5
+    str r1, [sp, #4]
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
     bl __14MainMenuWidgetUiUiUiUiUi
-    .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
-    .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xFA, 0xF7, 0xDC, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
-    .byte 0xC9, 0x68, 0xFA, 0xF7, 0xD4, 0xFE, 0x02, 0xE1, 0x01, 0x24, 0xAB, 0x22
-    .byte 0xD2, 0x00, 0x6A, 0x44, 0x12, 0x68, 0x14, 0x60, 0x10, 0x20
+    mov r4, sl
+    adds r4, #0xb8
+    adds r5, r0, #0
+    ldr r1, [r4]
+    adds r7, r4, #0
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1020_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1020_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1020_6:
+    str r5, [r4]
+    ldr r0, [r7]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+    b .Lraw_code_linkonce_1081_8
+.Lraw_code_linkonce_1021_8:
+    movs r4, #1
+    movs r2, #0xab
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    str r4, [r2]
+    movs r0, #0x10
     bl __builtin_new
-    .byte 0x00, 0x94, 0x01, 0x94, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
+    str r4, [sp]
+    str r4, [sp, #4]
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
     bl __14MainMenuWidgetUiUiUiUiUi
-    .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
-    .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xFA, 0xF7, 0xB6, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
-    .byte 0xC9, 0x68, 0xFA, 0xF7, 0xAE, 0xFE, 0x02, 0x4B, 0x6B, 0x44, 0x1B, 0x68
-    .byte 0x18, 0x68, 0xDC, 0xE0, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x01, 0x24
-    .byte 0xAB, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2D, 0x68, 0x2C, 0x60, 0x15, 0x4E
-    .byte 0x6E, 0x44, 0x36, 0x68, 0x30, 0x68, 0x01, 0x68, 0x94, 0x27, 0x7F, 0x00
-    .byte 0xC9, 0x19, 0x09, 0x68, 0xFA, 0xF7, 0x95, 0xFE, 0x10, 0x20
+    mov r4, sl
+    adds r4, #0xb8
+    adds r5, r0, #0
+    ldr r1, [r4]
+    adds r7, r4, #0
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1028_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1028_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1028_6:
+    str r5, [r4]
+    ldr r0, [r7]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+    ldr r3, .Lraw_code_linkonce_1030_6
+    add r3, sp
+    ldr r3, [r3]
+    ldr r0, [r3]
+    b .Lraw_code_linkonce_1082_0
+    .align 2, 0
+.Lraw_code_linkonce_1030_6: .word 0x0000055C
+.Lraw_code_linkonce_1030_10:
+    movs r4, #1
+    movs r5, #0xab
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    str r4, [r5]
+    ldr r6, .Lraw_code_linkonce_1040_10
+    add r6, sp
+    ldr r6, [r6]
+    ldr r0, [r6]
+    ldr r1, [r0]
+    movs r7, #0x94
+    lsls r7, r7, #1
+    adds r1, r1, r7
+    ldr r1, [r1]
+    bl _call_via_r1
+    movs r0, #0x10
     bl __builtin_new
-    .byte 0x00, 0x94, 0x00, 0x21, 0x01, 0x91, 0x1F, 0x22, 0x00, 0x23
+    str r4, [sp]
+    movs r1, #0
+    str r1, [sp, #4]
+    movs r2, #0x1f
+    movs r3, #0
     bl __14MainMenuWidgetUiUiUiUiUi
-    .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
-    .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xFA, 0xF7, 0x7E, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
-    .byte 0xC9, 0x68, 0xFA, 0xF7, 0x76, 0xFE, 0xA4, 0xE0, 0x00, 0x00, 0x64, 0x05
-    .byte 0x00, 0x00, 0x01, 0x24, 0xAB, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x12, 0x68
-    .byte 0x14, 0x60, 0x10, 0x20
+    mov r4, sl
+    adds r4, #0xb8
+    adds r5, r0, #0
+    ldr r1, [r4]
+    adds r7, r4, #0
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1039_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1039_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1039_6:
+    str r5, [r4]
+    ldr r0, [r7]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+    b .Lraw_code_linkonce_1081_8
+    .align 2, 0
+.Lraw_code_linkonce_1040_10: .word 0x00000564
+.Lraw_code_linkonce_1041_2:
+    movs r4, #1
+    movs r2, #0xab
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    str r4, [r2]
+    movs r0, #0x10
     bl __builtin_new
-    .byte 0x00, 0x94, 0x02, 0x21, 0x01, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
+    str r4, [sp]
+    movs r1, #2
+    str r1, [sp, #4]
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
     bl __14MainMenuWidgetUiUiUiUiUi
-    .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
-    .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xFA, 0xF7, 0x54, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
-    .byte 0xC9, 0x68, 0xFA, 0xF7, 0x4C, 0xFE, 0x02, 0x4B, 0x6B, 0x44, 0x1B, 0x68
-    .byte 0x18, 0x68, 0x7A, 0xE0, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x01, 0x24
-    .byte 0xAB, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2D, 0x68, 0x2C, 0x60, 0x10, 0x20
+    mov r4, sl
+    adds r4, #0xb8
+    adds r5, r0, #0
+    ldr r1, [r4]
+    adds r7, r4, #0
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1048_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1048_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1048_6:
+    str r5, [r4]
+    ldr r0, [r7]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+    ldr r3, .Lraw_code_linkonce_1050_6
+    add r3, sp
+    ldr r3, [r3]
+    ldr r0, [r3]
+    b .Lraw_code_linkonce_1082_0
+    .align 2, 0
+.Lraw_code_linkonce_1050_6: .word 0x0000055C
+.Lraw_code_linkonce_1050_10:
+    movs r4, #1
+    movs r5, #0xab
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    str r4, [r5]
+    movs r0, #0x10
     bl __builtin_new
-    .byte 0x00, 0x94, 0x03, 0x21, 0x01, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
+    str r4, [sp]
+    movs r1, #3
+    str r1, [sp, #4]
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
     bl __14MainMenuWidgetUiUiUiUiUi
-    .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
-    .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xFA, 0xF7, 0x26, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
-    .byte 0xC9, 0x68, 0xFA, 0xF7, 0x1E, 0xFE, 0x02, 0x4E, 0x6E, 0x44, 0x36, 0x68
-    .byte 0x30, 0x68, 0x4C, 0xE0, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x06, 0x20
-    .byte 0xAB, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x60, 0x04, 0x20
+    mov r4, sl
+    adds r4, #0xb8
+    adds r5, r0, #0
+    ldr r1, [r4]
+    adds r7, r4, #0
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1057_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1057_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1057_6:
+    str r5, [r4]
+    ldr r0, [r7]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+    ldr r6, .Lraw_code_linkonce_1059_6
+    add r6, sp
+    ldr r6, [r6]
+    ldr r0, [r6]
+    b .Lraw_code_linkonce_1082_0
+    .align 2, 0
+.Lraw_code_linkonce_1059_6: .word 0x0000055C
+.Lraw_code_linkonce_1059_10:
+    movs r0, #6
+    movs r7, #0xab
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    str r0, [r7]
+    movs r0, #4
     bl __builtin_new
-    .byte 0x06, 0x1C
-    .byte 0x87, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x28, 0x1C
+    adds r6, r0, #0
+    movs r5, #0x87
+    lsls r5, r5, #3
+    add r5, sp
+    adds r0, r5, #0
     bl __17ObjTileCollection
-    .byte 0x1F, 0x4C, 0x6C, 0x44
-    .byte 0x20, 0x1C
+    ldr r4, .Lraw_code_linkonce_1084_2
+    add r4, sp
+    adds r0, r4, #0
     bl __20ObjPaletteCollection
-    .byte 0x01, 0x20, 0x00, 0x90, 0x01, 0x95, 0x02, 0x94, 0x30, 0x1C
-    .byte 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
+    movs r0, #1
+    str r0, [sp]
+    str r5, [sp, #4]
+    str r4, [sp, #8]
+    adds r0, r6, #0
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
     bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
-    .byte 0x54, 0x46, 0xAC, 0x34, 0x05, 0x1C
-    .byte 0x20, 0x68, 0x26, 0x1C, 0x85, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
+    mov r4, sl
+    adds r4, #0xac
+    adds r5, r0, #0
+    ldr r0, [r4]
+    adds r6, r4, #0
+    cmp r5, r0
+    beq .Lraw_code_linkonce_1074_0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1074_0
+    movs r1, #3
     bl _._12UiStateOwner
-    .byte 0x25, 0x60, 0x11, 0x48, 0x68, 0x44, 0x02, 0x21
+.Lraw_code_linkonce_1074_0:
+    str r5, [r4]
+    ldr r0, .Lraw_code_linkonce_1084_2
+    add r0, sp
+    movs r1, #2
     bl _._20ObjPaletteCollection
-    .byte 0x87, 0x20
-    .byte 0xC0, 0x00, 0x68, 0x44, 0x02, 0x21
+    movs r0, #0x87
+    lsls r0, r0, #3
+    add r0, sp
+    movs r1, #2
     bl _._17ObjTileCollection
-    .byte 0x30, 0x68, 0x78, 0xF7, 0xF2, 0xFA
-    .byte 0x30, 0x68, 0x0B, 0x49, 0x0B, 0x4A, 0x0C, 0x4B, 0x0C, 0x4D, 0x00, 0x24, 0x00, 0x95, 0x01, 0x94
-    .byte 0x02, 0x94, 0x03, 0x94, 0x78, 0xF7, 0x38, 0xFB, 0x09, 0x49, 0x69, 0x44, 0x09, 0x68, 0x08, 0x68
-    .byte 0x08, 0x49, 0x01, 0x22, 0x01, 0x23
+    ldr r0, [r6]
+    bl func_08050D68
+    ldr r0, [r6]
+    ldr r1, .Lraw_code_linkonce_1085_0
+    ldr r2, .Lraw_code_linkonce_1086_0
+    ldr r3, .Lraw_code_linkonce_1087_0
+    ldr r5, .Lraw_code_linkonce_1088_0
+    movs r4, #0
+    str r5, [sp]
+    str r4, [sp, #4]
+    str r4, [sp, #8]
+    str r4, [sp, #0xc]
+    bl func_08050E0C
+.Lraw_code_linkonce_1081_8:
+    ldr r1, .Lraw_code_linkonce_1089_0
+    add r1, sp
+    ldr r1, [r1]
+    ldr r0, [r1]
+.Lraw_code_linkonce_1082_0:
+    ldr r1, .Lraw_code_linkonce_1089_4
+    movs r2, #1
+    movs r3, #1
     bl BeginHardwareBlend
-    .byte 0x2F, 0xE1, 0x3C, 0x04, 0x00, 0x00
-    .word gText_HelpMenu_Crops
-    .word gText_HelpMenu_Animals
-    .word gText_HelpMenu_UsefulTips
-    .word gText_HelpMenu_Exit
-    .byte 0x5C, 0x05, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0x1A, 0x48, 0x02, 0x68, 0xDB, 0x23, 0x9B, 0x00
-    .byte 0xD2, 0x18, 0x20, 0x20, 0x40, 0x42, 0x9E, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x24, 0x88, 0x20, 0x40
-    .byte 0x06, 0x21, 0x08, 0x43, 0x00, 0x06, 0x00, 0x0E, 0x13, 0x49, 0x9E, 0x25, 0xED, 0x00, 0x6D, 0x44
-    .byte 0x2D, 0x88, 0x29, 0x40, 0x01, 0x43, 0x11, 0x48, 0x01, 0x40, 0x1D, 0x23, 0x01, 0x20, 0x10, 0x70
-    .byte 0x53, 0x60, 0x11, 0x81, 0x51, 0x46, 0xE8, 0x31, 0x00, 0x23, 0x01, 0x20, 0x08, 0x70, 0x50, 0x46
-    .byte 0xE9, 0x30, 0x03, 0x70, 0x56, 0x46, 0x31, 0x8A, 0x09, 0x48, 0x08, 0x40, 0x30, 0x82, 0x52, 0x46
-    .byte 0x60, 0x32, 0x11, 0x88, 0x07, 0x48, 0x08, 0x40, 0x10, 0x80, 0x50, 0x46, 0x5C, 0x30, 0x03, 0x80
-    .byte 0xBF, 0xE0, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03, 0x00, 0xFF, 0xFF, 0xFF, 0x1F, 0xF8, 0xFF, 0xFF
-    .byte 0xFF, 0xF0, 0x00, 0x00, 0x3F, 0xFF, 0x00, 0x00, 0x51, 0x46, 0xE8, 0x31, 0x00, 0x23, 0x01, 0x20
-    .byte 0x08, 0x70, 0x50, 0x46, 0xE9, 0x30, 0x03, 0x70, 0x57, 0x46, 0x39, 0x8A, 0x09, 0x48, 0x08, 0x40
-    .byte 0x38, 0x82, 0x52, 0x46, 0x60, 0x32, 0x11, 0x88, 0x07, 0x48, 0x08, 0x40, 0x10, 0x80, 0x50, 0x46
-    .byte 0x5C, 0x30, 0x03, 0x80, 0x05, 0x48, 0x00, 0x68, 0x08, 0x30, 0x51, 0x46, 0x94, 0x31, 0x09, 0x68
-    .byte 0x95, 0xE0, 0x00, 0x00, 0xFF, 0xF0, 0x00, 0x00, 0x3F, 0xFF, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03
-    .byte 0x51, 0x46, 0xE8, 0x31, 0x00, 0x23, 0x01, 0x20, 0x08, 0x70, 0x50, 0x46, 0xE9, 0x30, 0x03, 0x70
-    .byte 0x50, 0x46, 0x01, 0x8A, 0x0D, 0x48, 0x08, 0x40, 0x51, 0x46, 0x08, 0x82, 0x52, 0x46, 0x60, 0x32
-    .byte 0x11, 0x88, 0x0B, 0x48, 0x08, 0x40, 0x10, 0x80, 0x50, 0x46, 0x5C, 0x30, 0x03, 0x80, 0xAA, 0x22
-    .byte 0xD2, 0x00, 0x6A, 0x44, 0x12, 0x68, 0x11, 0x68, 0x06, 0x4B, 0xC8, 0x18, 0x02, 0x78, 0x50, 0x06
-    .byte 0x00, 0x28, 0x09, 0xDA, 0x01, 0x21, 0x49, 0x42, 0x17, 0xE0, 0x00, 0x00, 0xFF, 0xF0, 0x00, 0x00
-    .byte 0x3F, 0xFF, 0x00, 0x00, 0x4A, 0x2C, 0x00, 0x00, 0x06, 0x4C, 0x08, 0x19, 0x01, 0x78, 0x03, 0x20
-    .byte 0x08, 0x40, 0x03, 0x28, 0x08, 0xD1, 0xD0, 0x09, 0x02, 0x21, 0x00, 0x28, 0x05, 0xD0, 0x01, 0x21
-    .byte 0x03, 0xE0, 0x00, 0x00, 0x48, 0x2C, 0x00, 0x00, 0x00, 0x21, 0x02, 0x48, 0x00, 0x68, 0x08, 0x30
-    .byte 0x4D, 0xE0, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03, 0x51, 0x46, 0xE8, 0x31, 0x00, 0x23, 0x01, 0x20
-    .byte 0x08, 0x70, 0x50, 0x46, 0xE9, 0x30, 0x03, 0x70, 0x55, 0x46, 0x29, 0x8A, 0x09, 0x48, 0x08, 0x40
-    .byte 0x28, 0x82, 0x52, 0x46, 0x60, 0x32, 0x11, 0x88, 0x07, 0x48, 0x08, 0x40, 0x10, 0x80, 0x50, 0x46
-    .byte 0x5C, 0x30, 0x03, 0x80, 0x05, 0x48, 0x00, 0x68, 0x08, 0x30, 0x51, 0x46, 0x94, 0x31, 0x09, 0x68
-    .byte 0x2D, 0xE0, 0x00, 0x00, 0xFF, 0xF0, 0x00, 0x00, 0x3F, 0xFF, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03
-    .byte 0x51, 0x46, 0xE8, 0x31, 0x00, 0x23, 0x01, 0x20, 0x08, 0x70, 0x50, 0x46, 0xE9, 0x30, 0x03, 0x70
-    .byte 0x56, 0x46, 0x31, 0x8A, 0x11, 0x48, 0x08, 0x40, 0x30, 0x82, 0x52, 0x46, 0x60, 0x32, 0x11, 0x88
-    .byte 0x0F, 0x48, 0x08, 0x40, 0x10, 0x80, 0x50, 0x46, 0x5C, 0x30, 0x03, 0x80, 0x0D, 0x48, 0x00, 0x68
-    .byte 0x02, 0x1C, 0x08, 0x32, 0xAA, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x68, 0x0A, 0x49
-    .byte 0x40, 0x18, 0x00, 0x21, 0x00, 0x78, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x10, 0x1C, 0x66, 0xF7
-    .byte 0xF5, 0xFE, 0x50, 0x46
+    b .Lauto_080D879C
+.Lraw_code_linkonce_1084_2: .word 0x0000043C
+.Lraw_code_linkonce_1085_0: .word gText_HelpMenu_Crops
+.Lraw_code_linkonce_1086_0: .word gText_HelpMenu_Animals
+.Lraw_code_linkonce_1087_0: .word gText_HelpMenu_UsefulTips
+.Lraw_code_linkonce_1088_0: .word gText_HelpMenu_Exit
+.Lraw_code_linkonce_1089_0: .word 0x0000055C
+.Lraw_code_linkonce_1089_4: .word 0x00000889
+.Lraw_code_linkonce_1089_8:
+    ldr r0, .Lraw_code_linkonce_1096_4
+    ldr r2, [r0]
+    movs r3, #0xdb
+    lsls r3, r3, #2
+    adds r2, r2, r3
+    movs r0, #0x20
+    rsbs r0, r0, #0
+    movs r4, #0x9e
+    lsls r4, r4, #3
+    add r4, sp
+    ldrh r4, [r4]
+    ands r0, r4
+    movs r1, #6
+    orrs r0, r1
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    ldr r1, .Lraw_code_linkonce_1096_8
+    movs r5, #0x9e
+    lsls r5, r5, #3
+    add r5, sp
+    ldrh r5, [r5]
+    ands r1, r5
+    orrs r1, r0
+    ldr r0, .Lraw_code_linkonce_1096_12
+    ands r1, r0
+    movs r3, #0x1d
+    movs r0, #1
+    strb r0, [r2]
+    str r3, [r2, #4]
+    strh r1, [r2, #8]
+.Lraw_code_linkonce_1093_4:
+    mov r1, sl
+    adds r1, #0xe8
+    movs r3, #0
+    movs r0, #1
+    strb r0, [r1]
+    mov r0, sl
+    adds r0, #0xe9
+    strb r3, [r0]
+    mov r6, sl
+    ldrh r1, [r6, #0x10]
+    ldr r0, .Lraw_code_linkonce_1097_0
+    ands r0, r1
+    strh r0, [r6, #0x10]
+    mov r2, sl
+    adds r2, #0x60
+    ldrh r1, [r2]
+    ldr r0, .Lraw_code_linkonce_1097_4
+    ands r0, r1
+    strh r0, [r2]
+    mov r0, sl
+    adds r0, #0x5c
+    strh r3, [r0]
+    b .Lraw_code_linkonce_1120_2
+    .align 2, 0
+.Lraw_code_linkonce_1096_4: .word gUnk_0300040C
+.Lraw_code_linkonce_1096_8: .word 0xFFFFFF00
+.Lraw_code_linkonce_1096_12: .word 0xFFFFF81F
+.Lraw_code_linkonce_1097_0: .word 0x0000F0FF
+.Lraw_code_linkonce_1097_4: .word 0x0000FF3F
+.Lraw_code_linkonce_1097_8:
+    mov r1, sl
+    adds r1, #0xe8
+    movs r3, #0
+    movs r0, #1
+    strb r0, [r1]
+    mov r0, sl
+    adds r0, #0xe9
+    strb r3, [r0]
+    mov r7, sl
+    ldrh r1, [r7, #0x10]
+    ldr r0, .Lraw_code_linkonce_1101_4
+    ands r0, r1
+    strh r0, [r7, #0x10]
+    mov r2, sl
+    adds r2, #0x60
+    ldrh r1, [r2]
+    ldr r0, .Lraw_code_linkonce_1101_8
+    ands r0, r1
+    strh r0, [r2]
+    mov r0, sl
+    adds r0, #0x5c
+    strh r3, [r0]
+    ldr r0, .Lraw_code_linkonce_1101_12
+    ldr r0, [r0]
+    adds r0, #8
+    mov r1, sl
+    adds r1, #0x94
+    ldr r1, [r1]
+    b .Lraw_code_linkonce_1119_14
+    .align 2, 0
+.Lraw_code_linkonce_1101_4: .word 0x0000F0FF
+.Lraw_code_linkonce_1101_8: .word 0x0000FF3F
+.Lraw_code_linkonce_1101_12: .word gUnk_0300040C
+.Lraw_code_linkonce_1102_0:
+    mov r1, sl
+    adds r1, #0xe8
+    movs r3, #0
+    movs r0, #1
+    strb r0, [r1]
+    mov r0, sl
+    adds r0, #0xe9
+    strb r3, [r0]
+    mov r0, sl
+    ldrh r1, [r0, #0x10]
+    ldr r0, .Lraw_code_linkonce_1106_12
+    ands r0, r1
+    mov r1, sl
+    strh r0, [r1, #0x10]
+    mov r2, sl
+    adds r2, #0x60
+    ldrh r1, [r2]
+    ldr r0, .Lraw_code_linkonce_1107_0
+    ands r0, r1
+    strh r0, [r2]
+    mov r0, sl
+    adds r0, #0x5c
+    strh r3, [r0]
+    movs r2, #0xaa
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    ldr r1, [r2]
+    ldr r3, .Lraw_code_linkonce_1107_4
+    adds r0, r1, r3
+    ldrb r2, [r0]
+    lsls r0, r2, #0x19
+    cmp r0, #0
+    bge .Lraw_code_linkonce_1107_8
+    movs r1, #1
+    rsbs r1, r1, #0
+    b .Lraw_code_linkonce_1109_10
+    .align 2, 0
+.Lraw_code_linkonce_1106_12: .word 0x0000F0FF
+.Lraw_code_linkonce_1107_0: .word 0x0000FF3F
+.Lraw_code_linkonce_1107_4: .word 0x00002C4A
+.Lraw_code_linkonce_1107_8:
+    ldr r4, .Lraw_code_linkonce_1109_4
+    adds r0, r1, r4
+    ldrb r1, [r0]
+    movs r0, #3
+    ands r0, r1
+    cmp r0, #3
+    bne .Lraw_code_linkonce_1109_8
+    lsrs r0, r2, #7
+    movs r1, #2
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1109_10
+    movs r1, #1
+    b .Lraw_code_linkonce_1109_10
+    .align 2, 0
+.Lraw_code_linkonce_1109_4: .word 0x00002C48
+.Lraw_code_linkonce_1109_8:
+    movs r1, #0
+.Lraw_code_linkonce_1109_10:
+    ldr r0, .Lraw_code_linkonce_1110_4
+    ldr r0, [r0]
+    adds r0, #8
+    b .Lraw_code_linkonce_1119_14
+    .align 2, 0
+.Lraw_code_linkonce_1110_4: .word gUnk_0300040C
+.Lraw_code_linkonce_1110_8:
+    mov r1, sl
+    adds r1, #0xe8
+    movs r3, #0
+    movs r0, #1
+    strb r0, [r1]
+    mov r0, sl
+    adds r0, #0xe9
+    strb r3, [r0]
+    mov r5, sl
+    ldrh r1, [r5, #0x10]
+    ldr r0, .Lraw_code_linkonce_1114_4
+    ands r0, r1
+    strh r0, [r5, #0x10]
+    mov r2, sl
+    adds r2, #0x60
+    ldrh r1, [r2]
+    ldr r0, .Lraw_code_linkonce_1114_8
+    ands r0, r1
+    strh r0, [r2]
+    mov r0, sl
+    adds r0, #0x5c
+    strh r3, [r0]
+    ldr r0, .Lraw_code_linkonce_1114_12
+    ldr r0, [r0]
+    adds r0, #8
+    mov r1, sl
+    adds r1, #0x94
+    ldr r1, [r1]
+    b .Lraw_code_linkonce_1119_14
+    .align 2, 0
+.Lraw_code_linkonce_1114_4: .word 0x0000F0FF
+.Lraw_code_linkonce_1114_8: .word 0x0000FF3F
+.Lraw_code_linkonce_1114_12: .word gUnk_0300040C
+.Lraw_code_linkonce_1115_0:
+    mov r1, sl
+    adds r1, #0xe8
+    movs r3, #0
+    movs r0, #1
+    strb r0, [r1]
+    mov r0, sl
+    adds r0, #0xe9
+    strb r3, [r0]
+    mov r6, sl
+    ldrh r1, [r6, #0x10]
+    ldr r0, .Lraw_code_linkonce_1122_4
+    ands r0, r1
+    strh r0, [r6, #0x10]
+    mov r2, sl
+    adds r2, #0x60
+    ldrh r1, [r2]
+    ldr r0, .Lraw_code_linkonce_1123_0
+    ands r0, r1
+    strh r0, [r2]
+    mov r0, sl
+    adds r0, #0x5c
+    strh r3, [r0]
+    ldr r0, .Lraw_code_linkonce_1123_4
+    ldr r0, [r0]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r7, #0xaa
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    ldr r1, .Lraw_code_linkonce_1123_8
+    adds r0, r0, r1
+    movs r1, #0
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1119_12
+    movs r1, #1
+.Lraw_code_linkonce_1119_12:
+    adds r0, r2, #0
+.Lraw_code_linkonce_1119_14:
+    bl Push__12ScriptEnginei
+.Lraw_code_linkonce_1120_2:
+    mov r0, sl
     bl func_080D7F3C
-    .byte 0x28, 0xE0, 0x00, 0x00, 0xFF, 0xF0, 0x00, 0x00
-    .byte 0x3F, 0xFF, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03, 0x4C, 0x2C, 0x00, 0x00, 0x51, 0x46, 0xE8, 0x31
-    .byte 0x00, 0x23, 0x01, 0x20, 0x08, 0x70, 0x50, 0x46, 0xE9, 0x30, 0x03, 0x70, 0x52, 0x46, 0x11, 0x8A
-    .byte 0x19, 0x48, 0x08, 0x40, 0x10, 0x82, 0x60, 0x32, 0x11, 0x88, 0x18, 0x48, 0x08, 0x40, 0x10, 0x80
-    .byte 0x50, 0x46, 0x5C, 0x30, 0x03, 0x80, 0x16, 0x48, 0x00, 0x68, 0x08, 0x30, 0x51, 0x46, 0x94, 0x31
-    .byte 0x09, 0x78, 0x66, 0xF7, 0xCB, 0xFE, 0x50, 0x46
+    b .Lauto_080D879C
+    .align 2, 0
+.Lraw_code_linkonce_1122_4: .word 0x0000F0FF
+.Lraw_code_linkonce_1123_0: .word 0x0000FF3F
+.Lraw_code_linkonce_1123_4: .word gUnk_0300040C
+.Lraw_code_linkonce_1123_8: .word 0x00002C4C
+.Lraw_code_linkonce_1123_12:
+    mov r1, sl
+    adds r1, #0xe8
+    movs r3, #0
+    movs r0, #1
+    strb r0, [r1]
+    mov r0, sl
+    adds r0, #0xe9
+    strb r3, [r0]
+    mov r2, sl
+    ldrh r1, [r2, #0x10]
+    ldr r0, .Lraw_code_linkonce_1158_0
+    ands r0, r1
+    strh r0, [r2, #0x10]
+    adds r2, #0x60
+    ldrh r1, [r2]
+    ldr r0, .Lraw_code_linkonce_1158_4
+    ands r0, r1
+    strh r0, [r2]
+    mov r0, sl
+    adds r0, #0x5c
+    strh r3, [r0]
+    ldr r0, .Lraw_code_linkonce_1158_8
+    ldr r0, [r0]
+    adds r0, #8
+    mov r1, sl
+    adds r1, #0x94
+    ldrb r1, [r1]
+    bl Push__12ScriptEnginei
+    mov r0, sl
     bl func_080D7F3C
     .Lauto_080D879C:
     add r0, sp, #0x10
@@ -1135,12 +1812,12 @@ sub_080D8178:
     ldr r3, [r3]
     ldr r0, [r3]
     ldr r1, [r0, #0x10]
-    ldr r0, [pc, #0x34]
+    ldr r0, .Lraw_code_linkonce_1158_12
     add r0, sp
     str r1, [r0]
     bl rand
     movs r4, #0
-    ldr r5, [pc, #0x2c]
+    ldr r5, .Lraw_code_linkonce_1159_0
     add r5, sp
     str r4, [r5]
     movs r6, #0xab
@@ -1151,25 +1828,77 @@ sub_080D8178:
     cmp r0, #0x1d
     bhi .Lauto_080D88A8
     lsls r0, r0, #2
-    ldr r1, [pc, #0x18]
+    ldr r1, .Lraw_code_linkonce_1159_4
     adds r0, r0, r1
     ldr r0, [r0]
     mov pc, r0
-    .byte 0xFF, 0xF0, 0x00, 0x00, 0x3F, 0xFF, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03, 0xCC, 0x04, 0x00, 0x00
-    .byte 0xF4, 0x04, 0x00, 0x00, 0xF0, 0x87, 0x0D, 0x08, 0x68, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08
-    .byte 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08
-    .byte 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08
-    .byte 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08
-    .byte 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08
-    .byte 0xA0, 0x88, 0x0D, 0x08, 0xA0, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08, 0xA0, 0x88, 0x0D, 0x08
-    .byte 0xA0, 0x88, 0x0D, 0x08, 0xA0, 0x88, 0x0D, 0x08, 0x90, 0x88, 0x0D, 0x08, 0xA0, 0x88, 0x0D, 0x08
-    .byte 0xA0, 0x88, 0x0D, 0x08, 0xA0, 0x88, 0x0D, 0x08, 0xA0, 0x88, 0x0D, 0x08, 0xA0, 0x88, 0x0D, 0x08
-    .byte 0x07, 0x4F, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x68
+.Lraw_code_linkonce_1158_0: .word 0x0000F0FF
+.Lraw_code_linkonce_1158_4: .word 0x0000FF3F
+.Lraw_code_linkonce_1158_8: .word gUnk_0300040C
+.Lraw_code_linkonce_1158_12: .word 0x000004CC
+.Lraw_code_linkonce_1159_0: .word 0x000004F4
+.Lraw_code_linkonce_1159_4: .word .Lswitch_080D87F0
+.Lswitch_080D87F0: .word .Lraw_code_linkonce_1167_0
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1172_8
+    .word .Lraw_code_linkonce_1172_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1172_8
+    .word .Lraw_code_linkonce_1172_8
+    .word .Lraw_code_linkonce_1172_8
+    .word .Lraw_code_linkonce_1171_8
+    .word .Lraw_code_linkonce_1172_8
+    .word .Lraw_code_linkonce_1172_8
+    .word .Lraw_code_linkonce_1172_8
+    .word .Lraw_code_linkonce_1172_8
+    .word .Lraw_code_linkonce_1172_8
+.Lraw_code_linkonce_1167_0:
+    ldr r7, .Lraw_code_linkonce_1171_0
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
     bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14
-    .byte 0x41, 0x42, 0x01, 0x43, 0xC9, 0x0F, 0x03, 0x48, 0x68, 0x44, 0x01, 0x60, 0x10, 0xE0, 0x00, 0x00
-    .byte 0x5C, 0x05, 0x00, 0x00, 0xF4, 0x04, 0x00, 0x00, 0x01, 0x21, 0x02, 0x4A, 0x6A, 0x44, 0x11, 0x60
-    .byte 0x06, 0xE0, 0x00, 0x00, 0xF4, 0x04, 0x00, 0x00, 0x00, 0x23, 0x08, 0x4C, 0x6C, 0x44, 0x23, 0x60
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r1, r1, #0x1f
+    ldr r0, .Lraw_code_linkonce_1171_4
+    add r0, sp
+    str r1, [r0]
+    b .Lauto_080D88A8
+    .align 2, 0
+.Lraw_code_linkonce_1171_0: .word 0x0000055C
+.Lraw_code_linkonce_1171_4: .word 0x000004F4
+.Lraw_code_linkonce_1171_8:
+    movs r1, #1
+    ldr r2, .Lraw_code_linkonce_1172_4
+    add r2, sp
+    str r1, [r2]
+    b .Lauto_080D88A8
+    .align 2, 0
+.Lraw_code_linkonce_1172_4: .word 0x000004F4
+.Lraw_code_linkonce_1172_8:
+    movs r3, #0
+    ldr r4, .Lraw_code_linkonce_1188_2
+    add r4, sp
+    str r3, [r4]
     .Lauto_080D88A8:
     movs r5, #0xab
     lsls r5, r5, #3
@@ -1181,75 +1910,327 @@ sub_080D8178:
     b .Lauto_080D8B9C
     .Lauto_080D88B8:
     lsls r0, r0, #2
-    ldr r1, [pc, #0xc]
+    ldr r1, .Lraw_code_linkonce_1188_6
     adds r0, r0, r1
     ldr r0, [r0]
     mov pc, r0
-    .byte 0x00, 0x00, 0xF4, 0x04, 0x00, 0x00, 0xCC, 0x88, 0x0D, 0x08, 0x44, 0x89, 0x0D, 0x08, 0x70, 0x89
-    .byte 0x0D, 0x08, 0xD0, 0x89, 0x0D, 0x08, 0x44, 0x89, 0x0D, 0x08, 0x44, 0x89, 0x0D, 0x08, 0x44, 0x89
-    .byte 0x0D, 0x08, 0xA8, 0x89, 0x0D, 0x08, 0x44, 0x89, 0x0D, 0x08, 0x70, 0x89, 0x0D, 0x08, 0x70, 0x89
-    .byte 0x0D, 0x08, 0xA8, 0x89, 0x0D, 0x08, 0xA8, 0x89, 0x0D, 0x08, 0xA8, 0x89, 0x0D, 0x08, 0x70, 0x89
-    .byte 0x0D, 0x08, 0x3C, 0x8A, 0x0D, 0x08, 0x3C, 0x8A, 0x0D, 0x08, 0x3C, 0x8A, 0x0D, 0x08, 0x78, 0x8A
-    .byte 0x0D, 0x08, 0x10, 0x8B, 0x0D, 0x08, 0x68, 0x8B, 0x0D, 0x08, 0x3C, 0x8A, 0x0D, 0x08, 0x00, 0x8A
-    .byte 0x0D, 0x08, 0x00, 0x8A, 0x0D, 0x08, 0x00, 0x8A, 0x0D, 0x08, 0x00, 0x8A, 0x0D, 0x08, 0x00, 0x8A
-    .byte 0x0D, 0x08, 0x00, 0x8A, 0x0D, 0x08, 0x00, 0x8A, 0x0D, 0x08, 0x00, 0x8A, 0x0D, 0x08, 0x00, 0x8A
-    .byte 0x0D, 0x08, 0x50, 0x46, 0xB4, 0x30, 0x05, 0x68, 0x56, 0x46, 0x6C, 0x36, 0x4C, 0x38
+    .align 2, 0
+.Lraw_code_linkonce_1188_2: .word 0x000004F4
+.Lraw_code_linkonce_1188_6: .word .Lswitch_080D88CC
+.Lswitch_080D88CC: .word .Lraw_code_linkonce_1196_2
+    .word .Lraw_code_linkonce_1199_14
+    .word .Lraw_code_linkonce_1209_14
+    .word .Lraw_code_linkonce_1196_2
+    .word .Lraw_code_linkonce_1196_2
+    .word .Lraw_code_linkonce_1196_2
+    .word .Lraw_code_linkonce_1206_0
+    .word .Lraw_code_linkonce_1196_2
+    .word .Lraw_code_linkonce_1199_14
+    .word .Lraw_code_linkonce_1199_14
+    .word .Lraw_code_linkonce_1206_0
+    .word .Lraw_code_linkonce_1206_0
+    .word .Lraw_code_linkonce_1206_0
+    .word .Lraw_code_linkonce_1199_14
+    .word .Lraw_code_linkonce_1220_10
+    .word .Lraw_code_linkonce_1220_10
+    .word .Lraw_code_linkonce_1220_10
+    .word .Lraw_code_linkonce_1227_6
+    .word .Lraw_code_linkonce_1239_14
+    .word .Lraw_code_linkonce_1248_6
+    .word .Lraw_code_linkonce_1220_10
+    .word .Lraw_code_linkonce_1215_0
+    .word .Lraw_code_linkonce_1215_0
+    .word .Lraw_code_linkonce_1215_0
+    .word .Lraw_code_linkonce_1215_0
+    .word .Lraw_code_linkonce_1215_0
+    .word .Lraw_code_linkonce_1215_0
+    .word .Lraw_code_linkonce_1215_0
+    .word .Lraw_code_linkonce_1215_0
+    .word .Lraw_code_linkonce_1215_0
+.Lraw_code_linkonce_1196_2:
+    mov r0, sl
+    adds r0, #0xb4
+    ldr r5, [r0]
+    mov r6, sl
+    adds r6, #0x6c
+    subs r0, #0x4c
     bl GetHardwareManagerFrameCommands
-    .byte 0x69, 0x68, 0x00, 0x90, 0xCC, 0x6A, 0x28, 0x1C, 0x0D, 0xA9, 0x03, 0x4F, 0x6F, 0x44
-    .byte 0x3A, 0x68, 0x33, 0x1C, 0xFA, 0xF7, 0xB5, 0xFB, 0x17, 0xE1, 0x44, 0x05, 0x00, 0x00, 0x50, 0x46
-    .byte 0xB8, 0x30, 0x05, 0x68, 0x54, 0x46, 0x6C, 0x34, 0x50, 0x38
+    ldr r1, [r5, #4]
+    str r0, [sp]
+    ldr r4, [r1, #0x2c]
+    adds r0, r5, #0
+    add r1, sp, #0x34
+    ldr r7, .Lraw_code_linkonce_1199_10
+    add r7, sp
+    ldr r2, [r7]
+    adds r3, r6, #0
+    bl _call_via_r4
+    b .Lauto_080D8B9C
+.Lraw_code_linkonce_1199_10: .word 0x00000544
+.Lraw_code_linkonce_1199_14:
+    mov r0, sl
+    adds r0, #0xb8
+    ldr r5, [r0]
+    mov r4, sl
+    adds r4, #0x6c
+    subs r0, #0x50
     bl GetHardwareManagerFrameCommands
-    .byte 0x00, 0x94, 0x01, 0x90, 0x06, 0x48, 0x68, 0x44, 0x00, 0x68, 0x02, 0x90
-    .byte 0x28, 0x1C, 0x04, 0xA9, 0x0D, 0xAA, 0x04, 0x4C, 0x6C, 0x44, 0x23, 0x68
+    str r4, [sp]
+    str r0, [sp, #4]
+    ldr r0, .Lraw_code_linkonce_1205_4
+    add r0, sp
+    ldr r0, [r0]
+    str r0, [sp, #8]
+    adds r0, r5, #0
+    add r1, sp, #0x10
+    add r2, sp, #0x34
+    ldr r4, .Lraw_code_linkonce_1205_8
+    add r4, sp
+    ldr r3, [r4]
     bl Update__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot
-    .byte 0xFE, 0xE0, 0x00, 0x00, 0x6C, 0x05, 0x00, 0x00, 0x44, 0x05, 0x00, 0x00
-    .byte 0x50, 0x46, 0xAC, 0x30, 0x05, 0x68, 0x54, 0x46, 0x6C, 0x34, 0x44, 0x38
+    b .Lauto_080D8B9C
+    .align 2, 0
+.Lraw_code_linkonce_1205_4: .word 0x0000056C
+.Lraw_code_linkonce_1205_8: .word 0x00000544
+.Lraw_code_linkonce_1206_0:
+    mov r0, sl
+    adds r0, #0xac
+    ldr r5, [r0]
+    mov r4, sl
+    adds r4, #0x6c
+    subs r0, #0x44
     bl GetHardwareManagerFrameCommands
-    .byte 0x00, 0x94, 0x01, 0x90, 0x03, 0x4E, 0x6E, 0x44, 0x36, 0x68
-    .byte 0x02, 0x96, 0x28, 0x1C, 0x04, 0xA9, 0x95, 0xE0, 0x00, 0x00, 0x6C, 0x05, 0x00, 0x00, 0x50, 0x46
-    .byte 0xAC, 0x30, 0x05, 0x68, 0x00, 0x2D, 0x12, 0xD0, 0x54, 0x46, 0x6C, 0x34, 0x44, 0x38
+    str r4, [sp]
+    str r0, [sp, #4]
+    ldr r6, .Lraw_code_linkonce_1209_10
+    add r6, sp
+    ldr r6, [r6]
+    str r6, [sp, #8]
+    adds r0, r5, #0
+    add r1, sp, #0x10
+    b .Lraw_code_linkonce_1237_4
+    .align 2, 0
+.Lraw_code_linkonce_1209_10: .word 0x0000056C
+.Lraw_code_linkonce_1209_14:
+    mov r0, sl
+    adds r0, #0xac
+    ldr r5, [r0]
+    cmp r5, #0
+    beq .Lraw_code_linkonce_1215_0
+    mov r4, sl
+    adds r4, #0x6c
+    subs r0, #0x44
     bl GetHardwareManagerFrameCommands
-    .byte 0x00, 0x94, 0x01, 0x90, 0x12, 0x48, 0x68, 0x44, 0x00, 0x68, 0x02, 0x90, 0x28, 0x1C
-    .byte 0x04, 0xA9, 0x0D, 0xAA, 0x10, 0x4C, 0x6C, 0x44, 0x23, 0x68
+    str r4, [sp]
+    str r0, [sp, #4]
+    ldr r0, .Lraw_code_linkonce_1220_2
+    add r0, sp
+    ldr r0, [r0]
+    str r0, [sp, #8]
+    adds r0, r5, #0
+    add r1, sp, #0x10
+    add r2, sp, #0x34
+    ldr r4, .Lraw_code_linkonce_1220_6
+    add r4, sp
+    ldr r3, [r4]
     bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
-    .byte 0x50, 0x46
-    .byte 0xE8, 0x30, 0x00, 0x78, 0x00, 0x28, 0x00, 0xD0, 0xC7, 0xE0, 0x50, 0x46, 0xB4, 0x30, 0x06, 0x68
-    .byte 0x00, 0x2E, 0x00, 0xD1, 0xC1, 0xE0, 0x55, 0x46, 0x6C, 0x35, 0x4C, 0x38
+.Lraw_code_linkonce_1215_0:
+    mov r0, sl
+    adds r0, #0xe8
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1216_10
+    b .Lauto_080D8B9C
+.Lraw_code_linkonce_1216_10:
+    mov r0, sl
+    adds r0, #0xb4
+    ldr r6, [r0]
+    cmp r6, #0
+    bne .Lraw_code_linkonce_1217_6
+    b .Lauto_080D8B9C
+.Lraw_code_linkonce_1217_6:
+    mov r5, sl
+    adds r5, #0x6c
+    subs r0, #0x4c
     bl GetHardwareManagerFrameCommands
-    .byte 0x71, 0x68, 0x00, 0x90, 0xCC, 0x6A, 0x30, 0x1C, 0x0D, 0xA9, 0x02, 0x4E, 0x6E, 0x44, 0x32, 0x68
-    .byte 0x90, 0xE0, 0x6C, 0x05, 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x50, 0x46, 0xAC, 0x30, 0x05, 0x68
-    .byte 0x00, 0x2D, 0x00, 0xD1, 0xA9, 0xE0, 0x54, 0x46, 0x6C, 0x34, 0x44, 0x38
+    ldr r1, [r6, #4]
+    str r0, [sp]
+    ldr r4, [r1, #0x2c]
+    adds r0, r6, #0
+    add r1, sp, #0x34
+    ldr r6, .Lraw_code_linkonce_1220_6
+    add r6, sp
+    ldr r2, [r6]
+    b .Lraw_code_linkonce_1247_4
+.Lraw_code_linkonce_1220_2: .word 0x0000056C
+.Lraw_code_linkonce_1220_6: .word 0x00000544
+.Lraw_code_linkonce_1220_10:
+    mov r0, sl
+    adds r0, #0xac
+    ldr r5, [r0]
+    cmp r5, #0
+    bne .Lraw_code_linkonce_1221_6
+    b .Lauto_080D8B9C
+.Lraw_code_linkonce_1221_6:
+    mov r4, sl
+    adds r4, #0x6c
+    subs r0, #0x44
     bl GetHardwareManagerFrameCommands
-    .byte 0x00, 0x94, 0x01, 0x90, 0x06, 0x4F, 0x6F, 0x44, 0x3F, 0x68, 0x02, 0x97, 0x28, 0x1C, 0x04, 0xA9
-    .byte 0x0D, 0xAA, 0x03, 0x4C, 0x6C, 0x44, 0x23, 0x68
+    str r4, [sp]
+    str r0, [sp, #4]
+    ldr r7, .Lraw_code_linkonce_1226_2
+    add r7, sp
+    ldr r7, [r7]
+    str r7, [sp, #8]
+    adds r0, r5, #0
+    add r1, sp, #0x10
+    add r2, sp, #0x34
+    ldr r4, .Lraw_code_linkonce_1227_2
+    add r4, sp
+    ldr r3, [r4]
     bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
-    .byte 0x95, 0xE0, 0x6C, 0x05
-    .byte 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x50, 0x46, 0xAC, 0x30, 0x05, 0x68, 0x00, 0x2D, 0x00, 0xD1
-    .byte 0x8B, 0xE0, 0x04, 0xA8, 0x02, 0x89, 0x03, 0x20, 0x40, 0x42, 0x10, 0x40, 0x00, 0x06, 0x00, 0x0E
-    .byte 0x1C, 0x4B, 0x19, 0x1C, 0x11, 0x40, 0x01, 0x43, 0x41, 0x20, 0x40, 0x42, 0x08, 0x40, 0x00, 0x06
-    .byte 0x00, 0x0E, 0x19, 0x40, 0x01, 0x43, 0x7F, 0x20, 0x08, 0x40, 0x19, 0x40, 0x01, 0x43, 0x21, 0x20
-    .byte 0x40, 0x42, 0x08, 0x40, 0x00, 0x06, 0x00, 0x0E, 0x19, 0x40, 0x01, 0x43, 0x11, 0x20, 0x40, 0x42
-    .byte 0x08, 0x40, 0x00, 0x06, 0x00, 0x0E, 0x19, 0x40, 0x01, 0x43, 0x89, 0x20, 0xC0, 0x00, 0x68, 0x44
+    b .Lauto_080D8B9C
+.Lraw_code_linkonce_1226_2: .word 0x0000056C
+.Lraw_code_linkonce_1227_2: .word 0x00000544
+.Lraw_code_linkonce_1227_6:
+    mov r0, sl
+    adds r0, #0xac
+    ldr r5, [r0]
+    cmp r5, #0
+    bne .Lraw_code_linkonce_1228_2
+    b .Lauto_080D8B9C
+.Lraw_code_linkonce_1228_2:
+    add r0, sp, #0x10
+    ldrh r2, [r0, #8]
+    movs r0, #3
+    rsbs r0, r0, #0
+    ands r0, r2
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    ldr r3, .Lraw_code_linkonce_1239_2
+    adds r1, r3, #0
+    ands r1, r2
+    orrs r1, r0
+    movs r0, #0x41
+    rsbs r0, r0, #0
+    ands r0, r1
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    ands r1, r3
+    orrs r1, r0
+    movs r0, #0x7f
+    ands r0, r1
+    ands r1, r3
+    orrs r1, r0
+    movs r0, #0x21
+    rsbs r0, r0, #0
+    ands r0, r1
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    ands r1, r3
+    orrs r1, r0
+    movs r0, #0x11
+    rsbs r0, r0, #0
+    ands r0, r1
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    ands r1, r3
+    orrs r1, r0
+    movs r0, #0x89
+    lsls r0, r0, #3
+    add r0, sp
     bl __18HardwareInputStateUi
-    .byte 0x54, 0x46, 0x6C, 0x34, 0x50, 0x46, 0x68, 0x30
+    mov r4, sl
+    adds r4, #0x6c
+    mov r0, sl
+    adds r0, #0x68
     bl GetHardwareManagerFrameCommands
-    .byte 0x00, 0x94, 0x01, 0x90, 0x08, 0x4E, 0x6E, 0x44, 0x36, 0x68, 0x02, 0x96, 0x28, 0x1C, 0x89, 0x21
-    .byte 0xC9, 0x00, 0x69, 0x44, 0x0D, 0xAA, 0x04, 0x4F, 0x6F, 0x44, 0x3B, 0x68
+    str r4, [sp]
+    str r0, [sp, #4]
+    ldr r6, .Lraw_code_linkonce_1239_6
+    add r6, sp
+    ldr r6, [r6]
+    str r6, [sp, #8]
+    adds r0, r5, #0
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+.Lraw_code_linkonce_1237_4:
+    add r2, sp, #0x34
+    ldr r7, .Lraw_code_linkonce_1239_10
+    add r7, sp
+    ldr r3, [r7]
     bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
-    .byte 0x4B, 0xE0, 0x00, 0xFF, 0xFF, 0xFF, 0x6C, 0x05, 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x13, 0x49
-    .byte 0x69, 0x44, 0x09, 0x68, 0x08, 0x68
+    b .Lauto_080D8B9C
+.Lraw_code_linkonce_1239_2: .word 0xFFFFFF00
+.Lraw_code_linkonce_1239_6: .word 0x0000056C
+.Lraw_code_linkonce_1239_10: .word 0x00000544
+.Lraw_code_linkonce_1239_14:
+    ldr r1, .Lraw_code_linkonce_1247_14
+    add r1, sp
+    ldr r1, [r1]
+    ldr r0, [r1]
     bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42
-    .byte 0x01, 0x43, 0x00, 0x29, 0x39, 0xDA, 0x50, 0x46, 0xE8, 0x30, 0x00, 0x78, 0x00, 0x28, 0x34, 0xD1
-    .byte 0x50, 0x46, 0xB4, 0x30, 0x06, 0x68, 0x00, 0x2E, 0x2F, 0xD0, 0x55, 0x46, 0x6C, 0x35, 0x4C, 0x38
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    cmp r1, #0
+    bge .Lauto_080D8B9C
+    mov r0, sl
+    adds r0, #0xe8
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lauto_080D8B9C
+    mov r0, sl
+    adds r0, #0xb4
+    ldr r6, [r0]
+    cmp r6, #0
+    beq .Lauto_080D8B9C
+    mov r5, sl
+    adds r5, #0x6c
+    subs r0, #0x4c
     bl GetHardwareManagerFrameCommands
-    .byte 0x71, 0x68, 0x00, 0x90, 0xCC, 0x6A, 0x30, 0x1C, 0x0D, 0xA9, 0x04, 0x4B
-    .byte 0x6B, 0x44, 0x1A, 0x68, 0x2B, 0x1C, 0xFA, 0xF7, 0xBC, 0xFA, 0x1E, 0xE0, 0x00, 0x00, 0x5C, 0x05
-    .byte 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x50, 0x46, 0xE8, 0x30, 0x00, 0x78, 0x00, 0x28, 0x14, 0xD1
-    .byte 0x50, 0x46, 0xB4, 0x30, 0x06, 0x68, 0x00, 0x2E, 0x0F, 0xD0, 0x55, 0x46, 0x6C, 0x35, 0x4C, 0x38
+    ldr r1, [r6, #4]
+    str r0, [sp]
+    ldr r4, [r1, #0x2c]
+    adds r0, r6, #0
+    add r1, sp, #0x34
+    ldr r3, .Lraw_code_linkonce_1248_2
+    add r3, sp
+    ldr r2, [r3]
+.Lraw_code_linkonce_1247_4:
+    adds r3, r5, #0
+    bl _call_via_r4
+    b .Lauto_080D8B9C
+    .align 2, 0
+.Lraw_code_linkonce_1247_14: .word 0x0000055C
+.Lraw_code_linkonce_1248_2: .word 0x00000544
+.Lraw_code_linkonce_1248_6:
+    mov r0, sl
+    adds r0, #0xe8
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lauto_080D8B9C
+    mov r0, sl
+    adds r0, #0xb4
+    ldr r6, [r0]
+    cmp r6, #0
+    beq .Lauto_080D8B9C
+    mov r5, sl
+    adds r5, #0x6c
+    subs r0, #0x4c
     bl GetHardwareManagerFrameCommands
-    .byte 0x71, 0x68, 0x00, 0x90, 0xCC, 0x6A, 0x30, 0x1C, 0x0D, 0xA9, 0x09, 0x4E
-    .byte 0x6E, 0x44, 0x32, 0x68, 0x2B, 0x1C, 0xFA, 0xF7, 0x9C, 0xFA
+    ldr r1, [r6, #4]
+    str r0, [sp]
+    ldr r4, [r1, #0x2c]
+    adds r0, r6, #0
+    add r1, sp, #0x34
+    ldr r6, .Lraw_code_linkonce_1268_0
+    add r6, sp
+    ldr r2, [r6]
+    adds r3, r5, #0
+    bl _call_via_r4
     .Lauto_080D8B9C:
     movs r7, #0xab
     lsls r7, r7, #3
@@ -1261,679 +2242,3567 @@ sub_080D8178:
     bl .Lauto_080DA29A
     .Lauto_080D8BAE:
     lsls r0, r0, #2
-    ldr r1, [pc, #8]
+    ldr r1, .Lraw_code_linkonce_1268_4
     adds r0, r0, r1
     ldr r0, [r0]
     mov pc, r0
-    .byte 0x44, 0x05, 0x00, 0x00, 0xC0, 0x8B, 0x0D, 0x08, 0x38, 0x8C, 0x0D, 0x08
-    .byte 0xFA, 0x94, 0x0D, 0x08, 0x2C, 0x9A, 0x0D, 0x08, 0xE4, 0x8D, 0x0D, 0x08
-    .byte 0xBC, 0x8E, 0x0D, 0x08, 0x98, 0x8F, 0x0D, 0x08, 0x68, 0x91, 0x0D, 0x08
-    .byte 0x88, 0x94, 0x0D, 0x08, 0xEE, 0x98, 0x0D, 0x08, 0xEC, 0x99, 0x0D, 0x08
-    .byte 0xDC, 0x93, 0x0D, 0x08, 0x4A, 0x94, 0x0D, 0x08, 0x28, 0x91, 0x0D, 0x08
-    .byte 0x88, 0x90, 0x0D, 0x08, 0x38, 0x9D, 0x0D, 0x08, 0x4A, 0x9D, 0x0D, 0x08
-    .byte 0x70, 0x9D, 0x0D, 0x08, 0x82, 0x9D, 0x0D, 0x08, 0x9C, 0x9E, 0x0D, 0x08
-    .byte 0xEC, 0x9E, 0x0D, 0x08, 0x50, 0x9F, 0x0D, 0x08, 0x0C, 0x9F, 0x0D, 0x08
-    .byte 0x2C, 0x9F, 0x0D, 0x08, 0x7C, 0x9F, 0x0D, 0x08, 0x04, 0xA2, 0x0D, 0x08
-    .byte 0x94, 0x9F, 0x0D, 0x08, 0xC8, 0x9F, 0x0D, 0x08, 0x20, 0xA2, 0x0D, 0x08
-    .byte 0x50, 0xA2, 0x0D, 0x08, 0x80, 0xA2, 0x0D, 0x08, 0x04, 0xA8, 0x85, 0x88
-    .byte 0x01, 0x88, 0x40, 0x48, 0x68, 0x44, 0x01, 0x60, 0x0C, 0x20, 0x28, 0x40
-    .byte 0x00, 0x28, 0x01, 0xD1, 0x01, 0xF0, 0x25, 0xFB, 0x50, 0x46, 0xB4, 0x30
-    .byte 0x00, 0x68
+.Lraw_code_linkonce_1268_0: .word 0x00000544
+.Lraw_code_linkonce_1268_4: .word .Lswitch_080D8BC0
+.Lswitch_080D8BC0: .word .Lraw_code_linkonce_1278_8
+    .word .Lraw_code_linkonce_1510_0
+    .word .Lraw_code_linkonce_1638_4
+    .word .Lraw_code_linkonce_1317_12
+    .word .Lraw_code_linkonce_1337_4
+    .word .Lraw_code_linkonce_1359_4
+    .word .Lraw_code_linkonce_1414_0
+    .word .Lraw_code_linkonce_1498_2
+    .word .Lraw_code_linkonce_1606_10
+    .word .Lraw_code_linkonce_1633_4
+    .word .Lraw_code_linkonce_1477_4
+    .word .Lraw_code_linkonce_1492_0
+    .word .Lraw_code_linkonce_1405_0
+    .word .Lraw_code_linkonce_1382_4
+    .word .Lraw_code_linkonce_1700_0
+    .word .Lraw_code_linkonce_1703_2
+    .word .Lraw_code_linkonce_1708_4
+    .word .Lraw_code_linkonce_1710_8
+    .word .Lraw_code_linkonce_1730_4
+    .word .Lraw_code_linkonce_1736_4
+    .word .Lraw_code_linkonce_1745_8
+    .word .Lraw_code_linkonce_1739_4
+    .word .Lraw_code_linkonce_1741_4
+    .word .Lraw_code_linkonce_1750_4
+    .word .Lraw_code_linkonce_1797_0
+    .word .Lraw_code_linkonce_1751_12
+    .word .Lraw_code_linkonce_1755_0
+    .word .Lraw_code_linkonce_1798_12
+    .word .Lraw_code_linkonce_1803_8
+    .word .Lraw_code_linkonce_1808_8
+.Lraw_code_linkonce_1278_8:
+    add r0, sp, #0x10
+    ldrh r5, [r0, #4]
+    ldrh r1, [r0]
+    ldr r0, .Lraw_code_linkonce_1302_2
+    add r0, sp
+    str r1, [r0]
+    movs r0, #0xc
+    ands r0, r5
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1280_8
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1280_8:
+    mov r0, sl
+    adds r0, #0xb4
+    ldr r0, [r0]
     bl GetPhase__C13ControlWidget
-    .byte 0x06, 0x1C, 0x39, 0x49, 0x69, 0x44, 0x09, 0x68, 0x08, 0x68, 0x01, 0x68
-    .byte 0x0A, 0x6C, 0x4B, 0x21, 0xFA, 0xF7, 0x2F, 0xFA, 0x03, 0x1C, 0x35, 0x48
-    .byte 0x04, 0x68, 0xDE, 0x22, 0x92, 0x00, 0x12, 0x19, 0x90, 0x46, 0x31, 0x4F
-    .byte 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x00, 0x21
-    .byte 0xB0, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x3B, 0x60, 0xFA, 0xF7, 0x1B, 0xFA
-    .byte 0x02, 0x1C, 0xB0, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x03, 0x68, 0x03, 0x2E
-    .byte 0x03, 0xD0, 0x00, 0x2E, 0x01, 0xD0, 0x01, 0xF0, 0xF7, 0xFA, 0x00, 0x26
-    .byte 0x00, 0x21, 0x47, 0x46, 0x38, 0x68, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21
-    .byte 0x00, 0x29, 0x14, 0xD0, 0xE3, 0x21, 0x89, 0x00, 0x60, 0x18, 0x00, 0x21
-    .byte 0x00, 0x68, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x0A, 0xD0
-    .byte 0x9A, 0x27, 0xFF, 0x00, 0xE0, 0x19, 0x00, 0x21, 0x00, 0x68, 0x00, 0x28
-    .byte 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x00, 0xD0, 0x01, 0x26, 0x00, 0x2E
-    .byte 0x01, 0xD1, 0x01, 0xF0, 0xD5, 0xFA, 0x00, 0x2B, 0x0D, 0xD0, 0x18, 0x1C
-    .byte 0x15, 0x49, 0x69, 0x44, 0x0A, 0x60, 0x5F, 0xF7, 0xCE, 0xF8, 0x00, 0x06
-    .byte 0x12, 0x4B, 0x6B, 0x44, 0x1A, 0x68, 0x00, 0x28, 0x01, 0xD0, 0x01, 0xF0
-    .byte 0xC5, 0xFA, 0x50, 0x69, 0x94, 0x30, 0x01, 0x68, 0x10, 0x1C, 0xFA, 0xF7
-    .byte 0xD6, 0xF9, 0x00, 0x06, 0x00, 0x28, 0x01, 0xD1, 0x01, 0xF0, 0xBA, 0xFA
-    .byte 0x06, 0x48, 0x68, 0x44, 0x41, 0x78, 0x02, 0x20, 0x08, 0x40, 0x00, 0x28
-    .byte 0x21, 0xD0, 0x08, 0x20, 0x28, 0x40, 0x00, 0x28, 0x09, 0xD0, 0x04, 0x20
-    .byte 0x3C, 0xE0, 0xAC, 0x04, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x0C, 0x04
-    .byte 0x00, 0x03, 0x7C, 0x05, 0x00, 0x00, 0x04, 0x20, 0x05, 0x40, 0x00, 0x2D
-    .byte 0x01, 0xD1, 0x01, 0xF0, 0x9F, 0xFA, 0x05, 0x20, 0xAB, 0x26, 0xF6, 0x00
-    .byte 0x6E, 0x44, 0x36, 0x68, 0x30, 0x60, 0x02, 0x4F, 0x6F, 0x44, 0x3F, 0x68
-    .byte 0x38, 0x68, 0x2C, 0xE0, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0xAA, 0x21
-    .byte 0xC9, 0x00, 0x69, 0x44, 0x09, 0x68, 0x08, 0x68, 0x09, 0x4A, 0x80, 0x18
-    .byte 0x00, 0x78, 0x00, 0x28, 0x0F, 0xD1, 0x08, 0x20, 0x28, 0x40, 0x00, 0x28
-    .byte 0x0B, 0xD0, 0x50, 0x46, 0xB4, 0x30, 0x00, 0x68, 0x41, 0x68, 0x49, 0x69
-    .byte 0xFA, 0xF7, 0x93, 0xF9, 0x07, 0x20, 0x01, 0xF0, 0x08, 0xF9, 0xC4, 0x34
-    .byte 0x00, 0x00, 0x04, 0x20, 0x05, 0x40, 0x00, 0x2D, 0x01, 0xD1, 0x01, 0xF0
-    .byte 0x71, 0xFA, 0x03, 0x20, 0xAB, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x24, 0x68
-    .byte 0x20, 0x60, 0x05, 0x4D, 0x6D, 0x44, 0x2D, 0x68, 0x28, 0x68, 0x04, 0x49
-    .byte 0x01, 0x22, 0x01, 0x23
+    adds r6, r0, #0
+    ldr r1, .Lraw_code_linkonce_1302_6
+    add r1, sp
+    ldr r1, [r1]
+    ldr r0, [r1]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x4b
+    bl _call_via_r2
+    adds r3, r0, #0
+    ldr r0, .Lraw_code_linkonce_1302_10
+    ldr r4, [r0]
+    movs r2, #0xde
+    lsls r2, r2, #2
+    adds r2, r2, r4
+    mov r8, r2
+    ldr r7, .Lraw_code_linkonce_1302_6
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    movs r7, #0xb0
+    lsls r7, r7, #3
+    add r7, sp
+    str r3, [r7]
+    bl _call_via_r2
+    adds r2, r0, #0
+    movs r0, #0xb0
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r3, [r0]
+    cmp r6, #3
+    beq .Lraw_code_linkonce_1289_10
+    cmp r6, #0
+    beq .Lraw_code_linkonce_1289_10
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1289_10:
+    movs r6, #0
+    movs r1, #0
+    mov r7, r8
+    ldr r0, [r7]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1291_0
+    movs r1, #1
+.Lraw_code_linkonce_1291_0:
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1294_10
+    movs r1, #0xe3
+    lsls r1, r1, #2
+    adds r0, r4, r1
+    movs r1, #0
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1292_8
+    movs r1, #1
+.Lraw_code_linkonce_1292_8:
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1294_10
+    movs r7, #0x9a
+    lsls r7, r7, #3
+    adds r0, r4, r7
+    movs r1, #0
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1294_4
+    movs r1, #1
+.Lraw_code_linkonce_1294_4:
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1294_10
+    movs r6, #1
+.Lraw_code_linkonce_1294_10:
+    cmp r6, #0
+    bne .Lraw_code_linkonce_1295_6
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1295_6:
+    cmp r3, #0
+    beq .Lraw_code_linkonce_1298_2
+    adds r0, r3, #0
+    ldr r1, .Lraw_code_linkonce_1303_2
+    add r1, sp
+    str r2, [r1]
+    bl func_08038108
+    lsls r0, r0, #0x18
+    ldr r3, .Lraw_code_linkonce_1303_2
+    add r3, sp
+    ldr r2, [r3]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1298_2
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1298_2:
+    ldr r0, [r2, #0x14]
+    adds r0, #0x94
+    ldr r1, [r0]
+    adds r0, r2, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1300_0
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1300_0:
+    ldr r0, .Lraw_code_linkonce_1302_2
+    add r0, sp
+    ldrb r1, [r0, #1]
+    movs r0, #2
+    ands r0, r1
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1306_10
+    movs r0, #8
+    ands r0, r5
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1303_6
+    movs r0, #4
+    b .Lraw_code_linkonce_1312_4
+.Lraw_code_linkonce_1302_2: .word 0x000004AC
+.Lraw_code_linkonce_1302_6: .word 0x00000564
+.Lraw_code_linkonce_1302_10: .word gUnk_0300040C
+.Lraw_code_linkonce_1303_2: .word 0x0000057C
+.Lraw_code_linkonce_1303_6:
+    movs r0, #4
+    ands r5, r0
+    cmp r5, #0
+    bne .Lraw_code_linkonce_1304_6
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1304_6:
+    movs r0, #5
+    movs r6, #0xab
+    lsls r6, r6, #3
+    add r6, sp
+    ldr r6, [r6]
+    str r0, [r6]
+    ldr r7, .Lraw_code_linkonce_1306_6
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    b .Lraw_code_linkonce_1313_10
+    .align 2, 0
+.Lraw_code_linkonce_1306_6: .word 0x0000055C
+.Lraw_code_linkonce_1306_10:
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r0, [r1]
+    ldr r2, .Lraw_code_linkonce_1310_10
+    adds r0, r0, r2
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1311_2
+    movs r0, #8
+    ands r0, r5
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1311_2
+    mov r0, sl
+    adds r0, #0xb4
+    ldr r0, [r0]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0x14]
+    bl _call_via_r1
+    movs r0, #7
+    bl .Lraw_code_linkonce_1754_0
+.Lraw_code_linkonce_1310_10: .word 0x000034C4
+.Lraw_code_linkonce_1311_2:
+    movs r0, #4
+    ands r5, r0
+    cmp r5, #0
+    bne .Lraw_code_linkonce_1312_2
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1312_2:
+    movs r0, #3
+.Lraw_code_linkonce_1312_4:
+    movs r4, #0xab
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    str r0, [r4]
+    ldr r5, .Lraw_code_linkonce_1317_4
+    add r5, sp
+    ldr r5, [r5]
+    ldr r0, [r5]
+.Lraw_code_linkonce_1313_10:
+    ldr r1, .Lraw_code_linkonce_1317_8
+    movs r2, #1
+    movs r3, #1
     bl EndHardwareBlend
-    .byte 0x01, 0xF0
-    .byte 0x60, 0xFA, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0x30, 0x4E, 0x6E, 0x44
-    .byte 0x36, 0x68, 0x30, 0x68
-    bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42, 0x01, 0x43
-    .byte 0xCF, 0x0F, 0x00, 0x2F, 0x01, 0xD0, 0x01, 0xF0, 0x4C, 0xFA, 0x87, 0x24, 0xE4, 0x00, 0x6C, 0x44
-    .byte 0x01, 0x20, 0x80, 0x46, 0x20, 0x60, 0x14, 0x20
-    bl __builtin_new
-    .byte 0xAA, 0x21, 0xC9, 0x00
-    .byte 0x69, 0x44, 0x09, 0x68, 0x09, 0x68, 0x89, 0x46, 0x89, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x29, 0x1C
-    .byte 0x4C, 0xCC, 0x4C, 0xC1, 0x1F, 0x49, 0x01, 0x60, 0x49, 0x46, 0x41, 0x60, 0x02, 0x1C, 0x08, 0x32
-    .byte 0x89, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x58, 0xC9, 0x58, 0xC2, 0x1B, 0x4C, 0x6C, 0x44, 0x20, 0x60
-    .byte 0x10, 0x20
-    bl __builtin_new
-    .byte 0x22, 0x68, 0x27, 0x60, 0x2A, 0x60, 0xAA, 0x21, 0xC9, 0x00
-    .byte 0x69, 0x44, 0x09, 0x68, 0x0B, 0x68, 0x15, 0x49, 0x01, 0x60, 0x2F, 0x60, 0x42, 0x60, 0x83, 0x60
-    .byte 0x42, 0x46, 0x02, 0x73, 0xAC, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x1D, 0x68, 0x04, 0x1C, 0x2E, 0x1C
-    .byte 0x31, 0x68, 0x8C, 0x42, 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xFA, 0xF7, 0x1F, 0xF9, 0x2C, 0x60, 0xAC, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x3F, 0x68
-    .byte 0x38, 0x68, 0x00, 0x21, 0x39, 0x60, 0x06, 0x4B, 0x6B, 0x44, 0x1B, 0x68, 0x18, 0x60, 0xD5, 0xE0
-    .byte 0x5C, 0x05, 0x00, 0x00, 0xB4, 0x52, 0x0E, 0x08, 0x44, 0x04, 0x00, 0x00, 0xF4, 0x52, 0x0E, 0x08
-    .byte 0xDC, 0x04, 0x00, 0x00, 0x30, 0x4C, 0x6C, 0x44, 0x24, 0x68, 0x20, 0x68
-    bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42, 0x01, 0x43, 0xC9, 0x0F, 0x0C, 0x06, 0x27, 0x0E, 0x00, 0x2F
-    .byte 0x01, 0xD0, 0x01, 0xF0, 0xDE, 0xF9, 0x10, 0x20
-    bl __builtin_new
-    .byte 0x06, 0x1C, 0xAA, 0x25
-    .byte 0xED, 0x00, 0x6D, 0x44, 0x2D, 0x68, 0x2D, 0x68, 0xA8, 0x46, 0x24, 0x48, 0x30, 0x60, 0x75, 0x60
-    .byte 0x14, 0x20
-    bl __builtin_new
-    .byte 0x22, 0x49, 0x01, 0x60, 0x07, 0x71, 0x85, 0x1D, 0x8D, 0x23, 0x9B, 0x00, 0xC2, 0x88, 0x1F, 0x4C
-    .byte 0x21, 0x1C, 0x11, 0x40, 0x19, 0x43, 0xC1, 0x80, 0x6A, 0x78, 0x03, 0x23, 0x19, 0x1C, 0x11, 0x40
-    .byte 0x69, 0x70, 0x6A, 0x88, 0x21, 0x1C, 0x11, 0x40, 0x69, 0x80, 0xE9, 0x78, 0x0B, 0x40, 0xEB, 0x70
-    .byte 0xA9, 0x88, 0x0C, 0x40, 0xAC, 0x80, 0x16, 0x49, 0x01, 0x60, 0x41, 0x46, 0xC1, 0x60, 0x07, 0x61
-    .byte 0xB0, 0x60, 0xF7, 0x60, 0xAC, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x14, 0x68, 0x23, 0x1C, 0x19, 0x68
-    .byte 0x8E, 0x42, 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
-    .byte 0xFA, 0xF7, 0xB5, 0xF8, 0x26, 0x60, 0xAC, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x24, 0x68, 0x21, 0x68
-    .byte 0x00, 0x20, 0x20, 0x60, 0x08, 0x4E, 0x6E, 0x44, 0x36, 0x68, 0x31, 0x60, 0x01, 0xF0, 0x81, 0xFC
-    .byte 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00
-    .4byte __vt_17TownMapTransition
-    .4byte __vt_26TownMapSelectionTransition
-    .byte 0x00, 0xFC, 0xFF, 0xFF
-    .4byte __vt_23TownMapReturnTransition
-    .byte 0xDC, 0x04, 0x00, 0x00, 0x36, 0x4F, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x68
-    bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14
-    .byte 0x41, 0x42, 0x01, 0x43, 0xCE, 0x0F, 0x00, 0x2E, 0x01, 0xD0, 0x01, 0xF0, 0x72, 0xF9, 0x87, 0x24
-    .byte 0xE4, 0x00, 0x6C, 0x44, 0x01, 0x20, 0x20, 0x60, 0x14, 0x20
-    bl __builtin_new
-    .byte 0xAA, 0x21
-    .byte 0xC9, 0x00, 0x69, 0x44, 0x09, 0x68, 0x09, 0x68, 0x88, 0x46, 0x89, 0x25, 0xED, 0x00, 0x6D, 0x44
-    .byte 0x29, 0x1C, 0x8C, 0xCC, 0x8C, 0xC1, 0x26, 0x49, 0x01, 0x60, 0x41, 0x46, 0x41, 0x60, 0x02, 0x1C
-    .byte 0x08, 0x32, 0x89, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x98, 0xC9, 0x98, 0xC2, 0x21, 0x4C, 0x6C, 0x44
-    .byte 0x20, 0x60, 0x0C, 0x20
-    bl __builtin_new
-    .byte 0x23, 0x68, 0x26, 0x60, 0x2B, 0x60, 0xAA, 0x21, 0xC9, 0x00, 0x69, 0x44
-    .byte 0x09, 0x68, 0x0A, 0x68, 0x1B, 0x49, 0x01, 0x60, 0x42, 0x60, 0x2E, 0x60
-    .byte 0x83, 0x60, 0xAC, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x15, 0x68, 0x04, 0x1C
-    .byte 0x2B, 0x1C, 0x19, 0x68, 0x8C, 0x42, 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0
-    .byte 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xFA, 0xF7, 0x48, 0xF8
-    .byte 0x2C, 0x60, 0xAC, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x24, 0x68, 0x20, 0x68
-    .byte 0x00, 0x21, 0x21, 0x60, 0x0D, 0x4E, 0x6E, 0x44, 0x36, 0x68, 0x30, 0x60
-    .byte 0x09, 0x48, 0x68, 0x44, 0x01, 0x68, 0x00, 0x29, 0x01, 0xD1, 0x01, 0xF0
-    .byte 0x0F, 0xFC, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xFA, 0xF7
-    .byte 0x2F, 0xF8, 0x01, 0xF0, 0x07, 0xFC, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00
-    .byte 0xB4, 0x52, 0x0E, 0x08, 0x44, 0x04, 0x00, 0x00, 0xD4, 0x52, 0x0E, 0x08
-    .byte 0xDC, 0x04, 0x00, 0x00, 0x54, 0x46, 0xB8, 0x34, 0x20, 0x68
-    bl GetPhase__C13ControlWidget
-    .byte 0x00, 0x28, 0x01, 0xD0, 0x01, 0xF0, 0x00, 0xF9, 0x00, 0x25, 0x21, 0x68
-    .byte 0x8D, 0x42, 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68
-    .byte 0x08, 0x1C, 0x03, 0x21, 0xFA, 0xF7, 0x0D, 0xF8, 0x25, 0x60, 0x04, 0x20
-    bl __builtin_new
-    .byte 0x06, 0x1C, 0x87, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x28, 0x1C
-    bl __17ObjTileCollection
-    .byte 0x16, 0x4C, 0x6C, 0x44, 0x20, 0x1C
-    bl __20ObjPaletteCollection
-    .byte 0x01, 0x20, 0x00, 0x90, 0x01, 0x95
-    .byte 0x02, 0x94, 0x30, 0x1C, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
-    .byte 0x54, 0x46
-    .byte 0xAC, 0x34, 0x05, 0x1C, 0x20, 0x68, 0x26, 0x1C, 0x85, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0
-    .byte 0x03, 0x21
-    bl _._12UiStateOwner
-    .byte 0x25, 0x60, 0x08, 0x48, 0x68, 0x44, 0x02, 0x21
-    bl _._20ObjPaletteCollection
-    .byte 0x87, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x02, 0x21
-    bl _._17ObjTileCollection
-    .byte 0x30, 0x68
-    .byte 0x77, 0xF7, 0xE6, 0xFC, 0x0C, 0x20, 0x00, 0xF0, 0x75, 0xFF, 0x00, 0x00, 0x3C, 0x04, 0x00, 0x00
-    .byte 0x54, 0x46, 0xAC, 0x34, 0x20, 0x68
-    bl GetState__C12UiStateOwner
-    .byte 0x03, 0x28, 0x01, 0xD0, 0x01, 0xF0
-    .byte 0xB0, 0xF8, 0x20, 0x68, 0x06, 0x49, 0x07, 0x4A, 0x07, 0x4B, 0x08, 0x4D, 0x00, 0x24, 0x00, 0x95
-    .byte 0x01, 0x94, 0x02, 0x94, 0x03, 0x94, 0x77, 0xF7, 0x23, 0xFD, 0x06, 0x20, 0x01, 0xF0, 0x8B, 0xF8
-    .word gText_HelpMenu_Crops
-    .word gText_HelpMenu_Animals
-    .word gText_HelpMenu_UsefulTips
-    .word gText_HelpMenu_Exit
-    .byte 0x11, 0x4A, 0x6A, 0x44, 0x12, 0x68, 0x10, 0x68
-    bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14
-    .byte 0x41, 0x42, 0x01, 0x43, 0xCE, 0x0F, 0x00, 0x2E, 0x01, 0xD0, 0x01, 0xF0, 0x8A, 0xF8, 0x54, 0x46
-    .byte 0xAC, 0x34, 0x20, 0x68
-    bl GetState__C12UiStateOwner
-    .byte 0x06, 0x28, 0x0F, 0xD1, 0x04, 0xA8, 0x80, 0x88
-    .byte 0x02, 0x21, 0x08, 0x40, 0x00, 0x28, 0x01, 0xD1, 0x01, 0xF0, 0x7B, 0xF8, 0x20, 0x68, 0x77, 0xF7
-    .byte 0xAB, 0xFC, 0x0A, 0x20, 0x00, 0xF0, 0x04, 0xFF, 0x5C, 0x05, 0x00, 0x00, 0x20, 0x68
-    bl GetChoiceResult__C12UiStateOwner
-    .byte 0x02, 0x28, 0x50, 0xD0, 0x02, 0x28, 0x03, 0xDC, 0x01, 0x28, 0x09, 0xD0, 0x01, 0xF0
-    .byte 0x68, 0xF8, 0x03, 0x28, 0x00, 0xD1, 0x91, 0xE0, 0x04, 0x28, 0x00, 0xD1, 0xFC, 0xE0, 0x01, 0xF0
-    .byte 0x60, 0xF8, 0x1D, 0x4C, 0x6C, 0x44, 0x24, 0x68, 0x20, 0x68, 0x1C, 0x49, 0x01, 0x22, 0x01, 0x23
-    bl EndHardwareBlend
-    .byte 0x0B, 0x20, 0xAB, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2D, 0x68, 0x28, 0x60
-    .byte 0x87, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x08, 0x20, 0x20, 0x60, 0x14, 0x20
-    bl __builtin_new
-    .byte 0xAA, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x3F, 0x68, 0x3F, 0x68, 0xB8, 0x46, 0x89, 0x25, 0xED, 0x00
-    .byte 0x6D, 0x44, 0x29, 0x1C, 0x8C, 0xCC, 0x8C, 0xC1, 0x0D, 0x49, 0x01, 0x60, 0x41, 0x46, 0x41, 0x60
-    .byte 0x02, 0x1C, 0x08, 0x32, 0x89, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x98, 0xC9, 0x98, 0xC2, 0x09, 0x49
-    .byte 0x69, 0x44, 0x0E, 0x60, 0x28, 0x60, 0x0C, 0x20
-    bl __builtin_new
-    .byte 0x29, 0x1C, 0x00, 0x22
-    bl __25FarmingTutorialTransitionG20SceneTransitionOwner23MaryFarmingTutorialKind
-    .byte 0x95, 0xE0, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00
-    .byte 0xB4, 0x52, 0x0E, 0x08, 0x44, 0x04, 0x00, 0x00, 0x20, 0x4B, 0x6B, 0x44, 0x1B, 0x68, 0x18, 0x68
-    .byte 0x1F, 0x49, 0x01, 0x22, 0x01, 0x23
-    bl EndHardwareBlend
-    .byte 0x0B, 0x20, 0xAB, 0x24, 0xE4, 0x00
-    .byte 0x6C, 0x44, 0x24, 0x68, 0x20, 0x60, 0x87, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x08, 0x20, 0x20, 0x60
-    .byte 0x14, 0x20
-    bl __builtin_new
-    .byte 0xAA, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2D, 0x68, 0x2D, 0x68
-    .byte 0xA8, 0x46, 0x89, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x29, 0x1C, 0x8C, 0xCC, 0x8C, 0xC1, 0x11, 0x49
-    .byte 0x01, 0x60, 0x44, 0x46, 0x44, 0x60, 0x02, 0x1C, 0x08, 0x32, 0x89, 0x21, 0xC9, 0x00, 0x69, 0x44
-    .byte 0x98, 0xC9, 0x98, 0xC2, 0x0C, 0x49, 0x69, 0x44, 0x0E, 0x60, 0x28, 0x60, 0x0C, 0x20
-    bl __builtin_new
-    .byte 0x29, 0x1C, 0x01, 0x22
-    bl __25FarmingTutorialTransitionG20SceneTransitionOwner23MaryFarmingTutorialKind
-    .byte 0xAC, 0x26, 0xF6, 0x00, 0x6E, 0x44
-    .byte 0x35, 0x68, 0x04, 0x1C, 0x2F, 0x1C, 0x39, 0x68, 0x52, 0xE0, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00
-    .byte 0x89, 0x08, 0x00, 0x00, 0xB4, 0x52, 0x0E, 0x08, 0x44, 0x04, 0x00, 0x00, 0x31, 0x49, 0x69, 0x44
-    .byte 0x09, 0x68, 0x08, 0x68, 0x30, 0x49, 0x01, 0x22, 0x01, 0x23
-    bl EndHardwareBlend
-    .byte 0x0B, 0x20
-    .byte 0xAB, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x12, 0x68, 0x10, 0x60, 0x87, 0x24, 0xE4, 0x00, 0x6C, 0x44
-    .byte 0x08, 0x20, 0x20, 0x60, 0x14, 0x20
-    bl __builtin_new
-    .byte 0xAA, 0x23, 0xDB, 0x00, 0x6B, 0x44
-    .byte 0x1B, 0x68, 0x1B, 0x68, 0x98, 0x46, 0x89, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x29, 0x1C, 0x8C, 0xCC
-    .byte 0x8C, 0xC1, 0x22, 0x49, 0x01, 0x60, 0x44, 0x46, 0x44, 0x60, 0x02, 0x1C, 0x08, 0x32, 0x89, 0x21
-    .byte 0xC9, 0x00, 0x69, 0x44, 0x98, 0xC9, 0x98, 0xC2, 0x1D, 0x4C, 0x6C, 0x44, 0x20, 0x60, 0x10, 0x20
-    bl __builtin_new
-    .byte 0x22, 0x68, 0x26, 0x60, 0x2A, 0x60, 0xAA, 0x27, 0xFF, 0x00, 0x6F, 0x44
-    .byte 0x3F, 0x68, 0x3B, 0x68, 0x88, 0x24, 0x17, 0x49, 0x01, 0x60, 0x2E, 0x60, 0x42, 0x60, 0x83, 0x60
-    .byte 0xC4, 0x60, 0xAC, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x0D, 0x68, 0x04, 0x1C, 0x2A, 0x1C, 0x11, 0x68
-    .byte 0x8C, 0x42, 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
-    .byte 0xF9, 0xF7, 0x98, 0xFE, 0x2C, 0x60, 0x0A, 0x48, 0x68, 0x44, 0x01, 0x68, 0x00, 0x29, 0x01, 0xD1
-    .byte 0x00, 0xF0, 0x77, 0xFF, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF9, 0xF7, 0x8A, 0xFE
-    .byte 0x00, 0xF0, 0x6F, 0xFF, 0x5C, 0x05, 0x00, 0x00, 0x89, 0x08, 0x00, 0x00, 0xB4, 0x52, 0x0E, 0x08
-    .byte 0x44, 0x04, 0x00, 0x00
-    .4byte __vt_23ReferencePageTransition
-    .byte 0x20, 0x68, 0x77, 0xF7, 0x95, 0xFB, 0x0A, 0x20
-    .byte 0x00, 0xF0, 0xEE, 0xFD, 0x54, 0x46, 0xAC, 0x34, 0x20, 0x68
-    bl GetState__C12UiStateOwner
-    .byte 0x00, 0x28
-    .byte 0x01, 0xD0, 0x00, 0xF0, 0x56, 0xFF, 0x00, 0x25, 0x20, 0x68, 0x85, 0x42, 0x04, 0xD0, 0x00, 0x28
-    .byte 0x02, 0xD0, 0x03, 0x21
-    bl _._12UiStateOwner
-    .byte 0x25, 0x60, 0x10, 0x20
-    bl __builtin_new
-    .byte 0x01, 0x21, 0x00, 0x91, 0x06, 0x21, 0x01, 0x91, 0x00, 0x21, 0x1F, 0x22
-    .byte 0x00, 0x23
-    bl __14MainMenuWidgetUiUiUiUiUi
-    .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
-    .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xF9, 0xF7, 0x4A, 0xFE, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
-    .byte 0xC9, 0x68, 0xF9, 0xF7, 0x42, 0xFE, 0x01, 0x20, 0x00, 0xF0, 0x6B, 0xFD
-    .byte 0x0D, 0x4D, 0x6D, 0x44, 0x2D, 0x68, 0x28, 0x68
-    bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42, 0x01, 0x43, 0xC9, 0x0F, 0x00, 0x29
-    .byte 0x01, 0xD0, 0x00, 0xF0, 0x19, 0xFF, 0xAC, 0x26, 0xF6, 0x00, 0x6E, 0x44
-    .byte 0x36, 0x68, 0x30, 0x68, 0x31, 0x60, 0x03, 0x49, 0x69, 0x44, 0x09, 0x68
-    .byte 0x08, 0x60, 0x01, 0xF0, 0x00, 0xFA, 0x5C, 0x05, 0x00, 0x00, 0xDC, 0x04
-    .byte 0x00, 0x00, 0x54, 0x46, 0xB4, 0x34, 0x20, 0x68
-    bl GetPhase__C13ControlWidget
-    .byte 0x00, 0x28, 0x01, 0xD0, 0x00, 0xF0, 0x00, 0xFF, 0x00, 0x25, 0x21, 0x68
-    .byte 0x8D, 0x42, 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68
-    .byte 0x08, 0x1C, 0x03, 0x21, 0xF9, 0xF7, 0x0D, 0xFE, 0x25, 0x60, 0x10, 0x20
-    bl __builtin_new
-    .byte 0x01, 0x21, 0x00, 0x91, 0x00, 0x21, 0x01, 0x91, 0x1F, 0x22, 0x00, 0x23
-    bl __14MainMenuWidgetUiUiUiUiUi
-    .byte 0x54, 0x46, 0xB8, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x27, 0x1C, 0x8D, 0x42
-    .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xF9, 0xF7, 0xF2, 0xFD, 0x25, 0x60, 0x38, 0x68, 0x41, 0x68
-    .byte 0xC9, 0x68, 0xF9, 0xF7, 0xEA, 0xFD, 0x01, 0x20, 0x00, 0xF0, 0xCB, 0xFE
-    .byte 0x54, 0x46, 0xB8, 0x34, 0x20, 0x68
-    bl GetPhase__C13ControlWidget
-    .byte 0x27, 0x1C, 0x03, 0x28, 0x01, 0xD0, 0x00, 0xF0, 0xC6, 0xFE, 0x04, 0xA8
-    .byte 0x82, 0x88, 0x01, 0x20, 0x10, 0x40, 0x00, 0x28, 0x00, 0xD1, 0xD9, 0xE1
-    .byte 0x00, 0x23, 0x9F, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2B, 0x60, 0x20, 0x68
-    bl GetSelection__C14MainMenuWidget
-    .byte 0x06, 0x28, 0x00, 0xD9, 0xB2, 0xE1, 0x80, 0x00, 0x01, 0x49, 0x40, 0x18
-    .byte 0x00, 0x68, 0x87, 0x46, 0x40, 0x95, 0x0D, 0x08, 0x5C, 0x95, 0x0D, 0x08
-    .byte 0xC8, 0x97, 0x0D, 0x08, 0xD0, 0x95, 0x0D, 0x08, 0x70, 0x96, 0x0D, 0x08
-    .byte 0xE4, 0x96, 0x0D, 0x08, 0x5C, 0x97, 0x0D, 0x08, 0x78, 0x98, 0x0D, 0x08
-    .byte 0x87, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x02, 0x20, 0x20, 0x60, 0x14, 0x20
-    bl __builtin_new
-    .byte 0xAA, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x36, 0x68, 0x36, 0x68, 0xB0, 0x46
-    .byte 0x89, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x31, 0x1C, 0x2C, 0xCC, 0x2C, 0xC1, 0x0F, 0x49, 0x01, 0x60
-    .byte 0x41, 0x46, 0x41, 0x60, 0x02, 0x1C, 0x08, 0x32, 0x89, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x38, 0xC9
-    .byte 0x38, 0xC2, 0x0B, 0x4C, 0x6C, 0x44, 0x20, 0x60, 0x0C, 0x20
-    bl __builtin_new
-    .byte 0x25, 0x68
-    .byte 0x00, 0x23, 0x23, 0x60, 0x35, 0x60, 0xAA, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x09, 0x68, 0x0A, 0x68
-    .byte 0x04, 0x49, 0x01, 0x60, 0x42, 0x60, 0x33, 0x60, 0x85, 0x60, 0x34, 0xE1, 0xB4, 0x52, 0x0E, 0x08
-    .byte 0x44, 0x04, 0x00, 0x00
-    .4byte __vt_15ClockTransition
-    .byte 0x10, 0x20
-    bl __builtin_new
-    .byte 0x06, 0x1C
-    .byte 0xAA, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x24, 0x68, 0x24, 0x68, 0xA0, 0x46, 0x01, 0x25, 0xA9, 0x46
-    .byte 0x1D, 0x48, 0x30, 0x60, 0x74, 0x60, 0x14, 0x20
-    bl __builtin_new
-    .byte 0x1B, 0x49, 0x01, 0x60, 0x00, 0x21, 0x01, 0x71, 0x85, 0x1D, 0x8D, 0x23, 0x9B, 0x00, 0xC2, 0x88
-    .byte 0x18, 0x4C, 0x21, 0x1C, 0x11, 0x40, 0x19, 0x43, 0xC1, 0x80, 0x6A, 0x78, 0x03, 0x23, 0x19, 0x1C
-    .byte 0x11, 0x40, 0x69, 0x70, 0x6A, 0x88, 0x21, 0x1C, 0x11, 0x40, 0x69, 0x80, 0xE9, 0x78, 0x0B, 0x40
-    .byte 0xEB, 0x70, 0xA9, 0x88, 0x0C, 0x40, 0xAC, 0x80, 0x0F, 0x49, 0x01, 0x60, 0x41, 0x46, 0xC1, 0x60
-    .byte 0x4A, 0x46, 0x02, 0x61, 0xB0, 0x60, 0xF2, 0x60, 0xAC, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x1C, 0x68
-    .byte 0x25, 0x1C, 0x29, 0x68, 0x8E, 0x42, 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68
-    .byte 0x08, 0x1C, 0x03, 0x21, 0xF9, 0xF7, 0x38, 0xFD, 0x26, 0x60, 0x1B, 0xE1
-    .4byte __vt_17TownMapTransition
-    .4byte __vt_26TownMapSelectionTransition
-    .byte 0x00, 0xFC, 0xFF, 0xFF
-    .4byte __vt_23TownMapReturnTransition
-    .byte 0x87, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x05, 0x20, 0x20, 0x60, 0x14, 0x20
-    bl __builtin_new
-    .byte 0xAA, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x36, 0x68
-    .byte 0x36, 0x68, 0xB0, 0x46, 0x89, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x31, 0x1C, 0x2C, 0xCC, 0x2C, 0xC1
-    .byte 0x0F, 0x49, 0x01, 0x60, 0x41, 0x46, 0x41, 0x60, 0x02, 0x1C, 0x08, 0x32, 0x89, 0x21, 0xC9, 0x00
-    .byte 0x69, 0x44, 0x38, 0xC9, 0x38, 0xC2, 0x0B, 0x4C, 0x6C, 0x44, 0x20, 0x60, 0x0C, 0x20
-    bl __builtin_new
-    .byte 0x25, 0x68, 0x00, 0x23, 0x23, 0x60, 0x35, 0x60, 0xAA, 0x21, 0xC9, 0x00, 0x69, 0x44
-    .byte 0x09, 0x68, 0x0A, 0x68, 0x04, 0x49, 0x01, 0x60, 0x42, 0x60, 0x33, 0x60, 0x85, 0x60, 0xAA, 0xE0
-    .byte 0xB4, 0x52, 0x0E, 0x08, 0x44, 0x04, 0x00, 0x00, 0xD4, 0x52, 0x0E, 0x08, 0x87, 0x24, 0xE4, 0x00
-    .byte 0x6C, 0x44, 0x06, 0x20, 0x20, 0x60, 0x14, 0x20
-    bl __builtin_new
-    .byte 0xAA, 0x25, 0xED, 0x00
-    .byte 0x6D, 0x44, 0x2D, 0x68, 0x2D, 0x68, 0xA8, 0x46, 0x89, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x31, 0x1C
-    .byte 0x2C, 0xCC, 0x2C, 0xC1, 0x10, 0x49, 0x01, 0x60, 0x41, 0x46, 0x41, 0x60, 0x02, 0x1C, 0x08, 0x32
-    .byte 0x89, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x38, 0xC9, 0x38, 0xC2, 0x0C, 0x4C, 0x6C, 0x44, 0x20, 0x60
-    .byte 0x10, 0x20
-    bl __builtin_new
-    .byte 0x25, 0x68, 0x00, 0x22, 0x22, 0x60, 0x35, 0x60, 0xAA, 0x21
-    .byte 0xC9, 0x00, 0x69, 0x44, 0x09, 0x68, 0x0B, 0x68, 0x05, 0x49, 0x01, 0x60, 0x32, 0x60, 0x45, 0x60
-    .byte 0x83, 0x60, 0x02, 0x73, 0x6F, 0xE0, 0x00, 0x00, 0xB4, 0x52, 0x0E, 0x08, 0x44, 0x04, 0x00, 0x00
-    .byte 0xF4, 0x52, 0x0E, 0x08, 0x87, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x07, 0x20, 0x20, 0x60, 0x14, 0x20
-    bl __builtin_new
-    .byte 0xAA, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2D, 0x68, 0x2D, 0x68, 0xA8, 0x46
-    .byte 0x89, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x31, 0x1C, 0x2C, 0xCC, 0x2C, 0xC1, 0x0D, 0x49, 0x01, 0x60
-    .byte 0x41, 0x46, 0x41, 0x60, 0x02, 0x1C, 0x08, 0x32, 0x89, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x38, 0xC9
-    .byte 0x38, 0xC2, 0x09, 0x4C, 0x6C, 0x44, 0x20, 0x60, 0x0C, 0x20
-    bl __builtin_new
-    .byte 0x25, 0x68
-    .byte 0x00, 0x22, 0x22, 0x60, 0x35, 0x60, 0xAA, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x09, 0x68, 0x0B, 0x68
-    .byte 0x02, 0x49, 0x34, 0xE0, 0xB4, 0x52, 0x0E, 0x08, 0x44, 0x04, 0x00, 0x00, 0xE4, 0x52, 0x0E, 0x08
-    .byte 0x87, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x03, 0x20, 0x20, 0x60, 0x14, 0x20
-    bl __builtin_new
-    .byte 0xAA, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2D, 0x68, 0x2D, 0x68, 0xA8, 0x46, 0x89, 0x26, 0xF6, 0x00
-    .byte 0x6E, 0x44, 0x31, 0x1C, 0x2C, 0xCC, 0x2C, 0xC1, 0x1E, 0x49, 0x01, 0x60, 0x41, 0x46, 0x41, 0x60
-    .byte 0x02, 0x1C, 0x08, 0x32, 0x89, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x38, 0xC9, 0x38, 0xC2, 0x1A, 0x4C
-    .byte 0x6C, 0x44, 0x20, 0x60, 0x0C, 0x20
-    bl __builtin_new
-    .byte 0x25, 0x68, 0x00, 0x22, 0x22, 0x60, 0x35, 0x60, 0xAA, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x09, 0x68
-    .byte 0x0B, 0x68, 0x13, 0x49, 0x01, 0x60, 0x32, 0x60, 0x45, 0x60, 0x83, 0x60, 0xAC, 0x22, 0xD2, 0x00
-    .byte 0x6A, 0x44, 0x15, 0x68, 0x04, 0x1C, 0x2B, 0x1C, 0x19, 0x68, 0x8C, 0x42, 0x07, 0xD0, 0x00, 0x29
-    .byte 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF9, 0xF7, 0x3E, 0xFC, 0x2C, 0x60
-    .byte 0x07, 0x48, 0x68, 0x44, 0x01, 0x68, 0x00, 0x29, 0x1D, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xF9, 0xF7, 0x32, 0xFC, 0x16, 0xE0, 0x00, 0x00, 0xB4, 0x52, 0x0E, 0x08, 0x44, 0x04
+    bl .Lauto_080DA29A
     .byte 0x00, 0x00
-    .4byte __vt_22RucksackMenuTransition
-    .byte 0x01, 0x24, 0x9F, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2C, 0x60, 0x38, 0x68, 0x41, 0x68, 0x49, 0x69
-    .byte 0xF9, 0xF7, 0x1E, 0xFC, 0x0D, 0x20, 0xAB, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x36, 0x68, 0x30, 0x60
-    .byte 0x9F, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD0, 0x00, 0xF0, 0xF9, 0xFC
-    .byte 0x38, 0x68
-    bl DisableInput__14MainMenuWidget
-    .byte 0x06, 0x49, 0x69, 0x44, 0x09, 0x68, 0x08, 0x68, 0x05, 0x49, 0x01, 0x22
-    .byte 0x01, 0x23
-    bl EndHardwareBlend
-    .byte 0x09, 0x20, 0x00, 0xF0, 0xE5, 0xFC, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00
-    .byte 0x89, 0x08, 0x00, 0x00, 0x11, 0x07, 0xC9, 0x0F, 0x90, 0x07, 0xC0, 0x0F
-    .byte 0xC1, 0x42, 0x01, 0xD1, 0x00, 0xF0, 0xDD, 0xFC, 0x20, 0x68, 0x41, 0x68
-    .byte 0x49, 0x69, 0xF9, 0xF7, 0xEF, 0xFB, 0x08, 0x20, 0x64, 0xE3, 0x54, 0x46
-    .byte 0xB8, 0x34, 0x20, 0x68
+.Lraw_code_linkonce_1317_4: .word 0x0000055C
+.Lraw_code_linkonce_1317_8: .word 0x00000889
+.Lraw_code_linkonce_1317_12:
+    ldr r6, .Lraw_code_linkonce_1336_0
+    add r6, sp
+    ldr r6, [r6]
+    ldr r0, [r6]
+    bl GetStep__C23HardwareBlendController
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r7, r1, #0x1f
+    cmp r7, #0
+    beq .Lraw_code_linkonce_1321_10
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1321_10:
+    movs r4, #0x87
+    lsls r4, r4, #3
+    add r4, sp
+    movs r0, #1
+    mov r8, r0
+    str r0, [r4]
+    movs r0, #0x14
+    bl __builtin_new
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r1, [r1]
+    mov sb, r1
+    movs r5, #0x89
+    lsls r5, r5, #3
+    add r5, sp
+    adds r1, r5, #0
+    ldm r4!, {r2, r3, r6}
+    stm r1!, {r2, r3, r6}
+    ldr r1, .Lraw_code_linkonce_1336_4
+    str r1, [r0]
+    mov r1, sb
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r6}
+    stm r2!, {r3, r4, r6}
+    ldr r4, .Lraw_code_linkonce_1336_8
+    add r4, sp
+    str r0, [r4]
+    movs r0, #0x10
+    bl __builtin_new
+    ldr r2, [r4]
+    str r7, [r4]
+    str r2, [r5]
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r3, [r1]
+    ldr r1, .Lraw_code_linkonce_1336_12
+    str r1, [r0]
+    str r7, [r5]
+    str r2, [r0, #4]
+    str r3, [r0, #8]
+    mov r2, r8
+    strb r2, [r0, #0xc]
+    movs r3, #0xac
+    lsls r3, r3, #3
+    add r3, sp
+    ldr r5, [r3]
+    adds r4, r0, #0
+    adds r6, r5, #0
+    ldr r1, [r6]
+    cmp r4, r1
+    beq .Lraw_code_linkonce_1334_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1334_6
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1334_6:
+    str r4, [r5]
+    movs r7, #0xac
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    movs r1, #0
+    str r1, [r7]
+    ldr r3, .Lraw_code_linkonce_1337_0
+    add r3, sp
+    ldr r3, [r3]
+    str r0, [r3]
+    b .Lraw_code_linkonce_1378_0
+.Lraw_code_linkonce_1336_0: .word 0x0000055C
+.Lraw_code_linkonce_1336_4: .word __vt_17ReturnToGameScene
+.Lraw_code_linkonce_1336_8: .word 0x00000444
+.Lraw_code_linkonce_1336_12: .word vtable_unk_080E5EB4
+.Lraw_code_linkonce_1337_0: .word 0x000004DC
+.Lraw_code_linkonce_1337_4:
+    ldr r4, .Lraw_code_linkonce_1354_2
+    add r4, sp
+    ldr r4, [r4]
+    ldr r0, [r4]
+    bl GetStep__C23HardwareBlendController
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r1, r1, #0x1f
+    lsls r4, r1, #0x18
+    lsrs r7, r4, #0x18
+    cmp r7, #0
+    beq .Lraw_code_linkonce_1340_6
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1340_6:
+    movs r0, #0x10
+    bl __builtin_new
+    adds r6, r0, #0
+    movs r5, #0xaa
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    ldr r5, [r5]
+    mov r8, r5
+    ldr r0, .Lraw_code_linkonce_1355_0
+    str r0, [r6]
+    str r5, [r6, #4]
+    movs r0, #0x14
+    bl __builtin_new
+    ldr r1, .Lraw_code_linkonce_1356_0
+    str r1, [r0]
+    strb r7, [r0, #4]
+    adds r5, r0, #6
+    movs r3, #0x8d
+    lsls r3, r3, #2
+    ldrh r2, [r0, #6]
+    ldr r4, .Lraw_code_linkonce_1357_0
+    adds r1, r4, #0
+    ands r1, r2
+    orrs r1, r3
+    strh r1, [r0, #6]
+    ldrb r2, [r5, #1]
+    movs r3, #3
+    adds r1, r3, #0
+    ands r1, r2
+    strb r1, [r5, #1]
+    ldrh r2, [r5, #2]
+    adds r1, r4, #0
+    ands r1, r2
+    strh r1, [r5, #2]
+    ldrb r1, [r5, #3]
+    ands r3, r1
+    strb r3, [r5, #3]
+    ldrh r1, [r5, #4]
+    ands r4, r1
+    strh r4, [r5, #4]
+    ldr r1, .Lraw_code_linkonce_1358_0
+    str r1, [r0]
+    mov r1, r8
+    str r1, [r0, #0xc]
+    str r7, [r0, #0x10]
+    str r0, [r6, #8]
+    str r7, [r6, #0xc]
+    movs r2, #0xac
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r4, [r2]
+    adds r3, r4, #0
+    ldr r1, [r3]
+    cmp r6, r1
+    beq .Lraw_code_linkonce_1352_4
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1352_4
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1352_4:
+    str r6, [r4]
+    movs r4, #0xac
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    ldr r1, [r4]
+    movs r0, #0
+    str r0, [r4]
+    ldr r6, .Lraw_code_linkonce_1359_0
+    add r6, sp
+    ldr r6, [r6]
+    str r1, [r6]
+    bl .Lraw_code_linkonce_1934_6
+    .byte 0x00, 0x00
+.Lraw_code_linkonce_1354_2: .word 0x0000055C
+.Lraw_code_linkonce_1355_0: .4byte __vt_17TownMapTransition
+.Lraw_code_linkonce_1356_0: .4byte __vt_26TownMapSelectionTransition
+.Lraw_code_linkonce_1357_0: .word 0xFFFFFC00
+.Lraw_code_linkonce_1358_0: .4byte __vt_23TownMapReturnTransition
+.Lraw_code_linkonce_1359_0: .word 0x000004DC
+.Lraw_code_linkonce_1359_4:
+    ldr r7, .Lraw_code_linkonce_1380_8
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    bl GetStep__C23HardwareBlendController
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r6, r1, #0x1f
+    cmp r6, #0
+    beq .Lraw_code_linkonce_1362_14
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1362_14:
+    movs r4, #0x87
+    lsls r4, r4, #3
+    add r4, sp
+    movs r0, #1
+    str r0, [r4]
+    movs r0, #0x14
+    bl __builtin_new
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r1, [r1]
+    mov r8, r1
+    movs r5, #0x89
+    lsls r5, r5, #3
+    add r5, sp
+    adds r1, r5, #0
+    ldm r4!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldr r1, .Lraw_code_linkonce_1381_0
+    str r1, [r0]
+    mov r1, r8
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r7}
+    stm r2!, {r3, r4, r7}
+    ldr r4, .Lraw_code_linkonce_1381_4
+    add r4, sp
+    str r0, [r4]
+    movs r0, #0xc
+    bl __builtin_new
+    ldr r3, [r4]
+    str r6, [r4]
+    str r3, [r5]
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r2, [r1]
+    ldr r1, .Lraw_code_linkonce_1381_8
+    str r1, [r0]
+    str r2, [r0, #4]
+    str r6, [r5]
+    str r3, [r0, #8]
+    movs r2, #0xac
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r5, [r2]
+    adds r4, r0, #0
+    adds r3, r5, #0
+    ldr r1, [r3]
+    cmp r4, r1
+    beq .Lraw_code_linkonce_1376_0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1376_0
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1376_0:
+    str r4, [r5]
+    movs r4, #0xac
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    ldr r0, [r4]
+    movs r1, #0
+    str r1, [r4]
+    ldr r6, .Lraw_code_linkonce_1382_0
+    add r6, sp
+    ldr r6, [r6]
+    str r0, [r6]
+.Lraw_code_linkonce_1378_0:
+    ldr r0, .Lraw_code_linkonce_1381_4
+    add r0, sp
+    ldr r1, [r0]
+    cmp r1, #0
+    bne .Lraw_code_linkonce_1379_2
+    bl .Lraw_code_linkonce_1934_6
+.Lraw_code_linkonce_1379_2:
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+    bl .Lraw_code_linkonce_1934_6
+    .byte 0x00, 0x00
+.Lraw_code_linkonce_1380_8: .word 0x0000055C
+.Lraw_code_linkonce_1381_0: .word __vt_17ReturnToGameScene
+.Lraw_code_linkonce_1381_4: .word 0x00000444
+.Lraw_code_linkonce_1381_8: .word vtable_unk_080E5E94
+.Lraw_code_linkonce_1382_0: .word 0x000004DC
+.Lraw_code_linkonce_1382_4:
+    mov r4, sl
+    adds r4, #0xb8
+    ldr r0, [r4]
     bl GetPhase__C13ControlWidget
-    .byte 0x00, 0x28, 0x01, 0xD0, 0x00, 0xF0, 0xCD, 0xFC, 0x00, 0x25, 0x21, 0x68
-    .byte 0x8D, 0x42, 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68
-    .byte 0x08, 0x1C, 0x03, 0x21, 0xF9, 0xF7, 0xDA, 0xFB, 0x25, 0x60, 0x0C, 0x20
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1384_8
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1384_8:
+    movs r5, #0
+    ldr r1, [r4]
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1386_8
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1386_8
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1386_8:
+    str r5, [r4]
+    movs r0, #4
     bl __builtin_new
-    .byte 0x01, 0x21, 0x00, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __23MapClockStatusHudWidgetUiUiUiUi
-    .byte 0x54, 0x46, 0xB4, 0x34, 0x05, 0x1C, 0x21, 0x68, 0x26, 0x1C, 0x8D, 0x42
-    .byte 0x07, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-    .byte 0x03, 0x21, 0xF9, 0xF7, 0xC0, 0xFB, 0x25, 0x60, 0xAA, 0x24, 0xE4, 0x00
-    .byte 0x6C, 0x44, 0x24, 0x68, 0x21, 0x68, 0x21, 0x4D, 0x48, 0x19, 0x00, 0x78
-    .byte 0x80, 0x07, 0x00, 0x28, 0x09, 0xDA, 0x1F, 0x4F, 0xC8, 0x19, 0x00, 0x78
-    .byte 0x00, 0x28, 0x04, 0xD1, 0x30, 0x68, 0x41, 0x68, 0xC9, 0x68, 0xF9, 0xF7
-    .byte 0xA8, 0xFB, 0x34, 0x68, 0x00, 0x25, 0x1A, 0x49, 0x69, 0x44, 0x09, 0x68
-    .byte 0x08, 0x68, 0x01, 0x68, 0xB0, 0x31, 0x09, 0x68, 0xF9, 0xF7, 0x9D, 0xFB
-    .byte 0x00, 0x06, 0x00, 0x28, 0x0B, 0xD1, 0xAA, 0x22, 0xD2, 0x00, 0x6A, 0x44
-    .byte 0x12, 0x68, 0x10, 0x68, 0x41, 0x8A, 0x49, 0x05, 0x89, 0x0E, 0x01, 0x20
-    .byte 0x08, 0x40, 0x00, 0x28, 0x00, 0xD0, 0x01, 0x25, 0x2A, 0x1C, 0xAA, 0x23
-    .byte 0xDB, 0x00, 0x6B, 0x44, 0x1B, 0x68, 0x19, 0x68, 0x10, 0x31, 0x20, 0x1C
-    .byte 0x08, 0x30
-    bl UpdateMapClockStatusHudCalendar
-    .byte 0x50, 0x46, 0xB4, 0x30
-    .byte 0x00, 0x68, 0xAA, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x24, 0x68, 0x21, 0x68, 0x89, 0x68, 0x08, 0x30
-    bl SetMapClockStatusHudUnkSelector
-    .byte 0x00, 0x20, 0xB1, 0xE2, 0x10, 0x22, 0x00, 0x00, 0xC4, 0x34, 0x00, 0x00
-    .byte 0x64, 0x05, 0x00, 0x00, 0x0D, 0x4E, 0x6E, 0x44, 0x36, 0x68, 0x30, 0x68
-    bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42, 0x01, 0x43, 0xC9, 0x0F, 0x00, 0x29, 0x01, 0xD0, 0x00, 0xF0
-    .byte 0x48, 0xFC, 0xAC, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x68, 0x39, 0x60, 0x04, 0x4B
-    .byte 0x6B, 0x44, 0x1B, 0x68, 0x18, 0x60, 0x00, 0xF0, 0x2F, 0xFF, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00
-    .byte 0xDC, 0x04, 0x00, 0x00, 0x30, 0x4C, 0x21, 0x68, 0x08, 0x1C, 0x08, 0x30, 0xD5, 0x25, 0xAD, 0x00
-    .byte 0x49, 0x19, 0x09, 0x68, 0xC9, 0x68, 0xF9, 0xF7, 0x43, 0xFB, 0x00, 0x28, 0x01, 0xD0, 0x00, 0xF0
-    .byte 0x28, 0xFC, 0x24, 0x68, 0xDE, 0x26, 0xB6, 0x00, 0xA5, 0x19, 0x00, 0x22, 0x00, 0x21, 0x28, 0x68
-    .byte 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x14, 0xD0, 0xE3, 0x27, 0xBF, 0x00, 0xE0, 0x19
-    .byte 0x00, 0x21, 0x00, 0x68, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x0A, 0xD0, 0x9A, 0x21
-    .byte 0xC9, 0x00, 0x60, 0x18, 0x00, 0x21, 0x00, 0x68, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29
-    .byte 0x00, 0xD0, 0x01, 0x22, 0x13, 0x1C, 0x00, 0x2B, 0x00, 0xD0, 0xC3, 0xE0, 0x00, 0x21, 0x28, 0x68
-    .byte 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x2A, 0xD1, 0x2F, 0x1D, 0x69, 0x68, 0xAA, 0x68
-    .byte 0x12, 0x4B, 0x6B, 0x44, 0x19, 0x60, 0x5A, 0x60, 0x0F, 0x4C, 0xA0, 0x46, 0x96, 0x23, 0xDB, 0x00
-    .byte 0x6B, 0x44, 0x00, 0x28, 0x13, 0xD0, 0xC0, 0x00, 0x04, 0x30, 0x28, 0x18, 0x29, 0x1C, 0x0C, 0x31
-    .byte 0x81, 0x42, 0x09, 0xD0, 0x0E, 0x1C, 0x80, 0x1B, 0xC2, 0x10, 0x00, 0x2A, 0x04, 0xDD, 0x03, 0xCE
-    .byte 0x03, 0xC7, 0x01, 0x3A, 0x00, 0x2A, 0xFA, 0xDC, 0x28, 0x68, 0x01, 0x38, 0x28, 0x60, 0x96, 0x20
-    .byte 0xC0, 0x00, 0x68, 0x44, 0x01, 0x4E, 0x34, 0xE0, 0x0C, 0x04, 0x00, 0x03, 0xFC, 0x04, 0x00, 0x00
-    .byte 0x2C, 0x1C, 0x14, 0x34, 0x00, 0x21, 0x68, 0x69, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29
-    .byte 0x32, 0xD1, 0x2F, 0x1C, 0x18, 0x37, 0xA9, 0x69, 0xEA, 0x69, 0x15, 0x4B, 0x6B, 0x44, 0x19, 0x60
-    .byte 0x5A, 0x60, 0x26, 0x1C, 0x13, 0x4C, 0xA0, 0x46, 0x96, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x00, 0x28
-    .byte 0x13, 0xD0, 0xC0, 0x00, 0x04, 0x30, 0x31, 0x18, 0x28, 0x1C, 0x20, 0x30, 0x88, 0x42, 0x09, 0xD0
-    .byte 0x05, 0x1C, 0x48, 0x1B, 0xC2, 0x10, 0x00, 0x2A, 0x04, 0xDD, 0x03, 0xCD, 0x03, 0xC7, 0x01, 0x3A
-    .byte 0x00, 0x2A, 0xFA, 0xDC, 0x30, 0x68, 0x01, 0x38, 0x30, 0x60, 0x96, 0x20, 0xC0, 0x00, 0x68, 0x44
-    .byte 0x03, 0x4E, 0x6E, 0x44, 0x35, 0x68, 0x76, 0x68, 0x05, 0x60, 0x46, 0x60, 0x4D, 0xE0, 0x00, 0x00
-    .byte 0x04, 0x05, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03, 0xAC, 0x27, 0x7F, 0x00, 0xEE, 0x19, 0x00, 0x21
-    .byte 0x30, 0x68, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x33, 0xD1, 0xAE, 0x21, 0x49, 0x00
-    .byte 0x6C, 0x18, 0x21, 0x68, 0x62, 0x68, 0x15, 0x4B, 0x6B, 0x44, 0x19, 0x60, 0x5A, 0x60, 0x14, 0x4F
-    .byte 0xB8, 0x46, 0x96, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x00, 0x28, 0x15, 0xD0, 0xC0, 0x00, 0x04, 0x30
-    .byte 0x31, 0x18, 0xB2, 0x22, 0x52, 0x00, 0xA8, 0x18, 0x88, 0x42, 0x0A, 0xD0, 0x05, 0x1C, 0x27, 0x1C
-    .byte 0x48, 0x1B, 0xC2, 0x10, 0x00, 0x2A, 0x04, 0xDD, 0x03, 0xCD, 0x03, 0xC7, 0x01, 0x3A, 0x00, 0x2A
-    .byte 0xFA, 0xDC, 0x30, 0x68, 0x01, 0x38, 0x30, 0x60, 0x96, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x03, 0x4D
-    .byte 0x6D, 0x44, 0x2C, 0x68, 0x6D, 0x68, 0x04, 0x60, 0x45, 0x60, 0x0E, 0xE0, 0x0C, 0x05, 0x00, 0x00
-    .byte 0x0C, 0x04, 0x00, 0x03, 0x96, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x96, 0x20, 0xC0, 0x00, 0x68, 0x44
-    .byte 0x03, 0x60, 0x4B, 0x60, 0x06, 0x4E, 0xB0, 0x46, 0x0B, 0x1C, 0x47, 0x46, 0x38, 0x68, 0x08, 0x30
-    .byte 0x96, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x09, 0x68, 0x5A, 0x68, 0x65, 0xF7, 0x6B, 0xFC, 0x40, 0xE3
-    .byte 0x0C, 0x04, 0x00, 0x03, 0x54, 0x46, 0xAC, 0x34, 0x20, 0x68, 0x00, 0x28, 0x06, 0xD0, 0x00, 0x25
-    .byte 0x85, 0x42, 0x02, 0xD0, 0x03, 0x21
+    adds r6, r0, #0
+    movs r5, #0x87
+    lsls r5, r5, #3
+    add r5, sp
+    adds r0, r5, #0
+    bl __17ObjTileCollection
+    ldr r4, .Lraw_code_linkonce_1404_12
+    add r4, sp
+    adds r0, r4, #0
+    bl __20ObjPaletteCollection
+    movs r0, #1
+    str r0, [sp]
+    str r5, [sp, #4]
+    str r4, [sp, #8]
+    adds r0, r6, #0
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
+    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
+    mov r4, sl
+    adds r4, #0xac
+    adds r5, r0, #0
+    ldr r0, [r4]
+    adds r6, r4, #0
+    cmp r5, r0
+    beq .Lraw_code_linkonce_1399_0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1399_0
+    movs r1, #3
     bl _._12UiStateOwner
-    .byte 0x25, 0x60, 0x54, 0x46, 0xF0, 0x34
-    .byte 0x00, 0x25, 0x20, 0x68, 0x85, 0x42, 0x01, 0xD0
-    bl __builtin_delete
-    .byte 0x25, 0x60, 0x39, 0x49
-    .byte 0x69, 0x44, 0x09, 0x68, 0x08, 0x68, 0x01, 0x68, 0x94, 0x22, 0x52, 0x00, 0x89, 0x18, 0x09, 0x68
-    .byte 0xF9, 0xF7, 0x36, 0xFA, 0x50, 0x46, 0xB4, 0x30, 0x01, 0x68, 0x06, 0x1C, 0x00, 0x29, 0x17, 0xD1
-    .byte 0x0C, 0x20
-    bl __builtin_new
-    .byte 0x01, 0x21, 0x00, 0x91, 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
-    bl __23MapClockStatusHudWidgetUiUiUiUi
-    .byte 0x35, 0x1C, 0x04, 0x1C, 0x31, 0x68, 0x8C, 0x42, 0x07, 0xD0, 0x00, 0x29
-    .byte 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF9, 0xF7
-    .byte 0x1B, 0xFA, 0x2C, 0x60, 0xAA, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x1B, 0x68
-    .byte 0x19, 0x68, 0x23, 0x4C, 0x08, 0x19, 0x00, 0x78, 0x80, 0x07, 0x00, 0x28
-    .byte 0x09, 0xDA, 0x21, 0x4D, 0x48, 0x19, 0x00, 0x78, 0x00, 0x28, 0x04, 0xD1
-    .byte 0x30, 0x68, 0x41, 0x68, 0x09, 0x69, 0xF9, 0xF7, 0x03, 0xFA, 0x34, 0x68
-    .byte 0x00, 0x25, 0x19, 0x4E, 0x6E, 0x44, 0x36, 0x68, 0x30, 0x68, 0x01, 0x68
-    .byte 0xB0, 0x31, 0x09, 0x68, 0xF9, 0xF7, 0xF8, 0xF9, 0x00, 0x06, 0x00, 0x28
-    .byte 0x0B, 0xD1, 0xAA, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x68
-    .byte 0x41, 0x8A, 0x49, 0x05, 0x89, 0x0E, 0x01, 0x20, 0x08, 0x40, 0x00, 0x28
-    .byte 0x00, 0xD0, 0x01, 0x25, 0x2A, 0x1C, 0xAA, 0x20, 0xC0, 0x00, 0x68, 0x44
-    .byte 0x00, 0x68, 0x01, 0x68, 0x10, 0x31, 0x20, 0x1C, 0x08, 0x30
-    bl UpdateMapClockStatusHudCalendar
-    .byte 0x50, 0x46, 0xB4, 0x30, 0x00, 0x68, 0xAA, 0x22, 0xD2, 0x00
-    .byte 0x6A, 0x44, 0x12, 0x68, 0x11, 0x68, 0x89, 0x68, 0x08, 0x30
-    bl SetMapClockStatusHudUnkSelector
-    .byte 0x00, 0x20
-    .byte 0x46, 0xE1, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x10, 0x22, 0x00, 0x00, 0xC4, 0x34, 0x00, 0x00
-    .byte 0x50, 0x46, 0xAC, 0x30, 0x00, 0x68
+.Lraw_code_linkonce_1399_0:
+    str r5, [r4]
+    ldr r0, .Lraw_code_linkonce_1404_12
+    add r0, sp
+    movs r1, #2
+    bl _._20ObjPaletteCollection
+    movs r0, #0x87
+    lsls r0, r0, #3
+    add r0, sp
+    movs r1, #2
+    bl _._17ObjTileCollection
+    ldr r0, [r6]
+    bl func_08050D5C
+    movs r0, #0xc
+    bl .Lraw_code_linkonce_1759_4
+    .byte 0x00, 0x00
+.Lraw_code_linkonce_1404_12: .word 0x0000043C
+.Lraw_code_linkonce_1405_0:
+    mov r4, sl
+    adds r4, #0xac
+    ldr r0, [r4]
     bl GetState__C12UiStateOwner
-    .byte 0x03, 0x28, 0x00, 0xD0, 0xA8, 0xE2
-    .byte 0xE9, 0xE0, 0x54, 0x46, 0xAC, 0x34, 0x20, 0x68
-    bl GetState__C12UiStateOwner
-    .byte 0x00, 0x28, 0x00, 0xD0
-    .byte 0x9F, 0xE2, 0x00, 0x25, 0x20, 0x68, 0x85, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
-    bl _._12UiStateOwner
-    .byte 0x25, 0x60, 0xE8, 0xE0, 0x50, 0x46, 0xAC, 0x30, 0x00, 0x68
-    bl GetState__C12UiStateOwner
-    .byte 0x03, 0x28, 0x00, 0xD0, 0x8C, 0xE2, 0x5C, 0xE2, 0x04, 0xA8, 0x04, 0x89, 0x50, 0x46
-    .byte 0xAC, 0x30, 0x00, 0x68
-    bl GetState__C12UiStateOwner
-    .byte 0x06, 0x28, 0x00, 0xD9, 0x81, 0xE2, 0x80, 0x00
-    .byte 0x01, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0xA4, 0x9D, 0x0D, 0x08, 0xC0, 0x9D, 0x0D, 0x08
-    .byte 0xC0, 0x9D, 0x0D, 0x08, 0xC0, 0x9D, 0x0D, 0x08, 0xC0, 0x9D, 0x0D, 0x08, 0xE0, 0x9D, 0x0D, 0x08
-    .byte 0xE0, 0x9D, 0x0D, 0x08, 0xC0, 0x9D, 0x0D, 0x08, 0x02, 0x20, 0xAB, 0x27, 0xFF, 0x00, 0x6F, 0x44
-    .byte 0x3F, 0x68, 0x38, 0x60, 0x03, 0x48, 0x00, 0x68, 0x08, 0x30, 0x04, 0x21, 0x65, 0xF7, 0xAA, 0xFB
-    .byte 0x5F, 0xE2, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03, 0x02, 0x21, 0x20, 0x1C, 0x08, 0x40, 0x00, 0x28
-    .byte 0x0E, 0xD0, 0xAB, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x00, 0x68, 0x01, 0x60, 0x03, 0x48, 0x00, 0x68
-    .byte 0x08, 0x30, 0x05, 0x21, 0x65, 0xF7, 0x96, 0xFB, 0x4B, 0xE2, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03
-    .byte 0x40, 0x20, 0x20, 0x40, 0x00, 0x28, 0x0D, 0xD0, 0xAB, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x12, 0x68
-    .byte 0x11, 0x60, 0x03, 0x48, 0x00, 0x68, 0x08, 0x30, 0x00, 0x21, 0x65, 0xF7, 0x83, 0xFB, 0x38, 0xE2
-    .byte 0x0C, 0x04, 0x00, 0x03, 0x80, 0x20, 0x20, 0x40, 0x00, 0x28, 0x0D, 0xD0, 0xAB, 0x23, 0xDB, 0x00
-    .byte 0x6B, 0x44, 0x1B, 0x68, 0x19, 0x60, 0x03, 0x48, 0x00, 0x68, 0x08, 0x30, 0x01, 0x21, 0x65, 0xF7
-    .byte 0x71, 0xFB, 0x26, 0xE2, 0x0C, 0x04, 0x00, 0x03, 0x20, 0x20, 0x20, 0x40, 0x00, 0x28, 0x0D, 0xD0
-    .byte 0xAB, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x24, 0x68, 0x21, 0x60, 0x03, 0x48, 0x00, 0x68, 0x08, 0x30
-    .byte 0x02, 0x21, 0x65, 0xF7, 0x5F, 0xFB, 0x14, 0xE2, 0x0C, 0x04, 0x00, 0x03, 0x10, 0x20, 0x04, 0x40
-    .byte 0x00, 0x2C, 0x00, 0xD1, 0x0D, 0xE2, 0xAB, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2D, 0x68, 0x29, 0x60
-    .byte 0x03, 0x48, 0x00, 0x68, 0x08, 0x30, 0x03, 0x21, 0x65, 0xF7, 0x4C, 0xFB, 0x01, 0xE2, 0x00, 0x00
-    .byte 0x0C, 0x04, 0x00, 0x03, 0x10, 0x4E, 0x6E, 0x44, 0x36, 0x68, 0x30, 0x68
+    cmp r0, #3
+    beq .Lraw_code_linkonce_1408_2
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1408_2:
+    ldr r0, [r4]
+    ldr r1, .Lraw_code_linkonce_1410_0
+    ldr r2, .Lraw_code_linkonce_1411_0
+    ldr r3, .Lraw_code_linkonce_1412_0
+    ldr r5, .Lraw_code_linkonce_1413_0
+    movs r4, #0
+    str r5, [sp]
+    str r4, [sp, #4]
+    str r4, [sp, #8]
+    str r4, [sp, #0xc]
+    bl func_08050E0C
+    movs r0, #6
+    bl .Lraw_code_linkonce_1807_6
+.Lraw_code_linkonce_1410_0: .word gText_HelpMenu_Crops
+.Lraw_code_linkonce_1411_0: .word gText_HelpMenu_Animals
+.Lraw_code_linkonce_1412_0: .word gText_HelpMenu_UsefulTips
+.Lraw_code_linkonce_1413_0: .word gText_HelpMenu_Exit
+.Lraw_code_linkonce_1414_0:
+    ldr r2, .Lraw_code_linkonce_1422_8
+    add r2, sp
+    ldr r2, [r2]
+    ldr r0, [r2]
     bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42, 0x01, 0x43, 0xCB, 0x0F, 0x00, 0x2B, 0x00, 0xD0, 0xF0, 0xE1
-    .byte 0x51, 0x46, 0xE8, 0x31, 0x01, 0x20, 0x08, 0x70, 0x57, 0x46, 0x39, 0x8A, 0x07, 0x48, 0x08, 0x40
-    .byte 0x38, 0x82, 0x52, 0x46, 0x60, 0x32, 0x11, 0x88, 0x05, 0x48, 0x08, 0x40, 0x10, 0x80, 0x50, 0x46
-    .byte 0x5C, 0x30, 0x03, 0x80, 0xC6, 0xE1, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0xFF, 0xF0, 0x00, 0x00
-    .byte 0x3F, 0xFF, 0x00, 0x00, 0x06, 0x4A, 0x6A, 0x44, 0x12, 0x68, 0x10, 0x68
-    bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42, 0x01, 0x43, 0x00, 0x29, 0x00, 0xDA, 0xC9, 0xE1, 0x56, 0xE0
-    .byte 0x5C, 0x05, 0x00, 0x00, 0x51, 0x46, 0xE0, 0x31, 0x08, 0x88, 0x01, 0x38, 0x08, 0x80, 0x00, 0x04
-    .byte 0x00, 0x28, 0x00, 0xD0, 0xBD, 0xE1, 0x02, 0x20, 0xAB, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x24, 0x68
-    .byte 0x20, 0x60, 0xB6, 0xE1, 0x54, 0x46, 0xE4, 0x34, 0x20, 0x68
-    bl IsActorAxisMotionComplete
-    .byte 0x00, 0x06
-    .byte 0x00, 0x28, 0x00, 0xD1, 0xAD, 0xE1, 0x00, 0x20, 0x20, 0x60, 0x02, 0x20, 0xAB, 0x25, 0xED, 0x00
-    .byte 0x6D, 0x44, 0x2D, 0x68, 0x28, 0x60, 0xA4, 0xE1, 0x55, 0x46, 0xAC, 0x35, 0x28, 0x68
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r6, r1, #0x1f
+    cmp r6, #0
+    beq .Lraw_code_linkonce_1417_14
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1417_14:
+    mov r4, sl
+    adds r4, #0xac
+    ldr r0, [r4]
     bl GetState__C12UiStateOwner
-    .byte 0x06, 0x28, 0x00, 0xD1, 0x9C, 0xE1, 0x05, 0x48, 0x04, 0x68, 0x08, 0x34, 0x28, 0x68
+    cmp r0, #6
+    bne .Lraw_code_linkonce_1422_12
+    add r0, sp, #0x10
+    ldrh r0, [r0, #4]
+    movs r1, #2
+    ands r0, r1
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1421_12
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1421_12:
+    ldr r0, [r4]
+    bl func_08050D74
+    movs r0, #0xa
+    bl .Lraw_code_linkonce_1754_0
+.Lraw_code_linkonce_1422_8: .word 0x0000055C
+.Lraw_code_linkonce_1422_12:
+    ldr r0, [r4]
     bl GetChoiceResult__C12UiStateOwner
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x65, 0xF7, 0xDC, 0xFA, 0x62, 0xE1, 0x00, 0x00
-    .byte 0x0C, 0x04, 0x00, 0x03, 0x04, 0x4F, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x68, 0x01, 0x68, 0x89, 0x6A
-    .byte 0xF9, 0xF7, 0x9E, 0xF8, 0x6B, 0xE1, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x0B, 0x4A, 0x6A, 0x44
-    .byte 0x12, 0x68, 0x10, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x00, 0x21, 0xF9, 0xF7, 0x93, 0xF8, 0x41, 0x69
-    .byte 0xC9, 0x6B, 0xF9, 0xF7, 0x8D, 0xF8, 0x00, 0x06, 0x00, 0x28, 0x00, 0xD0, 0x71, 0xE1, 0x02, 0x20
-    .byte 0xAB, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x1B, 0x68, 0x18, 0x60, 0x6A, 0xE1, 0x64, 0x05, 0x00, 0x00
-    .byte 0x50, 0x46, 0xEF, 0x30, 0x01, 0x78, 0xAF, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x20, 0x60, 0x78, 0x29
-    .byte 0x20, 0xD1, 0x05, 0x38, 0x00, 0x23, 0x03, 0x70, 0x55, 0x46, 0x29, 0x8A, 0x0C, 0x48, 0x08, 0x40
-    .byte 0x28, 0x82, 0x87, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x3F, 0x20, 0x10, 0x80, 0x51, 0x46, 0x60, 0x31
-    .byte 0x87, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x30, 0x88, 0x08, 0x80, 0x13, 0x80, 0x02, 0x31, 0x30, 0x88
-    .byte 0x08, 0x80, 0x02, 0x20, 0xAB, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x60, 0x40, 0xE1
-    .byte 0xFF, 0xFE, 0x00, 0x00, 0x50, 0x46, 0xEC, 0x30, 0x01, 0x88, 0xD0, 0x46, 0x87, 0x20, 0xC0, 0x00
+    cmp r0, #2
+    beq .Lraw_code_linkonce_1439_8
+    cmp r0, #2
+    bgt .Lraw_code_linkonce_1425_2
+    cmp r0, #1
+    beq .Lraw_code_linkonce_1426_2
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1425_2:
+    cmp r0, #3
+    bne .Lraw_code_linkonce_1425_8
+    b .Lraw_code_linkonce_1455_12
+.Lraw_code_linkonce_1425_8:
+    cmp r0, #4
+    bne .Lraw_code_linkonce_1425_14
+    b .Lraw_code_linkonce_1476_0
+.Lraw_code_linkonce_1425_14:
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1426_2:
+    ldr r4, .Lraw_code_linkonce_1438_4
+    add r4, sp
+    ldr r4, [r4]
+    ldr r0, [r4]
+    ldr r1, .Lraw_code_linkonce_1438_8
+    movs r2, #1
+    movs r3, #1
+    bl EndHardwareBlend
+    movs r0, #0xb
+    movs r5, #0xab
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    str r0, [r5]
+    movs r4, #0x87
+    lsls r4, r4, #3
+    add r4, sp
+    movs r0, #8
+    str r0, [r4]
+    movs r0, #0x14
+    bl __builtin_new
+    movs r7, #0xaa
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    ldr r7, [r7]
+    mov r8, r7
+    movs r5, #0x89
+    lsls r5, r5, #3
+    add r5, sp
+    adds r1, r5, #0
+    ldm r4!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldr r1, .Lraw_code_linkonce_1439_0
+    str r1, [r0]
+    mov r1, r8
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r7}
+    stm r2!, {r3, r4, r7}
+    ldr r1, .Lraw_code_linkonce_1439_4
+    add r1, sp
+    str r6, [r1]
+    str r0, [r5]
+    movs r0, #0xc
+    bl __builtin_new
+    adds r1, r5, #0
+    movs r2, #0
+    bl __25FarmingTutorialTransitionG20SceneTransitionOwner23MaryFarmingTutorialKind
+    b .Lraw_code_linkonce_1469_2
+    .align 2, 0
+.Lraw_code_linkonce_1438_4: .word 0x0000055C
+.Lraw_code_linkonce_1438_8: .word 0x00000889
+.Lraw_code_linkonce_1439_0: .word __vt_17ReturnToGameScene
+.Lraw_code_linkonce_1439_4: .word 0x00000444
+.Lraw_code_linkonce_1439_8:
+    ldr r3, .Lraw_code_linkonce_1454_12
+    add r3, sp
+    ldr r3, [r3]
+    ldr r0, [r3]
+    ldr r1, .Lraw_code_linkonce_1455_0
+    movs r2, #1
+    movs r3, #1
+    bl EndHardwareBlend
+    movs r0, #0xb
+    movs r4, #0xab
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    str r0, [r4]
+    movs r4, #0x87
+    lsls r4, r4, #3
+    add r4, sp
+    movs r0, #8
+    str r0, [r4]
+    movs r0, #0x14
+    bl __builtin_new
+    movs r5, #0xaa
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    ldr r5, [r5]
+    mov r8, r5
+    movs r5, #0x89
+    lsls r5, r5, #3
+    add r5, sp
+    adds r1, r5, #0
+    ldm r4!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldr r1, .Lraw_code_linkonce_1455_4
+    str r1, [r0]
+    mov r4, r8
+    str r4, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r7}
+    stm r2!, {r3, r4, r7}
+    ldr r1, .Lraw_code_linkonce_1455_8
+    add r1, sp
+    str r6, [r1]
+    str r0, [r5]
+    movs r0, #0xc
+    bl __builtin_new
+    adds r1, r5, #0
+    movs r2, #1
+    bl __25FarmingTutorialTransitionG20SceneTransitionOwner23MaryFarmingTutorialKind
+    movs r6, #0xac
+    lsls r6, r6, #3
+    add r6, sp
+    ldr r5, [r6]
+    adds r4, r0, #0
+    adds r7, r5, #0
+    ldr r1, [r7]
+    b .Lraw_code_linkonce_1470_0
+    .align 2, 0
+.Lraw_code_linkonce_1454_12: .word 0x0000055C
+.Lraw_code_linkonce_1455_0: .word 0x00000889
+.Lraw_code_linkonce_1455_4: .word __vt_17ReturnToGameScene
+.Lraw_code_linkonce_1455_8: .word 0x00000444
+.Lraw_code_linkonce_1455_12:
+    ldr r1, .Lraw_code_linkonce_1473_4
+    add r1, sp
+    ldr r1, [r1]
+    ldr r0, [r1]
+    ldr r1, .Lraw_code_linkonce_1473_8
+    movs r2, #1
+    movs r3, #1
+    bl EndHardwareBlend
+    movs r0, #0xb
+    movs r2, #0xab
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    str r0, [r2]
+    movs r4, #0x87
+    lsls r4, r4, #3
+    add r4, sp
+    movs r0, #8
+    str r0, [r4]
+    movs r0, #0x14
+    bl __builtin_new
+    movs r3, #0xaa
+    lsls r3, r3, #3
+    add r3, sp
+    ldr r3, [r3]
+    ldr r3, [r3]
+    mov r8, r3
+    movs r5, #0x89
+    lsls r5, r5, #3
+    add r5, sp
+    adds r1, r5, #0
+    ldm r4!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldr r1, .Lraw_code_linkonce_1473_12
+    str r1, [r0]
+    mov r4, r8
+    str r4, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r7}
+    stm r2!, {r3, r4, r7}
+    ldr r4, .Lraw_code_linkonce_1474_0
+    add r4, sp
+    str r0, [r4]
+    movs r0, #0x10
+    bl __builtin_new
+    ldr r2, [r4]
+    str r6, [r4]
+    str r2, [r5]
+    movs r7, #0xaa
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    ldr r3, [r7]
+    movs r4, #0x88
+    ldr r1, .Lraw_code_linkonce_1475_0
+    str r1, [r0]
+    str r6, [r5]
+    str r2, [r0, #4]
+    str r3, [r0, #8]
+    str r4, [r0, #0xc]
+.Lraw_code_linkonce_1469_2:
+    movs r1, #0xac
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r5, [r1]
+    adds r4, r0, #0
+    adds r2, r5, #0
+    ldr r1, [r2]
+.Lraw_code_linkonce_1470_0:
+    cmp r4, r1
+    beq .Lraw_code_linkonce_1471_4
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1471_4
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1471_4:
+    str r4, [r5]
+    ldr r0, .Lraw_code_linkonce_1474_0
+    add r0, sp
+    ldr r1, [r0]
+    cmp r1, #0
+    bne .Lraw_code_linkonce_1472_4
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1472_4:
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1473_4: .word 0x0000055C
+.Lraw_code_linkonce_1473_8: .word 0x00000889
+.Lraw_code_linkonce_1473_12: .word __vt_17ReturnToGameScene
+.Lraw_code_linkonce_1474_0: .word 0x00000444
+.Lraw_code_linkonce_1475_0: .4byte __vt_23ReferencePageTransition
+.Lraw_code_linkonce_1476_0:
+    ldr r0, [r4]
+    bl func_08050D74
+    movs r0, #0xa
+    bl .Lraw_code_linkonce_1754_0
+.Lraw_code_linkonce_1477_4:
+    mov r4, sl
+    adds r4, #0xac
+    ldr r0, [r4]
+    bl GetState__C12UiStateOwner
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1480_6
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1480_6:
+    movs r5, #0
+    ldr r0, [r4]
+    cmp r5, r0
+    beq .Lraw_code_linkonce_1483_0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1483_0
+    movs r1, #3
+    bl _._12UiStateOwner
+.Lraw_code_linkonce_1483_0:
+    str r5, [r4]
+    movs r0, #0x10
+    bl __builtin_new
+    movs r1, #1
+    str r1, [sp]
+    movs r1, #6
+    str r1, [sp, #4]
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
+    bl __14MainMenuWidgetUiUiUiUiUi
+    mov r4, sl
+    adds r4, #0xb8
+    adds r5, r0, #0
+    ldr r1, [r4]
+    adds r7, r4, #0
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1490_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1490_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1490_6:
+    str r5, [r4]
+    ldr r0, [r7]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+    movs r0, #1
+    bl .Lraw_code_linkonce_1740_8
+.Lraw_code_linkonce_1492_0:
+    ldr r5, .Lraw_code_linkonce_1497_6
+    add r5, sp
+    ldr r5, [r5]
+    ldr r0, [r5]
+    bl GetStep__C23HardwareBlendController
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r1, r1, #0x1f
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1495_6
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1495_6:
+    movs r6, #0xac
+    lsls r6, r6, #3
+    add r6, sp
+    ldr r6, [r6]
+    ldr r0, [r6]
+    str r1, [r6]
+    ldr r1, .Lraw_code_linkonce_1497_10
+    add r1, sp
+    ldr r1, [r1]
+    str r0, [r1]
+    bl .Lraw_code_linkonce_1934_6
+.Lraw_code_linkonce_1497_6: .word 0x0000055C
+.Lraw_code_linkonce_1497_10: .word 0x000004DC
+.Lraw_code_linkonce_1498_2:
+    mov r4, sl
+    adds r4, #0xb4
+    ldr r0, [r4]
+    bl GetPhase__C13ControlWidget
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1500_8
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1500_8:
+    movs r5, #0
+    ldr r1, [r4]
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1502_8
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1502_8
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1502_8:
+    str r5, [r4]
+    movs r0, #0x10
+    bl __builtin_new
+    movs r1, #1
+    str r1, [sp]
+    movs r1, #0
+    str r1, [sp, #4]
+    movs r2, #0x1f
+    movs r3, #0
+    bl __14MainMenuWidgetUiUiUiUiUi
+    mov r4, sl
+    adds r4, #0xb8
+    adds r5, r0, #0
+    ldr r1, [r4]
+    adds r7, r4, #0
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1508_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1508_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1508_6:
+    str r5, [r4]
+    ldr r0, [r7]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+    movs r0, #1
+    bl .Lraw_code_linkonce_1810_8
+.Lraw_code_linkonce_1510_0:
+    mov r4, sl
+    adds r4, #0xb8
+    ldr r0, [r4]
+    bl GetPhase__C13ControlWidget
+    adds r7, r4, #0
+    cmp r0, #3
+    beq .Lraw_code_linkonce_1512_10
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1512_10:
+    add r0, sp, #0x10
+    ldrh r2, [r0, #4]
+    movs r0, #1
+    ands r0, r2
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1514_0
+    b .Lraw_code_linkonce_1604_4
+.Lraw_code_linkonce_1514_0:
+    movs r3, #0
+    movs r5, #0x9f
+    lsls r5, r5, #3
+    add r5, sp
+    str r3, [r5]
+    ldr r0, [r4]
+    bl GetSelection__C14MainMenuWidget
+    cmp r0, #6
+    bls .Lraw_code_linkonce_1516_6
+    b .Lraw_code_linkonce_1597_0
+.Lraw_code_linkonce_1516_6:
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_linkonce_1517_4
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+.Lraw_code_linkonce_1517_4: .word .Lswitch_080D9540
+.Lswitch_080D9540: .word .Lraw_code_linkonce_1520_0
+    .word .Lraw_code_linkonce_1580_0
+    .word .Lraw_code_linkonce_1532_0
+    .word .Lraw_code_linkonce_1549_0
+    .word .Lraw_code_linkonce_1558_12
+    .word .Lraw_code_linkonce_1570_4
+    .word .Lraw_code_linkonce_1595_0
+.Lraw_code_linkonce_1520_0:
+    movs r4, #0x87
+    lsls r4, r4, #3
+    add r4, sp
+    movs r0, #2
+    str r0, [r4]
+    movs r0, #0x14
+    bl __builtin_new
+    movs r6, #0xaa
+    lsls r6, r6, #3
+    add r6, sp
+    ldr r6, [r6]
+    ldr r6, [r6]
+    mov r8, r6
+    movs r6, #0x89
+    lsls r6, r6, #3
+    add r6, sp
+    adds r1, r6, #0
+    ldm r4!, {r2, r3, r5}
+    stm r1!, {r2, r3, r5}
+    ldr r1, .Lraw_code_linkonce_1529_12
+    str r1, [r0]
+    mov r1, r8
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldr r4, .Lraw_code_linkonce_1530_0
+    add r4, sp
+    str r0, [r4]
+    movs r0, #0xc
+    bl __builtin_new
+    ldr r5, [r4]
+    movs r3, #0
+    str r3, [r4]
+    str r5, [r6]
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r2, [r1]
+    ldr r1, .Lraw_code_linkonce_1531_0
+    str r1, [r0]
+    str r2, [r0, #4]
+    str r3, [r6]
+    str r5, [r0, #8]
+    b .Lraw_code_linkonce_1588_12
+.Lraw_code_linkonce_1529_12: .word __vt_17ReturnToGameScene
+.Lraw_code_linkonce_1530_0: .word 0x00000444
+.Lraw_code_linkonce_1531_0: .4byte __vt_15ClockTransition
+.Lraw_code_linkonce_1532_0:
+    movs r0, #0x10
+    bl __builtin_new
+    adds r6, r0, #0
+    movs r4, #0xaa
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    ldr r4, [r4]
+    mov r8, r4
+    movs r5, #1
+    mov sb, r5
+    ldr r0, .Lraw_code_linkonce_1545_0
+    str r0, [r6]
+    str r4, [r6, #4]
+    movs r0, #0x14
+    bl __builtin_new
+    ldr r1, .Lraw_code_linkonce_1546_0
+    str r1, [r0]
+    movs r1, #0
+    strb r1, [r0, #4]
+    adds r5, r0, #6
+    movs r3, #0x8d
+    lsls r3, r3, #2
+    ldrh r2, [r0, #6]
+    ldr r4, .Lraw_code_linkonce_1547_0
+    adds r1, r4, #0
+    ands r1, r2
+    orrs r1, r3
+    strh r1, [r0, #6]
+    ldrb r2, [r5, #1]
+    movs r3, #3
+    adds r1, r3, #0
+    ands r1, r2
+    strb r1, [r5, #1]
+    ldrh r2, [r5, #2]
+    adds r1, r4, #0
+    ands r1, r2
+    strh r1, [r5, #2]
+    ldrb r1, [r5, #3]
+    ands r3, r1
+    strb r3, [r5, #3]
+    ldrh r1, [r5, #4]
+    ands r4, r1
+    strh r4, [r5, #4]
+    ldr r1, .Lraw_code_linkonce_1548_0
+    str r1, [r0]
+    mov r1, r8
+    str r1, [r0, #0xc]
+    mov r2, sb
+    str r2, [r0, #0x10]
+    str r0, [r6, #8]
+    str r2, [r6, #0xc]
+    movs r3, #0xac
+    lsls r3, r3, #3
+    add r3, sp
+    ldr r4, [r3]
+    adds r5, r4, #0
+    ldr r1, [r5]
+    cmp r6, r1
+    beq .Lraw_code_linkonce_1544_8
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1544_8
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1544_8:
+    str r6, [r4]
+    b .Lraw_code_linkonce_1597_0
+.Lraw_code_linkonce_1545_0: .4byte __vt_17TownMapTransition
+.Lraw_code_linkonce_1546_0: .4byte __vt_26TownMapSelectionTransition
+.Lraw_code_linkonce_1547_0: .word 0xFFFFFC00
+.Lraw_code_linkonce_1548_0: .4byte __vt_23TownMapReturnTransition
+.Lraw_code_linkonce_1549_0:
+    movs r4, #0x87
+    lsls r4, r4, #3
+    add r4, sp
+    movs r0, #5
+    str r0, [r4]
+    movs r0, #0x14
+    bl __builtin_new
+    movs r6, #0xaa
+    lsls r6, r6, #3
+    add r6, sp
+    ldr r6, [r6]
+    ldr r6, [r6]
+    mov r8, r6
+    movs r6, #0x89
+    lsls r6, r6, #3
+    add r6, sp
+    adds r1, r6, #0
+    ldm r4!, {r2, r3, r5}
+    stm r1!, {r2, r3, r5}
+    ldr r1, .Lraw_code_linkonce_1558_0
+    str r1, [r0]
+    mov r1, r8
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldr r4, .Lraw_code_linkonce_1558_4
+    add r4, sp
+    str r0, [r4]
+    movs r0, #0xc
+    bl __builtin_new
+    ldr r5, [r4]
+    movs r3, #0
+    str r3, [r4]
+    str r5, [r6]
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r2, [r1]
+    ldr r1, .Lraw_code_linkonce_1558_8
+    str r1, [r0]
+    str r2, [r0, #4]
+    str r3, [r6]
+    str r5, [r0, #8]
+    b .Lraw_code_linkonce_1588_12
+.Lraw_code_linkonce_1558_0: .word __vt_17ReturnToGameScene
+.Lraw_code_linkonce_1558_4: .word 0x00000444
+.Lraw_code_linkonce_1558_8: .word vtable_unk_080E5E94
+.Lraw_code_linkonce_1558_12:
+    movs r4, #0x87
+    lsls r4, r4, #3
+    add r4, sp
+    movs r0, #6
+    str r0, [r4]
+    movs r0, #0x14
+    bl __builtin_new
+    movs r5, #0xaa
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    ldr r5, [r5]
+    mov r8, r5
+    movs r6, #0x89
+    lsls r6, r6, #3
+    add r6, sp
+    adds r1, r6, #0
+    ldm r4!, {r2, r3, r5}
+    stm r1!, {r2, r3, r5}
+    ldr r1, .Lraw_code_linkonce_1569_8
+    str r1, [r0]
+    mov r1, r8
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldr r4, .Lraw_code_linkonce_1569_12
+    add r4, sp
+    str r0, [r4]
+    movs r0, #0x10
+    bl __builtin_new
+    ldr r5, [r4]
+    movs r2, #0
+    str r2, [r4]
+    str r5, [r6]
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r3, [r1]
+    ldr r1, .Lraw_code_linkonce_1570_0
+    str r1, [r0]
+    str r2, [r6]
+    str r5, [r0, #4]
+    str r3, [r0, #8]
+    strb r2, [r0, #0xc]
+    b .Lraw_code_linkonce_1588_12
+    .align 2, 0
+.Lraw_code_linkonce_1569_8: .word __vt_17ReturnToGameScene
+.Lraw_code_linkonce_1569_12: .word 0x00000444
+.Lraw_code_linkonce_1570_0: .word vtable_unk_080E5EB4
+.Lraw_code_linkonce_1570_4:
+    movs r4, #0x87
+    lsls r4, r4, #3
+    add r4, sp
+    movs r0, #7
+    str r0, [r4]
+    movs r0, #0x14
+    bl __builtin_new
+    movs r5, #0xaa
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    ldr r5, [r5]
+    mov r8, r5
+    movs r6, #0x89
+    lsls r6, r6, #3
+    add r6, sp
+    adds r1, r6, #0
+    ldm r4!, {r2, r3, r5}
+    stm r1!, {r2, r3, r5}
+    ldr r1, .Lraw_code_linkonce_1579_4
+    str r1, [r0]
+    mov r1, r8
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldr r4, .Lraw_code_linkonce_1579_8
+    add r4, sp
+    str r0, [r4]
+    movs r0, #0xc
+    bl __builtin_new
+    ldr r5, [r4]
+    movs r2, #0
+    str r2, [r4]
+    str r5, [r6]
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r3, [r1]
+    ldr r1, .Lraw_code_linkonce_1579_12
+    b .Lraw_code_linkonce_1588_4
+.Lraw_code_linkonce_1579_4: .word __vt_17ReturnToGameScene
+.Lraw_code_linkonce_1579_8: .word 0x00000444
+.Lraw_code_linkonce_1579_12: .word vtable_unk_080E5EA4
+.Lraw_code_linkonce_1580_0:
+    movs r4, #0x87
+    lsls r4, r4, #3
+    add r4, sp
+    movs r0, #3
+    str r0, [r4]
+    movs r0, #0x14
+    bl __builtin_new
+    movs r5, #0xaa
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    ldr r5, [r5]
+    mov r8, r5
+    movs r6, #0x89
+    lsls r6, r6, #3
+    add r6, sp
+    adds r1, r6, #0
+    ldm r4!, {r2, r3, r5}
+    stm r1!, {r2, r3, r5}
+    ldr r1, .Lraw_code_linkonce_1592_10
+    str r1, [r0]
+    mov r1, r8
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    movs r1, #0x89
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldr r4, .Lraw_code_linkonce_1592_14
+    add r4, sp
+    str r0, [r4]
+    movs r0, #0xc
+    bl __builtin_new
+    ldr r5, [r4]
+    movs r2, #0
+    str r2, [r4]
+    str r5, [r6]
+    movs r1, #0xaa
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r3, [r1]
+    ldr r1, .Lraw_code_linkonce_1594_0
+.Lraw_code_linkonce_1588_4:
+    str r1, [r0]
+    str r2, [r6]
+    str r5, [r0, #4]
+    str r3, [r0, #8]
+.Lraw_code_linkonce_1588_12:
+    movs r2, #0xac
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r5, [r2]
+    adds r4, r0, #0
+    adds r3, r5, #0
+    ldr r1, [r3]
+    cmp r4, r1
+    beq .Lraw_code_linkonce_1590_14
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1590_14
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1590_14:
+    str r4, [r5]
+    ldr r0, .Lraw_code_linkonce_1592_14
+    add r0, sp
+    ldr r1, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1597_0
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+    b .Lraw_code_linkonce_1597_0
+    .align 2, 0
+.Lraw_code_linkonce_1592_10: .word __vt_17ReturnToGameScene
+.Lraw_code_linkonce_1592_14: .word 0x00000444
+.Lraw_code_linkonce_1594_0: .4byte __vt_22RucksackMenuTransition
+.Lraw_code_linkonce_1595_0:
+    movs r4, #1
+    movs r5, #0x9f
+    lsls r5, r5, #3
+    add r5, sp
+    str r4, [r5]
+    ldr r0, [r7]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0x14]
+    bl _call_via_r1
+    movs r0, #0xd
+    movs r6, #0xab
+    lsls r6, r6, #3
+    add r6, sp
+    ldr r6, [r6]
+    str r0, [r6]
+.Lraw_code_linkonce_1597_0:
+    movs r0, #0x9f
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1598_0
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1598_0:
+    ldr r0, [r7]
+    bl DisableInput__14MainMenuWidget
+    ldr r1, .Lraw_code_linkonce_1603_8
+    add r1, sp
+    ldr r1, [r1]
+    ldr r0, [r1]
+    ldr r1, .Lraw_code_linkonce_1604_0
+    movs r2, #1
+    movs r3, #1
+    bl EndHardwareBlend
+    movs r0, #9
+    bl .Lraw_code_linkonce_1810_8
+    .byte 0x00, 0x00
+.Lraw_code_linkonce_1603_8: .word 0x0000055C
+.Lraw_code_linkonce_1604_0: .word 0x00000889
+.Lraw_code_linkonce_1604_4:
+    lsls r1, r2, #0x1c
+    lsrs r1, r1, #0x1f
+    lsls r0, r2, #0x1e
+    lsrs r0, r0, #0x1f
+    cmn r1, r0
+    bne .Lraw_code_linkonce_1605_8
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1605_8:
+    ldr r0, [r4]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0x14]
+    bl _call_via_r1
+    movs r0, #8
+    b .Lraw_code_linkonce_1754_0
+.Lraw_code_linkonce_1606_10:
+    mov r4, sl
+    adds r4, #0xb8
+    ldr r0, [r4]
+    bl GetPhase__C13ControlWidget
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1609_8
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1609_8:
+    movs r5, #0
+    ldr r1, [r4]
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1611_8
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1611_8
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1611_8:
+    str r5, [r4]
+    movs r0, #0xc
+    bl __builtin_new
+    movs r1, #1
+    str r1, [sp]
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
+    bl __23MapClockStatusHudWidgetUiUiUiUi
+    mov r4, sl
+    adds r4, #0xb4
+    adds r5, r0, #0
+    ldr r1, [r4]
+    adds r6, r4, #0
+    cmp r5, r1
+    beq .Lraw_code_linkonce_1617_6
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1617_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1617_6:
+    str r5, [r4]
+    movs r4, #0xaa
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    ldr r1, [r4]
+    ldr r5, .Lraw_code_linkonce_1632_4
+    adds r0, r1, r5
+    ldrb r0, [r0]
+    lsls r0, r0, #0x1e
+    cmp r0, #0
+    bge .Lraw_code_linkonce_1621_2
+    ldr r7, .Lraw_code_linkonce_1632_8
+    adds r0, r1, r7
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1621_2
+    ldr r0, [r6]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+.Lraw_code_linkonce_1621_2:
+    ldr r4, [r6]
+    movs r5, #0
+    ldr r1, .Lraw_code_linkonce_1633_0
+    add r1, sp
+    ldr r1, [r1]
+    ldr r0, [r1]
+    ldr r1, [r0]
+    adds r1, #0xb0
+    ldr r1, [r1]
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1625_6
+    movs r2, #0xaa
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    ldr r0, [r2]
+    ldrh r1, [r0, #0x12]
+    lsls r1, r1, #0x15
+    lsrs r1, r1, #0x1a
+    movs r0, #1
+    ands r0, r1
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1625_8
+.Lraw_code_linkonce_1625_6:
+    movs r5, #1
+.Lraw_code_linkonce_1625_8:
+    adds r2, r5, #0
+    movs r3, #0xaa
+    lsls r3, r3, #3
+    add r3, sp
+    ldr r3, [r3]
+    ldr r1, [r3]
+    adds r1, #0x10
+    adds r0, r4, #0
+    adds r0, #8
+    bl UpdateMapClockStatusHudCalendar
+    mov r0, sl
+    adds r0, #0xb4
+    ldr r0, [r0]
+    movs r4, #0xaa
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    ldr r1, [r4]
+    ldr r1, [r1, #8]
+    adds r0, #8
+    bl SetMapClockStatusHudUnkSelector
+    movs r0, #0
+    b .Lraw_code_linkonce_1744_12
+.Lraw_code_linkonce_1632_4: .word 0x00002210
+.Lraw_code_linkonce_1632_8: .word 0x000034C4
+.Lraw_code_linkonce_1633_0: .word 0x00000564
+.Lraw_code_linkonce_1633_4:
+    ldr r6, .Lraw_code_linkonce_1637_12
+    add r6, sp
+    ldr r6, [r6]
+    ldr r0, [r6]
+    bl GetStep__C23HardwareBlendController
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r1, r1, #0x1f
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1636_2
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1636_2:
+    movs r7, #0xac
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    str r1, [r7]
+    ldr r3, .Lraw_code_linkonce_1638_0
+    add r3, sp
+    ldr r3, [r3]
+    str r0, [r3]
+    bl .Lraw_code_linkonce_1934_6
+    .byte 0x00, 0x00
+.Lraw_code_linkonce_1637_12: .word 0x0000055C
+.Lraw_code_linkonce_1638_0: .word 0x000004DC
+.Lraw_code_linkonce_1638_4:
+    ldr r4, .Lraw_code_linkonce_1650_8
+    ldr r1, [r4]
+    adds r0, r1, #0
+    adds r0, #8
+    movs r5, #0xd5
+    lsls r5, r5, #2
+    adds r1, r1, r5
+    ldr r1, [r1]
+    ldr r1, [r1, #0xc]
+    bl _call_via_r1
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1640_2
+    bl .Lauto_080DA29A
+.Lraw_code_linkonce_1640_2:
+    ldr r4, [r4]
+    movs r6, #0xde
+    lsls r6, r6, #2
+    adds r5, r4, r6
+    movs r2, #0
+    movs r1, #0
+    ldr r0, [r5]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1641_6
+    movs r1, #1
+.Lraw_code_linkonce_1641_6:
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1644_4
+    movs r7, #0xe3
+    lsls r7, r7, #2
+    adds r0, r4, r7
+    movs r1, #0
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1642_10
+    movs r1, #1
+.Lraw_code_linkonce_1642_10:
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1644_4
+    movs r1, #0x9a
+    lsls r1, r1, #3
+    adds r0, r4, r1
+    movs r1, #0
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1643_14
+    movs r1, #1
+.Lraw_code_linkonce_1643_14:
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1644_4
+    movs r2, #1
+.Lraw_code_linkonce_1644_4:
+    adds r3, r2, #0
+    cmp r3, #0
+    beq .Lraw_code_linkonce_1644_12
+    b .Lraw_code_linkonce_1669_4
+.Lraw_code_linkonce_1644_12:
+    movs r1, #0
+    ldr r0, [r5]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1645_6
+    movs r1, #1
+.Lraw_code_linkonce_1645_6:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_1651_0
+    adds r7, r5, #4
+    ldr r1, [r5, #4]
+    ldr r2, [r5, #8]
+    ldr r3, .Lraw_code_linkonce_1650_12
+    add r3, sp
+    str r1, [r3]
+    str r2, [r3, #4]
+    ldr r4, .Lraw_code_linkonce_1650_8
+    mov r8, r4
+    movs r3, #0x96
+    lsls r3, r3, #3
+    add r3, sp
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1649_14
+    lsls r0, r0, #3
+    adds r0, #4
+    adds r0, r5, r0
+    adds r1, r5, #0
+    adds r1, #0xc
+    cmp r1, r0
+    beq .Lraw_code_linkonce_1649_8
+    adds r6, r1, #0
+    subs r0, r0, r6
+    asrs r2, r0, #3
+    cmp r2, #0
+    ble .Lraw_code_linkonce_1649_8
+.Lraw_code_linkonce_1648_14:
+    ldm r6!, {r0, r1}
+    stm r7!, {r0, r1}
+    subs r2, #1
+    cmp r2, #0
+    bgt .Lraw_code_linkonce_1648_14
+.Lraw_code_linkonce_1649_8:
+    ldr r0, [r5]
+    subs r0, #1
+    str r0, [r5]
+.Lraw_code_linkonce_1649_14:
+    movs r0, #0x96
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r6, .Lraw_code_linkonce_1650_12
+    b .Lraw_code_linkonce_1657_2
+.Lraw_code_linkonce_1650_8: .word gUnk_0300040C
+.Lraw_code_linkonce_1650_12: .word 0x000004FC
+.Lraw_code_linkonce_1651_0:
+    adds r4, r5, #0
+    adds r4, #0x14
+    movs r1, #0
+    ldr r0, [r5, #0x14]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1651_14
+    movs r1, #1
+.Lraw_code_linkonce_1651_14:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_1658_8
+    adds r7, r5, #0
+    adds r7, #0x18
+    ldr r1, [r5, #0x18]
+    ldr r2, [r5, #0x1c]
+    ldr r3, .Lraw_code_linkonce_1658_0
+    add r3, sp
+    str r1, [r3]
+    str r2, [r3, #4]
+    adds r6, r4, #0
+    ldr r4, .Lraw_code_linkonce_1658_4
+    mov r8, r4
+    movs r3, #0x96
+    lsls r3, r3, #3
+    add r3, sp
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1656_10
+    lsls r0, r0, #3
+    adds r0, #4
+    adds r1, r6, r0
+    adds r0, r5, #0
+    adds r0, #0x20
+    cmp r0, r1
+    beq .Lraw_code_linkonce_1656_4
+    adds r5, r0, #0
+    subs r0, r1, r5
+    asrs r2, r0, #3
+    cmp r2, #0
+    ble .Lraw_code_linkonce_1656_4
+.Lraw_code_linkonce_1655_10:
+    ldm r5!, {r0, r1}
+    stm r7!, {r0, r1}
+    subs r2, #1
+    cmp r2, #0
+    bgt .Lraw_code_linkonce_1655_10
+.Lraw_code_linkonce_1656_4:
+    ldr r0, [r6]
+    subs r0, #1
+    str r0, [r6]
+.Lraw_code_linkonce_1656_10:
+    movs r0, #0x96
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r6, .Lraw_code_linkonce_1658_0
+.Lraw_code_linkonce_1657_2:
+    add r6, sp
+    ldr r5, [r6]
+    ldr r6, [r6, #4]
+    str r5, [r0]
+    str r6, [r0, #4]
+    b .Lraw_code_linkonce_1667_10
+    .align 2, 0
+.Lraw_code_linkonce_1658_0: .word 0x00000504
+.Lraw_code_linkonce_1658_4: .word gUnk_0300040C
+.Lraw_code_linkonce_1658_8:
+    movs r7, #0xac
+    lsls r7, r7, #1
+    adds r6, r5, r7
+    movs r1, #0
+    ldr r0, [r6]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1659_8
+    movs r1, #1
+.Lraw_code_linkonce_1659_8:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_1666_4
+    movs r1, #0xae
+    lsls r1, r1, #1
+    adds r4, r5, r1
+    ldr r1, [r4]
+    ldr r2, [r4, #4]
+    ldr r3, .Lraw_code_linkonce_1665_12
+    add r3, sp
+    str r1, [r3]
+    str r2, [r3, #4]
+    ldr r7, .Lraw_code_linkonce_1666_0
+    mov r8, r7
+    movs r3, #0x96
+    lsls r3, r3, #3
+    add r3, sp
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1664_8
+    lsls r0, r0, #3
+    adds r0, #4
+    adds r1, r6, r0
+    movs r2, #0xb2
+    lsls r2, r2, #1
+    adds r0, r5, r2
+    cmp r0, r1
+    beq .Lraw_code_linkonce_1664_2
+    adds r5, r0, #0
+    adds r7, r4, #0
+    subs r0, r1, r5
+    asrs r2, r0, #3
+    cmp r2, #0
+    ble .Lraw_code_linkonce_1664_2
+.Lraw_code_linkonce_1663_8:
+    ldm r5!, {r0, r1}
+    stm r7!, {r0, r1}
+    subs r2, #1
+    cmp r2, #0
+    bgt .Lraw_code_linkonce_1663_8
+.Lraw_code_linkonce_1664_2:
+    ldr r0, [r6]
+    subs r0, #1
+    str r0, [r6]
+.Lraw_code_linkonce_1664_8:
+    movs r0, #0x96
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r5, .Lraw_code_linkonce_1665_12
+    add r5, sp
+    ldr r4, [r5]
+    ldr r5, [r5, #4]
+    str r4, [r0]
+    str r5, [r0, #4]
+    b .Lraw_code_linkonce_1667_10
+.Lraw_code_linkonce_1665_12: .word 0x0000050C
+.Lraw_code_linkonce_1666_0: .word gUnk_0300040C
+.Lraw_code_linkonce_1666_4:
+    movs r1, #0x96
+    lsls r1, r1, #3
+    add r1, sp
+    movs r0, #0x96
+    lsls r0, r0, #3
+    add r0, sp
+    str r3, [r0]
+    str r3, [r1, #4]
+    ldr r6, .Lraw_code_linkonce_1669_0
+    mov r8, r6
+    adds r3, r1, #0
+.Lraw_code_linkonce_1667_10:
+    mov r7, r8
+    ldr r0, [r7]
+    adds r0, #8
+    movs r1, #0x96
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    ldr r2, [r3, #4]
+    bl LoadById__12ScriptEngineii
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1669_0: .word gUnk_0300040C
+.Lraw_code_linkonce_1669_4:
+    mov r4, sl
+    adds r4, #0xac
+    ldr r0, [r4]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1672_2
+    movs r5, #0
+    cmp r5, r0
+    beq .Lraw_code_linkonce_1672_0
+    movs r1, #3
+    bl _._12UiStateOwner
+.Lraw_code_linkonce_1672_0:
+    str r5, [r4]
+.Lraw_code_linkonce_1672_2:
+    mov r4, sl
+    adds r4, #0xf0
+    movs r5, #0
+    ldr r0, [r4]
+    cmp r5, r0
+    beq .Lraw_code_linkonce_1675_0
+    bl __builtin_delete
+.Lraw_code_linkonce_1675_0:
+    str r5, [r4]
+    ldr r1, .Lraw_code_linkonce_1699_4
+    add r1, sp
+    ldr r1, [r1]
+    ldr r0, [r1]
+    ldr r1, [r0]
+    movs r2, #0x94
+    lsls r2, r2, #1
+    adds r1, r1, r2
+    ldr r1, [r1]
+    bl _call_via_r1
+    mov r0, sl
+    adds r0, #0xb4
+    ldr r1, [r0]
+    adds r6, r0, #0
+    cmp r1, #0
+    bne .Lraw_code_linkonce_1684_4
+    movs r0, #0xc
+    bl __builtin_new
+    movs r1, #1
+    str r1, [sp]
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
+    bl __23MapClockStatusHudWidgetUiUiUiUi
+    adds r5, r6, #0
+    adds r4, r0, #0
+    ldr r1, [r6]
+    cmp r4, r1
+    beq .Lraw_code_linkonce_1684_2
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1684_2
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_1684_2:
+    str r4, [r5]
+.Lraw_code_linkonce_1684_4:
+    movs r3, #0xaa
+    lsls r3, r3, #3
+    add r3, sp
+    ldr r3, [r3]
+    ldr r1, [r3]
+    ldr r4, .Lraw_code_linkonce_1699_8
+    adds r0, r1, r4
+    ldrb r0, [r0]
+    lsls r0, r0, #0x1e
+    cmp r0, #0
+    bge .Lraw_code_linkonce_1687_10
+    ldr r5, .Lraw_code_linkonce_1699_12
+    adds r0, r1, r5
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1687_10
+    ldr r0, [r6]
+    ldr r1, [r0, #4]
+    ldr r1, [r1, #0x10]
+    bl _call_via_r1
+.Lraw_code_linkonce_1687_10:
+    ldr r4, [r6]
+    movs r5, #0
+    ldr r6, .Lraw_code_linkonce_1699_4
+    add r6, sp
+    ldr r6, [r6]
+    ldr r0, [r6]
+    ldr r1, [r0]
+    adds r1, #0xb0
+    ldr r1, [r1]
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1692_2
+    movs r7, #0xaa
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    ldrh r1, [r0, #0x12]
+    lsls r1, r1, #0x15
+    lsrs r1, r1, #0x1a
+    movs r0, #1
+    ands r0, r1
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1692_4
+.Lraw_code_linkonce_1692_2:
+    movs r5, #1
+.Lraw_code_linkonce_1692_4:
+    adds r2, r5, #0
+    movs r0, #0xaa
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r0, [r0]
+    ldr r1, [r0]
+    adds r1, #0x10
+    adds r0, r4, #0
+    adds r0, #8
+    bl UpdateMapClockStatusHudCalendar
+    mov r0, sl
+    adds r0, #0xb4
+    ldr r0, [r0]
+    movs r2, #0xaa
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    ldr r1, [r2]
+    ldr r1, [r1, #8]
+    adds r0, #8
+    bl SetMapClockStatusHudUnkSelector
+    movs r0, #0
+    b .Lraw_code_linkonce_1754_0
+    .align 2, 0
+.Lraw_code_linkonce_1699_4: .word 0x00000564
+.Lraw_code_linkonce_1699_8: .word 0x00002210
+.Lraw_code_linkonce_1699_12: .word 0x000034C4
+.Lraw_code_linkonce_1700_0:
+    mov r0, sl
+    adds r0, #0xac
+    ldr r0, [r0]
+    bl GetState__C12UiStateOwner
+    cmp r0, #3
+    beq .Lraw_code_linkonce_1703_0
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1703_0:
+    b .Lraw_code_linkonce_1740_6
+.Lraw_code_linkonce_1703_2:
+    mov r4, sl
+    adds r4, #0xac
+    ldr r0, [r4]
+    bl GetState__C12UiStateOwner
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1706_2
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1706_2:
+    movs r5, #0
+    ldr r0, [r4]
+    cmp r5, r0
+    beq .Lraw_code_linkonce_1708_0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1708_0
+    movs r1, #3
+    bl _._12UiStateOwner
+.Lraw_code_linkonce_1708_0:
+    str r5, [r4]
+    b .Lraw_code_linkonce_1744_10
+.Lraw_code_linkonce_1708_4:
+    mov r0, sl
+    adds r0, #0xac
+    ldr r0, [r0]
+    bl GetState__C12UiStateOwner
+    cmp r0, #3
+    beq .Lraw_code_linkonce_1710_6
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1710_6:
+    b .Lraw_code_linkonce_1802_4
+.Lraw_code_linkonce_1710_8:
+    add r0, sp, #0x10
+    ldrh r4, [r0, #8]
+    mov r0, sl
+    adds r0, #0xac
+    ldr r0, [r0]
+    bl GetState__C12UiStateOwner
+    cmp r0, #6
+    bls .Lraw_code_linkonce_1713_6
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1713_6:
+    lsls r0, r0, #2
+    ldr r1, .Lraw_code_linkonce_1714_8
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+.Lraw_code_linkonce_1714_8: .word .Lswitch_080D9DA4
+.Lswitch_080D9DA4: .word .Lraw_code_linkonce_1716_8
+    .word .Lraw_code_linkonce_1716_8
+    .word .Lraw_code_linkonce_1716_8
+    .word .Lraw_code_linkonce_1716_8
+    .word .Lraw_code_linkonce_1718_8
+    .word .Lraw_code_linkonce_1718_8
+    .word .Lraw_code_linkonce_1716_8
+.Lraw_code_linkonce_1716_8:
+    movs r0, #2
+    movs r7, #0xab
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    str r0, [r7]
+    ldr r0, .Lraw_code_linkonce_1718_4
+    ldr r0, [r0]
+    adds r0, #8
+    movs r1, #4
+    bl Push__12ScriptEnginei
+    b .Lauto_080DA29A
+    .align 2, 0
+.Lraw_code_linkonce_1718_4: .word gUnk_0300040C
+.Lraw_code_linkonce_1718_8:
+    movs r1, #2
+    adds r0, r4, #0
+    ands r0, r1
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1721_0
+    movs r0, #0xab
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r0, [r0]
+    str r1, [r0]
+    ldr r0, .Lraw_code_linkonce_1720_12
+    ldr r0, [r0]
+    adds r0, #8
+    movs r1, #5
+    bl Push__12ScriptEnginei
+    b .Lauto_080DA29A
+    .align 2, 0
+.Lraw_code_linkonce_1720_12: .word gUnk_0300040C
+.Lraw_code_linkonce_1721_0:
+    movs r0, #0x40
+    ands r0, r4
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1723_4
+    movs r2, #0xab
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    str r1, [r2]
+    ldr r0, .Lraw_code_linkonce_1723_0
+    ldr r0, [r0]
+    adds r0, #8
+    movs r1, #0
+    bl Push__12ScriptEnginei
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1723_0: .word gUnk_0300040C
+.Lraw_code_linkonce_1723_4:
+    movs r0, #0x80
+    ands r0, r4
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1725_8
+    movs r3, #0xab
+    lsls r3, r3, #3
+    add r3, sp
+    ldr r3, [r3]
+    str r1, [r3]
+    ldr r0, .Lraw_code_linkonce_1725_4
+    ldr r0, [r0]
+    adds r0, #8
+    movs r1, #1
+    bl Push__12ScriptEnginei
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1725_4: .word gUnk_0300040C
+.Lraw_code_linkonce_1725_8:
+    movs r0, #0x20
+    ands r0, r4
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1727_12
+    movs r4, #0xab
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    str r1, [r4]
+    ldr r0, .Lraw_code_linkonce_1727_8
+    ldr r0, [r0]
+    adds r0, #8
+    movs r1, #2
+    bl Push__12ScriptEnginei
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1727_8: .word gUnk_0300040C
+.Lraw_code_linkonce_1727_12:
+    movs r0, #0x10
+    ands r4, r0
+    cmp r4, #0
+    bne .Lraw_code_linkonce_1728_6
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1728_6:
+    movs r5, #0xab
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    str r1, [r5]
+    ldr r0, .Lraw_code_linkonce_1730_0
+    ldr r0, [r0]
+    adds r0, #8
+    movs r1, #3
+    bl Push__12ScriptEnginei
+    b .Lauto_080DA29A
+    .align 2, 0
+.Lraw_code_linkonce_1730_0: .word gUnk_0300040C
+.Lraw_code_linkonce_1730_4:
+    ldr r6, .Lraw_code_linkonce_1735_8
+    add r6, sp
+    ldr r6, [r6]
+    ldr r0, [r6]
+    bl GetStep__C23HardwareBlendController
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r3, r1, #0x1f
+    cmp r3, #0
+    beq .Lraw_code_linkonce_1733_0
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1733_0:
+    mov r1, sl
+    adds r1, #0xe8
+    movs r0, #1
+    strb r0, [r1]
+    mov r7, sl
+    ldrh r1, [r7, #0x10]
+    ldr r0, .Lraw_code_linkonce_1735_12
+    ands r0, r1
+    strh r0, [r7, #0x10]
+    mov r2, sl
+    adds r2, #0x60
+    ldrh r1, [r2]
+    ldr r0, .Lraw_code_linkonce_1736_0
+    ands r0, r1
+    strh r0, [r2]
+    mov r0, sl
+    adds r0, #0x5c
+    strh r3, [r0]
+    b .Lraw_code_linkonce_1807_4
+    .align 2, 0
+.Lraw_code_linkonce_1735_8: .word 0x0000055C
+.Lraw_code_linkonce_1735_12: .word 0x0000F0FF
+.Lraw_code_linkonce_1736_0: .word 0x0000FF3F
+.Lraw_code_linkonce_1736_4:
+    ldr r2, .Lraw_code_linkonce_1739_0
+    add r2, sp
+    ldr r2, [r2]
+    ldr r0, [r2]
+    bl GetStep__C23HardwareBlendController
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    cmp r1, #0
+    bge .Lraw_code_linkonce_1738_14
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1738_14:
+    b .Lraw_code_linkonce_1753_14
+.Lraw_code_linkonce_1739_0: .word 0x0000055C
+.Lraw_code_linkonce_1739_4:
+    mov r1, sl
+    adds r1, #0xe0
+    ldrh r0, [r1]
+    subs r0, #1
+    strh r0, [r1]
+    lsls r0, r0, #0x10
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1740_6
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1740_6:
+    movs r0, #2
+.Lraw_code_linkonce_1740_8:
+    movs r4, #0xab
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    str r0, [r4]
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1741_4:
+    mov r4, sl
+    adds r4, #0xe4
+    ldr r0, [r4]
+    bl IsActorAxisMotionComplete
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1744_6
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1744_6:
+    movs r0, #0
+    str r0, [r4]
+.Lraw_code_linkonce_1744_10:
+    movs r0, #2
+.Lraw_code_linkonce_1744_12:
+    movs r5, #0xab
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    str r0, [r5]
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1745_8:
+    mov r5, sl
+    adds r5, #0xac
+    ldr r0, [r5]
+    bl GetState__C12UiStateOwner
+    cmp r0, #6
+    bne .Lraw_code_linkonce_1747_6
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1747_6:
+    ldr r0, .Lraw_code_linkonce_1750_0
+    ldr r4, [r0]
+    adds r4, #8
+    ldr r0, [r5]
+    bl GetChoiceResult__C12UiStateOwner
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl Push__12ScriptEnginei
+    b .Lraw_code_linkonce_1802_4
+    .align 2, 0
+.Lraw_code_linkonce_1750_0: .word gUnk_0300040C
+.Lraw_code_linkonce_1750_4:
+    ldr r7, .Lraw_code_linkonce_1751_8
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x28]
+    bl _call_via_r1
+    b .Lraw_code_linkonce_1806_0
+    .align 2, 0
+.Lraw_code_linkonce_1751_8: .word 0x00000564
+.Lraw_code_linkonce_1751_12:
+    ldr r2, .Lraw_code_linkonce_1754_12
+    add r2, sp
+    ldr r2, [r2]
+    ldr r0, [r2]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x3c]
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1753_14
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1753_14:
+    movs r0, #2
+.Lraw_code_linkonce_1754_0:
+    movs r3, #0xab
+    lsls r3, r3, #3
+    add r3, sp
+    ldr r3, [r3]
+    str r0, [r3]
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1754_12: .word 0x00000564
+.Lraw_code_linkonce_1755_0:
+    mov r0, sl
+    adds r0, #0xef
+    ldrb r1, [r0]
+    movs r4, #0xaf
+    lsls r4, r4, #3
+    add r4, sp
+    str r0, [r4]
+    cmp r1, #0x78
+    bne .Lraw_code_linkonce_1760_4
+    subs r0, #5
+    movs r3, #0
+    strb r3, [r0]
+    mov r5, sl
+    ldrh r1, [r5, #0x10]
+    ldr r0, .Lraw_code_linkonce_1760_0
+    ands r0, r1
+    strh r0, [r5, #0x10]
+    movs r2, #0x87
+    lsls r2, r2, #3
+    add r2, sp
+    movs r0, #0x3f
+    strh r0, [r2]
+    mov r1, sl
+    adds r1, #0x60
+    movs r6, #0x87
+    lsls r6, r6, #3
+    add r6, sp
+    ldrh r0, [r6]
+    strh r0, [r1]
+    strh r3, [r2]
+    adds r1, #2
+    ldrh r0, [r6]
+    strh r0, [r1]
+    movs r0, #2
+.Lraw_code_linkonce_1759_4:
+    movs r7, #0xab
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    str r0, [r7]
+    b .Lauto_080DA29A
+.Lraw_code_linkonce_1760_0: .word 0x0000FEFF
+.Lraw_code_linkonce_1760_4:
+    mov r0, sl
+    adds r0, #0xec
+    ldrh r1, [r0]
+    mov r8, sl
+    movs r0, #0x87
+    lsls r0, r0, #3
     add r0, sp
     ldr r2, .Ljp_080DA078
     movs r3, #2
     bl __21DmaTransferDescriptorUiPvUi
-    .byte 0x87, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x10, 0x49, 0x69, 0x44, 0x08, 0x60, 0x52, 0x46, 0x51, 0x68
-    .byte 0xD0, 0x68, 0x81, 0x42, 0x1B, 0xD0, 0x00, 0x29, 0x07, 0xD0, 0x08, 0x1C, 0x87, 0x21, 0xC9, 0x00
-    .byte 0x69, 0x44, 0x38, 0xC9, 0x38, 0xC0, 0x09, 0x68, 0x01, 0x60, 0x56, 0x46, 0x70, 0x68, 0x10, 0x30
-    .byte 0x70, 0x60, 0x62, 0x36, 0xA9, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x3E, 0x60, 0xEE, 0x20, 0x50, 0x44
-    .byte 0x81, 0x46, 0x9D, 0xE0, 0x00, 0x00
+    movs r0, #0x87
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r1, .Lraw_code_linkonce_1771_0
+    add r1, sp
+    str r0, [r1]
+    mov r2, sl
+    ldr r1, [r2, #4]
+    ldr r0, [r2, #0xc]
+    cmp r1, r0
+    beq .Lraw_code_linkonce_1771_4
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1767_10
+    adds r0, r1, #0
+    movs r1, #0x87
+    lsls r1, r1, #3
+    add r1, sp
+    ldm r1!, {r3, r4, r5}
+    stm r0!, {r3, r4, r5}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_1767_10:
+    mov r6, sl
+    ldr r0, [r6, #4]
+    adds r0, #0x10
+    str r0, [r6, #4]
+    adds r6, #0x62
+    movs r7, #0xa9
+    lsls r7, r7, #3
+    add r7, sp
+    str r6, [r7]
+    movs r0, #0xee
+    add r0, sl
+    mov sb, r0
+    b .Lraw_code_linkonce_1791_0
+    .align 2, 0
 .Ljp_080DA078: .word BG_PALETTE + 2
-    .byte 0x14, 0x05, 0x00, 0x00, 0x15, 0x4A
-    .byte 0x6A, 0x44, 0x11, 0x60, 0x01, 0x20, 0x14, 0x49, 0x69, 0x44, 0x08, 0x60, 0x53, 0x46, 0x18, 0x68
-    .byte 0x14, 0x68, 0x20, 0x1A, 0x04, 0x11, 0x97, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x04, 0x60, 0x0E, 0x4A
-    .byte 0x6A, 0x44, 0x08, 0x68, 0x97, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x84, 0x42, 0x00, 0xD2, 0x11, 0x1C
-    .byte 0x08, 0x68, 0x20, 0x18, 0x00, 0x28, 0x12, 0xD0, 0x04, 0x01, 0x20, 0x1C, 0xF5, 0xF7, 0xDD, 0xFC
-    .byte 0xB1, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2C, 0x60, 0x00, 0x28, 0x0D, 0xD1, 0x20, 0x1C, 0xF9, 0xF7
-    .byte 0x52, 0xF9, 0x09, 0xE0, 0x00, 0x00, 0x84, 0x05, 0x00, 0x00, 0xBC, 0x04, 0x00, 0x00, 0x00, 0x20
-    .byte 0xB1, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x30, 0x60, 0x05, 0x1C, 0x2C, 0x1C, 0x47, 0x46, 0x3A, 0x68
-    .byte 0x23, 0x1C, 0x50, 0x46, 0x62, 0x30, 0xA9, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x08, 0x60, 0xEE, 0x25
-    .byte 0x55, 0x44, 0xA9, 0x46, 0x13, 0x4E, 0x6E, 0x44, 0x36, 0x68, 0xB2, 0x42, 0x0E, 0xD0, 0x00, 0x2B
-    .byte 0x05, 0xD0, 0x18, 0x1C, 0x11, 0x1C, 0xE0, 0xC9, 0xE0, 0xC0, 0x09, 0x68, 0x01, 0x60, 0x10, 0x32
-    .byte 0x10, 0x33, 0x0B, 0x4F, 0x6F, 0x44, 0x3F, 0x68, 0xBA, 0x42, 0xF0, 0xD1, 0x1D, 0x1C, 0x09, 0x48
-    .byte 0x68, 0x44, 0x00, 0x68, 0x01, 0x28, 0x12, 0xD1, 0x00, 0x2D, 0x07, 0xD0, 0x28, 0x1C, 0x06, 0x4A
-    .byte 0x6A, 0x44, 0x11, 0x68, 0xC8, 0xC9, 0xC8, 0xC0, 0x09, 0x68, 0x01, 0x60, 0x10, 0x35, 0x19, 0xE0
-    .byte 0x00, 0x00, 0x84, 0x05, 0x00, 0x00, 0xBC, 0x04, 0x00, 0x00, 0x14, 0x05, 0x00, 0x00, 0x03, 0x1C
-    .byte 0x2A, 0x1C, 0x00, 0x2B, 0x0D, 0xD0, 0x00, 0x2A, 0x07, 0xD0, 0x10, 0x1C, 0x23, 0x4D, 0x6D, 0x44
-    .byte 0x29, 0x68, 0xE0, 0xC9, 0xE0, 0xC0, 0x09, 0x68, 0x01, 0x60, 0x01, 0x3B, 0x10, 0x32, 0x00, 0x2B
-    .byte 0xF1, 0xD1, 0x15, 0x1C, 0x46, 0x46, 0x72, 0x68, 0x30, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0
-    .byte 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0xF5, 0xF7, 0xA2, 0xFC, 0xB1, 0x27
-    .byte 0xFF, 0x00, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x19, 0x41, 0x46, 0x0C, 0x60, 0x4D, 0x60, 0xC8, 0x60
-    .byte 0x13, 0x49, 0xAF, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x12, 0x68, 0x10, 0x78, 0x40, 0x18, 0x00, 0x78
-    .byte 0x4B, 0x46, 0x18, 0x70, 0x87, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x18, 0x78, 0x80, 0x24, 0x64, 0x01
-    .byte 0x21, 0x1C, 0x40, 0x18, 0x10, 0x80, 0x87, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x28, 0x88, 0xA9, 0x26
-    .byte 0xF6, 0x00, 0x6E, 0x44, 0x36, 0x68, 0x30, 0x80, 0xAF, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x3F, 0x68
-    .byte 0x38, 0x78, 0x01, 0x30, 0x38, 0x70, 0x4F, 0xE0, 0x00, 0x00, 0x14, 0x05, 0x00, 0x00
-    .4byte gScreenFlashBlendStrengths
-    .byte 0xAC, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x12, 0x68, 0x11, 0x68, 0x00, 0x20, 0x10, 0x60, 0x02, 0x4C
-    .byte 0x6C, 0x44, 0x24, 0x68, 0x21, 0x60, 0x31, 0xE3, 0xDC, 0x04, 0x00, 0x00, 0x0A, 0x4D, 0x6D, 0x44
-    .byte 0x2D, 0x68, 0x28, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x5D, 0x21, 0xF8, 0xF7, 0x4D, 0xFF
+.Lraw_code_linkonce_1771_0: .word 0x00000514
+.Lraw_code_linkonce_1771_4:
+    ldr r2, .Lraw_code_linkonce_1777_6
+    add r2, sp
+    str r1, [r2]
+    movs r0, #1
+    ldr r1, .Lraw_code_linkonce_1777_10
+    add r1, sp
+    str r0, [r1]
+    mov r3, sl
+    ldr r0, [r3]
+    ldr r4, [r2]
+    subs r0, r4, r0
+    asrs r4, r0, #4
+    movs r0, #0x97
+    lsls r0, r0, #3
+    add r0, sp
+    str r4, [r0]
+    ldr r2, .Lraw_code_linkonce_1777_10
+    add r2, sp
+    ldr r0, [r1]
+    movs r1, #0x97
+    lsls r1, r1, #3
+    add r1, sp
+    cmp r4, r0
+    bhs .Lraw_code_linkonce_1775_0
+    adds r1, r2, #0
+.Lraw_code_linkonce_1775_0:
+    ldr r0, [r1]
+    adds r0, r4, r0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1777_14
+    lsls r4, r0, #4
+    adds r0, r4, #0
+    bl malloc
+    movs r5, #0xb1
+    lsls r5, r5, #3
+    add r5, sp
+    str r4, [r5]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1778_8
+    adds r0, r4, #0
+    bl RetryMemoryAllocation
+    b .Lraw_code_linkonce_1778_8
+    .align 2, 0
+.Lraw_code_linkonce_1777_6: .word 0x00000584
+.Lraw_code_linkonce_1777_10: .word 0x000004BC
+.Lraw_code_linkonce_1777_14:
+    movs r0, #0
+    movs r6, #0xb1
+    lsls r6, r6, #3
+    add r6, sp
+    str r0, [r6]
+.Lraw_code_linkonce_1778_8:
+    adds r5, r0, #0
+    adds r4, r5, #0
+    mov r7, r8
+    ldr r2, [r7]
+    adds r3, r4, #0
+    mov r0, sl
+    adds r0, #0x62
+    movs r1, #0xa9
+    lsls r1, r1, #3
+    add r1, sp
+    str r0, [r1]
+    movs r5, #0xee
+    add r5, sl
+    mov sb, r5
+    ldr r6, .Lraw_code_linkonce_1785_2
+    add r6, sp
+    ldr r6, [r6]
+    cmp r2, r6
+    beq .Lraw_code_linkonce_1782_12
+.Lraw_code_linkonce_1780_14:
+    cmp r3, #0
+    beq .Lraw_code_linkonce_1781_14
+    adds r0, r3, #0
+    adds r1, r2, #0
+    ldm r1!, {r5, r6, r7}
+    stm r0!, {r5, r6, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_1781_14:
+    adds r2, #0x10
+    adds r3, #0x10
+    ldr r7, .Lraw_code_linkonce_1785_2
+    add r7, sp
+    ldr r7, [r7]
+    cmp r2, r7
+    bne .Lraw_code_linkonce_1780_14
+.Lraw_code_linkonce_1782_12:
+    adds r5, r3, #0
+    ldr r0, .Lraw_code_linkonce_1785_6
+    add r0, sp
+    ldr r0, [r0]
+    cmp r0, #1
+    bne .Lraw_code_linkonce_1785_14
+    cmp r5, #0
+    beq .Lraw_code_linkonce_1784_12
+    adds r0, r5, #0
+    ldr r2, .Lraw_code_linkonce_1785_10
+    add r2, sp
+    ldr r1, [r2]
+    ldm r1!, {r3, r6, r7}
+    stm r0!, {r3, r6, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_1784_12:
+    adds r5, #0x10
+    b .Lraw_code_linkonce_1788_4
+    .align 2, 0
+.Lraw_code_linkonce_1785_2: .word 0x00000584
+.Lraw_code_linkonce_1785_6: .word 0x000004BC
+.Lraw_code_linkonce_1785_10: .word 0x00000514
+.Lraw_code_linkonce_1785_14:
+    adds r3, r0, #0
+    adds r2, r5, #0
+    cmp r3, #0
+    beq .Lraw_code_linkonce_1788_2
+.Lraw_code_linkonce_1786_6:
+    cmp r2, #0
+    beq .Lraw_code_linkonce_1787_10
+    adds r0, r2, #0
+    ldr r5, .Lraw_code_linkonce_1795_10
+    add r5, sp
+    ldr r1, [r5]
+    ldm r1!, {r5, r6, r7}
+    stm r0!, {r5, r6, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_1787_10:
+    subs r3, #1
+    adds r2, #0x10
+    cmp r3, #0
+    bne .Lraw_code_linkonce_1786_6
+.Lraw_code_linkonce_1788_2:
+    adds r5, r2, #0
+.Lraw_code_linkonce_1788_4:
+    mov r6, r8
+    ldr r2, [r6, #4]
+    ldr r0, [r6]
+    adds r1, r0, #0
+    cmp r0, r2
+    beq .Lraw_code_linkonce_1789_6
+.Lraw_code_linkonce_1789_0:
+    adds r1, #0x10
+    cmp r1, r2
+    bne .Lraw_code_linkonce_1789_0
+.Lraw_code_linkonce_1789_6:
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1789_14
+    bl free
+.Lraw_code_linkonce_1789_14:
+    movs r7, #0xb1
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    adds r0, r7, r4
+    mov r1, r8
+    str r4, [r1]
+    str r5, [r1, #4]
+    str r0, [r1, #0xc]
+.Lraw_code_linkonce_1791_0:
+    ldr r1, .Lraw_code_linkonce_1796_0
+    movs r2, #0xaf
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    ldrb r0, [r2]
+    adds r0, r0, r1
+    ldrb r0, [r0]
+    mov r3, sb
+    strb r0, [r3]
+    movs r2, #0x87
+    lsls r2, r2, #3
+    add r2, sp
+    ldrb r0, [r3]
+    movs r4, #0x80
+    lsls r4, r4, #5
+    adds r1, r4, #0
+    adds r0, r0, r1
+    strh r0, [r2]
+    movs r5, #0x87
+    lsls r5, r5, #3
+    add r5, sp
+    ldrh r0, [r5]
+    movs r6, #0xa9
+    lsls r6, r6, #3
+    add r6, sp
+    ldr r6, [r6]
+    strh r0, [r6]
+    movs r7, #0xaf
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    ldrb r0, [r7]
+    adds r0, #1
+    strb r0, [r7]
+    b .Lauto_080DA29A
+    .align 2, 0
+.Lraw_code_linkonce_1795_10: .word 0x00000514
+.Lraw_code_linkonce_1796_0: .4byte gScreenFlashBlendStrengths
+.Lraw_code_linkonce_1797_0:
+    movs r2, #0xac
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    ldr r1, [r2]
+    movs r0, #0
+    str r0, [r2]
+    ldr r4, .Lraw_code_linkonce_1798_8
+    add r4, sp
+    ldr r4, [r4]
+    str r1, [r4]
+    b .Lraw_code_linkonce_1934_6
+.Lraw_code_linkonce_1798_8: .word 0x000004DC
+.Lraw_code_linkonce_1798_12:
+    ldr r5, .Lraw_code_linkonce_1803_4
+    add r5, sp
+    ldr r5, [r5]
+    ldr r0, [r5]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x5d
+    bl _call_via_r2
     bl HasEntityStarSparkleEffect
-    .byte 0x00, 0x06
-    .byte 0x00, 0x28, 0x2E, 0xD1, 0x02, 0x20, 0xAB, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0x36, 0x68, 0x30, 0x60
-    .byte 0x27, 0xE0, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x0A, 0x4F, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x68
-    .byte 0x01, 0x68, 0x0A, 0x6C, 0x5D, 0x21, 0xF8, 0xF7, 0x35, 0xFF
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_080DA29A
+.Lraw_code_linkonce_1802_4:
+    movs r0, #2
+    movs r6, #0xab
+    lsls r6, r6, #3
+    add r6, sp
+    ldr r6, [r6]
+    str r0, [r6]
+    b .Lauto_080DA29A
+    .align 2, 0
+.Lraw_code_linkonce_1803_4: .word 0x00000564
+.Lraw_code_linkonce_1803_8:
+    ldr r7, .Lraw_code_linkonce_1808_4
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x5d
+    bl _call_via_r2
     bl IsEntityNewYearSunriseEffectComplete
-    .byte 0x00, 0x06
-    .byte 0x00, 0x28, 0x16, 0xD0, 0x02, 0x20, 0xAB, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x09, 0x68, 0x08, 0x60
-    .byte 0x0F, 0xE0, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x50, 0x46, 0xBC, 0x30
+.Lraw_code_linkonce_1806_0:
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_080DA29A
+.Lraw_code_linkonce_1807_4:
+    movs r0, #2
+.Lraw_code_linkonce_1807_6:
+    movs r1, #0xab
+    lsls r1, r1, #3
+    add r1, sp
+    ldr r1, [r1]
+    str r0, [r1]
+    b .Lauto_080DA29A
+    .align 2, 0
+.Lraw_code_linkonce_1808_4: .word 0x00000564
+.Lraw_code_linkonce_1808_8:
+    mov r0, sl
+    adds r0, #0xbc
     bl IsUnpaused__C23HardwareMusicPlayerSlot
-    .byte 0x00, 0x06, 0x00, 0x28, 0x05, 0xD1, 0x02, 0x20, 0xAB, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x12, 0x68
-    .byte 0x10, 0x60
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_080DA29A
+    movs r0, #2
+.Lraw_code_linkonce_1810_8:
+    movs r2, #0xab
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    str r0, [r2]
     .Lauto_080DA29A:
-    .byte 0x26, 0x4B, 0x6B, 0x44, 0x1B, 0x68, 0x00, 0x2B, 0x0F, 0xD1, 0x98, 0x21, 0xC9, 0x00, 0x69, 0x44
-    .byte 0x98, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x04, 0xAC, 0x04, 0x60, 0x20, 0x4D, 0x6D, 0x44, 0x2D, 0x68
-    .byte 0x28, 0x68, 0x02, 0x68, 0xD2, 0x68, 0xF8, 0xF7, 0x04, 0xFF, 0x50, 0x46, 0xE8, 0x30, 0x00, 0x78
-    .byte 0x00, 0x28, 0x00, 0xD1, 0xD1, 0xE0, 0x50, 0x46, 0xE9, 0x30, 0x00, 0x78, 0x19, 0x49, 0x00, 0x28
-    .byte 0x00, 0xD0, 0x00, 0x21, 0xD0, 0x46, 0x87, 0x20, 0xC0, 0x00, 0x68, 0x44, 0xA0, 0x22, 0xD2, 0x04
-    .byte 0x02, 0x23
+    ldr r3, .Lraw_code_linkonce_1824_10
+    add r3, sp
+    ldr r3, [r3]
+    cmp r3, #0
+    bne .Lraw_code_linkonce_1815_10
+    movs r1, #0x98
+    lsls r1, r1, #3
+    add r1, sp
+    movs r0, #0x98
+    lsls r0, r0, #3
+    add r0, sp
+    add r4, sp, #0x10
+    str r4, [r0]
+    ldr r5, .Lraw_code_linkonce_1824_14
+    add r5, sp
+    ldr r5, [r5]
+    ldr r0, [r5]
+    ldr r2, [r0]
+    ldr r2, [r2, #0xc]
+    bl _call_via_r2
+.Lraw_code_linkonce_1815_10:
+    mov r0, sl
+    adds r0, #0xe8
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1816_6
+    b .Lraw_code_linkonce_1844_10
+.Lraw_code_linkonce_1816_6:
+    mov r0, sl
+    adds r0, #0xe9
+    ldrb r0, [r0]
+    ldr r1, .Lraw_code_linkonce_1825_2
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1817_4
+    movs r1, #0
+.Lraw_code_linkonce_1817_4:
+    mov r8, sl
+    movs r0, #0x87
+    lsls r0, r0, #3
+    add r0, sp
+    movs r2, #0xa0
+    lsls r2, r2, #0x13
+    movs r3, #2
     bl __21DmaTransferDescriptorUiPvUi
-    .byte 0x87, 0x26, 0xF6, 0x00, 0x6E, 0x44, 0xA3, 0x27, 0xFF, 0x00
-    .byte 0x6F, 0x44, 0x3E, 0x60, 0x50, 0x46, 0x41, 0x68, 0xC0, 0x68, 0x81, 0x42, 0x1D, 0xD0, 0x00, 0x29
-    .byte 0x08, 0xD0, 0x08, 0x1C, 0xA3, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x11, 0x68, 0x38, 0xC9, 0x38, 0xC0
-    .byte 0x09, 0x68, 0x01, 0x60, 0x56, 0x46, 0x70, 0x68, 0x10, 0x30, 0x70, 0x60, 0xB4, 0x36, 0x57, 0x46
-    .byte 0xEA, 0x37, 0x04, 0x48, 0x68, 0x44, 0x07, 0x60, 0xBB, 0xE0, 0xF4, 0x04, 0x00, 0x00, 0x64, 0x05
-    .byte 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0x74, 0x05, 0x00, 0x00, 0xB1, 0x22, 0xD2, 0x00, 0x6A, 0x44
-    .byte 0x11, 0x60, 0x01, 0x20, 0x99, 0x21, 0xC9, 0x00, 0x69, 0x44, 0x08, 0x60, 0x53, 0x46, 0x18, 0x68
-    .byte 0x14, 0x68, 0x20, 0x1A, 0x04, 0x11, 0x0D, 0x48, 0x68, 0x44, 0x04, 0x60, 0x99, 0x22, 0xD2, 0x00
-    .byte 0x6A, 0x44, 0x08, 0x68, 0x0A, 0x49, 0x69, 0x44, 0x84, 0x42, 0x00, 0xD2, 0x11, 0x1C, 0x08, 0x68
-    .byte 0x20, 0x18, 0x00, 0x28, 0x0D, 0xD0, 0x04, 0x01, 0x20, 0x1C, 0xF5, 0xF7, 0x7A, 0xFB, 0xA1, 0x46
-    .byte 0x00, 0x28, 0x08, 0xD1, 0x48, 0x46, 0xF8, 0xF7, 0xF2, 0xFF, 0x04, 0xE0, 0x00, 0x00, 0xC4, 0x04
-    .byte 0x00, 0x00, 0x00, 0x20, 0x81, 0x46, 0x05, 0x1C, 0x1B, 0x4E, 0x6E, 0x44, 0x35, 0x60, 0x47, 0x46
-    .byte 0x3A, 0x68, 0x2B, 0x1C, 0x56, 0x46, 0xB4, 0x36, 0x50, 0x46, 0xEA, 0x30, 0x17, 0x49, 0x69, 0x44
-    .byte 0x08, 0x60, 0xB1, 0x24, 0xE4, 0x00, 0x6C, 0x44, 0x24, 0x68, 0xA2, 0x42, 0x0F, 0xD0, 0x00, 0x2B
-    .byte 0x05, 0xD0, 0x18, 0x1C, 0x11, 0x1C, 0xB0, 0xC9, 0xB0, 0xC0, 0x09, 0x68, 0x01, 0x60, 0x10, 0x32
-    .byte 0x10, 0x33, 0xB1, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2D, 0x68, 0xAA, 0x42, 0xEF, 0xD1, 0x1D, 0x1C
-    .byte 0x99, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x00, 0x68, 0x01, 0x28, 0x10, 0xD1, 0x00, 0x2D, 0x08, 0xD0
-    .byte 0x28, 0x1C, 0xA3, 0x27, 0xFF, 0x00, 0x6F, 0x44, 0x39, 0x68, 0x1C, 0xC9, 0x1C, 0xC0, 0x09, 0x68
-    .byte 0x01, 0x60, 0x10, 0x35, 0x17, 0xE0, 0x8C, 0x05, 0x00, 0x00, 0x74, 0x05, 0x00, 0x00, 0x03, 0x1C
-    .byte 0x2A, 0x1C, 0x00, 0x2B, 0x0E, 0xD0, 0x00, 0x2A, 0x08, 0xD0, 0x10, 0x1C, 0xA3, 0x25, 0xED, 0x00
-    .byte 0x6D, 0x44, 0x29, 0x68, 0xB0, 0xC9, 0xB0, 0xC0, 0x09, 0x68, 0x01, 0x60, 0x01, 0x3B, 0x10, 0x32
-    .byte 0x00, 0x2B, 0xF0, 0xD1, 0x15, 0x1C, 0x47, 0x46, 0x7A, 0x68, 0x38, 0x68, 0x01, 0x1C, 0x90, 0x42
-    .byte 0x02, 0xD0, 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28, 0x01, 0xD0, 0xF5, 0xF7, 0x45, 0xFB
-    .byte 0x05, 0x49, 0x69, 0x44, 0x08, 0x68, 0x48, 0x44, 0x0A, 0x68, 0x43, 0x46, 0x1A, 0x60, 0x5D, 0x60
-    .byte 0xD8, 0x60, 0x1E, 0xE0, 0x00, 0x00, 0x8C, 0x05, 0x00, 0x00, 0x50, 0x46, 0x6C, 0x30, 0x87, 0x21
-    .byte 0xC9, 0x00, 0x69, 0x44, 0x54, 0x46, 0x0C, 0x60, 0x5B, 0x4D, 0x6D, 0x44, 0x2D, 0x68, 0x4D, 0x60
-    .byte 0x0D, 0xAE, 0x8E, 0x60, 0xC8, 0x60, 0x58, 0x4F, 0x6F, 0x44, 0x3F, 0x68, 0x38, 0x68, 0x02, 0x68
-    .byte 0x12, 0x69, 0xF8, 0xF7, 0x16, 0xFE, 0x56, 0x46, 0xB4, 0x36, 0xEA, 0x34, 0x54, 0x48, 0x68, 0x44
-    .byte 0x04, 0x60, 0x31, 0x68, 0x88, 0x46, 0x00, 0x29, 0x00, 0xD1, 0xC6, 0xE0, 0xAA, 0x22, 0xD2, 0x00
-    .byte 0x6A, 0x44, 0x12, 0x68, 0x15, 0x68, 0x10, 0x23, 0x5B, 0x19, 0x99, 0x46, 0x4D, 0x4F, 0x6F, 0x44
-    .byte 0x38, 0x68, 0x40, 0x01, 0x29, 0x69, 0x4C, 0x01, 0x80, 0x0E, 0xA1, 0x0E, 0x88, 0x42, 0x6D, 0xD0
-    .byte 0x08, 0x1C, 0x0A, 0x21
+    movs r6, #0x87
+    lsls r6, r6, #3
+    add r6, sp
+    movs r7, #0xa3
+    lsls r7, r7, #3
+    add r7, sp
+    str r6, [r7]
+    mov r0, sl
+    ldr r1, [r0, #4]
+    ldr r0, [r0, #0xc]
+    cmp r1, r0
+    beq .Lraw_code_linkonce_1825_10
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1823_4
+    adds r0, r1, #0
+    movs r2, #0xa3
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r1, [r2]
+    ldm r1!, {r3, r4, r5}
+    stm r0!, {r3, r4, r5}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_1823_4:
+    mov r6, sl
+    ldr r0, [r6, #4]
+    adds r0, #0x10
+    str r0, [r6, #4]
+    adds r6, #0xb4
+    mov r7, sl
+    adds r7, #0xea
+    ldr r0, .Lraw_code_linkonce_1825_6
+    add r0, sp
+    str r7, [r0]
+    b .Lraw_code_linkonce_1848_2
+.Lraw_code_linkonce_1824_10: .word 0x000004F4
+.Lraw_code_linkonce_1824_14: .word 0x00000564
+.Lraw_code_linkonce_1825_2: .word 0x0000FFFF
+.Lraw_code_linkonce_1825_6: .word 0x00000574
+.Lraw_code_linkonce_1825_10:
+    movs r2, #0xb1
+    lsls r2, r2, #3
+    add r2, sp
+    str r1, [r2]
+    movs r0, #1
+    movs r1, #0x99
+    lsls r1, r1, #3
+    add r1, sp
+    str r0, [r1]
+    mov r3, sl
+    ldr r0, [r3]
+    ldr r4, [r2]
+    subs r0, r4, r0
+    asrs r4, r0, #4
+    ldr r0, .Lraw_code_linkonce_1830_14
+    add r0, sp
+    str r4, [r0]
+    movs r2, #0x99
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r0, [r1]
+    ldr r1, .Lraw_code_linkonce_1830_14
+    add r1, sp
+    cmp r4, r0
+    bhs .Lraw_code_linkonce_1828_14
+    adds r1, r2, #0
+.Lraw_code_linkonce_1828_14:
+    ldr r0, [r1]
+    adds r0, r4, r0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1831_2
+    lsls r4, r0, #4
+    adds r0, r4, #0
+    bl malloc
+    mov sb, r4
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1831_6
+    mov r0, sb
+    bl RetryMemoryAllocation
+    b .Lraw_code_linkonce_1831_6
+    .align 2, 0
+.Lraw_code_linkonce_1830_14: .word 0x000004C4
+.Lraw_code_linkonce_1831_2:
+    movs r0, #0
+    mov sb, r0
+.Lraw_code_linkonce_1831_6:
+    adds r5, r0, #0
+    ldr r6, .Lraw_code_linkonce_1838_6
+    add r6, sp
+    str r5, [r6]
+    mov r7, r8
+    ldr r2, [r7]
+    adds r3, r5, #0
+    mov r6, sl
+    adds r6, #0xb4
+    mov r0, sl
+    adds r0, #0xea
+    ldr r1, .Lraw_code_linkonce_1838_10
+    add r1, sp
+    str r0, [r1]
+    movs r4, #0xb1
+    lsls r4, r4, #3
+    add r4, sp
+    ldr r4, [r4]
+    cmp r2, r4
+    beq .Lraw_code_linkonce_1835_14
+.Lraw_code_linkonce_1833_14:
+    cmp r3, #0
+    beq .Lraw_code_linkonce_1834_14
+    adds r0, r3, #0
+    adds r1, r2, #0
+    ldm r1!, {r4, r5, r7}
+    stm r0!, {r4, r5, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_1834_14:
+    adds r2, #0x10
+    adds r3, #0x10
+    movs r5, #0xb1
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r5, [r5]
+    cmp r2, r5
+    bne .Lraw_code_linkonce_1833_14
+.Lraw_code_linkonce_1835_14:
+    adds r5, r3, #0
+    movs r0, #0x99
+    lsls r0, r0, #3
+    add r0, sp
+    ldr r0, [r0]
+    cmp r0, #1
+    bne .Lraw_code_linkonce_1838_14
+    cmp r5, #0
+    beq .Lraw_code_linkonce_1838_2
+    adds r0, r5, #0
+    movs r7, #0xa3
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r1, [r7]
+    ldm r1!, {r2, r3, r4}
+    stm r0!, {r2, r3, r4}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_1838_2:
+    adds r5, #0x10
+    b .Lraw_code_linkonce_1841_6
+.Lraw_code_linkonce_1838_6: .word 0x0000058C
+.Lraw_code_linkonce_1838_10: .word 0x00000574
+.Lraw_code_linkonce_1838_14:
+    adds r3, r0, #0
+    adds r2, r5, #0
+    cmp r3, #0
+    beq .Lraw_code_linkonce_1841_4
+.Lraw_code_linkonce_1839_6:
+    cmp r2, #0
+    beq .Lraw_code_linkonce_1840_12
+    adds r0, r2, #0
+    movs r5, #0xa3
+    lsls r5, r5, #3
+    add r5, sp
+    ldr r1, [r5]
+    ldm r1!, {r4, r5, r7}
+    stm r0!, {r4, r5, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_1840_12:
+    subs r3, #1
+    adds r2, #0x10
+    cmp r3, #0
+    bne .Lraw_code_linkonce_1839_6
+.Lraw_code_linkonce_1841_4:
+    adds r5, r2, #0
+.Lraw_code_linkonce_1841_6:
+    mov r7, r8
+    ldr r2, [r7, #4]
+    ldr r0, [r7]
+    adds r1, r0, #0
+    cmp r0, r2
+    beq .Lraw_code_linkonce_1842_8
+.Lraw_code_linkonce_1842_2:
+    adds r1, #0x10
+    cmp r1, r2
+    bne .Lraw_code_linkonce_1842_2
+.Lraw_code_linkonce_1842_8:
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1843_0
+    bl free
+.Lraw_code_linkonce_1843_0:
+    ldr r1, .Lraw_code_linkonce_1844_6
+    add r1, sp
+    ldr r0, [r1]
+    add r0, sb
+    ldr r2, [r1]
+    mov r3, r8
+    str r2, [r3]
+    str r5, [r3, #4]
+    str r0, [r3, #0xc]
+    b .Lraw_code_linkonce_1848_2
+    .align 2, 0
+.Lraw_code_linkonce_1844_6: .word 0x0000058C
+.Lraw_code_linkonce_1844_10:
+    mov r0, sl
+    adds r0, #0x6c
+    movs r1, #0x87
+    lsls r1, r1, #3
+    add r1, sp
+    mov r4, sl
+    str r4, [r1]
+    ldr r5, .Lraw_code_linkonce_1884_4
+    add r5, sp
+    ldr r5, [r5]
+    str r5, [r1, #4]
+    add r6, sp, #0x34
+    str r6, [r1, #8]
+    str r0, [r1, #0xc]
+    ldr r7, .Lraw_code_linkonce_1884_8
+    add r7, sp
+    ldr r7, [r7]
+    ldr r0, [r7]
+    ldr r2, [r0]
+    ldr r2, [r2, #0x10]
+    bl _call_via_r2
+    mov r6, sl
+    adds r6, #0xb4
+    adds r4, #0xea
+    ldr r0, .Lraw_code_linkonce_1884_12
+    add r0, sp
+    str r4, [r0]
+.Lraw_code_linkonce_1848_2:
+    ldr r1, [r6]
+    mov r8, r1
+    cmp r1, #0
+    bne .Lraw_code_linkonce_1848_12
+    b .Lraw_code_linkonce_1893_0
+.Lraw_code_linkonce_1848_12:
+    movs r2, #0xaa
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    ldr r5, [r2]
+    movs r3, #0x10
+    adds r3, r3, r5
+    mov sb, r3
+    ldr r7, .Lraw_code_linkonce_1885_2
+    add r7, sp
+    ldr r0, [r7]
+    lsls r0, r0, #5
+    ldr r1, [r5, #0x10]
+    lsls r4, r1, #5
+    lsrs r0, r0, #0x1a
+    lsrs r1, r4, #0x1a
+    cmp r0, r1
+    beq .Lraw_code_linkonce_1878_0
+    adds r0, r1, #0
+    movs r1, #0xa
     bl __umodsi3
-    .byte 0x00, 0x06, 0x00, 0x28, 0x5C, 0xD1, 0xA0, 0x0E
-    .byte 0x0A, 0x21
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1875_0
+    lsrs r0, r4, #0x1a
+    movs r1, #0xa
     bl __udivsi3
-    .byte 0x00, 0x06, 0x00, 0x0E, 0x81, 0x00, 0x09, 0x18, 0x49, 0x00
-    .byte 0x40, 0x46, 0x08, 0x30
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    lsls r1, r0, #2
+    adds r1, r1, r0
+    lsls r1, r1, #1
+    mov r0, r8
+    adds r0, #8
     bl SetMapClockStatusHudMinuteDigits
-    .byte 0x39, 0x68, 0xC9, 0x02, 0x28, 0x69, 0xC2, 0x02
-    .byte 0xC9, 0x0E, 0xD0, 0x0E, 0x81, 0x42, 0x47, 0xD0, 0x30, 0x68, 0xD1, 0x0E, 0x08, 0x30
+    ldr r1, [r7]
+    lsls r1, r1, #0xb
+    ldr r0, [r5, #0x10]
+    lsls r2, r0, #0xb
+    lsrs r1, r1, #0x1b
+    lsrs r0, r2, #0x1b
+    cmp r1, r0
+    beq .Lraw_code_linkonce_1875_0
+    ldr r0, [r6]
+    lsrs r1, r2, #0x1b
+    adds r0, #8
     bl SetMapClockStatusHudHour
-    .byte 0x37, 0x4F, 0x6F, 0x44, 0x79, 0x78, 0x49, 0x06, 0xC9, 0x0E, 0x01, 0x31, 0x6B, 0x7C
-    .byte 0x58, 0x06, 0xC0, 0x0E, 0x44, 0x1C, 0xA1, 0x42, 0x36, 0xD0, 0x30, 0x68, 0x80, 0x46, 0x2A, 0x7C
-    .byte 0x52, 0x07, 0x52, 0x0F, 0x98, 0x07, 0x80, 0x0F, 0x06, 0x32, 0x01, 0x01, 0x09, 0x1A, 0x49, 0x00
-    .byte 0x10, 0x01, 0x80, 0x1A, 0xC0, 0x00, 0x09, 0x18, 0x09, 0x19, 0x01, 0x39, 0x06, 0x29, 0x04, 0xD9
-    .byte 0x08, 0x1C, 0x07, 0x21
+    ldr r7, .Lraw_code_linkonce_1885_2
+    add r7, sp
+    ldrb r1, [r7, #1]
+    lsls r1, r1, #0x19
+    lsrs r1, r1, #0x1b
+    adds r1, #1
+    ldrb r3, [r5, #0x11]
+    lsls r0, r3, #0x19
+    lsrs r0, r0, #0x1b
+    adds r4, r0, #1
+    cmp r1, r4
+    beq .Lraw_code_linkonce_1875_0
+    ldr r0, [r6]
+    mov r8, r0
+    ldrb r2, [r5, #0x10]
+    lsls r2, r2, #0x1d
+    lsrs r2, r2, #0x1d
+    lsls r0, r3, #0x1e
+    lsrs r0, r0, #0x1e
+    adds r2, #6
+    lsls r1, r0, #4
+    subs r1, r1, r0
+    lsls r1, r1, #1
+    lsls r0, r2, #4
+    subs r0, r0, r2
+    lsls r0, r0, #3
+    adds r1, r1, r0
+    adds r1, r1, r4
+    subs r1, #1
+    cmp r1, #6
+    bls .Lraw_code_linkonce_1868_2
+    adds r0, r1, #0
+    movs r1, #7
     bl __umodsi3
-    .byte 0x01, 0x1C, 0x07, 0x20, 0x01, 0x40, 0x08, 0x22
-    .byte 0x52, 0x42, 0x24, 0x4B, 0x6B, 0x44, 0x1B, 0x78, 0x1A, 0x40, 0x0A, 0x43, 0x22, 0x48, 0x68, 0x44
-    .byte 0x02, 0x70, 0x52, 0x07, 0x52, 0x0F, 0x40, 0x46, 0x08, 0x30, 0x21, 0x1C
+    adds r1, r0, #0
+.Lraw_code_linkonce_1868_2:
+    movs r0, #7
+    ands r1, r0
+    movs r2, #8
+    rsbs r2, r2, #0
+    ldr r3, .Lraw_code_linkonce_1885_6
+    add r3, sp
+    ldrb r3, [r3]
+    ands r2, r3
+    orrs r2, r1
+    ldr r0, .Lraw_code_linkonce_1885_6
+    add r0, sp
+    strb r2, [r0]
+    lsls r2, r2, #0x1d
+    lsrs r2, r2, #0x1d
+    mov r0, r8
+    adds r0, #8
+    adds r1, r4, #0
     bl SetMapClockStatusHudDayAndWeekday
-    .byte 0x79, 0x78, 0x89, 0x07, 0x68, 0x7C, 0x80, 0x07, 0x82, 0x0F, 0x81, 0x42, 0x04, 0xD0, 0x30, 0x68
-    .byte 0x08, 0x30, 0x11, 0x1C
+    ldrb r1, [r7, #1]
+    lsls r1, r1, #0x1e
+    ldrb r0, [r5, #0x11]
+    lsls r0, r0, #0x1e
+    lsrs r2, r0, #0x1e
+    cmp r1, r0
+    beq .Lraw_code_linkonce_1875_0
+    ldr r0, [r6]
+    adds r0, #8
+    adds r1, r2, #0
     bl SetMapClockStatusHudSeason
-    .byte 0x30, 0x68, 0x49, 0x46, 0x0A, 0x68, 0x52, 0x01
-    .byte 0x92, 0x0E, 0x01, 0x21, 0x11, 0x40, 0x08, 0x30
+.Lraw_code_linkonce_1875_0:
+    ldr r0, [r6]
+    mov r1, sb
+    ldr r2, [r1]
+    lsls r2, r2, #5
+    lsrs r2, r2, #0x1a
+    movs r1, #1
+    ands r1, r2
+    adds r0, #8
     bl SetMapClockStatusHudColonVisible
-    .byte 0x30, 0x68, 0xAA, 0x22
-    .byte 0xD2, 0x00, 0x6A, 0x44, 0x12, 0x68, 0x11, 0x68, 0x89, 0x68, 0x08, 0x30
+.Lraw_code_linkonce_1878_0:
+    ldr r0, [r6]
+    movs r2, #0xaa
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r2, [r2]
+    ldr r1, [r2]
+    ldr r1, [r1, #8]
+    adds r0, #8
     bl SetMapClockStatusHudUnkSelector
-    .byte 0xAA, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x1B, 0x68, 0x18, 0x68, 0x0B, 0x4C, 0x05, 0x19, 0x28, 0x1C
-    .byte 0x33, 0xF7, 0x1B, 0xFB, 0x00, 0x06, 0x00, 0x28, 0x11, 0xD0, 0x30, 0x68, 0x08, 0x30
+    movs r3, #0xaa
+    lsls r3, r3, #3
+    add r3, sp
+    ldr r3, [r3]
+    ldr r0, [r3]
+    ldr r4, .Lraw_code_linkonce_1885_10
+    adds r5, r0, r4
+    adds r0, r5, #0
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1885_14
+    ldr r0, [r6]
+    adds r0, #8
     bl ClearMapClockStatusHudUnkValue
-    .byte 0x2A, 0xE0, 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x74, 0x05
-    .byte 0x00, 0x00, 0xCC, 0x04, 0x00, 0x00, 0x1C, 0x05, 0x00, 0x00, 0x34, 0x1C, 0x00, 0x00, 0xAA, 0x27
-    .byte 0xFF, 0x00, 0x6F, 0x44, 0x3F, 0x68, 0x3C, 0x68, 0x51, 0x48, 0x24, 0x18, 0x28, 0x1C, 0x33, 0xF7
-    .byte 0xEA, 0xFA, 0x01, 0x1C, 0x20, 0x1C
+    b .Lraw_code_linkonce_1893_0
+    .align 2, 0
+.Lraw_code_linkonce_1884_4: .word 0x00000544
+.Lraw_code_linkonce_1884_8: .word 0x00000564
+.Lraw_code_linkonce_1884_12: .word 0x00000574
+.Lraw_code_linkonce_1885_2: .word 0x000004CC
+.Lraw_code_linkonce_1885_6: .word 0x0000051C
+.Lraw_code_linkonce_1885_10: .word 0x00001C34
+.Lraw_code_linkonce_1885_14:
+    movs r7, #0xaa
+    lsls r7, r7, #3
+    add r7, sp
+    ldr r7, [r7]
+    ldr r4, [r7]
+    ldr r0, .Lraw_code_linkonce_1913_14
+    adds r4, r4, r0
+    adds r0, r5, #0
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    adds r0, r4, #0
     bl GetUpgradedTool__C6FarmerG4Tool
-    .byte 0x9A, 0x21, 0xC9, 0x00, 0x69, 0x44
-    .byte 0x08, 0x70, 0x9A, 0x20, 0xC0, 0x00, 0x68, 0x44, 0x33, 0xF7, 0x85, 0xFA, 0x01, 0x1C, 0x09, 0x04
-    .byte 0x09, 0x0C, 0x30, 0x68, 0x08, 0x30
+    movs r1, #0x9a
+    lsls r1, r1, #3
+    add r1, sp
+    strb r0, [r1]
+    movs r0, #0x9a
+    lsls r0, r0, #3
+    add r0, sp
+    bl GetIconId__C4Tool
+    adds r1, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r0, [r6]
+    adds r0, #8
     bl SetMapClockStatusHudUnkValue
-    .byte 0x45, 0x49, 0x69, 0x44, 0x09, 0x68
-    .byte 0x08, 0x78, 0x00, 0x28, 0x05, 0xD1, 0x43, 0x4A, 0x6A, 0x44, 0x12, 0x68, 0x10, 0x68
+.Lraw_code_linkonce_1893_0:
+    ldr r1, .Lraw_code_linkonce_1914_2
+    add r1, sp
+    ldr r1, [r1]
+    ldrb r0, [r1]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1896_0
+    ldr r2, .Lraw_code_linkonce_1914_6
+    add r2, sp
+    ldr r2, [r2]
+    ldr r0, [r2]
     bl Update__23HardwareBlendController
-    .byte 0xAB, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x1B, 0x68, 0x18, 0x68, 0x00, 0x28, 0x00, 0xD0
-    .byte 0x01, 0xE1, 0x3D, 0x48, 0x01, 0x68, 0xDE, 0x25, 0xAD, 0x00, 0x4C, 0x19, 0x00, 0x23, 0x00, 0x22
-    .byte 0x20, 0x68, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x22, 0x00, 0x2A, 0x14, 0xD0, 0xE3, 0x26, 0xB6, 0x00
-    .byte 0x88, 0x19, 0x00, 0x22, 0x00, 0x68, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x22, 0x00, 0x2A, 0x0A, 0xD0
-    .byte 0x9A, 0x27, 0xFF, 0x00, 0xC8, 0x19, 0x00, 0x21, 0x00, 0x68, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21
-    .byte 0x00, 0x29, 0x00, 0xD0, 0x01, 0x23, 0x00, 0x2B, 0x00, 0xD0, 0xDC, 0xE0, 0x2A, 0x49, 0x69, 0x44
-    .byte 0x09, 0x68, 0x08, 0x68
+.Lraw_code_linkonce_1896_0:
+    movs r3, #0xab
+    lsls r3, r3, #3
+    add r3, sp
+    ldr r3, [r3]
+    ldr r0, [r3]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1897_2
+    b .Lraw_code_linkonce_1931_6
+.Lraw_code_linkonce_1897_2:
+    ldr r0, .Lraw_code_linkonce_1914_10
+    ldr r1, [r0]
+    movs r5, #0xde
+    lsls r5, r5, #2
+    adds r4, r1, r5
+    movs r3, #0
+    movs r2, #0
+    ldr r0, [r4]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1898_8
+    movs r2, #1
+.Lraw_code_linkonce_1898_8:
+    cmp r2, #0
+    beq .Lraw_code_linkonce_1901_6
+    movs r6, #0xe3
+    lsls r6, r6, #2
+    adds r0, r1, r6
+    movs r2, #0
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1899_12
+    movs r2, #1
+.Lraw_code_linkonce_1899_12:
+    cmp r2, #0
+    beq .Lraw_code_linkonce_1901_6
+    movs r7, #0x9a
+    lsls r7, r7, #3
+    adds r0, r1, r7
+    movs r1, #0
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1901_0
+    movs r1, #1
+.Lraw_code_linkonce_1901_0:
+    cmp r1, #0
+    beq .Lraw_code_linkonce_1901_6
+    movs r3, #1
+.Lraw_code_linkonce_1901_6:
+    cmp r3, #0
+    beq .Lraw_code_linkonce_1901_12
+    b .Lraw_code_linkonce_1931_6
+.Lraw_code_linkonce_1901_12:
+    ldr r1, .Lraw_code_linkonce_1914_6
+    add r1, sp
+    ldr r1, [r1]
+    ldr r0, [r1]
     bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42, 0x01, 0x43
-    .byte 0xCD, 0x0F, 0x00, 0x2D, 0x00, 0xD0, 0xCE, 0xE0, 0x25, 0x4A, 0x6A, 0x44, 0x12, 0x68, 0x10, 0x68
-    .byte 0x01, 0x68, 0x0A, 0x6C, 0x00, 0x21, 0xF8, 0xF7, 0xF4, 0xFC, 0x02, 0x1C, 0x00, 0x2A, 0x09, 0xD0
-    .byte 0x50, 0x69, 0x98, 0x30, 0x01, 0x68, 0x10, 0x1C, 0xF8, 0xF7, 0xE9, 0xFC, 0x00, 0x06, 0x00, 0x28
-    .byte 0x00, 0xD0, 0xB8, 0xE0, 0x00, 0x21, 0x20, 0x68, 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29
-    .byte 0x31, 0xD1, 0x26, 0x1D, 0x61, 0x68, 0xA2, 0x68, 0xA4, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x19, 0x60
-    .byte 0x5A, 0x60, 0x13, 0x4B, 0x6B, 0x44, 0x00, 0x28, 0x13, 0xD0, 0xC0, 0x00, 0x04, 0x30, 0x20, 0x18
-    .byte 0x21, 0x1C, 0x0C, 0x31, 0x81, 0x42, 0x09, 0xD0, 0x0D, 0x1C, 0x40, 0x1B, 0xC2, 0x10, 0x00, 0x2A
-    .byte 0x04, 0xDD, 0x03, 0xCD, 0x03, 0xC6, 0x01, 0x3A, 0x00, 0x2A, 0xFA, 0xDC, 0x20, 0x68, 0x01, 0x38
-    .byte 0x20, 0x60, 0x07, 0x48, 0x68, 0x44, 0xA4, 0x25, 0xED, 0x00, 0x3B, 0xE0, 0x00, 0x00, 0xD8, 0x1B
-    .byte 0x00, 0x00, 0x74, 0x05, 0x00, 0x00, 0x5C, 0x05, 0x00, 0x00, 0x0C, 0x04, 0x00, 0x03, 0x64, 0x05
-    .byte 0x00, 0x00, 0xD4, 0x04, 0x00, 0x00, 0x27, 0x1C, 0x14, 0x37, 0x00, 0x21, 0x60, 0x69, 0x00, 0x28
-    .byte 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x2E, 0xD1, 0x26, 0x1C, 0x18, 0x36, 0xA1, 0x69, 0xE2, 0x69
-    .byte 0xA5, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x19, 0x60, 0x5A, 0x60, 0x3D, 0x1C, 0x11, 0x4B, 0x6B, 0x44
-    .byte 0x00, 0x28, 0x13, 0xD0, 0xC0, 0x00, 0x04, 0x30, 0x29, 0x18, 0x20, 0x1C, 0x20, 0x30, 0x88, 0x42
-    .byte 0x09, 0xD0, 0x04, 0x1C, 0x08, 0x1B, 0xC2, 0x10, 0x00, 0x2A, 0x04, 0xDD, 0x03, 0xCC, 0x03, 0xC6
-    .byte 0x01, 0x3A, 0x00, 0x2A, 0xFA, 0xDC, 0x28, 0x68, 0x01, 0x38, 0x28, 0x60, 0x05, 0x48, 0x68, 0x44
-    .byte 0xA5, 0x25, 0xED, 0x00, 0x6D, 0x44, 0x2C, 0x68, 0x6D, 0x68, 0x04, 0x60, 0x45, 0x60, 0x43, 0xE0
-    .byte 0x00, 0x00, 0xD4, 0x04, 0x00, 0x00, 0xAC, 0x26, 0x76, 0x00, 0xA7, 0x19, 0x00, 0x21, 0x38, 0x68
-    .byte 0x00, 0x28, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x2F, 0xD1, 0xAE, 0x21, 0x49, 0x00, 0x66, 0x18
-    .byte 0x31, 0x68, 0x72, 0x68, 0xA6, 0x23, 0xDB, 0x00, 0x6B, 0x44, 0x19, 0x60, 0x5A, 0x60, 0x3D, 0x1C
-    .byte 0x11, 0x4B, 0x6B, 0x44, 0x00, 0x28, 0x14, 0xD0, 0xC0, 0x00, 0x04, 0x30, 0x29, 0x18, 0xB2, 0x27
-    .byte 0x7F, 0x00, 0xE0, 0x19, 0x88, 0x42, 0x09, 0xD0, 0x04, 0x1C, 0x08, 0x1B, 0xC2, 0x10, 0x00, 0x2A
-    .byte 0x04, 0xDD, 0x03, 0xCC, 0x03, 0xC6, 0x01, 0x3A, 0x00, 0x2A, 0xFA, 0xDC, 0x28, 0x68, 0x01, 0x38
-    .byte 0x28, 0x60, 0x04, 0x48, 0x68, 0x44, 0xA6, 0x22, 0xD2, 0x00, 0x6A, 0x44, 0x11, 0x68, 0x52, 0x68
-    .byte 0x01, 0x60, 0x42, 0x60, 0x08, 0xE0, 0xD4, 0x04, 0x00, 0x00, 0x09, 0x49, 0x69, 0x44, 0x08, 0x48
-    .byte 0x68, 0x44, 0x05, 0x60, 0x4D, 0x60, 0x0B, 0x1C, 0x06, 0x48, 0x68, 0x44, 0x01, 0x68, 0x5A, 0x68
-    .byte 0x50, 0x46, 0x01, 0xF0, 0xEC, 0xF8, 0x50, 0x46, 0x0D, 0xA9
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r5, r1, #0x1f
+    cmp r5, #0
+    beq .Lraw_code_linkonce_1905_8
+    b .Lraw_code_linkonce_1931_6
+.Lraw_code_linkonce_1905_8:
+    ldr r2, .Lraw_code_linkonce_1914_14
+    add r2, sp
+    ldr r2, [r2]
+    ldr r0, [r2]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    adds r2, r0, #0
+    cmp r2, #0
+    beq .Lraw_code_linkonce_1908_4
+    ldr r0, [r2, #0x14]
+    adds r0, #0x98
+    ldr r1, [r0]
+    adds r0, r2, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1908_4
+    b .Lraw_code_linkonce_1931_6
+.Lraw_code_linkonce_1908_4:
+    movs r1, #0
+    ldr r0, [r4]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1908_14
+    movs r1, #1
+.Lraw_code_linkonce_1908_14:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_1915_6
+    adds r6, r4, #4
+    ldr r1, [r4, #4]
+    ldr r2, [r4, #8]
+    movs r3, #0xa4
+    lsls r3, r3, #3
+    add r3, sp
+    str r1, [r3]
+    str r2, [r3, #4]
+    ldr r3, .Lraw_code_linkonce_1915_2
+    add r3, sp
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1913_2
+    lsls r0, r0, #3
+    adds r0, #4
+    adds r0, r4, r0
+    adds r1, r4, #0
+    adds r1, #0xc
+    cmp r1, r0
+    beq .Lraw_code_linkonce_1912_12
+    adds r5, r1, #0
+    subs r0, r0, r5
+    asrs r2, r0, #3
+    cmp r2, #0
+    ble .Lraw_code_linkonce_1912_12
+.Lraw_code_linkonce_1912_2:
+    ldm r5!, {r0, r1}
+    stm r6!, {r0, r1}
+    subs r2, #1
+    cmp r2, #0
+    bgt .Lraw_code_linkonce_1912_2
+.Lraw_code_linkonce_1912_12:
+    ldr r0, [r4]
+    subs r0, #1
+    str r0, [r4]
+.Lraw_code_linkonce_1913_2:
+    ldr r0, .Lraw_code_linkonce_1915_2
+    add r0, sp
+    movs r5, #0xa4
+    lsls r5, r5, #3
+    b .Lraw_code_linkonce_1921_4
+    .align 2, 0
+.Lraw_code_linkonce_1913_14: .word 0x00001BD8
+.Lraw_code_linkonce_1914_2: .word 0x00000574
+.Lraw_code_linkonce_1914_6: .word 0x0000055C
+.Lraw_code_linkonce_1914_10: .word gUnk_0300040C
+.Lraw_code_linkonce_1914_14: .word 0x00000564
+.Lraw_code_linkonce_1915_2: .word 0x000004D4
+.Lraw_code_linkonce_1915_6:
+    adds r7, r4, #0
+    adds r7, #0x14
+    movs r1, #0
+    ldr r0, [r4, #0x14]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1916_4
+    movs r1, #1
+.Lraw_code_linkonce_1916_4:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_1922_6
+    adds r6, r4, #0
+    adds r6, #0x18
+    ldr r1, [r4, #0x18]
+    ldr r2, [r4, #0x1c]
+    movs r3, #0xa5
+    lsls r3, r3, #3
+    add r3, sp
+    str r1, [r3]
+    str r2, [r3, #4]
+    adds r5, r7, #0
+    ldr r3, .Lraw_code_linkonce_1922_2
+    add r3, sp
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1920_12
+    lsls r0, r0, #3
+    adds r0, #4
+    adds r1, r5, r0
+    adds r0, r4, #0
+    adds r0, #0x20
+    cmp r0, r1
+    beq .Lraw_code_linkonce_1920_6
+    adds r4, r0, #0
+    subs r0, r1, r4
+    asrs r2, r0, #3
+    cmp r2, #0
+    ble .Lraw_code_linkonce_1920_6
+.Lraw_code_linkonce_1919_12:
+    ldm r4!, {r0, r1}
+    stm r6!, {r0, r1}
+    subs r2, #1
+    cmp r2, #0
+    bgt .Lraw_code_linkonce_1919_12
+.Lraw_code_linkonce_1920_6:
+    ldr r0, [r5]
+    subs r0, #1
+    str r0, [r5]
+.Lraw_code_linkonce_1920_12:
+    ldr r0, .Lraw_code_linkonce_1922_2
+    add r0, sp
+    movs r5, #0xa5
+    lsls r5, r5, #3
+.Lraw_code_linkonce_1921_4:
+    add r5, sp
+    ldr r4, [r5]
+    ldr r5, [r5, #4]
+    str r4, [r0]
+    str r5, [r0, #4]
+    b .Lraw_code_linkonce_1930_8
+    .align 2, 0
+.Lraw_code_linkonce_1922_2: .word 0x000004D4
+.Lraw_code_linkonce_1922_6:
+    movs r6, #0xac
+    lsls r6, r6, #1
+    adds r7, r4, r6
+    movs r1, #0
+    ldr r0, [r7]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_1923_6
+    movs r1, #1
+.Lraw_code_linkonce_1923_6:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_1929_10
+    movs r1, #0xae
+    lsls r1, r1, #1
+    adds r6, r4, r1
+    ldr r1, [r6]
+    ldr r2, [r6, #4]
+    movs r3, #0xa6
+    lsls r3, r3, #3
+    add r3, sp
+    str r1, [r3]
+    str r2, [r3, #4]
+    adds r5, r7, #0
+    ldr r3, .Lraw_code_linkonce_1929_6
+    add r3, sp
+    cmp r0, #0
+    beq .Lraw_code_linkonce_1928_2
+    lsls r0, r0, #3
+    adds r0, #4
+    adds r1, r5, r0
+    movs r7, #0xb2
+    lsls r7, r7, #1
+    adds r0, r4, r7
+    cmp r0, r1
+    beq .Lraw_code_linkonce_1927_12
+    adds r4, r0, #0
+    subs r0, r1, r4
+    asrs r2, r0, #3
+    cmp r2, #0
+    ble .Lraw_code_linkonce_1927_12
+.Lraw_code_linkonce_1927_2:
+    ldm r4!, {r0, r1}
+    stm r6!, {r0, r1}
+    subs r2, #1
+    cmp r2, #0
+    bgt .Lraw_code_linkonce_1927_2
+.Lraw_code_linkonce_1927_12:
+    ldr r0, [r5]
+    subs r0, #1
+    str r0, [r5]
+.Lraw_code_linkonce_1928_2:
+    ldr r0, .Lraw_code_linkonce_1929_6
+    add r0, sp
+    movs r2, #0xa6
+    lsls r2, r2, #3
+    add r2, sp
+    ldr r1, [r2]
+    ldr r2, [r2, #4]
+    str r1, [r0]
+    str r2, [r0, #4]
+    b .Lraw_code_linkonce_1930_8
+.Lraw_code_linkonce_1929_6: .word 0x000004D4
+.Lraw_code_linkonce_1929_10:
+    ldr r1, .Lraw_code_linkonce_1934_2
+    add r1, sp
+    ldr r0, .Lraw_code_linkonce_1934_2
+    add r0, sp
+    str r5, [r0]
+    str r5, [r1, #4]
+    adds r3, r1, #0
+.Lraw_code_linkonce_1930_8:
+    ldr r0, .Lraw_code_linkonce_1934_2
+    add r0, sp
+    ldr r1, [r0]
+    ldr r2, [r3, #4]
+    mov r0, sl
+    bl .Lraw_code_linkonce_2011_0
+.Lraw_code_linkonce_1931_6:
+    mov r0, sl
+    add r1, sp, #0x34
     bl UpdateGameSceneHardwareFrame
-    .byte 0xFD, 0xF7
-    .byte 0x90, 0xFF, 0xD4, 0x04, 0x00, 0x00, 0x06, 0x4B, 0x6B, 0x44, 0x18, 0x68, 0xB2, 0x23, 0xDB, 0x00
-    .byte 0x9D, 0x44, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
-    .byte 0x00, 0x00, 0xDC, 0x04, 0x00, 0x00
+    bl .Lauto_080D879C
+.Lraw_code_linkonce_1934_2: .word 0x000004D4
+.Lraw_code_linkonce_1934_6:
+    ldr r3, .Lraw_code_linkonce_1936_2
+    add r3, sp
+    ldr r0, [r3]
+    movs r3, #0xb2
+    lsls r3, r3, #3
+    add sp, r3
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Lraw_code_linkonce_1936_2: .word 0x000004DC
 
     .section .text.scene_calendar_after, "ax", %progbits
 
@@ -1979,7 +5848,7 @@ CreateScene__22RucksackMenuTransition:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .section .text.scene_cooking_after, "ax", %progbits
 
     .section .text.scene_reference_page_after, "ax", %progbits
@@ -2008,11 +5877,20 @@ CreateScene__22RucksackMenuTransition:
 
     .section .text.scene_return_after, "ax", %progbits
 
-    .byte 0x10, 0xB5, 0x04, 0x1C, 0x05, 0x48, 0x00, 0x68, 0x08, 0x30, 0x63, 0xF7, 0x4B, 0xFD
-    .byte 0x20, 0x1C
+.Lraw_code_linkonce_2011_0:
+    push {r4, lr}
+    adds r4, r0, #0
+    ldr r0, .Lraw_code_linkonce_2014_8
+    ldr r0, [r0]
+    adds r0, #8
+    bl LoadById__12ScriptEngineii
+    adds r0, r4, #0
     bl func_080D7F3C
-    .byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x0C, 0x04
-    .byte 0x00, 0x03
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_linkonce_2014_8: .word gUnk_0300040C
     .global func_080DC2B4
     .thumb_func
 func_080DC2B4:
@@ -2030,25 +5908,74 @@ func_080DC2B4:
     movs r5, #0xb4
     add ip, r5
     mov r8, sp
-    ldr r7, [pc, #0x84]
+    ldr r7, .Lraw_code_linkonce_2051_4
     mov sl, r7
     mov r4, sl
     ands r1, r4
     mov r7, r8
     ldrh r5, [r7]
-    ldr r6, [pc, #0x7c]
+    ldr r6, .Lraw_code_linkonce_2051_8
     adds r4, r6, #0
     ands r4, r5
     orrs r4, r1
-    .byte 0x3C, 0x80, 0x12, 0x04, 0x14, 0x0C, 0x3F, 0x21, 0x0C, 0x40, 0xA4, 0x00, 0x7D, 0x78, 0xA9, 0x46
-    .byte 0x03, 0x25, 0x29, 0x1C, 0x4F, 0x46, 0x39, 0x40, 0x21, 0x43, 0x44, 0x46, 0x61, 0x70, 0x92, 0x0D
-    .byte 0x57, 0x46, 0x3A, 0x40, 0x64, 0x88, 0x31, 0x1C, 0x21, 0x40, 0x11, 0x43, 0x42, 0x46, 0x51, 0x80
-    .byte 0x1B, 0x04, 0x19, 0x0C, 0x3F, 0x24, 0x21, 0x40, 0x89, 0x00, 0xD2, 0x78, 0x15, 0x40, 0x0D, 0x43
-    .byte 0x47, 0x46, 0xFD, 0x70, 0x9B, 0x0D, 0x51, 0x46, 0x0B, 0x40, 0xB9, 0x88, 0x0E, 0x40, 0x1E, 0x43
-    .byte 0xBE, 0x80, 0x62, 0x46, 0x13, 0x68, 0x69, 0x46, 0x01, 0x22, 0xF7, 0xF7, 0xED, 0xFA, 0x02, 0x98
+    strh r4, [r7]
+    lsls r2, r2, #0x10
+    lsrs r4, r2, #0x10
+    movs r1, #0x3f
+    ands r4, r1
+    lsls r4, r4, #2
+    ldrb r5, [r7, #1]
+    mov sb, r5
+    movs r5, #3
+    adds r1, r5, #0
+    mov r7, sb
+    ands r1, r7
+    orrs r1, r4
+    mov r4, r8
+    strb r1, [r4, #1]
+    lsrs r2, r2, #0x16
+    mov r7, sl
+    ands r2, r7
+    ldrh r4, [r4, #2]
+    adds r1, r6, #0
+    ands r1, r4
+    orrs r1, r2
+    mov r2, r8
+    strh r1, [r2, #2]
+    lsls r3, r3, #0x10
+    lsrs r1, r3, #0x10
+    movs r4, #0x3f
+    ands r1, r4
+    lsls r1, r1, #2
+    ldrb r2, [r2, #3]
+    ands r5, r2
+    orrs r5, r1
+    mov r7, r8
+    strb r5, [r7, #3]
+    lsrs r3, r3, #0x16
+    mov r1, sl
+    ands r3, r1
+    ldrh r1, [r7, #4]
+    ands r6, r1
+    orrs r6, r3
+    strh r6, [r7, #4]
+    mov r2, ip
+    ldr r3, [r2]
+    mov r1, sp
+    movs r2, #1
+    bl _call_via_r3
+    ldr r0, [sp, #8]
     bl func_080D7F08
-    .byte 0x03, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC
-    .byte 0x01, 0xBC, 0x00, 0x47, 0xFF, 0x03, 0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF
+    add sp, #0xc
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+.Lraw_code_linkonce_2051_4: .word 0x000003FF
+.Lraw_code_linkonce_2051_8: .word 0xFFFFFC00
     .global func_080DC360
     .thumb_func
 func_080DC360:
@@ -2081,7 +6008,7 @@ func_080DC360:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .section .text.after_gamecube_link_scene, "ax", %progbits
     .align 2, 0
 
@@ -2121,7 +6048,7 @@ func_080DC42C:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC474
     .thumb_func
 func_080DC474:
@@ -2143,7 +6070,7 @@ func_080DC474:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC49C
     .thumb_func
 func_080DC49C:
@@ -2180,7 +6107,7 @@ func_080DC49C:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC4E4
     .thumb_func
 func_080DC4E4:
@@ -2202,7 +6129,7 @@ func_080DC4E4:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC50C
     .thumb_func
 func_080DC50C:
@@ -2261,7 +6188,7 @@ func_080DC554:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .section .text.scene_group_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
 
@@ -2316,7 +6243,7 @@ func_080DC5F4:
     adds r0, #8
     movs r1, #2
     bl _._19GameSceneSpriteBase
-    ldr r0, [pc, #0x14]
+    ldr r0, .Lraw_code_linkonce_2331_0
     str r0, [r5, #4]
     movs r0, #1
     ands r0, r4
@@ -2328,14 +6255,14 @@ func_080DC5F4:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .4byte __vt_22EntityVisualController
+.Lraw_code_linkonce_2331_0: .4byte __vt_22EntityVisualController
     .global DestroyAudioActorEntity
     .thumb_func
 DestroyAudioActorEntity:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, [pc, #0x28]
+    ldr r0, .Lraw_code_linkonce_2359_0
     str r0, [r4, #0x14]
     ldr r1, [r4, #0x10]
     cmp r1, #0
@@ -2356,7 +6283,7 @@ DestroyAudioActorEntity:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x90, 0x56, 0x0E, 0x08
+.Lraw_code_linkonce_2359_0: .word __vt_7AEntity
     .section .text.entity_visual_controller_cleanup_after, "ax", %progbits
     .align 2, 0
     .global func_080DC67C
@@ -2426,14 +6353,14 @@ func_080DC67C:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC6F0
     .thumb_func
 func_080DC6F0:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, [pc, #0x28]
+    ldr r0, .Lraw_code_linkonce_2457_0
     str r0, [r4, #0x14]
     ldr r1, [r4, #0x10]
     cmp r1, #0
@@ -2454,7 +6381,7 @@ func_080DC6F0:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x90, 0x56, 0x0E, 0x08
+.Lraw_code_linkonce_2457_0: .word __vt_7AEntity
     .global func_080DC724
     .thumb_func
 func_080DC724:
@@ -2472,7 +6399,7 @@ func_080DC724:
     adds r0, #8
     movs r1, #2
     bl _._19GameSceneSpriteBase
-    ldr r0, [pc, #0x18]
+    ldr r0, .Lraw_code_linkonce_2488_0
     str r0, [r5, #4]
     movs r0, #1
     ands r0, r4
@@ -2484,8 +6411,8 @@ func_080DC724:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_22EntityVisualController
+    .align 2, 0
+.Lraw_code_linkonce_2488_0: .4byte __vt_22EntityVisualController
     .section .text.player_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
     .global func_080DBF80
@@ -2494,7 +6421,7 @@ func_080DBF80:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, [pc, #0x28]
+    ldr r0, .Lraw_code_linkonce_2518_0
     str r0, [r4, #0x14]
     ldr r1, [r4, #0x10]
     cmp r1, #0
@@ -2515,14 +6442,14 @@ func_080DBF80:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x90, 0x56, 0x0E, 0x08
+.Lraw_code_linkonce_2518_0: .word __vt_7AEntity
     .global func_080DBFB4
     .thumb_func
 func_080DBFB4:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, [pc, #0x28]
+    ldr r0, .Lraw_code_linkonce_2546_0
     str r0, [r4, #0x14]
     ldr r1, [r4, #0x10]
     cmp r1, #0
@@ -2543,7 +6470,7 @@ func_080DBFB4:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x90, 0x56, 0x0E, 0x08
+.Lraw_code_linkonce_2546_0: .word __vt_7AEntity
     .section .text.entity_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
     .global func_080DC0E0
@@ -2563,7 +6490,7 @@ func_080DC0E0:
     adds r0, #8
     movs r1, #2
     bl _._19GameSceneSpriteBase
-    ldr r0, [pc, #0x18]
+    ldr r0, .Lraw_code_linkonce_2579_0
     str r0, [r5, #4]
     movs r0, #1
     ands r0, r4
@@ -2575,8 +6502,8 @@ func_080DC0E0:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_22EntityVisualController
+    .align 2, 0
+.Lraw_code_linkonce_2579_0: .4byte __vt_22EntityVisualController
     .section .text.npc_timed_path_search_after, "ax", %progbits
 
     .global func_080DC9A8
@@ -2586,7 +6513,7 @@ func_080DC9A8:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC9B4
     .thumb_func
 func_080DC9B4:
@@ -2594,7 +6521,7 @@ func_080DC9B4:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC9C0
     .thumb_func
 func_080DC9C0:
@@ -2602,7 +6529,7 @@ func_080DC9C0:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC9CC
     .thumb_func
 func_080DC9CC:
@@ -2610,7 +6537,7 @@ func_080DC9CC:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC9D8
     .thumb_func
 func_080DC9D8:
@@ -2618,7 +6545,7 @@ func_080DC9D8:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC9E4
     .thumb_func
 func_080DC9E4:
@@ -2626,7 +6553,7 @@ func_080DC9E4:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC9F0
     .thumb_func
 func_080DC9F0:
@@ -2634,7 +6561,7 @@ func_080DC9F0:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DC9FC
     .thumb_func
 func_080DC9FC:
@@ -2642,7 +6569,7 @@ func_080DC9FC:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA08
     .thumb_func
 func_080DCA08:
@@ -2650,7 +6577,7 @@ func_080DCA08:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA14
     .thumb_func
 func_080DCA14:
@@ -2658,7 +6585,7 @@ func_080DCA14:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA20
     .thumb_func
 func_080DCA20:
@@ -2666,7 +6593,7 @@ func_080DCA20:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA2C
     .thumb_func
 func_080DCA2C:
@@ -2674,7 +6601,7 @@ func_080DCA2C:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA38
     .thumb_func
 func_080DCA38:
@@ -2682,7 +6609,7 @@ func_080DCA38:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA44
     .thumb_func
 func_080DCA44:
@@ -2690,7 +6617,7 @@ func_080DCA44:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA50
     .thumb_func
 func_080DCA50:
@@ -2698,7 +6625,7 @@ func_080DCA50:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA5C
     .thumb_func
 func_080DCA5C:
@@ -2706,7 +6633,7 @@ func_080DCA5C:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA68
     .thumb_func
 func_080DCA68:
@@ -2714,7 +6641,7 @@ func_080DCA68:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA74
     .thumb_func
 func_080DCA74:
@@ -2722,7 +6649,7 @@ func_080DCA74:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA80
     .thumb_func
 func_080DCA80:
@@ -2730,7 +6657,7 @@ func_080DCA80:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA8C
     .thumb_func
 func_080DCA8C:
@@ -2738,7 +6665,7 @@ func_080DCA8C:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCA98
     .thumb_func
 func_080DCA98:
@@ -2746,7 +6673,7 @@ func_080DCA98:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCAA4
     .thumb_func
 func_080DCAA4:
@@ -2754,7 +6681,7 @@ func_080DCAA4:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCAB0
     .thumb_func
 func_080DCAB0:
@@ -2762,7 +6689,7 @@ func_080DCAB0:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCABC
     .thumb_func
 func_080DCABC:
@@ -2770,7 +6697,7 @@ func_080DCABC:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCAC8
     .thumb_func
 func_080DCAC8:
@@ -2778,7 +6705,7 @@ func_080DCAC8:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCAD4
     .thumb_func
 func_080DCAD4:
@@ -2786,7 +6713,7 @@ func_080DCAD4:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCAE0
     .thumb_func
 func_080DCAE0:
@@ -2794,7 +6721,7 @@ func_080DCAE0:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCAEC
     .thumb_func
 func_080DCAEC:
@@ -2802,7 +6729,7 @@ func_080DCAEC:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCAF8
     .thumb_func
 func_080DCAF8:
@@ -2810,7 +6737,7 @@ func_080DCAF8:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB04
     .thumb_func
 func_080DCB04:
@@ -2818,7 +6745,7 @@ func_080DCB04:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB10
     .thumb_func
 func_080DCB10:
@@ -2826,7 +6753,7 @@ func_080DCB10:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB1C
     .thumb_func
 func_080DCB1C:
@@ -2834,7 +6761,7 @@ func_080DCB1C:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB28
     .thumb_func
 func_080DCB28:
@@ -2842,7 +6769,7 @@ func_080DCB28:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB34
     .thumb_func
 func_080DCB34:
@@ -2850,7 +6777,7 @@ func_080DCB34:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB40
     .thumb_func
 func_080DCB40:
@@ -2858,7 +6785,7 @@ func_080DCB40:
     bl _._10ANpcEntity
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB4C
     .thumb_func
 func_080DCB4C:
@@ -2866,7 +6793,7 @@ func_080DCB4C:
     bl func_08037048
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB58
     .thumb_func
 func_080DCB58:
@@ -2874,7 +6801,7 @@ func_080DCB58:
     bl func_08037048
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB64
     .thumb_func
 func_080DCB64:
@@ -2882,7 +6809,7 @@ func_080DCB64:
     bl func_08037048
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB70
     .thumb_func
 func_080DCB70:
@@ -2890,7 +6817,7 @@ func_080DCB70:
     bl func_08037048
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCB7C
     .thumb_func
 func_080DCB7C:
@@ -2918,12 +6845,12 @@ func_080DCB7C:
     ldr r3, [sp, #0x5c]
     cmp r3, #0
     beq .Lauto_080DC36C
-    ldr r0, [pc, #4]
+    ldr r0, .Lraw_code_linkonce_2924_0
     ldrh r2, [r0, #2]
     b .Lauto_080DC370
-    .word gUnk_080F1684
+.Lraw_code_linkonce_2924_0: .word gUnk_080F1684
     .Lauto_080DC36C:
-    ldr r0, [pc, #0xd4]
+    ldr r0, .Lraw_code_linkonce_3026_0
     ldrh r2, [r0]
     .Lauto_080DC370:
     movs r0, #6
@@ -2944,9 +6871,9 @@ func_080DCB7C:
     movs r0, #0x96
     lsls r0, r0, #1
     strh r0, [r1]
-    ldr r0, [pc, #0xb0]
+    ldr r0, .Lraw_code_linkonce_3027_0
     str r0, [r5, #0x48]
-    ldr r0, [pc, #0xa8]
+    ldr r0, .Lraw_code_linkonce_3026_0
     ldrb r1, [r0, #4]
     adds r0, r5, #0
     adds r0, #0x4c
@@ -2994,7 +6921,7 @@ func_080DCB7C:
     lsls r1, r1, #1
     bl __umodsi3
     adds r5, r0, #0
-    ldr r4, [pc, #0x48]
+    ldr r4, .Lraw_code_linkonce_3028_0
     bl rand
     movs r1, #3
     bl __modsi3
@@ -3004,7 +6931,7 @@ func_080DCB7C:
     movs r1, #3
     bl __modsi3
     lsls r0, r0, #2
-    ldr r1, [pc, #0x30]
+    ldr r1, .Lraw_code_linkonce_3029_0
     adds r0, r0, r1
     ldr r0, [r0]
     mov sb, r0
@@ -3018,18 +6945,18 @@ func_080DCB7C:
     cmp r3, #0
     beq .Lauto_080DC454
     lsls r0, r6, #3
-    ldr r2, [pc, #8]
+    ldr r2, .Lraw_code_linkonce_3026_0
     adds r0, r0, r2
     ldrh r2, [r0, #2]
     b .Lauto_080DC45C
-    .byte 0x00, 0x00
-    .word gUnk_080F1684
-    .byte 0x66, 0x26, 0x00, 0x00
-    .word gUnk_080F1672
-    .word gUnk_080F1678
+    .align 2, 0
+.Lraw_code_linkonce_3026_0: .word gUnk_080F1684
+.Lraw_code_linkonce_3027_0: .word 0x00002666
+.Lraw_code_linkonce_3028_0: .word gUnk_080F1672
+.Lraw_code_linkonce_3029_0: .word gUnk_080F1678
     .Lauto_080DC454:
     lsls r0, r6, #3
-    ldr r3, [pc, #0x84]
+    ldr r3, .Lraw_code_linkonce_3099_0
     adds r0, r0, r3
     ldrh r2, [r0]
     .Lauto_080DC45C:
@@ -3051,7 +6978,7 @@ func_080DCB7C:
     mov r0, sb
     str r0, [r7, #0x48]
     lsls r0, r6, #3
-    ldr r1, [pc, #0x58]
+    ldr r1, .Lraw_code_linkonce_3099_0
     adds r0, r0, r1
     ldrb r1, [r0, #4]
     adds r0, r7, #0
@@ -3096,7 +7023,7 @@ func_080DCB7C:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .word gUnk_080F1684
+.Lraw_code_linkonce_3099_0: .word gUnk_080F1684
     .global func_080DCD2C
     .thumb_func
 func_080DCD2C:
@@ -3104,7 +7031,7 @@ func_080DCD2C:
     adds r4, r0, #0
     adds r5, r1, #0
     bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
-    ldr r0, [pc, #0x74]
+    ldr r0, .Lraw_code_linkonce_3166_0
     str r0, [r4, #0x24]
     adds r1, r4, #0
     adds r1, #0x28
@@ -3162,8 +7089,8 @@ func_080DCD2C:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
-    .4byte __vt_22GameSceneIndexedSprite
+    .align 2, 0
+.Lraw_code_linkonce_3166_0: .4byte __vt_22GameSceneIndexedSprite
     .global func_080DCDB0
     .thumb_func
 func_080DCDB0:
@@ -3238,7 +7165,7 @@ func_080DCDB0:
     adds r0, r4, #0
     bl __builtin_delete
     .Lauto_080DC5F2:
-    ldr r0, [pc, #0x1c]
+    ldr r0, .Lraw_code_linkonce_3256_0
     str r0, [r7, #4]
     movs r0, #1
     mov r1, r8
@@ -3253,14 +7180,14 @@ func_080DCDB0:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .4byte __vt_22EntityVisualController
+.Lraw_code_linkonce_3256_0: .4byte __vt_22EntityVisualController
     .global func_080DCE60
     .thumb_func
 func_080DCE60:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, [pc, #0x28]
+    ldr r0, .Lraw_code_linkonce_3284_0
     str r0, [r4, #0x14]
     ldr r1, [r4, #0x10]
     cmp r1, #0
@@ -3281,7 +7208,7 @@ func_080DCE60:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x90, 0x56, 0x0E, 0x08
+.Lraw_code_linkonce_3284_0: .word __vt_7AEntity
     .global func_080DCE94
     .thumb_func
 func_080DCE94:
@@ -3291,7 +7218,7 @@ func_080DCE94:
     adds r0, #8
     movs r1, #2
     bl _._19GameSceneSpriteBase
-    ldr r0, [pc, #0x18]
+    ldr r0, .Lraw_code_linkonce_3307_0
     str r0, [r5, #4]
     movs r0, #1
     ands r0, r4
@@ -3303,8 +7230,8 @@ func_080DCE94:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_22EntityVisualController
+    .align 2, 0
+.Lraw_code_linkonce_3307_0: .4byte __vt_22EntityVisualController
     .global func_080DCEC0
     .thumb_func
 func_080DCEC0:
@@ -3314,7 +7241,7 @@ func_080DCEC0:
     adds r0, #8
     movs r1, #2
     bl _._19GameSceneSpriteBase
-    ldr r0, [pc, #0x18]
+    ldr r0, .Lraw_code_linkonce_3330_0
     str r0, [r5, #4]
     movs r0, #1
     ands r0, r4
@@ -3326,15 +7253,15 @@ func_080DCEC0:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_22EntityVisualController
+    .align 2, 0
+.Lraw_code_linkonce_3330_0: .4byte __vt_22EntityVisualController
     .global func_080DCEEC
     .thumb_func
 func_080DCEEC:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, [pc, #0x28]
+    ldr r0, .Lraw_code_linkonce_3358_0
     str r0, [r4, #0x14]
     ldr r1, [r4, #0x10]
     cmp r1, #0
@@ -3355,7 +7282,7 @@ func_080DCEEC:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x90, 0x56, 0x0E, 0x08
+.Lraw_code_linkonce_3358_0: .word __vt_7AEntity
     .global func_080DCF20
     .thumb_func
 func_080DCF20:
@@ -3365,7 +7292,7 @@ func_080DCF20:
     adds r0, #8
     movs r1, #2
     bl _._19GameSceneSpriteBase
-    ldr r0, [pc, #0x18]
+    ldr r0, .Lraw_code_linkonce_3381_0
     str r0, [r5, #4]
     movs r0, #1
     ands r0, r4
@@ -3377,8 +7304,8 @@ func_080DCF20:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_22EntityVisualController
+    .align 2, 0
+.Lraw_code_linkonce_3381_0: .4byte __vt_22EntityVisualController
     .global func_080DCF4C
     .thumb_func
 func_080DCF4C:
@@ -3388,7 +7315,7 @@ func_080DCF4C:
     push {r6, r7}
     mov r8, r0
     mov sb, r1
-    ldr r0, [pc, #0x68]
+    ldr r0, .Lraw_code_linkonce_3447_0
     mov r1, r8
     str r0, [r1, #0x14]
     ldr r0, [r1, #0x10]
@@ -3418,7 +7345,7 @@ func_080DCF4C:
     cmp r6, r7
     blo .Lauto_080DC728
     .Lauto_080DC744:
-    ldr r0, [pc, #0x34]
+    ldr r0, .Lraw_code_linkonce_3447_4
     mov r2, r8
     str r0, [r2, #0x14]
     ldr r1, [r2, #0x10]
@@ -3444,7 +7371,8 @@ func_080DCF4C:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0xA8, 0x69, 0x0E, 0x08, 0x90, 0x56, 0x0E, 0x08
+.Lraw_code_linkonce_3447_0: .word vtable_unk_080E7568
+.Lraw_code_linkonce_3447_4: .word __vt_7AEntity
     .global func_080DCFCC
     .thumb_func
 func_080DCFCC:
@@ -3456,7 +7384,7 @@ func_080DCFCC:
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DCFE0
     .thumb_func
 func_080DCFE0:
@@ -3478,7 +7406,7 @@ func_080DCFE0:
     ldr r0, [r4, #0x18]
     mov sl, r0
     str r4, [r6]
-    ldr r0, [pc, #0x2c]
+    ldr r0, .Lraw_code_linkonce_3506_2
     str r0, [r6, #4]
     str r7, [r6, #8]
     ldr r4, [r4]
@@ -3499,74 +7427,321 @@ func_080DCFE0:
     b .Lauto_080DCAAE
     .Lauto_080DC7DC:
     lsls r0, r0, #2
-    ldr r1, [pc, #0xc]
+    ldr r1, .Lraw_code_linkonce_3506_6
     adds r0, r0, r1
     ldr r0, [r0]
     mov pc, r0
-    .byte 0x00, 0x00, 0x14, 0x6B, 0x0E, 0x08, 0xF0, 0xC7, 0x0D, 0x08, 0x20, 0xC8, 0x0D, 0x08, 0x48, 0xC8
-    .byte 0x0D, 0x08, 0x68, 0xC8, 0x0D, 0x08, 0x90, 0xC8, 0x0D, 0x08, 0xB8, 0xC8, 0x0D, 0x08, 0x14, 0xC9
-    .byte 0x0D, 0x08, 0x88, 0xC9, 0x0D, 0x08, 0xB0, 0xC9, 0x0D, 0x08, 0xD8, 0xC9, 0x0D, 0x08, 0x00, 0xCA
-    .byte 0x0D, 0x08, 0x28, 0xCA, 0x0D, 0x08, 0x48, 0xCA, 0x0D, 0x08, 0x64, 0x20
+    .align 2, 0
+.Lraw_code_linkonce_3506_2: .word vtable_unk_080E76D4
+.Lraw_code_linkonce_3506_6: .word .Lswitch_080DC7F0
+.Lswitch_080DC7F0: .word .Lraw_code_linkonce_3509_10
+    .word .Lraw_code_linkonce_3513_2
+    .word .Lraw_code_linkonce_3517_2
+    .word .Lraw_code_linkonce_3521_10
+    .word .Lraw_code_linkonce_3525_2
+    .word .Lraw_code_linkonce_3532_14
+    .word .Lraw_code_linkonce_3541_2
+    .word .Lraw_code_linkonce_3545_10
+    .word .Lraw_code_linkonce_3549_2
+    .word .Lraw_code_linkonce_3553_10
+    .word .Lraw_code_linkonce_3557_2
+    .word .Lraw_code_linkonce_3561_2
+.Lraw_code_linkonce_3509_10:
+    movs r0, #0x64
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x7A, 0x68, 0x04, 0x48, 0x12, 0x18, 0x28, 0x1C, 0x41, 0x46, 0x01, 0x23
-    .byte 0x5D, 0xF7, 0xF9, 0xF9, 0x02, 0x48, 0x0F, 0xE1, 0x00, 0x00, 0xB6, 0x09, 0x00, 0x00, 0xE4, 0x6A
-    .byte 0x0E, 0x08, 0x64, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    ldr r2, [r7, #4]
+    ldr r0, .Lraw_code_linkonce_3512_10
+    adds r2, r2, r0
+    adds r0, r5, #0
+    mov r1, r8
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3512_14
+    b .Lraw_code_linkonce_3564_8
+    .align 2, 0
+.Lraw_code_linkonce_3512_10: .word 0x000009B6
+.Lraw_code_linkonce_3512_14: .word vtable_unk_080E76A4
+.Lraw_code_linkonce_3513_2:
+    movs r0, #0x64
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x7A, 0x68, 0x10, 0x32
-    .byte 0x41, 0x46, 0x01, 0x23, 0x5D, 0xF7, 0xE7, 0xF9, 0x01, 0x48, 0xFD, 0xE0, 0x00, 0x00, 0xCC, 0x6A
-    .byte 0x0E, 0x08, 0x64, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    ldr r2, [r7, #4]
+    adds r2, #0x10
+    mov r1, r8
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3516_14
+    b .Lraw_code_linkonce_3564_8
+    .align 2, 0
+.Lraw_code_linkonce_3516_14: .word vtable_unk_080E768C
+.Lraw_code_linkonce_3517_2:
+    movs r0, #0x64
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x7A, 0x68, 0x04, 0x48
-    .byte 0x12, 0x18, 0x28, 0x1C, 0x41, 0x46, 0x01, 0x23, 0x5D, 0xF7, 0xD5, 0xF9, 0x02, 0x48, 0xEB, 0xE0
-    .byte 0x00, 0x00, 0xDB, 0x03, 0x00, 0x00, 0xB4, 0x6A, 0x0E, 0x08, 0x64, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    ldr r2, [r7, #4]
+    ldr r0, .Lraw_code_linkonce_3521_2
+    adds r2, r2, r0
+    adds r0, r5, #0
+    mov r1, r8
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3521_6
+    b .Lraw_code_linkonce_3564_8
+    .align 2, 0
+.Lraw_code_linkonce_3521_2: .word 0x000003DB
+.Lraw_code_linkonce_3521_6: .word vtable_unk_080E7674
+.Lraw_code_linkonce_3521_10:
+    movs r0, #0x64
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x7A, 0x68, 0x04, 0x48, 0x12, 0x18, 0x28, 0x1C, 0x41, 0x46, 0x01, 0x23
-    .byte 0x5D, 0xF7, 0xC1, 0xF9, 0x02, 0x48, 0xD7, 0xE0, 0x00, 0x00, 0x06, 0x08, 0x00, 0x00, 0x9C, 0x6A
-    .byte 0x0E, 0x08, 0x6C, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    ldr r2, [r7, #4]
+    ldr r0, .Lraw_code_linkonce_3524_10
+    adds r2, r2, r0
+    adds r0, r5, #0
+    mov r1, r8
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3524_14
+    b .Lraw_code_linkonce_3564_8
+    .align 2, 0
+.Lraw_code_linkonce_3524_10: .word 0x00000806
+.Lraw_code_linkonce_3524_14: .word vtable_unk_080E765C
+.Lraw_code_linkonce_3525_2:
+    movs r0, #0x6c
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x7A, 0x68, 0x11, 0x48
-    .byte 0x12, 0x18, 0x28, 0x1C, 0x41, 0x46, 0x01, 0x23, 0x5D, 0xF7, 0xAD, 0xF9, 0x0F, 0x48, 0xE8, 0x64
-    .byte 0x78, 0x68, 0x28, 0x65, 0xA0, 0x88, 0x29, 0x1C, 0x54, 0x31, 0x00, 0x22, 0x00, 0x23, 0x08, 0x80
-    .byte 0xE0, 0x88, 0x2C, 0x1C, 0x56, 0x34, 0x20, 0x80, 0x28, 0x1C, 0x60, 0x30, 0x03, 0x80, 0x02, 0x30
-    .byte 0x02, 0x70, 0x00, 0x22, 0x88, 0x5E, 0x00, 0x04, 0xA8, 0x65, 0x00, 0x21, 0x60, 0x5E, 0x00, 0x04
-    .byte 0xE8, 0x65, 0xAB, 0x66, 0xC2, 0xE0, 0x02, 0x02, 0x00, 0x00, 0x84, 0x6A, 0x0E, 0x08, 0x88, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    ldr r2, [r7, #4]
+    ldr r0, .Lraw_code_linkonce_3532_6
+    adds r2, r2, r0
+    adds r0, r5, #0
+    mov r1, r8
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3532_10
+    str r0, [r5, #0x4c]
+    ldr r0, [r7, #4]
+    str r0, [r5, #0x50]
+    ldrh r0, [r4, #4]
+    adds r1, r5, #0
+    adds r1, #0x54
+    movs r2, #0
+    movs r3, #0
+    strh r0, [r1]
+    ldrh r0, [r4, #6]
+    adds r4, r5, #0
+    adds r4, #0x56
+    strh r0, [r4]
+    adds r0, r5, #0
+    adds r0, #0x60
+    strh r3, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    movs r2, #0
+    ldrsh r0, [r1, r2]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    movs r1, #0
+    ldrsh r0, [r4, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+    str r3, [r5, #0x68]
+    b .Lraw_code_linkonce_3567_12
+.Lraw_code_linkonce_3532_6: .word 0x00000202
+.Lraw_code_linkonce_3532_10: .word vtable_unk_080E7644
+.Lraw_code_linkonce_3532_14:
+    movs r0, #0x88
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x7A, 0x68, 0x17, 0x48, 0x12, 0x18, 0x28, 0x1C
-    .byte 0x41, 0x46, 0x01, 0x23, 0x5D, 0xF7, 0x7F, 0xF9, 0x15, 0x48, 0xE8, 0x64, 0x78, 0x68, 0x28, 0x65
-    .byte 0x29, 0x1C, 0x79, 0x31, 0xFF, 0x20, 0x08, 0x70, 0x29, 0x39, 0x22, 0x7A, 0x12, 0x07, 0x12, 0x17
-    .byte 0x28, 0x1C, 0x5D, 0xF7, 0xC6, 0xFA, 0x29, 0x1C, 0x78, 0x31, 0x00, 0x22, 0x08, 0x70, 0x28, 0x1C
-    .byte 0x60, 0x30, 0x00, 0x21, 0x02, 0x80, 0x02, 0x30, 0x01, 0x70, 0x0E, 0x38, 0x00, 0x21, 0x40, 0x5E
-    .byte 0x00, 0x04, 0xA8, 0x65, 0x28, 0x1C, 0x56, 0x30, 0x00, 0x22, 0x80, 0x5E, 0x00, 0x04, 0xE8, 0x65
-    .byte 0x29, 0x1C, 0x84, 0x31, 0xF8, 0x20, 0x08, 0x70, 0x88, 0xE0, 0xA3, 0x02, 0x00, 0x00, 0x6C, 0x6A
-    .byte 0x0E, 0x08, 0x64, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    ldr r2, [r7, #4]
+    ldr r0, .Lraw_code_linkonce_3540_10
+    adds r2, r2, r0
+    adds r0, r5, #0
+    mov r1, r8
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3540_14
+    str r0, [r5, #0x4c]
+    ldr r0, [r7, #4]
+    str r0, [r5, #0x50]
+    adds r1, r5, #0
+    adds r1, #0x79
+    movs r0, #0xff
+    strb r0, [r1]
+    subs r1, #0x29
+    ldrb r2, [r4, #8]
+    lsls r2, r2, #0x1c
+    asrs r2, r2, #0x1c
+    adds r0, r5, #0
+    bl func_0803A144
+    adds r1, r5, #0
+    adds r1, #0x78
+    movs r2, #0
+    strb r0, [r1]
+    adds r0, r5, #0
+    adds r0, #0x60
+    movs r1, #0
+    strh r2, [r0]
+    adds r0, #2
+    strb r1, [r0]
+    subs r0, #0xe
+    movs r1, #0
+    ldrsh r0, [r0, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    adds r0, r5, #0
+    adds r0, #0x56
+    movs r2, #0
+    ldrsh r0, [r0, r2]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+    adds r1, r5, #0
+    adds r1, #0x84
+    movs r0, #0xf8
+    strb r0, [r1]
+    b .Lraw_code_linkonce_3567_12
+.Lraw_code_linkonce_3540_10: .word 0x000002A3
+.Lraw_code_linkonce_3540_14: .word vtable_unk_080E762C
+.Lraw_code_linkonce_3541_2:
+    movs r0, #0x64
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x7A, 0x68, 0x04, 0x48
-    .byte 0x12, 0x18, 0x28, 0x1C, 0x41, 0x46, 0x01, 0x23, 0x5D, 0xF7, 0x45, 0xF9, 0x02, 0x48, 0x5B, 0xE0
-    .byte 0x00, 0x00, 0x7B, 0x08, 0x00, 0x00, 0x54, 0x6A, 0x0E, 0x08, 0x64, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    ldr r2, [r7, #4]
+    ldr r0, .Lraw_code_linkonce_3545_2
+    adds r2, r2, r0
+    adds r0, r5, #0
+    mov r1, r8
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3545_6
+    b .Lraw_code_linkonce_3564_8
+    .align 2, 0
+.Lraw_code_linkonce_3545_2: .word 0x0000087B
+.Lraw_code_linkonce_3545_6: .word vtable_unk_080E7614
+.Lraw_code_linkonce_3545_10:
+    movs r0, #0x64
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x7A, 0x68, 0x04, 0x48, 0x12, 0x18, 0x28, 0x1C, 0x41, 0x46, 0x01, 0x23
-    .byte 0x5D, 0xF7, 0x31, 0xF9, 0x02, 0x48, 0x47, 0xE0, 0x00, 0x00, 0x5C, 0x06, 0x00, 0x00, 0x3C, 0x6A
-    .byte 0x0E, 0x08, 0x64, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    ldr r2, [r7, #4]
+    ldr r0, .Lraw_code_linkonce_3548_10
+    adds r2, r2, r0
+    adds r0, r5, #0
+    mov r1, r8
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3548_14
+    b .Lraw_code_linkonce_3564_8
+    .align 2, 0
+.Lraw_code_linkonce_3548_10: .word 0x0000065C
+.Lraw_code_linkonce_3548_14: .word vtable_unk_080E75FC
+.Lraw_code_linkonce_3549_2:
+    movs r0, #0x64
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x7A, 0x68, 0x04, 0x48
-    .byte 0x12, 0x18, 0x28, 0x1C, 0x41, 0x46, 0x01, 0x23, 0x5D, 0xF7, 0x1D, 0xF9, 0x02, 0x48, 0x33, 0xE0
-    .byte 0x00, 0x00, 0xF9, 0x08, 0x00, 0x00, 0x24, 0x6A, 0x0E, 0x08, 0x64, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    ldr r2, [r7, #4]
+    ldr r0, .Lraw_code_linkonce_3553_2
+    adds r2, r2, r0
+    adds r0, r5, #0
+    mov r1, r8
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3553_6
+    b .Lraw_code_linkonce_3564_8
+    .align 2, 0
+.Lraw_code_linkonce_3553_2: .word 0x000008F9
+.Lraw_code_linkonce_3553_6: .word vtable_unk_080E75E4
+.Lraw_code_linkonce_3553_10:
+    movs r0, #0x64
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x7A, 0x68, 0x04, 0x48, 0x12, 0x18, 0x28, 0x1C, 0x41, 0x46, 0x01, 0x23
-    .byte 0x5D, 0xF7, 0x09, 0xF9, 0x02, 0x48, 0x1F, 0xE0, 0x00, 0x00, 0xA9, 0x09, 0x00, 0x00, 0x0C, 0x6A
-    .byte 0x0E, 0x08, 0x64, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    ldr r2, [r7, #4]
+    ldr r0, .Lraw_code_linkonce_3556_10
+    adds r2, r2, r0
+    adds r0, r5, #0
+    mov r1, r8
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3556_14
+    b .Lraw_code_linkonce_3564_8
+    .align 2, 0
+.Lraw_code_linkonce_3556_10: .word 0x000009A9
+.Lraw_code_linkonce_3556_14: .word vtable_unk_080E75CC
+.Lraw_code_linkonce_3557_2:
+    movs r0, #0x64
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x41, 0x46, 0x02, 0x4A
-    .byte 0x01, 0x23, 0x5D, 0xF7, 0xF8, 0xF8, 0x01, 0x48, 0x0E, 0xE0, 0xFD, 0x08, 0x00, 0x00, 0xF4, 0x69
-    .byte 0x0E, 0x08, 0x64, 0x20
+    adds r5, r0, #0
+    adds r4, r7, #4
+    mov r1, r8
+    ldr r2, .Lraw_code_linkonce_3560_10
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3560_14
+    b .Lraw_code_linkonce_3564_8
+.Lraw_code_linkonce_3560_10: .word 0x000008FD
+.Lraw_code_linkonce_3560_14: .word vtable_unk_080E75B4
+.Lraw_code_linkonce_3561_2:
+    movs r0, #0x64
     bl __builtin_new
-    .byte 0x05, 0x1C, 0x3C, 0x1D, 0x41, 0x46, 0x15, 0x22
-    .byte 0x00, 0x23, 0x5D, 0xF7, 0xE8, 0xF8, 0x1A, 0x48, 0xE8, 0x64, 0x78, 0x68, 0x28, 0x65, 0xA0, 0x88
-    .byte 0x2A, 0x1C, 0x54, 0x32, 0x00, 0x23, 0x00, 0x21, 0x10, 0x80, 0xE0, 0x88, 0x2C, 0x1C, 0x56, 0x34
-    .byte 0x20, 0x80, 0x28, 0x1C, 0x60, 0x30, 0x01, 0x80, 0x02, 0x30, 0x03, 0x70, 0x00, 0x21, 0x50, 0x5E
-    .byte 0x00, 0x04, 0xA8, 0x65, 0x00, 0x22, 0xA0, 0x5E, 0x00, 0x04, 0xE8, 0x65, 0x31, 0x1C, 0x08, 0x31
-    .byte 0xB0, 0x68, 0x02, 0x28, 0x08, 0xD8, 0x80, 0x00, 0x04, 0x30, 0x08, 0x18, 0x00, 0x28, 0x00, 0xD0
-    .byte 0x05, 0x60, 0xB0, 0x68, 0x01, 0x30, 0xB0, 0x60
+    adds r5, r0, #0
+    adds r4, r7, #4
+    mov r1, r8
+    movs r2, #0x15
+    movs r3, #0
+    bl func_08039E98
+    ldr r0, .Lraw_code_linkonce_3585_0
+.Lraw_code_linkonce_3564_8:
+    str r0, [r5, #0x4c]
+    ldr r0, [r7, #4]
+    str r0, [r5, #0x50]
+    ldrh r0, [r4, #4]
+    adds r2, r5, #0
+    adds r2, #0x54
+    movs r3, #0
+    movs r1, #0
+    strh r0, [r2]
+    ldrh r0, [r4, #6]
+    adds r4, r5, #0
+    adds r4, #0x56
+    strh r0, [r4]
+    adds r0, r5, #0
+    adds r0, #0x60
+    strh r1, [r0]
+    adds r0, #2
+    strb r3, [r0]
+    movs r1, #0
+    ldrsh r0, [r2, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    movs r2, #0
+    ldrsh r0, [r4, r2]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+.Lraw_code_linkonce_3567_12:
+    adds r1, r6, #0
+    adds r1, #8
+    ldr r0, [r6, #8]
+    cmp r0, #2
+    bhi .Lauto_080DCAAE
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r1, r0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_3569_2
+    str r5, [r0]
+.Lraw_code_linkonce_3569_2:
+    ldr r0, [r6, #8]
+    adds r0, #1
+    str r0, [r6, #8]
     .Lauto_080DCAAE:
     ldrb r1, [r7]
     movs r0, #0x10
@@ -3582,13 +7757,13 @@ func_080DCFE0:
     .Lauto_080DCAC4:
     adds r7, r6, #0
     b .Lauto_080DCB22
-    .byte 0xDC, 0x69, 0x0E, 0x08
+.Lraw_code_linkonce_3585_0: .word vtable_unk_080E759C
     .Lauto_080DCACC:
     movs r0, #0x18
     bl __builtin_new
     adds r5, r0, #0
     str r4, [r5]
-    ldr r0, [pc, #0x5c]
+    ldr r0, .Lraw_code_linkonce_3635_2
     str r0, [r5, #4]
     str r7, [r5, #8]
     ldr r4, [r4]
@@ -3632,7 +7807,8 @@ func_080DCFE0:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00, 0x14, 0x6B, 0x0E, 0x08
+    .align 2, 0
+.Lraw_code_linkonce_3635_2: .word vtable_unk_080E76D4
     .global func_080DD384
     .thumb_func
 func_080DD384:
@@ -3653,7 +7829,7 @@ func_080DD384:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD3A8
     .thumb_func
 func_080DD3A8:
@@ -3706,7 +7882,7 @@ func_080DD3D4:
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD404
     .thumb_func
 func_080DD404:
@@ -3714,7 +7890,7 @@ func_080DD404:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD410
     .thumb_func
 func_080DD410:
@@ -3735,7 +7911,7 @@ func_080DD410:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD434
     .thumb_func
 func_080DD434:
@@ -3801,7 +7977,11 @@ func_080DD460:
     adds r1, #0x60
     ldrh r0, [r1]
     subs r0, #1
-    .byte 0x08, 0x80, 0x00, 0x04, 0x00, 0x28, 0x01, 0xDA, 0x00, 0x20
+    strh r0, [r1]
+    lsls r0, r0, #0x10
+    cmp r0, #0
+    bge .Lauto_080DCC6C
+    movs r0, #0
     .Lauto_080DCC6A:
     strb r0, [r5]
     .Lauto_080DCC6C:
@@ -3828,7 +8008,7 @@ func_080DD460:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD4E4
     .thumb_func
 func_080DD4E4:
@@ -3836,7 +8016,7 @@ func_080DD4E4:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD4F0
     .thumb_func
 func_080DD4F0:
@@ -3857,7 +8037,7 @@ func_080DD4F0:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD514
     .thumb_func
 func_080DD514:
@@ -3889,11 +8069,36 @@ func_080DD540:
     adds r4, r0, #0
     adds r1, r4, #0
     adds r1, #0x50
-    .byte 0x80, 0x22, 0x52, 0x02, 0x5D, 0xF7, 0x08, 0xF9, 0x00, 0x28, 0x14, 0xD0, 0x20, 0x6D, 0x0B, 0x49
-    .byte 0x45, 0x18, 0xA0, 0x88, 0xA8, 0x42, 0x0E, 0xD0, 0x20, 0x1C, 0x30, 0x30, 0x29, 0x1C
+    movs r2, #0x80
+    lsls r2, r2, #9
+    bl func_0803A180
+    cmp r0, #0
+    beq .Lraw_code_linkonce_3896_6
+    ldr r0, [r4, #0x50]
+    ldr r1, .Lraw_code_linkonce_3896_12
+    adds r5, r0, r1
+    ldrh r0, [r4, #4]
+    cmp r0, r5
+    beq .Lraw_code_linkonce_3896_6
+    adds r0, r4, #0
+    adds r0, #0x30
+    adds r1, r5, #0
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C, 0x44, 0x30, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x02, 0x70
-    .byte 0x01, 0x30, 0x01, 0x70, 0xA5, 0x80, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0xA9, 0x09, 0x00, 0x00
+    adds r0, r4, #0
+    adds r0, #0x44
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    strh r5, [r4, #4]
+.Lraw_code_linkonce_3896_6:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+.Lraw_code_linkonce_3896_12: .word 0x000009A9
     .global func_080DD588
     .thumb_func
 func_080DD588:
@@ -3901,7 +8106,7 @@ func_080DD588:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD594
     .thumb_func
 func_080DD594:
@@ -3922,7 +8127,7 @@ func_080DD594:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD5B8
     .thumb_func
 func_080DD5B8:
@@ -4063,7 +8268,7 @@ func_080DD5E4:
     cmp r0, #0
     bne .Lauto_080DCEA6
     .Lauto_080DCE7A:
-    ldr r7, [pc, #0x78]
+    ldr r7, .Lraw_code_linkonce_4126_0
     adds r4, r1, r7
     ldrh r0, [r5, #4]
     cmp r0, r4
@@ -4107,7 +8312,7 @@ func_080DD5E4:
     cmp r6, #0
     bne .Lauto_080DCEFC
     ldr r0, [r5, #0x50]
-    ldr r1, [pc, #0x24]
+    ldr r1, .Lraw_code_linkonce_4126_4
     adds r4, r0, r1
     ldrh r0, [r5, #4]
     cmp r0, r4
@@ -4123,10 +8328,11 @@ func_080DD5E4:
     adds r0, #2
     strb r6, [r0]
     b .Lauto_080DCF20
-    .byte 0xF9, 0x08, 0x00, 0x00, 0xF5, 0x08, 0x00, 0x00
+.Lraw_code_linkonce_4126_0: .word 0x000008F9
+.Lraw_code_linkonce_4126_4: .word 0x000008F5
     .Lauto_080DCEFC:
     ldr r0, [r5, #0x50]
-    ldr r2, [pc, #0x38]
+    ldr r2, .Lraw_code_linkonce_4158_2
     adds r4, r0, r2
     ldrh r0, [r5, #4]
     cmp r0, r4
@@ -4155,7 +8361,8 @@ func_080DD5E4:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xF9, 0x08, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_4158_2: .word 0x000008F9
     .global func_080DD788
     .thumb_func
 func_080DD788:
@@ -4163,7 +8370,7 @@ func_080DD788:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD794
     .thumb_func
 func_080DD794:
@@ -4184,7 +8391,7 @@ func_080DD794:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD7B8
     .thumb_func
 func_080DD7B8:
@@ -4216,16 +8423,63 @@ func_080DD7E4:
     adds r4, r0, #0
     adds r1, r4, #0
     adds r1, #0x50
-    .byte 0x80, 0x22, 0x12, 0x02, 0x5C, 0xF7, 0xB6, 0xFF, 0x00, 0x28, 0x2D, 0xD0, 0x20, 0x1C, 0x62, 0x30
-    .byte 0x00, 0x26, 0x86, 0x57, 0x00, 0x2E, 0x12, 0xD1, 0x20, 0x6D, 0xCB, 0x21, 0xC9, 0x00, 0x45, 0x18
-    .byte 0xA0, 0x88, 0xA8, 0x42, 0x20, 0xD0, 0x20, 0x1C, 0x30, 0x30, 0x29, 0x1C
+    movs r2, #0x80
+    lsls r2, r2, #8
+    bl func_0803A180
+    cmp r0, #0
+    beq .Lraw_code_linkonce_4227_8
+    adds r0, r4, #0
+    adds r0, #0x62
+    movs r6, #0
+    ldrsb r6, [r0, r6]
+    cmp r6, #0
+    bne .Lraw_code_linkonce_4223_14
+    ldr r0, [r4, #0x50]
+    movs r1, #0xcb
+    lsls r1, r1, #3
+    adds r5, r0, r1
+    ldrh r0, [r4, #4]
+    cmp r0, r5
+    beq .Lraw_code_linkonce_4227_8
+    adds r0, r4, #0
+    adds r0, #0x30
+    adds r1, r5, #0
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C, 0x44, 0x30, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x06, 0x70, 0x11, 0xE0, 0x20, 0x6D
-    .byte 0x0B, 0x49, 0x45, 0x18, 0xA0, 0x88, 0xA8, 0x42, 0x0E, 0xD0, 0x20, 0x1C, 0x30, 0x30, 0x29, 0x1C
+    adds r0, r4, #0
+    adds r0, #0x44
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r6, [r0]
+    b .Lraw_code_linkonce_4227_2
+.Lraw_code_linkonce_4223_14:
+    ldr r0, [r4, #0x50]
+    ldr r1, .Lraw_code_linkonce_4228_0
+    adds r5, r0, r1
+    ldrh r0, [r4, #4]
+    cmp r0, r5
+    beq .Lraw_code_linkonce_4227_8
+    adds r0, r4, #0
+    adds r0, #0x30
+    adds r1, r5, #0
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C, 0x44, 0x30, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30
-    .byte 0x02, 0x70, 0x01, 0x30, 0x01, 0x70, 0xA5, 0x80, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .byte 0x5C, 0x06, 0x00, 0x00
+    adds r0, r4, #0
+    adds r0, #0x44
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+.Lraw_code_linkonce_4227_2:
+    adds r0, #1
+    strb r1, [r0]
+    strh r5, [r4, #4]
+.Lraw_code_linkonce_4227_8:
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_linkonce_4228_0: .word 0x0000065C
     .global func_080DD860
     .thumb_func
 func_080DD860:
@@ -4233,7 +8487,7 @@ func_080DD860:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD86C
     .thumb_func
 func_080DD86C:
@@ -4254,7 +8508,7 @@ func_080DD86C:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD890
     .thumb_func
 func_080DD890:
@@ -4286,18 +8540,62 @@ func_080DD8BC:
     adds r4, r0, #0
     adds r1, r4, #0
     adds r1, #0x50
-    .byte 0x80, 0x22, 0x12, 0x02, 0x5C, 0xF7, 0x4A, 0xFF, 0x00, 0x28, 0x2E, 0xD0, 0x20, 0x1C, 0x62, 0x30
-    .byte 0x00, 0x26, 0x86, 0x57, 0x00, 0x2E, 0x13, 0xD1, 0x20, 0x6D, 0x08, 0x49, 0x45, 0x18, 0xA0, 0x88
-    .byte 0xA8, 0x42, 0x22, 0xD0, 0x20, 0x1C, 0x30, 0x30, 0x29, 0x1C
+    movs r2, #0x80
+    lsls r2, r2, #8
+    bl func_0803A180
+    cmp r0, #0
+    beq .Lraw_code_linkonce_4299_10
+    adds r0, r4, #0
+    adds r0, #0x62
+    movs r6, #0
+    ldrsb r6, [r0, r6]
+    cmp r6, #0
+    bne .Lraw_code_linkonce_4295_0
+    ldr r0, [r4, #0x50]
+    ldr r1, .Lraw_code_linkonce_4294_12
+    adds r5, r0, r1
+    ldrh r0, [r4, #4]
+    cmp r0, r5
+    beq .Lraw_code_linkonce_4299_10
+    adds r0, r4, #0
+    adds r0, #0x30
+    adds r1, r5, #0
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C
-    .byte 0x44, 0x30, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x06, 0x70, 0x13, 0xE0, 0x77, 0x08, 0x00, 0x00
-    .byte 0x20, 0x6D, 0x0B, 0x49, 0x45, 0x18, 0xA0, 0x88, 0xA8, 0x42, 0x0E, 0xD0, 0x20, 0x1C, 0x30, 0x30
-    .byte 0x29, 0x1C
+    adds r0, r4, #0
+    adds r0, #0x44
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r6, [r0]
+    b .Lraw_code_linkonce_4299_4
+.Lraw_code_linkonce_4294_12: .word 0x00000877
+.Lraw_code_linkonce_4295_0:
+    ldr r0, [r4, #0x50]
+    ldr r1, .Lraw_code_linkonce_4300_0
+    adds r5, r0, r1
+    ldrh r0, [r4, #4]
+    cmp r0, r5
+    beq .Lraw_code_linkonce_4299_10
+    adds r0, r4, #0
+    adds r0, #0x30
+    adds r1, r5, #0
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C, 0x44, 0x30, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70
-    .byte 0x02, 0x30, 0x02, 0x70, 0x01, 0x30, 0x01, 0x70, 0xA5, 0x80, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .byte 0x7B, 0x08, 0x00, 0x00
+    adds r0, r4, #0
+    adds r0, #0x44
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+.Lraw_code_linkonce_4299_4:
+    adds r0, #1
+    strb r1, [r0]
+    strh r5, [r4, #4]
+.Lraw_code_linkonce_4299_10:
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+.Lraw_code_linkonce_4300_0: .word 0x0000087B
     .global func_080DD938
     .thumb_func
 func_080DD938:
@@ -4305,7 +8603,7 @@ func_080DD938:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DD944
     .thumb_func
 func_080DD944:
@@ -4366,8 +8664,19 @@ func_080DD994:
     str r0, [sp, #4]
     mov r0, ip
     adds r0, #0x84
-    .byte 0x00, 0x78, 0x00, 0x06, 0x00, 0x16, 0x02, 0x90, 0x01, 0x20, 0x03, 0x90, 0x60, 0x46, 0x5C, 0xF7
-    .byte 0xD7, 0xFD, 0x04, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    ldrb r0, [r0]
+    lsls r0, r0, #0x18
+    asrs r0, r0, #0x18
+    str r0, [sp, #8]
+    movs r0, #1
+    str r0, [sp, #0xc]
+    mov r0, ip
+    bl func_08039F90
+    add sp, #0x10
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_080DD9CC
     .thumb_func
 func_080DD9CC:
@@ -4414,16 +8723,49 @@ func_080DD9CC:
     adds r1, #0x60
     ldrh r0, [r1]
     subs r0, #1
-    .byte 0x08, 0x80, 0x00, 0x04, 0x00, 0x14, 0x00, 0x28, 0x04, 0xDA, 0x02, 0x20
+    strh r0, [r1]
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    cmp r0, #0
+    bge .Lraw_code_linkonce_4423_0
+    movs r0, #2
     .Lauto_080DD1DC:
     strb r0, [r6]
     adds r6, r5, #0
     adds r6, #0x47
     b .Lauto_080DD38A
-    .byte 0xB4, 0x22, 0x52, 0x00, 0x2E, 0x1C, 0x47, 0x36, 0x90, 0x42, 0x00, 0xDC, 0xCB, 0xE0, 0x29, 0x1C
-    .byte 0x86, 0x31, 0x08, 0x88, 0x01, 0x38, 0x08, 0x80, 0x00, 0x04, 0x00, 0x28, 0x00, 0xDD, 0xC2, 0xE0
-    .byte 0x0A, 0x80, 0xF3, 0xF7, 0xC9, 0xFB, 0x00, 0x11, 0x03, 0x21, 0x08, 0x40, 0x00, 0x28, 0x00, 0xD1
-    .byte 0xB9, 0xE0, 0x28, 0x1C, 0xCE, 0x21, 0x5C, 0xF7, 0x63, 0xFF, 0xB4, 0xE0
+.Lraw_code_linkonce_4423_0:
+    movs r2, #0xb4
+    lsls r2, r2, #1
+    adds r6, r5, #0
+    adds r6, #0x47
+    cmp r0, r2
+    bgt .Lraw_code_linkonce_4423_14
+    b .Lauto_080DD38A
+.Lraw_code_linkonce_4423_14:
+    adds r1, r5, #0
+    adds r1, #0x86
+    ldrh r0, [r1]
+    subs r0, #1
+    strh r0, [r1]
+    lsls r0, r0, #0x10
+    cmp r0, #0
+    ble .Lraw_code_linkonce_4425_0
+    b .Lauto_080DD38A
+.Lraw_code_linkonce_4425_0:
+    strh r2, [r1]
+    bl rand
+    asrs r0, r0, #4
+    movs r1, #3
+    ands r0, r1
+    cmp r0, #0
+    bne .Lraw_code_linkonce_4426_2
+    b .Lauto_080DD38A
+.Lraw_code_linkonce_4426_2:
+    adds r0, r5, #0
+    movs r1, #0xce
+    bl func_0803A350
+    b .Lauto_080DD38A
     .Lauto_080DD220:
     adds r2, r5, #0
     adds r2, #0x79
@@ -4451,29 +8793,109 @@ func_080DD9CC:
     adds r0, r5, #0
     adds r0, #0x68
     movs r2, #0
-    .byte 0x81, 0x5E, 0x09, 0x04, 0xE9, 0x66, 0x02, 0x30, 0x00, 0x23, 0xC2, 0x5E, 0x12, 0x04, 0x2A, 0x67
-    .byte 0xA8, 0x6D, 0x09, 0x1A, 0xE9, 0x67, 0x29, 0x1C, 0x80, 0x31, 0xE8, 0x6D, 0x12, 0x1A, 0x0A, 0x60
-    .byte 0xE8, 0x6F, 0x01, 0x1C, 0x00, 0x28, 0x00, 0xDA, 0x41, 0x42, 0x4F, 0x14, 0x11, 0x1C, 0x00, 0x2A
-    .byte 0x00, 0xDA, 0x51, 0x42, 0x4E, 0x14, 0xB7, 0x42, 0x15, 0xDD, 0x00, 0x28, 0x01, 0xDA, 0x2C, 0x65
-    .byte 0x01, 0xE0, 0x03, 0x20, 0x28, 0x65, 0xE8, 0x6F, 0x39, 0x1C
+    ldrsh r1, [r0, r2]
+    lsls r1, r1, #0x10
+    str r1, [r5, #0x6c]
+    adds r0, #2
+    movs r3, #0
+    ldrsh r2, [r0, r3]
+    lsls r2, r2, #0x10
+    str r2, [r5, #0x70]
+    ldr r0, [r5, #0x58]
+    subs r1, r1, r0
+    str r1, [r5, #0x7c]
+    adds r1, r5, #0
+    adds r1, #0x80
+    ldr r0, [r5, #0x5c]
+    subs r2, r2, r0
+    str r2, [r1]
+    ldr r0, [r5, #0x7c]
+    adds r1, r0, #0
+    cmp r0, #0
+    bge .Lraw_code_linkonce_4456_10
+    rsbs r1, r0, #0
+.Lraw_code_linkonce_4456_10:
+    asrs r7, r1, #0x11
+    adds r1, r2, #0
+    cmp r2, #0
+    bge .Lraw_code_linkonce_4457_4
+    rsbs r1, r2, #0
+.Lraw_code_linkonce_4457_4:
+    asrs r6, r1, #0x11
+    cmp r7, r6
+    ble .Lraw_code_linkonce_4464_6
+    cmp r0, #0
+    bge .Lraw_code_linkonce_4458_2
+    str r4, [r5, #0x50]
+    b .Lraw_code_linkonce_4458_6
+.Lraw_code_linkonce_4458_2:
+    movs r0, #3
+    str r0, [r5, #0x50]
+.Lraw_code_linkonce_4458_6:
+    ldr r0, [r5, #0x7c]
+    adds r1, r7, #0
     bl __divsi3
-    .byte 0xE8, 0x67
-    .byte 0x2C, 0x1C, 0x80, 0x34, 0x20, 0x68, 0x39, 0x1C
+    str r0, [r5, #0x7c]
+    adds r4, r5, #0
+    adds r4, #0x80
+    ldr r0, [r4]
+    adds r1, r7, #0
     bl __divsi3
-    .byte 0x20, 0x60, 0x28, 0x1C
-    .byte 0x60, 0x30, 0x07, 0x80, 0x14, 0xE0, 0x00, 0x2A, 0x01, 0xDA, 0x01, 0x20, 0x00, 0xE0, 0x00, 0x20
-    .byte 0x28, 0x65, 0xE8, 0x6F, 0x31, 0x1C
+    str r0, [r4]
+    adds r0, r5, #0
+    adds r0, #0x60
+    strh r7, [r0]
+    b .Lraw_code_linkonce_4471_0
+.Lraw_code_linkonce_4464_6:
+    cmp r2, #0
+    bge .Lraw_code_linkonce_4464_14
+    movs r0, #1
+    b .Lraw_code_linkonce_4465_0
+.Lraw_code_linkonce_4464_14:
+    movs r0, #0
+.Lraw_code_linkonce_4465_0:
+    str r0, [r5, #0x50]
+    ldr r0, [r5, #0x7c]
+    adds r1, r6, #0
     bl __divsi3
-    .byte 0xE8, 0x67, 0x2C, 0x1C, 0x80, 0x34
-    .byte 0x20, 0x68, 0x31, 0x1C
+    str r0, [r5, #0x7c]
+    adds r4, r5, #0
+    adds r4, #0x80
+    ldr r0, [r4]
+    adds r1, r6, #0
     bl __divsi3
-    .byte 0x20, 0x60, 0x28, 0x1C, 0x60, 0x30, 0x06, 0x80
-    .byte 0x35, 0x4C, 0xA8, 0x88, 0x2E, 0x1C, 0x47, 0x36, 0xA0, 0x42, 0x0D, 0xD0, 0x28, 0x1C, 0x30, 0x30
-    .byte 0x21, 0x1C
+    str r0, [r4]
+    adds r0, r5, #0
+    adds r0, #0x60
+    strh r6, [r0]
+.Lraw_code_linkonce_4471_0:
+    ldr r4, .Lraw_code_linkonce_4524_2
+    ldrh r0, [r5, #4]
+    adds r6, r5, #0
+    adds r6, #0x47
+    cmp r0, r4
+    beq .Lraw_code_linkonce_4475_8
+    adds r0, r5, #0
+    adds r0, #0x30
+    adds r1, r4, #0
     bl ResolveIndexedResourceHandle
-    .byte 0x29, 0x1C, 0x44, 0x31, 0x00, 0x22, 0x01, 0x20, 0x08, 0x70
-    .byte 0x02, 0x31, 0x0A, 0x70, 0x30, 0x70, 0xAC, 0x80, 0x29, 0x1C, 0x62, 0x31, 0x03, 0x20, 0x08, 0x70
-    .byte 0x22, 0x31, 0x08, 0x20, 0x08, 0x70
+    adds r1, r5, #0
+    adds r1, #0x44
+    movs r2, #0
+    movs r0, #1
+    strb r0, [r1]
+    adds r1, #2
+    strb r2, [r1]
+    strb r0, [r6]
+    strh r4, [r5, #4]
+.Lraw_code_linkonce_4475_8:
+    adds r1, r5, #0
+    adds r1, #0x62
+    movs r0, #3
+    strb r0, [r1]
+    adds r1, #0x22
+    movs r0, #8
+    strb r0, [r1]
     .Lauto_080DD31A:
     ldr r0, [r5, #0x58]
     ldr r1, [r5, #0x7c]
@@ -4490,13 +8912,46 @@ func_080DD9CC:
     ldrh r0, [r1]
     subs r0, #1
     movs r7, #0
-    .byte 0x08, 0x80, 0x00, 0x04, 0x00, 0x28, 0x24, 0xDC, 0x2A, 0x1C, 0x79, 0x32, 0x11, 0x78, 0x28, 0x1C
-    .byte 0x78, 0x30, 0x01, 0x70, 0xFF, 0x20, 0x10, 0x70, 0xE8, 0x6E, 0xA8, 0x65, 0x28, 0x6F, 0xE8, 0x65
-    .byte 0x28, 0x1C, 0x62, 0x30, 0x07, 0x70, 0x29, 0x1C, 0x84, 0x31, 0xF8, 0x20, 0x08, 0x70, 0xA9, 0x24
-    .byte 0xA4, 0x00, 0xA8, 0x88, 0xA0, 0x42, 0x0C, 0xD0, 0x28, 0x1C, 0x30, 0x30, 0x21, 0x1C
+    strh r0, [r1]
+    lsls r0, r0, #0x10
+    cmp r0, #0
+    bgt .Lauto_080DD38A
+    adds r2, r5, #0
+    adds r2, #0x79
+    ldrb r1, [r2]
+    adds r0, r5, #0
+    adds r0, #0x78
+    strb r1, [r0]
+    movs r0, #0xff
+    strb r0, [r2]
+    ldr r0, [r5, #0x6c]
+    str r0, [r5, #0x58]
+    ldr r0, [r5, #0x70]
+    str r0, [r5, #0x5c]
+    adds r0, r5, #0
+    adds r0, #0x62
+    strb r7, [r0]
+    adds r1, r5, #0
+    adds r1, #0x84
+    movs r0, #0xf8
+    strb r0, [r1]
+    movs r4, #0xa9
+    lsls r4, r4, #2
+    ldrh r0, [r5, #4]
+    cmp r0, r4
+    beq .Lauto_080DD38A
+    adds r0, r5, #0
+    adds r0, #0x30
+    adds r1, r4, #0
     bl ResolveIndexedResourceHandle
-    .byte 0x28, 0x1C, 0x44, 0x30, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x07, 0x70, 0x31, 0x70
-    .byte 0xAC, 0x80
+    adds r0, r5, #0
+    adds r0, #0x44
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r7, [r0]
+    strb r1, [r6]
+    strh r4, [r5, #4]
     .Lauto_080DD38A:
     ldr r0, [r5, #0x58]
     asrs r0, r0, #0x10
@@ -4521,7 +8976,8 @@ func_080DD9CC:
     movs r0, #1
     strb r0, [r1]
     b .Lauto_080DD3C4
-    .byte 0x00, 0x00, 0xA9, 0x02, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_4524_2: .word 0x000002A9
     .Lauto_080DD3C0:
     movs r0, #0
     strb r0, [r6]
@@ -4529,7 +8985,7 @@ func_080DD9CC:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DDC18
     .thumb_func
 func_080DDC18:
@@ -4537,7 +8993,7 @@ func_080DDC18:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DDC24
     .thumb_func
 func_080DDC24:
@@ -4558,7 +9014,7 @@ func_080DDC24:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DDC48
     .thumb_func
 func_080DDC48:
@@ -4584,7 +9040,7 @@ func_080DDC48:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DDC78
     .thumb_func
 func_080DDC78:
@@ -4680,7 +9136,7 @@ func_080DDC78:
     mov sb, r1
     cmp r7, #0
     bne .Lauto_080DD510
-    ldr r5, [pc, #0x28]
+    ldr r5, .Lraw_code_linkonce_4702_2
     ldrh r0, [r6, #4]
     movs r1, #0x47
     adds r1, r1, r6
@@ -4699,7 +9155,8 @@ func_080DDC78:
     mov r2, r8
     strb r4, [r2]
     b .Lauto_080DD542
-    .byte 0x00, 0x00, 0x05, 0x02, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_4702_2: .word 0x00000205
     .Lauto_080DD510:
     movs r0, #0x80
     lsls r0, r0, #4
@@ -4774,7 +9231,7 @@ func_080DDC78:
     adds r1, #0x56
     strh r0, [r1]
     ldr r1, [r6, #0x68]
-    ldr r0, [pc, #0x10]
+    ldr r0, .Lraw_code_linkonce_4786_2
     adds r4, r6, #0
     adds r4, #0x60
     cmp r1, r0
@@ -4783,7 +9240,8 @@ func_080DDC78:
     lsls r2, r2, #6
     adds r0, r1, r2
     b .Lauto_080DD5D0
-    .byte 0x00, 0x00, 0xFF, 0xFF, 0x07, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_4786_2: .word 0x0007FFFF
     .Lauto_080DD5BC:
     ldr r0, [r6, #0x68]
     adds r4, r6, #0
@@ -4793,7 +9251,7 @@ func_080DDC78:
     mov r8, r3
     cmp r0, #0
     ble .Lauto_080DD5D2
-    ldr r1, [pc, #0x38]
+    ldr r1, .Lraw_code_linkonce_4809_0
     adds r0, r0, r1
     .Lauto_080DD5D0:
     str r0, [r6, #0x68]
@@ -4801,13 +9259,41 @@ func_080DDC78:
     ldrh r0, [r4]
     subs r0, #1
     movs r1, #0
-    .byte 0x20, 0x80, 0x00, 0x04, 0x00, 0x28, 0x02, 0xDA, 0x30, 0x1C, 0x62, 0x30, 0x01, 0x70, 0x42, 0x46
-    .byte 0x10, 0x78, 0x00, 0x28, 0x0E, 0xD1, 0x30, 0x1C, 0x30, 0x30
+    strh r0, [r4]
+    lsls r0, r0, #0x10
+    cmp r0, #0
+    bge .Lraw_code_linkonce_4804_14
+    adds r0, r6, #0
+    adds r0, #0x62
+    strb r1, [r0]
+.Lraw_code_linkonce_4804_14:
+    mov r2, r8
+    ldrb r0, [r2]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_4809_4
+    adds r0, r6, #0
+    adds r0, #0x30
     bl UpdateIndexedResourceHandle
-    .byte 0x80, 0x07
-    .byte 0x00, 0x28, 0x09, 0xDA, 0x31, 0x1C, 0x44, 0x31, 0x01, 0x20, 0x08, 0x70, 0x04, 0xE0, 0x00, 0x00
-    .byte 0x00, 0xE0, 0xFF, 0xFF, 0x43, 0x46, 0x19, 0x70, 0x18, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xF0, 0xBC
-    .byte 0x01, 0xBC, 0x00, 0x47
+    lsls r0, r0, #0x1e
+    cmp r0, #0
+    bge .Lraw_code_linkonce_4809_8
+    adds r1, r6, #0
+    adds r1, #0x44
+    movs r0, #1
+    strb r0, [r1]
+    b .Lraw_code_linkonce_4809_8
+    .align 2, 0
+.Lraw_code_linkonce_4809_0: .word 0xFFFFE000
+.Lraw_code_linkonce_4809_4:
+    mov r3, r8
+    strb r1, [r3]
+.Lraw_code_linkonce_4809_8:
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     .global func_080DDE68
     .thumb_func
 func_080DDE68:
@@ -4815,7 +9301,7 @@ func_080DDE68:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DDE74
     .thumb_func
 func_080DDE74:
@@ -4836,7 +9322,7 @@ func_080DDE74:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DDE98
     .thumb_func
 func_080DDE98:
@@ -4874,7 +9360,7 @@ func_080DDEC4:
     cmp r0, #0
     beq .Lauto_080DD6B6
     ldr r0, [r4, #0x50]
-    ldr r1, [pc, #0x2c]
+    ldr r1, .Lraw_code_linkonce_4900_0
     adds r5, r0, r1
     ldrh r0, [r4, #4]
     cmp r0, r5
@@ -4897,7 +9383,7 @@ func_080DDEC4:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x06, 0x08, 0x00, 0x00
+.Lraw_code_linkonce_4900_0: .word 0x00000806
     .global func_080DDF0C
     .thumb_func
 func_080DDF0C:
@@ -4905,7 +9391,7 @@ func_080DDF0C:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DDF18
     .thumb_func
 func_080DDF18:
@@ -4926,7 +9412,7 @@ func_080DDF18:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DDF3C
     .thumb_func
 func_080DDF3C:
@@ -4964,7 +9450,7 @@ func_080DDF68:
     cmp r0, #0
     beq .Lauto_080DD75A
     ldr r0, [r4, #0x50]
-    ldr r1, [pc, #0x2c]
+    ldr r1, .Lraw_code_linkonce_4990_0
     adds r5, r0, r1
     ldrh r0, [r4, #4]
     cmp r0, r5
@@ -4987,7 +9473,7 @@ func_080DDF68:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0xDB, 0x03, 0x00, 0x00
+.Lraw_code_linkonce_4990_0: .word 0x000003DB
     .global func_080DDFB0
     .thumb_func
 func_080DDFB0:
@@ -4995,7 +9481,7 @@ func_080DDFB0:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DDFBC
     .thumb_func
 func_080DDFBC:
@@ -5016,7 +9502,7 @@ func_080DDFBC:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DDFE0
     .thumb_func
 func_080DDFE0:
@@ -5048,11 +9534,35 @@ func_080DE00C:
     adds r4, r0, #0
     adds r1, r4, #0
     adds r1, #0x50
-    .byte 0x80, 0x22, 0x12, 0x02, 0x5C, 0xF7, 0xA2, 0xFB, 0x00, 0x28, 0x14, 0xD0, 0x20, 0x6D, 0x05, 0x1C
-    .byte 0x10, 0x35, 0xA0, 0x88, 0xA8, 0x42, 0x0E, 0xD0, 0x20, 0x1C, 0x30, 0x30, 0x29, 0x1C
+    movs r2, #0x80
+    lsls r2, r2, #8
+    bl func_0803A180
+    cmp r0, #0
+    beq .Lraw_code_linkonce_5055_6
+    ldr r0, [r4, #0x50]
+    adds r5, r0, #0
+    adds r5, #0x10
+    ldrh r0, [r4, #4]
+    cmp r0, r5
+    beq .Lraw_code_linkonce_5055_6
+    adds r0, r4, #0
+    adds r0, #0x30
+    adds r1, r5, #0
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C, 0x44, 0x30, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x02, 0x70
-    .byte 0x01, 0x30, 0x01, 0x70, 0xA5, 0x80, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
+    adds r0, r4, #0
+    adds r0, #0x44
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    strh r5, [r4, #4]
+.Lraw_code_linkonce_5055_6:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
     .global func_080DE050
     .thumb_func
 func_080DE050:
@@ -5060,7 +9570,7 @@ func_080DE050:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DE05C
     .thumb_func
 func_080DE05C:
@@ -5081,7 +9591,7 @@ func_080DE05C:
     ldrh r0, [r0]
     strh r0, [r1, #0xa]
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DE080
     .thumb_func
 func_080DE080:
@@ -5113,18 +9623,62 @@ func_080DE0AC:
     adds r4, r0, #0
     adds r1, r4, #0
     adds r1, #0x50
-    .byte 0x80, 0x22, 0x12, 0x02, 0x5C, 0xF7, 0x52, 0xFB, 0x00, 0x28, 0x2E, 0xD0, 0x20, 0x1C, 0x62, 0x30
-    .byte 0x00, 0x26, 0x86, 0x57, 0x00, 0x2E, 0x13, 0xD1, 0x20, 0x6D, 0x08, 0x49, 0x45, 0x18, 0xA0, 0x88
-    .byte 0xA8, 0x42, 0x22, 0xD0, 0x20, 0x1C, 0x30, 0x30, 0x29, 0x1C
+    movs r2, #0x80
+    lsls r2, r2, #8
+    bl func_0803A180
+    cmp r0, #0
+    beq .Lraw_code_linkonce_5126_10
+    adds r0, r4, #0
+    adds r0, #0x62
+    movs r6, #0
+    ldrsb r6, [r0, r6]
+    cmp r6, #0
+    bne .Lraw_code_linkonce_5122_0
+    ldr r0, [r4, #0x50]
+    ldr r1, .Lraw_code_linkonce_5121_12
+    adds r5, r0, r1
+    ldrh r0, [r4, #4]
+    cmp r0, r5
+    beq .Lraw_code_linkonce_5126_10
+    adds r0, r4, #0
+    adds r0, #0x30
+    adds r1, r5, #0
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C
-    .byte 0x44, 0x30, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x06, 0x70, 0x13, 0xE0, 0xB6, 0x09, 0x00, 0x00
-    .byte 0x20, 0x6D, 0x0B, 0x49, 0x45, 0x18, 0xA0, 0x88, 0xA8, 0x42, 0x0E, 0xD0, 0x20, 0x1C, 0x30, 0x30
-    .byte 0x29, 0x1C
+    adds r0, r4, #0
+    adds r0, #0x44
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r6, [r0]
+    b .Lraw_code_linkonce_5126_4
+.Lraw_code_linkonce_5121_12: .word 0x000009B6
+.Lraw_code_linkonce_5122_0:
+    ldr r0, [r4, #0x50]
+    ldr r1, .Lraw_code_linkonce_5127_0
+    adds r5, r0, r1
+    ldrh r0, [r4, #4]
+    cmp r0, r5
+    beq .Lraw_code_linkonce_5126_10
+    adds r0, r4, #0
+    adds r0, #0x30
+    adds r1, r5, #0
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C, 0x44, 0x30, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70
-    .byte 0x02, 0x30, 0x02, 0x70, 0x01, 0x30, 0x01, 0x70, 0xA5, 0x80, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .byte 0xBA, 0x09, 0x00, 0x00
+    adds r0, r4, #0
+    adds r0, #0x44
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+.Lraw_code_linkonce_5126_4:
+    adds r0, #1
+    strb r1, [r0]
+    strh r5, [r4, #4]
+.Lraw_code_linkonce_5126_10:
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+.Lraw_code_linkonce_5127_0: .word 0x000009BA
     .global func_080DE128
     .thumb_func
 func_080DE128:
@@ -5132,7 +9686,7 @@ func_080DE128:
     bl func_08039F50
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DE134
     .thumb_func
 func_080DE134:
@@ -5177,7 +9731,7 @@ func_080DE134:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080DE184
     .thumb_func
 func_080DE184:
@@ -5214,7 +9768,7 @@ func_080DE1B4:
     sub sp, #0x10
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, [pc, #0x14]
+    ldr r0, .Lraw_code_linkonce_5228_2
     str r0, [r4, #4]
     ldr r0, [r4, #8]
     lsls r0, r0, #2
@@ -5225,7 +9779,8 @@ func_080DE1B4:
     adds r0, #0xc
     str r0, [sp, #0xc]
     b .Lauto_080DD9A6
-    .byte 0x00, 0x00, 0x14, 0x6B, 0x0E, 0x08
+    .align 2, 0
+.Lraw_code_linkonce_5228_2: .word vtable_unk_080E76D4
     .Lauto_080DD98C:
     subs r0, r2, #4
     ldr r1, [r0]
@@ -5250,7 +9805,7 @@ func_080DE1B4:
     .Lauto_080DD9B2:
     cmp r1, #0
     beq .Lauto_080DD98C
-    ldr r0, [pc, #0x18]
+    ldr r0, .Lraw_code_linkonce_5266_0
     str r0, [r4, #4]
     movs r0, #1
     ands r0, r5
@@ -5263,7 +9818,7 @@ func_080DE1B4:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .4byte __vt_22EntityVisualController
+.Lraw_code_linkonce_5266_0: .4byte __vt_22EntityVisualController
     .section .text.farming_tutorial_runtime, "ax", %progbits
     .align 2, 0
     .global __thunk_12_OnCall__20FarmingTutorialScenei
@@ -5278,592 +9833,3618 @@ __thunk_12_OnCall__20FarmingTutorialScenei:
     subs r0, #0xc
     mov r8, r0
     subs r1, #2
-    ldr r0, [pc, #0x14]
+    ldr r0, .Lraw_code_linkonce_5291_2
     cmp r1, r0
     bls .Lauto_080DDA68
-    bl loc_080DF834
+    bl .Ljp_080DF834
     .Lauto_080DDA68:
     lsls r0, r1, #2
-    ldr r1, [pc, #0xc]
+    ldr r1, .Lraw_code_linkonce_5291_6
     adds r0, r0, r1
     ldr r0, [r0]
     mov pc, r0
-    .byte 0x00, 0x00, 0x41, 0x01, 0x00, 0x00, 0x7C, 0xDA, 0x0D, 0x08, 0x04, 0xEF, 0x0D, 0x08, 0x7A, 0xF0
-    .byte 0x0D, 0x08, 0xB8, 0xF0, 0x0D, 0x08, 0xF4, 0xF0, 0x0D, 0x08, 0x50, 0xF1, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0xA2, 0xF1, 0x0D, 0x08, 0x66, 0xF2, 0x0D, 0x08, 0x04, 0xF2, 0x0D, 0x08, 0xC8, 0xF2
-    .byte 0x0D, 0x08, 0x2A, 0xF3, 0x0D, 0x08, 0x6A, 0xF3, 0x0D, 0x08, 0xC4, 0xF3, 0x0D, 0x08, 0xD8, 0xF3
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x10, 0xF4, 0x0D, 0x08, 0x76, 0xF4, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0xCE, 0xEC, 0x0D, 0x08, 0x9C, 0xED
-    .byte 0x0D, 0x08, 0xEC, 0xED, 0x0D, 0x08, 0x12, 0xEE, 0x0D, 0x08, 0x64, 0xEE, 0x0D, 0x08, 0x76, 0xEE
-    .byte 0x0D, 0x08, 0xFC, 0xEE, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x84, 0xDF
-    .byte 0x0D, 0x08, 0x62, 0xE0, 0x0D, 0x08, 0x30, 0xE1, 0x0D, 0x08, 0x82, 0xE0, 0x0D, 0x08, 0xD8, 0xE0
-    .byte 0x0D, 0x08, 0x88, 0xE1, 0x0D, 0x08, 0x58, 0xE2, 0x0D, 0x08, 0x6C, 0xE3, 0x0D, 0x08, 0xC0, 0xE4
-    .byte 0x0D, 0x08, 0x68, 0xE5, 0x0D, 0x08, 0x52, 0xE6, 0x0D, 0x08, 0x82, 0xE7, 0x0D, 0x08, 0xEA, 0xE8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0xCC, 0xEA
-    .byte 0x0D, 0x08, 0xA4, 0xEB, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0xA0, 0xEA, 0x0D, 0x08, 0xAA, 0xF4
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0xF4, 0xF7, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x22, 0xF7
-    .byte 0x0D, 0x08, 0xA6, 0xF7, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x0C, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0xEE, 0xF6, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x10, 0xF5, 0x0D, 0x08, 0x34, 0xF5, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0xEC, 0xF4
-    .byte 0x0D, 0x08, 0xD8, 0xF4, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8
-    .byte 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x34, 0xF8, 0x0D, 0x08, 0x60, 0xF5, 0x0D, 0x08, 0xEA, 0xF5
-    .byte 0x0D, 0x08, 0x40, 0xF6, 0x0D, 0x08, 0xB2, 0xF6, 0x0D, 0x08, 0x6E, 0xF7, 0x0D, 0x08, 0x10, 0xF0
-    .byte 0x0D, 0x08, 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x05, 0x68, 0x06, 0x1C, 0x00, 0x2D, 0x57, 0xD1
-    .byte 0xE8, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x78, 0x00, 0x28, 0x29, 0xD1, 0x04, 0x20
+    .align 2, 0
+.Lraw_code_linkonce_5291_2: .word 0x00000141
+.Lraw_code_linkonce_5291_6: .word .Lswitch_080DDA7C
+.Lswitch_080DDA7C: .word .Lraw_code_linkonce_5708_4
+    .word .Lraw_code_linkonce_5731_10
+    .word .Lraw_code_linkonce_5735_8
+    .word .Lraw_code_linkonce_5739_4
+    .word .Lraw_code_linkonce_5745_0
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5750_2
+    .word .Lraw_code_linkonce_5764_2
+    .word .Lraw_code_linkonce_5757_2
+    .word .Lraw_code_linkonce_5772_2
+    .word .Lraw_code_linkonce_5780_2
+    .word .Lraw_code_linkonce_5784_10
+    .word .Lraw_code_linkonce_5790_4
+    .word .Lraw_code_linkonce_5791_8
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5795_0
+    .word .Lraw_code_linkonce_5801_6
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5662_14
+    .word .Lraw_code_linkonce_5675_12
+    .word .Lraw_code_linkonce_5680_12
+    .word .Lraw_code_linkonce_5683_2
+    .word .Lraw_code_linkonce_5688_4
+    .word .Lraw_code_linkonce_5691_6
+    .word .Lraw_code_linkonce_5707_0
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5372_2
+    .word .Lraw_code_linkonce_5412_0
+    .word .Lraw_code_linkonce_5428_0
+    .word .Lraw_code_linkonce_5414_0
+    .word .Lraw_code_linkonce_5421_0
+    .word .Lraw_code_linkonce_5435_0
+    .word .Lraw_code_linkonce_5451_0
+    .word .Lraw_code_linkonce_5473_8
+    .word .Lraw_code_linkonce_5500_0
+    .word .Lraw_code_linkonce_5512_0
+    .word .Lraw_code_linkonce_5529_10
+    .word .Lraw_code_linkonce_5552_14
+    .word .Lraw_code_linkonce_5581_6
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5618_12
+    .word .Lraw_code_linkonce_5633_4
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5616_0
+    .word .Lraw_code_linkonce_5804_10
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5858_12
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5845_10
+    .word .Lraw_code_linkonce_5853_14
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5860_4
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5842_6
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5812_8
+    .word .Lraw_code_linkonce_5814_12
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5810_4
+    .word .Lraw_code_linkonce_5809_0
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Ljp_080DF834
+    .word .Lraw_code_linkonce_5817_8
+    .word .Lraw_code_linkonce_5826_2
+    .word .Lraw_code_linkonce_5831_8
+    .word .Lraw_code_linkonce_5838_10
+    .word .Lraw_code_linkonce_5850_6
+    .word .Lraw_code_linkonce_5725_0
+.Lraw_code_linkonce_5372_2:
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r5, [r0]
+    adds r6, r0, #0
+    cmp r5, #0
+    bne .Lraw_code_linkonce_5408_0
+    movs r0, #0xe8
+    lsls r0, r0, #2
+    add r0, r8
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5391_0
+    movs r0, #4
     bl __builtin_new
-    .byte 0x04, 0x1C, 0x04, 0xA8
+    adds r4, r0, #0
+    add r0, sp, #0x10
     bl __17ObjTileCollection
-    .byte 0x05, 0xA8
+    add r0, sp, #0x14
     bl __20ObjPaletteCollection
-    .byte 0x05, 0xA9, 0x01, 0x20, 0x00, 0x90, 0x04, 0xA8, 0x01, 0x90, 0x02, 0x91, 0x20, 0x1C, 0x00, 0x21
-    .byte 0x1F, 0x22, 0x00, 0x23
+    add r1, sp, #0x14
+    movs r0, #1
+    str r0, [sp]
+    add r0, sp, #0x10
+    str r0, [sp, #4]
+    str r1, [sp, #8]
+    adds r0, r4, #0
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
     bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
-    .byte 0x35, 0x1C, 0x04, 0x1C, 0x30, 0x68, 0x84, 0x42
-    .byte 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
+    adds r5, r6, #0
+    adds r4, r0, #0
+    ldr r0, [r6]
+    cmp r4, r0
+    beq .Lraw_code_linkonce_5385_0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_5385_0
+    movs r1, #3
     bl _._12UiStateOwner
-    .byte 0x2C, 0x60, 0x05, 0xA8
-    .byte 0x02, 0x21
+.Lraw_code_linkonce_5385_0:
+    str r4, [r5]
+    add r0, sp, #0x14
+    movs r1, #2
     bl _._20ObjPaletteCollection
-    .byte 0x04, 0xA8, 0x02, 0x21
+    add r0, sp, #0x10
+    movs r1, #2
     bl _._17ObjTileCollection
-    .byte 0x27, 0xE0
-    .byte 0x04, 0x20
+    b .Lraw_code_linkonce_5408_0
+.Lraw_code_linkonce_5391_0:
+    movs r0, #4
     bl __builtin_new
-    .byte 0x04, 0x1C, 0x04, 0xA8
+    adds r4, r0, #0
+    add r0, sp, #0x10
     bl __17ObjTileCollection
-    .byte 0x05, 0xA8
+    add r0, sp, #0x14
     bl __20ObjPaletteCollection
-    .byte 0x05, 0xA8, 0x00, 0x95, 0x04, 0xA9, 0x01, 0x91, 0x02, 0x90, 0x20, 0x1C
-    .byte 0x00, 0x21, 0x1F, 0x22, 0x00, 0x23
+    add r0, sp, #0x14
+    str r5, [sp]
+    add r1, sp, #0x10
+    str r1, [sp, #4]
+    str r0, [sp, #8]
+    adds r0, r4, #0
+    movs r1, #0
+    movs r2, #0x1f
+    movs r3, #0
     bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection
-    .byte 0x35, 0x1C, 0x04, 0x1C, 0x30, 0x68
-    .byte 0x84, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
+    adds r5, r6, #0
+    adds r4, r0, #0
+    ldr r0, [r6]
+    cmp r4, r0
+    beq .Lraw_code_linkonce_5403_0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_5403_0
+    movs r1, #3
     bl _._12UiStateOwner
-    .byte 0x2C, 0x60
-    .byte 0x05, 0xA8, 0x02, 0x21
+.Lraw_code_linkonce_5403_0:
+    str r4, [r5]
+    add r0, sp, #0x14
+    movs r1, #2
     bl _._20ObjPaletteCollection
-    .byte 0x04, 0xA8, 0x02, 0x21
+    add r0, sp, #0x10
+    movs r1, #2
     bl _._17ObjTileCollection
-    .byte 0x30, 0x68
+.Lraw_code_linkonce_5408_0:
+    ldr r0, [r6]
     bl GetState__C12UiStateOwner
-    .byte 0x03, 0x28, 0x01, 0xD1, 0x01, 0xF0, 0xF0, 0xFB, 0x30, 0x68
-    .byte 0x72, 0xF7, 0x49, 0xFD, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x02, 0x20, 0x01, 0xF0, 0xE6, 0xFB
-    .byte 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0x01, 0xF0, 0xDF, 0xFB
-    .byte 0x72, 0xF7, 0x45, 0xFD, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x03, 0x20, 0x01, 0xF0, 0xD6, 0xFB
-    .byte 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x40, 0x44, 0xC3, 0x6A, 0x00, 0x29
-    .byte 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x42, 0x46, 0x0C, 0x32, 0x10, 0x69, 0x83, 0x42, 0x06, 0xD8
-    .byte 0x51, 0x69, 0x98, 0x00, 0x40, 0x18, 0x91, 0x69, 0x00, 0x68, 0x09, 0x18, 0x00, 0xE0, 0x08, 0x49
-    .byte 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0x01, 0xF0, 0xB7, 0xFB
-    .byte 0x40, 0x22, 0x72, 0xF7, 0x3C, 0xFD, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x04, 0x20, 0x01, 0xF0
-    .byte 0xAD, 0xFB
-    .4byte gText_Fallback_Error
-    .byte 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x40, 0x44, 0xC3, 0x6A, 0x00, 0x29
-    .byte 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x42, 0x46, 0x0C, 0x32, 0x10, 0x69, 0x83, 0x42, 0x06, 0xD8
-    .byte 0x51, 0x69, 0x98, 0x00, 0x40, 0x18, 0x91, 0x69, 0x00, 0x68, 0x09, 0x18, 0x00, 0xE0, 0x09, 0x49
-    .byte 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0x01, 0xF0, 0x8C, 0xFB
-    .byte 0x00, 0x22, 0x72, 0xF7, 0x11, 0xFD, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x04, 0x20, 0x01, 0xF0
-    .byte 0x82, 0xFB, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x40, 0x44, 0xC3, 0x6A, 0x00, 0x29
-    .byte 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x42, 0x46, 0x0C, 0x32, 0x10, 0x69, 0x83, 0x42, 0x06, 0xD8
-    .byte 0x51, 0x69, 0x98, 0x00, 0x40, 0x18, 0x91, 0x69, 0x00, 0x68, 0x09, 0x18, 0x00, 0xE0, 0x09, 0x49
-    .byte 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0x01, 0xF0, 0x60, 0xFB
-    .byte 0x80, 0x22, 0x52, 0x00, 0x72, 0xF7, 0xE4, 0xFC, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x04, 0x20
-    .byte 0x01, 0xF0, 0x55, 0xFB
-    .4byte gText_Fallback_Error
-    .byte 0x43, 0x46, 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38
-    .byte 0x18, 0x18, 0x07, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x18, 0x18, 0x05, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60
-    .byte 0x40, 0x46, 0x0C, 0x30, 0x01, 0x69, 0x04, 0x1C, 0x8B, 0x42, 0x06, 0xD8, 0x61, 0x69, 0x98, 0x00
-    .byte 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0E, 0x18, 0x00, 0xE0, 0x05, 0x4E, 0x20, 0x69, 0x85, 0x42
-    .byte 0x08, 0xD8, 0x61, 0x69, 0xA8, 0x00, 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0A, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4A, 0x20, 0x69, 0x87, 0x42, 0x09, 0xD8, 0x61, 0x69, 0xB8, 0x00, 0x40, 0x18, 0xA1, 0x69
-    .byte 0x00, 0x68, 0x0B, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x0E, 0x4B, 0x00, 0x21, 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
-    .byte 0x01, 0xF0, 0x02, 0xFB, 0x00, 0x2A, 0x01, 0xD1, 0x01, 0xF0, 0xFE, 0xFA, 0x00, 0x2B, 0x01, 0xD1
-    .byte 0x01, 0xF0, 0xFA, 0xFA, 0x00, 0x91, 0x01, 0x91, 0x02, 0x91, 0x31, 0x1C, 0x72, 0xF7, 0xBA, 0xFC
-    .byte 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x07, 0x20, 0x01, 0xF0, 0xED, 0xFA
-    .4byte gText_Fallback_Error
-    .byte 0x43, 0x46, 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38
-    .byte 0x18, 0x18, 0x00, 0x68, 0x81, 0x46, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x07, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60
-    .byte 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x06, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E
-    .byte 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0
-    .byte 0x48, 0x1E, 0x10, 0x60, 0x40, 0x46, 0x0C, 0x30, 0x01, 0x69, 0x04, 0x1C, 0x8B, 0x42, 0x06, 0xD8
-    .byte 0x61, 0x69, 0x98, 0x00, 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0D, 0x18, 0x00, 0xE0, 0x05, 0x4D
-    .byte 0x20, 0x69, 0x86, 0x42, 0x08, 0xD8, 0x61, 0x69, 0xB0, 0x00, 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68
-    .byte 0x0A, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4A, 0x20, 0x69, 0x87, 0x42, 0x09, 0xD8, 0x61, 0x69, 0xB8, 0x00, 0x40, 0x18, 0xA1, 0x69
-    .byte 0x00, 0x68, 0x0B, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4B, 0x20, 0x69, 0x81, 0x45, 0x09, 0xD8, 0x61, 0x69, 0x4E, 0x46, 0xB0, 0x00, 0x40, 0x18
-    .byte 0xA1, 0x69, 0x00, 0x68, 0x09, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x0D, 0x49, 0x00, 0x24, 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
-    .byte 0x01, 0xF0, 0x82, 0xFA, 0x00, 0x2A, 0x01, 0xD1, 0x01, 0xF0, 0x7E, 0xFA, 0x00, 0x2B, 0x01, 0xD1
-    .byte 0x01, 0xF0, 0x7A, 0xFA, 0x00, 0x29, 0x09, 0xD1, 0x00, 0x94, 0x01, 0x94, 0x02, 0x94, 0x29, 0x1C
-    .byte 0x72, 0xF7, 0x38, 0xFC, 0x08, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x00, 0x91, 0x01, 0x94, 0x02, 0x94, 0x29, 0x1C, 0x72, 0xF7, 0x2E, 0xFC, 0xD9, 0x21, 0x89, 0x00
-    .byte 0x41, 0x44, 0x07, 0x20, 0x01, 0xF0, 0x61, 0xFA, 0x43, 0x46, 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00
-    .byte 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x00, 0x68, 0x82, 0x46, 0x00, 0x29
-    .byte 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x00, 0x68
-    .byte 0x81, 0x46, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38
-    .byte 0x18, 0x18, 0x07, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x18, 0x18, 0x05, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60
-    .byte 0x40, 0x46, 0x0C, 0x30, 0x01, 0x69, 0x04, 0x1C, 0x8B, 0x42, 0x06, 0xD8, 0x61, 0x69, 0x98, 0x00
-    .byte 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0E, 0x18, 0x00, 0xE0, 0x05, 0x4E, 0x20, 0x69, 0x85, 0x42
-    .byte 0x08, 0xD8, 0x61, 0x69, 0xA8, 0x00, 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0A, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4A, 0x20, 0x69, 0x87, 0x42, 0x09, 0xD8, 0x61, 0x69, 0xB8, 0x00, 0x40, 0x18, 0xA1, 0x69
-    .byte 0x00, 0x68, 0x0B, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4B, 0x20, 0x69, 0x81, 0x45, 0x09, 0xD8, 0x61, 0x69, 0x4F, 0x46, 0xB8, 0x00, 0x40, 0x18
-    .byte 0xA1, 0x69, 0x00, 0x68, 0x0D, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4D, 0x20, 0x69, 0x82, 0x45, 0x09, 0xD8, 0x61, 0x69, 0x57, 0x46, 0xB8, 0x00, 0x40, 0x18
-    .byte 0xA1, 0x69, 0x00, 0x68, 0x09, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x0B, 0x49, 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x04, 0x68, 0x00, 0x2C, 0x01, 0xD1, 0x01, 0xF0
-    .byte 0xE1, 0xF9, 0x00, 0x2A, 0x01, 0xD1, 0x01, 0xF0, 0xDD, 0xF9, 0x00, 0x2B, 0x01, 0xD1, 0x01, 0xF0
-    .byte 0xD9, 0xF9, 0x00, 0x2D, 0x06, 0xD1, 0x00, 0x95, 0x01, 0x95, 0x02, 0x95, 0x07, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x00, 0x29, 0x07, 0xD1, 0x00, 0x95, 0x01, 0x91, 0x02, 0x91, 0x20, 0x1C, 0x31, 0x1C, 0x72, 0xF7
-    .byte 0x8D, 0xFB, 0x07, 0xE0, 0x00, 0x95, 0x01, 0x91, 0x00, 0x20, 0x02, 0x90, 0x20, 0x1C, 0x31, 0x1C
-    .byte 0x72, 0xF7, 0x84, 0xFB, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x07, 0x20, 0x01, 0xF0, 0xB7, 0xF9
-    .byte 0x43, 0x46, 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38
-    .byte 0x18, 0x18, 0x05, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x40, 0x46
-    .byte 0x0C, 0x30, 0x01, 0x69, 0x04, 0x1C, 0x8B, 0x42, 0x06, 0xD8, 0x61, 0x69, 0x98, 0x00, 0x40, 0x18
-    .byte 0xA1, 0x69, 0x00, 0x68, 0x0B, 0x18, 0x00, 0xE0, 0x05, 0x4B, 0x20, 0x69, 0x85, 0x42, 0x09, 0xD8
-    .byte 0x61, 0x69, 0xA8, 0x00, 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0A, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x0F, 0x4A, 0x00, 0x21, 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
-    .byte 0x01, 0xF0, 0x7C, 0xF9, 0x00, 0x2B, 0x01, 0xD1, 0x01, 0xF0, 0x78, 0xF9, 0x00, 0x2A, 0x01, 0xD1
-    .byte 0x01, 0xF0, 0x74, 0xF9, 0x00, 0x91, 0x01, 0x91, 0x02, 0x91, 0x03, 0x91, 0x19, 0x1C, 0x00, 0x23
-    .byte 0x72, 0xF7, 0x20, 0xFB, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x07, 0x20, 0x01, 0xF0, 0x65, 0xF9
-    .4byte gText_Fallback_Error
-    .byte 0x43, 0x46, 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38
-    .byte 0x18, 0x18, 0x07, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x18, 0x18, 0x06, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60
-    .byte 0x40, 0x46, 0x0C, 0x30, 0x01, 0x69, 0x04, 0x1C, 0x8B, 0x42, 0x06, 0xD8, 0x61, 0x69, 0x98, 0x00
-    .byte 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0D, 0x18, 0x00, 0xE0, 0x05, 0x4D, 0x20, 0x69, 0x86, 0x42
-    .byte 0x08, 0xD8, 0x61, 0x69, 0xB0, 0x00, 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0A, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4A, 0x20, 0x69, 0x87, 0x42, 0x09, 0xD8, 0x61, 0x69, 0xB8, 0x00, 0x40, 0x18, 0xA1, 0x69
-    .byte 0x00, 0x68, 0x0B, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x0E, 0x4B, 0x00, 0x21, 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
-    .byte 0x01, 0xF0, 0x12, 0xF9, 0x00, 0x2D, 0x01, 0xD1, 0x01, 0xF0, 0x0E, 0xF9, 0x00, 0x2A, 0x01, 0xD1
-    .byte 0x01, 0xF0, 0x0A, 0xF9, 0x00, 0x2B, 0x0B, 0xD1, 0x00, 0x93, 0x01, 0x93, 0x02, 0x93, 0x03, 0x93
-    .byte 0x29, 0x1C, 0x00, 0x23, 0x72, 0xF7, 0xB4, 0xFA, 0x09, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x00, 0x91, 0x01, 0x91, 0x02, 0x91, 0x03, 0x91, 0x29, 0x1C, 0x72, 0xF7, 0xA9, 0xFA, 0xD9, 0x21
-    .byte 0x89, 0x00, 0x41, 0x44, 0x07, 0x20, 0x01, 0xF0, 0xEE, 0xF8, 0x43, 0x46, 0x30, 0x33, 0xE0, 0x22
-    .byte 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x00, 0x68, 0x81, 0x46
-    .byte 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18
-    .byte 0x07, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38
-    .byte 0x18, 0x18, 0x06, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x40, 0x46
-    .byte 0x0C, 0x30, 0x01, 0x69, 0x04, 0x1C, 0x8B, 0x42, 0x06, 0xD8, 0x61, 0x69, 0x98, 0x00, 0x40, 0x18
-    .byte 0xA1, 0x69, 0x00, 0x68, 0x0D, 0x18, 0x00, 0xE0, 0x05, 0x4D, 0x20, 0x69, 0x86, 0x42, 0x09, 0xD8
-    .byte 0x61, 0x69, 0xB0, 0x00, 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0A, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4A, 0x20, 0x69, 0x87, 0x42, 0x09, 0xD8, 0x61, 0x69, 0xB8, 0x00, 0x40, 0x18, 0xA1, 0x69
-    .byte 0x00, 0x68, 0x0B, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4B, 0x20, 0x69, 0x81, 0x45, 0x09, 0xD8, 0x61, 0x69, 0x4E, 0x46, 0xB0, 0x00, 0x40, 0x18
-    .byte 0xA1, 0x69, 0x00, 0x68, 0x09, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x0E, 0x49, 0x00, 0x24, 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
-    .byte 0x01, 0xF0, 0x84, 0xF8, 0x00, 0x2D, 0x01, 0xD1, 0x01, 0xF0, 0x80, 0xF8, 0x00, 0x2A, 0x01, 0xD1
-    .byte 0x01, 0xF0, 0x7C, 0xF8, 0x00, 0x2B, 0x0B, 0xD1, 0x00, 0x93, 0x01, 0x93, 0x02, 0x93, 0x03, 0x93
-    .byte 0x29, 0x1C, 0x00, 0x23, 0x72, 0xF7, 0x26, 0xFA, 0x13, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x00, 0x29, 0x07, 0xD1, 0x00, 0x94, 0x01, 0x94, 0x02, 0x94, 0x03, 0x94, 0x29, 0x1C, 0x72, 0xF7
-    .byte 0x19, 0xFA, 0x06, 0xE0, 0x00, 0x91, 0x01, 0x94, 0x02, 0x94, 0x03, 0x94, 0x29, 0x1C, 0x72, 0xF7
-    .byte 0x11, 0xFA, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x07, 0x20, 0x01, 0xF0, 0x56, 0xF8, 0x43, 0x46
-    .byte 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18
-    .byte 0x00, 0x68, 0x82, 0x46, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x18, 0x18, 0x00, 0x68, 0x81, 0x46, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60
-    .byte 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x07, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E
-    .byte 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x05, 0x68, 0x00, 0x29, 0x01, 0xD0
-    .byte 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29
-    .byte 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x40, 0x46, 0x0C, 0x30, 0x01, 0x69, 0x04, 0x1C, 0x8B, 0x42
-    .byte 0x06, 0xD8, 0x61, 0x69, 0x98, 0x00, 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0E, 0x18, 0x00, 0xE0
-    .byte 0x05, 0x4E, 0x20, 0x69, 0x85, 0x42, 0x09, 0xD8, 0x61, 0x69, 0xA8, 0x00, 0x40, 0x18, 0xA1, 0x69
-    .byte 0x00, 0x68, 0x0A, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4A, 0x20, 0x69, 0x87, 0x42, 0x09, 0xD8, 0x61, 0x69, 0xB8, 0x00, 0x40, 0x18, 0xA1, 0x69
-    .byte 0x00, 0x68, 0x0B, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4B, 0x20, 0x69, 0x81, 0x45, 0x09, 0xD8, 0x61, 0x69, 0x4F, 0x46, 0xB8, 0x00, 0x40, 0x18
-    .byte 0xA1, 0x69, 0x00, 0x68, 0x0D, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4D, 0x20, 0x69, 0x82, 0x45, 0x09, 0xD8, 0x61, 0x69, 0x57, 0x46, 0xB8, 0x00, 0x40, 0x18
-    .byte 0xA1, 0x69, 0x00, 0x68, 0x09, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x0E, 0x49, 0x00, 0x24, 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1
-    .byte 0x00, 0xF0, 0xD4, 0xFF, 0x00, 0x2E, 0x01, 0xD1, 0x00, 0xF0, 0xD0, 0xFF, 0x00, 0x2A, 0x01, 0xD1
-    .byte 0x00, 0xF0, 0xCC, 0xFF, 0x00, 0x2B, 0x0B, 0xD1, 0x00, 0x93, 0x01, 0x93, 0x02, 0x93, 0x03, 0x93
-    .byte 0x31, 0x1C, 0x00, 0x23, 0x72, 0xF7, 0x76, 0xF9, 0x17, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x00, 0x2D, 0x01, 0xD1, 0x00, 0x94, 0x02, 0xE0, 0x00, 0x29, 0x07, 0xD1, 0x00, 0x95, 0x01, 0x94
-    .byte 0x02, 0x94, 0x03, 0x94, 0x31, 0x1C, 0x72, 0xF7, 0x65, 0xF9, 0x06, 0xE0, 0x00, 0x95, 0x01, 0x91
-    .byte 0x02, 0x94, 0x03, 0x94, 0x31, 0x1C, 0x72, 0xF7, 0x5D, 0xF9, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44
-    .byte 0x07, 0x20, 0x00, 0xF0, 0xA2, 0xFF, 0x43, 0x46, 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44
-    .byte 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x00, 0x68, 0x84, 0x46, 0x00, 0x29, 0x01, 0xD0
-    .byte 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x00, 0x68, 0x82, 0x46
-    .byte 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18
-    .byte 0x00, 0x68, 0x81, 0x46, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x18, 0x18, 0x06, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x05, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60
-    .byte 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E
-    .byte 0x10, 0x60, 0x40, 0x46, 0x0C, 0x30, 0x01, 0x69, 0x04, 0x1C, 0x8B, 0x42, 0x06, 0xD8, 0x61, 0x69
-    .byte 0x98, 0x00, 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0F, 0x18, 0x00, 0xE0, 0x05, 0x4F, 0x20, 0x69
-    .byte 0x85, 0x42, 0x09, 0xD8, 0x61, 0x69, 0xA8, 0x00, 0x40, 0x18, 0xA1, 0x69, 0x00, 0x68, 0x0A, 0x18
-    .byte 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4A, 0x20, 0x69, 0x86, 0x42, 0x09, 0xD8, 0x61, 0x69, 0xB0, 0x00, 0x40, 0x18, 0xA1, 0x69
-    .byte 0x00, 0x68, 0x0B, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4B, 0x20, 0x69, 0x81, 0x45, 0x09, 0xD8, 0x61, 0x69, 0x4D, 0x46, 0xA8, 0x00, 0x40, 0x18
-    .byte 0xA1, 0x69, 0x00, 0x68, 0x0E, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x05, 0x4E, 0x20, 0x69, 0x82, 0x45, 0x09, 0xD8, 0x61, 0x69, 0x55, 0x46, 0xA8, 0x00, 0x40, 0x18
-    .byte 0xA1, 0x69, 0x00, 0x68, 0x0D, 0x18, 0x02, 0xE0
-    .4byte gText_Fallback_Error
-    .byte 0x06, 0x4D, 0x20, 0x69, 0x84, 0x45, 0x0B, 0xD8, 0x60, 0x69, 0x81, 0x46, 0x61, 0x46, 0x88, 0x00
-    .byte 0x48, 0x44, 0xA1, 0x69, 0x00, 0x68, 0x09, 0x18, 0x03, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x0E, 0x49, 0xDB, 0x20, 0x80, 0x00, 0x40, 0x44, 0x04, 0x68, 0x00, 0x2C, 0x01, 0xD1, 0x00, 0xF0
-    .byte 0x07, 0xFF, 0x00, 0x2F, 0x01, 0xD1, 0x00, 0xF0, 0x03, 0xFF, 0x00, 0x2A, 0x01, 0xD1, 0x00, 0xF0
-    .byte 0xFF, 0xFE, 0x00, 0x2B, 0x0C, 0xD1, 0x00, 0x93, 0x01, 0x93, 0x02, 0x93, 0x03, 0x93, 0x20, 0x1C
-    .byte 0x39, 0x1C, 0x00, 0x23, 0x72, 0xF7, 0xA8, 0xF8, 0x24, 0xE0, 0x00, 0x00
-    .4byte gText_Fallback_Error
-    .byte 0x00, 0x2E, 0x04, 0xD1, 0x00, 0x96, 0x01, 0x96, 0x02, 0x96, 0x03, 0x96, 0x0C, 0xE0, 0x00, 0x2D
-    .byte 0x04, 0xD1, 0x00, 0x96, 0x01, 0x95, 0x02, 0x95, 0x03, 0x95, 0x05, 0xE0, 0x00, 0x29, 0x08, 0xD1
-    .byte 0x00, 0x96, 0x01, 0x95, 0x02, 0x91, 0x03, 0x91, 0x20, 0x1C, 0x39, 0x1C, 0x72, 0xF7, 0x8C, 0xF8
-    .byte 0x08, 0xE0, 0x00, 0x96, 0x01, 0x95, 0x02, 0x91, 0x00, 0x20, 0x03, 0x90, 0x20, 0x1C, 0x39, 0x1C
-    .byte 0x72, 0xF7, 0x82, 0xF8, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x07, 0x20, 0x00, 0xF0, 0xC7, 0xFE
-    .byte 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x10, 0x68, 0x80, 0x00, 0x40, 0x44, 0xC1, 0x6A, 0xE6, 0x20
-    .byte 0x80, 0x00, 0x40, 0x44, 0x01, 0x80, 0x10, 0x68, 0x00, 0x28, 0x01, 0xD0, 0x01, 0x38, 0x10, 0x60
-    .byte 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x08, 0x20, 0x00, 0xF0, 0xB1, 0xFE, 0x43, 0x46, 0x30, 0x33
-    .byte 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x04, 0x68
-    .byte 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18
-    .byte 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x04, 0x2B, 0x01, 0xD9, 0x00, 0xF0
-    .byte 0x97, 0xFE, 0x98, 0x00, 0x01, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x10, 0xEB, 0x0D, 0x08
-    .byte 0x24, 0xEB, 0x0D, 0x08, 0x2A, 0xEB, 0x0D, 0x08, 0x30, 0xEB, 0x0D, 0x08, 0x34, 0xEB, 0x0D, 0x08
-    .byte 0x38, 0xEB, 0x0D, 0x08, 0x02, 0x25, 0x00, 0x23, 0x08, 0xE0, 0x01, 0x25, 0x00, 0x23, 0x05, 0xE0
-    .byte 0x02, 0x25, 0x02, 0xE0, 0x01, 0x25, 0x00, 0xE0, 0x00, 0x25, 0x01, 0x23, 0x01, 0x2C, 0x0D, 0xD0
-    .byte 0x01, 0x2C, 0x03, 0xDC, 0x00, 0x2C, 0x05, 0xD0, 0x00, 0xF0, 0x72, 0xFE, 0x02, 0x2C, 0x09, 0xD0
-    .byte 0x00, 0xF0, 0x6E, 0xFE, 0x00, 0x49, 0x06, 0xE0, 0x12, 0x11, 0x00, 0x00, 0x00, 0x49, 0x02, 0xE0
-    .byte 0x89, 0x08, 0x00, 0x00, 0x0D, 0x49, 0xDC, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x2A, 0x1C
-    bl EndHardwareBlend
-    .byte 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x05, 0x20, 0x08, 0x60, 0xE8, 0x21
-    .byte 0x89, 0x00, 0x41, 0x44, 0x00, 0x20, 0x08, 0x70, 0x00, 0x21, 0x02, 0x2D, 0x00, 0xD1, 0x01, 0x21
-    .byte 0x03, 0x48, 0x40, 0x44, 0x01, 0x70, 0x00, 0xF0, 0x4B, 0xFE, 0x00, 0x00, 0x44, 0x04, 0x00, 0x00
-    .byte 0xA1, 0x03, 0x00, 0x00, 0x43, 0x46, 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x04, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60
-    .byte 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E
-    .byte 0x10, 0x60, 0x04, 0x2B, 0x01, 0xD9, 0x00, 0xF0, 0x2B, 0xFE, 0x98, 0x00, 0x01, 0x49, 0x40, 0x18
-    .byte 0x00, 0x68, 0x87, 0x46, 0xE8, 0xEB, 0x0D, 0x08, 0xFC, 0xEB, 0x0D, 0x08, 0x02, 0xEC, 0x0D, 0x08
-    .byte 0x08, 0xEC, 0x0D, 0x08, 0x0C, 0xEC, 0x0D, 0x08, 0x10, 0xEC, 0x0D, 0x08, 0x02, 0x26, 0x00, 0x23
-    .byte 0x08, 0xE0, 0x01, 0x26, 0x00, 0x23, 0x05, 0xE0, 0x02, 0x26, 0x02, 0xE0, 0x01, 0x26, 0x00, 0xE0
-    .byte 0x00, 0x26, 0x01, 0x23, 0x01, 0x2C, 0x0D, 0xD0, 0x01, 0x2C, 0x03, 0xDC, 0x00, 0x2C, 0x05, 0xD0
-    .byte 0x00, 0xF0, 0x06, 0xFE, 0x02, 0x2C, 0x09, 0xD0, 0x00, 0xF0, 0x02, 0xFE, 0x00, 0x49, 0x06, 0xE0
-    .byte 0x12, 0x11, 0x00, 0x00, 0x00, 0x49, 0x02, 0xE0, 0x89, 0x08, 0x00, 0x00, 0x1A, 0x49, 0xDC, 0x20
-    .byte 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x32, 0x1C
-    bl BeginHardwareBlend
-    .byte 0xD9, 0x21, 0x89, 0x00
-    .byte 0x41, 0x44, 0x06, 0x20, 0x08, 0x60, 0xE8, 0x21, 0x89, 0x00, 0x41, 0x44, 0x00, 0x20, 0x08, 0x70
-    .byte 0x00, 0x21, 0x02, 0x2E, 0x00, 0xD1, 0x01, 0x21, 0x10, 0x48, 0x40, 0x44, 0x01, 0x70, 0x45, 0x46
-    .byte 0x04, 0x35, 0x28, 0x1C
-    bl GetHardwareDisplayState
-    .byte 0x04, 0x1C, 0x28, 0x1C
-    bl GetHardwareDisplayState
-    .byte 0x00, 0x88, 0xE0, 0x22, 0x12, 0x01, 0x11, 0x1C, 0x08, 0x43, 0x20, 0x80, 0x01, 0x2E, 0x0F, 0xD1
-    .byte 0x28, 0x1C
-    bl GetHardwareDisplayState
-    .byte 0x04, 0x1C, 0x50, 0x34, 0x28, 0x1C
-    bl GetHardwareDisplayState
-    .byte 0x50, 0x30, 0x00, 0x88, 0x80, 0x21, 0x0E, 0xE0, 0x44, 0x04, 0x00, 0x00, 0xA1, 0x03, 0x00, 0x00
-    .byte 0x28, 0x1C
-    bl GetHardwareDisplayState
-    .byte 0x04, 0x1C, 0x50, 0x34, 0x28, 0x1C
-    bl GetHardwareDisplayState
-    .byte 0x50, 0x30, 0x00, 0x88, 0xC0, 0x21, 0x08, 0x43, 0x20, 0x80, 0x00, 0xF0, 0xB1, 0xFD, 0x43, 0x46
-    .byte 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18
-    .byte 0x00, 0x68, 0x0B, 0x90, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x18, 0x18, 0x04, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60
-    .byte 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x05, 0x68, 0xAA, 0x46, 0xB0, 0x26, 0xB2, 0x44
-    .byte 0x04, 0xAE, 0x1C, 0x4F, 0xB9, 0x46, 0x49, 0x46, 0x0B, 0x40, 0x32, 0x88, 0x1A, 0x4D, 0x29, 0x1C
-    .byte 0x11, 0x40, 0x19, 0x43, 0x31, 0x80, 0x24, 0x04, 0x22, 0x0C, 0x3F, 0x27, 0xBC, 0x46, 0x61, 0x46
-    .byte 0x0A, 0x40, 0x92, 0x00, 0x77, 0x78, 0xB8, 0x46, 0x03, 0x23, 0x19, 0x1C, 0x47, 0x46, 0x39, 0x40
-    .byte 0x11, 0x43, 0x71, 0x70, 0xA4, 0x0D, 0x49, 0x46, 0x0C, 0x40, 0x72, 0x88, 0x29, 0x1C, 0x11, 0x40
-    .byte 0x21, 0x43, 0x71, 0x80, 0x0B, 0x9C, 0x22, 0x04, 0x11, 0x0C, 0x67, 0x46, 0x39, 0x40, 0x89, 0x00
-    .byte 0xF4, 0x78, 0x23, 0x40, 0x0B, 0x43, 0xF3, 0x70, 0x92, 0x0D, 0x49, 0x46, 0x0A, 0x40, 0xB1, 0x88
-    .byte 0x0D, 0x40, 0x15, 0x43, 0xB5, 0x80, 0x54, 0x46, 0x22, 0x68, 0x31, 0x1C, 0xF4, 0xF7, 0x9E, 0xF9
-    .byte 0x00, 0xF0, 0x50, 0xFD, 0xFF, 0x03, 0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF, 0x46, 0x46, 0x30, 0x36
-    .byte 0xE0, 0x25, 0x6D, 0x00, 0x45, 0x44, 0x29, 0x68, 0x88, 0x00, 0x04, 0x38, 0x30, 0x18, 0x03, 0x68
-    .byte 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x28, 0x60, 0x29, 0x68, 0x88, 0x00, 0x04, 0x38, 0x30, 0x18
-    .byte 0x02, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x28, 0x60, 0x2C, 0x68, 0xA0, 0x00, 0x04, 0x38
-    .byte 0x30, 0x18, 0x06, 0x68, 0x00, 0x2C, 0x01, 0xD0, 0x60, 0x1E, 0x28, 0x60, 0xDA, 0x20, 0x80, 0x00
-    .byte 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x4C, 0x6A, 0x00, 0xF0, 0x26, 0xFC, 0xDA, 0x20, 0x80, 0x00
-    .byte 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x89, 0x6A, 0xF4, 0xF7, 0x66, 0xF9, 0x00, 0x06, 0x00, 0x28
-    .byte 0x01, 0xD0, 0x00, 0xF0, 0x15, 0xFD, 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x0A, 0x20, 0x00, 0xF0
-    .byte 0x0E, 0xFD, 0x43, 0x46, 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x11, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x18, 0x18, 0x04, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60, 0x11, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x10, 0x60
-    .byte 0x20, 0x04, 0x01, 0x0C, 0xDD, 0x20, 0x80, 0x00, 0x40, 0x44, 0x01, 0x2B, 0x4E, 0xD0, 0x01, 0x2B
-    .byte 0x03, 0xDC, 0x00, 0x2B, 0x46, 0xD0, 0x00, 0xF0, 0xED, 0xFC, 0x02, 0x2B, 0x01, 0xD0, 0x00, 0xF0
-    .byte 0xE9, 0xFC, 0x47, 0xE0, 0xDD, 0x20, 0x80, 0x00, 0x40, 0x44
-    bl Stop__23HardwareMusicPlayerSlot
-    .byte 0x00, 0xF0
-    .byte 0xE1, 0xFC, 0x20, 0x68, 0x29, 0xE0, 0x43, 0x46, 0x30, 0x33, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44
-    .byte 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x07, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E
-    .byte 0x10, 0x60, 0x11, 0x68, 0x88, 0x00, 0x04, 0x38, 0x18, 0x18, 0x06, 0x68, 0x00, 0x29, 0x01, 0xD0
-    .byte 0x48, 0x1E, 0x10, 0x60, 0xE2, 0x20, 0x80, 0x00, 0x40, 0x44, 0x04, 0x68, 0x45, 0x68, 0x3F, 0x04
-    .byte 0xAC, 0x42, 0x08, 0xD0, 0x20, 0x68
-    bl IsUnpaused__C23HardwareMusicPlayerSlot
-    .byte 0x00, 0x06, 0x00, 0x28, 0xD8, 0xD0
-    .byte 0x04, 0x34, 0xAC, 0x42, 0xF6, 0xD1, 0x28, 0x1F, 0x00, 0x68, 0x39, 0x0C, 0x01, 0x2E, 0x0D, 0xD0
-    .byte 0x01, 0x2E, 0x03, 0xDC, 0x00, 0x2E, 0x05, 0xD0, 0x00, 0xF0, 0xAC, 0xFC, 0x02, 0x2E, 0x09, 0xD0
-    .byte 0x00, 0xF0, 0xA8, 0xFC
-    bl Start__23HardwareMusicPlayerSlotUs
-    .byte 0x00, 0xF0, 0xA4, 0xFC
-    bl StartIfChangedOrPaused__23HardwareMusicPlayerSlotUs
-    .byte 0x00, 0xF0, 0xA0, 0xFC
-    bl StartOrContinue__23HardwareMusicPlayerSlotUs
-    .byte 0x00, 0xF0, 0x9C, 0xFC
-    bl StopAllHardwareMusicPlayers
-    .byte 0x00, 0xF0, 0x98, 0xFC, 0x45, 0x46, 0x30, 0x35, 0xE0, 0x23, 0x5B, 0x00, 0x43, 0x44, 0x19, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x28, 0x18, 0x00, 0x68, 0x0A, 0x90, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E
-    .byte 0x18, 0x60, 0x19, 0x68, 0x88, 0x00, 0x04, 0x38, 0x28, 0x18, 0x00, 0x68, 0x82, 0x46, 0x00, 0x29
-    .byte 0x01, 0xD0, 0x48, 0x1E, 0x18, 0x60, 0x19, 0x68, 0x88, 0x00, 0x04, 0x38, 0x28, 0x18, 0x04, 0x68
-    .byte 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x18, 0x60, 0x1A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x28, 0x18
-    .byte 0x06, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xDA, 0x25, 0xAD, 0x00, 0x45, 0x44
-    .byte 0x28, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x31, 0x1C, 0xF4, 0xF7, 0xB0, 0xF8, 0x07, 0x1C, 0x00, 0x2F
-    .byte 0x01, 0xD1, 0x00, 0xF0, 0x5F, 0xFC, 0x28, 0x68, 0x01, 0x68, 0x49, 0x69, 0xF4, 0xF7, 0xA4, 0xF8
-    .byte 0x06, 0xA9, 0x21, 0x4D, 0xA8, 0x46, 0x46, 0x46, 0x30, 0x40, 0x0B, 0x88, 0x1F, 0x4D, 0x2A, 0x1C
-    .byte 0x1A, 0x40, 0x02, 0x43, 0x0A, 0x80, 0x24, 0x04, 0x22, 0x0C, 0x3F, 0x20, 0x81, 0x46, 0x02, 0x40
-    .byte 0x92, 0x00, 0x4E, 0x78, 0x03, 0x23, 0x18, 0x1C, 0x30, 0x40, 0x10, 0x43, 0x48, 0x70, 0xA4, 0x0D
-    .byte 0x42, 0x46, 0x14, 0x40, 0x4A, 0x88, 0x28, 0x1C, 0x10, 0x40, 0x20, 0x43, 0x48, 0x80, 0x54, 0x46
-    .byte 0x22, 0x04, 0x10, 0x0C, 0x4E, 0x46, 0x30, 0x40, 0x80, 0x00, 0xCC, 0x78, 0x23, 0x40, 0x03, 0x43
-    .byte 0xCB, 0x70, 0x92, 0x0D, 0x40, 0x46, 0x02, 0x40, 0x88, 0x88, 0x05, 0x40, 0x15, 0x43, 0x8D, 0x80
-    .byte 0x04, 0xAC, 0x20, 0x1C, 0x06, 0x22, 0xF4, 0xF7, 0xB1, 0xF8, 0x0A, 0xA9, 0x09, 0x78, 0xA1, 0x71
-    .byte 0x38, 0x1C, 0x04, 0xA9, 0x52, 0xF7, 0x5C, 0xFF, 0x78, 0x69, 0x01, 0x6A, 0x38, 0x1C, 0xF4, 0xF7
-    .byte 0x63, 0xF8, 0x00, 0xF0, 0x17, 0xFC, 0x00, 0x00, 0xFF, 0x03, 0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF
-    .byte 0x43, 0x46, 0x30, 0x33, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44, 0x0A, 0x68, 0x90, 0x00, 0x04, 0x38
-    .byte 0x18, 0x18, 0x06, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60, 0x0A, 0x68, 0x90, 0x00
-    .byte 0x04, 0x38, 0x18, 0x18, 0x05, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60, 0x0A, 0x68
-    .byte 0x90, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60
-    .byte 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x19, 0x1C, 0xF4, 0xF7
-    .byte 0x35, 0xF8, 0x04, 0x1C, 0x00, 0x2C, 0x00, 0xD1, 0xE4, 0xE3, 0x29, 0x1C, 0x53, 0xF7, 0x82, 0xF8
-    .byte 0x20, 0x1C, 0x31, 0x1C, 0x53, 0xF7, 0x86, 0xF8, 0xDC, 0xE3, 0x40, 0x46, 0x30, 0x30, 0xE0, 0x22
-    .byte 0x52, 0x00, 0x42, 0x44, 0x13, 0x68, 0x99, 0x00, 0x04, 0x39, 0x41, 0x18, 0x0E, 0x68, 0x05, 0x1C
-    .byte 0x14, 0x1C, 0x00, 0x2B, 0x01, 0xD0, 0x58, 0x1E, 0x20, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44
-    .byte 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x31, 0x1C, 0xF4, 0xF7, 0x10, 0xF8, 0x00, 0x21, 0x00, 0x28
-    .byte 0x00, 0xD0, 0x81, 0x68, 0x0A, 0x14, 0x6A, 0xE0, 0x40, 0x46, 0x30, 0x30, 0xE0, 0x22, 0x52, 0x00
-    .byte 0x42, 0x44, 0x13, 0x68, 0x99, 0x00, 0x04, 0x39, 0x41, 0x18, 0x0E, 0x68, 0x05, 0x1C, 0x14, 0x1C
-    .byte 0x00, 0x2B, 0x01, 0xD0, 0x58, 0x1E, 0x20, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68
-    .byte 0x01, 0x68, 0x0A, 0x6C, 0x31, 0x1C, 0xF3, 0xF7, 0xF1, 0xFF, 0x00, 0x21, 0x00, 0x28, 0xE1, 0xD0
-    .byte 0xC1, 0x68, 0xDF, 0xE7, 0x43, 0x46, 0x30, 0x33, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44, 0x0A, 0x68
-    .byte 0x90, 0x00, 0x04, 0x38, 0x18, 0x18, 0x04, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60
-    .byte 0x0A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E
-    .byte 0x08, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x19, 0x1C
-    .byte 0xF3, 0xF7, 0xCC, 0xFF, 0x01, 0x1C, 0x00, 0x29, 0x00, 0xD1, 0x7B, 0xE3, 0x20, 0x30, 0x00, 0x78
-    .byte 0xA0, 0x42, 0x00, 0xD1, 0x76, 0xE3, 0x08, 0x1C, 0x21, 0x1C, 0x52, 0xF7, 0xEF, 0xFE, 0x71, 0xE3
-    .byte 0x40, 0x46, 0x30, 0x30, 0xE0, 0x22, 0x52, 0x00, 0x42, 0x44, 0x13, 0x68, 0x99, 0x00, 0x04, 0x39
-    .byte 0x41, 0x18, 0x0E, 0x68, 0x05, 0x1C, 0x14, 0x1C, 0x00, 0x2B, 0x01, 0xD0, 0x58, 0x1E, 0x20, 0x60
-    .byte 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x31, 0x1C, 0xF3, 0xF7
-    .byte 0xA5, 0xFF, 0x00, 0x28, 0x02, 0xD0, 0x20, 0x30, 0x02, 0x78, 0x00, 0xE0, 0x00, 0x22, 0x21, 0x68
-    .byte 0x63, 0x29, 0x00, 0xD9, 0x4E, 0xE3, 0x88, 0x00, 0x28, 0x18, 0x02, 0x60, 0x48, 0x1C, 0x20, 0x60
-    .byte 0x48, 0xE3, 0x44, 0x46, 0x30, 0x34, 0xE0, 0x23, 0x5B, 0x00, 0x43, 0x44, 0x19, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x20, 0x18, 0x06, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x18, 0x60, 0x1A, 0x68
-    .byte 0x90, 0x00, 0x04, 0x38, 0x20, 0x18, 0x05, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60
-    .byte 0x1A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x20, 0x18, 0x04, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E
-    .byte 0x18, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x21, 0x1C
-    .byte 0xF3, 0xF7, 0x6C, 0xFF, 0x00, 0x28, 0x00, 0xD1, 0x1C, 0xE3, 0x32, 0x04, 0x29, 0x1C
-    bl StartActorXMotion
-    .byte 0x17, 0xE3, 0x44, 0x46, 0x30, 0x34, 0xE0, 0x23, 0x5B, 0x00, 0x43, 0x44, 0x19, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x20, 0x18, 0x06, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x18, 0x60
-    .byte 0x1A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x20, 0x18, 0x05, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E
-    .byte 0x18, 0x60, 0x1A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x20, 0x18, 0x04, 0x68, 0x00, 0x2A, 0x01, 0xD0
-    .byte 0x50, 0x1E, 0x18, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C
-    .byte 0x21, 0x1C, 0xF3, 0xF7, 0x3B, 0xFF, 0x00, 0x28, 0x00, 0xD1, 0xEB, 0xE2, 0x32, 0x04, 0x29, 0x1C
-    bl StartActorYMotion
-    .byte 0xE6, 0xE2, 0x44, 0x46, 0x30, 0x34, 0xE0, 0x23, 0x5B, 0x00, 0x43, 0x44
-    .byte 0x19, 0x68, 0x88, 0x00, 0x04, 0x38, 0x20, 0x18, 0x06, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E
-    .byte 0x18, 0x60, 0x1A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x20, 0x18, 0x05, 0x68, 0x00, 0x2A, 0x01, 0xD0
-    .byte 0x50, 0x1E, 0x18, 0x60, 0x1A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x20, 0x18, 0x04, 0x68, 0x00, 0x2A
-    .byte 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68
-    .byte 0x0A, 0x6C, 0x21, 0x1C, 0xF3, 0xF7, 0x0A, 0xFF, 0x00, 0x28, 0x00, 0xD1, 0xBA, 0xE2, 0x29, 0x1C
-    .byte 0x32, 0x1C
-    bl StartActorXMotion
-    .byte 0xB5, 0xE2, 0x44, 0x46, 0x30, 0x34, 0xE0, 0x23, 0x5B, 0x00
-    .byte 0x43, 0x44, 0x19, 0x68, 0x88, 0x00, 0x04, 0x38, 0x20, 0x18, 0x06, 0x68, 0x00, 0x29, 0x01, 0xD0
-    .byte 0x48, 0x1E, 0x18, 0x60, 0x1A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x20, 0x18, 0x05, 0x68, 0x00, 0x2A
-    .byte 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0x1A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x20, 0x18, 0x04, 0x68
-    .byte 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68
-    .byte 0x01, 0x68, 0x0A, 0x6C, 0x21, 0x1C, 0xF3, 0xF7, 0xD9, 0xFE, 0x00, 0x28, 0x00, 0xD1, 0x89, 0xE2
-    .byte 0x29, 0x1C, 0x32, 0x1C
-    bl StartActorYMotion
-    .byte 0x84, 0xE2, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44
-    .byte 0x0A, 0x68, 0x90, 0x00, 0x40, 0x44, 0xC3, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60
-    .byte 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x19, 0x1C, 0xF3, 0xF7
-    .byte 0xBD, 0xFE, 0xE7, 0x21, 0x89, 0x00, 0x41, 0x44, 0x08, 0x60, 0x00, 0x28, 0x00, 0xD1, 0x67, 0xE2
-    .byte 0xD9, 0x21, 0x89, 0x00, 0x41, 0x44, 0x09, 0x20, 0x61, 0xE2, 0x43, 0x46, 0x30, 0x33, 0xE0, 0x21
-    .byte 0x49, 0x00, 0x41, 0x44, 0x0A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x18, 0x18, 0x04, 0x68, 0x00, 0x2A
-    .byte 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60, 0x0A, 0x68, 0x90, 0x00, 0x04, 0x38, 0x18, 0x18, 0x03, 0x68
-    .byte 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68
-    .byte 0x01, 0x68, 0x0A, 0x6C, 0x19, 0x1C, 0xF3, 0xF7, 0x91, 0xFE, 0x01, 0x1C, 0x00, 0x29, 0x00, 0xD1
-    .byte 0x40, 0xE2, 0x48, 0x8C, 0xA0, 0x42, 0x00, 0xD1, 0x3C, 0xE2, 0x08, 0x1C, 0x21, 0x1C, 0x52, 0xF7
-    .byte 0xC1, 0xFD, 0x37, 0xE2, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44, 0x08, 0x68, 0x00, 0x28, 0x00, 0xD1
-    .byte 0x30, 0xE2, 0x01, 0x38, 0x08, 0x60, 0x2D, 0xE2, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44, 0x0A, 0x68
-    .byte 0x90, 0x00, 0x40, 0x44, 0xC3, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60, 0xDA, 0x20
-    .byte 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x19, 0x1C, 0xF3, 0xF7, 0x66, 0xFE
-    .byte 0x00, 0x28, 0x00, 0xD1, 0x16, 0xE2, 0x8D, 0x21, 0x89, 0x00, 0x40, 0xF7, 0x5F, 0xFC, 0x11, 0xE2
-    .byte 0x44, 0x46, 0x30, 0x34, 0xE0, 0x23, 0x5B, 0x00, 0x43, 0x44, 0x19, 0x68, 0x88, 0x00, 0x04, 0x38
-    .byte 0x20, 0x18, 0x05, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x18, 0x60, 0x1A, 0x68, 0x90, 0x00
-    .byte 0x04, 0x38, 0x20, 0x18, 0x06, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60, 0x1A, 0x68
-    .byte 0x90, 0x00, 0x04, 0x38, 0x20, 0x18, 0x04, 0x68, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60
-    .byte 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x21, 0x1C, 0xF3, 0xF7
-    .byte 0x35, 0xFE, 0x00, 0x28, 0x00, 0xD1, 0xE5, 0xE1, 0x6A, 0x42, 0x2A, 0x43, 0xD2, 0x0F, 0x31, 0x1C
-    .byte 0x52, 0xF7, 0x52, 0xFE, 0xDE, 0xE1, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44, 0x0A, 0x68, 0x90, 0x00
-    .byte 0x40, 0x44, 0xC3, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60, 0xDA, 0x20, 0x80, 0x00
-    .byte 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x19, 0x1C, 0xF3, 0xF7, 0x17, 0xFE, 0x00, 0x28
-    .byte 0x00, 0xD1, 0xC7, 0xE1, 0x52, 0xF7, 0x5A, 0xFE, 0xC4, 0xE1, 0xE0, 0x23, 0x5B, 0x00, 0x43, 0x44
-    .byte 0x1A, 0x68, 0x90, 0x00, 0x40, 0x44, 0xC1, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60
-    .byte 0x40, 0x46, 0x0C, 0x30, 0x03, 0x4A, 0x89, 0x00, 0x89, 0x18, 0x09, 0x68, 0x5F, 0xF7, 0x48, 0xFB
-    .byte 0xB0, 0xE1, 0x00, 0x00
-    .4byte gMaryScriptTable
-    .byte 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x80, 0x31, 0x09, 0x68, 0xF3, 0xF7
-    .byte 0xEF, 0xFD, 0xA3, 0xE1, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44, 0x0A, 0x68, 0x90, 0x00, 0x40, 0x44
-    .byte 0xC3, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44
-    .byte 0x00, 0x68, 0x01, 0x68, 0x9C, 0x31, 0x22, 0xE0, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44, 0x0A, 0x68
-    .byte 0x90, 0x00, 0x40, 0x44, 0xC3, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60, 0xDA, 0x20
-    .byte 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0xA0, 0x31, 0x10, 0xE0, 0xE0, 0x21, 0x49, 0x00
-    .byte 0x41, 0x44, 0x0A, 0x68, 0x90, 0x00, 0x40, 0x44, 0xC3, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E
-    .byte 0x08, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0xAC, 0x31, 0x0A, 0x68
-    .byte 0x19, 0x1C, 0xF3, 0xF7, 0xB7, 0xFD, 0x69, 0xE1, 0x46, 0x46, 0x30, 0x36, 0xE0, 0x25, 0x6D, 0x00
-    .byte 0x45, 0x44, 0x29, 0x68, 0x88, 0x00, 0x04, 0x38, 0x30, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0
-    .byte 0x48, 0x1E, 0x28, 0x60, 0x29, 0x68, 0x88, 0x00, 0x04, 0x38, 0x30, 0x18, 0x02, 0x68, 0x00, 0x29
-    .byte 0x01, 0xD0, 0x48, 0x1E, 0x28, 0x60, 0x2C, 0x68, 0xA0, 0x00, 0x04, 0x38, 0x30, 0x18, 0x01, 0x68
-    .byte 0x00, 0x2C, 0x01, 0xD0, 0x60, 0x1E, 0x28, 0x60, 0x2C, 0x68, 0xA0, 0x00, 0x04, 0x38, 0x30, 0x18
-    .byte 0x00, 0x68, 0x81, 0x46, 0x00, 0x2C, 0x01, 0xD0, 0x60, 0x1E, 0x28, 0x60, 0x2C, 0x68, 0xA0, 0x00
-    .byte 0x04, 0x38, 0x30, 0x18, 0x07, 0x68, 0x00, 0x2C, 0x01, 0xD0, 0x60, 0x1E, 0x28, 0x60, 0xDA, 0x20
-    .byte 0x80, 0x00, 0x40, 0x44, 0x05, 0x68, 0x2C, 0x68, 0xB4, 0x34, 0x08, 0xAE, 0x30, 0x1C, 0x2A, 0xF7
-    .byte 0xFB, 0xFC, 0x24, 0x68, 0x28, 0x1C, 0x39, 0x1C, 0x4A, 0x46, 0x33, 0x1C, 0xF3, 0xF7, 0x76, 0xFD
-    .byte 0x24, 0xE1, 0x46, 0x46, 0x30, 0x36, 0xE0, 0x25, 0x6D, 0x00, 0x45, 0x44, 0x29, 0x68, 0x88, 0x00
-    .byte 0x04, 0x38, 0x30, 0x18, 0x03, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x28, 0x60, 0x29, 0x68
-    .byte 0x88, 0x00, 0x04, 0x38, 0x30, 0x18, 0x02, 0x68, 0x00, 0x29, 0x01, 0xD0, 0x48, 0x1E, 0x28, 0x60
-    .byte 0x2C, 0x68, 0xA0, 0x00, 0x04, 0x38, 0x30, 0x18, 0x06, 0x68, 0x00, 0x2C, 0x01, 0xD0, 0x60, 0x1E
-    .byte 0x28, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0xB8, 0x31, 0x0C, 0x68
-    .byte 0x31, 0x1C, 0xF3, 0xF7, 0x4B, 0xFD, 0xF9, 0xE0, 0x45, 0x46, 0x30, 0x35, 0xE0, 0x24, 0x64, 0x00
-    .byte 0x44, 0x44, 0x22, 0x68, 0x90, 0x00, 0x04, 0x38, 0x28, 0x18, 0x01, 0x68, 0x00, 0x2A, 0x01, 0xD0
-    .byte 0x50, 0x1E, 0x20, 0x60, 0x22, 0x68, 0x90, 0x00, 0x04, 0x38, 0x28, 0x18, 0x07, 0x68, 0x00, 0x2A
-    .byte 0x01, 0xD0, 0x50, 0x1E, 0x20, 0x60, 0x23, 0x68, 0x98, 0x00, 0x04, 0x38, 0x28, 0x18, 0x06, 0x68
-    .byte 0x00, 0x2B, 0x01, 0xD0, 0x58, 0x1E, 0x20, 0x60, 0xDA, 0x25, 0xAD, 0x00, 0x45, 0x44, 0x28, 0x68
-    .byte 0x02, 0x68, 0x62, 0x31, 0x12, 0x6C, 0xF3, 0xF7, 0x1D, 0xFD, 0x04, 0x1C, 0x00, 0x2C, 0x00, 0xD1
-    .byte 0xCC, 0xE0, 0x28, 0x68, 0x01, 0x68, 0x49, 0x69, 0xF3, 0xF7, 0x12, 0xFD, 0x01, 0x1C, 0x20, 0x1C
-    .byte 0x32, 0x1C, 0x3B, 0x1C, 0x40, 0xF7, 0xAE, 0xFA, 0xC0, 0xE0, 0xE0, 0x23, 0x5B, 0x00, 0x43, 0x44
-    .byte 0x1A, 0x68, 0x90, 0x00, 0x40, 0x44, 0xC1, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x18, 0x60
-    .byte 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x02, 0x68, 0x62, 0x31, 0x12, 0x6C, 0xF3, 0xF7
-    .byte 0xF9, 0xFC, 0x00, 0x28, 0x00, 0xD1, 0xA9, 0xE0, 0x8D, 0x21, 0x89, 0x00, 0x00, 0x22, 0x00, 0x23
-    .byte 0x40, 0xF7, 0x90, 0xFA, 0xA2, 0xE0, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44, 0x0A, 0x68, 0x90, 0x00
-    .byte 0x40, 0x44, 0xC4, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60, 0xDA, 0x20, 0x80, 0x00
-    .byte 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x5E, 0x21, 0xF3, 0xF7, 0xDB, 0xFC, 0x41, 0x69
-    .byte 0x0A, 0x6C, 0x21, 0x1C, 0xF3, 0xF7, 0xD6, 0xFC, 0x81, 0xE0, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44
-    .byte 0x0A, 0x68, 0x90, 0x00, 0x40, 0x44, 0xC6, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60
-    .byte 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x5E, 0x21, 0xF3, 0xF7
-    .byte 0xC1, 0xFC, 0x04, 0x1C, 0x65, 0x69, 0x04, 0xA8, 0x31, 0x1C, 0x2E, 0xF7, 0x99, 0xFA, 0x04, 0xA8
-    .byte 0x2E, 0xF7, 0xB2, 0xFA, 0x01, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x6B, 0x6C, 0x20, 0x1C, 0x00, 0x22
-    .byte 0xF3, 0xF7, 0xB2, 0xFC, 0x5B, 0xE0, 0xE0, 0x21, 0x49, 0x00, 0x41, 0x44, 0x0A, 0x68, 0x90, 0x00
-    .byte 0x40, 0x44, 0xC4, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E, 0x08, 0x60, 0xDA, 0x20, 0x80, 0x00
-    .byte 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x5E, 0x21, 0xF3, 0xF7, 0x9B, 0xFC, 0x42, 0x69
-    .byte 0x21, 0x04, 0x09, 0x0C, 0x53, 0x6C, 0x01, 0x22, 0xF3, 0xF7, 0x96, 0xFC, 0x3F, 0xE0, 0xE0, 0x21
-    .byte 0x49, 0x00, 0x41, 0x44, 0x0A, 0x68, 0x90, 0x00, 0x40, 0x44, 0xC7, 0x6A, 0x00, 0x2A, 0x01, 0xD0
-    .byte 0x50, 0x1E, 0x08, 0x60, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C
-    .byte 0x5E, 0x21, 0xF3, 0xF7, 0x7F, 0xFC, 0x05, 0x1C, 0x6E, 0x69, 0x09, 0xAC, 0x20, 0x1C, 0x39, 0x1C
-    .byte 0x2E, 0xF7, 0xAA, 0xFB, 0x20, 0x1C, 0x2E, 0xF7, 0xC1, 0xFB, 0x01, 0x1C, 0x09, 0x04, 0x09, 0x0C
-    .byte 0x73, 0x6C, 0x28, 0x1C, 0x00, 0x22, 0xF3, 0xF7, 0x6F, 0xFC, 0x18, 0xE0, 0xDA, 0x20, 0x80, 0x00
-    .byte 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x5E, 0x21, 0xF3, 0xF7, 0x63, 0xFC, 0x41, 0x69
-    .byte 0xC9, 0x6C, 0x0A, 0xE0, 0xDA, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C
-    .byte 0x5E, 0x21, 0xF3, 0xF7, 0x57, 0xFC, 0x41, 0x69, 0x89, 0x6C, 0xF3, 0xF7, 0x51, 0xFC, 0xD9, 0x21
-    .byte 0x89, 0x00, 0x41, 0x44, 0x0B, 0x20, 0x08, 0x60, 0x01, 0x20, 0x00, 0xE0
-    .global loc_080DF834
-    .thumb_func
-    loc_080DF834:
+    cmp r0, #3
+    bne .Lraw_code_linkonce_5410_8
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5410_8:
+    ldr r0, [r6]
+    bl func_08050D5C
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #2
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5412_0:
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5413_0
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5413_0:
+    bl func_08050D74
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #3
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5414_0:
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    add r0, r8
+    ldr r3, [r0, #0x2c]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5415_6
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5415_6:
+    mov r2, r8
+    adds r2, #0xc
+    ldr r0, [r2, #0x10]
+    cmp r3, r0
+    bhi .Lraw_code_linkonce_5416_14
+    ldr r1, [r2, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r2, #0x18]
+    ldr r0, [r0]
+    adds r1, r1, r0
+    b .Lraw_code_linkonce_5417_0
+.Lraw_code_linkonce_5416_14:
+    ldr r1, .Lraw_code_linkonce_5420_0
+.Lraw_code_linkonce_5417_0:
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5418_0
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5418_0:
+    movs r2, #0x40
+    bl func_08050DB4
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #4
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5420_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5421_0:
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    add r0, r8
+    ldr r3, [r0, #0x2c]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5422_6
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5422_6:
+    mov r2, r8
+    adds r2, #0xc
+    ldr r0, [r2, #0x10]
+    cmp r3, r0
+    bhi .Lraw_code_linkonce_5423_14
+    ldr r1, [r2, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r2, #0x18]
+    ldr r0, [r0]
+    adds r1, r1, r0
+    b .Lraw_code_linkonce_5424_0
+.Lraw_code_linkonce_5423_14:
+    ldr r1, .Lraw_code_linkonce_5427_0
+.Lraw_code_linkonce_5424_0:
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5425_0
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5425_0:
+    movs r2, #0
+    bl func_08050DB4
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #4
+    bl .Lraw_code_linkonce_5862_6
+    .byte 0x00, 0x00
+.Lraw_code_linkonce_5427_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5428_0:
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    add r0, r8
+    ldr r3, [r0, #0x2c]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5429_6
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5429_6:
+    mov r2, r8
+    adds r2, #0xc
+    ldr r0, [r2, #0x10]
+    cmp r3, r0
+    bhi .Lraw_code_linkonce_5430_14
+    ldr r1, [r2, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r2, #0x18]
+    ldr r0, [r0]
+    adds r1, r1, r0
+    b .Lraw_code_linkonce_5431_0
+.Lraw_code_linkonce_5430_14:
+    ldr r1, .Lraw_code_linkonce_5434_0
+.Lraw_code_linkonce_5431_0:
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5432_0
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5432_0:
+    movs r2, #0x80
+    lsls r2, r2, #1
+    bl func_08050DB4
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #4
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5434_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5435_0:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r7, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5436_12
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5436_12:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r5, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5437_14
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5437_14:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5439_0
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5439_0:
+    mov r0, r8
+    adds r0, #0xc
+    ldr r1, [r0, #0x10]
+    adds r4, r0, #0
+    cmp r3, r1
+    bhi .Lraw_code_linkonce_5440_10
+    ldr r1, [r4, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r6, r1, r0
+    b .Lraw_code_linkonce_5440_12
+.Lraw_code_linkonce_5440_10:
+    ldr r6, .Lraw_code_linkonce_5442_0
+.Lraw_code_linkonce_5440_12:
+    ldr r0, [r4, #0x10]
+    cmp r5, r0
+    bhi .Lraw_code_linkonce_5443_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r5, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r2, r1, r0
+    b .Lraw_code_linkonce_5443_2
+.Lraw_code_linkonce_5442_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5443_0:
+    ldr r2, .Lraw_code_linkonce_5445_0
+.Lraw_code_linkonce_5443_2:
+    ldr r0, [r4, #0x10]
+    cmp r7, r0
+    bhi .Lraw_code_linkonce_5446_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r7, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r3, r1, r0
+    b .Lraw_code_linkonce_5446_2
+    .align 2, 0
+.Lraw_code_linkonce_5445_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5446_0:
+    ldr r3, .Lraw_code_linkonce_5450_0
+.Lraw_code_linkonce_5446_2:
+    movs r1, #0
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5447_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5447_4:
+    cmp r2, #0
+    bne .Lraw_code_linkonce_5447_12
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5447_12:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_5448_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5448_4:
+    str r1, [sp]
+    str r1, [sp, #4]
+    str r1, [sp, #8]
+    adds r1, r6, #0
+    bl func_08050E30
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #7
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5450_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5451_0:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r0, [r0]
+    mov sb, r0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5452_14
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5452_14:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r7, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5454_0
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5454_0:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r6, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5455_2
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5455_2:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5456_4
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5456_4:
+    mov r0, r8
+    adds r0, #0xc
+    ldr r1, [r0, #0x10]
+    adds r4, r0, #0
+    cmp r3, r1
+    bhi .Lraw_code_linkonce_5457_14
+    ldr r1, [r4, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r5, r1, r0
+    b .Lraw_code_linkonce_5458_0
+.Lraw_code_linkonce_5457_14:
+    ldr r5, .Lraw_code_linkonce_5460_0
+.Lraw_code_linkonce_5458_0:
+    ldr r0, [r4, #0x10]
+    cmp r6, r0
+    bhi .Lraw_code_linkonce_5461_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r6, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r2, r1, r0
+    b .Lraw_code_linkonce_5461_2
+.Lraw_code_linkonce_5460_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5461_0:
+    ldr r2, .Lraw_code_linkonce_5463_0
+.Lraw_code_linkonce_5461_2:
+    ldr r0, [r4, #0x10]
+    cmp r7, r0
+    bhi .Lraw_code_linkonce_5464_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r7, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r3, r1, r0
+    b .Lraw_code_linkonce_5464_2
+    .align 2, 0
+.Lraw_code_linkonce_5463_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5464_0:
+    ldr r3, .Lraw_code_linkonce_5466_0
+.Lraw_code_linkonce_5464_2:
+    ldr r0, [r4, #0x10]
+    cmp sb, r0
+    bhi .Lraw_code_linkonce_5467_0
+    ldr r1, [r4, #0x14]
+    mov r6, sb
+    lsls r0, r6, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r1, r1, r0
+    b .Lraw_code_linkonce_5467_2
+.Lraw_code_linkonce_5466_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5467_0:
+    ldr r1, .Lraw_code_linkonce_5471_0
+.Lraw_code_linkonce_5467_2:
+    movs r4, #0
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5468_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5468_4:
+    cmp r2, #0
+    bne .Lraw_code_linkonce_5468_12
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5468_12:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_5469_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5469_4:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_5472_0
+    str r4, [sp]
+    str r4, [sp, #4]
+    str r4, [sp, #8]
+    adds r1, r5, #0
+    bl func_08050E30
+    b .Lraw_code_linkonce_5472_12
+    .align 2, 0
+.Lraw_code_linkonce_5471_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5472_0:
+    str r1, [sp]
+    str r4, [sp, #4]
+    str r4, [sp, #8]
+    adds r1, r5, #0
+    bl func_08050E30
+.Lraw_code_linkonce_5472_12:
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #7
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5473_8:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r0, [r0]
+    mov sl, r0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5475_6
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5475_6:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r0, [r0]
+    mov sb, r0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5476_10
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5476_10:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r7, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5477_12
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5477_12:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r5, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5478_14
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5478_14:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5480_0
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5480_0:
+    mov r0, r8
+    adds r0, #0xc
+    ldr r1, [r0, #0x10]
+    adds r4, r0, #0
+    cmp r3, r1
+    bhi .Lraw_code_linkonce_5481_10
+    ldr r1, [r4, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r6, r1, r0
+    b .Lraw_code_linkonce_5481_12
+.Lraw_code_linkonce_5481_10:
+    ldr r6, .Lraw_code_linkonce_5483_0
+.Lraw_code_linkonce_5481_12:
+    ldr r0, [r4, #0x10]
+    cmp r5, r0
+    bhi .Lraw_code_linkonce_5484_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r5, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r2, r1, r0
+    b .Lraw_code_linkonce_5484_2
+.Lraw_code_linkonce_5483_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5484_0:
+    ldr r2, .Lraw_code_linkonce_5486_0
+.Lraw_code_linkonce_5484_2:
+    ldr r0, [r4, #0x10]
+    cmp r7, r0
+    bhi .Lraw_code_linkonce_5487_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r7, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r3, r1, r0
+    b .Lraw_code_linkonce_5487_2
+    .align 2, 0
+.Lraw_code_linkonce_5486_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5487_0:
+    ldr r3, .Lraw_code_linkonce_5489_0
+.Lraw_code_linkonce_5487_2:
+    ldr r0, [r4, #0x10]
+    cmp sb, r0
+    bhi .Lraw_code_linkonce_5490_0
+    ldr r1, [r4, #0x14]
+    mov r7, sb
+    lsls r0, r7, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r5, r1, r0
+    b .Lraw_code_linkonce_5490_2
+.Lraw_code_linkonce_5489_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5490_0:
+    ldr r5, .Lraw_code_linkonce_5492_0
+.Lraw_code_linkonce_5490_2:
+    ldr r0, [r4, #0x10]
+    cmp sl, r0
+    bhi .Lraw_code_linkonce_5493_0
+    ldr r1, [r4, #0x14]
+    mov r7, sl
+    lsls r0, r7, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r1, r1, r0
+    b .Lraw_code_linkonce_5493_2
+.Lraw_code_linkonce_5492_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5493_0:
+    ldr r1, .Lraw_code_linkonce_5496_0
+.Lraw_code_linkonce_5493_2:
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r4, [r0]
+    cmp r4, #0
+    bne .Lraw_code_linkonce_5494_2
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5494_2:
+    cmp r2, #0
+    bne .Lraw_code_linkonce_5494_10
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5494_10:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_5495_2
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5495_2:
+    cmp r5, #0
+    bne .Lraw_code_linkonce_5497_0
+    str r5, [sp]
+    str r5, [sp, #4]
+    str r5, [sp, #8]
+    b .Lraw_code_linkonce_5497_10
+    .align 2, 0
+.Lraw_code_linkonce_5496_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5497_0:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_5498_4
+    str r5, [sp]
+    str r1, [sp, #4]
+    str r1, [sp, #8]
+.Lraw_code_linkonce_5497_10:
+    adds r0, r4, #0
+    adds r1, r6, #0
+    bl func_08050E30
+    b .Lraw_code_linkonce_5499_4
+.Lraw_code_linkonce_5498_4:
+    str r5, [sp]
+    str r1, [sp, #4]
     movs r0, #0
+    str r0, [sp, #8]
+    adds r0, r4, #0
+    adds r1, r6, #0
+    bl func_08050E30
+.Lraw_code_linkonce_5499_4:
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #7
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5500_0:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r5, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5501_12
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5501_12:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5502_14
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5502_14:
+    mov r0, r8
+    adds r0, #0xc
+    ldr r1, [r0, #0x10]
+    adds r4, r0, #0
+    cmp r3, r1
+    bhi .Lraw_code_linkonce_5504_8
+    ldr r1, [r4, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r3, r1, r0
+    b .Lraw_code_linkonce_5504_10
+.Lraw_code_linkonce_5504_8:
+    ldr r3, .Lraw_code_linkonce_5506_0
+.Lraw_code_linkonce_5504_10:
+    ldr r0, [r4, #0x10]
+    cmp r5, r0
+    bhi .Lraw_code_linkonce_5507_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r5, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r2, r1, r0
+    b .Lraw_code_linkonce_5507_2
+    .align 2, 0
+.Lraw_code_linkonce_5506_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5507_0:
+    ldr r2, .Lraw_code_linkonce_5511_0
+.Lraw_code_linkonce_5507_2:
+    movs r1, #0
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5508_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5508_4:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_5508_12
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5508_12:
+    cmp r2, #0
+    bne .Lraw_code_linkonce_5509_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5509_4:
+    str r1, [sp]
+    str r1, [sp, #4]
+    str r1, [sp, #8]
+    str r1, [sp, #0xc]
+    adds r1, r3, #0
+    movs r3, #0
+    bl func_08050E0C
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #7
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5511_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5512_0:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r7, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5513_12
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5513_12:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r6, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5514_14
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5514_14:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5516_0
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5516_0:
+    mov r0, r8
+    adds r0, #0xc
+    ldr r1, [r0, #0x10]
+    adds r4, r0, #0
+    cmp r3, r1
+    bhi .Lraw_code_linkonce_5517_10
+    ldr r1, [r4, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r5, r1, r0
+    b .Lraw_code_linkonce_5517_12
+.Lraw_code_linkonce_5517_10:
+    ldr r5, .Lraw_code_linkonce_5519_0
+.Lraw_code_linkonce_5517_12:
+    ldr r0, [r4, #0x10]
+    cmp r6, r0
+    bhi .Lraw_code_linkonce_5520_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r6, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r2, r1, r0
+    b .Lraw_code_linkonce_5520_2
+.Lraw_code_linkonce_5519_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5520_0:
+    ldr r2, .Lraw_code_linkonce_5522_0
+.Lraw_code_linkonce_5520_2:
+    ldr r0, [r4, #0x10]
+    cmp r7, r0
+    bhi .Lraw_code_linkonce_5523_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r7, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r3, r1, r0
+    b .Lraw_code_linkonce_5523_2
+    .align 2, 0
+.Lraw_code_linkonce_5522_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5523_0:
+    ldr r3, .Lraw_code_linkonce_5527_0
+.Lraw_code_linkonce_5523_2:
+    movs r1, #0
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5524_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5524_4:
+    cmp r5, #0
+    bne .Lraw_code_linkonce_5524_12
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5524_12:
+    cmp r2, #0
+    bne .Lraw_code_linkonce_5525_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5525_4:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_5528_0
+    str r3, [sp]
+    str r3, [sp, #4]
+    str r3, [sp, #8]
+    str r3, [sp, #0xc]
+    adds r1, r5, #0
+    movs r3, #0
+    bl func_08050E0C
+    b .Lraw_code_linkonce_5528_14
+    .align 2, 0
+.Lraw_code_linkonce_5527_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5528_0:
+    str r1, [sp]
+    str r1, [sp, #4]
+    str r1, [sp, #8]
+    str r1, [sp, #0xc]
+    adds r1, r5, #0
+    bl func_08050E0C
+.Lraw_code_linkonce_5528_14:
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #7
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5529_10:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r0, [r0]
+    mov sb, r0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5531_8
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5531_8:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r7, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5532_10
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5532_10:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r6, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5533_12
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5533_12:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5534_14
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5534_14:
+    mov r0, r8
+    adds r0, #0xc
+    ldr r1, [r0, #0x10]
+    adds r4, r0, #0
+    cmp r3, r1
+    bhi .Lraw_code_linkonce_5536_8
+    ldr r1, [r4, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r5, r1, r0
+    b .Lraw_code_linkonce_5536_10
+.Lraw_code_linkonce_5536_8:
+    ldr r5, .Lraw_code_linkonce_5538_0
+.Lraw_code_linkonce_5536_10:
+    ldr r0, [r4, #0x10]
+    cmp r6, r0
+    bhi .Lraw_code_linkonce_5539_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r6, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r2, r1, r0
+    b .Lraw_code_linkonce_5539_2
+    .align 2, 0
+.Lraw_code_linkonce_5538_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5539_0:
+    ldr r2, .Lraw_code_linkonce_5541_0
+.Lraw_code_linkonce_5539_2:
+    ldr r0, [r4, #0x10]
+    cmp r7, r0
+    bhi .Lraw_code_linkonce_5542_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r7, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r3, r1, r0
+    b .Lraw_code_linkonce_5542_2
+    .align 2, 0
+.Lraw_code_linkonce_5541_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5542_0:
+    ldr r3, .Lraw_code_linkonce_5544_0
+.Lraw_code_linkonce_5542_2:
+    ldr r0, [r4, #0x10]
+    cmp sb, r0
+    bhi .Lraw_code_linkonce_5545_0
+    ldr r1, [r4, #0x14]
+    mov r6, sb
+    lsls r0, r6, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r1, r1, r0
+    b .Lraw_code_linkonce_5545_2
+.Lraw_code_linkonce_5544_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5545_0:
+    ldr r1, .Lraw_code_linkonce_5549_0
+.Lraw_code_linkonce_5545_2:
+    movs r4, #0
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5546_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5546_4:
+    cmp r5, #0
+    bne .Lraw_code_linkonce_5546_12
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5546_12:
+    cmp r2, #0
+    bne .Lraw_code_linkonce_5547_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5547_4:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_5550_0
+    str r3, [sp]
+    str r3, [sp, #4]
+    str r3, [sp, #8]
+    str r3, [sp, #0xc]
+    adds r1, r5, #0
+    movs r3, #0
+    bl func_08050E0C
+    b .Lraw_code_linkonce_5552_2
+    .align 2, 0
+.Lraw_code_linkonce_5549_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5550_0:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_5551_4
+    str r4, [sp]
+    str r4, [sp, #4]
+    str r4, [sp, #8]
+    str r4, [sp, #0xc]
+    adds r1, r5, #0
+    bl func_08050E0C
+    b .Lraw_code_linkonce_5552_2
+.Lraw_code_linkonce_5551_4:
+    str r1, [sp]
+    str r4, [sp, #4]
+    str r4, [sp, #8]
+    str r4, [sp, #0xc]
+    adds r1, r5, #0
+    bl func_08050E0C
+.Lraw_code_linkonce_5552_2:
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #7
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5552_14:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r0, [r0]
+    mov sl, r0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5554_12
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5554_12:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r0, [r0]
+    mov sb, r0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5556_0
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5556_0:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r7, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5557_2
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5557_2:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r5, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5558_4
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5558_4:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5559_6
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5559_6:
+    mov r0, r8
+    adds r0, #0xc
+    ldr r1, [r0, #0x10]
+    adds r4, r0, #0
+    cmp r3, r1
+    bhi .Lraw_code_linkonce_5561_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r6, r1, r0
+    b .Lraw_code_linkonce_5561_2
+.Lraw_code_linkonce_5561_0:
+    ldr r6, .Lraw_code_linkonce_5563_0
+.Lraw_code_linkonce_5561_2:
+    ldr r0, [r4, #0x10]
+    cmp r5, r0
+    bhi .Lraw_code_linkonce_5564_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r5, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r2, r1, r0
+    b .Lraw_code_linkonce_5564_2
+    .align 2, 0
+.Lraw_code_linkonce_5563_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5564_0:
+    ldr r2, .Lraw_code_linkonce_5566_0
+.Lraw_code_linkonce_5564_2:
+    ldr r0, [r4, #0x10]
+    cmp r7, r0
+    bhi .Lraw_code_linkonce_5567_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r7, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r3, r1, r0
+    b .Lraw_code_linkonce_5567_2
+    .align 2, 0
+.Lraw_code_linkonce_5566_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5567_0:
+    ldr r3, .Lraw_code_linkonce_5569_0
+.Lraw_code_linkonce_5567_2:
+    ldr r0, [r4, #0x10]
+    cmp sb, r0
+    bhi .Lraw_code_linkonce_5570_0
+    ldr r1, [r4, #0x14]
+    mov r7, sb
+    lsls r0, r7, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r5, r1, r0
+    b .Lraw_code_linkonce_5570_2
+.Lraw_code_linkonce_5569_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5570_0:
+    ldr r5, .Lraw_code_linkonce_5572_0
+.Lraw_code_linkonce_5570_2:
+    ldr r0, [r4, #0x10]
+    cmp sl, r0
+    bhi .Lraw_code_linkonce_5573_0
+    ldr r1, [r4, #0x14]
+    mov r7, sl
+    lsls r0, r7, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r1, r1, r0
+    b .Lraw_code_linkonce_5573_2
+.Lraw_code_linkonce_5572_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5573_0:
+    ldr r1, .Lraw_code_linkonce_5577_0
+.Lraw_code_linkonce_5573_2:
+    movs r4, #0
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5574_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5574_4:
+    cmp r6, #0
+    bne .Lraw_code_linkonce_5574_12
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5574_12:
+    cmp r2, #0
+    bne .Lraw_code_linkonce_5575_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5575_4:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_5578_0
+    str r3, [sp]
+    str r3, [sp, #4]
+    str r3, [sp, #8]
+    str r3, [sp, #0xc]
+    adds r1, r6, #0
+    movs r3, #0
+    bl func_08050E0C
+    b .Lraw_code_linkonce_5580_10
+    .align 2, 0
+.Lraw_code_linkonce_5577_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5578_0:
+    cmp r5, #0
+    bne .Lraw_code_linkonce_5578_8
+    str r4, [sp]
+    b .Lraw_code_linkonce_5578_14
+.Lraw_code_linkonce_5578_8:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_5579_12
+    str r5, [sp]
+.Lraw_code_linkonce_5578_14:
+    str r4, [sp, #4]
+    str r4, [sp, #8]
+    str r4, [sp, #0xc]
+    adds r1, r6, #0
+    bl func_08050E0C
+    b .Lraw_code_linkonce_5580_10
+.Lraw_code_linkonce_5579_12:
+    str r5, [sp]
+    str r1, [sp, #4]
+    str r4, [sp, #8]
+    str r4, [sp, #0xc]
+    adds r1, r6, #0
+    bl func_08050E0C
+.Lraw_code_linkonce_5580_10:
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #7
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5581_6:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r0, [r0]
+    mov ip, r0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5583_4
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5583_4:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r0, [r0]
+    mov sl, r0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5584_8
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5584_8:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r0, [r0]
+    mov sb, r0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5585_12
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5585_12:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r6, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5586_14
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5586_14:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r5, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5588_0
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5588_0:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5589_2
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5589_2:
+    mov r0, r8
+    adds r0, #0xc
+    ldr r1, [r0, #0x10]
+    adds r4, r0, #0
+    cmp r3, r1
+    bhi .Lraw_code_linkonce_5590_12
+    ldr r1, [r4, #0x14]
+    lsls r0, r3, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r7, r1, r0
+    b .Lraw_code_linkonce_5590_14
+.Lraw_code_linkonce_5590_12:
+    ldr r7, .Lraw_code_linkonce_5593_0
+.Lraw_code_linkonce_5590_14:
+    ldr r0, [r4, #0x10]
+    cmp r5, r0
+    bhi .Lraw_code_linkonce_5594_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r5, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r2, r1, r0
+    b .Lraw_code_linkonce_5594_2
+    .align 2, 0
+.Lraw_code_linkonce_5593_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5594_0:
+    ldr r2, .Lraw_code_linkonce_5596_0
+.Lraw_code_linkonce_5594_2:
+    ldr r0, [r4, #0x10]
+    cmp r6, r0
+    bhi .Lraw_code_linkonce_5597_0
+    ldr r1, [r4, #0x14]
+    lsls r0, r6, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r3, r1, r0
+    b .Lraw_code_linkonce_5597_2
+    .align 2, 0
+.Lraw_code_linkonce_5596_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5597_0:
+    ldr r3, .Lraw_code_linkonce_5599_0
+.Lraw_code_linkonce_5597_2:
+    ldr r0, [r4, #0x10]
+    cmp sb, r0
+    bhi .Lraw_code_linkonce_5600_0
+    ldr r1, [r4, #0x14]
+    mov r5, sb
+    lsls r0, r5, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r6, r1, r0
+    b .Lraw_code_linkonce_5600_2
+.Lraw_code_linkonce_5599_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5600_0:
+    ldr r6, .Lraw_code_linkonce_5602_0
+.Lraw_code_linkonce_5600_2:
+    ldr r0, [r4, #0x10]
+    cmp sl, r0
+    bhi .Lraw_code_linkonce_5603_0
+    ldr r1, [r4, #0x14]
+    mov r5, sl
+    lsls r0, r5, #2
+    adds r0, r0, r1
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r5, r1, r0
+    b .Lraw_code_linkonce_5603_2
+.Lraw_code_linkonce_5602_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5603_0:
+    ldr r5, .Lraw_code_linkonce_5605_0
+.Lraw_code_linkonce_5603_2:
+    ldr r0, [r4, #0x10]
+    cmp ip, r0
+    bhi .Lraw_code_linkonce_5606_0
+    ldr r0, [r4, #0x14]
+    mov sb, r0
+    mov r1, ip
+    lsls r0, r1, #2
+    add r0, sb
+    ldr r1, [r4, #0x18]
+    ldr r0, [r0]
+    adds r1, r1, r0
+    b .Lraw_code_linkonce_5606_2
+    .align 2, 0
+.Lraw_code_linkonce_5605_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5606_0:
+    ldr r1, .Lraw_code_linkonce_5610_0
+.Lraw_code_linkonce_5606_2:
+    movs r0, #0xdb
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r4, [r0]
+    cmp r4, #0
+    bne .Lraw_code_linkonce_5607_2
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5607_2:
+    cmp r7, #0
+    bne .Lraw_code_linkonce_5607_10
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5607_10:
+    cmp r2, #0
+    bne .Lraw_code_linkonce_5608_2
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5608_2:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_5611_0
+    str r3, [sp]
+    str r3, [sp, #4]
+    str r3, [sp, #8]
+    str r3, [sp, #0xc]
+    adds r0, r4, #0
+    adds r1, r7, #0
+    movs r3, #0
+    bl func_08050E0C
+    b .Lraw_code_linkonce_5615_4
+    .align 2, 0
+.Lraw_code_linkonce_5610_0: .4byte gText_Fallback_Error
+.Lraw_code_linkonce_5611_0:
+    cmp r6, #0
+    bne .Lraw_code_linkonce_5611_14
+    str r6, [sp]
+    str r6, [sp, #4]
+    str r6, [sp, #8]
+    str r6, [sp, #0xc]
+    b .Lraw_code_linkonce_5613_8
+.Lraw_code_linkonce_5611_14:
+    cmp r5, #0
+    bne .Lraw_code_linkonce_5612_12
+    str r6, [sp]
+    str r5, [sp, #4]
+    str r5, [sp, #8]
+    str r5, [sp, #0xc]
+    b .Lraw_code_linkonce_5613_8
+.Lraw_code_linkonce_5612_12:
+    cmp r1, #0
+    bne .Lraw_code_linkonce_5614_2
+    str r6, [sp]
+    str r5, [sp, #4]
+    str r1, [sp, #8]
+    str r1, [sp, #0xc]
+.Lraw_code_linkonce_5613_8:
+    adds r0, r4, #0
+    adds r1, r7, #0
+    bl func_08050E0C
+    b .Lraw_code_linkonce_5615_4
+.Lraw_code_linkonce_5614_2:
+    str r6, [sp]
+    str r5, [sp, #4]
+    str r1, [sp, #8]
+    movs r0, #0
+    str r0, [sp, #0xc]
+    adds r0, r4, #0
+    adds r1, r7, #0
+    bl func_08050E0C
+.Lraw_code_linkonce_5615_4:
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #7
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5616_0:
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r0, [r2]
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r1, [r0, #0x2c]
+    movs r0, #0xe6
+    lsls r0, r0, #2
+    add r0, r8
+    strh r1, [r0]
+    ldr r0, [r2]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_5618_0
+    subs r0, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5618_0:
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #8
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5618_12:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r4, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5620_8
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5620_8:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5621_10
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5621_10:
+    cmp r3, #4
+    bls .Lraw_code_linkonce_5622_2
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5622_2:
+    lsls r0, r3, #2
+    ldr r1, .Lraw_code_linkonce_5622_12
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+.Lraw_code_linkonce_5622_12: .word .Lswitch_080DEB10
+.Lswitch_080DEB10: .word .Lraw_code_linkonce_5624_4
+    .word .Lraw_code_linkonce_5624_10
+    .word .Lraw_code_linkonce_5625_0
+    .word .Lraw_code_linkonce_5625_4
+    .word .Lraw_code_linkonce_5625_8
+.Lraw_code_linkonce_5624_4:
+    movs r5, #2
+    movs r3, #0
+    b .Lraw_code_linkonce_5625_12
+.Lraw_code_linkonce_5624_10:
+    movs r5, #1
+    movs r3, #0
+    b .Lraw_code_linkonce_5625_12
+.Lraw_code_linkonce_5625_0:
+    movs r5, #2
+    b .Lraw_code_linkonce_5625_10
+.Lraw_code_linkonce_5625_4:
+    movs r5, #1
+    b .Lraw_code_linkonce_5625_10
+.Lraw_code_linkonce_5625_8:
+    movs r5, #0
+.Lraw_code_linkonce_5625_10:
+    movs r3, #1
+.Lraw_code_linkonce_5625_12:
+    cmp r4, #1
+    beq .Lraw_code_linkonce_5627_12
+    cmp r4, #1
+    bgt .Lraw_code_linkonce_5626_12
+    cmp r4, #0
+    beq .Lraw_code_linkonce_5627_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5626_12:
+    cmp r4, #2
+    beq .Lraw_code_linkonce_5628_4
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5627_4:
+    ldr r1, .Lraw_code_linkonce_5627_8
+    b .Lraw_code_linkonce_5628_6
+.Lraw_code_linkonce_5627_8: .word 0x00001112
+.Lraw_code_linkonce_5627_12:
+    ldr r1, .Lraw_code_linkonce_5628_0
+    b .Lraw_code_linkonce_5628_6
+.Lraw_code_linkonce_5628_0: .word 0x00000889
+.Lraw_code_linkonce_5628_4:
+    ldr r1, .Lraw_code_linkonce_5632_12
+.Lraw_code_linkonce_5628_6:
+    movs r0, #0xdc
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    adds r2, r5, #0
+    bl EndHardwareBlend
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #5
+    str r0, [r1]
+    movs r1, #0xe8
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #0
+    strb r0, [r1]
+    movs r1, #0
+    cmp r5, #2
+    bne .Lraw_code_linkonce_5632_0
+    movs r1, #1
+.Lraw_code_linkonce_5632_0:
+    ldr r0, .Lraw_code_linkonce_5633_0
+    add r0, r8
+    strb r1, [r0]
+    bl .Lraw_code_linkonce_5862_8
+    .byte 0x00, 0x00
+.Lraw_code_linkonce_5632_12: .word 0x00000444
+.Lraw_code_linkonce_5633_0: .word 0x000003A1
+.Lraw_code_linkonce_5633_4:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r4, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5635_0
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5635_0:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5636_2
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5636_2:
+    cmp r3, #4
+    bls .Lraw_code_linkonce_5636_10
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5636_10:
+    lsls r0, r3, #2
+    ldr r1, .Lraw_code_linkonce_5637_4
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+.Lraw_code_linkonce_5637_4: .word .Lswitch_080DEBE8
+.Lswitch_080DEBE8: .word .Lraw_code_linkonce_5638_12
+    .word .Lraw_code_linkonce_5639_2
+    .word .Lraw_code_linkonce_5639_8
+    .word .Lraw_code_linkonce_5639_12
+    .word .Lraw_code_linkonce_5640_0
+.Lraw_code_linkonce_5638_12:
+    movs r6, #2
+    movs r3, #0
+    b .Lraw_code_linkonce_5640_4
+.Lraw_code_linkonce_5639_2:
+    movs r6, #1
+    movs r3, #0
+    b .Lraw_code_linkonce_5640_4
+.Lraw_code_linkonce_5639_8:
+    movs r6, #2
+    b .Lraw_code_linkonce_5640_2
+.Lraw_code_linkonce_5639_12:
+    movs r6, #1
+    b .Lraw_code_linkonce_5640_2
+.Lraw_code_linkonce_5640_0:
+    movs r6, #0
+.Lraw_code_linkonce_5640_2:
+    movs r3, #1
+.Lraw_code_linkonce_5640_4:
+    cmp r4, #1
+    beq .Lraw_code_linkonce_5642_4
+    cmp r4, #1
+    bgt .Lraw_code_linkonce_5641_4
+    cmp r4, #0
+    beq .Lraw_code_linkonce_5641_12
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5641_4:
+    cmp r4, #2
+    beq .Lraw_code_linkonce_5642_12
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5641_12:
+    ldr r1, .Lraw_code_linkonce_5642_0
+    b .Lraw_code_linkonce_5642_14
+.Lraw_code_linkonce_5642_0: .word 0x00001112
+.Lraw_code_linkonce_5642_4:
+    ldr r1, .Lraw_code_linkonce_5642_8
+    b .Lraw_code_linkonce_5642_14
+.Lraw_code_linkonce_5642_8: .word 0x00000889
+.Lraw_code_linkonce_5642_12:
+    ldr r1, .Lraw_code_linkonce_5657_8
+.Lraw_code_linkonce_5642_14:
+    movs r0, #0xdc
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    adds r2, r6, #0
+    bl BeginHardwareBlend
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #6
+    str r0, [r1]
+    movs r1, #0xe8
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #0
+    strb r0, [r1]
+    movs r1, #0
+    cmp r6, #2
+    bne .Lraw_code_linkonce_5647_8
+    movs r1, #1
+.Lraw_code_linkonce_5647_8:
+    ldr r0, .Lraw_code_linkonce_5657_12
+    add r0, r8
+    strb r1, [r0]
+    mov r5, r8
+    adds r5, #4
+    adds r0, r5, #0
+    bl GetHardwareDisplayState
+    adds r4, r0, #0
+    adds r0, r5, #0
+    bl GetHardwareDisplayState
+    ldrh r0, [r0]
+    movs r2, #0xe0
+    lsls r2, r2, #4
+    adds r1, r2, #0
+    orrs r0, r1
+    strh r0, [r4]
+    cmp r6, #1
+    bne .Lraw_code_linkonce_5658_0
+    adds r0, r5, #0
+    bl GetHardwareDisplayState
+    adds r4, r0, #0
+    adds r4, #0x50
+    adds r0, r5, #0
+    bl GetHardwareDisplayState
+    adds r0, #0x50
+    ldrh r0, [r0]
+    movs r1, #0x80
+    b .Lraw_code_linkonce_5662_6
+.Lraw_code_linkonce_5657_8: .word 0x00000444
+.Lraw_code_linkonce_5657_12: .word 0x000003A1
+.Lraw_code_linkonce_5658_0:
+    adds r0, r5, #0
+    bl GetHardwareDisplayState
+    adds r4, r0, #0
+    adds r4, #0x50
+    adds r0, r5, #0
+    bl GetHardwareDisplayState
+    adds r0, #0x50
+    ldrh r0, [r0]
+    movs r1, #0xc0
+.Lraw_code_linkonce_5662_6:
+    orrs r0, r1
+    strh r0, [r4]
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5662_14:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r0, [r0]
+    str r0, [sp, #0x2c]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5664_12
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5664_12:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r4, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5665_14
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5665_14:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5667_0
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5667_0:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r5, [r0]
+    mov sl, r5
+    movs r6, #0xb0
+    add sl, r6
+    add r6, sp, #0x10
+    ldr r7, .Lraw_code_linkonce_5675_4
+    mov sb, r7
+    mov r1, sb
+    ands r3, r1
+    ldrh r2, [r6]
+    ldr r5, .Lraw_code_linkonce_5675_8
+    adds r1, r5, #0
+    ands r1, r2
+    orrs r1, r3
+    strh r1, [r6]
+    lsls r4, r4, #0x10
+    lsrs r2, r4, #0x10
+    movs r7, #0x3f
+    mov ip, r7
+    mov r1, ip
+    ands r2, r1
+    lsls r2, r2, #2
+    ldrb r7, [r6, #1]
+    mov r8, r7
+    movs r3, #3
+    adds r1, r3, #0
+    mov r7, r8
+    ands r1, r7
+    orrs r1, r2
+    strb r1, [r6, #1]
+    lsrs r4, r4, #0x16
+    mov r1, sb
+    ands r4, r1
+    ldrh r2, [r6, #2]
+    adds r1, r5, #0
+    ands r1, r2
+    orrs r1, r4
+    strh r1, [r6, #2]
+    ldr r4, [sp, #0x2c]
+    lsls r2, r4, #0x10
+    lsrs r1, r2, #0x10
+    mov r7, ip
+    ands r1, r7
+    lsls r1, r1, #2
+    ldrb r4, [r6, #3]
+    ands r3, r4
+    orrs r3, r1
+    strb r3, [r6, #3]
+    lsrs r2, r2, #0x16
+    mov r1, sb
+    ands r2, r1
+    ldrh r1, [r6, #4]
+    ands r5, r1
+    orrs r5, r2
+    strh r5, [r6, #4]
+    mov r4, sl
+    ldr r2, [r4]
+    adds r1, r6, #0
+    bl _call_via_r2
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5675_4: .word 0x000003FF
+.Lraw_code_linkonce_5675_8: .word 0xFFFFFC00
+.Lraw_code_linkonce_5675_12:
+    mov r6, r8
+    adds r6, #0x30
+    movs r5, #0xe0
+    lsls r5, r5, #1
+    add r5, r8
+    ldr r1, [r5]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5677_8
+    subs r0, r1, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5677_8:
+    ldr r1, [r5]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r2, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5678_10
+    subs r0, r1, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5678_10:
+    ldr r4, [r5]
+    lsls r0, r4, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r6, [r0]
+    cmp r4, #0
+    beq .Lraw_code_linkonce_5679_12
+    subs r0, r4, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5679_12:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r4, [r1, #0x24]
+    bl .Lraw_code_linkonce_5831_0
+.Lraw_code_linkonce_5680_12:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x28]
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_linkonce_5682_6
+    bl .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5682_6:
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #0xa
+    bl .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5683_2:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r4, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5684_14
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5684_14:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5686_0
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5686_0:
+    lsls r0, r4, #0x10
+    lsrs r1, r0, #0x10
+    movs r0, #0xdd
+    lsls r0, r0, #2
+    add r0, r8
+    cmp r3, #1
+    beq .Lraw_code_linkonce_5703_0
+    cmp r3, #1
+    bgt .Lraw_code_linkonce_5687_10
+    cmp r3, #0
+    beq .Lraw_code_linkonce_5701_0
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5687_10:
+    cmp r3, #2
+    beq .Lraw_code_linkonce_5688_2
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5688_2:
+    b .Lraw_code_linkonce_5705_0
+.Lraw_code_linkonce_5688_4:
+    movs r0, #0xdd
+    lsls r0, r0, #2
+    add r0, r8
+    bl Stop__23HardwareMusicPlayerSlot
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5691_2:
+    ldr r0, [r4]
+    b .Lraw_code_linkonce_5698_10
+.Lraw_code_linkonce_5691_6:
+    mov r3, r8
+    adds r3, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r7, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5693_2
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5693_2:
+    ldr r1, [r2]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r6, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5694_4
+    subs r0, r1, #1
+    str r0, [r2]
+.Lraw_code_linkonce_5694_4:
+    movs r0, #0xe2
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r4, [r0]
+    ldr r5, [r0, #4]
+    lsls r7, r7, #0x10
+    cmp r4, r5
+    beq .Lraw_code_linkonce_5698_6
+.Lraw_code_linkonce_5695_4:
+    ldr r0, [r4]
+    bl IsUnpaused__C23HardwareMusicPlayerSlot
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_linkonce_5691_2
+    adds r4, #4
+    cmp r4, r5
+    bne .Lraw_code_linkonce_5695_4
+.Lraw_code_linkonce_5698_6:
+    subs r0, r5, #4
+    ldr r0, [r0]
+.Lraw_code_linkonce_5698_10:
+    lsrs r1, r7, #0x10
+    cmp r6, #1
+    beq .Lraw_code_linkonce_5703_0
+    cmp r6, #1
+    bgt .Lraw_code_linkonce_5699_12
+    cmp r6, #0
+    beq .Lraw_code_linkonce_5701_0
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5699_12:
+    cmp r6, #2
+    beq .Lraw_code_linkonce_5705_0
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5701_0:
+    bl Start__23HardwareMusicPlayerSlotUs
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5703_0:
+    bl StartIfChangedOrPaused__23HardwareMusicPlayerSlotUs
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5705_0:
+    bl StartOrContinue__23HardwareMusicPlayerSlotUs
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5707_0:
+    bl StopAllHardwareMusicPlayers
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5708_4:
+    mov r5, r8
+    adds r5, #0x30
+    movs r3, #0xe0
+    lsls r3, r3, #1
+    add r3, r8
+    ldr r1, [r3]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r5, r0
+    ldr r0, [r0]
+    str r0, [sp, #0x28]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5710_2
+    subs r0, r1, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5710_2:
+    ldr r1, [r3]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r5, r0
+    ldr r0, [r0]
+    mov sl, r0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5711_6
+    subs r0, r1, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5711_6:
+    ldr r1, [r3]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r5, r0
+    ldr r4, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5712_8
+    subs r0, r1, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5712_8:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r5, r0
+    ldr r6, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5713_10
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5713_10:
+    movs r5, #0xda
+    lsls r5, r5, #2
+    add r5, r8
+    ldr r0, [r5]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r6, #0
+    bl _call_via_r2
+    adds r7, r0, #0
+    cmp r7, #0
+    bne .Lraw_code_linkonce_5715_6
+    bl .Ljp_080DF834
+.Lraw_code_linkonce_5715_6:
+    ldr r0, [r5]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x14]
+    bl _call_via_r1
+    add r1, sp, #0x18
+    ldr r5, .Lraw_code_linkonce_5724_8
+    mov r8, r5
+    mov r6, r8
+    ands r0, r6
+    ldrh r3, [r1]
+    ldr r5, .Lraw_code_linkonce_5724_12
+    adds r2, r5, #0
+    ands r2, r3
+    orrs r2, r0
+    strh r2, [r1]
+    lsls r4, r4, #0x10
+    lsrs r2, r4, #0x10
+    movs r0, #0x3f
+    mov sb, r0
+    ands r2, r0
+    lsls r2, r2, #2
+    ldrb r6, [r1, #1]
+    movs r3, #3
+    adds r0, r3, #0
+    ands r0, r6
+    orrs r0, r2
+    strb r0, [r1, #1]
+    lsrs r4, r4, #0x16
+    mov r2, r8
+    ands r4, r2
+    ldrh r2, [r1, #2]
+    adds r0, r5, #0
+    ands r0, r2
+    orrs r0, r4
+    strh r0, [r1, #2]
+    mov r4, sl
+    lsls r2, r4, #0x10
+    lsrs r0, r2, #0x10
+    mov r6, sb
+    ands r0, r6
+    lsls r0, r0, #2
+    ldrb r4, [r1, #3]
+    ands r3, r4
+    orrs r3, r0
+    strb r3, [r1, #3]
+    lsrs r2, r2, #0x16
+    mov r0, r8
+    ands r2, r0
+    ldrh r0, [r1, #4]
+    ands r5, r0
+    orrs r5, r2
+    strh r5, [r1, #4]
+    add r4, sp, #0x10
+    adds r0, r4, #0
+    movs r2, #6
+    bl memcpy
+    add r1, sp, #0x28
+    ldrb r1, [r1]
+    strb r1, [r4, #6]
+    adds r0, r7, #0
+    add r1, sp, #0x10
+    bl SetLocation__12AActorEntityRC13ActorLocation
+    ldr r0, [r7, #0x14]
+    ldr r1, [r0, #0x20]
+    adds r0, r7, #0
+    bl _call_via_r1
+    bl .Ljp_080DF834
+    movs r0, r0
+.Lraw_code_linkonce_5724_8: .word 0x000003FF
+.Lraw_code_linkonce_5724_12: .word 0xFFFFFC00
+.Lraw_code_linkonce_5725_0:
+    mov r3, r8
+    adds r3, #0x30
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r6, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5726_12
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5726_12:
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r5, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5727_14
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5727_14:
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5729_0
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5729_0:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r3, #0
+    bl _call_via_r2
+    adds r4, r0, #0
+    cmp r4, #0
+    bne .Lraw_code_linkonce_5730_10
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5730_10:
+    adds r1, r5, #0
+    bl SetActorAuxRenderProfile
+    adds r0, r4, #0
+    adds r1, r6, #0
+    bl func_080323F0
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5731_10:
+    mov r0, r8
+    adds r0, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r3, [r2]
+    lsls r1, r3, #2
+    subs r1, #4
+    adds r1, r0, r1
+    ldr r6, [r1]
+    adds r5, r0, #0
+    adds r4, r2, #0
+    cmp r3, #0
+    beq .Lraw_code_linkonce_5733_10
+    subs r0, r3, #1
+    str r0, [r4]
+.Lraw_code_linkonce_5733_10:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r6, #0
+    bl _call_via_r2
+    movs r1, #0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_5735_4
+    ldr r1, [r0, #8]
+.Lraw_code_linkonce_5735_4:
+    asrs r2, r1, #0x10
+    b .Lraw_code_linkonce_5748_14
+.Lraw_code_linkonce_5735_8:
+    mov r0, r8
+    adds r0, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r3, [r2]
+    lsls r1, r3, #2
+    subs r1, #4
+    adds r1, r0, r1
+    ldr r6, [r1]
+    adds r5, r0, #0
+    adds r4, r2, #0
+    cmp r3, #0
+    beq .Lraw_code_linkonce_5737_8
+    subs r0, r3, #1
+    str r0, [r4]
+.Lraw_code_linkonce_5737_8:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r6, #0
+    bl _call_via_r2
+    movs r1, #0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_5735_4
+    ldr r1, [r0, #0xc]
+    b .Lraw_code_linkonce_5735_4
+.Lraw_code_linkonce_5739_4:
+    mov r3, r8
+    adds r3, #0x30
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r4, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5741_0
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5741_0:
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5742_2
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5742_2:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r3, #0
+    bl _call_via_r2
+    adds r1, r0, #0
+    cmp r1, #0
+    bne .Lraw_code_linkonce_5743_12
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5743_12:
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, r4
+    bne .Lraw_code_linkonce_5744_6
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5744_6:
+    adds r0, r1, #0
+    adds r1, r4, #0
+    bl SetAnimFacing__12AActorEntityUi
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5745_0:
+    mov r0, r8
+    adds r0, #0x30
+    movs r2, #0xe0
+    lsls r2, r2, #1
+    add r2, r8
+    ldr r3, [r2]
+    lsls r1, r3, #2
+    subs r1, #4
+    adds r1, r0, r1
+    ldr r6, [r1]
+    adds r5, r0, #0
+    adds r4, r2, #0
+    cmp r3, #0
+    beq .Lraw_code_linkonce_5747_0
+    subs r0, r3, #1
+    str r0, [r4]
+.Lraw_code_linkonce_5747_0:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r6, #0
+    bl _call_via_r2
+    cmp r0, #0
+    beq .Lraw_code_linkonce_5748_12
+    adds r0, #0x20
+    ldrb r2, [r0]
+    b .Lraw_code_linkonce_5748_14
+.Lraw_code_linkonce_5748_12:
+    movs r2, #0
+.Lraw_code_linkonce_5748_14:
+    ldr r1, [r4]
+    cmp r1, #0x63
+    bls .Lraw_code_linkonce_5749_6
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5749_6:
+    lsls r0, r1, #2
+    adds r0, r5, r0
+    str r2, [r0]
+    adds r0, r1, #1
+    str r0, [r4]
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5750_2:
+    mov r4, r8
+    adds r4, #0x30
+    movs r3, #0xe0
+    lsls r3, r3, #1
+    add r3, r8
+    ldr r1, [r3]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r6, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5751_14
+    subs r0, r1, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5751_14:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r5, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5753_0
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5753_0:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r4, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5754_2
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5754_2:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r4, #0
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5755_10
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5755_10:
+    lsls r2, r6, #0x10
+    adds r1, r5, #0
+    bl StartActorXMotion
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5757_2:
+    mov r4, r8
+    adds r4, #0x30
+    movs r3, #0xe0
+    lsls r3, r3, #1
+    add r3, r8
+    ldr r1, [r3]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r6, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5759_0
+    subs r0, r1, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5759_0:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r5, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5760_2
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5760_2:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r4, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5761_4
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5761_4:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r4, #0
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5762_12
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5762_12:
+    lsls r2, r6, #0x10
+    adds r1, r5, #0
+    bl StartActorYMotion
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5764_2:
+    mov r4, r8
+    adds r4, #0x30
+    movs r3, #0xe0
+    lsls r3, r3, #1
+    add r3, r8
+    ldr r1, [r3]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r6, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5766_2
+    subs r0, r1, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5766_2:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r5, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5767_4
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5767_4:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r4, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5768_6
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5768_6:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r4, #0
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5769_14
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5769_14:
+    adds r1, r5, #0
+    adds r2, r6, #0
+    bl StartActorXMotion
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5772_2:
+    mov r4, r8
+    adds r4, #0x30
+    movs r3, #0xe0
+    lsls r3, r3, #1
+    add r3, r8
+    ldr r1, [r3]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r6, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5774_4
+    subs r0, r1, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5774_4:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r5, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5775_6
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5775_6:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r4, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5776_8
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5776_8:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r4, #0
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5778_0
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5778_0:
+    adds r1, r5, #0
+    adds r2, r6, #0
+    bl StartActorYMotion
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5780_2:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r3, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5782_0
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5782_0:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r3, #0
+    bl _call_via_r2
+    movs r1, #0xe7
+    lsls r1, r1, #2
+    add r1, r8
+    str r0, [r1]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5784_0
+    b .Lraw_code_linkonce_5862_8
+.Lraw_code_linkonce_5784_0:
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #9
+    b .Lraw_code_linkonce_5862_6
+.Lraw_code_linkonce_5784_10:
+    mov r3, r8
+    adds r3, #0x30
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r4, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5786_6
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5786_6:
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r3, r0
+    ldr r3, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5787_8
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5787_8:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r3, #0
+    bl _call_via_r2
+    adds r1, r0, #0
+    cmp r1, #0
+    bne .Lraw_code_linkonce_5789_2
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5789_2:
+    ldrh r0, [r1, #0x22]
+    cmp r0, r4
+    bne .Lraw_code_linkonce_5789_10
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5789_10:
+    adds r0, r1, #0
+    adds r1, r4, #0
+    bl SetAnim__12AActorEntityUi
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5790_4:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r0, [r1]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5791_2
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5791_2:
+    subs r0, #1
+    str r0, [r1]
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5791_8:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r3, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5792_14
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5792_14:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r3, #0
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5794_6
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5794_6:
+    movs r1, #0x8d
+    lsls r1, r1, #2
+    bl SetMap__7AEntityUi
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5795_0:
+    mov r4, r8
+    adds r4, #0x30
+    movs r3, #0xe0
+    lsls r3, r3, #1
+    add r3, r8
+    ldr r1, [r3]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r5, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5796_12
+    subs r0, r1, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5796_12:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r6, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5797_14
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5797_14:
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r4, r0
+    ldr r4, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5799_0
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5799_0:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r4, #0
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5800_8
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5800_8:
+    rsbs r2, r5, #0
+    orrs r2, r5
+    lsrs r2, r2, #0x1f
+    adds r1, r6, #0
+    bl StartActorSpriteEffect
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5801_6:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r3, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5802_12
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5802_12:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r3, #0
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5804_4
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5804_4:
+    bl StopActorSpriteEffect
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5804_10:
+    movs r3, #0xe0
+    lsls r3, r3, #1
+    add r3, r8
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r1, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5806_0
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5806_0:
+    mov r0, r8
+    adds r0, #0xc
+    ldr r2, .Lraw_code_linkonce_5808_0
+    lsls r1, r1, #2
+    adds r1, r1, r2
+    ldr r1, [r1]
+    bl Load__13AScriptEnginePCv
+    b .Ljp_080DF834
+    .align 2, 0
+.Lraw_code_linkonce_5808_0: .4byte gMaryScriptTable
+.Lraw_code_linkonce_5809_0:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    adds r1, #0x80
+    ldr r1, [r1]
+    bl _call_via_r1
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5810_4:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r3, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5811_10
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5811_10:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    adds r1, #0x9c
+    b .Lraw_code_linkonce_5816_14
+.Lraw_code_linkonce_5812_8:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r3, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5813_14
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5813_14:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    adds r1, #0xa0
+    b .Lraw_code_linkonce_5816_14
+.Lraw_code_linkonce_5814_12:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r3, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5816_2
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5816_2:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    adds r1, #0xac
+.Lraw_code_linkonce_5816_14:
+    ldr r2, [r1]
+    adds r1, r3, #0
+    bl _call_via_r2
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5817_8:
+    mov r6, r8
+    adds r6, #0x30
+    movs r5, #0xe0
+    lsls r5, r5, #1
+    add r5, r8
+    ldr r1, [r5]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5819_4
+    subs r0, r1, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5819_4:
+    ldr r1, [r5]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r2, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5820_6
+    subs r0, r1, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5820_6:
+    ldr r4, [r5]
+    lsls r0, r4, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r1, [r0]
+    cmp r4, #0
+    beq .Lraw_code_linkonce_5821_8
+    subs r0, r4, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5821_8:
+    ldr r4, [r5]
+    lsls r0, r4, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r0, [r0]
+    mov sb, r0
+    cmp r4, #0
+    beq .Lraw_code_linkonce_5822_12
+    subs r0, r4, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5822_12:
+    ldr r4, [r5]
+    lsls r0, r4, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r7, [r0]
+    cmp r4, #0
+    beq .Lraw_code_linkonce_5823_14
+    subs r0, r4, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5823_14:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r5, [r0]
+    ldr r4, [r5]
+    adds r4, #0xb4
+    add r6, sp, #0x20
+    adds r0, r6, #0
+    bl __9FieldPlotUiUiUi
+    ldr r4, [r4]
+    adds r0, r5, #0
+    adds r1, r7, #0
+    mov r2, sb
+    adds r3, r6, #0
+    bl _call_via_r4
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5826_2:
+    mov r6, r8
+    adds r6, #0x30
+    movs r5, #0xe0
+    lsls r5, r5, #1
+    add r5, r8
+    ldr r1, [r5]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r3, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5827_14
+    subs r0, r1, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5827_14:
+    ldr r1, [r5]
+    lsls r0, r1, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r2, [r0]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_5829_0
+    subs r0, r1, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5829_0:
+    ldr r4, [r5]
+    lsls r0, r4, #2
+    subs r0, #4
+    adds r0, r6, r0
+    ldr r6, [r0]
+    cmp r4, #0
+    beq .Lraw_code_linkonce_5830_2
+    subs r0, r4, #1
+    str r0, [r5]
+.Lraw_code_linkonce_5830_2:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    adds r1, #0xb8
+    ldr r4, [r1]
+.Lraw_code_linkonce_5831_0:
+    adds r1, r6, #0
+    bl _call_via_r4
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5831_8:
+    mov r5, r8
+    adds r5, #0x30
+    movs r4, #0xe0
+    lsls r4, r4, #1
+    add r4, r8
+    ldr r2, [r4]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r5, r0
+    ldr r1, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5833_4
+    subs r0, r2, #1
+    str r0, [r4]
+.Lraw_code_linkonce_5833_4:
+    ldr r2, [r4]
+    lsls r0, r2, #2
+    subs r0, #4
+    adds r0, r5, r0
+    ldr r7, [r0]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5834_6
+    subs r0, r2, #1
+    str r0, [r4]
+.Lraw_code_linkonce_5834_6:
+    ldr r3, [r4]
+    lsls r0, r3, #2
+    subs r0, #4
+    adds r0, r5, r0
+    ldr r6, [r0]
+    cmp r3, #0
+    beq .Lraw_code_linkonce_5835_8
+    subs r0, r3, #1
+    str r0, [r4]
+.Lraw_code_linkonce_5835_8:
+    movs r5, #0xda
+    lsls r5, r5, #2
+    add r5, r8
+    ldr r0, [r5]
+    ldr r2, [r0]
+    adds r1, #0x62
+    ldr r2, [r2, #0x40]
+    bl _call_via_r2
+    adds r4, r0, #0
+    cmp r4, #0
+    bne .Lraw_code_linkonce_5837_2
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5837_2:
+    ldr r0, [r5]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x14]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r2, r6, #0
+    adds r3, r7, #0
+    bl SetLocation__7AEntityUiii
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5838_10:
+    movs r3, #0xe0
+    lsls r3, r3, #1
+    add r3, r8
+    ldr r2, [r3]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r1, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5840_0
+    subs r0, r2, #1
+    str r0, [r3]
+.Lraw_code_linkonce_5840_0:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r2, [r0]
+    adds r1, #0x62
+    ldr r2, [r2, #0x40]
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Lraw_code_linkonce_5841_8
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5841_8:
+    movs r1, #0x8d
+    lsls r1, r1, #2
+    movs r2, #0
+    movs r3, #0
+    bl SetLocation__7AEntityUiii
+    b .Ljp_080DF834
+.Lraw_code_linkonce_5842_6:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r4, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5843_12
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5843_12:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x5e
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r2, [r1, #0x40]
+    adds r1, r4, #0
+    bl _call_via_r2
+    b .Lraw_code_linkonce_5861_14
+.Lraw_code_linkonce_5845_10:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r6, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5847_0
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5847_0:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x5e
+    bl _call_via_r2
+    adds r4, r0, #0
+    ldr r5, [r4, #0x14]
+    add r0, sp, #0x10
+    adds r1, r6, #0
+    bl __4FoodUi
+    add r0, sp, #0x10
+    bl GetIconId__C4Food
+    adds r1, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r3, [r5, #0x44]
+    adds r0, r4, #0
+    movs r2, #0
+    bl _call_via_r3
+    b .Lraw_code_linkonce_5861_14
+.Lraw_code_linkonce_5850_6:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r4, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5851_12
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5851_12:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x5e
+    bl _call_via_r2
+    ldr r2, [r0, #0x14]
+    lsls r1, r4, #0x10
+    lsrs r1, r1, #0x10
+    ldr r3, [r2, #0x44]
+    movs r2, #1
+    bl _call_via_r3
+    b .Lraw_code_linkonce_5861_14
+.Lraw_code_linkonce_5853_14:
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    add r1, r8
+    ldr r2, [r1]
+    lsls r0, r2, #2
+    add r0, r8
+    ldr r7, [r0, #0x2c]
+    cmp r2, #0
+    beq .Lraw_code_linkonce_5855_4
+    subs r0, r2, #1
+    str r0, [r1]
+.Lraw_code_linkonce_5855_4:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x5e
+    bl _call_via_r2
+    adds r5, r0, #0
+    ldr r6, [r5, #0x14]
+    add r4, sp, #0x24
+    adds r0, r4, #0
+    adds r1, r7, #0
+    bl __7ArticleUi
+    adds r0, r4, #0
+    bl GetIconId__C7Article
+    adds r1, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r3, [r6, #0x44]
+    adds r0, r5, #0
+    movs r2, #0
+    bl _call_via_r3
+    b .Lraw_code_linkonce_5861_14
+.Lraw_code_linkonce_5858_12:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x5e
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x4c]
+    b .Lraw_code_linkonce_5861_10
+.Lraw_code_linkonce_5860_4:
+    movs r0, #0xda
+    lsls r0, r0, #2
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x5e
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x48]
+.Lraw_code_linkonce_5861_10:
+    bl _call_via_r1
+.Lraw_code_linkonce_5861_14:
+    movs r1, #0xd9
+    lsls r1, r1, #2
+    add r1, r8
+    movs r0, #0xb
+.Lraw_code_linkonce_5862_6:
+    str r0, [r1]
+.Lraw_code_linkonce_5862_8:
+    movs r0, #1
+    b .Lraw_code_linkonce_5867_0
+.Ljp_080DF834:
+    movs r0, #0
+.Lraw_code_linkonce_5867_0:
     add sp, #0x30
     pop {r3, r4, r5}
     mov r8, r3
@@ -5872,7 +13453,7 @@ __thunk_12_OnCall__20FarmingTutorialScenei:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
 
     .global Run__20FarmingTutorialScene
     .thumb_func
@@ -6299,8 +13880,8 @@ Run__20FarmingTutorialScene:
     str r4, [r5, #4]
     str r0, [r5, #0xc]
     .Lauto_080DFB62:
-    ldr r2, [pc, #0x17c]
-    ldr r1, [pc, #0x17c]
+    ldr r2, .Lraw_code_linkonce_6465_0
+    ldr r1, .Lraw_code_linkonce_6466_0
     movs r3, #0xd8
     lsls r3, r3, #2
     adds r0, r7, r3
@@ -6410,7 +13991,7 @@ Run__20FarmingTutorialScene:
     beq .Lauto_080DFC60
     .Lauto_080DFC4A:
     ldr r0, [r5]
-    ldr r1, [pc, #0x98]
+    ldr r1, .Lraw_code_linkonce_6467_0
     movs r2, #1
     movs r3, #1
     bl EndHardwareBlend
@@ -6431,21 +14012,38 @@ Run__20FarmingTutorialScene:
     ldrh r2, [r0, #8]
     movs r0, #9
     rsbs r0, r0, #0
-    .byte 0x10, 0x40, 0x00, 0x06, 0x00, 0x0E, 0x1B, 0x49, 0x11, 0x40, 0x01, 0x43, 0x24, 0x68, 0xA1, 0x46
-    .byte 0x05, 0xAD, 0x28, 0x1C
+    ands r0, r2
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    ldr r1, .Lraw_code_linkonce_6467_4
+    ands r1, r2
+    orrs r1, r0
+    ldr r4, [r4]
+    mov sb, r4
+    add r5, sp, #0x14
+    adds r0, r5, #0
     bl __18HardwareInputStateUi
-    .byte 0x50, 0x46
+    mov r0, sl
     bl GetHardwareSpriteBuffer
-    .byte 0x80, 0x46
-    .byte 0x50, 0x46
+    mov r8, r0
+    mov r0, sl
     bl GetHardwareDisplayState
-    .byte 0x06, 0x1C, 0x50, 0x46
+    adds r6, r0, #0
+    mov r0, sl
     bl GetHardwareCommandList
-    .byte 0x04, 0x1C
-    .byte 0x50, 0x46
+    adds r4, r0, #0
+    mov r0, sl
     bl GetHardwareInterruptList
-    .byte 0xE0, 0x22, 0x92, 0x00, 0xB9, 0x18, 0x00, 0x94, 0x01, 0x90
-    .byte 0x02, 0x91, 0x48, 0x46, 0x29, 0x1C, 0x42, 0x46, 0x33, 0x1C
+    movs r2, #0xe0
+    lsls r2, r2, #2
+    adds r1, r7, r2
+    str r4, [sp]
+    str r0, [sp, #4]
+    str r1, [sp, #8]
+    mov r0, sb
+    adds r1, r5, #0
+    mov r2, r8
+    adds r3, r6, #0
     bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot
     .Lauto_080DFCC6:
     movs r6, #0
@@ -6458,70 +14056,267 @@ Run__20FarmingTutorialScene:
     b loc_080DFEFE
     .Lauto_080DFCD6:
     lsls r0, r0, #2
-    ldr r1, [pc, #0x14]
+    ldr r1, .Lraw_code_linkonce_6467_8
     adds r0, r0, r1
     ldr r0, [r0]
     mov pc, r0
-    .4byte gMaryScriptTable
-    .4byte gFarmingTutorialScriptIds
-    .byte 0x89, 0x08, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xF4, 0xFC, 0x0D, 0x08, 0x24, 0xFD, 0x0D, 0x08
-    .byte 0x4E, 0xFD, 0x0D, 0x08, 0x7C, 0xFD, 0x0D, 0x08, 0x92, 0xFD, 0x0D, 0x08, 0xC2, 0xFD, 0x0D, 0x08
-    .byte 0x02, 0xFE, 0x0D, 0x08, 0x60, 0xFE, 0x0D, 0x08, 0xDE, 0xFD, 0x0D, 0x08, 0x82, 0xFE, 0x0D, 0x08
-    .byte 0x94, 0xFE, 0x0D, 0x08, 0xB2, 0xFE, 0x0D, 0x08, 0xD4, 0xFE, 0x0D, 0x08, 0x01, 0x26, 0xD6, 0x24
-    .byte 0xA4, 0x00, 0x38, 0x19, 0x00, 0x68, 0xC1, 0x68, 0x26, 0x98, 0xF3, 0xF7, 0xC9, 0xF9, 0x02, 0x1C
-    .byte 0x00, 0x2A, 0x00, 0xD0, 0xDF, 0xE0, 0xD7, 0x25, 0xAD, 0x00, 0x78, 0x19, 0x01, 0x68, 0x02, 0x60
-    .byte 0x1F, 0x98, 0x01, 0x60, 0xA2, 0xE1, 0x01, 0x26, 0xDC, 0x21, 0x89, 0x00, 0x78, 0x18, 0x00, 0x68
+.Lraw_code_linkonce_6465_0: .4byte gMaryScriptTable
+.Lraw_code_linkonce_6466_0: .4byte gFarmingTutorialScriptIds
+.Lraw_code_linkonce_6467_0: .word 0x00000889
+.Lraw_code_linkonce_6467_4: .word 0xFFFFFF00
+.Lraw_code_linkonce_6467_8: .word .Lswitch_080DFCF4
+.Lswitch_080DFCF4: .word .Lraw_code_linkonce_6470_12
+    .word .Lraw_code_linkonce_6473_6
+    .word .Lraw_code_linkonce_6477_8
+    .word .Lraw_code_linkonce_6480_8
+    .word .Lraw_code_linkonce_6486_10
+    .word .Lraw_code_linkonce_6497_2
+    .word .Lraw_code_linkonce_6510_12
+    .word .Lraw_code_linkonce_6490_10
+    .word .Lraw_code_linkonce_6514_14
+    .word .Lraw_code_linkonce_6516_0
+    .word .Lraw_code_linkonce_6519_14
+    .word .Lraw_code_linkonce_6522_0
+.Lraw_code_linkonce_6470_12:
+    movs r6, #1
+    movs r4, #0xd6
+    lsls r4, r4, #2
+    adds r0, r7, r4
+    ldr r0, [r0]
+    ldr r1, [r0, #0xc]
+    ldr r0, [sp, #0x98]
+    bl _call_via_r1
+    adds r2, r0, #0
+    cmp r2, #0
+    beq .Lraw_code_linkonce_6472_6
+    b loc_080DFEFE
+.Lraw_code_linkonce_6472_6:
+    movs r5, #0xd7
+    lsls r5, r5, #2
+    adds r0, r7, r5
+    ldr r1, [r0]
+    str r2, [r0]
+    ldr r0, [sp, #0x7c]
+    str r1, [r0]
+    b .Lraw_code_linkonce_6614_0
+.Lraw_code_linkonce_6473_6:
+    movs r6, #1
+    movs r1, #0xdc
+    lsls r1, r1, #2
+    adds r0, r7, r1
+    ldr r0, [r0]
     bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42, 0x01, 0x43
-    .byte 0xCA, 0x0F, 0x00, 0x2A, 0x00, 0xD0, 0xC8, 0xE0, 0xD7, 0x23, 0x9B, 0x00, 0xF8, 0x18, 0x01, 0x68
-    .byte 0x02, 0x60, 0x1F, 0x9C, 0x21, 0x60, 0x8B, 0xE1, 0x01, 0x26, 0xDB, 0x25, 0xAD, 0x00, 0x78, 0x19
-    .byte 0x00, 0x68
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r2, r1, #0x1f
+    cmp r2, #0
+    beq .Lraw_code_linkonce_6476_8
+    b loc_080DFEFE
+.Lraw_code_linkonce_6476_8:
+    movs r3, #0xd7
+    lsls r3, r3, #2
+    adds r0, r7, r3
+    ldr r1, [r0]
+    str r2, [r0]
+    ldr r4, [sp, #0x7c]
+    str r1, [r4]
+    b .Lraw_code_linkonce_6614_0
+.Lraw_code_linkonce_6477_8:
+    movs r6, #1
+    movs r5, #0xdb
+    lsls r5, r5, #2
+    adds r0, r7, r5
+    ldr r0, [r0]
     bl GetState__C12UiStateOwner
-    .byte 0x03, 0x28, 0x00, 0xD0, 0xB6, 0xE0, 0x9A, 0xE0, 0x01, 0x26
-    .byte 0xDB, 0x21, 0x89, 0x00, 0x7C, 0x18, 0x20, 0x68
+    cmp r0, #3
+    beq .Lraw_code_linkonce_6480_6
+    b loc_080DFEFE
+.Lraw_code_linkonce_6480_6:
+    b .Lraw_code_linkonce_6521_4
+.Lraw_code_linkonce_6480_8:
+    movs r6, #1
+    movs r1, #0xdb
+    lsls r1, r1, #2
+    adds r4, r7, r1
+    ldr r0, [r4]
     bl GetState__C12UiStateOwner
-    .byte 0x00, 0x28, 0x00, 0xD0
-    .byte 0xAB, 0xE0, 0x00, 0x25, 0x20, 0x68, 0x85, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
+    cmp r0, #0
+    beq .Lraw_code_linkonce_6484_2
+    b loc_080DFEFE
+.Lraw_code_linkonce_6484_2:
+    movs r5, #0
+    ldr r0, [r4]
+    cmp r5, r0
+    beq .Lraw_code_linkonce_6486_0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_6486_0
+    movs r1, #3
     bl _._12UiStateOwner
-    .byte 0x25, 0x60, 0xD9, 0x22, 0x92, 0x00, 0xB9, 0x18, 0x85, 0xE0, 0x01, 0x26
-    .byte 0xDB, 0x23, 0x9B, 0x00, 0xF8, 0x18, 0x00, 0x68
+.Lraw_code_linkonce_6486_0:
+    str r5, [r4]
+    movs r2, #0xd9
+    lsls r2, r2, #2
+    adds r1, r7, r2
+    b .Lraw_code_linkonce_6521_10
+.Lraw_code_linkonce_6486_10:
+    movs r6, #1
+    movs r3, #0xdb
+    lsls r3, r3, #2
+    adds r0, r7, r3
+    ldr r0, [r0]
     bl GetState__C12UiStateOwner
-    .byte 0x03, 0x28, 0x00, 0xD0
-    .byte 0x93, 0xE0, 0xD9, 0x24, 0xA4, 0x00, 0x39, 0x19, 0x77, 0xE0, 0x01, 0x26, 0xDB, 0x25, 0xAD, 0x00
-    .byte 0x7C, 0x19, 0x20, 0x68
+    cmp r0, #3
+    beq .Lraw_code_linkonce_6490_2
+    b loc_080DFEFE
+.Lraw_code_linkonce_6490_2:
+    movs r4, #0xd9
+    lsls r4, r4, #2
+    adds r1, r7, r4
+    b .Lraw_code_linkonce_6521_10
+.Lraw_code_linkonce_6490_10:
+    movs r6, #1
+    movs r5, #0xdb
+    lsls r5, r5, #2
+    adds r4, r7, r5
+    ldr r0, [r4]
     bl GetState__C12UiStateOwner
-    .byte 0x06, 0x28, 0x00, 0xD1, 0x85, 0xE0, 0x20, 0x68
+    cmp r0, #6
+    bne .Lraw_code_linkonce_6493_6
+    b loc_080DFEFE
+.Lraw_code_linkonce_6493_6:
+    ldr r0, [r4]
     bl GetChoiceResult__C12UiStateOwner
-    .byte 0x01, 0x1C, 0x38, 0x1C
+    adds r1, r0, #0
+    adds r0, r7, #0
     bl Push__20FarmingTutorialScenei
-    .byte 0x62, 0xE0, 0xDC, 0x21, 0x89, 0x00, 0x78, 0x18, 0x00, 0x68
+    b .Lraw_code_linkonce_6521_4
+.Lraw_code_linkonce_6497_2:
+    movs r1, #0xdc
+    lsls r1, r1, #2
+    adds r0, r7, r1
+    ldr r0, [r0]
     bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42
-    .byte 0x01, 0x43, 0xCC, 0x0F, 0x00, 0x2C, 0x70, 0xD1, 0xE8, 0x22, 0x92, 0x00, 0xB9, 0x18, 0x01, 0x20
-    .byte 0x08, 0x70, 0x50, 0x46
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r4, r1, #0x1f
+    cmp r4, #0
+    bne loc_080DFEFE
+    movs r2, #0xe8
+    lsls r2, r2, #2
+    adds r1, r7, r2
+    movs r0, #1
+    strb r0, [r1]
+    mov r0, sl
     bl GetHardwareDisplayState
-    .byte 0x02, 0x88, 0x0A, 0x49, 0x11, 0x40, 0x01, 0x80
-    .byte 0x50, 0x46
+    ldrh r2, [r0]
+    ldr r1, .Lraw_code_linkonce_6510_4
+    ands r1, r2
+    strh r1, [r0]
+    mov r0, sl
     bl GetHardwareDisplayState
-    .byte 0x50, 0x30, 0x02, 0x88, 0x07, 0x49, 0x11, 0x40, 0x01, 0x80
-    .byte 0x50, 0x46
+    adds r0, #0x50
+    ldrh r2, [r0]
+    ldr r1, .Lraw_code_linkonce_6510_8
+    ands r1, r2
+    strh r1, [r0]
+    mov r0, sl
     bl GetHardwareDisplayState
-    .byte 0x4C, 0x30, 0x04, 0x80, 0xD9, 0x23, 0x9B, 0x00, 0xF8, 0x18
-    .byte 0x04, 0x60, 0x52, 0xE0, 0xFF, 0xF0, 0x00, 0x00, 0x3F, 0xFF, 0x00, 0x00, 0xDC, 0x24, 0xA4, 0x00
-    .byte 0x38, 0x19, 0x00, 0x68
+    adds r0, #0x4c
+    strh r4, [r0]
+    movs r3, #0xd9
+    lsls r3, r3, #2
+    adds r0, r7, r3
+    str r4, [r0]
+    b loc_080DFEFE
+.Lraw_code_linkonce_6510_4: .word 0x0000F0FF
+.Lraw_code_linkonce_6510_8: .word 0x0000FF3F
+.Lraw_code_linkonce_6510_12:
+    movs r4, #0xdc
+    lsls r4, r4, #2
+    adds r0, r7, r4
+    ldr r0, [r0]
     bl GetStep__C23HardwareBlendController
-    .byte 0x00, 0x04, 0x00, 0x14, 0x41, 0x42, 0x01, 0x43
-    .byte 0xC9, 0x0F, 0x00, 0x29, 0x41, 0xD1, 0xD9, 0x25, 0xAD, 0x00, 0x78, 0x19, 0x3C, 0xE0, 0xE6, 0x20
-    .byte 0x80, 0x00, 0x39, 0x18, 0x08, 0x88, 0x01, 0x38, 0x08, 0x80, 0x00, 0x04, 0x01, 0x0C, 0x2E, 0xE0
-    .byte 0xE7, 0x23, 0x9B, 0x00, 0xFC, 0x18, 0x20, 0x68
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r1, r1, #0x1f
+    cmp r1, #0
+    bne loc_080DFEFE
+    movs r5, #0xd9
+    lsls r5, r5, #2
+    adds r0, r7, r5
+    b .Lraw_code_linkonce_6524_8
+.Lraw_code_linkonce_6514_14:
+    movs r0, #0xe6
+    lsls r0, r0, #2
+    adds r1, r7, r0
+    ldrh r0, [r1]
+    subs r0, #1
+    strh r0, [r1]
+    lsls r0, r0, #0x10
+    lsrs r1, r0, #0x10
+    b .Lraw_code_linkonce_6523_14
+.Lraw_code_linkonce_6516_0:
+    movs r3, #0xe7
+    lsls r3, r3, #2
+    adds r4, r7, r3
+    ldr r0, [r4]
     bl IsActorAxisMotionComplete
-    .byte 0x00, 0x06, 0x00, 0x28
-    .byte 0x2B, 0xD0, 0x00, 0x21, 0x21, 0x60, 0xD9, 0x24, 0xA4, 0x00, 0x38, 0x19, 0x24, 0xE0, 0xDA, 0x25
-    .byte 0xAD, 0x00, 0x78, 0x19, 0x00, 0x68, 0x01, 0x68, 0x89, 0x6A, 0xF3, 0xF7, 0x03, 0xF9, 0x00, 0x06
-    .byte 0x00, 0x28, 0x1A, 0xD0, 0xD9, 0x20, 0x80, 0x00, 0x39, 0x18, 0x00, 0x20, 0x08, 0x60, 0x14, 0xE0
-    .byte 0xDA, 0x21, 0x89, 0x00, 0x78, 0x18, 0x00, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x5E, 0x21, 0xF3, 0xF7
-    .byte 0xF3, 0xF8, 0x41, 0x69, 0xC9, 0x6B, 0xF3, 0xF7, 0xED, 0xF8, 0x00, 0x06, 0x01, 0x0E, 0x00, 0x29
-    .byte 0x03, 0xD1, 0xD9, 0x22, 0x92, 0x00, 0xB8, 0x18, 0x01, 0x60
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq loc_080DFEFE
+    movs r1, #0
+    str r1, [r4]
+    movs r4, #0xd9
+    lsls r4, r4, #2
+    adds r0, r7, r4
+    b .Lraw_code_linkonce_6524_8
+.Lraw_code_linkonce_6519_14:
+    movs r5, #0xda
+    lsls r5, r5, #2
+    adds r0, r7, r5
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x28]
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq loc_080DFEFE
+.Lraw_code_linkonce_6521_4:
+    movs r0, #0xd9
+    lsls r0, r0, #2
+    adds r1, r7, r0
+.Lraw_code_linkonce_6521_10:
+    movs r0, #0
+    str r0, [r1]
+    b loc_080DFEFE
+.Lraw_code_linkonce_6522_0:
+    movs r1, #0xda
+    lsls r1, r1, #2
+    adds r0, r7, r1
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x5e
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x3c]
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    lsrs r1, r0, #0x18
+.Lraw_code_linkonce_6523_14:
+    cmp r1, #0
+    bne loc_080DFEFE
+    movs r2, #0xd9
+    lsls r2, r2, #2
+    adds r0, r7, r2
+.Lraw_code_linkonce_6524_8:
+    str r1, [r0]
     .global loc_080DFEFE
     .thumb_func
     loc_080DFEFE:
@@ -6550,35 +14345,157 @@ Run__20FarmingTutorialScene:
     mov r0, sl
     bl GetHardwareDmaQueue
     adds r2, r0, #0
-    ldr r5, [pc, #0x40]
+    ldr r5, .Lraw_code_linkonce_6568_0
     adds r0, r7, r5
     ldrb r0, [r0]
-    ldr r1, [pc, #0x3c]
+    ldr r1, .Lraw_code_linkonce_6568_4
     cmp r0, #0
     beq .Lauto_080DFF40
     movs r1, #0
     .Lauto_080DFF40:
     adds r6, r2, #0
     add r0, sp, #0xc
-    .byte 0xA0, 0x22, 0xD2, 0x04, 0x02, 0x23
+    movs r2, #0xa0
+    lsls r2, r2, #0x13
+    movs r3, #2
     bl __21DmaTransferDescriptorUiPvUi
-    .byte 0x68, 0x46, 0x0C, 0x30, 0x24, 0x90
-    .byte 0x71, 0x68, 0xF0, 0x68, 0x81, 0x42, 0x0F, 0xD0, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x1C, 0x03, 0xA9
-    .byte 0x1C, 0xC9, 0x1C, 0xC0, 0x09, 0x68, 0x01, 0x60, 0x70, 0x68, 0x10, 0x30, 0x70, 0x60, 0x85, 0xE0
-    .byte 0xA1, 0x03, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0x88, 0x46, 0x01, 0x20, 0x1E, 0x90, 0x30, 0x68
-    .byte 0x08, 0x1A, 0x04, 0x11, 0x1D, 0x94, 0x1E, 0xA9, 0x1D, 0xA8, 0x01, 0x2C, 0x00, 0xD2, 0x08, 0x1C
-    .byte 0x00, 0x68, 0x20, 0x18, 0x00, 0x28, 0x0A, 0xD0, 0x04, 0x01, 0x20, 0x1C, 0xEF, 0xF7, 0x6C, 0xFD
-    .byte 0xA1, 0x46, 0x00, 0x28, 0x05, 0xD1, 0x48, 0x46, 0xF3, 0xF7, 0xE4, 0xF9, 0x01, 0xE0, 0x00, 0x20
-    .byte 0x81, 0x46, 0x05, 0x1C, 0x2A, 0x95, 0x32, 0x68, 0xAC, 0x46, 0x42, 0x45, 0x0D, 0xD0, 0x65, 0x46
-    .byte 0x00, 0x2D, 0x05, 0xD0, 0x60, 0x46, 0x11, 0x1C, 0x38, 0xC9, 0x38, 0xC0, 0x09, 0x68, 0x01, 0x60
-    .byte 0x10, 0x32, 0x10, 0x20, 0x84, 0x44, 0x42, 0x45, 0xF1, 0xD1, 0x65, 0x46, 0x1E, 0x98, 0x01, 0x28
-    .byte 0x09, 0xD1, 0x00, 0x2D, 0x05, 0xD0, 0x28, 0x1C, 0x24, 0x99, 0x1C, 0xC9, 0x1C, 0xC0, 0x09, 0x68
-    .byte 0x01, 0x60, 0x10, 0x35, 0x13, 0xE0, 0x80, 0x46, 0x2A, 0x1C, 0x00, 0x28, 0x0E, 0xD0, 0x00, 0x2A
-    .byte 0x05, 0xD0, 0x10, 0x1C, 0x24, 0x99, 0x38, 0xC9, 0x38, 0xC0, 0x09, 0x68, 0x01, 0x60, 0x01, 0x25
-    .byte 0x6D, 0x42, 0xA8, 0x44, 0x10, 0x32, 0x40, 0x46, 0x00, 0x28, 0xF0, 0xD1, 0x15, 0x1C, 0x72, 0x68
-    .byte 0x30, 0x68, 0x01, 0x1C, 0x90, 0x42, 0x02, 0xD0, 0x10, 0x31, 0x91, 0x42, 0xFC, 0xD1, 0x00, 0x28
-    .byte 0x01, 0xD0, 0xEF, 0xF7, 0x55, 0xFD, 0x2A, 0x98, 0x48, 0x44, 0x2A, 0x99, 0x31, 0x60, 0x75, 0x60
-    .byte 0xF0, 0x60, 0x1B, 0xE0
+    mov r0, sp
+    adds r0, #0xc
+    str r0, [sp, #0x90]
+    ldr r1, [r6, #4]
+    ldr r0, [r6, #0xc]
+    cmp r1, r0
+    beq .Lraw_code_linkonce_6568_8
+    cmp r1, #0
+    beq .Lraw_code_linkonce_6567_8
+    adds r0, r1, #0
+    add r1, sp, #0xc
+    ldm r1!, {r2, r3, r4}
+    stm r0!, {r2, r3, r4}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_6567_8:
+    ldr r0, [r6, #4]
+    adds r0, #0x10
+    str r0, [r6, #4]
+    b .Lraw_code_linkonce_6606_0
+.Lraw_code_linkonce_6568_0: .word 0x000003A1
+.Lraw_code_linkonce_6568_4: .word 0x0000FFFF
+.Lraw_code_linkonce_6568_8:
+    mov r8, r1
+    movs r0, #1
+    str r0, [sp, #0x78]
+    ldr r0, [r6]
+    subs r0, r1, r0
+    asrs r4, r0, #4
+    str r4, [sp, #0x74]
+    add r1, sp, #0x78
+    add r0, sp, #0x74
+    cmp r4, #1
+    bhs .Lraw_code_linkonce_6570_0
+    adds r0, r1, #0
+.Lraw_code_linkonce_6570_0:
+    ldr r0, [r0]
+    adds r0, r4, r0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_6571_14
+    lsls r4, r0, #4
+    adds r0, r4, #0
+    bl malloc
+    mov sb, r4
+    cmp r0, #0
+    bne .Lraw_code_linkonce_6572_2
+    mov r0, sb
+    bl RetryMemoryAllocation
+    b .Lraw_code_linkonce_6572_2
+.Lraw_code_linkonce_6571_14:
+    movs r0, #0
+    mov sb, r0
+.Lraw_code_linkonce_6572_2:
+    adds r5, r0, #0
+    str r5, [sp, #0xa8]
+    ldr r2, [r6]
+    mov ip, r5
+    cmp r2, r8
+    beq .Lraw_code_linkonce_6574_10
+.Lraw_code_linkonce_6572_14:
+    mov r5, ip
+    cmp r5, #0
+    beq .Lraw_code_linkonce_6574_0
+    mov r0, ip
+    adds r1, r2, #0
+    ldm r1!, {r3, r4, r5}
+    stm r0!, {r3, r4, r5}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_6574_0:
+    adds r2, #0x10
+    movs r0, #0x10
+    add ip, r0
+    cmp r2, r8
+    bne .Lraw_code_linkonce_6572_14
+.Lraw_code_linkonce_6574_10:
+    mov r5, ip
+    ldr r0, [sp, #0x78]
+    cmp r0, #1
+    bne .Lraw_code_linkonce_6576_6
+    cmp r5, #0
+    beq .Lraw_code_linkonce_6576_2
+    adds r0, r5, #0
+    ldr r1, [sp, #0x90]
+    ldm r1!, {r2, r3, r4}
+    stm r0!, {r2, r3, r4}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_6576_2:
+    adds r5, #0x10
+    b .Lraw_code_linkonce_6578_14
+.Lraw_code_linkonce_6576_6:
+    mov r8, r0
+    adds r2, r5, #0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_6578_12
+.Lraw_code_linkonce_6576_14:
+    cmp r2, #0
+    beq .Lraw_code_linkonce_6577_14
+    adds r0, r2, #0
+    ldr r1, [sp, #0x90]
+    ldm r1!, {r3, r4, r5}
+    stm r0!, {r3, r4, r5}
+    ldr r1, [r1]
+    str r1, [r0]
+.Lraw_code_linkonce_6577_14:
+    movs r5, #1
+    rsbs r5, r5, #0
+    add r8, r5
+    adds r2, #0x10
+    mov r0, r8
+    cmp r0, #0
+    bne .Lraw_code_linkonce_6576_14
+.Lraw_code_linkonce_6578_12:
+    adds r5, r2, #0
+.Lraw_code_linkonce_6578_14:
+    ldr r2, [r6, #4]
+    ldr r0, [r6]
+    adds r1, r0, #0
+    cmp r0, r2
+    beq .Lraw_code_linkonce_6579_14
+.Lraw_code_linkonce_6579_8:
+    adds r1, #0x10
+    cmp r1, r2
+    bne .Lraw_code_linkonce_6579_8
+.Lraw_code_linkonce_6579_14:
+    cmp r0, #0
+    beq .Lraw_code_linkonce_6580_6
+    bl free
+.Lraw_code_linkonce_6580_6:
+    ldr r0, [sp, #0xa8]
+    add r0, sb
+    ldr r1, [sp, #0xa8]
+    str r1, [r6]
+    str r5, [r6, #4]
+    str r0, [r6, #0xc]
+    b .Lraw_code_linkonce_6606_0
     .Lauto_080E0048:
     mov r0, sl
     bl GetHardwareDmaQueue
@@ -6603,6 +14520,7 @@ Run__20FarmingTutorialScene:
     ldr r2, [r1, #0x10]
     add r1, sp, #0xc
     bl _call_via_r2
+.Lraw_code_linkonce_6606_0:
     movs r3, #0xdc
     lsls r3, r3, #2
     adds r0, r7, r3
@@ -6611,8 +14529,17 @@ Run__20FarmingTutorialScene:
     mov r0, sl
     bl UpdateHardwareFrame
     b loc_080DFBFE
-    .byte 0x1F, 0x98, 0x2B, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC
-    .byte 0x08, 0x47, 0x00, 0x00
+.Lraw_code_linkonce_6614_0:
+    ldr r0, [sp, #0x7c]
+    add sp, #0xac
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .section .text.map_clock_status_lifecycle_after, "ax", %progbits
     .align 2, 0
     .global func_080E0E80
@@ -12895,25 +20822,57 @@ _._14GameObjectBase:
 	.global func_080DC5F4
 	.thumb_func
 func_080DC5F4:
-	.byte 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C
-	.byte 0x48, 0x30, 0x02, 0x21
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    adds r0, #0x48
+    movs r1, #2
 	bl _._19GameSceneSpriteBase
-	.byte 0x28, 0x1C, 0x08, 0x30, 0x02, 0x21
+    adds r0, r5, #0
+    adds r0, #8
+    movs r1, #2
 	bl _._19GameSceneSpriteBase
-	.byte 0x05, 0x48, 0x68, 0x60
-	.byte 0x01, 0x20, 0x20, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
+    ldr r0, .Lraw_code_linkonce_12907_0
+    str r0, [r5, #4]
+    movs r0, #1
+    ands r0, r4
+    cmp r0, #0
+    beq .Lraw_code_linkonce_12906_0
+    adds r0, r5, #0
 	bl __builtin_delete
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte __vt_22EntityVisualController
+.Lraw_code_linkonce_12906_0:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+.Lraw_code_linkonce_12907_0: .4byte __vt_22EntityVisualController
 	.global DestroyAudioActorEntity
 	.thumb_func
 DestroyAudioActorEntity:
-	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C
-	.byte 0x0A, 0x48, 0x60, 0x61, 0x21, 0x69, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-	.byte 0x03, 0x21, 0xF7, 0xF7, 0x68, 0xF9, 0x01, 0x20, 0x28, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x20, 0x1C
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Lraw_code_linkonce_12916_0
+    str r0, [r4, #0x14]
+    ldr r1, [r4, #0x10]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_12913_6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_12913_6:
+    movs r0, #1
+    ands r0, r5
+    cmp r0, #0
+    beq .Lraw_code_linkonce_12915_0
+    adds r0, r4, #0
 	bl __builtin_delete
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte __vt_7AEntity
+.Lraw_code_linkonce_12915_0:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+.Lraw_code_linkonce_12916_0: .4byte __vt_7AEntity
     .section .text.entity_visual_controller_cleanup_after, "ax", %progbits
     .align 2, 0
 	thumb_func_start func_080DC67C
@@ -12987,12 +20946,31 @@ func_080DC67C: @ 0x080DC67C
 	.global func_080DC6F0
 	.thumb_func
 func_080DC6F0:
-	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x0A, 0x48, 0x60, 0x61, 0x21, 0x69, 0x00, 0x29, 0x05, 0xD0
-	.byte 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF7, 0xF7, 0x04, 0xF9, 0x01, 0x20, 0x28, 0x40
-	.byte 0x00, 0x28, 0x02, 0xD0, 0x20, 0x1C
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Lraw_code_linkonce_12995_0
+    str r0, [r4, #0x14]
+    ldr r1, [r4, #0x10]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_12991_12
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_12991_12:
+    movs r0, #1
+    ands r0, r5
+    cmp r0, #0
+    beq .Lraw_code_linkonce_12994_0
+    adds r0, r4, #0
 	bl __builtin_delete
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte __vt_7AEntity
+.Lraw_code_linkonce_12994_0:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+.Lraw_code_linkonce_12995_0: .4byte __vt_7AEntity
 
 	thumb_func_start func_080DC724
 func_080DC724: @ 0x080DC724
@@ -13030,39 +21008,92 @@ func_080DC724: @ 0x080DC724
 	.global func_080DC7CC
 	.thumb_func
 func_080DC7CC:
-	.byte 0x30, 0xB5, 0x04, 0x1C
-	.byte 0x0D, 0x1C, 0x0A, 0x48, 0x60, 0x61, 0x21, 0x69, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68
-	.byte 0x08, 0x1C, 0x03, 0x21, 0xF7, 0xF7, 0x96, 0xF8, 0x01, 0x20, 0x28, 0x40, 0x00, 0x28, 0x02, 0xD0
-	.byte 0x20, 0x1C
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Lraw_code_linkonce_13039_0
+    str r0, [r4, #0x14]
+    ldr r1, [r4, #0x10]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_13035_8
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_13035_8:
+    movs r0, #1
+    ands r0, r5
+    cmp r0, #0
+    beq .Lraw_code_linkonce_13038_0
+    adds r0, r4, #0
 	bl __builtin_delete
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte __vt_7AEntity
+.Lraw_code_linkonce_13038_0:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+.Lraw_code_linkonce_13039_0: .4byte __vt_7AEntity
 	.global func_080DC800
 	.thumb_func
 func_080DC800:
-	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x0A, 0x48, 0x60, 0x61, 0x21, 0x69, 0x00, 0x29, 0x05, 0xD0
-	.byte 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF7, 0xF7, 0x7C, 0xF8, 0x01, 0x20, 0x28, 0x40
-	.byte 0x00, 0x28, 0x02, 0xD0, 0x20, 0x1C
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Lraw_code_linkonce_13048_0
+    str r0, [r4, #0x14]
+    ldr r1, [r4, #0x10]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_13044_12
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_13044_12:
+    movs r0, #1
+    ands r0, r5
+    cmp r0, #0
+    beq .Lraw_code_linkonce_13047_0
+    adds r0, r4, #0
 	bl __builtin_delete
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte __vt_7AEntity
+.Lraw_code_linkonce_13047_0:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+.Lraw_code_linkonce_13048_0: .4byte __vt_7AEntity
     .section .text.entity_sprite_cleanup_after, "ax", %progbits
     .align 2, 0
 	.global func_080DC92C
 	.thumb_func
 func_080DC92C:
-	.byte 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C
-	.byte 0x8C, 0x30, 0x02, 0x21
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    adds r0, #0x8c
+    movs r1, #2
 	bl _._19GameSceneSpriteBase
-	.byte 0x28, 0x1C, 0x48, 0x30, 0x02, 0x21
+    adds r0, r5, #0
+    adds r0, #0x48
+    movs r1, #2
 	bl _._19GameSceneSpriteBase
-	.byte 0x28, 0x1C, 0x08, 0x30, 0x02, 0x21
+    adds r0, r5, #0
+    adds r0, #8
+    movs r1, #2
 	bl _._19GameSceneSpriteBase
-	.byte 0x06, 0x48
-	.byte 0x68, 0x60, 0x01, 0x20, 0x20, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x28, 0x1C
+    ldr r0, .Lraw_code_linkonce_13065_0
+    str r0, [r5, #4]
+    movs r0, #1
+    ands r0, r4
+    cmp r0, #0
+    beq .Lraw_code_linkonce_13064_0
+    adds r0, r5, #0
 	bl __builtin_delete
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	.4byte __vt_22EntityVisualController
+.Lraw_code_linkonce_13064_0:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_linkonce_13065_0: .4byte __vt_22EntityVisualController
 
     .section .text.npc_timed_path_search_after, "ax", %progbits
 
@@ -13070,16 +21101,19 @@ func_080DC92C:
 	.global func_080DC9A8
 	.thumb_func
 func_080DC9A8:
-	.byte 0x00, 0xB5
+    push {lr}
 	bl _._10ANpcEntity
-	.byte 0x01, 0xBC
-	.byte 0x00, 0x47, 0x00, 0x00
+    pop {r0}
+    bx r0
+    .align 2, 0
 	.global func_080DC9B4
 	.thumb_func
 func_080DC9B4:
-	.byte 0x00, 0xB5
+    push {lr}
 	bl _._10ANpcEntity
-	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    pop {r0}
+    bx r0
+    .align 2, 0
 
 	thumb_func_start func_080DC9C0
 func_080DC9C0: @ 0x080DC9C0
@@ -14382,9 +22416,24 @@ func_080DCFE0: @ 0x080DCFE0
 	.global func_080DD384
 	.thumb_func
 func_080DD384:
-	.byte 0x0B, 0x78, 0x10, 0x22, 0x52, 0x42, 0x1A, 0x40, 0x0C, 0x23, 0x1A, 0x43
-	.byte 0x0A, 0x70, 0x02, 0x6D, 0x4A, 0x60, 0x02, 0x1C, 0x54, 0x32, 0x12, 0x88, 0x0A, 0x81, 0x56, 0x30
-	.byte 0x00, 0x88, 0x48, 0x81, 0x70, 0x47, 0x00, 0x00
+    ldrb r3, [r1]
+    movs r2, #0x10
+    rsbs r2, r2, #0
+    ands r2, r3
+    movs r3, #0xc
+    orrs r2, r3
+    strb r2, [r1]
+    ldr r2, [r0, #0x50]
+    str r2, [r1, #4]
+    adds r2, r0, #0
+    adds r2, #0x54
+    ldrh r2, [r2]
+    strh r2, [r1, #8]
+    adds r0, #0x56
+    ldrh r0, [r0]
+    strh r0, [r1, #0xa]
+    bx lr
+    .align 2, 0
 
 	thumb_func_start func_080DD3A8
 func_080DD3A8: @ 0x080DD3A8
@@ -21196,7 +29245,7 @@ func_080E0EF0:
     bl _._13AScriptEngine
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .section .text.code_080E0F48, "ax", %progbits
     .align 2, 0
 
@@ -21241,7 +29290,7 @@ Run__20UiDmaTransferCommand:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .section .text.ui_text_output_base_after, "ax", %progbits
     .align 2, 0
     .global func_080E118C
@@ -21302,9 +29351,9 @@ func_080E11EC:
     push {r5, r6, r7}
     adds r6, r0, #0
     mov sl, r1
-    ldr r0, [pc, #0x290]
+    ldr r0, .Lraw_code_linkonce_21590_2
     adds r1, r6, r0
-    ldr r0, [pc, #0x290]
+    ldr r0, .Lraw_code_linkonce_21591_0
     str r0, [r1]
     movs r1, #0xa8
     lsls r1, r1, #3
@@ -21550,7 +29599,7 @@ func_080E11EC:
     movs r2, #0xe8
     lsls r2, r2, #1
     adds r1, r6, r2
-    ldr r0, [pc, #0x54]
+    ldr r0, .Lraw_code_linkonce_21592_0
     str r0, [r1]
     subs r2, #0x30
     adds r1, r6, r2
@@ -21587,15 +29636,16 @@ func_080E11EC:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xA0, 0x23, 0x00, 0x00
-    .4byte __vt_23ScriptTextVariableStore
-    .4byte __vt_23IndexedResourceProvider
+    .align 2, 0
+.Lraw_code_linkonce_21590_2: .word 0x000023A0
+.Lraw_code_linkonce_21591_0: .4byte __vt_23ScriptTextVariableStore
+.Lraw_code_linkonce_21592_0: .4byte __vt_23IndexedResourceProvider
     .global func_080E0C38_vtable_target
     .thumb_func
 func_080E0C38_vtable_target:
     push {lr}
     adds r2, r0, #0
-    ldr r0, [pc, #0x14]
+    ldr r0, .Lraw_code_linkonce_21610_0
     str r0, [r2]
     movs r0, #1
     ands r0, r1
@@ -21606,8 +29656,8 @@ func_080E0C38_vtable_target:
     .Lauto_080E0C4E:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_23ScriptTextVariableStore
+    .align 2, 0
+.Lraw_code_linkonce_21610_0: .4byte __vt_23ScriptTextVariableStore
     .global func_080E14B8
     .thumb_func
 func_080E14B8:
@@ -21620,31 +29670,87 @@ func_080E14B8:
     cmp r0, #5
     bhi .Lauto_080E0D18
     lsls r0, r0, #2
-    ldr r1, [pc, #8]
+    ldr r1, .Lraw_code_linkonce_21627_2
     adds r0, r0, r1
     ldr r0, [r0]
     mov pc, r0
-    .byte 0x00, 0x00, 0x78, 0x0C, 0x0E, 0x08
+    .align 2, 0
+.Lraw_code_linkonce_21627_2: .word .Lauto_080E0C78
     .Lauto_080E0C78:
-    .byte 0x90, 0x0C, 0x0E, 0x08, 0x28, 0x0D, 0x0E, 0x08, 0xC8, 0x0C, 0x0E, 0x08, 0xCC, 0x0C, 0x0E, 0x08
-    .byte 0xD0, 0x0C, 0x0E, 0x08, 0xD4, 0x0C, 0x0E, 0x08
+    .word .Lauto_080E0C90
+    .word .Lauto_080E0D28
+    .word .Lauto_080E0CC8
+    .word .Lauto_080E0CCC
+    .word .Lauto_080E0CD0
+    .word .Lauto_080E0CD4
     .Lauto_080E0C90:
-    .byte 0x58, 0x69, 0x69, 0x46, 0x00, 0x22, 0x6D, 0xF7, 0x79, 0xFE, 0x02, 0xAD, 0x68, 0x46, 0xF2, 0xF7
-    .byte 0x47, 0xFB, 0x04, 0x1C, 0x1F, 0x2C, 0x00, 0xD9, 0x1F, 0x24, 0x28, 0x1C, 0x69, 0x46, 0x22, 0x1C
-    .byte 0xF2, 0xF7, 0x4C, 0xFA, 0x29, 0x19, 0x00, 0x20, 0x08, 0x70, 0x01, 0x20, 0x38, 0x70, 0x38, 0x1D
-    .byte 0x29, 0x1C, 0xF2, 0xF7, 0x0D, 0xFB, 0x46, 0xE0
+    ldr r0, [r3, #0x14]
+    mov r1, sp
+    movs r2, #0
+    bl FormatFullWidthDecimal
+    add r5, sp, #8
+    mov r0, sp
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0x1f
+    bls .Lraw_code_linkonce_21633_10
+    movs r4, #0x1f
+.Lraw_code_linkonce_21633_10:
+    adds r0, r5, #0
+    mov r1, sp
+    adds r2, r4, #0
+    bl memcpy
+    adds r1, r5, r4
+    movs r0, #0
+    strb r0, [r1]
+    movs r0, #1
+    strb r0, [r7]
+    adds r0, r7, #4
+    adds r1, r5, #0
+    bl strcpy
+    b .Lauto_080E0D56
     .Lauto_080E0CC8:
-    .byte 0x59, 0x68, 0x04, 0xE0
+    ldr r1, [r3, #4]
+    b .Lraw_code_linkonce_21643_2
     .Lauto_080E0CCC:
-    .byte 0x99, 0x68, 0x02, 0xE0
+    ldr r1, [r3, #8]
+    b .Lraw_code_linkonce_21643_2
     .Lauto_080E0CD0:
-    .byte 0xD9, 0x68, 0x00, 0xE0
+    ldr r1, [r3, #0xc]
+    b .Lraw_code_linkonce_21643_2
     .Lauto_080E0CD4:
-    .byte 0x19, 0x69, 0x80, 0x29, 0x26, 0xD0, 0x02, 0xAE, 0x0D, 0x20, 0x0D, 0x1C, 0x45, 0x43, 0x0C, 0x48
-    .byte 0x2D, 0x18, 0x28, 0x1C, 0xF2, 0xF7, 0x22, 0xFB, 0x04, 0x1C, 0x1F, 0x2C, 0x00, 0xD9, 0x1F, 0x24
-    .byte 0x30, 0x1C, 0x29, 0x1C, 0x22, 0x1C, 0xF2, 0xF7, 0x27, 0xFA, 0x31, 0x19, 0x00, 0x20, 0x08, 0x70
-    .byte 0x01, 0x20, 0x38, 0x70, 0x38, 0x1D, 0x31, 0x1C, 0xF2, 0xF7, 0xE8, 0xFA, 0x21, 0xE0, 0x00, 0x00
-    .word gText_AnimalFestival_LivestockContestantNames
+    ldr r1, [r3, #0x10]
+.Lraw_code_linkonce_21643_2:
+    cmp r1, #0x80
+    beq .Lauto_080E0D28
+    add r6, sp, #8
+    movs r0, #0xd
+    adds r5, r1, #0
+    muls r5, r0, r5
+    ldr r0, .Lraw_code_linkonce_21647_0
+    adds r5, r5, r0
+    adds r0, r5, #0
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0x1f
+    bls .Lraw_code_linkonce_21645_0
+    movs r4, #0x1f
+.Lraw_code_linkonce_21645_0:
+    adds r0, r6, #0
+    adds r1, r5, #0
+    adds r2, r4, #0
+    bl memcpy
+    adds r1, r6, r4
+    movs r0, #0
+    strb r0, [r1]
+    movs r0, #1
+    strb r0, [r7]
+    adds r0, r7, #4
+    adds r1, r6, #0
+    bl strcpy
+    b .Lauto_080E0D56
+    .align 2, 0
+.Lraw_code_linkonce_21647_0: .word gText_AnimalFestival_LivestockContestantNames
     .Lauto_080E0D18:
     add r1, sp, #8
     movs r0, #0
@@ -21654,9 +29760,27 @@ func_080E14B8:
     bl strcpy
     b .Lauto_080E0D56
     .Lauto_080E0D28:
-    .byte 0x9D, 0x69, 0x28, 0x1C, 0xF2, 0xF7, 0x00, 0xFB, 0x04, 0x1C, 0x1F, 0x2C, 0x00, 0xD9, 0x1F, 0x24
-    .byte 0x68, 0x46, 0x29, 0x1C, 0x22, 0x1C, 0xF2, 0xF7, 0x05, 0xFA, 0x68, 0x46, 0x01, 0x19, 0x00, 0x20
-    .byte 0x08, 0x70, 0x01, 0x20, 0x38, 0x70, 0x38, 0x1D, 0x69, 0x46, 0xF2, 0xF7, 0xC5, 0xFA
+    ldr r5, [r3, #0x18]
+    adds r0, r5, #0
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0x1f
+    bls .Lraw_code_linkonce_21658_0
+    movs r4, #0x1f
+.Lraw_code_linkonce_21658_0:
+    mov r0, sp
+    adds r1, r5, #0
+    adds r2, r4, #0
+    bl memcpy
+    mov r0, sp
+    adds r1, r0, r4
+    movs r0, #0
+    strb r0, [r1]
+    movs r0, #1
+    strb r0, [r7]
+    adds r0, r7, #4
+    mov r1, sp
+    bl strcpy
     .Lauto_080E0D56:
     adds r0, r7, #0
     add sp, #0x28
@@ -21674,7 +29798,7 @@ func_080E0D60:
     movs r0, #0x8e
     lsls r0, r0, #5
     adds r1, r7, r0
-    ldr r0, [pc, #0x248]
+    ldr r0, .Lraw_code_linkonce_21932_0
     str r0, [r1]
     movs r1, #0xcb
     lsls r1, r1, #3
@@ -21894,7 +30018,7 @@ func_080E0D60:
     movs r0, #0xd0
     lsls r0, r0, #1
     adds r1, r7, r0
-    ldr r0, [pc, #0x48]
+    ldr r0, .Lraw_code_linkonce_21933_0
     str r0, [r1]
     movs r2, #0xb8
     lsls r2, r2, #1
@@ -21929,14 +30053,14 @@ func_080E0D60:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .4byte __vt_23ScriptTextVariableStore
-    .4byte __vt_23IndexedResourceProvider
+.Lraw_code_linkonce_21932_0: .4byte __vt_23ScriptTextVariableStore
+.Lraw_code_linkonce_21933_0: .4byte __vt_23IndexedResourceProvider
     .global func_080E0FC4
     .thumb_func
 func_080E0FC4:
     push {lr}
     adds r2, r0, #0
-    ldr r0, [pc, #0x14]
+    ldr r0, .Lraw_code_linkonce_21951_0
     str r0, [r2]
     movs r0, #1
     ands r0, r1
@@ -21947,8 +30071,8 @@ func_080E0FC4:
     .Lauto_080E0FDA:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_23ScriptTextVariableStore
+    .align 2, 0
+.Lraw_code_linkonce_21951_0: .4byte __vt_23ScriptTextVariableStore
     .global func_080E1844
     .thumb_func
 func_080E1844:
@@ -21964,7 +30088,7 @@ func_080E0FE4:
     lsls r1, r0, #2
     adds r1, r1, r0
     lsls r1, r1, #2
-    ldr r0, [pc, #0x30]
+    ldr r0, .Lraw_code_linkonce_21990_0
     adds r5, r1, r0
     adds r0, r5, #0
     bl strlen
@@ -21987,7 +30111,7 @@ func_080E0FE4:
     mov r1, sp
     bl strcpy
     b .Lauto_080E103A
-    .word gHorseRacePrizeCatalog
+.Lraw_code_linkonce_21990_0: .word gHorseRacePrizeCatalog
     .Lauto_080E102C:
     mov r1, sp
     movs r0, #0
@@ -22010,9 +30134,9 @@ func_080E1044:
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     adds r6, r1, #0
-    ldr r0, [pc, #0xac]
+    ldr r0, .Lraw_code_linkonce_22086_2
     adds r1, r5, r0
-    ldr r0, [pc, #0xac]
+    ldr r0, .Lraw_code_linkonce_22087_0
     str r0, [r1]
     movs r0, #0xa2
     lsls r0, r0, #1
@@ -22068,7 +30192,7 @@ func_080E1044:
     adds r0, r4, #0
     movs r1, #2
     bl _._16ObjTilePoolOwner
-    ldr r0, [pc, #0x28]
+    ldr r0, .Lraw_code_linkonce_22088_0
     str r0, [r5, #0x50]
     str r0, [r5, #0x20]
     ldr r0, [r5, #0x10]
@@ -22083,15 +30207,16 @@ func_080E1044:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xEC, 0x0A, 0x00, 0x00
-    .4byte __vt_23ScriptTextVariableStore
-    .4byte __vt_23IndexedResourceProvider
+    .align 2, 0
+.Lraw_code_linkonce_22086_2: .word 0x00000AEC
+.Lraw_code_linkonce_22087_0: .4byte __vt_23ScriptTextVariableStore
+.Lraw_code_linkonce_22088_0: .4byte __vt_23IndexedResourceProvider
     .global func_080E1104
     .thumb_func
 func_080E1104:
     push {lr}
     adds r2, r0, #0
-    ldr r0, [pc, #0x14]
+    ldr r0, .Lraw_code_linkonce_22106_0
     str r0, [r2]
     movs r0, #1
     ands r0, r1
@@ -22102,8 +30227,8 @@ func_080E1104:
     .Lauto_080E111A:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_23ScriptTextVariableStore
+    .align 2, 0
+.Lraw_code_linkonce_22106_0: .4byte __vt_23ScriptTextVariableStore
 
     .section .text.indexed_resource_archive_destructor_after, "ax", %progbits
     .align 2, 0
@@ -22119,15 +30244,16 @@ func_080E11E8:
     .thumb_func
 func_080E11F4:
     push {lr}
-    ldr r2, [pc, #0x10]
+    ldr r2, .Lraw_code_linkonce_22129_2
     adds r3, r0, r2
-    ldr r2, [pc, #0x10]
+    ldr r2, .Lraw_code_linkonce_22130_0
     str r2, [r3]
     bl func_08076E0C
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xC4, 0x09, 0x00, 0x00
-    .4byte __vt_23IndexedResourceProvider
+    .align 2, 0
+.Lraw_code_linkonce_22129_2: .word 0x000009C4
+.Lraw_code_linkonce_22130_0: .4byte __vt_23IndexedResourceProvider
     .global func_080E1A70
     .thumb_func
 func_080E1A70:
@@ -22144,7 +30270,7 @@ func_080E1210:
     bl func_08076EA8
     movs r0, #0
     mov r8, r0
-    ldr r1, [pc, #0x184]
+    ldr r1, .Lraw_code_linkonce_22348_0
     adds r0, r7, r1
     movs r2, #0
     ldrsh r0, [r0, r2]
@@ -22157,7 +30283,7 @@ func_080E1210:
     cmp r0, r1
     bge .Lauto_080E1254
     adds r2, r1, #0
-    ldr r3, [pc, #0x168]
+    ldr r3, .Lraw_code_linkonce_22348_0
     adds r1, r7, r3
     .Lauto_080E1244:
     adds r1, #0x10
@@ -22169,7 +30295,7 @@ func_080E1210:
     cmp r0, r2
     blt .Lauto_080E1244
     .Lauto_080E1254:
-    ldr r1, [pc, #0x158]
+    ldr r1, .Lraw_code_linkonce_22348_4
     adds r0, r7, r1
     ldr r0, [r0]
     movs r2, #0x8e
@@ -22187,7 +30313,7 @@ func_080E1210:
     mov sb, r0
     mov r1, r8
     lsls r0, r1, #4
-    ldr r2, [pc, #0x130]
+    ldr r2, .Lraw_code_linkonce_22348_0
     adds r0, r0, r2
     adds r5, r0, r7
     .Lauto_080E127E:
@@ -22268,7 +30394,7 @@ func_080E1210:
     cmp r0, r2
     blt .Lauto_080E1304
     .Lauto_080E1314:
-    ldr r1, [pc, #0x9c]
+    ldr r1, .Lraw_code_linkonce_22348_8
     adds r0, r7, r1
     ldr r0, [r0]
     cmp r8, r0
@@ -22345,14 +30471,16 @@ func_080E1210:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0xEC, 0x0D, 0x00, 0x00, 0xE8, 0x0D, 0x00, 0x00, 0xBC, 0x11, 0x00, 0x00
+.Lraw_code_linkonce_22348_0: .word 0x00000DEC
+.Lraw_code_linkonce_22348_4: .word 0x00000DE8
+.Lraw_code_linkonce_22348_8: .word 0x000011BC
     .global func_080E13B8
     .thumb_func
 func_080E13B8:
     push {r4, lr}
     adds r2, r0, #0
     adds r3, r1, #0
-    ldr r0, [pc, #0x44]
+    ldr r0, .Lraw_code_linkonce_22392_2
     adds r1, r2, r0
     ldr r0, [r1]
     lsls r0, r0, #4
@@ -22368,13 +30496,13 @@ func_080E13B8:
     cmp r0, r1
     bne .Lauto_080E13D4
     .Lauto_080E13DA:
-    ldr r0, [pc, #0x2c]
+    ldr r0, .Lraw_code_linkonce_22392_6
     adds r1, r2, r0
     ldr r0, [r1]
     lsls r0, r0, #4
     adds r0, #4
     adds r1, r1, r0
-    ldr r4, [pc, #0x24]
+    ldr r4, .Lraw_code_linkonce_22392_10
     adds r0, r2, r4
     cmp r0, r1
     beq .Lauto_080E13F4
@@ -22389,7 +30517,10 @@ func_080E13B8:
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xBC, 0x11, 0x00, 0x00, 0xE8, 0x0D, 0x00, 0x00, 0xEC, 0x0D, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_22392_2: .word 0x000011BC
+.Lraw_code_linkonce_22392_6: .word 0x00000DE8
+.Lraw_code_linkonce_22392_10: .word 0x00000DEC
     .global func_080E1C70
     .thumb_func
 func_080E1C70:
@@ -22406,7 +30537,7 @@ func_080E1410:
     bl func_08076EA8
     movs r0, #0
     mov r8, r0
-    ldr r1, [pc, #0xc4]
+    ldr r1, .Lraw_code_linkonce_22510_2
     adds r0, r7, r1
     movs r2, #0
     ldrsh r0, [r0, r2]
@@ -22419,7 +30550,7 @@ func_080E1410:
     cmp r0, r1
     bge .Lauto_080E1454
     adds r2, r1, #0
-    ldr r3, [pc, #0xa8]
+    ldr r3, .Lraw_code_linkonce_22510_2
     adds r1, r7, r3
     .Lauto_080E1444:
     adds r1, #0x10
@@ -22431,7 +30562,7 @@ func_080E1410:
     cmp r0, r2
     blt .Lauto_080E1444
     .Lauto_080E1454:
-    ldr r1, [pc, #0x98]
+    ldr r1, .Lraw_code_linkonce_22510_6
     adds r0, r7, r1
     ldr r0, [r0]
     cmp r8, r0
@@ -22445,7 +30576,7 @@ func_080E1410:
     mov sb, r3
     mov r1, r8
     lsls r0, r1, #4
-    ldr r2, [pc, #0x78]
+    ldr r2, .Lraw_code_linkonce_22510_2
     adds r0, r0, r2
     adds r5, r0, r7
     .Lauto_080E1476:
@@ -22507,7 +30638,9 @@ func_080E1410:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00, 0x68, 0x21, 0x00, 0x00, 0x64, 0x21, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_22510_2: .word 0x00002168
+.Lraw_code_linkonce_22510_6: .word 0x00002164
     .global func_080E1D54
     .thumb_func
 func_080E1D54:
@@ -22517,13 +30650,13 @@ func_080E14F4:
     push {r4, lr}
     adds r2, r0, #0
     adds r3, r1, #0
-    ldr r0, [pc, #0x28]
+    ldr r0, .Lraw_code_linkonce_22541_2
     adds r1, r2, r0
     ldr r0, [r1]
     lsls r0, r0, #4
     adds r0, #4
     adds r1, r1, r0
-    ldr r4, [pc, #0x20]
+    ldr r4, .Lraw_code_linkonce_22541_6
     adds r0, r2, r4
     cmp r0, r1
     beq .Lauto_080E1514
@@ -22538,7 +30671,9 @@ func_080E14F4:
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x64, 0x21, 0x00, 0x00, 0x68, 0x21, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_22541_2: .word 0x00002164
+.Lraw_code_linkonce_22541_6: .word 0x00002168
     .global func_080E152C
     .thumb_func
 func_080E152C:
@@ -22546,7 +30681,7 @@ func_080E152C:
     bl func_08076E0C
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E1538
     .thumb_func
 func_080E1538:
@@ -22554,7 +30689,7 @@ func_080E1538:
     bl func_08076E0C
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E1544
     .thumb_func
 func_080E1544:
@@ -22562,7 +30697,7 @@ func_080E1544:
     bl func_08076E0C
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E1550
     .thumb_func
 func_080E1550:
@@ -22570,7 +30705,7 @@ func_080E1550:
     bl func_08076E0C
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E155C
     .thumb_func
 func_080E155C:
@@ -22586,7 +30721,7 @@ func_080E1568:
     bl func_08076E0C
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E1574
     .thumb_func
 func_080E1574:
@@ -22603,7 +30738,7 @@ func_080E1574:
     movs r2, #0x94
     lsls r2, r2, #1
     adds r0, r4, r2
-    ldr r2, [pc, #0x30]
+    ldr r2, .Lraw_code_linkonce_22632_0
     cmp r0, r1
     beq .Lauto_080E159A
     .Lauto_080E1594:
@@ -22615,7 +30750,7 @@ func_080E1574:
     ldr r1, [r4, #8]
     cmp r1, #0
     beq .Lauto_080E15B2
-    ldr r2, [pc, #0x20]
+    ldr r2, .Lraw_code_linkonce_22633_0
     adds r0, r1, r2
     ldr r0, [r0]
     ldr r2, [r0, #8]
@@ -22629,8 +30764,8 @@ func_080E1574:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .4byte __vt_23IndexedResourceProvider
-    .byte 0xB4, 0x05, 0x00, 0x00
+.Lraw_code_linkonce_22632_0: .4byte __vt_23IndexedResourceProvider
+.Lraw_code_linkonce_22633_0: .word 0x000005B4
     .global func_080E15C8
     .thumb_func
 func_080E15C8:
@@ -22640,7 +30775,7 @@ func_080E15C8:
     push {r6, r7}
     adds r5, r0, #0
     mov sb, r1
-    ldr r1, [pc, #0x14c]
+    ldr r1, .Lraw_code_linkonce_22805_2
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E15FE
@@ -22648,7 +30783,7 @@ func_080E15C8:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E15FE
-    ldr r0, [pc, #0x13c]
+    ldr r0, .Lraw_code_linkonce_22805_2
     adds r6, r5, r0
     .Lauto_080E15E8:
     subs r4, #8
@@ -22661,20 +30796,20 @@ func_080E15C8:
     cmp r6, r4
     bne .Lauto_080E15E8
     .Lauto_080E15FE:
-    ldr r1, [pc, #0x128]
+    ldr r1, .Lraw_code_linkonce_22805_6
     adds r0, r5, r1
-    ldr r1, [pc, #0x128]
+    ldr r1, .Lraw_code_linkonce_22805_10
     adds r7, r5, r1
-    ldr r1, [pc, #0x128]
+    ldr r1, .Lraw_code_linkonce_22805_14
     adds r1, r1, r5
     mov r8, r1
     cmp r0, #0
     beq .Lauto_080E1632
-    ldr r1, [pc, #0x110]
+    ldr r1, .Lraw_code_linkonce_22805_2
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E1632
-    ldr r0, [pc, #0x10c]
+    ldr r0, .Lraw_code_linkonce_22805_6
     adds r6, r5, r0
     .Lauto_080E161C:
     subs r4, #8
@@ -22687,7 +30822,7 @@ func_080E15C8:
     cmp r6, r4
     bne .Lauto_080E161C
     .Lauto_080E1632:
-    ldr r1, [pc, #0x100]
+    ldr r1, .Lraw_code_linkonce_22806_2
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
@@ -22704,7 +30839,7 @@ func_080E15C8:
     adds r0, r4, #0
     movs r1, #2
     bl _._16ObjTilePoolOwner
-    ldr r1, [pc, #0xd8]
+    ldr r1, .Lraw_code_linkonce_22806_6
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
@@ -22712,7 +30847,7 @@ func_080E15C8:
     adds r0, r4, #0
     movs r1, #2
     bl _._19ObjPalettePoolOwner
-    ldr r0, [pc, #0xc8]
+    ldr r0, .Lraw_code_linkonce_22806_10
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
@@ -22720,7 +30855,7 @@ func_080E15C8:
     adds r0, r4, #0
     movs r1, #2
     bl _._16ObjTilePoolOwner
-    ldr r1, [pc, #0xb8]
+    ldr r1, .Lraw_code_linkonce_22806_14
     adds r2, r5, r1
     ldr r1, [r2]
     lsls r0, r1, #1
@@ -22736,7 +30871,7 @@ func_080E15C8:
     cmp r0, r2
     bne .Lauto_080E169A
     .Lauto_080E16A0:
-    ldr r0, [pc, #0xa0]
+    ldr r0, .Lraw_code_linkonce_22807_2
     adds r1, r5, r0
     ldr r0, [r1]
     lsls r0, r0, #4
@@ -22755,7 +30890,7 @@ func_080E15C8:
     adds r0, r5, r1
     movs r1, #2
     bl _._12UiStateOwner
-    ldr r0, [pc, #0x80]
+    ldr r0, .Lraw_code_linkonce_22808_0
     str r0, [r5, #0x54]
     str r0, [r5, #0x24]
     ldr r0, [r5, #0x1c]
@@ -22802,10 +30937,17 @@ func_080E15C8:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xA0, 0x3B, 0x00, 0x00, 0x50, 0x3B, 0x00, 0x00, 0x28, 0x3A, 0x00, 0x00, 0x24, 0x39
-    .byte 0x00, 0x00, 0x48, 0x3B, 0x00, 0x00, 0x38, 0x3B, 0x00, 0x00, 0x30, 0x3B, 0x00, 0x00, 0x24, 0x3A
-    .byte 0x00, 0x00, 0x20, 0x39, 0x00, 0x00
-    .4byte __vt_23IndexedResourceProvider
+    .align 2, 0
+.Lraw_code_linkonce_22805_2: .word 0x00003BA0
+.Lraw_code_linkonce_22805_6: .word 0x00003B50
+.Lraw_code_linkonce_22805_10: .word 0x00003A28
+.Lraw_code_linkonce_22805_14: .word 0x00003924
+.Lraw_code_linkonce_22806_2: .word 0x00003B48
+.Lraw_code_linkonce_22806_6: .word 0x00003B38
+.Lraw_code_linkonce_22806_10: .word 0x00003B30
+.Lraw_code_linkonce_22806_14: .word 0x00003A24
+.Lraw_code_linkonce_22807_2: .word 0x00003920
+.Lraw_code_linkonce_22808_0: .4byte __vt_23IndexedResourceProvider
     .section .text.new_game_birthday_core_cleanup_after, "ax", %progbits
     .align 2, 0
     .global func_080E2018
@@ -22851,7 +30993,7 @@ func_080E2018:
     beq .Lauto_080E1802
     bl free
     .Lauto_080E1802:
-    ldr r0, [pc, #0x2c]
+    ldr r0, .Lraw_code_linkonce_22875_0
     str r0, [r4]
     str r0, [r5, #0x20]
     adds r0, r6, #0
@@ -22872,7 +31014,7 @@ func_080E2018:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .4byte __vt_23IndexedResourceProvider
+.Lraw_code_linkonce_22875_0: .4byte __vt_23IndexedResourceProvider
     .global func_080E2094
     .thumb_func
 func_080E2094:
@@ -22897,7 +31039,7 @@ func_080E2094:
     adds r0, r2, #0
     add sp, #0xc
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global loc_080E1860
     .thumb_func
     loc_080E1860:
@@ -22936,7 +31078,7 @@ func_080E1898:
     bl func_08070C88
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E18A4_vtable_target
     .thumb_func
 func_080E18A4_vtable_target:
@@ -22944,7 +31086,7 @@ func_080E18A4_vtable_target:
     bl func_08070C88
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E18B0
     .thumb_func
 func_080E18B0:
@@ -22952,7 +31094,7 @@ func_080E18B0:
     bl func_08070C88
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E18BC
     .thumb_func
 func_080E18BC:
@@ -22969,7 +31111,7 @@ func_080E18BC:
     movs r2, #0x94
     lsls r2, r2, #1
     adds r0, r4, r2
-    ldr r2, [pc, #0x30]
+    ldr r2, .Lraw_code_linkonce_22998_0
     cmp r0, r1
     beq .Lauto_080E18E2
     .Lauto_080E18DC:
@@ -22981,7 +31123,7 @@ func_080E18BC:
     ldr r1, [r4, #8]
     cmp r1, #0
     beq .Lauto_080E18FA
-    ldr r2, [pc, #0x20]
+    ldr r2, .Lraw_code_linkonce_22999_0
     adds r0, r1, r2
     ldr r0, [r0]
     ldr r2, [r0, #8]
@@ -22995,8 +31137,8 @@ func_080E18BC:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .4byte __vt_23IndexedResourceProvider
-    .byte 0xB4, 0x05, 0x00, 0x00
+.Lraw_code_linkonce_22998_0: .4byte __vt_23IndexedResourceProvider
+.Lraw_code_linkonce_22999_0: .word 0x000005B4
 
 
 
@@ -23035,7 +31177,7 @@ func_080E2170:
     str r3, [r2, #4]
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E21A8
     .thumb_func
 func_080E21A8:
@@ -23070,7 +31212,7 @@ func_080E21A8:
     str r3, [r2, #4]
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E21E0
     .thumb_func
 func_080E21E0:
@@ -23168,19 +31310,108 @@ func_080E21E0:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xF0, 0xB5, 0x07, 0x1C, 0x0E, 0x1C, 0x05, 0x9C, 0x1D, 0x1C, 0x70, 0x68, 0x85, 0x42
-    .byte 0x0C, 0xD0, 0x06, 0x98, 0x00, 0x28, 0x29, 0xD1, 0x00, 0x2A, 0x07, 0xD1, 0x00, 0x22, 0x21, 0x68
-    .byte 0x28, 0x69, 0x81, 0x42, 0x00, 0xD2, 0x01, 0x22, 0x00, 0x2A, 0x1F, 0xD0, 0x18, 0x20, 0xEE, 0xF7
-    .byte 0x0C, 0xF8, 0x02, 0x1C, 0x00, 0x2A, 0x03, 0xD1, 0x18, 0x20, 0xF1, 0xF7, 0x84, 0xFC, 0x02, 0x1C
-    .byte 0x11, 0x1C, 0x10, 0x31, 0x00, 0x29, 0x03, 0xD0, 0x20, 0x68, 0x10, 0x61, 0x60, 0x68, 0x48, 0x60
-    .byte 0x14, 0x1C, 0xAC, 0x60, 0x71, 0x68, 0x8D, 0x42, 0x03, 0xD1, 0x6C, 0x60, 0x70, 0x68, 0xC4, 0x60
-    .byte 0x1D, 0xE0, 0x88, 0x68, 0x85, 0x42, 0x1A, 0xD1, 0x8C, 0x60, 0x18, 0xE0, 0x18, 0x20, 0xED, 0xF7
-    .byte 0xEC, 0xFF, 0x02, 0x1C, 0x00, 0x2A, 0x03, 0xD1, 0x18, 0x20, 0xF1, 0xF7, 0x64, 0xFC, 0x02, 0x1C
-    .byte 0x11, 0x1C, 0x10, 0x31, 0x00, 0x29, 0x03, 0xD0, 0x20, 0x68, 0x10, 0x61, 0x60, 0x68, 0x48, 0x60
-    .byte 0x14, 0x1C, 0xEC, 0x60, 0x71, 0x68, 0xC8, 0x68, 0x85, 0x42, 0x00, 0xD1, 0xCC, 0x60, 0x65, 0x60
-    .byte 0x00, 0x20, 0xA0, 0x60, 0xE0, 0x60, 0x71, 0x68, 0x04, 0x31, 0x20, 0x1C, 0xFF, 0xF7, 0x4F, 0xFF
-    .byte 0xB0, 0x68, 0x01, 0x30, 0xB0, 0x60, 0x3C, 0x60, 0x38, 0x1C, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
-    .byte 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_23171_2:
+    push {r4, r5, r6, r7, lr}
+    adds r7, r0, #0
+    adds r6, r1, #0
+    ldr r4, [sp, #0x14]
+    adds r5, r3, #0
+    ldr r0, [r6, #4]
+    cmp r5, r0
+    beq .Lraw_code_linkonce_23173_12
+    ldr r0, [sp, #0x18]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23177_12
+    cmp r2, #0
+    bne .Lraw_code_linkonce_23173_12
+    movs r2, #0
+    ldr r1, [r4]
+    ldr r0, [r5, #0x10]
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23173_8
+    movs r2, #1
+.Lraw_code_linkonce_23173_8:
+    cmp r2, #0
+    beq .Lraw_code_linkonce_23177_12
+.Lraw_code_linkonce_23173_12:
+    movs r0, #0x18
+    bl malloc
+    adds r2, r0, #0
+    cmp r2, #0
+    bne .Lraw_code_linkonce_23175_0
+    movs r0, #0x18
+    bl RetryMemoryAllocation
+    adds r2, r0, #0
+.Lraw_code_linkonce_23175_0:
+    adds r1, r2, #0
+    adds r1, #0x10
+    cmp r1, #0
+    beq .Lraw_code_linkonce_23176_0
+    ldr r0, [r4]
+    str r0, [r2, #0x10]
+    ldr r0, [r4, #4]
+    str r0, [r1, #4]
+.Lraw_code_linkonce_23176_0:
+    adds r4, r2, #0
+    str r4, [r5, #8]
+    ldr r1, [r6, #4]
+    cmp r5, r1
+    bne .Lraw_code_linkonce_23177_2
+    str r4, [r5, #4]
+    ldr r0, [r6, #4]
+    str r4, [r0, #0xc]
+    b .Lraw_code_linkonce_23180_14
+.Lraw_code_linkonce_23177_2:
+    ldr r0, [r1, #8]
+    cmp r5, r0
+    bne .Lraw_code_linkonce_23180_14
+    str r4, [r1, #8]
+    b .Lraw_code_linkonce_23180_14
+.Lraw_code_linkonce_23177_12:
+    movs r0, #0x18
+    bl malloc
+    adds r2, r0, #0
+    cmp r2, #0
+    bne .Lraw_code_linkonce_23179_0
+    movs r0, #0x18
+    bl RetryMemoryAllocation
+    adds r2, r0, #0
+.Lraw_code_linkonce_23179_0:
+    adds r1, r2, #0
+    adds r1, #0x10
+    cmp r1, #0
+    beq .Lraw_code_linkonce_23180_0
+    ldr r0, [r4]
+    str r0, [r2, #0x10]
+    ldr r0, [r4, #4]
+    str r0, [r1, #4]
+.Lraw_code_linkonce_23180_0:
+    adds r4, r2, #0
+    str r4, [r5, #0xc]
+    ldr r1, [r6, #4]
+    ldr r0, [r1, #0xc]
+    cmp r5, r0
+    bne .Lraw_code_linkonce_23180_14
+    str r4, [r1, #0xc]
+.Lraw_code_linkonce_23180_14:
+    str r5, [r4, #4]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r0, [r4, #0xc]
+    ldr r1, [r6, #4]
+    adds r1, #4
+    adds r0, r4, #0
+    bl func_080E21E0
+    ldr r0, [r6, #8]
+    adds r0, #1
+    str r0, [r6, #8]
+    str r4, [r7]
+    adds r0, r7, #0
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_080E2354
     .thumb_func
 func_080E2354:
@@ -23221,45 +31452,346 @@ func_080E2354:
     adds r0, r2, #0
     pop {r1}
     bx r1
-    .byte 0xF0, 0xB5, 0x47, 0x46, 0x80, 0xB4, 0x85, 0xB0, 0x06, 0x1C, 0x88, 0x46, 0x17, 0x1C, 0x4C, 0x68
-    .byte 0x65, 0x68, 0x01, 0x20, 0x00, 0x2D, 0x0E, 0xD0, 0x3A, 0x68, 0x2C, 0x1C, 0x00, 0x21, 0x20, 0x69
-    .byte 0x82, 0x42, 0x00, 0xD2, 0x01, 0x21, 0x08, 0x1C, 0x00, 0x28, 0x01, 0xD0, 0xA5, 0x68, 0x00, 0xE0
-    .byte 0xE5, 0x68, 0x00, 0x2D, 0xF1, 0xD1, 0x02, 0x94, 0x00, 0x28, 0x19, 0xD0, 0x41, 0x46, 0x48, 0x68
-    .byte 0x80, 0x68, 0x03, 0x90, 0x00, 0x21, 0x84, 0x42, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x0B, 0xD0
-    .byte 0x00, 0x97, 0x00, 0x20, 0x01, 0x90, 0x04, 0xA8, 0x41, 0x46, 0x2A, 0x1C, 0x23, 0x1C, 0xFF, 0xF7
-    .byte 0x51, 0xFF, 0x01, 0x21, 0x04, 0x98, 0x18, 0xE0, 0x20, 0x1C, 0xFF, 0xF7, 0xAB, 0xFF, 0x02, 0x90
-    .byte 0x02, 0x9A, 0x00, 0x23, 0x11, 0x69, 0x38, 0x68, 0x81, 0x42, 0x00, 0xD2, 0x01, 0x23, 0x18, 0x1C
-    .byte 0x00, 0x28, 0x0D, 0xD0, 0x00, 0x97, 0x00, 0x20, 0x01, 0x90, 0x03, 0xA8, 0x41, 0x46, 0x2A, 0x1C
-    .byte 0x23, 0x1C, 0xFF, 0xF7, 0x37, 0xFF, 0x01, 0x21, 0x03, 0x98, 0x30, 0x60, 0x31, 0x71, 0x01, 0xE0
-    .byte 0x32, 0x60, 0x30, 0x71, 0x30, 0x1C, 0x05, 0xB0, 0x08, 0xBC, 0x98, 0x46, 0xF0, 0xBC, 0x02, 0xBC
-    .byte 0x08, 0x47, 0x00, 0x00, 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x86, 0xB0, 0x07, 0x1C
-    .byte 0x0E, 0x1C, 0x90, 0x46, 0x1C, 0x1C, 0x71, 0x68, 0x12, 0x68, 0x88, 0x68, 0x82, 0x42, 0x39, 0xD1
-    .byte 0xB0, 0x68, 0x00, 0x28, 0x06, 0xD1, 0x02, 0xA8, 0x31, 0x1C, 0x22, 0x1C, 0xFF, 0xF7, 0x90, 0xFF
-    .byte 0x02, 0x98, 0xB9, 0xE0, 0x00, 0x20, 0x11, 0x69, 0x13, 0x1C, 0x22, 0x68, 0x8A, 0x42, 0x00, 0xD2
-    .byte 0x01, 0x20, 0x81, 0x46, 0x00, 0x28, 0x5F, 0xD1, 0x00, 0x20, 0x91, 0x42, 0x00, 0xD2, 0x01, 0x20
-    .byte 0x00, 0x28, 0x01, 0xD1, 0x3B, 0x60, 0xA8, 0xE0, 0x02, 0x93, 0x18, 0x1C, 0x00, 0xF0, 0x44, 0xFB
-    .byte 0x02, 0x1C, 0x02, 0x92, 0x70, 0x68, 0x82, 0x42, 0x02, 0xD1, 0x40, 0x46, 0x03, 0x68, 0x7E, 0xE0
-    .byte 0x00, 0x23, 0x21, 0x68, 0x10, 0x69, 0x15, 0x1C, 0x81, 0x42, 0x00, 0xD2, 0x01, 0x23, 0x00, 0x2B
-    .byte 0x00, 0xD1, 0x8B, 0xE0, 0x41, 0x46, 0x0B, 0x68, 0xD8, 0x68, 0x00, 0x28, 0x6F, 0xD0, 0x00, 0x94
-    .byte 0x48, 0x46, 0x76, 0xE0, 0x8A, 0x42, 0x12, 0xD1, 0xD3, 0x68, 0x00, 0x25, 0x19, 0x69, 0x20, 0x68
-    .byte 0x81, 0x42, 0x00, 0xD2, 0x01, 0x25, 0x00, 0x2D, 0x02, 0xD0, 0x00, 0x94, 0x01, 0x92, 0x60, 0xE0
-    .byte 0x02, 0xA8, 0x31, 0x1C, 0x22, 0x1C, 0xFF, 0xF7, 0x4B, 0xFF, 0x02, 0x98, 0x74, 0xE0, 0x02, 0x92
-    .byte 0x10, 0x1C, 0xFF, 0xF7, 0x27, 0xFF, 0x02, 0x1C, 0x02, 0x92, 0x41, 0x46, 0x0B, 0x68, 0x00, 0x25
-    .byte 0x21, 0x68, 0x18, 0x69, 0x81, 0x42, 0x00, 0xD2, 0x01, 0x25, 0xA9, 0x46, 0x00, 0x2D, 0x1C, 0xD0
-    .byte 0x00, 0x20, 0x84, 0x46, 0x10, 0x69, 0x15, 0x1C, 0x88, 0x42, 0x01, 0xD2, 0x01, 0x21, 0x8C, 0x46
-    .byte 0x60, 0x46, 0x00, 0x28, 0x11, 0xD0, 0xE8, 0x68, 0x00, 0x28, 0x05, 0xD1, 0x00, 0x94, 0x01, 0x95
-    .byte 0x38, 0x1C, 0x31, 0x1C, 0x00, 0x22, 0x40, 0xE0, 0x00, 0x94, 0x00, 0x20, 0x01, 0x90, 0x38, 0x1C
-    .byte 0x31, 0x1C, 0x1A, 0x1C, 0xFF, 0xF7, 0x9E, 0xFE, 0x47, 0xE0, 0x41, 0x46, 0x08, 0x68, 0x03, 0x90
-    .byte 0x00, 0xF0, 0xE2, 0xFA, 0x84, 0x46, 0x03, 0x90, 0x01, 0x20, 0x49, 0x46, 0x41, 0x40, 0x48, 0x46
-    .byte 0x00, 0x28, 0x2E, 0xD1, 0x41, 0x46, 0x08, 0x68, 0x00, 0x25, 0x01, 0x69, 0x03, 0x1C, 0x22, 0x68
-    .byte 0x91, 0x42, 0x00, 0xD2, 0x01, 0x25, 0x29, 0x1C, 0x00, 0x29, 0x22, 0xD0, 0x70, 0x68, 0x65, 0x46
-    .byte 0x85, 0x42, 0x09, 0xD0, 0x00, 0x20, 0x84, 0x46, 0x28, 0x69, 0x82, 0x42, 0x01, 0xD2, 0x01, 0x20
-    .byte 0x84, 0x46, 0x60, 0x46, 0x00, 0x28, 0x14, 0xD0, 0xD8, 0x68, 0x00, 0x28, 0x07, 0xD1, 0x00, 0x94
-    .byte 0x01, 0x93, 0x38, 0x1C, 0x31, 0x1C, 0x00, 0x22, 0xFF, 0xF7, 0x6C, 0xFE, 0x15, 0xE0, 0x00, 0x94
-    .byte 0x00, 0x20, 0x01, 0x90, 0x38, 0x1C, 0x31, 0x1C, 0x2A, 0x1C, 0x2B, 0x1C, 0xFF, 0xF7, 0x62, 0xFE
-    .byte 0x0B, 0xE0, 0x89, 0x45, 0x02, 0xD1, 0x41, 0x46, 0x08, 0x68, 0x05, 0xE0, 0x04, 0xA8, 0x31, 0x1C
-    .byte 0x22, 0x1C, 0xFF, 0xF7, 0xD5, 0xFE, 0x04, 0x98, 0x38, 0x60, 0x38, 0x1C, 0x06, 0xB0, 0x18, 0xBC
-    .byte 0x98, 0x46, 0xA1, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+.Lraw_code_linkonce_23224_0:
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #0x14
+    adds r6, r0, #0
+    mov r8, r1
+    adds r7, r2, #0
+    ldr r4, [r1, #4]
+    ldr r5, [r4, #4]
+    movs r0, #1
+    cmp r5, #0
+    beq .Lraw_code_linkonce_23227_6
+    ldr r2, [r7]
+.Lraw_code_linkonce_23225_10:
+    adds r4, r5, #0
+    movs r1, #0
+    ldr r0, [r4, #0x10]
+    cmp r2, r0
+    bhs .Lraw_code_linkonce_23226_6
+    movs r1, #1
+.Lraw_code_linkonce_23226_6:
+    adds r0, r1, #0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23227_0
+    ldr r5, [r4, #8]
+    b .Lraw_code_linkonce_23227_2
+.Lraw_code_linkonce_23227_0:
+    ldr r5, [r4, #0xc]
+.Lraw_code_linkonce_23227_2:
+    cmp r5, #0
+    bne .Lraw_code_linkonce_23225_10
+.Lraw_code_linkonce_23227_6:
+    str r4, [sp, #8]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23231_0
+    mov r1, r8
+    ldr r0, [r1, #4]
+    ldr r0, [r0, #8]
+    str r0, [sp, #0xc]
+    movs r1, #0
+    cmp r4, r0
+    bne .Lraw_code_linkonce_23228_12
+    movs r1, #1
+.Lraw_code_linkonce_23228_12:
+    cmp r1, #0
+    beq .Lraw_code_linkonce_23230_8
+    str r7, [sp]
+    movs r0, #0
+    str r0, [sp, #4]
+    add r0, sp, #0x10
+    mov r1, r8
+    adds r2, r5, #0
+    adds r3, r4, #0
+    bl .Lraw_code_linkonce_23171_2
+    movs r1, #1
+    ldr r0, [sp, #0x10]
+    b .Lraw_code_linkonce_23233_10
+.Lraw_code_linkonce_23230_8:
+    adds r0, r4, #0
+    bl func_080E2354
+    str r0, [sp, #8]
+.Lraw_code_linkonce_23231_0:
+    ldr r2, [sp, #8]
+    movs r3, #0
+    ldr r1, [r2, #0x10]
+    ldr r0, [r7]
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23231_14
+    movs r3, #1
+.Lraw_code_linkonce_23231_14:
+    adds r0, r3, #0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23234_0
+    str r7, [sp]
+    movs r0, #0
+    str r0, [sp, #4]
+    add r0, sp, #0xc
+    mov r1, r8
+    adds r2, r5, #0
+    adds r3, r4, #0
+    bl .Lraw_code_linkonce_23171_2
+    movs r1, #1
+    ldr r0, [sp, #0xc]
+.Lraw_code_linkonce_23233_10:
+    str r0, [r6]
+    strb r1, [r6, #4]
+    b .Lraw_code_linkonce_23234_4
+.Lraw_code_linkonce_23234_0:
+    str r2, [r6]
+    strb r0, [r6, #4]
+.Lraw_code_linkonce_23234_4:
+    adds r0, r6, #0
+    add sp, #0x14
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+    non_word_aligned_thumb_func_start func_080E1BE4
+func_080E1BE4:
+    push {r4, r5, r6, r7, lr}
+    mov r7, sb
+    mov r6, r8
+    push {r6, r7}
+    sub sp, #0x18
+    adds r7, r0, #0
+    adds r6, r1, #0
+    mov r8, r2
+    adds r4, r3, #0
+    ldr r1, [r6, #4]
+    ldr r2, [r2]
+    ldr r0, [r1, #8]
+    cmp r2, r0
+    bne .Lraw_code_linkonce_23244_4
+    ldr r0, [r6, #8]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23238_4
+    add r0, sp, #8
+    adds r1, r6, #0
+    adds r2, r4, #0
+    bl .Lraw_code_linkonce_23224_0
+    ldr r0, [sp, #8]
+    b .Lraw_code_linkonce_23261_8
+.Lraw_code_linkonce_23238_4:
+    movs r0, #0
+    ldr r1, [r2, #0x10]
+    adds r3, r2, #0
+    ldr r2, [r4]
+    cmp r2, r1
+    bhs .Lraw_code_linkonce_23239_2
+    movs r0, #1
+.Lraw_code_linkonce_23239_2:
+    mov sb, r0
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23251_8
+    movs r0, #0
+    cmp r1, r2
+    bhs .Lraw_code_linkonce_23240_0
+    movs r0, #1
+.Lraw_code_linkonce_23240_0:
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23240_8
+    str r3, [r7]
+    b .Lraw_code_linkonce_23261_10
+.Lraw_code_linkonce_23240_8:
+    str r3, [sp, #8]
+    adds r0, r3, #0
+    bl func_080E2B28
+    adds r2, r0, #0
+    str r2, [sp, #8]
+    ldr r0, [r6, #4]
+    cmp r2, r0
+    bne .Lraw_code_linkonce_23242_0
+    mov r0, r8
+    ldr r3, [r0]
+    b .Lraw_code_linkonce_23257_14
+.Lraw_code_linkonce_23242_0:
+    movs r3, #0
+    ldr r1, [r4]
+    ldr r0, [r2, #0x10]
+    adds r5, r2, #0
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23242_14
+    movs r3, #1
+.Lraw_code_linkonce_23242_14:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_23243_4
+    b .Lraw_code_linkonce_23260_12
+.Lraw_code_linkonce_23243_4:
+    mov r1, r8
+    ldr r3, [r1]
+    ldr r0, [r3, #0xc]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23257_14
+    str r4, [sp]
+    mov r0, sb
+    b .Lraw_code_linkonce_23259_2
+.Lraw_code_linkonce_23244_4:
+    cmp r2, r1
+    bne .Lraw_code_linkonce_23246_14
+    ldr r3, [r2, #0xc]
+    movs r5, #0
+    ldr r1, [r3, #0x10]
+    ldr r0, [r4]
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23245_6
+    movs r5, #1
+.Lraw_code_linkonce_23245_6:
+    cmp r5, #0
+    beq .Lraw_code_linkonce_23246_0
+    str r4, [sp]
+    str r2, [sp, #4]
+    b .Lraw_code_linkonce_23258_2
+.Lraw_code_linkonce_23246_0:
+    add r0, sp, #8
+    adds r1, r6, #0
+    adds r2, r4, #0
+    bl .Lraw_code_linkonce_23224_0
+    ldr r0, [sp, #8]
+    b .Lraw_code_linkonce_23261_8
+.Lraw_code_linkonce_23246_14:
+    str r2, [sp, #8]
+    adds r0, r2, #0
+    bl func_080E2354
+    adds r2, r0, #0
+    str r2, [sp, #8]
+    mov r1, r8
+    ldr r3, [r1]
+    movs r5, #0
+    ldr r1, [r4]
+    ldr r0, [r3, #0x10]
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23248_10
+    movs r5, #1
+.Lraw_code_linkonce_23248_10:
+    mov sb, r5
+    cmp r5, #0
+    beq .Lraw_code_linkonce_23252_10
+    movs r0, #0
+    mov ip, r0
+    ldr r0, [r2, #0x10]
+    adds r5, r2, #0
+    cmp r0, r1
+    bhs .Lraw_code_linkonce_23250_0
+    movs r1, #1
+    mov ip, r1
+.Lraw_code_linkonce_23250_0:
+    mov r0, ip
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23252_10
+    ldr r0, [r5, #0xc]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23251_8
+    str r4, [sp]
+    str r5, [sp, #4]
+    adds r0, r7, #0
+    adds r1, r6, #0
+    movs r2, #0
+    b .Lraw_code_linkonce_23259_10
+.Lraw_code_linkonce_23251_8:
+    str r4, [sp]
+    movs r0, #0
+    str r0, [sp, #4]
+    adds r0, r7, #0
+    adds r1, r6, #0
+    adds r2, r3, #0
+    bl .Lraw_code_linkonce_23171_2
+    b .Lraw_code_linkonce_23261_10
+.Lraw_code_linkonce_23252_10:
+    mov r1, r8
+    ldr r0, [r1]
+    str r0, [sp, #0xc]
+    bl func_080E2B28
+    mov ip, r0
+    str r0, [sp, #0xc]
+    movs r0, #1
+    mov r1, sb
+    eors r1, r0
+    mov r0, sb
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23260_2
+    mov r1, r8
+    ldr r0, [r1]
+    movs r5, #0
+    ldr r1, [r0, #0x10]
+    adds r3, r0, #0
+    ldr r2, [r4]
+    cmp r1, r2
+    bhs .Lraw_code_linkonce_23255_6
+    movs r5, #1
+.Lraw_code_linkonce_23255_6:
+    adds r1, r5, #0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_23260_2
+    ldr r0, [r6, #4]
+    mov r5, ip
+    cmp r5, r0
+    beq .Lraw_code_linkonce_23257_8
+    movs r0, #0
+    mov ip, r0
+    ldr r0, [r5, #0x10]
+    cmp r2, r0
+    bhs .Lraw_code_linkonce_23257_2
+    movs r0, #1
+    mov ip, r0
+.Lraw_code_linkonce_23257_2:
+    mov r0, ip
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23260_2
+.Lraw_code_linkonce_23257_8:
+    ldr r0, [r3, #0xc]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23258_14
+.Lraw_code_linkonce_23257_14:
+    str r4, [sp]
+    str r3, [sp, #4]
+.Lraw_code_linkonce_23258_2:
+    adds r0, r7, #0
+    adds r1, r6, #0
+    movs r2, #0
+    bl .Lraw_code_linkonce_23171_2
+    b .Lraw_code_linkonce_23261_10
+.Lraw_code_linkonce_23258_14:
+    str r4, [sp]
+    movs r0, #0
+.Lraw_code_linkonce_23259_2:
+    str r0, [sp, #4]
+    adds r0, r7, #0
+    adds r1, r6, #0
+    adds r2, r5, #0
+.Lraw_code_linkonce_23259_10:
+    adds r3, r5, #0
+    bl .Lraw_code_linkonce_23171_2
+    b .Lraw_code_linkonce_23261_10
+.Lraw_code_linkonce_23260_2:
+    cmp sb, r1
+    bne .Lraw_code_linkonce_23260_12
+    mov r1, r8
+    ldr r0, [r1]
+    b .Lraw_code_linkonce_23261_8
+.Lraw_code_linkonce_23260_12:
+    add r0, sp, #0x10
+    adds r1, r6, #0
+    adds r2, r4, #0
+    bl .Lraw_code_linkonce_23224_0
+    ldr r0, [sp, #0x10]
+.Lraw_code_linkonce_23261_8:
+    str r0, [r7]
+.Lraw_code_linkonce_23261_10:
+    adds r0, r7, #0
+    add sp, #0x18
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_080E25FC
     .thumb_func
 func_080E25FC:
@@ -23558,57 +32090,447 @@ func_080E25FC:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0xF0, 0xB5, 0x07, 0x1C, 0x0E, 0x1C, 0x05, 0x9C, 0x1D, 0x1C, 0x70, 0x68, 0x85, 0x42, 0x0C, 0xD0
-    .byte 0x06, 0x98, 0x00, 0x28, 0x29, 0xD1, 0x00, 0x2A, 0x07, 0xD1, 0x00, 0x22, 0x21, 0x68, 0x28, 0x69
-    .byte 0x81, 0x42, 0x00, 0xD2, 0x01, 0x22, 0x00, 0x2A, 0x1F, 0xD0, 0x18, 0x20, 0xED, 0xF7, 0x58, 0xFD
-    .byte 0x02, 0x1C, 0x00, 0x2A, 0x03, 0xD1, 0x18, 0x20, 0xF1, 0xF7, 0xD0, 0xF9, 0x02, 0x1C, 0x11, 0x1C
-    .byte 0x10, 0x31, 0x00, 0x29, 0x03, 0xD0, 0x20, 0x68, 0x10, 0x61, 0x60, 0x68, 0x48, 0x60, 0x14, 0x1C
-    .byte 0xAC, 0x60, 0x71, 0x68, 0x8D, 0x42, 0x03, 0xD1, 0x6C, 0x60, 0x70, 0x68, 0xC4, 0x60, 0x1D, 0xE0
-    .byte 0x88, 0x68, 0x85, 0x42, 0x1A, 0xD1, 0x8C, 0x60, 0x18, 0xE0, 0x18, 0x20, 0xED, 0xF7, 0x38, 0xFD
-    .byte 0x02, 0x1C, 0x00, 0x2A, 0x03, 0xD1, 0x18, 0x20, 0xF1, 0xF7, 0xB0, 0xF9, 0x02, 0x1C, 0x11, 0x1C
-    .byte 0x10, 0x31, 0x00, 0x29, 0x03, 0xD0, 0x20, 0x68, 0x10, 0x61, 0x60, 0x68, 0x48, 0x60, 0x14, 0x1C
-    .byte 0xEC, 0x60, 0x71, 0x68, 0xC8, 0x68, 0x85, 0x42, 0x00, 0xD1, 0xCC, 0x60, 0x65, 0x60, 0x00, 0x20
-    .byte 0xA0, 0x60, 0xE0, 0x60, 0x71, 0x68, 0x04, 0x31, 0x20, 0x1C, 0xFF, 0xF7, 0x9B, 0xFC, 0xB0, 0x68
-    .byte 0x01, 0x30, 0xB0, 0x60, 0x3C, 0x60, 0x38, 0x1C, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
-    .byte 0xF0, 0xB5, 0x47, 0x46, 0x80, 0xB4, 0x85, 0xB0, 0x06, 0x1C, 0x88, 0x46, 0x17, 0x1C, 0x4C, 0x68
-    .byte 0x65, 0x68, 0x01, 0x20, 0x00, 0x2D, 0x0E, 0xD0, 0x3A, 0x68, 0x2C, 0x1C, 0x00, 0x21, 0x20, 0x69
-    .byte 0x82, 0x42, 0x00, 0xD2, 0x01, 0x21, 0x08, 0x1C, 0x00, 0x28, 0x01, 0xD0, 0xA5, 0x68, 0x00, 0xE0
-    .byte 0xE5, 0x68, 0x00, 0x2D, 0xF1, 0xD1, 0x02, 0x94, 0x00, 0x28, 0x19, 0xD0, 0x41, 0x46, 0x48, 0x68
-    .byte 0x80, 0x68, 0x03, 0x90, 0x00, 0x21, 0x84, 0x42, 0x00, 0xD1, 0x01, 0x21, 0x00, 0x29, 0x0B, 0xD0
-    .byte 0x00, 0x97, 0x00, 0x20, 0x01, 0x90, 0x04, 0xA8, 0x41, 0x46, 0x2A, 0x1C, 0x23, 0x1C, 0xFF, 0xF7
-    .byte 0x6F, 0xFF, 0x01, 0x21, 0x04, 0x98, 0x18, 0xE0, 0x20, 0x1C, 0xFF, 0xF7, 0x15, 0xFD, 0x02, 0x90
-    .byte 0x02, 0x9A, 0x00, 0x23, 0x11, 0x69, 0x38, 0x68, 0x81, 0x42, 0x00, 0xD2, 0x01, 0x23, 0x18, 0x1C
-    .byte 0x00, 0x28, 0x0D, 0xD0, 0x00, 0x97, 0x00, 0x20, 0x01, 0x90, 0x03, 0xA8, 0x41, 0x46, 0x2A, 0x1C
-    .byte 0x23, 0x1C, 0xFF, 0xF7, 0x55, 0xFF, 0x01, 0x21, 0x03, 0x98, 0x30, 0x60, 0x31, 0x71, 0x01, 0xE0
-    .byte 0x32, 0x60, 0x30, 0x71, 0x30, 0x1C, 0x05, 0xB0, 0x08, 0xBC, 0x98, 0x46, 0xF0, 0xBC, 0x02, 0xBC
-    .byte 0x08, 0x47, 0x00, 0x00, 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x86, 0xB0, 0x07, 0x1C
-    .byte 0x0E, 0x1C, 0x90, 0x46, 0x1C, 0x1C, 0x71, 0x68, 0x12, 0x68, 0x88, 0x68, 0x82, 0x42, 0x39, 0xD1
-    .byte 0xB0, 0x68, 0x00, 0x28, 0x06, 0xD1, 0x02, 0xA8, 0x31, 0x1C, 0x22, 0x1C, 0xFF, 0xF7, 0x90, 0xFF
-    .byte 0x02, 0x98, 0xB9, 0xE0, 0x00, 0x20, 0x11, 0x69, 0x13, 0x1C, 0x22, 0x68, 0x8A, 0x42, 0x00, 0xD2
-    .byte 0x01, 0x20, 0x81, 0x46, 0x00, 0x28, 0x5F, 0xD1, 0x00, 0x20, 0x91, 0x42, 0x00, 0xD2, 0x01, 0x20
-    .byte 0x00, 0x28, 0x01, 0xD1, 0x3B, 0x60, 0xA8, 0xE0, 0x02, 0x93, 0x18, 0x1C, 0x00, 0xF0, 0xAE, 0xF8
-    .byte 0x02, 0x1C, 0x02, 0x92, 0x70, 0x68, 0x82, 0x42, 0x02, 0xD1, 0x40, 0x46, 0x03, 0x68, 0x7E, 0xE0
-    .byte 0x00, 0x23, 0x21, 0x68, 0x10, 0x69, 0x15, 0x1C, 0x81, 0x42, 0x00, 0xD2, 0x01, 0x23, 0x00, 0x2B
-    .byte 0x00, 0xD1, 0x8B, 0xE0, 0x41, 0x46, 0x0B, 0x68, 0xD8, 0x68, 0x00, 0x28, 0x6F, 0xD0, 0x00, 0x94
-    .byte 0x48, 0x46, 0x76, 0xE0, 0x8A, 0x42, 0x12, 0xD1, 0xD3, 0x68, 0x00, 0x25, 0x19, 0x69, 0x20, 0x68
-    .byte 0x81, 0x42, 0x00, 0xD2, 0x01, 0x25, 0x00, 0x2D, 0x02, 0xD0, 0x00, 0x94, 0x01, 0x92, 0x60, 0xE0
-    .byte 0x02, 0xA8, 0x31, 0x1C, 0x22, 0x1C, 0xFF, 0xF7, 0x4B, 0xFF, 0x02, 0x98, 0x74, 0xE0, 0x02, 0x92
-    .byte 0x10, 0x1C, 0xFF, 0xF7, 0x91, 0xFC, 0x02, 0x1C, 0x02, 0x92, 0x41, 0x46, 0x0B, 0x68, 0x00, 0x25
-    .byte 0x21, 0x68, 0x18, 0x69, 0x81, 0x42, 0x00, 0xD2, 0x01, 0x25, 0xA9, 0x46, 0x00, 0x2D, 0x1C, 0xD0
-    .byte 0x00, 0x20, 0x84, 0x46, 0x10, 0x69, 0x15, 0x1C, 0x88, 0x42, 0x01, 0xD2, 0x01, 0x21, 0x8C, 0x46
-    .byte 0x60, 0x46, 0x00, 0x28, 0x11, 0xD0, 0xE8, 0x68, 0x00, 0x28, 0x05, 0xD1, 0x00, 0x94, 0x01, 0x95
-    .byte 0x38, 0x1C, 0x31, 0x1C, 0x00, 0x22, 0x40, 0xE0, 0x00, 0x94, 0x00, 0x20, 0x01, 0x90, 0x38, 0x1C
-    .byte 0x31, 0x1C, 0x1A, 0x1C, 0xFF, 0xF7, 0xBC, 0xFE, 0x47, 0xE0, 0x41, 0x46, 0x08, 0x68, 0x03, 0x90
-    .byte 0x00, 0xF0, 0x4C, 0xF8, 0x84, 0x46, 0x03, 0x90, 0x01, 0x20, 0x49, 0x46, 0x41, 0x40, 0x48, 0x46
-    .byte 0x00, 0x28, 0x2E, 0xD1, 0x41, 0x46, 0x08, 0x68, 0x00, 0x25, 0x01, 0x69, 0x03, 0x1C, 0x22, 0x68
-    .byte 0x91, 0x42, 0x00, 0xD2, 0x01, 0x25, 0x29, 0x1C, 0x00, 0x29, 0x22, 0xD0, 0x70, 0x68, 0x65, 0x46
-    .byte 0x85, 0x42, 0x09, 0xD0, 0x00, 0x20, 0x84, 0x46, 0x28, 0x69, 0x82, 0x42, 0x01, 0xD2, 0x01, 0x20
-    .byte 0x84, 0x46, 0x60, 0x46, 0x00, 0x28, 0x14, 0xD0, 0xD8, 0x68, 0x00, 0x28, 0x07, 0xD1, 0x00, 0x94
-    .byte 0x01, 0x93, 0x38, 0x1C, 0x31, 0x1C, 0x00, 0x22, 0xFF, 0xF7, 0x8A, 0xFE, 0x15, 0xE0, 0x00, 0x94
-    .byte 0x00, 0x20, 0x01, 0x90, 0x38, 0x1C, 0x31, 0x1C, 0x2A, 0x1C, 0x2B, 0x1C, 0xFF, 0xF7, 0x80, 0xFE
-    .byte 0x0B, 0xE0, 0x89, 0x45, 0x02, 0xD1, 0x41, 0x46, 0x08, 0x68, 0x05, 0xE0, 0x04, 0xA8, 0x31, 0x1C
-    .byte 0x22, 0x1C, 0xFF, 0xF7, 0xD5, 0xFE, 0x04, 0x98, 0x38, 0x60, 0x38, 0x1C, 0x06, 0xB0, 0x18, 0xBC
-    .byte 0x98, 0x46, 0xA1, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+.Lraw_code_linkonce_23561_0:
+    push {r4, r5, r6, r7, lr}
+    adds r7, r0, #0
+    adds r6, r1, #0
+    ldr r4, [sp, #0x14]
+    adds r5, r3, #0
+    ldr r0, [r6, #4]
+    cmp r5, r0
+    beq .Lraw_code_linkonce_23563_10
+    ldr r0, [sp, #0x18]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23567_10
+    cmp r2, #0
+    bne .Lraw_code_linkonce_23563_10
+    movs r2, #0
+    ldr r1, [r4]
+    ldr r0, [r5, #0x10]
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23563_6
+    movs r2, #1
+.Lraw_code_linkonce_23563_6:
+    cmp r2, #0
+    beq .Lraw_code_linkonce_23567_10
+.Lraw_code_linkonce_23563_10:
+    movs r0, #0x18
+    bl malloc
+    adds r2, r0, #0
+    cmp r2, #0
+    bne .Lraw_code_linkonce_23564_14
+    movs r0, #0x18
+    bl RetryMemoryAllocation
+    adds r2, r0, #0
+.Lraw_code_linkonce_23564_14:
+    adds r1, r2, #0
+    adds r1, #0x10
+    cmp r1, #0
+    beq .Lraw_code_linkonce_23565_14
+    ldr r0, [r4]
+    str r0, [r2, #0x10]
+    ldr r0, [r4, #4]
+    str r0, [r1, #4]
+.Lraw_code_linkonce_23565_14:
+    adds r4, r2, #0
+    str r4, [r5, #8]
+    ldr r1, [r6, #4]
+    cmp r5, r1
+    bne .Lraw_code_linkonce_23567_0
+    str r4, [r5, #4]
+    ldr r0, [r6, #4]
+    str r4, [r0, #0xc]
+    b .Lraw_code_linkonce_23570_12
+.Lraw_code_linkonce_23567_0:
+    ldr r0, [r1, #8]
+    cmp r5, r0
+    bne .Lraw_code_linkonce_23570_12
+    str r4, [r1, #8]
+    b .Lraw_code_linkonce_23570_12
+.Lraw_code_linkonce_23567_10:
+    movs r0, #0x18
+    bl malloc
+    adds r2, r0, #0
+    cmp r2, #0
+    bne .Lraw_code_linkonce_23568_14
+    movs r0, #0x18
+    bl RetryMemoryAllocation
+    adds r2, r0, #0
+.Lraw_code_linkonce_23568_14:
+    adds r1, r2, #0
+    adds r1, #0x10
+    cmp r1, #0
+    beq .Lraw_code_linkonce_23569_14
+    ldr r0, [r4]
+    str r0, [r2, #0x10]
+    ldr r0, [r4, #4]
+    str r0, [r1, #4]
+.Lraw_code_linkonce_23569_14:
+    adds r4, r2, #0
+    str r4, [r5, #0xc]
+    ldr r1, [r6, #4]
+    ldr r0, [r1, #0xc]
+    cmp r5, r0
+    bne .Lraw_code_linkonce_23570_12
+    str r4, [r1, #0xc]
+.Lraw_code_linkonce_23570_12:
+    str r5, [r4, #4]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r0, [r4, #0xc]
+    ldr r1, [r6, #4]
+    adds r1, #4
+    adds r0, r4, #0
+    bl func_080E21E0
+    ldr r0, [r6, #8]
+    adds r0, #1
+    str r0, [r6, #8]
+    str r4, [r7]
+    adds r0, r7, #0
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Lraw_code_linkonce_23573_0:
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #0x14
+    adds r6, r0, #0
+    mov r8, r1
+    adds r7, r2, #0
+    ldr r4, [r1, #4]
+    ldr r5, [r4, #4]
+    movs r0, #1
+    cmp r5, #0
+    beq .Lraw_code_linkonce_23576_6
+    ldr r2, [r7]
+.Lraw_code_linkonce_23574_10:
+    adds r4, r5, #0
+    movs r1, #0
+    ldr r0, [r4, #0x10]
+    cmp r2, r0
+    bhs .Lraw_code_linkonce_23575_6
+    movs r1, #1
+.Lraw_code_linkonce_23575_6:
+    adds r0, r1, #0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23576_0
+    ldr r5, [r4, #8]
+    b .Lraw_code_linkonce_23576_2
+.Lraw_code_linkonce_23576_0:
+    ldr r5, [r4, #0xc]
+.Lraw_code_linkonce_23576_2:
+    cmp r5, #0
+    bne .Lraw_code_linkonce_23574_10
+.Lraw_code_linkonce_23576_6:
+    str r4, [sp, #8]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23580_0
+    mov r1, r8
+    ldr r0, [r1, #4]
+    ldr r0, [r0, #8]
+    str r0, [sp, #0xc]
+    movs r1, #0
+    cmp r4, r0
+    bne .Lraw_code_linkonce_23577_12
+    movs r1, #1
+.Lraw_code_linkonce_23577_12:
+    cmp r1, #0
+    beq .Lraw_code_linkonce_23579_8
+    str r7, [sp]
+    movs r0, #0
+    str r0, [sp, #4]
+    add r0, sp, #0x10
+    mov r1, r8
+    adds r2, r5, #0
+    adds r3, r4, #0
+    bl .Lraw_code_linkonce_23561_0
+    movs r1, #1
+    ldr r0, [sp, #0x10]
+    b .Lraw_code_linkonce_23582_10
+.Lraw_code_linkonce_23579_8:
+    adds r0, r4, #0
+    bl func_080E2354
+    str r0, [sp, #8]
+.Lraw_code_linkonce_23580_0:
+    ldr r2, [sp, #8]
+    movs r3, #0
+    ldr r1, [r2, #0x10]
+    ldr r0, [r7]
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23580_14
+    movs r3, #1
+.Lraw_code_linkonce_23580_14:
+    adds r0, r3, #0
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23583_0
+    str r7, [sp]
+    movs r0, #0
+    str r0, [sp, #4]
+    add r0, sp, #0xc
+    mov r1, r8
+    adds r2, r5, #0
+    adds r3, r4, #0
+    bl .Lraw_code_linkonce_23561_0
+    movs r1, #1
+    ldr r0, [sp, #0xc]
+.Lraw_code_linkonce_23582_10:
+    str r0, [r6]
+    strb r1, [r6, #4]
+    b .Lraw_code_linkonce_23583_4
+.Lraw_code_linkonce_23583_0:
+    str r2, [r6]
+    strb r0, [r6, #4]
+.Lraw_code_linkonce_23583_4:
+    adds r0, r6, #0
+    add sp, #0x14
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+    non_word_aligned_thumb_func_start func_080E2110
+func_080E2110:
+    push {r4, r5, r6, r7, lr}
+    mov r7, sb
+    mov r6, r8
+    push {r6, r7}
+    sub sp, #0x18
+    adds r7, r0, #0
+    adds r6, r1, #0
+    mov r8, r2
+    adds r4, r3, #0
+    ldr r1, [r6, #4]
+    ldr r2, [r2]
+    ldr r0, [r1, #8]
+    cmp r2, r0
+    bne .Lraw_code_linkonce_23593_4
+    ldr r0, [r6, #8]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23587_4
+    add r0, sp, #8
+    adds r1, r6, #0
+    adds r2, r4, #0
+    bl .Lraw_code_linkonce_23573_0
+    ldr r0, [sp, #8]
+    b .Lraw_code_linkonce_23610_8
+.Lraw_code_linkonce_23587_4:
+    movs r0, #0
+    ldr r1, [r2, #0x10]
+    adds r3, r2, #0
+    ldr r2, [r4]
+    cmp r2, r1
+    bhs .Lraw_code_linkonce_23588_2
+    movs r0, #1
+.Lraw_code_linkonce_23588_2:
+    mov sb, r0
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23600_8
+    movs r0, #0
+    cmp r1, r2
+    bhs .Lraw_code_linkonce_23589_0
+    movs r0, #1
+.Lraw_code_linkonce_23589_0:
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23589_8
+    str r3, [r7]
+    b .Lraw_code_linkonce_23610_10
+.Lraw_code_linkonce_23589_8:
+    str r3, [sp, #8]
+    adds r0, r3, #0
+    bl func_080E2B28
+    adds r2, r0, #0
+    str r2, [sp, #8]
+    ldr r0, [r6, #4]
+    cmp r2, r0
+    bne .Lraw_code_linkonce_23591_0
+    mov r0, r8
+    ldr r3, [r0]
+    b .Lraw_code_linkonce_23606_14
+.Lraw_code_linkonce_23591_0:
+    movs r3, #0
+    ldr r1, [r4]
+    ldr r0, [r2, #0x10]
+    adds r5, r2, #0
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23591_14
+    movs r3, #1
+.Lraw_code_linkonce_23591_14:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_23592_4
+    b .Lraw_code_linkonce_23609_12
+.Lraw_code_linkonce_23592_4:
+    mov r1, r8
+    ldr r3, [r1]
+    ldr r0, [r3, #0xc]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23606_14
+    str r4, [sp]
+    mov r0, sb
+    b .Lraw_code_linkonce_23608_2
+.Lraw_code_linkonce_23593_4:
+    cmp r2, r1
+    bne .Lraw_code_linkonce_23595_14
+    ldr r3, [r2, #0xc]
+    movs r5, #0
+    ldr r1, [r3, #0x10]
+    ldr r0, [r4]
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23594_6
+    movs r5, #1
+.Lraw_code_linkonce_23594_6:
+    cmp r5, #0
+    beq .Lraw_code_linkonce_23595_0
+    str r4, [sp]
+    str r2, [sp, #4]
+    b .Lraw_code_linkonce_23607_2
+.Lraw_code_linkonce_23595_0:
+    add r0, sp, #8
+    adds r1, r6, #0
+    adds r2, r4, #0
+    bl .Lraw_code_linkonce_23573_0
+    ldr r0, [sp, #8]
+    b .Lraw_code_linkonce_23610_8
+.Lraw_code_linkonce_23595_14:
+    str r2, [sp, #8]
+    adds r0, r2, #0
+    bl func_080E2354
+    adds r2, r0, #0
+    str r2, [sp, #8]
+    mov r1, r8
+    ldr r3, [r1]
+    movs r5, #0
+    ldr r1, [r4]
+    ldr r0, [r3, #0x10]
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23597_10
+    movs r5, #1
+.Lraw_code_linkonce_23597_10:
+    mov sb, r5
+    cmp r5, #0
+    beq .Lraw_code_linkonce_23601_10
+    movs r0, #0
+    mov ip, r0
+    ldr r0, [r2, #0x10]
+    adds r5, r2, #0
+    cmp r0, r1
+    bhs .Lraw_code_linkonce_23599_0
+    movs r1, #1
+    mov ip, r1
+.Lraw_code_linkonce_23599_0:
+    mov r0, ip
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23601_10
+    ldr r0, [r5, #0xc]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23600_8
+    str r4, [sp]
+    str r5, [sp, #4]
+    adds r0, r7, #0
+    adds r1, r6, #0
+    movs r2, #0
+    b .Lraw_code_linkonce_23608_10
+.Lraw_code_linkonce_23600_8:
+    str r4, [sp]
+    movs r0, #0
+    str r0, [sp, #4]
+    adds r0, r7, #0
+    adds r1, r6, #0
+    adds r2, r3, #0
+    bl .Lraw_code_linkonce_23561_0
+    b .Lraw_code_linkonce_23610_10
+.Lraw_code_linkonce_23601_10:
+    mov r1, r8
+    ldr r0, [r1]
+    str r0, [sp, #0xc]
+    bl func_080E2B28
+    mov ip, r0
+    str r0, [sp, #0xc]
+    movs r0, #1
+    mov r1, sb
+    eors r1, r0
+    mov r0, sb
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23609_2
+    mov r1, r8
+    ldr r0, [r1]
+    movs r5, #0
+    ldr r1, [r0, #0x10]
+    adds r3, r0, #0
+    ldr r2, [r4]
+    cmp r1, r2
+    bhs .Lraw_code_linkonce_23604_6
+    movs r5, #1
+.Lraw_code_linkonce_23604_6:
+    adds r1, r5, #0
+    cmp r1, #0
+    beq .Lraw_code_linkonce_23609_2
+    ldr r0, [r6, #4]
+    mov r5, ip
+    cmp r5, r0
+    beq .Lraw_code_linkonce_23606_8
+    movs r0, #0
+    mov ip, r0
+    ldr r0, [r5, #0x10]
+    cmp r2, r0
+    bhs .Lraw_code_linkonce_23606_2
+    movs r0, #1
+    mov ip, r0
+.Lraw_code_linkonce_23606_2:
+    mov r0, ip
+    cmp r0, #0
+    beq .Lraw_code_linkonce_23609_2
+.Lraw_code_linkonce_23606_8:
+    ldr r0, [r3, #0xc]
+    cmp r0, #0
+    bne .Lraw_code_linkonce_23607_14
+.Lraw_code_linkonce_23606_14:
+    str r4, [sp]
+    str r3, [sp, #4]
+.Lraw_code_linkonce_23607_2:
+    adds r0, r7, #0
+    adds r1, r6, #0
+    movs r2, #0
+    bl .Lraw_code_linkonce_23561_0
+    b .Lraw_code_linkonce_23610_10
+.Lraw_code_linkonce_23607_14:
+    str r4, [sp]
+    movs r0, #0
+.Lraw_code_linkonce_23608_2:
+    str r0, [sp, #4]
+    adds r0, r7, #0
+    adds r1, r6, #0
+    adds r2, r5, #0
+.Lraw_code_linkonce_23608_10:
+    adds r3, r5, #0
+    bl .Lraw_code_linkonce_23561_0
+    b .Lraw_code_linkonce_23610_10
+.Lraw_code_linkonce_23609_2:
+    cmp sb, r1
+    bne .Lraw_code_linkonce_23609_12
+    mov r1, r8
+    ldr r0, [r1]
+    b .Lraw_code_linkonce_23610_8
+.Lraw_code_linkonce_23609_12:
+    add r0, sp, #0x10
+    adds r1, r6, #0
+    adds r2, r4, #0
+    bl .Lraw_code_linkonce_23573_0
+    ldr r0, [sp, #0x10]
+.Lraw_code_linkonce_23610_8:
+    str r0, [r7]
+.Lraw_code_linkonce_23610_10:
+    adds r0, r7, #0
+    add sp, #0x18
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_080E2B28
     .thumb_func
 func_080E2B28:
@@ -23668,7 +32590,7 @@ func_080E2B28:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global loc_080E2328
     .thumb_func
     loc_080E2328:
@@ -23695,7 +32617,7 @@ func_080E2B28:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
 
     .global func_080E2BB4
     .thumb_func
@@ -23749,42 +32671,222 @@ func_080E2BB4:
     mov r0, r8
     cmp r0, #0x9f
     ble .Lauto_080E23B2
-    .byte 0xC2, 0xE0
+    b .Lauto_080E2538
     .Lauto_080E23B2:
     lsls r1, r2, #0x10
     lsrs r1, r1, #0x1e
     lsls r1, r1, #2
     lsrs r0, r2, #0x1e
     adds r1, r1, r0
-    .byte 0x19, 0x4A, 0x48, 0x08, 0x80, 0x18, 0x02, 0x78, 0x01, 0x20, 0x01, 0x40, 0x89, 0x00, 0x0A, 0x41
-    .byte 0x03, 0x23, 0x11, 0x1C, 0x19, 0x40, 0x08, 0x24, 0x20, 0x1C, 0x88, 0x40, 0x30, 0x18, 0x00, 0x28
-    .byte 0x00, 0xDC, 0xAB, 0xE0, 0x91, 0x08, 0x19, 0x40, 0x20, 0x1C, 0x88, 0x40, 0x40, 0x44, 0x00, 0x28
-    .byte 0x00, 0xDC, 0xA3, 0xE0, 0x01, 0x98, 0x80, 0x05, 0x40, 0x0C, 0x06, 0x99, 0x08, 0x18, 0x02, 0x90
-    .byte 0x51, 0x46, 0x04, 0x31, 0x02, 0xAF, 0x4C, 0x68, 0x62, 0x68, 0x8C, 0x46, 0x00, 0x2A, 0x10, 0xD0
-    .byte 0x05, 0x1C, 0x00, 0x23, 0x10, 0x69, 0xA8, 0x42, 0x00, 0xD2, 0x01, 0x23, 0x00, 0x2B, 0x05, 0xD1
-    .byte 0x14, 0x1C, 0xA2, 0x68, 0x03, 0xE0, 0x00, 0x00
-    .word gCodeLinkoncePackedCellSizeLookup
-    .byte 0xD2, 0x68, 0x00, 0x2A
-    .byte 0xEF, 0xD1, 0x4B, 0x68, 0x9C, 0x42, 0x07, 0xD0, 0x00, 0x22, 0x39, 0x68, 0x20, 0x69, 0x81, 0x42
-    .byte 0x00, 0xD2, 0x01, 0x22, 0x00, 0x2A, 0x00, 0xD0, 0x1C, 0x1C, 0x60, 0x46, 0x41, 0x68, 0x61, 0x40
-    .byte 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x04, 0xDA, 0x61, 0x69, 0x50, 0x46
+    ldr r2, .Lraw_code_linkonce_23766_0
+    lsrs r0, r1, #1
+    adds r0, r0, r2
+    ldrb r2, [r0]
+    movs r0, #1
+    ands r1, r0
+    lsls r1, r1, #2
+    asrs r2, r1
+    movs r3, #3
+    adds r1, r2, #0
+    ands r1, r3
+    movs r4, #8
+    adds r0, r4, #0
+    lsls r0, r1
+    adds r0, r6, r0
+    cmp r0, #0
+    bgt .Lraw_code_linkonce_23761_4
+    b .Lauto_080E2538
+.Lraw_code_linkonce_23761_4:
+    lsrs r1, r2, #2
+    ands r1, r3
+    adds r0, r4, #0
+    lsls r0, r1
+    add r0, r8
+    cmp r0, #0
+    bgt .Lraw_code_linkonce_23762_4
+    b .Lauto_080E2538
+.Lraw_code_linkonce_23762_4:
+    ldr r0, [sp, #4]
+    lsls r0, r0, #0x16
+    lsrs r0, r0, #0x11
+    ldr r1, [sp, #0x18]
+    adds r0, r1, r0
+    str r0, [sp, #8]
+    mov r1, sl
+    adds r1, #4
+    add r7, sp, #8
+    ldr r4, [r1, #4]
+    ldr r2, [r4, #4]
+    mov ip, r1
+    cmp r2, #0
+    beq .Lraw_code_linkonce_23768_2
+    adds r5, r0, #0
+.Lraw_code_linkonce_23764_2:
+    movs r3, #0
+    ldr r0, [r2, #0x10]
+    cmp r0, r5
+    bhs .Lraw_code_linkonce_23764_12
+    movs r3, #1
+.Lraw_code_linkonce_23764_12:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_23767_0
+    adds r4, r2, #0
+    ldr r2, [r4, #8]
+    b .Lraw_code_linkonce_23767_2
+    .align 2, 0
+.Lraw_code_linkonce_23766_0: .word gCodeLinkoncePackedCellSizeLookup
+.Lraw_code_linkonce_23767_0:
+    ldr r2, [r2, #0xc]
+.Lraw_code_linkonce_23767_2:
+    cmp r2, #0
+    bne .Lraw_code_linkonce_23764_2
+.Lraw_code_linkonce_23768_2:
+    ldr r3, [r1, #4]
+    cmp r4, r3
+    beq .Lraw_code_linkonce_23769_8
+    movs r2, #0
+    ldr r1, [r7]
+    ldr r0, [r4, #0x10]
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23769_4
+    movs r2, #1
+.Lraw_code_linkonce_23769_4:
+    cmp r2, #0
+    beq .Lraw_code_linkonce_23769_10
+.Lraw_code_linkonce_23769_8:
+    adds r4, r3, #0
+.Lraw_code_linkonce_23769_10:
+    mov r0, ip
+    ldr r1, [r0, #4]
+    eors r1, r4
+    rsbs r0, r1, #0
+    orrs r0, r1
+    cmp r0, #0
+    bge .Lraw_code_linkonce_23772_2
+    ldr r1, [r4, #0x14]
+    mov r0, sl
     bl GetObjTileIndex
-    .byte 0x01, 0xE0, 0x01, 0x20, 0x40, 0x42, 0x81, 0x46, 0x00, 0x28, 0x67, 0xDB, 0x01, 0x98, 0x00, 0x04
-    .byte 0x00, 0x0F, 0x40, 0x01, 0x07, 0x99, 0x08, 0x18, 0x03, 0x90, 0x51, 0x46, 0x18, 0x31, 0x03, 0xAF
-    .byte 0x4C, 0x68, 0x62, 0x68, 0x8C, 0x46, 0x00, 0x2A, 0x0D, 0xD0, 0x05, 0x1C, 0x00, 0x23, 0x10, 0x69
-    .byte 0xA8, 0x42, 0x00, 0xD2, 0x01, 0x23, 0x00, 0x2B, 0x02, 0xD1, 0x14, 0x1C, 0xA2, 0x68, 0x00, 0xE0
-    .byte 0xD2, 0x68, 0x00, 0x2A, 0xF2, 0xD1, 0x4B, 0x68, 0x9C, 0x42, 0x07, 0xD0, 0x00, 0x22, 0x39, 0x68
-    .byte 0x20, 0x69, 0x81, 0x42, 0x00, 0xD2, 0x01, 0x22, 0x00, 0x2A, 0x00, 0xD0, 0x1C, 0x1C, 0x60, 0x46
-    .byte 0x41, 0x68, 0x61, 0x40, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x06, 0xDA, 0x61, 0x69, 0x50, 0x46
-    .byte 0x14, 0x30
+    b .Lraw_code_linkonce_23772_6
+.Lraw_code_linkonce_23772_2:
+    movs r0, #1
+    rsbs r0, r0, #0
+.Lraw_code_linkonce_23772_6:
+    mov sb, r0
+    cmp r0, #0
+    blt .Lauto_080E2538
+    ldr r0, [sp, #4]
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x1c
+    lsls r0, r0, #5
+    ldr r1, [sp, #0x1c]
+    adds r0, r1, r0
+    str r0, [sp, #0xc]
+    mov r1, sl
+    adds r1, #0x18
+    add r7, sp, #0xc
+    ldr r4, [r1, #4]
+    ldr r2, [r4, #4]
+    mov ip, r1
+    cmp r2, #0
+    beq .Lraw_code_linkonce_23776_6
+    adds r5, r0, #0
+.Lraw_code_linkonce_23774_12:
+    movs r3, #0
+    ldr r0, [r2, #0x10]
+    cmp r0, r5
+    bhs .Lraw_code_linkonce_23775_6
+    movs r3, #1
+.Lraw_code_linkonce_23775_6:
+    cmp r3, #0
+    bne .Lraw_code_linkonce_23776_0
+    adds r4, r2, #0
+    ldr r2, [r4, #8]
+    b .Lraw_code_linkonce_23776_2
+.Lraw_code_linkonce_23776_0:
+    ldr r2, [r2, #0xc]
+.Lraw_code_linkonce_23776_2:
+    cmp r2, #0
+    bne .Lraw_code_linkonce_23774_12
+.Lraw_code_linkonce_23776_6:
+    ldr r3, [r1, #4]
+    cmp r4, r3
+    beq .Lraw_code_linkonce_23777_12
+    movs r2, #0
+    ldr r1, [r7]
+    ldr r0, [r4, #0x10]
+    cmp r1, r0
+    bhs .Lraw_code_linkonce_23777_8
+    movs r2, #1
+.Lraw_code_linkonce_23777_8:
+    cmp r2, #0
+    beq .Lraw_code_linkonce_23777_14
+.Lraw_code_linkonce_23777_12:
+    adds r4, r3, #0
+.Lraw_code_linkonce_23777_14:
+    mov r0, ip
+    ldr r1, [r0, #4]
+    eors r1, r4
+    rsbs r0, r1, #0
+    orrs r0, r1
+    cmp r0, #0
+    bge .Lraw_code_linkonce_23781_4
+    ldr r1, [r4, #0x14]
+    mov r0, sl
+    adds r0, #0x14
     bl GetObjPaletteBank
-    .byte 0x04, 0x1C, 0x01, 0xE0, 0x01, 0x24, 0x64, 0x42, 0x00, 0x2C
-    .byte 0x2C, 0xDB, 0x41, 0x46, 0x08, 0x06, 0x00, 0x0E, 0x1B, 0x49, 0x00, 0x9B, 0x0B, 0x40, 0x03, 0x43
-    .byte 0x1A, 0x48, 0x06, 0x40, 0x31, 0x04, 0x1A, 0x48, 0x03, 0x40, 0x0B, 0x43, 0x00, 0x93, 0x49, 0x46
-    .byte 0x88, 0x05, 0x80, 0x0D, 0x17, 0x49, 0x6D, 0x46, 0x01, 0x9A, 0x0A, 0x40, 0x02, 0x43, 0x20, 0x04
-    .byte 0x00, 0x0C, 0x0F, 0x21, 0x08, 0x40, 0x00, 0x03, 0x13, 0x49, 0x0A, 0x40, 0x02, 0x43, 0x01, 0x92
-    .byte 0x04, 0x98, 0x02, 0x78, 0x7F, 0x2A, 0x09, 0xD8, 0xD0, 0x00, 0x04, 0x30, 0x04, 0x99, 0x08, 0x18
-    .byte 0x03, 0x60, 0xA9, 0x88, 0x81, 0x80, 0x50, 0x1C, 0x04, 0x99, 0x08, 0x70
+    adds r4, r0, #0
+    b .Lraw_code_linkonce_23781_8
+.Lraw_code_linkonce_23781_4:
+    movs r4, #1
+    rsbs r4, r4, #0
+.Lraw_code_linkonce_23781_8:
+    cmp r4, #0
+    blt .Lauto_080E2538
+    mov r1, r8
+    lsls r0, r1, #0x18
+    lsrs r0, r0, #0x18
+    ldr r1, .Lraw_code_linkonce_23803_2
+    ldr r3, [sp]
+    ands r3, r1
+    orrs r3, r0
+    ldr r0, .Lraw_code_linkonce_23803_6
+    ands r6, r0
+    lsls r1, r6, #0x10
+    ldr r0, .Lraw_code_linkonce_23803_10
+    ands r3, r0
+    orrs r3, r1
+    str r3, [sp]
+    mov r1, sb
+    lsls r0, r1, #0x16
+    lsrs r0, r0, #0x16
+    ldr r1, .Lraw_code_linkonce_23803_14
+    mov r5, sp
+    ldr r2, [sp, #4]
+    ands r2, r1
+    orrs r2, r0
+    lsls r0, r4, #0x10
+    lsrs r0, r0, #0x10
+    movs r1, #0xf
+    ands r0, r1
+    lsls r0, r0, #0xc
+    ldr r1, .Lraw_code_linkonce_23804_2
+    ands r2, r1
+    orrs r2, r0
+    str r2, [sp, #4]
+    ldr r0, [sp, #0x10]
+    ldrb r2, [r0]
+    cmp r2, #0x7f
+    bhi .Lauto_080E2538
+    lsls r0, r2, #3
+    adds r0, #4
+    ldr r1, [sp, #0x10]
+    adds r0, r1, r0
+    str r3, [r0]
+    ldrh r1, [r5, #4]
+    strh r1, [r0, #4]
+    adds r0, r2, #1
+    ldr r1, [sp, #0x10]
+    strb r0, [r1]
     .Lauto_080E2538:
     ldr r3, [sp, #0x24]
     ldr r0, [sp, #0x20]
@@ -23800,8 +32902,12 @@ func_080E2BB4:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x01, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0xFE, 0x00, 0xFC
-    .byte 0xFF, 0xFF, 0xFF, 0x0F, 0xFF, 0xFF
+    .align 2, 0
+.Lraw_code_linkonce_23803_2: .word 0xFFFFFF00
+.Lraw_code_linkonce_23803_6: .word 0x000001FF
+.Lraw_code_linkonce_23803_10: .word 0xFE00FFFF
+.Lraw_code_linkonce_23803_14: .word 0xFFFFFC00
+.Lraw_code_linkonce_23804_2: .word 0xFFFF0FFF
     .global func_080E2568
     .thumb_func
 func_080E2568:
@@ -23862,12 +32968,12 @@ func_080E25D4:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, [pc, #0x28]
+    ldr r0, .Lraw_code_linkonce_23885_0
     str r0, [r4, #0xc]
     ldr r1, [r4, #8]
     cmp r1, #0
     beq .Lauto_080E25F4
-    ldr r2, [pc, #0x20]
+    ldr r2, .Lraw_code_linkonce_23886_0
     adds r0, r1, r2
     ldr r0, [r0]
     ldr r2, [r0, #8]
@@ -23881,9 +32987,9 @@ func_080E25D4:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_23IndexedResourceProvider
-    .byte 0xB4, 0x05, 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_23885_0: .4byte __vt_23IndexedResourceProvider
+.Lraw_code_linkonce_23886_0: .word 0x000005B4
     .section .text.after_staff_credits_core_destructor, "ax", %progbits
     .align 2, 0
 
@@ -23913,7 +33019,7 @@ func_080E25D4:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E2EA4
     .thumb_func
 func_080E2EA4:
@@ -24025,7 +33131,7 @@ func_080E2EA4:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E2F74
     .thumb_func
 func_080E2F74:
@@ -24151,7 +33257,7 @@ func_080E2F74:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E3054
     .thumb_func
 func_080E3054:
@@ -24510,7 +33616,7 @@ func_080E3054:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E2A88
     .thumb_func
 func_080E2A88:
@@ -24569,7 +33675,7 @@ func_080E2A88:
     movs r0, #0xce
     lsls r0, r0, #1
     adds r1, r5, r0
-    ldr r0, [pc, #0x40]
+    ldr r0, .Lraw_code_linkonce_24601_0
     str r0, [r1]
     str r0, [r5, #0x28]
     adds r0, r4, #0
@@ -24598,7 +33704,7 @@ func_080E2A88:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .4byte __vt_23IndexedResourceProvider
+.Lraw_code_linkonce_24601_0: .4byte __vt_23IndexedResourceProvider
     .global func_080E3398
     .thumb_func
 func_080E3398:
@@ -24648,7 +33754,7 @@ func_080E2B70:
     beq .Lauto_080E2B86
     bl free
     .Lauto_080E2B86:
-    ldr r2, [pc, #0x98]
+    ldr r2, .Lraw_code_linkonce_24715_0
     adds r4, r5, r2
     ldr r1, [r4, #4]
     adds r0, r4, #0
@@ -24665,7 +33771,7 @@ func_080E2B70:
     adds r0, r4, #0
     movs r1, #2
     bl _._16ObjTilePoolOwner
-    ldr r1, [pc, #0x70]
+    ldr r1, .Lraw_code_linkonce_24715_4
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
@@ -24682,7 +33788,7 @@ func_080E2B70:
     adds r0, r4, #0
     movs r1, #2
     bl _._16ObjTilePoolOwner
-    ldr r0, [pc, #0x4c]
+    ldr r0, .Lraw_code_linkonce_24715_8
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
@@ -24699,9 +33805,9 @@ func_080E2B70:
     adds r0, r4, #0
     movs r1, #2
     bl _._16ObjTilePoolOwner
-    ldr r2, [pc, #0x24]
+    ldr r2, .Lraw_code_linkonce_24715_12
     adds r0, r5, r2
-    ldr r1, [pc, #0x24]
+    ldr r1, .Lraw_code_linkonce_24716_0
     str r1, [r0]
     subs r2, #0x30
     adds r0, r5, r2
@@ -24712,8 +33818,11 @@ func_080E2B70:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x38, 0x08, 0x00, 0x00, 0x28, 0x08, 0x00, 0x00, 0x18, 0x08, 0x00, 0x00, 0x44, 0x07, 0x00, 0x00
-    .4byte __vt_23IndexedResourceProvider
+.Lraw_code_linkonce_24715_0: .word 0x00000838
+.Lraw_code_linkonce_24715_4: .word 0x00000828
+.Lraw_code_linkonce_24715_8: .word 0x00000818
+.Lraw_code_linkonce_24715_12: .word 0x00000744
+.Lraw_code_linkonce_24716_0: .4byte __vt_23IndexedResourceProvider
     .section .text.after_blacksmith_shop_result_transition, "ax", %progbits
     .align 2, 0
 
@@ -24736,7 +33845,7 @@ func_080E2D88:
     movs r0, #0xe4
     lsls r0, r0, #1
     adds r4, r4, r0
-    ldr r1, [pc, #0x18]
+    ldr r1, .Lraw_code_linkonce_24750_0
     adds r0, r4, #0
     movs r2, #0
     movs r3, #0
@@ -24747,7 +33856,7 @@ func_080E2D88:
     pop {r4}
     pop {r0}
     bx r0
-    .word gText_LinkCommunication_Waiting
+.Lraw_code_linkonce_24750_0: .word gText_LinkCommunication_Waiting
     .global func_080E2DB0
     .thumb_func
 func_080E2DB0:
@@ -24770,7 +33879,7 @@ func_080E2DC8:
     movs r0, #0xe4
     lsls r0, r0, #1
     adds r4, r4, r0
-    ldr r1, [pc, #0x18]
+    ldr r1, .Lraw_code_linkonce_24784_0
     adds r0, r4, #0
     movs r2, #0
     movs r3, #0
@@ -24781,7 +33890,7 @@ func_080E2DC8:
     pop {r4}
     pop {r0}
     bx r0
-    .word gText_LinkCommunication_SendingGameData
+.Lraw_code_linkonce_24784_0: .word gText_LinkCommunication_SendingGameData
     .global func_080E2DF0
     .thumb_func
 func_080E2DF0:
@@ -24790,7 +33899,7 @@ func_080E2DF0:
     movs r0, #0xe4
     lsls r0, r0, #1
     adds r4, r4, r0
-    ldr r1, [pc, #0x18]
+    ldr r1, .Lraw_code_linkonce_24804_0
     adds r0, r4, #0
     movs r2, #0
     movs r3, #0
@@ -24801,7 +33910,7 @@ func_080E2DF0:
     pop {r4}
     pop {r0}
     bx r0
-    .word gText_LinkCommunication_TestingConnection
+.Lraw_code_linkonce_24804_0: .word gText_LinkCommunication_TestingConnection
     .global func_080E2E18
     .thumb_func
 func_080E2E18:
@@ -24819,7 +33928,7 @@ func_080E2E18:
     movs r0, #0xe4
     lsls r0, r0, #1
     adds r4, r2, r0
-    ldr r1, [pc, #0x18]
+    ldr r1, .Lraw_code_linkonce_24834_0
     adds r0, r4, #0
     movs r2, #0
     movs r3, #0
@@ -24830,8 +33939,8 @@ func_080E2E18:
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .word gText_LinkCommunication_CannotResendPreviousData
+    .align 2, 0
+.Lraw_code_linkonce_24834_0: .word gText_LinkCommunication_CannotResendPreviousData
     .global func_080E36B4
     .thumb_func
 func_080E36B4:
@@ -24860,18 +33969,18 @@ func_080E2E54:
     bne .Lauto_080E2EC6
     movs r0, #1
     str r0, [r4]
-    ldr r1, [pc, #0x10]
-    ldr r2, [pc, #0x14]
-    ldr r3, [pc, #0x14]
+    ldr r1, .Lraw_code_linkonce_24872_0
+    ldr r2, .Lraw_code_linkonce_24873_0
+    ldr r3, .Lraw_code_linkonce_24874_0
     str r6, [sp]
     str r6, [sp, #4]
     str r6, [sp, #8]
     adds r0, r5, #0
     bl func_08050E30
     b .Lauto_080E2EC6
-    .word gText_LinkCommunication_ProceedQuestion
-    .word gText_LinkCommunication_Yes
-    .word gText_LinkCommunication_No
+.Lraw_code_linkonce_24872_0: .word gText_LinkCommunication_ProceedQuestion
+.Lraw_code_linkonce_24873_0: .word gText_LinkCommunication_Yes
+.Lraw_code_linkonce_24874_0: .word gText_LinkCommunication_No
     .Lauto_080E2EA0:
     movs r1, #0xe4
     lsls r1, r1, #1
@@ -24905,7 +34014,7 @@ func_080E3730:
     .thumb_func
 func_080E2ED0:
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E2ED4
     .thumb_func
 func_080E2ED4:
@@ -24914,7 +34023,7 @@ func_080E2ED4:
     movs r0, #0xe4
     lsls r0, r0, #1
     adds r4, r4, r0
-    ldr r1, [pc, #0x18]
+    ldr r1, .Lraw_code_linkonce_24928_0
     adds r0, r4, #0
     movs r2, #0
     movs r3, #0
@@ -24925,7 +34034,7 @@ func_080E2ED4:
     pop {r4}
     pop {r0}
     bx r0
-    .word gText_LinkCommunication_WaitingForOtherPlayer
+.Lraw_code_linkonce_24928_0: .word gText_LinkCommunication_WaitingForOtherPlayer
     .global func_080E2EFC
     .thumb_func
 func_080E2EFC:
@@ -24951,7 +34060,7 @@ func_080E2F14:
     movs r0, #0xe4
     lsls r0, r0, #1
     adds r4, r4, r0
-    ldr r1, [pc, #0x14]
+    ldr r1, .Lraw_code_linkonce_24963_0
     adds r0, r4, #0
     bl func_08050D8C
     adds r0, r4, #0
@@ -24960,12 +34069,12 @@ func_080E2F14:
     pop {r4}
     pop {r0}
     bx r0
-    .word gText_LinkCommunication_NowSendingData
+.Lraw_code_linkonce_24963_0: .word gText_LinkCommunication_NowSendingData
     .global func_080E2F38
     .thumb_func
 func_080E2F38:
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E2F3C
     .thumb_func
 func_080E2F3C:
@@ -24983,7 +34092,7 @@ func_080E2F3C:
     movs r0, #0xe4
     lsls r0, r0, #1
     adds r4, r2, r0
-    ldr r1, [pc, #0x14]
+    ldr r1, .Lraw_code_linkonce_24996_0
     adds r0, r4, #0
     bl func_08050D8C
     adds r0, r4, #0
@@ -24992,8 +34101,8 @@ func_080E2F3C:
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .word gText_LinkCommunication_DataExchangeFailed
+    .align 2, 0
+.Lraw_code_linkonce_24996_0: .word gText_LinkCommunication_DataExchangeFailed
     .global func_080E37DC
     .thumb_func
 func_080E37DC:
@@ -25025,8 +34134,8 @@ func_080E2F74_vtable_target:
     movs r2, #0xe4
     lsls r2, r2, #1
     adds r0, r1, r2
-    ldr r1, [pc, #0x10]
-    ldr r2, [pc, #0x14]
+    ldr r1, .Lraw_code_linkonce_25037_0
+    ldr r2, .Lraw_code_linkonce_25038_0
     str r4, [sp]
     str r4, [sp, #4]
     str r4, [sp, #8]
@@ -25034,8 +34143,8 @@ func_080E2F74_vtable_target:
     movs r3, #0
     bl func_08050E0C
     b .Lauto_080E2FE6
-    .word gText_LinkCommunication_Yes
-    .word gText_LinkCommunication_No
+.Lraw_code_linkonce_25037_0: .word gText_LinkCommunication_Yes
+.Lraw_code_linkonce_25038_0: .word gText_LinkCommunication_No
     .Lauto_080E2FC0:
     movs r3, #0xea
     lsls r3, r3, #1
@@ -25067,7 +34176,7 @@ func_080E2F74_vtable_target:
     .thumb_func
 func_080E2FF0:
     bx lr
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E2FF4
     .thumb_func
 func_080E2FF4:
@@ -25122,7 +34231,7 @@ func_080E300C:
     .Lauto_080E3042:
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E38B0
     .thumb_func
 func_080E38B0:
@@ -25200,7 +34309,7 @@ func_080E30AC:
     bl StopJoyBusCommunication
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E30B8
     .thumb_func
 func_080E30B8:
@@ -25208,7 +34317,7 @@ func_080E30B8:
     bl StartJoyBusCommunication
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E30C4
     .thumb_func
 func_080E30C4:
@@ -25216,7 +34325,7 @@ func_080E30C4:
     bl UpdateJoyBusCommunication
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E30D0
     .thumb_func
 func_080E30D0:
@@ -25266,7 +34375,7 @@ func_080E30D0:
     pop {r4}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E312C
     .thumb_func
 func_080E312C:
@@ -25314,7 +34423,7 @@ func_080E312C:
     pop {r4}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E39EC
     .thumb_func
 func_080E39EC:
@@ -25372,7 +34481,7 @@ func_080E31DC:
     bl func_080D06A8
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E31E8
     .thumb_func
 func_080E31E8:
@@ -25380,7 +34489,7 @@ func_080E31E8:
     bl func_080D0678
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E31F4
     .thumb_func
 func_080E31F4:
@@ -25402,7 +34511,7 @@ func_080E3204:
     bl func_080D0558
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E3218
     .thumb_func
 func_080E3218:
@@ -25420,7 +34529,7 @@ func_080E3224:
     bl func_080D0444
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E3234
     .thumb_func
 func_080E3234:
@@ -25429,42 +34538,104 @@ func_080E3234:
     cmp r1, #4
     bhi .Lauto_080E32F0
     lsls r0, r1, #2
-    ldr r1, [pc, #8]
+    ldr r1, .Lraw_code_linkonce_25436_2
     adds r0, r0, r1
     ldr r0, [r0]
     mov pc, r0
-    .byte 0x00, 0x00, 0x4C, 0x32, 0x0E, 0x08
+    .align 2, 0
+.Lraw_code_linkonce_25436_2: .word .Lauto_080E324C
     .Lauto_080E324C:
-    .byte 0x60, 0x32, 0x0E, 0x08, 0x6C, 0x32, 0x0E, 0x08, 0x80, 0x32, 0x0E, 0x08, 0xA8, 0x32, 0x0E, 0x08
-    .byte 0xD0, 0x32, 0x0E, 0x08
+    .word .Lauto_080E3260
+    .word .Lauto_080E326C
+    .word .Lauto_080E3280
+    .word .Lauto_080E32A8
+    .word .Lauto_080E32D0
     .Lauto_080E3260:
-    .byte 0xDC, 0x20, 0x40, 0x00, 0x19, 0x18, 0x00, 0x20, 0x08, 0x70, 0x41, 0xE0
+    movs r0, #0xdc
+    lsls r0, r0, #1
+    adds r1, r3, r0
+    movs r0, #0
+    strb r0, [r1]
+    b .Lauto_080E32F0
     .Lauto_080E326C:
-    .byte 0xDC, 0x21, 0x49, 0x00, 0x58, 0x18, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70, 0x00, 0x4C, 0x37, 0xE0
-    .byte 0xB9, 0x01, 0x00, 0x00
+    movs r1, #0xdc
+    lsls r1, r1, #1
+    adds r0, r3, r1
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    ldr r4, .Lraw_code_linkonce_25444_0
+    b .Lraw_code_linkonce_25455_12
+.Lraw_code_linkonce_25444_0: .word 0x000001B9
     .Lauto_080E3280:
-    .byte 0xDC, 0x21, 0x49, 0x00, 0x58, 0x18, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70, 0x04, 0x4C, 0x18, 0x19
-    .byte 0x01, 0x70, 0x01, 0x34, 0x18, 0x19, 0x01, 0x70, 0x02, 0x49, 0x58, 0x18, 0x27, 0xE0, 0x00, 0x00
-    .byte 0xB9, 0x01, 0x00, 0x00, 0xBB, 0x01, 0x00, 0x00
+    movs r1, #0xdc
+    lsls r1, r1, #1
+    adds r0, r3, r1
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    ldr r4, .Lraw_code_linkonce_25448_0
+    adds r0, r3, r4
+    strb r1, [r0]
+    adds r4, #1
+    adds r0, r3, r4
+    strb r1, [r0]
+    ldr r1, .Lraw_code_linkonce_25448_4
+    adds r0, r3, r1
+    b .Lraw_code_linkonce_25455_14
+    .align 2, 0
+.Lraw_code_linkonce_25448_0: .word 0x000001B9
+.Lraw_code_linkonce_25448_4: .word 0x000001BB
     .Lauto_080E32A8:
-    .byte 0xDC, 0x22, 0x52, 0x00, 0x98, 0x18, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70, 0x04, 0x4C, 0x18, 0x19
-    .byte 0x01, 0x70, 0x01, 0x34, 0x18, 0x19, 0x02, 0x70, 0x02, 0x4A, 0x98, 0x18, 0x01, 0x70, 0x13, 0xE0
-    .byte 0xB9, 0x01, 0x00, 0x00, 0xBB, 0x01, 0x00, 0x00
+    movs r2, #0xdc
+    lsls r2, r2, #1
+    adds r0, r3, r2
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    ldr r4, .Lraw_code_linkonce_25452_0
+    adds r0, r3, r4
+    strb r1, [r0]
+    adds r4, #1
+    adds r0, r3, r4
+    strb r2, [r0]
+    ldr r2, .Lraw_code_linkonce_25452_4
+    adds r0, r3, r2
+    strb r1, [r0]
+    b .Lauto_080E32F0
+.Lraw_code_linkonce_25452_0: .word 0x000001B9
+.Lraw_code_linkonce_25452_4: .word 0x000001BB
     .Lauto_080E32D0:
-    .byte 0xDC, 0x24, 0x64, 0x00, 0x18, 0x19, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70, 0x01, 0x34, 0x18, 0x19
-    .byte 0x01, 0x70, 0xDD, 0x21, 0x49, 0x00, 0x58, 0x18, 0x02, 0x70, 0x02, 0x34, 0x18, 0x19, 0x02, 0x70
+    movs r4, #0xdc
+    lsls r4, r4, #1
+    adds r0, r3, r4
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r4, #1
+    adds r0, r3, r4
+    strb r1, [r0]
+    movs r1, #0xdd
+    lsls r1, r1, #1
+    adds r0, r3, r1
+    strb r2, [r0]
+    adds r4, #2
+.Lraw_code_linkonce_25455_12:
+    adds r0, r3, r4
+.Lraw_code_linkonce_25455_14:
+    strb r2, [r0]
     .Lauto_080E32F0:
     pop {r4}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E32F8
     .thumb_func
 func_080E32F8:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, [pc, #0x14]
+    ldr r0, .Lraw_code_linkonce_25476_0
     str r0, [r4]
     bl ResetJoyBusLinkRegisters
     adds r0, r4, #0
@@ -25473,7 +34644,7 @@ func_080E32F8:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x3C, 0x73, 0x0E, 0x08
+.Lraw_code_linkonce_25476_0: .word gUnk_080E733C
     .global func_080E3B80
     .thumb_func
 func_080E3B80:
@@ -25500,23 +34671,23 @@ func_080E3318:
     subs r1, r1, r0
     lsls r1, r1, #2
     adds r1, r1, r0
-    ldr r0, [pc, #4]
+    ldr r0, .Lraw_code_linkonce_25507_0
     adds r5, r1, r0
     adds r0, r5, #0
     b .Lauto_080E338E
-    .word gText_StaminaRecoveryStatus
+.Lraw_code_linkonce_25507_0: .word gText_StaminaRecoveryStatus
     .Lauto_080E3348:
     ldrb r0, [r1, #7]
     lsls r1, r0, #3
     subs r1, r1, r0
     lsls r1, r1, #2
     adds r1, r1, r0
-    ldr r0, [pc, #8]
+    ldr r0, .Lraw_code_linkonce_25519_0
     adds r5, r1, r0
     adds r0, r5, #0
     b .Lauto_080E338E
-    .byte 0x00, 0x00
-    .word gText_FatigueRecoveryStatus
+    .align 2, 0
+.Lraw_code_linkonce_25519_0: .word gText_FatigueRecoveryStatus
     .Lauto_080E3360:
     ldrh r0, [r1, #4]
     cmp r0, #0xab
@@ -25573,7 +34744,7 @@ func_080E3318:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E3C3C
     .thumb_func
 func_080E3C3C:
@@ -25583,9 +34754,9 @@ func_080E33D4:
     push {r4, r5, r6, lr}
     adds r5, r0, #0
     adds r6, r1, #0
-    ldr r0, [pc, #0x144]
+    ldr r0, .Lraw_code_linkonce_25726_2
     adds r1, r5, r0
-    ldr r0, [pc, #0x144]
+    ldr r0, .Lraw_code_linkonce_25727_0
     str r0, [r1]
     movs r1, #0xca
     lsls r1, r1, #2
@@ -25680,7 +34851,7 @@ func_080E33D4:
     movs r2, #0x94
     lsls r2, r2, #1
     adds r0, r5, r2
-    ldr r4, [pc, #0x60]
+    ldr r4, .Lraw_code_linkonce_25728_0
     str r4, [r0]
     adds r0, r5, #0
     adds r0, #0xf8
@@ -25723,15 +34894,16 @@ func_080E33D4:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0xD8, 0x33, 0x00, 0x00
-    .4byte __vt_23ScriptTextVariableStore
-    .4byte __vt_23IndexedResourceProvider
+    .align 2, 0
+.Lraw_code_linkonce_25726_2: .word 0x000033D8
+.Lraw_code_linkonce_25727_0: .4byte __vt_23ScriptTextVariableStore
+.Lraw_code_linkonce_25728_0: .4byte __vt_23IndexedResourceProvider
     .global func_080E352C
     .thumb_func
 func_080E352C:
     push {lr}
     adds r2, r0, #0
-    ldr r0, [pc, #0x14]
+    ldr r0, .Lraw_code_linkonce_25746_0
     str r0, [r2]
     movs r0, #1
     ands r0, r1
@@ -25742,8 +34914,8 @@ func_080E352C:
     .Lauto_080E3542:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_23ScriptTextVariableStore
+    .align 2, 0
+.Lraw_code_linkonce_25746_0: .4byte __vt_23ScriptTextVariableStore
     .global func_080E3DB4
     .thumb_func
 func_080E3DB4:
@@ -25922,7 +35094,7 @@ func_080E36D8:
     beq .Lauto_080E3778
     b .Lauto_080E381E
     .Lauto_080E3712:
-    ldr r7, [pc, #0x2c]
+    ldr r7, .Lraw_code_linkonce_25946_0
     adds r0, r7, #0
     bl strlen
     adds r4, r0, #0
@@ -25942,10 +35114,10 @@ func_080E36D8:
     adds r0, r6, #4
     bl strcpy
     b .Lauto_080E382C
-    .byte 0x00, 0x00
-    .word gText_Calendar_DynamicSeasonNames
+    .align 2, 0
+.Lraw_code_linkonce_25946_0: .word gText_Calendar_DynamicSeasonNames
     .Lauto_080E3744:
-    ldr r7, [pc, #0x24]
+    ldr r7, .Lraw_code_linkonce_25967_0
     adds r0, r7, #0
     bl strlen
     adds r4, r0, #0
@@ -25963,14 +35135,14 @@ func_080E36D8:
     strb r1, [r0]
     strb r5, [r6]
     b .Lauto_080E379E
-    .byte 0x00, 0x00
-    .word gText_Calendar_DynamicSeasonNames + 4 @ fixed four-byte season field
+    .align 2, 0
+.Lraw_code_linkonce_25967_0: .word gText_Calendar_DynamicSeasonNames + 4 @ fixed four-byte season field
     .Lauto_080E3770:
-    ldr r5, [pc, #0]
+    ldr r5, .Lraw_code_linkonce_25971_0
     b .Lauto_080E377A
-    .word gText_Calendar_DynamicSeasonNames + 8 @ fixed four-byte season field
+.Lraw_code_linkonce_25971_0: .word gText_Calendar_DynamicSeasonNames + 8 @ fixed four-byte season field
     .Lauto_080E3778:
-    ldr r5, [pc, #0x2c]
+    ldr r5, .Lraw_code_linkonce_25997_0
     .Lauto_080E377A:
     adds r0, r5, #0
     bl strlen
@@ -25994,7 +35166,7 @@ func_080E36D8:
     mov r1, sp
     bl strcpy
     b .Lauto_080E382C
-    .word gText_Calendar_DynamicSeasonNames + 12 @ fixed four-byte season field
+.Lraw_code_linkonce_25997_0: .word gText_Calendar_DynamicSeasonNames + 12 @ fixed four-byte season field
     .Lauto_080E37AC:
     movs r0, #4
     ldrsb r0, [r3, r0]
@@ -26066,7 +35238,7 @@ func_080E36D8:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E40A0
     .thumb_func
 func_080E40A0:
@@ -26079,7 +35251,7 @@ func_080E3838:
     movs r0, #0x87
     lsls r0, r0, #2
     adds r1, r5, r0
-    ldr r0, [pc, #0xd8]
+    ldr r0, .Lraw_code_linkonce_26175_0
     str r0, [r1]
     movs r0, #0xd6
     lsls r0, r0, #1
@@ -26155,7 +35327,7 @@ func_080E3838:
     bl _._16ObjTilePoolOwner
     adds r1, r5, #0
     adds r1, #0x80
-    ldr r0, [pc, #0x24]
+    ldr r0, .Lraw_code_linkonce_26176_0
     str r0, [r1]
     str r0, [r5, #0x50]
     str r0, [r5, #0x20]
@@ -26171,15 +35343,15 @@ func_080E3838:
     pop {r4, r5, r6}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_23ScriptTextVariableStore
-    .4byte __vt_23IndexedResourceProvider
+    .align 2, 0
+.Lraw_code_linkonce_26175_0: .4byte __vt_23ScriptTextVariableStore
+.Lraw_code_linkonce_26176_0: .4byte __vt_23IndexedResourceProvider
     .global func_080E3928
     .thumb_func
 func_080E3928:
     push {lr}
     adds r2, r0, #0
-    ldr r0, [pc, #0x14]
+    ldr r0, .Lraw_code_linkonce_26194_0
     str r0, [r2]
     movs r0, #1
     ands r0, r1
@@ -26190,8 +35362,8 @@ func_080E3928:
     .Lauto_080E393E:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_23ScriptTextVariableStore
+    .align 2, 0
+.Lraw_code_linkonce_26194_0: .4byte __vt_23ScriptTextVariableStore
     .section .text.after_saved_name_scene_destructor, "ax", %progbits
     .align 2, 0
 
@@ -26297,7 +35469,7 @@ func_080E3928:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .global func_080E3A9C
     .thumb_func
 func_080E3A9C:
@@ -26399,7 +35571,7 @@ func_080E3A9C:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .section .text.saved_world_map_destructor_after, "ax", %progbits
     .align 2, 0
 
@@ -26434,7 +35606,7 @@ __12SavedMapTree:
     pop {r4, r5, r6}
     pop {r1}
     bx r1
-    .byte 0x00, 0x00
+    .align 2, 0
     .section .text.world_sprite_effect_frames_after, "ax", %progbits
     .align 2, 0
 
@@ -26447,7 +35619,7 @@ func_080E3C50:
     adds r0, r5, #4
     movs r1, #2
     bl _._18GameSceneWorldData
-    ldr r0, [pc, #0x18]
+    ldr r0, .Lraw_code_linkonce_26463_0
     str r0, [r5]
     movs r0, #1
     ands r0, r4
@@ -26459,8 +35631,8 @@ func_080E3C50:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_14GameObjectBase
+    .align 2, 0
+.Lraw_code_linkonce_26463_0: .4byte __vt_14GameObjectBase
     .global func_080E3C7C
     .thumb_func
 func_080E3C7C:
@@ -26490,7 +35662,7 @@ func_080E3CA8:
     push {r4, r5, lr}
     adds r4, r0, #0
     adds r5, r1, #0
-    ldr r0, [pc, #0x28]
+    ldr r0, .Lraw_code_linkonce_26514_0
     str r0, [r4, #0x14]
     ldr r1, [r4, #0x10]
     cmp r1, #0
@@ -26511,13 +35683,13 @@ func_080E3CA8:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x90, 0x56, 0x0E, 0x08
+.Lraw_code_linkonce_26514_0: .word __vt_7AEntity
     .global func_080E3CDC
     .thumb_func
 func_080E3CDC:
     push {lr}
     adds r2, r0, #0
-    ldr r0, [pc, #0x14]
+    ldr r0, .Lraw_code_linkonce_26532_0
     str r0, [r2]
     movs r0, #1
     ands r0, r1
@@ -26528,19 +35700,19 @@ func_080E3CDC:
     .Lauto_080E3CF2:
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
-    .4byte __vt_14GameObjectBase
+    .align 2, 0
+.Lraw_code_linkonce_26532_0: .4byte __vt_14GameObjectBase
     .global func_080E4564
     .thumb_func
 func_080E4564:
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     adds r7, r1, #0
-    ldr r1, [pc, #0x2ac]
+    ldr r1, .Lraw_code_linkonce_26869_0
     adds r0, r5, r1
     movs r1, #2
     bl func_080E4860
-    ldr r1, [pc, #0x2a4]
+    ldr r1, .Lraw_code_linkonce_26869_4
     adds r0, r5, r1
     movs r1, #2
     bl func_080098AC
@@ -26554,7 +35726,7 @@ func_080E4564:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x288]
+    ldr r1, .Lraw_code_linkonce_26869_8
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -26563,7 +35735,7 @@ func_080E4564:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x274]
+    ldr r1, .Lraw_code_linkonce_26869_12
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -26586,7 +35758,7 @@ func_080E4564:
     cmp r6, r4
     bne .Lauto_080E3D66
     .Lauto_080E3D72:
-    ldr r1, [pc, #0x24c]
+    ldr r1, .Lraw_code_linkonce_26870_0
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E3D92
@@ -26594,7 +35766,7 @@ func_080E4564:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E3D92
-    ldr r0, [pc, #0x23c]
+    ldr r0, .Lraw_code_linkonce_26870_0
     adds r6, r5, r0
     .Lauto_080E3D86:
     subs r4, #4
@@ -26622,7 +35794,7 @@ func_080E4564:
     cmp r6, r4
     bne .Lauto_080E3DAA
     .Lauto_080E3DB6:
-    ldr r1, [pc, #0x20c]
+    ldr r1, .Lraw_code_linkonce_26870_4
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E3DD6
@@ -26630,7 +35802,7 @@ func_080E4564:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E3DD6
-    ldr r0, [pc, #0x1fc]
+    ldr r0, .Lraw_code_linkonce_26870_4
     adds r6, r5, r0
     .Lauto_080E3DCA:
     subs r4, #4
@@ -26658,7 +35830,7 @@ func_080E4564:
     cmp r6, r4
     bne .Lauto_080E3DEE
     .Lauto_080E3DFA:
-    ldr r1, [pc, #0x1cc]
+    ldr r1, .Lraw_code_linkonce_26870_8
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E3E1A
@@ -26666,7 +35838,7 @@ func_080E4564:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E3E1A
-    ldr r0, [pc, #0x1bc]
+    ldr r0, .Lraw_code_linkonce_26870_8
     adds r6, r5, r0
     .Lauto_080E3E0E:
     subs r4, #4
@@ -26694,7 +35866,7 @@ func_080E4564:
     cmp r6, r4
     bne .Lauto_080E3E32
     .Lauto_080E3E3E:
-    ldr r1, [pc, #0x18c]
+    ldr r1, .Lraw_code_linkonce_26870_12
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -26703,7 +35875,7 @@ func_080E4564:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x178]
+    ldr r1, .Lraw_code_linkonce_26871_0
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -26712,7 +35884,7 @@ func_080E4564:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x168]
+    ldr r1, .Lraw_code_linkonce_26871_4
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -26721,7 +35893,7 @@ func_080E4564:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x154]
+    ldr r1, .Lraw_code_linkonce_26871_8
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -26730,7 +35902,7 @@ func_080E4564:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x144]
+    ldr r1, .Lraw_code_linkonce_26871_12
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -26739,7 +35911,7 @@ func_080E4564:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x130]
+    ldr r1, .Lraw_code_linkonce_26872_0
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -26748,7 +35920,7 @@ func_080E4564:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x120]
+    ldr r1, .Lraw_code_linkonce_26872_4
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -26771,7 +35943,7 @@ func_080E4564:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E3EF0:
-    ldr r1, [pc, #0xf4]
+    ldr r1, .Lraw_code_linkonce_26872_8
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -26794,7 +35966,7 @@ func_080E4564:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E3F1E:
-    ldr r1, [pc, #0xcc]
+    ldr r1, .Lraw_code_linkonce_26872_12
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -26817,7 +35989,7 @@ func_080E4564:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E3F4C:
-    ldr r1, [pc, #0xa0]
+    ldr r1, .Lraw_code_linkonce_26873_0
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -26840,7 +36012,7 @@ func_080E4564:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E3F7A:
-    ldr r1, [pc, #0x78]
+    ldr r1, .Lraw_code_linkonce_26873_4
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -26866,11 +36038,24 @@ func_080E4564:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x88, 0x08, 0x00, 0x00, 0x2C, 0x08, 0x00, 0x00, 0xE4, 0x07, 0x00, 0x00, 0xBC, 0x07, 0x00, 0x00
-    .byte 0xF4, 0x06, 0x00, 0x00, 0x2C, 0x06, 0x00, 0x00, 0x64, 0x05, 0x00, 0x00, 0x2C, 0x05, 0x00, 0x00
-    .byte 0x04, 0x05, 0x00, 0x00, 0xDC, 0x04, 0x00, 0x00, 0xB4, 0x04, 0x00, 0x00, 0x8C, 0x04, 0x00, 0x00
-    .byte 0x64, 0x04, 0x00, 0x00, 0x3C, 0x04, 0x00, 0x00, 0x34, 0x04, 0x00, 0x00, 0x2C, 0x04, 0x00, 0x00
-    .byte 0x24, 0x04, 0x00, 0x00, 0x1C, 0x04, 0x00, 0x00
+.Lraw_code_linkonce_26869_0: .word 0x00000888
+.Lraw_code_linkonce_26869_4: .word 0x0000082C
+.Lraw_code_linkonce_26869_8: .word 0x000007E4
+.Lraw_code_linkonce_26869_12: .word 0x000007BC
+.Lraw_code_linkonce_26870_0: .word 0x000006F4
+.Lraw_code_linkonce_26870_4: .word 0x0000062C
+.Lraw_code_linkonce_26870_8: .word 0x00000564
+.Lraw_code_linkonce_26870_12: .word 0x0000052C
+.Lraw_code_linkonce_26871_0: .word 0x00000504
+.Lraw_code_linkonce_26871_4: .word 0x000004DC
+.Lraw_code_linkonce_26871_8: .word 0x000004B4
+.Lraw_code_linkonce_26871_12: .word 0x0000048C
+.Lraw_code_linkonce_26872_0: .word 0x00000464
+.Lraw_code_linkonce_26872_4: .word 0x0000043C
+.Lraw_code_linkonce_26872_8: .word 0x00000434
+.Lraw_code_linkonce_26872_12: .word 0x0000042C
+.Lraw_code_linkonce_26873_0: .word 0x00000424
+.Lraw_code_linkonce_26873_4: .word 0x0000041C
     .global func_080E4860
     .thumb_func
 func_080E4860:
@@ -26970,7 +36155,7 @@ _._27ChickenFestivalMinigameCore:
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     adds r7, r1, #0
-    ldr r1, [pc, #0x328]
+    ldr r1, .Lraw_code_linkonce_27372_2
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E40FE
@@ -26978,7 +36163,7 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E40FE
-    ldr r0, [pc, #0x318]
+    ldr r0, .Lraw_code_linkonce_27372_2
     adds r6, r5, r0
     .Lauto_080E40F2:
     subs r4, #4
@@ -26987,11 +36172,11 @@ _._27ChickenFestivalMinigameCore:
     cmp r6, r4
     bne .Lauto_080E40F2
     .Lauto_080E40FE:
-    ldr r1, [pc, #0x30c]
+    ldr r1, .Lraw_code_linkonce_27372_6
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x304]
+    ldr r1, .Lraw_code_linkonce_27372_10
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27000,11 +36185,11 @@ _._27ChickenFestivalMinigameCore:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x2f4]
+    ldr r1, .Lraw_code_linkonce_27372_14
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x2ec]
+    ldr r1, .Lraw_code_linkonce_27373_2
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E4148
@@ -27012,7 +36197,7 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E4148
-    ldr r0, [pc, #0x2dc]
+    ldr r0, .Lraw_code_linkonce_27373_2
     adds r6, r5, r0
     .Lauto_080E413C:
     subs r4, #4
@@ -27026,7 +36211,7 @@ _._27ChickenFestivalMinigameCore:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x2c4]
+    ldr r1, .Lraw_code_linkonce_27373_6
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E4174
@@ -27034,7 +36219,7 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E4174
-    ldr r0, [pc, #0x2b4]
+    ldr r0, .Lraw_code_linkonce_27373_6
     adds r6, r5, r0
     .Lauto_080E4168:
     subs r4, #4
@@ -27043,7 +36228,7 @@ _._27ChickenFestivalMinigameCore:
     cmp r6, r4
     bne .Lauto_080E4168
     .Lauto_080E4174:
-    ldr r1, [pc, #0x2a8]
+    ldr r1, .Lraw_code_linkonce_27373_10
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27052,15 +36237,15 @@ _._27ChickenFestivalMinigameCore:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x298]
+    ldr r1, .Lraw_code_linkonce_27373_14
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x290]
+    ldr r1, .Lraw_code_linkonce_27374_2
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x28c]
+    ldr r1, .Lraw_code_linkonce_27374_6
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27069,11 +36254,11 @@ _._27ChickenFestivalMinigameCore:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x278]
+    ldr r1, .Lraw_code_linkonce_27374_10
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x274]
+    ldr r1, .Lraw_code_linkonce_27374_14
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E41DE
@@ -27081,7 +36266,7 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E41DE
-    ldr r0, [pc, #0x264]
+    ldr r0, .Lraw_code_linkonce_27374_14
     adds r6, r5, r0
     .Lauto_080E41D2:
     subs r4, #4
@@ -27090,7 +36275,7 @@ _._27ChickenFestivalMinigameCore:
     cmp r6, r4
     bne .Lauto_080E41D2
     .Lauto_080E41DE:
-    ldr r1, [pc, #0x258]
+    ldr r1, .Lraw_code_linkonce_27375_2
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E41FE
@@ -27098,7 +36283,7 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E41FE
-    ldr r0, [pc, #0x248]
+    ldr r0, .Lraw_code_linkonce_27375_2
     adds r6, r5, r0
     .Lauto_080E41F2:
     subs r4, #4
@@ -27107,11 +36292,11 @@ _._27ChickenFestivalMinigameCore:
     cmp r6, r4
     bne .Lauto_080E41F2
     .Lauto_080E41FE:
-    ldr r1, [pc, #0x23c]
+    ldr r1, .Lraw_code_linkonce_27375_6
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x234]
+    ldr r1, .Lraw_code_linkonce_27375_10
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27120,11 +36305,11 @@ _._27ChickenFestivalMinigameCore:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x224]
+    ldr r1, .Lraw_code_linkonce_27375_14
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x21c]
+    ldr r1, .Lraw_code_linkonce_27376_2
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E4248
@@ -27132,7 +36317,7 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E4248
-    ldr r0, [pc, #0x20c]
+    ldr r0, .Lraw_code_linkonce_27376_2
     adds r6, r5, r0
     .Lauto_080E423C:
     subs r4, #4
@@ -27141,7 +36326,7 @@ _._27ChickenFestivalMinigameCore:
     cmp r6, r4
     bne .Lauto_080E423C
     .Lauto_080E4248:
-    ldr r1, [pc, #0x200]
+    ldr r1, .Lraw_code_linkonce_27376_6
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E4268
@@ -27149,7 +36334,7 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E4268
-    ldr r0, [pc, #0x1f0]
+    ldr r0, .Lraw_code_linkonce_27376_6
     adds r6, r5, r0
     .Lauto_080E425C:
     subs r4, #4
@@ -27177,7 +36362,7 @@ _._27ChickenFestivalMinigameCore:
     cmp r6, r4
     bne .Lauto_080E4280
     .Lauto_080E428C:
-    ldr r1, [pc, #0x1c0]
+    ldr r1, .Lraw_code_linkonce_27376_10
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E42AC
@@ -27185,7 +36370,7 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E42AC
-    ldr r0, [pc, #0x1b0]
+    ldr r0, .Lraw_code_linkonce_27376_10
     adds r6, r5, r0
     .Lauto_080E42A0:
     subs r4, #4
@@ -27194,7 +36379,7 @@ _._27ChickenFestivalMinigameCore:
     cmp r6, r4
     bne .Lauto_080E42A0
     .Lauto_080E42AC:
-    ldr r1, [pc, #0x1a4]
+    ldr r1, .Lraw_code_linkonce_27376_14
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E42CC
@@ -27202,7 +36387,7 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E42CC
-    ldr r0, [pc, #0x194]
+    ldr r0, .Lraw_code_linkonce_27376_14
     adds r6, r5, r0
     .Lauto_080E42C0:
     subs r4, #4
@@ -27211,7 +36396,7 @@ _._27ChickenFestivalMinigameCore:
     cmp r6, r4
     bne .Lauto_080E42C0
     .Lauto_080E42CC:
-    ldr r1, [pc, #0x188]
+    ldr r1, .Lraw_code_linkonce_27377_2
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E42EC
@@ -27219,7 +36404,7 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E42EC
-    ldr r0, [pc, #0x178]
+    ldr r0, .Lraw_code_linkonce_27377_2
     adds r6, r5, r0
     .Lauto_080E42E0:
     subs r4, #4
@@ -27240,7 +36425,7 @@ _._27ChickenFestivalMinigameCore:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E4304:
-    ldr r1, [pc, #0x154]
+    ldr r1, .Lraw_code_linkonce_27377_6
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27263,7 +36448,7 @@ _._27ChickenFestivalMinigameCore:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E4332:
-    ldr r1, [pc, #0x12c]
+    ldr r1, .Lraw_code_linkonce_27377_10
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27286,7 +36471,7 @@ _._27ChickenFestivalMinigameCore:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E4360:
-    ldr r1, [pc, #0x100]
+    ldr r1, .Lraw_code_linkonce_27377_14
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27309,7 +36494,7 @@ _._27ChickenFestivalMinigameCore:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E438E:
-    ldr r1, [pc, #0xd8]
+    ldr r1, .Lraw_code_linkonce_27378_2
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27332,7 +36517,7 @@ _._27ChickenFestivalMinigameCore:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E43BC:
-    ldr r0, [pc, #0xac]
+    ldr r0, .Lraw_code_linkonce_27378_6
     adds r4, r5, r0
     ldr r1, [r4]
     cmp r1, #0
@@ -27343,7 +36528,7 @@ _._27ChickenFestivalMinigameCore:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E43D2:
-    ldr r1, [pc, #0x9c]
+    ldr r1, .Lraw_code_linkonce_27378_10
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E43F6
@@ -27361,7 +36546,7 @@ _._27ChickenFestivalMinigameCore:
     cmp r6, r4
     bne .Lauto_080E43E0
     .Lauto_080E43F6:
-    ldr r1, [pc, #0x7c]
+    ldr r1, .Lraw_code_linkonce_27378_14
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E4494
@@ -27369,17 +36554,38 @@ _._27ChickenFestivalMinigameCore:
     adds r4, r5, r1
     cmp r0, r4
     b .Lauto_080E4478
-    .byte 0x00, 0x00, 0xEC, 0x0A, 0x00, 0x00, 0xC8, 0x0A, 0x00, 0x00, 0xA4, 0x0A, 0x00, 0x00, 0x7C, 0x0A
-    .byte 0x00, 0x00, 0x34, 0x0A, 0x00, 0x00, 0xE8, 0x09, 0x00, 0x00, 0xE4, 0x09, 0x00, 0x00, 0xBC, 0x09
-    .byte 0x00, 0x00, 0x98, 0x09, 0x00, 0x00, 0x94, 0x09, 0x00, 0x00, 0x6C, 0x09, 0x00, 0x00, 0x24, 0x09
-    .byte 0x00, 0x00, 0x1C, 0x09, 0x00, 0x00, 0xF8, 0x08, 0x00, 0x00, 0xF4, 0x08, 0x00, 0x00, 0xCC, 0x08
-    .byte 0x00, 0x00, 0x84, 0x08, 0x00, 0x00, 0x7C, 0x08, 0x00, 0x00, 0xB4, 0x07, 0x00, 0x00, 0xAC, 0x07
-    .byte 0x00, 0x00, 0xA4, 0x07, 0x00, 0x00, 0x9C, 0x07, 0x00, 0x00, 0x94, 0x07, 0x00, 0x00, 0x8C, 0x07
-    .byte 0x00, 0x00, 0x84, 0x07, 0x00, 0x00, 0x7C, 0x07, 0x00, 0x00, 0x3C, 0x07, 0x00, 0x00, 0x2C, 0x07
-    .byte 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_27372_2: .word 0x00000AEC
+.Lraw_code_linkonce_27372_6: .word 0x00000AC8
+.Lraw_code_linkonce_27372_10: .word 0x00000AA4
+.Lraw_code_linkonce_27372_14: .word 0x00000A7C
+.Lraw_code_linkonce_27373_2: .word 0x00000A34
+.Lraw_code_linkonce_27373_6: .word 0x000009E8
+.Lraw_code_linkonce_27373_10: .word 0x000009E4
+.Lraw_code_linkonce_27373_14: .word 0x000009BC
+.Lraw_code_linkonce_27374_2: .word 0x00000998
+.Lraw_code_linkonce_27374_6: .word 0x00000994
+.Lraw_code_linkonce_27374_10: .word 0x0000096C
+.Lraw_code_linkonce_27374_14: .word 0x00000924
+.Lraw_code_linkonce_27375_2: .word 0x0000091C
+.Lraw_code_linkonce_27375_6: .word 0x000008F8
+.Lraw_code_linkonce_27375_10: .word 0x000008F4
+.Lraw_code_linkonce_27375_14: .word 0x000008CC
+.Lraw_code_linkonce_27376_2: .word 0x00000884
+.Lraw_code_linkonce_27376_6: .word 0x0000087C
+.Lraw_code_linkonce_27376_10: .word 0x000007B4
+.Lraw_code_linkonce_27376_14: .word 0x000007AC
+.Lraw_code_linkonce_27377_2: .word 0x000007A4
+.Lraw_code_linkonce_27377_6: .word 0x0000079C
+.Lraw_code_linkonce_27377_10: .word 0x00000794
+.Lraw_code_linkonce_27377_14: .word 0x0000078C
+.Lraw_code_linkonce_27378_2: .word 0x00000784
+.Lraw_code_linkonce_27378_6: .word 0x0000077C
+.Lraw_code_linkonce_27378_10: .word 0x0000073C
+.Lraw_code_linkonce_27378_14: .word 0x0000072C
     .Lauto_080E4478:
     beq .Lauto_080E4494
-    ldr r0, [pc, #0x60]
+    ldr r0, .Lraw_code_linkonce_27426_0
     adds r6, r5, r0
     .Lauto_080E447E:
     subs r4, #8
@@ -27392,7 +36598,7 @@ _._27ChickenFestivalMinigameCore:
     cmp r6, r4
     bne .Lauto_080E447E
     .Lauto_080E4494:
-    ldr r1, [pc, #0x48]
+    ldr r1, .Lraw_code_linkonce_27426_4
     adds r4, r5, r1
     ldr r1, [r4, #4]
     adds r0, r4, #0
@@ -27400,7 +36606,7 @@ _._27ChickenFestivalMinigameCore:
     adds r0, r4, #0
     movs r1, #2
     bl _._19ObjPalettePoolOwner
-    ldr r0, [pc, #0x38]
+    ldr r0, .Lraw_code_linkonce_27426_8
     adds r4, r5, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
@@ -27423,7 +36629,9 @@ _._27ChickenFestivalMinigameCore:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x2C, 0x07, 0x00, 0x00, 0x24, 0x07, 0x00, 0x00, 0x1C, 0x07, 0x00, 0x00
+.Lraw_code_linkonce_27426_0: .word 0x0000072C
+.Lraw_code_linkonce_27426_4: .word 0x00000724
+.Lraw_code_linkonce_27426_8: .word 0x0000071C
     .global func_080E4D50
     .thumb_func
 func_080E4D50:
@@ -27435,7 +36643,7 @@ func_080E4D50:
     adds r0, r4, r1
     movs r1, #2
     bl .Lauto_080E46CC
-    ldr r1, [pc, #0x19c]
+    ldr r1, .Lraw_code_linkonce_27628_0
     adds r0, r4, r1
     movs r1, #2
     bl func_080098AC
@@ -27444,7 +36652,7 @@ func_080E4D50:
     adds r0, r4, r1
     movs r1, #2
     bl func_080098AC
-    ldr r1, [pc, #0x188]
+    ldr r1, .Lraw_code_linkonce_27628_4
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27453,7 +36661,7 @@ func_080E4D50:
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x178]
+    ldr r1, .Lraw_code_linkonce_27628_8
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27462,7 +36670,7 @@ func_080E4D50:
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x164]
+    ldr r1, .Lraw_code_linkonce_27628_12
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27471,7 +36679,7 @@ func_080E4D50:
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x154]
+    ldr r1, .Lraw_code_linkonce_27629_0
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27480,7 +36688,7 @@ func_080E4D50:
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x140]
+    ldr r1, .Lraw_code_linkonce_27629_4
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27489,7 +36697,7 @@ func_080E4D50:
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x130]
+    ldr r1, .Lraw_code_linkonce_27629_8
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27498,7 +36706,7 @@ func_080E4D50:
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x11c]
+    ldr r1, .Lraw_code_linkonce_27629_12
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27507,7 +36715,7 @@ func_080E4D50:
     adds r0, r4, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x10c]
+    ldr r1, .Lraw_code_linkonce_27630_0
     adds r0, r4, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27530,7 +36738,7 @@ func_080E4D50:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E45D8:
-    ldr r1, [pc, #0xe0]
+    ldr r1, .Lraw_code_linkonce_27630_4
     adds r0, r4, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27553,7 +36761,7 @@ func_080E4D50:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E4606:
-    ldr r1, [pc, #0xb8]
+    ldr r1, .Lraw_code_linkonce_27630_8
     adds r0, r4, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27576,7 +36784,7 @@ func_080E4D50:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E4634:
-    ldr r1, [pc, #0x8c]
+    ldr r1, .Lraw_code_linkonce_27630_12
     adds r0, r4, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27599,7 +36807,7 @@ func_080E4D50:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E4662:
-    ldr r1, [pc, #0x64]
+    ldr r1, .Lraw_code_linkonce_27631_0
     adds r0, r4, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27625,61 +36833,103 @@ func_080E4D50:
     pop {r4, r5}
     pop {r0}
     bx r0
-    .byte 0x94, 0x05, 0x00, 0x00, 0x54, 0x05, 0x00, 0x00, 0x2C, 0x05, 0x00, 0x00, 0x04, 0x05, 0x00, 0x00
-    .byte 0xDC, 0x04, 0x00, 0x00, 0xB4, 0x04, 0x00, 0x00, 0x8C, 0x04, 0x00, 0x00, 0x64, 0x04, 0x00, 0x00
-    .byte 0x3C, 0x04, 0x00, 0x00, 0x34, 0x04, 0x00, 0x00, 0x2C, 0x04, 0x00, 0x00, 0x24, 0x04, 0x00, 0x00
-    .byte 0x1C, 0x04, 0x00, 0x00
+.Lraw_code_linkonce_27628_0: .word 0x00000594
+.Lraw_code_linkonce_27628_4: .word 0x00000554
+.Lraw_code_linkonce_27628_8: .word 0x0000052C
+.Lraw_code_linkonce_27628_12: .word 0x00000504
+.Lraw_code_linkonce_27629_0: .word 0x000004DC
+.Lraw_code_linkonce_27629_4: .word 0x000004B4
+.Lraw_code_linkonce_27629_8: .word 0x0000048C
+.Lraw_code_linkonce_27629_12: .word 0x00000464
+.Lraw_code_linkonce_27630_0: .word 0x0000043C
+.Lraw_code_linkonce_27630_4: .word 0x00000434
+.Lraw_code_linkonce_27630_8: .word 0x0000042C
+.Lraw_code_linkonce_27630_12: .word 0x00000424
+.Lraw_code_linkonce_27631_0: .word 0x0000041C
     .Lauto_080E46CC:
-    .byte 0x70, 0xB5, 0x06, 0x1C, 0x0D, 0x1C, 0x34, 0x1C, 0x40, 0x34, 0x61, 0x68, 0x20, 0x1C
+    push {r4, r5, r6, lr}
+    adds r6, r0, #0
+    adds r5, r1, #0
+    adds r4, r6, #0
+    adds r4, #0x40
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68
-    .byte 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C
-    .byte 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C
-    .byte 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x71, 0x68, 0x30, 0x1C
+    ldr r1, [r6, #4]
+    adds r0, r6, #0
     bl ReleaseObjTileHandle
-    .byte 0x30, 0x1C, 0x02, 0x21
+    adds r0, r6, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x01, 0x20, 0x28, 0x40, 0x00, 0x28, 0x02, 0xD0
-    .byte 0x30, 0x1C
+    movs r0, #1
+    ands r0, r5
+    cmp r0, #0
+    beq .Lraw_code_linkonce_27675_0
+    adds r0, r6, #0
     bl __builtin_delete
-    .byte 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47
+.Lraw_code_linkonce_27675_0:
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
     .global func_080E4FF0
     .thumb_func
 func_080E4FF0:
     push {r4, r5, r6, r7, lr}
     adds r5, r0, #0
     adds r7, r1, #0
-    ldr r1, [pc, #0x258]
+    ldr r1, .Lraw_code_linkonce_27958_2
     adds r0, r5, r1
     movs r1, #2
     bl .Lauto_080E4ABC
@@ -27688,11 +36938,11 @@ func_080E4FF0:
     adds r0, r5, r1
     movs r1, #2
     bl func_080098AC
-    ldr r1, [pc, #0x244]
+    ldr r1, .Lraw_code_linkonce_27958_6
     adds r0, r5, r1
     movs r1, #2
     bl func_080098AC
-    ldr r1, [pc, #0x240]
+    ldr r1, .Lraw_code_linkonce_27958_10
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27701,7 +36951,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x22c]
+    ldr r1, .Lraw_code_linkonce_27958_14
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27710,7 +36960,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x21c]
+    ldr r1, .Lraw_code_linkonce_27959_2
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27719,7 +36969,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x208]
+    ldr r1, .Lraw_code_linkonce_27959_6
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27728,7 +36978,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x1f8]
+    ldr r1, .Lraw_code_linkonce_27959_10
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27737,7 +36987,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x1e4]
+    ldr r1, .Lraw_code_linkonce_27959_14
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E483C
@@ -27745,7 +36995,7 @@ func_080E4FF0:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E483C
-    ldr r0, [pc, #0x1d4]
+    ldr r0, .Lraw_code_linkonce_27959_14
     adds r6, r5, r0
     .Lauto_080E4830:
     subs r4, #4
@@ -27759,7 +37009,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x1bc]
+    ldr r1, .Lraw_code_linkonce_27960_2
     adds r0, r5, r1
     cmp r0, #0
     beq .Lauto_080E4868
@@ -27767,7 +37017,7 @@ func_080E4FF0:
     adds r4, r5, r1
     cmp r0, r4
     beq .Lauto_080E4868
-    ldr r0, [pc, #0x1ac]
+    ldr r0, .Lraw_code_linkonce_27960_2
     adds r6, r5, r0
     .Lauto_080E485C:
     subs r4, #4
@@ -27781,7 +37031,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x194]
+    ldr r1, .Lraw_code_linkonce_27960_6
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27790,7 +37040,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x184]
+    ldr r1, .Lraw_code_linkonce_27960_10
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27799,7 +37049,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x170]
+    ldr r1, .Lraw_code_linkonce_27960_14
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27808,7 +37058,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x160]
+    ldr r1, .Lraw_code_linkonce_27961_2
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27817,7 +37067,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x14c]
+    ldr r1, .Lraw_code_linkonce_27961_6
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
@@ -27826,7 +37076,7 @@ func_080E4FF0:
     adds r0, r5, r1
     ldr r0, [r0]
     bl __builtin_delete
-    ldr r1, [pc, #0x13c]
+    ldr r1, .Lraw_code_linkonce_27961_10
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27849,7 +37099,7 @@ func_080E4FF0:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E4910:
-    ldr r1, [pc, #0x110]
+    ldr r1, .Lraw_code_linkonce_27961_14
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27872,7 +37122,7 @@ func_080E4FF0:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E493E:
-    ldr r1, [pc, #0xe8]
+    ldr r1, .Lraw_code_linkonce_27962_2
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27895,7 +37145,7 @@ func_080E4FF0:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E496C:
-    ldr r1, [pc, #0xbc]
+    ldr r1, .Lraw_code_linkonce_27962_6
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27918,7 +37168,7 @@ func_080E4FF0:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E499A:
-    ldr r1, [pc, #0x94]
+    ldr r1, .Lraw_code_linkonce_27962_10
     adds r0, r5, r1
     ldr r1, [r0]
     cmp r1, #0
@@ -27941,7 +37191,7 @@ func_080E4FF0:
     movs r1, #3
     bl _call_via_r2
     .Lauto_080E49C8:
-    ldr r1, [pc, #0x68]
+    ldr r1, .Lraw_code_linkonce_27962_14
     adds r0, r5, r1
     ldr r0, [r0]
     cmp r0, #0
@@ -27955,12 +37205,27 @@ func_080E4FF0:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0x00, 0x00, 0x3C, 0x08, 0x00, 0x00, 0x24, 0x08, 0x00, 0x00, 0xEC, 0x07, 0x00, 0x00, 0xC4, 0x07
-    .byte 0x00, 0x00, 0x9C, 0x07, 0x00, 0x00, 0x54, 0x07, 0x00, 0x00, 0x2C, 0x07, 0x00, 0x00, 0xA4, 0x06
-    .byte 0x00, 0x00, 0x1C, 0x06, 0x00, 0x00, 0xF4, 0x05, 0x00, 0x00, 0xCC, 0x05, 0x00, 0x00, 0xA4, 0x05
-    .byte 0x00, 0x00, 0x7C, 0x05, 0x00, 0x00, 0x54, 0x05, 0x00, 0x00, 0x44, 0x05, 0x00, 0x00, 0x3C, 0x05
-    .byte 0x00, 0x00, 0x34, 0x05, 0x00, 0x00, 0x2C, 0x05, 0x00, 0x00, 0x24, 0x05, 0x00, 0x00, 0x1C, 0x05
-    .byte 0x00, 0x00
+    .align 2, 0
+.Lraw_code_linkonce_27958_2: .word 0x0000083C
+.Lraw_code_linkonce_27958_6: .word 0x00000824
+.Lraw_code_linkonce_27958_10: .word 0x000007EC
+.Lraw_code_linkonce_27958_14: .word 0x000007C4
+.Lraw_code_linkonce_27959_2: .word 0x0000079C
+.Lraw_code_linkonce_27959_6: .word 0x00000754
+.Lraw_code_linkonce_27959_10: .word 0x0000072C
+.Lraw_code_linkonce_27959_14: .word 0x000006A4
+.Lraw_code_linkonce_27960_2: .word 0x0000061C
+.Lraw_code_linkonce_27960_6: .word 0x000005F4
+.Lraw_code_linkonce_27960_10: .word 0x000005CC
+.Lraw_code_linkonce_27960_14: .word 0x000005A4
+.Lraw_code_linkonce_27961_2: .word 0x0000057C
+.Lraw_code_linkonce_27961_6: .word 0x00000554
+.Lraw_code_linkonce_27961_10: .word 0x00000544
+.Lraw_code_linkonce_27961_14: .word 0x0000053C
+.Lraw_code_linkonce_27962_2: .word 0x00000534
+.Lraw_code_linkonce_27962_6: .word 0x0000052C
+.Lraw_code_linkonce_27962_10: .word 0x00000524
+.Lraw_code_linkonce_27962_14: .word 0x0000051C
     .global loc_080E4A38
     .thumb_func
     loc_080E4A38:
@@ -28019,64 +37284,104 @@ func_080E4FF0:
     pop {r1}
     bx r1
     .Lauto_080E4ABC:
-    .byte 0x70, 0xB5, 0x06, 0x1C, 0x0D, 0x1C, 0x34, 0x1C, 0x58, 0x34, 0x61, 0x68, 0x20, 0x1C
+    push {r4, r5, r6, lr}
+    adds r6, r0, #0
+    adds r5, r1, #0
+    adds r4, r6, #0
+    adds r4, #0x58
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68
-    .byte 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C
-    .byte 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C
-    .byte 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68, 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x08, 0x3C, 0x61, 0x68
-    .byte 0x20, 0x1C
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
     bl ReleaseObjTileHandle
-    .byte 0x20, 0x1C, 0x02, 0x21
+    adds r0, r4, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x71, 0x68
-    .byte 0x30, 0x1C
+    ldr r1, [r6, #4]
+    adds r0, r6, #0
     bl ReleaseObjTileHandle
-    .byte 0x30, 0x1C, 0x02, 0x21
+    adds r0, r6, #0
+    movs r1, #2
     bl _._16ObjTilePoolOwner
-    .byte 0x01, 0x20
-    .byte 0x28, 0x40, 0x00, 0x28, 0x02, 0xD0, 0x30, 0x1C
+    movs r0, #1
+    ands r0, r5
+    cmp r0, #0
+    beq .Lraw_code_linkonce_28078_0
+    adds r0, r6, #0
     bl __builtin_delete
-    .byte 0x70, 0xBC, 0x01, 0xBC
-    .byte 0x00, 0x47, 0x00, 0x00
+.Lraw_code_linkonce_28078_0:
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .section .text.after_menu_command_node_cleanup, "ax", %progbits
     .align 2, 0
 
@@ -28091,7 +37396,7 @@ func_080E5898:
     movs r0, #0x84
     lsls r0, r0, #2
     adds r1, r5, r0
-    ldr r0, [pc, #0xbc]
+    ldr r0, .Lraw_code_linkonce_28187_0
     str r0, [r1]
     movs r1, #0xbb
     lsls r1, r1, #2
@@ -28184,7 +37489,7 @@ func_080E5898:
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    .byte 0xDC, 0x79, 0x0E, 0x08
+.Lraw_code_linkonce_28187_0: .word gUnk_080E79DC
     .section .text.after_menu_core_prefix_destructor, "ax", %progbits
     .align 2, 0
 
@@ -28195,7 +37500,7 @@ func_080E4E00:
     bl _._17GameSceneWorldMap
     pop {r0}
     bx r0
-    .byte 0x00, 0x00
+    .align 2, 0
 .else
 
 	thumb_func_start func_080E0EF0
@@ -31917,14 +41222,31 @@ func_080E2DC8: @ 0x080E2DC8
 	.global func_080E2E34
 	.thumb_func
 func_080E2E34:
-	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x0A, 0x48, 0xE0, 0x60, 0xA1, 0x68
-	.byte 0x00, 0x29, 0x07, 0xD0, 0x08, 0x4A, 0x88, 0x18, 0x00, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
-	.byte 0xF0, 0xF7, 0x60, 0xFD, 0x20, 0x1C, 0x29, 0x1C
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Lraw_code_linkonce_31926_0
+    str r0, [r4, #0xc]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_31922_4
+    ldr r2, .Lraw_code_linkonce_31927_0
+    adds r0, r1, r2
+    ldr r0, [r0]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_31922_4:
+    adds r0, r4, #0
+    adds r1, r5, #0
 	bl _._15HardwareContext
-	.byte 0x30, 0xBC, 0x01, 0xBC
-	.byte 0x00, 0x47, 0x00, 0x00
-	.4byte __vt_23IndexedResourceProvider
-	.byte 0xB4, 0x05, 0x00, 0x00
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_linkonce_31926_0: .4byte __vt_23IndexedResourceProvider
+.Lraw_code_linkonce_31927_0: .word 0x000005B4
     .section .text.after_staff_credits_core_destructor, "ax", %progbits
     .align 2, 0
 
@@ -32554,30 +41876,91 @@ func_080E3054: @ 0x080E3054
 	.global func_080E32E8
 	.thumb_func
 func_080E32E8:
-	.byte 0xF0, 0xB5, 0x47, 0x46, 0x80, 0xB4, 0x05, 0x1C
-	.byte 0x88, 0x46, 0xEE, 0x20, 0x40, 0x00, 0x2C, 0x18, 0xA0, 0x68, 0x00, 0x28, 0x0C, 0xD0, 0x60, 0x68
-	.byte 0x41, 0x68, 0x20, 0x1C
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    adds r5, r0, #0
+    mov r8, r1
+    movs r0, #0xee
+    lsls r0, r0, #1
+    adds r4, r5, r0
+    ldr r0, [r4, #8]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_32562_0
+    ldr r0, [r4, #4]
+    ldr r1, [r0, #4]
+    adds r0, r4, #0
 	bl func_080E2E78
-	.byte 0x60, 0x68, 0x80, 0x60, 0x60, 0x68, 0x00, 0x21, 0x41, 0x60, 0x60, 0x68, 0xC0, 0x60, 0xA1, 0x60
-	.byte 0x60, 0x68, 0x00, 0x28, 0x01, 0xD0
+    ldr r0, [r4, #4]
+    str r0, [r0, #8]
+    ldr r0, [r4, #4]
+    movs r1, #0
+    str r1, [r0, #4]
+    ldr r0, [r4, #4]
+    str r0, [r0, #0xc]
+    str r1, [r4, #8]
+.Lraw_code_linkonce_32562_0:
+    ldr r0, [r4, #4]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_32564_0
 	bl free
-	.byte 0xE6, 0x21, 0x49, 0x00, 0x68, 0x18, 0x42, 0x68, 0x01, 0x68, 0x2C, 0x1C, 0x20, 0x34, 0x2E, 0x1C
-	.byte 0x1C, 0x36, 0x2F, 0x1C, 0x18, 0x37, 0x91, 0x42, 0x02, 0xD0, 0x1C, 0x31, 0x91, 0x42, 0xFC, 0xD1
-	.byte 0x00, 0x68, 0x00, 0x28, 0x01, 0xD0
+.Lraw_code_linkonce_32564_0:
+    movs r1, #0xe6
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    ldr r2, [r0, #4]
+    ldr r1, [r0]
+    adds r4, r5, #0
+    adds r4, #0x20
+    adds r6, r5, #0
+    adds r6, #0x1c
+    adds r7, r5, #0
+    adds r7, #0x18
+    cmp r1, r2
+    beq .Lraw_code_linkonce_32566_0
+.Lraw_code_linkonce_32565_10:
+    adds r1, #0x1c
+    cmp r1, r2
+    bne .Lraw_code_linkonce_32565_10
+.Lraw_code_linkonce_32566_0:
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Lraw_code_linkonce_32568_0
 	bl free
-	.byte 0xCE, 0x20, 0x40, 0x00
-	.byte 0x29, 0x18, 0x10, 0x48, 0x08, 0x60, 0xA8, 0x62, 0x20, 0x1C, 0x02, 0x21
+.Lraw_code_linkonce_32568_0:
+    movs r0, #0xce
+    lsls r0, r0, #1
+    adds r1, r5, r0
+    ldr r0, .Lraw_code_linkonce_32580_0
+    str r0, [r1]
+    str r0, [r5, #0x28]
+    adds r0, r4, #0
+    movs r1, #2
 	bl func_080756D0
-	.byte 0x30, 0x1C, 0x02, 0x21
+    adds r0, r6, #0
+    movs r1, #2
 	bl _._24MapClockStatusHudContent
-	.byte 0x38, 0x1C, 0x02, 0x21
+    adds r0, r7, #0
+    movs r1, #2
 	bl _._12UiStateOwner
-	.byte 0xE9, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21, 0xF0, 0xF7
-	.byte 0xC9, 0xFA, 0x28, 0x1C, 0x41, 0x46
+    ldr r1, [r5, #0xc]
+    cmp r1, #0
+    beq .Lraw_code_linkonce_32576_2
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Lraw_code_linkonce_32576_2:
+    adds r0, r5, #0
+    mov r1, r8
 	bl _._15HardwareContext
-	.byte 0x08, 0xBC, 0x98, 0x46, 0xF0, 0xBC
-	.byte 0x01, 0xBC, 0x00, 0x47
-	.4byte __vt_23IndexedResourceProvider
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+.Lraw_code_linkonce_32580_0: .4byte __vt_23IndexedResourceProvider
 
 	thumb_func_start func_080E3398
 func_080E3398: @ 0x080E3398
@@ -32946,7 +42329,8 @@ func_080E3774: @ 0x080E3774
 	.global func_080E3798
 	.thumb_func
 func_080E3798:
-	.byte 0x70, 0x47, 0x00, 0x00
+    bx lr
+    .align 2, 0
 
 	thumb_func_start func_080E379C
 func_080E379C: @ 0x080E379C

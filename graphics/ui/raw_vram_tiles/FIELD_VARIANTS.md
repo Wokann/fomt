@@ -8,6 +8,7 @@ renderer and have not been named here.
 
 | Symbol | Editable source | JP | US | EU | DE | SHA-256 |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
+| `gUnk_08697920` | `08697920/shared/tiles.4bpp` | `0x41DA7C` | `0x697920` | `0x69797C` | `0x41E9BC` | `c96ae146f633dd5f3bf42dfb802ff294bdca0f5f4758150ac4896a543914be44` |
 | `gUnk_08698E14` | `08698e14/shared/tiles.4bpp` | `0x41EF70` | `0x698E14` | `0x698E70` | `0x41FEB0` | `06b60f66dfabae472ce929a164912c2e88ae4d8c468f6181db5a4304ce50e6bf` |
 | `gUnk_0869A0A4` | `0869a0a4/shared/tiles.4bpp` | `0x420200` | `0x69A0A4` | `0x69A100` | `0x421140` | `69f5649e9bcb3da8816bab1a5155e7aecbd7a6757596e32bcdc07ecd199bda45` |
 
@@ -21,8 +22,10 @@ from `0x2FE` through `0x370`, immediately before the tail range above.
 | `gUnk_086D6698` | `086d6698/shared/tiles.4bpp` | `0x45C7F4` | `0x6D6698` | `0x6D66F4` | `0x45D734` | `6282b44093e405b3cdcd10a2ca0d6de388705f284cdb4376d6eff47b7f920786` |
 
 All four retail ranges for each row are byte-identical.  The source files are
-therefore shared rather than copied per region.  The native stream is the
+therefore shared rather than copied per region.  The native `.4bpp` stream is the
 authoritative editable source.  No palette, tilemap, OAM layout, or displayed
 full-image PNG has been asserted: the proven code only establishes the source
-range, byte count, and VRAM destination.  Build and post-link patch rules keep
-each range fixed to its listed original regional boundary.
+range, byte count, and VRAM destination.  Assembly directly includes each complete native source at its real shared
+symbol in all four versions. These addresses document the original ROM; no
+post-link patch installs the resources. The current LDS constraints still
+limit changes in size.

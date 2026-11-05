@@ -579,7 +579,7 @@ Clear2DGfxBufferRect:
 	ldr	r4, .Lfont_draw_clear_rectangle_54
 	mov	r2, ip
 	and	r4, r4, r2
-	ldr	r0, .Lfont_draw_clear_rectangle_54+0x4
+	ldr	r0, .Lfont_draw_clear_rectangle_58
 	and	r4, r4, r0
 	mov	r0, #0x80
 	lsl	r0, r0, #0x11
@@ -606,9 +606,8 @@ Clear2DGfxBufferRect:
 	bx	r0
 .Lfont_draw_clear_rectangle_55:
 	.align	2, 0
-.Lfont_draw_clear_rectangle_54:
-	.word	0x3ffffff8
-	.word	0x1fffff
+.Lfont_draw_clear_rectangle_54: .word 0x3ffffff8
+.Lfont_draw_clear_rectangle_58: .word 0x1fffff
 .Lfont_draw_clear_rectangle_fe3:
 	.size	 Clear2DGfxBufferRect,.Lfont_draw_clear_rectangle_fe3-Clear2DGfxBufferRect
 	.align 2, 0

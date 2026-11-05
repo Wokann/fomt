@@ -60,6 +60,6 @@ Every table entry is byte-identical across JP, US, EU and DE. The verified
 regional boundaries and hashes are listed in `UI_DMA_TILES.md`. The ASM data
 file links each native resource directly at its ROM label; a full regional ROM
 comparison validates the resulting placement. No final screen composition is
-claimed. Three source intervals are only one tile wide, so adjacent
-unidentified bytes remain separate inline data until their structure is
-understood.
+claimed. Seven one-tile records in the two lists occupy four-tile physical
+slots. Their three trailing blank tiles are retained explicitly as 96 zero
+bytes in assembly; they are not alignment padding or available free space.

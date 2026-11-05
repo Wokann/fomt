@@ -500,9 +500,6 @@ SECTIONS
         src/entity_event_effects.o(.text.CreateControllerNewYearSunriseEffect .text.PlayControllerNewYearSunriseEffect .text.IsControllerNewYearSunriseEffectComplete .text.DestroyControllerNewYearSunriseEffect);
         asm/code_entities_08034CEC.o(.text.entity_event_effects_after_sunrise);
 
-        . = 0x3A518; /* JP ROM 0x0803A518, independently matched */
-
-        asm/code_0803A8A4.o(.text);
         src/map_data.o(.text.SelectMapDataId);
         asm/code_0803A8A4.o(.text.world_sprite_groups_constructor);
         src/entity_auxiliary_sprites.o(.text._._22EntityAuxiliarySprites);

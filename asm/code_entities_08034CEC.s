@@ -1,3 +1,5 @@
+    .include "asm/macro.inc"
+
     .ifdef REGION_JP
     @ ROM-verified JP Thumb entity UI code
     .section .text
@@ -3687,8 +3689,9 @@ func_08036F68:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .hword 0x0000
-    .4byte 0x47706B40
+    .align 2, 0
+    ldr r0, [r0, #0x34]
+    bx lr
     .global func_08037008
     .thumb_func
 func_08037008:
@@ -3805,24 +3808,43 @@ func_08037098:
     pop	{r4, r5}
     pop	{r0}
     bx	r0
-    .hword 0x0000
-    .4byte 0x6900B510
-    .4byte 0xD0162800
-    .4byte 0x1C022400
-    .4byte 0x21003230
-    .4byte 0x280089D0
-    .4byte 0x2010D004
-    .4byte 0x42485E11
-    .4byte 0x0FC14308
-    .4byte 0xD0052900
-    .byte 0x10, 0x1C
+    .align 2, 0
+    push {r4, lr}
+    ldr r0, [r0, #0x10]
+    cmp r0, #0
+    beq .Lraw_code_entities_08034CEC_3823_2
+    movs r4, #0
+    adds r2, r0, #0
+    adds r2, #0x30
+    movs r1, #0
+    ldrh r0, [r2, #0xe]
+    cmp r0, #0
+    beq .Lraw_code_entities_08034CEC_3817_0
+    movs r0, #0x10
+    ldrsh r1, [r2, r0]
+    rsbs r0, r1, #0
+    orrs r0, r1
+    lsrs r1, r0, #0x1f
+.Lraw_code_entities_08034CEC_3817_0:
+    cmp r1, #0
+    beq .Lraw_code_entities_08034CEC_3822_0
+    adds r0, r2, #0
     bl WouldIndexedResourceHandleWrap
-    .byte 0x00, 0x06
-    .4byte 0xD0002800
-    .4byte 0x1C202401
-    .4byte 0x2001E000
-    .4byte 0xBC02BC10
-    .4byte 0x00004708
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lraw_code_entities_08034CEC_3822_2
+.Lraw_code_entities_08034CEC_3822_0:
+    movs r4, #1
+.Lraw_code_entities_08034CEC_3822_2:
+    adds r0, r4, #0
+    b .Lraw_code_entities_08034CEC_3824_0
+.Lraw_code_entities_08034CEC_3823_2:
+    movs r0, #1
+.Lraw_code_entities_08034CEC_3824_0:
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_08037118
     .thumb_func
 func_08037118:
@@ -3996,14 +4018,23 @@ func_08037244:
     str	r1, [r0, #52]	@ 0x34
     str	r2, [r0, #56]	@ 0x38
     bx	lr
-    .hword 0x0000
-    .4byte 0x466BB082
-    .4byte 0x466A2100
-    .4byte 0x80598011
-    .4byte 0x80D98099
-    .4byte 0x9A019900
-    .4byte 0x63826341
-    .4byte 0x4770B002
+    .align 2, 0
+    thumb_func_start func_08036FE4
+func_08036FE4:
+    sub sp, #8
+    mov r3, sp
+    movs r1, #0
+    mov r2, sp
+    strh r1, [r2]
+    strh r1, [r3, #2]
+    strh r1, [r3, #4]
+    strh r1, [r3, #6]
+    ldr r1, [sp]
+    ldr r2, [sp, #4]
+    str r1, [r0, #52]
+    str r2, [r0, #56]
+    add sp, #8
+    bx lr
     .global func_0803726C
     .thumb_func
 func_0803726C:
@@ -4902,11 +4933,12 @@ func_080378FC:
     movs	r0, #0
     b .Ljp_080376E6
 .Ljp_080376DC:
-    .4byte __ewram_bss_end + 0x170
-    .hword 0xE001
+    movs r0, #128
+    lsls r0, r0, #8
+    b .Ljp_080376E6
 .Ljp_080376E2:
-    .hword 0x2080
-    .hword 0x0240
+    movs r0, #0x80
+    lsls r0, r0, #9
 .Ljp_080376E6:
     pop	{r1}
     bx	r1
@@ -5222,72 +5254,133 @@ func_08037B80:
     .4byte 0x00000207
 .Ljp_08037948:
     .4byte vtable_unk_080E7218
-    .4byte 0xB081B510
-    .4byte 0x4B061C04
-    .4byte 0x9000200A
-    .4byte 0xF7FF1C20
-    .4byte 0x4804FA1F
-    .4byte 0x1C206160
-    .4byte 0xBC10B001
-    .4byte 0x4708BC02
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r3, .Lraw_code_entities_08034CEC_5233_0
+    movs r0, #0xa
+    str r0, [sp]
+    adds r0, r4, #0
+    bl func_08037008
+    ldr r0, .Lraw_code_entities_08034CEC_5234_0
+    str r0, [r4, #0x14]
+    adds r0, r4, #0
+    add sp, #4
+    pop {r4}
+    pop {r1}
+    bx r1
+.Lraw_code_entities_08034CEC_5233_0:
     .4byte 0x00000207
+.Lraw_code_entities_08034CEC_5234_0:
     .4byte vtable_unk_080E7218
-    .4byte 0xB081B510
-    .4byte 0x4B061C04
-    .4byte 0x9000200C
-    .4byte 0xF7FF1C20
-    .4byte 0x4804FA0B
-    .4byte 0x1C206160
-    .4byte 0xBC10B001
-    .4byte 0x4708BC02
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r3, .Lraw_code_entities_08034CEC_5243_0
+    movs r0, #0xc
+    str r0, [sp]
+    adds r0, r4, #0
+    bl func_08037008
+    ldr r0, .Lraw_code_entities_08034CEC_5244_0
+    str r0, [r4, #0x14]
+    adds r0, r4, #0
+    add sp, #4
+    pop {r4}
+    pop {r1}
+    bx r1
+.Lraw_code_entities_08034CEC_5243_0:
     .4byte 0x00000379
+.Lraw_code_entities_08034CEC_5244_0:
     .4byte vtable_unk_080E725C
-    .4byte 0xB083B530
-    .4byte 0x1C1C1C05
-    .4byte 0x009B23AB
-    .4byte 0x9000200B
-    .4byte 0xF7FF1C28
-    .4byte 0x4811F9F5
-    .4byte 0x1C2A6168
-    .4byte 0x20033244
-    .4byte 0x78114004
-    .4byte 0x42402004
-    .4byte 0x43204008
-    .4byte 0xAB017010
-    .4byte 0x008921E6
-    .4byte 0x00522290
-    .4byte 0x80011C18
-    .4byte 0x20A4805A
-    .4byte 0x18090040
-    .4byte 0x32088099
-    .4byte 0x1C2880DA
-    .4byte 0xF7FF1C19
-    .4byte 0x1C28FAF5
-    .4byte 0xBC30B003
-    .4byte 0x4708BC02
+    push {r4, r5, lr}
+    sub sp, #0xc
+    adds r5, r0, #0
+    adds r4, r3, #0
+    movs r3, #0xab
+    lsls r3, r3, #2
+    movs r0, #0xb
+    str r0, [sp]
+    adds r0, r5, #0
+    bl func_08037008
+    ldr r0, .Lraw_code_entities_08034CEC_5268_0
+    str r0, [r5, #0x14]
+    adds r2, r5, #0
+    adds r2, #0x44
+    movs r0, #3
+    ands r4, r0
+    ldrb r1, [r2]
+    movs r0, #4
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r4
+    strb r0, [r2]
+    add r3, sp, #4
+    movs r1, #0xe6
+    lsls r1, r1, #2
+    movs r2, #0x90
+    lsls r2, r2, #1
+    adds r0, r3, #0
+    strh r1, [r0]
+    strh r2, [r3, #2]
+    movs r0, #0xa4
+    lsls r0, r0, #1
+    adds r1, r1, r0
+    strh r1, [r3, #4]
+    adds r2, #8
+    strh r2, [r3, #6]
+    adds r0, r5, #0
+    adds r1, r3, #0
+    bl func_08037244
+    adds r0, r5, #0
+    add sp, #0xc
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+.Lraw_code_entities_08034CEC_5268_0:
     .4byte vtable_unk_080E72A0
-    .4byte 0xB083B530
-    .4byte 0x1C1C1C05
-    .4byte 0x20004B12
-    .4byte 0x1C289000
-    .4byte 0xF9C6F7FF
-    .4byte 0x61684810
-    .4byte 0x32441C2A
-    .4byte 0x40042003
-    .4byte 0x20047811
-    .4byte 0x40084240
-    .4byte 0x70104320
-    .4byte 0x21B0AA01
-    .4byte 0x23D80049
-    .4byte 0x80011C10
-    .4byte 0x31388053
-    .4byte 0x20E88091
-    .4byte 0x1C2880D0
-    .4byte 0xF7FF1C11
-    .4byte 0x1C28FAC9
-    .4byte 0xBC30B003
-    .4byte 0x4708BC02
+    push {r4, r5, lr}
+    sub sp, #0xc
+    adds r5, r0, #0
+    adds r4, r3, #0
+    ldr r3, .Lraw_code_entities_08034CEC_5290_0
+    movs r0, #0
+    str r0, [sp]
+    adds r0, r5, #0
+    bl func_08037008
+    ldr r0, .Lraw_code_entities_08034CEC_5291_0
+    str r0, [r5, #0x14]
+    adds r2, r5, #0
+    adds r2, #0x44
+    movs r0, #3
+    ands r4, r0
+    ldrb r1, [r2]
+    movs r0, #4
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r4
+    strb r0, [r2]
+    add r2, sp, #4
+    movs r1, #0xb0
+    lsls r1, r1, #1
+    movs r3, #0xd8
+    adds r0, r2, #0
+    strh r1, [r0]
+    strh r3, [r2, #2]
+    adds r1, #0x38
+    strh r1, [r2, #4]
+    movs r0, #0xe8
+    strh r0, [r2, #6]
+    adds r0, r5, #0
+    adds r1, r2, #0
+    bl func_08037244
+    adds r0, r5, #0
+    add sp, #0xc
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+.Lraw_code_entities_08034CEC_5290_0:
     .4byte 0x0000071C
+.Lraw_code_entities_08034CEC_5291_0:
     .4byte vtable_unk_080E72E4
     .global func_08037CC4
     .thumb_func
@@ -6314,17 +6407,22 @@ func_08038398:
     .4byte .Ljp_0803825E
     .4byte .Ljp_0803825C
 .Ljp_08038248:
-    .4byte 0xE0082319
+    movs r3, #0x19
+    b .Ljp_0803825E
 .Ljp_0803824C:
-    .4byte 0xE006231D
+    movs r3, #0x1d
+    b .Ljp_0803825E
 .Ljp_08038250:
-    .4byte 0xE0042321
+    movs r3, #0x21
+    b .Ljp_0803825E
 .Ljp_08038254:
-    .4byte 0xE0022325
+    movs r3, #0x25
+    b .Ljp_0803825E
 .Ljp_08038258:
-    .4byte 0xE0002329
+    movs r3, #0x29
+    b .Ljp_0803825E
 .Ljp_0803825C:
-    .hword 0x232D
+    movs r3, #0x2d
 .Ljp_0803825E:
     adds	r1, r3, r2
     adds	r6, r1, #0
@@ -7516,6 +7614,7 @@ PlayControllerStarSparkleEffect:
     mov	sl, r0
     add	r3, sp, #8
     mov	r8, r3
+.Lraw_code_entities_08034CEC_7519_0:
     mov	r7, sl
     lsls	r0, r7, #2
     ldr r1, .Ljp_08038CA8
@@ -7531,113 +7630,216 @@ PlayControllerStarSparkleEffect:
     .4byte .Ljp_08038D70
     .4byte .Ljp_08038D70
 .Ljp_08038CC0:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01F9FF
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0xE00E2202
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #2
+    b .Lraw_code_entities_08034CEC_7550_2
 .Ljp_08038CE0:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01F9EF
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0x1C332201
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #1
+.Lraw_code_entities_08034CEC_7550_2:
+    adds r3, r6, #0
     bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    .4byte 0x28046828
-    .4byte 0x0180D82A
-    .4byte 0x182C3004
-    .4byte 0xD0222C00
-    .4byte 0xA9031C20
+    ldr r0, [r5]
+    cmp r0, #4
+    bhi .Lraw_code_entities_08034CEC_7575_0
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r4, r5, r0
+    cmp r4, #0
+    beq .Lraw_code_entities_08034CEC_7573_2
+    adds r0, r4, #0
+    add r1, sp, #0xc
     bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
-    .4byte 0x62604813
-    .4byte 0x31281C21
-    .4byte 0xC88CA80D
-    .4byte 0xC888C18C
-    .4byte 0xA812C188
-    .4byte 0x1C207801
-    .4byte 0x7001303C
-    .4byte 0x30494668
-    .4byte 0x1C217800
-    .4byte 0x7008313D
-    .4byte 0x304A4668
-    .4byte 0x31017800
-    .4byte 0x46687008
-    .4byte 0x7801304B
-    .4byte 0x303F1C20
-    .4byte 0x68287001
-    .4byte 0x60283001
-    .4byte 0x2102A803
+    ldr r0, .Lraw_code_entities_08034CEC_7578_0
+    str r0, [r4, #0x24]
+    adds r1, r4, #0
+    adds r1, #0x28
+    add r0, sp, #0x34
+    ldm r0!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldm r0!, {r3, r7}
+    stm r1!, {r3, r7}
+    add r0, sp, #0x48
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3c
+    strb r1, [r0]
+    mov r0, sp
+    adds r0, #0x49
+    ldrb r0, [r0]
+    adds r1, r4, #0
+    adds r1, #0x3d
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4a
+    ldrb r0, [r0]
+    adds r1, #1
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4b
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3f
+    strb r1, [r0]
+.Lraw_code_entities_08034CEC_7573_2:
+    ldr r0, [r5]
+    adds r0, #1
+    str r0, [r5]
+.Lraw_code_entities_08034CEC_7575_0:
+    add r0, sp, #0xc
+    movs r1, #2
     bl _._19GameSceneSpriteBase
-    .4byte 0x0000E046
+    b .Lraw_code_entities_08034CEC_7614_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_7578_0:
     .4byte __vt_22GameSceneIndexedSprite
 .Ljp_08038D70:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01F9A7
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0x1C332200
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #0
+    adds r3, r6, #0
     bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    .4byte 0x28046828
-    .4byte 0x0180D82A
-    .4byte 0x182C3004
-    .4byte 0xD0222C00
-    .4byte 0xA9031C20
+    ldr r0, [r5]
+    cmp r0, #4
+    bhi .Lraw_code_entities_08034CEC_7612_0
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r4, r5, r0
+    cmp r4, #0
+    beq .Lraw_code_entities_08034CEC_7610_2
+    adds r0, r4, #0
+    add r1, sp, #0xc
     bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
-    .4byte 0x6260482C
-    .4byte 0x31281C21
-    .4byte 0xC88CA80D
-    .4byte 0xC888C18C
-    .4byte 0xA812C188
-    .4byte 0x1C207801
-    .4byte 0x7001303C
-    .4byte 0x30494668
-    .4byte 0x1C217800
-    .4byte 0x7008313D
-    .4byte 0x304A4668
-    .4byte 0x31017800
-    .4byte 0x46687008
-    .4byte 0x7801304B
-    .4byte 0x303F1C20
-    .4byte 0x68287001
-    .4byte 0x60283001
-    .4byte 0x2102A803
+    ldr r0, .Lraw_code_entities_08034CEC_7641_0
+    str r0, [r4, #0x24]
+    adds r1, r4, #0
+    adds r1, #0x28
+    add r0, sp, #0x34
+    ldm r0!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldm r0!, {r3, r7}
+    stm r1!, {r3, r7}
+    add r0, sp, #0x48
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3c
+    strb r1, [r0]
+    mov r0, sp
+    adds r0, #0x49
+    ldrb r0, [r0]
+    adds r1, r4, #0
+    adds r1, #0x3d
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4a
+    ldrb r0, [r0]
+    adds r1, #1
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4b
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3f
+    strb r1, [r0]
+.Lraw_code_entities_08034CEC_7610_2:
+    ldr r0, [r5]
+    adds r0, #1
+    str r0, [r5]
+.Lraw_code_entities_08034CEC_7612_0:
+    add r0, sp, #0xc
+    movs r1, #2
     bl _._19GameSceneSpriteBase
-    .4byte 0x004921A2
-    .4byte 0x44501868
-    .4byte 0x70012100
-    .4byte 0x44922201
-    .4byte 0x2B044653
-    .4byte 0xE745D800
-    .4byte 0x444F2710
-    .4byte 0x1C2F46B8
-    .4byte 0x69064648
-    .4byte 0xD01442B7
-    .4byte 0xD0122E00
-    .4byte 0x01806830
-    .4byte 0x18353004
-    .4byte 0x42AC1D34
-    .4byte 0x6A60D008
-    .4byte 0x1C206882
-    .4byte 0xF09A2102
-    .4byte 0x3440F947
-    .4byte 0xD1F642AC
+.Lraw_code_entities_08034CEC_7614_0:
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    add r0, sl
+    movs r1, #0
+    strb r1, [r0]
+    movs r2, #1
+    add sl, r2
+    mov r3, sl
+    cmp r3, #4
+    bhi .Lraw_code_entities_08034CEC_7620_0
+    b .Lraw_code_entities_08034CEC_7519_0
+.Lraw_code_entities_08034CEC_7620_0:
+    movs r7, #0x10
+    add r7, sb
+    mov r8, r7
+    adds r7, r5, #0
+    mov r0, sb
+    ldr r6, [r0, #0x10]
+    cmp r7, r6
+    beq .Lraw_code_entities_08034CEC_7635_0
+    cmp r6, #0
+    beq .Lraw_code_entities_08034CEC_7635_0
+    ldr r0, [r6]
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r5, r6, r0
+    adds r4, r6, #4
+    cmp r4, r5
+    beq .Lraw_code_entities_08034CEC_7633_0
+.Lraw_code_entities_08034CEC_7628_2:
+    ldr r0, [r4, #0x24]
+    ldr r2, [r0, #8]
+    adds r0, r4, #0
+    movs r1, #2
+    bl _call_via_r2
+    adds r4, #0x40
+    cmp r4, r5
+    bne .Lraw_code_entities_08034CEC_7628_2
+.Lraw_code_entities_08034CEC_7633_0:
     adds r0, r6, #0
     bl __builtin_delete
+.Lraw_code_entities_08034CEC_7635_0:
     mov r1, r8
-    .4byte 0xB013600F
-    .4byte 0x4698BC38
-    .4byte 0x46AA46A1
-    .4byte 0xBC01BCF0
-    .4byte 0x00004700
+    str r7, [r1]
+    add sp, #0x4c
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_7641_0:
     .4byte __vt_22GameSceneIndexedSprite
     .global HasControllerStarSparkleEffect
     .thumb_func
@@ -7647,30 +7849,52 @@ HasControllerStarSparkleEffect:
     orrs	r0, r1
     lsrs	r0, r0, #31
     bx	lr
-    .hword 0x0000
-    .4byte 0x1C04B510
-    .byte 0x30, 0x30
+    .align 2, 0
+    push {r4, lr}
+    adds r4, r0, #0
+    adds r0, #0x30
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C
-    .4byte 0x22003044
-    .4byte 0x70012101
-    .4byte 0x70023002
-    .4byte 0x70013001
-    .4byte 0xBC01BC10
-    .4byte 0x00004700
-    .4byte 0x78003026
-    .4byte 0x00004770
-    .4byte 0x80031FCB
-    .4byte 0x80431F13
-    .4byte 0x80813107
-    .4byte 0x80C23205
-    .4byte 0x00004770
-    .4byte 0x6980B500
+    adds r0, r4, #0
+    adds r0, #0x44
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+    adds r0, #0x26
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+    thumb_func_start func_08038E9C
+func_08038E9C:
+    subs r3, r1, #7
+    strh r3, [r0]
+    subs r3, r2, #4
+    strh r3, [r0, #2]
+    adds r1, #7
+    strh r1, [r0, #4]
+    adds r2, #5
+    strh r2, [r0, #6]
+    bx lr
+    .align 2, 0
+    push {lr}
+    ldr r0, [r0, #0x18]
     bl GetSize__C9MoreItems
-    .4byte 0x281E2100
-    .4byte 0x2101D100
-    .4byte 0xBC021C08
-    .4byte 0x00004708
+    movs r1, #0
+    cmp r0, #0x1e
+    bne .Lraw_code_entities_08034CEC_7672_0
+    movs r1, #1
+.Lraw_code_entities_08034CEC_7672_0:
+    adds r0, r1, #0
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_08039134
     .thumb_func
 func_08039134:
@@ -9287,13 +9511,16 @@ func_08039D5C:
     .4byte .Ljp_08039B24
     .4byte .Ljp_08039B24
 .Ljp_08039B18:
-    .4byte __ewram_bss_end + 0x170
-    .hword 0xE003
+    movs r0, #128
+    lsls r0, r0, #8
+    b .Lraw_code_entities_08034CEC_9297_0
 .Ljp_08039B1E:
-    .hword 0x2080
-    .4byte 0xE0000240
+    movs r0, #0x80
+    lsls r0, r0, #9
+    b .Lraw_code_entities_08034CEC_9297_0
 .Ljp_08039B24:
     movs	r0, #0
+.Lraw_code_entities_08034CEC_9297_0:
     pop	{r1}
     bx	r1
     .align 2, 0
@@ -9423,9 +9650,12 @@ func_08039E18:
 func_08039E88:
     movs	r0, #2
     bx	lr
-    .4byte 0x68C96B41
-    .4byte 0x18090089
-    .4byte 0x47706B88
+    ldr r1, [r0, #0x34]
+    ldr r1, [r1, #0xc]
+    lsls r1, r1, #2
+    adds r1, r1, r0
+    ldr r0, [r1, #0x38]
+    bx lr
     .global func_08039E98
     .thumb_func
 func_08039E98:
@@ -10275,187 +10505,315 @@ func_0803A394:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A154641
-    .4byte 0xF7FF2301
-    .4byte 0x4814FCC9
-    .4byte 0x210064E0
-    .4byte 0x1C226521
-    .4byte 0x23003254
-    .4byte 0x1C258015
-    .4byte 0x802F3556
-    .4byte 0x30601C20
-    .4byte 0x30028001
-    .4byte 0x23007003
-    .4byte 0x04005ED0
-    .4byte 0x210065A0
-    .4byte 0x04005E68
-    .4byte 0x1C3165E0
-    .4byte 0x68B03108
-    .4byte 0xD9002802
-    .4byte 0x0080E119
-    .4byte 0x18083004
-    .4byte 0xD1002800
-    .4byte 0x6004E110
-    .4byte 0x0000E10E
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_10300_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10301_0
+.Lraw_code_entities_08034CEC_10281_0:
+    str r0, [r4, #0x4c]
+    movs r1, #0
+    str r1, [r4, #0x50]
+    adds r2, r4, #0
+    adds r2, #0x54
+    movs r3, #0
+    strh r5, [r2]
+    adds r5, r4, #0
+    adds r5, #0x56
+    strh r7, [r5]
+    adds r0, r4, #0
+    adds r0, #0x60
+    strh r1, [r0]
+    adds r0, #2
+    strb r3, [r0]
+    movs r3, #0
+    ldrsh r0, [r2, r3]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x58]
+    movs r1, #0
+    ldrsh r0, [r5, r1]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x5c]
+.Lraw_code_entities_08034CEC_10292_2:
+    adds r1, r6, #0
+    adds r1, #8
+    ldr r0, [r6, #8]
+    cmp r0, #2
+    bls .Lraw_code_entities_08034CEC_10295_2
+    b .Ljp_0803A50A
+.Lraw_code_entities_08034CEC_10295_2:
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r1, r0
+    cmp r0, #0
+    bne .Lraw_code_entities_08034CEC_10298_2
+    b .Lraw_code_entities_08034CEC_10457_0
+.Lraw_code_entities_08034CEC_10298_2:
+    str r4, [r0]
+    b .Lraw_code_entities_08034CEC_10457_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10300_0:
     .4byte 0x000009B6
+.Lraw_code_entities_08034CEC_10301_0:
     .4byte vtable_unk_080E76A4
 .Ljp_0803A2F0:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x22104641
-    .4byte 0xF7FF2301
-    .4byte 0x4801FC95
-    .4byte 0x0000E7CA
+    mov r1, r8
+    movs r2, #0x10
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10310_0
+    b .Lraw_code_entities_08034CEC_10281_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10310_0:
     .4byte vtable_unk_080E768C
 .Ljp_0803A30C:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC87
-    .4byte 0x0000E7BC
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_10319_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10320_0
+    b .Lraw_code_entities_08034CEC_10281_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10319_0:
     .4byte 0x000003DB
+.Lraw_code_entities_08034CEC_10320_0:
     .4byte vtable_unk_080E7674
 .Ljp_0803A32C:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC77
-    .4byte 0x0000E7AC
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_10329_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10330_0
+    b .Lraw_code_entities_08034CEC_10281_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10329_0:
     .4byte 0x00000806
+.Lraw_code_entities_08034CEC_10330_0:
     .4byte vtable_unk_080E765C
 .Ljp_0803A34C:
     movs r0, #108
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A0F4641
-    .4byte 0xF7FF2301
-    .4byte 0x480EFC67
-    .4byte 0x210064E0
-    .4byte 0x1C226521
-    .4byte 0x23003254
-    .4byte 0x1C258015
-    .4byte 0x802F3556
-    .4byte 0x30601C20
-    .4byte 0x30028001
-    .4byte 0x23007003
-    .4byte 0x04005ED0
-    .4byte 0x220065A0
-    .4byte 0x04005EA8
-    .4byte 0x66A165E0
-    .4byte 0x0000E79B
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_10351_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10352_0
+    str r0, [r4, #0x4c]
+    movs r1, #0
+    str r1, [r4, #0x50]
+    adds r2, r4, #0
+    adds r2, #0x54
+    movs r3, #0
+    strh r5, [r2]
+    adds r5, r4, #0
+    adds r5, #0x56
+    strh r7, [r5]
+    adds r0, r4, #0
+    adds r0, #0x60
+    strh r1, [r0]
+    adds r0, #2
+    strb r3, [r0]
+    movs r3, #0
+    ldrsh r0, [r2, r3]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x58]
+    movs r2, #0
+    ldrsh r0, [r5, r2]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x5c]
+    str r1, [r4, #0x68]
+    b .Lraw_code_entities_08034CEC_10292_2
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10351_0:
     .4byte 0x00000202
+.Lraw_code_entities_08034CEC_10352_0:
     .4byte vtable_unk_080E7644
 .Ljp_0803A39C:
     movs r0, #136
     bl __builtin_new
     adds r5, r0, #0
-    .4byte 0x22A94641
-    .4byte 0x23010092
-    .4byte 0xFC3EF7FF
-    .4byte 0x64E84813
-    .4byte 0x652C2400
-    .4byte 0x31501C29
-    .4byte 0x22011C28
-    .4byte 0xF7FF4252
-    .4byte 0x1C29FD89
-    .4byte 0x70083178
-    .4byte 0x20FF3101
-    .4byte 0x1C287008
-    .4byte 0x21003060
-    .4byte 0x30028004
-    .4byte 0x380E7001
-    .4byte 0x5EC02300
-    .4byte 0x65A80400
-    .4byte 0x30561C28
-    .4byte 0x5E402100
-    .4byte 0x65E80400
-    .4byte 0x31841C29
-    .4byte 0x700820F8
-    .4byte 0x0000E077
+    mov r1, r8
+    movs r2, #0xa9
+    lsls r2, r2, #2
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10380_0
+    str r0, [r5, #0x4c]
+    movs r4, #0
+    str r4, [r5, #0x50]
+    adds r1, r5, #0
+    adds r1, #0x50
+    adds r0, r5, #0
+    movs r2, #1
+    rsbs r2, r2, #0
+    bl func_0803A144
+    adds r1, r5, #0
+    adds r1, #0x78
+    strb r0, [r1]
+    adds r1, #1
+    movs r0, #0xff
+    strb r0, [r1]
+    adds r0, r5, #0
+    adds r0, #0x60
+    movs r1, #0
+    strh r4, [r0]
+    adds r0, #2
+    strb r1, [r0]
+    subs r0, #0xe
+    movs r3, #0
+    ldrsh r0, [r0, r3]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    adds r0, r5, #0
+    adds r0, #0x56
+    movs r1, #0
+    ldrsh r0, [r0, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+    adds r1, r5, #0
+    adds r1, #0x84
+    movs r0, #0xf8
+    strb r0, [r1]
+    b .Lraw_code_entities_08034CEC_10451_2
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10380_0:
     .4byte vtable_unk_080E762C
 .Ljp_0803A404:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC0B
-    .4byte 0x0000E740
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_10389_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10390_0
+    b .Lraw_code_entities_08034CEC_10281_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10389_0:
     .4byte 0x0000087B
+.Lraw_code_entities_08034CEC_10390_0:
     .4byte vtable_unk_080E7614
 .Ljp_0803A424:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBFB
-    .4byte 0x0000E730
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_10399_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10400_0
+    b .Lraw_code_entities_08034CEC_10281_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10399_0:
     .4byte 0x0000065C
+.Lraw_code_entities_08034CEC_10400_0:
     .4byte vtable_unk_080E75FC
 .Ljp_0803A444:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBEB
-    .4byte 0x0000E720
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_10409_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10410_0
+    b .Lraw_code_entities_08034CEC_10281_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10409_0:
     .4byte 0x000008F9
+.Lraw_code_entities_08034CEC_10410_0:
     .4byte vtable_unk_080E75E4
 .Ljp_0803A464:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBDB
-    .4byte 0x0000E710
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_10419_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10420_0
+    b .Lraw_code_entities_08034CEC_10281_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10419_0:
     .4byte 0x000009A9
+.Lraw_code_entities_08034CEC_10420_0:
     .4byte vtable_unk_080E75CC
 .Ljp_0803A484:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBCB
-    .4byte 0x0000E700
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_10429_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_10430_0
+    b .Lraw_code_entities_08034CEC_10281_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_10429_0:
     .4byte 0x000008FD
+.Lraw_code_entities_08034CEC_10430_0:
     .4byte vtable_unk_080E75B4
 .Ljp_0803A4A4:
     movs r0, #100
     bl __builtin_new
     adds r5, r0, #0
-    .4byte 0x22154641
-    .4byte 0xF7FF2300
-    .4byte 0x481CFBBB
-    .4byte 0x240064E8
-    .4byte 0x1C29652C
-    .4byte 0x1C283150
-    .4byte 0x42522201
-    .4byte 0xFD06F7FF
-    .4byte 0x30601C28
-    .4byte 0x80042100
-    .4byte 0x70013002
-    .4byte 0x2200380E
-    .4byte 0x04005E80
-    .4byte 0x1C2865A8
-    .4byte 0x23003056
-    .4byte 0x04005EC0
-    .4byte 0x1C3165E8
-    .4byte 0x68B03108
-    .4byte 0xD8082802
-    .4byte 0x30040080
-    .4byte 0x28001808
-    .4byte 0x6005D000
-    .4byte 0x300168B0
-    .hword 0x60B0
+    mov r1, r8
+    movs r2, #0x15
+    movs r3, #0
+    bl func_08039E98
+    ldr r0, .Ljp_0803A528
+    str r0, [r5, #0x4c]
+    movs r4, #0
+    str r4, [r5, #0x50]
+    adds r1, r5, #0
+    adds r1, #0x50
+    adds r0, r5, #0
+    movs r2, #1
+    rsbs r2, r2, #0
+    bl func_0803A144
+    adds r0, r5, #0
+    adds r0, #0x60
+    movs r1, #0
+    strh r4, [r0]
+    adds r0, #2
+    strb r1, [r0]
+    subs r0, #0xe
+    movs r2, #0
+    ldrsh r0, [r0, r2]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    adds r0, r5, #0
+    adds r0, #0x56
+    movs r3, #0
+    ldrsh r0, [r0, r3]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+.Lraw_code_entities_08034CEC_10451_2:
+    adds r1, r6, #0
+    adds r1, #8
+    ldr r0, [r6, #8]
+    cmp r0, #2
+    bhi .Ljp_0803A50A
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r1, r0
+    cmp r0, #0
+    beq .Lraw_code_entities_08034CEC_10457_0
+    str r5, [r0]
+.Lraw_code_entities_08034CEC_10457_0:
+    ldr r0, [r6, #8]
+    adds r0, #1
+    str r0, [r6, #8]
 .Ljp_0803A50A:
     ldr	r5, [sp, #4]
     subs	r5, #1
@@ -10465,6 +10823,152 @@ func_0803A394:
     b .Ljp_0803A216
 .Ljp_0803A516:
     add	sp, #8
+    pop	{r3, r4, r5}
+    mov	r8, r3
+    mov	r9, r4
+    mov	sl, r5
+    pop	{r4, r5, r6, r7}
+    pop	{r0}
+    bx	r0
+    .align 2, 0
+.Ljp_0803A528: .word vtable_unk_080E759C
+
+    thumb_func_start CreateWorldSlot84Entity
+CreateWorldSlot84Entity:
+    push	{r4, r5, r6, lr}
+    mov	r6, r8
+    push	{r6}
+    sub	sp, #8
+    adds	r6, r0, #0
+    mov	r8, r1
+    movs	r0, #32
+    bl __builtin_new
+    adds	r5, r0, #0
+    mov	r1, sp
+    ldrh	r2, [r1, #0]
+    ldr r3, .Ljp_0803A590
+    adds	r0, r3, #0
+    ands	r0, r2
+    strh	r0, [r1, #0]
+    ldrb	r4, [r1, #1]
+    movs	r2, #3
+    adds	r0, r2, #0
+    ands	r0, r4
+    strb	r0, [r1, #1]
+    ldrh	r4, [r1, #2]
+    adds	r0, r3, #0
+    ands	r0, r4
+    strh	r0, [r1, #2]
+    ldrb	r0, [r1, #3]
+    ands	r2, r0
+    strb	r2, [r1, #3]
+    ldrh	r0, [r1, #4]
+    ands	r3, r0
+    strh	r3, [r1, #4]
+    adds	r0, r5, #0
+    adds	r1, r6, #0
+    mov	r2, sp
+    bl __7AEntityP10GameObjectRC8Location
+    ldr r0, .Ljp_0803A594
+    str	r0, [r5, #20]
+    mov	r0, r8
+    str	r0, [r5, #24]
+    movs	r0, #1
+    strb	r0, [r5, #28]
+    adds	r0, r5, #0
+    add	sp, #8
+    pop	{r3}
+    mov	r8, r3
+    pop	{r4, r5, r6}
+    pop	{r1}
+    bx	r1
+    .align 2, 0
+.Ljp_0803A590:
+    .4byte 0xFFFFFC00
+.Ljp_0803A594:
+    .4byte vtable_unk_080E7568
+    adds	r0, #48	@ 0x30
+    movs	r1, #16
+    ldrsh	r0, [r0, r1]
+    bx	lr
+    adds	r0, #48	@ 0x30
+    strh	r1, [r0, #16]
+    bx	lr
+    .align 2, 0
+    push	{lr}
+    adds	r0, #48	@ 0x30
+    bl WouldIndexedResourceHandleWrap
+    pop	{r1}
+    bx	r1
+    push	{lr}
+    adds	r1, r0, #0
+    adds	r1, #48	@ 0x30
+    movs	r2, #0
+    ldrh	r0, [r1, #14]
+    cmp	r0, #0
+    beq .Ljp_0803A5CC
+    movs	r0, #16
+    ldrsh	r1, [r1, r0]
+    negs	r0, r1
+    orrs	r0, r1
+    lsrs	r2, r0, #31
+.Ljp_0803A5CC:
+    adds	r0, r2, #0
+    pop	{r1}
+    bx	r1
+    .align 2, 0
+    push	{r4, lr}
+    adds	r4, r0, #0
+    adds	r1, r4, #0
+    adds	r1, #71	@ 0x47
+    ldrb	r0, [r1, #0]
+    cmp	r0, #0
+    bne .Ljp_0803A5F8
+    adds	r0, r4, #0
+    adds	r0, #48	@ 0x30
+    bl UpdateIndexedResourceHandle
+    lsls	r0, r0, #30
+    cmp	r0, #0
+    bge .Ljp_0803A5FC
+    adds	r1, r4, #0
+    adds	r1, #68	@ 0x44
+    movs	r0, #1
+    b .Ljp_0803A5FA
+.Ljp_0803A5F8:
+    movs	r0, #0
+.Ljp_0803A5FA:
+    strb	r0, [r1, #0]
+.Ljp_0803A5FC:
+    pop	{r4}
+    pop	{r0}
+    bx	r0
+    .align 2, 0
+    push	{r4, r5, lr}
+    adds	r4, r0, #0
+    adds	r5, r1, #0
+    ldrh	r0, [r4, #4]
+    cmp	r0, r5
+    beq .Ljp_0803A62C
+    adds	r0, r4, #0
+    adds	r0, #48	@ 0x30
+    bl ResolveIndexedResourceHandle
+    adds	r0, r4, #0
+    adds	r0, #68	@ 0x44
+    movs	r2, #0
+    movs	r1, #1
+    strb	r1, [r0, #0]
+    adds	r0, #2
+    strb	r2, [r0, #0]
+    adds	r0, #1
+    strb	r1, [r0, #0]
+    strh	r5, [r4, #4]
+.Ljp_0803A62C:
+    pop	{r4, r5}
+    pop	{r0}
+    bx	r0
+    .align 2, 0
+    ldr	r0, [r0, #0]
+    bx	lr
 
     .else
     .ifdef REGION_EU
@@ -14156,8 +14660,9 @@ func_08036F68:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .hword 0x0000
-    .4byte 0x47706B40
+    .align 2, 0
+    ldr r0, [r0, #0x34]
+    bx lr
     .global func_08037008
     .thumb_func
 func_08037008:
@@ -15397,11 +15902,12 @@ func_080378FC:
     movs	r0, #0
     b .Leu_08037966
 .Leu_0803795C:
-    .4byte __ewram_bss_end + 0x170
-    .hword 0xE001
+    movs r0, #128
+    lsls r0, r0, #8
+    b .Leu_08037966
 .Leu_08037962:
-    .hword 0x2080
-    .hword 0x0240
+    movs r0, #0x80
+    lsls r0, r0, #9
 .Leu_08037966:
     pop	{r1}
     bx	r1
@@ -16870,17 +17376,22 @@ func_08038398:
     .4byte .Leu_080384DE
     .4byte .Leu_080384DC
 .Leu_080384C8:
-    .4byte 0xE0082319
+    movs r3, #0x19
+    b .Leu_080384DE
 .Leu_080384CC:
-    .4byte 0xE006231D
+    movs r3, #0x1d
+    b .Leu_080384DE
 .Leu_080384D0:
-    .4byte 0xE0042321
+    movs r3, #0x21
+    b .Leu_080384DE
 .Leu_080384D4:
-    .4byte 0xE0022325
+    movs r3, #0x25
+    b .Leu_080384DE
 .Leu_080384D8:
-    .4byte 0xE0002329
+    movs r3, #0x29
+    b .Leu_080384DE
 .Leu_080384DC:
-    .hword 0x232D
+    movs r3, #0x2d
 .Leu_080384DE:
     adds	r1, r3, r2
     adds	r6, r1, #0
@@ -18072,6 +18583,7 @@ PlayControllerStarSparkleEffect:
     mov	sl, r0
     add	r3, sp, #8
     mov	r8, r3
+.Lraw_code_entities_08034CEC_18075_0:
     mov	r7, sl
     lsls	r0, r7, #2
     ldr r1, .Leu_08038F28
@@ -18087,113 +18599,216 @@ PlayControllerStarSparkleEffect:
     .4byte .Leu_08038FF0
     .4byte .Leu_08038FF0
 .Leu_08038F40:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01FD09
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0xE00E2202
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #2
+    b .Lraw_code_entities_08034CEC_18106_2
 .Leu_08038F60:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01FCF9
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0x1C332201
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #1
+.Lraw_code_entities_08034CEC_18106_2:
+    adds r3, r6, #0
     bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    .4byte 0x28046828
-    .4byte 0x0180D82A
-    .4byte 0x182C3004
-    .4byte 0xD0222C00
-    .4byte 0xA9031C20
+    ldr r0, [r5]
+    cmp r0, #4
+    bhi .Lraw_code_entities_08034CEC_18131_0
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r4, r5, r0
+    cmp r4, #0
+    beq .Lraw_code_entities_08034CEC_18129_2
+    adds r0, r4, #0
+    add r1, sp, #0xc
     bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
-    .4byte 0x62604813
-    .4byte 0x31281C21
-    .4byte 0xC88CA80D
-    .4byte 0xC888C18C
-    .4byte 0xA812C188
-    .4byte 0x1C207801
-    .4byte 0x7001303C
-    .4byte 0x30494668
-    .4byte 0x1C217800
-    .4byte 0x7008313D
-    .4byte 0x304A4668
-    .4byte 0x31017800
-    .4byte 0x46687008
-    .4byte 0x7801304B
-    .4byte 0x303F1C20
-    .4byte 0x68287001
-    .4byte 0x60283001
-    .4byte 0x2102A803
+    ldr r0, .Lraw_code_entities_08034CEC_18134_0
+    str r0, [r4, #0x24]
+    adds r1, r4, #0
+    adds r1, #0x28
+    add r0, sp, #0x34
+    ldm r0!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldm r0!, {r3, r7}
+    stm r1!, {r3, r7}
+    add r0, sp, #0x48
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3c
+    strb r1, [r0]
+    mov r0, sp
+    adds r0, #0x49
+    ldrb r0, [r0]
+    adds r1, r4, #0
+    adds r1, #0x3d
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4a
+    ldrb r0, [r0]
+    adds r1, #1
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4b
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3f
+    strb r1, [r0]
+.Lraw_code_entities_08034CEC_18129_2:
+    ldr r0, [r5]
+    adds r0, #1
+    str r0, [r5]
+.Lraw_code_entities_08034CEC_18131_0:
+    add r0, sp, #0xc
+    movs r1, #2
     bl _._19GameSceneSpriteBase
-    .4byte 0x0000E046
+    b .Lraw_code_entities_08034CEC_18170_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_18134_0:
     .4byte __vt_22GameSceneIndexedSprite
 .Leu_08038FF0:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01FCB1
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0x1C332200
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #0
+    adds r3, r6, #0
     bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    .4byte 0x28046828
-    .4byte 0x0180D82A
-    .4byte 0x182C3004
-    .4byte 0xD0222C00
-    .4byte 0xA9031C20
+    ldr r0, [r5]
+    cmp r0, #4
+    bhi .Lraw_code_entities_08034CEC_18168_0
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r4, r5, r0
+    cmp r4, #0
+    beq .Lraw_code_entities_08034CEC_18166_2
+    adds r0, r4, #0
+    add r1, sp, #0xc
     bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
-    .4byte 0x6260482C
-    .4byte 0x31281C21
-    .4byte 0xC88CA80D
-    .4byte 0xC888C18C
-    .4byte 0xA812C188
-    .4byte 0x1C207801
-    .4byte 0x7001303C
-    .4byte 0x30494668
-    .4byte 0x1C217800
-    .4byte 0x7008313D
-    .4byte 0x304A4668
-    .4byte 0x31017800
-    .4byte 0x46687008
-    .4byte 0x7801304B
-    .4byte 0x303F1C20
-    .4byte 0x68287001
-    .4byte 0x60283001
-    .4byte 0x2102A803
+    ldr r0, .Lraw_code_entities_08034CEC_18197_0
+    str r0, [r4, #0x24]
+    adds r1, r4, #0
+    adds r1, #0x28
+    add r0, sp, #0x34
+    ldm r0!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldm r0!, {r3, r7}
+    stm r1!, {r3, r7}
+    add r0, sp, #0x48
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3c
+    strb r1, [r0]
+    mov r0, sp
+    adds r0, #0x49
+    ldrb r0, [r0]
+    adds r1, r4, #0
+    adds r1, #0x3d
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4a
+    ldrb r0, [r0]
+    adds r1, #1
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4b
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3f
+    strb r1, [r0]
+.Lraw_code_entities_08034CEC_18166_2:
+    ldr r0, [r5]
+    adds r0, #1
+    str r0, [r5]
+.Lraw_code_entities_08034CEC_18168_0:
+    add r0, sp, #0xc
+    movs r1, #2
     bl _._19GameSceneSpriteBase
-    .4byte 0x004921A2
-    .4byte 0x44501868
-    .4byte 0x70012100
-    .4byte 0x44922201
-    .4byte 0x2B044653
-    .4byte 0xE745D800
-    .4byte 0x444F2710
-    .4byte 0x1C2F46B8
-    .4byte 0x69064648
-    .4byte 0xD01442B7
-    .4byte 0xD0122E00
-    .4byte 0x01806830
-    .4byte 0x18353004
-    .4byte 0x42AC1D34
-    .4byte 0x6A60D008
-    .4byte 0x1C206882
-    .4byte 0xF09A2102
-    .4byte 0x3440FC51
-    .4byte 0xD1F642AC
+.Lraw_code_entities_08034CEC_18170_0:
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    add r0, sl
+    movs r1, #0
+    strb r1, [r0]
+    movs r2, #1
+    add sl, r2
+    mov r3, sl
+    cmp r3, #4
+    bhi .Lraw_code_entities_08034CEC_18176_0
+    b .Lraw_code_entities_08034CEC_18075_0
+.Lraw_code_entities_08034CEC_18176_0:
+    movs r7, #0x10
+    add r7, sb
+    mov r8, r7
+    adds r7, r5, #0
+    mov r0, sb
+    ldr r6, [r0, #0x10]
+    cmp r7, r6
+    beq .Lraw_code_entities_08034CEC_18191_0
+    cmp r6, #0
+    beq .Lraw_code_entities_08034CEC_18191_0
+    ldr r0, [r6]
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r5, r6, r0
+    adds r4, r6, #4
+    cmp r4, r5
+    beq .Lraw_code_entities_08034CEC_18189_0
+.Lraw_code_entities_08034CEC_18184_2:
+    ldr r0, [r4, #0x24]
+    ldr r2, [r0, #8]
+    adds r0, r4, #0
+    movs r1, #2
+    bl _call_via_r2
+    adds r4, #0x40
+    cmp r4, r5
+    bne .Lraw_code_entities_08034CEC_18184_2
+.Lraw_code_entities_08034CEC_18189_0:
     adds r0, r6, #0
     bl __builtin_delete
+.Lraw_code_entities_08034CEC_18191_0:
     mov r1, r8
-    .4byte 0xB013600F
-    .4byte 0x4698BC38
-    .4byte 0x46AA46A1
-    .4byte 0xBC01BCF0
-    .4byte 0x00004700
+    str r7, [r1]
+    add sp, #0x4c
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_18197_0:
     .4byte __vt_22GameSceneIndexedSprite
     .global HasControllerStarSparkleEffect
     .thumb_func
@@ -19863,13 +20478,16 @@ func_08039D5C:
     .4byte .Leu_08039DA4
     .4byte .Leu_08039DA4
 .Leu_08039D98:
-    .4byte __ewram_bss_end + 0x170
-    .hword 0xE003
+    movs r0, #128
+    lsls r0, r0, #8
+    b .Lraw_code_entities_08034CEC_19873_0
 .Leu_08039D9E:
-    .hword 0x2080
-    .4byte 0xE0000240
+    movs r0, #0x80
+    lsls r0, r0, #9
+    b .Lraw_code_entities_08034CEC_19873_0
 .Leu_08039DA4:
     movs	r0, #0
+.Lraw_code_entities_08034CEC_19873_0:
     pop	{r1}
     bx	r1
     .align 2, 0
@@ -20854,187 +21472,315 @@ func_0803A394:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A154641
-    .4byte 0xF7FF2301
-    .4byte 0x4814FCC9
-    .4byte 0x210064E0
-    .4byte 0x1C226521
-    .4byte 0x23003254
-    .4byte 0x1C258015
-    .4byte 0x802F3556
-    .4byte 0x30601C20
-    .4byte 0x30028001
-    .4byte 0x23007003
-    .4byte 0x04005ED0
-    .4byte 0x210065A0
-    .4byte 0x04005E68
-    .4byte 0x1C3165E0
-    .4byte 0x68B03108
-    .4byte 0xD9002802
-    .4byte 0x0080E119
-    .4byte 0x18083004
-    .4byte 0xD1002800
-    .4byte 0x6004E110
-    .4byte 0x0000E10E
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_20879_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_20880_0
+.Lraw_code_entities_08034CEC_20860_0:
+    str r0, [r4, #0x4c]
+    movs r1, #0
+    str r1, [r4, #0x50]
+    adds r2, r4, #0
+    adds r2, #0x54
+    movs r3, #0
+    strh r5, [r2]
+    adds r5, r4, #0
+    adds r5, #0x56
+    strh r7, [r5]
+    adds r0, r4, #0
+    adds r0, #0x60
+    strh r1, [r0]
+    adds r0, #2
+    strb r3, [r0]
+    movs r3, #0
+    ldrsh r0, [r2, r3]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x58]
+    movs r1, #0
+    ldrsh r0, [r5, r1]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x5c]
+.Lraw_code_entities_08034CEC_20871_2:
+    adds r1, r6, #0
+    adds r1, #8
+    ldr r0, [r6, #8]
+    cmp r0, #2
+    bls .Lraw_code_entities_08034CEC_20874_2
+    b .Leu_0803A78A
+.Lraw_code_entities_08034CEC_20874_2:
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r1, r0
+    cmp r0, #0
+    bne .Lraw_code_entities_08034CEC_20877_2
+    b .Lraw_code_entities_08034CEC_21036_0
+.Lraw_code_entities_08034CEC_20877_2:
+    str r4, [r0]
+    b .Lraw_code_entities_08034CEC_21036_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_20879_0:
     .4byte 0x000009B6
+.Lraw_code_entities_08034CEC_20880_0:
     .4byte vtable_unk_080E76A4
 .Leu_0803A570:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x22104641
-    .4byte 0xF7FF2301
-    .4byte 0x4801FC95
-    .4byte 0x0000E7CA
+    mov r1, r8
+    movs r2, #0x10
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_20889_0
+    b .Lraw_code_entities_08034CEC_20860_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_20889_0:
     .4byte vtable_unk_080E768C
 .Leu_0803A58C:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC87
-    .4byte 0x0000E7BC
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_20898_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_20899_0
+    b .Lraw_code_entities_08034CEC_20860_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_20898_0:
     .4byte 0x000003DB
+.Lraw_code_entities_08034CEC_20899_0:
     .4byte vtable_unk_080E7674
 .Leu_0803A5AC:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC77
-    .4byte 0x0000E7AC
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_20908_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_20909_0
+    b .Lraw_code_entities_08034CEC_20860_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_20908_0:
     .4byte 0x00000806
+.Lraw_code_entities_08034CEC_20909_0:
     .4byte vtable_unk_080E765C
 .Leu_0803A5CC:
     movs r0, #108
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A0F4641
-    .4byte 0xF7FF2301
-    .4byte 0x480EFC67
-    .4byte 0x210064E0
-    .4byte 0x1C226521
-    .4byte 0x23003254
-    .4byte 0x1C258015
-    .4byte 0x802F3556
-    .4byte 0x30601C20
-    .4byte 0x30028001
-    .4byte 0x23007003
-    .4byte 0x04005ED0
-    .4byte 0x220065A0
-    .4byte 0x04005EA8
-    .4byte 0x66A165E0
-    .4byte 0x0000E79B
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_20930_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_20931_0
+    str r0, [r4, #0x4c]
+    movs r1, #0
+    str r1, [r4, #0x50]
+    adds r2, r4, #0
+    adds r2, #0x54
+    movs r3, #0
+    strh r5, [r2]
+    adds r5, r4, #0
+    adds r5, #0x56
+    strh r7, [r5]
+    adds r0, r4, #0
+    adds r0, #0x60
+    strh r1, [r0]
+    adds r0, #2
+    strb r3, [r0]
+    movs r3, #0
+    ldrsh r0, [r2, r3]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x58]
+    movs r2, #0
+    ldrsh r0, [r5, r2]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x5c]
+    str r1, [r4, #0x68]
+    b .Lraw_code_entities_08034CEC_20871_2
+    .align 2, 0
+.Lraw_code_entities_08034CEC_20930_0:
     .4byte 0x00000202
+.Lraw_code_entities_08034CEC_20931_0:
     .4byte vtable_unk_080E7644
 .Leu_0803A61C:
     movs r0, #136
     bl __builtin_new
     adds r5, r0, #0
-    .4byte 0x22A94641
-    .4byte 0x23010092
-    .4byte 0xFC3EF7FF
-    .4byte 0x64E84813
-    .4byte 0x652C2400
-    .4byte 0x31501C29
-    .4byte 0x22011C28
-    .4byte 0xF7FF4252
-    .4byte 0x1C29FD89
-    .4byte 0x70083178
-    .4byte 0x20FF3101
-    .4byte 0x1C287008
-    .4byte 0x21003060
-    .4byte 0x30028004
-    .4byte 0x380E7001
-    .4byte 0x5EC02300
-    .4byte 0x65A80400
-    .4byte 0x30561C28
-    .4byte 0x5E402100
-    .4byte 0x65E80400
-    .4byte 0x31841C29
-    .4byte 0x700820F8
-    .4byte 0x0000E077
+    mov r1, r8
+    movs r2, #0xa9
+    lsls r2, r2, #2
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_20959_0
+    str r0, [r5, #0x4c]
+    movs r4, #0
+    str r4, [r5, #0x50]
+    adds r1, r5, #0
+    adds r1, #0x50
+    adds r0, r5, #0
+    movs r2, #1
+    rsbs r2, r2, #0
+    bl func_0803A144
+    adds r1, r5, #0
+    adds r1, #0x78
+    strb r0, [r1]
+    adds r1, #1
+    movs r0, #0xff
+    strb r0, [r1]
+    adds r0, r5, #0
+    adds r0, #0x60
+    movs r1, #0
+    strh r4, [r0]
+    adds r0, #2
+    strb r1, [r0]
+    subs r0, #0xe
+    movs r3, #0
+    ldrsh r0, [r0, r3]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    adds r0, r5, #0
+    adds r0, #0x56
+    movs r1, #0
+    ldrsh r0, [r0, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+    adds r1, r5, #0
+    adds r1, #0x84
+    movs r0, #0xf8
+    strb r0, [r1]
+    b .Lraw_code_entities_08034CEC_21030_2
+    .align 2, 0
+.Lraw_code_entities_08034CEC_20959_0:
     .4byte vtable_unk_080E762C
 .Leu_0803A684:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC0B
-    .4byte 0x0000E740
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_20968_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_20969_0
+    b .Lraw_code_entities_08034CEC_20860_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_20968_0:
     .4byte 0x0000087B
+.Lraw_code_entities_08034CEC_20969_0:
     .4byte vtable_unk_080E7614
 .Leu_0803A6A4:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBFB
-    .4byte 0x0000E730
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_20978_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_20979_0
+    b .Lraw_code_entities_08034CEC_20860_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_20978_0:
     .4byte 0x0000065C
+.Lraw_code_entities_08034CEC_20979_0:
     .4byte vtable_unk_080E75FC
 .Leu_0803A6C4:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBEB
-    .4byte 0x0000E720
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_20988_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_20989_0
+    b .Lraw_code_entities_08034CEC_20860_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_20988_0:
     .4byte 0x000008F9
+.Lraw_code_entities_08034CEC_20989_0:
     .4byte vtable_unk_080E75E4
 .Leu_0803A6E4:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBDB
-    .4byte 0x0000E710
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_20998_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_20999_0
+    b .Lraw_code_entities_08034CEC_20860_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_20998_0:
     .4byte 0x000009A9
+.Lraw_code_entities_08034CEC_20999_0:
     .4byte vtable_unk_080E75CC
 .Leu_0803A704:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBCB
-    .4byte 0x0000E700
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_21008_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_21009_0
+    b .Lraw_code_entities_08034CEC_20860_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_21008_0:
     .4byte 0x000008FD
+.Lraw_code_entities_08034CEC_21009_0:
     .4byte vtable_unk_080E75B4
 .Leu_0803A724:
     movs r0, #100
     bl __builtin_new
     adds r5, r0, #0
-    .4byte 0x22154641
-    .4byte 0xF7FF2300
-    .4byte 0x481CFBBB
-    .4byte 0x240064E8
-    .4byte 0x1C29652C
-    .4byte 0x1C283150
-    .4byte 0x42522201
-    .4byte 0xFD06F7FF
-    .4byte 0x30601C28
-    .4byte 0x80042100
-    .4byte 0x70013002
-    .4byte 0x2200380E
-    .4byte 0x04005E80
-    .4byte 0x1C2865A8
-    .4byte 0x23003056
-    .4byte 0x04005EC0
-    .4byte 0x1C3165E8
-    .4byte 0x68B03108
-    .4byte 0xD8082802
-    .4byte 0x30040080
-    .4byte 0x28001808
-    .4byte 0x6005D000
-    .4byte 0x300168B0
-    .hword 0x60B0
+    mov r1, r8
+    movs r2, #0x15
+    movs r3, #0
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_21055_0
+    str r0, [r5, #0x4c]
+    movs r4, #0
+    str r4, [r5, #0x50]
+    adds r1, r5, #0
+    adds r1, #0x50
+    adds r0, r5, #0
+    movs r2, #1
+    rsbs r2, r2, #0
+    bl func_0803A144
+    adds r0, r5, #0
+    adds r0, #0x60
+    movs r1, #0
+    strh r4, [r0]
+    adds r0, #2
+    strb r1, [r0]
+    subs r0, #0xe
+    movs r2, #0
+    ldrsh r0, [r0, r2]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    adds r0, r5, #0
+    adds r0, #0x56
+    movs r3, #0
+    ldrsh r0, [r0, r3]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+.Lraw_code_entities_08034CEC_21030_2:
+    adds r1, r6, #0
+    adds r1, #8
+    ldr r0, [r6, #8]
+    cmp r0, #2
+    bhi .Leu_0803A78A
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r1, r0
+    cmp r0, #0
+    beq .Lraw_code_entities_08034CEC_21036_0
+    str r5, [r0]
+.Lraw_code_entities_08034CEC_21036_0:
+    ldr r0, [r6, #8]
+    adds r0, #1
+    str r0, [r6, #8]
 .Leu_0803A78A:
     ldr	r5, [sp, #4]
     subs	r5, #1
@@ -21051,7 +21797,8 @@ func_0803A394:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .hword 0x0000
+    .align 2, 0
+.Lraw_code_entities_08034CEC_21055_0:
     .4byte vtable_unk_080E759C
     .global CreateWorldSlot84Entity
     .thumb_func
@@ -24881,8 +25628,9 @@ func_08036F68:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .hword 0x0000
-    .4byte 0x47706B40
+    .align 2, 0
+    ldr r0, [r0, #0x34]
+    bx lr
     .global func_08037008
     .thumb_func
 func_08037008:
@@ -26122,11 +26870,12 @@ func_080378FC:
     movs	r0, #0
     b .Lde_08037866
 .Lde_0803785C:
-    .4byte __ewram_bss_end + 0x170
-    .hword 0xE001
+    movs r0, #128
+    lsls r0, r0, #8
+    b .Lde_08037866
 .Lde_08037862:
-    .hword 0x2080
-    .hword 0x0240
+    movs r0, #0x80
+    lsls r0, r0, #9
 .Lde_08037866:
     pop	{r1}
     bx	r1
@@ -27595,17 +28344,22 @@ func_08038398:
     .4byte .Lde_080383DE
     .4byte .Lde_080383DC
 .Lde_080383C8:
-    .4byte 0xE0082319
+    movs r3, #0x19
+    b .Lde_080383DE
 .Lde_080383CC:
-    .4byte 0xE006231D
+    movs r3, #0x1d
+    b .Lde_080383DE
 .Lde_080383D0:
-    .4byte 0xE0042321
+    movs r3, #0x21
+    b .Lde_080383DE
 .Lde_080383D4:
-    .4byte 0xE0022325
+    movs r3, #0x25
+    b .Lde_080383DE
 .Lde_080383D8:
-    .4byte 0xE0002329
+    movs r3, #0x29
+    b .Lde_080383DE
 .Lde_080383DC:
-    .hword 0x232D
+    movs r3, #0x2d
 .Lde_080383DE:
     adds	r1, r3, r2
     adds	r6, r1, #0
@@ -28797,6 +29551,7 @@ PlayControllerStarSparkleEffect:
     mov	sl, r0
     add	r3, sp, #8
     mov	r8, r3
+.Lraw_code_entities_08034CEC_28800_0:
     mov	r7, sl
     lsls	r0, r7, #2
     ldr r1, .Lde_08038E28
@@ -28812,113 +29567,216 @@ PlayControllerStarSparkleEffect:
     .4byte .Lde_08038EF0
     .4byte .Lde_08038EF0
 .Lde_08038E40:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01FD15
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0xE00E2202
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #2
+    b .Lraw_code_entities_08034CEC_28831_2
 .Lde_08038E60:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01FD05
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0x1C332201
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #1
+.Lraw_code_entities_08034CEC_28831_2:
+    adds r3, r6, #0
     bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    .4byte 0x28046828
-    .4byte 0x0180D82A
-    .4byte 0x182C3004
-    .4byte 0xD0222C00
-    .4byte 0xA9031C20
+    ldr r0, [r5]
+    cmp r0, #4
+    bhi .Lraw_code_entities_08034CEC_28856_0
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r4, r5, r0
+    cmp r4, #0
+    beq .Lraw_code_entities_08034CEC_28854_2
+    adds r0, r4, #0
+    add r1, sp, #0xc
     bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
-    .4byte 0x62604813
-    .4byte 0x31281C21
-    .4byte 0xC88CA80D
-    .4byte 0xC888C18C
-    .4byte 0xA812C188
-    .4byte 0x1C207801
-    .4byte 0x7001303C
-    .4byte 0x30494668
-    .4byte 0x1C217800
-    .4byte 0x7008313D
-    .4byte 0x304A4668
-    .4byte 0x31017800
-    .4byte 0x46687008
-    .4byte 0x7801304B
-    .4byte 0x303F1C20
-    .4byte 0x68287001
-    .4byte 0x60283001
-    .4byte 0x2102A803
+    ldr r0, .Lraw_code_entities_08034CEC_28859_0
+    str r0, [r4, #0x24]
+    adds r1, r4, #0
+    adds r1, #0x28
+    add r0, sp, #0x34
+    ldm r0!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldm r0!, {r3, r7}
+    stm r1!, {r3, r7}
+    add r0, sp, #0x48
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3c
+    strb r1, [r0]
+    mov r0, sp
+    adds r0, #0x49
+    ldrb r0, [r0]
+    adds r1, r4, #0
+    adds r1, #0x3d
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4a
+    ldrb r0, [r0]
+    adds r1, #1
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4b
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3f
+    strb r1, [r0]
+.Lraw_code_entities_08034CEC_28854_2:
+    ldr r0, [r5]
+    adds r0, #1
+    str r0, [r5]
+.Lraw_code_entities_08034CEC_28856_0:
+    add r0, sp, #0xc
+    movs r1, #2
     bl _._19GameSceneSpriteBase
-    .4byte 0x0000E046
+    b .Lraw_code_entities_08034CEC_28895_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_28859_0:
     .4byte __vt_22GameSceneIndexedSprite
 .Lde_08038EF0:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01FCBD
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0x1C332200
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #0
+    adds r3, r6, #0
     bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    .4byte 0x28046828
-    .4byte 0x0180D82A
-    .4byte 0x182C3004
-    .4byte 0xD0222C00
-    .4byte 0xA9031C20
+    ldr r0, [r5]
+    cmp r0, #4
+    bhi .Lraw_code_entities_08034CEC_28893_0
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r4, r5, r0
+    cmp r4, #0
+    beq .Lraw_code_entities_08034CEC_28891_2
+    adds r0, r4, #0
+    add r1, sp, #0xc
     bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
-    .4byte 0x6260482C
-    .4byte 0x31281C21
-    .4byte 0xC88CA80D
-    .4byte 0xC888C18C
-    .4byte 0xA812C188
-    .4byte 0x1C207801
-    .4byte 0x7001303C
-    .4byte 0x30494668
-    .4byte 0x1C217800
-    .4byte 0x7008313D
-    .4byte 0x304A4668
-    .4byte 0x31017800
-    .4byte 0x46687008
-    .4byte 0x7801304B
-    .4byte 0x303F1C20
-    .4byte 0x68287001
-    .4byte 0x60283001
-    .4byte 0x2102A803
+    ldr r0, .Lraw_code_entities_08034CEC_28922_0
+    str r0, [r4, #0x24]
+    adds r1, r4, #0
+    adds r1, #0x28
+    add r0, sp, #0x34
+    ldm r0!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldm r0!, {r3, r7}
+    stm r1!, {r3, r7}
+    add r0, sp, #0x48
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3c
+    strb r1, [r0]
+    mov r0, sp
+    adds r0, #0x49
+    ldrb r0, [r0]
+    adds r1, r4, #0
+    adds r1, #0x3d
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4a
+    ldrb r0, [r0]
+    adds r1, #1
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4b
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3f
+    strb r1, [r0]
+.Lraw_code_entities_08034CEC_28891_2:
+    ldr r0, [r5]
+    adds r0, #1
+    str r0, [r5]
+.Lraw_code_entities_08034CEC_28893_0:
+    add r0, sp, #0xc
+    movs r1, #2
     bl _._19GameSceneSpriteBase
-    .4byte 0x004921A2
-    .4byte 0x44501868
-    .4byte 0x70012100
-    .4byte 0x44922201
-    .4byte 0x2B044653
-    .4byte 0xE745D800
-    .4byte 0x444F2710
-    .4byte 0x1C2F46B8
-    .4byte 0x69064648
-    .4byte 0xD01442B7
-    .4byte 0xD0122E00
-    .4byte 0x01806830
-    .4byte 0x18353004
-    .4byte 0x42AC1D34
-    .4byte 0x6A60D008
-    .4byte 0x1C206882
-    .4byte 0xF09A2102
-    .4byte 0x3440FC5D
-    .4byte 0xD1F642AC
+.Lraw_code_entities_08034CEC_28895_0:
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    add r0, sl
+    movs r1, #0
+    strb r1, [r0]
+    movs r2, #1
+    add sl, r2
+    mov r3, sl
+    cmp r3, #4
+    bhi .Lraw_code_entities_08034CEC_28901_0
+    b .Lraw_code_entities_08034CEC_28800_0
+.Lraw_code_entities_08034CEC_28901_0:
+    movs r7, #0x10
+    add r7, sb
+    mov r8, r7
+    adds r7, r5, #0
+    mov r0, sb
+    ldr r6, [r0, #0x10]
+    cmp r7, r6
+    beq .Lraw_code_entities_08034CEC_28916_0
+    cmp r6, #0
+    beq .Lraw_code_entities_08034CEC_28916_0
+    ldr r0, [r6]
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r5, r6, r0
+    adds r4, r6, #4
+    cmp r4, r5
+    beq .Lraw_code_entities_08034CEC_28914_0
+.Lraw_code_entities_08034CEC_28909_2:
+    ldr r0, [r4, #0x24]
+    ldr r2, [r0, #8]
+    adds r0, r4, #0
+    movs r1, #2
+    bl _call_via_r2
+    adds r4, #0x40
+    cmp r4, r5
+    bne .Lraw_code_entities_08034CEC_28909_2
+.Lraw_code_entities_08034CEC_28914_0:
     adds r0, r6, #0
     bl __builtin_delete
+.Lraw_code_entities_08034CEC_28916_0:
     mov r1, r8
-    .4byte 0xB013600F
-    .4byte 0x4698BC38
-    .4byte 0x46AA46A1
-    .4byte 0xBC01BCF0
-    .4byte 0x00004700
+    str r7, [r1]
+    add sp, #0x4c
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_28922_0:
     .4byte __vt_22GameSceneIndexedSprite
     .global HasControllerStarSparkleEffect
     .thumb_func
@@ -30588,13 +31446,16 @@ func_08039D5C:
     .4byte .Lde_08039CA4
     .4byte .Lde_08039CA4
 .Lde_08039C98:
-    .4byte __ewram_bss_end + 0x170
-    .hword 0xE003
+    movs r0, #128
+    lsls r0, r0, #8
+    b .Lraw_code_entities_08034CEC_30598_0
 .Lde_08039C9E:
-    .hword 0x2080
-    .4byte 0xE0000240
+    movs r0, #0x80
+    lsls r0, r0, #9
+    b .Lraw_code_entities_08034CEC_30598_0
 .Lde_08039CA4:
     movs	r0, #0
+.Lraw_code_entities_08034CEC_30598_0:
     pop	{r1}
     bx	r1
     .align 2, 0
@@ -31579,187 +32440,315 @@ func_0803A394:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A154641
-    .4byte 0xF7FF2301
-    .4byte 0x4814FCC9
-    .4byte 0x210064E0
-    .4byte 0x1C226521
-    .4byte 0x23003254
-    .4byte 0x1C258015
-    .4byte 0x802F3556
-    .4byte 0x30601C20
-    .4byte 0x30028001
-    .4byte 0x23007003
-    .4byte 0x04005ED0
-    .4byte 0x210065A0
-    .4byte 0x04005E68
-    .4byte 0x1C3165E0
-    .4byte 0x68B03108
-    .4byte 0xD9002802
-    .4byte 0x0080E119
-    .4byte 0x18083004
-    .4byte 0xD1002800
-    .4byte 0x6004E110
-    .4byte 0x0000E10E
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_31604_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31605_0
+.Lraw_code_entities_08034CEC_31585_0:
+    str r0, [r4, #0x4c]
+    movs r1, #0
+    str r1, [r4, #0x50]
+    adds r2, r4, #0
+    adds r2, #0x54
+    movs r3, #0
+    strh r5, [r2]
+    adds r5, r4, #0
+    adds r5, #0x56
+    strh r7, [r5]
+    adds r0, r4, #0
+    adds r0, #0x60
+    strh r1, [r0]
+    adds r0, #2
+    strb r3, [r0]
+    movs r3, #0
+    ldrsh r0, [r2, r3]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x58]
+    movs r1, #0
+    ldrsh r0, [r5, r1]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x5c]
+.Lraw_code_entities_08034CEC_31596_2:
+    adds r1, r6, #0
+    adds r1, #8
+    ldr r0, [r6, #8]
+    cmp r0, #2
+    bls .Lraw_code_entities_08034CEC_31599_2
+    b .Lde_0803A68A
+.Lraw_code_entities_08034CEC_31599_2:
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r1, r0
+    cmp r0, #0
+    bne .Lraw_code_entities_08034CEC_31602_2
+    b .Lraw_code_entities_08034CEC_31761_0
+.Lraw_code_entities_08034CEC_31602_2:
+    str r4, [r0]
+    b .Lraw_code_entities_08034CEC_31761_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31604_0:
     .4byte 0x000009B6
+.Lraw_code_entities_08034CEC_31605_0:
     .4byte vtable_unk_080E76A4
 .Lde_0803A470:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x22104641
-    .4byte 0xF7FF2301
-    .4byte 0x4801FC95
-    .4byte 0x0000E7CA
+    mov r1, r8
+    movs r2, #0x10
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31614_0
+    b .Lraw_code_entities_08034CEC_31585_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31614_0:
     .4byte vtable_unk_080E768C
 .Lde_0803A48C:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC87
-    .4byte 0x0000E7BC
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_31623_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31624_0
+    b .Lraw_code_entities_08034CEC_31585_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31623_0:
     .4byte 0x000003DB
+.Lraw_code_entities_08034CEC_31624_0:
     .4byte vtable_unk_080E7674
 .Lde_0803A4AC:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC77
-    .4byte 0x0000E7AC
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_31633_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31634_0
+    b .Lraw_code_entities_08034CEC_31585_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31633_0:
     .4byte 0x00000806
+.Lraw_code_entities_08034CEC_31634_0:
     .4byte vtable_unk_080E765C
 .Lde_0803A4CC:
     movs r0, #108
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A0F4641
-    .4byte 0xF7FF2301
-    .4byte 0x480EFC67
-    .4byte 0x210064E0
-    .4byte 0x1C226521
-    .4byte 0x23003254
-    .4byte 0x1C258015
-    .4byte 0x802F3556
-    .4byte 0x30601C20
-    .4byte 0x30028001
-    .4byte 0x23007003
-    .4byte 0x04005ED0
-    .4byte 0x220065A0
-    .4byte 0x04005EA8
-    .4byte 0x66A165E0
-    .4byte 0x0000E79B
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_31655_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31656_0
+    str r0, [r4, #0x4c]
+    movs r1, #0
+    str r1, [r4, #0x50]
+    adds r2, r4, #0
+    adds r2, #0x54
+    movs r3, #0
+    strh r5, [r2]
+    adds r5, r4, #0
+    adds r5, #0x56
+    strh r7, [r5]
+    adds r0, r4, #0
+    adds r0, #0x60
+    strh r1, [r0]
+    adds r0, #2
+    strb r3, [r0]
+    movs r3, #0
+    ldrsh r0, [r2, r3]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x58]
+    movs r2, #0
+    ldrsh r0, [r5, r2]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x5c]
+    str r1, [r4, #0x68]
+    b .Lraw_code_entities_08034CEC_31596_2
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31655_0:
     .4byte 0x00000202
+.Lraw_code_entities_08034CEC_31656_0:
     .4byte vtable_unk_080E7644
 .Lde_0803A51C:
     movs r0, #136
     bl __builtin_new
     adds r5, r0, #0
-    .4byte 0x22A94641
-    .4byte 0x23010092
-    .4byte 0xFC3EF7FF
-    .4byte 0x64E84813
-    .4byte 0x652C2400
-    .4byte 0x31501C29
-    .4byte 0x22011C28
-    .4byte 0xF7FF4252
-    .4byte 0x1C29FD89
-    .4byte 0x70083178
-    .4byte 0x20FF3101
-    .4byte 0x1C287008
-    .4byte 0x21003060
-    .4byte 0x30028004
-    .4byte 0x380E7001
-    .4byte 0x5EC02300
-    .4byte 0x65A80400
-    .4byte 0x30561C28
-    .4byte 0x5E402100
-    .4byte 0x65E80400
-    .4byte 0x31841C29
-    .4byte 0x700820F8
-    .4byte 0x0000E077
+    mov r1, r8
+    movs r2, #0xa9
+    lsls r2, r2, #2
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31684_0
+    str r0, [r5, #0x4c]
+    movs r4, #0
+    str r4, [r5, #0x50]
+    adds r1, r5, #0
+    adds r1, #0x50
+    adds r0, r5, #0
+    movs r2, #1
+    rsbs r2, r2, #0
+    bl func_0803A144
+    adds r1, r5, #0
+    adds r1, #0x78
+    strb r0, [r1]
+    adds r1, #1
+    movs r0, #0xff
+    strb r0, [r1]
+    adds r0, r5, #0
+    adds r0, #0x60
+    movs r1, #0
+    strh r4, [r0]
+    adds r0, #2
+    strb r1, [r0]
+    subs r0, #0xe
+    movs r3, #0
+    ldrsh r0, [r0, r3]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    adds r0, r5, #0
+    adds r0, #0x56
+    movs r1, #0
+    ldrsh r0, [r0, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+    adds r1, r5, #0
+    adds r1, #0x84
+    movs r0, #0xf8
+    strb r0, [r1]
+    b .Lraw_code_entities_08034CEC_31755_2
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31684_0:
     .4byte vtable_unk_080E762C
 .Lde_0803A584:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC0B
-    .4byte 0x0000E740
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_31693_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31694_0
+    b .Lraw_code_entities_08034CEC_31585_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31693_0:
     .4byte 0x0000087B
+.Lraw_code_entities_08034CEC_31694_0:
     .4byte vtable_unk_080E7614
 .Lde_0803A5A4:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBFB
-    .4byte 0x0000E730
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_31703_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31704_0
+    b .Lraw_code_entities_08034CEC_31585_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31703_0:
     .4byte 0x0000065C
+.Lraw_code_entities_08034CEC_31704_0:
     .4byte vtable_unk_080E75FC
 .Lde_0803A5C4:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBEB
-    .4byte 0x0000E720
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_31713_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31714_0
+    b .Lraw_code_entities_08034CEC_31585_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31713_0:
     .4byte 0x000008F9
+.Lraw_code_entities_08034CEC_31714_0:
     .4byte vtable_unk_080E75E4
 .Lde_0803A5E4:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBDB
-    .4byte 0x0000E710
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_31723_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31724_0
+    b .Lraw_code_entities_08034CEC_31585_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31723_0:
     .4byte 0x000009A9
+.Lraw_code_entities_08034CEC_31724_0:
     .4byte vtable_unk_080E75CC
 .Lde_0803A604:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBCB
-    .4byte 0x0000E700
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_31733_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31734_0
+    b .Lraw_code_entities_08034CEC_31585_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31733_0:
     .4byte 0x000008FD
+.Lraw_code_entities_08034CEC_31734_0:
     .4byte vtable_unk_080E75B4
 .Lde_0803A624:
     movs r0, #100
     bl __builtin_new
     adds r5, r0, #0
-    .4byte 0x22154641
-    .4byte 0xF7FF2300
-    .4byte 0x481CFBBB
-    .4byte 0x240064E8
-    .4byte 0x1C29652C
-    .4byte 0x1C283150
-    .4byte 0x42522201
-    .4byte 0xFD06F7FF
-    .4byte 0x30601C28
-    .4byte 0x80042100
-    .4byte 0x70013002
-    .4byte 0x2200380E
-    .4byte 0x04005E80
-    .4byte 0x1C2865A8
-    .4byte 0x23003056
-    .4byte 0x04005EC0
-    .4byte 0x1C3165E8
-    .4byte 0x68B03108
-    .4byte 0xD8082802
-    .4byte 0x30040080
-    .4byte 0x28001808
-    .4byte 0x6005D000
-    .4byte 0x300168B0
-    .hword 0x60B0
+    mov r1, r8
+    movs r2, #0x15
+    movs r3, #0
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_31780_0
+    str r0, [r5, #0x4c]
+    movs r4, #0
+    str r4, [r5, #0x50]
+    adds r1, r5, #0
+    adds r1, #0x50
+    adds r0, r5, #0
+    movs r2, #1
+    rsbs r2, r2, #0
+    bl func_0803A144
+    adds r0, r5, #0
+    adds r0, #0x60
+    movs r1, #0
+    strh r4, [r0]
+    adds r0, #2
+    strb r1, [r0]
+    subs r0, #0xe
+    movs r2, #0
+    ldrsh r0, [r0, r2]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    adds r0, r5, #0
+    adds r0, #0x56
+    movs r3, #0
+    ldrsh r0, [r0, r3]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+.Lraw_code_entities_08034CEC_31755_2:
+    adds r1, r6, #0
+    adds r1, #8
+    ldr r0, [r6, #8]
+    cmp r0, #2
+    bhi .Lde_0803A68A
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r1, r0
+    cmp r0, #0
+    beq .Lraw_code_entities_08034CEC_31761_0
+    str r5, [r0]
+.Lraw_code_entities_08034CEC_31761_0:
+    ldr r0, [r6, #8]
+    adds r0, #1
+    str r0, [r6, #8]
 .Lde_0803A68A:
     ldr	r5, [sp, #4]
     subs	r5, #1
@@ -31776,7 +32765,8 @@ func_0803A394:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .hword 0x0000
+    .align 2, 0
+.Lraw_code_entities_08034CEC_31780_0:
     .4byte vtable_unk_080E759C
     .global CreateWorldSlot84Entity
     .thumb_func
@@ -35605,8 +36595,9 @@ func_08036F68:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .hword 0x0000
-    .4byte 0x47706B40
+    .align 2, 0
+    ldr r0, [r0, #0x34]
+    bx lr
     .global func_08037008
     .thumb_func
 func_08037008:
@@ -36846,11 +37837,12 @@ func_080378FC:
     movs	r0, #0
     b .Lus_08037952
 .Lus_08037948:
-    .4byte __ewram_bss_end + 0x170
-    .hword 0xE001
+    movs r0, #128
+    lsls r0, r0, #8
+    b .Lus_08037952
 .Lus_0803794E:
-    .hword 0x2080
-    .hword 0x0240
+    movs r0, #0x80
+    lsls r0, r0, #9
 .Lus_08037952:
     pop	{r1}
     bx	r1
@@ -38319,17 +39311,22 @@ func_08038398:
     .4byte .Lus_080384CA
     .4byte .Lus_080384C8
 .Lus_080384B4:
-    .4byte 0xE0082319
+    movs r3, #0x19
+    b .Lus_080384CA
 .Lus_080384B8:
-    .4byte 0xE006231D
+    movs r3, #0x1d
+    b .Lus_080384CA
 .Lus_080384BC:
-    .4byte 0xE0042321
+    movs r3, #0x21
+    b .Lus_080384CA
 .Lus_080384C0:
-    .4byte 0xE0022325
+    movs r3, #0x25
+    b .Lus_080384CA
 .Lus_080384C4:
-    .4byte 0xE0002329
+    movs r3, #0x29
+    b .Lus_080384CA
 .Lus_080384C8:
-    .hword 0x232D
+    movs r3, #0x2d
 .Lus_080384CA:
     adds	r1, r3, r2
     adds	r6, r1, #0
@@ -39521,6 +40518,7 @@ PlayControllerStarSparkleEffect:
     mov	sl, r0
     add	r3, sp, #8
     mov	r8, r3
+.Lraw_code_entities_08034CEC_39524_0:
     mov	r7, sl
     lsls	r0, r7, #2
     ldr r1, .Lus_08038F14
@@ -39536,113 +40534,216 @@ PlayControllerStarSparkleEffect:
     .4byte .Lus_08038FDC
     .4byte .Lus_08038FDC
 .Lus_08038F2C:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01FCED
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0xE00E2202
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #2
+    b .Lraw_code_entities_08034CEC_39555_2
 .Lus_08038F4C:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01FCDD
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0x1C332201
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #1
+.Lraw_code_entities_08034CEC_39555_2:
+    adds r3, r6, #0
     bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    .4byte 0x28046828
-    .4byte 0x0180D82A
-    .4byte 0x182C3004
-    .4byte 0xD0222C00
-    .4byte 0xA9031C20
+    ldr r0, [r5]
+    cmp r0, #4
+    bhi .Lraw_code_entities_08034CEC_39580_0
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r4, r5, r0
+    cmp r4, #0
+    beq .Lraw_code_entities_08034CEC_39578_2
+    adds r0, r4, #0
+    add r1, sp, #0xc
     bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
-    .4byte 0x62604813
-    .4byte 0x31281C21
-    .4byte 0xC88CA80D
-    .4byte 0xC888C18C
-    .4byte 0xA812C188
-    .4byte 0x1C207801
-    .4byte 0x7001303C
-    .4byte 0x30494668
-    .4byte 0x1C217800
-    .4byte 0x7008313D
-    .4byte 0x304A4668
-    .4byte 0x31017800
-    .4byte 0x46687008
-    .4byte 0x7801304B
-    .4byte 0x303F1C20
-    .4byte 0x68287001
-    .4byte 0x60283001
-    .4byte 0x2102A803
+    ldr r0, .Lraw_code_entities_08034CEC_39583_0
+    str r0, [r4, #0x24]
+    adds r1, r4, #0
+    adds r1, #0x28
+    add r0, sp, #0x34
+    ldm r0!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldm r0!, {r3, r7}
+    stm r1!, {r3, r7}
+    add r0, sp, #0x48
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3c
+    strb r1, [r0]
+    mov r0, sp
+    adds r0, #0x49
+    ldrb r0, [r0]
+    adds r1, r4, #0
+    adds r1, #0x3d
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4a
+    ldrb r0, [r0]
+    adds r1, #1
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4b
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3f
+    strb r1, [r0]
+.Lraw_code_entities_08034CEC_39578_2:
+    ldr r0, [r5]
+    adds r0, #1
+    str r0, [r5]
+.Lraw_code_entities_08034CEC_39580_0:
+    add r0, sp, #0xc
+    movs r1, #2
     bl _._19GameSceneSpriteBase
-    .4byte 0x0000E046
+    b .Lraw_code_entities_08034CEC_39619_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_39583_0:
     .4byte __vt_22GameSceneIndexedSprite
 .Lus_08038FDC:
-    .4byte 0x6F816830
-    .4byte 0xF09A1C30
-    .4byte 0x1C01FC95
-    .4byte 0x90002004
-    .4byte 0x9001201C
-    .4byte 0x46422000
-    .4byte 0xA8037010
-    .4byte 0x1C332200
+    ldr r0, [r6]
+    ldr r1, [r0, #0x78]
+    adds r0, r6, #0
+    bl _call_via_r1
+    adds r1, r0, #0
+    movs r0, #4
+    str r0, [sp]
+    movs r0, #0x1c
+    str r0, [sp, #4]
+    movs r0, #0
+    mov r2, r8
+    strb r0, [r2]
+    add r0, sp, #0xc
+    movs r2, #0
+    adds r3, r6, #0
     bl __22GameSceneIndexedSpriteP23IndexedResourceProviderUiP10GameObjectUiib
-    .4byte 0x28046828
-    .4byte 0x0180D82A
-    .4byte 0x182C3004
-    .4byte 0xD0222C00
-    .4byte 0xA9031C20
+    ldr r0, [r5]
+    cmp r0, #4
+    bhi .Lraw_code_entities_08034CEC_39617_0
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r4, r5, r0
+    cmp r4, #0
+    beq .Lraw_code_entities_08034CEC_39615_2
+    adds r0, r4, #0
+    add r1, sp, #0xc
     bl __19GameSceneSpriteBaseRC19GameSceneSpriteBase
-    .4byte 0x6260482C
-    .4byte 0x31281C21
-    .4byte 0xC88CA80D
-    .4byte 0xC888C18C
-    .4byte 0xA812C188
-    .4byte 0x1C207801
-    .4byte 0x7001303C
-    .4byte 0x30494668
-    .4byte 0x1C217800
-    .4byte 0x7008313D
-    .4byte 0x304A4668
-    .4byte 0x31017800
-    .4byte 0x46687008
-    .4byte 0x7801304B
-    .4byte 0x303F1C20
-    .4byte 0x68287001
-    .4byte 0x60283001
-    .4byte 0x2102A803
+    ldr r0, .Lraw_code_entities_08034CEC_39646_0
+    str r0, [r4, #0x24]
+    adds r1, r4, #0
+    adds r1, #0x28
+    add r0, sp, #0x34
+    ldm r0!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldm r0!, {r3, r7}
+    stm r1!, {r3, r7}
+    add r0, sp, #0x48
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3c
+    strb r1, [r0]
+    mov r0, sp
+    adds r0, #0x49
+    ldrb r0, [r0]
+    adds r1, r4, #0
+    adds r1, #0x3d
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4a
+    ldrb r0, [r0]
+    adds r1, #1
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #0x4b
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    adds r0, #0x3f
+    strb r1, [r0]
+.Lraw_code_entities_08034CEC_39615_2:
+    ldr r0, [r5]
+    adds r0, #1
+    str r0, [r5]
+.Lraw_code_entities_08034CEC_39617_0:
+    add r0, sp, #0xc
+    movs r1, #2
     bl _._19GameSceneSpriteBase
-    .4byte 0x004921A2
-    .4byte 0x44501868
-    .4byte 0x70012100
-    .4byte 0x44922201
-    .4byte 0x2B044653
-    .4byte 0xE745D800
-    .4byte 0x444F2710
-    .4byte 0x1C2F46B8
-    .4byte 0x69064648
-    .4byte 0xD01442B7
-    .4byte 0xD0122E00
-    .4byte 0x01806830
-    .4byte 0x18353004
-    .4byte 0x42AC1D34
-    .4byte 0x6A60D008
-    .4byte 0x1C206882
-    .4byte 0xF09A2102
-    .4byte 0x3440FC35
-    .4byte 0xD1F642AC
+.Lraw_code_entities_08034CEC_39619_0:
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    add r0, sl
+    movs r1, #0
+    strb r1, [r0]
+    movs r2, #1
+    add sl, r2
+    mov r3, sl
+    cmp r3, #4
+    bhi .Lraw_code_entities_08034CEC_39625_0
+    b .Lraw_code_entities_08034CEC_39524_0
+.Lraw_code_entities_08034CEC_39625_0:
+    movs r7, #0x10
+    add r7, sb
+    mov r8, r7
+    adds r7, r5, #0
+    mov r0, sb
+    ldr r6, [r0, #0x10]
+    cmp r7, r6
+    beq .Lraw_code_entities_08034CEC_39640_0
+    cmp r6, #0
+    beq .Lraw_code_entities_08034CEC_39640_0
+    ldr r0, [r6]
+    lsls r0, r0, #6
+    adds r0, #4
+    adds r5, r6, r0
+    adds r4, r6, #4
+    cmp r4, r5
+    beq .Lraw_code_entities_08034CEC_39638_0
+.Lraw_code_entities_08034CEC_39633_2:
+    ldr r0, [r4, #0x24]
+    ldr r2, [r0, #8]
+    adds r0, r4, #0
+    movs r1, #2
+    bl _call_via_r2
+    adds r4, #0x40
+    cmp r4, r5
+    bne .Lraw_code_entities_08034CEC_39633_2
+.Lraw_code_entities_08034CEC_39638_0:
     adds r0, r6, #0
     bl __builtin_delete
+.Lraw_code_entities_08034CEC_39640_0:
     mov r1, r8
-    .4byte 0xB013600F
-    .4byte 0x4698BC38
-    .4byte 0x46AA46A1
-    .4byte 0xBC01BCF0
-    .4byte 0x00004700
+    str r7, [r1]
+    add sp, #0x4c
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_39646_0:
     .4byte __vt_22GameSceneIndexedSprite
     .global HasControllerStarSparkleEffect
     .thumb_func
@@ -41312,13 +42413,16 @@ func_08039D5C:
     .4byte .Lus_08039D90
     .4byte .Lus_08039D90
 .Lus_08039D84:
-    .4byte __ewram_bss_end + 0x170
-    .hword 0xE003
+    movs r0, #128
+    lsls r0, r0, #8
+    b .Lraw_code_entities_08034CEC_41322_0
 .Lus_08039D8A:
-    .hword 0x2080
-    .4byte 0xE0000240
+    movs r0, #0x80
+    lsls r0, r0, #9
+    b .Lraw_code_entities_08034CEC_41322_0
 .Lus_08039D90:
     movs	r0, #0
+.Lraw_code_entities_08034CEC_41322_0:
     pop	{r1}
     bx	r1
     .align 2, 0
@@ -42303,187 +43407,315 @@ func_0803A394:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A154641
-    .4byte 0xF7FF2301
-    .4byte 0x4814FCC9
-    .4byte 0x210064E0
-    .4byte 0x1C226521
-    .4byte 0x23003254
-    .4byte 0x1C258015
-    .4byte 0x802F3556
-    .4byte 0x30601C20
-    .4byte 0x30028001
-    .4byte 0x23007003
-    .4byte 0x04005ED0
-    .4byte 0x210065A0
-    .4byte 0x04005E68
-    .4byte 0x1C3165E0
-    .4byte 0x68B03108
-    .4byte 0xD9002802
-    .4byte 0x0080E119
-    .4byte 0x18083004
-    .4byte 0xD1002800
-    .4byte 0x6004E110
-    .4byte 0x0000E10E
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_42328_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42329_0
+.Lraw_code_entities_08034CEC_42309_0:
+    str r0, [r4, #0x4c]
+    movs r1, #0
+    str r1, [r4, #0x50]
+    adds r2, r4, #0
+    adds r2, #0x54
+    movs r3, #0
+    strh r5, [r2]
+    adds r5, r4, #0
+    adds r5, #0x56
+    strh r7, [r5]
+    adds r0, r4, #0
+    adds r0, #0x60
+    strh r1, [r0]
+    adds r0, #2
+    strb r3, [r0]
+    movs r3, #0
+    ldrsh r0, [r2, r3]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x58]
+    movs r1, #0
+    ldrsh r0, [r5, r1]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x5c]
+.Lraw_code_entities_08034CEC_42320_2:
+    adds r1, r6, #0
+    adds r1, #8
+    ldr r0, [r6, #8]
+    cmp r0, #2
+    bls .Lraw_code_entities_08034CEC_42323_2
+    b .Lus_0803A776
+.Lraw_code_entities_08034CEC_42323_2:
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r1, r0
+    cmp r0, #0
+    bne .Lraw_code_entities_08034CEC_42326_2
+    b .Lraw_code_entities_08034CEC_42485_0
+.Lraw_code_entities_08034CEC_42326_2:
+    str r4, [r0]
+    b .Lraw_code_entities_08034CEC_42485_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42328_0:
     .4byte 0x000009B6
+.Lraw_code_entities_08034CEC_42329_0:
     .4byte vtable_unk_080E76A4
 .Lus_0803A55C:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x22104641
-    .4byte 0xF7FF2301
-    .4byte 0x4801FC95
-    .4byte 0x0000E7CA
+    mov r1, r8
+    movs r2, #0x10
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42338_0
+    b .Lraw_code_entities_08034CEC_42309_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42338_0:
     .4byte vtable_unk_080E768C
 .Lus_0803A578:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC87
-    .4byte 0x0000E7BC
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_42347_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42348_0
+    b .Lraw_code_entities_08034CEC_42309_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42347_0:
     .4byte 0x000003DB
+.Lraw_code_entities_08034CEC_42348_0:
     .4byte vtable_unk_080E7674
 .Lus_0803A598:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC77
-    .4byte 0x0000E7AC
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_42357_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42358_0
+    b .Lraw_code_entities_08034CEC_42309_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42357_0:
     .4byte 0x00000806
+.Lraw_code_entities_08034CEC_42358_0:
     .4byte vtable_unk_080E765C
 .Lus_0803A5B8:
     movs r0, #108
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A0F4641
-    .4byte 0xF7FF2301
-    .4byte 0x480EFC67
-    .4byte 0x210064E0
-    .4byte 0x1C226521
-    .4byte 0x23003254
-    .4byte 0x1C258015
-    .4byte 0x802F3556
-    .4byte 0x30601C20
-    .4byte 0x30028001
-    .4byte 0x23007003
-    .4byte 0x04005ED0
-    .4byte 0x220065A0
-    .4byte 0x04005EA8
-    .4byte 0x66A165E0
-    .4byte 0x0000E79B
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_42379_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42380_0
+    str r0, [r4, #0x4c]
+    movs r1, #0
+    str r1, [r4, #0x50]
+    adds r2, r4, #0
+    adds r2, #0x54
+    movs r3, #0
+    strh r5, [r2]
+    adds r5, r4, #0
+    adds r5, #0x56
+    strh r7, [r5]
+    adds r0, r4, #0
+    adds r0, #0x60
+    strh r1, [r0]
+    adds r0, #2
+    strb r3, [r0]
+    movs r3, #0
+    ldrsh r0, [r2, r3]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x58]
+    movs r2, #0
+    ldrsh r0, [r5, r2]
+    lsls r0, r0, #0x10
+    str r0, [r4, #0x5c]
+    str r1, [r4, #0x68]
+    b .Lraw_code_entities_08034CEC_42320_2
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42379_0:
     .4byte 0x00000202
+.Lraw_code_entities_08034CEC_42380_0:
     .4byte vtable_unk_080E7644
 .Lus_0803A608:
     movs r0, #136
     bl __builtin_new
     adds r5, r0, #0
-    .4byte 0x22A94641
-    .4byte 0x23010092
-    .4byte 0xFC3EF7FF
-    .4byte 0x64E84813
-    .4byte 0x652C2400
-    .4byte 0x31501C29
-    .4byte 0x22011C28
-    .4byte 0xF7FF4252
-    .4byte 0x1C29FD89
-    .4byte 0x70083178
-    .4byte 0x20FF3101
-    .4byte 0x1C287008
-    .4byte 0x21003060
-    .4byte 0x30028004
-    .4byte 0x380E7001
-    .4byte 0x5EC02300
-    .4byte 0x65A80400
-    .4byte 0x30561C28
-    .4byte 0x5E402100
-    .4byte 0x65E80400
-    .4byte 0x31841C29
-    .4byte 0x700820F8
-    .4byte 0x0000E077
+    mov r1, r8
+    movs r2, #0xa9
+    lsls r2, r2, #2
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42408_0
+    str r0, [r5, #0x4c]
+    movs r4, #0
+    str r4, [r5, #0x50]
+    adds r1, r5, #0
+    adds r1, #0x50
+    adds r0, r5, #0
+    movs r2, #1
+    rsbs r2, r2, #0
+    bl func_0803A144
+    adds r1, r5, #0
+    adds r1, #0x78
+    strb r0, [r1]
+    adds r1, #1
+    movs r0, #0xff
+    strb r0, [r1]
+    adds r0, r5, #0
+    adds r0, #0x60
+    movs r1, #0
+    strh r4, [r0]
+    adds r0, #2
+    strb r1, [r0]
+    subs r0, #0xe
+    movs r3, #0
+    ldrsh r0, [r0, r3]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    adds r0, r5, #0
+    adds r0, #0x56
+    movs r1, #0
+    ldrsh r0, [r0, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+    adds r1, r5, #0
+    adds r1, #0x84
+    movs r0, #0xf8
+    strb r0, [r1]
+    b .Lraw_code_entities_08034CEC_42479_2
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42408_0:
     .4byte vtable_unk_080E762C
 .Lus_0803A670:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FC0B
-    .4byte 0x0000E740
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_42417_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42418_0
+    b .Lraw_code_entities_08034CEC_42309_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42417_0:
     .4byte 0x0000087B
+.Lraw_code_entities_08034CEC_42418_0:
     .4byte vtable_unk_080E7614
 .Lus_0803A690:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBFB
-    .4byte 0x0000E730
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_42427_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42428_0
+    b .Lraw_code_entities_08034CEC_42309_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42427_0:
     .4byte 0x0000065C
+.Lraw_code_entities_08034CEC_42428_0:
     .4byte vtable_unk_080E75FC
 .Lus_0803A6B0:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBEB
-    .4byte 0x0000E720
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_42437_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42438_0
+    b .Lraw_code_entities_08034CEC_42309_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42437_0:
     .4byte 0x000008F9
+.Lraw_code_entities_08034CEC_42438_0:
     .4byte vtable_unk_080E75E4
 .Lus_0803A6D0:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBDB
-    .4byte 0x0000E710
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_42447_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42448_0
+    b .Lraw_code_entities_08034CEC_42309_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42447_0:
     .4byte 0x000009A9
+.Lraw_code_entities_08034CEC_42448_0:
     .4byte vtable_unk_080E75CC
 .Lus_0803A6F0:
     movs r0, #100
     bl __builtin_new
     adds r4, r0, #0
-    .4byte 0x4A034641
-    .4byte 0xF7FF2301
-    .4byte 0x4802FBCB
-    .4byte 0x0000E700
+    mov r1, r8
+    ldr r2, .Lraw_code_entities_08034CEC_42457_0
+    movs r3, #1
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42458_0
+    b .Lraw_code_entities_08034CEC_42309_0
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42457_0:
     .4byte 0x000008FD
+.Lraw_code_entities_08034CEC_42458_0:
     .4byte vtable_unk_080E75B4
 .Lus_0803A710:
     movs r0, #100
     bl __builtin_new
     adds r5, r0, #0
-    .4byte 0x22154641
-    .4byte 0xF7FF2300
-    .4byte 0x481CFBBB
-    .4byte 0x240064E8
-    .4byte 0x1C29652C
-    .4byte 0x1C283150
-    .4byte 0x42522201
-    .4byte 0xFD06F7FF
-    .4byte 0x30601C28
-    .4byte 0x80042100
-    .4byte 0x70013002
-    .4byte 0x2200380E
-    .4byte 0x04005E80
-    .4byte 0x1C2865A8
-    .4byte 0x23003056
-    .4byte 0x04005EC0
-    .4byte 0x1C3165E8
-    .4byte 0x68B03108
-    .4byte 0xD8082802
-    .4byte 0x30040080
-    .4byte 0x28001808
-    .4byte 0x6005D000
-    .4byte 0x300168B0
-    .hword 0x60B0
+    mov r1, r8
+    movs r2, #0x15
+    movs r3, #0
+    bl func_08039E98
+    ldr r0, .Lraw_code_entities_08034CEC_42504_0
+    str r0, [r5, #0x4c]
+    movs r4, #0
+    str r4, [r5, #0x50]
+    adds r1, r5, #0
+    adds r1, #0x50
+    adds r0, r5, #0
+    movs r2, #1
+    rsbs r2, r2, #0
+    bl func_0803A144
+    adds r0, r5, #0
+    adds r0, #0x60
+    movs r1, #0
+    strh r4, [r0]
+    adds r0, #2
+    strb r1, [r0]
+    subs r0, #0xe
+    movs r2, #0
+    ldrsh r0, [r0, r2]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x58]
+    adds r0, r5, #0
+    adds r0, #0x56
+    movs r3, #0
+    ldrsh r0, [r0, r3]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0x5c]
+.Lraw_code_entities_08034CEC_42479_2:
+    adds r1, r6, #0
+    adds r1, #8
+    ldr r0, [r6, #8]
+    cmp r0, #2
+    bhi .Lus_0803A776
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r1, r0
+    cmp r0, #0
+    beq .Lraw_code_entities_08034CEC_42485_0
+    str r5, [r0]
+.Lraw_code_entities_08034CEC_42485_0:
+    ldr r0, [r6, #8]
+    adds r0, #1
+    str r0, [r6, #8]
 .Lus_0803A776:
     ldr	r5, [sp, #4]
     subs	r5, #1
@@ -42500,7 +43732,8 @@ func_0803A394:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
-    .hword 0x0000
+    .align 2, 0
+.Lraw_code_entities_08034CEC_42504_0:
     .4byte vtable_unk_080E759C
     .global CreateWorldSlot84Entity
     .thumb_func

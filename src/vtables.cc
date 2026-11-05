@@ -3955,21 +3955,21 @@ extern RawVTableFunction const __vt_12ScriptEngine[]
 // belong to other objects, not to that base table.
 // The tournament core and scene class tables are compiler-generated.
 
-// This following four-slot block stays between raw table ranges, so it is
-// emitted separately while retaining its original physical order.
+// This JP base table has three slots. The following null belongs to the
+// next object, whose real start is used by the constructor.
 #if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7934[]
     SECTION(".rodata.vtable_7934") = {
     nullptr,
     nullptr,
     func_080E11EC,
-    nullptr,
 };
 #endif
 
 extern RawVTableFunction const vtable_unk_080E7944[]
     SECTION(".rodata.vtable_7944") = {
 #if defined(REGION_JP)
+        nullptr,
         nullptr,
         func_080E0C38_vtable_target,
         func_080E118C,
@@ -3996,13 +3996,13 @@ extern RawVTableFunction const vtable_unk_080E7960[]
     nullptr,
     nullptr,
     func_080E0D60,
-    nullptr,
 };
 #endif
 
 extern RawVTableFunction const vtable_unk_080E7970[]
     SECTION(".rodata.vtable_7970") = {
 #if defined(REGION_JP)
+        nullptr,
         nullptr,
         func_080E0FC4,
         func_080E14B8,
@@ -4032,7 +4032,6 @@ extern RawVTableFunction const vtable_unk_080E798C[]
         nullptr,
 #if defined(REGION_JP)
         func_080E1044,
-        nullptr,
 #else
         func_0805CEFC,
         func_0805CF3C,
@@ -4043,6 +4042,7 @@ extern RawVTableFunction const vtable_unk_080E799C[]
     SECTION(".rodata.vtable_799c") = {
         nullptr,
 #if defined(REGION_JP)
+        nullptr,
         func_080E1104,
         func_080E0FE4,
 #else
@@ -6013,14 +6013,14 @@ extern void DestroyHarvestSpriteHarvestingUiScene(void) asm("_._30HarvestSpriteH
 extern void Run__30HarvestSpriteHarvestingUiScene(void);
 #endif
 
-// Preserve all four slots of this region-dependent table in ROM order.
+// JP has a three-slot base table here; the overseas UI table has four.
+// The following JP table starts at its own first null slot.
 extern RawVTableFunction const vtable_unk_080E8544[]
     SECTION(".rodata.vtable_8544") = {
 #if defined(REGION_JP)
         nullptr,
         nullptr,
         func_080E4FF0,
-        nullptr,
 #else
         nullptr,
         nullptr,
@@ -6036,11 +6036,12 @@ extern void Run__28HarvestSpriteWateringUiScene(void);
 extern void func_080E4FF0(void);
 #endif
 
-// Preserve the original three-pointer layout instead of assigning an
-// unverified class name to this regional callback table.
+// JP has four slots and the overseas table has three. Keep the verified
+// regional boundary without assigning an unverified class name.
 extern RawVTableFunction const vtable_unk_080E8554[]
     SECTION(".rodata.vtable_8554") = {
 #if defined(REGION_JP)
+        nullptr,
         nullptr,
         DestroyHarvestSpriteWateringUiScene,
         Run__28HarvestSpriteWateringUiScene,
