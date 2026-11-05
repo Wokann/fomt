@@ -129,7 +129,6 @@ SECTIONS
         src/hardware_dma.o(.text);
         src/hardware_dma_descriptor.o(.text);
         src/hardware_input.o(.text);
-        . = 0x9308; /* Hardware blend. */
         src/hardware_blend.o(.text);
         asm/hardware.o(.text.hardware_blend_after);
         src/hardware_blend_object.o(.text);
