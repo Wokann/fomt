@@ -69,8 +69,7 @@ typedef char NewGameIdentityFieldCountCheck[
 // The unknown scalar and control-byte names retain their original US offsets.
 #pragma interface "new_game_identity.hh"
 struct NewGameIdentityCore : HardwareContext {
-    virtual ~NewGameIdentityCore() asm("DestroyNewGameIdentityCore")
-        SECTION(".text.new_game_identity_core_cleanup");
+    virtual ~NewGameIdentityCore() asm("DestroyNewGameIdentityCore");
 #if defined(REGION_JP)
     NewGameIdentityValueBuffer buffers[2 * NEW_GAME_IDENTITY_FIELD_COUNT];
 #else
@@ -90,10 +89,10 @@ struct NewGameIdentityCore : HardwareContext {
 struct NewGameIdentityScene : AScene {
     NewGameIdentityScene(char const * player_name, GameDate birthday,
         char const * farm_name, char const * dog_name)
-        asm("ConstructNewGameIdentityScene") SECTION(".text.new_game_identity_scene");
-    virtual ~NewGameIdentityScene() asm("DestroyNewGameIdentityScene") SECTION(".text.new_game_identity_scene");
-    virtual SceneTransitionOwner Run() asm("RunNewGameIdentityScene") SECTION(".text.new_game_identity_scene");
-    u8 GetConfirmed() const asm("GetNewGameIdentitySceneConfirmed") SECTION(".text.new_game_identity_scene");
+        asm("ConstructNewGameIdentityScene");
+    virtual ~NewGameIdentityScene() asm("DestroyNewGameIdentityScene");
+    virtual SceneTransitionOwner Run() asm("RunNewGameIdentityScene");
+    u8 GetConfirmed() const asm("GetNewGameIdentitySceneConfirmed");
     NewGameIdentityCore * core;
 };
 #pragma implementation
@@ -148,37 +147,26 @@ EXTERN_C
 // encoded bytes plus NUL; JP appends its month/day suffixes. Only confirmed
 // is reset here: the running screen initializes its other control bytes.
 NewGameIdentityCore * InitializeNewGameIdentityCore(NewGameIdentityCore * core,
-    char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name)
-    SECTION(".text.new_game_identity_core_constructor");
-void DestroyNewGameIdentityCore(NewGameIdentityCore * core, int flags)
-    SECTION(".text.new_game_identity_core_cleanup");
-SceneTransitionOwner RunNewGameIdentityCore(NewGameIdentityCore * core)
-    SECTION(".text.new_game_identity_core_run");
-void BlankNewGameIdentityDisplay(NewGameIdentityCore * core)
-    SECTION(".text.new_game_identity_core_initialization");
-void ResetNewGameIdentityControl(NewGameIdentityCore * core)
-    SECTION(".text.new_game_identity_core_initialization");
+    char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name);
+void DestroyNewGameIdentityCore(NewGameIdentityCore * core, int flags);
+SceneTransitionOwner RunNewGameIdentityCore(NewGameIdentityCore * core);
+void BlankNewGameIdentityDisplay(NewGameIdentityCore * core);
+void ResetNewGameIdentityControl(NewGameIdentityCore * core);
 // Configure the confirmation screen, draw the four values and labels, queue
 // all eight tile buffers, build their BG map, and update the UI owner once.
 // JP shares the value width for labels; overseas labels have their own width.
 void InitializeNewGameIdentityScreen(NewGameIdentityCore * core);
-void UpdateNewGameIdentityDialog(NewGameIdentityCore * core)
-    SECTION(".text.new_game_identity_core_update");
+void UpdateNewGameIdentityDialog(NewGameIdentityCore * core);
 extern int (*__vt_19NewGameIdentityCore[])(...);
 extern NewGameNativeVTableEntry __vt_20NewGameIdentityScene[4];
 
 // Native ABI declarations for the scene lifecycle and its byte-result accessors.
 NewGameIdentityScene * ConstructNewGameIdentityScene(NewGameIdentityScene * scene,
-    char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name)
-    SECTION(".text.new_game_identity_scene");
-void DestroyNewGameIdentityScene(NewGameIdentityScene * scene, int flags)
-    SECTION(".text.new_game_identity_scene");
-SceneTransitionOwner RunNewGameIdentityScene(NewGameIdentityScene * scene)
-    SECTION(".text.new_game_identity_scene");
-u8 GetNewGameIdentitySceneConfirmed(NewGameIdentityScene const * scene)
-    SECTION(".text.new_game_identity_scene");
-u8 GetNewGameIdentityCoreConfirmed(NewGameIdentityCore const * core)
-    SECTION(".text.new_game_identity_scene");
+    char const * player_name, GameDate birthday, char const * farm_name, char const * dog_name);
+void DestroyNewGameIdentityScene(NewGameIdentityScene * scene, int flags);
+SceneTransitionOwner RunNewGameIdentityScene(NewGameIdentityScene * scene);
+u8 GetNewGameIdentitySceneConfirmed(NewGameIdentityScene const * scene);
+u8 GetNewGameIdentityCoreConfirmed(NewGameIdentityCore const * core);
 
 EXTERN_C_END
 

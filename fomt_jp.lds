@@ -74,30 +74,8 @@ SECTIONS
         src/new_game_menu.o(.text.new_game_menu_scene);
         src/new_game_name_entry.o(.text.__21NewGameNameEntryScene .text._._21NewGameNameEntryScene);
         src/new_game_name_entry.o(.text.Run__21NewGameNameEntryScene);
-        src/new_game_identity.o(.text.new_game_identity_core_constructor);
-        src/new_game_identity.o(.text.new_game_identity_core_cleanup);
-        src/new_game_identity.o(.text.new_game_identity_core_run);
-        src/new_game_identity.o(.text.new_game_identity_core_initialization);
-        asm/new_game_identity.o(.text);
-        src/new_game_identity.o(.text.new_game_identity_core_update);
-        src/new_game_identity.o(.text.new_game_identity_scene);
-        src/new_game_name_input.o(.text.new_game_name_input_core_constructor);
-        src/new_game_name_input.o(.text.new_game_name_input_core_cleanup);
-        src/new_game_name_input.o(.text.new_game_name_input_core_run);
-        asm/new_game_name_input.o(.text.new_game_name_input_after_core_run);
-        src/new_game_name_input.o(.text.new_game_name_input_sprites);
-        src/new_game_name_input.o(.text.new_game_name_input_reset);
-        src/new_game_name_input.o(.text.new_game_name_input_name_raster);
-        asm/new_game_name_input.o(.text.new_game_name_input_keyboard_raster);
-        src/new_game_name_input.o(.text.new_game_name_input_submit_sprites);
-        src/new_game_name_input.o(.text.new_game_name_input_cursor_sprites);
-        src/new_game_name_input.o(.text.new_game_name_input_keyboard_cursor);
-        src/new_game_name_input.o(.text.new_game_name_input_insert_character);
-        src/new_game_name_input.o(.text.new_game_name_input_erase_character);
-        src/new_game_name_input.o(.text.new_game_name_input_normalization);
-        src/new_game_name_input.o(.text.new_game_name_input_keys);
-        src/new_game_name_input.o(.text.new_game_name_input_confirmation);
-        src/new_game_name_input.o(.text.new_game_name_input_scene);
+        src/new_game_identity.o(.text);
+        src/new_game_name_input.o(.text);
         src/obj_palette_pool.o(.text);
         src/obj_palette_collection.o(.text.__20ObjPaletteCollectionRCUc
             .text.__20ObjPaletteCollection .text._._20ObjPaletteCollection

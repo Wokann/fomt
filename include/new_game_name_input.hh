@@ -57,10 +57,8 @@ typedef char NewGameNameInputSpriteStateAttributesCheck[
 // Construction and the drawing/upload consumers confirm this physical order.
 // Remaining control fields keep their unknown names; name is RAM storage.
 struct NewGameNameInputCore : HardwareContext {
-    NewGameNameInputCore(char const * prompt, char const * initial_name)
-        SECTION(".text.new_game_name_input_core_constructor");
-    virtual ~NewGameNameInputCore()
-        SECTION(".text.new_game_name_input_core_cleanup");
+    NewGameNameInputCore(char const * prompt, char const * initial_name);
+    virtual ~NewGameNameInputCore();
     NewGameNameInputKeyboardBuffer keyboard_buffers[NEW_GAME_NAME_INPUT_KEYBOARD_BUFFER_COUNT];
     NewGameNameInputKeyboardBuffer name_buffer;
     NewGameNameInputPromptBuffer prompt_buffer;
@@ -88,13 +86,13 @@ typedef char NewGameNameInputMusicStrideCheck[
 // Keyboard raster and screen setup still use their existing native entries.
 struct NewGameNameInputScene : AScene {
     NewGameNameInputScene(char const * prompt, char const * initial_name)
-        asm("ConstructNameInputScene") SECTION(".text.new_game_name_input_scene");
+        asm("ConstructNameInputScene");
     virtual ~NewGameNameInputScene()
-        asm("DestroyNameInputScene") SECTION(".text.new_game_name_input_scene");
+        asm("DestroyNameInputScene");
     virtual SceneTransitionOwner Run()
-        asm("RunNameInputScene") SECTION(".text.new_game_name_input_scene");
+        asm("RunNameInputScene");
     char const * GetName() const
-        asm("GetNameInputSceneName") SECTION(".text.new_game_name_input_scene");
+        asm("GetNameInputSceneName");
     NewGameNameInputCore * core;
 };
 
@@ -171,57 +169,40 @@ EXTERN_C
 
 // Running and edit operations use the regional layout above.
 // Screen setup and keyboard raster still remain assembly.
-SceneTransitionOwner RunNameInputCore(NewGameNameInputCore * core)
-    SECTION(".text.new_game_name_input_core_run");
+SceneTransitionOwner RunNameInputCore(NewGameNameInputCore * core);
 void InitializeNameInputScreen(NewGameNameInputCore * core);
-void InitializeNameInputCursorSprites(NewGameNameInputCore * core, u32 tile_index)
-    SECTION(".text.new_game_name_input_sprites");
+void InitializeNameInputCursorSprites(NewGameNameInputCore * core, u32 tile_index);
 // Reset only the native control fields; sprite OAM and input text are untouched.
-void ResetNameInputCore(NewGameNameInputCore * core)
-    SECTION(".text.new_game_name_input_reset");
+void ResetNameInputCore(NewGameNameInputCore * core);
 // Clear the name field, render its fixed-width RAM name and queue the tiles.
-void RenderNameInputName(NewGameNameInputCore * core)
-    SECTION(".text.new_game_name_input_name_raster");
+void RenderNameInputName(NewGameNameInputCore * core);
 void RenderNameInputKeyboard(NewGameNameInputCore * core);
-void SubmitNameInputCursorSprites(NewGameNameInputCore * core)
-    SECTION(".text.new_game_name_input_submit_sprites");
+void SubmitNameInputCursorSprites(NewGameNameInputCore * core);
 // Position both cursors and select the keyboard-cell or bottom-button shape.
-void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
-    SECTION(".text.new_game_name_input_cursor_sprites");
+void UpdateNameInputCursorSprites(NewGameNameInputCore * core);
 // Move the keyboard selection with wrapping and last-row/bottom-button rules.
-void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
-    SECTION(".text.new_game_name_input_keyboard_cursor");
+void MoveNameInputKeyboardCursor(NewGameNameInputCore * core);
 // Insert the selected keyboard character and advance the fixed name-slot caret.
-void InsertNameInputCharacter(NewGameNameInputCore * core)
-    SECTION(".text.new_game_name_input_insert_character");
+void InsertNameInputCharacter(NewGameNameInputCore * core);
 // Shift the remaining fixed name slots left and restore the final placeholder.
 // JP has six two-byte slots; overseas versions have twelve one-byte slots.
-void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
-    SECTION(".text.new_game_name_input_erase_character");
+void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index);
 // Trim trailing placeholders and replace interior placeholders with spaces.
 // Reject names made entirely of placeholders and spaces, without changing name.
-bool NormalizeNameInput(NewGameNameInputCore * core)
-    SECTION(".text.new_game_name_input_normalization");
-void ProcessNameInputKeys(NewGameNameInputCore * core)
-    SECTION(".text.new_game_name_input_keys");
-void UpdateNameInputConfirmation(NewGameNameInputCore * core)
-    SECTION(".text.new_game_name_input_confirmation");
+bool NormalizeNameInput(NewGameNameInputCore * core);
+void ProcessNameInputKeys(NewGameNameInputCore * core);
+void UpdateNameInputConfirmation(NewGameNameInputCore * core);
 
 // These C declarations name the actual member ABI for existing native
 // callers; they do not emit extra wrappers or alias symbols.
 // One consecutive keyboard-scene interval: construction, cleanup, running,
 // and the two accessors returning the core's actual runtime name buffer.
 NewGameNameInputScene * ConstructNameInputScene(NewGameNameInputScene * scene,
-    char const * prompt, char const * initial_name)
-    SECTION(".text.new_game_name_input_scene");
-void DestroyNameInputScene(NewGameNameInputScene * scene, int flags)
-    SECTION(".text.new_game_name_input_scene");
-SceneTransitionOwner RunNameInputScene(NewGameNameInputScene * scene)
-    SECTION(".text.new_game_name_input_scene");
-char const * GetNameInputSceneName(NewGameNameInputScene const * scene)
-    SECTION(".text.new_game_name_input_scene");
-char const * GetNameInputCoreName(NewGameNameInputCore const * core)
-    SECTION(".text.new_game_name_input_scene");
+    char const * prompt, char const * initial_name);
+void DestroyNameInputScene(NewGameNameInputScene * scene, int flags);
+SceneTransitionOwner RunNameInputScene(NewGameNameInputScene * scene);
+char const * GetNameInputSceneName(NewGameNameInputScene const * scene);
+char const * GetNameInputCoreName(NewGameNameInputCore const * core);
 
 EXTERN_C_END
 

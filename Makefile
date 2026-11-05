@@ -343,7 +343,7 @@ $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 
 # Assembly sharing generated layout/size constants with C++. Preserve the
 # normal GAS include scan alongside CPP header discovery.
-CPP_ASM_SOURCES := asm/obj_tile_pool.s asm/obj_tile_collection.s asm/new_game_menu.s asm/new_game_identity.s asm/new_game_name_input.s
+CPP_ASM_SOURCES := asm/obj_tile_pool.s asm/obj_tile_collection.s asm/new_game_menu.s
 $(patsubst %.s,$(BUILD_DIR)/%.d,$(CPP_ASM_SOURCES)): $(BUILD_DIR)/%.d: %.s $(SCANINC) Makefile config.mk
 	@mkdir -p $(dir $@)
 	@$(SCANINC) -M $@ $(SCANINC_DEFINES) $(INCFLAGS) -I . -I include $<
