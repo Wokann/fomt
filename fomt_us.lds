@@ -322,7 +322,7 @@ SECTIONS
         src/world_update.o(.text);
         asm/world_draw.o(.text);
         src/world_lighting.o(.text.RefreshWorldMapTimeOfDayPalette);
-        asm/game_state.o(.text.world_after_palette_refresh);
+        asm/world_map_change.o(.text);
         src/game_world.o(.text.func_08019F38 .text.GetWorldMapPixelWidth .text.GetWorldMapPixelHeight .text.GetWorldMapTerrain);
         asm/game_state.o(.text.game_scene_after_map_terrain);
         src/world_lighting.o(.text.GetWorldTimeOfDayPeriod);
@@ -345,6 +345,8 @@ SECTIONS
             .text.SetWorldMapPatchFlag .text.ClearWorldMapPatchFlag .text.func_0801DE24 .text.func_0801DE30 .text.func_0801DE3C .text.func_0801DE48
             .text.SwapRecordPlayerAlbum);
         asm/game_state.o(.text.game_scene_after_record_player_album);
+        asm/farm_house_entity_relocation.o(.text);
+        asm/game_state.o(.text.world_after_farmhouse_relocation);
         src/world_furniture.o(.text);
         src/world_map_sprites.o(.text);
         src/world_shipping.o(.text);

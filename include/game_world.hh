@@ -94,6 +94,7 @@ typedef char GameSceneWorldEventIconSpritesSizeCheck[sizeof(GameSceneWorldEventI
 // boundary is covered below; members without proven roles remain unknown.
 // Construction is shared C++; unrecovered virtual methods keep their native entries.
 struct GameSceneWorld : GameObject {
+    virtual void ChangeMap(Location const & location, bool update_audio);
     virtual AEntity * GetEntity(u32 index);
     virtual AEntity * GetEntity(u32 index) const;
     // Native world slot +0x148 selects the default audio sequence.

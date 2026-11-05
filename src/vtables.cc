@@ -561,7 +561,7 @@ extern void RemoveRecordPlayerAlbum(void);
 extern void SwapRecordPlayerAlbum(void);
 extern void func_0801DE24(void);
 extern void IsWorldTimePaused(void);
-extern void func_08019BEC(void);
+extern void ChangeMap__14GameSceneWorldRC8Locationb(void);
 extern void RefreshWorldMapTimeOfDayPalette(void);
 extern void func_0801EAA0(void);
 extern void func_0801C29C(void);
@@ -1042,7 +1042,7 @@ extern RawVTableFunction const gGameSceneWorldVTable[] asm("__vt_14GameSceneWorl
     SwapRecordPlayerAlbum,
     func_0801DE24,
     IsWorldTimePaused,
-    func_08019BEC,
+    ChangeMap__14GameSceneWorldRC8Locationb,
     RefreshWorldMapTimeOfDayPalette,
     func_0801EAA0,
     func_0801C29C,
