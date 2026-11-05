@@ -306,13 +306,14 @@ void GameScene::FadeScreen(u32 style, i32 speed, bool fade_out, bool call_scene_
         // Keep native halfword writes: these are the DISPCNT and BLDCNT
         // shadows, not an unrelated scene flag word or a 32-bit update.
         WriteHardwareDisplayHalfword(current->display.control.dispcnt,
-            ReadHardwareDisplayHalfword(current->display.control.dispcnt) | 0x0E00);
+            ReadHardwareDisplayHalfword(current->display.control.dispcnt)
+                | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_BG3_ON);
         if (mode == 1)
             WriteHardwareDisplayHalfword(current->display.blend_control,
-                ReadHardwareDisplayHalfword(current->display.blend_control) | 0x0080);
+                ReadHardwareDisplayHalfword(current->display.blend_control) | BLDCNT_EFFECT_LIGHTEN);
         else
             WriteHardwareDisplayHalfword(current->display.blend_control,
-                ReadHardwareDisplayHalfword(current->display.blend_control) | 0x00C0);
+                ReadHardwareDisplayHalfword(current->display.blend_control) | BLDCNT_EFFECT_DARKEN);
     }
 }
 

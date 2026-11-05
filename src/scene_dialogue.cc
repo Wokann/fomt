@@ -1,6 +1,7 @@
 #include "scene_dialogue.hh"
 #include "game_scene.hh"
 #include "font.hh"
+#include "gbaio.h"
 
 void GameScene::TalkResetUi()
 {
@@ -8,7 +9,7 @@ void GameScene::TalkResetUi()
     current->time_window = nullptr;
     current->pause_menu_selector = nullptr;
     current->talk_window = nullptr;
-    current->display.control.dispcnt &= ~0x0100;
+    current->display.control.dispcnt &= ~DISPCNT_BG0_ON;
 }
 
 void GameScene::TalkClose()

@@ -33,8 +33,10 @@ void WriteHardwareDisplayState(struct HardwareDisplayState * object)
 
 void WriteHardwareDisplayStateWithBios(struct HardwareDisplayState * object)
 {
-    CpuFastSet(object, (void *)&REG_DISPCNT, 0x10);
-    CpuSet((u8 *)object + 0x40, (void *)&REG_WIN0H, CPUSET_32BIT | 5);
+    CpuFastSet(object, (void *)&REG_DISPCNT,
+        (REG_OFFSET_WIN0H - REG_OFFSET_DISPCNT) / sizeof(u32));
+    CpuSet((u8 *)object + REG_OFFSET_WIN0H, (void *)&REG_WIN0H,
+        CPUSET_32BIT | ((REG_OFFSET_BLDY - REG_OFFSET_WIN0H) / sizeof(u32)));
     // Keep this routine's distinct final BG1 write; it does not mirror BLDY.
     REG_BG1HOFS = object->background_scroll[1][0];
 }

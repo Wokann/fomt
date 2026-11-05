@@ -2491,13 +2491,13 @@ func_080A2BA4: @ 0x080A25DC
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
-	ldr r1, .Ljp_080A2FC0 @ =0x06007FE0
+	ldr r1, .Ljp_080A2FC0
 	movs r0, #0
 	movs r2, #0x20
 	bl FillHardwareDma3
 	movs r4, #1
 	rsbs r4, r4, #0
-	ldr r0, .Ljp_080A2FC4 @ =0x0600E000
+	ldr r0, .Ljp_080A2FC4
 	mov sb, r0
 	movs r5, #0x80
 	lsls r5, r5, #4
@@ -2505,12 +2505,12 @@ func_080A2BA4: @ 0x080A25DC
 	mov r1, sb
 	adds r2, r5, #0
 	bl FillHardwareDma3
-	ldr r1, .Ljp_080A2FC8 @ =0x0600E800
+	ldr r1, .Ljp_080A2FC8
 	mov r8, r1
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl FillHardwareDma3
-	ldr r6, .Ljp_080A2FCC @ =0x0600F000
+	ldr r6, .Ljp_080A2FCC
 	adds r0, r4, #0
 	adds r1, r6, #0
 	adds r2, r5, #0
@@ -2937,10 +2937,10 @@ func_080A2BA4: @ 0x080A25DC
 	bl GetObjTileIndex
 	b .Ljp_080A2FF8
 	.align 2, 0
-.Ljp_080A2FC0: .4byte 0x06007FE0
-.Ljp_080A2FC4: .4byte 0x0600E000
-.Ljp_080A2FC8: .4byte 0x0600E800
-.Ljp_080A2FCC: .4byte 0x0600F000
+.Ljp_080A2FC0: .word MEM_VRAM + 1023 * TILE_SIZE_4BPP
+.Ljp_080A2FC4: .word MEM_VRAM + 28 * BG_SCREEN_SIZE
+.Ljp_080A2FC8: .word MEM_VRAM + 29 * BG_SCREEN_SIZE
+.Ljp_080A2FCC: .word MEM_VRAM + 30 * BG_SCREEN_SIZE
 .Ljp_080A2FD0: .4byte gUiSceneBackgroundLayer0Tilemap
 .Ljp_080A2FD4: .4byte gUiSceneBackgroundLayer1Tilemap
 .Ljp_080A2FD8: .4byte gUiSceneBackgroundLayer2Tilemap
@@ -77103,13 +77103,13 @@ func_080A2BA4: @ 0x080A2BA4
 	mov r1, sp
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
-	ldr r1, .L080A2FC0 @ =0x06007FE0
+	ldr r1, .L080A2FC0
 	movs r0, #0
 	movs r2, #0x20
 	bl FillHardwareDma3
 	movs r4, #1
 	rsbs r4, r4, #0
-	ldr r0, .L080A2FC4 @ =0x0600E000
+	ldr r0, .L080A2FC4
 	mov sb, r0
 	movs r5, #0x80
 	lsls r5, r5, #4
@@ -77117,12 +77117,12 @@ func_080A2BA4: @ 0x080A2BA4
 	mov r1, sb
 	adds r2, r5, #0
 	bl FillHardwareDma3
-	ldr r1, .L080A2FC8 @ =0x0600E800
+	ldr r1, .L080A2FC8
 	mov r8, r1
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl FillHardwareDma3
-	ldr r6, .L080A2FCC @ =0x0600F000
+	ldr r6, .L080A2FCC
 	adds r0, r4, #0
 	adds r1, r6, #0
 	adds r2, r5, #0
@@ -77549,10 +77549,10 @@ func_080A2BA4: @ 0x080A2BA4
 	bl GetObjTileIndex
 	b .L080A2FF8
 	.align 2, 0
-.L080A2FC0: .4byte 0x06007FE0
-.L080A2FC4: .4byte 0x0600E000
-.L080A2FC8: .4byte 0x0600E800
-.L080A2FCC: .4byte 0x0600F000
+.L080A2FC0: .word MEM_VRAM + 1023 * TILE_SIZE_4BPP
+.L080A2FC4: .word MEM_VRAM + 28 * BG_SCREEN_SIZE
+.L080A2FC8: .word MEM_VRAM + 29 * BG_SCREEN_SIZE
+.L080A2FCC: .word MEM_VRAM + 30 * BG_SCREEN_SIZE
 .L080A2FD0: .4byte gUiSceneBackgroundLayer0Tilemap
 .L080A2FD4: .4byte gUiSceneBackgroundLayer1Tilemap
 .L080A2FD8: .4byte gUiSceneBackgroundLayer2Tilemap

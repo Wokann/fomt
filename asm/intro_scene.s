@@ -47,30 +47,30 @@ InitializeIntroSceneBackground:
     adds	r2, r3, #0
     strh	r2, [r1, #0]
     movs	r4, #0
-    strh	r2, [r0, #0]
+    strh	r2, [r0, #OFF_DISPCNT]
     adds	r0, r5, #0
     bl GetHardwareDisplayState
     mov	r2, sp
     ldr r3, .L08000FF4
     adds	r1, r3, #0
     strh	r1, [r2, #0]
-    strh	r1, [r0, #14]
+    strh	r1, [r0, #OFF_BG3CNT]
     adds	r0, r5, #0
     bl GetHardwareDisplayState
     mov	r1, sp
     strh	r4, [r1, #0]
-    strh	r4, [r0, #28]
+    strh	r4, [r0, #OFF_BG3HOFS]
     adds	r0, r5, #0
     bl GetHardwareDisplayState
     mov	r1, sp
     strh	r4, [r1, #0]
-    strh	r4, [r0, #30]
+    strh	r4, [r0, #OFF_BG3VOFS]
     add	sp, #4
     pop	{r4, r5}
     pop	{r0}
     bx	r0
     .align 2, 0
-.L08000FE0: .word (MEM_VRAM + 0x7FE0)
+.L08000FE0: .word (MEM_VRAM + 1023 * TILE_SIZE_4BPP)
 .L08000FE4: .word (MEM_VRAM + 31 * BG_SCREEN_SIZE)
 .L08000FE8: .word gSharedSceneBackgroundTiles
 .L08000FEC: .word gSharedSceneBackgroundPalette
@@ -89,7 +89,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     ldr r4, .L08001DAC @ =0xFFFFEFC8
     add sp, r4
     adds r7, r0, #0
-    ldr r1, .L08001DB0 @ =(MEM_VRAM + 0x7FE0)
+    ldr r1, .L08001DB0 @ =(MEM_VRAM + 1023 * TILE_SIZE_4BPP)
     movs r0, #0
     movs r2, #TILE_SIZE_4BPP
     bl FillHardwareDma3
@@ -255,75 +255,75 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
     adds r2, r3, #0
     strh r2, [r1]
     movs r4, #0
-    strh r2, [r0]
+    strh r2, [r0, #OFF_DISPCNT]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r2, sp
     ldr r5, .L08001E34 @ =(BG_PRIO_3 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (24 << BF_BG_MAP_BASE_OFFSET))
     adds r1, r5, #0
     strh r1, [r2]
-    strh r1, [r0, #8]
+    strh r1, [r0, #OFF_BG0CNT]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r2, sp
     ldr r3, .L08001E38 @ =(BG_PRIO_2 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (26 << BF_BG_MAP_BASE_OFFSET))
     adds r1, r3, #0
     strh r1, [r2]
-    strh r1, [r0, #0xa]
+    strh r1, [r0, #OFF_BG1CNT]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r2, sp
     ldr r5, .L08001E3C @ =(BG_PRIO_1 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (28 << BF_BG_MAP_BASE_OFFSET))
     adds r1, r5, #0
     strh r1, [r2]
-    strh r1, [r0, #0xc]
+    strh r1, [r0, #OFF_BG2CNT]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r2, sp
     ldr r3, .L08001E40 @ =(BG_PRIO_0 | BG_MOSAIC_ENABLE | BG_SIZE_512x256 | (30 << BF_BG_MAP_BASE_OFFSET))
     adds r1, r3, #0
     strh r1, [r2]
-    strh r1, [r0, #0xe]
+    strh r1, [r0, #OFF_BG3CNT]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
-    strh r4, [r0, #0x10]
+    strh r4, [r0, #OFF_BG0HOFS]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
-    strh r4, [r0, #0x12]
+    strh r4, [r0, #OFF_BG0VOFS]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
-    strh r4, [r0, #0x14]
+    strh r4, [r0, #OFF_BG1HOFS]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
-    strh r4, [r0, #0x16]
+    strh r4, [r0, #OFF_BG1VOFS]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
-    strh r4, [r0, #0x18]
+    strh r4, [r0, #OFF_BG2HOFS]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
-    strh r4, [r0, #0x1a]
+    strh r4, [r0, #OFF_BG2VOFS]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
-    strh r4, [r0, #0x1c]
+    strh r4, [r0, #OFF_BG3HOFS]
     adds r0, r7, #0
     bl GetHardwareDisplayState
     mov r1, sp
     strh r4, [r1]
-    strh r4, [r0, #0x1e]
+    strh r4, [r0, #OFF_BG3VOFS]
     mov r0, sp
     str r4, [sp]
     strh r4, [r0, #4]
@@ -551,7 +551,7 @@ InitializeIntroSceneSequenceResources: @ 0x080019D8
 .LIntroSequencePoolHandle6C80Offset: .word INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET
 #endif
 .L08001DAC: .word 0xFFFFEFC8
-.L08001DB0: .word (MEM_VRAM + 0x7FE0)
+.L08001DB0: .word (MEM_VRAM + 1023 * TILE_SIZE_4BPP)
 .L08001DB4: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE)
 .L08001DB8: .word (MEM_VRAM + 26 * BG_SCREEN_SIZE)
 .L08001DBC: .word (MEM_VRAM + 28 * BG_SCREEN_SIZE)

@@ -3,6 +3,7 @@
 
 #include "prelude.h"
 #include "font_draw.hh"
+#include "gbaio.h"
 #include "game_state.hh"
 #include "hardware_context.hh"
 #include "hardware_music_player.hh"
@@ -173,7 +174,7 @@ struct NewGameTextTileBuffer {
 
 
     u32 unk_00;
-    u32 tiles[Width * Height * 8];
+    u32 tiles[Width * Height * (TILE_SIZE_4BPP / sizeof(u32))];
 };
 
 #endif // NEW_GAME_HH

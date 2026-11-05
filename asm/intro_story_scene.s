@@ -1,4 +1,5 @@
     .include "asm/macro.inc"
+    .include "six/asm/hw/video.s"
     .syntax unified
     .thumb
     .section .text, "ax", %progbits
@@ -597,7 +598,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	adds r1, r1, r5
 	adds r1, #0x20
 	add r0, sp, #8
-	ldr r2, .L0805F388 @ =0x0600F000
+	ldr r2, .L0805F388
 	movs r3, #0xa0
 	lsls r3, r3, #3
 	bl __21DmaTransferDescriptorPCvPvUi
@@ -624,7 +625,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	.align 2, 0
 .L0805F380: .4byte 0x00006422
 .L0805F384: .4byte 0x00006420
-.L0805F388: .4byte 0x0600F000
+.L0805F388: .word MEM_VRAM + 30 * BG_SCREEN_SIZE
 .L0805F38C:
 	str r1, [sp, #0x4c]
 	movs r0, #1
@@ -757,7 +758,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	lsls r3, r3, #3
 	adds r1, r1, r3
 	add r0, sp, #8
-	ldr r2, .L0805F4A4 @ =0x0600E800
+	ldr r2, .L0805F4A4
 	subs r3, #0x20
 	bl __21DmaTransferDescriptorPCvPvUi
 	ldr r4, [sp, #0x40]
@@ -780,7 +781,7 @@ RunIntroStorySceneCore: @ 0x0805EE44
 	str r0, [r6, #4]
 	b .L0805F57A
 	.align 2, 0
-.L0805F4A4: .4byte 0x0600E800
+.L0805F4A4: .word MEM_VRAM + 29 * BG_SCREEN_SIZE
 .L0805F4A8:
 	str r1, [sp, #0x4c]
 	movs r0, #1
@@ -972,22 +973,22 @@ InitializeIntroStoryGraphics: @ 0x0805FBB8
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r6, r0, #0
-	ldr r1, .L0805FCA0 @ =0x06007FE0
+	ldr r1, .L0805FCA0
 	movs r0, #0
-	movs r2, #0x20
+	movs r2, #TILE_SIZE_4BPP
 	bl FillHardwareDma3
 	ldr r4, .L0805FCA4 @ =0x10661066
-	ldr r1, .L0805FCA8 @ =0x0600E000
-	movs r5, #0x80
+	ldr r1, .L0805FCA8
+	movs r5, #(BG_SCREEN_SIZE >> 4)
 	lsls r5, r5, #4
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl FillHardwareDma3
-	ldr r1, .L0805FCAC @ =0x0600E800
+	ldr r1, .L0805FCAC
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl FillHardwareDma3
-	ldr r1, .L0805FCB0 @ =0x0600F000
+	ldr r1, .L0805FCB0
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl FillHardwareDma3
@@ -1072,11 +1073,11 @@ InitializeIntroStoryGraphics: @ 0x0805FBB8
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0805FCA0: .4byte 0x06007FE0
+.L0805FCA0: .word MEM_VRAM + 1023 * TILE_SIZE_4BPP
 .L0805FCA4: .4byte 0x10661066
-.L0805FCA8: .4byte 0x0600E000
-.L0805FCAC: .4byte 0x0600E800
-.L0805FCB0: .4byte 0x0600F000
+.L0805FCA8: .word MEM_VRAM + 28 * BG_SCREEN_SIZE
+.L0805FCAC: .word MEM_VRAM + 29 * BG_SCREEN_SIZE
+.L0805FCB0: .word MEM_VRAM + 30 * BG_SCREEN_SIZE
 .L0805FCB4: .4byte gUnk_08743058
 .L0805FCB8: .4byte gUnk_08747A14
 .L0805FCBC: .4byte 0x00007FFF

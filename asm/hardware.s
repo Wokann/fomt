@@ -81,7 +81,7 @@ Update__23HardwareBlendController:
     ldr r0, .L08009434 @ =0x0000FFFE
     cmp r4, r0
     bls .L08009438
-    movs r1, #0xf
+    movs r1, #((1 << BF_MOSAIC_BG_H_LENGTH) - 1)
     b .L0800944A
     .align 2, 0
 .L08009434: .word 0x0000FFFE
@@ -97,9 +97,9 @@ Update__23HardwareBlendController:
     lsrs r0, r0, #0x10
     adds r1, r0, #1
 .L0800944A:
-    lsls r0, r1, #4
+    lsls r0, r1, #BF_MOSAIC_BG_V_OFFSET
     orrs r1, r0
-    lsls r0, r1, #8
+    lsls r0, r1, #BF_MOSAIC_OBJ_H_OFFSET
     orrs r1, r0
     ldr r0, [r5]
     cmp r0, #0
