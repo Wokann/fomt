@@ -315,7 +315,7 @@ SECTIONS
         src/game_scene.o(
             .text.CreatePlayerChildEntity__9GameScene
             .text.SetContestAnimal__9GameScene14MaryAnimalKind19MaryAnimalSlotIndex);
-        asm/game_state.o(.text.game_scene_after_contest_registration);
+        asm/scene_contest_animal.o(.text);
         src/game_scene.o(
             .text.OpenDoor__9GameScene13MaryDoorIndex
             .text.CloseDoor__9GameScene13MaryDoorIndex
@@ -556,6 +556,8 @@ SECTIONS
         . = 0x3EB08; /* JP ROM 0x0803EB08, independently matched */
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
+        asm/script_variable_set.o(.text);
+        asm/code_0803EE94.o(.text.script_engine_after_var_set);
         . = 0x4E2D4; /* JP ordinary 2D glyph compositor. */
         asm/font_draw.o(.text.font_draw_normal);
         . = 0x4E3D4; /* JP extended palette glyph compositor. */

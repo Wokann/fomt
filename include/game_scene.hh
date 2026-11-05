@@ -705,6 +705,8 @@ struct GameScene : AScene {
     bool FadeOutBackgroundMusic();
     void CreatePlayerChildEntity();
     void SetContestAnimal(MaryAnimalKind animal_kind, MaryAnimalSlotIndex animal_index);
+    void ClearContestAnimal(MaryAnimalKind animal_kind);
+    MaryAnimalSlotIndex GetContestAnimalIndex(MaryAnimalKind animal_kind);
     void OpenDoor(MaryDoorIndex door_index);
     void CloseDoor(MaryDoorIndex door_index);
     void RedrawRucksackShelfAfterPurchase();
