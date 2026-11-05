@@ -555,6 +555,17 @@ SongHeader 指针字段和消费者读取宽度排除，未把整个资源区域
 `runtime-boundaries-{jp,us,eu,de}.log`。不增加 C/C++ 覆盖，不做移址验证。
 下一连续主题为 scene：JP/US `080007EC`，EU/DE `08000800`。
 
+### SRAM 访问入口的固定定位复核
+
+四版每版均有 22 个外部直接调用进入本块，三个调用构造函数，十个调用 Read，九个调用 Write。
+实际指令的目的地与 R_ARM_THM_CALL 一一对应。全 ROM 的字节地址及镜像候选数量仍为
+JP/US/EU/DE 的 89/88/91/91，对应字段见上节。没有跨本块边界的 PC 相对取址或字面池读取。
+看似短分支的 08000030 和 0800012E 分别位于卡带标志和 ARM 指令内。US 08000CC0、
+EU 08000CD4 的半字取自开场场景指向 gIntroSceneSmallIndexedArchive 的真实 ABS32。
+
+JP 的 SRAM 访问对象改为紧随纯虚入口，432 字节仍落在 0800063C–080007EC。
+下一段 scene 的起点继续单独核查。JP 已通过 WSL make -j4 compare 和整 ROM 字节比较。
+
 ## 已核查并保留：场景主循环（2026-11-05）
 
 `src/scene.cc` 与 `include/scene.hh` 已明确两个基类、各自的 owner/transfer

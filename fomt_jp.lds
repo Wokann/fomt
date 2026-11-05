@@ -64,7 +64,6 @@ SECTIONS
         src/interrupt.o(.text);
         src/new.o(.text);
         src/pure_virtual.o(.text);
-        . = 0x63C; /* JP ROM 0x0800063C, independently matched */
         src/sram_access.o(.text);
         . = 0x7EC; /* JP ROM 0x080007EC, independently matched */
         src/scene.o(.text);
