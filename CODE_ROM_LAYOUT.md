@@ -1,3 +1,60 @@
+## 图形帧流边界与头部长度派生（1877–1890，2026-11-10）
+
+按实际读取规则核对四版各 36 个图块帧流，共 64,976 字节、119 帧。六个农场预览样式由 FarmMapScreenCore 读取；另外 28 个房屋图块补丁和两个动画帧流，由 QueueMapTilePatch / DrawSavedWorldMap 读取 MapTilePatchFrameHeader 的每帧 tile 数与帧数。每帧的 tile 单位为 32 字节，后续帧使用同一原生步长。
+
+在原位置补出首帧起点、下一帧起点和负载终点，头部两个 u16 均改为标签差计算。原先已有部分按负载计算帧数的定义，也不再使用写死的每帧步长。源码共 114 处物理定义（JP/DE/海外分支及 US 的六个独立入口），四个实际选区各覆盖完整 36 项。没有新增资源目录、生成层、别名、固定长度切片或补偿偏移；没有修改像素、播放逻辑、LDS 或工具链。
+
+阶段 1886 的逐字段映射确认所有新头部表达式、原资源负载和对齐均与实际链接 ROM 相符。36 个帧流各有一处实际入向 ABS32 引用，均直接指向现有具名起点；没有帧流内的绝对指针字段。每版另外核对 53 个已有派生计数的七表归档，371 个表长字段与索引范围有效，225 处入向引用均为具名起点。本次对整个 gfx_data 的现有 ABS32 重定位盘点为 JP 1,220 处、其余各版 1,222 处，均落在具名起点；图形段内部没有 ABS32 指针。
+
+53 项不是全部图形归档的最终总数：边界扫描另发现一个仍使用原始数字计数的同类归档，JP 为 gUnk_084A3678，海外共同符号为 gUnk_0871D51C。GameSceneWorldData 的 IndexedResourceArchive 成员及多个小游戏的构造调用已确认其读取格式；四版分别为 4,760 / 4,748 / 4,748 / 5,052 字节，存在真实地区差异，下一组继续处理。指令构造地址、无重定位原始数据及编码引用仍须独立核查；不以现有 ABS32 清单归零宣布整个图形段或全 ROM 完成。
+
+最终正常 WSL make -j16 四版完整 8 MiB ROM 均与各自 baserom 逐字节及 SHA-1 一致，全局符号/字节核对和重定位映射通过。阶段 1880 只作中间结果，未用它验收遗漏 US 六入口前的修改；本组以完整的阶段 1886 结果验收。没有人为移址、插空或扩容试验。
+
+证据位于本任务临时目录：frame-stream-boundaries-1877.json、frame-stream-length-migration-1879.json、us-frame-stream-length-migration-1885.json、graphics-source-spans-1887.json、gfx-frame-reference-closure-1888.json、all-gfx-relocations-1889.json、remaining-archive-header-candidates-1890.json，以及 full-build-1886 的构建结果与全局报告。临时分析脚本未进入正式构建链。
+
+### 本组 36 个帧流的原版物理布局
+
+下表为阶段 1886 的起止地址（终点不包含在对象内），用于核对覆盖范围，并非链接地址约束。所有数据仍位于 asm/data/graphics.s；六个预览样式由 FarmMapScreenCore 读取，其余由 QueueMapTilePatch / DrawSavedWorldMap 读取。负载为等长 32 字节 tile 单位帧，前置四字节 MapTilePatchFrameHeader。
+
+| 对象 | JP 范围 | US 范围 | EU 范围 | DE 范围 | 字节 | tile/帧 × 帧数 |
+| --- | --- | --- | --- | --- | ---: | --- |
+| gUnk_08529994 | 0x082AFAF0–0x082AFC74 | 0x08529994–0x08529B18 | 0x085299F0–0x08529B74 | 0x082B0A30–0x082B0BB4 | 388 | 4 × 3 |
+| gUnk_08529BA8 | 0x082AFD04–0x082AFDC8 | 0x08529BA8–0x08529C6C | 0x08529C04–0x08529CC8 | 0x082B0C44–0x082B0D08 | 196 | 2 × 3 |
+| gUnk_08529DA4 | 0x082AFF00–0x082B0744 | 0x08529DA4–0x0852A5E8 | 0x08529E00–0x0852A644 | 0x082B0E40–0x082B1684 | 2116 | 22 × 3 |
+| gUnk_0852CC40 | 0x082B2D9C–0x082B2F20 | 0x0852CC40–0x0852CDC4 | 0x0852CC9C–0x0852CE20 | 0x082B3CDC–0x082B3E60 | 388 | 4 × 3 |
+| gUnk_0852CE54 | 0x082B2FB0–0x082B3074 | 0x0852CE54–0x0852CF18 | 0x0852CEB0–0x0852CF74 | 0x082B3EF0–0x082B3FB4 | 196 | 2 × 3 |
+| gUnk_0852D050 | 0x082B31AC–0x082B39F0 | 0x0852D050–0x0852D894 | 0x0852D0AC–0x0852D8F0 | 0x082B40EC–0x082B4930 | 2116 | 22 × 3 |
+| gUnk_FarmHouseTilePatchResource_020 | 0x08462CE0–0x08462DA4 | 0x086DCB84–0x086DCC48 | 0x086DCBE0–0x086DCCA4 | 0x08463C20–0x08463CE4 | 196 | 2 × 3 |
+| gUnk_FarmHouseTilePatchResource_018 | 0x08462E04–0x08463008 | 0x086DCCA8–0x086DCEAC | 0x086DCD04–0x086DCF08 | 0x08463D44–0x08463F48 | 516 | 4 × 4 |
+| gUnk_FarmHouseTilePatchResource_019 | 0x08463008–0x084637EC | 0x086DCEAC–0x086DD690 | 0x086DCF08–0x086DD6EC | 0x08463F48–0x0846472C | 2020 | 21 × 3 |
+| gUnk_FarmHouseTilePatchResource_023 | 0x08463E44–0x08463F08 | 0x086DDCE8–0x086DDDAC | 0x086DDD44–0x086DDE08 | 0x08464D84–0x08464E48 | 196 | 2 × 3 |
+| gUnk_FarmHouseTilePatchResource_021 | 0x08463F68–0x0846416C | 0x086DDE0C–0x086DE010 | 0x086DDE68–0x086DE06C | 0x08464EA8–0x084650AC | 516 | 4 × 4 |
+| gUnk_FarmHouseTilePatchResource_022 | 0x0846416C–0x08464950 | 0x086DE010–0x086DE7F4 | 0x086DE06C–0x086DE850 | 0x084650AC–0x08465890 | 2020 | 21 × 3 |
+| gUnk_FarmHouseTilePatchResource_024 | 0x084661B0–0x08467534 | 0x086E0054–0x086E13D8 | 0x086E00B0–0x086E1434 | 0x084670F0–0x08468474 | 4996 | 52 × 3 |
+| gUnk_FarmHouseTilePatchResource_026 | 0x08467A84–0x08468E08 | 0x086E1928–0x086E2CAC | 0x086E1984–0x086E2D08 | 0x084689C4–0x08469D48 | 4996 | 52 × 3 |
+| gUnk_FarmHouseTilePatchResource_013 | 0x08468E08–0x0846904C | 0x086E2CAC–0x086E2EF0 | 0x086E2D08–0x086E2F4C | 0x08469D48–0x08469F8C | 580 | 9 × 2 |
+| gUnk_FarmHouseTilePatchResource_025 | 0x0846904C–0x08469150 | 0x086E2EF0–0x086E2FF4 | 0x086E2F4C–0x086E3050 | 0x08469F8C–0x0846A090 | 260 | 2 × 4 |
+| gUnk_FarmHouseTilePatchResource_002 | 0x084691D0–0x08469654 | 0x086E3074–0x086E34F8 | 0x086E30D0–0x086E3554 | 0x0846A110–0x0846A594 | 1156 | 12 × 3 |
+| gUnk_FarmHouseTilePatchResource_000 | 0x0846A89C–0x0846AAE0 | 0x086E4740–0x086E4984 | 0x086E479C–0x086E49E0 | 0x0846B7DC–0x0846BA20 | 580 | 6 × 3 |
+| gUnk_FarmHouseTilePatchResource_007 | 0x0846AAE0–0x0846B8E4 | 0x086E4984–0x086E5788 | 0x086E49E0–0x086E57E4 | 0x0846BA20–0x0846C824 | 3588 | 28 × 4 |
+| gUnk_FarmHouseTilePatchResource_011 | 0x0846C054–0x0846C298 | 0x086E5EF8–0x086E613C | 0x086E5F54–0x086E6198 | 0x0846CF94–0x0846D1D8 | 580 | 9 × 2 |
+| gUnk_FarmHouseTilePatchResource_009 | 0x0846C298–0x0846C99C | 0x086E613C–0x086E6840 | 0x086E6198–0x086E689C | 0x0846D1D8–0x0846D8DC | 1796 | 14 × 4 |
+| gUnk_FarmHouseTilePatchResource_004 | 0x0846C99C–0x0846D0C0 | 0x086E6840–0x086E6F64 | 0x086E689C–0x086E6FC0 | 0x0846D8DC–0x0846E000 | 1828 | 19 × 3 |
+| gUnk_FarmHouseTilePatchResource_003 | 0x0846D0C0–0x0846D544 | 0x086E6F64–0x086E73E8 | 0x086E6FC0–0x086E7444 | 0x0846E000–0x0846E484 | 1156 | 12 × 3 |
+| gUnk_FarmHouseTilePatchResource_001 | 0x0846E69C–0x0846E8E0 | 0x086E8540–0x086E8784 | 0x086E859C–0x086E87E0 | 0x0846F5DC–0x0846F820 | 580 | 6 × 3 |
+| gUnk_FarmHouseTilePatchResource_008 | 0x0846E8E0–0x0846F6E4 | 0x086E8784–0x086E9588 | 0x086E87E0–0x086E95E4 | 0x0846F820–0x08470624 | 3588 | 28 × 4 |
+| gUnk_FarmHouseTilePatchResource_012 | 0x0846FDCC–0x08470010 | 0x086E9C70–0x086E9EB4 | 0x086E9CCC–0x086E9F10 | 0x08470D0C–0x08470F50 | 580 | 9 × 2 |
+| gUnk_FarmHouseTilePatchResource_010 | 0x08470010–0x08470714 | 0x086E9EB4–0x086EA5B8 | 0x086E9F10–0x086EA614 | 0x08470F50–0x08471654 | 1796 | 14 × 4 |
+| gUnk_FarmHouseTilePatchResource_005 | 0x08470714–0x08470E38 | 0x086EA5B8–0x086EACDC | 0x086EA614–0x086EAD38 | 0x08471654–0x08471D78 | 1828 | 19 × 3 |
+| gUnk_FarmHouseTilePatchResource_006 | 0x08471914–0x08471A98 | 0x086EB7B8–0x086EB93C | 0x086EB814–0x086EB998 | 0x08472854–0x084729D8 | 388 | 4 × 3 |
+| gUnk_FarmHouseTilePatchResource_027 | 0x08471C04–0x08472C08 | 0x086EBAA8–0x086ECAAC | 0x086EBB04–0x086ECB08 | 0x08472B44–0x08473B48 | 4100 | 32 × 4 |
+| gUnk_FarmHouseTilePatchAnimationResource_001 | 0x08474EE8–0x084751EC | 0x086EED8C–0x086EF090 | 0x086EEDE8–0x086EF0EC | 0x08475E28–0x0847612C | 772 | 6 × 4 |
+| gUnk_FarmHouseTilePatchAnimationResource_000 | 0x084751EC–0x08475AF0 | 0x086EF090–0x086EF994 | 0x086EF0EC–0x086EF9F0 | 0x0847612C–0x08476A30 | 2308 | 18 × 4 |
+| gUnk_FarmHouseTilePatchResource_014 | 0x0847C3CC–0x0847CBD0 | 0x086F6270–0x086F6A74 | 0x086F62CC–0x086F6AD0 | 0x0847D30C–0x0847DB10 | 2052 | 16 × 4 |
+| gUnk_FarmHouseTilePatchResource_015 | 0x0847CF50–0x0847E7D4 | 0x086F6DF4–0x086F8678 | 0x086F6E50–0x086F86D4 | 0x0847DE90–0x0847F714 | 6276 | 49 × 4 |
+| gUnk_FarmHouseTilePatchResource_016 | 0x0847E7D4–0x0847EFD8 | 0x086F8678–0x086F8E7C | 0x086F86D4–0x086F8ED8 | 0x0847F714–0x0847FF18 | 2052 | 16 × 4 |
+| gUnk_FarmHouseTilePatchResource_017 | 0x0847F358–0x08480BDC | 0x086F91FC–0x086FAA80 | 0x086F9258–0x086FAADC | 0x08480298–0x08481B1C | 6276 | 49 × 4 |
+
 ## 移除压缩器的旧槽位约束（1868–1873，2026-11-10）
 
 tools/fomt_lz.c 不再接收 SLOT_SIZE，也不再比较原槽位长度、拒绝超出槽位的输出或补零至旧长度。编码命令现在为 `fomt-lz encode-<格式> SOURCE OUTPUT LADDER [编码选项]`。保留原生压缩格式的头部、位流收尾及已有解码一致性检查；资源间对齐由源汇编或链接布局负责，压缩器没有新增容量参数或替代填充机制。
