@@ -25,6 +25,7 @@ extern FarmHouseEntityPosition const gFarmHouseSecondExtensionRelocationPosition
 extern u32 const gUnk_080F0748[];
 extern u32 const gUnk_080F0770[];
 extern u8 const gUnk_080F0800[];
+extern u8 const gUnk_080F0807[];
 
 
 
