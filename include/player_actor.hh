@@ -161,7 +161,7 @@ extern "C" u32 const gSpringMineCollectionProducts[9];
 extern "C" u32 const gLakeMineCollectionProducts[14];
 extern "C" i32 const gPlayerSpritePaletteKinds[3];
 extern "C" i32 const gFarmingTutorialPlayerSpritePaletteKinds[];
-extern "C" u8 const gUnk_080F1230[];
+extern "C" u8 const gPlayerToolSpiralRanks[][15];
 
 
 extern char const gCppRuntimeError_AnimalDataSecond[];
