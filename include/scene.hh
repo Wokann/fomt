@@ -89,17 +89,17 @@ struct SceneTransitionOwner
     }
 };
 
-struct AScene
-{
-    virtual ~AScene();
-    virtual SceneTransitionOwner Run() = 0;
-};
-
 // The second-stage object chooses the next scene through virtual slot +0x0C.
 struct SceneTransition
 {
     virtual ~SceneTransition();
     virtual SceneOwner CreateScene() = 0;
+};
+
+struct AScene
+{
+    virtual ~AScene();
+    virtual SceneTransitionOwner Run() = 0;
 };
 
 inline SceneOwner::~SceneOwner() { delete static_cast<AScene *>(value); }

@@ -1,18 +1,22 @@
-#include "prelude.h"
-#pragma implementation "new_game_name_entry.hh"
 #include "new_game_name_entry.hh"
-#include "new_game.hh"
+#include FOMT_TEXT_INCLUDE(new_game_name_entry.cc)
+#include "prelude.h"
+
+#include "new_game_birthday_input.hh"
 #include "new_game_identity.hh"
 #include "new_game_name_input.hh"
 #include "new_game_data.hh"
-#include "game_scene.hh"
 #include "hardware_manager.hh"
-#include "hardware_song.hh"
+#include "hardware_sound.hh"
 #include "fomt_constants.hh"
-#pragma implementation
 
 void * operator new(unsigned long);
 void operator delete(void *);
+
+#pragma interface "new_game_name_entry.hh"
+inline NewGameFreshSaveTransition::NewGameFreshSaveTransition(char const * farm, char const * player,
+        GameDate date, char const * dog)
+    : farm_name(farm), player_name(player), birthday(date), dog_name(dog) {}
 
 NewGameNameEntryScene::NewGameNameEntryScene() {}
 
@@ -56,10 +60,4 @@ SceneTransitionOwner NewGameNameEntryScene::Run()
     } while (!confirmed);
     return SceneTransitionOwner(new NewGameFreshSaveTransition(
         farm_name, player_name, birthday, dog_name));
-}
-
-SceneOwner NewGameFreshSaveTransition::CreateScene()
-{
-    return SceneOwner(new GameSceneScriptController(farm_name,
-        player_name, birthday, dog_name));
 }

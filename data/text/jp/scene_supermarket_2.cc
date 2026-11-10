@@ -1,0 +1,16 @@
+#include "scene_supermarket.hh"
+
+char const gText_Supermarket_FoodDelivery[] =
+    "ありがとうございました。{Press}\p"
+    "あれ？\r\n"
+    "持ち物がいっぱいだね。\r\n"
+    "後で届けておくよ。{Press}";
+
+char const gText_Supermarket_FoodDeliveryPartial[] =
+    "ありがとうございました。{Press}\p"
+    "あれ？\r\n"
+    "持ち物が何個か入らないみたい\r\n"
+    "だね。後で届けておくよ。{Press}";
+
+char const gText_Supermarket_FoodPurchaseConfirmation[] =
+    "あれ…いいの？{Press}";

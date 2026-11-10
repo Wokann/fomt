@@ -440,5 +440,3 @@ FieldItemRecord const gFieldItemRecords[] = {
     /* 0x72 */ { 0x12, 0x00,  648,  64 },
     /* 0x73 */ { 0x12, 0x00,  576, 592 },
 };
-
-#include FOMT_TEXT_INCLUDE(field_item_data.cc)

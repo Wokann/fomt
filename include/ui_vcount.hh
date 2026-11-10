@@ -3,48 +3,51 @@
 
 #include "hardware_interrupt_guard.hh"
 
-#pragma interface "ui_vcount.hh"
 
-struct UiSceneCore;
+struct ShopScreenCore;
 
 // The context points to a live pointer slot owned by a UI scene.
-extern "C" UiSceneCore * const * gUiVCountContext;
-extern "C" void UpdateUiVCount(UiSceneCore * core);
+extern "C" ShopScreenCore * const * gUiVCountContext;
 extern "C" void HandleUiVCountInterrupt();
+
+#pragma interface "ui_vcount.hh"
 
 // Restore the previous context before the outer IRQ guard is released.
 struct UiVCountContextScope {
-    static UiSceneCore * const * Exchange(UiSceneCore * const & value)
+    static ShopScreenCore * const * Exchange(ShopScreenCore * const & value)
     {
-        UiSceneCore * const * previous = gUiVCountContext;
+        ShopScreenCore * const * previous = gUiVCountContext;
         gUiVCountContext = &value;
         return previous;
     }
-    explicit UiVCountContextScope(UiSceneCore * const & value)
+    explicit UiVCountContextScope(ShopScreenCore * const & value)
         : previous(Exchange(value)) {}
 
-    virtual ~UiVCountContextScope()
-    {
-        gUiVCountContext = previous;
-    }
+#pragma interface "ui_vcount_lifetimes.hh"
+    virtual ~UiVCountContextScope();
+#pragma interface "ui_vcount.hh"
 
-    UiSceneCore * const * previous;
+    ShopScreenCore * const * previous;
 };
 
 // The native registration layer has its own virtual identity.
 struct UiVCountContextRegistration : UiVCountContextScope {
-    explicit UiVCountContextRegistration(UiSceneCore * const & value)
+    explicit UiVCountContextRegistration(ShopScreenCore * const & value)
         : UiVCountContextScope(value) {}
 
-    virtual ~UiVCountContextRegistration() {}
+#pragma interface "ui_vcount_lifetimes.hh"
+    virtual ~UiVCountContextRegistration();
+#pragma interface "ui_vcount.hh"
 };
+
+#pragma interface "ui_vcount.hh"
 
 // Members deliberately follow the native lifetime and offset order.
 struct UiVCountBinding {
-    explicit UiVCountBinding(UiSceneCore * const & value);
+    explicit UiVCountBinding(ShopScreenCore * const & value);
     virtual ~UiVCountBinding();
 
-    UiSceneCore * value;
+    ShopScreenCore * value;
     InterruptGuard guard;
     UiVCountContextRegistration context;
     InterruptHandler previous_handler;
@@ -54,5 +57,8 @@ typedef char UiVCountContextScopeSize[sizeof(UiVCountContextScope) == 8 ? 1 : -1
 typedef char UiVCountBindingSize[sizeof(UiVCountBinding) == 24 ? 1 : -1];
 typedef char UiVCountBindingContextOffset[offsetof(UiVCountBinding, context) == 8 ? 1 : -1];
 typedef char UiVCountBindingHandlerOffset[offsetof(UiVCountBinding, previous_handler) == 16 ? 1 : -1];
+
+#include "ui_vcount_lifetimes.hh"
+
 
 #endif // UI_VCOUNT_HH

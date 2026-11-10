@@ -4,7 +4,7 @@
 #include "prelude.h"
 #include "hardware_sprite_buffer.hh"
 
-struct IndexedResourceProvider;
+#include "resource_archive_provider.hh"
 
 struct IndexedResourceEntry
 {
@@ -99,19 +99,6 @@ struct IndexedResourceGroupResult
     IndexedResourceDescriptor8Range sixth;
 };
 
-// Native provider-base and archive tables share the C++ virtual destructor,
-// entry resolver and group resolver slots. Only the implementation unit emits
-// their standalone methods and vtables; callers may inline cleanup.
-#pragma interface "resource_archive.hh"
-struct IndexedResourceProvider
-{
-    virtual ~IndexedResourceProvider() SECTION(".text.indexed_resource_provider_cleanup");
-    virtual IndexedResourceResult Resolve(u32 index) const = 0;
-    virtual IndexedResourceGroupResult GetGroupData(u32 index) const = 0;
-};
-
-inline IndexedResourceProvider::~IndexedResourceProvider() {}
-
 // Resolve an entry index to the group referenced by its first entry.
 static inline IndexedResourceGroupResult ResolveIndexedResourceGroup(
     IndexedResourceProvider const * resource, u32 index)
@@ -138,11 +125,12 @@ struct IndexedResourceArchiveGroupDescriptor
 };
 
 // An archive borrows its payload; destroying it never frees that payload.
+#pragma interface "resource_archive.hh"
 struct IndexedResourceArchive : IndexedResourceProvider
 {
-    // The original destructor is part of the later C++ library block.
-    virtual ~IndexedResourceArchive() SECTION(".text.indexed_resource_archive_cleanup");
+    // The archive borrows its payload; cleanup releases only the provider base.
     IndexedResourceArchive(u8 const * data);
+    virtual inline ~IndexedResourceArchive();
 
     IndexedResourceArchiveEntry * entry_descriptors;
     IndexedResourceArchiveGroupDescriptor * group_descriptors;
@@ -169,7 +157,6 @@ inline u16 IndexedResourceArchive::GetEntryDescriptorCount() const
 {
     return entry_descriptor_count;
 }
-#pragma implementation
 
 typedef char IndexedResourceProviderSizeCheck[sizeof(IndexedResourceProvider) == 4 ? 1 : -1];
 typedef char IndexedResourceArchiveEntriesOffsetCheck[offsetof(IndexedResourceArchive, entry_descriptors) == 4 ? 1 : -1];
@@ -200,8 +187,6 @@ IndexedResourceArchive * ConstructIndexedResourceArchive(IndexedResourceArchive 
 
 EXTERN_C_END
 
-inline IndexedResourceArchive::~IndexedResourceArchive()
-{
-}
+#include "resource_archive_lifetimes.hh"
 
 #endif // RESOURCE_ARCHIVE_HH

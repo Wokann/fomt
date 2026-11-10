@@ -1,90 +1,35 @@
 #ifndef MAIN_MENU_WIDGET_HH
 #define MAIN_MENU_WIDGET_HH
 
-#include "control_widget.hh"
+#include "ui_text_window.hh"
 #include "resource_handle.hh"
 #include "obj_palette_collection.hh"
 #include "obj_tile_collection.hh"
-#include "hardware_dma_link.hh"
-#include "common_ui.hh"
+#include "hardware_dma.hh"
 
 struct HardwareCoreState;
 struct HardwareSpriteBufferState;
 struct HardwareMusicPlayerSlot;
 
+
+#include "main_menu_data.hh"
+
 #pragma interface "main_menu_widget.hh"
-
-struct MainMenuSpriteResource {
-    ObjTileCollectionEntry tiles;
-    HardwareDmaCopyLink upload;
-    IndexedResourceHandle handle;
-
-    MainMenuSpriteResource(IndexedResourceProvider * provider, u32 index, i32 delta)
-        : tiles(2), upload(), handle(provider, index, delta) {}
-};
-
-struct MainMenuSpriteOwner {
-    MainMenuSpriteResource * value;
-    MainMenuSpriteOwner() : value(0) {}
-    explicit MainMenuSpriteOwner(MainMenuSpriteResource * resource) : value(resource) {}
-    ~MainMenuSpriteOwner() { delete value; }
-    void operator=(MainMenuSpriteResource * resource)
-    {
-        if (resource != value && value != 0)
-            delete value;
-        value = resource;
-    }
-};
-
-// The menu draws a twelve-by-two-tile label after this untouched prefix.
-struct MainMenuLabelTileBuffer {
-    u32 unk_00;
-    u32 tiles[12 * 2 * 8];
-    MainMenuLabelTileBuffer() {}
-};
-
-struct MainMenuLabelRenderer {
-    MainMenuLabelTileBuffer buffer;
-    ObjTileCollectionEntry tiles[3];
-    HardwareDmaCopyLink uploads[6];
-
-    MainMenuLabelRenderer()
-    {
-        for (u32 i = 0; i < 3; ++i) {
-            tiles[i].Reset(3);
-        }
-    }
-};
-
-struct MainMenuData {
-    IndexedResourceArchive archive;
-    ObjPaletteCollectionEntry palette;
-    HardwareDmaCopyLink palette_upload;
-    MainMenuSpriteOwner cursor;
-    MainMenuSpriteOwner icons[7];
-    MainMenuLabelRenderer label;
-
-    MainMenuData() SECTION(".text.main_menu_data_constructor");
-    ~MainMenuData() SECTION(".text.main_menu_data_destructor");
-};
-
 struct MainMenuWidget : ControlWidget {
-    MainMenuWidget(u32 background, u32 screen, u32 palette, u32 mode, u32 selection)
-        SECTION(".text.main_menu_widget_lifetime");
-    virtual ~MainMenuWidget() SECTION(".text.main_menu_widget_lifetime");
-    virtual void Open() SECTION(".text.main_menu_widget_callbacks");
-    virtual void OpenImmediate() SECTION(".text.main_menu_widget_callbacks");
-    u32 GetSelection() const SECTION(".text.main_menu_widget_callbacks");
-    void DisableInput() SECTION(".text.main_menu_widget_callbacks");
+    MainMenuWidget(u32 background, u32 screen, u32 palette, u32 mode, u32 selection);
+    virtual ~MainMenuWidget();
+    virtual void Open();
+    virtual void OpenImmediate();
+    u32 GetSelection() const;
+    void DisableInput();
 
     // Return the window phase; a null music player suppresses menu SFX.
     u32 Update(HardwareCoreState * input, HardwareSpriteBufferState * sprites,
         HardwareDisplayState * display, HardwareLinkedList * uploads,
-        HardwareLinkedList * commands) SECTION(".text.main_menu_widget_update");
+        HardwareLinkedList * commands);
     u32 Update(HardwareCoreState * input, HardwareSpriteBufferState * sprites,
         HardwareDisplayState * display, HardwareLinkedList * uploads,
-        HardwareLinkedList * commands, HardwareMusicPlayerSlot * music)
-        SECTION(".text.main_menu_widget_update");
+        HardwareLinkedList * commands, HardwareMusicPlayerSlot * music);
 
     MainMenuData * data;
     u8 selection;
@@ -98,25 +43,11 @@ private:
         HardwareLinkedList * commands, HardwareMusicPlayerSlot * music);
 };
 
-typedef char MainMenuSpriteSizeCheck[sizeof(MainMenuSpriteResource) == 0x34 ? 1 : -1];
-typedef char MainMenuSpriteUploadCheck[offsetof(MainMenuSpriteResource, upload) == 8 ? 1 : -1];
-typedef char MainMenuSpriteHandleCheck[offsetof(MainMenuSpriteResource, handle) == 0x20 ? 1 : -1];
-typedef char MainMenuSpriteOwnerSizeCheck[sizeof(MainMenuSpriteOwner) == 4 ? 1 : -1];
-typedef char MainMenuLabelSizeCheck[sizeof(MainMenuLabelTileBuffer) == 0x304 ? 1 : -1];
-typedef char MainMenuDataSizeCheck[sizeof(MainMenuData) == 0x41C ? 1 : -1];
-typedef char MainMenuPaletteCheck[offsetof(MainMenuData, palette) == 0x30 ? 1 : -1];
-typedef char MainMenuCursorCheck[offsetof(MainMenuData, cursor) == 0x50 ? 1 : -1];
-typedef char MainMenuIconsCheck[offsetof(MainMenuData, icons) == 0x54 ? 1 : -1];
-typedef char MainMenuLabelCheck[offsetof(MainMenuData, label) == 0x70 ? 1 : -1];
-typedef char MainMenuLabelTilesCheck[offsetof(MainMenuData, label) + offsetof(MainMenuLabelRenderer, tiles) == 0x374 ? 1 : -1];
-typedef char MainMenuLabelUploadsCheck[offsetof(MainMenuData, label) + offsetof(MainMenuLabelRenderer, uploads) == 0x38C ? 1 : -1];
 typedef char MainMenuWidgetSizeCheck[sizeof(MainMenuWidget) == 16 ? 1 : -1];
 typedef char MainMenuWidgetDataCheck[offsetof(MainMenuWidget, data) == 8 ? 1 : -1];
 typedef char MainMenuWidgetSelectionCheck[offsetof(MainMenuWidget, selection) == 12 ? 1 : -1];
 
 extern "C" {
-extern u8 const gMainMenuSpriteResourceArchive[];
 }
 
-#pragma implementation
 #endif // MAIN_MENU_WIDGET_HH

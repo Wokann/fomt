@@ -1,24 +1,108 @@
 #ifndef NPC_SCHEDULE_HH
 #define NPC_SCHEDULE_HH
 
-#include "data_schedules.hh"
+#include "prelude.h"
 
-// The visiting NPC's regular schedule is available after its introduction.
-// Both callbacks use the decoded game day, whose boundary is 06:00.
-extern "C" u32 IsLouSundayScheduleActive(void const * context);
-extern "C" u32 IsVanWednesdayScheduleActive(void const * context);
+extern u8 const gUnk_080F1A66[];
 
-// This is one physical ROM object: descriptor, table pointers, two tables,
-// two entries, and their shared payload. Its first member is the label used
-// by the native NPC schedule code.
-struct NpcScheduleStorage
+
+struct PathPointA
 {
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[3];
-    Schedule table_storage[2];
-    ScheduleEntry entry_storage[2];
-    PathInfo payload;
+    u16 instant;
+    i16 coord;
+    bool is_y_coord : 1;
 };
+
+struct PathPointB
+{
+    // Native movement reads this map-space coordinate with LDRSH.
+    i16 coord;
+    u16 speed;
+    u16 unk_04; /* duration? */
+    u16 facing : 2;
+    bool is_y_coord : 1;
+};
+
+struct PathInfo
+{
+    void const * points;
+    u16 num_points;
+    i16 x_start;
+    i16 y_start;
+    u32 location_start : 10;
+    u32 facing_start : 2;
+    bool point_type_select : 1;
+};
+
+struct ScheduleEntry
+{
+    u16 time;
+    PathInfo const * path;
+};
+
+struct Schedule
+{
+    u16 num_time_entries;
+    ScheduleEntry const * time_entries;
+};
+
+struct ScheduleInfo
+{
+    u32 (*select_schedule)(void const * unk_arg_0);
+    u32 num_schedules;
+    Schedule const * const * schedules;
+};
+
+// Comparators used by the native five-argument STL upper-bound instances.
+struct NpcScheduleTimeCompare
+{
+    bool operator()(u32 const & minute, ScheduleEntry const & entry)
+    {
+        return minute < entry.time;
+    }
+};
+
+struct NpcPathTimeCompare
+{
+    bool operator()(u32 const & minute, PathPointA const & point)
+    {
+        return minute < point.instant;
+    }
+};
+
+// Target ABI layout used by both the existing individual records and the
+// contiguous NPC schedule storage blocks. Path kind is the thirteenth flag bit.
+typedef char PathPointASizeCheck[sizeof(PathPointA) == 8 ? 1 : -1];
+typedef char PathPointACoordCheck[offsetof(PathPointA, coord) == 2 ? 1 : -1];
+typedef char PathPointBSizeCheck[sizeof(PathPointB) == 8 ? 1 : -1];
+typedef char PathPointBSpeedCheck[offsetof(PathPointB, speed) == 2 ? 1 : -1];
+typedef char PathPointBUnknown04Check[offsetof(PathPointB, unk_04) == 4 ? 1 : -1];
+typedef char PathInfoSizeCheck[sizeof(PathInfo) == 12 ? 1 : -1];
+typedef char PathInfoStartXCheck[offsetof(PathInfo, x_start) == 6 ? 1 : -1];
+typedef char PathInfoStartYCheck[offsetof(PathInfo, y_start) == 8 ? 1 : -1];
+typedef char ScheduleEntrySizeCheck[sizeof(ScheduleEntry) == 8 ? 1 : -1];
+typedef char ScheduleEntryPathCheck[offsetof(ScheduleEntry, path) == 4 ? 1 : -1];
+typedef char ScheduleSizeCheck[sizeof(Schedule) == 8 ? 1 : -1];
+typedef char ScheduleInfoSizeCheck[sizeof(ScheduleInfo) == 12 ? 1 : -1];
+
+struct GameCalendar;
+
+// Calendar date used by daily NPC schedules. The day is one-based, and
+// times before 06:00 still belong to the preceding game day.
+struct GameDayDate
+{
+    u8 year;
+    u8 season;
+    u8 day;
+    u8 weekday;
+};
+typedef char GameDayDateSizeCheck[sizeof(GameDayDate) == 4 ? 1 : -1];
+typedef char GameDayDateWeekdayCheck[offsetof(GameDayDate, weekday) == 3 ? 1 : -1];
+
+// Writes the decoded date and returns the supplied output pointer.
+extern "C" GameDayDate * DecodeGameDayDate(GameDayDate * output, GameCalendar const * calendar);
+
+extern "C" u32 IsNpcScheduleDateListed(u32 season, u32 day);
 
 struct NpcScheduleDetailEntry
 {
@@ -27,310 +111,5 @@ struct NpcScheduleDetailEntry
     u16 unk_04;
     u16 unk_06;
 };
-
-// The next physical selector has the same leading layout, followed by four
-// indexed tables, ten payload records, and five pointed detail arrays.
-struct NpcScheduleExtendedStorage
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[5];
-    Schedule table_storage[4];
-    ScheduleEntry entry_storage_0[3];
-    ScheduleEntry entry_storage_1[7];
-    ScheduleEntry entry_storage_2[5];
-    ScheduleEntry entry_storage_3[1];
-    PathInfo payload_storage[10];
-    NpcScheduleDetailEntry detail_storage_0[3];
-    NpcScheduleDetailEntry detail_storage_1[3];
-    NpcScheduleDetailEntry detail_storage_2[3];
-    NpcScheduleDetailEntry detail_storage_3[5];
-    NpcScheduleDetailEntry detail_storage_4[5];
-};
-
-// The following selector is a larger contiguous instance of the same format.
-// Its individual table sizes vary, so the physical table, entry, payload, and
-// detail regions are each represented by one ordered storage array.
-struct NpcScheduleLargeStorage
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[24];
-    Schedule table_storage[23];
-    ScheduleEntry entry_storage[120];
-    PathInfo payload_storage[35];
-    NpcScheduleDetailEntry detail_storage[108];
-};
-
-// This physical selector has one null choice and four real tables. Its backing
-// records are contiguous in ROM, so one aggregate preserves their order.
-struct NpcScheduleFiveChoiceStorage
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[5];
-    Schedule table_storage[4];
-    ScheduleEntry entry_storage[22];
-    PathInfo payload_storage[15];
-    NpcScheduleDetailEntry detail_storage[45];
-};
-
-struct NpcScheduleStorage_080F42F0
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[4];
-    Schedule table_storage[3];
-    ScheduleEntry entry_storage[10];
-    PathInfo payload_storage[5];
-    NpcScheduleDetailEntry detail_storage[4];
-};
-
-struct NpcScheduleStorage_080F43DC
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[19];
-    Schedule table_storage[18];
-    ScheduleEntry entry_storage[83];
-    PathInfo payload_storage[15];
-    NpcScheduleDetailEntry detail_storage[43];
-};
-
-struct NpcScheduleStorage_080F4974
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[2];
-    Schedule table_storage[1];
-    ScheduleEntry entry_storage[1];
-    PathInfo payload_storage[1];
-    NpcScheduleDetailEntry detail_storage[2];
-};
-
-struct NpcScheduleStorage_080F49C0
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[5];
-    Schedule table_storage[4];
-    ScheduleEntry entry_storage[30];
-    PathInfo payload_storage[10];
-    NpcScheduleDetailEntry detail_storage[64];
-};
-
-struct NpcScheduleStorage_080F4D74
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[19];
-    Schedule table_storage[18];
-    ScheduleEntry entry_storage[90];
-    PathInfo payload_storage[26];
-    NpcScheduleDetailEntry detail_storage[90];
-};
-
-struct NpcScheduleStorage_080F5540
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[6];
-    Schedule table_storage[5];
-    ScheduleEntry entry_storage[32];
-    PathInfo payload_storage[15];
-    NpcScheduleDetailEntry detail_storage[70];
-};
-
-struct NpcScheduleStorage_080F597C
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[3];
-    Schedule table_storage[2];
-    ScheduleEntry entry_storage[2];
-    PathInfo payload_storage[1];
-};
-
-struct NpcScheduleStorage_080F59CC
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[8];
-    Schedule table_storage[7];
-    ScheduleEntry entry_storage[43];
-    PathInfo payload_storage[18];
-    NpcScheduleDetailEntry detail_storage[37];
-};
-
-struct NpcScheduleStorage_080F5D94
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[17];
-    Schedule table_storage[16];
-    ScheduleEntry entry_storage[63];
-    PathInfo payload_storage[15];
-    NpcScheduleDetailEntry detail_storage[28];
-};
-
-struct NpcScheduleStorage_080F61FC
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[6];
-    Schedule table_storage[5];
-    ScheduleEntry entry_storage[13];
-    PathInfo payload_storage[7];
-    NpcScheduleDetailEntry detail_storage[12];
-};
-
-struct NpcScheduleStorage_080F6370
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[6];
-    Schedule table_storage[5];
-    ScheduleEntry entry_storage[41];
-    PathInfo payload_storage[13];
-    NpcScheduleDetailEntry detail_storage[35];
-};
-
-struct NpcScheduleStorage_080F66C4
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[6];
-    Schedule table_storage[5];
-    ScheduleEntry entry_storage[39];
-    PathInfo payload_storage[19];
-    NpcScheduleDetailEntry detail_storage[59];
-};
-
-struct NpcScheduleStorage_080F6B10
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[2];
-    Schedule table_storage[1];
-    ScheduleEntry entry_storage[1];
-    PathInfo payload_storage[1];
-};
-
-struct NpcScheduleStorage_080F6B4C
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[3];
-    Schedule table_storage[2];
-    ScheduleEntry entry_storage[17];
-    PathInfo payload_storage[14];
-    NpcScheduleDetailEntry detail_storage[39];
-};
-
-struct NpcScheduleStorage_080F6DE8
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[10];
-    Schedule table_storage[9];
-    ScheduleEntry entry_storage[23];
-    PathInfo payload_storage[10];
-    NpcScheduleDetailEntry detail_storage[11];
-};
-
-struct NpcScheduleStorage_080F6FF8
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[5];
-    Schedule table_storage[4];
-    ScheduleEntry entry_storage[22];
-    PathInfo payload_storage[12];
-    NpcScheduleDetailEntry detail_storage[34];
-};
-
-struct NpcScheduleStorage_080F7294
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[10];
-    Schedule table_storage[9];
-    ScheduleEntry entry_storage[68];
-    PathInfo payload_storage[22];
-    NpcScheduleDetailEntry detail_storage[55];
-};
-
-struct NpcScheduleStorage_080F77FC
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[6];
-    Schedule table_storage[5];
-    ScheduleEntry entry_storage[37];
-    PathInfo payload_storage[15];
-    NpcScheduleDetailEntry detail_storage[34];
-};
-
-struct NpcScheduleStorage_080F7B40
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[15];
-    Schedule table_storage[14];
-    ScheduleEntry entry_storage[47];
-    PathInfo payload_storage[24];
-    NpcScheduleDetailEntry detail_storage[100];
-};
-
-struct NpcScheduleStorage_080F81BC
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[7];
-    Schedule table_storage[6];
-    ScheduleEntry entry_storage[40];
-    PathInfo payload_storage[18];
-    NpcScheduleDetailEntry detail_storage[72];
-};
-
-struct NpcScheduleStorage_080F8678
-{
-    ScheduleInfo descriptor;
-    Schedule const * const table_choices[5];
-    Schedule table_storage[4];
-    ScheduleEntry entry_storage[24];
-    PathInfo payload_storage[13];
-    NpcScheduleDetailEntry detail_storage[56];
-};
-
-extern "C" NpcScheduleStorage const gUnk_080F33B8;
-extern "C" NpcScheduleExtendedStorage const gUnk_080F3408;
-extern "C" NpcScheduleLargeStorage const gUnk_080F35E4;
-extern "C" NpcScheduleFiveChoiceStorage const gUnk_080F3FD8;
-
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorExtended[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorLarge[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorFiveChoice[];
-
-extern "C" NpcScheduleStorage_080F42F0 const gUnk_080F42F0;
-extern "C" NpcScheduleStorage_080F43DC const gUnk_080F43DC;
-extern "C" NpcScheduleStorage_080F4974 const gUnk_080F4974;
-extern "C" NpcScheduleStorage_080F49C0 const gUnk_080F49C0;
-extern "C" NpcScheduleStorage_080F4D74 const gUnk_080F4D74;
-extern "C" NpcScheduleStorage_080F5540 const gUnk_080F5540;
-extern "C" NpcScheduleStorage_080F597C const gUnk_080F597C;
-extern "C" NpcScheduleStorage_080F59CC const gUnk_080F59CC;
-extern "C" NpcScheduleStorage_080F5D94 const gUnk_080F5D94;
-extern "C" NpcScheduleStorage_080F61FC const gUnk_080F61FC;
-extern "C" NpcScheduleStorage_080F6370 const gUnk_080F6370;
-extern "C" NpcScheduleStorage_080F66C4 const gUnk_080F66C4;
-extern "C" NpcScheduleStorage_080F6B10 const gUnk_080F6B10;
-extern "C" NpcScheduleStorage_080F6B4C const gUnk_080F6B4C;
-extern "C" NpcScheduleStorage_080F6DE8 const gUnk_080F6DE8;
-extern "C" NpcScheduleStorage_080F6FF8 const gUnk_080F6FF8;
-extern "C" NpcScheduleStorage_080F7294 const gUnk_080F7294;
-extern "C" NpcScheduleStorage_080F77FC const gUnk_080F77FC;
-extern "C" NpcScheduleStorage_080F7B40 const gUnk_080F7B40;
-extern "C" NpcScheduleStorage_080F81BC const gUnk_080F81BC;
-extern "C" NpcScheduleStorage_080F8678 const gUnk_080F8678;
-
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F42F0[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F43DC[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F4974[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F49C0[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F4D74[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F5540[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F597C[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F59CC[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F5D94[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F61FC[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F6370[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F66C4[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F6B10[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F6B4C[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F6DE8[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F6FF8[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F7294[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F77FC[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F7B40[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector_080F81BC[];
 
 #endif // NPC_SCHEDULE_HH

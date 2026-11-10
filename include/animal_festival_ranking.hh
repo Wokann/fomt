@@ -3,6 +3,9 @@
 
 #include "prelude.h"
 
+// Ten gauge-limit tiers by ten NPC opponent base scores; lookup is unchecked.
+extern u16 const gAnimalFestivalRankingScoreTable[10][10];
+
 struct AnimalFestivalRankingEntry
 {
     u8 animal_index;

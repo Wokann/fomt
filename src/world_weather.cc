@@ -1,7 +1,6 @@
 #include "world_weather.hh"
 #include "gbaio.h"
 #include "game_world.hh"
-#include "entity_ui.hh"
 #include "scene_sprite.hh"
 #include "hardware_dma_queue.hh"
 #include <memory>
@@ -182,3 +181,11 @@ void WorldWeatherParticle::ResetPosition(i32 camera_x, i32 camera_y)
     animation.scroll_delta &= 0x90;
     animation.scroll_delta += 0x60;
 }
+
+// Q16.16 particle steps: two alternating directions for snow and rain.
+extern "C" WorldWeatherMotion const gWorldWeatherParticleMotion[2][2] = {
+    { { -0x3333, 0x10000 }, { 0x3333, 0x10000 } },
+    { { -0x3333, 0x40000 }, { 0xCCCC, 0x40000 } },
+};
+
+// Preserve this native runtime literal until its original emission site is recovered.

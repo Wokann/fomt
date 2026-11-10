@@ -63,15 +63,3 @@ extern "C" void ResetActorRuntimeState(Unk_Actor_0809BFE8 & self)
     func_0809C098(self, unused);
     self.unk_08_0 = 100;
 }
-
-// Positions inside MAP_HARVEST_SPRITES_HUT, in the native sprite-slot order.
-// Each record's trailing byte is supplied by its four-byte type alignment.
-extern "C" HarvestSpriteHutPosition const gHarvestSpriteHutPositions[7] = {
-    { 200, 104, FACING_LEFT },
-    { 80, 96, FACING_DOWN },
-    { 160, 96, FACING_DOWN },
-    { 40, 112, FACING_RIGHT },
-    { 196, 168, FACING_LEFT },
-    { 200, 152, FACING_LEFT },
-    { 40, 152, FACING_RIGHT },
-};

@@ -1,19 +1,10 @@
 #include "prelude.h"
-#include "game_state.hh"
-#include "common_ui.hh"
-#pragma implementation "scene_text_variables.hh"
 #include "scene_text_variables.hh"
+#include FOMT_TEXT_INCLUDE(scene_text_variables.cc)
+#include "game_state.hh"
 
 GameSceneTextVariables::GameSceneTextVariables(GameStateSaveImage * image)
     : save(image) {}
-
-void GameSceneTextVariables::Set(u32 slot, char const * text)
-{
-    FixedStr<MAX_VALUE_BYTES> value(text);
-    values[slot] = value;
-}
-
-GameSceneTextVariables::~GameSceneTextVariables() {}
 
 static inline UiTextSubstitution MakeSceneTextSubstitution(char const * source)
 {
@@ -56,4 +47,10 @@ UiTextSubstitution GameSceneTextVariables::Lookup(u32 code)
         return MakeSceneTextSubstitution(save->link_record.name_34);
     }
     return UiTextSubstitution(false, FixedStr<31>());
+}
+
+void GameSceneTextVariables::Set(u32 slot, char const * text)
+{
+    FixedStr<MAX_VALUE_BYTES> value(text);
+    values[slot] = value;
 }

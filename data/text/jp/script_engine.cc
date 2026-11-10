@@ -1,14 +1,5 @@
 #include "script_engine.hh"
 
-char const gCppRuntimeBadAlloc_ScriptEngine[] ALIGN(4) =
-    "bad_alloc";
-
-char const gText_AScriptEngine_InvalidStringId[] =
-    "Error";
-
-char const gCppRuntimeBadAlloc_ScriptEngineUiPrefix[] ALIGN(4) =
-    "bad_alloc";
-
 char const gText_ScriptEngineUi_Error[] ALIGN(4) =
     "Error";
 

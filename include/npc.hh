@@ -5,7 +5,7 @@
 
 #include "actor.hh"
 
-u16 const NO_ANIM = static_cast<u16>(-1);
+enum { NO_ANIM = 0xFFFF };
 
 struct ScheduleInfo;
 

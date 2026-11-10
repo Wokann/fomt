@@ -1,44 +1,86 @@
 #ifndef SCENE_CLINIC_SHOP_HH
 #define SCENE_CLINIC_SHOP_HH
 
-#include "game_scene.hh"
+#include "scene.hh"
+#include "fomt_constants.hh"
+
+struct GameStateSaveImage;
+#include "shop_common.hh"
+#include "utility/fixed_str.hh"
 
 #pragma interface "scene_clinic_shop.hh"
 
 struct ClinicShopSceneCore;
+
+struct ClinicShopSceneCoreOwner {
+    explicit ClinicShopSceneCoreOwner(ClinicShopSceneCore * input) : value(input) {}
+    ~ClinicShopSceneCoreOwner();
+    ClinicShopSceneCore * value;
+};
+
+#pragma interface "scene_clinic_shop.hh"
 struct ClinicShopScene : AScene {
     ClinicShopScene(SceneTransitionOwner next, GameStateSaveImage * image);
     virtual ~ClinicShopScene();
     virtual SceneTransitionOwner Run();
 
-    GameSceneUiComponentOwner core;
+    ClinicShopSceneCoreOwner core;
     SceneTransitionOwner continuation;
 };
 
-struct ClinicShopTransition : SceneTransition {
-    ClinicShopTransition(SceneTransitionOwner next, GameStateSaveImage * image)
-        : continuation(next), save(image) {}
-    virtual SceneOwner CreateScene();
+struct ClinicShopSceneCore : ShopScreenCore {
+    ClinicShopSceneCore(GameStateSaveImage * image);
+    virtual ~ClinicShopSceneCore();
+    void UpdateDescription(u32 selection);
+    void Run();
 
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
+    // Native RAM capacity: 99 content bytes followed by the terminating NUL.
+    FixedStr<99> description;
+    i32 phase;
+    bool has_purchased;
 };
+
+typedef char ClinicCoreDescriptionCheck[offsetof(ClinicShopSceneCore, description) == 0x6A4 ? 1 : -1];
+typedef char ClinicCorePhaseCheck[offsetof(ClinicShopSceneCore, phase) == 0x708 ? 1 : -1];
+typedef char ClinicCorePurchasedCheck[offsetof(ClinicShopSceneCore, has_purchased) == 0x70C ? 1 : -1];
+typedef char ClinicCoreSizeCheck[sizeof(ClinicShopSceneCore) == 0x710 ? 1 : -1];
+
+// Member order releases the continuation before this owned core.
+#pragma interface "scene_clinic_shop.hh"
+
+#pragma interface "scene_clinic_shop.hh"
 
 typedef char ClinicShopSceneSizeCheck[sizeof(ClinicShopScene) == 12 ? 1 : -1];
 typedef char ClinicShopSceneCoreCheck[offsetof(ClinicShopScene, core) == 4 ? 1 : -1];
 typedef char ClinicShopSceneContinuationCheck[offsetof(ClinicShopScene, continuation) == 8 ? 1 : -1];
-typedef char ClinicShopTransitionSizeCheck[sizeof(ClinicShopTransition) == 12 ? 1 : -1];
 
 EXTERN_C
-
-// Only the zero-offset lifecycle prefix is typed; the full native core is opaque.
-ClinicShopSceneCore * ConstructClinicShopSceneCore(void * object, GameStateSaveImage * save);
-void RunClinicShopSceneCore(ClinicShopSceneCore * core);
 
 // Sole C++ constructor body, declared in its actual GCC 2.9 owner-slot ABI.
 ClinicShopScene * __15ClinicShopSceneG20SceneTransitionOwnerP18GameStateSaveImage(
     void * object, SceneTransition ** next, GameStateSaveImage * save);
 
 EXTERN_C_END
+
+#pragma interface "scene_clinic_shop.hh"
+
+
+struct ClinicCatalogEntry
+{
+    u32 food_id;
+    u32 price;
+};
+
+extern ClinicCatalogEntry const gClinicCatalog[];
+
+extern char const gText_Clinic_InventoryFull[];
+extern char const gText_Clinic_BlankLinePair[];
+extern char const gText_Clinic_InsufficientGold[];
+extern char const gText_Clinic_NoAdditionalPurchase[];
+extern char const gText_Clinic_NoPurchaseRestAdvice[];
+extern char const gText_Clinic_PurchaseMorePrompt[];
+extern char const gText_Clinic_Delivery[];
+extern char const gText_Clinic_DeliveryPartial[];
+extern char const gText_Clinic_PurchaseComplete[];
 
 #endif // SCENE_CLINIC_SHOP_HH

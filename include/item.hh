@@ -183,7 +183,6 @@ struct PACKED ALIGN(2) ItemVariant
 
 // Item text declarations.
 
-extern char const gCppRuntimeBadAlloc_ProductInfo[];
 
 extern char const gText_Item_Tool_IronSickle_Name[];
 extern char const gText_Item_Tool_IronSickle_Description[];

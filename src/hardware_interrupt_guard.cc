@@ -37,20 +37,3 @@ void HardwareInterruptList::Swap(HardwareLinkedList * other)
     InterruptGuard guard(INTR_FLAG_VBLANK);
     HardwareLinkedList::Swap(other);
 }
-
-void func_080D788C(struct HardwareLinkedList * list)
-{
-    InterruptGuard guard(INTR_FLAG_VBLANK);
-    func_08009984(list);
-}
-
-// This distinct retail cleanup is a native ABI entry, not the compiler's
-// HardwareInterruptList destructor. The vptr follows the two link fields.
-void func_080D78BC(struct HardwareLinkedList * list, u32 flags)
-{
-    *reinterpret_cast<void ***>(reinterpret_cast<u8 *>(list) + 8) =
-        reinterpret_cast<void **>(__vt_21HardwareInterruptList);
-    // This retained cleanup calls the original clear entry, not its copy.
-    func_0800956C(list);
-    func_080098DC(list, flags);
-}

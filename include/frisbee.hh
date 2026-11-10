@@ -1,24 +1,39 @@
 #ifndef FRISBEE_HH
 #define FRISBEE_HH
 
-#include "prelude.h"
+#include "scene.hh"
 
-// Static UI text used by the Frisbee practice and tournament flow.
-extern char const gText_Frisbee_ExplanationQuestion[];
-extern char const gText_Frisbee_Yes[];
-extern char const gText_Frisbee_No[];
-extern char const gText_Frisbee_ExplanationCursorTiming[];
-extern char const gText_Frisbee_ExplanationGreenZone[];
-extern char const gText_Frisbee_ExplanationRedZone[];
-extern char const gText_Frisbee_ExplanationPractice[];
-extern char const gText_Frisbee_ExplanationTournament[];
-extern char const gText_Frisbee_ExplainAgain[];
-extern char const gText_Frisbee_ThrowAgain[];
-extern char const gText_Frisbee_TournamentFinished[];
-extern char const gText_Frisbee_PlayAgain[];
-extern char const gText_Frisbee_DogNoLongerWantsToPlay[];
-extern char const gText_Frisbee_FoundItem[];
-extern char const gText_Frisbee_FoundNothing[];
-extern char const gCppRuntimeBadAlloc_FrisbeeTextTrailer[];
+struct GameStateSaveImage;
+
+struct FrisbeeCore;
+
+// The scene destroys its continuation first, then this owned core.
+struct FrisbeeCoreOwner {
+    explicit FrisbeeCoreOwner(FrisbeeCore * core) : value(core) {}
+    ~FrisbeeCoreOwner();
+    FrisbeeCore * operator->() const { return value; }
+    FrisbeeCore * value;
+private:
+    FrisbeeCoreOwner(FrisbeeCoreOwner const &);
+    FrisbeeCoreOwner & operator=(FrisbeeCoreOwner const &);
+};
+
+#pragma interface "frisbee.hh"
+struct FrisbeeScene : AScene {
+    FrisbeeScene(SceneTransitionOwner next, GameStateSaveImage * image, bool contest);
+    virtual ~FrisbeeScene();
+    virtual SceneTransitionOwner Run();
+    FrisbeeCoreOwner core;
+    SceneTransitionOwner continuation;
+};
+
+typedef char FrisbeeCoreOwnerSizeCheck[sizeof(FrisbeeCoreOwner) == 4 ? 1 : -1];
+
+#pragma interface "frisbee.hh"
+
+typedef char FrisbeeSceneSizeCheck[sizeof(FrisbeeScene) == 12 ? 1 : -1];
+typedef char FrisbeeSceneCoreCheck[offsetof(FrisbeeScene, core) == 4 ? 1 : -1];
+typedef char FrisbeeSceneContinuationCheck[offsetof(FrisbeeScene, continuation) == 8 ? 1 : -1];
+
 
 #endif // FRISBEE_HH

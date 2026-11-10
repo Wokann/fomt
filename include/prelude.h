@@ -30,6 +30,7 @@ EXTERN_C
 #define NAKED __attribute__((naked))
 #define ALIAS(n) __attribute__((alias(# n)))
 #define SECTION(n) __attribute__((section(n)))
+#define EWRAM_DATA SECTION("ewram_data")
 #define PACKED __attribute__((packed))
 #define ALIGN(n) __attribute__((aligned(n)))
 

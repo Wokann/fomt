@@ -46,6 +46,7 @@ struct Barn
     };
 
     Barn();
+    Barn(Barn const & other);
 
     static Vec2 method_0800CE58();
 

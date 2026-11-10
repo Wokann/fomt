@@ -4,7 +4,6 @@
 #include "scene.hh"
 #include "map_clock_status.hh"
 
-#pragma interface "scene_clock.hh"
 
 struct GameStateSaveImage;
 
@@ -25,14 +24,7 @@ struct GameSceneClockWindowOwner {
 
 typedef char GameSceneClockWindowOwnerSizeCheck[sizeof(GameSceneClockWindowOwner) == 4 ? 1 : -1];
 
-struct ClockTransition : SceneTransition {
-    ClockTransition(GameStateSaveImage * image, SceneTransitionOwner next)
-        : save(image), continuation(next) {}
-    virtual SceneOwner CreateScene();
-    GameStateSaveImage * save;
-    SceneTransitionOwner continuation;
-};
-typedef char ClockTransitionSizeCheck[sizeof(ClockTransition) == 12 ? 1 : -1];
-typedef char ClockTransitionOwnerCheck[offsetof(ClockTransition, continuation) == 8 ? 1 : -1];
+#include "scene_clock_transition.hh"
+
 
 #endif

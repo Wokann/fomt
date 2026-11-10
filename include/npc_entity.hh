@@ -2,18 +2,26 @@
 #define NPC_ENTITY_HH
 
 #include "entity_actor.hh"
+#include "npc_schedule.hh"
 
 struct Npc;
-struct ScheduleInfo;
-struct ScheduleEntry;
-struct PathPointA;
 
+#pragma interface "npc_entity.hh"
 struct ANpcEntity : public AActorEntity
 {
     ANpcEntity(GameObject * game_object, Npc * npc, u32 arg_3, void const * arg_4, u32 anim_id, u32 arg_6, u32 arg_7);
     ~ANpcEntity();
 
-    /* vt+3C */ virtual void vfunc_3C(u32 unk_arg_1);
+    virtual void vfunc_14();
+    virtual void Update(EntityUpdateContext const & context);
+    virtual void ResumeNormalUpdates();
+    // The NPC override chooses its explicit script or its default script ID.
+    virtual u32 vfunc_34();
+    virtual void SetEventScript(MaryScriptId script_id);
+    /* vt+3C */ virtual void UpdateSchedule(i32 refresh_kind);
+
+    // Passed to the schedule selector; different NPC types share this slot.
+    void const * GetScheduleContext() const;
 
     /* +30 */ Npc * npc;
     /* +34 */ u32 unk_34;
@@ -28,49 +36,233 @@ struct ANpcEntity : public AActorEntity
     /* +46 */ u16 unk_46; /* walking animation */
 };
 
+// Concrete scheduled actors follow their native construction order.
+// The world factory allocates 0x48 bytes for these actors, except Child's 0x4C.
+// Those native allocation sizes remain fixed until that factory is recovered.
+struct LilliaNpcActor : ANpcEntity {
+    LilliaNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct RickNpcActor : ANpcEntity {
+    RickNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct PopuriNpcActor : ANpcEntity {
+    PopuriNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+    virtual void UpdateSchedule(i32 refresh_kind);
+};
+
+struct BarleyNpcActor : ANpcEntity {
+    BarleyNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct MayNpcActor : ANpcEntity {
+    MayNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct SaibaraNpcActor : ANpcEntity {
+    SaibaraNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct GrayNpcActor : ANpcEntity {
+    GrayNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct DukeNpcActor : ANpcEntity {
+    DukeNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct MannaNpcActor : ANpcEntity {
+    MannaNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct BasilNpcActor : ANpcEntity {
+    BasilNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct AnnaNpcActor : ANpcEntity {
+    AnnaNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct MaryNpcActor : ANpcEntity {
+    MaryNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+    virtual void UpdateSchedule(i32 refresh_kind);
+};
+
+struct ThomasNpcActor : ANpcEntity {
+    ThomasNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct HarrisNpcActor : ANpcEntity {
+    HarrisNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct EllenNpcActor : ANpcEntity {
+    EllenNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct StuNpcActor : ANpcEntity {
+    StuNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct JeffNpcActor : ANpcEntity {
+    JeffNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct SashaNpcActor : ANpcEntity {
+    SashaNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct KarenNpcActor : ANpcEntity {
+    KarenNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+    virtual void UpdateSchedule(i32 refresh_kind);
+};
+
+struct DoctorNpcActor : ANpcEntity {
+    DoctorNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct ElliNpcActor : ANpcEntity {
+    ElliNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+    virtual void UpdateSchedule(i32 refresh_kind);
+};
+
+struct CarterNpcActor : ANpcEntity {
+    CarterNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct CliffNpcActor : ANpcEntity {
+    CliffNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+    virtual void UpdateSchedule(i32 refresh_kind);
+};
+
+struct DougNpcActor : ANpcEntity {
+    DougNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct LouOrRubyNpcActor : ANpcEntity {
+    LouOrRubyNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct AnnNpcActor : ANpcEntity {
+    AnnNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+    virtual void UpdateSchedule(i32 refresh_kind);
+};
+
+struct KaiNpcActor : ANpcEntity {
+    KaiNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct GotzNpcActor : ANpcEntity {
+    GotzNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+    virtual void UpdateSchedule(i32 refresh_kind);
+};
+
+struct ZackNpcActor : ANpcEntity {
+    ZackNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+    virtual void Update(EntityUpdateContext const & context);
+    virtual void UpdateSchedule(i32 refresh_kind);
+};
+
+struct WonNpcActor : ANpcEntity {
+    WonNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct GourmetNpcActor : ANpcEntity {
+    GourmetNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct HarvestGoddessNpcActor : ANpcEntity {
+    HarvestGoddessNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct KappaNpcActor : ANpcEntity {
+    KappaNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct VanNpcActor : ANpcEntity {
+    VanNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+};
+
+struct ChildNpcActor : ANpcEntity {
+    ChildNpcActor(GameObject * world, Npc * npc, u32 context);
+    virtual EntityVisualController * CreateVisualController();
+    virtual void Update(EntityUpdateContext const & context);
+    virtual void UpdateSchedule(i32 refresh_kind);
+
+    // Counts down between the child's random idle-animation selections.
+    u16 idle_animation_countdown;
+};
+
+typedef char ChildNpcActorSizeCheck[sizeof(ChildNpcActor) == 0x4C ? 1 : -1];
+typedef char ChildNpcActorCountdownCheck[offsetof(ChildNpcActor, idle_animation_countdown) == 0x48 ? 1 : -1];
+
 typedef char NpcEntitySizeCheck[sizeof(ANpcEntity) == 0x48 ? 1 : -1];
 typedef char NpcEntityNpcCheck[offsetof(ANpcEntity, npc) == 0x30 ? 1 : -1];
 typedef char NpcEntityScheduleCheck[offsetof(ANpcEntity, schedule_info) == 0x38 ? 1 : -1];
 
+
 EXTERN_C
-
-// Return the first entry strictly later than minute.
-// Both existing callers pass zero in r3 and the first stack argument;
-// the implementation does not read either word. Their meanings are unknown.
-ScheduleEntry const * FindScheduleEntryUpperBound(ScheduleEntry const * first,
-    ScheduleEntry const * last, u32 const & minute, u32 unk_r3, u32 unk_stack);
-
-// Same upper-bound rule for the timed path's relative-minute entries.
-// The trailing words are likewise zero at the native caller and unread.
-PathPointA const * FindTimedPathPointUpperBound(PathPointA const * first,
-    PathPointA const * last, u32 const & elapsed_minute, u32 unk_r3, u32 unk_stack);
 
 // Test whether the selected schedule's current path starts outside the farmhouse.
 // The character associated with this particular descriptor is not yet named.
 bool func_08034C64(void const * context, GameTime const & time);
 
-void func_08034E8C(ANpcEntity & self);
-void func_08034EA0(ANpcEntity & self);
-void func_08034EB4(ANpcEntity & self);
-u32 func_08034EE0(ANpcEntity & self);
-void func_08034EF8(ANpcEntity & self, u32 unk_arg_1);
-void func_08034F00(ANpcEntity * self, int unk_arg_1);
 void func_08035380(ANpcEntity & self);
 
 // Replace a configured animation; update the live animation only while it
 // still uses the previous value and IsNormalUpdateSuspended is false. Inputs remain u32;
 // only the stored configuration truncates to the native halfword.
-void func_08035908(ANpcEntity & self, u32 animation);
-void func_08035940(ANpcEntity & self, u32 animation);
+void SetNpcIdleAnimation(ANpcEntity & self, u32 animation);
+void SetNpcWalkingAnimation(ANpcEntity & self, u32 animation);
 
 // Still-native predicate: timed-path counter or the following schedule time.
-bool func_08035978(ANpcEntity & self);
+bool IsNpcScheduleTransitionDue(ANpcEntity & self);
 
 // Pause a nearby NPC only when the native path predicate and IsNormalUpdateSuspended allow it.
-void func_08035A48(ANpcEntity & self, Location const & other);
+void PauseNpcNearLocation(ANpcEntity & self, Location const & other);
 // The original animation selector distinguishes the farmhouse strip at Y <= 55.
-bool func_08035AE0(ANpcEntity & self);
+bool IsNpcInUpperFarmhouseStrip(ANpcEntity & self);
 
 EXTERN_C_END
+
+extern "C" u16 const gUnk_080F1514[];
+
+
+extern "C" char const gCppRuntimeError_EntityUiFirst[];
 
 #endif // NPC_ENTITY_HH

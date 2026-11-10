@@ -4,7 +4,6 @@
 #include "prelude.h"
 
 #include "pet.hh"
-#include "unknown_types.hh"
 
 struct Dog : public Pet
 {

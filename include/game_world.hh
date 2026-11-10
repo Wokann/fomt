@@ -2,17 +2,19 @@
 #define GAME_WORLD_HH
 
 #include "prelude.h"
+#include "game_world_interface.hh"
+#include "map_terrain.hh"
 #include "world_runtime.hh"
 #include "world_weather.hh"
 #include "entity_actor.hh"
 #include "obj_palette_collection.hh"
 #include "obj_tile_collection.hh"
 #include "resource_handle.hh"
-#include "time_of_day.hh"
+#include "time_of_day_types.hh"
 #include "world_map.hh"
-#include "scene_sprite.hh"
+#include "scene_sprite_indexed.hh"
+#include "scene_sprite_group.hh"
 
-#pragma interface "game_world.hh"
 
 struct GameScene;
 struct GameSceneSongPlayerPool;
@@ -93,26 +95,101 @@ typedef char GameSceneWorldEventIconSpritesSizeCheck[sizeof(GameSceneWorldEventI
 // The native factory allocates exactly 0x10CC bytes. The complete storage
 // boundary is covered below; members without proven roles remain unknown.
 // Construction is shared C++; unrecovered virtual methods keep their native entries.
-struct GameSceneWorld : GameObject {
-    virtual void ChangeMap(Location const & location, bool update_audio);
-    virtual AEntity * GetEntity(u32 index);
-    virtual AEntity * GetEntity(u32 index) const;
-    // Native world slot +0x148 selects the default audio sequence.
-    virtual u32 GetDefaultAudioSequence();
-    virtual GameStateClock const * GetClock();
-    // Native world slot +0x14C borrows the scene's sound-player pool.
-    virtual GameSceneSongPlayerPool & GetSongPlayerPool();
-    virtual void LightFireplaceAtLocation(MaryMapId map);
-    virtual void SetVaseArticleId(MaryItemArticleId article);
-    virtual void vfunc_158();
-    virtual void ShipProduct(Product const & product);
-    virtual void CreateEventIcon(MaryEventIconSlot slot, MaryMapSpaceX x,
-        MaryMapSpaceY y, MaryEventIconLayer layer, u16 icon_id);
-    virtual void RemoveEventIcon(MaryEventIconSlot slot);
+#pragma interface "game_world.hh"
 
+struct GameSceneWorld : GameObject {
     virtual ~GameSceneWorld();
     virtual void Update(GameObjectUpdateContext const & input);
     virtual void Draw(GameObjectDrawContext const & context);
+    virtual u32 vfunc_14() asm("GetWorldCurrentMapId");
+    virtual i32 GetCameraX() asm("GetWorldCameraX");
+    virtual i32 GetCameraY() asm("GetWorldCameraY");
+    virtual void SetCameraPosition(i32 x, i32 y) asm("SetWorldCameraPosition");
+    virtual void PanCameraTo(i32 x, i32 y, u32 speed) asm("PanWorldCameraTo");
+    virtual bool IsCameraMovementComplete() asm("IsWorldCameraMovementComplete");
+    virtual i32 GetMapPixelWidth(u32 map_id) asm("GetWorldMapPixelWidth");
+    virtual i32 GetMapPixelHeight(u32 map_id) asm("GetWorldMapPixelHeight");
+    virtual MapTerrainView GetMapTerrain(u32 map_id) asm("GetWorldMapTerrain");
+    virtual void vfunc_38(u32 entity_id) asm("RefreshWorldEntitySlot");
+    virtual void vfunc_3C(u32 index) asm("RemoveWorldEntity");
+    virtual AEntity * GetEntity(u32 id);
+    virtual AEntity * GetEntity(u32 id) const;
+    virtual u32 vfunc_48(i32 kind) asm("func_0801B5C0");
+    // Resource byte +0x81 is cleared; its complete role remains unknown.
+    virtual void ClearSpritePaletteResourceFlag(u32 index) asm("ClearWorldSpritePaletteResourceFlag");
+    virtual i32 GetSpritePaletteBank(u32 index) asm("GetWorldSpritePaletteBank");
+    // The final byte is retained by the resource; its role remains unknown.
+    virtual void SetSpritePaletteColors(u8 const * data, u32 palette_resource, u8 unk) asm("SetWorldSpritePaletteColors");
+    virtual EntityAuxiliarySprites * GetEntityAuxiliarySprites() asm("GetWorldEntityAuxiliarySprites");
+    virtual IndexedResourceArchive * vfunc_5C() asm("func_0801FC54");
+    virtual IndexedResourceArchive * vfunc_60() asm("func_0801FC48");
+    virtual IndexedResourceArchive * vfunc_64() asm("func_0801FC60");
+    virtual IndexedResourceArchive * vfunc_68() asm("GetWorldActorAnimationArchive");
+    virtual IndexedResourceArchive * vfunc_6C() asm("func_0801FC3C");
+    virtual IndexedResourceArchive * vfunc_70() asm("func_0801FC0C");
+    virtual IndexedResourceArchive * vfunc_74() asm("func_0801FC00");
+    virtual IndexedResourceArchive * vfunc_78() asm("func_0801FBF4");
+    virtual IndexedResourceArchive * vfunc_7C() asm("func_0801FBE8");
+    virtual void StartShipmentBoxDepositAnimation() asm("func_0801DD78");
+    virtual void PrepareClockMenuTransition() asm("func_0801DD18");
+    virtual void RestoreAfterClockMenu() asm("func_0801DD24");
+    virtual void PrepareCookingMenuTransition() asm("func_0801DD30");
+    virtual void RestoreAfterCookingMenu() asm("func_0801DD3C");
+    virtual void PrepareRecipeMenuTransition() asm("func_0801DD48");
+    virtual void RestoreAfterRecipeMenu() asm("func_0801DD54");
+    virtual void RefreshBarnFeedTrough(MaryBarnFeedTroughIndex trough) asm("func_0801DD60");
+    virtual void RefreshChickenFeedTrough(MaryChickenCoopFeedTroughIndex trough) asm("func_0801DD6C");
+    virtual MaryItemArticleId RemoveRecordPlayerAlbum() asm("RemoveRecordPlayerAlbum");
+    virtual MaryItemArticleId SwapRecordPlayerAlbum(MaryItemArticleId article) asm("SwapRecordPlayerAlbum");
+    virtual void RefreshChickenCoopIncubator(MaryChickenCoopIncubatorIndex incubator) asm("func_0801DE24");
+    virtual bool IsTimePaused() const asm("IsWorldTimePaused");
+    virtual void ChangeMap(Location const & location, bool unk);
+    virtual void RefreshMapTimeOfDayPalette() asm("RefreshWorldMapTimeOfDayPalette");
+    virtual void vfunc_BC(GameTime const & time) asm("func_0801EAA0");
+    virtual u32 vfunc_C0(Location const & location) asm("func_0801C29C");
+    virtual bool vfunc_C4(Location const & location, u32 level) asm("func_0801CA1C");
+    virtual bool vfunc_C8(Location const & location, u32 & item_code) asm("func_0801C49C");
+    virtual bool vfunc_CC(Location const & location, u32 & item_code) asm("func_0801CAD8");
+    virtual bool vfunc_D0(Location const & location, u32 level) asm("func_0801CEFC");
+    virtual bool vfunc_D4(Location const & location) asm("func_0801D23C");
+    virtual u32 vfunc_D8(Location const & location) asm("func_0801D3FC");
+    virtual void vfunc_DC(Location const & location, i32 id) asm("func_0801D4E0");
+    virtual void vfunc_E0(Location const & location, RucksackItem & output) asm("func_0801D5BC");
+    virtual void vfunc_E4(Location const & location, Article const & article) asm("func_0801D7B0");
+    virtual u32 vfunc_E8(Location const & location, Article const & article) asm("func_0801D88C");
+    virtual bool vfunc_EC(u32 map_id, u32 level) asm("func_0801CBB0");
+    virtual bool vfunc_F0(u32 map_id, u32 level) asm("func_0801CFB8");
+    virtual void vfunc_F4() asm("func_0801C3DC");
+    virtual void vfunc_F8() asm("func_0801C3E0");
+    virtual void RedrawRucksackShelfAfterPurchase() asm("func_0801DE30");
+    virtual void RedrawBlueFeatherShelfAfterPurchase() asm("func_0801DE3C");
+    virtual void vfunc_104() asm("func_0801DE48");
+    virtual bool vfunc_108(Vec2 const & position) asm("func_0801DEB4");
+    virtual void OpenDoor(MaryDoorIndex door_index) asm("SetWorldMapPatchFlag");
+    virtual void CloseDoor(MaryDoorIndex door_index) asm("ClearWorldMapPatchFlag");
+    virtual void vfunc_114() asm("CollectDailyShippingRevenue");
+    virtual void SetTelevisionProgram(MaryTelevisionProgramId program) asm("func_0801DC24");
+    virtual void EndTelevisionProgram() asm("func_0801DCA8");
+    virtual bool vfunc_120(Location const & location) asm("func_08019F38");
+    virtual void SuspendUpdates() asm("SuspendWorldUpdates");
+    virtual void ResumeUpdates() asm("ResumeWorldUpdates");
+    // Separate native bridges dispatch to the non-const and const GetEntity slots.
+    virtual AEntity * vfunc_12C(u32 id) asm("GetWorldEntity");
+    virtual AEntity * vfunc_130(u32 id) asm("GetWorldEntityConst");
+    virtual u32 vfunc_134(Location const & location, Box const & bounds) asm("FindNearestOverlappingWorldEntitySlot");
+    virtual void vfunc_138() asm("func_0801E084");
+    // Write the pending marker and its still-unknown accompanying byte.
+    virtual void SetPendingUnknownValue(u8 value) asm("SetWorldPendingUnknownValue");
+    virtual void QueueScript(GameSceneScriptRequest const & request, i32 queue_kind) asm("QueueWorldScript");
+    virtual GameStateClock const * GetClock() asm("GetWorldClock");
+    virtual u32 GetDefaultAudioSequence() asm("SelectWorldBackgroundAudio");
+    virtual GameSceneSongPlayerPool & GetSongPlayerPool();
+    virtual void LightFireplaceAtLocation(MaryMapId map);
+    virtual void SetVaseArticleId(MaryItemArticleId article);
+    virtual void vfunc_158(Location const & location, RucksackItem const & item) asm("func_0801EE00");
+    virtual void ShipProduct(Product const & product);
+    virtual void CreateEventIcon(MaryEventIconSlot slot, MaryMapSpaceX x, MaryMapSpaceY y, MaryEventIconLayer layer, u16 icon_id) asm("CreateWorldEventIcon");
+    virtual void RemoveEventIcon(MaryEventIconSlot slot) asm("RemoveWorldEventIcon");
 
     GameSceneWorld(GameStateSaveImage * save, GameScene * scene,
         GameSceneWorldMapOwner map, bool unk);
@@ -136,7 +213,6 @@ struct GameSceneWorld : GameObject {
     SmartPtr<GameSceneIndexedSprite> hill_seasonal_sprites[2];
     SmartPtr<GameSceneIndexedSprite> winter_and_fireplace_sprites[2];
     SmartPtr<GameSceneWeatherEffect> weather_effect;
-    SmartPtr<GameSceneWeatherEffect> & WeatherEffectOwner() { return weather_effect; }
     GameSceneWorldUnk1080Entry unk_1080[4];
     // Rebuild retained event icons from the scene controller during construction.
     GameSceneWorldEventIconSprites event_icon_sprites;
@@ -145,6 +221,7 @@ struct GameSceneWorld : GameObject {
     u8 unk_10C8;
     u8 unk_10C9;
 };
+
 
 typedef char GameSceneWorldSizeCheck[sizeof(GameSceneWorld) == 0x10CC ? 1 : -1];
 
@@ -209,9 +286,6 @@ typedef char GameSceneFarmPlotLocationSizeCheck[sizeof(GameSceneFarmPlotLocation
 typedef char GameSceneFarmPlotTileXCheck[offsetof(GameSceneFarmPlotLocation, tile_x) == 4 ? 1 : -1];
 typedef char GameSceneFarmPlotColumnCheck[offsetof(GameSceneFarmPlotLocation, column) == 8 ? 1 : -1];
 
-
-
-
 typedef char GameSceneWorldDataCheck[offsetof(GameSceneWorld, data) == 4 ? 1 : -1];
 typedef char GameSceneWorldMapCheck[offsetof(GameSceneWorld, data.map.value) == 4 ? 1 : -1];
 typedef char GameSceneWorldEntitiesCheck[offsetof(GameSceneWorld, data.entities) == 8 ? 1 : -1];
@@ -226,105 +300,96 @@ typedef char GameSceneWorldCalendarCheck[offsetof(GameSceneWorld, calendar) == 0
 typedef char GameSceneWorldPeriodCheck[offsetof(GameSceneWorld, time_of_day_period) == 0x1048 ? 1 : -1];
 typedef char GameSceneWorldPaletteBlendCheck[offsetof(GameSceneWorld, time_palette_blend) == 0x104C ? 1 : -1];
 
-
 EXTERN_C
 
-// Native virtual bridges at +0x12C/+0x130 dispatch through the selected
-// world's +0x40/+0x44 GetEntity implementation. Const qualifies the world;
-// the original return value is still an entity pointer.
-AEntity * GetWorldEntity(GameObject * world, u32 id);
-AEntity * GetWorldEntityConst(GameObject const * world, u32 id);
-
-// World virtual slot +0x13C. Preserve the native byte write and pending marker
-// without assigning an unverified gameplay meaning to either saved byte.
-void SetWorldPendingUnknownValue(GameSceneWorld & world, u8 value);
-u32 func_0801B5C0(GameSceneWorld & world, i32 kind);
-// Native palette callback at virtual slot +0x54. The final byte
-// is retained by the resource; its complete meaning is still unknown.
-void SetWorldSpritePaletteColors(GameSceneWorld & world,
-    u8 const * data, u32 palette_resource, u8 unk);
 bool TryGetFarmPlotAtLocation(GameSceneWorld & world, Location const & location,
     GameSceneFarmPlotLocation & output);
 u32 func_0801740C(FieldPlot const & plot);
 u32 func_0801746C(FieldPlot const & plot);
 bool func_080174C8(Farm & farm, FieldItemState & items, u32 index, i32 season,
     i32 power, bool hammer, GameSceneFieldItemToolResult & result);
-u32 func_0801C29C(GameSceneWorld & world, Location const & location);
-u32 func_0801D3FC(GameSceneWorld & world, Location const & location);
-void func_0801D4E0(GameSceneWorld & world, Location const & location, i32 id);
-void func_0801D5BC(GameSceneWorld & world, Location const & location,
-    RucksackItem & output);
 RucksackItem PickUpFieldItemAtLocation(GameSceneWorld & world, Location const & location);
-void func_0801D7B0(GameSceneWorld & world, Location const & location,
-    Article const & article);
-u32 func_0801D88C(GameSceneWorld & world, Location const & location,
-    Article const & article);
-// Native world refresh dependencies. Their bodies remain assembly; the typed
-// interfaces expose the world, entity slot and weather renderer kind.
-void RefreshWorldEntitySlot(GameSceneWorld & world, u32 slot);
+// Native world sprite refresh implementations.
 void SetWorldWeatherEffect(GameSceneWorld & world, GameSceneWeatherEffect::Kind kind);
 void RefreshWorldFireplaceSprite(GameSceneWorld & world);
 void RefreshWorldBeachHouseSprite(GameSceneWorld & world);
 
-// These two world implementations remain native; their real callers and
-// virtual slots are named without replacing their bodies with approximations.
-void CreateWorldEventIcon(GameSceneWorld & world, MaryEventIconSlot slot,
-    MaryMapSpaceX x, MaryMapSpaceY y, MaryEventIconLayer layer, u16 icon_id);
-void RemoveWorldEventIcon(GameSceneWorld & world, MaryEventIconSlot slot);
-void QueueWorldScript(GameSceneWorld & world,
-    GameSceneScriptRequest const & request, i32 queue_kind);
-void func_0801DC24(GameSceneWorld & world, u32 index);
-void func_0801DCA8(GameSceneWorld & world);
-void CollectDailyShippingRevenue(GameSceneWorld & world);
-void func_0801DD18(GameSceneWorld & world);
-void func_0801DD24(GameSceneWorld & world);
-void func_0801DD30(GameSceneWorld & world);
-void func_0801DD3C(GameSceneWorld & world);
-void func_0801DD48(GameSceneWorld & world);
-void func_0801DD54(GameSceneWorld & world);
-void func_0801DD60(GameSceneWorld & world, u32 index);
-void func_0801DD6C(GameSceneWorld & world, u32 index);
-void func_0801DD78(GameSceneWorld & world);
-void SetWorldMapPatchFlag(GameSceneWorld & world, u32 index);
-void ClearWorldMapPatchFlag(GameSceneWorld & world, u32 index);
-void func_0801DE24(GameSceneWorld & world, u32 unk);
-void func_0801DE30(GameSceneWorld & world);
-void func_0801DE3C(GameSceneWorld & world);
-void func_0801DE48(GameSceneWorld & world);
-MaryItemArticleId RemoveRecordPlayerAlbum(GameSceneWorld & world);
-MaryItemArticleId SwapRecordPlayerAlbum(GameSceneWorld & world, MaryItemArticleId article_id);
-bool func_08019F38(GameSceneWorld & world, Location const & location);
-i32 GetWorldMapPixelWidth(GameSceneWorld & world, u32 map);
-i32 GetWorldMapPixelHeight(GameSceneWorld & world, u32 map);
-MapTerrainView GetWorldMapTerrain(GameSceneWorld & world, u32 map_id);
-// Recovered native world callbacks. The duplicate slot readers retain
-// separate entries; neither adds bounds checking absent from the original.
-IndexedResourceArchive * func_0801FBDC(GameSceneWorld & world);
-IndexedResourceArchive * func_0801FBE8(GameSceneWorld & world);
-IndexedResourceArchive * func_0801FBF4(GameSceneWorld & world);
-IndexedResourceArchive * func_0801FC00(GameSceneWorld & world);
-IndexedResourceArchive * func_0801FC0C(GameSceneWorld & world);
-IndexedResourceArchive * GetWorldMapSpriteArchive(GameSceneWorld & world);
-IndexedResourceArchive * func_0801FC24(GameSceneWorld & world);
-IndexedResourceArchive * func_0801FC30(GameSceneWorld & world);
-IndexedResourceArchive * func_0801FC3C(GameSceneWorld & world);
-IndexedResourceArchive * func_0801FC48(GameSceneWorld & world);
-IndexedResourceArchive * func_0801FC54(GameSceneWorld & world);
-IndexedResourceArchive * func_0801FC60(GameSceneWorld & world);
-IndexedResourceArchive * GetWorldActorAnimationArchive(GameSceneWorld & world);
-GameSceneWorldMap * func_0801FC9C(GameSceneWorld & world);
-GameSceneWorldMap * func_0801FCA0(GameSceneWorld & world);
-EntityAuxiliarySprites * GetWorldEntityAuxiliarySprites(GameSceneWorld & world);
+void UpdateWorldBackgroundAudio(GameSceneWorld & world);
 
-GameStateClock const * GetWorldClock(GameSceneWorld const & world);
-void RemoveWorldEntity(GameSceneWorld & world, u32 index);
-bool IsWorldCameraMovementComplete(GameSceneWorld const & world);
-i32 GetWorldCameraY(GameSceneWorld const & world);
-i32 GetWorldCameraX(GameSceneWorld const & world);
-u32 GetWorldCurrentMapId(GameSceneWorld const & world);
-void PanWorldCameraTo(GameSceneWorld & world, i32 x, i32 y, u32 speed);
-void SetWorldCameraPosition(GameSceneWorld & world, i32 x, i32 y);
+// Still native: update/create the vase sprite in the farmhouse, or release it
+// outside that map. ITEM_ARTICLE_NONE leaves an existing vase sprite alone.
+void RefreshWorldVase(GameSceneWorld & world);
+
+TimeOfDayPeriod GetWorldTimeOfDayPeriod(GameSceneWorld & world, u32 hour);
+// Native palette/cache rebuild; force is a byte, not a new boolean restriction.
+void UpdateWorldTimeOfDayPalettes(GameSceneWorld & world, u32 hour, u32 minute, u8 force);
+
+// Release the old two owners first, then create the map/season variants.
+void RefreshWorldHillSeasonalSprites(GameSceneWorld & world);
+// The supported maps combine winter state and the three actual fireplace bits.
+void RefreshWorldWinterAndFireplaceSprites(GameSceneWorld & world);
 
 EXTERN_C_END
+
+// Transfer from the factory's concrete world slot to the base-world owner.
+struct GameSceneWorldOwnerTransfer {
+    GameSceneWorld * & source;
+    GameObject * value;
+    GameSceneWorldOwnerTransfer(GameSceneWorld * & input, GameObject * world)
+        : source(input), value(world)
+    {
+        // Cache the base pointer before releasing the concrete source slot.
+        input = nullptr;
+    }
+    GameObject * release() const
+    {
+        return value;
+    }
+};
+
+// Own the complete native world. Return adoption clears the source slot
+// through its eight-byte transfer record; assignment to the base owner uses
+// the separate transfer contract above.
+struct GameSceneWorldInstanceTransfer {
+    GameSceneWorld * & source;
+    GameSceneWorld * value;
+    GameSceneWorldInstanceTransfer(GameSceneWorld * & input, GameSceneWorld * world)
+        : source(input), value(world) {}
+    GameSceneWorld * release() const
+    {
+        GameSceneWorld * world = value;
+        source = nullptr;
+        return world;
+    }
+};
+
+struct GameSceneWorldInstanceOwner {
+    GameSceneWorld * value;
+    GameSceneWorld * release()
+    {
+        GameSceneWorld * world = value;
+        value = nullptr;
+        return world;
+    }
+    explicit GameSceneWorldInstanceOwner(GameSceneWorld * input = nullptr) : value(input) {}
+    GameSceneWorldInstanceOwner(GameSceneWorldInstanceOwner & other) : value(other.release()) {}
+    GameSceneWorldInstanceOwner(GameSceneWorldInstanceTransfer input) : value(input.release()) {}
+    operator GameSceneWorldInstanceTransfer()
+    {
+        return GameSceneWorldInstanceTransfer(value, value);
+    }
+    ~GameSceneWorldInstanceOwner() { delete value; }
+    operator GameSceneWorldOwnerTransfer()
+    {
+        return GameSceneWorldOwnerTransfer(value, value);
+    }
+};
+
+typedef char GameSceneWorldInstanceTransferSizeCheck[sizeof(GameSceneWorldInstanceTransfer) == 8 ? 1 : -1];
+typedef char GameSceneWorldInstanceTransferValueCheck[offsetof(GameSceneWorldInstanceTransfer, value) == 4 ? 1 : -1];
+
+typedef char GameSceneWorldInstanceOwnerSizeCheck[sizeof(GameSceneWorldInstanceOwner) == 4 ? 1 : -1];
+typedef char GameSceneWorldOwnerTransferSizeCheck[sizeof(GameSceneWorldOwnerTransfer) == 8 ? 1 : -1];
+typedef char GameSceneWorldOwnerTransferValueCheck[offsetof(GameSceneWorldOwnerTransfer, value) == 4 ? 1 : -1];
 
 #endif // GAME_WORLD_HH

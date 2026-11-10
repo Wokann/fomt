@@ -2,18 +2,31 @@
 #define FRISBEE_SCOREBOARD_HH
 
 #include "scene.hh"
+#include "fomt_constants.hh"
+
+#include "scene.hh"
 #include "hardware_context.hh"
-#include "hardware_music_player.hh"
+#include "hardware_sound.hh"
 #include "resource_archive.hh"
 #include "resource_handle.hh"
 #include "hardware_input.hh"
-#include "obj_palette_collection.hh"
+#include "obj_palette_pool.hh"
 #include "obj_tile_collection.hh"
+
+enum {
+    FRISBEE_SCOREBOARD_CONTESTANT_COUNT = 30,
+#if defined(REGION_JP)
+    FRISBEE_SCOREBOARD_CONTESTANT_NAME_WIDTH = 13,
+#else
+    FRISBEE_SCOREBOARD_CONTESTANT_NAME_WIDTH = 14,
+#endif
+};
+extern char const gText_FrisbeeScoreboard_ContestantNames[FRISBEE_SCOREBOARD_CONTESTANT_COUNT][FRISBEE_SCOREBOARD_CONTESTANT_NAME_WIDTH];
+extern u16 const gFrisbeeScoreboardCharacterCodes[];
 
 extern char const gText_Frisbee_TournamentScoreboard[];
 extern u8 const gUnk_08527094[];
 struct GameStateSaveImage;
-#pragma interface "frisbee_scoreboard.hh"
 
 // Each resource handle is followed by its native sprite parameters.
 // The final word is not initialized by this constructor; its meaning is unknown.
@@ -28,6 +41,29 @@ struct FrisbeeScoreboardSpriteState {
 typedef char FrisbeeScoreboardSpriteStateSizeCheck[sizeof(FrisbeeScoreboardSpriteState) == 0x34 ? 1 : -1];
 typedef char FrisbeeScoreboardSpriteParametersCheck[offsetof(FrisbeeScoreboardSpriteState, parameters) == 0x14 ? 1 : -1];
 typedef char FrisbeeScoreboardSpriteUnknownCheck[offsetof(FrisbeeScoreboardSpriteState, unk_30) == 0x30 ? 1 : -1];
+
+#pragma interface "frisbee_scoreboard.hh"
+struct FrisbeeScoreboardCore;
+
+// The scene destroys its continuation first, then this owned core.
+struct FrisbeeScoreboardCoreOwner {
+    explicit FrisbeeScoreboardCoreOwner(FrisbeeScoreboardCore * core);
+    ~FrisbeeScoreboardCoreOwner();
+    FrisbeeScoreboardCore * operator->() const;
+    FrisbeeScoreboardCore * value;
+private:
+    FrisbeeScoreboardCoreOwner(FrisbeeScoreboardCoreOwner const &);
+    FrisbeeScoreboardCoreOwner & operator=(FrisbeeScoreboardCoreOwner const &);
+};
+
+#pragma interface "frisbee_scoreboard.hh"
+struct FrisbeeScoreboardScene : AScene {
+    FrisbeeScoreboardScene(SceneTransitionOwner next, GameStateSaveImage * image);
+    virtual ~FrisbeeScoreboardScene();
+    virtual SceneTransitionOwner Run();
+    FrisbeeScoreboardCoreOwner core;
+    SceneTransitionOwner continuation;
+};
 
 // Unknown bytes below are runtime RAM, not recovered ROM data or padding.
 struct FrisbeeScoreboardCore : HardwareContext {
@@ -47,6 +83,8 @@ struct FrisbeeScoreboardCore : HardwareContext {
     i32 phase;
 };
 
+#pragma interface "frisbee_scoreboard.hh"
+
 // Place one pre-rendered glyph in the core's 32-column tilemap. JP glyphs
 // occupy two columns; western glyphs occupy one. Both use two tile rows.
 extern "C" void WriteFrisbeeScoreboardGlyphTiles(FrisbeeScoreboardCore * core,
@@ -64,41 +102,11 @@ typedef char FrisbeeScoreboardCoreOffset_unk_0B8[offsetof(FrisbeeScoreboardCore,
 typedef char FrisbeeScoreboardCoreOffset_scroll_y[offsetof(FrisbeeScoreboardCore, scroll_y) == 0x8B8 ? 1 : -1];
 typedef char FrisbeeScoreboardCoreOffset_phase[offsetof(FrisbeeScoreboardCore, phase) == 0x8BC ? 1 : -1];
 
-// The scene destroys its continuation first, then this owned core.
-struct FrisbeeScoreboardCoreOwner {
-    explicit FrisbeeScoreboardCoreOwner(FrisbeeScoreboardCore * core) : value(core) {}
-    ~FrisbeeScoreboardCoreOwner() { delete value; }
-    FrisbeeScoreboardCore * operator->() const { return value; }
-    FrisbeeScoreboardCore * value;
-private:
-    FrisbeeScoreboardCoreOwner(FrisbeeScoreboardCoreOwner const &);
-    FrisbeeScoreboardCoreOwner & operator=(FrisbeeScoreboardCoreOwner const &);
-};
 typedef char FrisbeeScoreboardCoreOwnerSizeCheck[sizeof(FrisbeeScoreboardCoreOwner) == 4 ? 1 : -1];
-
-
-struct FrisbeeScoreboardScene : AScene {
-    FrisbeeScoreboardScene(SceneTransitionOwner next, GameStateSaveImage * image);
-    virtual ~FrisbeeScoreboardScene();
-    virtual SceneTransitionOwner Run();
-    FrisbeeScoreboardCoreOwner core;
-    SceneTransitionOwner continuation;
-};
-
-struct FrisbeeScoreboardTransition : SceneTransition {
-    FrisbeeScoreboardTransition(SceneTransitionOwner next, GameStateSaveImage * image)
-        : continuation(next), save(image) {}
-    virtual SceneOwner CreateScene();
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
 
 typedef char FrisbeeScoreboardSceneSizeCheck[sizeof(FrisbeeScoreboardScene) == 12 ? 1 : -1];
 typedef char FrisbeeScoreboardSceneCoreCheck[offsetof(FrisbeeScoreboardScene, core) == 4 ? 1 : -1];
 typedef char FrisbeeScoreboardSceneContinuationCheck[offsetof(FrisbeeScoreboardScene, continuation) == 8 ? 1 : -1];
-typedef char FrisbeeScoreboardTransitionSizeCheck[sizeof(FrisbeeScoreboardTransition) == 12 ? 1 : -1];
-typedef char FrisbeeScoreboardTransitionContinuationCheck[offsetof(FrisbeeScoreboardTransition, continuation) == 4 ? 1 : -1];
-typedef char FrisbeeScoreboardTransitionSaveCheck[offsetof(FrisbeeScoreboardTransition, save) == 8 ? 1 : -1];
 
 // Direct ABI declaration of this compiler constructor, not a wrapper.
 // Retained until ordinary owner-return lowering matches the native factory.

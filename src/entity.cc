@@ -12,7 +12,7 @@ void AEntity::vfunc_10()
     if (game_object->vfunc_14() != location_map)
         return;
 
-    unk_10 = vfunc_30();
+    unk_10 = CreateVisualController();
 }
 
 void AEntity::vfunc_14()

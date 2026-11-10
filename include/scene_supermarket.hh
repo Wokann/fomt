@@ -4,15 +4,21 @@
 #include "scene.hh"
 #include "fomt_constants.hh"
 
+#include "scene.hh"
+#include "fomt_constants.hh"
+#include "shop_common.hh"
+#include "utility/fixed_str.hh"
+
 #pragma interface "scene_supermarket.hh"
 
 struct GameStateSaveImage;
+
 struct SupermarketSceneCore;
 struct SupermarketPurchaseSceneCore;
 
-// The native UI cores are opaque. Each scene owns its core and continuation;
-// each transition consumes a continuation and borrows the save image.
+// Native scene destructors release the continuation before deleting the core.
 struct SupermarketScene : AScene {
+    SupermarketScene(SceneTransitionOwner next, GameStateSaveImage * image);
     virtual ~SupermarketScene();
     virtual SceneTransitionOwner Run();
 
@@ -21,6 +27,7 @@ struct SupermarketScene : AScene {
 };
 
 struct SupermarketPurchaseScene : AScene {
+    SupermarketPurchaseScene(SceneTransitionOwner next, GameStateSaveImage * image, MarySupermarketItemId item);
     virtual ~SupermarketPurchaseScene();
     virtual SceneTransitionOwner Run();
 
@@ -28,25 +35,51 @@ struct SupermarketPurchaseScene : AScene {
     SceneTransitionOwner continuation;
 };
 
-struct SupermarketPurchaseTransition : SceneTransition {
-    SupermarketPurchaseTransition(SceneTransitionOwner next, GameStateSaveImage * image,
-        MarySupermarketItemId item)
-        : continuation(next), save(image), item_id(item) {}
-    virtual SceneOwner CreateScene();
+struct SupermarketSceneCore : ShopScreenCore {
+    SupermarketSceneCore(GameStateSaveImage * image);
+    virtual ~SupermarketSceneCore();
+    void UpdateDescription(u32 selection);
+    void Run();
 
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
+    // The native append path admits 99 bytes plus the terminating NUL.
+    FixedStr<99> description;
+    i32 phase;
+    bool has_purchased;
+};
+
+struct SupermarketPurchaseSceneCore : ShopScreenCore {
+    SupermarketPurchaseSceneCore(GameStateSaveImage * image, MarySupermarketItemId item);
+    virtual ~SupermarketPurchaseSceneCore();
+    void UpdateDescription(u32 selection);
+    void Run();
+
     MarySupermarketItemId item_id;
+    FixedStr<99> description;
+    i32 phase;
 };
 
-struct SupermarketTransition : SceneTransition {
-    SupermarketTransition(SceneTransitionOwner next, GameStateSaveImage * image)
-        : continuation(next), save(image) {}
-    virtual SceneOwner CreateScene();
+typedef char SupermarketCoreDescriptionCheck[offsetof(SupermarketSceneCore, description) == 0x6A4 ? 1 : -1];
+typedef char SupermarketCorePhaseCheck[offsetof(SupermarketSceneCore, phase) == 0x708 ? 1 : -1];
+typedef char SupermarketCorePurchasedCheck[offsetof(SupermarketSceneCore, has_purchased) == 0x70C ? 1 : -1];
+typedef char SupermarketCoreSizeCheck[sizeof(SupermarketSceneCore) == 0x710 ? 1 : -1];
+typedef char SupermarketPurchaseCoreItemCheck[offsetof(SupermarketPurchaseSceneCore, item_id) == 0x6A4 ? 1 : -1];
+typedef char SupermarketPurchaseCoreDescriptionCheck[offsetof(SupermarketPurchaseSceneCore, description) == 0x6A8 ? 1 : -1];
+typedef char SupermarketPurchaseCorePhaseCheck[offsetof(SupermarketPurchaseSceneCore, phase) == 0x70C ? 1 : -1];
+typedef char SupermarketPurchaseCoreSizeCheck[sizeof(SupermarketPurchaseSceneCore) == 0x710 ? 1 : -1];
 
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
+EXTERN_C
+
+// Direct references to the real GCC 2.9 continuation-slot constructor ABI.
+SupermarketScene * __16SupermarketSceneG20SceneTransitionOwnerP18GameStateSaveImage(
+    void * object, SceneTransition ** next, GameStateSaveImage * image);
+SupermarketPurchaseScene * __24SupermarketPurchaseSceneG20SceneTransitionOwnerP18GameStateSaveImage21MarySupermarketItemId(
+    void * object, SceneTransition ** next, GameStateSaveImage * image, MarySupermarketItemId item);
+
+EXTERN_C_END
+
+#pragma interface "scene_supermarket.hh"
+
+#pragma interface "scene_supermarket.hh"
 
 typedef char SupermarketSceneSizeCheck[sizeof(SupermarketScene) == 12 ? 1 : -1];
 typedef char SupermarketSceneCoreCheck[offsetof(SupermarketScene, core) == 4 ? 1 : -1];
@@ -54,20 +87,35 @@ typedef char SupermarketSceneContinuationCheck[offsetof(SupermarketScene, contin
 typedef char SupermarketPurchaseSceneSizeCheck[sizeof(SupermarketPurchaseScene) == 12 ? 1 : -1];
 typedef char SupermarketPurchaseSceneCoreCheck[offsetof(SupermarketPurchaseScene, core) == 4 ? 1 : -1];
 typedef char SupermarketPurchaseSceneContinuationCheck[offsetof(SupermarketPurchaseScene, continuation) == 8 ? 1 : -1];
-typedef char SupermarketPurchaseTransitionSizeCheck[sizeof(SupermarketPurchaseTransition) == 16 ? 1 : -1];
-typedef char SupermarketPurchaseTransitionItemCheck[offsetof(SupermarketPurchaseTransition, item_id) == 12 ? 1 : -1];
-typedef char SupermarketTransitionSizeCheck[sizeof(SupermarketTransition) == 12 ? 1 : -1];
 
-EXTERN_C
 
-// Native modal loops and constructors. Construction consumes *continuation.
-void RunSupermarketSceneCore(SupermarketSceneCore * core);
-void RunSupermarketPurchaseSceneCore(SupermarketPurchaseSceneCore * core);
-SupermarketScene * ConstructSupermarketScene(void * object, SceneTransition ** continuation,
-    GameStateSaveImage * save);
-SupermarketPurchaseScene * ConstructSupermarketPurchaseScene(void * object,
-    SceneTransition ** continuation, GameStateSaveImage * save, MarySupermarketItemId item_id);
+// Both catalogs store an item identifier and price. The seed menu uses
+// ToolUi; the separate grocery purchase flow uses FoodUi and MarySupermarketItemId.
+struct SupermarketCatalogEntry
+{
+    u32 item_id;
+    u32 price;
+};
 
-EXTERN_C_END
+extern SupermarketCatalogEntry const gSupermarketCropSeedCatalog[];
+extern SupermarketCatalogEntry const gSupermarketFoodCatalog[];
+
+extern char const gText_Supermarket_EquipmentCapacityFull[];
+extern char const gText_Supermarket_BlankLinePair[];
+extern char const gText_Supermarket_InsufficientGold[];
+extern char const gText_Supermarket_ThankYou[];
+extern char const gText_Supermarket_PurchaseConfirmation[];
+extern char const gText_Supermarket_PurchaseMorePrompt[];
+extern char const gText_Supermarket_EquipmentDelivery[];
+extern char const gText_Supermarket_FoodDelivery[];
+extern char const gText_Supermarket_FoodPurchaseConfirmation[];
+
+#if defined(REGION_JP)
+extern char const gText_Supermarket_EquipmentDeliveryPartial[];
+extern char const gText_Supermarket_FoodDeliveryPartial[];
+#else
+// The US-family ROMs reuse this one object for both shop flows.
+extern char const gText_Supermarket_DeliveryPartial[];
+#endif
 
 #endif // SCENE_SUPERMARKET_HH

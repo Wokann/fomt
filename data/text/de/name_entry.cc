@@ -15,6 +15,3 @@ char const gText_Possessive_Child[] =
 
 char const gText_Possessive_Player[] =
     "Dein";
-
-char const gCppRuntimeBadAlloc_PossessiveLabelsTrailer[] =
-    "bad_alloc";

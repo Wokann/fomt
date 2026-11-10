@@ -6,7 +6,7 @@
 #include "actor.hh" // TODO: move Location
 #include "smart_ptr.hh"
 #include "unknown_types.hh"
-#include "entity_sprite.hh"
+#include "scene_sprite.hh"
 
 // The scene supplies the input object; the world adds a zero-or-one minute tick.
 // Native world/entity callers copy this pointer word and read the flag at +4.
@@ -37,6 +37,10 @@ typedef char EntityDrawContextSizeCheck[sizeof(EntityDrawContext) == 16 ? 1 : -1
 typedef char EntityDrawBufferCheck[offsetof(EntityDrawContext, buffer) == 8 ? 1 : -1];
 typedef char EntityDrawCameraCheck[offsetof(EntityDrawContext, camera_x) == 12 ? 1 : -1];
 
+struct AEntity;
+
+#include "entity_visual_controller.hh"
+
 struct AEntity
 {
     AEntity(GameObject * game_object, Location const & location);
@@ -51,7 +55,7 @@ struct AEntity
     /* vt+24 */ virtual void ResumeNormalUpdates();
     /* vt+28 */ virtual bool IsNormalUpdateSuspended() const;
     /* vt+2C */ virtual void UpdateWhileSuspended(EntityUpdateContext const & context);
-    /* vt+30 */ virtual EntityVisualController * vfunc_30() = 0;
+    /* vt+30 */ virtual EntityVisualController * CreateVisualController() = 0;
 
     void SetLocation(u32 map, i32 x, i32 y);
     Location GetLocation() const;

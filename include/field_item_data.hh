@@ -66,6 +66,5 @@ typedef char FieldItemRecordPositionCheck[offsetof(FieldItemRecord, x) == 8 ? 1 
 typedef char FieldItemInstanceExtraCheck[offsetof(FieldItemInstance, unk_0C) == 12 ? 1 : -1];
 
 extern FieldItemRecord const gFieldItemRecords[];
-extern char const gCppRuntimeBadAlloc_FieldItemRecordsTrailer[];
 
 #endif // FIELD_ITEM_DATA_HH

@@ -97,9 +97,3 @@ u32 func_080099EC(struct HardwareLinkedList * list)
 {
     return list->first == &list->sentinel;
 }
-
-u32 func_08009A2C(struct HardwareLinkBase * link)
-{
-    u32 value = (u32)link->previous_slot;
-    return ((0 - value) | value) >> 31;
-}

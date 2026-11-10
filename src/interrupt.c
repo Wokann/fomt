@@ -1,9 +1,6 @@
-#include "interrupt.hh"
+#include "interrupt.h"
 #include "gbaio.h"
 #include "gbasvc.h"
-
-u16 gInterruptNestingMasks[16];
-InterruptHandler gInterruptHandlers[16];
 
 void InitializeInterrupts(void)
 {

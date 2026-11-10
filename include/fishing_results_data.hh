@@ -90,6 +90,5 @@ extern char const gText_FishingRecord_Coelacanth[];
 extern char const gText_FishingRecord_Squid[];
 
 extern char const * const gFishingRecordNames[FISHING_RECORD_COUNT];
-extern char const gCppRuntimeBadAlloc_FishingResultsTrailer[];
 
 #endif // FISHING_RESULTS_DATA_HH

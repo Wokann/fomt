@@ -1,7 +1,8 @@
 #include "prelude.h"
+#pragma implementation "hardware_sound.hh"
 #include "hardware_sound.hh"
 
-#include "interrupt.hh"
+#include "interrupt.h"
 #include "gbaio.h"
 #include "m4a.h"
 
@@ -35,4 +36,216 @@ struct MusicPlayer * GetHardwareMusicPlayer(u32 index)
     if (index >= count)
         index %= count;
     return gMusicPlayerTable[index].music_player;
+}
+
+HardwareMusicPlayerSlot::HardwareMusicPlayerSlot(u8 index)
+{
+    value = GetHardwareMusicPlayer(index);
+}
+
+void HardwareMusicPlayerSlot::Start(u16 song_id)
+{
+    m4aMPlayStart(value, gSongTable[song_id].song);
+}
+
+void HardwareMusicPlayerSlot::StartIfChangedOrPaused(u16 song_id)
+{
+    struct Song * song = gSongTable[song_id].song;
+    struct MusicPlayer * player = value;
+    if (player->song != song || (player->status & MUSICPLAYER_STATUS_PAUSE) != 0)
+        m4aMPlayStart(player, song);
+}
+
+void HardwareMusicPlayerSlot::StartOrContinue(u16 song_id)
+{
+    struct Song * song = gSongTable[song_id].song;
+    struct MusicPlayer * player = value;
+    if (player->song != song)
+        m4aMPlayStart(player, song);
+    else if ((player->status & MUSICPLAYER_STATUS_PAUSE) != 0)
+        m4aMPlayContinue(player);
+}
+
+void HardwareMusicPlayerSlot::Stop()
+{
+    m4aMPlayStop(value);
+}
+
+void HardwareMusicPlayerSlot::Continue()
+{
+    m4aMPlayContinue(value);
+}
+
+void HardwareMusicPlayerSlot::FadeOut(u16 speed)
+{
+    m4aMPlayFadeOut(value, speed);
+}
+
+void HardwareMusicPlayerSlot::FadeOutTemporarily(u16 speed)
+{
+    m4aMPlayFadeOutTemporarily(value, speed);
+}
+
+void HardwareMusicPlayerSlot::FadeIn(u16 speed)
+{
+    m4aMPlayFadeIn(value, speed);
+}
+
+void HardwareMusicPlayerSlot::SetTempo(u16 tempo)
+{
+    m4aMPlayTempoControl(value, tempo);
+}
+
+void HardwareMusicPlayerSlot::SetVolume(u16 volume, u16 track_bits)
+{
+    m4aMPlayVolumeControl(value, track_bits, volume);
+}
+
+void HardwareMusicPlayerSlot::SetPitch(i16 pitch, u16 track_bits)
+{
+    m4aMPlayPitchControl(value, track_bits, pitch);
+}
+
+void HardwareMusicPlayerSlot::SetPan(i8 pan, u16 track_bits)
+{
+    m4aMPlayPanpotControl(value, track_bits, pan);
+}
+
+void HardwareMusicPlayerSlot::SetModulationDepth(u8 depth, u16 track_bits)
+{
+    m4aMPlayModDepthSet(value, track_bits, depth);
+}
+
+void HardwareMusicPlayerSlot::SetLfoSpeed(u8 speed, u16 track_bits)
+{
+    m4aMPlayLFOSpeedSet(value, track_bits, speed);
+}
+
+void HardwareMusicPlayerSlot::InitializeImmediately()
+{
+    m4aMPlayImmInit(value);
+}
+
+bool HardwareMusicPlayerSlot::IsUnpaused() const
+{
+    return (value->status & MUSICPLAYER_STATUS_PAUSE) == 0;
+}
+
+u16 HardwareMusicPlayerSlot::GetActiveTrackMask() const
+{
+    return value->status & MUSICPLAYER_STATUS_TRACK;
+}
+
+u8 HardwareMusicPlayerSlot::GetTrackCount() const
+{
+    return value->track_count;
+}
+
+u8 HardwareMusicPlayerSlot::GetPriority() const
+{
+    return value->priority;
+}
+
+u32 HardwareMusicPlayerSlot::GetClock() const
+{
+    return value->clock;
+}
+
+struct MusicPlayer * GetFirstHardwareMusicPlayer(void)
+{
+    HardwareMusicPlayerSlot player(0);
+    return player.value;
+}
+
+struct MusicPlayer * func_08008D10(void)
+{
+    // The original entry passes the count, whose modulo lookup selects 0.
+    // Keep this distinct from the preceding entry's direct zero index.
+    HardwareMusicPlayerSlot player(NUM_MUSIC_PLAYERS);
+    return player.value;
+}
+
+void func_08008D2C(u32 * value)
+{
+    *value += 0x40;
+}
+
+void func_08008D34(u32 * value)
+{
+    *value -= 0x40;
+}
+
+HardwareMusicPlayerSlot GetHardwareSongPlayerSlot(u16 song_id)
+{
+    return HardwareMusicPlayerSlot(static_cast<u8>(gSongTable[song_id].ms));
+}
+
+u8 GetHardwareSongTrackCount(u16 song_id)
+{
+    return gSongTable[song_id].song->track_count;
+}
+
+u8 GetHardwareSongPriority(u16 song_id)
+{
+    return gSongTable[song_id].song->priority;
+}
+
+void EnableHardwareSoundVSync(void)
+{
+    m4aSoundVSyncOn();
+}
+
+void DisableHardwareSoundVSync(void)
+{
+    m4aSoundVSyncOff();
+}
+
+u32 IsHardwareSoundDmaEnabled(void)
+{
+    return (REG_DMA1CNT & ((u32)DMA_ENABLE << 16)) != 0;
+}
+
+void StartHardwareSong(u16 song_id)
+{
+    m4aSongNumStart(song_id);
+}
+
+void StartOrChangeHardwareSong(u16 song_id)
+{
+    m4aSongNumStartOrChange(song_id);
+}
+
+void StartOrContinueHardwareSong(u16 song_id)
+{
+    m4aSongNumStartOrContinue(song_id);
+}
+
+void StopHardwareSong(u16 song_id)
+{
+    m4aSongNumStop(song_id);
+}
+
+void StopAllHardwareMusicPlayers(void)
+{
+    m4aMPlayAllStop();
+}
+
+void ContinueHardwareSong(u16 song_id)
+{
+    m4aSongNumContinue(song_id);
+}
+
+void ContinueAllHardwareMusicPlayers(void)
+{
+    m4aMPlayAllContinue();
+}
+
+u8 GetHardwareMusicPlayerCount(void)
+{
+    return NUM_MUSIC_PLAYERS;
+}
+
+u8 GetHardwareSongCount(void)
+{
+    return (u16)_M4aNumSongs;
 }

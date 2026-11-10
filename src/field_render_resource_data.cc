@@ -1,83 +1,27 @@
 #include "field_render_resource_data.hh"
 #include "gbaio.h"
 
-u8 const gUnk_FieldRenderResource_158[] = {
-        0x01, 0x00, 0x00, 0x00,
-    };
-
-// Each raw run ends at the next named object. Keep unlabeled trailing zeroes
-// with the preceding referenced object rather than exporting false padding.
-u8 const gUnk_FieldRenderResource_159[] = {
-    0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00,
+// These are terrain lookup objects, not anonymous zero padding. The 2x3
+// blocked patch and twelve 3x5 clear patches address them through their
+// descriptors. The following object's alignment supplies each index tail.
+FieldRenderTileAttributes const gFieldRenderBlockedTileAttributes[] = {
+    { true, false, 0, 0, 0 },
 };
 
-u8 const gUnk_FieldRenderResource_177[] = {
-    0x00, 0x00, 0x00, 0x00,
+u8 const gFieldRenderBlockedPatchIndices[][2] = {
+    { 0, 0 },
+    { 0, 0 },
+    { 0, 0 },
 };
 
-u8 const gUnk_FieldRenderResource_178[] = {
-    0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00,
+FieldRenderTileAttributes const gFieldRenderClearTileAttributes[] = {
+    { false, false, 0, 0, 0 },
 };
 
-#include FOMT_TEXT_INCLUDE(field_render_resource_data_1.cc)
-
-// The three logical map layers use BG3, BG2 and BG1 respectively.
-u32 const gWorldMapViewportScreenBlocks[3] = { 28, 29, 30 };
-u32 const gWorldMapViewportPriorities[3] = { 3, 2, 1 };
-
-volatile u16 * const gWorldMapViewportControlRegisters[3] = {
-    &REG_BG3CNT, &REG_BG2CNT, &REG_BG1CNT,
-};
-
-volatile u16 * const gWorldMapViewportHorizontalScrollRegisters[3] = {
-    &REG_BG3HOFS, &REG_BG2HOFS, &REG_BG1HOFS,
-};
-
-volatile u16 * const gWorldMapViewportVerticalScrollRegisters[3] = {
-    &REG_BG3VOFS, &REG_BG2VOFS, &REG_BG1VOFS,
-};
-
-FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData = {
-        { 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25 },
-        { 0x10, 0x13, 0x16, 0x19 },
-        {
-            { 0x03, 0x08 },
-            { 0x03, 0x14 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-            { 0x00, 0x00 },
-        },
-        {
-            0x1A, 0x08, 0x1F, 0x08, 0x24, 0x08, 0x29, 0x08,
-            0x1A, 0x14, 0x1F, 0x14, 0x24, 0x14, 0x29, 0x14,
-            0x1A, 0x08, 0x1F, 0x08, 0x24, 0x08, 0x29, 0x08,
-            0x1A, 0x14, 0x1F, 0x14, 0x24, 0x14, 0x29, 0x14,
-            0x38, 0x08, 0x3D, 0x08, 0x42, 0x08, 0x47, 0x08,
-            0x38, 0x14, 0x3D, 0x14, 0x42, 0x14, 0x47, 0x14,
-        },
-        { 0x14, 0x19, 0x03, 0x00 },
-    };
-
-#include FOMT_TEXT_INCLUDE(field_render_resource_data_2.cc)
-
-// This packed nine-byte object follows the field-render resource data directly in ROM.
-FarmHouseStyleNibbleLookupData const gFarmHouseStyleNibbleLookupData = {
-    { 0x05, 0x06, 0x08 },
-    { 0x05, 0x06, 0x05 },
-    { 0x05, 0x01, 0x01 },
+u8 const gFieldRenderClearPatchIndices[][3] = {
+    { 0, 0, 0 },
+    { 0, 0, 0 },
+    { 0, 0, 0 },
+    { 0, 0, 0 },
+    { 0, 0, 0 },
 };

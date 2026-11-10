@@ -69,6 +69,7 @@ struct Coop
     };
 
     Coop();
+    Coop(Coop const & other);
 
     static Vec2 method_0800C554();
 

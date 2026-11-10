@@ -28,7 +28,13 @@
 
 #ifndef __ASSEMBLER__
 
-#include "new_game.hh"
+#include "new_game_ui.hh"
+#include "scene.hh"
+#include "hardware_context.hh"
+#include "hardware_sound.hh"
+#include "ui_state.hh"
+#include "unknown_types.hh"
+#include "utility/fixed_str.hh"
 
 typedef NewGameTextTileBuffer<NEW_GAME_IDENTITY_VALUE_WIDTH, NEW_GAME_IDENTITY_TILE_HEIGHT> NewGameIdentityValueBuffer;
 typedef NewGameTextTileBuffer<NEW_GAME_IDENTITY_LABEL_WIDTH, NEW_GAME_IDENTITY_TILE_HEIGHT> NewGameIdentityLabelBuffer;
@@ -63,12 +69,27 @@ enum NewGameIdentityField {
 typedef char NewGameIdentityFieldCountCheck[
     NEW_GAME_IDENTITY_DOG_NAME + 1 == NEW_GAME_IDENTITY_FIELD_COUNT ? 1 : -1];
 
+#pragma interface "new_game_identity.hh"
+struct NewGameIdentityCore;
+
+struct NewGameIdentityScene : AScene {
+    NewGameIdentityScene(char const * player_name, GameDate birthday,
+        char const * farm_name, char const * dog_name)
+        asm("ConstructNewGameIdentityScene");
+    virtual ~NewGameIdentityScene() asm("DestroyNewGameIdentityScene");
+    virtual SceneTransitionOwner Run() asm("RunNewGameIdentityScene");
+    u8 GetConfirmed() const asm("GetNewGameIdentitySceneConfirmed");
+    NewGameIdentityCore * core;
+};
+
 // JP stores values followed by labels in one equal-width array. Overseas
 // labels are wider and form their own array; following members use the
 // resulting C++ layout.
 // The unknown scalar and control-byte names retain their original US offsets.
-#pragma interface "new_game_identity.hh"
 struct NewGameIdentityCore : HardwareContext {
+    NewGameIdentityCore(char const * player_name, GameDate birthday,
+        char const * farm_name, char const * dog_name)
+        asm("InitializeNewGameIdentityCore");
     virtual ~NewGameIdentityCore() asm("DestroyNewGameIdentityCore");
 #if defined(REGION_JP)
     NewGameIdentityValueBuffer buffers[2 * NEW_GAME_IDENTITY_FIELD_COUNT];
@@ -85,17 +106,6 @@ struct NewGameIdentityCore : HardwareContext {
     u8 confirmed;
     u8 unk_1A77;
 };
-
-struct NewGameIdentityScene : AScene {
-    NewGameIdentityScene(char const * player_name, GameDate birthday,
-        char const * farm_name, char const * dog_name)
-        asm("ConstructNewGameIdentityScene");
-    virtual ~NewGameIdentityScene() asm("DestroyNewGameIdentityScene");
-    virtual SceneTransitionOwner Run() asm("RunNewGameIdentityScene");
-    u8 GetConfirmed() const asm("GetNewGameIdentitySceneConfirmed");
-    NewGameIdentityCore * core;
-};
-#pragma implementation
 
 
 #if defined(REGION_JP)
@@ -138,7 +148,7 @@ typedef char NewGameIdentitySceneCoreCheck[offsetof(NewGameIdentityScene, core) 
 
 EXTERN_C
 
-// Form construction uses C++; UI setup remains native assembly. The
+// Form construction and UI setup retain their native assembly. The
 // running core and scene below share their real allocation and return-owner ABI.
 // Both constructors pass the existing packed date by value: season in bits
 // 0..1 and the zero-based day in bits 2..6. Bit 7 is not part of the date.
@@ -158,7 +168,6 @@ void ResetNewGameIdentityControl(NewGameIdentityCore * core);
 void InitializeNewGameIdentityScreen(NewGameIdentityCore * core);
 void UpdateNewGameIdentityDialog(NewGameIdentityCore * core);
 extern int (*__vt_19NewGameIdentityCore[])(...);
-extern NewGameNativeVTableEntry __vt_20NewGameIdentityScene[4];
 
 // Native ABI declarations for the scene lifecycle and its byte-result accessors.
 NewGameIdentityScene * ConstructNewGameIdentityScene(NewGameIdentityScene * scene,
@@ -169,6 +178,16 @@ u8 GetNewGameIdentitySceneConfirmed(NewGameIdentityScene const * scene);
 u8 GetNewGameIdentityCoreConfirmed(NewGameIdentityCore const * core);
 
 EXTERN_C_END
+
+extern char const gText_NewGameIdentity_BirthMonthSuffix[];
+extern char const gText_NewGameIdentity_BirthDaySuffix[];
+extern char const gText_NewGameIdentity_PlayerName[];
+extern char const gText_NewGameIdentity_PlayerBirthday[];
+extern char const gText_NewGameIdentity_FarmName[];
+extern char const gText_NewGameIdentity_DogName[];
+extern char const gText_NewGameIdentity_Confirm[];
+extern char const gText_NewGameIdentity_Yes[];
+extern char const gText_NewGameIdentity_No[];
 
 #endif // !__ASSEMBLER__
 

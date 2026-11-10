@@ -3,7 +3,7 @@
 
 #include "prelude.h"
 #include "scene.hh"
-#include "game_state.hh"
+#include "unknown_types.hh"
 #include "utility/fixed_str.hh"
 
 #pragma interface "new_game_name_entry.hh"
@@ -20,8 +20,7 @@ typedef char NewGameNameEntrySceneSizeCheck[sizeof(NewGameNameEntryScene) == 4 ?
 // Each name is limited to twelve encoded bytes, with word-aligned members.
 struct NewGameFreshSaveTransition : SceneTransition {
     NewGameFreshSaveTransition(char const * farm, char const * player,
-        GameDate date, char const * dog)
-        : farm_name(farm), player_name(player), birthday(date), dog_name(dog) {}
+        GameDate date, char const * dog);
     virtual SceneOwner CreateScene();
 
     FixedStr<12> farm_name ALIGN(4);
@@ -36,6 +35,9 @@ typedef char NewGameFreshSavePlayerCheck[offsetof(NewGameFreshSaveTransition, pl
 typedef char NewGameFreshSaveBirthdayCheck[offsetof(NewGameFreshSaveTransition, birthday) == 0x24 ? 1 : -1];
 typedef char NewGameFreshSaveDogCheck[offsetof(NewGameFreshSaveTransition, dog_name) == 0x28 ? 1 : -1];
 
-#pragma implementation
+
+extern char const gText_NewGameIdentity_PlayerPrefix[];
+extern char const gText_NewGameIdentity_FarmPrefix[];
+extern char const gText_NewGameIdentity_DogPrefix[];
 
 #endif // NEW_GAME_NAME_ENTRY_HH

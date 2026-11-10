@@ -4,6 +4,7 @@
 #include "prelude.h"
 #ifdef __cplusplus
 #include "hardware_linked_list.hh"
+#pragma interface "font_draw.hh"
 #endif
 
 // Queued tilemap fill. Width and height count tiles; row_stride counts u16
@@ -65,5 +66,8 @@ void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
     u8 const *string, i32 foreground, i32 background);
 
 EXTERN_C_END
+
+#ifdef __cplusplus
+#endif
 
 #endif // FONT_DRAW_HH

@@ -1,4 +1,5 @@
 #include "obj_palette_pool.hh"
+#include <new>
 
 ObjPalettePoolState * gObjPalettePool;
 
@@ -240,20 +241,3 @@ u32 GetObjPaletteCapacity(void)
 }
 
 EXTERN_C_END
-
-// The original shared helper lives later in the linkonce code area, rather
-// than beside the pool's lifetime and reservation entries above.
-EC SECTION(".text.obj_palette_free_list") ObjPalettePoolEntry * InitializeObjPaletteFreeList(
-    ObjPalettePoolEntry * entries, int count,
-    ObjPalettePoolEntry * tail)
-{
-    ObjPalettePoolEntry * cursor = entries + (count - 1);
-    cursor->next_free = tail;
-    while (cursor != entries)
-    {
-        ObjPalettePoolEntry * next = cursor;
-        --cursor;
-        cursor->next_free = next;
-    }
-    return cursor;
-}

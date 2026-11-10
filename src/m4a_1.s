@@ -101,12 +101,12 @@
     bx     r3
 
     .align 2, 0
-.Llt_SOUND_INFO_PTR:         .4byte SOUND_INFO_PTR
-.Llt_ID_NUMBER:              .4byte ID_NUMBER
-.Llt_SoundMainRam:           .4byte SoundMainRam + 1
-.Llt_REG_VCOUNT:             .4byte REG_VCOUNT
-.Llt_O_SoundInfo_pcm_buffer: .4byte O_SoundInfo_pcm_buffer
-.Llt_PCM_DMA_BUF_SIZE:       .4byte PCM_DMA_BUF_SIZE
+.Llt_SOUND_INFO_PTR:         .word SOUND_INFO_PTR
+.Llt_ID_NUMBER:              .word ID_NUMBER
+.Llt_SoundMainRam:           .word SoundMainRam + 1
+.Llt_REG_VCOUNT:             .word REG_VCOUNT
+.Llt_O_SoundInfo_pcm_buffer: .word O_SoundInfo_pcm_buffer
+.Llt_PCM_DMA_BUF_SIZE:       .word PCM_DMA_BUF_SIZE
 
     fn SoundMainRam_load
 
@@ -694,7 +694,7 @@
     endfn @ ldrb_r3_r2
 
     .align 2, 0
-.Llt_MPlayJumpTableTemplate: .4byte gMPlayJumpTableTemplate
+.Llt_MPlayJumpTableTemplate: .word gMPlayJumpTableTemplate
 
     fn ld_r3_tp_adr_i thumb
 
@@ -1447,9 +1447,9 @@ call_r3:
     bx     r3
 
     .align 2, 0
-lt_gClockTable:     .4byte gClockTable
-lt2_SOUND_INFO_PTR: .4byte SOUND_INFO_PTR
-lt2_ID_NUMBER:      .4byte ID_NUMBER
+lt_gClockTable:     .word gClockTable
+lt2_SOUND_INFO_PTR: .word SOUND_INFO_PTR
+lt2_ID_NUMBER:      .word ID_NUMBER
 
     endfn @ MPlayMain
 

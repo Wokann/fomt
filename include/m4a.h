@@ -417,6 +417,21 @@ void m4aMPlayPanpotControl(struct MusicPlayer * music_player, u16 track_bits, i8
 void m4aMPlayModDepthSet(struct MusicPlayer * music_player, u16 track_bits, u8 mod_depth);
 void m4aMPlayLFOSpeedSet(struct MusicPlayer * music_player, u16 track_bits, u8 lfo_speed);
 
+extern struct MusicPlayerTrack gMusicPlayerTrackA[];
+extern struct MusicPlayerTrack gMusicPlayerTrackB[];
+extern struct MusicPlayerTrack gMusicPlayerTrackC[];
+extern struct MusicPlayerTrack gMusicPlayerTrackD[];
+extern struct MusicPlayerTrack gMusicPlayerTrackE[];
+extern struct SoundInfo gSoundInfo;
+extern MPlayFunc gMPlayJumpTable[];
+extern struct CgbChannel gCgbChans[];
+extern struct MusicPlayer gMusicPlayerA;
+extern struct MusicPlayer gMusicPlayerB;
+extern struct MusicPlayer gMusicPlayerC;
+extern struct MusicPlayer gMusicPlayerE;
+extern u8 gMPlayMemAccArea[];
+extern struct MusicPlayer gMusicPlayerD;
+
 #ifdef __cplusplus
 }
 #endif

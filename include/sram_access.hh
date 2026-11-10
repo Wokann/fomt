@@ -2,7 +2,7 @@
 #define SRAM_ACCESS_HH
 
 #include "prelude.h"
-#include "interrupt.hh"
+#include "interrupt.h"
 
 EXTERN_C
 

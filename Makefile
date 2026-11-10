@@ -77,7 +77,7 @@ GFX_RANGE_VERIFY := tools/verify-gfx-range$(EXE)
 INCFLAGS     := $(foreach dir, $(INCLUDE_DIRS), -I "$(dir)")
 
 CPPFLAGS := $(INCFLAGS) -iquote $(BUILD_DIR) -I . -iquote . -iquote include -Wno-trigraphs -fno-exceptions -D$(REGION_DEFINE)=1
-CFLAGS   := -g -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm -fdata-sections
+CFLAGS   := -g -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm
 CXXFLAGS := -quiet -fno-exceptions -fno-rtti -fvtable-thunks $(CFLAGS)
 ASFLAGS  := $(INCFLAGS) -I . -I include -mcpu=arm7tdmi --defsym $(REGION_DEFINE)=1
 SCANINC_DEFINES := -D$(REGION_DEFINE) $(addprefix -U,$(filter-out $(REGION_DEFINE),REGION_JP REGION_US REGION_EU REGION_DE))
@@ -165,14 +165,14 @@ FOMT_TEXT_INCLUDE_LPAREN := (
 FOMT_TEXT_INCLUDE_RPAREN := )
 FOMT_TEXT_INCLUDE_REGEX_LPAREN := \(
 FOMT_TEXT_INCLUDE_REGEX_RPAREN := \)
-TEXT_FRAGMENT_REGION_INCLUDES := $(shell grep -RhoE '^#include FOMT_TEXT_INCLUDE$(FOMT_TEXT_INCLUDE_REGEX_LPAREN)[[:alnum:]_]+\.cc$(FOMT_TEXT_INCLUDE_REGEX_RPAREN)' $(SRC_DIR) | cut -d '$(FOMT_TEXT_INCLUDE_LPAREN)' -f2 | tr -d '$(FOMT_TEXT_INCLUDE_RPAREN)' | sed 's|^|data/text/$(TEXT_REGION)/|' | sort | uniq)
+TEXT_FRAGMENT_REGION_INCLUDES := $(shell grep -RhoE '^#include FOMT_TEXT_INCLUDE$(FOMT_TEXT_INCLUDE_REGEX_LPAREN)[[:alnum:]_]+\.cc$(FOMT_TEXT_INCLUDE_REGEX_RPAREN)' $(SRC_DIR) include | cut -d '$(FOMT_TEXT_INCLUDE_LPAREN)' -f2 | tr -d '$(FOMT_TEXT_INCLUDE_RPAREN)' | sed 's|^|data/text/$(TEXT_REGION)/|' | sort | uniq)
 TEXT_FRAGMENT_INCLUDES := $(TEXT_FRAGMENT_REGION_INCLUDES)
 TEXT_FRAGMENT_SOURCES := $(sort $(filter $(TEXT_FRAGMENT_CANDIDATES),$(TEXT_FRAGMENT_INCLUDES)))
 
 # The staff-credit source and the Reference Guide pages use their own visible
 # authoring formats.  The staff source is lowered in-place by its owning
 # src/staff_credits.cc unit; guide pages remain a generated aggregate source.
-STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits_1.cc
+STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits.cc
 
 REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE),$(wildcard data/text/$(TEXT_REGION)/*.cc))
 REGION_TEXT_ORDINARY_OBJS := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.o,$(REGION_TEXT_SOURCES))
@@ -250,21 +250,24 @@ $(MARY_SCRIPT_TABLE_OBJ): $(MARY_SCRIPT_TABLE_ASM)
 # fomt-text then lowers only its quoted game text to FOMT byte literals; it
 # leaves ALIGN(n), SECTION(...), structures, and pointer tables as C/C++.
 # fomt-preproc consumes the resulting source plus agbcc/agbcp assembly to
-# perform generic relocation repair and executable-section closing alignment.
+# normalize assembly syntax and data/executable-section alignment. The
+# compiler owns object definitions and their pointer relocations.
+# Preserve CPP line markers: agbcp uses the original file boundaries for
+# interface/implementation pragmas as well as source diagnostics.
 define FOMT_COMPILE_CPP
 @mkdir -p $(dir $(basename $@).fomt-preprocessed.cc)
-@$(CPP) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.cc
+@$(CPP) $(1) $(CPPFLAGS) $< > $(basename $@).fomt-preprocessed.cc
 @$(TEXT_TOOL) source $(TEXT_CHARMAP) $(GAME_REGION) $(basename $@).fomt-preprocessed.cc $(basename $@).fomt-text.cc $(FOMT_TEXT_SOURCE_ARGS)
-@($(CC1PLUS) $(CXXFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.cc || false)
+@$(CC1PLUS) $(CXXFLAGS) -o $(basename $@).s $(basename $@).fomt-text.cc
 @$(TEXT_PREPROC) asm $(basename $@).fomt-text.cc $(basename $@).s
 @$(AS) $(ASFLAGS) $(basename $@).s -o $@
 endef
 
 define FOMT_COMPILE_C
 @mkdir -p $(dir $(basename $@).fomt-preprocessed.c)
-@$(CPP) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.c
+@$(CPP) $(1) $(CPPFLAGS) $< > $(basename $@).fomt-preprocessed.c
 @$(TEXT_TOOL) source $(TEXT_CHARMAP) $(GAME_REGION) $(basename $@).fomt-preprocessed.c $(basename $@).fomt-text.c $(FOMT_TEXT_SOURCE_ARGS)
-@$(CC1) $(CFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.c
+@$(CC1) $(CFLAGS) -o $(basename $@).s $(basename $@).fomt-text.c
 @$(TEXT_PREPROC) asm $(basename $@).fomt-text.c $(basename $@).s
 @$(AS) $(ASFLAGS) $(basename $@).s -o $@
 endef
@@ -341,18 +344,143 @@ $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 	@echo "AS $<"
 	@$(AS) $(ASFLAGS) $< -o $@
 
-# Assembly sharing generated layout/size constants with C++. Preserve the
-# normal GAS include scan alongside CPP header discovery.
-CPP_ASM_SOURCES := asm/obj_tile_pool.s asm/obj_tile_collection.s asm/new_game_menu.s
-$(patsubst %.s,$(BUILD_DIR)/%.d,$(CPP_ASM_SOURCES)): $(BUILD_DIR)/%.d: %.s $(SCANINC) Makefile config.mk
-	@mkdir -p $(dir $@)
-	@$(SCANINC) -M $@ $(SCANINC_DEFINES) $(INCFLAGS) -I . -I include $<
-	@$(CPP) $(CPPFLAGS) -D__ASSEMBLER__ -x assembler-with-cpp $< -MM -MG -MP -MT $@ -MT $(@:.d=.o) >> $@
+# These classes have one definition owner and no separately retained weak code.
+# Keep their compiler-owned tables in the ordinary read-only section.
+$(BUILD_DIR)/src/scene.o \
+$(BUILD_DIR)/src/town_map_selection.o \
+$(BUILD_DIR)/src/scene_sprite_group.o \
+$(BUILD_DIR)/src/scene_sprite_indexed.o \
+$(BUILD_DIR)/src/frisbee_scoreboard_lifetimes.o \
+$(BUILD_DIR)/src/frisbee_lifetimes.o \
+$(BUILD_DIR)/src/horse_race_lifetimes.o \
+$(BUILD_DIR)/src/farm_status_screen_lifetimes.o \
+$(BUILD_DIR)/src/animal_festival_selection_lifetimes.o \
+$(BUILD_DIR)/src/new_game_birthday_input_lifetimes.o \
+$(BUILD_DIR)/src/farm_map_screen_lifetimes.o \
+$(BUILD_DIR)/src/records_screen_lifetimes.o \
+$(BUILD_DIR)/src/scroll_menu_lifetimes.o \
+$(BUILD_DIR)/src/staff_credits_lifetimes.o \
+$(BUILD_DIR)/src/town_map_lifetimes.o \
+$(BUILD_DIR)/src/scene_reference_page_lifetimes.o \
+$(BUILD_DIR)/src/script_engine_lifetimes.o \
+$(BUILD_DIR)/src/script_jump_table_search.o \
+$(BUILD_DIR)/src/farming_tutorial.o \
+$(BUILD_DIR)/src/farming_tutorial_transition_lifetimes.o \
+$(BUILD_DIR)/src/scene_gamecube_link_lifetimes.o \
+$(BUILD_DIR)/src/gamecube_link_scene_lifetimes.o \
+$(BUILD_DIR)/src/farming_tutorial_world_lifetimes.o \
+$(BUILD_DIR)/src/farming_tutorial_map_lifetimes.o \
+$(BUILD_DIR)/src/farming_tutorial_player_lifetimes.o \
+$(BUILD_DIR)/src/player_actor_lifetimes.o \
+$(BUILD_DIR)/src/npc_actor_lifetimes.o \
+$(BUILD_DIR)/src/scene_cooking_lifetimes.o \
+$(BUILD_DIR)/src/scene_calendar_lifetimes.o \
+$(BUILD_DIR)/src/scene_minigames.o \
+$(BUILD_DIR)/src/scene_minigames_lifetimes.o \
+$(BUILD_DIR)/src/scene_animal_care_minigame_lifetimes.o \
+$(BUILD_DIR)/src/scene_chicken_festival_lifetimes.o \
+$(BUILD_DIR)/src/scene_harvesting_minigame_lifetimes.o \
+$(BUILD_DIR)/src/scene_watering_minigame_lifetimes.o \
+$(BUILD_DIR)/src/event_state_search.o \
+$(BUILD_DIR)/src/harvest_sprite_target_search.o \
+$(BUILD_DIR)/src/hardware_linked_list.o \
+$(BUILD_DIR)/src/hardware_linked_list_lifetimes.o \
+$(BUILD_DIR)/src/hardware_sound_command_lifetimes.o \
+$(BUILD_DIR)/src/game_menu_lifetimes.o \
+$(BUILD_DIR)/src/game_menu_selection.o \
+$(BUILD_DIR)/src/ui_text_commands.o \
+$(BUILD_DIR)/src/scene_text_variable_lifetimes.o \
+$(BUILD_DIR)/src/hardware_blend.o \
+$(BUILD_DIR)/src/hardware_interrupt_guard.o \
+$(BUILD_DIR)/src/font_draw.o \
+$(BUILD_DIR)/src/scroll_state.o \
+$(BUILD_DIR)/src/game_object.o \
+$(BUILD_DIR)/src/entity.o \
+$(BUILD_DIR)/src/entity_actor.o \
+$(BUILD_DIR)/src/animal_actor_tables.o \
+$(BUILD_DIR)/src/animal_actor.o \
+$(BUILD_DIR)/src/harvest_sprite_actor.o \
+$(BUILD_DIR)/src/new_game_identity.o \
+$(BUILD_DIR)/src/new_game_name_input.o \
+$(BUILD_DIR)/src/wild_dog_actor.o \
+$(BUILD_DIR)/src/font_decimal.o \
+$(BUILD_DIR)/src/game_scene_controller.o \
+$(BUILD_DIR)/src/world_prop_entities.o \
+$(BUILD_DIR)/src/ui_text_window.o \
+$(BUILD_DIR)/src/scene_menu_transitions.o \
+$(BUILD_DIR)/src/intro_scene_factory.o \
+$(BUILD_DIR)/src/intro_scene_lifetimes.o \
+$(BUILD_DIR)/src/new_game_menu_lifetimes.o \
+$(BUILD_DIR)/src/new_game_menu_factory.o \
+$(BUILD_DIR)/src/new_game_name_entry_factory.o \
+$(BUILD_DIR)/src/new_game_name_entry_lifetimes.o \
+$(BUILD_DIR)/src/name_entry_lifetimes.o \
+$(BUILD_DIR)/src/town_map_transition_lifetimes.o \
+$(BUILD_DIR)/src/town_map_transition.o \
+$(BUILD_DIR)/src/scene_clock_transition_lifetimes.o \
+$(BUILD_DIR)/src/scene_clock_transition.o \
+$(BUILD_DIR)/src/game_scene_return.o \
+$(BUILD_DIR)/src/game_scene_return_lifetimes.o \
+$(BUILD_DIR)/src/gamecube_link_scene.o \
+$(BUILD_DIR)/src/new_game_identity_lifetimes.o \
+$(BUILD_DIR)/src/new_game_name_input_lifetimes.o \
+$(BUILD_DIR)/src/main_menu_widget_lifetimes.o \
+$(BUILD_DIR)/src/main_menu_widget.o: CXXFLAGS += -fno-weak
 
-$(patsubst %.s,$(BUILD_DIR)/%.o,$(CPP_ASM_SOURCES)): $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
-	@echo "AS $<"
-	@$(CPP) $(CPPFLAGS) -D__ASSEMBLER__ -x assembler-with-cpp $< -o $(basename $@).s
-	@$(AS) $(ASFLAGS) $(basename $@).s -o $@
+$(BUILD_DIR)/src/ui_state.o: CXXFLAGS += -fno-weak
+
+# Native standalone entries coexist with the callers' inline definitions.
+$(BUILD_DIR)/src/farm_map_screen_lifetimes.o: CXXFLAGS += -fno-implement-inlines
+$(BUILD_DIR)/src/animal_actor_lifetimes.o: CXXFLAGS += -fno-weak
+$(BUILD_DIR)/src/harvest_sprite_actor_lifetimes.o \
+$(BUILD_DIR)/src/world_prop_lifetimes.o: CXXFLAGS += -fno-weak -fno-implement-inlines
+
+
+$(BUILD_DIR)/src/hardware_blend_tables.o: CXXFLAGS += -fno-weak
+
+# These out-of-line definitions own their class tables without forcing inline members.
+$(BUILD_DIR)/src/game_scene.o \
+$(BUILD_DIR)/src/game_scene_tables.o \
+$(BUILD_DIR)/src/game_scene_state.o \
+$(BUILD_DIR)/src/game_scene_state_tables.o \
+$(BUILD_DIR)/src/game_scene_controller_tables.o \
+$(BUILD_DIR)/src/game_world_tables.o \
+$(BUILD_DIR)/src/game_world.o \
+$(BUILD_DIR)/src/game_world_interface.o \
+$(BUILD_DIR)/src/scene_sprite_tables.o \
+$(BUILD_DIR)/src/scene_sprite.o \
+$(BUILD_DIR)/src/intro_story_scene.o \
+$(BUILD_DIR)/src/resource_archive.o \
+$(BUILD_DIR)/src/hardware_manager_tables.o \
+$(BUILD_DIR)/src/hardware_context.o \
+$(BUILD_DIR)/src/hardware_context_tables.o \
+$(BUILD_DIR)/src/world_map_tables.o \
+$(BUILD_DIR)/src/saved_map_tree.o \
+$(BUILD_DIR)/src/shop_scene_tables.o \
+$(BUILD_DIR)/src/resource_sprite_renderer_tables.o \
+$(BUILD_DIR)/src/shop_common_tables.o \
+$(BUILD_DIR)/src/script_engine_base_tables.o \
+$(BUILD_DIR)/src/scene_gamecube_link.o \
+$(BUILD_DIR)/src/hardware_sound.o \
+$(BUILD_DIR)/src/ui_vcount.o \
+$(BUILD_DIR)/src/hardware_dma_copy.o \
+$(BUILD_DIR)/src/map_clock_status_lifetimes.o \
+$(BUILD_DIR)/src/entity_visual_controller.o \
+$(BUILD_DIR)/src/status_screen_transitions.o \
+$(BUILD_DIR)/src/world_ambient_behaviors.o \
+$(BUILD_DIR)/src/world_sprite_effects.o: CXXFLAGS += -fno-weak -fno-implement-inlines
+
+$(BUILD_DIR)/src/hardware_context_commands.o \
+$(BUILD_DIR)/src/hardware_dma_copy_commands.o \
+$(BUILD_DIR)/src/ui_text_window_commands.o \
+$(BUILD_DIR)/src/entity_actor_lifetimes.o: CXXFLAGS += -fno-weak
+$(BUILD_DIR)/src/world_map_command_lifetimes.o: CXXFLAGS += -fno-weak
+
+$(BUILD_DIR)/src/intro_story_lifetimes.o \
+$(BUILD_DIR)/src/name_entry.o: CXXFLAGS += -fno-weak
+
+$(BUILD_DIR)/src/resource_archive_provider.o \
+$(BUILD_DIR)/src/resource_archive_lifetimes.o: CXXFLAGS += -fno-weak
 
 # overrides for matching
 # IWRAM sorting is native ARM code, not Thumb. Use the installed ARM frontend
@@ -366,74 +494,9 @@ $(BUILD_DIR)/src/iwram_sort.o: $(ARM_CC1PLUS)
 $(BUILD_DIR)/src/m4a.o: CC1 := $(OLD_CC1)
 $(BUILD_DIR)/src/m4a.o: $(OLD_CC1)
 
-# Matched font-buffer helpers surround still-unmatched native compositors.
-# The linker orders compiler-owned function sections around their assembly.
-$(BUILD_DIR)/src/font_draw.o: CXXFLAGS += -ffunction-sections
-
-# JoyBus functions interleave with the native protocol state machine. Give its
-# real IWRAM variables BSS storage instead of linker-address aliases.
-$(BUILD_DIR)/src/joy_bus.o: CFLAGS += -ffunction-sections -fno-common
-
-# Saved-state and inventory lifetimes retain their native linkonce positions.
-# Use compiler-owned function sections, not source section attributes.
-$(BUILD_DIR)/src/game_state.o $(BUILD_DIR)/src/rucksack.o $(BUILD_DIR)/src/money_account.o $(BUILD_DIR)/src/farmer.o $(BUILD_DIR)/src/dog.o $(BUILD_DIR)/src/farm.o: CXXFLAGS += -ffunction-sections
-
-# Recovered scene, world and map functions surround still-native routines.
-# Keep each functional module at its original compiler-owned code positions.
-$(BUILD_DIR)/src/entity_location.o $(BUILD_DIR)/src/game_scene.o $(BUILD_DIR)/src/scene_clock.o $(BUILD_DIR)/src/scene_chicken_festival.o $(BUILD_DIR)/src/scene_horse_race.o $(BUILD_DIR)/src/scene_frisbee.o $(BUILD_DIR)/src/frisbee_scoreboard.o $(BUILD_DIR)/src/game_world.o $(BUILD_DIR)/src/scene_sprite.o $(BUILD_DIR)/src/scene_audio.o $(BUILD_DIR)/src/world_control.o $(BUILD_DIR)/src/world_lighting.o $(BUILD_DIR)/src/world_runtime.o $(BUILD_DIR)/src/world_map.o $(BUILD_DIR)/src/game_menu.o $(BUILD_DIR)/src/new_game_menu.o $(BUILD_DIR)/src/new_game_name_entry.o $(BUILD_DIR)/src/farming_tutorial.o $(BUILD_DIR)/src/name_entry.o $(BUILD_DIR)/src/ui_state.o $(BUILD_DIR)/src/intro_story_scene.o $(BUILD_DIR)/src/ui_vcount.o $(BUILD_DIR)/src/scroll_state.o: CXXFLAGS += -ffunction-sections
-
-# Recovered audio and player methods surround still-native entity routines.
-$(BUILD_DIR)/src/entity_audio.o $(BUILD_DIR)/src/player_actor.o $(BUILD_DIR)/src/player_sprite.o: CXXFLAGS += -ffunction-sections
-
-# Species health callbacks retain their distinct native function positions.
-$(BUILD_DIR)/src/livestock_actor.o: CXXFLAGS += -ffunction-sections
-
-# Resource accessors and later storage reservation retain compiler-owned positions.
-$(BUILD_DIR)/src/obj_palette_collection.o: CXXFLAGS += -ffunction-sections
-
-# Grid methods are interleaved with unrecovered actor routines in the ROM.
-$(BUILD_DIR)/src/mine_floor.o: CXXFLAGS += -ffunction-sections
-
-# Relative-facing conversion precedes the movement-bound-dependent selectors.
-$(BUILD_DIR)/src/actor_facing.o: CXXFLAGS += -ffunction-sections
-
-# Entity wrappers and their sunrise child operations surround native effects.
-$(BUILD_DIR)/src/entity_event_effects.o: CXXFLAGS += -ffunction-sections
-
-$(BUILD_DIR)/src/scene_text_variables.o: CXXFLAGS += -ffunction-sections
-
-$(BUILD_DIR)/src/scene_dialogue.o $(BUILD_DIR)/src/scene_supermarket.o $(BUILD_DIR)/src/scene_won_shop.o $(BUILD_DIR)/src/scene_carpenter_shop.o $(BUILD_DIR)/src/scene_blacksmith_shop.o $(BUILD_DIR)/src/scene_clinic_shop.o $(BUILD_DIR)/src/scene_yodel_ranch_shop.o $(BUILD_DIR)/src/scene_beach_cafe_shop.o $(BUILD_DIR)/src/scene_winery_shop.o $(BUILD_DIR)/src/scene_inn_shop.o $(BUILD_DIR)/src/scene_poultry_farm_shop.o $(BUILD_DIR)/src/scene_special_merchant_shop.o $(BUILD_DIR)/src/scene_gift_wrapping.o $(BUILD_DIR)/src/scene_reference_page.o $(BUILD_DIR)/src/scene_calendar.o $(BUILD_DIR)/src/scene_shelf.o $(BUILD_DIR)/src/scene_tool_chest.o $(BUILD_DIR)/src/scene_refrigerator.o $(BUILD_DIR)/src/scene_cooking.o $(BUILD_DIR)/src/scene_gamecube_link.o $(BUILD_DIR)/src/scene_harvest_sprite_minigames.o $(BUILD_DIR)/src/scene_rucksack.o $(BUILD_DIR)/src/town_map.o $(BUILD_DIR)/src/animal_festival.o $(BUILD_DIR)/src/staff_credits.o: CXXFLAGS += -ffunction-sections
-
-# The static table accessor and terrain query retain their native code positions.
-$(BUILD_DIR)/src/map_data.o: CXXFLAGS += -ffunction-sections
-
-# The HUD content destructor precedes still-native drawing/calendar code.
-# Its setting methods remain one contiguous run in their source order.
-$(BUILD_DIR)/src/map_clock_status.o $(BUILD_DIR)/src/hardware_dma_link.o: CXXFLAGS += -ffunction-sections
-
-# Calendar helpers and the transition lookup occupy separate native code runs.
-$(BUILD_DIR)/src/time_of_day.o: CXXFLAGS += -ffunction-sections
-
-# World-sprite resource setup and assignment occupy separate native code runs.
-$(BUILD_DIR)/src/world_sprite_effects.o: CXXFLAGS += -ffunction-sections
-
-# The native new-day operation occupies one independent code span.
-$(BUILD_DIR)/src/world_creation.o: CXXFLAGS += -ffunction-sections
-
-# The NPC constructor and partner queries occupy separate native code runs.
-$(BUILD_DIR)/src/npc_collection.o: CXXFLAGS += -ffunction-sections
-
-# Visiting-NPC callbacks retain their distinct native code positions.
-$(BUILD_DIR)/src/npc_schedule.o: CXXFLAGS += -ffunction-sections
-
-# Schedule initialization precedes the existing contiguous NPC method run.
-$(BUILD_DIR)/src/npc.o: CXXFLAGS += -ffunction-sections
-
-# Path searches occupy their original late-code positions, after NPC methods.
-$(BUILD_DIR)/src/npc_entity.o: CXXFLAGS += -ffunction-sections
-
-# The bounded work-target search occupies the original library-code run.
-$(BUILD_DIR)/src/harvest_sprite.o: CXXFLAGS += -ffunction-sections
+# JoyBus keeps its C operations and native protocol bodies in ROM order.
+# Its real IWRAM variables use BSS storage instead of linker-address aliases.
+$(BUILD_DIR)/src/joy_bus.o: CFLAGS += -fno-common
 
 # The original newlib string routines use the older C compiler with interwork.
 # Keep the ordinary C channel, including its generic zero-filled text tail.
@@ -443,7 +506,7 @@ $(BUILD_DIR)/src/libc_string.o: CFLAGS += -fno-builtin
 # The original SRAM library's RAM-copy loops and literal pools match at -O1.
 # Keep its SDK identification and compiler-generated address constants together
 # in default .rodata, as well as all six functions in physical .text order.
-$(BUILD_DIR)/src/libsram.o: CFLAGS := $(filter-out -O2 -fdata-sections,$(CFLAGS)) -O1
+$(BUILD_DIR)/src/libsram.o: CFLAGS := $(filter-out -O2,$(CFLAGS)) -O1
 
 clean:
 	@echo "RM $(ROM) $(ELF) $(MAP) $(BUILD_DIR)"

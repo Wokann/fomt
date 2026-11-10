@@ -9,7 +9,6 @@ EXTERN_C
 // three more zero words after that count.
 extern u32 const init_array[];
 
-extern char const gCppRuntimeBadAlloc_Crt0[];
 
 EXTERN_C_END
 

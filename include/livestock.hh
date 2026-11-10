@@ -40,6 +40,7 @@ struct Livestock : public Animal
 
     Livestock(char const * name, ActorLocation const & location, u32 age, u32 days_fed);
     Livestock(ActorLocation const & location, u32 age, u32 days_fed);
+    Livestock & operator=(Livestock const & other);
 
     u32 GetDaysFed() const;
     bool HasBeenFed() const;

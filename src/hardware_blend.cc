@@ -1,7 +1,6 @@
 #include "hardware_blend.hh"
 
-void * operator new(unsigned long);
-void operator delete(void *);
+#include <new>
 
 HardwareBlendController::HardwareBlendController(HardwareDisplayState * display)
     : state(new HardwareBlendState(display))
@@ -198,3 +197,99 @@ NAKED bool HardwareBlendController::Update()
         "    bx r1\n"
     );
 }
+
+i16 HardwareBlendController::GetStep() const
+{
+    return this->state->step;
+}
+
+bool HardwareBlendObject::Run()
+{
+    return blend.Update();
+}
+
+HardwareBlendObject::~HardwareBlendObject()
+{
+}
+
+u32 HardwareBlendObject::IsActive() const
+{
+    return blend.GetStep() != 0;
+}
+
+i16 HardwareBlendObject::GetStep() const
+{
+    return blend.GetStep();
+}
+
+i16 HardwareBlendObject::SetStep(i16 step)
+{
+    return blend.SetStep(step);
+}
+
+void HardwareBlendObject::End(i16 step, u32 mode, u32 mosaic)
+{
+    EndHardwareBlend(&blend, step, mode, mosaic);
+}
+
+void HardwareBlendObject::Begin(i16 step, u32 mode, u32 mosaic)
+{
+    BeginHardwareBlend(&blend, step, mode, mosaic);
+}
+
+HardwareDisplayState * HardwareBlendObject::SetDisplay(HardwareDisplayState * display)
+{
+    return blend.SetDisplay(display);
+}
+
+asm_unified(
+    ".pushsection .iwram, \"ax\", %progbits\n"
+    ".include \"asm/macro.inc\"\n"
+    "arm_func_start BlendRgb5PaletteBank\n"
+    "BlendRgb5PaletteBank:\n"
+    "    push {r4, r5, r6, r7, r8, sb, sl, fp, lr}\n"
+    "    and sb, r3, #0x1f\n"
+    "    add r8, sb, #1\n"
+    "    lsr r3, r3, #5\n"
+    "    and r3, r3, #0x1f\n"
+    "    add r6, r3, #1\n"
+    "    add sl, r0, #0x20\n"
+    "    mov r5, #0x7c000000\n"
+    "    add r5, r5, #0x1f0000\n"
+    "    lsr r4, r5, #0x10\n"
+    "    .Lauto_03000C54:\n"
+    "    ldr r7, [r2], #4\n"
+    "    and sb, r7, r5\n"
+    "    and r3, r7, #0x3e00000\n"
+    "    orr r3, r3, sb, lsr #16\n"
+    "    mul ip, r6, r3\n"
+    "    ldr fp, [r1], #4\n"
+    "    and sb, fp, r5\n"
+    "    and r3, fp, #0x3e00000\n"
+    "    orr lr, r3, sb, lsr #16\n"
+    "    and r3, r7, r4\n"
+    "    and r7, r7, #0x3e0\n"
+    "    orr r3, r3, r7, lsl #16\n"
+    "    mul sb, r6, r3\n"
+    "    mla ip, r8, lr, ip\n"
+    "    and r3, fp, r4\n"
+    "    and fp, fp, #0x3e0\n"
+    "    orr lr, r3, fp, lsl #16\n"
+    "    and r7, r5, ip, lsl #11\n"
+    "    lsr r3, ip, #5\n"
+    "    mla ip, r8, lr, sb\n"
+    "    and r3, r3, #0x3e00000\n"
+    "    orr r7, r7, r3\n"
+    "    and sb, r4, ip, lsr #5\n"
+    "    lsr r3, ip, #0x15\n"
+    "    and r3, r3, #0x3e0\n"
+    "    orr sb, sb, r3\n"
+    "    orr r7, r7, sb\n"
+    "    str r7, [r0], #4\n"
+    "    cmp r0, sl\n"
+    "    bne .Lauto_03000C54\n"
+    "    pop {r4, r5, r6, r7, r8, sb, sl, fp, lr}\n"
+    "    bx lr\n"
+    ".popsection\n"
+    ".thumb\n"
+);

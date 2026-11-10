@@ -4,15 +4,40 @@
 #include "prelude.h"
 #include "fomt_constants.hh"
 
+#include <string.h>
+
+// Registration holds at most three variable IDs. Only [values, values +
+// count) is live; the final two bytes are the list's natural alignment padding.
+// Copying neither clears inactive entries nor copies that padding.
+struct GameEventVariableList {
+    GameEventVariableList() : count(0) {}
+    GameEventVariableList(GameEventVariableList const & other) : count(0)
+    {
+        u32 const copied_count = other.count;
+        u16 const * const first = other.values;
+        u16 const * const last = first + copied_count;
+        if (first != last)
+            memmove(values, first, reinterpret_cast<u8 const *>(last) -
+                reinterpret_cast<u8 const *>(first));
+        count = copied_count;
+    }
+
+    u32 count;
+    u16 values[3];
+};
+
+typedef char GameEventVariableListSizeCheck[sizeof(GameEventVariableList) == 0xC ? 1 : -1];
+typedef char GameEventVariableListValuesCheck[offsetof(GameEventVariableList, values) == 4 ? 1 : -1];
+
 // Saved at +0x214C. Packed members follow the actual VarGet/VarSet
 // storage order and use the canonical fomt_constants.mary.h names.
 // Unknown fields remain unk; padding and native uninitialized flags
 // must not be silently cleared. All four regional layouts agree.
 struct GameEventState {
     GameEventState();
-    // Native copy construction copies only active registration IDs and saved
-    // fields; it leaves unk_0A and unused packed bits untouched. The body is
-    // still native assembly, not the compiler's implicit whole-member copy.
+    // Native copy construction follows the active list and named saved fields.
+    // Its body remains native until the containing save-image copy can produce
+    // the real C++ call chain; list and packed-field padding stay untouched.
     GameEventState(GameEventState const & other);
     bool HasRegisteredEvents() const;
     void RegisterEventVariable(u16 value);
@@ -21,9 +46,7 @@ struct GameEventState {
     void SetActiveRomanceEvent(u16 value);
     void ClearActiveRomanceEvent();
     // Three deduplicated event VARIABLE IDs; these are not script IDs.
-    u32 registered_variable_count;
-    u16 registered_variables[3];
-    u16 unk_0A; // Unclassified halfword, not initialized or copied.
+    GameEventVariableList registered_variables;
     // Separate from the three-entry registration list; FFFF means none.
     u16 active_romance_event;
     bool karen_purple_heart_event_choice : 1;
@@ -489,8 +512,8 @@ struct GameEventState {
 };
 
 typedef char GameEventStateSizeCheck[sizeof(GameEventState) == 0x80 ? 1 : -1];
-typedef char GameEventStateVariablesCheck[offsetof(GameEventState, registered_variables) == 4 ? 1 : -1];
-typedef char GameEventStateUnknownCheck[offsetof(GameEventState, unk_0A) == 0xA ? 1 : -1];
+typedef char GameEventStateVariableListCheck[offsetof(GameEventState, registered_variables) == 0 ? 1 : -1];
+typedef char GameEventStateVariablesCheck[offsetof(GameEventState, registered_variables) + offsetof(GameEventVariableList, values) == 4 ? 1 : -1];
 typedef char GameEventStateRomanceCheck[offsetof(GameEventState, active_romance_event) == 0xC ? 1 : -1];
 
 #endif // EVENT_STATE_HH

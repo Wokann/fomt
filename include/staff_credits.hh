@@ -1,6 +1,9 @@
 #ifndef STAFF_CREDITS_HH
 #define STAFF_CREDITS_HH
 
+#include "scene.hh"
+#include "fomt_constants.hh"
+
 #include "prelude.h"
 
 // fomt-text derives each aligned storage field and shared pointer from the
@@ -13,16 +16,23 @@ struct StaffCreditsTextStorage
 
 // Native scrolling code walks this null-terminated row-pointer table.
 extern char const * const gStaffCreditsLines[];
-extern char const gCppRuntimeBadAlloc_StaffCredits[];
 
-
-#include "game_scene.hh"
 #include "hardware_context.hh"
 #include "hardware_input.hh"
-#include "hardware_music_player.hh"
+#include "hardware_sound.hh"
 #include "font_draw.hh"
 #include "smart_ptr.hh"
 #pragma interface "staff_credits.hh"
+
+struct StaffCreditsCore;
+
+struct StaffCreditsScene : AScene {
+    StaffCreditsScene(SceneTransitionOwner next);
+    virtual ~StaffCreditsScene();
+    virtual SceneTransitionOwner Run();
+    SmartPtr<StaffCreditsCore> core;
+    SceneTransitionOwner continuation;
+};
 
 struct StaffCreditsCore : HardwareContext {
     StaffCreditsCore();
@@ -50,23 +60,9 @@ typedef char StaffCreditsCore714Check[offsetof(StaffCreditsCore, unk_714) == 0x7
 typedef char StaffCreditsCore71CCheck[offsetof(StaffCreditsCore, unk_71C) == 0x71C ? 1 : -1];
 typedef char StaffCreditsCoreLinesCheck[offsetof(StaffCreditsCore, lines) == 0x72C ? 1 : -1];
 
-struct StaffCreditsScene : AScene {
-    StaffCreditsScene(SceneTransitionOwner next);
-    virtual ~StaffCreditsScene();
-    virtual SceneTransitionOwner Run();
-    SmartPtr<StaffCreditsCore> core;
-    SceneTransitionOwner continuation;
-};
 typedef char StaffCreditsSceneSizeCheck[sizeof(StaffCreditsScene) == 12 ? 1 : -1];
 typedef char StaffCreditsSceneCoreCheck[offsetof(StaffCreditsScene, core) == 4 ? 1 : -1];
 typedef char StaffCreditsSceneContinuationCheck[offsetof(StaffCreditsScene, continuation) == 8 ? 1 : -1];
 
-struct StaffCreditsTransition : SceneTransition {
-    StaffCreditsTransition(SceneTransitionOwner next) : continuation(next) {}
-    virtual SceneOwner CreateScene();
-    SceneTransitionOwner continuation;
-};
-typedef char StaffCreditsTransitionSizeCheck[sizeof(StaffCreditsTransition) == 8 ? 1 : -1];
-#pragma implementation
 
 #endif // STAFF_CREDITS_HH

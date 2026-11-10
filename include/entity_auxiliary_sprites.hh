@@ -38,4 +38,5 @@ typedef char EntityAuxiliarySpritesIndexValuesCheck[offsetof(EntityAuxiliarySpri
 typedef char EntityAuxiliarySpritesFlagCheck[offsetof(EntityAuxiliarySprites, unk_9C) == 0x9C ? 1 : -1];
 typedef char EntityAuxiliarySpritesSizeCheck[sizeof(EntityAuxiliarySprites) == 0xA0 ? 1 : -1];
 
+
 #endif // ENTITY_AUXILIARY_SPRITES_HH

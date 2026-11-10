@@ -7,22 +7,6 @@ Farm::Farm(char const * name)
 {
 }
 
-// agbcp requires a mutable reference for primitive-array copy initialization.
-// This initializes only the destination storage; the source remains read-only.
-Farm::Farm(Farm const & other)
-    : name(other.name),
-      unk_0010_0(other.unk_0010_0),
-      has_horse(other.has_horse),
-      unk_0010_11(other.unk_0010_11),
-      unk_0010_12(other.unk_0010_12),
-      horse_storage(const_cast<HorseStorage &>(other.horse_storage)),
-      shipping_bin(other.shipping_bin),
-      farm_house(other.farm_house),
-      coop(other.coop),
-      barn(other.barn),
-      field(other.field)
-{
-}
 
 Vec2 Farm::smethod_08009ADC()
 {

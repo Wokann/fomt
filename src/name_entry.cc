@@ -1,19 +1,13 @@
 #include "prelude.h"
-#include "new_game_name_input.hh"
 #pragma implementation "name_entry.hh"
-#include "game_scene.hh"
 #include "name_entry.hh"
 
 #include FOMT_TEXT_INCLUDE(name_entry.cc)
 
-void GameScene::OpenNameEntry(MaryNameEntryKind kind, MaryNameEntryTargetIndex target_index)
-{
-    GameSceneState * current = state;
-    GameSceneResumeRequest request(GameSceneResumeRequest::AFTER_NAME_ENTRY);
-    SceneTransitionOwner next(new ReturnToGameScene(current->GetSave(), request));
-    current->pending_transition = new SavedNameEntryTransition(next, current->save, kind, target_index);
-    current->script_state = 0x18;
-}
+// Keep the actual keyboard and saved-image implementation APIs after labels.
+#include "new_game_name_input.hh"
+#include "game_scene.hh"
+#include "game_state.hh"
 
 SceneTransitionOwner SavedNameEntryScene::Run()
 {
@@ -59,9 +53,4 @@ SceneTransitionOwner SavedNameEntryScene::Run()
         return continuation;
     }
     return continuation;
-}
-
-SceneOwner SavedNameEntryTransition::CreateScene()
-{
-    return SceneOwner(new SavedNameEntryScene(continuation, save, kind, target_index));
 }

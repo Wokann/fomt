@@ -9,6 +9,8 @@
 #include "obj_tile_collection.hh"
 #include "world_runtime.hh"
 
+#pragma interface "world_sprite_effects.hh"
+
 struct WorldSpriteDrawBuffer;
 struct HardwareDmaQueue;
 
@@ -112,5 +114,10 @@ typedef char WorldSpriteEffectsStatePaletteSourceSizeCheck[sizeof(((WorldSpriteE
 
 typedef char WorldSpriteEffectsStateInstancesCheck[offsetof(WorldSpriteEffectsState, instances) == 0x368 ? 1 : -1];
 typedef char WorldSpriteEffectsSizeCheck[sizeof(WorldSpriteEffects) == 4 ? 1 : -1];
+
+EXTERN_C
+void SpawnWorldSpriteEffect(WorldSpriteEffects * effects, i32 x, i32 y, u32 kind);
+EXTERN_C_END
+
 
 #endif // WORLD_SPRITE_EFFECTS_HH

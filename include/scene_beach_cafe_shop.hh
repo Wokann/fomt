@@ -1,44 +1,119 @@
 #ifndef SCENE_BEACH_CAFE_SHOP_HH
 #define SCENE_BEACH_CAFE_SHOP_HH
 
-#include "game_scene.hh"
+#include "scene.hh"
+#include "fomt_constants.hh"
+
+struct GameStateSaveImage;
+#include "shop_common.hh"
 
 #pragma interface "scene_beach_cafe_shop.hh"
 
+struct BeachCafeShopOrder {
+    u32 icon_id;
+    u32 unk_04;
+    i32 stamina_change;
+    i32 unk_0C;
+};
+
+// The native return conversion retains both the source slot and its value.
+struct BeachCafeShopOrderTransfer {
+    BeachCafeShopOrder * & source;
+    BeachCafeShopOrder * value;
+    BeachCafeShopOrderTransfer(BeachCafeShopOrder * & input) : source(input), value(input) {}
+    BeachCafeShopOrder * release() const { source = nullptr; return value; }
+};
+
+struct BeachCafeShopOrderOwner {
+    BeachCafeShopOrder * value;
+    BeachCafeShopOrder * release() { BeachCafeShopOrder * result = value; value = nullptr; return result; }
+    explicit BeachCafeShopOrderOwner(BeachCafeShopOrder * input = nullptr) : value(input) {}
+    BeachCafeShopOrderOwner(BeachCafeShopOrderOwner & other) : value(other.release()) {}
+    BeachCafeShopOrderOwner(BeachCafeShopOrderTransfer transfer) : value(transfer.release()) {}
+    ~BeachCafeShopOrderOwner() { delete value; }
+    operator BeachCafeShopOrderTransfer() { return BeachCafeShopOrderTransfer(value); }
+};
+#pragma interface "scene_beach_cafe_shop.hh"
+
 struct BeachCafeShopSceneCore;
+
+struct BeachCafeShopSceneCoreOwner {
+    explicit BeachCafeShopSceneCoreOwner(BeachCafeShopSceneCore * input) : value(input) {}
+    ~BeachCafeShopSceneCoreOwner();
+    BeachCafeShopSceneCore * value;
+};
+
+#pragma interface "scene_beach_cafe_shop.hh"
 struct BeachCafeShopScene : AScene {
     BeachCafeShopScene(SceneTransitionOwner next, GameStateSaveImage * image);
     virtual ~BeachCafeShopScene();
     virtual SceneTransitionOwner Run();
+    BeachCafeShopOrderOwner TakeOrder();
 
-    GameSceneUiComponentOwner core;
+    BeachCafeShopSceneCoreOwner core;
     SceneTransitionOwner continuation;
 };
 
-struct BeachCafeShopTransition : SceneTransition {
-    BeachCafeShopTransition(SceneTransitionOwner next, GameStateSaveImage * image)
-        : continuation(next), save(image) {}
-    virtual SceneOwner CreateScene();
+struct BeachCafeShopSceneCore : ShopScreenCore {
+    BeachCafeShopSceneCore(GameStateSaveImage * image);
+    virtual ~BeachCafeShopSceneCore();
+    BeachCafeShopOrderOwner TakeOrder();
+    void UpdateDescription(u32 selection);
+    void Run();
 
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
+    i32 phase;
+    bool has_ordered;
+    BeachCafeShopOrderOwner order;
 };
+
+typedef char BeachCafeOrderSizeCheck[sizeof(BeachCafeShopOrder) == 16 ? 1 : -1];
+typedef char BeachCafeOrderOwnerSizeCheck[sizeof(BeachCafeShopOrderOwner) == 4 ? 1 : -1];
+typedef char BeachCafeOrderTransferSizeCheck[sizeof(BeachCafeShopOrderTransfer) == 8 ? 1 : -1];
+typedef char BeachCafeCorePhaseCheck[offsetof(BeachCafeShopSceneCore, phase) == 0x6A4 ? 1 : -1];
+typedef char BeachCafeCoreOrderedCheck[offsetof(BeachCafeShopSceneCore, has_ordered) == 0x6A8 ? 1 : -1];
+typedef char BeachCafeCoreOrderCheck[offsetof(BeachCafeShopSceneCore, order) == 0x6AC ? 1 : -1];
+typedef char BeachCafeCoreSizeCheck[sizeof(BeachCafeShopSceneCore) == 0x6B0 ? 1 : -1];
+
+#pragma interface "scene_beach_cafe_shop.hh"
+
+#pragma interface "scene_beach_cafe_shop.hh"
 
 typedef char BeachCafeShopSceneSizeCheck[sizeof(BeachCafeShopScene) == 12 ? 1 : -1];
 typedef char BeachCafeShopSceneCoreCheck[offsetof(BeachCafeShopScene, core) == 4 ? 1 : -1];
 typedef char BeachCafeShopSceneContinuationCheck[offsetof(BeachCafeShopScene, continuation) == 8 ? 1 : -1];
-typedef char BeachCafeShopTransitionSizeCheck[sizeof(BeachCafeShopTransition) == 12 ? 1 : -1];
 
 EXTERN_C
-
-// The existing zero-offset destruction prefix is typed; the native core is opaque.
-BeachCafeShopSceneCore * ConstructBeachCafeShopSceneCore(void * object, GameStateSaveImage * image);
-void RunBeachCafeShopSceneCore(BeachCafeShopSceneCore * core);
 
 // The real constructor's GCC 2.9 continuation-slot ABI, without a wrapper body.
 BeachCafeShopScene * __18BeachCafeShopSceneG20SceneTransitionOwnerP18GameStateSaveImage(
     void * object, SceneTransition ** next, GameStateSaveImage * image);
 
 EXTERN_C_END
+
+#pragma interface "scene_beach_cafe_shop.hh"
+
+
+// Run applies stamina_change to the farmer and copies the final fields to
+// BeachCafeShopOrder. The roles of the two remaining values are not yet established.
+struct BeachCafeShopMenuEntry
+{
+    u32 food_ui_id;
+    u32 price;
+    char const * description_override;
+    u32 uses_description_override;
+    i32 stamina_change;
+    i32 unk_14;
+    u32 unk_18;
+};
+
+extern BeachCafeShopMenuEntry const gBeachCafeShopMenu[];
+
+extern char const gText_BeachCafeShop_WaterDescription[];
+extern char const gText_BeachCafeShop_EmptyDescription[];
+extern char const gText_BeachCafeShop_SpaghettiDescription[];
+extern char const gText_BeachCafeShop_SnowConeDescription[];
+extern char const gText_BeachCafeShop_InsufficientGold[];
+extern char const gText_BeachCafeShop_NoOrder[];
+extern char const gText_BeachCafeShop_OrderComplete[];
 
 #endif // SCENE_BEACH_CAFE_SHOP_HH

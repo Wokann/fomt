@@ -1,4 +1,5877 @@
+## 四版统一源码构建全部匹配（1661–1724，2026-11-10）
+
+JP 单独推进期间的源码、头文件、真实编译单元、文本归属和普通 LDS 组织已整体同步到 US、EU、DE。海外文本、实际结构尺寸、独有入口和显示参数分别保留；没有把 JP 的差异数据覆盖到海外版。
+
+阶段 1721 使用同一份最终源码，在 WSL 依次执行四版正常 Make `-j16`。四个新生成的 ELF、map、ROM 均完成，所有 ROM 均为 8,388,608 字节，直接与对应 baserom 全量比较：
+
+| 版本 | 完整 ROM 字节差异 | SHA-1（与各自 baserom 相同） |
+| --- | ---: | --- |
+| JP | 0 | `a655b2789aed14a6ac78c6075fbc533d3062dbe3` |
+| US | 0 | `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963` |
+| EU | 0 | `7ba1ec1e46ce424e3c6fd72e4e8d5e9eb5ede247` |
+| DE | 0 | `60f2a30b55c0e32754897b4d5df6ce06f8b71a37` |
+
+构建使用现有 CPP、文本转码、agbcc/agbcp、通用段末对齐、汇编器和链接器；最后由普通 objcopy/gbafix 处理镜像及 ROM 头。没有使用函数或资源输出补丁、绝对 ROM 地址补位、手写 bad_alloc 副本或新增逐符号 LDS 子节。本轮海外同步没有修改编译器或预处理器规则。
+
+同步涉及记录中的 200 份源码和 140 份头文件修改，以及海外文本文件的移动与合并。生命周期、共享模板、NPC 时刻表、场景入口和虚表归属采用已经验证的 JP 组织；正常 C++ 与完整符号化汇编共存。
+
+赛马兑换模块补清九个真实入口，原 JP 块内四个局部函数入口改为真实函数标签，海外奖品记录步长和绘制差异保留。补回海外独有的 GameScene 构造重载。生日输入保留各区原生完整构造指令，DE 的字形缓冲区及后续字段比 US/EU 大 24 字节。DE 动物悼念的 DeathHeader、DeathFarmPrefix 连续放在 game_scene 文本中，之后才是该编译单元自然生成的库内容；声明随归属移到 game_scene.hh。
+
+这些成果包含汇编边界及归属完善，不能全部计为新增 C/C++ 反编译量。全部未知 ROM 块和潜在原始引用的后续统一审计仍属于目标的下一阶段。
+
+证据：`full-build-1721/results.json`、四份 `global-report-<region>.json`、`source-sweep-inventory-1722.json`。通用编译器源码已在同级 agbcc/cp 本地提交 `b24094061ea76525206db659d6cdac853512bf27`，未推送。
+
+## JP 完整字节匹配；海外同步尚未验收（1634–1643）
+
+game_world 的既有世界创建入口及紧随其后的资源、实体、镜头接口归入 game_world_interface；世界状态更新和生命周期实现仍在 game_world。134个函数／35180字节及全部代码重定位在拆分前后完全一致，未增删调用；同名接口头只迁移既有外部声明。独立创建接口以原有 new 表达式自然生成库内容，world_sprite_effects的普通只读归属回到其世界效果代码所在模块群。没有手写bad_alloc、额外调用、无用依赖、特殊section、地址补位或输出修补；不声称已唯一还原历史文件名。
+
+WSL make -j16 阶段1640完整构建通过。JP输出与baserom_jp.gba的8388608字节全部一致，差异0字节，SHA-1均为a655b2789aed14a6ac78c6075fbc533d3062dbe3。全局符号核对中18544个直接配对符号地址全部相同；加入1203项既有有据更名后，所有19691个覆盖区间均原字节一致，没有重定位映射问题。
+
+JP编译匹配这一项已通过；US/EU/DE同步、四版解析层级及完整动态引用审计尚未完成，不能据此宣称整个目标完成。代码仍含正常符号化汇编。证据：world-interface-1634/checks-1636.json、world-interface-promotion-1638.json、full-build-1640/global-report.json。未提交、未推送。
+
+## JP 环境类型与创建接口的编译单元边界（1623–1633）
+
+world_ambient_sprites 的原17个函数按连续物理范围分为：精灵本体9项／2304字节、现有实体创建入口1项／108字节、动画接口7项／160字节。三份普通 .text 拼接后指令及重定位完整保持；原608字节 .rodata 仍属于精灵本体。新创建单元通过已有 C++ new 自然输出10字节库字面量，后续对象的正常对齐补足2字节；动画单元无只读输出。
+
+JP早段普通对象改由创建接口承接其库内容，world_runtime回到世界运行状态的数据邻域。只读数据没有复制，LDS没有加入地址、填充或子项。该组织由实际类型/API和物理连续性支持，不把匿名相同字面量的数量当作原始文件名的唯一证明。
+
+完整阶段1630后，0x08106FA0–0x08107024原版窗口中的生成缺口剩12字节；后续数据和IWRAM加载位置仍提前12字节。JP SHA尚未匹配。四版 .text 清单均使用这三个实际对象；海外 .rodata 归属同步及整版验收待JP完成。证据：ambient-api-units-1623/checks-1625.json、full-build-1630/global-report.json。
+
+## 编译器限定模板查找阶段；布局未改动（1571–1579）
+
+本阶段只修正普通命名空间函数模板的名称查找，不改变游戏源码定义顺序、LDS条目或资源布局。六个实际JP对象的普通只读内容和引用保持。最后整版布局报告仍为1555：0x08106FA0–0x08107024中的24字节生成归属尚未解决；未以插入副本、搬移无关对象或地址固定填补。新安装编译器尚未进行整版验收，海外三版也未新增构建结果。
+
+## JP 时段区间的正常库生成（1554–1565）
+
+time_of_day继续以一个普通.rodata对象链接，LDS不变。原矿洞年份上限操作归入日历接口后，正常算法依赖生成位于时段指针表前的12字节；只读完整范围0x08105244–0x08105A24、表中的符号引用及所有时段记录直接匹配baserom。原钓鱼边界表和166字节查询函数不变，不向钓鱼单元补无用new。
+
+类型声明与算法实现分离后，81个真实消费者／1203个完整函数检查通过。JP阶段1555确认该缺口关闭；只剩原版0x08106FA0–0x08107024范围内24字节的库生成归属，后续累计位移仍存在。海外匹配及整体动态边界审计尚未完成。
+
+## JP 地图位标志的原生类型与生成归属（1541–1546）
+
+map_patch_flags.cc继续独占普通.text/.rodata；没有修改LDS。MapPatchFlags的4字节存档字段恢复为数值bitset<14>，模块保留索引检查、置位、清位和整字清零行为。该库的实际算法实现自然生成开头12字节；完整只读窗口0x08103204–0x081032B8及其中28条真实表指针直接匹配baserom。表本体168字节和6个完整函数保持。
+
+75个依赖单元、1182个函数及其他数据／引用通过完整头文件传播核对。正式JP全局1542确认此缺口已关闭，剩钓鱼／时段12字节和地图查找／Error24字节。其他语言尚未通过本阶段整版验证；全ROM边界和原始引用总审计未完成。证据：bitset-promotion-1541.json、full-build-1542/global-report.json。
+
+## JP 食谱编译单元、模板重载及依赖范围收尾（1492–1522）
+
+优先处理JP的正常编译匹配，再将成立的修复同步验证US/EU/DE；统一审计在四版匹配后继续。本阶段没有推进汉化或扩展资源扫描。
+
+同级agbcc的cp分支以最小通用修改区分函数模板偏序与精确实例匹配：仅在偏序比较中的引用／值参数配对时执行必要归一化，保持两侧引用的cv规则和精确实例ABI。Thumb／ARM编译器均通过两个独立的普通模板重载示例，并通过未修改的install.sh安装。没有游戏符号、地址、字符串或输出指令序列补正。
+
+标准库fill_n的指针重载按元素类型传递整数值；非整数及volatile元素保留引用参数。局部检查发现旧编译器不能可靠地把不存在的类型成员作为候选替换失败，因此已用有效的引用参数回退，普通结构体／volatile元素示例可编译。没有将这个问题转嫁给预处理器或链接结果修补。
+
+食谱定义／求值与持久化库存按实际职责分为cooking_recipe.cc、cooking_recipe_inventory.cc，各自有同名接口。cooking_recipe_types.hh仅提供共享的存档记录布局和声明，完整的算法构造实现仍由cooking_recipe_inventory.hh提供。仅需类型布局／虚表的场景与存档类型接口不再解析算法构造体；实际构造单元仍保留实现。这项分离是实测依赖边界，不能通过抑制某个字符串代替。
+
+早期1497局部对照的嵌套引号include会优先读正式树，未完整覆盖候选头文件传播，故不能扩大解释为完整推广验证。1507／1514已复制完整候选头文件树，按真实每对象编译参数验证：79个受影响类型消费者、130个算法消费者的全部函数均保持，只有新游戏菜单、菜单跳转、烹饪生命周期三份额外库字面量各减少12字节。真实食谱区间0x08100C24–0x08103194的9,584字节通过直接baserom对照；食谱求值和库存的8个完整函数保持。
+
+最新正式JP整版1517已以WSL make -j16完成编译／链接／生成，compare因SHA-1不一致返回2。产物SHA-1为1765b3dbe9279f61799b55d5909ce104e1bc08d0，基准为a655b2789aed14a6ac78c6075fbc533d3062dbe3。19,747个有证据配对的符号区间中，19,082个字节相同，605个仅为已解释引用变化；没有剩余的无法解释等长字节差异、未解决已变化引用或重定位映射错误。原报告外44条重定位补核通过；IWRAM镜像2,120字节与baserom相同，执行基址不变。此结果不证明全ROM未知原始引用已经审计完毕。
+
+真正未关闭的布局缺口由四组72字节降为三组48字节：
+
+|基准JP区间|内容|未恢复字节|
+|---|---|---:|
+|0x081031FC–0x08103210|诅咒工具阈值之后、地图标志选择表之前的自然库字面量归属|12|
+|0x08105184–0x08105250|钓鱼区域边界表之后、时段表之前的自然库字面量归属|12|
+|0x08106FA0–0x08107024|地图渲染查找数据之后、Error之前的原编译单元／库字面量归属|24|
+
+全ROM原始差异字节很多来自这48字节累计移位，不能当作独立错误计数。尾部填充多48字节是结果，不是新的修复对象。const整数find候选改变原函数与事件实例且对类类型失败，已拒绝，未进入正式源码。19个未选择的SDK-only对象也不是可搬来补缺口的空白，未按数量插入LDS。
+
+海外三版共享源码／LDS已有对应食谱组织，但未通过本阶段整版验证，不能称为四版完成或进度已验收一致。下一步仍集中查清以上三组真实来源；不恢复手写bad_alloc、不补无用途的new、不填字节、不修改简洁LDS来硬贴地址。未提交或推送。
+
+证据：compiler-partial-order-1492、recipe-production-1501、recipe-unit-ownership-1495/checks-1496.json、recipe-header-closure-1507/checks-1509.json、algorithm-header-closure-1514/checks-1515.json、full-build-1517/global-report.json、uncovered-relocations-verified-1521.json。
+
+## 地图补片混合块边界整理（1464–1471）
+
+将旧 map_state_tilemap_templates.bin 的50,408字节按真实读取方式拆清为62段：46份u16背景地图、16份MapTilePatchFrameHeader与4bpp帧图块。JP、DE、US/EU共享分支共186处切片在原asm/data/graphics.s位置展开；保留原符号与顺序，没有新建资源目录、宏、LDS子项、构建工具或补丁。地图依照描述符宽高分行；10处共20字节尾零由.align 2, 0补齐。帧头保留实际每帧tile数，帧数由像素边界标签差除以每帧字节数计算。
+
+JP正式WSL make -j16图形对象通过：全部2,308,848字节.rodata、各分配段大小／对齐／重定位、全局符号及COMMON不变；62段50,408字节也通过原始符号地址直接与baserom对照。海外三版仅更新依赖清单，尚未重编对象，不能算作海外验证通过。四版依赖清单与正式源码均不再引用旧bin，确认外部审计备份后移除该未用混合块。
+
+此前最后1个待定地址形数值0x08080999位于资源011的9 tiles × 2 frames像素中，经gMapTilePatch7及QueueMapTilePatch实际读取证明不是函数指针。319个有限候选均已定位存储类型；6个编码流候选仍未证明解码后无引用，其他未知、非对齐、算术或RAM引用也不能据此算作全部查清。16份帧图块仍为原位像素字节，尚未接入PNG编辑链。
+
+最新完整构建仍为1428，四组72字节运行库／布局缺口与SHA-1不匹配仍未解决；相同对象载荷未重复整版构建。本次未修改编译器／预处理器／LDS，未提交或推送。证据：native-template-slice-formats-1465.json、native-template-production-1466/actual-checks-1468.json、baserom-checks-1470.json、raw-address-classifications-1471.json。
+
+以下为本批切片的JP原ROM区间（末地址不含），不是当前1428链接地址；其余穿插资源未纳入本表。
+
+|原ROM起点|原ROM终点|符号|已确认格式|
+|---|---|---|---|
+|0x08464950|0x08464970|gUnk_08464950|u16地图 4×4|
+|0x08464970|0x08464FA0|gUnk_FieldRenderResource_134|u16地图 22×36|
+|0x08464FA0|0x084655D0|gUnk_FieldRenderResource_135|u16地图 22×36|
+|0x084655D0|0x08465C00|gUnk_FieldRenderResource_136|u16地图 22×36|
+|0x08465C00|0x08465EA8|gUnk_FieldRenderResource_128|u16地图 17×20|
+|0x08465EA8|0x08466150|gUnk_FieldRenderResource_129|u16地图 17×20|
+|0x08466150|0x08466180|gUnk_FieldRenderResource_139|u16地图 6×4|
+|0x08466180|0x084661B0|gUnk_FieldRenderResource_140|u16地图 6×4|
+|0x084661B0|0x08467534|gUnk_FarmHouseTilePatchResource_024|4字节帧头＋4bpp 52 tiles×3 frames|
+|0x08467534|0x084677DC|gUnk_FieldRenderResource_132|u16地图 17×20|
+|0x084677DC|0x08467A84|gUnk_FieldRenderResource_133|u16地图 17×20|
+|0x08467A84|0x08468E08|gUnk_FarmHouseTilePatchResource_026|4字节帧头＋4bpp 52 tiles×3 frames|
+|0x08468E08|0x0846904C|gUnk_FarmHouseTilePatchResource_013|4字节帧头＋4bpp 9 tiles×2 frames|
+|0x0846904C|0x08469150|gUnk_FarmHouseTilePatchResource_025|4字节帧头＋4bpp 2 tiles×4 frames|
+|0x08469150|0x08469170|gUnk_FieldRenderResource_211|u16地图 3×5，对齐2字节|
+|0x08469170|0x08469190|gUnk_FieldRenderResource_214|u16地图 3×5，对齐2字节|
+|0x08469190|0x084691B0|gUnk_FieldRenderResource_207|u16地图 3×5，对齐2字节|
+|0x084691B0|0x084691D0|gUnk_FieldRenderResource_210|u16地图 3×5，对齐2字节|
+|0x084691D0|0x08469654|gUnk_FarmHouseTilePatchResource_002|4字节帧头＋4bpp 12 tiles×3 frames|
+|0x08469654|0x08469830|gUnk_FieldRenderResource_038|u16地图 17×14|
+|0x08469830|0x08469A0C|gUnk_FieldRenderResource_039|u16地图 17×14|
+|0x08469A0C|0x08469BE8|gUnk_FieldRenderResource_040|u16地图 17×14|
+|0x08469BE8|0x08469CE4|gUnk_FieldRenderResource_030|u16地图 9×14|
+|0x08469CE4|0x08469DE0|gUnk_FieldRenderResource_031|u16地图 9×14|
+|0x08469DE0|0x08469EDC|gUnk_FieldRenderResource_032|u16地图 9×14|
+|0x08469EDC|0x0846A14C|gUnk_FieldRenderResource_012|u16地图 24×13|
+|0x0846A14C|0x0846A3BC|gUnk_FieldRenderResource_013|u16地图 24×13|
+|0x0846A3BC|0x0846A55C|gUnk_FieldRenderResource_006|u16地图 16×13|
+|0x0846A55C|0x0846A6FC|gUnk_FieldRenderResource_007|u16地图 16×13|
+|0x0846A6FC|0x0846A7CC|gUnk_FieldRenderResource_000|u16地图 8×13|
+|0x0846A7CC|0x0846A89C|gUnk_FieldRenderResource_001|u16地图 8×13|
+|0x0846A89C|0x0846AAE0|gUnk_FarmHouseTilePatchResource_000|4字节帧头＋4bpp 6 tiles×3 frames|
+|0x0846AAE0|0x0846B8E4|gUnk_FarmHouseTilePatchResource_007|4字节帧头＋4bpp 28 tiles×4 frames|
+|0x0846B8E4|0x0846BB4C|gUnk_FieldRenderResource_024|u16地图 22×14|
+|0x0846BB4C|0x0846BDB4|gUnk_FieldRenderResource_025|u16地图 22×14|
+|0x0846BDB4|0x0846BF04|gUnk_FieldRenderResource_018|u16地图 12×14|
+|0x0846BF04|0x0846C054|gUnk_FieldRenderResource_019|u16地图 12×14|
+|0x0846C054|0x0846C298|gUnk_FarmHouseTilePatchResource_011|4字节帧头＋4bpp 9 tiles×2 frames|
+|0x0846C298|0x0846C99C|gUnk_FarmHouseTilePatchResource_009|4字节帧头＋4bpp 14 tiles×4 frames|
+|0x0846C99C|0x0846D0C0|gUnk_FarmHouseTilePatchResource_004|4字节帧头＋4bpp 19 tiles×3 frames|
+|0x0846D0C0|0x0846D544|gUnk_FarmHouseTilePatchResource_003|4字节帧头＋4bpp 12 tiles×3 frames|
+|0x0846D544|0x0846D700|gUnk_FieldRenderResource_043|u16地图 17×13，对齐2字节|
+|0x0846D700|0x0846D8BC|gUnk_FieldRenderResource_044|u16地图 17×13，对齐2字节|
+|0x0846D8BC|0x0846DA78|gUnk_FieldRenderResource_045|u16地图 17×13，对齐2字节|
+|0x0846DA78|0x0846DB64|gUnk_FieldRenderResource_035|u16地图 9×13，对齐2字节|
+|0x0846DB64|0x0846DC50|gUnk_FieldRenderResource_036|u16地图 9×13，对齐2字节|
+|0x0846DC50|0x0846DD3C|gUnk_FieldRenderResource_037|u16地图 9×13，对齐2字节|
+|0x0846DD3C|0x0846DFAC|gUnk_FieldRenderResource_016|u16地图 24×13|
+|0x0846DFAC|0x0846E21C|gUnk_FieldRenderResource_017|u16地图 24×13|
+|0x0846E21C|0x0846E39C|gUnk_FieldRenderResource_010|u16地图 16×12|
+|0x0846E39C|0x0846E51C|gUnk_FieldRenderResource_011|u16地图 16×12|
+|0x0846E51C|0x0846E5DC|gUnk_FieldRenderResource_004|u16地图 8×12|
+|0x0846E5DC|0x0846E69C|gUnk_FieldRenderResource_005|u16地图 8×12|
+|0x0846E69C|0x0846E8E0|gUnk_FarmHouseTilePatchResource_001|4字节帧头＋4bpp 6 tiles×3 frames|
+|0x0846E8E0|0x0846F6E4|gUnk_FarmHouseTilePatchResource_008|4字节帧头＋4bpp 28 tiles×4 frames|
+|0x0846F6E4|0x0846F920|gUnk_FieldRenderResource_028|u16地图 22×13|
+|0x0846F920|0x0846FB5C|gUnk_FieldRenderResource_029|u16地图 22×13|
+|0x0846FB5C|0x0846FC94|gUnk_FieldRenderResource_022|u16地图 12×13|
+|0x0846FC94|0x0846FDCC|gUnk_FieldRenderResource_023|u16地图 12×13|
+|0x0846FDCC|0x08470010|gUnk_FarmHouseTilePatchResource_012|4字节帧头＋4bpp 9 tiles×2 frames|
+|0x08470010|0x08470714|gUnk_FarmHouseTilePatchResource_010|4字节帧头＋4bpp 14 tiles×4 frames|
+|0x08470714|0x08470E38|gUnk_FarmHouseTilePatchResource_005|4字节帧头＋4bpp 19 tiles×3 frames|
+
+## JP 初始化RAM对象边界与资源候选来源（1463）
+
+两处原汇编零字已恢复为正常源码对象，原有普通.data位置保持：
+
+| 对象 | 执行地址 | 原版加载地址 | 1428加载地址 | 大小 |
+| --- | --- | --- | --- | --- |
+| __new_handler | 0x030004C0 | 0x0877F640 | 0x0877F5F8 | 4 |
+| gAllocationFailureHandler | 0x03000CD4 | 0x0877FE54 | 0x0877FE0C | 4 |
+
+原版加载地址依据已经逐字节验证的IWRAM镜像同偏移关系。源码明确.data是为了保留实际初始化RAM归属，不是新增匹配子section。两个回调的C++与C链接规则分别保留；13函数和两个完整对象的所有分配段／重定位保持。当前整版仍少72字节，不能将这些加载地址当作最终匹配地址。
+
+本轮319项原始地址数值候选没有被直接当作指针转换。318项的存储来源已有证据，另1项位于graphics/map_state_templates/shared/map_state_tilemap_templates.bin，格式仍待继续解析。动画图块中的4项已由MapTilePatchFrameHeader及QueueMapTilePatch的4bpp拷贝规则确认为像素；原位字节尚未转为PNG，不假称已进入图形编辑链。图形／字体诊断对象与正式对象原字节、对齐及重定位保持，incbin来源清单见raw-address-classifications-1462.json。此为有限候选审计，不代表所有原生资源或隐含引用已经完成。
+
+## JP 当前模块与加载映射补核（1443）
+
+item.cc六处真实最小值操作现直接使用已包含的标准算法接口，本地重复模板已删除。54函数及整个29332字节只读段、所有其他分配段／对齐／重定位保持；定义顺序、文本归属和普通LDS不变。此次没有关闭四组72字节缺口。
+
+IWRAM实际输出段的2120字节已独立直接对照baserom；其执行基址0x03000490未变，当前ROM加载起点0x0877F5C8比原版0x0877F610提前72字节。其中11条BX标记、3条对象指针和2条ARM调用不应由于落在全局末尾不等长区间就视为未解析字节：现已分别按真实指令、RAM符号和执行地址证明。旧全局报告保留，补充证据为uncovered-relocations-verified-1442.json；不能将其扩大为全ROM无遗漏证明。
+
+实际工具链代码审查见stage-1443/toolchain-review.json。没有新增section、固定地址、伪别名、填充副本或输出补丁。普通主题归属／资源分类及四版完整验收仍未完成。
+
+## JP 指针查找与精灵模块正常只读依赖（1431）
+
+harvest_sprite及event_state的三参数查找调用、三个显式实例化现使用通用std::find裸指针重载。既有四参数类别实现不变；JP旧四参数入口继续保留原生代码，海外模板尚未验证。三个工作函数均维持原入口范围和原始指令／重定位：事件只读范围0x080E354C–0x080E35C0、事件可写范围0x080E35C0–0x080E3634、精灵目标0x080E3634–0x080E36D8。原型与模板类型确定真实函数身份，不使用源代码别名。
+
+harvest_sprite.o(.rodata)自然生成40字节输出，原始JP范围0x08103BD4–0x08103BFC，SDK／对齐后紧接真实小屋表。原普通LDS条目保持，无地址定位或子项。123个实际依赖／控制对象1936个完整函数与全部命名载荷保持，纯元数据输入未增加输出。两个查找实例化单元仍只链接原.text，其未引用的本地库字面量不进入ROM。
+
+1428整版仍剩四组72字节缺口及尾部补位，尚未SHA-1匹配。下方旧章节按历史阅读；当前结论以本节及full-build-1428/global-report.json为准。
+
+## JP 事件状态实现的普通只读输出（1415）
+
+src/event_state.cc已有事件变量删除／登记、状态初始化及复制功能，删除路径的有效操作为向左复制条目。真实std::copy调用经POD分派进入memmove，库内长度采用通用字节指针差。仅一处库表达式改变，没有游戏地址或对象名分支。所有123个实际依赖对象1949个完整函数与原代码／重定位保持。
+
+LDS在map_patch_flags.o(.rodata)与fishing_results_data.o(.rodata)之间加入event_state.o(.rodata)，与这三个已有.text模块的顺序一致；不新增文件、定位地址、子section或手工库文本。原0x081032B8–0x081032C4的10字节输出及自然对齐已经恢复。1412整版剩五组84字节缺口及尾部补位，尚未SHA-1匹配；相同匿名文本不足以唯一证明历史源码归属。
+
+## JP 精灵小屋位置表与读者同模块（1400）
+
+harvest_sprite.cc／harvest_sprite.hh现共同维护原小屋位置初始化函数、28字节gHarvestSpriteHutPositions及其真实记录类型。actor_runtime_data仅保留自身状态函数；原三参数工作目标查找未变。仅替换原普通.rodata输入的所属对象，不增加子section、地址定位或新模块。表的原始JP范围为0x08103BE0–0x08103BFC；这是baserom物理坐标，当前整版尚有累计布局偏移，不能读成当前map地址。
+
+78个实际依赖对象的1203个完整函数／308436字节代码保持，所有命名数据、分配段及COMMON保持。1397完整构建与1398全局报告通过对应一致性核查，但仍有六组96字节缺口及ROM尾部补位，SHA-1尚未匹配。1399实际输入图读取371个对象，唯一确认的表读取仍属于harvest_sprite；这不等于已经排除全ROM任意立即数地址。海外归属保持原状，待JP匹配后同步。
+
+## JP 姓名录入当前编译单元布局（1381）
+
+name_entry的轻量接口／六项实际文本在前，真实键盘、场景和存档实现依赖在后；原Run及ABI不变。scene_minigames源码不变，LDS仅增加其普通.rodata输入并遵从既有.text模块顺序，随后仍为name_entry.o(.rodata)。没有地址定位、子section或输出修补。
+
+0x0810494C–0x08104994的72字节整窗及六项提示原位置通过baserom核对，13个完整函数1768字节代码保持。1378整版报告确认对应长度区间关闭，剩六组96字节缺口与一处尾部补位；SHA-1仍未匹配。匿名同内容输出的确切历史归属并非单靠字节可唯一证明，仍区分布局验证与来源证据。
+
+## JP 文本输出与数字格式化当前模块（1369）
+
+`ui_text_rows.cc/.hh`维护前十个完整文本输出／输入／窗口方法；原逻辑元数据接口仍为ui_text_commands.hh，相关生命周期对象保持。`ui_state.cc/.hh`维护状态与选择行为，其真实UiStatePayload内联依赖及末尾独立入口的生成顺序未变。`decimal_text.cc/.hh`维护原两段完整字符串格式化函数及同名JP文本；`font_decimal.cc/.hh`保留tilemap数字命令及原32字节元数据。没有为排列插入汇编阶段或LDS细分项。
+
+0x080F9758–0x080F97DC的132字节按普通输入顺序：文本输出API自然库输出10字节、下一输入对齐2字节；数字文本39字节、下一输入对齐1字节；UI状态普通只读数据80字节（含自身自然输出、选择表及资源指针／数量）。整窗及其全部命名对象原位置已直接与baserom验证。两个资源入口仍是实际符号重定位。
+
+90个实际依赖对象1563个完整函数与所有命名载荷保持，1366完整JP报告剩8处布局／尾部区间，尚未SHA-1匹配。此前各段记录按历史阅读；本节以ui-text-owner-1360/checks-1362.json及full-build-1366/global-report.json为准。未修改海外版或工具链，未提交／推送。
+
+## JP 保存地图图形查询及真实分配API（1348–1357）
+
+保存地图尾部四个连续图形查询／传输入口共160字节移至`src/saved_map_graphics.cc`／`include/saved_map_graphics.hh`，原`src/world_saved_map.cc`保留前段19124字节。两张实际季节范围、双列查找表从纯数据文件归入新模块，相关声明及必要packed布局也由同名头文件维护。双列表由首个查询函数直接读取，季节表仍由保存地图前段读取；通过真实外部符号共享。新头文件只依赖基础类型／常量与前置声明，完整保存镜像、地图选择和DMA实现API放在物理上较早的数据定义之后。
+
+`ui_portrait.cc`原本已有两处真实C++ new表达式，现使用标准new声明。`farming_tutorial_world.cc`保留完整原生函数及其真实C++虚拟控制器分配定义，补齐原生DMA描述符构造、复制和扩展所需的既有API。没有添加假类型、假分配、假调用或无用途库依赖。两个旧数据所有者的全部具名对象、引用及数据保持；原Error／回退文本的直接调用和历史类型归属仍未查明，没有据相邻位置将它们改成编译器字符串。
+
+30个实际依赖对象、687个完整函数、133916字节代码通过局部及正式WSL对象核对。160字节拆出内容包含既有C++与原生汇编，不能计为新增四个高级语言反编译函数。现有GCC逻辑元数据归属不变，LDS只增加普通对象输入。114字节数据及自然输出前缀与baserom一致，随后由下一普通输入自然对齐；本组补回36字节库输出及对齐，原60字节缺口缩为24字节。三个匿名输出在原版中彼此同内容，不能仅凭字节重复确定每一份的历史编译单元；本次只证明实际源码API依赖与正常编译产物，不宣称该历史归属唯一成立。
+
+1354阶段JP完整构建及1355全局报告通过产物新鲜度检查，仍有9处长度／填充区间，其中8处库输出／布局缺口合计由156缩为120字节，另一处为ROM末尾累计补位；18956区间原字节一致、723区间引用变化已解释，未解释字节区间0、重定位映射问题0。11344字节元数据继续在0x080E4E0C–0x080E7A5C原位等于baserom。SHA-1尚未匹配：d858fbdf2df38a517d445fa0951020192b0afee3，对照a655b2789aed14a6ac78c6075fbc533d3062dbe3。原151份／现141份库字面量仅作观测，不按数量随意选择未链接对象。
+
+未修改编译器、预处理器、库、Make参数或输出，没有新增地址／子section补偿；海外原实现保持。未提交、未推送。证据：saved-graphics-api-1348/checks-1351.json；saved-graphics-production-1352/applied.json、actual-checks-1353.json；full-build-1354/global-report.json；layout-mechanisms-1356.json、remaining-boundary-readers-1356.json。后者已覆盖369个实际输入，两侧数据目标和第二跳数据引用均重新读取，仍不等于全部立即数组址均已证明。
+
+## JP 菜单面板／场景归属及整版验证（1337–1346）
+
+实际面板／图标类的完整前段实现（10504字节）及坐标、未知布局数组归入`src/game_menu_panels.cc`／`include/game_menu_panels.hh`。`src/game_menu.cc`／`include/game_menu.hh`保留从真实场景核心构造函数开始的9764字节实现、光标导航与状态说明文本。后续删除上下文中的原面板析构入口保持在原调用顺序；既有`game_menu.hh`／`game_menu_lifetimes.hh`逻辑元数据定义归属不变，没有按库字面量数量随意切函数。
+
+面板原生函数实际构造、复制及扩展DMA描述符队列，现使用既有的真实队列API依赖；场景使用自身保存镜像API，不再依赖不相关的新游戏菜单接口。没有新增无用途的new、类型、分配或调用。普通文本仍在场景源码按原顺序include `game_menu_1.cc`至`game_menu_4.cc`，面板没有另造文本文件。海外原实现保持。
+
+18个实际依赖对象、464个完整函数、134008字节代码及全部命名数据、元数据和COMMON核对通过。两份菜单对象合计20268字节代码不增不减；拆分改变的是49个实际ABS32 `.text`段跳表项的对象内坐标，按真实重定位解析后指向完全相同的指令。该解析只用于只读核验，没有修改编译输出或掩盖字节差异。736字节完整只读窗口0x08118A14–0x08118CF4与baserom逐字节一致，包含两处自然库输出、真实数组、文本及指针；靠源码／输入顺序和普通对齐获得。
+
+WSL正式`make -j16`对象全部分配段与候选一致。1343阶段完整JP构建生成新ELF/map/8MiB ROM，1344全局报告长度／填充区间由10降为9：18956个区间原字节一致、723个区间引用变化已解释，未解释字节区间0、重定位映射问题0。11344字节元数据继续在0x080E4E0C–0x080E7A5C原位与baserom一致。SHA-1仍未匹配：c75ee65683e8eb29a775d788932b21f07c2bb877，对照a655b2789aed14a6ac78c6075fbc533d3062dbe3。剩余为8个库输出／布局区间及ROM尾部累计差异，不把同内容字面量数量当作来源证明。
+
+此前钓鱼默认文本的唯一真实定义归属整理已纳入本次整版。动物／精灵钳制改写成标准min/max的外部探针因额外栈读写不匹配而拒绝，没有写入工程。未修改编译器、预处理器、库、Make参数或ROM输出；JP LDS仅在两个普通输出段各加一次面板对象。未提交、未推送。
+
+证据：menu-panel-owner-1337/checks-1339.json、text-reloc-detail-1340.json；menu-panel-production-1341/actual-checks-1342.json；full-build-1343/global-report.json；layout-mechanisms-1345.json、remaining-boundary-readers-1345.json。当前源／对象／整版产物一致。
+
+## JP 钓鱼默认文本归属整理（1330–1332）
+
+`gText_Fishing_NoCatch` 的唯一真实定义改由 `src/fishing.cc` include 同名 `data/text/jp/fishing.cc`；`include/fishing.hh` 只保留外部声明。文本仍为“なし”，没有改变内容、长度或物理顺序，也没有增加别名。实际 JP 依赖仅一个钓鱼对象。
+
+两个完整原生函数共1816字节保持；所有分配段的字节、尺寸及对齐不变。原本指向对象段起点的重定位改为指向真实全局文本符号，目标存储与加数等价。2030字节完整只读载荷直接匹配 baserom 的0x08104994–0x08105182（结束地址不包含）。WSL正式对象与已验证候选的分配段及重定位一致。未修改运行库生成来源，SDK字面量仍为原一份，不能将本项计为布局缺口修复。
+
+最新整版结论仍为1323报告的10处长度／填充差异，SHA-1未匹配。当前钓鱼对象比该整版ELF/map更新，后续统一构建前不混用它们进行全局验收。没有重启WSL，没有重复启动已结束的构建；未修改海外版、编译器、预处理器、LDS或构建参数，未提交、未推送。证据：fishing-text-owner-1327/checks-1329.json；fishing-text-production-1330/applied.json、actual-checks-1331.json。
+
+## JP 日历核心／场景与滚动菜单整版验证（1318–1325）
+
+日历的八个完整原生核心函数（5432字节）归入`src/scene_calendar_core.cc`／`include/scene_calendar_core.hh`，原有两个C++场景方法（100字节）保留在`src/scene_calendar.cc`／`include/scene_calendar.hh`。核心继续包含实际读取的保存镜像API，场景使用标准new声明进行现有的`new CalendarSceneCore`分配；没有加入日历不使用的DMA队列API，没有为输出字面量添加无用途的new头、类型或调用。完整932字节原生构造函数保留，没有使用未匹配的C++试验版本。
+
+核心按物理顺序include同名`scene_calendar_core_1.cc`、17项实际packed季节／日期表（34字节、ALIGN(1)）、`scene_calendar_core_2.cc`。场景段尾的单份回退文本使用同名`data/text/jp/scene_calendar.cc`，保留原“なし”及原符号；当前未建立其直接src读取，不臆测其精确历史类归属或将其改称编译器字符串。旧JP的scene_calendar_1/_2/_3已移动，海外原实现保持。
+
+七个实际依赖对象、275个完整函数入口、50848字节原始.text及全部代码重定位保持，虚表／析构接口仍由原逻辑接口`scene_calendar.hh`和既有生命周期源统一定义。正式WSL `make -j16`对象所有分配段与验证候选一致。完整1244字节窗口0x08104470–0x0810494C直接等于baserom，靠源码顺序、普通输入对齐及下一对象自然对齐得到。JP LDS只增一次普通Core .text和.rodata输入，无地址、子section或输出补偿。
+
+本次1323完整JP构建也纳入此前滚动菜单局部修复：其十四个原生函数保持，实际队列API依赖的标准库输出与自然四字节对齐恢复58字节窗口。1324全局报告的长度／填充区间由12降至10，18955个区间原字节一致、723个区间引用变化已解释，重定位映射问题0、未解释字节区间0。完整SHA-1仍不匹配：20bb5ef1b2f6f6b35360686832421d388c4ea3b5，对照a655b2789aed14a6ac78c6075fbc533d3062dbe3。原元数据11344字节继续在0x080E4E0C–0x080E7A5C原位匹配。原151份／现137份运行库字面量只作观测，不按数量放置。
+
+剩余边界审计同时检查缺口左右两侧目标，并解析实际对象段ABS32重定位指向的具名数据，避免仅按前一数据表推断库输出归属。367个当前实际链接输入均可读取；这是有界引用图，不包括全部立即数组合、任意指针算术或所有ROM引用的完备证明。姓名末尾缺口的右侧目标为SelectFishingCatch读取的私有默认文本；之前仅按符号名搜索会漏掉其标准对象段重定位。未据此添加库头或推断完整历史编译单元。
+
+未修改编译器、预处理器、库、Make参数或ROM输出；未提交、未推送。证据：calendar-native-owners-1318/checks-1320.json；calendar-owner-production-1321/applied.json、actual-checks-1322.json；full-build-1323/global-report.json；remaining-boundary-readers-1326.json。
+
+## JP 滚动菜单真实队列 API 依赖：局部通过（1312–1317）
+
+`src/scroll_menu.cc`的原生菜单和分页绘制多处保留真实16字节DMA描述符构造、队列扩容、placement-copy及销毁／释放展开，现与已验证的飞盘核心、商店一样，引用现有`hardware_dma_queue.hh`操作API。未改构造函数、类型、头文件、文本片段、LDS或工具链，也未添加分配调用、手工库字符串或独立无用途的new头。
+
+十四个完整原生函数、5448字节.text及全部原始代码重定位不变；具名数据、其他分配段和COMMON不变。标准库真实依赖正常产生一份字面量，普通.rodata自然取得四字节输入对齐。渲染器／缓存／滚动菜单串接窗口0x080FB8F0–0x080FB92A的58字节与baserom完全一致，包括全部具名对象原位置；不补固定零字节或LDS对齐条目。正式WSL `make -j16`对象与局部验证候选全部分配段一致。
+
+本项仅完成局部及正式对象验证，尚未纳入新的完整JP构建。最后完整1309报告仍是12处长度／填充差异；不要把预期关闭的一处直接计成已整版确认的11处。当前Root对象已更新，Root ELF/map/GBA仍属1309；下一次全局审计必须先完成新一批完整链接，不能把旧map与新对象混用。
+
+证据：scroll-native-api-1312/checks-1314.json；scroll-native-production-1315/applied.json、actual-checks-1316.json。未提交、未推送。
+
+## JP 真实 DMA 使用者与混合语言编译单元（1299–1311）
+
+飞盘核心的23264字节连续原生实现归入`src/frisbee_core.cc`／`include/frisbee_core.hh`，六表及十五项游戏文本仍依物理顺序维护，文本改为同名`data/text/jp/frisbee_core.cc`。`src/frisbee.cc`／`include/frisbee.hh`保留原有三函数、184字节的C++场景包装器和真实的`new FrisbeeCore`及后续场景生命周期。既有GCC逻辑接口`frisbee.hh`和析构／虚表定义归属不变；没有新增类、分配调用或虚表。旧JP文本文件已移走，海外的实际指令和C++方法保持原实现，待JP通过后再同步。
+
+核心的`UpdatePowerGauge`与商店显示更新中含有真实的DMA队列内联展开：取得队列、构造16字节描述符、按0/4/12字段及16字节步长扩容、placement-copy、销毁和释放。这两个实现现在声明实际依赖现有`hardware_dma_queue.hh`操作API。该API使用`std::construct`，其标准库依赖是`memory`→`stl_construct.h`→`new.h`→`new`；旧头文件中的`bad_alloc::what()`字面量由编译器正常输出。并非单独添加无用途的`<new>`，也没有用ASM的BL假定编译器会生成缺失定义；完整原生函数和真实类型/API同时保留，未将未匹配C++替代品混入正式源码。
+
+八个实际对象、284个完整函数入口、78596字节原始.text和全部原代码重定位保持不变，正式WSL `make -j16`对象的所有分配段（含尺寸、对齐、重定位和COMMON）与验证候选一致。排名／飞盘／场景的完整1456字节原版窗口0x080F99AC–0x080F9F5C，以及商店64字节窗口0x081189D4–0x08118A14，均按普通输入对齐及真实文本指针重定位与baserom完全一致。商店后紧接game_menu原有12字节运行库前缀，然后才是0x08118A20的首个具名坐标对象；不应把中间数组0x08118A48当成game_menu块起点。
+
+JP LDS仅在既有场景对象之前各增加一次普通`src/frisbee_core.o(.text)`及`src/frisbee_core.o(.rodata)`，没有地址、逐变量section、GNU子项或补偿填充。工具链、库、Make参数、生成器和ROM输出均未补丁。
+
+1309完整JP构建得到新鲜ELF、map及8MiB ROM；与baserom的SHA-1仍不一致：3b22d3f64b6eb1c12a831dff9964568bfb38c931，对照a655b2789aed14a6ac78c6075fbc533d3062dbe3。1310全局报告中19744个对照符号形成的区间有18953项原字节一致、723项引用变化已解释、12项长度／填充差异；上一完整报告为16项，现关闭了飞盘与商店的两处运行库缺口及其两处关联对齐差异。重定位映射问题0，新增未解释字节区间0；原元数据0x080E4E0C–0x080E7A5C的11344字节继续在原绝对位置匹配。运行库字面量原151份／现135份仅作观测，不按计数放置。
+
+半高级语言化仍可按正常C++加完整汇编推进，不将局部库依赖恢复扩大为整个ROM已完成动态化。前次440字节力度条C++尝试依旧未采用，其寄存器调度差异不靠输出补丁处理。未提交、未推送。
+
+证据：frisbee-core-1299/checks-1304.json、shop-native-DMA-evidence-1303.json、foreign-source-extraction-proof-1302.txt；dma-owner-production-1307/applied.json、actual-checks-1308.json；full-build-1309/global-report.json。
+
+## JP 飞盘力度条真实入口与 RAM 布局（1285–1298）
+
+`loc_08054CD0`此前被统计为804字节，实际上包含两个独立入口：0x08054CD0开始的364字节背景初始化，以及0x08054E3C开始的440字节力度条更新。后者有自己的保存寄存器／返回序列，并被两个BL直接调用；现声明为`FrisbeeCore::UpdatePowerGauge(i32)`，汇编定义为真实的`UpdatePowerGauge__11FrisbeeCorei`入口，两处调用改用该符号，无别名。此前局部标签调用在同一汇编块内本来就会随组装调整，不能将此次命名边界恢复宣称为修复了两个硬编码绝对地址。
+
+`include/frisbee.hh`将原未知RAM中的+0x1D5A标为20×32个u16的`background_tilemap`，对应初始化解包目标、力度条两列访问及0x500字节DMA上传；+0x22DC标为一字节`power_gauge_endpoint_y`。剩余未知RAM不猜测命名；总尺寸、后续文本变量偏移及普通对象布局保持不变。没有新增源码／头文件、section或LDS条目，也没有改变JP文本存放顺序。海外条件分支保持原样。
+
+六个真实.d消费者经外部候选和正式WSL `make -j16`对象核对：原276个函数块现为277个真实函数入口（是补明一个既有边界，并非新增440字节代码），68896字节完整.text及所有原重定位保持等价；仅两处已证实的局部BL变为独立函数符号重定位。所有分配段的字节、尺寸、对齐、重定位及COMMON与验证候选一致，原只读数据及元数据不变。
+
+完整C++力度条尝试未采用：其203条解码指令仍有一条`mov r0,sp`在描述符构造参数求值中的调度位置不同。原生函数继续保留，未改编译器、预处理器、库、参数或输出凑字节。此批没有进行新的完整ROM构建；最后完整报告仍为1269，16处长度／填充差异没有减少，不宣称JP SHA-1已经匹配。
+
+证据：frisbee-gauge-1285/native-boundary-check-1287.json、native-consumer-checks-1294.json及unaccepted-cpp-1292；frisbee-boundary-production-1295/applied.json、actual-checks-1296.json。未提交或推送。
+
+## JP 排名与飞盘查找表回归真实使用模块（1258–1271）
+
+gAnimalFestivalRankingScoreTable的200字节分数表只由AnimalFestivalOpponents::Generate读取，现直接定义在src/animal_festival_ranking.cc，同名include/animal_festival_ranking.hh声明。原animal_festival_ranking_score_data中其余六张表只由飞盘核心读取，现按原先物理顺序定义在src/frisbee.cc，声明统一归include/frisbee.hh，随后接现有data/text/jp/frisbee.cc文本include。没有新增源码、头文件、类型或独立文本文件；旧纯数据源码／头仅保留海外原定义，待JP通过后再同步。
+
+六表包括gUnk_080FA246、gUnk_080FA264、gUnk_080FA2E8、gUnk_080FA36C、gAnimalFestivalRewardChanceWeights、gAnimalFestivalRewardArticleIds。未知轴含义继续保留gUnk名称。gUnk_080FA36C的两处真实读取均为索引乘二后LDRH，因此其最小对齐由ALIGN(1)恢复为ALIGN(2)，避免前方字节表变长后产生奇地址；所有现有分配段字节、尺寸和重定位不变。没有插入填充数组。
+
+LDS只把原纯数据输入替换为src/animal_festival_ranking.o(.rodata)，后面仍为一次src/frisbee.o(.rodata)。79个实际.d依赖对象、1291个完整函数、357196字节原始.text及代码重定位保持一致；正式WSL make -j16对象的所有分配段与候选一致。两对象串接的1442字节当前只读内容及全部重定位保持一致。前方记分牌对象自然四字节对齐、实际463字节，旧四字节与新两字节输入对齐都补同一个一字节间隙，不靠固定地址或额外LDS对齐。
+
+按1269新map扫描365个实际链接输入（包括实际libgcc调用跳板成员），合计7871685字节分配段；这七张表的原版／当前链接基址及每个内部地址均纳入原始地址候选筛选。九处已识别引用均为真实符号重定位，数据及GAS标明的代码常量池未发现固定地址候选。ARM/Thumb指令编码不当作数据指针扫描，因此不能将这项有界检查扩大为整个ROM已完成动态化，也没有证明所有立即数组合构造地址的情况。
+
+1269完整JP编译与baserom直接对照：SHA-1 cf3d12c9dd5ca14e9ac2290abcdb599f6236e5e4，仍不匹配a655b2789aed14a6ac78c6075fbc533d3062dbe3。1270全局19744配对区间中18950完全一致、722引用变化已解释、16处长度／填充差异，重定位映射问题为0。原元数据0x080E4E0C–0x080E7A5C的11344字节在原绝对地址继续完全匹配。
+
+本批是实际归属及半字访问对齐修正，没有补回排名表与飞盘表之间尚未恢复的运行库输出，也不把当前1442字节保持一致宣称为原版整个主题窗口通过。海外实现、工具链、库、Make参数和ROM输出均未作本批补丁；未提交或推送。滚动菜单构造的外部尝试仍未匹配，未应用到主源码。
+
+证据：ranking-frisbee-1258/checks-1260.json及objects-before；ranking-frisbee-production-1262/applied.json、actual-checks-1264.json、halfword-alignment-1267.json、table-reference-audit-1263.json；full-build-1269/global-report.json。
+
+## JP 资源缓存真实节点构造与返回 ABI（1224–1242）
+
+src/resource_sprite_cache.cc 的 InsertResourceSpriteTileNode 和 InsertResourceSpritePaletteNode 已恢复为正常 C++。实际24字节树节点在+16处保存八字节条目；请求键可变，已链接节点键保持不可变。malloc/失败重试后对该真实条目进行placement复制构造，随后更新根／首／末链接、重平衡及计数。类型化节点链接通过共享基类字段的引用访问；迭代器的真实复制构造让编译器按原ABI使用r0返回存储。没有输出改写、寄存器绑定、地址补偿或手写运行库字符串。
+
+11个实际.d依赖对象的249个完整函数、45928字节原始.text及全部代码重定位均与保存的原实现完全一致。正式Make对象的所有分配段字节、尺寸、对齐和重定位逐一与通过验证的候选一致；原具名数据和COMMON不变。LDS只增加一次src/resource_sprite_cache.o(.rodata)，放在资源渲染对象后面，使用真实节点构造自然产生的运行库只读输出；未增加固定地址、子section、Make参数或编译器／预处理器／库补丁。
+
+1239通过WSL make -j16生成完整8 MiB JP ROM，SHA-1为cf3d12c9dd5ca14e9ac2290abcdb599f6236e5e4，仍不同于baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。全局19744个配对区间中18950完全一致、722引用变化已解释、16处长度／填充差异（此前17）。重定位映射问题为0；28处审计暂不支持的位置、61处等长区间外引用以及362/259个未配对名称仍未通过完整验收。原元数据0x080E4E0C–0x080E7A5C的11344字节在原绝对地址继续与baserom逐字节一致。
+
+运行库文本统计为133/151，只记录机制结果，不据此安排副本。缓存后的独立滚动菜单输出仍未恢复，不能把整个cell-to-digits区间视为完成。滚动菜单构造函数的外部C++尝试仍有完整指令差异，已保存分析并排除，主源码继续保留原生汇编。海外实现未改，待JP通过后同步；尚未提交或推送。
+
+证据：cache-nodes-1224/whole-consumer-proof-1234.json；cache-production-1238/applied.json、actual-checks-1241.json；full-build-1239/global-report.json；滚动菜单未接受尝试cache-nodes-1224/scroll-constructor-1236/decision.json。
+
+## JP 基础地图／存档地图真实实现与数据归属（1206–1216）
+
+原world_map.cc的基础地图38个函数与存档地图25个函数具有连续的真实实现边界。JP现在分别归入src/world_map.cc、include/world_map.hh，以及src/world_saved_map.cc、include/world_saved_map.hh。旧world_map公共头通过正常include继续提供完整API；GameSceneSavedMap的完整真实定义只移动一次，继承、虚方法ABI、字段、固定容量及检查均不变。其编译器元数据继续由原saved_map_tree.hh接口及实际实现所有者提供，没有将虚表硬移入新对象。基础地图直接引用实际Location接口并保留实际new[]及std::fill；存档地图保留真实完整GameStateSaveImage API，读取其农场和事件字段。海外原定义／代码本批保留。
+
+五张视口寄存器／优先级／屏幕表和槽料坐标参数归入实际读取它们的基础地图源码、同名头；九字节屋型高半字节查找对象归入实际读取者LoadSavedWorldMapTiles所在的存档地图源码、同名头。查找对象保持原packed类型，只增加原ROM字节访问所需ALIGN(1)，不扩大数组或添加填充数据。field_render_resource_data仅保留四个真实被描述符引用的阻挡／清空属性和索引对象；它们的全零值不是匿名填充。
+
+按完整实际.text顺序，scene_sprite的原普通只读输出在基础地图及存档地图之前。LDS使用其不变的真实C++对象输出，再列基础／存档地图的普通.rodata；没有创建用于输出字面量的对象或按数量生成副本。代码段只在基础地图后增加存档地图普通.text。没有固定地址、子section、Make专用参数、工具链或输出补丁。
+
+28个实际.d依赖对象、681个完整函数完成候选及正式Make -j16验证，所有分配段字节、大小、对齐和重定位均与候选一致。另有一份farming_tutorial_lifetimes.d为陈旧缓存：源码已不存在、当前map和LDS均不选择该对象，因此记录后排除，不算实际消费者。原地图25908字节.text顺序保持，拆分后222个实际局部跳表项逐个验证仍指向相同指令；其余字节不变。只读验证没有修改对象或ROM。
+
+完整原版数据窗口0x08106E98–0x08106F80共232字节（下表右端不含）通过真实原符号重定位后直接匹配baserom，每个具名对象都处于原窗口内位置。填充仅来自输入／下一对象的正常编译对齐。
+
+| 原版JP区间 | 实际对象／内容 |
+| --- | --- |
+| 0x08106E98–0x08106EB7 | field_render_resource_data：31字节真实属性／索引 |
+| 0x08106EB8–0x08106EC2 | scene_sprite：原C++运行库输出 |
+| 0x08106EC4–0x08106F6C | world_map：168字节自然运行库输出、视口和参数表 |
+| 0x08106F6C–0x08106F7F | world_saved_map：19字节自然运行库输出及九字节查找对象 |
+| 0x08106F80 | 下一主题gMarriageCandidateCharacterIds起点 |
+
+1213使用WSL make -j16生成完整8 MiB JP ROM，SHA-1 9da39e5ee71a362ae6c7f0d654734bac9baa28e0，仍不同于baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1214全局19744配对区间中18949完全一致、722引用变化已解释、17长度／填充区间（此前20）；无新增未解释字节或重定位映射问题。28处不支持审计位置、61处等长区间外引用、362/259未配对名称及16处声明尺寸变化仍需独立验收。运行库文本统计132/151只作机制检查，不用计数决定归属。原元数据0x080E4E0C–0x080E7A5C全部11344字节在相同绝对地址仍与baserom原字节一致；1215完整1628字节钓鱼函数继续通过。尚未提交或推送，海外待JP通过后同步。
+
+证据：world-map-1206/checks-1208.json、internal-targets-1208.json、whole-window-1208.json、dependency-review-1209.json、stale-dependencies-1209.json；world-map-production-1210/actual-checks-1211.json及whole-window-1211.json；full-build-1213/global-report.json；complete-fishing-reference-1215.json。
+
+## JP 赛马奖品兑换真实功能单元（1191–1202）
+
+赛马竞赛／购票与奖品兑换本来就有独立的核心、场景和数据。原horse_race.cc中物理连续的兑换核心5个完整汇编函数，以及已恢复的兑换场景构造、析构、Run三个C++函数，现整体归入src/horse_race_medal_exchange.cc；对应真实类型、外部声明及布局检查归include/horse_race_medal_exchange.hh。赛马头在JP通过正常include提供兼容的完整API，不保留重复类型。海外分支的原定义／代码本批不变。
+
+兑换目录、物品ID表和兑换文本同归新模块；data/text/jp/horse_race_medal_exchange_1.cc为内嵌名称的原生目录，_2.cc为其后兑换提示和字符码，中间的真实u16物品ID表留在所属源码。旧horse_race_3.cc、_4.cc退休，赛马自己的_1.cc、_2.cc保留原顺序。所有符号、固定字段宽度、数组容量和文本内容不变。
+
+真实的new HorseRaceMedalExchangeCore(image)继续由普通C++构造编译，因此本实现直接包含标准分配声明，不是为字面量添加假调用／类型。其自然运行库输出正好恢复购票控制表与兑换目录之间的原缺口。原horse_race_lifetimes.cc显式实现两份实际接口，仍是唯一编译器元数据所有者；六个原函数及虚表全部字节、指针和顺序不变。整段原始元数据0x080E4E0C–0x080E7A5C的11344字节在新ROM同一绝对地址仍与baserom完全一致。
+
+7个实际.d相关对象合计294个完整函数通过候选及正式Make -j16核对，所有分配段与候选一致。原赛马／兑换共26608字节.text顺序保留；拆分编译单元后32个局部跳表项的段内加数正常改变，逐项验证新段基址加真实局部标签仍指向原相同指令，其余字节完全不变。这是只读重定位验证，没有修改任何编译输出或ROM。原0x080F9F5C–0x080FAA60完整2820字节数据窗口按真实原版符号重定位后直接匹配，所有具名对象保持原窗口内位置。
+
+JP LDS只在原赛马后各增加一次普通src/horse_race_medal_exchange.o(.text)和(.rodata)，无固定地址或子项。Makefile、编译器、库、预处理器和生成器均未修改，未新增任何匹配专用规则。
+
+1199完整JP构建生成8 MiB ROM，SHA-1 3b64c47813b13472d743b7fde0fe646fc4c6524b，尚不匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1200全局19744配对区间为18946字节完全一致、722引用变化已解释、20长度／填充区间（此前21）。重定位映射问题与未解释字节区间为0；28处不支持审计位置、61处等长区间外引用、362/259未配对名称及16处声明尺寸变化仍未完成独立验收。1201完整1628字节钓鱼函数通过。运行库文本统计129/151只作检查，不能按数量补齐。尚未提交或推送；海外版在JP通过后再同步。
+
+证据：prize-exchange-1191/checks-1195.json、jump-table-identity-1195.json、whole-window-1195.json、dependency-review-1196.json；prize-exchange-production-1197/actual-checks-1198.json及whole-window-1198.json；full-build-1199/global-report.json；complete-fishing-reference-1201.json。
+
+## JP 记分牌名称、字符码和标题的真实归属（1177–1186）
+
+原名gText_NameEntry_PresetAnimalNames的30×13字节名称行，以及gNewGameNameEntryUiCharacterCodes的40字节字符码区，JP的实际读取者均是FrisbeeScoreboard，不属于姓名输入。两个JP汇编操作数和实际数据定义分别使用gText_FrisbeeScoreboard_ContestantNames、gFrisbeeScoreboardCharacterCodes；保留一基ID减去完整行宽的原生索引，不是任意文本内部偏移。
+
+三组相邻数据统一归入src/frisbee_scoreboard.cc、include/frisbee_scoreboard.hh和唯一文本片段data/text/jp/frisbee_scoreboard.cc，顺序是固定名称行、字符码、标题。名称行保持真实ALIGN(1)和13字节容量，字符码保留原20个u16槽位（13个有效码，余项为原零槽），没有调整容量来凑尺寸。实现直接引用其实际存档模型game_state.hh。由真实依赖自然产生的运行库文本位于名称行之前，未添加孤立<new>或手写bad_alloc。旧JP文本片段退休，旧源码／声明只留海外分支，JP LDS删除旧数据对象输入，保留记分牌一次普通.rodata。
+
+全部7份实际.d依赖和邻接模块合计9个对象、338个完整函数通过外部候选和正式Make -j16两轮对象核对，分配段的字节、对齐、大小和重定位一致。两项真实数据改名之外，原函数代码与顺序、全部具名数据均保留。原版0x080F97DC–0x080F99AC完整464字节数据窗口（包含下一对象前1字节自然填充）按真实原版引用直接与baserom一致。
+
+独立尝试的字体std::copy方案改变FormatFullWidthDecimal的实际机器码，已拒绝，未进入正式源码。编译器、库、文本工具、预处理器、Makefile均未改；不使用别名、固定地址、输出补丁或逐项子section。
+
+1183完整JP构建生成8 MiB ROM，SHA-1 e484a8c2856806eb660b84f343dccae541b33c01，仍不同于baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1184全局19744配对区间中18946完全一致、721引用变化已解释、21长度／填充区间；上轮为23。未解释字节区间及重定位映射问题均为0，但28处不支持审计位置、71处等长区间外引用、362/259未配对名称、16处声明尺寸变化仍须独立验收。1200项名称配对只用于确认真实身份，不能作为接受不同字节的规则。1185完整1628字节钓鱼函数仍通过。四版同步尚待JP通过后处理，未提交或推送。
+
+证据：scoreboard-1177/checks-1179.json、whole-window-1179.json、dependency-review.json；scoreboard-production-1180/actual-checks-1181.json；full-build-1183/global-report.json；complete-fishing-reference-1185.json。
+
+## JP 最后一组多余虚表前缀与完整公共API／类型声明分层（1158–1172）
+
+NewGameMenu生命周期仍需实际删除拥有的完整GameStateSaveImage，不能用不完整类型delete、ABI辅助调用或假布局替换。单纯重复1089的工厂／生命周期分离仍会导入完整模型的无关容器操作；1137广泛移出操作则已证明会丢失大量正确输出。本批保留每一个普通公共头的原依赖和完整操作能力，另将真实类的完整声明维护为唯一可独立使用的类型定义。
+
+JP的rucksack、money_account、farmer、game_state、new_game_menu公共头仍提供原有全部操作；对应_types.hh存放其唯一活动的真实完整类型和不依赖分配算法的定义。字段、继承、固定容量、所有权、对齐检查和类型名不变，没有新增占位或复制的布局类型。Rucksack构造复制、MoneyAccount的std::copy/fill/uninitialized_fill实现继续由公共头提供，所有既有消费者均不必改为某种特殊编译模式。存档拥有者仍在完整模型可见后执行原普通C++ delete。纯生命周期只需真实类型、析构和布局，不再解析不使用的容器操作。
+
+原NewGameMenu的两个CreateScene工厂归入new_game_menu_factory.cc，保留完整操作API及实际控制器构造；三个隐式析构函数仍由编译器根据完整真实类型在new_game_menu_lifetimes.cc生成。两对象拼接后的全部原.text字节、函数顺序和重定位一致，未改为显式析构或汇编。原四张虚表60字节及其所有函数指针保留，12字节多余前缀自然消失。LDS仅在原生命周期.text前增加一次普通工厂.text输入，原.rodata行不变；新工厂沿用原生命周期的常规-fno-weak模式。
+
+16对象初步验证扩大至全部94个实际.d消费者及相邻模块，共1529个完整函数。1165正式Make -j16再次对照不可变修改前输入及候选，所有分配段的内容、大小、对齐、重定位相同；所有普通公共API消费者的代码、数据及运行库输出均保持。其余语言保留原定义，待JP通过后统一同步；本批仅JP验证。
+
+IndexedResourceProvider及四张NewGameMenu相关表组成0x080E4E68–0x080E4EB8完整80字节窗口，按真实原版符号重定位后直接匹配baserom。更进一步，1172直接在原绝对地址比较整段0x080E4E0C–0x080E7A5C：全部11344字节原始元数据与baserom完全一致，未使用归一化、引用遮罩或名字配对来接受字节，包含未命名区域。此结论只覆盖该元数据区间，不代表后续普通数据或全ROM已完成。
+
+1167使用WSL make -j16生成完整JP ELF/map及8 MiB ROM，SHA-1 414dd97f8f1b11361a49f19497ce87992fbd1c1c，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1168全局19744配对区间中18944完全一致、721引用变化已解释、23长度／填充区间（上轮24）。重定位映射问题和未解释字节区间为0，但28处不支持审计位置、362/259未配对名称及16处声明尺寸变化仍需独立验收。1169完整1628字节钓鱼函数继续通过。
+
+已盘点的多余虚表前缀现为0；库文本统计由128降至127，是元数据中无关输出消失，不能按原版151份计数补齐。接下来处理其他运行库真实归属、五处对齐差额与镜像末尾累计差额，不再反复检查已逐字节通过的元数据区。编译器、预处理器、库、生成器及输出均未修改，没有假调用、别名、固定地址或人为GNU／子section。尚未提交或推送。
+
+证据：menu-schema-1158/checks-1160.json、dependency-review-1161.json及whole-metadata-window-1162.json；menu-production-1164/actual-checks-1165.json与whole-metadata-window-1165.json；full-build-1167/global-report.json；complete-fishing-reference-1169.json；complete-metadata-prefix-1172.json。
+
+## JP 控制器真实所有权接口与编译器附带对象分离（1137–1155）
+
+先验证了广泛移动内联操作的候选：Rucksack复制、MoneyAccount填充／移动和脚本队列插入保持原操作，放入实际使用的实现单元。93对象、1530个完整函数均保持原码，但多处已经正确的普通只读区域丢失原运行库输出。因此该候选未推广，未通过额外new头、假调用或修改数据补救；原MoneyAccount、Rucksack全部API及实现保持不变。
+
+正式方案只分离控制器真正需要的所有权接口与构造定义。GameStateSaveImageOwner的四字节完整类型在同名职责的game_state_owner.hh中唯一维护；普通delete的原内联实现仍在完整存档模型可见之后定义，未换成ABI辅助调用、模板假类型或不完整类型删除。GameSceneScriptController字段、布局和两种构造逻辑完全不变。构造定义放入自己的game_scene_controller_lifetimes.hh，由实际控制器实现、载入存档工厂及新存档工厂共享，保证工厂仍能进行原本的内联。
+
+使用该生命周期接口的正常implementation pragma保留控制器原有两个独立构造入口。最初只移走原类implementation的版本丢失这两个入口，已保存未采用的证据；不能以工厂内联正确代替全部入口完整。原GameSceneScriptController实现仍包含11个函数，代码和顺序不变。新的game_scene_controller_tables.cc只从真实完整控制器类型生成16字节虚表，沿用既有纯表目标模式，不导入构造所需的完整存档操作。脚本队列的原placement-new插入定义归回唯一实际C++调用者GameScene，未修改插入、析构或边界语义。
+
+73个实际.d消费者和相邻对象共1241个完整函数通过候选检查；1150真实Make -j16对象再对照不可变修改前输入与全部候选分配段。所有既有普通只读内容、函数、其他段及COMMON均保留，只有本来未链接的队列独立库副本随真实插入定义移动而消失。控制器正文仍自然产生实际依赖的库副本，但该无引用输出不再随元数据链接。JP LDS仅把一个普通.rodata输入改为真实table所有者，没有固定地址、GNU或子section；没有添加.text入口，因为纯表单元不含代码。
+
+HardwareLinkBase、GameSceneScriptController、GameSceneState三个相邻真实虚表组成0x080E5028–0x080E5054完整44字节窗口。按原版真实符号重定位后直接与baserom一致，三个表各自边界、内容及相邻关系均通过；未用临时ROM修改进行验证。
+
+1152使用WSL make -j16生成完整JP ELF/map及8 MiB ROM，SHA-1 24daf0234b48b7163674898f3fa4d943fe817a4e，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1153全局19744配对区间中18235完全一致、1429引用变化已解释、24长度／填充区间（上轮25）。重定位映射问题与未解释字节区间为0，但28处不支持审计位置、362/259未配对名称及16处声明尺寸变化仍需独立验收。1154完整1628字节钓鱼函数继续通过。
+
+实际库文本统计从129降至128，原因是元数据中多余的控制器前缀不再进入ROM，不是手工去重。仍有NewGameMenu生命周期一处多余元数据前缀；其余运行库归属、对齐余数及末尾累计差额继续处理。编译器、预处理器、库、生成器及输出均未修改。海外仍保持原代码和依赖；JP尚未通过整版SHA，不提交、不推送。
+
+证据：layout-operations-1137/checks-1139.json及decision-1142.json；controller-api-1142/checks-1144.json、unassigned-inline-constructors-1145/、dependency-review-1146.json、whole-metadata-window-1147.json；controller-production-1149/actual-checks-1150.json与whole-metadata-window-1150.json；full-build-1152/global-report.json；complete-fishing-reference-1154.json。
+
+## JP 赛马参赛者数据与实际调用方合并（1123–1134）
+
+1123先总览上轮剩余26个非镜像末尾差异邻域，按真实map所选代码对象的重定位记录入向调用，而非只检查第一处差异或按bad_alloc数量分配。旧animal_festival模块中的随机范围、40行13字节名称及40行4字节数值均由赛马生成／名称显示／更新流程使用。PrepareHorseRaceEntries按40取余生成参赛者ID，HorseRaceTextVariables显示对应名字；未发现独立动物祭模块使用这些对象。旧符号名保留，不以未经充分分析的字段名替换未知含义。
+
+JP把这一完整连续区间归回既有src/horse_race.cc及include/horse_race.hh，不新建源码模块。范围表位于真实实现依赖之前，参赛者名称及数值表在其后；原有账户与场景依赖、实际SubtractMoneyFromAccount调用及所有C++分配／析构仍保持。编译器自然输出从错误的后置前缀归回范围表与名称之间，不添加无用途库头或手写运行库文本。
+
+参赛者名称现在为data/text/jp/horse_race_1.cc；原三段赛马文本按真实非文本断点顺延为_2、_3、_4。原JP animal_festival文本退休，旧模块仅保留海外原实现。JP LDS删除animal_festival.o(.rodata)，只保留一次horse_race.o(.rodata)。所有既有符号、数组容量、行宽、数据和指针重定位不变，没有使用别名或新增地址限制。
+
+六对象局部验证扩大到十个真实.d消费者和相邻模块，共313个完整函数。1129正式Make -j16产物对照不可变修改前对象和候选，全部分配段的字节、大小、对齐、重定位均相同。0x080F9F5C–0x080FA280完整804字节与baserom直接一致，三个具名表的相对位置均匹配。该证据只覆盖参赛者区至首条购票文本，不包含后面票据控制表之后仍未解决的运行库归属缺口。
+
+1131使用WSL make -j16生成完整JP ELF/map及8 MiB ROM。SHA-1为0c15862987ff15e51f260b1d5af61a9ed5ad00f1，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1132全局19744配对区间中18226完全一致、1437引用变化已解释、25长度／填充区间（上轮27）。未解释字节区间和重定位映射问题为0；28处不支持审计位置、362/259未配对名称及16处声明尺寸变化仍未扩大验收。1133完整1628字节钓鱼函数继续通过。
+
+本批库文本总数仍129，属于真实归属／输出顺序调整，不按原版151份计数补齐。编译器、预处理器、库、生成器、Make编译选项和ROM输出均未改。继续JP优先，未提交或推送。1122五处两字节邻域审查表明若干差额与前方缺失输出／绝对对齐余数耦合，不能靠改容量或额外补零独立修复。
+
+证据：batch-owner-graph-1123.json；race-owner-1124/checks-1126.json和dependency-review-1127.json；race-production-1128/actual-checks-1129.json；full-build-1131/global-report.json；complete-fishing-reference-1133.json；alignment-review-1122.json。
+
+## JP 场景状态接口、运行操作与加载／帮助文本归属（1102–1118）
+
+先以真实依赖区分GameSceneState完整布局与运行操作。JP布局头保留全部字段、分配结构、Grow逻辑及ABI；原std::construct形式的PushBack与实际声音槽选择、实体位置更新一起归入已有game_scene_actions.hh。AnimalActor真实声音调用使用该接口；教学场景持有同一运行时声音池，也使用完整运行接口。World显式引用其实际使用的脚本请求类型。没有通过无用途的new头、类型或调用补齐运行库字面量。
+
+最初的标量指针赋值简化虽通过小范围验证，扩大消费者后丢失三份已经正确的运行库输出，因此未推广；正式版本保留原std::construct语义。17个实际消费者及相邻模块共539个完整函数保持全部指令、池内容、重定位和顺序；动物与教学模块已有的只读输出均保留。场景状态的编译器虚表由完整原类定义的game_scene_state_tables.cc自然生成，仅沿用原状态对象的常规生成参数，不伪造类或虚表。
+
+JP原help_menu中的七个连续字符串归入实际调用它们的game_scene_state实现，声明统一在同名头文件。data/text/jp/game_scene_state_1.cc保留加载失败提示，第二份文本在真实实现依赖之后include，运行库字面量由编译器自然生成于两段文本之间；_2.cc保留其余加载状态和四个帮助菜单标签。旧JP help_menu文本已移除，海外版本保持原组织。LDS只将原虚表位置交给普通state_tables.o(.rodata)，原帮助文本位置交给普通state.o(.rodata)，不添加子section、地址或填充。
+
+212字节完整物理窗口已直接对照baserom：0x080EFDD0开始的状态文本／自然运行库输出共91字节，下一独立120字节闪色数组从原生未对齐地址0x080EFE2B开始，下一主题按自身对齐到0x080EFEA4。七条文本标签的相对位置和完整字节均正确；未将闪色数组强行四字节对齐。1113实际Make -j16产物对照不可变修改前对象和外部候选，全部17对象的分配段内容、大小、对齐和重定位一致。
+
+1115以WSL make -j16生成完整JP ELF/map及8 MiB ROM。SHA-1 cad76281ff09f74c9ed4a1d70c07905dda194206，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1116全局19744配对区间中18224完全一致、1437引用变化已解释、27长度／填充区间（上轮29）；未解释字节区间与重定位映射问题为0。28处不支持审计位置、362/259未配对名称及16处声明尺寸变化仍需单独验收，不能由局部验证推成完整动态编译已通过。1117完整1628字节钓鱼函数继续通过。
+
+运行库文本总数仍129，属于从错误虚表前缀移回真实实现位置，不是按副本数量补齐。仍待解决两组虚表前缀、其他运行库生成／归属区间、五组对齐问题及镜像末尾累计差额。编译器、预处理器、库、生成器和链接后输出均未修改。继续JP优先；未提交、未推送，也未处理汉化。
+
+证据：state-interface-1102/checks-1107.json、dependency-review-1111.json及scalar-store-candidate-1110/；state-production-1112/actual-checks-1113.json；full-build-1115/global-report.json；complete-fishing-reference-1117.json。
+
+## JP 返回参数接口与菜单虚表依赖联合整理（1080–1099）
+
+本批首先总览五组实际虚表编译单元的函数／表排列。返回场景的两个函数可以按真实工厂与编译器隐式析构自然分离；菜单过渡的66个函数则为33组工厂／隐式析构交错，不能照搬分组或手工拼表。保持已有高级语言实现，按实际类型和依赖修正两组问题。
+
+GameSceneResumeRequest与GameSceneTownMapSelection是GameScene构造函数及返回过渡共享的真实API数据，JP定义从实现状态头归回game_scene.hh；全部字段、原始未初始化区域、枚举及布局检查不变。ReturnToGameScene工厂仍为原C++，编译器自然生成的隐式析构和16字节虚表由同头文件的game_scene_return_lifetimes.cc拥有。原80字节完整.text、所有重定位及函数顺序保持一致。LDS只续接普通.text并更换普通.rodata所属对象，没有恢复子section或GNU条目。新生命周期目标沿用原返回单元的-fno-weak模式，没有新匹配参数。
+
+GameCubeLinkScene和TownMapTransition实现实际使用GameStateSaveImage存档类型，现直接包含game_state.hh，保留原先经返回接口间接获得的模型依赖及原只读输出。避免历史875那种仅轻量化头文件、随后丢失既有GameCube库输出的遗漏；未添加无用途的new头、调用或虚表。
+
+菜单过渡接口的工厂创建GameCubeLinkScene，却包含了另一层UI协议实现头。JP改为引用真正创建的场景接口，并去掉没有placement-new、nothrow或handler用途的独立new头；普通分配运算符仍按语言机制声明。66个完整工厂／隐式析构函数及全部528字节虚表、顺序、函数指针重定位均不变，12字节多余库前缀自然消失。
+
+初步内联UI核心分配候选虽然通过七对象检查，扩大到.d消费者后暴露纯协议生命周期单元新增入口／库文本，因此完整退回该候选，最终未修改UI核心所有者。另一标题工厂拆分虽保持五函数原码，但生命周期仍有真实库依赖，未解决问题，因此未推广或增加对应源码文件。保留失败证据，不能把局部通过计为整版完成。
+
+1092联合候选覆盖32个实际对象、1072个完整函数。正式推广后1094用真实Make -j16重编全部消费者，逐一对照不可变修改前对象及候选；所有分配段的字节、大小、对齐和重定位均与候选一致。32对象包含新增生命周期，函数总量不因拆文件增加。除两组明确去掉的前缀外，其余只读数据、代码、其他段和COMMON全部保持。修改限定于四个接口头、四份对应实现／生命周期源码、常规Make目标归属及JP LDS；编译器、库、预处理器、生成器和ROM输出都没有补丁。
+
+1096以WSL make -j16生成完整JP ELF/map/8 MiB ROM，SHA-1 fd009c8755fbe9a5d1615b52167d8dd1dbfb9cc8，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1097全局19744配对区间中18222完全一致、1437引用变化已解释、29长度／填充区间（上轮31）。未解释字节区间与重定位映射问题为0，但28处不支持审计位置、362/259未配对名称及16处声明尺寸变化仍未扩大验收。1098独立完整1628字节钓鱼函数通过。
+
+两组修正消除了错误前缀，所以库文本统计由131降至129；原版151份不是按数量填补的目标。仍有三处虚表前缀需要真实字段类型与实现依赖分析：new_game_menu_lifetimes、game_scene_controller、game_scene_state。海外分支保持原有定义和规则，待JP通过后同步，尚未海外整版验收。布局记录已更新，未提交或推送。
+
+证据：metadata-functions-1080.json；return-interface-1081/checks-1092.json及rejected-inline-ui-owner-1086/；menu-interface-1087/checks-1088.json；menu-factory-1089/checks-1090.json与decision-1091.json；metadata-production-1093/actual-checks-1094.json；full-build-1096/global-report.json；complete-fishing-reference-1098.json。
+
+## JP 既有分配／场景工厂及辅助精灵输出入链（1068–1078）
+
+对上一轮33个区间按共同机制总览后，先核对真实代码对象及完整相邻边界，再联合构建。本批只修改JP LDS，增加allocation_failure、intro_scene_factory、entity_auxiliary_sprites三条普通.rodata条目。八个实际输入对象的SHA-256及126个完整函数均保持不变，没有额外编译或制造库副本。
+
+RetryMemoryAllocation真实使用std::new_handler和malloc；IntroNameEntryTransition与IntroMenuTransition真实分配对应场景，二者已有库输出和代码原先均已编译。现在将其普通.rodata与既有new运行库一起排列，SRAM签名0x080E7A5C至开场BG指针表0x080E7AA4之间72字节全部匹配原ROM，下一表无须固定地址或额外对齐条目。既有nothrow对象的四个零字节和位置保持不变；基线没有同名符号，未臆造历史名称或增加审计映射。相同未引用库字面量不能唯一证明历史源码文件／顺序，本项证明当前真实实现输出和完整字节边界。
+
+EntityAuxiliarySprites的现有C++析构、资源准备和绘制管理三组具名资源；世界、场景及资源头文件对应真实成员和ABI。其既有输出在EntityActor屏幕偏移表之后链接，0x080F0B88–0x080F0C94共268字节（含原有偏移表）与原版完整一致，后续HarvestSprite错误文本没有已匹配前缀被覆盖。没有增加头文件、调用、类型、库文本、别名、地址补偿、填充、子section或输出修补。
+
+1074以WSL make -j16生成完整JP ELF/map/8 MiB ROM。SHA-1 c33652cdf8e745bb72653b2dfd38f750f3cb2ec7，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1075全局19744配对区间中18220完全一致、1437引用变化已解释、31长度／填充区间（上轮33）。没有未解释字节区间或重定位映射问题；28处不支持的审计位置、362/259未配对名称及16处声明尺寸变化仍保留，不能计为全ROM验收。1076独立钓鱼完整1628字节函数及本地默认文本通过。
+
+同时总览21个上一轮未入链SDK-only对象的真实源代码、原版函数地址及分配表达式。未将它们按副本数量机械填入缺口。1077将五处多余前缀精确归到后续虚表所属输入：new_game_menu_lifetimes、game_scene_controller、game_scene_state、scene_menu_transitions、game_scene_return。原报告的区间owner是前一锚点，不能据此修改前一个对象。五组的实际前缀均为12字节，应从真实类型／实现依赖与编译单元划分解决，不能删字符串或退回GNU逐项链接。
+
+原版自然库文本151份、当前131份仅为统计。代码、头文件、Makefile、参数、编译器、预处理器均未修改；文本来源亦未改变。JP优先，未提交或推送。证据：existing-owner-sources-1068.json；entity-owner-1069/checks-1069.json；startup-runtime-1070/checks-1070.json；runtime-owner-production-1072/plan.json；full-build-1074/global-report.json；complete-fishing-reference-1076.json；metadata-prefix-owners-1077.json。
+
+## JP 菜单控件及童年开场归属联合验证（1056–1066）
+
+本批先核对两段完整原版相邻边界，再合并进行一次JP整版验证。MainMenuWidget已有正常C++构造、分配及释放MainMenuData的实现；其既有自然库输出原先没有进入普通.rodata链接。现以单条src/main_menu_widget.o(.rodata)在菜单数据之后、字体之前链接。0x08118CF0–0x08118D00的16字节（含原有末尾指针及自然对齐）完整对应原版，后续字体没有被覆盖的既有前缀。相同未引用库字面量不能唯一证明历史源码文件名，本项只证明真实实现输出、完整边界及当前正常链接关系。
+
+童年开场的实际读取者是intro_story_scene.cc：它直接读取10x2背景图指针表和28条对话文本。JP定义及声明归回该源码／同名头文件，文本由data/text/jp/intro_story_scene.cc在函数之后include，保留真实指针重定位。旧JP intro_scene_data文本已备份退役，旧数据单元及头文件的海外分支保留，等待JP完成后同步。LDS以src/intro_story_scene.o(.rodata)替换旧JP数据对象，现有自然库前缀、背景指针和正文按原版连续存放。0x080FAA60–0x080FB110共1712字节与所有具名对象边界完整一致，保留相邻FarmStatusScreen原有12字节前缀。
+
+1059四个候选对象181个完整函数和42个具名对象载荷／指针不变，真实对象中的库副本数修改前后均为2，没有制造新字面量。1061按实际.d重编10个消费者，365个完整函数、29个移动对象的载荷与引用、其他数据段及COMMON均通过。没有修改Makefile、编译参数、编译器、预处理器或生成器，没有手写库字符串、假调用、别名、补偿偏移、固定地址、填充条目、GNU子项或输出补丁。
+
+1063经WSL make -j16生成完整JP ELF/map/8 MiB ROM。SHA-1 bc6bd94fbf454c5d7b7b2a4cf15319476e45a714，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1064全局19744配对区间中18226完全一致、1429引用变化已解释，33个长度／填充区间（此前35）；重定位映射问题为0，没有未解释字节区间。28处不支持的审计位置及362/259未配对名称仍保留，不将本报告扩大解释为所有边界已验收。1065独立完整1628字节钓鱼函数通过，未恢复重复默认文本。
+
+原版自然库文本151份、当前128份仅为统计，不能据此推导唯一历史编译单元。剩余问题继续按共同机制分类，JP优先；未提交或推送，海外尚未验收。
+
+证据：scene-owners-1056/checks-1056.json；story-owner-1057/checks-1059.json；scene-owner-production-1060/actual-checks-1061.json；full-build-1063/global-report.json；complete-fishing-reference-1065.json。
+
+## JP 追悼消息及动物行为数据归回读取方（1039–1053）
+
+本批以同一动物岛为单位处理两组归属，局部通过后才做一次联合整版。追悼消息的实际拼装者是game_scene.cc，JP十条消息及声明由animal_data移入同名game_scene文本和头文件；文本定义在真实实现依赖之前，已有的自然库输出随后生成。相邻的游戏错误/空值文本和剩余动物数据保留。1041四候选对象206函数不变，172字节前缀匹配原版；1043按.d重编27个实际消费者，864个完整函数及指针/数据通过。
+
+同时，十组行为／计时与索引数组的读取者是animal_actor.cc。定义及声明归回该源码／同名头文件，两条相邻错误文本经同名区域文本include；剩余animal_data只有一份JP文本，取消原_1后缀，旧_1/_2文件已备份退役。海外分支及原有定义暂保留，待JP通过后同步，未改变数组的已知格式、步长或容量。未知含义仍沿用gUnk标签，不臆测命名。
+
+1046五个候选对象保留310个完整函数与49个具名载荷。实际对象中的自然库输出数量修改前后均为三份，没有新增副本；已有Livestock和AnimalActor实现输出以普通.rodata链接。0x080EFF50–0x080F06CC的1916字节及所有具名边界完整匹配原版，并保留后续PlayerActor已有前缀。1048按.d重编17个消费者，679个完整函数、其他数据/段/COMMON不变。两组消费者有重叠，函数数不能相加作为独立总量。
+
+追悼起点0x080EFEA4至后续玩家对象前缀0x080F06CC共2088字节自然衔接。源码没有手写库文本、额外库头、假调用、别名、地址补偿或输出补丁；LDS只增加所属对象的普通.rodata条目。没有修改Makefile、编译参数、编译器、预处理器或格式生成器。固定格式的数组不等于可任意扩缩，修改其容量仍需审查原生读取规则。
+
+1050用WSL make -j16完成JP整版ELF/map/8 MiB ROM，SHA-1 ef657aad489aaf43a4fdac7a6b69a2cd11048ea9，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1051全局19744配对区间中18225完全一致、1428引用变化已解释、35长度/填充区间（上轮37），未解释字节区间与变化引用仍为0。28处不支持审计位置及362/259未配对名称仍保留；1052独立1628字节钓鱼函数通过，未恢复重复默认文本。原版库字面量151份、当前126份，仅作统计，不以数量证明唯一历史归属。
+
+当前JP文本来源更正另列TEXT_ROM_LAYOUT.md。尚未整版验收，不提交或推送，继续JP。证据：memorial-owner-1039/checks-1041.json；memorial-owner-production-1042/actual-checks-1043.json；animal-behavior-1044/checks-1046.json；animal-behavior-production-1047/actual-checks-1048.json；full-build-1050/global-report.json；complete-fishing-reference-1052.json。
+
+## JP 环境／天气的真实渲染所有者输出（1032–1038）
+
+环境与天气实现实际依赖世界状态记录、精灵提交缓冲、精灵效果及世界类。对应world_runtime、world_sprite_buffer、world_sprite_effects、game_world四个真实代码对象已自然生成运行库只读内容，此前未被链接。1032检查七个已选代码对象的170个完整函数和精确对象哈希；本批没有改动任何源码、头文件、类型、生成参数或工具。
+
+JP LDS在环境数据之后按普通对象列出三个渲染实现的.rodata，保留天气对象已有前缀与运动表，再列世界类的.rodata。夜间权重尾部至文本变量首个标签的112字节完整匹配baserom 0x080F1164–0x080F11D4；所有具名边界相符，下一文本对象没有被已有前缀覆盖。只增加四个普通对象条目，没有地址、填充、逐符号或GNU子项。相同未引用库字符串仍不作为唯一历史文件顺序的证明。
+
+1035用WSL make -j16生成JP整版ELF/map/8 MiB ROM，SHA-1 a052957170da6560e2e4e264f46b0b8a559e17bf，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1036全局19744配对区间中18215完全一致、1436引用变化已解释、37长度/填充区间（上轮39），未解释字节区间与变化引用仍为0。28处不支持审计位置及362/259未配对名称仍保留；1037独立1628字节钓鱼函数通过。库字面量原版151份、当前123份，仅作统计。
+
+尚未整版验收，不提交或推送，继续JP。证据：world-owners-1032/validated-1032.json；world-owner-production-1033/plan.json；full-build-1035/global-report.json；complete-fishing-reference-1037.json。
+
+## JP 日历读取方与保存数据实现归属（1022–1031）
+
+日历季节、空值、星期标签的实际读取方是calendar.cc，此前定义仍在game_state文本中。JP三组标签及声明现归回calendar.cc/calendar.hh，继续经同名区域文本include；错误/空值游戏文本仍由game_state维护，在真实实现依赖之前定义，随后自然输出库内容及晴天日期数组。没有恢复手写bad_alloc，也没有增加任何为了输出字节而存在的头文件或调用。
+
+日历、玩家记录、金额记录、保存数据和复制实现的五个真实对象按正常.rodata顺序连接。本批实际对象中的自然库输出总数修改前后均为五份，差别是四个原来未进入ROM的对象输出现在归入这一连续区域，而非新造副本。1024六对象候选保留116个完整函数、13个具名载荷及重定位；从原有日历前缀到HelpMenu首个对象的136字节完整匹配baserom 0x080EFD48–0x080EFDD0。源头与旧保存对象前缀一致，后续菜单没有已有前缀，不覆盖相邻对象。
+
+1025正式修改两个头文件、两个源码、两份JP文本及JP LDS。1026按真实.d重编75个消费者，1305个完整函数、顺序、重定位、其他段、COMMON和所有具名数据保持；6个移动定义的归属变化独立核对通过。区域文本仍由正常通配/include流程识别，不修改Makefile、编译参数、编译器或预处理器。海外标签及源码分支保留。
+
+1028使用WSL make -j16完成JP整版ELF/map/8 MiB ROM；SHA-1为05e101ee760a65cb83698ae17b1f928c2fce16c6，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1029全局19744配对区间中18213完全一致、1436引用变化已解释、39长度/填充区间（上轮42）。未解释字节区间与变化引用仍为0；28处不支持审计位置及362/259未配对名称仍保留。1030独立1628字节钓鱼函数核对通过。原版自然库字面量151份、当前119份，数量仅供统计。
+
+所有LDS改动仍为普通对象.rodata，不增加地址、填充或逐符号子项。相同未引用字面量不足以还原唯一历史文件顺序；这里验证的是有真实实现和依赖的正常模块组织及完整ROM字节。尚未整版验收，不提交或推送，继续JP。
+
+证据：save-calendar-1022/checks-1024.json；save-calendar-production-1025/actual-checks-1026.json；full-build-1028/global-report.json；complete-fishing-reference-1030.json。
+
+## JP 启动资源所有权批次与相邻边界联合验证（1001–1021）
+
+1008先总览上轮43个区间：37项涉及自然运行库内容数量及对齐，5项是其他布局/对齐，末尾1项吸收累计位移。按真实map筛选，40个已链接代码对象还存在未选入ROM的独立运行库只读输出；另9个陈旧/未选代码对象排除，不按构建目录中的.o文件直接计数。清单是归属审计，不是按数量安放常量的许可。
+
+1002–1005两个声明候选保留了7个函数。姓名流程单独34字节看似匹配，但1015联合检查证明其末尾会与后续身份模块已有的库前缀重叠10字节；该候选已完整撤回，未进入整版。普通new表达式本身具有隐式全局分配声明，并非每处都必须引入new头文件。硬件管理器单独的匿名库输出也不按数量随意插入，而纳入下面真实启动模块组的完整验证。
+
+1009–1014成组检查资源池与硬件初始化。ObjPalettePool、HardwareContext、HardwareManagerOwner及HardwareBlendController均已有真实C++ new，恢复标准分配声明。HardwareContext类表由独立的正常C++类定义所有者输出12字节；HardwareBlend类所有者输出16字节类表及原有末尾内联构造函数。最初仅输出表的混色类方案漏掉构造函数，已拒绝；最终由编译器自然生成该函数，未改成汇编或复制实现。
+
+12个候选与正式对象共128个完整函数全部保持指令、真实重定位和顺序。两主体与类所有者拼接后的整个.text（包括函数间对齐）亦与修改前一致；类表内容/重定位、其他段及COMMON保持。六个原有资源/田地对象的库输出与四个恢复声明的真实对象现在各以普通.rodata链接一次。顺序按资源池及其存储实现、硬件上下文/管理器/混色、田地初始化组织，128字节的“键盘No文本至下一字段数据”整体逐字节匹配baserom 0x080E80E4–0x080E8164，其中120字节为此次恢复的自然库输出及对象对齐。前一个对象确实止于No文本，后一个对象无既有前缀，不覆盖相邻内容。
+
+这些相同且未被引用的库字面量不能唯一反推出历史源码文件名或其相互顺序；本批采用的是有真实代码依赖、正常编译输出的模块组织，不宣称恢复了原始map。源码没有手工库字符串、假调用、占位类型或别名。LDS仍是普通对象的.text/.rodata，各只列一次，没有地址、填充、逐符号或GNU子项。只新增两个必要的类所有者，并沿用正常C++类生成参数；不修改编译器、预处理器、格式生成器或链接后输出。
+
+1017使用WSL make -j16完成JP整版ELF/map/8 MiB ROM；SHA-1为9e3771befcf59436b4cec85c7ff137738c6cc91a，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。1018全局19744配对区间中18210完全一致、1436引用变化已解释、42长度/填充区间（上轮43）。未解释字节区间与变化引用仍为0，28处不支持审计位置及362/259未配对名称仍保留。此次一次修复了十个自然库输出所在的大区间，不等于仅修复一个对象。1019独立核对完整1628字节钓鱼函数仍通过。原版库字面量151份、当前115份，数量仅作统计，不作单独归属依据。
+
+海外源码分支保留，完整海外验证待JP通过后同步。整版尚未验收，不提交或推送。后续继续按全局区间及真实所有权批量处理，并对每个候选检查相邻已选对象，不能再用孤立载荷匹配证明新增库副本正确。
+
+证据：early-allocations-1001.json；layout-mechanisms-1008.json；allocation-declarations-1002/rejected-adjacent-overlap-1015.json；startup-owners-1009/checks-1011.json；startup-owner-production-1013/actual-checks-1014.json；full-build-1017/global-report.json；complete-fishing-reference-1019.json。
+
+## JP 动物选择类型布局及 UI 实际分配声明（989–1000）
+
+按同类入口批量检查动物选择与UI。发现FestivalAnimalSelectionCore此前的C++声明仍按海外版0x4178字节布局，JP Native实际只分配0x3BF8字节。JP构造与析构共同确认：两组计数记录位于0x3920/0x3A24，资源句柄从0x3B30开始，行tile/palette从0x3B50/0x3BA0开始，音乐和末字段位于0x3BF0/0x3BF4。因而只修正JP真实未知存储区边界及已有尺寸/偏移检查；海外定义保留，不以加减地址或假分配长度补偿。
+
+为该已有真实类型声明原Native构造入口，保持同一调用ABI。JP外层场景构造函数恢复为core(new FestivalAnimalSelectionCore(next,image,kind))，保留原位置与完整Native核心函数。自然分配依赖及其数据形成1012字节完整块，匹配baserom 0x080FB224。
+
+UI原有行与payload构造函数已经使用真实C++ new；补齐标准分配声明后，其原有数字文本前的52字节前缀及后续68字节布局表/资源记录分别匹配原ROM，全部8个具名对象及指针的内容保持一致。两部分之间仍缺原版另一编译单元的12字节运行库内容，本批不伪造这一缺口，不把UI整体计作完成。
+
+992隔离候选保留74个完整函数。993正式修改一个头文件与两个源码，994重编.d关联的7个实际对象，336个完整函数的指令、重定位、顺序及其他具名数据、其他段、COMMON均保持一致。没有改LDS、Makefile、编译参数、编译器、预处理器、格式生成器或编译后输出。
+
+997使用WSL make -j16完成JP整版ELF/map/8 MiB ROM；SHA-1为734a839575b0a0cfc5db6a9856c5f17cd7234a29，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。998全局19744配对区间中18209完全一致、1436引用变化已解释、43长度/填充区间（上轮45）。未解释字节区间与变化引用仍为0；28处不支持审计位置及362/259未配对名称仍在。999独立1628字节钓鱼函数验证继续通过。库字面量数量原版151、当前105，仅作统计。仍未整版验收，不提交或推送，先继续JP。
+
+证据：allocation-layout-989/validated-992.json；allocation-layout-production-993/actual-checks-994.json；full-build-997/global-report.json；complete-fishing-reference-999.json。
+
+## JP 实际分配入口批量恢复及工作人员字段对齐（977–988）
+
+本批一起处理农场状态、记录画面和工作人员名单。前两个模块将原Native场景构造函数原位恢复为真实C++的core(new Core(...))与continuation初始化；已有准确类型和布局，不新增占位类型、包装或别名。工作人员场景已有真实C++分配，仅补齐其标准分配声明。三个模块各自自然生成库字面量，未恢复手写bad_alloc。
+
+初次候选验证拒绝工作人员数据：生成器将已经按四字节扩足的文本字段显式标成一字节对齐，恢复真实库依赖后第一条文本提前两字节。单独加强存储类型的对齐不能覆盖生成器的显式一字节请求，该探针未进入源码。最终只将工作人员格式生成器的这一条字段输出规则改为四字节对齐；字段内容、容量推导、共享指针和显示顺序不变。该规则不检查特定标签、地址或字符串，也不处理编译后输出。原始失败和隔离验证均保存在977目录。
+
+981候选与983正式对象核对：三个对象的52个完整函数（包括构造函数常量池）、顺序、真实重定位、其他段及COMMON保持一致。275、408、1372字节的三块完整只读内容（含自然库字面量和文本指针）分别匹配baserom 0x080FB110、0x080FB758、0x080FB92C。正式改动仅三个游戏源码及一条格式生成规则；不改头文件、LDS、Makefile、编译参数、编译器或fomt-preproc。
+
+985使用WSL make -j16完成JP ELF/map/8 MiB ROM。SHA-1为e4371caf9e650502352d23fdd17c742fb8a32313，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。986全局19744配对区间中18207完全一致、1436引用变化已解释、45长度/填充区间（上轮47），未解释字节区间与变化引用仍为0；28处不支持审计位置、362/259未配对名称仍保留。三个完整模块通过不等于整版通过；工作人员前面的独立滚动菜单缺口尚未解决，因此布局区间减少2而非3。
+
+987独立核对完整1628字节钓鱼函数与其默认文本仍通过。自然库字面量数量原版151、当前103，数量只作统计，不能代替真实来源证明。海外游戏源码分支保留，工作人员对齐规则海外验证待JP完成后同步。没有修改名称对应表、审计掩码、ROM输出或链接布局；整版尚未验收，不提交或推送。
+
+证据：scene-allocation-977/validated-981.json、diagnosis-984.json；scene-allocation-production-982/actual-checks-983.json；full-build-985/global-report.json；complete-fishing-reference-987.json。
+
+## JP 资源精灵构造与自然分配库依赖（961–976）
+
+先检查菜单过渡类整体生成：其33组工厂函数和隐式析构函数在文本段交错，不能拆成两个大组。962–964真实对象探针确认，单独输出表而保留原表会产生33个强符号重复；该方案没有进入源码，没有用链接器忽略重复、改弱符号或新增LDS子项。现有匹配的66个C++函数保持原样。
+
+随后恢复资源精灵渲染器的实际分配语义。原Native构造函数先写真实虚表，分配40字节，再调用ConstructResourceSpriteRendererStorage。该存储已有准确字段和40字节布局，Native入口与其C++构造ABI相同。因此在resource_sprite_cache.hh为真实类型声明该构造入口；JP ResourceSpriteRenderer构造改为storage(new ResourceSpriteRendererStorage)，正常使用new头文件，不引入额外入口、包装、别名或假调用。海外Native分支及类型声明不变。
+
+967–968确认三个候选对象的22个完整函数不变，C++构造函数含常量池的32字节精确等于原实现，缓存函数及虚表也未变化。真实分配依赖自然生成bad_alloc；它与原有六字节尺寸表组成连续16字节，完整匹配baserom 0x080FB8F0。尺寸表仍按字节自然排列，不额外强制四字节对齐；不用手工字符串或填充。969正式仅改两个文件；970重编实际.d涉及的10个对象，235个完整函数的指令、重定位和顺序、其他段与COMMON不变。
+
+972使用WSL make -j16完成JP ELF/map/8 MiB ROM，SHA-1为74ebb82e215148efd573c7241e9e590e9aa8503d，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。973全局19744配对区间中18205完全一致、1436引用变化已解释、47长度/填充区间，未解释字节区间和变化引用仍为0。未修改1198条既有名称对应、审计掩码或ROM。974独立验证完整1628字节钓鱼函数及本地默认文本仍通过。
+
+本批没有修改LDS、Makefile、编译参数、编译器或预处理器。自然库文本数量为原版151、当前100；数量不作为归属证明。尚有47个布局区间、28处审计器不支持位置和未配对名称，整版仍未验收，不提交或推送。976已从真实分配调用与当前只读输出筛出16个对象，其中10个有构造入口候选；后续必须先证明真实类型、C++依赖及原始数据位置，不能对名单统一添加new头。
+
+证据：menu-interface-962/probe-checks-963.json和partial-964.log（未应用）；renderer-constructor-965/validated-968.json；renderer-production-969/actual-checks-970.json；full-build-972/global-report.json；complete-fishing-reference-974.json；allocating-no-library-976.json。
+
+## JP 主场景接口、虚表与无调用文本（945–958）
+
+本批从全部49个剩余长度区间出发，处理早段GameScene元数据衔接。GameScene本身只存储GameSceneState指针，公开方法使用指针、引用或已有Mary常量类型；其接口不需要完整状态和返回场景实现。JP的game_scene.hh因此保留场景基础接口、常量及真实类型前置声明。没有改写GameSceneState、GameStateSaveImage或ReturnToGameScene的定义，没有重做曾导致GameCube库输出缺失的返回记录全局迁移。
+
+调用者所需完整类型按真实使用补齐：动物及世界代码读取音乐池，教学场景实际嵌入状态所有权与音乐池，姓名/背包/小游戏代码访问存档字段，玩家构建脚本请求，场景工厂和返回逻辑使用具体控制器或返回类型。鸡祭场景确实执行new，明确包含new。不是为了字面量数量添加无用依赖；这些改变在候选及实际构建中逐个核对。
+
+game_scene_tables.cc通过同一真实类声明及原有强虚表生成参数自然输出16字节表，完整指针与baserom 0x080E52A4一致，无函数副本。GameScene的171个原函数仍留在实现对象内；JP LDS仅将原game_scene.o(.rodata)替换为game_scene_tables.o(.rodata)，没有加地址、GNU子项或逐符号选择。Make为新表对象沿用既有类表所有者参数；原实现参数不变。
+
+同时纠正一项旧归属：GameScene::GetCaughtFish只转发PlayerActor返回的指针，不构造或读取FishingCatchResult字段。完整扫描实际对象的可执行段重定位，证实game_scene.o中gText_Fishing_NoCatch没有代码入向引用；这是fishing.hh顺带产生的无调用本地副本，不能因为同一头文件被包含就保留。JP去掉该处不必要的完整fishing.hh，使用真实类型前置声明；fishing.o里被SelectFishingCatch调用的默认文本保持。没有移动或复制这份多余文本来填ROM。
+
+951验证候选25对象、829个完整函数，除预期表归属及无调用副本外所有数据、指令重定位、顺序、非只读段及COMMON不变。952正式应用17文件；953正常Make通道复核全部对象，与候选及原函数一致。实现对象仍由真实new依赖自然输出10字节库文本，其原版后段归属尚未查明，目前没有凭数量选一个缺口放入；这一边界仍是未完成项。
+
+955使用WSL make -j16完成新JP整版ELF/map/8 MiB ROM，SHA-1为01d1df25200d705348fb0aab9e94b73272f2670f，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。956全局19744配对区间：18205完全一致、1435引用变化已解释、48长度/填充区间；剩余字节差异区间和未解释已变化引用均为0。仍有28处审计器不支持、362个基线名和259个当前名未配对，不能据此宣称全ROM完成。
+
+既有名称证据未修改。移除GameScene无调用副本后，gText_Fishing_NoCatch在实际ROM只有一个有效对象，历史217轮已记录的gText_RandomItem_NotAvailable对应关系自动由歧义变为唯一，名称配对从1197变1198。这使之前全局未识别的最后一条引用正常解释，并非新增跳过规则。957独立由原始相邻数组和实际对象重定位重建地址，核对SelectFishingCatch全部1628字节仍匹配，没有依赖全局未解释列表是否为空。
+
+当前自然库字面量原版151份、链接结果99份；数量只说明后续归属仍未完成，不能作为补字符串的理由。原始不同字节5849032受全局位置移动影响，不代表函数退步。未改编译器、预处理器或ROM输出，未重编海外整版、未提交或推送。下一批按48个布局区间继续核查真实代码/数据编译单元和库输出顺序。
+
+证据：game-scene-interface-945/validated-951.json及local-data-949.json；game-scene-production-952/actual-checks-953.json；full-build-955/global-report.json；complete-fishing-reference-957.json。
+
+## JP 环境精灵半字坐标类型对齐（935–944）
+
+先总览930报告的50个剩余长度区间及实际输入对象。六个早段元数据衔接中的库前缀并不一定属于区间名称对应的对象，935已逐项记录前后输入归属，不能按区间owner直接删字符串或抽表。另有少量两字节差异，必须区分真实类型布局与前面缺口造成的累计对齐变化。
+
+在环境精灵数据中，WorldAmbientSpawnPosition确实是连续两个i16坐标，Native读取为半字。源码虽给变量ALIGN(2)，旧C++的聚合类型仍使实际输出按四字节对齐，坐标表从对象内12开始；ROM所需为10。937–938验证JP将实际类型设为PACKED ALIGN(2)，不改记录大小、数值、库依赖或函数。整个608字节数据块（自然库字面量、坐标、正弦表和昼夜权重）精确匹配baserom 0x080F0F18，四个具名对象载荷与引用不变、17个完整函数不变。没有新增零数组、填充宏或工具补正。
+
+939仅修改include/world_ambient_sprites.hh的JP类型约束，海外类型不变。按实际.d重编全部79个依赖对象；940核对1426个完整函数、指令重定位和顺序、其他分配段及COMMON全部不变，只有环境精灵只读块从610变608字节，其余对象只读数据一致。库字面量数量保持原版151、当前100。
+
+941用WSL make -j16完成JP整版链接并生成8 MiB ROM，SHA-1为065e64dc6283411ecdfffe743772fad115dc2b3b，尚未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。942全局19743配对区间中：18203完全一致，1434引用变化已解释，49长度/填充区间、1剩余字节区间。相比本次重启前912的52个长度区间，两批修复累计消除3个。未新增名称映射或字节掩码；原始不同字节5800476不能作反编译比例。
+
+943在新产物下重验SelectFishingCatch完整1628字节及本地文本引用，仍全部与baserom一致；原全局工具的一条本地符号歧义继续显式保留。本批不改编译器、预处理器、Makefile、LDS或编译参数；未提交、未推送。下一批以全部49区间为依据分析真实编译单元及生成来源，不给其余两字节差异机械补零，也不把剩余区间数量当成函数数量。
+
+证据：metadata-inputs-935.json；ambient-alignment-937/validated-938.json；ambient-production-939/actual-checks-940.json；full-build-941/global-report.json；complete-fishing-reference-943.json。
+
+## JP 婚礼日期与标准字节查找归属（916–934）
+
+从912全局结果继续，先在工作树外验证，再应用到真实构建。婚礼排除日期表唯一读取者为IsWeddingDateUnavailable，原调用将季节乘30加日期作为32位无符号键，保留r3中的无状态比较对象及栈中的距离类型参数，与现有旧标准库的五参数__lower_bound一致。JP恢复真实std::lower_bound调用，终点由数组元素数计算；原25字节表从field_render_runtime_data移到wedding_date。海外原表及调用暂保持。
+
+byte_search.c改为byte_search.cc，JP在真实标准模板特化的C++声明下保留完整52字节Native实现，已有C接口使用同一实际入口；没有定义额外别名或跳转包装。通用模板直接高级语言编译的循环目前并不匹配原指令，未采用该候选，亦未为此修改编译器。婚礼判断已是正常C++，完整76字节与原版一致。两者实际标准库依赖自然生成字面量，未手写bad_alloc、添加假调用或仅为补字节而包含无关头文件。
+
+927确认完整35字节婚礼数据（自然库输出及25字节排除表）对应baserom 0x08107034，表从0x0810703E开始；查找实现的10字节库输出对应0x08107058。928应用到主工作树；929按实际.d依赖重编四个对象，全部六个完整函数、相关重定位、非只读段和COMMON均保持，数据与候选一致。语言驱动改为C++还核对了US/EU/DE三个小型查找对象，原Native代码及数据未变；没有重编海外整版。普通JP LDS仅增加wedding_date.o(.rodata)和byte_search.o(.rodata)，没有固定地址、子段或输出修补。
+
+930使用WSL make -j16成功生成完整JP ELF/map/8 MiB ROM，SHA-1为07e40626005738ffd8a85af61a3ecf688185aaeb，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。931全局报告为19743配对区间：18202完全相同、1434引用变化已解释、50长度/填充区间、1剩余字节区间。比912减少两个长度区间，没有添加名称配对或字节掩码；原版151份库字面量、当前100份。数量仅作旁证，不能据此任意添加库依赖。
+
+932再次按实际本地符号核对SelectFishingCatch完整1628字节，全部符合baserom；全局工具仍保留原有一条局部符号歧义，未修改统计。933已汇总全部50个长度区间，后续按真实输入对象及生成来源分类处理，不能把每个区间当作独立函数错误。尚余六处早段元数据衔接及多处普通只读内容的归属/自然库输出问题，整版SHA未通过，不提交或推送。
+
+证据：wedding-916/validated-927.json；wedding-production-928/actual-checks-929.json；full-build-930/global-report.json；complete-fishing-reference-932.json；remaining-cohorts-933.json。编译器、预处理器、Makefile和编译参数没有修改。
+
+## JP 人物姓名与自然库输出顺序（905–915）
+
+在901全局报告中，npc_collection既存在姓名前多余的库前缀，又缺少生日指针表后的同类自然输出。其自身npc_collection.hh只包含真实NPC布局、日期和姓名记录声明，不引入分配库；完整game_state.hh、npc_schedule.hh和algorithm是后续构造/实现的真实依赖。因此不增删库内容，而在JP源码中先定义全部姓名文本和生日表，再读取原有完整实现依赖，使自然生成的库字面量跟随表尾。海外原有包含与定义顺序保留，没有修改文本或新增类型、别名、假调用、无用头文件。
+
+905–908先验证候选。909正式只改src/npc_collection.cc；910确认39个完整既有函数的指令、重定位和顺序不变，42个具名只读对象的载荷及指针保持，其他数据和COMMON不变。库字面量仍为一份，数量不变。911确认完整738字节（姓名、生日指针表及末尾自然库文本）匹配baserom 0x08103C1C。对象从740变为738字节是前置与末尾的对齐位置变化，物理模块衔接仍由普通对象对齐完成，未加填充对象、section或固定地址。
+
+912使用WSL make -j16生成新的JP ELF/map/8 MiB ROM；SHA-1 fc215b0b9864314ec73e8f87c01d33460aa3b3f5仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。913先符号后字节：19743配对区间，18200 exact、1434已解释引用、52长度/填充区间、1剩余字节区间；1条全局工具未识别引用、28处审计器不支持。仍沿用1197项已有名称对应，363个基线名、261个当前名未配对，无新增掩码或配对。相对901，本次同时消除两个长度区间；原始不同字节5849522不是进度比例。
+
+914在912新产物下重新验证最后那条fishing.o本地文本引用及整个SelectFishingCatch的1628字节，全部按真实引用匹配baserom，未修改源码、全局统计或产物。原始全局1条继续保留。原版151份bad_alloc、当前98份没有变化，证明本批通过真实源码组织恢复位置，而不是补数、手写或替换字符串。
+
+静态核查同时保留了后续线索，但尚未应用：resource_sprite_renderer的6字节尺寸表实际由resource_sprite_cache.cc的DrawCachedResourceSprites读取，当前独立只读段为1字节对齐；不能贸然给同一不完整模块加分配库并以4字节段对齐硬套。婚礼排除日期数组仍在field_render_runtime_data.cc，而唯一实际读取者是wedding_date.cc，按season*30+day做无符号字节lower_bound；其当前原生调用固定使用JP25/海外27项。应继续从真实数据归属和可推导长度处理这组，若恢复标准C++算法，需要先验证与既有原生字节查找函数的真实ABI，不添加仅为制造库输出的头文件或假参数。npc_collection默认实际编译参数没有-fno-weak也能生成该库文本，不能将缺口简单归咎于这一个选项并全局改旗标。
+
+证据：npc-order-905/resolved-flags.json、checks-907.json及data-checks-908.json；npc-order-production-909/actual-checks-910.json及actual-data-checks-911.json；full-build-912/global-report.json；complete-fishing-reference-914.json。本批未改头文件、Make、参数、LDS、编译器、预处理器或链接后输出，只验证JP；未提交、未推送，目标继续。
+
+## JP 地图界面与容器实现依赖（894–904）
+
+以889完整报告为依据，核实TownMapMarkers::PushBack的实际C++使用者是town_map.cc的AddTownMapMarker；JP界面头为声明/存储布局所需的是Scene、资源、硬件和Location类型，不需要完整GameScene实现。将既有三个内联容器方法原样移到town_map.cc并保留memory/algorithm真实依赖；JP头仅保留原类、字段、内联声明及轻量scene.hh，不再把整套GameScene与无关STL实现带入只生成表和原生生命周期的单位。海外头中的原定义及包含链保留。没有新增类、别名、假调用、源码单位或替换算法。
+
+896先验证6个候选对象、265个现有函数；898按实际.d推广，仅改include/town_map.hh和src/town_map.cc。899重建4个正式依赖对象并确认191个完整函数的字节、重定位和顺序不变，普通具名数据、非只读数据与COMMON不变。地图主实现的真实存档/背包/STL依赖和原有普通只读数据保持；town_map_lifetimes的多余库前缀自然消失，两个具名虚表及回调保持。900确认其28字节完整匹配baserom 0x080E6FE4。没有修改Make、编译选项、LDS、文本、资源、编译器、预处理器或链接后输出。
+
+901使用WSL make -j16完成JP完整链接，生成新的ELF/map/8 MiB ROM；SHA-1为9ae7cc6b95f813f785eff52a1ba9b201e3df395e，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。902全局先符号后字节：19743配对区间，18199 exact、1433已解释引用、54长度/填充区间、1剩余字节区间；1条全局工具未识别的变化引用及28处审计器不支持。仍为1197项既有名称配对，363个基线名及261个当前名未配对，没有为降低统计添加名称或掩码。原始不同字节5849560受全局布局移动影响，不作为完成比例。
+
+903在901新布局下重新验证SelectFishingCatch整段1628字节：原文本对象0x08104994对应当前fishing.o本地文本0x081047D4，具名下一数组、文本及对齐区、函数内跳表和全部真实重定位均核对，完整函数匹配baserom。全局工具原始1条仍保留；这是对象本地符号身份尚未被全局审计器表达，不是新发现的指令错误。没有修改源码或构建产物来消除这项统计。
+
+原版151份bad_alloc，当前98份；差值不代表应手写53份字符串或随意选择SDK-only对象链接。剩余工作重点转向原版正常只读数据之间库内容的真实代码/数据归属及语言依赖，而非仅继续剥离前部虚表前缀。结合剩余全局范围、实际数据读取者与C++依赖确定编译单元；尚未恢复必要语言机制的原生构造析构需要按证据处理。保留已拒绝的全局存档依赖删减及返回接口删减记录，不能机械减少正常C++生成内容。
+
+证据：town-map-ui-894/checks-896.json及data-checks-897.json；town-map-production-898/actual-checks-899.json及actual-data-checks-900.json；full-build-901/global-report.json；complete-fishing-reference-903.json。本阶段只构建JP，海外未改有效实现；未提交、未推送。目标仍未完成。
+
+## JP 片头／世界／地图元数据归属（881–893）
+
+881以878完整产物重新总览58个长度/填充区间及实际预处理包含链。确认片头生命周期的库前缀来自具体新游戏菜单依赖；世界实现确实需要完整背包、存档与STL；地图已有独立正确虚表单位，另一个world_map.o仅有库字面量的只读段被错误插进虚表区。本批不再次删减真实存档依赖，也不把所有SDK-only对象按字符串数量重新塞入LDS。
+
+片头新增intro_scene_factory.cc，保留两个真正创建菜单/姓名场景的C++工厂及其完整依赖；intro_scene_lifetimes.cc在JP仅包含自己的既有接口，自然生成两个转换析构、IntroSceneCore析构和原有三张虚表。三个析构仍是原有隐式生成。884/887证明完整.text按工厂、生命周期连接后，全部字节、重定位和原始函数顺序一致，未把匹配C++替换成汇编或显式空析构。片头主实现和普通启动数据未改动。
+
+game_world.cc保留全部134个既有函数和真实依赖，由新增game_world_tables.cc仅包含完整既有接口，自然输出360字节虚表，不生成函数。world_map.cc及其63个函数、真实std::fill/分配逻辑、存档访问完全未改；其仅含bad_alloc的10字节只读对象没有重定位或对象内入向引用。LDS删除它在虚表区的不当链接位置，地图虚表仍由既有world_map_tables.cc、world_map_command_lifetimes.cc、saved_map_tree.cc和farming_tutorial_world_lifetimes.cc负责。实现单位的库内容仍正常生成，其后续物理归属未证明，不据此宣称整个运行库内容已恢复。
+
+882–885为9个候选对象、221个函数核对；886推广后，887核对10个正式对象、222个既有函数，全部指令、引用、顺序、普通数据、非只读数据和COMMON保持。888对960字节完整虚表进行baserom对照：片头60字节@0x080E4E2C，世界360字节@0x080E5304；地图40字节@0x080E7714、命令16字节@0x080E773C、存档地图40字节@0x080E774C、教学世界444字节@0x080E7774组成连续540字节，直至0x080E7930，无未解释回调。所有既有符号按真实原版引用核对，没有新增全局名称配对、掩码、别名或补偿偏移。
+
+正式只改6个文件：4个源码（含2个新单位）、Makefile及JP LDS。没有头文件、编译器、预处理器、文本或资源更改；沿用原-fno-weak/-fno-implement-inlines规则，仅列普通对象，不恢复GNU/子section、固定地址、填充或链接后修补。海外仍为原实现，本阶段未构建海外。
+
+889使用WSL make -j16生成新的JP ELF/map/8 MiB ROM，SHA-1为207497c8bd3c3b416b925b985f9878c7f04e9111，尚未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。890全局先符号后字节：19743配对区间，18198 exact、1433已解释引用、55长度/填充区间、1剩余字节区间；1条变化引用未解释、28处审计器不支持。仍为1197项既有名称配对，363个基线名及261个当前名未配对。相对878，长度区间58→55、字节区间6→1、未解释引用7→1；原始不同字节5756856受整体布局移动影响，不作为进度比例。原版151份bad_alloc、当前99份，不能靠手写52份字符串或选择无依据的SDK对象补数。
+
+891/892另行核实最后一条全局工具未识别的引用：SelectFishingCatch的0x080A3A10为R_ARM_ABS32，原目标0x08104994（原符号gText_RandomItem_NotAvailable），当前目标0x081047E0为fishing.o自己的本地gText_Fishing_NoCatch。该对象的5字节原文及其对齐区共8字节与baserom一致；随后具名gFishingCatchArticleIds的原版锚点为0x0810499C，明确了对象身份和物理关系，并非仅凭同内容猜测。按真实命名引用、该本地目标及保持不变的函数内跳表入口核对整个1628字节函数后，完整指令/常量池均匹配baserom，没有剩余差异。不改源码、编译器、编译结果或全局配对来消除统计；890原始全局报告仍保留1条，后续不要误把它当作新增指令错误。审计器需按对象区分重复本地符号，当前证据不等于整版SHA通过。
+
+证据：world-intro-882/checks-884.json及data-checks-885.json；world-intro-production-886/actual-checks-887.json及actual-data-checks-888.json；full-build-889/global-report.json；remaining-reference-891.json及complete-fishing-reference-892.json。初次892核对尚未处理函数内本地跳表的记录保留在.partial.json；最终覆盖完整1628字节，不使用部分通过代替全部通过。布局/重定位/进度均更新，目标继续；未提交、未推送。
+
+## JP 转换工厂与隐式生命周期归属（860–880）
+
+重启后先确认WSL、multi-language工作树及857完整报告；860总览61个长度/填充区间，其中41个的大小差与库字面量数量变化吻合。这只用于分类，不用于按数量补字符串或选择SDK-only对象。
+
+本批最终保留三组真实工厂/生命周期分工：new_game_name_entry_factory.cc负责实际创建存档控制器，既有new_game_name_entry_lifetimes.cc仅包含自身接口，自然生成新存档转换的隐式析构和两张既有虚表；scene_clock_transition.cc及town_map_transition.cc保留全部工厂实现和实际依赖，各自的同名_lifetimes.cc包含已有接口，自然生成隐式析构和虚表。没有新增类、别名、假调用或手写运行库字面量，未把已匹配C++改为汇编。海外原实现保持，新增单位在海外为空。
+
+局部实验明确拒绝显式空析构：旧agbcp会为其增加虚表写入，改变原版指令。最终四个析构仍由编译器按原有隐式机制生成。867验证15个候选对象、292个函数；三组拆分后完整.text字节、全部重定位和函数顺序与拆分前一致，不仅比较函数长度。工厂仍保留真实具体场景和存档依赖及正常生成的库内容。
+
+869按实际.d推广。最初同时尝试把GameSceneResumeRequest移入轻量返回接口并分离ReturnToGameScene生命周期；872完整报告发现它会让此前匹配的GameCube联机物理范围少一份库字面量。虽然Run只借用存档指针、普通代码能够编译，仍不足以证明原版编译单元归属。875撤回这一整项试验：game_scene_state.hh、game_scene_return.hh、game_scene_return.cc逐字节恢复869前的精确快照，移除新增返回生命周期单位，恢复联机原有SDK-only输出；没有添加无用<new>或其他假依赖补回字节。该失败试验及完整报告保留，后续不要重复删除这层依赖来凑早段布局。
+
+最终只有8个正式文件变化：6个源码（含3个新单位）、Makefile及JP LDS；没有本批头文件改动。Make沿用原有-fno-weak，LDS在对应位置只列普通.text/.rodata对象，不增加子section、GNU条目、固定地址、别名或填充。876重建并核对32个正式依赖对象、850个现有函数，完整指令/引用/顺序、具名数据、非只读数据及COMMON均保留。877确认80字节虚表完整匹配baserom：新建存档32字节@0x080E4EB8，时钟16字节@0x080E5294，地图转换32字节@0x080E5054，回调均解析到已有原版符号；未增加全局名称配对或掩码。
+
+878使用WSL make -j16完成最终JP整版链接，生成新的ELF/map/8 MiB ROM；compare仅SHA-1未通过。当前SHA-1为546bd296d2e9ed478009cdabac8f7ab9396dab2c，baserom为a655b2789aed14a6ac78c6075fbc533d3062dbe3。879先符号后字节审计：19743配对区间，18170 exact、1453已解释引用、58长度/填充区间、6剩余字节区间；7条变化引用未解释、28处审计器不支持。363个基线名及261个当前名未配对，仍沿用1197项已验证名称对应。原始不同字节5813093受全局位移影响，不能作为完成比例。
+
+原版151份bad_alloc，当前102份；差值不是待手写49份字符串的任务。其他早段生命周期接口、实际实现库字面量的后续归属及原版十份连续库内容等仍待证明。保持此前800–807全局存档依赖删减方案及本次返回接口删减方案的拒绝记录，不因轻量声明可编译就删掉原版已匹配的真实附带内容。
+
+证据：transition-tables-861/checks-867.json、data-checks-868.json；transition-production-869/plan.json、rejected-return-875/decision.json、actual-checks-876.json、actual-data-checks-877.json；full-build-878/global-report.json。861–868仅候选目录试验，最终状态以875恢复、876/877正式核对和878/879完整报告为准。本批未修改编译器、预处理器或链接后输出，未构建海外、未提交、未推送。目标仍在推进。
+
+## JP 小游戏接口与独立 C++ 表归属（843–859）
+
+将上一批共享UI依赖规则推广到鸡祭、照料动物、收获、浇水及对应流程接口。五个接口仅声明自己实际需要的场景、UI、资源和参数类型；需要读取完整存档并实例化小游戏核心的scene_minigames.cc直接包含真实实现依赖，三种精灵小游戏源码中的实际C++分配使用正常<new>接口。没有削弱存档/背包/资金记录的真实定义，没有新增类型、别名或假调用，海外保留原分支。
+
+12个代表对象、406个函数验证后，847按实际.d重建14个正式对象。848核对430个函数、顺序、重定位、非只读数据及COMMON不变。五个生命周期单位的176字节虚表完整匹配原版：scene_minigames 64字节@0x080E76B8，动物照料28字节@0x080E7930，鸡祭28字节@0x080E794C，收获28字节@0x080E7968，浇水28字节@0x080E7984。只有这些接口不再解析无关完整实现所产生的库前缀自然消失，实际实现中的正常库生成保留。
+
+进一步处理animal_actor.cc和scene_sprite.cc：函数实现确实需要完整动物/世界/队列依赖，但其独立虚表位于另一只读物理范围。使用两个仅包含既有接口的正常C++表归属单位animal_actor_tables.cc和scene_sprite_tables.cc；它们不生成函数，分别自然输出860和12字节虚表。原源码保留全部函数、真实依赖和自然生成的库字面量；没有将函数改成Native，也没有删除或手写运行库内容。JP LDS只将两条普通.rodata对象路径替换为真实表单位，没有子section、GNU项、固定地址或补偿填充。Make仅沿用对应实现原有-fno-weak及-fno-implement-inlines规则，未新增特殊编译行为。
+
+851/855验证175个既有函数不变，IWRAM内容、其他非只读数据和COMMON不变；表载荷及全部重定位与原有定义相同，排除原先表前多出的库前缀后，872字节完整匹配原版0x080E56C4和0x080E7708。为避免依赖未确认的函数名，853单独核实三个原版表槽的真实回调：CanReceiveSheepMiraclePotion为40字节@0x08023F90，RespondToPush为92字节@0x080241FC，AnimalActor析构为52字节@0x080DBDDC。入口/Thumb状态与当前函数一致，完整函数直接匹配baserom；析构仅按其真实__vt_7AEntity重定位解释。没有向全局审计添加配对或掩码。
+
+两批共18个互不重叠的正式对象、605个函数完成局部核对后，857只进行一次合并的JP完整构建，生成新ELF/map/8 MiB ROM。SHA-1 7ca862c9968297f129f2ddd7b6dc36f2d672d835，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。858先符号后字节：19743配对区间，18167 exact、1453已解释引用、61长度/填充、6剩余字节区间；7条变化引用未解释、28处审计器不支持。相对840的66/6/7，本轮长度区间降至61，其余两项不变。363个基线名、261个当前名未配对，仍为1197项已有名称对应，未靠扩展配对降低统计。原始不同字节5736979受全局布局移动影响，不作为完成比例。
+
+原版151份bad_alloc、当前105份，差值不能等同于“再加入46份字符串”。本批两个完整实现仍自然生成自己的库只读内容，但其正确后续物理归属尚需继续证明，不能只按数量将SDK-only对象塞回LDS。剩余6个字节区间的7条引用也仍需按真实对象验证，不能因此改动已匹配的函数或使用补偿地址。
+
+证据：minigame-ui-843/checks-845.json及data-checks-846.json，minigame-production-847/actual-checks-848.json及actual-vtable-data-848.json，actor-tables-849/checks-851.json、callback-checks-853.json及data-checks-852.json，actor-tables-production-854/actual-checks-855.json及actual-data-checks-856.json，full-build-857/global-report.json。本批未改编译器、预处理器或ROM输出；未构建海外、未提交或推送。继续以857完整报告为准，不重做已通过的数据范围或已拒绝的全局存档头依赖删减。
+
+## JP 飞盘数据顺序与共享 UI 接口（828–842）
+
+依据823完整报告，先总览7个剩余字节区间和9条未解释引用，确认均集中在既有符号引用与布局归属，而非看到第一个差异就改函数。随后选择有明确读取者和接口依赖证据的一组，只改7个既有游戏源码/头文件，没有新增源码单位、类型、别名、宏或构建规则。
+
+飞盘本体先包含自己的完整轻量接口和普通文本，再包含实际分配FrisbeeCore所需的<new>，以正常源文件定义顺序让自然生成的库字面量排在文本之后。原先直接包含的完整GameScene/背包实现并非这些C++方法所需，JP不再引入；海外保留原分支。成绩页只借用GameStateSaveImage指针，其自身接口已提供全部资源/硬件类型，移除JP源码中不需要的game_scene.hh，没有补充假声明或调用。902字节飞盘数据匹配原版0x080F9BD4–0x080F9F5A，23字节成绩页文本匹配0x080F9994–0x080F99AB；原有20个函数保持不变。文本仍由同名源码include，未改文本或增加逐文本段。
+
+GameSceneTalkWindowOwner仅持有并释放UiStateOwner，名称、字段、构造、析构和赋值方法均保持原样，JP定义移到既有ui_state.hh，海外原定义留在game_scene_state.hh。赛马和日历接口分别只引入实际UI类型或日期类型，不再为了这个共享所有者导入整套GameScene实现。日历源码直接包含其实际读取的完整game_state.hh，保留原有真实实现依赖；没有对存档、背包或资金记录重复执行已拒绝的800–807删减方案。
+
+12个代表对象的330个函数通过后，838按实际.d使用WSL make -j16重建85个正式对象。839确认1656个函数的字节、重定位和顺序不变，非只读数据及COMMON不变，全部具名只读对象载荷及指针保持。赛马88字节虚表范围匹配原版0x080E6DA0，日历44字节虚表范围匹配0x080E768C。日历回调Lookup的原版身份复用761已经独立验证过的完整函数证据；本地范围审计解释真实重定位，没有修改全局名称配对、掩码或构建输出。日历/赛马生命周期中多出的库字面量因不再解析无关实现自然消失；实际源代码的合法STL依赖保留。
+
+840完整生成JP ELF/map/8 MiB ROM，SHA-1 9fc82651fcff9b5b5c1c372863ea29fc8642b79f，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。841先符号再字节：19743配对区间，18162 exact、1453已解释引用、66长度/填充、6剩余字节区间；7条变化引用未解释、28处审计器不支持。相对823的70/7/9分别降至66/6/7。363个基线名、261个当前名未配对，沿用1197项已有名称对应，没有为降低计数增加配对或掩码。原始不同字节5764915受整体布局移动影响，不用作完成比例或反编译完成度。
+
+证据：frisbee-829/checks-832.json、ui-checks-836.json及ui-data-checks-837.json；ui-owner-production-838/actual-checks-839.json、actual-frisbee-data-839.json、actual-vtable-data-839.json；full-build-840/global-report.json。本批没有修改编译器、预处理器、编译参数、Makefile或LDS，也没有手写运行库文本、链接后修补、固定地址或子section。仅JP，未构建海外、未提交或推送。
+
+接续使用840报告，继续批量核实余下运行库内容的真实归属及7条未解释引用。纯函数/对象局部匹配不能扩大为整版地址相同；源文件虽然没有直接C++字段访问，也不代表其保留Native实现可以忽略真实类型/存档布局依赖。不能仅凭字面量数量选择SDK-only对象链接位置，不能重试已否定的全局存档头依赖删减。
+
+## JP 新游戏编译单元与连续数据归属（800–827）
+
+本批先验证“收缩存档头的模板实现依赖”候选：10个代表对象函数不变后，按实际.d扩大到112个对象、1833个函数，发现仍会删除至少50处原ROM实际存在的库字面量。因此800–807方案明确拒绝，4个文件从精确快照恢复，808重编译确认112个完整.o与调整前逐字节相同；没有把函数匹配误当作整块布局通过，也没有留下该项依赖删减。
+
+实际采用809之后的新游戏组织：仅将共用图块缓冲/OAM类型归入new_game_ui.hh，身份页、键盘页和生日输入接口直接引用各自需要的UI类型，不再为这些声明引入整个菜单和存档实现。存档、背包、资金记录的原有真实依赖保持不变。身份页和名称输入的C++虚表分别由new_game_identity_lifetimes.cc、new_game_name_input_lifetimes.cc生成，均为零代码的真实表归属单位，使用项目既有-fno-weak方式，没有手工虚表、别名或SDK副本。
+
+JP文本、行表和相关代码按实际读取者收回new_game_menu、new_game_name_entry、new_game_identity、new_game_name_input各自源码，外部声明在同名头文件。新游戏菜单的连续文本与6行标签表最终合入同一个new_game_menu.cc；三份文本片段为new_game_menu_1/2/3.cc，分别位于标签表前、表后、实际实现依赖之后。旧JP new_game_data_1/2.cc和无编号new_game_menu.cc片段删除；new_game_data.cc只保留原海外分支，JP不再单独链接其.rodata。普通LDS中每个实际主题只列一次.rodata，没有固定起点、子section、GNU项或补偿填充。共享键盘格式/菜单行类型仍在既有new_game_data.hh，JP外部对象声明已经归回实际所属头文件。
+
+三个库字面量分别由菜单、身份页、名称输入的真实分配实现自然生成。名称输入单位先解析实际<new>依赖，再定义ALIGN(1)键盘数组，因此键盘在该单位内自然紧接10字节库文本，保持原版非字对齐起点；后面的13字节占位符仍有已验证的ALIGN(4)和格式检查。Error仍作为未证明可自动生成的普通保留字面量维护，不因名字或相邻bad_alloc就将它当作自动运行库内容。
+
+815按实际.d重建54个对象，816核对1203个函数不变，1571字节数据和56字节虚表全部直接匹配baserom。819–822完成菜单同一单位合并，再重建52个依赖对象，1202个函数及所有其他数据保持不变。原版坐标0x080E7AC8–0x080E80EB的整个1571字节范围由四个普通.rodata对象自然组成：菜单714、流程前缀23、身份119、名称输入711字节，正常输入对齐补足对象间间隙。两组虚表各28字节分别匹配原版0x080E4ED8和0x080E4EF4。
+
+823完整生成JP ELF/map/8 MiB ROM，SHA-1 52372a759a7eff441041c0f3c2c38866446a5108，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。菜单合并前817与合并后823的ROM完全相同；这是组织合并的等价性证据，基准验收始终直接使用baserom。824全局先符号后字节：19743配对区间，18158 exact、1452已解释引用、70长度/填充、7剩余字节区间；9条变化引用未解释、28处审计器不支持，363个基线名和261个当前名未配对。相对794的77/8/10，分别降至70/7/9。没有增加配对或掩码，数量是区间统计而非独立bug数。
+
+局部范围匹配不代表整版已回到原址：823 map中新游戏菜单实际起点0x080E7BC0，身份/名称输入虚表实际起点0x080E4EFC/0x080E4F18，仍受前面未恢复的布局影响。未强行固定这些地址。826总览原版151份bad_alloc、当前115份，70个长度区间中50个变化量与12字节副本数量差相符；这只能分类，不能据此插入字符串、盲目链接SDK-only对象或去掉合法依赖。
+
+证据：save-header-production-804/rejection-807.json与restored-808.json，newgame-809/checks-811.json及data-checks-813.json，newgame-production-815/actual-checks-816.json，menu-production-821/actual-checks-822.json及actual-data-822.json，full-build-823/global-report.json，remaining-layout-826。仅JP，未改编译器或预处理器，未构建海外，未提交或推送。继续用823全局报告批量核实剩余运行库来源/边界和9条未解释引用，不能再次尝试已拒绝的全局存档头依赖删减。
+
+## JP 真实依赖与共用界面数据归属（781–796）
+
+781先总览112个单位的645个具名数据对象：按已存在的真实重定位解释后，全部载荷与baserom相符；这仅证明已具名对象内容，不证明原始边界、编译单元归属或隐藏指针全部完成。782结合355个实际LOAD对象及50条入向符号引用，确定共用界面数据的真实读取者，再进行整组整理。
+
+ObjPaletteCollection的JP接口只保留池、句柄及存储指针所需类型；实际分配实现直接包含存储头，避免将完整分配后端带入所有调用者。主菜单数据类型归入main_menu_data.hh，虚组件的真实C++虚表由main_menu_widget_lifetimes.cc生成。原common_ui的16个外部对象分别归入文本变量、教学脚本、主菜单数据和NPC日程模块。教学根模块原有回调及64字节虚表保持原样；只将原stack单位的真实Push方法与VM辅助数据合入farming_tutorial_script.cc。所有新引用均为普通符号，文本以同名片段include，海外分支保持原状。
+
+790按实际.d依赖使用WSL make -j16重建114个对象。791核对1809个函数，除明确的Push所属单位调整外，代码、顺序、非只读数据和COMMON均保持。792–793逐对象核对数据及重定位：16个迁移对象保持载荷，Moneybags和空串取消指定数组容量，原填充由自然对齐保留；五个普通输入对象形成的252字节连续范围与baserom 0x080F11D4–0x080F12D0完全一致。另有7个单位移除无关库依赖产生的前缀；商店字形表为半字对齐，删除10字节库文本后还自然少2字节旧相位填充，其6个具名对象和全部指针重定位逐项不变。没有添加填充对象、假调用、无用途头文件或内容专用补丁。
+
+794生成JP完整ELF/map/8 MiB ROM，SHA-1 f8f24f7d975e7375a0e061415c3c6f10c4b9cb65，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。795按原审计规则先符号后字节：19743配对区间，18151 exact、1451已解释引用、77长度/填充、8剩余字节区间；10条变化引用未解释、28处审计器不支持。长度区间由777报告的79降至77，不能当作77个独立bug。363个基线名、261个当前名未配对；未增加配对、掩码或别名。原始不同字节5790412受整体布局变化影响，不用作完成比例。本批未修改编译器、预处理器或海外LDS，也未做链接后修补。
+
+证据保存在外部审计目录的data-objects-781、common-ui-782、collection-api-783、common-production-790及full-build-794/global-report.json。C盘满只中断了编译结束后的辅助脚本写入；完整新产物已保存I盘，全局审计随后从I盘完成。没有删除用户文件。继续按794全局报告批量核实剩余运行库生成来源及实际编译单元边界；JP尚未验收，不提交、不推送，不构建海外。
+
+## JP 运行库归属总览、脚本查找实例与钓鱼完整入口（763–780）
+
+以759完整报告的82个长度区间为总览，而非逐地址试改。763发现59个区间的长度变化恰与12字节bad_alloc副本数量变化相等；其余多为小幅边界相位变化，另有钓鱼代码和镜像末端区间。该统计只用于归类，不证明具体编译单元归属，也不能据此给每个位置补零或加ALIGN。原ROM151份bad_alloc、当时完整输出116份；数量差不等于可以机械增加35个头文件或数据副本。
+
+764遍历完整map的实际LOAD对象，找到39个既有对象：它们的未被LDS选择的.rodata全部恰为自然生成的10字节bad_alloc，没有其他定义或资源。这解释了部分来源已经生成却未进入ROM的情况，但没有把39份全部盲目链接，也没有依照旧手工标签名字认定原始归属。证据留在unselected-rodata-764/inventory.json，后续需要结合实际代码/依赖/原始范围逐组恢复。
+
+先完成一个来源明确的组织修正：ScriptVm的switch分支使用std::__lower_bound<JumpTableEnt>，该真实算法实例此前和ScriptEngine隐式生命周期共同放在script_engine_lifetimes.cc。后者因无关算法依赖产生了虚表前的运行库字面量。JP现在以src/script_jump_table_search.cc及同名include/script_jump_table_search.hh维护实际算法实例和8字节条目/比较器类型；ScriptEngine生命周期仍由其既有C++接口正常生成，算法依赖随真实实例移动。海外原定义仍保留原分支。
+
+普通Make给这个显式模板实例单位使用既有同类的-fno-weak归属规则。JP LDS仅在原代码顺序列一次script_jump_table_search.o(.text)，在script_vm之后列一次该对象的.rodata，没有子section、GNU条目、固定地址或手工字符串。局部766和正式768验证：普通输入对齐后，算法60字节和隐式析构12字节及代码重定位完全保持；20字节ScriptEngine虚表匹配baserom 0x080E6C64，真正算法依赖自然生成的10字节字面量匹配0x080F9708。按实际.d共重建49个对象，其余1100个函数及数据/重定位/COMMON均不变。770完整JP输出SHA-1 f84d58f61c900559e9c3b067cc9920c2d6de1808；771全局长度82→80、字节8→7。没有改编译器或预处理器，没有手写库字面量。
+
+钓鱼此前的共享全局默认文本方案已明确拒绝，因为它删除了GameScene原有的独立默认文本。772–775采用真实的逐编译单元默认对象：data/text/jp/fishing.cc中的无指定长度static char const gText_Fishing_NoCatch[]仍是普通UTF-8文本“なし”，由fishing.hh内的真实默认构造函数引用；每个包含该内联构造的单位保留自己的本地对象，而非共享extern数组。没有used属性、强制发射、汇编别名、显式补零、假调用或SDK副本。文本仍走普通转码通道。为支持这种头文件中的真实文本片段，Make现有通用片段发现同时扫描src与include，未添加特定文件规则；实测该文本被识别为片段，不产生独立对象。海外三个文本目录均没有新增fishing.cc，默认构造原文保持原分支。
+
+在保留实际默认构造语义及两个独立默认对象的基础上，将未匹配的JP SelectFishingCatch从1564字节C++恢复为完整1628字节符号化Native（原版0x080A3984），旧C++继续保留海外分支和外部分析。该项不计为高级语言完成。所有分支、调用和常量池均使用真实标签；配置表的+2及7字节季节行偏移对应已定义结构的实际字段和数组维度，不是地区补偿。全部2030字节钓鱼.rodata与baserom连续载荷一致；GetFishingAttemptParameters的188字节现有Native保留匹配。两个实际依赖对象验证：只改变SelectFishingCatch，GameScene的171个函数和两对象所有数据及数据重定位不变；默认文本各5字节加自然对齐保持原位置和总空间，不恢复共享全局文本。本组没有改编译器、预处理器、编译参数或LDS。
+
+777完成新JP整版ELF/map/8 MiB ROM，SHA-1 eb88f563500a90439fa3afdf20032071ad198b92，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。778先符号再字节：19743配对区间，18149 exact、1451已解释引用、79长度/填充、8未解释字节；10条变化引用未解释、28处审计器不支持，363个基线名和261个当前名未配对。当前多出的两个未配对名字是两个真实逐单位本地默认对象，不是新增运行时载荷；没有为压低统计添加原版符号、配对或掩码。恢复64字节代码后，大量后续代码原址与字节自然重合。最近报告中的最后一处已知代码长度差异已解决，但不能由此宣布全ROM边界、未配对函数或动态引用已经全部验收。8个全局字节区间含已局部验证的真实引用身份，不能当作8个指令bug。原始不同字节5716399受布局变化影响，不作为完成比例。
+
+779使用完整777 map的355个LOAD对象，提取new_game_data的54个外部对象、64条已符号化入向重定位，并沿文本指针表追踪读取者。得到四组：32个对象由new_game_menu读取；3个身份前缀由new_game_name_entry读取；9个身份摘要对象由new_game_identity读取；9个键盘/名称输入对象由new_game_name_input读取。gCppRuntimeError_NewGameSave没有已符号化代码入向。该图只覆盖现有符号重定位，不证明原始字节里没有隐藏地址，也不能单凭一个未引用Error或相同SDK文本断定原编译单元。它为下一批真实类型/模块归属提供具体入口，避免只按相邻字符串数量拆分。
+
+证据：remaining-layout-763、unselected-rodata-764、script-search-765/checks-766.json、script-search-production-767/actual-checks-768.json、full-build-770/global-report.json、fishing-private-default-772/checks-773.json、fishing-private-production-774/actual-checks-775.json、full-build-777/global-report.json、newgame-ownership-779/ownership.json。仅验证JP；未构建海外，未提交或推送。工具链未增加任何内容专用补正。
+
+接续：使用777全局报告，继续批量处理剩余79个数据布局区间，优先根据真实读取者和类依赖梳理new-game等运行库来源；39个未选择的SDK-only对象与虚表前字面量、同一单位合并的多个原始副本需要分别证明归属，不能全部加入LDS或按数量机械拆文件。小幅对齐差异先检查缺失字面量导致的相位变化，不添加补偿ALIGN或手工零数组。SelectFishingCatch已完成完整Native与独立默认对象验证，不再重复此前共享全局文本试验。完整四版目标仍未完成。
+
+## JP 四处代码差异、日历紧凑记录及真实引用核验（739–762）
+
+按733全局差异区间批量展开实际入口。外部局部审计器原来将所有函数指针强行设为Thumb，错误地把ARM的SubmitWorldSpriteRecords从0x030004DC解释成0x030004DD。742改为保留ELF真实函数状态后，三份绘制函数均匹配，游戏源码保持原样。全局审计器564原本就使用真实符号值，没有该错误，因此本轮全局统计没有靠更换规则降低。
+
+在既有两个源码文件内一次处理四个实际指令差异：SouthTownRoamingNpc2构造0x0803799C/96字节、SouthTownRoamingNpc1构造0x080379FC/92字节、EntityEventEffectController构造0x080385B4/264字节采用完整符号化Native，共452字节，外部调用和常量池使用真实符号，海外原C++保留。这三项不计为新增高级语言进度。有限的正常C++构造写法试编译仍不匹配，没有推广，也没有修改编译器。ShippingBasketEntity::IsFull在函数调用完成后再给布尔结果赋值，普通C++即可自然匹配原版0x08038EB0的24字节，继续保留C++。
+
+正式WSL make -j16构建两个实际对象，748确认仅四个预期入口改变，同文件其余88个函数、全部非代码数据及数据重定位不变，没有新增或删除函数。749阶段完整生成JP ELF/map/ROM，SHA-1为412b89ed57429798f39f78a33faff52be31709f1；750全局字节区间13→10、长度区间83不变。
+
+继续核查剩余引用时发现真实的日历表格式错误：原版BuildMonthGrid按2字节步长读取17组季节/日期，当前CalendarFestivalDate虽然只有两个u8成员，却被旧ARM结构布局填成4字节，导致表变成68字节、还产生一个错误的表前对齐字节。JP类型使用PACKED恢复实际存储格式，增加2字节格式约束；数组仍由初始化内容推导长度，未写固定17项容量。修正后34字节全部匹配baserom 0x0810448B。表前错误对齐自然消失，后续普通对象对齐自然补齐，总.rodata减少32字节，没有添加补偿字节或LDS地址。海外类型分支保持现状，待JP完成后再按证据同步。
+
+755先验证代表对象全部10个函数不变，表前有效内容及表后全部数据保持不变；756按实际.d重建全部6个依赖对象，757确认共275个函数不变，其余5个对象的所有数据、重定位不变，日历对象等于已验证候选。没有改编译器、预处理器、编译参数、Makefile或LDS。
+
+759完成本阶段JP完整构建，SHA-1为2f7f1b862e90d27c2f1c6f6d9ed06e8b9e233317，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。760先符号后字节：19743个配对区间中17041个exact、2556个已解释引用变化、82个长度/填充、8个未解释字节区间；10条变化引用未解释、28处审计器不支持，363个基线名和259个当前名未配对。全局沿用1197项有证据名称对应，本轮没有增加配对、掩码、别名或输出修补。原始不同字节6025906受全局位置变化影响，不作为完成比例。
+
+761另外核实7张真实C++虚表共500字节的全部元数据与回调目标，及34字节日期表；ScriptVm的匿名Error由include/script_vm.hh中的正常C++返回表达式自然生成，含bad_alloc的整个18字节局部.rodata与原版对应内容一致，保留原始生成关系。此组区间跨多个对象实际覆盖47个完整入口、共7912字节，按验证过的真实引用地址及ELF ARM/Thumb状态逐字节均匹配。该外部身份核验没有在游戏源码添加地址别名，也没有虚构原版ELF符号；未将外部局部证明直接当作全局报告已清零。不能将剩余8个区间说成8个指令bug，也不能据此宣布全ROM已匹配。
+
+本轮正式源码仅修改src/roaming_npc_actor.cc、src/world_prop_entities.cc、include/scene_calendar.hh，及三份进度/布局/引用记录。证据remaining-cpp-743/checks-744.json、remaining-native-745/checks-746.json、remaining-production-747/actual-checks-748.json、calendar-record-754/checks-755.json、calendar-record-production-756/actual-checks-757.json、remaining-references-752/{table-proof-761.json,complete-entry-checks-761.json}、full-build-749/global-report.json与full-build-759/global-report.json。仅构建JP，海外有效定义未改；未提交或推送。
+
+接续重点：以759的82个长度/填充区间按真实编译单元和对象范围归类，区分运行库字面量归属、数据格式、自然对齐及尾部镜像差异；不要把锚点owner当作整个区间的唯一归属。SelectFishingCatch仍为原C++1564字节、原版1628字节，其每编译单元独立默认文本生成关系尚未解决，不恢复共享全局文本、手写SDK副本或无用途依赖来凑大小。此组47入口已通过局部引用身份核验，不重复替换已匹配函数。完整目标仍未完成。
+
+## JP 跨对象边界、状态页工厂及滚动副本（719–735）
+
+713剩余代码区间先按实际map和两份ELF逐项跨对象展开。全局差异区间的owner只是首个具名锚点，不能代表整个区间归属：resource_handle末尾后的短缺实际是intro_story_scene构造；animal_festival_selection之后是生日输入核心；GameCube析构之后是三组状态页工厂/析构；Cooking文本变量析构之后则是三份已匹配模板查找和日历查询。所有前导已匹配函数均保留，没有错误拆改首个owner。
+
+两个构造函数对应的12字节虚表，通过原版构造存储位置、零元数据、当前真实类声明及完整析构回调交叉验证：IntroStorySceneCore析构48字节、NewGameBirthdayInputCore析构108字节均匹配。四个季节文本各3字节含终止符，4字节存储连续，通过原版switch目标及实际文本载荷验证。记录页构造的48字节现有Native也与工厂的实际调用目标一致。这些是外部分析器中的引用身份验证，不在源码增加地址别名，也没有修改全局审计配对或创造原版符号。
+
+| 完整入口 | 原版地址 | 字节 | 当前实现 |
+|---|---|---:|---|
+| IntroStorySceneCore构造 | 0x0805EA90 | 248 | 完整符号化Native |
+| NewGameBirthdayInputCore构造 | 0x0806D788 | 428 | 完整符号化Native |
+| FarmMapScreenTransition::CreateScene | 0x080DBBE0 | 72 | 完整符号化Native |
+| FarmMapScreenTransition析构 | 0x080DBC28 | 40 | 完整符号化Native |
+| RecordsScreenTransition::CreateScene | 0x080DBC50 | 72 | 完整符号化Native |
+| RecordsScreenTransition析构 | 0x080DBC98 | 40 | 完整符号化Native |
+| FarmStatusScreenTransition::CreateScene | 0x080DBCC0 | 72 | 保留原本匹配C++ |
+| FarmStatusScreenTransition析构 | 0x080DBD08 | 40 | 完整符号化Native |
+| CalendarTextVariables::Lookup | 0x080E36D8 | 352 | 完整符号化Native |
+
+八个新Native入口共1292字节，保留未匹配C++分析及海外实现，不计作新增高级语言进度。状态页六个入口从0x080DBBE0至0x080DBD30共336字节，普通源码顺序即原版物理顺序。对日历同类有符号switch作一次有限正常C++试编译，仍为328字节且不匹配，未推广；现有匹配的农场状态工厂在身份确认后明确保留C++，没有因为初期未配对而一并替换。
+
+三份模板查找116、116、164字节共396字节全部匹配，继续使用原C++。ScrollBufferUploadCommand原有IsQueued成员产生了一份原版没有的12字节外部副本。所有已链接对象入向重定位扫描为零；唯一源码调用已内联。直接改写为if中的指针条件会改变原本匹配的上传函数，因此未推广该试验。将同一个布尔查询移为scroll_state.cc内的私有static inline函数，保留布尔返回语义和现有192字节调用方代码，去掉多余外部副本。没有改编译选项、插入填充或删掉被调用实现。
+
+最终修改两个既有头文件和五个既有源文件：scene_calendar.hh、scroll_state.hh、intro_story_scene.cc、new_game_birthday_input.cc、status_screen_transitions.cc、scene_calendar_lifetimes.cc和scroll_state.cc。候选729验证后，正式WSL make -j16重建全部66个实际依赖对象；731确认仅预期八个函数改变、一个无引用副本移除，其余代码、所有数据及数据重定位、COMMON均不变。17个入口共2172字节全部匹配，其中新增Native1292字节、保留匹配C++784字节、保留现有Native96字节。所有虚表仍由实际C++类型正常生成，LDS未增加子项。
+
+733完成本阶段唯一一次JP整版构建，生成新ELF/map/8 MiB ROM，SHA-1 32102b89d39ffb840c177072a16baeeb6fa78707，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。734先全符号再全字节：19743个配对区间中17039个exact、2552个已解释引用变化、83个长度/填充、13个字节差异；17条变化引用未解释、37处审计器不支持，363个基线名和259个当前名未配对。相对713消除5个长度和5个字节差异区间；没有新增审计配对、别名或掩码。区间不是独立bug，原始不同字节数量受全局位置变化影响，不作为完成比例。
+
+证据remaining-boundaries-719/{overview.json,cross-owner-current-720.json}、boundary-native-721/{helper-checks-before.json,verified-bindings-723.json,scroll-upload-checks-726.json,old-native-planned-checks-728.json,candidate-checks-729.json}、boundary-production-730/{plan.json,removed-entry-incoming.json,actual-checks-731.json}、full-build-733/global-report.json。编译器、预处理器、Makefile、LDS均未修改；海外有效定义保留、未构建海外、未提交或推送。SelectFishingCatch的正常C++及其真实逐编译单元默认文本生成关系保留待后续；早段运行库字面量、其他数据归属和未解释引用仍需继续，完整目标未完成。
+
+## JP 类型布局、地图／搜索完整函数批次（700–715）
+
+根据693全局报告的32个代码差异区间，总览实际函数后区分真实指令差异、后续相邻对象和未解释的引用身份。对先前已验证的有符号控制码switch方式进行一次有限赛马查询试编译，仍未匹配，因此没有推广，也没有修改编译器。随后按完整边界处理九个尚未匹配的函数，保留其他已匹配C++。
+
+赛马核心发现真实地区布局错误：JP场景原版分配0x11DC字节，构造/Run访问player_horse位于0x11BC，析构清理文本变量区位于0x11C0；原头文件却在JP也沿用海外0x14FC、0x14DC、0x14E0。只修正JP尾部未知存储范围和已有布局检查，未猜测未知字段含义。该修正使原有612字节HorseRaceCore C++析构直接匹配baserom，不需要Native替换或指令补丁。海外布局保留原样。
+
+| 完整Native函数 | 原版起点 | 字节 |
+|---|---|---:|
+| FarmMapScreenScene构造 | 0x0806FE18 | 2076 |
+| ReferencePageSceneCore::IsTopLineStarred | 0x0807AB98 | 68 |
+| AddTownMapMarker | 0x08077E74 | 732 |
+| GetFishingAttemptParameters | 0x080A38C8 | 188 |
+| UpdateMoneyAccountRecordHistory | 0x0809A8A4 | 428 |
+| GameSceneMenuCursorData::MoveDown | 0x080CD318 | 248 |
+| std::find字节迭代器实例 | 0x080DBE30 | 116 |
+| HorseRaceTextVariables::Lookup | 0x080E0C58 | 264 |
+| SavedMapTree构造 | 0x080E3B94 | 60 |
+
+九个Native入口共4180字节，使用实际调用、数组、资源和硬件符号。原生switch表的所有内部地址恢复为局部标签，保持Thumb状态和真实边界；不使用ROM地址常量、别名或链接后修补。未匹配C++分析保留在海外分支及外部记录，不计作新增高级语言进度。
+
+赛马生命周期组另保留五个普通C++入口共964字节：核心析构612、文本变量析构32、奖品查询96、兑换核心析构192、奖品变量析构32。连同Native查询，该对象从0x080E0C58至0x080E1124的1228字节完整函数组及顺序全部匹配。只在原有horse_race.hh中维护真实区域布局及方法声明；没有增加头文件、模块或section。
+
+钓鱼选择函数的1628字节Native候选虽然在自身对象中匹配，但其默认结果文本“なし”的归属不能单独合并：FishingCatchResult内联构造使fishing和game_scene两个编译单元各自然输出一份独立8字节文本对象。改为共同具名文本后，GameScene从36字节rodata变为28字节，移除了原有一份真实生成记录。实际依赖核验发现后，已恢复原头文件和生成关系，移除本批试建的JP文本文件；没有手写一份无引用文本补回。SelectFishingCatch仍保留原C++，此问题未完成。不能将这次普通默认文本的证据推广为所有Error、N/A或bad_alloc都同源。
+
+本批最终只修改horse_race.hh及九个现有源文件。正式WSL make -j16重建全部14个实际依赖对象；711确认仅预期十个函数改变，其他代码、所有数据及数据重定位、COMMON定义和函数顺序均不变。Fishing头文件逐字节恢复本批之前状态，GameScene代码及36字节数据也恢复不变。14个核验入口共5144字节全部匹配，候选阶段的局部通过没有被扩大解释为全依赖通过。
+
+713是本阶段唯一一次整版JP构建，产生新ELF/map/8 MiB ROM，SHA-1 3dfbc822462dffbf0a4b73bcbfebafe5605c36d0，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。714先总符号再总字节：19743个配对区间中16831个exact、2750个已解释引用变化、88个长度/填充、18个字节差异；21条变化引用未解释、37处审计器不支持，363个基线名和260个当前名未配对。相对693消除6个长度和4个字节差异区间；没有新增审计配对、别名或掩码。区间不是独立函数/bug，原始不同字节数受全局地址移动影响，不能作为完成比例。
+
+证据control-lookup-700/{signed-switch-checks-before-701.json,regional-layout-evidence-701.json,layout-checks-702.json}、scalar-boundaries-702、scalar-native-703/{candidate-checks-706.json,rejected-shared-no-catch-710/reason.json}、scalar-production-707/{plan.json,game-scene-data-difference-709.json,actual-checks-711.json}、full-build-713/global-report.json。编译器、预处理器、Makefile、LDS不变；海外有效定义未改、未构建海外、未提交或推送。保留完整目标，后续继续处理引用身份、真实运行库归属、相邻边界和SelectFishingCatch，不宣称整ROM匹配或动态化完成。
+
+## JP 小游戏生命周期完整边界与调用组（684–695）
+
+承接681全局报告，按同类核心生命周期整组处理动物参赛选择、照料、鸡祭、收获和浇水，不按第一个不同字节逐项补正。先核对原版核心析构和相邻辅助入口的真实边界；已存在的四个C++辅助函数全部先直接对照baserom，并结合核心调用、实际成员偏移、11/9/12个独立tile句柄的正向构造/逆向析构确认身份，没有凭相同字节随意别名。
+
+| 完整入口 | 原版地址 | 字节 | 当前实现 |
+|---|---|---:|---|
+| FestivalAnimalSelectionCore析构 | 0x080E15C8 | 388 | 完整符号化Native |
+| HarvestSpriteAnimalCareCore析构 | 0x080E3CFC | 764 | 完整符号化Native |
+| AnimalCareMinigameTileHandles析构 | 0x080E3FF8 | 224 | 保留普通C++成员清理 |
+| ChickenFestivalMinigameCore析构 | 0x080E40D8 | 1040 | 完整符号化Native |
+| HarvestSpriteHarvestingCore析构 | 0x080E44E8 | 484 | 完整符号化Native |
+| HarvestingMinigameTileHandles析构 | 0x080E46CC | 188 | 保留普通C++成员清理 |
+| HarvestSpriteWateringCore构造 | 0x080C07F8 | 1260 | 完整符号化Native |
+| HarvestSpriteWateringCore析构 | 0x080E4788 | 688 | 完整符号化Native |
+| WateringMinigameTileHandles构造 | 0x080E4A38 | 132 | 保留普通C++成员构造 |
+| WateringMinigameTileHandles析构 | 0x080E4ABC | 244 | 保留普通C++成员清理 |
+
+五个生命周期对象中，核心析构先出现，随后才是原版对应辅助入口；浇水组为核心析构、辅助构造、辅助析构。通过现有头文件中的真实声明和现有生命周期源文件中的普通C++空函数体恢复编译器的成员构造/清理，不增加文件或section。所有辅助函数内容保持既有匹配结果。JP显式声明核心析构并用完整Native定义，防止再生成未匹配的隐式副本。未匹配C++实现和类型分析保留在海外分支及外部记录，不计作新增高级语言进度。
+
+浇水核心构造原来同样未匹配；将辅助构造改为真实独立入口后，单独保留原C++核心构造仍不匹配，因此没有机械推广这个局部结果。按完整调用组恢复1260字节Native核心构造，正常调用132字节C++辅助构造；资源、虚表、分配与硬件接口均使用既有真实符号。仅在JP提前一次导入既有汇编宏，海外仍在原处导入，不改工具或输出。
+
+动物选择的普通持有者类型移出JP接口pragma范围，去掉76字节多余ScrollOwner独立副本。全部当前链接对象的入向重定位扫描未发现该副本的引用；没有删除被调用入口或补地址别名。其余数据、虚表及已匹配函数保留。
+
+候选689先通过10个完整入口、5412字节核验，其中Native六个共4624字节、保留C++四个共788字节。随后修改现有五个头文件、五个生命周期源文件和一个浇水主源文件，以WSL make -j16重建全部16个真实依赖对象。691确认仅六个预期函数改变、一个无引用副本移除，其他代码、所有数据、数据重定位和COMMON定义均不变。普通局部.text绝对重定位在对象比较时按实际所属函数+偏移解释；没有修改任何编译输出或ROM字节。
+
+693完成本阶段唯一一次JP整版构建，生成全新ELF/map/8 MiB ROM，SHA-1 2dda375add10bb018cbf83c419a97ef4c73804b1，仍不等于baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。694先总符号再总字节：19743个配对区间中16823个exact、2748个已解释引用变化、94个长度/填充、22个字节差异；24条变化引用未解释、44处审计器不支持，363个基线名与260个当前名未配对。相对681消除6个长度和1个字节差异区间；相对本次恢复前660合计消除8个长度和5个字节差异区间。未增加审计配对、别名、掩码或补丁。区间不是独立函数/bug，原始字节差数量受全局地址移动影响，不能作为进度比例。
+
+证据minigame-boundaries-684、minigame-native-685/{cpp-helper-original-checks.json,candidate-checks-689.json,reference-map.json}、minigame-production-690/{plan.json,removed-entry-incoming.json,actual-checks-691.json}、full-build-693/global-report.json。所有实际修改保持JP范围，海外有效定义未变；编译器、预处理器、Makefile、LDS均未改，未构建海外、未做移址试验、未提交或推送。后续继续按最新全局分类处理真实代码、运行库归属和未解释引用，完整目标未完成。
+
+## JP 范围析构与完整生命周期组（664–683）
+
+先总览660报告的45个代码差异区间，区分真实指令差异、同一区间包含的后续对象，以及审计器尚不能解释的匿名常量/虚表引用；没有把区间数当作函数数，或将引用身份未解决误报为代码错误。本批按已确认完整边界处理脚本队列、记录列表、飞盘生命周期、VCount绑定和中断表交换入口。
+
+脚本队列和记录页仅有已构造范围内的元素需要析构，未用容量不属于对象生命周期。JP记录页列表采用原有固定容量的原始存储，保留84字节大小、8字节条目步长和真实字段偏移；没有将ROM文本改为固定容量。两个范围使用从现有SGI stl_construct.h分离出的通用按值trait/value-type析构模板destroy_ptrs。它位于既有utility/container_algorithms.hh，不含游戏名、符号名、地址或指令识别规则；既有三参数STLport析构接口不变。没有为了匹配而引入额外分配器依赖、手写bad_alloc或修改编译器。脚本队列保持正常C++析构，未采用候选阶段的Native方案。
+
+| 完整入口 | 原版地址 | 字节 | 当前实现 |
+|---|---|---:|---|
+| GameSceneScriptQueues析构 | 0x080D761C | 104 | C++，三个真实已构造范围 |
+| FrisbeeTextVariables::Lookup | 0x080E092C | 96 | 保留匹配C++，正常源文件定义先于Core析构 |
+| FrisbeeCore析构 | 0x080E098C | 684 | 完整符号化Native |
+| FrisbeeTextVariables析构 | 0x080E0C38 | 32 | 保留自然生成C++ |
+| RecordsScreenCore析构 | 0x080E18BC | 84 | C++，通用范围析构 |
+| UiVCountBinding析构 | 0x080E4C10 | 76 | 完整符号化Native |
+| ExchangeInterruptHandler | 0x080D07C4 | 16 | 完整符号化Native，真实RAM数组引用 |
+| ExchangeInterruptNestingMask | 0x080D07D4 | 16 | 完整符号化Native，真实RAM数组引用 |
+
+八个入口共1108字节直接匹配baserom，其中四个C++共316字节、四个Native共792字节。Native只替换尚未匹配的完整函数，不计入新增C++反编译进度；原C/C++分析保留在海外分支和外部候选记录。飞盘组的普通C++Lookup、Native Core析构、自然生成TextVariables析构按原物理次序连续排列，不靠section或额外LDS条目。所有Native调用、RAM指针和虚表均为实际符号；结构固定偏移仍是当前ABI限制，不表示类型可任意扩缩。
+
+修改七个既有文件：include/records_screen.hh、include/utility/container_algorithms.hh、include/frisbee.hh、include/game_scene_script_queue.hh、src/frisbee_lifetimes.cc、src/ui_vcount.cc和src/interrupt_table.c。使用正式WSL make -j16重建全部114个实际依赖对象；只有预期六个函数改变，无新增或消失入口，其余代码、所有数据、非代码重定位和COMMON定义均不变。编译器、预处理器、Makefile、LDS不变，海外有效定义保留，未构建海外版。
+
+681完成本阶段唯一一次JP整版构建，产生全新ELF/map/8 MiB ROM。SHA-1 c6d82532cece343ee6c14233490fb5d16df726e5，仍未匹配baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。682按全符号后全字节核查：19743个配对区间中16800个exact、2764个已解释引用变化、100个长度/填充、23个字节差异；25条变化引用未解释、91处审计器不支持，363个基线名和261个当前名未配对。相对660消除2个长度和4个字节差异区间，没有新增审计配对、别名、掩码或链接后修补。区间不是独立bug；全局地址移动导致原始不同字节数量变化，不能作为完成百分比。
+
+证据remaining-code-overview-664、cleanup-native-670/{checks-672.json,records-rodata-675.json}、cleanup-production-678/{plan.json,actual-checks-679.json}、full-build-681/global-report.json。局部候选和正式全部依赖均分别核对。仍有运行库字面量真实归属、其他代码/对象边界及未解释引用需要继续处理；未提交、未推送，不宣称整ROM动态链接或SHA-1完成。
+
+## JP 地图容器完整边界与内联副本（653–662）
+
+先根据649全局报告总览new_game_data、common_ui和animal_data三个数据岛的对象、物理间隙及当前工程重定位调用者，再选择边界已确认的地图容器整组推进。数据岛分析是只读记录，不算源码修复：新游戏53个非指针载荷与原版相同，另有一张真实重定位指针表；通用UI也是一张指针表不能按未链接原始零值判断错误，动物数据31个具名载荷相同。该盘点未扫描或声称消除了所有潜在二进制硬编码指针。
+
+新游戏的键盘表保持原生558字节固定行格式；原版从0x080E7E2E开始，恰好在0x080E805C的字边界结束。当前字符内容相同，后面的多余对齐与前面未恢复的库记录/布局有关，不能据此删掉必要对齐或改表宽。原版0x080E80EC–0x080E8164实际是十份连续的bad_alloc记录，每份含自然终止与对齐共12字节，不是普通零填充。真实生成来源与编译单元仍待确认，没有按字面量数量增建文件或手工补回。其他两个数据岛也继续按实际调用和生成关系处理，未宣称完成。
+
+本批实际只修改include/town_map.hh和src/town_map_lifetimes.cc。地图标记容器的普通内联类型及方法定义，在JP中位于显式虚函数接口的pragma范围之前；所有声明仍在现有town_map.hh。JP显式声明TownMapUiCore析构入口，并保留完整符号化原生实现，防止同时重复生成隐式C++副本。海外的类型定义顺序与C++实现保留原样。没有新增头文件、源文件、section、编译选项或工具。
+
+| 完整函数 | 原版起点 | 字节 | 当前实现与验收 |
+|---|---|---:|---|
+| EraseTownMapMarkerNodes | 0x080E2618 | 44 | 保留已有匹配C++ |
+| InsertTownMapMarkerNode | 0x080E2644 | 208 | 完整Native，调用与内部跳转均符号化 |
+| InsertTownMapMarkerCount | 0x080E2714 | 224 | 完整Native，保持结构返回ABI |
+| InsertTownMapMarkerCountWithHint | 0x080E27F4 | 660 | 完整Native，不把未命名尾部误分为另一函数 |
+| TownMapUiCore析构 | 0x080E2A88 | 176 | 完整Native，含真实容器清理和虚表引用 |
+
+五个入口合计1312字节，位置连续至0x080E2B38；全部指令、相对顺序、调用和常量池引用直接匹配baserom。四个尚未匹配的C++实现/隐式生成分析继续保留在外语分支和外部记录，不算新增高级语言反编译进度。所有实际ROM引用均用既有malloc/free、树遍历与平衡入口、实际资源提供者虚表等真实符号，不使用地址别名、ROM起点补偿或编译后修补。Native中的结构偏移遵守现有真实布局及尺寸检查，不表示结构可在不更新Native的情况下任意扩缩。
+
+清理四份独立内联副本：标记PushBack（264字节）、标记容器析构（52）、计数容器析构（64）和标记构造（32），共412字节。旧工程存在两条指向这些副本的已链接调用，均来自本批替换的TownMapUiCore析构；没有外部引用。原版完整析构在自身内部清理两个容器，不需要另加这两份独立入口。因此不能将它们误报为旧工程全局完全无引用。新的原生实现恢复了正确内联边界，既有C++擦除函数保留。
+
+正式Make流程使用WSL make -j16重建全部4个实际依赖对象：game_scene、town_map、town_map_lifetimes、town_map_transition。除生命周期组的预期代码替换/副本清理外，其余三个对象的整段代码、数据和全部可分配重定位均不变；生命周期对象的其他数据及引用也不变。地图主模块13个真实函数保持原样。候选与正式对象分别验证，没有因一个局部样例通过就跳过调用方检查。
+
+660完成本批唯一一次JP整版构建，生成新ELF/map/8 MiB ROM；SHA-1为f774403d2fb27caf322c9f5a98bfa308d1b94b01，仍不等于baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。661先全符号再全字节：19743个配对区间中16796个exact、2762个已解释引用变化、102个长度/填充、27个字节差异；27条变化引用未解释、97处审计器暂不支持，363个基线名和261个当前名未配对。本批消除4个长度差异区间，没有增加审计配对或掩码；字节差异区间27不变。区间不是独立bug，原始不同字节数受地址移动影响，不作为完成比例。
+
+证据early-data-overview-653、new-game-ownership-654/early-tables.json、town-map-native-655/{native-functions.json,reference-map.json,candidate-checks-657.json}、town-map-production-658/{plan.json,removed-entry-incoming.json,actual-checks-659.json}、full-build-660/global-report.json、global-cohorts-663。编译器、预处理器、Makefile、LDS均未改，未进行移址试验，未构建或修改海外版本，未提交或推送。完整目标仍未完成，不能把这一段匹配扩大为整ROM或所有数据岛完成。
+
+## JP UI 命令内联生成与完整函数边界（633–651）
+
+依据629全局差异先总览script_vm、UI命令、游戏菜单和Town Map生命周期。此次实际推广只修改ui_text_commands.hh、ui_text_commands.cc和game_menu.cc；不改编译器、预处理器、Makefile、LDS或海外版本的有效源码。开发分支仍为multi-language，未提交、未推送。
+
+UI命令头内的三组普通内联存储类型原先位于显式pragma interface/implementation范围内，导致命令实现额外输出17个未需要独立入口的辅助副本。最终将JP的普通内联类型放在同一头文件首次显式虚函数接口之前；原有虚函数及隐式析构仍由原实现正常生成。海外声明顺序保留原样，待JP验收后再移植。没有新增工具/头文件，没有将类型寄托于一个虚构的实现文件，也没有保留实验中的编译选项修改。
+
+早期只改变接口归属会把这17个副本转移到UI主对象，未采用；强制取消内联、显式空析构等候选也会抑制所需方法或改变原机器码，未采用。经正式依赖验证，最终17个独立副本共424字节确实消失，没有转移到其他对象。实际内联行为和既有68个UI主对象函数保持不变。
+
+DMA命令的C++指针范围/清理形式尚未逐字节匹配，保留完整72字节符号化Native函数，调用ExecuteBiosTransfers而非固定地址，内部控制流使用本地标签。C++分析保留在原外语分支及外部候选记录中；未以指令补丁或伪填充拼接C++输出。其余16个命令方法/隐式析构的C++输出共440字节继续保留且不变。整个命令输入.text共512字节，原版对应0x080E06E8–0x080E08E8，所有入口相对位置及全部重定位直接匹配baserom。
+
+GameSceneMenuCursorData构造函数复用已有RefreshBounds内联实现，修正了原来边界刷新部分的寄存器输出；完整148字节C++函数匹配baserom，对应0x080CD1C0–0x080CD254。JP分支外保留原构造表达式。菜单MoveDown及该主题数据的其他差异不在本批解决范围，不能把这个构造函数通过扩大为整个菜单完成。
+
+84个实际依赖对象使用正式Make流程、WSL make -j16复核。除这两个预期函数外，其余共同入口的机器码和代码重定位不变；未修改对象的整段.text也不变。所有对象的其他可分配段字节及数据重定位均不变，没有新增人工/GNU子段。命令的全部17个函数加菜单构造共18个完整入口、660字节与baserom匹配；这是本批核验范围，不是18个新反编译函数。
+
+649完成本批唯一一次JP整版构建，获得新ELF/map/8 MiB ROM；SHA-1为c93ed47369b5ba19c9a17b56ac884a64f955ba67，仍不等于baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。650先全符号再全字节：19743个配对区间中16793个exact、2761个已解释引用变化、106个长度/填充、27个字节差异；27条变化引用未解释、97处审计器暂不支持，363个基线名和265个当前名未配对。相较629减少3个长度区间和2个字节区间；未增加审计配对，当前未配对名减少17对应删除的辅助副本。区间不是独立bug，原始不同字节数受整体地址移动影响，不用来计算完成比例。
+
+脚本GetString的原版指令另已只读核实，当前逻辑一致；匿名Error地址的审计身份仍需单独梳理，不据此改动字符串索引条件或声称运行库来源已确认。小精灵缺失SDK12、AnimalData内部库前缀及此前未解决的其他全局问题继续保留为未完成。
+
+证据：command-overview-633/checks.json、ui-scopes-646/checks-645.json、ui-production-640/{plan.json,actual-checks-641.json}、full-build-649/global-report.json、global-cohorts-652。候选中不正确的组织方式保留在外部分析记录；当前工程只使用最终声明顺序方案。完整目标仍未完成，下一批从652总览选择实际数据/编译单元共同原因，不重做本批已通过的命令入口，也不提前处理海外版本。
+
+## JP 实体数据回归功能模块（606–632）
+
+完成604所列七组连续功能数据的整块归属调整：49个旧Entity-UI对象归入现有player_actor、entity_actor、harvest_sprite_actor、npc_entity、roaming_npc_actor、world_prop_entities与wild_dog_actor。结构及外部声明迁入各自同名头；JP文本改为上述同名文件，每个功能只include一次。旧JP entity_ui_1…7与animal_data_3移除，Entity-UI源/头仅保留海外旧组织。没有新建源码模块或工具目录。
+
+原先把无引用库记录当作上一数据组尾部的假设未采用。完整物理范围和2/4字节字段对齐共同证明这些内容须作为下一功能输入的前缀检查：玩家前缀包括原AnimalData末尾的既有Error记录；其后六个Error分别在实体动画、小精灵、NPC、游荡NPC、特效、野狗的表前。所有现有Error均仍为显式普通C字符串，来源未确证，不能宣称已自然生成或直接归为标准库。没有恢复手写bad_alloc；实际new/algorithm依赖正常生成库字面量。
+
+为保持每个普通.rodata连续，原生玩家主ABI表及编译器表归入现有player_actor_lifetimes；小精灵表由harvest_sprite_actor_lifetimes拥有，场景道具表由world_prop_lifetimes拥有，野狗表由现有animal_actor_lifetimes拥有。定义用的pragma先于首次读取对应接口。生命周期不再为未使用的原始存储插入方法包含new，插入实现留在其实际实现源中；所需布局和析构保持不变。四个已有道具C++小方法改为所属源文件的普通定义，保留原机器码和ROM顺序。仅JP增加必要的普通目标编译选项，海外选项及LDS未改。
+
+特效坐标记录经原版2字节地址和半字读取确认，使用packed记录配合现有ALIGN(2)，后面的字参数自然4字节对齐；没有伪造零数组、绝对地址或带相位依赖的填充。LDS中七个功能各一个普通.rodata，早段表也各归一次生命周期对象，不新增GNU/逐符号/人工子段。
+
+三个真正分配对象的工厂恢复为普通C++：ScriptVisualEffectActor::CreateVisualController（24字节）、InnSecondFloorRoamingNpc::CreateVisualController（44字节）、WildDogActor::CreateVisualController（44字节）；完整函数及调用重定位直接匹配baserom。小精灵工厂的C++分支/寄存器形式尚不匹配，已恢复完整100字节原生函数，移除候选中的无用new，非匹配C++分析仅保存在外部。它的12字节库前缀仍未恢复，不手工补字节。
+
+先按全体依赖编译候选，再推广至正式源码。64个实际工程对象make -j16通过；所有机器码和代码重定位与修改前一致，所有可分配段与已验证候选一致，没有新非普通段。外围只有教学玩家生命周期因真实依赖变轻去掉多余SDK12，其100字节表也匹配baserom。已有早段表整体匹配；七组普通数据从原版080F06CC到080F0F18共2124字节，当前生成2112字节，唯一缺口是小精灵前缀12。此前AnimalData内部差异仍独立保留，不宣称该整个上游岛完成。
+
+| JP 普通输入 | 原版对应起点 | 当前字节 | 验收边界 |
+|---|---|---:|---|
+| player_actor | 080F06CC | 1192 | 完整匹配 |
+| entity_actor | 080F0B74 | 276 | 完整匹配 |
+| harvest_sprite_actor | 080F0C94 | 204 | 有效对象匹配；其前080F0C88的SDK12仍缺 |
+| npc_entity | 080F0D60 | 36 | 完整匹配 |
+| roaming_npc_actor | 080F0D84 | 296 | 完整匹配 |
+| world_prop_entities | 080F0EAC | 80 | 完整匹配，含必要2/4字节布局 |
+| wild_dog_actor | 080F0EFC | 28 | 完整匹配 |
+
+这些是baserom中的对应位置与独立对象比较，不表示当前整体链接已全部回到原址。629完成新JP ELF/map/8 MiB ROM，SHA-1为3fceb90598846b11476a802beb93c15d0707442b，仍不等于baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3。630先全符号再全字节：19743个配对区间中16793个exact、2756个已解释引用变化、109个长度/填充、29个字节差异；27条变化引用未解释、98处审计器暂不支持，363个基线名和282个当前名未配对。相较600，本轮减少12个长度区间，未新增审计配对，29个字节区间不变；区间不是独立bug或工程百分比，原始不同字节数受地址移动影响不能作为进度比例。
+
+证据entity-ownership-607/{data-checks-612.json,cpp-factories-625.json,consumer-report-623.json,harvest-native-status-621.json}、entity-production-626/{applied.json,actual-checks-628.json,data-checks-612.json}、full-build-629/global-report.json、global-cohorts-631。编译器和预处理器未改，未做移址试验，未构建海外版，没有提交或推送。完整目标仍未完成。
+
+## JP 精灵公开类型与保存记录归属（590–602）
+
+后续604已整块盘点entity_ui：它当前只有只读数据，没有函数。49个具名对象自身的有效载荷全部匹配baserom；检索全部已链接对象的重定位，归属指向player_actor、entity_actor、harvest_sprite_actor、npc_entity、roaming_npc_actor、world_prop_entities/world_prop_lifetimes与wild_dog_actor，共七组连续功能内容、八个现有调用方源码。六个夹在其中的Error标签没有实际入向引用；原版六个明确的12字节间隔均为自然bad_alloc，其他1/2/3字节间隔为已记录的自然对齐候选。不能据此机械创建六个字符串生成单元；应按上述实际功能归属、源码接口与编译器所有权一起恢复。Error的真实源码线索是既有script_vm.hh中AScriptEngine::GetString的失败返回，不是std::exception头的定义。当前未迁移这些数据、未修改该接口，600仍是最新冻结整版报告。详细逐对象/逐调用证据entity-ui-ownership-604/{data-owners.json,owner-groups.json,summary.json}。
+
+环境行为中多出的SDK前缀来自真实但过宽的声明依赖：scene_sprite为一个20字节调色板索引值类型包含完整world_runtime，后者再包含私有调色板容器和memory/new；环境行为为三条16字节保存记录包含完整GameState。JP将GameScenePaletteIndices归入实际包含它的scene_sprite.hh，world_runtime使用该公开类型；GameStateActorRecord归入拥有这些记录的world_ambient_sprites.hh，GameState通过该接口存放三条记录。字段、构造逻辑、布局和全部尺寸检查未变。
+
+环境行为实现保留实际使用的actor_movement与random接口，JP不再包含仅供旧恢复工厂C++或完整存档使用的接口；基础环境精灵实现保留其真实GameObject和new依赖。海外分支保留原有类型定义位置及原始include顺序，未构建海外版。仅修改四个既有头文件和两个既有源文件，没有新建源码模块、宏、工具或构建层，没有修改编译器、预处理器、Makefile、LDS或输出。
+
+先验证六个实际候选对象，再盘点所有依赖。127条缓存依赖记录中，排除三条旧独立文本/失效记录后，有124个现存源码对象；全部在外部候选中编译，再推广后使用实际工程make -j16复核。124个正式对象的所有可分配段与候选一致，全部机器码及代码重定位与修改前一致。110个对象完全不变；14个对象仅移除由不必要声明依赖引入的SDK内容：9个普通只读对象去掉12字节前缀，另5个本来未链接只读段的对象不再生成10字节孤立前缀。
+
+九个有具名数据的对象中，entity、entity_actor_lifetimes、harvest_sprite_actor、npc_actor_lifetimes、scene_sprite_group、scene_sprite_indexed、wild_dog_actor、world_ambient_behaviors的完整3564字节只读对象及749条指针均直接匹配baserom。环境行为的既有12字节缺口问题在本批闭合；14张表完整384字节。entity_ui仅确认原版gText_NotAvailable前没有该SDK前缀，内部多个物理边界仍有差异，未宣称其整块完成。
+
+原虚表槽位及整函数比较另确认六个NPC/野狗入口身份（2156字节）、一张野狗虚表身份；仅进入外部审计关系，不创建源码别名、不更改程序。整版审计实际新增六组有效配对，因此统计改善不能全部视为源码修改。
+
+600完成新JP ELF/map/8 MiB ROM，compare仍失败：SHA-1为3086758ef9396f7158c2c075b0f7d71df35eb87d，baserom为a655b2789aed14a6ac78c6075fbc533d3062dbe3。601先全符号再全字节报告：19743个配对区间中16783个exact、2754个已解释引用变化、121个长度/填充、29个字节差异区间；27条变化引用未解释、98处暂不受审计器支持，363个基线名和282个当前名未配对。相较586，长度区间减少9个；字节/引用统计还受已验证符号身份补充影响。这些是审计区间数，不是独立bug数或工程百分比。
+
+证据sprite-interfaces-590/{consumer-report-595.json,data-checks-596.json,entry-checks-598.json}、sprite-production-597/{applied.json,actual-consumer-checks-599.json}、full-build-600/global-report.json、global-cohorts-603。上述帮助脚本和报告均在仓库外。没有提交或推送，整版SHA-1及全目标仍未完成。
+
+## JP 环境精灵完整入口批次（580–588）
+
+先依据576全局报告总览环境精灵、游荡NPC、世界道具、野狗和状态画面转换六个模块，没有把审计器尚未配对的名字直接当成源码错误。环境精灵行为模块的54个函数中，46个原已匹配；将剩余8个入口作为一批恢复成完整符号化Thumb汇编（2460字节），原C++分析仍在海外分支及外部接续证据中保留。没有增加别名、原址指针、逐函数LDS项或工具补丁；不把这8个入口计作高级语言完成。
+
+实际工程对象make -j16后，54个完整函数共4820字节均与baserom匹配，范围080DC700–080DD9D4。内部跳转、常量池、跳表及全部外部函数/虚表引用使用真实符号。已有基础精灵构造184字节和七个原基线未单独标名的原生辅助入口也完成独立整函数核对；后者只用于本地审计入口证明，不伪造旧ELF符号。
+
+只读数据没有宣称闭合：14张虚表384字节和66条指针逐项匹配，原版范围080E69A8–080E6B28；当前对象仍在这些表前多出12字节运行库内容。该对象的只读字节及重定位与本批修改前完全相同。预处理包含链已确认从world_ambient_sprites → entity → scene_sprite → world_runtime → 私有调色板集合存储 → memory/new引入。后续应按真实声明/实现依赖处理，不能删除匿名输出、手工补文字或改变LDS吞掉差异。
+
+586阶段完整JP构建、链接及8 MiB ROM生成完成；SHA-1为e300caed4914c9271a0f20cf039a3afeff02525e，与baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3仍不一致。587先全符号再全字节报告：19737个配对区间中16776个exact、2745个已解释引用变化、130个长度/填充差异、30个字节差异；29条变化引用未解释、98处暂不受审计器支持，369个基线名与288个当前名未配对。相较576，本批减少7个长度区间和1个字节区间；这是区间统计，不是独立bug或项目百分比。
+
+本批只改src/world_ambient_behaviors.cc。海外源码分支、头文件、编译器、预处理器、Makefile与LDS均未改。没有提交或推送；完整SHA-1尚未通过。证据entity-cohort-580、ambient-native-582/{native-entries.json,verified-reference-map.json,dependencies-584.json}、ambient-production-585/{applied.json,complete-checks-583.json}、full-build-586/global-report.json。
+
+## JP cooking and return-scene ownership stage (569–579)
+
+JP-only local probes were promoted to six production files, then eleven actual dependent objects passed normal WSL make -j16. Cooking keeps handle-only interfaces in its declaration header and includes the real save/palette/tile APIs in its implementation. Its text-variable lookup preserves the public ABI and uses the original signed switch comparison for JP; foreign branches are unchanged. All 29 cooking functions, three lifecycle functions, eight recipe-inventory functions, and their complete data match baserom with all references resolved.
+
+The twelve bytes before cooking's own runtime prefix were not a missing cooking text object. The existing GameCube return-scene Run implementation genuinely depends on the return/save APIs, while its compiler-owned destructor/vtable need only the minimal scene interface. JP now gives that lifecycle definition a normal implementation unit; Run remains normal C++. Both functions (140 bytes), the sixteen-byte vtable and the naturally generated ten-byte runtime literal match baserom. The next ordinary input's alignment and the existing zero-filled .rodata supply the two-byte gap. No literal was hand-added, no unused dependency was introduced, and no compiler/preprocessor/output patch was used.
+
+JP LDS lists each ordinary object section once. The lifecycle vtable remains at its early class-table position; the implementation's runtime content follows gamecube_link_save before cooking, matching the original physical organization. Existing overseas implementation and linker ownership are unchanged. The prior 568 record's cooking-boundary hypothesis is superseded by these whole-object results.
+
+Stage 576 completed a fresh JP ELF/map/8 MiB ROM and compare. SHA-1 is 4081fee0d1aaa7550f96c5416e3354166e6a1094, not baserom a655b2789aed14a6ac78c6075fbc533d3062dbe3. Full-symbol then byte audit 577 found 19,737 paired intervals: 16,775 exact, 2,738 with explained reference changes, 137 length/padding and 31 remaining byte intervals; 29 changed references unresolved, 101 unsupported audit sites; 369 baseline and 288 current names remain unpaired. These are interval/audit counts, not independent bugs or completion percentages. All 42 local functions and their data passed; full-ROM SHA-1 did not. No commit or push.
+
+Evidence: cooking-production-574/{consumer-checks-575.json,checks.json,checks-573.json}, cooking-interfaces-570/checks.json, return-scene-owner-572/checks-573.json, full-build-576/global-report.json, global-cohorts-578. Audit reports and helper scripts are external to the repository/build chain.
+
 # 代码 ROM 物理布局
+
+## JP GameCube 只读归属闭合与新整版报告（批次 559–568）
+
+声明头在JP仅需GameStateSaveImage前置声明，不再引入完整GameScene；真正读取保存布局、调用图块/调色板集合API的实现直接包含其真实接口。生命周期对象因无关声明依赖多出的12字节SDK随之消失，原有1436字节代码与6张虚表1084字节完整匹配；没有删除编译输出或设置通配链接项。
+
+保存数据、收发包及名字编解码的20个连续函数位于代码尾部，其字符表/协议标识也在独立连续只读范围。JP据此恢复src/gamecube_link_save.cc和include/gamecube_link_save.hh，相关类型和声明归入同名头；实现包含实际使用的保存布局。普通工程编译自然生成字符表前10字节库字面量。502字节字符表原址为2字节对齐，明确ALIGN(2)后其后协议标识自然4字节对齐，字符内容与原显式零条目均未改动。不是按字符串数量机械拆分，也没有新增无用类型、调用或new头制造字节。JP文本按模块名归入scene_gamecube_link.cc与gamecube_link_save.cc，移除旧_1/_2名称，海外文本维持原状。
+
+8个实际JP工程对象make -j16验证通过：三个整理对象的179个函数、7588字节代码、2968字节只读数据及259条虚表指针均匹配baserom，其余依赖完整对象不变。JP LDS只在原顺序加入普通src/gamecube_link_save.o(.text)与(.rodata)，各列一次，没有地址、子section、GNU项或别名。编译器、预处理器和Makefile未改，海外版未构建。证据gamecube-save-unit-560/whole-objects.json、ownership.json、gamecube-save-production-562/consumer-checks.json。
+
+此后冻结代码完成565整版JP make -k -j16、链接和8 MiB ROM生成；compare仍失败，SHA-1为79b54ab0c93baf5b014e1de13917edc0a2ae795d，baserom为a655b2789aed14a6ac78c6075fbc533d3062dbe3。566使用同轮ELF/map/对象，先全符号后全字节审计：19737个配对区间中16774个exact、2734个仅已解释引用变化，剩140个长度/填充、33个字节差异区间；30条变化引用未解释、101个位置暂不受审计器支持；369个基线名和288个当前名未配对。区间与引用统计不是独立bug数、函数数或项目百分比。
+
+外部审计记录了179个已独立验证的函数身份，并让有实际区域证据的名字关系优先于旧的无区域猜测。90个新增配对及旧名字纠正会影响报告统计，不能把所有数字改善都算成代码修复。此规则只在临时审计工具中，不进入项目编译链，不更改ROM、对象、链接结果或编译器。完整证据full-build-565/global-report.json、gamecube-identities-564.json、global-cohorts-567。
+
+全局仍标在GameCube末项的两个区间实际跨模块：LinkWordProtocol最后260字节虚表之后，烹饪核心表先于烹饪文本变量表，当前烹饪生命周期头多引入12字节SDK；协议GYW对象之后，原版烹饪文本前有两份12字节自然库边界，当前只有一份。三个GameCube对象本身完整匹配，不为闭合这些跨区间而改动它们。下一步同时核查烹饪正文/生命周期及只读边界，不能手工补字符串。没有提交或推送。
+
+| JP 模块 | 原版 .text | 原版 .rodata |
+|---|---|---|
+| scene_gamecube_link | 08092D08–08094280 | 080FFE64–081003B0 |
+| gamecube_link_save | 08094280–08094510 | 081003B0–081005C0 |
+| scene_gamecube_link_lifetimes | 080E2D7C–080E3318 | 080E7224–080E7660 |
+
+字符编码表以2字节元素维护，码号受原生8位线协议约束；它不是可以任意改名或重排行序的普通显示文本。位置引用是符号化的，修改协议字段和码号仍须同步修改实际格式使用者。
+
+## JP GameCube 入口、返回 ABI 与代码连续性（批次 544–557，局部推广）
+
+按6张原版虚表的259个槽位核实132个无冲突方法身份，纠正外部分析中7条旧名字对应关系；再结合实际构造调用、独有虚表/初始状态指针及完整函数字节，补齐两种协议构造与UiStateOwner更新接口的身份。SetMode的196字节主体和内部跳表原已一致，之前仅为审计器未处理函数内段相对重定位，不能算新增源码修复。533全局报表仍保留当时的配对规则，尚未重算其GameCube区间数。
+
+原有163个入口之外，连续性检查发现SetPhase与GetUiResult之间漏了16个非调整入口，共648字节。其源码意义来自实际回调头中的16个定义，14个普通C++入口直接匹配原版；两个轮询入口保留原生条件返回形式，C++调整入口则已匹配。真实生成与输出位置试验551/552会把普通内联入口延后、反序，强制保留还产生两个无用入口，均未采用；没有为此修改编译器或LDS。
+
+JP在原源码物理位置提供这16个完整、符号化的普通ABI汇编入口，头文件真实C++逻辑仍用于编译器生成多继承调整入口；每个实际入口只有一个定义，没有.set、包装跳转或逐函数链接条目。另5个原本不匹配的函数（核心构造及4个状态方法，共520字节）保留完整原生实现，旧C++保留在海外分支及审计。4处C++条件表达/轮询调整入口完成修正。这些汇编实现及补齐入口不冒计为C++进度。
+
+HeldKeys公共接口在JP使用ABI字返回，保持与真实按键掩码及调用方一致；提供者的代码、真实数据及重定位均不变，其余海外声明/定义保留。103个实际JP依赖对象make -j16构建及完整分配段/重定位/导出核对通过：两个GameCube对象等于已验证候选，其余101个对象保持不变。现在两份对象全部179个函数与原版匹配、物理顺序一致，原648字节缺口已补齐。编译器、预处理器、Makefile及LDS没有修改，没有整版重编译、提交或推送。证据gamecube-production-555/consumer-checks.json、gamecube-entries-553/complete-checks.json、normal-entries.json。
+
+本批代码已推广，整个GameCube主题仍未验收：只读区在协议状态表与字符编码表之间缺少原版10字节库生成边界，字符表原址为2字节对齐；其后4字节协议标识产生不同填充。已直接确认字符表自身502字节与baserom一致，显式零条目并非本次差异，不先删除。继续核实保存数据/名字编码的真实模块边界及依赖，不能手工补运行库文本。当前源码/对象已比533 ELF/map/ROM更新，不得混用它们重跑533全局报告。
+
+| JP 模块 | 原版代码范围（终点不包含） | 字节 | 函数 |
+|---|---|---:|---:|
+| scene_gamecube_link | 0x08092D08–0x08094510 | 6152 | 144 |
+| scene_gamecube_link_lifetimes | 0x080E2D7C–0x080E3318 | 1436 | 35 |
+
+只读区补充核对558：生命周期对象的1436字节代码完整匹配，6张虚表合计1084字节及259条指针关系也完整匹配；其前额外12字节bad_alloc来自当前头依赖，原版该地址实际属于前一张表末尾，不能把它算成该对象应有前缀。整个1096字节对象仍判为不匹配，未通过遮掉前12字节来验收。下一步精简声明侧无用途GameScene/调色板实现依赖，并把真正实现所需API直接包含于实现；同时核实保存数据/名字编码单元，恢复字符表前真正需要的10字节自然生成边界。显式字符零条目已核对为502字节正确载荷，不擅自删除。
+
+## JP NPC 日程功能归属及搜索边界修复（批次 520–536）
+
+从513全局报告的共性组推进，没有逐函数重建整版。两处upper_bound候选C++调整仍生成64字节，未采用；JP保留完整原生五参数模板入口，各60字节直接匹配baserom，保持已有C++声明、比较器、参数ABI及调用方不变。海外版继续使用原模板实例；此项不计为新增C++高级语言完成。实际npc_entity对象的全部分配段、重定位和导出不变，证据npc-search-523、npc-verification-526/checks.json。
+
+32个人物日程回调的代码顺序与其描述符/路径数据顺序完全一致，已符号化的数据引用没有跨人物组。逐组完整对象核对后，JP按真实人物功能拆为npc_schedule_<人物>.cc及同名.hh，297个数据符号和25个专有存储结构归入各自头文件。npc_schedule.cc保留公共日期/初始化引擎；npc_entity.cc的真实构造调用直接包含对应日程接口。每个人物的原生回调解释GameStateSaveImage上下文，使用其真实布局声明；没有新增无用new头、调用、占位类型或手写运行库字符串。两处原有C++回调保持C++，其余30处仍为原生汇编，不冒计高级语言进度。
+
+42个实际JP对象按正常make -j16规则构建通过：32组共5232字节代码及28512字节只读数据逐项匹配baserom，公共引擎1272字节、其余9个依赖对象的完整分配段/重定位/导出均不变。32组各自真实头依赖自然产生原版SDK前缀，消除31个重复边界缺口；公共引擎自身剩余10字节无引用库生成物不选入数据区。JP LDS按相同物理顺序各列一次普通.text/.rodata，不添加地址、子section、GNU项、别名或补丁。海外版源码逻辑及LDS保持，未构建海外版。证据npc-functional-units-528/manifest.json、core-and-dependencies.json、npc-production-530/consumer-checks.json。
+
+本阶段完成后冻结源码，533使用WSL make -k -j16完成JP链接及8 MiB ROM生成，compare仍未通过，SHA-1为5f6a1a4dbb6cfb875b168c7f187df5eac4c36950，baserom为a655b2789aed14a6ac78c6075fbc533d3062dbe3。使用同轮新ELF/map/对象完成全部符号再字节审计：19647个配对区间中，16716个exact、2675个仅已解释引用变化；剩154个长度/填充、46个字节差异区间（513为186/47）。175条变化引用未解释、115个位置暂不受审计器支持，459个基线名与362个当前名尚未配对。区间不是函数数、独立bug数或全ROM完成比例。原第一批30区间现4个exact、26个仅引用变化，已无剩余字节区间。完整证据full-build-533/global-report.json、global-cohorts-534。未改编译器/预处理器，未提交或推送。
+
+下一共性组为GameCube主模块/生命周期；先总览真实方法、成员函数指针与继承接口的对应关系。当前533产物保持冻结，后续新对象不能混入533全局审计。
+
+GameCube原版6张虚表共259个槽位推导出132个无冲突的函数身份，其中7条旧名字配对错误。按槽位身份重新作完整函数对照，两模块149/163个函数匹配baserom；这是外部审计名字关系修正，不是新增源码修复，尚未回写533全局报表，154/46仍是原533命名规则下的区间计数，不能把其中全部GameCube条目视作独立代码错误。源代码及产物未改变。
+
+局部候选以原工程参数编译两对象：显式分支整理、按键截断表达使PollConnect/PollDecision两个编译器调整入口，以及Unk_58/Unk_5C两方法匹配；原149个已匹配函数无回归。候选仍有返回宽度、布尔控制流、构造函数内联可见性等未完成内容，因此4处尚未推广到工程。noinline属性被实际旧编译器忽略且Werror拒绝，已从候选移除，没有为此修改编译器；把GetHeldKeys改为u16也未解决该调整入口，未采用。下一轮先补全构造函数/成员表身份及SetMode局部引用分析，再完善同组候选，不能按错误旧名字修改已经正确的汇编。证据gamecube-overview-535/vtable-contracts.json、contract-checks.json、gamecube-candidate-540/contract-checks.json。当前工程源码及对象仍与533整版报告配套，未再构建整版。
+
+### JP 人物日程普通对象顺序（原版范围，终点不包含）
+
+| 模块 | 原版代码 | 原版只读数据 |
+|---|---|---|
+| npc_schedule_rick | 0803D698–0803D6F0 | 080F12D0–080F1810 |
+| npc_schedule_popuri | 0803D6F0–0803D8D8 | 080F1810–080F205C |
+| npc_schedule_lillia | 0803D8D8–0803D928 | 080F205C–080F2210 |
+| npc_schedule_child | 0803D928–0803DA5C | 080F2210–080F2348 |
+| npc_schedule_cliff | 0803DA5C–0803DB40 | 080F2348–080F2610 |
+| npc_schedule_zack | 0803DB40–0803DB6C | 080F2610–080F2860 |
+| npc_schedule_doctor | 0803DB6C–0803DBC4 | 080F2860–080F2C08 |
+| npc_schedule_ellen | 0803DBC4–0803DC08 | 080F2C08–080F2C58 |
+| npc_schedule_jeff | 0803DC08–0803DC5C | 080F2C58–080F2E34 |
+| npc_schedule_karen | 0803DC5C–0803DE18 | 080F2E34–080F3828 |
+| npc_schedule_sasha | 0803DE18–0803DE70 | 080F3828–080F3B40 |
+| npc_schedule_doug | 0803DE70–0803DED8 | 080F3B40–080F3C2C |
+| npc_schedule_ann | 0803DED8–0803E080 | 080F3C2C–080F41C4 |
+| npc_schedule_lou | 0803E080–0803E0BC | 080F41C4–080F4210 |
+| npc_schedule_basil | 0803E0BC–0803E114 | 080F4210–080F45C4 |
+| npc_schedule_mary | 0803E114–0803E294 | 080F45C4–080F4D90 |
+| npc_schedule_anna | 0803E294–0803E2F8 | 080F4D90–080F51CC |
+| npc_schedule_won | 0803E2F8–0803E360 | 080F51CC–080F521C |
+| npc_schedule_thomas | 0803E360–0803E3F4 | 080F521C–080F55E4 |
+| npc_schedule_elli | 0803E3F4–0803E55C | 080F55E4–080F5A4C |
+| npc_schedule_stu | 0803E55C–0803E5E4 | 080F5A4C–080F5BC0 |
+| npc_schedule_duke | 0803E5E4–0803E658 | 080F5BC0–080F5F14 |
+| npc_schedule_manna | 0803E658–0803E6D0 | 080F5F14–080F6360 |
+| npc_schedule_van | 0803E6D0–0803E70C | 080F6360–080F639C |
+| npc_schedule_harris | 0803E70C–0803E750 | 080F639C–080F6638 |
+| npc_schedule_carter | 0803E750–0803E7B4 | 080F6638–080F6848 |
+| npc_schedule_kai | 0803E7B4–0803E810 | 080F6848–080F6AE4 |
+| npc_schedule_gray | 0803E810–0803E8B8 | 080F6AE4–080F704C |
+| npc_schedule_saibara | 0803E8B8–0803E934 | 080F704C–080F7390 |
+| npc_schedule_gotz | 0803E934–0803EA40 | 080F7390–080F7A0C |
+| npc_schedule_may | 0803EA40–0803EAC4 | 080F7A0C–080F7EC8 |
+| npc_schedule_barley | 0803EAC4–0803EB08 | 080F7EC8–080F8230 |
+
+## JP 第一批整版核查与新全局报告（批次 512–519）
+
+512的启动命令在进入Make前因嵌套shell展开Windows PATH而解析失败，没有新ELF/map/ROM，不能计作编译结果。513改为执行独立WSL脚本，冻结游戏源码，使用make -k -j16完成JP全部编译、链接和8 MiB ROM生成。compare未通过：当前SHA-1为1a85db6ba3cde3aad6a7072427934c7b5833d4f0，baserom为a655b2789aed14a6ac78c6075fbc533d3062dbe3。没有分析/构建海外版，没有改动编译器或预处理器，没有提交或推送。
+
+新513报告先检查全部符号及已记录改名，再审计字节和重定位。当前19644个已配对区间中，16706个原始字节一致、2649个仅为已解释引用变化，仍有186个长度/填充区间与47个字节差异区间；175条变化引用未解释，115个引用位置暂不受审计器支持；462个基线名字和365个当前名字尚未配对。区间并不是独立函数数、bug数或全ROM完成百分比。全局证据使用同轮新ELF/map/ROM及生成报告当时的对象，不混用旧451输入。
+
+第一批30个目标修改均已局部验证；整版中对应原区间4个exact、25个仅引用变化、1个仍有字节差异。最后一个区间从HarvestSpriteController析构到ChildNpcActor，实际横跨64字节已匹配析构和后一个独立npc_path_search对象的60字节upper_bound模板实现。差异从区间+64开始，不能把这一整个124字节区间都算作析构已匹配，也不能把旧报表归属当作真实函数边界。该相邻模板仍待处理，第一批全区间验收不标为完成。证据global-cohorts-515/first-batch-global-results.json及513 map的两个对象边界。
+
+全局复查同时发现492调整头依赖时，动物参赛选择主模块本来需要的12字节原版SDK前缀被移除；此前26个文本/表对象自身匹配，不能证明它们前面的边界正确。516按主实现真实调用ObjPaletteCollection构造/析构的依赖，直接包含集合公共API，生命周期声明继续只使用池句柄。实际主对象的完整函数、数据、导出及重定位恢复为492声明精简前对象；12字节前缀直接匹配baserom，函数全部不变。证据animal-api-516/checks.json。此修复在513完整报告之后，只做了该JP对象验证；当前对象已比513 ELF/map更新，不能重跑513全局审计来混算修复后的结果，也未再整版链接。
+
+已对513所有差异重新总览归组，不盯着第一差异反复处理：npc_schedule有31个长度区间；GameCube主模块和生命周期各14个差异区间；另有entity_ui、环境实体、菜单/文本命令及只读区真实依赖等组。131个长度区间中观察到SDK字符串数量不同（85个区间减少、46个区间增多；合计108份缺少、49份增多），这只是冻结ROM中的计数线索，不等于每处语义已经确定，不能因此手工加字符串、盲目补头或机械拆文件。优先继续查明日程等重复缺口的真实编译单元/类型来源，并将未配对的60字节模板归入下一组代码分析。完整分组证据global-cohorts-515/owner-overview.json、runtime-literal-cohort-517.json。
+
+## JP 第一批30区间局部闭合（批次 503–511，整版验证待512）
+
+两处绑定派生析构分别恢复为完整40字节原生ABI入口，借用既有NAKED函数方式输出真实的GCC析构符号。显式asm名称是该入口本身的ABI命名，不产生第二个符号或.set/alias；虚表和调用方仍引用原有真实析构符号。保留类继承、全部头内内联体、已匹配的3个C++基类/命令组函数，调整派生内联体的实际实现归属，避免重复独立输出。两个生命周期对象5个函数共208字节匹配baserom；按实际依赖make -j16构建105个JP对象，105/105符合预期，调用方没有此前459那样的回归。没有更改编译器、预处理器、编译选项或LDS；不计为新增C++高级语言完成。证据binding-native-owner-504/checks.json、binding-promotion-505/consumer-checks.json。
+
+商店批次沿真实依赖整理15个既有声明头：指针仅需要前置声明，句柄使用已有池接口，移除声明端无实际用途的完整GameScene/背包/私有调色板分配实现。34个实现源码按已有对象的实际方法重定位直接包含所调用的背包、场景、调色板接口；14个实现再按其真实账本C API调用直接包含money_account.hh。不是给表单元添加无用途的new头来制造字节。旅馆与海边餐馆的原版前缀区间在451报告已经完全一致，必须保留；通过实际扣款等账本API的正常库依赖恢复其自然生成物，不能机械删除每一个SDK出现。缺失的AScene声明由铁匠升级头直接包含scene.hh补齐。候选文件时间戳早于其后505重建对象，推广时刷新实际头时间后重新完成同一依赖集合，不能把Make未重编译的旧对象当作验证成果。
+
+最终66/66实际JP依赖对象验证通过，全部函数、真实数据和调用关系保持原样，仅商店总虚表、商店基础虚表和VCount虚表前3份额外12字节生成物消失；另两份原本已丢弃且无导出/已分配引用的10字节孤立生成物不再产生。后两表合计48字节直接匹配baserom，520字节商店总表实际内容和符号关系不变。证据shop-api-510/consumer-checks.json、shop-validation-508/boundary-evidence.json。没有新建项目接口文件、通配子section、地址补偿、后处理或新的编译生成层。
+
+第一批30个原报告区间已全部应用并局部验证；这仅是所选共同原因批次，不代表全ROM已经通过。当前最新完整报告仍是451。接下来仅对JP进行512整版构建，冻结游戏源码，再用同轮新ELF/map/ROM做全局符号与字节审计；不能混用旧451镜像和新对象。没有处理海外版、提交或推送。
+
+## JP 回忆场景真实虚表归属与飞盘依赖整理（批次 494–502，局部验证）
+
+回忆场景主源码真实使用placement new，保留其new头依赖及自然生成的10字节库字面量。三张类虚表由已有intro_story_lifetimes实现拥有；头文件按真实类/成员分别声明实现归属，构造及UiOwner内联实现仍只在实际调用源码可见。直接更换整个implementation归属的494候选、未取消主实现重复认领的495候选都会产生无用辅助入口，因此未应用；496的选择性归属保留原有10个函数，未增加入口，全部指令字节及符号调用保持不变。全局符号从本对象定义变为外部引用是正常归属变化，审计按符号身份比较，不把这一变化当作代码差异，也不掩盖真实指令变化。
+
+6个JP实际依赖对象make -j16构建验证通过。核心、文本变量及场景三张虚表44字节一起直接匹配baserom，三个符号在相关依赖中均只由生命周期对象定义。JP LDS在原位置将唯一的src/intro_story_scene.o(.rodata)替换为src/intro_story_lifetimes.o(.rodata)，没有添加子section、GNU选择器或地址限定。主对象剩余库字面量无导出或已分配重定位引用，不选入此虚表区域；这是保留真实库依赖、由正常对象/段归属选入实际数据，不是手工删字面量或输出修补。IndexedResourceArchive前表实际大小20字节，核心表12字节，其后接文本变量表；验证使用基线实际符号与大小，不假定前表都是16字节。证据intro-ownership-497/probe-checks.json、consumer-checks.json。
+
+飞盘核心原来的GameSceneTalkWindowOwner只是同样的单指针拥有/释放操作，但其声明把完整GameSceneState及无关存储分配实现带入生命周期对象。JP复用现有SmartPtr<UiStateOwner>，仅引入真实UiState接口与既有模板，字段大小、偏移、默认初始化、Get及赋值/释放行为保持；原生构造与全部既有C++函数的产物不变，不声称原版模板名相同。6个实际依赖对象make -j16验证全部通过，唯一变化为生命周期少12字节无关SDK前缀，44字节真实虚表匹配baserom，主模块及调用方均不变。该模块原本684字节核心析构仍不匹配原版，保持现状，明确不计为新函数匹配成果；另外96字节Lookup和32字节变量析构匹配。证据frisbee-ownership-500/probe-checks.json、consumer-checks.json。
+
+第一批30个区间累计27个已应用并局部验证、3个待处理：HardwareManagerPreviousBinding和UiVCountContextRegistration两处派生析构，以及shop_scene_tables前的无关运行库内容。此数字仅指原批次抽样，不能当作全部JP差异只剩3处。451仍是最后完整全局报告，当前对象不是与其配套的旧对象；尚未整版链接或验证新SHA-1。后续继续处理余下共同原因后再作新的完整JP结果。海外版、编译器、预处理器和编译参数未修改；没有提交或推送。
+
+## JP 句柄依赖批量推广与原生绘制边界恢复（批次 486–493，局部验证）
+
+JP的ui_state.hh与ui_text_commands.hh仅依赖ObjPaletteCollectionEntry句柄，改为引用已有obj_palette_pool.hh；真实使用集合Get等API的ui_state.cc仍直接引用集合公共接口，完整对象保持不变。参考页头移除未使用的game_scene.hh并前置声明GameStateSaveImage，改用同一真实句柄声明；其生命周期源码的JP搜索已是完整原生函数，不再引入只给海外模板实例使用的algorithm。没有新增接口文件、占位类型或生成物补丁。
+
+按真实.d依赖一次make -j16构建86个JP对象，86/86符合预期。发生变化的9个对象函数均不变，变化仅为不需要的SDK字面量及其对齐。参考页与菜单选择的真实虚表逐字节匹配baserom；工作人员60个文本/表对象全部逐项直接匹配baserom。工作人员文本本身按字节对齐，旧SDK为10字节，后续指针表另有对齐，因此不能简单用所有符号减12判断；实际文本标签移10字节、后部表及总大小移12字节。ui_text_window没有数据符号的10字节SDK与后续2字节对齐，通过完整451报告中前后真实虚表原间隔16、当前28验证为多余；另两份10字节孤立生成物原本已在451 map中丢弃。证据entry-clients-487/data-checks.json及entry-clients-488/consumer-checks.json。
+
+两个农场Draw的OAM原始视图候选486未匹配，没有应用。JP改为保留完整可读的424/228字节原生函数体，采用项目已有NAKED成员函数写法，保持正常成员/虚表生成顺序。所有BL指向真实Draw/GetHardwareSpriteBuffer/InitializeMosaicSpriteOam符号；常量池的页内RAM字段偏移保留原生数值，不使用ROM地址载荷、别名或链接补偿。已匹配的其余11个C++函数完全保留，未完成C++绘制实现仍留在非JP分支供后续分析。本项只计入原生符号化与布局修复，不计为C++反编译完成。3个实际依赖对象make -j16验证通过；生命周期对象13个函数均直接匹配baserom，真实只读数据不变，主模块及另外调用方全部不变。证据farm-native-489/checks.json、farm-native-490/consumer-checks.json。
+
+动物参赛选择头同样只需要句柄和存档前置声明，JP移除未使用game_scene.hh及集合私有实现依赖。只推广491候选中的animal_festival_selection.hh，其余8个商店主题头候选未推广。6个实际依赖对象验证通过，唯新增变化是主模块和生命周期各少12字节SDK；主模块26个真实数据对象匹配baserom，生命周期原有12字节核心虚表与16字节场景虚表完整保留并一起匹配baserom。前者在旧基线无具名标签，审计使用已确认前后表边界确定其原地址，没有在工程添加任何别名。证据scene-interfaces-491/data-checks.json、animal-interface-492/consumer-checks.json。
+
+第一批30个原报告区间现在25个已应用并局部验证，5个待处理：HardwareManagerPreviousBinding与UiVCountContextRegistration析构、frisbee_lifetimes/intro_story_scene/shop_scene_tables三处运行库边界。参考页生命周期自身、菜单生命周期、工作人员主文本和UI文本相关多余前缀在原30区间抽样之外，单独记录，不能挤入25/30。商店491较大候选未消除shop_scene_tables前缀，因此没有推广；不能按头文件精简数量宣称边界修好。
+
+本批未修改编译器、预处理器、编译参数或LDS；未处理海外版、未提交或推送。尚未整版链接，最新完整全局报告仍为451；当前对象已更新，不能将新对象与451 ELF/map混合重算全局比例。下一步集中分析余下两种析构生成与三处真实库依赖/虚表归属，再择机作完整JP验证。
+
+## JP 真实头文件依赖与生成常量批量核查（批次 480–485，局部验证）
+
+WSL会话错误0x80072747中断候选编译后，用户恢复环境，继续了相同候选验证，没有重复启动未确认结束的构建。工作人员声明实际不使用game_scene.hh，JP移除这条间接依赖，主源码改为直接include其真正使用UnkUiSelectionDimensions的ui_text_commands.hh。生命周期对象不再生成额外12字节SDK字面量，真实12字节C++析构和两张虚表不变；主对象的全部代码、文本、表、导出与重定位不变。按真实依赖make -j16构建的6个JP对象均与预期一致，证据staff-dependencies-480/match.json、consumer-checks.json。
+
+对较大公共接口精简候选先作121个JP编译单元的预处理依赖评估。直接将整个调色板集合公共头变成薄接口，会同时影响原版UI模块确有的生成常量，故481没有推广。审计已区分十字节字符串本体与后续对齐，不能把所有出现都固定认作十二字节；无基线数据符号的对象仍记为不确定，不能凭预处理结果宣称ROM匹配。原始评估输入与后续对象快照分开保存，482使用484构建前快照，避免混用重建后的目标。
+
+最终只应用484的三个真实类型依赖调整：JP将八字节ObjPaletteCollectionEntry的既有定义移到已经提供其句柄分配/引用/释放接口的obj_palette_pool.hh，私有存储头继续引用同一真实类型；记分板声明仅含这些句柄字段，因此直接include池接口，不引入未使用的集合分配实现。集合公共头及真正使用集合API的实现保持原有依赖；没有新增头文件、占位类型、别名符号或编译选项。其他地区的原定义路径保持不变。
+
+按实际依赖一次make -j16构建129个JP对象，129/129与构建前或已有验证过的批内修复一致；唯一新增数据变化是记分板生命周期对象少了不属于原版的12字节SDK字面量。该对象的68字节C++析构及28字节真实虚表均逐字节匹配baserom。其余真实数据、函数、导出和重定位保持原样；不是宣称129个对象都已直接匹配原版。对少数过期缓存，明确使用此前已验证的453–477修复对象对照，不将既有源码修复误判为本轮回归。证据palette-handles-484/consumer-checks.json。
+
+483更大范围的六头候选没有整体应用：其参考页仍经game_scene引入SDK，不能按预设的12字节变化去统计。后续只能基于真实类型需求继续精简，不能盲目删SDK包含、补字面量或用工具特化来抵消。编译器、预处理器及LDS均未修改。
+
+第一批30个原报告区间现为21个已应用并局部验证，9个待处理：两处绑定清理、两个农场绘制函数、其余5个只读/运行库边界。另消除记分板生命周期对象开头的一份额外生成物，此项在原抽样区间之外，不挤入21/30统计。尚未重新链接ROM，最新完整全局结果仍为451；未处理海外版、未提交或推送。
+
+## JP 第一批滚动精灵、页面所有权与只读边界总览（批次 473–479，局部验证）
+
+先将第一批余下12个区间按实际函数与对象边界归组核查。JP事件滚动精灵构造保留为完整432字节原生指令，rand、取模、实际精灵构造/复制/析构和三张参数表均通过真实符号引用，没有ROM地址载荷或输出补丁。其余3个C++函数与此前454–456恢复的4个原生析构保持原样；整个world_prop_lifetimes对象8个函数均匹配baserom，数据不变。当前普通对象缓存起初仍有451旧实现，因此4个已修复函数以456验证对象为对照，不能把缓存差异误判成新回归。正常make -j16目标构建后，正式对象与474验证对象的全部已分配内容、导出及重定位相同。
+
+ScrollMenu的真实C++析构本来就是56字节，额外52字节来自没有外部调用的非模板页面Owner清理入口。JP改为复用既有SmartPtr<ScrollMenuPage>的单指针、虚析构所有权操作，保留有含义的ScrollMenuPageOwner类型名；这是C++类型组合，不是汇编符号别名，不声称原版使用了该模板名称。两个位置访问函数通过已有operator->读取页面，编译结果不变。匹配的ScrollMenu析构仍由正常C++生成，虚表/数据及整个主对象不变；所有现存JP目标的已分配重定位中没有删除入口的调用。按实际依赖使用make -j16构建7个JP对象，7/7符合预期，农场状态与记录页面等调用方没有代码或数据回归。没有修改编译器、预处理器、选项或LDS。
+
+6个只读区间现在明确归属后一个对象开头的12字节自然生成bad_alloc及其对齐：frisbee_lifetimes、intro_story_scene、animal_festival_selection_lifetimes、staff_credits_lifetimes、shop_scene_tables、game_menu_selection。不能据旧区间所属的前一个虚表去修表大小。其中两段区间还包含原版已有的12字节核心虚表，不能把那部分误删为填充。476核查使用完整451 ROM与对应map，已核对其SHA-1；没有混用当前新目标与旧ELF进行全局统计。这6段来源/排列仍未修好，不能计入完成，更不能手工恢复/删除运行库字面量来凑齐。
+
+两个绘制函数的坐标/临时计数器表达候选473尚未匹配，未应用。475移动页面Owner清理定义仍输出独立入口，未应用；478移除两个绑定层显式空析构会遗漏独立派生入口，同样未应用，原有共享inline可见性保持不变。候选结果仅用于排除假设，不计入进度。
+
+第一批30个原报告区间累计20个已应用并局部验证，10个待处理：两处绑定清理、两个农场绘制函数、6个只读/运行库边界。最新完整结果仍为451，尚未链接整版，不宣称SHA-1一致。证据：外部scrolling-native-474/match.json、scroll-ownership-477/match.json及consumer-checks.json、runtime-boundaries-476/boundaries.json。未处理海外版、未提交或推送。
+
+## JP 第一批辅助入口与计数容器批量修正（批次 463–472，局部验证）
+
+先总览四个生命周期对象的所有函数，而非按旧差异标签逐个替换。飞盘核心68字节、参考页核心196字节、ScrollMenu核心56字节均已是匹配的C++；旧区间长度还包含随后多余辅助输出，不能据此恢复成汇编。飞盘Owner构造和箭头运算符、参考页Owner构造的inline定义迁回实际调用它们的同名主源码，头文件保留JP声明；两个生命周期对象不再强制生成这3个无外部引用的入口，两个匹配的核心析构保持C++。参考页搜索模板暂以完整56字节原生指令保留，其他地区实例化不变。
+
+466的4个实际JP目标探针匹配预期；两个主模块代码、数据、导出、重定位均不变，两个生命周期对象数据不变。扫描全部现有build/jp目标的已分配段重定位，未发现对删除辅助入口的调用；按真实依赖使用make -j16构建并核对8个JP对象，8/8符合预期。关闭inline输出会同时删除真实隐式析构，显式空析构又会额外写入派生虚表，这些候选均未应用；没有修改编译选项、编译器或预处理器。
+
+农场状态模块按整个对象核查5处实际函数差异，发现收益页旧头文件误用了海外布局：JP原生构造初始化两张标记表的count于0xDE8和0x11BC，而非0x1264和0x1638；JP对象实际大小为0x1580。已对JP恢复正确RAM arena边界，并保持海外定义不变。计数存储的终点以sizeof(count)+count*sizeof(T)从容器起点计算，先固定终点后遍历活动元素，真实的固定容量不变。该通用容器表达同时使收益页88字节、小矮人页56字节、农场核心84字节三个析构全部由正常C++匹配baserom；未用地址补偿或工具输出修补。其余8个函数体（含小矮人绘制）、虚表/数据和主模块均不变；收益页绘制同步使用正确字段布局，但两个Draw函数仍未匹配，未计为完成。按真实依赖make -j16构建的3个JP对象均符合预期。
+
+第一批30个原差异区间中，18个已应用并通过局部验证，12个待处理；这不是全局差异数，也不是完整ROM通过。剩余包括两处绑定清理、事件滚动精灵构造、ScrollMenu额外辅助输出、两个农场绘制函数，以及6个只读数据/运行库边界区间。最新完整构建仍为451，本轮没有链接ROM；未处理海外版、未修改LDS、未提交或推送。
+
+证据：外部cohort-overview-463/overview.json、owner-bodies-466/match.json及consumer-checks.json、farm-layout-470/match.json及consumer-checks.json。中间候选467–469、471仅作局部假设验证，最终应用的是466与470；不能把候选的匹配数量算作工作树成果。
+
+## JP 第一批童年故事清理边界恢复（批次 462，局部验证）
+
+对原报告Lookup区间132/140字节差异重新核对后，确认84字节的IntroStoryTextVariables::Lookup已经匹配，差异来自随后尚未配对的核心析构，不能修改UiTextSubstitution或FixedStr来凑齐。本轮保留该查询和32字节文本变量析构的正常C++编译，仅恢复48字节完整原生核心清理，使用真实成员基类虚表、UiStateOwner析构与HardwareContext析构符号；当前固定成员偏移0x6428仍遵循已验证类布局。
+
+实际JP模块三函数共164字节全部与baserom匹配；两个C++函数体、数据及重定位不变，导出集合和函数顺序不变。旧DestroyIntroStorySceneCore名称与真实C++析构入口的对应已记录在外部证据中，没有增加源码别名。证据为intro-cleanup-462/match.json。
+
+第一批累计12个原盘点区间已应用局部修复，尚未链接整版；全局统计继续沿用451。未修改共享返回结构、工具链或LDS，未处理海外版，未提交或推送。
+
+## JP 第一批菜单内联归属与清理循环（批次 460–461，局部验证）
+
+菜单生命周期模块的较大差异区间包含12个额外生成的共享辅助成员。直接关闭 inline 输出会遗漏真实隐式核心析构，因此460候选未应用。461将三组共享内联辅助类型的接口归属指向已有 game_menu.hh，具体清理类仍由 game_menu_lifetimes.hh 所有；不新增头文件、工具或链接段。归属选择仅用于JP，海外定义不变。
+
+同时纠正 GameMenuIconList 的JP清理逻辑：原版先固定构造项终点，再按该边界遍历；旧源码在for条件中重复计算终点。现在采用普通C++的固定last指针与while遍历，匹配真实计数容器行为。原先对SpritePanel函数本体已匹配的初步判断仅依据长度，实际逐字节核对发现这段循环不同，已在本轮修复，不能以相同长度当作匹配证明。
+
+结果：GameMenuSpritePanel和GameSceneMenuCorePrefix两个析构均保留正常C++生成，212+84=296字节全部匹配baserom；虚表／数据不变。12个无外部调用的独立辅助输出不再由生命周期模块强制产生。菜单主对象不变，按实际依赖用make -j16构建17个JP对象并核对，全部与预期一致；除修复目标外的调用模块代码、导出、数据及重定位不变。没有修改编译选项、编译器、预处理器或LDS。
+
+证据位于外部 menu-interface-461/match.json、consumer-checks.json、production-build-status.json；当前所有JP源码对象的重定位中未发现对移除辅助入口的外部调用。本轮未链接ROM，第一批累计11个原盘点区间通过局部修复，尚待整批全局验收。最新完整结果仍为451。未处理海外版、未提交或推送。
+
+## JP 第一批绑定清理的依赖验收（批次 458–459，候选未保留）
+
+458以完整原生入口取得两个绑定生命周期模块5个函数208字节匹配，但会替代三个此前匹配的C++独立函数，故未应用。459改为保留三个普通C++函数和两个原生派生入口，模块局部内容、顺序与数据匹配；随后按实际依赖文件检查106个JP对象，发现hardware_manager、hardware_manager_tables、ui_vcount三个调用方因共享inline定义迁移而发生代码变化。不能用五个局部函数的通过代替共享接口整体通过，因此459候选全部撤回。
+
+撤回后使用正常make -j16只重建受影响对象，没有链接ROM。106个对象均已确认与其原快照或此前已验证的453–457批内修复对象一致，三处调用方变化已消除；之前累计九个局部修复区间保留。证据：binding-entries-458/match.json、binding-cpp-459/consumer-checks.json、reverted-consumer-checks.json、conclusion.json。
+
+这组问题仍未解决：独立函数恢复必须同时保留其他翻译单元对基类inline定义的可见性和已有函数输出顺序，不能统一从共享头文件移走定义，也不能仅靠局部匹配推广。未新增工具链补丁或LDS重排，未处理海外版，未提交或推送。
+
+当前build/jp对象已包含通过普通规则构建的批内修改，旧451 ELF/map/GBA尚未重新链接，不能将新对象和旧ELF混合生成新的全局报告。整批完成前沿用已保存451全局报告。
+
+## JP 第一批室内地图容器边界恢复（批次 457，局部验证）
+
+原报告中从室内标记构造函数起的100字节区间，实际由44字节构造和56字节析构组成，后者原标签为 loc_080E1860，现明确为真实析构入口 _._26FarmMapScreenIndoorMarkers。连同地图核心124字节析构，共三个完整原生函数224字节已恢复为符号化指令；释放行数组的顺序、循环和条件删除均按原版保留。
+
+调用方仍使用原有 C++ inline 构造定义；JP生命周期所有者以普通 -fno-implement-inlines 参数禁止额外生成重复独立构造副本。主地图模块与生命周期模块均按实际选项局部构建：三个函数全部匹配 baserom；生命周期虚表／数据不变，地图调用方所有函数体、导出、数据及重定位不变。将构造改为非内联声明的首个候选改变了调用方，未应用。
+
+头文件仅为JP显式声明真实析构；没有改变类布局或海外版定义，没有新增 LDS 子段或工具链补丁。原 C++ 结构及 inline 构造仍保留；原生实现不计为高级语言完成。字段偏移、三行容器和四组室内标记属于当前固定类布局；修改这些结构容量时仍需同步恢复高层清理逻辑，不能据此宣称任意结构扩缩已自动支持。
+
+证据为外部 map-lifetimes-457/match.json。第一批累计九个原盘点区间已具备局部修复证据，尚未整批链接；最新完整报告仍为451。继续处理其余清理和辅助生成问题，未提交或推送。
+
+## JP 第一批成员清理恢复（批次 455–456，局部验证）
+
+同批完成 HorseSpriteController（52字节）、HarvestSpriteController（64字节）和 EntityEventEffectController（176字节）的完整 JP 原生析构恢复。前两项依原顺序销毁各成员精灵；后一项保留两组带计数的数组释放，以及日出、月见对象和基类的清理顺序。所有外部调用和虚表均使用真实符号，内部跳转使用局部标签；没有地址补丁或新增 section。海外版保留原实现。
+
+实际 JP 对象核对：三个函数共292字节全部匹配 baserom；对应对象其他函数体、导出、数据与重定位不变。原 C++ 版本保存在外部变更前快照，未把恢复原生实现计为高级语言反编译完成。证据：actor-native-455/match.json、effect-native-456/match.json。
+
+第一批累计已应用并局部验证一个4字节独立 getter、六个共424字节的原生析构，覆盖原盘点的七个区间；这些不是新的全局统计。逐项状态存于外部 jp-ownership-batch-452-status.json。本批尚有其他容器、辅助函数和运行库后缀问题未完成，因此没有整版重建。最新完整结果仍为451的222个长度／填充和51个字节差异区间。未处理海外版、未提交或推送。
+
+## JP 第一批控制器析构修复（批次 454，局部验证）
+
+按共同原因一起处理 DogBallVisualController、ShippingBasketVisualController、CoopEggVisualController 的三个显式空析构。当前 C++ 生成的每个函数多出派生虚表写入，原版44字节函数只清理成员精灵、恢复基类虚表并按真实析构标志释放对象。已将 JP 的三个完整函数恢复为可读原生指令，引用 GameSceneSpriteBase 析构、EntityVisualController 虚表及普通删除符号，无地址常量、别名或输出补丁；海外版原 C++ 实现保持原样。
+
+实际正常 JP 模块局部核对：三个完整函数共132字节与 baserom 匹配，同模块其他函数体、导出集合、数据及重定位保持一致。没有更改编译器、预处理器或 LDS。这属于完整原生混合实现恢复，不能计为三个 C++ 函数完成。证据为外部 prop-native-454/match.json；原 C++ 候选和变更前对象也保留于该目录。
+
+本项与453独立计数入口一起纳入正在进行的第一批，尚未对整批进行完整构建。最新完整报告仍为451，不能据局部结果宣称全局差异数已下降；继续处理同批其他生成归属问题，最后一起整版验证。未处理海外版、未提交或推送。
+
+## JP 第一批首项修复（批次 453，局部验证）
+
+资源归档模块恢复 JP 原生独立 GetEntryDescriptorCount 入口，保留头文件既有 C++ inline 实现供真实调用方使用。当前编译参数抑制该 inline 的独立副本，因此新增完整符号化汇编入口不会产生重复定义；这是一项混合实现恢复，不计为新增 C++ 反编译。实际模块5个函数、344字节均与 baserom 匹配，其他函数体、数据及重定位未变。证据为外部 archive-entry-453/match.json。未修改 LDS、编译器或预处理器；未处理海外版。
+
+第一批仍在进行中，本次没有整版构建，最新完整结果仍为451。前述定义顺序候选未应用；编译器 saved_inlines 按链表头插入并输出，其后端输出流程会关闭 inline 并使用保存的RTL，不能只修改标志位来假定可以继续安全内联。需结合真实类型与定义归属处理整批剩余项。
+
+## JP 第一批生成归属问题盘点（批次 452，尚未推广）
+
+按用户要求切换为共同原因批量处理，已从 451 全局结果提取 13 个模块、30 个相关差异区间，覆盖缺失 inline getter、基类清理可见性、空派生析构、容器清理、辅助成员输出及运行库后缀。它们是本批调查范围，不表示已经完成 13 个模块修复，也不能按相同长度差直接套用一种规则。
+
+对硬件管理 PreviousBinding 和 UI VCount 注册层做了两个实际模块试验：将派生析构定义移到基类 inline 析构之后，能使基类恢复逻辑展开，但同时将派生析构移到模块前部。保留显式 inline 声明也未恢复原输出顺序。因此候选未推广，生产源码未修改；不通过 LDS 逐函数重排解决。需要把定义可见性与真实生成顺序一起处理。
+
+记录为外部 `jp-ownership-batch-452-input.json`、`ownership-batch-452/batch-report.json` 及候选源码和实际对象。本批没有整版构建，最新完整结果仍为 451（222 个长度／填充差异区间、51 个字节差异区间）。完成共同机制的局部验证及整批修改后，才进行下一次 JP 整版验证。海外版未处理，未提交或推送。
+
+## JP 硬件混合辅助类型归属修复（批次 449–451）
+
+449 实际对象试验确认，给硬件混合模块添加 `-fno-implement-inlines` 会连同原版已有的 36 字节 `HardwareBlendObject` 构造函数一起移除，故未应用该编译参数。该构造函数本身的完整指令及重定位已与 baserom 匹配；不能为了移除额外代码而丢弃它。
+
+450 将供场景内联使用的一字所有权辅助类型 `HardwareBlendOwner` 从 JP 硬件实现接口中分离，存于 `hardware_blend_owner.hh`，由真正使用该类型的六个场景直接包含。它是共享的纯头文件类型，没有新增 ROM 对象或声明转发层。硬件模块仍采用原有编译参数，其原始构造函数自然保留，额外的 12+44+4 字节辅助成员不再被该模块强制输出。海外区域原来的定义保持原样。
+
+实际正常 JP 对象核对：硬件模块 17 个函数、620 字节全部匹配 baserom；非代码数据及引用不变。开场、新游戏身份、动物照顾、鸡祭、收获和浇水小游戏共六个使用方的所有已分配段、重定位和导出符号与修复前完全相同。局部证据为 `blend-inline-449/conclusion.json`、`blend-owner-450/match.json`、`blend-owner-450/clients.json`。
+
+451 已使用 WSL `make -k -j16` 完成 JP 整版编译、链接及新 ROM 生成。SHA-1：`3cdd7327ba7dddf0f3b793f2bbe334a6f5f527ab`；baserom：`a655b2789aed14a6ac78c6075fbc533d3062dbe3`。整版匹配状态：False。当前剩余 222 个长度／填充差异区间、51 个字节差异区间；180 条变化引用未解释，117 个引用位置不受审计器支持。区间不能当作独立函数或完成百分比。
+
+本轮没有修改 LDS、编译器或预处理器，没有分析或编译海外版，未提交或推送。完整全局证据为 `full-build-451/global-report.json` 与 `global-451-jp-*.json`。
+
+另已查明，`GetGroupDescriptorCount` 报告中的 4 字节缺口不在该函数本体：其 4 字节本体已经匹配，原版随后还存在 `GetEntryDescriptorCount`。当前后者仅以 header inline 形式提供，被所在模块的 inline 输出选项抑制；调用方 `UiStatePayload::ShowHeartIndicator` 实际使用该内联 getter。该项尚未修改，需同时保留调用方正确代码及原始独立入口，不能改返回类型或补零凑齐。
+
+## JP 滚动菜单修复整版验证（批次 448）
+
+446 的 JP 页构造入口修复已通过 WSL `make -k -j16` 完整编译和链接，compare 尚未通过。ROM SHA-1 为 `1b7b0c62fb48cb81ab4d362949c71bfd32627e56`，JP baserom 为 `a655b2789aed14a6ac78c6075fbc533d3062dbe3`。
+
+采用 447 的区域证据与精确同址旧名称处理，并补充已经完整核对的菜单构造身份后，当前有 223 个长度／填充差异区间、51 个字节差异区间；16,573 个区间字节完全相同，2,738 个区间仅存在已解释引用变化。仍有 180 条变化引用未解释、117 个引用位置不受审计器支持，465 个基线名称和 385 个当前名称尚未配对。这些数量不是函数完成率，名称与边界补齐造成的区间重分也不能计为源码修复。
+
+本阶段源码只将 JP 页构造入口换成既有 `thumb_func_start`，模块长度不变；完整函数及表的局部证据见 446。未修改海外版、LDS、编译器或预处理器，未提交或推送。完整报告为外部审计目录 `full-build-448/global-report.json` 与 `global-448-jp-*.json`。
+
+下一项只读检查确认 `hardware_blend` 早段 60 字节增量对应三个额外生成的 `HardwareBlendOwner` 成员：`IsQueued` 12 字节、析构 44 字节、构造 4 字节。其后 `HardwareBlendObject` 的 36 字节构造入口也由当前头文件生成，不能简单关闭全部 inline 输出而遗漏真实入口。该项尚未修改，应核对实际调用与编译单元归属，不以删除机器码或改 LDS 处理。
+
+## JP 滚动菜单入口及引用核对（批次 446–447）
+
+JP `ScrollMenuPage` 构造函数位于 14 字节的 C++ 取值函数后，此前裸汇编入口缺少对齐，函数前少 2 字节、函数内部却因常量池对齐多 2 字节。将该 JP 入口改用现有 `thumb_func_start` 后，模块总长度不变，构造函数指令及常量池布局恢复。没有在 LDS 定位、添加子 section 或修改编译工具。
+
+实际 JP 模块局部核对：菜单构造 1,044 字节、页构造 488 字节、页析构 156 字节、页绘制 1,308 字节，共 2,996 字节与 baserom 匹配；页虚表 16 字节及其调用的 OAM 初始化函数 208 字节也完整匹配。其他函数体及非代码数据／引用未变。记录为 `scroll-entry-446/match.json`；整版验证另行记录。
+
+外部审计还修正了参考 ELF 中同地址旧名称的处理：仅当 section、value、kind、size 完全相同，才将它们视为同一物理对象的历史名称，报告保留名称列表，不新增游戏源码别名。原来无法配对的部分函数因双名称被排除，现已纳入字节核对。牧场状态界面 10 张虚表共 160 字节均通过实际对象重定位与 baserom 核对；这不表示其所有析构函数指令已经匹配。
+
+对未包含入口修复的 444 产物，447 审计得到 225 个长度／填充差异区间、53 个字节差异区间；新边界会拆分旧区间，不能把区间数量变化直接算成代码修复量。仍有 182 条未解释变化引用、117 个不支持的位置。该审计没有新构建，没有修改 ROM；证据位于 `jp-evidence-scope-447.json`、`jp-status-table-evidence-447.json`。
+
+只处理 JP；海外版、编译器和预处理器未修改，未提交或推送。
+
+## JP 历史名称证据的区域范围核对（批次 445，无新构建）
+
+检查 444 剩余引用时发现，外部审计脚本此前将历史记录中 `/maps/jp` 与其他区域的同名地址标签合并成候选集合，导致部分实际对应的 JP 名称因冲突而未配对。现仅依据证据记录中明确的区域路径筛选；没有明确区域的记录仍保留为候选，不自动视为正确。该修正只影响仓库外的分析脚本，不属于游戏编译链，也不修改 ROM。
+
+对同一份 444 JP 产物重新核对后，配对符号为 19,614，仍有 220 个长度／填充差异区间、59 个字节差异区间；85 条未解释变化引用变为 202 条，因细化边界使更多位置进入逐引用核查，不能把新增配对全部称为通过。另有 126 个引用位置仍不受审计器支持。区间数变化中的 66→59 是证据归属修正，不是又修复了 7 个函数。
+
+对牧场状态界面单独使用实际对象重定位及 baserom 复核：10 张候选虚表中 8 张共 128 字节匹配；另外 2 张存在尚未确定对应符号的槽位，继续保留未验收。报告为 `jp-evidence-scope-445.json`、`jp-status-table-evidence-445.json`、`global-445-jp-*.json`。
+
+后续候选：JP `ScrollMenuPage` 构造入口位于一段 C++ 函数后，源码使用未带对齐的裸入口，原版入口则为 4 字节边界；先完整核对该模块及相关名称对应，再决定修复，不修改 LDS 凑地址。JP 优先要求不变；尚未提交或推送。
+
+## JP 返回类型修复整版验证（批次 444）
+
+443 的 JP 返回类型修正已通过 WSL `make -k -j16` 整版编译与链接，8 个调用函数共 1,076 字节的局部匹配结果在整版报告中成立。与 442 同一审计口径比较，长度／填充差异区间由 227 降为 220，剩余字节差异区间由 67 降为 66。整版 SHA-1 为 `887329ca30826dd0ac350ad8be2e5b39a169ff4b`，尚不等于 JP baserom 的 `a655b2789aed14a6ac78c6075fbc533d3062dbe3`。
+
+本轮源码仅调整 JP 的 `UpdateWorldAmbientMotion` 返回声明；没有游戏特定编译器补丁、预处理器补丁或 LDS 调整，也没有海外版分析、修改或构建。完整结果保存在外部审计目录 `full-build-444/global-report.json`。
+
+## JP 环境移动返回类型修复（批次 443，局部验证）
+
+依据 442 全局报告核对 8 个环境对象更新函数：JP 原调用点直接检查完整 `r0`，原生移动函数通过完整寄存器返回 0/1；此前 `bool UpdateWorldAmbientMotion` 声明使 C++ 调用方额外截取低字节。JP 声明改为 `u32`，海外版声明暂不变。此处恢复的是原生调用约定，不修改编译器或预处理器。
+
+使用实际模块及正常编译选项验证，8 个 C++ 调用函数共 1,076 字节与 JP baserom 完全匹配；原生被调函数也已完整核对。同对象另外 46 个函数、定义顺序、导出集合及非代码数据／重定位未变。外部证据：`ambient-return-443/match.json`。尚待下一次 JP 阶段整版验证，不能用局部结果替代 SHA-1。
+
+## JP 环境对象析构整版验证（批次 442）
+
+441 的 12 个 JP 原生析构修复后，WSL `make -k -j16` 已完成 JP 编译、链接及 ROM 生成，compare 尚未通过。构建 SHA-1 为 `8dd07d8d05ce2a77aa17cb1b1ee758ea3b9218dc`；baserom 为 `a655b2789aed14a6ac78c6075fbc533d3062dbe3`。本轮没有编译或分析 US/EU/DE，没有修改编译器、预处理器或 LDS。
+
+全局核对：长度／填充变化区间由 239 降为 227，剩余字节差异区间为 67；16,564 个区间字节相同，2,668 个区间仅有已解释的引用变化，已配对区间中没有顺序分裂。尚有 85 条变化引用未解释、128 个引用位置不受现有审计器支持；这些不能计为通过。区间不是函数数或独立问题数。
+
+12 个析构的长度差异已消除，属于完整原生汇编的匹配恢复，不计为完成 C++ 反编译。全局仍有未匹配内容，不能声称 ROM 已经可无条件动态修改。报告为外部审计目录 `full-build-442/global-report.json` 与 `global-442-jp-*.json`。
+
+后续只集中处理 JP；JP 完成后再将已验证的修复方法同步到海外版。按完整报告归类、局部验证、推广后进行阶段构建，不因记录报告再次构建。未提交或推送。
+
+## JP 环境对象析构的混合实现修复（批次 440–441）
+
+基于 439 全局报告，确认 12 个 WorldAmbientKind 显式空析构当前各 20 字节，而原版各为 10 字节指令加 2 字节对齐。差异为当前 C++ 自动写入了派生类虚表；原版这12个函数仅调用基类析构并返回。
+
+进行了实际模块的最小 C++ 组织试验：删除显式析构后，当前 -fno-implement-inlines 留下12个未定义析构；改为输出内联实现则增加18个不应出现的全局入口且改变顺序；具体类私有化候选在 -fno-weak 下产生局部绑定，不满足外部汇编的真实表引用。这些候选未应用，保存在外部 ambient-dtor-440，不能视为 C++ 恢复成功。
+
+按目标允许的过渡方式，仅 JP 的12个析构采用完整原生 Thumb 汇编，保持真实 C++ 名称、删除标志 ABI、对基类析构的符号调用及正常入口/末尾对齐。海外分支原有实现未改；没有新增工具补丁、地址常量、别名、子 section 或 LDS 条目。12个完整区间共144字节与 JP baserom 匹配。既有基类 C++ 析构完整64字节也与原版匹配，因此补充其旧地址名到类析构名的审计对应，不改源码名字。
+
+同一实际对象的其余42个函数在保留局部标签关系后内容和引用均未改变；导出集合、函数顺序、非代码数据及引用符号不变。此轮计为12个原生函数边界/实现恢复，不计为高级语言反编译进度，其他已知不匹配的 C++ 方法仍需处理。未提交或推送。
+
+## JP 函数入口对齐整版验证（批次 439）
+
+438 的 10 个入口对齐修复后，WSL make -k -j16 已完成 JP 编译、链接及新 ROM 生成；仅 compare 失败，未产生新的链接错误。SHA-1 为 0bf8dcbd276da65136b7b5d5011200ea51f2fc18，baserom 为 a655b2789aed14a6ac78c6075fbc533d3062dbe3，整版尚未匹配。
+
+全局报告的长度/填充变化由 255 降为 239，剩余字节差异区间由 68 降为 67，已配对范围内的顺序变化仍为 0。16,564 个区间字节相同，2,655 个区间仅有已解释的引用变化；尚有 85 条变化引用未解释、128 个引用位置未受审计器支持。区间不是函数数或完成百分比，不把尚未配对的名称及边界视为通过。
+
+本轮按固定绝对位置比较有 6,273,438 个差异字节，包含入口补齐后向后传导的位置变化；它不是尚未恢复代码量的度量，不能用删除必要对齐来压低这个数。直接 SHA-1、全符号对应、引用及各区间内容继续分别记录。
+
+报告位于外部审计目录 full-build-439/global-report.json 及 global-439-jp-*.json。下一组只读分析发现多个 WorldAmbientKind 空析构在当前对象中额外写入虚表；尚未修改，需核对显式/隐式析构和声明归属。未提交或推送。
+
+## JP 原生函数入口对齐（批次 438）
+
+对 437 的全部代码长度变化区间及源码入口进行联合检索，确认 game_state、game_world、npc_collection、player_actor、town_map 共 10 个手写 Thumb 入口缺少四字节对齐。原版均为四字节入口，7 处已有海外版 thumb_func_start 对照；其余保留真实函数及地区条件，只使用本项目现有的 thumb_func_start 替换裸 global/thumb_func。没有修改宏实现、编译器、预处理器、函数指令或 LDS。
+
+用正常目标编译参数分别编译五个 JP 对象，覆盖受影响入口及相邻区间：18 个区间合计 2464 字节均匹配 baserom，其中 16 个此前的长度变化消除；两个原本等长的邻接入口也通过核对。匿名的函数内部跳表通过同一函数内的标签偏移计算，未忽略其指针字节。五个对象的非代码字节、指针符号及加数均不变；player_actor 的具名函数指针随入口地址正常变化，不当作数据内容变更。
+
+10 处中只有 UpdateWhileSuspended 的入口为四版共享，因此另编译 US/EU/DE 的 player_actor 对象，三版该完整 76 字节函数区间均匹配各自 baserom；未进行海外整版构建。其它差异仍待处理，不从本轮局部结果推导全模块或全 ROM 匹配。
+
+## JP 阶段全局验证（批次 437）
+
+435–436 的类声明及私有 ABI 声明修复后，WSL make -k -j16 再次完成 JP 编译、链接及 ROM 生成，仅 compare 未通过。新 SHA-1：df4d7de338008a4396a6ac1179670e21701e5647；baserom：a655b2789aed14a6ac78c6075fbc533d3062dbe3。未使用链接后修补或新的工具链规则。
+
+本轮全部符号及字节区间核查：19,581 对有依据的符号对应；16,520 个区间直接相同，2,682 个区间差异可由已验证引用变化解释；68 个区间仍有字节差异，255 个区间有长度/填充变化。434 的 12 个顺序变化区间已全部消除。长度类多出的两项是原先被顺序变化分类覆盖的边界，不将分类转换当作新增代码错误，也不计成已解决。86 条变化引用和 128 个审计器未支持的引用位置仍未验收。
+
+这是本轮已配对符号范围的结果，不代表全 ROM 所有对象顺序、边界或动态引用均已完成。未配对名称清单继续保留；正常库字面量的数量及实际编译单元归属尚未恢复。完整报告在外部审计目录 full-build-437/global-report.json 及 global-437-jp-*.json。海外版尚未重建，未提交、未推送。
+
+## JP 类声明与虚表输出顺序（批次 435–436）
+
+以 434 全局报告为依据，修正菜单切换类声明次序：ToolChestTransition 移到 ShelfTransition 之前，构造函数定义也按同一声明次序排列。实际 JP 对象的完整 .text 3752 字节及全部 33 张连续虚表 528 字节均匹配 baserom，包含其相对顺序。函数体和 LDS 未改。局部比对修正了对当前符号重复应用历史改名映射的问题；旧名只在对照侧转换，不以改错游戏调用来消除审计器差异。
+
+两个共享头文件中对编译器虚表的显式 extern 声明使旧编译器提前输出对应表。new_game_menu 的调用仅在汇编内，移除无用的 C++ 声明；intro_scene 的声明改为仅在实际使用该 ABI 符号的源文件内可见，表仍由真实类实现生成，未新增别名。intro/new_game_menu 的两组四张表各 60 字节，与 baserom 连续内容及顺序匹配。四个相关 JP 对象的函数代码与重定位保持不变，两个主模块的 rodata 也保持不变。
+
+另以已确认虚表的析构槽及完整 604 字节核对，补齐 DestroyIntroSceneCore 到自然生成 _._14IntroSceneCore 的审计名称对应；不修改源符号或 ROM。各对象前置运行库字面量的归属仍未解决，不算入虚表通过范围。共享源码已修改，海外验证仍待 JP 稳定后执行。本阶段不修改编译器、预处理器和 LDS，不提交或推送。
+
+## 批次 434：JP 当前完整链接布局
+
+本轮生成新的完整 JP map。基准代码段为 0x08000000–0x080E4E0C，当前为 0x08000000–0x080E4FD4（多 456 字节）。普通只读对象、音频、图形、脚本、字库和库数据依次自然链接；各资源的当前地址不作为已匹配的证明。IWRAM 的 VMA 0x03000490、长度 0x848 与基准一致；其 ROM 装载位置仍受前方变化影响。
+
+全局分类尚有 253 个长度/填充变化区间及 12 个顺序变化区间。未向 LDS 添加固定地址、逐符号或 GNU 子项来补齐。以 full-build-434 的新 map 为当前状态，429 为历史失败链接记录。
+
+## 批次 433：JP SRAM 签名与分配运行库对象
+
+JP 签名占 0x080E7A5C–0x080E7A7C，共 32 字节。其后的分配运行库 .rodata 为 16 字节：自然库字面量、对象对齐以及标准 nothrow 对象，局部输出对应 0x080E7A7C–0x080E7A8C。此前作为空字符串保存的四字节已从 JP 文本中移除。
+
+LDS 使用 src/sram_image.o(.rodata) 后接 src/new.o(.rodata)，无子段/固定地址新增。0x080E7A8C 与 0x080E7A98 的两份库字面量归属仍未恢复；现阶段不能将下一个对象的实际链接地址当作已匹配。其他三版布局尚未推广。
+
+## 批次 432：基础地图、视口命令与保存地图三表
+
+JP 原版三表范围为 0x080E7714–0x080E7774：基础地图 40 字节、视口命令 16 字节、保存地图 40 字节。保存地图表的真实所有者调整为既有 saved_map_tree.cc，继承与虚函数绑定不变；普通对象顺序为 world_map_tables.o、world_map_command_lifetimes.o、saved_map_tree.o。
+
+JP 三表整个 96 字节与基准一致，未依靠固定地址或分段选择。本条继承并修正 430 所记录的反向输出问题。后续 world_map.o 的运行库文本归属仍未验收，不能由此推断整个区域地址已正确。海外共享 LDS 更新但未在此轮构建。
+
+## 批次 431：玩家原生表与完整生命周期接口分离
+
+PlayerActor 完整原生表仍在 src/player_actor.cc，部分接口保留 include/player_actor.hh。已有 src/player_actor_lifetimes.cc 仅拥有 include/player_actor_lifetimes.hh 中三个完整类的析构和表。无新增源对象或 LDS 子项。
+
+JP 三张表按 PlayerSpriteController、FarmingTutorialPlayerBase、PlayerActorBase 顺序，对应 0x080E5B48/20、0x080E5B5C/80、0x080E5BAC/176 字节；三个析构对应 0x080DBF18/104、0x080DBF80/52、0x080DBFB4/52 字节。各项字节及内部次序通过。生命周期对象开头的自然运行库文本仍需全局归属处理，不宣称整个对象已处于最终 ROM 地址。
+
+## 批次 430：地图表内容与顺序分开记录
+
+重复的手写 SavedMap 表已从 world_map.cc 移除，LDS 未变。JP 基准 WorldMap 表位于 0x080E7714（40 字节），SavedMap 表位于 0x080E774C（40 字节），中间 16 字节须按实际归属恢复。当前 world_map_tables.o 先输出 SavedMap，再输出 WorldMap，故内容虽均匹配，顺序仍不匹配；不通过 LDS 子段选择强排。
+
+教学回调两个符号名修正不改变四版函数、常量池或表的边界，整个实际对象局部匹配。完整 ROM 布局尚未验收。
+
+## 批次 429：新布局可盘点，链接尚未完成
+
+四版重新编译后均在链接阶段失败，保留本轮 map 及逐输入对象、同名符号地址盘点。其地址只是失败链接尝试结果，不作为最终 ROM 布局或字节匹配证明。未修改 LDS、地址锚点、代码或资源。完整结果见 PROGRESS.md 的批次 429。
+
+## 强制空白操作与命令对象边界（2026-11-08，批次 427）
+
+EnableHardwareForcedBlank 和 DisableHardwareForcedBlank 保留于 src/hardware_context.cc 原物理位置，分别为 80 和 84 字节（含原生常量池及对齐）。JP 起点为 0x0800872C、0x0800877C；US 为 0x08008724、0x08008774；EU 为 0x08008738、0x08008788；DE 为 0x08008744、0x08008794。地址仅用于审计，源码不写 ROM 地址。
+
+四版共享两个完整函数，字段 +0x34 与 +0x490 由现有 HardwareCoreState 布局检查约束；DISPCNT 位使用既有宏。其余源代码及函数顺序保留。两个硬件对象完整普通 .text/.rodata 均与 baserom 一致，每版总计 1528 字节，不添加细分段、地址锚点或独立源码文件。原 C++ 候选在外部审计目录保留，两个原生入口不计为高级语言完成。
+
+## intro_scene 普通代码边界完整核对（2026-11-08，批次 426）
+
+四版整个 src/intro_scene.o(.text) 按真实符号引用与各自 baserom 对照通过：JP 11924 字节，US/EU/DE 各 11892 字节。每个导出函数在对象内的偏移与原 ROM 相邻入口一致；不只是开头构造器通过。对象来自 423，当前完整预处理输入与该轮缓存逐字节相同。普通 .rodata 的 34 字节结果沿用 423。
+
+旧 gIntroSceneCoreVTable 与当前类虚表的对应仅用于核对原始指针，不在源码中恢复旧标签，不添加别名。独立 intro_scene_lifetimes 的生成和全局摆放仍需另行验证，不把该对象纳入此结论。证据 intro-code-current-evidence-426.json。
+
+## SRAM 签名后分配运行库候选（2026-11-08，批次 425）
+
+候选 new.o 的 16 字节普通只读数据由真实 <new> 依赖及旧库原有 std::nothrow 定义生成：JP 0x080E7A7C、US 0x080E864C、EU 0x080E8698、DE 0x080E85B0。内部 +0x0C 为 4 字节空类对象，四版与现有 EmptyText 旧标签地址一致。相应 180 字节代码和 4 字节处理器指针数据也全部匹配 baserom。
+
+这是未应用候选，不改变当前 LDS 条目或宣称整个 SRAM 尾部已恢复。当前 sram_image 的文本宿主仍混有后续待定内容；必须完成相邻归属后，才可缩回真实签名边界并插入 new.o(.rodata)。不为候选添加子 section、固定地址或额外临时模块。详见 allocation-runtime-425/conclusion.json。
+
+## main 的普通只读数据位置（2026-11-08，批次 424）
+
+初始化数组仍是 crt0_data 的 16 字节对象。随后 main.o(.rodata) 存放实际场景分配依赖自然产生的 10 字节库字面量，四版原位置为 JP 0x080E7A50、US 0x080E8620、EU 0x080E866C、DE 0x080E8584；再经既有 4 字节对齐到 SRAM 签名。LDS 仅新增该普通对象条目，不写入上述地址。
+
+main.cc 原有 AgbMain、软复位处理与 IWRAM 卡带移除回调均保留 C/C++ 或既有真实汇编实现。四版整个 .text/.rodata/.iwram 对照通过，依次为 340/360、10、48 字节。旧 gCppRuntimeBadAlloc_Crt0 手写符号不恢复，区域文本文件不承担这个库字面量。
+
+## 启动场景的普通只读数据归属（2026-11-08，批次 423）
+
+src/intro_scene.o(.rodata) 在原启动资源表位置统一放置 34 字节载荷：gIntroSceneStartupBgTilemaps[4]、自然库字面量、原有 gCppRuntimeError_IntroSceneStartup。JP 起点 0x080E7AA4，US 0x080E8684，EU 0x080E86D0，DE 0x080E85E8；下一模块前的两个字节为既有 4 字节对齐的零填充。地址仅作原 ROM 审计记录，LDS 不增加原址限制。
+
+资源表与消费者 InitializeIntroSceneSequenceResources 同属 intro_scene.cc；全部声明合入 intro_scene.hh，区域文本同名 include。原 startup 数据专用 cc/hh 移除，四版 LDS 各仅替换一个普通对象条目。虚表仍属于原有独立生命周期模块，本轮未移动它们，也未重新排列代码。四版普通只读数据完整匹配，其他段及整版验证另行记录。
+
+## 教学回调及析构的完整物理单元（2026-11-08，批次 422）
+
+src/farming_tutorial.cc 普通 .text 按原顺序包含：HardwareContext 析构调整入口、AScriptEngine 析构调整入口、融合的 OnCall 调整入口、Run、派生析构、基类析构及末尾对齐。JP 范围 0x080DDA34–0x080E015C；US 0x080DE280–0x080E09BC；EU 0x080DE2CC–0x080E0A08；DE 0x080DE1E4–0x080E0920。范围终点不包含后续主题。这些是 baserom 审计地址，源码和 LDS 未使用它们固定本单元位置。
+
+同一对象的普通 .rodata 仅包含四张连续 ABI 表，共 64 字节；按已有 LDS 的独立代码区/数据区顺序链接，不新增 section 子项。原基线把融合回调记录成 12 字节，并把其中几个内部分支标为函数；本轮按实际控制流边界恢复完整 7676 字节回调，内部标记仅为局部标签。既有 C++ 构造/工厂仍位于其原本的 farming_tutorial_transition.cc。
+
+四版整个对象的两个普通段与 baserom 字节匹配，C++ 接口与构造调用方无重复定义。完整 C++ 候选留在外部接续记录，今后恢复高级语言时需同时处理回调、析构与虚表的生成归属。证据 tutorial-native-422/original.json、match.json。
+
+## 菜单与世界构造边界（2026-11-08，批次 418）
+
+InitializeNewGameMenuCore 四版入口：JP 0x080041F4，US 0x080041DC，EU/DE 0x080041F0；函数 914 字节、后随 2 字节对齐，下一函数不并入本入口。GameSceneWorld 构造四版入口：JP 0x08017348，US 0x080175B4，EU 0x080175C8，DE 0x080174C8；完整函数及内部常量池共 1048 字节。
+
+两个入口分别原位归入 new_game_menu.cc、game_world.cc 的普通 .text，各自四版共用完整指令实现，LDS 无额外条目。上述地址仅是原 ROM 审计位置；入口及引用均使用符号。局部对象核对覆盖整个入口及其到下一函数的对齐，不代表两个整模块已经验收。证据 constructors-native-match-418.json。
+
+## 身份初始化入口的混合模块边界（2026-11-08，批次 417）
+
+src/new_game_identity.cc 的首个入口 InitializeNewGameIdentityCore 保留完整符号化汇编，随后继续放置现有 C++ 析构及运行函数，共享普通 .text。JP 原范围 0x08004F14–0x08005138；US 为 0x08004EFC–0x080050C8；EU/DE 为 0x08004F10–0x080050DC。地址仅为 baserom 审计记录，没有添加 LDS 定位或子 section。
+
+四版入口到下一函数的边界、调用和常量池全部匹配。JP 548 字节，海外版共用实现 460 字节；头文件已有缓冲区布局表达继续约束成员偏移。未将整个模块或后续函数计为全局匹配。证据 identity-native-original-417.json / identity-actual-match-417.json。
+
+## 铁匠铺结果转换的混合代码块（2026-11-08，批次 414）
+
+scene_blacksmith_transition.o 的普通 .text 由 72 字节 C++ CreateScene、38 字节原版符号化析构及 2 字节对齐连续组成。四版完整 112 字节均与各自 baserom 匹配，源码顺序就是对象顺序；不新增 LDS 条目或子 section。析构仍列为汇编实现，其隐式 C++ 定义归属尚未恢复。证据 blacksmith-hybrid-review-414.json。
+
+## 钓鱼区域查询边界与未归属尾部（2026-11-08，批次 413）
+
+移除 fishing_area.cc 无实际用途的 <new>。四版查询函数均为 166 字节，完整代码/符号表引用与 baserom 一致；边界表均为 192 字节且逐字节一致。JP / US / EU / DE 原版表起点分别是 0x08105184 / 0x0810563C / 0x08105694 / 0x08106060。紧随其后的 10 字节 bad_alloc 暂未确认真实编译单元归属，不再通过无用头文件输出。地址仅作审计，未修改 LDS。
+
+413 的有效匹配范围是函数和八条边界记录，不能沿用 408/412 的 202 字节整块匹配结论。证据 runtime-dependency-review-413.json。
+
+## 默认普通 C++ 只读段（2026-11-08，批次 409–412）
+
+C++ 不再通过 -fdata-sections 将普通对象拆为私有段；预处理器不再重命名为同名 unique .rodata。具名数据和匿名常量由编译器的普通段及源码顺序组织，LDS 未增加子项或定位。原有普通目标的冗余关闭选项一并删除。
+
+更新工具后，四版局部 field_data（2312 字节）、new_game_name_entry_ui_data（JP 430/海外 462，输入对齐 2）、fishing（2030）、fishing_area（202）的单一 .rodata 全部匹配基准。八模块初次筛选中其余模块仍有库字面量缺口及内部次序差异；全局 77 个候选不视为已验收。最终链接位置及模块间填充未由此次对象验证证明。详见 ordinary-rodata-inventory-409.json、ordinary-rodata-review-410/412.json、fishing-natural-rodata-412.json。
+
+## 钓鱼模块普通只读段（2026-11-08，批次 408）
+
+取消 fishing/fishing_area 的 -fdata-sections，使普通数组和编译器字面量不再分属不同输入段；不改 LDS。四版两个对象各自仅一个 .rodata，完整载荷分别为 2030/202 字节，逐字节匹配各自 baserom。首块起点 JP/US/EU/DE 为 0x08104994/0x08104E4C/0x08104EA4/0x08105870，第二块为 0x08105184/0x0810563C/0x08105694/0x08106060。两块之间原始对齐空间不计入上述载荷，最终全局链接地址仍未验证。
+
+fishing-natural-rodata-408.json 保存精确范围与哈希；函数输出仍有差异，独立 <new> include 的真实依赖也待确认，不把此数据结果作为整个模块完成。其他 C++ 模块取消数据拆分前还须核对未对齐起点和内部边界。
+
+## NPC 隐式析构自然布局（2026-11-08，批次 401–404）
+
+NPC 的 39 个无附加行为析构改为隐式生成；其真实基类清理关系由四版原 ROM 的 156 个入口核对。npc_actor_lifetimes.cc 保留明确接口实现归属，沿用头文件声明顺序自然生成原有析构/虚表顺序。Makefile 不再禁止该对象生成 inline 实现；四版局部对象各 39 个函数、41 张虚表的内容及各自相对顺序核对通过，不改 LDS、不加地址或子 section。对象常量前缀及全局链接位置不计为本次验收。
+
+401 另确认 JP 教学场景两条短析构调整入口和两个实际析构匹配，44 字节辅助入口消失；教学回调副本、指令差异、表与字面量分布仍待处理。证据见 interface-review-401.json 和 npc-implicit-review-404.json；尚无新的完整 ROM 对照。
+
+## 实现归属局部验证（2026-11-08，批次 394–400）
+
+本批不改四版 LDS、不引入新物理岛或地址限定。移除误用的无参数 implementation，保留明确的实际类表/方法实现单元；内部 owner 清理正文放回实际使用方。此前重复定义的 11 组中，25 个符号在选定的 22 个 JP 局部对象中均恢复为唯一强定义。对应报告为 interface-summary-400.json。
+
+该结果证明局部实现归属，不证明原 ROM 顺序全部恢复。教学场景仍有回调副本、析构调整展开、world-owner 独立清理入口及虚表/字面量顺序差异；不能以当前普通 LDS 外观认定匹配。整体比较仍以 374 的四版报告为最近完整结果；393 已取消，后续最小编译未链接 ROM。细节与证据索引见 PROGRESS.md 的 394–400 记录。
+
+## 全局运行库引用核查与获准的最小编译验证（2026-11-08，批次 390–392）
+
+用户允许在整 ROM 静态阶段完成前，进行最小范围模拟编译，以提前判定当前调整是否正确。此授权取代此前“任何局部编译均禁止”的限制；不代表恢复反复整 ROM 构建或扩大到无关测试。本轮在 WSL 中通过临时 Makefile -j16，仅按正式管线和现有编译参数编译实际 US 源文件，产物置于仓库外的审计目录，不覆盖基准或正式 build 产物，没有链接 ROM。
+
+先完成四版原 ROM 运行库字面量的全局绝对地址候选核查，包含指向文本内部及结束零的值、四种字节对齐，并结合既有可执行范围的 Thumb PC 相对读取筛选。每版 151 份 bad_alloc 均未发现这类代码常量池读取；少量原始字节命中位于其他数据范围，不能直接认定是指针。Error 的代码常量池读取均集中于三份：基础 AScriptEngine::GetString、ScriptEngine::OnCall、FarmingTutorialScene 的调整后回调；各对应 1、39、35 处池项。N/A / 日文“なし”的相应读取集中于玩家钓鱼状态和钓鱼结果选择器。无绝对地址命中不证明无计算型引用，此报告不授权删除对象；相关原始数据命中尚未逐个完成资源语义判定。结果保存 runtime-pointer-candidates-390.json。
+
+批次 391 的两个实际对象都成功编译，但结果不同。script_vm 的 .text 为 0x970 字节，13 个函数相对地址和长度与 US baserom 一致；排除 ELF 标出的 ABS32/Thumb 调用重定位字段后，其余字节完全一致。普通 .rodata 自然输出 bad_alloc、对齐以及 Error；GetString 未成为未定义外部引用。该比较未解析重定位，不是完整字节或 SHA-1 验收。
+
+教学场景同样编译成功，但验证否定了先前仅凭可见 inline 就足够的假设：多出完整 OnCall 普通副本（7702 字节）和构造函数（248 字节）；两份析构调整入口各展开为 180 字节，而原版为 12 字节。融合回调为 7706 字节，原 ROM 实际完整范围为 7676 字节，不能拿旧 ELF 上错误的 12 字节 size 当作回调体长。普通 .rodata 同时含字面量和四份表，物理顺序问题仍在。没有据此添加编译器特化或 LDS 子项。
+
+已将 FarmingTutorialScene 构造函数的实际 inline 定义从类头移到唯一创建调用所在 src/farming_tutorial_transition.cc；类头保留普通声明，初始化顺序和表达式不变。批次 392 仅重编译受影响的场景及创建流程对象：248 字节独立构造副本消失，创建流程的两个函数分别为 28 和 296 字节，与原版尺寸及非重定位代码字节一致。没有新增构造包装、别名、宏、编译选项或源码文件；编译器与预处理器未改动。
+
+证据为 limited-runtime-review-391.json、limited-runtime-review-392.json，以及对应目录下原始汇编、对象、重定位记录和日志。尚待处理：回调独立副本、析构调整入口展开与顺序、真实析构差异、教学虚表与字面量的分别归属、其他运行库输出单元。JP/EU/DE 共享源码但本次未编译，不声称四版已匹配；整 ROM 统一验证仍未开始。未提交或推送。
+
+## 脚本解释器与游戏分发器的源码边界（2026-11-08，批次 389）
+
+按四版基准 ELF 定位并与各自 baserom 的实际代码逐字节核对：AScriptEngine 构造到 GetString 末尾均为 0x970 字节，包含 13 个方法，下一函数均为 ScriptEngine(void*) 构造。JP 为 [0x0803EB08, 0x0803F478)，US 为 [0x0803EE94, 0x0803F804)，EU 为 [0x0803EEA8, 0x0803F818)，DE 为 [0x0803ED8C, 0x0803F6FC)。这里核对的是既有原版参考，不是本轮新编译结果。
+
+字节码装载、操作数解码、栈和指令执行已归入 src/script_vm.cc；游戏场景相关的 ScriptEngine 构造、native callable、VarGet/VarSet 留在 src/script_engine.cc。前者原有函数主体未重写，后者原生汇编完整保留，未因为拆分而新增代理、函数或指令。std::__lower_bound 的 extern template 声明随真正使用方一起移动；显式实例与类虚表的已有所属文件不变。源码拆分依据实际功能和连续函数边界，不仅依据相同字符串出现次数；不能据此声称已经证明原作者的源文件组织。
+
+include/script_vm.hh 提供真正的 AScriptEngine::GetString inline 实现，script_vm.cc 为它的同名实现单元；include/script_engine_base.hh 继续提供基类声明与布局，独立的虚表所属文件仍仅包含这个声明头。GetString 保留原有 <= 判断和 Error 返回分支。教学回调包含真实实现头，不再必须依赖一个不可见的外部函数体；没有以宏、匿名字符串重写或编译器函数名判断补偿内联。四份 LDS 各增加普通 script_vm.o(.text) 与 script_vm.o(.rodata)，紧邻 script_engine；没有增加固定地址、GNU 子项或逐符号 section。
+
+静态核对旧 cp 的 cp/decl.c、cp/decl2.c、cp/lex.c、cp/method.c 和 varasm.c 后，仍有明确限制：inline 声明归属与 class/vtable 归属不是同一个决定；mark_vtable_entries 会产生调整入口，字符串在表达式展开时进入本编译单元常量池。教学场景的虚表与函数字面量在原 ROM 中处于不同物理区间，目前合并对象的组织尚不能证明恢复该顺序。旧 common_ui Error/N/A 与 native ScriptEngine 的相应符号暂未盲删，也没有为了补出 bad_alloc 而添加不使用的库 include。此处仍是未完成项，不以 LDS 外观整洁代替恢复输出顺序。
+
+审计记录为 script-vm-ownership-389.json。未运行 CPP、编译器、汇编器、链接器或测试；未修改编译器/预处理器，未提交或推送。完整静态阶段未完成，四版 SHA-1 尚未重新验证；后续统一验证仍使用 WSL make -j16。
+
+## 完整教学回调恢复为四版共用 C++（2026-11-08，批次 388）
+
+从两套既有原生主体提取完整分发表、物理分支、调用和共享出口，依据项目内 Mary callable 清单对照。JP/海外均为 322 个槽位、54 个独立实现；支持 ID 集合相同，规范化后的各分支外部调用序列无差异。提取器已处理“标签与首条 .word 同行”的 JP 表头，避免漏掉第一项导致所有 ID 错位。原始读取材料和逐分支索引保存在 farming-tutorial-*-native-388.s 与 farming-tutorial-dispatch-388.json；这些临时审计材料不参与正式构建。
+
+完整 OnCall 已写成 src/farming_tutorial.cc 内四版共用的普通 C++，不是部分分支代理。覆盖对白开闭、三种速度、带提示/不带提示的二至六选项、等待、淡入淡出、地图/镜头、音乐池、实体坐标/朝向/动作、脚本装载、教学农田/鸡蛋及玩家物品动作。保留 Top 后 Pop 的原顺序、空栈已有行为、GetString 的原有 <= 比较、16 位时间/资源截断、缺失实体判断、有效/无效参数路径及脚本继续返回 0 / 等待返回 1 的区别。没有把所有已实现分支统一改为等待，也没有增加原版不存在的边界钳制。
+
+原先误作为独立函数导出的 sub_080DFE84 实际没有自身栈帧和返回，而是调用寄存器里的目标后直接跳到整个回调的公共结束路径。镜头移动等分支以 BL 当作长跳转进入它；不能据此推断返回后会继续落入后面的等待分支。现由各真实世界虚函数调用和返回 0 表达，不保留假函数、别名或地址补偿。
+
+OnCall 与 Run 定义均使用实际 C++ inline，使原有 thunk 生成路径能够看见回调主体。已静态核对实际 cp 的 emit_thunk 与显式 inline 大函数规则，没有修改编译器来识别某个游戏函数。配套消息适配器 func_08050DB4 改用 UiStateOwner const*、char const* 和 u16 参数，移除其文本整数化；C 符号/寄存器 ABI 不变。func_080323F0 的真实声明归入 entity_actor.hh，不创建额外包装。当前 farming_tutorial.cc 已无内嵌汇编。
+
+此批解决源码完整性及可见实现，不能预先声称编译器已经输出原版融合形态。GetString 的跨编译单元内联、旧独立 Error 对象的收回、潜在独立成员副本和完整函数/析构/表的顺序仍需继续核实；旧 Error 数据尚未盲删。farming-tutorial-callback-388-coverage.json 同时记录这些限制，54 个槽位覆盖不等于字节或运行验证。未执行 CPP、编译、汇编、链接或测试，未修改 LDS、编译器、预处理器，未提交或推送；完整静态阶段仍未结束。
+
+## 教学脚本回调的真实成员入口与自然虚表（2026-11-08，批次 387）
+
+先核对开头的初始化表及 SRAM 范围。init_array 的首字确实由启动循环作为计数读取，但后面三个零字的原始生成形式仍未定性；SRAM 标识后的三份库副本及海外 Error/N/A 也缺少足够的真实编译单元归属证据。本轮没有按副本数量拆分这些内容，没有添加假调用或仅凭相邻关系恢复头依赖；这些缺口仍保留在运行库归属审计中。
+
+教学场景的重复入口则已具备实际 ABI 证据：原版完整回调先把 AScriptEngine 子对象指针减 12，再通过完整场景地址访问成员；381 既有编译输出会额外生成同名短 thunk，调用此前并未实现的 OnCall__20FarmingTutorialScenei。现把完整原生主体恢复为这个真实成员入口，两套地区分支各移除一次入口处 this 调整。由类的真实继承关系生成虚表调整入口，避免重复调整。对照上轮快照，除 ABI 入口名称、对应旧地址注释和这条入口调整外，整个原生主体的指令/跳表/常量池内容未变。
+
+删除四张手工虚表和两个手工析构调整跳板，原有空析构函数体原样归回 farming_tutorial.hh。移除 farming_tutorial_tables.cc、farming_tutorial_lifetimes.cc 和额外 lifetimes 头，使用已有普通 C++ 所有者选项由 farming_tutorial.cc 生成。四份 LDS 只各保留一条该对象的 .text 和 .rodata；没有恢复 GNU 子项、特定 section、地址限定、别名或编译器特化。
+
+这一步恢复的是类接口、成员 ABI、自然表生成及动态链接归属，不等于原版生成已经匹配。原版融合了调整和大回调主体；目前独立成员主体加自然短调整入口仍会有代码生成/顺序差异，后续必须继续恢复真实可见的 C++ 回调/内联关系，不能用短跳板阶段替代最终匹配。原始符号表把融合入口 size 标成 12，实际 ROM 主体远大于 12；本轮证据按完整入口到 Run 的真实边界记录，不能再用该 size 当完整函数长度。
+
+farming-tutorial-abi-owner-387.json 保存四版原入口、真实范围、四张表、普通 LDS 条目和源码变化核对。静态引用与 diff --check 已检查，没有启动 CPP、编译器、汇编器、链接器或测试，没有修改编译器/预处理器，没有提交或推送。运行库归属、回调融合及完整 ROM 匹配仍未完成；完整静态阶段结束后才统一 make -j16。
+
+## 库字面量总览与钓鱼区域独立归属（2026-11-08，批次 386）
+
+复用已保存的原版字符串位置，并回读四版 baserom 确认字节，再结合既有 ELF、删除记录、当前定义和 include 关系建立 runtime-source-ownership-386.json。四版各有 151 处 bad_alloc；JP 有 17 处 ASCII Error，海外版各有 18 处 Error 和 12 处 N/A。这是字节出现数，不代表有对应数量的实际调用或已证明的编译单元；JP なし 等地区文本不在此 ASCII 总数中。全局候选表明确区分已有自然接替证据、源码归属候选和仅沿用旧链接对象名的较弱推断，尚不能全部定性。
+
+用户已允许：只有证据充分时，连续同主题内容也可按真实功能/编译单元边界拆分。钓鱼区域判定满足完整独立入口、连续八条矩形记录、独立调用及四版第二份库字面量等证据，恢复 src/fishing_area.cc + include/fishing_area.hh；钓鱼抽选仍由 fishing.cc/.hh 管理。区域数据和 GetFishingArea 的既有实现原样迁移，边界表的 192 字节逐版与原 ROM 一致。四份 LDS 的 .text/.rodata 均将新对象紧接 fishing.o，各对象各列一次，没有新增地址、子 section、补偿或链接后处理。game_world.cc 直接包含所需的 fishing_area.hh，不再为区域查询引入默认鱼获构造。
+
+同时将 188 字节原生 GetFishingAttemptParameters 恢复为共用 C++：无效区域清零两项时间；06..08、09..16、17..19 及其余时段选择原延迟列；秒数转为 60 帧，保留一次原随机调用、带符号区域检查及六帧单位的反应窗口。连同上批选择函数，fishing.cc 中已无整函数汇编。只表示源码已恢复，当前生成字节尚未验证。
+
+源码组织现在先定义真实默认结果和捕获数据，再引入实现所需的完整 game_state 依赖；区域模块先定义边界表，再包含原版字面量来源的实际 <new> 库头。由普通头文件解析/函数展开承担库字面量生成，不添加本地 bad_alloc 定义、假调用或伪造类型，不改编译器/预处理器。该顺序是待统一验证的正常源码方案，不能先宣称字面量位置或 SHA-1 已匹配。
+
+FarmingTutorialScene 的另一问题已追到实际 cp 的 auto-implementation 和 mark_vtable_entries/emit_thunk 路径；既有 381 汇编显示，自动生成的短调整入口与手工保留的完整入口同名。真实回调主体和自然虚表归属仍需恢复，不通过篡改 pragma 目标、删除实际虚函数接口或改名别名规避。静态记录和接续快照已更新，未编译、测试、提交或推送；完整静态阶段完成后才运行 make -j16。
+
+## 默认鱼获文本随真实选择逻辑生成（2026-11-08，批次 385）
+
+SelectFishingCatch 已由完整原生汇编恢复为四版共用的 C++，直接构造既有 FishingCatchResult。恢复了类别权重、正负候选池、随机调用顺序、稀有鱼条件、Article/Food 结果和记录更新；常量使用现有 Mary 定义，存档读取使用现有真实成员。没有添加生成字符串用的假调用或伪造类型。移除了 gText_Fishing_NoCatch 声明及四份独立区域文本文件，其原生引用已随该函数的恢复收回；玩家主体汇编使用的另一份 gText_NotAvailable 仍有真实调用，未删除。
+
+逐分支核对明确：存档 +0x12 属于时钟小时，鮟鱇排除 08..19 小时；不是按日期限制。伊富鱼检查的是三个已学会的鱼料理，保存的料理编号为食物 ID + 1。候选失败直接返回默认结果，不重新抽选；首次记录与后续尺寸纪录的处理保持区分。原版四版该函数均覆盖 1628 字节，具体地址、原始字节哈希和审阅要点记录于 fishing-source-385.json。这是源码恢复，生成指令和完整 SHA-1 尚未验证。
+
+同时检查实际 cp 的 STRING_CST 展开、常量哈希、延迟输出、内联收尾和 ARM 字符串对齐规则，记录在 literal-emission-385.json。Error、区域 N/A 与 bad_alloc 的真实源码来源不同，不能新增按字符串内容自动插入的编译器规则。另发现现有 fishing 合并范围保留过两份独立原版 bad_alloc；同一翻译单元的只读字符串常量池通常会合并相同字面量，因此仍需复核该合并范围的真实编译单元归属，不能靠重新手写副本填回。此疑点尚未以拆文件或编译器补丁处理。
+
+普通源码字符转换已静态确认覆盖构造函数中的字符串。被删除的鱼获文本标签及 include 路径检索为空，相关源码 diff --check 通过。没有运行预处理器、编译器、汇编器、链接器或测试，没有修改 LDS、编译器和预处理工具，没有提交或推送。完整静态阶段仍未完成，后续统一验证使用 make -j16。
+
+## 钓鱼结果默认值与实际记录归属（2026-11-08，批次 384）
+
+静态追踪 N/A/なし 的实际使用。SelectFishingCatch 原生入口先构造 24 字节结果：name 指向地区默认名称、size 为零、RucksackItem 正常构造、两个状态字节为零、记录 ID 为 59、最后状态字节为零。玩家原生构造及钓鱼动作中存在相同的字段初始化；选择函数返回后，以两次三字复制把完整结果写入玩家 +0x60。
+
+现给既有 FishingCatchResult 补齐对应的真实默认构造函数，地区名称直接作为其初始化字面量，记录哨兵使用已核对值为 59 的 FISHING_RECORD_COUNT。没有增加数据成员、无用调用、伪造类型或额外生成工具；现有 24 字节布局及字段偏移检查保留。SelectFishingCatch 与玩家主体仍是原生汇编，尚未将它们计为 C++ 恢复；其仍在引用的 gText_Fishing_NoCatch / gText_NotAvailable 不能在这一步假定已经收回。
+
+四版 getter 的真实 ROM 字节均为 60307047，即 adds r0,#0x60; bx lr。结合完整结果复制、虚表 +0x90 槽及 GameScene 包装调用，PlayerActor 与 GameScene 的 GetCaughtFish 返回类型统一改为 FishingCatchResult const*，删除未定义的 GameSceneCaughtFish 占位。头文件只前置声明所借用的真实记录，不引入无关重型依赖。
+
+两套旧地址函数名 func_08031DBC / func_08032028 已改成与实际 C++ 成员接口一致的 GetCaughtFish__11PlayerActor，四版共用一次完整汇编定义，虚表直接引用该符号。没有 .set、地址别名或 +offset 补偿。原版对应地址 JP 0x08031DBC、US 0x08032028、EU 0x0803203C、DE 0x08031F3C；catch-record-384-evidence.json 保存逐版字节和归属，改名证据同步进入后续全符号对照清单。
+
+此批确认了一个区域默认字符串的真实业务构造来源，不能据此把所有 N/A、Error 当成标准库内容，也未证明每个编译单元的常量输出位置已经正确。匿名字面量的自然生成、旧汇编引用收回及完整 ROM 排列仍待后续静态整理和统一验证。
+
+旧占位类型、旧 getter 地址名及手写 bad_alloc 的源码残留检索为空，diff --check 通过。只读取既有 ELF/ROM，没有运行 CPP、编译器、汇编器、链接器或测试。未修改 LDS 或编译器，未提交或推送；后续构建仍遵守完整静态阶段完成后的 make -j16 门槛。
+
+## Error 默认返回值来源恢复（2026-11-08，批次 383）
+
+本轮静态核对 Error、N/A 和 JP なし 的定义及源码调用候选，完整索引保存在 error-fallback-origins-383.json。索引同时包含实际游戏文本，不能把同词条出现次数当作运行库副本数量；没有源码候选也不证明不存在原始或间接引用。
+
+确认 AScriptEngine::GetString 的无效 ID 分支是 Error 的真实生成来源之一。原函数返回单独维护的 gText_AScriptEngine_InvalidStringId；现恢复为 return "Error"，删除四版手写数组和所属基类头文件中的声明。此函数仍保留原版 id <= string_count 比较及其 BUG 注释，没有顺手更改边界行为。字面量由真实函数的普通 C++ 编译生成，没有通过额外调用、静态对象或预处理器补字节。
+
+原生 ScriptEngine 和农业教程调度中还看到相同的 string_count / string_offset_table / string_pool 字段读取及 Error 分支；这些内联读法与真实 GetString 语义相符。由于相应调用仍是原生汇编，不能仅凭相似代码就清空其具名常量或臆造匿名编译器标签。其他 Error 副本及各区域 N/A/なし 的生成位置仍需恢复，不能宣称全部完成。
+
+ScriptTextVariableStore::Lookup 的现有默认分支返回空 FixedStr，不含 N/A；FixedStr 默认构造也仅清首字节。实际库 <exception> 仅声明 what，不能根据声明猜出 Error 实现。上述证据排除了靠修改这些无关方法来人为补串的方案；没有作这类修改。
+
+同步移除 game_scene_records.hh 中多余的 implementation pragma：该头只定义普通记录及小型访问方法，构造实现本来就在同名 cc 中，没有对应接口/虚表归属需要该指令。农业教程手写原生调整入口与自动入口的所有权问题仍保留待办，未用别名、额外 section 或编译器特化规避。
+
+回读核对旧数组符号与手写 bad_alloc 源码检索均为空，diff --check 通过。本轮没有 CPP、编译、汇编、链接、测试或移址实验；自然生成的具体地址和 ROM 匹配仍未验证。继续全量静态阶段，后续统一编译参数为 -j16，未提交或推送。
+
+## 全量移除手写 bad_alloc（2026-11-08，批次 382）
+
+用户已更新目标文件并明确要求全部移除本地手工维护的 bad_alloc，而非继续保留过渡数据。现已一次删除当前四版源码中的二百四十个手写字符串定义（涉及一百一十四个符号）和一百一十条文本声明。另删除 JP 行程数据中以八个字符元素加独立 c 字符串拼出的旧副本及两条声明。合计删除二百四十二处手写对象定义、一百一十二条文本声明；工具链自身 <new> 中 bad_alloc::what() 的真实定义没有改动。
+
+src/include/data 中 bad_alloc、BadAlloc 及相应十六进制/八进制字符串转义的源码检索已清空，清除四个变空的区域文本文件、废弃 include 和空区域条件块。之前移回 owning cc 的十四组过渡定义也在这次全量删除范围内，不再保留其过渡方案。ScheduleInfo 中有三个地址名在 JP 曾被用于运行库字符串、在海外版却指向真实行程结构；仅删除其 char 定义和声明，结构体定义及其调用保留，没有误删实际行程表。
+
+all-manual-runtime-382-plan.json、all-manual-runtime-382-removal-check.json 和 all-manual-runtime-382-applied.json 保存完整定义、引用检查、原文件哈希及删除清单；八字节/c 补充删除保存在当前源码差异和快照中。data/text/README.md 已更新维护规则。此项证明源码手写内容已清理，不能代替生成位置、数量、边界或 ROM 字节验证。
+
+Error 与 N/A 进入后续生成来源和位置审计。实际 <exception> 头文件只声明 exception::what()，已查的库头没有对应字符串，不能据此假定其实现；AScriptEngine::GetString 的无效 ID 返回值以及脚本 UI 的 Error 已有真实游戏调用，另有 JP なし / 海外 N/A 的地区回退内容。需核对是否应由真实内联方法或默认返回值自然产生，并恢复正确模块归属；禁止在编译器按字符串内容补字节，不能将全部相邻短串盲目当作同一个标准库对象。
+
+批次 381 是一次启动过早的构建：四版均因相同两类问题在链接前失败，没有产生本轮新 ROM。问题为 game_scene_records.hh 中不适用的 implementation pragma，以及 farming_tutorial 的原生调整入口与自动入口重复。用户指出时该轮已自行结束；已读取真实 Windows/WSL 进程及会话终态确认没有本任务残留构建。不得将此记录报告为成功、SHA-1 匹配或用户要求的全 ROM 静态阶段完成。
+
+按最新要求，后续统一构建使用 make -j16；现仅更新外部构建驱动参数，未再次启动构建。继续全 ROM 静态整理，不能因几批局部修改就自行宣布具备编译条件。编译归属、Error/N/A 来源及输出位置仍未完成；未提交或推送。
+
+## 独立运行库片段归回所属源码（2026-11-08，批次 380）
+
+本轮继续静态整理，没有编译或测试。确认十份区域片段只含 bad_alloc 普通定义，四版声明、初始化内容和对齐逐项一致；片段引入的声明头此前已在所属源码包含，或片段没有额外头文件。将十四个独立定义按原 include 所在位置原样放回七个 owning cc，删除四版共四十个只为运行库字符串存在的文本文件。没有增加调用、类型、宏、编译选项或工具链补丁。
+
+涉及 common_ui、cooking_recipe_inventory、crt0_data、field_render_resource_data、field_render_runtime_data、game_state 和 map_patch_flags。原符号及头文件声明继续保留，定义顺序和初始化表达式未变。本步骤明确是过渡数据归属整理，不是恢复自然生成，也没有将十四组定义从 ROM 删除；之前真正由自然字面量接替并删掉手写副本的累计数量仍为十七组。
+
+清理后，通用 UI 的两份游戏文本依物理顺序为 common_ui_1.cc 和 common_ui_2.cc；game_state 和 field_render_runtime_data 各只剩一份区域文本，恢复同名无后缀 .cc。四版共十二次文本文件改名及 owning include 同步，没有空文本占位或人为 section。data/text/README.md 同步目录示例。
+
+runtime-source-plan-380.json 保存原区域定义及归属，runtime-source-380-edit.json 保存修改前源码哈希、文件删除和改名清单。源码回读确认十四个定义均在原 owning cc 中，已不在区域文本根目录；删除、改名及 diff --check 核查通过。其他混合有游戏文本、Error 或区域差异的文件没有按本规则搬动，来源和边界仍需分别核对。
+
+allocation_failure.hh 的真实接口是分配失败回调与 RetryMemoryAllocation，不是带 what() 的异常类，不能凭名称补出 Error 字符串。含 placement new 或 STL construct 的现有头文件确实使用标准 new 相关定义，没有为减少字面量而删掉这些依赖。
+
+LDS、编译器和预处理器本批未修改。运行库生成归属、批次 378–379 的编译通道修正及当前十四组过渡定义仍待整批处理后统一构建；本批不更新 SHA-1 验证状态，未提交或推送。
+
+## 文件边界下的编码数组词法处理（2026-11-08，批次 379）
+
+延续真实 CPP 文件边界的静态整理，本批未运行编译器、CPP、汇编器、链接器或测试。
+
+检查发现，旧数组转换器会吞掉相邻引号之后的空白；保留 CPP 行标记后，标记可能被接在数字后面。行标记或注释还会分断原有的字符串收集循环，导致两个数字片段之间缺逗号。现改为逐个引号转换，原样保留其间空白、注释和指令，只有同一相邻字符串序列的有效元素之间补逗号；源码原有逗号、括号和数字会正常结束序列。空字符串可作为非空相邻序列的一部分；完全空的元素序列仍报错，不添加隐式终止符或无语义数字。
+
+声明的前瞻也跳过但不丢弃空白、注释和行标记，支持这些内容位于类型、const、数组名、维度和初始化体之前。所有扫描依据正常词法位置，不识别游戏变量、地址、字符串内容或地区名。data/text/README.md 同步了维护规则。
+
+另外只读核对了现有四版 *lifetimes 对象，未发现四版均为空或仅含 bad_alloc 的可直接删除实现模块，记录在 empty-lifetime-379-candidates.json。没有因源文件短小就移除其实现归属，也未改头文件 pragma、游戏源码、LDS 或编译器。剩余运行库归属仍需继续静态核对。
+
+本批仅完成源码修正和 diff --check；这些变化与前两批十七组副本删除仍待统一构建验证，当前 SHA-1 不得报告通过。没有提交或推送。
+
+## 恢复真实预处理文件边界（2026-11-08，批次 378）
+
+本轮保持静态整理，没有运行 CPP、编译器、汇编器、链接器或测试。核对当前 Makefile 与实际旧 agbcp 源码后，发现普通 C/C++ 通道用 CPP -P 去掉了全部文件边界，只在最前面伪设生成文件名。agbcc/g++/cp/lex.c 的 extract_interface_info 按 input_filename 恢复接口状态，pragma 处理也把状态存入当前输入文件的 FILEINFO；扁平化输入因此不能正常保留头文件和调用方各自的状态。
+
+Makefile 的两条通用 C/C++ 规则现保留 CPP 原生行标记，移除 -P 与合成的首行文件名。文本通道原有通用解析已经能原样复制指令；补齐 u8/u16 编码数组初始化体内部的指令复制，避免把行标记中的路径引号当作游戏字形。该修改依据 C/C++ 指令语法，不检查 bad_alloc、游戏符号或地址。
+
+没有宣称该问题已解释所有重复字面量、入口缺失或 ROM 差异。原有显式接口/实现声明仍保留，尚需继续核对源码归属；不通过无条件删掉所有 pragma 来凑顺序。批次 376–377 已删除的十七组副本证据来自既有对象，改用真实文件边界后的生成和顺序必须在整批静态整理结束后统一复核，不能沿用旧结果当作当前编译验证。
+
+data/text/README.md 同步了编译通道要求。LDS、编译器源码和安装文件本批未变，没有提交或推送。完整目标仍未完成，SHA-1 状态仍为上一轮失败/中断，不能报告匹配。
+
+## 跨模块运行库副本清理（2026-11-08，批次 377）
+
+继续静态整理，没有编译、汇编、链接或移址实验。四版分别核对前一对象的最终手写 bad_alloc、后一对象已有的自然生成前缀、原版后续对象边界、对齐和直接地址候选，新增删除十一组定义及对应声明；加上批次 376，累计删除十七组。不能把源码删除数量当作 ROM 已匹配或全部运行库来源已恢复。
+
+本批删除的手写尾串依次涉及 WorldAmbientSprites_5、MenuThird、FarmStatus、AnimalContestBoundary、NewGameBirthdayInput、ScrollMenuTrailer、StaffCredits、LinkCommunicationGYW、FishingResultsTrailer、FieldItemRecordsTrailer、FieldRenderSortedValuesSecond。替代字面量已经存在于相邻模块的真实编译对象中，没有为制造输出增加 include、调用或编译选项。初始化对象无旧符号可配对时，核对其在已确认的原版字符串之后、按自身对齐计算的位置上的完整无指针字节，而非猜测偏移。
+
+删除各语言 common_ui_5.cc、fishing_results_data_2.cc 和 field_item_data.cc 共十二个废弃文本文件，清理 owning cc 的 include。钓鱼结果只剩一份文本，各语言 fishing_results_data_1.cc 均改为同名 fishing_results_data.cc，并同步 include；通用 UI 仍保持连续的 _1 到 _4。其余真实独立副本继续保留。
+
+EU 联机尾串出现一处原始四字节地址候选 0x081BBAC0（值为 0x08100B0E）。它位于 gM4aWaveData_027 的 kind=0 波形头部指定的 signed 8-bit PCM 数据范围；WaveData 结构与 m4a 播放代码按采样计数读取该区。该候选是音频数值巧合，不是运行库文本指针，原采样字节未改。没有仅因数值类似地址就符号化。
+
+四十四个区域案例记录于 runtime-cross-prefix-377-evidence.json，source-edit 清单记录首批八组的原文件哈希；随后两组与联机一组的实际源码也纳入本批快照。被删符号、废弃 include 的源码残留检查及 diff --check 通过。data/text/README.md 同步了文件名和运行库生成/过渡定义的维护说明。
+
+当前自然生成前缀与手写副本不相邻的模块、仅保留多份手写文本的数据模块及其他附带运行库内容仍待处理。本批没有更新 ROM 验证状态；批次 375 仍是 JP 未匹配、US 中断、EU/DE 未启动，不得将旧产物宣称为本批源码结果。未改 LDS、编译器或预处理器，未提交或推送。
+
+## 运行库重复字面量静态清理（2026-11-08，批次 376）
+
+本批没有运行编译器、汇编器或链接器。保留批次 375 中断状态，未将既有 ROM 宣称为本批验证结果。
+
+依据四版实际对象、原 ROM 及已有符号改名记录，删除 WorldAmbientSprites_1、ChickenFestival、HarvestingMinigame、WateringMinigame、GameMenu 五组手写 bad_alloc 定义及头文件声明。现有对象中已有来自旧 <new> 的十字节、四字节对齐字面量，紧邻手写副本之前；保留自然生成，删除重复的源码定义。WorldAmbient 的原始独立标签缺失，由已确认的出生位置表边界及紧邻字符串字节确定，未新增别名。
+
+另删除四个语言目录中的 item_4.cc、item.cc 的该 include 和 ProductInfo 运行库文本声明。原版该字面量之后立即是日历季节名（JP 0x080EFD48→0x080EFD52；US 0x080F04E4→0x080F04EE；EU 0x080F0530→0x080F053A；DE 0x080F09A8→0x080F09B2）。game_state 实际对象已有自然生成前缀，可接替此跨模块边界的手写副本；没有为生成字符串增加 include 或无用调用。
+
+六组定义与声明的源码残留检索已清空。四版原 ROM 中这些字面量及其内部字节地址均没有直接四字节地址候选；对象中没有针对被删前缀符号的已分配代码/数据重定位。该检查不等同于全 ROM 间接引用审计完成。
+
+证据存于 runtime-prefix-376-evidence.json（二十个区域模块案例）及 runtime-item-prefix-376-evidence.json（四个跨模块案例）。源码已经调整，ROM 大小、后续对齐与四版完整匹配仍待整批静态修正结束后统一验证。未修改 LDS、编译器、预处理器，未提交或推送。
+
+仍有其他手写运行库字面量留在源码及 data/text；未把同内容全局去重。后续先检查其余跨模块“前块手写尾串／后块自然前缀”候选，核实原版下一对象边界，再删除确属重复的定义。自然前缀与手写副本之间夹有其他对象时，需要先恢复来源和顺序。
+
+## 构建中止与源码接续（2026-11-08，批次 375）
+
+运行库手写副本清理尚未完成时启动了验证；按用户反馈已停止该轮后续构建。JP 完成但 SHA-1 未匹配 baserom，US 中途停止，EU/DE 未开始；不能将本轮报告为四版验证完成。已核实对应 Windows 驱动进程和 WSL 构建进程组均结束，未停止或重启 WSL。
+
+本轮源码将 HardwareManagerBindingRestore 和 UiVCountContextScope 的内联析构定义放回各自现有的 lifetime 头文件。JP 对象中实际顺序已分别为 Restore / CommandGroup / PreviousBinding 和 Scope / Registration，与原版符号顺序一致；四版一致性及完整 ROM 匹配尚未验证。没有修改 LDS 或编译器，没有执行合成探针。
+
+下一步先完成运行库附带内容的静态整理和手写重复定义清理。上一轮 374 的全局对照作为已归档分析依据，当前工作树和部分输出已有后续变化，不得称为当前全部产物的验证结果。不得仅为微小修改反复构建；整批来源、定义、声明与顺序调整完成后再统一验证。
+
+## 全局符号与字节核对、编译职责修正（2026-11-08，批次 374）
+
+四版均完成 WSL `make -j4` 编译、链接和 ROM 生成；构建日志没有未定义符号、重复定义或丢弃段引用错误。四版 SHA-1 仍未匹配各自 baserom，目标未完成，未提交或推送。
+
+对象顺序与 LDS 本批未修改。权重表元素布局由真实结构控制；顶层汇编之后，编译器重新选择后续对象应属的段，避免把虚表误接在函数尾部。运行库字面量归属、NPC 析构输出和 unique 输入段整理仍未完成。
+
+## 编译器与预处理器职责调整（2026-11-08，批次 366）
+
+四版完成 WSL `make -j4` 编译、链接和 ROM 生成，没有未定义、重复定义、丢弃段引用或其他已识别构建错误。 与各自 baserom 的匹配尚未全部通过，具体结果如下。只有原版基准匹配才计为 ROM 匹配完成。
+
+本批 LDS、游戏对象顺序和资源定义未改动。显式对齐由编译器声明信息控制，函数对齐只在函数段内生成，不再由预处理器根据相邻文本行猜测。普通数据 unique 输入段转换仍是未完成项，不能仅凭 LDS 单行引用视为内部合并已完成。
+
+## 本地 cp 工具链接续与完整构建（2026-11-08，批次 365）
+
+普通 LDS 组织本批次未改动：每个普通对象在相应段中按一次完整输入排列，未新增原址限定、逐条对齐、人工子 section 或 GNU 选择器；Mary 的两类脚本输入保持现有接口。
+
+储物场景的正确物理顺序为 `scene_refrigerator`、`scene_rucksack`、`scene_shelf`、`scene_tool_chest`。较早批次 353 曾把旧符号的循环误命名当作真实归属，现已更正。GameScene 的相邻入口顺序为 Calendar、ToolChest、Refrigerator、Shelf、Clock。
+
+UI 构造及附属入口、窗口边框和三个世界对象方法已核对。两组上下文独立清理入口虽然各自指令一致，顺序仍未恢复，不能报告这一部分完整布局匹配。其处理不允许重新引入 LDS 逐函数条目或编译后重排。
+
+四版均完成 WSL `make -j4` 编译、链接和 ROM 生成，没有未定义、重复定义或丢弃段引用错误。完整 SHA-1 仍未匹配原 ROM，尚未提交或推送。 新编译器生成的四个 ROM 均与安装前批次 360 的产物逐版 SHA-1 一致；已有差异仍待修复。
+
+## 普通段统一构建与顺序修正（2026-11-08，批次 353）
+
+四版储物场景的普通 `.text` 对象顺序现为 tool_chest、rucksack、refrigerator、shelf；GameScene 的相邻打开操作和控制器两个构造也恢复原物理顺序。已核对的同名函数未再出现对象间或对象内倒置，不代表尚未配对的改名入口及所有数据均已匹配。
+
+标题生命周期对象依次输出两条工厂、菜单及姓名输入清理、标题核心隐式清理，最后一项恢复原 604 字节长度。精灵特效对象沿用通用的 inline 导出选项，只输出实际使用的原独立入口。城镇地图树操作的实体定义回到 `town_map_lifetimes.cc`，头文件保留接口，普通调用不再把整棵树插入算法内联进标记添加入口；该组指令匹配尚未完成。
+
+窗口早期实现的自然运行库字面量后，由 `ui_text_window_commands.o(.rodata)` 输出三张类表；角色的脚本效果、默认控制器、角色基类、通用控制器四张表归 `entity_actor_lifetimes.o(.rodata)`。DMA 命令表归 `hardware_dma_copy_commands.o(.rodata)`，地图命令表归 `world_map_command_lifetimes.o(.rodata)`。以上均为普通对象段中的自然顺序，不恢复 GNU 逐项选择器或原地址定位。
+
+四版已成功链接，完整 ROM 对照仍失败。以下为较早静态布局审计，不应将其“待验证”或局部完成记录替代本节的最新结论。
+
+## 镜像尾部与地址格式
+
+四版 LDS 的地址均使用八位十六进制。IWRAM 初始化镜像继续由 `AT> ROM` 接在库数据之后，大小由真实对象决定；随后保留原版的一个零字。其原始位置分别为 JP `0x0877FE58`、US `0x0875C240`、EU `0x0875C29C`、DE `0x0874C684`。四版原 ROM 从该零字之后到文件末尾均为 `FF`，现由已有 `gbafix -p` 生成，不再在 LDS 固定到 `0x08800000`。
+
+该改动没有改变 ROM 的 `0x08000000` 基址及 32 MiB 硬件映射范围，也未改变 EWRAM／IWRAM 的硬件内存布局。新构建的完整字节匹配仍待统一验证。
+
+普通对象前的逐条 `ALIGN(4)` 不再由 LDS 重复指定。被移除规则对应的非空只读节均由对象本身声明四字节对齐；混合 C++／汇编中的特殊入口对齐放在源码内。教学场景原生 OnCall 的调整入口及四张 ABI 表仍直接使用方法符号，表和短析构跳板分别进入同一对象的普通 `.rodata`／`.text`，不恢复具名 GNU 选择项。
+
+## 最后一组 GNU 入口与四版输出段（静态批次 GW）
+
+| 区域 | 玩家／教学角色清理 | 脚本查找及清理 | 联机跳板及传输方法 |
+| --- | --- | --- | --- |
+| JP | `0x080DBEA4–0x080DBFE8` | `0x080E0654–0x080E069C` | `0x080E2D7C–0x080E3318` |
+| US | `0x080DC6F0–0x080DC834` | `0x080E0EB4–0x080E0EFC` | `0x080E35DC–0x080E3B80` |
+| EU | `0x080DC73C–0x080DC880` | `0x080E0F00–0x080E0F48` | `0x080E3628–0x080E3BCC` |
+| DE | `0x080DC654–0x080DC798` | `0x080E0E18–0x080E0E60` | `0x080E3540–0x080E3AE4` |
+
+本组另外包含教学场景的两条调整跳板、场景／基类清理、过渡清理及压栈入口，共 280 字节；教学世界四个连续入口共 172 字节，教学地图清理为 12 字节。以上均按原表槽及保存的输入段逐版确认，半开区间不包含下一模块。新的普通对象输出仍需统一编译核验。
+
+四版共有的顶层组织为 EWRAM 未初始化区、IWRAM BSS、普通代码、普通只读数据、音频、资源／脚本、库数据、IWRAM 加载镜像、镜像尾零字、调试和丢弃区。音频之后，JP/DE 为 gfx_data → script_data → font_data；US/EU 为 script_data → font_data → gfx_data，随后均为 lib_rodata。各块仍依靠输入对象和对齐连续连接，不按原资源地址定位。ROM 的基本起点为 `0x08000000`，硬件 RAM 段起点与 IWRAM 的 AT> ROM 关系保留。
+
+## 料理、日历与小游戏晚期代码（静态批次 GV）
+
+| 区域 | 料理、查找实例、日历及鸡祭转接清理 | 四种小游戏核心及句柄清理 |
+| --- | --- | --- |
+| JP | `0x080E3318–0x080E39A8` | `0x080E3CFC–0x080E4BB0` |
+| US | `0x080E3B80–0x080E4210` | `0x080E4564–0x080E5418` |
+| EU | `0x080E3BCC–0x080E425C` | `0x080E45B0–0x080E5464` |
+| DE | `0x080E3AE4–0x080E4174` | `0x080E44C8–0x080E537C` |
+
+前一连续范围为 1680 字节，后一范围为 3764 字节；两者之间的名称输入、世界地图及教学内容保持原独立模块。原 US 类表两组范围为 `0x080E8230–0x080E82C8`（料理、日历及小游戏转接）和 `0x080E8500–0x080E857C`（四种小游戏及商店基类）；四版分别核对槽值与原输入段覆盖。新的普通对象输出尚待统一编译。
+
+## 滚动界面至指南页的晚期范围（静态批次 GU）
+
+| 区域 | 连续代码范围 | 类表范围，含既有滚动上传命令表 |
+| --- | --- | --- |
+| JP | `0x080E25D4–0x080E2C34` | `0x080E6F8C–0x080E701C` |
+| US | `0x080E2E34–0x080E3494` | `0x080E7B5C–0x080E7BEC` |
+| EU | `0x080E2E80–0x080E34E0` | `0x080E7BA8–0x080E7C38` |
+| DE | `0x080E2D98–0x080E33F8` | `0x080E7AC0–0x080E7B50` |
+
+代码依次为 scroll_menu_lifetimes（56）、staff_credits_lifetimes（12）、town_map_lifetimes（1312）、scene_reference_page_lifetimes（252 字节）。资源精灵渲染器的 12 字节类表由 resource_sprite_renderer_tables 持有，后接既有 scroll_state 表，再按上述界面次序放置其余类表。指南的 56 字节查找实例在 196 字节核心清理之前；城镇地图四个树操作在核心清理之前。新的实际对象输出尚未编译核对。
+
+## 状态页至记录页的连续晚期范围（静态批次 GT）
+
+| 区域 | 五个相邻 lifetimes 对象的代码范围 | 类表范围 |
+| --- | --- | --- |
+| JP | `0x080E11E8–0x080E1910` | `0x080E6E38–0x080E6F8C` |
+| US | `0x080E1A48–0x080E2170` | `0x080E7A08–0x080E7B5C` |
+| EU | `0x080E1A94–0x080E21BC` | `0x080E7A54–0x080E7BA8` |
+| DE | `0x080E19AC–0x080E20D4` | `0x080E796C–0x080E7AC0` |
+
+依次为 farm_status_screen、animal_festival_selection、new_game_birthday_input、farm_map_screen、records_screen 的 lifetimes 对象。原代码尺寸依次为 992、388、108、224、120 字节；类表尺寸为 160、28、28、28、96 字节。代码前接童年场景清理，后接资源精灵缓存；类表之后是资源精灵渲染器表。每个新对象在各输出段只列一次，未运行新的编译验证。
+
+## 飞盘／赛马晚期代码与类表（静态批次 GS）
+
+| 区域 | 三个相邻 lifetimes 对象的代码总范围 | 类表总范围 |
+| --- | --- | --- |
+| JP | `0x080E08E8–0x080E1124` | `0x080E6D58–0x080E6DF8` |
+| US | `0x080E1148–0x080E1984` | `0x080E7928–0x080E79C8` |
+| EU | `0x080E1194–0x080E19D0` | `0x080E7974–0x080E7A14` |
+| DE | `0x080E10AC–0x080E18E8` | `0x080E788C–0x080E792C` |
+
+物理顺序为 frisbee_scoreboard_lifetimes、frisbee_lifetimes、horse_race_lifetimes。原代码各为 68、812、1228 字节，原类表各为 28、44、88 字节。赛马内部依次为比赛查询／核心清理／变量清理，再奖品查询／核心清理／变量清理；表按比赛核心、比赛变量、比赛场景、交换核心、交换变量、交换场景排列。此范围之后仍是独立资源归档清理／表。原文件中较早的场景函数与后段文本不动；新普通段输出尚未编译验证。
+
+## 场景、世界与资源精灵的普通段归属（静态批次 GR）
+
+四版分别核对原 ROM，以下列出 US 半开范围以标明七张表及其代码关系；其他三版的独立边界保留在对应原 map 和审计记录中。
+
+| 对象 | 类表范围 | 本批涉及的晚期清理 |
+| --- | --- | --- |
+| game_scene_state | `0x080E5C08–0x080E5C14` | 现有普通实现不动 |
+| town_map_selection | `0x080E5E44–0x080E5E54` | `0x080DC1C8–0x080DC1D4` |
+| game_scene | `0x080E5E64–0x080E5E74` | 原有场景实现不动 |
+| game_world | `0x080E5EC4–0x080E602C` | 原有世界实现不动 |
+| scene_sprite_group | `0x080E602C–0x080E6038` | `0x080DC5A8–0x080DC5B4` |
+| scene_sprite_indexed | `0x080E681C–0x080E6828` | `0x080DC834–0x080DC840` |
+| scene_sprite | `0x080E82D8–0x080E82E4` | 早期基类实现不动 |
+
+三种派生对象保留原隐式析构生成方式；不能用显式空析构代替而引入不同的 vptr 写入。实际类接口分别决定晚期清理／表归属；已有 scene_sprite 方法接口保留内联构造和动画操作，town_map_transition 方法接口保留基类内联构造。每个对象在相应输出段仅列一次，尚未通过新构建确认输出。
+
+## 商店／收纳类表与锻冶屋过渡（静态批次 GQ）
+
+以下均为原版半开范围；普通对象的实际新输出仍待统一构建。
+
+| 区域 | shop_scene_tables 的 37 张类表 | scene_blacksmith_transition 的两个入口 |
+| --- | --- | --- |
+| JP | `0x080E701C–0x080E7224` | `0x080E2C34–0x080E2CA4` |
+| US | `0x080E7BEC–0x080E7DF4` | `0x080E3494–0x080E3504` |
+| EU | `0x080E7C38–0x080E7E40` | `0x080E34E0–0x080E3550` |
+| DE | `0x080E7B50–0x080E7D58` | `0x080E33F8–0x080E3468` |
+
+类表依次为鸡舍商店、杂货店、医院、旅馆、霍安、果园、特殊商人、海之家、锻冶屋、木工、牧场、冰箱、背包、柜子、工具箱、工具升级和礼物包装。杂货店含两个核心和两个场景；锻冶屋含核心、结果过渡和场景；其他各含核心及场景。表中析构／运行槽均核对过四版原 ROM。新表所有者按旧 agbcp 的逆声明次序机制 include 实际类头文件；它与后段各场景的普通文本数据是两个物理范围，不能混为同一对象。原有函数体、数据布局及后段文本顺序未改。
+
+## 启动家族的普通对象段（静态批次 GP）
+
+以下区间来自保存的原始 US map，均为半开范围；JP/EU/DE 同一组的独立边界和表槽也已逐一核对。它们定义本轮普通对象的目标物理顺序，并非新编译结果。
+
+| 功能与普通对象 | 晚期代码 | 类表 |
+| --- | --- | --- |
+| intro_scene_lifetimes | `0x080D3BE8–0x080D3ED4` | `0x080E59EC–0x080E5A28` |
+| new_game_menu_lifetimes | `0x080D3EF4–0x080D40CC` | `0x080E5A3C–0x080E5A78` |
+| new_game_name_entry_lifetimes | `0x080D6C58–0x080D6D98` | `0x080E5A78–0x080E5A98` |
+| intro_story_lifetimes / intro_story_scene | `0x080E19A4–0x080E1A48` | `0x080E79DC–0x080E7A08` |
+| name_entry_lifetimes | `0x080E4210–0x080E4238` | `0x080E82C8–0x080E82D8` |
+
+资源提供者的代码和表仍位于前三组之间的原位置；两个被宽通配跨越的断点已由真实对象归属表达。保存姓名的 Run 和 32 字节构造入口继续在较早的 name_entry 普通代码中，后段姓名文本仍为该对象自己的普通 rodata。资源归档则由原 resource_archive 对象持有类表，resource_archive_lifetimes 只持有其晚期清理，以避免同时导出无独立原入口的内联访问器。旧 GCC 方法接口让构造／析构体继续供真实调用方内联；最终输出须统一构建确认。
+
+## 资源归档类表跨两个 ROM 岛（静态批次 GO）
+
+四版保存的原始输入段和 ROM 虚表槽显示，`IndexedResourceProvider` 与 `IndexedResourceArchive` 的表分别为 20 字节，清理入口分别为 32 字节，且两组在代码和只读数据中都相隔较远。原 `resource_archive.o` 同时拥有早期普通代码，故不能把其 GNU 代码规则直接替换为同一对象的普通段。真实基类所有者 `resource_archive_provider.o` 承接早岛代码／表；经 GP 的内联依赖核对，`resource_archive_lifetimes.o` 承接派生类晚岛清理，归档表、早期构造和查询由 `resource_archive.o` 持有。
+
+| 区域 | 提供者清理 / 表 | 归档清理 / 表 |
+| --- | --- | --- |
+| JP | `0x080D368C` / `0x080E4E68` | `0x080E1124` / `0x080E6DF8` |
+| US | `0x080D3ED4` / `0x080E5A28` | `0x080E1984` / `0x080E79C8` |
+| EU | `0x080D3F20` / `0x080E5A74` | `0x080E19D0` / `0x080E7A14` |
+| DE | `0x080D3E38` / `0x080E598C` | `0x080E18E8` / `0x080E792C` |
+
+这里记录的是原 ROM 目标位置与新的源码归属，尚不是本轮新编译输出。四版函数、表尺寸和链接顺序须在整 ROM 静态整理结束后的统一构建中确认。
+
+## 剩余 GNU 段的全局归属交叉核对
+
+当前四版 LDS 各余 104 条 GNU 规则。逐个原对象核对现有普通段的物理位置后，41 条代码规则全部与同一对象的另一处 `.text` 并存；63 条数据规则中 45 条与同一对象的另一处 `.rodata` 并存。需要按实际物理岛拆分真实生成归属，不能在原对象上做全局段名替换。商店区尤其是编译器表与原手工表交错，且场景文本在后段：表、代码和文本的真正连接关系须整组处理。完整四版选择规则与原输入段保存在本任务的全局静态审计 JSON，不能以规则数推断已恢复函数数。
+
+## 世界地图命令与相邻表归属（静态批次 GN）
+
+世界地图晚段原顺序为 MapViewportTilemapCommand 的 12 字节派生析构；在数据区依次为 GameSceneWorldMap 40 字节表、MapViewport 命令 16 字节表、GameSceneSavedMap 40 字节原生表。真实类表从原源文件的后续显式表中分出一个编译归属单元，LDS 依次选择 `world_map_tables.o(.rodata)` 和 `world_map.o(.rodata)`；析构由真实内联成员定义输出为普通 .text。四版原始边界和槽位见本任务 `world-map-308.json`。不依赖单个 `.gnu.linkonce.*` 后缀来重新排放这三张表；最终字节仍待构建检查。
+
+## 硬件上下文命令与虚表归属（静态批次 GM）
+
+US 原版后段命令位于 0x080D780C 起：三个 Run 入口后紧接 0x080D7868–0x080D788C 的三个派生析构。四张原虚表从 0x080E5AD0 连续至 0x080E5B0C，后面直接接管理器表。JP/EU/DE 的同类地址、长度和表槽见本任务 `hardware-context-300.json`。当前按真实类的反序定义保留这两组的原物理顺序：早期上下文核心使用 `hardware_context.o(.text)`，后段命令使用 `hardware_context_commands.o(.text)`，四张表统一使用 `hardware_context.o(.rodata)`。不为单个方法或虚表创建地址选择规则；实际编译输出仍待最终检验。
+
+## 硬件管理器的调整跳板与清理归属（静态批次 GL）
+
+四版原 ROM 的管理器代码物理顺序为：44 字节 secondary-base 调整跳板、180 字节 VBlank 操作、40 字节 BindingRestore 析构、48 字节 CommandGroup 析构、40 字节 PreviousBinding 析构。五张管理器表紧接四张 HardwareContext/命令表，依次为 CommandGroup 的次基类表 12 字节、主表 36 字节、VBlankBinding 表 12 字节、PreviousBinding 表 12 字节及 BindingRestore 表 12 字节。四版具体地址和原输入段见 hardware-dependency-296.json。
+
+hardware_manager_tables.cc 的真实类接口生成五张普通表；旧编译器 decl2.c 的 mark_vtable_entries 在表槽引用 THUNK_DECL 时才触发 emit_thunk，因而表所属对象的普通 .text 单列在 VBlank 操作前。hardware_manager_lifetimes.cc 在后段持有三个析构，正常成员与双基类清理由 C++ 生成。原 hardware_manager.cc 的所有权函数及 hardware_vblank_binding.cc 的 VBlank 构造、真实汇编析构正文未重排。LDS 四版各去除五条 GNU 规则，现各剩 108 条（代码 43、数据 65）。表/跳板的实际输出与原字节匹配仍待统一编译验证。
+
+## GNU 全局归属总览与音频命令组（静态批次 GK）
+
+按四版 LDS 全量索引，原有 GNU 规则每版 117 条，分为启动与运行库 14、硬件与联机 13、场景及精灵基类 19、教程与小游戏 50、商店与收纳 21 条。与保存的原版 map 对照，51 条没有命中原版输入段，66 条匹配 106 个不同输入段；script_engine 的同一张虚表被两条选择规则命中。无命中仅表示原版没有相应输入段，不能单凭这一点删除仍可能由当前源码产生的条目。
+
+原版还有 US/EU/DE 各 209 段、JP 217 段手工虚表输入，总量均为 9180 字节，其中 32 段紧邻 GNU 表。US 商店区 0x080E7BD0–0x080E7DF4 内，12 字节手工表与 16 字节编译器表交替出现；另三个版本同样交错。因此需要按真实类型及连续物理组同时收回编译归属，不能只移走带 GNU 后缀的那一半。全量规则及其原版物理输入段见本任务的 gnu-family-matrix-292.json。
+
+本批将 HardwareSoundMainCommand、HardwareSoundVSyncCommand 及其共用的 HardwareLink、HardwareLinkedList、HardwareLinkBase 一起整理。四版原 .text 均按 Main 析构、VSync 析构、Link 析构排列，各 12 字节；原 .rodata 中 Main/VSync 表相邻，各 16 字节，LinkedList/Link/Base 三表另在相邻范围内，依次为 36/16/16 字节。所有表前两字均为零，音频表后两项依次为 Run 与析构；三条派生析构都调用 HardwareLinkBase::~HardwareLinkBase。
+
+原 hardware_sound.cc 与 hardware_linked_list.cc 分别持有真实类与普通 .rodata；对应的 hardware_sound_command_lifetimes.cc 与 hardware_linked_list_lifetimes.cc 输出相邻普通 .text。前者的 Run 与后者的构造、链表方法原正文不移动；后者保留正常 inline 输出，以免吞掉已有的独立构造入口。四版 LDS 各移除两条 GNU 代码及两条 GNU 表规则，剩余 113 条。编译器自然顺序仍待最终统一验证。
+
+## Shared menu core and panel ownership (static batch GJ)
+
+将物品／收纳／料理等界面共用的菜单面板、公共核心和选择核心整组梳理。四版原有三个后段清理入口合计 512 字节，五张相邻虚表合计 72 字节；已核实独立入口、虚表槽、直接调用及全部原成员布局。前两个清理入口在 ROM 连续，选择核心入口位于较早位置；表顺序则是公共核心、三个面板、选择核心，不将不同物理职责硬并到同一对象。
+
+`game_menu_lifetimes.hh/.cc` 负责真实公共类型、两个连续清理入口及四张连续表；`game_menu_selection.hh/.cc` 负责实际派生选择核心及其独立入口／表。原游戏菜单构造、导航、更新、绘制和数据源码正文未改动；原调用头仍提供相同公开接口及 GameScene 依赖，清理模块则只 include 自身实际需要的类型，避免引入无关场景对象。成员／基类清理由编译器生成，并继续对派生调用方可见，不使用手工虚表、强制实例或编译后重排。
+
+四版各移除三条 GNU 代码、三条 GNU 数据规则，剩余 117 条（代码 49、虚表／数据 68）。新对象的自然输出顺序、隐式选择清理、调用方内联及四版完整字节匹配仍待最终统一编译；本批没有编译、提交或推送。
+
+## Shared UI VCOUNT lifetime ownership (static batch GI)
+
+将商店／UI 共用 VCOUNT 绑定与两个上下文恢复层一起整理。四版原独立恢复入口各为 40 字节，连续排列；其虚表与外层 UiVCountBinding 虚表也连续排列，共 36 字节。字段、构造、实际中断处理、上下文恢复顺序和绑定析构正文均保留，两个上下文层没有原 ROM 独立构造入口。
+
+真实类与三张表继续由原 `ui_vcount.hh/.cc` 负责，表使用普通 rodata；两个内联析构由实际 `ui_vcount_lifetimes.hh/.cc` 定义并输出连续普通 text，调用方继续内联恢复，不增加伪调用、别名或手工表。类表 owner 抑制无用 inline 导出，实际函数 owner 保留正常 inline 输出。
+
+四版各移除一条 GNU 代码和一条 GNU 数据规则，剩余 123 条（代码 52、虚表／数据 71）。静态匹配与引用证据已记录；生成顺序、绑定内联及四版完整 ROM 尚待最终统一构建。本批未编译、提交或推送。
+
+## Shared UI command and adapter family (static batch GH)
+
+整组整理 UI 文本输入／输出基类、选择行缓冲及四种硬件命令，共八个真实类型。四版原 ROM 中，17 个共享执行／清理入口连续占 512 字节，八张编译器虚表连续占 176 字节。函数指针命中均与实际虚表槽对应；US 另一个相同四字节模式位于 gM4aWaveData_065 的 PCM 采样内，整个采样已与现有源码逐字节核对后排除。已一并记录直接调用、成员清理及原早期构造入口；归一化后的四版方法一致。
+
+共享类布局、内联入口及对应虚表统一由 `ui_text_commands.hh/.cc` 正常生成。保持原类声明顺序，以原 ROM 反序排列共享内联定义，使旧 agbcp 的自然 EOF 输出形成连续范围；不手写表、不添加调用或编译后重排。六个原隐式清理入口用真实空析构定义表达，继续让编译器清理实际基类和成员。实际旧编译器 `method.c`／`decl.c` 明确对无复杂继承的空析构省略无意义的入口虚表写入，而不是以现代 ABI 推测。
+
+原已有独立地址的三个 UI 构造移除误用的 inline 标记，正文和源码位置保持；另两个没有独立入口、仅由 UiStatePayload 使用的短构造继续在实际调用模块内联。原渲染、payload 构造／析构、指令、区域差异及普通数据均未改动正文。不强迫未使用的构造导出，也不重复检查已完成的普通 text。
+
+四版各移除一条 GNU 代码和一条 GNU 表规则，剩余 125 条（代码 53、虚表／数据 72）。新的自然输出顺序、构造代码、调用方内联及完整四版 ROM 尚待统一构建验证；当前没有运行编译器、汇编器或链接器，没有提交或推送。
+
+## Shared text-variable lifetime ownership (static batch GG)
+
+将共同文本替换基类 ScriptTextVariableStore、替换结果布局及 GameSceneTextVariables 的后段清理作为一个真实依赖组整理。四版原 ROM 均为三个连续 32 字节入口（场景变量析构、基类默认 Lookup、基类析构），及两个连续 16 字节虚表；去除已确认符号重定位后代码一致。此基类还供飞盘、赛马、开场、料理和日历等替换器继承，不能只改某个调用文件的 GNU 条目。
+
+`scene_text_variable_lifetimes.hh/.cc` 持有这一连续入口／表范围，保留真实基类析构和默认查找的内联定义。场景变量保持隐式派生析构，原构造、Lookup、Set、字段顺序和区域长度规则不变。该实际类型模块使用普通编译器 text/rodata，不手工定义虚表，不增加强制调用或编译后调整；也不引入无关 UI 类型的表副本。
+
+四版各去除两条 GNU 代码、两条 GNU 数据规则，剩余 127 条（代码 54、虚表/数据 73）。自然输出顺序、调用方内联及四版完整匹配仍待整 ROM 静态整理完成后统一编译；当前未编译、提交或推送。
+
+## Shared DMA commands and clock cleanup (static batch GF)
+
+整组整理菜单/HUD 共用的 HardwareDmaCopyLink、时钟数据清理与时钟控件虚表。四版原代码归一化后一致：DMA Run 为 20 字节，DMA 析构为 12 字节，紧随其后的 MapClockStatusHudData 析构为 272 字节。前两项只有虚表引用，最后一项只有 HUD content 析构内的一处直接调用。相邻 DMA 与时钟控件虚表分别为 16、48 字节。
+
+DMA 类由真实 `hardware_dma_copy.hh/.cc` 负责其虚表；实际内联 Run 和析构定义放在同名命令接口 `hardware_dma_copy_commands.hh/.cc`，继续供菜单/HUD 嵌入节点内联，同时生成原有连续虚入口。时钟缓冲/数据布局及清理归入 `map_clock_status_lifetimes.hh/.cc`，原有成员声明顺序不变，普通空析构自然清理七个 DMA 节点及资源成员。时钟控件虚表随这一实际清理模块持有，原主模块仍保留早期渲染函数及后段字形数据。
+
+只对确需生成虚表的类保留具名接口，非多态的缓冲、content 和数据辅助类型保留正常内联行为，避免为没有原 ROM 独立入口的构造及 SetTile 生成多余公共实现。不添加强制调用、虚表数组或编译器补丁，也不改变菜单与时钟的构造、渲染正文。
+
+四版各移除 1 条 GNU 代码和 1 条 GNU 数据规则，剩余 131 条：代码 56、虚表/数据 75。新对象、嵌入节点的内联清理、独立输出及完整 ROM 匹配仍须统一编译验证；当前未编译、提交或推送。
+
+## Shared entity visual interface and actor tables (static batch GE)
+
+整组处理 EntityVisualController 的共享构造/析构依赖与其后实体表的归属。四版独立析构均为 32 字节，只有自身虚表的入口指针，没有直接 BL；原 ROM 没有该基类构造的独立入口。它的 20 字节虚表与后面四张实体表（160 字节）处于两个不同的物理范围，分别保留对应普通对象。
+
+真实类型和内联构造移入 `entity_visual_controller.hh`，由同名 `.cc` 持有编译器生成的普通虚表，并抑制不需要的独立内联副本。基类空析构仍向派生类提供内联正文，其真实定义由 `animal_actor_lifetimes.hh/.cc` 负责；独立入口自然排在原本连续的 HorseSpriteController、AnimalActor 两个清理入口之后，构成 136 字节代码块。这两个物理/生成职责不能通过统一关闭内联输出代替，未添加伪调用、别名、手工虚表或新的编译器补丁。
+
+`entity_actor.cc` 的早期方法和访问函数保持原样，仅沿用普通虚表编译选项，使 ScriptVisualEffectActor、DefaultEntitySpriteController、AActorEntity、EntitySpriteController 四表按原声明逆序进入同一 `.rodata`。不对该模块关闭内联输出，以保留原有的独立访问入口。
+
+四版各移除 1 条 GNU 代码、2 条 GNU 数据规则，剩余 133 条：代码 57、虚表/数据 76。具名函数接口、虚表成员和旧编译器 ARM 弱符号机制均已静态核对；新对象的实际生成、无额外构造副本、既有调用方以及完整 ROM 匹配仍待统一编译，未编译、提交或推送。
+
+## Status screen transition family (static batch GD)
+
+将农场地图、记录与牧场状态三类连续的切换请求作为一组整理，共 6 个已恢复的工厂/析构方法（336 字节）和 3 张虚表（48 字节）。四版原 ROM 调用地址归一化后完全一致，每个独立入口仅由自身虚表引用，没有直接 BL 候选。
+
+`status_screen_transitions.hh/.cc` 统一承载这段连续内容，按实际 ROM 顺序定义工厂和析构；三个构造仍在真实调用方内联，虚表由原生 C++ 类型自然产生。原有三个屏幕模块的主实现和资源不移动；移除它们分别列出的早期切换 GNU 条目，四版各改为一条普通 `.text` 和一条普通 `.rodata`。没有保留地址别名、复制虚表、强制调用或分节后处理。
+
+本组移除每版 6 条 GNU 规则，当前共剩 136 条：代码 58、虚表/数据 78。主体 UI 类的内联析构、调整跳板及分散表仍按全局依赖总览继续处理；本批为静态整理，编译器实际输出和完整 ROM 匹配尚未验证，未编译、提交或推送。
+
+## Map, clock, return and link scene ownership (static batch GC)
+
+按共同依赖整组整理城镇地图进入/返回、时钟菜单、返回游戏与 GameCube 联机场景，共 10 个原生方法（648 字节）和 5 张虚表（80 字节）。四版每个独立方法仅被其真实虚表引用，未发现直接 BL 调用；地址/调用归一化后，差异均位于城镇地图返回工厂：AFTER_TOWN_MAP 为 JP 0x29 / 海外版 0x2A，输入模式 1 对应的返回值为 JP 4 / 海外版 5，均保留已有区域条件。
+
+四个真实模块 `town_map_transition`、`scene_clock_transition`、`game_scene_return`、`gamecube_link_scene` 各以同名头文件声明类型，普通 `.cc` 按各自连续的 ROM 顺序定义方法。构造继续在真实调用点内联；普通虚方法和空析构归入所属对象，编译器拥有其虚表。沿用已有叶子场景的编译选项抑制未使用的独立内联副本，不添加伪调用、手写虚表、section 属性或编译器专用补丁。
+
+城镇地图共享选择基类仍保留内联析构，因为返回工厂的清理必须直接到达 SceneTransition。GameScene 自身和该共享基类的 GNU 表仍待处理，未将它们一并冒算完成。五条 GNU 代码规则移除，虚表规则因保留这些物理间隔中的真实依赖而净数量不变；四版各剩 142 条：代码 61、虚表/数据 81。当前为静态修改，普通输出、内联调用方、表顺序及完整 ROM 匹配均待整轮统一验证；未编译、提交或推送。
+
+## Shared actor inline lifetime implementation (static batch GB)
+
+沿用窗口命令组已梳理的真实函数接口机制，整组整理 `DefaultEntitySpriteController`、`AActorEntity`、`EntitySpriteController` 三个连续虚析构入口，共 156 字节。四版实际调用及常量池指针归一化后一致，独立入口只有各自虚表的一处指针，没有直接 BL 候选。
+
+与叶子析构不同，这三个基类清理必须继续向 NPC 和具体控制器提供内联正文。将真实空析构定义放入 `entity_actor_lifetimes.hh`，并由同名 `.cc` 实现其独立入口；原始类、构造、早期访问函数及表归属仍留在 `entity_actor`。编译器按自己的内联定义逆序输出三个入口；没有新增伪调用、汇编替身、手写虚表或后处理顺序补丁，也没有对原类模块笼统添加编译选项。
+
+本批只移除一条包含这三个真实入口的 GNU 代码规则。共享 EntityVisualController 的构造/析构及分散的实体表仍有独立归属依赖，明确保留为未完成，不将代码入口的整理冒充整组表也已解决。四版各剩 147 条 GNU 规则：代码 66、虚表/数据 81。新输出顺序、原有内联调用方和完整 ROM 匹配仍待统一编译；未编译、未提交、未推送。
+
+## Window commands and main-menu data ownership (static batch GA)
+
+将相邻的窗口命令与主菜单状态作为一组处理：原 ROM 的贴图上传 Run、边框命令析构、贴图命令析构、主菜单状态构造/析构连续共 840 字节；四张相关虚表连续共 120 字节。四版真实指令中的调用与常量池指针归一化后一致。三个命令入口仅被自身虚表引用，两个菜单状态入口分别只有早期菜单构造、析构的一处直接调用。
+
+窗口不能简单将两个析构改为外部调用：既有 ControlWidget 清理路径直接内联了它们。实际的 `ui_text_window_commands.hh` 因而保留这两个内联正文，使用旧编译器原有具名接口机制，使独立入口归 `ui_text_window_commands.cc`；既有窗口函数仍可内联使用。上传 Run 正文原样移为该模块的普通函数。窗口类型与三张虚表仍归原主题，已存在的早期边框构造也不移动。该做法依据实际旧编译器的函数接口判定、内联保存及输出机制，没有增加编译器补丁、假调用或按名字重排。
+
+主菜单状态的原构造/析构正文移为 `main_menu_data.cc` 中按 ROM 顺序排列的普通定义，其原调用方继续调用相同真实成员。原菜单模块仍拥有自己的虚表。LDS 以两个普通代码对象及原主题的一次 `.rodata` 替代四条 GNU 规则；共享 DMA 类和时钟族保留原状态，下一批连同其构造内联、表位置依赖处理。
+
+当前四版各剩 148 条 GNU 规则：代码 67、虚表/数据 81。本批只完成源码与原 ROM 的静态核查；内联路径、实际输出顺序、额外隐式对象和完整字节匹配均待整轮统一编译。未运行编译器、汇编器或链接器，未提交、未推送。
+
+## Animal and harvest-sprite lifetime/table owners (static batch FZ)
+
+在共享实体依赖总览中，将可独立恢复的动物/精灵生命周期与仍需保持内联的共享基类分开处理：`HorseSpriteController`、`AnimalActor`、`HarvestSpriteController` 的真实析构入口共 168 字节，四版调用及常量池指针归一化后一致；逐版扫描仅发现各自虚表的一处入口指针，没有直接 BL 候选。`AnimalActor` 的派生动物析构仍为既有原生实现，没有改动 NPC 或共享精灵基类的内联清理。
+
+三个析构采用普通 C++ 空函数体，由原有成员/基类完成清理；两个实际连续的晚期代码范围分别归入动物和精灵生命周期模块。原实体、动物、精灵模块继续拥有各自虚表，仅关闭 weak 和数据子段，使十张表共 992 字节自然进入各主题的 `.rodata`。动物七表、精灵两表的实际顺序与原类声明逆序吻合；`AEntity` 继续由已有非内联虚方法确定表的归属。未手写虚表、别名或伪造调用，也未迁动原有早期代码。
+
+四版各剩 GNU 规则 152 条：代码 69、虚表/数据 83。此计数描述静态链接规则，不代表新编译输出已验证。具体析构指令、既有内联调用、实际表归属与完整 ROM 匹配留待整轮统一编译；本批未运行编译器、汇编器或链接器，未提交、未推送。
+
+## Ambient entity behavior and virtual-table owner (static batch FY)
+
+环境精灵的实体、控制器、12 个具体类型及其基类作为一个完整依赖族处理。原 ROM 中连续的 54 个方法共 4820 字节，15 张虚表共 384 字节；四版核对 BL、真实指针常量池和函数内部 switch 跳表后内容一致。全部方法的入向指针均在该组虚表，没有额外直接 BL 候选。
+
+既有方法正文按实际物理顺序移入 `world_ambient_behaviors.cc`，取消虚方法的 inline 标识；12 个真实的空派生析构按原顺序成为普通定义。恢复工厂使用的 12 个具体构造函数保留原有 inline 正文并与工厂同一翻译单元，不为导出代码制造调用或实例。已有 `world_ambient_sprites.hh` 保留全部真实类、布局和声明，由行为模块作为唯一具名实现生成虚表，使用前端既有的普通输出选项。
+
+原 `world_ambient_sprites.cc` 的基类构造析构、底层汇编函数、资源数据以及 5 个待恢复自然来源的运行库字面量保持原来的连续范围；没有将这段较晚的数据塞进前面的虚表范围。每版 LDS 以行为对象的一次 `.text`、一次 `.rodata` 替换该组两条 GNU 规则，原资源对象继续使用其已有普通位置。
+
+当前四版各剩 157 条 GNU 规则：代码 71、数据 86。现有正文的静态搬移和原 ROM 审核已经完成；实际虚方法输出、构造内联、跳表和四版完整匹配尚待整轮统一编译。未编译、未提交、未推送。
+
+## World prop and event-effect lifetime block (static batch FX)
+
+继 NPC 两族后，整组处理其后连续的场景物件/事件效果生命周期，而非逐条调整 GNU 选择器。原 ROM 的 8 个入口依次为滚动精灵集合构造、单条精灵复制、事件效果控制器/宿主以及狗球、出货篮、鸡蛋的具体清理，共 976 字节；对应 8 张虚表共 288 字节。四版 BL 与真实常量池指针归一化后全部一致。
+
+集合构造的既有正文原样移到 `world_prop_lifetimes.cc` 并改为普通定义；精灵复制按真实成员初始化，不复制填充、不伪造 vptr；6 个派生析构由普通空函数体触发既有成员/基类清理。原始集合构造只有事件控制器中的一处直接调用，复制只有该集合构造中的两处调用，6 个派生析构仅被各自虚表引用，均已在四版原 ROM 核对。
+
+与 NPC 组不同，此处保留 `world_prop_entities.cc` 的具名实现归属，因为同一头内还有早期普通内联访问函数；没有为了移动虚表而连带挪走这些入口。原类序的逆序正好生成 8 张表，目标选项只关闭 weak/data 子段。LDS 每版改为实际晚期生命周期对象的一次 `.text` 和原主题对象的一次 `.rodata`，没有新增包装头、手写表、别名或后处理重排。
+
+当前四版各剩 159 条 GNU 规则：代码 72、数据 87。此为静态整理；实际复制指令、析构、早期调用方、内联访问函数和完整 ROM 匹配仍待统一编译。未运行构建，未提交、未推送。
+
+## Scheduled and roaming NPC lifetime ownership (static batch FW)
+
+在实体组总览中联合核对计划 NPC、游走 NPC、动物/玩家、实体视觉控制器、场景物件及环境精灵的共享析构依赖。本批完成 NPC 两族的静态归属：35 个计划人物和 4 个游走人物的连续析构入口，以及包含两个实际基类在内的 41 张连续虚表，由真实 `npc_actor_lifetimes.cc` 一次接管。
+
+39 个派生析构显式声明并使用普通空函数体，由编译器调用既有的 `ANpcEntity` 或 `RoamingNpcActor` 基类清理。两个头文件的类型、布局和已有普通函数体保持原样，具名实现归属移到实际定义这些析构的模块；没有新建包装头、假实例、手写虚表或别名。包含顺序与旧前端逆序生成虚表的规则共同保留原表序。
+
+四版原 ROM 逐条确认全部 39 个析构均为 12 字节、仅 BL 既有基类，归一化后相同；468 字节代码连续，41 张表共 2644 字节连续。每个派生析构的原始指针仅出现在其自己的虚表槽，没有额外直接 BL 候选；已核对所有表槽均落到已知 Thumb 符号。源码中也不存在其他按值具体 NPC 实例或直接 C++ 析构调用。共享 `AEntity/AActorEntity` 内联清理和其他实体族保持既有行为，不顺带改动。
+
+四份 LDS 各用一次 `src/npc_actor_lifetimes.o(.text)` 和一次 `.rodata` 替换 4 条 GNU 规则。当前各剩 161 条：代码 73、数据 88。这只是整轮静态修改；实际编译器生成的析构、公开虚表、附带内容及四版完整匹配仍待统一构建。未运行编译器、汇编器或链接器，未提交、未推送。
+
+## Saved-map erase and sprite-copy definitions (static batch FV)
+
+承接全局 GNU 入口的整体清单，将最后两条全局通配代码规则换为真实定义。EraseSavedMapTreeNodes 的递归删除 body 原样从头文件移到 saved_map_tree_erase.cc，保留右子树递归、左链遍历和真实 free 调用；声明仍在拥有树类型的原头文件。
+
+场景精灵基类复制改为 scene_sprite_copy.cc 中的常规成员复制构造，声明归入现有 scene_sprite.hh。按真实成员顺序借用 world、复制引用计数 tile entry、复制 tile_index、复制有 count 限制的 palette 容器；vptr 仍由真实类生成。不用 memcpy 替代带所有权的对象复制，也不创建原始字节数组或手写虚表。
+
+两处原 ROM 代码共 124 字节（44+80），四版核实 BL 和真实虚表字面量后归一化完全一致，入向对象重定位也已记录。由于这两处与各自主要实现不连续，作为明确职责的 helper 定义在原物理位置各用一次 .text；不拆原类型为重复声明头文件，不用编号文件或额外编译选项。
+
+四版现在不再有全局 *(.gnu.linkonce.t...) 代码收集，剩每版 165 条具名对象 GNU 规则：代码 75、虚表/数据 90。递归调用方的内联、复制指令选择及完整 ROM 匹配仍待最终统一编译；这是静态源码组织进展，未编译、提交或推送。
+
+## Scene controller record and queue lifetimes (static batch FU)
+
+将全部剩余全局 GNU 入口一起核对后，先恢复控制器记录与三队列生命周期这一完整依赖组。两条相邻记录构造原 body 原样移入 game_scene_records.cc；真实 ActorRecord/EventIconRecord 结构和布局检查归入同名头文件。三队列容器、请求及 Push 模板归入 game_scene_script_queue.hh，非内联空析构在同名 .cc 由三个真实队列成员自动执行逆序销毁，未手写删除标志处理或替代循环。
+
+两段原代码分别为连续记录构造 172 字节、队列析构 104 字节。四版 BL 归一化后均完全一致，旧对象的实际重定位调用已保留。外层 GameSceneScriptController 的 Run 与析构保持原体，其两个构造既在调用方内联，也确有位于本模块末尾的 200/224 字节独立入口，两种用法均保留。该对象只用 -fno-weak -fno-data-sections，不使用会抑制这两个真实入口的 -fno-implement-inlines；唯一 16 字节表进入普通 .rodata，不添加构造实例。
+
+每版 LDS 移除两条全局 GNU 代码规则及一条控制器 GNU 表规则，分别按既有物理位置写普通对象。两段本来不连续，因此保留有实际职责且各有同名头文件的记录/队列模块；没有把它们塞入控制器早期代码范围，也没有增加编号源码或人工 section。仍未处理的两个全局入口是存档地图树递归删除和场景精灵基类复制，已记录各自调用方内联/资源复制依赖，不漏算为完成。
+
+同时核实旧 agbcp finish_function：空析构且非复杂继承时省略 vptr 重设，不能仅凭显式空析构就断言会多写虚表；实际生成仍须最终验证。当前每版 GNU 剩 167 条（代码 77、数据 90），全局通配代码规则剩 2。此轮只做静态整理，未编译、提交或推送。
+
+## Complete identity, keyboard, wild-dog and decimal table owners (static batch FT)
+
+承接全部 174 条 GNU 规则的总览，复核剩余 8 个只有虚表规则的候选及文本窗口/主菜单/时钟窗口的共同生命周期依赖。本批将已经具备完整函数归属的 4 个主题整体改为普通虚表生成：new_game_identity、new_game_name_input、wild_dog_actor、font_decimal。没有单独移动函数，也没有修改类布局、内联语义或函数体。
+
+四版原 ROM、既有符号和先前野狗类型审计逐字复核虚表：JP 12 张/308 字节，US/EU/DE 各 13 张/324 字节。每张表的两个元数据字及所有 Thumb 函数入口均有对应；各主题内物理连续，既有类声明的逆序与原表顺序一致。海外版额外一张 1×2 数字绘制表保持原有区域条件。
+
+使用旧 agbcp 已有的 -fno-weak -fno-data-sections 目标选项，表仍由真实虚函数/具名实现确定唯一归属并正常生成。四份 LDS 各以该对象的一次 .rodata 替换 4 条 GNU 数据选择，源码和头文件不增加新层。仅引入 <new> 不能证明会生成 bad_alloc 副本，本批不凭该依赖一概拒绝，也不修改库头或预处理器。
+
+其余 4 个候选保留明确依赖：控制器记录/脚本队列、场景状态成员生命周期、world 的独立运行库字面量、实体基类内联析构。UI 连续代码/虚表组也已完整记录；ControlWidget 基类表先于派生表、嵌入成员析构以及 map_clock_status 的另一段资源范围，决定不能把三个 UI 对象粗暴合成一个普通段。这些仍属于未完成项目，不用通配规则或假表绕过。
+
+当前每版剩 170 条 GNU 规则：代码 79、数据 91。已完成的是源码/链接组织的静态修改，未运行编译器、汇编器或链接器；自然输出、额外局部副本、原代码字节和四版 ROM 匹配留到整轮统一验证。未提交、未推送。
+
+## Explicit value assignment dependencies (static batch FS)
+
+将剩余四条全局赋值运算 GNU 选择规则作为完整依赖组处理。连续的 Sheep、Cow、Livestock 赋值入口归入 src/livestock_copy.cc；真实类声明仍在各类型原有头文件中，不增加空包装头文件。羊/牛通过真实 BarnAnimal 基类赋值后复制自身生产状态位；Livestock 先调用 Animal 赋值，再按已确认位域顺序复制饲养、健康、疾病和户外时间字段。
+
+WorldSpriteEffectFrames 已有的两个资源组、两个 tile 句柄复制方法体原样移入 src/world_sprite_effect_frames.cc，去除 inline，类型与字段声明保留原所属头文件。两段各由一次普通 .text 链接，不增加编译参数、GNU 包装、显式假实例或中转函数。
+
+每版原函数大小分别为 116、124、188、128 字节，共 556 字节。四版经过真实 BL 归一化后均逐字节一致；原 ROM 中羊/牛到 Livestock、Livestock 到 Animal 的调用链已核实，既有对象入向重定位记录保留在审计文件中。字段未知部分仍保留原 unk 名称。
+
+- JP: livestock `0x080D7308–0x080D74B4`；sprite frames `0x080E3BD0–0x080E3C50`。
+- US: livestock `0x080D7B50–0x080D7CFC`；sprite frames `0x080E4438–0x080E44B8`。
+- EU: livestock `0x080D7B9C–0x080D7D48`；sprite frames `0x080E4484–0x080E4504`。
+- DE: livestock `0x080D7AB4–0x080D7C60`；sprite frames `0x080E439C–0x080E441C`。
+
+剩余 GNU 规则每版 174 条：代码 79、虚表/数据 95。当前完成静态组织，新的逐成员赋值指令、位域掩码、调用方内联及完整 ROM 匹配仍待整轮统一编译验证；未运行编译器、汇编器或链接器，未提交、推送。
+
+## Contiguous scene menu transition owners (static batch FR)
+
+对整组 37 种场景切换对象核对物理顺序和共享依赖后，将其中连续且直接继承 SceneTransition 的 33 种菜单/活动切换对象归入 src/scene_menu_transitions.cc 与同名头文件。33 个原有 CreateScene 方法体原样移出主题头文件，33 个对应析构由真实成员和基类生成；构造函数仍保持 inline，60 项对应布局断言随类定义一起迁移；故事场景自身的 phase 断言保留在原头文件。主题头文件引用共享声明，不再各自生成这些切换虚表。
+
+66 个原 ROM 函数在四版中经过 BL 与真实具名 ROM 常量池指针归一化后逐字节一致。每版 33 张虚表均核对为两个零元数据槽、真实析构指针和真实工厂指针，共检查 132 张原表。源码函数定义按该连续区间的物理顺序排列，同时修正旧清单把工具箱、冰箱、橱柜排错的顺序。
+
+新模块使用旧编译器已有的 -fno-weak -fno-data-sections -fno-implement-inlines：以具名接口归属生成公开的普通只读虚表，保留调用方构造内联，避免所属模块额外输出未被原 ROM 保留的构造入口。旧 agbcp 的全局声明链反向遍历虚表，所以头文件按相反类声明顺序组织，未手写表初始化、别名或编译后重排。LDS 中新模块仅各出现一次 .text 和 .rodata。
+
+- JP: `.text` `0x080DAAD4–0x080DB97C`；虚表 `0x080E5074–0x080E5284`（均为左闭右开）。
+- US: `.text` `0x080DB320–0x080DC1C8`；虚表 `0x080E5C34–0x080E5E44`（均为左闭右开）。
+- EU: `.text` `0x080DB36C–0x080DC214`；虚表 `0x080E5C80–0x080E5E90`（均为左闭右开）。
+- DE: `.text` `0x080DB284–0x080DC12C`；虚表 `0x080E5B98–0x080E5DA8`（均为左闭右开）。
+
+镇地图三个类型的抽象基类析构存在实际内联依赖；Clock/ReturnToGameScene 的表又与 GameScene 表交错，未强行并入本组，也未改变继承结构。其余 GNU 规则剩每版 178 条：代码 83、虚表/数据 95。数据规则数增加 1，是旧 game_scene 合并条目在已移出的连续区间两侧仍各有未解决内容；不是新增虚表，不能视为该 owner 已清理完成。
+
+本批只完成静态源码组织与原 ROM 对照。新输出的析构标志/成员销毁顺序、现有调用方内联、自然表顺序、符号可见性、额外内联副本与运行库字面量仍须在整轮统一编译时验证。未运行编译器、汇编器、链接器，未提交或推送。
+
+## Ordinary read-only tables for complete class owners (static batch FQ)
+
+完成 14 个“只有虚表 GNU 规则、没有晚期 GNU 代码规则和其他已选普通 rodata”候选模块的整批依赖检查。本批处理其中归属明确且未引入 <new> 字面量路径的 6 个模块：scene、hardware_blend、hardware_interrupt_guard、font_draw、scroll_state、game_object，共 8 张真实编译器虚表。
+
+依据旧 agbcp 的 import_export_class/import_export_vtable/finish_vtable_vardecl 及 build_vtable 实现，对上述 6 个目标使用已有 -fno-weak -fno-data-sections 选项。具名接口或真实非 inline 虚函数继续确定唯一公开归属，表内容、函数指针及只读属性仍由编译器生成，直接进入普通 .rodata。保留全部函数体、ARM/IWRAM 原生代码和源码顺序；没有手写虚表、编译后重排、预处理器新规则或全局关闭 weak。
+
+四版 LDS 在原来位置各把这 6 条 GNU 数据规则替换为对应对象一次普通 .rodata。另将 WildDogBehavior 的纯协议声明放回未指定输出归属的范围；原生实现只创建 WildDogActor 和 5 个具体状态，没有安装纯协议自身虚表。具体类的生成归属保持，避免具名 implementation 额外输出一个无原 ROM 对应的抽象接口表。
+
+GNU 规则剩每版 207 条：代码 113、虚表/数据 94。其余 8 个候选仍涉及 <new> 的潜在匿名常量、共享容器/成员生命周期或尚未完整证明的生成输出，继续保留当前设置并纳入后续依赖组。当前是源码与编译器机制的静态整理；表可见性、自然输出顺序、局部 inline 副本、普通 .text 字节及最终 ROM 匹配仍待整轮统一编译确认，未编译、提交或推送。
+
+## VBlank binding table generation ownership (static batch FP)
+
+对当前全部具名接口与 GNU 虚表选择规则进行整体对照，243 个具名接口类候选中，确认 HardwareManagerVBlankBinding 一处实际虚表生成单元与链接选择不一致：头文件指定由 hardware_vblank_binding.cc 实现，但 LDS 的整组硬件管理器虚表从 hardware_manager.o 收集。
+
+将该具名 implementation 声明移到真正构造管理器状态及多继承组的 hardware_manager.cc，使主/次基类、VBlank 绑定及恢复对象的虚表归属与当前物理组一致。绑定构造、原生析构、列表操作及其源顺序不变；没有额外强制实例、虚假调用、别名或链接位置修改。
+
+这一步修复生成归属，尚未解决整个管理器族的普通段排列，GNU 规则数量仍为每版 213 条（代码 113、虚表/数据 100）。静态候选检查不能替代编译结果，完整多继承析构、调整跳板与虚表顺序仍待继续处理并统一验证。
+
+## Explicit template instance ownership (static batch FO)
+
+把 3 个查找实例和背包的 4 个轮换操作作为一组核查真实生成归属。背包 4 项在每版连续占 360 字节；NPC 日程、路径和玩家字节查找分别为 60、60、116 字节，物理位置各自独立。四版逐函数按 BL 目标归一化后一致，旧对象各版合计有 8 处真实 Thumb 调用重定位。
+
+依据本项目旧 agbcp 的显式模板实例、外部实例声明和待生成队列实现，将已有实例放入对应物理位置的普通编译单元。背包两个模板函数体、NPC 两个比较器和所有调用目标保持；比较器归入已有 npc_schedule.hh，Slots 仍由 rucksack.hh 声明。NPC 的 C++ 调用方显式声明共享实例在外部，避免其 GNU 通配规则再收进隐式副本。不复制 STL 算法，不添加包装函数、虚假调用、section 属性或 Makefile 特例。
+
+四版 LDS 各用普通 .text 替换 4 条 GNU 选择器；GNU 剩每版 213 条：代码 113、虚表/数据 100。新实例单元分别位于原有不连续位置，不将它们挤入早期业务模块改变 ROM 顺序。
+
+本次仅静态核查并整理源码。显式实例的最终出段、顺序、调用方副本抑制、ABI 名称和指令字节仍待整轮统一编译确认；没有运行编译、汇编、链接、提交或推送。
+
+## Contiguous saved-image copy dependencies (static batch FN)
+
+把整条连续的存档复制链作为一个依赖组处理：GameStateSaveImage 复制/析构、完整 GameEventState 原生复制，以及 NPC、农场、畜舍、鸡舍、狗、动物基类、农夫、背包和账本的复制/析构入口，共 14 个连续入口。四版该范围均为 10,976 字节；逐入口按真实 BL 目标归一化后字节一致。
+
+原有 7 个头文件函数体移入既有 game_state_copy.cc，账本空析构移为常规独立定义；畜舍、鸡舍的成员复制和 Animal 赋值按现有真实字段/数组表达，不改变结构布局。事件状态的完整汇编原样归入该模块，删除原 asm/event_state.s；只移除已经包含过的宏头，不重写指令。原 ROM 的顶层析构明确调用背包/账本析构，狗赋值明确调用 Animal 赋值，均保留直接函数关系。
+
+四版 LDS 现在用已有 src/game_state_copy.o(.text) 承接整个连续复制范围，各删除 11 条 GNU 手工选择和一条独立事件复制对象。移除 dog.o / money_account.o 的 -fkeep-inline-functions 例外：这些真实被调用的操作有常规独立定义，不再依赖强制保留头文件副本。GNU 规则剩每版 217 条：代码 117、虚表/数据 100。
+
+当前只完成静态源码、边界、调用及四版归一化核查；旧编译器数组复制、析构标志、其他调用方内联以及最终指令匹配仍待统一构建。不将迁入 .cc 的两段原生复制计作高级语言反编译，也未编译、提交或推送。
+
+## Inline definition scopes and shared DMA consumer (static batch FM)
+
+对当前全部头文件和 C++ 源码统一筛查，覆盖 847 个类/结构定义及 285 个类外 inline 定义。检出并成组修正 6 份头文件中 8 个作用域冲突：类处于 implementation 未知归属模式，函数体却落在另一类的 named interface 范围。修正仅限定旧编译器 pragma 的有效范围，不改变函数体、成员布局或定义顺序；涉及主菜单、UI 上传、飞盘、飞盘成绩、图书页面和联机界面的完整调用链。
+
+HardwareDmaCopyLink 的实际构造来自主菜单/HUD 的成员对象，hardware_dma.cc 只有 DMA 操作函数，不会凭空生成这个类的 GNU 成员。四版旧 ROM 的 DMA Run/析构入口及虚表槽已核对，代码和虚表均紧随主菜单相应组。因此把错误的 hardware_dma 对象选择归回实际 main_menu_widget 消费者，并将两条紧邻重复选择合并；不添加虚假对象或强制实例。
+
+当前每版 GNU 选择规则为 228 条：代码 128、虚表/数据 100。这仍是待清理的 GNU 组织，不把归属纠正或 whole-owner 通配算成最终普通 .text/.rodata。最终统一构建还须核对内联决定、实际发出顺序及重复合并；当前没有执行编译器、汇编器、链接器、提交或推送。
+
+## Contiguous map and tilemap callback definitions (static batch FL)
+
+继续按完整依赖及 ROM 连续性，将已有的三个真实 C++ 定义收回现有普通模块，不增加源文件或生成层：FontTilemapRectCommand::Run 跟随相邻的数字 tilemap 命令执行函数，进入 font_decimal.cc；DestroySavedWorldMap 与 SavedMapTree 构造跟随树插入函数，进入 saved_map_tree.cc。头文件保留常规声明，函数体和结构成员不变。
+
+四版原 ROM 均确认了两张真实虚表的回调地址，并确认 GameSceneSavedMap 构造在 +0x20 直接 BL 到 SavedMapTree 构造；后者原本就是独立调用，不能依赖头文件内联定义碰巧保留一个 GNU 副本。DestroySavedWorldMap 仍是原来的带标志清理入口，未改成会增加 vptr 写入的另一种析构实现。
+
+四版各移除三条人工独立 GNU 选择器，现有 src/font_decimal.o(.text) 和 src/saved_map_tree.o(.text) 自然承接这些紧邻的定义。GNU 规则剩 230 条：代码 129、数据 101。字体虚表仍由实际定义构造/析构的 font_draw 生成；不把仅指定对象或通配符视为完成剩余 GNU 整理。
+
+静态核查保留了原函数地址、真实 BL、虚表槽及函数体等价证据。输出指令、对齐、调用方和递归内联实例仍须在最终四版统一构建中验证；未运行新的编译探针、未提交或推送。
+
+## Contiguous save and scene-state lifetimes (static batch FK)
+
+全组依赖梳理后，先将两个已经具备真实 C++ 成员生命周期、且物理位置直接相邻的析构入口收回普通源码顺序：存档复制后的 GameStateSaveImage 析构，以及场景状态主块后的 GameSceneState 析构。
+
+src/game_state_copy.s 改为同名 .cc，保留原有 776 字节复制函数的完整 native 汇编文本；其后的析构由实际类成员自然生成。GameSceneState 的析构定义从头文件移至 src/game_scene_state.cc 末尾，作为普通非内联虚析构，同时让该真实 key function 拥有对应虚表。没有增加伪造调用、包装类、别名、section 属性或编译选项。
+
+四版各移除两条独立 GNU 析构选择器；普通 .text 对象条目仍各占原有位置，后一个模块顺序不变。GNU 总规则由 235 减为 233（代码 132、数据 101）；其余成员和虚表组织尚未完成，不能据此报告完整动态化。
+
+静态核对保存了四版原复制/析构地址、原字节哈希，以及迁移前后逐字符一致的 native 汇编。析构的实际指令、调用方内联变化、成员清理和弱副本选择仍需最终统一构建确认；本轮没有调用编译器、汇编器或链接器。
+
+## Transition-family emission ownership (static batch FJ)
+
+承接全 GNU 总览，进一步追踪完整的 48 个场景切换派生类，包括先前直接继承扫描漏掉的 TownMapReturnTransition。核对当前真实 C++ 构造调用、定义所在的 pragma 范围，以及固定版本 agbcp 的 lex.c / decl.c / decl2.c；没有运行编译探针。
+
+此前 FI 将链接规则绑定到同名场景文件，只证明了文件存在，不能证明该文件会输出对应弱定义。本批纠正这项不足：游戏主场景实际构造的切换对象，其内联工厂、隐式析构和虚表按真实使用方 game_scene 归属；锻冶屋结果切换按真实使用方 scene_blacksmith_shop 归属。链接规则仍在原位置，未移动代码或表的物理顺序。
+
+24 个头文件内工厂定义原先错误落入界面实现的 named interface 范围，现与所属的无参 implementation 类定义保持同样的内联语义，并在函数后恢复原范围，避免影响其他类型。RucksackMenuTransition 的内联定义从独立 .cc 移回声明头文件，使真实调用方能够看到定义。所有函数体、成员、参数和布局保持不变，不增加虚假调用、强制实例、别名或编译选项。
+
+本批仍有 235 条 GNU 链接规则，不能把“归属纠正”计为普通段清理完成。当前规则虽覆盖四版，但实际生成副本、顺序及字节仍待整个静态批次完成后的统一验证。尚余存档复制/模板、硬件生命周期、跨位置对象等组；不回头检查已完成的普通 .text，也不开始后续相邻模块精简。
+
+## GNU dependency overview and paired ownership (static batch FI)
+
+先对全部四版 GNU 规则进行总览：每版 235 条，代码 134 条、数据 101 条；其中 63 条虽已按对象收集，仍属于过渡状态。四版选择器及次序完全一致。84 个明确对象中，19 个仍在同类输入中跨位置出现（18 个涉及代码、10 个涉及数据，两者有交集），不能只处理重复行或前一处入口。
+
+| 物理组 | GNU 规则数 | 关联处理内容 |
+|---|---:|---|
+| 早段字体 | 1 | Run 内联方法和后段字体虚表同属一类 |
+| 启动及存档复制 | 17 | 复制/析构依赖、实际调用和生成来源 |
+| 硬件及动物复制 | 11 | 命令方法、多继承调整入口、共享赋值 |
+| 场景切换代码 | 42 | 工厂、转换对象、状态清理与后段虚表 |
+| 实体及模板代码 | 16 | 控制器析构、模板及同一类的表 |
+| UI/场景及晚段支持代码 | 47 | 隐式入口、回调、显示/教程场景 |
+| 启动及硬件虚表 | 15 | 与前述类的生命周期一起核对 |
+| 场景切换虚表 | 4 | 包含一条跨多个模块的长规则，不能当成一张表 |
+| 实体虚表 | 17 | 与实体/控制器和模板一起处理 |
+| UI/场景虚表 | 65 | 与前述方法、析构及调整入口一起处理 |
+
+保存对象提供 JP 762、其余三版各 768 条指向既有 GNU 符号的重定位记录。旧对象中的重复定义为 FontTilemapRectCommand 表、Animal 赋值、Livestock 赋值三类；不能因此断言当前待编译源码只会产生这些重复。97 条当前选择规则没有匹配的旧 GNU 成员，包含本静态批次新恢复/改名的类型，必须结合当前源码与既有转换记录核对，不能直接计为缺失或已验证。
+
+在总览后成批将每版 41 条全局符号匹配绑定到已恢复的真实源对象，剩余全局规则 25 条。工厂、析构、调整入口和对应虚表一并处理；保留所有现有物理位置及成员选择范围，不将后段条目提前收走。未确定生成链的存档/容器复制和跨对象场景虚表长规则暂保留，不虚构生成调用。
+
+全局接口扫描覆盖 78 组显式 interface 声明。font_draw.hh 有外部虚表和 Run 的真实需求，但 font_draw.cc 缺少配套 implementation；当前 Makefile 用 -P 后从标准输入交给 agbcp，不能依赖源文件名自动配对。补齐该真实实现文件的声明，字体表明确由 font_draw.o 收集。另一处 hardware_input.hh 仅用于完全内联的参数构造，没有独立 GNU 对象需求，保持其原有抑制副本安排。依据为现用 agbcp 的 lex.c 接口配对逻辑及实际源码/旧对象，不采用现代 ABI 推断。
+
+本轮未改变函数体、类型布局、函数/虚表次序或编译选项。GNU 总条目仍为 235，不能把绑定对象当作最终普通 .text/.rodata 清理完成。接续按整组处理跨位置的生成关系与自然输出顺序；相邻模块精简在 GNU 完成后进行。尚未运行编译器、汇编器、链接器、提交或推送。
+
+## NPC class groups and actual template callers (static batch FH)
+
+定点 NPC 的 35 个派生类、游走 NPC 的 4 个派生类，连同两类基类虚表，按各自真实源码归属收集自然生成的 GNU 内容。四版原 ROM 均核实 39 个 12 字节析构入口：每个只转到对应基类清理，随后返回；41 张虚表的首个虚函数槽指向相应析构入口。原先已恢复的完整类声明顺序与物理表序一致。
+每版核对 80 个代码/表对象，共 3112 字节；四个连续范围的边界不变。NPC 与游走 NPC 的四条逐类代码/虚表规则改为各自对象收集，源码、成员、函数体、ABI 和全部普通段条目不变。
+两个 upper_bound 实例分别比较日程时间及路径节点时间。它们在 npc_entity.cc 中已有实际调用及显式模板实例化；将仍全局匹配的两个入口改由 npc_entity.o 提供，并保留原有较早的两个物理位置。这样后面的 NPC GNU 收集不会把这两个实例吸入析构块，也不新增无用途的实例或调用。
+硬件上下文的三个 Run 方法与析构生成顺序尚需核对，未在本轮扩大其 GNU 通配范围。本轮仍是静态组织与引用核查，GNU 对象级收集是过渡状态，不能视为最终普通段布局已完成；尚未运行编译器、汇编器、链接器或提交。
+
+## Hardware sound and list compiler ownership (static batch FG)
+
+四版中，音频命令的两个自然析构入口（24 字节）和两张虚表（32 字节），以及硬件链表的自然 HardwareLink 析构入口（12 字节）和三张虚表（68 字节），均由实际所属的 hardware_sound / hardware_linked_list 对象生成。
+既有四版对象的 GNU 成员清单、输入段物理次序和原 ROM 边界已逐项核对；每版覆盖 8 个输入段、136 字节。四条全局按类名匹配的链接规则改为这两个实际对象的代码/数据收集，位置不变。两份源码和头文件保持原样，不添加 pragma、虚构的类、强制实例、段属性或编译选项。
+这是生成归属和链接选择的收敛，仍保留编译器自然 GNU 输入，不能算作最终普通 .text/.rodata 组织已经完成。其余 GNU 条目及完整代码生成验证继续处理；整批静态完成前没有运行编译器、汇编器或链接器。
+
+## VBlank physical code ranges without custom text sections (static batch FF)
+
+优先处理最后三个人工 .text 子段。四版的物理顺序相同：中断保护的清理副本 84 字节、VBlank 绑定回调/构造/析构 176 字节、追加操作 60 字节，合计连续 320 字节；随后是真实的 44 字节多继承析构调整入口；再后为移除、拼接、交换三项链表操作，共 180 字节。
+前一连续块归入已有 hardware_vblank_binding.cc：将清理副本放在绑定回调之前，追加操作放在绑定析构之后。后面独立的 180 字节范围由同名 hardware_vblank_list.cc/.hh 管理。这样只新增一套按实际功能命名的源码/头文件，不机械为三个 section 各建一个文件，也不跨过中间真实的析构跳板。
+六个既有函数的实现、名字和 ABI 原样保留，声明归入其所在模块头文件。hardware_interrupt_guard 和 hardware_manager 保留各自早期的普通代码；三处 SECTION 属性全部删除。四版 LDS 只按两个连续块列 hardware_vblank_binding.o(.text) 与 hardware_vblank_list.o(.text)，中间编译器生成的调整入口及后续 GNU 条目保持原位。无需修改通配的 Makefile，不新增生成器、别名、填充、编译选项或地址限定。
+保留副本的最初发出编译单元仍未确定；这里依据已知的中断保护和链表操作功能安排维护归属，不虚构第二套类或额外调用。代码组织改成普通输入段，不等于这些副本的历史生成来源已经恢复。
+四版原 ROM/旧 map 确认全部 544 字节范围的边界，现有函数和原生绑定析构文本逐字保留；静态差异检查通过。当前 LDS 的人工 .text.* 条目降为零。尚未运行编译器，移动编译单元后的实际输出、GNU 副本选择和完整 SHA-1 仍留待整批统一验证。
+
+## Reconnect compiler-owned former ordinary vtables (static batch FE)
+
+按历史匹配对象检查原来作为普通 .rodata 手工输出的 54 张虚表，发现两个模块的源码已经恢复正常虚函数，LDS 却仍沿用旧普通表入口：new_game_identity 的两张表，以及 hardware_interrupt_guard 的一张表。四版均改为在原物理位置接收对应对象的自然 GNU 数据；不恢复手工表、不改预处理器、不添加别名。
+四版原 ROM 逐槽核对确认画面的 12/16 字节表及中断链表的 36 字节表，共 64 字节/版。确认画面的两段完整类声明改为 Scene 在前、Core 在后，并保留 Core 前置声明，遵循现用旧编译器的声明链顺序来生成 ROM 所需的 Core、Scene 表序。继承、成员、方法签名、方法体和字段检查均不改变。删除已经没有调用方的手工 Scene 虚表声明及其专用 typedef；原生 Core 初始化仍直接引用编译器的真实表。
+历史大虚表文件的其他候选已分别核实为前序整理移入真实模块：世界/对象、动物实体、NPC、脚本引擎、参赛选择和地图场景；其中 AudioActorEntity 已恢复为 AnimalActor。不能因为旧对象名已经消失就误判为未链接。
+此次修复的是手工表删除后的生成/链接衔接。GNU 按对象收集仍是过渡组织，最终普通段要求不变；未运行编译器，实际表序和全部字节仍待统一验证。
+
+进一步对照四版历史符号：JP 的 161 张主虚表、海外各 162 张主虚表，以及每版三张多继承次级虚表，在当前真实类归属和 LDS 的 GNU 收集入口之间均有对应关系。EntityVisualController 的内联基类由 entity_actor.cc 中两个实际派生类构造使用，不能仅按声明所在 entity.hh 推断发出对象。这里核对的是已知表名是否漏接；新增或多余的编译器实例、弱副本选择、表内顺序及实际输出仍须统一构建确认，不能据此宣称 GNU 已清理完成。
+
+## Actual menu bases and pause-menu ownership (static batch FD)
+
+清理 .text/GNU 生成关系时，发现 GameSceneUiComponent 将 HardwareContext 的构造、析构入口套在另一占位类名下，同时又被用于完全不同的暂停菜单指针。恢复为两条真实关系：GameSceneMenuCorePrefix 直接继承 HardwareContext；GameSceneState 的 +0xB8 成员使用 GameScenePauseMenuOwner，持有 MainMenuWidget*。
+四版原 ROM 的物品菜单核心构造和析构都直接调用 HardwareContext 对应入口；其 12 字节虚表末项指向自身析构。游戏场景两段原生控制代码中，每版八次暂停菜单创建均调用 MainMenuWidget 构造，再写入 +0xB8；更新和关闭流程亦调用该类型，删除时使用 +4 虚表中的 +8 析构槽。MainMenuWidget 实际继承 ControlWidget，并不继承 HardwareContext，不能因为两个基类均为八字节就混用。
+此次只修正声明和所有权类型，不改变菜单核心成员顺序、场景 +0xB8 槽、现有虚调用实现、原生代码或 LDS。移除两个借用其他类 ABI 的 asm 声明；不增加伪类、别名、手工虚表或强制生成调用。原有对象大小/字段偏移检查保留，生成的析构代码和虚表顺序仍须在整批统一编译中验证。GNU 剩余条目数量不因此减少，不记作已完成链接清理。
+
+## Event registration copy member boundary (static batch FC)
+
+继续沿存档复制的 .text/GNU 依赖检查。原事件状态的 +00 计数、+04 三个 u16 ID 构成容量为三的列表；注册、删除和复制均按 count 处理有效范围。四版 7132 字节事件复制体除唯一 memmove 调用的相对距离外逐字节相同，开头先清零目的 count，缓存源 count，只复制有效 ID，再写回 count；+0A 的两字节没有被该路径初始化或复制。
+在原 event_state.hh 中将其恢复为一个 12 字节 GameEventVariableList 成员，末尾两字节由结构自然对齐承担，移除误作字段的 unk_0A。原来的三个 ID、计数和 +0C 活动恋爱事件标记位置不变；后续全部位域声明原样保留。默认构造只清零计数，成员复制保留仅复制有效项的规则；注册/删除函数仍在原 event_state.cc，既有操作顺序不变。
+这一步补齐的是原生复制依赖的成员边界，不把新的列表类型直接等同于已匹配的 GameEventState 复制函数。src/game_state_copy.s 和 asm/event_state.s 及它们的 LDS 条目仍保留：后者目前只由前者的汇编调用，单独删除原生体不会让编译器自动生成替代；GameStateSaveImage 中 Dog 的复制/赋值关系也尚未充分恢复。没有通过假调用、强制保留或自创 section 让隐式入口出现。
+依据是四版 ROM、现有复制/注册/删除实现，以及 docs/mary-native-audit/events/event_state_registration.md 的独立路径结论。未运行编译器；完整指令输出和所有现有字段偏移检查留到整批统一验证。
+
+## Base scene vtable declaration order (static batch FB)
+
+场景基类的两张虚表仍分别由全局 GNU 选择式排列。核对四版原 ROM，AScene 与 SceneTransition 的两张 16 字节表连续，各自包含两个零元数据字、对应析构入口和 __pure_virtual 入口；不存在普通数据夹在其中。
+两条非内联虚析构的定义均在 src/scene.cc。旧 scene.o 的自然表顺序却为 SceneTransition、AScene，与 ROM 相反。依据现用旧编译器的虚表声明链遍历，将两段完整类定义调整为 SceneTransition 在前、AScene 在后；已有前置声明和所有权类型足以满足依赖，未改变继承、成员、函数签名或实现。
+四版 LDS 改由实际定义析构的 src/scene.o 接收这一连续组，移除全局逐表指定。此步骤属于 GNU 生成关系整理，尚不是最终只列普通 .text/.rodata 的链接结构。编译器实际输出、COMDAT 副本选择和四版 ROM 一致性仍待整批统一验证。
+相邻小模块的精简合并按用户最新要求留待 .text/GNU 整理完成后进行；本轮未合并源码模块，未运行编译器、汇编器或链接器。
+
+## Natural new-game menu vtables (static batch FA)
+
+新游戏菜单的三条数据链接语句仍包含旧手写核心表的 `.rodata` 插入位置。当前核心已经是 HardwareContext 的真实派生类，拥有隐式虚析构；源码只引用编译器的 __vt_15NewGameMenuCore，不再定义这张普通数组。
+核对旧对象，其普通 rodata 恰为这张 12 字节核心表。四版原 ROM 中 MenuIntro、LoadedSave、核心、菜单场景四张表连续排列，长度依次为 16/16/12/16 字节，所有函数槽均对应现有符号加 Thumb 状态位。
+本轮将场景声明放在核心定义之前，以指针前置声明解除声明顺序依赖，成员、继承、函数体、布局检查及 ABI 保持原样。结合现用旧 GCC 的虚表生成及逆序声明遍历机制，让四张表按类定义自然产生；LDS 只保留 `src/new_game_menu.o(.gnu.linkonce.d.*)`，移除旧普通表插入位置及无用的手写虚表元素 typedef。
+四版各减少两条 GNU 数据链接语句。没有新增 section、别名、重排工具或编译选项。当前没有运行编译器，实际 GNU 输出、弱副本和附带常量仍待整批验证，不能将这一静态修正视为已经通过 ROM 比对。
+
+## Intro/menu transition ownership (static batch EZ)
+
+MenuIntroTransition 的唯一创建点是 NewGameMenuScene 的标题菜单构造函数；它将菜单的 continuation 接回 GameIntroScene。
+原来的类型和内联 CreateScene 定义却位于 intro_scene.hh，导致 LDS 在启动核心之后又单独抽取这个返回入口。本轮把同一个真实类型移入 new_game_menu.hh，实现放入 new_game_menu.cc；名称、ABI、函数体及调用不变，没有新增类型或伪造调用。
+四版启动与新游戏菜单的晚段代码各由所属对象一次收集 GNU 代码，启动虚表也按所属对象一次收集。原生顺序仍要求 IntroNameEntry/IntroMenu 两个工厂在前，随后各析构；菜单则为 LoadedSave 工厂、返回标题工厂、返回类型析构、LoadedSave 和核心析构。当前声明及定义按该顺序组织，实际输出尚待统一编译验证。
+菜单的 rodata 仍有一处真实交错：MenuIntro、LoadedSave 两个虚表之后，是普通核心表和 GNU 场景表。本轮保留其选择条目，未将这部分标为完成；不为减少行数而提前后面的场景表。普通代码、普通数据条目及硬件模块间隔不变。
+四版既有符号表确认返回工厂 60 字节、析构 12 字节及相邻 16/16/12/16 字节表的边界；此证据不替代当前编译结果。本轮只做静态整理，未编译、提交或推送。
+
+## Scene-owned GNU collection (static batch EY)
+
+飞盘成绩、动物参赛选择、生日输入、滚动菜单、工作人员名单，以及动物照料、鸡祭、收获、浇水四个小游戏，合计九个真实模块，继续按原有物理位置收集编译器生成的 GNU 代码及虚表。
+四版各 18 条链接语句移除逐类或逐函数后缀，使用对应对象的 `.gnu.linkonce.t.*` / `.gnu.linkonce.d.*`；前面已经排列的场景切换代码和全部普通 `.text/.rodata/.data/.bss` 条目保持原顺序。
+这些类的成员和生命周期已在前序静态整理中按原生构造、析构和调用关系恢复；本轮不添加类、节属性、强制实例化、别名或编译选项，也不以普通 `.text.*` 通配替代模块整理。
+既有对象文件只用于核对历史 GNU 成员和已选入的场景切换副本；六个当前新模块没有基线对象，不能将旧产物当作当前代码生成结果。所有九个模块的实际隐式实例、弱副本选择、虚表和析构顺序仍须统一四版编译验证。本轮没有运行编译器、汇编器、链接器，没有提交。
+
+另将飞盘、主菜单控件、烹饪、背包菜单、场景文本变量和文本窗口六个模块纳入同批整理：四版旧对象的所有非空 GNU 输入段仍匹配同一个原有链接位置，没有额外前移条目。
+本批合计十五个模块，四版各 30 条 GNU 语句按真实对象收集。启动模块未照搬此规则：它的 MenuIntroTransition 晚于 IntroSceneCore，整体收集会提前该入口，仍须追查生成归属。
+此项历史对象核对不替代当前源码的统一编译验证；没有运行编译器或改变普通段顺序。
+
+## ROM trailer numeric-limits candidate
+
+`asm/data/rom_trailer.s` 的四版范围和字节已再次核对，仍保留独立普通 .rodata。
+前 12 个字值与整数 numeric_limits::digits 相符；后 84 个零不能只用普通幂次对齐解释。
+原库实现和内部对象边界未证实，仍保留未知标签，不引入新库或伪造语义数组。
+前 48 字节改写为 .word，四版 132 字节静态还原完全一致，后接 IWRAM 装载镜像的位置不变。
+详见 RELOCATION_AUDIT.md 的同名小节；本次未编译或改动链接顺序。
+
+## 场景实体连续模块与四个尾部成员（静态批次 EW）
+
+旧 asm/code_entities_08034CEC.s 的主体此前已迁入各功能模块，最后留下的并非未反汇编字节，
+而是 4 个完整尾部入口（36/8/20/24 字节）。结合真实类偏移、狗球携带动画中的内联操作、
+篮子 GetBox 的同一矩形，以及 MoreItems 的 30 项容量，将它们恢复为 DogBallVisualController::SetAnimation、
+DogBallEntity::IsCarried、ShippingBasketEntity::GetBoxAt 和 IsFull。命名表示已恢复的功能，不声称取得了原作者的符号名。
+
+鸡蛋、出货篮、狗球、场景事件效果及这些尾部方法在四版均为连续的场景实体实现。
+合并为 src/world_prop_entities.cc 和 include/world_prop_entities.hh，保留每种实际类的身份及布局；
+移除 4 套碎片文件和最后的地址命名汇编文件。没有为输出尾部入口添加假调用、虚构新类、
+人为 section 或 -fkeep-inline-functions；采用当前项目已有的类实现声明和正常内联成员机制。
+
+四版普通 .text 的这 5 个对象选择器收为 1 个；相邻的 8 个 GNU 代码选择模式和 4 个虚表选择模式，
+分别收为该真实模块的整体自然 GNU 输入。原 25 个显式汇编实现按顺序逐项一致，未加副本或改动指令。
+4 个小方法改写为 C++，其 88 字节不能计作已通过匹配的高级语言成果。
+
+| 版本 | 连续主实现（终点不含） | 四个尾部入口（终点不含） |
+| --- | --- | --- |
+| JP | 08037A58–08038EC8 | 08038E70–08038EC8 |
+| US | 08037CC4–08039134 | 080390DC–08039134 |
+| EU | 08037CD8–08039148 | 080390F0–08039148 |
+| DE | 08037BD8–08039048 | 08038FF0–08039048 |
+
+尾部四版除两个 BL 位移外逐字节一致；调用目标分别是资源句柄解析和 MoreItems::GetSize。
+原 ROM 的逐字节绝对地址扫描，以及保存 ELF 的所有可执行区间中 ARM/Thumb BL 检查，均未发现
+进入这 88 字节的外部直接引用。未把这个静态结论当作任意扩缩或运行验证的证明。
+
+本批未调用编译器、汇编器、链接器，未提交或推送。四个成员的实际生成、析构及虚表自然顺序，
+与上一批预处理器/编译器补丁一起进入统一四版验证。其余硬件普通 .text 和 GNU 组织仍未完成。
+
+## 编译器保留数组身份，撤销字符串猜测修补（静态批次 EV）
+
+已通读 fomt_preproc 的实际处理路径。bad_alloc 原本仅出现于自测，但结构解析限制 g 前缀、按同内容推断表达式目标、补造未输出数组及首部匿名字符串去重，仍包含会受源码增改影响的假设。本批整体移除这条修补链及旧测试，不将其换成另一套变量名或地址规则。
+
+固定 cp 基准的 decl_constant_value 会把只读数组声明替换成 STRING_CST，随后数组退化转换取到匿名字面量地址。新增 agbcp-const-array-identity.patch，在 ARM/Thumb 两份前端仅按 ARRAY_TYPE 保留原数组声明；标量折叠不变。接入已有安装脚本；预处理器只保留汇编语法兼容、普通数据段及显式对象/可执行段对齐，不再选择或改写文本指针。
+
+补丁已对固定基准源码通过 git apply --check。新增的单一跨翻译单元回归涵盖同内容独立数组、空文本、内嵌零、直接指针、数组/结构表、返回值、偏移及引用；尚未执行。工具源码从 2113 行缩至 861 行。本批未重装或编译工具链，未运行自测、四版构建，未提交推送；统一验证前必须先安装带此补丁的编译器。
+
+## 相邻模块前缀与 GNU 尾段联合整理（静态批次 EU）
+
+按同一模块联合核对普通代码、GNU 生成函数、虚表及库字面量。时钟状态、世界地图、日历和命名界面的晚段生成函数与虚表，改由所属对象收集；较早的场景转换入口保持原先物理位置。已有四版对象的 GNU 段仍由相同位置首次接收，普通 `.text/.rodata/.data/.bss` 顺序和函数体未改。新编译输出、弱符号副本选择及成员顺序仍待统一验证。
+
+17 处先前归在上一模块末尾的手工 `bad_alloc` 定义及声明已移除，改由紧接模块已有的真实 `<new>` 依赖产生前缀。四版各槽均为十字节字符串加两字节对齐，未新增 include、调用、类型或手工 section。源文件只有定义与声明引用；原 ROM 的六处同值字节已按完整 PCM 采样或字体位图核实为非指针。自然前缀及后续符号地址尚待统一编译确认。
+
+本批仍属静态修改，不计为构建匹配或全 ROM 动态化完成；硬件交错条目、其他逐函数 GNU 清单和未知库副本继续保留在同一待办。未编译、提交或推送。
+
+| 前一模块 → 接收自然前缀的模块 | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| `scene_reference_page` → `scene_poultry_farm_shop` | `0x080FD0C4` | `0x080FD958` | `0x080FD9A4` | `0x080FE0AC` |
+| `scene_poultry_farm_shop` → `scene_supermarket` | `0x080FD554` | `0x080FDDCC` | `0x080FDE18` | `0x080FE570` |
+| `scene_supermarket` → `scene_clinic_shop` | `0x080FD804` | `0x080FE044` | `0x080FE090` | `0x080FE7D0` |
+| `scene_clinic_shop` → `scene_inn_shop` | `0x080FD9D8` | `0x080FE258` | `0x080FE2A4` | `0x080FEA18` |
+| `scene_inn_shop` → `scene_won_shop` | `0x080FDBE4` | `0x080FE478` | `0x080FE4C4` | `0x080FEC30` |
+| `scene_won_shop` → `scene_winery_shop` | `0x080FDF90` | `0x080FE734` | `0x080FE780` | `0x080FEF04` |
+| `scene_winery_shop` → `scene_special_merchant_shop` | `0x080FE178` | `0x080FE8F0` | `0x080FE93C` | `0x080FF124` |
+| `scene_special_merchant_shop` → `scene_beach_cafe_shop` | `0x080FE394` | `0x080FEAE8` | `0x080FEB34` | `0x080FF310` |
+| `scene_beach_cafe_shop` → `scene_blacksmith_shop` | `0x080FE530` | `0x080FEC70` | `0x080FECBC` | `0x080FF4A0` |
+| `scene_blacksmith_shop` → `scene_carpenter_shop` | `0x080FEC84` | `0x080FF350` | `0x080FF3A4` | `0x080FFB8C` |
+| `scene_carpenter_shop` → `scene_yodel_ranch_shop` | `0x080FF4FC` | `0x080FFB54` | `0x080FFBA8` | `0x08100430` |
+| `scene_refrigerator` → `scene_rucksack` | `0x080FFA14` | `0x0810009C` | `0x081000F0` | `0x081009BC` |
+| `scene_rucksack` → `scene_shelf` | `0x080FFA44` | `0x081000C4` | `0x08100118` | `0x081009EC` |
+| `scene_shelf` → `scene_tool_chest` | `0x080FFAB4` | `0x08100138` | `0x0810018C` | `0x08100A6C` |
+| `scene_tool_chest` → `scene_blacksmith_upgrade` | `0x080FFAD4` | `0x0810015C` | `0x081001B0` | `0x08100A8C` |
+| `scene_gift_wrapping` → `scene_gamecube_link` | `0x080FFE64` | `0x081004D4` | `0x08100528` | `0x08100E94` |
+| `scene_calendar` → `name_entry` | `0x0810494C` | `0x08104E00` | `0x08104E58` | `0x08105818` |
+
+## 普通代码与 GNU 生成内容联合归属（静态批次 ET）
+
+脚本引擎、指南场景、事件状态、精灵工作目标和 VCount 五个模块按同一物理区间核对普通代码、生成函数与相关虚表。
+五组晚段函数改由所属对象正常收集 `.gnu.linkonce.t.*`，其中三个有虚表的模块同时改用所属对象的 `.gnu.linkonce.d.*`。
+这不是将自定义 `.text.*` 改名藏入 GNU：本轮没有新增任何 section 属性或编译选项，普通 `.text/.rodata/.data/.bss` 条目及相对顺序保持不变。
+脚本查找与指南二分查找的真实 C++ 调用、事件的 const/非 const 查找实例和 VCount 实际析构顺序已核对；模板与隐式成员的实际输出仍需统一编译确认。
+
+GNU 清理仍未全部完成，不能仅以硬件剩余三条自定义 `.text` 衡量剩余工作。其他逐函数 GNU 条目、跨对象副本选择及硬件重复入口继续在同一流程中处理。
+`Error` 的脚本错误返回与 `N/A `/JP“なし”区域占位文本不能仅因邻接 `bad_alloc` 归为运行库；修正了相应过度断言的注释，独立字面量及原始排列未删除或合并。
+本批只做静态整理，没有运行编译器、汇编器、链接器，没有提交或推送。
+
+## 存档复制内联归属与运行库前缀（静态批次 ES）
+
+账户复制与 Dog 赋值的原有函数体移回同名类头文件，保持成员复制顺序不变。
+它们由原生 GameStateSaveImage 复制函数直接调用。两个所属对象以编译器现成的
+`-fkeep-inline-functions` 保留真实内联定义，替换原来的 `-ffunction-sections`。
+普通代码各链接一次 `.text`，晚段复制入口使用编译器正常的 GNU 内联输出。
+没有为保存输出新增假调用、别名、空构造或手写 GNU section。
+
+Dog 原来经 unknown_types.hh 引入无关资源内联实现；两份四/八字节动物状态记录
+原样归入已有 animal.hh，Dog 只通过 Pet 引入实际动物定义，不再依赖该资源头链。
+
+ReferencePage 与 ShopCommon 的手工首部 bad_alloc 和声明已移除，沿用实际已有的
+<new> 依赖；前者到下一对象间有两字节对齐，后者紧接半字字形数组。独立尾部副本
+保留。ScrollMenu 尚无真实 <new> 依赖，其两份定义继续保留，不添加用于凑字节的引用。
+
+四版人为 text 子选择从 9 项降至 3 项，剩余均为硬件晚段。源码与链接意图已调整，
+内联生成、顺序及字节匹配尚未编译验证。未提交、未推送。
+
+## 当前源码复核、池对齐与 UI 库前缀（静态批次 ER）
+
+JP 的 farming_tutorial 两处、game_scene_state 六处常量池前，原先写死的
+两字节零数据改为 `.align 2, 0`。逐处核对原 ROM 零值、前置长跳转目标、池的
+四字节边界；当前全部指令和标签偏移保持不变。三版海外原生代码逐行未变。
+
+JP 八处间隙：0x080DE12A、0x080DEB9A、0x080D8DDA、0x080D8F7E、
+0x080D9072、0x080D9122、0x080D98C6、0x080D9A22。
+
+ui_state 的首部手工 bad_alloc 和声明移除，使用实际已有的 <new> 依赖产生。
+原槽位 JP 0x080F9758、US 0x080F9EFC、EU 0x080F9F48、DE 0x080FA3E4，
+均为十字节字符串加两字节对齐；其后独立副本保留。自然输出的顺序和字节仍待
+统一构建，不以此次静态修改认定匹配。
+
+LDS 本批未改，人工 text 子选择仍为每版 9 项。未编译、提交或推送。
+
+## 运行库前缀与账户析构归属（静态批次 EQ）
+
+三处模块首部原有的 bad_alloc 字面量交回实际库头文件的正常输出，
+删除对应手工 char 数组及外部声明。现有 Rucksack 的活动槽构造、对象调色板
+容器和算法头文件本来就依赖 <new>，没有添加用于凑字节的 include、调用或类型。
+本批实际处理包装、冰箱和脚本引擎三处；指南页面与滚动菜单仅完成候选核查，
+未移除其手工前缀。
+
+每处原字符串均为十字节，至下一对象前有两字节对齐。自然常量的内容、输出
+位置和对齐仍需统一编译验证。独立的尾部副本没有去重或删除。
+
+账户析构的已有空函数体移入真实 MoneyAccount 类定义，成员历史的活动元素
+析构规则保持不变。真实 GameStateSaveImage 析构已存在该调用，四版保存对象
+均在本体 +0x30 处有指向 _._12MoneyAccount 的 Thumb 调用重定位。LDS 在原先
+位置接收编译器产生的内联析构段，删除 .text._._12MoneyAccount 人工选择。
+未添加强制保留属性、假调用、手工 GNU 段或包装函数。
+
+| 版本 | 包装模块前缀 | 冰箱模块前缀 | 脚本引擎前缀 | 账户析构（80 B） |
+| --- | --- | --- | --- | --- |
+| JP | `0x080FFD54` | `0x080FF9A4` | `0x080F96F4` | `0x080D63C0` |
+| US | `0x081003E4` | `0x08100024` | `0x080F9E98` | `0x080D6C08` |
+| EU | `0x08100438` | `0x08100078` | `0x080F9EE4` | `0x080D6C54` |
+| DE | `0x08100D80` | `0x08100938` | `0x080FA380` | `0x080D6B6C` |
+
+本批未编译；必须同时核对账户析构及其调用方，不能只检查被调用函数存在。
+账户复制、Dog 赋值和三项硬件晚段选择仍待处理。
+
+## 世界虚接口与自然虚表归属（静态批次 EP）
+
+核实原世界类、组精灵类及两层公共接口的四张表，合计每版 908 字节。
+保留原先世界表、组精灵表、两张接口表的物理顺序，移除集中手写表的
+vtables.cc。LDS 改为接收 game_world、真实组精灵类型和 game_object 的自然虚表，
+不把原数据块改名冒充 GNU，也不搬动后续对象。
+
+世界接口仍为 90 个字：两个元数据字、一个析构槽、87 个其他槽。共同基接口为
+44 个字；两层基类除析构外均为纯虚槽。19 个原无参数占位声明补齐实际参数或
+返回类型，60 个已有 C++ 回调定义归回 GameSceneWorld 的真实成员。现存汇编
+完整保留在 game_world.cc，入口、指令、池、跳转和区域分支均未改变。
+
+| 版本 | 世界表（360 B） | 组精灵表（12 B） | 世界接口表（360 B） | 基接口表（176 B） |
+| --- | --- | --- | --- | --- |
+| JP | `0x080E5304` | `0x080E546C` | `0x080E5478` | `0x080E55E0` |
+| US | `0x080E5EC4` | `0x080E602C` | `0x080E6038` | `0x080E61A0` |
+| EU | `0x080E5F10` | `0x080E6078` | `0x080E6084` | `0x080E61EC` |
+| DE | `0x080E5E28` | `0x080E5F90` | `0x080E5F9C` | `0x080E6104` |
+
+以上地址是既有 ROM 对照位置，不新增固定地址约束。自然表与析构的实际生成、
+顺序及完整 ROM 字节尚待整轮静态批量修改结束后的统一编译。
+
+## 音频归并与账户排段整理（静态批次 EO）
+
+硬件音频初始化与帧命令、播放器操作、歌曲操作在四版中连续，占 824 字节。
+三组实现与声明统一归入 hardware_sound.cc/.hh；移除原 hardware_music_player 和
+hardware_song 的两组源码/头文件。函数体、接口和先后顺序保持不变，LDS 每版
+少两个普通 text 输入，不改变音频引擎、歌曲资源或命令虚表的原有物理位置。
+
+账户历史更新的四版原指令均为相同的 428 字节。现在用同一 C++ 实现表达最大值
+更新、四条历史的淘汰/追加，以及三十条历史重置为一条零记录。保留仅构造活动
+记录、结束移除记录生命周期的规则，未把固定存档容量变成可任意扩大的对象。
+移除 .text.money_account_update/history 及四个手工 SECTION 声明，早段代码按照
+源码定义顺序收集。账户晚段复制/析构尚未解决，-ffunction-sections 与相应四项
+选择仍保留，不把本次工作算作整个账户模块已恢复普通 .text。
+
+| 版本 | 硬件音频连续范围 | 账户历史更新 |
+| --- | --- | --- |
+| JP | `0x08008AF8–0x08008E30` | `0x0809A8A4–0x0809AA50` |
+| US | `0x08008AF0–0x08008E28` | `0x0809AE6C–0x0809B018` |
+| EU | `0x08008B04–0x08008E3C` | `0x0809AE9C–0x0809B048` |
+| DE | `0x08008B10–0x08008E48` | `0x0809ADCC–0x0809AF78` |
+
+## 连续硬件模块与头文件归并（静态批次 EN）
+
+硬件上下文及紧随其后的 19 个状态访问入口合为 hardware_context.cc/.hh。
+四版原范围都连续，共 1340 字节；其中访问入口原占 200 字节。C 接口名称、
+参数及返回宽度不变，移入 C++ 后仅补上原 void* 隐式转换对应的 static_cast。
+核心状态、DMA 队列布局和访问声明归入同名头文件；不再保留 accessors 碎片。
+
+混合控制器及其相邻命令对象合为 hardware_blend.cc/.hh，原范围共 620 字节。
+所有函数体和独立 IWRAM ARM 实现保持不变；对象的真实虚表仍由编译器生成。
+HardwareDmaCopyLink 的既有类型与内联方法归入 hardware_dma.hh，调用者直接包含
+该头文件，不再保留仅转接同一功能声明的 hardware_dma_link.hh。
+
+每版普通 text 输入减少两个。DMA 复制命令、GameCube 场景各自的 Run/析构按
+真实类的 GNU 族接收；未将普通人工子段改成通配。LDS 的独立对齐行并到后一
+输入同一行，并清理空行及多行列表缩进，输入先后、对齐值和填充值不变。
+
+| 版本 | 上下文与访问入口 | 混合控制器与命令 |
+| --- | --- | --- |
+| JP | `0x0800844C–0x08008988` | `0x08009308–0x08009574` |
+| US | `0x08008444–0x08008980` | `0x08009300–0x0800956C` |
+| EU | `0x08008458–0x08008994` | `0x08009314–0x08009580` |
+| DE | `0x08008464–0x080089A0` | `0x08009320–0x0800958C` |
+
+## 浇水构造及小游戏文本图块缓冲（静态批次 EM）
+
+三种小游戏的前缀不再统一记作未知字节：绘制和 DMA 使用确认了以下布局，
+复用已有 UnkUiSelectionTileBuffer（0x104 字节，像素区在 +4），不新建空类型。
+
+| 核心 | 计时图块缓冲 | 结果图块缓冲 | 下一成员 |
+| --- | --- | --- | --- |
+| 浇水 | +0x008，4×2 tile | +0x10C，4 个，步长 0x104 | UI +0x51C |
+| 收获 | +0x008，4×2 tile | +0x10C，3 个，步长 0x104 | UI +0x418 |
+| 照顾动物 | +0x008，4×2 tile | +0x10C，3 个，步长 0x104 | UI +0x418 |
+
+首缓冲单独默认构造，后面的数组分别具有四次或三次空构造；这与四版原生
+构造中的无写入循环吻合。每个缓冲的首字含义仍保留 unk，未当成填充。
+
+浇水主构造原为 1260 字节，现按原顺序初始化 UI、九个归档、混合器、十个
+精灵、两组各 25 个参数、五个音乐槽、声音命令和十二个图块句柄。原晚段
+132 字节图块构造改为真实成员的隐式构造；删除该模块最后一个人工 text
+子段。核心析构、图块构造、图块析构仍按原顺序接收自然 GNU 内容。
+其余原生实现及 rodata 后缀逐字保持不变；生成字节尚未验证。
+
+## 浇水小游戏的资源成员与清理边界（静态批次 EL）
+
+四版浇水核心的构造与清理共同确认了九个独立归档所有者、十个精灵记录、
+两组各 25 个独立绘制参数及十二个独立图块句柄。普通精灵的两个指针拥有分配，
+后续四组范围借用归档载荷；25 项集合共享一个资源句柄。清理先逆序释放绘制
+参数，再释放句柄，最后依次清理混合器、归档、UI 与硬件基类。
+
+这些真实成员归入 scene_watering_minigame.hh，保持原始偏移及 0x98C 的核心
+对象尺寸。原核心析构 688 字节、图块句柄析构 244 字节，改由成员生命周期
+自然生成，未添加人为 GNU section、强制使用或伪别名。未知前段、+548 的
+8 字节、+778 的 32 字节及其他未分类 RAM 均继续保留 unk，不虚构用途。
+
+晚段原本共 1064 字节，目前仍有 132 字节真实图块句柄构造保留原生实现。
+入口及唯一调用同步采用真实类构造的 ABI 符号；其指令逐行不变。主构造中的
+四次无写入循环及所有其他原生方法不变，没有为匹配创建空类或额外调用。
+因此人工 text 选择器仍是每版 13 项，本项尚不能算作该 section 已清理完毕。
+
+原段顺序保持为核心析构、图块构造、图块析构；两项自然 GNU 输入暂居构造
+两侧。后续需要在真实主构造恢复后解决剩余普通段归属，不能用通配吞掉它。
+本次确认的是边界和源代码关系，932 字节不能提前计入已匹配 C++ 进度。
+
+当前仅完成静态核对；实际布局、析构内联与生成顺序仍等待整批统一四版构建。
+未运行编译、汇编、链接或移址实验，未提交或推送。
+
+| 版本 | 原晚段范围（末端不含） |
+| --- | --- |
+| JP | `0x080E4788–0x080E4BB0` |
+| US | `0x080E4FF0–0x080E5418` |
+| EU | `0x080E503C–0x080E5464` |
+| DE | `0x080E4F54–0x080E537C` |
+
+## VBlank 注册范围的独立功能归属（静态批次 EK）
+
+晚段的 VBlank 回调、注册构造和完整恢复析构为连续 176 字节，现归入
+hardware_vblank_binding.cc/.hh，四版各以一条普通 .text 输入链接。早段管理器
+仍负责声音、帧命令和生命周期组合，通过真实绑定类型调用该模块；没有因原
+文件名相同而继续将不连续实现用人工 section 绑在一起。绑定的唯一四字节当前
+对象指针也移到同一模块，LDS 的 .bss COMMON 输入在原位置同步更换。
+
+原有构造/回调 C++ 函数体、76 字节析构指令、常量池和中断恢复顺序均未改变。
+成员类型和尺寸校验随所属类型移动，没有新增类型、别名、手写 GNU section
+或强制生成调用。pragma implementation 的所属文件同步改名；自然虚表、内联
+副本归属及最终顺序仍须由统一构建验证，不能据静态迁移宣布字节匹配。
+
+教学场景的两项真实多继承析构跳板、两项场景析构分别按自然族收集，四项 GNU
+选择器缩为两项。四版既有对象中的成员与顺序完全相同；模式没有纳入 Push、
+Transition 或其他函数。未扩张到缺少既有对象顺序证据的其他类族。
+
+四版当前各剩 13 项人工 text 选择器。硬件列表的独立保留副本、MoneyAccount、
+Dog 和浇水场景仍待处理。asm 中四个 88 字节实体辅助入口的原始归属，以及事件
+状态复制的自然 C++ 输出尚未解决；不为清空目录而虚构模块、调用或别名。
+
+本批未运行编译、汇编、链接、移址实验，未提交或推送。
+
+| 版本 | VBlank 连续范围（末端不含） |
+| --- | --- |
+| JP | `0x080D7098–0x080D7148` |
+| US | `0x080D78E0–0x080D7990` |
+| EU | `0x080D792C–0x080D79DC` |
+| DE | `0x080D7844–0x080D78F4` |
+
+## 教学场景主循环与按键输入边界（静态批次 EJ）
+
+FarmingTutorialScene::Run 的原生范围为 JP 2144 字节、其余三版各 2164 字节。
+已按原调用顺序恢复四个音效槽、脚本装入、世界所有权转移、十二个脚本状态、
+淡入淡出、对话按键及逐帧绘制。海外版在退出状态跳过重复 Start 处理，JP
+没有该条件；其余状态操作共用实现。保留的教学分派与辅助汇编逐版核对一致。
+
+Push 由实际 C++ 调用方触发内联机制，定义位于调用之后；移除教学模块专用
+-ffunction-sections 及人工 .text.Push 子项。四版各剩 14 项人工 text 选择器。
+Push 的自然输出和主循环编译字节仍待统一验证，不视为已经匹配。
+
+UiStatePayload 的输入参数仅在覆盖前读取 +4/+8 两个半字，教学调用方构造的是
+HardwareInputState。修正 Owner/Payload 声明及真实符号名；六个既有 C++ 调用点
+明确传入硬件状态的 input 成员，汇编调用同步改名，没有伪别名或 ABI 参数改位。
+原生函数体保持原指令。教学世界使用独立的四字节所有权类型和八字节转移记录，
+与工厂及消费者的清空源槽、缓存指针、虚析构相符，不再将其当作普通 GameObject。
+
+尚未运行编译、链接或移址实验。旧编译器内联、共享容器增长、所有权返回 ABI、
+自然 GNU 输出顺序和最终四版 ROM 字节均列入整批验证。
+
+## 牧场地图的构造与成员生命周期（静态批次 EI）
+
+场景构造、场景析构以及核心和室内标记容器的生命周期归回 farm_map_screen
+对应的 C++ 类型。室内三个独立行成员与四个建筑容器保持已确认的原偏移；
+标记列表仅释放有效元素及自有分配，资源归档仍借用原图像资源。
+
+四版构造逻辑对照一致，唯一地区内容差异保留为 JP/海外标记归档符号。
+原晚段人工 .text.new_game_birthday_core_cleanup_after 选择器已移除，
+改为收集真实类型的自然 GNU 实现；普通 .text 仍只收集一次。剩余汇编
+逐版对照修改前保持一致，没有移动数据段或新增辅助源文件。
+
+新游戏菜单两个相邻析构也按原对象内的真实类族收拢；四版基线对象的
+成员集合及顺序均已核对，不扩大到另一个对象中的 FreshSaveTransition。
+
+本批仅静态整理。牧场地图大型构造的内联、隐式生命周期的生成顺序、
+原室内容器构造保留的 12 字节栈帧和最终 ROM 字节尚待整批编译确认；
+不能将本记录视为 SHA-1 已通过。没有加入伪造的成员、手写 GNU 段或强制生成调用。
+
+## 硬件与菜单的自然 GNU 类族归组（静态批次 EH）
+
+四版中硬件管理器的五张主/次基类虚表、声音命令的虚表与析构、链表虚表和
+菜单面板虚表，按现有真实类族收集。15 条逐项选择缩为 5 条，保留原有弱符号
+选择范围。完整类定义顺序已核对；没有改字段、函数体、普通段位置或增加手写
+GNU section。菜单核心与选择核心依赖仍单独保留，未强行并入面板类族。
+
+新模式逐项对照四版基线对象的段名，未匹配到额外成员。实际自然输出顺序及弱
+副本选择仍待统一构建，不据此宣称普通人工 text 子项已清零。
+
+地形属性区补充引用核查：四版每版 260 项实际目录重定位已确认。其余数值命中
+已逐项归为指令重叠、对齐与整数重叠、PCM 样本、归档索引/OAM/图块/色板、字体
+索引、现有资源工具生成的图像载荷及 Mary 脚本范围。无未归属数值命中；其中
+Mary 范围仅记录归属，不等同于证明脚本内部的动态引用。没有将图像或指令的
+偶然四字节组合改成虚假指针。普通 CPU 目录引用无需再补写原始地址。
+
+## 地形属性与索引网格归属（静态批次 EG）
+
+原 static_resources 汇编区的 220 个对象已逐项对应实际调用：110 份四字节地形属性
+字典及 110 份行优先索引网格，合计每版 138,932 字节。全部按原物理顺序归入
+map_terrain.cc，外部声明归入同名头文件；删除原汇编及重复的资源声明头，四版
+LDS 只在原位置收集一次 map_terrain.o(.rodata)。没有新增资源目录或编译步骤。
+
+四版源码字节及全部标签边界均与基线 ROM/sym 对照一致，属性字段可无损还原，
+网格元素数量逐项对照描述符宽高，尾部 0..3 字节仅由 ALIGN(4) 补足。六份季节
+共用网格保留“一方少读取一行”的真实约束；只有 MapDataResource_243 存在 JP
+专有网格差异。未擅自给未知属性位命名，改变网格尺寸仍须同步描述符。
+
+已核对每版 260 项目录重定位。全 ROM 数值扫描中其余重叠数值命中另行保留核查，
+不把这些数值直接视为指针，也不据此宣称全域入向引用审计完毕。编译输出顺序、
+位域布局及最终四版字节尚待本轮统一验证。
+
+## 场景切换目录的自然 GNU 组织（静态批次 EF）
+
+超市与购买场景保留原工厂函数体及成员布局，按实际物理顺序调整完整类的定义顺序；
+工厂实现归入对应类内，所调用的既有 ABI 声明提前到使用之前。四版两组创建/析构
+函数及虚表改为自然类族收集。小游戏、赛马的切换虚表也按已核对的类顺序归组。
+
+单个切换类型的创建与析构不再各列精确函数名，匹配限于其真实旧 ABI 类名后缀；
+保持原有弱符号选择，不添加强制生成或伪别名。LDS 中本批产生的多余空行已清理。
+普通代码与数据范围没有移动；自然输出成员、顺序及四版 ROM 字节仍待统一验证。
+
+## 小游戏场景切换的 GNU 连续组（静态批次 EE）
+
+浇水、收获、动物照料和鸡祭四个现有 CreateScene 实现移回对应类内，实际函数体
+及所有权传递保持不变；场景类型在对应 new 表达式之前已完整定义。现有类顺序
+配合旧编译器的内联输出规则，对应原 ROM 每项“创建场景、析构”的相邻排列。
+
+四版的八个切换函数改为 scene_minigames 的一个自然 GNU 组，四张场景虚表同样
+按其已正确的类顺序收集一次。切换目录自身的虚表仍保留原物理位置。
+此次没有移动任何普通 `.text`、生成伪别名或修改玩法；最终机器码待统一构建验证。
+
+## 帧命令、地图和日历的 GNU 归属（静态批次 ED）
+
+显示、精灵和 DMA 三个帧命令的现有 Run 实现按旧编译器的实际输出顺序组织，
+其类定义顺序仍保持不变。对应函数、析构和虚表明确由 hardware_context 对象收集，
+不再依赖全工程任意对象命中各条链接项；其他硬件命令不并入这组。
+
+城镇地图四个既有标记树函数只调整定义顺序，前置声明及函数体保持不变；地图、
+料理和日历的晚段函数按真实类族收集。普通代码和数据的物理范围没有跨主题合并。
+保存了既有对象段清单；自然输出、弱符号副本选择及四版字节仍待整批完成后验证。
+
+## UI 命令和文字接口的自然顺序（静态批次 EC）
+
+UI 六个实际命令/适配器类按原虚表及析构顺序组织，类内成员、函数体、继承及
+链接属性保持不变。上传和 DMA 的两个 Run 实现在各命令类型完整定义之后；DMA
+队列在读取它的成员前已有完整定义。UI 基础接口的现有内联顺序不变。
+
+四版九条 UI GNU 函数链接行和八张虚表选择分别合为所属模块的一组自然输出。
+脚本文本变量基类仍在自己的原物理范围内先行收集；普通 `.text` 未采用通配合并。
+保存的旧对象清单与新源码顺序共同作为统一验证依据，尚不宣称最终字节已匹配。
+
+## 屏幕与教程对象的 GNU 自然顺序（静态批次 EB）
+
+牧场状态页的四个现有 Draw 实现移回各自类内；主菜单数据的构造/析构定义顺序
+与旧 agbcp 的内联输出机制对应。赛马与兑换页按各自场景、文本变量、核心的真实
+依赖组织，Lookup 放在相应核心定义之后，持有者的 delete 仍在类型完整后定义。
+函数体、数据成员顺序、继承及普通 `.text` 均未改变。
+
+连同原顺序已正确的动物角色、教程世界、童年场景和飞盘核心，八组逐函数 GNU
+选择改为所属类族；赛马六张虚表合为一个真实类型族。不是把普通代码改名为 GNU，
+也不以通配符跳过源码顺序整理。四版原物理组顺序逐项一致。
+四份 LDS 同时去除整理遗留的注释与空行，逐字符核对其余链接命令不变。
+
+GNU 的实际生成、重复实例选择及字节匹配仍待统一构建；人工普通 `.text` 子项仍为
+16 项，剩余汇编归属问题继续单列，不据此宣称全 ROM 动态化完成。
+
+## 鸡祭核心的资源与调色板拥有关系（静态批次 EA）
+
+根据构造、阶段初始化、渲染和析构四类路径，恢复鸡祭核心的两个独立调色板句柄、
+两组调色板句柄数组、九个独立归档拥有者、六组精灵资源布局，以及具有实际 2/5/10
+元素计数的句柄和绘制参数数组。资源范围本身借用归档内容，不添加释放行为。
+
+这些成员按真实偏移和声明顺序保存在 `scene_chicken_festival.hh`；未知 RAM 仍保留。
+原晚置析构 1040 字节/版改由 C++ 成员析构生成，移除该模块的人工晚置 `.text` 子项。
+主程序汇编与普通 rodata 不变。四版人工普通 `.text` 子项由 17 项降至 16 项。
+
+本批未运行编译器，隐式析构的内联选择、字节及 GNU 输出顺序等待统一四版构建；
+已确认的成员边界与尚未确认的编译匹配分开记录。
+
+| 版本 | 原版范围（终点不含） |
+| --- | --- |
+| JP | `080E40D8–080E44E8` |
+| US | `080E4940–080E4D50` |
+| EU | `080E498C–080E4D9C` |
+| DE | `080E48A4–080E4CB4` |
+
+## 动物照料小游戏的成员边界与晚置析构（静态批次 DZ）
+
+依据构造、资源准备、渲染及释放路径，将核心内部恢复为八个独立精灵资源布局、
+七组各含五个元素的拥有者数组、三组借用资源范围、八个归档拥有者及十一个图块句柄。
+其中 `+0x6E0` 是绘制参数数组，`+0x6F4` 才是资源句柄数组；不以相邻地址猜测相同类型。
+`+0x7BC` 保留已确认的初始化/释放布局，其具体游戏用途尚不明确，不进一步命名。
+
+原晚置核心析构 764 字节、图块句柄析构 224 字节由实际成员的 C++ 析构关系表达，
+移除 `.text.world_sprite_effect_frames_after`；保留真正由编译器产生的 GNU 析构段。
+同一核心与场景的两个虚表依照真实类型顺序合为一个 GNU 类型族条目。
+主汇编代码、区域差异及普通 rodata 未改动。人工普通 `.text` 子项由每版 18 项降至 17 项。
+
+此批仅完成静态实现，尚未编译；对象布局、析构内联及 GNU 输出顺序、原版字节匹配
+仍须统一四版构建确认，不将这 988 字节计入已通过匹配的高级语言进度。
+
+| 版本 | 原版范围（终点不含） |
+| --- | --- |
+| JP | `080E3CFC–080E40D8` |
+| US | `080E4564–080E4940` |
+| EU | `080E45B0–080E498C` |
+| DE | `080E44C8–080E48A4` |
+
+## 收获小游戏的所有权与晚置析构（静态批次 DY）
+
+收获小游戏从构造、资源准备及释放三条路径确认了八个归档拥有者、七组资源句柄与
+绘制参数拥有者，以及九个独立图块句柄。组内四个资源范围借用归档数据，不负责释放。
+在同名头文件中表达这些真实成员，保留其顺序、大小及偏移；未知 RAM 继续保留 unk。
+
+原核心析构 484 字节及图块句柄析构 188 字节，共 672 字节/版，改由这些真实成员的
+C++ 析构关系生成。移除手写 `.text.world_sprite_effect_frames_after`，由同一对象
+接收对应的自然 GNU 析构段；主程序中的原有汇编指令、地区差异、数据和引用不变。
+不增加强制生成的调用、别名或编译后重排。普通人工 `.text` 子项由每版 19 项降至 18 项。
+
+这是静态实现，尚未验证生成字节：析构内联选择、输出顺序、寄存器分配及完整 ROM
+匹配留待整批统一构建；不能将这 672 字节提前计为已通过匹配的高级语言进度。
+
+| 版本 | 原版范围（终点不含） |
+| --- | --- |
+| JP | `080E44E8–080E4788` |
+| US | `080E4D50–080E4FF0` |
+| EU | `080E4D9C–080E503C` |
+| DE | `080E4CB4–080E4F54` |
+
+## 连续场景虚表的类型顺序与归属（静态批次 DX）
+
+飞盘与成绩、童年回忆、指南页面、参赛动物选择、镇地图、滚动菜单、世界地图和
+教学场景共 25 张真实虚表，按各版原 ROM 的十个连续类组接收。调整场景、核心及
+文本变量类型的实际定义顺序；原有成员、继承关系、虚槽和 pragma 归属不变。
+前置声明只用于实际指针；拥有者的 delete 实现仍位于核心完整定义之后。
+
+没有改写普通函数体，没有新增 GNU section、别名或强制生成用的调用。
+普通人工 `.text` 子项仍有每版 19 项，存档复制和四个实体辅助入口仍待解决。
+本批只通过源码顺序、完整类体及四版链接范围的静态检查；尚未编译或验证 ROM 字节。
+
+## 中断表 C 模块与专用 ARM 分派器（静态批次 DW）
+
+
+原 `asm/interrupt.s` 中的两个普通 Thumb 表项交换入口共 32 字节，恢复为
+`src/interrupt_table.c` 的 C 函数；对应的中断回调表与嵌套使能掩码表一起归入
+该模块，统一在 `include/interrupt_table.h` 声明。保留原先 16 槽硬件表容量、
+字段宽度、声明次序、返回旧值和不额外检查索引的行为。
+
+真正采用 ARM 状态、SPSR/CPSR 与中断寄存器协议的部分保留为
+`asm/interrupt_dispatch.s`。它的两段 ARM 指令、常量池、符号引用完全不变。
+启动侧的普通中断 API 继续在 `src/interrupt.c`，头文件改用对应的 C `.h`。
+四份 LDS 各自只更换这两个完整所有者的普通 `.text`、`.bss COMMON` 和
+`.iwram` 输入，不新增人工 section，也不改变它们的原链接位置。
+
+32 字节是旧基线中的范围，不是新 C 输出已经匹配的声明；寄存器选择、COMMON
+顺序与完整 ROM 字节等待统一编译。本批仍未编译、提交或推送。
+
+## 启动与窗口类的剩余虚表归组（静态批次 DV）
+
+
+启动画面、姓名输入、文本窗口和 VCount 绑定共十张真实虚表，分别按四个连续类族
+接收。窗口对象与场景对象通过真实指针前置声明安排类型顺序，完整类成员、虚槽、
+构造参数及布局不变；窗口的两个内嵌命令仍在窗口本体前完整定义。
+
+文本窗口的三段弱函数与 VCount 的两段弱析构改为两个类族输入。VCount 上下文
+恢复析构保持同一函数体，只在类外定义，使自然输出顺序与原 ROM 顺序一致。
+独立压缩解码器已确认内部使用自定义寄存器调用协议，继续保留命名汇编文件。
+普通存档复制与四个实体辅助入口的最终归属仍未完成，不因文件已读而计为已迁移。
+
+本批未运行编译器、汇编器或链接器。普通人工 `.text` 子项仍有每版 19 项；
+新组织的 GNU 生成顺序与 ROM 字节匹配仍待整批统一验证。
+
+## UI 与联机内联函数的自然输出顺序（静态批次 DU）
+
+
+UI 基础接口的 11 个内联成员与 JoyBus 协议的 18 个内联成员，保留原函数体，
+按旧 agbcp `finish_function` / `saved_inlines` 的逆序输出规则组织定义。
+两段 UI 基础接口、联机 thunk/协议成员和记录页面析构的 50 条逐函数选择器，
+改为六条真实类族选择模式；不把普通 `.text` 改名成 GNU 段。
+
+GameCube 场景通过现有的核心指针持有者提前声明，核心完整定义仍先于持有者的
+`delete` 实现。六张真实虚表按类声明顺序自然生成，在 LDS 中按所属对象收集一次。
+多重继承的两个核心虚表和调整 thunk 继续由真实 C++ 继承产生。
+
+这一步只完成源码/链接组织的静态整理；内联选择、最终自然输出顺序和完整字节
+仍待四版统一编译验证。每版普通人工 `.text` 子项仍有 19 项，未计作已经清完。
+
+## 实体类族与原生字声明整理（静态批次 DT）
+
+
+动物、精灵、事件特效、狗球、篮子、鸡蛋、野狗和玩家的 30 张真实虚表，
+按九个实际连续组接收。狗球/篮子/鸡蛋的控制器通过实体前置声明提前定义，
+野狗本体放在各行为子类前，教学玩家放在两种显示控制器后；完整类体保持不变。
+类声明次序与旧编译器的逆序虚表遍历相配，不手工重建虚表。
+
+玩家两组虚表之间确有普通只读数据，保留这个物理断点；未将它们跨过数据合并。
+五个玩家隐式析构入口按同一真实类族收集。事件复制、JoyBus 和 M4A 剩余的
+`.4byte` 统一为 `.word`，字值、指针表达式、指令和常量池边界均不变。
+
+存档复制的类型限制继续保留：原调用包含 Dog 的赋值操作，物品/事件列表只复制
+有效条目且保留未使用存储。不能用普通整对象复制或伪造构造调用代替。
+事件复制与四个实体辅助入口的最终源码归属尚未完成；本批不将这些算作已解决。
+普通人工 `.text` 子项仍是每版 19 项。所有自然 GNU 输出与字节匹配待统一验证。
+
+## 商店与菜单的自然虚表组织（静态批次 DS）
+
+
+十七组商店/菜单（含烹饪、日历）把场景声明放到核心类之前，核心类的字段、
+函数声明和场景本体保持不变。既有 CoreOwner 只提前指针声明；其 `delete value`
+实现仍放在完整核心类型之后，保留真实析构调用，未创建新的所有权包装。
+烹饪和日历的实际文本变量类也保持在核心成员定义前。
+
+四版逐组核对原清单中的物理连续性，36 个逐类型虚表项归入 17 条所属模块选择式，
+前方的真实 Transition 虚表保留原顺序。角色模块的四张虚表和三条隐式析构入口
+也分别按该真实模块收集，前方已经接收的基类/接口 COMDAT 不重复输出。
+此处仅收集编译器自然产生的 GNU 内容，不恢复人工子 section 或改变普通数据布局。
+
+本批没有新增 ROM 解析覆盖；虚表、隐式函数和内联析构的实际顺序仍待统一编译。
+
+## 角色与显示实现的连续模块（静态批次 DR）
+
+
+四版相同的连续角色范围，现在由 `src/entity_actor.cc` 和 `include/entity_actor.hh`
+管理：角色运动/动画、精灵控制器、默认控制器、脚本显示实体和渲染位置判定。
+原来十条普通 `.text` 条目缩为一条，删除 `entity_sprite`、`script_visual_actor`
+两套碎片源码/头文件；`entity_ui` 的独立只读数据仍原位保留，没有混进角色模块。
+基础 `EntityVisualController` 接口回到 `entity.hh`，供非角色实体同样使用。
+
+两段完整原生汇编保持所有指令、常量池、局部标签和引用不变。76 字节的九个
+角色字段访问入口改为对应的真实内联成员；当前源码没有调用其旧自由函数标签。
+旧编译器的接口实现机制负责输出成员，没有伪调用、别名或手工 GNU 段。
+渲染位置判定的输入已由马/玩家 Draw 调用确认；返回值的视觉含义仍未确认，
+保留未知函数名。既有四版内联范围边界独立核对，未改变相关数据布局。
+
+这是静态源码/链接组织修改。普通方法、内联尾部、隐式析构/虚表的实际生成顺序，
+以及九个恢复成员的机器码，均留待全局批次结束后统一验证；不计为已匹配进度。
+
+## 六组场景与核心虚表归并（静态批次 DQ）
+
+
+生日输入、农场地图、工作人员、鸡祭、收获小游戏和浇水小游戏的 Scene 声明，
+已通过真实 Core 前置声明移到其核心类之前。Scene/Core 的完整类体、字段顺序、
+函数声明和方法实现均不变；原有指针/SmartPtr 成员不需要提前定义 Core。
+
+四版原清单中每组 Core/Scene 虚表均相邻，沿用已记录的边界和所属关系。现在六个
+对象分别使用一条实际类族 GNU 选择式，取代十二个逐类型选择项；真实 Transition
+虚表继续在前方工厂区域接收。源文件没有增加 section、伪别名或用于强制输出的调用。
+声明顺序使旧编译器的逆序虚表遍历对应原 ROM 的 Core、Scene 次序。
+
+本批不增加代码、资源或引用解析覆盖。实际隐式成员生成和四版 ROM 字节匹配仍待
+统一编译，人工 .text 选择项仍为每版 25，剩余原生汇编归属继续处理。
+
+## GNU 虚表输入的重复对齐清理（静态批次 DP）
+
+重复虚表对齐移除数量：JP 115 条、US 116 条、EU 116 条、DE 116 条。
+
+既有四版对象中，JP 的 175 个、海外各版的 176 个实际编译器虚表输入段，全部自带
+至少四字节的节对齐；旧 agbcp 的 build_vtable 也为虚表设置真实类型对齐。因此删除
+LDS 在这些真实 GNU 虚表输入前重复写出的 `. = ALIGN(4)`，由输入段自身对齐生效。
+各输入及选择顺序不变，普通数据、RAM/输出段和有独立用途的对齐保留。同步删去
+同一输出段输入清单内部的空行；不增添逐项注释。
+
+本批只清理冗余链接控制，不增加动态引用或高级语言恢复进度，不宣称剩余 GNU/人工
+子段已全部解决。未启动编译；输入段实际对齐仍随最终四版统一验证检查。
+
+## 状态页、记录页与超市虚表的自然组织（静态批次 DO）
+
+| 连续虚表范围（末址不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 牧场状态：10 张 | `080E6E38–080E6ED8` | `080E7A08–080E7AA8` | `080E7A54–080E7AF4` | `080E796C–080E7A0C` |
+| 记录：6 张 | `080E6F2C–080E6F8C` | `080E7AFC–080E7B5C` | `080E7B48–080E7BA8` | `080E7A60–080E7AC0` |
+| 超市：4 张 | `080E7038–080E7070` | `080E7C08–080E7C40` | `080E7C54–080E7C8C` | `080E7B6C–080E7BA4` |
+
+
+三套模块把拥有者 Scene 声明放到其 Core/页面声明前，使用实际指针成员所允许的
+前置声明解决依赖；类内每个字段和方法声明原样保留。完整类型的逆声明顺序与原 ROM
+的 20 张虚表顺序对应，不添加人工 GNU section、虚表数组、别名或额外调用。
+
+四版沿用原生对象及此前分类记录核实表长和连续性，共 312 字节。LDS 由 20 个
+逐类型 GNU 名字改为三条限定所属对象和真实类型族的选择式；相关 Transition 虚表
+仍在更前方的原工厂区被接收，不会被后续类型族重复纳入。普通 .text 未改为通配。
+
+本批属于真实 C++ 类型及链接组织整理，不增加代码或引用解析字节。四版编译器实际
+虚表发射顺序、隐式成员和完整 ROM 匹配仍待最后统一构建。普通 .text 人工项仍为 25。
+
+## 普通 C 数据段与农事教学入口归属（静态批次 DN）
+
+| 教学入口连续范围（末址不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 324 字节 | `0803B490–0803B5D4` | `0803B6FC–0803B840` | `0803B710–0803B854` | `0803B610–0803B754` |
+
+
+普通 C 通道移除 -fdata-sections，沿用本地 pokeemerald 的普通对象组织。
+这同时消除新归位的 gRandomSeed 被生成到 .data.gRandomSeed、而 LDS 只选择
+.data 的不一致。SRAM 库不再需要单独排除此标志；其 -O1 保留。m4a 的 16 个
+现有只读对象已逐版核对：从四字节边界开始，源码顺序与逐对象自然对齐得到的地址
+完全对应既有 ELF。显式 EWRAM/BSS 存储、符号引用及普通 C 函数体不改。
+
+FarmingTutorialTransition 的 28 字节构造和 296 字节工厂，四版均构成独立连续段，
+现在由 farming_tutorial_transition.cc/.hh 管理，保持真实类及 C++ 方法体不变。
+GameScene 直接包含它实际使用的入口头文件；教学脚本主体留在 farming_tutorial。
+四版早段两条逐函数选择改为一次普通 .text，真实析构和虚表转由入口对象提供。
+该模块晚段 Push 与原生脚本主体的分段尚未解决，不伪造内联引用来强行合并。
+
+C++ 通道暂仍保留 -fdata-sections 及预处理器的同名 unique .rodata：它们仍需核对
+未对齐主题起点和后续对象对齐，不能把 LDS 只有一行认定为对象内部已经合并。
+本批无编译、汇编、链接或移址实验；实际自然段和编译器隐式成员顺序待统一验证。
+普通 .text 人工选择项从每版 27 减为 25，不增加高级语言或动态引用覆盖。
+
+## 环境精灵类族的自然 GNU 输出组织（静态批次 DM）
+
+| 范围（末址不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 54 个内联成员 | `080DC700–080DD9D4` | `080DCF4C–080DE220` | `080DCF98–080DE26C` | `080DCEB0–080DE184` |
+| 15 张虚表 | `080E69A8–080E6B28` | `080E7568–080E76E8` | `080E75B4–080E7734` | `080E74CC–080E764C` |
+
+
+world_ambient_sprites 中控制器持有精灵、Entity 持有控制器的真实关系不变。
+控制器声明移到精灵类型之前，只通过前置声明解决指针依赖；其构造函数定义放到
+Entity 完整声明后，初始化内容不变。完整类的逆声明顺序与原 ROM 的 Entity、
+Kind12 至 Kind1、Sprite 基类、Controller 虚表顺序一致。
+
+四版 54 个内联成员和 15 张虚表的原始范围均连续，沿用已有三份完整引用审计。
+LDS 的 69 个逐符号 GNU 选择项收为该对象的两条真实 WorldAmbient 类族选择式；
+普通 .text 不改成通配，不新增人为 GNU section、别名或强制输出调用。
+现有 C++ 方法实现保持不变。这是链接组织准备，不新增 C++ 或引用解析覆盖；
+实际编译器的内联输出顺序、隐式依赖及完整 ROM 匹配仍待统一验证。
+
+## 农场地图及四个小游戏的生命周期汇编归属（静态批次 DL）
+
+| 模块 | JP 范围 | US 范围 | EU 范围 | DE 范围 |
+| --- | --- | --- | --- | --- |
+| `farm_map_screen` | `080E17B8–080E1898` | `080E2018–080E20F8` | `080E2064–080E2144` | `080E1F7C–080E205C` |
+| `scene_animal_care_minigame` | `080E3CFC–080E40D8` | `080E4564–080E4940` | `080E45B0–080E498C` | `080E44C8–080E48A4` |
+| `scene_chicken_festival` | `080E40D8–080E44E8` | `080E4940–080E4D50` | `080E498C–080E4D9C` | `080E48A4–080E4CB4` |
+| `scene_harvesting_minigame` | `080E44E8–080E4788` | `080E4D50–080E4FF0` | `080E4D9C–080E503C` | `080E4CB4–080E4F54` |
+| `scene_watering_minigame` | `080E4788–080E4BB0` | `080E4FF0–080E5418` | `080E503C–080E5464` | `080E4F54–080E537C` |
+
+
+旧 asm/code_linkonce.s 最后两组共 3988 字节、11 个完整函数已回到五个实际
+模块的 .cc，常量池、局部跳转和原有顺序一起迁移；四版共用已核对相同的指令。
+JP 浇水图块句柄初始化器后原本只标局部标签的析构入口，已明确为独立函数。
+动物照料 11 个、浇水 12 个句柄的初始化/释放使用实际功能名；浇水 +0x83C
+的 12 项成员布局已补出，仍按原析构 ABI 保留 flags，不伪装为普通 free。
+
+这次只完成完整边界和归属，不计入高级语言恢复或新增全 ROM 引用覆盖。
+晚段与各自普通主代码仍物理分离，沿用已有两个临时子段名，不伪造 linkonce。
+一个混合小游戏输入改为四个所属对象，人工 .text 选择项暂由 24 增为 27；
+它们仍明确列为未完成，须在真实内联/生命周期组织恢复后移除。
+未运行编译、汇编、链接或移址实验，实际生成及完整 ROM 匹配待统一验证。
+
+## NPC 自然 GNU 析构与虚表按类族收集（静态批次 DK）
+
+npc_entity 的 35 个真实派生类型和 roaming_npc_actor 的四个真实派生类型，已有完整
+类声明、普通方法和隐式析构关系。头文件类声明的逆序分别对应原 ROM 的析构及虚表顺序；
+四版逐项核对连续边界：NPC 析构 420 字节、含基类的虚表 2304 字节，巡游 NPC 析构
+48 字节、含基类的虚表 340 字节。沿用此前已经完成的入口/虚表引用审计，没有新造类型。
+
+LDS 删除两组逐类析构、两组逐类虚表的 80 个名字，按对应对象的实际类族使用五个 GNU
+选择式收集。普通 .text 和其他模板仍独立按原位置组织，不收集宽泛的 .text.*，也不
+把其他模块的模板或虚表提前纳入。源代码不增加任何 section 属性、别名或生成工具。
+
+这是自然 C++ 产物的链接组织整理，不增加函数/数据解析字节，也不等于整个 GNU 区域
+已经完成。真实编译器发射次序和完整字节匹配仍在最后的统一验证中检查。
+
+## 地图资源树哨兵构造归属（静态批次 DJ）
+
+SavedMapTree 的四版构造均为 60 字节，只有 malloc 与 RetryMemoryAllocation 两个 BL。
+逐版保存对象去除这两处重定位字段后，全部指令字节相同。构造先清空 header，申请一个
+24 字节真实节点，设置计数/未知状态为零，清除节点颜色和 parent，并令左右子树指向哨兵。
+next_tile_index、next_palette_index、state.unk_00 和哨兵 entry 均保持未初始化。
+
+该行为已写回 saved_map_tree.hh 的真实类构造，继续由 world_map.cc 中既有的
+GameSceneSavedMap 成员初始化调用。删除 code_linkonce.s 内两套地区汇编及四版 LDS 的
+after_* 人为子段；链接位置改为该真实内联构造的自然 GNU 实例。未增加伪类型、调用或
+源码 GNU section。普通 .text 人为选择项每版从 25 降为 24。
+
+构造语义和既有输入已核对；自然输出、原生八字节栈帧以及完整字节匹配尚待最终统一构建。
+不将本项计为已验证的高级语言恢复，也不把剩余 GNU 排列认定为完成。
+
+## VBlank 原生析构与随机数运行库归位（静态批次 DI）
+
+HardwareManagerVBlankBinding 的完整 76 字节原生析构及三个池引用移回
+hardware_manager.cc，紧接实际构造函数。移除 asm/hardware_manager.s 和四版
+LDS 的对应独立输入；沿用已有的绑定段，未增加子 section。该模块其余不连续普通
+方法和既有细分段仍待后续整理，不能据此报告已完成常规链接组织。
+
+rand/srand 的 40 字节完整原生实现及共享常量池归入 libc_random.c；gRandomSeed
+以同文件的普通 u32 初始化对象定义，声明归入 libc_random.h。位于 ROM 较前位置的
+游戏缩放函数 RandomBelow 仍属于 random.c，其头文件引用库接口。两者被其他功能
+隔开，不强行合成一个跨位置反复链接的普通 .text。
+
+BIOS SVC 包装保留必要的独立汇编，code_lib_syscall.s 改名 gbasvc.s，对应已有
+gbasvc.h 接口；六个入口、48 字节内容及顺序不变。移除两个已空原生实现文件。
+本批为所属模块整理，不增加高级语言恢复字节；四版最终输出仍待统一构建。
+
+## 商店扫描线处理与 VCount 绑定归位（静态批次 DH）
+
+商店 BG2 扫描线处理 UpdateUiVCount 四版均为 124 字节，与商店主体末尾直接相接。
+其现有 C++ 实现及内联比较行设置函数移入 shop_common.cc，声明归入 shop_common.hh，
+由已有一次 src/shop_common.o(.text) 连续承载。源函数体未改。
+
+后部 VCount 中断入口、绑定构造、绑定析构连续为 20+76+76 字节，改为一次
+src/ui_vcount.o(.text)，移除该对象的 -ffunction-sections。原来真正写在类内的
+ContextScope/ContextRegistration 两个虚析构保留真实类关系，恢复自然 inline/weak
+归属；不手写 GNU section，也不新增假类型或强制调用。
+
+四版各清掉六个逐函数 .text 选择项：全局普通 .text 的自定义选择项从 31 降至 25，
+同段重复普通对象从 9 降至 8。这里不把两项实际 GNU 析构的生成和物理摆放视为已验证；
+自然输出、虚表及最终顺序仍待全局统一构建。JP 析构前无额外模块，海外三版夹着
+856 字节商店资源槽实现，原有区别保持。
+
+## IWRAM 普通 BSS 的真实对象与自然顺序（静态批次 DG）
+
+四版普通 BSS 均覆盖 `0x03000000–0x03000490`。SoundMainRam 仍为硬件
+IWRAM 起点的 0x400 字节音频工作区；其后的 SRAM 状态、对象池、场景控制器、
+硬件/UI 绑定、堆、JoyBus 和中断表改为十个常规对象输入，移除十处数值定位。
+
+原 `gUnk_0300040C = .` 并非填充：两个场景控制器构造函数保存 this，析构清空，
+各访问函数读取其成员。现由 game_scene_controller.cc 定义真实的
+`GameSceneScriptController * gCurrentGameSceneScriptController`，头文件同名声明，
+全部汇编池和 C++ 使用点直接引用该符号；没有保留地址别名。
+
+保存的四版 ELF/对象证明：SRAM 三字节后的间隙来自后续四字节指针对齐；JoyBus
+末尾至中断表的十二字节间隙来自原 COMMON 的十六字节对齐。按实际大小和对齐
+顺序排列，全部十三个对象的地址和后续 .iwram 起点仍为原值，无需填充数组。
+该结论为静态布局核对，实际输出仍待全局统一编译。
+
+## 音频 EWRAM 的统一输入段（静态批次 DF）
+
+四版音频状态对象均为 EWRAM `0x02000000–0x02001F10`（终点不含），共 7952 字节。
+原先十四个逐变量输入段改为一个 `src/m4a.o(ewram_data)`；声明按实际内存顺序
+集中在 m4a.c，五个 MusicPlayer 定义从配置头移回该源码，外部声明统一归入 m4a.h。
+顺序为五组 track、SoundInfo、跳转表、CGB 通道、播放器 A/B/C/E、MemAccArea、播放器 D。
+
+使用本地 pokeemerald 的 EWRAM_DATA/ewram_data 约定，表达真实硬件内存归属。
+EWRAM 与 IWRAM 的输出映射保持；SoundMainRam 仍为 IWRAM 中 0x400 字节的独立 .bss。
+不是把普通对象人为改名为新细分 section，也不新增固定地址或填充。
+
+保存对象文件的十四个大小、对齐与全零初始化逐版核对，按上述顺序计算出的每个符号
+地址均与基线一致。实际编译输出待全局验证；本批不增加 ROM 函数解析字节或宣称所有
+RAM 引用已重新审计。四版 LDS 各减少十三行逐变量链接安排。
+
+## 连续 DMA 操作与描述符合并（静态批次 DE）
+
+JP `0x08008E30–0x08009134`，US `0x08008E28–0x0800912C`，EU `0x08008E3C–0x08009140`，DE `0x08008E48–0x0800914C`（终点不含）。
+
+即时 DMA 的三个入口与紧随的六个描述符函数属于同一传输功能；四版两对象直接
+相接，共 772 字节，基线没有相互隔开的 rodata/data/bss 输入。统一到
+src/hardware_dma.cc + include/hardware_dma.hh，按原顺序保留全部函数体。
+移除 hardware_dma_descriptor.cc/.hh 和旧 hardware_dma.c，调用方改用统一头文件；
+四版 LDS 仅保留一次 src/hardware_dma.o(.text)。
+
+模块保留两个真实 C++ 构造函数，七个普通接口继续使用原有 C linkage 声明。
+ROM 后部的四字节 MMIO 写入叶函数仍在独立底层汇编，不跨越其他功能强行搬到前部。
+没有改动函数签名、数据布局、指针或调用行为；三段原 C 实现改走 C++ 编译通道，
+其精确输出待统一构建，不能将源码合并当作已验证的字节匹配或新增解析字节。
+
+## 记录页面的真实成员生命周期与 LDS 排版（静态批次 DD）
+
+JP `0x080E1898–0x080E1910`，US `0x080E20F8–0x080E2170`，EU `0x080E2144–0x080E21BC`，DE `0x080E205C–0x080E20D4`（终点不含）。
+
+三种派生记录页面的析构仅转调 RecordsScreenPage；RecordsScreenCore 的析构先
+遍历活动页面条目，再清理 ScrollMenu 的页面、资源对象及 HardwareContext 基类。
+恢复同名头文件内的 RecordsScreenPageList，保留十项实际容量及原有计数/数组偏移，
+不把未启用的容量当作活动对象。四个析构由真实类成员生命周期承担，原生重复体移除。
+
+四版各 120 字节、四个虚表指针已与保存的原实现及引用证据静态对照；没有直接 BL 或
+内部入口。隐式析构的生成、内联和精确字节仍待统一构建，不能计为已经验证的 C++ 恢复。
+原混合段剩余 224 字节 FarmMap 生命周期尚未清除，人工 .text 子项计数仍为各 31。
+
+四版 LDS 统一全部输出段的缩进，移除说明性注释、段内零散空行及同一输出段中
+重复设置相同值的 FILL；段之间保留分隔。对照本地 pokeemerald 的链接脚本排版。
+对象顺序、符号表达式、地址、输出段归属和有效填充值不变。此排版清理不计为
+边界或引用动态化；BSS 的音频专用输入项及剩余 GNU linkonce 排列仍需随所属模块核实。
+
+## 资源精灵缓存的连续原生模块归属（静态批次 DC）
+
+JP `0x080E1910–0x080E25D4`，US `0x080E2170–0x080E2E34`，EU `0x080E21BC–0x080E2E80`，DE `0x080E20D4–0x080E2D98`（终点不含）。
+
+四版各 3268 字节、16 个连续原生函数迁入 `resource_sprite_cache.cc/.hh`，
+包括红黑树操作、tile/palette 缓存插入与释放、缓存精灵绘制及存储初始化。
+各版在原位置只链接一次 `src/resource_sprite_cache.o(.text)`；函数类型和真实引用保留，
+共同指令流及原段拼接顺序静态一致。未将迁入 .cc 的汇编计为高级语言恢复。
+
+原混合段仍保留前面的 344 字节类生命周期实现，本批不计为整个子段清除。
+四版 .text 自定义选择项仍各 31 个、重复普通对象各 9 个；未编译、提交或推送。
+
+## 四版基线命名入口的来源对照（静态审计 DB）
+
+本轮未改变 ROM 布局。复核 24 个旧函数名实际对应的内部跳转位置，记录现有所属模块、
+函数和局部标签；包含 JP 工具升级界面 0x080912CA、0x0809133C、0x08091FC0。
+完整范围、口径和限制见 RELOCATION_AUDIT.md 同名条目，不能据此增加动态化字节进度。
+
+## 存档地图资源槽树的边界与连续模块归属（静态批次 DA）
+
+JP `0x080E39DC–0x080E3B50`，US `0x080E4244–0x080E43B8`，EU `0x080E4290–0x080E4404`，DE `0x080E41A8–0x080E431C`（终点不含）。
+
+四版两段插入函数统一为 `saved_map_tree.cc/.hh`，保留实际 Thumb 指令，在原始位置仅链接 `src/saved_map_tree.o(.text)`。移除 `.text.after_saved_name_scene_destructor`，JP/海外版旧地址名统一为真实函数名。
+
+节点为 16 字节红黑树链接前缀、4 字节有符号键和 4 字节图形槽：`u16 tile_index`、`u8 palette_index` 与隐式填充。tile 读取方按 32 字节 tile 单位送入 VRAM，palette 读取方按 32 字节 bank 单位写入地图缓冲。缺失键分配四个 tile 与一个 palette；键 13 的固定槽保持原逻辑。树状态的未知字段保留 `unk`。
+
+原有查询、遍历及重置仍位于前部地图模块，使用明确类型和符号；递归释放的既有 inline 实现原样归入容器头文件。构造函数仍保留原生实现，其与析构的物理交错尚未完成，不计为已清理。
+
+入向引用静态核对：JP 0 ABS32 / 3 BL；US 0 ABS32 / 3 BL；EU 0 ABS32 / 3 BL；DE 0 ABS32 / 3 BL。没有未分类窗口或函数内部入口；未编译，不新增高级语言恢复字节计数。
+
+## OBJ 调色板池存储初始化的普通对象归属（静态批次 CZ）
+
+JP `0x080D6550–0x080D6570`，US `0x080D6D98–0x080D6DB8`，EU `0x080D6DE4–0x080D6E04`，DE `0x080D6CFC–0x080D6D1C`（终点不含）。
+
+与既有 OBJ tile/调色板集合的存储模块采用同一组织：`obj_palette_pool_storage.cc/.hh` 管理四字节池条目、池状态及后置 free-list 初始化；前部 `obj_palette_pool.cc` 继续管理池的所有者、预留和句柄操作。只是按实际物理范围归属，C++ 函数体、类型和所有符号均未改写。
+
+四版移除 `.text.obj_palette_free_list` 属性与 LDS 子项，原位置只链接 `src/obj_palette_pool_storage.o(.text)`。16 个硬件 bank、世代计数和 count>0 的原有前提保留；全局池指针仍归前部模块。
+
+引用静态核对：JP 0 ABS32 / 1 BL；US 0 ABS32 / 1 BL；EU 0 ABS32 / 1 BL；DE 0 ABS32 / 1 BL。没有未分类窗口或函数内部入口。未编译，不新增 C/C++ 恢复字节计数。证据：`palette-storage-owner-plan/reference-audit/static-review/applied.json`。
+
+## 商店临时资源槽索引的连续模块归属（静态批次 CY）
+
+US `0x080E54C4–0x080E581C`，EU `0x080E5510–0x080E5868`，DE `0x080E5428–0x080E5780`（终点不含）。
+
+海外三版各 4 个函数、856 字节，归入 `src/shop_resource_slots.cc` / `include/shop_resource_slots.hh`。它们维护商店绘制时的两张临时树：以行的 tile/palette 源指针为键，以九个 OBJ 槽中的位置为值。24 字节节点含既有 16 字节红黑树前缀和 8 字节键值；未解释的两个容器字仍保留 unk。JP 使用原有直接绘制流程。
+
+LDS 将 `.text.after_ui_vcount_binding` 替换为一次 `src/shop_resource_slots.o(.text)`。函数、局部跳转、真实调用和原物理次序保持不变，旧地址函数名替换为实际操作名称；没有新增子 section。
+
+每个海外版本核对 13 个真实 BL，未发现本范围的真实 ABS32 入向指针或内部偏移入口。4 个形似指针的 ROM 窗口由既有资源/字段证据排除，未分类项为 0。本批仅完成原生代码归属、类型与引用静态整理，不计入 C/C++ 实现或编译通过。
+
+证据：`shop-resource-slots-plan.json`、`shop-resource-slots-reference-audit.json`、`shop-resource-slots-static-review.json`。未运行编译器、提交或推送。
+
+## 地址命名入口存活核对与未使用属性清理（接续静态批次）
+
+当前 src/asm/include 中共检出 845 个地址命名入口。初筛四个无定义候选均只在
+历史证据注释中出现，没有实际调用；另十八个入口通过已有 asm 名称声明绑定到
+hardware_linked_list/hardware_interrupt_guard 的真实 C++ 方法，已逐个核对方法体。
+本次筛查仅覆盖地址命名入口，不能代替语义名、旧 C++ 修饰名、生成实体及各区域
+条件分支的完整存活审计；教学运行块的漏迁仍说明需要单独完成那一轮核对。
+
+EntityVisualController 的内联构造器已无保留的独立入口；四版基线 ELF、输入段清单
+和当前 LDS 均没有其旧人工子段，删除声明中遗留的 section 属性，保留原有构造语义。
+本次未运行编译器，也没有改变现有方法的 ABI 名称。
+
+## 补回教学脚本宿主与字节查找的遗漏实现（接续静态批次）
+
+对历史 LDS 清理逐项追溯后发现：当时以“旧 section 已无定义”判断为失效，
+没有核实函数实现是否在新模块存活，导致两段真实代码缺失。这不是正常的段合并。
+现已从保存的源码和四版 ELF/ROM 补回完整范围：教学脚本派发/Run（JP 9820 字节，
+海外各 9840 字节，包含内部入口、跳表、常量池和共享退出路径）归回 farming_tutorial.cc；
+52 字节的无符号字节 lower-bound 查找归入 byte_search.c，并更新 NPC 排程和婚期调用。
+两处 LDS 都使用普通 .text，没有恢复位置命名的旧子段。
+
+教学模块现有的构造/Push 编译顺序仍未整理完成，不将本次恢复计为该模块的 LDS 清理完成。
+恢复内容与保存的源指令及每版 ELF 范围静态核对一致；未运行编译器。
+同批删除的 ui_output_base_after 在基线对象中也不存在，不能与这两处缺失混为一类。
+后续全局审计必须独立核对基线函数/数据的存活与替代关系，不能仅检查 section 名是否存在。
+
+## IWRAM 原生代码与初始化状态的实际归属（接续静态批次）
+
+| 入口/状态 | IWRAM 地址 | 字节 | 源码归属 |
+| --- | --- | ---: | --- |
+| `HandleGamePakInterrupt` | `03000490` | 48 | `src/main.cc` |
+| `__new_handler` | `030004C0` | 4 | `src/new.cc` |
+| `SubmitWorldSpriteRecords` | `030004DC` | 568 | `src/scene_sprite.cc` |
+| `DrawGlyph2Tile` | `03000714` | 328 | `src/font.cc` |
+| `DrawGlyph1Tile` | `0300085C` | 252 | `src/font.cc` |
+| `DispatchInterrupt` | `03000958` | 196 | `asm/interrupt.s` |
+| `ApplyInterruptEnableMask` | `03000A1C` | 52 | `asm/interrupt.s` |
+| `gRandomSeed` | `03000A50` | 4 | `asm/random.s` |
+| `BlendRgb5PaletteBank` | `03000C2C` | 168 | `src/hardware_blend.cc` |
+| `gAllocationFailureHandler` | `03000CD4` | 4 | `src/allocation_failure.cc` |
+
+七个原生 ARM/Thumb 入口与三个初始化字共 1624 字节，迁回现有 main、new、
+scene_sprite、font、interrupt、random、hardware_blend、allocation_failure 模块。
+未新增源码文件。字形、精灵提交、混色与中断保留 IWRAM 执行位置；初始化状态使用
+普通 .data，按原位置装入同一 IWRAM 镜像。每个对象在该输出段只列一次。
+
+移除了 after_dimensions/after_sort 两个人工子段和已清空的 code_iwram.s。
+既有尺寸表 24 字节及排序代码 472 字节保持在原顺序，完整镜像仍为 2120 字节。
+四版保存的 ELF 镜像与各自原 ROM 完全一致；迁移前后原生指令、常量池和三个初值
+逐块静态一致。仅整理实际模块归属，未计入 C/C++ 高级语言恢复。
+尚未运行编译器，最终输出及引用全覆盖仍以统一验证和全局审计为准。
+
+## 实体视觉更新、字段访问与默认动作的归属（接续静态批次）
+
+| 范围（末址不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 普通角色代码与默认动作 | `08031E24–08032250` | `08032090–080324BC` | `080320A4–080324D0` | `08031FA4–080323D0` |
+| 视觉更新和绘制 | `080323A0–08032694` | `0803260C–08032900` | `08032620–08032914` | `08032520–08032814` |
+| 九个属性访问器 | `080328FC–08032948` | `08032B68–08032BB4` | `08032B7C–08032BC8` | `08032A7C–08032AC8` |
+
+EntitySpriteController 的完整 Update/Draw 迁回 entity_sprite.cc，与紧邻的两种
+构造实现同处原输入段；九个字段访问器迁回 entity_actor.cc 并补齐类型声明。
+方向、OBJ 原始优先级、带符号 Q16 速度和 Y 排序键按实际读取宽度命名，未改指令。
+默认动作查询放在普通角色代码末尾，删除其专用 section。旧
+asm/code_entities_080320DC.s 已无剩余对象，随对应链接条目一并移除。
+
+角色/视觉类头文件中的内联副本仍由旧编译器按 pragma interface 生成普通 .text。
+这些输入段与其他对象交错，现阶段未伪装成弱符号或强行通配合并；剩余子项继续
+记为未完成。已阅读本地 agbcp 的 import_export_decl/finish_file 及保存对象，
+确认取消 pragma 还涉及只被汇编调用的内联实体是否生成，不能直接删属性了事。
+本次没有运行编译器；原生代码迁移不计为 C++ 高级语言恢复。
+
+## 玩家原生表的模块归属与最后一项手工只读子段（接续静态批次）
+
+| 对象（末址不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 玩家 44 字表 | `080E5A98–080E5B48` | `080E6658–080E6708` | `080E66A4–080E6754` | `080E65BC–080E666C` |
+
+玩家 176 字节原生虚表迁回 player_actor.cc，以直接标签和 .word 保存实际 ABI
+条目，名称改为 gPlayerActorVTable；LDS 改用 src/player_actor.o(.rodata)。
+两处构造/析构引用随之更新，44 个字与四版原 ROM 一致。此项仅完成实际表边界、
+符号和归属；玩家完整 RAM 类型及编译器自然虚表仍未完成，不计为高级语言恢复。
+
+NO_ANIM 只用于数值判断和赋值，改为枚举常量。既有四版 player_actor.o 的
+两字节同名本地对象只有调试信息引用，没有运行时重定位，原本也未进入 ROM，
+不作为真实数据保留。
+清除 vtables.cc 中已迁走对象的声明、失效区域分支和死表；保留世界对象的两张
+连续原生表。世界模块旧对象还会带出 bad_alloc 字面量，其自然归属未解决，
+不在这里把它混入世界表范围。
+
+## 野狗实体的完整动物基类与自然虚表（接续静态批次）
+
+| 范围（末址不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 原生代码，3,428 字节 | `08038EC8–08039C2C` | `08039134–08039E98` | `08039148–08039EAC` | `08039048–08039DAC` |
+| 35 字虚表 | `080E691C–080E69A8` | `080E74DC–080E7568` | `080E7528–080E75B4` | `080E7440–080E74CC` |
+
+WildDogActor 直接继承已恢复的 AnimalActor，大小 0x54。+34 借用保存模型，
++38 是五个自有行为对象指针，+4C/+50 缓存动作和朝向。构造/析构、更新、
+视觉控制器、受击检查/响应、犬攻击响应和停步槽改为实际成员符号。
+停步实现原本为空；保留其真实接口和空行为，不强加家畜动作。
+
+原生 23 个入口及 3,428 字节指令、池和局部跳转顺序未改变；这不是新增 C++ 反编译。
+删除手工 140 字节虚表及通用函数指针声明，七个覆盖槽与四版 ROM 逐字核对，
+其他槽由真实基类继承。五张已有行为虚表保持顺序。编译器自然生成仍待统一验证。
+
+## 动物实体共享接口与连续代码段（接续静态批次）
+
+| 范围（末址不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 动物模块 .text，17,832 字节 | `0801FDCC–08024374` | `08020038–080245E0` | `0802004C–080245F4` | `0801FF4C–080244F4` |
+| SheepActor，35 字虚表 | `080E56C4–080E5750` | `080E6284–080E6310` | `080E62D0–080E635C` | `080E61E8–080E6274` |
+| CowActor，35 字虚表 | `080E5750–080E57DC` | `080E6310–080E639C` | `080E635C–080E63E8` | `080E6274–080E6300` |
+| ChickenActor，35 字虚表 | `080E57DC–080E5868` | `080E639C–080E6428` | `080E63E8–080E6474` | `080E6300–080E638C` |
+| HorseActor，35 字虚表 | `080E5868–080E58F4` | `080E6428–080E64B4` | `080E6474–080E6500` | `080E638C–080E6418` |
+| DogActor，35 字虚表 | `080E5908–080E5994` | `080E64C8–080E6554` | `080E6514–080E65A0` | `080E642C–080E64B8` |
+| AnimalActor，35 字虚表 | `080E5994–080E5A20` | `080E6554–080E65E0` | `080E65A0–080E662C` | `080E64B8–080E6544` |
+
+原 entity_audio 的内容实际属于所有家畜和野狗共用的动物实体基类。
+AnimalActor 继承 AActorEntity，大小 0x34，+30 保留每次更新的音效请求门控。
+恢复 20 个附加虚操作，包括铃铛响应、牛羊配种检查/动作、刷毛、挤奶、剪毛、
+疾病检查/治疗、受工具击打、野狗目标检查/攻击、推动和定时停步。
+槽位 0x40 的具体事件含义仍未完全确定，保留 vfunc_40，不猜测命名。
+这不是单纯音效接口，也不再用虚构的 LivestockActor 前缀补齐虚表。
+
+DogActor/HorseActor/ChickenActor/CowActor/SheepActor 直接继承真实基类，
+原生分配大小分别为 0x44/0x40/0x3C/0x3C/0x3C。
+构造、析构、虚操作和对应保存模型使用实际类型及成员符号。
+犬的 +38 借用 GameStateSaveImage+1CCC 的六字节球位置；犬马保存位置为 i16 对。
+少量 RAM 状态字节角色未确定，仍标 unk；不把它们计为已完成语义解析。
+
+按四版物理顺序把构造、四个交错的 AActorEntity 移动辅助实现、音效/碰撞框、
+五类动物实现、基类更新和末尾碰撞框构造归到 src/animal_actor.cc。
+删除 entity_audio.cc/hh 及其专用 -ffunction-sections 设置，四版 LDS 只列一次
+src/animal_actor.o(.text)。原有 C++ 函数体和原生指令均保持；没有新增编译步骤。
+六张手工 35 字虚表由实际类承接，与既有马视觉控制器表按原顺序使用自然 linkonce。
+旧编译器自然生成的虚表/析构及合并后的编译输出仍须在全局静态整理后统一验证。
+
+## 小精灵工作实体的完整边界、借用数据和自然虚表（接续静态批次）
+
+| 对象 | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 构造入口 | `080336BC–080337C0` | `08033928–08033A2C` | `0803393C–08033A40` | `0803383C–08033940` |
+| 析构入口 | `080337C0–08033814` | `08033A2C–08033A80` | `08033A40–08033A94` | `08033940–08033994` |
+| 更新入口 | `08033928–08033F14` | `08033B94–08034180` | `08033BA8–08034194` | `08033AA8–08034094` |
+| 15 字虚表 | `080E5D08–080E5D44` | `080E68C8–080E6904` | `080E6914–080E6950` | `080E682C–080E6868` |
+
+HarvestSpriteActor 继承 AActorEntity，分配大小 0x44；+30 是七精灵索引，
++34 借用保存的 HarvestSprite，+38 指向 NpcCollection+438 的七个工作目标，
++3C 借用 GameStateSaveImage+14 的 Farm。+40/+41/+42 含义尚不完整，保留 unk。
+索引后的三个字节及对象末字节由成员自然对齐占据，没有创建填充数组。
+
+删除三个局部实体视图及未分类前缀视图，调用方改用实际工作实体；
+视觉控制器仍由 AEntity 的 SmartPtr 成员持有，未另外复制一套指针字段。
+已有工作目标查询保持 AEntity 的六字节 Location 读取，不能误用遮蔽它的
+AActorEntity 八字节 ActorLocation 返回。显式原生返回槽继续使用无构造的
+八字节 POD，避免引入保存型工作目标的默认初始化。
+
+15 字手工虚表由实际类承接，构造、析构、更新、视觉创建和三个虚操作使用
+真实成员符号；七个原生函数的指令与物理顺序未变。自然表和类型修正后的
+旧编译器输出等待全局统一验证，没有将这些原生函数计为已高级语言化。
+
+## 农耕教学世界的真实接口、成员布局和三个自然虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 教程世界主体 | `080AC424–080AD5EC` | `080AC9EC–080ADBB4` | `080ACA1C–080ADBE4` | `080AC94C–080ADB14` |
+| 晚段四个内联函数 | `080E3C50–080E3CFC` | `080E44B8–080E4564` | `080E4504–080E45B0` | `080E441C–080E44C8` |
+| gFarmingTutorialWorldVTable | `080E7774–080E7834` | `080E8344–080E8404` | `080E8390–080E8450` | `080E82A8–080E8368` |
+| gFarmingTutorialActorVTable | `080E7834–080E7870` | `080E8404–080E8440` | `080E8450–080E848C` | `080E8368–080E83A4` |
+| gFarmingTutorialWorldBaseVTable | `080E7870–080E7930` | `080E8440–080E8500` | `080E848C–080E854C` | `080E83A4–080E8464` |
+
+教程世界继承独立的 FarmingTutorialWorldBase，共享 GameObjectBase 的前 44 字，
+另有 B0/B4/B8/BC 四个教程操作，总表 48 字；不继承持久世界的 90 字扩展接口。
+GameSceneWorldData 位于对象 +4，构造转移地图所有权，完整对象为 0x1038。
+教程角色只扩展 AActorEntity 的视觉创建操作，实例仍为 0x30，虚表为 15 字。
+槽 BC 的地点和 16 位资源索引已确认；未完全确定的游戏语义仍保留槽位名。
+
+三张手工表（192、60、192 字节）已移除，引用改为真实类虚表符号。
+四个晚段操作（44、44、52、32 字节）由实际成员/基类析构和视觉创建方法承接，
+原混合晚段由 3936 缩为 3764 字节；剩余小游戏等操作仍待整理。
+主体 53 个原生函数共 4552 字节，指令、池、局部标签和顺序保持不变。
+它们只恢复了成员 ABI 和模块归属，不计作 53 个已高级语言化函数。
+
+同时修正 IsTimePaused 的继承归属：公共基类表只有 44 字，暂停判断是
+持久世界 B0 的专有操作。声明移入 GameObject 扩展接口的首项，保持该世界
+原生 90 字和所有槽位不变；教程接口在 B0 是换图，总计 48 字。
+工厂的一指针返回槽 ABI 保留；未知的原始拥有型返回类没有虚构补入。
+旧 C++ 编译器对自然虚表、内联代码及新成员名的实际输出等待统一构建，
+本批只完成静态核对，没有运行编译器、汇编器或链接器。
+
+## 三个精灵小游戏核心的真实继承、部分成员布局和自然虚表（接续静态批次）
+
+| 核心虚表 | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| `__vt_27HarvestSpriteAnimalCareCore` | `080E7930` | `080E8500` | `080E854C` | `080E8464` |
+| `__vt_27HarvestSpriteHarvestingCore` | `080E7968` | `080E8538` | `080E8584` | `080E849C` |
+| `__vt_25HarvestSpriteWateringCore` | `080E7984` | `080E8554` | `080E85A0` | `080E84B8` |
+
+动物照料、收获、浇水核心由各自实际类继承 HardwareContext；构造调用该基类、
+vptr 位于 +4、UI 分配大小分别 0x93C/0x620/0x98C，三个 12 字节表均为两个
+metadata 字加真实析构入口。构造、Succeeded、Run、显示准备/说明、析构改用
+对应成员 ABI，所有原生指令和物理顺序保持，删除手工核心表和假借的 UI owner。
+UI 现直接持有其实际核心指针，仍由已有原生 UI 析构负责销毁。
+
+已明确成员包括 UiStateOwner 指针、8/8/9 个资源归档指针、混合效果 owner、
+5/4/5 个音乐槽、两个声音命令、成功标志、setup 的精灵类型/经验字段，以及
+动物照料/收获的 11/9 个 tile handle。记录数值的含义未完整核实，保持 unk 名。
+其余未知 RAM 区间仍显式标注，未计作已解析的数据结构。三个晚段析构仍留在
+3936 字节混合原生段，后续需要与该段其他对象共同恢复真实生命周期归属。
+此批仅完成已知类接口、部分布局、引用及自然表归属，不能算作核心完整 C++ 化。
+JP 收获 tile 句柄清理的 188 字节函数原先只有 .Lauto_080E46CC 局部标签，
+与海外 func_080E4F34 是同一完整函数；现恢复独立入口并统一直接符号。
+因此收获核心析构严格为 484 字节，不再把后续清理函数算入其中。
+自然虚表和成员 ABI 的实际输出等待全局统一构建。
+
+## 收获与浇水小游戏 UI 虚表的完整边界和类型归属（接续静态批次）
+
+| UI 虚表 | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| `__vt_30HarvestSpriteHarvestingUiScene` | `080E7974` | `080E8544` | `080E8590` | `080E84A8` |
+| `__vt_28HarvestSpriteWateringUiScene` | `080E7990` | `080E8560` | `080E85AC` | `080E84C4` |
+
+两个 UI 类已有真实 AScene 继承和原生构造、析构、Run 接口，现由各自场景模块
+承接完整 16 字节自然虚表，删除手工表及仅为手工表添加的析构别名声明。
+JP 收获场景表起点是 080E7974；构造、析构均直接存入该地址。过去误拆为
+前一核心表的第四个空字加后续三字，现恢复为两个 metadata 字和两个回调。
+前一收获核心表仍为 12 字节，组合总大小与顺序不变。
+
+每版两张表的四字均与原 ROM 对照；十个 UI 原生函数的全部指令和池顺序未变，
+仅池中的旧标签替换为真实类虚表符号。核心类布局仍不完整，其 12 字节手工表
+保持待办；没有把这些核心表计入已完成。自然虚表实际输出等待全局统一构建。
+
+## 菜单 tilemap 与精灵面板的真实类型和资源生命周期（接续静态批次）
+
+| 已核实对象 | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| `__20GameMenuTilemapPanelP16HardwareDmaQueueP18HardwareLinkedListUiPCcUc` | `080CA7D4` | `080CAFC4` | `080CAFF4` | `080CAF0C` |
+| `__19GameMenuSpritePanelP16HardwareDmaQueueP18HardwareLinkedListUiPCcUc` | `080CB96C` | `080CC15C` | `080CC18C` | `080CC0A4` |
+| `_._20GameMenuTilemapPanel` | `080CD160` | `080CD950` | `080CD980` | `080CD898` |
+| `_._19GameMenuSpritePanel` | `080E4CD8` | `080E5898` | `080E58E4` | `080E57FC` |
+| `__vt_19GameMenuSpritePanel` | `080E79DC` | `080E85AC` | `080E85F8` | `080E8510` |
+| `__vt_20GameMenuTilemapPanel` | `080E79EC` | `080E85BC` | `080E8608` | `080E8520` |
+
+game_menu.hh 恢复 GameMenuTilemapPanel (0x29C) 与 GameMenuSpritePanel (0x32C)。
+两者分别继承真实的 GameMenuPanel；没有额外虚构共同派生层。各自 +214 的
+GameMenuPanelState 是同布局成员：count + 八个 12 字节图标、DMA 队列、标题
+显示 byte、标题图标、FixedStr<8> 标题和导航条目数。首字 quantity 的用途由
+大于一时调用十进制字绘制确认，tile/palette 指针来自 IndexedResourceGroupResult
+的两个真实 range；未把这三字再次包成未知数组。
+
+SpritePanel 额外拥有标题 tile/palette 和各八个条目的 tile/palette handle。
+原 212 字节晚段析构按这些成员逆序释放，再销毁计数图标列表并调用基类析构；
+改由实际类型的隐式析构产生。计数列表保留 native 仅 count 项有效的生命周期。
+小面板的显式析构和两个构造仍是完整汇编，未计入 C++ 实现。
+
+移除旧 GameSceneMenuOwnedDataState 借用派生视图和未知所有者。菜单核心直接
+持有两种真实面板类型，导航按 state.item_count/show_header 访问。两个原有
+共用读函数仍接受基类指针，通过已核实的相邻 state 成员读取；其偏移由
+sizeof(GameMenuPanel) 和结构字段计算，并非 ROM 地址补偿。
+
+两张 16 字节虚表逐槽对照原 ROM。JP 大面板表原先拆成 4+12 字节，现与海外
+同样按一个真实类承接。保留相同源码/ROM 顺序，删除两种面板及相应 late 析构
+的人为 section；自然 linkonce/隐式析构实际输出待全局统一编译。
+
+## 菜单公共面板的真实存储、命令清理与自然虚表（接续静态批次）
+
+| 对象起点 | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| `__13GameMenuPanelP18HardwareLinkedList` | `080CA5C4` | `080CADB4` | `080CADE4` | `080CACFC` |
+| `_._13GameMenuPanel` | `080CA600` | `080CADF0` | `080CAE20` | `080CAD38` |
+| `PruneCompletedCommands__13GameMenuPanel` | `080CA77C` | `080CAF6C` | `080CAF9C` | `080CAEB4` |
+| `__vt_13GameMenuPanel` | `080E79FC` | `080E85CC` | `080E8618` | `080E8530` |
+
+GameMenuPanel 替换原来的 GameSceneMenuOwnedDataPrefix；+00 指向 HardwareLinkedList，
++04 为 8 字节命令队列，+0C 保留未知字，+10 为 512 字节字形 tile 临时缓冲，
+虚指针位于 +210，总大小 214。构造中的 12 字节双向节点分配、析构中的逐命令
+释放与队列清理、绘制中的 8×2 tile 清空及 512 字节 DMA 复制共同核对了布局。
+
+原 vfunc_0C 识别为 PruneCompletedCommands：遍历队列，删除已脱离硬件链表的
+命令及其队列节点。构造、析构和该方法继续保留完整原生指令，只改为真实成员
+符号；参数类型依据 GetHardwareCommandList 的实际调用确认。
+
+16 字节基类虚表的四个槽逐字核对，JP/海外原本落在不同的地址命名 section，
+现由 GameMenuPanel 的真实虚函数声明生成。其余两种派生面板及晚段析构仍待
+完整类型恢复；原有共用布局视图仍是过渡内容，不计为完整类恢复。
+
+游戏文本、对象顺序和指令字节大小保持不变。自然虚表、ABI 与完整 ROM 仍待
+全局静态批次后的统一构建；本批没有调用编译器。
+
+## 农耕教学地图的独立模块、耕地布局和自然虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 六个连续地图方法 | `080CF3AC–080CFA64` | `080CFB28–080D01E0` | `080CFB58–080D0210` | `080CFA70–080D0128` |
+| 地图虚表 | `080E7A18–080E7A40` | `080E85E8–080E8610` | `080E8634–080E865C` | `080E854C–080E8574` |
+| 派生析构 | `080E4E00–080E4E0C` | `080E59C0–080E59CC` | `080E5A0C–080E5A18` | `080E5924–080E5930` |
+
+`src/farming_tutorial_map.cc` / `include/farming_tutorial_map.hh` 从 game_menu 尾部
+接回连续的六个地图方法：构造、三个资源加载覆盖、DrawPlot、SetPlot。每版
+1720 字节，紧接 game_menu 后、heap 前；原生指令、池和局部跳转整体迁入，
+普通代码只使用一条 `.text` 对象条目。game_menu 的数据与文本顺序保持不变。
+
+FarmingTutorialMap 继承 0x94 字节 GameSceneWorldMap，+0x94 为真实
+Field<12, 7>，总大小 0x1E4。构造的 84 次 FieldPlot 初始化、绘制行宽 12、
+边界 0..11 / 0..6 及创建函数分配大小相互吻合。SetPlot 写入一块耕地后，
+刷新本块和有效的上下邻块；不是菜单数据，也不是存档农场的耕地数组。
+
+JP 原虚表拆成 4/12/24 字节三段，海外版为同一张 40 字节表；逐槽核对后统一
+由真实派生类产生。继承基础地图的更新、绘制、外观、选图方法，仅覆盖三个
+加载入口。晚段 12 字节析构只有基类析构调用，移除手写体，由真实继承关系
+产生隐式析构；不新增代替该条目的自定义 section。
+
+六个方法仍是原生汇编实现，迁入模块不计作 C++ 反编译。隐式析构和自然虚表
+的编译输出、ABI、顺序与完整 ROM 尚待全局静态批次后的统一构建。
+
+## 农场地图核心、标记容器和自然虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 地图主体函数 | `0806E6D4–080707CC` | `0806EA78–08070B70` | `0806EA8C–08070B84` | `0806E970–08070A68` |
+| 核心虚表 | `080E6F10–080E6F1C` | `080E7AE0–080E7AEC` | `080E7B2C–080E7B38` | `080E7A44–080E7A50` |
+| 晚段核心析构 | `080E17B8–080E1834` | `080E2018–080E2094` | `080E2064–080E20E0` | `080E1F7C–080E1FF8` |
+
+`farm_map_screen.hh` 恢复 0x1A0 字节 FarmMapScreenCore：+0x08 为存档指针，
++0x0C 为后续场景 owner，+0x10/+0x14 为带 8 位小数的纵/横滚动坐标，
++0x18 为精灵渲染器，+0x20 为方向提示资源目录，+0x50 起是上/下/右/左四个
+20 字节资源 handle，+0xA0 为标记资源目录，+0xD0 为动态标记列表。
+
+列表元素 28 字节，包含两个 i32 坐标及一个资源 handle。+0xE0 起的四组室内
+标记分别对应农舍、鸡舍、牛羊棚、马厩；每组 48 字节，含三行 u32 资源条目 ID
+列表，并非三份指针或坐标数组。各列表 +0x08 字段仍为 unk，没有臆测用途。
+原四项 ResourceDescriptors 是室内标记起始坐标，改名 IndoorMarkerOrigins，
+结构字段为 u16 x/y，字节及顺序不变。
+
+核心的 12 字节手工虚表改由真实类型生成，与紧邻的场景自然虚表列在同一个
+LDS 对象条目。16 个原生入口每版共 8664 字节，主体 8440 字节；统一改用已确认
+的成员/构造析构符号，保留原指令和常量池。核心构造原本内联在场景构造中，
+没有为此虚构一个独立构造入口。
+
+晚段的核心析构和室内列表构造/析构仍在 3612 字节混合输入段，尚未完成自然
+内联输出归属。本轮不计作高级语言恢复，也不声称该晚段链接组织已经完成。
+未编译；自然虚表输出、类型 ABI 和完整 ROM 留待统一验证。
+
+## 记录界面页面类型、虚表和 JP 独立函数边界（接续静态批次）
+
+| 项目 | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 页面核心构造 | `080707CC` | `08070B70` | `08070B84` | `08070A68` |
+| 动物最长寿命绘制 | `08074E7C` | `08075220` | `08075234` | `08075118` |
+
+`records_screen.hh` 恢复三个具体页面、RecordsScreenPage 基类和 RecordsScreenCore。
+基类 RAM 中有 120 项文本行（每项 44 字节）及 8 项 tile 缓冲（每项 0x504），
+总大小 0x4278。Shipping 页为 0x42FC；Fishing/Other 页剩余区域继续以已确认的
+区域实际 RAM 容量和 unk 字段表达，尚未宣称各个内部缓冲均已命名。
+核心为 0x17C，+0x128 为 10 项页面/滚动位置记录，+0x178 为当前页面索引；
+实际构造初始化三个页面，固定容量与有效项数不能混淆。
+
+五张原始虚表每版合计 80 字节，改由五个真实类型正常生成；LDS 保留其物理
+顺序，并与紧邻的 RecordsScreenScene 自然虚表合在同一对象条目。四版各移除
+五项人为 rodata 子 section，没有用 .rodata.* 通配代替清理。
+
+JP 0x08074E7C 的 264 字节独立函数原先包在 Other 页构造内，现与海外版统一为
+DrawAnimalLifetime 成员。三个局部入口调用改用该真实成员符号。其他原地址函数
+名按已确认的构造、析构、绘制、选页行为更名，原生指令和物理次序未改。
+
+四个晚段析构仍位于当前 3612 字节混合输入段，尚未完成其自然内联输出归属；
+本轮没有为迁移它们再创建 section。17 个入口每版合计 18828 字节；所属主原生
+范围仍为 19264 字节，四版均已静态核对。未运行编译器，虚表生成及 ABI 待统一验证。
+
+## 缓存迭代器返回 ABI 的静态修正（接续静态批次）
+
+旧 ARM 编译器 arm_return_in_memory 对只有一个指针成员的四字节普通结构
+采用寄存器返回；当前 Makefile 也没有启用 -fpcc-struct-return。原生缓存插入
+函数却通过 r0 指向的结果存储返回迭代器，并将同一地址返回到 r0。此前仅声明
+普通 Iterator 值返回不能保证这一 ABI。
+
+resource_sprite_renderer 的四个对应原生接口改为明确的首个结果指针参数。
+同样修正 town_map 的节点插入、带提示插入及实际调用点：用真实结果存储传入，
+没有为改变返回约定伪造构造/拷贝函数。八字节 InsertResult 保留普通结构返回，
+其原本就按工具链规则间接返回。所有原生汇编、数据布局和 LDS 均未修改。
+
+依据为本地 agbcc origin/cp 的 g++/config/arm/arm.h、arm.c、function.c 与四版
+原生参数/写回指令。保存于私有 cache-iterator-abi-plan/prepared/applied。
+这只完成接口静态修正；town_map 的最终指令输出仍待全局统一编译确认。
+
+## 资源精灵缓存的独立函数边界和节点布局（接续静态批次）
+
+| 实际独立入口 | JP | US | EU | DE | 大小 |
+| --- | --- | --- | --- | --- | --- |
+| `FindResourceSpriteTileIndex` | `08075670` | `08075A14` | `08075A28` | `0807590C` | 104 |
+| `FindResourceSpritePaletteBank` | `080756D8` | `08075A7C` | `08075A90` | `08075974` | 108 |
+| `InsertResourceSpritePaletteNode` | `080E1F9C` | `080E27FC` | `080E2848` | `080E2760` | 192 |
+| `InsertResourceSpritePalette` | `080E205C` | `080E28BC` | `080E2908` | `080E2820` | 180 |
+
+两项查询原先被包在 LoadResourceSprite 的范围内，现按真实 push/return 边界
+补齐入口。它们分别按源 tile/palette 地址查询缓存，命中后通过分配 handle
+取得硬件索引，未命中返回 -1。JP 另外两项插入函数原来只有局部标签，现与
+其他版本使用同一函数名，不保留入口别名。
+
+resource_sprite_renderer.hh 明确 40 字节存储布局：tile owner 在 +00，
+tile cache 在 +04，palette owner 在 +14，palette cache 在 +18。每个 cache
+为 16 字节，header 的 root/first/last 链接与 24 字节节点独立；节点 +10 为
+源资源指针，+14 为分配 handle。cache +00、+0C 仍为 unk，不能臆测为数据指针。
+共用红黑树删除操作声明归入已有 red_black_tree.hh，返回待单独释放的节点。
+
+本轮核对的 17 个函数每版共 3968 字节，四版规范化指令相同，源顺序与段大小
+未变。剩余晚段的真正 C++ 内联归属仍未完成，LDS 本轮没有改动；不计为该段
+已完成链接组织。尚未运行编译器。
+
+## 牧场状态页与动物参赛选择后段归属（接续静态批次）
+
+| 原版后段范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 14个入口，1380字节 | 080E11E8–080E174C | 080E1A48–080E1FAC | 080E1A94–080E1FF8 | 080E19AC–080E1F10 |
+
+原 .text.indexed_resource_archive_destructor_after 中的状态页 Draw、页析构、
+牧场状态核心及动物参赛选择核心析构，归入 farm_status_screen 和
+animal_festival_selection 的真实类型。14个入口所在的人工后段整段移除；
+10张完整虚表共156字节由对应类型的自然虚表接替，不添加别名或假调用。
+两个模块的普通 .text/.rodata 仍分别只列一次。
+
+工具、收支、精灵、牛羊鸡、动物通用和概览页按各自的表槽和构造调用区分。
+收支/精灵的16字节行记录仅确认带符号Y、X和两个未知字；计数范围保留原
+61/60/21项容量。Draw仍先跳过视口之前的行，再按计数扫描，写入OAM的
+attr0–2而不覆盖矩阵系数字段。不能据此认定未知字段或RAM内容均已解析。
+
+牧场状态核心为0x164字节；动物参赛选择核心为0x4178字节，恢复两组计数
+记录、ScrollState、UiStateOwner、tile/palette拥有关系。前两个精灵步长
+0x38，第三个游标步长0x3C，不能套用同一个布局。尚未明确的RAM范围保留
+unk，其大小来自实际分配和访问边界，不是补ROM空洞的填充数组。
+
+海外版核心构造函数的常量池曾被误命名为外层场景的虚表。本批根据原ROM
+字值和既有ELF重定位修正为核心自身的表，只修正该构造中的引用，未全局
+替换外层场景的真实虚表引用。JP原引用已经指向核心表，现统一真实类型名。
+
+主体构造、运行和页面选择仍保留原生指令；仅名称及上述误指向修正。新Draw、
+隐式析构、布局和自然输出顺序仍待整ROM静态批次完成后的统一编译验证。
+
+## 飞盘、赛马与奖品兑换后段归属（接续静态批次）
+
+| 原版后段范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 9个入口，2040字节 | 080E092C–080E1124 | 080E118C–080E1984 | 080E11D8–080E19D0 | 080E10F0–080E18E8 |
+
+原 .text.ui_text_output_base_after 混合了飞盘、赛马及奖品兑换的三个文本变量
+查询、三个核心析构和三个变量表析构，现已整段移除；对应实际类型分别归入
+frisbee.hh 与 horse_race.hh，不再以相邻 UI 对象的位置命名。两份主模块的
+普通 .text/.rodata 各列一次；自然内联、析构与虚表仍按真实 C++ 链接机制组织。
+
+三个变量表按实际字段及读取恢复：飞盘持有16位物品ID；赛马持有四个参赛者
+名字索引、结果金额及玩家马名指针；兑换持有奖品索引。FA/FB/FC–FF及0x80
+特殊名字索引保留原调用规则。替换文本仍是31字节 FixedStr；金额格式化的
+原8字节栈缓冲也保留，不能据此宣称文本或数值范围可以任意扩张。
+
+三个核心按实际构造/清理访问恢复拥有的UI、音乐槽、资源归档、精灵、tile与
+palette记录：大小分别为0x23A8、0x14FC、0xAF4。飞盘与赛马的精灵步长是
+0x38，兑换的精灵步长是0x34，不为匹配混为一个类型。仍未确认用途的RAM
+范围保留 unk：飞盘+0x558–+0x23A0、赛马+0x6B8–+0x14DC、兑换+0x14C–+0xAEC。
+这些不是ROM填充，也不计为已完成语义解析。
+
+七张完整原虚表共100字节，其槽位已分别核对原ROM及实际函数入口。七个旧
+人工虚表子项已移除，使用对应真实类型的自然虚表；没有 .set、别名表或假调用。
+主构造和运行函数仍保留完整原生指令，只更新真实方法/虚表名称。Run继续使用
+SceneTransitionOwner的隐藏返回地址ABI，不能改成void。
+
+本批仅完成静态结构和引用核对；新查询代码、隐式析构及虚表的实际生成、ABI、
+顺序和字节须在整ROM静态批次完成后统一编译验收。没有运行编译器或移址测试。
+
+## 联机多继承接口与完整后段归属（接续静态批次）
+
+| 原版后段范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 完整40个入口 | 080E2D7C–080E3634 | 080E35DC–080E3E9C | 080E3628–080E3EE8 | 080E3540–080E3E00 |
+
+原 .text.after_menu_selection_core_destructor 已整段移除，不再用相邻菜单的
+名称组织联机、烹饪和事件检索。17个联机调整入口来自真实多继承：核心的
+HardwareContext 基类在 +0，JoyBusLinkProtocol 在 +8。两张虚表分别为
+268字节的次基类表和12字节的主基类表，JP此前被拆成多段的次表已合并恢复。
+实际覆盖关系、两个基类和编译器的 __thunk_8_ 机制负责生成这些表及入口，
+没有手写调整函数、表项、别名、补偿宏或新的人工 section。
+
+GameCubeLinkUiCore 的原0x3F0布局已补齐：结果、拥有的收发存档对象、
+借用的存档、UI、音乐槽、两份UI状态、对话阶段和主阶段均由实际读写定位。
++0x1E1的511字节RAM仍未确定用途，明确保留 unk，不冒充文本缓冲或填充。
+原有名字包容量与输入名字上限继续保留，不能据此宣称可以任意扩缩。
+核心构造与19个小方法改为真实C++，析构和大段Run仍是所属cc内的原生汇编；
+收发存档对象的构造/析构也已采用其真实成员ABI。核心场景持有具体类型。
+
+18个JoyBus适配方法归入真实协议类型。模式0只改enabled，模式1只额外清除
+unk_1B9，不补写原本未改动的标志。按键虚调用仍保留原调用次数和短路顺序。
+烹饪的188字节变量查询、344字节核心清理和32字节变量清理由实际查询及
+成员生命周期生成；两段116字节u16检索恢复为现有STL的const/可变迭代器find。
+它们由原先真实注册/移除调用触发，不添加假调用或强制输出。
+
+LDS 普通scene_gamecube_link的.text/.rodata各列一次；后段按实际自然生成
+入口及原物理顺序链接。完整人工后段和两处人工虚表子项均已移除。新的
+内联输出、MI调整入口、STL实例顺序、ABI及字节仍待整批统一编译验收。
+
+## 城镇地图标记调用、树与数组的真实归属（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 添加地图标记 | `08077E74–08078150` | `080782EC–080785C8` | `08078300–080785DC` | `080781E4–080784C0` |
+| 四个树操作及核心析构 | `080E2618–080E2B38` | `080E2E78–080E3398` | `080E2EC4–080E33E4` | `080E2DDC–080E32FC` |
+
+移除完整 .text.after_staff_credits_core_destructor，不再把城镇地图放在
+另一主题的 after 命名段中。AddTownMapMarker 在原普通 .text 位置恢复共享
+C++，真实调用内联树插入及数组追加；四个树操作归入 town_map.hh，核心
+析构由实际成员自然生成。没有添加强制保活调用、手工 COMDAT 或编译后重排。
+
+节点的16字节公共红黑树前缀已由左右旋、插入重平衡、前驱和后继指令确认；
+red_black_tree.hh 只声明这个真实共用接口，五个已有原生实现尚在原物理位置。
+城镇计数节点随后为4字节对齐的双字节坐标和一个计数字节，共24字节。
+数量以 u8 递增，同一坐标每已有一个标记，后一个标记的 x 增加8像素。
+
+52条地图查询项、2条范围回退项以及76条区域矩形的坐标字段，已由打包整数
+改成显式 x/y；坐标后的两字节由结构对齐提供。四版逐项确认54个查询坐标和
+完整912字节矩形数组与 ROM 一致，指针成员及其他数组顺序保持不变。
+
+核心逆序释放计数树、标记动态数组、借用的归档接口、渲染器、时钟、UI、
+继续场景及 HardwareContext。数组元素为28字节的坐标与资源句柄；扩容规则
+为当前数量加 max(当前数量,新增数量)，沿用 malloc/RetryMemoryAllocation
+及现有 std::construct/destroy/uninitialized_copy/fill_n，不增加通用模板工具。
+
+两份128字节运行时说明/名称缓冲和固定地图编号范围仍是原调用约束；本批
+没有把它们标为可任意扩缩。主 .text 和 .rodata 各链接一次，后段只选择
+编译器自然输出。自然内联、复制、析构、ABI和最终字节尚未统一编译验收。
+
+## 共用红黑树操作与 JP 遗漏入口（接续静态批次）
+
+| 实际入口 | JP | US | EU | DE | 大小 |
+| --- | --- | --- | --- | --- | --- |
+| `RotateRedBlackTreeLeft` | `080E1910` | `080E2170` | `080E21BC` | `080E20D4` | 56 |
+| `RotateRedBlackTreeRight` | `080E1948` | `080E21A8` | `080E21F4` | `080E210C` | 56 |
+| `RebalanceRedBlackTreeAfterInsert` | `080E1980` | `080E21E0` | `080E222C` | `080E2144` | 180 |
+| `PreviousRedBlackTreeNode` | `080E1AF4` | `080E2354` | `080E23A0` | `080E22B8` | 60 |
+| `NextRedBlackTreeNode` | `080E22C8` | `080E2B28` | `080E2B74` | `080E2A8C` | 52 |
+| `func_080E2294` | `080E1A34` | `080E2294` | `080E22E0` | `080E21F8` | 192 |
+| `func_080E2390` | `080E1B30` | `080E2390` | `080E23DC` | `080E22F4` | 180 |
+| `func_080E2444` | `080E1BE4` | `080E2444` | `080E2490` | `080E23A8` | 440 |
+
+跟随城镇地图的树依赖发现：JP 的 080E1A34、080E1B30 两个独立函数仅有
+内部局部标签，实际分别为 192 字节节点插入和 180 字节唯一插入，已补齐
+真实全局 Thumb 入口。080E1BE4 原来已有独立的两字节对齐入口宏；已验证
+实际位于四字节边界，统一为海外对应 func_080E2444 的普通函数入口。
+不是新增别名，也没有重排或补入字节。
+
+八个函数合计 1216 字节，四版规范化指令逐项一致。共用五项分别为左旋、
+右旋、插入后红黑重平衡、前驱、后继；名称来自节点字段读取和控制流。
+三个缓存树操作暂保留既有未知名称，其最终类型和模块归属仍需整理。
+TownMap 的 1312 字节后段本轮未移动，也未移除其人工 section。
+
+## 日历后段真实内联归属与人工分段移除（接续静态批次）
+
+| 原版后段范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 文本查询及两个析构 | `080E36D8–080E3948` | `080E3F40–080E41B0` | `080E3F8C–080E41FC` | `080E3EA4–080E4114` |
+
+原 .text.sprite_work_target_search_after 实际全部属于日历：352 字节文本
+变量查询、240 字节核心析构和 32 字节文本变量析构。已完整移出 code_linkonce，
+不再保留这条人工 section。查询采用所属 scene_calendar.hh 的真实 inline
+实现，文本变量析构为空函数体，核心析构由其真实成员和 HardwareContext
+基类自然产生；没有使用汇编包装、手工析构拼接或新人工 section。
+
+F0 按季节返回四份独立季节文本，F1 使用原 32 字节临时缓冲格式化日期，
+一位日期前的 0x81/0x40 空格在四版原指令中都存在；F2 返回伴侣姓名。
+所有结果仍经 FixedStr<31> 限长，未知 selector 返回未找到及空内容。
+核心析构按实际对象逆序清理文本变量、8 份图块/色板句柄、3 份归档、
+独占 UI 和硬件上下文。音乐槽和其他标量没有虚构清理操作。
+
+LDS 在原后段位置链接编译器自然产生的三个方法及相邻场景析构，普通
+src/scene_calendar.o(.text)/(.rodata) 仍各列一次。原汇编和四版范围已保留
+在 calendar-late-owner-plan，供统一构建的首差异核查；暂不声称 624 字节
+已由新 C++ 输出匹配。
+
+## 日历核心完整布局与共有成员入口（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 日历主代码 8 个函数 | `080A1C44–080A317C` | `080A220C–080A3744` | `080A223C–080A3774` | `080A216C–080A36A4` |
+| 日历核心析构 | `080E3838–080E3928` | `080E40A0–080E4190` | `080E40EC–080E41DC` | `080E4004–080E40F4` |
+| 日历核心虚表 | `080E768C–080E7698` | `080E825C–080E8268` | `080E82A8–080E82B4` | `080E81C0–080E81CC` |
+
+CalendarSceneCore 采用实际 HardwareContext 基类，大小 0x228。+0x10 是独占
+UiStateOwner，+0x14 是三个音乐槽；三份归档在 +0x20/+0x50/+0x80，三个
+0x30 字节精灵记录在 +0xB0/+0xE0/+0x110。+0x140 的 22 项偏移用于数字、
+年/季节和星期图块；+0x16C 的 4 项偏移用于事件标记，不是季节文本。
+八份 tile/palette 句柄从 +0x174 起，6×7 日期网格在 +0x1B4，GameDate 在
++0x1DE，年/季节/光标/婚礼日期后是 +0x1EC 的十个四字节事件记录。
+记录包含事件 ID、日期、标记种类、列、行和用途未明的高四位。构建函数从
+槽 1 填写，槽 0 保持空闲；十槽容量、17 个节日和原生索引是实际限制。
+
+phase/dialogue_phase/selected_event 分别在 +0x214/+0x216/+0x218，已有
+CalendarTextVariables 位于 +0x21C。+0x0C 字段仍命名 unk；成员间自然对齐
+不伪造成零数组。场景改用实际类型的 new、Run 和所有权，去掉不透明字节
+分配及无关基础指针转换。八个主函数及析构采用真实成员名称；四版共有
+5432+240 字节汇编，仅资源池两处与星期横坐标一处保留实际地区分支。
+
+核心 12 字节手工表改为自然虚表。完整主范围及 code_linkonce 所有原有
+输入段的指令、大小和顺序静态保持一致；尚未经过统一编译。
+
+## 日历文本变量虚表真实边界与直接引用（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 日历核心虚表 | `080E768C–080E7698` | `080E825C–080E8268` | `080E82A8–080E82B4` | `080E81C0–080E81CC` |
+| 日历文本变量虚表 | `080E7698–080E76A8` | `080E8268–080E8278` | `080E82B4–080E82C4` | `080E81CC–080E81DC` |
+| 文本变量查询 | `080E36D8–080E3838` | `080E3F40–080E40A0` | `080E3F8C–080E40EC` | `080E3EA4–080E4004` |
+| 文本变量析构 | `080E3928–080E3948` | `080E4190–080E41B0` | `080E41DC–080E41FC` | `080E40F4–080E4114` |
+
+JP 旧 vtable_unk_080E824C 被错误地划为 16 字节，包含下一张表的首个零字；
+vtable_unk_080E825C 则只承载下一张表的剩余 12 字节。本轮按 ROM、构造时
+的 vptr 写入和虚函数入口恢复为两个独立对象：核心表 12 字节，文本变量表
+16 字节。构造中的“前表 + 0xC”已改为真实 CalendarTextVariables 虚表符号。
+海外三版的对应文本变量表也归入同一个实际类型的自然虚表输出。
+
+CalendarTextVariables 继承 ScriptTextVariableStore，位于核心对象 +0x21C，
+大小 12 字节；+4、+5 是有符号日/季节字节，+8 是婚礼通知的伴侣姓名指针。
+实际调用依次通过 GetPartnerCharacterId、GetCharacterName 取得该指针。
+F0/F1/F2 查询返回季节、日期和姓名，仍受原 UiTextSubstitution 的 31 字节
+文本容量约束。没有将这种容量宣称为可任意扩展。
+
+Lookup 352 字节、析构 32 字节仍为原生汇编，只改为实际成员符号，去掉 JP
+同地址重合入口名。没有新增 section；它们的最终物理归属仍待整体后段整理。
+核心完整类型及其 12 字节手工表仍未完成；自然虚表输出待统一构建验证。
+
+## 料理核心实际类型、生命周期与自然虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| __16CookingSceneCoreP18GameStateSaveImageUc | `08094594–08094A40` | `08094AC0–08094F6C` | `08094AF0–08094F9C` | `08094A20–08094ECC` |
+| Run__16CookingSceneCore | `08094A40–08094C88` | `08094F6C–080951B4` | `08094F9C–080951E4` | `08094ECC–08095114` |
+| _._16CookingSceneCore | `080E33D4–080E352C` | `080E3C3C–080E3D94` | `080E3C88–080E3DE0` | `080E3BA0–080E3CF8` |
+| __vt_16CookingSceneCore | `080E7660–080E766C` | `080E8230–080E823C` | `080E827C–080E8288` | `080E8194–080E81A0` |
+
+CookingSceneCore 继承实际 GameSceneMenuCorePrefix，原分配大小为 0x33E0。
++0x8C 为存档指针，+0x90 为两个音乐槽，+0x98 起为四份资源归档，
++0x158 起为七个 0x38 字节精灵记录；+0x2E0 起的十个图块/调色板句柄
+按构造、析构的同一顺序建模。+0x334/+0x348 为两份料理记录，+0x370
+为八份 20×2 tile 的标签缓存，+0x2BB0 为八个 RucksackItem，+0x2BD0
+为 32×32 半字 tilemap，+0x33D8 为已有 CookingTextVariables。
+
+原生读取有符号的 dialogue_phase 字节。+0x2B91–+0x2BA0 的 15 字节
+运行时成员含义仍未知，以 unk 保留；不能称为对齐、空闲空间或已解析字段。
+其他未确认字段同样保留 unk。数组容量和原生索引仍有固定约束。
+
+场景改为持有实际 CookingSceneCore，使用正常 new 和成员 Run，替代不透明
+大小分配及无关基础类型转换。构造 1196 字节、运行 584 字节、析构 344 字节
+现为四版共用的可读汇编；构造只保留两处真实地区操作数差异。完整料理主段
+JP 22904、其余各 23060 字节的指令、池和偏移保持不变。
+
+JP 旧 gUnk_080E7660 与海外 vtable_unk_080E8230 是同一个 12 字节析构虚表，
+由实际类的正常虚表替代。相邻 16 字节文本变量虚表不动。析构目前仍保持在
+code_linkonce 原物理位置；其最终归属及其他后段代码须继续整体整理，未增加
+新的人工 section。普通 .text/.rodata 仍各链接一次，最终输出尚未编译验证。
+
+## 料理界面连续数据、固定行宽与引用归属（接续静态批次）
+
+| 范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 料理界面完整普通只读数据 | `081005D8–08100C24` | `08100AC0–081010E8` | `08100B18–08101140` | `081014DC–08101B2C` |
+
+四版各 32 个实际对象按原 ROM 顺序归入 scene_cooking.cc/.hh：分页符、
+八项厨具值、两组恢复状态说明、料理对话与选择行。原 page_data 与
+recovery_status 没有独立代码，实际调用均来自料理界面及其文本变量提供者，
+因此撤销两个数据碎片模块。LDS 每版仅保留一次 scene_cooking.o(.rodata)，
+不新增地址、section、填充数组或重排工具。
+
+每版文本仅分 scene_cooking_1.cc 与 scene_cooking_2.cc，中间的实际断点
+是八项 u16 厨具表。后者连续包含恢复状态矩阵和料理对话；文本内容未改动。
+原版矩阵是 9×29 与 18×29 字节，选择行是 13×11 字节；固定行宽来自
+原生索引算法，保留容量约束。唯一非零内部指针是选择行第二项的 +11，
+不是任意文本内部地址。不能将这一合并理解为这些矩阵可任意改变行宽。
+
+原三个输入对象间没有其他主题；全部对象大小、先后和零对齐间隙均已与
+原 ELF、ROM 核对。JP 原 recovery_status 末尾到普通料理文本的对齐改由
+同一对象内正常对齐承载，最终编译布局仍须整批四版统一验证。
+
+## 料理文本变量完整边界与精灵缓冲引用（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 精灵缓冲写入 | `08094510–08094594` | `08094A3C–08094AC0` | `08094A6C–08094AF0` | `0809499C–08094A20` |
+| 料理原生主范围 | `08094594–08099F0C` | `08094AC0–0809A4D4` | `08094AF0–0809A504` | `08094A20–0809A434` |
+| 料理文本变量虚表 | `080E766C–080E767C` | `080E823C–080E824C` | `080E8288–080E8298` | `080E81A0–080E81B0` |
+
+CookingTextVariables 是 ScriptTextVariableStore 的实际派生对象，占 8 字节，
+料理构造函数将其放在核心对象的 +0x33D8：物品编码为 +4 的 u16，体力与疲劳
+描述索引分别是 +6、+7 的 u8。Lookup 的隐藏返回对象是 UiTextSubstitution，
+其文本仍受原 FixedStr<31> 容量约束，不能据此声称可无上限扩展。
+
+JP 的 16 字节虚表原来被拆成 gUnk_080E766C 的一个零字和
+vtable_unk_080E8230 的三个字。本次按四版 ROM 恢复整表，并归入实际类的
+自然虚表输出；前面的 12 字节料理核心表保持独立。海外版对应旧标签为
+vtable_unk_080E823C。Lookup、析构使用真实成员符号，去掉 JP 重合入口名。
+
+132 字节精灵缓冲写入实现经寄存器别名和局部标签归一后四版相同，已共用
+同一份汇编实现。料理主范围仍为 26 个原生函数，没有把汇编计为高级语言。
+完整料理核心类型和两个后置方法的最终物理归属仍待处理；自然虚表输出待
+全局批次结束后统一编译验证，未做移址实验。
+
+## JoyBus 协议适配器与完整继承虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 18 个原生方法 | `080E300C–080E3318` | `080E3874–080E3B80` | `080E38C0–080E3BCC` | `080E37D8–080E3AE4` |
+| JoyBusLinkProtocol 虚表 | `080E733C–080E7448` | `080E7F0C–080E8018` | `080E7F58–080E8064` | `080E7E70–080E7F7C` |
+
+已确认 JoyBusLinkProtocol 继承 LinkBlockProtocol，基类占 0x30 字节，
+JoyBusContext 位于 +0x30、大小 0x188，随后四个实际模式标志占 +0x1B8–0x1BB。
+构造顺序来自既有场景构造函数：初始化 SDK context 后 SetMode(0)，未增加伪调用。
+16 个传输覆盖方法、析构和 SetMode 均绑定到实际类成员，780 字节实现仍为汇编。
+没有把尚未确认的传输状态判断臆测改名，保留 Unk_40 等对应虚槽名称。
+
+原 JP 把适配器虚表的首个零字、三字前缀和主体拆在不同标签下，本次恢复为
+一张 268 字节表；海外版也使用相同真实继承结构。LDS 在原位置引用自然的
+__vt_18JoyBusLinkProtocol，普通 .text/.rodata 仍各列一次。
+完整场景核心的多重继承与调整 this 的 UI 回调仍待后续处理；后面的料理
+模块对象保持原归属，未把它们吞进此表。自然表和字段布局最终输出待统一编译。
+
+## 联机协议成员指针、状态对象与两套自然虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| gLinkWordProtocolConnect 起的八个状态 | `08100130–08100270` | `081007AC–081008EC` | `08100804–08100944` | `081011C8–08101308` |
+| gLinkBlockProtocolConnect 起的八个状态 | `08100270–081003B0` | `081008EC–08100A2C` | `08100944–08100A84` | `08101308–08101448` |
+| __vt_17LinkBlockProtocol | `080E7458–080E755C` | `080E8028–080E812C` | `080E8074–080E8178` | `080E7F8C–080E8090` |
+| __vt_16LinkWordProtocol | `080E755C–080E7660` | `080E812C–080E8230` | `080E8178–080E827C` | `080E8090–080E8194` |
+
+原 LinkCommunicationDataRecord 并非普通通信参数记录。Update 的调用序列
+逐项读取 signed delta、virtual index 和 vptr offset，并通过虚表执行成员。
+已恢复 LinkWordProtocol / LinkBlockProtocol 两套接口和每套八个状态对象；
+每个对象依次包含 start、update、enter、poll、action 五个真实成员函数指针。
+进入新状态先执行 enter、start，每轮把 poll 返回值传入 update；独立的
+DispatchStateAction 调用第五项。两个协议的区别依据实际传输：前者首先交换
+一个记录字，后者交换八字节记录。未确认的传输判断仍保留 Unk 名称。
+
+源码改用 &Class::Method 初始化，原来的 80 组手写数值由 agbcp 的成员指针
+表示生成。旧编译器源码 typeck.c:6142 起的 build_ptrmemfunc1 / build_ptrmemfunc，
+以及 decl.c:8747 的 build_ptrmemfunc_type 与这次 ROM 和调用序列一致：两个
+signed short 加函数指针/偏移联合体，虚成员记录的 index 为虚表槽号加一。
+这是本项目 GCC 2.9 ABI，不套用现代 C++ ABI。
+
+两类各 48 个既有原生入口改为实际成员符号，指令、池和局部偏移保持不变。
+LinkBlockProtocol 已知大小 0x30；LinkWordProtocol 当前恢复字段至 +0x24，
+未虚构其他成员。两个 260 字节原始虚表由实际抽象类生成，JP 错切的四片
+恢复为完整两表。后续 cooking 对象的 16 字节保留，不把它吞进联机虚表。
+
+普通 .text/.rodata 仍各链接一次。JoyBus 派生适配器、0x3F0 场景核心的
+多重继承虚表和 code_linkonce 回调尚待后续整理，不能将整个联机模块记为完成。
+
+## GameCube 联机函数边界、传输包与四版共用指令（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 界面核心三段原生函数 | `08092D08–08093524` | `0809323C–08093A58` | `0809326C–08093A88` | `0809319C–080939B8` |
+| 场景后联机函数 | `080935BC–08094510` | `08093AF0–08094A3C` | `08093B20–08094A6C` | `08093A50–0809499C` |
+
+第一段含构造、析构和 Run，共 2076 字节；其后保持原场景 C++ 成员顺序，
+再放 137 段联机原生函数。总计 JP 6000 字节、海外各 5992 字节，140 个入口。
+US/EU/DE 原先有 19 个真实函数只有局部标签，其中 func_08093C3C 还顺带包住
+后续函数；现已独立标出真实入口，按相同功能对应四版，不新增包装调用。
+
+四版共用汇编实现，只在 18 个确有差异的函数内使用区域条件。联机错误显示
+路径保留海外多出的状态写入；DE 专有选择文本、地区资源、JP 字符编码及
+数据包差异均保留。28 个已确认用途的入口使用功能名，其余未知入口保留
+地址名。局部池标签与 .word 同行，无 .set 别名或新增逐函数 section。
+
+GameCubeLinkSaveData 的真实分配为 0x4C，借用存档并拥有收发两份缓冲；
++0x18 开始是 49 个按位展开的 milestone 标志，末尾三字节是对象对齐。
+发送包由农场、主角、孩子三份编码名及四字节 milestone 组成；接收包为
+三份编码名及八字节 milestone。JP 名字段各 8 字节，发送/接收包 28/32 字节；
+海外名字段各 13 字节，发送/接收包 43/47 字节。这些是固定协议容量，
+不能当作可自由增长的普通 ROM 文本。接收名具体角色及三个协议记录字
+尚未证明，保留编号或 unk，不套用发送侧名称。
+
+本模块普通 .text/.rodata 已各列一次。协议基类、多重继承虚表及后段
+code_linkonce 回调的自然归属仍未完成；本批只同步其真实函数符号，
+未把现有手工虚表子项算作已清理，也未更改 LDS 或运行库字面量。
+
+## 礼物包装核心、地区工具图标差异与自然虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| __21GiftWrappingSceneCoreP18GameStateSaveImage | `0809210C–0809215C` | `08092640–08092690` | `08092654–080926A4` | `08092584–080925D4` |
+| _._21GiftWrappingSceneCore | `0809215C–08092170` | `08092690–080926A4` | `080926A4–080926B8` | `080925D4–080925E8` |
+| DrawTools__21GiftWrappingSceneCoreUi | `08092170–08092220` | `080926A4–08092754` | `080926B8–08092784` | `080925E8–080926B4` |
+| DrawItems__21GiftWrappingSceneCoreUi | `08092220–0809240C` | `08092754–08092940` | `08092784–08092970` | `080926B4–080928A0` |
+| UpdateDescription__21GiftWrappingSceneCorei | `0809240C–0809253C` | `08092940–08092A70` | `08092970–08092AA0` | `080928A0–080929D0` |
+| BeginWrap__21GiftWrappingSceneCorei | `0809253C–0809279C` | `08092A70–08092CD0` | `08092AA0–08092D00` | `080929D0–08092C30` |
+| WrapItem__21GiftWrappingSceneCorei | `0809279C–08092830` | `08092CD0–08092D64` | `08092D00–08092D94` | `08092C30–08092CC4` |
+| Run__21GiftWrappingSceneCore | `08092830–08092C7C` | `08092D64–080931B0` | `08092D94–080931E0` | `08092CC4–08093110` |
+| __vt_21GiftWrappingSceneCore | `080E7208–080E7214` | `080E7DD8–080E7DE4` | `080E7E24–080E7E30` | `080E7D3C–080E7D48` |
+
+GiftWrappingSceneCore 继承 GameSceneMenuSelectionCore，大小 0x10C；+0x98
+为 FixedStr<99> 说明缓冲，+0xFC/+0x100/+0x104 依次借用 ToolStack、HeldItem、
+Rucksack，+0x108 为交互阶段。八段原生成员分别承担构造、析构、工具绘制、
+物品绘制、说明更新、包装确认、实际包装和运行。执行包装仍按原程序扣除
+100G 并更新原有 NPC 集合字段，不扩展其未知统计含义。
+
+JP/US 核心各 2928 字节，EU/DE 各 2956 字节。EU/DE DrawTools 在两条工具
+图标路径中增加 GetUpgradedTool 查询，函数为 204 字节；JP/US 为 176 字节。
+共用指令并在真实差异处直接使用 REGION 条件，删除原先额外的
+FOMT_LOCALIZED_TOOL_STACKS 汇编开关。其他成员只有六处地区资源操作数差异。
+
+场景采用实际核心所有者和自然虚表，普通 .text/.rodata 各列一次。两份独立
+bad_alloc 仍位于本模块文本前后，作为有证据的过渡运行库数据保留。
+
+## 工具箱菜单核心、工具栈接口与自然虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| __18ToolChestSceneCoreP18GameStateSaveImage | `0808E8A4–0808E8F8` | `0808ED64–0808EDB8` | `0808ED78–0808EDCC` | `0808ECA8–0808ECFC` |
+| _._18ToolChestSceneCore | `0808E8F8–0808E90C` | `0808EDB8–0808EDCC` | `0808EDCC–0808EDE0` | `0808ECFC–0808ED10` |
+| DrawRucksackTools__18ToolChestSceneCoreUi | `0808E90C–0808E9DC` | `0808EDCC–0808EE9C` | `0808EDE0–0808EEB0` | `0808ED10–0808EDE0` |
+| DrawToolChestPage__18ToolChestSceneCoreUi | `0808E9DC–0808EA70` | `0808EE9C–0808EF30` | `0808EEB0–0808EF44` | `0808EDE0–0808EE74` |
+| ShowNextPage__18ToolChestSceneCore | `0808EA70–0808EA8C` | `0808EF30–0808EF4C` | `0808EF44–0808EF60` | `0808EE74–0808EE90` |
+| ShowPreviousPage__18ToolChestSceneCore | `0808EA8C–0808EAA8` | `0808EF4C–0808EF68` | `0808EF60–0808EF7C` | `0808EE90–0808EEAC` |
+| UpdateDescription__18ToolChestSceneCorei | `0808EAA8–0808EBC0` | `0808EF68–0808F080` | `0808EF7C–0808F094` | `0808EEAC–0808EFC4` |
+| ExchangeHeldTool__18ToolChestSceneCoreiUi | `0808EBC0–0808F2C4` | `0808F080–0808F784` | `0808F094–0808F798` | `0808EFC4–0808F6C8` |
+| MoveTool__18ToolChestSceneCoreii | `0808F2C4–0809040C` | `0808F784–080908CC` | `0808F798–080908E0` | `0808F6C8–08090810` |
+| ShowCannotDiscard__18ToolChestSceneCorei | `0809040C–080904A0` | `080908CC–08090960` | `080908E0–08090974` | `08090810–080908A4` |
+| Run__18ToolChestSceneCore | `080904A0–08090994` | `08090960–08090E54` | `08090974–08090E68` | `080908A4–08090D98` |
+| __vt_18ToolChestSceneCore | `080E71D0–080E71DC` | `080E7DA0–080E7DAC` | `080E7DEC–080E7DF8` | `080E7D04–080E7D10` |
+
+ToolChestSceneCore 继承 GameSceneMenuSelectionCore，大小 0x10C；+0x98 为
+FixedStr<99> 说明缓冲，+0xFC/+0x100/+0x104 分别为 ToolStack、Rucksack、
+ToolChest 借用指针，+0x108 为交互阶段。构造中的 save+0x380 对应实际
+FarmHouse::tool_chest；原始存档和工具栈类型保持已有定义。
+
+十一段原生方法四版各 8432 字节，十处地区资源操作数局部区分。
+ShowCannotDiscard 只对非空槽位显示不能丢弃的提示并播放拒绝音效，不套用
+置物棚的丢弃确认/执行接口。页表仍为每页八格。核心自然虚表取代手工三字表，
+场景持有真实类型；普通 .text/.rodata 各列一次。
+
+统一了反汇编的等价拼写；JP Run 中无入口、位于无条件分支之后的两个零字节
+确认是池前对齐填充，交给原有 .align 2, 0 表达。大小与所有局部标签偏移
+保持不变。文本 include 和模块尾部 bad_alloc 均保持原有物理顺序。
+
+## 置物棚菜单核心、物品接口与自然虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| __14ShelfSceneCoreP18GameStateSaveImage | `0808C138–0808C190` | `0808C5F8–0808C650` | `0808C60C–0808C664` | `0808C53C–0808C594` |
+| _._14ShelfSceneCore | `0808C190–0808C1A4` | `0808C650–0808C664` | `0808C664–0808C678` | `0808C594–0808C5A8` |
+| DrawRucksackItems | `0808C1A4–0808C380` | `0808C664–0808C840` | `0808C678–0808C854` | `0808C5A8–0808C784` |
+| DrawShelfPage | `0808C380–0808C3FC` | `0808C840–0808C8BC` | `0808C854–0808C8D0` | `0808C784–0808C800` |
+| ShowNextPage | `0808C3FC–0808C418` | `0808C8BC–0808C8D8` | `0808C8D0–0808C8EC` | `0808C800–0808C81C` |
+| ShowPreviousPage | `0808C418–0808C434` | `0808C8D8–0808C8F4` | `0808C8EC–0808C908` | `0808C81C–0808C838` |
+| UpdateDescription | `0808C434–0808C510` | `0808C8F4–0808C9D0` | `0808C908–0808C9E4` | `0808C838–0808C914` |
+| ExchangeHeldItem | `0808C510–0808CA04` | `0808C9D0–0808CEC4` | `0808C9E4–0808CED8` | `0808C914–0808CE08` |
+| MoveItem | `0808CA04–0808D894` | `0808CEC4–0808DD54` | `0808CED8–0808DD68` | `0808CE08–0808DC98` |
+| ConfirmWrappedItemMove | `0808D894–0808DF84` | `0808DD54–0808E444` | `0808DD68–0808E458` | `0808DC98–0808E388` |
+| BeginDiscard | `0808DF84–0808E19C` | `0808E444–0808E65C` | `0808E458–0808E670` | `0808E388–0808E5A0` |
+| DiscardItem | `0808E19C–0808E23C` | `0808E65C–0808E6FC` | `0808E670–0808E710` | `0808E5A0–0808E640` |
+| Run | `0808E23C–0808E818` | `0808E6FC–0808ECD8` | `0808E710–0808ECEC` | `0808E640–0808EC1C` |
+| __vt_14ShelfSceneCore | `080E71B4–080E71C0` | `080E7D84–080E7D90` | `080E7DD0–080E7DDC` | `080E7CE8–080E7CF4` |
+
+ShelfSceneCore 继承 GameSceneMenuSelectionCore，大小 0x10C；说明缓冲位于
++0x98，使用 FixedStr<99>。+0xFC/+0x100/+0x104 分别为 HeldItem、Rucksack、
+Shelf 借用指针；+0x108 是交互阶段。GetShelf 和 ArticleStack 的读取、数量
+合并及两字节复制明确了置物棚身份，不沿用旧基线中错位的 Refrigerator 名称。
+
+十三段原生方法四版各 9952 字节，共用指令并保留 23 处地区资源操作数。
+每页八格，页控制沿用已有控制器；手持交换、槽位移动、包装确认与丢弃均作为
+真实成员接口。构造、析构和场景核心使用实际类型；原始三字虚表交由该类自然
+产生。普通 .text/.rodata 各列一次，独立运行库字面量保持原有位置和过渡定义。
+
+## 背包菜单原生成员、说明缓冲与引用（接续静态批次）
+
+| 原版函数范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| ExchangeHeldSlot | `0808A768–0808ACAC` | `0808AC28–0808B16C` | `0808AC3C–0808B180` | `0808AB6C–0808B0B0` |
+| MoveSlot | `0808ACAC–0808B5A0` | `0808B16C–0808BA60` | `0808B180–0808BA74` | `0808B0B0–0808B9A4` |
+| BeginDiscard | `0808B5A0–0808B754` | `0808BA60–0808BC14` | `0808BA74–0808BC28` | `0808B9A4–0808BB58` |
+| DiscardItem | `0808B754–0808B810` | `0808BC14–0808BCD0` | `0808BC28–0808BCE4` | `0808BB58–0808BC14` |
+| DrawTools | `0808B810–0808B8E0` | `0808BCD0–0808BDA0` | `0808BCE4–0808BDB4` | `0808BC14–0808BCE4` |
+| DrawItems | `0808B8E0–0808BACC` | `0808BDA0–0808BF8C` | `0808BDB4–0808BFA0` | `0808BCE4–0808BED0` |
+| UpdateDescription | `0808BACC–0808BBFC` | `0808BF8C–0808C0BC` | `0808BFA0–0808C0D0` | `0808BED0–0808C000` |
+| Run | `0808BBFC–0808C0AC` | `0808C0BC–0808C56C` | `0808C0D0–0808C580` | `0808C000–0808C4B0` |
+
+背包核心沿用真实 RucksackMenuCore 类型及自然虚表。+0x98 的 100 字节说明
+缓冲改用已有 FixedStr<99>，其默认构造负责写入首字节零；+0xFC、+0x100、
++0x104 分别为手持工具、手持物品及背包借用指针，+0x108 为交互阶段。
+选择 0 和 9 是类别位置，其余分别为工具及物品槽位，不能混为数组同一种索引。
+
+八段原生函数四版各 6468 字节，真实成员接口分别负责手持交换、槽位移动、
+丢弃确认/执行、工具/物品绘制、说明更新及运行。四版共用指令，仅五处资源
+操作数局部条件化。JP Run 的重复局部标签合并，对齐声明只补在已经对齐处，
+静态指令内容、大小和偏移不变。普通 .text/.rodata 各列一次，现有文本及
+独立 bad_alloc 尾部未重排。构造输出仍待统一构建核对。
+
+## 冰箱菜单核心、物品转移接口与自然虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 构造 | `08087DEC–08087E44` | `080882AC–08088304` | `080882C0–08088318` | `080881F0–08088248` |
+| 析构 | `08087E44–08087E58` | `08088304–08088318` | `08088318–0808832C` | `08088248–0808825C` |
+| 背包物品绘制 | `08087E58–08088034` | `08088318–080884F4` | `0808832C–08088508` | `0808825C–08088438` |
+| 冰箱页绘制 | `08088034–080880B4` | `080884F4–08088574` | `08088508–08088588` | `08088438–080884B8` |
+| 下一页 | `080880B4–080880D0` | `08088574–08088590` | `08088588–080885A4` | `080884B8–080884D4` |
+| 上一页 | `080880D0–080880EC` | `08088590–080885AC` | `080885A4–080885C0` | `080884D4–080884F0` |
+| 更新说明 | `080880EC–080881C8` | `080885AC–08088688` | `080885C0–0808869C` | `080884F0–080885CC` |
+| 手持物品交换 | `080881C8–080886E0` | `08088688–08088BA0` | `0808869C–08088BB4` | `080885CC–08088AE4` |
+| 物品移动 | `080886E0–08089618` | `08088BA0–08089AD8` | `08088BB4–08089AEC` | `08088AE4–08089A1C` |
+| 确认包装物品移动 | `08089618–08089E34` | `08089AD8–0808A2F4` | `08089AEC–0808A308` | `08089A1C–0808A238` |
+| 丢弃确认 | `08089E34–0808A000` | `0808A2F4–0808A4C0` | `0808A308–0808A4D4` | `0808A238–0808A404` |
+| 执行丢弃 | `0808A000–0808A09C` | `0808A4C0–0808A55C` | `0808A4D4–0808A570` | `0808A404–0808A4A0` |
+| 运行 | `0808A09C–0808A678` | `0808A55C–0808AB38` | `0808A570–0808AB4C` | `0808A4A0–0808AA7C` |
+| 核心虚表 | `080E717C–080E7188` | `080E7D4C–080E7D58` | `080E7D98–080E7DA4` | `080E7CB0–080E7CBC` |
+
+RefrigeratorSceneCore 继承 GameSceneMenuSelectionCore，总大小 0x10C。
++0x98 是 FixedStr<99> 说明缓冲；+0xFC/+0x100/+0x104 分别为 HeldItem、
+Rucksack、Fridge 的借用指针；+0x108 是交互阶段。构造通过 GetFridge 获取
+实际冰箱，方法操作 FoodStack；沿用此前已纠正的模块归属，不按旧保存符号表中
+循环错位的 ToolChest 名称推断地址。
+
+十三个原生方法四版各 10380 字节，指令共用，24 处资源操作数局部条件化。
+冰箱每页八格；页控制器在 0..7 循环。物品移动、包装确认及丢弃分别对应原有
+调用入口；内部长跳转保持函数内标签。核心和场景使用实际类型的所有者，
+手工虚表替换为实际类的自然虚表。普通 .text/.rodata 各列一次。
+
+游戏文本仍 include 同名区域文件；首尾独立 bad_alloc 留在模块中，保持过渡
+运行库数据身份和原始顺序。本批未声称已经恢复其自然产生方式。
+
+## 铁匠升级选择核心、隐藏函数边界与原生接口（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `08090A20–08090A98` | `08090EE0–08090F58` | `08090EF4–08090F6C` | `08090E24–08090E9C` |
+| 核心析构 | `08090A98–08090B0C` | `08090F58–08090FCC` | `08090F6C–08090FE0` | `08090E9C–08090F10` |
+| 工具列表 | `08090B0C–08090BD4` | `08090FCC–08091094` | `08090FE0–080910A8` | `08090F10–08090FD8` |
+| 物品列表 | `08090BD4–08090DC0` | `08091094–08091280` | `080910A8–08091294` | `08090FD8–080911C4` |
+| 更新说明 | `08090DC0–08090EF0` | `08091280–080913B0` | `08091294–080913C4` | `080911C4–080912F4` |
+| 诅咒工具判断 | `08090EF0–08090F1C` | `080913B0–080913DC` | `080913C4–080913F0` | `080912F4–08091320` |
+| 升级矿石判断 | `08090F1C–08090F60` | `080913DC–08091420` | `080913F0–08091434` | `08091320–08091364` |
+| 比较升级等级 | `08090F60–08090FE0` | `08091420–080914A0` | `08091434–080914B4` | `08091364–080913E4` |
+| 所需工作日 | `08090FE0–0809106C` | `080914A0–0809152C` | `080914B4–08091540` | `080913E4–08091470` |
+| 核心运行 | `0809106C–0809203C` | `0809152C–08092570` | `08091540–08092584` | `08091470–080924B4` |
+| 核心虚表 | `080E71EC–080E71F8` | `080E7DBC–080E7DC8` | `080E7E08–080E7E14` | `080E7D20–080E7D2C` |
+
+BlacksmithShopResultSceneCore 实际继承 0x98 字节的 GameSceneMenuSelectionCore，
+总大小 0x1B8。其后依次为 FixedStr<99>、装备工具指针、手持物品指针、背包指针、
+阶段、矿石选择精灵所有者、后续场景所有者、购买标志及 FixedStr<159>。
+三个借用指针来自 Farmer 的 +0x5C、+0x54、+0x60；矿石精灵实际通过
+GameSceneMenuSpriteData 构造并由同一资源析构路径释放。两个字符串容量来自原生
+读取及有界拼接，属于 RAM 限制，不限制 ROM 文本定义长度。
+
+日版 0x08090EF0、0x08090F1C 原先只有局部标签，分别是完整的诅咒工具、升级矿石
+判断函数，现与海外版共用实际成员接口。日版 0x080912CA、0x0809133C、0x08091FC0
+是 Run 内部分支，不是独立函数；全局入口标记已移除，保留局部标签引用。
+
+十段原生函数共享源码；JP 5660 字节，US/EU/DE 各 5776 字节。九段前置函数
+共 1612 字节，Run 为 JP 4048、海外 4164 字节。地区差异保留于实际资源操作数和
+委托说明拼接处，未添加补偿数据。普通 .text/.rodata 各列一次，手工核心虚表改为
+实际类的自然虚表。区域文本仍按原顺序 include 同名文本文件。
+
+## 牧场商店核心、牲畜列表与状态说明缓存（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `080850FC–080851A4` | `08085584–0808562C` | `08085598–08085640` | `0808548C–08085534` |
+| 核心析构 | `080851A4–080851B8` | `0808562C–08085640` | `08085640–08085654` | `08085534–08085548` |
+| 绘制目录 | `080851B8–080853E4` | `08085640–0808586C` | `08085654–08085880` | `08085548–08085774` |
+| 绘制牲畜出售列表 | `080853E4–08085A3C` | `0808586C–08085EC4` | `08085880–08085ED8` | `08085774–08085DCC` |
+| 好感心数 | `08085A3C–08085A64` | `08085EC4–08085EEC` | `08085ED8–08085F00` | `08085DCC–08085DF4` |
+| 命名牲畜种类 | `08085A64–08085A80` | `08085EEC–08085F08` | `08085F00–08085F1C` | `08085DF4–08085E10` |
+| 更新说明 | `08085A80–0808645C` | `08085F08–080868E4` | `08085F1C–080868F8` | `08085E10–080867EC` |
+| 出售价格 | `0808645C–08086518` | `080868E4–080869A0` | `080868F8–080869B4` | `080867EC–080868A8` |
+| 怀孕计数 | `08086518–08086580` | `080869A0–08086A08` | `080869B4–08086A1C` | `080868A8–08086910` |
+| 核心运行 | `08086580–08087CA8` | `08086A08–08088168` | `08086A1C–0808817C` | `08086910–080880AC` |
+| 场景构造 | `08087CA8–08087CEC` | `08088168–080881AC` | `0808817C–080881C0` | `080880AC–080880F0` |
+| 场景析构 | `08087CEC–08087D2C` | `080881AC–080881EC` | `080881C0–08088200` | `080880F0–08088130` |
+| 核心虚表 | `080E7160–080E716C` | `080E7D30–080E7D3C` | `080E7D7C–080E7D88` | `080E7C94–080E7CA0` |
+
+YodelRanchShopSceneCore 继承 ShopScreenCore，大小 0x43E0。+0x6A4 为阶段，
++0x6A8 为购买标志，+0x6AC 为十六个“牲畜索引、价格”条目；+0x72C 为
+列表计数，+0x730 为十六个菜单代码。+0x770 起有十七份 0x304 字节名字
+缓冲，每份包括未知前导字及 12×2 个 4bpp 图块。
+
++0x3AB4/+0x3B34 分别是 128/100 字节说明。+0x3B98 起十六份状态缓存，
+每份有布尔有效标志及 FixedStr<127>，文本在条目 +4，步长 0x84。
+实际旧 ARM 编译器的 STRUCTURE_SIZE_BOUNDARY=32，记录类型最低四字节
+对齐；既有 UiTextSubstitution 同样是 bool 后接 FixedStr，并有相同偏移。
+这里未伪造额外三个字段。末尾 +0x43D8/+0x43DC 是命名种类和牲畜索引。
+
+十二段原生函数共用源码。总量 JP 11312、US/EU 11368、DE 11428 字节；
+Run 本身分别为 5928、5984、5984、6044 字节。区域文本拼接和分支保持原样，
+差异局部条件化，没有添加补偿字节。局部标签只统一名称，选定版本后每个
+函数的指令、跳转目标偏移和大小均与整理前一致。
+
+目录 mode 决定 code 属于物品、牲畜购买、工具、牲畜出售还是列表说明，
+不把它误认作统一物品编号。文本与十一项目录仍是一个连续 rodata 对象。
+自然虚表归入真实类，普通 .text/.rodata 各列一次。固定 RAM 容量与原生
+边界检查继续保留，不宣称这些数组可以任意扩缩。
+
+## 木匠铺核心、改建目录与固定图块缓冲（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `0808374C–080837C8` | `08083BD4–08083C50` | `08083BE8–08083C64` | `08083ADC–08083B58` |
+| 核心析构 | `080837C8–080837DC` | `08083C50–08083C64` | `08083C64–08083C78` | `08083B58–08083B6C` |
+| 绘制主目录 | `080837DC–08083BC8` | `08083C64–08084050` | `08083C78–08084064` | `08083B6C–08083F58` |
+| 绘制改建款式 | `08083BC8–08083C6C` | `08084050–080840F4` | `08084064–08084108` | `08083F58–08083FFC` |
+| 更新说明 | `08083C6C–08083DA0` | `080840F4–08084228` | `08084108–0808423C` | `08083FFC–08084130` |
+| 核心运行 | `08083DA0–0808506C` | `08084228–080854F4` | `0808423C–08085508` | `08084130–080853FC` |
+| 场景析构 | `080850A0–080850E0` | `08085528–08085568` | `0808553C–0808557C` | `08085430–08085470` |
+| 核心虚表 | `080E7144–080E7150` | `080E7D14–080E7D20` | `080E7D60–080E7D6C` | `080E7C78–080E7C84` |
+
+CarpenterShopSceneCore 继承 ShopScreenCore。+0x6A4 为 100 字节数量说明，
++0x708 是阶段，+0x70C 是购买标志；+0x710 为改建目录计数，随后三个
+目录索引。+0x720 起为二十份 0x484 字节图块缓冲，每份包含一个未知字及
+18×2 个 4bpp 图块。+0x6170 是 128 字节改建说明，+0x61F0 记录木材箱
+先前是否已满，核心总长 0x61F4；这些均是已核对的原生 RAM 容量。
+
+两项目录绘制接口都返回供滚动下界计算的图块行数；改建接口按 8、9、10
+选择窗户、狗屋、信箱的三个款式。文本、二十项 ROM 目录及两段 include
+维持原顺序。场景改为实际类型持有，原生析构仍在原构造与 Run 之间。
+
+七段原生函数共 6496 字节共有化，六处区域操作数保留真实差异，其中两处
+确认文本 US/EU 使用 ConfirmUpgrade，JP/DE 复用 AreYouSureNow。没有通过
+偏移或别名制造一致。普通 .text/.rodata 各一次，核心虚表归入真实类输出。
+尚未恢复运行库字面量的自然生成，bad_alloc 仍保留于该模块普通数据。
+
+## 铁匠铺核心、图块缓冲与委托接口（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `08081D48–08081DC8` | `080821D0–08082250` | `080821E4–08082264` | `080820D8–08082158` |
+| 核心析构 | `08081DC8–08081DDC` | `08082250–08082264` | `08082264–08082278` | `08082158–0808216C` |
+| 追加资源行 | `08081DDC–08081EC4` | `08082264–0808234C` | `08082278–08082360` | `0808216C–08082254` |
+| 绘制工具图标 | `08081EC4–08082204` | `0808234C–0808268C` | `08082360–080826A0` | `08082254–08082594` |
+| 绘制目录 | `08082204–08082614` | `0808268C–08082A9C` | `080826A0–08082AB0` | `08082594–080829A4` |
+| 准备制作委托 | `08082614–0808278C` | `08082A9C–08082C14` | `08082AB0–08082C28` | `080829A4–08082B1C` |
+| 更新说明 | `0808278C–080827EC` | `08082C14–08082C74` | `08082C28–08082C88` | `08082B1C–08082B7C` |
+| 工具持有检查 | `080827EC–08082864` | `08082C74–08082CEC` | `08082C88–08082D00` | `08082B7C–08082BF4` |
+| 核心运行 | `08082864–080835F4` | `08082CEC–08083A7C` | `08082D00–08083A90` | `08082BF4–08083984` |
+| 核心虚表 | `080E7118–080E7124` | `080E7CE8–080E7CF4` | `080E7D34–080E7D40` | `080E7C4C–080E7C58` |
+
+BlacksmithShopSceneCore 继承 ShopScreenCore，阶段在 +0x6A4，购买标志在
++0x6A8。+0x6AC 有十一份 0x604 字节标签缓冲，每份为一个未使用字及
+24×2 图块的 0x600 字节内容；尺寸由清屏、文字绘制及 DMA 读取共同确认。
++0x48D8 起依次是工具、矿石、价格及工作天数，完整核心为 0x48E8。
+
+四个地址名接口按实际用途改为资源行追加、工具图标绘制、目录绘制和
+制作委托准备。九段函数共 6316 字节，共用四版指令，仅七处区域操作数
+不同。Run 内五处 BL 是局部控制流，其中旧 sub_08082F50 是帧处理入口，
+不另造函数。场景持有真实核心类型，构造参数及转场字段同步命名。
+
+十一项目录仍在两段文本之间，物理顺序不变。普通 .text/.rodata 各列一次；
+核心虚表改由实际类自然生成。原生固定缓冲容量仍不可任意扩缩；bad_alloc
+继续作为所属模块的过渡数据，未纳入翻译，也未增加无意义的运行库调用。
+
+## 海滨餐馆核心、订单持有与共有指令（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `08081644–08081678` | `08081ACC–08081B00` | `08081AE0–08081B14` | `080819D4–08081A08` |
+| 核心析构 | `08081678–080816A4` | `08081B00–08081B2C` | `08081B14–08081B40` | `08081A08–08081A34` |
+| 核心取出订单 | `080816A4–080816B8` | `08081B2C–08081B40` | `08081B40–08081B54` | `08081A34–08081A48` |
+| 菜品说明 | `080816B8–08081734` | `08081B40–08081BBC` | `08081B54–08081BD0` | `08081A48–08081AC4` |
+| 核心运行 | `08081734–08081C8C` | `08081BBC–08082114` | `08081BD0–08082128` | `08081AC4–0808201C` |
+| 场景取出订单 | `08081D18–08081D48` | `080821A0–080821D0` | `080821B4–080821E4` | `080820A8–080820D8` |
+| 核心虚表 | `080E70FC–080E7108` | `080E7CCC–080E7CD8` | `080E7D18–080E7D24` | `080E7C30–080E7C3C` |
+
+BeachCafeShopSceneCore 继承 ShopScreenCore，+0x6A4 为阶段，+0x6A8 为
+点餐标志，+0x6AC 持有订单，核心大小 0x6B0。订单为 16 字节，包含图标
+编号、unk_04、体力变化、unk_0C；两项 unk 的含义保留待核。菜单仍为
+28 字节，+0x10 传入农夫体力调整函数，另两项继续使用 unk 命名。
+
+两级 TakeOrder 都转移持有指针并清空来源。场景结果转换保留真实的
+“来源槽引用 + 缓存值”两字 ABI；没有伪造只返回裸指针的接口。场景
+构造、析构及 Run 保持原顺序，使用对应核心持有类型。
+
+六段原生函数共 1656 字节共享四版指令，仅数字绘制和资源标签两处区域
+差异。普通 .text/.rodata 各一次，12 字节核心虚表由真实类型自然生成。
+两段文本分别位于五项菜单表前后，保留原有 include 和物理排列。
+本批没有新增 C/C++ 恢复字节，运行库字面量保持已标明的过渡状态。
+
+## 特殊商人商店核心、目录边界与真实接口（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `08080998–080809CC` | `08080E20–08080E54` | `08080E34–08080E68` | `08080D28–08080D5C` |
+| 核心析构 | `080809CC–080809E0` | `08080E54–08080E68` | `08080E68–08080E7C` | `08080D5C–08080D70` |
+| 绘制目录 | `080809E0–08080C80` | `08080E68–08081108` | `08080E7C–0808111C` | `08080D70–08081010` |
+| 商品说明 | `08080C80–08080CC4` | `08081108–0808114C` | `0808111C–08081160` | `08081010–08081054` |
+| 核心运行 | `08080CC4–080815B8` | `0808114C–08081A40` | `08081160–08081A54` | `08081054–08081948` |
+| 核心虚表 | `080E70E0–080E70EC` | `080E7CB0–080E7CBC` | `080E7CFC–080E7D08` | `080E7C14–080E7C20` |
+
+该模块在酒庄之后、海滨餐馆之前。SpecialMerchantShopSceneCore 继承
+ShopScreenCore，+0x6A4 为阶段、+0x6A8 为购买标志、+0x6AC 为
+FixedStr<99>（100 字节原生 RAM 容量），完整大小 0x710。
+
+原 func_080809E0/func_08080E68 根据实际调用命名为 DrawCatalog：构建
+资源图标、价格与滚动下界，两个调用方不使用返回值。五段原生函数合计
+3104 字节共享四版实现，保留四处数字绘制/格式化及资源差异。JP 跳表中
+无人引用的逐项局部标签清理为普通连续 .word，表起点和六项顺序不变。
+
+场景使用真实类型持有核心，以 new 和成员调用替代到无关 UI 类型的转换。
+12 字节核心虚表归入实际类的自然输出；普通 .text/.rodata 各一次。十五项
+目录仍在文本之前，其中索引 10 是留声机专用目录项，保留原有特殊分支。
+没有新增高级语言恢复字节，bad_alloc 自然生成问题仍待整体工具链验证。
+
+## 酒庄商店核心、配送分支与共享指令（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `08080060–08080094` | `080804F8–0808052C` | `0808050C–08080540` | `080803F0–08080424` |
+| 核心析构 | `08080094–080800A8` | `0808052C–08080540` | `08080540–08080554` | `08080424–08080438` |
+| 核心运行 | `080800A8–0808090C` | `08080540–08080D94` | `08080554–08080DA8` | `08080438–08080C9C` |
+| 核心虚表 | `080E70C4–080E70D0` | `080E7C94–080E7CA0` | `080E7CE0–080E7CEC` | `080E7BF8–080E7C04` |
+
+WineryShopSceneCore 继承 ShopScreenCore：+0x6A4 阶段、+0x6A8 已购买标志、
++0x6AC FixedStr<99>（100 字节 RAM 容量），完整大小 0x710。场景使用真实
+核心持有类型、new 和 Run 成员，删除到无关 UI 类型的转换；continuation
+仍先于核心析构。两项商品目录、区域文本、过渡 bad_alloc 的顺序不变。
+
+三段完整原生函数共享源码。JP/DE 按剩余数量选择部分配送或全部配送提示，
+US/EU 共用配送文本；这是真实的 16 字节控制流差异，以局部区域分支保留。
+另有三处数字显示、格式化与资源差异。JP 九处原已满足的池对齐没有新增字节。
+
+原生总量 JP/DE 2220 字节、US/EU 2204 字节，仍计为汇编实现。普通 .text
+及 .rodata 每段一次，12 字节核心虚表改由实际类自然生成，待统一编译确认。
+
+## 霍安商店核心、完整函数边界与共享指令（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `0807F1A4–0807F1D8` | `0807F63C–0807F670` | `0807F650–0807F684` | `0807F534–0807F568` |
+| 核心析构 | `0807F1D8–0807F1EC` | `0807F670–0807F684` | `0807F684–0807F698` | `0807F568–0807F57C` |
+| 商品说明 | `0807F1EC–0807F250` | `0807F684–0807F6E8` | `0807F698–0807F6FC` | `0807F57C–0807F5E0` |
+| 绘制商品目录 | `0807F250–0807F430` | `0807F6E8–0807F8C8` | `0807F6FC–0807F8DC` | `0807F5E0–0807F7C0` |
+| 核心运行 | `0807F430–0807FFC4` | `0807F8C8–0808045C` | `0807F8DC–08080470` | `0807F7C0–08080354` |
+| 场景析构 | `0807FFF4–08080034` | `0808048C–080804CC` | `080804A0–080804E0` | `08080384–080803C4` |
+| 判定杂货项 | `08080050–08080060` | `080804E8–080804F8` | `080804FC–0808050C` | `080803E0–080803F0` |
+| 核心虚表 | `080E70A8–080E70B4` | `080E7C78–080E7C84` | `080E7CC4–080E7CD0` | `080E7BDC–080E7BE8` |
+
+WonShopSceneCore 继承 ShopScreenCore：+0x6A4 为 FixedStr<99>，+0x708 为阶段，
++0x70C 为已购买标志，核心大小 0x710。场景使用真实 new/Run 成员接口，现有
+原生场景析构保留，不额外增加持有包装层。目录按位置判定前 0–2 项为 Article，
+3–9 项为 Tool；DrawCatalog 返回最终行位置，依据原循环由 4 起每项加 2。
+
+原生七函数共 3696 字节共用四版指令，保留七处数字、资源和交付文本区域差异。
+JP 四个误标为全局函数的 loc 标签归回 DrawCatalog 内部，其共享栈帧和循环边界
+与海外版相符。Run 内部四个 BL 是长距离跳转，其中一个进入共用退出路径，
+不能按一般 BL 将它们拆成新函数。JP 一处已经满足边界的常量池对齐不会增加字节。
+
+12 字节核心虚表由实际类自然生成；普通 .text/.rodata 各一次，目录和文本的
+源文件顺序不变。已有 C++ 构造和 Run 保留；本批未增加高级语言恢复字节。
+
+## 旅馆点餐核心、结果所有权与共享指令（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `0807EA08–0807EA3C` | `0807EEA0–0807EED4` | `0807EEB4–0807EEE8` | `0807ED98–0807EDCC` |
+| 核心析构 | `0807EA3C–0807EA68` | `0807EED4–0807EF00` | `0807EEE8–0807EF14` | `0807EDCC–0807EDF8` |
+| 核心取出订单 | `0807EA68–0807EA7C` | `0807EF00–0807EF14` | `0807EF14–0807EF28` | `0807EDF8–0807EE0C` |
+| 菜品说明 | `0807EA7C–0807EAF8` | `0807EF14–0807EF90` | `0807EF28–0807EFA4` | `0807EE0C–0807EE88` |
+| 核心运行 | `0807EAF8–0807F0E8` | `0807EF90–0807F580` | `0807EFA4–0807F594` | `0807EE88–0807F478` |
+| 场景取出订单 | `0807F174–0807F1A4` | `0807F60C–0807F63C` | `0807F620–0807F650` | `0807F504–0807F534` |
+| 核心虚表 | `080E708C–080E7098` | `080E7C5C–080E7C68` | `080E7CA8–080E7CB4` | `080E7BC0–080E7BCC` |
+
+InnShopSceneCore 继承 ShopScreenCore；+0x6A4 为阶段，+0x6A8 为已点餐标志，
++0x6AC 持有可转移的 InnShopOrderOwner，核心总长 0x6B0。点餐结果为 16 字节：
+图标编号、unk_04、体力变化、unk_0C；两项 unk 的含义未确定，不猜名。菜单仍为 28 字节，
++0x10 确认传入体力调整函数，其余尚未确认的值保留 unk。
+
+核心和场景两级 TakeOrder 的原生实现均转移所有权、清空来源；场景中还存在
+“来源指针槽引用 + 缓存值”的两字转换记录，按实际 ABI 定义专用持有类型。
+移除向不相关 GameSceneUiComponent 的转换，场景保留原成员析构顺序。
+
+六个原生函数共 1808 字节，四版共用指令，仅数字绘制和资源地址有两处真实区域
+差异。JP 三个常量池已有四字节边界，补齐共有 .align 2, 0 不产生字节或地址变化。
+已有场景 C++ 构造/析构/Run 的物理位置不变；完整核心虚表由真实类自然产生。
+普通 .text/.rodata 各仅链接一次，菜单和两段文本顺序未改。
+
+## 诊所商店核心边界、类型化持有与共享指令（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `0807E03C–0807E070` | `0807E4D4–0807E508` | `0807E4E8–0807E51C` | `0807E3CC–0807E400` |
+| 核心析构 | `0807E070–0807E084` | `0807E508–0807E51C` | `0807E51C–0807E530` | `0807E400–0807E414` |
+| 商品说明 | `0807E084–0807E0C0` | `0807E51C–0807E558` | `0807E530–0807E56C` | `0807E414–0807E450` |
+| 核心运行 | `0807E0C0–0807E97C` | `0807E558–0807EE14` | `0807E56C–0807EE28` | `0807E450–0807ED0C` |
+| 核心虚表 | `080E7070–080E707C` | `080E7C40–080E7C4C` | `080E7C8C–080E7C98` | `080E7BA4–080E7BB0` |
+
+ClinicShopSceneCore 派生自 ShopScreenCore。+0x6A4 是 FixedStr<99>，
+共 100 字节；+0x708 是阶段，+0x70C 是已购买标志，完整大小 0x710。
+构造的清零、运行时 99 字节追加上限和退出分支对购买标志的使用共同
+确认这些边界。原 RAM 容量保留，普通 ROM 文本没有增加固定长度。
+
+场景以真实 ClinicShopSceneCoreOwner 持有核心，删除原先到无关
+GameSceneUiComponent 的转换；成员顺序仍先释放 continuation，再释放
+核心。四个核心函数共 2368 字节保留完整原生实现，共享四版代码，三处
+数字显示/格式化及资源差异局部选区。已有场景构造、析构和 Run 仍由
+C++ 编译，没有新增中间包装函数。
+
+12 字节核心虚表改由真实类产生，普通 .text/.rodata 每段只链接一次。
+目录、文本与过渡 bad_alloc 的既有顺序不变；运行库字面量来源及新
+类型的自然代码/虚表输出仍待统一验证。本批未新增高级语言恢复字节。
+
+## 超市两种核心、四张虚表与共享原生实现（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 普通商店核心及场景 | `0807CCFC–0807D92C` | `0807D194–0807DDC4` | `0807D1A8–0807DDD8` | `0807D08C–0807DCBC` |
+| 指定商品核心及场景 | `0807D92C–0807E03C` | `0807DDC4–0807E4D4` | `0807DDD8–0807E4E8` | `0807DCBC–0807E3CC` |
+| SupermarketPurchaseSceneCore 虚表 | `080E7038–080E7044` | `080E7C08–080E7C14` | `080E7C54–080E7C60` | `080E7B6C–080E7B78` |
+| SupermarketSceneCore 虚表 | `080E7044–080E7050` | `080E7C14–080E7C20` | `080E7C60–080E7C6C` | `080E7B78–080E7B84` |
+| SupermarketPurchaseScene 虚表 | `080E7050–080E7060` | `080E7C20–080E7C30` | `080E7C6C–080E7C7C` | `080E7B84–080E7B94` |
+| SupermarketScene 虚表 | `080E7060–080E7070` | `080E7C30–080E7C40` | `080E7C7C–080E7C8C` | `080E7B94–080E7BA4` |
+
+两种核心均派生自 0x6A4 字节的 ShopScreenCore，完整大小均为 0x710。
+普通商店在 +0x6A4 放置 100 字节说明缓冲，+0x708 为阶段，+0x70C 为
+已购买标志；指定商品购买核心在 +0x6A4 保存 MarySupermarketItemId，
++0x6A8 放置同样的说明缓冲，+0x70C 为阶段。原追加路径最多复制 99 个
+内容字节并补 NUL，采用已有 FixedStr<99> 表达实际 RAM 容量。
+
+日版 0x080E7044 是普通商店核心虚表的真实起点，不是前一对象可复用的
+尾槽。旧的 7BF8 section 把该首个零槽附在购买核心虚表之后，7C08 又
+只保留后两项；本批按四个完整对象恢复。核心虚表各 12 字节、场景虚表
+各 16 字节，均从真实类生成。相邻诊所虚表保持原归属，没有一并吞入。
+
+12 个原生函数共 4872 字节，按原顺序共享四版实现；九处真实地区差异
+在数字绘制、格式化、资源及文本引用点使用区域分支。两个现有 C++ Run
+共 56 字节仍位于各自场景析构之后。说明、商品目录、文本的 .rodata
+顺序未改，整个主题仍只链接一次普通 .text 和一次普通 .rodata。
+
+实际构造析构保留原生实现；本批恢复真实成员 ABI，不新增包装入口或
+别名。场景继续先释放 continuation 再释放核心。bad_alloc 仍是来源
+待恢复的过渡数据，未宣称已由编译器自然产生。所有输出待统一编译。
+
+## 鸡舍商店核心、出售条目与名称缓冲边界（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `0807AC94–0807AD18` | `0807B0F0–0807B174` | `0807B104–0807B188` | `0807AFE8–0807B06C` |
+| 核心析构 | `0807AD18–0807AD2C` | `0807B174–0807B188` | `0807B188–0807B19C` | `0807B06C–0807B080` |
+| 目录绘制 | `0807AD2C–0807AF54` | `0807B188–0807B3B0` | `0807B19C–0807B3C4` | `0807B080–0807B2A8` |
+| 鸡只出售列表绘制 | `0807AF54–0807B498` | `0807B3B0–0807B8F4` | `0807B3C4–0807B908` | `0807B2A8–0807B7EC` |
+| 好感心数 | `0807B498–0807B4C4` | `0807B8F4–0807B920` | `0807B908–0807B934` | `0807B7EC–0807B818` |
+| 说明更新 | `0807B4C4–0807BA18` | `0807B920–0807BE74` | `0807B934–0807BE88` | `0807B818–0807BD6C` |
+| 出售价格 | `0807BA18–0807BA6C` | `0807BE74–0807BEC8` | `0807BE88–0807BEDC` | `0807BD6C–0807BDC0` |
+| 运行 | `0807BA6C–0807CBD8` | `0807BEC8–0807D070` | `0807BEDC–0807D084` | `0807BDC0–0807CF68` |
+| 核心虚表 | `080E701C–080E7028` | `080E7BEC–080E7BF8` | `080E7C38–080E7C44` | `080E7B50–080E7B5C` |
+
+PoultryFarmShopSceneCore 的原分配大小为 0x231C，0x6A4 之前是已确认的
+ShopScreenCore。派生区包含阶段、0x6A8 未明确含义的标志、八个鸡只索引/
+售价条目（0x6AC）、菜单计数与八个目录代码（0x6EC/0x6F0）、九份名称
+图块缓冲（0x710）。每份图块缓冲为 0x304：四字节未使用前缀，以及
+12 x 2 个 4bpp 图块，图块清理、绘制及 DMA 均从 +4 开始，传输 0x300
+字节。实际数组步长与下一对象 0x2234 相互核对，没有保留大块未知字节。
+
+0x2234 的说明缓冲由 FixedStr<127> 表示，占 128 字节；0x22B4 的购买
+说明为 FixedStr<99>，占 100 字节。原有 strlen/min/memcpy 追加路径
+分别限制 127/99 个内容字节并写入末尾 NUL。这些是 RAM 运行时固定
+容量，不是要求给普通 ROM 文本恢复显式数组长度。0x2318 保存新购鸡只
+的索引，用于退出后进入命名界面。
+
+八个核心函数保留全部原生实现和常量池，入口采用实际成员名；此前的
+地址命名绘制和说明函数改为 DrawCatalog、DrawChickenSaleList 与
+UpdateDescription。场景直接分配真实核心大小并持有对应类型，不再
+转换为无关的 GameSceneUiComponent。续接场景仍先于核心释放。手工
+核心虚表由真实类生成，未添加人工 section、ABI 包装或后处理补丁。
+
+原生函数仍依赖这些固定字段偏移和容量；布局整理不代表可以任意改变
+RAM 对象大小。所有代码及自然虚表的实际输出仍待统一编译。
+
+## 共享商店核心、数量选择器与 VCount 所有者（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 共享核心构造 | `080C797C–080C7D84` | `080C7F58–080C8360` | `080C7F88–080C8390` | `080C7EA0–080C82A8` |
+| 共享核心析构 | `080C7D84–080C7F74` | `080C8360–080C8550` | `080C8390–080C8580` | `080C82A8–080C8498` |
+| VCount 绑定构造 | `080E4BC4–080E4C10` | `080E542C–080E5478` | `080E5478–080E54C4` | `080E5390–080E53DC` |
+| 数量选择器构造 | `080C9F60–080CA0A4` | `080CA770–080CA8B4` | `080CA7A0–080CA8E4` | `080CA6B8–080CA7FC` |
+| 核心虚表 | `080E79A0–080E79AC` | `080E8570–080E857C` | `080E85BC–080E85C8` | `080E84D4–080E84E0` |
+
+十二个商店流程共同调用同一构造/析构，派生字段均从 0x6A4 开始。共享
+ShopScreenCore 继承 HardwareContext；数量选择器先前的 UiSceneCorePrefix
+与 VCount 使用的 UiSceneCore 实为这个对象，不是额外分配的基类对象。
+两套临时名称已统一为 ShopScreenCore，原生入口使用实际成员 ABI。
+
+0x24–0x2A4 为四十个 16 字节显示行；0x2A8–0x348 为四十个四字节目录
+索引。显示行的 +0x08/+0x0C 指向 4bpp 图块和独立调色板，鸡舍构造
+列表写入及共享渲染读取相互印证。固定容量来自原生访问范围，不表示
+可以任意扩容；尚未使用的 +0x02 半字保持 unk。0x348 为 UiStateOwner，0x354 起为图块/调色板句柄，
+0x3A4 与 0x3EC 各有九个句柄，0x438 为 VCount 绑定，0x454 为 2 x 2
+图块金币单位缓冲，0x4D4 起为三个资源归档，0x564 起为四个 56 字节精灵。
+0x644 的光标独占 64 字节，纵坐标为四字节；0x684 的数量选择器占 28
+字节，四个末尾状态字节结束于 0x6A4。0x434 的中断掩码不等同于
+InterruptGuard，按原来的 SetInterruptNestingMask 语义保留。
+
+1032 字节构造与 496 字节析构仍为完整原生实现；没有引入新的清理调用、
+伪造初始化或编译补丁。特别是九个调色板句柄先清零再分配的行为，不能
+直接替换成当前默认分配构造。手工十二字节核心虚表由真实类生成，普通
+.text/.rodata 各列一次，自然虚表保持原物理位置。海外同名地址标签
+vtable_unk_080E8560 实际属于浇水界面，未误删或合并。
+
+## 参考指南界面核心、星号行索引与清理归属（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `080789C8–08078C6C` | `08078E40–080790E4` | `08078E54–080790F8` | `08078D38–08078FDC` |
+| 核心运行 | `08078C6C–080793E8` | `080790E4–08079860` | `080790F8–08079874` | `08078FDC–08079758` |
+| 顶部星号行查询 | `0807AB98–0807ABDC` | `0807AFF4–0807B038` | `0807B008–0807B04C` | `0807AEEC–0807AF30` |
+| 索引二分查找 | `080E2B38–080E2B70` | `080E3398–080E33D0` | `080E33E4–080E341C` | `080E32FC–080E3334` |
+| 核心析构 | `080E2B70–080E2C34` | `080E33D0–080E3494` | `080E341C–080E34E0` | `080E3334–080E33F8` |
+| 核心虚表 | `080E7000–080E700C` | `080E7BD0–080E7BDC` | `080E7C1C–080E7C28` | `080E7B34–080E7B40` |
+
+ReferencePageSceneCore 的原生分配为 0xA74 字节。构造写入、读写步长及逆序
+析构共同确认 HardwareContext、保存数据指针、音乐槽、28 x 2 图块缓冲、
+两份资源归档、三个 52 字节精灵状态和三组图块/调色板句柄。滚动状态位于
+0x840，书目编号存储区位于 0x858–0xA56，模式字节随后，当前行表位于 0xA5C，
+星号行索引容器位于 0xA60，图书 ID 位于 0xA70。
+
+0x858–0xA56 按原生半字步长表示为 255 个存储槽，并不等于 ROM 总图书数量，
+也不表示可以改变原生函数的固定偏移。星号行索引为四字节元素；构造清零
+首/尾/容量指针，增长时复制元素，析构只释放起始分配。容器中未初始化的
+0x08 字段仍保留 unk；没有假设其为已知分配器状态。
+
+顶部行查询用 scroll_y >> 4，在星号行索引中二分查找。已恢复为 C++ 成员和
+现有 STL binary_search；其 __lower_bound 实现与原 56 字节辅助函数的比较、
+中点、推进及停止条件一致。196 字节原生析构由实际成员逆序清理及基类析构
+表达。相关原生副本从 code_linkonce 移除，由自然模板/隐式析构链接；核心
+十二字节手工虚表改由真实类生成。构造与运行仍保留完整原生汇编，只改为
+真实 C++ 成员入口；场景使用同模块的具体核心所有者，不再转换为无关的 UI
+前缀类型。所有者仍是四字节指针成员，先清理 continuation，再释放核心；
+没有改成会提前于成员清理执行的析构体 delete。
+
+普通 .text/.rodata 各列一次；自然模板、隐式析构和虚表按原物理顺序放置。
+未增加人为 section；自然输出大小、顺序和指令匹配仍待整批统一编译。
+运行库字符串的自然来源及其他原生方法的高级语言恢复仍未完成。
+
+## 城镇地图核心与标记容器的真实边界（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 标记添加 | `08077E74–08078150` | `080782EC–080785C8` | `08078300–080785DC` | `080781E4–080784C0` |
+| 节点清理 | `080E2618–080E2644` | `080E2E78–080E2EA4` | `080E2EC4–080E2EF0` | `080E2DDC–080E2E08` |
+| 节点插入 | `080E2644–080E2714` | `080E2EA4–080E2F74` | `080E2EF0–080E2FC0` | `080E2E08–080E2ED8` |
+| 坐标唯一插入 | `080E2714–080E27F4` | `080E2F74–080E3054` | `080E2FC0–080E30A0` | `080E2ED8–080E2FB8` |
+| 带提示位置插入 | `080E27F4–080E2A88` | `080E3054–080E32E8` | `080E30A0–080E3334` | `080E2FB8–080E324C` |
+| 核心析构 | `080E2A88–080E2B38` | `080E32E8–080E3398` | `080E3334–080E33E4` | `080E324C–080E32FC` |
+| 核心虚表 | `080E6FE4–080E6FF0` | `080E7BB4–080E7BC0` | `080E7C00–080E7C0C` | `080E7B18–080E7B24` |
+
+TownMapUiCore 的实际分配为 0x1EC 字节，构造内联在 TownMapUiScene 中。
+已按写入/读取及逆序析构恢复 HardwareContext、保存数据、继续场景所有权、
+UI、时钟、资源渲染器、光标归档/组/句柄、光标坐标、当前热点、两份运行时
+128 字节文本缓冲、标记归档、标记数组和坐标计数树。文本追加明确限制为
+127 字节加结束符，因此该运行时容量保留；它们不是 ROM 中的翻译字面量。
+
+每个地图标记为 28 字节，含两个 32 位屏幕坐标及 20 字节资源句柄。计数树
+节点为 24 字节，含节点标志、父/左/右指针、四字节对齐的双字节坐标键及
+一个数量字节。实际比较按 x 再按 y；同坐标已有标记的数量乘以 8 后加到新
+标记 x 坐标，避免图标完全重叠。树容器和标记数组均为 16 字节。
+
+核心的十二字节手工虚表由真实类声明及原生成员析构符号取代；普通 .text
+和 .rodata 仍各链接一次。四个树辅助入口和标记添加入口已按实际用途命名。
+1312 字节晚期树操作及核心析构仍留在 code_linkonce，尚未完成其模块归属；
+没有创建新的自定义 section，也没有把它们伪装成自然模板实例。
+
+核心构造和其他操作仍有原生字段偏移与 0x1EC 分配约束，此处只证明布局及
+引用关系，不能据此声称该类或运行时缓冲可任意扩缩。编译输出待统一验证。
+
+## 滚动菜单、页面边界与真实虚表归属（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 菜单构造 | `08075AD8–08075EEC` | `08075E7C–0807628C` | `08075E90–080762A0` | `08075D74–08076184` |
+| 页面构造 | `0807685C–08076A44` | `08076BFC–08076E0C` | `08076C10–08076E20` | `08076AF4–08076D04` |
+| 页面析构 | `08076A44–08076AE0` | `08076E0C–08076EA8` | `08076E20–08076EBC` | `08076D04–08076DA0` |
+| 页面绘制 | `08076AE0–08076FFC` | `08076EA8–080773C4` | `08076EBC–080773D8` | `08076DA0–080772BC` |
+| 页面位置设置 | `08076FFC–08077008` | `080773C4–080773D0` | `080773D8–080773E4` | `080772BC–080772C8` |
+| 最大滚动位置 | `08077008–08077018` | `080773D0–080773E0` | `080773E4–080773F4` | `080772C8–080772D8` |
+| 滚动状态查询 | `08077018–0807701C` | `080773E0–080773E4` | `080773F4–080773F8` | `080772D8–080772DC` |
+| 所属菜单查询 | `0807701C–08077020` | `080773E4–080773E8` | `080773F8–080773FC` | `080772DC–080772E0` |
+| 菜单析构 | `080E25D4–080E260C` | `080E2E34–080E2E6C` | `080E2E80–080E2EB8` | `080E2D98–080E2DD0` |
+| 菜单虚表 | `080E6FA8–080E6FB8` | `080E7B78–080E7B88` | `080E7BC4–080E7BD4` | `080E7ADC–080E7AEC` |
+| 页面虚表 | `080E6FB8–080E6FC8` | `080E7B88–080E7B98` | `080E7BD4–080E7BE4` | `080E7AEC–080E7AFC` |
+
+ScrollMenu 实际为 0x120 字节：HardwareContext 基类、当前页所有权、索引资源
+归档、四个 0x38 字节的精灵和 Select 退出标志。左右换页使用虚表 0x0C 槽，
+参数为 0/1；未将可能的其他整数输入缩窄为 bool。当前页通过其虚析构释放，
+归档与基类按正常成员生命周期清理，原 56 字节晚期析构改由真实类型生成。
+
+ScrollMenuPage 为 0x5B8 字节，含借用的菜单指针、拥有的滚动状态、22×2 格
+4bpp 标题缓冲、滚动位置和两个 16 字节容器。两个容器分别保存可视精灵行
+与 DMA 传输行；末尾 +0x5B4 是旧 ABI 的虚表指针。未初始化且用途未确认的
+字段仍保留 unk 名称，没有用整块不透明前缀伪造对象。
+
+JP 080E6FA8 的零值与 080E6FAC 的三词数组实际上是同一张四词菜单虚表；
+构造函数使用前者。现在四版统一由菜单和页面类产生各一张 16 字节虚表。
+原生构造、页面析构和绘制仍在 scroll_menu.cc 中，四个尾部小函数共 36 字节
+补上真实成员入口，不再混算在 Draw 的范围内。普通 .text/.rodata 各链接一次。
+自然析构和虚表的最终输出留待整批统一编译，尚不能计为已匹配高级语言。
+
+## 资源精灵渲染器的实际类边界与虚表归属（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 构造，32 字节 | `0807530C–0807532C` | `080756B0–080756D0` | `080756C4–080756E4` | `080755A8–080755C8` |
+| 析构，280 字节 | `0807532C–08075444` | `080756D0–080757E8` | `080756E4–080757FC` | `080755C8–080756E0` |
+| 虚表，12 字节 | `080E6F8C–080E6F98` | `080E7B5C–080E7B68` | `080E7BA8–080E7BB4` | `080E7AC0–080E7ACC` |
+
+ResourceSpriteRenderer 的实际对象为 8 字节：+0 持有缓存存储指针，旧 ABI
+虚表指针位于 +4。构造分配 0x28 字节缓存；析构遍历两棵缓存树，释放 OBJ
+tile/palette 句柄，销毁缓存及持有的池，最后按析构标志释放自身。
+缓存内部类型仍待继续恢复，头文件只前置声明其实际指针类型，不伪造布局。
+
+完整构造/析构仍在同名 .cc 中保留原生汇编；入口、两个实际调用模块及晚期
+析构调用统一使用真实成员符号。旧三词手工虚表改由类声明和该文件的
+pragma implementation 产生自然虚表，普通 .text/.rodata 各链接一次。
+JP 原本另有一条指向不生效海外表的空 LDS 选择项，一并移除。
+自然表生成依据旧编译器 decl2.c 的已知接口导出及虚表 COMDAT 逻辑；
+尚未运行编译器，不能将此批计入已匹配 C++ 或已验证动态编译。
+
+## 童年回忆场景核心恢复实际成员所有权（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造，248 字节 | `0805EA90–0805EB88` | `0805ED4C–0805EE44` | `0805ED60–0805EE58` | `0805EC44–0805ED3C` |
+| 核心析构，48 字节 | `080E1198–080E11C8` | `080E19F8–080E1A28` | `080E1A44–080E1A74` | `080E195C–080E198C` |
+| 核心虚表，12 字节 | `080E6E0C–080E6E18` | `080E79DC–080E79E8` | `080E7A28–080E7A34` | `080E7940–080E794C` |
+
+IntroStorySceneCore 使用实际构造函数。+8 保存数据指针为借用，+0x10 的
+UI 对象由 IntroStoryUiOwner 独占；三个播放器成员在 +0x14/+0x18/+0x1C，
+按原顺序初始化为槽 1/0/2。二十幅 BG tilemap 和 +0x6428 的文本变量对象
+布局不变，初始化仍保留未写入的 tilemap 存储。
+
+隐式虚析构先销毁内嵌文本变量，再释放 UI，最后清理硬件上下文，符合
+既有四版 48 字节实现。删除自由函数构造/析构适配、析构 asm 改名、
+手工三词虚表结构与定义；使用真实类型的自然虚表和析构输出。
+原 .rodata 仅包含这个手工虚表，因此 LDS 对应项替换为自然虚表节；
+本模块普通 .text 仍只列一次，原动画汇编和所有资源符号保持原样。
+
+真实类型的输出顺序与字节匹配仍待全局统一构建，未将静态整理计为匹配。
+
+## 生日输入核心恢复实际构造与成员生命周期（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 核心构造 | `0806D788–0806D934` | `0806D990–0806DB38` | `0806D9A4–0806DB4C` | `0806D888–0806DA30` |
+| 核心析构 | `080E174C–080E17B6` | `080E1FAC–080E2016` | `080E1FF8–080E2062` | `080E1F10–080E1F7A` |
+| 核心虚表，12 字节 | `080E6EF4–080E6F00` | `080E7AC4–080E7AD0` | `080E7B10–080E7B1C` | `080E7A28–080E7A34` |
+
+NewGameBirthdayInputCore 改用实际构造函数。+0x0C 是独占的 UI 指针，
+以同名头文件内 BirthdayInputUiOwner 表达释放责任；+0x10/+0x14 为独立
+播放器槽，分别初始化为 1/2。后续字形、光标资源的成员次序和区域容量
+保持原样。场景直接 new 核心，不再手工构造基类、安装虚表或逐项 placement new。
+
+隐式虚析构按成员逆序释放四个资源，再释放 UI，最后销毁硬件上下文；
+与四版既有 106 字节清理函数的调用顺序一致。删除 C ABI 清理适配、
+析构 asm 改名及两种地区手写虚表，改用该真实类型的自然 linkonce 输出。
+普通 .text/.rodata 仍各列一次，未移动原有汇编函数、游戏文本或运行库副本。
+
+JP 70、US/EU 128、DE 131 个字形槽仍是原调用规则的容量，未改为任意可扩缩。
+本批仅完成静态恢复；构造寄存器分配、隐式析构和虚表输出仍待整 ROM 统一构建。
+
+## 清理已经没有定义的 LDS 残留选择项（接续静态批次）
+
+按当前源文件逐项核对 LDS，清理三种已经失去定义的旧选择项：四版的
+code_linkonce.o(.text.farming_tutorial_runtime)、
+code_linkonce.o(.text.map_clock_status_lifecycle_after)，以及海外三版的
+vtables.o(.rodata.ui_output_base_after)，共十一条。后续 CW 核查发现前两项
+对应实现并未完整迁移，原“均已归入实际模块”的结论错误；已补回完整函数和链接项，
+详见“补回教学脚本宿主与字节查找的遗漏实现”。
+
+这是失效链接条目清理，不增加代码恢复或引用恢复百分比。其余有效人工
+子项继续保留待解决；未通过通配符隐藏它们。静态记录见
+stale-linker-selectors-static-review，实际构建仍留到整批完成后。
+
+## UI 传输队列执行方法恢复实际 C++ 归属（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 队列执行方法，72 字节 | `080E06E8–080E0730` | `080E0F48–080E0F90` | `080E0F94–080E0FDC` | `080E0EAC–080E0EF4` |
+
+四版指令归一化相同。UiDmaTransferCommand 借用 UiStatePayload 内的
+UiDmaTransferQueue，队列包含一个计数和八个 16 字节描述符槽。Run 先执行
+有效范围的 BIOS 传输，再销毁该范围并扣除有效数量，返回 false；空队列
+直接返回。保留这些实际的生命周期及容量约束，未将空闲槽误当有效记录。
+
+恢复同名头文件内的正常 inline 方法，复用现有描述符及范围销毁算法。
+删除 code_linkonce.s 两份区域汇编和 .text.code_080E0F48 人工节；LDS 改用
+该真实虚方法的自然 linkonce 节。虚表名称、方法 ABI 及其他指令未改。
+新编译输出尚待整 ROM 静态整理后的统一验证。
+
+## 脚本引擎的自然析构及虚表归属（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 派生析构，12 字节 | `080E0690–080E069C` | `080E0EF0–080E0EFC` | `080E0F3C–080E0F48` | `080E0E54–080E0E60` |
+| 五槽虚表，20 字节 | `080E6C64–080E6C78` | `080E7824–080E7838` | `080E7870–080E7884` | `080E7788–080E779C` |
+
+现有 ScriptEngine 已完整继承 AScriptEngine，新增成员是两个借用指针及
+一个事件上下文整数；自身没有额外资源清理。四版原派生析构仅转调基类
+析构。按旧编译器真实 interface/implementation 规则，令 script_engine.cc
+负责该类的隐式析构与虚表，头文件末尾恢复正常包含状态。
+
+删除旧 12 字节汇编析构及 20 字节手工表，不编写空析构，不增加跳板或别名。
+虚表保持两个 ABI 头字、派生析构、继承的执行方法、实际 OnCall 覆盖五槽。
+LDS 使用正常生成的 linkonce 节，移除 .text.code_080E0EF0 和
+.rodata.vtable_script_engine。普通代码和数据仍由原 script_engine.o 各自
+单次链接，脚本编码、Mary 产物和区域文本未改。新输出尚待统一编译确认。
+
+## 精灵工作目标查找恢复旧 STL 实例（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 普通方法及工作目标操作，912 字节 | `0809E060–0809E3F0` | `0809E628–0809E9B8` | `0809E658–0809E9E8` | `0809E588–0809E918` |
+| 四元素展开查找实例，164 字节 | `080E3634–080E36D8` | `080E3E9C–080E3F40` | `080E3EE8–080E3F8C` | `080E3E00–080E3EA4` |
+
+FindHarvestSpriteWorkTarget 的手写函数体与工程现有 tools/libagbc++/stl_algo.h
+随机访问迭代器 find 的循环、比较顺序和尾部 fallthrough 相同。恢复调用
+std::find，不复制算法，不建立别名或包装入口。按真实 C++ 模板机制保留
+该实例的自然 linkonce 位置；其新机器码、符号名和调用输出仍待统一验证。
+
+删除 harvest_sprite.o 专用 -ffunction-sections 及旧搜索声明/实现。此前
+按函数拆出的 23 个普通输入段在四版各连续占用 912 字节，源码顺序原已一致，
+LDS 改为单个 src/harvest_sprite.o(.text)。工作目标 8 字节记录、七个原生
+槽位及相等比较规则均保持，不将可重定位等同于可任意增加槽位。
+
+## 野狗实体、五个行为接口与漏标函数边界（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 23 个原生入口，3,428 字节 | `08038EC8–08039C2C` | `08039134–08039E98` | `08039148–08039EAC` | `08039048–08039DAC` |
+| 新补出的 12 字节独立入口 | `08039C20–08039C2C` | `08039E8C–08039E98` | `08039EA0–08039EAC` | `08039DA0–08039DAC` |
+| 五张行为表及实体表，220 字节 | `080E68CC–080E69A8` | `080E748C–080E7568` | `080E74D8–080E75B4` | `080E73F0–080E74CC` |
+
+野狗代码从旧实体汇编的连续末段移入 wild_dog_actor.cc/.hh，四版共用完整
+3,428 字节汇编及常量池、跳表。世界工厂槽 45 分配 0x54 字节实体，引用
+存档 +0x34DC 的 24 字节模型；行为使用狗的动画并搜索牧场动物。导入常量
+ENTITY_FRISBEE 的名称与这些证据冲突，已在工厂处注明，未随意修改 Mary 表。
+
+最后原 func_08039E88 的前四字节为状态 2 的动作返回方法，其后十二字节是
+独立的 GetCurrentWildDogBehavior：按保存状态选择实体 +0x38 的行为指针。
+为这段已有指令补上真实入口，未增加跳板或改变字节。构造、析构、更新、
+目标搜索、出口判断及动作查询已按实际用途命名，未知事件回调仍保留未知名。
+
+五个四字节行为对象各有两个虚方法，无析构槽；恢复其真实 C++ 接口和成员
+符号，五张共 80 字节表由正常类型生成。实体的共享动物基类虚接口仍不完整，
+保持不透明类型及真实 35 槽、140 字节符号表，不伪造继承体系。LDS 普通
+.text 仅列一次；这组连续虚表由该对象的自然虚表节及普通 .rodata 顺序收集。
+
+前面的 88 字节、四个已有入口暂留原汇编，所属类尚未确认。上述 3,428 字节
+仍属汇编，不能计为 C/C++ 实现量。行为数、保存模型及实体大小仍有固定格式
+约束，五张自然虚表的新输出待全 ROM 静态整理后的统一编译验证。
+
+## 窗口控件的连续普通代码归属（接续静态批次）
+
+| JP | US | EU | DE |
+| --- | --- | --- | --- |
+| `0803B5D4–0803BD0C` | `0803B840–0803BF78` | `0803B854–0803BF8C` | `0803B754–0803BE8C` |
+
+四版这一连续窗口范围均为 1,848 字节，按物理顺序包含边框命令 Run、
+窗口构造/更新/开关、两个坐标方法、ControlWidget 生命周期和转发方法，
+最后为边框命令构造。三者是同一窗口控件层，合并到 ui_text_window.cc/.hh；
+删除 ui_position、control_widget 的四个旧源码/头文件，使用方改引同名窗口头。
+所有函数体、类字段、ABI 符号和调用关系保持原样。
+
+旧对象确认边框命令显式内联构造为 strong .text，而非 linkonce。旧编译器
+在普通定义之后发射这类导出的内联成员；将相邻定义合到同一翻译单元后，
+LDS 仅保留 src/ui_text_window.o(.text)，不再假定构造器能单独进入 .gnu。
+三张真实虚表仍按原次序收集编译器自然节，未改为手工数据或伪造 COMDAT。
+后段独立的纯 C 边框绘制模块保持原有归属。新对象输出顺序待统一编译确认。
+
+## 脚本视觉特效实体的连续模块与真实类型（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 六个方法，共 204 字节 | `080326C8–08032794` | `08032934–08032A00` | `08032948–08032A14` | `08032848–08032914` |
+| 15 槽虚表，共 60 字节 | `080E5C68–080E5CA4` | `080E6828–080E6864` | `080E6874–080E68B0` | `080E678C–080E67C8` |
+
+新模块 script_visual_actor.cc/.hh 承担四个脚本视觉特效槽 70–73 的真实实体。
+命名依据世界实体工厂的四个共同分支、Mary 常量及文档；不是按旧汇编地址名
+机械拆文件，也不把这些槽绑定到某个人物或单个剧情事件。
+
+12 字节运行时记录依次为 8 字节 ActorLocation、动画半字、脚本 ID 半字。
+实体为 AActorEntity 加借用记录指针，原尺寸 0x34。构造读取记录的坐标和
+动画；析构写回位置和基础动画；另有默认视觉控制器创建、脚本 ID 读写、
+边界框六个完整原生入口。原世界工厂以全局状态 +0x524、12 字节步长访问
+这四个记录，它们不是存档 NPC 表；该格式及原生分配大小仍是限制。
+
+四版六个函数归一化后完全一致，共用完整汇编；常量池和局部标签随函数迁入。
+入口改用实际 C++ 成员符号，旧手工 15 槽表改由真实继承/覆盖接口生成。
+不添加 .set、原址补偿、手工函数 section 或包装跳板。LDS 普通 .text 仅
+链接该模块一次，虚表在原自然虚表范围收集。相邻现有坐标分类函数同时撤去
+人工 section，仍保留在 entity_ui 普通 .text，未猜测其尚未确认的调用域。
+
+这 204 字节仍为汇编，不计入 C/C++ 实现量。自然虚表的新输出尚待统一验证。
+
+## 旧 C++ 内联归属与硬件链表连续输入段（接续静态批次）
+
+| 范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 硬件链表的 412 字节 | `080098B4–08009A50` | `080098AC–08009A48` | `080098C0–08009A5C` | `080098CC–08009A68` |
+
+四版硬件链表原为连续的普通正文 344 字节、链表构造 40 字节、查询和基类
+构造 28 字节。现在每版 LDS 只保留 hardware_linked_list.o(.text)。IsLinked
+恢复为真实基类查询，和两个构造按旧编译器延迟输出的逆定义顺序组织；删除
+人为 constructor/tail 属性。HardwareLink 无额外初始化，改用真实隐式构造，
+避免为一个原本丢弃的强符号构造另留独立 section。原入口的直接 ABI 名不变。
+
+这次依据本地 agbcp 的 decl2.c/lex.c 和四版既有 hardware_linked_list.o
+修正此前对显式 inline 的推断：已知 interface 类的显式 inline 成员可被
+输出为强符号普通 .text；人工生成的构造/析构及虚表有独立的 weak 规则。
+不能仅写 inline 就按 .gnu.linkonce.t 收集。已有对象中三个显式构造/查询
+为强符号，隐式 HardwareLink 析构为 weak，和编译器源码规则相符。
+
+环境精灵具体类型、宿主和控制器改用全内联类的普通链接推断。基类仍有真实
+普通构造/析构；撤去会额外生成强符号副本的 SetAnimation 辅助成员，其 17
+处调用改回相同的局部更新语句，已有 2216 字节原生实现完全不变。另收拢 22
+个头文件的 interface 范围：全内联场景转换、文本接口及辅助成员不再被强制
+导出；仍含原生普通方法的类保留所属实现单元。所有 interface 头文件出口
+恢复普通推断，避免 CPP -P 合并后影响后续声明。资源归档和场景文本变量的
+空析构、精灵基类的逐成员复制交给对应隐式成员，不改字段或所有权规则。
+
+仍未解决：UiTextWindowBorderCommand 的显式内联构造与普通 Run 实现之间
+的物理归属。它不能仅靠撤销 pragma 或改写 section 名变成 linkonce。所有
+新输出仍待整批结束后的统一编译；本节只记录静态组织，未宣称字节匹配。
+
+## 环境精灵十二种保存类型及晚段归属（接续静态批次）
+
+| 原版连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- |
+| 保存记录工厂及十二种行为 | `080DC794–080DD8E8` | `080DCFE0–080DE134` | `080DD02C–080DE180` | `080DCF44–080DE098` |
+| 十二张六槽表 | `080E69DC–080E6AFC` | `080E759C–080E76BC` | `080E75E8–080E7708` | `080E7500–080E7620` |
+
+world_ambient_sprites.cc/.hh 中补齐实际存档编号 1–12 对应的十二个具体类型，
+不凭动画索引猜测动物种类。每类都有保存、绘制、更新及析构的实际接口。
+十类为 0x64 字节；第 5 类为 0x6C，另有相位、相位增量与 Q16 高度；第 6
+类为 0x88，另有目标坐标记录、当前/下一站索引、Q16 速度、绘制高度和声音
+计时器。第 9 类在玩家接近时通过已有 ActorMovementBounds 选择远离方向。
+
+GameStateActorRecord 明确为 16 字节：首字低四位种类、方向、两个半字坐标、
+第 6 类使用的两个有符号四位位置索引，以及未解释的保留位。构造仍只清除
+种类位，不额外初始化原本保留的字节。第 6 类恢复时仅读取当前索引，下一
+索引仍置为 -1，与原生流程一致；它不是直接恢复完整飞行状态。
+
+原来的 932 字节恢复工厂、3504 字节具体方法和 288 字节手工虚表已由实际
+C++ 类型/实现承担，删除 .text.npc_timed_path_search_after 整段。同模块的
+普通 .text/.rodata 各列一次，54 个真实晚段内联入口及 15 张自然虚表分别
+按原 ROM 顺序成组收集。未添加手工 section、桥接别名或编译后重排。
+
+主实现仍有 2216 字节完整原生汇编，包括新生成对象的工厂、绘制/运动及
+动画辅助函数。它们已归本模块，仍按现有字段偏移、分配尺寸和资源索引访问；
+位置可重定位不表示对象容量或格式可随意扩缩。三份存档记录、四个预设站点
+和动画索引规则仍是原格式。第 6 类原有的潜在零除情形未另行修复。
+
+新 C++/自然虚表尚未统一编译验证。五份 bad_alloc 仍保留，旧库自然生成及
+新增普通头文件带来的运行库附带输出需在后续专项核查，不能据此宣布全模块
+字节匹配或整个 ROM 动态化完成。
+
+## 环境精灵宿主与三个活动所有权槽（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 宿主主工厂 | `0803A52C–0803A598` | `0803A798–0803A804` | `0803A7AC–0803A818` | `0803A6AC–0803A718` |
+| 宿主析构与重置 | `080DC700–080DC794` | `080DCF4C–080DCFE0` | `080DCF98–080DD02C` | `080DCEB0–080DCF44` |
+| 保存记录恢复工厂（仍为汇编） | `080DC794–080DCB38` | `080DCFE0–080DD384` | `080DD02C–080DD3D0` | `080DCF44–080DD2E8` |
+| 控制器绘制、更新与析构 | `080DD8E8–080DD9D4` | `080DE134–080DE220` | `080DE180–080DE26C` | `080DE098–080DE184` |
+| 宿主十三槽表 | `080E69A8–080E69DC` | `080E7568–080E759C` | `080E75B4–080E75E8` | `080E74CC–080E7500` |
+| 控制器五槽表 | `080E6B14–080E6B28` | `080E76D4–080E76E8` | `080E7720–080E7734` | `080E7638–080E764C` |
+
+world_ambient_sprites.cc/.hh 恢复 WorldAmbientEntity（0x20）与
+WorldAmbientSpriteController（0x18）的实际继承关系。宿主 +0x18 借用
+三个 GameStateActorRecord，+0x1C 决定恢复记录或重新生成；控制器 +8
+保存活动数量，+0x0C 起最多三个 SmartPtr<WorldAmbientSprite> 所有权槽。
+原生工厂仅构造活动槽，所以容量以按 SpriteOwner 大小计算的未初始化存储
+表达，不额外构造空槽。析构按实际活动数量逆序销毁。
+
+108 字节主工厂及 384 字节宿主保存/重置、控制器更新/绘制/析构已写为
+C++；两张共 72 字节的手工表改由真实类型生成。宿主删除控制器前只保存
+活动对象，随后按原有基类成员生命周期释放。三个记录/所有权槽仍是固定
+格式，不能据此任意改变容量。上述自然编译输出仍待统一验证。
+
+普通主实现剩余 2216 字节继续保留完整原生汇编。晚段尚余 4436 字节：
+932 字节记录恢复工厂，以及十二种具体对象的 48 个方法。它们仍在原位置，
+十二张具体虚表也尚未移除；没有将改名或已有重定位等同于完成 C++ 恢复。
+
+## 环境精灵基类与运动记录的真实布局（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 基类构造与析构 | `08039C2C–08039D24` | `08039E98–08039F90` | `08039EAC–08039FA4` | `08039DAC–08039EA4` |
+| 基类六槽虚表 | `080E6AFC–080E6B14` | `080E76BC–080E76D4` | `080E7708–080E7720` | `080E7620–080E7638` |
+
+world_ambient_sprites.cc/.hh 的 WorldAmbientSprite 由不透明前置声明恢复为
+实际 0x50 字节抽象基类：world 在 +0，动画索引在 +4，GameSceneIndexedSprite
+位于 +8，附加组精灵的所有权指针在 +0x48，实际虚表位于 +0x4C。
+虚表槽依次是析构、Update、Draw 和写回存档记录的 SaveState；后三者为纯虚。
+
+主精灵使用世界的 actor-animation archive、size_shift 3、palette 27；仅当
+secondary_sprite_flag 等于 1 时才创建附加组，索引 0x91A、size_shift 2、
+palette 15。真实成员析构先删除附加组，再销毁内嵌索引精灵。构造/析构原
+范围共 248 字节已写为 C++，24 字节基类手工表改由类型正常生成，输出待验证。
+
+WorldAmbientMotion 恢复实际 0x14 字节记录：方向、X/Y 半字坐标、Q16 X/Y、
+有符号计时半字和移动状态字节。现有原生方法仍按这些偏移读取，具体类型的
+分配、存档字段及容量限制不能由此视为已解除。
+
+本模块另外 2324 字节仍是完整原生汇编，四版保留流已静态核对。晚段 4820
+字节/54 个入口及另 14 张环境精灵相关表仍需恢复宿主、控制器和十二种具体
+对象；没有用统一的大块或假定的填充数组代替这些不同布局。五份 bad_alloc
+仍暂留原物理位置，运行库自然生成来源未解决，不擅自删除。
+
+## 鸡蛋、出货篮和狗球的实体及显示控制器（接续静态批次）
+
+| 原版连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 鸡蛋主实现 | `08037A58–08037BAC` | `08037CC4–08037E18` | `08037CD8–08037E2C` | `08037BD8–08037D2C` |
+| 出货篮主实现 | `08037BAC–08037DBC` | `08037E18–08038028` | `08037E2C–0803803C` | `08037D2C–08037F3C` |
+| 狗球主实现 | `08037DBC–080384D4` | `08038028–08038740` | `0803803C–08038754` | `08037F3C–08038654` |
+| 四个晚段析构 | `080DC648–080DC700` | `080DCE94–080DCF4C` | `080DCEE0–080DCF98` | `080DCDF8–080DCEB0` |
+| 六张实际虚表 | `080E67F4–080E68CC` | `080E73B4–080E748C` | `080E7400–080E74D8` | `080E7318–080E73F0` |
+
+三个物理连续模块分别由 coop_egg_entity、shipping_basket_entity、dog_ball_entity
+的同名 .cc/.hh 管理，声明实际 AEntity 派生类型及 EntityVisualController 派生类型。
+鸡蛋实体为 0x18，显示控制器为 0x54，内嵌 0x4C 字节组精灵；出货篮实体为
+0x1C，借用 MoreItems，显示控制器为 0x58，在组精灵之后保存弹跳倒计时。
+狗球实体为 0x2C，保存借用的 Location 指针、Q16 高度/速度、投掷方向、飞行和
+携带标记、动画索引；控制器为 0x48，内嵌 0x40 字节索引精灵。
+
+出货篮析构将当前位置写回 MoreItems，狗球析构将当前 Location 写回保存位置，
+两者随后销毁 AEntity 持有的显示控制器。四个晚段隐式析构共 184 字节，由真实
+继承与成员生命周期承担；六张 5/13 槽虚表共 216 字节不再手工定义。LDS 按原
+物理顺序收集自然 linkonce 内容，三个模块的普通 .text 仍分别只列一次。
+
+十个主构造/工厂/析构原范围共 596 字节写成 C++；另外 2088 字节继续保留完整
+原生汇编，四版指令归一化一致。狗球构造保留原生实现，尚未完整恢复的 DogActor
+仅作不透明类型；两版不同地址名对应的携带状态查询和落球通知已改为共享真实
+入口名，不添加别名或假定完整的狗对象布局。
+
+这些 C++ 输出尚未编译验证。世界原生工厂仍按 0x18/0x1C/0x2C 分配三个实体，
+剩余方法仍按既有字段偏移读写；狗球速度和投掷方向由 Throw 才初始化，构造时
+保持原来的未初始化行为。位置可重定位不表示类型可任意增大。
+
+## 实体事件效果的真实对象与集合生命周期（接续静态批次）
+
+| 原版连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 事件效果主实现（含已有 C 函数） | `080384D4–08038E70` | `08038740–080390DC` | `08038754–080390F0` | `08038654–08038FF0` |
+| 集合构造、记录复制及两类析构 | `080DC330–080DC648` | `080DCB7C–080DCE94` | `080DCBC8–080DCEE0` | `080DCAE0–080DCDF8` |
+| 两张实际虚表 | `080E67AC–080E67F4` | `080E736C–080E73B4` | `080E73B8–080E7400` | `080E72D0–080E7318` |
+| 位置、高度、速度和参数数据 | `080F0EBE–080F0EFC` | `080F165E–080F169C` | `080F16AA–080F16E8` | `080F1B46–080F1B84` |
+
+entity_event_effects.cc/.hh 现在声明实际的 EntityEventEffectHost 和
+EntityEventEffectController，不再借用仅到 +0x0C 的前缀结构。宿主继承 AEntity，
+在 +0x18 借用 GameEventState；控制器继承 EntityVisualController，按 +0x08、
++0x0C、+0x10、+0x14 分别持有赏月、日出、星光集合及滚动精灵集合。
+月见/日出开关与实际 VarGet 的 +0x54 位 5、+0x5D 位 2 对应，使用现有字段名。
+
+滚动集合 0x194 字节，只构造 count 个 0x50 字节记录，容量为 5；记录包含
+0x40 字节 GameSceneIndexedSprite、Q16 横坐标、纵坐标、Q16 速度、宽度及
+逐次绘制开关。其复制必须保留完整记录，不能误换成通用精灵的复制入口。
+星光集合为 0x14C 字节，含五个精灵容量和五个完成标记；只析构实际已构造元素。
+赏月及日出内嵌组精灵，清理顺序与实际成员的逆序销毁一致。
+
+主实现中的构造/工厂共 384 字节改为真实 C++ 定义；其余四个函数 1732 字节
+共用完整原生汇编，四版指令与引用归一化核对一致。晚段 792 字节的集合构造、
+隐式记录复制和两类隐式析构，改由真实代码及类型生成。两张 5/13 槽表共 72 字节
+不再手工列入 vtables.cc；LDS 在原物理顺序收集所属对象自然生成的 linkonce
+内容，普通 .text 仍只列一次，不新增人工 section。
+
+四组连续常量仍由物理所属 entity_ui.cc/.hh 管理：星光位置恢复为五组 X/Y，
+高度恢复为实际三个 u8（160、180、200），后接的三个零由下一 word 数组的
+对齐补足；速度使用对应符号引用。最后的八字节参数行仍保留已确认的两个
+动画索引、宽度读取和未知尾半字，其原声明/填充性质尚未确定，不虚构用途。
+
+本批自然编译输出未验证。世界宿主工厂仍有 0x1C 分配常数，星光原生工厂仍有
+0x14C 分配常数，保留的更新/绘制实现仍按原字段和容量访问；改变类型大小或
+容量还需同步修改这些原生消费者，不能把地址可重定位等同于可任意扩容。
+
+## 日程 NPC 派生类型与游走 NPC 边界（接续静态批次）
+
+| 原版连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 日程 NPC 实现（含原生方法） | `08035890–08036D98` | `08035AFC–08037004` | `08035B10–08037018` | `08035A10–08036F18` |
+| 日程 NPC 的 35 张虚表 | `080E5D58–080E6618` | `080E6918–080E71D8` | `080E6964–080E7224` | `080E687C–080E713C` |
+| 游走 NPC 的 40 个函数 | `08036D9C–08037A58` | `08037008–08037CC4` | `0803701C–08037CD8` | `08036F1C–08037BD8` |
+| 游走 NPC 的 5 张虚表 | `080E6658–080E67AC` | `080E7218–080E736C` | `080E7264–080E73B8` | `080E717C–080E72D0` |
+| 两组 39 个派生析构 | `080DC15C–080DC330` | `080DC9A8–080DCB7C` | `080DC9F4–080DCBC8` | `080DC90C–080DCAE0` |
+
+日程实体按原构造顺序恢复 Lillia 至 Child 共 35 个真实派生类型，仍由
+npc_entity.cc/.hh 管理。其覆盖方法与对应世界角色槽一致；构造的日程对象、
+动画号和区域脚本 ID 来自各版实际调用，脚本 ID 使用已有 Mary 枚举。
+构造合计 2020 字节、35 个隐式析构合计 420 字节，改由 C++ 类型定义生成。
+原生绘制/更新/调度实现保留，核对后共用 36 组汇编，没有伪造包装函数。
+
+游走实体由 roaming_npc_actor.cc/.hh 管理：真实基类及四个派生类型，原版
+完整代码范围为 3260 字节。六个构造/析构正文共 412 字节改为 C++ 定义，
+其余 34 个函数共 2848 字节保留完整共用汇编；另外四个晚段析构共 48 字节
+由隐式派生析构生成。两段此前未齐备的函数边界已明确：动画结束检查四版均
+原无入口标签；清空避让矩形此前只有 JP 入口。两者均保留原位代码和独立名称，
+没有发现实际入向调用。内部跳表仍在所属方法中，以真实局部标签引用。
+
+35 张 16 槽表和 5 张 17 槽表合计 2580 字节，改由真实类接口自然生成；LDS
+按物理顺序从两个所属对象收集自然 .gnu.linkonce 表/析构，普通 .text 各列一次。
+没有增加人工 section。表中真实继承关系保留，未把五个游走类型混作 ANpcEntity。
+
+日程 NPC 的世界工厂仍按原版分配 0x48（Child 为 0x4C）；游走工厂仍分配
+0x44 或 0x48。原生方法的固定字段偏移也保留。这些类型目前支持符号地址联动，
+不能据此宣称对象大小可任意变化。原版 2900 字节实现对应的新 C++ 输出尚未
+编译验证，静态整理不增加已验证高级语言或匹配覆盖。
+
+## 普通玩家基类与 NPC 基类接口（接续静态批次）
+
+| 原版连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 普通玩家基类构造 | `0802B69C–0802B6D8` | `0802B908–0802B944` | `0802B91C–0802B958` | `0802B81C–0802B858` |
+| 普通玩家基类析构 | `080DBFB4–080DBFE8` | `080DC800–080DC834` | `080DC84C–080DC880` | `080DC764–080DC798` |
+| 普通玩家基类虚表 | `080E5BAC–080E5C5C` | `080E676C–080E681C` | `080E67B8–080E6868` | `080E66D0–080E6780` |
+| NPC 基类虚表 | `080E6618–080E6658` | `080E71D8–080E7218` | `080E7224–080E7264` | `080E713C–080E717C` |
+| NPC 上下文 getter | `08036D98–08036D9C` | `08037004–08037008` | `08037018–0803701C` | `08036F18–08036F1C` |
+
+地址取自保存的匹配基线。普通玩家基类 PlayerActorBase 的 29 项新增虚函数和
+继承的绘制工厂均为纯虚；连同继承项共 44 槽。具体玩家原表也为 44 槽，之前
+接续记录中的 49 槽是把类型转换表达式拆成额外项的解析错误。60 字节构造使用
+存档 Farmer::GetLocation，52 字节析构与保存的 AActorEntity 析构及重定位一致。
+现由真实基类定义生成 176 字节表及生命周期代码，具体玩家布局仍是部分接口。
+
+ANpcEntity 原声明漏掉六项覆盖关系，强定义手工虚表掩盖了编译器生成表与原表
+不一致的问题。现将初始化后处理、普通更新、恢复更新、事件脚本读取/设置和
+日程刷新归回真实虚成员；场景调用同步使用 UpdateSchedule。其原生调度正文
+保留完整汇编。原表的 16 项改由类声明生成，未增加包装函数、别名或人工 section。
+
+子女 NPC 更新函数返回后另有四字节独立 getter，四版均为 406B7047，读取实例
++0x34 的日程选择上下文。现以 ANpcEntity::GetScheduleContext 单独定义，仍在
+原物理位置；没有把它继续吞在前一函数的尾部。全 ROM 引用扫描没有发现该入口
+的直接调用或数据指针，这一事实不抹除其独立代码边界。
+
+player_actor 和 npc_entity 的普通 .text 各只链接一次。移除一项人工代码子段
+和两项手写虚表子段，虚表及隐式析构只使用自然 .gnu.linkonce 产物。新编译输出
+尚未验证；112 字节玩家基类实现和四字节 getter 不计入已验证高级语言进度。
+NPC 六个已有实现的接口归属恢复也不重复增加高级语言覆盖。
+
+后续 39 个派生析构已逐版关联到各自构造、虚表及世界实体槽：35 个调用
+ANpcEntity，另外 4 个调用 RoamingNpcActor，均各占 12 字节。不能将它们误记
+为同一基类的 39 个重复函数；具体类型恢复仍待继续。
+
+## 教学玩家实体接口及共同动作实现（接续静态批次）
+
+| 原版连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 抽象基类及实体构造 | `0802B6D8–0802B7A4` | `0802B944–0802BA10` | `0802B958–0802BA24` | `0802B858–0802B924` |
+| 七个动作方法 | `0802B7BC–0802BCC0` | `0802BA28–0802BF2C` | `0802BA3C–0802BF40` | `0802B93C–0802BE40` |
+| 实体工厂 | `0802BFA4–0802BFBC` | `0802C210–0802C228` | `0802C224–0802C23C` | `0802C124–0802C13C` |
+| 动作状态查询 | `0802C068–0802C070` | `0802C2D4–0802C2DC` | `0802C2E8–0802C2F0` | `0802C1E8–0802C1F0` |
+| 实体析构 | `080DBEA4–080DBED8` | `080DC6F0–080DC724` | `080DC73C–080DC770` | `080DC654–080DC688` |
+| 教学玩家基类析构 | `080DBF80–080DBFB4` | `080DC7CC–080DC800` | `080DC818–080DC84C` | `080DC730–080DC764` |
+| 实体虚表 | `080E5A34–080E5A84` | `080E65F4–080E6644` | `080E6640–080E6690` | `080E6558–080E65A8` |
+| 教学玩家基类虚表 | `080E5B5C–080E5BAC` | `080E671C–080E676C` | `080E6768–080E67B8` | `080E6680–080E66D0` |
+
+地址来自既有匹配基线。FarmingTutorialPlayerBase 的五项扩展虚接口由教学场景
+实际调用确认：动作状态、工具展示、图像持有、投掷、使用物品。OnCall 先将调用号
+减二，因此表项 67/75 分别对应 Mary 的 0x045/0x04D，不能按跳表下标误命名为
+其他动作。绘制控制器工厂也恢复为 AEntity::CreateVisualController 的真实覆盖，
+该基类的调用点使用同名接口，虚表槽仍是 0x30。
+
+FarmingTutorialPlayer 的原生分配为 0x5C；动作字节、计时、0x38 的手持图像运动
+记录和末尾标志都有实际写入/读取。该记录包含显示及影子开关、Q16 平面偏移、
+速度、高度和垂直速度。0x30 的未知字仍保留为 unk，原构造不初始化它；用途及
+原始基类/派生类声明归属没有足够证据，未计为已恢复语义。
+
+两张 20 槽虚表由真实类接口生成；两个 52 字节析构由正常成员生命周期生成。
+保存对象中的两份析构与 AActorEntity 既有实例逐字节、逐重定位一致，但新类型
+的编译输出仍待统一验证。本批构造、实体工厂、状态查询和析构合计 340 字节，
+没有增加已验证高级语言覆盖；原有 24 字节绘制工厂改成真实成员定义。
+
+七个动作方法 1284 字节及绘制控制器 Update/Draw 624 字节在四版规范化后完全
+一致，已共用一份完整汇编，保留常量池、跳表及全部实际引用；没有新增编译生成层。
+它们仍是汇编，不能算作 C++ 实现。player_actor 的普通 .text 仍只链接一次。
+移除一处人工代码子项及两处手工虚表子项，普通玩家基类仍独立待处理。
+
+## 教学玩家绘制控制器与字节查找实例（接续静态批次）
+
+| 原版连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 字节查找实例 | `080DBE30–080DBEA4` | `080DC67C–080DC6F0` | `080DC6C8–080DC73C` | `080DC5E0–080DC654` |
+| 绘制控制器工厂 | `0802B7A4–0802B7BC` | `0802BA10–0802BA28` | `0802BA24–0802BA3C` | `0802B924–0802B93C` |
+| 绘制控制器构造 | `0802BCC0–0802BD34` | `0802BF2C–0802BFA0` | `0802BF40–0802BFB4` | `0802BE40–0802BEB4` |
+| Update 与 Draw | `0802BD34–0802BFA4` | `0802BFA0–0802C210` | `0802BFB4–0802C224` | `0802BEB4–0802C124` |
+| 绘制控制器析构 | `080DBED8–080DBF18` | `080DC724–080DC764` | `080DC770–080DC7B0` | `080DC688–080DC6C8` |
+| 绘制控制器虚表 | `080E5A84–080E5A98` | `080E6644–080E6658` | `080E6690–080E66A4` | `080E65A8–080E65BC` |
+
+地址来自既有匹配基线。本轮未运行编译器、汇编器或链接器。
+Mary 常量 ENTITY_TUTORIAL_PLAYER = 94 的创建分支确认了对象用途。
+FarmingTutorialPlayerSpriteController 的实际分配为 0xD0：0x8C 的共同基类之后，
+在 0x8C 构造一个 GameSceneIndexedSprite，在 0xCC 存放 u16 资源索引；0xFFFF
+表示不绘制该额外资源。类型及声明统一在 player_actor.hh，工厂和构造定义回到
+player_actor.cc 的原有物理位置。大小改由真实类型决定，未新增人工代码 section。
+Update/Draw 仍保留全部原生指令，改用实际类成员名；五槽虚表及 64 字节析构由
+正常类机制生成，仍待统一构建确认。原 20 槽教学玩家实体表没有冒充完整 C++ 类型，
+仅将其中的工厂项改为真实函数引用。邻接的 52 字节实体析构仍待补齐其类型关系。
+
+四版 116 字节查找正文完全相同，唯一调用搜索 225 字节的玩家工作区。其四字节
+展开与三、二、一字节尾部处理对应本地 tools/libagbc++/stl_algo.h 的 random-access
+find 实现，现选用该模板实例。旧编译器实际符号名、寄存器和尺寸仍在统一验证清单中。
+本批 320 字节源码恢复与 20 字节虚表生成尚未计入已验证高级语言覆盖。
+没有将汇编改放 .cc 的 624 字节计作高级语言恢复。
+
+## 实体精灵生命周期及世界接口归属（接续静态批次）
+
+| 原版连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 两个世界接口析构 | `080DBD68–080DBDA8` | `080DC5B4–080DC5F4` | `080DC600–080DC640` | `080DC518–080DC558` |
+| 马控制器及声音实体析构 | `080DBDA8–080DBE10` | `080DC5F4–080DC65C` | `080DC640–080DC6A8` | `080DC558–080DC5C0` |
+| 小精灵控制器析构 | `080DC0E0–080DC120` | `080DC92C–080DC96C` | `080DC978–080DC9B8` | `080DC890–080DC8D0` |
+| 两张世界接口虚表 | `080E5478–080E5690` | `080E6038–080E6250` | `080E6084–080E629C` | `080E5F9C–080E61B4` |
+| 马控制器虚表 | `080E58F4–080E5908` | `080E64B4–080E64C8` | `080E6500–080E6514` | `080E6418–080E642C` |
+| 小精灵控制器虚表 | `080E5D44–080E5D58` | `080E6904–080E6918` | `080E6950–080E6964` | `080E6868–080E687C` |
+
+地址来自既有匹配基线。本轮没有运行编译器、汇编器或链接器。
+HorseSpriteController 的实际拥有者由 Horse::GetGrowthStage 调用确认；对象没有
+新增载荷，保持 0x8C。其构造、绘制与表根使用真实类成员符号，原生指令不变。
+HarvestSpriteController 的分配大小为 0xD4：在 0x8C 的基类之后实际构造一个
+GameSceneIndexedSprite，随后为两个有符号世界坐标和倒计时。原来包含 0xB4
+字节占位的局部视图改为这些真实成员，资源设置函数直接访问该精灵的句柄和标志。
+
+两种控制器的 52/64 字节析构及五槽虚表由正常 C++ 生命周期生成；输出尚待整批
+构建确认。AudioActorEntity 的既有隐式析构与原 52 字节汇编在四版保存对象中
+指令、大小及重定位均相同，现使用该实例。其 35 槽原生虚表仍保留：当前类声明
+只生成 15 槽表，不能用它替代完整原表，也不虚构缺少的接口。
+
+GameObject/GameObjectBase 的 64 字节完整汇编和 90/44 字虚表归回 game_object.cc
+及同名头文件，普通 .text/.rodata 各只列一次。保留现有内联空析构供派生类使用；
+未完成的虚函数签名仍明确标记，未通过强行声明纯虚接口改变 GameSceneWorld。
+
+移除两个晚段人为 .text 子项及两个人工虚表 section。自然 linkonce 的选择沿用
+真实编译器机制。168 字节生命周期承接尚待本轮统一验证；新增已验证高级语言
+覆盖为零，64 字节接口汇编迁移也不算 C++ 反编译。
+
+## 农场地图、记录与牧场状态的转场及虚表（接续静态批次）
+
+| 原版范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| 农场地图转场 | `080DBBE0–080DBC50` | `080DC42C–080DC49C` | `080DC478–080DC4E8` | `080DC390–080DC400` |
+| 记录画面转场 | `080DBC50–080DBCC0` | `080DC49C–080DC50C` | `080DC4E8–080DC558` | `080DC400–080DC470` |
+| 牧场状态转场 | `080DBCC0–080DBD30` | `080DC50C–080DC57C` | `080DC558–080DC5C8` | `080DC470–080DC4E0` |
+| EntityVisualController 析构 | `080DBE10–080DBE30` | `080DC65C–080DC67C` | `080DC6A8–080DC6C8` | `080DC5C0–080DC5E0` |
+
+地址来自保存的四版匹配基线，本轮没有编译。三个画面的场景对象分别为 8、12、
+12 字节；转场对象为 12、12、16 字节。实际构造参数、续接场景的转移和析构
+对应原生六个入口，现归回 farm_map_screen、records_screen、farm_status_screen
+同名 cc/hh，以真实内联工厂和隐式析构表达。第三种是牧场状态画面，并非资源
+精灵渲染器；不依据旧位置段名分配模块。尚未完整恢复的核心类型只前置声明。
+
+三个主体的原生指令、文本和数据顺序保持不变；构造、析构、Run 的原入口及
+池引用改用实际成员/虚表符号。六张 16 字节表由对应类正常生成，取消手工表。
+JP 的 080E6F1C–080E6F2C 实际是完整农场地图场景表，过去拆出的 4 字节不是
+独立资源子表；已合并这个真实边界。其余区域专有表的有效条目保持原样。
+
+EntityVisualController 已有的 32 字节内联虚析构仅移除人工 section，正文未改。
+清理 code_linkonce.s 的 17 个空分节，其中一个残留 LDS 选择器也从四版删除；
+739 条 .4byte 改为等义 .word。未删除任何有实际字节的相邻段。
+
+这 336 字节的高级语言候选、自然虚表/隐式析构输出和原版布局仍须统一构建
+验证，不增加已验证覆盖率。实体精灵对象的保存产物另外显示：十个非虚内联
+方法实际位于普通 .text（208 字节），不能一概当成 linkonce 或强行改成弱符号。
+其前后分布及硬件 VBlank/VCount 的交错输出仍未完成。
+
+
+## 晚段生命周期与场景操作（接续静态批次）
+
+| 原版连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| IntroSceneCore 清理 | `080D3430–080D368C` | `080D3C78–080D3ED4` | `080D3CC4–080D3F20` | `080D3BDC–080D3E38` |
+| 三组脚本请求清理 | `080D761C–080D7684` | `080D7E64–080D7ECC` | `080D7EB0–080D7F18` | `080D7DC8–080D7E30` |
+| 背包转场工厂 | `080DB040–080DB088` | `080DB88C–080DB8D4` | `080DB8D8–080DB920` | `080DB7F0–080DB838` |
+| 场景操作助手 | `080DBA48–080DBB54` | `080DC294–080DC3A0` | `080DC2E0–080DC3EC` | `080DC1F8–080DC304` |
+
+地址来自保存的匹配基线，本批没有重新编译。IntroSceneCore 原先手写的三槽
+虚表和 604 字节清理实现改为真实 HardwareContext 继承及隐式成员清理。
+27 项有生命周期的成员顺序、其余载荷和全部布局检查保留；三个原生绘制/
+初始化函数没有改指令。原始存储初始化器使用真正的 __vt_14IntroSceneCore，
+外层场景以 delete core 调用虚析构，不再手写虚表结构或清理 section。
+析构及表改用编译器自然 linkonce 项，intro_scene 的普通 .text 只列一次。
+
+GameSceneScriptQueue 的析构只遍历已经 placement-new 构造的 [Data(), End())；
+聚合对象按 queue_2、queue_1、queue_0 的顺序清理。原 104 字节实现中的三个
+范围起点为 +158、+14、+0，每个请求八字节，容量 1、40、2，均与现有类型一致。
+背包转场的 72 字节实现由实际 RucksackMenuScene 构造及 SceneOwner 返回表达，
+延续原有 continuation 所有权转移。两者自然生成的代码仍等待统一验证。
+
+三项场景操作共 268 字节/版，独立且连续，归入 game_scene_actions.cc/.hh：
+StartSceneEventScript、ChangeSceneMap、RelocateEntityInSceneMap；四版指令相同，
+常量池字声明统一为 .word。它们与前方 game_scene_state 主体之间有其他真实
+代码，不跨区拼入同一普通 .text。调用方改为同一真实符号，没有地址别名。
+
+底层除法/BIOS 调用、解压器内部共享寄存器协议已有明确汇编边界，保持必要的
+原生实现；未为更改扩展名额外制造接口。VBlank/VCount 绑定等晚段交错安排、
+剩余原生虚表和运行库独立副本仍未完成，不能把本轮视为全局链接整理结束。
+
+
+## 商店 UI、数量选择与游戏菜单（接续静态批次）
+
+| 连续模块（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| ui_quantity_selector .text | `0x080C9F60–0x080CA3B0` | `0x080CA770–0x080CABA0` | `0x080CA7A0–0x080CABD0` | `0x080CA6B8–0x080CAAE8` |
+| shop_ui .text | `0x080CA3B0–0x080CA480` | `0x080CABA0–0x080CAC70` | `0x080CABD0–0x080CACA0` | `0x080CAAE8–0x080CABB8` |
+| game_menu .text | `0x080CA480–0x080CFA64` | `0x080CAC70–0x080D01E0` | `0x080CACA0–0x080D0210` | `0x080CABB8–0x080D0128` |
+
+表中地址来自保存的四版匹配基线，当前批次尚未编译。每版 324 字节的数量
+选择器构造函数归回 ui_quantity_selector.cc，放在既有三个 C++ 方法之前。
+商店的两条文本设置路径、两个原生状态字节读取器和 VCount 比较寄存器助手
+在 ROM 中紧随数量选择器，独立归入 shop_ui.cc/.hh；其与前面的商店核心
+被真实数量选择器代码隔开，没有重复插入 shop_common.o(.text)。
+
+游戏菜单的 67 个原生函数与 22 个既有 C++ 入口按 ROM 顺序归入 game_menu.cc。
+各模块均使用一次普通 .text；菜单 .rodata 保留上一批已整理的原顺序。
+后置的命令队列 ClearNodes 属于独立物理范围，连同自身链表类型归入
+game_menu_command_queue.cc/.hh，仍放在原后置位置，未夹入前方菜单正文。
+原 asm/code_809E804.s 已无实际内容，文件与所有 LDS 调用一并移除。
+
+两个真实的菜单字段读取入口改为普通 C++ 方法定义，放在原入口位置；
+原先已内联到导航逻辑的字段访问直接读取同一字段，避免改变其调用逻辑。
+移除 game_menu 的 -ffunction-sections 及强制实现所有头文件内联体的
+pragma 配对；常规内联/弱符号输出的最终顺序仍等待全 ROM 统一编译确认。
+不得将当前源码顺序核对当作已经验证编译器实际输出。
+
+UpdateUiVCount 已是高级语言代码，其后置绑定与上下文析构仍在晚段位置，
+本轮未为它拆出多个小文件或强行改变生命周期。对应人工分段仍是明确待办。
+
+
+## 商店共用核心与菜单数据归属（接续静态批次）
+
+| 连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| shop_common .text | `0x080C797C–0x080C9EE4` | `0x080C7F58–0x080CA6F4` | `0x080C7F88–0x080CA724` | `0x080C7EA0–0x080CA63C` |
+| shop_common .rodata | `0x081189D4–0x08118A14` | `0x081177EC–0x0811782C` | `0x08117844–0x08117884` | `0x0811984C–0x0811988C` |
+| game_menu .rodata | `0x08118A14–0x08118CF4` | `0x0811782C–0x08117B14` | `0x08117884–0x08117B6C` | `0x0811988C–0x08119B94` |
+
+地址来自保存的四版匹配基线，本轮未编译。商店核心的构造、析构、金额显示、
+显示初始化、输入处理和画面更新是六个连续函数，现归入 shop_common.cc/.hh。
+原先夹在 asm/code_809E804.s 与 asm/shop_common.s 的三个 LDS 条目合并为
+一次 src/shop_common.o(.text)。普通 .rodata 同样只选择一次。
+
+七个商店数据对象留在原顺序；两段实际由指针隔开的游戏文本对应
+data/text/<region>/shop_common_1.cc 和 shop_common_2.cc。后面菜单网格、
+导航、工具/动物/物品说明和丢弃确认数据归入现有 game_menu.cc/.hh，
+四份文本按真实指针断点命名 game_menu_1.cc 至 game_menu_4.cc。
+菜单代码仍有旧的细分输入段，留给紧接的菜单主题批量整理。
+
+三处 bad_alloc 字面量保留为所属 cc 内的独立对象，未与用户可翻译文本混放；
+原始 agbcp 生成来源仍未确认，未因相邻关系而删除、去重或宣称自然生成。
+商店核心保持不透明类型，只声明已核实的原生调用接口。手工虚表仍待后续
+恢复自然类定义；本轮只更新真实析构符号的指针引用，不添加别名或包装函数。
+
+
+## 收获与浇水小游戏（接续静态批次）
+
+| 连续主题（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| scene_harvesting_minigame .text | `0x080BC36C–0x080C07F8` | `0x080BC938–0x080C0DCC` | `0x080BC968–0x080C0DFC` | `0x080BC898–0x080C0D2C` |
+| scene_harvesting_minigame .rodata | `0x081078B4–0x08107ACE` | `0x08107DAC–0x08107FD4` | `0x08107E04–0x0810802C` | `0x081088A0–0x08108AE6` |
+| scene_watering_minigame .text | `0x080C07F8–0x080C797C` | `0x080C0DCC–0x080C7F58` | `0x080C0DFC–0x080C7F88` | `0x080C0D2C–0x080C7EA0` |
+| scene_watering_minigame .rodata | `0x08107AD0–0x08107DAC` | `0x08107FD4–0x0810828A` | `0x0810802C–0x081082E2` | `0x08108AE8–0x08108DB4` |
+
+地址来自保存的四版匹配基线，本轮尚未编译。收获和浇水分别按真实连续范围
+归入 scene_harvesting_minigame.cc/.hh 与 scene_watering_minigame.cc/.hh。
+每个模块各用一次普通 .text 和 .rodata，不添加逐函数或逐对象 section。
+原混合段末尾的 1,608 字节实际为商店公共构造、析构和金额显示，仍留待下一
+连续主题处理，未误归到小游戏。
+
+收获实际为 27 个函数，浇水为 30 个函数。JP 补齐 16 个旧局部标签下的独立
+函数入口，同时移除 15 个误作函数入口的全局标记；海外三版各移除浇水说明
+函数内部的三个伪入口。原指令和 BL 保留，内部目标改用所属函数的局部标签。
+构造、成功状态查询、主循环与显示准备使用共享功能名；未恢复的核心布局
+保留为不透明类型，未借迁移伪造完整类。
+
+四版文本分别通过同名 _1.cc、_2.cc 插入真实数组间隙，原 harvest_sprite 的
+五份混合文本及其声明已经迁出，NPC 模块不再承担小游戏只读数据。两处
+bad_alloc 边界字面量移入对应 cc 并保留独立字节，实际生成来源仍待恢复。
+两个零字形按所属小游戏命名；原程序的两字节复制约束仍存在，不能由标签
+动态化推论可以任意扩展字形字节长度。
+
+JP 收获数据末尾到浇水起点有两个对齐字节，DE 同样如此；表中终点只统计
+实际对象。既有对象对齐及构建链的段末对齐仍保留，没有新增固定地址限制。
+完整核心类、后置析构、手工虚表和自然内联/linkonce 输出仍须继续处理。
+
+
+## 鸡祭小游戏（接续静态批次）
+
+| 区域 | 连续正文范围 | 连续数据范围 |
+| --- | --- | --- |
+| JP | `0x080B36C4–0x080BC36C` | `0x081073AC–0x081078B4` |
+| US | `0x080B3C90–0x080BC938` | `0x081078B0–0x08107DAC` |
+| EU | `0x080B3CC0–0x080BC968` | `0x08107908–0x08107E04` |
+| DE | `0x080B3BF0–0x080BC898` | `0x081082EC–0x081088A0` |
+
+终点不含；地址来自已保存的匹配基线，不是本轮新构建结果。每版 36,008 字节
+连续正文包含 50 个原生函数与 8 个已有 C++ 方法，按原顺序归入
+`src/scene_chicken_festival.cc` 和同名头文件，LDS 的六行交错选择合为一次普通
+`.text`。去掉该模块的 `-ffunction-sections`，没有用通配符掩盖旧分节。
+
+harvest_sprite 旧前两份文本及其间、其后的七个数字数组同属鸡祭，已在同一
+模块以一次普通 `.rodata` 链接。四版文本文件为 scene_chicken_festival_1.cc
+和 _2.cc，断点是实际数值表；其他 harvest_sprite 文本保持内容及顺序并连续
+编号为 _1 至 _5。鸡名是 20 行、每行 13 字节的直接索引数组，仍保留该格式约束。
+
+原 gText_HarvestSpriteMiniGameAnimalHusbandryEmpty 实际由参赛记录构造函数
+初始化默认鸡名，现为 gText_ChickenFestival_EmptyEntrantName。旧“异常路径”
+注释错误，已删除。相邻 bad_alloc 十字节在普通 cc 中保留为独立对象，原始
+C++ 生成来源尚未证明，未删除、去重或计入自然生成恢复。
+
+后续收获、浇水及独立资源辅助组仍在下一段，未为合并文件将它们塞入鸡祭。
+鸡祭后置析构、内联/linkonce 生成及自然虚表顺序仍待全局整理；本批不宣称
+整个模块的链接组织已经最终完成。
+
+
+## 动物照料小游戏（接续静态批次）
+
+| 区域 | 主体与 UI 包装正文 | 连续数据范围 |
+| --- | --- | --- |
+| JP | `0x080AD9A4–0x080B36C4` | `0x08107070–0x081073AC` |
+| US | `0x080ADF6C–0x080B3C90` | `0x0810752C–0x081078AE` |
+| EU | `0x080ADF9C–0x080B3CC0` | `0x08107584–0x08107906` |
+| DE | `0x080ADECC–0x080B3BF0` | `0x08107F50–0x081082EC` |
+
+终点不含；地址来自保存的四版匹配基线，不是本轮构建结果。数据范围不含
+US/EU 末尾到下一个模块之间的两个对齐字节。原 `.text.ui_text_stream_update_after`
+的 35 个旧入口标记实际属于照料动物小游戏，现归入 `src/scene_animal_care_minigame.cc`
+及同名头文件，每版只有一个普通 `.text` 条目，未继续塞入 UI 文本流模块。
+
+原 field_render_runtime_data 的末尾数组及零字形，与 harvest_sprite 最前面的
+说明、结果文本和查表数据物理连续，已共同归入新模块的一次普通 `.rodata`。
+文本分别在实际数组间隙 include 同名 `_1.cc`、`_2.cc`；剩余 harvest_sprite
+文本重新连续编号，内容及物理顺序保持。此处没有新增地址限制或逐变量 section。
+
+其中旧 sub_080B0CC0（JP sub_080B0704）没有独立栈帧，是前一函数的说明循环体，
+已经改为该函数内部标签；实际保留 34 个函数入口。RunHarvestSpriteAnimalCareInstructions
+的循环与返回尾段仅有内部 BL，没有真实指针入向引用；JP 波形采样字节的一次
+数值命中已按实际 PCM 源码排除。没有为内部循环伪造独立函数接口。
+
+JP 的三槽核心虚表原先误附在教程世界虚表 section 末尾，现在与海外版统一为
+同一真实表符号。它仍是手工虚表，暂留 vtables.cc 的独立输入节；完整类、
+自然虚表生成及后置析构归属未完成，不能据此宣称整个模块已完成链接整理。
+
+
+## 教程世界与婚期筛选（接续静态批次）
+
+| 区域 | 教程世界主正文 | 婚期筛选正文 | 三张完整虚表 |
+| --- | --- | --- | --- |
+| JP | `0x080AC424–0x080AD5EC` | `0x080AD5EC–0x080AD638` | `0x080E7774–0x080E7930` |
+| US | `0x080AC9EC–0x080ADBB4` | `0x080ADBB4–0x080ADC00` | `0x080E8344–0x080E8500` |
+| EU | `0x080ACA1C–0x080ADBE4` | `0x080ADBE4–0x080ADC30` | `0x080E8390–0x080E854C` |
+| DE | `0x080AC94C–0x080ADB14` | `0x080ADB14–0x080ADB60` | `0x080E82A8–0x080E8464` |
+
+结束地址均不包含。`src/farming_tutorial_world.cc` 接收原
+`.text.world_runtime_after` 中连续的 4,552 字节；末尾 76 字节属于脚本选择
+婚期时使用的日期排除查询，单独归入 `src/wedding_date.cc`。四版 LDS 均
+使用各自唯一的普通 `.text` 条目，Makefile 原有通配规则直接包含新模块。
+
+两个原本紧接工厂常量池的四字节访问器已分别标出函数入口；其四版原指令均为
+读取对象 +4 指针并返回，未查到指针或 Thumb BL 入向引用，没有猜测 const 重载。
+JP 原先拆为四项前缀和回调后缀的三张表，现恢复为真实的 48、15、48 项对象，
+与海外版共享符号和排列。旧“地区槽位不同”的解释不适用于这三张表。
+
+本批只完成静态整理：8 份区域正文逐指令保持，三张表逐槽与四版 ROM 相符。
+手工虚表仍在 `vtables.cc` 的原三条输入节中，完整类定义、自然虚表生成及后置
+析构归属尚未恢复；不能把本批列为整个模块已经完成常规链接组织。婚期排除表
+暂存 `field_render_runtime_data.cc`，该文件混合数据的物理归属继续核查。
+未运行编译器、汇编器、链接器或 make，未提交、推送或进行移址实验。
+
+
+## 全局链接组织批次：静态修改中（2026-11-06）
+
+基线为 `21786ce3`。本轮覆盖 JP/US/EU/DE 全部实际 ELF/map 输入对象，
+不再将逐模块编译通过等同于全局整理完成。**以下是未编译的工作区状态**；
+整轮计划内静态修改完成后才统一验证，尚未增加任何已验证完成数量。
+
+基线每版的对象/输出段分类相同：213 组普通连续范围、105 组交错范围、
+4 组单段自定义 rodata、3 组带未链接额外代码的连续范围、49 组仅原生 C++
+输入段，以及 3 组平台 RAM 范围。普通段与编译器原生 linkonce 分开统计。
+
+| 已落地的静态调整 | 源码与链接组织 | 当前状态 |
+| --- | --- | --- |
+| JoyBus | C 操作与原生协议正文按 ROM 顺序同存 `src/joy_bus.c`；九条链接项合一 | 四版条件化指令文本已对照，未编译 |
+| 日历与昼夜表 | `calendar.cc/.hh` 管理日历查询；`time_of_day.cc/.hh` 管理昼夜变化表与查表 | 两个实际不连续范围各有普通 .text，未编译 |
+| OBJ 调色板集合 | 集合对象与其存储管理分为 `obj_palette_collection` / `obj_palette_collection_storage`；共享内联定义归属存储头文件 | 两段各按自然顺序链接，未编译 |
+| 解压器 | stream/Huffman 与 packet/delta 分属 `compression.s` / `compression_packets.s`；中间 RNG 保持原顺序 | 跨文件调用使用真实 `ReadUnpackBits` 入口，未编译 |
+| 指南 | 生成的目录、文本与行表继续保持原顺序，去掉 .rodata.reference_guide 属性 | 改用 `src/reference_guide.o(.rodata)`，未编译 |
+| 地图数据表 | 预处理器识别声明的真实 asm 符号拼写，沿用普通数据段处理 | 不新增别名；改用 `src/world_map.o(.rodata)`，未编译 |
+| DMA 内联命令 | 删除仅强制实例化头文件的空实现单元，由实际 HUD/菜单消费者生成原生 linkonce | 保留原生 Run、隐式析构及虚表顺序，未编译 |
+| 玩家精灵存储助手 | 将内联辅助类型与真正控制器的 implementation pragma 范围分开 | 取消仅为排除多余助手正文设置的函数分节，未编译 |
+| 新游戏菜单与名称输入 | 菜单格式化、主循环的原生正文归回同名 cc；名称输入使用普通 .text；两个完整内联转场退出强制 interface 范围 | 条件汇编文本已对照；C++ 生成待统一验证 |
+| 开场转场 | 三个真实工厂恢复 inline 声明/定义与自然 linkonce 所有权 | 核心清理仍未完成，不能把 intro_scene 整体标为已完成 |
+| OBJ 图块池 | 生命周期、句柄及原生初始化归回同一普通段；物理后段的节点算法归属 obj_tile_pool_storage，并显式按 ROM 次序排列 Reserve/Unreserve | 所有原 C++ 正文、宏布局和条件汇编文本静态一致，未编译 |
+| OBJ 图块集合 | 原生分组初始化与集合方法同存 obj_tile_collection；后段存储增长归属 obj_tile_collection_storage | 所有原 C++ 正文、宏布局和条件汇编文本静态一致，未编译 |
+| 硬件帧命令 | forced-blank 操作并入 hardware_context，恢复已有栈命令对象的正常构造、虚调用和析构；三个 Run 使用真实 inline 机制 | 原 C 手工虚表视图已移除，生成代码待统一验证 |
+| GameScene | 161 个现有正文按物理顺序归回主体；控制器和后段状态回调归入 controller/state 同名模块；六组原生实现回归所属 cc | 正文与 78 条布局检查静态保留，未编译 |
+| 场景工厂与包装层 | 29 个转场工厂采用真实内联机制；18 个普通场景模块各合为一条 .text；三种精灵小游戏保持原有 Run 和内联生命周期顺序 | 构造、析构和虚表的生成结果待统一验证 |
+| 存档与库存 | 存档主范围的 C++、日更新、加载和动物纪念信息按 ROM 次序合并；实际非连续的原生拷贝正文单列 game_state_copy.s；Farm/Farmer/Rucksack 的共享复制成员归回类型头文件 | 普通主体去掉函数分节，未编译 |
+| 音频、字体与图形容器 | 四份相同音频指令合成 sound_data.s；字体、图形、原有末尾数据按真实边界分别维护；保留 JP/DE 与 US/EU 的不同物理顺序 | 四版有效数据指令静态往返一致；末尾 132 字节用途仍未知；未编译 |
+| 世界场景 | 四版各 93 个连续输入段按实际顺序归回 game_world.cc/.hh；88 个现有 C++ 定义与 11 组原生块共同维护 | 47 条布局断言保留；正文和条件指令静态核对，未编译 |
+| 世界运行数据、地形与额外物品 | 后段 world_runtime、前段 farm_terrain / more_items 分别将连续的原生实现归入自身 cc | 三个主题各使用普通 .text，未编译 |
+| 原生 C++ 虚表 | 43 张手工表已与四版基线的真实类虚表逐槽、逐重定位核对，改由已有类型生成 | 只完成静态替换；新的对象生成和 ROM 布局待统一验证 |
+| C++ 运行库字面量 | 四版各定位 151 处完整 bad_alloc 字节串，其中 150 处存在手工命名源对象；剩余一处位于 item 的匿名编译器常量 | 已记录来源线索，未删除手工字符串或预处理补丁；不能视为归属审计完成 |
+| 动物实体 | 四版连续的动物公共回调、狗/马和鸡/牛/羊实现归入 animal_actor.cc/.hh；原 13 个输入段合为一条 .text | 六个 C++ 正文与七组原生块静态保留，未编译 |
+| 玩家实体 | 四版工具动作、玩家状态、计步与收集事件、玩家渲染归入 player_actor.cc/.hh；原 16 个输入段合为一条 .text | 13 个现有 C++ 定义、15 条布局断言与五组原生块保留；原 code_entities.s 清空移除，未编译 |
+| 小精灵工作实体 | 连续的工作目标计算、任务状态、工作更新及其视觉控制归入 harvest_sprite_actor.cc/.hh | 九个 C++ 正文与五组原生块保留；数据表归属仍待后续核对，未编译 |
+| 角色访问器边界 | 四版既有对象中的 76 字节相同；补齐九个入口，JP 七个入口与海外版共用真实符号 | 两个原无导出名的朝向访问器已命名；全 ROM 入向引用审计尚未完成 |
+| 事件特效实体 | 宿主、控制器、初日出和星光操作按连续范围归入 entity_event_effects.cc；13 项输入范围合为一条普通 .text | 十个 C++ 正文、一个内联构造和三组原生实现静态保留；类与虚表仍待后续整理，未编译 |
+| 游走 NPC、鸡蛋、篮子、狗球 | 从旧 npc_characters_after 中按真实连续功能边界分出四套同名 cc/hh；各在 LDS 使用一条普通 .text | 四版共用实际符号名；27 个原地址入口按已确认用途命名，未计作高级语言恢复 |
+| 被前项包入的原生函数 | 游走 NPC 工厂后补出四个完整构造入口；特效末尾补出四个独立短函数入口 | 四版保存对象分别有 268 / 88 字节一致的对应范围；类型及全部入向引用尚未验收 |
+| NPC 主体与日程搜索 | 基类、日程更新和连续角色构造按原顺序归入 npc_entity.cc；普通 .text 只列一次；两个晚段搜索恢复为自带 STL 的真实模板实例 | 原 15 个主体定义与三组汇编已静态核对；库实例新生成字节待统一构建 |
+| 末尾被包含的函数 | 装饰宿主工厂之后的七个入口属于装饰基类，现随完整主体归入 world_ambient_sprites | 四版原 160 字节访问器顺序保留；工厂与访问器为不同实例类型，未伪造共同布局 |
+| 角色移动辅助 | 朝向选择、行为权重选择、两种地形距离缓存按连续 ROM 次序合为 actor_movement.cc/.hh；旧三套头文件归入同名头文件 | 13 个既有 C++ 定义和 1 个完整汇编函数静态保留；四版各一条普通 .text，未编译 |
+| 场景装饰数据结构 | 四对出生坐标、256 项正弦表、昼夜两张五字节季节权重记录已按调用方式恢复类型和符号 | 四版已链接基线的 598 字节逐项核对；连续主体及七个访问器已归入 world_ambient_sprites；晚段虚函数仍待处理 |
+| 场景装饰及天气数据 | 17 个完整原生函数共用一份 world_ambient_sprites 实现；相邻 656 字节只读范围归入同名模块，随后 44 字节天气数据归入 world_weather | 四版原对象指令及重定位一致；六个运行库字面量不再放入区域游戏文本，生成来源仍待恢复；未编译 |
+| 辅助精灵、文本变量、菜单和时钟 | 四个连续主体各合为一条普通 .text；三组完整汇编归回所属 cc；文本变量析构和菜单载荷生命周期归回真实内联定义 | 47 个现有 C++ 定义静态保留；原生指令按四版核对；新 linkonce 输出待统一编译 |
+| 文本窗口与边框工具 | 窗口原生构造/更新和开闭状态按 1444 字节连续范围合为普通 .text；后段 284 字节纯绘制函数独立为 ui_text_window_border.c/.h | 原 11 个源码定义及四版汇编流静态保留；命令构造和上传回调采用真实内联定义，待统一编译 |
+| 地图选择、访问和地形判定 | 原 map_data 的三个非连续代码范围分别归入 map_selection.c、map_data.cc、map_terrain.cc；最后的完整汇编判定一并进入地形模块 | 选择函数保留 C ABI，地形保留引用及视图类型；四个原 C++ 正文和汇编流静态保留，新 C 输出待统一编译 |
+| NPC 日程连续模块 | 日期解码、初始化、32 个人物选择回调及两段相邻日程数据统一归入 npc_schedule.cc/.hh | 四版各 6496 字节代码与 28500 字节数据；124 份运行库文本片段回到原物理位置，非游戏翻译内容；编译器自然生成方式仍待恢复 |
+| 脚本虚拟机与游戏命令 | 原 C++ VM 后连续的 OnCall、辅助函数、变量读写及末尾操作合为 script_engine.o(.text) | 17 个既有 C++ 正文与五组原生实现的四版流静态保留；三份普通汇编文件已移除，未计作新增高级语言代码 |
+| 字形绘制、数字排版和 OAM 构造 | font_draw 连续主体合并；font_decimal、decimal_format 和 sprite_oam 按实际功能及物理边界独立，glyph/font 数据仍归 font | 27 个原定义和三组原生合成器保留；OAM 使用真实入口名，旧 divided 语法保留；新生成顺序未编译 |
+| 窗口与文本状态 | ui_state 的 9216 字节连续主体含四组原生操作；较远的 324 字节头像资源管理归入 ui_portrait.cc/.hh | 85 个定义、16 条区域原生流、四版原数据顺序静态保留；三个内联构造器的输出顺序和主构造器内联仍待统一验证 |
+| 飞盘成绩与小游戏 | 成绩表原生显示/滚动和场景包装归入 frisbee_scoreboard；小游戏完整主体与旧 scene_frisbee 包装合入 frisbee.cc/.hh，并保留同名区域文本 | 四版各 23448 字节小游戏范围；五处 JP 常量池前两字节填充改为实际对齐；原生代码不计作高级语言恢复 |
+| 赛马与奖牌兑换 | 三组原生实现、场景包装及同一连续只读数据归入 horse_race.cc/.hh；每版七份文本按真实表断点合为三份 | 四版原指令及数据顺序静态保留；一处 JP 池前零填充改为对齐；未编译 |
+| 童年开场主体与资源接口 | 开场主范围七项合为普通 .text，两个完整汇编函数归回 intro_story_scene；资源接口析构及晚段开场回调恢复真实 inline 声明 | 手工核心虚表仍阻止对白数据并入同名 rodata；内联生成、虚表归属仍待验证，不计为完整模块 |
+| 财产界面与参赛动物选择 | 从 intro_story_scene_after 的大块按调用方及物理边界拆为 farm_status_screen / animal_festival_selection，同步拆清对应连续文本与固定字段 | 补齐选择场景后十二字节叶函数入口；生日输入和后续预览数据仍待下一范围整理；未编译 |
+| 新游戏生日输入 | new_game.cc 中剩余主体按 ROM 顺序归为 new_game_birthday_input.cc/.hh；十二条普通代码选择合为一条，区域确认文本与字形缓存同名 include | 二十个 C++ 定义与三组原生正文静态保留；核心清理的自然发射和手工核心虚表仍待验证 |
+| 农场地图 | 地图装载、滚动、精灵绘制和场景包装归入 farm_map_screen；相邻建筑预览及资源表使用同一普通 .rodata | 共享收尾入口由函数标记改为内部标签；四版完整 ROM 未发现其绝对指针，BL 来自所属函数内部 |
+| 记录页面与资源精灵 | records_screen 和 resource_sprite_renderer 分别拥有实际连续代码及对应数据；出货/钓鱼/其他记录和场景包装改用已证实的功能名 | 通用页面 UI 和数字字形已接续归入 scroll_menu；晚段方法、虚表和运行库来源仍待完成 |
+
+生日输入至滚动缓冲区之前的四版物理范围：
+
+| 本轮连续范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| new_game_birthday_input .text | 0806D788–0806E6D4 | 0806D990–0806EA78 | 0806D9A4–0806EA8C | 0806D888–0806E970 |
+| new_game_birthday_input .rodata | 080FB624–080FB67C | 080FBD18–080FBD94 | 080FBD64–080FBDE0 | 080FC414–080FC498 |
+| farm_map_screen .text | 0806E6D4–080707CC | 0806EA78–08070B70 | 0806EA8C–08070B84 | 0806E970–08070A68 |
+| farm_map_screen .rodata | 080FB67C–080FB764 | 080FBD94–080FBE7C | 080FBDE0–080FBEC8 | 080FC498–080FC580 |
+| records_screen .text | 080707CC–0807530C | 08070B70–080756B0 | 08070B84–080756C4 | 08070A68–080755A8 |
+| records_screen .rodata | 080FB764–080FB8FA | 080FBE7C–080FC066 | 080FBEC8–080FC0B2 | 080FC580–080FC772 |
+| resource_sprite_renderer .text | 0807530C–0807575C | 080756B0–08075B00 | 080756C4–08075B14 | 080755A8–080759F8 |
+| resource_sprite_renderer .rodata | 080FB8FA–080FB90C | 080FC066–080FC078 | 080FC0B2–080FC0C4 | 080FC772–080FC784 |
+
+滚动菜单至图书阅读界面（静态接续批次）：
+
+| 本轮连续代码范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| scroll_state | 0807575C–08075AD8 | 08075B00–08075E7C | 08075B14–08075E90 | 080759F8–08075D74 |
+| scroll_menu | 08075AD8–08077020 | 08075E7C–080773E8 | 08075E90–080773FC | 08075D74–080772E0 |
+| staff_credits | 08077020–08077868 | 080773E8–08077CE0 | 080773FC–08077CF4 | 080772E0–08077BD8 |
+| town_map | 08077868–080789C8 | 08077CE0–08078E40 | 08077CF4–08078E54 | 08077BD8–08078D38 |
+| scene_reference_page | 080789C8–0807AC94 | 08078E40–0807B0F0 | 08078E54–0807B104 | 08078D38–0807AFE8 |
+
+五个主范围各使用一条普通 .text。ScrollState 保留原生构造与位置更新，
+上传命令的构造、析构和成员方法按物理次序组织；共用六字段传输赋值
+保持内联语义，旧编译器实际输出仍待全局验证。
+
+scroll_menu 包含共用菜单框架、滚动页面及位置访问器。旧 SelectionIndex
+实际被主循环用作像素滚动位置，改名为 ScrollMenuPosition；只恢复了
+访问器需要的已知结构前缀，完整类布局和晚段虚方法仍待恢复。数字字形
+通过四份同名区域文件 include，两个独立运行库字面量没有去重。
+
+工作人员、城镇地图与图书阅读原生实现回归各自 cc；JP 单列的地图
+析构和运行段按真实顺序合入地图主体。三个晚段转场工厂保留原正文，
+采用真正 inline/linkonce，发射位置仍待统一编译核实。地图热点调用的
+图书馆营业时间与相邻区域边界表并入 town_map；区域文本用 _1/_2
+表示中间确实存在地图表。图书菜单与初始目录归入 scene_reference_page，
+两项菜单由原生索引读取，现明确为二维数组：JP 每项 9 字节，
+海外版每项 12 字节，均包含终止符；不能宣称可任意扩长。
+
+工作人员仅保留一份同名特殊格式文本；运行库尾串回到所属 cc。
+本批不新增高级语言或已验证 ROM 字节覆盖，未执行编译或提交。
+
+商店后续范围的常量池填充：本容器剩余20 处 `.byte 0x00, 0x00`
+均已结合四版保存对象核实：前方是跳往函数内部的长分支，后方是四字节
+常量池；填充处没有标签，对象标为数据，地址低两位为 2。现使用
+`.align 2, 0` 表达原来的两字节填充。这些位置不是新增反编译函数，
+也不证明其他容器没有原始字节；整个 ROM 静态整理仍未完成。
+
+鸡舍至海之家商店（静态接续批次）：
+
+| 连续主题（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| scene_poultry_farm_shop .text | 0807AC94–0807CCFC | 0807B0F0–0807D194 | 0807B104–0807D1A8 | 0807AFE8–0807D08C |
+| scene_poultry_farm_shop .rodata | 080FD0D0–080FD55E | 080FD964–080FDDD6 | 080FD9B0–080FDE22 | 080FE0B8–080FE57A |
+| scene_supermarket .text | 0807CCFC–0807E03C | 0807D194–0807E4D4 | 0807D1A8–0807E4E8 | 0807D08C–0807E3CC |
+| scene_supermarket .rodata | 080FD560–080FD80E | 080FDDD8–080FE04E | 080FDE24–080FE09A | 080FE57C–080FE7DA |
+| scene_clinic_shop .text | 0807E03C–0807EA08 | 0807E4D4–0807EEA0 | 0807E4E8–0807EEB4 | 0807E3CC–0807ED98 |
+| scene_clinic_shop .rodata | 080FD810–080FD9E2 | 080FE050–080FE262 | 080FE09C–080FE2AE | 080FE7DC–080FEA22 |
+| scene_inn_shop .text | 0807EA08–0807F1A4 | 0807EEA0–0807F63C | 0807EEB4–0807F650 | 0807ED98–0807F534 |
+| scene_inn_shop .rodata | 080FD9E4–080FDBEE | 080FE264–080FE482 | 080FE2B0–080FE4CE | 080FEA24–080FEC3A |
+| scene_won_shop .text | 0807F1A4–08080060 | 0807F63C–080804F8 | 0807F650–0808050C | 0807F534–080803F0 |
+| scene_won_shop .rodata | 080FDBF0–080FDF9A | 080FE484–080FE73E | 080FE4D0–080FE78A | 080FEC3C–080FEF0E |
+| scene_winery_shop .text | 08080060–08080998 | 080804F8–08080E20 | 0808050C–08080E34 | 080803F0–08080D28 |
+| scene_winery_shop .rodata | 080FDF9C–080FE182 | 080FE740–080FE8FA | 080FE78C–080FE946 | 080FEF10–080FF12E |
+| scene_special_merchant_shop .text | 08080998–08081644 | 08080E20–08081ACC | 08080E34–08081AE0 | 08080D28–080819D4 |
+| scene_special_merchant_shop .rodata | 080FE184–080FE39E | 080FE8FC–080FEAF2 | 080FE948–080FEB3E | 080FF130–080FF31A |
+| scene_beach_cafe_shop .text | 08081644–08081D48 | 08081ACC–080821D0 | 08081AE0–080821E4 | 080819D4–080820D8 |
+| scene_beach_cafe_shop .rodata | 080FE3A0–080FE53A | 080FEAF4–080FEC7A | 080FEB40–080FECC6 | 080FF31C–080FF4AA |
+
+以上地址来自保存的四版匹配基线；是本轮归属依据，不是新构建结果。
+八个主题的主体汇编、既有场景包装、商品目录和文本现归入各自同名
+cc/hh，LDS 各列一次普通 .text 和 .rodata。区域文本同名 include；
+只有中间实际夹有目录表的鸡舍、超市、旅馆和海之家使用 _1/_2。
+
+旅馆结果所有权转移函数位于旧 after_inn 片段开头，仍归旅馆；
+Won 商品类别判定位于旧 after_won 开头，归 Won 商店；海之家
+结果转移位于旧 after_beach 开头，归海之家。不能按旧片段名分配
+模块。以上两个结果对象的完整类型仍待核实。
+
+补齐海外版超市食品说明函数原来缺失的真实入口，并与 JP 共用
+UpdateSupermarketPurchaseItemDescription。鸡舍循环/状态分派和
+Won 运行函数的共享返回代码改为内部标签，保留原有长分支指令。
+它们使用包含函数的栈帧，不作为额外独立函数计数。
+
+原 AdditionalSeedCatalog 实际由 FoodUi 读取；MarySupermarketItemId
+也定义为饭团、面包、油等七种食品。现名 gSupermarketFoodCatalog，
+使用食品常量，目录字段统一叫 item_id。四版各 64 字节逐字与基线
+相同；末尾零项保留，但没有证据将它认定为扫描结束标记。
+
+每个商店独立的 bad_alloc 尾串回到所属 cc，保持原位置和对象名；
+正常运行库生成方式尚未恢复，不合并副本。核心布局、晚段方法、
+剩余手工虚表以及旧 agbcp 的组合输出仍待统一处理与验证。
+本批保留 22 个既有 C++ 正文，核对 52 条区域汇编流、32 份区域
+数据序列及局部标签；没有编译，不增加高级语言或已验证字节覆盖。
+
+锻冶屋、木匠和牧场（静态接续批次）：
+
+| 连续主题（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| scene_blacksmith_shop .text | 08081D48–0808374C | 080821D0–08083BD4 | 080821E4–08083BE8 | 080820D8–08083ADC |
+| scene_blacksmith_shop .rodata | 080FE53C–080FEC8E | 080FEC7C–080FF35A | 080FECC8–080FF3AE | 080FF4AC–080FFB96 |
+| scene_carpenter_shop .text | 0808374C–080850FC | 08083BD4–08085584 | 08083BE8–08085598 | 08083ADC–0808548C |
+| scene_carpenter_shop .rodata | 080FEC90–080FF506 | 080FF35C–080FFB5E | 080FF3B0–080FFBB2 | 080FFB98–0810043A |
+| scene_yodel_ranch_shop .text | 080850FC–08087DEC | 08085584–080882AC | 08085598–080882C0 | 0808548C–080881F0 |
+| scene_yodel_ranch_shop .rodata | 080FF508–080FF9A2 | 080FFB60–08100024 | 080FFBB4–08100078 | 0810043C–08100935 |
+| scene_blacksmith_upgrade .text | 08090A20–0809210C | 08090EE0–08092640 | 08090EF4–08092654 | 08090E24–08092584 |
+| scene_blacksmith_upgrade .rodata | 080FFAE0–080FFD53 | 08100168–081003E3 | 081001BC–08100437 | 08100A98–08100D7D |
+
+表中地址是保存的四版匹配基线，不是本轮新构建结果。锻冶屋主商店、
+木匠、尤德尔牧场按实际连续范围归回同名 cc/hh；较晚的工具升级
+界面独立为 scene_blacksmith_upgrade，未将它跨越储物界面拼回主商店。
+四者各用一次普通 .text/.rodata，文本按真实目录表断点 include。
+
+德版旧 town_map_hotspot_contains_after_de_tail 的 132 字节实际是
+牧场运行函数末尾及场景构造/析构，原对象和地址显示它紧接牧场主体；
+当前已归回牧场，删除空分节入口。四版原生段大小与全部导出入口
+偏移已和保存对象核对。
+
+六个旧 sub_* 名称实际属于商店循环、说明返回及取消路径，使用
+包含函数的栈帧。地址值扫描没有指针命中，Thumb BL 命中来自内部；
+现保留原指令并使用局部标签。此结论不替代整个 ROM 的引用审计。
+已确认的析构、描述更新、未持有工具判断、牧场好感心数、动物售价
+和怀孕动物计数使用实际含义名称，并由同名头文件声明真实参数。
+
+锻冶屋/木匠独立 bad_alloc 尾串回到对应 cc，生成来源仍待恢复。
+20 条区域原生流、16 份区域数据序列与 13 个既有 C++ 正文静态
+保留；未编译，不增加高级语言或已验证覆盖。核心类完整布局、晚段
+方法、手工虚表和编译器自然输出仍待后续全局处理。
+
+冰箱、背包、整理棚和道具箱（静态接续批次）：
+
+| 连续主题（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| scene_refrigerator .text | 08087DEC–0808A704 | 080882AC–0808ABC4 | 080882C0–0808ABD8 | 080881F0–0808AB08 |
+| scene_refrigerator .rodata | 080FF9A4–080FFA1E | 08100024–081000A6 | 08100078–081000FA | 08100938–081009C6 |
+| scene_rucksack .text | 0808A704–0808C138 | 0808ABC4–0808C5F8 | 0808ABD8–0808C60C | 0808AB08–0808C53C |
+| scene_rucksack .rodata | 080FFA20–080FFA4E | 081000A8–081000CE | 081000FC–08100122 | 081009C8–081009F6 |
+| scene_shelf .text | 0808C138–0808E8A4 | 0808C5F8–0808ED64 | 0808C60C–0808ED78 | 0808C53C–0808ECA8 |
+| scene_shelf .rodata | 080FFA50–080FFABE | 081000D0–08100142 | 08100124–08100196 | 081009F8–08100A76 |
+| scene_tool_chest .text | 0808E8A4–08090A20 | 0808ED64–08090EE0 | 0808ED78–08090EF4 | 0808ECA8–08090E24 |
+| scene_tool_chest .rodata | 080FFAC0–080FFADE | 08100144–08100166 | 08100198–081001BA | 08100A78–08100A96 |
+
+以上是保存的匹配基线范围，不是本轮构建结果。四个核心、包装场景、
+独立运行库字面量和相应文本按物理顺序归入同名 cc/hh；各使用一次
+普通 .text/.rodata。原 home_storage 汇总模块和四版汇总文本已移除。
+
+旧储物名称循环错位：旧 ToolChest 调用 GetFridge 并操作 FoodStack，
+实际为冰箱；旧 Refrigerator 调用 GetShelf 并操作 ArticleStack，
+实际为整理棚；旧 Shelf 使用 ToolChestUi 和工具栈，实际为道具箱。
+现已同步修正场景、核心、转场、GameScene 入口、返回请求及 ABI 名称。
+源标题文本、存档对象读取和实际调用相互印证，不能沿用脚本旧名判断功能。
+
+| Mary 既有接口（ID 保持） | 当前实际调用 |
+| --- | --- |
+| 0x09C OpenShelf | GameScene::OpenToolChest |
+| 0x09D OpenToolChest | GameScene::OpenRefrigerator |
+| 0x09E OpenRefrigerator | GameScene::OpenShelf |
+
+Mary 的脚本文件、命令编号及运行路线未修改；派发处明确注明历史名称。
+下方 2026-10-31 三节的旧归属结论已更正，原验证只对应当时提交。
+
+JP 新补十二个完整函数入口，并统一十四个已有入口的跨版名称；
+二十六段与保存对象对照，屏蔽 BL 编码及符号池字后四版其余字节一致。
+这只能证明对应代码形状和边界，不替代外部目标的完整语义核查。
+十个原独立入口实际使用父函数栈帧，已改为局部标签；另移除背包入口
+的重复局部名字，直接调用已有真实函数。三种核心析构由所属头文件
+声明真实参数，虚表直接引用对应函数，不保留 void(void) 假声明。
+
+四版合计十六条原生流、十六份数据序列和四个既有 C++ 模块正文
+静态保留。五个独立 bad_alloc 仍按原顺序存在，未去重；首个字面量
+原始生成归属、核心完整类型、晚段虚方法和自然运行库输出尚待核实。
+本轮未编译，不新增高级语言或已验证 ROM 覆盖。
+
+礼物包装、联动和料理（静态接续批次）：
+
+| 连续模块（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| scene_gift_wrapping .text | 0809210C–08092D08 | 08092640–0809323C | 08092654–0809326C | 08092584–0809319C |
+| scene_gift_wrapping .rodata | 080FFD54–080FFE6E | 081003E4–081004DE | 08100438–08100532 | 08100D80–08100E9E |
+| scene_gamecube_link .text | 08092D08–08094510 | 0809323C–08094A3C | 0809326C–08094A6C | 0809319C–0809499C |
+| scene_gamecube_link .rodata | 080FFE70–081005D6 | 081004E0–08100ABE | 08100534–08100B16 | 08100EA0–081014DA |
+| world_sprite_buffer .text | 08094510–08094594 | 08094A3C–08094AC0 | 08094A6C–08094AF0 | 0809499C–08094A20 |
+| scene_cooking .text | 08094594–08099FC4 | 08094AC0–0809A58C | 08094AF0–0809A5BC | 08094A20–0809A4EC |
+| scene_cooking .rodata | 081008FC–08100C24 | 08100DE4–081010E8 | 08100E3C–08101140 | 08101800–08101B2C |
+| cooking_recipe_inventory .text | 08099FC4–0809A5C4 | 0809A58C–0809AB8C | 0809A5BC–0809ABBC | 0809A4EC–0809AAEC |
+| link_communication_value .text | 080D04EC–080D0558 | 080D0C68–080D0CD4 | 080D0CB4–080D0D20 | 080D0BCC–080D0C38 |
+
+以上为保存的匹配基线范围，本轮没有重新编译。礼物包装原生核心、
+场景包装和连续文本归入 scene_gift_wrapping；前后独立 bad_alloc
+留在 cc，生成归属仍待核实。EU/DE 工具图标读取包含已存在的升级
+工具查询，保留这项实际指令差异，没有按 US 字节覆盖。
+
+旧 after_gamecube_link_ui_scene 并非一个料理模块：其开头仍有
+联动 UI 状态、协议回调、数据包和姓名编码；这些与前面的核心及
+包装场景物理连续，统一归入 scene_gamecube_link。其后 132 字节
+是 WorldSpriteDrawBuffer::WriteSprites，按已有真实类和排序/
+OAM 消费关系归入 world_sprite_buffer.cc/.hh。再后才是料理核心。
+
+联动 rodata 中的对话、十六个记录表、字符码数组、协议 game code
+及独立运行库字面量按原次序保留。对话和字符码数组由两份同名
+编号文本 include，变量声明完整保留；协议标识仍用 ASCII 常量。
+较晚的 LinkCommunicationValue 八个紧凑四字节记录方法另归
+link_communication_value.cc/.hh，各版原有 108 字节范围独立排列，
+不与前段联动主体跨地址拼接，也不保留旧 link_communication_data。
+
+料理核心和四版对应文本归入 scene_cooking；EvaluateCookingRecipe
+紧接场景后、位于食谱库存构造之前，现按原顺序归入
+cooking_recipe_inventory。料理指南页面数据仍隔着 recovery_status，
+其实际消费者归属待核实，未跨越该物理断点强并进料理 rodata。
+
+料理段四版各识别 26 个带独立序言的候选范围；其中十二对异名
+入口有唯一的完整函数归一化匹配，已补齐十个 JP 全局入口并统一
+两个原有名字。新入口只被分支调用，不含会因 Thumb 类型改变
+加数的原始数据字。十个 US 入口对应的地区差异仍需逐段核实，
+未通过屏蔽普通指令、常数或长度差异强行认定匹配。
+
+本批四版合计 24 条原生流、12 份区域数据、四个既有 C++ 模块
+正文及八个紧凑值方法静态保留；拆分后局部标签均在所属对象内。
+没有新编译结果，不计新增高级语言或完整动态化覆盖。原大容器
+在上述批次末仅剩 MoneyAccount 历史更新正文和两个空节；现已在
+下述接续批次中移除。联动/料理的
+完整类、手工虚表、晚段方法、运行库输出及隐藏引用审计仍未完成。
+
+账目、料理入口与矿层（接续静态批次）：
+
+| 范围（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| MoneyAccount 历史更新 | 0809A8A4–0809AA50 | 0809AE6C–0809B018 | 0809AE9C–0809B048 | 0809ADCC–0809AF78 |
+| mine_floor .text | 0809C8C4–0809DD0C | 0809CE8C–0809E2D4 | 0809CEBC–0809E304 | 0809CDEC–0809E234 |
+| mine_floor .rodata | 08103604–08103BDE | 08103B10–081040EA | 08103B68–08104142 | 08104568–08104B42 |
+
+以上仍为保存的匹配基线范围，未进行新的编译。账目历史每版 428 字节
+原生正文迁回 money_account.cc 的实际函数位置，旧 code_0803EE94.s
+及其两个空节移除。现有 C++ 正文和四版原生指令静态保留。
+账目的子段尚未合并：复制构造与析构确实位于后段，US 分别在
+080D6B40–080D6C08、080D6C08–080D6C58，不能搬进早段普通代码。
+
+本地 agbcc 的 codex/cp-asm-destructors 分支（52840e55）中，
+decl2.c 的 import_export_decl / maybe_make_one_only / saved_inlines
+以及 ARM telf.h 的 UNIQUE_SECTION 共同说明：在支持 weak 的目标上，
+已知 implementation 成员并不会因此自动成为所需的 linkonce。没有
+添加强制 pragma、假调用或新的发射选项来掩盖这一问题。
+实际存档复制仍由汇编调用这些成员；其复制 MoreItems 有效元素和调用
+Dog 复制路径的语义、真实 C++ 发射关系需继续恢复，不能直接替换成
+整对象 memcpy 或假定所有现有 inline 方法都会被输出。
+
+料理接续批次补齐另外九个 JP 独立函数入口。每个都有独立序言和返回，
+现有入向引用均为 BL，原 JP ROM 中未发现其偶数或 Thumb 地址的
+四字节直接引用。四版指令流除真实入口名和元数据外不变；对应区域
+正文和调用关系保存在 cooking-remaining-boundaries / entry-changes。
+JP 字形宽度、临时缓冲与包装说明处理，以及 DE 绘制数量差异仍按原
+指令保留。入口对应关系不等于字节完全一致，也不证明已恢复完整类。
+
+矿层的 24 个已有 C++ 方法按保存的输入顺序排列。唯一原生的湖矿埋藏
+物品行选择器占 60 字节，四版保存对象的完整正文完全相同，现共用一份
+汇编并插在 PlaceLakeMineItems 与 GetLakeRockTableIndex 之间。
+去掉本模块 -ffunction-sections，四版各只列一次普通 .text/.rodata。
+四份完全相同的 bad_alloc 文本片段移回 cc 原位置，保留独立对象、
+ALIGN(4) 和头文件声明；自然生成来源尚未恢复，未删除或全局去重。
+CopyCurrentItemWeights 的原生跨数组读取次数继续保留并明确记录，
+因此不能将这里描述为所有表都可任意扩缩。未增加已验证字节覆盖率。
+
+NPC 集合与日历界面（接续静态批次）：
+
+| 连续主题（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| npc_collection .text | 0809E920–080A11D8 | 0809EEE8–080A17A0 | 0809EF18–080A17D0 | 0809EE48–080A1700 |
+| npc_collection .rodata | 08103C1C–08103EFE | 08104128–081043BA | 08104180–08104412 | 08104B80–08104E12 |
+| scene_calendar .text | 080A1C44–080A31E0 | 080A220C–080A37A8 | 080A223C–080A37D8 | 080A216C–080A3708 |
+| scene_calendar .rodata | 0810447C–08104956 | 08104938–08104E0A | 08104990–08104E62 | 08105390–08105822 |
+
+地址来自保存的原版匹配基线；rodata 终点为最后一个已定义对象的末尾，
+后续模块前的自然对齐另行保留。这不是本轮构建结果。
+
+NPC 集合的四段原生实现按真实次序插回 npc_collection.cc，与 24 个
+既有 C++ 正文共同核对；普通 .text/.rodata 各列一次，取消专用函数分节。
+姓名、生日、const 查询、位置、状态及掉落惩罚按实际接口直接命名和声明，
+现有 C++ 调用改用对应成员，没有建立别名或转发函数。独立的只读精灵
+角色查询原先隐藏于 .L080A02B0，现恢复真实函数入口；四版均有独立
+push-LR/返回，原 ROM 偶/奇地址值和已保存代码范围的 Thumb BL 扫描无
+命中。此窄范围结论不替代全 ROM 入向引用审计。
+
+姓名文本、43 项目录和独立 bad_alloc 尾串归回同名模块。目录第二字的
+前两字节已由生日读取代码及 Mary 生日文档确认，分别是普通/备用生日；
+后两字节作为八字节记录的自然对齐。日期使用季节低两位及从 1 开始的
+日序，与存档 GameDate 的从 0 开始日序有区别。前方空姓名对象隔着
+bachelorette 数据，未跨区硬合并。人物域仍固定为原有 43 个编号。
+
+NPC 复制正文移入真实类型的 inline 定义，晚段采用正常 linkonce 选择。
+其实际 GameStateSaveImage C++ 复制调用尚未恢复；目前汇编调用不向
+编译器提供 inline 使用关系，因此晚段发射仍明确未完成，不用假调用补齐。
+
+日历核心的 5432 字节原生实现与两个已有 C++ 正文归入 scene_calendar。
+旧 CalendarDynamicSeasonData 的边界模型有误：四个季节名实际由各自
+终止符结束，节日表紧接冬季字符串，而不是使用字符串中的零作为表首。
+现在四季使用独立普通字符串，17 项日期使用 {season, day} 的两字节
+记录并 ALIGN(1)；只有物理填充由对齐生成。四版的节日表起点为
+JP 0810448B、US 08104957、EU 081049AF、DE 081053B3。
+核心及晚段文本变量读取中的 season-name+offset 已改成对应季节或
+日期表标签，20 个分区域池字的目标地址逐项与原值核对。没有补偿宏。
+
+文本按季节名、节日说明、fallback 三个真实断点 include；中间是日期
+数组或独立运行库字面量。所有声明合入同名 hh，旧数据模块移除。
+日历的 17 项分派、文本变量缓冲容量、完整核心类及晚段方法仍需继续
+处理；运行库字面量自然生成未解决。当前仅完成静态保序/边界/引用
+调整，未编译，不增加高级语言或已验证字节覆盖。
+
+小游戏入口、名称输入与钓鱼（接续静态批次）：
+
+| 连续主题（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| scene_minigames .text | 080A31E0–080A372C | 080A37A8–080A3CF4 | 080A37D8–080A3D24 | 080A3708–080A3C54 |
+| name_entry .text | 080A372C–080A38C8 | 080A3CF4–080A3E90 | 080A3D24–080A3EC0 | 080A3C54–080A3DF0 |
+| name_entry .rodata | 08104958–08104992 | 08104E0C–08104E4A | 08104E64–08104EA2 | 08105824–0810586E |
+| fishing .text | 080A38C8–080A4088 | 080A3E90–080A4650 | 080A3EC0–080A4680 | 080A3DF0–080A45B0 |
+| fishing .rodata | 08104994–0810524E | 08104E4C–08105706 | 08104EA4–0810575E | 08105870–0810612A |
+
+以上范围来自保存的原版匹配基线，不是本轮构建结果。普通 rodata 终点
+是最后对象末尾，后续对象间的必要对齐仍按实际布局处理。
+
+日历后的鸡祭入口与三个精灵小游戏入口是连续的存档/场景转接层，
+共同归入 scene_minigames.cc/.hh；鸡祭游戏核心位于较远的独立范围，
+继续保留在 scene_chicken_festival，未跨越其他功能硬合并。名称输入
+主体使用普通 .text，真正的转场工厂移回 inline 定义和自然 linkonce
+选择；移除该对象的专用 -ffunction-sections。四版入口/构造函数输出
+顺序仍需最终统一编译确认，没有为强制输出添加假调用。
+
+原 after_saved_name_scene 的两个函数实际是钓鱼等待参数和渔获选择，
+其后 GetFieldPlotPositionRuleResult 实际查找水域，也被女神泉投物
+判断调用。三个入口现为 GetFishingAttemptParameters、SelectFishingCatch
+及 GetFishingArea，真实调用直接改名，没有别名或转发包装。连续的
+fallback、8 项物品对应、7×4 等待秒数、7×5 分类权重、59 项渔获
+配置及 8 个水域矩形合为 fishing.cc/.hh，普通 .text/.rodata 各一次。
+唯一游戏文本按四版 include 同名 fishing.cc，运行库字面量保留在
+真实物理位置的主 cc，来源和自然生成仍明确未完成。
+
+渔获配置的实际字段为 2 字节尺寸和 4×7 个有符号钓竿条件；末尾
+两字节由旧 Thumb ELF ABI 的 32 位结构边界自然补齐。四版 59×32
+字节均已核对，移除原先人为加入的两个未知零字段。池中的 +2、+9、
++16、+23 对应同一记录内四季条件行，不是文本截取或地区补偿。
+旧读取代码仍有 59 项、32 字节步长、7 水域和 4 季节约束，不能将
+数组改为 [] 误解为已支持随意扩展格式。
+
+两个原生范围四版指令及符号引用相同，去掉局部标签前缀差异后共用
+一份实现；原生大小分别为 344 与 1816 字节。8 条分区域原生流、
+6 个既有 C++ 正文和 8 份区域数据顺序静态核对通过。四版各 10 处
+指向钓鱼数据的绝对地址候选均有原对象重定位；额外的 4/5/5/1 个
+命中位于已确认的地图压缩流、字模、PCM 采样及压缩 tilemap 内，
+不是指针，已按资源边界记录，没有修改这些字节。此结果不替代全
+ROM 所有类型引用的审计。未编译，不增加已验证或高级语言覆盖。
+
+世界地图与地图精灵（接续静态批次）：
+
+| 连续主题（终点不含） | JP | US | EU | DE |
+| --- | --- | --- | --- | --- |
+| scene_sprite .text | 080A40E4–080A44CC | 080A46AC–080A4A94 | 080A46DC–080A4AC4 | 080A460C–080A49F4 |
+| world_map .text | 080A44CC–080AAA00 | 080A4A94–080AAFC8 | 080A4AC4–080AAFF8 | 080A49F4–080AAF28 |
+| world_sprite_effects .text | 080AAA00–080AB1C0 | 080AAFC8–080AB788 | 080AAFF8–080AB7B8 | 080AAF28–080AB6E8 |
+
+地址来自保存的四版匹配基线，本轮未重新构建。三者的连续主体各用一次
+普通 .text；地图绘制、调色板混合、存档地图加载与精灵特效不再穿插
+旧 asm/code_809E804 的位置命名子节。原 saved_map_selection_after
+末尾的 796 字节实际是 WorldSpriteEffects 构造，现归回特效模块。
+
+四版 36 份原生流（每版 21,328 字节）和 65 个既有 C++ 正文保持；
+复制构造、帧资源赋值、树清理及析构回调的四个既有正文改为普通内联
+定义，移除三模块的 -ffunction-sections。旧编译器 decl2.c 的
+import_export_decl/末尾内联输出规则提供组织依据；实际输出字节、
+pragma 所有权及内联顺序仍须等待全局统一构建，不能计作已验证完成。
+
+JP 080A8B5A 是 LoadSavedWorldMapTiles 内部的长跳转目标，继续使用
+父函数的 r7、sb 和栈帧。全 ROM 偶/奇地址扫描无指针值命中，唯一
+Thumb BL 来自同一函数。现去掉伪独立函数导出，保留 BL 和局部标签。
+
+四个旧 FieldRenderResource 158/159/177/178 对象已核实为两组地形
+属性和索引网格：一个 2×3 阻挡补丁及十二个 3×5 清空补丁，共 26
+个入向 ABS32 引用/版，全部来自真实描述符。有效长度为 4、6、4、15
+字节；原尾部 2+1 字节由对象对齐承担，不再算成网格元素。三处全零
+内容有明确读取者，并非可以删除的整块填充。已采用 map_terrain.hh
+中的真实属性结构和索引网格声明，指针表直接引用相应符号。
+
+仍待处理：SavedMapTree 的原始容器类型、保存地图析构/手工虚表、
+晚段资源复制调用者，以及地图渲染数据的最终模块归属。当前手工地图
+虚表与后部渲染数据不连续，不能将后者再拼成第二个 world_map.o(.rodata)。
+field_render_runtime_data 还混有后续 UI/小游戏的数据，需随消费者
+边界拆清，不能按旧文件名整包并入世界地图。
+
+**C 与 C++ 的选择依据：** 基线九份 C 文件中，除手工模拟 C++ 生命周期的
+`hardware_display_commands.c` 外，其余八份适合保留 C。本轮已将前者并回
+`hardware_context.cc`，按实际对象生命周期表达，尚待统一编译验证。
+12 份初筛未发现直接 C++ 关键字的 cc 中，
+九份实际依赖类方法、引用、对象构造或重载，保留 C++；`random`、
+`animal_response` 是已有 C 链接的过程式实现，本轮改为 C。原 selection_state
+的两个过程式访问器现按实际归属并入 C++ 滚动菜单模块，保留 C 链接与字段布局。54 份纯数据 cc 跟随所属主题维护，不因只有数组而另拆 C 文件。
+
+当前四版重复选择普通 .text 的对象均为 17 个（本批基线为 105 个）；
+此数不包含原生 C++ linkonce，也不是编译通过数量。.rodata 中普通重复对象剩 1 个：虚表集合；四版自定义选择项仍为 JP 170、
+US/EU/DE 162，主要是原有虚表子项。资源容器已按真实边界拆开，但不能据此
+把全部 rodata 或整个 ROM 标为已完成。没有用普通段通配符合并掩盖遗留问题。
+
+以下保留基线所有交错对象，不能因已有标签或原版匹配就视为组织完成。
+地址是 US 基线第一个普通输入范围。完整四版范围、原生段、未链接代码与
+源码顺序证据保存在本轮 `global-organization-21786ce3` 审计记录中。
+
+| 输出段 | 对象 | US 首段起点 | 基线普通范围数 | 状态 |
+| --- | --- | --- | ---: | --- |
+| `.rodata` | `src/vtables.o` | `080E5C14` | 35 | 43 张表恢复原生 C++ 所有权；其余手工集合仍未完成，待统一编译 |
+| `.rodata` | `asm/data/data_0813B288.o` | `0813B288` | 3 | 已按音频、字体、图形和末尾未知数据拆分；四版静态保序，待统一编译 |
+| `.text` | `src/intro_scene.o` | `08000914` | 4 | 转场已静态调整；核心清理仍待处理 |
+| `.text` | `asm/new_game_menu.o` | `08003788` | 2 | 已并回同名 cc，待统一编译 |
+| `.text` | `src/new_game_menu.o` | `08003B40` | 3 | 本轮已调整，待统一编译 |
+| `.text` | `src/new_game_name_entry.o` | `08004C48` | 2 | 本轮已调整，待统一编译 |
+| `.text` | `src/obj_palette_pool.o` | `08007128` | 2 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/obj_palette_collection.o` | `08007578` | 2 | 本轮已调整，待统一编译 |
+| `.text` | `asm/obj_tile_pool.o` | `08007874` | 2 | 已并回同名 cc，待统一编译 |
+| `.text` | `src/obj_tile_pool.o` | `080079D0` | 3 | 本轮已调整，待统一编译 |
+| `.text` | `src/obj_tile_collection.o` | `0800835C` | 2 | 本轮已调整，待统一编译 |
+| `.text` | `src/hardware_context.o` | `08008444` | 3 | 本轮已调整，待统一编译 |
+| `.text` | `src/hardware_manager.o` | `08008980` | 4 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/hardware_interrupt_guard.o` | `0800956C` | 2 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/farm.o` | `08009A48` | 2 | 普通范围已静态整理；原生内联生成和字节顺序待统一编译 |
+| `.text` | `src/time_of_day.o` | `0800E2E4` | 2 | 本轮已调整，待统一编译 |
+| `.text` | `src/farmer.o` | `0800E354` | 2 | 普通范围已静态整理；原生内联生成和字节顺序待统一编译 |
+| `.text` | `src/rucksack.o` | `0800F574` | 2 | 普通范围已静态整理；原生内联生成和字节顺序待统一编译 |
+| `.text` | `src/game_scene.o` | `0801004C` | 17 | 主体、控制器、状态回调已按真实类和物理范围整理，待统一编译 |
+| `.text` | `src/game_state.o` | `08010348` | 3 | 普通范围已静态整理；原生内联生成和字节顺序待统一编译 |
+| `.text` | `asm/game_state.o` | `08010F54` | 10 | 原生块已按实际归属分入 GameState、GameScene、GameWorld 和独立拷贝入口，旧文件移除，待统一编译 |
+| `.text` | `src/entity_location.o` | `08012064` | 4 | 已并回 GameScene/状态回调，待统一编译 |
+| `.text` | `src/scene_audio.o` | `080123CC` | 4 | 已并回 GameScene 主体，待统一编译 |
+| `.text` | `src/scene_dialogue.o` | `080125EC` | 3 | 已并回 GameScene/状态回调，待统一编译 |
+| `.text` | `src/scene_supermarket.o` | `08012BBC` | 5 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/scene_won_shop.o` | `08012CF4` | 4 | 普通范围已静态整理；原生内联生成和字节顺序待统一编译 |
+| `.text` | `src/scene_carpenter_shop.o` | `08012D88` | 4 | 普通范围已静态整理；原生内联生成和字节顺序待统一编译 |
+| `.text` | `src/scene_blacksmith_shop.o` | `08012E1C` | 5 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/scene_clinic_shop.o` | `08012EC0` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_beach_cafe_shop.o` | `08012F54` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_yodel_ranch_shop.o` | `08012FE8` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_winery_shop.o` | `08013080` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_inn_shop.o` | `08013114` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_poultry_farm_shop.o` | `080131A8` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_special_merchant_shop.o` | `0801323C` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_gift_wrapping.o` | `080132D0` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_reference_page.o` | `08013364` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_calendar.o` | `08013544` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_shelf.o` | `080135D8` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_tool_chest.o` | `0801366C` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_refrigerator.o` | `08013700` | 3 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_clock.o` | `08013794` | 3 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/scene_cooking.o` | `08013828` | 4 | 普通场景已恢复单条 .text；共享转场采用原生内联，待统一编译 |
+| `.text` | `src/scene_gamecube_link.o` | `0801395C` | 4 | 普通范围已静态整理；原生内联生成和字节顺序待统一编译 |
+| `.text` | `src/scene_harvest_sprite_minigames.o` | `080139F0` | 5 | 普通范围已静态整理；原生内联生成和字节顺序待统一编译 |
+| `.text` | `src/intro_story_scene.o` | `08013BDC` | 6 | 连续主体合为普通 .text，晚段回调恢复 inline；手工核心虚表与对白归属仍未完成，待统一编译 |
+| `.text` | `src/scene_rucksack.o` | `08013C70` | 3 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/town_map.o` | `08013D04` | 4 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/animal_festival.o` | `08013DC8` | 3 | 场景代码及参赛选择文本已独立为 animal_festival_selection；原早段比赛数据保留待核调用归属 |
+| `.text` | `src/staff_credits.o` | `08013E6C` | 4 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/farming_tutorial.o` | `08013EF8` | 3 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/name_entry.o` | `08013F88` | 3 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/scene_chicken_festival.o` | `0801437C` | 6 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/scene_horse_race.o` | `08014410` | 4 | 普通范围已静态整理；原生内联生成和字节顺序待统一编译 |
+| `.text` | `src/scene_frisbee.o` | `08014550` | 3 | 普通范围已静态整理；原生内联生成和字节顺序待统一编译 |
+| `.text` | `src/frisbee_scoreboard.o` | `080145F8` | 4 | 连续原生和 C++ 主体合为普通 .text；工厂回归真实内联定义，待统一编译 |
+| `.text` | `src/world_creation.o` | `08014AF8` | 3 | 已并回 game_world.cc/.hh，待统一编译 |
+| `.text` | `src/game_world.o` | `0801740C` | 12 | 世界场景连续主体已归并，待统一编译 |
+| `.text` | `src/world_control.o` | `08017C00` | 3 | 已并回 game_world.cc/.hh，待统一编译 |
+| `.text` | `src/world_lighting.o` | `08019B90` | 2 | 已并回 game_world.cc/.hh，待统一编译 |
+| `.text` | `src/world_runtime.o` | `0801FCB4` | 2 | 前段访问器归回 GameWorld；后段真实运行数据及原生分配归回同名模块，待统一编译 |
+| `.text` | `src/entity_audio.o` | `08020038` | 4 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/entity_actor.o` | `08020060` | 6 | 待完成源码归属与生成顺序调整 |
+| `.text` | `asm/code_entities.o` | `080202C4` | 12 | 动物与玩家已按实际连续范围归入同名 cc/hh；旧汇编文件移除，待统一编译 |
+| `.text` | `src/livestock_actor.o` | `080229BC` | 6 | 六个健康回调并回 animal_actor，待统一编译 |
+| `.text` | `src/player_actor.o` | `08024CA0` | 3 | 连续玩家主体、工具动作及自有渲染已合为普通 .text，待统一编译 |
+| `.text` | `src/actor_facing.o` | `0802AB98` | 3 | 当前连续的移动辅助正文已与行为选择及地形缓存归入 actor_movement；待统一编译 |
+| `.text` | `src/entity_sprite.o` | `080324BC` | 4 | 待完成源码归属与生成顺序调整 |
+| `.text` | `asm/code_entities_080320DC.o` | `0803260C` | 6 | 小精灵工作段已移出；公共角色与精灵渲染交错范围仍待整理 |
+| `.text` | `src/entity_ui.o` | `08032900` | 5 | 小精灵工作正文移出；公共表和坐标分类仍待按真实归属整理 |
+| `.text` | `src/npc_entity.o` | `08034C64` | 5 | 连续 NPC 主体使用普通 .text；两处真实 STL 实例留在晚段库位置，未编译 |
+| `.text` | `asm/code_entities_08034CEC.o` | `08035380` | 5 | NPC 和装饰主体已移回功能模块；剩余四个短访问器与未命名尾部 Actor 仍待核查 |
+| `.text` | `src/entity_event_effects.o` | `080387B8` | 2 | 连续主体已合为普通 .text；真实类与虚表仍待整理，未编译 |
+| `.text` | `src/map_data.o` | `0803A8A4` | 3 | 已拆为地图选择、资源访问和地形三个真实模块；各普通 .text 一次，待统一编译 |
+| `.text` | `asm/code_0803A8A4.o` | `0803AB30` | 8 | 各完整原生范围已归回功能模块，旧容器已移除；待统一编译 |
+| `.text` | `src/scene_text_variables.o` | `0803B4B0` | 2 | 连续主体合为普通 .text；原生库副本保持单列，待统一编译 |
+| `.text` | `src/ui_text_window.o` | `0803B840` | 5 | 窗口普通主体、独立边框绘制及原生内联命令归属已静态整理；待统一编译 |
+| `.text` | `src/main_menu_widget.o` | `0803BF78` | 3 | 连续主体合为普通 .text；原生库副本保持单列，待统一编译 |
+| `.text` | `src/map_clock_status.o` | `0803C54C` | 2 | 连续主体合为普通 .text；原生库副本保持单列，待统一编译 |
+| `.text` | `src/npc.o` | `0803D688` | 2 | 日程初始化归入 npc_schedule；剩余连续方法使用普通 .text，待统一编译 |
+| `.text` | `src/npc_collection.o` | `0803D7E4` | 6 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/npc_schedule.o` | `0803E40C` | 2 | 日期、初始化与选择回调合为连续普通 .text；两段数据合并，待统一编译 |
+| `.text` | `asm/code_0803EE94.o` | `08045584` | 48 | 原生块已分归实际模块，旧容器移除；各模块的类、发射和引用遗留仍待完成 |
+| `.text` | `asm/font_draw.o` | `0804E4AC` | 2 | 三组完整合成器已归回 font_draw，旧独立文件移除，待统一编译 |
+| `.text` | `src/font_draw.o` | `0804E7A0` | 3 | 主合成器归回普通 .text；晚段虚回调恢复内联归属，待统一编译 |
+| `.text` | `src/font.o` | `0804EB64` | 3 | 已按字形、数字排版和晚段整数格式化实际边界划分，待统一编译 |
+| `.text` | `src/ui_state.o` | `0804EF20` | 9 | 连续主体按 ROM 次序合并；头像管理拆归 ui_portrait；内联构造器生成顺序未解决，待统一编译 |
+| `.text` | `src/resource_archive.o` | `0805E6CC` | 3 | 主范围保持 C++；两个晚段析构移除手工 section，待统一编译 |
+| `.text` | `asm/intro_story_scene.o` | `0805EE44` | 2 | 两个完整原生函数已归回 intro_story_scene，旧汇编文件移除，待统一编译 |
+| `.text` | `src/new_game.o` | `0806D990` | 5 | 生日输入主体与区域数据已迁入 new_game_birthday_input，普通 .text 合并；待统一编译 |
+| `.text` | `src/scroll_state.o` | `08075BC8` | 2 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/money_account.o` | `0809AB8C` | 3 | 历史更新正文归回本体；早段与晚段复制/析构的自然发射及段合并仍未完成 |
+| `.text` | `src/dog.o` | `0809B9D4` | 2 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/mine_floor.o` | `0809CE8C` | 2 | 24 个 C++ 方法和一个原生选择器按原顺序合为普通 .text，待统一编译 |
+| `.text` | `src/harvest_sprite.o` | `0809E628` | 2 | 待完成源码归属与生成顺序调整 |
+| `.text` | `asm/code_809E804.o` | `0809FE3C` | 32 | NPC 集合及日历主体已归回同名模块；其余范围待处理，未编译 |
+| `.text` | `src/scene_sprite.o` | `080A46AC` | 2 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/world_map.o` | `080A4A94` | 9 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/world_sprite_effects.o` | `080AB2E4` | 2 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/ui_vcount.o` | `080CA6F4` | 3 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/game_menu.o` | `080CC134` | 10 | 待完成源码归属与生成顺序调整 |
+| `.text` | `src/joy_bus.o` | `080D02CC` | 5 | 本轮已调整，待统一编译 |
+| `.text` | `asm/joy_bus.o` | `080D02EC` | 4 | 本轮已调整，待统一编译 |
+| `.text` | `asm/compression.o` | `080D102C` | 2 | 本轮已调整，待统一编译 |
+| `.text` | `asm/code_linkonce.o` | `080D7E64` | 26 | 待完成源码归属与生成顺序调整 |
 
 ## 新游戏表单的连续代码对象（2026-11-05）
 
@@ -75,7 +5948,7 @@
 ROM 头与启动代码使用同一个 `src/crt0.o(.text)`。标准 new 操作符之外、位于
 后段的独立内存分配失败路径归入 `src/allocation_failure.cc` 和同名头文件，
 保留真实函数名及独立回调。六个连续 C++ 模块和四个独立汇编模块清理人为子段；
-选择状态的结构及外部声明统一放在 `include/selection_state.hh`。
+该历史范围的两个访问器现归入 `scroll_menu.cc/.hh`，名称已明确为滚动位置。
 M4A 常量、音色、波形、播放器和歌曲索引按源码原顺序统一由 `.rodata` 链接。
 播放器与歌曲表各有实际结束标签，计数由各自首尾边界计算，不依赖整个对象的结束位置。
 
@@ -2371,12 +8244,14 @@ JP 仅新增上述两处真实重定位。时钟文本、图形和资源链均�
 最早连续启动缺口仍为 `InitializeIntroSceneBackground` 的 156 字节；
 本段是后续主题的依赖推进，不代表启动至此的连续范围均已完成。
 
-## 冰箱入口与场景生命周期（2026-10-31）
+## 整理棚入口与场景生命周期（2026-10-31，归属更正）
 
-`func_08013700` 恢复为 `GameScene::OpenRefrigerator()`，与场景构造、析构、既有
-Run 和转场工厂统一归入 `src/scene_refrigerator.cc`，同名 `.hh` 声明并检查布局。
-callable 0x09E、实际转场表和业务调用链共同确认本入口归属冰箱，
-在道具箱之后按 ROM 顺序恢复。四版共用普通 C++，新恢复 **260 字节／版**：
+本节旧名称误判已按本轮消费者审计更正；末尾构建结果属于历史提交，当前名称及模块整理尚未编译。
+
+`func_08013700` 恢复为 `GameScene::OpenShelf()`，与场景构造、析构、既有
+Run 和转场工厂统一归入 `src/scene_shelf.cc`，同名 `.hh` 声明并检查布局。
+实际核心调用 GetShelf，操作 ArticleStack；0x09E 的 Mary 旧名仍为 OpenRefrigerator。
+当前归属更正为整理棚。四版共用普通 C++，新恢复 **260 字节／版**：
 入口 148、构造 48、析构 64。场景与转场各 12 字节，核心分配 0x10C 字节。
 返回请求种类 JP 为 0x1B、海外三版为 0x1C，另八字节仍按原版不初始化。
 
@@ -2394,10 +8269,10 @@ callable 0x09E、实际转场表和业务调用链共同确认本入口归属冰
 
 JP 原先位于前一节末尾的首个空槽与后续三个表项，是同一张 16 字节
 场景类表，现由正常 C++ 类生成；海外完整类表在各自原槽替换。邻接 JP
-与海外不同核心表原样保留。连续转场目录使用实际 `__vt_22RefrigeratorTransition`，
+与海外不同核心表原样保留。连续转场目录使用实际 `__vt_15ShelfTransition`，
 没有旧名别名、偏移匹配或新建自定义 section。
 
-核心实际函数改用 `ConstructRefrigeratorSceneCore`、`RunRefrigeratorSceneCore`，正文仍为
+核心实际函数改用 `ConstructShelfSceneCore`、`RunShelfSceneCore`，正文仍为
 原位汇编，不算 C++ 覆盖。JP callable 0x09E 的业务 BL（0x08041E6C）
 从原始字节改为入口重定位，其余 VM 辅助调用保持不变。JP 构造器尾部原始
 类表字也成为编译器真实表重定位，与海外原有符号引用对齐。按四版实际 ROM
@@ -2407,15 +8282,17 @@ JP 原先位于前一节末尾的首个空槽与后续三个表项，是同一�
 四版 WSL `make -j4 GAME_REGION=<区域> GAME_REVISION=0 compare` 通过，完整
 8 MiB 字节与 SHA-1 均匹配原版。所有旧全局地址、既有 ROM 重定位及保留
 输入范围不变，每版 263 个未改动对象的分配节与重定位相同；JP 新增上述
-业务 BL 和构造器类表字。冰箱内容、文本、图形和资源链未移动。最早连续启动缺口仍为
+业务 BL 和构造器类表字。整理棚内容、文本、图形和资源链未移动。最早连续启动缺口仍为
 `InitializeIntroSceneBackground` 的 156 字节，不以本段代替连续完成前沿。
 
-## 道具箱入口与场景生命周期（2026-10-31）
+## 冰箱入口与场景生命周期（2026-10-31，归属更正）
 
-`func_0801366C` 恢复为 `GameScene::OpenToolChest()`，与场景构造、析构、既有
-Run 和转场工厂统一归入 `src/scene_tool_chest.cc`，同名 `.hh` 声明并检查布局。
-callable 0x09D、实际转场表和业务调用链均确认属于道具箱，沿日历、书架、
-道具箱的 ROM 顺序推进。四版共用普通 C++，新恢复 **260 字节／版**：
+本节旧名称误判已按本轮消费者审计更正；末尾构建结果属于历史提交，当前名称及模块整理尚未编译。
+
+`func_0801366C` 恢复为 `GameScene::OpenRefrigerator()`，与场景构造、析构、既有
+Run 和转场工厂统一归入 `src/scene_refrigerator.cc`，同名 `.hh` 声明并检查布局。
+实际核心调用 GetFridge，操作 FoodStack；0x09D 的 Mary 旧名仍为 OpenToolChest。
+当前归属更正为冰箱。四版共用普通 C++，新恢复 **260 字节／版**：
 入口 148、构造 48、析构 64。场景与转场各 12 字节，核心分配 0x10C 字节。
 返回请求种类 JP 为 0x1A、海外三版为 0x1B，另八字节仍按原版不初始化。
 
@@ -2433,10 +8310,10 @@ callable 0x09D、实际转场表和业务调用链均确认属于道具箱，沿
 
 JP 原先位于前一节末尾的首个空槽与后续三个表项，是同一张 16 字节
 场景类表，现由正常 C++ 类生成；海外完整类表在各自原槽替换。邻接 JP
-与海外不同核心表原样保留。连续转场目录使用实际 `__vt_19ToolChestTransition`，
+与海外不同核心表原样保留。连续转场目录使用实际 `__vt_22RefrigeratorTransition`，
 没有旧名别名、偏移匹配或新建自定义 section。
 
-核心实际函数改用 `ConstructToolChestSceneCore`、`RunToolChestSceneCore`，正文仍为
+核心实际函数改用 `ConstructRefrigeratorSceneCore`、`RunRefrigeratorSceneCore`，正文仍为
 原位汇编，不算 C++ 覆盖。JP callable 0x09D 的业务 BL（0x08041E54）
 从原始字节改为入口重定位，其余 VM 辅助调用保持不变。JP 构造器尾部原始
 类表字也成为编译器真实表重定位，与海外原有符号引用对齐。按四版实际 ROM
@@ -2446,15 +8323,17 @@ JP 原先位于前一节末尾的首个空槽与后续三个表项，是同一�
 四版 WSL `make -j4 GAME_REGION=<区域> GAME_REVISION=0 compare` 通过，完整
 8 MiB 字节与 SHA-1 均匹配原版。所有旧全局地址、既有 ROM 重定位及保留
 输入范围不变，每版 262 个未改动对象的分配节与重定位相同；JP 新增上述
-业务 BL 和构造器类表字。道具箱内容、文本、图形和资源链未移动。最早连续启动缺口仍为
+业务 BL 和构造器类表字。冰箱内容、文本、图形和资源链未移动。最早连续启动缺口仍为
 `InitializeIntroSceneBackground` 的 156 字节，不以本段代替连续完成前沿。
 
-## 书架入口与场景生命周期（2026-10-31）
+## 道具箱入口与场景生命周期（2026-10-31，归属更正）
 
-`func_080135D8` 恢复为 `GameScene::OpenShelf()`，与场景构造、析构、既有
-Run 和转场工厂统一归入 `src/scene_shelf.cc`，同名 `.hh` 声明并检查布局。
-实际转场表与 callable 0x09C 均指向书架；紧随其后的 0x09D 才是道具箱，
-没有依据地址接近而混用类型。四版共用普通 C++，新恢复 **260 字节／版**：
+本节旧名称误判已按本轮消费者审计更正；末尾构建结果属于历史提交，当前名称及模块整理尚未编译。
+
+`func_080135D8` 恢复为 `GameScene::OpenToolChest()`，与场景构造、析构、既有
+Run 和转场工厂统一归入 `src/scene_tool_chest.cc`，同名 `.hh` 声明并检查布局。
+实际核心读取 ToolChestUi；0x09C 的 Mary 旧名仍为 OpenShelf。
+当前归属更正为道具箱，不能从该旧接口名称推断它属于书架。四版共用普通 C++，新恢复 **260 字节／版**：
 入口 148、构造 48、析构 64。场景与转场各 12 字节，核心分配 0x10C 字节。
 返回请求种类 JP 为 0x19、海外三版为 0x1A，另八字节仍按原版不初始化。
 
@@ -2472,10 +8351,10 @@ Run 和转场工厂统一归入 `src/scene_shelf.cc`，同名 `.hh` 声明并检
 
 JP 原先位于前一节末尾的首个空槽与后续三个表项，是同一张 16 字节
 场景类表，现由正常 C++ 类生成；海外完整类表在各自原槽替换。邻接 JP
-与海外不同核心表原样保留。连续转场目录使用实际 `__vt_15ShelfTransition`，
+与海外不同核心表原样保留。连续转场目录使用实际 `__vt_19ToolChestTransition`，
 没有旧名别名、偏移匹配或新建自定义 section。
 
-核心实际函数改用 `ConstructShelfSceneCore`、`RunShelfSceneCore`，正文仍为
+核心实际函数改用 `ConstructToolChestSceneCore`、`RunToolChestSceneCore`，正文仍为
 原位汇编，不算 C++ 覆盖。JP callable 0x09C 的业务 BL（0x08041E3C）
 从原始字节改为入口重定位，其余 VM 辅助调用保持不变。按四版实际 ROM
 输入检查本批入口、构造／析构及核心函数的调用和类表各字槽，排除 Mary
@@ -2484,7 +8363,7 @@ JP 原先位于前一节末尾的首个空槽与后续三个表项，是同一�
 四版 WSL `make -j4 GAME_REGION=<区域> GAME_REVISION=0 compare` 通过，完整
 8 MiB 字节与 SHA-1 均匹配原版。所有旧全局地址、既有 ROM 重定位及保留
 输入范围不变，每版 261 个未改动对象的分配节与重定位相同；JP 新增上述
-业务 BL。书架内容、文本、图形和资源链未移动。最早连续启动缺口仍为
+业务 BL。道具箱内容、文本、图形和资源链未移动。最早连续启动缺口仍为
 `InitializeIntroSceneBackground` 的 156 字节，不以本段代替连续完成前沿。
 
 ## 日历入口与场景生命周期（2026-10-31）
@@ -5159,8 +11038,8 @@ C++，类型与声明归于同名 `include/world_map.hh`。节点按原有顺序
 | `gIntroSceneStartupBg3Tilemap` | `0x084D1058` | `0x0874A8C4` | `0x0874A920` | `0x084D1D30` |
 
 16 字节 `gIntroSceneStartupBgTilemaps[4]` 仍由同名主题
-`src/intro_scene_startup.cc` 提供，公开声明在
-`include/intro_scene_startup.hh`。压缩流使用各层真实符号，直接引用
+`src/intro_scene.cc` 提供，公开声明在
+`include/intro_scene.hh`。压缩流使用各层真实符号，直接引用
 原有通用 C 编码器生成的 `.tilemap.lz`；没有旧名别名、地址偏移、
 新增目录、工具、链接条目或编译后补丁。原有四份编码参数保持。
 
@@ -12500,9 +18379,9 @@ C／汇编声明仍直达相同方法 ABI，不发出第二个入口或额外包
 | `SpecialMerchantShopScene` | `0x08081628` | `0x08081AB0` | `0x08081AC4` | `0x080819B8` | 28 |
 | `BeachCafeShopScene` | `0x08081CFC` | `0x08082184` | `0x08082198` | `0x0808208C` | 28 |
 | `CarpenterShopScene` | `0x080850E0` | `0x08085568` | `0x0808557C` | `0x08085470` | 28 |
-| `ToolChestScene` | `0x0808A6E8` | `0x0808ABA8` | `0x0808ABBC` | `0x0808AAEC` | 28 |
-| `RefrigeratorScene` | `0x0808E888` | `0x0808ED48` | `0x0808ED5C` | `0x0808EC8C` | 28 |
-| `ShelfScene` | `0x08090A04` | `0x08090EC4` | `0x08090ED8` | `0x08090E08` | 28 |
+| `RefrigeratorScene` | `0x0808A6E8` | `0x0808ABA8` | `0x0808ABBC` | `0x0808AAEC` | 28 |
+| `ShelfScene` | `0x0808E888` | `0x0808ED48` | `0x0808ED5C` | `0x0808EC8C` | 28 |
+| `ToolChestScene` | `0x08090A04` | `0x08090EC4` | `0x08090ED8` | `0x08090E08` | 28 |
 | `GiftWrappingScene` | `0x08092CEC` | `0x08093220` | `0x08093250` | `0x08093180` | 28 |
 | `CookingScene` | `0x08099F90` | `0x0809A558` | `0x0809A588` | `0x0809A4B8` | 52 |
 | `CalendarScene` | `0x080A31AC` | `0x080A3774` | `0x080A37A4` | `0x080A36D4` | 52 |

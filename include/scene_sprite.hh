@@ -3,7 +3,55 @@
 
 #include "prelude.h"
 #include "resource_handle.hh"
-#include "world_runtime.hh"
+#include "obj_tile_collection_storage.hh"
+#include <string.h>
+
+struct GameObject;
+
+struct GameScenePaletteIndices {
+private:
+    void Initialize(u32 input_count, u8 const & initial)
+    {
+        count = 0;
+        if (input_count <= ARRAY_COUNT(values)) {
+            memset(values, initial, input_count);
+            count = input_count;
+        }
+    }
+
+public:
+    GameScenePaletteIndices() : count(0) {}
+
+    GameScenePaletteIndices(GameScenePaletteIndices const & other) : count(0)
+    {
+        u32 input_count = other.count;
+        u8 const * first = other.values;
+        u8 * destination = values;
+        u8 const * last = first + input_count;
+        if (last != first)
+            memmove(destination, first, last - first);
+        count = input_count;
+    }
+
+    explicit GameScenePaletteIndices(u32 input_count)
+    {
+        Initialize(input_count, 0);
+    }
+
+    u32 count;
+    union {
+        u8 values[16];
+        u32 storage[4];
+    };
+
+    u8 * End() { return &reinterpret_cast<u8 *>(storage)[count]; }
+
+    u8 & operator[](u32 index) { return values[index]; }
+};
+
+typedef char GameScenePaletteIndicesSizeCheck[sizeof(GameScenePaletteIndices) == 20 ? 1 : -1];
+typedef char GameScenePaletteIndexValuesCheck[offsetof(GameScenePaletteIndices, values) == 4 ? 1 : -1];
+
 
 #pragma interface "scene_sprite.hh"
 
@@ -30,75 +78,10 @@ struct GameSceneSpriteBase {
         u32 sort_key, IndexedResourceSpriteRange const & range, GameObject * palette_source) const;
 };
 
-struct GameSceneIndexedSprite : GameSceneSpriteBase {
-    GameSceneIndexedSprite(IndexedResourceProvider * resource, u32 index,
-        GameObject * world, u32 size_shift, i32 const * palette_kinds,
-        u32 palette_count, bool unk_3D);
-    GameSceneIndexedSprite(IndexedResourceProvider * resource, u32 index,
-        GameObject * world, u32 size_shift, i32 palette_kind, bool unk_3D);
-
-    IndexedResourceHandle handle;
-    u8 unk_3C;
-    u8 unk_3D;
-    u8 unk_3E;
-    u8 unk_3F;
-
-    void SetAnimation(u32 index)
-    {
-        ResolveIndexedResourceHandle(&handle, index);
-        unk_3C = 1;
-        unk_3E = 0;
-        unk_3F = 1;
-    }
-
-    IndexedResourceUpdateResult UpdateAnimation()
-    {
-        if (unk_3F == 0) {
-            IndexedResourceUpdateResult result = UpdateIndexedResourceHandle(&handle);
-            if (result.flags.group_changed)
-                unk_3C = 1;
-            return result;
-        }
-        unk_3F = 0;
-        IndexedResourceUpdateResult initial;
-        initial.value = INDEXED_RESOURCE_GROUP_CHANGED;
-        return initial;
-    }
-};
-
 typedef char GameSceneSpriteBaseSizeCheck[sizeof(GameSceneSpriteBase) == 0x28 ? 1 : -1];
 typedef char GameSceneSpriteBaseTilesCheck[offsetof(GameSceneSpriteBase, tiles) == 4 ? 1 : -1];
 typedef char GameSceneSpriteBasePaletteCountCheck[offsetof(GameSceneSpriteBase, palettes.count) == 0x10 ? 1 : -1];
 typedef char GameSceneSpriteBasePaletteIndicesCheck[offsetof(GameSceneSpriteBase, palettes.values) == 0x14 ? 1 : -1];
-typedef char GameSceneIndexedSpriteSizeCheck[sizeof(GameSceneIndexedSprite) == 0x40 ? 1 : -1];
-typedef char GameSceneIndexedSpriteHandleCheck[offsetof(GameSceneIndexedSprite, handle) == 0x28 ? 1 : -1];
-typedef char GameSceneIndexedSpriteFlagsCheck[offsetof(GameSceneIndexedSprite, unk_3C) == 0x3C ? 1 : -1];
-
-// Both world event icons and entity-owned graphics embed this same group
-// sprite. A group is resolved once; the indexed sprite instead keeps a handle.
-// The byte at +0x48 is initialized by native factories, but its full meaning
-// is not yet established. Preserve that uncertainty rather than naming a flag.
-struct GameSceneGroupSprite : GameSceneSpriteBase {
-    GameSceneGroupSprite(IndexedResourceProvider * resource, u32 index,
-        GameObject * world, u32 size_shift, i32 palette_kind)
-        : GameSceneSpriteBase(world, size_shift, palette_kind),
-          group(ResolveIndexedResourceGroup(resource, index)),
-          unk_48(1)
-    {
-    }
-
-    IndexedResourceGroupResult group;
-    u8 unk_48;
-
-    // No default construction path has been recovered.
-private:
-    GameSceneGroupSprite();
-};
-
-typedef char GameSceneGroupSpriteSizeCheck[sizeof(GameSceneGroupSprite) == 0x4C ? 1 : -1];
-typedef char GameSceneGroupSpriteGroupCheck[offsetof(GameSceneGroupSprite, group) == 0x28 ? 1 : -1];
-typedef char GameSceneGroupSpriteByteCheck[offsetof(GameSceneGroupSprite, unk_48) == 0x48 ? 1 : -1];
-
 EXTERN_C
 
 // ARM entry in IWRAM, distinct from the direct hardware OAM submission path.
@@ -111,5 +94,6 @@ u32 SubmitWorldSpriteRecords(WorldSpriteDrawBuffer * buffer, i32 x, i32 y,
     GameScenePaletteIndices const & palette_map) __attribute__((long_call));
 
 EXTERN_C_END
+
 
 #endif // SCENE_SPRITE_HH

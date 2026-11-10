@@ -1,0 +1,21 @@
+#include "calendar.hh"
+
+char const gText_Calendar_SeasonNames[4][3] ALIGN(1) = {
+    "春",
+    "夏",
+    "秋",
+    "冬"
+};
+
+char const gText_Calendar_None[] ALIGN(4) =
+    "無";
+
+char const gText_Calendar_WeekdayNames[7][3] ALIGN(1) = {
+    "日",
+    "月",
+    "火",
+    "水",
+    "木",
+    "金",
+    "土"
+};

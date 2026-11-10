@@ -26,16 +26,16 @@ typedef char HardwareLinkedListVTable_remove_check[offsetof(struct HardwareLinke
 #endif
 
 #ifdef __cplusplus
-// Emit the retail out-of-line constructors here while allowing their normal
-// member initialization to inline in owning objects.
-#pragma interface "hardware_linked_list.hh"
+// The class owner emits the tables and the implicit HardwareLink destructor.
+#pragma interface "hardware_linked_list_lifetimes.hh"
 #endif
 
 struct HardwareLinkBase {
     struct HardwareLinkBase ** previous_slot;
     struct HardwareLinkBase * next;
 #ifdef __cplusplus
-    HardwareLinkBase() asm("func_08009A38") SECTION(".text.hardware_linked_list_tail");
+    HardwareLinkBase() asm("func_08009A38");
+    u32 IsLinked() const asm("func_08009A2C");
     // The native list consumes the boolean result from the low byte.
     virtual bool Run() = 0;
     virtual ~HardwareLinkBase() asm("func_080098AC");
@@ -54,9 +54,7 @@ struct HardwareLink
     struct HardwareLinkBase * next;
     void ** vtable;
 #else
-    HardwareLink() SECTION(".text.hardware_link_constructor");
     virtual bool Run() asm("func_080098D8");
-    // The compiler-generated destructor forwards directly to the link base.
 #endif
 };
 
@@ -73,7 +71,7 @@ struct HardwareLinkedList
     struct HardwareLinkBase * first;
     struct HardwareLink sentinel;
 #ifdef __cplusplus
-    HardwareLinkedList() asm("func_08009A04") SECTION(".text.hardware_linked_list_constructor");
+    HardwareLinkedList() asm("func_08009A04");
     virtual bool Run() asm("func_08009908");
     virtual ~HardwareLinkedList() asm("func_080098DC");
     virtual void Append(HardwareLinkBase * link) asm("func_08009940");
@@ -99,20 +97,23 @@ void func_08009984(struct HardwareLinkedList * list);
 void func_080099B0(struct HardwareLinkedList * destination, struct HardwareLinkedList * source);
 void func_080099D4(struct HardwareLinkedList * first, struct HardwareLinkedList * second);
 u32 func_080099EC(struct HardwareLinkedList * list);
-u32 func_08009A2C(struct HardwareLinkBase * link) SECTION(".text.hardware_linked_list_tail");
-void func_08009A38(struct HardwareLinkBase * link) SECTION(".text.hardware_linked_list_tail");
+u32 func_08009A2C(struct HardwareLinkBase * link);
+void func_08009A38(struct HardwareLinkBase * link);
 
 EXTERN_C_END
 
 #ifdef __cplusplus
+#pragma interface "hardware_linked_list.hh"
+// The retained constructors and query belong to the earlier list code.
 inline HardwareLinkBase::HardwareLinkBase()
     : previous_slot(0), next(0)
 {
 }
 
-inline HardwareLink::HardwareLink()
-    : HardwareLinkBase()
+inline u32 HardwareLinkBase::IsLinked() const
 {
+    u32 value = (u32)previous_slot;
+    return ((0 - value) | value) >> 31;
 }
 
 inline HardwareLinkedList::HardwareLinkedList()
@@ -130,9 +131,10 @@ typedef char HardwareLinkedList_first_check[offsetof(struct HardwareLinkedList, 
 typedef char HardwareLinkedList_sentinel_check[offsetof(struct HardwareLinkedList, sentinel) == 0x10 ? 1 : -1];
 
 #ifdef __cplusplus
+#include "hardware_linked_list_lifetimes.hh"
+
 // The build preprocesses headers into one stream. Restore ordinary linkage
 // inference for subsequent classes instead of exporting their inline bodies.
-#pragma implementation
 #endif
 
 #endif // HARDWARE_LINKED_LIST_HH

@@ -113,6 +113,5 @@ extern "C" u32 const gSpringMineBuriedItemCodes[];
 extern "C" u8 const gSpringMineBuriedItemWeights[][5];
 extern "C" u32 const gSpringMineRockItemCodes[];
 extern "C" u8 const gSpringMineRockItemWeights[][10];
-extern char const gCppRuntimeBadAlloc_MineFloorTables[];
 
 #endif // MINE_FLOOR_HH

@@ -7,7 +7,7 @@
 #include "harvest_sprite.hh"
 #include "npc_locations.hh"
 #include "saibara.hh"
-#include "time_of_day.hh"
+#include "time_of_day_types.hh"
 #include "van.hh"
 
 // Eight saved preset positions, distinct from each character's own location.
@@ -86,16 +86,22 @@ struct NpcCollection
     NpcCollection();
     NpcCollection(NpcCollection const & other);
 
-    // IDs are the canonical Mary character IDs. Unsupported IDs return null;
-    // the child is available only when has_child is set. Sprite slots are 0-6.
+    // IDs are the canonical Mary character IDs. Name lookup returns the shared
+    // empty string for an invalid ID and reads the saved name for the child.
+    char const * GetCharacterName(u32 character_id) const;
+    // The player birthday selects the alternate date for six candidates.
+    u8 GetCharacterBirthdayCode(u32 character_id, GameDate const & player_birthday) const;
+    // Object lookups return null for unsupported IDs. The child requires
+    // has_child, and harvest-sprite slot indices are 0-6.
+    Npc const * GetNpc(u32 character_id) const;
+    Bachelorette const * GetBachelorette(u32 character_id) const;
+    HarvestSprite const * GetHarvestSpriteByCharacterId(u32 character_id) const;
+    ActorLocation GetNpcLocation(u32 character_id) const;
     Npc * GetNpc(u32 character_id);
     Bachelorette * GetBachelorette(u32 character_id);
     HarvestSprite * GetHarvestSpriteByCharacterId(u32 character_id);
     HarvestSprite * GetHarvestSpriteByIndex(u32 index);
-#if defined(REGION_JP)
-    // JP emits a separate read-only slot lookup used by minigame queries.
     HarvestSprite const * GetHarvestSpriteByIndex(u32 index) const;
-#endif
 
     // Preserve the native candidate priority and the two distinct event counts.
     // A zero result means no matching candidate, not CHARACTER_PLAYER.
@@ -108,12 +114,26 @@ struct NpcCollection
 
     // Preserve native unsigned addition and the individual field ceilings.
     // The counter meanings are not established; do not infer them from size.
+    u32 GetUnk00_0() const;
+    u32 GetUnk00_6() const;
+    u32 GetUnk03_2() const;
+    void SetUnk03_2(u32 value);
     void AddUnk00_0(u32 amount);
     void AddUnk00_6(u32 amount);
     // Map-entry counter, once per DayUpdate reset; it feeds Mary's visit bonus.
     void RecordLibrarySecondFloorVisit();
+    u32 GetLibrarySecondFloorVisitCount() const;
+
+    // Checks IDs 1-42 at >=250, excluding Cliff, Kai, Gourmet, Van and Child.
+    bool HasRequiredFriendshipLevels() const;
+    void CreateChild(GameDate const & date);
+    void ApplyDroppedItemFriendshipPenalty(Location const & location, GameEventState const & events);
 
     // South-town slots 1 and 2 select their entries; all other values use 0.
+    ActorLocation const * GetSouthTownNpcLocation1(u32 slot) const;
+    ActorLocation const * GetSouthTownNpcLocation2(u32 slot) const;
+    ActorLocation const * GetYodelRanchHouseNpcLocation() const;
+    ActorLocation const * GetInnSecondFloorNpcLocation() const;
     ActorLocation * GetSouthTownNpcLocation1(u32 slot);
     ActorLocation * GetSouthTownNpcLocation2(u32 slot);
     ActorLocation * GetYodelRanchHouseNpcLocation();
@@ -201,18 +221,60 @@ typedef char NpcCollectionWorkTargetsCheck[offsetof(NpcCollection, work_targets)
 typedef char NpcCollectionPregnancyCounterCheck[offsetof(NpcCollection, days_since_pregnancy_event) == 0x470 ? 1 : -1];
 typedef char NpcCollectionLastByteCheck[offsetof(NpcCollection, unk_474) == 0x474 ? 1 : -1];
 
-// Native character-name resolver; its dispatch body remains in assembly.
-extern "C" char const * func_0809FE3C(NpcCollection * collection, u32 character_id);
+// ROM birthday bytes use season in bits 0-1 and a one-based day in bits 2-6.
+// The two bytes after the alternate date are natural record alignment.
+struct CharacterNameEntry
+{
+    char const * text;
+    u8 birthday_code;
+    u8 alternate_birthday_code;
+};
 
-// Existing native child construction; a saved calendar date is passed by reference.
-extern "C" void func_080A05E8(NpcCollection & npcs, GameDate const & date);
+typedef char CharacterNameEntrySizeCheck[sizeof(CharacterNameEntry) == 8 ? 1 : -1];
+typedef char CharacterNameEntryBirthdayCheck[offsetof(CharacterNameEntry, birthday_code) == 4 ? 1 : -1];
+typedef char CharacterNameEntryAlternateBirthdayCheck[offsetof(CharacterNameEntry, alternate_birthday_code) == 5 ? 1 : -1];
 
-struct GameEventState;
-
-// Native deferred-drop callback; its map-dependent friendship changes remain assembly.
-EXTERN_C
-void func_080A1484(NpcCollection & npcs, Location const & location,
-    GameEventState & events);
-EXTERN_C_END
+extern char const gText_CharacterName_Lillia[];
+extern char const gText_CharacterName_Rick[];
+extern char const gText_CharacterName_Popuri[];
+extern char const gText_CharacterName_Barley[];
+extern char const gText_CharacterName_May[];
+extern char const gText_CharacterName_Saibara[];
+extern char const gText_CharacterName_Gray[];
+extern char const gText_CharacterName_Duke[];
+extern char const gText_CharacterName_Manna[];
+extern char const gText_CharacterName_Basil[];
+extern char const gText_CharacterName_Anna[];
+extern char const gText_CharacterName_Mary[];
+extern char const gText_CharacterName_Thomas[];
+extern char const gText_CharacterName_Harris[];
+extern char const gText_CharacterName_Ellen[];
+extern char const gText_CharacterName_Stu[];
+extern char const gText_CharacterName_Jeff[];
+extern char const gText_CharacterName_Sasha[];
+extern char const gText_CharacterName_Karen[];
+extern char const gText_CharacterName_Doctor[];
+extern char const gText_CharacterName_Elli[];
+extern char const gText_CharacterName_Carter[];
+extern char const gText_CharacterName_Cliff[];
+extern char const gText_CharacterName_Doug[];
+extern char const gText_CharacterName_Ann[];
+extern char const gText_CharacterName_Kai[];
+extern char const gText_CharacterName_Gotz[];
+extern char const gText_CharacterName_Zack[];
+extern char const gText_CharacterName_Won[];
+extern char const gText_CharacterName_Gourmet[];
+extern char const gText_CharacterName_HarvestGoddess[];
+extern char const gText_CharacterName_Kappa[];
+extern char const gText_CharacterName_Van[];
+extern char const gText_CharacterName_LouOrRuby[];
+extern char const gText_CharacterName_Staid[];
+extern char const gText_CharacterName_Nappy[];
+extern char const gText_CharacterName_Bold[];
+extern char const gText_CharacterName_Chef[];
+extern char const gText_CharacterName_Aqua[];
+extern char const gText_CharacterName_Hoggy[];
+extern char const gText_CharacterName_Timid[];
+extern CharacterNameEntry const gCharacterNameEntries[];
 
 #endif // NPC_COLLECTION_HH

@@ -8,6 +8,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+const std::nothrow_t std::nothrow = { };
+
 // These two native adapters belong to the allocation runtime, not IRQs.
 void * AllocateCppObjectMemory(u32 size)
 {
@@ -86,3 +88,7 @@ void operator delete[](void * ptr, std::nothrow_t const & nothrow)
 {
     operator delete(ptr, nothrow);
 }
+
+// The initialized callback belongs to the existing IWRAM load image.
+// Keep ordinary .data storage instead of an untyped assembler definition.
+std::new_handler __new_handler __attribute__((section(".data"))) = nullptr;

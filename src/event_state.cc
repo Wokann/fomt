@@ -1,49 +1,52 @@
 #include "event_state.hh"
 
 #include <string.h>
+#include <algorithm>
 
-EC u16 * func_080E3DB4(u16 * first, u16 * last, u16 const * value);
-EC u16 * func_080E3E28(u16 * first, u16 * last, u16 const * value);
+extern template u16 const * std::find(u16 const *, u16 const *, u16 const &);
+extern template u16 * std::find(u16 *, u16 *, u16 const &);
+
+
 // The native erase path and range-copy operation each guard an empty
 // range. Copy left with memmove; the now-unused final entry is not cleared.
 static inline void CopyEventVariableRange(u16 const * first, u16 const * last, u16 * destination)
 {
     if (last != first)
-        memmove(destination, first, reinterpret_cast<u8 const *>(last) - reinterpret_cast<u8 const *>(first));
+        std::copy(first, last, destination);
 }
 bool GameEventState::HasRegisteredEvents() const
 {
-    return registered_variable_count != 0;
+    return registered_variables.count != 0;
 }
 void GameEventState::RegisterEventVariable(u16 value)
 {
-    u16 * const first = registered_variables;
-    u16 * const end = registered_variables + registered_variable_count;
-    if (func_080E3DB4(first, end, &value) == end)
+    u16 const * const first = registered_variables.values;
+    u16 const * const end = registered_variables.values + registered_variables.count;
+    if (std::find(first, end, value) == end)
     {
         u16 const * const value_pointer = &value;
-        u32 const old_count = registered_variable_count;
+        u32 const old_count = registered_variables.count;
         if (old_count <= 2)
         {
-            u16 * const entry = registered_variables + old_count;
+            u16 * const entry = registered_variables.values + old_count;
             if (entry != nullptr)
                 *entry = *value_pointer;
-            registered_variable_count = old_count + 1;
+            registered_variables.count = old_count + 1;
         }
     }
 }
 void GameEventState::RemoveEventVariable(u16 value)
 {
-    u16 * const first = registered_variables;
-    u16 * const end = registered_variables + registered_variable_count;
-    u16 * const entry = func_080E3E28(first, end, &value);
-    if (entry != end && registered_variable_count != 0)
+    u16 * const first = registered_variables.values;
+    u16 * const end = registered_variables.values + registered_variables.count;
+    u16 * const entry = std::find(first, end, value);
+    if (entry != end && registered_variables.count != 0)
     {
-        u16 * const last = registered_variables + registered_variable_count;
+        u16 * const last = registered_variables.values + registered_variables.count;
         u16 * const next = entry + 1;
         if (next != last)
             CopyEventVariableRange(next, last, entry);
-        --registered_variable_count;
+        --registered_variables.count;
     }
 }
 bool GameEventState::IsActiveRomanceEvent(u16 value) const
@@ -58,12 +61,11 @@ void GameEventState::ClearActiveRomanceEvent()
 {
     active_romance_event = 0xFFFF;
 }
-// Preserve the native omissions: the entry storage, +0A halfword,
+// Preserve the native omissions: inactive entry storage, list padding,
 // five padding bits, Carter job flag and five Starry Night invitation flags.
 // +49 bits 2..3 and 4..5 are independent fields, as the copy path confirms.
 GameEventState::GameEventState()
 {
-    registered_variable_count = 0;
     active_romance_event = 0xFFFF;
     karen_purple_heart_event_choice = 0;
     karen_nickname_event_state = 0;

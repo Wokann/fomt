@@ -33,7 +33,13 @@
 
 #ifndef __ASSEMBLER__
 
-#include "new_game.hh"
+#include "new_game_ui.hh"
+#include "scene.hh"
+#include "hardware_context.hh"
+#include "hardware_sound.hh"
+#include "ui_state.hh"
+#include "unknown_types.hh"
+#include "utility/fixed_str.hh"
 
 typedef NewGameTextTileBuffer<NEW_GAME_NAME_INPUT_TILE_WIDTH, NEW_GAME_NAME_INPUT_TILE_HEIGHT> NewGameNameInputKeyboardBuffer;
 typedef NewGameTextTileBuffer<NEW_GAME_NAME_INPUT_PROMPT_WIDTH, NEW_GAME_NAME_INPUT_TILE_HEIGHT> NewGameNameInputPromptBuffer;
@@ -51,6 +57,24 @@ typedef char NewGameNameInputSpriteStateSizeCheck[
     sizeof(NewGameNameInputSpriteState) == 12 ? 1 : -1];
 typedef char NewGameNameInputSpriteStateAttributesCheck[
     offsetof(NewGameNameInputSpriteState, attributes) == 4 ? 1 : -1];
+
+struct NewGameNameInputCore;
+
+// The reusable keyboard and its core have ordinary C++ lifetimes.
+// Keyboard raster and screen setup still use their existing native entries.
+#pragma interface "new_game_name_input.hh"
+
+struct NewGameNameInputScene : AScene {
+    NewGameNameInputScene(char const * prompt, char const * initial_name)
+        asm("ConstructNameInputScene");
+    virtual ~NewGameNameInputScene()
+        asm("DestroyNameInputScene");
+    virtual SceneTransitionOwner Run()
+        asm("RunNameInputScene");
+    char const * GetName() const
+        asm("GetNameInputSceneName");
+    NewGameNameInputCore * core;
+};
 
 // The keyboard scene owns eight two-tile-high, 30-tile-wide text buffers
 // (nine in DE), followed by the current name and optional prompt buffers.
@@ -81,20 +105,6 @@ struct NewGameNameInputCore : HardwareContext {
 typedef char NewGameNameInputMusicStrideCheck[
     offsetof(NewGameNameInputCore, music_player_2) ==
         offsetof(NewGameNameInputCore, music_player_1) + sizeof(HardwareMusicPlayerSlot) ? 1 : -1];
-
-// The reusable keyboard and its core have ordinary C++ lifetimes.
-// Keyboard raster and screen setup still use their existing native entries.
-struct NewGameNameInputScene : AScene {
-    NewGameNameInputScene(char const * prompt, char const * initial_name)
-        asm("ConstructNameInputScene");
-    virtual ~NewGameNameInputScene()
-        asm("DestroyNameInputScene");
-    virtual SceneTransitionOwner Run()
-        asm("RunNameInputScene");
-    char const * GetName() const
-        asm("GetNameInputSceneName");
-    NewGameNameInputCore * core;
-};
 
 typedef char NewGameNameInputNormalizedNameCheck[
     offsetof(NewGameNameInputCore, normalized_name) ==
@@ -206,6 +216,24 @@ char const * GetNameInputCoreName(NewGameNameInputCore const * core);
 
 EXTERN_C_END
 
+extern NewGameNameEntryCharacterTable const gNewGameNameEntryCharacterRows;
+extern char const gText_NewGameNameEntry_Placeholder[] ALIGN(4);
+extern char const gText_NewGameNameEntry_NameLabel[];
+extern char const gText_NewGameNameEntry_ModeKatakana[];
+extern char const gText_NewGameNameEntry_ModeSymbols[];
+extern char const gText_NewGameNameEntry_ModeHiragana[];
+extern char const gText_NewGameNameEntry_Confirm[];
+extern char const gText_NewGameNameEntry_Yes[];
+extern char const gText_NewGameNameEntry_No[];
+
 #endif // !__ASSEMBLER__
+
+
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+extern char const gText_NewGameNameEntry_EndLatin[];
+#endif
+#if defined(REGION_US) || defined(REGION_EU)
+extern char const gText_NewGameNameEntry_EndFullWidth[];
+#endif
 
 #endif // NEW_GAME_NAME_INPUT_HH

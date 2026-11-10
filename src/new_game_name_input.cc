@@ -1,21 +1,23 @@
 #include "new_game_name_input.hh"
+#include "obj_palette_collection.hh"
+
 #include "hardware_context.hh"
 #include "new_game_data.hh"
 #include "ui_graphics_sizes.hh"
-#include "hardware_state_accessors.hh"
 #include "allocation_failure.hh"
-#include "hardware_blend_object.hh"
+#include "hardware_blend.hh"
 #include "hardware_dma.hh"
-#include "hardware_music_player.hh"
+#include "hardware_sound.hh"
 #include "gbaio.h"
 #include "fomt_constants.hh"
 #include <string.h>
-#pragma implementation
 
-void * operator new(unsigned long);
-void operator delete(void *);
-inline void * operator new(unsigned long, void * location) { return location; }
-inline void * operator new[](unsigned long, void * location) { return location; }
+#include <new>
+#include FOMT_TEXT_INCLUDE(new_game_name_input.cc)
+
+// The native editor copies twelve encoded bytes and the terminator.
+typedef char NewGameNameEntryPlaceholderSizeCheck[
+    sizeof(gText_NewGameNameEntry_Placeholder) == 13 ? 1 : -1];
 
 static inline void QueueNameInputBlend(HardwareContext * core, HardwareBlendObject & blend)
 {
@@ -41,7 +43,7 @@ NewGameNameInputCore::NewGameNameInputCore(char const * prompt,
     {
         ObjTileCollection shared;
         ObjPaletteCollection resources;
-        UiStateOwner * ui = new (ui_storage) UiStateOwner(0, 15, 4, 0, shared, resources);
+        UiStateOwner * ui = ConstructUiStateOwner(ui_storage, 0, 15, 4, 0, shared, resources);
         core->ui_state = ui;
     }
     core->prompt = prompt;
@@ -784,7 +786,7 @@ NAKED void InitializeNameInputScreen(NewGameNameInputCore * core)
         "    mov\tr1, r8\n"
         "    adds\tr2, r6, #0\n"
         "    adds\tr3, r5, #0\n"
-        "    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
+        "    bl Update__C12UiStateOwnerP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
         "    add\tsp, #84\t@ 0x54\n"
         "    pop\t{r3, r4, r5}\n"
         "    mov\tr8, r3\n"
@@ -1483,7 +1485,7 @@ NAKED void InitializeNameInputScreen(NewGameNameInputCore * core)
         "    mov\tr1, r8\n"
         "    adds\tr2, r6, #0\n"
         "    adds\tr3, r5, #0\n"
-        "    bl\tUpdate__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
+        "    bl\tUpdate__C12UiStateOwnerP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
         "    add\tsp, #84\n"
         "    pop\t{r3, r4, r5}\n"
         "    mov\tr8, r3\n"
@@ -2177,7 +2179,7 @@ NAKED void InitializeNameInputScreen(NewGameNameInputCore * core)
         "    mov r1, r8\n"
         "    adds r2, r6, #0\n"
         "    adds r3, r5, #0\n"
-        "    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
+        "    bl Update__C12UiStateOwnerP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
         "    add sp, #0x54\n"
         "    pop {r3, r4, r5}\n"
         "    mov r8, r3\n"
@@ -4376,7 +4378,7 @@ void UpdateNameInputConfirmation(NewGameNameInputCore * core)
         HardwareLinkedList * links = GetHardwareCommandList(reinterpret_cast<void * const *>(core));
         HardwareInterruptList * manager = GetHardwareInterruptList(reinterpret_cast<void * const *>(core));
         HardwareMusicPlayerSlot * music = &core->music_player_1;
-        switch (ui->Update(state, sprites, display, links, manager, music)) {
+        switch (ui->Update(&state->input, sprites, display, links, manager, music)) {
         case 0:
             if (core->unk_after_keyboard_redraw[0]) {
                 core->unk_463c = 0;

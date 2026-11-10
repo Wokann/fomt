@@ -7,6 +7,196 @@ EXTERN_C
 void __builtin_delete(void *);
 EXTERN_C_END
 
+asm_unified(
+    ".text\n"
+    ".thumb\n"
+    ".include \"asm/macro.inc\"\n"
+    "thumb_func_start InitializeObjTilePoolOwner\n"
+    "InitializeObjTilePoolOwner: @ 0x08007874\n"
+    "    push {r4, r5, r6, r7, lr}\n"
+    "    mov r7, sl\n"
+    "    mov r6, sb\n"
+    "    mov r5, r8\n"
+    "    push {r5, r6, r7}\n"
+    "    sub sp, #0x30\n"
+    "    str r0, [sp, #8]\n"
+    "    ldr r0, .L080079B4 @ =gObjTilePool\n"
+    "    ldr r4, [r0]\n"
+    "    cmp r4, #0\n"
+    "    beq .L0800788C\n"
+    "    b .L08007992\n"
+    ".L0800788C:\n"
+    "    ldr r0, .L080079B8 @ =OBJ_TILE_POOL_BYTES\n"
+    "    bl __builtin_new\n"
+    "    mov r8, r0\n"
+    "    str r4, [sp]\n"
+    "    mov r1, r8\n"
+    "    adds r1, #" STRINGIFY(OBJ_TILE_POOL_FREE_LIST_OFFSET) "\n"
+    "    mov r2, sp\n"
+    "    adds r2, #4\n"
+    "    str r2, [sp, #0x2c]\n"
+    "    cmp r8, r1\n"
+    "    beq .L080078AC\n"
+    "    movs r2, #0\n"
+    ".L080078A6:\n"
+    "    stm r0!, {r2}\n"
+    "    cmp r0, r1\n"
+    "    bne .L080078A6\n"
+    ".L080078AC:\n"
+    "    mov r0, r8\n"
+    "    adds r0, #" STRINGIFY(OBJ_TILE_POOL_ENTRIES_OFFSET) "\n"
+    "    movs r1, #(" STRINGIFY(OBJ_TILE_HANDLE_COUNT) " >> 1)\n"
+    "    lsls r1, r1, #1\n"
+    "    movs r2, #0\n"
+    "    bl InitializeObjTileFreeList\n"
+    "    mov r1, r8\n"
+    "    str r0, [r1, #" STRINGIFY(OBJ_TILE_POOL_FREE_LIST_OFFSET) "]\n"
+    "    ldr r1, .L080079BC @ =OBJ_TILE_POOL_TREE_OFFSET\n"
+    "    add r1, r8\n"
+    "    movs r0, #0\n"
+    "    strb r0, [r1]\n"
+    "    movs r0, #1\n"
+    "    strb r0, [r1, #1]\n"
+    "    ldr r2, .L080079C0 @ =(OBJ_TILE_POOL_TREE_OFFSET + OBJ_TILE_TREE_CHILDREN_OFFSET)\n"
+    "    add r2, r8\n"
+    "    movs r4, #1\n"
+    "    mov r0, r8\n"
+    "    adds r0, #" STRINGIFY(OBJ_TILE_POOL_FREE_LIST_OFFSET) "\n"
+    "    str r0, [sp, #0x20]\n"
+    "    str r1, [sp, #0xc]\n"
+#if ((OBJ_TILE_POOL_COUNT_OFFSET & 15) == 0 && (OBJ_TILE_POOL_COUNT_OFFSET >> 4) <= 255)
+    "    movs r1, #(" STRINGIFY(OBJ_TILE_POOL_COUNT_OFFSET) " >> 4)\n"
+    "    lsls r1, r1, #4\n"
+#else
+    "    ldr r1, .LObjTilePoolCountOffsetInit\n"
+#endif
+    "    add r1, r8\n"
+    "    str r1, [sp, #0x10]\n"
+    "    ldr r0, .L080079C4 @ =OBJ_TILE_POOL_REFCOUNT_OFFSET\n"
+    "    add r0, r8\n"
+    "    str r0, [sp, #0x14]\n"
+    "    ldr r1, .L080079C8 @ =OBJ_TILE_POOL_RESERVED_FIRST_OFFSET\n"
+    "    add r1, r8\n"
+    "    str r1, [sp, #0x18]\n"
+    "    ldr r0, .L080079CC @ =OBJ_TILE_POOL_RESERVED_COUNT_OFFSET\n"
+    "    add r0, r8\n"
+    "    str r0, [sp, #0x1c]\n"
+    "    movs r7, #0\n"
+    "    mov ip, r4\n"
+    "    movs r6, #1\n"
+    "    rsbs r6, r6, #0\n"
+    ".L080078FA:\n"
+    "    strb r7, [r2]\n"
+    "    mov r1, ip\n"
+    "    strb r1, [r2, #1]\n"
+    "    adds r0, r2, #" STRINGIFY(OBJ_TILE_TREE_CHILDREN_OFFSET) "\n"
+    "    movs r3, #1\n"
+    "    adds r2, #" STRINGIFY(OBJ_TILE_TREE512_BYTES) "\n"
+    "    str r2, [sp, #0x28]\n"
+    "    subs r4, #1\n"
+    "    str r4, [sp, #0x24]\n"
+    ".L0800790C:\n"
+    "    strb r7, [r0]\n"
+    "    mov r2, ip\n"
+    "    strb r2, [r0, #1]\n"
+    "    adds r2, r0, #" STRINGIFY(OBJ_TILE_TREE_CHILDREN_OFFSET) "\n"
+    "    movs r1, #1\n"
+    "    adds r0, #" STRINGIFY(OBJ_TILE_TREE256_BYTES) "\n"
+    "    mov sb, r0\n"
+    "    subs r3, #1\n"
+    "    mov sl, r3\n"
+    ".L0800791E:\n"
+    "    strb r7, [r2]\n"
+    "    mov r0, ip\n"
+    "    strb r0, [r2, #1]\n"
+    "    adds r0, r2, #" STRINGIFY(OBJ_TILE_TREE_CHILDREN_OFFSET) "\n"
+    "    movs r3, #1\n"
+    "    adds r4, r2, #0\n"
+    "    adds r4, #" STRINGIFY(OBJ_TILE_TREE128_BYTES) "\n"
+    "    subs r5, r1, #1\n"
+    ".L0800792E:\n"
+    "    strb r7, [r0]\n"
+    "    mov r1, ip\n"
+    "    strb r1, [r0, #1]\n"
+    "    adds r1, r0, #" STRINGIFY(OBJ_TILE_TREE_CHILDREN_OFFSET) "\n"
+    "    movs r2, #1\n"
+    "    adds r0, #" STRINGIFY(OBJ_TILE_TREE64_BYTES) "\n"
+    "    subs r3, #1\n"
+    ".L0800793C:\n"
+    "    stm r1!, {r7}\n"
+    "    subs r2, #1\n"
+    "    cmp r2, r6\n"
+    "    bne .L0800793C\n"
+    "    cmp r3, r6\n"
+    "    bne .L0800792E\n"
+    "    adds r2, r4, #0\n"
+    "    adds r1, r5, #0\n"
+    "    cmp r1, r6\n"
+    "    bne .L0800791E\n"
+    "    mov r0, sb\n"
+    "    mov r3, sl\n"
+    "    cmp r3, r6\n"
+    "    bne .L0800790C\n"
+    "    ldr r2, [sp, #0x28]\n"
+    "    ldr r4, [sp, #0x24]\n"
+    "    cmp r4, r6\n"
+    "    bne .L080078FA\n"
+    "    movs r0, #0\n"
+    "    ldr r2, [sp, #0x10]\n"
+    "    strh r0, [r2]\n"
+    "    ldr r1, [sp, #0x14]\n"
+    "    str r0, [r1]\n"
+    "    ldr r2, [sp, #0x18]\n"
+    "    strh r0, [r2]\n"
+    "    ldr r1, [sp, #0x1c]\n"
+    "    strh r0, [r1]\n"
+    "    str r0, [sp, #4]\n"
+    "    mov r0, r8\n"
+    "    ldr r2, [sp, #0x20]\n"
+    "    cmp r8, r2\n"
+    "    beq .L08007986\n"
+    "    ldr r1, [sp, #0x2c]\n"
+    "    ldr r3, [r1]\n"
+    ".L08007980:\n"
+    "    stm r0!, {r3}\n"
+    "    cmp r0, r2\n"
+    "    bne .L08007980\n"
+    ".L08007986:\n"
+    "    ldr r0, [sp, #0xc]\n"
+    "    bl Clear__15ObjTileTree1024\n"
+    "    mov r2, r8\n"
+    "    ldr r0, .L080079B4 @ =gObjTilePool\n"
+    "    str r2, [r0]\n"
+    ".L08007992:\n"
+    "    ldr r0, .L080079B4 @ =gObjTilePool\n"
+    "    ldr r1, [r0]\n"
+    "    ldr r2, .L080079C4 @ =OBJ_TILE_POOL_REFCOUNT_OFFSET\n"
+    "    adds r1, r1, r2\n"
+    "    ldr r0, [r1]\n"
+    "    adds r0, #1\n"
+    "    str r0, [r1]\n"
+    "    ldr r0, [sp, #8]\n"
+    "    add sp, #0x30\n"
+    "    pop {r3, r4, r5}\n"
+    "    mov r8, r3\n"
+    "    mov sb, r4\n"
+    "    mov sl, r5\n"
+    "    pop {r4, r5, r6, r7}\n"
+    "    pop {r1}\n"
+    "    bx r1\n"
+    "    .align 2, 0\n"
+    ".L080079B4: .word gObjTilePool\n"
+    ".L080079B8: .word " STRINGIFY(OBJ_TILE_POOL_BYTES) "\n"
+    ".L080079BC: .word " STRINGIFY(OBJ_TILE_POOL_TREE_OFFSET) "\n"
+    ".L080079C0: .word (" STRINGIFY(OBJ_TILE_POOL_TREE_OFFSET) " + " STRINGIFY(OBJ_TILE_TREE_CHILDREN_OFFSET) ")\n"
+    ".L080079C4: .word " STRINGIFY(OBJ_TILE_POOL_REFCOUNT_OFFSET) "\n"
+    ".L080079C8: .word " STRINGIFY(OBJ_TILE_POOL_RESERVED_FIRST_OFFSET) "\n"
+    ".L080079CC: .word " STRINGIFY(OBJ_TILE_POOL_RESERVED_COUNT_OFFSET) "\n"
+#if !((OBJ_TILE_POOL_COUNT_OFFSET & 15) == 0 && (OBJ_TILE_POOL_COUNT_OFFSET >> 4) <= 255)
+    ".LObjTilePoolCountOffsetInit: .word " STRINGIFY(OBJ_TILE_POOL_COUNT_OFFSET) "\n"
+#endif
+);
+
 ObjTilePoolOwner::ObjTilePoolOwner(ObjTilePoolOwner const &)
 {
     // The adjacent release routine frees the shared state at zero owners.
@@ -26,8 +216,170 @@ ObjTilePoolOwner::~ObjTilePoolOwner()
     }
 }
 
-u32 AllocateObjTileHandle(void *, u32 size_shift)
-    SECTION(".text.obj_tile_pool_handles");
+asm_unified(
+    ".text\n"
+    ".thumb\n"
+    "thumb_func_start SetObjTileReservation\n"
+    "SetObjTileReservation: @ 0x08007A28\n"
+    "    push {r4, r5, r6, r7, lr}\n"
+    "    mov r7, sl\n"
+    "    mov r6, sb\n"
+    "    mov r5, r8\n"
+    "    push {r5, r6, r7}\n"
+    "    sub sp, #0x18\n"
+    "    str r1, [sp]\n"
+    "    str r2, [sp, #4]\n"
+    "    ldr r0, .L08007B44 @ =gObjTilePool\n"
+    "    ldr r5, [r0]\n"
+    "    ldr r0, .L08007B48 @ =OBJ_TILE_POOL_RESERVED_COUNT_OFFSET\n"
+    "    adds r4, r5, r0\n"
+    "    ldrh r0, [r4]\n"
+    "    cmp r0, #0\n"
+    "    beq .L08007A5A\n"
+    "    ldr r1, .L08007B4C @ =OBJ_TILE_POOL_TREE_OFFSET\n"
+    "    adds r0, r5, r1\n"
+    "    ldr r2, .L08007B50 @ =OBJ_TILE_POOL_RESERVED_FIRST_OFFSET\n"
+    "    adds r1, r5, r2\n"
+    "    ldrh r1, [r1]\n"
+    "    ldrh r2, [r4]\n"
+    "    bl Unreserve__15ObjTileTree1024UiUi\n"
+    "    movs r0, #0\n"
+    "    strh r0, [r4]\n"
+    ".L08007A5A:\n"
+    "    ldr r0, [sp, #4]\n"
+    "    cmp r0, #0\n"
+    "    beq .L08007B32\n"
+    "    ldr r1, [sp]\n"
+    "    adds r1, r1, r0\n"
+    "    str r1, [sp, #8]\n"
+    "    movs r7, #0\n"
+#if ((OBJ_TILE_POOL_COUNT_OFFSET & 15) == 0 && (OBJ_TILE_POOL_COUNT_OFFSET >> 4) <= 255)
+    "    movs r2, #(" STRINGIFY(OBJ_TILE_POOL_COUNT_OFFSET) " >> 4)\n"
+    "    lsls r2, r2, #4\n"
+#else
+    "    ldr r2, .LObjTilePoolCountOffsetReserve\n"
+#endif
+    "    adds r0, r5, r2\n"
+    "    ldrh r1, [r0]\n"
+    "    str r4, [sp, #0x14]\n"
+    "    subs r2, #" STRINGIFY(OBJ_TILE_TREE1024_BYTES) "\n"
+    "    adds r2, r5, r2\n"
+    "    str r2, [sp, #0xc]\n"
+    "    ldr r2, .L08007B50 @ =OBJ_TILE_POOL_RESERVED_FIRST_OFFSET\n"
+    "    adds r2, r5, r2\n"
+    "    str r2, [sp, #0x10]\n"
+    "    mov sl, r0\n"
+    "    cmp r1, #0\n"
+    "    beq .L08007B18\n"
+    "    movs r0, #" STRINGIFY(OBJ_TILE_POOL_ENTRIES_OFFSET) "\n"
+    "    adds r0, r0, r5\n"
+    "    mov r8, r0\n"
+    "    mov r6, r8\n"
+    ".L08007A8C:\n"
+    "    movs r0, #0\n"
+    "    cmp r7, #(" STRINGIFY(OBJ_TILE_HANDLE_COUNT) " - 1)\n"
+    "    bhi .L08007AAA\n"
+    "    lsrs r1, r7, #" STRINGIFY(OBJ_TILE_SLOT_WORD_SHIFT) "\n"
+    "    lsls r1, r1, #2\n"
+    "    adds r1, r5, r1\n"
+    "    movs r0, #(" STRINGIFY(OBJ_TILE_SLOT_WORD_BITS) " - 1)\n"
+    "    ands r0, r7\n"
+    "    movs r2, #1\n"
+    "    lsls r2, r0\n"
+    "    ldr r1, [r1]\n"
+    "    ands r1, r2\n"
+    "    rsbs r0, r1, #0\n"
+    "    orrs r0, r1\n"
+    "    lsrs r0, r0, #0x1f\n"
+    ".L08007AAA:\n"
+    "    cmp r0, #0\n"
+    "    beq .L08007B04\n"
+    "    ldrh r0, [r6]\n"
+    "    lsls r4, r0, #(32 - " STRINGIFY(OBJ_TILE_INDEX_BITS) ")\n"
+    "    lsrs r3, r4, #(32 - " STRINGIFY(OBJ_TILE_INDEX_BITS) ")\n"
+    "    ldrb r0, [r6, #1]\n"
+    "    lsls r2, r0, #(32 - (" STRINGIFY(OBJ_TILE_INDEX_BITS) " - 8) - " STRINGIFY(OBJ_TILE_SIZE_SHIFT_BITS) ")\n"
+    "    lsrs r1, r2, #(32 - " STRINGIFY(OBJ_TILE_SIZE_SHIFT_BITS) ")\n"
+    "    movs r0, #1\n"
+    "    mov sb, r0\n"
+    "    lsls r0, r1\n"
+    "    adds r0, r3, r0\n"
+    "    ldr r1, [sp]\n"
+    "    cmp r1, r0\n"
+    "    bhs .L08007B04\n"
+    "    ldr r0, [sp, #8]\n"
+    "    cmp r3, r0\n"
+    "    bhs .L08007B04\n"
+    "    adds r1, r3, #0\n"
+    "    lsrs r2, r2, #(32 - " STRINGIFY(OBJ_TILE_SIZE_SHIFT_BITS) ")\n"
+    "    ldr r0, [sp, #0xc]\n"
+    "    bl Free__15ObjTileTree1024UiUi\n"
+    "    movs r0, #0\n"
+    "    strh r0, [r6, #" STRINGIFY(OBJ_TILE_ENTRY_GENERATION_OFFSET) "]\n"
+    "    ldr r0, [r5, #" STRINGIFY(OBJ_TILE_POOL_FREE_LIST_OFFSET) "]\n"
+    "    str r0, [r6]\n"
+    "    mov r1, r8\n"
+    "    str r1, [r5, #" STRINGIFY(OBJ_TILE_POOL_FREE_LIST_OFFSET) "]\n"
+    "    cmp r7, #(" STRINGIFY(OBJ_TILE_HANDLE_COUNT) " - 1)\n"
+    "    bhi .L08007AFC\n"
+    "    lsrs r2, r7, #" STRINGIFY(OBJ_TILE_SLOT_WORD_SHIFT) "\n"
+    "    lsls r2, r2, #2\n"
+    "    adds r2, r5, r2\n"
+    "    movs r0, #(" STRINGIFY(OBJ_TILE_SLOT_WORD_BITS) " - 1)\n"
+    "    ands r0, r7\n"
+    "    mov r1, sb\n"
+    "    lsls r1, r0\n"
+    "    ldr r0, [r2]\n"
+    "    bics r0, r1\n"
+    "    str r0, [r2]\n"
+    ".L08007AFC:\n"
+    "    mov r2, sl\n"
+    "    ldrh r0, [r2]\n"
+    "    subs r0, #1\n"
+    "    strh r0, [r2]\n"
+    ".L08007B04:\n"
+    "    adds r6, #" STRINGIFY(OBJ_TILE_POOL_ENTRY_BYTES) "\n"
+    "    movs r0, #" STRINGIFY(OBJ_TILE_POOL_ENTRY_BYTES) "\n"
+    "    add r8, r0\n"
+    "    adds r7, #1\n"
+    "    mov r1, sl\n"
+    "    ldrh r0, [r1]\n"
+    "    cmp r0, #0\n"
+    "    beq .L08007B18\n"
+    "    cmp r7, #(" STRINGIFY(OBJ_TILE_HANDLE_COUNT) " - 1)\n"
+    "    bls .L08007A8C\n"
+    ".L08007B18:\n"
+    "    ldr r0, [sp, #0xc]\n"
+    "    ldr r1, [sp]\n"
+    "    ldr r2, [sp, #4]\n"
+    "    bl Reserve__15ObjTileTree1024UiUi\n"
+    "    mov r2, sp\n"
+    "    ldrh r0, [r2]\n"
+    "    ldr r2, [sp, #0x10]\n"
+    "    strh r0, [r2]\n"
+    "    mov r1, sp\n"
+    "    ldrh r2, [r1, #4]\n"
+    "    ldr r1, [sp, #0x14]\n"
+    "    strh r2, [r1]\n"
+    ".L08007B32:\n"
+    "    add sp, #0x18\n"
+    "    pop {r3, r4, r5}\n"
+    "    mov r8, r3\n"
+    "    mov sb, r4\n"
+    "    mov sl, r5\n"
+    "    pop {r4, r5, r6, r7}\n"
+    "    pop {r0}\n"
+    "    bx r0\n"
+    "    .align 2, 0\n"
+    ".L08007B44: .word gObjTilePool\n"
+    ".L08007B48: .word " STRINGIFY(OBJ_TILE_POOL_RESERVED_COUNT_OFFSET) "\n"
+    ".L08007B4C: .word " STRINGIFY(OBJ_TILE_POOL_TREE_OFFSET) "\n"
+    ".L08007B50: .word " STRINGIFY(OBJ_TILE_POOL_RESERVED_FIRST_OFFSET) "\n"
+#if !((OBJ_TILE_POOL_COUNT_OFFSET & 15) == 0 && (OBJ_TILE_POOL_COUNT_OFFSET >> 4) <= 255)
+    ".LObjTilePoolCountOffsetReserve: .word " STRINGIFY(OBJ_TILE_POOL_COUNT_OFFSET) "\n"
+#endif
+);
+
 u32 AllocateObjTileHandle(void *, u32 size_shift)
 {
     ObjTilePoolState * state = gObjTilePool;
@@ -66,8 +418,6 @@ done:
 }
 
 void ReleaseObjTileHandle(void *, u32 value)
-    SECTION(".text.obj_tile_pool_handles");
-void ReleaseObjTileHandle(void *, u32 value)
 {
     ObjTilePoolState * state = gObjTilePool;
     if (value != 0) {
@@ -94,8 +444,6 @@ void ReleaseObjTileHandle(void *, u32 value)
 }
 
 u32 RetainObjTileHandle(void *, u32 value)
-    SECTION(".text.obj_tile_pool_handles");
-u32 RetainObjTileHandle(void *, u32 value)
 {
     ObjTilePoolState * state = gObjTilePool;
     if (value != 0) {
@@ -116,8 +464,6 @@ u32 RetainObjTileHandle(void *, u32 value)
 }
 
 u32 GetObjTileIndex(void const *, u32 value)
-    SECTION(".text.obj_tile_pool_handles");
-u32 GetObjTileIndex(void const *, u32 value)
 {
     ObjTilePoolState * state = gObjTilePool;
     if (value != 0) {
@@ -133,8 +479,6 @@ u32 GetObjTileIndex(void const *, u32 value)
     return 0xFFFFFFFFu;
 }
 
-u32 GetObjTileSizeShift(void *, u32 value)
-    SECTION(".text.obj_tile_pool_handles");
 u32 GetObjTileSizeShift(void *, u32 value)
 {
     ObjTilePoolState * state = gObjTilePool;
@@ -152,8 +496,6 @@ u32 GetObjTileSizeShift(void *, u32 value)
     return 11;
 }
 
-u32 GetObjTileHandleReferenceCount(void *, u32 value)
-    SECTION(".text.obj_tile_pool_handles");
 u32 GetObjTileHandleReferenceCount(void *, u32 value)
 {
     ObjTilePoolState * state = gObjTilePool;
@@ -321,538 +663,4 @@ bool ObjTileTree1024::IsFull() const
 
 ObjTileTree1024::ObjTileTree1024() : full(false), empty(true)
 {
-}
-
-void FillObjTileTree64(ObjTileTree64 *)
-    SECTION(".text.obj_tile_tree");
-void FillObjTileTree64(ObjTileTree64 * tree)
-{
-    tree->children[0].bits = ~0u;
-    tree->children[1].bits = ~0u;
-    tree->full = true;
-    tree->empty = false;
-}
-
-void FillObjTileTree128(ObjTileTree128 *)
-    SECTION(".text.obj_tile_tree");
-void FillObjTileTree128(ObjTileTree128 * tree)
-{
-    FillObjTileTree64(&tree->children[0]);
-    FillObjTileTree64(&tree->children[1]);
-    tree->full = true;
-    tree->empty = false;
-}
-
-void FillObjTileTree256(ObjTileTree256 *)
-    SECTION(".text.obj_tile_tree");
-void FillObjTileTree256(ObjTileTree256 * tree)
-{
-    FillObjTileTree128(&tree->children[0]);
-    FillObjTileTree128(&tree->children[1]);
-    tree->full = true;
-    tree->empty = false;
-}
-
-void FillObjTileTree512(ObjTileTree512 *)
-    SECTION(".text.obj_tile_tree");
-void FillObjTileTree512(ObjTileTree512 * tree)
-{
-    FillObjTileTree256(&tree->children[0]);
-    FillObjTileTree256(&tree->children[1]);
-    tree->full = true;
-    tree->empty = false;
-}
-
-void ClearObjTileTree64(ObjTileTree64 *)
-    SECTION(".text.obj_tile_tree");
-void ClearObjTileTree64(ObjTileTree64 * tree)
-{
-    tree->children[1].bits = 0;
-    tree->children[0].bits = 0;
-    tree->full = 0;
-    tree->empty = 1;
-}
-
-void ClearObjTileTree128(ObjTileTree128 *)
-    SECTION(".text.obj_tile_tree");
-void ClearObjTileTree128(ObjTileTree128 * tree)
-{
-    ClearObjTileTree64(&tree->children[1]);
-    ClearObjTileTree64(&tree->children[0]);
-    tree->full = 0;
-    tree->empty = 1;
-}
-
-void ClearObjTileTree256(ObjTileTree256 *)
-    SECTION(".text.obj_tile_tree");
-void ClearObjTileTree256(ObjTileTree256 * tree)
-{
-    ClearObjTileTree128(&tree->children[1]);
-    ClearObjTileTree128(&tree->children[0]);
-    tree->full = 0;
-    tree->empty = 1;
-}
-
-void ClearObjTileTree512(ObjTileTree512 *)
-    SECTION(".text.obj_tile_tree");
-void ClearObjTileTree512(ObjTileTree512 * tree)
-{
-    ClearObjTileTree256(&tree->children[1]);
-    ClearObjTileTree256(&tree->children[0]);
-    tree->full = 0;
-    tree->empty = 1;
-}
-
-// Full 32-bit child ranges retain the original agbcp/ARM shift-by-32 result.
-// The Reserve/Unreserve bit expressions are not portable C++.
-void ObjTileTree64::Reserve(u32 offset, u32 length)
-{
-    if (offset > 63 || length == 0)
-        return;
-    if (offset == 0 && length > 63) {
-        FillObjTileTree64(this);
-        return;
-    }
-    if (offset <= 31) {
-        u32 first_capacity = 32 - offset;
-        u32 count = std::min(length, first_capacity);
-        children[0].bits |= ((1u << count) - 1) << offset;
-    }
-    if (offset + length > 32) {
-        u32 second_offset = offset > 31 ? offset - 32 : 0;
-        u32 second_length = offset + length;
-        second_length -= 32;
-        second_length -= second_offset;
-        children[1].bits |= ((1u << second_length) - 1) << second_offset;
-    }
-    u32 active = 0;
-    if (children[0].IsFull())
-        if (children[1].IsFull())
-            active = 1;
-    full = active;
-    empty = false;
-}
-
-void ObjTileTree64::Unreserve(u32 offset, u32 length)
-{
-    if (offset > 63 || length == 0)
-        return;
-    if (offset == 0 && length > 63) {
-        ClearObjTileTree64(this);
-        return;
-    }
-    if (offset <= 31) {
-        u32 first_capacity = 32 - offset;
-        u32 count = std::min(length, first_capacity);
-        children[0].bits &= ~(((1u << count) - 1) << offset);
-    }
-    if (offset + length > 32) {
-        u32 second_offset = offset > 31 ? offset - 32 : 0;
-        u32 second_length = offset + length;
-        second_length -= 32;
-        second_length -= second_offset;
-        children[1].bits &= ~(((1u << second_length) - 1) << second_offset);
-    }
-    full = false;
-    u32 active = 0;
-    if (children[0].IsEmpty())
-        if (children[1].IsEmpty())
-            active = 1;
-    empty = active;
-}
-
-// Split a partial request at the child boundary; each child owns its
-// relative offset. The unchanged end is shared by the range check
-// and the second-child length calculation.
-void ObjTileTree128::Reserve(u32 offset, u32 length)
-{
-    if (offset > 127 || length == 0)
-        return;
-    if (offset == 0 && length > 127) {
-        FillObjTileTree128(this);
-        return;
-    }
-    if (offset <= 63) {
-        u32 first_capacity = 64 - offset;
-        u32 count = std::min(length, first_capacity);
-        children[0].Reserve(offset, count);
-    }
-    u32 const end = offset + length;
-    if (end > 64) {
-        u32 second_offset = offset > 63 ? offset - 64 : 0;
-        u32 second_length = end;
-        second_length -= 64;
-        second_length -= second_offset;
-        children[1].Reserve(second_offset, second_length);
-    }
-    u32 active = 0;
-    if (children[0].full != 0)
-        active = (0u - children[1].full) >> 31;
-    full = active;
-    empty = false;
-}
-
-void ObjTileTree256::Reserve(u32 offset, u32 length)
-{
-    if (offset > 255 || length == 0)
-        return;
-    if (offset == 0 && length > 255) {
-        FillObjTileTree256(this);
-        return;
-    }
-    if (offset <= 127) {
-        u32 first_capacity = 128 - offset;
-        u32 count = std::min(length, first_capacity);
-        children[0].Reserve(offset, count);
-    }
-    u32 const end = offset + length;
-    if (end > 128) {
-        u32 second_offset = offset > 127 ? offset - 128 : 0;
-        u32 second_length = end;
-        second_length -= 128;
-        second_length -= second_offset;
-        children[1].Reserve(second_offset, second_length);
-    }
-    u32 active = 0;
-    if (children[0].full != 0)
-        active = (0u - children[1].full) >> 31;
-    full = active;
-    empty = false;
-}
-
-void ObjTileTree512::Reserve(u32 offset, u32 length)
-{
-    if (offset > 511 || length == 0)
-        return;
-    if (offset == 0 && length > 511) {
-        FillObjTileTree512(this);
-        return;
-    }
-    if (offset <= 255) {
-        u32 first_capacity = 256 - offset;
-        u32 count = std::min(length, first_capacity);
-        children[0].Reserve(offset, count);
-    }
-    if (offset + length > 256) {
-        u32 second_offset = offset > 255 ? offset - 256 : 0;
-        u32 second_length = offset + length;
-        second_length -= 256;
-        second_length -= second_offset;
-        children[1].Reserve(second_offset, second_length);
-    }
-    u32 active = 0;
-    if (children[0].full != 0)
-        active = (0u - children[1].full) >> 31;
-    full = active;
-    empty = false;
-}
-
-void ObjTileTree128::Unreserve(u32 offset, u32 length)
-{
-    if (offset > 127 || length == 0)
-        return;
-    if (offset == 0 && length > 127) {
-        ClearObjTileTree128(this);
-        return;
-    }
-    ObjTileTree64 * first = &children[0];
-    if (offset <= 63) {
-        u32 first_capacity = 64 - offset;
-        u32 count = std::min(length, first_capacity);
-        first->Unreserve(offset, count);
-    }
-    u32 const end = offset + length;
-    if (end > 64) {
-        u32 second_offset = offset > 63 ? offset - 64 : 0;
-        u32 second_length = end;
-        second_length -= 64;
-        second_length -= second_offset;
-        children[1].Unreserve(second_offset, second_length);
-    }
-    full = false;
-    u32 active = 0;
-    if (first->empty != 0) {
-        ObjTileTree64 * second = &children[1];
-        active = (0u - second->empty) >> 31;
-    }
-    empty = active;
-}
-
-void ObjTileTree256::Unreserve(u32 offset, u32 length)
-{
-    if (offset > 255 || length == 0)
-        return;
-    if (offset == 0 && length > 255) {
-        ClearObjTileTree256(this);
-        return;
-    }
-    ObjTileTree128 * first = &children[0];
-    if (offset <= 127) {
-        u32 first_capacity = 128 - offset;
-        u32 count = std::min(length, first_capacity);
-        first->Unreserve(offset, count);
-    }
-    u32 const end = offset + length;
-    if (end > 128) {
-        u32 second_offset = offset > 127 ? offset - 128 : 0;
-        u32 second_length = end;
-        second_length -= 128;
-        second_length -= second_offset;
-        children[1].Unreserve(second_offset, second_length);
-    }
-    full = false;
-    u32 active = 0;
-    if (first->empty != 0) {
-        ObjTileTree128 * second = &children[1];
-        active = (0u - second->empty) >> 31;
-    }
-    empty = active;
-}
-
-void ObjTileTree512::Unreserve(u32 offset, u32 length)
-{
-    if (offset > 511 || length == 0)
-        return;
-    if (offset == 0 && length > 511) {
-        ClearObjTileTree512(this);
-        return;
-    }
-    ObjTileTree256 * first = &children[0];
-    if (offset <= 255) {
-        u32 first_capacity = 256 - offset;
-        u32 count = std::min(length, first_capacity);
-        first->Unreserve(offset, count);
-    }
-    if (offset + length > 256) {
-        u32 second_offset = offset > 255 ? offset - 256 : 0;
-        u32 second_length = offset + length;
-        second_length -= 256;
-        second_length -= second_offset;
-        children[1].Unreserve(second_offset, second_length);
-    }
-    full = false;
-    u32 active = 0;
-    if (first->empty != 0) {
-        ObjTileTree256 * second = &children[1];
-        active = (0u - second->empty) >> 31;
-    }
-    empty = active;
-}
-
-// Each level selects the first non-full child and keeps the parent's flags
-// consistent with the children. The return value is a tile offset, not a handle.
-u32 ObjTileTree64::Allocate(u32 size_shift)
-{
-    u32 index;
-    ObjTileBitmap32 * child;
-    if (size_shift <= 5) {
-        for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
-            u8 const child_full = child->IsFull();
-            if (child_full == 0) {
-                u32 offset = child->Allocate(size_shift);
-                u32 valid = 0;
-                if (offset <= 0x1F)
-                    valid = 1;
-                if (valid != 0) {
-                    empty = child_full;
-                    u32 active = 0;
-                    if (children[0].IsFull())
-                        if (children[1].IsFull())
-                            active = 1;
-                    full = active;
-                    return (index << 5) | offset;
-                }
-            }
-        }
-    } else if (size_shift == 6 && empty != 0) {
-        FillObjTileTree64(this);
-        return 0;
-    }
-    return 64;
-}
-
-u32 ObjTileTree128::Allocate(u32 size_shift)
-{
-    u32 index;
-    ObjTileTree64 * child;
-    if (size_shift <= 6) {
-        for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
-            u8 const child_full = child->full;
-            if (child_full == 0) {
-                u32 offset = child->Allocate(size_shift);
-                u32 valid = 0;
-                if (offset <= 0x3F)
-                    valid = 1;
-                if (valid != 0) {
-                    empty = child_full;
-                    u32 active = 0;
-                    if (children[0].full != 0)
-                        active = (0u - children[1].full) >> 31;
-                    full = active;
-                    return (index << 6) | offset;
-                }
-            }
-        }
-    } else if (size_shift == 7 && empty != 0) {
-        FillObjTileTree128(this);
-        return 0;
-    }
-    return 128;
-}
-
-u32 ObjTileTree256::Allocate(u32 size_shift)
-{
-    u32 index;
-    ObjTileTree128 * child;
-    if (size_shift <= 7) {
-        for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
-            u8 const child_full = child->full;
-            if (child_full == 0) {
-                u32 offset = child->Allocate(size_shift);
-                u32 valid = 0;
-                if (offset <= 0x7F)
-                    valid = 1;
-                if (valid != 0) {
-                    empty = child_full;
-                    u32 active = 0;
-                    if (children[0].full != 0)
-                        active = (0u - children[1].full) >> 31;
-                    full = active;
-                    return (index << 7) | offset;
-                }
-            }
-        }
-    } else if (size_shift == 8 && empty != 0) {
-        FillObjTileTree256(this);
-        return 0;
-    }
-    return 256;
-}
-
-u32 ObjTileTree512::Allocate(u32 size_shift)
-{
-    u32 index;
-    ObjTileTree256 * child;
-    if (size_shift <= 8) {
-        for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
-            u8 const child_full = child->full;
-            if (child_full == 0) {
-                u32 offset = child->Allocate(size_shift);
-                u32 valid = 0;
-                if (offset <= 0xFF)
-                    valid = 1;
-                if (valid != 0) {
-                    empty = child_full;
-                    u32 active = 0;
-                    if (children[0].full != 0)
-                        active = (0u - children[1].full) >> 31;
-                    full = active;
-                    return (index << 8) | offset;
-                }
-            }
-        }
-    } else if (size_shift == 9 && empty != 0) {
-        FillObjTileTree512(this);
-        return 0;
-    }
-    return 512;
-}
-
-// The offset stays relative to the root: each child selects its own half,
-// and the existing 32-tile leaf helper masks off the upper index bits.
-void ObjTileTree64::Free(u32 offset, u32 size_shift)
-{
-    if (size_shift <= 5) {
-        u32 use_second = offset & 32;
-        ObjTileBitmap32 * first = &children[0];
-        ObjTileBitmap32 * child = first;
-        if (use_second)
-            child = &children[1];
-        child->Free(offset, size_shift);
-        full = false;
-        u32 active = 0;
-        if (first->IsEmpty())
-            if (children[1].IsEmpty())
-                active = 1;
-        empty = active;
-    } else if (size_shift == 6) {
-        ClearObjTileTree64(this);
-    }
-}
-
-void ObjTileTree128::Free(u32 offset, u32 size_shift)
-{
-    if (size_shift <= 6) {
-        u32 use_second = offset & 64;
-        ObjTileTree64 * first = &children[0];
-        ObjTileTree64 * child = first;
-        if (use_second)
-            child = &children[1];
-        child->Free(offset, size_shift);
-        full = false;
-        u32 active = 0;
-        if (first->empty != 0)
-            active = (0u - children[1].empty) >> 31;
-        empty = active;
-    } else if (size_shift == 7) {
-        ClearObjTileTree128(this);
-    }
-}
-
-void ObjTileTree256::Free(u32 offset, u32 size_shift)
-{
-    if (size_shift <= 7) {
-        u32 use_second = offset & 128;
-        ObjTileTree128 * first = &children[0];
-        ObjTileTree128 * child = first;
-        if (use_second)
-            child = &children[1];
-        child->Free(offset, size_shift);
-        full = false;
-        u32 active = 0;
-        if (first->empty != 0) {
-            ObjTileTree128 * second = &children[1];
-            active = (0u - second->empty) >> 31;
-        }
-        empty = active;
-    } else if (size_shift == 8) {
-        ClearObjTileTree256(this);
-    }
-}
-
-void ObjTileTree512::Free(u32 offset, u32 size_shift)
-{
-    if (size_shift <= 8) {
-        u32 use_second = offset & 256;
-        ObjTileTree256 * first = &children[0];
-        ObjTileTree256 * child = first;
-        if (use_second)
-            child = &children[1];
-        child->Free(offset, size_shift);
-        full = false;
-        u32 active = 0;
-        if (first->empty != 0) {
-            ObjTileTree256 * second = &children[1];
-            active = (0u - second->empty) >> 31;
-        }
-        empty = active;
-    } else if (size_shift == 9) {
-        ClearObjTileTree512(this);
-    }
-}
-
-ObjTilePoolEntry * InitializeObjTileFreeList(
-    ObjTilePoolEntry *, i32, ObjTilePoolEntry *)
-    SECTION(".text.obj_tile_handle_free_list");
-ObjTilePoolEntry * InitializeObjTileFreeList(
-    ObjTilePoolEntry * entries, i32 count, ObjTilePoolEntry * tail)
-{
-    ObjTilePoolEntry * entry = entries + (count - 1);
-    entry->data.next_free = tail;
-    while (entry != entries) {
-        ObjTilePoolEntry * next = entry;
-        --entry;
-        entry->data.next_free = next;
-    }
-    return entry;
 }

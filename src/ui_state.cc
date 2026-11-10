@@ -1,335 +1,25 @@
+#pragma implementation "ui_state.cc"
 #include "obj_palette_collection.hh"
 #include "gbaio.h"
 #include "prelude.h"
-#pragma implementation "ui_state.hh"
 #include "ui_state.hh"
 #include "ui_graphics_sizes.hh"
 #include "ui_text_window.hh"
 #include "font.hh"
+#include "font_draw.hh"
 #include "resource_handle.hh"
 #include "gbasvc.h"
 #include <string.h>
+#include <new>
 
-UiTextSubstitution ScriptTextVariableStore::Lookup(u32)
-{
-    return UiTextSubstitution(false, FixedStr<31>());
-}
-
-bool UiTextInput::Resume() { return true; }
-bool UiTextInput::WaitForInput() { return false; }
-bool UiTextInput::Fast() { return false; }
-
-u8 UiTextOutput::ShouldStop() { return false; }
-void UiTextOutput::NextPage() {}
-void UiTextOutput::LineFeed() {}
-void UiTextOutput::CarriageReturn() {}
-
-bool UiTextTileCopyCommand::Run()
-{
-    UiTextTileCopyCommand * command = this;
-    u32 const * source = command->source;
-    u32 * destination = command->destination;
-    if (command->alternate_nibbles) {
-        u32 * end = destination + command->tile_count * (TILE_SIZE_4BPP / sizeof(u32));
-        u32 phase = command->nibble_phase ^ 1;
-        command->nibble_phase = phase;
-        u32 mask = 0x0F0F0F0Fu << (phase * 4);
-        u32 alternate = ~mask;
-        do {
-            *destination++ = *source++ & mask;
-            *destination++ = *source++ & alternate;
-            *destination++ = *source++ & mask;
-            *destination++ = *source++ & alternate;
-            *destination++ = *source++ & mask;
-            *destination++ = *source++ & alternate;
-            *destination++ = *source++ & mask;
-            *destination++ = *source++ & alternate;
-        } while (destination != end);
-        return true;
-    }
-    CpuFastSet(source, destination, command->tile_count * (TILE_SIZE_4BPP / sizeof(u32)));
-    return false;
-}
-
-static inline IndexedResourceGroupResult LoadUiPortraitGroup(u32 index)
-{
-    IndexedResourceArchive archive(gPortraitIndexedResourceArchive);
-    IndexedResourceProvider const * provider = &archive;
-    return provider->GetGroupData(provider->Resolve(index)[0].group_index);
-}
-
-UiPortraitGroupOwner::UiPortraitGroupOwner()
-    : value(new IndexedResourceGroupResult(0, 0, 0, 0, 0, 0, 0, 0)) {}
-
-UiPortraitGroupOwner::UiPortraitGroupOwner(u32 index)
-    : value(new IndexedResourceGroupResult(LoadUiPortraitGroup(index))) {}
-
-UiPortraitGroupOwner::~UiPortraitGroupOwner()
-{
-    delete value;
-}
-
-void UiPortraitGroupOwner::Set(u32 index)
-{
-    *value = LoadUiPortraitGroup(index);
-}
-
-IndexedResourceGroupResult UiPortraitGroupOwner::Get() const
-{
-    return *value;
-}
-
-u32 GetUiPortraitCount()
-{
-    IndexedResourceArchive archive(gPortraitIndexedResourceArchive);
-    return archive.entry_descriptor_count;
-}
-
-extern "C" void SetUiObjectStateTwoIfNonzero(void * object)
-    SECTION(".text.set_ui_object_state_two_if_nonzero");
-
-extern "C" void ClearUiObjectStateIfNonzero(void * object)
-    SECTION(".text.clear_ui_object_state_if_nonzero");
-
-extern "C" void ClearUiActionStateFlag01DC(void * object)
-    SECTION(".text.clear_ui_action_state_flag_01dc");
-
-extern "C" void ClearUiActionStateFlag01F0(void * object)
-    SECTION(".text.clear_ui_action_state_flag_01f0");
-
-extern "C" void SetUiObjectStateTwoIfNonzero(void * object)
-{
-    UiObjectState * state = (UiObjectState *)object;
-
-    if (state->state != 0)
-    {
-        state->state = 2;
-    }
-}
-
-extern "C" void ClearUiObjectStateIfNonzero(void * object)
-{
-    UiObjectState * state = (UiObjectState *)object;
-
-    if (state->state != 0)
-    {
-        state->state = 0;
-    }
-}
-
-extern "C" void ClearUiActionStateFlag01DC(void * object)
-{
-    UiActionState * state = (UiActionState *)object;
-
-    state->flags_01dc.active = 0;
-}
-
-extern "C" void ClearUiActionStateFlag01F0(void * object)
-{
-    UiActionState * state = (UiActionState *)object;
-
-    state->flags_01f0.active = 0;
-}
-
-UiStateOwner::UiStateOwner(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
-    ObjTileCollection const & shared, ObjPaletteCollection const & resources)
-{
-    value = new UiStatePayload(arg_1, arg_2, arg_3, arg_4, shared, resources);
-}
-
-UiStateOwner::~UiStateOwner()
-{
-    delete value;
-}
-
-i32 UiStateOwner::GetState() const
-{
-    return value->state;
-}
-
-i32 UiStateOwner::Update(HardwareCoreState * state,
-    HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
-    HardwareLinkedList * links, HardwareInterruptList * manager, HardwareMusicPlayerSlot * music) const
-{
-    return value->Update(state, sprites, display, links, manager, music);
-}
-
-// These adapters follow the owner methods in the same native ROM block.
-// Use the verified payload methods for opening and ordinary message text.
-// Other unresolved operations keep their recovered native entry-point names.
-EC void func_08050D80(void * const * object)
-    SECTION(".text.ui_state_adapters");
-EC void func_08050D8C(void * const * object, u32 arg_r1)
-    SECTION(".text.ui_state_adapters");
-EC void func_08050DB4(void * const * object, u32 arg_r1, u16 arg_r2)
-    SECTION(".text.ui_state_adapters");
-
-EC void func_08050D5C(UiStateOwner const * object)
-{
-    object->value->Open();
-}
-
-EC void func_08050D68(UiStateOwner const * object)
-{
-    object->value->OpenImmediately();
-}
-
-EC void func_08050D74(void * const * object)
-{
-    SetUiObjectStateTwoIfNonzero(*object);
-}
-
-EC void func_08050D80(void * const * object)
-{
-    ClearUiObjectStateIfNonzero(*object);
-}
-
-EC void func_08050D8C(void * const * object, u32 arg_r1)
-{
-    static_cast<UiStatePayload *>(*object)->SetText(
-        reinterpret_cast<char const *>(arg_r1), 0x100, nullptr);
-}
-
-EC void func_08050DA0(UiStateOwner const * object, char const * text,
-    ScriptTextVariableStore * variables)
-{
-    object->value->SetText(text, 0x100, variables);
-}
-
-EC void func_08050DB4(void * const * object, u32 arg_r1, u16 arg_r2)
-{
-    static_cast<UiStatePayload *>(*object)->SetText(
-        reinterpret_cast<char const *>(arg_r1), arg_r2, nullptr);
-}
-
-EC void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
-    u32 arg_r3)
-{
-    static_cast<UiStatePayload *>(*object)->SetText(
-        reinterpret_cast<char const *>(arg_r1), arg_r2,
-        reinterpret_cast<ScriptTextVariableStore *>(arg_r3));
-}
-
-u8 UiStateOwner::DisableResume() const
-{
-    u8 const previous = value->allow_resume;
-    value->allow_resume = 0;
-    return previous;
-}
-
-u8 UiStateOwner::EnableResume() const
-{
-    u8 const previous = value->allow_resume;
-    value->allow_resume = 1;
-    return previous;
-}
-
-u32 UiStateOwner::GetChoiceResult() const
-{
-    if (value->state == 6)
-        return 0;
-    return value->choice_index;
-}
-
-static inline void FillUiFastWords(u32 value, void * destination, u32 count)
-{
-    u32 volatile source = value;
-    CpuFastSet((void const *)&source, destination, CPUSET_SRC_FIXED | count);
-}
-bool UiTextWindowSetupCommand::Run()
-{
-    UiTextWindowSetupCommand * command = this;
-    u16 tile = ((command->first_tile + 3) & 0x3FF) | (command->background_palette << 12);
-    u32 fill = tile | (static_cast<u32>(tile) << 16);
-    FillUiFastWords(fill, reinterpret_cast<void *>(BG_SCREEN_ADDR(command->screen_block)),
-        160);
-    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(BG_SCREEN_ADDR(command->screen_block)),
-        16, 0, 14, 3, command->first_tile, command->background_palette);
-    DrawUiTextWindowBorder(reinterpret_cast<u16 *>(BG_SCREEN_ADDR(command->screen_block)),
-        0, 3, 30, 7, command->first_tile, command->background_palette);
-    u32 palette = command->background_palette;
-    CpuFastSet(gUiSharedPalette, reinterpret_cast<void *>(BG_PLTT + palette * PLTT_SIZE_4BPP), PLTT_SIZE_4BPP / sizeof(u32));
-    CpuFastSet(IndexedResourceArchive(gUiHandCursorArchive).GetGroupData(0).palettes.data,
-        reinterpret_cast<void *>(OBJ_PLTT + command->cursor_palette * PLTT_SIZE_4BPP), PLTT_SIZE_4BPP / sizeof(u32));
-    return false;
-}
-
-
-EC void func_08050E0C(UiStateOwner const * object, char const * first, char const * second,
-    char const * third, char const * fourth, char const * fifth, char const * sixth,
-    ScriptTextVariableStore * variables)
-{
-    object->value->SetChoices(first, second, third, fourth, fifth, sixth, variables);
-}
-
-EC void func_08050E30(UiStateOwner const * object, char const * prompt, char const * first,
-    char const * second, char const * third, char const * fourth,
-    ScriptTextVariableStore * variables)
-{
-    object->value->SetPromptChoices(prompt, first, second, third, fourth, variables);
-}
-
-void UiStateOwner::ShowPortrait(u32 index) const
-{
-    value->ShowPortrait(index);
-}
-
-EC void func_08050E5C(void * const * object)
-{
-    ClearUiActionStateFlag01DC(*object);
-}
-
-EC void func_08050E68(void * const * object, char const * text)
-{
-    SetUiNameplateText(static_cast<UiStatePayload *>(*object), text);
-}
-
-EC void func_08050E74(void * const * object)
-{
-    ClearUiActionStateFlag01F0(*object);
-}
-
-void UiStateOwner::ShowHeartIndicator(u32 level) const
-{
-    value->ShowHeartIndicator(level);
-}
-
-void UiStateOwner::HideHeartIndicator() const
-{
-    value->HideHeartIndicator();
-}
-
-EC u32 func_08050E98(FirstFieldUiOwner & object, u32 const flag_mask)
-{
-    FirstFieldUiFlags * const data = object.data;
-    u32 const old_flags = data->low_flags;
-    data->low_flags &= ~flag_mask;
-    return old_flags;
-}
-
-EC u32 func_08050EBC(FirstFieldUiOwner & object, u32 const flag_mask)
-{
-    FirstFieldUiFlags * const data = object.data;
-    u32 const old_flags = data->low_flags;
-    data->low_flags |= flag_mask;
-    return old_flags;
-}
-
-inline UiTextWindowSetupCommand::UiTextWindowSetupCommand(u32 screen, u32 tile, u32 background, u32 cursor)
-    : HardwareLinkBase(), screen_block(screen), first_tile(tile),
-      background_palette(background), cursor_palette(cursor)
+inline UiDmaTransferCommand::UiDmaTransferCommand(UiDmaTransferQueue & value) : queue(&value)
 {
 }
 
-UiTextInputAdapter::UiTextInputAdapter(u32 const & pressed, u8 allow_resume)
-    : pressed(pressed), allow_resume(allow_resume)
+inline UiTextOutputUploadCommand::UiTextOutputUploadCommand(UnkUiSelectionData * const & value) : output(value)
 {
 }
 
-EC u8 func_08050F70(UnkUiSelectionData const * object)
-{
-    return object->unk_1a;
-}
 
 static inline void SetUiChoiceOutputPosition(UnkUiSelectionData * object, u32 column, u32 row)
 {
@@ -345,54 +35,6 @@ static inline void SetUiChoiceOutputPosition(UnkUiSelectionData * object, u32 co
     object->unk_19 = 0;
 }
 
-EC void func_08050F74(UnkUiSelectionData * object, u32 const arg_1,
-    u32 const arg_2)
-{
-    SetUiChoiceOutputPosition(object, arg_1, arg_2);
-}
-
-static inline bool HasUiSelectionState(ObjTileCollectionEntry const & state)
-{
-    return state.handle != 0;
-}
-
-static inline u32 UiSelectionTileIndex(ObjTileCollectionEntry & state)
-{
-    return GetObjTileIndex(&state, state.handle);
-}
-
-// Three physical rows contain seven four-column glyph entries each.
-// Keep the renderer's original bounds and post-draw handle checks.
-static inline u32 DrawUiTextEntry(UnkUiSelectionEntry * entry, u32 code, u32 column)
-{
-    if (column <= 3) {
-        UnkUiSelectionTileBuffer * buffer = entry->pixels.value;
-        u32 x = (column & 3) * 8;
-        UnkUiSelectionDimensions dimensions(4, 2);
-        u32 result = DrawCharacterGlyphTo2DGfxBuffer(reinterpret_cast<u32 const &>(dimensions),
-            buffer->tiles, x, 0, code);
-        if (result == 1 || result == 2)
-            entry->changed = HasUiSelectionState(entry->state);
-        return result;
-    }
-    return 0;
-}
-
-static inline void ClearUiTextEntry(UnkUiSelectionEntry * entry)
-{
-    UnkUiSelectionTileBuffer * buffer = entry->pixels.value;
-    UnkUiSelectionDimensions dimensions(4, 2);
-    Clear2DGfxBuffer(reinterpret_cast<u32 const &>(dimensions), buffer->tiles, 0);
-    entry->changed = HasUiSelectionState(entry->state);
-}
-
-static inline int GetUiTextPhysicalRow(UnkUiSelectionData const * object, int row)
-{
-    int result = row + object->unk_18;
-    if (result > 2)
-        result -= 3;
-    return result;
-}
 
 static inline void AppendUiTextRowSprite(HardwareSpriteBufferState * buffer,
     HardwareSpriteOamRecord attributes, i32 const & x, u32 const & y, u32 palette)
@@ -412,165 +54,47 @@ static inline void AppendUiTextRowSprite(HardwareSpriteBufferState * buffer,
     }
 }
 
-void DrawUiTextRows(UnkUiSelectionData * object, HardwareSpriteBufferState * sprites)
+
+static inline void ClearUiNameplateBuffer(UnkUiSelectionTileBuffer * buffer)
 {
-    i32 palette = GetObjPaletteBank(object->palette, object->palette->handle);
-    if (palette >= 0) {
-        for (int row = 0, y = 107; row <= 2; ++row, y += 17) {
-            int index = row + object->unk_18;
-            if (index > 2) index -= 3;
-            UnkUiSelectionRow * line = object->rows[index].Get();
-            for (int column = 0, x = 8; column <= 6; ++column, x += 32) {
-                UnkUiSelectionEntry & entry = line->Entry(column);
-                HardwareSpriteOamRecord attributes = {};
-                attributes.mosaic = 1;
-                attributes.shape = 1;
-                attributes.size = 2;
-                if (HasUiSelectionState(entry.state))
-                    attributes.tile_index = GetObjTileIndex(&entry.state, entry.state.handle);
-                else
-                    attributes.affine_mode = 2;
-                AppendUiTextRowSprite(sprites, attributes, x, y, palette);
-            }
-        }
-    }
+    UnkUiSelectionDimensions size(4, 2);
+    Clear2DGfxBuffer(reinterpret_cast<u32 const &>(size), buffer->tiles, 0);
 }
 
-static inline UnkUiSelectionEntry & GetUiTextEntry(UnkUiSelectionData & object,
-    int row, int column)
+static inline void DrawUiNameplateBuffer(UnkUiSelectionTileBuffer * buffer, char const * text)
 {
-    return object.rows[row]->Entry(column);
+    UnkUiSelectionDimensions size(4, 2);
+    DrawStringTo2DGfxBuffer(reinterpret_cast<u32 const &>(size), buffer->tiles,
+        0, 0, reinterpret_cast<u8 const *>(text));
 }
 
-bool UnkUiSelectionData::Emit(u32 code)
+// These inline bodies must be visible to UiStatePayload. The original
+// frontend emits their independent entries in reverse definition order.
+#pragma interface "ui_state.cc"
+
+inline UiTextTileCopyCommand::UiTextTileCopyCommand(u32 const * source, u32 * destination,
+    u32 tile_count, bool alternate_nibbles)
+    : HardwareLinkBase(), source(source), destination(destination), tile_count(tile_count),
+      nibble_phase(0), alternate_nibbles(alternate_nibbles)
 {
-    u32 column = unk_14;
-    UnkUiSelectionRow * row = rows[GetUiTextPhysicalRow(this, unk_16)].Get();
-    UnkUiSelectionEntry * entry = &row->Entry(column >> 2);
-    u32 advanced = DrawUiTextEntry(entry, code, column & 3);
-    if (advanced == 0)
-        return false;
-    if (advanced > 2)
-        return false;
-    u32 next = column + advanced;
-    if (next > 27)
-        next %= 28;
-    unk_14 = next;
-    if (code != 0x20 && code != 0x8140)
-        unk_1b = 1;
-    unk_1a = 1;
-    return true;
 }
 
-void UnkUiSelectionData::CarriageReturn()
+EC inline UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index)
 {
-    unk_14 = 0;
+    return object->rows[index].Get();
 }
 
-void UnkUiSelectionData::LineFeed()
+EC inline UnkUiSelectionRow * func_080512C8(UnkUiSelectionData const * object, u32 index)
 {
-    if (unk_16 <= 1)
-        ++unk_16;
-    else {
-        if (++unk_18 > 2)
-            unk_18 = 0;
-        int row = GetUiTextPhysicalRow(this, 2);
-        UnkUiSelectionRow * row_buffer = rows[row].Get();
-        for (int column = 0; column <= 6; ++column) {
-            UnkUiSelectionEntry * entry = &row_buffer->Entry(column);
-            UnkUiSelectionTileBuffer * pixels = entry->pixels.value;
-            UnkUiSelectionDimensions dimensions(4, 2);
-            Clear2DGfxBuffer(reinterpret_cast<u32 const &>(dimensions), pixels->tiles, 0);
-            entry->changed = entry->state.handle != 0;
-        }
-        unk_19 = 1;
-        unk_1a = 1;
-    }
+    return object->rows[index].Get();
 }
 
-void UnkUiSelectionData::NextPage()
+EC inline int func_080512B8(UnkUiSelectionData const * object, int index)
 {
-    for (int row = 0; row <= 2; ++row) {
-        for (int column = 0; column <= 6; ++column) {
-            UnkUiSelectionEntry * entry = &GetUiTextEntry(*this, row, column);
-            ClearUiTextEntry(entry);
-        }
-    }
-    unk_16 = 0;
-    unk_14 = 0;
-    unk_19 = 1;
-    unk_1a = 1;
-    unk_1b = 0;
-}
-
-u8 UnkUiSelectionData::ShouldStop()
-{
-    return unk_19;
-}
-
-static inline bool HasUiTextAdvanceKeys(u8 value)
-{
-    return value;
-}
-
-bool UiTextInputAdapter::Fast()
-{
-    UiTextInputAdapter const * input = this;
-    return HasUiTextAdvanceKeys(static_cast<u8>(input->pressed));
-}
-
-bool UiTextInputAdapter::WaitForInput()
-{
-    return true;
-}
-
-bool UiTextInputAdapter::Resume()
-{
-    UiTextInputAdapter const * input = this;
-    bool result = false;
-    if (input->allow_resume) {
-        if (HasUiTextAdvanceKeys(static_cast<u8>(input->pressed)))
-            result = true;
-    }
+    int result = index + object->unk_18;
+    if (result > 2)
+        result -= 3;
     return result;
-}
-
-static inline void UploadUiTextOutput(UnkUiSelectionData * object)
-{
-    for (int row = 0; row <= 2; ++row)
-    {
-        int column = 0;
-        for (; column <= 6; ++column)
-        {
-            UnkUiSelectionEntry & entry = GetUiTextEntry(*object, row, column);
-            if (entry.changed)
-            {
-                if (HasUiSelectionState(entry.state))
-                {
-                    u32 const * pixels = entry.pixels.value->tiles;
-                    u32 const index = UiSelectionTileIndex(entry.state);
-                    CpuFastSet(pixels, reinterpret_cast<void *>(OBJ_VRAM0 + index * TILE_SIZE_4BPP), 64);
-                }
-                entry.changed = false;
-            }
-        }
-    }
-    if (object->unk_19)
-        object->unk_19 = 0;
-    if (object->unk_1a)
-        object->unk_1a = 0;
-}
-
-EC void func_080510E8(UnkUiSelectionData * object)
-{
-    UploadUiTextOutput(object);
-}
-
-bool UiTextOutputUploadCommand::Run()
-{
-    UiTextOutputUploadCommand * command = this;
-    UploadUiTextOutput(command->output);
-    return false;
 }
 
 inline UnkUiSelectionData::UnkUiSelectionData(ObjPaletteCollectionEntry * palette,
@@ -598,37 +122,3180 @@ inline UnkUiSelectionData::UnkUiSelectionData(ObjPaletteCollectionEntry * palett
     unk_1a = 1;
 }
 
-EC int func_080512B8(UnkUiSelectionData const * object, int index)
+EC inline void func_080510E8(UnkUiSelectionData * object)
 {
-    int result = index + object->unk_18;
-    if (result > 2)
-        result -= 3;
-    return result;
+    UploadUiTextOutput(object);
 }
 
-EC UnkUiSelectionRow * func_080512C8(UnkUiSelectionData const * object, u32 index)
+inline void DrawUiTextRows(UnkUiSelectionData * object, HardwareSpriteBufferState * sprites)
 {
-    return object->rows[index].Get();
+    i32 palette = GetObjPaletteBank(object->palette, object->palette->handle);
+    if (palette >= 0) {
+        for (int row = 0, y = 107; row <= 2; ++row, y += 17) {
+            int index = row + object->unk_18;
+            if (index > 2) index -= 3;
+            UnkUiSelectionRow * line = object->rows[index].Get();
+            for (int column = 0, x = 8; column <= 6; ++column, x += 32) {
+                UnkUiSelectionEntry & entry = line->Entry(column);
+                HardwareSpriteOamRecord attributes = {};
+                attributes.mosaic = 1;
+                attributes.shape = 1;
+                attributes.size = 2;
+                if (HasUiSelectionState(entry.state))
+                    attributes.tile_index = GetObjTileIndex(&entry.state, entry.state.handle);
+                else
+                    attributes.affine_mode = 2;
+                AppendUiTextRowSprite(sprites, attributes, x, y, palette);
+            }
+        }
+    }
 }
 
-EC UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index)
+EC inline void func_08050F74(UnkUiSelectionData * object, u32 const arg_1,
+    u32 const arg_2)
 {
-    return object->rows[index].Get();
+    SetUiChoiceOutputPosition(object, arg_1, arg_2);
 }
 
-inline UiTextTileCopyCommand::UiTextTileCopyCommand(u32 const * source, u32 * destination,
-    u32 tile_count, bool alternate_nibbles)
-    : HardwareLinkBase(), source(source), destination(destination), tile_count(tile_count),
-      nibble_phase(0), alternate_nibbles(alternate_nibbles)
+EC inline u8 func_08050F70(UnkUiSelectionData const * object)
+{
+    return object->unk_1a;
+}
+
+inline UiTextInputAdapter::UiTextInputAdapter(u32 const & pressed, u8 allow_resume)
+    : pressed(pressed), allow_resume(allow_resume)
 {
 }
 
-// Reverse member destruction owns every resource and unlinks each queued
-// command. No borrowed output/queue pointer is separately freed.
-UiStatePayload::~UiStatePayload() {}
+EC inline bool func_08050F4C(u8 const * object)
+{
+    return HasUiTextAdvanceKeys(object[4]);
+}
 
-// Only an inactive window resets its rows and queues setup commands. Reopening
-// a closing window keeps its current animation phase and queued ownership.
+inline UiTextWindowSetupCommand::UiTextWindowSetupCommand(u32 screen, u32 tile, u32 background, u32 cursor)
+    : HardwareLinkBase(), screen_block(screen), first_tile(tile),
+      background_palette(background), cursor_palette(cursor)
+{
+}
+
+
+
+UiStatePayload::UiStatePayload(u32 background, u32 screen, u32 palette_bank,
+    u32 mode, ObjTileCollection const & shared, ObjPaletteCollection const & resources)
+    : background(background), screen_block(screen), character_block(screen >> 3),
+      first_tile((screen & 7) * 64 + 20), background_palette(palette_bank),
+      mode(mode), state(0), unk_0c(0), allow_resume(1),
+      palette(resources.Get()), background_state(shared.Get(2)),
+      commands(), records(), records_command(records), output(&palette, shared),
+      text(), output_command(&output),
+      tile_copy(reinterpret_cast<u32 const *>(gUiSharedTiles),
+          &reinterpret_cast<u32 (*)[BG_CHAR_SIZE / TILE_SIZE_4BPP][TILE_SIZE_4BPP / sizeof(u32)]>(BG_VRAM)[character_block][first_tile][0],
+          gUiSharedTileByteCount / TILE_SIZE_4BPP, mode == 1),
+      window(screen_block, first_tile, background_palette,
+          palette.GetIndex()),
+      choice_index(0), hand_cursor(gUiHandCursorArchive),
+#if defined(REGION_JP)
+      choice_cursor(gUnk_084AF4E4),
+#else
+      choice_cursor(gUnk_0872937C),
+#endif
+      choice_handle(&choice_cursor, 0, 256), choice_state(shared.Get(7)),
+      portrait_flags(), portrait(), portrait_palette(resources.Get()), nameplate_flags(),
+      nameplate_tiles(), heart_indicator_visible(0),
+      heart_indicator_archive(gUiHeartIndicatorArchive),
+      heart_indicator_handle(&heart_indicator_archive, 0, 256),
+      heart_indicator_palette(resources.Get()), low_flags()
+{
+}
+
+UiStatePayload::~UiStatePayload()
+{
+}
+
+asm_unified(
+    ".text\n"
+    ".include \"asm/macro.inc\"\n"
+    ".include \"six/asm/hw/video.s\"\n"
+    ".ifdef REGION_JP\n"
+    "    .align 2, 0\n"
+    "    .global Update__14UiStatePayloadP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
+    "    .thumb_func\n"
+    "Update__14UiStatePayloadP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot: @ 0x0804F530\n"
+    "    push {r4, r5, r6, r7, lr}\n"
+    "    mov r7, sl\n"
+    "    mov r6, sb\n"
+    "    mov r5, r8\n"
+    "    push {r5, r6, r7}\n"
+    "    sub sp, #0xb8\n"
+    "    adds r7, r0, #0\n"
+    "    str r2, [sp, #0x78]\n"
+    "    str r3, [sp, #0x7c]\n"
+    "    ldr r0, [sp, #0xe0]\n"
+    "    mov sl, r0\n"
+    "    ldrh r3, [r1, #4]\n"
+    "    ldrh r6, [r1, #8]\n"
+    "    ldrb r2, [r7, #0xd]\n"
+    "    mov r1, sp\n"
+    "    ldr r0, .Ljp_0804F568 @ =__vt_18UiTextInputAdapter\n"
+    "    str r0, [sp]\n"
+    "    str r3, [sp, #4]\n"
+    "    strb r2, [r1, #8]\n"
+    "    ldr r0, [r7, #8]\n"
+    "    cmp r0, #6\n"
+    "    bls .Ljp_0804F55E\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F55E:\n"
+    "    lsls r0, r0, #2\n"
+    "    ldr r1, .Ljp_0804F56C @ =.Ljp_0804F570\n"
+    "    adds r0, r0, r1\n"
+    "    ldr r0, [r0]\n"
+    "    mov pc, r0\n"
+    "    .align 2, 0\n"
+    ".Ljp_0804F568: .word __vt_18UiTextInputAdapter\n"
+    ".Ljp_0804F56C: .word .Ljp_0804F570\n"
+    ".Ljp_0804F570: @ jump table\n"
+    "    .word .Ljp_0804F728 @ case 0\n"
+    "    .word .Ljp_0804F58C @ case 1\n"
+    "    .word .Ljp_0804F60C @ case 2\n"
+    "    .word .Ljp_0804F728 @ case 3\n"
+    "    .word .Ljp_0804F61E @ case 4\n"
+    "    .word .Ljp_0804F61E @ case 5\n"
+    "    .word .Ljp_0804F696 @ case 6\n"
+    ".Ljp_0804F58C:\n"
+    "    ldrb r0, [r7, #0xc]\n"
+    "    cmp r0, #8\n"
+    "    bls .Ljp_0804F5C0\n"
+    "    adds r0, r7, #0\n"
+    "    adds r0, #0xec\n"
+    "    ldr r0, [r0]\n"
+    "    adds r1, r0, #0\n"
+    "    cmp r0, #1\n"
+    "    beq .Ljp_0804F5B4\n"
+    "    cmp r0, #1\n"
+    "    bgt .Ljp_0804F5A8\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804F5AE\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F5A8:\n"
+    "    cmp r1, #2\n"
+    "    beq .Ljp_0804F5BA\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F5AE:\n"
+    "    movs r0, #3\n"
+    "    str r0, [r7, #8]\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F5B4:\n"
+    "    movs r0, #4\n"
+    "    str r0, [r7, #8]\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F5BA:\n"
+    "    movs r0, #5\n"
+    "    str r0, [r7, #8]\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F5C0:\n"
+    "    adds r0, #1\n"
+    "    strb r0, [r7, #0xc]\n"
+    "    movs r1, #0xa4\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r7, r1\n"
+    "    ldr r1, [r0]\n"
+    "    rsbs r0, r1, #0\n"
+    "    orrs r0, r1\n"
+    "    cmp r0, #0\n"
+    "    blt .Ljp_0804F5D6\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F5D6:\n"
+    "    movs r2, #0xaa\n"
+    "    lsls r2, r2, #3\n"
+    "    adds r0, r7, r2\n"
+    "    ldrb r0, [r0]\n"
+    "    lsls r0, r0, #0x1a\n"
+    "    lsrs r0, r0, #0x1a\n"
+    "    movs r1, #1\n"
+    "    ands r0, r1\n"
+    "    cmp r0, #0\n"
+    "    bne .Ljp_0804F5EC\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F5EC:\n"
+    "    mov r3, sl\n"
+    "    cmp r3, #0\n"
+    "    bne .Ljp_0804F5F4\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F5F4:\n"
+    "    mov r0, sl\n"
+    "    bl IsUnpaused__C23HardwareMusicPlayerSlot\n"
+    "    lsls r0, r0, #0x18\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804F602\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F602:\n"
+    "    mov r0, sl\n"
+    "    movs r1, #0xc8\n"
+    "    bl Start__23HardwareMusicPlayerSlotUs\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F60C:\n"
+    "    ldrb r0, [r7, #0xc]\n"
+    "    adds r1, r0, #0\n"
+    "    cmp r1, #0\n"
+    "    bne .Ljp_0804F618\n"
+    "    str r1, [r7, #8]\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F618:\n"
+    "    subs r0, #1\n"
+    "    strb r0, [r7, #0xc]\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F61E:\n"
+    "    adds r0, r7, #0\n"
+    "    adds r0, #0xec\n"
+    "    adds r1, r7, #0\n"
+    "    adds r1, #0xd0\n"
+    "    mov r2, sp\n"
+    "    bl UpdateUiTextStream\n"
+    "    cmp r0, #1\n"
+    "    beq .Ljp_0804F644\n"
+    "    cmp r0, #1\n"
+    "    bgt .Ljp_0804F63A\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804F640\n"
+    "    b .Ljp_0804F664\n"
+    ".Ljp_0804F63A:\n"
+    "    cmp r0, #2\n"
+    "    beq .Ljp_0804F648\n"
+    "    b .Ljp_0804F664\n"
+    ".Ljp_0804F640:\n"
+    "    movs r0, #3\n"
+    "    b .Ljp_0804F662\n"
+    ".Ljp_0804F644:\n"
+    "    movs r0, #4\n"
+    "    b .Ljp_0804F662\n"
+    ".Ljp_0804F648:\n"
+    "    ldr r0, [r7, #8]\n"
+    "    cmp r0, #5\n"
+    "    beq .Ljp_0804F664\n"
+    "    movs r4, #0xe0\n"
+    "    lsls r4, r4, #1\n"
+    "    adds r0, r7, r4\n"
+    "    movs r5, #0xc8\n"
+    "    lsls r5, r5, #1\n"
+    "    adds r1, r7, r5\n"
+    "    movs r2, #0\n"
+    "    bl InitializeIndexedResourceHandle\n"
+    "    movs r0, #5\n"
+    ".Ljp_0804F662:\n"
+    "    str r0, [r7, #8]\n"
+    ".Ljp_0804F664:\n"
+    "    adds r0, r7, #0\n"
+    "    adds r0, #0xeb\n"
+    "    ldrb r1, [r0]\n"
+    "    adds r4, r0, #0\n"
+    "    cmp r1, #0\n"
+    "    beq .Ljp_0804F728\n"
+    "    movs r6, #0xaa\n"
+    "    lsls r6, r6, #3\n"
+    "    adds r0, r7, r6\n"
+    "    ldrb r0, [r0]\n"
+    "    lsls r0, r0, #0x1a\n"
+    "    lsrs r0, r0, #0x1a\n"
+    "    movs r1, #4\n"
+    "    ands r0, r1\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804F690\n"
+    "    mov r0, sl\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804F690\n"
+    "    movs r1, #0xc9\n"
+    "    bl StartIfChangedOrPaused__23HardwareMusicPlayerSlotUs\n"
+    ".Ljp_0804F690:\n"
+    "    movs r0, #0\n"
+    "    strb r0, [r4]\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F696:\n"
+    "    adds r0, r7, #0\n"
+    "    adds r0, #0xd0\n"
+    "    ldrb r0, [r0, #0x1a]\n"
+    "    cmp r0, #0\n"
+    "    bne .Ljp_0804F728\n"
+    "    movs r0, #1\n"
+    "    ands r3, r0\n"
+    "    cmp r3, #0\n"
+    "    beq .Ljp_0804F6D0\n"
+    "    movs r0, #3\n"
+    "    str r0, [r7, #8]\n"
+    "    movs r1, #0xaa\n"
+    "    lsls r1, r1, #3\n"
+    "    adds r0, r7, r1\n"
+    "    ldrb r0, [r0]\n"
+    "    lsls r0, r0, #0x1a\n"
+    "    lsrs r0, r0, #0x1a\n"
+    "    movs r1, #0x20\n"
+    "    ands r0, r1\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804F728\n"
+    "    mov r2, sl\n"
+    "    cmp r2, #0\n"
+    "    beq .Ljp_0804F728\n"
+    "    mov r0, sl\n"
+    "    movs r1, #0xc5\n"
+    "    bl Start__23HardwareMusicPlayerSlotUs\n"
+    "    b .Ljp_0804F728\n"
+    ".Ljp_0804F6D0:\n"
+    "    lsls r3, r6, #0x18\n"
+    "    lsrs r3, r3, #0x1f\n"
+    "    lsls r2, r6, #0x19\n"
+    "    lsrs r2, r2, #0x1f\n"
+    "    lsls r1, r6, #0x1a\n"
+    "    lsrs r1, r1, #0x1f\n"
+    "    lsls r0, r6, #0x1b\n"
+    "    lsrs r0, r0, #0x1f\n"
+    "    eors r3, r2\n"
+    "    eors r1, r0\n"
+    "    cmp r3, r1\n"
+    "    beq .Ljp_0804F728\n"
+    "    movs r3, #0xac\n"
+    "    lsls r3, r3, #1\n"
+    "    adds r4, r7, r3\n"
+    "    ldr r5, [r4]\n"
+    "    movs r1, #0xae\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r7, r1\n"
+    "    ldr r0, [r0]\n"
+    "    adds r1, r5, #0\n"
+    "    adds r2, r6, #0\n"
+    "    bl MoveUiChoiceSelection\n"
+    "    str r0, [r4]\n"
+    "    cmp r0, r5\n"
+    "    beq .Ljp_0804F728\n"
+    "    movs r2, #0xaa\n"
+    "    lsls r2, r2, #3\n"
+    "    adds r0, r7, r2\n"
+    "    ldrb r0, [r0]\n"
+    "    lsls r0, r0, #0x1a\n"
+    "    lsrs r0, r0, #0x1a\n"
+    "    movs r1, #0x10\n"
+    "    ands r0, r1\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804F728\n"
+    "    mov r3, sl\n"
+    "    cmp r3, #0\n"
+    "    beq .Ljp_0804F728\n"
+    "    mov r0, sl\n"
+    "    movs r1, #0xcb\n"
+    "    bl Start__23HardwareMusicPlayerSlotUs\n"
+    ".Ljp_0804F728:\n"
+    "    adds r3, r7, #0\n"
+    "    adds r3, #0x20\n"
+    "    movs r2, #0\n"
+    "    adds r1, r7, #0\n"
+    "    adds r1, #0x30\n"
+    "    ldr r0, [r3, #0xc]\n"
+    "    cmp r0, r1\n"
+    "    bne .Ljp_0804F73A\n"
+    "    movs r2, #1\n"
+    ".Ljp_0804F73A:\n"
+    "    cmp r2, #0\n"
+    "    bne .Ljp_0804F74C\n"
+    "    ldr r4, [sp, #0xd8]\n"
+    "    ldr r0, [r4, #8]\n"
+    "    ldr r2, [r0, #0x1c]\n"
+    "    adds r0, r4, #0\n"
+    "    adds r1, r3, #0\n"
+    "    bl _call_via_r2\n"
+    ".Ljp_0804F74C:\n"
+    "    ldr r0, [r7, #8]\n"
+    "    cmp r0, #0\n"
+    "    bne .Ljp_0804F756\n"
+    "    bl .Ljp_ui_payload_inactive_exit\n"
+    ".Ljp_0804F756:\n"
+    "    cmp r0, #6\n"
+    "    beq .Ljp_0804F76E\n"
+    "    mov r5, sp\n"
+    "    adds r5, #0xc\n"
+    "    str r5, [sp, #0x90]\n"
+    "    cmp r0, #5\n"
+    "    beq .Ljp_0804F766\n"
+    "    b .Ljp_0804F916\n"
+    ".Ljp_0804F766:\n"
+    "    ldrb r0, [r7, #0xd]\n"
+    "    cmp r0, #0\n"
+    "    bne .Ljp_0804F76E\n"
+    "    b .Ljp_0804F916\n"
+    ".Ljp_0804F76E:\n"
+    "    movs r6, #0xe0\n"
+    "    lsls r6, r6, #1\n"
+    "    adds r4, r7, r6\n"
+    "    adds r0, r4, #0\n"
+    "    bl UpdateIndexedResourceHandle\n"
+    "    mov r8, r0\n"
+    "    add r5, sp, #0xc\n"
+    "    ldr r1, [r4]\n"
+    "    ldr r3, [r1]\n"
+    "    ldrh r2, [r4, #0xc]\n"
+    "    movs r4, #0xe2\n"
+    "    lsls r4, r4, #1\n"
+    "    adds r0, r7, r4\n"
+    "    lsls r2, r2, #2\n"
+    "    ldr r0, [r0]\n"
+    "    adds r0, r0, r2\n"
+    "    ldrh r2, [r0]\n"
+    "    adds r0, r5, #0\n"
+    "    ldr r3, [r3, #0x10]\n"
+    "    bl _call_via_r3\n"
+    "    mov r6, r8\n"
+    "    lsls r0, r6, #0x1e\n"
+    "    str r5, [sp, #0x90]\n"
+    "    movs r1, #0x18\n"
+    "    adds r1, r1, r7\n"
+    "    mov sb, r1\n"
+    "    cmp r0, #0\n"
+    "    bge .Ljp_0804F7F6\n"
+    "    ldr r5, [sp, #0x14]\n"
+    "    ldr r1, [r1, #4]\n"
+    "    mov r0, sb\n"
+    "    bl GetObjTileIndex\n"
+    "    adds r2, r0, #0\n"
+    "    add r1, sp, #0x14\n"
+    "    ldr r0, [sp, #0x14]\n"
+    "    movs r3, #0\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804F7C2\n"
+    "    ldrh r3, [r1, #4]\n"
+    ".Ljp_0804F7C2:\n"
+    "    adds r4, r7, #0\n"
+    "    adds r4, #0x3c\n"
+    "    lsls r2, r2, #5\n"
+    "    ldr r6, .Ljp_0804F854 @ =OBJ_VRAM0\n"
+    "    adds r2, r2, r6\n"
+    "    add r0, sp, #0x2c\n"
+    "    adds r1, r5, #0\n"
+    "    bl __21DmaTransferDescriptorPCvPvUi\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    add r6, sp, #0x2c\n"
+    "    cmp r0, #7\n"
+    "    bhi .Ljp_0804F7F6\n"
+    "    lsls r0, r0, #4\n"
+    "    adds r0, #4\n"
+    "    adds r0, r4, r0\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804F7F0\n"
+    "    adds r1, r6, #0\n"
+    "    ldm r1!, {r2, r3, r4}\n"
+    "    stm r0!, {r2, r3, r4}\n"
+    "    ldr r1, [r1]\n"
+    "    str r1, [r0]\n"
+    ".Ljp_0804F7F0:\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    adds r0, #1\n"
+    "    str r0, [r7, #0x3c]\n"
+    ".Ljp_0804F7F6:\n"
+    "    ldr r0, [sp, #0xc]\n"
+    "    ldr r1, [r0, #4]\n"
+    "    ldr r0, [r0]\n"
+    "    str r0, [sp, #0x58]\n"
+    "    str r1, [sp, #0x5c]\n"
+    "    ldr r0, [r7, #8]\n"
+    "    cmp r0, #6\n"
+    "    bne .Ljp_0804F864\n"
+    "    movs r5, #0xae\n"
+    "    lsls r5, r5, #1\n"
+    "    adds r0, r7, r5\n"
+    "    ldr r0, [r0]\n"
+    "    movs r6, #0xac\n"
+    "    lsls r6, r6, #1\n"
+    "    adds r1, r7, r6\n"
+    "    ldr r1, [r1]\n"
+    "    bl GetUiChoiceLayoutPosition\n"
+    "    add r4, sp, #0x58\n"
+    "    ldrb r3, [r4]\n"
+    "    adds r3, #0x73\n"
+    "    lsls r2, r0, #0x1e\n"
+    "    lsrs r2, r2, #0x1e\n"
+    "    lsls r1, r2, #4\n"
+    "    adds r1, r1, r2\n"
+    "    adds r3, r3, r1\n"
+    "    lsls r3, r3, #0x18\n"
+    "    lsrs r3, r3, #0x18\n"
+    "    ldr r1, .Ljp_0804F858 @ =0xFFFFFF00\n"
+    "    ldr r2, [sp, #0x58]\n"
+    "    ands r2, r1\n"
+    "    orrs r2, r3\n"
+    "    lsls r1, r2, #7\n"
+    "    lsrs r1, r1, #0x17\n"
+    "    adds r1, #8\n"
+    "    lsls r0, r0, #0x19\n"
+    "    lsrs r0, r0, #0x1b\n"
+    "    lsls r0, r0, #3\n"
+    "    adds r1, r1, r0\n"
+    "    ldr r0, .Ljp_0804F85C @ =0x000001FF\n"
+    "    ands r1, r0\n"
+    "    lsls r1, r1, #0x10\n"
+    "    ldr r0, .Ljp_0804F860 @ =0xFE00FFFF\n"
+    "    ands r0, r2\n"
+    "    orrs r0, r1\n"
+    "    str r0, [sp, #0x58]\n"
+    "    b .Ljp_0804F8BE\n"
+    "    .align 2, 0\n"
+    ".Ljp_0804F854: .word OBJ_VRAM0\n"
+    ".Ljp_0804F858: .word 0xFFFFFF00\n"
+    ".Ljp_0804F85C: .word 0x000001FF\n"
+    ".Ljp_0804F860: .word 0xFE00FFFF\n"
+    ".Ljp_0804F864:\n"
+    "    ldr r3, [sp, #0x58]\n"
+    "    lsls r0, r3, #7\n"
+    "    lsrs r0, r0, #0x17\n"
+    "    adds r0, #0xec\n"
+    "    ldr r1, .Ljp_0804FA50 @ =0x000001FF\n"
+    "    ands r0, r1\n"
+    "    lsls r0, r0, #0x10\n"
+    "    ldr r2, .Ljp_0804FA54 @ =0xFE00FFFF\n"
+    "    ands r2, r3\n"
+    "    orrs r2, r0\n"
+    "    str r2, [sp, #0x58]\n"
+    "    add r3, sp, #0x58\n"
+    "    ldrb r0, [r3]\n"
+    "    adds r0, #0xa0\n"
+    "    lsls r0, r0, #0x18\n"
+    "    lsrs r0, r0, #0x18\n"
+    "    ldr r1, .Ljp_0804FA58 @ =0xFFFFFF00\n"
+    "    ands r1, r2\n"
+    "    orrs r1, r0\n"
+    "    str r1, [sp, #0x58]\n"
+    "    mov r1, r8\n"
+    "    lsls r0, r1, #0x1f\n"
+    "    adds r4, r3, #0\n"
+    "    cmp r0, #0\n"
+    "    bne .Ljp_0804F8BE\n"
+    "    lsls r0, r1, #0x1e\n"
+    "    cmp r0, #0\n"
+    "    bge .Ljp_0804F8BE\n"
+    "    movs r2, #0xaa\n"
+    "    lsls r2, r2, #3\n"
+    "    adds r0, r7, r2\n"
+    "    ldrb r0, [r0]\n"
+    "    lsls r0, r0, #0x1a\n"
+    "    lsrs r0, r0, #0x1a\n"
+    "    movs r1, #8\n"
+    "    ands r0, r1\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804F8BE\n"
+    "    mov r3, sl\n"
+    "    cmp r3, #0\n"
+    "    beq .Ljp_0804F8BE\n"
+    "    mov r0, sl\n"
+    "    movs r1, #0xca\n"
+    "    bl Start__23HardwareMusicPlayerSlotUs\n"
+    ".Ljp_0804F8BE:\n"
+    "    adds r0, r7, #0\n"
+    "    adds r0, #0x10\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjPaletteBank\n"
+    "    lsls r0, r0, #0x10\n"
+    "    lsrs r0, r0, #0x10\n"
+    "    movs r1, #0xf\n"
+    "    ands r0, r1\n"
+    "    lsls r0, r0, #0xc\n"
+    "    ldr r2, .Ljp_0804FA5C @ =0xFFFF0FFF\n"
+    "    ldr r1, [r4, #4]\n"
+    "    ands r1, r2\n"
+    "    orrs r1, r0\n"
+    "    str r1, [r4, #4]\n"
+    "    mov r5, sb\n"
+    "    ldr r1, [r5, #4]\n"
+    "    mov r0, sb\n"
+    "    bl GetObjTileIndex\n"
+    "    lsls r0, r0, #0x16\n"
+    "    lsrs r0, r0, #0x16\n"
+    "    ldr r2, .Ljp_0804FA60 @ =0xFFFFFC00\n"
+    "    ldr r1, [r4, #4]\n"
+    "    ands r1, r2\n"
+    "    orrs r1, r0\n"
+    "    str r1, [r4, #4]\n"
+    "    movs r0, #0x80\n"
+    "    lsls r0, r0, #5\n"
+    "    ldr r1, [sp, #0x58]\n"
+    "    orrs r1, r0\n"
+    "    str r1, [sp, #0x58]\n"
+    "    ldr r6, [sp, #0x78]\n"
+    "    ldrb r2, [r6]\n"
+    "    cmp r2, #0x7f\n"
+    "    bhi .Ljp_0804F916\n"
+    "    lsls r0, r2, #3\n"
+    "    adds r0, #4\n"
+    "    adds r0, r6, r0\n"
+    "    str r1, [r0]\n"
+    "    ldrh r1, [r4, #4]\n"
+    "    strh r1, [r0, #4]\n"
+    "    adds r0, r2, #1\n"
+    "    strb r0, [r6]\n"
+    ".Ljp_0804F916:\n"
+    "    movs r6, #0\n"
+    "    ldrb r2, [r7]\n"
+    "    lsls r5, r2, #0x1e\n"
+    "    lsrs r5, r5, #0x1e\n"
+    "    movs r0, #0x80\n"
+    "    lsls r0, r0, #1\n"
+    "    lsls r0, r5\n"
+    "    movs r3, #0xc0\n"
+    "    lsls r3, r3, #7\n"
+    "    adds r1, r3, #0\n"
+    "    orrs r0, r1\n"
+    "    ldr r4, [sp, #0x7c]\n"
+    "    ldrh r1, [r4]\n"
+    "    orrs r0, r1\n"
+    "    strh r0, [r4]\n"
+    "    lsls r3, r5, #1\n"
+    "    lsls r4, r5, #2\n"
+    "    adds r3, #8\n"
+    "    ldr r0, [sp, #0x7c]\n"
+    "    adds r3, r0, r3\n"
+    "    ldrh r1, [r3]\n"
+    "    movs r0, #0x73\n"
+    "    ands r1, r0\n"
+    "    lsls r2, r2, #0x19\n"
+    "    lsrs r2, r2, #0x1b\n"
+    "    lsls r2, r2, #8\n"
+    "    ldrh r0, [r7]\n"
+    "    lsls r0, r0, #0x17\n"
+    "    lsrs r0, r0, #0x1e\n"
+    "    lsls r0, r0, #2\n"
+    "    orrs r2, r0\n"
+    "    orrs r1, r2\n"
+    "    ldr r2, [sp, #0x90]\n"
+    "    strh r1, [r2]\n"
+    "    strh r1, [r3]\n"
+    "    strh r6, [r2]\n"
+    "    adds r0, r4, #0\n"
+    "    adds r0, #0x10\n"
+    "    ldr r3, [sp, #0x7c]\n"
+    "    adds r0, r3, r0\n"
+    "    strh r6, [r0]\n"
+    "    ldr r6, .Ljp_0804FA64 @ =0x0000FFB0\n"
+    "    adds r0, r6, #0\n"
+    "    strh r0, [r2]\n"
+    "    adds r4, #0x12\n"
+    "    adds r4, r3, r4\n"
+    "    strh r0, [r4]\n"
+    "    movs r1, #0x3f\n"
+    "    strh r1, [r2]\n"
+    "    adds r2, r3, #0\n"
+    "    adds r2, #0x48\n"
+    "    strh r1, [r2]\n"
+    "    movs r0, #1\n"
+    "    lsls r0, r5\n"
+    "    bics r1, r0\n"
+    "    ldr r0, [sp, #0x90]\n"
+    "    strh r1, [r0]\n"
+    "    adds r0, r3, #0\n"
+    "    adds r0, #0x4a\n"
+    "    strh r1, [r0]\n"
+    "    ldrb r6, [r7, #0xc]\n"
+    "    str r2, [sp, #0xa4]\n"
+    "    str r0, [sp, #0xa8]\n"
+    "    cmp r6, #8\n"
+    "    bhi .Ljp_0804F99A\n"
+    "    b .Ljp_0804FFFC\n"
+    ".Ljp_0804F99A:\n"
+    "    adds r1, r7, #0\n"
+    "    adds r1, #0xd0\n"
+    "    str r1, [sp, #0x80]\n"
+    "    ldr r0, [r1, #4]\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjPaletteBank\n"
+    "    ldr r2, [sp, #0x7c]\n"
+    "    adds r2, #0x40\n"
+    "    str r2, [sp, #0x94]\n"
+    "    ldr r3, [sp, #0x7c]\n"
+    "    adds r3, #0x44\n"
+    "    str r3, [sp, #0x9c]\n"
+    "    ldr r4, [sp, #0x7c]\n"
+    "    adds r4, #0x42\n"
+    "    str r4, [sp, #0x98]\n"
+    "    ldr r5, [sp, #0x7c]\n"
+    "    adds r5, #0x46\n"
+    "    str r5, [sp, #0xa0]\n"
+    "    adds r6, r7, #0\n"
+    "    adds r6, #0xc0\n"
+    "    str r6, [sp, #0xb0]\n"
+    "    cmp r0, #0\n"
+    "    bge .Ljp_0804F9CC\n"
+    "    b .Ljp_0804FAF2\n"
+    ".Ljp_0804F9CC:\n"
+    "    movs r1, #0\n"
+    "    movs r2, #0x6b\n"
+    "    mov sl, r2\n"
+    "    mov r3, sp\n"
+    "    adds r3, #0x68\n"
+    "    str r3, [sp, #0xac]\n"
+    "    lsls r0, r0, #4\n"
+    "    str r0, [sp, #0x88]\n"
+    ".Ljp_0804F9DC:\n"
+    "    ldr r4, [sp, #0x80]\n"
+    "    ldrb r0, [r4, #0x18]\n"
+    "    adds r0, r1, r0\n"
+    "    cmp r0, #2\n"
+    "    ble .Ljp_0804F9E8\n"
+    "    subs r0, #3\n"
+    ".Ljp_0804F9E8:\n"
+    "    lsls r0, r0, #2\n"
+    "    ldr r5, [sp, #0x80]\n"
+    "    adds r0, r0, r5\n"
+    "    ldr r0, [r0, #8]\n"
+    "    movs r6, #8\n"
+    "    mov sb, r6\n"
+    "    adds r1, #1\n"
+    "    str r1, [sp, #0x84]\n"
+    "    mov r1, sl\n"
+    "    adds r1, #0x11\n"
+    "    str r1, [sp, #0x8c]\n"
+    "    ldr r4, [sp, #0xac]\n"
+    "    adds r6, r0, #4\n"
+    "    adds r5, r0, #0\n"
+    "    movs r2, #6\n"
+    "    mov r8, r2\n"
+    ".Ljp_0804FA08:\n"
+    "    movs r0, #0\n"
+    "    movs r1, #0\n"
+    "    str r0, [sp, #0x60]\n"
+    "    str r1, [sp, #0x64]\n"
+    "    movs r0, #0x80\n"
+    "    lsls r0, r0, #5\n"
+    "    ldr r2, [sp, #0x60]\n"
+    "    orrs r2, r0\n"
+    "    ldr r0, .Ljp_0804FA68 @ =0xFFFF3FFF\n"
+    "    ands r2, r0\n"
+    "    movs r0, #0x80\n"
+    "    lsls r0, r0, #7\n"
+    "    orrs r2, r0\n"
+    "    ldr r0, .Ljp_0804FA6C @ =0x3FFFFFFF\n"
+    "    ands r2, r0\n"
+    "    movs r0, #0x80\n"
+    "    lsls r0, r0, #0x18\n"
+    "    orrs r2, r0\n"
+    "    str r2, [sp, #0x60]\n"
+    "    ldr r1, [r5, #8]\n"
+    "    rsbs r0, r1, #0\n"
+    "    orrs r0, r1\n"
+    "    cmp r0, #0\n"
+    "    bge .Ljp_0804FA70\n"
+    "    adds r0, r6, #0\n"
+    "    bl GetObjTileIndex\n"
+    "    lsls r0, r0, #0x16\n"
+    "    lsrs r0, r0, #0x16\n"
+    "    ldr r3, .Ljp_0804FA60 @ =0xFFFFFC00\n"
+    "    add r2, sp, #0x60\n"
+    "    ldr r1, [r2, #4]\n"
+    "    ands r1, r3\n"
+    "    orrs r1, r0\n"
+    "    str r1, [r2, #4]\n"
+    "    b .Ljp_0804FA7C\n"
+    "    .align 2, 0\n"
+    ".Ljp_0804FA50: .word 0x000001FF\n"
+    ".Ljp_0804FA54: .word 0xFE00FFFF\n"
+    ".Ljp_0804FA58: .word 0xFFFFFF00\n"
+    ".Ljp_0804FA5C: .word 0xFFFF0FFF\n"
+    ".Ljp_0804FA60: .word 0xFFFFFC00\n"
+    ".Ljp_0804FA64: .word 0x0000FFB0\n"
+    ".Ljp_0804FA68: .word 0xFFFF3FFF\n"
+    ".Ljp_0804FA6C: .word 0x3FFFFFFF\n"
+    ".Ljp_0804FA70:\n"
+    "    ldr r0, .Ljp_0804FDEC @ =0xFFFFFCFF\n"
+    "    ands r0, r2\n"
+    "    movs r1, #0x80\n"
+    "    lsls r1, r1, #2\n"
+    "    orrs r0, r1\n"
+    "    str r0, [sp, #0x60]\n"
+    ".Ljp_0804FA7C:\n"
+    "    ldr r0, [sp, #0x60]\n"
+    "    ldr r1, [sp, #0x64]\n"
+    "    str r0, [sp, #0x68]\n"
+    "    str r1, [sp, #0x6c]\n"
+    "    mov r3, sl\n"
+    "    lsls r1, r3, #0x18\n"
+    "    lsrs r1, r1, #0x18\n"
+    "    ldr r2, .Ljp_0804FDF0 @ =0xFFFFFF00\n"
+    "    ldr r0, [sp, #0x68]\n"
+    "    ands r0, r2\n"
+    "    orrs r0, r1\n"
+    "    str r0, [sp, #0x68]\n"
+    "    ldr r1, .Ljp_0804FDF4 @ =0x000001FF\n"
+    "    adds r0, r1, #0\n"
+    "    mov r2, sb\n"
+    "    ands r2, r0\n"
+    "    ldrh r0, [r4, #2]\n"
+    "    ldr r3, .Ljp_0804FDF8 @ =0xFFFFFE00\n"
+    "    adds r1, r3, #0\n"
+    "    ands r0, r1\n"
+    "    orrs r0, r2\n"
+    "    strh r0, [r4, #2]\n"
+    "    ldrb r1, [r4, #5]\n"
+    "    movs r0, #0xf\n"
+    "    ands r0, r1\n"
+    "    ldr r1, [sp, #0x88]\n"
+    "    orrs r0, r1\n"
+    "    strb r0, [r4, #5]\n"
+    "    ldr r3, [sp, #0x78]\n"
+    "    ldrb r2, [r3]\n"
+    "    cmp r2, #0x7f\n"
+    "    bhi .Ljp_0804FAD2\n"
+    "    lsls r0, r2, #3\n"
+    "    adds r0, #4\n"
+    "    adds r0, r3, r0\n"
+    "    ldr r1, [sp, #0x68]\n"
+    "    str r1, [r0]\n"
+    "    ldr r3, [sp, #0xac]\n"
+    "    ldrh r1, [r3, #4]\n"
+    "    strh r1, [r0, #4]\n"
+    "    adds r0, r2, #1\n"
+    "    ldr r1, [sp, #0x78]\n"
+    "    strb r0, [r1]\n"
+    ".Ljp_0804FAD2:\n"
+    "    adds r6, #0x10\n"
+    "    adds r5, #0x10\n"
+    "    movs r2, #1\n"
+    "    rsbs r2, r2, #0\n"
+    "    add r8, r2\n"
+    "    movs r3, #0x20\n"
+    "    add sb, r3\n"
+    "    mov r0, r8\n"
+    "    cmp r0, #0\n"
+    "    bge .Ljp_0804FA08\n"
+    "    ldr r1, [sp, #0x84]\n"
+    "    ldr r2, [sp, #0x8c]\n"
+    "    mov sl, r2\n"
+    "    cmp r1, #2\n"
+    "    bgt .Ljp_0804FAF2\n"
+    "    b .Ljp_0804F9DC\n"
+    ".Ljp_0804FAF2:\n"
+    "    ldr r3, [sp, #0xd8]\n"
+    "    ldr r0, [r3, #8]\n"
+    "    movs r4, #0x90\n"
+    "    lsls r4, r4, #1\n"
+    "    adds r1, r7, r4\n"
+    "    ldr r2, [r0, #0x10]\n"
+    "    adds r0, r3, #0\n"
+    "    bl _call_via_r2\n"
+    "    movs r0, #0xf0\n"
+    "    ldr r5, [sp, #0x90]\n"
+    "    strh r0, [r5]\n"
+    "    ldr r6, [sp, #0x94]\n"
+    "    strh r0, [r6]\n"
+    "    ldr r1, .Ljp_0804FDFC @ =0x000068A0\n"
+    "    adds r0, r1, #0\n"
+    "    strh r0, [r5]\n"
+    "    ldr r2, [sp, #0x9c]\n"
+    "    strh r0, [r2]\n"
+    "    movs r3, #0xee\n"
+    "    lsls r3, r3, #1\n"
+    "    adds r0, r7, r3\n"
+    "    ldrb r0, [r0]\n"
+    "    lsls r0, r0, #0x1f\n"
+    "    cmp r0, #0\n"
+    "    bne .Ljp_0804FB28\n"
+    "    b .Ljp_0804FDCC\n"
+    ".Ljp_0804FB28:\n"
+    "    adds r4, #0xb4\n"
+    "    adds r4, r4, r7\n"
+    "    mov sb, r4\n"
+    "    ldr r1, [r4, #4]\n"
+    "    rsbs r0, r1, #0\n"
+    "    orrs r0, r1\n"
+    "    cmp r0, #0\n"
+    "    blt .Ljp_0804FB3A\n"
+    "    b .Ljp_0804FDCC\n"
+    ".Ljp_0804FB3A:\n"
+    "    movs r5, #0xf4\n"
+    "    lsls r5, r5, #1\n"
+    "    adds r0, r7, r5\n"
+    "    ldr r1, [r0, #4]\n"
+    "    rsbs r0, r1, #0\n"
+    "    orrs r0, r1\n"
+    "    cmp r0, #0\n"
+    "    blt .Ljp_0804FB4C\n"
+    "    b .Ljp_0804FDCC\n"
+    ".Ljp_0804FB4C:\n"
+    "    movs r6, #0xa0\n"
+    "    lsls r6, r6, #3\n"
+    "    adds r0, r7, r6\n"
+    "    ldrb r0, [r0]\n"
+    "    add r6, sp, #0x2c\n"
+    "    cmp r0, #0\n"
+    "    bne .Ljp_0804FB5C\n"
+    "    b .Ljp_0804FC9E\n"
+    ".Ljp_0804FB5C:\n"
+    "    movs r1, #0xa9\n"
+    "    lsls r1, r1, #3\n"
+    "    adds r0, r7, r1\n"
+    "    ldr r1, [r0, #4]\n"
+    "    rsbs r0, r1, #0\n"
+    "    orrs r0, r1\n"
+    "    cmp r0, #0\n"
+    "    blt .Ljp_0804FB6E\n"
+    "    b .Ljp_0804FC9E\n"
+    ".Ljp_0804FB6E:\n"
+    "    ldr r2, .Ljp_0804FE00 @ =0x00000534\n"
+    "    adds r4, r7, r2\n"
+    "    adds r0, r4, #0\n"
+    "    bl UpdateIndexedResourceHandle\n"
+    "    adds r5, r0, #0\n"
+    "    ldr r1, [r4]\n"
+    "    ldr r3, [r1]\n"
+    "    ldrh r2, [r4, #0xc]\n"
+    "    movs r4, #0xa7\n"
+    "    lsls r4, r4, #3\n"
+    "    adds r0, r7, r4\n"
+    "    lsls r2, r2, #2\n"
+    "    ldr r0, [r0]\n"
+    "    adds r0, r0, r2\n"
+    "    ldrh r2, [r0]\n"
+    "    ldr r0, [sp, #0x90]\n"
+    "    ldr r3, [r3, #0x10]\n"
+    "    bl _call_via_r3\n"
+    "    lsls r5, r5, #0x1e\n"
+    "    cmp r5, #0\n"
+    "    bge .Ljp_0804FC48\n"
+    "    add r0, sp, #0x14\n"
+    "    ldr r5, [sp, #0x14]\n"
+    "    mov r8, r5\n"
+    "    movs r3, #0\n"
+    "    cmp r5, #0\n"
+    "    beq .Ljp_0804FBAA\n"
+    "    ldrh r3, [r0, #4]\n"
+    ".Ljp_0804FBAA:\n"
+    "    adds r5, r3, #0\n"
+    "    movs r0, #0x80\n"
+    "    lsls r0, r0, #1\n"
+    "    cmp r5, r0\n"
+    "    bls .Ljp_0804FBB6\n"
+    "    adds r5, r0, #0\n"
+    ".Ljp_0804FBB6:\n"
+    "    mov r0, sb\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjTileIndex\n"
+    "    adds r2, r0, #0\n"
+    "    adds r4, r7, #0\n"
+    "    adds r4, #0x3c\n"
+    "    lsls r2, r2, #5\n"
+    "    ldr r1, .Ljp_0804FE04 @ =0x06010F00\n"
+    "    adds r2, r2, r1\n"
+    "    adds r0, r6, #0\n"
+    "    mov r1, r8\n"
+    "    adds r3, r5, #0\n"
+    "    bl __21DmaTransferDescriptorPCvPvUi\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    cmp r0, #7\n"
+    "    bhi .Ljp_0804FBF4\n"
+    "    lsls r0, r0, #4\n"
+    "    adds r0, #4\n"
+    "    adds r0, r4, r0\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804FBEE\n"
+    "    adds r1, r6, #0\n"
+    "    ldm r1!, {r2, r3, r5}\n"
+    "    stm r0!, {r2, r3, r5}\n"
+    "    ldr r1, [r1]\n"
+    "    str r1, [r0]\n"
+    ".Ljp_0804FBEE:\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    adds r0, #1\n"
+    "    str r0, [r7, #0x3c]\n"
+    ".Ljp_0804FBF4:\n"
+    "    add r0, sp, #0x1c\n"
+    "    ldr r1, [sp, #0x1c]\n"
+    "    mov r8, r1\n"
+    "    movs r3, #0\n"
+    "    cmp r1, #0\n"
+    "    beq .Ljp_0804FC02\n"
+    "    ldrh r3, [r0, #4]\n"
+    ".Ljp_0804FC02:\n"
+    "    adds r5, r3, #0\n"
+    "    cmp r5, #0x20\n"
+    "    bls .Ljp_0804FC0A\n"
+    "    movs r5, #0x20\n"
+    ".Ljp_0804FC0A:\n"
+    "    movs r2, #0xa9\n"
+    "    lsls r2, r2, #3\n"
+    "    adds r0, r7, r2\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjPaletteBank\n"
+    "    adds r2, r0, #0\n"
+    "    lsls r2, r2, #5\n"
+    "    ldr r3, .Ljp_0804FE08 @ =OBJ_PALETTE\n"
+    "    adds r2, r2, r3\n"
+    "    add r0, sp, #0x2c\n"
+    "    mov r1, r8\n"
+    "    adds r3, r5, #0\n"
+    "    bl __21DmaTransferDescriptorPCvPvUi\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    cmp r0, #7\n"
+    "    bhi .Ljp_0804FC48\n"
+    "    lsls r0, r0, #4\n"
+    "    adds r0, #4\n"
+    "    adds r0, r4, r0\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804FC42\n"
+    "    adds r1, r6, #0\n"
+    "    ldm r1!, {r2, r4, r5}\n"
+    "    stm r0!, {r2, r4, r5}\n"
+    "    ldr r1, [r1]\n"
+    "    str r1, [r0]\n"
+    ".Ljp_0804FC42:\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    adds r0, #1\n"
+    "    str r0, [r7, #0x3c]\n"
+    ".Ljp_0804FC48:\n"
+    "    add r4, sp, #0x3c\n"
+    "    movs r1, #0\n"
+    "    movs r0, #0\n"
+    "    strh r0, [r4, #4]\n"
+    "    strh r0, [r4, #6]\n"
+    "    strh r0, [r4, #8]\n"
+    "    str r0, [r4, #0xc]\n"
+    "    strb r1, [r4, #0x10]\n"
+    "    strb r1, [r4, #0x11]\n"
+    "    str r0, [r4, #0x14]\n"
+    "    strb r1, [r4, #0x18]\n"
+    "    movs r0, #0x34\n"
+    "    strh r0, [r4]\n"
+    "    movs r0, #0x5c\n"
+    "    strh r0, [r4, #2]\n"
+    "    movs r3, #0xea\n"
+    "    lsls r3, r3, #1\n"
+    "    adds r0, r7, r3\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjTileIndex\n"
+    "    adds r0, #0x78\n"
+    "    strh r0, [r4, #6]\n"
+    "    movs r5, #0xa9\n"
+    "    lsls r5, r5, #3\n"
+    "    adds r0, r7, r5\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjPaletteBank\n"
+    "    strh r0, [r4, #4]\n"
+    "    movs r0, #1\n"
+    "    strb r0, [r4, #0x18]\n"
+    "    ldr r0, [sp, #0xc]\n"
+    "    adds r1, r0, #0\n"
+    "    movs r2, #0\n"
+    "    cmp r1, #0\n"
+    "    beq .Ljp_0804FC96\n"
+    "    ldr r0, [sp, #0x90]\n"
+    "    ldrh r2, [r0, #4]\n"
+    ".Ljp_0804FC96:\n"
+    "    ldr r0, [sp, #0x78]\n"
+    "    adds r3, r4, #0\n"
+    "    bl DrawIndexedResourceSprites\n"
+    ".Ljp_0804FC9E:\n"
+    "    movs r2, #0xf2\n"
+    "    lsls r2, r2, #1\n"
+    "    adds r1, r7, r2\n"
+    "    ldr r0, [sp, #0x90]\n"
+    "    bl Get__C20UiPortraitGroupOwner\n"
+    "    movs r3, #0xee\n"
+    "    lsls r3, r3, #1\n"
+    "    adds r0, r7, r3\n"
+    "    ldrb r0, [r0]\n"
+    "    lsls r0, r0, #0x1e\n"
+    "    cmp r0, #0\n"
+    "    bge .Ljp_0804FD78\n"
+    "    add r0, sp, #0x14\n"
+    "    ldr r4, [sp, #0x14]\n"
+    "    mov r8, r4\n"
+    "    movs r3, #0\n"
+    "    cmp r4, #0\n"
+    "    beq .Ljp_0804FCC6\n"
+    "    ldrh r3, [r0, #4]\n"
+    ".Ljp_0804FCC6:\n"
+    "    adds r5, r3, #0\n"
+    "    movs r0, #0xc0\n"
+    "    lsls r0, r0, #4\n"
+    "    cmp r5, r0\n"
+    "    bls .Ljp_0804FCD2\n"
+    "    adds r5, r0, #0\n"
+    ".Ljp_0804FCD2:\n"
+    "    movs r1, #0xea\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r7, r1\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjTileIndex\n"
+    "    adds r2, r0, #0\n"
+    "    adds r4, r7, #0\n"
+    "    adds r4, #0x3c\n"
+    "    lsls r2, r2, #5\n"
+    "    ldr r3, .Ljp_0804FE0C @ =OBJ_VRAM0\n"
+    "    adds r2, r2, r3\n"
+    "    add r0, sp, #0x2c\n"
+    "    mov r1, r8\n"
+    "    adds r3, r5, #0\n"
+    "    bl __21DmaTransferDescriptorPCvPvUi\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    cmp r0, #7\n"
+    "    bhi .Ljp_0804FD14\n"
+    "    lsls r0, r0, #4\n"
+    "    adds r0, #4\n"
+    "    adds r0, r4, r0\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804FD0E\n"
+    "    adds r1, r6, #0\n"
+    "    ldm r1!, {r2, r3, r5}\n"
+    "    stm r0!, {r2, r3, r5}\n"
+    "    ldr r1, [r1]\n"
+    "    str r1, [r0]\n"
+    ".Ljp_0804FD0E:\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    adds r0, #1\n"
+    "    str r0, [r7, #0x3c]\n"
+    ".Ljp_0804FD14:\n"
+    "    add r0, sp, #0x1c\n"
+    "    ldr r5, [sp, #0x1c]\n"
+    "    mov r8, r5\n"
+    "    movs r3, #0\n"
+    "    cmp r5, #0\n"
+    "    beq .Ljp_0804FD22\n"
+    "    ldrh r3, [r0, #4]\n"
+    ".Ljp_0804FD22:\n"
+    "    adds r5, r3, #0\n"
+    "    cmp r5, #0x20\n"
+    "    bls .Ljp_0804FD2A\n"
+    "    movs r5, #0x20\n"
+    ".Ljp_0804FD2A:\n"
+    "    movs r1, #0xf4\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r7, r1\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjPaletteBank\n"
+    "    adds r2, r0, #0\n"
+    "    lsls r2, r2, #5\n"
+    "    ldr r3, .Ljp_0804FE08 @ =OBJ_PALETTE\n"
+    "    adds r2, r2, r3\n"
+    "    add r0, sp, #0x2c\n"
+    "    mov r1, r8\n"
+    "    adds r3, r5, #0\n"
+    "    bl __21DmaTransferDescriptorPCvPvUi\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    cmp r0, #7\n"
+    "    bhi .Ljp_0804FD68\n"
+    "    lsls r0, r0, #4\n"
+    "    adds r0, #4\n"
+    "    adds r0, r4, r0\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804FD62\n"
+    "    adds r1, r6, #0\n"
+    "    ldm r1!, {r2, r4, r5}\n"
+    "    stm r0!, {r2, r4, r5}\n"
+    "    ldr r1, [r1]\n"
+    "    str r1, [r0]\n"
+    ".Ljp_0804FD62:\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    adds r0, #1\n"
+    "    str r0, [r7, #0x3c]\n"
+    ".Ljp_0804FD68:\n"
+    "    movs r3, #0xee\n"
+    "    lsls r3, r3, #1\n"
+    "    adds r2, r7, r3\n"
+    "    ldrb r1, [r2]\n"
+    "    movs r0, #3\n"
+    "    rsbs r0, r0, #0\n"
+    "    ands r0, r1\n"
+    "    strb r0, [r2]\n"
+    ".Ljp_0804FD78:\n"
+    "    adds r4, r6, #0\n"
+    "    movs r1, #0\n"
+    "    movs r0, #0\n"
+    "    strh r0, [r4, #4]\n"
+    "    strh r0, [r4, #6]\n"
+    "    strh r0, [r4, #8]\n"
+    "    str r0, [r4, #0xc]\n"
+    "    strb r1, [r4, #0x10]\n"
+    "    strb r1, [r4, #0x11]\n"
+    "    str r0, [r4, #0x14]\n"
+    "    strb r1, [r4, #0x18]\n"
+    "    movs r0, #0x28\n"
+    "    strh r0, [r4]\n"
+    "    movs r0, #0x68\n"
+    "    strh r0, [r4, #2]\n"
+    "    movs r5, #0xea\n"
+    "    lsls r5, r5, #1\n"
+    "    adds r0, r7, r5\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjTileIndex\n"
+    "    strh r0, [r4, #6]\n"
+    "    movs r1, #0xf4\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r7, r1\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjPaletteBank\n"
+    "    strh r0, [r4, #4]\n"
+    "    movs r0, #1\n"
+    "    strb r0, [r4, #0x18]\n"
+    "    ldr r0, [sp, #0xc]\n"
+    "    adds r1, r0, #0\n"
+    "    movs r2, #0\n"
+    "    cmp r1, #0\n"
+    "    beq .Ljp_0804FDC4\n"
+    "    ldr r3, [sp, #0x90]\n"
+    "    ldrh r2, [r3, #4]\n"
+    ".Ljp_0804FDC4:\n"
+    "    ldr r0, [sp, #0x78]\n"
+    "    adds r3, r6, #0\n"
+    "    bl DrawIndexedResourceSprites\n"
+    ".Ljp_0804FDCC:\n"
+    "    movs r4, #0xf8\n"
+    "    lsls r4, r4, #1\n"
+    "    adds r0, r7, r4\n"
+    "    ldrb r3, [r0]\n"
+    "    lsls r0, r3, #0x1f\n"
+    "    cmp r0, #0\n"
+    "    bne .Ljp_0804FDDC\n"
+    "    b .Ljp_0804FFDC\n"
+    ".Ljp_0804FDDC:\n"
+    "    movs r5, #0xea\n"
+    "    lsls r5, r5, #1\n"
+    "    adds r4, r7, r5\n"
+    "    ldr r2, [r4, #4]\n"
+    "    rsbs r0, r2, #0\n"
+    "    orrs r0, r2\n"
+    "    cmp r0, #0\n"
+    "    b .Ljp_0804FE10\n"
+    "    .align 2, 0\n"
+    ".Ljp_0804FDEC: .word 0xFFFFFCFF\n"
+    ".Ljp_0804FDF0: .word 0xFFFFFF00\n"
+    ".Ljp_0804FDF4: .word 0x000001FF\n"
+    ".Ljp_0804FDF8: .word 0xFFFFFE00\n"
+    ".Ljp_0804FDFC: .word 0x000068A0\n"
+    ".Ljp_0804FE00: .word 0x00000534\n"
+    ".Ljp_0804FE04: .word 0x06010F00\n"
+    ".Ljp_0804FE08: .word OBJ_PALETTE\n"
+    ".Ljp_0804FE0C: .word OBJ_VRAM0\n"
+    ".Ljp_0804FE10:\n"
+    "    blt .Ljp_0804FE14\n"
+    "    b .Ljp_0804FFDC\n"
+    ".Ljp_0804FE14:\n"
+    "    ldr r6, [sp, #0xa4]\n"
+    "    ldrh r0, [r6]\n"
+    "    movs r5, #0xfc\n"
+    "    lsls r5, r5, #6\n"
+    "    adds r1, r5, #0\n"
+    "    orrs r0, r1\n"
+    "    strh r0, [r6]\n"
+    "    ldrb r0, [r7]\n"
+    "    lsls r0, r0, #0x1e\n"
+    "    lsrs r0, r0, #0x1e\n"
+    "    movs r1, #1\n"
+    "    lsls r1, r0\n"
+    "    movs r0, #0x3f\n"
+    "    bics r0, r1\n"
+    "    lsls r0, r0, #8\n"
+    "    ldr r6, [sp, #0xa8]\n"
+    "    ldrh r1, [r6]\n"
+    "    orrs r0, r1\n"
+    "    strh r0, [r6]\n"
+    "    ldr r1, .Ljp_0804FFAC @ =0x000080F0\n"
+    "    adds r0, r1, #0\n"
+    "    ldr r5, [sp, #0x90]\n"
+    "    strh r0, [r5]\n"
+    "    ldr r6, [sp, #0x98]\n"
+    "    strh r0, [r6]\n"
+    "    ldr r1, .Ljp_0804FFB0 @ =0x00005068\n"
+    "    adds r0, r1, #0\n"
+    "    strh r0, [r5]\n"
+    "    ldr r5, [sp, #0xa0]\n"
+    "    strh r0, [r5]\n"
+    "    lsls r0, r3, #0x1e\n"
+    "    movs r6, #0x10\n"
+    "    adds r6, r6, r7\n"
+    "    mov sl, r6\n"
+    "    add r1, sp, #0x70\n"
+    "    mov r8, r1\n"
+    "    cmp r0, #0\n"
+    "    bge .Ljp_0804FED6\n"
+    "    adds r0, r4, #0\n"
+    "    adds r1, r2, #0\n"
+    "    bl GetObjTileIndex\n"
+    "    movs r2, #0\n"
+    "    mov sb, r2\n"
+    "    adds r4, r7, #0\n"
+    "    adds r4, #0x3c\n"
+    "    lsls r0, r0, #5\n"
+    "    ldr r3, .Ljp_0804FFB4 @ =0x06010C00\n"
+    "    adds r3, r0, r3\n"
+    "    str r3, [sp, #0xb4]\n"
+    "    movs r6, #0xfc\n"
+    "    lsls r6, r6, #1\n"
+    "    adds r5, r7, r6\n"
+    ".Ljp_0804FE7E:\n"
+    "    add r0, sp, #0xc\n"
+    "    adds r1, r5, #0\n"
+    "    ldr r2, [sp, #0xb4]\n"
+    "    movs r3, #0x80\n"
+    "    lsls r3, r3, #1\n"
+    "    bl __21DmaTransferDescriptorPCvPvUi\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    cmp r0, #7\n"
+    "    bhi .Ljp_0804FEAC\n"
+    "    lsls r0, r0, #4\n"
+    "    adds r0, #4\n"
+    "    adds r0, r4, r0\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0804FEA6\n"
+    "    ldr r1, [sp, #0x90]\n"
+    "    ldm r1!, {r2, r3, r6}\n"
+    "    stm r0!, {r2, r3, r6}\n"
+    "    ldr r1, [r1]\n"
+    "    str r1, [r0]\n"
+    ".Ljp_0804FEA6:\n"
+    "    ldr r0, [r7, #0x3c]\n"
+    "    adds r0, #1\n"
+    "    str r0, [r7, #0x3c]\n"
+    ".Ljp_0804FEAC:\n"
+    "    ldr r0, [sp, #0xb4]\n"
+    "    movs r1, #0x80\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r0, r1\n"
+    "    str r0, [sp, #0xb4]\n"
+    "    movs r2, #0x82\n"
+    "    lsls r2, r2, #1\n"
+    "    adds r5, r5, r2\n"
+    "    movs r3, #1\n"
+    "    add sb, r3\n"
+    "    mov r6, sb\n"
+    "    cmp r6, #2\n"
+    "    bls .Ljp_0804FE7E\n"
+    "    movs r0, #0xf8\n"
+    "    lsls r0, r0, #1\n"
+    "    adds r2, r7, r0\n"
+    "    ldrb r1, [r2]\n"
+    "    movs r0, #3\n"
+    "    rsbs r0, r0, #0\n"
+    "    ands r0, r1\n"
+    "    strb r0, [r2]\n"
+    ".Ljp_0804FED6:\n"
+    "    movs r0, #0\n"
+    "    movs r1, #0\n"
+    "    str r0, [sp, #0x70]\n"
+    "    str r1, [sp, #0x74]\n"
+    "    ldr r1, .Ljp_0804FFB8 @ =0xFFFFFF00\n"
+    "    ldr r0, [sp, #0x70]\n"
+    "    ands r0, r1\n"
+    "    movs r1, #0x54\n"
+    "    orrs r0, r1\n"
+    "    ldr r1, .Ljp_0804FFBC @ =0xFE00FFFF\n"
+    "    ands r0, r1\n"
+    "    movs r1, #0x88\n"
+    "    lsls r1, r1, #0x10\n"
+    "    orrs r0, r1\n"
+    "    ldr r1, .Ljp_0804FFC0 @ =0xFFFF3FFF\n"
+    "    ands r0, r1\n"
+    "    movs r1, #0x80\n"
+    "    lsls r1, r1, #7\n"
+    "    orrs r0, r1\n"
+    "    ldr r1, .Ljp_0804FFC4 @ =0x3FFFFFFF\n"
+    "    ands r0, r1\n"
+    "    movs r1, #0x80\n"
+    "    lsls r1, r1, #0x18\n"
+    "    orrs r0, r1\n"
+    "    str r0, [sp, #0x70]\n"
+    "    movs r1, #0xea\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r7, r1\n"
+    "    ldr r1, [r0, #4]\n"
+    "    bl GetObjTileIndex\n"
+    "    adds r0, #0x60\n"
+    "    lsls r0, r0, #0x16\n"
+    "    lsrs r0, r0, #0x16\n"
+    "    ldr r4, .Ljp_0804FFC8 @ =0xFFFFFC00\n"
+    "    mov r2, r8\n"
+    "    ldr r1, [r2, #4]\n"
+    "    ands r1, r4\n"
+    "    orrs r1, r0\n"
+    "    str r1, [r2, #4]\n"
+    "    mov r3, sl\n"
+    "    ldr r1, [r3, #4]\n"
+    "    mov r0, sl\n"
+    "    bl GetObjPaletteBank\n"
+    "    lsls r0, r0, #0x10\n"
+    "    lsrs r0, r0, #0x10\n"
+    "    movs r1, #0xf\n"
+    "    ands r0, r1\n"
+    "    lsls r0, r0, #0xc\n"
+    "    ldr r2, .Ljp_0804FFCC @ =0xFFFF0FFF\n"
+    "    mov r5, r8\n"
+    "    ldr r1, [r5, #4]\n"
+    "    ands r1, r2\n"
+    "    orrs r1, r0\n"
+    "    str r1, [r5, #4]\n"
+    "    movs r1, #0x80\n"
+    "    lsls r1, r1, #5\n"
+    "    ldr r0, [sp, #0x70]\n"
+    "    orrs r0, r1\n"
+    "    str r0, [sp, #0x70]\n"
+    "    movs r5, #0\n"
+    "    mov r3, r8\n"
+    "    ldr r6, .Ljp_0804FFD0 @ =0xFFFFFE00\n"
+    "    mov sb, r6\n"
+    ".Ljp_0804FF58:\n"
+    "    ldr r0, [sp, #0x78]\n"
+    "    ldrb r2, [r0]\n"
+    "    cmp r2, #0x7f\n"
+    "    bhi .Ljp_0804FF76\n"
+    "    lsls r1, r2, #3\n"
+    "    adds r1, #4\n"
+    "    adds r1, r0, r1\n"
+    "    ldr r0, [sp, #0x70]\n"
+    "    str r0, [r1]\n"
+    "    mov r6, r8\n"
+    "    ldrh r0, [r6, #4]\n"
+    "    strh r0, [r1, #4]\n"
+    "    adds r0, r2, #1\n"
+    "    ldr r1, [sp, #0x78]\n"
+    "    strb r0, [r1]\n"
+    ".Ljp_0804FF76:\n"
+    "    ldrh r2, [r3, #2]\n"
+    "    lsls r1, r2, #0x17\n"
+    "    lsrs r1, r1, #0x17\n"
+    "    adds r1, #0x20\n"
+    "    ldr r6, .Ljp_0804FFD4 @ =0x000001FF\n"
+    "    adds r0, r6, #0\n"
+    "    ands r1, r0\n"
+    "    mov r0, sb\n"
+    "    ands r0, r2\n"
+    "    orrs r0, r1\n"
+    "    strh r0, [r3, #2]\n"
+    "    ldrh r2, [r3, #4]\n"
+    "    lsls r1, r2, #0x16\n"
+    "    lsrs r1, r1, #0x16\n"
+    "    adds r1, #8\n"
+    "    ldr r6, .Ljp_0804FFD8 @ =0x000003FF\n"
+    "    adds r0, r6, #0\n"
+    "    ands r1, r0\n"
+    "    adds r0, r4, #0\n"
+    "    ands r0, r2\n"
+    "    orrs r0, r1\n"
+    "    strh r0, [r3, #4]\n"
+    "    adds r5, #1\n"
+    "    cmp r5, #2\n"
+    "    bls .Ljp_0804FF58\n"
+    "    b .Ljp_08050066\n"
+    "    .align 2, 0\n"
+    ".Ljp_0804FFAC: .word 0x000080F0\n"
+    ".Ljp_0804FFB0: .word 0x00005068\n"
+    ".Ljp_0804FFB4: .word 0x06010C00\n"
+    ".Ljp_0804FFB8: .word 0xFFFFFF00\n"
+    ".Ljp_0804FFBC: .word 0xFE00FFFF\n"
+    ".Ljp_0804FFC0: .word 0xFFFF3FFF\n"
+    ".Ljp_0804FFC4: .word 0x3FFFFFFF\n"
+    ".Ljp_0804FFC8: .word 0xFFFFFC00\n"
+    ".Ljp_0804FFCC: .word 0xFFFF0FFF\n"
+    ".Ljp_0804FFD0: .word 0xFFFFFE00\n"
+    ".Ljp_0804FFD4: .word 0x000001FF\n"
+    ".Ljp_0804FFD8: .word 0x000003FF\n"
+    ".Ljp_0804FFDC:\n"
+    "    ldr r1, .Ljp_0804FFF4 @ =0x0000F0F0\n"
+    "    adds r0, r1, #0\n"
+    "    ldr r2, [sp, #0x90]\n"
+    "    strh r0, [r2]\n"
+    "    ldr r3, [sp, #0x98]\n"
+    "    strh r0, [r3]\n"
+    "    ldr r4, .Ljp_0804FFF8 @ =0x0000A0A0\n"
+    "    adds r0, r4, #0\n"
+    "    strh r0, [r2]\n"
+    "    ldr r5, [sp, #0xa0]\n"
+    "    strh r0, [r5]\n"
+    "    b .Ljp_08050066\n"
+    "    .align 2, 0\n"
+    ".Ljp_0804FFF4: .word 0x0000F0F0\n"
+    ".Ljp_0804FFF8: .word 0x0000A0A0\n"
+    ".Ljp_0804FFFC:\n"
+    "    lsls r0, r6, #3\n"
+    "    subs r0, r0, r6\n"
+    "    lsls r0, r0, #3\n"
+    "    movs r1, #9\n"
+    "    bl __udivsi3\n"
+    "    adds r5, r0, #0\n"
+    "    lsrs r0, r5, #0x1f\n"
+    "    adds r0, r5, r0\n"
+    "    asrs r0, r0, #1\n"
+    "    movs r4, #0x84\n"
+    "    subs r4, r4, r0\n"
+    "    lsls r0, r6, #4\n"
+    "    subs r0, r0, r6\n"
+    "    lsls r0, r0, #4\n"
+    "    movs r1, #9\n"
+    "    bl __udivsi3\n"
+    "    lsrs r2, r0, #0x1f\n"
+    "    adds r2, r0, r2\n"
+    "    asrs r2, r2, #1\n"
+    "    movs r1, #0x78\n"
+    "    subs r1, r1, r2\n"
+    "    lsls r2, r1, #8\n"
+    "    adds r1, r1, r0\n"
+    "    orrs r2, r1\n"
+    "    ldr r6, [sp, #0x90]\n"
+    "    strh r2, [r6]\n"
+    "    ldr r0, [sp, #0x7c]\n"
+    "    adds r0, #0x40\n"
+    "    strh r2, [r0]\n"
+    "    lsls r0, r4, #8\n"
+    "    adds r4, r4, r5\n"
+    "    orrs r0, r4\n"
+    "    strh r0, [r6]\n"
+    "    ldr r1, [sp, #0x7c]\n"
+    "    adds r1, #0x44\n"
+    "    strh r0, [r1]\n"
+    "    ldr r1, .Ljp_0805008C @ =0x0000F0F0\n"
+    "    adds r0, r1, #0\n"
+    "    strh r0, [r6]\n"
+    "    ldr r1, [sp, #0x7c]\n"
+    "    adds r1, #0x42\n"
+    "    strh r0, [r1]\n"
+    "    ldr r2, .Ljp_08050090 @ =0x0000A0A0\n"
+    "    adds r0, r2, #0\n"
+    "    strh r0, [r6]\n"
+    "    ldr r1, [sp, #0x7c]\n"
+    "    adds r1, #0x46\n"
+    "    strh r0, [r1]\n"
+    "    adds r3, r7, #0\n"
+    "    adds r3, #0xc0\n"
+    "    str r3, [sp, #0xb0]\n"
+    ".Ljp_08050066:\n"
+    "    ldr r0, [r7, #4]\n"
+    "    cmp r0, #2\n"
+    "    bne .Ljp_0805009C\n"
+    "    ldr r4, [sp, #0xa4]\n"
+    "    ldrh r0, [r4]\n"
+    "    ldr r5, .Ljp_08050094 @ =0x00002020\n"
+    "    adds r1, r5, #0\n"
+    "    orrs r0, r1\n"
+    "    strh r0, [r4]\n"
+    "    ldrb r0, [r7]\n"
+    "    lsls r0, r0, #0x1e\n"
+    "    lsrs r0, r0, #0x1e\n"
+    "    movs r1, #1\n"
+    "    lsls r1, r0\n"
+    "    ldr r0, .Ljp_08050098 @ =0x08083F40\n"
+    "    orrs r1, r0\n"
+    "    ldr r6, [sp, #0x7c]\n"
+    "    str r1, [r6, #0x50]\n"
+    "    b .Ljp_080500BE\n"
+    "    .align 2, 0\n"
+    ".Ljp_0805008C: .word 0x0000F0F0\n"
+    ".Ljp_08050090: .word 0x0000A0A0\n"
+    ".Ljp_08050094: .word 0x00002020\n"
+    ".Ljp_08050098: .word 0x08083F40\n"
+    ".Ljp_0805009C:\n"
+    "    cmp r0, #1\n"
+    "    bne .Ljp_080500BE\n"
+    "    movs r0, #0x98\n"
+    "    lsls r0, r0, #1\n"
+    "    adds r3, r7, r0\n"
+    "    ldr r1, [r3]\n"
+    "    rsbs r0, r1, #0\n"
+    "    orrs r0, r1\n"
+    "    cmp r0, #0\n"
+    "    blt .Ljp_080500BE\n"
+    "    ldr r1, [sp, #0xdc]\n"
+    "    ldr r0, [r1, #8]\n"
+    "    ldr r2, [r0, #0x10]\n"
+    "    adds r0, r1, #0\n"
+    "    adds r1, r3, #0\n"
+    "    bl _call_via_r2\n"
+    ".Ljp_080500BE:\n"
+    "    ldr r2, [sp, #0xd8]\n"
+    "    ldr r0, [r2, #8]\n"
+    "    ldr r2, [r0, #0x10]\n"
+    "    ldr r0, [sp, #0xd8]\n"
+    "    ldr r1, [sp, #0xb0]\n"
+    "    bl _call_via_r2\n"
+    "    b .Ljp_0805010E\n"
+    "\n"
+    "    @ A long Thumb BL enters this block with the parent's r7 and stack.\n"
+    "    @ It exits through the enclosing UI update's epilogue, not back to LR.\n"
+    ".Ljp_ui_payload_inactive_exit:\n"
+    "    ldrb r0, [r7]\n"
+    "    lsls r0, r0, #0x1e\n"
+    "    lsrs r0, r0, #0x1e\n"
+    "    movs r1, #0x80\n"
+    "    lsls r1, r1, #1\n"
+    "    lsls r1, r0\n"
+    "    movs r3, #0xc0\n"
+    "    lsls r3, r3, #7\n"
+    "    adds r0, r3, #0\n"
+    "    orrs r1, r0\n"
+    "    ldr r4, [sp, #0x7c]\n"
+    "    ldrh r0, [r4]\n"
+    "    bics r0, r1\n"
+    "    strh r0, [r4]\n"
+    "    ldr r0, [r7, #4]\n"
+    "    cmp r0, #1\n"
+    "    bne .Ljp_0805010E\n"
+    "    movs r5, #0x98\n"
+    "    lsls r5, r5, #1\n"
+    "    adds r3, r7, r5\n"
+    "    ldr r1, [r3]\n"
+    "    rsbs r0, r1, #0\n"
+    "    orrs r0, r1\n"
+    "    cmp r0, #0\n"
+    "    bge .Ljp_0805010E\n"
+    "    ldr r6, [sp, #0xdc]\n"
+    "    ldr r0, [r6, #8]\n"
+    "    ldr r2, [r0, #0x14]\n"
+    "    adds r0, r6, #0\n"
+    "    adds r1, r3, #0\n"
+    "    bl _call_via_r2\n"
+    ".Ljp_0805010E:\n"
+    "    ldr r0, [r7, #8]\n"
+    "    ldr r1, .Ljp_08050124 @ =__vt_11UiTextInput\n"
+    "    str r1, [sp]\n"
+    "    add sp, #0xb8\n"
+    "    pop {r3, r4, r5}\n"
+    "    mov r8, r3\n"
+    "    mov sb, r4\n"
+    "    mov sl, r5\n"
+    "    pop {r4, r5, r6, r7}\n"
+    "    pop {r1}\n"
+    "    bx r1\n"
+    "    .align 2, 0\n"
+    ".Ljp_08050124: .word __vt_11UiTextInput\n"
+    "\n"
+    "    .else\n"
+    "    .align 2, 0\n"
+    "\tthumb_func_start Update__14UiStatePayloadP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
+    "Update__14UiStatePayloadP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot: @ 0x0804F7A4\n"
+    "\tpush {r4, r5, r6, r7, lr}\n"
+    "\tmov r7, sl\n"
+    "\tmov r6, sb\n"
+    "\tmov r5, r8\n"
+    "\tpush {r5, r6, r7}\n"
+    "\tsub sp, #0xb8\n"
+    "\tadds r7, r0, #0\n"
+    "\tstr r2, [sp, #0x78]\n"
+    "\tstr r3, [sp, #0x7c]\n"
+    "\tldr r0, [sp, #0xe0]\n"
+    "\tmov sl, r0\n"
+    "\tldrh r3, [r1, #4]\n"
+    "\tldrh r6, [r1, #8]\n"
+    "\tldrb r2, [r7, #0xd]\n"
+    "\tmov r1, sp\n"
+    "\tldr r0, .L0804F7DC @ =__vt_18UiTextInputAdapter\n"
+    "\tstr r0, [sp]\n"
+    "\tstr r3, [sp, #4]\n"
+    "\tstrb r2, [r1, #8]\n"
+    "\tldr r0, [r7, #8]\n"
+    "\tcmp r0, #6\n"
+    "\tbls .L0804F7D2\n"
+    "\tb .L0804F99C\n"
+    ".L0804F7D2:\n"
+    "\tlsls r0, r0, #2\n"
+    "\tldr r1, .L0804F7E0 @ =.L0804F7E4\n"
+    "\tadds r0, r0, r1\n"
+    "\tldr r0, [r0]\n"
+    "\tmov pc, r0\n"
+    "\t.align 2, 0\n"
+    ".L0804F7DC: .word __vt_18UiTextInputAdapter\n"
+    ".L0804F7E0: .word .L0804F7E4\n"
+    ".L0804F7E4: @ jump table\n"
+    "\t.word .L0804F99C @ case 0\n"
+    "\t.word .L0804F800 @ case 1\n"
+    "\t.word .L0804F880 @ case 2\n"
+    "\t.word .L0804F99C @ case 3\n"
+    "\t.word .L0804F892 @ case 4\n"
+    "\t.word .L0804F892 @ case 5\n"
+    "\t.word .L0804F90A @ case 6\n"
+    ".L0804F800:\n"
+    "\tldrb r0, [r7, #0xc]\n"
+    "\tcmp r0, #8\n"
+    "\tbls .L0804F834\n"
+    "\tadds r0, r7, #0\n"
+    "\tadds r0, #0xec\n"
+    "\tldr r0, [r0]\n"
+    "\tadds r1, r0, #0\n"
+    "\tcmp r0, #1\n"
+    "\tbeq .L0804F828\n"
+    "\tcmp r0, #1\n"
+    "\tbgt .L0804F81C\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804F822\n"
+    "\tb .L0804F99C\n"
+    ".L0804F81C:\n"
+    "\tcmp r1, #2\n"
+    "\tbeq .L0804F82E\n"
+    "\tb .L0804F99C\n"
+    ".L0804F822:\n"
+    "\tmovs r0, #3\n"
+    "\tstr r0, [r7, #8]\n"
+    "\tb .L0804F99C\n"
+    ".L0804F828:\n"
+    "\tmovs r0, #4\n"
+    "\tstr r0, [r7, #8]\n"
+    "\tb .L0804F99C\n"
+    ".L0804F82E:\n"
+    "\tmovs r0, #5\n"
+    "\tstr r0, [r7, #8]\n"
+    "\tb .L0804F99C\n"
+    ".L0804F834:\n"
+    "\tadds r0, #1\n"
+    "\tstrb r0, [r7, #0xc]\n"
+    "\tmovs r1, #0xa4\n"
+    "\tlsls r1, r1, #1\n"
+    "\tadds r0, r7, r1\n"
+    "\tldr r1, [r0]\n"
+    "\trsbs r0, r1, #0\n"
+    "\torrs r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tblt .L0804F84A\n"
+    "\tb .L0804F99C\n"
+    ".L0804F84A:\n"
+    "\tmovs r2, #0xaa\n"
+    "\tlsls r2, r2, #3\n"
+    "\tadds r0, r7, r2\n"
+    "\tldrb r0, [r0]\n"
+    "\tlsls r0, r0, #0x1a\n"
+    "\tlsrs r0, r0, #0x1a\n"
+    "\tmovs r1, #1\n"
+    "\tands r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tbne .L0804F860\n"
+    "\tb .L0804F99C\n"
+    ".L0804F860:\n"
+    "\tmov r3, sl\n"
+    "\tcmp r3, #0\n"
+    "\tbne .L0804F868\n"
+    "\tb .L0804F99C\n"
+    ".L0804F868:\n"
+    "\tmov r0, sl\n"
+    "\tbl IsUnpaused__C23HardwareMusicPlayerSlot\n"
+    "\tlsls r0, r0, #0x18\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804F876\n"
+    "\tb .L0804F99C\n"
+    ".L0804F876:\n"
+    "\tmov r0, sl\n"
+    "\tmovs r1, #0xc8\n"
+    "\tbl Start__23HardwareMusicPlayerSlotUs\n"
+    "\tb .L0804F99C\n"
+    ".L0804F880:\n"
+    "\tldrb r0, [r7, #0xc]\n"
+    "\tadds r1, r0, #0\n"
+    "\tcmp r1, #0\n"
+    "\tbne .L0804F88C\n"
+    "\tstr r1, [r7, #8]\n"
+    "\tb .L0804F99C\n"
+    ".L0804F88C:\n"
+    "\tsubs r0, #1\n"
+    "\tstrb r0, [r7, #0xc]\n"
+    "\tb .L0804F99C\n"
+    ".L0804F892:\n"
+    "\tadds r0, r7, #0\n"
+    "\tadds r0, #0xec\n"
+    "\tadds r1, r7, #0\n"
+    "\tadds r1, #0xd0\n"
+    "\tmov r2, sp\n"
+    "\tbl UpdateUiTextStream\n"
+    "\tcmp r0, #1\n"
+    "\tbeq .L0804F8B8\n"
+    "\tcmp r0, #1\n"
+    "\tbgt .L0804F8AE\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804F8B4\n"
+    "\tb .L0804F8D8\n"
+    ".L0804F8AE:\n"
+    "\tcmp r0, #2\n"
+    "\tbeq .L0804F8BC\n"
+    "\tb .L0804F8D8\n"
+    ".L0804F8B4:\n"
+    "\tmovs r0, #3\n"
+    "\tb .L0804F8D6\n"
+    ".L0804F8B8:\n"
+    "\tmovs r0, #4\n"
+    "\tb .L0804F8D6\n"
+    ".L0804F8BC:\n"
+    "\tldr r0, [r7, #8]\n"
+    "\tcmp r0, #5\n"
+    "\tbeq .L0804F8D8\n"
+    "\tmovs r4, #0xe0\n"
+    "\tlsls r4, r4, #1\n"
+    "\tadds r0, r7, r4\n"
+    "\tmovs r5, #0xc8\n"
+    "\tlsls r5, r5, #1\n"
+    "\tadds r1, r7, r5\n"
+    "\tmovs r2, #0\n"
+    "\tbl InitializeIndexedResourceHandle\n"
+    "\tmovs r0, #5\n"
+    ".L0804F8D6:\n"
+    "\tstr r0, [r7, #8]\n"
+    ".L0804F8D8:\n"
+    "\tadds r0, r7, #0\n"
+    "\tadds r0, #0xeb\n"
+    "\tldrb r1, [r0]\n"
+    "\tadds r4, r0, #0\n"
+    "\tcmp r1, #0\n"
+    "\tbeq .L0804F99C\n"
+    "\tmovs r6, #0xaa\n"
+    "\tlsls r6, r6, #3\n"
+    "\tadds r0, r7, r6\n"
+    "\tldrb r0, [r0]\n"
+    "\tlsls r0, r0, #0x1a\n"
+    "\tlsrs r0, r0, #0x1a\n"
+    "\tmovs r1, #4\n"
+    "\tands r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804F904\n"
+    "\tmov r0, sl\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804F904\n"
+    "\tmovs r1, #0xc9\n"
+    "\tbl StartIfChangedOrPaused__23HardwareMusicPlayerSlotUs\n"
+    ".L0804F904:\n"
+    "\tmovs r0, #0\n"
+    "\tstrb r0, [r4]\n"
+    "\tb .L0804F99C\n"
+    ".L0804F90A:\n"
+    "\tadds r0, r7, #0\n"
+    "\tadds r0, #0xd0\n"
+    "\tldrb r0, [r0, #0x1a]\n"
+    "\tcmp r0, #0\n"
+    "\tbne .L0804F99C\n"
+    "\tmovs r0, #1\n"
+    "\tands r3, r0\n"
+    "\tcmp r3, #0\n"
+    "\tbeq .L0804F944\n"
+    "\tmovs r0, #3\n"
+    "\tstr r0, [r7, #8]\n"
+    "\tmovs r1, #0xaa\n"
+    "\tlsls r1, r1, #3\n"
+    "\tadds r0, r7, r1\n"
+    "\tldrb r0, [r0]\n"
+    "\tlsls r0, r0, #0x1a\n"
+    "\tlsrs r0, r0, #0x1a\n"
+    "\tmovs r1, #0x20\n"
+    "\tands r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804F99C\n"
+    "\tmov r2, sl\n"
+    "\tcmp r2, #0\n"
+    "\tbeq .L0804F99C\n"
+    "\tmov r0, sl\n"
+    "\tmovs r1, #0xc5\n"
+    "\tbl Start__23HardwareMusicPlayerSlotUs\n"
+    "\tb .L0804F99C\n"
+    ".L0804F944:\n"
+    "\tlsls r3, r6, #0x18\n"
+    "\tlsrs r3, r3, #0x1f\n"
+    "\tlsls r2, r6, #0x19\n"
+    "\tlsrs r2, r2, #0x1f\n"
+    "\tlsls r1, r6, #0x1a\n"
+    "\tlsrs r1, r1, #0x1f\n"
+    "\tlsls r0, r6, #0x1b\n"
+    "\tlsrs r0, r0, #0x1f\n"
+    "\teors r3, r2\n"
+    "\teors r1, r0\n"
+    "\tcmp r3, r1\n"
+    "\tbeq .L0804F99C\n"
+    "\tmovs r3, #0xac\n"
+    "\tlsls r3, r3, #1\n"
+    "\tadds r4, r7, r3\n"
+    "\tldr r5, [r4]\n"
+    "\tmovs r1, #0xae\n"
+    "\tlsls r1, r1, #1\n"
+    "\tadds r0, r7, r1\n"
+    "\tldr r0, [r0]\n"
+    "\tadds r1, r5, #0\n"
+    "\tadds r2, r6, #0\n"
+    "\tbl MoveUiChoiceSelection\n"
+    "\tstr r0, [r4]\n"
+    "\tcmp r0, r5\n"
+    "\tbeq .L0804F99C\n"
+    "\tmovs r2, #0xaa\n"
+    "\tlsls r2, r2, #3\n"
+    "\tadds r0, r7, r2\n"
+    "\tldrb r0, [r0]\n"
+    "\tlsls r0, r0, #0x1a\n"
+    "\tlsrs r0, r0, #0x1a\n"
+    "\tmovs r1, #0x10\n"
+    "\tands r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804F99C\n"
+    "\tmov r3, sl\n"
+    "\tcmp r3, #0\n"
+    "\tbeq .L0804F99C\n"
+    "\tmov r0, sl\n"
+    "\tmovs r1, #0xcb\n"
+    "\tbl Start__23HardwareMusicPlayerSlotUs\n"
+    ".L0804F99C:\n"
+    "\tadds r3, r7, #0\n"
+    "\tadds r3, #0x20\n"
+    "\tmovs r2, #0\n"
+    "\tadds r1, r7, #0\n"
+    "\tadds r1, #0x30\n"
+    "\tldr r0, [r3, #0xc]\n"
+    "\tcmp r0, r1\n"
+    "\tbne .L0804F9AE\n"
+    "\tmovs r2, #1\n"
+    ".L0804F9AE:\n"
+    "\tcmp r2, #0\n"
+    "\tbne .L0804F9C0\n"
+    "\tldr r4, [sp, #0xd8]\n"
+    "\tldr r0, [r4, #8]\n"
+    "\tldr r2, [r0, #0x1c]\n"
+    "\tadds r0, r4, #0\n"
+    "\tadds r1, r3, #0\n"
+    "\tbl _call_via_r2\n"
+    ".L0804F9C0:\n"
+    "\tldr r0, [r7, #8]\n"
+    "\tcmp r0, #0\n"
+    "\tbne .L0804F9CA\n"
+    "\tbl .Lui_payload_inactive_exit\n"
+    ".L0804F9CA:\n"
+    "\tcmp r0, #6\n"
+    "\tbeq .L0804F9E2\n"
+    "\tmov r5, sp\n"
+    "\tadds r5, #0xc\n"
+    "\tstr r5, [sp, #0x90]\n"
+    "\tcmp r0, #5\n"
+    "\tbeq .L0804F9DA\n"
+    "\tb .L0804FB8A\n"
+    ".L0804F9DA:\n"
+    "\tldrb r0, [r7, #0xd]\n"
+    "\tcmp r0, #0\n"
+    "\tbne .L0804F9E2\n"
+    "\tb .L0804FB8A\n"
+    ".L0804F9E2:\n"
+    "\tmovs r6, #0xe0\n"
+    "\tlsls r6, r6, #1\n"
+    "\tadds r4, r7, r6\n"
+    "\tadds r0, r4, #0\n"
+    "\tbl UpdateIndexedResourceHandle\n"
+    "\tmov r8, r0\n"
+    "\tadd r5, sp, #0xc\n"
+    "\tldr r1, [r4]\n"
+    "\tldr r3, [r1]\n"
+    "\tldrh r2, [r4, #0xc]\n"
+    "\tmovs r4, #0xe2\n"
+    "\tlsls r4, r4, #1\n"
+    "\tadds r0, r7, r4\n"
+    "\tlsls r2, r2, #2\n"
+    "\tldr r0, [r0]\n"
+    "\tadds r0, r0, r2\n"
+    "\tldrh r2, [r0]\n"
+    "\tadds r0, r5, #0\n"
+    "\tldr r3, [r3, #0x10]\n"
+    "\tbl _call_via_r3\n"
+    "\tmov r6, r8\n"
+    "\tlsls r0, r6, #0x1e\n"
+    "\tstr r5, [sp, #0x90]\n"
+    "\tmovs r1, #0x18\n"
+    "\tadds r1, r1, r7\n"
+    "\tmov sb, r1\n"
+    "\tcmp r0, #0\n"
+    "\tbge .L0804FA6A\n"
+    "\tldr r5, [sp, #0x14]\n"
+    "\tldr r1, [r1, #4]\n"
+    "\tmov r0, sb\n"
+    "\tbl GetObjTileIndex\n"
+    "\tadds r2, r0, #0\n"
+    "\tadd r1, sp, #0x14\n"
+    "\tldr r0, [sp, #0x14]\n"
+    "\tmovs r3, #0\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804FA36\n"
+    "\tldrh r3, [r1, #4]\n"
+    ".L0804FA36:\n"
+    "\tadds r4, r7, #0\n"
+    "\tadds r4, #0x3c\n"
+    "\tlsls r2, r2, #5\n"
+    "\tldr r6, .L0804FAC8 @ =OBJ_VRAM0\n"
+    "\tadds r2, r2, r6\n"
+    "\tadd r0, sp, #0x2c\n"
+    "\tadds r1, r5, #0\n"
+    "\tbl __21DmaTransferDescriptorPCvPvUi\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tadd r6, sp, #0x2c\n"
+    "\tcmp r0, #7\n"
+    "\tbhi .L0804FA6A\n"
+    "\tlsls r0, r0, #4\n"
+    "\tadds r0, #4\n"
+    "\tadds r0, r4, r0\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804FA64\n"
+    "\tadds r1, r6, #0\n"
+    "\tldm r1!, {r2, r3, r4}\n"
+    "\tstm r0!, {r2, r3, r4}\n"
+    "\tldr r1, [r1]\n"
+    "\tstr r1, [r0]\n"
+    ".L0804FA64:\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tadds r0, #1\n"
+    "\tstr r0, [r7, #0x3c]\n"
+    ".L0804FA6A:\n"
+    "\tldr r0, [sp, #0xc]\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tldr r0, [r0]\n"
+    "\tstr r0, [sp, #0x58]\n"
+    "\tstr r1, [sp, #0x5c]\n"
+    "\tldr r0, [r7, #8]\n"
+    "\tcmp r0, #6\n"
+    "\tbne .L0804FAD8\n"
+    "\tmovs r5, #0xae\n"
+    "\tlsls r5, r5, #1\n"
+    "\tadds r0, r7, r5\n"
+    "\tldr r0, [r0]\n"
+    "\tmovs r6, #0xac\n"
+    "\tlsls r6, r6, #1\n"
+    "\tadds r1, r7, r6\n"
+    "\tldr r1, [r1]\n"
+    "\tbl GetUiChoiceLayoutPosition\n"
+    "\tadd r4, sp, #0x58\n"
+    "\tldrb r3, [r4]\n"
+    "\tadds r3, #0x73\n"
+    "\tlsls r2, r0, #0x1e\n"
+    "\tlsrs r2, r2, #0x1e\n"
+    "\tlsls r1, r2, #4\n"
+    "\tadds r1, r1, r2\n"
+    "\tadds r3, r3, r1\n"
+    "\tlsls r3, r3, #0x18\n"
+    "\tlsrs r3, r3, #0x18\n"
+    "\tldr r1, .L0804FACC @ =0xFFFFFF00\n"
+    "\tldr r2, [sp, #0x58]\n"
+    "\tands r2, r1\n"
+    "\torrs r2, r3\n"
+    "\tlsls r1, r2, #7\n"
+    "\tlsrs r1, r1, #0x17\n"
+    "\tadds r1, #8\n"
+    "\tlsls r0, r0, #0x19\n"
+    "\tlsrs r0, r0, #0x1b\n"
+    "\tlsls r0, r0, #3\n"
+    "\tadds r1, r1, r0\n"
+    "\tldr r0, .L0804FAD0 @ =0x000001FF\n"
+    "\tands r1, r0\n"
+    "\tlsls r1, r1, #0x10\n"
+    "\tldr r0, .L0804FAD4 @ =0xFE00FFFF\n"
+    "\tands r0, r2\n"
+    "\torrs r0, r1\n"
+    "\tstr r0, [sp, #0x58]\n"
+    "\tb .L0804FB32\n"
+    "\t.align 2, 0\n"
+    ".L0804FAC8: .word OBJ_VRAM0\n"
+    ".L0804FACC: .word 0xFFFFFF00\n"
+    ".L0804FAD0: .word 0x000001FF\n"
+    ".L0804FAD4: .word 0xFE00FFFF\n"
+    ".L0804FAD8:\n"
+    "\tldr r3, [sp, #0x58]\n"
+    "\tlsls r0, r3, #7\n"
+    "\tlsrs r0, r0, #0x17\n"
+    "\tadds r0, #0xec\n"
+    "\tldr r1, .L0804FCC4 @ =0x000001FF\n"
+    "\tands r0, r1\n"
+    "\tlsls r0, r0, #0x10\n"
+    "\tldr r2, .L0804FCC8 @ =0xFE00FFFF\n"
+    "\tands r2, r3\n"
+    "\torrs r2, r0\n"
+    "\tstr r2, [sp, #0x58]\n"
+    "\tadd r3, sp, #0x58\n"
+    "\tldrb r0, [r3]\n"
+    "\tadds r0, #0xa0\n"
+    "\tlsls r0, r0, #0x18\n"
+    "\tlsrs r0, r0, #0x18\n"
+    "\tldr r1, .L0804FCCC @ =0xFFFFFF00\n"
+    "\tands r1, r2\n"
+    "\torrs r1, r0\n"
+    "\tstr r1, [sp, #0x58]\n"
+    "\tmov r1, r8\n"
+    "\tlsls r0, r1, #0x1f\n"
+    "\tadds r4, r3, #0\n"
+    "\tcmp r0, #0\n"
+    "\tbne .L0804FB32\n"
+    "\tlsls r0, r1, #0x1e\n"
+    "\tcmp r0, #0\n"
+    "\tbge .L0804FB32\n"
+    "\tmovs r2, #0xaa\n"
+    "\tlsls r2, r2, #3\n"
+    "\tadds r0, r7, r2\n"
+    "\tldrb r0, [r0]\n"
+    "\tlsls r0, r0, #0x1a\n"
+    "\tlsrs r0, r0, #0x1a\n"
+    "\tmovs r1, #8\n"
+    "\tands r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804FB32\n"
+    "\tmov r3, sl\n"
+    "\tcmp r3, #0\n"
+    "\tbeq .L0804FB32\n"
+    "\tmov r0, sl\n"
+    "\tmovs r1, #0xca\n"
+    "\tbl Start__23HardwareMusicPlayerSlotUs\n"
+    ".L0804FB32:\n"
+    "\tadds r0, r7, #0\n"
+    "\tadds r0, #0x10\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjPaletteBank\n"
+    "\tlsls r0, r0, #0x10\n"
+    "\tlsrs r0, r0, #0x10\n"
+    "\tmovs r1, #0xf\n"
+    "\tands r0, r1\n"
+    "\tlsls r0, r0, #0xc\n"
+    "\tldr r2, .L0804FCD0 @ =0xFFFF0FFF\n"
+    "\tldr r1, [r4, #4]\n"
+    "\tands r1, r2\n"
+    "\torrs r1, r0\n"
+    "\tstr r1, [r4, #4]\n"
+    "\tmov r5, sb\n"
+    "\tldr r1, [r5, #4]\n"
+    "\tmov r0, sb\n"
+    "\tbl GetObjTileIndex\n"
+    "\tlsls r0, r0, #0x16\n"
+    "\tlsrs r0, r0, #0x16\n"
+    "\tldr r2, .L0804FCD4 @ =0xFFFFFC00\n"
+    "\tldr r1, [r4, #4]\n"
+    "\tands r1, r2\n"
+    "\torrs r1, r0\n"
+    "\tstr r1, [r4, #4]\n"
+    "\tmovs r0, #0x80\n"
+    "\tlsls r0, r0, #5\n"
+    "\tldr r1, [sp, #0x58]\n"
+    "\torrs r1, r0\n"
+    "\tstr r1, [sp, #0x58]\n"
+    "\tldr r6, [sp, #0x78]\n"
+    "\tldrb r2, [r6]\n"
+    "\tcmp r2, #0x7f\n"
+    "\tbhi .L0804FB8A\n"
+    "\tlsls r0, r2, #3\n"
+    "\tadds r0, #4\n"
+    "\tadds r0, r6, r0\n"
+    "\tstr r1, [r0]\n"
+    "\tldrh r1, [r4, #4]\n"
+    "\tstrh r1, [r0, #4]\n"
+    "\tadds r0, r2, #1\n"
+    "\tstrb r0, [r6]\n"
+    ".L0804FB8A:\n"
+    "\tmovs r6, #0\n"
+    "\tldrb r2, [r7]\n"
+    "\tlsls r5, r2, #0x1e\n"
+    "\tlsrs r5, r5, #0x1e\n"
+    "\tmovs r0, #0x80\n"
+    "\tlsls r0, r0, #1\n"
+    "\tlsls r0, r5\n"
+    "\tmovs r3, #0xc0\n"
+    "\tlsls r3, r3, #7\n"
+    "\tadds r1, r3, #0\n"
+    "\torrs r0, r1\n"
+    "\tldr r4, [sp, #0x7c]\n"
+    "\tldrh r1, [r4]\n"
+    "\torrs r0, r1\n"
+    "\tstrh r0, [r4]\n"
+    "\tlsls r3, r5, #1\n"
+    "\tlsls r4, r5, #2\n"
+    "\tadds r3, #8\n"
+    "\tldr r0, [sp, #0x7c]\n"
+    "\tadds r3, r0, r3\n"
+    "\tldrh r1, [r3]\n"
+    "\tmovs r0, #0x73\n"
+    "\tands r1, r0\n"
+    "\tlsls r2, r2, #0x19\n"
+    "\tlsrs r2, r2, #0x1b\n"
+    "\tlsls r2, r2, #8\n"
+    "\tldrh r0, [r7]\n"
+    "\tlsls r0, r0, #0x17\n"
+    "\tlsrs r0, r0, #0x1e\n"
+    "\tlsls r0, r0, #2\n"
+    "\torrs r2, r0\n"
+    "\torrs r1, r2\n"
+    "\tldr r2, [sp, #0x90]\n"
+    "\tstrh r1, [r2]\n"
+    "\tstrh r1, [r3]\n"
+    "\tstrh r6, [r2]\n"
+    "\tadds r0, r4, #0\n"
+    "\tadds r0, #0x10\n"
+    "\tldr r3, [sp, #0x7c]\n"
+    "\tadds r0, r3, r0\n"
+    "\tstrh r6, [r0]\n"
+    "\tldr r6, .L0804FCD8 @ =0x0000FFB0\n"
+    "\tadds r0, r6, #0\n"
+    "\tstrh r0, [r2]\n"
+    "\tadds r4, #0x12\n"
+    "\tadds r4, r3, r4\n"
+    "\tstrh r0, [r4]\n"
+    "\tmovs r1, #0x3f\n"
+    "\tstrh r1, [r2]\n"
+    "\tadds r2, r3, #0\n"
+    "\tadds r2, #0x48\n"
+    "\tstrh r1, [r2]\n"
+    "\tmovs r0, #1\n"
+    "\tlsls r0, r5\n"
+    "\tbics r1, r0\n"
+    "\tldr r0, [sp, #0x90]\n"
+    "\tstrh r1, [r0]\n"
+    "\tadds r0, r3, #0\n"
+    "\tadds r0, #0x4a\n"
+    "\tstrh r1, [r0]\n"
+    "\tldrb r6, [r7, #0xc]\n"
+    "\tstr r2, [sp, #0xa4]\n"
+    "\tstr r0, [sp, #0xa8]\n"
+    "\tcmp r6, #8\n"
+    "\tbhi .L0804FC0E\n"
+    "\tb .L08050270\n"
+    ".L0804FC0E:\n"
+    "\tadds r1, r7, #0\n"
+    "\tadds r1, #0xd0\n"
+    "\tstr r1, [sp, #0x80]\n"
+    "\tldr r0, [r1, #4]\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjPaletteBank\n"
+    "\tldr r2, [sp, #0x7c]\n"
+    "\tadds r2, #0x40\n"
+    "\tstr r2, [sp, #0x94]\n"
+    "\tldr r3, [sp, #0x7c]\n"
+    "\tadds r3, #0x44\n"
+    "\tstr r3, [sp, #0x9c]\n"
+    "\tldr r4, [sp, #0x7c]\n"
+    "\tadds r4, #0x42\n"
+    "\tstr r4, [sp, #0x98]\n"
+    "\tldr r5, [sp, #0x7c]\n"
+    "\tadds r5, #0x46\n"
+    "\tstr r5, [sp, #0xa0]\n"
+    "\tadds r6, r7, #0\n"
+    "\tadds r6, #0xc0\n"
+    "\tstr r6, [sp, #0xb0]\n"
+    "\tcmp r0, #0\n"
+    "\tbge .L0804FC40\n"
+    "\tb .L0804FD66\n"
+    ".L0804FC40:\n"
+    "\tmovs r1, #0\n"
+    "\tmovs r2, #0x6b\n"
+    "\tmov sl, r2\n"
+    "\tmov r3, sp\n"
+    "\tadds r3, #0x68\n"
+    "\tstr r3, [sp, #0xac]\n"
+    "\tlsls r0, r0, #4\n"
+    "\tstr r0, [sp, #0x88]\n"
+    ".L0804FC50:\n"
+    "\tldr r4, [sp, #0x80]\n"
+    "\tldrb r0, [r4, #0x18]\n"
+    "\tadds r0, r1, r0\n"
+    "\tcmp r0, #2\n"
+    "\tble .L0804FC5C\n"
+    "\tsubs r0, #3\n"
+    ".L0804FC5C:\n"
+    "\tlsls r0, r0, #2\n"
+    "\tldr r5, [sp, #0x80]\n"
+    "\tadds r0, r0, r5\n"
+    "\tldr r0, [r0, #8]\n"
+    "\tmovs r6, #8\n"
+    "\tmov sb, r6\n"
+    "\tadds r1, #1\n"
+    "\tstr r1, [sp, #0x84]\n"
+    "\tmov r1, sl\n"
+    "\tadds r1, #0x11\n"
+    "\tstr r1, [sp, #0x8c]\n"
+    "\tldr r4, [sp, #0xac]\n"
+    "\tadds r6, r0, #4\n"
+    "\tadds r5, r0, #0\n"
+    "\tmovs r2, #6\n"
+    "\tmov r8, r2\n"
+    ".L0804FC7C:\n"
+    "\tmovs r0, #0\n"
+    "\tmovs r1, #0\n"
+    "\tstr r0, [sp, #0x60]\n"
+    "\tstr r1, [sp, #0x64]\n"
+    "\tmovs r0, #0x80\n"
+    "\tlsls r0, r0, #5\n"
+    "\tldr r2, [sp, #0x60]\n"
+    "\torrs r2, r0\n"
+    "\tldr r0, .L0804FCDC @ =0xFFFF3FFF\n"
+    "\tands r2, r0\n"
+    "\tmovs r0, #0x80\n"
+    "\tlsls r0, r0, #7\n"
+    "\torrs r2, r0\n"
+    "\tldr r0, .L0804FCE0 @ =0x3FFFFFFF\n"
+    "\tands r2, r0\n"
+    "\tmovs r0, #0x80\n"
+    "\tlsls r0, r0, #0x18\n"
+    "\torrs r2, r0\n"
+    "\tstr r2, [sp, #0x60]\n"
+    "\tldr r1, [r5, #8]\n"
+    "\trsbs r0, r1, #0\n"
+    "\torrs r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tbge .L0804FCE4\n"
+    "\tadds r0, r6, #0\n"
+    "\tbl GetObjTileIndex\n"
+    "\tlsls r0, r0, #0x16\n"
+    "\tlsrs r0, r0, #0x16\n"
+    "\tldr r3, .L0804FCD4 @ =0xFFFFFC00\n"
+    "\tadd r2, sp, #0x60\n"
+    "\tldr r1, [r2, #4]\n"
+    "\tands r1, r3\n"
+    "\torrs r1, r0\n"
+    "\tstr r1, [r2, #4]\n"
+    "\tb .L0804FCF0\n"
+    "\t.align 2, 0\n"
+    ".L0804FCC4: .word 0x000001FF\n"
+    ".L0804FCC8: .word 0xFE00FFFF\n"
+    ".L0804FCCC: .word 0xFFFFFF00\n"
+    ".L0804FCD0: .word 0xFFFF0FFF\n"
+    ".L0804FCD4: .word 0xFFFFFC00\n"
+    ".L0804FCD8: .word 0x0000FFB0\n"
+    ".L0804FCDC: .word 0xFFFF3FFF\n"
+    ".L0804FCE0: .word 0x3FFFFFFF\n"
+    ".L0804FCE4:\n"
+    "\tldr r0, .L08050060 @ =0xFFFFFCFF\n"
+    "\tands r0, r2\n"
+    "\tmovs r1, #0x80\n"
+    "\tlsls r1, r1, #2\n"
+    "\torrs r0, r1\n"
+    "\tstr r0, [sp, #0x60]\n"
+    ".L0804FCF0:\n"
+    "\tldr r0, [sp, #0x60]\n"
+    "\tldr r1, [sp, #0x64]\n"
+    "\tstr r0, [sp, #0x68]\n"
+    "\tstr r1, [sp, #0x6c]\n"
+    "\tmov r3, sl\n"
+    "\tlsls r1, r3, #0x18\n"
+    "\tlsrs r1, r1, #0x18\n"
+    "\tldr r2, .L08050064 @ =0xFFFFFF00\n"
+    "\tldr r0, [sp, #0x68]\n"
+    "\tands r0, r2\n"
+    "\torrs r0, r1\n"
+    "\tstr r0, [sp, #0x68]\n"
+    "\tldr r1, .L08050068 @ =0x000001FF\n"
+    "\tadds r0, r1, #0\n"
+    "\tmov r2, sb\n"
+    "\tands r2, r0\n"
+    "\tldrh r0, [r4, #2]\n"
+    "\tldr r3, .L0805006C @ =0xFFFFFE00\n"
+    "\tadds r1, r3, #0\n"
+    "\tands r0, r1\n"
+    "\torrs r0, r2\n"
+    "\tstrh r0, [r4, #2]\n"
+    "\tldrb r1, [r4, #5]\n"
+    "\tmovs r0, #0xf\n"
+    "\tands r0, r1\n"
+    "\tldr r1, [sp, #0x88]\n"
+    "\torrs r0, r1\n"
+    "\tstrb r0, [r4, #5]\n"
+    "\tldr r3, [sp, #0x78]\n"
+    "\tldrb r2, [r3]\n"
+    "\tcmp r2, #0x7f\n"
+    "\tbhi .L0804FD46\n"
+    "\tlsls r0, r2, #3\n"
+    "\tadds r0, #4\n"
+    "\tadds r0, r3, r0\n"
+    "\tldr r1, [sp, #0x68]\n"
+    "\tstr r1, [r0]\n"
+    "\tldr r3, [sp, #0xac]\n"
+    "\tldrh r1, [r3, #4]\n"
+    "\tstrh r1, [r0, #4]\n"
+    "\tadds r0, r2, #1\n"
+    "\tldr r1, [sp, #0x78]\n"
+    "\tstrb r0, [r1]\n"
+    ".L0804FD46:\n"
+    "\tadds r6, #0x10\n"
+    "\tadds r5, #0x10\n"
+    "\tmovs r2, #1\n"
+    "\trsbs r2, r2, #0\n"
+    "\tadd r8, r2\n"
+    "\tmovs r3, #0x20\n"
+    "\tadd sb, r3\n"
+    "\tmov r0, r8\n"
+    "\tcmp r0, #0\n"
+    "\tbge .L0804FC7C\n"
+    "\tldr r1, [sp, #0x84]\n"
+    "\tldr r2, [sp, #0x8c]\n"
+    "\tmov sl, r2\n"
+    "\tcmp r1, #2\n"
+    "\tbgt .L0804FD66\n"
+    "\tb .L0804FC50\n"
+    ".L0804FD66:\n"
+    "\tldr r3, [sp, #0xd8]\n"
+    "\tldr r0, [r3, #8]\n"
+    "\tmovs r4, #0x90\n"
+    "\tlsls r4, r4, #1\n"
+    "\tadds r1, r7, r4\n"
+    "\tldr r2, [r0, #0x10]\n"
+    "\tadds r0, r3, #0\n"
+    "\tbl _call_via_r2\n"
+    "\tmovs r0, #0xf0\n"
+    "\tldr r5, [sp, #0x90]\n"
+    "\tstrh r0, [r5]\n"
+    "\tldr r6, [sp, #0x94]\n"
+    "\tstrh r0, [r6]\n"
+    "\tldr r1, .L08050070 @ =0x000068A0\n"
+    "\tadds r0, r1, #0\n"
+    "\tstrh r0, [r5]\n"
+    "\tldr r2, [sp, #0x9c]\n"
+    "\tstrh r0, [r2]\n"
+    "\tmovs r3, #0xee\n"
+    "\tlsls r3, r3, #1\n"
+    "\tadds r0, r7, r3\n"
+    "\tldrb r0, [r0]\n"
+    "\tlsls r0, r0, #0x1f\n"
+    "\tcmp r0, #0\n"
+    "\tbne .L0804FD9C\n"
+    "\tb .L08050040\n"
+    ".L0804FD9C:\n"
+    "\tadds r4, #0xb4\n"
+    "\tadds r4, r4, r7\n"
+    "\tmov sb, r4\n"
+    "\tldr r1, [r4, #4]\n"
+    "\trsbs r0, r1, #0\n"
+    "\torrs r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tblt .L0804FDAE\n"
+    "\tb .L08050040\n"
+    ".L0804FDAE:\n"
+    "\tmovs r5, #0xf4\n"
+    "\tlsls r5, r5, #1\n"
+    "\tadds r0, r7, r5\n"
+    "\tldr r1, [r0, #4]\n"
+    "\trsbs r0, r1, #0\n"
+    "\torrs r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tblt .L0804FDC0\n"
+    "\tb .L08050040\n"
+    ".L0804FDC0:\n"
+    "\tmovs r6, #0xa0\n"
+    "\tlsls r6, r6, #3\n"
+    "\tadds r0, r7, r6\n"
+    "\tldrb r0, [r0]\n"
+    "\tadd r6, sp, #0x2c\n"
+    "\tcmp r0, #0\n"
+    "\tbne .L0804FDD0\n"
+    "\tb .L0804FF12\n"
+    ".L0804FDD0:\n"
+    "\tmovs r1, #0xa9\n"
+    "\tlsls r1, r1, #3\n"
+    "\tadds r0, r7, r1\n"
+    "\tldr r1, [r0, #4]\n"
+    "\trsbs r0, r1, #0\n"
+    "\torrs r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tblt .L0804FDE2\n"
+    "\tb .L0804FF12\n"
+    ".L0804FDE2:\n"
+    "\tldr r2, .L08050074 @ =0x00000534\n"
+    "\tadds r4, r7, r2\n"
+    "\tadds r0, r4, #0\n"
+    "\tbl UpdateIndexedResourceHandle\n"
+    "\tadds r5, r0, #0\n"
+    "\tldr r1, [r4]\n"
+    "\tldr r3, [r1]\n"
+    "\tldrh r2, [r4, #0xc]\n"
+    "\tmovs r4, #0xa7\n"
+    "\tlsls r4, r4, #3\n"
+    "\tadds r0, r7, r4\n"
+    "\tlsls r2, r2, #2\n"
+    "\tldr r0, [r0]\n"
+    "\tadds r0, r0, r2\n"
+    "\tldrh r2, [r0]\n"
+    "\tldr r0, [sp, #0x90]\n"
+    "\tldr r3, [r3, #0x10]\n"
+    "\tbl _call_via_r3\n"
+    "\tlsls r5, r5, #0x1e\n"
+    "\tcmp r5, #0\n"
+    "\tbge .L0804FEBC\n"
+    "\tadd r0, sp, #0x14\n"
+    "\tldr r5, [sp, #0x14]\n"
+    "\tmov r8, r5\n"
+    "\tmovs r3, #0\n"
+    "\tcmp r5, #0\n"
+    "\tbeq .L0804FE1E\n"
+    "\tldrh r3, [r0, #4]\n"
+    ".L0804FE1E:\n"
+    "\tadds r5, r3, #0\n"
+    "\tmovs r0, #0x80\n"
+    "\tlsls r0, r0, #1\n"
+    "\tcmp r5, r0\n"
+    "\tbls .L0804FE2A\n"
+    "\tadds r5, r0, #0\n"
+    ".L0804FE2A:\n"
+    "\tmov r0, sb\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjTileIndex\n"
+    "\tadds r2, r0, #0\n"
+    "\tadds r4, r7, #0\n"
+    "\tadds r4, #0x3c\n"
+    "\tlsls r2, r2, #5\n"
+    "\tldr r1, .L08050078 @ =0x06010F00\n"
+    "\tadds r2, r2, r1\n"
+    "\tadds r0, r6, #0\n"
+    "\tmov r1, r8\n"
+    "\tadds r3, r5, #0\n"
+    "\tbl __21DmaTransferDescriptorPCvPvUi\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tcmp r0, #7\n"
+    "\tbhi .L0804FE68\n"
+    "\tlsls r0, r0, #4\n"
+    "\tadds r0, #4\n"
+    "\tadds r0, r4, r0\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804FE62\n"
+    "\tadds r1, r6, #0\n"
+    "\tldm r1!, {r2, r3, r5}\n"
+    "\tstm r0!, {r2, r3, r5}\n"
+    "\tldr r1, [r1]\n"
+    "\tstr r1, [r0]\n"
+    ".L0804FE62:\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tadds r0, #1\n"
+    "\tstr r0, [r7, #0x3c]\n"
+    ".L0804FE68:\n"
+    "\tadd r0, sp, #0x1c\n"
+    "\tldr r1, [sp, #0x1c]\n"
+    "\tmov r8, r1\n"
+    "\tmovs r3, #0\n"
+    "\tcmp r1, #0\n"
+    "\tbeq .L0804FE76\n"
+    "\tldrh r3, [r0, #4]\n"
+    ".L0804FE76:\n"
+    "\tadds r5, r3, #0\n"
+    "\tcmp r5, #0x20\n"
+    "\tbls .L0804FE7E\n"
+    "\tmovs r5, #0x20\n"
+    ".L0804FE7E:\n"
+    "\tmovs r2, #0xa9\n"
+    "\tlsls r2, r2, #3\n"
+    "\tadds r0, r7, r2\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjPaletteBank\n"
+    "\tadds r2, r0, #0\n"
+    "\tlsls r2, r2, #5\n"
+    "\tldr r3, .L0805007C @ =OBJ_PALETTE\n"
+    "\tadds r2, r2, r3\n"
+    "\tadd r0, sp, #0x2c\n"
+    "\tmov r1, r8\n"
+    "\tadds r3, r5, #0\n"
+    "\tbl __21DmaTransferDescriptorPCvPvUi\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tcmp r0, #7\n"
+    "\tbhi .L0804FEBC\n"
+    "\tlsls r0, r0, #4\n"
+    "\tadds r0, #4\n"
+    "\tadds r0, r4, r0\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804FEB6\n"
+    "\tadds r1, r6, #0\n"
+    "\tldm r1!, {r2, r4, r5}\n"
+    "\tstm r0!, {r2, r4, r5}\n"
+    "\tldr r1, [r1]\n"
+    "\tstr r1, [r0]\n"
+    ".L0804FEB6:\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tadds r0, #1\n"
+    "\tstr r0, [r7, #0x3c]\n"
+    ".L0804FEBC:\n"
+    "\tadd r4, sp, #0x3c\n"
+    "\tmovs r1, #0\n"
+    "\tmovs r0, #0\n"
+    "\tstrh r0, [r4, #4]\n"
+    "\tstrh r0, [r4, #6]\n"
+    "\tstrh r0, [r4, #8]\n"
+    "\tstr r0, [r4, #0xc]\n"
+    "\tstrb r1, [r4, #0x10]\n"
+    "\tstrb r1, [r4, #0x11]\n"
+    "\tstr r0, [r4, #0x14]\n"
+    "\tstrb r1, [r4, #0x18]\n"
+    "\tmovs r0, #0x34\n"
+    "\tstrh r0, [r4]\n"
+    "\tmovs r0, #0x5c\n"
+    "\tstrh r0, [r4, #2]\n"
+    "\tmovs r3, #0xea\n"
+    "\tlsls r3, r3, #1\n"
+    "\tadds r0, r7, r3\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjTileIndex\n"
+    "\tadds r0, #0x78\n"
+    "\tstrh r0, [r4, #6]\n"
+    "\tmovs r5, #0xa9\n"
+    "\tlsls r5, r5, #3\n"
+    "\tadds r0, r7, r5\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjPaletteBank\n"
+    "\tstrh r0, [r4, #4]\n"
+    "\tmovs r0, #1\n"
+    "\tstrb r0, [r4, #0x18]\n"
+    "\tldr r0, [sp, #0xc]\n"
+    "\tadds r1, r0, #0\n"
+    "\tmovs r2, #0\n"
+    "\tcmp r1, #0\n"
+    "\tbeq .L0804FF0A\n"
+    "\tldr r0, [sp, #0x90]\n"
+    "\tldrh r2, [r0, #4]\n"
+    ".L0804FF0A:\n"
+    "\tldr r0, [sp, #0x78]\n"
+    "\tadds r3, r4, #0\n"
+    "\tbl DrawIndexedResourceSprites\n"
+    ".L0804FF12:\n"
+    "\tmovs r2, #0xf2\n"
+    "\tlsls r2, r2, #1\n"
+    "\tadds r1, r7, r2\n"
+    "\tldr r0, [sp, #0x90]\n"
+    "\tbl Get__C20UiPortraitGroupOwner\n"
+    "\tmovs r3, #0xee\n"
+    "\tlsls r3, r3, #1\n"
+    "\tadds r0, r7, r3\n"
+    "\tldrb r0, [r0]\n"
+    "\tlsls r0, r0, #0x1e\n"
+    "\tcmp r0, #0\n"
+    "\tbge .L0804FFEC\n"
+    "\tadd r0, sp, #0x14\n"
+    "\tldr r4, [sp, #0x14]\n"
+    "\tmov r8, r4\n"
+    "\tmovs r3, #0\n"
+    "\tcmp r4, #0\n"
+    "\tbeq .L0804FF3A\n"
+    "\tldrh r3, [r0, #4]\n"
+    ".L0804FF3A:\n"
+    "\tadds r5, r3, #0\n"
+    "\tmovs r0, #0xc0\n"
+    "\tlsls r0, r0, #4\n"
+    "\tcmp r5, r0\n"
+    "\tbls .L0804FF46\n"
+    "\tadds r5, r0, #0\n"
+    ".L0804FF46:\n"
+    "\tmovs r1, #0xea\n"
+    "\tlsls r1, r1, #1\n"
+    "\tadds r0, r7, r1\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjTileIndex\n"
+    "\tadds r2, r0, #0\n"
+    "\tadds r4, r7, #0\n"
+    "\tadds r4, #0x3c\n"
+    "\tlsls r2, r2, #5\n"
+    "\tldr r3, .L08050080 @ =OBJ_VRAM0\n"
+    "\tadds r2, r2, r3\n"
+    "\tadd r0, sp, #0x2c\n"
+    "\tmov r1, r8\n"
+    "\tadds r3, r5, #0\n"
+    "\tbl __21DmaTransferDescriptorPCvPvUi\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tcmp r0, #7\n"
+    "\tbhi .L0804FF88\n"
+    "\tlsls r0, r0, #4\n"
+    "\tadds r0, #4\n"
+    "\tadds r0, r4, r0\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804FF82\n"
+    "\tadds r1, r6, #0\n"
+    "\tldm r1!, {r2, r3, r5}\n"
+    "\tstm r0!, {r2, r3, r5}\n"
+    "\tldr r1, [r1]\n"
+    "\tstr r1, [r0]\n"
+    ".L0804FF82:\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tadds r0, #1\n"
+    "\tstr r0, [r7, #0x3c]\n"
+    ".L0804FF88:\n"
+    "\tadd r0, sp, #0x1c\n"
+    "\tldr r5, [sp, #0x1c]\n"
+    "\tmov r8, r5\n"
+    "\tmovs r3, #0\n"
+    "\tcmp r5, #0\n"
+    "\tbeq .L0804FF96\n"
+    "\tldrh r3, [r0, #4]\n"
+    ".L0804FF96:\n"
+    "\tadds r5, r3, #0\n"
+    "\tcmp r5, #0x20\n"
+    "\tbls .L0804FF9E\n"
+    "\tmovs r5, #0x20\n"
+    ".L0804FF9E:\n"
+    "\tmovs r1, #0xf4\n"
+    "\tlsls r1, r1, #1\n"
+    "\tadds r0, r7, r1\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjPaletteBank\n"
+    "\tadds r2, r0, #0\n"
+    "\tlsls r2, r2, #5\n"
+    "\tldr r3, .L0805007C @ =OBJ_PALETTE\n"
+    "\tadds r2, r2, r3\n"
+    "\tadd r0, sp, #0x2c\n"
+    "\tmov r1, r8\n"
+    "\tadds r3, r5, #0\n"
+    "\tbl __21DmaTransferDescriptorPCvPvUi\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tcmp r0, #7\n"
+    "\tbhi .L0804FFDC\n"
+    "\tlsls r0, r0, #4\n"
+    "\tadds r0, #4\n"
+    "\tadds r0, r4, r0\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0804FFD6\n"
+    "\tadds r1, r6, #0\n"
+    "\tldm r1!, {r2, r4, r5}\n"
+    "\tstm r0!, {r2, r4, r5}\n"
+    "\tldr r1, [r1]\n"
+    "\tstr r1, [r0]\n"
+    ".L0804FFD6:\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tadds r0, #1\n"
+    "\tstr r0, [r7, #0x3c]\n"
+    ".L0804FFDC:\n"
+    "\tmovs r3, #0xee\n"
+    "\tlsls r3, r3, #1\n"
+    "\tadds r2, r7, r3\n"
+    "\tldrb r1, [r2]\n"
+    "\tmovs r0, #3\n"
+    "\trsbs r0, r0, #0\n"
+    "\tands r0, r1\n"
+    "\tstrb r0, [r2]\n"
+    ".L0804FFEC:\n"
+    "\tadds r4, r6, #0\n"
+    "\tmovs r1, #0\n"
+    "\tmovs r0, #0\n"
+    "\tstrh r0, [r4, #4]\n"
+    "\tstrh r0, [r4, #6]\n"
+    "\tstrh r0, [r4, #8]\n"
+    "\tstr r0, [r4, #0xc]\n"
+    "\tstrb r1, [r4, #0x10]\n"
+    "\tstrb r1, [r4, #0x11]\n"
+    "\tstr r0, [r4, #0x14]\n"
+    "\tstrb r1, [r4, #0x18]\n"
+    "\tmovs r0, #0x28\n"
+    "\tstrh r0, [r4]\n"
+    "\tmovs r0, #0x68\n"
+    "\tstrh r0, [r4, #2]\n"
+    "\tmovs r5, #0xea\n"
+    "\tlsls r5, r5, #1\n"
+    "\tadds r0, r7, r5\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjTileIndex\n"
+    "\tstrh r0, [r4, #6]\n"
+    "\tmovs r1, #0xf4\n"
+    "\tlsls r1, r1, #1\n"
+    "\tadds r0, r7, r1\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjPaletteBank\n"
+    "\tstrh r0, [r4, #4]\n"
+    "\tmovs r0, #1\n"
+    "\tstrb r0, [r4, #0x18]\n"
+    "\tldr r0, [sp, #0xc]\n"
+    "\tadds r1, r0, #0\n"
+    "\tmovs r2, #0\n"
+    "\tcmp r1, #0\n"
+    "\tbeq .L08050038\n"
+    "\tldr r3, [sp, #0x90]\n"
+    "\tldrh r2, [r3, #4]\n"
+    ".L08050038:\n"
+    "\tldr r0, [sp, #0x78]\n"
+    "\tadds r3, r6, #0\n"
+    "\tbl DrawIndexedResourceSprites\n"
+    ".L08050040:\n"
+    "\tmovs r4, #0xf8\n"
+    "\tlsls r4, r4, #1\n"
+    "\tadds r0, r7, r4\n"
+    "\tldrb r3, [r0]\n"
+    "\tlsls r0, r3, #0x1f\n"
+    "\tcmp r0, #0\n"
+    "\tbne .L08050050\n"
+    "\tb .L08050250\n"
+    ".L08050050:\n"
+    "\tmovs r5, #0xea\n"
+    "\tlsls r5, r5, #1\n"
+    "\tadds r4, r7, r5\n"
+    "\tldr r2, [r4, #4]\n"
+    "\trsbs r0, r2, #0\n"
+    "\torrs r0, r2\n"
+    "\tcmp r0, #0\n"
+    "\tb .L08050084\n"
+    "\t.align 2, 0\n"
+    ".L08050060: .word 0xFFFFFCFF\n"
+    ".L08050064: .word 0xFFFFFF00\n"
+    ".L08050068: .word 0x000001FF\n"
+    ".L0805006C: .word 0xFFFFFE00\n"
+    ".L08050070: .word 0x000068A0\n"
+    ".L08050074: .word 0x00000534\n"
+    ".L08050078: .word 0x06010F00\n"
+    ".L0805007C: .word OBJ_PALETTE\n"
+    ".L08050080: .word OBJ_VRAM0\n"
+    ".L08050084:\n"
+    "\tblt .L08050088\n"
+    "\tb .L08050250\n"
+    ".L08050088:\n"
+    "\tldr r6, [sp, #0xa4]\n"
+    "\tldrh r0, [r6]\n"
+    "\tmovs r5, #0xfc\n"
+    "\tlsls r5, r5, #6\n"
+    "\tadds r1, r5, #0\n"
+    "\torrs r0, r1\n"
+    "\tstrh r0, [r6]\n"
+    "\tldrb r0, [r7]\n"
+    "\tlsls r0, r0, #0x1e\n"
+    "\tlsrs r0, r0, #0x1e\n"
+    "\tmovs r1, #1\n"
+    "\tlsls r1, r0\n"
+    "\tmovs r0, #0x3f\n"
+    "\tbics r0, r1\n"
+    "\tlsls r0, r0, #8\n"
+    "\tldr r6, [sp, #0xa8]\n"
+    "\tldrh r1, [r6]\n"
+    "\torrs r0, r1\n"
+    "\tstrh r0, [r6]\n"
+    "\tldr r1, .L08050220 @ =0x000080F0\n"
+    "\tadds r0, r1, #0\n"
+    "\tldr r5, [sp, #0x90]\n"
+    "\tstrh r0, [r5]\n"
+    "\tldr r6, [sp, #0x98]\n"
+    "\tstrh r0, [r6]\n"
+    "\tldr r1, .L08050224 @ =0x00005068\n"
+    "\tadds r0, r1, #0\n"
+    "\tstrh r0, [r5]\n"
+    "\tldr r5, [sp, #0xa0]\n"
+    "\tstrh r0, [r5]\n"
+    "\tlsls r0, r3, #0x1e\n"
+    "\tmovs r6, #0x10\n"
+    "\tadds r6, r6, r7\n"
+    "\tmov sl, r6\n"
+    "\tadd r1, sp, #0x70\n"
+    "\tmov r8, r1\n"
+    "\tcmp r0, #0\n"
+    "\tbge .L0805014A\n"
+    "\tadds r0, r4, #0\n"
+    "\tadds r1, r2, #0\n"
+    "\tbl GetObjTileIndex\n"
+    "\tmovs r2, #0\n"
+    "\tmov sb, r2\n"
+    "\tadds r4, r7, #0\n"
+    "\tadds r4, #0x3c\n"
+    "\tlsls r0, r0, #5\n"
+    "\tldr r3, .L08050228 @ =0x06010C00\n"
+    "\tadds r3, r0, r3\n"
+    "\tstr r3, [sp, #0xb4]\n"
+    "\tmovs r6, #0xfc\n"
+    "\tlsls r6, r6, #1\n"
+    "\tadds r5, r7, r6\n"
+    ".L080500F2:\n"
+    "\tadd r0, sp, #0xc\n"
+    "\tadds r1, r5, #0\n"
+    "\tldr r2, [sp, #0xb4]\n"
+    "\tmovs r3, #0x80\n"
+    "\tlsls r3, r3, #1\n"
+    "\tbl __21DmaTransferDescriptorPCvPvUi\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tcmp r0, #7\n"
+    "\tbhi .L08050120\n"
+    "\tlsls r0, r0, #4\n"
+    "\tadds r0, #4\n"
+    "\tadds r0, r4, r0\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L0805011A\n"
+    "\tldr r1, [sp, #0x90]\n"
+    "\tldm r1!, {r2, r3, r6}\n"
+    "\tstm r0!, {r2, r3, r6}\n"
+    "\tldr r1, [r1]\n"
+    "\tstr r1, [r0]\n"
+    ".L0805011A:\n"
+    "\tldr r0, [r7, #0x3c]\n"
+    "\tadds r0, #1\n"
+    "\tstr r0, [r7, #0x3c]\n"
+    ".L08050120:\n"
+    "\tldr r0, [sp, #0xb4]\n"
+    "\tmovs r1, #0x80\n"
+    "\tlsls r1, r1, #1\n"
+    "\tadds r0, r0, r1\n"
+    "\tstr r0, [sp, #0xb4]\n"
+    "\tmovs r2, #0x82\n"
+    "\tlsls r2, r2, #1\n"
+    "\tadds r5, r5, r2\n"
+    "\tmovs r3, #1\n"
+    "\tadd sb, r3\n"
+    "\tmov r6, sb\n"
+    "\tcmp r6, #2\n"
+    "\tbls .L080500F2\n"
+    "\tmovs r0, #0xf8\n"
+    "\tlsls r0, r0, #1\n"
+    "\tadds r2, r7, r0\n"
+    "\tldrb r1, [r2]\n"
+    "\tmovs r0, #3\n"
+    "\trsbs r0, r0, #0\n"
+    "\tands r0, r1\n"
+    "\tstrb r0, [r2]\n"
+    ".L0805014A:\n"
+    "\tmovs r0, #0\n"
+    "\tmovs r1, #0\n"
+    "\tstr r0, [sp, #0x70]\n"
+    "\tstr r1, [sp, #0x74]\n"
+    "\tldr r1, .L0805022C @ =0xFFFFFF00\n"
+    "\tldr r0, [sp, #0x70]\n"
+    "\tands r0, r1\n"
+    "\tmovs r1, #0x54\n"
+    "\torrs r0, r1\n"
+    "\tldr r1, .L08050230 @ =0xFE00FFFF\n"
+    "\tands r0, r1\n"
+    "\tmovs r1, #0x88\n"
+    "\tlsls r1, r1, #0x10\n"
+    "\torrs r0, r1\n"
+    "\tldr r1, .L08050234 @ =0xFFFF3FFF\n"
+    "\tands r0, r1\n"
+    "\tmovs r1, #0x80\n"
+    "\tlsls r1, r1, #7\n"
+    "\torrs r0, r1\n"
+    "\tldr r1, .L08050238 @ =0x3FFFFFFF\n"
+    "\tands r0, r1\n"
+    "\tmovs r1, #0x80\n"
+    "\tlsls r1, r1, #0x18\n"
+    "\torrs r0, r1\n"
+    "\tstr r0, [sp, #0x70]\n"
+    "\tmovs r1, #0xea\n"
+    "\tlsls r1, r1, #1\n"
+    "\tadds r0, r7, r1\n"
+    "\tldr r1, [r0, #4]\n"
+    "\tbl GetObjTileIndex\n"
+    "\tadds r0, #0x60\n"
+    "\tlsls r0, r0, #0x16\n"
+    "\tlsrs r0, r0, #0x16\n"
+    "\tldr r4, .L0805023C @ =0xFFFFFC00\n"
+    "\tmov r2, r8\n"
+    "\tldr r1, [r2, #4]\n"
+    "\tands r1, r4\n"
+    "\torrs r1, r0\n"
+    "\tstr r1, [r2, #4]\n"
+    "\tmov r3, sl\n"
+    "\tldr r1, [r3, #4]\n"
+    "\tmov r0, sl\n"
+    "\tbl GetObjPaletteBank\n"
+    "\tlsls r0, r0, #0x10\n"
+    "\tlsrs r0, r0, #0x10\n"
+    "\tmovs r1, #0xf\n"
+    "\tands r0, r1\n"
+    "\tlsls r0, r0, #0xc\n"
+    "\tldr r2, .L08050240 @ =0xFFFF0FFF\n"
+    "\tmov r5, r8\n"
+    "\tldr r1, [r5, #4]\n"
+    "\tands r1, r2\n"
+    "\torrs r1, r0\n"
+    "\tstr r1, [r5, #4]\n"
+    "\tmovs r1, #0x80\n"
+    "\tlsls r1, r1, #5\n"
+    "\tldr r0, [sp, #0x70]\n"
+    "\torrs r0, r1\n"
+    "\tstr r0, [sp, #0x70]\n"
+    "\tmovs r5, #0\n"
+    "\tmov r3, r8\n"
+    "\tldr r6, .L08050244 @ =0xFFFFFE00\n"
+    "\tmov sb, r6\n"
+    ".L080501CC:\n"
+    "\tldr r0, [sp, #0x78]\n"
+    "\tldrb r2, [r0]\n"
+    "\tcmp r2, #0x7f\n"
+    "\tbhi .L080501EA\n"
+    "\tlsls r1, r2, #3\n"
+    "\tadds r1, #4\n"
+    "\tadds r1, r0, r1\n"
+    "\tldr r0, [sp, #0x70]\n"
+    "\tstr r0, [r1]\n"
+    "\tmov r6, r8\n"
+    "\tldrh r0, [r6, #4]\n"
+    "\tstrh r0, [r1, #4]\n"
+    "\tadds r0, r2, #1\n"
+    "\tldr r1, [sp, #0x78]\n"
+    "\tstrb r0, [r1]\n"
+    ".L080501EA:\n"
+    "\tldrh r2, [r3, #2]\n"
+    "\tlsls r1, r2, #0x17\n"
+    "\tlsrs r1, r1, #0x17\n"
+    "\tadds r1, #0x20\n"
+    "\tldr r6, .L08050248 @ =0x000001FF\n"
+    "\tadds r0, r6, #0\n"
+    "\tands r1, r0\n"
+    "\tmov r0, sb\n"
+    "\tands r0, r2\n"
+    "\torrs r0, r1\n"
+    "\tstrh r0, [r3, #2]\n"
+    "\tldrh r2, [r3, #4]\n"
+    "\tlsls r1, r2, #0x16\n"
+    "\tlsrs r1, r1, #0x16\n"
+    "\tadds r1, #8\n"
+    "\tldr r6, .L0805024C @ =0x000003FF\n"
+    "\tadds r0, r6, #0\n"
+    "\tands r1, r0\n"
+    "\tadds r0, r4, #0\n"
+    "\tands r0, r2\n"
+    "\torrs r0, r1\n"
+    "\tstrh r0, [r3, #4]\n"
+    "\tadds r5, #1\n"
+    "\tcmp r5, #2\n"
+    "\tbls .L080501CC\n"
+    "\tb .L080502DA\n"
+    "\t.align 2, 0\n"
+    ".L08050220: .word 0x000080F0\n"
+    ".L08050224: .word 0x00005068\n"
+    ".L08050228: .word 0x06010C00\n"
+    ".L0805022C: .word 0xFFFFFF00\n"
+    ".L08050230: .word 0xFE00FFFF\n"
+    ".L08050234: .word 0xFFFF3FFF\n"
+    ".L08050238: .word 0x3FFFFFFF\n"
+    ".L0805023C: .word 0xFFFFFC00\n"
+    ".L08050240: .word 0xFFFF0FFF\n"
+    ".L08050244: .word 0xFFFFFE00\n"
+    ".L08050248: .word 0x000001FF\n"
+    ".L0805024C: .word 0x000003FF\n"
+    ".L08050250:\n"
+    "\tldr r1, .L08050268 @ =0x0000F0F0\n"
+    "\tadds r0, r1, #0\n"
+    "\tldr r2, [sp, #0x90]\n"
+    "\tstrh r0, [r2]\n"
+    "\tldr r3, [sp, #0x98]\n"
+    "\tstrh r0, [r3]\n"
+    "\tldr r4, .L0805026C @ =0x0000A0A0\n"
+    "\tadds r0, r4, #0\n"
+    "\tstrh r0, [r2]\n"
+    "\tldr r5, [sp, #0xa0]\n"
+    "\tstrh r0, [r5]\n"
+    "\tb .L080502DA\n"
+    "\t.align 2, 0\n"
+    ".L08050268: .word 0x0000F0F0\n"
+    ".L0805026C: .word 0x0000A0A0\n"
+    ".L08050270:\n"
+    "\tlsls r0, r6, #3\n"
+    "\tsubs r0, r0, r6\n"
+    "\tlsls r0, r0, #3\n"
+    "\tmovs r1, #9\n"
+    "\tbl __udivsi3\n"
+    "\tadds r5, r0, #0\n"
+    "\tlsrs r0, r5, #0x1f\n"
+    "\tadds r0, r5, r0\n"
+    "\tasrs r0, r0, #1\n"
+    "\tmovs r4, #0x84\n"
+    "\tsubs r4, r4, r0\n"
+    "\tlsls r0, r6, #4\n"
+    "\tsubs r0, r0, r6\n"
+    "\tlsls r0, r0, #4\n"
+    "\tmovs r1, #9\n"
+    "\tbl __udivsi3\n"
+    "\tlsrs r2, r0, #0x1f\n"
+    "\tadds r2, r0, r2\n"
+    "\tasrs r2, r2, #1\n"
+    "\tmovs r1, #0x78\n"
+    "\tsubs r1, r1, r2\n"
+    "\tlsls r2, r1, #8\n"
+    "\tadds r1, r1, r0\n"
+    "\torrs r2, r1\n"
+    "\tldr r6, [sp, #0x90]\n"
+    "\tstrh r2, [r6]\n"
+    "\tldr r0, [sp, #0x7c]\n"
+    "\tadds r0, #0x40\n"
+    "\tstrh r2, [r0]\n"
+    "\tlsls r0, r4, #8\n"
+    "\tadds r4, r4, r5\n"
+    "\torrs r0, r4\n"
+    "\tstrh r0, [r6]\n"
+    "\tldr r1, [sp, #0x7c]\n"
+    "\tadds r1, #0x44\n"
+    "\tstrh r0, [r1]\n"
+    "\tldr r1, .L08050300 @ =0x0000F0F0\n"
+    "\tadds r0, r1, #0\n"
+    "\tstrh r0, [r6]\n"
+    "\tldr r1, [sp, #0x7c]\n"
+    "\tadds r1, #0x42\n"
+    "\tstrh r0, [r1]\n"
+    "\tldr r2, .L08050304 @ =0x0000A0A0\n"
+    "\tadds r0, r2, #0\n"
+    "\tstrh r0, [r6]\n"
+    "\tldr r1, [sp, #0x7c]\n"
+    "\tadds r1, #0x46\n"
+    "\tstrh r0, [r1]\n"
+    "\tadds r3, r7, #0\n"
+    "\tadds r3, #0xc0\n"
+    "\tstr r3, [sp, #0xb0]\n"
+    ".L080502DA:\n"
+    "\tldr r0, [r7, #4]\n"
+    "\tcmp r0, #2\n"
+    "\tbne .L08050310\n"
+    "\tldr r4, [sp, #0xa4]\n"
+    "\tldrh r0, [r4]\n"
+    "\tldr r5, .L08050308 @ =0x00002020\n"
+    "\tadds r1, r5, #0\n"
+    "\torrs r0, r1\n"
+    "\tstrh r0, [r4]\n"
+    "\tldrb r0, [r7]\n"
+    "\tlsls r0, r0, #0x1e\n"
+    "\tlsrs r0, r0, #0x1e\n"
+    "\tmovs r1, #1\n"
+    "\tlsls r1, r0\n"
+    "\tldr r0, .L0805030C @ =0x08083F40\n"
+    "\torrs r1, r0\n"
+    "\tldr r6, [sp, #0x7c]\n"
+    "\tstr r1, [r6, #0x50]\n"
+    "\tb .L08050332\n"
+    "\t.align 2, 0\n"
+    ".L08050300: .word 0x0000F0F0\n"
+    ".L08050304: .word 0x0000A0A0\n"
+    ".L08050308: .word 0x00002020\n"
+    ".L0805030C: .word 0x08083F40\n"
+    ".L08050310:\n"
+    "\tcmp r0, #1\n"
+    "\tbne .L08050332\n"
+    "\tmovs r0, #0x98\n"
+    "\tlsls r0, r0, #1\n"
+    "\tadds r3, r7, r0\n"
+    "\tldr r1, [r3]\n"
+    "\trsbs r0, r1, #0\n"
+    "\torrs r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tblt .L08050332\n"
+    "\tldr r1, [sp, #0xdc]\n"
+    "\tldr r0, [r1, #8]\n"
+    "\tldr r2, [r0, #0x10]\n"
+    "\tadds r0, r1, #0\n"
+    "\tadds r1, r3, #0\n"
+    "\tbl _call_via_r2\n"
+    ".L08050332:\n"
+    "\tldr r2, [sp, #0xd8]\n"
+    "\tldr r0, [r2, #8]\n"
+    "\tldr r2, [r0, #0x10]\n"
+    "\tldr r0, [sp, #0xd8]\n"
+    "\tldr r1, [sp, #0xb0]\n"
+    "\tbl _call_via_r2\n"
+    "\tb .L08050382\n"
+    "\n"
+    "\t@ Intra-function long branch: retain BL encoding, not a C-callable entry.\n"
+    "\t@ This block shares the UI update's r7, stack and final epilogue.\n"
+    ".Lui_payload_inactive_exit:\n"
+    "\tldrb r0, [r7]\n"
+    "\tlsls r0, r0, #0x1e\n"
+    "\tlsrs r0, r0, #0x1e\n"
+    "\tmovs r1, #0x80\n"
+    "\tlsls r1, r1, #1\n"
+    "\tlsls r1, r0\n"
+    "\tmovs r3, #0xc0\n"
+    "\tlsls r3, r3, #7\n"
+    "\tadds r0, r3, #0\n"
+    "\torrs r1, r0\n"
+    "\tldr r4, [sp, #0x7c]\n"
+    "\tldrh r0, [r4]\n"
+    "\tbics r0, r1\n"
+    "\tstrh r0, [r4]\n"
+    "\tldr r0, [r7, #4]\n"
+    "\tcmp r0, #1\n"
+    "\tbne .L08050382\n"
+    "\tmovs r5, #0x98\n"
+    "\tlsls r5, r5, #1\n"
+    "\tadds r3, r7, r5\n"
+    "\tldr r1, [r3]\n"
+    "\trsbs r0, r1, #0\n"
+    "\torrs r0, r1\n"
+    "\tcmp r0, #0\n"
+    "\tbge .L08050382\n"
+    "\tldr r6, [sp, #0xdc]\n"
+    "\tldr r0, [r6, #8]\n"
+    "\tldr r2, [r0, #0x14]\n"
+    "\tadds r0, r6, #0\n"
+    "\tadds r1, r3, #0\n"
+    "\tbl _call_via_r2\n"
+    ".L08050382:\n"
+    "\tldr r0, [r7, #8]\n"
+    "\tldr r1, .L08050398 @ =__vt_11UiTextInput\n"
+    "\tstr r1, [sp]\n"
+    "\tadd sp, #0xb8\n"
+    "\tpop {r3, r4, r5}\n"
+    "\tmov r8, r3\n"
+    "\tmov sb, r4\n"
+    "\tmov sl, r5\n"
+    "\tpop {r4, r5, r6, r7}\n"
+    "\tpop {r1}\n"
+    "\tbx r1\n"
+    "\t.align 2, 0\n"
+    ".L08050398: .word __vt_11UiTextInput\n"
+    "\n"
+    "    .endif\n"
+);
+
 void UiStatePayload::Open()
 {
     if (state == 0) {
@@ -650,6 +3317,26 @@ void UiStatePayload::OpenImmediately()
     Open();
     state = 3;
     unk_0c = 9;
+}
+
+extern "C" void SetUiObjectStateTwoIfNonzero(void * object)
+{
+    UiObjectState * state = (UiObjectState *)object;
+
+    if (state->state != 0)
+    {
+        state->state = 2;
+    }
+}
+
+extern "C" void ClearUiObjectStateIfNonzero(void * object)
+{
+    UiObjectState * state = (UiObjectState *)object;
+
+    if (state->state != 0)
+    {
+        state->state = 0;
+    }
 }
 
 void UiStatePayload::SetText(char const * message, u16 speed,
@@ -814,9 +3501,6 @@ void RenderUiChoiceLabel(UiStatePayload * payload, UiTextLayoutPosition const & 
     } while (phase == 1);
 }
 
-// Choices are one-based. Down takes priority over up, then either horizontal
-// key; no directional input returns one. The horizontal paths for layouts
-// 0, 1 and 5 deliberately preserve even an out-of-range selection.
 i32 MoveUiChoiceSelection(u32 layout, i32 selection, UiChoiceKeyState keys)
 {
     switch (layout) {
@@ -955,17 +3639,132 @@ i32 MoveUiChoiceSelection(u32 layout, i32 selection, UiChoiceKeyState keys)
     return 1;
 }
 
-static inline void ClearUiNameplateBuffer(UnkUiSelectionTileBuffer * buffer)
-{
-    UnkUiSelectionDimensions size(4, 2);
-    Clear2DGfxBuffer(reinterpret_cast<u32 const &>(size), buffer->tiles, 0);
-}
+asm_unified(
+    ".text\n"
+    ".ifdef REGION_JP\n"
+    "    .align 2, 0\n"
+    "\n"
+    "    .global ShowPortrait__14UiStatePayloadUi\n"
+    "    .thumb_func\n"
+    "ShowPortrait__14UiStatePayloadUi: @ 0x08050864\n"
+    "    push {r4, r5, lr}\n"
+    "    adds r4, r0, #0\n"
+    "    adds r5, r1, #0\n"
+    "    cmp r5, #0\n"
+    "    blo .Ljp_08050876\n"
+    "    bl GetUiPortraitCount\n"
+    "    cmp r5, r0\n"
+    "    blo .Ljp_0805087E\n"
+    ".Ljp_08050876:\n"
+    "    adds r0, r4, #0\n"
+    "    bl ClearUiActionStateFlag01DC\n"
+    "    b .Ljp_080508C2\n"
+    ".Ljp_0805087E:\n"
+    "    movs r0, #0xee\n"
+    "    lsls r0, r0, #1\n"
+    "    adds r2, r4, r0\n"
+    "    ldrb r1, [r2]\n"
+    "    lsls r0, r1, #0x1f\n"
+    "    cmp r0, #0\n"
+    "    beq .Ljp_0805089A\n"
+    "    movs r1, #0xf0\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r4, r1\n"
+    "    ldr r0, [r0]\n"
+    "    cmp r0, r5\n"
+    "    beq .Ljp_080508C2\n"
+    "    b .Ljp_080508A0\n"
+    ".Ljp_0805089A:\n"
+    "    movs r0, #1\n"
+    "    orrs r0, r1\n"
+    "    strb r0, [r2]\n"
+    ".Ljp_080508A0:\n"
+    "    movs r1, #0xf2\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r4, r1\n"
+    "    adds r1, r5, #0\n"
+    "    bl Set__20UiPortraitGroupOwnerUi\n"
+    "    movs r1, #0xf0\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r4, r1\n"
+    "    str r5, [r0]\n"
+    "    movs r0, #0xee\n"
+    "    lsls r0, r0, #1\n"
+    "    adds r2, r4, r0\n"
+    "    ldrb r0, [r2]\n"
+    "    movs r1, #2\n"
+    "    orrs r0, r1\n"
+    "    strb r0, [r2]\n"
+    ".Ljp_080508C2:\n"
+    "    pop {r4, r5}\n"
+    "    pop {r0}\n"
+    "    bx r0\n"
+    "    .else\n"
+    "    .align 2, 0\n"
+    "\n"
+    "\tthumb_func_start ShowPortrait__14UiStatePayloadUi\n"
+    "ShowPortrait__14UiStatePayloadUi: @ 0x08050AD8\n"
+    "\tpush {r4, r5, lr}\n"
+    "\tadds r4, r0, #0\n"
+    "\tadds r5, r1, #0\n"
+    "\tcmp r5, #0\n"
+    "\tblo .L08050AEA\n"
+    "\tbl GetUiPortraitCount\n"
+    "\tcmp r5, r0\n"
+    "\tblo .L08050AF2\n"
+    ".L08050AEA:\n"
+    "\tadds r0, r4, #0\n"
+    "\tbl ClearUiActionStateFlag01DC\n"
+    "\tb .L08050B36\n"
+    ".L08050AF2:\n"
+    "\tmovs r0, #0xee\n"
+    "\tlsls r0, r0, #1\n"
+    "\tadds r2, r4, r0\n"
+    "\tldrb r1, [r2]\n"
+    "\tlsls r0, r1, #0x1f\n"
+    "\tcmp r0, #0\n"
+    "\tbeq .L08050B0E\n"
+    "\tmovs r1, #0xf0\n"
+    "\tlsls r1, r1, #1\n"
+    "\tadds r0, r4, r1\n"
+    "\tldr r0, [r0]\n"
+    "\tcmp r0, r5\n"
+    "\tbeq .L08050B36\n"
+    "\tb .L08050B14\n"
+    ".L08050B0E:\n"
+    "\tmovs r0, #1\n"
+    "\torrs r0, r1\n"
+    "\tstrb r0, [r2]\n"
+    ".L08050B14:\n"
+    "\tmovs r1, #0xf2\n"
+    "\tlsls r1, r1, #1\n"
+    "\tadds r0, r4, r1\n"
+    "\tadds r1, r5, #0\n"
+    "\tbl Set__20UiPortraitGroupOwnerUi\n"
+    "\tmovs r1, #0xf0\n"
+    "\tlsls r1, r1, #1\n"
+    "\tadds r0, r4, r1\n"
+    "\tstr r5, [r0]\n"
+    "\tmovs r0, #0xee\n"
+    "\tlsls r0, r0, #1\n"
+    "\tadds r2, r4, r0\n"
+    "\tldrb r0, [r2]\n"
+    "\tmovs r1, #2\n"
+    "\torrs r0, r1\n"
+    "\tstrb r0, [r2]\n"
+    ".L08050B36:\n"
+    "\tpop {r4, r5}\n"
+    "\tpop {r0}\n"
+    "\tbx r0\n"
+    "\n"
+    "    .endif\n"
+);
 
-static inline void DrawUiNameplateBuffer(UnkUiSelectionTileBuffer * buffer, char const * text)
+extern "C" void ClearUiActionStateFlag01DC(void * object)
 {
-    UnkUiSelectionDimensions size(4, 2);
-    DrawStringTo2DGfxBuffer(reinterpret_cast<u32 const &>(size), buffer->tiles,
-        0, 0, reinterpret_cast<u8 const *>(text));
+    UiActionState * state = (UiActionState *)object;
+
+    state->flags_01dc.active = 0;
 }
 
 void SetUiNameplateText(UiStatePayload * payload, char const * text)
@@ -994,6 +3793,13 @@ void SetUiNameplateText(UiStatePayload * payload, char const * text)
     payload->nameplate_flags.changed = 1;
 }
 
+extern "C" void ClearUiActionStateFlag01F0(void * object)
+{
+    UiActionState * state = (UiActionState *)object;
+
+    state->flags_01f0.active = 0;
+}
+
 void UiStatePayload::ShowHeartIndicator(u32 level)
 {
     if (level >= heart_indicator_archive.GetEntryDescriptorCount()) {
@@ -1009,37 +3815,258 @@ void UiStatePayload::HideHeartIndicator()
     heart_indicator_visible = 0;
 }
 
-UiStatePayload::UiStatePayload(u32 background, u32 screen, u32 palette_bank,
-    u32 mode, ObjTileCollection const & shared, ObjPaletteCollection const & resources)
-    : background(background), screen_block(screen), character_block(screen >> 3),
-      first_tile((screen & 7) * 64 + 20), background_palette(palette_bank),
-      mode(mode), state(0), unk_0c(0), allow_resume(1),
-      palette(resources.Get()), background_state(shared.Get(2)),
-      commands(), records(), records_command(records), output(&palette, shared),
-      text(), output_command(&output),
-      tile_copy(reinterpret_cast<u32 const *>(gUiSharedTiles),
-          &reinterpret_cast<u32 (*)[BG_CHAR_SIZE / TILE_SIZE_4BPP][TILE_SIZE_4BPP / sizeof(u32)]>(BG_VRAM)[character_block][first_tile][0],
-          gUiSharedTileByteCount / TILE_SIZE_4BPP, mode == 1),
-      window(screen_block, first_tile, background_palette,
-          palette.GetIndex()),
-      choice_index(0), hand_cursor(gUiHandCursorArchive),
-#if defined(REGION_JP)
-      choice_cursor(gUnk_084AF4E4),
-#else
-      choice_cursor(gUnk_0872937C),
-#endif
-      choice_handle(&choice_cursor, 0, 256), choice_state(shared.Get(7)),
-      portrait_flags(), portrait(), portrait_palette(resources.Get()), nameplate_flags(),
-      nameplate_tiles(), heart_indicator_visible(0),
-      heart_indicator_archive(gUiHeartIndicatorArchive),
-      heart_indicator_handle(&heart_indicator_archive, 0, 256),
-      heart_indicator_palette(resources.Get()), low_flags()
+asm_unified(
+    ".text\n"
+    ".ifdef REGION_JP\n"
+    "\n"
+    "    .global func_08050C70\n"
+    "    .thumb_func\n"
+    "func_08050C70: @ 0x080509FC\n"
+    "    push {r4, lr}\n"
+    "    sub sp, #0xc\n"
+    "    adds r4, r0, #0\n"
+    "    add r2, sp, #8\n"
+    "    movs r0, #0\n"
+    "    strb r0, [r2]\n"
+    "    mov r0, sp\n"
+    "    subs r2, r2, r0\n"
+    "    movs r1, #0\n"
+    "    bl memset\n"
+    "    mov r0, sp\n"
+    "    adds r0, #2\n"
+    "    movs r2, #1\n"
+    "    strb r2, [r0]\n"
+    "    mov r1, sp\n"
+    "    adds r1, #3\n"
+    "    movs r0, #0x15\n"
+    "    strb r0, [r1]\n"
+    "    mov r0, sp\n"
+    "    adds r0, #7\n"
+    "    strb r2, [r0]\n"
+    "    adds r1, r4, #0\n"
+    "    mov r0, sp\n"
+    "    ldmia r0!, {r2, r3}\n"
+    "    stmia r1!, {r2, r3}\n"
+    "    adds r0, r4, #0\n"
+    "    add sp, #0xc\n"
+    "    pop {r4}\n"
+    "    pop {r1}\n"
+    "    bx r1\n"
+    "    .align 2, 0\n"
+    "\n"
+    "    .global func_08050CB0\n"
+    "    .thumb_func\n"
+    "func_08050CB0: @ 0x08050A3C\n"
+    "    movs r1, #3\n"
+    "    ldr r0, .Ljp_08050A48\n"
+    "    ands r2, r0\n"
+    "    orrs r2, r1\n"
+    "    adds r0, r2, #0\n"
+    "    bx lr\n"
+    "    .align 2, 0\n"
+    ".Ljp_08050A48: .word 0xFFFFFF00\n"
+    "\n"
+    "    .else\n"
+    "\n"
+    "\tthumb_func_start func_08050C70\n"
+    "func_08050C70: @ 0x08050C70\n"
+    "\tpush {r4, lr}\n"
+    "\tsub sp, #0xc\n"
+    "\tadds r4, r0, #0\n"
+    "\tadd r2, sp, #8\n"
+    "\tmovs r0, #0\n"
+    "\tstrb r0, [r2]\n"
+    "\tmov r0, sp\n"
+    "\tsubs r2, r2, r0\n"
+    "\tmovs r1, #0\n"
+    "\tbl memset\n"
+    "\tmov r0, sp\n"
+    "\tadds r0, #2\n"
+    "\tmovs r2, #1\n"
+    "\tstrb r2, [r0]\n"
+    "\tmov r1, sp\n"
+    "\tadds r1, #3\n"
+    "\tmovs r0, #0x15\n"
+    "\tstrb r0, [r1]\n"
+    "\tmov r0, sp\n"
+    "\tadds r0, #7\n"
+    "\tstrb r2, [r0]\n"
+    "\tadds r1, r4, #0\n"
+    "\tmov r0, sp\n"
+    "\tldmia r0!, {r2, r3}\n"
+    "\tstmia r1!, {r2, r3}\n"
+    "\tadds r0, r4, #0\n"
+    "\tadd sp, #0xc\n"
+    "\tpop {r4}\n"
+    "\tpop {r1}\n"
+    "\tbx r1\n"
+    "\t.align 2, 0\n"
+    "\n"
+    "\tthumb_func_start func_08050CB0\n"
+    "func_08050CB0: @ 0x08050CB0\n"
+    "\tmovs r1, #3\n"
+    "\tldr r0, .L08050CBC\n"
+    "\tands r2, r0\n"
+    "\torrs r2, r1\n"
+    "\tadds r0, r2, #0\n"
+    "\tbx lr\n"
+    "\t.align 2, 0\n"
+    ".L08050CBC: .word 0xFFFFFF00\n"
+    "\n"
+    "    .endif\n"
+);
+
+UiStateOwner::UiStateOwner(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
+    ObjTileCollection const & shared, ObjPaletteCollection const & resources)
 {
+    value = new UiStatePayload(arg_1, arg_2, arg_3, arg_4, shared, resources);
+}
+
+UiStateOwner::~UiStateOwner()
+{
+    delete value;
+}
+
+i32 UiStateOwner::GetState() const
+{
+    return value->state;
+}
+
+i32 UiStateOwner::Update(HardwareInputState * state,
+    HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
+    HardwareLinkedList * links, HardwareInterruptList * manager, HardwareMusicPlayerSlot * music) const
+{
+    return value->Update(state, sprites, display, links, manager, music);
+}
+
+EC void func_08050D5C(UiStateOwner const * object)
+{
+    object->value->Open();
+}
+
+EC void func_08050D68(UiStateOwner const * object)
+{
+    object->value->OpenImmediately();
+}
+
+EC void func_08050D74(void * const * object)
+{
+    SetUiObjectStateTwoIfNonzero(*object);
+}
+
+EC void func_08050D80(void * const * object)
+{
+    ClearUiObjectStateIfNonzero(*object);
+}
+
+EC void func_08050D8C(void * const * object, u32 arg_r1)
+{
+    static_cast<UiStatePayload *>(*object)->SetText(
+        reinterpret_cast<char const *>(arg_r1), 0x100, nullptr);
+}
+
+EC void func_08050DA0(UiStateOwner const * object, char const * text,
+    ScriptTextVariableStore * variables)
+{
+    object->value->SetText(text, 0x100, variables);
+}
+
+EC void func_08050DB4(UiStateOwner const * object, char const * text, u16 speed)
+{
+    object->value->SetText(text, speed, nullptr);
+}
+
+EC void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
+    u32 arg_r3)
+{
+    static_cast<UiStatePayload *>(*object)->SetText(
+        reinterpret_cast<char const *>(arg_r1), arg_r2,
+        reinterpret_cast<ScriptTextVariableStore *>(arg_r3));
+}
+
+u8 UiStateOwner::DisableResume() const
+{
+    u8 const previous = value->allow_resume;
+    value->allow_resume = 0;
+    return previous;
+}
+
+u8 UiStateOwner::EnableResume() const
+{
+    u8 const previous = value->allow_resume;
+    value->allow_resume = 1;
+    return previous;
+}
+
+u32 UiStateOwner::GetChoiceResult() const
+{
+    if (value->state == 6)
+        return 0;
+    return value->choice_index;
+}
+
+EC void func_08050E0C(UiStateOwner const * object, char const * first, char const * second,
+    char const * third, char const * fourth, char const * fifth, char const * sixth,
+    ScriptTextVariableStore * variables)
+{
+    object->value->SetChoices(first, second, third, fourth, fifth, sixth, variables);
+}
+
+EC void func_08050E30(UiStateOwner const * object, char const * prompt, char const * first,
+    char const * second, char const * third, char const * fourth,
+    ScriptTextVariableStore * variables)
+{
+    object->value->SetPromptChoices(prompt, first, second, third, fourth, variables);
+}
+
+void UiStateOwner::ShowPortrait(u32 index) const
+{
+    value->ShowPortrait(index);
+}
+
+EC void func_08050E5C(void * const * object)
+{
+    ClearUiActionStateFlag01DC(*object);
+}
+
+EC void func_08050E68(void * const * object, char const * text)
+{
+    SetUiNameplateText(static_cast<UiStatePayload *>(*object), text);
+}
+
+EC void func_08050E74(void * const * object)
+{
+    ClearUiActionStateFlag01F0(*object);
+}
+
+void UiStateOwner::ShowHeartIndicator(u32 level) const
+{
+    value->ShowHeartIndicator(level);
+}
+
+void UiStateOwner::HideHeartIndicator() const
+{
+    value->HideHeartIndicator();
+}
+
+EC u32 func_08050E98(FirstFieldUiOwner & object, u32 const flag_mask)
+{
+    FirstFieldUiFlags * const data = object.data;
+    u32 const old_flags = data->low_flags;
+    data->low_flags &= ~flag_mask;
+    return old_flags;
+}
+
+EC u32 func_08050EBC(FirstFieldUiOwner & object, u32 const flag_mask)
+{
+    FirstFieldUiFlags * const data = object.data;
+    u32 const old_flags = data->low_flags;
+    data->low_flags |= flag_mask;
+    return old_flags;
 }
 
 // Keep the native text/table/pointer order. Definitions follow their consumers
 // so the old compiler retains accesses through the named pointer/count objects.
-#include FOMT_TEXT_INCLUDE(ui_state.cc)
 
 UiTextLayoutPositionTable const gUiTextLayoutPositionTable = {
     0x00,

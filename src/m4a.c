@@ -73,32 +73,20 @@ extern void ply_xswee(struct MusicPlayer *, struct MusicPlayerTrack *);
 
 SECTION(".bss") ALIGN(4) u8 SoundMainRam[0x400] = { 0 };
 
-SECTION(".gMusicPlayerTrackA")
-struct MusicPlayerTrack gMusicPlayerTrackA[8] = { 0 };
-
-SECTION(".gMusicPlayerTrackB")
-struct MusicPlayerTrack gMusicPlayerTrackB[8] = { 0 };
-
-SECTION(".gMusicPlayerTrackC")
-struct MusicPlayerTrack gMusicPlayerTrackC[8] = { 0 };
-
-SECTION(".gMusicPlayerTrackD")
-struct MusicPlayerTrack gMusicPlayerTrackD[8] = { 0 };
-
-SECTION(".gMusicPlayerTrackE")
-struct MusicPlayerTrack gMusicPlayerTrackE[8] = { 0 };
-
-SECTION(".gSoundInfo")
-struct SoundInfo gSoundInfo = { 0 };
-
-SECTION(".gMPlayJumpTable")
-MPlayFunc gMPlayJumpTable[36] = { 0 };
-
-SECTION(".gCgbChans")
-struct CgbChannel gCgbChans[4] = { 0 };
-
-SECTION(".gMPlayMemAccArea")
-u8 gMPlayMemAccArea[0x10] = { 0 };
+EWRAM_DATA struct MusicPlayerTrack gMusicPlayerTrackA[8] = { 0 };
+EWRAM_DATA struct MusicPlayerTrack gMusicPlayerTrackB[8] = { 0 };
+EWRAM_DATA struct MusicPlayerTrack gMusicPlayerTrackC[8] = { 0 };
+EWRAM_DATA struct MusicPlayerTrack gMusicPlayerTrackD[8] = { 0 };
+EWRAM_DATA struct MusicPlayerTrack gMusicPlayerTrackE[8] = { 0 };
+EWRAM_DATA struct SoundInfo gSoundInfo = { 0 };
+EWRAM_DATA MPlayFunc gMPlayJumpTable[36] = { 0 };
+EWRAM_DATA struct CgbChannel gCgbChans[4] = { 0 };
+EWRAM_DATA struct MusicPlayer gMusicPlayerA = { 0 };
+EWRAM_DATA struct MusicPlayer gMusicPlayerB = { 0 };
+EWRAM_DATA struct MusicPlayer gMusicPlayerC = { 0 };
+EWRAM_DATA struct MusicPlayer gMusicPlayerE = { 0 };
+EWRAM_DATA u8 gMPlayMemAccArea[0x10] = { 0 };
+EWRAM_DATA struct MusicPlayer gMusicPlayerD = { 0 };
 
 // The driver copies this ROM template into gMPlayJumpTable during sound
 // initialization.  These are deliberately ordinary C function pointers so

@@ -1,5 +1,6 @@
 #include "field_render_rect_descriptors.hh"
-#include "static_resources.hh"
+#include "field_render_resource_data.hh"
+#include "map_terrain.hh"
 
 // Field initialization and rendering paths consume these fixed-size records.
 // Resource payload formats remain raw until their individual assets are decoded.
@@ -93,8 +94,6 @@ extern u8 const gUnk_FieldRenderResource_150[];
 extern u8 const gUnk_FieldRenderResource_151[];
 extern u8 const gUnk_FieldRenderResource_154[];
 extern u8 const gUnk_FieldRenderResource_157[];
-extern u8 const gUnk_FieldRenderResource_158[];
-extern u8 const gUnk_FieldRenderResource_159[];
 extern u8 const gUnk_FieldRenderResource_160[];
 extern u8 const gUnk_FieldRenderResource_163[];
 extern u8 const gUnk_FieldRenderResource_166[];
@@ -102,8 +101,6 @@ extern u8 const gUnk_FieldRenderResource_169[];
 extern u8 const gUnk_FieldRenderResource_170[];
 extern u8 const gUnk_FieldRenderResource_173[];
 extern u8 const gUnk_FieldRenderResource_176[];
-extern u8 const gUnk_FieldRenderResource_177[];
-extern u8 const gUnk_FieldRenderResource_178[];
 extern u8 const gUnk_FieldRenderResource_179[];
 extern u8 const gUnk_FieldRenderResource_182[];
 extern u8 const gUnk_FieldRenderResource_183[];
@@ -441,8 +438,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x22 */ {
         0x02, 0x03,
         { nullptr, gUnk_FieldRenderResource_157, nullptr },
-        gUnk_FieldRenderResource_158,
-        gUnk_FieldRenderResource_159,
+        gFieldRenderBlockedTileAttributes,
+        gFieldRenderBlockedPatchIndices,
     },
     /* 0x23 */ {
         0x09, 0x05,
@@ -477,8 +474,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x28 */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_176, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x29 */ {
         0x03, 0x05,
@@ -489,8 +486,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x2A */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_182, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x2B */ {
         0x03, 0x05,
@@ -501,8 +498,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x2C */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_186, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x2D */ {
         0x03, 0x05,
@@ -513,8 +510,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x2E */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_190, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x2F */ {
         0x03, 0x05,
@@ -525,8 +522,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x30 */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_194, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x31 */ {
         0x03, 0x05,
@@ -537,8 +534,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x32 */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_198, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x33 */ {
         0x03, 0x05,
@@ -549,8 +546,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x34 */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_202, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x35 */ {
         0x03, 0x05,
@@ -561,8 +558,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x36 */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_206, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x37 */ {
         0x03, 0x05,
@@ -573,8 +570,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x38 */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_210, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x39 */ {
         0x03, 0x05,
@@ -585,8 +582,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x3A */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_214, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x3B */ {
         0x03, 0x05,
@@ -597,8 +594,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x3C */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_218, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x3D */ {
         0x03, 0x05,
@@ -609,8 +606,8 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     /* 0x3E */ {
         0x03, 0x05,
         { nullptr, gUnk_FieldRenderResource_222, nullptr },
-        gUnk_FieldRenderResource_177,
-        gUnk_FieldRenderResource_178,
+        gFieldRenderClearTileAttributes,
+        gFieldRenderClearPatchIndices,
     },
     /* 0x3F */ {
         0x04, 0x04,

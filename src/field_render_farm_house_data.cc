@@ -1,5 +1,5 @@
 #include "field_render_farm_house_data.hh"
-#include "static_resources.hh"
+#include "map_terrain.hh"
 
 // Resource symbols are defined at the actual regional source boundaries.
 // These tables keep real relocations to them; generated tiles, palettes and

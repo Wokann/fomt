@@ -6,8 +6,6 @@
 #include "utility/container_algorithms.hh"
 #include <stdlib.h>
 
-#pragma interface "scroll_state.hh"
-
 struct HardwareDisplayState;
 
 // One CPU-side tilemap row: 32 halfword entries, matching a BG screen block.
@@ -36,21 +34,12 @@ private:
 };
 
 struct ScrollBufferUploadCommand : HardwareLinkBase {
-    ScrollBufferUploadCommand() {}
-    virtual ~ScrollBufferUploadCommand() {}
+    ScrollBufferUploadCommand();
+    virtual ~ScrollBufferUploadCommand();
     virtual bool Run();
 
-    bool IsQueued() const { return previous_slot != nullptr; }
     void SetTransfers(void const * first, void * target, u32 bytes,
-        void const * second, void * other_target, u32 other_bytes)
-    {
-        first_source = first;
-        first_destination = target;
-        first_bytes = bytes;
-        second_source = second;
-        second_destination = other_target;
-        second_bytes = other_bytes;
-    }
+        void const * second, void * other_target, u32 other_bytes);
 
     void const * first_source;
     void * first_destination;

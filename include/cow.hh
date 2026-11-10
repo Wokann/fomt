@@ -16,6 +16,7 @@ struct Cow : public BarnAnimal
 
     Cow(char const * name, ActorLocation const & location, u32 age, u32 days_fed);
     Cow(ActorLocation const & location, u32 age, u32 days_fed);
+    Cow & operator=(Cow const & other);
 
     GrowthStage GetGrowthStage() const;
     bool CanBeMilked() const;

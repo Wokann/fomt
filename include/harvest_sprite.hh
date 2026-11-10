@@ -27,136 +27,6 @@ bool HasHarvestSpriteWorkTarget(HarvestSpriteWorkTarget const * targets, Harvest
 void SetHarvestSpriteWorkTarget(HarvestSpriteWorkTarget * targets, u32 slot, HarvestSpriteWorkTarget const & value);
 void ClearHarvestSpriteWorkTarget(HarvestSpriteWorkTarget * targets, u32 slot);
 
-// Search [begin, end); return the first matching work target, or end.
-extern "C" HarvestSpriteWorkTarget const * FindHarvestSpriteWorkTarget(
-    HarvestSpriteWorkTarget const * begin, HarvestSpriteWorkTarget const * end,
-    HarvestSpriteWorkTarget const & value);
-
-extern u8 const gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues[5];
-extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues[4];
-extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0[3];
-extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1[5];
-extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2[3];
-extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3[7];
-extern char const gCppRuntimeBadAlloc_HarvestSpriteMiniGameAnimalHusbandry[];
-extern char const gText_HarvestSpriteMiniGameAnimalHusbandryEmpty[];
-
-extern u16 const gUnk_HarvestSpriteMiniGameChickenFestivalValues[4][6];
-extern u8 const gUnk_HarvestSpriteMiniGameChickenFestivalOffsets[4];
-
-extern u32 const gUnk_080BAC9CValues[16];
-extern u16 const gUnk_080BB890FirstValues[5];
-extern u16 const gUnk_080BB890TableValues[4][4];
-extern u16 const gUnk_080BB890LastValues[3];
-extern u32 const gUnk_080BC288Values[16];
-extern char const gCppRuntimeBadAlloc_HarvestSpriteMiniGamePostChickenFestival[];
-extern char const gText_080BE728DigitZero[];
-extern u32 const gUnk_080BE954Values[7];
-
-extern u16 const gUnk_080C09D8Values[11];
-extern u16 const gUnk_080C0B58Values[7];
-extern char const gCppRuntimeBadAlloc_HarvestSpriteMiniGameHarvestResults[];
-extern u16 const gUnk_080C3B18Values[8][2];
-extern char const gText_080C38E4DigitZero[];
-extern u32 const gUnk_080C3B18IndexValues[7];
-extern u16 const gUnk_080C7B38Values[10];
-extern u16 const gUnk_080C7B64Values[7];
-
-enum
-{
-    CHICKEN_FESTIVAL_CONTESTANT_NAME_COUNT = 20,
-    CHICKEN_FESTIVAL_CONTESTANT_NAME_WIDTH = 13,
-};
-
-// Direct-indexed fixed-width rows, not a pointer table.
-extern char const gText_ChickenFestival_ContestantNames[CHICKEN_FESTIVAL_CONTESTANT_NAME_COUNT][CHICKEN_FESTIVAL_CONTESTANT_NAME_WIDTH];
-
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_No[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Introduction[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_FeedingInstructions[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ChickenBehaviorInstructions[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_WatchInstructions[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandQuestion[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandYes[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandAgain[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Start[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix[];
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary[];
-
-#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultPrefix[];
-#endif
-
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsAnnouncement[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalRoundAnnouncement[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationQuestion[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationNo[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationYes[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Start[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Stop[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_WinnerSuffix[];
-#if defined(REGION_DE)
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStartPageBreak[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStartPageBreak[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStartPageBreak[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_StartPageBreak[];
-#endif
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandQuestion[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandYes[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Introduction[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Rules[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge[];
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing[];
-
-#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-extern char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain[];
-#endif
-
-extern char const gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_Yes[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_No[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_Introduction[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_Instructions[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_FatigueWarning[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_RestInstructions[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_UnderstandYes[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_Start[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_ScorePrefix[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix[];
-extern char const gText_HarvestSpriteMiniGame_Harvest_ScoreSummary[];
-
-extern char const gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion[];
-extern char const gText_HarvestSpriteMiniGame_Watering_Yes[];
-extern char const gText_HarvestSpriteMiniGame_Watering_No[];
-extern char const gText_HarvestSpriteMiniGame_Watering_Introduction[];
-extern char const gText_HarvestSpriteMiniGame_Watering_Instructions[];
-extern char const gText_HarvestSpriteMiniGame_Watering_SuccessInstructions[];
-extern char const gText_HarvestSpriteMiniGame_Watering_MistakeWarning[];
-extern char const gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion[];
-extern char const gText_HarvestSpriteMiniGame_Watering_UnderstandYes[];
-extern char const gText_HarvestSpriteMiniGame_Watering_UnderstandAgain[];
-extern char const gText_HarvestSpriteMiniGame_Watering_Start[];
-extern char const gText_HarvestSpriteMiniGame_Watering_ScorePrefix[];
-extern char const gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix[];
-extern char const gText_HarvestSpriteMiniGame_Watering_ScoreSummary[];
-
-#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-extern char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultPrefix[];
-#endif
-
-#if defined(REGION_US) || defined(REGION_EU)
-extern char const gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix[];
-#endif
-
 struct HarvestSprite : public Npc
 {
     enum Task
@@ -199,6 +69,21 @@ struct HarvestSprite : public Npc
     /* +1C */ u32 unk_1C;
     /* +20 */ UnkBarnAnimal2C unk_20;
 };
+
+// The hut initializer reads three bytes from each four-byte record.
+// The last byte is natural record alignment, not a separate runtime field.
+struct ALIGN(4) HarvestSpriteHutPosition
+{
+    u8 x;
+    u8 y;
+    u8 facing;
+};
+
+typedef char HarvestSpriteHutPositionSizeCheck[sizeof(HarvestSpriteHutPosition) == 4 ? 1 : -1];
+typedef char HarvestSpriteHutPositionFacingCheck[offsetof(HarvestSpriteHutPosition, facing) == 2 ? 1 : -1];
+
+extern "C" HarvestSpriteHutPosition const gHarvestSpriteHutPositions[7];
+
 
 // Slots outside the seven native hut positions use (0, 0), facing down.
 ActorLocation * InitializeHarvestSpriteHutLocation(ActorLocation * location, u32 slot);

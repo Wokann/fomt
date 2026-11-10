@@ -2,16 +2,21 @@
 #define UI_STATE_HH
 
 #include "prelude.h"
+#include "ui_text_commands.hh"
+#include "scene_text_variable_lifetimes.hh"
+#include "ui_portrait.hh"
+#include "gbaio.h"
+#include "gbasvc.h"
 #include "ui_text_stream.hh"
 #include "resource_handle.hh"
-#include "obj_palette_collection.hh"
-#include "hardware_dma_descriptor.hh"
+#include "obj_palette_pool.hh"
+#include "hardware_dma.hh"
 #include "utility/container_algorithms.hh"
 #include "hardware_linked_list.hh"
 #include "obj_tile_collection.hh"
 #include "utility/fixed_str.hh"
 
-struct HardwareCoreState;
+struct HardwareInputState;
 struct HardwareSpriteBufferState;
 struct HardwareDisplayState;
 struct ObjTileCollection;
@@ -19,72 +24,9 @@ struct ObjPaletteCollection;
 struct ObjPaletteCollectionEntry;
 struct HardwareMusicPlayerSlot;
 struct HardwareInterruptList;
-struct ScriptTextVariableStore;
 struct IndexedResourceGroupResult;
 
-// Own the current portrait archive group, including sprite and tile/palette
-// ranges. The pointed-to 32-byte result borrows its actual archive payload.
-struct UiPortraitGroupOwner
-{
-    IndexedResourceGroupResult * value;
-    UiPortraitGroupOwner() SECTION(".text.ui_portrait_group");
-    UiPortraitGroupOwner(u32 index) SECTION(".text.ui_portrait_group");
-    ~UiPortraitGroupOwner() SECTION(".text.ui_portrait_group");
-    void Set(u32 index) SECTION(".text.ui_portrait_group");
-    IndexedResourceGroupResult Get() const SECTION(".text.ui_portrait_group");
-};
-
-typedef char UiPortraitGroupOwnerSizeCheck[sizeof(UiPortraitGroupOwner) == 4 ? 1 : -1];
-
-struct UiTextSubstitution
-{
-    bool found;
-    FixedStr<31> text;
-
-    UiTextSubstitution(bool const & value, FixedStr<31> const & replacement)
-        : found(value), text(replacement) {}
-};
-
-// The output base supplies native no-op cursor/page defaults and a byte-valued
-// stop query. Concrete output storage below owns its three glyph rows.
-// The input adapter below stores a copied key snapshot and a byte-valued gate;
-// variable-store implementations still have additional native storage.
-struct UiTextOutput
-{
-    virtual ~UiTextOutput() SECTION(".text.ui_text_output_base_destructor");
-    virtual bool Emit(u32 code) = 0;
-    virtual void CarriageReturn() SECTION(".text.ui_text_output_defaults");
-    virtual void LineFeed() SECTION(".text.ui_text_output_defaults");
-    virtual void NextPage() SECTION(".text.ui_text_output_defaults");
-    virtual u8 ShouldStop() SECTION(".text.ui_text_output_defaults");
-};
-
-inline UiTextOutput::~UiTextOutput() {}
-
-struct UiTextInput
-{
-    virtual ~UiTextInput() SECTION(".text.ui_text_input_base_destructor");
-    virtual bool Fast() SECTION(".text.ui_text_input_defaults");
-    virtual bool WaitForInput() SECTION(".text.ui_text_input_defaults");
-    virtual bool Resume() SECTION(".text.ui_text_input_defaults");
-};
-
-inline UiTextInput::~UiTextInput() {}
-
-struct ScriptTextVariableStore
-{
-    virtual ~ScriptTextVariableStore();
-    virtual UiTextSubstitution Lookup(u32 code);
-};
-
-inline ScriptTextVariableStore::~ScriptTextVariableStore() {}
-
-typedef char UiTextSubstitutionSizeCheck[sizeof(UiTextSubstitution) == 36 ? 1 : -1];
-typedef char UiTextSubstitutionTextCheck[offsetof(UiTextSubstitution, text) == 4 ? 1 : -1];
-
 EXTERN_C
-u32 GetUiPortraitCount() SECTION(".text.ui_portrait_group");
-extern u8 const gPortraitIndexedResourceArchive[];
 extern u8 const gUiHeartIndicatorArchive[];
 EXTERN_C_END
 
@@ -122,8 +64,8 @@ struct FirstFieldUiOwner
 };
 
 EXTERN_C
-u32 func_08050E98(FirstFieldUiOwner &, u32 flag_mask) SECTION(".text.ui_state_adapters");
-u32 func_08050EBC(FirstFieldUiOwner &, u32 flag_mask) SECTION(".text.ui_state_adapters");
+u32 func_08050E98(FirstFieldUiOwner &, u32 flag_mask);
+u32 func_08050EBC(FirstFieldUiOwner &, u32 flag_mask);
 EXTERN_C_END
 
 struct UiStatePayload;
@@ -131,208 +73,51 @@ struct UiStatePayload;
 struct UiStateOwner
 {
     UiStateOwner(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
-        ObjTileCollection const & shared, ObjPaletteCollection const & resources)
-        SECTION(".text.ui_state_adapters");
-    ~UiStateOwner() SECTION(".text.ui_state_adapters");
-    i32 GetState() const SECTION(".text.ui_state_adapters");
+        ObjTileCollection const & shared, ObjPaletteCollection const & resources);
+    ~UiStateOwner();
+    i32 GetState() const;
     // Preserve the previous raw gate byte, rather than normalizing it to bool.
-    u8 DisableResume() const SECTION(".text.ui_state_adapters");
-    u8 EnableResume() const SECTION(".text.ui_state_adapters");
+    u8 DisableResume() const;
+    u8 EnableResume() const;
     // Zero while choosing; otherwise the stored choice index, not a pointer.
     // This is not a completion query for unrelated window phases.
-    u32 GetChoiceResult() const SECTION(".text.ui_state_adapters");
-    i32 Update(HardwareCoreState * state, HardwareSpriteBufferState * sprites,
+    u32 GetChoiceResult() const;
+    i32 Update(HardwareInputState * state, HardwareSpriteBufferState * sprites,
         HardwareDisplayState * display, HardwareLinkedList * links, HardwareInterruptList * manager,
-        HardwareMusicPlayerSlot * music) const SECTION(".text.ui_state_adapters");
+        HardwareMusicPlayerSlot * music) const;
     // These take an archive level index, not a character ID. GameScene owns
     // the love-value to level mapping used by the script-facing operation.
-    void ShowPortrait(u32 index) const SECTION(".text.ui_state_adapters");
-    void ShowHeartIndicator(u32 level) const SECTION(".text.ui_state_adapters");
-    void HideHeartIndicator() const SECTION(".text.ui_state_adapters");
+    void ShowPortrait(u32 index) const;
+    void ShowHeartIndicator(u32 level) const;
+    void HideHeartIndicator() const;
 
     UiStatePayload * value;
 };
 
 typedef char UiStateOwnerSizeCheck[sizeof(UiStateOwner) == 4 ? 1 : -1];
 
-// One-shot window setup: a background screen block, border tile index,
-// background palette bank and hand-cursor OBJ palette bank. The upper nine
-// bits retain their previous value and still have no established meaning.
-struct UiTextWindowSetupCommand : HardwareLinkBase
-{
-    inline UiTextWindowSetupCommand(u32, u32, u32, u32) SECTION(".text.ui_state_adapters");
-    virtual bool Run() SECTION(".text.ui_text_window_setup");
-    unsigned screen_block : 5;
-    unsigned first_tile : 10;
-    unsigned background_palette : 4;
-    unsigned cursor_palette : 4;
-    unsigned unk_0c_23 : 9;
-};
+struct GameSceneTalkWindowOwner {
+    UiStateOwner * value;
 
-typedef char UiTextWindowSetupCommandSizeCheck[
-    sizeof(UiTextWindowSetupCommand) == 0x10 ? 1 : -1];
-
-// The native UI update copies input.pressed into this word-sized snapshot.
-// Only its low eight key bits are queried; allow_resume gates resumption.
-struct UiTextInputAdapter : UiTextInput
-{
-    UiTextInputAdapter(u32 const &, u8);
-    // The implicit virtual destructor forwards to the real input base.
-    virtual bool Fast() SECTION(".text.ui_text_input_callbacks");
-    virtual bool WaitForInput() SECTION(".text.ui_text_input_callbacks");
-    virtual bool Resume() SECTION(".text.ui_text_input_callbacks");
-    u32 pressed;
-    u8 allow_resume;
-};
-
-// Native selection storage: three owned rows, each with seven 16-byte
-// entries. The buffer prefix and scalar control fields remain unknown.
-struct UnkUiSelectionTileBuffer
-{
-    // Buffers intentionally start uninitialized, including the inline array.
-    UnkUiSelectionTileBuffer() {}
-    u32 unk_00;
-    u32 tiles[64];
-};
-
-struct UnkUiSelectionPixels
-{
-    UnkUiSelectionTileBuffer * value;
-    UnkUiSelectionPixels() : value(new UnkUiSelectionTileBuffer) {}
-    ~UnkUiSelectionPixels() { delete value; }
-};
-
-struct UnkUiSelectionEntry
-{
-    UnkUiSelectionPixels pixels;
-    ObjTileCollectionEntry state;
-    bool changed;
-    UnkUiSelectionEntry() : changed(false) {}
-};
-
-struct UnkUiSelectionRow
-{
-    UnkUiSelectionEntry entries[7];
-    UnkUiSelectionEntry & Entry(unsigned index) { return entries[index]; }
-};
-
-struct UnkUiSelectionRowOwner
-{
-    UnkUiSelectionRow * value;
-    UnkUiSelectionRowOwner() : value(nullptr) {}
-    ~UnkUiSelectionRowOwner() { delete value; }
-    UnkUiSelectionRow * Get() const { return value; }
-    UnkUiSelectionRow * operator->() const { return value; }
-    UnkUiSelectionRowOwner & operator=(UnkUiSelectionRow * input)
+    GameSceneTalkWindowOwner() : value(nullptr) {}
+    GameSceneTalkWindowOwner(UiStateOwner * window) : value(window) {}
+    ~GameSceneTalkWindowOwner() { delete value; }
+    UiStateOwner * Get() const { return value; }
+    GameSceneTalkWindowOwner & operator=(UiStateOwner * next)
     {
-        UnkUiSelectionRow * const previous = value;
-        if (input != previous && previous != nullptr)
-            delete previous;
-        value = input;
+        if (next != value)
+            delete value;
+        value = next;
         return *this;
     }
 };
 
-struct UnkUiSelectionData : UiTextOutput
-{
-    inline UnkUiSelectionData(ObjPaletteCollectionEntry *, ObjTileCollection const &);
-    // Keep the implicit virtual destructor: row ownership supplies its body.
-    virtual bool Emit(u32) SECTION(".text.ui_text_output_callbacks");
-    virtual void CarriageReturn() SECTION(".text.ui_text_output_callbacks");
-    virtual void LineFeed() SECTION(".text.ui_text_output_callbacks");
-    virtual void NextPage() SECTION(".text.ui_text_output_callbacks");
-    // Return the stored byte unchanged; do not normalize it to a C++ bool.
-    virtual u8 ShouldStop() SECTION(".text.ui_text_output_callbacks");
-    ObjPaletteCollectionEntry * palette;
-    UnkUiSelectionRowOwner rows[3];
-    u16 unk_14;
-    u16 unk_16;
-    u8 unk_18;
-    u8 unk_19;
-    u8 unk_1a;
-    u8 unk_1b;
-};
-
-struct UnkUiSelectionDimensions
-{
-    u16 width;
-    u16 height;
-    UnkUiSelectionDimensions(u16 first, u16 second) : width(first), height(second) {}
-};
-
-// Upload changed glyph buffers from the three physical rows, then retire
-// this queued command. The output storage and its resource handles are borrowed.
-struct UiTextOutputUploadCommand : HardwareLinkBase
-{
-    UiTextOutputUploadCommand(UnkUiSelectionData * const & value) : output(value) {}
-    virtual bool Run() SECTION(".text.ui_text_output_upload");
-    UnkUiSelectionData * output;
-};
-
-typedef char UiTextOutputUploadCommandSizeCheck[
-    sizeof(UiTextOutputUploadCommand) == 0x10 ? 1 : -1];
-typedef char UiTextOutputUploadCommandOutputCheck[
-    offsetof(UiTextOutputUploadCommand, output) == 0x0C ? 1 : -1];
-
-// A repeating BG tile upload. Alternating mode toggles its nibble mask each
-// run; it is not compression. That mode requires at least one 32-byte tile.
-struct UiTextTileCopyCommand : HardwareLinkBase
-{
-    inline UiTextTileCopyCommand(u32 const *, u32 *, u32, bool);
-    virtual bool Run() SECTION(".text.ui_text_tile_copy");
-    u32 const * source;
-    u32 * destination;
-    u16 tile_count : 14;
-    u16 nibble_phase : 1;
-    u16 alternate_nibbles : 1;
-};
-
-typedef char UiTextInputAdapterSizeCheck[
-    sizeof(UiTextInputAdapter) == 0x0C ? 1 : -1];
-typedef char UiTextInputAdapterPressedCheck[
-    offsetof(UiTextInputAdapter, pressed) == 4 ? 1 : -1];
-typedef char UiTextInputAdapterResumeCheck[
-    offsetof(UiTextInputAdapter, allow_resume) == 8 ? 1 : -1];
-typedef char UnkUiSelectionDataSizeCheck[
-    sizeof(UnkUiSelectionData) == 0x1C ? 1 : -1];
-typedef char UnkUiSelectionTileBufferSizeCheck[
-    sizeof(UnkUiSelectionTileBuffer) == 0x104 ? 1 : -1];
-typedef char UnkUiSelectionTileBufferTilesCheck[
-    offsetof(UnkUiSelectionTileBuffer, tiles) == 4 ? 1 : -1];
-typedef char UnkUiSelectionPixelsSizeCheck[
-    sizeof(UnkUiSelectionPixels) == 4 ? 1 : -1];
-typedef char UnkUiSelectionEntrySizeCheck[
-    sizeof(UnkUiSelectionEntry) == 16 ? 1 : -1];
-typedef char UnkUiSelectionEntryStateCheck[
-    offsetof(UnkUiSelectionEntry, state) == 4 ? 1 : -1];
-typedef char UnkUiSelectionEntryChangedCheck[
-    offsetof(UnkUiSelectionEntry, changed) == 12 ? 1 : -1];
-typedef char UnkUiSelectionRowSizeCheck[
-    sizeof(UnkUiSelectionRow) == 112 ? 1 : -1];
-typedef char UnkUiSelectionRowOwnerSizeCheck[
-    sizeof(UnkUiSelectionRowOwner) == 4 ? 1 : -1];
-typedef char UnkUiSelectionDataRowsCheck[
-    offsetof(UnkUiSelectionData, rows) == 8 ? 1 : -1];
-typedef char UnkUiSelectionDataControlCheck[
-    offsetof(UnkUiSelectionData, unk_14) == 0x14 ? 1 : -1];
-typedef char UnkUiSelectionDataLineCheck[
-    offsetof(UnkUiSelectionData, unk_16) == 0x16 ? 1 : -1];
-typedef char UnkUiSelectionDataOriginCheck[
-    offsetof(UnkUiSelectionData, unk_18) == 0x18 ? 1 : -1];
-typedef char UnkUiSelectionDataStopCheck[
-    offsetof(UnkUiSelectionData, unk_19) == 0x19 ? 1 : -1];
-typedef char UnkUiSelectionDataChangedCheck[
-    offsetof(UnkUiSelectionData, unk_1a) == 0x1A ? 1 : -1];
-typedef char UnkUiSelectionDataNonblankCheck[
-    offsetof(UnkUiSelectionData, unk_1b) == 0x1B ? 1 : -1];
-typedef char UnkUiSelectionDimensionsSizeCheck[
-    sizeof(UnkUiSelectionDimensions) == 4 ? 1 : -1];
-typedef char UiTextTileCopyCommandSizeCheck[
-    sizeof(UiTextTileCopyCommand) == 0x18 ? 1 : -1];
-typedef char UiTextTileCopyCommandSourceCheck[
-    offsetof(UiTextTileCopyCommand, source) == 0x0C ? 1 : -1];
-typedef char UiTextTileCopyCommandDestinationCheck[
-    offsetof(UiTextTileCopyCommand, destination) == 0x10 ? 1 : -1];
+// Direct constructor ABI for native initializers that already own the
+// storage. This is the existing C++ entry, with no allocation wrapper.
+extern "C" UiStateOwner * ConstructUiStateOwner(void * storage,
+    u32 background, u32 screen, u32 palette, u32 mode,
+    ObjTileCollection const & tiles, ObjPaletteCollection const & palettes)
+    asm("__12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection");
 
 EXTERN_C
 
@@ -350,36 +135,38 @@ void func_08050F74(UnkUiSelectionData * object, u32 arg_1, u32 arg_2);
 void DrawUiTextRows(UnkUiSelectionData * object, HardwareSpriteBufferState * sprites);
 
 void func_080510E8(UnkUiSelectionData * object);
-int func_080512B8(UnkUiSelectionData const * object, int index)
-    SECTION(".text.ui_state_selection");
-UnkUiSelectionRow * func_080512C8(UnkUiSelectionData const * object, u32 index)
-    SECTION(".text.ui_state_selection");
-UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index)
-    SECTION(".text.ui_state_selection");
+int func_080512B8(UnkUiSelectionData const * object, int index);
+UnkUiSelectionRow * func_080512C8(UnkUiSelectionData const * object, u32 index);
+UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index);
+
+extern "C" void SetUiObjectStateTwoIfNonzero(void * object);
+extern "C" void ClearUiObjectStateIfNonzero(void * object);
+extern "C" void ClearUiActionStateFlag01DC(void * object);
+extern "C" void ClearUiActionStateFlag01F0(void * object);
+EC void func_08050D80(void * const * object);
+EC void func_08050D8C(void * const * object, u32 arg_r1);
 
 // Existing C adapter ABI. Message adapters pass encoded text, a u16 speed
 // and an optional variable store to the typed payload SetText method.
-void func_08050D5C(UiStateOwner const * object) SECTION(".text.ui_state_adapters");
-void func_08050D68(UiStateOwner const * object) SECTION(".text.ui_state_adapters");
-void func_08050D74(void * const * object) SECTION(".text.ui_state_adapters");
+void func_08050D5C(UiStateOwner const * object);
+void func_08050D68(UiStateOwner const * object);
+void func_08050D74(void * const * object);
 void func_08050DA0(UiStateOwner const * object, char const * text,
-    ScriptTextVariableStore * variables) SECTION(".text.ui_state_adapters");
+    ScriptTextVariableStore * variables);
+void func_08050DB4(UiStateOwner const * object, char const * text, u16 speed);
 void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
-    u32 arg_r3) SECTION(".text.ui_state_adapters");
+    u32 arg_r3);
 // Selection rows are encoded text pointers, not integer IDs. Both adapters
 // receive the same substitution context as the dialogue message renderer.
 void func_08050E0C(UiStateOwner const * object, char const * first, char const * second,
     char const * third, char const * fourth, char const * fifth, char const * sixth,
-    ScriptTextVariableStore * variables) SECTION(".text.ui_state_adapters");
+    ScriptTextVariableStore * variables);
 void func_08050E30(UiStateOwner const * object, char const * prompt, char const * first,
     char const * second, char const * third, char const * fourth,
-    ScriptTextVariableStore * variables) SECTION(".text.ui_state_adapters");
-void func_08050E5C(void * const * object)
-    SECTION(".text.ui_state_adapters");
-void func_08050E68(void * const * object, char const * text)
-    SECTION(".text.ui_state_adapters");
-void func_08050E74(void * const * object)
-    SECTION(".text.ui_state_adapters");
+    ScriptTextVariableStore * variables);
+void func_08050E5C(void * const * object);
+void func_08050E68(void * const * object, char const * text);
+void func_08050E74(void * const * object);
 
 EXTERN_C_END
 
@@ -417,27 +204,16 @@ struct UiChoiceKeyState
 };
 typedef char UiChoiceKeyStateSizeCheck[sizeof(UiChoiceKeyState) == 4 ? 1 : -1];
 
-EC UiTextLayoutPosition GetUiChoiceLayoutPosition(u32 layout, u32 selection)
-    SECTION(".text.ui_choice_labels");
+EC UiTextLayoutPosition GetUiChoiceLayoutPosition(u32 layout, u32 selection);
 EC void RenderUiChoiceLabel(UiStatePayload *, UiTextLayoutPosition const &,
-    char const *, ScriptTextVariableStore *) SECTION(".text.ui_choice_labels");
-EC i32 MoveUiChoiceSelection(u32 layout, i32 selection, UiChoiceKeyState keys)
-    SECTION(".text.ui_choice_labels");
+    char const *, ScriptTextVariableStore *);
+EC i32 MoveUiChoiceSelection(u32 layout, i32 selection, UiChoiceKeyState keys);
 // The encoded input must contain 1..12 bytes. Invalid text only disables the
 // nameplate; valid input clears three owned buffers and draws up to four bytes
 // into each. The portrait and the text-window state are independent.
-EC void SetUiNameplateText(UiStatePayload *, char const *) SECTION(".text.ui_nameplate");
+EC void SetUiNameplateText(UiStatePayload *, char const *);
 
-// These native objects physically precede the layout-position table.  The
-// full-width decimal formatter FormatFullWidthDecimal reads two encoded bytes from
-// each three-byte digit row, or from the space/hyphen strings.  Its checked
-// ASCII index uses (DigitRows - '0' * 3) + character * 3; the terminator is
-// not copied.  Existing names still describe the verified physical layout.
-extern char const gCppRuntimeBadAlloc_PreUiTextLayout[];
-extern char const gUnk_PreUiTextLayoutDigitRows[10][3];
-extern char const gUnk_PreUiTextLayoutFullWidthSpace[];
-extern char const gUnk_PreUiTextLayoutFullWidthHyphen[];
-extern char const gCppRuntimeBadAlloc_PostUiTextLayoutGlyphRows[];
+#include "decimal_text.hh"
 
 // The native helper indexes this object as
 // base + layout * UI_TEXT_LAYOUT_SLOT_COUNT + one_based_slot.  Byte zero is
@@ -460,41 +236,6 @@ extern u32 const gUiSharedTileByteCount;
 extern u8 const * const gUiSharedPalette;
 extern u32 const gUiSharedPaletteByteCount;
 
-// Eight 16-byte DMA descriptors; only the counted range has an active lifetime.
-struct UiDmaTransferQueue
-{
-    u32 count;
-    u8 storage[8 * sizeof(DmaTransferDescriptor)];
-
-    UiDmaTransferQueue() : count(0) {}
-    DmaTransferDescriptor * Begin()
-    {
-        return reinterpret_cast<DmaTransferDescriptor *>(storage);
-    }
-    DmaTransferDescriptor * End()
-    {
-        return reinterpret_cast<DmaTransferDescriptor *>(storage + count * sizeof(DmaTransferDescriptor));
-    }
-    ~UiDmaTransferQueue()
-    {
-        typedef __type_traits<DmaTransferDescriptor>::has_trivial_destructor Trait;
-        DmaTransferDescriptor * last = End();
-        destroy_range_inl(Begin(), last, Trait());
-    }
-};
-// The native Run remains assembly. Emit its real table and implicit destructor
-// in this implementation without exporting an unused constructor.
-#pragma interface "ui_state.hh"
-struct UiDmaTransferCommand : HardwareLinkBase
-{
-    UiDmaTransferCommand(UiDmaTransferQueue & value) : queue(&value) {}
-    UiDmaTransferQueue * queue;
-    virtual bool Run();
-};
-#pragma implementation
-typedef char UiDmaTransferQueueSizeCheck[sizeof(UiDmaTransferQueue) == 0x84 ? 1 : -1];
-typedef char UiDmaTransferCommandSizeCheck[sizeof(UiDmaTransferCommand) == 0x10 ? 1 : -1];
-
 struct UiResourceChangeFlags
 {
     bool active : 1;
@@ -514,23 +255,22 @@ struct UiStatePayload
 {
     // Construction follows these owned members; Update remains native.
     UiStatePayload(u32, u32, u32, u32, ObjTileCollection const &, ObjPaletteCollection const &);
-    ~UiStatePayload() SECTION(".text.ui_payload_destructor");
-    void Open() SECTION(".text.ui_payload_open");
-    void OpenImmediately() SECTION(".text.ui_payload_open");
-    void SetText(char const *, u16 speed, ScriptTextVariableStore *)
-        SECTION(".text.ui_payload_text");
+    ~UiStatePayload();
+    void Open();
+    void OpenImmediately();
+    void SetText(char const *, u16 speed, ScriptTextVariableStore *);
     void SetChoices(char const * first, char const * second, char const * third,
         char const * fourth, char const * fifth, char const * sixth,
-        ScriptTextVariableStore *) SECTION(".text.ui_payload_choices");
+        ScriptTextVariableStore *);
     void SetPromptChoices(char const * prompt, char const * first, char const * second,
         char const * third, char const * fourth,
-        ScriptTextVariableStore *) SECTION(".text.ui_payload_choices");
-    i32 Update(HardwareCoreState *, HardwareSpriteBufferState *, HardwareDisplayState *,
+        ScriptTextVariableStore *);
+    i32 Update(HardwareInputState *, HardwareSpriteBufferState *, HardwareDisplayState *,
         HardwareLinkedList *, HardwareInterruptList *, HardwareMusicPlayerSlot *);
     // Known portrait operation; its body remains native until byte-matched.
     void ShowPortrait(u32 index);
-    void ShowHeartIndicator(u32 level) SECTION(".text.ui_heart_indicator");
-    void HideHeartIndicator() SECTION(".text.ui_heart_indicator");
+    void ShowHeartIndicator(u32 level);
+    void HideHeartIndicator();
     unsigned background : 2;
     unsigned screen_block : 5;
     unsigned character_block : 2;

@@ -1,3 +1,4 @@
+#include "time_of_day.hh"
 #include "mine_floor.hh"
 #include "game_state.hh"
 #include "random.hh"
@@ -162,7 +163,7 @@ extern "C" u8 const gSpringMineRockItemWeights[][10] = {
     { 0x32, 0x00, 0x05, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x01 },
 };
 
-#include FOMT_TEXT_INCLUDE(mine_floor.cc)
+// Independent original runtime literal; natural emission remains unresolved.
 
 
 // Initializing the 22 known flags preserves the two unknown upper bits at
@@ -528,6 +529,48 @@ void MineFloorState::PlaceLakeMineItems(u32 floor, i32 rock_count,
     }
 }
 
+asm_unified(
+    ".text\n"
+    ".include \"asm/macro.inc\"\n"
+    "\n"
+    "    @ Only the lake buried-item row selector remains native.\n"
+    "    .align 2, 0\n"
+    "    thumb_func_start GetLakeBuriedItemTableIndex__C14MineFloorStateUi\n"
+    "GetLakeBuriedItemTableIndex__C14MineFloorStateUi: @ 0x0809D79C\n"
+    "    push {lr}\n"
+    "    adds r0, r1, #0\n"
+    "    cmp r0, #9\n"
+    "    bls .L0809D7D2\n"
+    "    movs r0, #0x19\n"
+    "    cmp r1, #0xff\n"
+    "    beq .L0809D7D2\n"
+    "    movs r0, #0x18\n"
+    "    cmp r1, #0x4f\n"
+    "    bhi .L0809D7D2\n"
+    "    movs r0, #0xa\n"
+    "    movs r2, #0x13\n"
+    "    cmp r1, #0x13\n"
+    "    blo .L0809D7D2\n"
+    "    cmp r1, #0x13\n"
+    "    bne .L0809D7C0\n"
+    "    movs r0, #0xb\n"
+    "    b .L0809D7D2\n"
+    ".L0809D7C0:\n"
+    "    adds r0, #2\n"
+    "    adds r2, #0xa\n"
+    "    cmp r2, #0x4f\n"
+    "    bhi .L0809D7D2\n"
+    "    cmp r1, r2\n"
+    "    blo .L0809D7D2\n"
+    "    cmp r1, r2\n"
+    "    bne .L0809D7C0\n"
+    "    adds r0, #1\n"
+    ".L0809D7D2:\n"
+    "    pop {r1}\n"
+    "    bx r1\n"
+    "    .align 2, 0\n"
+);
+
 u32 MineFloorState::GetLakeRockTableIndex(u32 value) const
 {
     switch (value)
@@ -700,7 +743,7 @@ u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
     }
     case 10: {
         bool blocked = false;
-        if (min_inl<u32 const &>(200, game.clock.calendar.GetYear()) <= 2)
+        if (game.clock.calendar.GetYear(200) <= 2)
             blocked = true;
         if (flag_625_4 == true)
             blocked = true;

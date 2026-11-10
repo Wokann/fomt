@@ -1,42 +1,53 @@
 #ifndef SCENE_CHICKEN_FESTIVAL_HH
 #define SCENE_CHICKEN_FESTIVAL_HH
 
+#include "hardware_blend_owner.hh"
 #include "scene.hh"
 #include "utility/fixed_str.hh"
 #include "hardware_context.hh"
-#include "hardware_music_player.hh"
-#include "hardware_blend_object.hh"
+#include "hardware_sound.hh"
+#include "hardware_blend.hh"
+#include "scene.hh"
+#include "ui_state.hh"
+#include "resource_handle.hh"
 
 struct GameStateSaveImage;
 
+// The sprite borrows the archive's four resource ranges. Its resolved
+// handle and drawing parameters are separate owned allocations.
+struct ChickenFestivalSprite {
+    IndexedResourceHandle * handle;
+    IndexedResourceSpriteParameters * parameters;
+    IndexedResourceGroupResult group;
+
+    ~ChickenFestivalSprite()
+    {
+        delete parameters;
+        delete handle;
+    }
+};
+
+struct ChickenFestivalResourceHandleOwner {
+    IndexedResourceHandle * value;
+    ~ChickenFestivalResourceHandleOwner() { delete value; }
+};
+
+struct ChickenFestivalSpriteParametersOwner {
+    IndexedResourceSpriteParameters * value;
+    ~ChickenFestivalSpriteParametersOwner() { delete value; }
+};
+
+struct ChickenFestivalArchiveOwner {
+    IndexedResourceArchive * value;
+    ~ChickenFestivalArchiveOwner() { delete value; }
+};
+
+typedef char ChickenFestivalSpriteSizeCheck[sizeof(ChickenFestivalSprite) == 0x28 ? 1 : -1];
+typedef char ChickenFestivalHandleOwnerSizeCheck[sizeof(ChickenFestivalResourceHandleOwner) == 4 ? 1 : -1];
+typedef char ChickenFestivalParametersOwnerSizeCheck[sizeof(ChickenFestivalSpriteParametersOwner) == 4 ? 1 : -1];
+typedef char ChickenFestivalArchiveOwnerSizeCheck[sizeof(ChickenFestivalArchiveOwner) == 4 ? 1 : -1];
+
 #pragma interface "scene_chicken_festival.hh"
-
-// This scene runs the entered chicken through the contest and resumes the
-// original world scene. The contest Run body remains native assembly.
-struct ChickenFestivalContestScene : AScene {
-    ChickenFestivalContestScene(SceneTransitionOwner next, GameStateSaveImage * image)
-        : continuation(next), save(image) {}
-    virtual SceneTransitionOwner Run();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-struct ChickenFestivalContestTransition : SceneTransition {
-    ChickenFestivalContestTransition(SceneTransitionOwner next, GameStateSaveImage * image)
-        : continuation(next), save(image) {}
-    virtual SceneOwner CreateScene();
-
-    SceneTransitionOwner continuation;
-    GameStateSaveImage * save;
-};
-
-typedef char ChickenFestivalContestSceneSizeCheck[sizeof(ChickenFestivalContestScene) == 12 ? 1 : -1];
-typedef char ChickenFestivalContestSceneContinuationCheck[offsetof(ChickenFestivalContestScene, continuation) == 4 ? 1 : -1];
-typedef char ChickenFestivalContestSceneSaveCheck[offsetof(ChickenFestivalContestScene, save) == 8 ? 1 : -1];
-typedef char ChickenFestivalContestTransitionSizeCheck[sizeof(ChickenFestivalContestTransition) == 12 ? 1 : -1];
-typedef char ChickenFestivalContestTransitionContinuationCheck[offsetof(ChickenFestivalContestTransition, continuation) == 4 ? 1 : -1];
-typedef char ChickenFestivalContestTransitionSaveCheck[offsetof(ChickenFestivalContestTransition, save) == 8 ? 1 : -1];
 
 // Copied into the minigame's participant records. The old ARM ABI rounds
 // FixedStr<12> to 16 bytes; year and affection are scalar byte fields.
@@ -47,13 +58,22 @@ struct ChickenFestivalEntrant {
     u8 affection;
 };
 
-struct UiStateOwner;
+struct ChickenFestivalMinigameCore;
+
+struct ChickenFestivalMinigameScene : AScene {
+    ChickenFestivalMinigameScene(ChickenFestivalEntrant const & entrant);
+    virtual ~ChickenFestivalMinigameScene();
+    virtual SceneTransitionOwner Run();
+    bool HasWon() const;
+
+    ChickenFestivalMinigameCore * core;
+};
 
 // Native allocation and constructor/destructor accesses verify this layout.
 // Unrecovered fields remain RAM storage, not fabricated semantic objects.
 struct ChickenFestivalMinigameCore : HardwareContext {
+    ~ChickenFestivalMinigameCore();
     ChickenFestivalMinigameCore(ChickenFestivalEntrant const & entrant);
-    virtual ~ChickenFestivalMinigameCore();
     bool HasWon() const;
     SceneTransitionOwner Run();
     void PrepareDisplay();
@@ -66,10 +86,49 @@ struct ChickenFestivalMinigameCore : HardwareContext {
     u8 unk_008;
     u8 unk_009[0x704 - 0x009];
     HardwareMusicPlayerSlot music_players[5];
-    UiStateOwner * ui_state;
-    u8 unk_71C[0x7A0 - 0x71C];
+    GameSceneTalkWindowOwner ui_state;
+    ObjPaletteCollectionEntry palette_71C;
+    ObjPaletteCollectionEntry palette_724;
+    ObjPaletteCollectionEntry palettes_72C[2];
+    ObjPaletteCollectionEntry palettes_73C[8];
+    ChickenFestivalArchiveOwner archive_77C;
+    ChickenFestivalArchiveOwner archive_780;
+    ChickenFestivalArchiveOwner archive_784;
+    ChickenFestivalArchiveOwner archive_788;
+    ChickenFestivalArchiveOwner archive_78C;
+    ChickenFestivalArchiveOwner archive_790;
+    ChickenFestivalArchiveOwner archive_794;
+    ChickenFestivalArchiveOwner archive_798;
+    ChickenFestivalArchiveOwner archive_79C;
     HardwareBlendOwner blend;
-    u8 unk_7A4[0xB14 - 0x7A4];
+    ChickenFestivalResourceHandleOwner handles_7A4[2];
+    ChickenFestivalSpriteParametersOwner parameters_7AC[2];
+    ChickenFestivalResourceHandleOwner handles_7B4[5];
+    ChickenFestivalSpriteParametersOwner parameters_7C8[5];
+    IndexedResourceGroupResult groups_7DC[5];
+    ChickenFestivalResourceHandleOwner handles_87C[2];
+    ChickenFestivalSpriteParametersOwner parameters_884[2];
+    IndexedResourceGroupResult groups_88C[2];
+    ChickenFestivalSprite sprite_8CC;
+    ChickenFestivalSprite sprite_8F4;
+    ChickenFestivalResourceHandleOwner handles_91C[2];
+    ChickenFestivalSpriteParametersOwner parameters_924[2];
+    IndexedResourceGroupResult groups_92C[2];
+    ChickenFestivalSprite sprite_96C;
+    ChickenFestivalSprite sprite_994;
+    ChickenFestivalSprite sprite_9BC;
+    ChickenFestivalResourceHandleOwner handle_9E4;
+    ChickenFestivalSpriteParametersOwner parameters_9E8[2];
+    IndexedResourceGroupResult groups_9F0[2];
+    ChickenFestivalResourceHandleOwner handle_A30;
+    ChickenFestivalSpriteParametersOwner parameters_A34[2];
+    IndexedResourceGroupResult groups_A3C[2];
+    ChickenFestivalSprite sprite_A7C;
+    ChickenFestivalResourceHandleOwner handle_AA4;
+    IndexedResourceGroupResult group_AA8;
+    ChickenFestivalResourceHandleOwner handle_AC8;
+    IndexedResourceGroupResult group_ACC;
+    ChickenFestivalSpriteParametersOwner parameters_AEC[10];
     i32 phase;
     u32 unk_B18;
     ChickenFestivalEntrant unk_B1C;
@@ -89,14 +148,14 @@ typedef char ChickenFestivalMinigameCorePhaseCheck[offsetof(ChickenFestivalMinig
 typedef char ChickenFestivalMinigameCoreFinishedCheck[offsetof(ChickenFestivalMinigameCore, finished) == 0xB32 ? 1 : -1];
 typedef char ChickenFestivalMinigameCoreWinnerCheck[offsetof(ChickenFestivalMinigameCore, won) == 0xB30 ? 1 : -1];
 
-struct ChickenFestivalMinigameScene : AScene {
-    ChickenFestivalMinigameScene(ChickenFestivalEntrant const & entrant);
-    virtual ~ChickenFestivalMinigameScene();
-    virtual SceneTransitionOwner Run();
-    bool HasWon() const;
-
-    ChickenFestivalMinigameCore * core;
-};
+typedef char ChickenFestivalMember77COffsetCheck[offsetof(ChickenFestivalMinigameCore, archive_77C) == 0x77C ? 1 : -1];
+typedef char ChickenFestivalMember7A4OffsetCheck[offsetof(ChickenFestivalMinigameCore, handles_7A4) == 0x7A4 ? 1 : -1];
+typedef char ChickenFestivalMember87COffsetCheck[offsetof(ChickenFestivalMinigameCore, handles_87C) == 0x87C ? 1 : -1];
+typedef char ChickenFestivalMember91COffsetCheck[offsetof(ChickenFestivalMinigameCore, handles_91C) == 0x91C ? 1 : -1];
+typedef char ChickenFestivalMember9E4OffsetCheck[offsetof(ChickenFestivalMinigameCore, handle_9E4) == 0x9E4 ? 1 : -1];
+typedef char ChickenFestivalMemberA30OffsetCheck[offsetof(ChickenFestivalMinigameCore, handle_A30) == 0xA30 ? 1 : -1];
+typedef char ChickenFestivalMemberAA4OffsetCheck[offsetof(ChickenFestivalMinigameCore, handle_AA4) == 0xAA4 ? 1 : -1];
+typedef char ChickenFestivalMemberAECOffsetCheck[offsetof(ChickenFestivalMinigameCore, parameters_AEC) == 0xAEC ? 1 : -1];
 
 typedef char ChickenFestivalEntrantSizeCheck[sizeof(ChickenFestivalEntrant) == 20 ? 1 : -1];
 typedef char ChickenFestivalEntrantYearCheck[offsetof(ChickenFestivalEntrant, year) == 16 ? 1 : -1];
@@ -104,11 +163,49 @@ typedef char ChickenFestivalEntrantAffectionCheck[offsetof(ChickenFestivalEntran
 typedef char ChickenFestivalMinigameSceneSizeCheck[sizeof(ChickenFestivalMinigameScene) == 8 ? 1 : -1];
 typedef char ChickenFestivalMinigameSceneCoreCheck[offsetof(ChickenFestivalMinigameScene, core) == 4 ? 1 : -1];
 
-// Direct declarations of the old GCC member ABI for the remaining transition
-// catalog. They bind the real methods and emit no alias or forwarding body.
-extern "C" void DestroyChickenFestivalContestTransition(
-    ChickenFestivalContestTransition *, int) asm("_._32ChickenFestivalContestTransition");
-extern "C" SceneOwner CreateScene__32ChickenFestivalContestTransition(
-    ChickenFestivalContestTransition *);
+enum
+{
+    CHICKEN_FESTIVAL_CONTESTANT_NAME_COUNT = 20,
+    CHICKEN_FESTIVAL_CONTESTANT_NAME_WIDTH = 13,
+};
+
+extern char const gText_ChickenFestival_EmptyEntrantName[];
+// Contestant names have twenty fixed-width thirteen-byte rows.
+extern char const gText_ChickenFestival_ContestantNames[CHICKEN_FESTIVAL_CONTESTANT_NAME_COUNT][CHICKEN_FESTIVAL_CONTESTANT_NAME_WIDTH];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsAnnouncement[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalRoundAnnouncement[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationQuestion[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationNo[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationYes[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Start[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Stop[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_WinnerSuffix[];
+extern u16 const gUnk_HarvestSpriteMiniGameChickenFestivalValues[4][6];
+extern u8 const gUnk_HarvestSpriteMiniGameChickenFestivalOffsets[4];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandQuestion[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandYes[];
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain[];
+#endif
+#if defined(REGION_DE)
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStartPageBreak[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStartPageBreak[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStartPageBreak[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_StartPageBreak[];
+#endif
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Introduction[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Rules[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing[];
+extern u32 const gUnk_080BAC9CValues[16];
+extern u16 const gUnk_080BB890FirstValues[5];
+extern u16 const gUnk_080BB890TableValues[4][4];
+extern u16 const gUnk_080BB890LastValues[3];
+extern u32 const gUnk_080BC288Values[16];
+
 
 #endif // SCENE_CHICKEN_FESTIVAL_HH

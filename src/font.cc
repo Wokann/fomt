@@ -1,6 +1,4 @@
 #include "font.hh"
-#include "hardware_linked_list.hh"
-#include "ui_state.hh"
 
 #include <string.h>
 
@@ -34,230 +32,7 @@ i32 GetShiftJisGlyphMapIndex(i32 character)
     return (row << 6) - row + low_byte;
 }
 
-// Fixed-width formatting retains the original truncation and padding rules.
-// Width zero emits at most ten ASCII characters before expanding each glyph.
-void FormatFullWidthDecimal(i32 value, char * output, u32 width)
-{
-    char ascii[12];
-    char reversed[12];
-    if (width != 0) {
-        bool negative = false;
-        if (value < 0) {
-            value = -value;
-            negative = true;
-        }
-        i32 count = 0;
-        for (; count < width; count++) {
-            reversed[count] = value % 10 + '0';
-            value /= 10;
-            if (value == 0) {
-                count++;
-                for (; count < width; count++)
-                    reversed[count] = ' ';
-                break;
-            }
-        }
-        if (negative)
-            reversed[count] = '-';
-        for (u32 index = 0; index < width; index++)
-            ascii[width - index - 1] = reversed[index];
-        ascii[width] = '\0';
-    } else {
-        i32 remaining = value;
-        char * end = ascii;
-        if (remaining < 0) {
-            *end++ = '-';
-            remaining = -remaining;
-        }
-        FormatUnsignedDecimal(remaining, end);
-        ascii[10] = '\0';
-    }
-    u8 const * cursor = reinterpret_cast<u8 const *>(ascii);
-    u8 character;
-    while ((character = *cursor) != '\0') {
-        char const * glyph;
-        if ((u8)(character - '0') <= 9)
-            glyph = gUnk_PreUiTextLayoutDigitRows[character - '0'];
-        else if (character == ' ')
-            glyph = gUnk_PreUiTextLayoutFullWidthSpace;
-        else if (character == '-')
-            glyph = gUnk_PreUiTextLayoutFullWidthHyphen;
-        else
-            break;
-        output[0] = glyph[0];
-        output[1] = glyph[1];
-        output += 2;
-        cursor++;
-    }
-    *output = '\0';
-}
-
-void FormatSignedDecimal(i32 value, char * output, u32 width)
-{
-    char reversed[12];
-    bool negative = value < 0;
-    u32 count = 0;
-    i32 remaining = value;
-    if (remaining < 0)
-        remaining = -remaining;
-
-    do {
-        reversed[count++] = remaining % 10 + '0';
-        remaining /= 10;
-    } while (remaining > 0 && count + 1 <= 10);
-
-    if (width != 0) {
-        if (width < count)
-            count = width;
-        else {
-            for (; width > count; count++)
-                reversed[count] = ' ';
-        }
-    }
-    if (negative)
-        reversed[count++] = '-';
-    for (count--; count != 0xFFFFFFFF; count--)
-        *output++ = reversed[count];
-    *output = '\0';
-}
-
-void DrawDecimalTo2x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
-    u32 palette, u32 row_stride)
-{
-    u32 first_tile = static_cast<u16>(base_tile);
-    u16 palette_index = palette;
-    u16 * cursor = right_tile;
-    u32 attributes = palette_index << 12;
-    do {
-        u32 quotient = value / 10;
-        u32 tile = first_tile + (value - quotient * 10) * 4;
-        cursor[0] = (tile + 1) | attributes;
-        cursor[-1] = attributes | tile;
-        cursor[row_stride] = (tile + 3) | attributes;
-        cursor[row_stride - 1] = (tile + 2) | attributes;
-        value = quotient;
-        cursor -= 2;
-    } while (value != 0);
-}
-
-FontTilemapDecimalCommand::FontTilemapDecimalCommand(u32 value, u16 * right_tile,
-    u16 base_tile, u16 palette, u32 row_stride)
-{
-    this->value = value;
-    this->right_tile = right_tile;
-    this->base_tile = base_tile;
-    this->palette = palette;
-    this->row_stride = row_stride;
-}
-
-FontTilemapDecimalCommand::~FontTilemapDecimalCommand()
-{
-}
-
-#if !defined(REGION_JP)
-void DrawDecimalTo1x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
-    u32 palette, u32 row_stride)
-{
-    u32 first_tile = static_cast<u16>(base_tile);
-    u16 palette_index = palette;
-    u16 * cursor = right_tile;
-    u32 attributes = palette_index << 12;
-    do {
-        u32 quotient = value / 10;
-        u32 tile = first_tile + (value - quotient * 10) * 2;
-        cursor[0] = attributes | tile;
-        cursor[row_stride] = (tile + 1) | attributes;
-        value = quotient;
-        cursor--;
-    } while (value != 0);
-}
-
-FontTilemapTallDecimalCommand::FontTilemapTallDecimalCommand(u32 value, u16 * right_tile,
-    u16 base_tile, u16 palette, u32 row_stride)
-{
-    this->value = value;
-    this->right_tile = right_tile;
-    this->base_tile = base_tile;
-    this->palette = palette;
-    this->row_stride = row_stride;
-}
-
-FontTilemapTallDecimalCommand::~FontTilemapTallDecimalCommand()
-{
-}
-#endif
-
-void DrawDecimalToTilemap(u32 value, u16 * right_tile, u32 base_tile,
-    u32 palette, u32 row_stride)
-{
-    u32 first_tile = static_cast<u16>(base_tile);
-    u16 palette_index = palette;
-    u16 * cursor = right_tile;
-    u32 attributes = palette_index << 12;
-    do {
-        u32 quotient = value / 10;
-        u32 tile = first_tile + (value - quotient * 10);
-        cursor[0] = tile | attributes;
-        value = quotient;
-        cursor--;
-    } while (value != 0);
-}
-
-FontTilemapSingleTileDecimalCommand::FontTilemapSingleTileDecimalCommand(u32 value, u16 * right_tile,
-    u16 base_tile, u16 palette, u32 row_stride)
-{
-    this->value = value;
-    this->right_tile = right_tile;
-    this->base_tile = base_tile;
-    this->palette = palette;
-    this->row_stride = row_stride;
-}
-
-FontTilemapSingleTileDecimalCommand::~FontTilemapSingleTileDecimalCommand()
-{
-}
-
-bool FontTilemapSingleTileDecimalCommand::Run()
-{
-    DrawDecimalToTilemap(value, right_tile, base_tile, palette, row_stride);
-    return false;
-}
-
-#if !defined(REGION_JP)
-bool FontTilemapTallDecimalCommand::Run()
-{
-    DrawDecimalTo1x2Tilemap(value, right_tile, base_tile, palette, row_stride);
-    return false;
-}
-#endif
-
-bool FontTilemapDecimalCommand::Run()
-{
-    DrawDecimalTo2x2Tilemap(value, right_tile, base_tile, palette, row_stride);
-    return false;
-}
-
-void FormatUnsignedDecimal(u32 value, char * output)
-{
-    char * end = output + 1;
-    u32 maximum_power = 0xFFFFFFFFu / 10;
-    u32 power = 10;
-    while (value >= power) {
-        ++end;
-        if (power > maximum_power)
-            break;
-        power *= 10;
-    }
-    *end = '\0';
-    do {
-        --end;
-        u32 quotient = value / 10;
-        *end = value - quotient * 10 + '0';
-        value = quotient;
-    } while (value != 0);
-}
-
-#include FOMT_TEXT_INCLUDE(font.cc)
+// Native runtime literal preceding the glyphs; its emission site is not yet recovered.
 
 #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 // The US glyph resolver selects these contiguous 12-byte glyph bitmaps and
@@ -397,3 +172,174 @@ i32 DrawCharacterGlyph(void *destination, i32 character)
         result = glyph_width;
     return result;
 }
+
+asm_unified(
+    ".pushsection .iwram, \"ax\", %progbits\n"
+    ".include \"asm/macro.inc\"\n"
+    "arm_func_start DrawGlyph2Tile\n"
+    "DrawGlyph2Tile:\n"
+    "    @ r0 is a 24-byte, 16-pixel-wide 1bpp glyph; r1 is the 16x16-tile\n"
+    "    @ scratch buffer. Each source row becomes 4bpp pixels plus its shadow.\n"
+    "    push {r4, r5, r6, r7, r8, r9, sl, lr}\n"
+    "    sub sp, sp, #4\n"
+    "    mov sl, r0\n"
+    "    mov lr, r1\n"
+    "    mov r9, #0\n"
+    "    mov r2, r9\n"
+    "    mov r5, r9\n"
+    "    mov r3, r5\n"
+    ".LDrawGlyph2TileClear:\n"
+    "    str r3, [lr, #32]\n"
+    "    add r5, r5, #1\n"
+    "    str r3, [lr], #4\n"
+    "    cmp r5, #1\n"
+    "    bls .LDrawGlyph2TileClear\n"
+    ".LDrawGlyph2TileLine:\n"
+    "    mov r1, #1\n"
+    "    mov r4, #128\n"
+    "    mov ip, #0\n"
+    "    mov r0, ip\n"
+    "    tst sl, #3\n"
+    "    ldreq r6, [sl]\n"
+    "    lsrne r6, r6, #16\n"
+    "    add sl, sl, #2\n"
+    "    mov r7, r2, lsr #28\n"
+    "    mov r9, r9, lsl #4\n"
+    "    mov r2, r2, lsl #4\n"
+    "    str r2, [sp]\n"
+    ".LDrawGlyph2TilePixel:\n"
+    "    tst r6, r4\n"
+    "    orr r3, ip, r1\n"
+    "    movne ip, r3\n"
+    "    ands r2, r6, r4, lsl #8\n"
+    "    orr r3, r0, r1\n"
+    "    movne r0, r3\n"
+    "    mov r1, r1, lsl #4\n"
+    "    movs r4, r4, lsr #1\n"
+    "    bne .LDrawGlyph2TilePixel\n"
+    "    mov r3, ip, lsr #28\n"
+    "    orr r0, r3, r0, lsl #4\n"
+    "    mov ip, ip, lsl #4\n"
+    "    mov r8, r0, lsl #4\n"
+    "    orr r2, r8, r7\n"
+    "    mov r7, ip, lsr #28\n"
+    "    orr r3, r7, r9\n"
+    "    orr r3, r2, r3\n"
+    "    bic r3, r3, r0\n"
+    "    orr r1, r0, r3, lsl #1\n"
+    "    mov r9, r0\n"
+    "    add r5, r5, #1\n"
+    "    ldr r2, [sp]\n"
+    "    cmp r5, #8\n"
+    "    orr r3, r2, ip, lsl #4\n"
+    "    bic r3, r3, ip\n"
+    "    str r1, [lr, #32]\n"
+    "    orr r3, ip, r3, lsl #1\n"
+    "    str r3, [lr], #4\n"
+    "    mov r2, ip\n"
+    "    add r3, lr, #32\n"
+    "    moveq lr, r3\n"
+    "    cmp r5, #13\n"
+    "    bls .LDrawGlyph2TileLine\n"
+    "    orr r3, r8, r7\n"
+    "    mov r9, r4\n"
+    "    mov r3, r3, lsl #1\n"
+    "    mov r2, r2, lsl #5\n"
+    "    str r3, [lr, #32]\n"
+    "    add r5, r5, #1\n"
+    "    str r2, [lr], #4\n"
+    "    cmp r5, #8\n"
+    "    add r3, lr, #32\n"
+    "    moveq lr, r3\n"
+    "    cmp r5, #15\n"
+    "    bhi .LDrawGlyph2TileDone\n"
+    "    mov r2, r9\n"
+    ".LDrawGlyph2TileBottomPadding:\n"
+    "    str r2, [lr, #32]\n"
+    "    add r5, r5, #1\n"
+    "    str r2, [lr], #4\n"
+    "    cmp r5, #8\n"
+    "    add r3, lr, #32\n"
+    "    moveq lr, r3\n"
+    "    cmp r5, #15\n"
+    "    bls .LDrawGlyph2TileBottomPadding\n"
+    ".LDrawGlyph2TileDone:\n"
+    "    add sp, sp, #4\n"
+    "    pop {r4, r5, r6, r7, r8, r9, sl, lr}\n"
+    "    bx lr\n"
+    "\n"
+    "arm_func_start DrawGlyph1Tile\n"
+    "DrawGlyph1Tile:\n"
+    "    @ r0 is a 12-byte, 8-pixel-wide 1bpp glyph; r1 is the same scratch\n"
+    "    @ buffer. The right-hand tile receives the generated shadow pixels.\n"
+    "    push {r4, r5, r6, r7, r8, lr}\n"
+    "    mov r4, r0\n"
+    "    mov r0, #0\n"
+    "    mov r8, r0\n"
+    "    mov r3, r0\n"
+    ".LDrawGlyph1TileClear:\n"
+    "    str r3, [r1, #32]\n"
+    "    add r0, r0, #1\n"
+    "    str r3, [r1], #4\n"
+    "    cmp r0, #1\n"
+    "    bls .LDrawGlyph1TileClear\n"
+    ".LDrawGlyph1TileLine:\n"
+    "    mov lr, #1\n"
+    "    mov r6, #128\n"
+    "    mov ip, #0\n"
+    "    tst r4, #3\n"
+    "    ldreq r5, [r4]\n"
+    "    lsrne r5, r5, #8\n"
+    "    add r4, r4, #1\n"
+    "    mov r7, r8, lsr #28\n"
+    "    mov r2, r8, lsl #4\n"
+    ".LDrawGlyph1TilePixel:\n"
+    "    tst r5, r6\n"
+    "    orr r3, ip, lr\n"
+    "    movne ip, r3\n"
+    "    mov lr, lr, lsl #4\n"
+    "    movs r6, r6, lsr #1\n"
+    "    bne .LDrawGlyph1TilePixel\n"
+    "    mov ip, ip, lsl #4\n"
+    "    orr r3, r2, ip, lsl #4\n"
+    "    bic r3, r3, ip\n"
+    "    mov r8, ip\n"
+    "    mov lr, ip, lsr #28\n"
+    "    orr r2, lr, r7\n"
+    "    mov r2, r2, lsl #1\n"
+    "    orr r3, ip, r3, lsl #1\n"
+    "    str r2, [r1, #32]\n"
+    "    add r0, r0, #1\n"
+    "    str r3, [r1], #4\n"
+    "    cmp r0, #8\n"
+    "    add r3, r1, #32\n"
+    "    moveq r1, r3\n"
+    "    cmp r0, #13\n"
+    "    bls .LDrawGlyph1TileLine\n"
+    "    mov r3, lr, lsl #1\n"
+    "    mov r2, r8, lsl #5\n"
+    "    mov r8, r6\n"
+    "    str r3, [r1, #32]\n"
+    "    add r0, r0, #1\n"
+    "    str r2, [r1], #4\n"
+    "    cmp r0, #8\n"
+    "    add r3, r1, #32\n"
+    "    moveq r1, r3\n"
+    "    cmp r0, #15\n"
+    "    bhi .LDrawGlyph1TileDone\n"
+    "    mov r2, r8\n"
+    ".LDrawGlyph1TileBottomPadding:\n"
+    "    str r2, [r1, #32]\n"
+    "    add r0, r0, #1\n"
+    "    str r2, [r1], #4\n"
+    "    cmp r0, #8\n"
+    "    add r3, r1, #32\n"
+    "    moveq r1, r3\n"
+    "    cmp r0, #15\n"
+    "    bls .LDrawGlyph1TileBottomPadding\n"
+    ".LDrawGlyph1TileDone:\n"
+    "    pop {r4, r5, r6, r7, r8, lr}\n"
+    "    bx lr\n"
+    ".popsection\n"
+    ".thumb\n"
+);

@@ -1,5 +1,20 @@
 #include "frisbee.hh"
+#include "frisbee_core.hh"
+#include <new>
 
-// This contiguous UI-text block is physically separate from the earlier
-// tournament scoreboard and from the following animal-festival tables.
-#include FOMT_TEXT_INCLUDE(frisbee.cc)
+inline FrisbeeCoreOwner::~FrisbeeCoreOwner() { delete value; }
+
+FrisbeeScene::FrisbeeScene(SceneTransitionOwner next, GameStateSaveImage * image, bool contest)
+    : core(new FrisbeeCore(image, contest)), continuation(next)
+{
+}
+
+FrisbeeScene::~FrisbeeScene()
+{
+}
+
+SceneTransitionOwner FrisbeeScene::Run()
+{
+    core->Run();
+    return continuation;
+}

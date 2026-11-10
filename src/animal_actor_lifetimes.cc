@@ -1,0 +1,40 @@
+#pragma implementation "wild_dog_actor.hh"
+#pragma implementation "animal_actor_lifetimes.hh"
+#include "animal_actor_lifetimes.hh"
+#include "animal_actor.hh"
+#include "wild_dog_actor.hh"
+
+asm_unified(
+    ".include \"asm/macro.inc\"\n"
+    ".text\n"
+    "    thumb_func_start _._21HorseSpriteController\n"
+    "_._21HorseSpriteController:\n"
+    "    push {r4, r5, lr}\n"
+    "    adds r5, r0, #0\n"
+    "    adds r4, r1, #0\n"
+    "    adds r0, #72\n"
+    "    movs r1, #2\n"
+    "    bl _._19GameSceneSpriteBase\n"
+    "    adds r0, r5, #0\n"
+    "    adds r0, #8\n"
+    "    movs r1, #2\n"
+    "    bl _._19GameSceneSpriteBase\n"
+    "    ldr r0, .Lhorse_controller_base_vtable\n"
+    "    str r0, [r5, #4]\n"
+    "    movs r0, #1\n"
+    "    ands r0, r4\n"
+    "    cmp r0, #0\n"
+    "    beq .Lhorse_controller_done\n"
+    "    adds r0, r5, #0\n"
+    "    bl __builtin_delete\n"
+    ".Lhorse_controller_done:\n"
+    "    pop {r4, r5}\n"
+    "    pop {r0}\n"
+    "    bx r0\n"
+    "    .align 2, 0\n"
+    ".Lhorse_controller_base_vtable: .word __vt_22EntityVisualController\n"
+);
+
+AnimalActor::~AnimalActor()
+{
+}

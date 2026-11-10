@@ -1,0 +1,226 @@
+#ifndef ANIMAL_FESTIVAL_SELECTION_HH
+#define ANIMAL_FESTIVAL_SELECTION_HH
+
+#include "scene.hh"
+#include "fomt_constants.hh"
+
+#include "prelude.h"
+
+struct AnimalStatusScreenPrefixText
+{
+    char unavailable[6];
+#if defined(REGION_JP)
+    char digits[21];
+    char digit_trailer[1];
+#else
+    char digits[10][2];
+    char padding[2];
+#endif
+};
+
+#if defined(REGION_JP)
+struct AnimalStatusScreenText
+{
+    char healthy[8];
+    char unhappy[8];
+    char sick[8];
+    char spring[4];
+    char summer[4];
+    char autumn[4];
+    char winter[4];
+    char age[4];
+    char day[4];
+};
+#else
+struct AnimalStatusScreenText
+{
+    char healthy[12];
+    char unhappy[12];
+    char sick[12];
+    char spring[8];
+    char summer[8];
+    char autumn[8];
+    char winter[8];
+    char age[4];
+    char day[4];
+};
+#endif
+
+extern AnimalStatusScreenPrefixText const gAnimalStatusScreenPrefixText;
+extern AnimalStatusScreenText const gAnimalStatusScreenText;
+
+extern char const gText_AnimalContest_ChickenConfirmation[];
+extern char const gText_AnimalContest_Yes[];
+extern char const gText_AnimalContest_No[];
+extern char const gText_AnimalContest_CowConfirmation[];
+extern char const gText_AnimalContest_SheepConfirmation[];
+extern char const gText_AnimalContest_BabyChickIneligible[];
+extern char const gText_AnimalContest_AdultCowIneligible[];
+extern char const gText_AnimalContest_AdultSheepIneligible[];
+extern char const gText_AnimalContest_SickChickenIneligible[];
+extern char const gText_AnimalContest_SickCowIneligible[];
+extern char const gText_AnimalContest_SickSheepIneligible[];
+extern char const gText_AnimalContest_PregnantCowIneligible[];
+extern char const gText_AnimalContest_PregnantSheepIneligible[];
+extern char const gText_AnimalContest_ShornSheepIneligible[];
+extern char const gText_AnimalContest_ChickenSelectionPrompt[];
+extern char const gText_AnimalContest_CowSelectionPrompt[];
+extern char const gText_AnimalContest_SheepSelectionPrompt[];
+extern char const gText_AnimalContest_ChickenEntryDeclinedResponse[];
+extern char const gText_AnimalContest_LivestockEntryDeclinedResponse[];
+
+#if defined(REGION_JP)
+extern char const gText_AnimalContest_ChickenEntryAccepted[];
+extern char const gText_AnimalContest_CowEntryAccepted[];
+extern char const gText_AnimalContest_SheepEntryAccepted[];
+extern char const gText_AnimalContest_ChickenEntryDeclinedQuestion[];
+extern char const gText_AnimalContest_LivestockEntryDeclinedQuestion[];
+#else
+extern char const gText_AnimalContest_EntryAccepted[];
+extern char const gText_AnimalContest_EntryDeclinedQuestion[];
+#endif
+
+struct GameStateSaveImage;
+#include "hardware_context.hh"
+#include "smart_ptr.hh"
+
+#include "scroll_state.hh"
+#include "hardware_sound.hh"
+#include "resource_archive.hh"
+#include "resource_handle.hh"
+#include "obj_tile_collection.hh"
+#include "obj_palette_pool.hh"
+#include "ui_state.hh"
+
+
+template <typename T, u32 Capacity>
+struct FestivalSelectionRecords {
+    FestivalSelectionRecords() : count(0) {}
+    T * Begin() { return reinterpret_cast<T *>(storage); }
+    T * End() { return &Begin()[count]; }
+    ~FestivalSelectionRecords()
+    {
+        T * first = Begin();
+        T * last = End();
+        for (; first != last; ++first)
+            first->~T();
+    }
+    u32 count;
+    u32 storage[Capacity * sizeof(T) / sizeof(u32)];
+};
+
+// These two counted arrays have verified strides and lifetime bounds. Their
+// fields remain unnamed until the native selection code is further decoded.
+struct FestivalSelectionRow16 {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+    u32 unk_0C;
+};
+
+struct FestivalSelectionRow12 {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+};
+
+struct FestivalSelectionSprite {
+    i16 x;
+    i16 y;
+    IndexedResourceHandle resource;
+    IndexedResourceSpriteParameters parameters;
+    u8 unk_34;
+};
+
+struct FestivalSelectionCursor {
+    u16 unk_00;
+    u32 unk_04;
+    IndexedResourceHandle resource;
+    IndexedResourceSpriteParameters parameters;
+    u8 unk_38;
+};
+
+struct FestivalSelectionScrollOwner {
+    ScrollState * value;
+    ~FestivalSelectionScrollOwner() { delete value; }
+};
+
+#pragma interface "animal_festival_selection.hh"
+
+struct FestivalAnimalSelectionCore;
+
+struct FestivalAnimalSelectionScene : AScene {
+    FestivalAnimalSelectionScene(SceneTransitionOwner next, GameStateSaveImage * image,
+        MaryFestivalAnimalKind kind);
+    virtual ~FestivalAnimalSelectionScene();
+    virtual SceneTransitionOwner Run();
+    SmartPtr<FestivalAnimalSelectionCore> core;
+};
+
+// Construction and Run still use their complete named native implementations.
+// Only constructed ranges and owned resources participate in destruction.
+struct FestivalAnimalSelectionCore : HardwareContext {
+    FestivalAnimalSelectionCore(SceneTransitionOwner next, GameStateSaveImage * image,
+        MaryFestivalAnimalKind kind) asm("ConstructFestivalAnimalSelectionCore");
+    ~FestivalAnimalSelectionCore();
+    SceneTransitionOwner continuation;
+    GameStateSaveImage * save;
+    MaryFestivalAnimalKind kind;
+    u32 unk_14;
+    i32 unk_18;
+    FestivalSelectionScrollOwner scroll;
+    u16 unk_20;
+    IndexedResourceArchive archive;
+    IndexedResourceArchive cursor_archive;
+    FestivalSelectionSprite sprites[2];
+    FestivalSelectionCursor cursor;
+    u32 unk_130;
+    UiStateOwner ui;
+#if defined(REGION_JP)
+    u8 unk_138[0x3920 - 0x138];
+#else
+    u8 unk_138[0x3EA0 - 0x138];
+#endif
+    FestivalSelectionRecords<FestivalSelectionRow16, 16> rows_3EA0;
+    FestivalSelectionRecords<FestivalSelectionRow12, 16> rows_3FA4;
+    u32 unk_4068_count;
+    u32 unk_406C[16];
+    u32 unk_40AC;
+    ObjTileCollectionEntry tiles_40B0;
+    ObjPaletteCollectionEntry palette_40B8;
+    ObjTileCollectionEntry tiles_40C0;
+    ObjPaletteCollectionEntry palette_40C8;
+    ObjTileCollectionEntry row_tiles[10];
+    ObjPaletteCollectionEntry row_palettes[10];
+    HardwareMusicPlayerSlot music;
+    u32 unk_4174;
+};
+
+typedef char FestivalSelectionSpriteSizeCheck[sizeof(FestivalSelectionSprite) == 0x38 ? 1 : -1];
+typedef char FestivalSelectionCursorSizeCheck[sizeof(FestivalSelectionCursor) == 0x3C ? 1 : -1];
+#if defined(REGION_JP)
+typedef char FestivalAnimalSelectionCoreSizeCheck[sizeof(FestivalAnimalSelectionCore) == 0x3BF8 ? 1 : -1];
+#else
+typedef char FestivalAnimalSelectionCoreSizeCheck[sizeof(FestivalAnimalSelectionCore) == 0x4178 ? 1 : -1];
+#endif
+typedef char FestivalAnimalSelectionCoreUiCheck[offsetof(FestivalAnimalSelectionCore, ui) == 0x134 ? 1 : -1];
+#if defined(REGION_JP)
+typedef char FestivalAnimalSelectionCoreRowsCheck[offsetof(FestivalAnimalSelectionCore, rows_3EA0) == 0x3920 ? 1 : -1];
+#else
+typedef char FestivalAnimalSelectionCoreRowsCheck[offsetof(FestivalAnimalSelectionCore, rows_3EA0) == 0x3EA0 ? 1 : -1];
+#endif
+#if defined(REGION_JP)
+typedef char FestivalAnimalSelectionCoreTilesCheck[offsetof(FestivalAnimalSelectionCore, tiles_40B0) == 0x3B30 ? 1 : -1];
+#else
+typedef char FestivalAnimalSelectionCoreTilesCheck[offsetof(FestivalAnimalSelectionCore, tiles_40B0) == 0x40B0 ? 1 : -1];
+#endif
+
+typedef char FestivalAnimalSelectionSceneSizeCheck[sizeof(FestivalAnimalSelectionScene) == 8 ? 1 : -1];
+typedef char FestivalAnimalSelectionSceneCoreCheck[offsetof(FestivalAnimalSelectionScene, core) == 4 ? 1 : -1];
+
+
+EXTERN_C
+SceneTransitionOwner RunFestivalAnimalSelectionCore(FestivalAnimalSelectionCore * core);
+EXTERN_C_END
+
+#endif // ANIMAL_FESTIVAL_SELECTION_HH

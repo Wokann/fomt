@@ -1,9 +1,14 @@
 #ifndef SCENE_TEXT_VARIABLES_HH
 #define SCENE_TEXT_VARIABLES_HH
 
-#include "ui_state.hh"
+#include "scene_text_variable_lifetimes.hh"
 
 struct GameStateSaveImage;
+
+extern char const gText_Moneybags[];
+extern char const gText_EmptyUiLabel[];
+extern char const gText_UnnamedSetting[];
+
 
 #pragma interface "scene_text_variables.hh"
 
@@ -21,7 +26,6 @@ struct GameSceneTextVariables : ScriptTextVariableStore
     enum { MAX_VALUE_BYTES = 22 };
 #endif
     GameSceneTextVariables(GameStateSaveImage * image);
-    virtual ~GameSceneTextVariables();
     virtual UiTextSubstitution Lookup(u32 code);
     void Set(u32 slot, char const * text);
 
@@ -33,5 +37,6 @@ typedef char GameSceneTextVariableStrideCheck[sizeof(FixedStr<GameSceneTextVaria
 typedef char GameSceneTextVariablesSizeCheck[sizeof(GameSceneTextVariables) == 0x68 ? 1 : -1];
 typedef char GameSceneTextVariablesSaveCheck[offsetof(GameSceneTextVariables, save) == 4 ? 1 : -1];
 typedef char GameSceneTextVariablesValuesCheck[offsetof(GameSceneTextVariables, values) == 8 ? 1 : -1];
+
 
 #endif

@@ -60,6 +60,11 @@ struct HardwareDisplayState {
 #ifdef __cplusplus
     HardwareDisplayState();
 
+    void SetDisplayControl(HardwareDisplayRegisterValue const & input)
+    {
+        WriteHardwareDisplayHalfword(control.dispcnt, input.value);
+    }
+
     void SetBlendControl(HardwareDisplayRegisterValue const & control)
     {
         WriteHardwareDisplayHalfword(blend_control, control.value);

@@ -30,12 +30,6 @@ int Tool::GetId() const
     return id;
 }
 
-template <typename T>
-static inline T const & FomtMin(T const & left, T const & right)
-{
-    return right < left ? right : left;
-}
-
 #include <algorithm>
 
 // The leading invalid-item labels and tool text are physically contiguous.
@@ -87,7 +81,7 @@ ToolStack::ToolStack(Tool kind, u32 a_amount)
     if (a_amount != 0)
     {
         // ugh
-        amount = *(u8 *)&FomtMin<u32>(MAX_AMOUNT, a_amount);
+        amount = *(u8 *)&std::min(u32(MAX_AMOUNT), a_amount);
     }
     else
     {
@@ -120,7 +114,7 @@ void ToolStack::AddAmount(u32 a_amount)
 {
     if (amount != 0)
     {
-        amount = FomtMin<u32>(MAX_AMOUNT, amount + a_amount);
+        amount = std::min(u32(MAX_AMOUNT), amount + a_amount);
     }
 }
 
@@ -262,7 +256,7 @@ FoodStack::FoodStack(Food food, u32 a_amount)
     if (a_amount != 0)
     {
         // ugh
-        amount = *(u8 *)&FomtMin<u32>(MAX_AMOUNT, a_amount);
+        amount = *(u8 *)&std::min(u32(MAX_AMOUNT), a_amount);
     }
     else
     {
@@ -295,7 +289,7 @@ void FoodStack::AddAmount(u32 a_amount)
 {
     if (amount != 0)
     {
-        amount = FomtMin<u32>(MAX_AMOUNT, amount + a_amount);
+        amount = std::min(u32(MAX_AMOUNT), amount + a_amount);
     }
 }
 
@@ -386,7 +380,7 @@ ArticleStack::ArticleStack(Article article, u32 a_amount)
     if (a_amount != 0)
     {
         // ugh
-        amount = *(u8 *)&FomtMin<u32>(MAX_AMOUNT, a_amount);
+        amount = *(u8 *)&std::min(u32(MAX_AMOUNT), a_amount);
     }
     else
     {
@@ -419,7 +413,7 @@ void ArticleStack::AddAmount(u32 a_amount)
 {
     if (amount != 0)
     {
-        amount = FomtMin<u32>(MAX_AMOUNT, amount + a_amount);
+        amount = std::min(u32(MAX_AMOUNT), amount + a_amount);
     }
 }
 
@@ -1067,5 +1061,3 @@ ProductInfo const gProductInfo[] = {
     /* 0x65 */ { 62, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_AGATE },
     /* 0x66 */ { 60, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_AMETHYST },
 };
-
-#include FOMT_TEXT_INCLUDE(item_4.cc)

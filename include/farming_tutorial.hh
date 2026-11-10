@@ -5,28 +5,23 @@
 #include "hardware_context.hh"
 #include "script_engine.hh"
 #include "game_scene.hh"
-#pragma interface "farming_tutorial.hh"
+#include "game_scene_actions.hh"
+#include "farming_tutorial_world.hh"
+#include "farming_tutorial_script.hh"
 
-// Crops and animal-care tutorials run in this dedicated script host.
-// Both entry paths transfer their continuation and one complete kind word.
-struct FarmingTutorialTransition : SceneTransition {
-    FarmingTutorialTransition(SceneTransitionOwner next, MaryFarmingTutorialKind value);
-    virtual SceneOwner CreateScene();
-    SceneTransitionOwner continuation;
-    MaryFarmingTutorialKind kind;
-};
+#pragma interface "farming_tutorial.hh"
 
 // The constructor installs this abstract scene table before either subsystem.
 struct FarmingTutorialSceneBase : AScene {
 };
 
 struct FarmingTutorialScene : FarmingTutorialSceneBase, HardwareContext, AScriptEngine {
-    FarmingTutorialScene(SceneTransitionOwner next, MaryFarmingTutorialKind value)
-        : continuation(next), kind(value), game_object(nullptr),
-          talk_window(), screen_blend(nullptr), music_player_0(0),
-          music_player_1(1), music_player_2(2), music_player_3(3), music_player_4(4),
-          wait_frames(0), waiting_entity(nullptr), unk_3A0(1), unk_3A1(0) {}
+    FarmingTutorialScene(SceneTransitionOwner next, MaryFarmingTutorialKind value);
     virtual SceneTransitionOwner Run();
+    // The member ABI receives the complete scene. Its native virtual entry
+    // in farming_tutorial.cc includes the AScriptEngine subobject adjustment.
+    // That file owns this scene's native callbacks, destructors and tables;
+    // keep them imported here until their C++ emission unit is recovered.
     virtual int OnCall(int id);
     void Push(i32 value);
 
@@ -35,7 +30,7 @@ struct FarmingTutorialScene : FarmingTutorialSceneBase, HardwareContext, AScript
     MaryFarmingTutorialKind kind;
     // Run initializes this state before it is consumed.
     u32 script_state;
-    GameSceneWorldOwner game_object;
+    FarmingTutorialWorldOwner game_object;
     GameSceneTalkWindowOwner talk_window;
     GameSceneBlendOwner screen_blend;
     HardwareMusicPlayerSlot music_player_0;
@@ -62,4 +57,5 @@ typedef char FarmingTutorialScenePoolOffsetCheck[offsetof(FarmingTutorialScene, 
 typedef char FarmingTutorialSceneWaitOffsetCheck[offsetof(FarmingTutorialScene, wait_frames) == 0x398 ? 1 : -1];
 typedef char FarmingTutorialSceneEntityOffsetCheck[offsetof(FarmingTutorialScene, waiting_entity) == 0x39C ? 1 : -1];
 typedef char FarmingTutorialSceneFlagOffsetCheck[offsetof(FarmingTutorialScene, unk_3A1) == 0x3A1 ? 1 : -1];
+
 #endif

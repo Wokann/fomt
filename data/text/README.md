@@ -3,23 +3,19 @@
 Regional text belongs under this directory by its owning data structure:
 
     data/text/jp/, data/text/us/, data/text/eu/, and data/text/de/
-        tool.cc, food.cc, article.cc
-        game_state_1.cc, game_state_2.cc, help_menu.cc
+        item_1.cc through item_3.cc
+        help_menu.cc
         animal_data_1.cc through animal_data_3.cc, script_engine.cc
-        common_ui_1.cc through common_ui_5.cc
-        data_schedules_1.cc through data_schedules_7.cc
-        new_game_menu.cc, new_game_status.cc, new_game_help.cc
-        new_game_save.cc, new_game_identity.cc
-        new_game_name_entry.cc, new_game_name_entry_ui.cc
-        fishing_results_data_1.cc, fishing_results_data_2.cc
-        character_names_data_1.cc, character_names_data_2.cc
+        common_ui_1.cc, common_ui_2.cc
+        fishing_results_data.cc
+        scene_watering_minigame_1.cc, scene_watering_minigame_2.cc
         reference_guide/
             harvest_sprite_minigames.cc
             festival_hints.cc
 
-Keep categories separate even when their entries are linked beside one another:
-each text source corresponds to the C/C++ structure that owns its text
-pointers. A source-owned text fragment is included at its exact physical point
+Group text by its owning functional module and actual ROM continuity. Each
+text source corresponds to the C/C++ module that owns its text pointers.
+A source-owned text fragment is included at its exact physical point
 inside the owning `src/<module>.cc`; it remains under `data/text` and is listed
 in `TEXT_FRAGMENT_SOURCES` so it does not produce a second object.
 
@@ -33,7 +29,7 @@ The numbering follows the order of the `#include` directives in the owning
 `src/owner.cc`, never alphabetical order.  A one-fragment owner uses only
 `owner.cc` (not `owner_1.cc`).
 Reference Guide sources are grouped under each region's `reference_guide/`
-directory, with one source per verified guide category.  Their small pointer
+directory, with one source per book page. Their pointer
 tables and declarations are centralized in `src/reference_guide.cc` and
 `include/reference_guide.hh`.
 
@@ -58,7 +54,17 @@ fields point to the canonical symbol; use a regional preprocessor name mapping
 when two source-level semantic names are needed, rather than creating a second
 text object or an assembler alias.
 
-`calendar.cc` demonstrates fixed-row text arrays: the C++ dimensions are the
+The ordinary C preprocessor retains its file/line markers through the text
+pass, including markers inside encoded array initializers. The old C++ compiler
+uses these boundaries to save and restore each header's interface/implementation
+state. Do not flatten the translation unit with `CPP -P` or replace the markers
+with a synthetic generated filename.
+
+Encoded numeric-array declarations also retain intervening comments and
+directives. Adjacent quoted fragments remain one sequence of elements even
+when CPP line markers separate them; they do not gain string terminators.
+
+For fixed-row text arrays, the C++ dimensions are the
 actual ROM row strides used by the callers. The text preprocessor verifies
 every encoded row, including its terminator, fits that width; ordinary C++
 zero-initializes any remaining bytes in the fixed row. Normal text objects do
@@ -70,10 +76,16 @@ terminator, express that boundary as `\x00` followed by ordinary mapped text
 or raw `\xNN` bytes. `textproc` retains the explicit terminator while C++ still
 zero-initializes any remaining field capacity.
 
-`<region>/common_ui_1.cc` through `common_ui_5.cc` and
+`<region>/common_ui_1.cc`, `<region>/common_ui_2.cc`, and
 `<region>/script_engine.cc` are included at their owning modules' physical ROM
-positions; each region owns even byte-identical runtime strings so the main
-module has no auxiliary text object. The non-display fixed SRAM signature is
+positions. `bad_alloc` is supplied by the actual C++ `<new>` header; do not
+maintain manual copies in game source or regional text. Restore its ordinary
+compilation-unit ownership and emission order instead of adding replacement
+strings or compiler rules based on their contents. Other suspected runtime
+strings, including `Error` and `N/A `, require their actual callers and source
+definitions to be checked: some are regional game fallback text. Identical
+spelling or physical adjacency alone does not establish a shared origin.
+The non-display fixed SRAM signature is
 kept with its owning `src/sram_proxy_1.c` save-verifier module.
 
 Game scripts are deliberately outside this directory and remain independently

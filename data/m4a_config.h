@@ -1,21 +1,6 @@
 #include "prelude.h"
 #include "m4a.h"
 
-SECTION(".gMusicPlayerA")
-struct MusicPlayer gMusicPlayerA = { 0 };
-
-SECTION(".gMusicPlayerB")
-struct MusicPlayer gMusicPlayerB = { 0 };
-
-SECTION(".gMusicPlayerC")
-struct MusicPlayer gMusicPlayerC = { 0 };
-
-SECTION(".gMusicPlayerD")
-struct MusicPlayer gMusicPlayerD = { 0 };
-
-SECTION(".gMusicPlayerE")
-struct MusicPlayer gMusicPlayerE = { 0 };
-
 // defined in lds
 extern char _M4aMaxLines[];
 

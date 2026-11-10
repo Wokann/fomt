@@ -289,18 +289,19 @@ PNG/PAL/tilemap inputs, and the prefix remains explicit original-position data.
 The misleading aggregate file is retired; see `maps/README.md` and
 `CODE_ROM_LAYOUT.md` for actual stream boundaries.
 
-`map_state_templates/shared/map_state_tilemap_templates.bin` remains a
-separate native data container. The map-state type selects data read as
-16-bit BG tilemap entries, but this does not establish the format of the
-whole container: it also holds independently referenced tile-patch frame
-resources. Individual record ownership is not yet fully resolved. Its source
-is included in contiguous bounded pieces at the original positions in all
-four regions, with actual labels at the 61 audited FarmHouse/FieldRender
-resource boundaries, not container-start offset aliases. The same native
-bytes remain authoritative pending structured extraction. It has no
-ROM-template build input or post-link patch. The original aggregate ranges
-are recorded below; the first
-row is historical, not an assertion that its entire range is one table:
+The former `map_state_templates/shared/map_state_tilemap_templates.bin`
+aggregate is now expanded at its original `asm/data/graphics.s` positions:
+46 u16 BG tilemaps and 16 tile-patch frame streams, each with its actual
+resource label. Descriptor dimensions and the `ApplyMapTilePatch` reader
+establish map row boundaries; `QueueMapTilePatch` establishes the four-byte
+frame header and 32-byte 4bpp tile units. Frame counts use label differences,
+and ten two-byte map gaps use object alignment. The retired aggregate is no
+longer a build input. The frame pixels remain explicit bytes, not authored
+PNG assets; their palette ownership and image editing workflow are still
+unfinished. JP's complete graphics object is unchanged, and all 62 slices
+match baserom directly. Overseas source branches are updated; their object
+verification is pending the JP-first phase. The original aggregate ranges
+below are historical, not assertions that either range is one table:
 
 | Source | JP | US | EU | DE | Size |
 | --- | ---: | ---: | ---: | ---: | ---: |

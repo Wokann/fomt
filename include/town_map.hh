@@ -2,6 +2,21 @@
 #define TOWN_MAP_HH
 
 #include "prelude.h"
+#include "red_black_tree.hh"
+#include "allocation_failure.hh"
+#include <cstdlib>
+
+// Both lookup records and tree keys store a four-byte-aligned pair of
+// screen coordinates. The final two bytes are padding, not another field.
+struct ALIGN(4) TownMapMarkerPosition {
+    u8 x;
+    u8 y;
+
+    bool operator<(TownMapMarkerPosition const & other) const
+    {
+        return x < other.x || (!(other.x < x) && y < other.y);
+    }
+};
 
 EXTERN_C
 
@@ -18,7 +33,35 @@ struct TownMapHotspot
     u8 max_cursor_y;
 };
 
-struct TownMapAreaBounds;
+// Native Town Map selection scans each subtable until its all-zero record.
+struct TownMapAreaBounds
+{
+    u16 min_x;
+    u16 min_y;
+    u16 max_x;
+    u16 max_y;
+    TownMapMarkerPosition marker_position;
+};
+
+enum
+{
+    TOWN_MAP_AREA_BOUNDS_000_COUNT = 18,
+    TOWN_MAP_AREA_BOUNDS_003_COUNT = 11,
+    TOWN_MAP_AREA_BOUNDS_005_COUNT = 27,
+    TOWN_MAP_AREA_BOUNDS_007_COUNT = 17,
+    TOWN_MAP_AREA_BOUNDS_001_COUNT = 3,
+};
+
+struct TownMapAreaBoundsTables
+{
+    TownMapAreaBounds map_000[TOWN_MAP_AREA_BOUNDS_000_COUNT];
+    TownMapAreaBounds map_003[TOWN_MAP_AREA_BOUNDS_003_COUNT];
+    TownMapAreaBounds map_005[TOWN_MAP_AREA_BOUNDS_005_COUNT];
+    TownMapAreaBounds map_007[TOWN_MAP_AREA_BOUNDS_007_COUNT];
+    TownMapAreaBounds map_001[TOWN_MAP_AREA_BOUNDS_001_COUNT];
+};
+
+extern TownMapAreaBoundsTables const gTownMapAreaBounds;
 
 enum
 {
@@ -28,7 +71,7 @@ enum
 
 struct TownMapAreaLookup
 {
-    u32 lookup_key;
+    TownMapMarkerPosition marker_position;
     TownMapAreaBounds const * bounds;
 };
 
@@ -54,6 +97,7 @@ bool TownMapHotspotContains(
 
 EXTERN_C_END
 
+extern char const gText_TownMap_LibraryOpeningHours[];
 extern char const gText_TownMap_PlayerFarmNameSuffix[];
 extern char const gText_TownMap_PlayerFarmDescription[];
 extern char const gText_TownMap_PlayerFarmLabel[];
@@ -120,10 +164,75 @@ extern char const gText_TownMap_MothersHillPeakLabel[];
 extern char const gText_TownMap_MothersHillDescription[];
 extern char const gText_TownMap_MothersHillLabel[];
 
+// Plain inline container helpers are not part of the virtual interface's
+// explicitly emitted standalone methods.
+#include "resource_handle.hh"
+
+struct TownMapMarkerCountEntry {
+    TownMapMarkerPosition position;
+    u8 count;
+};
+
+struct TownMapMarkerNode : RedBlackTreeNode {
+    TownMapMarkerCountEntry entry;
+};
+
+struct TownMapMarkerCounts {
+    inline ~TownMapMarkerCounts();
+
+    u32 unk_00;
+    TownMapMarkerNode * header;
+    u32 node_count;
+    u32 unk_0C;
+};
+
+struct TownMapMarkerIterator {
+    TownMapMarkerNode * node;
+};
+
+struct TownMapMarkerInsertResult {
+    TownMapMarkerIterator iterator;
+    bool inserted;
+};
+
+struct TownMapMarker {
+    TownMapMarker(i32 x, i32 y, IndexedResourceProvider * archive,
+        u32 index, i32 scroll_delta)
+        : x(x), y(y), resource(archive, index, scroll_delta) {}
+
+    i32 x;
+    i32 y;
+    IndexedResourceHandle resource;
+};
+
+struct TownMapMarkers {
+    inline ~TownMapMarkers();
+    inline void PushBack(TownMapMarker const & value);
+
+    TownMapMarker * first;
+    TownMapMarker * last;
+    u32 unk_08;
+    TownMapMarker * capacity_end;
+};
+
+
+extern "C" void EraseTownMapMarkerNodes(TownMapMarkerCounts *, TownMapMarkerNode *);
+
+
+
 #pragma interface "town_map.hh"
 #include "scene.hh"
 #include "actor.hh"
+#include "hardware_context.hh"
+#include "ui_state.hh"
+#include "map_clock_status.hh"
+#include "resource_sprite_renderer.hh"
+#include "resource_handle.hh"
 struct GameStateSaveImage;
+
+
+
+#pragma interface "town_map.hh"
 struct TownMapUiCore;
 
 // The native UI owns its core and returns the result-bearing continuation.
@@ -134,40 +243,75 @@ struct TownMapUiScene : AScene {
     virtual SceneTransitionOwner Run();
     TownMapUiCore * core;
 };
+
+// Construction is inlined in the native TownMapUiScene constructor. The core
+// destructor still owns the original native container/resource cleanup.
+struct TownMapUiCore : HardwareContext {
+    ~TownMapUiCore();
+
+    GameStateSaveImage * save;
+    SceneTransitionOwner continuation;
+    u32 allow_teleport;
+    u8 unk_14;
+    UiStateOwner ui;
+    MapClockStatusHudContent clock;
+    ResourceSpriteRenderer renderer;
+    IndexedResourceArchive cursor_archive;
+    IndexedResourceGroupResult cursor_group;
+    IndexedResourceHandle cursor;
+    i32 cursor_x;
+    i32 cursor_y;
+    u32 current_hotspot;
+    // Appends are capped at 127 bytes, leaving the C string terminator.
+    char farm_description[128];
+    char farm_label[128];
+    u32 unk_198;
+    IndexedResourceArchive marker_archive;
+    TownMapMarkers markers;
+    TownMapMarkerCounts marker_counts;
+};
+
+typedef char TownMapAreaBoundsSizeCheck[sizeof(TownMapAreaBounds) == 12 ? 1 : -1];
+typedef char TownMapAreaPositionCheck[offsetof(TownMapAreaBounds, marker_position) == 8 ? 1 : -1];
+typedef char TownMapAreaLookupSizeCheck[sizeof(TownMapAreaLookup) == 8 ? 1 : -1];
+typedef char TownMapMarkerPositionSizeCheck[sizeof(TownMapMarkerPosition) == 4 ? 1 : -1];
+typedef char TownMapMarkerCountEntrySizeCheck[sizeof(TownMapMarkerCountEntry) == 8 ? 1 : -1];
+typedef char TownMapMarkerNodeSizeCheck[sizeof(TownMapMarkerNode) == 24 ? 1 : -1];
+typedef char TownMapMarkerNodeValueCheck[offsetof(TownMapMarkerNode, entry) == 0x10 ? 1 : -1];
+typedef char TownMapMarkerCountsSizeCheck[sizeof(TownMapMarkerCounts) == 16 ? 1 : -1];
+typedef char TownMapMarkerInsertResultSizeCheck[sizeof(TownMapMarkerInsertResult) == 8 ? 1 : -1];
+typedef char TownMapMarkerSizeCheck[sizeof(TownMapMarker) == 28 ? 1 : -1];
+typedef char TownMapUiCoreSaveCheck[offsetof(TownMapUiCore, save) == 8 ? 1 : -1];
+typedef char TownMapUiCoreUiCheck[offsetof(TownMapUiCore, ui) == 0x18 ? 1 : -1];
+typedef char TownMapUiCoreRendererCheck[offsetof(TownMapUiCore, renderer) == 0x20 ? 1 : -1];
+typedef char TownMapUiCoreCursorArchiveCheck[offsetof(TownMapUiCore, cursor_archive) == 0x28 ? 1 : -1];
+typedef char TownMapUiCoreDescriptionCheck[offsetof(TownMapUiCore, farm_description) == 0x98 ? 1 : -1];
+typedef char TownMapUiCoreLabelCheck[offsetof(TownMapUiCore, farm_label) == 0x118 ? 1 : -1];
+typedef char TownMapUiCoreMarkerArchiveCheck[offsetof(TownMapUiCore, marker_archive) == 0x19C ? 1 : -1];
+typedef char TownMapUiCoreMarkersCheck[offsetof(TownMapUiCore, markers) == 0x1CC ? 1 : -1];
+typedef char TownMapUiCoreMarkerCountsCheck[offsetof(TownMapUiCore, marker_counts) == 0x1DC ? 1 : -1];
+typedef char TownMapUiCoreSizeCheck[sizeof(TownMapUiCore) == 0x1EC ? 1 : -1];
+
+EXTERN_C
+
+void AddTownMapMarker(TownMapUiCore * core, Location const * location, u32 resource_id);
+void EraseTownMapMarkerNodes(TownMapMarkerCounts * counts, TownMapMarkerNode * node);
+// Native-compatible output parameter: r0 points to the iterator result.
+TownMapMarkerIterator * InsertTownMapMarkerNode(TownMapMarkerIterator * result,
+    TownMapMarkerCounts * counts,
+    TownMapMarkerNode * position, TownMapMarkerNode * parent,
+    TownMapMarkerCountEntry const * entry, TownMapMarkerNode * right_hint);
+TownMapMarkerInsertResult InsertTownMapMarkerCount(TownMapMarkerCounts * counts,
+    TownMapMarkerCountEntry const * entry);
+TownMapMarkerIterator * InsertTownMapMarkerCountWithHint(TownMapMarkerIterator * result,
+    TownMapMarkerCounts * counts,
+    TownMapMarkerIterator const * hint, TownMapMarkerCountEntry const * entry);
+
+EXTERN_C_END
+
 typedef char TownMapUiSceneSizeCheck[sizeof(TownMapUiScene) == 8 ? 1 : -1];
 
-struct TownMapSelectionTransition : SceneTransition {
-    TownMapSelectionTransition() : has_selection(false), location(MAP_NONE, 0, 0) {}
-    bool has_selection;
-    Location location;
-};
-typedef char TownMapSelectionTransitionSizeCheck[sizeof(TownMapSelectionTransition) == 12 ? 1 : -1];
-typedef char TownMapSelectionTransitionFlagCheck[offsetof(TownMapSelectionTransition, has_selection) == 4 ? 1 : -1];
-typedef char TownMapSelectionTransitionLocationCheck[offsetof(TownMapSelectionTransition, location) == 6 ? 1 : -1];
+#include "town_map_transition.hh"
 
-struct TownMapReturnTransition : TownMapSelectionTransition {
-    TownMapReturnTransition(GameStateSaveImage * image, i32 input_mode)
-        : save(image), mode(input_mode) {}
-    virtual SceneOwner CreateScene();
-    GameStateSaveImage * save;
-    i32 mode;
-};
-typedef char TownMapReturnTransitionSizeCheck[sizeof(TownMapReturnTransition) == 20 ? 1 : -1];
-typedef char TownMapReturnTransitionSaveCheck[offsetof(TownMapReturnTransition, save) == 12 ? 1 : -1];
-typedef char TownMapReturnTransitionModeCheck[offsetof(TownMapReturnTransition, mode) == 16 ? 1 : -1];
-
-struct TownMapTransition : SceneTransition {
-    TownMapTransition(i32 input_mode, GameStateSaveImage * image)
-        : save(image), result(new TownMapReturnTransition(image, input_mode)), mode(input_mode) {}
-    virtual SceneOwner CreateScene();
-    GameStateSaveImage * save;
-    SceneTransitionOwner result;
-    i32 mode;
-};
-typedef char TownMapTransitionSizeCheck[sizeof(TownMapTransition) == 16 ? 1 : -1];
-typedef char TownMapTransitionSaveCheck[offsetof(TownMapTransition, save) == 4 ? 1 : -1];
-typedef char TownMapTransitionResultCheck[offsetof(TownMapTransition, result) == 8 ? 1 : -1];
-typedef char TownMapTransitionModeCheck[offsetof(TownMapTransition, mode) == 12 ? 1 : -1];
-#pragma implementation
 
 #endif // TOWN_MAP_HH

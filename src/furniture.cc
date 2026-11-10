@@ -40,4 +40,3 @@ u32 Unk_0800BC58::method_0800BDEC() const
 {
     return bit_array_08.Count();
 }
-

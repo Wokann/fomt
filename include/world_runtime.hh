@@ -2,6 +2,7 @@
 #define WORLD_RUNTIME_HH
 
 #include "prelude.h"
+#include "scene_sprite.hh"
 #include "obj_palette_collection.hh"
 #include "obj_tile_collection.hh"
 #include "resource_archive.hh"
@@ -9,7 +10,6 @@
 #include <string.h>
 #include "smart_ptr.hh"
 
-#pragma interface "world_runtime.hh"
 
 struct AEntity;
 struct GameObject;
@@ -103,49 +103,6 @@ struct GameSceneWorldUnk1028 {
     u8 unk_09;
 };
 
-struct GameScenePaletteIndices {
-private:
-    void Initialize(u32 input_count, u8 const & initial)
-    {
-        count = 0;
-        if (input_count <= ARRAY_COUNT(values)) {
-            memset(values, initial, input_count);
-            count = input_count;
-        }
-    }
-
-public:
-    GameScenePaletteIndices() : count(0) {}
-
-    GameScenePaletteIndices(GameScenePaletteIndices const & other) : count(0)
-    {
-        u32 input_count = other.count;
-        u8 const * first = other.values;
-        u8 * destination = values;
-        u8 const * last = first + input_count;
-        if (last != first)
-            memmove(destination, first, last - first);
-        count = input_count;
-    }
-
-    explicit GameScenePaletteIndices(u32 input_count)
-    {
-        Initialize(input_count, 0);
-    }
-
-    u32 count;
-    union {
-        u8 values[16];
-        u32 storage[4];
-    };
-
-    u8 * End() { return &reinterpret_cast<u8 *>(storage)[count]; }
-
-    u8 & operator[](u32 index) { return values[index]; }
-};
-
-typedef char GameScenePaletteIndicesSizeCheck[sizeof(GameScenePaletteIndices) == 20 ? 1 : -1];
-typedef char GameScenePaletteIndexValuesCheck[offsetof(GameScenePaletteIndices, values) == 4 ? 1 : -1];
 
 // The native constructor receives this member at world+4, not the complete
 // world object. Each archive has its own source and reverse-order destruction.
@@ -200,11 +157,6 @@ typedef char GameSceneWorldDataSpriteEffectsCheck[offsetof(GameSceneWorldData, s
 typedef char GameSceneWorldDataUnkRecordCheck[offsetof(GameSceneWorldData, unk_1028) == 0x1028 ? 1 : -1];
 typedef char GameSceneWorldDataSizeCheck[sizeof(GameSceneWorldData) == 0x1034 ? 1 : -1];
 
-EXTERN_C
-i32 GetWorldSpritePaletteBank(GameSceneWorld & world, u32 index);
-// The exact role of resource byte +0x81 remains unknown; only clearing is known.
-void ClearWorldSpritePaletteResourceFlag(GameSceneWorld & world, u32 index);
-EXTERN_C_END
 
 EXTERN_C
 extern u8 const gActorIndexedResourceArchive[];

@@ -73,6 +73,16 @@ void ResetJoyBusLinkRegisters(void);
 u32 UpdateJoyBusCommunication(void);
 void ConfigureJoyBusRegisters(u32 reset_serial, u32 set_status_flags);
 
+// Native transport entry points used by the protocol adapter.
+void func_080D0444(u32 local_code, u32 remote_code);
+void func_080D0454(u32 mode);
+void func_080D0558(void const * outgoing, u32 outgoing_size, void * incoming, u32 incoming_size);
+void func_080D0644(u32 value, u8 mode);
+u32 func_080D0678(void);
+void func_080D06A8(void);
+u32 func_080D06B4(void);
+u32 func_080D06D0(void);
+
 EXTERN_C_END
 
 #endif // JOY_BUS_HH

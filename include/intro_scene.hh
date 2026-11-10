@@ -76,7 +76,8 @@
 
 #include "prelude.h"
 #include "scene.hh"
-#include "hardware_music_player.hh"
+#include "hardware_sound.hh"
+#include "hardware_context.hh"
 #include "obj_tile_pool.hh"
 #include "obj_palette_pool.hh"
 #include "resource_handle.hh"
@@ -158,26 +159,25 @@ typedef char IntroSceneSpriteObjectModeOffsetCheck[offsetof(IntroSceneSpritePara
 typedef char IntroSceneSpriteMosaicOffsetCheck[offsetof(IntroSceneSpriteParameters, mosaic) == 24 ? 1 : -1];
 typedef char IntroSceneSpriteGroupOffsetCheck[offsetof(IntroSceneSpriteParameters, group) == 28 ? 1 : -1];
 
-typedef void (*IntroSceneVTableFunction)(void);
+#pragma interface "intro_scene.hh"
 
 struct IntroSceneCore;
 
-typedef void (*IntroSceneCoreDestroyFunction)(IntroSceneCore *, int);
-
-struct IntroSceneCoreVTable
+struct GameIntroScene : AScene
 {
-    void * unk_00;
-    void * unk_04;
-    IntroSceneCoreDestroyFunction destroy;
+    IntroSceneCore * core;
+    GameIntroScene() asm("ConstructGameIntroScene");
+    virtual ~GameIntroScene() asm("DestroyGameIntroScene");
+    virtual SceneTransitionOwner Run() asm("RunGameIntroScene");
 };
 
 // Member widths follow the constructor and the remaining assembly consumers.
 // Unknown animation state and lifetime-owner bytes are not given meanings
 // merely because their initialization or their physical extent is known.
-struct IntroSceneCore
+struct IntroSceneCore : HardwareContext
 {
-    HardwareCoreState * hardware_state;
-    IntroSceneCoreVTable const * vtable;
+    // Destruction releases the owned members in reverse order, then the
+    // hardware context. Resource handles borrow data.
     HardwareMusicPlayerSlot music_players[2];
     IntroSceneUnpackedResources unpacked_resources;
     IndexedResourceArchive intro_archive;
@@ -247,8 +247,8 @@ typedef char IntroSceneCoreSpriteMatrixSizeCheck[sizeof(((IntroSceneCore *)0)->s
 typedef char IntroSceneMatrixPbOffsetCheck[offsetof(IndexedResourceSpriteMatrix, pb) == 2 ? 1 : -1];
 typedef char IntroSceneMatrixPcOffsetCheck[offsetof(IndexedResourceSpriteMatrix, pc) == 4 ? 1 : -1];
 typedef char IntroSceneMatrixPdOffsetCheck[offsetof(IndexedResourceSpriteMatrix, pd) == INTRO_SCENE_MATRIX_PD_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_hardware_state_OffsetCheck[offsetof(IntroSceneCore, hardware_state) == INTRO_SCENE_CORE_HARDWARE_STATE_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_vtable_OffsetCheck[offsetof(IntroSceneCore, vtable) == INTRO_SCENE_CORE_VTABLE_OFFSET ? 1 : -1];
+typedef char IntroSceneCore_hardware_state_OffsetCheck[offsetof(IntroSceneCore, state) == INTRO_SCENE_CORE_HARDWARE_STATE_OFFSET ? 1 : -1];
+typedef char IntroSceneCoreHardwarePrefixSizeCheck[sizeof(HardwareContext) == INTRO_SCENE_CORE_MUSIC_PLAYERS_OFFSET ? 1 : -1];
 typedef char IntroSceneCore_music_players_OffsetCheck[offsetof(IntroSceneCore, music_players) == INTRO_SCENE_CORE_MUSIC_PLAYERS_OFFSET ? 1 : -1];
 typedef char IntroSceneCore_unpacked_resources_OffsetCheck[offsetof(IntroSceneCore, unpacked_resources) == INTRO_SCENE_CORE_UNPACKED_RESOURCES_OFFSET ? 1 : -1];
 typedef char IntroSceneCore_intro_archive_OffsetCheck[offsetof(IntroSceneCore, intro_archive) == INTRO_SCENE_CORE_INTRO_ARCHIVE_OFFSET ? 1 : -1];
@@ -291,42 +291,36 @@ typedef char IntroSceneCore_startup_hold_frames_OffsetCheck[offsetof(IntroSceneC
 typedef char IntroSceneCore_unk_6D30_OffsetCheck[offsetof(IntroSceneCore, unk_6D30) == INTRO_SCENE_CORE_UNK_6D30_OFFSET ? 1 : -1];
 typedef char IntroSceneCore_startup_phase_OffsetCheck[offsetof(IntroSceneCore, startup_phase) == INTRO_SCENE_CORE_STARTUP_PHASE_OFFSET ? 1 : -1];
 
-struct GameIntroScene : AScene
-{
-    IntroSceneCore * core;
-    GameIntroScene() asm("ConstructGameIntroScene");
-    virtual ~GameIntroScene() asm("DestroyGameIntroScene");
-    virtual SceneTransitionOwner Run() asm("RunGameIntroScene");
-};
-
 typedef char GameIntroSceneSizeCheck[sizeof(GameIntroScene) == 8 ? 1 : -1];
 typedef char GameIntroSceneCoreOffsetCheck[offsetof(GameIntroScene, core) == 4 ? 1 : -1];
 
 struct IntroNameEntryTransition : SceneTransition
 {
-    virtual SceneOwner CreateScene() SECTION(".text.intro_scene_transitions");
+    virtual SceneOwner CreateScene();
 };
 
 struct IntroMenuTransition : SceneTransition
 {
-    virtual SceneOwner CreateScene() SECTION(".text.intro_scene_transitions");
+    virtual SceneOwner CreateScene();
 };
 
-struct MenuIntroTransition : SceneTransition
-{
-    virtual SceneOwner CreateScene() asm("CreateIntroScene") SECTION(".text.intro_scene_factory");
-};
-
-typedef char MenuIntroTransitionSizeCheck[sizeof(MenuIntroTransition) == 4 ? 1 : -1];
 
 EXTERN_C
 
-extern IntroSceneCoreVTable const gIntroSceneCoreVTable;
+extern u8 const gIntroSceneStartupBg0Tilemap[];
+extern u8 const gIntroSceneStartupBg1Tilemap[];
+extern u8 const gIntroSceneStartupBg2Tilemap[];
+extern u8 const gIntroSceneStartupBg3Tilemap[];
+extern u8 const gIntroSceneStartupTiles[];
+extern u8 const gIntroSceneStartupPaletteBanks[];
+
+extern u8 const * const gIntroSceneStartupBgTilemaps[4];
+extern char const gCppRuntimeError_IntroSceneStartup[];
+
 extern u8 const gIntroSceneIndexedArchiveCompressed[];
 extern u8 const gIntroSceneSmallIndexedArchive[];
 extern u8 const gActorIndexedResourceArchive[];
 IntroSceneCore * ConstructIntroSceneCore(void * core);
-void DestroyIntroSceneCore(IntroSceneCore * core, int flags) SECTION(".text.intro_scene_core_cleanup");
 void StartIntroSceneCore(IntroSceneCore * core);
 void InitializeIntroSceneBackground(IntroSceneCore * core);
 int RunIntroSceneSequence(IntroSceneCore * core);

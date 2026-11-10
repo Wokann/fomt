@@ -82,4 +82,6 @@ typedef char GameSceneWeatherEffectUploadFlagCheck[offsetof(GameSceneWeatherEffe
 typedef char GameSceneWeatherEffectParticlesCheck[offsetof(GameSceneWeatherEffect, particles) == 0xE8 ? 1 : -1];
 typedef char GameSceneWeatherEffectSizeCheck[sizeof(GameSceneWeatherEffect) == 0x46C ? 1 : -1];
 
+extern "C" WorldWeatherMotion const gWorldWeatherParticleMotion[2][2];
+
 #endif

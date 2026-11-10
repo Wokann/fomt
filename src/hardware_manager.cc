@@ -1,12 +1,8 @@
 #include "prelude.h"
-#pragma implementation "hardware_manager.hh"
 #include "hardware_manager.hh"
 #include "gbaio.h"
 
-void * operator new(unsigned long);
-void operator delete(void *);
-
-HardwareManagerVBlankBinding * gCurrentHardwareVBlankBinding;
+#include <new>
 
 HardwareManagerOwner::HardwareManagerOwner()
     : state(new HardwareManagerState)
@@ -26,41 +22,4 @@ HardwareInterruptList * GetHardwareManagerFrameCommands(HardwareManagerOwner con
 HardwareInterruptList * func_08008AE8(HardwareManagerOwner const * owner)
 {
     return &owner->state->frame_commands;
-}
-
-void RunHardwareManagerVBlankCommands(void)
-{
-    HardwareLinkedList * commands = gCurrentHardwareVBlankBinding->commands;
-    commands->Run();
-}
-
-HardwareManagerVBlankBinding::HardwareManagerVBlankBinding(HardwareLinkedList * const & list)
-    : commands(list), guard(INTR_FLAG_VBLANK), previous(this),
-      previous_handler(ExchangeInterruptHandler(IRQ_INDEX_VBLANK, RunHardwareManagerVBlankCommands))
-{
-    AcknowledgeAndEnableInterrupts(INTR_FLAG_VBLANK);
-}
-
-void AppendHardwareVBlankCommand(HardwareLinkedList * list, HardwareLinkBase * link)
-{
-    InterruptGuard guard(INTR_FLAG_VBLANK);
-    list->HardwareLinkedList::Append(link);
-}
-
-void RemoveHardwareVBlankCommand(HardwareLinkedList * list, HardwareLinkBase * link)
-{
-    InterruptGuard guard(INTR_FLAG_VBLANK);
-    list->HardwareLinkedList::Remove(link);
-}
-
-void SpliceHardwareVBlankCommands(HardwareLinkedList * list, HardwareLinkedList * source)
-{
-    InterruptGuard guard(INTR_FLAG_VBLANK);
-    list->HardwareLinkedList::Splice(source);
-}
-
-void SwapHardwareVBlankCommands(HardwareLinkedList * list, HardwareLinkedList * other)
-{
-    InterruptGuard guard(INTR_FLAG_VBLANK);
-    list->HardwareLinkedList::Swap(other);
 }

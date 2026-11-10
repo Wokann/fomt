@@ -2,7 +2,7 @@
 #define HARDWARE_INTERRUPT_GUARD_HH
 
 #include "hardware_linked_list.hh"
-#include "interrupt.hh"
+#include "interrupt.h"
 
 #ifdef __cplusplus
 // Restore only the interrupt bits that were enabled on entry. SRAM writes
@@ -30,7 +30,6 @@ struct HardwareInterruptList : HardwareLinkedList {
     virtual void Splice(HardwareLinkedList * source) asm("func_08009638");
     virtual void Swap(HardwareLinkedList * other) asm("func_08009674");
 };
-#pragma implementation
 // Native ABI cleanup also needs the compiler's actual table symbol.
 extern int (*__vt_21HardwareInterruptList[9])(...);
 #else
@@ -47,13 +46,6 @@ void func_080095C0(struct HardwareLinkedList * list, struct HardwareLinkBase * l
 void func_080095FC(struct HardwareLinkedList * list, struct HardwareLinkBase * link);
 void func_08009638(struct HardwareLinkedList * list, struct HardwareLinkedList * source);
 void func_08009674(struct HardwareLinkedList * list, struct HardwareLinkedList * other);
-
-// The retail image retains these separate copies after the frame commands.
-// Keep their real bodies and entries, rather than aliases to the earlier pair.
-void func_080D788C(struct HardwareLinkedList * list)
-    SECTION(".text.hardware_frame_commands_after");
-void func_080D78BC(struct HardwareLinkedList * list, u32 flags)
-    SECTION(".text.hardware_frame_commands_after");
 
 EXTERN_C_END
 

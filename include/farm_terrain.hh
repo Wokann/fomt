@@ -2,6 +2,7 @@
 #define FARM_TERRAIN_HH
 
 #include "field_render_rect_descriptors.hh"
+#include "map_terrain.hh"
 
 struct Farm;
 

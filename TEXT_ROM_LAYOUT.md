@@ -1,4 +1,196 @@
+## 四版文本归属同步与整版验收（2026-11-10）
+
+海外文本已按实际包含位置与 JP 模块归属同步，保留各语言原文及版本专有布局。DE 的 `gText_AnimalMemorial_DeathFarmPrefix` 与前一条 `DeathHeader` 连续维护于 `data/text/de/game_scene.cc`，由 `src/game_scene.cc` 包含，外部声明统一在 `include/game_scene.hh`；不再跨到 animal_data。运行库 `bad_alloc` 继续由正常 C++ 依赖生成。
+
+同一份源码的 WSL `make -j16` 阶段 1721 已使 JP、US、EU、DE 全部 8 MiB 与各自 baserom 逐字节及 SHA-1 一致。未处理汉化，未进行移址试验；这次验收不替代剩余原始指针和容量限制的后续审计。
+
+## JP 道具文本布局保持与剩余来源核查（1443）
+
+item.cc的标准最小值接口整理没有改变任何文本定义、源码顺序、指针表或LDS；其完整29332字节只读段及重定位保持，文本路径不变。最新整版仍是1428，四组72字节缺口未关闭。
+
+原版剩余库字面量起点以及0x08107024–0x08107031的Error／なし全部字节位置，均已检索直接绝对地址指针，未发现命中。这只排除这类直接引用，不能据此断言无用途、无间接引用或确定生成来源；未添加为匹配而存在的头文件、文字或类型。
+
+证据：item-min-production-1438/actual-checks-1439.json、remaining-runtime-absolute-readers-1439.json。汉化及其他语言文本未处理；共享道具源码仍待海外验证。
+
+## JP 精灵小屋前库输出当前布局（1431）
+
+真实指针查找API的正常库输出与小屋表共同位于一个harvest_sprite普通只读输入，0x08103BD4–0x08103BFC整窗40字节直接匹配原版。下方相应行已更新；物理坐标仍指baserom，当前整版尚有四组72字节累计布局缺口。海外文本未改。
+
+## JP 事件状态库输出当前布局（1415）
+
+原始物理坐标0x081032B8–0x081032C4的12字节输出及对齐已通过正常event_state模块恢复，当前表格已更新。1412整版尚有五组84字节缺口及尾部累计补位；原始坐标不等于尚有偏移的当前map地址。共享库头的海外验收仍待JP完成后进行。
+
+## JP 矿层与小屋位置表当前归属（1400）
+
+下方对应JP物理地址表已纠正旧actor_runtime_data大块描述：八组矿层代码／权重表属于mine_floor，小屋表属于实际读者harvest_sprite。原版0x08103BD4处运行库来源仍未恢复。表格使用baserom物理坐标；1397整版仍有累计布局偏移，不能将其当成当前map地址。海外记录未随本次修改。
+
+## JP 姓名录入当前整窗布局（1381）
+
+0x0810494C–0x08104994的72字节按两个普通模块自然排列，六项姓名提示标签位置保持；下表已反映1378正式构建。整版仍未SHA-1匹配，海外布局未变。
+
+## JP 十进制文本与UI输出当前布局（1369）
+
+三份编码数字相关对象已归入实际格式化模块decimal_text及其同名JP文本，不再放在ui_state文本文件。文本输出类、格式化数据和UI状态以三个普通对象自然顺排，0x080F9758–0x080F97DC完整132字节与baserom匹配；下方地址表已展开真实对象、对齐、选项表与资源指针。1366整版JP尚有8处布局／尾部区间，不能把局部通过当成整版完成。海外布局未变，旧章节属历史。
+
+## JP 保存地图图形查询当前布局（1357）
+
+季节范围表与双列表已从纯数据文件移至实际图形查询模块saved_map_graphics.cc/.hh，四个原有连续函数随之归入同名实现。下方当前JP表已按真实所有者、普通输出与剩余24字节缺口纠正；地址列仍为原版坐标，不表示未关闭的上游位移已经消失。Error／回退文本只保留现有具名文本，不冒认编译器来源；旧章节为历史记录。1354完整JP仍有9处布局／尾部区间，8处有效缺口合计120字节，尚未SHA-1匹配。
+
+## JP 菜单当前布局（1346）
+
+面板与场景按真实实现边界拆分为game_menu_panels及game_menu两个普通对象；原736字节连续数据窗口已全匹配。下方JP地址表和26项文本索引已纠正旧shop_common_6至_9路径，场景文本实际由game_menu_1至_4按原指针断点include。相邻main_menu_widget的自然库输出与font字形输入也按真实对象分开记录。地址为原版坐标；整版1343仍有9处布局／尾部差异，未SHA-1匹配。历史文字保留作接续记录。
+
+## JP 日历／滚动菜单当前布局（1325）
+
+1323完整JP报告已纳入滚动菜单与日历修复，长度／填充差异现为10处，仍未SHA-1匹配。当前Core为src/scene_calendar_core.cc、include/scene_calendar_core.hh，文本按实际日期数组断点分为scene_calendar_core_1/_2；场景src/scene_calendar.cc仅两个原C++方法，并include同名尾部回退文本。原GCC逻辑接口／生命周期定义归属保留。下方JP当前地址顺序及文本索引已纠正旧calendar_events命名和季名＋日期混块；邻接field_item、姓名提示及fishing对象的旧归属也按当前完整载荷核对更新。地址列为原版坐标，不代表上游缺口尚未恢复时的当前链接地址。更早阶段文字是历史记录。
+
+## JP 滚动菜单局部窗口更新（1317）
+
+此项是完整58字节窗口的局部与正式对象验证；最后完整报告仍为1309的12处差异，未宣称全局已减少。滚动菜单文本片段文件名／内容未改，十四个原生函数保持。
+
+| 原版范围（末地址含本字节） | 普通对象 | 内容与当前验证 |
+| --- | --- | --- |
+| 0x080FB8F0–0x080FB8FF | src/resource_sprite_renderer.o(.rodata) | 既有正常库输出及六字节gResourceSpritePackedCellSizes，内容不改。 |
+| 0x080FB900–0x080FB909 | src/resource_sprite_cache.o(.rodata) | 既有真实插入／构造操作的正常库输出。 |
+| 0x080FB90A–0x080FB90B | 下一普通输入自然对齐 | 2字节00，来源于新菜单对象真实标准库依赖的四字节段对齐，无LDS额外条目。 |
+| 0x080FB90C–0x080FB915 | src/scroll_menu.o(.rodata) | 原生DMA队列操作API的标准库正常输出，非维护用游戏文本。 |
+| 0x080FB916–0x080FB929 | src/scroll_menu.o(.rodata) | data/text/jp/scroll_menu.cc中的gScrollMenuDigitGlyphs，十个u16字形码；由src/scroll_menu.cc按原顺序include。 |
+
+## JP 飞盘核心／商店当前归属（1311）
+
+当前飞盘核心为src/frisbee_core.cc、include/frisbee_core.hh及data/text/jp/frisbee_core.cc；src/frisbee.cc仅负责场景包装和真实new-core生命周期。旧JP文本路径已移除。下方JP按地址顺序的当前表及十五项文本索引已同步；更早阶段叙述保留为历史记录，不代表当前文件路径。商店当前仅有shop_common_1.cc与shop_common_2.cc，之后即game_menu普通对象及其已有库前缀。1456字节飞盘主题窗口与64字节商店窗口直接匹配baserom；1309完整JP仍有12处长度／填充差异，尚未SHA-1匹配。海外布局暂未同步，原实现保持。
+
+## JP 排名／飞盘表归属更新（1271）
+
+排名分数表现在归src/animal_festival_ranking.cc及同名.hh，六张飞盘专用表归src/frisbee.cc及同名.hh，并紧接现有JP飞盘文本include；不再由独立JP ranking_score_data模块代管。下方JP地址顺序表已按原版范围更新，并明确标出尚未恢复的运行库缺口；地址列不是当前构建已回到原址的声明。当前串接内容和符号重定位保持不变，完整JP仍有16处长度／填充差异。海外行暂保持原组织。365个当前链接输入的有界指针审计未发现这七表原版／当前基址或内部地址的原始数据候选，九处已识别引用均为符号；不包括立即数组合地址的完整证明。
+
+## JP 赛马／奖品兑换分区（1202）
+
+JP赛马竞赛、购票文本仍由src/horse_race.cc包含horse_race_1.cc、_2.cc；奖品兑换的独立核心、场景、目录和文本归src/horse_race_medal_exchange.cc及同名.hh。目录和提示之间夹着真实的u16物品ID表，故对应文本为horse_race_medal_exchange_1.cc、_2.cc。旧JP horse_race_3.cc和_4.cc已退休，海外文本暂不变。
+
+| 原版JP区间 | 当前所属文件／内容 |
+| --- | --- |
+| `0x080F9F5C–0x080FA88C` | src/horse_race.cc：参赛者、竞赛／购票文本与控制表 |
+| `0x080FA88C–0x080FAA60` | src/horse_race_medal_exchange.cc：自然运行库输出、目录、物品ID表、兑换文本／字符码 |
+
+完整2820字节窗口通过原版符号重定位后直接匹配baserom。目录gHorseRacePrizeCatalog的原版地址仍为0x080FA898，名称是每条20字节结构中的16字节内嵌字段；不作为独立文本指针。当前全局位置仍受上游差额影响。下方1134的“四份horse_race文本”是本次归位前的历史布局。
+
+## JP 飞盘比赛记分牌（1186）
+
+JP名称行、预载字符码和标题是一组连续数据，现由src/frisbee_scoreboard.cc按ROM顺序include唯一的data/text/jp/frisbee_scoreboard.cc，所有声明归include/frisbee_scoreboard.hh。实际调用证据为JP InitializeDisplay的字符码引用及记分牌绘制的names[id-1]，并非旧文件名暗示的姓名输入。海外源码和文本暂不更动。
+
+| 原版JP地址 | 当前符号 | 大小／调用约束 |
+| --- | --- | --- |
+| `0x080F97E6` | `gText_FrisbeeScoreboard_ContestantNames` | 30×13字节、ALIGN(1)、一基ID |
+| `0x080F996C` | `gFrisbeeScoreboardCharacterCodes` | 20个u16槽，前13个有效 |
+| `0x080F9994` | `gText_Frisbee_TournamentScoreboard` | 23字节原文本 |
+
+旧JP new_game_name_entry_ui_data.cc已退休，下方早期同名记录仅为历史来源。原0x080F97DC–0x080F99AC完整464字节窗口验证通过，当前绝对地址仍受上游未解决差额影响。
+
+## JP 赛马参赛者文本／数据当前归属（1134）
+
+原animal_festival名称的40行参赛者表实际由赛马流程读取，现与范围及数值表统一归入src/horse_race.cc、include/horse_race.hh。JP文本文件按实际非文本断点为horse_race_1.cc（参赛者）、_2.cc（购票／竞赛）、_3.cc、_4.cc；原animal_festival文本退休。所有原固定行宽和符号均保留。基准区间0x080F9F5C–0x080FA280完整804字节通过，当前链接绝对地址仍受未解决的上游差额影响。海外文本与源组织本轮未改。下方较早布局中的bad_alloc命名文本为历史手工副本，现由真实编译器输出维护，不能视作仍存在的源码标签。
+
+## JP 当前加载／帮助文本归属更新（1118）
+
+JP七个字符串现由src/game_scene_state.cc按物理顺序包含data/text/jp/game_scene_state_1.cc、_2.cc，声明统一在include/game_scene_state.hh；原版0x080EFDD0–0x080EFE2A完整窗口保持。第一段加载失败提示之后的bad_alloc是实际实现依赖的自然编译输出，不是文本文件维护内容。后接原生ALIGN(1)的screen_flash数组及下一主题对齐，完整212字节窗口验证通过。旧JP help_menu文本已退休；下方早期“四版均由help_menu拥有”的叙述仅为历史记录，US/EU/DE此轮未改。全局地址仍受未解决的上游布局差额影响，不把本窗口局部通过视为当前链接绝对地址已归位。
+
+## JP 童年开场文本来源更正（1063 完整构建后）
+
+实际场景读取者、28条文本和背景指针表现在同属intro_story_scene；下表记录原版JP地址。旧JP intro_scene_data.cc文本已退役；海外来源暂保持原状。
+
+| 原版 JP 地址 | 符号 | 文本文件 | include 所属源码 | 声明头 |
+| --- | --- | --- | --- | --- |
+| `0x080FAABC` | `gText_IntroScene_MotherName` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAAC0` | `gText_IntroScene_MotherTravelGreeting` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAB08` | `gText_IntroScene_FatherName` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAB0C` | `gText_IntroScene_FatherFishingInvitation` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAB5C` | `gText_IntroScene_MotherCannotFindPlayer` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAB94` | `gText_IntroScene_PlayerResponseWhat` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FABA4` | `gText_IntroScene_OldManName` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FABB0` | `gText_IntroScene_OldManFindsPlayer` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAC58` | `gText_IntroScene_MotherThanksOldMan` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAC90` | `gText_IntroScene_FatherExplainsVacation` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FACF8` | `gText_IntroScene_OldManOffersStay` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAD50` | `gText_IntroScene_FatherAsksAboutStay` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAD6C` | `gText_IntroScene_OldManWelcomesFamily` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FADB4` | `gText_IntroScene_MotherTellsPlayerToPlay` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FADF0` | `gText_IntroScene_UnknownName` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FADF8` | `gText_IntroScene_UnknownCallsPlayer` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAE14` | `gText_IntroScene_UnknownFindsPlayer` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAE1C` | `gText_IntroScene_GirlName` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAE24` | `gText_IntroScene_GirlThinksPlayerDead` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAE58` | `gText_IntroScene_GirlInvitesPlayerToPlay` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAEAC` | `gText_IntroScene_GirlAsksPlayerStory` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAF28` | `gText_IntroScene_OldManFarewell` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAFBC` | `gText_IntroScene_OldManRequestsLetter` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FAFF4` | `gText_IntroScene_OldManGivesAddress` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FB034` | `gText_IntroScene_GirlSaysGoodbye` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FB054` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FB0B0` | `gText_IntroScene_OldManNotesFriend` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+| `0x080FB0F4` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/jp/intro_story_scene.cc` | `src/intro_story_scene.cc` | `include/intro_story_scene.hh` |
+
+10x2背景指针表gIntroStoryTilemapSources也由该源码／头文件定义和声明，不属于文本。正文内容、控制符及行数未修改。
+
+## JP 文本来源更正（1050 完整构建后）
+
+下表为当前定义／声明归属；地址采用原版JP ROM。海外来源暂保留原有组织，待JP完成后同步。数组固定维度及游戏控制符未修改。
+
+| 原版 JP 地址 | 符号 | 文本文件 | include 所属源码 | 声明头 |
+| --- | --- | --- | --- | --- |
+| `0x080EFD52` | `gText_Calendar_SeasonNames` | `data/text/jp/calendar.cc` | `src/calendar.cc` | `include/calendar.hh` |
+| `0x080EFD60` | `gText_Calendar_None` | `data/text/jp/calendar.cc` | `src/calendar.cc` | `include/calendar.hh` |
+| `0x080EFD63` | `gText_Calendar_WeekdayNames` | `data/text/jp/calendar.cc` | `src/calendar.cc` | `include/calendar.hh` |
+| `0x080EFD90` | `gCppRuntimeError_CalendarTrailer` | `data/text/jp/game_state.cc` | `src/game_state.cc` | `include/game_state.hh` |
+| `0x080EFD98` | `gText_CalendarTrailerFallbackNone` | `data/text/jp/game_state.cc` | `src/game_state.cc` | `include/game_state.hh` |
+| `0x080EFEA4` | `gText_AnimalMemorial_LineBreak` | `data/text/jp/game_scene.cc` | `src/game_scene.cc` | `include/game_scene.hh` |
+| `0x080EFEA8` | `gText_AnimalMemorial_Continue` | `data/text/jp/game_scene.cc` | `src/game_scene.cc` | `include/game_scene.hh` |
+| `0x080EFEAC` | `gText_AnimalMemorial_PageBreak` | `data/text/jp/game_scene.cc` | `src/game_scene.cc` | `include/game_scene.hh` |
+| `0x080EFEB0` | `gText_AnimalMemorial_Header` | `data/text/jp/game_scene.cc` | `src/game_scene.cc` | `include/game_scene.hh` |
+| `0x080EFEB8` | `gText_AnimalMemorial_FarmPrefix` | `data/text/jp/game_scene.cc` | `src/game_scene.cc` | `include/game_scene.hh` |
+| `0x080EFEC8` | `gText_AnimalMemorial_PassedAway` | `data/text/jp/game_scene.cc` | `src/game_scene.cc` | `include/game_scene.hh` |
+| `0x080EFEDC` | `gText_AnimalMemorial_NamesIntro` | `data/text/jp/game_scene.cc` | `src/game_scene.cc` | `include/game_scene.hh` |
+| `0x080EFEF8` | `gText_AnimalMemorial_PrayerIntro` | `data/text/jp/game_scene.cc` | `src/game_scene.cc` | `include/game_scene.hh` |
+| `0x080EFF0C` | `gText_AnimalMemorial_PrayerEnding` | `data/text/jp/game_scene.cc` | `src/game_scene.cc` | `include/game_scene.hh` |
+| `0x080EFF28` | `gText_AnimalMemorial_PassedNaturalLife` | `data/text/jp/game_scene.cc` | `src/game_scene.cc` | `include/game_scene.hh` |
+| `0x080EFF50` | `gCppRuntimeError_AnimalMemorial` | `data/text/jp/animal_data.cc` | `src/animal_data.cc` | — |
+| `0x080EFF58` | `gText_AnimalMemorialFallbackNone` | `data/text/jp/animal_data.cc` | `src/animal_data.cc` | — |
+| `0x080F0088` | `gCppRuntimeError_AnimalData` | `data/text/jp/animal_actor.cc` | `src/animal_actor.cc` | `include/animal_actor.hh` |
+| `0x080F0090` | `gText_AnimalDataFallbackNone` | `data/text/jp/animal_actor.cc` | `src/animal_actor.cc` | `include/animal_actor.hh` |
+
+表中“—”表示当前没有对应头文件声明，仅记录已有定义。
+
+JP `animal_data_1.cc`、`animal_data_2.cc` 已由同名主题文件替代；不能据历史记录重新加入旧定义。
+
+## 958：移除主场景的无调用钓鱼默认文本副本
+
+实际可执行段重定位和GetCaughtFish指针转发代码确认：game_scene.o原先因包含完整fishing.hh而产生的本地gText_Fishing_NoCatch并无调用。JP已取消该处不必要的完整头文件；有效默认对象仍在fishing.o，由SelectFishingCatch真实引用，原始目标0x08104994、955链接目标0x081047BC。未修改文本内容、有效对象及任何汉化工程。完整1628字节函数和8字节默认文本/原始对齐独立核对通过。此前“两处包含就应保留两份”的记载由本次调用证据纠正。
+
+## JP 飞盘文本与库内容顺序更新（840）
+
+src/frisbee.cc在JP先include data/text/jp/frisbee.cc，再解析其实际分配实现需要的<new>。整块902字节在原版坐标0x080F9BD4–0x080F9F5A匹配；包含真实库字面量和必要自然对齐，未手写尾部补零。成绩页仍由src/frisbee_scoreboard.cc include同名文本片段，23字节文本对应原版0x080F9994–0x080F99AB，移除无关GameScene依赖带来的额外库前缀。海外组织与文本不变；原版坐标用于局部载荷核验，不表示当前整版已恢复该地址。
+
+## JP 新游戏文本归属更新（823）
+
+JP现由src/new_game_menu.cc顺序include new_game_menu_1.cc、new_game_menu_2.cc、new_game_menu_3.cc，三段之间分别有真实标签行表或实现依赖产生的库内容；不再单独链接new_game_data.o的JP文本。流程前缀、身份确认和键盘分别位于data/text/jp/new_game_name_entry.cc、new_game_identity.cc、new_game_name_input.cc，并由同名源码include、同名头文件声明。海外文件本批保持原组织。
+
+完整1571字节范围的原版坐标为0x080E7AC8–0x080E80EB；当前823整版map起点为0x080E7BC0，仍受上游布局偏移影响，不能将局部载荷匹配写成当前整版地址相同。键盘固定行宽和13字节名字占位符属于真实格式约束，普通菜单文本仍用未指定长度数组。
+
 # 文本 ROM 物理地址布局
+
+## SRAM 尾部旧 EmptyText 标签的复核（2026-11-08，批次 425；候选）
+
+现存 gUnk_SramSignatureTrailerEmptyText 不应仅凭旧名称就认定为游戏空字符串。旧 GCC 分配库原有 std::nothrow 对象；在当前分配接口模块中恢复其标准定义，会自然产生 4 字节零对象，并与前面的自然 bad_alloc 一起匹配四版对应 16 字节范围。源码归属与 LDS 尚未应用，原表仍是历史提取标签；这次结果不意味着又新增了一份手工 bad_alloc。
+
+必须连同相邻未解决内容确定普通对象顺序后，再删除旧空文本表示。海外版 Error/N/A 未在已检查的旧标准库头文件中找到生成来源，继续作为待分类内容，不能随此候选一并改名为库对象。
+
+## 启动数组后的库字面量（2026-11-08，批次 424）
+
+原先归在 crt0_data 下的 bad_alloc 不再是区域文本或具名游戏字符串。初始化数组仍由 crt0_data.o 提供，随后 main.cc 的真实场景分配依赖自然生成独立 10 字节载荷，由 main.o(.rodata) 链接。四版该载荷及前后边界经 baserom 核对；下表已拆开初始化数组和自然库字面量，不再列出已删除的 crt0_data 文本文件。
+
+## 启动场景文本归属更新（2026-11-08，批次 423）
+
+启动表后的原 Error 文本现在存于 data/text/<region>/intro_scene.cc，由 src/intro_scene.cc 在实际资源表及实现依赖之后 include；声明统一在 include/intro_scene.hh。bad_alloc 不在区域文本中维护，由现有真实 C++ 库依赖自然生成。四版整个普通只读数据为 34 字节，按表、库字面量、Error 排列，与 baserom 一致。旧 startup 数据专用 cc/hh 已删除，下面当前地址表同步改用 intro_scene.o(.rodata)。历史完整 ROM 校验结果不代表本轮整版验收。
 
 ## 共享 UI 长度与姓名表边界更正（2026-11-05）
 
@@ -1624,8 +1816,8 @@ US `0x080E6554`、EU `0x080E65A0`、DE `0x080E64B8`。已确认
 启动背景的四份原始 tilemap 与压缩流现按 BG0–BG3 使用真实符号和
 `bg0.tilemap` 至 `bg3.tilemap` 文件名维护；16 字节总指针表改为
 `gIntroSceneStartupBgTilemaps[4]`，物理顺序及全部地址保持。
-表后的两条运行时文本继续在 `src/intro_scene_startup.cc` 原位置
-include 对应区域的同名文本，未合并、移动或改动文本内容。
+该历史批次曾将表后文本独立维护；423 已改为 src/intro_scene.cc
+真实库依赖自然生成 bad_alloc，Error 仍 include 对应区域同名文本。
 
 四区原版 ROM 字节、SHA-1、既有地址、237 个实际链接对象及重定位
 全部核对通过。LDS、文本岛、指南、Mary 脚本和资源内容均不变；
@@ -3359,11 +3551,12 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 
 | 地区 | 地址范围 | 链接输入 | 维护源 | 核验结果 |
 | --- | --- | --- | --- | --- |
-| EU | `0x080E865C`–`0x080E8675` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0_data.hh`、`data/text/eu/crt0_data.cc` | 精确 |
+| EU | `0x080E865C`–`0x080E866B` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0_data.hh`；初始化数组 | 精确 |
+| EU | `0x080E866C`–`0x080E8675` | `src/main.o(.rodata)` | `src/main.cc`；真实分配依赖自然生成的库字面量，无区域文本文件 | 精确 |
 | EU | `0x080E8676`–`0x080E8677` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080E8678`–`0x080E86CC` | `src/sram_image.o(.rodata)` | `src/sram_image.cc`、`include/sram_image.hh`、`data/text/eu/sram_image.cc` | 精确 |
 | EU | `0x080E86CD`–`0x080E86CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080E86D0`–`0x080E86F1` | `src/intro_scene_startup.o(.rodata)` | `src/intro_scene_startup.cc`、`include/intro_scene_startup.hh`、`data/text/eu/intro_scene_startup.cc`；四个启动资源入口均为资产容器中的真实标签 | 精确 |
+| EU | `0x080E86D0`–`0x080E86F1` | `src/intro_scene.o(.rodata)` | `src/intro_scene.cc`、`include/intro_scene.hh`、`data/text/eu/intro_scene.cc`；四个启动资源入口均为资产容器中的真实标签 | 精确 |
 | EU | `0x080E86F2`–`0x080E86F3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080E86F4`–`0x080E8D0F` | `src/new_game_data.o(.rodata)` | `src/new_game_data.cc`、`include/new_game_data.hh`、`data/text/eu/new_game_data_1.cc` → `src/new_game_data.cc`（`gNewGameMenuLabels`）→ `data/text/eu/new_game_data_2.cc` | 精确 |
 | EU | `0x080E8D10`–`0x080E9617` | `src/field_data.o(.rodata)` | `src/field_data.cc`、`include/field_data.hh` | 精确；39 个原始渲染记录均为资源流内的直接符号 |
@@ -3452,11 +3645,12 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | EU | `0x08117844`–`0x08117B6B` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/eu/shop_common_1.cc`–`shop_common_9.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x08117B6C`–`0x08117C2B` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/eu/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象；文本为普通 C 字符串，后续字形以直写 4 字节对齐属性定位 | 精确 |
 | EU | `0x08117C2C`–`0x08139ADF` | `asm/data/static_resources.o(.rodata)` | `asm/data/static_resources.s`、`include/static_resources.hh`；220 个地图、场景渲染和农舍原始资源以直接标签按物理顺序发射 | 精确 |
-| DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0_data.hh`、`data/text/de/crt0_data.cc` | 精确 |
+| DE | `0x080E8574`–`0x080E8583` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0_data.hh`；初始化数组 | 精确 |
+| DE | `0x080E8584`–`0x080E858D` | `src/main.o(.rodata)` | `src/main.cc`；真实分配依赖自然生成的库字面量，无区域文本文件 | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080E8590`–`0x080E85E4` | `src/sram_image.o(.rodata)` | `src/sram_image.cc`、`include/sram_image.hh`、`data/text/de/sram_image.cc` | 精确 |
 | DE | `0x080E85E5`–`0x080E85E7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080E85E8`–`0x080E8609` | `src/intro_scene_startup.o(.rodata)` | `src/intro_scene_startup.cc`、`include/intro_scene_startup.hh`、`data/text/de/intro_scene_startup.cc`；四个启动资源入口均为资产容器中的真实标签 | 精确 |
+| DE | `0x080E85E8`–`0x080E8609` | `src/intro_scene.o(.rodata)` | `src/intro_scene.cc`、`include/intro_scene.hh`、`data/text/de/intro_scene.cc`；四个启动资源入口均为资产容器中的真实标签 | 精确 |
 | DE | `0x080E860A`–`0x080E860B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080E860C`–`0x080E8CCF` | `src/new_game_data.o(.rodata)` | `src/new_game_data.cc`、`include/new_game_data.hh`、`data/text/de/new_game_data_1.cc` → `src/new_game_data.cc`（`gNewGameMenuLabels`）→ `data/text/de/new_game_data_2.cc` | 精确 |
 | DE | `0x080E8CD0`–`0x080E95D7` | `src/field_data.o(.rodata)` | `src/field_data.cc`、`include/field_data.hh` | 精确；39 个原始渲染记录均为资源流内的直接符号 |
@@ -3554,11 +3748,12 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 
 | 地址范围 | 链接输入 | 内容状态 | 维护源 / 文本来源 | 已命名内容 |
 | --- | --- | --- | --- | --- |
-| `0x080E7A40`–`0x080E7A59` | `src/crt0_data.o(.rodata)` | [嵌入文本 / 数据] | `src/crt0_data.cc`<br>`include/crt0_data.hh`<br>`data/text/jp/crt0_data.cc` | `init_array`、`gCppRuntimeBadAlloc_Crt0` |
+| `0x080E7A40`–`0x080E7A4F` | `src/crt0_data.o(.rodata)` | [初始化数据] | `src/crt0_data.cc`<br>`include/crt0_data.hh` | `init_array` |
+| `0x080E7A50`–`0x080E7A59` | `src/main.o(.rodata)` | [自然库字面量] | `src/main.cc` | 实际场景分配依赖生成；无手写文本符号 |
 | `0x080E7A5A`–`0x080E7A5B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E7A5C`–`0x080E7AA1` | `src/sram_image.o(.rodata)` | [嵌入文本] | `src/sram_image.cc`<br>`include/sram_image.hh`<br>`data/text/jp/sram_image.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird` |
 | `0x080E7AA2`–`0x080E7AA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E7AA4`–`0x080E7AC5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/jp/intro_scene_startup.cc` | `gIntroSceneStartupBgTilemaps`（BG0–BG3 压缩地图真实标签）<br>运行时字符串 `2` 项 |
+| `0x080E7AA4`–`0x080E7AC5` | `src/intro_scene.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene.cc`<br>`include/intro_scene.hh`<br>`data/text/jp/intro_scene.cc` | `gIntroSceneStartupBgTilemaps`（BG0–BG3 压缩地图真实标签）<br>运行时字符串 `2` 项 |
 | `0x080E7AC6`–`0x080E7AC7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E7AC8`–`0x080E8161` | `src/new_game_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_data.cc`<br>`include/new_game_data.hh`<br>`data/text/jp/new_game_data_1.cc` → `src/new_game_data.cc`（`gNewGameMenuLabels`）→ `data/text/jp/new_game_data_2.cc` | 文本 `51` 项（菜单 `12`、状态/帮助/保存/身份/姓名输入 `39`；详见下方索引）<br>`gNewGameMenuLabels`（JP 直接重复 `Data1` / `Data2` 指针）<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8162`–`0x080E8163` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3570,7 +3765,7 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080EFD5E`–`0x080EFD5F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080EFD60`–`0x080EFDCD` | `src/game_state.o(.rodata)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`include/game_state.hh`<br>`data/text/jp/game_state_1.cc`<br>`data/text/jp/game_state_2.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0566`（普通数据）<br>尾部运行时文本 `1` 项 |
 | `0x080EFDCE`–`0x080EFDCF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080EFDD0`–`0x080EFE2A` | `src/help_menu.o(.rodata)` | [嵌入文本] | `src/help_menu.cc`<br>`include/help_menu.hh`<br>`data/text/jp/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项 |
+| `0x080EFDD0`–`0x080EFE2A` | `src/game_scene_state.o(.rodata)` | [嵌入文本] | `src/game_scene_state.cc`<br>`include/game_scene_state.hh`<br>`data/text/jp/game_scene_state_1.cc`<br>`data/text/jp/game_scene_state_2.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x080EFE2B`–`0x080EFEA2` | `src/screen_flash.o(.rodata)` | [非文本数据] | `src/screen_flash.cc`、`include/screen_flash.hh` | `gScreenFlashBlendStrengths[120]`，实际闪色强度序列，保留 ALIGN(1) |
 | `0x080EFEA3`–`0x080EFEA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080EFEA4`–`0x080F06DD` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`include/animal_data.hh`<br>`data/text/jp/animal_data_1.cc`<br>`data/text/jp/animal_data_2.cc`<br>`data/text/jp/animal_data_3.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
@@ -3590,16 +3785,31 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080F973C`–`0x080F974F` | `src/spouse_gift.o(.rodata)` | [数据] | `src/spouse_gift.cc`<br>`include/spouse_gift.hh` | `gSpouseGiftArticleSelectionEntries`；汇编调用为符号重定位 |
 | `0x080F9750`–`0x080F9755` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.cc`<br>`include/farm_house.hh` | `gFarmHouseBedXPositions`；唯一汇编调用为符号重定位 |
 | `0x080F9756`–`0x080F9757` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F9758`–`0x080F97DB` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/jp/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedTiles`, `gUiSharedTileByteCount`, `gUiSharedPalette`, `gUiSharedPaletteByteCount`<br>两个原始资源入口为 `data_0813B288.s` 中的直接标签，所有已知使用处均为符号重定位 |
-| `0x080F97DC`–`0x080F9993` | `src/new_game_name_entry_ui_data.o(.rodata)` | [文本与数据] | `data/text/jp/new_game_name_entry_ui_data.cc` → `src/new_game_name_entry_ui_data.cc`<br>`include/new_game_name_entry_ui_data.hh` | 运行时字符串 `1` 项、30 行固定宽度 `gText_NameEntry_PresetAnimalNames`、`gNewGameNameEntryUiCharacterCodes`<br>runtime 文本、姓名数组和字形表在同一对象中按 ROM 顺序排列；所有已知汇编读取为符号重定位 |
-| `0x080F9994`–`0x080F99AA` | `src/frisbee_scoreboard.o(.rodata)` | [嵌入文本] | `data/text/jp/frisbee_scoreboard.cc` → `src/frisbee_scoreboard.cc`<br>`include/frisbee_scoreboard.hh` | `gText_Frisbee_TournamentScoreboard`；唯一汇编调用为符号重定位<br>后续飞盘文本与本对象之间夹有动物节数据，故保持独立模块 |
+| `0x080F9758`–`0x080F9761` | `src/ui_text_rows.o(.rodata)` | [自然库输出] | `src/ui_text_rows.cc`<br>`include/ui_text_rows.hh` | 真实文本输出行／像素new存储API的标准声明输出，非手工文本。 |
+| `0x080F9762`–`0x080F9763` | 下一输入自然对齐 | [对齐] | 普通对象对齐 | 2字节零间隙。 |
+| `0x080F9764`–`0x080F9781` | `src/decimal_text.o(.rodata)` | [数字文本矩阵] | `src/decimal_text.cc`<br>`include/decimal_text.hh`<br>`data/text/jp/decimal_text.cc` | gUnk_PreUiTextLayoutDigitRows，10×3字节；读者复制每项两个编码字节，第三字节是C字符串终止符，固定步长属真实格式限制。 |
+| `0x080F9782`–`0x080F9783` | 对象内自然对齐 | [对齐] | 普通文本对齐 | 2字节零间隙。 |
+| `0x080F9784`–`0x080F9786` | `src/decimal_text.o(.rodata)` | [全角空格] | `data/text/jp/decimal_text.cc` → `src/decimal_text.cc`<br>`include/decimal_text.hh` | gUnk_PreUiTextLayoutFullWidthSpace。 |
+| `0x080F9787`–`0x080F9787` | 对象内自然对齐 | [对齐] | 普通文本对齐 | 1字节零间隙。 |
+| `0x080F9788`–`0x080F978A` | `src/decimal_text.o(.rodata)` | [全角连字号] | `data/text/jp/decimal_text.cc` → `src/decimal_text.cc`<br>`include/decimal_text.hh` | gUnk_PreUiTextLayoutFullWidthHyphen。 |
+| `0x080F978B`–`0x080F978B` | 下一输入自然对齐 | [对齐] | 普通对象对齐 | 1字节零间隙。 |
+| `0x080F978C`–`0x080F9795` | `src/ui_state.o(.rodata)` | [自然库输出] | `src/ui_state.cc`<br>`include/ui_state.hh` | 真实状态对象及其输出存储分配API的标准声明输出；原12字节缺口已由正常生成及对齐恢复。 |
+| `0x080F9796`–`0x080F9797` | 对象内自然对齐 | [对齐] | 普通对象对齐 | 2字节零间隙。 |
+| `0x080F9798`–`0x080F97CB` | `src/ui_state.o(.rodata)` | [选项布局] | `src/ui_state.cc`<br>`include/ui_state.hh` | gUiTextLayoutPositionTable，首零字节同时是既有空文本视图；八组×六槽及类型末尾对齐保持。 |
+| `0x080F97CC`–`0x080F97DB` | `src/ui_state.o(.rodata)` | [资源指针及数量] | `src/ui_state.cc`<br>`include/ui_state.hh` | gUiSharedTiles、gUiSharedTileByteCount、gUiSharedPalette、gUiSharedPaletteByteCount；两个资源入口均为实际符号重定位。 |
+| `0x080F97DC`–`0x080F99AA` | `src/frisbee_scoreboard.o(.rodata)` | [文本与数据] | `data/text/jp/frisbee_scoreboard.cc` → `src/frisbee_scoreboard.cc`<br>`include/frisbee_scoreboard.hh` | 自然运行库输出、30×13字节 `gText_FrisbeeScoreboard_ContestantNames`、20个u16字符码和 `gText_Frisbee_TournamentScoreboard`；463字节后由下一对象自然补齐1字节。旧姓名输入归属已由1186核正。 |
 | `0x080F99AB`–`0x080F99AB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080F99AC`–`0x080F9BD3` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/jp/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
-| `0x080F9BD4`–`0x080F9F59` | `src/frisbee.o(.rodata)` | [嵌入文本] | `data/text/jp/frisbee.cc` → `src/frisbee.cc`<br>`include/frisbee.hh` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
+| `0x080F99AC`–`0x080F9A73` | `src/animal_festival_ranking.o(.rodata)` | [数据] | `src/animal_festival_ranking.cc`<br>`include/animal_festival_ranking.hh` | 200字节 `gAnimalFestivalRankingScoreTable`，唯一实际读取者为 `AnimalFestivalOpponents::Generate`。 |
+| `0x080F9A74`–`0x080F9A7D` | `src/frisbee_core.o(.rodata)` | [编译器附带文本] | 真实DMA队列API的标准库依赖 | 正常旧C++头文件输出；非手工维护游戏文本。与六表及后续游戏文本同属核心普通.rodata。 |
+| `0x080F9A7E`–`0x080F9BD3` | `src/frisbee_core.o(.rodata)` | [数据] | `src/frisbee_core.cc`<br>`include/frisbee_core.hh` | 六张实际飞盘核心表依原ROM顺序排列：`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`。u16资源ID表最小ALIGN(2)，u32物品ID表ALIGN(4)，未知轴保留原标签。 |
+| `0x080F9BD4`–`0x080F9F4E` | `src/frisbee_core.o(.rodata)` | [嵌入游戏文本] | `data/text/jp/frisbee_core.cc` → `src/frisbee_core.cc`<br>`include/frisbee_core.hh` | 十五项文本；全部命名载荷、实际已知引用及1456字节完整主题窗口已核对。 |
+| `0x080F9F4F`–`0x080F9F4F` | 自然输入对齐 | [填充] | 核心之后的场景对象四字节对齐 | 1字节00，无LDS单独定位。 |
+| `0x080F9F50`–`0x080F9F59` | `src/frisbee.o(.rodata)` | [编译器附带文本] | `src/frisbee.cc`真实new-core分配依赖 | 场景包装器原有正常库输出，无游戏文本include。 |
+| `0x080F9F5A`–`0x080F9F5B` | 自然输入对齐 | [填充] | 下一原生对象四字节对齐 | 2字节00，无单独section或地址补偿。 |
 | `0x080F9F5A`–`0x080F9F5B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F9F5C`–`0x080FA27D` | `src/animal_festival.o(.rodata)` | [文本与数据] | `src/animal_festival.cc`（随机范围表）→ `data/text/jp/animal_festival.cc`（运行时字符串与参赛者名）→ `src/animal_festival.cc`（参赛者数值表）<br>`include/animal_festival.hh` | `gAnimalFestivalRandomRangePairs`、固定宽度参赛者名字 `40` 行、运行时字符串 `1` 项、`gAnimalFestivalLivestockContestantValues`；基址及 `second_maximum + 12` 均为符号重定位，所有已知汇编读取均为符号重定位 |
+| `0x080F9F5C`–`0x080FA27D` | `src/horse_race.o(.rodata)` | [文本与数据] | `src/horse_race.cc`（随机范围表）→ `data/text/jp/horse_race_1.cc`（运行时字符串与参赛者名）→ `src/horse_race.cc`（参赛者数值表）<br>`include/horse_race.hh` | `gAnimalFestivalRandomRangePairs`、固定宽度参赛者名字 `40` 行、运行时字符串 `1` 项、`gAnimalFestivalLivestockContestantValues`；基址及 `second_maximum + 12` 均为符号重定位，所有已知汇编读取均为符号重定位 |
 | `0x080FA27E`–`0x080FA27F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FA280`–`0x080FAA5F` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/horse_race_data_1.cc`–`horse_race_data_7.cc`（均由 `src/horse_race_data.cc` 在物理位置 include）<br>`include/horse_race_data.hh` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`_1` 为首段 UI 文本，`_2` 为票券字形码表，`_3` 为票券 UI 文本，随后是控制项指针表及运行时文本；`_4` 为奖品名，随后是奖品 ID 表；`_6` 为兑换 UI 文本，`_7` 为兑换字形码表。字形码表和奖品目录均为具名完整对象，不再由无名初始化器片段拼接；所有已知汇编读取为符号重定位；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
+| `0x080FA280`–`0x080FAA5F` | `src/horse_race.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/horse_race_data_1.cc`–`horse_race_data_7.cc`（均由 `src/horse_race.cc` 在物理位置 include）<br>`include/horse_race.hh` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`_1` 为首段 UI 文本，`_2` 为票券字形码表，`_3` 为票券 UI 文本，随后是控制项指针表及运行时文本；`_4` 为奖品名，随后是奖品 ID 表；`_6` 为兑换 UI 文本，`_7` 为兑换字形码表。字形码表和奖品目录均为具名完整对象，不再由无名初始化器片段拼接；所有已知汇编读取为符号重定位；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
 | `0x080FAA60`–`0x080FB119` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（`gIntroStoryTilemapSources`）→ `data/text/jp/intro_scene_data_2.cc` → `data/text/jp/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh` | 前缀运行时字符串 `1` 项<br>`gIntroStoryTilemapSources[10][2]`（十组 BG3/BG2 地图的二十个直接标签，无 `.set` 别名）<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；公共 `_1` 位于对话末尾；所有已知汇编读取为符号重定位 |
 | `0x080FB11A`–`0x080FB11B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB11C`–`0x080FB761` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/farm_status_screen_data.cc`（首段连续文本、状态结构及预加载字形表）→ `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/jp/farm_status_screen_data_1.cc`（尾部运行时文本）<br>`include/farm_status_screen_data.hh` | 文本 `62` 项（农场状态 `35`、动物参赛 `27`；详见下方索引）<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签；所有已知汇编读取为符号重定位 |
@@ -3654,30 +3864,56 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x0810319C`–`0x081031FB` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo`；三个日更新调用均为对应对象的直接符号引用 |
 | `0x081031FC`–`0x08103201` | `src/cursed_tool.o(.rodata)` | [数据] | `src/cursed_tool.cc`、`include/cursed_tool.hh` | `gCursedToolProgressLimits[6]`，实际属于诅咒农具状态 |
 | `0x08103202`–`0x08103203` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103204`–`0x081032C1` | `src/map_patch_flags.o(.rodata)` | [数据 / 嵌入文本] | `src/map_patch_flags.cc`、`include/map_patch_flags.hh`<br>`data/text/{jp,us,eu,de}/map_patch_flags_1.cc`、`data/text/{jp,us,eu,de}/map_patch_flags_2.cc` | 前置 `bad_alloc`<br>`gActorDataSelectionEntries`（14 项；28 个 `gFieldRenderRectDescriptors + index` 重定位）<br>尾部 `bad_alloc`；已知汇编调用均为符号引用 |
+| `0x08103204`–`0x0810320F` | 未恢复真实生成来源 | [运行库输出及对齐／未完成] | 当前不手写副本 | baserom为10字节库输出及2字节对齐；不能仅凭相邻表名判定源码所有者。 |
+| `0x08103210`–`0x081032B7` | `src/map_patch_flags.o(.rodata)` | [结构体表] | `src/map_patch_flags.cc`、`include/map_patch_flags.hh` | gActorDataSelectionEntries，14项12字节，28个真实矩形描述符指针。 |
+| `0x081032B8`–`0x081032C1` | `src/event_state.o(.rodata)` | [正常库输出] | `src/event_state.cc`真实std::copy实现依赖 | 事件变量删除路径使用有效标准复制；POD字节长度为通用表达式，1412整版确认原12字节库输出／后续对齐缺口关闭。没有手写字符串；匿名历史来源仍不单靠同内容判定。 |
 | `0x081032C2`–`0x081032C3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081032C4`–`0x08103601` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/jp/fishing_results_data_1.cc`、`data/text/jp/fishing_results_data_2.cc` | 59 条文本（`0x081032C4`–`0x0810350B`）<br>`gFishingRecordNames`（59 项，`0x0810350C`–`0x081035F7`；每项为命名文本重定位）<br>尾部 `bad_alloc`（`0x081035F8`–`0x08103601`）；汇编通过真实 `FishingRecords::GetName` 读取表符号 |
+| `0x081032C4`–`0x081035F7` | `src/fishing_results_data.o(.rodata)` | [文本／指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`、`data/text/jp/fishing_results_data.cc` | 59项文本至0x0810350B，gFishingRecordNames从0x0810350C起的59个真实文本指针；后续库输出实际由下一矿层模块正常生成。 |
+| `0x081035F8`–`0x08103601` | `src/mine_floor.o(.rodata)` | [正常库输出] | `src/mine_floor.cc`真实实现依赖 | 此前归到钓鱼文本尾部的旧记录已纠正；非手写游戏文本。 |
 | `0x08103602`–`0x08103603` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103604`–`0x08103BFB` | `src/actor_runtime_data.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`<br>`data/text/jp/actor_runtime_data.cc` | `gUnk_08103B10`、`gUnk_08103B38`、`gUnk_08103C3C`、`gUnk_08103C74`、`gUnk_08103F84`、`gUnk_08103F98`、`gUnk_08103FE4`、`gUnk_0810400C`<br>尾部 `bad_alloc`（`0x08103BD4`–`0x08103BDD`，4 字节对齐）<br>`gHarvestSpriteHutPositions`（7×4 字节；X、Y、朝向及类型尾对齐）；实际消费者为共同 C++，所有地址引用均为表符号重定位 |
+| `0x08103604`–`0x0810362B` | `src/mine_floor.o(.rodata)` | [矿层物品代码] | `src/mine_floor.cc`、`include/mine_floor.hh` | gLakeMineBuriedItemCodes，10项u32。 |
+| `0x0810362C`–`0x0810372F` | `src/mine_floor.o(.rodata)` | [权重表] | `src/mine_floor.cc`、`include/mine_floor.hh` | gLakeMineBuriedItemWeights，26×10字节。 |
+| `0x08103730`–`0x08103767` | `src/mine_floor.o(.rodata)` | [矿层物品代码] | `src/mine_floor.cc`、`include/mine_floor.hh` | gLakeMineRockItemCodes，14项u32。 |
+| `0x08103768`–`0x08103A77` | `src/mine_floor.o(.rodata)` | [权重表] | `src/mine_floor.cc`、`include/mine_floor.hh` | gLakeMineRockItemWeights，56×14字节。 |
+| `0x08103A78`–`0x08103A8B` | `src/mine_floor.o(.rodata)` | [矿层物品代码] | `src/mine_floor.cc`、`include/mine_floor.hh` | gSpringMineBuriedItemCodes，5项u32。 |
+| `0x08103A8C`–`0x08103AD6` | `src/mine_floor.o(.rodata)` | [权重表] | `src/mine_floor.cc`、`include/mine_floor.hh` | gSpringMineBuriedItemWeights，15×5字节。 |
+| `0x08103AD7`–`0x08103AD7` | 对象内自然对齐 | [填充] | 普通对象对齐 | 1字节00。 |
+| `0x08103AD8`–`0x08103AFF` | `src/mine_floor.o(.rodata)` | [矿层物品代码] | `src/mine_floor.cc`、`include/mine_floor.hh` | gSpringMineRockItemCodes，10项u32。 |
+| `0x08103B00`–`0x08103BD1` | `src/mine_floor.o(.rodata)` | [权重表] | `src/mine_floor.cc`、`include/mine_floor.hh` | gSpringMineRockItemWeights，21×10字节；已不是未识别原始数组。 |
+| `0x08103BD2`–`0x08103BD3` | 下一输入自然对齐 | [填充] | 普通harvest_sprite只读输入四字节边界 | 2字节00。 |
+| `0x08103BD4`–`0x08103BDD` | `src/harvest_sprite.o(.rodata)` | [正常库输出] | `src/harvest_sprite.cc`真实std::find实现依赖 | 通用三参数裸指针查找与原指令一致；原12字节输出／对齐缺口经1428完整JP报告关闭。没有手写库文本。 |
+| `0x08103BDE`–`0x08103BDF` | 对象内自然对齐 | [填充] | 同一harvest_sprite对象内的小屋表四字节边界 | 2字节00。 |
+| `0x08103BE0`–`0x08103BFB` | `src/harvest_sprite.o(.rodata)` | [小屋位置表] | `src/harvest_sprite.cc`、`include/harvest_sprite.hh` | gHarvestSpriteHutPositions，7×4字节；X、Y、朝向及类型尾对齐。唯一已确认可执行读者为同模块InitializeHarvestSpriteHutLocation，真实符号重定位保持。 |
 | `0x08103BFC`–`0x08103BFC` | `src/character_names_empty.o(.rodata)` | [嵌入文本] | `src/character_names_empty.cc`、`include/character_names_empty.hh`<br>`data/text/jp/character_names_empty.cc` | `gText_CharacterName_Empty`；`gCharacterNameEntries` 和三处汇编均为该符号的直接引用；后续姓名表被 `bachelorette` 数据隔开 |
 | `0x08103BFD`–`0x08103C1A` | `src/bachelorette.o(.rodata)` | [数据] | `src/bachelorette.cc`、`include/bachelorette.hh` | `gUnk_BacheloretteLoveThresholds00`–`gUnk_BacheloretteLoveThresholds05`（各 5 字节）；所有已知汇编读取均为对应符号引用 |
 | `0x08103C1B`–`0x08103C1B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08103C1C`–`0x08103EFD` | `src/character_names_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/character_names_data.cc`、`include/character_names_data.hh`<br>`data/text/jp/character_names_data_1.cc`、`data/text/jp/character_names_data_2.cc` | 41 条本地姓名文本（`0x08103C1C`–`0x08103D9B`）<br>`gCharacterNameEntries`（43 项，`0x08103D9C`–`0x08103EF3`；43 个文本字段均为命名符号重定位，ID 0 与 Child 直接引用前一块空文本）<br>尾部 `bad_alloc`（`0x08103EF4`–`0x08103EFD`）；汇编直接引用表符号 |
 | `0x08103EFE`–`0x08103EFF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103F00`–`0x08104479` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/jp/field_item_data.cc` | `gFieldItemRecords`（116×12 字节，`0x08103F00`–`0x0810446F`；无指针字段）<br>尾部 `bad_alloc`（`0x08104470`–`0x08104479`）；已知汇编读取均为表符号引用 |
-| `0x0810447A`–`0x0810447B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x0810447C`–`0x08104955` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/jp/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`（季名存储后紧接 17 组日期/后续季节字节；外部读取均为符号或符号加偏移）<br>节日文本 `20` 项、回退文本 `1` 项（详见下方索引）<br>运行时字符串 `2` 项 |
-| `0x08104956`–`0x08104957` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104958`–`0x08104991` | `src/name_entry.o(.rodata)` | [嵌入文本] | `src/name_entry.cc`、`include/name_entry.hh`<br>`data/text/jp/name_entry.cc` | Horse/Cow/Sheep/Chicken/Child/Player 六条文本（详见下方索引）后接运行时字符串；六条提示由 `SavedNameEntryScene::Run` 通过命名符号读取<br>运行时字符串 `1` 项 |
-| `0x08104992`–`0x08104993` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104994`–`0x08104998` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/jp/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable`；唯一调用为该命名符号 |
-| `0x08104999`–`0x0810499B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x0810499C`–`0x081049BB` | `src/fishing_record_article_ids.o(.rodata)` | [数据] | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | 8 项 `u32` 文章 ID；唯一汇编读取为命名表符号 `gFishingRecordArticleIds` |
-| `0x081049BC`–`0x081049F3` | `src/field_plot_position_values.o(.rodata)` | [数据] | `src/field_plot_position_values.cc`、`include/field_plot_position_values.hh` | 7×4 个 `u16` 位置值；汇编按行/列偏移从命名表 `gFieldPlotPositionValues` 读取 |
-| `0x081049F4`–`0x08104A16` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemSelectionWeights`（7×5 个 `u8`；汇编为表符号引用） |
-| `0x08104A17`–`0x08104A17` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08104A18`–`0x08105177` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemCandidateConfigurations`（59×32 字节；汇编为表符号或 `symbol + 2/9/16/23` 的结构内偏移引用） |
-| `0x08105178`–`0x08105181` | `src/random_item_selection.o(.rodata)` | [嵌入文本] | `src/random_item_selection.cc`<br>`data/text/jp/random_item_selection.cc` | 运行时字符串 `1` 项 |
+| `0x08103F00`–`0x0810446F` | `src/field_item_data.o(.rodata)` | [数据] | `src/field_item_data.cc`<br>`include/field_item_data.hh` | gFieldItemRecords，116×12字节，无指针字段；1392字节完整载荷与baserom核对。后面的库输出属于日历核心。 |
+| `0x08104470`–`0x08104479` | `src/scene_calendar_core.o(.rodata)` | [编译器附带文本] | 核心既有保存镜像API依赖 | 正常标准库输出，不是field_item_data维护文本。 |
+| `0x0810447A`–`0x0810447B` | 对象内自然对齐 | [填充] | src/scene_calendar_core.o | 2字节00，普通首个文本对象对齐。 |
+| `0x0810447C`–`0x0810448A` | `src/scene_calendar_core.o(.rodata)` | [四季文本] | `data/text/jp/scene_calendar_core_1.cc`<br>`include/scene_calendar_core.hh` | Spring／Summer／Autumn／Winter四个独立C文本对象及对象间自然对齐，不再称大块DynamicSeasonNames。 |
+| `0x0810448B`–`0x081044AC` | `src/scene_calendar_core.o(.rodata)` | [packed日期数组] | `src/scene_calendar_core.cc` | gCalendarFestivalDates，17项×2字节，真实字节对齐。 |
+| `0x081044AD`–`0x081044AF` | 对象内自然对齐 | [填充] | 下一普通文本对象对齐 | 3字节00。 |
+| `0x081044B0`–`0x08104934` | `src/scene_calendar_core.o(.rodata)` | [节日文本] | `data/text/jp/scene_calendar_core_2.cc` | 二十项文本，最后NoPlans含正常C终止符。 |
+| `0x08104935`–`0x08104937` | 下一普通输入自然对齐 | [填充] | 场景对象四字节对齐 | 3字节00，无LDS独立条目。 |
+| `0x08104938`–`0x08104941` | `src/scene_calendar.o(.rodata)` | [编译器附带文本] | 原有真实new-core调用的标准库依赖 | 正常库输出。 |
+| `0x08104942`–`0x08104943` | 对象内自然对齐 | [填充] | 后续普通C文本对齐 | 2字节00。 |
+| `0x08104944`–`0x08104948` | `src/scene_calendar.o(.rodata)` | [回退游戏文本] | `data/text/jp/scene_calendar.cc`<br>`include/scene_calendar.hh` | gText_Calendar_FallbackNone，保留原“なし”；未建立直接src读取，不臆测原类归属或库性质。 |
+| `0x08104949`–`0x0810494B` | 下一普通输入自然对齐 | [填充] | name_entry普通对象四字节对齐 | 3字节00。 |
+| `0x0810494C`–`0x08104955` | `src/scene_minigames.o(.rodata)` | [正常库输出] | `src/scene_minigames.cc`既有实现依赖 | 已有相邻代码模块的正常输出；不是手写文本，匿名历史来源不能单靠相同字节唯一判定。 |
+| `0x08104956`–`0x08104957` | 下一输入自然对齐 | [填充] | name_entry普通输入四字节对齐 | 2字节00。 |
+| `0x08104958`–`0x08104986` | `src/name_entry.o(.rodata)` | [六项姓名提示] | `src/name_entry.cc`<br>`include/name_entry.hh`<br>`data/text/jp/name_entry.cc` | Horse／Cow／Sheep／Chicken／Child／Player，由SavedNameEntryScene::Run读取；定义在实际实现依赖前。 |
+| `0x08104987`–`0x08104987` | 对象内自然对齐 | [填充] | 后续正常库字面量对齐 | 1字节00。 |
+| `0x08104988`–`0x08104993` | `src/name_entry.o(.rodata)`及下一输入对齐 | [正常库输出及对齐] | Run真实键盘／存档API的标准依赖 | 库输出10字节、下一输入补齐2字节；1375完整72字节窗与1378整版均核对通过。 |
+| `0x08104994`–`0x08104998` | `src/fishing.o(.rodata)` | [gText_Fishing_NoCatch] | `src/fishing.cc`<br>`include/fishing.hh` | 5字节默认文本，由src/fishing.cc引入同名data/text/jp/fishing.cc，include/fishing.hh只声明；真实读取为SelectFishingCatch，已用真实全局符号重定位到文本首地址。完整对象及两个原生函数保持，1331正式对象验证通过。 |
+| `0x08104999`–`0x0810499B` | `src/fishing.o(.rodata)` | [对象内自然对齐] | `src/fishing.cc` | 已按完整对象载荷与baserom核对，不是单独LDS填充。 |
+| `0x0810499C`–`0x081049BB` | `src/fishing.o(.rodata)` | [gFishingCatchArticleIds] | `src/fishing.cc`<br>`include/fishing.hh` | 8项u32文章ID。 |
+| `0x081049BC`–`0x081049F3` | `src/fishing.o(.rodata)` | [gFishingBiteDelaySeconds] | `src/fishing.cc`<br>`include/fishing.hh` | 七区域×四时段u16咬钩延迟秒数。 |
+| `0x081049F4`–`0x08104A16` | `src/fishing.o(.rodata)` | [gFishingCatchCategoryWeights] | `src/fishing.cc`<br>`include/fishing.hh` | 七区域×五类别u8权重。 |
+| `0x08104A17`–`0x08104A17` | `src/fishing.o(.rodata)` | [对象内自然对齐] | `src/fishing.cc` | 已按完整对象载荷与baserom核对，不是单独LDS填充。 |
+| `0x08104A18`–`0x08105177` | `src/fishing.o(.rodata)` | [gFishingCatchConfigurations] | `src/fishing.cc`<br>`include/fishing.hh` | 每项32字节，含尺寸上下限与四季／七区域的钓竿等级；尾部两字节为ABI结构对齐。 |
+| `0x08105178`–`0x08105181` | `src/fishing.o(.rodata)` | [既有正常库输出及对齐] | 源码表后保留的实际保存镜像API依赖 | 整个当前对象直接与baserom一致；不代表对象前后的缺失库输出已恢复。 |
 | `0x08105182`–`0x08105183` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08105184`–`0x08105243` | `src/field_plot_position_rules.o(.rodata)` | [数据] | `src/field_plot_position_rules.cc`<br>`include/field_plot_position_rules.hh` | `gFieldPlotPositionRules`（8×24 字节位置规则；由同模块 C++ 分类器通过命名表读取） |
 | `0x08105244`–`0x0810524D` | `src/field_plot_position_rules.o(.rodata)` | [嵌入文本] | `src/field_plot_position_rules.cc`<br>`data/text/jp/field_plot_position_rules.cc` | 运行时字符串 `1` 项 |
@@ -3693,14 +3929,18 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08106ECE`–`0x08106ECF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08106ED0`–`0x08106F0B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderParallelTables` |
 | `0x08106F0C`–`0x08106F6B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderPatchArgumentData` |
-| `0x08106F6C`–`0x08106F75` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/jp/field_render_resource_data_2.cc` | 运行时字符串 `1` 项 |
-| `0x08106F76`–`0x08106F7E` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData`（原 ROM 为 9 字节；当前 `agbcp` 会给普通聚合额外尾填充，故以直接 `__attribute__((packed))` 保持物理大小；不使用 `PACKED` 或 `ALIGN(1)` 包装） |
-| `0x08106F7F`–`0x08106F7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
+| `0x08106F6C`–`0x08106F75` | `src/world_saved_map.o(.rodata)` | [自然库输出] | `src/world_saved_map.cc`<br>`include/world_saved_map.hh` | 真实保存镜像及队列实现依赖的既有输出；与下一9字节表一起核对完整19字节载荷。 |
+| `0x08106F76`–`0x08106F7E` | `src/world_saved_map.o(.rodata)` | [数据] | `src/world_saved_map.cc`<br>`include/world_saved_map.hh` | gFarmHouseStyleNibbleLookupData，原9字节packed布局及ALIGN(1)保留，真实读取位置未变。 |
+| `0x08106F7F`–`0x08106F7F` | 下一输入自然对齐 | [对齐] | 普通输入段对齐 | 原1字节零间隙，无源码伪数组或独立LDS填充条目。 |
 | `0x08106F80`–`0x08106F97` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds`（6 项，汇编直接重定位至表首；不保留仅用于声明的数量宏/枚举） |
-| `0x08106F98`–`0x08106F9F` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gFieldRenderSeasonalRecordRanges`（4×2 字节；汇编直接重定位至表首，必要布局以直写 `__attribute__((packed))` 表达，不使用 `PACKED` 宏） |
-| `0x08106FA0`–`0x08106FE7` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderLookupValues` |
-| `0x08106FE8`–`0x0810703D` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/jp/field_render_runtime_data_1.cc` | `gText_FieldRenderFallbackNone`、运行时字符串 `7` 项 |
-| `0x0810703E`–`0x08107056` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderSortedValues` |
+| `0x08106F98`–`0x08106F9F` | `src/saved_map_graphics.o(.rodata)` | [数据] | `src/saved_map_graphics.cc`<br>`include/saved_map_graphics.hh` | gFieldRenderSeasonalRecordRanges，4×2字节；保存地图前段继续通过真实符号读取。 |
+| `0x08106FA0`–`0x08106FE7` | `src/saved_map_graphics.o(.rodata)` | [数据] | `src/saved_map_graphics.cc`<br>`include/saved_map_graphics.hh` | gUnk_FieldRenderLookupValues，18×2个u16；同模块首个原生查询入口直接读取，两个列角色未臆测命名。 |
+| `0x08106FE8`–`0x0810700B` | 正常API输出及输入对齐 | [库输出] | `src/saved_map_graphics.cc`、`src/farming_tutorial_world.cc`、`src/ui_portrait.cc` | 当前三份真实API编译输出加普通对齐共36字节与该前缀一致；匿名同内容的历史逐份归属无法唯一确定，不按计数虚构类型／调用。 |
+| `0x0810700C`–`0x08107023` | 尚未恢复 | [缺失库输出与对齐] | 原版两处匿名输出及对齐 | 当前仍缺24字节；没有放置手写字符串、填充对象或强制地址。 |
+| `0x08107024`–`0x08107030` | `src/field_render_runtime_data.o(.rodata)` | [保留文本] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh`<br>`data/text/jp/field_render_runtime_data.cc` | Error与“なし”仍保持真实符号及普通文本；未证实直接读取和历史类型归属，不能称为自然生成内容已恢复。 |
+| `0x08107031`–`0x08107033` | 下一输入自然对齐 | [对齐] | 普通输入段对齐 | 原3字节零间隙，不是单独语义数组。 |
+| `0x08107034`–`0x0810703D` | `src/wedding_date.o(.rodata)` | [自然库输出] | `src/wedding_date.cc`<br>`include/wedding_date.hh` | 既有真实标准查找算法API输出，与后方25字节日期列表合计35字节匹配。 |
+| `0x0810703E`–`0x08107056` | `src/wedding_date.o(.rodata)` | [日期列表] | `src/wedding_date.cc`<br>`include/wedding_date.hh` | gUnk_FieldRenderSortedValues，25个季节×30＋日期编码，由IsWeddingDateUnavailable真实符号读取；不是地图资源索引。 |
 | `0x08107057`–`0x08107057` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08107058`–`0x0810706D` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/jp/field_render_runtime_data_2.cc` | 运行时字符串 `2` 项 |
 | `0x0810706E`–`0x0810706F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3739,12 +3979,14 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08107D89`–`0x08107D89` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，1 字节 |
 | `0x08107D8A`–`0x08107DAB` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_080C7B38Values`, `gUnk_080C7B64Values` |
 | `0x08107DAC`–`0x081189D3` | `src/reference_guide.o(.rodata.reference_guide)` | [指南连续块] | `src/reference_guide.cc`<br>`data/text/jp/reference_guide/*.cc (137 页)`<br>连续生成块；按维护规则不展开页内文本或页指针表 | 连续生成区域；按维护规则仅记录起止 |
-| `0x081189D4`–`0x081189F1` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common_1.cc` | 运行时字符串 `1` 项<br>`gUnk_080C85A0DigitGlyphs` |
-| `0x081189F2`–`0x081189F3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081189F4`–`0x08118A13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_2.cc`<br>`data/text/jp/shop_common_3.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
-| `0x08118A14`–`0x08118B93` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common_4.cc`<br>`data/text/jp/shop_common_5.cc` | 运行时字符串 `2` 项<br>`gMenuGridHeaderPosition`, `gMenuGridCellPositions`（四字节对齐的像素字节坐标记录）<br>`gUnk_0811785C`, `gUnk_08117860`<br>`gMenuGridNavigation`（十八项上／下／左／右选择索引记录） |
-| `0x08118B94`–`0x08118CF3` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_6.cc`–`shop_common_9.cc` | 文本 `26` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
-| `0x08118CF4`–`0x08118D17` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/jp/font.cc` | 普通 C 字符串 `gCppRuntimeBadAlloc_Font`（`0x0C`，含后续字形对齐填充）<br>`gFontSpecialGlyph81CD`（`0x18`，直写 4 字节对齐属性） |
+| `0x081189D4`–`0x081189F1` | `src/shop_common.o(.rodata)` | [编译器附带文本与字形码] | `src/shop_common.cc`<br>`include/shop_common.hh` | 真实DMA操作API依赖的正常库输出，随后为gShopDigitGlyphs十个u16字形码。 |
+| `0x081189F2`–`0x081189F3` | 对象内对齐 | [填充] | 编译器普通文本对象对齐 | 2字节00，不是LDS逐条填充。 |
+| `0x081189F4`–`0x08118A13` | `src/game_menu.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_1.cc`<br>`data/text/jp/shop_common_2.cc` | 三项文本及两个真实文本指针；整个商店64字节载荷、符号重定位和下一模块边界均与baserom匹配。 |
+| `0x08118A14`–`0x08118A67` | `src/game_menu_panels.o(.rodata)` | [菜单面板库输出及布局表] | `src/game_menu_panels.cc`<br>`include/game_menu_panels.hh` | 真实DMA队列API的自然库前缀与四组原坐标／未知布局对象；84字节完整输入属于面板实现，不含场景导航。 |
+| `0x08118A68`–`0x08118B93` | `src/game_menu.o(.rodata)` | [菜单场景库输出及导航表] | `src/game_menu.cc`<br>`include/game_menu.hh` | 场景自身保存镜像API的自然库前缀及十八项导航记录；与前后输入完整匹配baserom，不再存在原中段缺口。 |
+| `0x08118B94`–`0x08118CF3` | `src/game_menu.o(.rodata)` | [状态说明文本与指针] | `src/game_menu.cc`<br>`include/game_menu.hh`<br>`data/text/jp/game_menu_1.cc`–`game_menu_4.cc` | 26项普通文本及四个真实文本引用指针，按实际非文本指针断点include，属于菜单场景。 |
+| `0x08118CF4`–`0x08118CFF` | `src/main_menu_widget.o(.rodata)` | [自然库输出及下一对象对齐] | `src/main_menu_widget.cc`<br>`include/main_menu_widget.hh` | 已有真实C++实现正常输出10字节库文本，下一输入自然四字节对齐补2字节；不是font源码维护的手工字符串。 |
+| `0x08118D00`–`0x08118D17` | `src/font.o(.rodata)` | [特殊字形数据] | `src/font.cc`<br>`include/font.hh` | gFontSpecialGlyph81CD，完整24字节载荷与baserom一致；不包含上一对象自然生成的库字面量。 |
 | `0x08118D18`–`0x0813ABCB` | `asm/data/static_resources.o(.rodata)` | [直接标签的原始资源] | `asm/data/static_resources.s`<br>`include/static_resources.hh` | 地图、场景渲染与农舍资源共 220 项；每项均为实际标签和独立区域 `incbin`，没有 `.set` 偏移别名 |
 
 ## JP：文本地址索引
@@ -4496,12 +4738,12 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080EFD98` | `gText_CalendarTrailerFallbackNone` | `data/text/jp/game_state_1.cc` | `src/game_state.o(.rodata)` |
 | `0x080EFDAA` | `gUnk_080F0566` | `src/game_state.cc` | `src/game_state.o(.rodata)` |
 | `0x080EFDC4` | `gCppRuntimeBadAlloc_GameState` | `data/text/jp/game_state_2.cc` | `src/game_state.o(.rodata)` |
-| `0x080EFDD0` | `gText_LoadError` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
-| `0x080EFDE8` | `gText_LoadErrorFallbackNone` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
-| `0x080EFDF8` | `gText_HelpMenu_Crops` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
-| `0x080EFE08` | `gText_HelpMenu_Animals` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
-| `0x080EFE18` | `gText_HelpMenu_UsefulTips` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
-| `0x080EFE24` | `gText_HelpMenu_Exit` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
+| `0x080EFDD0` | `gText_LoadError` | `data/text/jp/game_scene_state_1.cc` | `src/game_scene_state.o(.rodata)` |
+| `0x080EFDE8` | `gText_LoadErrorFallbackNone` | `data/text/jp/game_scene_state_2.cc` | `src/game_scene_state.o(.rodata)` |
+| `0x080EFDF8` | `gText_HelpMenu_Crops` | `data/text/jp/game_scene_state_2.cc` | `src/game_scene_state.o(.rodata)` |
+| `0x080EFE08` | `gText_HelpMenu_Animals` | `data/text/jp/game_scene_state_2.cc` | `src/game_scene_state.o(.rodata)` |
+| `0x080EFE18` | `gText_HelpMenu_UsefulTips` | `data/text/jp/game_scene_state_2.cc` | `src/game_scene_state.o(.rodata)` |
+| `0x080EFE24` | `gText_HelpMenu_Exit` | `data/text/jp/game_scene_state_2.cc` | `src/game_scene_state.o(.rodata)` |
 | `0x080EFEA4` | `gText_AnimalMemorial_LineBreak` | `data/text/jp/animal_data_1.cc` | `src/animal_data.o(.rodata)` |
 | `0x080EFEA8` | `gText_AnimalMemorial_Continue` | `data/text/jp/animal_data_1.cc` | `src/animal_data.o(.rodata)` |
 | `0x080EFEAC` | `gText_AnimalMemorial_PageBreak` | `data/text/jp/animal_data_1.cc` | `src/animal_data.o(.rodata)` |
@@ -4530,68 +4772,68 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x080F9700` | `gText_AScriptEngine_InvalidStringId` | `data/text/jp/script_engine.cc` | `src/script_engine.o(.rodata)` |
 | `0x080F9714` | `gText_ScriptEngineUi_Error` | `data/text/jp/script_engine.cc` | `src/script_engine.o(.rodata)` |
 | `0x080F971C` | `gText_ScriptEngineUi_FallbackNone` | `data/text/jp/script_engine.cc` | `src/script_engine.o(.rodata)` |
-| `0x080F97E6` | `gText_NameEntry_PresetAnimalNames` | `data/text/jp/new_game_name_entry_ui_data.cc` | `src/new_game_name_entry_ui_data.o(.rodata)` |
+| `0x080F97E6` | `gText_FrisbeeScoreboard_ContestantNames` | `data/text/jp/frisbee_scoreboard.cc` | `src/frisbee_scoreboard.o(.rodata)` |
 | `0x080F9994` | `gText_Frisbee_TournamentScoreboard` | `data/text/jp/frisbee_scoreboard.cc` | `src/frisbee_scoreboard.o(.rodata)` |
-| `0x080F9BD4` | `gText_Frisbee_ExplanationQuestion` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9BF0` | `gText_Frisbee_Yes` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9BF8` | `gText_Frisbee_No` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9C00` | `gText_Frisbee_ExplanationCursorTiming` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9C84` | `gText_Frisbee_ExplanationGreenZone` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9CCC` | `gText_Frisbee_ExplanationRedZone` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9D48` | `gText_Frisbee_ExplanationPractice` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9E48` | `gText_Frisbee_ExplanationTournament` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9E8C` | `gText_Frisbee_ExplainAgain` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9EA8` | `gText_Frisbee_ThrowAgain` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9EC4` | `gText_Frisbee_TournamentFinished` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9EDC` | `gText_Frisbee_PlayAgain` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9EF4` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9F24` | `gText_Frisbee_FoundItem` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9F34` | `gText_Frisbee_FoundNothing` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9FD6` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/jp/animal_festival.cc` | `src/animal_festival.o(.rodata)` |
-| `0x080FA280` | `gText_HorseRace_BuyTicketDeclined` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA294` | `gText_HorseRace_Yes` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA29C` | `gText_HorseRace_No` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2A4` | `gText_HorseRace_ComeAgain` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2B4` | `gText_HorseRace_TakeYourTime` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2D0` | `gText_HorseRace_TicketPurchaseConfirmation` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2E4` | `gText_HorseRace_TicketPurchaseApproval` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA30C` | `gText_HorseRace_TicketPurchaseEncouragement` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA330` | `gText_HorseRace_ChangeMind` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA344` | `gText_HorseRace_ExplanationQuestion` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA360` | `gText_HorseRace_ExplanationBasics` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA418` | `gText_HorseRace_ExplanationGreenStamina` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA454` | `gText_HorseRace_ExplanationYellowStamina` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA490` | `gText_HorseRace_ExplanationRedStamina` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA4FC` | `gText_HorseRace_ExplanationStaminaRecovery` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA578` | `gText_HorseRace_ExplanationUnderstoodQuestion` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA588` | `gText_HorseRace_ExplanationUnderstood` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA594` | `gText_HorseRace_ExplanationRepeat` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA5A8` | `gText_HorseRace_StartRace` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA5C0` | `gText_HorseRace_RaceStartAnnouncement` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA608` | `gText_HorseRace_RaceResults` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA658` | `gText_HorseRace_RacePayouts` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA688` | `gText_HorseRace_MedalExchangeExplanation` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA73C` | `gText_HorseRace_TicketPurchaseTitle` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA758` | `gText_HorseRace_TicketPurchaseConfirm` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA764` | `gText_HorseRace_TicketPurchaseMedalsToWin` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA77C` | `gText_HorseRace_TicketControls_DPadUpDown` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA78C` | `gText_HorseRace_TicketControls_SelectHorse` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7A8` | `gText_HorseRace_TicketControls_DPadLeftRight` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7B8` | `gText_HorseRace_TicketControls_ChangeQuantity` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7D4` | `gText_HorseRace_TicketControls_LRButtons` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7E8` | `gText_HorseRace_TicketControls_ChangeQuantityByTen` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA808` | `gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA80C` | `gText_HorseRace_TicketControls_MoveCursorToConfirm` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA828` | `gText_HorseRace_TicketControls_Buy` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA848` | `gText_HorseRace_TicketControls_Cancel` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9A0` | `gText_HorseRace_PrizeExchangePrompt` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9B8` | `gText_HorseRace_PrizeExchangeYes` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9C0` | `gText_HorseRace_PrizeExchangeNo` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9C8` | `gText_HorseRace_PrizeExchangeComeAgain` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9D8` | `gText_HorseRace_PrizeExchangeTakeYourTime` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9F4` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA04` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA18` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080F9BD4` | `gText_Frisbee_ExplanationQuestion` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9BF0` | `gText_Frisbee_Yes` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9BF8` | `gText_Frisbee_No` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9C00` | `gText_Frisbee_ExplanationCursorTiming` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9C84` | `gText_Frisbee_ExplanationGreenZone` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9CCC` | `gText_Frisbee_ExplanationRedZone` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9D48` | `gText_Frisbee_ExplanationPractice` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9E48` | `gText_Frisbee_ExplanationTournament` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9E8C` | `gText_Frisbee_ExplainAgain` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9EA8` | `gText_Frisbee_ThrowAgain` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9EC4` | `gText_Frisbee_TournamentFinished` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9EDC` | `gText_Frisbee_PlayAgain` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9EF4` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9F24` | `gText_Frisbee_FoundItem` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9F34` | `gText_Frisbee_FoundNothing` | `data/text/jp/frisbee_core.cc` | `src/frisbee_core.o(.rodata)` |
+| `0x080F9FD6` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/jp/horse_race_1.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA280` | `gText_HorseRace_BuyTicketDeclined` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA294` | `gText_HorseRace_Yes` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA29C` | `gText_HorseRace_No` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA2A4` | `gText_HorseRace_ComeAgain` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA2B4` | `gText_HorseRace_TakeYourTime` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA2D0` | `gText_HorseRace_TicketPurchaseConfirmation` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA2E4` | `gText_HorseRace_TicketPurchaseApproval` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA30C` | `gText_HorseRace_TicketPurchaseEncouragement` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA330` | `gText_HorseRace_ChangeMind` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA344` | `gText_HorseRace_ExplanationQuestion` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA360` | `gText_HorseRace_ExplanationBasics` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA418` | `gText_HorseRace_ExplanationGreenStamina` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA454` | `gText_HorseRace_ExplanationYellowStamina` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA490` | `gText_HorseRace_ExplanationRedStamina` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA4FC` | `gText_HorseRace_ExplanationStaminaRecovery` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA578` | `gText_HorseRace_ExplanationUnderstoodQuestion` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA588` | `gText_HorseRace_ExplanationUnderstood` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA594` | `gText_HorseRace_ExplanationRepeat` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA5A8` | `gText_HorseRace_StartRace` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA5C0` | `gText_HorseRace_RaceStartAnnouncement` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA608` | `gText_HorseRace_RaceResults` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA658` | `gText_HorseRace_RacePayouts` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA688` | `gText_HorseRace_MedalExchangeExplanation` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA73C` | `gText_HorseRace_TicketPurchaseTitle` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA758` | `gText_HorseRace_TicketPurchaseConfirm` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA764` | `gText_HorseRace_TicketPurchaseMedalsToWin` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA77C` | `gText_HorseRace_TicketControls_DPadUpDown` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA78C` | `gText_HorseRace_TicketControls_SelectHorse` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA7A8` | `gText_HorseRace_TicketControls_DPadLeftRight` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA7B8` | `gText_HorseRace_TicketControls_ChangeQuantity` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA7D4` | `gText_HorseRace_TicketControls_LRButtons` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA7E8` | `gText_HorseRace_TicketControls_ChangeQuantityByTen` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA808` | `gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA80C` | `gText_HorseRace_TicketControls_MoveCursorToConfirm` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA828` | `gText_HorseRace_TicketControls_Buy` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA848` | `gText_HorseRace_TicketControls_Cancel` | `data/text/jp/horse_race_2.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA9A0` | `gText_HorseRace_PrizeExchangePrompt` | `data/text/jp/horse_race_4.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA9B8` | `gText_HorseRace_PrizeExchangeYes` | `data/text/jp/horse_race_4.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA9C0` | `gText_HorseRace_PrizeExchangeNo` | `data/text/jp/horse_race_4.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA9C8` | `gText_HorseRace_PrizeExchangeComeAgain` | `data/text/jp/horse_race_4.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA9D8` | `gText_HorseRace_PrizeExchangeTakeYourTime` | `data/text/jp/horse_race_4.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FA9F4` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/jp/horse_race_4.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FAA04` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/jp/horse_race_4.cc` | `src/horse_race.o(.rodata)` |
+| `0x080FAA18` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/jp/horse_race_4.cc` | `src/horse_race.o(.rodata)` |
 | `0x080FAABC` | `gText_IntroScene_MotherName` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FAAC0` | `gText_IntroScene_MotherTravelGreeting` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FAB08` | `gText_IntroScene_FatherName` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
@@ -5263,35 +5505,35 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08103D84` | `gText_CharacterName_Hoggy` | `data/text/jp/character_names_data_1.cc` | `src/character_names_data.o(.rodata)` |
 | `0x08103D90` | `gText_CharacterName_Timid` | `data/text/jp/character_names_data_1.cc` | `src/character_names_data.o(.rodata)` |
 | `0x0810447C` | `gText_Calendar_DynamicSeasonNames` | `src/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x081044B0` | `gText_Calendar_Festival_NewYearFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x081044F8` | `gText_Calendar_Festival_SpringThanksgiving` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x0810451C` | `gText_Calendar_Festival_SpringHorseRace` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104568` | `gText_Calendar_Festival_CookingFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x081045B0` | `gText_Calendar_Festival_BeachDay` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x081045FC` | `gText_Calendar_Festival_ChickenFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104644` | `gText_Calendar_Festival_CowFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x0810468C` | `gText_Calendar_Festival_FireworksFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x081046D8` | `gText_Calendar_Festival_MusicFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104718` | `gText_Calendar_Festival_HarvestFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104760` | `gText_Calendar_Festival_FullMoonFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x081047AC` | `gText_Calendar_Festival_FallHorseRace` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x081047F8` | `gText_Calendar_Festival_SheepFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104840` | `gText_Calendar_Festival_PumpkinFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104864` | `gText_Calendar_Festival_WinterThanksgiving` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104888` | `gText_Calendar_Festival_StarryNightFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x081048A8` | `gText_Calendar_Festival_YearEndGathering` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x081048DC` | `gText_Calendar_Festival_Marriage` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x081048FC` | `gText_Calendar_Festival_WeddingAnniversary` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x0810491C` | `gText_Calendar_Festival_NoPlans` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104944` | `gText_Calendar_FallbackNone` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081044B0` | `gText_Calendar_Festival_NewYearFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x081044F8` | `gText_Calendar_Festival_SpringThanksgiving` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x0810451C` | `gText_Calendar_Festival_SpringHorseRace` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x08104568` | `gText_Calendar_Festival_CookingFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x081045B0` | `gText_Calendar_Festival_BeachDay` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x081045FC` | `gText_Calendar_Festival_ChickenFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x08104644` | `gText_Calendar_Festival_CowFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x0810468C` | `gText_Calendar_Festival_FireworksFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x081046D8` | `gText_Calendar_Festival_MusicFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x08104718` | `gText_Calendar_Festival_HarvestFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x08104760` | `gText_Calendar_Festival_FullMoonFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x081047AC` | `gText_Calendar_Festival_FallHorseRace` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x081047F8` | `gText_Calendar_Festival_SheepFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x08104840` | `gText_Calendar_Festival_PumpkinFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x08104864` | `gText_Calendar_Festival_WinterThanksgiving` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x08104888` | `gText_Calendar_Festival_StarryNightFestival` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x081048A8` | `gText_Calendar_Festival_YearEndGathering` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x081048DC` | `gText_Calendar_Festival_Marriage` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x081048FC` | `gText_Calendar_Festival_WeddingAnniversary` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x0810491C` | `gText_Calendar_Festival_NoPlans` | `data/text/jp/scene_calendar_core_2.cc` | `src/scene_calendar_core.o(.rodata)` |
+| `0x08104944` | `gText_Calendar_FallbackNone` | `data/text/jp/scene_calendar.cc` | `src/scene_calendar.o(.rodata)` |
 | `0x08104958` | `gText_Possessive_Horse` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
 | `0x08104960` | `gText_Possessive_Cow` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
 | `0x08104968` | `gText_Possessive_Sheep` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
 | `0x08104970` | `gText_Possessive_Chicken` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
 | `0x08104978` | `gText_Possessive_Child` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
 | `0x08104980` | `gText_Possessive_Player` | `data/text/jp/name_entry.cc` | `src/name_entry.o(.rodata)` |
-| `0x08104994` | `gText_RandomItem_NotAvailable` | `data/text/jp/random_item_unavailable.cc` | `src/random_item_unavailable.o(.rodata)` |
-| `0x0810702C` | `gText_FieldRenderFallbackNone` | `data/text/jp/field_render_runtime_data_1.cc` | `src/field_render_runtime_data.o(.rodata)` |
+| `0x08104994` | `gText_Fishing_NoCatch` | `data/text/jp/fishing.cc` | `src/fishing.o(.rodata)` |
+| `0x0810702C` | `gText_FieldRenderFallbackNone` | `data/text/jp/field_render_runtime_data.cc` | `src/field_render_runtime_data.o(.rodata)` |
 | `0x081070AC` | `gText_080B0708DefaultGlyph` | `data/text/jp/field_render_runtime_data_3.cc` | `src/field_render_runtime_data.o(.rodata)` |
 | `0x081070F4` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion` | `data/text/jp/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107108` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes` | `data/text/jp/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
@@ -5357,35 +5599,35 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x08107D38` | `gText_HarvestSpriteMiniGame_Watering_ScorePrefix` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107D44` | `gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107D58` | `gText_HarvestSpriteMiniGame_Watering_ScoreSummary` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x081189F4` | `gText_ShopCommon_GoldUnit` | `data/text/jp/shop_common_2.cc` | `src/shop_common.o(.rodata)` |
-| `0x081189F8` | `gText_ShopCommon_QuantitySuffix` | `data/text/jp/shop_common_2.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118A00` | `gText_ShopCommon_OwnedQuantityLabel` | `data/text/jp/shop_common_3.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118B94` | `gText_ToolStatus_GemOfTruth` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BA4` | `gText_ToolStatus_EnergyLabel` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BAC` | `gText_ToolStatus_ValueSeparator` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BB0` | `gText_ToolStatus_EnergyFatigueLineBreak` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BB4` | `gText_ToolStatus_FatigueLabel` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BBC` | `gText_ToolStatus_FatigueMaximum` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BC8` | `gText_ToolStatus_PedometerLabel` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BD4` | `gText_ToolStatus_PedometerStepsSuffix` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BD8` | `gText_ToolStatus_DescriptionQuoteOpen` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BDC` | `gText_ToolStatus_DescriptionQuoteClose` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BE0` | `gText_ToolStatus_RemainingSquaresPrefix` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BE8` | `gText_ToolStatus_RemainingSquaresSuffix` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BF4` | `gText_AnimalStatus_Dog` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118BFC` | `gText_AnimalStatus_Puppy` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118C04` | `gText_AnimalStatus_Chicken` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118C0C` | `gText_AnimalStatus_Chick` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118C18` | `gText_AnimalStatus_Sick` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118C20` | `gText_AnimalStatus_Unhappy` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118C2C` | `gText_AnimalStatus_Healthy` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118C34` | `gText_ItemStatus_BasketName` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118C3C` | `gText_ItemStatus_BasketDescription` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118C58` | `gText_ItemStatus_BasketHoldingSuffix` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118C68` | `gText_ItemStatus_WrappedAsPresent` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118C98` | `gText_ItemDiscard_Confirm` | `data/text/jp/shop_common_7.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118CB4` | `gText_ItemDiscard_CannotDiscard` | `data/text/jp/shop_common_8.cc` | `src/shop_common.o(.rodata)` |
-| `0x08118CD0` | `gText_ItemDiscard_Cursed` | `data/text/jp/shop_common_9.cc` | `src/shop_common.o(.rodata)` |
+| `0x081189F4` | `gText_ShopCommon_GoldUnit` | `data/text/jp/shop_common_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x081189F8` | `gText_ShopCommon_QuantitySuffix` | `data/text/jp/shop_common_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118A00` | `gText_ShopCommon_OwnedQuantityLabel` | `data/text/jp/shop_common_2.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118B94` | `gText_ToolStatus_GemOfTruth` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BA4` | `gText_ToolStatus_EnergyLabel` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BAC` | `gText_ToolStatus_ValueSeparator` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BB0` | `gText_ToolStatus_EnergyFatigueLineBreak` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BB4` | `gText_ToolStatus_FatigueLabel` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BBC` | `gText_ToolStatus_FatigueMaximum` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BC8` | `gText_ToolStatus_PedometerLabel` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BD4` | `gText_ToolStatus_PedometerStepsSuffix` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BD8` | `gText_ToolStatus_DescriptionQuoteOpen` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BDC` | `gText_ToolStatus_DescriptionQuoteClose` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BE0` | `gText_ToolStatus_RemainingSquaresPrefix` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BE8` | `gText_ToolStatus_RemainingSquaresSuffix` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BF4` | `gText_AnimalStatus_Dog` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118BFC` | `gText_AnimalStatus_Puppy` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118C04` | `gText_AnimalStatus_Chicken` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118C0C` | `gText_AnimalStatus_Chick` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118C18` | `gText_AnimalStatus_Sick` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118C20` | `gText_AnimalStatus_Unhappy` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118C2C` | `gText_AnimalStatus_Healthy` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118C34` | `gText_ItemStatus_BasketName` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118C3C` | `gText_ItemStatus_BasketDescription` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118C58` | `gText_ItemStatus_BasketHoldingSuffix` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118C68` | `gText_ItemStatus_WrappedAsPresent` | `data/text/jp/game_menu_1.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118C98` | `gText_ItemDiscard_Confirm` | `data/text/jp/game_menu_2.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118CB4` | `gText_ItemDiscard_CannotDiscard` | `data/text/jp/game_menu_3.cc` | `src/game_menu.o(.rodata)` |
+| `0x08118CD0` | `gText_ItemDiscard_Cursed` | `data/text/jp/game_menu_4.cc` | `src/game_menu.o(.rodata)` |
 
 ## US：物理 `.rodata` 顺序
 
@@ -5393,11 +5635,12 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 
 | 地址范围 | 链接输入 | 内容状态 | 维护源 / 文本来源 | 已命名内容 |
 | --- | --- | --- | --- | --- |
-| `0x080E8610`–`0x080E8629` | `src/crt0_data.o(.rodata)` | [嵌入文本 / 数据] | `src/crt0_data.cc`<br>`include/crt0_data.hh`<br>`data/text/us/crt0_data.cc` | `init_array`、`gCppRuntimeBadAlloc_Crt0` |
+| `0x080E8610`–`0x080E861F` | `src/crt0_data.o(.rodata)` | [初始化数据] | `src/crt0_data.cc`<br>`include/crt0_data.hh` | `init_array` |
+| `0x080E8620`–`0x080E8629` | `src/main.o(.rodata)` | [自然库字面量] | `src/main.cc` | 实际场景分配依赖生成；无手写文本符号 |
 | `0x080E862A`–`0x080E862B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E862C`–`0x080E8680` | `src/sram_image.o(.rodata)` | [嵌入文本] | `src/sram_image.cc`<br>`include/sram_image.hh`<br>`data/text/us/sram_image.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird`, `gUnk_SramSignatureTrailerError`, … +1 |
 | `0x080E8681`–`0x080E8683` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x080E8684`–`0x080E86A5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/us/intro_scene_startup.cc` | `gIntroSceneStartupBgTilemaps`（BG0–BG3 压缩地图真实标签）<br>运行时字符串 `2` 项 |
+| `0x080E8684`–`0x080E86A5` | `src/intro_scene.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene.cc`<br>`include/intro_scene.hh`<br>`data/text/us/intro_scene.cc` | `gIntroSceneStartupBgTilemaps`（BG0–BG3 压缩地图真实标签）<br>运行时字符串 `2` 项 |
 | `0x080E86A6`–`0x080E86A7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E86A8`–`0x080E8CC1` | `src/new_game_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_data.cc`<br>`include/new_game_data.hh`<br>`data/text/us/new_game_data_1.cc` → `src/new_game_data.cc`（`gNewGameMenuLabels`）→ `data/text/us/new_game_data_2.cc` | 文本 `48` 项（菜单 `14`、状态/帮助/保存/身份/姓名输入 `34`；详见下方索引）<br>`gNewGameMenuLabels`<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8CC2`–`0x080E8CC3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -5504,16 +5747,6 @@ sections 内，未进入 ROM；移除这一未使用输入常量不构成文本�
 | `0x081043BC`–`0x08104935` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/us/field_item_data.cc` | `gFieldItemRecords`（116×12 字节，`0x081043BC`–`0x0810492B`；无指针字段）<br>尾部 `bad_alloc`（`0x0810492C`–`0x08104935`）；已知汇编读取均为表符号引用 |
 | `0x08104936`–`0x08104937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104938`–`0x08104E09` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/us/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`（季名存储后紧接 17 组日期/后续季节字节；外部读取均为符号或符号加偏移）<br>节日文本 `20` 项、回退文本 `1` 项（详见下方索引）<br>运行时字符串 `2` 项 |
-| `0x08104E0A`–`0x08104E0B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104E0C`–`0x08104E49` | `src/name_entry.o(.rodata)` | [嵌入文本] | `src/name_entry.cc`、`include/name_entry.hh`<br>`data/text/us/name_entry.cc` | Horse/Cow/Sheep/Chicken/Child/Player 六条文本（详见下方索引）后接运行时字符串；六条提示由 `SavedNameEntryScene::Run` 通过命名符号读取<br>运行时字符串 `1` 项 |
-| `0x08104E4A`–`0x08104E4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104E4C`–`0x08104E50` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/us/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable`；唯一调用为该命名符号 |
-| `0x08104E51`–`0x08104E53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x08104E54`–`0x08104E73` | `src/fishing_record_article_ids.o(.rodata)` | [数据] | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | 8 项 `u32` 文章 ID；唯一汇编读取为命名表符号 `gFishingRecordArticleIds` |
-| `0x08104E74`–`0x08104EAB` | `src/field_plot_position_values.o(.rodata)` | [数据] | `src/field_plot_position_values.cc`、`include/field_plot_position_values.hh` | 7×4 个 `u16` 位置值；汇编按行/列偏移从命名表 `gFieldPlotPositionValues` 读取 |
-| `0x08104EAC`–`0x08104ECE` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemSelectionWeights`（7×5 个 `u8`；汇编为表符号引用） |
-| `0x08104ECF`–`0x08104ECF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08104ED0`–`0x0810562F` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemCandidateConfigurations`（59×32 字节；汇编为表符号或 `symbol + 2/9/16/23` 的结构内偏移引用） |
 | `0x08105630`–`0x08105639` | `src/random_item_selection.o(.rodata)` | [嵌入文本] | `src/random_item_selection.cc`<br>`data/text/us/random_item_selection.cc` | 运行时字符串 `1` 项 |
 | `0x0810563A`–`0x0810563B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810563C`–`0x081056FB` | `src/field_plot_position_rules.o(.rodata)` | [数据] | `src/field_plot_position_rules.cc`<br>`include/field_plot_position_rules.hh` | `gFieldPlotPositionRules`（8×24 字节位置规则；由同模块 C++ 分类器通过命名表读取） |

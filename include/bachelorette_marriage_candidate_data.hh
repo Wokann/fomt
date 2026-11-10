@@ -2,7 +2,7 @@
 #define BACHELORETTE_MARRIAGE_CANDIDATE_DATA_HH
 
 #include "prelude.h"
-#include "fomt_constants.mary.h"
+#include "fomt_constants.hh"
 
 // Native marriage-condition code traverses these MaryCharacterId values in
 // this fixed order.

@@ -37,18 +37,5 @@ void func_0809C0C8(Unk_Actor_0809BFE8 & self, u32 const & value);
 void ResetActorRuntimeState(Unk_Actor_0809BFE8 & self);
 }
 
-// The hut initializer reads three bytes from each four-byte record.
-// The last byte is natural record alignment, not a separate runtime field.
-struct ALIGN(4) HarvestSpriteHutPosition
-{
-    u8 x;
-    u8 y;
-    u8 facing;
-};
-
-typedef char HarvestSpriteHutPositionSizeCheck[sizeof(HarvestSpriteHutPosition) == 4 ? 1 : -1];
-typedef char HarvestSpriteHutPositionFacingCheck[offsetof(HarvestSpriteHutPosition, facing) == 2 ? 1 : -1];
-
-extern "C" HarvestSpriteHutPosition const gHarvestSpriteHutPositions[7];
 
 #endif // ACTOR_RUNTIME_DATA_HH

@@ -15,6 +15,7 @@ struct Sheep : public BarnAnimal
 
     Sheep(char const * name, ActorLocation const & location, u32 age, u32 days_fed);
     Sheep(ActorLocation const & location, u32 age, u32 days_fed);
+    Sheep & operator=(Sheep const & other);
 
     GrowthStage GetGrowthStage() const;
     bool IsSheared() const;

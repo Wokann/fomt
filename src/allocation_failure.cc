@@ -18,3 +18,8 @@ void * RetryMemoryAllocation(size_t size)
             return result;
     }
 }
+
+// This independent runtime callback is part of the initialized IWRAM image.
+extern "C" {
+void (*gAllocationFailureHandler)() __attribute__((section(".data"))) = nullptr;
+}

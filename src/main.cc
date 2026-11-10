@@ -1,5 +1,5 @@
 #include "main.hh"
-#include "interrupt.hh"
+#include "interrupt.h"
 #include "sram_image.hh"
 #include "sram_access.hh"
 #include "hardware_manager.hh"
@@ -8,6 +8,8 @@
 #include "scene.hh"
 #include "gbaio.h"
 #include "gbasvc.h"
+
+#include <new>
 
 void AgbMain(void)
 {
@@ -72,3 +74,37 @@ void HandleSoftResetKeyInterrupt(void)
     {
     }
 }
+
+asm_unified(
+    ".pushsection .iwram, \"ax\", %progbits\n"
+    ".include \"asm/macro.inc\"\n"
+    ".include \"six/asm/prelude.s\"\n"
+    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"six/asm/hw/sound.s\"\n"
+    "thumb_func_start HandleGamePakInterrupt\n"
+    "HandleGamePakInterrupt:\n"
+    "    push {lr}\n"
+    "    ldr r1, .LGamePakInterruptIme\n"
+    "    movs r0, #0\n"
+    "    strb r0, [r1]\n"
+    "    ldr r0, .LGamePakInterruptIe\n"
+    "    movs r2, #0\n"
+    "    strh r2, [r0]\n"
+    "    movs r1, #(REG_DISPCNT >> 19)\n"
+    "    lsls r1, r1, #19\n"
+    "    movs r0, #LCD_FORCE_BLANK\n"
+    "    strh r0, [r1]\n"
+    "    ldr r0, .LGamePakInterruptSound\n"
+    "    strb r2, [r0]\n"
+    "    movs r0, #0\n"
+    "    svc #SVC_SOUNDBIAS\n"
+    "    .LGamePakInterruptStop:\n"
+    "    svc #SVC_STOP\n"
+    "    b .LGamePakInterruptStop\n"
+    "    .align 2, 0\n"
+    ".LGamePakInterruptIme: .word REG_IME\n"
+    ".LGamePakInterruptIe: .word REG_IE\n"
+    ".LGamePakInterruptSound: .word REG_SOUNDCNT_X\n"
+    ".popsection\n"
+    ".thumb\n"
+);
