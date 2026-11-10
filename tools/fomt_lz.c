@@ -164,16 +164,6 @@ static void parse_ladder(char const *spec, LadderEntry *entries, unsigned count)
     }
 }
 
-static unsigned parse_size(char const *text)
-{
-    char *end;
-    errno = 0;
-    unsigned long value = strtoul(text, &end, 0);
-    if (errno || end == text || *end || value > 0x40000)
-        fail("invalid slot size");
-    return (unsigned)value;
-}
-
 static unsigned char *read_file(char const *path, size_t *size)
 {
     FILE *file = fopen(path, "rb");
@@ -3082,7 +3072,7 @@ static void usage(void)
 {
     fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|encode-huff4-lz0|"
          "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
-         "SOURCE OUTPUT LADDER SLOT_SIZE "
+         "SOURCE OUTPUT LADDER "
          "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select|heap|shell|quick|heap-sort|exchange] "
          "[--parent-first] [--greedy] [--optimal] [--tail=FILE] | "
          "decode-lz1|decode-lz2|decode-lz3|decode-huff4-lz0|decode-huff4-lz3|decode-huff8-lz3|"
@@ -3274,7 +3264,7 @@ int main(int argc, char **argv)
         int huff8 = strcmp(argv[1], "encode-huff8-lz3") == 0;
         int huff4_lz2 = strcmp(argv[1], "encode-huff4-lz2") == 0;
         int huff8_lz2 = strcmp(argv[1], "encode-huff8-lz2") == 0;
-        if (argc < 6 || argc > 11)
+        if (argc < 5 || argc > 10)
             usage();
         int literal_tail = 0;
         int parent_first = 0;
@@ -3286,7 +3276,7 @@ int main(int argc, char **argv)
         unsigned filter = 0;
         int filter_seen = 0;
         char const *tail_path = NULL;
-        for (int index = 6; index < argc; index++) {
+        for (int index = 5; index < argc; index++) {
             if (lz2 && !literal_tail &&
                 strcmp(argv[index], "--literal-tail") == 0) {
                 literal_tail = 1;
@@ -3354,7 +3344,6 @@ int main(int argc, char **argv)
         LadderEntry ladder[7];
         parse_ladder(argv[4], ladder, lz0 || huff4_lz0 ? 2 : lz1 ? 4 :
                      lz2 || huff4_lz2 || huff8_lz2 ? 7 : 3);
-        unsigned slot_size = parse_size(argv[5]);
         size_t source_size, packed_size;
         unsigned char *source = read_file_parts(argv[2], tail_path, &source_size);
         unsigned char *atoms = filter
@@ -3398,15 +3387,6 @@ int main(int argc, char **argv)
         if (filter) {
             packed[7] |= (unsigned char)(filter << 5);
             free(atoms);
-        }
-        if (slot_size && packed_size > slot_size)
-            fail("encoded stream exceeds its declared slot");
-        if (slot_size && packed_size < slot_size) {
-            packed = realloc(packed, slot_size);
-            if (!packed)
-                fail("out of memory");
-            memset(packed + packed_size, 0, slot_size - packed_size);
-            packed_size = slot_size;
         }
         write_file(argv[3], packed, packed_size);
         free(packed);

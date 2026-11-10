@@ -162,11 +162,11 @@ MAP_DATA_PALETTE_OUTPUTS := $(patsubst %.pal,%.gbapal,$(wildcard $(MAP_DATA_SOUR
 $(MAP_DATA_PALETTE_OUTPUTS): GFX_PALETTE_COLORS := 240
 
 MAP_STATE_PALETTE_SOURCE_DIR := graphics/map_state_palettes/shared
-$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_00.gbapal.lz: FOMT_LZ3_ARGS := 145 0xA0
-$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_01.gbapal.lz: FOMT_LZ3_ARGS := 147 0x8C
-$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_02.gbapal.lz: FOMT_LZ3_ARGS := 456 0x98
-$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_03.gbapal.lz: FOMT_LZ3_ARGS := 456 0x94
-$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_04.gbapal.lz: FOMT_LZ3_ARGS := 147 0x94
+$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_00.gbapal.lz: FOMT_LZ3_ARGS := 145
+$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_01.gbapal.lz: FOMT_LZ3_ARGS := 147
+$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_02.gbapal.lz: FOMT_LZ3_ARGS := 456
+$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_03.gbapal.lz: FOMT_LZ3_ARGS := 456
+$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_04.gbapal.lz: FOMT_LZ3_ARGS := 147
 
 $(GFX_TOOL): $(GFX_TOOL_SOURCES)
 	@$(MAKE) -C $(GFX_TOOL_DIR)
@@ -198,378 +198,378 @@ $(FARM_STATUS_WINTER_TILES_BIN): $(FARM_STATUS_WINTER_TILES_SOURCE) $(GFX_TOOL)
 	@$(GFX_TOOL) $(FARM_STATUS_WINTER_TILES_SOURCE) $(FARM_STATUS_WINTER_TILES_BIN)
 
 # Native streams share one suffix rule. Codec variants, search ladders and
-# verified storage budgets are target metadata; scaninc discovers the actual
+# encoding options are target metadata; scaninc discovers the actual
 # requested outputs from source references, without a second resource list.
 
-$(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 125 0x28
-$(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679 0xB0
-$(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679 0x64
-$(UI_SCENE_080A2BA4_SOURCE_DIR)/tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,5,6,8,10,12 0x29C
-$(UI_SCENE_080AE7D0_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 3,5,6,7,8,9,10 0x238
-$(UI_SCENE_080AE7D0_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 2,5,10 0x8C
-$(UI_SCENE_080AE7D0_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,7,10,11,13,15 0x1A48
-$(UI_SCENE_080B7164_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 3,5,7 0x64
-$(UI_SCENE_080B7164_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0xA8
-$(UI_SCENE_080B7164_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,7,8,10,11,12 0x70C
-$(UI_SCENE_080C160C_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,3,6,7,9,10,11 0x20C
-$(UI_SCENE_080C160C_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 3,7,9 0xD8
-$(UI_SCENE_080C160C_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,4,6,7,8,10,12 0xA38 --literal-tail
-$(UI_SCENE_080BCFAC_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 2,6,10 0x124
-$(UI_SCENE_080BCFAC_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,6,9 0xA8
-$(UI_SCENE_080BCFAC_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,6,7,9,11,13 0xC04
-$(UI_SCENE_080B55D0_AUX_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5 0x16C
-$(UI_SCENE_080B55D0_AUX_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x110
-$(UI_SCENE_080B55D0_AUX_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,8,9,10,11,12 0xD60
-$(UI_SCENE_08054F40_TILES_OUTPUT): FOMT_LZ_ENCODE := encode-lz2 2,5,7,8,10,13,14 0xCA8
+$(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 125
+$(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679
+$(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679
+$(UI_SCENE_080A2BA4_SOURCE_DIR)/tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,5,6,8,10,12
+$(UI_SCENE_080AE7D0_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 3,5,6,7,8,9,10
+$(UI_SCENE_080AE7D0_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 2,5,10
+$(UI_SCENE_080AE7D0_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,7,10,11,13,15
+$(UI_SCENE_080B7164_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 3,5,7
+$(UI_SCENE_080B7164_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9
+$(UI_SCENE_080B7164_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,7,8,10,11,12
+$(UI_SCENE_080C160C_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,3,6,7,9,10,11
+$(UI_SCENE_080C160C_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 3,7,9
+$(UI_SCENE_080C160C_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,4,6,7,8,10,12 --literal-tail
+$(UI_SCENE_080BCFAC_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 2,6,10
+$(UI_SCENE_080BCFAC_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,6,9
+$(UI_SCENE_080BCFAC_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,6,7,9,11,13
+$(UI_SCENE_080B55D0_AUX_MAP0_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5
+$(UI_SCENE_080B55D0_AUX_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9
+$(UI_SCENE_080B55D0_AUX_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,8,9,10,11,12
+$(UI_SCENE_08054F40_TILES_OUTPUT): FOMT_LZ_ENCODE := encode-lz2 2,5,7,8,10,13,14
 
 # Frisbee BG maps and four-frame tile animation use the same native suffix rules.
-$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/background.tilemap.lz: FOMT_LZ_ENCODE := encode-lz0 4,6 0x1F0
-$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/overlay.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x28
-$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/overlay_top.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5 0x2C
-$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/animation.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 3,6,7,8,11,12,13 0xC84
+$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/background.tilemap.lz: FOMT_LZ_ENCODE := encode-lz0 4,6
+$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/overlay.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9
+$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/overlay_top.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5
+$(UI_SCENE_08054F40_TILES_SOURCE_DIR)/animation.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 3,6,7,8,11,12,13
 $(UI_SCENE_08054F40_TILES_SOURCE_DIR)/palettes.gbapal: GFX_PALETTE_COLORS := 80
-$(UI_THREE_LAYER_BACKGROUND_DIR)/tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 3,5,7,10,11,12,14 0x880
-$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5 0xA0
-$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 0x30
-$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 2,4,7 0x30
-$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,3,5 0x38
-$(INTRO_BACKGROUND_PACKED_BIN): FOMT_LZ_ENCODE := encode-lz2 3,5,8,10,12,13,15 0x49BC --literal-tail
-graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,14 0 --greedy --tie=exchange
-graphics/ui/farm_status/shared/base_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,8,13 0 --greedy --tie=exchange
-graphics/ui/seasonal_background/winter/winter_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,13 0 --greedy --tie=exchange
-graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,5,8,10,11,12,14 0 --tie=exchange
-$(FARM_STATUS_WINTER_TILES_BIN).lz: FOMT_LZ_ENCODE := encode-huff8-lz2 3,5,7,8,10,12,14 0 --tie=exchange
-$(UI_SCENE_080B55D0_MAIN_SOURCE).lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,12 0x2198 --greedy --tie=exchange
-$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg0.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x3DC --parent-first
-$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg1.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x21C --tie=first
-$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0xF4
-$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,10 0 --tie=quick
-$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_00.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,12 0 --tie=heap
-$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,11 0x1D8
-$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_02.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,10 0 --tie=exchange
-$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_03.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,12 0 --tie=heap-sort
-$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0x1D0
-$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_05.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,10 0 --tie=exchange
-$(UI_SCENE_08077810_LAYER0_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,9 0x16C
-$(UI_SCENE_08077810_LAYER1_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz0 1,10 0
-$(UI_SCENE_08077810_JP_TILES_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,10 0x4C0
-$(UI_SCENE_08077810_JP_LAYER1_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz2 1,2,3,4,5,6,10 0 --tie=last
-$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_00.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,4,8 0 --greedy --tie=exchange
-$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_01.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,11 0x424 --filter=1
-$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_02.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,10 0x418 --filter=1
-$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_03.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,8,11 0 --greedy --tie=exchange
-$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_04.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,6,7,8,9,11,13 0 --tie=exchange
-$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_05.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,8 0x364
-$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_06.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,8,12 0 --greedy --tie=exchange
+$(UI_THREE_LAYER_BACKGROUND_DIR)/tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 3,5,7,10,11,12,14
+$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,5
+$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7
+$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 2,4,7
+$(UI_THREE_LAYER_BACKGROUND_DIR)/layout_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,3,5
+$(INTRO_BACKGROUND_PACKED_BIN): FOMT_LZ_ENCODE := encode-lz2 3,5,8,10,12,13,15 --literal-tail
+graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,14 --greedy --tie=exchange
+graphics/ui/farm_status/shared/base_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,8,13 --greedy --tie=exchange
+graphics/ui/seasonal_background/winter/winter_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,13 --greedy --tie=exchange
+graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,5,8,10,11,12,14 --tie=exchange
+$(FARM_STATUS_WINTER_TILES_BIN).lz: FOMT_LZ_ENCODE := encode-huff8-lz2 3,5,7,8,10,12,14 --tie=exchange
+$(UI_SCENE_080B55D0_MAIN_SOURCE).lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,12 --greedy --tie=exchange
+$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg0.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 --parent-first
+$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg1.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 --tie=first
+$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11
+$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,10 --tie=quick
+$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_00.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,12 --tie=heap
+$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,11
+$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_02.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,10 --tie=exchange
+$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_03.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,12 --tie=heap-sort
+$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11
+$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_05.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,10 --tie=exchange
+$(UI_SCENE_08077810_LAYER0_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,9
+$(UI_SCENE_08077810_LAYER1_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz0 1,10
+$(UI_SCENE_08077810_JP_TILES_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,10
+$(UI_SCENE_08077810_JP_LAYER1_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz2 1,2,3,4,5,6,10 --tie=last
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_00.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,4,8 --greedy --tie=exchange
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_01.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,11 --filter=1
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_02.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,10 --filter=1
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_03.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,8,11 --greedy --tie=exchange
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_04.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,6,7,8,9,11,13 --tie=exchange
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_05.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,8
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_06.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,8,12 --greedy --tie=exchange
 
 # These eleven Raw-LZ3 maps are rebuilt directly from authored tilemaps.
 # Original comparison samples are kept outside the formal source tree.
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_00_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x54
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_01_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x6C
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_02_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x98
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_03_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x78
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_04_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,7 0x94
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_04_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x60
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_05_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x74
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_06_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x26C
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_07_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x274
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_08_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x50
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_09_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x68
-# These six Raw-LZ2 maps also match their original packed slots exactly.
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_01_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,9 0xF4
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_02_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,4,5,6,7,8,9 0x140
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_03_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,10 0x120
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_05_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,9 0xD8
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_06_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,10 0x24
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_07_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,6,8,10 0x38
-# The remaining three tilemap slots use the same direct source-to-stream rule.
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_00_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz1 2,6,8,10 0x2FC
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_08_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,8,10 0x304
-$(INTRO_TILEMAPS_SOURCE_DIR)/frame_09_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,9,11 0x30C
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_00_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_01_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_02_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_03_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_04_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,7
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_04_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_05_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_06_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_07_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_08_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_09_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10
+# These six Raw-LZ2 maps reproduce their original compressed streams exactly.
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_01_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,9
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_02_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,4,5,6,7,8,9
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_03_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,10
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_05_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,9
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_06_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,10
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_07_bg2.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,6,8,10
+# The remaining three tilemaps use the same direct source-to-stream rule.
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_00_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz1 2,6,8,10
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_08_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,8,10
+$(INTRO_TILEMAPS_SOURCE_DIR)/frame_09_bg3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,9,11
 # This complete MapData run is bounded by still-raw neighboring resources.
 # All six natural encodings already match; retain their verified storage
 # budgets until those neighboring references are also relocatable.
-$(MAP_DATA_SOURCE_DIR)/map_00/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,14 0x3BB0 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_00/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,4 0xF4 --tie=first --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_00/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,6 0xF4
-$(MAP_DATA_SOURCE_DIR)/map_00/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 0x7AC --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_00/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,10,13 0x488 --tie=quick --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_00/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,8,10,11,12,11 0x90 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,4 --tie=first --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,6
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,10,13 --tie=quick --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,8,10,11,12,11 --filter=4
 # The next physical run has shared tiles/palettes and interleaved map layers.
 # Keep its real payload order in assembly and use the same generic suffix rule.
-$(MAP_DATA_SOURCE_DIR)/map_01/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,14 0x3DBC --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_01/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,5 0xE4
-$(MAP_DATA_SOURCE_DIR)/map_01/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 0x924 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_01/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,10,13 0x4B4 --tie=first --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_01/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,8,10,11,12,11 0x94 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_01/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,3 0xD4
-$(MAP_DATA_SOURCE_DIR)/map_10/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,11,13 0x397C --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_10/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 6,6 0xCC
-$(MAP_DATA_SOURCE_DIR)/map_12/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,9,13 0xA80 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_12/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,13 0x6F8 --tie=last --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_12/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,13 0x548 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_10/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6 0xBC --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_11/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 0x3958 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_11/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,6 0xC8
-$(MAP_DATA_SOURCE_DIR)/map_13/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,9,13 0xB8C --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_13/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,13 0x660 --tie=last --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_13/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,13 0x538 --tie=last --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_11/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,6 0xB8
-$(MAP_DATA_SOURCE_DIR)/map_51/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,7,8 0x1F4
-$(MAP_DATA_SOURCE_DIR)/map_51/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,10 0x1BC --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_51/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,8 0xCC --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_26/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,10 0x1CC
-$(MAP_DATA_SOURCE_DIR)/map_26/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,5,6,7,8,9,10 0x1C0 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_26/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 0xD4 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_25/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,9,14 0x170C --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_25/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 6,8 0x1B8
-$(MAP_DATA_SOURCE_DIR)/map_25/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,7,10 0x268 --tie=reverse --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_25/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,5,6,7,8,9,9 0x1E0 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_25/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 2,5,11 0x114 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_37/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,8 0x2E8 --tie=last
-$(MAP_DATA_SOURCE_DIR)/map_37/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,8 0xB4
-$(MAP_DATA_SOURCE_DIR)/map_37/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,6,7 0xA0 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_36/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,8 0x274 --tie=last
-$(MAP_DATA_SOURCE_DIR)/map_36/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,6 0x90 --tie=quick
-$(MAP_DATA_SOURCE_DIR)/map_36/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,7 0x94 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_53/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,8 0x184 --tie=heap-sort
-$(MAP_DATA_SOURCE_DIR)/map_53/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,9 0xEC --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_53/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,9,7 0x84 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_29/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,10 0x350 --tie=first --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_29/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,6,9,10,9 0x1E4 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_29/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,11 0x178 --tie=heap --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_30/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,8,10 0x24C --tie=last
-$(MAP_DATA_SOURCE_DIR)/map_30/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,5,6,8,10 0x24C --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_30/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,5,6,7,9,10,9 0x14C --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_29/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 0x37FC --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_29/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,7,7 0x178 --tie=exchange --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_22/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,9 0x300 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_22/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,10 0x200 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_22/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,11 0x12C --tie=exchange --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_23/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,8,10 0x308 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_23/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,4,5,6,8,9,11 0x304 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_23/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,9 0x12C --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_24/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,8,10 0x2FC --tie=heap
-$(MAP_DATA_SOURCE_DIR)/map_24/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,5,6,9,11 0x234 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_24/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,6,9 0xF4 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_22/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,14 0x35C4 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_22/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6 0x15C --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_50/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,13 0x1A60 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_50/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,6 0x114 --tie=quick --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_34/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,8 0x1B8 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_34/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,8 0x100 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_34/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,8 0x120
-$(MAP_DATA_SOURCE_DIR)/map_35/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,10 0x198 --tie=heap-sort --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_35/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,7,10 0x118 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_35/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,9 0xA8 --tie=exchange --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_32/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 0x17C --tie=first --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_32/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,8 0xF0 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_32/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,9,7 0xE0 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_33/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 0xF4 --tie=reverse-select --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_33/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,8,7 0x100 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_33/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 2,5,9 0x84 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_32/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,11,13 0x2CD8 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_32/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,6,7 0x16C --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_52/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,5,7,8,9,10,13 0x10FC --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_52/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 1,2,3,4,5,6,7 0x104 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_52/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,3,4,5,6,7,10 0x1A8 --tie=exchange --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_52/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,8 0x168 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_52/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 0xF8 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_50/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,10 0x1C4
-$(MAP_DATA_SOURCE_DIR)/map_50/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,7,10 0x164 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_50/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 0xB8 --tie=exchange --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_41/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,11,13 0x2738 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_41/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6 0x108 --tie=first --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_43/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,7,9 0x184 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_43/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,5,6,7,11 0x104 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_43/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,6,9 0xCC --tie=exchange --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_42/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,6,9 0x160
-$(MAP_DATA_SOURCE_DIR)/map_42/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,6,7,9,9 0x100 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_42/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,9 0xC0 --tie=exchange --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_41/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 0x14C --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_41/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,10 0xE8 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_41/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,9 0xA8 --tie=quick --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_10/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 7,9,12 0x4C0 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_10/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,9,10 0x234 --tie=reverse-select --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_10/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 8,9,11 0x1D8 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_11/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 7,9,11 0x4B4 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_11/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,9,10 0x220 --tie=exchange --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_11/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 8,9,10 0x1C0 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,5 0xE0
-$(MAP_DATA_SOURCE_DIR)/map_08/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,14 0 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_09/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,13 0 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_14/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,11,14 0 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_15/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,11,14 0 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_14/layer_3.tilemap.lz $(MAP_DATA_SOURCE_DIR)/map_15/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 8,10,14 0 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_36/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,9,13 0 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_44/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 0 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_53/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,12 0 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,4 0xE4
-$(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,7 0xD8
-$(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,7 0xCC
-$(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,6,12 0x6C
-$(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,6,11 0xEC
-$(MAP_DATA_SOURCE_DIR)/map_44/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,5,9 0xD4 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_45/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x90 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_08/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,7,8,9,12 0x260 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_08/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,7,10,12,7 0x7C --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_09/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,7,8,9,12 0x224 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_31/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,4,5,6,7,9,7 0x104 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_44/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,9 0x134 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_45/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,8,10 0x174 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_15/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 6,6 0xF8
-$(MAP_DATA_SOURCE_DIR)/map_36/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 6,8 0x124
-$(MAP_DATA_SOURCE_DIR)/map_14/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,5 0xF8 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_14/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6 0xD8
-$(MAP_DATA_SOURCE_DIR)/map_14/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,10,14 0xC6C
-$(MAP_DATA_SOURCE_DIR)/map_14/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 9,11,13 0x7D8 --tie=reverse
-$(MAP_DATA_SOURCE_DIR)/map_15/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,10,14 0xC68 --tie=first
-$(MAP_DATA_SOURCE_DIR)/map_08/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 7,9,12 0x71C
-$(MAP_DATA_SOURCE_DIR)/map_44/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,7 0x108 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_44/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 0x254 --filter=4 --tie=first
-$(MAP_DATA_SOURCE_DIR)/map_45/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,8 0x220
-$(MAP_DATA_SOURCE_DIR)/map_31/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,7,11 0x320 --filter=3 --tie=first
-$(MAP_DATA_SOURCE_DIR)/map_09/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,9,12 0x704 --parent-first
-$(MAP_DATA_SOURCE_DIR)/map_40/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,9 0x158 --tie=reverse --parent-first
-$(MAP_DATA_SOURCE_DIR)/map_15/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6 0 --tie=last
-$(MAP_DATA_SOURCE_DIR)/map_40/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,9 0 --tie=last
-$(MAP_DATA_SOURCE_DIR)/map_53/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,5 0 --filter=3 --tie=last
-$(MAP_DATA_SOURCE_DIR)/map_15/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,10,14 0 --tie=reverse-select
-$(MAP_DATA_SOURCE_DIR)/map_40/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,7 0 --tie=shell
+$(MAP_DATA_SOURCE_DIR)/map_01/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_01/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,5
+$(MAP_DATA_SOURCE_DIR)/map_01/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_01/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,10,13 --tie=first --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_01/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,8,10,11,12,11 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_01/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,3
+$(MAP_DATA_SOURCE_DIR)/map_10/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,11,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_10/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 6,6
+$(MAP_DATA_SOURCE_DIR)/map_12/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,9,13 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_12/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,13 --tie=last --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_12/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,13 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_10/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_11/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_11/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,6
+$(MAP_DATA_SOURCE_DIR)/map_13/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,9,13 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_13/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,13 --tie=last --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_13/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,13 --tie=last --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_11/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,6
+$(MAP_DATA_SOURCE_DIR)/map_51/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,7,8
+$(MAP_DATA_SOURCE_DIR)/map_51/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,10 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_51/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,8 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_26/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,10
+$(MAP_DATA_SOURCE_DIR)/map_26/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,5,6,7,8,9,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_26/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_25/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,9,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_25/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 6,8
+$(MAP_DATA_SOURCE_DIR)/map_25/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,7,10 --tie=reverse --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_25/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,5,6,7,8,9,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_25/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 2,5,11 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_37/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,8 --tie=last
+$(MAP_DATA_SOURCE_DIR)/map_37/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,8
+$(MAP_DATA_SOURCE_DIR)/map_37/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,6,7 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_36/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,8 --tie=last
+$(MAP_DATA_SOURCE_DIR)/map_36/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,6 --tie=quick
+$(MAP_DATA_SOURCE_DIR)/map_36/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,7 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_53/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,8 --tie=heap-sort
+$(MAP_DATA_SOURCE_DIR)/map_53/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_53/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,9,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_29/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,10 --tie=first --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_29/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,6,9,10,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_29/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,11 --tie=heap --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_30/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,8,10 --tie=last
+$(MAP_DATA_SOURCE_DIR)/map_30/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,5,6,8,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_30/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,5,6,7,9,10,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_29/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_29/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,7,7 --tie=exchange --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_22/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,9 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_22/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_22/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,11 --tie=exchange --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_23/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,8,10 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_23/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,4,5,6,8,9,11 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_23/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,9 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_24/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,8,10 --tie=heap
+$(MAP_DATA_SOURCE_DIR)/map_24/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,5,6,9,11 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_24/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,6,9 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_22/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_22/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_50/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_50/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,6 --tie=quick --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_34/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,8 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_34/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,8 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_34/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,8
+$(MAP_DATA_SOURCE_DIR)/map_35/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,10 --tie=heap-sort --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_35/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,7,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_35/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,9 --tie=exchange --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_32/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 --tie=first --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_32/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,8 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_32/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,9,7 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_33/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 --tie=reverse-select --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_33/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,8,7 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_33/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 2,5,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_32/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,11,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_32/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,6,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_52/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,5,7,8,9,10,13 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_52/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 1,2,3,4,5,6,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_52/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,3,4,5,6,7,10 --tie=exchange --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_52/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,8 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_52/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_50/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,10
+$(MAP_DATA_SOURCE_DIR)/map_50/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,7,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_50/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 --tie=exchange --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_41/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,11,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_41/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6 --tie=first --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_43/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,7,9 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_43/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,5,6,7,11 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_43/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,6,9 --tie=exchange --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_42/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,6,9
+$(MAP_DATA_SOURCE_DIR)/map_42/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,6,7,9,9 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_42/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,9 --tie=exchange --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_41/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_41/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,10 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_41/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,9 --tie=quick --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_10/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 7,9,12 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_10/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,9,10 --tie=reverse-select --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_10/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 8,9,11 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_11/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 7,9,11 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_11/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,9,10 --tie=exchange --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_11/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 8,9,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,5
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,11,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_15/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,11,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_3.tilemap.lz $(MAP_DATA_SOURCE_DIR)/map_15/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 8,10,14 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_36/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,9,13 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_44/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_53/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,12 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,4
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,7
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,7
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,6,12
+$(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,6,11
+$(MAP_DATA_SOURCE_DIR)/map_44/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,5,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_45/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,7,8,9,12 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,7,10,12,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,7,8,9,12 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_31/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,4,5,6,7,9,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_44/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_45/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,8,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_15/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 6,6
+$(MAP_DATA_SOURCE_DIR)/map_36/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 6,8
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,5 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,10,14
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 9,11,13 --tie=reverse
+$(MAP_DATA_SOURCE_DIR)/map_15/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,10,14 --tie=first
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 7,9,12
+$(MAP_DATA_SOURCE_DIR)/map_44/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_44/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 --filter=4 --tie=first
+$(MAP_DATA_SOURCE_DIR)/map_45/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,8
+$(MAP_DATA_SOURCE_DIR)/map_31/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,7,11 --filter=3 --tie=first
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,9,12 --parent-first
+$(MAP_DATA_SOURCE_DIR)/map_40/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,9 --tie=reverse --parent-first
+$(MAP_DATA_SOURCE_DIR)/map_15/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6 --tie=last
+$(MAP_DATA_SOURCE_DIR)/map_40/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,9 --tie=last
+$(MAP_DATA_SOURCE_DIR)/map_53/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,5 --filter=3 --tie=last
+$(MAP_DATA_SOURCE_DIR)/map_15/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,10,14 --tie=reverse-select
+$(MAP_DATA_SOURCE_DIR)/map_40/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,7 --tie=shell
 
 # Remaining MapData payloads keep their original physical gaps and identities.
 # The shared UI/map tile stream reuses its existing profile above.
-$(MAP_DATA_SOURCE_DIR)/map_28/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 0x154 --tie=exchange --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_28/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,10 0x150 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_28/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,8 0xD4 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_04/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,5,7,10,11,13,15 0x4D0C --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_04/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 5,6,6 0x134
-$(MAP_DATA_SOURCE_DIR)/map_04/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,9,14 0x1080
-$(MAP_DATA_SOURCE_DIR)/map_04/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,11,14 0x1098
-$(MAP_DATA_SOURCE_DIR)/map_04/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,11,14 0x640
-$(MAP_DATA_SOURCE_DIR)/map_04/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,6,3 0x134 --tie=reverse
-$(MAP_DATA_SOURCE_DIR)/map_05/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,5,7,10,11,13,15 0x4EAC --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_05/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,6 0xFC
-$(MAP_DATA_SOURCE_DIR)/map_05/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,10,14 0xF28 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_05/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,9,13 0x1018
-$(MAP_DATA_SOURCE_DIR)/map_05/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 7,11,14 0x554 --tie=exchange --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_05/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,6 0xE0 --tie=shell
-$(MAP_DATA_SOURCE_DIR)/map_18/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,3,4,5,7,8,10 0x1DC --tie=exchange --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_18/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,7,10 0x16C --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_18/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,9 0xE8 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_19/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,8,10 0x1D8 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_19/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 0x12C --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_19/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,7,8 0xFC --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_18/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,14 0x3120 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_18/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,6 0x124 --tie=last --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_56/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 7,9,12 0xDB8 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_56/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,5 0xA0 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_56/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 0x98 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_56/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,3 0xC
-$(MAP_DATA_SOURCE_DIR)/map_56/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 0xAC --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_57/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,5,6,9,13 0x7C --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_57/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,3 0xC
-$(MAP_DATA_SOURCE_DIR)/map_57/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,5,6,7,8 0x5C --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_58/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,9,10,8 0x8C --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_58/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,3 0xC
-$(MAP_DATA_SOURCE_DIR)/map_58/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 0x60 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_59/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,9 0x80 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_59/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,3 0xC
-$(MAP_DATA_SOURCE_DIR)/map_59/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 0x5C --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_60/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,6,6 0xB4
-$(MAP_DATA_SOURCE_DIR)/map_60/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,7 0x2C
-$(MAP_DATA_SOURCE_DIR)/map_60/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 0xAC --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_61/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 0xC4 --tie=exchange --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_61/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,3 0xC
-$(MAP_DATA_SOURCE_DIR)/map_61/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,10 0x7C --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_02/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,4 0xA4
-$(MAP_DATA_SOURCE_DIR)/map_02/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,10,12 0x590 --tie=reverse --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_02/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,12 0x224 --tie=quick
-$(MAP_DATA_SOURCE_DIR)/map_02/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,6,11 0x98
-$(MAP_DATA_SOURCE_DIR)/map_02/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,4 0xA0
-$(MAP_DATA_SOURCE_DIR)/map_03/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,12 0x1F58 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_03/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,6 0xA0
-$(MAP_DATA_SOURCE_DIR)/map_03/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,10,12 0x58C --tie=shell --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_03/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,12 0x21C --tie=reverse
-$(MAP_DATA_SOURCE_DIR)/map_03/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,6,11 0xA8 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_03/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,5 0x94
-$(MAP_DATA_SOURCE_DIR)/map_20/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,3,4,5,6,7,10 0x1D8 --tie=exchange --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_20/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,7,10 0x104 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_20/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 0xD0 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_21/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,10 0x200 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_21/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,9 0xB8 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_21/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,8 0x74 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_54/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,7,8 0x18C --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_54/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,8 0x118 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_54/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,9,9 0x8C --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_26/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 0x2AC4 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_26/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,6,7 0x140 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_27/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 0x14C --tie=exchange --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_27/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,8 0x110 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_27/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,8,8 0xD8 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_39/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,9,10 0x4C4 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_39/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,10 0x11C
-$(MAP_DATA_SOURCE_DIR)/map_39/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,10 0xFC --tie=first
-$(MAP_DATA_SOURCE_DIR)/map_38/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 3,8,10 0x398 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_38/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,6,9 0xDC
-$(MAP_DATA_SOURCE_DIR)/map_38/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,7,9 0xE0
-$(MAP_DATA_SOURCE_DIR)/map_48/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,3,4,5,7,8,10 0x1F4 --tie=exchange --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_48/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,9 0xE8 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_48/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,8,8 0xDC --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_06/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 0x4E78 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_06/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,6,6 0x18C
-$(MAP_DATA_SOURCE_DIR)/map_06/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,11,14 0xB74 --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_06/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,11,13 0x978 --tie=first --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_06/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,13 0x488 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_06/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,7 0x174 --tie=first
-$(MAP_DATA_SOURCE_DIR)/map_07/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 0x4C98 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_07/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,6,7 0x128
-$(MAP_DATA_SOURCE_DIR)/map_07/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,11,13 0x8D4
-$(MAP_DATA_SOURCE_DIR)/map_07/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,11,13 0x968 --tie=reverse --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_07/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,13 0x478 --tie=reverse --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_07/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,6,7 0x110 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_16/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,10,13 0x27E0 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_16/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 5,6 0x90
-$(MAP_DATA_SOURCE_DIR)/map_16/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 6,8,10 0x1C0 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_16/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,6,10 0x1B0 --tie=exchange --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_16/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,5 0xB0 --tie=exchange --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_16/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,7 0x90
-$(MAP_DATA_SOURCE_DIR)/map_17/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 9,11,13 0x1EB4 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_17/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 5,6 0x88
-$(MAP_DATA_SOURCE_DIR)/map_17/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,8,11 0x164 --tie=exchange --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_17/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,6,10 0x1A8 --tie=exchange --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_17/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 0xB8 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_17/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,6 0xA0
-$(MAP_DATA_SOURCE_DIR)/map_55/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 0x1B8 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_55/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,10 0x130 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_55/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,9,7 0xA0 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_62/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,8 0x94
-$(MAP_DATA_SOURCE_DIR)/map_62/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,8 0x48
-$(MAP_DATA_SOURCE_DIR)/map_63/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 2,5,7 0x10C --greedy --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_63/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 0x74 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_64/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,8 0x224 --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_64/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,8 0xEC --tie=quick
-$(MAP_DATA_SOURCE_DIR)/map_65/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,8 0x1E4
-$(MAP_DATA_SOURCE_DIR)/map_65/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,9 0xCC --tie=exchange
-$(MAP_DATA_SOURCE_DIR)/map_49/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,9 0x174 --tie=reverse
-$(MAP_DATA_SOURCE_DIR)/map_49/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,10 0x1A4 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_49/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,9,9 0xD8 --filter=4
-$(MAP_DATA_SOURCE_DIR)/map_48/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 0x29F8 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_48/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,6 0xF0 --tie=reverse-select --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_46/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 0x264
-$(MAP_DATA_SOURCE_DIR)/map_46/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,9 0x158 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_46/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,9 0x104 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_47/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,6,8 0x224
-$(MAP_DATA_SOURCE_DIR)/map_47/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,9 0x128 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_47/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,8 0xA0 --filter=3
-$(MAP_DATA_SOURCE_DIR)/map_46/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 0x1F80 --greedy --tie=exchange --filter=1
-$(MAP_DATA_SOURCE_DIR)/map_46/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,6 0x128 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_28/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 --tie=exchange --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_28/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,10 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_28/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,8 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_04/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,5,7,10,11,13,15 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_04/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 5,6,6
+$(MAP_DATA_SOURCE_DIR)/map_04/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,9,14
+$(MAP_DATA_SOURCE_DIR)/map_04/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,11,14
+$(MAP_DATA_SOURCE_DIR)/map_04/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,11,14
+$(MAP_DATA_SOURCE_DIR)/map_04/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,6,3 --tie=reverse
+$(MAP_DATA_SOURCE_DIR)/map_05/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,5,7,10,11,13,15 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_05/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,6
+$(MAP_DATA_SOURCE_DIR)/map_05/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,10,14 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_05/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,9,13
+$(MAP_DATA_SOURCE_DIR)/map_05/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 7,11,14 --tie=exchange --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_05/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,6 --tie=shell
+$(MAP_DATA_SOURCE_DIR)/map_18/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,3,4,5,7,8,10 --tie=exchange --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_18/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,7,10 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_18/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,9 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_19/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,8,10 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_19/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_19/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,7,8 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_18/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_18/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,6 --tie=last --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_56/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 7,9,12 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_56/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,5 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_56/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_56/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,3
+$(MAP_DATA_SOURCE_DIR)/map_56/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_57/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,5,6,9,13 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_57/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,3
+$(MAP_DATA_SOURCE_DIR)/map_57/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,5,6,7,8 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_58/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,9,10,8 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_58/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,3
+$(MAP_DATA_SOURCE_DIR)/map_58/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_59/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_59/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,3
+$(MAP_DATA_SOURCE_DIR)/map_59/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_60/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,6,6
+$(MAP_DATA_SOURCE_DIR)/map_60/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,7
+$(MAP_DATA_SOURCE_DIR)/map_60/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_61/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 --tie=exchange --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_61/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,2,3
+$(MAP_DATA_SOURCE_DIR)/map_61/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_02/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,4
+$(MAP_DATA_SOURCE_DIR)/map_02/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,10,12 --tie=reverse --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_02/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,12 --tie=quick
+$(MAP_DATA_SOURCE_DIR)/map_02/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,6,11
+$(MAP_DATA_SOURCE_DIR)/map_02/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,4
+$(MAP_DATA_SOURCE_DIR)/map_03/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,12 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_03/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,6
+$(MAP_DATA_SOURCE_DIR)/map_03/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,10,12 --tie=shell --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_03/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,12 --tie=reverse
+$(MAP_DATA_SOURCE_DIR)/map_03/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,6,11 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_03/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,5
+$(MAP_DATA_SOURCE_DIR)/map_20/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,3,4,5,6,7,10 --tie=exchange --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_20/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,7,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_20/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_21/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,10 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_21/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_21/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,8 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_54/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,7,8 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_54/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,8 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_54/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,9,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_26/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_26/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,6,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_27/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 --tie=exchange --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_27/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,8 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_27/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,8,8 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_39/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,9,10 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_39/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,10
+$(MAP_DATA_SOURCE_DIR)/map_39/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,10 --tie=first
+$(MAP_DATA_SOURCE_DIR)/map_38/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 3,8,10 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_38/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,6,9
+$(MAP_DATA_SOURCE_DIR)/map_38/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,7,9
+$(MAP_DATA_SOURCE_DIR)/map_48/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,3,4,5,7,8,10 --tie=exchange --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_48/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_48/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,8,8 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_06/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_06/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,6,6
+$(MAP_DATA_SOURCE_DIR)/map_06/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,11,14 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_06/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,11,13 --tie=first --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_06/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,13 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_06/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,7 --tie=first
+$(MAP_DATA_SOURCE_DIR)/map_07/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_07/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,6,7
+$(MAP_DATA_SOURCE_DIR)/map_07/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,11,13
+$(MAP_DATA_SOURCE_DIR)/map_07/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,11,13 --tie=reverse --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_07/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,8,13 --tie=reverse --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_07/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,6,7 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_16/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,10,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_16/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 5,6
+$(MAP_DATA_SOURCE_DIR)/map_16/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 6,8,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_16/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,6,10 --tie=exchange --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_16/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,5 --tie=exchange --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_16/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,7
+$(MAP_DATA_SOURCE_DIR)/map_17/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 9,11,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_17/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 5,6
+$(MAP_DATA_SOURCE_DIR)/map_17/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,8,11 --tie=exchange --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_17/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,6,10 --tie=exchange --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_17/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_17/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,4,6
+$(MAP_DATA_SOURCE_DIR)/map_55/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_55/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,10 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_55/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,9,7 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_62/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,8
+$(MAP_DATA_SOURCE_DIR)/map_62/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,8
+$(MAP_DATA_SOURCE_DIR)/map_63/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 2,5,7 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_63/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,7 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_64/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,8 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_64/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,8 --tie=quick
+$(MAP_DATA_SOURCE_DIR)/map_65/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,8
+$(MAP_DATA_SOURCE_DIR)/map_65/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,9 --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_49/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,9 --tie=reverse
+$(MAP_DATA_SOURCE_DIR)/map_49/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,10 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_49/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,9,9 --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_48/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_48/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,6 --tie=reverse-select --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_46/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,9
+$(MAP_DATA_SOURCE_DIR)/map_46/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,8,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_46/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_47/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,6,8
+$(MAP_DATA_SOURCE_DIR)/map_47/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,9 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_47/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,8 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_46/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_46/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,5,6 --filter=3
 
 %.lz: % $(FOMT_LZ_TOOL)
 	@$(if $(FOMT_LZ_ENCODE),$(FOMT_LZ_TOOL) $(firstword $(FOMT_LZ_ENCODE)) $< $@ $(wordlist 2,99,$(FOMT_LZ_ENCODE)),$(error Missing FoMT codec parameters for $@))
 
 $(UI_SCENE_08077810_CHARACTER_PACKED): $(UI_SCENE_08077810_CHARACTER_TILES) $(UI_SCENE_08077810_CHARACTER_TRAILER) $(FOMT_LZ_TOOL)
-	@$(FOMT_LZ_TOOL) encode-huff8-lz3 $< $@ 6,10,12 0 --greedy --tie=exchange --tail=$(UI_SCENE_08077810_CHARACTER_TRAILER)
+	@$(FOMT_LZ_TOOL) encode-huff8-lz3 $< $@ 6,10,12 --greedy --tie=exchange --tail=$(UI_SCENE_08077810_CHARACTER_TRAILER)
 
 $(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal.lz: $(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) encode-lz3 $< $@ $(FOMT_LZ3_ARGS)
@@ -588,9 +588,9 @@ $(INTRO_SCENE_SIZE_HEADER): $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN) graphics_file_ru
 	@mkdir -p $(dir $@)
 	@printf '#define INTRO_SCENE_RESOURCE_BYTES %s\n' "$$(wc -c < $<)" > $@
 ifeq ($(GAME_REGION),JP)
-$(INTRO_INDEXED_ARCHIVE_OUTPUT): FOMT_LZ_ENCODE := encode-huff4-lz2 3,6,8,10,12,13,15 0x2D90
+$(INTRO_INDEXED_ARCHIVE_OUTPUT): FOMT_LZ_ENCODE := encode-huff4-lz2 3,6,8,10,12,13,15
 else
-$(INTRO_INDEXED_ARCHIVE_OUTPUT): FOMT_LZ_ENCODE := encode-huff8-lz2 3,6,8,10,11,13,15 0 --tie=exchange
+$(INTRO_INDEXED_ARCHIVE_OUTPUT): FOMT_LZ_ENCODE := encode-huff8-lz2 3,6,8,10,11,13,15 --tie=exchange
 endif
 
 # Reuse the existing generated-size-header mechanism. The allocator reserves
