@@ -79,7 +79,7 @@ static inline u32 TMP_GetAnim(ANpcEntity & self)
 
 EC bool func_08034C64(void const * context, GameTime const & time)
 {
-    ScheduleInfo const & info = gUnk_080F221C;
+    ScheduleInfo const & info = gChildScheduleData.descriptor;
     Schedule const * schedule = info.schedules[info.select_schedule(context)];
     if (schedule != nullptr) {
         i32 hour = time.clock_hour - 6;
@@ -4400,7 +4400,7 @@ asm_unified(
 
 LilliaNpcActor::LilliaNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
-        &gUnk_080F2068,
+        &gLilliaScheduleData.descriptor,
         607, 611, EventScript_NPCEvent_Lillia_DialogueAndGiftResponses)
 {
 }
@@ -4436,7 +4436,7 @@ asm_unified(
 
 RickNpcActor::RickNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
-        &ScheduleInfo_Unk_080F1A80,
+        &gRickScheduleData.descriptor,
         531, 535, EventScript_NPCEvent_Rick_DialogueAndGiftResponses)
 {
 }
@@ -4472,7 +4472,7 @@ asm_unified(
 
 PopuriNpcActor::PopuriNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
-        &gUnk_080F1FC0,
+        &gPopuriScheduleData.descriptor,
         559, 563, EventScript_NPCEvent_Popuri_DialogueAndGiftResponses)
 {
 }
@@ -5122,7 +5122,7 @@ asm_unified(
 
 EllenNpcActor::EllenNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
-        &gUnk_080F33B8,
+        &gEllenScheduleData,
         1669, 1669, EventScript_NPCEvent_Ellen_DialogueAndGiftResponses)
 {
 }
@@ -5409,7 +5409,7 @@ asm_unified(
 
 DoctorNpcActor::DoctorNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
-        &ScheduleInfo_Unk_080F286C,
+        &gDoctorScheduleData.descriptor,
         800, 804, EventScript_NPCEvent_Doctor_DialogueAndGiftResponses)
 {
 }
@@ -5622,7 +5622,7 @@ asm_unified(
 
 CliffNpcActor::CliffNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
-        &ScheduleInfo_Unk_080F2354,
+        &gCliffScheduleData.descriptor,
         635, 639, EventScript_NPCEvent_Cliff_DialogueAndGiftResponses)
 {
 }
@@ -6063,7 +6063,7 @@ asm_unified(
 
 ZackNpcActor::ZackNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
-        &ScheduleInfo_Unk_080F261C,
+        &gZackScheduleData.descriptor,
         792, 796, EventScript_NPCEvent_Zack_DialogueAndGiftResponses)
 {
 }
@@ -6365,7 +6365,7 @@ asm_unified(
 
 ChildNpcActor::ChildNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
-        &gUnk_080F221C,
+        &gChildScheduleData.descriptor,
         615, 623, EventScript_NPCEvent_Baby_DialogueAndInteractions),
       idle_animation_countdown(0)
 {

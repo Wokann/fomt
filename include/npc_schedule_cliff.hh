@@ -5,66 +5,26 @@
 
 extern "C" u32 SelectCliffSchedule(void const * context);
 
-extern ScheduleInfo const ScheduleInfo_Unk_080F2354;
+struct CliffScheduleData
+{
+    ScheduleInfo descriptor;
+    Schedule const * const table_choices[6];
+    Schedule table_storage[5];
+    ScheduleEntry entries_0[5];
+    ScheduleEntry entries_1[9];
+    ScheduleEntry entries_2[6];
+    ScheduleEntry entries_3[1];
+    ScheduleEntry entries_4[1];
+    PathInfo payload_storage[12];
+    PathPointA points_1[7];
+    PathPointA points_3[5];
+    PathPointA points_4[7];
+    PathPointB points_5[2];
+    PathPointA points_6[2];
+    PathPointA points_8[8];
+    PathPointA points_10[7];
+};
 
-extern Schedule const * const gUnk_080F2B04[];
-
-extern Schedule const gUnk_080F2B1C;
-
-extern Schedule const gUnk_080F2B24;
-
-extern Schedule const gUnk_080F2B2C;
-
-extern Schedule const gUnk_080F2B34;
-
-extern Schedule const gUnk_080F2B3C;
-
-extern ScheduleEntry const gUnk_080F2B44[];
-
-extern ScheduleEntry const gUnk_080F2B6C[];
-
-extern ScheduleEntry const gUnk_080F2BB4[];
-
-extern ScheduleEntry const gUnk_080F2BE4[];
-
-extern ScheduleEntry const gUnk_080F2BEC[];
-
-extern PathInfo const gUnk_080F2BF4;
-
-extern PathInfo const gUnk_080F2C00;
-
-extern PathInfo const gUnk_080F2C0C;
-
-extern PathInfo const gUnk_080F2C18;
-
-extern PathInfo const gUnk_080F2C24;
-
-extern PathInfo const gUnk_080F2C30;
-
-extern PathInfo const gUnk_080F2C3C;
-
-extern PathInfo const gUnk_080F2C48;
-
-extern PathInfo const gUnk_080F2C54;
-
-extern PathInfo const gUnk_080F2C60;
-
-extern PathInfo const gUnk_080F2C6C;
-
-extern PathInfo const gUnk_080F2C78;
-
-extern PathPointA const gUnk_080F2C84[];
-
-extern PathPointA const gUnk_080F2CBC[];
-
-extern PathPointA const gUnk_080F2CE4[];
-
-extern PathPointB const gUnk_080F2D1C[];
-
-extern PathPointA const gUnk_080F2D2C[];
-
-extern PathPointA const gUnk_080F2D3C[];
-
-extern PathPointA const gUnk_080F2D7C[];
+extern "C" CliffScheduleData const gCliffScheduleData;
 
 #endif // NPC_SCHEDULE_CLIFF_HH

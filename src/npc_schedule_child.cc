@@ -142,102 +142,70 @@ asm_unified(
 // Recovered schedule data at US ROM 0x080F29C0 (JP 0x080F221C).
 // The two regional payloads differ only in relocated function/data pointers.
 
-ScheduleInfo const gUnk_080F221C = {
-    SelectChildSchedule,
-    6,
-    gUnk_080F29CC,
-};
-
-Schedule const * const gUnk_080F29CC[] = {
-    nullptr, &gUnk_080F29E4, &gUnk_080F29EC, &gUnk_080F29F4,
-    &gUnk_080F29FC, &gUnk_080F2A04,
-};
-
-Schedule const gUnk_080F29E4 = { 4, gUnk_080F2A0C };
-Schedule const gUnk_080F29EC = { 4, gUnk_080F2A2C };
-Schedule const gUnk_080F29F4 = { 1, gUnk_080F2A4C };
-Schedule const gUnk_080F29FC = { 3, gUnk_080F2A54 };
-Schedule const gUnk_080F2A04 = { 2, gUnk_080F2A6C };
-
-ScheduleEntry const gUnk_080F2A0C[] = {
-    { 0, &gUnk_080F2A7C },
-    { 180, &gUnk_080F2A88 },
-    { 720, &gUnk_080F2A7C },
-    { 840, &gUnk_080F2A88 },
-};
-
-ScheduleEntry const gUnk_080F2A2C[] = {
-    { 0, &gUnk_080F2A7C },
-    { 300, &gUnk_080F2A88 },
-    { 720, &gUnk_080F2A7C },
-    { 840, &gUnk_080F2A88 },
-};
-
-ScheduleEntry const gUnk_080F2A4C[] = {
-    { 0, &gUnk_080F2A88 },
-};
-
-ScheduleEntry const gUnk_080F2A54[] = {
-    { 0, &gUnk_080F2A94 },
-    { 300, &gUnk_080F2AA0 },
-    { 720, &gUnk_080F2A88 },
-};
-
-ScheduleEntry const gUnk_080F2A6C[] = {
-    { 0, &gUnk_080F2A7C },
-    { 180, &gUnk_080F2A88 },
-};
-
-PathInfo const gUnk_080F2A7C = {
-    nullptr,
-    0,
-    0,
-    0,
-    564,
-    1,
-    0,
-};
-
-PathInfo const gUnk_080F2A88 = {
-    nullptr,
-    0,
-    416,
-    -48,
-    29,
-    0,
-    0,
-};
-
-PathInfo const gUnk_080F2A94 = {
-    (void const *)gUnk_080F2AAC,
-    4,
-    352,
-    128,
-    29,
-    0,
-    1,
-};
-
-PathInfo const gUnk_080F2AA0 = {
-    (void const *)gUnk_080F2ACC,
-    4,
-    56,
-    128,
-    29,
-    0,
-    1,
-};
-
-PathPointB const gUnk_080F2AAC[] = {
-    { 408, 2, 120, 3, 0 },
-    { 160, 2, 120, 0, 1 },
-    { 352, 2, 120, 2, 0 },
-    { 128, 2, 120, 1, 1 },
-};
-
-PathPointB const gUnk_080F2ACC[] = {
-    { 160, 2, 120, 0, 1 },
-    { 104, 2, 120, 3, 0 },
-    { 128, 2, 120, 1, 1 },
-    { 56, 2, 120, 2, 0 },
+extern "C" ChildScheduleData const gChildScheduleData = {
+    // descriptor
+    { SelectChildSchedule, ARRAY_COUNT(gChildScheduleData.table_choices), gChildScheduleData.table_choices },
+    // table_choices
+    {
+        nullptr, &gChildScheduleData.table_storage[0], &gChildScheduleData.table_storage[1], &gChildScheduleData.table_storage[2],
+        &gChildScheduleData.table_storage[3], &gChildScheduleData.table_storage[4],
+    },
+    // table_storage
+    {
+        { ARRAY_COUNT(gChildScheduleData.entries_0), gChildScheduleData.entries_0 },
+        { ARRAY_COUNT(gChildScheduleData.entries_1), gChildScheduleData.entries_1 },
+        { ARRAY_COUNT(gChildScheduleData.entries_2), gChildScheduleData.entries_2 },
+        { ARRAY_COUNT(gChildScheduleData.entries_3), gChildScheduleData.entries_3 },
+        { ARRAY_COUNT(gChildScheduleData.entries_4), gChildScheduleData.entries_4 },
+    },
+    // entries_0
+    {
+        { 0, &gChildScheduleData.payload_storage[0] },
+        { 180, &gChildScheduleData.payload_storage[1] },
+        { 720, &gChildScheduleData.payload_storage[0] },
+        { 840, &gChildScheduleData.payload_storage[1] },
+    },
+    // entries_1
+    {
+        { 0, &gChildScheduleData.payload_storage[0] },
+        { 300, &gChildScheduleData.payload_storage[1] },
+        { 720, &gChildScheduleData.payload_storage[0] },
+        { 840, &gChildScheduleData.payload_storage[1] },
+    },
+    // entries_2
+    {
+        { 0, &gChildScheduleData.payload_storage[1] },
+    },
+    // entries_3
+    {
+        { 0, &gChildScheduleData.payload_storage[2] },
+        { 300, &gChildScheduleData.payload_storage[3] },
+        { 720, &gChildScheduleData.payload_storage[1] },
+    },
+    // entries_4
+    {
+        { 0, &gChildScheduleData.payload_storage[0] },
+        { 180, &gChildScheduleData.payload_storage[1] },
+    },
+    // payload_storage
+    {
+        { nullptr, 0, 0, 0, 564, 1, 0 },
+        { nullptr, 0, 416, -48, 29, 0, 0 },
+        { gChildScheduleData.points_2, ARRAY_COUNT(gChildScheduleData.points_2), 352, 128, 29, 0, 1 },
+        { gChildScheduleData.points_3, ARRAY_COUNT(gChildScheduleData.points_3), 56, 128, 29, 0, 1 },
+    },
+    // points_2
+    {
+        { 408, 2, 120, 3, 0 },
+        { 160, 2, 120, 0, 1 },
+        { 352, 2, 120, 2, 0 },
+        { 128, 2, 120, 1, 1 },
+    },
+    // points_3
+    {
+        { 160, 2, 120, 0, 1 },
+        { 104, 2, 120, 3, 0 },
+        { 128, 2, 120, 1, 1 },
+        { 56, 2, 120, 2, 0 },
+    },
 };

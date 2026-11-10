@@ -57,290 +57,177 @@ asm_unified(
 // Recovered schedule data at US ROM 0x080F3010 (JP 0x080F286C).
 // The two regional payloads differ only in relocated function/data pointers.
 
-ScheduleInfo const ScheduleInfo_Unk_080F286C = {
-    SelectDoctorSchedule,
-    5,
-    gUnk_080F301C,
-};
-
-Schedule const * const gUnk_080F301C[] = {
-    nullptr, &gUnk_080F3030, &gUnk_080F3038, &gUnk_080F3040,
-    &gUnk_080F3048,
-};
-
-Schedule const gUnk_080F3030 = { 3, gUnk_080F3050 };
-Schedule const gUnk_080F3038 = { 12, gUnk_080F3068 };
-Schedule const gUnk_080F3040 = { 10, gUnk_080F30C8 };
-Schedule const gUnk_080F3048 = { 1, gUnk_080F3118 };
-
-ScheduleEntry const gUnk_080F3050[] = {
-    { 0, &gUnk_080F3120 },
-    { 180, &gUnk_080F312C },
-    { 780, &gUnk_080F3120 },
-};
-
-ScheduleEntry const gUnk_080F3068[] = {
-    { 0, &gUnk_080F3120 },
-    { 60, &gUnk_080F3138 },
-    { 100, &gUnk_080F3144 },
-    { 147, &gUnk_080F3150 },
-    { 240, &gUnk_080F315C },
-    { 288, &gUnk_080F3168 },
-    { 327, &gUnk_080F312C },
-    { 420, &gUnk_080F3174 },
-    { 447, &gUnk_080F3180 },
-    // JP stores these two schedule times one minute earlier.
+extern "C" DoctorScheduleData const gDoctorScheduleData = {
+    // descriptor
+    { SelectDoctorSchedule, ARRAY_COUNT(gDoctorScheduleData.table_choices), gDoctorScheduleData.table_choices },
+    // table_choices
+    {
+        nullptr, &gDoctorScheduleData.table_storage[0], &gDoctorScheduleData.table_storage[1], &gDoctorScheduleData.table_storage[2],
+        &gDoctorScheduleData.table_storage[3],
+    },
+    // table_storage
+    {
+        { ARRAY_COUNT(gDoctorScheduleData.entries_0), gDoctorScheduleData.entries_0 },
+        { ARRAY_COUNT(gDoctorScheduleData.entries_1), gDoctorScheduleData.entries_1 },
+        { ARRAY_COUNT(gDoctorScheduleData.entries_2), gDoctorScheduleData.entries_2 },
+        { ARRAY_COUNT(gDoctorScheduleData.entries_3), gDoctorScheduleData.entries_3 },
+    },
+    // entries_0
+    {
+        { 0, &gDoctorScheduleData.payload_storage[0] },
+        { 180, &gDoctorScheduleData.payload_storage[1] },
+        { 780, &gDoctorScheduleData.payload_storage[0] },
+    },
+    // entries_1
+    {
+        { 0, &gDoctorScheduleData.payload_storage[0] },
+        { 60, &gDoctorScheduleData.payload_storage[2] },
+        { 100, &gDoctorScheduleData.payload_storage[3] },
+        { 147, &gDoctorScheduleData.payload_storage[4] },
+        { 240, &gDoctorScheduleData.payload_storage[5] },
+        { 288, &gDoctorScheduleData.payload_storage[6] },
+        { 327, &gDoctorScheduleData.payload_storage[1] },
+        { 420, &gDoctorScheduleData.payload_storage[7] },
+        { 447, &gDoctorScheduleData.payload_storage[8] },
+        // JP stores these two schedule times one minute earlier.
 #if defined(REGION_JP)
-    { 600, &gUnk_080F318C },
-    { 627, &gUnk_080F312C },
+        { 600, &gDoctorScheduleData.payload_storage[9] },
+        { 627, &gDoctorScheduleData.payload_storage[1] },
 #else
-    { 601, &gUnk_080F318C },
-    { 628, &gUnk_080F312C },
+        { 601, &gDoctorScheduleData.payload_storage[9] },
+        { 628, &gDoctorScheduleData.payload_storage[1] },
 #endif
-    { 960, &gUnk_080F3120 },
-};
-
-ScheduleEntry const gUnk_080F30C8[] = {
-    { 0, &gUnk_080F3120 },
-    { 60, &gUnk_080F3198 },
-    { 79, &gUnk_080F31A4 },
-    { 240, &gUnk_080F31B0 },
-    { 259, &gUnk_080F312C },
-    { 420, &gUnk_080F3174 },
-    { 447, &gUnk_080F3180 },
-    // JP stores these two schedule times one minute earlier.
+        { 960, &gDoctorScheduleData.payload_storage[0] },
+    },
+    // entries_2
+    {
+        { 0, &gDoctorScheduleData.payload_storage[0] },
+        { 60, &gDoctorScheduleData.payload_storage[10] },
+        { 79, &gDoctorScheduleData.payload_storage[11] },
+        { 240, &gDoctorScheduleData.payload_storage[12] },
+        { 259, &gDoctorScheduleData.payload_storage[1] },
+        { 420, &gDoctorScheduleData.payload_storage[7] },
+        { 447, &gDoctorScheduleData.payload_storage[8] },
+        // JP stores these two schedule times one minute earlier.
 #if defined(REGION_JP)
-    { 600, &gUnk_080F318C },
-    { 627, &gUnk_080F312C },
+        { 600, &gDoctorScheduleData.payload_storage[9] },
+        { 627, &gDoctorScheduleData.payload_storage[1] },
 #else
-    { 601, &gUnk_080F318C },
-    { 628, &gUnk_080F312C },
+        { 601, &gDoctorScheduleData.payload_storage[9] },
+        { 628, &gDoctorScheduleData.payload_storage[1] },
 #endif
-    { 960, &gUnk_080F3120 },
-};
-
-ScheduleEntry const gUnk_080F3118[] = {
-    { 0, &gUnk_080F3120 },
-};
-
-PathInfo const gUnk_080F3120 = {
-    (void const *)gUnk_080F31BC,
-    4,
-    192,
-    208,
-    20,
-    0,
-    1,
-};
-
-PathInfo const gUnk_080F312C = {
-    nullptr,
-    0,
-    248,
-    91,
-    19,
-    0,
-    0,
-};
-
-PathInfo const gUnk_080F3138 = {
-    (void const *)gUnk_080F31DC,
-    5,
-    856,
-    164,
-    5,
-    0,
-    0,
-};
-
-PathInfo const gUnk_080F3144 = {
-    (void const *)gUnk_080F3204,
-    16,
-    1200,
-    752,
-    0,
-    0,
-    0,
-};
-
-PathInfo const gUnk_080F3150 = {
-    (void const *)gUnk_080F3284,
-    4,
-    256,
-    488,
-    0,
-    0,
-    1,
-};
-
-PathInfo const gUnk_080F315C = {
-    (void const *)gUnk_080F32A4,
-    16,
-    256,
-    488,
-    0,
-    0,
-    0,
-};
-
-PathInfo const gUnk_080F3168 = {
-    (void const *)gUnk_080F3324,
-    5,
-    1260,
-    704,
-    5,
-    0,
-    0,
-};
-
-PathInfo const gUnk_080F3174 = {
-    (void const *)gUnk_080F334C,
-    3,
-    856,
-    164,
-    5,
-    0,
-    0,
-};
-
-PathInfo const gUnk_080F3180 = {
-    nullptr,
-    0,
-    144,
-    144,
-    25,
-    1,
-    0,
-};
-
-PathInfo const gUnk_080F318C = {
-    (void const *)gUnk_080F3364,
-    3,
-    276,
-    168,
-    5,
-    0,
-    0,
-};
-
-PathInfo const gUnk_080F3198 = {
-    (void const *)gUnk_080F337C,
-    3,
-    856,
-    164,
-    5,
-    0,
-    0,
-};
-
-PathInfo const gUnk_080F31A4 = {
-    nullptr,
-    0,
-    296,
-    155,
-    12,
-    1,
-    0,
-};
-
-PathInfo const gUnk_080F31B0 = {
-    (void const *)gUnk_080F3394,
-    3,
-    1232,
-    156,
-    5,
-    0,
-    0,
-};
-
-PathPointB const gUnk_080F31BC[] = {
-    { 72, 2, 120, 2, 0 },
-    { 227, 2, 120, 0, 1 },
-    { 192, 2, 120, 3, 0 },
-    { 208, 2, 120, 2, 1 },
-};
-
-PathPointA const gUnk_080F31DC[] = {
-    { 2, 216, 1 },
-    { 18, 1248, 0 },
-    { 19, 240, 1 },
-    { 20, 1260, 0 },
-    { 40, 736, 1 },
-};
-
-PathPointA const gUnk_080F3204[] = {
-    { 12, 912, 0 },
-    { 13, 728, 1 },
-    { 15, 856, 0 },
-    { 16, 704, 1 },
-    { 17, 832, 0 },
-    { 18, 680, 1 },
-    { 19, 808, 0 },
-    { 20, 656, 1 },
-    { 21, 776, 0 },
-    { 22, 624, 1 },
-    { 23, 752, 0 },
-    { 24, 592, 1 },
-    { 25, 720, 0 },
-    { 26, 568, 1 },
-    { 44, 256, 0 },
-    { 47, 488, 1 },
-};
-
-PathPointB const gUnk_080F3284[] = {
-    { 216, 2, 0, 0, 0 },
-    { 552, 2, 120, 0, 1 },
-    { 488, 2, 0, 0, 1 },
-    { 256, 2, 120, 3, 0 },
-};
-
-PathPointA const gUnk_080F32A4[] = {
-    { 3, 568, 1 },
-    { 21, 720, 0 },
-    { 22, 592, 1 },
-    { 23, 752, 0 },
-    { 24, 624, 1 },
-    { 25, 775, 0 },
-    { 26, 656, 1 },
-    { 27, 808, 0 },
-    { 28, 680, 1 },
-    { 29, 832, 0 },
-    { 30, 704, 1 },
-    { 31, 856, 0 },
-    { 32, 728, 1 },
-    { 34, 912, 0 },
-    { 35, 752, 1 },
-    { 48, 1216, 0 },
-};
-
-PathPointA const gUnk_080F3324[] = {
-    { 19, 240, 1 },
-    { 20, 1248, 0 },
-    { 21, 216, 1 },
-    { 37, 856, 0 },
-    { 39, 164, 1 },
-};
-
-PathPointA const gUnk_080F334C[] = {
-    { 2, 216, 1 },
-    { 25, 276, 0 },
-    { 27, 168, 1 },
-};
-
-PathPointA const gUnk_080F3364[] = {
-    { 2, 216, 1 },
-    { 25, 856, 0 },
-    { 27, 164, 1 },
-};
-
-PathPointA const gUnk_080F337C[] = {
-    { 2, 216, 1 },
-    { 17, 1232, 0 },
-    { 19, 156, 1 },
-};
-
-PathPointA const gUnk_080F3394[] = {
-    { 2, 216, 1 },
-    { 17, 856, 0 },
-    { 19, 164, 1 },
+        { 960, &gDoctorScheduleData.payload_storage[0] },
+    },
+    // entries_3
+    {
+        { 0, &gDoctorScheduleData.payload_storage[0] },
+    },
+    // payload_storage
+    {
+        { gDoctorScheduleData.points_0, ARRAY_COUNT(gDoctorScheduleData.points_0), 192, 208, 20, 0, 1 },
+        { nullptr, 0, 248, 91, 19, 0, 0 },
+        { gDoctorScheduleData.points_2, ARRAY_COUNT(gDoctorScheduleData.points_2), 856, 164, 5, 0, 0 },
+        { gDoctorScheduleData.points_3, ARRAY_COUNT(gDoctorScheduleData.points_3), 1200, 752, 0, 0, 0 },
+        { gDoctorScheduleData.points_4, ARRAY_COUNT(gDoctorScheduleData.points_4), 256, 488, 0, 0, 1 },
+        { gDoctorScheduleData.points_5, ARRAY_COUNT(gDoctorScheduleData.points_5), 256, 488, 0, 0, 0 },
+        { gDoctorScheduleData.points_6, ARRAY_COUNT(gDoctorScheduleData.points_6), 1260, 704, 5, 0, 0 },
+        { gDoctorScheduleData.points_7, ARRAY_COUNT(gDoctorScheduleData.points_7), 856, 164, 5, 0, 0 },
+        { nullptr, 0, 144, 144, 25, 1, 0 },
+        { gDoctorScheduleData.points_9, ARRAY_COUNT(gDoctorScheduleData.points_9), 276, 168, 5, 0, 0 },
+        { gDoctorScheduleData.points_10, ARRAY_COUNT(gDoctorScheduleData.points_10), 856, 164, 5, 0, 0 },
+        { nullptr, 0, 296, 155, 12, 1, 0 },
+        { gDoctorScheduleData.points_12, ARRAY_COUNT(gDoctorScheduleData.points_12), 1232, 156, 5, 0, 0 },
+    },
+    // points_0
+    {
+        { 72, 2, 120, 2, 0 },
+        { 227, 2, 120, 0, 1 },
+        { 192, 2, 120, 3, 0 },
+        { 208, 2, 120, 2, 1 },
+    },
+    // points_2
+    {
+        { 2, 216, 1 },
+        { 18, 1248, 0 },
+        { 19, 240, 1 },
+        { 20, 1260, 0 },
+        { 40, 736, 1 },
+    },
+    // points_3
+    {
+        { 12, 912, 0 },
+        { 13, 728, 1 },
+        { 15, 856, 0 },
+        { 16, 704, 1 },
+        { 17, 832, 0 },
+        { 18, 680, 1 },
+        { 19, 808, 0 },
+        { 20, 656, 1 },
+        { 21, 776, 0 },
+        { 22, 624, 1 },
+        { 23, 752, 0 },
+        { 24, 592, 1 },
+        { 25, 720, 0 },
+        { 26, 568, 1 },
+        { 44, 256, 0 },
+        { 47, 488, 1 },
+    },
+    // points_4
+    {
+        { 216, 2, 0, 0, 0 },
+        { 552, 2, 120, 0, 1 },
+        { 488, 2, 0, 0, 1 },
+        { 256, 2, 120, 3, 0 },
+    },
+    // points_5
+    {
+        { 3, 568, 1 },
+        { 21, 720, 0 },
+        { 22, 592, 1 },
+        { 23, 752, 0 },
+        { 24, 624, 1 },
+        { 25, 775, 0 },
+        { 26, 656, 1 },
+        { 27, 808, 0 },
+        { 28, 680, 1 },
+        { 29, 832, 0 },
+        { 30, 704, 1 },
+        { 31, 856, 0 },
+        { 32, 728, 1 },
+        { 34, 912, 0 },
+        { 35, 752, 1 },
+        { 48, 1216, 0 },
+    },
+    // points_6
+    {
+        { 19, 240, 1 },
+        { 20, 1248, 0 },
+        { 21, 216, 1 },
+        { 37, 856, 0 },
+        { 39, 164, 1 },
+    },
+    // points_7
+    {
+        { 2, 216, 1 },
+        { 25, 276, 0 },
+        { 27, 168, 1 },
+    },
+    // points_9
+    {
+        { 2, 216, 1 },
+        { 25, 856, 0 },
+        { 27, 164, 1 },
+    },
+    // points_10
+    {
+        { 2, 216, 1 },
+        { 17, 1232, 0 },
+        { 19, 156, 1 },
+    },
+    // points_12
+    {
+        { 2, 216, 1 },
+        { 17, 856, 0 },
+        { 19, 164, 1 },
+    },
 };

@@ -1,3 +1,32 @@
+## 修复 Zack 跨对象时刻表并收拢独立日程边界（1830–1836，2026-11-10）
+
+先整体检查 Rick、Popuri、Lillia、Child、Cliff、Zack、Doctor 七个独立声明模块：四版各 272 个类型对象，共 6,372 字节，原定义顺序与实际 ROM 连续顺序一致。逐项核对描述符、选择表、Schedule、ScheduleEntry、PathInfo 和两类路径点的实际大小、指针字段及消费数量，发现唯一的跨数组读取：Zack 首张表声明 15 项，但源码用相邻的 gUnk_080F2DE8[5] 与 gUnk_080F3010[10] 分开存放。原字节相邻能匹配 ROM，不代表 C++ 对象边界或扩缩安全。
+
+现将该表恢复为 ZackScheduleData.entries_0[15]，读取数量由 ARRAY_COUNT 推导。旧内部标签完全移除，没有别名，也没有留下指向新表 +5 的过渡引用。其余七个独立模块及 Ellen 的单一路径对象按真实 ROM 顺序组织在各自同名 .cc/.hh 中；结构和根符号按 NPC 命名，内部指针使用真实成员。Ellen 仍保留单个 PathInfo payload，不为统一形式伪造路径点数组。Doctor 的两处 JP/海外时刻差异保留原 #if 分支及原值。
+
+本轮涉及八个对象共 6,440 字节，126 个成员数量字段统一使用 ARRAY_COUNT，其中 Rick 的 23 处此前已改为独立数组推导，本轮仅随归属调整；**新增推导数量为 103 处**。没有给旧的不完整全局声明补上人为固定长度。新成员数组长度取自实际完整读取范围，后续成员偏移由正常 C++ 类型布局计算，不靠固定地址或 LDS 子节。
+
+| 日程对象 | JP | US | EU | DE | 字节 |
+| --- | --- | --- | --- | --- | ---: |
+| gRickScheduleData | 0x080F12DC | 0x080F1A80 | 0x080F1ACC | 0x080F1F68 | 1332 |
+| gPopuriScheduleData | 0x080F181C | 0x080F1FC0 | 0x080F200C | 0x080F24A8 | 2112 |
+| gLilliaScheduleData | 0x080F2068 | 0x080F280C | 0x080F2858 | 0x080F2CF4 | 424 |
+| gChildScheduleData | 0x080F221C | 0x080F29C0 | 0x080F2A0C | 0x080F2EA8 | 300 |
+| gCliffScheduleData | 0x080F2354 | 0x080F2AF8 | 0x080F2B44 | 0x080F2FE0 | 700 |
+| gZackScheduleData | 0x080F261C | 0x080F2DC0 | 0x080F2E0C | 0x080F32A8 | 580 |
+| gDoctorScheduleData | 0x080F286C | 0x080F3010 | 0x080F305C | 0x080F34F8 | 924 |
+| gEllenScheduleData | 0x080F2C14 | 0x080F33B8 | 0x080F3404 | 0x080F38A0 | 68 |
+
+表中地址仅为实际布局记录，不作为源码或 LDS 的位置约束。本轮未修改 LDS、编译器、预处理器、资源链或链接后 ROM。
+
+统一复核当前 32 个日程数据对象：四版各 28,128 字节，563 个数量字段由实际数组推导；1,939 处指针字段全部有正确的真实 ABS32 重定位，65 处外部引用均使用根符号首地址。各表/路径的读取数量完整落在一张对应数组内，A/B 路径格式标志与成员类型一致；Zack 已无跨对象读取。选择器按源码实际绑定核对，保留 Lou 的 IsLouSundayScheduleActive 等已有真实函数名，未为统一命名改造函数。
+
+完整验证：阶段 1836 使用正常 WSL make -j16，四个完整 8 MiB ROM 均与各自 baserom 逐字节及 SHA-1 一致，全局符号/字节和重定位映射核查通过。此前阶段 1834 因临时整理脚本在 Rick 行末注释后多插入四个逗号而未链接成功；源码语法修正并单独核对实际 Rick 对象后才重建，未采用任何编译器或 ROM 补丁。
+
+能力边界仍需分别记录：u16 数量字段、原生选择器的逻辑 ID、时刻/路径搜索的排序规则和其他玩法限制不会因重定位自动消失。这一核对覆盖实际类型及重定位，尚未证明全 ROM 无编码/构造外部引用或 RAM 原址依赖；不能据此宣称所有内容可无条件扩缩。无人为移址/插空试验。
+
+证据：independent-schedule-boundaries-1830.json、independent-schedule-plan-1831.json、independent-schedule-migration-1832.json、ellen-baseline-boundaries-1833.json、all-schedule-graphs-1835.json、full-build-1836/results.json 与四版 global-report。临时脚本及失败记录在本任务 I 盘目录，不加入编译链。完整目标保持进行中，接续审计 RAM/构造引用及物理后续 rodata 块。
+
 ## 按真实路径边界恢复 NPC 日程成员数组与推导数量（1820–1825，2026-11-10）
 
 本轮整体核对 24 个 NPC 日程数据聚合对象，共 21,688 字节。原先平铺的 entry_storage/detail_storage 不再用手写起始索引与数量区分不同日程及路径：恢复为 174 张独立时刻表成员数组、239 张独立路径成员数组，保留实际共享范围的身份及所有原物理先后顺序。按实际 point_type_select 与读取代码，路径点恢复为 PathPointA/PathPointB，共分别 886 / 131 项；有符号坐标、时刻、速度、朝向与轴选择使用原有真实字段，未确认的 PathPointB.unk_04 保留原名。

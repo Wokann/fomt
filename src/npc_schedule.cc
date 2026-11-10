@@ -821,9 +821,9 @@ void Npc::InitializeSchedule(ScheduleInfo const & info, void const * context)
 // Initialize the 31 regular NPC schedules, then the child when present.
 void NpcCollection::InitializeSchedules(GameStateSaveImage const & state)
 {
-    lillia.InitializeSchedule(gUnk_080F2068, &state);
-    rick.InitializeSchedule(ScheduleInfo_Unk_080F1A80, &state);
-    popuri.InitializeSchedule(gUnk_080F1FC0, &state);
+    lillia.InitializeSchedule(gLilliaScheduleData.descriptor, &state);
+    rick.InitializeSchedule(gRickScheduleData.descriptor, &state);
+    popuri.InitializeSchedule(gPopuriScheduleData.descriptor, &state);
     barley.InitializeSchedule(gBarleyScheduleData.descriptor, &state);
     may.InitializeSchedule(gMayScheduleData.descriptor, &state);
     saibara.InitializeSchedule(gSaibaraScheduleData.descriptor, &state);
@@ -835,26 +835,26 @@ void NpcCollection::InitializeSchedules(GameStateSaveImage const & state)
     mary.InitializeSchedule(gMaryScheduleData.descriptor, &state);
     thomas.InitializeSchedule(gThomasScheduleData.descriptor, &state);
     harris.InitializeSchedule(gHarrisScheduleData.descriptor, &state);
-    ellen.InitializeSchedule(gUnk_080F33B8.descriptor, &state);
+    ellen.InitializeSchedule(gEllenScheduleData.descriptor, &state);
     stu.InitializeSchedule(gStuScheduleData.descriptor, &state);
     jeff.InitializeSchedule(gJeffScheduleData.descriptor, &state);
     sasha.InitializeSchedule(gSashaScheduleData.descriptor, &state);
     karen.InitializeSchedule(gKarenScheduleData.descriptor, &state);
-    doctor.InitializeSchedule(ScheduleInfo_Unk_080F286C, &state);
+    doctor.InitializeSchedule(gDoctorScheduleData.descriptor, &state);
     elli.InitializeSchedule(gElliScheduleData.descriptor, &state);
     carter.InitializeSchedule(gCarterScheduleData.descriptor, &state);
-    cliff.InitializeSchedule(ScheduleInfo_Unk_080F2354, &state);
+    cliff.InitializeSchedule(gCliffScheduleData.descriptor, &state);
     doug.InitializeSchedule(gDougScheduleData.descriptor, &state);
     ann.InitializeSchedule(gAnnScheduleData.descriptor, &state);
     kai.InitializeSchedule(gKaiScheduleData.descriptor, &state);
     gotz.InitializeSchedule(gGotzScheduleData.descriptor, &state);
-    zack.InitializeSchedule(ScheduleInfo_Unk_080F261C, &state);
+    zack.InitializeSchedule(gZackScheduleData.descriptor, &state);
     won.InitializeSchedule(gWonScheduleData.descriptor, &state);
     van.InitializeSchedule(gVanScheduleData.descriptor, &state);
     lou.InitializeSchedule(gLouScheduleData.descriptor, &state);
     Child * current_child = GetChild();
     if (current_child != nullptr) {
-        current_child->InitializeSchedule(gUnk_080F221C, &state);
+        current_child->InitializeSchedule(gChildScheduleData.descriptor, &state);
     }
 }
 

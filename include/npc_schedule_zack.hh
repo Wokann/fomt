@@ -5,56 +5,24 @@
 
 extern "C" u32 SelectZackSchedule(void const * context);
 
-extern ScheduleInfo const ScheduleInfo_Unk_080F261C;
+struct ZackScheduleData
+{
+    ScheduleInfo descriptor;
+    Schedule const * const table_choices[3];
+    Schedule table_storage[2];
+    ScheduleEntry entries_0[15];
+    ScheduleEntry entries_1[1];
+    PathInfo payload_storage[11];
+    PathPointB points_0[2];
+    PathPointA points_1[6];
+    PathPointA points_2[5];
+    PathPointA points_4[5];
+    PathPointA points_5[6];
+    PathPointA points_6[3];
+    PathPointA points_8[3];
+    PathPointA points_10[5];
+};
 
-extern Schedule const * const gUnk_080F2DCC[];
-
-extern Schedule const gUnk_080F2DD8;
-
-extern Schedule const gUnk_080F2DE0;
-
-extern ScheduleEntry const gUnk_080F2DE8[];
-
-extern ScheduleEntry const gUnk_080F3010[];
-
-extern ScheduleEntry const gUnk_080F2E60[];
-
-extern PathInfo const gUnk_080F2E68;
-
-extern PathInfo const gUnk_080F2E74;
-
-extern PathInfo const gUnk_080F2E80;
-
-extern PathInfo const gUnk_080F2E8C;
-
-extern PathInfo const gUnk_080F2E98;
-
-extern PathInfo const gUnk_080F2EA4;
-
-extern PathInfo const gUnk_080F2EB0;
-
-extern PathInfo const gUnk_080F2EBC;
-
-extern PathInfo const gUnk_080F2EC8;
-
-extern PathInfo const gUnk_080F2ED4;
-
-extern PathInfo const gUnk_080F2EE0;
-
-extern PathPointB const gUnk_080F2EEC[];
-
-extern PathPointA const gUnk_080F2EFC[];
-
-extern PathPointA const gUnk_080F2F2C[];
-
-extern PathPointA const gUnk_080F2F54[];
-
-extern PathPointA const gUnk_080F2F7C[];
-
-extern PathPointA const gUnk_080F2FAC[];
-
-extern PathPointA const gUnk_080F2FC4[];
-
-extern PathPointA const gUnk_080F2FDC[];
+extern "C" ZackScheduleData const gZackScheduleData;
 
 #endif // NPC_SCHEDULE_ZACK_HH
