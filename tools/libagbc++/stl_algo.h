@@ -146,6 +146,39 @@ _RandomAccessIter find(_RandomAccessIter __first, _RandomAccessIter __last,
   }
 }
 
+// Pointer ranges have a known category; keep their worker at three arguments.
+// The general iterator/category overload above retains its existing ABI.
+template <class _Tp, class _Value>
+_Tp* find(_Tp* __begin, _Tp* __last, const _Value& __val)
+{
+  _Tp* __current = __begin;
+  ptrdiff_t __trip_count = (__last - __current) >> 2;
+  for ( ; __trip_count > 0; --__trip_count) {
+    if (*__current == __val) return __current;
+    ++__current;
+    if (*__current == __val) return __current;
+    ++__current;
+    if (*__current == __val) return __current;
+    ++__current;
+    if (*__current == __val) return __current;
+    ++__current;
+  }
+  switch (__last - __current) {
+  case 3:
+    if (*__current == __val) return __current;
+    ++__current;
+  case 2:
+    if (*__current == __val) return __current;
+    ++__current;
+  case 1:
+    if (*__current == __val) return __current;
+    ++__current;
+  case 0:
+  default:
+    return __last;
+  }
+}
+
 template <class _RandomAccessIter, class _Predicate>
 _RandomAccessIter find_if(_RandomAccessIter __first, _RandomAccessIter __last,
                           _Predicate __pred,

@@ -1,0 +1,131 @@
+/*
+ * Copyright (c) 1998
+ * Silicon Graphics Computer Systems, Inc.
+ *
+ * Permission to use, copy, modify, distribute and sell this software
+ * and its documentation for any purpose is hereby granted without fee,
+ * provided that the above copyright notice appear in all copies and
+ * that both that copyright notice and this permission notice appear
+ * in supporting documentation. Silicon Graphics makes no
+ * representations about the suitability of this software for any
+ * purpose. It is provided "as is" without express or implied warranty.
+ */
+
+#ifndef __SGI_STL_BITSET
+#define __SGI_STL_BITSET
+
+#include <stl_bitset.h>
+#include <algorithm>
+
+__STL_BEGIN_NAMESPACE
+
+template<size_t _Nw, class _WordT>
+inline _Base_bitset<_Nw, _WordT>::_Base_bitset() { _M_do_reset(); }
+
+template<size_t _Nw, class _WordT>
+_Base_bitset<_Nw, _WordT>::_Base_bitset(unsigned long __val) {
+  _M_do_reset();
+  const size_t __n = min(sizeof(unsigned long) * CHAR_BIT,
+                         __BITS_PER_WORDT(_WordT) * _Nw);
+  for (size_t __i = 0; __i < __n; ++__i, __val >>= 1)
+    if (__val & 0x1)
+      _M_getword(__i) |= _S_maskbit(__i);
+}
+
+template<size_t _Nw, class _WordT>
+inline size_t _Base_bitset<_Nw, _WordT>::_S_whichword(size_t __pos) {
+  return __pos / __BITS_PER_WORDT(_WordT);
+}
+template<size_t _Nw, class _WordT>
+inline size_t _Base_bitset<_Nw, _WordT>::_S_whichbit(size_t __pos) {
+  return __pos % __BITS_PER_WORDT(_WordT);
+}
+template<size_t _Nw, class _WordT>
+inline _WordT _Base_bitset<_Nw, _WordT>::_S_maskbit(size_t __pos) {
+  return static_cast<_WordT>(1) << _S_whichbit(__pos);
+}
+template<size_t _Nw, class _WordT>
+inline _WordT& _Base_bitset<_Nw, _WordT>::_M_getword(size_t __pos) {
+  return _M_w[_S_whichword(__pos)];
+}
+template<size_t _Nw, class _WordT>
+inline const _WordT& _Base_bitset<_Nw, _WordT>::_M_getword(size_t __pos) const {
+  return _M_w[_S_whichword(__pos)];
+}
+template<size_t _Nw, class _WordT>
+inline void _Base_bitset<_Nw, _WordT>::_M_do_reset() {
+  for (size_t __i = 0; __i < _Nw; ++__i)
+    _M_w[__i] = 0;
+}
+
+template<class _WordT>
+inline _Base_bitset<1, _WordT>::_Base_bitset() { _M_do_reset(); }
+template<class _WordT>
+_Base_bitset<1, _WordT>::_Base_bitset(unsigned long __val) {
+  _M_do_reset();
+  const size_t __n = min(sizeof(unsigned long) * CHAR_BIT,
+                         __BITS_PER_WORDT(_WordT));
+  for (size_t __i = 0; __i < __n; ++__i, __val >>= 1)
+    if (__val & 0x1)
+      _M_w |= _S_maskbit(__i);
+}
+template<>
+inline _Base_bitset<1, unsigned long>::_Base_bitset(unsigned long __val) {
+  _M_w = __val;
+}
+template<class _WordT>
+inline size_t _Base_bitset<1, _WordT>::_S_whichbit(size_t __pos) {
+  return __pos % __BITS_PER_WORDT(_WordT);
+}
+template<class _WordT>
+inline _WordT _Base_bitset<1, _WordT>::_S_maskbit(size_t __pos) {
+  return static_cast<_WordT>(1) << _S_whichbit(__pos);
+}
+template<class _WordT>
+inline _WordT& _Base_bitset<1, _WordT>::_M_getword(size_t) { return _M_w; }
+template<class _WordT>
+inline const _WordT& _Base_bitset<1, _WordT>::_M_getword(size_t) const { return _M_w; }
+template<class _WordT>
+inline void _Base_bitset<1, _WordT>::_M_do_reset() { _M_w = 0; }
+
+template<size_t _Nb, class _WordT>
+inline bitset<_Nb, _WordT>::bitset() {}
+template<size_t _Nb, class _WordT>
+inline bitset<_Nb, _WordT>::bitset(unsigned long __val)
+  : _Base_bitset<__BITSET_WORDS(_Nb,_WordT), _WordT>(__val) {}
+template<size_t _Nb, class _WordT>
+inline bitset<_Nb, _WordT>& bitset<_Nb, _WordT>::_Unchecked_set(size_t __pos) {
+  _M_getword(__pos) |= _S_maskbit(__pos);
+  return *this;
+}
+template<size_t _Nb, class _WordT>
+inline bitset<_Nb, _WordT>& bitset<_Nb, _WordT>::_Unchecked_reset(size_t __pos) {
+  _M_getword(__pos) &= ~_S_maskbit(__pos);
+  return *this;
+}
+template<size_t _Nb, class _WordT>
+inline bool bitset<_Nb, _WordT>::_Unchecked_test(size_t __pos) const {
+  return (_M_getword(__pos) & _S_maskbit(__pos)) != static_cast<_WordT>(0);
+}
+template<size_t _Nb, class _WordT>
+inline bitset<_Nb, _WordT>& bitset<_Nb, _WordT>::set(size_t __pos) {
+  return _Unchecked_set(__pos);
+}
+template<size_t _Nb, class _WordT>
+inline bitset<_Nb, _WordT>& bitset<_Nb, _WordT>::reset(size_t __pos) {
+  return _Unchecked_reset(__pos);
+}
+template<size_t _Nb, class _WordT>
+inline bitset<_Nb, _WordT>& bitset<_Nb, _WordT>::reset() {
+  _M_do_reset();
+  return *this;
+}
+template<size_t _Nb, class _WordT>
+inline bool bitset<_Nb, _WordT>::test(size_t __pos) const {
+  return _Unchecked_test(__pos);
+}
+template<size_t _Nb, class _WordT>
+inline size_t bitset<_Nb, _WordT>::size() const { return _Nb; }
+
+__STL_END_NAMESPACE
+#endif

@@ -1,29 +1,16 @@
 #!/bin/bash
-
 set -e
 
 here=$(dirname "$(readlink -f "$0")")/..
-temp=$(mktemp -d)
-trap 'rm -rf "$temp"' EXIT
+compiler=${1:-"$here/../agbcc"}
+compiler=$(cd "$compiler" && pwd)
 
-# Keep the C++-capable cp toolchain reproducible. This base includes the
-# unique-section alignment correction; the local frontend patch preserves
-# destructor semantics when a declaration selects its native assembler name.
-# The Thumb call patch supports individual far-call declarations without
-# changing ordinary calls or requiring fixed-register source constraints.
-# The frame-address patch materializes rejected subword frame addresses
-# instead of weakening Thumb's address checks for value-parameter copies.
-agbcc_repo="https://github.com/notyourav/agbcc.git"
-agbcc_commit="1caa6becde5e4676b59c31c74d68f45ced79557c"
+if [ ! -f "$compiler/g++/cp/init.c" ] || [ ! -f "$compiler/g++_arm/cp/init.c" ]; then
+    echo "The compiler source must contain the C++-capable cp branch." >&2
+    exit 1
+fi
 
-git clone --no-checkout "$agbcc_repo" "$temp"
-cd "$temp"
-git checkout --detach "$agbcc_commit"
-git apply --check "$here/tools/agbcp-asm-destructors.patch"
-git apply "$here/tools/agbcp-asm-destructors.patch"
-git apply --check "$here/tools/agbcc-long-calls.patch"
-git apply "$here/tools/agbcc-long-calls.patch"
-git apply --check "$here/tools/agbcp-frame-address.patch"
-git apply "$here/tools/agbcp-frame-address.patch"
-./build.sh
-./install.sh "$here"
+# Build the sibling source checkout; no checkout or patch application here.
+cd "$compiler"
+CC=${CC:-"gcc -std=gnu89 -fcommon"} MAKEFLAGS=${MAKEFLAGS:--j4} bash ./build.sh
+bash ./install.sh "$here"

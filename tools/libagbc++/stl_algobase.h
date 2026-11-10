@@ -145,7 +145,7 @@ __copy(_RandomAccessIter __first, _RandomAccessIter __last,
 template <class _Tp>
 inline _Tp*
 __copy_trivial(const _Tp* __first, const _Tp* __last, _Tp* __result) {
-  memmove(__result, __first, sizeof(_Tp) * (__last - __first));
+  memmove(__result, __first, (const char*)__last - (const char*)__first);
   return __result + (__last - __first);
 }
 
@@ -353,6 +353,28 @@ _OutputIter fill_n(_OutputIter __first, _Size __n, const _Tp& __value) {
   for ( ; __n > 0; --__n, ++__first)
     *__first = __value;
   return __first;
+}
+
+// Deduce integral pointer element types from the range, not the value.
+// Non-integral element values retain reference semantics.
+template <class _Integral, class _Tp>
+struct __fill_n_value_parameter {
+  typedef const _Tp& _Type;
+};
+
+template <class _Tp>
+struct __fill_n_value_parameter<__true_type, _Tp> {
+  typedef _Tp _Type;
+};
+
+template <class _Tp, class _Size>
+inline _Tp* fill_n(_Tp* __first, _Size __n,
+  typename __fill_n_value_parameter<
+    typename _Is_integer<_Tp>::_Integral, _Tp>::_Type __value) {
+  _Size __index = 0;
+  for ( ; __index < __n; ++__index)
+    __first[__index] = __value;
+  return __first + __index;
 }
 
 //--------------------------------------------------

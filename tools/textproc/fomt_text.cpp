@@ -640,14 +640,14 @@ std::string GuideLineLabel(const std::string &page, std::size_t index,
     const std::string &text, bool has_fixed_title);
 
 void EmitGuideCppString(std::ostringstream &output, const std::string &label,
-    const std::string &section, const Bytes &bytes, std::size_t alignment = 0)
+    const Bytes &bytes, std::size_t alignment = 0)
 {
     // agbcp treats a const char array as its initializer literal when that
     // array decays inside a later pointer table.  A first-member wrapper
     // preserves the emitted symbol address while keeping pointer tables tied
-    // to the explicitly sectioned object rather than its default .rodata copy.
+    // to the named object rather than an anonymous initializer copy.
     output << "extern ReferenceGuideTextStorage<" << (bytes.size() + 1) << "> const "
-           << label << " SECTION(\"" << section << "\")";
+           << label;
     if (alignment != 0)
         output << " ALIGN(" << alignment << ')';
     output << " =\n{\n";
@@ -674,12 +674,12 @@ std::string GuidePaddingLabel(const std::string &page, std::size_t index,
 }
 
 void EmitGuidePadding(std::ostringstream &output, const std::string &label,
-    const std::string &section, std::size_t size)
+    std::size_t size)
 {
     // A PAD directive represents verified, unreferenced original ROM fill;
     // it is deliberately not exposed as semantic game data.
     output << "// Verified unreferenced raw ROM fill.\n"
-           << "extern u8 const " << label << "[] SECTION(\"" << section << "\") = {";
+           << "extern u8 const " << label << "[] = {";
     for (std::size_t index = 0; index < size; ++index)
         output << (index == 0 ? " " : ", ") << '0';
     output << " };\n\n";
@@ -697,7 +697,7 @@ void EmitStaffCreditsCppString(std::ostringstream &output, const std::string &la
     // next four-byte boundary. This output is inserted after the ordinary C
     // preprocessor, so use the compiler spelling rather than the ALIGN macro.
     output << "extern StaffCreditsTextStorage<" << storage_size << "> const " << label
-           << " __attribute__((aligned(1))) =\n{\n";
+           << " __attribute__((aligned(4))) =\n{\n";
     if (bytes.empty()) {
         output << "    \"\"\n};\n\n";
         return;
@@ -1187,6 +1187,34 @@ std::string EmitByteElements(const Bytes &bytes)
     return output.str();
 }
 
+std::size_t SkipCppSourceTrivia(const std::string &source, std::size_t at)
+{
+    while (at < source.size()) {
+        if (std::isspace(static_cast<unsigned char>(source[at])) != 0) {
+            ++at;
+        } else if (source.compare(at, 2, "/*") == 0) {
+            const std::size_t close = source.find("*/", at + 2);
+            if (close == std::string::npos)
+                throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
+                    + ": unterminated C/C++ block comment");
+            at = close + 2;
+        } else {
+            const std::size_t previous_newline = source.rfind('\n', at);
+            const std::size_t first_column = previous_newline == std::string::npos ? 0 : previous_newline + 1;
+            const bool directive = source[at] == '#' && std::all_of(
+                source.begin() + static_cast<std::ptrdiff_t>(first_column),
+                source.begin() + static_cast<std::ptrdiff_t>(at), [](char value) {
+                    return std::isspace(static_cast<unsigned char>(value)) != 0;
+                });
+            if (!directive && source.compare(at, 2, "//") != 0)
+                break;
+            const std::size_t newline = source.find('\n', at + 1);
+            at = newline == std::string::npos ? source.size() : newline + 1;
+        }
+    }
+    return at;
+}
+
 // A u8 or u16 array whose braced initializer contains quoted literals is
 // authored as readable regional text.  It is not valid input for agbcp by
 // itself: this generic pass lowers each literal to game-font bytes or words.
@@ -1208,15 +1236,11 @@ bool TryCompileEncodedArrayInitializer(const std::string &source, const Charmap 
         return false;
     }
 
-    std::size_t cursor = at + element_type.size();
-    while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
-        ++cursor;
+    // Look ahead through trivia without dropping it from the copied prefix.
+    std::size_t cursor = SkipCppSourceTrivia(source, at + element_type.size());
     if (!StartsCppIdentifier(source, cursor, kConst))
         return false;
-    cursor += kConst.size();
-
-    while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
-        ++cursor;
+    cursor = SkipCppSourceTrivia(source, cursor + kConst.size());
     if (cursor == source.size()
         || (std::isalpha(static_cast<unsigned char>(source[cursor])) == 0 && source[cursor] != '_')) {
         return false;
@@ -1226,8 +1250,7 @@ bool TryCompileEncodedArrayInitializer(const std::string &source, const Charmap 
     } while (cursor < source.size()
         && (std::isalnum(static_cast<unsigned char>(source[cursor])) != 0 || source[cursor] == '_'));
 
-    while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
-        ++cursor;
+    cursor = SkipCppSourceTrivia(source, cursor);
     if (cursor == source.size() || source[cursor] != '[')
         return false;
     do {
@@ -1235,9 +1258,7 @@ bool TryCompileEncodedArrayInitializer(const std::string &source, const Charmap 
         if (close == std::string::npos)
             throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, cursor))
                 + ": unterminated encoded array dimension");
-        cursor = close + 1;
-        while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
-            ++cursor;
+        cursor = SkipCppSourceTrivia(source, close + 1);
     } while (cursor < source.size() && source[cursor] == '[');
 
     // Attributes may follow the array declarator.  They contain no initializer
@@ -1245,20 +1266,34 @@ bool TryCompileEncodedArrayInitializer(const std::string &source, const Charmap 
     while (cursor < source.size() && source[cursor] != '=') {
         if (source[cursor] == ';' || source[cursor] == '{')
             return false;
-        ++cursor;
+        cursor = SkipCppSourceTrivia(source, cursor + 1);
     }
     if (cursor == source.size())
         return false;
-    ++cursor;
-    while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
-        ++cursor;
+    cursor = SkipCppSourceTrivia(source, cursor + 1);
     if (cursor == source.size() || source[cursor] != '{')
         return false;
 
     output << source.substr(at, cursor - at + 1);
     ++cursor;
     std::size_t brace_depth = 1;
+    bool in_encoded_literal_sequence = false;
+    bool after_encoded_literal = false;
     while (cursor < source.size()) {
+        if (source[cursor] == '#') {
+            const std::size_t previous_newline = source.rfind('\n', cursor);
+            const std::size_t first_column = previous_newline == std::string::npos ? 0 : previous_newline + 1;
+            if (std::all_of(source.begin() + static_cast<std::ptrdiff_t>(first_column),
+                    source.begin() + static_cast<std::ptrdiff_t>(cursor), [](char value) {
+                        return std::isspace(static_cast<unsigned char>(value)) != 0;
+                    })) {
+                const std::size_t newline = source.find('\n', cursor + 1);
+                const std::size_t end = newline == std::string::npos ? source.size() : newline + 1;
+                output << source.substr(cursor, end - cursor);
+                cursor = end;
+                continue;
+            }
+        }
         if (source.compare(cursor, 2, "//") == 0) {
             const std::size_t newline = source.find('\n', cursor + 2);
             const std::size_t end = newline == std::string::npos ? source.size() : newline + 1;
@@ -1278,6 +1313,12 @@ bool TryCompileEncodedArrayInitializer(const std::string &source, const Charmap 
             continue;
         }
         if (source[cursor] == '\'') {
+            if (in_encoded_literal_sequence && !after_encoded_literal) {
+                throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, cursor))
+                    + ": a direct encoded array cannot contain an empty literal sequence");
+            }
+            in_encoded_literal_sequence = false;
+            after_encoded_literal = false;
             const std::size_t end = FindCppCharacterLiteralEnd(source, cursor,
                 SourceLineNumber(source, cursor));
             output << source.substr(cursor, end - cursor);
@@ -1285,46 +1326,40 @@ bool TryCompileEncodedArrayInitializer(const std::string &source, const Charmap 
             continue;
         }
         if (source[cursor] == '"') {
+            // CPP may insert file markers between adjacent string tokens.
+            // They still form one numeric initializer sequence after lowering.
+            in_encoded_literal_sequence = true;
+            const std::size_t line_number = SourceLineNumber(source, cursor);
+            const std::size_t end = FindCppQuotedLiteralEnd(source, cursor, line_number);
             if (element_type == kWordType) {
-                std::vector<std::uint16_t> words;
-                do {
-                    const std::size_t line_number = SourceLineNumber(source, cursor);
-                    const std::size_t end = FindCppQuotedLiteralEnd(source, cursor, line_number);
-                    const std::vector<std::uint16_t> literal_words = EncodeCppSourceGlyphLiteral(
-                        source.substr(cursor, end - cursor), charmap, line_number);
-                    words.insert(words.end(), literal_words.begin(), literal_words.end());
-                    cursor = end;
-                    while (cursor < source.size()
-                        && std::isspace(static_cast<unsigned char>(source[cursor])) != 0) {
-                        ++cursor;
-                    }
-                } while (cursor < source.size() && source[cursor] == '"');
-                if (words.empty()) {
-                    throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, cursor))
-                        + ": a direct u16 glyph array cannot contain an empty literal");
+                const std::vector<std::uint16_t> words = EncodeCppSourceGlyphLiteral(
+                    source.substr(cursor, end - cursor), charmap, line_number);
+                if (!words.empty()) {
+                    if (after_encoded_literal)
+                        output << ", ";
+                    output << EmitGlyphWordElements(words);
+                    after_encoded_literal = true;
                 }
-                output << EmitGlyphWordElements(words);
             } else {
-                Bytes bytes;
-                do {
-                    const std::size_t line_number = SourceLineNumber(source, cursor);
-                    const std::size_t end = FindCppQuotedLiteralEnd(source, cursor, line_number);
-                    const Bytes literal_bytes = EncodeCppSourceStringLiteral(
-                        source.substr(cursor, end - cursor), charmap, line_number);
-                    bytes.insert(bytes.end(), literal_bytes.begin(), literal_bytes.end());
-                    cursor = end;
-                    while (cursor < source.size()
-                        && std::isspace(static_cast<unsigned char>(source[cursor])) != 0) {
-                        ++cursor;
-                    }
-                } while (cursor < source.size() && source[cursor] == '"');
-                if (bytes.empty()) {
-                    throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, cursor))
-                        + ": a direct u8 glyph array cannot contain an empty literal");
+                const Bytes bytes = EncodeCppSourceStringLiteral(
+                    source.substr(cursor, end - cursor), charmap, line_number);
+                if (!bytes.empty()) {
+                    if (after_encoded_literal)
+                        output << ", ";
+                    output << EmitByteElements(bytes);
+                    after_encoded_literal = true;
                 }
-                output << EmitByteElements(bytes);
             }
+            cursor = end;
             continue;
+        }
+        if (std::isspace(static_cast<unsigned char>(source[cursor])) == 0) {
+            if (in_encoded_literal_sequence && !after_encoded_literal) {
+                throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, cursor))
+                    + ": a direct encoded array cannot contain an empty literal sequence");
+            }
+            in_encoded_literal_sequence = false;
+            after_encoded_literal = false;
         }
         if (source[cursor] == '{') {
             ++brace_depth;
@@ -1418,9 +1453,9 @@ std::string CompileCppSourceText(const std::string &source, const Charmap &charm
                 return std::isspace(static_cast<unsigned char>(value)) != 0;
             });
 
-        // Keep directives intact when the command is explicitly run on a
-        // header/source before CPP.  The normal build uses CPP -P first, but
-        // preserving this syntax makes the text pass valid for .h and .hh too.
+        // Keep CPP line markers and source directives intact. The compiler
+        // needs the original file boundaries for interface/implementation
+        // pragmas; header/source input before CPP also retains its directives.
         if (source[at] == '#' && after_line_whitespace) {
             const std::size_t newline = source.find('\n', at + 1);
             const std::size_t end = newline == std::string::npos ? source.size() : newline + 1;
@@ -2710,7 +2745,6 @@ GuidePageOutput CompileGuidePage(const std::string &source, const std::string &p
 
     std::vector<std::string> pointer_entries;
     const std::string section_stem = GuideSectionStem(page.page);
-    const std::string guide_section = ".rodata.reference_guide";
     std::set<std::string> emitted_labels;
     for (std::size_t index = 0; index < page.lines.size(); ++index) {
         Bytes bytes;
@@ -2736,9 +2770,9 @@ GuidePageOutput CompileGuidePage(const std::string &source, const std::string &p
             && emitted_labels.insert(local_label).second) {
             if (padding != page.line_paddings.end()) {
                 EmitGuidePadding(text_output, GuidePaddingLabel(page.page, index,
-                    page.lines[index], page.has_fixed_title), guide_section, padding->second);
+                    page.lines[index], page.has_fixed_title), padding->second);
             }
-            std::string declarator = local_label + "[] SECTION(\"" + guide_section + "\")";
+            std::string declarator = local_label + "[]";
             if (alignment != page.line_alignments.end())
                 declarator += " ALIGN(" + std::to_string(alignment->second) + ')';
             EmitCppString(text_output, declarator, PadGuideTextStorage(bytes), "extern ");
@@ -2751,7 +2785,7 @@ GuidePageOutput CompileGuidePage(const std::string &source, const std::string &p
     if (!table_labels.empty())
         table_output << '\n';
     table_output << "extern char const * const gReferenceGuide_" << section_stem
-                 << "[] SECTION(\"" << guide_section << "\") = {\n";
+                 << "[] = {\n";
     for (const std::string &entry : pointer_entries)
         table_output << "    " << entry << ",\n";
     table_output << "    nullptr,\n};\n";
@@ -2864,9 +2898,8 @@ GuideCollectionOutput CompileGuideCollection(const std::vector<GuideCollectionPa
     }
     output << '\n';
 
-    constexpr char kGuideSection[] = ".rodata.reference_guide";
     output << "extern char const * const * const gReferenceGuideTables[]"
-           << " SECTION(\"" << kGuideSection << "\") = {\n";
+           << " = {\n";
     for (const GuideCollectionPage &page : pages) {
         if (page.manifest.page_type == GuidePageType::First)
             output << "    gReferenceGuide_" << page.manifest.page << ",\n";
@@ -2891,9 +2924,9 @@ GuideCollectionOutput CompileGuideCollection(const std::vector<GuideCollectionPa
                     if (padding != page.source.line_paddings.end()) {
                         EmitGuidePadding(output, GuidePaddingLabel(page.source.page, line_index,
                             page.source.lines[line_index], page.source.has_fixed_title),
-                            kGuideSection, padding->second);
+                            padding->second);
                     }
-                    EmitGuideCppString(output, local_label, kGuideSection,
+                    EmitGuideCppString(output, local_label,
                         PadGuideTextStorage(bytes),
                         alignment != page.source.line_alignments.end()
                             ? alignment->second : 0);
@@ -2904,7 +2937,7 @@ GuideCollectionOutput CompileGuideCollection(const std::vector<GuideCollectionPa
         for (const std::size_t page_index : group) {
             const GuideCollectionPage &page = pages[page_index];
             output << "extern char const * const gReferenceGuide_" << page.manifest.page
-                   << "[] SECTION(\"" << kGuideSection << "\") = {\n";
+                   << "[] = {\n";
             for (const std::string &entry : pointer_entries[page_index])
                 output << "    " << entry << ".bytes,\n";
             output << "    nullptr,\n};\n\n";
@@ -3375,10 +3408,10 @@ void SelfTest()
     };
     const GuideCollectionOutput grouped = CompileGuideCollection(grouped_pages, map);
     const std::size_t master_table = grouped.source.find("gReferenceGuideTables[]");
-    const std::size_t first_text = grouped.source.find("gText_ReferenceGuide_first_Title SECTION");
-    const std::size_t second_text = grouped.source.find("gText_ReferenceGuide_second_Title SECTION");
-    const std::size_t first_table = grouped.source.find("gReferenceGuide_first[] SECTION");
-    const std::size_t second_table = grouped.source.find("gReferenceGuide_second[] SECTION");
+    const std::size_t first_text = grouped.source.find("gText_ReferenceGuide_first_Title =");
+    const std::size_t second_text = grouped.source.find("gText_ReferenceGuide_second_Title =");
+    const std::size_t first_table = grouped.source.find("gReferenceGuide_first[] =");
+    const std::size_t second_table = grouped.source.find("gReferenceGuide_second[] =");
     Require(master_table != std::string::npos && first_text != std::string::npos
             && second_text != std::string::npos && first_table != std::string::npos
             && second_table != std::string::npos
@@ -3395,7 +3428,7 @@ void SelfTest()
             && padding_object < padded_text,
         "guide padding did not emit before its local text object");
     const std::string padded_declarator =
-        "gText_ReferenceGuide_padded_example_Title SECTION(\".rodata.reference_guide\")";
+        "gText_ReferenceGuide_padded_example_Title";
     Require(padded.source.find(padded_declarator + " ALIGN(") == std::string::npos,
         "guide padding incorrectly produced an alignment attribute for its text object");
     const std::size_t master_end = grouped.source.find("};", master_table);

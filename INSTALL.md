@@ -1,114 +1,83 @@
 # Installation
 
-## New instructions
+## Current toolchain
 
-- get a `arm-none-eabi` toolchain (devkitARM probably works)
-- run `bash tools/install_agbcp.sh` inside WSL to install the pinned C/C++ toolchain
-- `make fomt_us`
+Build in WSL with an `arm-none-eabi` toolchain on PATH. Keep the maintained
+`Wokann/agbcc` `cp` checkout beside FoMT:
 
-### Required C++ frontend correction
-
-The installer checks out [notyourav/agbcc] at
-`1caa6becde5e4676b59c31c74d68f45ced79557c`, applies
-`tools/agbcp-asm-destructors.patch`, `tools/agbcc-long-calls.patch` and
-`tools/agbcp-frame-address.patch`, then
-runs its ordinary build and install scripts. The original assembler-name
-correction is also
-preserved in the sibling compiler repository's
-local `codex/cp-asm-destructors` branch at
-`52840e5535c8975649c1b767f77d82d057b3dbe5`; that branch is not published and
-is not required by the installer.
-
-Do not use the unpatched frontend with declarations such as
-`~HardwareBlendObject() asm("func_080094B8")`. It identifies destructors by
-the assembler-name spelling and can silently omit automatic cleanup after
-the name is replaced. The correction preserves the source-level destructor
-kind in an existing spare flag and uses it for lookup, cleanup, overriding
-and diagnostics in both ARM and Thumb. It does not inspect game addresses,
-rewrite instructions, or change the project's optimization flags.
-
-The patch includes `tests/asm-destructor.cc`, an execution regression for
-stack, array, virtual deleting and template-member destruction, plus its
-small Linux test entry and instructions. Both modes return zero under
-`qemu-arm`; that emulator is optional test tooling, not a ROM build input.
-The compiler-only regression rebuilt all four existing game versions and
-preserved their full ROM bytes, symbol addresses and all 825 allocated-object
-signatures before the new destructor declarations were adopted.
-
-The installer patch also corrects generic multiple-inheritance forwarding
-thunks. Such a thunk copies its target's language flags, but must clear the
-copied destructor-kind bit before starting the forwarding function: it calls
-the destructor with an adjusted `this`, rather than being a second destructor.
-Without this correction, the Thumb frontend rejects even ordinary-named
-multiple-inheritance destructors. ARM's dedicated assembly-thunk path is
-unchanged; both frontend source trees receive the same generic-path fix.
-This follow-up is included in the installer patch, not in the older sibling
-branch commit mentioned above.
-
-`tests/asm-destructor-mi.cc` adds eight O0/O2 execution combinations across
-ARM/Thumb and ordinary/asm-labelled destructors. They check stack cleanup,
-virtual calls, deletion through primary and nonzero-offset secondary bases,
-and an implicit derived destructor. Each allocation must be freed exactly
-once at its complete-object address. The existing two destructor regressions
-still run as well; no instruction selection or project build flags change.
-
-### Thumb C++ subword frame addresses
-
-The third patch fixes an internal compiler error when valid C++ value-parameter
-copies expose byte or halfword frame addresses. Thumb rejects these addresses
-before reload because the frame pointer may later become SP, which has no
-byte/halfword load form. At zero offset, the old fallback leaves the same hard
-register in place and aborts. The corrected fallback copies a rejected address
-into a fresh pseudo-register; the initial successful-validation path is unchanged.
-It does not test game names, rewrite assembly, or change optimization flags.
-
-`tests/subword-frame.cc` executes constant and variable value copies for bytes,
-signed halfwords and unsigned halfwords across all 65,536 halfword inputs,
-checking guard words and accessor call counts. Corrected Thumb and unchanged
-ARM both run at O0/O2 under `qemu-arm`; unpatched Thumb reproduces the internal
-error at O2. See `tests/README.subword-frame.md` after applying the patches.
-
-### Individual far-call declarations
-
-The second patch adds the GNU `long_call` function-declaration attribute to
-the Thumb C and C++ backends. It uses the existing indirect interworking call
-path only for a marked declaration, leaving ordinary near calls and the
-project's optimization flags unchanged. This permits calls from ROM to ARM
-code in IWRAM without fixed-register variables or empty assembly barriers.
-It does not provide a new function-pointer type attribute or test game names
-or addresses. The existing `-mlong-calls` file-wide option still works.
-
-`tests/long-call.c`, its small mixed-mode entry and linker script, and
-`tests/README.long-calls.md` are included in the patch. The same source is
-executed as C and C++ under `qemu-arm`, checking far scalar/void/structure
-returns together with unchanged direct near calls. Test addresses deliberately
-exceed Thumb BL range and have no connection to the game's ROM layout.
-
-To compare a build with the recorded original SHA-1, run in WSL:
-
-```sh
-make -j4 GAME_REGION=JP GAME_REVISION=0 compare
-make -j4 GAME_REGION=US GAME_REVISION=0 compare
-make -j4 GAME_REGION=EU GAME_REVISION=0 compare
-make -j4 GAME_REGION=DE GAME_REVISION=0 compare
+```text
+parent/
+    agbcc/
+    fomt/
 ```
 
-### 中文说明
+This branch starts from `notyourav/agbcc` cp commit
+`1caa6becde5e4676b59c31c74d68f45ced79557c`. The generic compiler corrections
+are recorded locally in cp commit `b24094061ea76525206db659d6cdac853512bf27`.
+This commit has not been pushed; use the maintained sibling checkout.
 
-安装脚本固定上述 `cp` 基准提交，应用仓库内的通用 C++ 析构补丁及
-Thumb 函数声明远调用补丁，然后正常构建并安装；不依赖尚未发布的
-本地编译器分支。旧前端会
-因析构函数改用汇编符号名而漏掉自动析构，必须使用修正后的版本。
-修复保留源语言中的析构身份，不判断游戏地址，也不加入编译后指令
-修补。两个前端的析构执行回归及四版本既有工程完整比对均通过。
+Build and install from the sibling compiler directory:
 
-`long_call` 属性只影响被标记的函数声明，使用现有的间接跨模式
-调用，普通近调用和优化选项不变；因此 ROM 里的 C 函数可以正常
-调用 IWRAM ARM 入口，无需固定寄存器或空汇编。不判断游戏函数名
-或地址，也不新增函数指针类型属性。独立混合 ARM/Thumb 测试以
-C、C++ 执行，覆盖标量、void、结构体返回及普通近调用。
+```sh
+cd ../agbcc
+CC="gcc -std=gnu89 -fcommon" MAKEFLAGS=-j4 bash ./build.sh
+bash ./install.sh ../fomt
+cd ../fomt
+```
 
-[notyourav/agbcc]: https://github.com/notyourav/agbcc
+Alternatively, from the FoMT directory, use the wrapper with the same default
+`../agbcc` checkout:
+
+```sh
+bash tools/install_agbcp.sh
+```
+
+An optional argument selects another checkout of the same maintained source:
+
+```sh
+bash tools/install_agbcp.sh /path/to/agbcc
+```
+
+The wrapper uses the compiler repository's existing `build.sh` and `install.sh`,
+with `-j4` by default. It does not clone a repository, switch branches, apply
+patch files, or run tests. `CC` and `MAKEFLAGS` remain overridable.
+
+The small frontend corrections preserve destructor identity through asm labels,
+support per-declaration Thumb long calls, materialize rejected subword frame
+addresses, and preserve named const-array objects and their real relocations.
+The Thumb hexadecimal epilogue formatter also emits the immediate marker and
+uses hexadecimal digits. These rules inspect language types, declaration
+attributes or target instruction constraints, never game names or ROM addresses.
+Host build adjustments only fix a generated-header dependency and C dialect
+selection; they do not change target instruction selection.
+
+Explicit declaration alignment is recorded by the compiler for C and C++,
+including redeclarations. Target alignment preferences do not override that
+request. Function alignment is emitted after selecting the function section,
+so it does not pad an unrelated preceding data section. The preprocessor no
+longer guesses either correction from source or assembler text patterns.
+
+`fomt-preproc` does not reconstruct arrays, select pointer targets from matching
+strings, or repair stack-adjustment instructions. Use the installed compiler
+from the maintained source checkout.
+
+Build and compare the four ROMs in WSL:
+
+```sh
+make -j16 GAME_REGION=JP compare
+make -j16 GAME_REGION=US compare
+make -j16 GAME_REGION=EU compare
+make -j16 GAME_REGION=DE compare
+```
+
+## 中文说明
+
+编译器放在 FoMT 同级的 `agbcc` 目录，使用本地 `cp` 分支，从该目录构建并
+执行 `install.sh ../fomt`。FoMT 的安装包装脚本也默认读取 `../agbcc`，不依赖
+个人机器的绝对路径。当前通用修正已记录于上述本地 cp 提交，尚未推送，不能假定远程分支已包含。
+安装脚本不再下载编译器或应用 FoMT 内的补丁文件，也不运行测试用例。
+编译器安装包装仍默认 `-j4`，可通过 MAKEFLAGS 覆盖；游戏构建使用 WSL `-j16`。
+阶段 1721 已验证四版完整字节及 SHA-1 均与各自 baserom 一致。
 
 ## Old instructions
 
