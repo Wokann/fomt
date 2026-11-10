@@ -101,6 +101,12 @@ struct HorseRaceContestantTiles {
 
 struct HorseRaceCore;
 
+// Native helpers share these interfaces in all four regions. Their bodies
+// retain the verified regional object layout and rendering differences.
+extern "C" void AdjustHorseRaceTicketQuantity(HorseRaceCore * core, i32 delta);
+extern "C" void UpdateHorseRaceDialogue(HorseRaceCore * core);
+extern "C" void InitializeHorseRaceRunners(HorseRaceCore * core);
+
 #pragma interface "horse_race.hh"
 // The wrapper constructor, destructor, and Run body remain native assembly.
 struct HorseRaceScene : AScene {

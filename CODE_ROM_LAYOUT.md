@@ -1,3 +1,19 @@
+## 赛马异名入口与实际 ABI（1764–1771，2026-11-10）
+
+剩余 12 组赛马候选在四版均为完整 Thumb 指令及常量池，均有独立保存/恢复寄存器的入口和出口，没有代码 incbin、字节指令或以裸数组代替函数的情况。调用链、关联文本及 0x2C 步长的参赛记录互相对应。JP/海外 HorseRaceCore 已有独立大小检查（0x11DC/0x14FC），后部布局相差 0x320；另有栈上缓冲区、字形步长和绘制调用的真实差异，保留实际实现，不将偏移强行统一。未分类字段仍留 unk，不把此处对应关系核实计作高级语言化或任意扩容证明。
+
+其中三组用途及调用接口已明确，现直接统一真实定义和调用，不添加别名：
+
+- func_08059510 / func_08059780 → AdjustHorseRaceTicketQuantity(core, delta)：在四条购票记录间累计数量，按 50 的单位价格和余额约束当前数量，上限 99；购票路径实际调用 SubtractMoneyFromAccount。
+- func_08059608 / func_08059878 → UpdateHorseRaceDialogue(core)：更新对话窗口、选择结果及购票/规则/开赛/结果文本。
+- loc_0805C554 / func_0805C80C → InitializeHorseRaceRunners(core)：填充四条参赛记录，读取玩家马匹的适性、好感和参赛者数据。
+
+调用方均传入相同 HorseRaceCore，未消费返回寄存器；三个接口以 extern C void 在同名 horse_race.hh 声明。完整汇编体除实际符号拼写外未改变。WSL make -j16 阶段 1766 四版完整 ROM 均与各自 baserom 逐字节及 SHA-1 一致，未修改编译器、预处理器或 LDS。
+
+资源层级的额外检查已按 694 个共有实际地址组分隔异名数据区间，四版共有组顺序相同；38 个异名区间中有 36 个表示序列一致。另两项已定位：海外工作人员背景多一个独立 Layer0 tilemap；JP 冬季背景的 gUnk_084DDBC0 仍内嵌 780 字节半字数组，而海外已经引用 graphics/ui/seasonal_background/shared/bg_30.tilemap。后者四版完整内容完全相同，且均由 CopyBgMap30x13 读取，是下一批应修复的实际资源组织差距。
+
+证据：horse-pair-features-1764.json、horse-operation-names-1765.json、regional-graphics-intervals-1769.json、full-build-1766/results.json 及全局报告。地区专有资源、类内汇编及未知区域仍需完成覆盖，原始地址候选分类尚不恢复。
+
 ## 四版玩家动作分派边界及层级对照（1753–1763，2026-11-10）
 
 player_actor 的动作分派主体在 JP/US/EU/DE 均保存 r4–r10 并分配 0x18C 栈帧。主体内每版六个落入分支或远距离 BL 分支的标签，继续使用该帧并通过同一出口恢复栈；此前却误标成独立函数。现恢复局部标签，保留原有全部 BL 指令。精确检索 src/include/asm/data 中的引用，未发现这些旧符号的外部调用、指针表或数据取址。公共出口之后的独立叶函数及辅助函数仍保留真实入口。
