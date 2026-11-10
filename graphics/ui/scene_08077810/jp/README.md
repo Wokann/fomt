@@ -24,12 +24,12 @@ and the existing C codec, then included directly in the assembly at their
 original labels. `tiles.4bpp.lz` is encoded directly from `tiles.4bpp` with
 the tested C codec parameters, and its `.original.lz` file is now only a
 packed-byte comparison reference. `layer_1.tilemap.lz` is also encoded directly
-from `layer_1.tilemap`, using `encode-huff4-lz2 1,2,3,4,5,6,10 0 --tie=last`.
+from `layer_1.tilemap`, using `encode-huff4-lz2 1,2,3,4,5,6,10 --tie=last`.
 This general tie rule orders alphabetic leaves, selects the last-created node
 among equal weights, and assigns canonical codes by depth then frequency.
 Neither source rule reads a saved Huffman tree or the original packed stream;
-the map's `.original.lz` is only a packed-byte comparison reference. The final
-`0` in the map parameters requests the natural output size, not slot padding.
+the map's `.original.lz` is only a packed-byte comparison reference. The codec
+emits its natural stream size; it takes no original-slot size or padding argument.
 
 This group is not a JP rendering of the US/EU/DE `scene_08077810` resources:
 its source labels, decoded dimensions, palette, and codec boundaries differ.

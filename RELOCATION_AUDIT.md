@@ -1,3 +1,54 @@
+## 压缩图形内容与原数值窗口核查（1900–1904，2026-11-10）
+
+对四版正式构建实际使用的 357 项不同压缩资源，调用现有 fomt-lz decode-native 解码；逐项与当前完整构建输入比较，已被 Make 删除的那一个生成中间产物则对照此前实际生成时记录的 SHA-256。全部一致，压缩流头部的解码长度也与产物一致。解码输出只存于任务临时目录，没有修改项目资源，没有模拟扩容或人为移址。
+
+| 解码后的真实内容 | 不同资源数 | 依据 |
+| --- | ---: | --- |
+| 整 tile 图块像素 | 53 | 现有像素构建输入，长度为 32 字节单位 |
+| BG tile 索引 | 247 | 独立 tilemap 输入，u16 项 |
+| 调色板颜色 | 52 | 独立 gbapal 输入，u16 颜色 |
+| 原生七表归档 | 3 | JP、US/EU、DE 标题归档，完整解析并核对读取构造链 |
+| 带最后 2 字节部分 tile 的 BG 像素 | 2 | 实际直接写入 VRAM 的 Unpack 调用 |
+
+三个标题归档的解码长度分别为 JP 27,108、US/EU 19,468、DE 19,556 字节。它们的七个表长已由 archive.inc 的标签差产生；选择、组和条目索引检查没有越界，第六表均为空。ConstructIntroSceneCore 先解码到 unpacked_resources，再交由 IndexedResourceArchive 读取；表内是计数和原生索引，没有编码的 ROM 绝对指针。
+
+两份部分 tile 图像不应因后缀为 4bpp 就擅自补齐或删尾：scene_08077810/shared 为 351 个整 tile 加 22 00，LoadStaffCreditsBackground 将它解码到 VRAM 0x06008000；scene_080bcfac/shared 为 991 个整 tile 加 00 00，func_080BCFAC 将它解码到 VRAM 0x06000000。尾部是下一 tile 的四个像素；按原生半字输出和真实长度保留，没有将它伪造为文本、指针或新表。
+
+将这些解码后的格式证据与已验证的 54 个未压缩归档、36 个帧流及原始图像/地图/调色板格式合并后，原 gfx_data 数值窗口清单的状态如下。这里的窗口只是四字节数值恰好像 ROM 地址，不等同于指针；分类完成也不等于全 ROM 动态引用验收完成。
+
+| 版本 | 原图形数值窗口 | 已有格式依据 | 待核对窗口 | 涉及内联对象组 |
+| --- | ---: | ---: | ---: | ---: |
+| JP | 6076 | 6047 | 29 | 17 |
+| US | 6079 | 6050 | 29 | 17 |
+| EU | 6079 | 6050 | 29 | 17 |
+| DE | 6083 | 6054 | 29 | 17 |
+
+剩余 17 组已经定位到 FieldRenderRectDescriptor 图层资源及两组其他数据的调用位置，但本批尚未完成各自完整的读取范围与对象边界核对，因此继续保留为待办，不仅凭 u16 外观或调用文件名宣布闭合：
+
+| JP 对象（其他版本对应记录保留在证据中） | 待核对窗口 |
+| --- | ---: |
+| gUnk_FieldRenderResource_143 | 5 |
+| gUnk_FieldRenderResource_223 | 1 |
+| gUnk_FieldRenderResource_225 | 1 |
+| gUnk_FieldRenderResource_134 | 1 |
+| gUnk_FieldRenderResource_135 | 5 |
+| gUnk_FieldRenderResource_025 | 2 |
+| gUnk_FieldRenderResource_019 | 1 |
+| gUnk_FieldRenderResource_017 | 3 |
+| gUnk_FieldRenderResource_011 | 1 |
+| gUnk_FieldRenderResource_005 | 1 |
+| gUnk_FieldRenderResource_029 | 2 |
+| gUnk_FieldRenderResource_023 | 1 |
+| gUnk_08470EA0 | 1 |
+| gUnk_FieldRenderResource_219 | 1 |
+| gUnk_FieldRenderResource_070 | 1 |
+| gUnk_FieldRenderResource_215 | 1 |
+| gUnk_084B3714 | 1 |
+
+本批正式修改仅为本记录和 graphics/ui/scene_08077810/jp/README.md 中过时的槽位命令示例：移除已取消的 0 参数，明确压缩器不接收旧槽位长度。游戏源码、资源及编译链均未改变，沿用阶段 1893 已验收的四版正常 WSL make -j16 完整 ROM 字节/SHA-1 匹配结果，没有为文档修改重复整版构建。
+
+证据位于本任务临时目录：gfx-decoded-formats-1902.json、gfx-decoded-content-1903.json、gfx-window-triage-1904.json；实际解码产物位于 gfx-decoded-1900。相关报告保留，临时脚本没有进入正式编译链。按用户指令，本批提交后暂停开发，等待新想法。
+
 ## 补齐内联七表归档的真实边界（1890–1898，2026-11-10）
 
 继续核查先前未列入派生计数清单的内联归档：JP gUnk_084A3678、海外 gUnk_0871D51C。GameSceneWorldData::unk_E70 的 IndexedResourceArchive 构造，以及飞盘、鸡祭和精灵小游戏中的相同构造调用，确认其仍是原生七表格式，并非无结构的图片字节。
