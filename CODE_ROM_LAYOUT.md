@@ -1,3 +1,60 @@
+## 补齐内联图形窗口的读取依据（1938–1939，2026-11-10）
+
+此前各版剩余的 29 个数值窗口、17 组内联数据已结合实际读取程序逐项核对。
+15 组是 `ApplyMapTilePatch` 消费的未压缩 u16 BG tilemap 矩形；另两组是调色板。
+这些窗口中的四字节数值不是 ROM 指针，不能按扫描结果机械替换为地址标签。
+
+矩形来源为 `FieldRenderRectDescriptor::source_buffers[layer]`，读取量由结构中的
+`width * height * sizeof(u16)` 决定。`src/world_map.cc` 的 `ApplyMapTilePatch`
+逐行复制，每行读取 `width` 个半字。下表列出实际编译的四版描述符与数据长度；
+四版的描述符归属、层号和长度均一致，未借用版本间地址偏移推断。
+
+| 对象 | 实际描述符／图层 | 宽×高 | 数据及读取字节 |
+| --- | --- | --- | ---: |
+| gUnk_FieldRenderResource_143 | gFieldRenderRectDescriptors[30] / 0 | 17×15 | 510 |
+| gUnk_FieldRenderResource_223 | gFieldRenderRectDescriptors[63] / 1 | 4×4 | 32 |
+| gUnk_FieldRenderResource_225 | gFieldRenderRectDescriptors[65] / 1 | 4×4 | 32 |
+| gUnk_FieldRenderResource_134 | gFieldRenderRectDescriptors[28] / 0 | 22×36 | 1,584 |
+| gUnk_FieldRenderResource_135 | gFieldRenderRectDescriptors[28] / 1 | 22×36 | 1,584 |
+| gUnk_FieldRenderResource_025 | gBarnLevel1Patch / 1 | 22×14 | 616 |
+| gUnk_FieldRenderResource_019 | gBarnLevel0Patch / 1 | 12×14 | 336 |
+| gUnk_FieldRenderResource_017 | gFarmHouseLevel2WinterPatch / 1 | 24×13 | 624 |
+| gUnk_FieldRenderResource_011 | gFarmHouseLevel1WinterPatch / 1 | 16×12 | 384 |
+| gUnk_FieldRenderResource_005 | gFarmHouseLevel0WinterPatch / 1 | 8×12 | 192 |
+| gUnk_FieldRenderResource_029 | gBarnLevel1WinterPatch / 1 | 22×13 | 572 |
+| gUnk_FieldRenderResource_023 | gBarnLevel0WinterPatch / 1 | 12×13 | 312 |
+| gUnk_FieldRenderResource_219 | gFieldRenderRectDescriptors[61] / 1 | 3×5 | 30 |
+| gUnk_FieldRenderResource_070 | gFieldRenderRectDescriptors[6] / 1 | 4×3 | 24 |
+| gUnk_FieldRenderResource_215 | gFieldRenderRectDescriptors[59] / 1 | 3×5 | 30 |
+
+这些数据均在下一个全局标签之前结束；对象间对齐不计入矩形。
+原始数值窗口分别落在真实的半字条目中，不存在把它们作为函数或对象地址读取的调用。
+实际 CHS 构建中，15 个源矩形的内容与原版相同，描述符中的指针已指向各自移动后的符号。
+
+JP `gUnk_08470EA0`／海外 `gUnk_086EAD44` 是 16 色、32 字节的调色板。
+`src/world_saved_map.cc` 的 `.Lgame_map_after_animation_reset_3384` 将该符号传给
+`CopyHardwareDma3`，长度为 `0x20`，与对象边界吻合；四版颜色均只使用 BGR555 的低 15 位。
+
+### 鸡祭的原版跨块 DMA 读取
+
+JP `gUnk_084B3714`／海外 `gUnk_0872D5AC` 也是 16 色、32 字节的调色板，
+紧接着是独立的压缩流 `gUiTwoLayerBackgroundMap0`。
+此前位于调色板 `+31` 的四字节候选实际横跨调色板末字节与压缩头，不能解释成 ROM 指针。
+
+但是 `src/scene_chicken_festival.cc` 的 `.Lchicken_festival_1adc` 所在调用确实使用
+`CopyHardwareDma3(source, BG_PALETTE + 7 * PLTT_SIZE_4BPP, 0x200)`。
+`src/hardware_dma.cc` 确认第三参数是字节数，因此原版会从这张小调色板起连续读取 512 字节，
+跨入后面的资源；不能把后续 480 字节伪装成调色板，也不能未经确认就缩短复制长度。
+
+四版均保留该原版调用。本次真实 CHS 布局虽然移动了这些对象，但整个 512 字节读取窗口
+与 JP 原版逐字节相同，源指针也已正常重定位。后续若编辑这些相邻压缩流，仍须核对
+这条跨对象读取的实际显示影响；本记录不宣称它已成为可任意独立修改的资源块。
+
+本批只补充边界与读取证据，没有改动源码、资源、LDS 或编译工具，未重复完整构建。
+四版当前完整 ROM 再次与各自 baserom 逐字节核对一致。
+证据：本任务临时目录 `inline-graphics-readers-1939.json`，包括四版对象长度、描述符、
+读取量、窗口哈希及实际 CHS 指针检查。原数值候选清单已全部解释，不等于全 ROM 动态引用验收完成。
+
 ## 压缩图形内容与原数值窗口核查（1900–1904，2026-11-10）
 
 对四版正式构建实际使用的 357 项不同压缩资源，调用现有 fomt-lz decode-native 解码；逐项与当前完整构建输入比较，已被 Make 删除的那一个生成中间产物则对照此前实际生成时记录的 SHA-256。全部一致，压缩流头部的解码长度也与产物一致。解码输出只存于任务临时目录，没有修改项目资源，没有模拟扩容或人为移址。
