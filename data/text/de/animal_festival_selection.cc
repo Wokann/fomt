@@ -1,32 +1,39 @@
 #include "animal_festival_selection.hh"
 
-AnimalStatusScreenPrefixText const gAnimalStatusScreenPrefixText = {
-    "N/A ",
-    {
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-    },
+char const gText_AnimalStatusScreen_Unavailable[] =
+    "N/A ";
+
+// The renderer reads ten halfword glyph codes, without a string terminator.
+u16 const gAnimalStatusScreenDigitGlyphs[] ALIGN(2) = {
+    "0123456789",
 };
 
-AnimalStatusScreenText const gAnimalStatusScreenText = {
-    "Gesund  ",
-    "Traurig ",
-    "Krank   ",
-    "Frühl.",
-    "Sommer",
-    "Herbst",
-    "Winter",
-    "J ",
-    "T ",
-};
+char const gText_AnimalStatusScreen_Healthy[] =
+    "Gesund  ";
+
+char const gText_AnimalStatusScreen_Unhappy[] =
+    "Traurig ";
+
+char const gText_AnimalStatusScreen_Sick[] =
+    "Krank   ";
+
+char const gText_AnimalStatusScreen_Spring[] =
+    "Frühl.";
+
+char const gText_AnimalStatusScreen_Summer[] =
+    "Sommer";
+
+char const gText_AnimalStatusScreen_Autumn[] =
+    "Herbst";
+
+char const gText_AnimalStatusScreen_Winter[] =
+    "Winter";
+
+char const gText_AnimalStatusScreen_Age[] =
+    "J ";
+
+char const gText_AnimalStatusScreen_Day[] =
+    "T ";
 
 char const gText_AnimalContest_ChickenConfirmation[] =
     "Ist dieses Huhn OK?";

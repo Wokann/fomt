@@ -1,21 +1,39 @@
 #include "animal_festival_selection.hh"
 
-AnimalStatusScreenPrefixText const gAnimalStatusScreenPrefixText = {
-    "なし",
-    "O１２３４５６７８９\x82",
+char const gText_AnimalStatusScreen_Unavailable[] =
+    "なし";
+
+// The renderer reads ten halfword glyph codes, without a string terminator.
+u16 const gAnimalStatusScreenDigitGlyphs[] ALIGN(2) = {
+    "０１２３４５６７８９",
 };
 
-AnimalStatusScreenText const gAnimalStatusScreenText = {
-    "健康",
-    "不機嫌",
-    "病気",
-    "春",
-    "夏",
-    "秋",
-    "冬",
-    "才",
-    "日",
-};
+char const gText_AnimalStatusScreen_Healthy[] =
+    "健康";
+
+char const gText_AnimalStatusScreen_Unhappy[] =
+    "不機嫌";
+
+char const gText_AnimalStatusScreen_Sick[] =
+    "病気";
+
+char const gText_AnimalStatusScreen_Spring[] =
+    "春";
+
+char const gText_AnimalStatusScreen_Summer[] =
+    "夏";
+
+char const gText_AnimalStatusScreen_Autumn[] =
+    "秋";
+
+char const gText_AnimalStatusScreen_Winter[] =
+    "冬";
+
+char const gText_AnimalStatusScreen_Age[] =
+    "才";
+
+char const gText_AnimalStatusScreen_Day[] =
+    "日";
 
 char const gText_AnimalContest_ChickenConfirmation[] =
     "その鶏でいいんだね？";
