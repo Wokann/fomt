@@ -54,9 +54,12 @@ extern template ScheduleEntry const * std::__upper_bound<
 
 
 #include FOMT_TEXT_INCLUDE(npc_entity.cc)
-extern "C" u16 const gUnk_080F1514[] ALIGN(4) = {
-    0x0032, 0x000C, 0x0014, 0x0008,
-    0x0014, 0x0004, 0x000A, 0x0000,
+// Update currently copies and scans exactly four records, totaling weight 100.
+extern "C" ChildIdleAnimationChoice const gChildIdleAnimationChoices[] ALIGN(4) = {
+    { 50, ANIMATION_CHILD_INFANT_SLEEPING },
+    { 20, ANIMATION_CHILD_NEWBORN },
+    { 20, ANIMATION_ID_0004 },
+    { 10, ANIMATION_ID_0000 },
 };
 
 
@@ -6546,7 +6549,7 @@ asm_unified(
     "    mov\tr2, sp\n"
     "    b .Lus_08036FD2\n"
     ".Lus_08036FC8:\n"
-    "    .word gUnk_080F1514\n"
+    "    .word gChildIdleAnimationChoices\n"
     ".Lus_08036FCC:\n"
     "    subs\tr0, r0, r1\n"
     "    adds\tr2, #4\n"

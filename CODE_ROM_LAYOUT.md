@@ -1,3 +1,17 @@
+## 恢复幼儿待机动画选择记录的实际结构（1806–1808，2026-11-10）
+
+npc_entity 中原 u16 gUnk_080F1514[] 已恢复为 ChildIdleAnimationChoice[]，真实符号为 gChildIdleAnimationChoices；旧地址式符号移除，没有保留别名。结构定义及外部声明归入同名 npc_entity.hh，数据仍留在原 npc_entity.cc 物理位置，不增加文件或 section。
+
+实际 Update__13ChildNpcActorRC19EntityUpdateContext 将整张 16 字节表复制到栈，以 rand()%100 做累计权重选择，每条跨 4 字节，+0 以 LDRB 读取权重，+2 以 LDRH 读取动画并传给 SetNpcIdleAnimation。对应四条记录为权重 50/20/20/10、动画 12/8/4/0；源码使用已有动画常量。ChildIdleAnimationChoice 的 u8 weight 与 u16 animation 自然形成 +1 对齐字节，不把该零字节新建为有意义字段或数组。结构大小 4 与动画偏移 2 有普通编译期布局检查。
+
+四版原生更新函数的完整归一化实现相同；当前 ELF 中表均为 16 字节，权重、动画及对齐字节逐项核对，每版各有一处指向首地址、偏移 0 的真实 ABS32 重定位。JP/US/EU/DE 当前表地址分别为 0x080F0D74、0x080F1514、0x080F1560、0x080F19FC，仅作布局记录，不固定在源码或 LDS。
+
+读取程序仍固定复制 16 字节并最多检查 4 条，表项数量的扩展必须同时修改该原生逻辑；本次不将已符号化入口误报为任意增删条目安全。实际记录和角色动画可以按既有结构维护，表的 ROM 地址由正常链接与重定位提供。
+
+阶段 1806：四版均使用正常 WSL make -j16，完整 ROM 与各自 baserom 逐字节及 SHA-1 一致；全局符号/字节和实际重定位映射核查通过。没有修改编译器、预处理器、LDS 或链接产物，没有人为移址/扩容试验。证据：child-choice-boundaries-1808.json、inspect_actor_tables_1807.py 的对象/类型盘点、full-build-1806/results.json 与四版 global-report。
+
+继续核对时另发现 player_actor 中的 gUnk_080F1230 原 228 字节块实际上包含 15×15 的螺旋秩序网格与末尾 3 个对齐零：读取方只搜索前 225 字节，将结果偏移按 15 求余/商并减 7 得到相对坐标。该项此时仅完成分析，尚未修改，下一批按真实网格边界恢复。相关证据暂存 player-tool-spiral-layout-1809.json。全 ROM 编码/构造引用和容量审计仍在进行。
+
 ## 分离工具效果查表的真实对象与直接引用（1800–1803，2026-11-10）
 
 animal_data 末尾原 16 字节块现已按实际读取关系分为 gUnk_080F0800、gUnk_080F0807 两张独立 u8[]，各 7 项。game_world 中原有的全部第二行 +7 引用改为第二张表的直接符号；不是 .set 别名，也没有补偿偏移。两表按原顺序自然排列，保留确有必要的 ALIGN(1)；最后两字节不再作为有效元素显式保存，由现有通用 .rodata 段末四字节对齐补零。

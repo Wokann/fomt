@@ -218,6 +218,16 @@ struct VanNpcActor : ANpcEntity {
     virtual EntityVisualController * CreateVisualController();
 };
 
+// Native child update copies four choices and selects by cumulative weight
+// from rand() % 100. The byte at +1 is natural halfword-alignment padding.
+struct ChildIdleAnimationChoice {
+    u8 weight;
+    u16 animation;
+};
+
+typedef char ChildIdleAnimationChoiceSizeCheck[sizeof(ChildIdleAnimationChoice) == 4 ? 1 : -1];
+typedef char ChildIdleAnimationChoiceAnimationCheck[offsetof(ChildIdleAnimationChoice, animation) == 2 ? 1 : -1];
+
 struct ChildNpcActor : ANpcEntity {
     ChildNpcActor(GameObject * world, Npc * npc, u32 context);
     virtual EntityVisualController * CreateVisualController();
@@ -260,7 +270,7 @@ bool IsNpcInUpperFarmhouseStrip(ANpcEntity & self);
 
 EXTERN_C_END
 
-extern "C" u16 const gUnk_080F1514[];
+extern "C" ChildIdleAnimationChoice const gChildIdleAnimationChoices[];
 
 
 extern "C" char const gCppRuntimeError_EntityUiFirst[];
