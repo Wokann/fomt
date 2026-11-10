@@ -63,46 +63,61 @@ asm_unified(
 // script-adjacent UI resource block.  Their nested C++ objects preserve every
 // original internal pointer as a relocation rather than a ROM address.
 
-extern "C" NpcScheduleStorage_080F42F0 const gUnk_080F42F0 = {
+extern "C" DougScheduleData const gDougScheduleData = {
+    // descriptor
     {
         SelectDougSchedule,
-        4,
-        gUnk_080F42F0.table_choices,
+        ARRAY_COUNT(gDougScheduleData.table_choices),
+        gDougScheduleData.table_choices,
     },
+    // table_choices
     {
         nullptr,
-        &gUnk_080F42F0.table_storage[0],
-        &gUnk_080F42F0.table_storage[1],
-        &gUnk_080F42F0.table_storage[2],
+        &gDougScheduleData.table_storage[0],
+        &gDougScheduleData.table_storage[1],
+        &gDougScheduleData.table_storage[2],
     },
+    // table_storage
     {
-        { 6, &gUnk_080F42F0.entry_storage[0] },
-        { 1, &gUnk_080F42F0.entry_storage[6] },
-        { 3, &gUnk_080F42F0.entry_storage[7] },
+        { ARRAY_COUNT(gDougScheduleData.entries_0), gDougScheduleData.entries_0 },
+        { ARRAY_COUNT(gDougScheduleData.entries_1), gDougScheduleData.entries_1 },
+        { ARRAY_COUNT(gDougScheduleData.entries_2), gDougScheduleData.entries_2 },
     },
+    // entries_0
     {
-        { 0x00000000, &gUnk_080F42F0.payload_storage[0] },
-        { 0x00000078, &gUnk_080F42F0.payload_storage[1] },
-        { 0x000001A4, &gUnk_080F42F0.payload_storage[2] },
-        { 0x0000021C, &gUnk_080F42F0.payload_storage[1] },
-        { 0x0000030C, &gUnk_080F42F0.payload_storage[2] },
-        { 0x00000384, &gUnk_080F42F0.payload_storage[1] },
-        { 0x00000000, &gUnk_080F42F0.payload_storage[0] },
-        { 0x00000000, &gUnk_080F42F0.payload_storage[3] },
-        { 0x00000294, &gUnk_080F42F0.payload_storage[4] },
-        { 0x0000029F, &gUnk_080F42F0.payload_storage[0] },
+        { 0x00000000, &gDougScheduleData.payload_storage[0] },
+        { 0x00000078, &gDougScheduleData.payload_storage[1] },
+        { 0x000001A4, &gDougScheduleData.payload_storage[2] },
+        { 0x0000021C, &gDougScheduleData.payload_storage[1] },
+        { 0x0000030C, &gDougScheduleData.payload_storage[2] },
+        { 0x00000384, &gDougScheduleData.payload_storage[1] },
     },
+    // entries_1
     {
-        { &gUnk_080F42F0.detail_storage[0], 2, 304, 88, 22, 0, true },
+        { 0x00000000, &gDougScheduleData.payload_storage[0] },
+    },
+    // entries_2
+    {
+        { 0x00000000, &gDougScheduleData.payload_storage[3] },
+        { 0x00000294, &gDougScheduleData.payload_storage[4] },
+        { 0x0000029F, &gDougScheduleData.payload_storage[0] },
+    },
+    // payload_storage
+    {
+        { gDougScheduleData.points_0, ARRAY_COUNT(gDougScheduleData.points_0), 304, 88, 22, 0, true },
         { nullptr, 0, 315, 80, 21, 0, false },
         { nullptr, 0, 48, 80, 22, 1, false },
         { nullptr, 0, 200, 280, 8, 1, false },
-        { &gUnk_080F42F0.detail_storage[2], 2, 200, 280, 8, 0, false },
+        { gDougScheduleData.points_4, ARRAY_COUNT(gDougScheduleData.points_4), 200, 280, 8, 0, false },
     },
+    // points_0
     {
-        { 0x00AA, 0x0002, 0x0078, 0x0004 },
-        { 0x0058, 0x0002, 0x0078, 0x0005 },
-        { 0x0002, 0x00F0, 0x0000, 0x0000 },
-        { 0x000B, 0x0200, 0x0001, 0x0000 },
+        { 170, 2, 120, 0, true },
+        { 88, 2, 120, 1, true },
+    },
+    // points_4
+    {
+        { 2, 240, false },
+        { 11, 512, true },
     },
 };

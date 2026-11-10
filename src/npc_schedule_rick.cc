@@ -56,7 +56,7 @@ asm_unified(
 
 ScheduleInfo const ScheduleInfo_Unk_080F1A80 = {
     SelectRickSchedule,
-    5,
+    ARRAY_COUNT(Unk_080F1A80_Schedules),
     Unk_080F1A80_Schedules,
 };
 
@@ -64,13 +64,13 @@ Schedule const * const Unk_080F1A80_Schedules[5] = {
     nullptr, &Unk_080F1A80_Schedule_1, &Unk_080F1A80_Schedule_2, &Unk_080F1A80_Schedule_3, &Unk_080F1A80_Schedule_4,
 };
 
-Schedule const Unk_080F1A80_Schedule_1 = { 17, Unk_080F1A80_Schedule_1_Entries };
+Schedule const Unk_080F1A80_Schedule_1 = { ARRAY_COUNT(Unk_080F1A80_Schedule_1_Entries), Unk_080F1A80_Schedule_1_Entries };
 
-Schedule const Unk_080F1A80_Schedule_2 = { 9, Unk_080F1A80_Schedule_2_Entries };
+Schedule const Unk_080F1A80_Schedule_2 = { ARRAY_COUNT(Unk_080F1A80_Schedule_2_Entries), Unk_080F1A80_Schedule_2_Entries };
 
-Schedule const Unk_080F1A80_Schedule_3 = { 17, Unk_080F1A80_Schedule_3_Entries };
+Schedule const Unk_080F1A80_Schedule_3 = { ARRAY_COUNT(Unk_080F1A80_Schedule_3_Entries), Unk_080F1A80_Schedule_3_Entries };
 
-Schedule const Unk_080F1A80_Schedule_4 = { 1, Unk_080F1A80_Schedule_4_Entries };
+Schedule const Unk_080F1A80_Schedule_4 = { ARRAY_COUNT(Unk_080F1A80_Schedule_4_Entries), Unk_080F1A80_Schedule_4_Entries };
 
 ScheduleEntry const Unk_080F1A80_Schedule_1_Entries[17] = {
     { 0, &Unk_080F1A80_19_Path },    /* 06:00 */
@@ -150,7 +150,7 @@ PathInfo const Unk_080F1A80_1_Path = {
 
 PathInfo const Unk_080F1A80_2_Path = {
     (void const *)Unk_080F1A80_2_Path_Points, /* points */
-    5,                                        /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_2_Path_Points),                                        /* num_points */
     104,                                      /* x_start */
     704,                                      /* y_start */
     5,                                        /* location_start */
@@ -170,7 +170,7 @@ PathInfo const Unk_080F1A80_3_Path = {
 
 PathInfo const Unk_080F1A80_4_Path = {
     (void const *)Unk_080F1A80_4_Path_Points, /* points */
-    5,                                        /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_4_Path_Points),                                        /* num_points */
     776,                                      /* x_start */
     184,                                      /* y_start */
     5,                                        /* location_start */
@@ -180,7 +180,7 @@ PathInfo const Unk_080F1A80_4_Path = {
 
 PathInfo const Unk_080F1A80_5_Path = {
     (void const *)Unk_080F1A80_5_Path_Points, /* points */
-    5,                                        /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_5_Path_Points),                                        /* num_points */
     104,                                      /* x_start */
     0,                                        /* y_start */
     7,                                        /* location_start */
@@ -190,7 +190,7 @@ PathInfo const Unk_080F1A80_5_Path = {
 
 PathInfo const Unk_080F1A80_6_Path = {
     (void const *)Unk_080F1A80_6_Path_Points, /* points */
-    7,                                        /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_6_Path_Points),                                        /* num_points */
     572,                                      /* x_start */
     227,                                      /* y_start */
     7,                                        /* location_start */
@@ -200,7 +200,7 @@ PathInfo const Unk_080F1A80_6_Path = {
 
 PathInfo const Unk_080F1A80_7_Path = {
     (void const *)Unk_080F1A80_7_Path_Points, /* points */
-    3,                                        /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_7_Path_Points),                                        /* num_points */
     1260,                                     /* x_start */
     704,                                      /* y_start */
     5,                                        /* location_start */
@@ -220,7 +220,7 @@ PathInfo const Unk_080F1A80_8_Path = {
 
 PathInfo const Unk_080F1A80_9_Path = {
     (void const *)Unk_080F1A80_9_Path_Points, /* points */
-    3,                                        /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_9_Path_Points),                                        /* num_points */
     632,                                      /* x_start */
     488,                                      /* y_start */
     5,                                        /* location_start */
@@ -230,7 +230,7 @@ PathInfo const Unk_080F1A80_9_Path = {
 
 PathInfo const Unk_080F1A80_10_Path = {
     (void const *)Unk_080F1A80_10_Path_Points, /* points */
-    7,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_10_Path_Points),                                         /* num_points */
     1272,                                      /* x_start */
     0,                                         /* y_start */
     7,                                         /* location_start */
@@ -240,7 +240,7 @@ PathInfo const Unk_080F1A80_10_Path = {
 
 PathInfo const Unk_080F1A80_11_Path = {
     (void const *)Unk_080F1A80_11_Path_Points, /* points */
-    2,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_11_Path_Points),                                         /* num_points */
     220,                                       /* x_start */
     448,                                       /* y_start */
     6,                                         /* location_start */
@@ -250,7 +250,7 @@ PathInfo const Unk_080F1A80_11_Path = {
 
 PathInfo const Unk_080F1A80_12_Path = {
     (void const *)Unk_080F1A80_12_Path_Points, /* points */
-    2,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_12_Path_Points),                                         /* num_points */
     376,                                       /* x_start */
     384,                                       /* y_start */
     6,                                         /* location_start */
@@ -260,7 +260,7 @@ PathInfo const Unk_080F1A80_12_Path = {
 
 PathInfo const Unk_080F1A80_13_Path = {
     (void const *)Unk_080F1A80_13_Path_Points, /* points */
-    2,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_13_Path_Points),                                         /* num_points */
     376,                                       /* x_start */
     384,                                       /* y_start */
     6,                                         /* location_start */
@@ -270,7 +270,7 @@ PathInfo const Unk_080F1A80_13_Path = {
 
 PathInfo const Unk_080F1A80_14_Path = {
     (void const *)Unk_080F1A80_14_Path_Points, /* points */
-    7,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_14_Path_Points),                                         /* num_points */
     1272,                                      /* x_start */
     0,                                         /* y_start */
     7,                                         /* location_start */
@@ -280,7 +280,7 @@ PathInfo const Unk_080F1A80_14_Path = {
 
 PathInfo const Unk_080F1A80_15_Path = {
     (void const *)Unk_080F1A80_15_Path_Points, /* points */
-    5,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_15_Path_Points),                                         /* num_points */
     572,                                       /* x_start */
     227,                                       /* y_start */
     7,                                         /* location_start */
@@ -300,7 +300,7 @@ PathInfo const Unk_080F1A80_16_Path = {
 
 PathInfo const Unk_080F1A80_17_Path = {
     (void const *)Unk_080F1A80_17_Path_Points, /* points */
-    5,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_17_Path_Points),                                         /* num_points */
     296,                                       /* x_start */
     116,                                       /* y_start */
     7,                                         /* location_start */
@@ -310,7 +310,7 @@ PathInfo const Unk_080F1A80_17_Path = {
 
 PathInfo const Unk_080F1A80_18_Path = {
     (void const *)Unk_080F1A80_18_Path_Points, /* points */
-    3,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_18_Path_Points),                                         /* num_points */
     572,                                       /* x_start */
     227,                                       /* y_start */
     7,                                         /* location_start */
@@ -320,7 +320,7 @@ PathInfo const Unk_080F1A80_18_Path = {
 
 PathInfo const Unk_080F1A80_19_Path = {
     (void const *)Unk_080F1A80_19_Path_Points, /* points */
-    4,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_19_Path_Points),                                         /* num_points */
     520,                                       /* x_start */
     352,                                       /* y_start */
     7,                                         /* location_start */
@@ -330,7 +330,7 @@ PathInfo const Unk_080F1A80_19_Path = {
 
 PathInfo const Unk_080F1A80_20_Path = {
     (void const *)Unk_080F1A80_20_Path_Points, /* points */
-    3,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_20_Path_Points),                                         /* num_points */
     520,                                       /* x_start */
     352,                                       /* y_start */
     7,                                         /* location_start */
@@ -340,7 +340,7 @@ PathInfo const Unk_080F1A80_20_Path = {
 
 PathInfo const Unk_080F1A80_21_Path = {
     (void const *)Unk_080F1A80_21_Path_Points, /* points */
-    5,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_21_Path_Points),                                         /* num_points */
     520,                                       /* x_start */
     352,                                       /* y_start */
     7,                                         /* location_start */
@@ -350,7 +350,7 @@ PathInfo const Unk_080F1A80_21_Path = {
 
 PathInfo const Unk_080F1A80_22_Path = {
     (void const *)Unk_080F1A80_22_Path_Points, /* points */
-    7,                                         /* num_points */
+    ARRAY_COUNT(Unk_080F1A80_22_Path_Points),                                         /* num_points */
     520,                                       /* x_start */
     352,                                       /* y_start */
     7,                                         /* location_start */

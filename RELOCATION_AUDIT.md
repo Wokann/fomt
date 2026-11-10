@@ -1,3 +1,48 @@
+## 按真实路径边界恢复 NPC 日程成员数组与推导数量（1820–1825，2026-11-10）
+
+本轮整体核对 24 个 NPC 日程数据聚合对象，共 21,688 字节。原先平铺的 entry_storage/detail_storage 不再用手写起始索引与数量区分不同日程及路径：恢复为 174 张独立时刻表成员数组、239 张独立路径成员数组，保留实际共享范围的身份及所有原物理先后顺序。按实际 point_type_select 与读取代码，路径点恢复为 PathPointA/PathPointB，共分别 886 / 131 项；有符号坐标、时刻、速度、朝向与轴选择使用原有真实字段，未确认的 PathPointB.unk_04 保留原名。
+
+24 个数据对象内共 437 个目录/时刻表/路径数量字段现用 ARRAY_COUNT 对应真实成员数组推导。Rick 的既有完整数组声明另外核实并转换 23 个冗余数量，总计 460 处；没有为使用 sizeof/ARRAY_COUNT 新增人为固定的全局声明长度。聚合头文件各个成员数组的长度取自真实读取范围，修改这些声明与对应内容后，后续成员位置及已核对指针的加数由 C++ 类型布局重新计算，数量不再另填常数。
+
+原 NpcScheduleStorage_*、Large/Extended/FiveChoiceStorage 和地址式聚合根变量已按所在 NPC 命名，例如 AnnaScheduleData / gAnnaScheduleData。定义、外部声明、NPC 构造和日程初始化引用同步使用真实新符号；没有 .set、别名或旧地址补偿。结构仍在原同名 npc_schedule_<npc>.hh 中，实例与函数仍在对应 .cc，未新增文件或 LDS 子项。已无用途的 NpcScheduleDetailEntry 四半字过渡类型移除。
+
+修改前先验证：所有时刻表和路径范围都完整分割原池，无重叠或间隙；各版 1,519 个数据指针字段全部有实际 ABS32 重定位，48 个聚合对象外部引用均指向首地址，没有发现这组实际重定位依赖固定的内部 ROM 偏移。修改后再次核对四版实际 ELF：所有新成员边界、数量、A/B 格式选择、全部路径点编码、1,519 处成员指针与 48 处外部根引用都符合原格式。内部使用 gAnnaScheduleData.points_2 等真实成员表达式，目标文件中的加数由编译器据类型计算，未手写 ROM 偏移。Rick 的 23 个数量、数组长度与指针关系在新 ELF 中也逐项复核。
+
+本批数据对象按 JP 物理地址排序如下；表中是本轮涉及的对象，中间还有本批未修改的日程对象。地址仅用于布局记录，不作为源码或 LDS 约束。
+
+| NPC 数据对象 | JP | US | EU | DE | 字节 |
+| --- | --- | --- | --- | --- | ---: |
+| gJeffScheduleData | 0x080F2C64 | 0x080F3408 | 0x080F3454 | 0x080F38F0 | 464 |
+| gKarenScheduleData | 0x080F2E40 | 0x080F35E4 | 0x080F3630 | 0x080F3ACC | 2536 |
+| gSashaScheduleData | 0x080F3834 | 0x080F3FD8 | 0x080F4024 | 0x080F44C0 | 780 |
+| gDougScheduleData | 0x080F3B4C | 0x080F42F0 | 0x080F433C | 0x080F47D8 | 224 |
+| gAnnScheduleData | 0x080F3C38 | 0x080F43DC | 0x080F4428 | 0x080F48C4 | 1420 |
+| gLouScheduleData | 0x080F41D0 | 0x080F4974 | 0x080F49C0 | 0x080F4E5C | 64 |
+| gBasilScheduleData | 0x080F421C | 0x080F49C0 | 0x080F4A0C | 0x080F4EA8 | 936 |
+| gMaryScheduleData | 0x080F45D0 | 0x080F4D74 | 0x080F4DC0 | 0x080F525C | 1984 |
+| gAnnaScheduleData | 0x080F4D9C | 0x080F5540 | 0x080F558C | 0x080F5A28 | 1072 |
+| gWonScheduleData | 0x080F51D8 | 0x080F597C | 0x080F59C8 | 0x080F5E64 | 68 |
+| gThomasScheduleData | 0x080F5228 | 0x080F59CC | 0x080F5A18 | 0x080F5EB4 | 956 |
+| gElliScheduleData | 0x080F55F0 | 0x080F5D94 | 0x080F5DE0 | 0x080F627C | 1116 |
+| gStuScheduleData | 0x080F5A58 | 0x080F61FC | 0x080F6248 | 0x080F66E4 | 360 |
+| gDukeScheduleData | 0x080F5BCC | 0x080F6370 | 0x080F63BC | 0x080F6858 | 840 |
+| gMannaScheduleData | 0x080F5F20 | 0x080F66C4 | 0x080F6710 | 0x080F6BAC | 1088 |
+| gVanScheduleData | 0x080F636C | 0x080F6B10 | 0x080F6B5C | 0x080F6FF8 | 48 |
+| gHarrisScheduleData | 0x080F63A8 | 0x080F6B4C | 0x080F6B98 | 0x080F7034 | 656 |
+| gCarterScheduleData | 0x080F6644 | 0x080F6DE8 | 0x080F6E34 | 0x080F72D0 | 516 |
+| gKaiScheduleData | 0x080F6854 | 0x080F6FF8 | 0x080F7044 | 0x080F74E0 | 656 |
+| gGrayScheduleData | 0x080F6AF0 | 0x080F7294 | 0x080F72E0 | 0x080F777C | 1372 |
+| gSaibaraScheduleData | 0x080F7058 | 0x080F77FC | 0x080F7848 | 0x080F7CE4 | 824 |
+| gGotzScheduleData | 0x080F739C | 0x080F7B40 | 0x080F7B8C | 0x080F8028 | 1648 |
+| gMayScheduleData | 0x080F7A18 | 0x080F81BC | 0x080F8208 | 0x080F86A4 | 1200 |
+| gBarleyScheduleData | 0x080F7ED4 | 0x080F8678 | 0x080F86C4 | 0x080F8B60 | 860 |
+
+边界与能力限制：现有逻辑日程 ID、数组索引、PathInfo/Schedule 的 u16 数量字段及原生选择器行为仍是真实格式约束，不能因成员指针可重定位就声称能任意更换 ID 或无限扩展数量。Ellen 的单一路径标量对象及其他独立声明形式保留既有已知结构，未强行套用成员池转换。本轮实际重定位核对不等于已经排除全 ROM 中所有编码、构造、压缩或 RAM 原址引用，也未据此宣称整 ROM 可无条件移位。
+
+验证阶段 1824：一次整组修改后，使用正常 WSL make -j16 统一构建四版；四个完整 8 MiB ROM 与各自 baserom 逐字节及 SHA-1 一致，全局符号/字节与重定位映射核查通过。没有修改 LDS、编译器、预处理器、资源链或链接后 ROM，没有人为移址/插空/扩容试验。
+
+证据：schedule-storage-analysis-1820.json、schedule-storage-relocations-1821.json、schedule-member-migration-1822.json、rick-derived-counts-1823.json、schedule-member-boundaries-1825.json、full-build-1824/results.json 与四版 global-report。临时分析文件在本任务 I 盘目录，未加入正式编译链。下一步继续独立声明的 NPC 日程对象、剩余数据读取方和物理后续块的引用核对，完整目标保持进行中。
+
 ## 恢复玩家工具螺旋网格及真实数据末端（1809、1811–1813，2026-11-10）
 
 player_actor 中原 228 字节 gUnk_080F1230[] 已恢复为 gPlayerToolSpiralRanks[][15]：按真实行列排列的 15×15 u8 螺旋次序网格。对象仍处于原 player_actor.cc 数据顺序，外部声明同步放在 player_actor.hh；原地址式名字完全移除，两个地区实现的设置地址与文字池均直接使用新符号，没有别名、补偿偏移或新文件。

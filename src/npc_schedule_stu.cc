@@ -79,63 +79,93 @@ asm_unified(
     "    bx\tr1\n"
 );
 
-extern "C" NpcScheduleStorage_080F61FC const gUnk_080F61FC = {
+extern "C" StuScheduleData const gStuScheduleData = {
+    // descriptor
     {
         SelectStuSchedule,
-        6,
-        gUnk_080F61FC.table_choices,
+        ARRAY_COUNT(gStuScheduleData.table_choices),
+        gStuScheduleData.table_choices,
     },
+    // table_choices
     {
         nullptr,
-        &gUnk_080F61FC.table_storage[0],
-        &gUnk_080F61FC.table_storage[1],
-        &gUnk_080F61FC.table_storage[2],
-        &gUnk_080F61FC.table_storage[3],
-        &gUnk_080F61FC.table_storage[4],
+        &gStuScheduleData.table_storage[0],
+        &gStuScheduleData.table_storage[1],
+        &gStuScheduleData.table_storage[2],
+        &gStuScheduleData.table_storage[3],
+        &gStuScheduleData.table_storage[4],
     },
+    // table_storage
     {
-        { 5, &gUnk_080F61FC.entry_storage[0] },
-        { 1, &gUnk_080F61FC.entry_storage[5] },
-        { 1, &gUnk_080F61FC.entry_storage[6] },
-        { 1, &gUnk_080F61FC.entry_storage[7] },
-        { 5, &gUnk_080F61FC.entry_storage[8] },
+        { ARRAY_COUNT(gStuScheduleData.entries_0), gStuScheduleData.entries_0 },
+        { ARRAY_COUNT(gStuScheduleData.entries_1), gStuScheduleData.entries_1 },
+        { ARRAY_COUNT(gStuScheduleData.entries_2), gStuScheduleData.entries_2 },
+        { ARRAY_COUNT(gStuScheduleData.entries_3), gStuScheduleData.entries_3 },
+        { ARRAY_COUNT(gStuScheduleData.entries_4), gStuScheduleData.entries_4 },
     },
+    // entries_0
     {
-        { 0x00000000, &gUnk_080F61FC.payload_storage[0] },
-        { 0x000001A4, &gUnk_080F61FC.payload_storage[1] },
-        { 0x000001C7, &gUnk_080F61FC.payload_storage[2] },
-        { 0x00000258, &gUnk_080F61FC.payload_storage[3] },
-        { 0x0000027B, &gUnk_080F61FC.payload_storage[0] },
-        { 0x00000000, &gUnk_080F61FC.payload_storage[0] },
-        { 0x00000000, &gUnk_080F61FC.payload_storage[0] },
-        { 0x00000000, &gUnk_080F61FC.payload_storage[0] },
-        { 0x00000000, &gUnk_080F61FC.payload_storage[0] },
-        { 0x00000078, &gUnk_080F61FC.payload_storage[6] },
-        { 0x00000082, &gUnk_080F61FC.payload_storage[4] },
-        { 0x000000B4, &gUnk_080F61FC.payload_storage[5] },
-        { 0x000000BE, &gUnk_080F61FC.payload_storage[0] },
+        { 0x00000000, &gStuScheduleData.payload_storage[0] },
+        { 0x000001A4, &gStuScheduleData.payload_storage[1] },
+        { 0x000001C7, &gStuScheduleData.payload_storage[2] },
+        { 0x00000258, &gStuScheduleData.payload_storage[3] },
+        { 0x0000027B, &gStuScheduleData.payload_storage[0] },
     },
+    // entries_1
     {
-        { &gUnk_080F61FC.detail_storage[0], 2, 176, 160, 14, 0, true },
-        { &gUnk_080F61FC.detail_storage[2], 3, 400, 160, 5, 0, false },
+        { 0x00000000, &gStuScheduleData.payload_storage[0] },
+    },
+    // entries_2
+    {
+        { 0x00000000, &gStuScheduleData.payload_storage[0] },
+    },
+    // entries_3
+    {
+        { 0x00000000, &gStuScheduleData.payload_storage[0] },
+    },
+    // entries_4
+    {
+        { 0x00000000, &gStuScheduleData.payload_storage[0] },
+        { 0x00000078, &gStuScheduleData.payload_storage[6] },
+        { 0x00000082, &gStuScheduleData.payload_storage[4] },
+        { 0x000000B4, &gStuScheduleData.payload_storage[5] },
+        { 0x000000BE, &gStuScheduleData.payload_storage[0] },
+    },
+    // payload_storage
+    {
+        { gStuScheduleData.points_0, ARRAY_COUNT(gStuScheduleData.points_0), 176, 160, 14, 0, true },
+        { gStuScheduleData.points_1, ARRAY_COUNT(gStuScheduleData.points_1), 400, 160, 5, 0, false },
         { nullptr, 0, 1200, 200, 5, 0, false },
-        { &gUnk_080F61FC.detail_storage[5], 3, 1200, 200, 5, 0, false },
+        { gStuScheduleData.points_3, ARRAY_COUNT(gStuScheduleData.points_3), 1200, 200, 5, 0, false },
         { nullptr, 0, 228, 145, 2, 1, false },
-        { &gUnk_080F61FC.detail_storage[8], 2, 228, 145, 2, 0, false },
-        { &gUnk_080F61FC.detail_storage[10], 2, 340, 0, 2, 0, false },
+        { gStuScheduleData.points_5, ARRAY_COUNT(gStuScheduleData.points_5), 228, 145, 2, 0, false },
+        { gStuScheduleData.points_6, ARRAY_COUNT(gStuScheduleData.points_6), 340, 0, 2, 0, false },
     },
+    // points_0
     {
-        { 0x0060, 0x0002, 0x0078, 0x0005 },
-        { 0x00A0, 0x0002, 0x0078, 0x0004 },
-        { 0x0002, 0x00D8, 0x0001, 0x0000 },
-        { 0x0022, 0x04B0, 0x0000, 0x0000 },
-        { 0x0023, 0x00C8, 0x0001, 0x0000 },
-        { 0x0001, 0x00D8, 0x0001, 0x0000 },
-        { 0x0021, 0x0190, 0x0000, 0x0000 },
-        { 0x0023, 0x00A0, 0x0001, 0x0000 },
-        { 0x0004, 0x0154, 0x0000, 0x0000 },
-        { 0x000A, 0x0000, 0x0001, 0x0000 },
-        { 0x0006, 0x0091, 0x0001, 0x0000 },
-        { 0x000A, 0x00E4, 0x0000, 0x0000 },
+        { 96, 2, 120, 1, true },
+        { 160, 2, 120, 0, true },
+    },
+    // points_1
+    {
+        { 2, 216, true },
+        { 34, 1200, false },
+        { 35, 200, true },
+    },
+    // points_3
+    {
+        { 1, 216, true },
+        { 33, 400, false },
+        { 35, 160, true },
+    },
+    // points_5
+    {
+        { 4, 340, false },
+        { 10, 0, true },
+    },
+    // points_6
+    {
+        { 6, 145, true },
+        { 10, 228, false },
     },
 };

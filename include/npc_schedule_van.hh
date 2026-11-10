@@ -5,15 +5,15 @@
 
 extern "C" u32 IsVanWednesdayScheduleActive(void const * context);
 
-struct NpcScheduleStorage_080F6B10
+struct VanScheduleData
 {
     ScheduleInfo descriptor;
     Schedule const * const table_choices[2];
     Schedule table_storage[1];
-    ScheduleEntry entry_storage[1];
+    ScheduleEntry entries_0[1];
     PathInfo payload_storage[1];
 };
 
-extern "C" NpcScheduleStorage_080F6B10 const gUnk_080F6B10;
+extern "C" VanScheduleData const gVanScheduleData;
 
 #endif // NPC_SCHEDULE_VAN_HH

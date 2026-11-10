@@ -62,25 +62,33 @@ asm_unified(
     "    .align 2, 0\n"
 );
 
-extern "C" NpcScheduleStorage_080F597C const gUnk_080F597C = {
+extern "C" WonScheduleData const gWonScheduleData = {
+    // descriptor
     {
         SelectWonSchedule,
-        3,
-        gUnk_080F597C.table_choices,
+        ARRAY_COUNT(gWonScheduleData.table_choices),
+        gWonScheduleData.table_choices,
     },
+    // table_choices
     {
         nullptr,
-        &gUnk_080F597C.table_storage[0],
-        &gUnk_080F597C.table_storage[1],
+        &gWonScheduleData.table_storage[0],
+        &gWonScheduleData.table_storage[1],
     },
+    // table_storage
     {
-        { 1, &gUnk_080F597C.entry_storage[0] },
-        { 1, &gUnk_080F597C.entry_storage[1] },
+        { ARRAY_COUNT(gWonScheduleData.entries_0), gWonScheduleData.entries_0 },
+        { ARRAY_COUNT(gWonScheduleData.entries_1), gWonScheduleData.entries_1 },
     },
+    // entries_0
     {
-        { 0x00000000, &gUnk_080F597C.payload_storage[0] },
-        { 0x00000000, &gUnk_080F597C.payload_storage[0] },
+        { 0x00000000, &gWonScheduleData.payload_storage[0] },
     },
+    // entries_1
+    {
+        { 0x00000000, &gWonScheduleData.payload_storage[0] },
+    },
+    // payload_storage
     {
         { nullptr, 0, 191, 141, 13, 2, false },
     },

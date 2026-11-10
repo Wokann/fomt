@@ -13,22 +13,27 @@ extern "C" u32 IsVanWednesdayScheduleActive(void const * context)
     return 0;
 }
 
-extern "C" NpcScheduleStorage_080F6B10 const gUnk_080F6B10 = {
+extern "C" VanScheduleData const gVanScheduleData = {
+    // descriptor
     {
         IsVanWednesdayScheduleActive,
-        2,
-        gUnk_080F6B10.table_choices,
+        ARRAY_COUNT(gVanScheduleData.table_choices),
+        gVanScheduleData.table_choices,
     },
+    // table_choices
     {
         nullptr,
-        &gUnk_080F6B10.table_storage[0],
+        &gVanScheduleData.table_storage[0],
     },
+    // table_storage
     {
-        { 1, &gUnk_080F6B10.entry_storage[0] },
+        { ARRAY_COUNT(gVanScheduleData.entries_0), gVanScheduleData.entries_0 },
     },
+    // entries_0
     {
-        { 0x00000000, &gUnk_080F6B10.payload_storage[0] },
+        { 0x00000000, &gVanScheduleData.payload_storage[0] },
     },
+    // payload_storage
     {
         { nullptr, 0, 352, 248, 23, 2, false },
     },

@@ -104,12 +104,5 @@ extern "C" GameDayDate * DecodeGameDayDate(GameDayDate * output, GameCalendar co
 
 extern "C" u32 IsNpcScheduleDateListed(u32 season, u32 day);
 
-struct NpcScheduleDetailEntry
-{
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-};
 
 #endif // NPC_SCHEDULE_HH

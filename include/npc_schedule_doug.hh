@@ -5,16 +5,19 @@
 
 extern "C" u32 SelectDougSchedule(void const * context);
 
-struct NpcScheduleStorage_080F42F0
+struct DougScheduleData
 {
     ScheduleInfo descriptor;
     Schedule const * const table_choices[4];
     Schedule table_storage[3];
-    ScheduleEntry entry_storage[10];
+    ScheduleEntry entries_0[6];
+    ScheduleEntry entries_1[1];
+    ScheduleEntry entries_2[3];
     PathInfo payload_storage[5];
-    NpcScheduleDetailEntry detail_storage[4];
+    PathPointB points_0[2];
+    PathPointA points_4[2];
 };
 
-extern "C" NpcScheduleStorage_080F42F0 const gUnk_080F42F0;
+extern "C" DougScheduleData const gDougScheduleData;
 
 #endif // NPC_SCHEDULE_DOUG_HH

@@ -13,27 +13,33 @@ extern "C" u32 IsLouSundayScheduleActive(void const * context)
     return 0;
 }
 
-extern "C" NpcScheduleStorage_080F4974 const gUnk_080F4974 = {
+extern "C" LouScheduleData const gLouScheduleData = {
+    // descriptor
     {
         IsLouSundayScheduleActive,
-        2,
-        gUnk_080F4974.table_choices,
+        ARRAY_COUNT(gLouScheduleData.table_choices),
+        gLouScheduleData.table_choices,
     },
+    // table_choices
     {
         nullptr,
-        &gUnk_080F4974.table_storage[0],
+        &gLouScheduleData.table_storage[0],
     },
+    // table_storage
     {
-        { 1, &gUnk_080F4974.entry_storage[0] },
+        { ARRAY_COUNT(gLouScheduleData.entries_0), gLouScheduleData.entries_0 },
     },
+    // entries_0
     {
-        { 0x00000000, &gUnk_080F4974.payload_storage[0] },
+        { 0x00000000, &gLouScheduleData.payload_storage[0] },
     },
+    // payload_storage
     {
-        { &gUnk_080F4974.detail_storage[0], 2, 160, 160, 23, 0, true },
+        { gLouScheduleData.points_0, ARRAY_COUNT(gLouScheduleData.points_0), 160, 160, 23, 0, true },
     },
+    // points_0
     {
-        { 0x0070, 0x0002, 0x0078, 0x0002 },
-        { 0x00A0, 0x0002, 0x0078, 0x0003 },
+        { 112, 2, 120, 2, false },
+        { 160, 2, 120, 3, false },
     },
 };

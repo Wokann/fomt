@@ -5,16 +5,26 @@
 
 extern "C" u32 SelectKaiSchedule(void const * context);
 
-struct NpcScheduleStorage_080F6FF8
+struct KaiScheduleData
 {
     ScheduleInfo descriptor;
     Schedule const * const table_choices[5];
     Schedule table_storage[4];
-    ScheduleEntry entry_storage[22];
+    ScheduleEntry entries_0[13];
+    ScheduleEntry entries_1[7];
+    ScheduleEntry entries_2[1];
+    ScheduleEntry entries_3[1];
     PathInfo payload_storage[12];
-    NpcScheduleDetailEntry detail_storage[34];
+    PathPointA points_1[3];
+    PathPointA points_2[6];
+    PathPointA points_4[3];
+    PathPointA points_6[3];
+    PathPointA points_7[6];
+    PathPointA points_8[3];
+    PathPointA points_9[5];
+    PathPointA points_11[5];
 };
 
-extern "C" NpcScheduleStorage_080F6FF8 const gUnk_080F6FF8;
+extern "C" KaiScheduleData const gKaiScheduleData;
 
 #endif // NPC_SCHEDULE_KAI_HH
