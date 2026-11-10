@@ -437,7 +437,7 @@ asm_unified(
     "ldr r1, [r1]\n"
     "str r1, [r0]\n"
     "bx lr\n"
-    ".Lmenu_4_1_0008: .word gUnk_0811785C\n"
+    ".Lmenu_4_1_0008: .word gMenuGridHeaderTilePosition\n"
     "\n"
     "thumb_func_start func_080CD9A0\n"
     "func_080CD9A0:\n"
@@ -447,7 +447,7 @@ asm_unified(
     "ldr r1, [r2]\n"
     "str r1, [r0]\n"
     "bx lr\n"
-    ".Lmenu_4_2_000c: .word gUnk_08117860\n"
+    ".Lmenu_4_2_000c: .word gMenuGridCellTilePositions\n"
 );
 
 

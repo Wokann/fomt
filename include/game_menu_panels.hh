@@ -9,7 +9,8 @@
 #include "utility/fixed_str.hh"
 #include "game_menu_command_queue.hh"
 
-// Pixel-byte pairs retain the native four-byte record alignment.
+// Coordinate-byte pairs retain the native four-byte record alignment.
+// Each consumer selects pixel coordinates or tilemap coordinates.
 struct ALIGN(4) MenuGridPosition {
     u8 x;
     u8 y;
@@ -18,8 +19,8 @@ typedef char MenuGridPositionSizeCheck[sizeof(MenuGridPosition) == 4 ? 1 : -1];
 typedef char MenuGridPositionYCheck[offsetof(MenuGridPosition, y) == 1 ? 1 : -1];
 extern MenuGridPosition const gMenuGridHeaderPosition;
 extern MenuGridPosition const gMenuGridCellPositions[8];
-extern u32 const gUnk_0811785C;
-extern u32 const gUnk_08117860[8];
+extern MenuGridPosition const gMenuGridHeaderTilePosition;
+extern MenuGridPosition const gMenuGridCellTilePositions[];
 // Shared native panel base. It owns queued drawing commands and a 16-tile
 // glyph buffer; the virtual pointer follows the buffer at +0x210.
 #pragma interface "game_menu_lifetimes.hh"
