@@ -1,3 +1,7 @@
+## GameCube 联动存档
+
+从发送包准备到负载复制的连续代码已还原为 C++，另包括此前的缓冲析构。四版保留各自协议的名称字段宽度。
+
 ## 存档镜像与序列化边界
 
 SRAM 的 32 KiB 地址空间由 0x28 字节头和两个 0x3FEC 字节槽组成。每槽从长度字开始，接 0x34F4 字节 GameStateSaveImage 和校验和。剩余 0x0AF0 字节位于该记录的读写范围外。物理布局见 include/sram_image.hh，负载成员及偏移见 include/game_state_types.hh。

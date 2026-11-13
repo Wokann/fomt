@@ -21,6 +21,7 @@ struct PACKED GameCubeLinkOutgoingPacket {
 };
 
 struct PACKED GameCubeLinkIncomingPacket {
+    // Decoded into the three 16-byte SRAM name fields at record +14/+24/+34.
     u8 names[3][GAMECUBE_LINK_ENCODED_NAME_SIZE];
     u8 milestones[8];
 };
@@ -34,9 +35,9 @@ struct GameCubeLinkSaveData {
     GameStateSaveImage * save;
     GameCubeLinkOutgoingPacket * outgoing;
     GameCubeLinkIncomingPacket * incoming;
-    u32 unk_0C;
-    u32 unk_10;
-    u32 unk_14;
+    u32 unk_0C; // Copied from saved link record +0 before the transfer.
+    u32 unk_10; // Copied from saved link record +4 before the transfer.
+    u32 unk_14; // Written back to saved link record +4 on receipt.
     bool received_milestones[49];
 };
 

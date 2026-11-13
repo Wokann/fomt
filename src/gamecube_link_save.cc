@@ -49,297 +49,119 @@ asm_unified(
     ".align 2, 0\n"
     ".Lgamecube_118_0054: .word 0x21d4\n"
     "\n"
-    "thumb_func_start _._20GameCubeLinkSaveData\n"
-    "_._20GameCubeLinkSaveData:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "adds r5, r1, #0x0\n"
-    "ldr r0, [r4, #0x4]\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_119_0010\n"
-    "bl __builtin_vec_delete\n"
-    ".Lgamecube_119_0010:\n"
-    "ldr r0, [r4, #0x8]\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_119_001a\n"
-    "bl __builtin_vec_delete\n"
-    ".Lgamecube_119_001a:\n"
-    "movs r0, #0x1\n"
-    "ands r0, r5\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_119_0028\n"
-    "adds r0, r4, #0x0\n"
-    "bl __builtin_delete\n"
-    ".Lgamecube_119_0028:\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PrepareGameCubeLinkOutgoingData\n"
-    "PrepareGameCubeLinkOutgoingData:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "mov r7, sl\n"
-    ".ifdef REGION_JP\n"
-    "mov r6, r9\n"
-    ".else\n"
-    "mov r6, sb\n"
-    ".endif\n"
-    "mov r5, r8\n"
-    "push {r5, r6, r7}\n"
-    "sub sp, #0x4\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r6, [r4, #0x4]\n"
-    "ldr r0, [r4]\n"
-    "ldr r2, .Lgamecube_120_008c\n"
-    "adds r1, r0, r2\n"
-    "ldr r7, [r1]\n"
-    "ldr r1, [r1, #0x4]\n"
-    "str r1, [sp]\n"
-    "adds r0, #0x14\n"
-    "bl GetName__C4Farm\n"
-    ".ifdef REGION_JP\n"
-    "mov r9, r0\n"
-    ".else\n"
-    "mov sb, r0\n"
-    ".endif\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, .Lgamecube_120_0090\n"
-    "adds r0, r0, r1\n"
-    "bl GetName__C6Farmer\n"
-    "mov sl, r0\n"
-    "ldr r0, [r4]\n"
-    "ldr r2, .Lgamecube_120_0094\n"
-    "adds r0, r0, r2\n"
-    "bl GetChild__13NpcCollection\n"
-    "bl GetName__C5Child\n"
-    "mov r8, r0\n"
-    "ldr r5, [r4]\n"
-    "ldr r0, .Lgamecube_120_0098\n"
-    "adds r5, r5, r0\n"
-    "str r7, [r4, #0xc]\n"
-    "ldr r1, [sp]\n"
-    "str r1, [r4, #0x10]\n"
-    "adds r0, r4, #0x0\n"
-    "adds r1, r6, #0x0\n"
-    ".ifdef REGION_JP\n"
-    "mov r2, r9\n"
-    ".else\n"
-    "mov r2, sb\n"
-    ".endif\n"
-    "bl EncodeGameCubeLinkName\n"
-    "adds r1, r6, #0x0\n"
-    ".ifdef REGION_JP\n"
-    "adds r1, #0x8\n"
-    ".else\n"
-    "adds r1, #0xd\n"
-    ".endif\n"
-    "adds r0, r4, #0x0\n"
-    "mov r2, sl\n"
-    "bl EncodeGameCubeLinkName\n"
-    "adds r1, r6, #0x0\n"
-    ".ifdef REGION_JP\n"
-    "adds r1, #0x10\n"
-    ".else\n"
-    "adds r1, #0x1a\n"
-    ".endif\n"
-    "adds r0, r4, #0x0\n"
-    "mov r2, r8\n"
-    "bl EncodeGameCubeLinkName\n"
-    ".ifdef REGION_JP\n"
-    "adds r6, #0x18\n"
-    ".else\n"
-    "adds r6, #0x27\n"
-    ".endif\n"
-    "adds r0, r4, #0x0\n"
-    "adds r1, r6, #0x0\n"
-    "adds r2, r5, #0x0\n"
-    "movs r3, #0x4\n"
-    "bl CopyGameCubeLinkPayloadBytes\n"
-    "add sp, #0x4\n"
-    "pop {r3, r4, r5}\n"
-    "mov r8, r3\n"
-    ".ifdef REGION_JP\n"
-    "mov r9, r4\n"
-    ".else\n"
-    "mov sb, r4\n"
-    ".endif\n"
-    "mov sl, r5\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_120_008c: .word 0x21cc\n"
-    ".align 2, 0\n"
-    ".Lgamecube_120_0090: .word 0x1bd8\n"
-    ".align 2, 0\n"
-    ".Lgamecube_120_0094: .word 0x1cd4\n"
-    ".align 2, 0\n"
-    ".Lgamecube_120_0098: .word 0x21dc\n"
-    "\n"
-    "thumb_func_start GetGameCubeLinkLocalGameCode\n"
-    "GetGameCubeLinkLocalGameCode:\n"
-    "ldr r0, .Lgamecube_121_0008\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lgamecube_121_0008: .word gLinkCommunicationGameCodeA4N\n"
-    "\n"
-    "thumb_func_start GetGameCubeLinkRemoteGameCode\n"
-    "GetGameCubeLinkRemoteGameCode:\n"
-    "ldr r0, .Lgamecube_122_0008\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lgamecube_122_0008: .word gLinkCommunicationGameCodeGYW\n"
-    "\n"
-    "thumb_func_start func_080948F8\n"
-    "func_080948F8:\n"
-    "adds r0, #0xc\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start GetGameCubeLinkRecordWords\n"
-    "GetGameCubeLinkRecordWords:\n"
-    "adds r0, #0xc\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start GetGameCubeLinkOutgoingPacket\n"
-    "GetGameCubeLinkOutgoingPacket:\n"
-    "ldr r0, [r0, #0x4]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start GetGameCubeLinkOutgoingSize\n"
-    "GetGameCubeLinkOutgoingSize:\n"
-    ".ifdef REGION_JP\n"
-    "movs r0, #0x1c\n"
-    ".else\n"
-    "movs r0, #0x2b\n"
-    ".endif\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start GetGameCubeLinkIncomingPacket\n"
-    "GetGameCubeLinkIncomingPacket:\n"
-    "ldr r0, [r0, #0x8]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start GetGameCubeLinkIncomingSize\n"
-    "GetGameCubeLinkIncomingSize:\n"
-    ".ifdef REGION_JP\n"
-    "movs r0, #0x20\n"
-    ".else\n"
-    "movs r0, #0x2f\n"
-    ".endif\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start GetGameCubeLinkReceivedRecordValue\n"
-    "GetGameCubeLinkReceivedRecordValue:\n"
-    "ldr r0, [r0, #0x14]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start func_08094914\n"
-    "func_08094914:\n"
-    "push {lr}\n"
-    "ldr r2, [r0, #0x8]\n"
-    "bl DecodeGameCubeLinkName\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
-    "thumb_func_start func_08094920\n"
-    "func_08094920:\n"
-    "push {lr}\n"
-    "ldr r2, [r0, #0x8]\n"
-    ".ifdef REGION_JP\n"
-    "adds r2, #0x8\n"
-    ".else\n"
-    "adds r2, #0xd\n"
-    ".endif\n"
-    "bl DecodeGameCubeLinkName\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start func_08094930\n"
-    "func_08094930:\n"
-    "push {lr}\n"
-    "ldr r2, [r0, #0x8]\n"
-    ".ifdef REGION_JP\n"
-    "adds r2, #0x10\n"
-    ".else\n"
-    "adds r2, #0x1a\n"
-    ".endif\n"
-    "bl DecodeGameCubeLinkName\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start DecodeGameCubeLinkReceivedName0\n"
-    "DecodeGameCubeLinkReceivedName0:\n"
-    "push {lr}\n"
-    "ldr r2, [r0, #0x8]\n"
-    "bl DecodeGameCubeLinkName\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
-    "thumb_func_start DecodeGameCubeLinkReceivedName1\n"
-    "DecodeGameCubeLinkReceivedName1:\n"
-    "push {lr}\n"
-    "ldr r2, [r0, #0x8]\n"
-    ".ifdef REGION_JP\n"
-    "adds r2, #0x8\n"
-    ".else\n"
-    "adds r2, #0xd\n"
-    ".endif\n"
-    "bl DecodeGameCubeLinkName\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start DecodeGameCubeLinkReceivedName2\n"
-    "DecodeGameCubeLinkReceivedName2:\n"
-    "push {lr}\n"
-    "ldr r2, [r0, #0x8]\n"
-    ".ifdef REGION_JP\n"
-    "adds r2, #0x10\n"
-    ".else\n"
-    "adds r2, #0x1a\n"
-    ".endif\n"
-    "bl DecodeGameCubeLinkName\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start GetGameCubeLinkReceivedMilestones\n"
-    "GetGameCubeLinkReceivedMilestones:\n"
-    "ldr r0, [r0, #0x8]\n"
-    ".ifdef REGION_JP\n"
-    "adds r0, #0x18\n"
-    ".else\n"
-    "adds r0, #0x27\n"
-    ".endif\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start CopyGameCubeLinkPayloadBytes\n"
-    "CopyGameCubeLinkPayloadBytes:\n"
-    "push {r4, r5, lr}\n"
-    "adds r5, r1, #0x0\n"
-    "adds r4, r2, #0x0\n"
-    "movs r2, #0x0\n"
-    "cmp r2, r3\n"
-    "bhs .Lgamecube_137_001a\n"
-    ".Lgamecube_137_000c:\n"
-    "adds r0, r5, r2\n"
-    "adds r1, r4, r2\n"
-    "ldrb r1, [r1]\n"
-    "strb r1, [r0]\n"
-    "adds r2, #0x1\n"
-    "cmp r2, r3\n"
-    "blo .Lgamecube_137_000c\n"
-    ".Lgamecube_137_001a:\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
+);
+
+GameCubeLinkSaveData::~GameCubeLinkSaveData()
+{
+    delete[] reinterpret_cast<u8 *>(outgoing);
+    delete[] reinterpret_cast<u8 *>(incoming);
+}
+
+void PrepareGameCubeLinkOutgoingData(GameCubeLinkSaveData * data)
+{
+    GameCubeLinkOutgoingPacket * packet = data->outgoing;
+    GameStateLinkRecord const & record = data->save->link_record;
+    u32 first = record.unk_00;
+    u32 second = record.unk_04;
+    char const * farm = data->save->farm.GetName();
+    char const * player = data->save->farmer.GetName();
+    char const * child = data->save->npcs.GetChild()->GetName();
+    u8 const * milestones = data->save->link_record.local_milestones;
+    data->unk_0C = first;
+    data->unk_10 = second;
+    EncodeGameCubeLinkName(data, packet->farm_name, farm);
+    EncodeGameCubeLinkName(data, packet->player_name, player);
+    EncodeGameCubeLinkName(data, packet->child_name, child);
+    CopyGameCubeLinkPayloadBytes(data, packet->milestones, milestones, sizeof(packet->milestones));
+}
+
+u32 GetGameCubeLinkLocalGameCode(GameCubeLinkSaveData const *)
+{
+    return gLinkCommunicationGameCodeA4N.game_code;
+}
+
+u32 GetGameCubeLinkRemoteGameCode(GameCubeLinkSaveData const *)
+{
+    return gLinkCommunicationGameCodeGYW.game_code;
+}
+
+extern "C" u32 * func_080948F8(GameCubeLinkSaveData * data)
+{
+    return &data->unk_0C;
+}
+
+u32 * GetGameCubeLinkRecordWords(GameCubeLinkSaveData * data)
+{
+    return &data->unk_0C;
+}
+
+GameCubeLinkOutgoingPacket * GetGameCubeLinkOutgoingPacket(GameCubeLinkSaveData * data)
+{
+    return data->outgoing;
+}
+
+u32 GetGameCubeLinkOutgoingSize(GameCubeLinkSaveData const *)
+{
+    return sizeof(GameCubeLinkOutgoingPacket);
+}
+
+GameCubeLinkIncomingPacket * GetGameCubeLinkIncomingPacket(GameCubeLinkSaveData * data)
+{
+    return data->incoming;
+}
+
+u32 GetGameCubeLinkIncomingSize(GameCubeLinkSaveData const *)
+{
+    return sizeof(GameCubeLinkIncomingPacket);
+}
+
+u32 GetGameCubeLinkReceivedRecordValue(GameCubeLinkSaveData const * data)
+{
+    return data->unk_14;
+}
+
+void func_08094914(GameCubeLinkSaveData const * data, char * output)
+{
+    DecodeGameCubeLinkName(data, output, data->incoming->names[0]);
+}
+
+void func_08094920(GameCubeLinkSaveData const * data, char * output)
+{
+    DecodeGameCubeLinkName(data, output, data->incoming->names[1]);
+}
+
+void func_08094930(GameCubeLinkSaveData const * data, char * output)
+{
+    DecodeGameCubeLinkName(data, output, data->incoming->names[2]);
+}
+
+void DecodeGameCubeLinkReceivedName0(GameCubeLinkSaveData const * data, char * output)
+{
+    DecodeGameCubeLinkName(data, output, data->incoming->names[0]);
+}
+
+void DecodeGameCubeLinkReceivedName1(GameCubeLinkSaveData const * data, char * output)
+{
+    DecodeGameCubeLinkName(data, output, data->incoming->names[1]);
+}
+
+void DecodeGameCubeLinkReceivedName2(GameCubeLinkSaveData const * data, char * output)
+{
+    DecodeGameCubeLinkName(data, output, data->incoming->names[2]);
+}
+
+u8 const * GetGameCubeLinkReceivedMilestones(GameCubeLinkSaveData const * data)
+{
+    return data->incoming->milestones;
+}
+
+void CopyGameCubeLinkPayloadBytes(GameCubeLinkSaveData const *, u8 * output, u8 const * input, u32 count)
+{
+    for (u32 i = 0; i < count; ++i)
+        output[i] = input[i];
+}
+
+asm_unified(
     "thumb_func_start EncodeGameCubeLinkName\n"
     "EncodeGameCubeLinkName:\n"
     "push {r4, r5, r6, r7, lr}\n"

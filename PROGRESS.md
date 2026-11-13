@@ -1,3 +1,7 @@
+## 联动存档整文件还原
+
+gamecube_link_save.cc 的 22 个函数中，19 个已有 C++ 实现。剩余构造函数及名称编解码器保留原生指令，局部候选尚未匹配。
+
 ## 存档和命名输入的整文件审计
 
 已建立存档外层布局。新纳入的 UI 状态模块仍有 3 个汇编块、4 个函数；键盘主模块还剩 InitializeNameInputScreen 和 RenderNameInputKeyboard。编辑、插入、删除及命名场景入口已有 C++ 实现。

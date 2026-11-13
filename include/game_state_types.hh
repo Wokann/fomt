@@ -55,7 +55,8 @@ typedef char TVShoppingOrderCountdownCheck[offsetof(TVShoppingOrderState, countd
 
 // Saved at +0x21CC. The dispatcher keeps the received and local milestone
 // bitmaps separate; initialization and copying confirm their actual sizes.
-// The two words and three name slots have no further verified roles yet.
+// The first two words are passed together to the link transfer. On receipt
+// the scene writes the returned record value into the second saved word.
 struct GameStateLinkRecord {
     GameStateLinkRecord(u32 value) : unk_00(value), unk_04(0)
     {
@@ -67,9 +68,9 @@ struct GameStateLinkRecord {
     u32 unk_04;
     u8 received_milestones[8];
     u8 local_milestones[4];
-    FixedStr<15> name_14;
-    FixedStr<15> name_24;
-    FixedStr<15> name_34;
+    FixedStr<15> name_14; // Received name 0: farm (<cf>, PLACE2).
+    FixedStr<15> name_24; // Received name 1: player (<cp>, PASSERBY1).
+    FixedStr<15> name_34; // Received name 2: <cs>, PASSERBY2.
 };
 
 typedef char GameStateLinkRecordSizeCheck[sizeof(GameStateLinkRecord) == 0x44 ? 1 : -1];
