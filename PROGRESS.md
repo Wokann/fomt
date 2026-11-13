@@ -1,3 +1,7 @@
+## 姓名输入完成后的全仓链接审计
+
+已核对四版导出符号、指针、直接分支和特殊资源的读取边界。新模块按 ROM 顺序手动登记到各版 LDS。鸡祭、飞盘和脚本读取器的跨界读取见 RELOCATION_AUDIT.md。
+
 ## 姓名输入画面初始化
 
 已完成 src/new_game_name_input.cc 整文件的 C++ 还原，最后一项为 InitializeNameInputScreen。四版均通过 WSL make -j16 compare 及独立逐字节比较。
