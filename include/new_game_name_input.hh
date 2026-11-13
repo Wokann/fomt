@@ -9,6 +9,12 @@
 #define NEW_GAME_NAME_INPUT_TILE_WIDTH 30
 #define NEW_GAME_NAME_INPUT_TILE_HEIGHT 2
 #define NEW_GAME_NAME_INPUT_KEYBOARD_BUFFER_COUNT (NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE + 2)
+// Foreground tile row shared by the two-row button strip and its OAM cursor.
+#if defined(REGION_DE)
+#define NEW_GAME_NAME_INPUT_BUTTON_ROW 18
+#else
+#define NEW_GAME_NAME_INPUT_BUTTON_ROW 17
+#endif
 #if defined(REGION_JP)
 #define NEW_GAME_NAME_INPUT_PROMPT_WIDTH 6
 #else

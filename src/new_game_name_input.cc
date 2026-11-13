@@ -434,8 +434,8 @@ NAKED void InitializeNameInputScreen(NewGameNameInputCore * core)
         ".Ljp_00005DBC: .word (" STRINGIFY(NEW_GAME_NAME_INPUT_CORE_PROMPT_TILES_OFFSET) ")\n"
         ".Ljp_00005DC0: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x94)\n"
         ".Ljp_00005DC4: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x54)\n"
-        ".Ljp_00005DC8: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x486)\n"
-        ".Ljp_00005DCC: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x446)\n"
+        ".Ljp_00005DC8: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + ((" STRINGIFY(NEW_GAME_NAME_INPUT_BUTTON_ROW) " + 1) * 32 + 3) * 2)\n"
+        ".Ljp_00005DCC: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + ((" STRINGIFY(NEW_GAME_NAME_INPUT_BUTTON_ROW) ") * 32 + 3) * 2)\n"
         ".Ljp_00005DD0: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0xA4)\n"
         ".Ljp_00005DD4: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x64)\n"
         ".Ljp_00005DD8: .word (" STRINGIFY(NEW_GAME_NAME_INPUT_CORE_PROMPT_OFFSET) ")\n"
@@ -1115,8 +1115,8 @@ NAKED void InitializeNameInputScreen(NewGameNameInputCore * core)
         ".LNewGameDE_08005EF4: .word (" STRINGIFY(NEW_GAME_NAME_INPUT_CORE_PROMPT_TILES_OFFSET) ")\n"
         ".LNewGameDE_08005EF8: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x94)\n"
         ".LNewGameDE_08005EFC: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x54)\n"
-        ".LNewGameDE_08005F00: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x4C6)\n"
-        ".LNewGameDE_08005F04: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x486)\n"
+        ".LNewGameDE_08005F00: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + ((" STRINGIFY(NEW_GAME_NAME_INPUT_BUTTON_ROW) " + 1) * 32 + 3) * 2)\n"
+        ".LNewGameDE_08005F04: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + ((" STRINGIFY(NEW_GAME_NAME_INPUT_BUTTON_ROW) ") * 32 + 3) * 2)\n"
         ".LNewGameDE_08005F08: .word (" STRINGIFY(NEW_GAME_NAME_INPUT_KEYBOARD_BUFFER_COUNT) " * " STRINGIFY(NEW_GAME_NAME_INPUT_TILE_WIDTH) " * " STRINGIFY(NEW_GAME_NAME_INPUT_TILE_HEIGHT) " + " STRINGIFY(NEW_GAME_NAME_INPUT_TILE_WIDTH) ")\n"
         ".LNewGameDE_08005F0C: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0xA4)\n"
         ".LNewGameDE_08005F10: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x64)\n"
@@ -1819,8 +1819,8 @@ NAKED void InitializeNameInputScreen(NewGameNameInputCore * core)
         ".L08005EE8: .word (" STRINGIFY(NEW_GAME_NAME_INPUT_CORE_PROMPT_TILES_OFFSET) ")\n"
         ".L08005EEC: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x94)\n"
         ".L08005EF0: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x54)\n"
-        ".L08005EF4: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x486)\n"
-        ".L08005EF8: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x446)\n"
+        ".L08005EF4: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + ((" STRINGIFY(NEW_GAME_NAME_INPUT_BUTTON_ROW) " + 1) * 32 + 3) * 2)\n"
+        ".L08005EF8: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + ((" STRINGIFY(NEW_GAME_NAME_INPUT_BUTTON_ROW) ") * 32 + 3) * 2)\n"
         ".L08005EFC: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0xA4)\n"
         ".L08005F00: .word (MEM_VRAM + 24 * BG_SCREEN_SIZE + 0x64)\n"
         ".L08005F04: .word (" STRINGIFY(NEW_GAME_NAME_INPUT_CORE_PROMPT_OFFSET) ")\n"
@@ -2473,11 +2473,7 @@ void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
             group++;
         }
         core->sprites[0].attributes.x = group * 80 + 0x18;
-#if defined(REGION_DE)
-        core->sprites[0].attributes.y = 0x90;
-#else
-        core->sprites[0].attributes.y = 0x88;
-#endif
+        core->sprites[0].attributes.y = NEW_GAME_NAME_INPUT_BUTTON_ROW * 8;
         core->sprites[0].attributes.size = ST_OAM_SIZE_2;
         core->sprites[0].attributes.shape = ST_OAM_H_RECTANGLE;
     }
