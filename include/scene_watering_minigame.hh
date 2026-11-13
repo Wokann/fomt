@@ -219,9 +219,10 @@ extern char const gText_HarvestSpriteMiniGame_Watering_ScoreSummary[];
 extern u16 const gUnk_080C7B38Values[10];
 extern u16 const gUnk_080C7B64Values[7];
 
+extern u8 const gUnk_0873DE44[];
+
 #if defined(REGION_JP)
 extern u8 const gUnk_084C4718[];
-extern u8 const gUnk_084C3FAC[];
 extern u8 const gUnk_084C6708[];
 extern u8 const gUnk_084C3764[];
 extern u8 const gUnk_084C6A70[];
@@ -230,7 +231,6 @@ extern u8 const gUnk_084B1FCC[];
 extern u8 const gUnk_084C3840[];
 #else
 extern u8 const gUnk_0873E5B0[];
-extern u8 const gUnk_0873DE44[];
 extern u8 const gUnk_087405A0[];
 extern u8 const gUnk_0873D5FC[];
 extern u8 const gUnk_08740908[];

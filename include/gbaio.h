@@ -198,9 +198,11 @@ EXTERN_C
 
 // BGCNT
 #define BGCNT_PRIORITY(n) (n)
+#define BGCNT_CHARBASE(n) ((n) << 2)
 #define BGCNT_MOSAIC (1 << 6)
 #define BGCNT_SCREENBASE(n) ((n) << 8)
 #define BGCNT_WRAP (1 << 13)
+#define BGCNT_SIZE(n) ((n) << 14)
 
 // BLDCNT
 #define BLDCNT_TGT1_BG0 (1 << 0)

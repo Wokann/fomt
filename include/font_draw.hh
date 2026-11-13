@@ -45,15 +45,17 @@ EXTERN_C
 
 // The packed size is tile width in its low half and tile height in its high
 // half. Glyph coordinates are pixels; the destination is a 4bpp tile buffer.
+// Extended draws map palette 0 to background, 1 to foreground, and 2 to
+// foreground + 1 (shadow), preserving the native parameter order.
 i32 DrawCharacterGlyphTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
     i32 character);
 i32 DrawCharacterGlyphTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
-    i32 character, i32 foreground, i32 background);
+    i32 character, i32 background, i32 foreground);
 // The native unaligned paths deliberately return zero without drawing.
 i32 DrawCharacterGlyphTo2DGfxBufferUnaligned(u32 size, void *buffer, i32 x,
     i32 y, void *glyph);
 i32 DrawCharacterGlyphTo2DGfxBufferExtUnaligned(u32 size, void *buffer,
-    i32 x, i32 y, void *glyph, i32 foreground, i32 background);
+    i32 x, i32 y, void *glyph, i32 background, i32 foreground);
 void Clear2DGfxBuffer(u32 size, void *buffer, u32 color);
 void Clear2DGfxBufferRect(u32 size, void *buffer, u32 x, u32 y, u32 width,
     u32 height, u32 color);
@@ -63,7 +65,7 @@ void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
 void DrawStringTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
     u8 const *string);
 void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
-    u8 const *string, i32 foreground, i32 background);
+    u8 const *string, i32 background, i32 foreground);
 
 EXTERN_C_END
 

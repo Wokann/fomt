@@ -15,6 +15,10 @@ struct ObjPaletteCollection {
     // If all entries are busy, retain the original cursor entry instead.
     // No storage allocates a fresh entry; allocated storage must not be empty.
     ObjPaletteCollectionEntry Get() const;
+private:
+    // The collection owns its storage; callers retain entries through Get().
+    ObjPaletteCollection(ObjPaletteCollection const &);
+    ObjPaletteCollection & operator=(ObjPaletteCollection const &);
 };
 
 typedef char ObjPaletteCollectionSizeCheck[sizeof(ObjPaletteCollection) == 4 ? 1 : -1];

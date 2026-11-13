@@ -17,8 +17,34 @@ inline u16 ReadHardwareDisplayHalfword(u16 const & value)
     return value;
 }
 
+inline void WriteHardwareDisplayFlags(u16 & destination, u16 flags)
+{
+    destination = ReadHardwareDisplayHalfword(flags);
+}
+
+inline void WriteHardwareDisplayRegister(u16 & destination, u16 input)
+{
+    u16 const & value = input;
+    destination = value;
+}
+
 struct HardwareDisplayRegisterValue {
     u16 value;
+
+    HardwareDisplayRegisterValue() {}
+
+    template<class Integer>
+    HardwareDisplayRegisterValue & operator=(Integer input)
+    {
+        WriteHardwareDisplayHalfword(value, input);
+        return *this;
+    }
+
+    HardwareDisplayRegisterValue & operator=(u16 const & input)
+    {
+        WriteHardwareDisplayHalfword(value, input);
+        return *this;
+    }
 
     HardwareDisplayRegisterValue(int input)
     {
@@ -34,6 +60,7 @@ struct HardwareDisplayRegisterValue {
     {
         WriteHardwareDisplayHalfword(value, input.value);
     }
+
 };
 #endif
 
@@ -60,6 +87,28 @@ struct HardwareDisplayState {
 #ifdef __cplusplus
     HardwareDisplayState();
 
+    void SetDisplayFlags(u16 flags)
+    {
+        control.dispcnt = ReadHardwareDisplayHalfword(flags);
+    }
+
+    void SetBackgroundFlags(u32 layer, u16 flags)
+    {
+        background_control[layer] = ReadHardwareDisplayHalfword(flags);
+    }
+
+    void SetHorizontalOffset(u32 layer, u16 offset)
+    {
+        u16 const & value = offset;
+        background_scroll[layer][0] = value;
+    }
+
+    void SetVerticalOffset(u32 layer, u16 offset)
+    {
+        u16 const & value = offset;
+        background_scroll[layer][1] = value;
+    }
+
     void SetDisplayControl(HardwareDisplayRegisterValue const & input)
     {
         WriteHardwareDisplayHalfword(control.dispcnt, input.value);
@@ -75,8 +124,29 @@ struct HardwareDisplayState {
         WriteHardwareDisplayHalfword(background_scroll[index][0],
             ReadHardwareDisplayHalfword(input.value));
     }
+
+    void SetBackgroundY(unsigned int index, HardwareDisplayRegisterValue const & input)
+    {
+        WriteHardwareDisplayHalfword(background_scroll[index][1],
+            ReadHardwareDisplayHalfword(input.value));
+    }
+
+    void SetBackgroundControl(unsigned int index, HardwareDisplayRegisterValue const & input)
+    {
+        WriteHardwareDisplayHalfword(background_control[index],
+            ReadHardwareDisplayHalfword(input.value));
+    }
 #endif
 };
+#ifdef __cplusplus
+inline void WriteHardwareDisplayRegister(HardwareDisplayState & display,
+    u16 HardwareDisplayState::* field, u16 input)
+{
+    u16 const & value = input;
+    display.*field = value;
+}
+#endif
+
 
 typedef char HardwareDisplayState_size_check[(sizeof(struct HardwareDisplayState) == 0x58) ? 1 : -1];
 typedef char HardwareDisplayState_control_offset_check[(offsetof(struct HardwareDisplayState, control) == 0) ? 1 : -1];

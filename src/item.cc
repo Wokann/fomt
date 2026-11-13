@@ -190,8 +190,6 @@ int Food::GetFatigueBonus() const
     return +100;
 }
 
-asm(".align 2, 0");
-
 bool Food::IsDrink() const
 {
     if (IsValidFoodId(id))
@@ -248,8 +246,6 @@ FoodStack::FoodStack()
     amount = 0;
 }
 
-asm(".align 2, 0");
-
 FoodStack::FoodStack(Food food, u32 a_amount)
     : Food(food)
 {
@@ -303,8 +299,6 @@ void FoodStack::SubtractAmount(u32 a_amount)
             amount -= a_amount;
     }
 }
-
-asm(".align 2, 0");
 
 Article::Article(u32 a_id)
 {

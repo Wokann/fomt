@@ -4,6 +4,7 @@
 // Shared inline operations for the real DMA descriptor queue. Keep allocation
 // and construction headers scoped to consumers, not the general core layout.
 #include "hardware_context.hh"
+#include "gbaio.h"
 #include "allocation_failure.hh"
 #include <memory>
 #include <algorithm>
@@ -74,6 +75,13 @@ inline void HardwareDmaQueue::PushBack(DmaTransferDescriptor const & value)
     } else {
         Grow(last, 1, value);
     }
+}
+
+inline void QueueObjTileTransfer(HardwareDmaQueue * queue, void const * source,
+    u32 first_tile, u32 tile_offset, u32 byte_count)
+{
+    queue->PushBack(DmaTransferDescriptor(source,
+        reinterpret_cast<void *>(OBJ_VRAM0 + (first_tile + tile_offset) * TILE_SIZE_4BPP), byte_count));
 }
 
 #endif // HARDWARE_DMA_QUEUE_HH

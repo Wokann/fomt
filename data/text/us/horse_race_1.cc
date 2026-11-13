@@ -1,6 +1,6 @@
 #include "horse_race.hh"
 
-char const gText_AnimalFestival_LivestockContestantNames[40][13] = {
+char const gText_AnimalFestival_LivestockContestantNames[ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_COUNT][ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_WIDTH] = {
     "Midnight    ",
     "Harmony     ",
     "Dustball    ",

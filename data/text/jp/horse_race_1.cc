@@ -3,7 +3,7 @@
 
 // Direct-indexed race contestant names. The fixed
 // 13-byte rows retain the original JP display-space padding.
-char const gText_AnimalFestival_LivestockContestantNames[40][13] = {
+char const gText_AnimalFestival_LivestockContestantNames[ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_COUNT][ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_WIDTH] = {
     "ミッドナイト",
     "ハルモニア　",
     "ダストホール",

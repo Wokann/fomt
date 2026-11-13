@@ -15,8 +15,10 @@ struct GameStateSaveImage;
 // followed by the medal cost.  It is not a pointer to separately stored text.
 struct HorseRacePrize {
     char name[16];
-    u32 medal_cost;
+    i16 medal_cost;
 };
+
+typedef char HorseRacePrizeRecordSizeCheck[sizeof(HorseRacePrize) == 20 ? 1 : -1];
 
 extern HorseRacePrize const gHorseRacePrizeCatalog[];
 extern char const gText_HorseRace_PrizeExchangePrompt[];
@@ -33,6 +35,9 @@ extern u16 const gHorseRacePrizeExchangeCharacterCodes[];
 // ITEM_ARTICLE_FLOWER_MOON_DROP placeholder because it has a dedicated branch.
 extern u16 const gHorseRacePrizeItemIds[];
 struct HorseRacePrizeSpriteState {
+    HorseRacePrizeSpriteState(IndexedResourceProvider * provider, u32 index)
+        : resource(provider, index, 256), parameters(), unk_30(0) {}
+
     IndexedResourceHandle resource;
     IndexedResourceSpriteParameters parameters;
     u8 unk_30;
@@ -67,25 +72,46 @@ struct HorseRacePrizeTextVariables : ScriptTextVariableStore {
 };
 
 #pragma interface "horse_race_medal_exchange.hh"
-// The allocation bound and initialized prefix agree in all four native ROMs.
-// unk_... is unparsed runtime storage, not padding or recovered ROM data.
+// Native glyph records are halfword aligned; the tilemap following their
+// count is a complete 32-by-32 screen block.
+struct PACKED ALIGN(2) HorseRacePrizeGlyph {
+    i16 x;
+    i16 y;
+    i16 glyph_index;
+    u16 priority;
+};
 struct HorseRaceMedalExchangeCore : HardwareContext {
     HorseRaceMedalExchangeCore(GameStateSaveImage * image);
     SceneTransitionOwner Run();
     GameStateSaveImage * save;
     u32 unk_00C;
     GameSceneTalkWindowOwner ui_state;
-    HardwareMusicPlayerSlot music_players[3];
-    IndexedResourceArchive unk_archive_020;
+    HardwareMusicPlayerSlot music_1;
+    HardwareMusicPlayerSlot music_0;
+    HardwareMusicPlayerSlot music_2;
+    IndexedResourceArchive arrow_archive;
     IndexedResourceArchive cursor_archive;
-    HorseRacePrizeSpriteState sprites[3];
-    ObjTileCollectionEntry tiles_11C;
-    ObjPaletteCollectionEntry palette_124;
-    ObjTileCollectionEntry tiles_12C;
-    ObjPaletteCollectionEntry palette_134;
-    ObjTileCollectionEntry tiles_13C;
-    ObjPaletteCollectionEntry palette_144;
-    u8 unk_14C[0xAEC - 0x14C];
+    HorseRacePrizeSpriteState up_arrow;
+    HorseRacePrizeSpriteState down_arrow;
+    HorseRacePrizeSpriteState cursor;
+    ObjTileCollectionEntry glyph_tiles;
+    ObjPaletteCollectionEntry glyph_palette;
+    ObjTileCollectionEntry arrow_tiles;
+    ObjPaletteCollectionEntry arrow_palette;
+    ObjTileCollectionEntry cursor_tiles;
+    ObjPaletteCollectionEntry cursor_palette;
+    u16 scroll_y;
+    HorseRacePrizeGlyph glyphs[48];
+    i16 glyph_count;
+    u16 name_tilemap[32][32];
+    i32 medals;
+    i16 selection;
+    i16 first_visible_row;
+    i16 selected_prize;
+    i16 phase;
+    i16 dialogue_state;
+    i16 dialogue_choice;
+    u8 visible_prize_ids[10];
     HorseRacePrizeTextVariables text_variables;
 };
 
@@ -106,12 +132,12 @@ typedef char HorseRaceMedalExchangeCoreSizeCheck[sizeof(HorseRaceMedalExchangeCo
 typedef char HorseRaceMedalExchangeCoreSaveCheck[offsetof(HorseRaceMedalExchangeCore, save) == 8 ? 1 : -1];
 typedef char HorseRaceMedalExchangeCoreOffset_unk_00C[offsetof(HorseRaceMedalExchangeCore, unk_00C) == 0xC ? 1 : -1];
 typedef char HorseRaceMedalExchangeCoreOffset_ui_state[offsetof(HorseRaceMedalExchangeCore, ui_state) == 0x10 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreOffset_music_players[offsetof(HorseRaceMedalExchangeCore, music_players) == 0x14 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreOffset_unk_archive_020[offsetof(HorseRaceMedalExchangeCore, unk_archive_020) == 0x20 ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreMusicCheck[offsetof(HorseRaceMedalExchangeCore, music_1) == 0x14 ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreArrowArchiveCheck[offsetof(HorseRaceMedalExchangeCore, arrow_archive) == 0x20 ? 1 : -1];
 typedef char HorseRaceMedalExchangeCoreOffset_cursor_archive[offsetof(HorseRaceMedalExchangeCore, cursor_archive) == 0x50 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreSpritesCheck[offsetof(HorseRaceMedalExchangeCore, sprites) == 0x80 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreTilesCheck[offsetof(HorseRaceMedalExchangeCore, tiles_11C) == 0x11C ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreUnknownRamCheck[offsetof(HorseRaceMedalExchangeCore, unk_14C) == 0x14C ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreSpritesCheck[offsetof(HorseRaceMedalExchangeCore, up_arrow) == 0x80 ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreTilesCheck[offsetof(HorseRaceMedalExchangeCore, glyph_tiles) == 0x11C ? 1 : -1];
+typedef char HorseRaceMedalExchangeCoreScrollCheck[offsetof(HorseRaceMedalExchangeCore, scroll_y) == 0x14C ? 1 : -1];
 typedef char HorseRaceMedalExchangeCoreTextVariablesCheck[offsetof(HorseRaceMedalExchangeCore, text_variables) == 0xAEC ? 1 : -1];
 
 typedef char HorseRaceMedalExchangeCoreOwnerSizeCheck[sizeof(HorseRaceMedalExchangeCoreOwner) == 4 ? 1 : -1];
@@ -127,5 +153,28 @@ typedef char HorseRaceMedalExchangeSceneContinuationCheck[offsetof(HorseRaceMeda
 // The second argument is the actual single-word continuation transfer slot.
 extern "C" HorseRaceMedalExchangeScene * __27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage(
     void * storage, SceneTransition ** next, GameStateSaveImage * image);
+
+typedef char HorseRacePrizeGlyphSizeCheck[sizeof(HorseRacePrizeGlyph) == 8 ? 1 : -1];
+typedef char HorseRacePrizeGlyphArrayCheck[offsetof(HorseRaceMedalExchangeCore, glyphs) == 0x14E ? 1 : -1];
+typedef char HorseRacePrizeGlyphCountCheck[offsetof(HorseRaceMedalExchangeCore, glyph_count) == 0x2CE ? 1 : -1];
+typedef char HorseRacePrizeTilemapCheck[offsetof(HorseRaceMedalExchangeCore, name_tilemap) == 0x2D0 ? 1 : -1];
+typedef char HorseRacePrizeMedalsCheck[offsetof(HorseRaceMedalExchangeCore, medals) == 0xAD0 ? 1 : -1];
+typedef char HorseRacePrizeSelectionCheck[offsetof(HorseRaceMedalExchangeCore, selection) == 0xAD4 ? 1 : -1];
+typedef char HorseRacePrizePhaseCheck[offsetof(HorseRaceMedalExchangeCore, phase) == 0xADA ? 1 : -1];
+typedef char HorseRacePrizeVisibleIdsCheck[offsetof(HorseRaceMedalExchangeCore, visible_prize_ids) == 0xAE0 ? 1 : -1];
+
+extern u8 const gUnk_08527094[];
+
+EXTERN_C
+void UpdateHorseRacePrizeDialogue(HorseRaceMedalExchangeCore * core);
+void InitializeHorseRacePrizeGraphics(HorseRaceMedalExchangeCore * core);
+void InitializeHorseRacePrizeCatalogGraphics(HorseRaceMedalExchangeCore * core);
+void BuildHorseRacePrizeGlyphs(HorseRaceMedalExchangeCore * core);
+void AppendHorseRacePrizeNumber(HorseRaceMedalExchangeCore * core, i32 x, i32 y,
+    i32 priority, i32 value, i32 digits, i32 suffix);
+void AppendHorseRacePrizeGlyph(HorseRaceMedalExchangeCore * core, i32 x, i32 y,
+    i32 glyph, i32 priority);
+void RenderHorseRacePrizeSprites(HorseRaceMedalExchangeCore * core);
+EXTERN_C_END
 
 #endif // HORSE_RACE_MEDAL_EXCHANGE_HH

@@ -46,6 +46,9 @@ struct IndexedResourceHandle
 {
     IndexedResourceHandle(IndexedResourceProvider * resource, u32 index, i32 scroll_delta);
 
+    void SetScrollDelta(i16 delta) { scroll_delta = delta; }
+    u16 CurrentGroupIndex() const { return resolved_resource[current_entry_index].group_index; }
+
     IndexedResourceProvider * resource;
     IndexedResourceResult resolved_resource;
     u16 current_entry_index;

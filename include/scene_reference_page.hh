@@ -5,32 +5,62 @@
 #include "fomt_constants.hh"
 
 struct GameStateSaveImage;
+struct HardwareKeySnapshot;
 #include "hardware_context.hh"
 #include "hardware_sound.hh"
 #include "resource_handle.hh"
 #include "obj_tile_collection_storage.hh"
 #include "obj_palette_pool.hh"
 #include <stdlib.h>
+#include "new_game_ui.hh"
 
 // Native sprite state contains a resolved handle, OAM parameters, and flag.
+struct ReferencePageTitleBuffer : NewGameTextTileBuffer<28> {
+    enum { GlyphCount = TileCount / UiSpriteGlyphBuffer::TileCount };
+
+    ReferencePageTitleBuffer() { Clear(); }
+};
+
 struct ReferencePageSprite {
+    ReferencePageSprite(IndexedResourceProvider * provider, u32 index)
+        : handle(provider, index, 256), parameters(), unk_30(0) {}
+
     IndexedResourceHandle handle;
     IndexedResourceSpriteParameters parameters;
     u8 unk_30;
 };
 
 // Rows beginning with the original star glyph are stored as 32-bit indices.
-// The native grow operation owns this allocation; unk_08 is not initialized.
+// The state-free allocator and its end pointer form the final subobject.
 struct ReferencePageStarredLines {
+    struct Allocator {
+        Allocator() {}
+        Allocator(Allocator const &) {}
+        u32 * AllocateBytes(u32 bytes) const;
+        void Deallocate(u32 * value, u32 count) const { free(value); }
+    };
+
+    struct Allocation : Allocator {
+        Allocation(Allocator const & value) : Allocator(value), end(nullptr) {}
+        u32 * end;
+    };
+
     u32 * first;
     u32 * last;
-    u32 unk_08;
-    u32 * capacity_end;
+    Allocation allocation;
+
+    ReferencePageStarredLines(Allocator const & value = Allocator())
+        : first(nullptr), last(nullptr), allocation(value) {}
+
+    u32 const & Front() const { return *first; }
+    bool Empty() const { return first == last; }
+    u32 const * End() const { return last; }
+    void Clear() { last = first; }
 
     ~ReferencePageStarredLines()
     {
         if (first != 0)
-            free(first);
+            allocation.Deallocate(first, allocation.end - first);
     }
 };
 
@@ -63,12 +93,11 @@ struct ReferencePageSceneCore : HardwareContext {
     ReferencePageSceneCore(GameStateSaveImage * image, i32 page);
     SceneTransitionOwner Run();
     bool IsTopLineStarred() const;
+    inline void ScrollWithHeldKeys(HardwareKeySnapshot const & held);
 
     GameStateSaveImage * save;
     HardwareMusicPlayerSlot music;
-    u32 unk_010;
-    // The original renderer uses 28 columns x 2 rows of 4bpp tiles.
-    u32 title_tiles[28 * 2 * 8];
+    ReferencePageTitleBuffer title;
     IndexedResourceArchive arrow_archive;
     IndexedResourceArchive cursor_archive;
     ReferencePageSprite up_arrow;
@@ -104,7 +133,7 @@ struct ReferencePageSceneCore : HardwareContext {
 
 typedef char ReferencePageSpriteSizeCheck[sizeof(ReferencePageSprite) == 0x34 ? 1 : -1];
 typedef char ReferencePageStarredLinesSizeCheck[sizeof(ReferencePageStarredLines) == 0x10 ? 1 : -1];
-typedef char ReferencePageSceneCoreTilesCheck[offsetof(ReferencePageSceneCore, title_tiles) == 0x14 ? 1 : -1];
+typedef char ReferencePageSceneCoreTilesCheck[offsetof(ReferencePageSceneCore, title) + offsetof(ReferencePageTitleBuffer, tiles) == 0x14 ? 1 : -1];
 typedef char ReferencePageSceneCoreArchiveCheck[offsetof(ReferencePageSceneCore, arrow_archive) == 0x714 ? 1 : -1];
 typedef char ReferencePageSceneCoreSpritesCheck[offsetof(ReferencePageSceneCore, up_arrow) == 0x774 ? 1 : -1];
 typedef char ReferencePageSceneCoreHandlesCheck[offsetof(ReferencePageSceneCore, arrow_tiles) == 0x810 ? 1 : -1];
@@ -124,6 +153,19 @@ typedef char ReferencePageSceneContinuationCheck[offsetof(ReferencePageScene, co
 
 EXTERN_C
 
+extern u8 const gUnk_08527094[];
+
+void LoadReferencePageGraphics(ReferencePageSceneCore *);
+void InitializeReferenceBookList(ReferencePageSceneCore *);
+void UpdateReferenceBookListRow(ReferencePageSceneCore *);
+void InitializeReferenceArticle(ReferencePageSceneCore *);
+i32 IsReferenceProfileBoundary(ReferencePageSceneCore *, u32 condition);
+void UpdateReferenceArticleRow(ReferencePageSceneCore *);
+void ExpandReferencePageText(ReferencePageSceneCore *, char const *, char *);
+void InitializeReferencePageSprites(ReferencePageSceneCore *);
+void RenderReferencePageSprites(ReferencePageSceneCore *);
+void ScrollReferenceArticle(ReferencePageSceneCore *, i32 delta);
+
 // Direct reference to the actual GCC 2.9 continuation-slot constructor ABI.
 ReferencePageScene * __18ReferencePageSceneG20SceneTransitionOwnerP18GameStateSaveImagei(
     void * object, SceneTransition ** next, GameStateSaveImage * image, i32 page);
@@ -133,7 +175,7 @@ EXTERN_C_END
 #pragma interface "scene_reference_page.hh"
 
 
-// func_08079A64 reads this as 32-bit source slots before storing each low
+// The list initializer reads 32-bit source slots before storing each low
 // halfword in the active Library entry list.
 extern u32 const gReferencePageInitialEntryIds[];
 

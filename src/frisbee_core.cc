@@ -544,11 +544,11 @@ asm_unified(
     ".Lraw_code_0803EE94_4886_0: .word gUnk_084B3FAC\n"
     ".Lraw_code_0803EE94_4887_0: .word gUnk_084C65BC\n"
     ".Lraw_code_0803EE94_4888_0: .word gUnk_084C4718\n"
-    ".Lraw_code_0803EE94_4889_0: .word gUnk_084C3FAC\n"
+    ".Lraw_code_0803EE94_4889_0: .word gUnk_0873DE44\n"
     ".Lraw_code_0803EE94_4890_0: .word gUnk_084C3840\n"
     ".Lraw_code_0803EE94_4891_0: .word gUnk_083ED9FC\n"
     ".Lraw_code_0803EE94_4892_0: .word gUnk_084C0850\n"
-    ".Lraw_code_0803EE94_4893_0: .word gUnk_084C4E84\n"
+    ".Lraw_code_0803EE94_4893_0: .word gUnk_0873ED1C\n"
     ".Lraw_code_0803EE94_4894_0: .word gUnk_084A3678\n"
 #else
     ".Lraw_code_0803EE94_4886_0: .word gUnk_0872DE44\n"

@@ -82,6 +82,12 @@ struct ObjPaletteCollectionEntry {
         handle = AllocateObjPaletteHandle(this);
     }
 
+    // An empty owner reserves no palette until the caller requests one.
+    explicit ObjPaletteCollectionEntry(bool allocate)
+    {
+        handle = allocate ? AllocateObjPaletteHandle(this) : 0;
+    }
+
     ObjPaletteCollectionEntry(ObjPaletteCollectionEntry const & value)
     {
         handle = RetainObjPaletteHandle(this, value.handle);
@@ -90,6 +96,18 @@ struct ObjPaletteCollectionEntry {
     u32 GetIndex()
     {
         return GetObjPaletteBank(this, handle);
+    }
+
+    void Clear()
+    {
+        ReleaseObjPaletteHandle(this, handle);
+        handle = 0;
+    }
+
+    void Reset()
+    {
+        ReleaseObjPaletteHandle(this, handle);
+        handle = AllocateObjPaletteHandle(this);
     }
 
     ~ObjPaletteCollectionEntry()

@@ -16,16 +16,6 @@
 #include "new_game_ui.hh"
 #include "utility/fixed_str.hh"
 
-// The dialog is allocated by this core and released after its OBJ resources.
-struct BirthdayInputUiOwner {
-    UiStateOwner * value;
-
-    explicit inline BirthdayInputUiOwner(u32 const & flags);
-    ~BirthdayInputUiOwner() { delete value; }
-};
-
-typedef char BirthdayUiOwnerSizeCheck[sizeof(BirthdayInputUiOwner) == 4 ? 1 : -1];
-
 #pragma interface "new_game_birthday_input.hh"
 
 // Halfword-aligned records written by the append routine and read by OAM
@@ -35,6 +25,15 @@ struct PACKED ALIGN(2) NewGameBirthdayInputGlyph {
     i16 y;
     i16 glyph_index;
     u16 priority;
+};
+
+// Frame phases of the native birthday selector; the stored field remains i16.
+enum BirthdayInputStep {
+    BIRTHDAY_INPUT_WAIT_OPENING,
+    BIRTHDAY_INPUT_CHOOSE_DATE,
+    BIRTHDAY_INPUT_CONFIRM_DATE,
+    BIRTHDAY_INPUT_START_CLOSING,
+    BIRTHDAY_INPUT_WAIT_CLOSING,
 };
 
 struct NewGameBirthdayInputCore;
@@ -52,7 +51,7 @@ struct NewGameBirthdayInputCore : HardwareContext {
     explicit NewGameBirthdayInputCore(GameDate birthday);
     // The implicit virtual destructor releases members in reverse order.
     u32 unk_08;
-    BirthdayInputUiOwner ui_state;
+    GameSceneTalkWindowOwner ui_state;
     HardwareMusicPlayerSlot music_player_1;
     HardwareMusicPlayerSlot music_player_2;
     ObjTileCollectionEntry glyph_tiles;
@@ -127,7 +126,7 @@ void MoveBirthdayInputCursor(NewGameBirthdayInputCore *);
 void UpdateBirthdayInputCursor(NewGameBirthdayInputCore *);
 bool ConfirmBirthdayInputSelection(NewGameBirthdayInputCore *);
 bool CancelBirthdayInputSelection(NewGameBirthdayInputCore *);
-// Background/glyph preparation remains native in every region.
+// Prepare the native backgrounds and upload the selected regional glyph set.
 void InitializeBirthdayInputGraphics(NewGameBirthdayInputCore *);
 void InitializeBirthdayInputCursor(NewGameBirthdayInputCore *);
 void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore *);

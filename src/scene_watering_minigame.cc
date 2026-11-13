@@ -497,11 +497,7 @@ asm_unified(
 #else
     ".Lminigame_5_5: .word gUnk_0873E5B0\n"
 #endif
-#if defined(REGION_JP)
-    ".Lminigame_5_6: .word gUnk_084C3FAC\n"
-#else
     ".Lminigame_5_6: .word gUnk_0873DE44\n"
-#endif
     ".Lminigame_5_7: .word 0x00000524\n"
 #if defined(REGION_JP)
     ".Lminigame_5_8: .word gUnk_084C6708\n"

@@ -59,10 +59,13 @@ typedef char HeldItemPayloadCheck[offsetof(HeldItem, inner) == 2 ? 1 : -1];
 EC bool IsHeldItemEmpty(HeldItem const * self);
 EC RucksackItem func_0800F294(HeldItem const * self);
 EC void ClearHeldItem(HeldItem * self);
+EC void func_0800F3B0(HeldItem * self, Food food);
+EC void func_0800F3E8(HeldItem * self, Article article);
 // A missing, wrong-kind or out-of-range chicken slot returns -1.
 EC int GetHeldChickenSlot(HeldItem const * self);
 // Preserve the native modulo-eight selection, rather than clamping the slot.
 EC void SetHeldChickenSlot(HeldItem * self, fu8 slot);
 EC void func_0800F418(HeldItem * self, RucksackItem rucksack_item);
+EC void func_0800F510(HeldItem * self, int graphic);
 
 #endif // HELD_ITEM_HH

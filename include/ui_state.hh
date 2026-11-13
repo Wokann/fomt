@@ -9,7 +9,7 @@
 #include "gbasvc.h"
 #include "ui_text_stream.hh"
 #include "resource_handle.hh"
-#include "obj_palette_pool.hh"
+#include "obj_palette_collection.hh"
 #include "hardware_dma.hh"
 #include "utility/container_algorithms.hh"
 #include "hardware_linked_list.hh"
@@ -101,6 +101,9 @@ struct GameSceneTalkWindowOwner {
 
     GameSceneTalkWindowOwner() : value(nullptr) {}
     GameSceneTalkWindowOwner(UiStateOwner * window) : value(window) {}
+    inline GameSceneTalkWindowOwner(void * storage, u32 palette, u32 const & mode,
+        ObjTileCollection const & tiles = ObjTileCollection(),
+        ObjPaletteCollection const & palettes = ObjPaletteCollection());
     ~GameSceneTalkWindowOwner() { delete value; }
     UiStateOwner * Get() const { return value; }
     GameSceneTalkWindowOwner & operator=(UiStateOwner * next)
@@ -118,6 +121,13 @@ extern "C" UiStateOwner * ConstructUiStateOwner(void * storage,
     u32 background, u32 screen, u32 palette, u32 mode,
     ObjTileCollection const & tiles, ObjPaletteCollection const & palettes)
     asm("__12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection");
+
+inline GameSceneTalkWindowOwner::GameSceneTalkWindowOwner(void * storage,
+    u32 palette, u32 const & mode, ObjTileCollection const & tiles,
+    ObjPaletteCollection const & palettes)
+    : value(ConstructUiStateOwner(storage, 0, 31, palette, mode, tiles, palettes))
+{
+}
 
 EXTERN_C
 
@@ -169,6 +179,12 @@ void func_08050E68(void * const * object, char const * text);
 void func_08050E74(void * const * object);
 
 EXTERN_C_END
+
+static inline void ShowUiTwoChoicePrompt(UiStateOwner const * window, char const * prompt,
+    char const * first, char const * second, ScriptTextVariableStore * variables)
+{
+    func_08050E30(window, prompt, first, second, nullptr, nullptr, variables);
+}
 
 enum
 {

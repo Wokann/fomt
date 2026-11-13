@@ -91,15 +91,27 @@ struct GameStateClock {
 };
 typedef char GameStateClockSizeCheck[sizeof(GameStateClock) == 12 ? 1 : -1];
 
-// Only the low 24 bits of the final word are initialized. The preceding
-// eleven words and the high byte retain the native uninitialized storage.
+// Saved entrants occupy twelve name IDs and four eight-byte race records.
+// The two bytes after the odds are native word-alignment padding.
+struct HorseRaceSavedEntry {
+    u8 adequacy;
+    u8 affection;
+    u8 contestant_name_id;
+    i16 odds;
+} ALIGN(4);
+typedef char HorseRaceSavedEntrySizeCheck[sizeof(HorseRaceSavedEntry) == 8 ? 1 : -1];
+typedef char HorseRaceSavedEntryOddsCheck[offsetof(HorseRaceSavedEntry, odds) == 4 ? 1 : -1];
+
+// Only the low 24 bits of the final word are initialized. Entrants and the
+// high byte retain their native uninitialized storage until preparation.
 struct GameStateUnknown2C1C {
-    u32 unk_00[11];
+    u8 contestant_name_ids[12];
+    HorseRaceSavedEntry entries[4];
     u32 unk_2C_00 : 2;
     u32 unk_2C_02 : 17;
     bool unk_2C_19 : 1;
     bool unk_2C_20 : 1;
-    bool unk_2C_21 : 1;
+    u8 unk_2C_21 : 1;
     bool unk_2C_22 : 1;
     bool unk_2C_23 : 1;
     u32 unk_2C_24 : 8;
@@ -212,7 +224,7 @@ typedef char GameStateSaveImageLocalMilestonesCheck[offsetof(GameStateSaveImage,
 typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
 typedef char GameStateSaveImageCookingCheck[offsetof(GameStateSaveImage, cooking_recipes) == 0x2214 ? 1 : -1];
 typedef char GameStateSaveImageAfterCookingCheck[offsetof(GameStateSaveImage, unk_2C1C) == 0x2C1C ? 1 : -1];
-typedef char GameStateSaveImageUnknown2C48Check[offsetof(GameStateSaveImage, unk_2C1C) + sizeof(((GameStateUnknown2C1C *) 0)->unk_00) == 0x2C48 ? 1 : -1];
+typedef char GameStateSaveImageUnknown2C48Check[offsetof(GameStateSaveImage, unk_2C1C) + offsetof(GameStateUnknown2C1C, entries) + sizeof(((GameStateUnknown2C1C *) 0)->entries) == 0x2C48 ? 1 : -1];
 typedef char GameStateSaveImageAnimalFestivalOpponentsCheck[offsetof(GameStateSaveImage, animal_festival_opponents) == 0x2C4C ? 1 : -1];
 typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
 typedef char GameStateSaveImageFishingRecordsCheck[offsetof(GameStateSaveImage, fishing_records) == 0x2C80 ? 1 : -1];

@@ -429,6 +429,9 @@ $(BUILD_DIR)/src/main_menu_widget.o: CXXFLAGS += -fno-weak
 
 $(BUILD_DIR)/src/ui_state.o: CXXFLAGS += -fno-weak
 
+# Keep the out-of-line search owner's top-tested loop form.
+$(BUILD_DIR)/src/scene_reference_page_lifetimes.o: CXXFLAGS += -fno-rerun-loop-opt
+
 # Native standalone entries coexist with the callers' inline definitions.
 $(BUILD_DIR)/src/farm_map_screen_lifetimes.o: CXXFLAGS += -fno-implement-inlines
 $(BUILD_DIR)/src/animal_actor_lifetimes.o: CXXFLAGS += -fno-weak

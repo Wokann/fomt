@@ -16,6 +16,32 @@ struct HardwareInputRepeatParameters {
 typedef char HardwareInputRepeatParameters_size_check[sizeof(struct HardwareInputRepeatParameters) == 4 ? 1 : -1];
 typedef char HardwareInputRepeatParameters_interval_check[offsetof(struct HardwareInputRepeatParameters, interval) == 2 ? 1 : -1];
 
+#ifdef __cplusplus
+// A value snapshot of the returned key word, independent of live input state.
+// Native readers use both the word and its bytes in GBA little-endian order.
+struct HardwareKeySnapshot {
+    union {
+        u32 value;
+        u8 bytes[4];
+    };
+
+    static u32 ShoulderBits(u32 keys, u32 mask)
+    {
+        u32 shoulders = keys >> 8;
+        mask >>= 8;
+        mask &= shoulders;
+        return mask;
+    }
+
+    u8 Byte(u32 index) const
+    {
+        return reinterpret_cast<u8 const *>(&value)[index];
+    }
+};
+
+typedef char HardwareKeySnapshot_size_check[sizeof(HardwareKeySnapshot) == sizeof(u32) ? 1 : -1];
+#endif
+
 struct HardwareInputState {
     u16 held;
     u16 unk_02;

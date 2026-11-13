@@ -74,6 +74,7 @@ struct IndexedResourcePaletteRange
         : data(a_data), byte_count(a_byte_count) {}
 
     IndexedResourcePaletteBank const * GetData() const { return data; }
+    u32 GetByteCount() const { return data ? byte_count : 0; }
 
     IndexedResourcePaletteBank * data;
     u16 byte_count;

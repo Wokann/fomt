@@ -8187,8 +8187,8 @@ gUnk_084B3F4C:
     .global gUnk_084B3FAC
 gUnk_084B3FAC:
     .include "graphics/regional_resource_0872de44/archive.inc"
-    .global gUnk_084B4FE0
-gUnk_084B4FE0:
+    .global gUnk_0872EE78
+gUnk_0872EE78:
     .include "graphics/shared_resource_0872ee78/archive.inc"
     .global gUiThreeLayerBackgroundTilemap0
 gUiThreeLayerBackgroundTilemap0:
@@ -8310,17 +8310,17 @@ gUiScene080BCFACTilesLz:
     .global gUiScene080BCFACPalette
 gUiScene080BCFACPalette:
     .incbin "graphics/ui/scene_080bcfac/shared/palettes.gbapal"
-    .global gUnk_084C2E1C
-gUnk_084C2E1C:
+    .global gUnk_0873CCB4
+gUnk_0873CCB4:
     .include "graphics/shared_resource_0873ccb4/archive.inc"
     .global gUnk_084C3014
 gUnk_084C3014:
     .include "graphics/shared_resource_0873ceac/archive.inc"
-    .global gUnk_084C30F8
-gUnk_084C30F8:
+    .global gUnk_0873CF90
+gUnk_0873CF90:
     .include "graphics/shared_resource_0873cf90/archive.inc"
-    .global gUnk_084C339C
-gUnk_084C339C:
+    .global gUnk_0873D234
+gUnk_0873D234:
     .include "graphics/shared_resource_0873d234/archive.inc"
     .global gUnk_084C3764
 gUnk_084C3764:
@@ -8354,14 +8354,14 @@ gUnk_084C3764:
     .global gUnk_084C3840
 gUnk_084C3840:
     .include "graphics/regional_resource_0873d6d8/archive.inc"
-    .global gUnk_084C3FAC
-gUnk_084C3FAC:
+    .global gUnk_0873DE44
+gUnk_0873DE44:
     .include "graphics/shared_resource_0873de44/archive.inc"
     .global gUnk_084C4718
 gUnk_084C4718:
     .include "graphics/shared_resource_0873e5b0/archive.inc"
-    .global gUnk_084C4E84
-gUnk_084C4E84:
+    .global gUnk_0873ED1C
+gUnk_0873ED1C:
     .include "graphics/shared_resource_0873ed1c/archive.inc"
     .global gUiScene080C160CLayer0TilemapLz
 gUiScene080C160CLayer0TilemapLz:
@@ -8375,8 +8375,8 @@ gUiScene080C160CTilesLz:
     .global gUiScene080C160CPalette
 gUiScene080C160CPalette:
     .incbin "graphics/ui/scene_080c160c/shared/palettes.gbapal"
-    .global gUnk_084C630C
-gUnk_084C630C:
+    .global gUnk_087401A4
+gUnk_087401A4:
     .include "graphics/shared_resource_087401a4/archive.inc"
     .global gUnk_084C65BC
 gUnk_084C65BC:

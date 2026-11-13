@@ -17,6 +17,10 @@ struct ObjTileCollection {
     // Stored groups must be nonempty. If every entry is retained elsewhere,
     // the native loop returns the original cursor entry rather than failing.
     ObjTileCollectionEntry Get(u32 group_index) const;
+private:
+    // The collection owns its storage; callers retain entries through Get().
+    ObjTileCollection(ObjTileCollection const &);
+    ObjTileCollection & operator=(ObjTileCollection const &);
 #endif
 };
 
