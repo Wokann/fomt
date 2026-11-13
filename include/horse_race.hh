@@ -166,11 +166,11 @@ struct HorseRaceCore;
 
 // Native helpers share these interfaces in all four regions. Their bodies
 // retain the verified regional object layout and rendering differences.
-struct GameStateUnknown2C1C;
-extern "C" void PrepareHorseRaceEntries(GameStateUnknown2C1C *, bool, u32);
-extern "C" void AdvanceHorseRaceRound(GameStateUnknown2C1C *, u32);
-extern "C" bool AreHorseRacesComplete(GameStateUnknown2C1C *);
-extern "C" void GenerateHorseRaceRoundEntries(GameStateUnknown2C1C *, u32);
+struct HorseRaceSaveData;
+extern "C" void PrepareHorseRaceEntries(HorseRaceSaveData *, bool, u32);
+extern "C" void AdvanceHorseRaceRound(HorseRaceSaveData *, u32);
+extern "C" bool AreHorseRacesComplete(HorseRaceSaveData *);
+extern "C" void GenerateHorseRaceRoundEntries(HorseRaceSaveData *, u32);
 extern "C" void InitializeHorseRaceTicketGraphics(HorseRaceCore *);
 extern "C" void RenderHorseRaceTicketPurchaseScreen(HorseRaceCore *, i32);
 extern "C" void LoadHorseRaceTicketControls(HorseRaceCore *);

@@ -112,10 +112,10 @@ static inline u32 HorseRacePaletteBank(ObjPaletteCollectionEntry & entry)
 
 inline HorseRaceCoreOwner::~HorseRaceCoreOwner() { delete value; }
 
-extern "C" void PrepareHorseRaceEntries(GameStateUnknown2C1C * state, bool compete, u32 difficulty)
+extern "C" void PrepareHorseRaceEntries(HorseRaceSaveData * state, bool compete, u32 difficulty)
 {
-    state->unk_2C_00 = 0;
-    state->unk_2C_21 = compete;
+    state->round_index = 0;
+    state->player_horse_entered = compete;
     for (i32 index = 0; index < 12; ++index)
         state->contestant_name_ids[index] = 0xFF;
     for (i32 index = 0; index < 12; ++index)
@@ -133,20 +133,20 @@ extern "C" void PrepareHorseRaceEntries(GameStateUnknown2C1C * state, bool compe
     GenerateHorseRaceRoundEntries(state, difficulty);
 }
 
-extern "C" void AdvanceHorseRaceRound(GameStateUnknown2C1C * state, u32 difficulty)
+extern "C" void AdvanceHorseRaceRound(HorseRaceSaveData * state, u32 difficulty)
 {
-    ++state->unk_2C_00;
+    ++state->round_index;
     GenerateHorseRaceRoundEntries(state, difficulty);
 }
 
-extern "C" bool AreHorseRacesComplete(GameStateUnknown2C1C * state)
+extern "C" bool AreHorseRacesComplete(HorseRaceSaveData * state)
 {
-    return state->unk_2C_00 == 3;
+    return state->round_index == 3;
 }
 
-extern "C" void GenerateHorseRaceRoundEntries(GameStateUnknown2C1C * state, u32 difficulty)
+extern "C" void GenerateHorseRaceRoundEntries(HorseRaceSaveData * state, u32 difficulty)
 {
-    bool player_round = state->unk_2C_00 == 2 ? state->unk_2C_21 : false;
+    bool player_round = state->round_index == 2 ? state->player_horse_entered : false;
     HorseRaceSavedEntry * entry = state->entries;
     for (i32 index = 0; index < 4; ++index, ++entry)
     {
@@ -170,7 +170,7 @@ extern "C" void GenerateHorseRaceRoundEntries(GameStateUnknown2C1C * state, u32 
         minimum = gAnimalFestivalRandomRangePairs[range].second_minimum;
         maximum = gAnimalFestivalRandomRangePairs[range].second_maximum;
         entry->affection = rand() % (maximum - minimum) + minimum;
-        entry->contestant_name_id = state->contestant_name_ids[state->unk_2C_00 * 4 + index];
+        entry->contestant_name_id = state->contestant_name_ids[state->round_index * 4 + index];
         i32 remaining = 250 - entry->adequacy;
         i32 odds = remaining * remaining / 1000;
         i32 random_odds = rand();
@@ -223,21 +223,21 @@ HorseRaceCore::HorseRaceCore(GameStateSaveImage * image, bool player_competes)
     variables.contestant_name_ids[3] = 0;
     variables.round_number = 0;
     variables.player_horse_name = nullptr;
-    if (AreHorseRacesComplete(&save->unk_2C1C))
-        PrepareHorseRaceEntries(&save->unk_2C1C, false, 1);
+    if (AreHorseRacesComplete(&save->horse_race))
+        PrepareHorseRaceEntries(&save->horse_race, false, 1);
     compete = player_competes;
     u32 const balance = save->money_account.balance;
     money = balance;
     money_after_tickets = balance;
-    medals = save->unk_2C1C.unk_2C_02;
+    medals = save->horse_race.medals;
     if (medals > 99999)
         medals = 99999;
     player_stamina_level = 0;
     payout_remaining = 0;
     total_tickets = 0;
-    round = save->unk_2C1C.unk_2C_00;
+    round = save->horse_race.round_index;
     if (round == 2)
-        player_competes_this_round = save->unk_2C1C.unk_2C_21;
+        player_competes_this_round = save->horse_race.player_horse_entered;
     else
         player_competes_this_round = false;
     pause_flags = 0;
@@ -257,15 +257,15 @@ SceneTransitionOwner HorseRaceCore::Run()
     ui_state.value->ShowPortrait(117);
     for (i32 index = 0; index < 4; ++index)
     {
-        runners[index].contestant_name_id = save->unk_2C1C.entries[index].contestant_name_id;
-        runners[index].adequacy = save->unk_2C1C.entries[index].adequacy;
-        runners[index].affection = save->unk_2C1C.entries[index].affection;
-        runners[index].odds = save->unk_2C1C.entries[index].odds;
+        runners[index].contestant_name_id = save->horse_race.entries[index].contestant_name_id;
+        runners[index].adequacy = save->horse_race.entries[index].adequacy;
+        runners[index].affection = save->horse_race.entries[index].affection;
+        runners[index].odds = save->horse_race.entries[index].odds;
         runners[index].ticket_count = 0;
     }
     InitializeHorseRaceRunners(this);
-    save->unk_2C1C.unk_2C_22 = false;
-    save->unk_2C1C.unk_2C_23 = false;
+    save->horse_race.race_cancelled = false;
+    save->horse_race.player_horse_won = false;
     if (compete)
         phase = 13;
     else
@@ -429,7 +429,7 @@ SceneTransitionOwner HorseRaceCore::Run()
         case 6:
             if (!blend.IsQueued())
             {
-                save->unk_2C1C.unk_2C_22 = true;
+                save->horse_race.race_cancelled = true;
                 return SceneTransitionOwner();
             }
             break;
@@ -551,7 +551,7 @@ SceneTransitionOwner HorseRaceCore::Run()
             {
                 if (player_competes_this_round == 1 && finishing_order[0] == 2)
                 {
-                    save->unk_2C1C.unk_2C_23 = true;
+                    save->horse_race.player_horse_won = true;
                     player_horse->SetFestivalWinner();
                 }
                 pause_flags &= ~2;
@@ -657,7 +657,7 @@ SceneTransitionOwner HorseRaceCore::Run()
             }
             else
             {
-                save->unk_2C1C.unk_2C_02 = medals;
+                save->horse_race.medals = medals;
                 timer = 30;
                 ++phase;
             }
@@ -689,7 +689,7 @@ SceneTransitionOwner HorseRaceCore::Run()
             if (!blend.IsQueued())
             {
                 ++phase;
-                AdvanceHorseRaceRound(&save->unk_2C1C, 1);
+                AdvanceHorseRaceRound(&save->horse_race, 1);
             }
             break;
         case 36:

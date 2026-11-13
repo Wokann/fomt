@@ -50,7 +50,7 @@ HorseRaceMedalExchangeCore::HorseRaceMedalExchangeCore(GameStateSaveImage * imag
 {
     HorseRacePrizeTextVariables & variables = text_variables;
     variables.prize_index = 0;
-    medals = save->unk_2C1C.unk_2C_02;
+    medals = save->horse_race.medals;
     if (medals > 99999)
         medals = 99999;
     scroll_y = 0;
@@ -67,9 +67,9 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
     ui_state.value->ShowPortrait(117);
     for (i32 index = 0; index < static_cast<i32>(ARRAY_COUNT(visible_prize_ids)); ++index)
         visible_prize_ids[index] = index;
-    if (save->unk_2C1C.unk_2C_20)
+    if (save->horse_race.jewel_of_truth_redeemed)
         visible_prize_ids[0] = 10;
-    if (save->unk_2C1C.unk_2C_19)
+    if (save->horse_race.power_berry_redeemed)
         visible_prize_ids[1] = 11;
     InitializeHorseRacePrizeGraphics(this);
     InitializeHorseRacePrizeCatalogGraphics(this);
@@ -173,7 +173,7 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
                     {
                     case 1:
                         func_0800EAFC(save->farmer);
-                        save->unk_2C1C.unk_2C_19 = true;
+                        save->horse_race.power_berry_redeemed = true;
                         func_0800F510(&save->farmer.held_item, 351);
                         break;
                     case 8:
@@ -182,7 +182,7 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
                         func_0800F3B0(&save->farmer.held_item, food);
                     } break;
                     case 0:
-                        save->unk_2C1C.unk_2C_20 = true;
+                        save->horse_race.jewel_of_truth_redeemed = true;
                         ++save->event_state.jewels_of_truth_found_count;
                         save->event_state.jewel_of_truth_from_festival_horse_race_prize_exchange_collected = true;
                         // The truth-jewel path also puts the prize in hand.
@@ -193,7 +193,7 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
                     } break;
                     }
                     medals -= gHorseRacePrizeCatalog[selected_prize].medal_cost;
-                    save->unk_2C1C.unk_2C_02 = medals;
+                    save->horse_race.medals = medals;
                     phase = 11;
                 }
                 else
