@@ -6157,7 +6157,7 @@ inline FarmMapScreenCore::FarmMapScreenCore(GameStateSaveImage * image, SceneTra
             AddFarmMapLocation(this, egg->location, 9);
     }
 
-    AddFarmMapActor(this, save->unk_34DC, 19);
+    AddFarmMapActor(this, save->wild_dog, 19);
     if (GetCalendarEffectiveSeason(save->clock.calendar) == SEASON_FALL) {
         FieldItemState const & items = save->field_items;
         for (u32 index = 0x5B; index <= 0x5D; ++index) {

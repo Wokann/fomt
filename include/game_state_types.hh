@@ -160,51 +160,51 @@ struct GameStateSaveImage {
     bool UpdateUnknown18(u32 value);
     bool UpdateUnknown25(u32 value);
 
-    // Verified by initialization, the native bit readers and setters. The
-    // flags and three bounded fields are not assigned gameplay names yet.
-    /* bit 00 */ bool flag_0 : 1;
-    /* bit 01 */ bool flag_1 : 1;
-    /* bit 02 */ bool flag_2 : 1;
-    /* bit 03 */ bool flag_3 : 1;
-    /* bit 04 */ bool flag_4 : 1;
+    // The three cottage bits are script variables 17 through 19. Offering a
+    // small fish in fishing area 4 sets bit 4, which gates the first squid catch.
+    /* bit 00 */ bool owns_mountain_cottage : 1;
+    /* bit 01 */ bool owns_town_cottage : 1;
+    /* bit 02 */ bool owns_seaside_cottage : 1;
+    /* bit 03 */ bool obtained_mythic_tool : 1;
+    /* bit 04 */ bool offered_small_fish_at_beach : 1;
     /* bit 05 */ u32 unk_5 : 8;
-    /* bit 13 */ u32 unk_13 : 5;
-    /* bit 18 */ u16 unk_18 : 7;
-    /* bit 25 */ u8 unk_25 : 6;
+    /* bit 13 */ u32 sprite_harvesting_record : 5;
+    /* bit 18 */ u16 sprite_animal_care_record : 7;
+    /* bit 25 */ u8 sprite_watering_record : 6;
     /* bit 31 */ bool unk_31 : 1;
     /* bit 32 */ bool unk_32 : 1;
     // +0x05..+0x07 are natural word-alignment padding, not saved array
     // elements. Both native initialization and field copying leave them alone.
-    GameStateClock clock;
-    Farm farm;
-    MoneyAccount money_account;
-    Farmer farmer;
-    Dog dog;
-    MoreItems more_items;
+    /* 0x0008 */ GameStateClock clock;
+    /* 0x0014 */ Farm farm;
+    /* 0x1AA8 */ MoneyAccount money_account;
+    /* 0x1BD8 */ Farmer farmer;
+    /* 0x1C70 */ Dog dog;
+    /* 0x1CA0 */ MoreItems more_items;
     // Dropping ITEM_ARTICLE_BALL saves an AEntity's six-byte Location here;
     // mine generation and the town map read it when the ball is not carried
     // or shelved. The following two bytes are natural alignment padding.
-    Location ball_location;
-    NpcCollection npcs;
-    GameEventState event_state;
-    GameStateLinkRecord link_record;
-    GameDisplayOptions display_options;
-    CookingRecipeInventory cooking_recipes;
-    HorseRaceSaveData horse_race;
-    AnimalFestivalOpponents animal_festival_opponents;
-    TVShoppingOrderState tv_shopping;
-    FishingRecords fishing_records;
-    MineFloorState mine_floor;
-    CursedToolState cursed_tools;
-    GameStateActorRecord actor_records[3];
+    /* 0x1CCC */ Location ball_location;
+    /* 0x1CD4 */ NpcCollection npcs;
+    /* 0x214C */ GameEventState event_state;
+    /* 0x21CC */ GameStateLinkRecord link_record;
+    /* 0x2210 */ GameDisplayOptions display_options;
+    /* 0x2214 */ CookingRecipeInventory cooking_recipes;
+    /* 0x2C1C */ HorseRaceSaveData horse_race;
+    /* 0x2C4C */ AnimalFestivalOpponents animal_festival_opponents;
+    /* 0x2C74 */ TVShoppingOrderState tv_shopping;
+    /* 0x2C80 */ FishingRecords fishing_records;
+    /* 0x2E58 */ MineFloorState mine_floor;
+    /* 0x3480 */ CursedToolState cursed_tools;
+    /* 0x3494 */ GameStateActorRecord actor_records[3];
     // Event-control mode also gates player stamina/fatigue action paths.
-    u8 scripted_npc_control;
-    u8 shooting_star_shipping_bonus;
+    /* 0x34C4 */ u8 scripted_npc_control;
+    /* 0x34C5 */ u8 shooting_star_shipping_bonus;
     // The native initializer places this member at the next word boundary.
     // The two bytes after the preceding flags are padding, not array data.
-    FieldItemState field_items ALIGN(4);
-    MapPatchFlags map_patch_flags;
-    Unk_Actor_0809BFE8 unk_34DC;
+    /* 0x34C8 */ FieldItemState field_items ALIGN(4);
+    /* 0x34D8 */ MapPatchFlags map_patch_flags;
+    /* 0x34DC */ Unk_Actor_0809BFE8 wild_dog;
 };
 
 typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
@@ -237,7 +237,7 @@ typedef char GameStateSaveImageScriptedNpcControlCheck[offsetof(GameStateSaveIma
 typedef char GameStateSaveImageShippingBonusCheck[offsetof(GameStateSaveImage, shooting_star_shipping_bonus) == 0x34C5 ? 1 : -1];
 typedef char GameStateSaveImageFieldItemsCheck[offsetof(GameStateSaveImage, field_items) == 0x34C8 ? 1 : -1];
 typedef char GameStateSaveImageMapPatchFlagsCheck[offsetof(GameStateSaveImage, map_patch_flags) == 0x34D8 ? 1 : -1];
-typedef char GameStateSaveImageTailActorCheck[offsetof(GameStateSaveImage, unk_34DC) == 0x34DC ? 1 : -1];
+typedef char GameStateSaveImageTailActorCheck[offsetof(GameStateSaveImage, wild_dog) == 0x34DC ? 1 : -1];
 
 // The upper word records the failed write stage; these are stage IDs, not
 // independent bits. The lower word carries the SRAM service's error flags.

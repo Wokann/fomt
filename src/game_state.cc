@@ -66,8 +66,8 @@ static inline void PutInitialItem(Field<43, 25> & field, int id) {
 }
 GameStateSaveImage::GameStateSaveImage(char const * farm_name, char const * player_name,
     GameDate birthday, char const * dog_name)
-    : flag_0(false), flag_1(false), flag_2(false), flag_3(false), flag_4(false),
-      unk_13(0), unk_18(0), unk_25(0), unk_31(false), unk_32(false),
+    : owns_mountain_cottage(false), owns_town_cottage(false), owns_seaside_cottage(false), obtained_mythic_tool(false), offered_small_fish_at_beach(false),
+      sprite_harvesting_record(0), sprite_animal_care_record(0), sprite_watering_record(0), unk_31(false), unk_32(false),
       clock(GameCalendar(1, GameDate(SEASON_SPRING, BoundDayIndex(DAY_30 - 1, DAY_01 - 1) + 1), GameTime(6, 0))),
       farm(farm_name), farmer(player_name, birthday), dog(dog_name), ball_location(MAP_NONE, 0, 0),
       link_record(GetNonzeroRandomValue()), scripted_npc_control(0), shooting_star_shipping_bonus(0)
@@ -81,10 +81,10 @@ GameStateSaveImage::GameStateSaveImage(char const * farm_name, char const * play
     for (u32 i = 0; i < 50; ++i) PutInitialItem(farm.field, 0x17);
 }
 
-bool GameStateSaveImage::GetFlag0() const { return flag_0; }
-bool GameStateSaveImage::GetFlag1() const { return flag_1; }
-bool GameStateSaveImage::GetFlag2() const { return flag_2; }
-bool GameStateSaveImage::GetFlag3() const { return flag_3; }
+bool GameStateSaveImage::GetFlag0() const { return owns_mountain_cottage; }
+bool GameStateSaveImage::GetFlag1() const { return owns_town_cottage; }
+bool GameStateSaveImage::GetFlag2() const { return owns_seaside_cottage; }
+bool GameStateSaveImage::GetFlag3() const { return obtained_mythic_tool; }
 
 // Every present animal must have affection >= 200. Missing horse, chicken,
 // cow or sheep slots are ignored; the dog is always checked. Do not return
@@ -115,14 +115,14 @@ bool GameStateSaveImage::AllAnimalsHaveHighAffection() const
     return result;
 }
 
-bool GameStateSaveImage::GetFlag4() const { return flag_4; }
-u32 GameStateSaveImage::GetUnknown13() const { return unk_13; }
-u32 GameStateSaveImage::GetUnknown18() const { return unk_18; }
-u32 GameStateSaveImage::GetUnknown25() const { return unk_25; }
-void GameStateSaveImage::SetFlag0() { flag_0 = true; }
-void GameStateSaveImage::SetFlag1() { flag_1 = true; }
-void GameStateSaveImage::SetFlag2() { flag_2 = true; }
-void GameStateSaveImage::SetFlag3() { flag_3 = true; }
+bool GameStateSaveImage::GetFlag4() const { return offered_small_fish_at_beach; }
+u32 GameStateSaveImage::GetUnknown13() const { return sprite_harvesting_record; }
+u32 GameStateSaveImage::GetUnknown18() const { return sprite_animal_care_record; }
+u32 GameStateSaveImage::GetUnknown25() const { return sprite_watering_record; }
+void GameStateSaveImage::SetFlag0() { owns_mountain_cottage = true; }
+void GameStateSaveImage::SetFlag1() { owns_town_cottage = true; }
+void GameStateSaveImage::SetFlag2() { owns_seaside_cottage = true; }
+void GameStateSaveImage::SetFlag3() { obtained_mythic_tool = true; }
 
 asm_unified(
     ".text\n"
@@ -1294,13 +1294,13 @@ bool GameStateSaveImage::CollectShippingRevenue()
     return value != 0;
 }
 
-void GameStateSaveImage::SetFlag4() { flag_4 = true; }
+void GameStateSaveImage::SetFlag4() { offered_small_fish_at_beach = true; }
 
 bool GameStateSaveImage::UpdateUnknown13(u32 value)
 {
     if (value > 99) value = 99;
-    if (unk_13 < value) {
-        unk_13 = value;
+    if (sprite_harvesting_record < value) {
+        sprite_harvesting_record = value;
         return true;
     }
     return false;
@@ -1309,8 +1309,8 @@ bool GameStateSaveImage::UpdateUnknown13(u32 value)
 bool GameStateSaveImage::UpdateUnknown18(u32 value)
 {
     if (value > 99) value = 99;
-    if (unk_18 < value) {
-        unk_18 = value;
+    if (sprite_animal_care_record < value) {
+        sprite_animal_care_record = value;
         return true;
     }
     return false;
@@ -1319,8 +1319,8 @@ bool GameStateSaveImage::UpdateUnknown18(u32 value)
 bool GameStateSaveImage::UpdateUnknown25(u32 value)
 {
     if (value > 99) value = 99;
-    if (unk_25 < value) {
-        unk_25 = value;
+    if (sprite_watering_record < value) {
+        sprite_watering_record = value;
         return true;
     }
     return false;
