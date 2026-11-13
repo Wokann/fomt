@@ -1,3 +1,7 @@
+## 存档镜像与序列化边界
+
+SRAM 的 32 KiB 地址空间由 0x28 字节头和两个 0x3FEC 字节槽组成。每槽从长度字开始，接 0x34F4 字节 GameStateSaveImage 和校验和。剩余 0x0AF0 字节位于该记录的读写范围外。物理布局见 include/sram_image.hh，负载成员及偏移见 include/game_state_types.hh。
+
 ## 指南画面主循环（2026-11-13）
 
 `ReferencePageSceneCore::Run` 在 JP、US、EU、DE 的起点依次为 `0x08078C6C`、`0x080790E4`、`0x080790F8`、`0x08078FDC`，各占 1,916 字节。文章滚动使用本帧持续按住的方向键，目录退出后回到外层状态循环。

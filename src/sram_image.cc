@@ -6,7 +6,7 @@
 
 u8 IsValidSramImage(SramAccess *source)
 {
-    u8 header[0x20];
+    u8 header[sizeof(gSramImageSignature)];
     u32 flags;
     u32 state;
     u8 result;
@@ -16,12 +16,12 @@ u8 IsValidSramImage(SramAccess *source)
         return 0;
 
     flags = 0;
-    source->Read(&flags, 0x20, sizeof(flags));
+    source->Read(&flags, offsetof(SramImageHeader, present_slots), sizeof(flags));
     if (gSramAccessStatus != 0)
         return 0;
 
     state = 0;
-    source->Read(&state, 0x24, sizeof(state));
+    source->Read(&state, offsetof(SramImageHeader, last_slot), sizeof(state));
     if (gSramAccessStatus != 0)
         return 0;
 
@@ -42,16 +42,16 @@ void InitializeSramImageHeader(SramAccess *destination)
 {
     u32 zero;
 
-    destination->Write(0, gSramImageSignature, 0x20);
+    destination->Write(0, gSramImageSignature, sizeof(gSramImageSignature));
     if (gSramAccessStatus != 0)
         return;
 
     zero = 0;
-    destination->Write(0x20, &zero, sizeof(zero));
+    destination->Write(offsetof(SramImageHeader, present_slots), &zero, sizeof(zero));
     if (gSramAccessStatus != 0)
         return;
 
-    destination->Write(0x24, &zero, sizeof(zero));
+    destination->Write(offsetof(SramImageHeader, last_slot), &zero, sizeof(zero));
 }
 
 u32 GetSramSaveSlotMask(SramAccess *source)
@@ -62,7 +62,7 @@ u32 GetSramSaveSlotMask(SramAccess *source)
         return 0;
 
     value = 0;
-    source->Read(&value, 0x20, sizeof(value));
+    source->Read(&value, offsetof(SramImageHeader, present_slots), sizeof(value));
     if (gSramAccessStatus != 0)
         return 0;
 
@@ -71,19 +71,19 @@ u32 GetSramSaveSlotMask(SramAccess *source)
 
 u32 GetSramSaveSlotOffset(SramAccess const *unused, u32 index)
 {
-    u32 multiplier = 0x3FEC;
-    return index * multiplier + 0x28;
+    u32 multiplier = SRAM_SAVE_SLOT_BYTES;
+    return index * multiplier + sizeof(SramImageHeader);
 }
 
 void MarkSramSaveSlotPresent(SramAccess *source, u32 index)
 {
     u32 value = 0;
 
-    source->Read(&value, 0x20, sizeof(value));
+    source->Read(&value, offsetof(SramImageHeader, present_slots), sizeof(value));
     if (gSramAccessStatus == 0)
     {
         value |= 1 << index;
-        source->Write(0x20, &value, sizeof(value));
+        source->Write(offsetof(SramImageHeader, present_slots), &value, sizeof(value));
     }
 }
 
@@ -91,17 +91,17 @@ void ClearSramSaveSlotPresent(SramAccess *source, u32 index)
 {
     u32 value = 0;
 
-    source->Read(&value, 0x20, sizeof(value));
+    source->Read(&value, offsetof(SramImageHeader, present_slots), sizeof(value));
     if (gSramAccessStatus == 0)
     {
         value &= ~(1 << index);
-        source->Write(0x20, &value, sizeof(value));
+        source->Write(offsetof(SramImageHeader, present_slots), &value, sizeof(value));
     }
 }
 
 void SetLastUsedSramSaveSlot(SramAccess *destination, u32 value)
 {
-    destination->Write(0x24, &value, sizeof(value));
+    destination->Write(offsetof(SramImageHeader, last_slot), &value, sizeof(value));
 }
 
 u32 GetLastUsedSramSaveSlot(SramAccess *source)
@@ -112,7 +112,7 @@ u32 GetLastUsedSramSaveSlot(SramAccess *source)
         return 0;
 
     value = 0;
-    source->Read(&value, 0x24, sizeof(value));
+    source->Read(&value, offsetof(SramImageHeader, last_slot), sizeof(value));
     if (gSramAccessStatus != 0)
         return 0;
 
