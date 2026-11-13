@@ -189,7 +189,6 @@ typedef char NewGameNameInputSceneCoreCheck[offsetof(NewGameNameInputScene, core
 EXTERN_C
 
 // Running and edit operations use the regional layout above.
-// Screen setup and keyboard raster still remain assembly.
 SceneTransitionOwner RunNameInputCore(NewGameNameInputCore * core);
 void InitializeNameInputScreen(NewGameNameInputCore * core);
 void InitializeNameInputCursorSprites(NewGameNameInputCore * core, u32 tile_index);

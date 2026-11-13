@@ -35,6 +35,7 @@ struct NewGameTextTileBuffer {
 
     NewGameTextTileBuffer() {}
 
+    u32 TileBytes() const { return sizeof(tiles); }
     u32 const * TileData() const { return tiles; }
 
     u32 PackedDimensions() const
