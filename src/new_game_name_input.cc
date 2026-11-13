@@ -2241,15 +2241,15 @@ void InitializeNameInputCursorSprites(NewGameNameInputCore * core, u32 tile_inde
 
 void ResetNameInputCore(NewGameNameInputCore * core)
 {
-    core->unk_after_keyboard_redraw[1] = 0;
-    core->unk_after_keyboard_redraw[0] = 0;
+    core->accept_name_pending = 0;
+    core->resume_editing_pending = 0;
     core->finished = 0;
     core->keyboard_redraw_pending = 0;
-    core->sprites[0].unk_00[1] = 0;
-    core->sprites[0].unk_00[0] = 0;
+    core->sprites[0].row = 0;
+    core->sprites[0].column = 0;
     core->keyboard_page = 0;
-    core->sprites[1].unk_00[0] = 0;
-    core->unk_463c = 0;
+    core->sprites[1].column = 0;
+    core->confirmation_active = 0;
 }
 
 // The retail text rasterizers inline this descriptor-append path. Keep
@@ -3978,7 +3978,7 @@ void SubmitNameInputCursorSprites(NewGameNameInputCore * core)
 {
     // Submit only the six OAM attribute bytes. The destination's affine
     // coefficient is owned by the sprite buffer and must remain untouched.
-    if (core->unk_463c == 0) {
+    if (core->confirmation_active == 0) {
         HardwareSpriteBufferState * buffer =
             GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
         u32 const & position_and_mode =
@@ -4011,15 +4011,15 @@ void SubmitNameInputCursorSprites(NewGameNameInputCore * core)
 void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
 {
 #if defined(REGION_JP)
-    core->sprites[1].attributes.x = core->sprites[1].unk_00[0] * 16 + 0x90;
+    core->sprites[1].attributes.x = core->sprites[1].column * 16 + 0x90;
 #else
-    core->sprites[1].attributes.x = core->sprites[1].unk_00[0] * 8 + 0x90;
+    core->sprites[1].attributes.x = core->sprites[1].column * 8 + 0x90;
 #endif
     core->sprites[1].attributes.y = 8;
 
-    if (static_cast<i8>(core->sprites[0].unk_00[1]) < NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE) {
-        core->sprites[0].attributes.x = static_cast<i8>(core->sprites[0].unk_00[0]) * 16;
-        core->sprites[0].attributes.y = static_cast<i8>(core->sprites[0].unk_00[1]) * 16 + 0x20;
+    if (static_cast<i8>(core->sprites[0].row) < NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE) {
+        core->sprites[0].attributes.x = static_cast<i8>(core->sprites[0].column) * 16;
+        core->sprites[0].attributes.y = static_cast<i8>(core->sprites[0].row) * 16 + 0x20;
 #if defined(REGION_JP)
         core->sprites[0].attributes.size = ST_OAM_SIZE_1;
         core->sprites[0].attributes.shape = ST_OAM_SQUARE;
@@ -4029,7 +4029,7 @@ void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
 #endif
     } else {
         u8 group = 0;
-        u8 column = core->sprites[0].unk_00[0];
+        u8 column = core->sprites[0].column;
         while (column > 4) {
             column -= 5;
             group++;
@@ -4058,90 +4058,90 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
     u32 up = input & DPAD_UP;
     if (static_cast<u8>(up)) {
         core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
-        core->sprites[0].unk_00[1]--;
-        if (static_cast<i8>(core->sprites[0].unk_00[1]) < 0) {
-            core->sprites[0].unk_00[1] = bottom_row;
+        core->sprites[0].row--;
+        if (static_cast<i8>(core->sprites[0].row) < 0) {
+            core->sprites[0].row = bottom_row;
 #if !defined(REGION_JP)
-            core->sprites[0].unk_00[0] = 12;
+            core->sprites[0].column = 12;
 #endif
         }
-        if (static_cast<i8>(core->sprites[0].unk_00[1]) == last_character_row) {
+        if (static_cast<i8>(core->sprites[0].row) == last_character_row) {
 #if defined(REGION_JP)
             int last_column = core->keyboard_page == 2 ? 12 : 9;
 #endif
-            if (static_cast<i8>(core->sprites[0].unk_00[0]) > last_column)
-                core->sprites[0].unk_00[1]--;
+            if (static_cast<i8>(core->sprites[0].column) > last_column)
+                core->sprites[0].row--;
         }
     } else {
         u32 down = input & DPAD_DOWN;
         if (static_cast<u8>(down)) {
             core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
-            core->sprites[0].unk_00[1]++;
-            if (static_cast<i8>(core->sprites[0].unk_00[1]) > bottom_row)
-                core->sprites[0].unk_00[1] = 0;
-            if (static_cast<i8>(core->sprites[0].unk_00[1]) == last_character_row) {
+            core->sprites[0].row++;
+            if (static_cast<i8>(core->sprites[0].row) > bottom_row)
+                core->sprites[0].row = 0;
+            if (static_cast<i8>(core->sprites[0].row) == last_character_row) {
 #if defined(REGION_JP)
                 int last_column = core->keyboard_page == 2 ? 12 : 9;
 #endif
-                if (static_cast<i8>(core->sprites[0].unk_00[0]) > last_column)
-                    core->sprites[0].unk_00[1]++;
+                if (static_cast<i8>(core->sprites[0].column) > last_column)
+                    core->sprites[0].row++;
             }
 #if !defined(REGION_JP)
-            if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row)
-                core->sprites[0].unk_00[0] = 12;
+            if (static_cast<i8>(core->sprites[0].row) == bottom_row)
+                core->sprites[0].column = 12;
 #endif
         } else if (input & DPAD_RIGHT) {
             core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
-            if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row) {
+            if (static_cast<i8>(core->sprites[0].row) == bottom_row) {
 #if defined(REGION_JP)
-                if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4)
-                    core->sprites[0].unk_00[0] = 7;
-                else if (static_cast<i8>(core->sprites[0].unk_00[0]) > 9)
-                    core->sprites[0].unk_00[0] = 2;
+                if (static_cast<i8>(core->sprites[0].column) <= 4)
+                    core->sprites[0].column = 7;
+                else if (static_cast<i8>(core->sprites[0].column) > 9)
+                    core->sprites[0].column = 2;
                 else
-                    core->sprites[0].unk_00[0] = 12;
+                    core->sprites[0].column = 12;
 #else
-                core->sprites[0].unk_00[0] = 12;
+                core->sprites[0].column = 12;
 #endif
             } else {
-                core->sprites[0].unk_00[0]++;
-                if (static_cast<i8>(core->sprites[0].unk_00[1]) == last_character_row) {
+                core->sprites[0].column++;
+                if (static_cast<i8>(core->sprites[0].row) == last_character_row) {
 #if defined(REGION_JP)
                     int last_column = core->keyboard_page == 2 ? 12 : 9;
 #endif
 #if defined(REGION_US) || defined(REGION_EU)
-                    u32 column = core->sprites[0].unk_00[0];
+                    u32 column = core->sprites[0].column;
                     if (static_cast<i8>(column) > last_column)
 #else
-                    if (static_cast<i8>(core->sprites[0].unk_00[0]) > last_column)
+                    if (static_cast<i8>(core->sprites[0].column) > last_column)
 #endif
-                        core->sprites[0].unk_00[0] = 0;
-                } else if (static_cast<i8>(core->sprites[0].unk_00[0]) > 14)
-                    core->sprites[0].unk_00[0] = 0;
+                        core->sprites[0].column = 0;
+                } else if (static_cast<i8>(core->sprites[0].column) > 14)
+                    core->sprites[0].column = 0;
             }
         } else if (input & DPAD_LEFT) {
             core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
-            if (static_cast<i8>(core->sprites[0].unk_00[1]) == bottom_row) {
+            if (static_cast<i8>(core->sprites[0].row) == bottom_row) {
 #if defined(REGION_JP)
-                if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4)
-                    core->sprites[0].unk_00[0] = 12;
-                else if (static_cast<i8>(core->sprites[0].unk_00[0]) > 9)
-                    core->sprites[0].unk_00[0] = 7;
+                if (static_cast<i8>(core->sprites[0].column) <= 4)
+                    core->sprites[0].column = 12;
+                else if (static_cast<i8>(core->sprites[0].column) > 9)
+                    core->sprites[0].column = 7;
                 else
-                    core->sprites[0].unk_00[0] = 2;
+                    core->sprites[0].column = 2;
 #else
-                core->sprites[0].unk_00[0] = 12;
+                core->sprites[0].column = 12;
 #endif
             } else {
-                core->sprites[0].unk_00[0]--;
-                if (static_cast<i8>(core->sprites[0].unk_00[1]) == last_character_row) {
+                core->sprites[0].column--;
+                if (static_cast<i8>(core->sprites[0].row) == last_character_row) {
 #if defined(REGION_JP)
                     int last_column = core->keyboard_page == 2 ? 12 : 9;
 #endif
-                    if (static_cast<i8>(core->sprites[0].unk_00[0]) < 0)
-                        core->sprites[0].unk_00[0] = last_column;
-                } else if (static_cast<i8>(core->sprites[0].unk_00[0]) < 0)
-                    core->sprites[0].unk_00[0] = 14;
+                    if (static_cast<i8>(core->sprites[0].column) < 0)
+                        core->sprites[0].column = last_column;
+                } else if (static_cast<i8>(core->sprites[0].column) < 0)
+                    core->sprites[0].column = 14;
             }
         }
     }
@@ -4151,42 +4151,42 @@ void InsertNameInputCharacter(NewGameNameInputCore * core)
 {
     char character[2];
     character[0] = gNewGameNameEntryCharacterRows.bytes[
-        static_cast<i8>(core->sprites[0].unk_00[0]) * 2
-        + static_cast<i8>(core->sprites[0].unk_00[1]) * NEW_GAME_NAME_ENTRY_ROW_WIDTH
+        static_cast<i8>(core->sprites[0].column) * 2
+        + static_cast<i8>(core->sprites[0].row) * NEW_GAME_NAME_ENTRY_ROW_WIDTH
         + core->keyboard_page * (NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE * NEW_GAME_NAME_ENTRY_ROW_WIDTH)];
 #if defined(REGION_JP)
     character[1] = gNewGameNameEntryCharacterRows.bytes[
-        (static_cast<i8>(core->sprites[0].unk_00[0]) * 2 + 1)
-        + static_cast<i8>(core->sprites[0].unk_00[1]) * NEW_GAME_NAME_ENTRY_ROW_WIDTH
+        (static_cast<i8>(core->sprites[0].column) * 2 + 1)
+        + static_cast<i8>(core->sprites[0].row) * NEW_GAME_NAME_ENTRY_ROW_WIDTH
         + core->keyboard_page * (NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE * NEW_GAME_NAME_ENTRY_ROW_WIDTH)];
-    if (core->name[core->sprites[1].unk_00[0] * 2] == character[0]
-            && core->name[core->sprites[1].unk_00[0] * 2 + 1] == character[1])
-        core->sprites[1].unk_00[0]++;
+    if (core->name[core->sprites[1].column * 2] == character[0]
+            && core->name[core->sprites[1].column * 2 + 1] == character[1])
+        core->sprites[1].column++;
     else {
-        core->name[core->sprites[1].unk_00[0] * 2] = character[0];
-        core->name[core->sprites[1].unk_00[0] * 2 + 1] = character[1];
-        core->sprites[1].unk_00[0]++;
+        core->name[core->sprites[1].column * 2] = character[0];
+        core->name[core->sprites[1].column * 2 + 1] = character[1];
+        core->sprites[1].column++;
     }
-    if (core->sprites[1].unk_00[0] > 5) {
-        core->sprites[0].unk_00[0] = 12;
-        core->sprites[0].unk_00[1] = 6;
-        core->sprites[1].unk_00[0] = 5;
+    if (core->sprites[1].column > 5) {
+        core->sprites[0].column = 12;
+        core->sprites[0].row = 6;
+        core->sprites[1].column = 5;
     }
 #else
-    if (core->name[core->sprites[1].unk_00[0]] == character[0])
-        core->sprites[1].unk_00[0]++;
+    if (core->name[core->sprites[1].column] == character[0])
+        core->sprites[1].column++;
     else {
-        core->name[core->sprites[1].unk_00[0]] = character[0];
-        core->sprites[1].unk_00[0]++;
+        core->name[core->sprites[1].column] = character[0];
+        core->sprites[1].column++;
     }
-    if (core->sprites[1].unk_00[0] > 11) {
-        core->sprites[0].unk_00[0] = 12;
+    if (core->sprites[1].column > 11) {
+        core->sprites[0].column = 12;
 #if defined(REGION_DE)
-        core->sprites[0].unk_00[1] = 7;
+        core->sprites[0].row = 7;
 #else
-        core->sprites[0].unk_00[1] = 6;
+        core->sprites[0].row = 6;
 #endif
-        core->sprites[1].unk_00[0] = 11;
+        core->sprites[1].column = 11;
     }
 #endif
 }
@@ -4270,23 +4270,23 @@ bool NormalizeNameInput(NewGameNameInputCore * core)
 
 void ProcessNameInputKeys(NewGameNameInputCore * core)
 {
-    if (core->unk_463c != 0)
+    if (core->confirmation_active != 0)
         return;
     MoveNameInputKeyboardCursor(core);
     u32 input = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core));
     if (reinterpret_cast<u8 const *>(&input)[0] & A_BUTTON) {
-        if (static_cast<i8>(core->sprites[0].unk_00[1]) < NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE) {
+        if (static_cast<i8>(core->sprites[0].row) < NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE) {
             core->music_player_2.Start(AUDIO_SFX_PICK_UP_ITEM);
             InsertNameInputCharacter(core);
         } else {
-            if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4) {
+            if (static_cast<i8>(core->sprites[0].column) <= 4) {
                 if (core->keyboard_page == NEW_GAME_NAME_ENTRY_PAGE_COUNT - 1)
                     core->keyboard_page = 0;
                 else
                     core->keyboard_page++;
                 core->keyboard_redraw_pending = 1;
                 core->music_player_2.Start(AUDIO_SEQUENCE_202);
-            } else if (static_cast<u8>(core->sprites[0].unk_00[0] - 5) <= 4) {
+            } else if (static_cast<u8>(core->sprites[0].column - 5) <= 4) {
                 if (core->keyboard_page == 0)
                     core->keyboard_page = NEW_GAME_NAME_ENTRY_PAGE_COUNT - 1;
                 else
@@ -4295,16 +4295,16 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
                 core->music_player_2.Start(AUDIO_SEQUENCE_202);
             } else {
                 if (NormalizeNameInput(core)) {
-                    core->unk_463c = 1;
+                    core->confirmation_active = 1;
                     core->music_player_2.Start(AUDIO_SFX_MENU_CONFIRM);
                 } else
                     core->music_player_2.Start(AUDIO_SFX_INCORRECT_ANSWER);
             }
         }
     } else if (reinterpret_cast<u8 const *>(&input)[0] & B_BUTTON) {
-        if (core->sprites[1].unk_00[0] != 0) {
-            core->sprites[1].unk_00[0]--;
-            EraseNameInputCharacter(core, core->sprites[1].unk_00[0]);
+        if (core->sprites[1].column != 0) {
+            core->sprites[1].column--;
+            EraseNameInputCharacter(core, core->sprites[1].column);
             core->music_player_2.Start(AUDIO_SFX_THROW_ITEM);
         } else {
             u8 placeholder_count = 0;
@@ -4338,35 +4338,35 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
         core->music_player_2.Start(AUDIO_SEQUENCE_202);
 #endif
     } else if (reinterpret_cast<u8 const *>(&input)[0] & START_BUTTON) {
-        if (static_cast<i8>(core->sprites[0].unk_00[1]) == NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE
-                && static_cast<i8>(core->sprites[0].unk_00[0]) > 9
-                && static_cast<i8>(core->sprites[0].unk_00[0]) <= 14) {
+        if (static_cast<i8>(core->sprites[0].row) == NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE
+                && static_cast<i8>(core->sprites[0].column) > 9
+                && static_cast<i8>(core->sprites[0].column) <= 14) {
             if (NormalizeNameInput(core))
-                core->unk_463c = 1;
+                core->confirmation_active = 1;
             core->music_player_2.Start(AUDIO_SFX_MENU_CONFIRM);
         } else {
-            core->sprites[0].unk_00[0] = 12;
-            core->sprites[0].unk_00[1] = NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE;
+            core->sprites[0].column = 12;
+            core->sprites[0].row = NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE;
             core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
         }
     } else if (reinterpret_cast<u8 const *>(&input)[1] & (L_BUTTON >> 8)) {
-        if (core->sprites[1].unk_00[0] != 0)
-            core->sprites[1].unk_00[0]--;
+        if (core->sprites[1].column != 0)
+            core->sprites[1].column--;
         core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
     } else if (reinterpret_cast<u8 const *>(&input)[1] & (R_BUTTON >> 8)) {
 #if defined(REGION_JP)
-        if (core->sprites[1].unk_00[0] != 5)
+        if (core->sprites[1].column != 5)
 #else
-        if (core->sprites[1].unk_00[0] != 11)
+        if (core->sprites[1].column != 11)
 #endif
-            core->sprites[1].unk_00[0]++;
+            core->sprites[1].column++;
         core->music_player_2.Start(AUDIO_SFX_MENU_CURSOR);
     }
 }
 
 void UpdateNameInputConfirmation(NewGameNameInputCore * core)
 {
-    if (core->unk_463c != 0) {
+    if (core->confirmation_active != 0) {
         i32 previous_state = core->ui_state->GetState();
         UiStateOwner * ui = core->ui_state;
         HardwareCoreState * state = static_cast<HardwareCoreState *>(
@@ -4380,12 +4380,12 @@ void UpdateNameInputConfirmation(NewGameNameInputCore * core)
         HardwareMusicPlayerSlot * music = &core->music_player_1;
         switch (ui->Update(&state->input, sprites, display, links, manager, music)) {
         case 0:
-            if (core->unk_after_keyboard_redraw[0]) {
-                core->unk_463c = 0;
-                core->unk_after_keyboard_redraw[0] = 0;
+            if (core->resume_editing_pending) {
+                core->confirmation_active = 0;
+                core->resume_editing_pending = 0;
             }
-            if (core->unk_after_keyboard_redraw[1]) {
-                core->unk_after_keyboard_redraw[1] = 0;
+            if (core->accept_name_pending) {
+                core->accept_name_pending = 0;
                 core->finished = 1;
                 strcpy(core->name, reinterpret_cast<char const *>(core->normalized_name));
             }
@@ -4397,7 +4397,7 @@ void UpdateNameInputConfirmation(NewGameNameInputCore * core)
                 func_08050D74(reinterpret_cast<void * const *>(core->ui_state));
                 break;
             case 1:
-                if (core->unk_463c == 1) {
+                if (core->confirmation_active == 1) {
                     func_08050E30(core->ui_state,
                         gText_NewGameNameEntry_Confirm, gText_NewGameNameEntry_Yes,
                         gText_NewGameNameEntry_No, nullptr, nullptr, nullptr);
@@ -4411,10 +4411,10 @@ void UpdateNameInputConfirmation(NewGameNameInputCore * core)
                     u32 selection = core->ui_state->GetChoiceResult();
                     switch (selection) {
                     case 1:
-                        core->unk_after_keyboard_redraw[1] = selection;
+                        core->accept_name_pending = selection;
                         break;
                     case 2:
-                        core->unk_after_keyboard_redraw[0] = 1;
+                        core->resume_editing_pending = 1;
                         break;
                     }
                 }

@@ -49,7 +49,9 @@ typedef NewGameTextTileBuffer<NEW_GAME_NAME_INPUT_PROMPT_WIDTH, NEW_GAME_NAME_IN
 // the name-slot caret. The remaining bytes retain their unknown meanings.
 // The initializer clears only the OAM record.
 struct NewGameNameInputSpriteState {
-    u8 unk_00[4];
+    u8 column;
+    u8 row;
+    u8 unk_02[2];
     HardwareSpriteOamRecord attributes;
 };
 
@@ -98,8 +100,11 @@ struct NewGameNameInputCore : HardwareContext {
     u8 normalized_name[13];
     u8 finished;
     u8 keyboard_redraw_pending;
-    u8 unk_after_keyboard_redraw[4];
-    u32 unk_463c;
+    // The choice is applied after the dialogue has closed.
+    u8 resume_editing_pending;
+    u8 accept_name_pending;
+    u8 unk_after_choice_flags[2];
+    u32 confirmation_active;
 };
 
 typedef char NewGameNameInputMusicStrideCheck[
@@ -144,7 +149,7 @@ typedef char NewGameNameInputRedrawCheck[
     offsetof(NewGameNameInputCore, keyboard_redraw_pending)
         == offsetof(NewGameNameInputCore, finished) + 1 ? 1 : -1];
 typedef char NewGameNameInputFinalWordCheck[
-    offsetof(NewGameNameInputCore, unk_463c)
+    offsetof(NewGameNameInputCore, confirmation_active)
         == sizeof(NewGameNameInputCore) - 4 ? 1 : -1];
 
 typedef char NewGameNameInputCoreKeyboardTilesCheck[
