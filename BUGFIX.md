@@ -54,3 +54,27 @@
 电视初始入口和换台入口都检查 04:44、16:44。日版设为无信号后调用隐藏节目。US、EU、DE 仍完整保存该节目，但两个入口都漏掉了调用。于是程序走到公共收尾，用本分支从未赋值的 `var_1` 判断频道。载入脚本会清零 VM 变量，0 恰好是天气频道；换台脚本因此再次调用自身。如果游戏时间保持在原分钟，会持续重入。[日版入口](data/scripts/jp/EventScript_TV_ChannelDispatcher.mary.c) · [海外初始入口](data/scripts/us/EventScript_TV_ChannelDispatcher.mary.c) · [海外换台入口](data/scripts/us/EventScript_TV_EntertainmentChannel.mary.c) · [频道枚举](include/fomt_constants.mary.h) · [VM 清零](src/script_vm.cc)
 
 修复让三个海外版的两个入口像日版一样调用本版已有的隐藏节目。`GameScene::CallScript` 在当前脚本引擎载入目标，重置程序计数器；隐藏节目自行结束电视和对话。节目原有的星期、日期、重复次数和文字都得以保留。[事件切换](src/game_scene.cc) · [脚本加载](src/script_engine.cc) · [隐藏节目](data/scripts/us/EventScript_TV_4AMHiddenBroadcast.mary.c)
+
+## 全仓对照新发现的原版问题
+
+以下为已定位、尚未接入 `BUGFIX` 的条目。启用开关时仍沿用相应地区原行为。
+
+<a id="elli-nickname"></a>
+### US、EU 选择艾利的第二个昵称后未写回
+
+第二个选项显示 Honey（亲爱的），随后艾利会确认选择。JP、DE 在确认前调用 `SetPlayerNicknameForSpouse`；US、EU 的同一分支漏掉调用，只执行显示与动作，旧昵称会保留。其他昵称选择走各自的分支。[日版](data/scripts/jp/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [美版](data/scripts/us/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [欧版](data/scripts/eu/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [德版](data/scripts/de/EventScript_LoveEvent_Elli_NicknameChoice.mary.c)
+
+<a id="de-farm-tv"></a>
+### DE 春季 19 日的农场入门节目连续播放两天
+
+德版在 19 日消息和 20 日分支之间少了 `break`，因此 19 日会连续执行两次 `ShowTelevisionMessage`，后一次返回值也会覆盖前一次的输入结果。JP、US、EU 在 19 日消息后结束本分支。此问题与 4:44 隐藏节目独立。[德版](data/scripts/de/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [美版](data/scripts/us/EventScript_TV_LifeOnTheFarm_Beginner.mary.c)
+
+<a id="fish-record-names"></a>
+### 海外版不同鱼种共用显示名
+
+记录 22 和 37 在 JP 分别显示「ギンブナ」和「ハクレン」，三个海外版的 37 均取记录 22 的名字。记录 18 和 46 在 JP 分别是「カツオ」（鲣）和「マグロ」（金枪鱼），US、EU 各有独立名字；DE 的两项都指向 Thunfisch（金枪鱼）。记录 ID 与名称表下标仍然独立，已证实的影响在名称显示。[记录编号](include/fomt_constants.mary.h) · [名称指针表](src/fishing_results_data.cc) · [日文](data/text/jp/fishing_results_data.cc) · [德文](data/text/de/fishing_results_data.cc)
+
+<a id="de-profile-tv"></a>
+### DE 第 36 号人物介绍节目未读取频道键
+
+人物节目按索引进入 `case 36` 时，另外三版执行 `var_0 = ShowTelevisionMessage(...)`，让观众选择频道或继续观看。德版改用无返回值的慢速对话，随即关闭文本框并读取尚未赋值的 `var_0`。脚本载入时变量清零，0 对应天气频道，程序因此转交给换台脚本。这个入口与 4:44 无关。[德版](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [美版](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [频道枚举](include/fomt_constants.mary.h) · [变量初始化](src/script_vm.cc)
