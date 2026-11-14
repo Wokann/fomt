@@ -82,6 +82,17 @@ struct UnkMapBox : public Box
 
 struct PACKED GameDate
 {
+    struct PACKED SeasonValue {
+        Season value : 2;
+
+        explicit SeasonValue(Season input) : value(input) {}
+        SeasonValue & operator-=(u32 seasons)
+        {
+            value = static_cast<Season>(static_cast<u32>(value) - seasons);
+            return *this;
+        }
+    };
+
     /* bit 0 */ Season season : 2;
     /* bit 2 */ u8 day : 5;
 
@@ -93,6 +104,34 @@ struct PACKED GameDate
     Season GetSeason() const { return season; }
     unsigned int GetDay() const { return day; }
     bool operator==(GameDate const & other) const { return season == other.season && day == other.day; }
+    GameDate & operator-=(u32 days)
+    {
+        u32 remainder;
+        u32 seasons;
+        if (days < 30) {
+            remainder = days;
+            seasons = 0;
+        } else {
+            remainder = days % 30;
+            seasons = days / 30;
+        }
+        u32 current_day = GetDay();
+        u32 borrowed_days = remainder - 30;
+        u32 previous_day = current_day - borrowed_days;
+        if (previous_day < 30)
+            ++seasons;
+        else
+            previous_day -= 30;
+        SeasonValue previous_season(GetSeason());
+        previous_season -= seasons;
+        season = previous_season.value;
+        day = previous_day;
+        return *this;
+    }
+    GameDate const operator-(u32 days) const
+    {
+        return GameDate(*this) -= days;
+    }
     void AdvanceDay(u32 days_per_season)
     {
         u32 next_day = day + 1;

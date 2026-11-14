@@ -13,6 +13,24 @@
 
 struct GameStateSaveImage;
 
+// Native fixed-capacity lists store a count followed by placement-constructed
+// elements. Only the counted range contains live objects.
+template<class T, u32 Capacity>
+struct ShopScreenList {
+    u32 count;
+    u32 storage[(sizeof(T) * Capacity + sizeof(u32) - 1) / sizeof(u32)];
+
+    ShopScreenList() : count(0) {}
+    u32 Size() const { return count; }
+    T * Begin() { return reinterpret_cast<T *>(storage); }
+    T * End() { return &(*this)[count]; }
+    T & operator[](u32 index)
+    {
+        return *reinterpret_cast<T *>(reinterpret_cast<u8 *>(this)
+            + (sizeof(count) + index * sizeof(T)));
+    }
+};
+
 // The native list stores forty 16-byte rows, followed by forty catalog indices.
 // Rows reference native 4bpp tiles and an independent palette.
 struct ShopScreenRow {
@@ -24,6 +42,8 @@ struct ShopScreenRow {
 };
 
 struct ShopScreenSprite {
+    explicit ShopScreenSprite(IndexedResourceProvider * provider)
+        : x(0), y(0), handle(provider, 0, 0x100), unk_34(0) {}
     i16 x;
     i16 y;
     IndexedResourceHandle handle;
@@ -52,11 +72,9 @@ struct ShopScreenCore : HardwareContext {
     i32 previous_selected_row;
     HardwareMusicPlayerSlot music;
     ScrollState * scroll;
-    u32 row_count;
     // Fixed native capacities, not counts of the current shop's ROM catalog.
-    ShopScreenRow rows[40];
-    u32 catalog_count;
-    u32 catalog_indices[40];
+    ShopScreenList<ShopScreenRow, 40> rows;
+    ShopScreenList<u32, 40> catalog;
     UiStateOwner dialog;
     i32 previous_dialog_state;
     i32 dialog_state;
@@ -95,8 +113,8 @@ struct ShopScreenCore : HardwareContext {
 typedef char ShopScreenRowSizeCheck[sizeof(ShopScreenRow) == 0x10 ? 1 : -1];
 typedef char ShopScreenSpriteSizeCheck[sizeof(ShopScreenSprite) == 0x38 ? 1 : -1];
 typedef char ShopScreenCursorSizeCheck[sizeof(ShopScreenCursor) == 0x40 ? 1 : -1];
-typedef char ShopScreenCoreRowsCheck[offsetof(ShopScreenCore, rows) == 0x24 ? 1 : -1];
-typedef char ShopScreenCoreCatalogCheck[offsetof(ShopScreenCore, catalog_indices) == 0x2A8 ? 1 : -1];
+typedef char ShopScreenCoreRowsCheck[offsetof(ShopScreenCore, rows.storage) == 0x24 ? 1 : -1];
+typedef char ShopScreenCoreCatalogCheck[offsetof(ShopScreenCore, catalog.storage) == 0x2A8 ? 1 : -1];
 typedef char ShopScreenCoreDialogCheck[offsetof(ShopScreenCore, dialog) == 0x348 ? 1 : -1];
 typedef char ShopScreenCoreItemTilesCheck[offsetof(ShopScreenCore, item_tiles) == 0x3A4 ? 1 : -1];
 typedef char ShopScreenCoreVCountCheck[offsetof(ShopScreenCore, vcount) == 0x438 ? 1 : -1];

@@ -11,6 +11,8 @@ struct UiPurchaseQuantitySelector {
     void Configure(u32 price, u32 available, u32 column);
     void Update();
     void Hide();
+    u32 GetQuantity() const { return quantity; }
+    bool IsActive() const { return active; }
 
     u32 unit_price;
     u32 maximum;

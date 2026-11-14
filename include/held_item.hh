@@ -57,7 +57,10 @@ typedef char HeldItemSizeCheck[sizeof(HeldItem) == 8 ? 1 : -1];
 typedef char HeldItemPayloadCheck[offsetof(HeldItem, inner) == 2 ? 1 : -1];
 
 EC bool IsHeldItemEmpty(HeldItem const * self);
+EC Food func_0800F20C(HeldItem const * self);
 EC RucksackItem func_0800F294(HeldItem const * self);
+EC bool func_0800F388(HeldItem const * self);
+EC bool func_0800F528(HeldItem * self);
 EC void ClearHeldItem(HeldItem * self);
 EC void func_0800F3B0(HeldItem * self, Food food);
 EC void func_0800F3E8(HeldItem * self, Article article);

@@ -82,6 +82,7 @@ u32 func_080D0678(void);
 void func_080D06A8(void);
 u32 func_080D06B4(void);
 u32 func_080D06D0(void);
+void func_080D0704(void);
 
 EXTERN_C_END
 

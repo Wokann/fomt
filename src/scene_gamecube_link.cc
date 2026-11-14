@@ -1,1008 +1,212 @@
+#include "config.h"
 #include "obj_palette_collection.hh"
 #include "prelude.h"
 #pragma implementation "scene_gamecube_link_callbacks.hh"
 #include "scene_gamecube_link.hh"
 #include "game_state.hh"
+#include "hardware_blend_owner.hh"
+#include "interrupt.h"
+#include "interrupt_table.h"
 #include "obj_palette_collection.hh"
 #include "obj_tile_collection.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start __18GameCubeLinkUiCoreP18GameStateSaveImage\n"
-    "__18GameCubeLinkUiCoreP18GameStateSaveImage:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #20\n"
-    "    adds r7, r0, #0\n"
-    "    adds r5, r1, #0\n"
-    "    bl __15HardwareContext\n"
-    "    adds r4, r7, #0\n"
-    "    adds r4, #8\n"
-    "    adds r0, r4, #0\n"
-    "    bl __17LinkBlockProtocol\n"
-    "    ldr r0, .LGameCube_core_ctor_0\n"
-    "    str r0, [r7, #8]\n"
-    "    adds r0, r7, #0\n"
-    "    adds r0, #56\n"
-    "    bl InitializeJoyBusContext\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0\n"
-    "    bl SetMode__18JoyBusLinkProtocolUi\n"
-    "    ldr r0, .LGameCube_core_ctor_1\n"
-    "    str r0, [r7, #8]\n"
-    "    ldr r0, .LGameCube_core_ctor_2\n"
-    "    str r0, [r7, #4]\n"
-    "    movs r1, #226\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r7, r1\n"
-    "    movs r6, #1\n"
-    "    str r6, [r0, #0]\n"
-    "    movs r0, #76\n"
-    "    bl __builtin_new\n"
-    "    adds r1, r5, #0\n"
-    "    bl __20GameCubeLinkSaveDataP18GameStateSaveImage\n"
-    "    movs r2, #228\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r1, r7, r2\n"
-    "    str r0, [r1, #0]\n"
-    "    movs r1, #230\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r7, r1\n"
-    "    str r5, [r0, #0]\n"
-    "    add r0, sp, #12\n"
-    "    bl __17ObjTileCollection\n"
-    "    add r4, sp, #16\n"
-    "    adds r0, r4, #0\n"
-    "    bl __20ObjPaletteCollection\n"
-    "    movs r2, #232\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r0, r7, r2\n"
-    "    movs r5, #0\n"
-    "    str r5, [sp, #0]\n"
-    "    add r1, sp, #12\n"
-    "    str r1, [sp, #4]\n"
-    "    str r4, [sp, #8]\n"
-    "    movs r1, #0\n"
-    "    movs r2, #29\n"
-    "    movs r3, #0\n"
-    "    bl __12UiStateOwnerUiUiUiUiRC17ObjTileCollectionRC20ObjPaletteCollection\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #2\n"
-    "    bl _._20ObjPaletteCollection\n"
-    "    add r0, sp, #12\n"
-    "    movs r1, #2\n"
-    "    bl _._17ObjTileCollection\n"
-    "    movs r2, #234\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r0, r7, r2\n"
-    "    movs r1, #1\n"
-    "    bl __23HardwareMusicPlayerSlotUc\n"
-    "    movs r1, #240\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r7, r1\n"
-    "    strb r5, [r0, #0]\n"
-    "    movs r2, #250\n"
-    "    lsls r2, r2, #2\n"
-    "    adds r0, r7, r2\n"
-    "    str r5, [r0, #0]\n"
-    "    movs r1, #251\n"
-    "    lsls r1, r1, #2\n"
-    "    adds r0, r7, r1\n"
-    "    strb r6, [r0, #0]\n"
-    "    adds r0, r7, #0\n"
-    "    add sp, #20\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".LGameCube_core_ctor_0: .word __vt_18JoyBusLinkProtocol\n"
-    ".LGameCube_core_ctor_1: .word __vt_18GameCubeLinkUiCore.18JoyBusLinkProtocol\n"
-    ".LGameCube_core_ctor_2: .word __vt_18GameCubeLinkUiCore\n"
-);
+GameCubeLinkUiCore::GameCubeLinkUiCore(GameStateSaveImage * image)
+    : result(GAMECUBE_LINK_RESULT_CANCELED_OR_FAILED),
+      data(new GameCubeLinkSaveData(image)), save(image),
+      ui(0, 29, 0, 0, ObjTileCollection(), ObjPaletteCollection()),
+      music(1), unk_1E0(0), phase(0), phase_changed(true)
+{
+}
 
-asm_unified(
-    ".text\n"
-    ".include \"six/asm/hw/video.s\"\n"
-    "\n"
-    "thumb_func_start _._18GameCubeLinkUiCore\n"
-    "_._18GameCubeLinkUiCore:\n"
-    "push {r4, r5, r6, lr}\n"
-    "adds r5, r0, #0x0\n"
-    "adds r6, r1, #0x0\n"
-    ".ifdef REGION_JP\n"
-    "ldr r0, .Lgamecube_jp_1_0050\n"
-    ".else\n"
-    "ldr r0, .Lgamecube_1_0050\n"
-    ".endif\n"
-    "str r0, [r5, #0x8]\n"
-    ".ifdef REGION_JP\n"
-    "ldr r0, .Lgamecube_jp_1_0054\n"
-    ".else\n"
-    "ldr r0, .Lgamecube_1_0054\n"
-    ".endif\n"
-    "str r0, [r5, #0x4]\n"
-    "movs r1, #0xe8\n"
-    "lsls r1, r1, #0x1\n"
-    "adds r0, r5, r1\n"
-    "movs r1, #0x2\n"
-    "bl _._12UiStateOwner\n"
-    "movs r1, #0xe4\n"
-    "lsls r1, r1, #0x1\n"
-    "adds r0, r5, r1\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_1_002c\n"
-    "movs r1, #0x3\n"
-    "bl _._20GameCubeLinkSaveData\n"
-    ".Lgamecube_1_002c:\n"
-    "adds r4, r5, #0x0\n"
-    "adds r4, #0x8\n"
-    ".ifdef REGION_JP\n"
-    "ldr r0, .Lgamecube_jp_1_0058\n"
-    ".else\n"
-    "ldr r0, .Lgamecube_1_0058\n"
-    ".endif\n"
-    "str r0, [r5, #0x8]\n"
-    "bl ResetJoyBusLinkRegisters\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x0\n"
-    "bl _._17LinkBlockProtocol\n"
-    "adds r0, r5, #0x0\n"
-    "adds r1, r6, #0x0\n"
-    "bl _._15HardwareContext\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
-    ".Lgamecube_jp_1_0050: .word __vt_18GameCubeLinkUiCore.18JoyBusLinkProtocol\n"
-    ".else\n"
-    ".Lgamecube_1_0050: .word __vt_18GameCubeLinkUiCore.18JoyBusLinkProtocol\n"
-    ".endif\n"
-    ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
-    ".Lgamecube_jp_1_0054: .word __vt_18GameCubeLinkUiCore\n"
-    ".else\n"
-    ".Lgamecube_1_0054: .word __vt_18GameCubeLinkUiCore\n"
-    ".endif\n"
-    ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
-    ".Lgamecube_jp_1_0058: .word __vt_18JoyBusLinkProtocol\n"
-    ".else\n"
-    ".Lgamecube_1_0058: .word __vt_18JoyBusLinkProtocol\n"
-    ".endif\n"
-    "\n"
-    "thumb_func_start Run__18GameCubeLinkUiCore\n"
-    "Run__18GameCubeLinkUiCore:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "mov r7, sl\n"
-    "mov r6, sb\n"
-    "mov r5, r8\n"
-    "push {r5, r6, r7}\n"
-    "sub sp, #0x5c\n"
-    "adds r7, r0, #0x0\n"
-    "bl EnableHardwareForcedBlank\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareDisplayState\n"
-    "add r2, sp, #0x10\n"
-    "movs r3, #0xea\n"
-    "lsls r3, r3, #0x5\n"
-    "adds r1, r3, #0x0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0, #0x8]\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareDisplayState\n"
-    "add r2, sp, #0x10\n"
-    "ldr r3, .Lgamecube_2_01f8\n"
-    "adds r1, r3, #0x0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0, #0xa]\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareDisplayState\n"
-    "add r2, sp, #0x10\n"
-    "ldr r3, .Lgamecube_2_01fc\n"
-    "adds r1, r3, #0x0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0, #0xc]\n"
-    "movs r4, #0x1\n"
-    "rsbs r4, r4, #0x0\n"
-    "ldr r0, .Lgamecube_2_0200\n"
-    "mov r8, r0\n"
-    "movs r5, #0x80\n"
-    "lsls r5, r5, #0x4\n"
-    "adds r0, r4, #0x0\n"
-    "mov r1, r8\n"
-    "adds r2, r5, #0x0\n"
-    "bl FillHardwareDma3\n"
-    "ldr r6, .Lgamecube_2_0204\n"
-    "adds r0, r4, #0x0\n"
-    "adds r1, r6, #0x0\n"
-    "adds r2, r5, #0x0\n"
-    "bl FillHardwareDma3\n"
-    "ldr r1, .Lgamecube_2_0208\n"
-    "movs r2, #0x80\n"
-    "lsls r2, r2, #0x8\n"
-    "movs r0, #0x0\n"
-    "bl FillHardwareDma3\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareDisplayState\n"
-    "add r1, sp, #0x10\n"
-    "movs r3, #0xb2\n"
-    "lsls r3, r3, #0x5\n"
-    "adds r2, r3, #0x0\n"
-    "strh r2, [r1]\n"
-    "movs r1, #0x0\n"
-    "mov sb, r1\n"
-    "strh r2, [r0]\n"
-    "ldr r0, .Lgamecube_2_020c\n"
-    "ldr r0, [r0]\n"
-    "movs r1, #0xc0\n"
-    "lsls r1, r1, #0x13\n"
-    "ldr r2, .Lgamecube_2_0210\n"
-    "ldr r2, [r2]\n"
-    "bl CopyHardwareDma3\n"
-    "ldr r0, .Lgamecube_2_0214\n"
-    "adds r1, r6, #0x0\n"
-    "adds r2, r5, #0x0\n"
-    "bl FillHardwareDma3\n"
-    "ldr r0, .Lgamecube_2_0218\n"
-    "ldr r0, [r0]\n"
-    "movs r1, #0xa0\n"
-    "lsls r1, r1, #0x13\n"
-    "movs r2, #0x20\n"
-    "bl CopyHardwareDma3\n"
-    "ldr r0, .Lgamecube_2_021c\n"
-    "mov r1, r8\n"
-    "adds r2, r5, #0x0\n"
-    "bl FillHardwareDma3\n"
-    "movs r2, #0xe8\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r4, r7, r2\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050D5C\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x38\n"
-    "bl ShowPortrait__C12UiStateOwnerUi\n"
-    "movs r3, #0xe6\n"
-    "lsls r3, r3, #0x1\n"
-    "adds r0, r7, r3\n"
-    "ldr r0, [r0]\n"
-    "ldr r1, .Lgamecube_2_0220\n"
-    "adds r0, r0, r1\n"
-    "movs r1, #0x1f\n"
-    "bl GetCharacterName__C13NpcCollectionUi\n"
-    "adds r1, r0, #0x0\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050E68\n"
-    "ldr r1, .Lgamecube_2_0224\n"
-    "movs r0, #0x7\n"
-    "bl ExchangeInterruptHandler\n"
-    "movs r0, #0x80\n"
-    "bl AcknowledgeAndEnableInterrupts\n"
-    "movs r0, #0x0\n"
-    "movs r1, #0x80\n"
-    "bl SetInterruptNestingMask\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareDisplayState\n"
-    "add r1, sp, #0x10\n"
-    "movs r2, #0x3f\n"
-    "strh r2, [r1]\n"
-    "adds r0, #0x50\n"
-    "strh r2, [r0]\n"
-    "movs r0, #0x10\n"
-    "bl __builtin_new\n"
-    "adds r4, r0, #0x0\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareDisplayState\n"
-    "adds r1, r0, #0x0\n"
-    "mov r2, sb\n"
-    "str r2, [r4]\n"
-    "str r2, [r4, #0x4]\n"
-    "ldr r0, .Lgamecube_2_0228\n"
-    "str r0, [r4, #0x8]\n"
-    "adds r5, r4, #0x0\n"
-    "adds r5, #0xc\n"
-    "adds r0, r5, #0x0\n"
-    "bl __23HardwareBlendControllerP20HardwareDisplayState\n"
-    "str r4, [sp, #0x14]\n"
-    "ldr r1, .Lgamecube_2_022c\n"
-    "adds r0, r5, #0x0\n"
-    "movs r2, #0x1\n"
-    "movs r3, #0x1\n"
-    "bl BeginHardwareBlend\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareCommandList\n"
-    "ldr r2, [r0, #0x8]\n"
-    "ldr r1, [sp, #0x14]\n"
-    "ldr r2, [r2, #0x10]\n"
-    "bl _call_via_r2\n"
-    "movs r3, #0x0\n"
-    "str r3, [sp, #0x50]\n"
-    ".Lgamecube_2_0154:\n"
-    "adds r0, r7, #0x0\n"
-    "bl UpdateHardwareFrame\n"
-    "adds r0, r7, #0x0\n"
-    "bl UpdateHardwareInput\n"
-    "ldr r0, [r7, #0x8]\n"
-    "movs r1, #0x8\n"
-    "adds r1, r1, r7\n"
-    "mov sl, r1\n"
-    "ldr r1, [r0, #0xc]\n"
-    "mov r0, sl\n"
-    "bl _call_via_r1\n"
-    "movs r2, #0xe8\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r2, r2, r7\n"
-    "mov r8, r2\n"
-    "mov r0, r8\n"
-    "bl GetState__C12UiStateOwner\n"
-    "movs r3, #0xec\n"
-    "lsls r3, r3, #0x1\n"
-    "adds r1, r7, r3\n"
-    "str r0, [r1]\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareCoreState\n"
-    "mov sb, r0\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareSpriteBuffer\n"
-    "adds r6, r0, #0x0\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareDisplayState\n"
-    "adds r5, r0, #0x0\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareCommandList\n"
-    "adds r4, r0, #0x0\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareInterruptList\n"
-    "movs r2, #0xea\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r1, r7, r2\n"
-    "str r4, [sp]\n"
-    "str r0, [sp, #0x4]\n"
-    "str r1, [sp, #0x8]\n"
-    "mov r0, r8\n"
-    "mov r1, sb\n"
-    "adds r2, r6, #0x0\n"
-    "adds r3, r5, #0x0\n"
-    "bl Update__C12UiStateOwnerP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
-    "movs r3, #0xee\n"
-    "lsls r3, r3, #0x1\n"
-    "adds r1, r7, r3\n"
-    "str r0, [r1]\n"
-    "movs r0, #0xfb\n"
-    "lsls r0, r0, #0x2\n"
-    "adds r1, r7, r0\n"
-    "ldrb r0, [r1]\n"
-    "mov r2, sl\n"
-    "str r2, [sp, #0x58]\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_2_02c2\n"
-    "movs r0, #0x0\n"
-    "strb r0, [r1]\n"
-    "movs r3, #0xfa\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r0, r7, r3\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #0x8\n"
-    "bhi .Lgamecube_2_02c2\n"
-    "lsls r0, r0, #0x2\n"
-    "ldr r1, .Lgamecube_2_0230\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "mov pc, r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_01f8: .word 0x1e41\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_01fc: .word 0x1f42\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0200: .word 0x600f000\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0204: .word 0x600f800\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0208: .word 0x6007fe0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_020c: .word gUiSharedTiles\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0210: .word gUiSharedTileByteCount\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0214: .word 0x30003\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0218: .word gUiSharedPalette\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_021c: .word 0x3ff03ff\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0220: .word 0x1cd4\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0224: .word func_080D0704\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0228: .word __vt_19HardwareBlendObject\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_022c: .word 0x889\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0230: .word .Lgamecube_2_0234\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0234: .word .Lgamecube_2_02c2\n"
-    ".word .Lgamecube_2_02c2\n"
-    ".word .Lgamecube_2_02c2\n"
-    ".word .Lgamecube_2_02c2\n"
-    ".word .Lgamecube_2_02c2\n"
-    ".word .Lgamecube_2_02c2\n"
-    ".word .Lgamecube_2_0258\n"
-    ".word .Lgamecube_2_02c2\n"
-    ".word .Lgamecube_2_02c2\n"
-    ".Lgamecube_2_0258:\n"
-    "ldr r0, [r7, #0x8]\n"
-    "ldr r1, [r0, #0x18]\n"
-    "ldr r0, [sp, #0x58]\n"
-    "bl _call_via_r1\n"
-    "cmp r0, #0x1\n"
-    "beq .Lgamecube_2_0274\n"
-    "cmp r0, #0x1\n"
-    "ble .Lgamecube_2_02c2\n"
-    "cmp r0, #0x2\n"
-    "beq .Lgamecube_2_0290\n"
-    "cmp r0, #0x3\n"
-    "beq .Lgamecube_2_02ac\n"
-    "b .Lgamecube_2_02c2\n"
-    ".Lgamecube_2_0274:\n"
-    "movs r0, #0xe8\n"
-    "lsls r0, r0, #0x1\n"
-    "adds r4, r7, r0\n"
-    "ldr r1, .Lgamecube_2_028c\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050D8C\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x38\n"
-    "bl ShowPortrait__C12UiStateOwnerUi\n"
-    "b .Lgamecube_2_02c2\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_028c: .word gText_LinkCommunication_QuitCommunication\n"
-    ".Lgamecube_2_0290:\n"
-    "movs r1, #0xe8\n"
-    "lsls r1, r1, #0x1\n"
-    "adds r4, r7, r1\n"
-    "ldr r1, .Lgamecube_2_02a8\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050D8C\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x3a\n"
-    "bl ShowPortrait__C12UiStateOwnerUi\n"
-    "b .Lgamecube_2_02c2\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_02a8: .word gText_LinkCommunication_OtherPlayerCanceled\n"
-    ".Lgamecube_2_02ac:\n"
-    "movs r2, #0xe8\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r4, r7, r2\n"
-    "ldr r1, .Lgamecube_2_02dc\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050D8C\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x3a\n"
-    "bl ShowPortrait__C12UiStateOwnerUi\n"
-    ".Lgamecube_2_02c2:\n"
-    "movs r3, #0xfa\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r0, r7, r3\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #0x8\n"
-    "bls .Lgamecube_2_02d0\n"
-    "b .Lgamecube_2_06b0\n"
-    ".Lgamecube_2_02d0:\n"
-    "lsls r0, r0, #0x2\n"
-    "ldr r1, .Lgamecube_2_02e0\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "mov pc, r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_02dc: .word gText_LinkCommunication_IncompatibleGameData\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_02e0: .word .Lgamecube_2_02e4\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_02e4: .word .Lgamecube_2_0308\n"
-    ".word .Lgamecube_2_0334\n"
-    ".word .Lgamecube_2_0354\n"
-    ".word .Lgamecube_2_0394\n"
-    ".word .Lgamecube_2_03f4\n"
-    ".word .Lgamecube_2_0466\n"
-    ".word .Lgamecube_2_05dc\n"
-    ".word .Lgamecube_2_0668\n"
-    ".word .Lgamecube_2_06b0\n"
-    ".Lgamecube_2_0308:\n"
-    "movs r0, #0xe8\n"
-    "lsls r0, r0, #0x1\n"
-    "adds r4, r7, r0\n"
-    "ldr r1, .Lgamecube_2_0330\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050D8C\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x38\n"
-    "bl ShowPortrait__C12UiStateOwnerUi\n"
-    "movs r1, #0x1\n"
-    "movs r2, #0xfa\n"
-    "lsls r2, r2, #0x2\n"
-    "adds r0, r7, r2\n"
-    "str r1, [r0]\n"
-    "movs r3, #0xfb\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r0, r7, r3\n"
-    "b .Lgamecube_2_06ae\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0330: .word gText_LinkCommunication_ExchangeRestriction\n"
-    ".Lgamecube_2_0334:\n"
-    "movs r1, #0xee\n"
-    "lsls r1, r1, #0x1\n"
-    "adds r0, r7, r1\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #0x3\n"
-    "beq .Lgamecube_2_0342\n"
-    "b .Lgamecube_2_06b0\n"
-    ".Lgamecube_2_0342:\n"
-    "movs r1, #0x2\n"
-    "movs r2, #0xfa\n"
-    "lsls r2, r2, #0x2\n"
-    "adds r0, r7, r2\n"
-    "str r1, [r0]\n"
-    "movs r3, #0xfb\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r1, r7, r3\n"
-    "b .Lgamecube_2_0460\n"
-    ".Lgamecube_2_0354:\n"
-    "movs r0, #0xe8\n"
-    "lsls r0, r0, #0x1\n"
-    "adds r4, r7, r0\n"
-    "ldr r1, .Lgamecube_2_0388\n"
-    ".ifdef REGION_DE\n"
-    "ldr r2, .Lgamecube_de_2_038c\n"
-    "ldr r3, .Lgamecube_de_2_0390\n"
-    ".else\n"
-    "ldr r2, .Lgamecube_2_038c\n"
-    "ldr r3, .Lgamecube_2_0390\n"
-    ".endif\n"
-    "movs r0, #0x0\n"
-    "str r0, [sp]\n"
-    "str r0, [sp, #0x4]\n"
-    "str r0, [sp, #0x8]\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050E30\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x39\n"
-    "bl ShowPortrait__C12UiStateOwnerUi\n"
-    "movs r1, #0x3\n"
-    "movs r2, #0xfa\n"
-    "lsls r2, r2, #0x2\n"
-    "adds r0, r7, r2\n"
-    "str r1, [r0]\n"
-    "movs r3, #0xfb\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r1, r7, r3\n"
-    "b .Lgamecube_2_0460\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0388: .word gText_LinkCommunication_ActionQuestion\n"
-    ".align 2, 0\n"
-    ".ifdef REGION_DE\n"
-    ".Lgamecube_de_2_038c: .word gText_LinkCommunication_ActionYes\n"
-    ".else\n"
-    ".Lgamecube_2_038c: .word gText_LinkCommunication_Yes\n"
-    ".endif\n"
-    ".align 2, 0\n"
-    ".ifdef REGION_DE\n"
-    ".Lgamecube_de_2_0390: .word gText_LinkCommunication_ActionNo\n"
-    ".else\n"
-    ".Lgamecube_2_0390: .word gText_LinkCommunication_No\n"
-    ".endif\n"
-    ".Lgamecube_2_0394:\n"
-    "movs r1, #0xee\n"
-    "lsls r1, r1, #0x1\n"
-    "adds r0, r7, r1\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #0x3\n"
-    "beq .Lgamecube_2_03a2\n"
-    "b .Lgamecube_2_06b0\n"
-    ".Lgamecube_2_03a2:\n"
-    "movs r2, #0xe8\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r4, r7, r2\n"
-    "adds r0, r4, #0x0\n"
-    "bl GetChoiceResult__C12UiStateOwner\n"
-    "adds r2, r0, #0x0\n"
-    "cmp r2, #0x1\n"
-    "beq .Lgamecube_2_03ba\n"
-    "cmp r2, #0x2\n"
-    "beq .Lgamecube_2_03ce\n"
-    "b .Lgamecube_2_06b0\n"
-    ".Lgamecube_2_03ba:\n"
-    "movs r0, #0x4\n"
-    "movs r3, #0xfa\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r1, r7, r3\n"
-    "str r0, [r1]\n"
-    "movs r1, #0xfb\n"
-    "lsls r1, r1, #0x2\n"
-    "adds r0, r7, r1\n"
-    "strb r2, [r0]\n"
-    "b .Lgamecube_2_06b0\n"
-    ".Lgamecube_2_03ce:\n"
-    "ldr r1, .Lgamecube_2_03f0\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050D8C\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x3a\n"
-    "bl ShowPortrait__C12UiStateOwnerUi\n"
-    "movs r1, #0x7\n"
-    "movs r2, #0xfa\n"
-    "lsls r2, r2, #0x2\n"
-    "adds r0, r7, r2\n"
-    "str r1, [r0]\n"
-    "movs r3, #0xfb\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r0, r7, r3\n"
-    "b .Lgamecube_2_0654\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_03f0: .word gText_LinkCommunication_Declined\n"
-    ".Lgamecube_2_03f4:\n"
-    "movs r3, #0xe4\n"
-    "lsls r3, r3, #0x1\n"
-    "adds r4, r7, r3\n"
-    "ldr r0, [r4]\n"
-    "bl PrepareGameCubeLinkOutgoingData\n"
-    "ldr r0, [r4]\n"
-    "bl GetGameCubeLinkLocalGameCode\n"
-    "str r0, [sp, #0x54]\n"
-    "ldr r0, [r4]\n"
-    "bl GetGameCubeLinkRemoteGameCode\n"
-    "mov sl, r0\n"
-    "ldr r0, [r4]\n"
-    "bl GetGameCubeLinkRecordWords\n"
-    "mov sb, r0\n"
-    "ldr r0, [r4]\n"
-    "bl GetGameCubeLinkOutgoingPacket\n"
-    "mov r8, r0\n"
-    "ldr r0, [r4]\n"
-    "bl GetGameCubeLinkOutgoingSize\n"
-    "adds r6, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "bl GetGameCubeLinkIncomingPacket\n"
-    "adds r5, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "bl GetGameCubeLinkIncomingSize\n"
-    "ldr r1, [r7, #0x8]\n"
-    "mov r2, r8\n"
-    "str r2, [sp]\n"
-    "str r6, [sp, #0x4]\n"
-    "str r5, [sp, #0x8]\n"
-    "str r0, [sp, #0xc]\n"
-    "ldr r4, [r1, #0x8]\n"
-    "ldr r0, [sp, #0x58]\n"
-    "ldr r1, [sp, #0x54]\n"
-    "mov r2, sl\n"
-    "mov r3, sb\n"
-    "bl _call_via_r4\n"
-    "movs r1, #0x5\n"
-    "movs r3, #0xfa\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r0, r7, r3\n"
-    "str r1, [r0]\n"
-    "movs r0, #0xfb\n"
-    "lsls r0, r0, #0x2\n"
-    "adds r1, r7, r0\n"
-    ".Lgamecube_2_0460:\n"
-    "movs r0, #0x1\n"
-    "strb r0, [r1]\n"
-    "b .Lgamecube_2_06b0\n"
-    ".Lgamecube_2_0466:\n"
-    "movs r1, #0xfb\n"
-    "lsls r1, r1, #0x2\n"
-    "adds r0, r7, r1\n"
-    "movs r6, #0x1\n"
-    "strb r6, [r0]\n"
-    "ldr r0, [r7, #0x8]\n"
-    "ldr r1, [r0, #0x14]\n"
-    "ldr r0, [sp, #0x58]\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "bne .Lgamecube_2_0482\n"
-    "b .Lgamecube_2_06b0\n"
-    ".Lgamecube_2_0482:\n"
-    "ldr r0, [r7, #0x8]\n"
-    "ldr r1, [r0, #0x18]\n"
-    "ldr r0, [sp, #0x58]\n"
-    "bl _call_via_r1\n"
-    "adds r5, r0, #0x0\n"
-    "cmp r5, #0x0\n"
-    "beq .Lgamecube_2_0494\n"
-    "b .Lgamecube_2_05c8\n"
-    ".Lgamecube_2_0494:\n"
-    "movs r2, #0xe8\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r4, r7, r2\n"
-    "ldr r1, .Lgamecube_2_05b4\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050D8C\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x39\n"
-    "bl ShowPortrait__C12UiStateOwnerUi\n"
-    "movs r1, #0x7\n"
-    "movs r3, #0xfa\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r0, r7, r3\n"
-    "str r1, [r0]\n"
-    "movs r1, #0xfb\n"
-    "lsls r1, r1, #0x2\n"
-    "adds r0, r7, r1\n"
-    "strb r6, [r0]\n"
-    "movs r2, #0xe2\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r0, r7, r2\n"
-    "str r5, [r0]\n"
-    "movs r3, #0xe4\n"
-    "lsls r3, r3, #0x1\n"
-    "adds r5, r7, r3\n"
-    "ldr r0, [r5]\n"
-    "bl GetGameCubeLinkReceivedRecordValue\n"
-    "movs r1, #0xe6\n"
-    "lsls r1, r1, #0x1\n"
-    "adds r4, r7, r1\n"
-    "ldr r1, [r4]\n"
-    "ldr r2, .Lgamecube_2_05b8\n"
-    "adds r1, r1, r2\n"
-    "str r0, [r1, #0x4]\n"
-    "ldr r0, [r5]\n"
-    "bl GetGameCubeLinkReceivedMilestones\n"
-    "adds r1, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r3, .Lgamecube_2_05bc\n"
-    "adds r0, r0, r3\n"
-    "adds r5, r1, #0x0\n"
-    "adds r5, #0x8\n"
-    "cmp r5, r1\n"
-    "beq .Lgamecube_2_04fe\n"
-    "subs r4, r5, r1\n"
-    "adds r2, r4, #0x0\n"
-    "bl memmove\n"
-    "adds r0, r0, r4\n"
-    ".Lgamecube_2_04fe:\n"
-    "add r1, sp, #0x18\n"
-    "str r5, [sp, #0x18]\n"
-    "str r0, [sp, #0x1c]\n"
-    "adds r0, r1, #0x0\n"
-    "movs r2, #0x8\n"
-    "bl memcpy\n"
-    "movs r0, #0xe4\n"
-    "lsls r0, r0, #0x1\n"
-    "adds r0, r0, r7\n"
-    "mov sb, r0\n"
-    "ldr r0, [r0]\n"
-    "add r5, sp, #0x20\n"
-    "adds r1, r5, #0x0\n"
-    "bl DecodeGameCubeLinkReceivedName0\n"
-    "movs r1, #0xe6\n"
-    "lsls r1, r1, #0x1\n"
-    "adds r1, r1, r7\n"
-    "mov r8, r1\n"
-    "ldr r0, [r1]\n"
-    "ldr r2, .Lgamecube_2_05c0\n"
-    "adds r6, r0, r2\n"
-    "adds r0, r5, #0x0\n"
-    "bl strlen\n"
-    "adds r4, r0, #0x0\n"
-    "cmp r4, #0xe\n"
-    "bls .Lgamecube_2_053a\n"
-    "movs r4, #0xe\n"
-    ".Lgamecube_2_053a:\n"
-    "adds r0, r6, #0x0\n"
-    "adds r1, r5, #0x0\n"
-    "adds r2, r4, #0x0\n"
-    "bl memcpy\n"
-    "adds r0, r6, r4\n"
-    "movs r3, #0x0\n"
-    "mov sl, r3\n"
-    "strb r3, [r0]\n"
-    "mov r1, sb\n"
-    "ldr r0, [r1]\n"
-    "add r5, sp, #0x30\n"
-    "adds r1, r5, #0x0\n"
-    "bl DecodeGameCubeLinkReceivedName1\n"
-    "mov r2, r8\n"
-    "ldr r0, [r2]\n"
-    "ldr r3, .Lgamecube_2_05c4\n"
-    "adds r6, r0, r3\n"
-    "adds r0, r5, #0x0\n"
-    "bl strlen\n"
-    "adds r4, r0, #0x0\n"
-    "cmp r4, #0xe\n"
-    "bls .Lgamecube_2_056e\n"
-    "movs r4, #0xe\n"
-    ".Lgamecube_2_056e:\n"
-    "adds r0, r6, #0x0\n"
-    "adds r1, r5, #0x0\n"
-    "adds r2, r4, #0x0\n"
-    "bl memcpy\n"
-    "adds r0, r6, r4\n"
-    "mov r1, sl\n"
-    "strb r1, [r0]\n"
-    "mov r2, sb\n"
-    "ldr r0, [r2]\n"
-    "add r5, sp, #0x40\n"
-    "adds r1, r5, #0x0\n"
-    "bl DecodeGameCubeLinkReceivedName2\n"
-    "mov r3, r8\n"
-    "ldr r0, [r3]\n"
-    "movs r1, #0x88\n"
-    "lsls r1, r1, #0x6\n"
-    "adds r6, r0, r1\n"
-    "adds r0, r5, #0x0\n"
-    "bl strlen\n"
-    "adds r4, r0, #0x0\n"
-    "cmp r4, #0xe\n"
-    "bls .Lgamecube_2_05a2\n"
-    "movs r4, #0xe\n"
-    ".Lgamecube_2_05a2:\n"
-    "adds r0, r6, #0x0\n"
-    "adds r1, r5, #0x0\n"
-    "adds r2, r4, #0x0\n"
-    "bl memcpy\n"
-    "adds r0, r6, r4\n"
-    "mov r2, sl\n"
-    "strb r2, [r0]\n"
-    "b .Lgamecube_2_06b0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_05b4: .word gText_LinkCommunication_Complete\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_05b8: .word 0x21cc\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_05bc: .word 0x21d4\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_05c0: .word 0x21e0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_05c4: .word 0x21f0\n"
-    ".Lgamecube_2_05c8:\n"
-    "movs r0, #0x6\n"
-    "movs r3, #0xfa\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r1, r7, r3\n"
-    "str r0, [r1]\n"
-    "movs r1, #0xfb\n"
-    "lsls r1, r1, #0x2\n"
-    "adds r0, r7, r1\n"
-    "strb r6, [r0]\n"
-    "b .Lgamecube_2_06b0\n"
-    ".Lgamecube_2_05dc:\n"
-    "movs r2, #0xe8\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r4, r7, r2\n"
-    "adds r0, r4, #0x0\n"
-    "bl GetState__C12UiStateOwner\n"
-    "cmp r0, #0x3\n"
-    "bne .Lgamecube_2_06b0\n"
-    "ldr r0, [r7, #0x8]\n"
-    "ldr r1, [r0, #0x18]\n"
-    "ldr r0, [sp, #0x58]\n"
-    "bl _call_via_r1\n"
-    "cmp r0, #0x2\n"
-    "beq .Lgamecube_2_0634\n"
-    "cmp r0, #0x3\n"
-    "bne .Lgamecube_2_0644\n"
-    "ldr r1, .Lgamecube_2_0630\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050D8C\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x38\n"
-    "bl ShowPortrait__C12UiStateOwnerUi\n"
-    "movs r1, #0x7\n"
-    "movs r3, #0xfa\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r0, r7, r3\n"
-    "str r1, [r0]\n"
-    "movs r0, #0xfb\n"
-    "lsls r0, r0, #0x2\n"
-    "adds r1, r7, r0\n"
-    "movs r0, #0x1\n"
-    "strb r0, [r1]\n"
-    "movs r2, #0xe2\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r1, r7, r2\n"
-    "movs r0, #0x2\n"
-    "str r0, [r1]\n"
-    "b .Lgamecube_2_06b0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0630: .word gText_LinkCommunication_QuitCommunication\n"
-    ".Lgamecube_2_0634:\n"
-    "ldr r1, .Lgamecube_2_0664\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_08050D8C\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x38\n"
-    "bl ShowPortrait__C12UiStateOwnerUi\n"
-    ".Lgamecube_2_0644:\n"
-    "movs r1, #0x7\n"
-    "movs r3, #0xfa\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r0, r7, r3\n"
-    "str r1, [r0]\n"
-    "movs r1, #0xfb\n"
-    "lsls r1, r1, #0x2\n"
-    "adds r0, r7, r1\n"
-    ".Lgamecube_2_0654:\n"
-    "movs r1, #0x1\n"
-    "strb r1, [r0]\n"
-    "movs r2, #0xe2\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r0, r7, r2\n"
-    "str r1, [r0]\n"
-    "b .Lgamecube_2_06b0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_0664: .word gText_LinkCommunication_QuitCommunication\n"
-    ".Lgamecube_2_0668:\n"
-    "movs r3, #0xee\n"
-    "lsls r3, r3, #0x1\n"
-    "adds r0, r7, r3\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #0x3\n"
-    "bne .Lgamecube_2_06b0\n"
-    "bl ResetJoyBusLinkRegisters\n"
-    "movs r0, #0x1\n"
-    "str r0, [sp, #0x50]\n"
-    "ldr r0, [sp, #0x14]\n"
-    "ldr r1, .Lgamecube_2_06f0\n"
-    "adds r0, #0xc\n"
-    "movs r2, #0x1\n"
-    "movs r3, #0x1\n"
-    "bl EndHardwareBlend\n"
-    "adds r0, r7, #0x0\n"
-    "bl GetHardwareCommandList\n"
-    "ldr r2, [r0, #0x8]\n"
-    "ldr r1, [sp, #0x14]\n"
-    "ldr r2, [r2, #0x10]\n"
-    "bl _call_via_r2\n"
-    "movs r1, #0x8\n"
-    "movs r2, #0xfa\n"
-    "lsls r2, r2, #0x2\n"
-    "adds r0, r7, r2\n"
-    "str r1, [r0]\n"
-    "movs r3, #0xfb\n"
-    "lsls r3, r3, #0x2\n"
-    "adds r0, r7, r3\n"
-    "add r1, sp, #0x50\n"
-    "ldrb r1, [r1]\n"
-    ".Lgamecube_2_06ae:\n"
-    "strb r1, [r0]\n"
-    ".Lgamecube_2_06b0:\n"
-    "ldr r0, [r7, #0x8]\n"
-    "ldr r1, [r0, #0x10]\n"
-    "ldr r0, [sp, #0x58]\n"
-    "bl _call_via_r1\n"
-    "ldr r3, [sp, #0x14]\n"
-    "ldr r1, [r3]\n"
-    "rsbs r0, r1, #0x0\n"
-    "orrs r0, r1\n"
-    "lsrs r0, r0, #0x1f\n"
-    "ldr r2, [sp, #0x50]\n"
-    "cmp r2, #0x0\n"
-    "bne .Lgamecube_2_06cc\n"
-    "b .Lgamecube_2_0154\n"
-    ".Lgamecube_2_06cc:\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_2_06d2\n"
-    "b .Lgamecube_2_0154\n"
-    ".Lgamecube_2_06d2:\n"
-    "ldr r0, [r3, #0x8]\n"
-    "ldr r2, [r0, #0xc]\n"
-    "adds r0, r3, #0x0\n"
-    "movs r1, #0x3\n"
-    "bl _call_via_r2\n"
-    "add sp, #0x5c\n"
-    "pop {r3, r4, r5}\n"
-    "mov r8, r3\n"
-    "mov sb, r4\n"
-    "mov sl, r5\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_2_06f0: .word 0x889\n"
-);
+GameCubeLinkUiCore::~GameCubeLinkUiCore()
+{
+}
+
+
+void GameCubeLinkUiCore::Run()
+{
+    EnableHardwareForcedBlank(this);
+    WriteHardwareDisplayFlags(GetHardwareDisplayState(reinterpret_cast<void * const *>(this))->background_control[0], BGCNT_SCREENBASE(29) | BGCNT_MOSAIC);
+    WriteHardwareDisplayFlags(GetHardwareDisplayState(reinterpret_cast<void * const *>(this))->background_control[1], BGCNT_SCREENBASE(30) | BGCNT_MOSAIC | BGCNT_PRIORITY(1));
+    WriteHardwareDisplayFlags(GetHardwareDisplayState(reinterpret_cast<void * const *>(this))->background_control[2], BGCNT_SCREENBASE(31) | BGCNT_MOSAIC | BGCNT_PRIORITY(2));
+    FillHardwareDma3(~0u, reinterpret_cast<void *>(BG_SCREEN_ADDR(30)), BG_SCREEN_SIZE);
+    FillHardwareDma3(~0u, reinterpret_cast<void *>(BG_SCREEN_ADDR(31)), BG_SCREEN_SIZE);
+    FillHardwareDma3(0, reinterpret_cast<void *>(BG_CHAR_ADDR(2) - 32), 0x8000);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(this))->SetDisplayFlags(DISPCNT_OBJ_1D_MAP | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON);
+    CopyHardwareDma3(gUiSharedTiles, reinterpret_cast<void *>(BG_VRAM), gUiSharedTileByteCount);
+    FillHardwareDma3(0x00030003, reinterpret_cast<void *>(BG_SCREEN_ADDR(31)), BG_SCREEN_SIZE);
+    CopyHardwareDma3(gUiSharedPalette, reinterpret_cast<void *>(BG_PLTT), 32);
+    FillHardwareDma3(0x03FF03FF, reinterpret_cast<void *>(BG_SCREEN_ADDR(30)), BG_SCREEN_SIZE);
+    func_08050D5C(&ui);
+    ui.ShowPortrait(0x38);
+    func_08050E68(reinterpret_cast<void * const *>(&ui), save->npcs.GetCharacterName(CHARACTER_HARVEST_GODDESS));
+    ExchangeInterruptHandler(7, func_080D0704);
+    AcknowledgeAndEnableInterrupts(0x80);
+    SetInterruptNestingMask(0, 0x80);
+    WriteHardwareDisplayRegister(*GetHardwareDisplayState(reinterpret_cast<void * const *>(this)),
+        &HardwareDisplayState::blend_control, BLDCNT_TGT1_ALL);
+    HardwareBlendOwner blend(new HardwareBlendObject(GetHardwareDisplayState(reinterpret_cast<void * const *>(this))));
+    blend.object->blend.Begin(0x889, 1, 1);
+    GetHardwareCommandList(reinterpret_cast<void * const *>(this))->Append(blend.object);
+    bool finished = false;
+    do {
+        UpdateHardwareFrame(this);
+        UpdateHardwareInput(reinterpret_cast<void * const *>(this));
+        Update();
+        previous_ui_state = ui.GetState();
+        HardwareCoreState * input = GetHardwareCoreState(reinterpret_cast<void * const *>(this));
+        HardwareSpriteBufferState * sprites = GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(this));
+        HardwareDisplayState * display = GetHardwareDisplayState(reinterpret_cast<void * const *>(this));
+        HardwareLinkedList * links = GetHardwareCommandList(reinterpret_cast<void * const *>(this));
+        HardwareInterruptList * interrupts = GetHardwareInterruptList(reinterpret_cast<void * const *>(this));
+        HardwareMusicPlayerSlot * player = &music;
+        ui_state = ui.Update(&input->input, sprites, display, links, interrupts, player);
+        if (phase_changed) {
+            phase_changed = false;
+            switch (phase) {
+            case 0: break;
+            case 1: break;
+            case 2: break;
+            case 3: break;
+            case 4: break;
+            case 5: break;
+            case 6:
+                switch (GetResult()) {
+                case 0: break;
+                case 1:
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_QuitCommunication));
+                    ui.ShowPortrait(0x38);
+                    break;
+                case 2:
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_OtherPlayerCanceled));
+                    ui.ShowPortrait(0x3A);
+                    break;
+                case 3:
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_IncompatibleGameData));
+                    ui.ShowPortrait(0x3A);
+                    break;
+                }
+                break;
+            case 7: break;
+            case 8: break;
+            }
+        }
+        switch (phase) {
+        case 0:
+            func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_ExchangeRestriction));
+            ui.ShowPortrait(0x38);
+            SetPhase(1);
+            break;
+        case 1:
+            if (ui_state == 3)
+                SetPhase(2);
+            break;
+        case 2:
+#if defined(REGION_DE)
+            func_08050E30(&ui, gText_LinkCommunication_ActionQuestion,
+                gText_LinkCommunication_ActionYes, gText_LinkCommunication_ActionNo, nullptr, nullptr, nullptr);
+#else
+            func_08050E30(&ui, gText_LinkCommunication_ActionQuestion,
+                gText_LinkCommunication_Yes, gText_LinkCommunication_No, nullptr, nullptr, nullptr);
+#endif
+            ui.ShowPortrait(0x39);
+            SetPhase(3);
+            break;
+        case 3:
+            if (ui_state == 3) {
+                switch (ui.GetChoiceResult()) {
+                case 1:
+                    SetPhase(4);
+                    break;
+                case 2:
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_Declined));
+                    ui.ShowPortrait(0x3A);
+                    SetPhase(7);
+                    result = GAMECUBE_LINK_RESULT_CANCELED_OR_FAILED;
+                    break;
+                }
+            }
+            break;
+        case 4: {
+            PrepareGameCubeLinkOutgoingData(data.value);
+            u32 local_code = GetGameCubeLinkLocalGameCode(data.value);
+            u32 remote_code = GetGameCubeLinkRemoteGameCode(data.value);
+            u32 * record = GetGameCubeLinkRecordWords(data.value);
+            void const * outgoing = GetGameCubeLinkOutgoingPacket(data.value);
+            u32 outgoing_size = GetGameCubeLinkOutgoingSize(data.value);
+            void * incoming = GetGameCubeLinkIncomingPacket(data.value);
+            u32 incoming_size = GetGameCubeLinkIncomingSize(data.value);
+            Initialize(local_code, remote_code, record, outgoing, outgoing_size, incoming, incoming_size);
+            SetPhase(5);
+            break;
+        }
+        case 5:
+            phase_changed = true;
+            if (IsFinished()) {
+                if (GetResult() == 0) {
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_Complete));
+                    ui.ShowPortrait(0x39);
+                    SetPhase(7);
+                    result = GAMECUBE_LINK_RESULT_SUCCESS;
+                    save->link_record.SetReceivedRecordValue(GetGameCubeLinkReceivedRecordValue(data.value));
+                    save->link_record.SetReceivedMilestones(GetGameCubeLinkReceivedMilestones(data.value));
+                    char name0[16];
+                    DecodeGameCubeLinkReceivedName0(data.value, name0);
+                    save->link_record.name_14 = name0;
+                    char name1[16];
+                    DecodeGameCubeLinkReceivedName1(data.value, name1);
+                    save->link_record.name_24 = name1;
+                    char name2[16];
+                    DecodeGameCubeLinkReceivedName2(data.value, name2);
+                    save->link_record.name_34 = name2;
+                } else {
+                    SetPhase(6);
+                }
+            }
+            break;
+        case 6:
+            if (ui.GetState() == 3) {
+                switch (GetResult()) {
+                case 3:
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_QuitCommunication));
+                    ui.ShowPortrait(0x38);
+                    SetPhase(7);
+                    result = GAMECUBE_LINK_RESULT_INCOMPATIBLE_SAVE_DATA;
+                    break;
+                case 2:
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_QuitCommunication));
+                    ui.ShowPortrait(0x38);
+                    // fall through
+                default:
+                    SetPhase(7);
+                    result = GAMECUBE_LINK_RESULT_CANCELED_OR_FAILED;
+                    break;
+                }
+            }
+            break;
+        case 7:
+            if (ui_state == 3) {
+                ResetJoyBusLinkRegisters();
+                finished = true;
+                {
+                    HardwareBlendObject & fade = *blend.object;
+                    i16 step = 0x889;
+                    fade.blend.End(step, 1, 1);
+                }
+                GetHardwareCommandList(reinterpret_cast<void * const *>(this))->Append(blend.object);
+                SetPhase(8);
+            }
+            break;
+        case 8:
+            break;
+        }
+        DispatchStateAction();
+        bool queued = blend.IsQueued();
+        if (finished && !queued)
+            return;
+    } while (true);
+}
+
 
 
 
@@ -1030,2006 +234,760 @@ SceneTransitionOwner GameCubeLinkUiScene::Run()
     return continuation;
 }
 
-void GameCubeLinkUiCore::MarkPhaseChanged()
+extern "C" void MarkPhaseChanged__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
 {
-    phase_changed = true;
+    core->MarkPhaseChanged();
 }
 
-void GameCubeLinkUiCore::SetPhase(u32 next)
+extern "C" void SetPhase__18GameCubeLinkUiCoreUi(GameCubeLinkUiCore * core, u32 next)
 {
-    phase = next;
-    phase_changed = true;
+    core->SetPhase(next);
 }
 
-// Normal ABI entries coexist with compiler-generated adjusting entries.
-// The inline C++ bodies remain in the callback header until normal emission
-// can preserve both original entry sets and their physical order.
-asm_unified(
-    ".text\n"
-    "    thumb_func_start ActRetry__18GameCubeLinkUiCore\n"
-    "ActRetry__18GameCubeLinkUiCore:\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "    thumb_func_start PollRetry__18GameCubeLinkUiCore\n"
-    "PollRetry__18GameCubeLinkUiCore:\n"
-    "    push {r4, lr}\n"
-    "    sub sp, #16\n"
-    "    adds r1, r0, #0\n"
-    "    movs r4, #0\n"
-    "    movs r0, #249\n"
-    "    lsls r0, r0, #2\n"
-    "    adds r2, r1, r0\n"
-    "    ldr r0, [r2, #0]\n"
-    "    cmp r0, #0\n"
-    "    beq .LGameCube_PollRetry_0\n"
-    "    cmp r0, #1\n"
-    "    beq .LGameCube_PollRetry_3\n"
-    "    b .LGameCube_PollRetry_6\n"
-    ".LGameCube_PollRetry_0:\n"
-    "    movs r3, #238\n"
-    "    lsls r3, r3, #1\n"
-    "    adds r0, r1, r3\n"
-    "    ldr r0, [r0, #0]\n"
-    "    cmp r0, #3\n"
-    "    bne .LGameCube_PollRetry_6\n"
-    "    movs r0, #1\n"
-    "    str r0, [r2, #0]\n"
-    "    movs r2, #232\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r0, r1, r2\n"
-    "    ldr r1, .LGameCube_PollRetry_1\n"
-    "    ldr r2, .LGameCube_PollRetry_2\n"
-    "    str r4, [sp, #0]\n"
-    "    str r4, [sp, #4]\n"
-    "    str r4, [sp, #8]\n"
-    "    str r4, [sp, #12]\n"
-    "    movs r3, #0\n"
-    "    bl func_08050E0C\n"
-    "    b .LGameCube_PollRetry_6\n"
-    ".LGameCube_PollRetry_1: .word gText_LinkCommunication_Yes\n"
-    ".LGameCube_PollRetry_2: .word gText_LinkCommunication_No\n"
-    ".LGameCube_PollRetry_3:\n"
-    "    movs r3, #238\n"
-    "    lsls r3, r3, #1\n"
-    "    adds r0, r1, r3\n"
-    "    ldr r0, [r0, #0]\n"
-    "    cmp r0, #3\n"
-    "    bne .LGameCube_PollRetry_6\n"
-    "    movs r2, #232\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r0, r1, r2\n"
-    "    bl GetChoiceResult__C12UiStateOwner\n"
-    "    cmp r0, #1\n"
-    "    beq .LGameCube_PollRetry_4\n"
-    "    cmp r0, #2\n"
-    "    beq .LGameCube_PollRetry_5\n"
-    "    b .LGameCube_PollRetry_6\n"
-    ".LGameCube_PollRetry_4:\n"
-    "    movs r4, #2\n"
-    "    b .LGameCube_PollRetry_6\n"
-    ".LGameCube_PollRetry_5:\n"
-    "    movs r4, #3\n"
-    ".LGameCube_PollRetry_6:\n"
-    "    adds r0, r4, #0\n"
-    "    add sp, #16\n"
-    "    pop {r4}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-#if defined(REGION_JP)
-    "    thumb_func_start EnterRetry__18GameCubeLinkUiCore\n"
-    "EnterRetry__18GameCubeLinkUiCore:\n"
-    "    push {r4, lr}\n"
-    "    adds r2, r0, #0\n"
-    "    movs r1, #248\n"
-    "    lsls r1, r1, #2\n"
-    "    adds r0, r2, r1\n"
-    "    movs r1, #0\n"
-    "    str r1, [r0, #0]\n"
-    "    movs r3, #249\n"
-    "    lsls r3, r3, #2\n"
-    "    adds r0, r2, r3\n"
-    "    str r1, [r0, #0]\n"
-    "    movs r0, #232\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r4, r2, r0\n"
-    "    ldr r1, .LGameCube_EnterRetry_0\n"
-    "    adds r0, r4, #0\n"
-    "    bl func_08050D8C\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #58\n"
-    "    bl ShowPortrait__C12UiStateOwnerUi\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".LGameCube_EnterRetry_0: .word gText_LinkCommunication_DataExchangeFailed\n"
-#else
-    "thumb_func_start EnterRetry__18GameCubeLinkUiCore\n"
-    "EnterRetry__18GameCubeLinkUiCore:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r5, r0, #0\n"
-    "    movs r1, #248\n"
-    "    lsls r1, r1, #2\n"
-    "    adds r0, r5, r1\n"
-    "    movs r1, #0\n"
-    "    str r1, [r0, #0]\n"
-    "    movs r2, #249\n"
-    "    lsls r2, r2, #2\n"
-    "    adds r0, r5, r2\n"
-    "    str r1, [r0, #0]\n"
-    "    movs r0, #232\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r4, r5, r0\n"
-    "    ldr r1, .LGameCube_EnterRetry_0\n"
-    "    adds r0, r4, #0\n"
-    "    bl func_08050D8C\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #58\n"
-    "    bl ShowPortrait__C12UiStateOwnerUi\n"
-    "    movs r2, #238\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r1, r5, r2\n"
-    "    movs r0, #4\n"
-    "    str r0, [r1, #0]\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    ".LGameCube_EnterRetry_0: .word gText_LinkCommunication_DataExchangeFailed\n"
-#endif
-    "    thumb_func_start ActPayload__18GameCubeLinkUiCore\n"
-    "ActPayload__18GameCubeLinkUiCore:\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "    thumb_func_start EnterPayload__18GameCubeLinkUiCore\n"
-    "EnterPayload__18GameCubeLinkUiCore:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r0, #232\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r4, r4, r0\n"
-    "    ldr r1, .LGameCube_EnterPayload_0\n"
-    "    adds r0, r4, #0\n"
-    "    bl func_08050D8C\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #56\n"
-    "    bl ShowPortrait__C12UiStateOwnerUi\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    ".LGameCube_EnterPayload_0: .word gText_LinkCommunication_NowSendingData\n"
-    "    thumb_func_start PollDecision__18GameCubeLinkUiCore\n"
-    "PollDecision__18GameCubeLinkUiCore:\n"
-    "    push {lr}\n"
-    "    bl GetHardwarePressedKeys\n"
-    "    movs r1, #2\n"
-    "    ands r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bne .LGameCube_PollDecision_0\n"
-    "    movs r0, #0\n"
-    "    b .LGameCube_PollDecision_1\n"
-    ".LGameCube_PollDecision_0:\n"
-    "    movs r0, #1\n"
-    ".LGameCube_PollDecision_1:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    thumb_func_start EnterDecision__18GameCubeLinkUiCore\n"
-    "EnterDecision__18GameCubeLinkUiCore:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r0, #232\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r4, r4, r0\n"
-    "    ldr r1, .LGameCube_EnterDecision_0\n"
-    "    adds r0, r4, #0\n"
-    "    movs r2, #0\n"
-    "    movs r3, #0\n"
-    "    bl func_08050DC8\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #56\n"
-    "    bl ShowPortrait__C12UiStateOwnerUi\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    ".LGameCube_EnterDecision_0: .word gText_LinkCommunication_WaitingForOtherPlayer\n"
-    "    thumb_func_start ActConfirmation__18GameCubeLinkUiCore\n"
-    "ActConfirmation__18GameCubeLinkUiCore:\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "    thumb_func_start PollConfirmation__18GameCubeLinkUiCore\n"
-    "PollConfirmation__18GameCubeLinkUiCore:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #12\n"
-    "    adds r1, r0, #0\n"
-    "    movs r6, #0\n"
-    "    movs r0, #249\n"
-    "    lsls r0, r0, #2\n"
-    "    adds r4, r1, r0\n"
-    "    ldr r0, [r4, #0]\n"
-    "    cmp r0, #0\n"
-    "    beq .LGameCube_PollConfirmation_0\n"
-    "    cmp r0, #1\n"
-    "    beq .LGameCube_PollConfirmation_4\n"
-    "    b .LGameCube_PollConfirmation_7\n"
-    ".LGameCube_PollConfirmation_0:\n"
-    "    movs r0, #232\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r5, r1, r0\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetState__C12UiStateOwner\n"
-    "    cmp r0, #3\n"
-    "    bne .LGameCube_PollConfirmation_7\n"
-    "    movs r0, #1\n"
-    "    str r0, [r4, #0]\n"
-    "    ldr r1, .LGameCube_PollConfirmation_1\n"
-    "    ldr r2, .LGameCube_PollConfirmation_2\n"
-    "    ldr r3, .LGameCube_PollConfirmation_3\n"
-    "    str r6, [sp, #0]\n"
-    "    str r6, [sp, #4]\n"
-    "    str r6, [sp, #8]\n"
-    "    adds r0, r5, #0\n"
-    "    bl func_08050E30\n"
-    "    b .LGameCube_PollConfirmation_7\n"
-    "    .align 2, 0\n"
-    ".LGameCube_PollConfirmation_1: .word gText_LinkCommunication_ProceedQuestion\n"
-    ".LGameCube_PollConfirmation_2: .word gText_LinkCommunication_Yes\n"
-    ".LGameCube_PollConfirmation_3: .word gText_LinkCommunication_No\n"
-    ".LGameCube_PollConfirmation_4:\n"
-    "    movs r0, #232\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r4, r1, r0\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetState__C12UiStateOwner\n"
-    "    cmp r0, #3\n"
-    "    bne .LGameCube_PollConfirmation_7\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetChoiceResult__C12UiStateOwner\n"
-    "    cmp r0, #1\n"
-    "    beq .LGameCube_PollConfirmation_5\n"
-    "    cmp r0, #2\n"
-    "    beq .LGameCube_PollConfirmation_6\n"
-    "    b .LGameCube_PollConfirmation_7\n"
-    ".LGameCube_PollConfirmation_5:\n"
-    "    movs r6, #2\n"
-    "    b .LGameCube_PollConfirmation_7\n"
-    ".LGameCube_PollConfirmation_6:\n"
-    "    movs r6, #3\n"
-    ".LGameCube_PollConfirmation_7:\n"
-    "    adds r0, r6, #0\n"
-    "    add sp, #12\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    thumb_func_start EnterConfirmation__18GameCubeLinkUiCore\n"
-    "EnterConfirmation__18GameCubeLinkUiCore:\n"
-    "    push {r4, lr}\n"
-    "    adds r2, r0, #0\n"
-    "    movs r1, #248\n"
-    "    lsls r1, r1, #2\n"
-    "    adds r0, r2, r1\n"
-    "    movs r1, #0\n"
-    "    str r1, [r0, #0]\n"
-    "    movs r3, #249\n"
-    "    lsls r3, r3, #2\n"
-    "    adds r0, r2, r3\n"
-    "    str r1, [r0, #0]\n"
-    "    movs r0, #232\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r4, r2, r0\n"
-    "    ldr r1, .LGameCube_EnterConfirmation_0\n"
-    "    adds r0, r4, #0\n"
-    "    movs r2, #0\n"
-    "    movs r3, #0\n"
-    "    bl func_08050DC8\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #58\n"
-    "    bl ShowPortrait__C12UiStateOwnerUi\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".LGameCube_EnterConfirmation_0: .word gText_LinkCommunication_CannotResendPreviousData\n"
-    "    thumb_func_start EnterRecordCheck__18GameCubeLinkUiCore\n"
-    "EnterRecordCheck__18GameCubeLinkUiCore:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r0, #232\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r4, r4, r0\n"
-    "    ldr r1, .LGameCube_EnterRecordCheck_0\n"
-    "    adds r0, r4, #0\n"
-    "    movs r2, #0\n"
-    "    movs r3, #0\n"
-    "    bl func_08050DC8\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #56\n"
-    "    bl ShowPortrait__C12UiStateOwnerUi\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    ".LGameCube_EnterRecordCheck_0: .word gText_LinkCommunication_TestingConnection\n"
-    "    thumb_func_start EnterMetadata__18GameCubeLinkUiCore\n"
-    "EnterMetadata__18GameCubeLinkUiCore:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r0, #232\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r4, r4, r0\n"
-    "    ldr r1, .LGameCube_EnterMetadata_0\n"
-    "    adds r0, r4, #0\n"
-    "    movs r2, #0\n"
-    "    movs r3, #0\n"
-    "    bl func_08050DC8\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #56\n"
-    "    bl ShowPortrait__C12UiStateOwnerUi\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    ".LGameCube_EnterMetadata_0: .word gText_LinkCommunication_SendingGameData\n"
-    "    thumb_func_start PollConnect__18GameCubeLinkUiCore\n"
-    "PollConnect__18GameCubeLinkUiCore:\n"
-    "    push {lr}\n"
-    "    bl GetHardwarePressedKeys\n"
-    "    movs r1, #2\n"
-    "    ands r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bne .LGameCube_PollConnect_0\n"
-    "    movs r0, #0\n"
-    "    b .LGameCube_PollConnect_1\n"
-    ".LGameCube_PollConnect_0:\n"
-    "    movs r0, #1\n"
-    ".LGameCube_PollConnect_1:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    thumb_func_start EnterConnect__18GameCubeLinkUiCore\n"
-    "EnterConnect__18GameCubeLinkUiCore:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r0, #232\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r4, r4, r0\n"
-    "    ldr r1, .LGameCube_EnterConnect_0\n"
-    "    adds r0, r4, #0\n"
-    "    movs r2, #0\n"
-    "    movs r3, #0\n"
-    "    bl func_08050DC8\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #57\n"
-    "    bl ShowPortrait__C12UiStateOwnerUi\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    ".LGameCube_EnterConnect_0: .word gText_LinkCommunication_Waiting\n"
-    "    thumb_func_start GetPressedKeys__18GameCubeLinkUiCore\n"
-    "GetPressedKeys__18GameCubeLinkUiCore:\n"
-    "    push {lr}\n"
-    "    bl GetHardwarePressedKeys\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "    thumb_func_start GetHeldKeys__18GameCubeLinkUiCore\n"
-    "GetHeldKeys__18GameCubeLinkUiCore:\n"
-    "    push {lr}\n"
-    "    bl GetHardwareHeldKeys\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-);
+// These are the direct ABI entries. The inline callback bodies also supply
+// the compiler-generated entries that adjust the JoyBus base pointer.
+extern "C" void ActRetry__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    core->GameCubeLinkUiCore::ActRetry();
+}
+
+extern "C" u32 PollRetry__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    return core->GameCubeLinkUiCore::PollRetry();
+}
+
+extern "C" void EnterRetry__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    core->GameCubeLinkUiCore::EnterRetry();
+}
+
+extern "C" void ActPayload__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    core->GameCubeLinkUiCore::ActPayload();
+}
+
+extern "C" void EnterPayload__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    core->GameCubeLinkUiCore::EnterPayload();
+}
+
+extern "C" u32 PollDecision__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    u8 pressed = ::GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & B_BUTTON;
+    if (pressed != 0)
+        return 1;
+    return 0;
+}
+
+extern "C" void EnterDecision__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    core->GameCubeLinkUiCore::EnterDecision();
+}
+
+extern "C" void ActConfirmation__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    core->GameCubeLinkUiCore::ActConfirmation();
+}
+
+extern "C" u32 PollConfirmation__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    u32 result = 0;
+    switch (core->dialogue_phase) {
+    case 0:
+        if (core->ui.GetState() == 3) {
+            core->dialogue_phase = 1;
+            func_08050E30(&core->ui, gText_LinkCommunication_ProceedQuestion,
+                gText_LinkCommunication_Yes, gText_LinkCommunication_No,
+                nullptr, nullptr, nullptr);
+        }
+        break;
+    case 1:
+        if (core->ui.GetState() == 3) {
+            switch (core->ui.GetChoiceResult()) {
+            case 1: result = 2; break;
+            case 2: result = 3; break;
+            }
+        }
+        break;
+    }
+    return result;
+}
+
+extern "C" void EnterConfirmation__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    core->GameCubeLinkUiCore::EnterConfirmation();
+}
+
+extern "C" void EnterRecordCheck__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    core->GameCubeLinkUiCore::EnterRecordCheck();
+}
+
+extern "C" void EnterMetadata__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    core->GameCubeLinkUiCore::EnterMetadata();
+}
+
+extern "C" u32 PollConnect__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    u8 pressed = ::GetHardwarePressedKeys(reinterpret_cast<void * const *>(core)) & B_BUTTON;
+    if (pressed != 0)
+        return 1;
+    return 0;
+}
+
+extern "C" void EnterConnect__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    core->GameCubeLinkUiCore::EnterConnect();
+}
+
+extern "C" u32 GetPressedKeys__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    return core->GameCubeLinkUiCore::GetPressedKeys();
+}
+
+extern "C" u32 GetHeldKeys__18GameCubeLinkUiCore(GameCubeLinkUiCore * core)
+{
+    return core->GameCubeLinkUiCore::GetHeldKeys();
+}
 
 MaryGameCubeLinkResult GameCubeLinkUiCore::GetUiResult() const
 {
     return result;
 }
 
-asm_unified(
-    ".text\n"
-    "\n"
-    "thumb_func_start __16LinkWordProtocol\n"
-    "__16LinkWordProtocol:\n"
-    ".ifdef REGION_JP\n"
-    "ldr r1, .Lgamecube_jp_22_0014\n"
-    ".else\n"
-    "ldr r1, .Lgamecube_22_0014\n"
-    ".endif\n"
-    "str r1, [r0]\n"
-    "ldr r1, .Lgamecube_22_0018\n"
-    "str r1, [r0, #0x4]\n"
-    "movs r1, #0x0\n"
-    "str r1, [r0, #0x8]\n"
-    "movs r1, #0x1\n"
-    "strb r1, [r0, #0xd]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
-    ".Lgamecube_jp_22_0014: .word __vt_16LinkWordProtocol\n"
-    ".else\n"
-    ".Lgamecube_22_0014: .word __vt_16LinkWordProtocol\n"
-    ".endif\n"
-    ".align 2, 0\n"
-    ".Lgamecube_22_0018: .word gLinkWordProtocolFinished\n"
-    "\n"
-    "thumb_func_start _._16LinkWordProtocol\n"
-    "_._16LinkWordProtocol:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0x0\n"
-    ".ifdef REGION_JP\n"
-    "ldr r0, .Lgamecube_jp_23_001c\n"
-    ".else\n"
-    "ldr r0, .Lgamecube_23_001c\n"
-    ".endif\n"
-    "str r0, [r2]\n"
-    "movs r0, #0x1\n"
-    "ands r0, r1\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_23_0016\n"
-    "adds r0, r2, #0x0\n"
-    "bl __builtin_delete\n"
-    ".Lgamecube_23_0016:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
-    ".Lgamecube_jp_23_001c: .word __vt_16LinkWordProtocol\n"
-    ".else\n"
-    ".Lgamecube_23_001c: .word __vt_16LinkWordProtocol\n"
-    ".endif\n"
-    "\n"
-    "thumb_func_start Initialize__16LinkWordProtocolUiUiPUiPCvUiPvUi\n"
-    "Initialize__16LinkWordProtocolUiUiPUiPCvUiPvUi:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "adds r5, r3, #0x0\n"
-    "ldr r6, [sp, #0x14]\n"
-    "ldr r7, [sp, #0x18]\n"
-    "ldr r0, [r4]\n"
-    "ldr r3, [r0, #0x20]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r3\n"
-    "str r5, [r4, #0x14]\n"
-    "str r6, [r4, #0x18]\n"
-    "str r7, [r4, #0x1c]\n"
-    "ldr r0, [sp, #0x1c]\n"
-    "str r0, [r4, #0x20]\n"
-    "ldr r0, [sp, #0x20]\n"
-    "str r0, [r4, #0x24]\n"
-    "ldr r0, .Lgamecube_24_0030\n"
-    "str r0, [r4, #0x8]\n"
-    "movs r0, #0x0\n"
-    "strb r0, [r4, #0xd]\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_24_0030: .word gLinkWordProtocolConnect\n"
-    "\n"
-    "thumb_func_start Update__16LinkWordProtocol\n"
-    "Update__16LinkWordProtocol:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x24]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "ldr r1, [r4, #0x8]\n"
-    "cmp r1, #0x0\n"
-    "beq .Lgamecube_25_006c\n"
-    "str r1, [r4, #0x4]\n"
-    "movs r0, #0x0\n"
-    "str r0, [r4, #0x8]\n"
-    "movs r0, #0x12\n"
-    "ldrsh r2, [r1, r0]\n"
-    "cmp r2, #0x0\n"
-    "ble .Lgamecube_25_0034\n"
-    "movs r3, #0x14\n"
-    "ldrsh r0, [r1, r3]\n"
-    "adds r0, r4, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r2, #0x2\n"
-    "adds r0, r0, r1\n"
-    "subs r0, #0x4\n"
-    "ldr r1, [r0]\n"
-    "b .Lgamecube_25_0036\n"
-    ".Lgamecube_25_0034:\n"
-    "ldr r1, [r1, #0x14]\n"
-    ".Lgamecube_25_0036:\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r2, #0x10\n"
-    "ldrsh r0, [r0, r2]\n"
-    "adds r0, r4, r0\n"
-    "bl _call_via_r1\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r3, #0x2\n"
-    "ldrsh r2, [r0, r3]\n"
-    "cmp r2, #0x0\n"
-    "ble .Lgamecube_25_005e\n"
-    "movs r1, #0x4\n"
-    "ldrsh r0, [r0, r1]\n"
-    "adds r0, r4, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r2, #0x2\n"
-    "adds r0, r0, r1\n"
-    "subs r0, #0x4\n"
-    "ldr r1, [r0]\n"
-    "b .Lgamecube_25_0060\n"
-    ".Lgamecube_25_005e:\n"
-    "ldr r1, [r0, #0x4]\n"
-    ".Lgamecube_25_0060:\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r2, #0x0\n"
-    "ldrsh r0, [r0, r2]\n"
-    "adds r0, r4, r0\n"
-    "bl _call_via_r1\n"
-    ".Lgamecube_25_006c:\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r3, #0x1a\n"
-    "ldrsh r2, [r0, r3]\n"
-    "cmp r2, #0x0\n"
-    "ble .Lgamecube_25_0088\n"
-    "movs r1, #0x1c\n"
-    "ldrsh r0, [r0, r1]\n"
-    "adds r0, r4, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r2, #0x2\n"
-    "adds r0, r0, r1\n"
-    "subs r0, #0x4\n"
-    "ldr r1, [r0]\n"
-    "b .Lgamecube_25_008a\n"
-    ".Lgamecube_25_0088:\n"
-    "ldr r1, [r0, #0x1c]\n"
-    ".Lgamecube_25_008a:\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r2, #0x18\n"
-    "ldrsh r0, [r0, r2]\n"
-    "adds r0, r4, r0\n"
-    "bl _call_via_r1\n"
-    "adds r3, r0, #0x0\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r1, #0xa\n"
-    "ldrsh r2, [r0, r1]\n"
-    "cmp r2, #0x0\n"
-    "ble .Lgamecube_25_00b4\n"
-    "movs r1, #0xc\n"
-    "ldrsh r0, [r0, r1]\n"
-    "adds r0, r4, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r2, #0x2\n"
-    "adds r0, r0, r1\n"
-    "subs r0, #0x4\n"
-    "ldr r2, [r0]\n"
-    "b .Lgamecube_25_00b6\n"
-    ".Lgamecube_25_00b4:\n"
-    "ldr r2, [r0, #0xc]\n"
-    ".Lgamecube_25_00b6:\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r1, #0x8\n"
-    "ldrsh r0, [r0, r1]\n"
-    "adds r0, r4, r0\n"
-    "adds r1, r3, #0x0\n"
-    "bl _call_via_r2\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start DispatchStateAction__16LinkWordProtocol\n"
-    "DispatchStateAction__16LinkWordProtocol:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0x0\n"
-    "ldr r0, [r2, #0x4]\n"
-    "movs r1, #0x22\n"
-    "ldrsh r3, [r0, r1]\n"
-    "cmp r3, #0x0\n"
-    "ble .Lgamecube_26_0020\n"
-    "movs r1, #0x24\n"
-    "ldrsh r0, [r0, r1]\n"
-    "adds r0, r2, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r3, #0x2\n"
-    "adds r0, r0, r1\n"
-    "subs r0, #0x4\n"
-    "ldr r1, [r0]\n"
-    "b .Lgamecube_26_0022\n"
-    ".Lgamecube_26_0020:\n"
-    "ldr r1, [r0, #0x24]\n"
-    ".Lgamecube_26_0022:\n"
-    "ldr r0, [r2, #0x4]\n"
-    "movs r3, #0x20\n"
-    "ldrsh r0, [r0, r3]\n"
-    "adds r0, r2, r0\n"
-    "bl _call_via_r1\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start IsFinished__16LinkWordProtocol\n"
-    "IsFinished__16LinkWordProtocol:\n"
-    "ldrb r0, [r0, #0xd]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start GetResult__16LinkWordProtocol\n"
-    "GetResult__16LinkWordProtocol:\n"
-    "ldr r0, [r0, #0x10]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start StartConnect__16LinkWordProtocol\n"
-    "StartConnect__16LinkWordProtocol:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x28]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x30]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateConnect__16LinkWordProtocolUi\n"
-    "UpdateConnect__16LinkWordProtocolUi:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "cmp r1, #0x1\n"
-    "bne .Lgamecube_30_0012\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x3c]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    ".Lgamecube_30_0012:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x40]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_30_005c\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x48]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_30_003c\n"
-    "ldr r0, .Lgamecube_30_0038\n"
-    "b .Lgamecube_30_005a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_30_0038: .word gLinkWordProtocolRetry\n"
-    ".Lgamecube_30_003c:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x44]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_30_0058\n"
-    "movs r0, #0x1\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_30_0054\n"
-    "b .Lgamecube_30_005a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_30_0054: .word gLinkWordProtocolFinished\n"
-    ".Lgamecube_30_0058:\n"
-    "ldr r0, .Lgamecube_30_0064\n"
-    ".Lgamecube_30_005a:\n"
-    "str r0, [r4, #0x8]\n"
-    ".Lgamecube_30_005c:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_30_0064: .word gLinkWordProtocolMetadata\n"
-    "\n"
-    "thumb_func_start StartMetadata__16LinkWordProtocol\n"
-    "StartMetadata__16LinkWordProtocol:\n"
-    "push {lr}\n"
-    "ldr r2, [r0]\n"
-    "ldr r1, [r0, #0x14]\n"
-    "ldr r1, [r1]\n"
-    "ldr r3, [r2, #0x38]\n"
-    "movs r2, #0x0\n"
-    "bl _call_via_r3\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
-    "thumb_func_start UpdateMetadata__16LinkWordProtocolUi\n"
-    "UpdateMetadata__16LinkWordProtocolUi:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x40]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_32_0030\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x48]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_32_002c\n"
-    "ldr r0, .Lgamecube_32_0028\n"
-    "b .Lgamecube_32_002e\n"
-    ".align 2, 0\n"
-    ".Lgamecube_32_0028: .word gLinkWordProtocolRetry\n"
-    ".Lgamecube_32_002c:\n"
-    "ldr r0, .Lgamecube_32_0038\n"
-    ".Lgamecube_32_002e:\n"
-    "str r0, [r4, #0x8]\n"
-    ".Lgamecube_32_0030:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_32_0038: .word gLinkWordProtocolRecordCheck\n"
-    "\n"
-    "thumb_func_start StartRecordCheck__16LinkWordProtocol\n"
-    "StartRecordCheck__16LinkWordProtocol:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x4c]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "ldr r1, [r4, #0x14]\n"
-    "str r0, [r1, #0x8]\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x50]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_33_0032\n"
-    "ldr r0, [r4]\n"
-    "ldr r3, [r0, #0x38]\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x0\n"
-    "movs r2, #0x0\n"
-    "bl _call_via_r3\n"
-    "b .Lgamecube_33_0040\n"
-    ".Lgamecube_33_0032:\n"
-    "ldr r0, [r4]\n"
-    "ldr r3, [r0, #0x38]\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x1\n"
-    "movs r2, #0x0\n"
-    "bl _call_via_r3\n"
-    ".Lgamecube_33_0040:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateRecordCheck__16LinkWordProtocolUi\n"
-    "UpdateRecordCheck__16LinkWordProtocolUi:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x40]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_34_0068\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x48]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_34_002c\n"
-    "ldr r0, .Lgamecube_34_0028\n"
-    "b .Lgamecube_34_0066\n"
-    ".align 2, 0\n"
-    ".Lgamecube_34_0028: .word gLinkWordProtocolRetry\n"
-    ".Lgamecube_34_002c:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x54]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_34_0060\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x58]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_34_0054\n"
-    "ldr r0, .Lgamecube_34_0050\n"
-    "b .Lgamecube_34_0066\n"
-    ".align 2, 0\n"
-    ".Lgamecube_34_0050: .word gLinkWordProtocolConfirmation\n"
-    ".Lgamecube_34_0054:\n"
-    "movs r0, #0x1\n"
-    "strb r0, [r4, #0xc]\n"
-    "ldr r0, .Lgamecube_34_005c\n"
-    "b .Lgamecube_34_0066\n"
-    ".align 2, 0\n"
-    ".Lgamecube_34_005c: .word gLinkWordProtocolDecision\n"
-    ".Lgamecube_34_0060:\n"
-    "movs r0, #0x3\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_34_0070\n"
-    ".Lgamecube_34_0066:\n"
-    "str r0, [r4, #0x8]\n"
-    ".Lgamecube_34_0068:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_34_0070: .word gLinkWordProtocolFinished\n"
-    "\n"
-    "thumb_func_start StartConfirmation__16LinkWordProtocol\n"
-    "StartConfirmation__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateConfirmation__16LinkWordProtocolUi\n"
-    "UpdateConfirmation__16LinkWordProtocolUi:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0x0\n"
-    "cmp r1, #0x2\n"
-    "beq .Lgamecube_36_000e\n"
-    "cmp r1, #0x3\n"
-    "beq .Lgamecube_36_0012\n"
-    "b .Lgamecube_36_001a\n"
-    ".Lgamecube_36_000e:\n"
-    "movs r0, #0x1\n"
-    "b .Lgamecube_36_0014\n"
-    ".Lgamecube_36_0012:\n"
-    "movs r0, #0x0\n"
-    ".Lgamecube_36_0014:\n"
-    "strb r0, [r2, #0xc]\n"
-    "ldr r0, .Lgamecube_36_0020\n"
-    "str r0, [r2, #0x8]\n"
-    ".Lgamecube_36_001a:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_36_0020: .word gLinkWordProtocolDecision\n"
-    "\n"
-    "thumb_func_start StartDecision__16LinkWordProtocol\n"
-    "StartDecision__16LinkWordProtocol:\n"
-    "push {lr}\n"
-    "adds r1, r0, #0x0\n"
-    "ldrb r0, [r1, #0xc]\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_37_001a\n"
-    "ldr r0, [r1]\n"
-    "ldr r3, [r0, #0x38]\n"
-    "adds r0, r1, #0x0\n"
-    "movs r1, #0x0\n"
-    "movs r2, #0x1\n"
-    "bl _call_via_r3\n"
-    "b .Lgamecube_37_0028\n"
-    ".Lgamecube_37_001a:\n"
-    "ldr r0, [r1]\n"
-    "ldr r3, [r0, #0x38]\n"
-    "adds r0, r1, #0x0\n"
-    "movs r1, #0x1\n"
-    "movs r2, #0x1\n"
-    "bl _call_via_r3\n"
-    ".Lgamecube_37_0028:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
-    "thumb_func_start UpdateDecision__16LinkWordProtocolUi\n"
-    "UpdateDecision__16LinkWordProtocolUi:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "cmp r1, #0x1\n"
-    "bne .Lgamecube_38_0012\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x3c]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    ".Lgamecube_38_0012:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x40]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_38_008c\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x48]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_38_003c\n"
-    "ldr r0, .Lgamecube_38_0038\n"
-    "b .Lgamecube_38_008a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_38_0038: .word gLinkWordProtocolRetry\n"
-    ".Lgamecube_38_003c:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x44]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_38_0058\n"
-    "movs r0, #0x1\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_38_0054\n"
-    "b .Lgamecube_38_008a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_38_0054: .word gLinkWordProtocolFinished\n"
-    ".Lgamecube_38_0058:\n"
-    "ldrb r0, [r4, #0xc]\n"
-    "cmp r0, #0x0\n"
-    "bne .Lgamecube_38_006c\n"
-    "movs r0, #0x1\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_38_0068\n"
-    "b .Lgamecube_38_008a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_38_0068: .word gLinkWordProtocolFinished\n"
-    ".Lgamecube_38_006c:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x5c]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "bne .Lgamecube_38_0088\n"
-    "movs r0, #0x2\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_38_0084\n"
-    "b .Lgamecube_38_008a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_38_0084: .word gLinkWordProtocolFinished\n"
-    ".Lgamecube_38_0088:\n"
-    "ldr r0, .Lgamecube_38_0094\n"
-    ".Lgamecube_38_008a:\n"
-    "str r0, [r4, #0x8]\n"
-    ".Lgamecube_38_008c:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_38_0094: .word gLinkWordProtocolPayload\n"
-    "\n"
-    "thumb_func_start StartPayload__16LinkWordProtocol\n"
-    "StartPayload__16LinkWordProtocol:\n"
-    "push {r4, r5, lr}\n"
-    "sub sp, #0x4\n"
-    "ldr r5, [r0]\n"
-    "ldr r1, [r0, #0x18]\n"
-    "ldr r2, [r0, #0x1c]\n"
-    "ldr r3, [r0, #0x20]\n"
-    "ldr r4, [r0, #0x24]\n"
-    "str r4, [sp]\n"
-    "ldr r4, [r5, #0x34]\n"
-    "bl _call_via_r4\n"
-    "add sp, #0x4\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdatePayload__16LinkWordProtocolUi\n"
-    "UpdatePayload__16LinkWordProtocolUi:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x40]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_40_0036\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x48]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "lsrs r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_40_0030\n"
-    "ldr r0, .Lgamecube_40_002c\n"
-    "b .Lgamecube_40_0034\n"
-    ".align 2, 0\n"
-    ".Lgamecube_40_002c: .word gLinkWordProtocolRetry\n"
-    ".Lgamecube_40_0030:\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_40_003c\n"
-    ".Lgamecube_40_0034:\n"
-    "str r0, [r4, #0x8]\n"
-    ".Lgamecube_40_0036:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_40_003c: .word gLinkWordProtocolFinished\n"
-    "\n"
-    "thumb_func_start StartFinished__16LinkWordProtocol\n"
-    "StartFinished__16LinkWordProtocol:\n"
-    "push {lr}\n"
-    "movs r1, #0x1\n"
-    "strb r1, [r0, #0xd]\n"
-    "ldr r1, [r0]\n"
-    "ldr r1, [r1, #0x2c]\n"
-    "bl _call_via_r1\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateFinished__16LinkWordProtocolUi\n"
-    "UpdateFinished__16LinkWordProtocolUi:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start StartRetry__16LinkWordProtocol\n"
-    "StartRetry__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateRetry__16LinkWordProtocolUi\n"
-    "UpdateRetry__16LinkWordProtocolUi:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0x0\n"
-    "cmp r1, #0x2\n"
-    "beq .Lgamecube_44_000e\n"
-    "cmp r1, #0x3\n"
-    "beq .Lgamecube_44_0018\n"
-    "b .Lgamecube_44_0020\n"
-    ".Lgamecube_44_000e:\n"
-    "ldr r0, .Lgamecube_44_0014\n"
-    "b .Lgamecube_44_001e\n"
-    ".align 2, 0\n"
-    ".Lgamecube_44_0014: .word gLinkWordProtocolConnect\n"
-    ".Lgamecube_44_0018:\n"
-    "movs r0, #0x1\n"
-    "str r0, [r2, #0x10]\n"
-    "ldr r0, .Lgamecube_44_0024\n"
-    ".Lgamecube_44_001e:\n"
-    "str r0, [r2, #0x8]\n"
-    ".Lgamecube_44_0020:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_44_0024: .word gLinkWordProtocolFinished\n"
-    "\n"
-    "thumb_func_start __17LinkBlockProtocol\n"
-    "__17LinkBlockProtocol:\n"
-    ".ifdef REGION_JP\n"
-    "ldr r1, .Lgamecube_jp_45_0014\n"
-    ".else\n"
-    "ldr r1, .Lgamecube_45_0014\n"
-    ".endif\n"
-    "str r1, [r0]\n"
-    "ldr r1, .Lgamecube_45_0018\n"
-    "str r1, [r0, #0x4]\n"
-    "movs r1, #0x0\n"
-    "str r1, [r0, #0x8]\n"
-    "movs r1, #0x1\n"
-    "strb r1, [r0, #0xd]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
-    ".Lgamecube_jp_45_0014: .word __vt_17LinkBlockProtocol\n"
-    ".else\n"
-    ".Lgamecube_45_0014: .word __vt_17LinkBlockProtocol\n"
-    ".endif\n"
-    ".align 2, 0\n"
-    ".Lgamecube_45_0018: .word gLinkBlockProtocolFinished\n"
-    "\n"
-    "thumb_func_start _._17LinkBlockProtocol\n"
-    "_._17LinkBlockProtocol:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0x0\n"
-    ".ifdef REGION_JP\n"
-    "ldr r0, .Lgamecube_jp_46_001c\n"
-    ".else\n"
-    "ldr r0, .Lgamecube_46_001c\n"
-    ".endif\n"
-    "str r0, [r2]\n"
-    "movs r0, #0x1\n"
-    "ands r0, r1\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_46_0016\n"
-    "adds r0, r2, #0x0\n"
-    "bl __builtin_delete\n"
-    ".Lgamecube_46_0016:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
-    ".Lgamecube_jp_46_001c: .word __vt_17LinkBlockProtocol\n"
-    ".else\n"
-    ".Lgamecube_46_001c: .word __vt_17LinkBlockProtocol\n"
-    ".endif\n"
-    "\n"
-    "thumb_func_start Initialize__17LinkBlockProtocolUiUiPUiPCvUiPvUi\n"
-    "Initialize__17LinkBlockProtocolUiUiPUiPCvUiPvUi:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "adds r5, r3, #0x0\n"
-    "ldr r6, [sp, #0x14]\n"
-    "ldr r7, [sp, #0x18]\n"
-    "ldr r0, [r4]\n"
-    "ldr r3, [r0, #0x20]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r3\n"
-    "str r5, [r4, #0x14]\n"
-    "str r6, [r4, #0x20]\n"
-    "str r7, [r4, #0x24]\n"
-    "ldr r0, [sp, #0x1c]\n"
-    "str r0, [r4, #0x28]\n"
-    "ldr r0, [sp, #0x20]\n"
-    "str r0, [r4, #0x2c]\n"
-    "ldr r0, .Lgamecube_47_0030\n"
-    "str r0, [r4, #0x8]\n"
-    "movs r0, #0x0\n"
-    "strb r0, [r4, #0xd]\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_47_0030: .word gLinkBlockProtocolConnect\n"
-    "\n"
-    "thumb_func_start Update__17LinkBlockProtocol\n"
-    "Update__17LinkBlockProtocol:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x24]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "ldr r1, [r4, #0x8]\n"
-    "cmp r1, #0x0\n"
-    "beq .Lgamecube_48_006c\n"
-    "str r1, [r4, #0x4]\n"
-    "movs r0, #0x0\n"
-    "str r0, [r4, #0x8]\n"
-    "movs r0, #0x12\n"
-    "ldrsh r2, [r1, r0]\n"
-    "cmp r2, #0x0\n"
-    "ble .Lgamecube_48_0034\n"
-    "movs r3, #0x14\n"
-    "ldrsh r0, [r1, r3]\n"
-    "adds r0, r4, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r2, #0x2\n"
-    "adds r0, r0, r1\n"
-    "subs r0, #0x4\n"
-    "ldr r1, [r0]\n"
-    "b .Lgamecube_48_0036\n"
-    ".Lgamecube_48_0034:\n"
-    "ldr r1, [r1, #0x14]\n"
-    ".Lgamecube_48_0036:\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r2, #0x10\n"
-    "ldrsh r0, [r0, r2]\n"
-    "adds r0, r4, r0\n"
-    "bl _call_via_r1\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r3, #0x2\n"
-    "ldrsh r2, [r0, r3]\n"
-    "cmp r2, #0x0\n"
-    "ble .Lgamecube_48_005e\n"
-    "movs r1, #0x4\n"
-    "ldrsh r0, [r0, r1]\n"
-    "adds r0, r4, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r2, #0x2\n"
-    "adds r0, r0, r1\n"
-    "subs r0, #0x4\n"
-    "ldr r1, [r0]\n"
-    "b .Lgamecube_48_0060\n"
-    ".Lgamecube_48_005e:\n"
-    "ldr r1, [r0, #0x4]\n"
-    ".Lgamecube_48_0060:\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r2, #0x0\n"
-    "ldrsh r0, [r0, r2]\n"
-    "adds r0, r4, r0\n"
-    "bl _call_via_r1\n"
-    ".Lgamecube_48_006c:\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r3, #0x1a\n"
-    "ldrsh r2, [r0, r3]\n"
-    "cmp r2, #0x0\n"
-    "ble .Lgamecube_48_0088\n"
-    "movs r1, #0x1c\n"
-    "ldrsh r0, [r0, r1]\n"
-    "adds r0, r4, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r2, #0x2\n"
-    "adds r0, r0, r1\n"
-    "subs r0, #0x4\n"
-    "ldr r1, [r0]\n"
-    "b .Lgamecube_48_008a\n"
-    ".Lgamecube_48_0088:\n"
-    "ldr r1, [r0, #0x1c]\n"
-    ".Lgamecube_48_008a:\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r2, #0x18\n"
-    "ldrsh r0, [r0, r2]\n"
-    "adds r0, r4, r0\n"
-    "bl _call_via_r1\n"
-    "adds r3, r0, #0x0\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r1, #0xa\n"
-    "ldrsh r2, [r0, r1]\n"
-    "cmp r2, #0x0\n"
-    "ble .Lgamecube_48_00b4\n"
-    "movs r1, #0xc\n"
-    "ldrsh r0, [r0, r1]\n"
-    "adds r0, r4, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r2, #0x2\n"
-    "adds r0, r0, r1\n"
-    "subs r0, #0x4\n"
-    "ldr r2, [r0]\n"
-    "b .Lgamecube_48_00b6\n"
-    ".Lgamecube_48_00b4:\n"
-    "ldr r2, [r0, #0xc]\n"
-    ".Lgamecube_48_00b6:\n"
-    "ldr r0, [r4, #0x4]\n"
-    "movs r1, #0x8\n"
-    "ldrsh r0, [r0, r1]\n"
-    "adds r0, r4, r0\n"
-    "adds r1, r3, #0x0\n"
-    "bl _call_via_r2\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start DispatchStateAction__17LinkBlockProtocol\n"
-    "DispatchStateAction__17LinkBlockProtocol:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0x0\n"
-    "ldr r0, [r2, #0x4]\n"
-    "movs r1, #0x22\n"
-    "ldrsh r3, [r0, r1]\n"
-    "cmp r3, #0x0\n"
-    "ble .Lgamecube_49_0020\n"
-    "movs r1, #0x24\n"
-    "ldrsh r0, [r0, r1]\n"
-    "adds r0, r2, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r3, #0x2\n"
-    "adds r0, r0, r1\n"
-    "subs r0, #0x4\n"
-    "ldr r1, [r0]\n"
-    "b .Lgamecube_49_0022\n"
-    ".Lgamecube_49_0020:\n"
-    "ldr r1, [r0, #0x24]\n"
-    ".Lgamecube_49_0022:\n"
-    "ldr r0, [r2, #0x4]\n"
-    "movs r3, #0x20\n"
-    "ldrsh r0, [r0, r3]\n"
-    "adds r0, r2, r0\n"
-    "bl _call_via_r1\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start IsFinished__17LinkBlockProtocol\n"
-    "IsFinished__17LinkBlockProtocol:\n"
-    "ldrb r0, [r0, #0xd]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start GetResult__17LinkBlockProtocol\n"
-    "GetResult__17LinkBlockProtocol:\n"
-    "ldr r0, [r0, #0x10]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start StartConnect__17LinkBlockProtocol\n"
-    "StartConnect__17LinkBlockProtocol:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x28]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x30]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateConnect__17LinkBlockProtocolUi\n"
-    "UpdateConnect__17LinkBlockProtocolUi:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "cmp r1, #0x1\n"
-    "bne .Lgamecube_53_0012\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x3c]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    ".Lgamecube_53_0012:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x40]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_53_005c\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x48]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_53_003c\n"
-    "ldr r0, .Lgamecube_53_0038\n"
-    "b .Lgamecube_53_005a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_53_0038: .word gLinkBlockProtocolRetry\n"
-    ".Lgamecube_53_003c:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x44]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_53_0058\n"
-    "movs r0, #0x1\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_53_0054\n"
-    "b .Lgamecube_53_005a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_53_0054: .word gLinkBlockProtocolFinished\n"
-    ".Lgamecube_53_0058:\n"
-    "ldr r0, .Lgamecube_53_0064\n"
-    ".Lgamecube_53_005a:\n"
-    "str r0, [r4, #0x8]\n"
-    ".Lgamecube_53_005c:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_53_0064: .word gLinkBlockProtocolMetadata\n"
-    "\n"
-    "thumb_func_start StartMetadata__17LinkBlockProtocol\n"
-    "StartMetadata__17LinkBlockProtocol:\n"
-    "push {r4, lr}\n"
-    "sub sp, #0x4\n"
-    "ldr r4, [r0]\n"
-    "ldr r1, [r0, #0x14]\n"
-    "adds r3, r0, #0x0\n"
-    "adds r3, #0x18\n"
-    "movs r2, #0x8\n"
-    "str r2, [sp]\n"
-    "ldr r4, [r4, #0x34]\n"
-    "bl _call_via_r4\n"
-    "add sp, #0x4\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateMetadata__17LinkBlockProtocolUi\n"
-    "UpdateMetadata__17LinkBlockProtocolUi:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x40]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_55_0030\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x48]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_55_002c\n"
-    "ldr r0, .Lgamecube_55_0028\n"
-    "b .Lgamecube_55_002e\n"
-    ".align 2, 0\n"
-    ".Lgamecube_55_0028: .word gLinkBlockProtocolRetry\n"
-    ".Lgamecube_55_002c:\n"
-    "ldr r0, .Lgamecube_55_0038\n"
-    ".Lgamecube_55_002e:\n"
-    "str r0, [r4, #0x8]\n"
-    ".Lgamecube_55_0030:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_55_0038: .word gLinkBlockProtocolRecordCheck\n"
-    "\n"
-    "thumb_func_start StartRecordCheck__17LinkBlockProtocol\n"
-    "StartRecordCheck__17LinkBlockProtocol:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r1, [r4, #0x14]\n"
-    "ldr r0, [r4, #0x18]\n"
-    "str r0, [r1, #0x8]\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x50]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_56_002a\n"
-    "ldr r0, [r4]\n"
-    "ldr r3, [r0, #0x38]\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x0\n"
-    "movs r2, #0x0\n"
-    "bl _call_via_r3\n"
-    "b .Lgamecube_56_0038\n"
-    ".Lgamecube_56_002a:\n"
-    "ldr r0, [r4]\n"
-    "ldr r3, [r0, #0x38]\n"
-    "adds r0, r4, #0x0\n"
-    "movs r1, #0x1\n"
-    "movs r2, #0x0\n"
-    "bl _call_via_r3\n"
-    ".Lgamecube_56_0038:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateRecordCheck__17LinkBlockProtocolUi\n"
-    "UpdateRecordCheck__17LinkBlockProtocolUi:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x40]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_57_0068\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x48]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_57_002c\n"
-    "ldr r0, .Lgamecube_57_0028\n"
-    "b .Lgamecube_57_0066\n"
-    ".align 2, 0\n"
-    ".Lgamecube_57_0028: .word gLinkBlockProtocolRetry\n"
-    ".Lgamecube_57_002c:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x54]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_57_0060\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x58]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_57_0054\n"
-    "ldr r0, .Lgamecube_57_0050\n"
-    "b .Lgamecube_57_0066\n"
-    ".align 2, 0\n"
-    ".Lgamecube_57_0050: .word gLinkBlockProtocolConfirmation\n"
-    ".Lgamecube_57_0054:\n"
-    "movs r0, #0x1\n"
-    "strb r0, [r4, #0xc]\n"
-    "ldr r0, .Lgamecube_57_005c\n"
-    "b .Lgamecube_57_0066\n"
-    ".align 2, 0\n"
-    ".Lgamecube_57_005c: .word gLinkBlockProtocolDecision\n"
-    ".Lgamecube_57_0060:\n"
-    "movs r0, #0x3\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_57_0070\n"
-    ".Lgamecube_57_0066:\n"
-    "str r0, [r4, #0x8]\n"
-    ".Lgamecube_57_0068:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_57_0070: .word gLinkBlockProtocolFinished\n"
-    "\n"
-    "thumb_func_start StartConfirmation__17LinkBlockProtocol\n"
-    "StartConfirmation__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateConfirmation__17LinkBlockProtocolUi\n"
-    "UpdateConfirmation__17LinkBlockProtocolUi:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0x0\n"
-    "cmp r1, #0x2\n"
-    "beq .Lgamecube_59_000e\n"
-    "cmp r1, #0x3\n"
-    "beq .Lgamecube_59_0012\n"
-    "b .Lgamecube_59_001a\n"
-    ".Lgamecube_59_000e:\n"
-    "movs r0, #0x1\n"
-    "b .Lgamecube_59_0014\n"
-    ".Lgamecube_59_0012:\n"
-    "movs r0, #0x0\n"
-    ".Lgamecube_59_0014:\n"
-    "strb r0, [r2, #0xc]\n"
-    "ldr r0, .Lgamecube_59_0020\n"
-    "str r0, [r2, #0x8]\n"
-    ".Lgamecube_59_001a:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_59_0020: .word gLinkBlockProtocolDecision\n"
-    "\n"
-    "thumb_func_start StartDecision__17LinkBlockProtocol\n"
-    "StartDecision__17LinkBlockProtocol:\n"
-    "push {lr}\n"
-    "adds r1, r0, #0x0\n"
-    "ldrb r0, [r1, #0xc]\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_60_001a\n"
-    "ldr r0, [r1]\n"
-    "ldr r3, [r0, #0x38]\n"
-    "adds r0, r1, #0x0\n"
-    "movs r1, #0x0\n"
-    "movs r2, #0x1\n"
-    "bl _call_via_r3\n"
-    "b .Lgamecube_60_0028\n"
-    ".Lgamecube_60_001a:\n"
-    "ldr r0, [r1]\n"
-    "ldr r3, [r0, #0x38]\n"
-    "adds r0, r1, #0x0\n"
-    "movs r1, #0x1\n"
-    "movs r2, #0x1\n"
-    "bl _call_via_r3\n"
-    ".Lgamecube_60_0028:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
-    "thumb_func_start UpdateDecision__17LinkBlockProtocolUi\n"
-    "UpdateDecision__17LinkBlockProtocolUi:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "cmp r1, #0x1\n"
-    "bne .Lgamecube_61_0012\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x3c]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    ".Lgamecube_61_0012:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x40]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_61_008c\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x48]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_61_003c\n"
-    "ldr r0, .Lgamecube_61_0038\n"
-    "b .Lgamecube_61_008a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_61_0038: .word gLinkBlockProtocolRetry\n"
-    ".Lgamecube_61_003c:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x44]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_61_0058\n"
-    "movs r0, #0x1\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_61_0054\n"
-    "b .Lgamecube_61_008a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_61_0054: .word gLinkBlockProtocolFinished\n"
-    ".Lgamecube_61_0058:\n"
-    "ldrb r0, [r4, #0xc]\n"
-    "cmp r0, #0x0\n"
-    "bne .Lgamecube_61_006c\n"
-    "movs r0, #0x1\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_61_0068\n"
-    "b .Lgamecube_61_008a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_61_0068: .word gLinkBlockProtocolFinished\n"
-    ".Lgamecube_61_006c:\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x5c]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "bne .Lgamecube_61_0088\n"
-    "movs r0, #0x2\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_61_0084\n"
-    "b .Lgamecube_61_008a\n"
-    ".align 2, 0\n"
-    ".Lgamecube_61_0084: .word gLinkBlockProtocolFinished\n"
-    ".Lgamecube_61_0088:\n"
-    "ldr r0, .Lgamecube_61_0094\n"
-    ".Lgamecube_61_008a:\n"
-    "str r0, [r4, #0x8]\n"
-    ".Lgamecube_61_008c:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_61_0094: .word gLinkBlockProtocolPayload\n"
-    "\n"
-    "thumb_func_start StartPayload__17LinkBlockProtocol\n"
-    "StartPayload__17LinkBlockProtocol:\n"
-    "push {r4, r5, lr}\n"
-    "sub sp, #0x4\n"
-    "ldr r5, [r0]\n"
-    "ldr r1, [r0, #0x20]\n"
-    "ldr r2, [r0, #0x24]\n"
-    "ldr r3, [r0, #0x28]\n"
-    "ldr r4, [r0, #0x2c]\n"
-    "str r4, [sp]\n"
-    "ldr r4, [r5, #0x34]\n"
-    "bl _call_via_r4\n"
-    "add sp, #0x4\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdatePayload__17LinkBlockProtocolUi\n"
-    "UpdatePayload__17LinkBlockProtocolUi:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x40]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_63_0036\n"
-    "ldr r0, [r4]\n"
-    "ldr r1, [r0, #0x48]\n"
-    "adds r0, r4, #0x0\n"
-    "bl _call_via_r1\n"
-    "lsls r0, r0, #0x18\n"
-    "lsrs r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "beq .Lgamecube_63_0030\n"
-    "ldr r0, .Lgamecube_63_002c\n"
-    "b .Lgamecube_63_0034\n"
-    ".align 2, 0\n"
-    ".Lgamecube_63_002c: .word gLinkBlockProtocolRetry\n"
-    ".Lgamecube_63_0030:\n"
-    "str r0, [r4, #0x10]\n"
-    "ldr r0, .Lgamecube_63_003c\n"
-    ".Lgamecube_63_0034:\n"
-    "str r0, [r4, #0x8]\n"
-    ".Lgamecube_63_0036:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_63_003c: .word gLinkBlockProtocolFinished\n"
-    "\n"
-    "thumb_func_start StartFinished__17LinkBlockProtocol\n"
-    "StartFinished__17LinkBlockProtocol:\n"
-    "push {lr}\n"
-    "movs r1, #0x1\n"
-    "strb r1, [r0, #0xd]\n"
-    "ldr r1, [r0]\n"
-    "ldr r1, [r1, #0x2c]\n"
-    "bl _call_via_r1\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateFinished__17LinkBlockProtocolUi\n"
-    "UpdateFinished__17LinkBlockProtocolUi:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start StartRetry__17LinkBlockProtocol\n"
-    "StartRetry__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start UpdateRetry__17LinkBlockProtocolUi\n"
-    "UpdateRetry__17LinkBlockProtocolUi:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0x0\n"
-    "cmp r1, #0x2\n"
-    "beq .Lgamecube_67_000e\n"
-    "cmp r1, #0x3\n"
-    "beq .Lgamecube_67_0018\n"
-    "b .Lgamecube_67_0020\n"
-    ".Lgamecube_67_000e:\n"
-    "ldr r0, .Lgamecube_67_0014\n"
-    "b .Lgamecube_67_001e\n"
-    ".align 2, 0\n"
-    ".Lgamecube_67_0014: .word gLinkBlockProtocolConnect\n"
-    ".Lgamecube_67_0018:\n"
-    "movs r0, #0x1\n"
-    "str r0, [r2, #0x10]\n"
-    "ldr r0, .Lgamecube_67_0024\n"
-    ".Lgamecube_67_001e:\n"
-    "str r0, [r2, #0x8]\n"
-    ".Lgamecube_67_0020:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgamecube_67_0024: .word gLinkBlockProtocolFinished\n"
-    "\n"
-    "thumb_func_start ActRetry__17LinkBlockProtocol\n"
-    "ActRetry__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollRetry__17LinkBlockProtocol\n"
-    "PollRetry__17LinkBlockProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterRetry__17LinkBlockProtocol\n"
-    "EnterRetry__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActFinished__17LinkBlockProtocol\n"
-    "ActFinished__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollFinished__17LinkBlockProtocol\n"
-    "PollFinished__17LinkBlockProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterFinished__17LinkBlockProtocol\n"
-    "EnterFinished__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActPayload__17LinkBlockProtocol\n"
-    "ActPayload__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollPayload__17LinkBlockProtocol\n"
-    "PollPayload__17LinkBlockProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterPayload__17LinkBlockProtocol\n"
-    "EnterPayload__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActDecision__17LinkBlockProtocol\n"
-    "ActDecision__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollDecision__17LinkBlockProtocol\n"
-    "PollDecision__17LinkBlockProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterDecision__17LinkBlockProtocol\n"
-    "EnterDecision__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActConfirmation__17LinkBlockProtocol\n"
-    "ActConfirmation__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollConfirmation__17LinkBlockProtocol\n"
-    "PollConfirmation__17LinkBlockProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterConfirmation__17LinkBlockProtocol\n"
-    "EnterConfirmation__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActRecordCheck__17LinkBlockProtocol\n"
-    "ActRecordCheck__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollRecordCheck__17LinkBlockProtocol\n"
-    "PollRecordCheck__17LinkBlockProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterRecordCheck__17LinkBlockProtocol\n"
-    "EnterRecordCheck__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActMetadata__17LinkBlockProtocol\n"
-    "ActMetadata__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollMetadata__17LinkBlockProtocol\n"
-    "PollMetadata__17LinkBlockProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterMetadata__17LinkBlockProtocol\n"
-    "EnterMetadata__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActConnect__17LinkBlockProtocol\n"
-    "ActConnect__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollConnect__17LinkBlockProtocol\n"
-    "PollConnect__17LinkBlockProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterConnect__17LinkBlockProtocol\n"
-    "EnterConnect__17LinkBlockProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start GetReceivedRecordValue__17LinkBlockProtocol\n"
-    "GetReceivedRecordValue__17LinkBlockProtocol:\n"
-    "ldr r0, [r0, #0x14]\n"
-    "ldr r0, [r0, #0x8]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActRetry__16LinkWordProtocol\n"
-    "ActRetry__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollRetry__16LinkWordProtocol\n"
-    "PollRetry__16LinkWordProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterRetry__16LinkWordProtocol\n"
-    "EnterRetry__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActFinished__16LinkWordProtocol\n"
-    "ActFinished__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollFinished__16LinkWordProtocol\n"
-    "PollFinished__16LinkWordProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterFinished__16LinkWordProtocol\n"
-    "EnterFinished__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActPayload__16LinkWordProtocol\n"
-    "ActPayload__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollPayload__16LinkWordProtocol\n"
-    "PollPayload__16LinkWordProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterPayload__16LinkWordProtocol\n"
-    "EnterPayload__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActDecision__16LinkWordProtocol\n"
-    "ActDecision__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollDecision__16LinkWordProtocol\n"
-    "PollDecision__16LinkWordProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterDecision__16LinkWordProtocol\n"
-    "EnterDecision__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActConfirmation__16LinkWordProtocol\n"
-    "ActConfirmation__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollConfirmation__16LinkWordProtocol\n"
-    "PollConfirmation__16LinkWordProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterConfirmation__16LinkWordProtocol\n"
-    "EnterConfirmation__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActRecordCheck__16LinkWordProtocol\n"
-    "ActRecordCheck__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollRecordCheck__16LinkWordProtocol\n"
-    "PollRecordCheck__16LinkWordProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterRecordCheck__16LinkWordProtocol\n"
-    "EnterRecordCheck__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActMetadata__16LinkWordProtocol\n"
-    "ActMetadata__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollMetadata__16LinkWordProtocol\n"
-    "PollMetadata__16LinkWordProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterMetadata__16LinkWordProtocol\n"
-    "EnterMetadata__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ActConnect__16LinkWordProtocol\n"
-    "ActConnect__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start PollConnect__16LinkWordProtocol\n"
-    "PollConnect__16LinkWordProtocol:\n"
-    "movs r0, #0x0\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start EnterConnect__16LinkWordProtocol\n"
-    "EnterConnect__16LinkWordProtocol:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start GetReceivedRecordValue__16LinkWordProtocol\n"
-    "GetReceivedRecordValue__16LinkWordProtocol:\n"
-    "ldr r0, [r0, #0x14]\n"
-    "ldr r0, [r0, #0x8]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-);
+LinkWordProtocol::LinkWordProtocol()
+    : current_state(&gLinkWordProtocolFinished), next_state(nullptr), finished(true)
+{
+}
+
+LinkWordProtocol::~LinkWordProtocol()
+{
+}
+
+void LinkWordProtocol::Initialize(u32 local_code, u32 remote_code, u32 * new_record,
+    void const * new_outgoing, u32 new_outgoing_size, void * new_incoming, u32 new_incoming_size)
+{
+    ConfigureGameCodes(local_code, remote_code);
+    record = new_record;
+    outgoing = new_outgoing;
+    outgoing_size = new_outgoing_size;
+    incoming = new_incoming;
+    incoming_size = new_incoming_size;
+    next_state = &gLinkWordProtocolConnect;
+    finished = false;
+}
+
+void LinkWordProtocol::Update()
+{
+    UpdateTransport();
+    if (next_state != nullptr) {
+        current_state = next_state;
+        next_state = nullptr;
+        (this->*current_state->enter)();
+        (this->*current_state->start)();
+    }
+    u32 input = (this->*current_state->poll)();
+    (this->*current_state->update)(input);
+}
+
+void LinkWordProtocol::DispatchStateAction()
+{
+    (this->*current_state->action)();
+}
+
+bool LinkWordProtocol::IsFinished()
+{
+    return finished;
+}
+
+i32 LinkWordProtocol::GetResult()
+{
+    return result;
+}
+
+void LinkWordProtocol::StartConnect()
+{
+    StartTransport();
+    BeginHandshake();
+}
+
+void LinkWordProtocol::UpdateConnect(u32 input)
+{
+    if (input == 1)
+        CancelTransfer();
+    if (Unk_40()) {
+        if (Unk_48()) {
+            next_state = &gLinkWordProtocolRetry;
+        } else if (Unk_44()) {
+            result = 1;
+            next_state = &gLinkWordProtocolFinished;
+        } else {
+            next_state = &gLinkWordProtocolMetadata;
+        }
+    }
+}
+
+void LinkWordProtocol::StartMetadata()
+{
+    ExchangeWord(*record, 0);
+}
+
+void LinkWordProtocol::UpdateMetadata(u32 input)
+{
+    if (Unk_40()) {
+        if (Unk_48())
+            next_state = &gLinkWordProtocolRetry;
+        else
+            next_state = &gLinkWordProtocolRecordCheck;
+    }
+}
+
+void LinkWordProtocol::StartRecordCheck()
+{
+    record[2] = GetReceivedWord();
+    if (Unk_50())
+        ExchangeWord(0, 0);
+    else
+        ExchangeWord(1, 0);
+}
+
+void LinkWordProtocol::UpdateRecordCheck(u32 input)
+{
+    if (Unk_40()) {
+        if (Unk_48()) {
+            next_state = &gLinkWordProtocolRetry;
+        } else if (Unk_54()) {
+            if (Unk_58()) {
+                next_state = &gLinkWordProtocolConfirmation;
+            } else {
+                accepted = true;
+                next_state = &gLinkWordProtocolDecision;
+            }
+        } else {
+            result = 3;
+            next_state = &gLinkWordProtocolFinished;
+        }
+    }
+}
+
+void LinkWordProtocol::StartConfirmation()
+{
+}
+
+void LinkWordProtocol::UpdateConfirmation(u32 input)
+{
+    switch (input) {
+    case 2:
+        accepted = true;
+        next_state = &gLinkWordProtocolDecision;
+        break;
+    case 3:
+        accepted = false;
+        next_state = &gLinkWordProtocolDecision;
+        break;
+    }
+}
+
+void LinkWordProtocol::StartDecision()
+{
+    if (accepted)
+        ExchangeWord(0, 1);
+    else
+        ExchangeWord(1, 1);
+}
+
+void LinkWordProtocol::UpdateDecision(u32 input)
+{
+    if (input == 1)
+        CancelTransfer();
+    if (Unk_40()) {
+        if (Unk_48()) {
+            next_state = &gLinkWordProtocolRetry;
+        } else if (Unk_44()) {
+            result = 1;
+            next_state = &gLinkWordProtocolFinished;
+        } else if (!accepted) {
+            result = 1;
+            next_state = &gLinkWordProtocolFinished;
+        } else if (!Unk_5C()) {
+            result = 2;
+            next_state = &gLinkWordProtocolFinished;
+        } else {
+            next_state = &gLinkWordProtocolPayload;
+        }
+    }
+}
+
+void LinkWordProtocol::StartPayload()
+{
+    ExchangeBuffers(outgoing, outgoing_size, incoming, incoming_size);
+}
+
+void LinkWordProtocol::UpdatePayload(u32 input)
+{
+    if (Unk_40()) {
+        if (Unk_48()) {
+            next_state = &gLinkWordProtocolRetry;
+        } else {
+            result = 0;
+            next_state = &gLinkWordProtocolFinished;
+        }
+    }
+}
+
+void LinkWordProtocol::StartFinished()
+{
+    finished = true;
+    StopTransport();
+}
+
+void LinkWordProtocol::UpdateFinished(u32 input)
+{
+}
+
+void LinkWordProtocol::StartRetry()
+{
+}
+
+void LinkWordProtocol::UpdateRetry(u32 input)
+{
+    switch (input) {
+    case 2:
+        next_state = &gLinkWordProtocolConnect;
+        break;
+    case 3:
+        result = 1;
+        next_state = &gLinkWordProtocolFinished;
+        break;
+    }
+}
+
+LinkBlockProtocol::LinkBlockProtocol()
+    : current_state(&gLinkBlockProtocolFinished), next_state(nullptr), finished(true)
+{
+}
+
+LinkBlockProtocol::~LinkBlockProtocol()
+{
+}
+
+void LinkBlockProtocol::Initialize(u32 local_code, u32 remote_code, u32 * new_record,
+    void const * new_outgoing, u32 new_outgoing_size, void * new_incoming, u32 new_incoming_size)
+{
+    ConfigureGameCodes(local_code, remote_code);
+    record = new_record;
+    outgoing = new_outgoing;
+    outgoing_size = new_outgoing_size;
+    incoming = new_incoming;
+    incoming_size = new_incoming_size;
+    next_state = &gLinkBlockProtocolConnect;
+    finished = false;
+}
+
+void LinkBlockProtocol::Update()
+{
+    UpdateTransport();
+    if (next_state != nullptr) {
+        current_state = next_state;
+        next_state = nullptr;
+        (this->*current_state->enter)();
+        (this->*current_state->start)();
+    }
+    u32 input = (this->*current_state->poll)();
+    (this->*current_state->update)(input);
+}
+
+void LinkBlockProtocol::DispatchStateAction()
+{
+    (this->*current_state->action)();
+}
+
+bool LinkBlockProtocol::IsFinished()
+{
+    return finished;
+}
+
+i32 LinkBlockProtocol::GetResult()
+{
+    return result;
+}
+
+void LinkBlockProtocol::StartConnect()
+{
+    StartTransport();
+    BeginHandshake();
+}
+
+void LinkBlockProtocol::UpdateConnect(u32 input)
+{
+    if (input == 1)
+        CancelTransfer();
+    if (Unk_40()) {
+        if (Unk_48()) {
+            next_state = &gLinkBlockProtocolRetry;
+        } else if (Unk_44()) {
+            result = 1;
+            next_state = &gLinkBlockProtocolFinished;
+        } else {
+            next_state = &gLinkBlockProtocolMetadata;
+        }
+    }
+}
+
+void LinkBlockProtocol::StartMetadata()
+{
+    ExchangeBuffers(record, sizeof(received_record), received_record, sizeof(received_record));
+}
+
+void LinkBlockProtocol::UpdateMetadata(u32 input)
+{
+    if (Unk_40()) {
+        if (Unk_48())
+            next_state = &gLinkBlockProtocolRetry;
+        else
+            next_state = &gLinkBlockProtocolRecordCheck;
+    }
+}
+
+void LinkBlockProtocol::StartRecordCheck()
+{
+    record[2] = received_record[0];
+    if (Unk_50())
+        ExchangeWord(0, 0);
+    else
+        ExchangeWord(1, 0);
+}
+
+void LinkBlockProtocol::UpdateRecordCheck(u32 input)
+{
+    if (Unk_40()) {
+        if (Unk_48()) {
+            next_state = &gLinkBlockProtocolRetry;
+        } else if (Unk_54()) {
+            if (Unk_58()) {
+                next_state = &gLinkBlockProtocolConfirmation;
+            } else {
+                accepted = true;
+                next_state = &gLinkBlockProtocolDecision;
+            }
+        } else {
+            result = 3;
+            next_state = &gLinkBlockProtocolFinished;
+        }
+    }
+}
+
+void LinkBlockProtocol::StartConfirmation()
+{
+}
+
+void LinkBlockProtocol::UpdateConfirmation(u32 input)
+{
+    switch (input) {
+    case 2:
+        accepted = true;
+        next_state = &gLinkBlockProtocolDecision;
+        break;
+    case 3:
+        accepted = false;
+        next_state = &gLinkBlockProtocolDecision;
+        break;
+    }
+}
+
+void LinkBlockProtocol::StartDecision()
+{
+    if (accepted)
+        ExchangeWord(0, 1);
+    else
+        ExchangeWord(1, 1);
+}
+
+void LinkBlockProtocol::UpdateDecision(u32 input)
+{
+    if (input == 1)
+        CancelTransfer();
+    if (Unk_40()) {
+        if (Unk_48()) {
+            next_state = &gLinkBlockProtocolRetry;
+        } else if (Unk_44()) {
+            result = 1;
+            next_state = &gLinkBlockProtocolFinished;
+        } else if (!accepted) {
+            result = 1;
+            next_state = &gLinkBlockProtocolFinished;
+        } else if (!Unk_5C()) {
+            result = 2;
+            next_state = &gLinkBlockProtocolFinished;
+        } else {
+            next_state = &gLinkBlockProtocolPayload;
+        }
+    }
+}
+
+void LinkBlockProtocol::StartPayload()
+{
+    ExchangeBuffers(outgoing, outgoing_size, incoming, incoming_size);
+}
+
+void LinkBlockProtocol::UpdatePayload(u32 input)
+{
+    if (Unk_40()) {
+        if (Unk_48()) {
+            next_state = &gLinkBlockProtocolRetry;
+        } else {
+            result = 0;
+            next_state = &gLinkBlockProtocolFinished;
+        }
+    }
+}
+
+void LinkBlockProtocol::StartFinished()
+{
+    finished = true;
+    StopTransport();
+}
+
+void LinkBlockProtocol::UpdateFinished(u32 input)
+{
+}
+
+void LinkBlockProtocol::StartRetry()
+{
+}
+
+void LinkBlockProtocol::UpdateRetry(u32 input)
+{
+    switch (input) {
+    case 2:
+        next_state = &gLinkBlockProtocolConnect;
+        break;
+    case 3:
+        result = 1;
+        next_state = &gLinkBlockProtocolFinished;
+        break;
+    }
+}
+
+void LinkBlockProtocol::ActRetry()
+{
+}
+
+u32 LinkBlockProtocol::PollRetry()
+{
+    return 0;
+}
+
+void LinkBlockProtocol::EnterRetry()
+{
+}
+
+void LinkBlockProtocol::ActFinished()
+{
+}
+
+u32 LinkBlockProtocol::PollFinished()
+{
+    return 0;
+}
+
+void LinkBlockProtocol::EnterFinished()
+{
+}
+
+void LinkBlockProtocol::ActPayload()
+{
+}
+
+u32 LinkBlockProtocol::PollPayload()
+{
+    return 0;
+}
+
+void LinkBlockProtocol::EnterPayload()
+{
+}
+
+void LinkBlockProtocol::ActDecision()
+{
+}
+
+u32 LinkBlockProtocol::PollDecision()
+{
+    return 0;
+}
+
+void LinkBlockProtocol::EnterDecision()
+{
+}
+
+void LinkBlockProtocol::ActConfirmation()
+{
+}
+
+u32 LinkBlockProtocol::PollConfirmation()
+{
+    return 0;
+}
+
+void LinkBlockProtocol::EnterConfirmation()
+{
+}
+
+void LinkBlockProtocol::ActRecordCheck()
+{
+}
+
+u32 LinkBlockProtocol::PollRecordCheck()
+{
+    return 0;
+}
+
+void LinkBlockProtocol::EnterRecordCheck()
+{
+}
+
+void LinkBlockProtocol::ActMetadata()
+{
+}
+
+u32 LinkBlockProtocol::PollMetadata()
+{
+    return 0;
+}
+
+void LinkBlockProtocol::EnterMetadata()
+{
+}
+
+void LinkBlockProtocol::ActConnect()
+{
+}
+
+u32 LinkBlockProtocol::PollConnect()
+{
+    return 0;
+}
+
+void LinkBlockProtocol::EnterConnect()
+{
+}
+
+u32 LinkBlockProtocol::GetReceivedRecordValue()
+{
+    return record[2];
+}
+
+void LinkWordProtocol::ActRetry()
+{
+}
+
+u32 LinkWordProtocol::PollRetry()
+{
+    return 0;
+}
+
+void LinkWordProtocol::EnterRetry()
+{
+}
+
+void LinkWordProtocol::ActFinished()
+{
+}
+
+u32 LinkWordProtocol::PollFinished()
+{
+    return 0;
+}
+
+void LinkWordProtocol::EnterFinished()
+{
+}
+
+void LinkWordProtocol::ActPayload()
+{
+}
+
+u32 LinkWordProtocol::PollPayload()
+{
+    return 0;
+}
+
+void LinkWordProtocol::EnterPayload()
+{
+}
+
+void LinkWordProtocol::ActDecision()
+{
+}
+
+u32 LinkWordProtocol::PollDecision()
+{
+    return 0;
+}
+
+void LinkWordProtocol::EnterDecision()
+{
+}
+
+void LinkWordProtocol::ActConfirmation()
+{
+}
+
+u32 LinkWordProtocol::PollConfirmation()
+{
+    return 0;
+}
+
+void LinkWordProtocol::EnterConfirmation()
+{
+}
+
+void LinkWordProtocol::ActRecordCheck()
+{
+}
+
+u32 LinkWordProtocol::PollRecordCheck()
+{
+    return 0;
+}
+
+void LinkWordProtocol::EnterRecordCheck()
+{
+}
+
+void LinkWordProtocol::ActMetadata()
+{
+}
+
+u32 LinkWordProtocol::PollMetadata()
+{
+    return 0;
+}
+
+void LinkWordProtocol::EnterMetadata()
+{
+}
+
+void LinkWordProtocol::ActConnect()
+{
+}
+
+u32 LinkWordProtocol::PollConnect()
+{
+    return 0;
+}
+
+void LinkWordProtocol::EnterConnect()
+{
+}
+
+u32 LinkWordProtocol::GetReceivedRecordValue()
+{
+    return record[2];
+}
+
 
 
 

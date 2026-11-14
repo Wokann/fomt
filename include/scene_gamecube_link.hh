@@ -8,6 +8,8 @@ struct GameStateSaveImage;
 #include "joy_bus.hh"
 #include "ui_state.hh"
 #include "hardware_context.hh"
+#include "hardware_input.hh"
+
 
 // Both protocols use the same virtual interface before their state methods.
 // Its data-free base owns the vptr at +0; each protocol's state starts at +4.
@@ -16,7 +18,7 @@ struct LinkProtocol {
     virtual void Update() = 0;
     virtual void DispatchStateAction() = 0;
     virtual bool IsFinished() = 0;
-    virtual u32 GetResult() = 0;
+    virtual i32 GetResult() = 0;
     virtual u32 GetReceivedRecordValue() = 0;
     virtual void ConfigureGameCodes(u32 local_code, u32 remote_code) = 0;
     virtual void UpdateTransport() = 0;
@@ -34,7 +36,6 @@ struct LinkProtocol {
     virtual bool Unk_54() = 0;
     virtual bool Unk_58() = 0;
     virtual bool Unk_5C() = 0;
-    virtual ~LinkProtocol() {}
 };
 
 struct GameCubeLinkUiCore;
@@ -43,6 +44,15 @@ struct GameCubeLinkUiCoreOwner {
     explicit GameCubeLinkUiCoreOwner(GameCubeLinkUiCore * input) : value(input) {}
     ~GameCubeLinkUiCoreOwner();
     GameCubeLinkUiCore * value;
+};
+
+#include "gamecube_link_save.hh"
+
+// The UI member is destroyed before the owned transfer buffers.
+struct GameCubeLinkSaveDataOwner {
+    explicit GameCubeLinkSaveDataOwner(GameCubeLinkSaveData * input) : value(input) {}
+    ~GameCubeLinkSaveDataOwner() { delete value; }
+    GameCubeLinkSaveData * value;
 };
 
 #pragma interface "scene_gamecube_link.hh"
@@ -67,7 +77,7 @@ struct LinkWordProtocol : LinkProtocol {
     virtual void Update();
     virtual void DispatchStateAction();
     virtual bool IsFinished();
-    virtual u32 GetResult();
+    virtual i32 GetResult();
     virtual u32 GetReceivedRecordValue();
     virtual void ConfigureGameCodes(u32 local_code, u32 remote_code) = 0;
     virtual void UpdateTransport() = 0;
@@ -167,7 +177,7 @@ struct LinkBlockProtocol : LinkProtocol {
     virtual void Update();
     virtual void DispatchStateAction();
     virtual bool IsFinished();
-    virtual u32 GetResult();
+    virtual i32 GetResult();
     virtual u32 GetReceivedRecordValue();
     virtual void ConfigureGameCodes(u32 local_code, u32 remote_code) = 0;
     virtual void UpdateTransport() = 0;
@@ -280,12 +290,12 @@ struct JoyBusLinkProtocol : LinkBlockProtocol {
     virtual inline void ExchangeBuffers(void const * outgoing, u32 outgoing_size, void * incoming, u32 incoming_size);
     virtual inline void ExchangeWord(u32 value, u8 mode);
     virtual inline void CancelTransfer();
-    virtual inline NAKED bool Unk_40();
-    virtual inline NAKED bool Unk_44();
-    virtual inline NAKED bool Unk_48();
+    virtual inline bool Unk_40();
+    virtual inline bool Unk_44();
+    virtual inline bool Unk_48();
     virtual inline u32 GetReceivedWord();
     virtual inline bool Unk_50();
-    virtual inline NAKED bool Unk_54();
+    virtual inline bool Unk_54();
     virtual inline bool Unk_58();
     virtual inline bool Unk_5C();
     virtual u32 GetHeldKeys() = 0;
@@ -307,14 +317,15 @@ typedef char JoyBusLinkProtocolSizeCheck[sizeof(JoyBusLinkProtocol) == 0x1BC ? 1
 
 #include "gamecube_link_save.hh"
 
+
 // HardwareContext is the primary base; the JoyBus interface starts at +8.
 // Its second vtable and adjusting entries come from real multiple inheritance.
 struct GameCubeLinkUiCore : HardwareContext, JoyBusLinkProtocol {
     GameCubeLinkUiCore(GameStateSaveImage * image);
     virtual ~GameCubeLinkUiCore();
     void Run();
-    void MarkPhaseChanged();
-    void SetPhase(u32 next);
+    inline void MarkPhaseChanged();
+    inline void SetPhase(u32 next);
     virtual inline void ActRetry();
     virtual inline u32 PollRetry();
     virtual inline void EnterRetry();
@@ -334,7 +345,7 @@ struct GameCubeLinkUiCore : HardwareContext, JoyBusLinkProtocol {
     MaryGameCubeLinkResult GetUiResult() const;
 
     MaryGameCubeLinkResult result;
-    GameCubeLinkSaveData * data; // Owned; the native destructor deletes it.
+    GameCubeLinkSaveDataOwner data;
     GameStateSaveImage * save; // Borrowed.
     UiStateOwner ui;
     HardwareMusicPlayerSlot music;
@@ -423,10 +434,16 @@ extern char const gText_LinkCommunication_Complete[];
 
 #pragma interface "scene_gamecube_link.hh"
 
+#include "scene_gamecube_link_callbacks.hh"
+
+#pragma interface "scene_gamecube_link.hh"
+
 inline JoyBusLinkProtocol::~JoyBusLinkProtocol()
 {
     ResetJoyBusLinkRegisters();
 }
+
+
 
 inline void JoyBusLinkProtocol::SetMode(u32 mode)
 {
@@ -481,158 +498,36 @@ inline u32 JoyBusLinkProtocol::GetReceivedWord() { return func_080D0678(); }
 
 inline void JoyBusLinkProtocol::CancelTransfer() { func_080D06A8(); }
 
-inline NAKED bool JoyBusLinkProtocol::Unk_40()
+inline bool JoyBusLinkProtocol::Unk_40()
 {
-    asm_unified(
-        "    push {r4, lr}\n"
-        "    adds r4, r0, #0\n"
-        "    movs r1, #220\n"
-        "    lsls r1, r1, #1\n"
-        "    adds r0, r4, r1\n"
-        "    ldrb r0, [r0, #0]\n"
-        "    cmp r0, #0\n"
-        "    beq .LJoyBus_status_40_1\n"
-        "    ldr r0, [r4, #0]\n"
-        "    subs r1, #176\n"
-        "    adds r0, r0, r1\n"
-        "    ldr r1, [r0, #0]\n"
-        "    adds r0, r4, #0\n"
-        "    bl _call_via_r1\n"
-        "    lsrs r0, r0, #8\n"
-        "    movs r1, #1\n"
-        "    ands r1, r0\n"
-        "    cmp r1, #0\n"
-        "    bne .LJoyBus_status_40_0\n"
-        "    ldr r0, [r4, #0]\n"
-        "    movs r1, #132\n"
-        "    lsls r1, r1, #1\n"
-        "    adds r0, r0, r1\n"
-        "    ldr r1, [r0, #0]\n"
-        "    adds r0, r4, #0\n"
-        "    bl _call_via_r1\n"
-        "    lsrs r0, r0, #8\n"
-        "    movs r1, #2\n"
-        "    ands r1, r0\n"
-        "    cmp r1, #0\n"
-        "    beq .LJoyBus_status_40_1\n"
-        ".LJoyBus_status_40_0:\n"
-        "    movs r0, #1\n"
-        "    b .LJoyBus_status_40_2\n"
-        ".LJoyBus_status_40_1:\n"
-        "    bl func_080D06B4\n"
-        "    adds r1, r0, #0\n"
-        "    negs r0, r1\n"
-        "    orrs r0, r1\n"
-        "    lsrs r0, r0, #31\n"
-        ".LJoyBus_status_40_2:\n"
-        "    pop {r4}\n"
-        "    pop {r1}\n"
-        "    bx r1\n"
-    );
+    if (mode_enabled && (HardwareKeySnapshot::ShoulderBits(GetPressedKeys(), R_BUTTON)
+        || HardwareKeySnapshot::ShoulderBits(GetPressedKeys(), L_BUTTON)))
+        return true;
+    return func_080D06B4() != 0;
 }
 
-inline NAKED bool JoyBusLinkProtocol::Unk_44()
+inline bool JoyBusLinkProtocol::Unk_44()
 {
-    asm_unified(
-        "    push {r4, lr}\n"
-        "    adds r4, r0, #0\n"
-        "    movs r1, #220\n"
-        "    lsls r1, r1, #1\n"
-        "    adds r0, r4, r1\n"
-        "    ldrb r0, [r0, #0]\n"
-        "    cmp r0, #0\n"
-        "    beq .LJoyBus_status_44_0\n"
-        "    ldr r0, [r4, #0]\n"
-        "    subs r1, #176\n"
-        "    adds r0, r0, r1\n"
-        "    ldr r1, [r0, #0]\n"
-        "    adds r0, r4, #0\n"
-        "    bl _call_via_r1\n"
-        "    lsrs r0, r0, #8\n"
-        "    movs r1, #1\n"
-        "    ands r1, r0\n"
-        "    cmp r1, #0\n"
-        "    bne .LJoyBus_status_44_1\n"
-        "    ldr r0, [r4, #0]\n"
-        "    movs r1, #132\n"
-        "    lsls r1, r1, #1\n"
-        "    adds r0, r0, r1\n"
-        "    ldr r1, [r0, #0]\n"
-        "    adds r0, r4, #0\n"
-        "    bl _call_via_r1\n"
-        "    lsrs r0, r0, #8\n"
-        "    movs r1, #2\n"
-        "    ands r1, r0\n"
-        "    cmp r1, #0\n"
-        "    bne .LJoyBus_status_44_1\n"
-        ".LJoyBus_status_44_0:\n"
-        "    bl func_080D06D0\n"
-        "    cmp r0, #11\n"
-        "    beq .LJoyBus_status_44_2\n"
-        ".LJoyBus_status_44_1:\n"
-        "    movs r0, #0\n"
-        "    b .LJoyBus_status_44_3\n"
-        ".LJoyBus_status_44_2:\n"
-        "    movs r0, #1\n"
-        ".LJoyBus_status_44_3:\n"
-        "    pop {r4}\n"
-        "    pop {r1}\n"
-        "    bx r1\n"
-        "    .align 2, 0\n"
-    );
+    if (mode_enabled && (HardwareKeySnapshot::ShoulderBits(GetPressedKeys(), R_BUTTON)
+        || HardwareKeySnapshot::ShoulderBits(GetPressedKeys(), L_BUTTON)))
+        return false;
+    if (func_080D06D0() == 11)
+        return true;
+    return false;
 }
 
-inline NAKED bool JoyBusLinkProtocol::Unk_48()
+inline bool JoyBusLinkProtocol::Unk_48()
 {
-    asm_unified(
-        "    push {r4, lr}\n"
-        "    adds r4, r0, #0\n"
-        "    movs r1, #220\n"
-        "    lsls r1, r1, #1\n"
-        "    adds r0, r4, r1\n"
-        "    ldrb r0, [r0, #0]\n"
-        "    cmp r0, #0\n"
-        "    beq .LJoyBus_status_48_0\n"
-        "    ldr r0, [r4, #0]\n"
-        "    subs r1, #180\n"
-        "    adds r0, r0, r1\n"
-        "    ldr r1, [r0, #0]\n"
-        "    adds r0, r4, #0\n"
-        "    bl _call_via_r1\n"
-        "    lsrs r0, r0, #8\n"
-        "    movs r1, #1\n"
-        "    ands r1, r0\n"
-        "    cmp r1, #0\n"
-        "    bne .LJoyBus_status_48_1\n"
-        "    ldr r0, [r4, #0]\n"
-        "    movs r1, #130\n"
-        "    lsls r1, r1, #1\n"
-        "    adds r0, r0, r1\n"
-        "    ldr r1, [r0, #0]\n"
-        "    adds r0, r4, #0\n"
-        "    bl _call_via_r1\n"
-        "    lsrs r0, r0, #8\n"
-        "    movs r1, #2\n"
-        "    ands r1, r0\n"
-        "    cmp r1, #0\n"
-        "    bne .LJoyBus_status_48_2\n"
-        ".LJoyBus_status_48_0:\n"
-        "    bl func_080D06D0\n"
-        "    cmp r0, #0\n"
-        "    beq .LJoyBus_status_48_1\n"
-        "    cmp r0, #11\n"
-        "    bne .LJoyBus_status_48_2\n"
-        ".LJoyBus_status_48_1:\n"
-        "    movs r0, #0\n"
-        "    b .LJoyBus_status_48_3\n"
-        ".LJoyBus_status_48_2:\n"
-        "    movs r0, #1\n"
-        ".LJoyBus_status_48_3:\n"
-        "    pop {r4}\n"
-        "    pop {r1}\n"
-        "    bx r1\n"
-        "    .align 2, 0\n"
-    );
+    if (mode_enabled) {
+        if (HardwareKeySnapshot::ShoulderBits(GetHeldKeys(), R_BUTTON))
+            return false;
+        if (HardwareKeySnapshot::ShoulderBits(GetHeldKeys(), L_BUTTON))
+            return true;
+    }
+    u32 status = func_080D06D0();
+    if (status == 0 || status == 11)
+        return false;
+    return true;
 }
 
 inline void JoyBusLinkProtocol::UpdateTransport() { UpdateJoyBusCommunication(); }
@@ -646,36 +541,13 @@ inline bool JoyBusLinkProtocol::Unk_50()
     return true;
 }
 
-inline NAKED bool JoyBusLinkProtocol::Unk_54()
+inline bool JoyBusLinkProtocol::Unk_54()
 {
-    asm_unified(
-        "    push {lr}\n"
-        "    adds r2, r0, #0\n"
-        "    movs r1, #220\n"
-        "    lsls r1, r1, #1\n"
-        "    adds r0, r2, r1\n"
-        "    ldrb r0, [r0, #0]\n"
-        "    cmp r0, #0\n"
-        "    beq .LJoyBus_status_54_0\n"
-        "    adds r1, #1\n"
-        "    adds r0, r2, r1\n"
-        "    ldrb r0, [r0, #0]\n"
-        "    b .LJoyBus_status_54_2\n"
-        ".LJoyBus_status_54_0:\n"
-        "    ldr r0, [r2, #0]\n"
-        "    ldr r1, [r0, #76]\n"
-        "    adds r0, r2, #0\n"
-        "    bl _call_via_r1\n"
-        "    cmp r0, #0\n"
-        "    beq .LJoyBus_status_54_1\n"
-        "    movs r0, #0\n"
-        "    b .LJoyBus_status_54_2\n"
-        ".LJoyBus_status_54_1:\n"
-        "    movs r0, #1\n"
-        ".LJoyBus_status_54_2:\n"
-        "    pop {r1}\n"
-        "    bx r1\n"
-    );
+    if (mode_enabled)
+        return unk_1B9;
+    if (GetReceivedWord() == 0)
+        return true;
+    return false;
 }
 
 inline bool JoyBusLinkProtocol::Unk_58()
@@ -698,6 +570,5 @@ inline bool JoyBusLinkProtocol::Unk_5C()
 }
 
 
-#include "scene_gamecube_link_callbacks.hh"
 
 #endif // SCENE_GAMECUBE_LINK_HH

@@ -19,11 +19,25 @@ struct MenuGridPosition;
 struct GameMenuTilemapPanelOwner {
     GameMenuTilemapPanel * value;
     GameMenuTilemapPanelOwner() : value(nullptr) {}
+    GameMenuTilemapPanelOwner & operator=(GameMenuTilemapPanel * input)
+    {
+        if (input != value)
+            delete value;
+        value = input;
+        return *this;
+    }
     ~GameMenuTilemapPanelOwner() { delete value; }
 };
 struct GameMenuSpritePanelOwner {
     GameMenuSpritePanel * value;
     GameMenuSpritePanelOwner() : value(nullptr) {}
+    GameMenuSpritePanelOwner & operator=(GameMenuSpritePanel * input)
+    {
+        if (input != value)
+            delete value;
+        value = input;
+        return *this;
+    }
     ~GameMenuSpritePanelOwner() { delete value; }
 };
 
@@ -131,11 +145,25 @@ struct GameSceneMenuSpriteData {
 struct GameSceneMenuCursorDataOwner {
     GameSceneMenuCursorData * value;
     GameSceneMenuCursorDataOwner() : value(nullptr) {}
+    GameSceneMenuCursorDataOwner & operator=(GameSceneMenuCursorData * input)
+    {
+        if (input != value)
+            delete value;
+        value = input;
+        return *this;
+    }
     ~GameSceneMenuCursorDataOwner() { delete value; }
 };
 struct GameSceneMenuSpriteDataOwner {
     GameSceneMenuSpriteData * value;
     GameSceneMenuSpriteDataOwner() : value(nullptr) {}
+    GameSceneMenuSpriteDataOwner & operator=(GameSceneMenuSpriteData * input)
+    {
+        if (input != value)
+            delete value;
+        value = input;
+        return *this;
+    }
     ~GameSceneMenuSpriteDataOwner() { delete value; }
 };
 struct GameSceneMenuTilemapDataOwner {

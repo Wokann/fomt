@@ -20,6 +20,7 @@
 #include "fishing_results_data.hh"
 #include "animal_festival_ranking.hh"
 #include "utility/fixed_str.hh"
+#include "utility/container_algorithms.hh"
 
 struct SramAccess;
 
@@ -64,13 +65,19 @@ struct GameStateLinkRecord {
         fill_n_inl(local_milestones, 4, 0);
     }
 
+    void SetReceivedRecordValue(u32 value) { unk_04 = value; }
+    void SetReceivedMilestones(u8 const * source)
+    {
+        copy_n_ptrs(source, ARRAY_COUNT(received_milestones), received_milestones);
+    }
+
     u32 unk_00;
     u32 unk_04;
     u8 received_milestones[8];
     u8 local_milestones[4];
-    FixedStr<15> name_14; // Received name 0: farm (<cf>, PLACE2).
-    FixedStr<15> name_24; // Received name 1: player (<cp>, PASSERBY1).
-    FixedStr<15> name_34; // Received name 2: <cs>, PASSERBY2.
+    FixedStr<14> name_14; // Received name 0: farm (<cf>, PLACE2).
+    FixedStr<14> name_24; // Received name 1: player (<cp>, PASSERBY1).
+    FixedStr<14> name_34; // Received name 2: <cs>, PASSERBY2.
 };
 
 typedef char GameStateLinkRecordSizeCheck[sizeof(GameStateLinkRecord) == 0x44 ? 1 : -1];

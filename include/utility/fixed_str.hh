@@ -43,6 +43,19 @@ struct FixedStr
 
     bool IsEmpty() const { return m_data[0] == '\0'; }
 
+    FixedStr & operator+=(char const * cstr)
+    {
+        u32 used = strlen(m_data);
+        char * destination = m_data + used;
+        u32 remaining = MaxLen - used;
+        if (remaining != 0) {
+            u32 length = min_inl<u32>(strlen(cstr), remaining);
+            memcpy(destination, cstr, length);
+            destination[length] = '\0';
+        }
+        return *this;
+    }
+
     char & operator[](unsigned int idx) { return m_data[idx]; }
 
     operator char const *() const { return m_data; }

@@ -147,6 +147,9 @@ struct MoneyAccount {
     MoneyAccountMaximumRecord maximum_FC;
 
     u32 GetBalance() const { return balance; }
+    bool HasLessThan(u32 const & amount) const { return GetBalance() < amount; }
+    void Add(u32 const & amount);
+    bool Subtract(u32 const & amount);
 };
 
 typedef char MoneyAccountMaximumRecordSizeCheck[sizeof(MoneyAccountMaximumRecord) == 8 ? 1 : -1];
@@ -179,5 +182,7 @@ void UpdateMoneyAccountRecordHistory(MoneyAccount * account);
 EXTERN_C_END
 
 inline MoneyAccount::MoneyAccount() { InitializeMoneyAccount(this); }
+inline void MoneyAccount::Add(u32 const & amount) { AddMoneyToAccount(this, amount); }
+inline bool MoneyAccount::Subtract(u32 const & amount) { return SubtractMoneyFromAccount(this, amount); }
 
 #endif // MONEY_ACCOUNT_TYPES_HH

@@ -67,6 +67,9 @@ extern char const gText_ItemDiscard_Cursed[];
 extern char const * const gItemDiscardCursedTextRef;
 
 struct GameStateSaveImage;
+struct Tool;
+struct HeldItem;
+struct RucksackItem;
 
 #include "game_menu_lifetimes.hh"
 
@@ -88,6 +91,13 @@ extern "C" u8 const gUiHandCursorArchive[];
 
 extern "C" {
 // Actual existing native entries, not generated wrappers or aliases.
+void func_080CE294(GameSceneMenuCorePrefix *);
+i32 func_080CDCD0(GameSceneMenuCursorData *);
+char const * FormatMenuToolDescription(GameSceneMenuCorePrefix *, FixedStr<99> &,
+    Tool const &, u8 held);
+char const * FormatMenuHeldItemDescription(GameSceneMenuCorePrefix *, FixedStr<99> &,
+    HeldItem const *);
+char const * func_080CFA38(GameSceneMenuCorePrefix *, FixedStr<99> &, RucksackItem);
 void UpdateMenuCursorRendering(GameSceneMenuCursorData *);
 void UpdateMenuSpriteRendering(GameSceneMenuSpriteData *);
 void UpdateMenuTilemapRendering(GameSceneMenuTilemapData *);

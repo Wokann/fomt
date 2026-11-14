@@ -1,6 +1,8 @@
 #ifndef SCENE_GAMECUBE_LINK_CALLBACKS_HH
 #define SCENE_GAMECUBE_LINK_CALLBACKS_HH
 
+#include "config.h"
+
 #include "scene_gamecube_link.hh"
 
 #pragma interface "scene_gamecube_link_callbacks.hh"
@@ -9,6 +11,19 @@ inline JoyBusLinkProtocol::JoyBusLinkProtocol()
 {
     InitializeJoyBusContext(&context);
     SetMode(0);
+}
+
+
+
+inline void GameCubeLinkUiCore::MarkPhaseChanged()
+{
+    phase_changed = true;
+}
+
+inline void GameCubeLinkUiCore::SetPhase(u32 next)
+{
+    phase = next;
+    phase_changed = true;
 }
 
 inline void GameCubeLinkUiCore::ActRetry()
@@ -46,6 +61,7 @@ inline void GameCubeLinkUiCore::EnterRetry()
         reinterpret_cast<u32>(gText_LinkCommunication_DataExchangeFailed));
     ui.ShowPortrait(0x3A);
 #if !defined(REGION_JP)
+    // PollRetry runs before Run refreshes this cached window state.
     ui_state = 4;
 #endif
 }

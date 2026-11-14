@@ -74,7 +74,7 @@ struct GameMenuPanelState {
 #pragma interface "game_menu_lifetimes.hh"
 struct GameMenuTilemapPanel : GameMenuPanel {
     GameMenuTilemapPanel(HardwareDmaQueue *, HardwareLinkedList *, u32 count,
-        char const * heading, u8 show_header);
+        char const * heading, bool show_header);
     virtual ~GameMenuTilemapPanel();
     virtual void PruneCompletedCommands();
     GameMenuPanelState state;
@@ -83,7 +83,7 @@ struct GameMenuTilemapPanel : GameMenuPanel {
 struct GameMenuSpritePanel : GameMenuPanel {
     virtual ~GameMenuSpritePanel();
     GameMenuSpritePanel(HardwareDmaQueue *, HardwareLinkedList *, u32 count,
-        char const * heading, u8 show_header);
+        char const * heading, bool show_header);
     GameMenuPanelState state;
     ObjTileCollectionEntry header_tiles;
     ObjPaletteCollectionEntry header_palette;
@@ -110,6 +110,16 @@ typedef char MenuSpritePanelItemTilesCheck[offsetof(GameMenuSpritePanel, item_ti
 typedef char MenuSpritePanelItemPalettesCheck[offsetof(GameMenuSpritePanel, item_palettes) == 0x2EC ? 1 : -1];
 
 extern "C" {
+void func_080CB090(GameMenuTilemapPanel *);
+void func_080CC310(GameMenuSpritePanel *);
+void func_080CC728(GameMenuSpritePanel *, u32 index, u8 const * archive,
+    u16 icon, u32 quantity);
+void func_080CCE58(GameMenuSpritePanel *, u8 const * archive,
+    u16 icon, u32 quantity);
+void func_080CB304(GameMenuTilemapPanel *, u32 index, u8 const * archive,
+    u16 icon, u32 quantity);
+void func_080CBAF0(GameMenuTilemapPanel *, u8 const * archive,
+    u16 icon, u32 quantity);
 void InitializeMenuItemIcon(GameMenuItemIcon *);
 GameMenuItemIcon * InitializeMenuItemIconFromArchive(GameMenuItemIcon *,
     u8 const * archive, u16 index, u32 quantity);

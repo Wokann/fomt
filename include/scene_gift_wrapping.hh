@@ -42,7 +42,7 @@ struct GiftWrappingSceneCore : GameSceneMenuSelectionCore {
     ToolStack * held_tool;
     HeldItem * held_item;
     Rucksack * rucksack;
-    u32 phase;
+    i32 phase;
 };
 typedef char GiftWrappingCoreDescriptionCheck[offsetof(GiftWrappingSceneCore, item_description) == 0x98 ? 1 : -1];
 typedef char GiftWrappingCoreHeldToolCheck[offsetof(GiftWrappingSceneCore, held_tool) == 0xFC ? 1 : -1];

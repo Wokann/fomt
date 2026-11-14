@@ -48,6 +48,10 @@ struct IndexedResourceHandle
 
     void SetScrollDelta(i16 delta) { scroll_delta = delta; }
     u16 CurrentGroupIndex() const { return resolved_resource[current_entry_index].group_index; }
+    IndexedResourceGroupResult GetGroupData() const
+    {
+        return resource->GetGroupData(CurrentGroupIndex());
+    }
 
     IndexedResourceProvider * resource;
     IndexedResourceResult resolved_resource;

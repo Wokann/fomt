@@ -21,6 +21,19 @@
 #include <type_traits.h>
 #include <string.h>
 
+// STLport's pair has an explicit same-type copy constructor. Keep the
+// pointer-copy result independent of the bundled SGI container library.
+template<class Input, class Output>
+struct PointerCopyResult {
+    Input first;
+    Output second;
+
+    PointerCopyResult(Input const & input, Output const & output)
+        : first(input), second(output) {}
+    PointerCopyResult(PointerCopyResult const & other)
+        : first(other.first), second(other.second) {}
+};
+
 template<class Input, class Output>
 inline Output copy_ptrs_inl(Input first, Input last, Output result,
     __false_type const &)
@@ -37,9 +50,25 @@ template<class Input, class Output>
 inline Output copy_ptrs_inl(Input first, Input last, Output result,
     __true_type const &)
 {
-    if (first != last)
-        memmove(result, first, (last - first) * sizeof(*first));
-    return result + (last - first);
+    if (last != first) {
+        size_t bytes = reinterpret_cast<char const *>(last) - reinterpret_cast<char const *>(first);
+        return reinterpret_cast<Output>(static_cast<char *>(memmove(result, first, bytes)) + bytes);
+    }
+    return result;
+}
+
+template<class Value, class Size>
+inline PointerCopyResult<Value const *, Value *> copy_n_ptrs_aux(Value const * first, Size count, Value * result)
+{
+    Value const * last = first + count;
+    typedef typename __type_traits<Value>::has_trivial_assignment_operator Trait;
+    return PointerCopyResult<Value const *, Value *>(last, copy_ptrs_inl(first, last, result, Trait()));
+}
+
+template<class Value, class Size>
+inline PointerCopyResult<Value const *, Value *> copy_n_ptrs(Value const * first, Size count, Value * result)
+{
+    return copy_n_ptrs_aux(first, count, result);
 }
 
 template<class Iterator>

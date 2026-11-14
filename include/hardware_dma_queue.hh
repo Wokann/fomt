@@ -77,6 +77,12 @@ inline void HardwareDmaQueue::PushBack(DmaTransferDescriptor const & value)
     }
 }
 
+inline void QueueHardwareDmaTransfer(HardwareDmaQueue * queue, void const * source,
+    void * destination, u32 byte_count)
+{
+    queue->PushBack(DmaTransferDescriptor(source, destination, byte_count));
+}
+
 inline void QueueObjTileTransfer(HardwareDmaQueue * queue, void const * source,
     u32 first_tile, u32 tile_offset, u32 byte_count)
 {

@@ -78,7 +78,7 @@ EXTERN_C
 
 void UploadScrollBufferRows(ScrollState * state, i32 first, i32 last);
 void SetScrollPosition(ScrollState * state, i16 position);
-void ResetScrollPosition(ScrollState * state, u16 position);
+void ResetScrollPosition(ScrollState * state, i32 position);
 void ClearScrollBuffer(ScrollState * state);
 void SetScrollBottomLimit(ScrollState * state, i16 limit);
 

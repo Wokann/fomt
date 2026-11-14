@@ -614,7 +614,7 @@ asm_unified(
 );
 
 
-extern "C" void ResetScrollPosition(ScrollState * state, u16 value)
+extern "C" void ResetScrollPosition(ScrollState * state, i32 value)
 {
     state->last_rendered_position = 0xFFFF;
     state->scroll_offset = -1;

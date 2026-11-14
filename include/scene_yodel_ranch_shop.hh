@@ -4,12 +4,12 @@
 #include "scene.hh"
 #include "fomt_constants.hh"
 
-#include "scene.hh"
 #include "shop_common.hh"
 #include "utility/fixed_str.hh"
+#include "ui_text_commands.hh"
+#include "font_draw.hh"
 
 struct GameStateSaveImage;
-#pragma interface "scene_yodel_ranch_shop.hh"
 
 struct YodelRanchAnimalSaleEntry {
     i32 animal_index;
@@ -18,6 +18,20 @@ struct YodelRanchAnimalSaleEntry {
 
 // Native 12 by 2 tile label, preceded by one untouched word.
 struct YodelRanchNameTiles {
+    YodelRanchNameTiles() {}
+    u32 TileBytes() const { return sizeof(tiles); }
+    u32 const * TileData() const { return tiles; }
+    void Clear()
+    {
+        UnkUiSelectionDimensions size(12, 2);
+        Clear2DGfxBuffer(reinterpret_cast<u32 const &>(size), tiles, 0);
+    }
+    void Draw(char const * text)
+    {
+        UnkUiSelectionDimensions size(12, 2);
+        DrawStringTo2DGfxBufferExt(reinterpret_cast<u32 const &>(size), tiles,
+            0, 0, reinterpret_cast<u8 const *>(text), 0, 1);
+    }
     u32 unk_00;
     u32 tiles[12 * 2 * 8];
 };
@@ -62,8 +76,7 @@ struct YodelRanchShopSceneCore : ShopScreenCore {
     bool has_purchased;
     // Sixteen native barn slots; -1 marks an unused sale entry.
     YodelRanchAnimalSaleEntry animals[16];
-    u32 animal_menu_count;
-    u32 animal_menu_codes[16];
+    ShopScreenList<u32, 16> animal_menu;
     YodelRanchNameTiles name_tiles[17];
     FixedStr<127> description;
     FixedStr<99> purchase_description;
@@ -79,8 +92,8 @@ typedef char YodelRanchDescriptionTextCheck[offsetof(YodelRanchAnimalDescription
 typedef char YodelRanchCorePhaseCheck[offsetof(YodelRanchShopSceneCore, phase) == 0x6A4 ? 1 : -1];
 typedef char YodelRanchCorePurchasedCheck[offsetof(YodelRanchShopSceneCore, has_purchased) == 0x6A8 ? 1 : -1];
 typedef char YodelRanchCoreAnimalsCheck[offsetof(YodelRanchShopSceneCore, animals) == 0x6AC ? 1 : -1];
-typedef char YodelRanchCoreMenuCountCheck[offsetof(YodelRanchShopSceneCore, animal_menu_count) == 0x72C ? 1 : -1];
-typedef char YodelRanchCoreMenuCodesCheck[offsetof(YodelRanchShopSceneCore, animal_menu_codes) == 0x730 ? 1 : -1];
+typedef char YodelRanchCoreMenuCountCheck[offsetof(YodelRanchShopSceneCore, animal_menu.count) == 0x72C ? 1 : -1];
+typedef char YodelRanchCoreMenuCodesCheck[offsetof(YodelRanchShopSceneCore, animal_menu.storage) == 0x730 ? 1 : -1];
 typedef char YodelRanchCoreTilesCheck[offsetof(YodelRanchShopSceneCore, name_tiles) == 0x770 ? 1 : -1];
 typedef char YodelRanchCoreDescriptionCheck[offsetof(YodelRanchShopSceneCore, description) == 0x3AB4 ? 1 : -1];
 typedef char YodelRanchCorePurchaseDescriptionCheck[offsetof(YodelRanchShopSceneCore, purchase_description) == 0x3B34 ? 1 : -1];
@@ -90,23 +103,17 @@ typedef char YodelRanchCoreNamingIndexCheck[offsetof(YodelRanchShopSceneCore, na
 typedef char YodelRanchCoreSizeCheck[sizeof(YodelRanchShopSceneCore) == 0x43E0 ? 1 : -1];
 
 inline YodelRanchShopSceneCoreOwner::~YodelRanchShopSceneCoreOwner() { delete value; }
-#pragma interface "scene_yodel_ranch_shop.hh"
-
-#pragma interface "scene_yodel_ranch_shop.hh"
 typedef char YodelRanchShopSceneSizeCheck[sizeof(YodelRanchShopScene) == 20 ? 1 : -1];
 typedef char YodelRanchShopSceneSaveCheck[offsetof(YodelRanchShopScene, save) == 16 ? 1 : -1];
 
 EXTERN_C
 
 // Actual GCC 2.9 constructor ABI: the continuation is transferred through
-// its single pointer slot. The constructor body remains native assembly.
+// its single pointer slot.
 YodelRanchShopScene * __19YodelRanchShopSceneG20SceneTransitionOwnerP18GameStateSaveImageUi(
     void * storage, SceneTransition ** next, GameStateSaveImage * image, u32 input);
 
 EXTERN_C_END
-
-#pragma interface "scene_yodel_ranch_shop.hh"
-
 
 // Mode selects Article, animal purchase, Tool, animal sale, or a sale-list
 // description. The code belongs to that mode, not one global item-ID domain.
@@ -116,7 +123,7 @@ struct LivestockShopCatalogEntry
     char const * primary_text;
     u32 price;
     char const * secondary_text;
-    u32 mode;
+    i32 mode;
 };
 
 extern char const gText_LivestockShop_Empty[];
@@ -128,6 +135,13 @@ extern char const gText_LivestockShop_BuySheep[];
 extern char const gText_LivestockShop_SellCow[];
 extern char const gText_LivestockShop_SellSheep[];
 extern LivestockShopCatalogEntry const gLivestockShopCatalog[];
+
+extern u8 const gUnk_08751B4C[];
+extern u16 const gUnk_08751BCC[];
+extern u8 const gUnk_0875320C[];
+extern u16 const gUnk_0875328C[];
+extern u8 const gUnk_0875254C[];
+extern u16 const gUnk_087525CC[];
 
 extern char const gText_LivestockShop_PageBreak[];
 extern char const gText_LivestockShop_StatusSick[];
