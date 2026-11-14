@@ -23,6 +23,10 @@ void EventScript_TV_EntertainmentChannel(void)
     if ((VarGet(VAR_HOUR) == 4 || VarGet(VAR_HOUR) == 16) && VarGet(VAR_MINUTE) == 44)
     {
         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
+#ifdef BUGFIX
+        // Transfer to the hidden program, which closes the TV on completion.
+        CallScript(EventScript_TV_4AMHiddenBroadcast);
+#endif
     }
     else
     {

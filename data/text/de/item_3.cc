@@ -77,6 +77,15 @@ char const gText_Item_Article_WoolP_Description[] =
     "Wolle (P)\r\n"
     "Von Schafen geschoren.\r\n";
 
+#ifdef BUGFIX
+char const gText_Item_Article_WoolX_Name[] =
+    "Wolle (X)";
+
+char const gText_Item_Article_WoolX_Description[] =
+    "Wolle (X)\r\n"
+    "Von Schafen geschoren.\r\n";
+#endif
+
 char const gText_Item_Article_YarnS_Name[] =
     "Garn (S)";
 
@@ -293,15 +302,35 @@ char const gText_Item_Article_HarvestGoddessJewel_Description[] =
     "In Minen gefunden. Sammle 9\r\n"
     "und sieh, was geschieht.";
 
+#ifdef BUGFIX
+char const gText_Item_Article_KappaJewel_Name[] =
+    "Kappa-Juwelteil";
+
+char const gText_Item_Article_KappaJewel_Description[] =
+    "Kappa-Juwelteil\r\n"
+    "In Minen gefunden. Sammle 9\r\n"
+    "und sieh, was geschieht.";
+#else
 char const gText_Item_Article_KappaJewel_Description[] =
     "Kappa-Juwel\r\n"
     "In Minen gefunden. Sammle 9\r\n"
     "und sieh, was geschieht.";
+#endif
 
+#ifdef BUGFIX
+char const gText_Item_Article_JewelOfTruth_Name[] =
+    "Wahrheitsjuwelteil";
+
+char const gText_Item_Article_JewelOfTruth_Description[] =
+    "Wahrheitsjuwelteil\r\n"
+    "Sammle 9 und sieh,\r\n"
+    "was geschieht.";
+#else
 char const gText_Item_Article_JewelOfTruth_Description[] =
     "Juwel der Wahrheit\r\n"
     "Sammle 9 und sieh,\r\n"
     "was geschieht.";
+#endif
 
 char const gText_Item_Article_TheSpringSun_Name[] =
     "Die Frühlingssonne";

@@ -231,9 +231,11 @@ $(GFX_RANGE_VERIFY): tools/verify_gfx_range.c
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
 # while the C/C++-shared constant table lives in include/.
-$(MARY_BUNDLE_STAMP): $(MARY_TOOL) $(MARY_SOURCES) $(MARY_LIBRARY) $(MARY_SCRIPT_TABLE) $(MARY_CONSTANTS) $(TEXT_CHARMAP)
+# Use the same optional fixes for native code and Mary scripts.
+MARY_BUGFIX_FLAG = $(shell $(CPP) -dM include/config.h | awk '$$2 == "BUGFIX" { print "-D BUGFIX" }')
+$(MARY_BUNDLE_STAMP): include/config.h $(MARY_TOOL) $(MARY_SOURCES) $(MARY_LIBRARY) $(MARY_SCRIPT_TABLE) $(MARY_CONSTANTS) $(TEXT_CHARMAP)
 	@mkdir -p $(MARY_OUTPUT_DIR)
-	@$(MARY_TOOL) bundle $(MARY_SOURCE_DIR) -o $(MARY_OUTPUT_DIR) --layout packed --library $(MARY_LIBRARY) --script-table $(MARY_SCRIPT_TABLE) --constants $(MARY_CONSTANTS) --charmap $(TEXT_CHARMAP) -D MARY_FOMT_$(GAME_REGION)
+	@$(MARY_TOOL) bundle $(MARY_SOURCE_DIR) -o $(MARY_OUTPUT_DIR) --layout packed --library $(MARY_LIBRARY) --script-table $(MARY_SCRIPT_TABLE) --constants $(MARY_CONSTANTS) --charmap $(TEXT_CHARMAP) -D MARY_FOMT_$(GAME_REGION) $(MARY_BUGFIX_FLAG)
 	@touch $@
 
 $(MARY_BUNDLE_OUTPUTS): $(MARY_BUNDLE_STAMP)

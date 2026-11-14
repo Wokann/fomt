@@ -2472,7 +2472,14 @@ void EventScript_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                 else
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
+#ifdef BUGFIX
+                                    if (!(VarGet(VAR_KAREN_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_POPURI_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_MARY_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_ELLI_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_HARVEST_GODDESS_WEDDING_AND_NICKNAME_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED))
+                                    {
+                                        ShowTalkHeartIndicator(CHARACTER_ANN);
+                                    }
+#else
                                     ShowTalkHeartIndicator(CHARACTER_ANN);
+#endif
                                     TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnBackRoomRepeatConversation);
                                 }
                             }

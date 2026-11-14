@@ -465,6 +465,11 @@ char const gText_Item_Food_Bodigizer_Description[] =
     "Bodigizer\r\n"
     "Hilft, Ausdauer zu gewinnen.";
 
+#ifdef BUGFIX
+char const gText_Item_Food_BodigizerXl_Name[] =
+    "Bodigizer XL";
+#endif
+
 char const gText_Item_Food_BodigizerXl_Description[] =
     "Bodigizer XL\r\n"
     "Hilft, eine Menge \r\n"
@@ -1075,6 +1080,16 @@ char const gText_Item_Food_FriedNoodles_Description[] =
     "Gebratene Nudeln\r\n"
     "Mit Nudeln gemacht.\r\n"
     "Selberessen o. verschenken.";
+
+#ifdef BUGFIX
+char const gText_Item_Food_FriedBuckwheatNoodles_Name[] =
+    "Gebratene Soba";
+
+char const gText_Item_Food_FriedBuckwheatNoodles_Description[] =
+    "Gebratene Soba\r\n"
+    "Mit Buchweizennudeln.\r\n"
+    "Selberessen o. verschenken.";
+#endif
 
 char const gText_Item_Food_BuckwheatNoodles_Name[] =
     "Buchweizen-Nudeln";

@@ -77,6 +77,15 @@ Reference Guide text is organized by content category under
 declarations stay centralized in `src/reference_guide.cc` and
 `include/reference_guide.hh`. Pages 0-47 currently use this layout.
 
+### Optional bug fixes
+
+Uncomment `#define BUGFIX` in [include/config.h](include/config.h) to enable the
+optional native and Mary script fixes for the selected region. Build with
+`make -j16 GAME_REGION=JP all`, substituting `US`, `EU`, or `DE` as needed.
+For a byte-exact retail build, comment the define again and run the regional
+comparison target. See [known bugs and fixes](BUGFIX.md) and the
+[regional differences](REGIONAL_DIFFERENCES.md).
+
 ## Setting up
 
 See [INSTALL.md](./INSTALL.md).

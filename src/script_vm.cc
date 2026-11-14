@@ -1,5 +1,6 @@
 #pragma implementation "script_vm.hh"
 #include <algorithm>
+#include "config.h"
 #include "script_vm.hh"
 
 extern template JumpTableEnt const * std::__lower_bound(
@@ -35,7 +36,12 @@ bool AScriptEngine::Load(void const * script_data)
 
         code = nullptr;
 
+#ifdef BUGFIX
+        while (offset < length)
+#else
+        // BUG: At the declared end of the script, the retail loader reads one more chunk header.
         while (offset <= length)
+#endif
         {
             ScriptChunkHeader chunk;
             memcpy(&chunk, script + offset, sizeof(ScriptChunkHeader));

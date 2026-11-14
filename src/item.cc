@@ -1,3 +1,4 @@
+#include "config.h"
 #include "item.hh"
 
 static inline bool IsValidFoodId(u8 id)
@@ -683,7 +684,8 @@ FoodInfo const gFoodInfo[] = {
     /* 0x37 */ { gText_Item_Food_WhiteGrass_Name, false, 10, -10, 473, gText_Item_Food_WhiteGrass_Description },
     /* 0x38 */ { gText_Item_Food_QueenOfTheNight_Name, false, 0, 0, 58, gText_Item_Food_QueenOfTheNight_Description },
     /* 0x39 */ { gText_Item_Food_Bodigizer_Name, true, 50, -1, 349, gText_Item_Food_Bodigizer_Description },
-#if defined(REGION_DE)
+    // BUG: The German XL listing takes the regular medicine name.
+#if defined(REGION_DE) && !defined(BUGFIX)
     /* 0x3A */ { gText_Item_Food_Bodigizer_Name, true, 100, -1, 350, gText_Item_Food_BodigizerXl_Description },
 #else
     /* 0x3A */ { gText_Item_Food_BodigizerXl_Name, true, 100, -1, 350, gText_Item_Food_BodigizerXl_Description },
@@ -766,13 +768,9 @@ FoodInfo const gFoodInfo[] = {
     /* 0x86 */ { gText_Item_Food_FriedNoodles_Name, false, 60, -2, 386, gText_Item_Food_FriedNoodles_Description },
     /* 0x87 */ { gText_Item_Food_BuckwheatNoodles_Name, false, 40, -3, 492, gText_Item_Food_BuckwheatNoodles_Description },
     /* 0x88 */ { gText_Item_Food_NoodlesWTempura_Name, false, 60, -3, 446, gText_Item_Food_NoodlesWTempura_Description },
-    // Regional text-pointer difference -- BUG (US localization): JP's 0x89 is
-    // 焼きそば (fried buckwheat noodles), but the US ROM reuses 0x86's
-    // FriedNoodles name and description (displayed as "Fried Noodles")
-    // instead of keeping a distinct entry.  The US data has no standalone
-    // FriedBuckwheatNoodles name or description object.
+    // BUG: The overseas versions reuse the fried udon's text for fried soba.
     /* 0x89 */ {
-#if defined(REGION_JP)
+#if defined(REGION_JP) || defined(BUGFIX)
         gText_Item_Food_FriedBuckwheatNoodles_Name, false, 60, -2, 391, gText_Item_Food_FriedBuckwheatNoodles_Description
 #else
         gText_Item_Food_FriedNoodles_Name, false, 60, -2, 391, gText_Item_Food_FriedNoodles_Description
@@ -795,7 +793,8 @@ FoodInfo const gFoodInfo[] = {
     /* 0x98 */ { gText_Item_Food_RoastedRiceCake_Name, false, 10, -2, 390, gText_Item_Food_RoastedRiceCake_Description },
     /* 0x99 */ { gText_Item_Food_ElliLeaves_Name, false, 100, -50, 138, gText_Item_Food_ElliLeaves_Description },
     /* 0x9A */ { gText_Item_Food_FailedDish_Name, false, -10, 10, 140, gText_Item_Food_FailedDish_Description },
-#if defined(REGION_DE)
+    // BUG: Three failed dishes display the English description in German.
+#if defined(REGION_DE) && !defined(BUGFIX)
     /* 0x9B */ { gText_Item_Food_FailedDrink_Name, true, -10, 10, 143, gText_Item_Food_FailedRecipe_Description },
     /* 0x9C */ { gText_Item_Food_FailedPotDish_Name, false, -10, 10, 145, gText_Item_Food_FailedRecipe_Description },
     /* 0x9D */ { gText_Item_Food_FailedDessert_Name, false, -10, 10, 142, gText_Item_Food_FailedRecipe_Description },
@@ -832,12 +831,9 @@ ArticleInfo const gArticleInfo[] = {
     /* 0x07 */ { gText_Item_Article_WoolL_Name, 485, gText_Item_Article_WoolL_Description },
     /* 0x08 */ { gText_Item_Article_WoolG_Name, 484, gText_Item_Article_WoolG_Description },
     /* 0x09 */ { gText_Item_Article_WoolP_Name, 487, gText_Item_Article_WoolP_Description },
-    // Regional text-pointer difference -- BUG (US localization, documented as
-    // "2 P wools"): Wool X (0x0A) is wired to the Wool P name and description,
-    // duplicating 0x09 and making the shipping list show P Wool for X Wool.
-    // Preserve the erroneous US pointer for byte-exact reconstruction.
+    // BUG: Overseas Wool X displays the name and description of Wool P.
     /* 0x0A */ {
-#if defined(REGION_JP)
+#if defined(REGION_JP) || defined(BUGFIX)
         gText_Item_Article_WoolX_Name, 489, gText_Item_Article_WoolX_Description
 #else
         gText_Item_Article_WoolP_Name, 489, gText_Item_Article_WoolP_Description
@@ -870,7 +866,8 @@ ArticleInfo const gArticleInfo[] = {
     /* 0x23 */ { gText_Item_Article_Agate_Name, 2, gText_Item_Article_Agate_Description },
     /* 0x24 */ { gText_Item_Article_Amethyst_Name, 5, gText_Item_Article_Amethyst_Description },
     /* 0x25 */ { gText_Item_Article_HarvestGoddessJewel_Name, 207, gText_Item_Article_HarvestGoddessJewel_Description },
-#if defined(REGION_DE)
+    // BUG: The German localization also uses the completed tools' names for the jewels.
+#if defined(REGION_DE) && !defined(BUGFIX)
     /* 0x26 */ { gText_Item_Tool_GemOfTheKappa_Name, 261, gText_Item_Article_KappaJewel_Description },
     /* 0x27 */ { gText_Item_Tool_GemOfTruth_Name, 455, gText_Item_Article_JewelOfTruth_Description },
 #else
@@ -1001,7 +998,7 @@ ProductInfo const gProductInfo[] = {
     // JP values and the US table use 50/200.  Preserve the erroneous JP values
     // for byte-exact reconstruction.
     /* 0x3D */ {
-#if defined(REGION_JP)
+#if defined(REGION_JP) && !defined(BUGFIX)
         200, ProductInfo::KIND_FOOD, ITEM_FOOD_SMALL_FISH
 #else
         50, ProductInfo::KIND_FOOD, ITEM_FOOD_SMALL_FISH
@@ -1009,7 +1006,7 @@ ProductInfo const gProductInfo[] = {
     },
     /* 0x3E */ { 120, ProductInfo::KIND_FOOD, ITEM_FOOD_MEDIUM_FISH },
     /* 0x3F */ {
-#if defined(REGION_JP)
+#if defined(REGION_JP) && !defined(BUGFIX)
         50, ProductInfo::KIND_FOOD, ITEM_FOOD_LARGE_FISH
 #else
         200, ProductInfo::KIND_FOOD, ITEM_FOOD_LARGE_FISH

@@ -1083,6 +1083,16 @@ char const gText_Item_Food_FriedNoodles_Description[] =
     "Made with Noodles.\r\n"
     "To eat or use as a gift.";
 
+#ifdef BUGFIX
+char const gText_Item_Food_FriedBuckwheatNoodles_Name[] =
+    "Fried Soba";
+
+char const gText_Item_Food_FriedBuckwheatNoodles_Description[] =
+    "Fried Soba\r\n"
+    "Made with Buckwheat Noodles.\r\n"
+    "To eat or use as a gift.";
+#endif
+
 char const gText_Item_Food_BuckwheatNoodles_Name[] =
     "Buckwheat Noodles";
 

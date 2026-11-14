@@ -82,6 +82,16 @@ char const gText_Item_Article_WoolP_Description[] =
     "Shorn from Sheep.\r\n"
     "";
 
+#ifdef BUGFIX
+char const gText_Item_Article_WoolX_Name[] =
+    "Wool (X)";
+
+char const gText_Item_Article_WoolX_Description[] =
+    "Wool (X)\r\n"
+    "Shorn from Sheep.\r\n"
+    "";
+#endif
+
 char const gText_Item_Article_YarnS_Name[] =
     "Yarn (S)";
 
