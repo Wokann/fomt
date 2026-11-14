@@ -997,21 +997,15 @@ ProductInfo const gProductInfo[] = {
     // JP v0 baseline swaps the small- and large-fish prices (200/50); documented
     // JP values and the US table use 50/200.  Preserve the erroneous JP values
     // for byte-exact reconstruction.
-    /* 0x3D */ {
 #if defined(REGION_JP) && !defined(BUGFIX)
-        200, ProductInfo::KIND_FOOD, ITEM_FOOD_SMALL_FISH
-#else
-        50, ProductInfo::KIND_FOOD, ITEM_FOOD_SMALL_FISH
-#endif
-    },
+    /* 0x3D */ { 200, ProductInfo::KIND_FOOD, ITEM_FOOD_SMALL_FISH },
     /* 0x3E */ { 120, ProductInfo::KIND_FOOD, ITEM_FOOD_MEDIUM_FISH },
-    /* 0x3F */ {
-#if defined(REGION_JP) && !defined(BUGFIX)
-        50, ProductInfo::KIND_FOOD, ITEM_FOOD_LARGE_FISH
+    /* 0x3F */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_LARGE_FISH },
 #else
-        200, ProductInfo::KIND_FOOD, ITEM_FOOD_LARGE_FISH
+    /* 0x3D */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_SMALL_FISH },
+    /* 0x3E */ { 120, ProductInfo::KIND_FOOD, ITEM_FOOD_MEDIUM_FISH },
+    /* 0x3F */ { 200, ProductInfo::KIND_FOOD, ITEM_FOOD_LARGE_FISH },
 #endif
-    },
     /* 0x40 */ { 10000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_PIRATE_TREASURE },
     /* 0x41 */ { 5000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_FOSSIL_OF_FISH },
     /* 0x42 */ { 200, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_FLOWER_MAGIC_RED },
