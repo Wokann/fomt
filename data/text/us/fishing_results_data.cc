@@ -69,8 +69,13 @@ char const gText_FishingRecord_Filefish[] =
 char const gText_FishingRecord_GoldenCarp[] =
     "Golden Carp";
 
+#ifdef BUGFIX
+char const gText_FishingRecord_SilverCarp22[] =
+    "Ginbuna";
+#else
 char const gText_FishingRecord_SilverCarp22[] =
     "Silver Carp";
+#endif
 
 char const gText_FishingRecord_KelpBass[] =
     "Kelp Bass";
@@ -113,6 +118,11 @@ char const gText_FishingRecord_RainbowTrout[] =
 
 char const gText_FishingRecord_Herring[] =
     "Herring";
+
+#ifdef BUGFIX
+char const gText_FishingRecord_SilverCarp37[] =
+    "Silver Carp";
+#endif
 
 char const gText_FishingRecord_Sandfish[] =
     "Sandfish";

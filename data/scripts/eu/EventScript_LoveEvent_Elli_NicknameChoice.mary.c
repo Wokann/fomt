@@ -89,6 +89,10 @@ void EventScript_LoveEvent_Elli_NicknameChoice(void)
             SetTalkPortrait(TALK_PORTRAIT_ELLI_BLUSHING);
             SetTalkNameplateCharacter(CHARACTER_ELLI);
             ShowTalkHeartIndicator(CHARACTER_ELLI);
+#ifdef BUGFIX
+            // Store the selected nickname before confirming it, as in JP and DE.
+            SetPlayerNicknameForSpouse(gText_LoveEvent_Elli_Nickname_ChoiceHoney);
+#endif
             TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsSelectedNickname);
             TalkClose();
             SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

@@ -2985,6 +2985,10 @@ void EventScript_TV_LifeOnTheFarm_Beginner(void)
                     break;
                 case DAY_OF_MONTH_19:
                     var_0 = ShowTelevisionMessage(gText_TV_LifeOnTheFarm_Beginner_SpringDay19);
+#ifdef BUGFIX
+                    // Finish day 19 before the next episode branch.
+                    break;
+#endif
                 case DAY_OF_MONTH_20:
                     var_0 = ShowTelevisionMessage(gText_TV_LifeOnTheFarm_Beginner_SpringDay20);
                     break;

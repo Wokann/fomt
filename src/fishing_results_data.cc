@@ -1,3 +1,4 @@
+#include "config.h"
 #include "fishing_results_data.hh"
 
 FishingRecords::FishingRecords() {
@@ -114,8 +115,8 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_BrownHakeling,
     gText_FishingRecord_RainbowTrout,
     gText_FishingRecord_Herring,
-#if defined(REGION_JP)
-    // The JP ROM has an independent name object for this record.
+#if defined(REGION_JP) || defined(BUGFIX)
+    // Record 37 is hakuren; it needs its own name, distinct from ginbuna (22).
     gText_FishingRecord_SilverCarp37,
 #else
     // The US-derived ROMs reuse the record-22 text pointer here.
@@ -129,8 +130,8 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_Bluegill,
     gText_FishingRecord_CrucianCarp,
     gText_FishingRecord_Greenling,
-#if defined(REGION_DE)
-    // The DE ROM reuses the Bonito text pointer for this record.
+#if defined(REGION_DE) && !defined(BUGFIX)
+    // BUG: The DE ROM reuses the Bonito text pointer for tuna.
     gText_FishingRecord_Bonito,
 #else
     gText_FishingRecord_Tuna,

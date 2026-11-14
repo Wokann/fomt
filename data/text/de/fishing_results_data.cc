@@ -57,8 +57,13 @@ char const gText_FishingRecord_Eel[] =
 char const gText_FishingRecord_Bitterling[] =
     "Bitterling";
 
+#ifdef BUGFIX
+char const gText_FishingRecord_Bonito[] =
+    "Bonito";
+#else
 char const gText_FishingRecord_Bonito[] =
     "Thunfisch";
+#endif
 
 char const gText_FishingRecord_Fluke[] =
     "Angelhaken";
@@ -69,8 +74,13 @@ char const gText_FishingRecord_Filefish[] =
 char const gText_FishingRecord_GoldenCarp[] =
     "Goldkarpfen";
 
+#ifdef BUGFIX
+char const gText_FishingRecord_SilverCarp22[] =
+    "Ginbuna";
+#else
 char const gText_FishingRecord_SilverCarp22[] =
     "Silberkarpfen";
+#endif
 
 char const gText_FishingRecord_KelpBass[] =
     "Seetang-Barsch";
@@ -114,6 +124,11 @@ char const gText_FishingRecord_RainbowTrout[] =
 char const gText_FishingRecord_Herring[] =
     "Hering";
 
+#ifdef BUGFIX
+char const gText_FishingRecord_SilverCarp37[] =
+    "Silberkarpfen";
+#endif
+
 char const gText_FishingRecord_Sandfish[] =
     "Sandfisch";
 
@@ -137,6 +152,11 @@ char const gText_FishingRecord_CrucianCarp[] =
 
 char const gText_FishingRecord_Greenling[] =
     "Grünling";
+
+#ifdef BUGFIX
+char const gText_FishingRecord_Tuna[] =
+    "Thunfisch";
+#endif
 
 char const gText_FishingRecord_OceanSunfish[] =
     "Sonnenbarsch";

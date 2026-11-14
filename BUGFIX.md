@@ -12,6 +12,10 @@
 | [德版加强药、失败料理](#de-food) | 正常 | 正常 | 正常 | 有 |
 | [旅馆后屋琳的爱心](#ann-heart) | 有 | 有 | 有 | 有 |
 | [4:44 电视无法退出](#tv-444) | 正常 | 有 | 有 | 有 |
+| [艾利的第二个昵称](#elli-nickname) | 正常 | 有 | 有 | 正常 |
+| [春 19 日入门节目贯穿](#de-farm-tv) | 正常 | 正常 | 正常 | 有 |
+| [不同鱼种共用名字](#fish-record-names) | 正常 | 22／37 | 22／37 | 22／37、18／46 |
+| [人物介绍节目频道输入](#de-profile-tv) | 正常 | 正常 | 正常 | 有 |
 
 <a id="riff-end"></a>
 ### 脚本块末尾读取
@@ -55,26 +59,41 @@
 
 修复让三个海外版的两个入口像日版一样调用本版已有的隐藏节目。`GameScene::CallScript` 在当前脚本引擎载入目标，重置程序计数器；隐藏节目自行结束电视和对话。节目原有的星期、日期、重复次数和文字都得以保留。[事件切换](src/game_scene.cc) · [脚本加载](src/script_engine.cc) · [隐藏节目](data/scripts/us/EventScript_TV_4AMHiddenBroadcast.mary.c)
 
-## 全仓对照新发现的原版问题
+## 全仓对照后补充的可选修复
 
-以下为已定位、尚未接入 `BUGFIX` 的条目。启用开关时仍沿用相应地区原行为。
+以下四组也由同一个 `BUGFIX` 开关控制，只更改表中列出的受影响版本。
 
 <a id="elli-nickname"></a>
 ### US、EU 选择艾利的第二个昵称后未写回
 
-第二个选项显示 Honey（亲爱的），随后艾利会确认选择。JP、DE 在确认前调用 `SetPlayerNicknameForSpouse`；US、EU 的同一分支漏掉调用，只执行显示与动作，旧昵称会保留。其他昵称选择走各自的分支。[日版](data/scripts/jp/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [美版](data/scripts/us/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [欧版](data/scripts/eu/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [德版](data/scripts/de/EventScript_LoveEvent_Elli_NicknameChoice.mary.c)
+第二个选项显示 Honey（亲爱的），随后艾利会确认选择。JP、DE 在确认前调用 `SetPlayerNicknameForSpouse`；US、EU 的同一分支漏掉调用，只执行显示与动作，旧昵称会保留。其他昵称选择走各自的分支。修复只在 US／EU 的第二选项补上写入，并采用该选项已有的 Honey 字符串，位置与 JP、DE 相同。[日版](data/scripts/jp/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [美版](data/scripts/us/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [欧版](data/scripts/eu/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [德版](data/scripts/de/EventScript_LoveEvent_Elli_NicknameChoice.mary.c)
 
 <a id="de-farm-tv"></a>
 ### DE 春季 19 日的农场入门节目连续播放两天
 
-德版在 19 日消息和 20 日分支之间少了 `break`，因此 19 日会连续执行两次 `ShowTelevisionMessage`，后一次返回值也会覆盖前一次的输入结果。JP、US、EU 在 19 日消息后结束本分支。此问题与 4:44 隐藏节目独立。[德版](data/scripts/de/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [美版](data/scripts/us/EventScript_TV_LifeOnTheFarm_Beginner.mary.c)
+德版在 19 日消息和 20 日分支之间少了 `break`，因此 19 日会连续执行两次 `ShowTelevisionMessage`，后一次返回值也会覆盖前一次的输入结果。JP、US、EU 在 19 日消息后结束本分支。修复在德版 19 日消息后补上分支结束，保留该次频道输入。此问题与 4:44 隐藏节目独立。[德版](data/scripts/de/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [美版](data/scripts/us/EventScript_TV_LifeOnTheFarm_Beginner.mary.c)
 
 <a id="fish-record-names"></a>
 ### 海外版不同鱼种共用显示名
 
-记录 22 和 37 在 JP 分别显示「ギンブナ」和「ハクレン」，三个海外版的 37 均取记录 22 的名字。记录 18 和 46 在 JP 分别是「カツオ」（鲣）和「マグロ」（金枪鱼），US、EU 各有独立名字；DE 的两项都指向 Thunfisch（金枪鱼）。记录 ID 与名称表下标仍然独立，已证实的影响在名称显示。[记录编号](include/fomt_constants.mary.h) · [名称指针表](src/fishing_results_data.cc) · [日文](data/text/jp/fishing_results_data.cc) · [德文](data/text/de/fishing_results_data.cc)
+记录 22 和 37 在 JP 分别显示「ギンブナ」和「ハクレン」，三个海外版的 37 均取记录 22 的名字。记录 18 和 46 在 JP 分别是「カツオ」（鲣）和「マグロ」（金枪鱼），US、EU 各有独立名字；DE 的两项都指向 Thunfisch（金枪鱼）。记录 ID 与名称表下标仍然独立，已证实的影响在名称显示。修复为三个海外版的 37 增加独立文本并更正指针：22 采用 Ginbuna，37 采用 Silver Carp（DE 为 Silberkarpfen）；DE 的 18 改为 Bonito，46 使用独立的 Thunfisch。Ginbuna 是本工程补充的名称，按日文鱼种作区分，旧导出符号保留兼容性，不改变钓鱼记录编号、捕获数量或体长。[记录编号](include/fomt_constants.mary.h) · [名称指针表](src/fishing_results_data.cc) · [日文](data/text/jp/fishing_results_data.cc) · [德文](data/text/de/fishing_results_data.cc)
 
 <a id="de-profile-tv"></a>
 ### DE 第 36 号人物介绍节目未读取频道键
 
-人物节目按索引进入 `case 36` 时，另外三版执行 `var_0 = ShowTelevisionMessage(...)`，让观众选择频道或继续观看。德版改用无返回值的慢速对话，随即关闭文本框并读取尚未赋值的 `var_0`。脚本载入时变量清零，0 对应天气频道，程序因此转交给换台脚本。这个入口与 4:44 无关。[德版](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [美版](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [频道枚举](include/fomt_constants.mary.h) · [变量初始化](src/script_vm.cc)
+人物节目按索引进入 `case 36` 时，另外三版执行 `var_0 = ShowTelevisionMessage(...)`，让观众选择频道或继续观看。德版改用无返回值的慢速对话，随即关闭文本框并读取尚未赋值的 `var_0`。脚本载入时变量清零，0 对应天气频道，程序因此转交给换台脚本。修复仅将德版这次调用恢复为接收返回值的电视消息调用，与另外三版相同；其余德文台词播放速度保持原样。这个入口与 4:44 无关。[德版](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [美版](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [频道枚举](include/fomt_constants.mary.h) · [变量初始化](src/script_vm.cc)
+
+## 验证范围
+
+以上修复已以 WSL、make -j16 验证四版开关构建。默认关闭时，完整产物逐字节等于对应基准 ROM：
+
+| 版本 | SHA-1 |
+| --- | --- |
+| JP | a655b2789aed14a6ac78c6075fbc533d3062dbe3 |
+| US | a2fc3574f0a65a4fcf7682fb274b9d7eebdef963 |
+| EU | 7ba1ec1e46ce424e3c6fd72e4e8d5e9eb5ede247 |
+| DE | 60f2a30b55c0e32754897b4d5df6ce06f8b71a37 |
+
+开启后，四版脚本总表仍含 1,328 个有效入口，每一项均指向对应脚本；各脚本 STR 字符串块保持原样。相对原版，JP 有 1 个、US／EU 各 4 个、DE 有 5 个脚本的指令或跳转发生变化，恰好覆盖本页列出的受影响脚本。再次解码编译产物，确认 US／EU 艾利第二选项写入 Honey、DE 春 19 日分支结束、DE 人物节目第 36 项保存频道输入。原生物品及鱼名表的相关指针均核对到预期符号，鱼名 22／37 及 18／46 分别独立。
+
+这些是编译、ROM、脚本指令及指针检查，不代表已在模拟器中逐个游玩复现所有事件。

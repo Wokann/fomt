@@ -2510,7 +2510,12 @@ void EventScript_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Saibara_NextEpisodePreview);
             break;
         case 36:
+#ifdef BUGFIX
+            // The following switch needs the channel input returned by this call.
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+#else
             TalkMessageSlow(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+#endif
             TalkClose();
             switch (var_0)
             {
