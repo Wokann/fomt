@@ -2396,6 +2396,8 @@ std::string SelectGuideSource(const std::string &source, const std::set<std::str
     std::size_t line_number = 0;
     while (std::getline(lines, line)) {
         ++line_number;
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
         const std::string trimmed = Trim(StripLineComment(line));
         const bool parent_active = conditionals.empty() || conditionals.back().active;
         std::string directive_arguments;
