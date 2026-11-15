@@ -78,6 +78,17 @@ mary_text_table
         "bekommst keinen Preis\r\n"
         "oder so etwas. Tschüss.{Press}";
 
+#ifdef BUGFIX
+    // This separate milestone is 100 million, not the preceding 10 million.
+    const char gText_AchievementEvent_Fishing_MilestoneReward_CaughtHundredMillionFishMilestone[] =
+        "Herzlichen Glückwunsch!{Press}\p"
+        "Du hast jetzt 100.000.000\r\n"
+        "Fische gefangen!{Press}\p"
+        "Das ist alles. Du \r\n"
+        "bekommst keinen Preis\r\n"
+        "oder so etwas. Tschüss.{Press}";
+#endif
+
     const char gText_AchievementEvent_Fishing_MilestoneReward_Caught1000000000FishMilestone[] =
         "Herzlichen Glückwunsch!{Press}\p"
         "Du hast jetzt 1.000.000.000\r\n"
@@ -224,7 +235,11 @@ void EventScript_AchievementEvent_Fishing_MilestoneReward(void)
         TalkOpen();
         SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
         SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
+#ifdef BUGFIX
+        TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_CaughtHundredMillionFishMilestone);
+#else
         TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Shared_CaughtTenOrHundredMillionFishMilestone);
+#endif
         TalkClose();
         MarkNpcSpokenTo(CHARACTER_HARVEST_GODDESS);
         AddCharacterLove(CHARACTER_HARVEST_GODDESS, 3000);
