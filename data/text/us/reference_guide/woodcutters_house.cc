@@ -43,8 +43,14 @@ MAIN
     " Refrigerator and other "
     " things. "
     ""
+// The house has two expansion stages, not a second floor.
+#ifdef BUGFIX
+    "·You can expand your home"
+    " twice."
+#else
     "·You can also build a "
     " second floor. "
+#endif
     ""
     "·After expanding your home "
     " twice, you will become "

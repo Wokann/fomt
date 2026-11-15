@@ -46,8 +46,14 @@ MAIN
     " Kühlschrank und andere "
     " Dinge zu schaffen. "
     ""
+// The house has two expansion stages, not a second floor.
+#ifdef BUGFIX
+    "Du kannst dein Haus"
+    " zweimal ausbauen lassen."
+#else
     "Du kannst auch ein"
     " zweites Stockwerk bauen. "
+#endif
     ""
     "·Nach zwei Anbauten "
     " bist du in der Lage,  "

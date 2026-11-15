@@ -265,3 +265,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [B11](TEXT_SYMBOL_AUDIT.md#b11) | 海外三版：霍安出售的种子是否随季节变化，含义写反 | [实现与验证边界](BUGFIX.md#audit-b11) |
 | [B12](TEXT_SYMBOL_AUDIT.md#b12) | DE：茶叶与成品茶同名，配方原料也未区分；三处统一用20字符缩写，完整重制版名为22字符 | [实现与验证边界](BUGFIX.md#audit-b12) |
 | [B13](TEXT_SYMBOL_AUDIT.md#b13) | 锤子指南：海外漏掉银锤说明，日版次数也存在问题 | [实现与验证边界](BUGFIX.md#audit-b13) |
+| [B14](TEXT_SYMBOL_AUDIT.md#b14) | 房屋“两阶段扩建”误译成“建造二楼” | [实现与验证边界](BUGFIX.md#audit-b14) |
