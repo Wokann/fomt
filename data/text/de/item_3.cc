@@ -47,35 +47,40 @@ char const gText_Item_Article_WoolS_Name[] =
 
 char const gText_Item_Article_WoolS_Description[] =
     "Wolle (S)\r\n"
-    "Von Schafen geschoren.\r\n";
+    "Von Schafen geschoren.\r\n"
+    "";
 
 char const gText_Item_Article_WoolM_Name[] =
     "Wolle (M) ";
 
 char const gText_Item_Article_WoolM_Description[] =
     "Wolle (M)\r\n"
-    "Von Schafen geschoren.\r\n";
+    "Von Schafen geschoren.\r\n"
+    "";
 
 char const gText_Item_Article_WoolL_Name[] =
     "Wolle (L)";
 
 char const gText_Item_Article_WoolL_Description[] =
     "Wolle (L)\r\n"
-    "Von Schafen geschoren.\r\n";
+    "Von Schafen geschoren.\r\n"
+    "";
 
 char const gText_Item_Article_WoolG_Name[] =
     "Wolle (G)";
 
 char const gText_Item_Article_WoolG_Description[] =
     "Wolle (G)\r\n"
-    "Von Schafen geschoren.\r\n";
+    "Von Schafen geschoren.\r\n"
+    "";
 
 char const gText_Item_Article_WoolP_Name[] =
     "Wolle (P)";
 
 char const gText_Item_Article_WoolP_Description[] =
     "Wolle (P)\r\n"
-    "Von Schafen geschoren.\r\n";
+    "Von Schafen geschoren.\r\n"
+    "";
 
 #ifdef BUGFIX
 char const gText_Item_Article_WoolX_Name[] =
@@ -83,7 +88,8 @@ char const gText_Item_Article_WoolX_Name[] =
 
 char const gText_Item_Article_WoolX_Description[] =
     "Wolle (X)\r\n"
-    "Von Schafen geschoren.\r\n";
+    "Von Schafen geschoren.\r\n"
+    "";
 #endif
 
 char const gText_Item_Article_YarnS_Name[] =
@@ -337,7 +343,8 @@ char const gText_Item_Article_TheSpringSun_Name[] =
 
 char const gText_Item_Article_TheSpringSun_Description[] =
     "Ungenutzter Gegenstand\r\n"
-    "Du kannst ihn kochen.\r\n";
+    "Du kannst ihn kochen.\r\n"
+    "";
 
 char const gText_Item_Article_TheSummerSun_Name[] =
     "Die Sommersonne";
@@ -425,7 +432,8 @@ char const gText_Item_Article_Ball_Name[] =
 
 char const gText_Item_Article_Ball_Description[] =
     "Ball\r\n"
-    "Spielzeug für Hunde.\r\n";
+    "Spielzeug für Hunde.\r\n"
+    "";
 
 char const gText_Item_Article_PirateTreasure_Name[] =
     "Piratenschatz";
@@ -440,28 +448,32 @@ char const gText_Item_Article_FossilOfFish_Name[] =
 
 char const gText_Item_Article_FossilOfFish_Description[] =
     "Uraltes Fischfossil\r\n"
-    "Sehr wertvolles Fossil.";
+    "Sehr wertvolles Fossil."
+    "";
 
 char const gText_Item_Article_EmptyCan_Name[] =
     "Leere Dose";
 
 char const gText_Item_Article_EmptyCan_Description[] =
     "Leere Dose\r\n"
-    "Abfall.";
+    "Abfall."
+    "";
 
 char const gText_Item_Article_Boots_Name[] =
     "Stiefel";
 
 char const gText_Item_Article_Boots_Description[] =
     "Stiefel\r\n"
-    "Abfall";
+    "Abfall"
+    "";
 
 char const gText_Item_Article_FishBones_Name[] =
     "Fischgräten";
 
 char const gText_Item_Article_FishBones_Description[] =
     "Fischgräten\r\n"
-    "Abfall";
+    "Abfall"
+    "";
 
 char const gText_Item_Article_KarensWine_Name[] =
     "Karens Wein";
@@ -484,7 +496,8 @@ char const gText_Item_Article_AnnsMusicBox_Name[] =
 
 char const gText_Item_Article_AnnsMusicBox_Description[] =
     "Von Ann erhaltene Spieldose.\r\n"
-    "Kaputt, spielt keine Musik.";
+    "Kaputt, spielt keine Musik."
+    "";
 
 char const gText_Item_Article_MarysGreatBook_Name[] =
     "Marys Superbuch";
@@ -507,70 +520,80 @@ char const gText_Item_Article_Album1_Name[] =
 
 char const gText_Item_Article_Album1_Description[] =
     "Album 1\r\n"
-    "Frühlingslied SFC Karte.\r\n";
+    "Frühlingslied SFC Karte.\r\n"
+    "";
 
 char const gText_Item_Article_Album2_Name[] =
     "Album 2";
 
 char const gText_Item_Article_Album2_Description[] =
     "Album 2\r\n"
-    "Lied für SFC-Event\r\n";
+    "Lied für SFC-Event\r\n"
+    "";
 
 char const gText_Item_Article_Album3_Name[] =
     "Album 3";
 
 char const gText_Item_Article_Album3_Description[] =
     "Album 3\r\n"
-    "Herbstlied für N64-Karte\r\n";
+    "Herbstlied für N64-Karte\r\n"
+    "";
 
 char const gText_Item_Article_Album4_Name[] =
     "Album 4";
 
 char const gText_Item_Article_Album4_Description[] =
     "Album 4\r\n"
-    "N64 Eröffnungslied \r\n";
+    "N64 Eröffnungslied \r\n"
+    "";
 
 char const gText_Item_Article_Album5_Name[] =
     "Album 5";
 
 char const gText_Item_Article_Album5_Description[] =
     "Album 5\r\n"
-    "PS Mädchen Eröffnungslied\r\n";
+    "PS Mädchen Eröffnungslied\r\n"
+    "";
 
 char const gText_Item_Article_Album6_Name[] =
     "Album 6";
 
 char const gText_Item_Article_Album6_Description[] =
     "Album 6\r\n"
-    "PS Mädchen Liebeslied\r\n";
+    "PS Mädchen Liebeslied\r\n"
+    "";
 
 char const gText_Item_Article_Album7_Name[] =
     "Album 7";
 
 char const gText_Item_Article_Album7_Description[] =
     "Album 7\r\n"
-    "Sommerlied für PS2-Karte\r\n";
+    "Sommerlied für PS2-Karte\r\n"
+    "";
 
 char const gText_Item_Article_Album8_Name[] =
     "Album 8";
 
 char const gText_Item_Article_Album8_Description[] =
     "Album 8\r\n"
-    "Herbstlied für PS2-Wald\r\n";
+    "Herbstlied für PS2-Wald\r\n"
+    "";
 
 char const gText_Item_Article_Album9_Name[] =
     "Album 9";
 
 char const gText_Item_Article_Album9_Description[] =
     "Album 9\r\n"
-    "GC-Farm Herbst-/Winterlied\r\n";
+    "GC-Farm Herbst-/Winterlied\r\n"
+    "";
 
 char const gText_Item_Article_Album10_Name[] =
     "Album 10";
 
 char const gText_Item_Article_Album10_Description[] =
     "Album 10\r\n"
-    "GC-Bar Nachtlied\r\n";
+    "GC-Bar Nachtlied\r\n"
+    "";
 
 char const gText_Item_Article_Album11_Name[] =
     "Album 11";
@@ -737,4 +760,5 @@ char const gText_Item_Article_Frisbee_Name[] =
 
 char const gText_Item_Article_Frisbee_Description[] =
     "Gut, um mit deinem Hund\r\n"
-    "am Mineralstrand zu spielen.";
+    "am Mineralstrand zu spielen."
+    "";

@@ -464,7 +464,8 @@ char const gText_Item_Food_Bodigizer_Name[] =
 
 char const gText_Item_Food_Bodigizer_Description[] =
     "Bodigizer\r\n"
-    "Hilft, Ausdauer zu gewinnen.";
+    "Hilft, Ausdauer zu gewinnen."
+    "";
 
 #ifdef BUGFIX
 char const gText_Item_Food_BodigizerXl_Name[] =
@@ -619,7 +620,8 @@ char const gText_Item_Food_WildGrapeJuice_Name[] =
 
 char const gText_Item_Food_WildGrapeJuice_Description[] =
     "Aus wilden Trauben \r\n"
-    "gemachter Saft.";
+    "gemachter Saft."
+    "";
 
 char const gText_Item_Food_Salad_Name[] =
     "Salat";
@@ -650,7 +652,8 @@ char const gText_Item_Food_MisoSoup_Name[] =
 
 char const gText_Item_Food_MisoSoup_Description[] =
     "Miso-SuppeEine köstliche Suppe.\r\n"
-    "Selberessen o. verschenken.";
+    "Selberessen o. verschenken."
+    "";
 
 char const gText_Item_Food_StirFry_Name[] =
     "Geschmortes Gemüse";
@@ -1107,14 +1110,16 @@ char const gText_Item_Food_BuckwheatNoodles_Name[] =
 
 char const gText_Item_Food_BuckwheatNoodles_Description[] =
     "Buchweizen-Nudeln\r\n"
-    "Nudeln aus Buchweizenmehl.\r\n";
+    "Nudeln aus Buchweizenmehl.\r\n"
+    "";
 
 char const gText_Item_Food_NoodlesWTempura_Name[] =
     "Nudeln m/ Tempura";
 
 char const gText_Item_Food_NoodlesWTempura_Description[] =
     "Tempura-Buchweizen-Nudeln\r\n"
-    "Selberessen o. verschenken.";
+    "Selberessen o. verschenken."
+    "";
 
 char const gText_Item_Food_BuckwheatChips_Name[] =
     "Buchweizenchips";

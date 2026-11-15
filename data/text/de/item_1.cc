@@ -279,35 +279,40 @@ char const gText_Item_Tool_WateringCan_Name[] =
 
 char const gText_Item_Tool_WateringCan_Description[] =
     "Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Um Feldfrüchte zu gießen.\r\n"
+    "";
 
 char const gText_Item_Tool_CopperWateringCan_Name[] =
     "Kupfer-Gießkanne";
 
 char const gText_Item_Tool_CopperWateringCan_Description[] =
     "Kupfer-Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Um Feldfrüchte zu gießen.\r\n"
+    "";
 
 char const gText_Item_Tool_SilverWateringCan_Name[] =
     "Silber Gießkanne";
 
 char const gText_Item_Tool_SilverWateringCan_Description[] =
     "Silber Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Um Feldfrüchte zu gießen.\r\n"
+    "";
 
 char const gText_Item_Tool_GoldWateringCan_Name[] =
     "Gold Gießkanne";
 
 char const gText_Item_Tool_GoldWateringCan_Description[] =
     "Gold Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Um Feldfrüchte zu gießen.\r\n"
+    "";
 
 char const gText_Item_Tool_MystrileWateringCan_Name[] =
     "Mythril Gießkanne";
 
 char const gText_Item_Tool_MystrileWateringCan_Description[] =
     "Mythril Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Um Feldfrüchte zu gießen.\r\n"
+    "";
 
 char const gText_Item_Tool_CursedWateringCan_Name[] =
     "Verwünschte Gießkanne";
@@ -322,49 +327,56 @@ char const gText_Item_Tool_BlessedWateringCan_Name[] =
 
 char const gText_Item_Tool_BlessedWateringCan_Description[] =
     "Gesegnete Gießkanne\r\n"
-    "Fluch wurde aufgehoben!\r\n";
+    "Fluch wurde aufgehoben!\r\n"
+    "";
 
 char const gText_Item_Tool_MythicWateringCan_Name[] =
     "Mythische Gießkanne";
 
 char const gText_Item_Tool_MythicWateringCan_Description[] =
     "Mythische Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Um Feldfrüchte zu gießen.\r\n"
+    "";
 
 char const gText_Item_Tool_FishingRod_Name[] =
     "Angelrute";
 
 char const gText_Item_Tool_FishingRod_Description[] =
     "Angelrute\r\n"
-    "Zum Fischen.";
+    "Zum Fischen."
+    "";
 
 char const gText_Item_Tool_CopperFishingRod_Name[] =
     "Kupferangelrute";
 
 char const gText_Item_Tool_CopperFishingRod_Description[] =
     "Kupferangelrute\r\n"
-    "Zum Fischen.\r\n";
+    "Zum Fischen.\r\n"
+    "";
 
 char const gText_Item_Tool_SilverFishingRod_Name[] =
     "Silberangelrute";
 
 char const gText_Item_Tool_SilverFishingRod_Description[] =
     "Silberangelrute\r\n"
-    "Zum Fischen.\r\n";
+    "Zum Fischen.\r\n"
+    "";
 
 char const gText_Item_Tool_GoldFishingRod_Name[] =
     "Goldangelrute";
 
 char const gText_Item_Tool_GoldFishingRod_Description[] =
     "Goldangelrute\r\n"
-    "Zum Fischen.\r\n";
+    "Zum Fischen.\r\n"
+    "";
 
 char const gText_Item_Tool_MystrileFishingRod_Name[] =
     "Mythrilangelrute";
 
 char const gText_Item_Tool_MystrileFishingRod_Description[] =
     "Mythrilangelrute\r\n"
-    "Zum Fischen.\r\n";
+    "Zum Fischen.\r\n"
+    "";
 
 char const gText_Item_Tool_CursedFishingRod_Name[] =
     "Verwünschte Angelrute";
@@ -387,7 +399,8 @@ char const gText_Item_Tool_MythicFishingRod_Name[] =
 
 char const gText_Item_Tool_MythicFishingRod_Description[] =
     "Mythische Angelrute\r\n"
-    "Zum Fischen.\r\n";
+    "Zum Fischen.\r\n"
+    "";
 
 char const gText_Item_Tool_CowMiraclePotion_Name[] =
     "Kuhwundertrank";
@@ -410,105 +423,120 @@ char const gText_Item_Tool_TurnipSeeds_Name[] =
 
 char const gText_Item_Tool_TurnipSeeds_Description[] =
     "Rübensamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Säe sie im Frühling.\r\n"
+    "";
 
 char const gText_Item_Tool_PotatoSeeds_Name[] =
     "Kartoffelsamen";
 
 char const gText_Item_Tool_PotatoSeeds_Description[] =
     "Kartoffelsamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Säe sie im Frühling.\r\n"
+    "";
 
 char const gText_Item_Tool_CucumberSeeds_Name[] =
     "Gurkensamen";
 
 char const gText_Item_Tool_CucumberSeeds_Description[] =
     "Gurkensamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Säe sie im Frühling.\r\n"
+    "";
 
 char const gText_Item_Tool_StrawberrySeeds_Name[] =
     "Erdbeersamen";
 
 char const gText_Item_Tool_StrawberrySeeds_Description[] =
     "Erdbeersamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Säe sie im Frühling.\r\n"
+    "";
 
 char const gText_Item_Tool_CabbageSeeds_Name[] =
     "Kohlsamen";
 
 char const gText_Item_Tool_CabbageSeeds_Description[] =
     "Kohlsamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Säe sie im Frühling.\r\n"
+    "";
 
 char const gText_Item_Tool_TomatoSeeds_Name[] =
     "Tomatensamen";
 
 char const gText_Item_Tool_TomatoSeeds_Description[] =
     "Tomatensamen\r\n"
-    "Säe sie im Sommer.\r\n";
+    "Säe sie im Sommer.\r\n"
+    "";
 
 char const gText_Item_Tool_CornSeeds_Name[] =
     "Getreidesamen";
 
 char const gText_Item_Tool_CornSeeds_Description[] =
     "Getreidesamen\r\n"
-    "Säe sie im Sommer.\r\n";
+    "Säe sie im Sommer.\r\n"
+    "";
 
 char const gText_Item_Tool_OnionSeeds_Name[] =
     "Zwiebelsamen";
 
 char const gText_Item_Tool_OnionSeeds_Description[] =
     "Zwiebelsamen\r\n"
-    "Säe sie im Sommer.\r\n";
+    "Säe sie im Sommer.\r\n"
+    "";
 
 char const gText_Item_Tool_PumpkinSeeds_Name[] =
     "Kürbissamen";
 
 char const gText_Item_Tool_PumpkinSeeds_Description[] =
     "Kürbissamen\r\n"
-    "Säe sie im Sommer.\r\n";
+    "Säe sie im Sommer.\r\n"
+    "";
 
 char const gText_Item_Tool_PineappleSeeds_Name[] =
     "Ananassamen";
 
 char const gText_Item_Tool_PineappleSeeds_Description[] =
     "Ananassamen\r\n"
-    "Säe sie im Sommer.\r\n";
+    "Säe sie im Sommer.\r\n"
+    "";
 
 char const gText_Item_Tool_EggplantSeeds_Name[] =
     "Auberginensamen";
 
 char const gText_Item_Tool_EggplantSeeds_Description[] =
     "Auberginensamen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Säe sie im Herbst.\r\n"
+    "";
 
 char const gText_Item_Tool_CarrotSeeds_Name[] =
     "Karottensamen";
 
 char const gText_Item_Tool_CarrotSeeds_Description[] =
     "Karottensamen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Säe sie im Herbst.\r\n"
+    "";
 
 char const gText_Item_Tool_SweetPotatoSeeds_Name[] =
     "Süßkartoffelsamen";
 
 char const gText_Item_Tool_SweetPotatoSeeds_Description[] =
     "Süßkartoffelsamen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Säe sie im Herbst.\r\n"
+    "";
 
 char const gText_Item_Tool_SpinachSeeds_Name[] =
     "Spinatsamen";
 
 char const gText_Item_Tool_SpinachSeeds_Description[] =
     "Spinatsamen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Säe sie im Herbst.\r\n"
+    "";
 
 char const gText_Item_Tool_GreenPepperSeeds_Name[] =
     "Grüne Paprikasamen";
 
 char const gText_Item_Tool_GreenPepperSeeds_Description[] =
     "Grüne Paprikasamen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Säe sie im Herbst.\r\n"
+    "";
 
 char const gText_Item_Tool_GrassSeeds_Name[] =
     "Grassamen";
@@ -539,14 +567,16 @@ char const gText_Item_Tool_MagicSeeds_Name[] =
 
 char const gText_Item_Tool_MagicSeeds_Description[] =
     "Magische Samen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Säe sie im Herbst.\r\n"
+    "";
 
 char const gText_Item_Tool_ToyFlowerSeeds_Name[] =
     "Spielblumensamen";
 
 char const gText_Item_Tool_ToyFlowerSeeds_Description[] =
     "Spielblumensamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Säe sie im Frühling.\r\n"
+    "";
 
 char const gText_Item_Tool_Brush_Name[] =
     "Bürste";
@@ -569,7 +599,8 @@ char const gText_Item_Tool_Clipper_Name[] =
 
 char const gText_Item_Tool_Clipper_Description[] =
     "Werkzeug zum Scheren\r\n"
-    "ausgewachsener Schafe.";
+    "ausgewachsener Schafe."
+    "";
 
 char const gText_Item_Tool_Bell_Name[] =
     "Glocke";
@@ -599,7 +630,9 @@ char const gText_Item_Tool_Pedometer_Name[] =
     "Schrittmesser";
 
 char const gText_Item_Tool_Pedometer_Description[] =
-    "Schrittmesser\r\n";
+    "Schrittmesser\r\n"
+    ""
+    "";
 
 char const gText_Item_Tool_TeleportStone_Name[] =
     "Teleportier-Stein";

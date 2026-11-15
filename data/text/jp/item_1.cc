@@ -343,7 +343,8 @@ char const gText_Item_Tool_FishingRod_Name[] =
 
 char const gText_Item_Tool_FishingRod_Description[] =
     "釣り竿\r\n"
-    "魚を釣る道具。";
+    "魚を釣る道具。"
+    "";
 
 char const gText_Item_Tool_CopperFishingRod_Name[] =
     "銅の釣り竿";

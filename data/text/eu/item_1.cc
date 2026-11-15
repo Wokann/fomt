@@ -346,9 +346,12 @@ char const gText_Item_Tool_FishingRod_Description[] =
 // Restore the missing row breaks required by the description reader.
 #ifdef BUGFIX
     "Fishing Rod\r\n"
-    "For fishing.\r\n";
+    "For fishing.\r\n"
+    "";
 #else
-    "Fishing RodFor fishing.";
+    "Fishing RodFor fishing."
+    ""
+    "";
 #endif
 
 char const gText_Item_Tool_CopperFishingRod_Name[] =
@@ -636,6 +639,7 @@ char const gText_Item_Tool_Pedometer_Name[] =
 
 char const gText_Item_Tool_Pedometer_Description[] =
     "Pedometer\r\n"
+    ""
     "";
 
 char const gText_Item_Tool_TeleportStone_Name[] =
