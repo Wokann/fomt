@@ -10,6 +10,10 @@ MAIN
     "in Mineralstadt "
     "Informationen über das "
     "VergissmeinnichtTal."
+// Restore the profile-level boundary before the next paragraph.
+#ifdef BUGFIX
+    "<332>"
+#endif
     ""
     "Er trägt gerne gelb."
     "Er ist der lockerste von"

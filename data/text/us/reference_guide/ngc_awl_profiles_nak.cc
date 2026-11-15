@@ -9,6 +9,10 @@ MAIN
     "He sends information about"
     "Forget-me-not Valley to his"
     "friends in Mineral Town."
+// Restore the profile-level boundary before the next paragraph.
+#ifdef BUGFIX
+    "<332>"
+#endif
     ""
     "He likes wearing yellow."
     "He's the most relaxed of "
