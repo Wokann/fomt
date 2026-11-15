@@ -601,9 +601,16 @@ mary_text_table
         "                      \r\n"
         "Aaron (in Erins \r\n"
         "Körper) \r\n"
+// The music test uses a recorder (Blockfloete), not recording equipment.
+#ifdef BUGFIX
+        "\"Ja. Wir haben einen\r\n"
+        "Blockflötentest.\"\r\n"
+        "Hä? Blockflöte?\r\n"
+#else
         "\"Ja. Wir haben einen\r\n"
         "Aufnahmetest.\" \r\n"
         "Hä? Aufnahme?\r\n"
+#endif
         "Warte eine Minute. \r\n"
         "Wäre das wie ein \r\n"
         "indirekter Kuss? Aber \r\n"
@@ -627,9 +634,16 @@ mary_text_table
         "Körper) \r\n"
         "\"Oh... ok. Komme \r\n"
         "schon.\" \r\n"
+// The object is the same musical instrument used in the test.
+#ifdef BUGFIX
+        "Ich schnappte meine\r\n"
+        "Blockflöte und\r\n"
+        "mein Textbuch\r\n"
+#else
         "Ich schnappte meinen\r\n"
         "Kassettenrekorder und\r\n"
         "und mein Textbuch\r\n"
+#endif
         "und rannte hinterher.  \r\n"
         "                      \r\n"
         "                      \r\n"
