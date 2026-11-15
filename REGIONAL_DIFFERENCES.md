@@ -253,3 +253,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | 审计项 | 原版差异／问题 | 修复记录 |
 | --- | --- | --- |
 | [B01](TEXT_SYMBOL_AUDIT.md#b01) | 出荷价格指南：按道具名称列出三个品质的鸡蛋并修正海外胡萝卜价格 | [实现与验证边界](BUGFIX.md#audit-b01) |
+| [B02](TEXT_SYMBOL_AUDIT.md#b02) | 海外三版：图书馆休馆日变更方向写反 | [实现与验证边界](BUGFIX.md#audit-b02) |

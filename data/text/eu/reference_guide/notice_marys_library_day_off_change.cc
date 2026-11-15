@@ -5,7 +5,12 @@ TITLE
 MAIN
     ""
     "Our day off is changing"
+// After the wedding the library closes on Thursday, not Monday.
+#ifdef BUGFIX
+    "from Monday to Thursday."
+#else
     "from Thursday to Monday."
+#endif
     "Please make a note of it."
     ""
     "       Mary's Library"

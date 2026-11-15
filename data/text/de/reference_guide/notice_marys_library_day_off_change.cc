@@ -5,7 +5,12 @@ TITLE
 MAIN
     ""
     "Unser freier Tag ist nun"
+// After the wedding the library closes on Thursday, not Monday.
+#ifdef BUGFIX
+    "Donnerstag anstatt Montag."
+#else
     "Montag anstatt Donnerstag."
+#endif
     "Bitte zur Kenntnis nehmen."
     ""
     "       Marys Bibliothek"
