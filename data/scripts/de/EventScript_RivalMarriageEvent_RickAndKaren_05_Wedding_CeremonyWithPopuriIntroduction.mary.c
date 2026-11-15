@@ -20,6 +20,14 @@ mary_text_table
         "Popuri zu verdanken, dass\r\n"
         "du heiratest?{Press}";
 
+#ifdef BUGFIX
+    // Restore Rick's denial and invitation; keep Popuri's preceding teasing.
+    const char gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_RickDismissesPopurisTeasingAndInvitesPlayer[] =
+        "So... so ist das nicht!\r\n"
+        "Unsere Hochzeit ist heute.\r\n"
+        "Kommt also beide!{Press}";
+#endif
+
     const char gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_CarterPronouncesCoupleMarried[] =
         "Du darfst die Braut küssen.{Press}";
 
@@ -68,7 +76,11 @@ void EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIn
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_RICK_BLUSHING);
     SetTalkNameplateCharacter(CHARACTER_RICK);
+#ifdef BUGFIX
+    TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_RickDismissesPopurisTeasingAndInvitesPlayer);
+#else
     TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_Shared_PopuriTeasesRickAndRickInvitesPlayer);
+#endif
     TalkClose();
     FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
     StopBGM();

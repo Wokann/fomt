@@ -8,7 +8,7 @@
 
 **验收状态（2026-11-15）：羊祭接待桌修复后，四版默认完整构建均逐字节及 SHA-1 匹配各自 baserom，四版 BUGFIX 完整构建均通过。最新消息调用核验见羊祭条目；指南及先前修复的具体核验范围见各条目和历史记录。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
 
-**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A02），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
+**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A03），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
 
 ## 统一索引
 
@@ -409,3 +409,13 @@
 - **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
 
 [EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary](data/scripts/de/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary](data/scripts/de/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a02)
+
+<a id="audit-a03"></a>
+### A03．德版里克婚礼重复珀布利调侃
+
+- **原版表现：** 切换到里克姓名及肖像后仍重复珀布利的调侃。
+- **正确内容与依据：** JP里克否认并邀请两人参加今天的婚礼；DE普通婚礼已有 `Unsere Hochzeit ist heute.`（今天是我们的婚礼）。重制版未找到对应情敌婚礼台词。
+- **修复方式：** 沿用本作邀请句，按JP补齐否认与邀请双方；保留珀布利原调用。 BUGFIX关闭时保留原文本及引用。
+- **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
+
+[EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary](data/scripts/de/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c) · [EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary](data/scripts/de/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a03)

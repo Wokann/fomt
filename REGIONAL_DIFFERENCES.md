@@ -232,6 +232,7 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | --- | --- | --- |
 | A01 | 医生与琳共用 `Danke.`（谢谢），医生未解释病情。 JP／US／EU在此说明妻子不是生病；DE玛丽怀孕事件已有 `Deine Frau ist nicht krank.`（你的妻子不是生病）。 | [德版琳怀孕时医生复用答谢](BUGFIX.md#audit-a01) |
 | A02 | 黑屏中的玩家独白重复玛丽通知父母、邀请回家的话。 JP及英文是玩家即将当父亲的喜悦；复用DE琳怀孕末尾已有的玩家独白。 | [德版玛丽怀孕末尾复用妻子台词](BUGFIX.md#audit-a02) |
+| A03 | 切换到里克姓名及肖像后仍重复珀布利的调侃。 JP里克否认并邀请两人参加今天的婚礼；DE普通婚礼已有 `Unsere Hochzeit ist heute.`（今天是我们的婚礼）。重制版未找到对应情敌婚礼台词。 | [德版里克婚礼重复珀布利调侃](BUGFIX.md#audit-a03) |
 
 
 
