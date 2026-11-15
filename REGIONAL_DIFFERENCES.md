@@ -301,3 +301,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [E08](TEXT_SYMBOL_AUDIT.md#e08) | 海外三版：同节目第8集标题残留 `<et>` | [实现与验证边界](BUGFIX.md#audit-e08) |
 | [E09](TEXT_SYMBOL_AUDIT.md#e09) | DE：《Mechabot Ultror Zero》第1集装饰人员多出 Yellow | [实现与验证边界](BUGFIX.md#audit-e09) |
 | [E10](TEXT_SYMBOL_AUDIT.md#e10) | DE：同节目第2集把上午写成明天 | [实现与验证边界](BUGFIX.md#audit-e10) |
+| [E12](TEXT_SYMBOL_AUDIT.md#e12) | DE：进阶节目冬2日，把最大体力写成10 | [实现与验证边界](BUGFIX.md#audit-e12) |

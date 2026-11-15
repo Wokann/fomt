@@ -2695,9 +2695,17 @@ mary_text_table
         "\"Wie sehr?\"\r\n"
         "\"Je länger du darin\r\n"
         " bleibst, umso besser.\r\n"
+// The spring respects the current stamina maximum; it is not a fixed value of 10.
+#ifdef BUGFIX
+        " Deine Ausdauer steigt nur\r\n"
+        " bis zu deinem Maximum; der\r\n"
+        " Energieverlust sinkt\r\n"
+        " höchstens auf 0.\"\r\n"
+#else
         " Allerdings ist 10 die max.\r\n"
         " Ausdauer und 0 der\r\n"
         " minimale Energieverlust.\"\r\n"
+#endif
         "\"Kann ich auch an\r\n"
         "Regentagen gehen?\"\r\n"
         "\"Sicher. Das\r\n"
