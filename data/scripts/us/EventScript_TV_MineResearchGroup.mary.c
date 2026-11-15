@@ -292,8 +292,15 @@ mary_text_table
         "255th level a very few\r\n"
         "times, and while we cannot\r\n"
         "say for certain, we have not\r\n"
+// The researcher reached level 255 but found no stairs going farther down.
+#ifdef BUGFIX
+        "found a stairway leading\r\n"
+        "down from the 255th level.\r\n"
+        "It would not\r\n"
+#else
         "found a stairway down to the\r\n"
         "255th level. It would not\r\n"
+#endif
         "surprise us to learn that\r\n"
         "that was the lowest level\r\n"
         "after all.\r\n"
