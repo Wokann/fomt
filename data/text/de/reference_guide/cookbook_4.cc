@@ -6,7 +6,12 @@ MAIN
     "☆ Entspannungtee"
     ""
     "·Nötige Zutaten"
+// Use the same shortened tea-leaf name as the item and its description.
+#ifdef BUGFIX
+    "  Entspann.-Teeblätter"
+#else
     "  Entspannungtee"
+#endif
     ""
     "·Nötige Utensilien"
     "  Topf"

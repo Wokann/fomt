@@ -582,11 +582,20 @@ char const gText_Item_Food_Chocolate_Description[] =
     "Kann so gegessen oder\r\n"
     "zum Kochen benutzt werden.";
 
+// Shorten the remake name Entspannungsteeblätter (22) for 20-tile cooking lists.
 char const gText_Item_Food_RelaxTeaLeaves_Name[] =
+#ifdef BUGFIX
+    "Entspann.-Teeblätter";
+#else
     "Entspannungstee";
+#endif
 
 char const gText_Item_Food_RelaxTeaLeaves_Description[] =
+#ifdef BUGFIX
+    "Entspann.-Teeblätter\r\n"
+#else
     "Entspannungstee \r\n"
+#endif
     "Geschenk von der Ernte-\r\n"
     "Wichtel-Teeparty.";
 
