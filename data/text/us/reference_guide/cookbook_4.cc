@@ -13,7 +13,12 @@ MAIN
     ""
     ""
     "·Optional Ingredients"
+// Restore the full milk ingredient name used elsewhere in the same language.
+#ifdef BUGFIX
+    "  Fruit, Milk, Grasses"
+#else
     "  Fruit, Mil, Grasses"
+#endif
     ""
     "·Optional Utensils"
     "  Knife"

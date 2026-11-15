@@ -18,7 +18,12 @@ MAIN
     ""
     ""
     "·Beliebige Zutaten"
+// Restore the full milk ingredient name used elsewhere in the same language.
+#ifdef BUGFIX
+    "  Früchte, Milch, Gräser"
+#else
     "  Früchte, Mil, Gräser"
+#endif
     ""
     "·Beliebige Utensilien"
     "  Messer "
