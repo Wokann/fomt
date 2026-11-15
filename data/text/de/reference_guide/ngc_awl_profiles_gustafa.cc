@@ -14,8 +14,15 @@ MAIN
     "Er spielt fast jedes "
     "Instrument, und kennt Lieder"
     "aus der ganzen Welt."
+// JP describes his ancestors, not his own employment at court.
+#ifdef BUGFIX
+    "Er stammt von Hofdichtern"
+    "ab, die seit Generationen"
+    "einem Königshof dienten."
+#else
     "Er hat am Hof eines fernen"
     "Königreiches gedient."
+#endif
     "<132>"
     "Man sagt, er liebt eine"
     "Reisegefährtin namens"

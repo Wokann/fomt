@@ -13,8 +13,15 @@ MAIN
     "He can play almost any "
     "instrument and knows songs"
     "from around the world."
+// JP describes his ancestors, not his own employment at court.
+#ifdef BUGFIX
+    "He descends from court poets"
+    "who served a royal court"
+    "for generations."
+#else
     "He used to serve at the "
     "court of a distant empire."
+#endif
     "<132>"
     "He is said to be in love "
     "with a fellow traveler"

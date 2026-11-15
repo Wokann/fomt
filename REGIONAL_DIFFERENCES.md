@@ -274,3 +274,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [C04](TEXT_SYMBOL_AUDIT.md#c04) | 海外三版：巴基尔与安娜贺卡标题把 Anna 写成 Ann | [实现与验证边界](BUGFIX.md#audit-c04) |
 | [C05](TEXT_SYMBOL_AUDIT.md#c05) | DE：Lumina 的祖母误写成 Manna | [实现与验证边界](BUGFIX.md#audit-c05) |
 | [C06](TEXT_SYMBOL_AUDIT.md#c06) | US／EU：Sebastian 介绍中的 Romana 误写成 Manna | [实现与验证边界](BUGFIX.md#audit-c06) |
+| [C07](TEXT_SYMBOL_AUDIT.md#c07) | 海外三版：Gustafa 的祖先经历写成本人经历 | [实现与验证边界](BUGFIX.md#audit-c07) |
