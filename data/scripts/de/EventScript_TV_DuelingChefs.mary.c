@@ -104,7 +104,12 @@ mary_text_table
         "\r\n"
         "   Utensilien:\r\n"
         "      Bratpfanne\r\n"
+// Chef B uses sugar in JP; salt is a different ingredient.
+#ifdef BUGFIX
+        "      Gewürze: Zucker\r\n"
+#else
         "      Gewürze: Salz\r\n"
+#endif
         " \r\n"
         "Lasst uns nun den \r\n"
         "Geschmackstest machen, \r\n"

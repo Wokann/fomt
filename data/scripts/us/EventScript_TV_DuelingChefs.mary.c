@@ -100,7 +100,12 @@ mary_text_table
         "\r\n"
         "   Utensils:\r\n"
         "      Frying Pan\r\n"
+// Chef B uses sugar in JP; salt is a different ingredient.
+#ifdef BUGFIX
+        "      Seasoning: Sugar\r\n"
+#else
         "      Seasoning: Salt\r\n"
+#endif
         " \r\n"
         "Let's now have a taste \r\n"
         "test to determine the \r\n"
