@@ -2721,7 +2721,12 @@ mary_text_table
         "\"Wovon erzählst du \r\n"
         "mir heute?\"\r\n"
         "\"Wie wäre es mit der\r\n"
+// The location is the mine, as the following mining instructions also state.
+#ifdef BUGFIX
+        " Mine auf dem Mutterberg?\r\n"
+#else
         " Mühle auf dem Mutterberg?\r\n"
+#endif
         " In der Mine kannst du:\r\n"
         " ·Graben mit der Hacke\r\n"
         " ·Steine mit dem Hammer\r\n"
