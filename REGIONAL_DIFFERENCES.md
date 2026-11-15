@@ -292,3 +292,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [D09](TEXT_SYMBOL_AUDIT.md#d09) | Galen：海外缺最后一段 | [实现与验证边界](BUGFIX.md#audit-d09) |
 | [D10](TEXT_SYMBOL_AUDIT.md#d10) | Daryl：海外缺两段 | [实现与验证边界](BUGFIX.md#audit-d10) |
 | [E01](TEXT_SYMBOL_AUDIT.md#e01) | JP：《まことクンちぇんじ》第24集说话人写反 | [实现与验证边界](BUGFIX.md#audit-e01) |
+| [E02](TEXT_SYMBOL_AUDIT.md#e02) | DE：同节目第2集漏否定词 | [实现与验证边界](BUGFIX.md#audit-e02) |

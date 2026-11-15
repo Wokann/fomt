@@ -94,7 +94,13 @@ mary_text_table
         "\"Hmm... Heute...\r\n"
         "Huch!\"   \r\n"
         "Sie stolperte fast, \r\n"
+// Episode 3 correctly says she was not watching where she was going.
+#ifdef BUGFIX
+        "weil sie nicht darauf\r\n"
+        "achtete,\r\n"
+#else
         "weil sie darauf achtete, \r\n"
+#endif
         "wo sie hinging.  \r\n"
         " \r\n"
         " \r\n"
