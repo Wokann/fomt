@@ -8,7 +8,7 @@
 
 **验收状态（2026-11-15）：羊祭接待桌修复后，四版默认完整构建均逐字节及 SHA-1 匹配各自 baserom，四版 BUGFIX 完整构建均通过。最新消息调用核验见羊祭条目；指南及先前修复的具体核验范围见各条目和历史记录。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
 
-**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A09），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
+**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A10），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
 
 ## 统一索引
 
@@ -479,3 +479,19 @@
 - **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
 
 [EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary](data/scripts/jp/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary](data/scripts/de/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a09)
+
+
+<a id="audit-a10"></a>
+### A10．F-3.14节目日期、跨赛季复用与成绩错误
+
+- **原版及地区差异：** JP冬18—20的预告与成绩错序；海外冬18没有显示对应成绩。DE另有第一赛季末及第二赛季多场内容误用别的赛季，海外冬28重复预告前半。具体日期与原文见[四版审计及扩展核对](TEXT_SYMBOL_AUDIT.md#a10)。
+- **正确内容与依据：** 实际日期分派、同一天JP／英文完整正文、每场名次及累计积分共同定位；不能仅按相似符号名或同样的前三名配对。德文缺文优先复用同版表格和句式，确无对应正文的部分按JP原义补齐。
+- **修复方式：** 对已有正确文本调整调用；错误共用的对象拆出BUGFIX专用文本；缺失正文与成绩在对应对象附近补回。更正Daisy的两处数值，以及四版Sylvia第三赛季第七战少计一分并延续到后三场的问题。没有改变节目播放机制或添加运行时积分计算。
+- **验证状态：** 已按四版各120个日期静态核对成绩和预告，并核对链接产物中的文本字节和实际消息调用顺序；四版默认SHA-1及开启构建通过。未逐项实机复现。
+
+[JP节目](data/scripts/jp/EventScript_TV_F314MGrandPrix.mary.c) · [US节目](data/scripts/us/EventScript_TV_F314MGrandPrix.mary.c) · [EU节目](data/scripts/eu/EventScript_TV_F314MGrandPrix.mary.c) · [DE节目](data/scripts/de/EventScript_TV_F314MGrandPrix.mary.c)
+
+
+## 本轮指南与实际机制（已完成统一构建及产物核对）
+
+本节各项均由BUGFIX控制；完整修复集已通过四版默认及开启构建和静态产物核对，未逐项实机复现。四版原文及调用依据见各项审计链接。

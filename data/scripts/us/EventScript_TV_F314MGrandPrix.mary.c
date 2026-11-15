@@ -1019,7 +1019,12 @@ mary_text_table
         "Point Standings:\r\n"
         "1st (up): Lupinus  44\r\n"
         "2nd (down): Sylvia  39\r\n"
+// Daisy had 32 points and earned 6; JP correctly totals 38.
+#ifdef BUGFIX
+        "3rd (up): Daisy  38\r\n"
+#else
         "3rd (up): Daisy  39\r\n"
+#endif
         "4th (down): Miltonia  37\r\n"
         "5th (unch.): Cosmos  32\r\n"
         "6th (unch.): Moraea  8\r\n"
@@ -2182,7 +2187,12 @@ mary_text_table
         "Yesterday's Race Results:\r\n"
         "1st Place: Licorice  +10\r\n"
         "2nd Place: Lupinus  +6\r\n"
+// Third place awards 4 points, matching JP and the displayed cumulative score.
+#ifdef BUGFIX
+        "3rd Place: Daisy  +4\r\n"
+#else
         "3rd Place: Daisy  +6\r\n"
+#endif
         "4th Place: Cosmos  +3\r\n"
         "5th Place: Sylvia  +2\r\n"
         "6th Place: Miltonia  +1\r\n"
@@ -3122,6 +3132,35 @@ mary_text_table
         "2nd Place: Licorice\r\n"
         "3rd Place: Lupinus{Press}";
 
+// Winter 18 needs race 7 results; the original repeats an unrelated preview. Use JP standings and the existing EN table format.
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race27_ResultsPart02[] =
+        "The results of the seventh\r\n"
+        "F-3.14 MGP Race are:\r\n"
+        "\r\n"
+        "\r\n"
+        "Yesterday's Race Results:\r\n"
+        "1st Place: Eucomyth  +10\r\n"
+        "2nd Place: Licorice  +6\r\n"
+        "3rd Place: Lupinus  +4\r\n"
+        "4th Place: Miltonia  +3\r\n"
+        "5th Place: Sylvia  +2\r\n"
+        "6th Place: Moraea  +1\r\n"
+        "7th Place: Lilac\r\n"
+        "\r\n"
+        "Point Standings:\r\n"
+        "1st (up): Eucomyth  46\r\n"
+        "2nd (down): Daisy  37\r\n"
+        "3rd (unch.): Licorice  33\r\n"
+        "4th (unch.): Lupinus  25\r\n"
+        "5th (unch.): Cosmos  18\r\n"
+        "6th (unch.): Miltonia  12\r\n"
+        "7th (unch.): Sylvia  9\r\n"
+        "8th (unch.): Moraea  2\r\n"
+        "\r\n"
+        "\r\n"
+        "And there you have it.{Press}";
+#else
     const char gText_TV_F314MGrandPrix_Race27_ResultsPart02[] =
         "Racers in the F-3.14 MGP\r\n"
         "are as follows:\r\n"
@@ -3154,6 +3193,7 @@ mary_text_table
         "That's all for today. The\r\n"
         "8th match will be the day\r\n"
         "after tomorrow.{Press}";
+#endif
 
     const char gText_TV_F314MGrandPrix_Race28_PreviewPart01[] =
         "Racers in the F-3.14 MGP\r\n"
@@ -3227,8 +3267,14 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "That's all for today. The\r\n"
+// This second preview airs one day before the race.
+#ifdef BUGFIX
+        "eighth match will be\r\n"
+        "tomorrow.{Press}";
+#else
         "eighth match will be the day\r\n"
         "after tomorrow.{Press}";
+#endif
 
     const char gText_TV_F314MGrandPrix_Race28_ResultsPart01[] =
         "The results of the eighth\r\n"
@@ -3288,7 +3334,12 @@ mary_text_table
         "4th (unch.): Lupinus  27\r\n"
         "5th (unch.): Cosmos  21\r\n"
         "6th (unch.): Miltonia  13\r\n"
+// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
+#ifdef BUGFIX
+        "7th (unch.): Sylvia  9\r\n"
+#else
         "7th (unch.): Sylvia  8\r\n"
+#endif
         "8th (unch.): Moraea 2\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -3355,7 +3406,12 @@ mary_text_table
         "4th (unch.): Lupinus  27\r\n"
         "5th (unch.): Cosmos  25\r\n"
         "6th (unch.): Miltonia  13\r\n"
+// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
+#ifdef BUGFIX
+        "7th (unch.): Sylvia  11\r\n"
+#else
         "7th (unch.): Sylvia  10\r\n"
+#endif
         "8th (unch.): Moraea  5\r\n"
         "9th (up): Lavender  1\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -3460,7 +3516,12 @@ mary_text_table
         "4th (unch.): Lupinus  28\r\n"
         "4th (up): Cosmos  28\r\n"
         "6th (unch.): Miltonia  15\r\n"
+// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
+#ifdef BUGFIX
+        "7th (unch.): Sylvia  11\r\n"
+#else
         "7th (unch.): Sylvia  10\r\n"
+#endif
         "8th (unch.): Moraea  5\r\n"
         "9th (unch.): Lavender  1\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -3843,7 +3904,12 @@ void EventScript_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race30_PreviewPart01);
                     break;
                 case DAY_OF_MONTH_28:
+// The second preview uses the already translated final-race part two, as JP does.
+#ifdef BUGFIX
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race20_PreviewPart02);
+#else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race30_PreviewPart01);
+#endif
                     break;
                 case DAY_OF_MONTH_29:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race30_ResultsPart01);

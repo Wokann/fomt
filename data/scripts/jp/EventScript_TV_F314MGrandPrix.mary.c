@@ -2842,7 +2842,12 @@ mary_text_table
         "４位－　ルピナスさん　　２５\r\n"
         "５位－　コスモスさん　　１８\r\n"
         "６位－　ミルトニアさん　１２\r\n"
+// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
+#ifdef BUGFIX
+        "７位－　すみれさん　　　　９\r\n"
+#else
         "７位－　すみれさん　　　　８\r\n"
+#endif
         "８位－　モレアさん　　　　２\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -2902,7 +2907,12 @@ mary_text_table
         "４位－　ルピナスさん　　２７\r\n"
         "５位－　コスモスさん　　２１\r\n"
         "６位－　ミルトニアさん　１３\r\n"
+// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
+#ifdef BUGFIX
+        "７位－　すみれさん　　　　９\r\n"
+#else
         "７位－　すみれさん　　　　８\r\n"
+#endif
         "８位－　モレアさん　　　　２\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -2961,7 +2971,12 @@ mary_text_table
         "４位－　ルピナスさん　　２７\r\n"
         "５位－　コスモスさん　　２５\r\n"
         "６位－　ミルトニアさん　１３\r\n"
+// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
+#ifdef BUGFIX
+        "７位－　すみれさん　　　１１\r\n"
+#else
         "７位－　すみれさん　　　１０\r\n"
+#endif
         "８位－　モレアさん　　　　５\r\n"
         "９位↑　ラベンダーさん　　１\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -3056,7 +3071,12 @@ mary_text_table
         "４位－　ルピナスさん　　２８\r\n"
         "４位↑　コスモスさん　　２８\r\n"
         "６位－　ミルトニアさん　１５\r\n"
+// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
+#ifdef BUGFIX
+        "７位－　すみれさん　　　１１\r\n"
+#else
         "７位－　すみれさん　　　１０\r\n"
+#endif
         "８位－　モレアさん　　　　５\r\n"
         "９位－　ラベンダーさん　　１\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -3409,13 +3429,28 @@ void EventScript_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race27_ResultsPart01);
                     break;
                 case DAY_OF_MONTH_18:
+#ifdef BUGFIX
+                    // Restore result day 18, then the two previews on days 19 and 20.
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart02);
+#else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01);
+#endif
                     break;
                 case DAY_OF_MONTH_19:
+#ifdef BUGFIX
+                    // Restore result day 18, then the two previews on days 19 and 20.
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01);
+#else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart01);
+#endif
                     break;
                 case DAY_OF_MONTH_20:
+#ifdef BUGFIX
+                    // Restore result day 18, then the two previews on days 19 and 20.
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart01);
+#else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart02);
+#endif
                     break;
                 case DAY_OF_MONTH_21:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_ResultsPart01);
