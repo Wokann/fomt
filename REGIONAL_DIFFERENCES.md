@@ -257,3 +257,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [B03](TEXT_SYMBOL_AUDIT.md#b03) | 海外三版：牛羊牧场指南说可以卖鸡 | [实现与验证边界](BUGFIX.md#audit-b03) |
 | [B04](TEXT_SYMBOL_AUDIT.md#b04) | 海外三版：诊所营业时间表述错误，德版采用24小时制 | [实现与验证边界](BUGFIX.md#audit-b04) |
 | [B05](TEXT_SYMBOL_AUDIT.md#b05) | 海外三版：料理指南多写一个重复选项 | [实现与验证边界](BUGFIX.md#audit-b05) |
+| [B06](TEXT_SYMBOL_AUDIT.md#b06) | DE：秘银锄头误写成秘银镰刀 | [实现与验证边界](BUGFIX.md#audit-b06) |

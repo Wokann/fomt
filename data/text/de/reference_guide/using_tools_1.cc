@@ -35,7 +35,12 @@ MAIN
     "Schmied aufrüstest,"
     "kannst du auch mehr auf"
     "einmal graben. Wenn du"
+// This paragraph describes the hoe; use its existing item name.
+#ifdef BUGFIX
+    "die Mythrilhacke "
+#else
     "die Mythrilsichel "
+#endif
     "benutzt, kannst du"
     "6 Quadrate vor dir auf"
     "einmal bearbeiten."
