@@ -8,7 +8,7 @@
 
 **验收状态（2026-11-15）：羊祭接待桌修复后，四版默认完整构建均逐字节及 SHA-1 匹配各自 baserom，四版 BUGFIX 完整构建均通过。最新消息调用核验见羊祭条目；指南及先前修复的具体核验范围见各条目和历史记录。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
 
-**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A05），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
+**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A06），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
 
 ## 统一索引
 
@@ -439,3 +439,13 @@
 - **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
 
 [EventScript_AchievementEvent_Fishing_MilestoneReward.mary](data/scripts/de/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a05)
+
+<a id="audit-a06"></a>
+### A06．德版贤者锤领取提示使用秘银锤名
+
+- **原版表现：** 领取 `ITEM_TOOL_HAMMER_MYTHIC` 时变量填入Mythrilhammer。
+- **正确内容与依据：** 其他版本区分两种锤；本版物品表已有Mythischer Hammer（贤者锤）。
+- **修复方式：** 新增正确工具名称，仅替换贤者锤订单的文本变量引用；实际给予物品不改。 BUGFIX关闭时保留原文本及引用。
+- **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
+
+[EventScript_ShopEvent_Blacksmith_OrderCounter.mary](data/scripts/de/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a06)

@@ -65,6 +65,12 @@ mary_text_table
     const char gText_ShopEvent_Blacksmith_OrderCounter_Shared_MystrileAndMythicHammer[] =
         "Mythrilhammer";
 
+#ifdef BUGFIX
+    // Use the existing item name for the mythic order, not the mystrile hammer.
+    const char gText_ShopEvent_Blacksmith_OrderCounter_MythicHammer[] =
+        "Mythischer Hammer";
+#endif
+
     const char gText_ShopEvent_Blacksmith_OrderCounter_CopperWateringCan[] =
         "Kupfergießkanne";
 
@@ -295,7 +301,11 @@ void EventScript_ShopEvent_Blacksmith_OrderCounter(void)
                         var_0 = BLACKSMITH_PRODUCT_CATEGORY_TOOL;
                         break;
                     case BLACKSMITH_ORDER_HAMMER_MYTHIC:
+#ifdef BUGFIX
+                        SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_MythicHammer);
+#else
                         SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_Shared_MystrileAndMythicHammer);
+#endif
                         var_1 = ITEM_TOOL_HAMMER_MYTHIC;
                         var_0 = BLACKSMITH_PRODUCT_CATEGORY_TOOL;
                         break;
