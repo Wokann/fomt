@@ -47,7 +47,12 @@ MAIN
     " (Verjüngung hängt von"
     " der Art der Nahrung ab."
     " Manche Nahrungsmittel"
+// This paragraph describes fatigue; some foods increase it.
+#ifdef BUGFIX
+    "erhöhen den Energieverlust.)"
+#else
     " verringern die Ausdauer.)"
+#endif
     " · Blumen in Vase stellen"
     " (Manche Blumen werden"
     " keinen Effekt haben.)"

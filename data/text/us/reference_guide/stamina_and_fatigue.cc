@@ -48,8 +48,14 @@ MAIN
     "  ·Eat food"
     "  (Rejuvenation depends on"
     "  kind of food eaten. Some"
+// This paragraph describes fatigue; some foods increase it.
+#ifdef BUGFIX
+    "  foods will increase"
+    "  Fatigue.)"
+#else
     "  foods will deplete"
     "  Stamina.)"
+#endif
     "  ·Put flowers in Vase"
     "  (Some flowers won't"
     "  have an effect.)"
