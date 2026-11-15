@@ -310,9 +310,16 @@ mary_text_table
         "das Wasser kalt ist und\r\n"
         "die Fische munter sind.\r\n"
         "\r\n"
+// JP and EN distinguish the sea fish from the two downstream fish.
+#ifdef BUGFIX
+        "Im Meer könnt ihr Zander\r\n"
+        "fangen. Flussabwärts gibt es\r\n"
+        "Lachse und Bachschmerlen.\r\n"
+#else
         "Meeresfische, die ihr\r\n"
         "fangen könnt, sind Zander,\r\n"
         "Lachse und Bachschmerlen.\r\n"
+#endif
         "Ich überlasse es euch \r\n"
         "herauszufinden, was für \r\n"
         "eine Angel ihr braucht.\r\n"
