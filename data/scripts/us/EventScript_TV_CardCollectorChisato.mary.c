@@ -753,9 +753,16 @@ mary_text_table
         "should I say, didn't you buy\r\n"
         "any cards yesterday?\"\r\n"
         "　　　　　　　　　　　　　　\r\n"
+// A third day without new cards is hypothetical; he did not buy cards yesterday.
+#ifdef BUGFIX
+        "No. I would be too upset if\r\n"
+        "I got no new cards for\r\n"
+        "three days in a row, and\r\n"
+#else
         "No. I was too upset from\r\n"
         "not getting any new cards\r\n"
         "for three days in a row, and\r\n"
+#endif
         "I figured that getting eight\r\n"
         "new cards yesterday was\r\n"
         "enough, so I just went home.\r\n"

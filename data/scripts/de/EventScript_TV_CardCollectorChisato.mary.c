@@ -777,10 +777,18 @@ mary_text_table
         "oder sollte ich sagen, hast\r\n"
         "du gestern Karten gekauft?\"\r\n"
         " \r\n"
+// A third day without new cards is hypothetical, not an event that already happened.
+#ifdef BUGFIX
+        "Nein. Wenn ich 3 Tage lang\r\n"
+        "keine neuen Karten bekäme,\r\n"
+        "wäre ich sehr traurig. Also\r\n"
+        "dachte ich, die 8 von\r\n"
+#else
         "Nein Ich war zu sauer, dass\r\n"
         "ich 3 Tage hintereinander\r\n"
         "keine neuen Karten hatte,\r\n"
         "dass ich dachte, die 8 von\r\n"
+#endif
         "dir gestern sind genug,\r\n"
         "also bin ich nach Hause.\r\n"
         " \r\n"

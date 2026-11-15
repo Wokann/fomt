@@ -297,3 +297,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [E04](TEXT_SYMBOL_AUDIT.md#e04) | 四版：《Card Collector Chisato》第3集卡片数量算错 | [实现与验证边界](BUGFIX.md#audit-e04) |
 | [E05](TEXT_SYMBOL_AUDIT.md#e05) | 海外三版：同节目把 S／G 牛奶译成羊奶、山羊奶 | [实现与验证边界](BUGFIX.md#audit-e05) |
 | [E06](TEXT_SYMBOL_AUDIT.md#e06) | 海外三版：同节目第1集，把将来发售写成已经发售 | [实现与验证边界](BUGFIX.md#audit-e06) |
+| [E07](TEXT_SYMBOL_AUDIT.md#e07) | 海外三版：同节目第11集，把假设写成已经发生 | [实现与验证边界](BUGFIX.md#audit-e07) |
