@@ -6,7 +6,13 @@
 mary_text_table
 {
     const char gText_AchievementEvent_Fishing_MilestoneReward_CaughtFishWithoutSize[] =
+// Message in a Bottle and Pirate Treasure exceed 28 columns after this prefix.
+#ifdef BUGFIX
+        "You fished a\r\n"
+        "{Var1}.{Press}";
+#else
         "You fished a {Var1}.{Press}";
+#endif
 
     const char gText_AchievementEvent_Fishing_MilestoneReward_CaughtFishSizeInCentimeters[] =
         "You fished a {Var1}.\r\n"

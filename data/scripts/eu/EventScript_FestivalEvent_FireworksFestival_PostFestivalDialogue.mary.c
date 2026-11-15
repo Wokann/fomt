@@ -23,7 +23,12 @@ mary_text_table
 
     const char gText_FestivalEvent_FireworksFestival_PostFestivalDialogue_IWonderHowTheyMakeAll[] =
         "I wonder how they make \r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "all those colors and shapes!{Press}";
+#else
         "all those colors and shapes! {Press}";
+#endif
 
     const char gText_FestivalEvent_FireworksFestival_PostFestivalDialogue_RegretsFireworksEnded[] =
         "Too bad they're over!{Press}";

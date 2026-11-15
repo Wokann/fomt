@@ -156,7 +156,13 @@ mary_text_table
         "Ha! Of course there isn't!{Press}";
 
     const char gText_NPCEvent_Harris_DialogueAndGiftResponses_GotzHouseFriendshipAbove100RepeatConversation[] =
+// Replace the untranslated line-break marker with the actual CR/LF control.
+#ifdef BUGFIX
+        "You'd better get home now,\r\n"
+        "{Player}. Wild dogs \r\n"
+#else
         "You'd better get home now,ret>{Player}. Wild dogs \r\n"
+#endif
         "come out at night. {Press}";
 };
 

@@ -27,7 +27,12 @@ mary_text_table
         "where just such a left is   \r\n"
         "pressed, and goes on        \r\n"
         "reading.                    \r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "　　　　　　　　　　　　　　\r\n"
+#else
         "　　　　　　　　　　　　　　  \r\n"
+#endif
         "When we get to the next     \r\n"
         "station, the train stops,   \r\n"
         "and she totters slightly as \r\n"
@@ -41,7 +46,12 @@ mary_text_table
         "off, puts it back in the    \r\n"
         "back of her book, and       \r\n"
         "continues reading.          \r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "　　　　　　　　　　　　　　\r\n"
+#else
         "　　　　　　　　　　　　　　  \r\n"
+#endif
         "We were approaching her     \r\n"
         "station. She took the leaf  \r\n"
         "from the back of her book,  \r\n"
@@ -226,7 +236,12 @@ mary_text_table
         "station.\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "Once there, she promptly got\r\n"
+// Remove the untranslated Japanese particle from the English sentence.
+#ifdef BUGFIX
+        "off and ran to the opposite\r\n"
+#else
         "off and ran to the oppositeに\r\n"
+#endif
         "platform, there to wait for\r\n"
         "the train. It did not look\r\n"
         "as though there would be a\r\n"

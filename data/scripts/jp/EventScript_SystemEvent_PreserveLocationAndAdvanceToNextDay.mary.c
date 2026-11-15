@@ -6,7 +6,13 @@
 void EventScript_SystemEvent_PreserveLocationAndAdvanceToNextDay(void)
 {
     FadeOutBGM();
+#ifdef BUGFIX
+    // Save the actual bedtime before replacing the clock with 06:00.
+    PreservePlayerLocationForNextDay();
+    SetGameTime(6, 0);
+#else
     SetGameTime(6, 0);
     PreservePlayerLocationForNextDay();
+#endif
     CallScript(EventScript_SystemEvent_AdvanceToNextDay);
 }

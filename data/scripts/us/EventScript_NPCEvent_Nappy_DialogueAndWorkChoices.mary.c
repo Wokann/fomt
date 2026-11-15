@@ -76,7 +76,12 @@ mary_text_table
         "Is this really for me, budum?{Press}";
 
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_PerfumeGiftResponse[] =
+// The English release left Japanese here; use the remake's matching gift response.
+#ifdef BUGFIX
+        "Mmm! Smells pretty.{Press}";
+#else
         "わぁ～、いい香りなの。{Press}";
+#endif
 
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_BlueFeatherResponse[] =
         "This is the first time I've\r\n"

@@ -1,3 +1,4 @@
+#include "config.h"
 #include "barn.hh"
 
 #include "utility/popcnt.hh"
@@ -556,7 +557,8 @@ int Barn::AttemptBirth(u32 pregnancy_stall_idx)
 
         Cow new_cow(actor_location, 0, 0);
 
-#if defined(REGION_JP)
+#if defined(REGION_JP) && !defined(BUGFIX)
+        // JP can take a remainder with a zero divisor; overseas guards it.
         u32 new_affection = rand();
         u32 max_new_affection = parent_cow->GetAffection() / 2;
         new_cow.AddAffection(new_affection % max_new_affection);
@@ -577,7 +579,7 @@ int Barn::AttemptBirth(u32 pregnancy_stall_idx)
 
         Sheep new_sheep(actor_location, 0, 0);
 
-#if defined(REGION_JP)
+#if defined(REGION_JP) && !defined(BUGFIX)
         // The original JP executable calls this accessor with a null receiver.
         // Preserve that verified regional behavior in the regional source path.
         u32 new_affection = rand();

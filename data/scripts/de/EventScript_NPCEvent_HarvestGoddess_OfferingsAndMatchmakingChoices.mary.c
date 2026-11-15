@@ -306,7 +306,12 @@ mary_text_table
         "Weil du mich sooft \r\n"
         "besucht hast, \r\n"
         "überreiche ich dir nun {Press}\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "eine Power-Beere als Zeichen\r\n"
+#else
         "eine Power-Beere als Zeichen \r\n"
+#endif
         "meiner Dankbarkeit.{Press}";
 
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IWontBeGivingYouAny[] =

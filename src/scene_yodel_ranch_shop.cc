@@ -1326,7 +1326,7 @@ u32 YodelRanchShopSceneCore::GetAnimalSalePrice(u32 index, u32 animal_kind) cons
         case Livestock::PRODUCT_RANK_0: price = 3000; break;
         case Livestock::PRODUCT_RANK_1: price = 4000; break;
         case Livestock::PRODUCT_RANK_2: price = 5000; break;
-#if defined(REGION_JP)
+#if defined(REGION_JP) && !defined(BUGFIX)
         // JP swaps the gold and platinum sale-price tiers.
         case Livestock::PRODUCT_RANK_4: price = 6000; break;
         case Livestock::PRODUCT_RANK_3: price = 7000; break;
@@ -1343,7 +1343,7 @@ u32 YodelRanchShopSceneCore::GetAnimalSalePrice(u32 index, u32 animal_kind) cons
         case Livestock::PRODUCT_RANK_0: price = 2000; break;
         case Livestock::PRODUCT_RANK_1: price = 2500; break;
         case Livestock::PRODUCT_RANK_2: price = 3000; break;
-#if defined(REGION_JP)
+#if defined(REGION_JP) && !defined(BUGFIX)
         case Livestock::PRODUCT_RANK_4: price = 4000; break;
         case Livestock::PRODUCT_RANK_3: price = 5000; break;
 #else

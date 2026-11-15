@@ -1,3 +1,4 @@
+#include "config.h"
 #include "gamecube_link_save.hh"
 #include "game_state.hh"
 
@@ -160,8 +161,13 @@ void DecodeGameCubeLinkName(GameCubeLinkSaveData const *, char * output, u8 cons
         if (!value)
             break;
 #if defined(REGION_JP)
+#ifdef BUGFIX
+        // Wire indexes are one-based, including the final nonzero glyph.
+        if (static_cast<u32>(value - 1) >= ARRAY_COUNT(gLinkCommunicationCharacterCodeTable) - 1)
+#else
         // The original receiver stops one index before the encoder's last glyph.
         if (value >= ARRAY_COUNT(gLinkCommunicationCharacterCodeTable) - 1)
+#endif
             break;
         u16 code = gLinkCommunicationCharacterCodeTable[value - 1];
         *cursor++ = code >> 8;

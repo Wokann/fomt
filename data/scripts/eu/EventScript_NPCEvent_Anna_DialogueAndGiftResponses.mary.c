@@ -21,7 +21,12 @@ mary_text_table
     const char gText_NPCEvent_Anna_DialogueAndGiftResponses_FavoriteGiftResponse[] =
         "Thank you so much!\r\n"
         "This is a wonderful \r\n"
+// This ordinary gift response is not restricted to birthdays.
+#ifdef BUGFIX
+        "surprise present!{Press}";
+#else
         "surprise birthday present!{Press}";
+#endif
 
     const char gText_NPCEvent_Anna_DialogueAndGiftResponses_LikedGiftResponse[] =
         "Thanks for such a \r\n"
@@ -85,7 +90,12 @@ mary_text_table
 
     const char gText_NPCEvent_Anna_DialogueAndGiftResponses_BasilHouse1FLowFriendshipFirstConversation[] =
         "Hello, {Player}. {Press}\p"
+// Correct read and the possessive Basil's in the library question.
+#ifdef BUGFIX
+        "Have you read Basil's \r\n"
+#else
         "Have you ready Basil \r\n"
+#endif
         "books? He has lots \r\n"
         "in the Library.{Press}";
 

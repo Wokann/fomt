@@ -1530,7 +1530,13 @@ mary_text_table
         "We went downstairs to \r\n"
         "the porch, where \r\n"
         "there was a cardboard \r\n"
+// Replace the untranslated line-break marker with the actual CR/LF control.
+#ifdef BUGFIX
+        "box.  \r\n"
+        "\"This box contains \r\n"
+#else
         "box.  ret>\"This box contains \r\n"
+#endif
         "all the security \r\n"
         "camera video shot at \r\n"
         "the department store \r\n"

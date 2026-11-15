@@ -1,3 +1,4 @@
+#include "config.h"
 #include "item.hh"
 
 // US food text. Keep entry order and four-byte alignment to preserve ROM layout.
@@ -532,10 +533,20 @@ char const gText_Item_Food_Oil_Description[] =
     "or used for cooking.";
 
 char const gText_Item_Food_Flower_Name[] =
+// This item is flour for cooking, not a flower; the shop already identifies it correctly.
+#ifdef BUGFIX
+    "Flour";
+#else
     "Flower";
+#endif
 
 char const gText_Item_Food_Flower_Description[] =
+// This item is flour for cooking, not a flower; the shop already identifies it correctly.
+#ifdef BUGFIX
+    "Flour\r\n"
+#else
     "Flower\r\n"
+#endif
     "May be eaten as is,\r\n"
     "or used for cooking.";
 
@@ -940,10 +951,20 @@ char const gText_Item_Food_AppleJam_Description[] =
     "To eat or use as a gift.";
 
 char const gText_Item_Food_AppleSouffl_Name[] =
+// This is the baked-apple recipe, not an apple souffle.
+#ifdef BUGFIX
+    "Baked Apple";
+#else
     "Apple Souffl?";
+#endif
 
 char const gText_Item_Food_AppleSouffl_Description[] =
+// This is the baked-apple recipe, not an apple souffle.
+#ifdef BUGFIX
+    "Baked Apple\r\n"
+#else
     "Apple Souffl?\r\n"
+#endif
     "Made with fresh Apples.\r\n"
     "To eat or use as a gift.";
 
@@ -988,10 +1009,20 @@ char const gText_Item_Food_JamBun_Description[] =
     "To eat or use as a gift.";
 
 char const gText_Item_Food_DinnerRole_Name[] =
+// Roll is the bread item; role is a spelling error.
+#ifdef BUGFIX
+    "Dinner Roll";
+#else
     "Dinner Role";
+#endif
 
 char const gText_Item_Food_DinnerRole_Description[] =
+// Roll is the bread item; role is a spelling error.
+#ifdef BUGFIX
+    "Dinner Roll\r\n"
+#else
     "Dinner Role\r\n"
+#endif
     "Made with Bread and Butter.\r\n"
     "To eat or use as a gift.";
 

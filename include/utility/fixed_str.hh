@@ -10,6 +10,7 @@
 template <size_t MaxLen>
 struct FixedStr
 {
+    enum { MAX_LENGTH = MaxLen };
     FixedStr() { m_data[0] = '\0'; }
 
     FixedStr(FixedStr const & other) { operator=(other); }

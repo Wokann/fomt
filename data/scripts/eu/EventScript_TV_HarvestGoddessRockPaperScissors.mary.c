@@ -181,7 +181,12 @@ void EventScript_TV_HarvestGoddessRockPaperScissors(void)
                     TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_GoddessCountdown);
                     break;
             }
+    // Match each displayed choice to the existing result branch; leave the game rules unchanged.
+#ifdef BUGFIX
+            var_0 = TalkChoice3(gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock, gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors, gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper);
+#else
             var_0 = TalkChoice3(gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock, gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper, gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors);
+#endif
             switch (var_0)
             {
                 case CHOICE_OPTION_1:

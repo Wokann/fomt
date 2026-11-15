@@ -90,15 +90,32 @@ mary_text_table
         "At least, that's the rumor.{Press}";
 
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_GrapeHarvestJobAdvicePrompt[] =
+// The English release left this in German; adapt the remake's matching conversation.
+#ifdef BUGFIX
+        "A part-time job at the\r\n"
+        "winery, hm?\r\n"
+        "That sounds lovely.{Press}";
+#else
         "Ein Teilzeitjob auf dem\r\n"
         "Weingut h[o]rt sich nach\r\n"
         "einer Menge Spa[b] an.{Press}";
+#endif
 
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_GrapeHarvestJobChoiceTellAboutJob[] =
+// Use the existing English job choices from the other villagers.
+#ifdef BUGFIX
+        "Tell about job.";
+#else
         "Von Job erz[a]hlen.";
+#endif
 
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_GrapeHarvestJobChoiceDoNotTell[] =
+// Use the existing English job choices from the other villagers.
+#ifdef BUGFIX
+        "Don't tell about job.";
+#else
         "Nicht erz[a]hlen.";
+#endif
 
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_GrapeHarvestJobRecommendsCliff[] =
         "I think Cliff needs that job\r\n"

@@ -551,7 +551,13 @@ mary_text_table
         "leuchtenden Alien zu\r\n"
         "bekämpfen, ertönt \r\n"
         "eine Stimme.\r\n"
+// Replace the untranslated line-break marker with the actual CR/LF control.
+#ifdef BUGFIX
+        "\"WARTET! KINDER VON\r\n"
+        "DIESEM PLANETEN!\"\r\n"
+#else
         "\"WARTET! KINDER VON<RET>DIESEM PLANETEN!\"\r\n"
+#endif
         "\"Hä? Wer war das...?\r\n"
         "Schätze, der Alien!\r\n"
         "\"Denke ich....\"\r\n"

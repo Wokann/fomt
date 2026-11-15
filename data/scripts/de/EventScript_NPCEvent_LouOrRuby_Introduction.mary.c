@@ -14,7 +14,12 @@ mary_text_table
         "stadt ist so k[o]stlich, \r\n"
         "dass ich es in meinem {Press}\r\n"
         "eigenen Gasthof verwende! {Press}\p"
+// The actual weekly visit is on Sunday, not Monday.
+#ifdef BUGFIX
+        "Ich bin jeden Sonntag \r\n"
+#else
         "Ich bin jeden Montag \r\n"
+#endif
         "im Gasthof. Komm, wenn du\r\n"
         "etwas verkaufen willst! {Press}";
 };

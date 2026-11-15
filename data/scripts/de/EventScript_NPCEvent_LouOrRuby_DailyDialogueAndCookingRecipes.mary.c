@@ -189,7 +189,12 @@ mary_text_table
 
     const char gText_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes_GameCubeRecipe10AppleSouffle[] =
         "Hast du schon von\r\n"
+// Use the same baked-apple name as the item, rather than a souffle.
+#ifdef BUGFIX
+        "dem Apfelauflauf gehört?{Press}\p"
+#else
         "dem Apfel-Souffl? gehört?{Press}\p"
+#endif
         "Du brauchst nur Äpfel\r\n"
         "und eine Bratpfanne.{Press}\p"
         "Ist ein toller Nachtisch. \r\n"

@@ -57,7 +57,12 @@ mary_text_table
     const char gText_NPCEvent_Cliff_PermanentWineryJob_WineryNeedsHelpAfterAjaLeft[] =
         "Seit Aja in die Stadt \r\n"
         "gegangen ist, ist es sehr\r\n"
+// Manna is speaking about working with Duke, not with herself.
+#ifdef BUGFIX
+        "schwer f r Duke\r\n"
+#else
         "schwer f r Manna\r\n"
+#endif
         "und mich allein. {Press}";
 
     const char gText_NPCEvent_Cliff_PermanentWineryJob_CliffAcceptsPermanentJob[] =

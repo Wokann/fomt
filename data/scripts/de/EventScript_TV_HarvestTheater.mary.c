@@ -2943,7 +2943,12 @@ mary_text_table
         "ging, nachdem ich die \r\n"
         "Bibliothek abgeschlossen \r\n"
         "hatte, sah ich, dass es \r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "schneite. Dann bemerkte ich,\r\n"
+#else
         "schneite. Dann bemerkte ich, \r\n"
+#endif
         "dass der Junge auf der Tür-\r\n"
         "schwelle stand.\r\n"
         "(Sein Schirm war noch\r\n"

@@ -1,99 +1,344 @@
 # 原版问题与可选修复
 
-在 [include/config.h](include/config.h) 中取消 `#define BUGFIX` 的注释，以 `make -j16 GAME_REGION=JP all` 构建。将 JP 换成 US、EU 或 DE 即可选择其他基底。修改同一开关后直接重新构建，原生代码的头文件依赖和 Mary 的 bundle 依赖都会生效。关闭开关再运行对应区域的 `compare`，检验原版 SHA-1。开启时的 ROM 含有修复，SHA-1 会改变。[构建规则](Makefile) · [四版差异](REGIONAL_DIFFERENCES.md)
+本页仅记录由四份 FoMT 原版实现、数据及调用关系确认的问题。分类综合问题性质与玩家影响：先列流程／边界，再列结算与事件、交互反馈、文字与身份。不把正常地区调整当作缺陷；差异见 [四版差异](REGIONAL_DIFFERENCES.md)。社区反馈仅作定位线索，已排除反馈及旧本地化版本特有问题不列入。
 
-| 修复条目 | JP | US | EU | DE |
-| --- | --- | --- | --- | --- |
-| [脚本块末尾读取](#riff-end) | 有 | 有 | 有 | 有 |
-| [小鱼、大鱼出货价](#fish-prices) | 有 | 正常 | 正常 | 正常 |
-| [炒荞麦面](#fried-soba) | 正常 | 有 | 有 | 有 |
-| [X 级羊毛](#wool-x) | 正常 | 有 | 有 | 有 |
-| [两类宝玉与秘宝同名](#de-jewels) | 正常 | 正常 | 正常 | 有 |
-| [德版加强药、失败料理](#de-food) | 正常 | 正常 | 正常 | 有 |
-| [旅馆后屋琳的爱心](#ann-heart) | 有 | 有 | 有 | 有 |
-| [4:44 电视无法退出](#tv-444) | 正常 | 有 | 有 | 有 |
-| [艾利的第二个昵称](#elli-nickname) | 正常 | 有 | 有 | 正常 |
-| [春 19 日入门节目贯穿](#de-farm-tv) | 正常 | 正常 | 正常 | 有 |
-| [不同鱼种共用名字](#fish-record-names) | 正常 | 22／37 | 22／37 | 22／37、18／46 |
-| [人物介绍节目频道输入](#de-profile-tv) | 正常 | 正常 | 正常 | 有 |
+证据主要来自同一工程的四版源码、脚本和基准 ROM，彼此可交叉核对，但不等同于独立实机复现。未复现的运行症状会明确限定为静态结论。
+
+在 [include/config.h](include/config.h) 中取消 `#define BUGFIX` 的注释，运行 `make -j16 GAME_REGION=JP all`；US、EU、DE 同理。[Makefile](Makefile) 从同一配置向 Mary 传递开关，不能只给原生编译器追加宏而遗漏脚本。默认关闭时保留原版行为；开启后 SHA-1 预期改变。
+
+**验收状态（2026-11-15）：四版默认构建及恢复默认后的复验均逐字节匹配各自 baserom；四版 BUGFIX 构建与下述静态核验通过。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
+
+## 统一索引
+
+| 分类 | 问题 | 受影响版本 | 实现状态 |
+| --- | --- | --- | --- |
+| 流程控制与读取边界 | [脚本加载器多读末尾块头](#riff-end) | 四版 | 已接入，构建／静态核验通过 |
+| 流程控制与读取边界 | [指南名称标记漏展开与缓冲区越界](#guide-name-expansion) | 四版（标记漏展开已命中 US／EU／DE 原文） | 已确认，待独立修复 |
+| 流程控制与读取边界 | [海外 4:44 电视反复重入](#tv-444) | US、EU、DE | 已接入，构建／静态核验通过 |
+| 流程控制与读取边界 | [人物介绍节目未接收频道输入](#de-profile-tv) | DE | 已接入，构建／静态核验通过 |
+| 流程控制与读取边界 | [联机失败消息沿用旧窗口状态](#jp-link-retry) | JP | 已接入，构建／静态核验通过 |
+| 结算、养成与事件结果 | [小鱼与大鱼出货价倒置](#fish-prices) | JP | 已接入，构建／静态核验通过 |
+| 结算、养成与事件结果 | [获奖牛羊的高等级售价倒置](#jp-livestock-sale-prices) | JP | 已接入，构建／静态核验通过 |
+| 结算、养成与事件结果 | [入睡时间被早晨时间覆盖](#jp-sleep-time) | JP | 已接入，构建／静态核验通过 |
+| 结算、养成与事件结果 | [幼畜出生好感度计算错误](#jp-birth-affection) | JP | 已接入，构建／静态核验通过 |
+| 结算、养成与事件结果 | [艾利确认第二个昵称但未保存](#elli-nickname) | US、EU | 已接入，构建／静态核验通过 |
+| 结算、养成与事件结果 | [婚期未完整避开双方生日](#jp-wedding-birthdays) | JP | 未接入 |
+| 操作反馈、记录与选项 | [包装画面把升级农具画成基础农具](#wrapping-tool-icons) | JP、US | 已接入，构建／静态核验通过 |
+| 操作反馈、记录与选项 | [联机名称拒收最后一个有效字符](#jp-link-last-character) | JP | 已接入，构建／静态核验通过 |
+| 操作反馈、记录与选项 | [玩家已娶别人仍显示琳的爱心](#ann-heart) | 四版 | 已接入，构建／静态核验通过 |
+| 操作反馈、记录与选项 | [春 19 日入门节目贯穿下一日分支](#de-farm-tv) | DE | 已接入，构建／静态核验通过 |
+| 操作反馈、记录与选项 | [动物照料栏目显示了收获最高记录](#overseas-animal-care-record) | US、EU、DE | 未接入 |
+| 操作反馈、记录与选项 | [料理材料的包装说明未送入窗口](#cooking-wrapped-description) | US、EU、DE | 未接入 |
+| 操作反馈、记录与选项 | [女神猜拳显示手势与实际分支不一致](#goddess-rps-options) | US、EU、DE | 已接入，构建／静态核验通过 |
+| 物品身份、文字含义与排版 | [炒荞麦面复用炒乌冬面文本](#fried-soba) | US、EU、DE | 已接入，构建／静态核验通过 |
+| 物品身份、文字含义与排版 | [X 级羊毛复用 P 级文本](#wool-x) | US、EU、DE | 已接入，构建／静态核验通过 |
+| 物品身份、文字含义与排版 | [收集用宝玉与合成秘宝同名](#de-jewels) | DE | 已接入，构建／静态核验通过 |
+| 物品身份、文字含义与排版 | [加强药 XL 名称与失败料理语言错误](#de-food) | DE | 已接入，构建／静态核验通过 |
+| 物品身份、文字含义与排版 | [不同鱼种复用同一显示名](#fish-record-names) | US、EU、DE（第二组仅 DE） | 已接入，构建／静态核验通过 |
+| 物品身份、文字含义与排版 | [其余原文、选项与换行修正](#localization-text) | 按条目 | 已接入，构建／静态核验通过 |
+
+## 流程控制与读取边界
 
 <a id="riff-end"></a>
-### 脚本块末尾读取
+### 脚本加载器多读末尾块头
 
-此游戏 RIFF 脚本中的 `length` 给出从脚本开头起算的结束位置。读完最后一个块时 `offset == length`，此处已没有下一块头。原版循环仍取八字节，在所有四版的 1,328 个正常脚本上都会读到块外。原始布局中多取的字节没有命中已知块类型。修复将循环条件改为 `offset < length`，仅处理合法脚本的终点问题。[加载器](src/script_vm.cc) · [原 ROM 检查](RELOCATION_AUDIT.md)
+- **原版与影响（四版）：** RIFF 的 `length` 是从脚本开头起算的结束位置；原循环仍在 `offset == length` 时读取八字节块头。四版各 1,328 个正常脚本均会读到块外。原始布局的额外内容未命中有效块类型，不能据此保证修改布局后也安全。
+- **应有行为与对照：** 读到终点就停止；四版都存在此问题，没有正常地区实现可直接沿用。依据是 RIFF 边界与读取器消费关系。
+- **修复范围与方式：** 四版把 `offset <= length` 改为 `offset < length`。范围仅为合法脚本的终点判定。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
 
-<a id="fish-prices"></a>
-### 小鱼和大鱼售价相反
+[加载器](src/script_vm.cc) · [原 ROM 边界审计](RELOCATION_AUDIT.md)
 
-日版出货表的小、中、大鱼分别为 200、120、50 G，日版游戏内《出货价格》写的是 50、120、200 G。其他三版的数据与指南顺序一致。开启修复仅更正日版小鱼和大鱼的价格。[出货表](src/item.cc) · [日版指南](data/text/jp/reference_guide/sell_price.cc) · [美版指南](data/text/us/reference_guide/sell_price.cc)
+<a id="guide-name-expansion"></a>
+### 指南名称标记漏展开与缓冲区越界
 
-<a id="fried-soba"></a>
-### 炒荞麦面显示成炒乌冬面
+- **原版与影响（四版（标记漏展开已命中 US／EU／DE 原文））：** 普通内容固定按两个字节推进，海外落在奇数字节偏移的名称标记被漏过。四版“最多十四轮”也不限制实际写入字节数；一次名称展开可写入多字节，调用者的 32 字节缓冲区可能被越过。
+- **应有行为与对照：** 按实际字符宽度识别名称标记，并同时遵守来源字段与目标缓冲区边界。现有海外指南有六个漏展开的地区／行组合；JP 与 DE 名称展开有静态越界证据，尚未把具体崩溃当成运行实测。
+- **修复状态：** 已确认原文与解析问题；此提交不改展开函数，最小修复另行提交。
 
-食物 `0x89` 对应日版「焼きそば」（炒荞麦面），海外版的名字和说明指针与 `0x86` 共用，两个菜谱因此显示相同的成品名。修复为 `0x89` 增加独立地区文本；英文采用 Fried Soba，德文采用 Gebratene Soba，均为本工程补译。图标和食物属性保持原版值。[食物表](src/item.cc) · [日版料理](data/text/jp/item_2.cc) · [英文料理](data/text/us/item_2.cc) · [德文料理](data/text/de/item_2.cc)
-
-<a id="wool-x"></a>
-### X 级羊毛显示成 P 级
-
-物品 `0x0A` 有自己的图标，三个海外版却为名字和说明选用了 `0x09` 的 P 级文本。开启修复后两处均显示 X 等级，沿用各版其他羊毛的措辞。[物品表](src/item.cc) · [日版羊毛](data/text/jp/item_3.cc) · [欧版羊毛](data/text/eu/item_3.cc)
-
-<a id="de-jewels"></a>
-### 德版宝玉与集齐后的秘宝同名
-
-德版的收集物 `0x26` 和 `0x27` 分别取用对应成品工具的名字，而两件收集物的独立说明仍写着「集齐九个」。这会让同一套宝物的零件与成品显示同名。修复采用 Kappa-Juwelteil 和 Wahrheitsjuwelteil（河童宝玉部件、真实宝玉部件）作为收集物的名字，并同步说明首行；两件成品保留原名。这两个德文名称是本工程补译。[收集物表](src/item.cc) · [德版成品](data/text/de/item_1.cc) · [德版收集物](data/text/de/item_3.cc)
-
-<a id="de-food"></a>
-### 德版加强药缺少 XL、三种失败料理显示英文
-
-食物 `0x3A` 的说明首行写着 Bodigizer XL，但名字指针复用普通药。修复直接采用德版说明中的名称。失败料理 `0x9B–0x9D` 的说明仍为英文，修复将它们指向同表已有的德文 Misserfolg（失败）说明。两处修改均保留原有玩法属性。[食物表](src/item.cc) · [德文名称与说明](data/text/de/item_2.cc)
-
-<a id="ann-heart"></a>
-### 玩家已娶别人，琳仍在旅馆后屋显示爱心
-
-琳未与克里夫成婚，玩家已娶其他候补，在旅馆后屋与琳交谈，然后在仍属于重复对话的状态下再交谈一次。首谈检查其他四位普通候补和女神的婚姻标志，重复对话却直接调用 `ShowTalkHeartIndicator(CHARACTER_ANN)`。四版在此处相同。修复让重复对话使用首谈已有的条件。琳本人是配偶时的正常显示以及她与克里夫的婚后对话沿用原逻辑。天气与时段只影响能否遇见她，该对话分支直接判断的是地图与交谈状态。[日版](data/scripts/jp/EventScript_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [美版](data/scripts/us/EventScript_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [欧版](data/scripts/eu/EventScript_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [德版](data/scripts/de/EventScript_NPCEvent_Ann_DialogueAndGiftResponses.mary.c)
+[实现与调用者](src/scene_reference_page.cc) · [名称字段](include/game_state_types.hh) · [具体原文与边界证据](REGIONAL_DIFFERENCES.md#guide-name-boundaries)
 
 <a id="tv-444"></a>
-### 海外版 4:44 电视反复开关
+### 海外 4:44 电视反复重入
 
-电视初始入口和换台入口都检查 04:44、16:44。日版设为无信号后调用隐藏节目。US、EU、DE 仍完整保存该节目，但两个入口都漏掉了调用。于是程序走到公共收尾，用本分支从未赋值的 `var_1` 判断频道。载入脚本会清零 VM 变量，0 恰好是天气频道；换台脚本因此再次调用自身。如果游戏时间保持在原分钟，会持续重入。[日版入口](data/scripts/jp/EventScript_TV_ChannelDispatcher.mary.c) · [海外初始入口](data/scripts/us/EventScript_TV_ChannelDispatcher.mary.c) · [海外换台入口](data/scripts/us/EventScript_TV_EntertainmentChannel.mary.c) · [频道枚举](include/fomt_constants.mary.h) · [VM 清零](src/script_vm.cc)
+- **原版与影响（US、EU、DE）：** 初始入口与换台入口在 04:44、16:44 都漏调隐藏节目，随后读取本分支未赋值的 `var_1`。VM 初值 0 对应天气频道，于是重入换台脚本；若时间仍在原分钟，会重复进入。
+- **应有行为与对照：** JP 在设为无信号后调用隐藏节目，由该节目处理播放和结束。海外也保留了完整节目本体，应从两处入口转入它。
+- **修复范围与方式：** 只为三个海外版的两个入口补上本版隐藏节目调用；保留节目原有星期、日期、重复次数和文本。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
 
-修复让三个海外版的两个入口像日版一样调用本版已有的隐藏节目。`GameScene::CallScript` 在当前脚本引擎载入目标，重置程序计数器；隐藏节目自行结束电视和对话。节目原有的星期、日期、重复次数和文字都得以保留。[事件切换](src/game_scene.cc) · [脚本加载](src/script_engine.cc) · [隐藏节目](data/scripts/us/EventScript_TV_4AMHiddenBroadcast.mary.c)
-
-## 全仓对照后补充的可选修复
-
-以下四组也由同一个 `BUGFIX` 开关控制，只更改表中列出的受影响版本。
-
-<a id="elli-nickname"></a>
-### US、EU 选择艾利的第二个昵称后未写回
-
-第二个选项显示 Honey（亲爱的），随后艾利会确认选择。JP、DE 在确认前调用 `SetPlayerNicknameForSpouse`；US、EU 的同一分支漏掉调用，只执行显示与动作，旧昵称会保留。其他昵称选择走各自的分支。修复只在 US／EU 的第二选项补上写入，并采用该选项已有的 Honey 字符串，位置与 JP、DE 相同。[日版](data/scripts/jp/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [美版](data/scripts/us/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [欧版](data/scripts/eu/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [德版](data/scripts/de/EventScript_LoveEvent_Elli_NicknameChoice.mary.c)
-
-<a id="de-farm-tv"></a>
-### DE 春季 19 日的农场入门节目连续播放两天
-
-德版在 19 日消息和 20 日分支之间少了 `break`，因此 19 日会连续执行两次 `ShowTelevisionMessage`，后一次返回值也会覆盖前一次的输入结果。JP、US、EU 在 19 日消息后结束本分支。修复在德版 19 日消息后补上分支结束，保留该次频道输入。此问题与 4:44 隐藏节目独立。[德版](data/scripts/de/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [美版](data/scripts/us/EventScript_TV_LifeOnTheFarm_Beginner.mary.c)
-
-<a id="fish-record-names"></a>
-### 海外版不同鱼种共用显示名
-
-记录 22 和 37 在 JP 分别显示「ギンブナ」和「ハクレン」，三个海外版的 37 均取记录 22 的名字。记录 18 和 46 在 JP 分别是「カツオ」（鲣）和「マグロ」（金枪鱼），US、EU 各有独立名字；DE 的两项都指向 Thunfisch（金枪鱼）。记录 ID 与名称表下标仍然独立，已证实的影响在名称显示。修复为三个海外版的 37 增加独立文本并更正指针：22 采用 Ginbuna，37 采用 Silver Carp（DE 为 Silberkarpfen）；DE 的 18 改为 Bonito，46 使用独立的 Thunfisch。Ginbuna 是本工程补充的名称，按日文鱼种作区分，旧导出符号保留兼容性，不改变钓鱼记录编号、捕获数量或体长。[记录编号](include/fomt_constants.mary.h) · [名称指针表](src/fishing_results_data.cc) · [日文](data/text/jp/fishing_results_data.cc) · [德文](data/text/de/fishing_results_data.cc)
+[JP 入口](data/scripts/jp/EventScript_TV_ChannelDispatcher.mary.c) · [US 初始入口](data/scripts/us/EventScript_TV_ChannelDispatcher.mary.c) · [US 换台入口](data/scripts/us/EventScript_TV_EntertainmentChannel.mary.c) · [隐藏节目](data/scripts/us/EventScript_TV_4AMHiddenBroadcast.mary.c) · [VM 初始化](src/script_vm.cc)
 
 <a id="de-profile-tv"></a>
-### DE 第 36 号人物介绍节目未读取频道键
+### 人物介绍节目未接收频道输入
 
-人物节目按索引进入 `case 36` 时，另外三版执行 `var_0 = ShowTelevisionMessage(...)`，让观众选择频道或继续观看。德版改用无返回值的慢速对话，随即关闭文本框并读取尚未赋值的 `var_0`。脚本载入时变量清零，0 对应天气频道，程序因此转交给换台脚本。修复仅将德版这次调用恢复为接收返回值的电视消息调用，与另外三版相同；其余德文台词播放速度保持原样。这个入口与 4:44 无关。[德版](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [美版](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [频道枚举](include/fomt_constants.mary.h) · [变量初始化](src/script_vm.cc)
+- **原版与影响（DE）：** 第 36 项改用无返回值的慢速对话，关闭窗口后又读取尚未赋值的 `var_0`；默认值 0 把流程转入天气频道，忽略本应接收的频道选择。
+- **应有行为与对照：** JP、US、EU 使用 `var_0 = ShowTelevisionMessage(...)`，将本次输入送入后续分派。
+- **修复范围与方式：** 仅恢复 DE 该项的电视消息调用与返回值保存；其他慢速台词保持原样。与 4:44 问题分开处理。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
 
-## 验证范围
+[DE 分派](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [US 对照](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [频道定义](include/fomt_constants.mary.h)
 
-以上修复已以 WSL、make -j16 验证四版开关构建。默认关闭时，完整产物逐字节等于对应基准 ROM：
+<a id="jp-link-retry"></a>
+### 联机失败消息沿用旧窗口状态
 
-| 版本 | SHA-1 |
-| --- | --- |
-| JP | a655b2789aed14a6ac78c6075fbc533d3062dbe3 |
-| US | a2fc3574f0a65a4fcf7682fb274b9d7eebdef963 |
-| EU | 7ba1ec1e46ce424e3c6fd72e4e8d5e9eb5ede247 |
-| DE | 60f2a30b55c0e32754897b4d5df6ce06f8b71a37 |
+- **原版与影响（JP）：** 协议同次更新先进入 `EnterRetry` 再调用 `PollRetry`。新消息只重置窗口自身，未重置场景缓存；缓存仍为完成状态 3 时，选择框可能在失败消息首次绘制前出现。
+- **应有行为与对照：** 海外将场景缓存设为 4，等待新消息完成。已确认状态读写和调用顺序，未声称所有断线时序都实机复现。
+- **修复范围与方式：** JP 在重试入口同步设置 `ui_state = 4`，不改变通信协议或存档内容。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
 
-开启后，四版脚本总表仍含 1,328 个有效入口，每一项均指向对应脚本；各脚本 STR 字符串块保持原样。相对原版，JP 有 1 个、US／EU 各 4 个、DE 有 5 个脚本的指令或跳转发生变化，恰好覆盖本页列出的受影响脚本。再次解码编译产物，确认 US／EU 艾利第二选项写入 Honey、DE 春 19 日分支结束、DE 人物节目第 36 项保存频道输入。原生物品及鱼名表的相关指针均核对到预期符号，鱼名 22／37 及 18／46 分别独立。
+[场景与协议调用顺序](src/scene_gamecube_link.cc) · [重试回调实现](include/scene_gamecube_link_callbacks.hh) · [窗口状态](src/ui_state.cc)
 
-这些是编译、ROM、脚本指令及指针检查，不代表已在模拟器中逐个游玩复现所有事件。
+## 结算、养成与事件结果
+
+<a id="fish-prices"></a>
+### 小鱼与大鱼出货价倒置
+
+- **原版与影响（JP）：** 小、中、大鱼分别卖 200、120、50 G，与日版游戏内《出货价格》矛盾。
+- **应有行为与对照：** JP 指南及三个海外版数据均为 50、120、200 G。
+- **修复范围与方式：** 仅交换 JP 小鱼和大鱼的出货价格，中鱼与其他物品不变。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[商品表](src/item.cc) · [JP 指南](data/text/jp/reference_guide/sell_price.cc) · [US 指南](data/text/us/reference_guide/sell_price.cc)
+
+<a id="jp-livestock-sale-prices"></a>
+### 获奖牛羊的高等级售价倒置
+
+- **原版与影响（JP）：** 基础等级 3／4 的牛为 7,000／6,000 G，羊为 5,000／4,000 G。两档均已获奖且好感度超过 200；累计户外达到 600 小时后等级升至 4，却少卖 1,000 G。报价直接用于入账。
+- **应有行为与对照：** 海外同档牛为 6,000／7,000 G，羊为 4,000／5,000 G；较高等级对应较高价格。
+- **修复范围与方式：** 仅交换 JP 牛、羊两组高等级返回值，保留低等级和未知种类的原有默认值；不改变生产 X 级产物的随机过程。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[售价与入账](src/scene_yodel_ranch_shop.cc) · [等级条件](src/livestock.cc) · [完整对照表](REGIONAL_DIFFERENCES.md#livestock-sale-prices)
+
+<a id="jp-sleep-time"></a>
+### 入睡时间被早晨时间覆盖
+
+- **原版与影响（JP）：** 先设为 06:00，再保存包含当前时间的次日状态，后续按保存的 6 计算出 24 小时恢复。小时效果为体力 +7／疲劳 −2，普通床另加 +50／−5；边界裁剪前合计 +218／−53，普通床流程因而压住了要求剩余疲劳至少 50 的睡过头分支。
+- **应有行为与对照：** 海外先保存实际入睡时间，再设为 06:00；恢复小时数为 `(hour <= 5 ? 6 : 30) - hour`。JP 有睡过头代码，问题是前序过量恢复，不能概括成所有过夜路径都不晚起。
+- **修复范围与方式：** 只交换 JP 次日过渡脚本的两条调用顺序；固定床效果、花瓶与早餐逻辑不改。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[JP 过渡](data/scripts/jp/EventScript_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) · [US 对照](data/scripts/us/EventScript_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) · [保存与恢复](src/game_scene.cc) · [床效果](data/scripts/jp/EventScript_LocationInteraction_FarmhouseBedSleepChoice.mary.c) · [晚起判断](data/scripts/jp/EventScript_SystemEvent_SleepRecoveryAndCursedHammerSickleBlessing.mary.c)
+
+<a id="jp-birth-affection"></a>
+### 幼畜出生好感度计算错误
+
+- **原版与影响（JP）：** 幼牛路径无条件对母牛好感度的一半取模，低好感度可能令除数为 0；幼羊路径还以空对象作为好感度读取器的接收者。
+- **应有行为与对照：** 海外读取实际母畜，且只在半好感度大于 1 时调用随机数及取模。应以正确母畜、有效除数计算。
+- **修复范围与方式：** JP 对齐这两条计算路径；低好感度的随机数消耗随之与海外一致。不猜测空对象在 BIOS／开放总线环境下必然产生何种崩溃。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[四版出生实现](src/barn.cc) · [母羊路径原生取证](docs/mary-native-audit/animals/barn_birth_followup_audit.md)
+
+<a id="elli-nickname"></a>
+### 艾利确认第二个昵称但未保存
+
+- **原版与影响（US、EU）：** 选择 Honey（亲爱的）后显示确认，却未调用写回函数，实际昵称保留旧值。
+- **应有行为与对照：** JP、DE 在确认前调用 `SetPlayerNicknameForSpouse` 保存所选文本。
+- **修复范围与方式：** 仅在 US、EU 第二选项补上写回，采用当前选项已有字符串；不改其他昵称分支。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[US](data/scripts/us/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [JP](data/scripts/jp/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [DE](data/scripts/de/EventScript_LoveEvent_Elli_NicknameChoice.mary.c)
+
+<a id="jp-wedding-birthdays"></a>
+### 婚期未完整避开双方生日
+
+- **原版与影响（JP）：** 订婚计数达到 5 后立即查询只在计数大于 5 时返回配偶的函数，得到 0 而漏查未婚妻生日；日期经过避让表顺延后，也不重新检查全部生日条件。
+- **应有行为与对照：** 海外保存本次婚约对象，并在顺延后重查双方生日及避让条件。例如候选春 17 日、玩家生日春 19 日时，JP 避开春 17、18 日后可能落在未重查的春 19 日。
+- **修复范围与方式：** 待恢复整个相关文件后，修正对象来源及重新检查流程。婚期表额外避让秋 30、冬 25 是独立地区规则，不能通过直接统一表代替此修复。
+- **验证状态：** 尚未接入 `BUGFIX`。先完成所属整个文件的高级语言还原与默认匹配，再实施修复。
+
+[婚期计算](src/script_engine.cc) · [订婚／已婚查询](src/npc_collection.cc) · [日期表](src/wedding_date.cc) · [原生证据](docs/mary-native-audit/events/event_state_registration.md)
+
+## 操作反馈、记录与选项
+
+<a id="wrapping-tool-icons"></a>
+### 包装画面把升级农具画成基础农具
+
+- **原版与影响（JP、US）：** 背包和手持两条路径直接用基础工具编号取图标，显示未反映保存的升级等级；工具本身并未降级。
+- **应有行为与对照：** EU、DE 在两条路径都通过 `Farmer::GetUpgradedTool` 转换为实际升级编号。
+- **修复范围与方式：** JP、US 同步两条图标路径，保持物品状态、包装费和升级记录不变。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[包装绘制](src/scene_gift_wrapping.cc) · [升级映射](src/farmer.cc)
+
+<a id="jp-link-last-character"></a>
+### 联机名称拒收最后一个有效字符
+
+- **原版与影响（JP）：** 编码发送一基索引，0 为结束符；接收端却按未减 1 的值检查范围，拒绝最后合法字符 `※`，并停止读取后续字符。
+- **应有行为与对照：** 海外先减 1 再检查，与编码端覆盖的非终止字符范围相同。
+- **修复范围与方式：** JP 按一基协议修正边界，不扩大字符表、包长或存档字段。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[编解码](src/gamecube_link_save.cc) · [JP 字符表](data/text/jp/gamecube_link_save.cc) · [协议结构](include/gamecube_link_save.hh)
+
+<a id="ann-heart"></a>
+### 玩家已娶别人仍显示琳的爱心
+
+- **原版与影响（四版）：** 琳尚未与克里夫结婚、玩家已娶其他候补时，在旅馆后屋的重复对话直接显示琳的爱心；首谈会检查其他候补与女神的婚姻标志。
+- **应有行为与对照：** 重复对话应沿用本版首谈已有的婚姻条件，而非改变琳作为玩家配偶时的正常爱心。四版此处相同。
+- **修复范围与方式：** 四版重复对话加上首谈条件；保留琳与玩家及与克里夫的原有婚后分支。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[JP 对话](data/scripts/jp/EventScript_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [US 对话](data/scripts/us/EventScript_NPCEvent_Ann_DialogueAndGiftResponses.mary.c)
+
+<a id="de-farm-tv"></a>
+### 春 19 日入门节目贯穿下一日分支
+
+- **原版与影响（DE）：** 春 19 日消息后少 `break`，连续播放春 20 日内容，并以第二次调用返回值覆盖第一次频道输入。
+- **应有行为与对照：** JP、US、EU 在春 19 日消息后结束该分支。
+- **修复范围与方式：** 仅补 DE 分支结束；保持 19 日消息及本次频道选择。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[DE 节目](data/scripts/de/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [US 对照](data/scripts/us/EventScript_TV_LifeOnTheFarm_Beginner.mary.c)
+
+<a id="overseas-animal-care-record"></a>
+### 动物照料栏目显示了收获最高记录
+
+- **原版与影响（US、EU、DE）：** 标题是动物照料，数值却再次读取 `sprite_harvesting_record`；两个栏目显示同一收获记录。实际动物照料成绩仍独立保存，不是成绩被覆盖或奖励未结算。
+- **应有行为与对照：** JP 对应行读取 `sprite_animal_care_record`；小游戏结束时四版也都写入这个独立字段。
+- **修复范围与方式：** 待整个记录页文件恢复后，仅修正海外该栏的读取对象，JP 不改。
+- **验证状态：** 尚未接入 `BUGFIX`。先完成所属整个文件的高级语言还原与默认匹配，再实施修复。
+
+[记录页](src/records_screen.cc) · [字段](include/game_state_types.hh) · [读写器](src/game_state.cc) · [成绩提交](src/scene_minigames.cc)
+
+<a id="cooking-wrapped-description"></a>
+### 料理材料的包装说明未送入窗口
+
+- **原版与影响（US、EU、DE）：** 选中已包装物品时，把包装说明及物品名拼到另一个临时缓冲区，却把原来的仅含名字的缓冲区传给窗口；包装说明不显示，物品的包装标志没有消失。
+- **应有行为与对照：** JP 拼入同一个缓冲区并把它传给窗口。下游 `UiStatePayload::SetText` 直接采用所传指针，不会补上遗漏说明。
+- **修复范围与方式：** 待整个料理文件恢复后修正缓冲区与传参关系，并核实其容量；目前不在汇编中加入修复分支。
+- **验证状态：** 尚未接入 `BUGFIX`。先完成所属整个文件的高级语言还原与默认匹配，再实施修复。
+
+[拼接与传参](src/scene_cooking.cc) · [窗口适配器](src/ui_state.cc) · [地区对照](REGIONAL_DIFFERENCES.md#cooking-wrapped-description)
+
+<a id="goddess-rps-options"></a>
+### 女神猜拳显示手势与实际分支不一致
+
+- **原版与影响（US、EU、DE）：** 实际选项顺序均为石头、剪刀、布；US／EU 显示石头、布、剪刀，DE 显示剪刀、石头、布。按显示选择可能进入另一手势的结果分支。
+- **应有行为与对照：** JP 的菜单显示与三条胜负／结果消息分支一致。
+- **修复范围与方式：** 仅重排三个海外版 `TalkChoice3` 的文本实参，不改随机数、胜负判断、连胜累加或奖金。该三项计入下文文本／选项清单，不重复计数。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[四版选项对照](REGIONAL_DIFFERENCES.md#goddess-rps-options) · [JP 脚本](data/scripts/jp/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [US 脚本](data/scripts/us/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c)
+
+## 物品身份、文字含义与排版
+
+<a id="fried-soba"></a>
+### 炒荞麦面复用炒乌冬面文本
+
+- **原版与影响（US、EU、DE）：** 食物 `0x89` 复用 `0x86` 的名字和说明，两种菜谱显示同名。
+- **应有行为与对照：** JP `0x89` 为「焼きそば」（炒荞麦面），与炒乌冬面不同。
+- **修复范围与方式：** 为海外 `0x89` 使用独立名称及说明；英文 Fried Soba、德文 Gebratene Soba 是本工程补译，图标与属性保持原值。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[食物表](src/item.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [DE](data/text/de/item_2.cc)
+
+<a id="wool-x"></a>
+### X 级羊毛复用 P 级文本
+
+- **原版与影响（US、EU、DE）：** 物品 `0x0A` 的图标独立，名字与说明却取 `0x09` 的 P 级文本。
+- **应有行为与对照：** JP 的 X 级名称和说明与其等级一致。
+- **修复范围与方式：** 海外两处均改用 X 级文本，措辞沿用各版本羊毛说明风格，不改变产物属性。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[物品表](src/item.cc) · [JP](data/text/jp/item_3.cc) · [EU](data/text/eu/item_3.cc)
+
+<a id="de-jewels"></a>
+### 收集用宝玉与合成秘宝同名
+
+- **原版与影响（DE）：** 收集物 `0x26`、`0x27` 取用对应成品工具的名字，独立说明仍要求集齐九个，零件与成品无法从名字区分。
+- **应有行为与对照：** JP、US、EU 分别命名收集物和成品。
+- **修复范围与方式：** DE 收集物改用 Kappa-Juwelteil、Wahrheitsjuwelteil（河童／真实宝玉部件），同步说明首行；成品保留原名。这两个名称为本工程补译。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[收集物指针表](src/item.cc) · [DE 工具](data/text/de/item_1.cc) · [DE 收集物](data/text/de/item_3.cc)
+
+<a id="de-food"></a>
+### 加强药 XL 名称与失败料理语言错误
+
+- **原版与影响（DE）：** 食物 `0x3A` 说明写 Bodigizer XL，名字却指向普通药；`0x9B–0x9D` 的失败料理说明仍为英文。
+- **应有行为与对照：** 另外三版加强药名称区分 XL；DE 自己的说明首行及失败料理表中已有正确德文。
+- **修复范围与方式：** 采用 DE 现有 XL 名称及 Misserfolg（失败）说明，保留属性和其他文本。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[食物表](src/item.cc) · [DE 文本](data/text/de/item_2.cc)
+
+<a id="fish-record-names"></a>
+### 不同鱼种复用同一显示名
+
+- **原版与影响（US、EU、DE（第二组仅 DE））：** 海外记录 37 复用 22 的名称；DE 记录 46 又复用 18，两项都显示 Thunfisch（金枪鱼）。记录编号和统计字段仍独立。
+- **应有行为与对照：** JP 22／37 为ギンブナ／ハクレン；18／46 为カツオ／マグロ（鲣／金枪鱼）。US、EU 的后一组也分别命名。
+- **修复范围与方式：** 海外 22 使用 Ginbuna，37 独立为 Silver Carp／Silberkarpfen；DE 18 为 Bonito，46 独立为 Thunfisch。补充译名只修身份显示，不改钓获数量、体长或编号。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
+
+[名称表](src/fishing_results_data.cc) · [JP 文本](data/text/jp/fishing_results_data.cc) · [DE 文本](data/text/de/fishing_results_data.cc) · [记录编号](include/fomt_constants.mary.h)
+
+<a id="localization-text"></a>
+### 其余原文、选项与换行修正
+
+- **原版与影响：** 下表分别记录误导实际时间／物品身份的译文、错误选项、遗漏翻译与窗口排版。它们影响说明或反馈，不能据此推断物品属性、事件奖励也被改写。
+- **应有行为与对照：** 依据 JP／其他未出错地区的文本，并核对实际日程、商品 ID、对话角色、窗口读取方式。补译是本工程修正稿，不是官方新译文。
+- **修复范围与方式：** 按独立文本对象和选项调用核对；同一问题在多个地区出现时分别验证，不把文本对象数当作机制 bug 数。仅改实际受影响地区；物品名字与说明同步处理。猜拳已在上节说明，下表仅作索引。
+- **验证状态：** 已接入 `BUGFIX`；四版默认匹配，146 个文本对象、三处选项实参及三张指南签名页分别核验通过。文本修复会改变对应 STR 内容，不沿用旧批次“脚本 STR 块全部不变”的结论。
+
+| 问题 | 受影响版本 | 原版错误、修正与范围 |
+| --- | --- | --- |
+| 女神猜拳选项与分支错位 | US、EU、DE | 重排 `TalkChoice3` 的文本实参，使显示依次为石头、剪刀、布；随机数、胜负分支和奖金不变。[四版证据](REGIONAL_DIFFERENCES.md#goddess-rps-options) |
+| 露来访星期、酒庄休息日 | US、EU、DE | Monday／Montag 改星期日；酒庄门牌星期日改星期六，与实际脚本、指南一致。[来访](data/scripts/us/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [酒庄](data/scripts/de/EventScript_LocationInteraction_InspectAjaWineryBusinessHoursSign.mary.c) |
+| 玛娜把自己说成另一位在场者、莉莉娅声称嫁给凯 | US、EU、DE | 前者改称 Duke；后者按 JP 补译为珀布利成为新娘的感想。[玛娜](data/scripts/us/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [莉莉娅](data/scripts/de/EventScript_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c) |
+| 巨石说明误把五级锤写成玩家当前等级 | US、EU、DE | 原句误称玩家的锤已是 LV5；按 JP 改为即使五级锤也不能击碎；不改巨石事件或道具等级。[说明](data/scripts/us/EventScript_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c) |
+| 畜棚及牛羊商店将牧草称作鸡饲料 | US、EU、DE | 改为 Fodder／Viehfutter。[畜棚](data/scripts/us/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [商店](data/text/de/scene_yodel_ranch_shop_2.cc) |
+| 商人姓名栏与自我介绍不一致；面粉误作花 | US、EU、DE | 商人采用当时联机角色及本作自我介绍中的 Van，不按后世 Lou 的角色归属解释原版；面粉使用 Flour／Mehl，说明同步。[命名依据](#van-name-history) · [食品](data/text/de/item_2.cc) |
+| 玩家生日问候错用婴儿语、安娜普通赠礼提到生日 | US、EU | 按 JP 原文补译工作结束问候，去除普通赠礼中的生日限定。[艾利](data/scripts/us/EventScript_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice.mary.c) · [琳](data/scripts/us/EventScript_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice.mary.c) · [安娜](data/scripts/us/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) |
+| 英文脚本中残留德语、日语及日文助词 | US、EU | 卡特葡萄兼职提示与两选项补译英语；Nappy 香水答谢、扎克重复对话开头补译；去除电视中无意义的日文助词。[卡特](data/scripts/us/EventScript_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [Nappy](data/scripts/us/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [扎克](data/scripts/us/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) |
+| 鱼竿说明缺少行分隔 | US、EU | 补充说明行及换行，满足菜单的两行读取，不改菜单格式化逻辑。[工具](data/text/us/item_1.cc) |
+| 钓获提示超过行宽后覆盖首字母 | US、EU、DE | US／EU 特殊物品名换至下一行；DE 三个尺寸模板删去鱼名后的多余尾空格。JP 不改。[US 模板](data/scripts/us/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [DE 模板](data/scripts/de/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) |
+| Topaz 说明写 Ruby、Dinner Role、Apple Souffl? | US、EU | 更正说明主体、Dinner Roll；按 JP「焼きりんご」补译 Baked Apple。[食品](data/text/us/item_2.cc) · [矿石](data/text/us/item_3.cc) |
+| Sopha、Barely、Lillian、ready Basil、anythign | US、EU | 按实际对象与句意修正拼写；不变更脚本条件。[诊所](data/scripts/us/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [玛娜](data/scripts/us/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [商人](data/text/us/scene_special_merchant_shop.cc) |
+| 露的料理名、通信选项、收获计数误文 | DE | Apfelauflauf 与本版食品表一致；Ja／Nein；收获栏目改 Geerntet／Fehler。[露](data/scripts/de/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [联机](data/text/de/scene_gamecube_link.cc) · [收获](data/text/de/scene_harvesting_minigame_2.cc) |
+| 文字中残留 `ret>`／`<RET>` | US、EU、DE | 这些字面字符没有对应显示控制分支；在语句应换行处改为实际的 `\r\n`，不添加新的控制符解释器。[DE 节目提醒](data/scripts/de/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [消息读取](src/ui_text_stream.cc) |
+| 满行后的多余空格覆盖行首 | JP、US、EU、DE | 仅删除已确认正文占满 28 个半角格后溢出的尾空格；不删普通缩进和有意义空白，不自动重排其他长文本。[回绕规则](src/ui_text_rows.cc) |
+| 凯生日贺卡签名前残留制表字节 | US、EU、DE | 三版原 ROM 均为 `09`，源码转义写法不同不能作为实际字节不同的依据；移除该前缀，保留签名缩进。指南此处不处理制表控制。[贺卡](data/text/us/reference_guide/birthday_card_kai.cc) |
+
+**读取和布局边界。** US／EU 普通鱼竿原文 `Fishing RodFor fishing.`（鱼竿／用于钓鱼）缺少首行 `\r`；格式化循环不会因终止零停止，因而越过本对象读取铜鱼竿文本。修复补齐两行及分隔，不在菜单函数中另作行为修改。钓获提示则按实际物品名展开：US／EU 漂流瓶 33 格、海贼宝藏 29 格，DE 四种长鱼名所在模板 29 格，超过 28 格后回到本行覆盖开头。修复只调整这些消息的换行／尾空格，不增加游戏自动换行机制。[说明格式化](src/game_menu.cc) · [鱼竿文本](data/text/us/item_1.cc) · [钓获取名](src/fishing.cc) · [列号回绕](src/ui_text_rows.cc) · [US 消息](data/scripts/us/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [DE 消息](data/scripts/de/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c)
+
+**角色与选项依据。** 琳／艾利生日晚餐的婴儿语由妻子姓名栏与头像后的消息调用确认，发生在是否生育的分支之前，不批量替换孩子的正常婴儿语。安娜普通赠礼错称生日不会改变独立生日乘数；班的姓名栏与自我介绍不一致来自角色名表，未改变角色 ID。DE 收获栏目误用喂食词只影响标签，成绩仍读取收获／失败计数。[琳生日](data/scripts/us/EventScript_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice.mary.c) · [安娜赠礼](data/scripts/us/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [班介绍](data/scripts/us/EventScript_NPCEvent_Van_Introduction.mary.c) · [收获显示](src/scene_harvesting_minigame.cc)
+
+**补译与排版原则。** 先比对本作同场景、同类型现有台词；没有可直接复用的，参考重制版相应日英对话，仍以 GBA 的上下文与日文含义为准。卡特的兼职提示参考重制版，两个选项沿用本作其他村民的英语选项；Nappy 的香水答谢参考重制版同一赠礼反应。所用本地参考为 `SoSFoMTTextDump/US/msg_Scr_Talk.txt` 与对应日文文本，属于单份游戏文本导出材料，不能据此断言每版官方措辞相同。莉莉娅的婚礼感想和扎克的夸奖按本作日文直译，后者保留原两页，不另加情绪或台词。它们是本工程补译，不冒充官方英文原文。
+
+巨石的名称保留各地区原称，只修“即使 LV5 也无法击碎”的描述，维持三行正文及原有输入等待位置。鱼竿等物品说明以三行相邻字符串展示；空的 `""` 只是源码排版，不会额外产生换行或终止符。纯排版与变量命名调整分别提交，不混入行为修复。
+
+**同类遗漏检查的边界。** 本轮还修正了 13 处残留换行记号及 43 处满行后多余空格，逐处保留关闭开关时的原始字节。其余静态行宽候选仍需结合具体窗口、变量长度和调用路径确认，不列为已修复，更不宣称全部文本布局问题已清除。`ret>` 的具体历史生成来源没有证据；这里只确认当前程序不会将它解释为换行。
+
+<a id="van-name-history"></a>
+**Van／Lou／Ruby 的命名取舍。** 本作海外商人的姓名栏为 Lou，而其英语自我介绍明确写 Van。这是本作内部命名不一致；不能用重制版中 Lou 的身份反推当年是“误用了另一角色的名字”。本次选择 Van，是与本作自我介绍和当时联机商人的惯用名称统一，未改角色编号或料理来访者姓名。
+
+| 时代／作品 | 与本次判断相关的名称 | 证据与范围 |
+| --- | --- | --- |
+| NGC《A Wonderful Life》与 GBA 联机时期 | 商人为 Van；旅馆料理角色旧英文名 Ruby；本仓库 GBA 姓名栏另有 Lou、Lu 的写法 | GBA 的 Van 自我介绍与角色名表为直接证据；跨作品旧名由下列系列资料补充，不把 GBA 各处称呼强行当成一致。 |
+| NDS《Harvest Moon DS》 | 商人 Van、旅馆经营者 Ruby | [Van](https://fogu.com/hm6/chan3/villagers/van.php) · [Ruby](https://fogu.com/hm6/chan3/villagers/ruby.php)，均为社区攻略资料。 |
+| NS 等平台《Story of Seasons: Friends of Mineral Town》 | 料理来访者使用 Lou，旧系列名为 Ruby | [Lou 的身份与旧名说明](https://fogu.com/sos3/mineral_town/villagers/lou.html)。这是后来的命名沿革，不作为覆盖 GBA 全部译名的规则。 |
+
+跨作品历史参考主要来自同一社区资料站，可靠性低于本作可直接核对的文本；此次修复的核心依据仍是 [GBA 自我介绍](data/scripts/us/EventScript_NPCEvent_Van_Introduction.mary.c) 与 [姓名栏](data/text/us/npc_collection.cc) 的不一致。
+
+## 本轮验收记录
+
+| 验收层级 | 要求 | 当前状态 |
+| --- | --- | --- |
+| 默认四版 | 正常编译，每版逐字节与对应 baserom 相同，并确认 SHA-1 | 四版均通过 |
+| 开启原生修复 | 检查受影响分支与数据／文本指针，不应改变无关地区行为 | 受影响函数的对象指令／重定位差异及表指针通过核对；不声称完整运行复现 |
+| 开启 Mary 修复 | 检查每版 1,328 个脚本入口、RIFF 边界、文本及选项引用，变更集合与源码开关一致 | 四版均通过；猜拳的指令与跳转表另按下文直接核对 |
+| 恢复默认 | 还原配置，确认默认产物仍匹配 | 四版均通过，提交配置保持关闭 |
+
+本轮默认构建及恢复默认后均通过的 SHA-1：JP `a655b2789aed14a6ac78c6075fbc533d3062dbe3`；US `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`；EU `7ba1ec1e46ce424e3c6fd72e4e8d5e9eb5ede247`；DE `60f2a30b55c0e32754897b4d5df6ce06f8b71a37`。
+
+本轮检查了四版各 1,329 项脚本索引（含首项空指针）及 1,328 个 RIFF 脚本。开关造成的脚本变更分别为 JP 4、US 36、EU 36、DE 25 个，均与源码条件分支集合一致。146 个普通／脚本文本对象逐项检查编码字节、所属 STR 范围；物品与鱼名表检查实际目标符号。
+
+对 101 个变更脚本追加反解析，98 个成功；三个海外猜拳脚本触发当前 Mary 的字符串映射错误，不能将其记作反解析通过。这三处改用 VM 指令直接验收：每版 CODE 只改变两个 `0x23` 压栈立即数，调用仍为 `0x28`（TalkChoice3），字符串池与 JUMP 块完整不变；实际字符串索引顺序分别为 Rock／Scissors／Paper 或 Stein／Schere／Papier（石头／剪刀／布）。未修改 Mary 或增加游戏兼容补丁。
+
+指南逐页检查 JP 137、US 138、EU 138、DE 139 张物理行表及各版 137 项总目录：行指针均有效，目录顺序和行数不变；只更改海外凯贺卡的签名前缀。名称展开的 103 个局部检查覆盖已有名称标记、数字标签、单／双字节、字段容量和输出边界，全部通过。
+
+原生对象对照中，幼畜好感度、联机末字符、牛羊售价和失败窗口状态仅 JP 改变；包装图标仅 JP／US 改变；指南展开四版改变。其余对应版本的这些函数代码及重定位保持一致。这些比较是对修复范围的检查，不能代替实际游玩确认。
+
+编译、字节、脚本及指针验收不等同于逐个事件的游玩复现。婚期生日、动物照料记录、料理包装说明三项仍未接入开关，不应列入已修复数量。

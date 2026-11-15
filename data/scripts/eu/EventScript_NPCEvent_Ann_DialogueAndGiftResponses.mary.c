@@ -331,7 +331,13 @@ mary_text_table
         "Just work a little longer!{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseOrangeHeartMorningFirstConversation[] =
+// Replace the untranslated line-break marker with the actual CR/LF control.
+#ifdef BUGFIX
+        "Good morning!\r\n"
+        "Feel like putting in a \r\n"
+#else
         "Good morning!ret>Feel like putting in a \r\n"
+#endif
         "good day's work?{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseOrangeHeartMorningRepeatConversation[] =

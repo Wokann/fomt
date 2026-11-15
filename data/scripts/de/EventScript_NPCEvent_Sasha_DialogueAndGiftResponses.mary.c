@@ -202,7 +202,12 @@ mary_text_table
     const char gText_NPCEvent_Sasha_DialogueAndGiftResponses_PoultryFarmHighFriendshipFirstConversation[] =
         "Lillias Mann ist ein\r\n"
         "feiner Mensch, aber er\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "steigert sich in etwas rein.{Press}\p"
+#else
         "steigert sich in etwas rein. {Press}\p"
+#endif
         "Wo er jetzt wohl ist...{Press}";
 
     const char gText_NPCEvent_Sasha_DialogueAndGiftResponses_PoultryFarmHighFriendshipRepeatConversation[] =

@@ -15,7 +15,12 @@ mary_text_table
         "decided to use it at my {Press}\r\n"
         "own Inn! {Press}\p"
         "I'm at the Inn here every \r\n"
+// The actual weekly visit is on Sunday, not Monday.
+#ifdef BUGFIX
+        "Sunday, so come by if you\r\n"
+#else
         "Monday, so come by if you\r\n"
+#endif
         "want to sell something! {Press}";
 };
 

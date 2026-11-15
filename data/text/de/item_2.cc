@@ -1,3 +1,4 @@
+#include "config.h"
 #include "item.hh"
 
 // German food text. Keep declaration order synchronized with its catalog.
@@ -532,10 +533,20 @@ char const gText_Item_Food_Oil_Description[] =
     "zum Kochen benutzt werden.";
 
 char const gText_Item_Food_Flower_Name[] =
+// This item is flour for cooking, not a flower; the shop already identifies it correctly.
+#ifdef BUGFIX
+    "Mehl";
+#else
     "Blume";
+#endif
 
 char const gText_Item_Food_Flower_Description[] =
+// This item is flour for cooking, not a flower; the shop already identifies it correctly.
+#ifdef BUGFIX
+    "Mehl\r\n"
+#else
     "Blume\r\n"
+#endif
     "Kann so gegessen oder\r\n"
     "zum Kochen benutzt werden.";
 

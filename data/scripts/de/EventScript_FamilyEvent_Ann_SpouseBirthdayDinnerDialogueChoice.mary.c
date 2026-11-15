@@ -93,7 +93,12 @@ mary_text_table
         "Habe ich von Papa gelernt!{Press}";
 
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ItDoesntTakeMuchToRemember[] =
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "Ist ja wohl nicht so schwer,\r\n"
+#else
         "Ist ja wohl nicht so schwer, \r\n"
+#endif
         "sich den Geburtstag seiner  \r\n"
         "Frau und seines Kindes {Press}\p"
         "zu merken! \r\n"

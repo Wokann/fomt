@@ -1,3 +1,4 @@
+#include "config.h"
 #include "scene_harvesting_minigame.hh"
 
 
@@ -62,6 +63,12 @@ char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix[] =
 
 char const gText_HarvestSpriteMiniGame_Harvest_ScoreSummary[] =
     "\p"
+// These counters record harvested crops and misses, not feeding and forgetting.
+#ifdef BUGFIX
+    "Geerntet\r\n"
+    "Fehler\r\n"
+#else
     "Gefüttert\r\n"
     "Vergessen\r\n"
+#endif
     "               Gesamt{Press}";

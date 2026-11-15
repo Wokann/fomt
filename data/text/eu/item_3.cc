@@ -1,3 +1,4 @@
+#include "config.h"
 #include "item.hh"
 
 // US article text. Keep entry order and four-byte alignment to preserve ROM layout.
@@ -264,8 +265,14 @@ char const gText_Item_Article_Topaz_Name[] =
     "Topaz";
 
 char const gText_Item_Article_Topaz_Description[] =
+// The description belongs to Topaz, not Ruby.
+#ifdef BUGFIX
+    "Topaz\r\n"
+    "Found in mines, and \r\n"
+#else
     "Ruby\r\n"
     "Topaz in mines, and \r\n"
+#endif
     "relatively valuable.";
 
 char const gText_Item_Article_Peridot_Name[] =

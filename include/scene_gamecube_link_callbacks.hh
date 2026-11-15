@@ -60,7 +60,7 @@ inline void GameCubeLinkUiCore::EnterRetry()
     func_08050D8C(reinterpret_cast<void * const *>(&ui),
         reinterpret_cast<u32>(gText_LinkCommunication_DataExchangeFailed));
     ui.ShowPortrait(0x3A);
-#if !defined(REGION_JP)
+#if !defined(REGION_JP) || defined(BUGFIX)
     // PollRetry runs before Run refreshes this cached window state.
     ui_state = 4;
 #endif

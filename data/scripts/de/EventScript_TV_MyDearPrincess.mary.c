@@ -82,7 +82,13 @@ mary_text_table
         "in der Lage war, ein Wort\r\n"
         "herauszubringen. Es war \r\n"
         "irgendwie süß. Ich denke\r\n"
+// Replace the untranslated line-break marker with the actual CR/LF control.
+#ifdef BUGFIX
+        "nicht, dass ich große \r\n"
+        "Probleme hätte, ihn zu\r\n"
+#else
         "nicht, dass ich große ret>Probleme hätte, ihn zu\r\n"
+#endif
         "heirate. Trotzdem würde\r\n"
         "ich gerne selber sehen,\r\n"
         "wie stark er ist und so. \r\n"
@@ -166,7 +172,13 @@ mary_text_table
         "Nur... was?\r\n"
         "              \r\n"
         "\"Ich bin kein Mensch. \r\n"
+// Replace the untranslated line-break marker with the actual CR/LF control.
+#ifdef BUGFIX
+        "Tatsächlich bin ich der \r\n"
+        "größte aller Dämonen,\r\n"
+#else
         "Tatsächlich bin ich der ret>größte aller Dämonen,\r\n"
+#endif
         "den man gemeinhin\r\n"
         "Dämonenmeister nennt.\"\r\n"
         "              \r\n"

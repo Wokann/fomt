@@ -1,3 +1,4 @@
+#include "config.h"
 #include "npc_collection.hh"
 
 // Text storage selected by gCharacterNameEntries.  Each independent string is
@@ -100,7 +101,12 @@ char const gText_CharacterName_Kappa[] =
     "Kappa";
 
 char const gText_CharacterName_Van[] =
+// Use Van for consistency with the contemporary linked GameCube character.
+#ifdef BUGFIX
+    "Van";
+#else
     "Lou";
+#endif
 
 char const gText_CharacterName_LouOrRuby[] =
     "Lu";

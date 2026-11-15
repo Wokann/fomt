@@ -42,7 +42,12 @@ mary_text_table
         "Bye now.{Press}";
 
     const char gText_FamilyEvent_HarvestGoddess_ChildBirthdayDateChoice_CorrectChildBirthdayResponseAndMeal[] =
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "I didn't think you'd forget!\r\n"
+#else
         "I didn't think you'd forget! \r\n"
+#endif
         "Here's a special dish\r\n"
         "I made.{Press}";
 

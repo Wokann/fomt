@@ -703,7 +703,12 @@ mary_text_table
         "Fortsetzung folgt (Echt){Press}";
 
     const char gText_TV_StarLilyBanditGirl_Episode18[] =
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "Star Lily, das Räubermädchen\r\n"
+#else
         "Star Lily, das Räubermädchen \r\n"
+#endif
         "Episode 18\r\n"
         " \r\n"
         "Letzte Episode:----------\r\n"
@@ -740,7 +745,12 @@ mary_text_table
         "Fortsetzung folgt (Echt){Press}";
 
     const char gText_TV_StarLilyBanditGirl_Episode19[] =
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "Star Lily, das Räubermädchen\r\n"
+#else
         "Star Lily, das Räubermädchen \r\n"
+#endif
         "Episode 19\r\n"
         " \r\n"
         "Letzte Episode:----------\r\n"
@@ -847,7 +857,13 @@ mary_text_table
         "Sally, die Detektivin\r\n"
         "Ich war so sicher, dass\r\n"
         "es dich verwirren würde,\r\n"
+// Replace the untranslated line-break marker with the actual CR/LF control.
+#ifdef BUGFIX
+        "wenn ich eine zweite \r\n"
+        "Tüte hinlege...\r\n"
+#else
         "wenn ich eine zweite ret>Tüte hinlege...\r\n"
+#endif
         " \r\n"
         "Fräulein Annie\r\n"
         "Es wäre wohl auch egal,\r\n"

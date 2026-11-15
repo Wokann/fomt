@@ -119,11 +119,21 @@ mary_text_table
 
     const char gText_NPCEvent_Saibara_DialogueAndGiftResponses_TownMorningCommentsOnWeather[] =
         "おはよう。\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "今日はよい天気でなによりだ。{Press}";
+#else
         "今日はよい天気でなによりだ。{Press} ";
+#endif
 
     const char gText_NPCEvent_Saibara_DialogueAndGiftResponses_TownAfternoonGoingShopping[] =
         "おお、{Player}か。\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "わしは今から買い物なのだよ。{Press}";
+#else
         "わしは今から買い物なのだよ。{Press} ";
+#endif
 
     const char gText_NPCEvent_Saibara_DialogueAndGiftResponses_TownEveningGoingToInn[] =
         "今からイッパイやろうと思って\r\n"

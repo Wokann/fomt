@@ -181,7 +181,12 @@ mary_text_table
 
     const char gText_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes_GameCubeRecipe10AppleSouffle[] =
         "Have you heard of \r\n"
+// Match the baked-apple item name; this recipe is not a souffle.
+#ifdef BUGFIX
+        "Baked Apple?{Press}\p"
+#else
         "Apple Soufle?{Press}\p"
+#endif
         "All you need are Apples\r\n"
         "and a Frying Pan.{Press}\p"
         "It's great as a desert. \r\n"

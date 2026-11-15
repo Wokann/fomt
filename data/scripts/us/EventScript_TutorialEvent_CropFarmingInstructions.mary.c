@@ -7,7 +7,12 @@ mary_text_table
 {
     const char gText_TutorialEvent_CropFarmingInstructions_ToRaiseCropsFirstUseYour[] =
         "To raise crops, first use \r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "your Hoe to till your field.{Press}\p"
+#else
         "your Hoe to till your field. {Press}\p"
+#endif
         "Press the B Button to use\r\n"
         "equipped Tools. {Press}";
 

@@ -7,7 +7,12 @@ mary_text_table
 {
     const char gText_TV_MechabotUltror_Episode01[] =
         "Ultror kehrt zurück!\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "　　　　　　　　　　　　　　\r\n"
+#else
         "　　　　　　　　　　　　　　  \r\n"
+#endif
         "Die Sommerferien \r\n"
         "sind vorbei und es ist\r\n"
         "wieder Herbst.\r\n"
@@ -109,7 +114,12 @@ mary_text_table
         "\"Ok, das müsst ihr  \r\n"
         "morgen tun: Um 8.00 Uhr \r\n"
         "versammeln sich alle\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "vor der Schule.\r\n"
+#else
         "vor der Schule.              \r\n"
+#endif
         "Was auch immer ihr tut, \r\n"
         "kommt nur nicht zu spät. \r\n"
         "Was ihr mitbringen müsst, \r\n"
@@ -124,12 +134,22 @@ mary_text_table
         "mehr aus, verstanden? \r\n"
         "Bevor wir gehen, komme\r\n"
         "ich herum und kontrolliere  \r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "jedes Paket einzeln und\r\n"
+#else
         "jedes Paket einzeln und      \r\n"
+#endif
         "jedem, der über das Budget \r\n"
         "gegangen ist, wird das\r\n"
         "Essen konfisziert!\"   \r\n"
         "                      \r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "Fortsetzung folgt...\r\n"
+#else
         "Fortsetzung folgt...         \r\n"
+#endif
         "   \r\n"
         "   \r\n"
         "Abspann:  \r\n"
@@ -760,9 +780,19 @@ mary_text_table
         "Fußgängerbrücke,  \r\n"
         "deshalb bist du 15 \r\n"
         "Sekunden zu spät...\"  \r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "\"Woher weißt du das?\"\r\n"
+#else
         "\"Woher weißt du das?\"        \r\n"
+#endif
         " \r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "Fortsetzung folgt...\r\n"
+#else
         "Fortsetzung folgt...          \r\n"
+#endif
         "   \r\n"
         "   \r\n"
         "Abspann:                    \r\n"

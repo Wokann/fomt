@@ -1,3 +1,4 @@
+#include "config.h"
 #include "scene_special_merchant_shop.hh"
 
 char const gText_SpecialMerchantShop_RecordPlayerDescription[] =
@@ -34,4 +35,9 @@ char const gText_SpecialMerchantShop_ArticleDelivery[] =
 
 char const gText_SpecialMerchantShop_PurchaseMorePrompt[] =
     "Sure you don't need \r\n"
+// Correct the misspelling of anything.
+#ifdef BUGFIX
+    "anything else?{Press}";
+#else
     "anythign else?{Press}";
+#endif

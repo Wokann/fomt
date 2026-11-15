@@ -6,7 +6,12 @@
 mary_text_table
 {
     const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_GooGoo[] =
+// The wife asks whether work is finished here; this is not the baby's speech.
+#ifdef BUGFIX
+        "Have you finished work?{Press}";
+#else
         "Goo-goo.{Press}";
+#endif
 
     const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_Yes[] =
         "Yes";

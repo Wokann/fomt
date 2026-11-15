@@ -26,7 +26,7 @@ void GiftWrappingSceneCore::DrawTools(u32 count)
         ToolStack stack = rucksack->GetToolAt(index);
         if (!stack.IsEmpty())
         {
-#if defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU) || defined(REGION_DE) || defined(BUGFIX)
             // Upgrade levels are stored by Farmer, not by the inventory slot.
             Tool base_tool = stack.GetTool();
             Tool tool = save->farmer.GetUpgradedTool(base_tool);
@@ -43,7 +43,7 @@ void GiftWrappingSceneCore::DrawTools(u32 count)
     }
     if (!held_tool->IsEmpty())
     {
-#if defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU) || defined(REGION_DE) || defined(BUGFIX)
         Tool base_tool = held_tool->GetTool();
         Tool tool = save->farmer.GetUpgradedTool(base_tool);
 #else

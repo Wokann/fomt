@@ -23,7 +23,13 @@ mary_text_table
         "Wir bezahlen dich natürlich.{Press}";
 
     const char gText_NPCEvent_Duke_GrapeHarvestInvitation_DukeAsksPlayerToInviteAnotherWorker[] =
+// Replace the untranslated line-break marker with the actual CR/LF control.
+#ifdef BUGFIX
+        "Oh ja. Wir brauchen noch \r\n"
+        "jemanden, also bring Beglei-\r\n"
+#else
         "Oh ja. Wir brauchen noch ret>jemanden, also bring Beglei-\r\n"
+#endif
         "tung, wenn du dran denkst.{Press}";
 
     const char gText_NPCEvent_Duke_GrapeHarvestInvitation_DukeAcceptsDeclineAndStillRequestsRecruitment[] =

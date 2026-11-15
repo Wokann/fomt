@@ -113,7 +113,12 @@ mary_text_table
     const char gText_NPCEvent_Barley_DialogueAndGiftResponses_TownRainyMondayDisappointedHotSpringTripCancelled[] =
         "今日は温泉に行こうとしておっ\r\n"
         "たのに。\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "天気が悪いとは残念じゃよぉ…{Press}";
+#else
         "天気が悪いとは残念じゃよぉ…{Press} ";
+#endif
 
     const char gText_NPCEvent_Barley_DialogueAndGiftResponses_TownSunnyLowFriendshipFirstConversationQuestionsVisit[] =
         "こんな所で何をしておるのかの\r\n"

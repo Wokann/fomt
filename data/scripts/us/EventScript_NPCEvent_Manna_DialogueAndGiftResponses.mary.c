@@ -358,7 +358,12 @@ mary_text_table
     const char gText_NPCEvent_Manna_DialogueAndGiftResponses_Winery1FEveningFriendshipAbove100RodAbsenceStory[] =
         "You’ve never heard of \r\n"
         "Rod, have you? \r\n"
+// Use Lillia, as in her name entry; Lillian is a spelling error.
+#ifdef BUGFIX
+        "He’s Lillia’s husband, \r\n"
+#else
         "He’s Lillian’s husband, \r\n"
+#endif
         "and the one who brought the\r\n"
         "shipper Zack to this town.\r\n"
         "When Rod met Zack on his \r\n"
@@ -379,7 +384,12 @@ mary_text_table
         "he can’t act on it, but he\r\n"
         "can’t forget his love,\r\n"
         "either! Oh, the humanity!\r\n"
+// Use Lillia, as in her name entry; Lillian is a spelling error.
+#ifdef BUGFIX
+        "Lillia isn’t the kind of \r\n"
+#else
         "Lillian isn’t the kind of \r\n"
+#endif
         "person who would ever \r\n"
         "notice it, and of course I\r\n"
         "would never tell her.\r\n"

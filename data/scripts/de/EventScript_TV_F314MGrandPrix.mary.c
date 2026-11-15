@@ -622,7 +622,12 @@ mary_text_table
         "würden. Diesen Rat schlug \r\n"
         "Daisy natürlich in den \r\n"
         "Wind und nahm wie vorgesehen\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "am Rennen teil. Dann, in der\r\n"
+#else
         "am Rennen teil. Dann, in der \r\n"
+#endif
         "12. Runde kombinierten \r\n"
         "Daisy und Cosmos ihre Magie\r\n"
         "und trafen auf Lavender - \r\n"
@@ -1288,7 +1293,12 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "das bedeuten soll.\r\n"
+#else
         "das bedeuten soll.           \r\n"
+#endif
         "              \r\n"
         "              \r\n"
         "--------------\r\n"
@@ -1919,7 +1929,12 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "das bedeuten soll.\r\n"
+#else
         "das bedeuten soll.           \r\n"
+#endif
         "              \r\n"
         "              \r\n"
         "--------------\r\n"
@@ -2260,7 +2275,12 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "das bedeuten soll.\r\n"
+#else
         "das bedeuten soll.           \r\n"
+#endif
         "              \r\n"
         "              \r\n"
         "--------------\r\n"
@@ -2641,7 +2661,12 @@ mary_text_table
         "              \r\n"
         "              \r\n"
         "Als Schüler hat Lilac\r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "noch keine magischen Kräfte.\r\n"
+#else
         "noch keine magischen Kräfte. \r\n"
+#endif
         "Hoffen wir, dass sie mal\r\n"
         "gut wird.\r\n"
         "              \r\n"

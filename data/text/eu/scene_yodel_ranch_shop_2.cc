@@ -1,3 +1,4 @@
+#include "config.h"
 #include "scene_yodel_ranch_shop.hh"
 
 char const gText_LivestockShop_PageBreak[] =
@@ -95,8 +96,14 @@ char const gText_LivestockShop_No[] =
     "No";
 
 char const gText_LivestockShop_FeedPurchaseComplete[] =
+// This purchase adds cattle/sheep fodder, not chicken feed.
+#ifdef BUGFIX
+    "I'll put this Fodder\r\n"
+    "in the Feed Bin, now.{Press}";
+#else
     "I'll put this here Chicken\r\n"
     "Feed in the Feed Bin, now.{Press}";
+#endif
 
 char const gText_LivestockShop_PurchaseDeliveryPartial[] =
     "Come any time.{Press}\p"

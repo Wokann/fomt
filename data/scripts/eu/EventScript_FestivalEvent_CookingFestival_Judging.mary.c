@@ -118,7 +118,12 @@ mary_text_table
         "fresh Bread. Divine!{Press}";
 
     const char gText_FestivalEvent_CookingFestival_Judging_ItsSimpleYetWithDepthDelicious[] =
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        "It's simple, yet with depth.\r\n"
+#else
         "It's simple, yet with depth. \r\n"
+#endif
         "Delicious!{Press}";
 
     const char gText_FestivalEvent_CookingFestival_Judging_TheMushroomsAndTheRiceOffset[] =

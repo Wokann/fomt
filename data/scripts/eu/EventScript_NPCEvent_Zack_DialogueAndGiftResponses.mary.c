@@ -183,10 +183,19 @@ mary_text_table
         "I'm working now!{Press}";
 
     const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_UntranslatedJapaneseLeadIn[] =
+// Translate the Japanese dialogue while preserving its two pages.
+#ifdef BUGFIX
+        "{Player},\r\n"
+        "farm life suits you pretty\r\n"
+        "well, doesn't it?{Press}\p"
+        "I'm complimenting you,\r\n"
+        "you know.{Press}";
+#else
         "{Player}、\r\n"
         "けっこう牧場がにあってんじゃ\r\n"
         "ねぇか？{Press}\p"
         "これでも、ほめてんだぜ～。{Press}";
+#endif
 
     const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_PraisesPlayerAsFarmer[] =
         "The farming life seems\r\n"

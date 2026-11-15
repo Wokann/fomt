@@ -1,3 +1,4 @@
+#include "config.h"
 // Default display text for invalid Item data.
 
 static char const gBrokenToolName[] =
@@ -342,7 +343,13 @@ char const gText_Item_Tool_FishingRod_Name[] =
     "Fishing Rod";
 
 char const gText_Item_Tool_FishingRod_Description[] =
+// Restore the missing row breaks required by the description reader.
+#ifdef BUGFIX
+    "Fishing Rod\r\n"
+    "For fishing.\r\n";
+#else
     "Fishing RodFor fishing.";
+#endif
 
 char const gText_Item_Tool_CopperFishingRod_Name[] =
     "Copper Fishing Rod";

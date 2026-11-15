@@ -135,7 +135,13 @@ mary_text_table
         "To Be Continued{Press}";
 
     const char gText_TV_MyDearPrincess_Episode04[] =
+// Replace the untranslated line-break marker with the actual CR/LF control.
+#ifdef BUGFIX
+        "My Dear Princess\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+#else
         "My Dear Princessret>　　　　　　　　　　　　　　\r\n"
+#endif
         "\r\n"
         "Episode 4\r\n"
         "　　　　　　　　　　　　　　\r\n"

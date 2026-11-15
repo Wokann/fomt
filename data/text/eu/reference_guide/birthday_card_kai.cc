@@ -7,5 +7,10 @@ MAIN
     "HAPPY BIRTHDAY,"
     "<p>."
     ""
+// The signature contains a stray tab escape, not a guide control code.
+#ifdef BUGFIX
+    "                Kai"
+#else
     "\\t                Kai"
+#endif
 END_FOMT_REFERENCE_GUIDE_PAGE

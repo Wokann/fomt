@@ -1,76 +1,163 @@
 # 矿石镇四版差异
 
-以下对照以仓库当前 JP、US、EU、DE 四份原版实现为准。表中记录能定位到实现的机制、布局或脚本差异。后续发现可单独增行，属于缺陷的条目链接到[原版问题与可选修复](BUGFIX.md)。
+本页描述默认关闭 `BUGFIX` 的 JP、US、EU、DE 原版。以实际机制、数据读写和玩家可见影响分类；属于缺陷的条目指向 [BUGFIX](BUGFIX.md)，正常本地化与地区规则不自动修正。来源为同一工程的四版代码、脚本、数据及基准 ROM；未独立运行复现的地方只写静态可确认的结果。
+
+本页不将旧候选数量当作当前机制数量或本轮构建结果。原始全仓扫描保留于 [逐项索引](REGIONAL_DIFFERENCES.tsv)，其基线为 `97f83743`，不等同于当前工作区验收。已排除的社区问题、相同规则的大段说明和未确认可达的潜在缺陷不列入正式差异。
+
+## 结算、养成与事件条件
+
+| 机制 | JP | US／EU／DE | 玩家影响、依据与处理 |
+| --- | --- | --- | --- |
+| 睡眠时长恢复 | 先把时间设为 06:00，再保存时间；恢复函数因此按 24 小时计算 | 保存真实入睡小时后才设为 06:00，按到次日早晨的小时数计算 | 小时恢复为每小时体力 +7、疲劳 −2。普通床另有固定 +50、−5；JP 因而额外获得过多恢复，通常压住了后续睡过头分支。[缺陷与计算边界](BUGFIX.md#jp-sleep-time) |
+| 冬季牧草 | 没有冬季停止生长的判断；换季时不重置牧草生长状态 | 入冬时把已有牧草设为阶段 7、计数 0；冬季不推进生长 | 会改变越冬生长状态与春季恢复生长的起点，并非译文差异。尚不据此断言冬季可割草或放牧。[每日与换季更新](src/field.cc) |
+| 幼牛、幼羊出生好感度 | 幼牛无条件取随机数并对母牛好感度的一半取模；幼羊路径以空对象调用好感度读取器 | 从实际母畜读取好感度，只有一半好感度大于 1 时才取随机数并取模 | 修正母羊读取来源及零除数风险；低好感度情形的随机数消耗也不同。JP 的实际异常结果未做运行验证。[缺陷记录](BUGFIX.md#jp-birth-affection) |
+| 婚期避让表 | 不包含年内索引 89、114 | 增加这两项，即秋 30 日、冬 25 日 | 婚期候选会额外避开这两天；不是单纯日历显示修改。[日期表和查询](src/wedding_date.cc) · [婚期计算调用](src/script_engine.cc) |
+| 婚期的生日冲突 | 订婚后查询已婚配偶；生日与避让表按固定顺序各检查，顺延后不重新检查全部条件 | 使用本次婚约对象，并在每次顺延后重新检查双方生日与避让表 | JP 可能安排在未婚妻生日，或在避开其他日期后落到玩家生日。[待修复问题](BUGFIX.md#jp-wedding-birthdays) |
+| 医生的两段下午行程 | 两套外出日程的切换点为 600、627 | 切换点为 601、628 | 调度使用从 06:00 起算的分钟，因此从 16:00／16:27 改为 16:01／16:28；相同路径晚一分钟开始及结束。仅适用于选中这两套日程时，不能推广为医生所有活动都推迟。[日程选择与路径](src/npc_schedule_doctor.cc) · [时间比较](src/npc_schedule_search.cc) · [分钟换算](src/npc_entity.cc) |
+| 扩建畜棚的三格调查属性 | 网格坐标 `(11,6)`、`(11,7)`、`(11,8)` 使用属性项 3，调查脚本为 `0x016B` | 三格改为属性项 2，调查脚本为 0 | 两属性项的阻挡位相同，仅取消这三格的“木桶”调查文本，不是允许穿过墙壁。坐标以 8 像素格计、从 0 起算。[网格和属性](src/map_terrain.cc) · [地图选择](src/map_selection.c) · [调查脚本](data/scripts/jp/EventScript_LocationInteraction_InspectTownAndFarmBuildingBarrel.mary.c) |
+| 动物照料最高记录 | 从动物照料记录字段读取 | 动物照料栏再次读取收获记录字段 | 海外版两个小游戏栏目显示相同成绩，但动物照料的真实成绩仍独立保存；不是没有结算小游戏奖励。[待修复问题与读写证据](BUGFIX.md#overseas-animal-care-record) |
+| 获奖牛羊的出售价格 | 好感度超过 200 且获奖时，累计户外不足 600 小时：牛 7,000 G、羊 5,000 G；达到 600 小时：牛 6,000 G、羊 4,000 G | 同样两档依次为牛 6,000／7,000 G、羊 4,000／5,000 G | JP 两个高等级的售价分支与海外相反，达到户外时间门槛反而少卖 1,000 G；报价直接用于实际入账，不是文本错误。[完整售价与入账链](#livestock-sale-prices) |
+
+冬季牧草的类型判定已追到收割返回值及 `Barn::AddStoredBushels(1)` 的入库调用；保留为地区生长规则差异，不把它扩张为已确认冬季可割草或放牧。[田地更新](src/field.cc) · [收割入库](src/game_world.cc)
+
+<a id="livestock-sale-prices"></a>
+### 获奖牛羊出售价格
+
+下表按 `Livestock::GetProductRank()` 的五个返回值排列；条件是累计户外时间，不能改写成连续放牧时间。等级 3、4 还要求好感度超过 200 且已经获奖。
+
+| 基础等级与条件 | JP 牛 | US／EU／DE 牛 | JP 羊 | US／EU／DE 羊 |
+| --- | ---: | ---: | ---: | ---: |
+| 0：好感度 ≤ 100 | 3,000 | 3,000 | 2,000 | 2,000 |
+| 1：100 < 好感度 ≤ 200 | 4,000 | 4,000 | 2,500 | 2,500 |
+| 2：好感度 > 200，未获奖 | 5,000 | 5,000 | 3,000 | 3,000 |
+| 3：获奖、累计户外 < 600 小时 | 7,000 | 6,000 | 5,000 | 4,000 |
+| 4：获奖、累计户外 ≥ 600 小时 | 6,000 | 7,000 | 4,000 | 5,000 |
+
+`GetAnimalSalePrice` 的牛、羊跳转表在 JP 各交换了等级 3、4 的目标。`Run` 将返回值保存为出售列表项的价格，确认后把同一字段直接传给 `AddMoneyToAccount`，随后移除动物。因此，在其他条件不变且未触及持金上限时，JP 获奖动物达到 600 小时反而少收入 1,000 G；海外则多收入 1,000 G。这里不使用牛羊生产时额外抽取 X 级产物的随机分支。[基础等级条件](src/livestock.cc) · [两张跳表、列表写入与出售确认](src/scene_yodel_ranch_shop.cc) · [金钱写入及上限](src/money_account.cc)
+
+这是已确认的数值行为和海外调整；JP 的反向等级价格已接入工作区的[可选修复](BUGFIX.md#jp-livestock-sale-prices)，默认关闭时仍保留上述原版行为。
+
+## 流程与输入反馈
+
+| 范围 | 原版地区行为与玩家影响 | 处理与依据 |
+| --- | --- | --- |
+| 04:44／16:44 电视 | JP 两入口调用隐藏节目；海外遗漏后用未赋值频道变量分派，时间未变时反复重入。 | 海外可选修复：[电视流程](BUGFIX.md#tv-444)。 |
+| 艾利昵称 | US／EU 第二选项确认 Honey 但不保存；JP／DE 会写回。 | US／EU 可选修复：[昵称](BUGFIX.md#elli-nickname)。 |
+| 德版电视频道与节目 | 春 19 日贯穿到 20 日并覆盖输入；人物介绍第 36 项未取得频道输入。其他地区无这两处遗漏。 | 两项分别修正：[春 19 日](BUGFIX.md#de-farm-tv) · [频道输入](BUGFIX.md#de-profile-tv)。 |
+| 联机重试 | JP 新消息不重置场景缓存；旧值为完成状态时可提前创建重试选项。海外将缓存设为 4。 | JP 可选修复：[重试状态](BUGFIX.md#jp-link-retry)。尚未运行复现全部断线时序。 |
+| 新手教学退出 | 海外进入退出状态后跳过 Start 再次退出检查；JP 没有这层状态保护，满足淡出空闲和对话条件的新按键事件可能再次启动淡出。 | 保留为输入防重入差异，未接入 BUGFIX；不能表述为持续按住 Start 必然卡死。[教学状态机](src/farming_tutorial.cc) · [按键事件](src/hardware_input.cc) · [淡出](src/hardware_blend.cc) |
+| 音乐节入场状态 | 海外转入开幕前多写一次阶段 1；四版正常卡特对话入口此前已写相同值。 | 实际存在重复写入，但正常入口没有改变演奏资格、奖励或退场条件，不作 BUGFIX。[对话入口](data/scripts/jp/EventScript_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [海外入场](data/scripts/us/EventScript_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.c) |
+
+<a id="goddess-rps-options"></a>
+### 女神猜拳的显示选项
+
+三个选项按位置返回 `CHOICE_OPTION_1/2/3`。四版对应分支实际依次执行石头、剪刀、布：第一项对随机结果 0／1／2 得到平／胜／负，第二项负／平／胜，第三项胜／负／平，结果消息也按这个顺序描述玩家出拳。DE 仅将倒计时消息复用，未重排胜负分支。
+
+| 菜单位置／实际出拳 | JP 显示 | US、EU 显示 | DE 显示 |
+| --- | --- | --- | --- |
+| 1／石头 | ぐー（石头） | Rock（石头） | Schere（剪刀，错误） |
+| 2／剪刀 | ちょき（剪刀） | Paper（布，错误） | Stein（石头，错误） |
+| 3／布 | ぱー（布） | Scissors（剪刀，错误） | Papier（布） |
+
+因此 US／EU 的第二、三项错位，DE 的第一、二项错位。选择显示的手势后，会进入另一手势的结果与胜负分支；不是随机结果或赢局累加的公式改变。因为三个实际手势仍各有一个入口，此问题本身也不等于修改了胜率。现有 `ChoicePaper`／`ChoiceScissors` 符号名源于英文显示文字，不能拿名字代替实际语义。[JP 脚本](data/scripts/jp/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [US](data/scripts/us/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [EU](data/scripts/eu/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [DE](data/scripts/de/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [选项返回值](include/fomt_constants.mary.h)
+
+## 文字、名称与显示
+
+| 范围 | 原版地区差异 | 玩家影响与处理 |
+| --- | --- | --- |
+| 商品价格与身份 | JP 小／大鱼价倒置；海外炒荞麦面、X 羊毛复用另一等级／菜品文本；DE 收集宝玉复用成品名字、XL 药品复用普通药名字。 | 价格影响实际收益，其余主要造成物品身份误认。分别见 [鱼价](BUGFIX.md#fish-prices)、[炒荞麦面](BUGFIX.md#fried-soba)、[羊毛](BUGFIX.md#wool-x)、[宝玉](BUGFIX.md#de-jewels)、[德版食物](BUGFIX.md#de-food)。 |
+| 钓鱼记录名 | 海外 37 复用 22；DE 的 46 还复用 18。JP 分别区分鱼种，US／EU 的 18／46 也独立。 | 名称混淆，记录 ID、数量及尺寸仍独立。[鱼名修复](BUGFIX.md#fish-record-names)。 |
+| 包装农具 | JP／US 用基础编号取图标，EU／DE 根据保存的升级记录转换编号。 | 只影响包装界面的背包及手持图标，不使工具降级。[修复](BUGFIX.md#wrapping-tool-icons)。 |
+| 动物照料最高记录 | JP 读取照料记录，海外错读收获记录。 | 成绩保存正确，记录页显示错误；尚未修复。[读写证据与状态](BUGFIX.md#overseas-animal-care-record)。 |
+| 对话语言与角色 | 海外来访星期、休息日、人物指代、物品名等存在错译；US／EU 部分已调用消息仍为日文／德文，DE 联机确认仍为 Yes／No。 | 已核实对象及实际正确含义统一列在 [文本修复清单](BUGFIX.md#localization-text)，不把错误译文推断为事件条件或奖励改变。 |
+| DE 收获结果栏目 | 用动物照料的 Gefüttert／Vergessen（已喂食／遗忘），JP／US／EU 对应收获／失败。 | 计分仍取收获与失败次数，仅修栏目为 Geerntet／Fehler。[DE 文本](data/text/de/scene_harvesting_minigame_2.cc) · [消费者](src/scene_harvesting_minigame.cc) · [修复](BUGFIX.md#localization-text)。 |
+| 普通鱼竿说明 | US／EU 缺首行分隔，读取器越过终止零拼入下一个对象；JP／DE 有分隔。 | 补齐说明两行，保持原菜单逻辑。[说明读取](src/game_menu.cc) · [文本修复](BUGFIX.md#localization-text)。 |
+| 钓获消息行宽 | US／EU 的漂流瓶、海贼宝藏展开后超过 28 格；DE 四种长鱼名的模板多一尾空格。 | 回绕同一行覆盖开头；仅修这些模板，不添加自动换页。[消息与修复](BUGFIX.md#localization-text)。 |
+| 换行残留与满行空格 | US／EU／DE 的部分脚本含字面量 `ret>` 或 `<RET>`，四版均发现正文满行后还有空格的情况。 | 记号会按普通字符显示，多余空格会覆盖行首；仅修已核实的对应原文，不给引擎增加新控制符。[范围与依据](BUGFIX.md#localization-text)。 |
+| 凯贺卡签名 | US／EU／DE 的原 ROM 均含制表字节 `09`；JP 直接用空格排签名。 | 源码转义写法虽不同，实际前三版字节相同。指南不解释制表控制，保留真实缩进并去除该前缀。[页面](data/text/us/reference_guide/birthday_card_kai.cc) · [修复](BUGFIX.md#localization-text)。 |
+| 联机商人英文名 | GBA 海外姓名栏为 Lou，英语自我介绍为 Van；跨作品还存在 Ruby／Lou 的命名沿革。 | 采用本作自我介绍及当时商人的 Van，不解释为误用了重制版另一角色的名字。[历史与取舍](BUGFIX.md#van-name-history)。 |
+
+<a id="cooking-wrapped-description"></a>
+### 料理材料包装说明
+
+料理材料选择状态 `func_080962F0` 另有一处海外显示缺陷。选中非空且已包装物品时，JP 把物品名和包装说明拼入同一个缓冲区，再交给文本窗口；海外三版先把 `A wrapped`／`Gepackt` 拷入另一个最多七字节的临时缓冲区，又将物品名拼向该临时区，但最终仍传入原来的**仅有物品名**的缓冲区。由此包装说明未进入实际显示文本；不是商品包装标志被清除。海外该函数在既有匹配快照中的代码与重定位完全一致。已追到 `func_08050DC8` 将指针直接交给 `UiStatePayload::SetText`，没有在下游补入包装说明。这里登记静态确认的显示缺陷，不扩展为材料消费／配方判定已完成审计，也未实施 BUGFIX 或运行复现。[拼接与实参](src/scene_cooking.cc) · [窗口适配器](src/ui_state.cc) · [JP 说明](data/text/jp/scene_cooking_2.cc) · [US](data/text/us/scene_cooking_2.cc) · [EU](data/text/eu/scene_cooking_2.cc) · [DE](data/text/de/scene_cooking_2.cc)
+
+此项尚未接入开关，后续按整个料理文件高级语言化后处理，状态见 [BUGFIX](BUGFIX.md#cooking-wrapped-description)。
+
+<a id="guide-name-boundaries"></a>
+### 指南标记与名称缓冲区
+
+`ExpandReferencePageText` 四版均把普通内容按两个字节复制，只在本轮第一个字节为 `<` 时识别 `<p>`、`<f>`、`<cp>` 等名称标记。海外单字节文字使部分标记落在被跳过的位置。对现有四版指南的名称标记逐行筛查，以下六个地区／行组合未被识别；原文及终止零已在对应 baserom 核对。
+
+| 版本 | 图书／原始行 | 标记起点（本行字节偏移，从 0 算） | 原版文本地址 |
+| --- | --- | ---: | --- |
+| US | 养鸡场给玩家与珀布利的贺年卡：`Dear <p> and`（亲爱的玩家与……） | 5 | `0x08115CC8` |
+| EU | 同上 | 5 | `0x08115D20` |
+| DE | 同一贺年卡：`Lieber <p> und`（亲爱的玩家与……） | 7 | `0x08117B28` |
+| US | 托马斯与哈里斯的生子贺信：`he and <f>`（他与玩家牧场） | 7 | `0x08117198` |
+| EU | 同上 | 7 | `0x081171F0` |
+| DE | 高仓介绍：`Arbeitet mit <cp> auf der`（与联机玩家在……工作） | 13 | `0x0810FB3C` |
+
+实际影响是名称没有展开，原标记字节进入绘制器。四版单字节字模表中的 `<`、`>`、`p`、`f` 都是有效字模，普通绘制器也不再展开指南变量，因此不能把社区的“漏字”描述直接写成这里必然隐藏整段文字。JP 现有名称标记没有命中该步长问题；DE 托马斯贺信的 `<f>` 在偏移 4，能正常展开。`<f>` 的实际来源是**牧场名**，不是社区猜测的配偶名。[展开与显示](src/scene_reference_page.cc) · [字模索引](src/font_data.s) · [绘制器](src/font_draw.cc) · [US 养鸡场贺卡](data/text/us/reference_guide/new_year_card_poultry_farm_player_and_popuri.cc) · [US 托马斯贺信](data/text/us/reference_guide/newborn_congratulations_thomas_and_harris.cc) · [DE 高仓介绍](data/text/de/reference_guide/ngc_awl_profiles_takakura.cc)
+
+另有独立的边界风险：该函数限制的是最多 14 轮，而不是写入字节数；名称一次可以写入多个字节。标题和正文调用者均使用 `char text[32]`。JP 的联机玩家介绍标题在名称后还有 24 字节文字／全角空格，名称达到 8 字节时，加终止零就要 33 字节，超过局部数组。DE 高仓介绍另一行 `er ein Freund von <cp>s`（他是联机玩家父亲的朋友）也可超过此数组；普通路径还会复制落在一对字节中第二位的终止零后继续读下一对，不能只按可见字符串长度计算写入上界。按接收端允许的最长名称和原 ROM 后继字节静态推演，这两处分别写入 39 字节和 39 字节（含最终终止零）。这是缓冲区越界证据，**尚未运行确认具体破坏或崩溃症状**；GC 对端实际可输入长度仍须与具体 AWL 版本另核，不把接收协议上限当作对端界面上限。[JP 标题](data/text/jp/reference_guide/ngc_awl_profiles_player.cc) · [DE 正文](data/text/de/reference_guide/ngc_awl_profiles_takakura.cc) · [接收端解码](src/gamecube_link_save.cc) · [名称字段](include/game_state_types.hh)
+
+展开函数入口为 JP `0x0807A2B0`、US `0x0807A708`、EU `0x0807A71C`、DE `0x0807A600`；既有原版取证中，四版各 368 字节与对应 baserom 一致；这不是本轮修复后的验收记录。以上是原版代码与文本组合问题；[修复状态](BUGFIX.md#guide-name-expansion)为待独立处理，本提交保留原解析逻辑。
+
+### 界面本地化与演出
+
+| 范围 | 地区差异与实际影响 | 边界与依据 |
+| --- | --- | --- |
+| 购买数量选择器 | JP 多绘制一个数量后缀图块；金额使用双格数字，海外使用窄数字。数量上限、按金钱限制数量及方向键增减逻辑相同。[实现](src/ui_quantity_selector.cc) | 本处是显示调整，没有发现海外放宽购买上限。 |
+| 飞盘界面 | DE 对资源组 `0x1A` 的一次精灵提交将横坐标从 160 改为 158，纵坐标 16 不变。[调用与精灵提交](src/frisbee_core.cc) | 该差异影响界面位置，不是投掷距离或狗的能力。 |
+| 料理祭评审停顿 | DE 一处等待从 240 帧增至 480 帧，其他判定语句相同。[DE 评审](data/scripts/de/EventScript_FestivalEvent_CookingFestival_Judging.mary.c) | 延长演出等待；这处差异没有修改评分公式。 |
+| 时钟显示 | DE 的相关脚本保留下午小时数，其他版减 12。HUD 正午另有区别：JP 将 12 减成 0、仍显示下午标记，US／EU 特判 12、不减；DE 直接显示小时值。午夜传入 0 时 US／EU 也保持 0，不能概括成严格的 1–12 小时制。[时钟脚本](data/scripts/de/EventScript_SystemMenu_ClockCalendarDisplay.mary.c) · [HUD](src/map_clock_status.cc) · [小时字段调用](src/game_scene_state.cc) | 改变显示，不改变游戏一天长度或事件判断所读取的小时字段。 |
+| 参赛动物的获奖标记 | JP 的鸡列表会检查获奖标志；海外版还在牛、羊列表增加同类检查及 2×2 图块绘制。[选择画面](src/animal_festival_selection.cc) · [获奖标志读取](src/animal.cc) | 已定位的新增分支只绘制标记，不写入动物状态，不应解释成海外改了获奖资格或产物等级。图案外观未在本轮运行确认。 |
+| 酒庄购买后的送货提示 | JP、DE 区分全部送入冰箱与部分送入；US、EU 使用同一条送货消息。地区分支位于向手持物、背包、冰箱分配物品之后。[分配与提示](src/scene_winery_shop.cc) · [JP 文本](data/text/jp/scene_winery_shop.cc) · [US 文本](data/text/us/scene_winery_shop.cc) | 该分支影响反馈文字，不改变本次实际扣款或分配数量。 |
+| 鸡祭场景的精灵位置 | `UpdateUnkPhase0` 为 `sprite_96C` 的绘制参数设置相同横坐标 96，纵坐标在 JP、DE 为 8，在 US、EU 为 10。[初始化](src/scene_chicken_festival.cc) · [位置字段](include/resource_handle.hh) | 这处数值差异是显示对象下移 2 像素，不是比赛时长或鸡的能力；尚未给该精灵图案臆定名称。 |
+| 工作人员名单过渡 | JP 在滚动计数超过 127 后进入后续滚动；海外在超过 138 后额外淡出、更新字幕、淡入，再进入后续滚动。[状态机与绘制](src/staff_credits.cc) | 不只是名单文字不同，演出状态机也不同；这些阈值是状态机计数，不能直接当作表内有效文本数。 |
+
+| 界面 | 具体地区调整 | 依据 |
+| --- | --- | --- |
+| 日历星期标题 | 初始横坐标 JP 为 10，海外为 6；每列仍加 34，共七列。 | [日历绘制](src/scene_calendar_core.cc) |
+| 料理标题与选择 | JP 以双字节／16 像素字形，海外以单字节／8 像素字形组织标题和材料项；标题一处为 11／22 字形，对应同一 176 像素宽度。未公开配方名使用全角／半角问号。 | [料理界面](src/scene_cooking.cc) |
+| 动物状态页 | 健康、季节、日期的字形宽度改变，海外扩大缓存及 tilemap；状态图块选择值 JP 为 `0x38/0x44/0x50`，海外为 `0x38/0x48/0x58`。这些是图块位置，不是疾病等级。 | [状态页](src/farm_status_screen.cc) |
+| 精灵及农具状态页 | 三种能力条的图块基址、工作日数单位与 DE 文本区宽度不同；农具提示、条形图基址及数字字宽随地区改变。数值到条长及等级读取仍走对应原字段。 | [状态页](src/farm_status_screen.cc) · [精灵经验](src/harvest_sprite.cc) |
+| 收入、记录及滚动菜单 | JP 数字通常为 2×2 图块，海外为 1×2；海外对象中的文字缓存／位置相应改变。DE 部分标题再扩大。它们不改变金额字段或记录容量。 | [记录页](src/records_screen.cc) · [收入页](src/farm_status_screen.cc) · [滚动菜单](src/scroll_menu.cc) |
+| 飞盘成绩板 | JP／海外每个数字字形 128／64 字节，标题缓存宽 22／27 图块，姓名行跨度 13／14 字节。 | [显示初始化](src/frisbee_scoreboard.cc) · [结构](include/frisbee_scoreboard.hh) |
+| 新游戏确认与日期输入 | 确认值区同为 12 tile，标签区 JP 12、海外 14；生日输入的列步长按字宽调整，写回仍为四季各 30 天。 | [确认](src/new_game_identity.cc) · [生日输入](src/new_game_birthday_input.cc) |
+| 存档摘要 | JP 把宽数字放在年／日后缀前；海外把 Years／Jahre、Day／Tag 放在数字前，并调整季节间隔。仅格式化摘要，不改存档日期。 | [摘要](src/new_game_menu.cc) |
+| 动物悼词 | JP／海外名字与提示拼接顺序不同；DE 自然死亡另用开头与牧场前缀。 | [消息生成](src/game_scene.cc) · [DE 文本](data/text/de/game_scene.cc) |
+| 赛马轮次及购票提示 | 轮次数横坐标 JP／US、EU／DE 为 16／32／136；玩家参赛时 JP 取鼓励消息，海外仍用一般购票询问。 | [赛马界面](src/horse_race.cc) |
+| 商店送货提示 | JP 杂货店按装备、食品及部分送货选择不同文案，海外复用部分消息；JP 霍安商店另区分普通物品和工具，海外复用消息。选句在实际分配之后，不改变扣款与分配数量。 | [杂货店](src/scene_supermarket.cc) · [霍安](src/scene_won_shop.cc) |
+| 开场 | JP 资源 8 初始 Y 为 −56，海外 −96；JP 额外提交资源 9；对应归档组号也有偏移。 | [开场场景](src/intro_scene.cc)。未把匿名资源猜作新增游戏功能。 |
+
+## 编码、数据布局与系统接口
 
 | 主题 | JP | US | EU | DE | 实现与影响 |
 | --- | --- | --- | --- | --- | --- |
 | GBA / GameCube 联机识别 | A4NJ / GYWJ | A4NE / GYWE | A4NP / GYWP | A4ND / GYWP | 左列为本机游戏代码，右列为对端代码。德版与欧版共用对端代码；这些是协议字节。[连接代码](src/gamecube_link_save.cc) |
 | 命名键盘 | 每页 6 行 | 6 行 | 6 行 | 7 行 | 每版都存 3 页，每行 15 个双字节槽与结束符。德版额外一行，按钮在画面上也下移一格。[数据布局](include/new_game_data.hh) · [键盘绘制](src/new_game_name_input.cc) |
+| 命名输入容量与快捷键 | 6 个双字节字符；Select 可循环切换键盘页 | 12 个单字节字符；无 Select 切页分支 | 同 US | 同 US | 四版仍可使用画面上的前后翻页选项；仅快捷键与字符处理单位不同。删除按各自字符宽度移位，全为空格／占位符时不能确认。[输入、删除和规范化](src/new_game_name_input.cc) |
 | 新游戏控制选项 | 复用 Data1、Data2 两个标签 | 独立标签 | 独立标签 | 独立标签 | 行表中的两条指针随地区选择，表结构一致。[菜单行表](src/new_game_menu.cc) |
 | 指南续页 | 无独立续页表 | 道具操作 | 道具操作 | 使用工具、克里夫与琳的新生儿贺信 | 137 项主目录分别对应 137、138、138、139 张物理页面行表。续页与首页共用图书 ID，仅首页进入目录。[指南清单](src/reference_guide.cc) |
 | 特殊字模 | 0x81CD 的 24 字节字模 | 14 组 12 字节字模与 0xC3 字模 | 同 US | 同 US | 这些是渲染资源的地区分支；单双字节通用字库也各自有独立索引。[字模声明](include/font.hh) |
-| 小／中／大鱼出货价 | 200／120／50 G | 50／120／200 G | 同 US | 同 US | 日版数据与本版游戏内指南矛盾。[鱼价条目](BUGFIX.md#fish-prices) |
-| 炒荞麦面、X 级羊毛的文本指针 | 两条记录各有独立文本 | 分别复用炒乌冬、P 级羊毛的文本 | 同 US | 同 US | 影响物品名与说明。[料理](BUGFIX.md#fried-soba) · [羊毛](BUGFIX.md#wool-x) |
-| 收集用宝玉和成品秘宝 | 不同名 | 不同名 | 不同名 | 两组各自同名 | 德版收集物复用成品名字，说明仍指向本物品。[宝玉条目](BUGFIX.md#de-jewels) |
-| 加强药与失败料理 | 加强药名称含 XL，失败料理说明为本地语言 | 同 JP | 同 JP | 加强药与普通药同名，三种失败料理说明为英文 | [德版食物文本](BUGFIX.md#de-food) |
-| 04:44／16:44 电视事件 | 两个入口都调用隐藏节目 | 两个入口均缺少调用 | 同 US | 同 US | 四版都含有节目本体，差异在调用方。[电视条目](BUGFIX.md#tv-444) |
 
-上述表格及下文索引描述的是默认关闭 `BUGFIX` 的原版行为。艾利昵称、德版两处电视流程和鱼名复用也已提供可选修复；开启后的行为见 [BUGFIX 文档](BUGFIX.md#elli-nickname)，不据此改写原版差异索引。
+| 范围 | 地区差异 | 调用上的含义与依据 |
+| --- | --- | --- |
+| 联机名称包 | JP 三个名称字段各 8 字节，最多 7 个协议索引；海外各 13 字节、最多 12 个。JP 从双字节取码，海外从单字节取码。 | 是协议差异，不能只改游戏代码假定跨区互传；不等于整个 SRAM 布局不同。[结构](include/gamecube_link_save.hh) · [编解码](src/gamecube_link_save.cc)。JP 最后字符边界另见 [BUGFIX](BUGFIX.md#jp-link-last-character)。 |
+| 场景文本变量 | JP 每槽最多 20 编码字节，海外 22；经对齐均占 24 字节。截取按字节，非完整字符。 | 超长替换值会截短，不能用结构总大小推出相同容量；未断言现有原文已截断双字节。[文本槽](include/scene_text_variables.hh) · [写入](src/scene_text_variables.cc) · [FixedStr](include/utility/fixed_str.hh) |
+| 日历名称数组 | 季节／星期行步长 JP 为 3／3 字节，海外为 7／5，项数始终 4／7。 | 取址乘法不同来自数组布局，而非日期编码改变。[声明](include/calendar.hh) · [读取](src/calendar.cc) |
+| 串行寄存器初始化 | EU／DE 在启动及复位路径额外配置串行寄存器，JP／US 对应复位入口直接返回。 | 已确认硬件状态初始化差异，未据此命名某个具体断线缺陷；保持地区实现。[启动](src/main.cc) · [复位](src/joy_bus.c) |
+| 场景返回编号 | JP 与海外部分商店／菜单返回编号差 1，发送与接收方各自配套。 | 不代表增加／删除同等数量的场景。[类型](include/game_scene.hh) · [发送](src/game_scene.cc) · [接收](src/game_scene_state.cc) |
+| 商店图块／调色板槽位 | 海外用两个源指针映射复用九个 OBJ 槽位，JP 对应路径直接提交资源。 | 显示资源管理变化，非商品库存或可买数量改变。[显示](src/shop_common.cc) · [槽位结构](include/shop_resource_slots.hh) · [插入释放](src/shop_resource_slots.cc) |
+| GameScene 构造入口 | 海外额外保留接收 `GameStateSaveImage *` 的构造重载，内部固定创建恢复请求 2。 | 是入口保留差异；正常控制器显式传入请求对象，不能仅凭重载断言新增游戏模式。[构造](src/game_scene.cc) · [控制器](src/game_scene_controller.cc) |
+| ROM 头 | JP `BOKUMONOGBA / 99`，US／EU `HARVESTMOGBA / E9`，DE `HARVESTMOGER / E9`。 | 标题与厂商识别字段。[配置](config.mk) |
+| 字符编码 | 海外附加单字节符号和西文字符，DE 使用 ä、ü、ö、ß 等。 | 地区编码表与读取字宽需配套，不视为普通文本字节可直接跨版替换。[码表](charmap.txt) |
 
-四版共通的脚本问题分别见[旅馆后屋琳的爱心](BUGFIX.md#ann-heart)与[脚本加载器的终点读取](BUGFIX.md#riff-end)。
+## 脚本调用与播放方式
 
-## 四版原版的全仓扫描
-
-基线为 `97f83743`，默认关闭 `BUGFIX`。四个链接产物逐字节对照各自 baserom。四版识别出的游戏脚本各有 1,328 个，首槽为空，所有非空槽位的脚本名和顺序逐项一致。仓库中每版另存的 `EventScript_0000.mary.c` 不占运行时槽位。[脚本目录](data/scripts/jp/fomt_scripts.mary.h) · [四版差异逐项索引](REGIONAL_DIFFERENCES.tsv)
-
-| 对照单位 | 四版合并后的条数 | 内容或成员不同 |
-| --- | ---: | ---: |
-| 具名原生函数 | 4,062 | 619 |
-| 原生目标代码 | 342 | 73 |
-| 原生目标数据 | 290 | 74 |
-| 具名文本对象 | 13,339 | 13,281 |
-| 全指针表候选 | 475 | 138 |
-| 物品及鱼名表指针 | 406 | 10 |
-| 物品表标量 | 450 | 2 |
-| 脚本槽位 | 1,328 | 0 |
-| 脚本指令和跳转 | 1,328 | 98 |
-| 脚本字符串块 | 1,328 | 1,166 |
-| 脚本文本槽数 | 1,328 | 83 |
-| 脚本源控制流候选 | 1,328 | 27 |
-| 脚本接口源文件 | 2 | 0 |
-| 地区文本源 | 99 | 86 |
-| 指南页面源 | 141 | 141 |
-| 美术地区来源 | 233 | 163 |
-| 图形构建依赖 | 723 | 43 |
-| 链接输入大小 | 635 | 97 |
-| 链接输出段 | 11 | 8 |
-| 输出段内容 | 9 | 6 |
-
-**如何读索引。** TSV 每行给出一个可检索的符号、槽位、路径或对象段，等号表示本行四版对照结果相同。目标段与函数比较链接前的字节和重定位目标，地区地址移动本身不会触发差异；函数键为对象路径与导出符号名，无符号大小的入口取到同一输入段的下一函数入口。619 个差异键中有 269 个只在部分版本找到同名入口，不能据此判断游戏新增或删除了 269 个功能。同一改动可能同时出现在函数、段和脚本三个统计层，不能跨行加总。
-
-文本按带大小的导出 `gText_` 对象比较原始内容和大小，包含编码、尾部填充与标签拆分。脚本另直接从 ROM 指针表读取 RIFF，分别核对 CODE/JUMP、STR 和文本槽数。98 个指令或跳转差异中，27 个在源码忽略文本操作数的名字后仍有语句差异，见下表；其余 71 个保留逐槽记录，仅凭二进制差异无法断言改变了玩法。相同源码操作名也可能引用不同文本。
-
-源文件统计使用 Git 跟踪的输入。地区资源包括 `us_eu`、`overseas` 共用来源；同一路径内容一致而构建选择不同也有记录。图形构建依赖从实际含有非空输入段的对象依赖中提取，按构建输入的真实路径比较。独立美术参考图不等于已链接的图块。指南按源文件名对照，DE 另有未列入图书清单的 `tool_and_item_controls_additional.cc`。链接输入按 map 中的对象与输入段大小对照，输出段地址为运行地址（IWRAM 代码另有 ROM 装载地址）。全量链接后的字节比较也包括段内填充与指针值，不能据此归因于机制变化。TSV 的四版数值列在函数、原生段与文本对象行表示字节长度；在指针行给出实际目标，标量行给出去除指针字段影响的原始字节。仅记录分组的行用 “—” 留空。
-
-另从链接后的 ROM 检出 475 个全指针表候选。筛选条件为已知大小、至少两个对齐的 32 位槽，每个槽均为零或恰好匹配已导出 ROM 符号，且至少一项非零。比较目标符号与顺序时接受同址别名。337 个四版一致，其余 138 个逐表列出，TSV 数值列为槽数。这项筛选不覆盖含整数的混合结构、内部偏移指针及匿名目标；已知的物品混合结构另外逐字段比较。缺项也可能表示该版不满足筛选条件。
-
-另外登记了 142 个文件中 3,004 处显式地区条件的位置，覆盖 C/C++、原生和内嵌汇编、资源清单、码表、工具与构建规则。它们按**条件行数**计，同一机制可能用到多行；按语言目录选文件的差异已另计。不同语言下所有可达游戏路径、内嵌数据的用途及美术画面的视觉效果仍需逐项验证。本表不把字节相等当成玩法相等，也不把译文字节不同列为缺陷。
-
-## 已定位的其他数据与显示差异
-
-| 主题 | JP | US、EU | DE | 依据 |
-| --- | --- | --- | --- | --- |
-| ROM 头标题／厂商 | BOKUMONOGBA／99 | HARVESTMOGBA／E9 | HARVESTMOGER／E9 | [构建配置](config.mk) |
-| 生日输入的季节选项 | 选项值 1、2 映射到夏、秋 | 4、8 映射到夏、秋 | 同 US | [选择逻辑](src/new_game_birthday_input.cc) |
-| 赛马轮次数字的横坐标 | 16 | 32 | 136 | 数字相同，使用不同画面位置。[赛马界面](src/horse_race.cc) |
-| 玩家自己参赛时的购票提示 | 使用参赛鼓励文本 | 仍用一般购票确认文本 | 同 US | 影响台词选择，未发现影响购票本身。[购票状态机](src/horse_race.cc) |
-| 钓鱼记录 22 与 37 | 两个指针、两种鱼名 | 37 复用 22，两条同名 | 同 US | [鱼名复用](BUGFIX.md#fish-record-names) |
-| 钓鱼记录 18 与 46 | 鲣、金枪鱼分别显示 | Bonito、Tuna 分别显示 | 46 复用 18，两条均为 Thunfisch | [鱼名复用](BUGFIX.md#fish-record-names) |
-| 地区字符映射 | 基础表 | 附加单字节符号和西文字符 | 同 US，可用 ä、ü、ö、ß | [地区码表](charmap.txt) |
-
-## 逐槽脚本语句差异
-
-分组按保留调用和操作数、忽略文本标签名后的语句序列。槽号链接到实际脚本，同一文件名可在其他语言目录中核对。对于文本播放和排版，表中仅记录已确认的调用变化。
+本表按忽略文本符号名后的原版语句差异排列。普通消息、慢速消息、追加消息分别采用 `0x100`、`0x40`、0 的提交速率，并改变分段体验；电视消息还返回频道输入，不能统称为“仅速度不同”。已确认为缺陷的行链接 BUGFIX，重复赋值和正常本地化保留其实际边界。[接口](data/scripts/jp/fomt_callables.mary.h) · [提交](src/game_scene.cc)
 
 | 槽号 | 分组 | 已核对的变化 |
 | --- | --- | --- |
@@ -90,7 +177,7 @@
 | [02D1](data/scripts/de/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) | JP=US=EU / DE | DE 将玛娜的三处慢速对话改用普通对话。 |
 | [02EF](data/scripts/us/EventScript_NPCEvent_Jeff_WonOffersToBuyPainting.mary.c) | JP / US=EU=DE | 海外版本多调用一次 TalkMessage。 |
 | [02F4](data/scripts/de/EventScript_NPCEvent_Manna_AjasDepartureAdviceFromFriends.mary.c) | JP / US=EU / DE | 讨论阿雅离家时，部分台词的播放速度不同。 |
-| [03DC](data/scripts/us/EventScript_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) | JP / US=EU=DE | JP 先设 06:00 再保存次日位置，海外版先保存位置再设时间。 |
+| [03DC](data/scripts/us/EventScript_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) | JP / US=EU=DE | JP 先设 06:00 再保存包含时间的次日状态，导致睡眠小时恢复按 24 小时计算；海外版先保存真实时间。[机制影响](BUGFIX.md#jp-sleep-time) |
 | [03E1](data/scripts/de/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) | JP=US=EU / DE | DE 在珀布利日常对话中多一次 TalkMessage。 |
 | [03E5](data/scripts/us/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) | JP=DE / US=EU | US/EU 在扎克日常对话中多一次 TalkMessage。 |
 | [03F0](data/scripts/de/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) | JP / US=EU / DE | 卡莲的对话在头像表情、切换次数和 DE 文本分段上存在差异。 |
@@ -100,4 +187,10 @@
 | [0432](data/scripts/us/EventScript_FestivalEvent_NewYearsDayFestivalDialogue_Manna.mary.c) | JP / US=EU=DE | 海外版本改变玛娜新年对话中一处文本速度。 |
 | [0445](data/scripts/de/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna.mary.c) | JP / US=EU / DE | 玛娜赛马场对话的慢速台词数不同。 |
 | [0468](data/scripts/de/EventScript_FestivalEvent_CookingFestival_Judging.mary.c) | JP=US=EU / DE | 料理祭评审的一次等待由其他版的 240 帧变为 DE 的 480 帧。 |
-| [04B4](data/scripts/us/EventScript_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.c) | JP / US=EU=DE | 海外版在转入音乐祭开幕脚本前显式写入 FESTIVAL_PHASE_INITIAL。 |
+| [04B4](data/scripts/us/EventScript_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.c) | JP / US=EU=DE | 海外版在转入音乐祭开幕脚本前显式写入 FESTIVAL_PHASE_INITIAL；四版卡特普通交谈调用此前已设置同值，正常交谈入场路径没有因此改变资格、奖励或退场条件。 |
+
+## 证据与验收边界
+
+差异按默认原版归类；开关后的实现状态统一以 [BUGFIX 验收记录](BUGFIX.md#本轮验收记录) 为准。不把旧快照或局部函数匹配写成本轮四版整 ROM 通过。
+
+未具名资源的内部内容、计算形成的间接引用、特定输入／断线时序和 GameCube 对端实际名称输入上限，不由这份静态差异表全部保证。只有候选字节不同而未追清用途的内容，不列为已确认玩法差异；也不以这里的条目数宣称全 ROM 差异已经穷尽。

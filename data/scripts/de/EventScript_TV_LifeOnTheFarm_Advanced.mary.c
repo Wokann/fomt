@@ -2949,7 +2949,12 @@ mary_text_table
         " Kupfer, Silber, Gold\r\n"
         " und Mythril.\r\n"
         " Einmal ausgewählt, wird \r\n"
+// A trailing space exceeds the 28-column row and overwrites its first glyph.
+#ifdef BUGFIX
+        " Saibara dir sagen, wie viel\r\n"
+#else
         " Saibara dir sagen, wie viel \r\n"
+#endif
         " Gold und Zeit er braucht. \r\n"
         " Du kannst entscheiden,\r\n"
         " ob du willst, oder nicht.\"\r\n"

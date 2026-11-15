@@ -449,7 +449,12 @@ mary_text_table
         "This race belonged to Daisy\r\n"
         "and Cosmos. In the first lap\r\n"
         "they suddenly combined their\r\n"
+// Remove the untranslated Japanese particle from the English sentence.
+#ifdef BUGFIX
+        "magics into a Shining Dark\r\n"
+#else
         "magics into a Shining Darkの\r\n"
+#endif
         "Wing, and promptly pulled\r\n"
         "ahead of the pack to take\r\n"
         "the lead!\r\n"
@@ -1373,7 +1378,12 @@ mary_text_table
         "Sylvia, who had been in the\r\n"
         "lead up to that point. There\r\n"
         "are calls now, however, for\r\n"
+// Remove the untranslated Japanese particle from the English sentence.
+#ifdef BUGFIX
+        "this type of magic to be\r\n"
+#else
         "this type of magic to beは\r\n"
+#endif
         "banned as too dangerous for\r\n"
         "use in certain spellcasting\r\n"
         "situations. Further\r\n"
@@ -1945,7 +1955,12 @@ mary_text_table
         "to third place in the\r\n"
         "overall standings, being\r\n"
         "passed up in the process by\r\n"
+// Remove the untranslated Japanese particle from the English sentence.
+#ifdef BUGFIX
+        "her sister, Cosmos. The\r\n"
+#else
         "her sister, Cosmos. Theは\r\n"
+#endif
         "question now is, having used\r\n"
         "her spatial interchange\r\n"
         "magic, will Licorice sit out\r\n"

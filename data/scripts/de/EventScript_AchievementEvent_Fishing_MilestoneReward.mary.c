@@ -10,17 +10,32 @@ mary_text_table
         "gefangen.{Press}";
 
     const char gText_AchievementEvent_Fishing_MilestoneReward_CaughtFishSizeInCentimeters[] =
+// A 14-character fish name fills all 28 columns; a trailing space wraps over the first letter.
+#ifdef BUGFIX
+        "Du hast einen {Var1}\r\n"
+#else
         "Du hast einen {Var1} \r\n"
+#endif
         "gefangen.\r\n"
         "Er ist {Var2}cm lang.{Press}";
 
     const char gText_AchievementEvent_Fishing_MilestoneReward_CaughtFishSizeInMeters[] =
+// A 14-character fish name fills all 28 columns; a trailing space wraps over the first letter.
+#ifdef BUGFIX
+        "Du hast einen {Var1}\r\n"
+#else
         "Du hast einen {Var1} \r\n"
+#endif
         "gefangen.\r\n"
         "Er ist {Var2}m lang.{Press}";
 
     const char gText_AchievementEvent_Fishing_MilestoneReward_CaughtFishSizeInMetersAndCentimeters[] =
+// A 14-character fish name fills all 28 columns; a trailing space wraps over the first letter.
+#ifdef BUGFIX
+        "Du hast einen {Var1}\r\n"
+#else
         "Du hast einen {Var1} \r\n"
+#endif
         "gefangen.\r\n"
         "Er {Var2}m{Var3}cm lang.{Press}";
 

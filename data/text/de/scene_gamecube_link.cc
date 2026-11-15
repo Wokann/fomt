@@ -1,3 +1,4 @@
+#include "config.h"
 #include "scene_gamecube_link.hh"
 
 char const gText_LinkCommunication_Waiting[] =
@@ -67,10 +68,20 @@ char const gText_LinkCommunication_ActionQuestion[] =
     "Kommunikation starten?";
 
 char const gText_LinkCommunication_ActionYes[] =
+// Use the existing German Ja/Nein choice wording.
+#ifdef BUGFIX
+    "Ja";
+#else
     "Yes";
+#endif
 
 char const gText_LinkCommunication_ActionNo[] =
+// Use the existing German Ja/Nein choice wording.
+#ifdef BUGFIX
+    "Nein";
+#else
     "No";
+#endif
 
 char const gText_LinkCommunication_Declined[] =
     "Also willst du nun\r\n"
