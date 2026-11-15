@@ -14,14 +14,26 @@ MAIN
     "Kürbis             250G"
     "Ananas             500G"
     "Aubergine          80G"
+// The product table gives carrots a shipping price of 120G.
+#ifdef BUGFIX
+    "Karotte            120G"
+#else
     "Karotte            60G"
+#endif
     "Süßkartoffel       120G"
     "Spinat             80G"
     "Paprika            40G"
     ""
+// Match the three JP egg-quality entries using the existing regional item names.
+#ifdef BUGFIX
+    "Gewöhnliches Ei    50G"
+    "Hochwertiges Ei    60G"
+    "Sehr hochw. Ei     80G"
+#else
     "Ei                 50G"
     "Thermalei          80G"
     "Goldenes Ei        150G"
+#endif
     ""
     "Mayonnaise (S)     100G"
     "Mayonnaise (M)     150G"

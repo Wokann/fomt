@@ -19,9 +19,16 @@ MAIN
     "ほうれんそう　　　　　８０Ｇ"
     "ピーマン　　　　　　　４０Ｇ"
     ""
+// Keep the existing item names and correct the good/high-quality egg prices.
+#ifdef BUGFIX
+    "普通の品質の卵　　　　５０Ｇ"
+    "いい品質の卵　　　　　６０Ｇ"
+    "かなりいい品質の卵　　８０Ｇ"
+#else
     "普通の品質の卵　　　　５０Ｇ"
     "いい品質の卵　　　　　５０Ｇ"
     "かなりいい品質の卵　　５０Ｇ"
+#endif
     ""
     "マヨネーズＳサイズ　１００Ｇ"
     "マヨネーズＭサイズ　１５０Ｇ"

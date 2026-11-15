@@ -14,14 +14,26 @@ MAIN
     "Pumpkin  250G"
     "Pineapple  500G"
     "Eggplant  80G"
+// The product table gives carrots a shipping price of 120G.
+#ifdef BUGFIX
+    "Carrot  120G"
+#else
     "Carrot  60G"
+#endif
     "Sweet Potato  120G"
     "Spinach  80G"
     "Pepper  40G"
     ""
+// Match the three JP egg-quality entries using the existing regional item names.
+#ifdef BUGFIX
+    "Regular Quality Egg  50G"
+    "Good Quality Egg  60G"
+    "High Quality Egg  80G"
+#else
     "Egg  50G"
     "Spa-Boiled Egg  80G"
     "Golden Egg  150G"
+#endif
     ""
     "Mayonnaise (S)  100G"
     "Mayonnaise (M)  150G"
