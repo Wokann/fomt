@@ -2107,7 +2107,10 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             }
                                             else
                                             {
+#ifndef BUGFIX
+                                                // This extra message addresses the opposite player marriage state.
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationEncouragesMarriage);
+#endif
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationAsksAboutMarriedLife);
                                             }
@@ -2121,7 +2124,10 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             }
                                             else
                                             {
+#ifndef BUGFIX
+                                                // This extra message addresses the opposite player marriage state.
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationAsksAboutMarriedLife);
+#endif
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationEncouragesMarriage);
                                             }
@@ -2353,7 +2359,10 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                         else
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
+#ifndef BUGFIX
+                                            // This extra message addresses the opposite player marriage state.
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationEncouragesMarriage);
+#endif
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseNorthSideTownSunnyRepeatConversationAsksAboutPlayersWife);
                                         }
