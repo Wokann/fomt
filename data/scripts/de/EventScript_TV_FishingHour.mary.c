@@ -410,8 +410,14 @@ mary_text_table
         "nicht unmöglich.\r\n"
         "\r\n"
         "Meeresfische, die ihr\r\n"
+// The existing RockTrout record is Gebirgsforelle; Bergforelle is another fish.
+#ifdef BUGFIX
+        "fangen könnt, sind Gebirgs-\r\n"
+        "forellen, Fluken und\r\n"
+#else
         "fangen könnt, sind Berg-\r\n"
         "forellen, Fluken und \r\n"
+#endif
         "Kaulbarsche.\r\n"
         "Ich überlasse es euch \r\n"
         "herauszufinden, was für \r\n"
