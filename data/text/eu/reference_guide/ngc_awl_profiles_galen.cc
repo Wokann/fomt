@@ -8,7 +8,12 @@ MAIN
     "retirement with his wife"
     "Nina. "
     "He can be quite stubborn"
+// JP describes a quiet temperament, not a cheerful one.
+#ifdef BUGFIX
+    "but is usually quiet."
+#else
     "but is usually happy. "
+#endif
     "<101>"
     ""
     "When Nina died, he built a"

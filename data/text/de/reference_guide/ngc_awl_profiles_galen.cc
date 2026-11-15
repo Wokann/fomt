@@ -8,7 +8,12 @@ MAIN
     "Lebensabend mit seiner"
     "Frau Nina zu verbringen. "
     "Er kann ziemlich störrisch"
+// JP describes a quiet temperament, not a cheerful one.
+#ifdef BUGFIX
+    "sein, ist aber meist ruhig."
+#else
     "sein, sonst eine Frohnatur. "
+#endif
     "<101>"
     ""
     "Als Nina starb, hat er eine"
