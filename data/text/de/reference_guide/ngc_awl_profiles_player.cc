@@ -9,7 +9,12 @@ MAIN
     "<361>"
     ""
     "Er lebt mit seiner Frau"
+// JP describes a family of three: the player, his wife and one son.
+#ifdef BUGFIX
+    "und seinem Sohn."
+#else
     "und 3 Söhnen."
+#endif
     "<362>"
     ""
     "Man sagt, er pflanze"
