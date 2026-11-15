@@ -23,11 +23,21 @@ mary_text_table
         "Starry Night Festival.{Press}";
 
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedMaryDinnerWithOrWithoutChild[] =
+// Correct the cook and tense: Mary cooked today using her mother's recipes.
+#ifdef BUGFIX
+        "My mom used to make some\r\n"
+        "cake for the Starry Night\r\n"
+        "Festival. {Press}\p"
+        "Today I cooked using her\r\n"
+        "recipes. Tell me what you\r\n"
+        "think of everything!{Press}";
+#else
         "Today my mom made some cake\r\n"
         "for the Starry Night \r\n"
         "Festival. {Press}\r\n"
         "Tell me what you think of\r\n"
         "everything!{Press}";
+#endif
 
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedElliDinnerWithOrWithoutChild[] =
         "Why do you look so \r\n"

@@ -24,11 +24,22 @@ mary_text_table
         "Sternennachtfestival.{Press}";
 
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedMaryDinnerWithOrWithoutChild[] =
+// Correct the cook and tense: Mary cooked today using her mother's recipes.
+#ifdef BUGFIX
+        "Früher hat meine Mutter\r\n"
+        "Kuchen für das Sternen-\r\n"
+        "nachtfestival gemacht. {Press}\p"
+        "Heute habe ich nach ihren\r\n"
+        "Rezepten gekocht.\r\n"
+        "Sag mir, wie du{Press}\r\n"
+        "alles findest!{Press}";
+#else
         "Heute hat meine Mutter\r\n"
         "Kuchen für das Sternen-\r\n"
         "nachtfestival gemacht. {Press}\r\n"
         "Sag mir, wie du\r\n"
         "alles findest!{Press}";
+#endif
 
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedElliDinnerWithOrWithoutChild[] =
         "Warum siehst du so über-\r\n"
