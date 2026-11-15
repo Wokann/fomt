@@ -19,7 +19,12 @@ MAIN
     " getan, sobald du es"
     " gekauft hast. "
     ""
+// The water mill accepts corn, not other grains.
+#ifdef BUGFIX
+    "Wenn du Mais in das "
+#else
     "Wenn du Getreide in das "
+#endif
     "Wasserrad gibst, bekommst "
     "du auch Hühnerfutter."
     ""

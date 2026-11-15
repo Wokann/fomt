@@ -267,3 +267,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [B13](TEXT_SYMBOL_AUDIT.md#b13) | 锤子指南：海外漏掉银锤说明，日版次数也存在问题 | [实现与验证边界](BUGFIX.md#audit-b13) |
 | [B14](TEXT_SYMBOL_AUDIT.md#b14) | 房屋“两阶段扩建”误译成“建造二楼” | [实现与验证边界](BUGFIX.md#audit-b14) |
 | [B15](TEXT_SYMBOL_AUDIT.md#b15) | 孵化箱随鸡舍扩建增加，误译成可以购买；修复参考重制版句式，保留GBA术语并用数字2 | [实现与验证边界](BUGFIX.md#audit-b15) |
+| [B16](TEXT_SYMBOL_AUDIT.md#b16) | 德文鸡饲料制作提示把“玉米”泛化成“谷物” | [实现与验证边界](BUGFIX.md#audit-b16) |
