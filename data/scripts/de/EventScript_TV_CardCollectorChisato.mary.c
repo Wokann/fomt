@@ -214,7 +214,12 @@ mary_text_table
         "\"Lass mal sehen... Ok!\r\n"
         "Du hast die Futterkarte\r\n"
         "schon doppelt. Und die\r\n"
+// S is the existing cow-milk grade, not sheep milk.
+#ifdef BUGFIX
+        "Karte mit Milch (S)\r\n"
+#else
         "Schafsmilchkarte\r\n"
+#endif
         "sogar auch. \"\r\n"
         " \r\n"
         "Und du hast Karten,\r\n"
@@ -483,7 +488,12 @@ mary_text_table
         "da liegt eine Farm- \r\n"
         "geschichtenkarte auf dem\r\n"
         "Boden! Und eine seltene noch\r\n"
+// G is the existing cow-milk grade, not goat milk.
+#ifdef BUGFIX
+        "dazu, die 'Milch (G)'\r\n"
+#else
         "dazu, die 'Ziegenmilch'\r\n"
+#endif
         "Futterkarte! Toll! Was für\r\n"
         "ein Fund!\r\n"
         " \r\n"
@@ -511,7 +521,12 @@ mary_text_table
         "Oder sollte ich sagen,\r\n"
         "hast du hier eine Karte\r\n"
         "liegen gesehen? Es war \r\n"
+// G is the existing cow-milk grade, not goat milk.
+#ifdef BUGFIX
+        "eine 'Milch (G)' \r\n"
+#else
         "eine 'Ziegenmilch' \r\n"
+#endif
         "Futterkarte, und...\r\n"
         " \r\n"
         "Oh. Dann gehört die hier\r\n"
@@ -551,7 +566,12 @@ mary_text_table
         "bekommen, die ich noch nicht\r\n"
         "hatte. Aber dennoch beneide\r\n"
         "ich ihn um seine \r\n"
+// G is the existing cow-milk grade, not goat milk.
+#ifdef BUGFIX
+        "Milch (G) Futterkarte...\r\n"
+#else
         "Ziegenmilch Futterkarte...\r\n"
+#endif
         "Na, egal. Öffnen wir\r\n"
         "diese Schätzchen und\r\n"
         "sehen, was ich heute habe. \r\n"
@@ -560,7 +580,12 @@ mary_text_table
         " \r\n"
         "Als ich das tat, fand ich\r\n"
         "tatsächlich die\r\n"
+// G is the existing cow-milk grade, not goat milk.
+#ifdef BUGFIX
+        "Milch (G) Futterkarte...\r\n"
+#else
         "Ziegenmilch Futterkarte...\r\n"
+#endif
         "Und nun habe ich sogar\r\n"
         "die Karte, die mir Mariya\r\n"
         "heute gegeben hat,\r\n"

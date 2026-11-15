@@ -205,8 +205,14 @@ mary_text_table
         "\"Let me see... All right!\r\n"
         "You've already got a double\r\n"
         "of the Fodder card. Not only\r\n"
+// S is the existing cow-milk grade, not sheep milk.
+#ifdef BUGFIX
+        "that, but also the Milk (S)\r\n"
+        "card as well.\"\r\n"
+#else
         "that, but also the Sheep's\r\n"
         "Milk card as well.\"\r\n"
+#endif
         "　　　　　　　　　　　　　　\r\n"
         "And you've got several cards\r\n"
         "that I don't have, either.\r\n"
@@ -463,7 +469,12 @@ mary_text_table
         "there's a Ranch Tales\r\n"
         "trading card lying on the\r\n"
         "floor here! And it's a rare\r\n"
+// G is the existing cow-milk grade, not goat milk.
+#ifdef BUGFIX
+        "card too, the 'Milk (G)'\r\n"
+#else
         "card too, the 'Goat's Milk'\r\n"
+#endif
         "food card! Oh, wow! What a\r\n"
         "find!\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -491,7 +502,12 @@ mary_text_table
         "\"Oh, Chisato, good timing!\r\n"
         "Or should I say, did you see\r\n"
         "a card lying around here? It\r\n"
+// G is the existing cow-milk grade, not goat milk.
+#ifdef BUGFIX
+        "was a 'Milk (G)' food\r\n"
+#else
         "was a 'Goat's Milk' food\r\n"
+#endif
         "card, and...\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "Oh I see, then this must\r\n"
@@ -528,7 +544,12 @@ mary_text_table
         "out today. I got a card I\r\n"
         "didn't already have. But\r\n"
         "even so, I still envy him\r\n"
+// G is the existing cow-milk grade, not goat milk.
+#ifdef BUGFIX
+        "for having that Milk (G)\r\n"
+#else
         "for having that Goat's Milk\r\n"
+#endif
         "food card, though... But,\r\n"
         "well, whatever. Let's open\r\n"
         "these babies up, and see\r\n"
@@ -538,7 +559,12 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "No sooner do I do that, then\r\n"
         "I find I've actually bought\r\n"
+// G is the existing cow-milk grade, not goat milk.
+#ifdef BUGFIX
+        "the Milk (G) food card...\r\n"
+#else
         "the Goat's Milk food card...\r\n"
+#endif
         "Only now, I've also got a\r\n"
         "double of the card that\r\n"
         "Mariya gave me today as\r\n"
