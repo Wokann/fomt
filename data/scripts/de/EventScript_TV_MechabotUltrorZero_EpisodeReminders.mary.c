@@ -37,7 +37,12 @@ mary_text_table
         "sagt Gelb zu den 3\r\n"
         "anderen.\r\n"
         "\"Mmmm? Was?\"\r\n"
+// Only Red, Blue and Green decorate; Yellow prepares the food.
+#ifdef BUGFIX
+        "(Zufällig arbeiten\r\n"
+#else
         "(Zufällig arbeiten Gelb,\r\n"
+#endif
         "Rot, Blau und Grün an der\r\n"
         "Partydekoration, während\r\n"
         "Gelb für das Essen zu-\r\n"
