@@ -237,6 +237,14 @@ mary_text_table
         "bei deiner Ernte \r\n"
         "helfen, budum?{Press}";
 
+#ifdef BUGFIX
+    // The one-day branch must not reuse the one-week confirmation.
+    const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Day[] =
+        "Verstanden.\r\n"
+        "Ich ernte einen Tag\r\n"
+        "für dich, budum.{Press}";
+#endif
+
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_Shared_AcceptHarvestingFor1DayOr1Week[] =
         "Verstanden.\r\n"
         "Ich ernte eine Woche \r\n"
@@ -1130,7 +1138,11 @@ void EventScript_NPCEvent_Nappy_DialogueAndWorkChoices(void)
                                                 case CHOICE_OPTION_1:
                                                     SetTalkPortrait(TALK_PORTRAIT_NAPPY_NORMAL);
                                                     SetTalkNameplateCharacter(CHARACTER_NAPPY);
+#ifdef BUGFIX
+                                                    TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Day);
+#else
                                                     TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_Shared_AcceptHarvestingFor1DayOr1Week);
+#endif
                                                     StartHarvestSpriteTask(CHARACTER_NAPPY, HARVEST_SPRITE_TASK_HARVEST, HARVEST_SPRITE_WORK_DAYS_ONE_DAY);
                                                     break;
                                                 case CHOICE_OPTION_2:

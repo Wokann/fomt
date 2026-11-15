@@ -8,7 +8,7 @@
 
 **验收状态（2026-11-15）：羊祭接待桌修复后，四版默认完整构建均逐字节及 SHA-1 匹配各自 baserom，四版 BUGFIX 完整构建均通过。最新消息调用核验见羊祭条目；指南及先前修复的具体核验范围见各条目和历史记录。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
 
-**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A03），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
+**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A04），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
 
 ## 统一索引
 
@@ -419,3 +419,13 @@
 - **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
 
 [EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary](data/scripts/de/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c) · [EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary](data/scripts/de/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a03)
+
+<a id="audit-a04"></a>
+### A04．德版Nappy一天收获委托说成一周
+
+- **原版表现：** 一天与一周的确认共用一周文本，实际工作参数仍为一天。
+- **正确内容与依据：** 其他版本分别提供一天和一周的收获确认。新增德文沿用既有收获确认句式，并参考一天浇水句中的 einen Tag（一天）；这些仅为措辞依据，实际只替换一天收获分支，三天和一周分支保持原样。
+- **修复方式：** 增加一天收获确认，仅替换一天分支；工作参数不改。 BUGFIX关闭时保留原文本及引用。
+- **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
+
+[EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary](data/scripts/de/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a04)
