@@ -14,6 +14,12 @@ mary_text_table
     const char gText_FamilyEvent_Ann_PregnancyDiscovery_Shared_AnnThanksPlayerAndDoctorPregnancyExplanation[] =
         "Danke.{Press}";
 
+#ifdef BUGFIX
+    // Use the doctor's explanation from Mary's pregnancy event, not Ann's thanks.
+    const char gText_FamilyEvent_Ann_PregnancyDiscovery_DoctorExplainsAnnIsPregnant[] =
+        "Deine Frau ist nicht krank.{Press}";
+#endif
+
     const char gText_FamilyEvent_Ann_PregnancyDiscovery_DoctorCongratulatesPlayerAndAnn[] =
         "Ihr beiden werdet Eltern.\r\n"
         "Glückwunsch!{Press}";
@@ -105,7 +111,11 @@ void EventScript_FamilyEvent_Ann_PregnancyDiscovery(void)
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_DOCTOR_NORMAL);
     SetTalkNameplateCharacter(CHARACTER_DOCTOR);
+#ifdef BUGFIX
+    TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_DoctorExplainsAnnIsPregnant);
+#else
     TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_Shared_AnnThanksPlayerAndDoctorPregnancyExplanation);
+#endif
     TalkClose();
     StartEntityEffect(ENTITY_ANN, ENTITY_EMOTE_QUESTION, FALSE);
     StartEntityEffect(ENTITY_PLAYER, ENTITY_EMOTE_QUESTION, FALSE);

@@ -8,6 +8,8 @@
 
 **验收状态（2026-11-15）：羊祭接待桌修复后，四版默认完整构建均逐字节及 SHA-1 匹配各自 baserom，四版 BUGFIX 完整构建均通过。最新消息调用核验见羊祭条目；指南及先前修复的具体核验范围见各条目和历史记录。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
 
+**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A01），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
+
 ## 统一索引
 
 | 分类 | 问题 | 受影响版本 | 实现状态 |
@@ -385,3 +387,15 @@
 原生对象对照中，幼畜好感度、联机末字符、牛羊售价和失败窗口状态仅 JP 改变；包装图标仅 JP／US 改变；指南展开四版改变。其余对应版本的这些函数代码及重定位保持一致。这些比较是对修复范围的检查，不能代替实际游玩确认。
 
 编译、字节、脚本及指针验收不等同于逐个事件的游玩复现。婚期生日、动物照料记录、料理包装说明三项仍未接入开关，不应列入已修复数量。
+
+## 本轮新增调用与选项修复（已完成统一构建及产物核对）
+
+<a id="audit-a01"></a>
+### A01．德版琳怀孕时医生复用答谢
+
+- **原版表现：** 医生与琳共用 `Danke.`（谢谢），医生未解释病情。
+- **正确内容与依据：** JP／US／EU在此说明妻子不是生病；DE玛丽怀孕事件已有 `Deine Frau ist nicht krank.`（你的妻子不是生病）。
+- **修复方式：** 在琳答谢之后新增独立医生文本，仅切换医生的那次调用，琳答谢保留。 BUGFIX关闭时保留原文本及引用。
+- **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
+
+[EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary](data/scripts/de/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary](data/scripts/de/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a01)
