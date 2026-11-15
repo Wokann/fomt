@@ -310,3 +310,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [E18](TEXT_SYMBOL_AUDIT.md#e18) | 鱼王条件被译成“这条鱼适合做哪些菜” | [实现与验证边界](BUGFIX.md#audit-e18) |
 | [E19](TEXT_SYMBOL_AUDIT.md#e19) | 料理对决第2集把糖译成盐 | [实现与验证边界](BUGFIX.md#audit-e19) |
 | [F01](TEXT_SYMBOL_AUDIT.md#f01) | US：卡莲初次见面的 `You name` | [实现与验证边界](BUGFIX.md#audit-f01) |
+| [F02](TEXT_SYMBOL_AUDIT.md#f02) | JP：味噌汤食谱的锅写成 `なぺ` | [实现与验证边界](BUGFIX.md#audit-f02) |

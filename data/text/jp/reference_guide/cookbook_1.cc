@@ -30,7 +30,12 @@ MAIN
     "　なし"
     "　"
     "·必要調理道具"
+// Use the same pot spelling as the other recipes.
+#ifdef BUGFIX
+    "　なべ"
+#else
     "　なぺ"
+#endif
     "　調味料　みそ"
     "　"
     "　"
