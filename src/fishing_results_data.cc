@@ -100,7 +100,12 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_Fluke,
     gText_FishingRecord_Filefish,
     gText_FishingRecord_GoldenCarp,
-    gText_FishingRecord_SilverCarp22,
+#if defined(REGION_JP) || defined(BUGFIX)
+    gText_FishingRecord_SilverCrucian,
+#else
+    // BUG: The original overseas name identifies ginbuna as silver carp.
+    gText_FishingRecord_SilverCarp,
+#endif
     gText_FishingRecord_KelpBass,
     gText_FishingRecord_Bighead,
     gText_FishingRecord_Salmon,
@@ -115,13 +120,8 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_BrownHakeling,
     gText_FishingRecord_RainbowTrout,
     gText_FishingRecord_Herring,
-#if defined(REGION_JP) || defined(BUGFIX)
-    // Record 37 is hakuren; it needs its own name, distinct from ginbuna (22).
-    gText_FishingRecord_SilverCarp37,
-#else
-    // The US-derived ROMs reuse the record-22 text pointer here.
-    gText_FishingRecord_SilverCarp22,
-#endif
+    // Overseas retail builds share this name with record 22; BUGFIX separates them.
+    gText_FishingRecord_SilverCarp,
     gText_FishingRecord_Sandfish,
     gText_FishingRecord_Flounder,
     gText_FishingRecord_Blowfish,

@@ -269,7 +269,8 @@
 
 - **原版与影响（US、EU、DE（第二组仅 DE））：** 海外记录 37 复用 22 的名称；DE 记录 46 又复用 18，两项都显示 Thunfisch（金枪鱼）。记录编号和统计字段仍独立。
 - **应有行为与对照：** JP 22／37 为ギンブナ／ハクレン；18／46 为カツオ／マグロ（鲣／金枪鱼）。US、EU 的后一组也分别命名。
-- **修复范围与方式：** 海外 22 使用 Ginbuna，37 独立为 Silver Carp／Silberkarpfen；DE 18 为 Bonito，46 独立为 Thunfisch。补充译名只修身份显示，不改钓获数量、体长或编号。
+- **修复范围与方式：** 记录 22 的英文鱼名为 Silver Crucian Carp，US／EU 采用经确认的 14 字符界面短写 Silver Crucian，避免与槽 44 的 Crucian Carp 重名；该短写不宣称是游戏官方简称。DE 沿用重制版德文 Ginbuna，37 保留正确的 Silver Carp／Silberkarpfen。DE 18 为 Bonito，46 独立为 Thunfisch。不改钓获数量、体长或编号。重制版名称来自同级 `SoSFoMTTextDump/SoSFoMTTextDump` 的 JA、US、DE `msg_Item.txt`；英文鱼名依据见[源码命名说明](REGIONAL_DIFFERENCES.md#已确认错误的源码名称整理)。
+- **显示长度：** Silver Crucian 为 14 字符，原钓获提示 `You fished a {Var1}.` 展开后为 28 格；纪录界面名称复制上限为 20 字节，因此无需修改提示换行或渲染程序。英文显示文本为 `Silver Crucian`，变量采用 `SilverCrucian`，不附记录编号或日文鱼种后缀。
 - **验证状态：** 已接入 `BUGFIX`；四版默认匹配，开启后的核验范围见本轮验收记录。
 
 [名称表](src/fishing_results_data.cc) · [JP 文本](data/text/jp/fishing_results_data.cc) · [DE 文本](data/text/de/fishing_results_data.cc) · [记录编号](include/fomt_constants.mary.h)

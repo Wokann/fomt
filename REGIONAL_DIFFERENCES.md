@@ -189,6 +189,23 @@
 | [0468](data/scripts/de/EventScript_FestivalEvent_CookingFestival_Judging.mary.c) | JP=US=EU / DE | 料理祭评审的一次等待由其他版的 240 帧变为 DE 的 480 帧。 |
 | [04B4](data/scripts/us/EventScript_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.c) | JP / US=EU=DE | 海外版在转入音乐祭开幕脚本前显式写入 FESTIVAL_PHASE_INITIAL；四版卡特普通交谈调用此前已设置同值，正常交谈入场路径没有因此改变资格、奖励或退场条件。 |
 
+## 已确认错误的源码名称整理
+
+命名依据依次采用本作已有的正确本地化文本、重制版对应名称；两者都不存在时才考虑重新翻译日文。地区正式名称不同本身不构成错误，不以日文直译或音译统一覆盖已有本地化名称。源码以英文鱼名命名，不附记录编号或另拼鱼种后缀；过长名称采用明确记录且经确认的界面短写。数值 ID、对象顺序及默认行为不变。
+
+| 原标识符 | 修正与依据 |
+| --- | --- |
+| `gText_FishingRecord_SilverCarp22` / `FISHING_RECORD_SILVER_CARP_22` | 改为 `gText_FishingRecord_SilverCrucian` / `FISHING_RECORD_SILVER_CRUCIAN`。JP 槽 22 为银鲫（ギンブナ），英文鱼名为 silver crucian carp；原英文／德文显示名 Silver Carp／Silberkarpfen 对应的却是鲢鱼。US／EU 的 BUGFIX 显示文本采用 14 字符界面短写 Silver Crucian，DE 采用重制版原名 Ginbuna。 |
+| `gText_FishingRecord_SilverCarp37` / `FISHING_RECORD_SILVER_CARP_37` | 移除数字后缀，使用 `gText_FishingRecord_SilverCarp` / `FISHING_RECORD_SILVER_CARP`。JP ハクレン（鲢鱼）对应 Silver Carp／Silberkarpfen，显示名称正确。槽 44 ヘラブナ已有的 `CrucianCarp` 标识符和显示名称保留。 |
+
+依据：[日版鱼名](data/text/jp/fishing_results_data.cc)、[鱼名指针表](src/fishing_results_data.cc)、[纪录 ID](include/fomt_constants.mary.h)、[既有鱼名问题](BUGFIX.md#fish-record-names)。重制版名称取自同级 `SoSFoMTTextDump/SoSFoMTTextDump/JA/msg_Item.txt` 与 `US/msg_Item.txt` 的对应鱼名序列：キンブナ／ギンブナ／クエ对应 Goldfish／Crucian Carp／Longtooth Grouper；不是仅凭相似英文词推断。
+
+Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silver crucian carp／ginbuna](https://pubmed.ncbi.nlm.nih.gov/9546204/)、[2019 年研究中的 silver crucian carp／ginbuna](https://pubmed.ncbi.nlm.nih.gov/31347186/)。重制版英文泛称 Crucian Carp 会与另一鱼种重名，本次采用完整英文名的界面短写 Silver Crucian，变量同步采用 SilverCrucian；该短写由用户确认，不宣称是已查证的官方简称。[国立环境研究所](https://www.nies.go.jp/biodiversity/invasive/DB/detail/50060.html) 则将 Silver carp 对应到ハクレン。原版两个记录共用同名字串本身不是结构错误，修复对象是记录 22 的鱼种显示名。
+
+验证（2026-11-15）：最终标识符下，JP／US／EU／DE 默认完整构建均与各自 baserom 逐字节及 SHA-1 一致。开启 BUGFIX 后，使用正常编译配方重新编译四版完整的 `fishing_results_data.cc`，核对记录 22、37、44 的共 12 项字符串及指针重定位；均正确，22 与 44 保持独立对象。本次开启 BUGFIX 的验证范围为该模块，不代表重新验证了整版 BUGFIX ROM。旧标识符在源码中的引用已清除。
+
+海外未开启 BUGFIX 时，原错误文本沿用 `gText_FishingRecord_SilverCarp` 标签，由记录 22／37 共用；开启后记录 22 使用 `gText_FishingRecord_SilverCrucian`，记录 37 使用独立的 `gText_FishingRecord_SilverCarp`。这使源码标签直接反映修复前后的实际文本身份；记录 ID 的常量仍按真实鱼种命名，数值不变。
+
 ## 证据与验收边界
 
 差异按默认原版归类；开关后的实现状态统一以 [BUGFIX 验收记录](BUGFIX.md#本轮验收记录) 为准。不把旧快照或局部函数匹配写成本轮四版整 ROM 通过。

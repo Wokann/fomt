@@ -75,10 +75,12 @@ char const gText_FishingRecord_GoldenCarp[] =
     "Goldkarpfen";
 
 #ifdef BUGFIX
-char const gText_FishingRecord_SilverCarp22[] =
+// The German remake names this fish Ginbuna; Silberkarpfen is hakuren.
+char const gText_FishingRecord_SilverCrucian[] =
     "Ginbuna";
 #else
-char const gText_FishingRecord_SilverCarp22[] =
+// BUG: The original localization uses the silver carp name for ginbuna.
+char const gText_FishingRecord_SilverCarp[] =
     "Silberkarpfen";
 #endif
 
@@ -125,7 +127,7 @@ char const gText_FishingRecord_Herring[] =
     "Hering";
 
 #ifdef BUGFIX
-char const gText_FishingRecord_SilverCarp37[] =
+char const gText_FishingRecord_SilverCarp[] =
     "Silberkarpfen";
 #endif
 

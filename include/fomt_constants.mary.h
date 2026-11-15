@@ -7928,15 +7928,17 @@ typedef enum MaryAnimalHorseAgeStage
  * the same 59-entry, eight-byte-per-entry layout and treat slots 53-58 as the
  * fish kings. Names reproduce the official US in-game spellings, including
  * `Fatminnow`, `Brown Hakeling`, and `Jp. Huchen`. Slots 22 and 37 are distinct
- * physical records that are both displayed as `Silver Carp`; numeric suffixes
- * preserve that distinction without inventing a species identity.
+ * physical records that are both displayed as `Silver Carp`. Record 22 is
+ * silver crucian carp (ginbuna), whereas record 37 is silver carp (hakuren).
+ * Use these English fish names for identifiers without numeric suffixes.
  *
  * 完整的钓鱼纪录槽顺序。GBA 原版 FoMT-US 的存档／内存纪录是一组连续 59 项：
  * 前八项是非鱼类钓获物，随后是 45 种普通鱼及六种鱼王。独立审计的
  * MFoMT-US、MFoMT-JP 原生纪录 getter 使用相同的 59 项、每项八字节布局，
  * 并把 53-58 作为鱼王。名称保留 US 游戏实际显示拼写，包括 `Fatminnow`、
  * `Brown Hakeling` 和 `Jp. Huchen`。槽 22 与 37 是两个不同物理纪录，但画面
- * 都显示 `Silver Carp`；数字后缀只用于区分物理槽，不猜测另一物种名称。
+ * 都显示 `Silver Carp`。槽 22 实为银鲫（ギンブナ，silver crucian carp），
+ * 槽 37 为鲢鱼（ハクレン，silver carp）。标识符采用英文鱼名，不附数字后缀。
  */
 typedef enum MaryFishingRecordId
 {
@@ -7962,7 +7964,7 @@ typedef enum MaryFishingRecordId
     FISHING_RECORD_FLUKE = 19,
     FISHING_RECORD_FILEFISH = 20,
     FISHING_RECORD_GOLDEN_CARP = 21,
-    FISHING_RECORD_SILVER_CARP_22 = 22,
+    FISHING_RECORD_SILVER_CRUCIAN = 22,
     FISHING_RECORD_KELP_BASS = 23,
     FISHING_RECORD_BIGHEAD = 24,
     FISHING_RECORD_SALMON = 25,
@@ -7977,7 +7979,7 @@ typedef enum MaryFishingRecordId
     FISHING_RECORD_BROWN_HAKELING = 34,
     FISHING_RECORD_RAINBOW_TROUT = 35,
     FISHING_RECORD_HERRING = 36,
-    FISHING_RECORD_SILVER_CARP_37 = 37,
+    FISHING_RECORD_SILVER_CARP = 37,
     FISHING_RECORD_SANDFISH = 38,
     FISHING_RECORD_FLOUNDER = 39,
     FISHING_RECORD_BLOWFISH = 40,

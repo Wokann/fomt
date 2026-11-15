@@ -70,10 +70,12 @@ char const gText_FishingRecord_GoldenCarp[] =
     "Golden Carp";
 
 #ifdef BUGFIX
-char const gText_FishingRecord_SilverCarp22[] =
-    "Ginbuna";
+// Use a non-official shortening of silver crucian carp to fit the 28-column catch message.
+char const gText_FishingRecord_SilverCrucian[] =
+    "Silver Crucian";
 #else
-char const gText_FishingRecord_SilverCarp22[] =
+// BUG: The original localization uses the silver carp name for ginbuna.
+char const gText_FishingRecord_SilverCarp[] =
     "Silver Carp";
 #endif
 
@@ -120,7 +122,7 @@ char const gText_FishingRecord_Herring[] =
     "Herring";
 
 #ifdef BUGFIX
-char const gText_FishingRecord_SilverCarp37[] =
+char const gText_FishingRecord_SilverCarp[] =
     "Silver Carp";
 #endif
 

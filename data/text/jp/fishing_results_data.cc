@@ -69,7 +69,7 @@ char const gText_FishingRecord_Filefish[] =
 char const gText_FishingRecord_GoldenCarp[] =
     "キンブナ";
 
-char const gText_FishingRecord_SilverCarp22[] =
+char const gText_FishingRecord_SilverCrucian[] =
     "ギンブナ";
 
 char const gText_FishingRecord_KelpBass[] =
@@ -114,7 +114,7 @@ char const gText_FishingRecord_RainbowTrout[] =
 char const gText_FishingRecord_Herring[] =
     "ニシン";
 
-char const gText_FishingRecord_SilverCarp37[] =
+char const gText_FishingRecord_SilverCarp[] =
     "ハクレン";
 
 char const gText_FishingRecord_Sandfish[] =
