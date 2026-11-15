@@ -327,9 +327,16 @@ char const gText_Item_Food_Apple_Name[] =
     "Apple";
 
 char const gText_Item_Food_Apple_Description[] =
+// Correct the spelling using the same word already present in other item text.
+#ifdef BUGFIX
+    "Apple\r\n"
+    "Grows on Apple Trees\r\n"
+    "Can be eaten or shipped.";
+#else
     "Apple\r\n"
     "Grows on Apple Trees\r\n"
     "Can be eated or shipped.";
+#endif
 
 char const gText_Item_Food_Honey_Name[] =
     "Honey";
@@ -706,9 +713,16 @@ char const gText_Item_Food_MixedJuice_Name[] =
     "Mixed Juice";
 
 char const gText_Item_Food_MixedJuice_Description[] =
+// JP identifies both fruit and vegetables; the original repeated the fruit-juice ingredients.
+#ifdef BUGFIX
+    "Mixed Juice\r\n"
+    "Made with fruit and veggies.\r\n"
+    "To drink or use as a gift.";
+#else
     "Mixed Juice\r\n"
     "A drink made with fruits.\r\n"
     "To drink or use as a gift.";
+#endif
 
 char const gText_Item_Food_FruitLatte_Name[] =
     "Fruit Latte";
@@ -818,9 +832,16 @@ char const gText_Item_Food_PineappleJuice_Name[] =
     "Pineapple Juice";
 
 char const gText_Item_Food_PineappleJuice_Description[] =
+// Correct the spelling using the same word already present in other item text.
+#ifdef BUGFIX
+    "Pineapple Juice\r\n"
+    "Freshly squeezed Pineapple.\r\n"
+    "To drink or use as a gift.";
+#else
     "Pineapple Juice\r\n"
     "Freshly squeezed Pinapple.\r\n"
     "To drink or use as a gift.";
+#endif
 
 char const gText_Item_Food_PumpkinPudding_Name[] =
     "Pumpkin Pudding";
@@ -1240,9 +1261,16 @@ char const gText_Item_Food_MoonDumplings_Name[] =
     "Moon Dumplings";
 
 char const gText_Item_Food_MoonDumplings_Description[] =
+// JP describes round dumplings on a skewer, not vegetables; translate that description literally.
+#ifdef BUGFIX
+    "Moon Dumplings\r\n"
+    "Round dumplings on a stick.\r\n"
+    "To eat or use as a gift.";
+#else
     "Moon Dumplings\r\n"
     "Roasted veggies on a stick.\r\n"
     "To eat or use as a gift.";
+#endif
 
 char const gText_Item_Food_RiceCake_Name[] =
     "Rice Cake";

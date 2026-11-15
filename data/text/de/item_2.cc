@@ -271,9 +271,16 @@ char const gText_Item_Food_MilkX_Name[] =
     "Milch (X)";
 
 char const gText_Item_Food_MilkX_Description[] =
+// The last row repeats a fragment; use the other milk grades' complete shipping description.
+#ifdef BUGFIX
+    "Milch (X)\r\n"
+    "Kuhmilch. Kann getrunken\r\n"
+    "oder versandt werden.";
+#else
     "Milch (X)\r\n"
     "Kuhmilch. Kann getrunken\r\n"
     "Kann getrunken oder.";
+#endif
 
 char const gText_Item_Food_CheeseS_Name[] =
     "Käse (S)";
@@ -651,9 +658,16 @@ char const gText_Item_Food_MisoSoup_Name[] =
     "Miso-Suppe";
 
 char const gText_Item_Food_MisoSoup_Description[] =
+// The title and description lost their row separator.
+#ifdef BUGFIX
+    "Miso-Suppe\r\n"
+    "Eine köstliche Suppe.\r\n"
+    "Selberessen o. verschenken.";
+#else
     "Miso-SuppeEine köstliche Suppe.\r\n"
     "Selberessen o. verschenken."
     "";
+#endif
 
 char const gText_Item_Food_StirFry_Name[] =
     "Geschmortes Gemüse";
@@ -707,9 +721,16 @@ char const gText_Item_Food_MixedJuice_Name[] =
     "Gemixter Saft";
 
 char const gText_Item_Food_MixedJuice_Description[] =
+// JP identifies both fruit and vegetables; the original repeated the fruit-juice ingredients.
+#ifdef BUGFIX
+    "Gemixter Saft\r\n"
+    "Aus Früchten und Gemüse.\r\n"
+    "Zum Selbertrinken.";
+#else
     "Gemixter Saft\r\n"
     "Saft aus Früchten.\r\n"
     "Zum Selbertrinken.";
+#endif
 
 char const gText_Item_Food_FruitLatte_Name[] =
     "Fruchtmilch";
@@ -731,9 +752,16 @@ char const gText_Item_Food_MixedLatte_Name[] =
     "Milchmixgetränk";
 
 char const gText_Item_Food_MixedLatte_Description[] =
+// Restore milk to the truncated ingredient list, following JP and the English description.
+#ifdef BUGFIX
+    "Milchmixgetränk\r\n"
+    "Aus Früchten, Gemüse\r\n"
+    "und Milch.";
+#else
     "Milchmixgetränk\r\n"
     "Aus Früchten, Gemüse und\r\n"
     "Selbertrinken o verschenken.";
+#endif
 
 char const gText_Item_Food_StrawberryMilk_Name[] =
     "Erdbeermilch";
@@ -787,9 +815,16 @@ char const gText_Item_Food_Ketchup_Name[] =
     "Ketchup";
 
 char const gText_Item_Food_Ketchup_Description[] =
+// The original sentence omits tomatoes, identified by both JP and the English description.
+#ifdef BUGFIX
+    "Ketchup\r\n"
+    "Aus frischen Tomaten.\r\n"
+    "Selberessen o. verschenken.";
+#else
     "Ketchup\r\n"
     "Aus frischen\r\n"
     "Selberessen o. verschenken.";
+#endif
 
 char const gText_Item_Food_Popcorn_Name[] =
     "Popcorn";
@@ -1189,9 +1224,16 @@ char const gText_Item_Food_Toast_Name[] =
     "Toast";
 
 char const gText_Item_Food_Toast_Description[] =
+// Toast is food, not a drink; use the adjacent food-description wording.
+#ifdef BUGFIX
+    "Toast\r\n"
+    "Getoastetes Brot.\r\n"
+    "Selberessen o. verschenken.";
+#else
     "Toast\r\n"
     "Getoastetes Brot.\r\n"
     "Selbertrinken o verschenken.";
+#endif
 
 char const gText_Item_Food_FrenchToast_Name[] =
     "Französisches Brot";
@@ -1221,9 +1263,16 @@ char const gText_Item_Food_MoonDumplings_Name[] =
     "Mondklöße";
 
 char const gText_Item_Food_MoonDumplings_Description[] =
+// JP describes round dumplings on a skewer, not vegetables; translate that description literally.
+#ifdef BUGFIX
+    "Mondklöße\r\n"
+    "Runde Klöße am Spieß.\r\n"
+    "Selberessen o. verschenken.";
+#else
     "Mondklöße\r\n"
     "Gemüse-Kebab.\r\n"
     "Selberessen o. verschenken.";
+#endif
 
 char const gText_Item_Food_RiceCake_Name[] =
     "Reiskuchen";
@@ -1258,7 +1307,12 @@ char const gText_Item_Food_FailedDish_Description[] =
     "Rezept misslungen ist...";
 
 char const gText_Item_Food_FailedDrink_Name[] =
+// Follow the existing Missl. Gericht naming; translate the missing subtype from JP.
+#ifdef BUGFIX
+    "Missl. Getränk";
+#else
     "Failed Drink";
+#endif
 
 char const gText_Item_Food_FailedRecipe_Description[] =
     "Failure\r\n"
@@ -1266,10 +1320,20 @@ char const gText_Item_Food_FailedRecipe_Description[] =
     "work out...";
 
 char const gText_Item_Food_FailedPotDish_Name[] =
+// Follow the existing Missl. Gericht naming; translate the missing subtype from JP.
+#ifdef BUGFIX
+    "Missl. Topfgericht";
+#else
     "Failed Pot Dish";
+#endif
 
 char const gText_Item_Food_FailedDessert_Name[] =
+// Follow the existing Missl. Gericht naming; translate the missing subtype from JP.
+#ifdef BUGFIX
+    "Missl. Dessert";
+#else
     "Failed Dessert";
+#endif
 
 char const gText_Item_Food_FailedBread_Name[] =
     "Misslungenes Brot";

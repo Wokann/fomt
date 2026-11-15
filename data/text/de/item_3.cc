@@ -30,9 +30,16 @@ char const gText_Item_Article_RedMagicGrass_Name[] =
     "Magisches Rotgras";
 
 char const gText_Item_Article_RedMagicGrass_Description[] =
+// Red Magic Grass is a shippable product; the original text copied the blue flower restriction.
+#ifdef BUGFIX
+    "Magisches Rotgras\r\n"
+    "Herbstblumen.\r\n"
+    "Zum Versenden.";
+#else
     "Magisches Rotgras\r\n"
     "Herbstblumen.\r\n"
     "Nicht zum Versenden.";
+#endif
 
 char const gText_Item_Article_ToyFlower_Name[] =
     "Spielblume";
@@ -192,9 +199,16 @@ char const gText_Item_Article_Adamantite_Name[] =
     "Adamantit";
 
 char const gText_Item_Article_Adamantite_Description[] =
+// Adamantite makes machines; the original copied the neighboring jewelry-ore description.
+#ifdef BUGFIX
+    "Adamantit\r\n"
+    "Wird in Minen gefunden. \r\n"
+    "Zum Bau von Maschinen.";
+#else
     "Adamantit\r\n"
     "Wird in Minen gefunden. \r\n"
     "Zum Herstellen von Schmuck.";
+#endif
 
 char const gText_Item_Article_MoonStone_Name[] =
     "Mondstein";
@@ -615,9 +629,16 @@ char const gText_Item_Article_Album13_Name[] =
     "Album 13";
 
 char const gText_Item_Article_Album13_Description[] =
+// Album 13 was left in English; reuse the adjacent German prize description with 70 wins.
+#ifdef BUGFIX
+    "Ungenutzter Gegenstand\r\n"
+    "Preis für 70 direkte Siege\r\n"
+    "bei Schere-Stein-Papier.";
+#else
     "Unused item\r\n"
     "Received after 70 straight\r\n"
     "Rock-Papers-Scissors wins.";
+#endif
 
 char const gText_Item_Article_Album14_Name[] =
     "Album 14";

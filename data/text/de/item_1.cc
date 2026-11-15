@@ -230,9 +230,16 @@ char const gText_Item_Tool_SilverHammer_Name[] =
     "Silberhammer";
 
 char const gText_Item_Tool_SilverHammer_Description[] =
+// JP gives silver and gold hammers the same description; reuse the complete gold-hammer wording.
+#ifdef BUGFIX
+    "Silberhammer\r\n"
+    "Zerschlägt Zäune und alle\r\n"
+    "Steine. Bereitet Felder vor.";
+#else
     "Silberhammer\r\n"
     "große und riesige Steine\r\n"
     "Pflügen vorbereiten.";
+#endif
 
 char const gText_Item_Tool_GoldHammer_Name[] =
     "Goldhammer";
@@ -550,17 +557,31 @@ char const gText_Item_Tool_MoonDropSeeds_Name[] =
     "Mondtropfensamen";
 
 char const gText_Item_Tool_MoonDropSeeds_Description[] =
+// The JP seed text and corresponding flower agree on a single growing season.
+#ifdef BUGFIX
+    "Mondtropfensamen\r\n"
+    "Säe sie im Frühling.\r\n"
+    "";
+#else
     "Mondtropfensamen\r\n"
     "Säe sie im Frühling\r\n"
     "oder Herbst.";
+#endif
 
 char const gText_Item_Tool_PinkCatSeeds_Name[] =
     "Pinke Katzensamen";
 
 char const gText_Item_Tool_PinkCatSeeds_Description[] =
+// The JP seed text and corresponding flower agree on a single growing season.
+#ifdef BUGFIX
+    "Pinke Katzensamen\r\n"
+    "Säe sie im Sommer.\r\n"
+    "";
+#else
     "Pinke Katzensamen\r\n"
     "Säe sie im Sommer\r\n"
     "oder Herbst.";
+#endif
 
 char const gText_Item_Tool_MagicSeeds_Name[] =
     "Magische Samen";
