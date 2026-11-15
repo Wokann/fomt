@@ -6,7 +6,12 @@ MAIN
     "·Hier kannst du Dinge für"
     " die Kuh- und Schafzucht"
     " kaufen oder deine"
+// This shop buys cows and sheep, not chickens.
+#ifdef BUGFIX
+    "Kühe und Schafe verkaufen."
+#else
     "Hühner verkaufen."
+#endif
     ""
     "·Geschäftszeiten:"
     " 10-15 Uhr"

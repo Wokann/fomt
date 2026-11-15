@@ -5,7 +5,12 @@ TITLE
 MAIN
     "·Here you can buy Cow and"
     " Sheep related products,"
+// This shop buys cows and sheep, not chickens.
+#ifdef BUGFIX
+    " or sell Cows and Sheep."
+#else
     " or sell your Chickens."
+#endif
     ""
     "·Store Hours:"
     " 10AM-3PM"
