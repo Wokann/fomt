@@ -36,7 +36,7 @@
 | [B12](#b12) | B12 | DE：茶叶与成品茶同名，配方原料也未区分 | 审核修订完成；静态核对通过，待统一重验 |
 | [B13](#b13) | 补充1 | 锤子指南：海外漏掉银锤说明，日版次数也存在问题 | 已修复；统一构建及产物核对通过 |
 | [B14](#b14) | 补充2 | 房屋“两阶段扩建”误译成“建造二楼” | 已修复；统一构建及产物核对通过 |
-| [B15](#b15) | 补充3 | 孵化箱随鸡舍扩建增加，误译成可以购买 | 已获准，后续分项提交 |
+| [B15](#b15) | 补充3 | 孵化箱随鸡舍扩建增加，误译成可以购买 | 审核修订完成；静态核对通过，待统一重验 |
 | [B16](#b16) | 补充4 | 德文鸡饲料制作提示把“玉米”泛化成“谷物” | 已获准，后续分项提交 |
 | [C01](#c01) | C01 | 海外三版：巴基尔雨天台词失去原有的晴雨对比 | 已获准，后续分项提交 |
 | [C02](#c02) | C02 | 海外三版：玛丽星夜祭把自己做料理写成妈妈今天做蛋糕 | 已获准，后续分项提交 |
@@ -466,7 +466,7 @@
 <a id="b15"></a>
 ### B15．孵化箱随鸡舍扩建增加，误译成可以购买
 
-原编号：补充3。状态：已获准，后续分项提交。
+原编号：补充3。状态：审核修订完成；静态核对通过，待统一重验。
 
 | 版本 | 原文 |
 |---|---|
@@ -479,6 +479,10 @@
 **拟纳入：**海外三版改为扩建后拥有两个孵化箱。
 
 来源：[指南原文](data/text/de/reference_guide/woodcutters_house.cc)、[孵化箱数量](src/coop.cc:83)。
+
+**补文来源及适配：** 参考重制版US `msg_Book.txt:1575` 的 `You will have two Breeding Bins.`（你将拥有两个繁殖箱），以及DE `msg_Book.txt:1618` 的 `Die Anzahl deiner Zuchtkisten wird sich erhöhen.`（你的繁殖箱数量将增加）。保留GBA术语 `Incubator`／`Brutkasten`，德文复数为 `Brutkästen`，数字均用阿拉伯数字 `2`。德文补足的数量以JP原文和 `GetIncubatorCapacity()` 为据。海外修复句分别为 `You will have 2 Incubators.` 和 `Die Anzahl deiner Brutkästen wird sich auf 2 erhöhen.`；不添加“原先1个”的比较句。
+
+[重制版英文](../SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Book.txt:1575) · [重制版德文](../SoSFoMTTextDump/SoSFoMTTextDump/DE/msg_Book.txt:1618)
 
 <a id="b16"></a>
 ### B16．德文鸡饲料制作提示把“玉米”泛化成“谷物”

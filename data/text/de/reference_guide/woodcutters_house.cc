@@ -65,8 +65,15 @@ MAIN
     "·Ermöglicht dir, 8 Hühner"
     " an Stelle von 4 zu halten. "
     ""
+// The guide wrongly says incubators can be bought; expansion increases them to 2.
+#ifdef BUGFIX
+    "·Die Anzahl deiner"
+    " Brutkästen wird sich"
+    " auf 2 erhöhen."
+#else
     "·Ermöglicht dir, 2 "
     " Brutkästen zu kaufen."
+#endif
     ""
     "·Du kannst eine "
     " Mayonnaisemaschine kaufen."

@@ -8,7 +8,7 @@
 
 **验收状态（2026-11-15）：羊祭接待桌修复后，四版默认完整构建均逐字节及 SHA-1 匹配各自 baserom，四版 BUGFIX 完整构建均通过。最新消息调用核验见羊祭条目；指南及先前修复的具体核验范围见各条目和历史记录。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
 
-**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至B14），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
+**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至B15），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
 
 ## 统一索引
 
@@ -609,3 +609,13 @@
 - **正确内容：** 原版四语内容及对应程序／原文关系已列入本项合并审计；正文补齐不推断缺失的开发原因。
 - **修复方式：** 海外改为房屋可扩建两次，不再把第二阶段写成建造二楼。
 - **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及文本／行指针核对；未逐项实机复现。
+
+<a id="audit-b15"></a>
+### B15．孵化箱随鸡舍扩建增加，误译成可以购买
+
+- **原版及其他版本：** 见[四版原文与依据](TEXT_SYMBOL_AUDIT.md#b15)。
+- **正确内容：** 参考重制版US `msg_Book.txt:1575` 的 `You will have two Breeding Bins.`（你将拥有两个繁殖箱），以及DE `msg_Book.txt:1618` 的 `Die Anzahl deiner Zuchtkisten wird sich erhöhen.`（你的繁殖箱数量将增加）。保留GBA术语 `Incubator`／`Brutkasten`，德文复数为 `Brutkästen`，数字均用阿拉伯数字 `2`。德文补足的数量以JP原文和 `GetIncubatorCapacity()` 为据。
+- **修复方式：** US／EU采用 `You will have 2 Incubators.`；DE采用 `Die Anzahl deiner Brutkästen wird sich auf 2 erhöhen.`。按指南宽度分行，不另加“instead of 1／statt einem”，不改扩建机制。
+- **验证状态：** 审核修订后已静态核对默认分支、区域编码、28格行宽及重制版来源；本次未编译，旧构建结果对应审核修订前。
+[重制版英文依据](../SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Book.txt:1575) · [重制版德文依据](../SoSFoMTTextDump/SoSFoMTTextDump/DE/msg_Book.txt:1618)
+

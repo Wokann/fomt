@@ -62,8 +62,14 @@ MAIN
     "·Enables you to care for "
     " 8 Chickens, up from 4. "
     ""
+// The guide wrongly says incubators can be bought; expansion increases them to 2.
+#ifdef BUGFIX
+    "·You will have 2"
+    " Incubators."
+#else
     "·Enables you to buy 2 "
     " Incubators."
+#endif
     ""
     "·Enables you to buy a "
     " Mayonnaise Maker."
