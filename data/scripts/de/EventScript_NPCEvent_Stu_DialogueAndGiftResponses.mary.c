@@ -237,7 +237,7 @@ void EventScript_NPCEvent_Stu_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_OMELET:
                         case ITEM_FOOD_BUTTER:
                         case ITEM_FOOD_APPLE_JAM:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_JAM_BUN:
                         case ITEM_FOOD_CURRY_BREAD:
                         case ITEM_FOOD_CURRY_NOODLES:

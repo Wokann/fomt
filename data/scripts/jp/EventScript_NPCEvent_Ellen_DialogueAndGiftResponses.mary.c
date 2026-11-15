@@ -225,7 +225,7 @@ void EventScript_NPCEvent_Ellen_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_HMSGB_APPLE:
                         case ITEM_FOOD_AEPFE_APPLE:
                         case ITEM_FOOD_PUMPKIN_STEW:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_TRUFFLE_RICE:
                         case ITEM_FOOD_BUCKWHEAT_CHIPS:
                         case ITEM_FOOD_RELAXATION_TEA:

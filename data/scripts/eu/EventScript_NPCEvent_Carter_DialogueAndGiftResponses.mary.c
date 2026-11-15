@@ -506,7 +506,7 @@ void EventScript_NPCEvent_Carter_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_PUMPKIN_STEW:
                         case ITEM_FOOD_SWEET_POTATOES:
                         case ITEM_FOOD_HOT_MILK:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_CHIRASHI_SUSHI:
                         case ITEM_FOOD_PIZZA:
                         case ITEM_FOOD_BUCKWHEAT_CHIPS:

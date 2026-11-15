@@ -684,7 +684,7 @@ void EventScript_NPCEvent_Manna_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_PUMPKIN_PUDDING:
                         case ITEM_FOOD_PUMPKIN_STEW:
                         case ITEM_FOOD_SWEET_POTATOES:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_BUCKWHEAT_NOODLES:
                         case ITEM_FOOD_NOODLES_W_TEMPURA:
                         case ITEM_FOOD_COOKIES:

@@ -491,7 +491,7 @@ void EventScript_NPCEvent_Hoggy_DialogueAndWorkChoices(void)
                         case ITEM_FOOD_BOILED_EGG:
                         case ITEM_FOOD_CHEESE_CAKE:
                         case ITEM_FOOD_CHEESE_FONDUE:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_MUSHROOM_RICE:
                         case ITEM_FOOD_JAM_BUN:
                         case ITEM_FOOD_GRILLED_FISH:

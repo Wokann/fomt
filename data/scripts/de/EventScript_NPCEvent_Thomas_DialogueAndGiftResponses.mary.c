@@ -357,7 +357,7 @@ void EventScript_NPCEvent_Thomas_DialogueAndGiftResponses(void)
                     case ITEM_FOOD_BUTTER:
                     case ITEM_FOOD_CHEESE_CAKE:
                     case ITEM_FOOD_APPLE_JAM:
-                    case ITEM_FOOD_APPLE_SOUFFLE:
+                    case ITEM_FOOD_BAKED_APPLE:
                     case ITEM_FOOD_MUSHROOM_RICE:
                     case ITEM_FOOD_BAMBOO_RICE:
                     case ITEM_FOOD_TRUFFLE_RICE:

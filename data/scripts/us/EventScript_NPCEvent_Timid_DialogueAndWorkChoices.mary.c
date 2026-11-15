@@ -440,7 +440,7 @@ void EventScript_NPCEvent_Timid_DialogueAndWorkChoices(void)
                         case ITEM_FOOD_PUMPKIN_STEW:
                         case ITEM_FOOD_CHEESE_CAKE:
                         case ITEM_FOOD_CHEESE_FONDUE:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_MUSHROOM_RICE:
                         case ITEM_FOOD_TRUFFLE_RICE:
                         case ITEM_FOOD_SUSHI:

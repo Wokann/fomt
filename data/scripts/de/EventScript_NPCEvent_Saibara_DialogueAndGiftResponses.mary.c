@@ -285,7 +285,7 @@ void EventScript_NPCEvent_Saibara_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_BAKED_SWEET_POTATO:
                         case ITEM_FOOD_GREENS:
                         case ITEM_FOOD_SCRAMBLED_EGGS_OR_JAPANESE_OMELET:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_MUSHROOM_RICE:
                         case ITEM_FOOD_GRILLED_FISH:
                         case ITEM_FOOD_TEMPURA_NOODLES:

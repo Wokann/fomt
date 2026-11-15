@@ -289,7 +289,7 @@ void EventScript_NPCEvent_Thomas_RandomItemRequestDelivery(void)
                     {
                         var_1 = THOMAS_RANDOM_ITEM_DELIVERY_OTHER_SPECIAL_APPLE;
                     }
-                    if (GetPlayerHeldFoodId() == ITEM_FOOD_APPLE_PIE || GetPlayerHeldFoodId() == ITEM_FOOD_APPLE_JAM || GetPlayerHeldFoodId() == ITEM_FOOD_APPLE_SOUFFLE)
+                    if (GetPlayerHeldFoodId() == ITEM_FOOD_APPLE_PIE || GetPlayerHeldFoodId() == ITEM_FOOD_APPLE_JAM || GetPlayerHeldFoodId() == ITEM_FOOD_BAKED_APPLE)
                     {
                         var_1 = THOMAS_RANDOM_ITEM_DELIVERY_COOKED_APPLE;
                     }

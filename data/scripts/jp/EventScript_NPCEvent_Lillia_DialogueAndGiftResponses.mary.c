@@ -259,7 +259,7 @@ void EventScript_NPCEvent_Lillia_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_WILD_GRAPE_JUICE:
                         case ITEM_FOOD_STRAWBERRY_MILK:
                         case ITEM_FOOD_TOMATO_JUICE:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_RELAXATION_TEA:
                         case ITEM_FOOD_ELLI_LEAVES:
                         case ITEM_FOOD_LARGE_FISH:

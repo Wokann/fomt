@@ -530,10 +530,10 @@ char const gText_Item_Food_Oil_Description[] =
     "そのまま食べても、\r\n"
     "お料理に使ってもいい。";
 
-char const gText_Item_Food_Flower_Name[] =
+char const gText_Item_Food_Flour_Name[] =
     "小麦粉";
 
-char const gText_Item_Food_Flower_Description[] =
+char const gText_Item_Food_Flour_Description[] =
     "小麦粉\r\n"
     "そのまま食べても、\r\n"
     "お料理に使ってもいい。";
@@ -938,10 +938,10 @@ char const gText_Item_Food_AppleJam_Description[] =
     "りんごで作ったジャム。\r\n"
     "食べられるけど出荷は無理。";
 
-char const gText_Item_Food_AppleSouffl_Name[] =
+char const gText_Item_Food_BakedApple_Name[] =
     "焼きりんご";
 
-char const gText_Item_Food_AppleSouffl_Description[] =
+char const gText_Item_Food_BakedApple_Description[] =
     "焼きりんご\r\n"
     "りんごを焼いたお料理。\r\n"
     "食べられるけど出荷は無理。";
@@ -986,10 +986,10 @@ char const gText_Item_Food_JamBun_Description[] =
     "パンを使ったお料理。\r\n"
     "食べられるけど出荷は無理。";
 
-char const gText_Item_Food_DinnerRole_Name[] =
+char const gText_Item_Food_DinnerRoll_Name[] =
     "バターロール";
 
-char const gText_Item_Food_DinnerRole_Description[] =
+char const gText_Item_Food_DinnerRoll_Description[] =
     "バターロール\r\n"
     "パンを使ったお料理。\r\n"
     "食べられるけど出荷は無理。";

@@ -352,7 +352,7 @@ void EventScript_NPCEvent_Barley_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_OMELET_RICE:
                         case ITEM_FOOD_BOILED_EGG:
                         case ITEM_FOOD_APPLE_JAM:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_JAM_BUN:
                         case ITEM_FOOD_DINNER_ROLL:
                         case ITEM_FOOD_RAISIN_BREAD:

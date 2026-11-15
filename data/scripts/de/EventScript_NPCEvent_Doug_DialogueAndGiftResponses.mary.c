@@ -272,7 +272,7 @@ void EventScript_NPCEvent_Doug_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_KETCHUP:
                         case ITEM_FOOD_PINEAPPLE_JUICE:
                         case ITEM_FOOD_BUTTER:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_NOODLES_W_TEMPURA:
                         case ITEM_FOOD_TOAST:
                         case ITEM_FOOD_SMALL_FISH:

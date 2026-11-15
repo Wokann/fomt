@@ -208,7 +208,7 @@ mary_text_table
         "カレーパンは色々なアレンジが\r\n"
         "出来るから作ったら楽しいよ。{Press}";
 
-    const char gText_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes_GameCubeRecipe10AppleSouffle[] =
+    const char gText_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes_GameCubeRecipe10BakedApple[] =
         "焼きりんごって知ってる？\r\n"
         "材料はりんご。道具はフライパ\r\n"
         "ンがあったら出来るで。{Press}\p"
@@ -311,7 +311,7 @@ void EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes(void)
                     case ITEM_FOOD_CHEESE_FONDUE:
                     case ITEM_FOOD_APPLE_PIE:
                     case ITEM_FOOD_APPLE_JAM:
-                    case ITEM_FOOD_APPLE_SOUFFLE:
+                    case ITEM_FOOD_BAKED_APPLE:
                     case ITEM_FOOD_MUSHROOM_RICE:
                     case ITEM_FOOD_BAMBOO_RICE:
                     case ITEM_FOOD_TRUFFLE_RICE:
@@ -798,7 +798,7 @@ void EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes(void)
                                 break;
                             case 9:
                                 SetTalkPortrait(TALK_PORTRAIT_LOU_OR_RUBY_HAPPY);
-                                TalkMessage(gText_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes_GameCubeRecipe10AppleSouffle);
+                                TalkMessage(gText_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes_GameCubeRecipe10BakedApple);
                                 break;
                         }
                         VarSet(VAR_GAMECUBE_LINK_LOU_OR_RUBY_RECIPES_LEARNED, VarGet(VAR_GAMECUBE_LINK_LOU_OR_RUBY_RECIPES_LEARNED) + 1);

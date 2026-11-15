@@ -39,7 +39,7 @@ void EventScript_FestivalEvent_PumpkinFestival_TreatVisit_Stu(void)
                 case ITEM_FOOD_BAKED_SWEET_POTATO:
                 case ITEM_FOOD_CHEESE_CAKE:
                 case ITEM_FOOD_APPLE_PIE:
-                case ITEM_FOOD_APPLE_SOUFFLE:
+                case ITEM_FOOD_BAKED_APPLE:
                 case ITEM_FOOD_COOKIES:
                 case ITEM_FOOD_CHOCOLATE_COOKIES:
                 case ITEM_FOOD_ICE_CREAM:

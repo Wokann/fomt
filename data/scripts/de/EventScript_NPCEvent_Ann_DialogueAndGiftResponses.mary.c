@@ -847,7 +847,7 @@ void EventScript_NPCEvent_Ann_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_GREENS:
                         case ITEM_FOOD_SCRAMBLED_EGGS_OR_JAPANESE_OMELET:
                         case ITEM_FOOD_BOILED_EGG:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_JAM_BUN:
                         case ITEM_FOOD_DINNER_ROLL:
                         case ITEM_FOOD_RAISIN_BREAD:

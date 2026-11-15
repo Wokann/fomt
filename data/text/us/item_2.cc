@@ -532,7 +532,7 @@ char const gText_Item_Food_Oil_Description[] =
     "May be eaten as is,\r\n"
     "or used for cooking.";
 
-char const gText_Item_Food_Flower_Name[] =
+char const gText_Item_Food_Flour_Name[] =
 // This item is flour for cooking, not a flower; the shop already identifies it correctly.
 #ifdef BUGFIX
     "Flour";
@@ -540,7 +540,7 @@ char const gText_Item_Food_Flower_Name[] =
     "Flower";
 #endif
 
-char const gText_Item_Food_Flower_Description[] =
+char const gText_Item_Food_Flour_Description[] =
 // This item is flour for cooking, not a flower; the shop already identifies it correctly.
 #ifdef BUGFIX
     "Flour\r\n"
@@ -950,7 +950,7 @@ char const gText_Item_Food_AppleJam_Description[] =
     "Made with fresh Apples.\r\n"
     "To eat or use as a gift.";
 
-char const gText_Item_Food_AppleSouffl_Name[] =
+char const gText_Item_Food_BakedApple_Name[] =
 // This is the baked-apple recipe, not an apple souffle.
 #ifdef BUGFIX
     "Baked Apple";
@@ -958,7 +958,7 @@ char const gText_Item_Food_AppleSouffl_Name[] =
     "Apple Souffl?";
 #endif
 
-char const gText_Item_Food_AppleSouffl_Description[] =
+char const gText_Item_Food_BakedApple_Description[] =
 // This is the baked-apple recipe, not an apple souffle.
 #ifdef BUGFIX
     "Baked Apple\r\n"
@@ -1008,7 +1008,7 @@ char const gText_Item_Food_JamBun_Description[] =
     "Made with Jam and Bread.\r\n"
     "To eat or use as a gift.";
 
-char const gText_Item_Food_DinnerRole_Name[] =
+char const gText_Item_Food_DinnerRoll_Name[] =
 // Roll is the bread item; role is a spelling error.
 #ifdef BUGFIX
     "Dinner Roll";
@@ -1016,7 +1016,7 @@ char const gText_Item_Food_DinnerRole_Name[] =
     "Dinner Role";
 #endif
 
-char const gText_Item_Food_DinnerRole_Description[] =
+char const gText_Item_Food_DinnerRoll_Description[] =
 // Roll is the bread item; role is a spelling error.
 #ifdef BUGFIX
     "Dinner Roll\r\n"

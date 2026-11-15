@@ -532,7 +532,7 @@ char const gText_Item_Food_Oil_Description[] =
     "Kann so gegessen oder\r\n"
     "zum Kochen benutzt werden.";
 
-char const gText_Item_Food_Flower_Name[] =
+char const gText_Item_Food_Flour_Name[] =
 // This item is flour for cooking, not a flower; the shop already identifies it correctly.
 #ifdef BUGFIX
     "Mehl";
@@ -540,7 +540,7 @@ char const gText_Item_Food_Flower_Name[] =
     "Blume";
 #endif
 
-char const gText_Item_Food_Flower_Description[] =
+char const gText_Item_Food_Flour_Description[] =
 // This item is flour for cooking, not a flower; the shop already identifies it correctly.
 #ifdef BUGFIX
     "Mehl\r\n"
@@ -948,10 +948,10 @@ char const gText_Item_Food_AppleJam_Description[] =
     "Mit frischen Äpfeln gemacht.\r\n"
     "Selberessen o. verschenken.";
 
-char const gText_Item_Food_AppleSouffl_Name[] =
+char const gText_Item_Food_BakedApple_Name[] =
     "Apfelauflauf";
 
-char const gText_Item_Food_AppleSouffl_Description[] =
+char const gText_Item_Food_BakedApple_Description[] =
     "Apfelauflauf\r\n"
     "Mit frischen Äpfeln gemacht.\r\n"
     "Selberessen o. verschenken.";
@@ -996,10 +996,10 @@ char const gText_Item_Food_JamBun_Description[] =
     "Brot und Marmelade.\r\n"
     "Selberessen o. verschenken.";
 
-char const gText_Item_Food_DinnerRole_Name[] =
+char const gText_Item_Food_DinnerRoll_Name[] =
     "Abendbrot-Schnitte";
 
-char const gText_Item_Food_DinnerRole_Description[] =
+char const gText_Item_Food_DinnerRoll_Description[] =
     "Abendbrot-Schnitte\r\n"
     "Mit Brot und Butter gemacht.\r\n"
     "Zum Selberessen.";

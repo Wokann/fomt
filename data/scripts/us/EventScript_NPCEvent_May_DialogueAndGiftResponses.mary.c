@@ -223,7 +223,7 @@ void EventScript_NPCEvent_May_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_PUMPKIN_PUDDING:
                         case ITEM_FOOD_SWEET_POTATOES:
                         case ITEM_FOOD_OMELET_RICE:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_JAM_BUN:
                         case ITEM_FOOD_COOKIES:
                         case ITEM_FOOD_CHOCOLATE_COOKIES:

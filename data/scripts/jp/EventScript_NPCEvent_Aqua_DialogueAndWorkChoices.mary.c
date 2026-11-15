@@ -440,7 +440,7 @@ void EventScript_NPCEvent_Aqua_DialogueAndWorkChoices(void)
                         case ITEM_FOOD_OMELET_RICE:
                         case ITEM_FOOD_CHEESE_CAKE:
                         case ITEM_FOOD_CHEESE_FONDUE:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_JAM_BUN:
                         case ITEM_FOOD_CHOCOLATE_COOKIES:
                         case ITEM_FOOD_CAKE:

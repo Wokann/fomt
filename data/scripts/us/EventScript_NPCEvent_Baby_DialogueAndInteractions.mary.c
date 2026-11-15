@@ -192,7 +192,7 @@ void EventScript_NPCEvent_Baby_DialogueAndInteractions(void)
                         case ITEM_FOOD_PUMPKIN_PUDDING:
                         case ITEM_FOOD_SWEET_POTATOES:
                         case ITEM_FOOD_OMELET:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_CHOCOLATE_CAKE:
                         case ITEM_FOOD_CANDIED_POTATO:
                             var_0 = NPC_INTERACTION_LIKED_GIFT;
@@ -517,7 +517,7 @@ void EventScript_NPCEvent_Baby_DialogueAndInteractions(void)
                             case ITEM_FOOD_PUMPKIN_PUDDING:
                             case ITEM_FOOD_SWEET_POTATOES:
                             case ITEM_FOOD_APPLE_JAM:
-                            case ITEM_FOOD_APPLE_SOUFFLE:
+                            case ITEM_FOOD_BAKED_APPLE:
                             case ITEM_FOOD_JAM_BUN:
                             case ITEM_FOOD_GRAPE_JAM:
                             case ITEM_FOOD_CANDIED_POTATO:

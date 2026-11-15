@@ -268,7 +268,7 @@ void EventScript_NPCEvent_Kai_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_KETCHUP:
                         case ITEM_FOOD_CORN_FLAKES:
                         case ITEM_FOOD_BUTTER:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_SUSHI:
                         case ITEM_FOOD_SASHIMI:
                         case ITEM_FOOD_GRILLED_FISH:

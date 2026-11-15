@@ -449,7 +449,7 @@ void EventScript_NPCEvent_Chef_DialogueAndWorkChoices(void)
                         case ITEM_FOOD_BUTTER:
                         case ITEM_FOOD_APPLE_PIE:
                         case ITEM_FOOD_APPLE_JAM:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_RAISIN_BREAD:
                         case ITEM_FOOD_GRAPE_JAM:
                         case ITEM_FOOD_PIZZA:

@@ -5,7 +5,7 @@
 
 mary_text_table
 {
-    const char gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaLocalizationErrorClaimsMarriageToKai[] =
+    const char gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaReflectsOnPopurisWedding[] =
 // Lillia is reflecting on her daughter's wedding, not marrying Kai herself.
 #ifdef BUGFIX
         "Popuri als Braut...\r\n"
@@ -33,7 +33,7 @@ void EventScript_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialog
         TalkOpen();
         SetTalkPortrait(TALK_PORTRAIT_LILLIA_NORMAL);
         SetTalkNameplateCharacter(CHARACTER_LILLIA);
-        TalkMessage(gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaLocalizationErrorClaimsMarriageToKai);
+        TalkMessage(gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaReflectsOnPopurisWedding);
         TalkClose();
         SetEntityFacing(ENTITY_LILLIA, FACING_LEFT);
         MarkNpcSpokenTo(CHARACTER_LILLIA);

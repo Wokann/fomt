@@ -807,7 +807,7 @@ void EventScript_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_BOILED_EGG:
                         case ITEM_FOOD_APPLE_PIE:
                         case ITEM_FOOD_APPLE_JAM:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_ICE_CREAM:
                         case ITEM_FOOD_CAKE:
                         case ITEM_FOOD_CHOCOLATE_CAKE:

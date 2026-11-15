@@ -284,7 +284,7 @@ void EventScript_NPCEvent_Gotz_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_PUMPKIN_STEW:
                         case ITEM_FOOD_BUTTER:
                         case ITEM_FOOD_APPLE_JAM:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_MEDIUM_FISH:
                         case ITEM_FOOD_LARGE_FISH:
                         case ITEM_FOOD_EGG_OVER_RICE_OR_EGG_BOWL:

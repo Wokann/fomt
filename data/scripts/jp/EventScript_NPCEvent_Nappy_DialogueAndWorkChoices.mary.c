@@ -404,7 +404,7 @@ void EventScript_NPCEvent_Nappy_DialogueAndWorkChoices(void)
                         case ITEM_FOOD_CHEESE_FONDUE:
                         case ITEM_FOOD_APPLE_PIE:
                         case ITEM_FOOD_APPLE_JAM:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_JAM_BUN:
                         case ITEM_FOOD_RAISIN_BREAD:
                         case ITEM_FOOD_GRAPE_JAM:

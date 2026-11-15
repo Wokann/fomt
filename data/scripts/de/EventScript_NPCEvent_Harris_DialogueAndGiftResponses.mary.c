@@ -268,7 +268,7 @@ void EventScript_NPCEvent_Harris_DialogueAndGiftResponses(void)
                         case ITEM_FOOD_HOT_MILK:
                         case ITEM_FOOD_BUTTER:
                         case ITEM_FOOD_CHEESE_CAKE:
-                        case ITEM_FOOD_APPLE_SOUFFLE:
+                        case ITEM_FOOD_BAKED_APPLE:
                         case ITEM_FOOD_BAMBOO_RICE:
                         case ITEM_FOOD_TRUFFLE_RICE:
                         case ITEM_FOOD_SUSHI:
