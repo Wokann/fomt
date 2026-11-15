@@ -3,7 +3,12 @@
 TITLE
     "Vorstellung Lumina"
 MAIN
+// Lumina is Romana's granddaughter, not Manna's.
+#ifdef BUGFIX
+    "Romanas verwöhnte"
+#else
     "Mannas verwöhnte"
+#endif
     "aber schüchterne Enkelin."
     "<021>"
     ""
