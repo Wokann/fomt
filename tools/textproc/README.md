@@ -61,6 +61,15 @@ their existing behavior without a reservation pass.
     tools/textproc/fomt-text source CHARMAP REGION INPUT OUTPUT
     tools/textproc/fomt-text cpp CHARMAP REGION INPUT OUTPUT
 
+指南汇总与页面可使用条件指令选择源码：
+
+    tools/textproc/fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT [-D NAME ...]
+
+区域宏由 REGION 提供，其他无值开关通过重复的 `-D NAME` 传入。
+汇总和页面使用同一套 `#if`、`#ifdef`、`#ifndef`、`#elif`、
+`#else`、`#endif` 选择规则，然后生成常规 C++。这不是完整的 C 宏展开器。
+Makefile 将配置中的 BUGFIX 同时传给指南生成器和 Mary，关闭时保留原版页面。
+
 To recover the editable, visible row source for a regional staff-credit table:
 
     tools/textproc/fomt-text staff-credits-decode CHARMAP REGION BASEROM OUTPUT

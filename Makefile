@@ -277,9 +277,9 @@ endef
 # Every article remains a deliberately non-C++ text source.  One collection
 # invocation emits one physical C++ object: master directory, group text, and
 # the matching line-pointer tables in exact ROM order.
-$(GUIDE_GENERATED_SOURCE): $(GUIDE_COLLECTION_MANIFEST) $(GUIDE_PAGE_SOURCES) $(TEXT_TOOL) $(TEXT_CHARMAP)
+$(GUIDE_GENERATED_SOURCE): $(GUIDE_COLLECTION_MANIFEST) $(GUIDE_PAGE_SOURCES) $(TEXT_TOOL) $(TEXT_CHARMAP) include/config.h
 	@mkdir -p $(dir $@)
-	$(TEXT_TOOL) guide-collection $(TEXT_CHARMAP) $(GAME_REGION) $(GUIDE_COLLECTION_MANIFEST) $@
+	$(TEXT_TOOL) guide-collection $(TEXT_CHARMAP) $(GAME_REGION) $(GUIDE_COLLECTION_MANIFEST) $@ $(MARY_BUGFIX_FLAG)
 
 $(BUILD_DIR)/src/reference_guide.d: $(GUIDE_GENERATED_SOURCE)
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $(BUILD_DIR)/src/reference_guide.o

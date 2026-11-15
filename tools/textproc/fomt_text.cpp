@@ -2387,48 +2387,16 @@ GuidePageType ParseGuidePageType(const std::string &source, std::size_t line_num
           "FOMT_REFERENCE_GUIDE_PAGE_2");
 }
 
-std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &path,
-    const std::string &region)
+std::string SelectGuideSource(const std::string &source, const std::set<std::string> &defines)
 {
-    const std::set<std::string> defines = RegionDefines(region);
-    std::vector<GuideManifestEntry> result;
-    std::set<std::string> pages;
-    std::istringstream lines(ReadTextFile(path));
+    std::istringstream lines(source);
+    std::ostringstream selected;
+    std::vector<CharmapConditional> conditionals;
     std::string line;
     std::size_t line_number = 0;
-    std::vector<CharmapConditional> conditionals;
-    bool in_manifest = false;
-    bool manifest_closed = false;
-    constexpr char kManifestStart[] = "FomtReferenceGuideBookManifest const gReferenceGuideBooks[] = {";
     while (std::getline(lines, line)) {
         ++line_number;
-        if (!line.empty() && line.back() == '\r')
-            line.pop_back();
         const std::string trimmed = Trim(StripLineComment(line));
-        if (trimmed.empty())
-            continue;
-
-        if (!in_manifest) {
-            if (trimmed == kManifestStart) {
-                if (manifest_closed) {
-                    throw std::runtime_error("line " + std::to_string(line_number)
-                        + ": duplicate Reference Guide manifest array");
-                }
-                in_manifest = true;
-            }
-            continue;
-        }
-
-        if (trimmed == "};") {
-            if (!conditionals.empty()) {
-                throw std::runtime_error("line " + std::to_string(line_number)
-                    + ": Reference Guide manifest closes inside a conditional");
-            }
-            in_manifest = false;
-            manifest_closed = true;
-            continue;
-        }
-
         const bool parent_active = conditionals.empty() || conditionals.back().active;
         std::string directive_arguments;
         const CharmapDirective directive = ReadCharmapDirective(trimmed, &directive_arguments);
@@ -2491,6 +2459,49 @@ std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &
         if (!parent_active)
             continue;
 
+        selected << line << '\n';
+    }
+    if (!conditionals.empty())
+        throw std::runtime_error("guide source has an unterminated conditional");
+    return selected.str();
+}
+
+std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &path,
+    const std::set<std::string> &defines)
+{
+    std::vector<GuideManifestEntry> result;
+    std::set<std::string> pages;
+    std::istringstream lines(SelectGuideSource(ReadTextFile(path), defines));
+    std::string line;
+    std::size_t line_number = 0;
+    bool in_manifest = false;
+    bool manifest_closed = false;
+    constexpr char kManifestStart[] = "FomtReferenceGuideBookManifest const gReferenceGuideBooks[] = {";
+    while (std::getline(lines, line)) {
+        ++line_number;
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
+        const std::string trimmed = Trim(StripLineComment(line));
+        if (trimmed.empty())
+            continue;
+
+        if (!in_manifest) {
+            if (trimmed == kManifestStart) {
+                if (manifest_closed) {
+                    throw std::runtime_error("line " + std::to_string(line_number)
+                        + ": duplicate Reference Guide manifest array");
+                }
+                in_manifest = true;
+            }
+            continue;
+        }
+
+        if (trimmed == "};") {
+            in_manifest = false;
+            manifest_closed = true;
+            continue;
+        }
+
         std::vector<std::string> arguments;
         if (!TryParseGuideManifestRow(trimmed, arguments, line_number)) {
             throw std::runtime_error("line " + std::to_string(line_number)
@@ -2514,8 +2525,6 @@ std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &
         result.push_back({page, text_id, page_type});
     }
 
-    if (!conditionals.empty())
-        throw std::runtime_error("Reference Guide catalog has an unterminated conditional");
     if (in_manifest || !manifest_closed)
         throw std::runtime_error("guide collection manifest has no closed gReferenceGuideBooks array");
     if (result.empty())
@@ -2536,12 +2545,13 @@ std::filesystem::path GuideArticlePath(const std::filesystem::path &manifest_pat
 }
 
 std::vector<GuideCollectionPage> ReadGuideCollectionPages(
-    const std::filesystem::path &manifest_path, const std::string &region)
+    const std::filesystem::path &manifest_path, const std::string &region,
+    const std::set<std::string> &defines)
 {
     std::vector<GuideCollectionPage> result;
-    for (const GuideManifestEntry &entry : ParseGuideManifest(manifest_path, region)) {
+    for (const GuideManifestEntry &entry : ParseGuideManifest(manifest_path, defines)) {
         const std::filesystem::path article_path = GuideArticlePath(manifest_path, region, entry.page);
-        const GuidePageSource source = ParseGuidePageSource(ReadTextFile(article_path), entry.page);
+        const GuidePageSource source = ParseGuidePageSource(SelectGuideSource(ReadTextFile(article_path), defines), entry.page);
         result.push_back({entry, source});
     }
     return result;
@@ -3159,6 +3169,14 @@ void Require(bool condition, const std::string &message)
 
 void SelfTest()
 {
+    const std::string conditional_page =
+        "TITLE\n\"Title\"\nMAIN\n#ifdef OPTION\n\"Selected\"\n"
+        "#elif defined(REGION_JP)\n\"Regional\"\n#else\n\"Default\"\n"
+        "#endif\nEND_FOMT_REFERENCE_GUIDE_PAGE\n";
+    Require(SelectGuideSource(conditional_page, {"OPTION"}).find("\"Selected\"") != std::string::npos
+        && SelectGuideSource(conditional_page, {"REGION_JP"}).find("\"Regional\"") != std::string::npos
+        && SelectGuideSource(conditional_page, {}).find("\"Default\"") != std::string::npos,
+        "guide page conditionals selected the wrong branch");
     const std::string map_source = "05={Press}\n0A=\\n\n0C=\\p\n0D=\\r\n20= \n41=A\n42=B\n43=C\n";
     const Charmap map = Charmap::Parse(map_source);
     Require(map.EncodeText("A\\nB\\xFE") == Bytes{0x41, 0x0A, 0x42, 0xFE},
@@ -3532,7 +3550,7 @@ const char *Usage()
            "  fomt-text source CHARMAP REGION INPUT OUTPUT [STAFF_CREDITS_SOURCE]\n"
            "  fomt-text cpp CHARMAP REGION INPUT OUTPUT\n"
            "  fomt-text guide CHARMAP REGION INPUT TEXT_OUTPUT TABLE_OUTPUT [CATALOG_SOURCE ...]\n"
-           "  fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT\n"
+           "  fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT [-D NAME ...]\n"
            "  fomt-text staff-credits CHARMAP REGION INPUT OUTPUT\n"
            "  fomt-text staff-credits-decode CHARMAP REGION BASEROM OUTPUT\n";
 }
@@ -3549,13 +3567,23 @@ int Run(int argc, char **argv)
         std::cout << "fomt-text: " << charmap.EntryCount() << " charmap entries validated\n";
         return 0;
     }
-    if (argc == 6 && std::string(argv[1]) == "guide-collection") {
+    if (argc >= 6 && std::string(argv[1]) == "guide-collection") {
+        std::set<std::string> defines = RegionDefines(argv[3]);
+        for (int index = 6; index < argc; index += 2) {
+            if (std::string(argv[index]) != "-D" || index + 1 >= argc)
+                throw std::runtime_error("expected -D NAME for guide collection");
+            const std::string name = argv[index + 1];
+            if (name.empty() || !IsMacroNameStart(name.front())
+                || !std::all_of(name.begin(), name.end(), IsMacroNameContinue))
+                throw std::runtime_error("invalid guide macro name");
+            defines.insert(name);
+        }
         const std::string region = argv[3];
         const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]), RegionDefines(region));
         const std::filesystem::path manifest = argv[4];
         const std::filesystem::path output = argv[5];
         const GuideCollectionOutput generated = CompileGuideCollection(
-            ReadGuideCollectionPages(manifest, region), charmap);
+            ReadGuideCollectionPages(manifest, region, defines), charmap);
         WriteTextFile(output, generated.source);
         return 0;
     }
