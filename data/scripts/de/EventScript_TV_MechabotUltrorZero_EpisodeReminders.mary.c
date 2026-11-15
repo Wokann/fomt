@@ -94,8 +94,14 @@ mary_text_table
         "Beim Antworten schaut Rot\r\n"
         "zufällig aus dem Fenster.\r\n"
         "Der Wetterbericht sagte,\r\n"
+// The contrast is with this morning, not tomorrow.
+#ifdef BUGFIX
+        "dass es den ganzen Vormittag\r\n"
+        "sonnig bleibt, aber nun\r\n"
+#else
         "dass es morgen sonnig\r\n"
         "wird, aber auf einmal\r\n"
+#endif
         "schneit es sehr. Genau\r\n"
         "wie letzte Weihnachten...\r\n"
         " \r\n"
