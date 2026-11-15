@@ -307,3 +307,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [E15](TEXT_SYMBOL_AUDIT.md#e15) | DE：钓鱼节目第10集，把下游鱼全部说成海鱼 | [实现与验证边界](BUGFIX.md#audit-e15) |
 | [E16](TEXT_SYMBOL_AUDIT.md#e16) | DE：钓鱼节目第13集误用了另一鱼种的既有名字 | [实现与验证边界](BUGFIX.md#audit-e16) |
 | [E17](TEXT_SYMBOL_AUDIT.md#e17) | US／EU：矿场研究第9集，把“255层没有下行楼梯”写成“没有通向255层的楼梯” | [实现与验证边界](BUGFIX.md#audit-e17) |
+| [E18](TEXT_SYMBOL_AUDIT.md#e18) | 鱼王条件被译成“这条鱼适合做哪些菜” | [实现与验证边界](BUGFIX.md#audit-e18) |

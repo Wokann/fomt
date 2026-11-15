@@ -112,9 +112,16 @@ mary_text_table
         "This fish is indeed a River\r\n"
         "King. \r\n"
         "\r\n"
+// Catching this fish requires learning these three recipes, not cooking this fish.
+#ifdef BUGFIX
+        "The person who caught it\r\n"
+        "was good at making Sushi,\r\n"
+        "Sashimi and Grilled Fish.\r\n"
+#else
         "The person who fished it \r\n"
         "said it was good for Sushi,\r\n"
         "Sashimi, or Grilled Fish.\r\n"
+#endif
         "We hope our viewers also\r\n"
         "learn lots of fish dishes,\r\n"
         "then go out and catch a \r\n"

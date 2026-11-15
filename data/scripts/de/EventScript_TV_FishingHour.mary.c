@@ -117,10 +117,18 @@ mary_text_table
         "Das ist wirklich ein\r\n"
         "König der Flüsse. \r\n"
         "\r\n"
+// Catching this fish requires learning these three recipes, not cooking this fish.
+#ifdef BUGFIX
+        "Der erfolgreiche Angler\r\n"
+        "konnte gut Sushi, Sashimi\r\n"
+        "und gegrillten Fisch\r\n"
+        "zubereiten.\r\n"
+#else
         "Der erfolgreiche Angler\r\n"
         "sagte, der Fisch eigne \r\n"
         "sich für Sushi, Sashimi \r\n"
         "oder gegrillten Fisch.\r\n"
+#endif
         "Wir hoffen, unsere Zuschauer\r\n"
         "lernen auch viele Fisch-,\r\n"
         "gerichte und fangen dann \r\n"
