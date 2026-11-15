@@ -7,9 +7,16 @@ MAIN
     "ihrer Villa."
     "<291>"
     ""
+// Hardy moves into the home Galen vacated; he does not follow Galen.
+#ifdef BUGFIX
+    "Nach Ninas Tod zog Galen"
+    "um. Hardy zog danach in"
+    "Galens altes Haus ein."
+#else
     "Er ist Galen nach Ninas"
     "Tod ins Vergissmein-"
     "nicht-Tal gefolgt."
+#endif
     "<292>"
     ""
     "Gerüchte besagen, dass "

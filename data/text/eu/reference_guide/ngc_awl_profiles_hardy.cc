@@ -7,9 +7,16 @@ MAIN
     "to her mansion from town."
     "<291>"
     ""
+// Hardy moves into the home Galen vacated; he does not follow Galen.
+#ifdef BUGFIX
+    "After Nina's death, Galen"
+    "moved away. Hardy moved"
+    "into his old home."
+#else
     "He followed Galen to "
     "Forget-me-not Valley after "
     "Nina's death. "
+#endif
     "<292>"
     ""
     "Rumor has it that he "
