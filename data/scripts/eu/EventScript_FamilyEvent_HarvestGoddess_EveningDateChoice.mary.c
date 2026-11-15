@@ -93,7 +93,12 @@ void EventScript_FamilyEvent_HarvestGoddess_EveningDateChoice(void)
             TalkOpen();
             if (VarGet(VAR_HARVEST_GODDESS_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED)
             {
+#ifdef BUGFIX
+                // The existing overseas strings mean anniversary, player, then goddess.
+                var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary);
+#else
                 var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday);
+#endif
                 switch (var_0)
                 {
                     case CHOICE_OPTION_1:
