@@ -268,3 +268,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [B14](TEXT_SYMBOL_AUDIT.md#b14) | 房屋“两阶段扩建”误译成“建造二楼” | [实现与验证边界](BUGFIX.md#audit-b14) |
 | [B15](TEXT_SYMBOL_AUDIT.md#b15) | 孵化箱随鸡舍扩建增加，误译成可以购买；修复参考重制版句式，保留GBA术语并用数字2 | [实现与验证边界](BUGFIX.md#audit-b15) |
 | [B16](TEXT_SYMBOL_AUDIT.md#b16) | 德文鸡饲料制作提示把“玉米”泛化成“谷物” | [实现与验证边界](BUGFIX.md#audit-b16) |
+| [C01](TEXT_SYMBOL_AUDIT.md#c01) | 海外三版：巴基尔雨天台词失去原有的晴雨对比 | [实现与验证边界](BUGFIX.md#audit-c01) |

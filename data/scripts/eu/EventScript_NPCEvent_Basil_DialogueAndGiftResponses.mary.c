@@ -120,6 +120,14 @@ mary_text_table
     const char gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FRainyFirstConversation[] =
         "It's been raining all day!{Press}";
 
+#ifdef BUGFIX
+    // Restore the rainy-day contrast using the corresponding remake dialogue.
+    const char gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FRainyRepeatConversation[] =
+        "Humans and plants alike\r\n"
+        "will wither if overexposed\r\n"
+        "to harsh sunlight.{Press}";
+#endif
+
     const char gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FRainyHighFriendshipConversation[] =
         "Plants have the most amazing\r\n"
         "life force! If you find a \r\n"
@@ -752,7 +760,11 @@ void EventScript_NPCEvent_Basil_DialogueAndGiftResponses(void)
                                     SetTalkPortrait(TALK_PORTRAIT_BASIL_HAPPY);
                                     TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FRainyFirstConversation);
                                     SetTalkPortrait(TALK_PORTRAIT_BASIL_NORMAL);
+#ifdef BUGFIX
+                                    TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FRainyRepeatConversation);
+#else
                                     TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_SharedBasilHouse2FSunnyOrRainyRepeatConversation);
+#endif
                                 }
                                 else
                                 {
