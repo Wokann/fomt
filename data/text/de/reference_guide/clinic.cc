@@ -13,7 +13,12 @@ MAIN
     "in die Klinik gebracht."
     ""
     "·Geschäftszeiten:"
+// The clinic closes at 16:00.
+#ifdef BUGFIX
+    " 9-16 Uhr"
+#else
     " 9-4 Uhr"
+#endif
     ""
     "·Geschlossen:"
     " Mittwochs"

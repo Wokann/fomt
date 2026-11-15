@@ -13,7 +13,12 @@ MAIN
     " brought to the Clinic."
     ""
     "·Store Hours:"
+// The clinic closes at 16:00.
+#ifdef BUGFIX
+    " 9AM-4PM"
+#else
     " 9AM-4AM"
+#endif
     ""
     "·Closed:"
     " Wednesdays"

@@ -255,3 +255,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [B01](TEXT_SYMBOL_AUDIT.md#b01) | 出荷价格指南：按道具名称列出三个品质的鸡蛋并修正海外胡萝卜价格 | [实现与验证边界](BUGFIX.md#audit-b01) |
 | [B02](TEXT_SYMBOL_AUDIT.md#b02) | 海外三版：图书馆休馆日变更方向写反 | [实现与验证边界](BUGFIX.md#audit-b02) |
 | [B03](TEXT_SYMBOL_AUDIT.md#b03) | 海外三版：牛羊牧场指南说可以卖鸡 | [实现与验证边界](BUGFIX.md#audit-b03) |
+| [B04](TEXT_SYMBOL_AUDIT.md#b04) | 海外三版：诊所营业时间表述错误，德版采用24小时制 | [实现与验证边界](BUGFIX.md#audit-b04) |
