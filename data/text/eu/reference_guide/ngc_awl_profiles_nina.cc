@@ -5,6 +5,10 @@ TITLE
 MAIN
     "Galen's loving wife."
     "A warm and loving woman."
+// Restore the profile-level boundary before the next paragraph.
+#ifdef BUGFIX
+    "<111>"
+#endif
     ""
     "She loves her stubborn old"
     "husband more than anything."
