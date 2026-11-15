@@ -275,3 +275,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [C05](TEXT_SYMBOL_AUDIT.md#c05) | DE：Lumina 的祖母误写成 Manna | [实现与验证边界](BUGFIX.md#audit-c05) |
 | [C06](TEXT_SYMBOL_AUDIT.md#c06) | US／EU：Sebastian 介绍中的 Romana 误写成 Manna | [实现与验证边界](BUGFIX.md#audit-c06) |
 | [C07](TEXT_SYMBOL_AUDIT.md#c07) | 海外三版：Gustafa 的祖先经历写成本人经历 | [实现与验证边界](BUGFIX.md#audit-c07) |
+| [C08](TEXT_SYMBOL_AUDIT.md#c08) | 海外三版：Griffin 被家人厌弃，翻成因爱家而定居 | [实现与验证边界](BUGFIX.md#audit-c08) |

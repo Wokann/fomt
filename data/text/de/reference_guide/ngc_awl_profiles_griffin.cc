@@ -16,9 +16,18 @@ MAIN
     "nur nachts und spielt"
     "dann oft Gitarre."
     ""
+// JP says his family grew tired of him before he wandered here alone.
+#ifdef BUGFIX
+    "Er war Wandermusiker."
+    "Seine Familie hatte ihn"
+    "satt. Nach einsamen Reisen"
+    "kam er schließlich ins"
+    "Vergissmeinnicht-Tal."
+#else
     "Er ist viel gereist, aber "
     "die Liebe zu seiner Familie"
     "hat ihn dazu veranlasst,"
     "sich im Vergissmeinnicht-"
     "Tal niederzulassen."
+#endif
 END_FOMT_REFERENCE_GUIDE_PAGE
