@@ -38,10 +38,16 @@ MAIN
     "  Mit Rezept improvisieren."
     "→Zum Utensilienfenster "
     "gehen."
+// The confirmation menu has three choices; use its existing return-option text.
+#ifdef BUGFIX
+    "  Anderes Rezept machen."
+    "→Zurück zur Rezeptliste."
+#else
     "  Erneut beginnen."
     "→Zurück zur Rezeptliste."
     " Erneut beginnen."
     "→Zurück zur Rezeptliste."
+#endif
     ""
     ""
     "Wenn du nicht alle"

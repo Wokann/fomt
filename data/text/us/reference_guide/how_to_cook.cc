@@ -37,10 +37,16 @@ MAIN
     ""
     "  \"Improvise on recipe.\""
     "→Go to Utensil Window."
+// The confirmation menu has three choices; use its existing return-option text.
+#ifdef BUGFIX
+    "  \"Make another recipe.\""
+    "→Return to Recipe List."
+#else
     "  \"Start again.\""
     "→Return to Recipe List."
     "  \"Start over.\""
     "→Return to Recipe List."
+#endif
     ""
     ""
     "If you don't have all the"
