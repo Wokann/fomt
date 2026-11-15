@@ -21,4 +21,12 @@ MAIN
     "in der Nähe ihres Grabes"
     "gebaut, von wo er den ganzen"
     "Tag aufs Meer schaut."
+// Restore the missing JP profile paragraphs and their existing level boundaries.
+#ifdef BUGFIX
+    "<102>"
+    ""
+    "Seit Ninas Tod wirkt er"
+    "ständig traurig und führt"
+    "ein einsames Leben."
+#endif
 END_FOMT_REFERENCE_GUIDE_PAGE

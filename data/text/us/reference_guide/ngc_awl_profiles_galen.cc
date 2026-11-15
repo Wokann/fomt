@@ -20,4 +20,12 @@ MAIN
     "cottage near her grave "
     "on a hill, where he spends"
     "all day watching the ocean."
+// Restore the missing JP profile paragraphs and their existing level boundaries.
+#ifdef BUGFIX
+    "<102>"
+    ""
+    "Since Nina died, he always"
+    "looks sad and leads a lonely"
+    "life."
+#endif
 END_FOMT_REFERENCE_GUIDE_PAGE
