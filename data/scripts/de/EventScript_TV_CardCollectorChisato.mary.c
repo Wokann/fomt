@@ -604,7 +604,12 @@ mary_text_table
         "Farmgeschichtenset.{Press}";
 
     const char gText_TV_CardCollectorChisato_Episode08[] =
+// The text reader has no <et> control; remove the stray literal tag.
+#ifdef BUGFIX
+        "Kartensammler Chisato \r\n"
+#else
         "Kartensammler Chisato<et> \r\n"
+#endif
         "\r\n"
         "Teil 8\r\n"
         " \r\n"

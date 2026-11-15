@@ -582,7 +582,12 @@ mary_text_table
         "trading card set.{Press}";
 
     const char gText_TV_CardCollectorChisato_Episode08[] =
+// The text reader has no <et> control; remove the stray literal tag.
+#ifdef BUGFIX
+        "CARD COLLECTOR CHISATO　　　　　　　　　　　　　　\r\n"
+#else
         "CARD COLLECTOR CHISATO<et>　　　　　　　　　　　　　　\r\n"
+#endif
         "\r\n"
         "Part 8\r\n"
         "　　　　　　　　　　　　　　\r\n"
