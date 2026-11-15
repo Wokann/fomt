@@ -172,9 +172,16 @@ MAIN
     "du beim Gehen deine "
     "Schritte zählen."
     "Dieser muss nicht einmal"
+// The pedometer can be equipped; it cannot be upgraded.
+#ifdef BUGFIX
+    "ausgerüstet werden, aber"
+    "wenn du ihn ausrüstest,"
+    "funktioniert er auch."
+#else
     "aufgerüstet werden, aber"
     "wenn du ihn aufrüstest, "
     "funktioniert er auch."
+#endif
     ""
     ""
     "★Blaue Feder"
