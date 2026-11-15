@@ -1,3 +1,4 @@
+#include "config.h"
 #include "scene_reference_page.hh"
 #include "game_state_types.hh"
 #include "hardware_blend.hh"
@@ -792,9 +793,25 @@ void ExpandReferencePageText(ReferencePageSceneCore * core, char const * text, c
         else
         {
             output[0] = bytes[0];
-            output[1] = bytes[1];
-            output += 2;
-            text += 2;
+#if defined(BUGFIX) && !defined(REGION_JP)
+            // Neither NUL nor '<' can be a Shift-JIS trailing byte.
+            if (bytes[1] == 0)
+            {
+                ++output;
+                break;
+            }
+            if (bytes[1] == '<')
+            {
+                ++output;
+                ++text;
+            }
+            else
+#endif
+            {
+                output[1] = bytes[1];
+                output += 2;
+                text += 2;
+            }
         }
         if (++count > 13)
             break;

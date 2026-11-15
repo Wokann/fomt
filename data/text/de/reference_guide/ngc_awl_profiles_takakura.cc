@@ -3,8 +3,15 @@
 TITLE
     "Vorstellung Takakura"
 MAIN
+#ifdef BUGFIX
+    // Keep the original words, leaving room for the full linked player name.
+    "Arbeitet mit <cp>"
+    "auf der Farm."
+    "Es wird gesagt, dass"
+#else
     "Arbeitet mit <cp> auf der"
     "Farm. Es wird gesagt, dass"
+#endif
     "er ein Freund von <cp>s"
     "Vater war."
     "<001> "
