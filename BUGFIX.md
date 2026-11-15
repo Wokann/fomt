@@ -6,7 +6,7 @@
 
 在 [include/config.h](include/config.h) 中取消 `#define BUGFIX` 的注释，运行 `make -j16 GAME_REGION=JP all`；US、EU、DE 同理。[Makefile](Makefile) 从同一配置向 Mary 传递开关，不能只给原生编译器追加宏而遗漏脚本。默认关闭时保留原版行为；开启后 SHA-1 预期改变。
 
-**验收状态（2026-11-15）：四版默认完整构建均逐字节匹配各自 baserom。此前整版 BUGFIX 构建的范围见下方记录；本轮新增物品文本修复完成四版 BUGFIX 物品模块编译及指针／字符串核验，未重新构建整版 BUGFIX ROM。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
+**验收状态（2026-11-15）：羊祭接待桌修复后，四版默认完整构建均逐字节及 SHA-1 匹配各自 baserom，四版 BUGFIX 完整构建均通过。最新消息调用核验见羊祭条目；指南及先前修复的具体核验范围见各条目和历史记录。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
 
 ## 统一索引
 
@@ -36,6 +36,7 @@
 | 物品身份、文字含义与排版 | [加强药 XL 名称与失败料理语言错误](#de-food) | DE | 已接入，构建／静态核验通过 |
 | 物品身份、文字含义与排版 | [道具说明残缺、错译与漏翻](#item-description-audit) | 按条目 | 已接入，验收见条目 |
 | 物品身份、文字含义与排版 | [不同鱼种复用同一显示名](#fish-record-names) | US、EU、DE（第二组仅 DE） | 已接入，构建／静态核验通过 |
+| 物品身份、文字含义与排版 | [羊祭接待桌使用牛祭提示](#sheep-reception-text) | US、EU、DE | 已接入，验收见条目 |
 | 物品身份、文字含义与排版 | [其余原文、选项与换行修正](#localization-text) | 按条目 | 已接入，构建／静态核验通过 |
 
 ## 流程控制与读取边界
@@ -304,6 +305,16 @@
 
 [名称表](src/fishing_results_data.cc) · [JP 文本](data/text/jp/fishing_results_data.cc) · [DE 文本](data/text/de/fishing_results_data.cc) · [记录编号](include/fomt_constants.mary.h)
 
+<a id="sheep-reception-text"></a>
+### 羊祭接待桌使用牛祭提示
+
+- **原版与影响（US、EU、DE）：** 共用接待脚本 `0x0194` 在羊祭开始评审分支仍调用牛祭消息，US／EU 显示 `Cows`（牛），DE 显示 `Kühe`（牛）。这是隔着接待桌交谈的入口；直接与巴利交谈的羊祭脚本 `0x04FC` 文本正常。受影响分支没有年份判断，不能限定为第一年；错误只在提示文字，不改变羊的评审与结果。
+- **应有行为与对照：** JP 在同一接待脚本分别使用牛祭和羊祭消息。海外也应在羊祭分支调用适用的消息，不能误用牛祭文字。
+- **修复范围与方式：** 仅在海外三版 `BUGFIX` 下增加独立羊祭提示，并替换羊祭分支的一次 `TalkMessage`。羊祭声明与 JP 一样放在文本表末尾的 `Table` 之后；牛祭标签统一为 JP 的 `CowContestJudgingStartPrompt`，关闭开关时仍保留羊祭误用牛祭文本的原行为。完整复用各版本 `0x04FC` 已有的三行台词、换行和等待符：US／EU 为 `It's time for the judging / to begin! / Are you ready?`（评审要开始了，准备好了吗？），DE 为 `Es ist Zeit für die / Bewertung! / Bist du soweit?`（到评审时间了，准备好了吗？）。不另行补译；牛祭仍调用原消息，JP 不改。
+- **验证状态：** `make -j16` 四版默认完整构建逐字节及 SHA-1 匹配各自 baserom，四版 BUGFIX 完整构建通过。最终产物中各版 1,329 项脚本目录（含空入口）及 1,328 个 RIFF 边界均有效。相对本次修复前的 BUGFIX 产物，JP 整份 ROM 不变；海外各版只改变脚本 `0x0194`，CODE 仅一个压栈文本索引操作数改变，JUMP 表不变。反解析确认仅羊祭 `TalkMessage` 改为新增项，牛祭及所有评审条件保持原样；新文字逐字节等于该版本已有羊祭台词，三行均不超 28 格。最终命名调整后重新编译的海外脚本块与上述完整构建中的脚本块逐字节一致；默认配置已恢复关闭。这是构建与静态调用核验，未作游戏内复现。
+
+接待脚本：[JP](data/scripts/jp/EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [US](data/scripts/us/EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [EU](data/scripts/eu/EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [DE](data/scripts/de/EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c)。现有羊祭译文：[US](data/scripts/us/EventScript_FestivalEvent_SheepFestival_StartJudgingChoice_Barley.mary.c) · [EU](data/scripts/eu/EventScript_FestivalEvent_SheepFestival_StartJudgingChoice_Barley.mary.c) · [DE](data/scripts/de/EventScript_FestivalEvent_SheepFestival_StartJudgingChoice_Barley.mary.c)。依据为四版脚本及其编译消息引用；没有把社区反馈的年份限定当作代码条件。
+
 <a id="localization-text"></a>
 ### 其余原文、选项与换行修正
 
@@ -352,7 +363,9 @@
 
 跨作品历史参考主要来自同一社区资料站，可靠性低于本作可直接核对的文本；此次修复的核心依据仍是 [GBA 自我介绍](data/scripts/us/EventScript_NPCEvent_Van_Introduction.mary.c) 与 [姓名栏](data/text/us/npc_collection.cc) 的不一致。
 
-## 本轮验收记录
+## 先前批次验收记录
+
+以下保留早先批次的核验范围与数量；后续指南最小修复和羊祭接待桌修复的验收以各自条目为准。
 
 | 验收层级 | 要求 | 当前状态 |
 | --- | --- | --- |

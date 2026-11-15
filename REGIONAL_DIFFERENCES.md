@@ -70,6 +70,7 @@
 | 包装农具 | JP／US 用基础编号取图标，EU／DE 根据保存的升级记录转换编号。 | 只影响包装界面的背包及手持图标，不使工具降级。[修复](BUGFIX.md#wrapping-tool-icons)。 |
 | 动物照料最高记录 | JP 读取照料记录，海外错读收获记录。 | 成绩保存正确，记录页显示错误；尚未修复。[读写证据与状态](BUGFIX.md#overseas-animal-care-record)。 |
 | 对话语言与角色 | 海外来访星期、休息日、人物指代、物品名等存在错译；US／EU 部分已调用消息仍为日文／德文，DE 联机确认仍为 Yes／No。 | 已核实对象及实际正确含义统一列在 [文本修复清单](BUGFIX.md#localization-text)，不把错误译文推断为事件条件或奖励改变。 |
+| 羊祭接待桌 | JP 的共用接待脚本 `0x0194` 分别调用牛祭、羊祭提示；US／EU／DE 两个分支共用含 Cows／Kühe（牛）的文字。直接交谈的羊祭脚本 `0x04FC` 四版均无此误称。 | 羊祭被说成牛祭，只影响提示，不改变评审动物或结果；接待分支没有年份限制。海外 BUGFIX 仿照 JP 分开消息，复用各版本已有羊祭台词。[调用与修复](BUGFIX.md#sheep-reception-text)。 |
 | DE 收获结果栏目 | 用动物照料的 Gefüttert／Vergessen（已喂食／遗忘），JP／US／EU 对应收获／失败。 | 计分仍取收获与失败次数，仅修栏目为 Geerntet／Fehler。[DE 文本](data/text/de/scene_harvesting_minigame_2.cc) · [消费者](src/scene_harvesting_minigame.cc) · [修复](BUGFIX.md#localization-text)。 |
 | 普通鱼竿说明 | US／EU 缺首行分隔，读取器越过终止零拼入下一个对象；JP／DE 有分隔。 | 补齐说明两行，保持原菜单逻辑。[说明读取](src/game_menu.cc) · [文本修复](BUGFIX.md#localization-text)。 |
 | 钓获消息行宽 | US／EU 的漂流瓶、海贼宝藏展开后超过 28 格；DE 四种长鱼名的模板多一尾空格。 | 回绕同一行覆盖开头；仅修这些模板，不添加自动换页。[消息与修复](BUGFIX.md#localization-text)。 |

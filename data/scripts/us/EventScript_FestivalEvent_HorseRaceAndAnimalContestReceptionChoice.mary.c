@@ -61,7 +61,7 @@ mary_text_table
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MenuExchangeMedalsForPrizes[] =
         "Exchange medal for prize.";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_Shared_CowAndSheepContestJudgingStartPrompt[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_CowContestJudgingStartPrompt[] =
         "We want to begin judging the\r\n"
         "Cows now. \r\n"
         "Are you ready?{Press}";
@@ -82,6 +82,14 @@ mary_text_table
 
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_Table[] =
         "Table{Press}";
+
+#ifdef BUGFIX
+    // JP has a separate sheep prompt; reuse the localized Barley sheep-judging text.
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_SheepContestJudgingStartPrompt[] =
+        "It's time for the judging \r\n"
+        "to begin! \r\n"
+        "Are you ready?{Press}";
+#endif
 };
 
 void EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(void)
@@ -310,7 +318,7 @@ void EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(void)
                     TalkOpen();
                     SetTalkPortrait(TALK_PORTRAIT_BARLEY_NORMAL);
                     SetTalkNameplateCharacter(CHARACTER_BARLEY);
-                    TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_Shared_CowAndSheepContestJudgingStartPrompt);
+                    TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_CowContestJudgingStartPrompt);
                     TalkClose();
                     TalkOpen();
                     var_0 = TalkChoice2(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_LetsStart, gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_NotYet);
@@ -381,7 +389,12 @@ void EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(void)
                         TalkOpen();
                         SetTalkPortrait(TALK_PORTRAIT_BARLEY_NORMAL);
                         SetTalkNameplateCharacter(CHARACTER_BARLEY);
-                        TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_Shared_CowAndSheepContestJudgingStartPrompt);
+#ifdef BUGFIX
+                        // The shared overseas prompt names cows even at the sheep reception.
+                        TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_SheepContestJudgingStartPrompt);
+#else
+                        TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_CowContestJudgingStartPrompt);
+#endif
                         TalkClose();
                         TalkOpen();
                         var_0 = TalkChoice2(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_LetsStart, gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_NotYet);
