@@ -287,3 +287,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [D04](TEXT_SYMBOL_AUDIT.md#d04) | DE：四本指南／贺卡的标题缺失，正文第一句占据固定标题位置 | [实现与验证边界](BUGFIX.md#audit-d04) |
 | [D05](TEXT_SYMBOL_AUDIT.md#d05) | DE：食谱中的黄油小标题缺失 | [实现与验证边界](BUGFIX.md#audit-d05) |
 | [D06](TEXT_SYMBOL_AUDIT.md#d06) | Wally：海外缺两段 | [实现与验证边界](BUGFIX.md#audit-d06) |
+| [D07](TEXT_SYMBOL_AUDIT.md#d07) | Hugh：海外缺两段 | [实现与验证边界](BUGFIX.md#audit-d07) |
