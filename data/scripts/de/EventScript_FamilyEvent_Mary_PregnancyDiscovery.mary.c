@@ -41,6 +41,14 @@ mary_text_table
         "Ich muss es ihnen{Press}\p"
         "sofort erzählen!\r\n"
         "Gehen wir heim, OK?{Press}";
+
+#ifdef BUGFIX
+    // Reuse the player's closing thought from Ann's event, not Mary's invitation.
+    const char gText_FamilyEvent_Mary_PregnancyDiscovery_PlayerReflectsOnFatherhoodAndLoveForMary[] =
+        "Ich fasse nicht, dass ich\r\n"
+        "demnächst Vater werde...\r\n"
+        "Das ist so toll!{Press}";
+#endif
 };
 
 void EventScript_FamilyEvent_Mary_PregnancyDiscovery(void)
@@ -162,7 +170,11 @@ void EventScript_FamilyEvent_Mary_PregnancyDiscovery(void)
     VarSet(VAR_MARY_PREGNANCY_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
     FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
     TalkOpen();
+#ifdef BUGFIX
+    TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_PlayerReflectsOnFatherhoodAndLoveForMary);
+#else
     TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_Shared_MaryTellsParentsAndPlayerReflectsOnFatherhood);
+#endif
     TalkClose();
     PlacePlayerAtFarmhouseBed();
     SetGameTime(17, 0);

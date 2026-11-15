@@ -8,7 +8,7 @@
 
 **验收状态（2026-11-15）：羊祭接待桌修复后，四版默认完整构建均逐字节及 SHA-1 匹配各自 baserom，四版 BUGFIX 完整构建均通过。最新消息调用核验见羊祭条目；指南及先前修复的具体核验范围见各条目和历史记录。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
 
-**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A01），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
+**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A02），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
 
 ## 统一索引
 
@@ -399,3 +399,13 @@
 - **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
 
 [EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary](data/scripts/de/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary](data/scripts/de/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a01)
+
+<a id="audit-a02"></a>
+### A02．德版玛丽怀孕末尾复用妻子台词
+
+- **原版表现：** 黑屏中的玩家独白重复玛丽通知父母、邀请回家的话。
+- **正确内容与依据：** JP及英文是玩家即将当父亲的喜悦；复用DE琳怀孕末尾已有的玩家独白。
+- **修复方式：** 在文本表末尾恢复玩家独白，仅替换事件结尾引用，不改变玛丽先前台词。 BUGFIX关闭时保留原文本及引用。
+- **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
+
+[EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary](data/scripts/de/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary](data/scripts/de/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a02)
