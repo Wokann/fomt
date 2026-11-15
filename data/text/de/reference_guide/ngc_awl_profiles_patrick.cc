@@ -1,8 +1,16 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
+// Restore the missing title and keep the original first sentence in the body.
+#ifdef BUGFIX
+    "Vorstellung Patrick"
+#else
     "Kasseys Zwillingsbruder,"
+#endif
 MAIN
+#ifdef BUGFIX
+    "Kasseys Zwillingsbruder,"
+#endif
     "auch ein Feuerwerker."
     "                        "
     "<161>"
