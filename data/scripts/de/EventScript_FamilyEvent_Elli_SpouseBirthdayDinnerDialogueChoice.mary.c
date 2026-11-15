@@ -75,6 +75,12 @@ mary_text_table
         "Du hast nicht geraten?\r\n"
         "Ich freue mich so!{Press}";
 
+#ifdef BUGFIX
+    // Match the post-birth choices to the existing response branches.
+    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ChoiceBabyBirthday[] =
+        "{Baby}s Geburtstag";
+#endif
+
     const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_NoMatterHowManyBirthdaysI[] =
         "Egal, wie viele Geburtstage\r\n"
         "ich feiere, ich glaube, ich \r\n"
@@ -204,7 +210,11 @@ void EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice(void)
             }
             else
             {
+#ifdef BUGFIX
+                var_0 = TalkChoice3(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_MyBirthday, gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliAsksForHerBirthday, gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ChoiceBabyBirthday);
+#else
                 var_0 = TalkChoice3(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_OurAnniversary, gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_MyBirthday, gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliAsksForHerBirthday);
+#endif
                 switch (var_0)
                 {
                     case CHOICE_OPTION_1:

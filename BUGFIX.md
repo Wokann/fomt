@@ -8,7 +8,7 @@
 
 **验收状态（2026-11-15）：羊祭接待桌修复后，四版默认完整构建均逐字节及 SHA-1 匹配各自 baserom，四版 BUGFIX 完整构建均通过。最新消息调用核验见羊祭条目；指南及先前修复的具体核验范围见各条目和历史记录。** 这是构建、字节、结构和引用层面的验收，不等于逐个事件已经实机复现。高级语言还原、工具支持、行为修复、命名与纯排版分别提交。
 
-**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A06），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
+**当前批次（2026-11-16）：** [合并审计清单](TEXT_SYMBOL_AUDIT.md)的71项获准修复按编号依次提交（当前至A07），E11保留不动。全部源码修复完成后统一构建四版默认及BUGFIX；最终默认ROM均与baserom逐字节及SHA-1一致，开启版通过构建和产物核对。下述2026-11-15记录仅适用于旧基线，本轮范围见[验收记录](#reviewed-text-validation-20261116)。
 
 ## 统一索引
 
@@ -449,3 +449,13 @@
 - **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
 
 [EventScript_ShopEvent_Blacksmith_OrderCounter.mary](data/scripts/de/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a06)
+
+<a id="audit-a07"></a>
+### A07．海外艾利产后生日选项错位
+
+- **原版表现：** 产后继续显示纪念日、玩家生日、艾利生日，但第二选项才是正确答案。
+- **正确内容与依据：** JP产后为玩家、艾利、孩子生日；孩子称呼沿用同语言女神生日选项。
+- **修复方式：** 恢复孩子生日选项，并按原来的正确答案位置重排产后菜单；产前菜单与好感判定不改。 BUGFIX关闭时保留原文本及引用。
+- **验证状态：** 已在完整修复集内通过四版默认SHA-1、开启构建及实际文本／调用核对；未逐项实机复现。
+
+[EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary](data/scripts/us/EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c) · [EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary](data/scripts/eu/EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c) · [EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary](data/scripts/de/EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c) · [四版原文](TEXT_SYMBOL_AUDIT.md#a07)
