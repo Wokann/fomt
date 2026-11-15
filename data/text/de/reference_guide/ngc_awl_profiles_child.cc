@@ -3,7 +3,12 @@
 TITLE
     "Vorstellung <cs>"
 MAIN
+// The father is the linked player; keep the child marker in the title.
+#ifdef BUGFIX
+    "<cp>s Sohn."
+#else
     "<cs>s Sohn."
+#endif
     "<321>"
     ""
     "Er kommt nach seiner Mutter."

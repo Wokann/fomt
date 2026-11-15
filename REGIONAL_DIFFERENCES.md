@@ -277,3 +277,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [C07](TEXT_SYMBOL_AUDIT.md#c07) | 海外三版：Gustafa 的祖先经历写成本人经历 | [实现与验证边界](BUGFIX.md#audit-c07) |
 | [C08](TEXT_SYMBOL_AUDIT.md#c08) | 海外三版：Griffin 被家人厌弃，翻成因爱家而定居 | [实现与验证边界](BUGFIX.md#audit-c08) |
 | [C09](TEXT_SYMBOL_AUDIT.md#c09) | 海外三版：Hardy 入住腾出的房屋，写成跟随 Galen 来村 | [实现与验证边界](BUGFIX.md#audit-c09) |
+| [C10](TEXT_SYMBOL_AUDIT.md#c10) | DE：儿子介绍使用了错误的姓名标记 | [实现与验证边界](BUGFIX.md#audit-c10) |
