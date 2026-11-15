@@ -43,6 +43,11 @@ MAIN
     "  Gewürz: Soyasoße "
     ""
     "............................"
+// The milk-and-mixer recipe is butter, separate from the following buttered bread.
+#ifdef BUGFIX
+    "☆Butter"
+    ""
+#endif
     "·Nötige Zutaten"
     "  Milch"
     ""
