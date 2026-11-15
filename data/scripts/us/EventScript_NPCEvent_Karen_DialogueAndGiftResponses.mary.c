@@ -8,7 +8,12 @@ mary_text_table
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_Introduction[] =
         "I heard that someone new \r\n"
         "had taken over the farm.{Press}\p"
+// Use the possessive already corrected in the EU introduction.
+#ifdef BUGFIX
+        "Your name is \r\n"
+#else
         "You name is \r\n"
+#endif
         "{Player}, huh?{Press}\p"
         "Mine's Karen. {Press}";
 
