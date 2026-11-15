@@ -40,12 +40,22 @@ MAIN
     ""
     "☆Tomato"
     "Days: 2   2    2   3 "
+// This crop reaches harvestable fruit, not the flower stage.
+#ifdef BUGFIX
+    "Seeds→X→Y→Z→Ripe"
+#else
     "Seeds→X→Y→Z→Flowers"
+#endif
     "Returns to Z after harvest."
     ""
     "☆Corn"
     "Days: 3   4    4   3 "
+// This crop reaches harvestable fruit, not the flower stage.
+#ifdef BUGFIX
+    "Seeds→X→Y→Z→Ripe"
+#else
     "Seeds→X→Y→Z→Flowers"
+#endif
     "Returns to Z after harvest."
     ""
     "☆Pumpkin"
@@ -55,7 +65,12 @@ MAIN
     ""
     "☆Pineapple"
     "Days: 5   5    5   5 "
+// This crop reaches harvestable fruit, not the flower stage.
+#ifdef BUGFIX
+    "Seeds→X→Y→Z→Ripe"
+#else
     "Seeds→X→Y→Z→Flowers"
+#endif
     "Returns to Z after harvest."
     ""
     "☆Onion"
@@ -80,7 +95,12 @@ MAIN
     ""
     "☆Green Pepper"
     "Days: 2   1    2   2 "
+// This crop reaches harvestable fruit, not the flower stage.
+#ifdef BUGFIX
+    "Seeds→X→Y→Z→Ripe"
+#else
     "Seeds→X→Y→Z→Flowers"
+#endif
     "Returns to Z after harvest."
     ""
     "☆Carrot"

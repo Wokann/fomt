@@ -41,12 +41,22 @@ MAIN
     ""
     "☆Tomate"
     "Tage: 2   2    2   3 "
+// This crop reaches harvestable fruit, not the flower stage.
+#ifdef BUGFIX
+    "Samen→X→Y→Z→Reife"
+#else
     "Samen→X→Y→Z→Blüte"
+#endif
     "Wird nach Ernte wieder zu Z."
     ""
     "Mais"
     "Tage: 3   4    4   3 "
+// This crop reaches harvestable fruit, not the flower stage.
+#ifdef BUGFIX
+    "Samen→X→Y→Z→Reife"
+#else
     "Samen→X→Y→Z→Blüte"
+#endif
     "Wird nach Ernte wieder zu Z."
     ""
     "☆Kürbis"
@@ -56,7 +66,12 @@ MAIN
     ""
     "☆Ananas"
     "Tage:  5   5    5   5 "
+// This crop reaches harvestable fruit, not the flower stage.
+#ifdef BUGFIX
+    "Samen→X→Y→Z→Reife"
+#else
     "Samen→X→Y→Z→Blüte"
+#endif
     "Wird nach Ernte wieder zu Z."
     ""
     "☆Zwiebel"
@@ -82,7 +97,12 @@ MAIN
     ""
     "☆Grüne Paprika"
     "Tage:   2   1    2   2 "
+// This crop reaches harvestable fruit, not the flower stage.
+#ifdef BUGFIX
+    "Samen→X→Y→Z→Reife"
+#else
     "Samen→X→Y→Z→Blüte"
+#endif
     "Wird nach Ernte wieder zu Z."
     ""
     "☆ Karotte"
