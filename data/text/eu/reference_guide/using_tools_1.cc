@@ -72,12 +72,23 @@ MAIN
     "but if you upgrade your"
     "Hammer at the blacksmith's,"
     "you'll be able to smash"
+// Restore the missing silver-hammer tier and the actual fully charged hit counts.
+#ifdef BUGFIX
+    "Stones more easily. Fully"
+    "charged, a Copper Hammer"
+    "breaks large Stones in three"
+    "hits. A fully charged Silver"
+    "Hammer takes two hits for"
+    "large Stones and six for"
+    "huge Stones. A fully charged"
+#else
     "Stones more easily. If you"
     "upgrade to the Copper"
     "Hammer, you'll be able to"
     "smash huge Stones with six"
     "tries and large Stones in"
     "only three tries. With a "
+#endif
     "Mystrile Hammer you'll be"
     "able to smash a large Stone"
     "in one try and a huge Stone"

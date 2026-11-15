@@ -73,13 +73,23 @@ MAIN
     "かる回数も変わってくる。"
     "『銅のハンマー』にして最大ま"
     "でためて使うと「大きな石」が"
+// A fully charged copper hammer breaks a farm boulder in three hits.
+#ifdef BUGFIX
+    "壊せるようになる。壊すまで３"
+#else
     "壊せるようになる。壊すまで６"
+#endif
     "回叩く必要がある。"
     "『銀のハンマー』にして最大ま"
     "でためて使うと「岩」が壊せる"
     "ようになる。壊すまで６回叩く"
     "必要がある。"
+// A fully charged silver hammer breaks a farm boulder in two hits.
+#ifdef BUGFIX
+    "ちなみに「大きな石」だと２回"
+#else
     "ちなみに「大きな石」だと３回"
+#endif
     "で壊せる。"
     "『ミスリルのハンマー』にして"
     "最大までためて使うと「大きな"

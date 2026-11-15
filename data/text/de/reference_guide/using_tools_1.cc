@@ -81,12 +81,24 @@ MAIN
     "wenn du deinen Hammer"
     "beim Schmied aufrüstest,"
     "wird das Zertrümmern immer"
+// Restore the missing silver-hammer tier and the actual fully charged hit counts.
+#ifdef BUGFIX
+    "leichter gehen. Voll"
+    "aufgeladen braucht ein"
+    "Kupferhammer 3 Schläge für"
+    "große Steine. Ein voll"
+    "aufgeladener Silberhammer"
+    "braucht 2 für große und"
+    "6 für riesige Steine."
+    "Mit einem voll aufgeladenen"
+#else
     "leichter gehen. Mit einem"
     "Kupferhammer kannst du"
     "riesige Steine mit 6"
     "Schlägen und große"
     "Steine mit nur 3 Schlägen"
     "zertrümmern. Mit einem "
+#endif
     "Mythrilhammer kannst du"
     "große Steine mit einem"
     "Schlag und riesige mit"
