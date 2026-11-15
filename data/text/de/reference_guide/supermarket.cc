@@ -42,7 +42,12 @@ MAIN
     " zu kochen. "
     ""
     "·Du kannst mehr auf "
+// A refrigerator increases the amount you can buy at once.
+#ifdef BUGFIX
+    " einmal kaufen, wenn du "
+#else
     " einmal kochen, wenn du "
+#endif
     " einen Kühlschrank hast. "
     ""
     "Manche Zutaten werden"
