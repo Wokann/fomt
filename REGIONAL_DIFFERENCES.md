@@ -312,3 +312,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [F01](TEXT_SYMBOL_AUDIT.md#f01) | US：卡莲初次见面的 `You name` | [实现与验证边界](BUGFIX.md#audit-f01) |
 | [F02](TEXT_SYMBOL_AUDIT.md#f02) | JP：味噌汤食谱的锅写成 `なぺ` | [实现与验证边界](BUGFIX.md#audit-f02) |
 | [F03](TEXT_SYMBOL_AUDIT.md#f03) | 海外三版：食谱牛奶单词残缺 | [实现与验证边界](BUGFIX.md#audit-f03) |
+| [F04](TEXT_SYMBOL_AUDIT.md#f04) | DE：酱油名称出现错误字符 | [实现与验证边界](BUGFIX.md#audit-f04) |

@@ -83,7 +83,12 @@ MAIN
     "  Gewürz: Zucker"
     "  Gewürz: Salz"
     "  Gewürz: Essig   "
+// Use the soy-sauce spelling already present in cookbook 2.
+#ifdef BUGFIX
+    "  Gewürz: Soyasoße "
+#else
     "  Gewürz: Soyasoﾟe "
+#endif
     "  Gewürz: Miso"
     ""
     ""
