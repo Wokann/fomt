@@ -16,7 +16,12 @@ MAIN
     ""
     "He would prefer to always "
     "be near her, but this gets"
+// Sebastian serves Romana; this sentence does not refer to Manna.
+#ifdef BUGFIX
+    "on Romana's nerves, so he"
+#else
     "on Manna's nerves, so he"
+#endif
     "takes walks around the"
     "mansion once in a while."
 END_FOMT_REFERENCE_GUIDE_PAGE
