@@ -971,7 +971,12 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "『がらがらっ』　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
+// The girl returned to class in the boy's body; the overseas speaker labels agree.
+#ifdef BUGFIX
+        "真琴（体は誠人だよ）　　　　\r\n"
+#else
         "誠人（体は真琴だよ）　　　　\r\n"
+#endif
         "「ただいま～」　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "先生　　　　　　　　　　　　\r\n"
@@ -979,7 +984,12 @@ mary_text_table
         "　ちょうどいい、黒板に書いて\r\n"
         "　ある問題を答えてくれ」　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
+// The girl returned to class in the boy's body; the overseas speaker labels agree.
+#ifdef BUGFIX
+        "真琴（体は誠人だよ）　　　　\r\n"
+#else
         "誠人（体は真琴だよ）　　　　\r\n"
+#endif
         "「…わかりませ～ん」　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "先生　　　　　　　　　　　　\r\n"
