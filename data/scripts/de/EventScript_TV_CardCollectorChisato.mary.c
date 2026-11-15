@@ -19,11 +19,19 @@ mary_text_table
         "Oh, Guten Morgen, Mariya!\r\n"
         "Wovon redest du?\r\n"
         " \r\n"
+// JP says next month; the following plan is to buy the cards when released.
+#ifdef BUGFIX
+        "\"Weißt du noch, das Gerücht,\r\n"
+        "dass Karten mit\r\n"
+        "Farmgeschichten nächsten\r\n"
+        "Monat rauskommen sollen?\"\r\n"
+#else
         "\"Weißt du noch, das Gerücht\r\n"
         "letzten Monat, dass \r\n"
         "Karten mit Farmgeschichten\r\n"
         "rauskommen sollen? Tja, das\r\n"
         "ist geschehen.\"\r\n"
+#endif
         " \r\n"
         "Was? Echt?\r\n"
         " \r\n"

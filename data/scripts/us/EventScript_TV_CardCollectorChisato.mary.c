@@ -19,11 +19,18 @@ mary_text_table
         "Oh, good morning, Mariya!\r\n"
         "What are you talking about?\r\n"
         "　　　　　　　　　　　　　　\r\n"
+// JP says the cards will go on sale next month, as the following shopping plan requires.
+#ifdef BUGFIX
+        "\"Remember the rumor about\r\n"
+        "Ranch Tales trading cards\r\n"
+        "coming out next month?\"\r\n"
+#else
         "\"Remember the rumor last\r\n"
         "month that said Ranch Tales\r\n"
         "trading cards were being\r\n"
         "released? Well, it's\r\n"
         "happened.\"\r\n"
+#endif
         "　　　　　　　　　　　　　　\r\n"
         "Huh? Really?\r\n"
         "　　　　　　　　　　　　　　\r\n"
