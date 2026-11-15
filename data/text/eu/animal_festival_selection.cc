@@ -87,8 +87,14 @@ char const gText_AnimalContest_ShornSheepIneligible[] =
     "Please select another.{Press}";
 
 char const gText_AnimalContest_EntryAccepted[] =
+// The selected animal is being taken to the contest, not returned to the player.
+#ifdef BUGFIX
+    "It's a deal, then. I'll\r\n"
+    "take it with me.{Press}";
+#else
     "It's a deal, then. I'll\r\n"
     "bring it to you.{Press}";
+#endif
 
 char const gText_AnimalContest_ChickenSelectionPrompt[] =
     "In that case, select a \r\n"

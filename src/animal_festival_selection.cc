@@ -1,4 +1,5 @@
 #include "animal_festival_selection.hh"
+#include "config.h"
 #include "obj_palette_collection.hh"
 #include <new>
 
