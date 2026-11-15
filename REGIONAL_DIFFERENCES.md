@@ -271,3 +271,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [C01](TEXT_SYMBOL_AUDIT.md#c01) | 海外三版：巴基尔雨天台词失去原有的晴雨对比 | [实现与验证边界](BUGFIX.md#audit-c01) |
 | [C02](TEXT_SYMBOL_AUDIT.md#c02) | 海外三版：玛丽星夜祭把自己做料理写成妈妈今天做蛋糕；修复在GBA原句上改正制作者与时态 | [实现与验证边界](BUGFIX.md#audit-c02) |
 | [C03](TEXT_SYMBOL_AUDIT.md#c03) | 海外三版：参赛动物确认，把“带走”写成“送给你” | [实现与验证边界](BUGFIX.md#audit-c03) |
+| [C04](TEXT_SYMBOL_AUDIT.md#c04) | 海外三版：巴基尔与安娜贺卡标题把 Anna 写成 Ann | [实现与验证边界](BUGFIX.md#audit-c04) |
