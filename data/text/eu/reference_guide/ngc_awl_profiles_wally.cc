@@ -19,4 +19,17 @@ MAIN
     "it's a great place to run."
     "<041>"
     ""
+// Restore the missing JP profile paragraphs and their existing level boundaries.
+#ifdef BUGFIX
+    "He was a famous marathon"
+    "runner, but a leg ailment"
+    "forced him to retire. He"
+    "then became a coach."
+    "He is a born sportsman."
+    "<042>"
+    ""
+    "He dreams of making Hugh a"
+    "top athlete and jogs with"
+    "him every morning."
+#endif
 END_FOMT_REFERENCE_GUIDE_PAGE
