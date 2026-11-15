@@ -752,11 +752,11 @@ char const gText_Item_Food_MixedLatte_Name[] =
     "Milchmixgetränk";
 
 char const gText_Item_Food_MixedLatte_Description[] =
-// Restore milk to the truncated ingredient list, following JP and the English description.
+// Restore milk within the 28-character ingredient row; keep the original final row.
 #ifdef BUGFIX
     "Milchmixgetränk\r\n"
-    "Aus Früchten, Gemüse\r\n"
-    "und Milch.";
+    "Aus Früchten, Gemüse, Milch.\r\n"
+    "Selbertrinken o verschenken.";
 #else
     "Milchmixgetränk\r\n"
     "Aus Früchten, Gemüse und\r\n"

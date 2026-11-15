@@ -231,16 +231,9 @@ char const gText_Item_Tool_SilverHammer_Name[] =
     "Silver Hammer";
 
 char const gText_Item_Tool_SilverHammer_Description[] =
-// JP gives silver and gold hammers the same description; reuse the complete gold-hammer wording.
-#ifdef BUGFIX
-    "Silver Hammer\r\n"
-    "Smash Stones of all sizes\r\n"
-    "and fences. Prepare fields.";
-#else
     "Silver Hammer\r\n"
     "large, huge Stones, or \r\n"
     "fields for tilling.";
-#endif
 
 char const gText_Item_Tool_GoldHammer_Name[] =
     "Gold Hammer";
@@ -565,7 +558,7 @@ char const gText_Item_Tool_MoonDropSeeds_Name[] =
     "Moon Drop Seeds";
 
 char const gText_Item_Tool_MoonDropSeeds_Description[] =
-// The JP seed text and corresponding flower agree on a single growing season.
+// The original adds fall, but the crop season check only allows spring.
 #ifdef BUGFIX
     "Moon Drop Seeds\r\n"
     "Plant in Spring.\r\n"
@@ -580,7 +573,7 @@ char const gText_Item_Tool_PinkCatSeeds_Name[] =
     "Pink Cat Seeds";
 
 char const gText_Item_Tool_PinkCatSeeds_Description[] =
-// The JP seed text and corresponding flower agree on a single growing season.
+// The original adds fall, but the crop season check only allows summer.
 #ifdef BUGFIX
     "Pink Cat Seeds\r\n"
     "Plant in Summer.\r\n"

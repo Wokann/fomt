@@ -30,7 +30,7 @@ char const gText_Item_Article_RedMagicGrass_Name[] =
     "Magisches Rotgras";
 
 char const gText_Item_Article_RedMagicGrass_Description[] =
-// Red Magic Grass is a shippable product; the original text copied the blue flower restriction.
+// The original description incorrectly says this flower cannot be shipped.
 #ifdef BUGFIX
     "Magisches Rotgras\r\n"
     "Herbstblumen.\r\n"
@@ -199,7 +199,7 @@ char const gText_Item_Article_Adamantite_Name[] =
     "Adamantit";
 
 char const gText_Item_Article_Adamantite_Description[] =
-// Adamantite makes machines; the original copied the neighboring jewelry-ore description.
+// The original says jewelry, but adamantite is used to make machines.
 #ifdef BUGFIX
     "Adamantit\r\n"
     "Wird in Minen gefunden. \r\n"

@@ -31,7 +31,7 @@ char const gText_Item_Article_RedMagicGrass_Name[] =
     "Red Magic Grass";
 
 char const gText_Item_Article_RedMagicGrass_Description[] =
-// Red Magic Grass is a shippable product; the original text copied the blue flower restriction.
+// The original description incorrectly says this flower cannot be shipped.
 #ifdef BUGFIX
     "Red Magic Grass\r\n"
     "Flowers in Fall.\r\n"
