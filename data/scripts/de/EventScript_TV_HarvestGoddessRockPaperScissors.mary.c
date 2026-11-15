@@ -20,13 +20,13 @@ mary_text_table
     const char gText_TV_HarvestGoddessRockPaperScissors_Shared_PlayerAndGoddessCountdown[] =
         "Eins... Zwei... Drei!...{Press}\r\n";
 
-    const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors[] =
         "Schere";
 
-    const char gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock[] =
         "Stein";
 
-    const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper[] =
         "Papier";
 
     const char gText_TV_HarvestGoddessRockPaperScissors_PlayerRockGoddessRockDraw[] =
@@ -182,9 +182,9 @@ void EventScript_TV_HarvestGoddessRockPaperScissors(void)
             }
     // Match each displayed choice to the existing result branch; leave the game rules unchanged.
 #ifdef BUGFIX
-            var_0 = TalkChoice3(gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper, gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock, gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors);
+            var_0 = TalkChoice3(gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock, gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors, gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper);
 #else
-            var_0 = TalkChoice3(gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock, gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper, gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors);
+            var_0 = TalkChoice3(gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors, gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock, gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper);
 #endif
             switch (var_0)
             {

@@ -28,10 +28,10 @@ mary_text_table
     const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock[] =
         "ぐー";
 
-    const char gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors[] =
         "ちょき";
 
-    const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper[] =
         "ぱー";
 
     const char gText_TV_HarvestGoddessRockPaperScissors_PlayerRockGoddessRockDraw[] =
@@ -181,7 +181,7 @@ void EventScript_TV_HarvestGoddessRockPaperScissors(void)
                     TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_GoddessCountdown);
                     break;
             }
-            var_0 = TalkChoice3(gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock, gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper, gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors);
+            var_0 = TalkChoice3(gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock, gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors, gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper);
             switch (var_0)
             {
                 case CHOICE_OPTION_1:

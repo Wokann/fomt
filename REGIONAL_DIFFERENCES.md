@@ -59,7 +59,7 @@
 | 2／剪刀 | ちょき（剪刀） | Paper（布，错误） | Stein（石头，错误） |
 | 3／布 | ぱー（布） | Scissors（剪刀，错误） | Papier（布） |
 
-因此 US／EU 的第二、三项错位，DE 的第一、二项错位。选择显示的手势后，会进入另一手势的结果与胜负分支；不是随机结果或赢局累加的公式改变。因为三个实际手势仍各有一个入口，此问题本身也不等于修改了胜率。现有 `ChoicePaper`／`ChoiceScissors` 符号名源于英文显示文字，不能拿名字代替实际语义。[JP 脚本](data/scripts/jp/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [US](data/scripts/us/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [EU](data/scripts/eu/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [DE](data/scripts/de/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [选项返回值](include/fomt_constants.mary.h)
+因此 US／EU 的第二、三项错位，DE 的第一、二项错位。选择显示的手势后，会进入另一手势的结果与胜负分支；不是随机结果或赢局累加的公式改变。因为三个实际手势仍各有一个入口，此问题本身也不等于修改了胜率。`ChoiceRock`／`ChoiceScissors`／`ChoicePaper` 标识符现按各自文字的实际含义命名；声明与引用一起替换，未改变原版选项次序或 BUGFIX 逻辑。[JP 脚本](data/scripts/jp/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [US](data/scripts/us/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [EU](data/scripts/eu/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [DE](data/scripts/de/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [选项返回值](include/fomt_constants.mary.h)
 
 ## 文字、名称与显示
 
@@ -197,8 +197,9 @@
 | --- | --- |
 | `gText_FishingRecord_SilverCarp22` / `FISHING_RECORD_SILVER_CARP_22` | 改为 `gText_FishingRecord_SilverCrucian` / `FISHING_RECORD_SILVER_CRUCIAN`。JP 槽 22 为银鲫（ギンブナ），英文鱼名为 silver crucian carp；原英文／德文显示名 Silver Carp／Silberkarpfen 对应的却是鲢鱼。US／EU 的 BUGFIX 显示文本采用 14 字符界面短写 Silver Crucian，DE 采用重制版原名 Ginbuna。 |
 | `gText_FishingRecord_SilverCarp37` / `FISHING_RECORD_SILVER_CARP_37` | 移除数字后缀，使用 `gText_FishingRecord_SilverCarp` / `FISHING_RECORD_SILVER_CARP`。JP ハクレン（鲢鱼）对应 Silver Carp／Silberkarpfen，显示名称正确。槽 44 ヘラブナ已有的 `CrucianCarp` 标识符和显示名称保留。 |
+| JP／DE 猜拳 `ChoiceRock` / `ChoicePaper` / `ChoiceScissors` | JP「ちょき」「ぱー」及 DE「Schere」「Stein」「Papier」原标签与自身文字不符；使用本作 US／EU 已有的正确 Rock／Scissors／Paper 名称，声明和调用目标一起更名。 |
 
-依据：[日版鱼名](data/text/jp/fishing_results_data.cc)、[鱼名指针表](src/fishing_results_data.cc)、[纪录 ID](include/fomt_constants.mary.h)、[既有鱼名问题](BUGFIX.md#fish-record-names)。重制版名称取自同级 `SoSFoMTTextDump/SoSFoMTTextDump/JA/msg_Item.txt` 与 `US/msg_Item.txt` 的对应鱼名序列：キンブナ／ギンブナ／クエ对应 Goldfish／Crucian Carp／Longtooth Grouper；不是仅凭相似英文词推断。
+依据：[日版鱼名](data/text/jp/fishing_results_data.cc)、[鱼名指针表](src/fishing_results_data.cc)、[纪录 ID](include/fomt_constants.mary.h)、[既有鱼名问题](BUGFIX.md#fish-record-names)、[JP 猜拳](data/scripts/jp/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c)、[DE 猜拳](data/scripts/de/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c)。重制版名称取自同级 `SoSFoMTTextDump/SoSFoMTTextDump/JA/msg_Item.txt` 与 `US/msg_Item.txt` 的对应鱼名序列：キンブナ／ギンブナ／クエ对应 Goldfish／Crucian Carp／Longtooth Grouper；不是仅凭相似英文词推断。
 
 Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silver crucian carp／ginbuna](https://pubmed.ncbi.nlm.nih.gov/9546204/)、[2019 年研究中的 silver crucian carp／ginbuna](https://pubmed.ncbi.nlm.nih.gov/31347186/)。重制版英文泛称 Crucian Carp 会与另一鱼种重名，本次采用完整英文名的界面短写 Silver Crucian，变量同步采用 SilverCrucian；该短写由用户确认，不宣称是已查证的官方简称。[国立环境研究所](https://www.nies.go.jp/biodiversity/invasive/DB/detail/50060.html) 则将 Silver carp 对应到ハクレン。原版两个记录共用同名字串本身不是结构错误，修复对象是记录 22 的鱼种显示名。
 
