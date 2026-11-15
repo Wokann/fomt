@@ -14,6 +14,10 @@ MAIN
     "during the day, and just"
     "comes to work at night,"
     "where he often plays. "
+// Restore the profile-level boundary before the next paragraph.
+#ifdef BUGFIX
+    "<222>"
+#endif
     ""
 // JP says his family grew tired of him before he wandered here alone.
 #ifdef BUGFIX

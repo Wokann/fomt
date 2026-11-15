@@ -15,6 +15,10 @@ MAIN
     "alles regeln; er kommt"
     "nur nachts und spielt"
     "dann oft Gitarre."
+// Restore the profile-level boundary before the next paragraph.
+#ifdef BUGFIX
+    "<222>"
+#endif
     ""
 // JP says his family grew tired of him before he wandered here alone.
 #ifdef BUGFIX

@@ -282,3 +282,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [C12](TEXT_SYMBOL_AUDIT.md#c12) | Wally：马拉松教练变成赛事组织者 | [实现与验证边界](BUGFIX.md#audit-c12) |
 | [C13](TEXT_SYMBOL_AUDIT.md#c13) | Galen：“平时安静”变成“通常很快乐” | [实现与验证边界](BUGFIX.md#audit-c13) |
 | [D01](TEXT_SYMBOL_AUDIT.md#d01) | US／EU：Nina 缺少第一段解锁边界 | [实现与验证边界](BUGFIX.md#audit-d01) |
+| [D02](TEXT_SYMBOL_AUDIT.md#d02) | 海外三版：Griffin 缺少第二段解锁边界 | [实现与验证边界](BUGFIX.md#audit-d02) |
