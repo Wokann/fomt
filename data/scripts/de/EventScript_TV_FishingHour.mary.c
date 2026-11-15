@@ -185,8 +185,14 @@ mary_text_table
         "träge sind.\r\n"
         "\r\n"
         "Meeresfische, die ihr\r\n"
+// Use the corrected Bonito name from the fishing records, not tuna.
+#ifdef BUGFIX
+        "fangen könnt, sind Bonitos,\r\n"
+        "Dorados und\r\n"
+#else
         "fangen könnt, sind Thun-\r\n"
         "fische, Dorados und \r\n"
+#endif
         "Schnapperfische.\r\n"
         "Ich überlasse es euch \r\n"
         "herauszufinden, was für \r\n"

@@ -303,3 +303,4 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 | [E10](TEXT_SYMBOL_AUDIT.md#e10) | DE：同节目第2集把上午写成明天 | [实现与验证边界](BUGFIX.md#audit-e10) |
 | [E12](TEXT_SYMBOL_AUDIT.md#e12) | DE：进阶节目冬2日，把最大体力写成10 | [实现与验证边界](BUGFIX.md#audit-e12) |
 | [E13](TEXT_SYMBOL_AUDIT.md#e13) | DE：进阶节目冬3日，把矿场写成磨坊 | [实现与验证边界](BUGFIX.md#audit-e13) |
+| [E14](TEXT_SYMBOL_AUDIT.md#e14) | DE：钓鱼节目第6集，鲣鱼仍误用金枪鱼名称 | [实现与验证边界](BUGFIX.md#audit-e14) |
