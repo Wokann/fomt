@@ -155,7 +155,12 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "OK, here it is. The two\r\n"
         "boxes I bought yesterday had\r\n"
+// The previous episode establishes 256 types minus 70 missing: 186.
+#ifdef BUGFIX
+        "a total of 186 different\r\n"
+#else
         "a total of 156 different\r\n"
+#endif
         "card types in them, so it\r\n"
         "looks like I need\r\n"
         "70 more card types to\r\n"

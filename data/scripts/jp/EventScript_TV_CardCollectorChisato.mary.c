@@ -140,7 +140,12 @@ mary_text_table
         "　った？　って言うか見せろ」\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "はいこれ、昨日買った２箱の中\r\n"
+// The previous episode establishes 256 types minus 70 missing: 186.
+#ifdef BUGFIX
+        "には全部で１８６種類あったか\r\n"
+#else
         "には全部で１５６種類あったか\r\n"
+#endif
         "ら、あと７０種類でコンプリー\r\n"
         "トってことになるみたい。　　\r\n"
         "　　　　　　　　　　　　　　\r\n"

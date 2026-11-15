@@ -162,7 +162,12 @@ mary_text_table
         "OK, hier ist es. Die beiden\r\n"
         "Boxen, die ich gestern\r\n"
         "gekauft habe, enthielten \r\n"
+// The previous episode establishes 256 types minus 70 missing: 186.
+#ifdef BUGFIX
+        "insgesamt 186 Kartentypen \r\n"
+#else
         "insgesamt 156 Kartentypen \r\n"
+#endif
         "Also brauche ich\r\n"
         "noch 70 weitere, um das \r\n"
         "Set zu vervollständigen.\r\n"
