@@ -20,9 +20,16 @@ MAIN
     " *Verschiedene Feldfrüchte"
     " wachsen in v. Jahreszeiten."
     ""
+// Won keeps the same seed assortment in every season.
+#ifdef BUGFIX
+    "·Die angebotenen Samen"
+    " ändern sich nicht mit"
+    " den Jahreszeiten."
+#else
     "·In verschiedenen Jahres-"
     " zeiten werden verschiedene"
     " Samen verkauft."
+#endif
     ""
     ""
     "☆Hundeball"

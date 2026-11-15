@@ -16,10 +16,22 @@ MAIN
     "☆Seeds"
     "·Plant Seeds and water "
     " every day to grow crops."
+// Restore the growing-season warning using the supermarket guide wording.
+#ifdef BUGFIX
+    " Be careful, some crops "
+    " only grow in some seasons."
+#else
     "  different seasons."
+#endif
     ""
+// Won keeps the same seed assortment in every season.
+#ifdef BUGFIX
+    "·The same Seeds are sold"
+    " in every season."
+#else
     "·Different Seeds are sold"
     " in different seasons."
+#endif
     ""
     ""
     "☆Dog Ball"
