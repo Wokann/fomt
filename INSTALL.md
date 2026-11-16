@@ -1,107 +1,371 @@
-# Installation
+# Instructions
 
-## Current toolchain
+English | [简体中文](INSTALL.zh-cn.md)
 
-Build in WSL with an `arm-none-eabi` toolchain on PATH. Keep the maintained
-`Wokann/agbcc` `cp` checkout beside FoMT:
+These instructions explain how to install the tools required to build **FoMT**
+and assemble the source files into a ROM.
 
-```text
-parent/
-    agbcc/
-    fomt/
-```
+Follow the instructions for your operating system, then proceed to
+[Installation](#installation). Additional notes can be expanded by clicking
+the **Note...** headings.
 
-This branch starts from `notyourav/agbcc` cp commit
-`1caa6becde5e4676b59c31c74d68f45ced79557c`. The generic compiler corrections
-are recorded locally in cp commit `b24094061ea76525206db659d6cdac853512bf27`.
-This commit has not been pushed; use the maintained sibling checkout.
+## Windows
 
-Build and install from the sibling compiler directory:
+Choose one of the following terminals:
 
-```sh
-cd ../agbcc
-CC="gcc -std=gnu89 -fcommon" MAKEFLAGS=-j4 bash ./build.sh
-bash ./install.sh ../fomt
-cd ../fomt
-```
+- [Windows 10/11 (WSL)](#windows-1011-wsl)
+- [Windows (MSYS2)](#windows-msys2)
 
-Alternatively, from the FoMT directory, use the wrapper with the same default
-`../agbcc` checkout:
+The MSYS2 instructions assume devkitPro is installed in `C:\devkitPro`.
+If you use a different location, adjust the paths accordingly.
 
-```sh
-bash tools/install_agbcp.sh
-```
+## Windows 10/11 (WSL)
 
-An optional argument selects another checkout of the same maintained source:
+### Installing WSL
 
-```sh
-bash tools/install_agbcp.sh /path/to/agbcc
-```
+1. Open PowerShell **as administrator** and run:
 
-The wrapper uses the compiler repository's existing `build.sh` and `install.sh`,
-with `-j4` by default. It does not clone a repository, switch branches, apply
-patch files, or run tests. `CC` and `MAKEFLAGS` remain overridable.
+   ```powershell
+   wsl --install -d Ubuntu
+   ```
 
-The small frontend corrections preserve destructor identity through asm labels,
-support per-declaration Thumb long calls, materialize rejected subword frame
-addresses, and preserve named const-array objects and their real relocations.
-The Thumb hexadecimal epilogue formatter also emits the immediate marker and
-uses hexadecimal digits. These rules inspect language types, declaration
-attributes or target instruction constraints, never game names or ROM addresses.
-Host build adjustments only fix a generated-header dependency and C dialect
-selection; they do not change target instruction selection.
+2. Restart Windows if prompted, then open **Ubuntu** from the Start menu.
+3. Complete the initial setup by choosing a Linux username and password.
 
-Explicit declaration alignment is recorded by the compiler for C and C++,
-including redeclarations. Target alignment preferences do not override that
-request. Function alignment is emitted after selecting the function section,
-so it does not pad an unrelated preceding data section. The preprocessor no
-longer guesses either correction from source or assembler text patterns.
+<details>
+<summary>Note...</summary>
 
-`fomt-preproc` does not reconstruct arrays, select pointer targets from matching
-strings, or repair stack-adjustment instructions. Use the installed compiler
-from the maintained source checkout.
+The terminal does not display characters while you type your password.
+See Microsoft's [WSL instructions](https://learn.microsoft.com/en-us/windows/wsl/install)
+for additional installation options.
 
-Build and compare the four ROMs in WSL:
+</details>
+
+### Setting up WSL
+
+1. Open **Ubuntu** and update its packages:
+
+   ```sh
+   sudo apt update
+   sudo apt upgrade
+   ```
+
+2. Install the packages required to build FoMT:
+
+   ```sh
+   sudo apt install build-essential git pkg-config libpng-dev zlib1g-dev \
+       gcc-arm-none-eabi binutils-arm-none-eabi
+   ```
+
+### Choosing where to store FoMT (WSL)
+
+Create a folder for FoMT and agbcc, then change to it:
 
 ```sh
-make -j16 GAME_REGION=JP compare
-make -j16 GAME_REGION=US compare
-make -j16 GAME_REGION=EU compare
-make -j16 GAME_REGION=DE compare
+mkdir -p ~/projects
+cd ~/projects
 ```
 
-## 中文说明
+<details>
+<summary>Note...</summary>
 
-编译器放在 FoMT 同级的 `agbcc` 目录，使用本地 `cp` 分支，从该目录构建并
-执行 `install.sh ../fomt`。FoMT 的安装包装脚本也默认读取 `../agbcc`，不依赖
-个人机器的绝对路径。当前通用修正已记录于上述本地 cp 提交，尚未推送，不能假定远程分支已包含。
-安装脚本不再下载编译器或应用 FoMT 内的补丁文件，也不运行测试用例。
-编译器安装包装仍默认 `-j4`，可通过 MAKEFLAGS 覆盖；游戏构建使用 WSL `-j16`。
-阶段 1721 已验证四版完整字节及 SHA-1 均与各自 baserom 一致。
+Keep the project in the Linux filesystem for faster builds. Windows drives are
+also accessible through paths such as `/mnt/c` and `/mnt/d`.
 
-## Old instructions
+</details>
 
-Install the devkitARM toolchain of devkitPro as per [the instructions on their wiki](https://devkitpro.org/wiki/devkitPro_pacman).
+Continue to [Installation](#installation).
 
-Inside the included MSYS2 environment run:
+## Windows (MSYS2)
 
-    pacman -S gcc git
+### Installing devkitARM
 
-To set up the repository:
+1. Download and run the [devkitPro installer](https://github.com/devkitPro/installer/releases).
+2. Select **GBA Development** and install to `C:\devkitPro`.
 
-	git clone https://github.com/not-alons/hmfomt
-	git clone https://github.com/pret/agbcc
+### Setting up MSYS2
 
-	cd ./agbcc
-	./build.sh
-	./install.sh ../hmfomt
+1. Install [MSYS2](https://www.msys2.org/) and open **MSYS2 MINGW64**.
+2. Update its packages:
 
-	cd ../hmfomt
+   ```sh
+   pacman -Syu
+   ```
 
-Place a .gba ROM of Harvest Moon: Friends of Mineral Town (USA) in your hmfomt folder and name it `baserom_us.gba`.
+   If asked to close the terminal, reopen MINGW64 and run the command again.
 
-To build **hmfomt_us.gba** and confirm it matches the official ROM image:
+3. Install the packages required to build FoMT and agbcc:
 
-	make fomt_us
+   ```sh
+   pacman -S --needed make git mingw-w64-x86_64-gcc \
+       mingw-w64-x86_64-pkgconf mingw-w64-x86_64-libpng \
+       mingw-w64-x86_64-zlib mingw-w64-i686-gcc
+   ```
 
-If an OK is returned, then the installation went smoothly.
+4. Add the following lines to `~/.bashrc`, then open a new MINGW64 terminal:
+
+   ```sh
+   export DEVKITPRO=/c/devkitPro
+   export DEVKITARM="$DEVKITPRO/devkitARM"
+   export PATH="$DEVKITARM/bin:$PATH"
+   ```
+
+5. Enable Windows Developer Mode, or open MINGW64 **as administrator** for the
+   compiler checkout. Before cloning, run:
+
+   ```sh
+   export MSYS=winsymlinks:nativestrict
+   ```
+
+<details>
+<summary>Note about symbolic links...</summary>
+
+agbcc contains symbolic links. Windows needs permission to create them when
+cloning the repository; after checkout, the files can be used from a normal
+terminal. See the [MSYS2 symbolic-link instructions](https://www.msys2.org/docs/symlinks/).
+
+</details>
+
+### Choosing where to store FoMT (MSYS2)
+
+Create a folder for FoMT and agbcc, then change to it:
+
+```sh
+mkdir -p ~/projects
+cd ~/projects
+```
+
+<details>
+<summary>Note...</summary>
+
+Use a path without spaces. In MSYS2, `D:\projects` is written as `/d/projects`.
+Run the following installation and build commands inside the MINGW64 terminal.
+
+</details>
+
+Continue to [Installation](#installation).
+
+## macOS
+
+### Installing the required tools
+
+1. Open Terminal and install Apple's command-line tools:
+
+   ```sh
+   xcode-select --install
+   ```
+
+2. Install [Homebrew](https://brew.sh/) and follow its shell setup instructions.
+   Then install the required packages:
+
+   ```sh
+   brew install git make coreutils pkgconf libpng zlib gcc@14 arm-none-eabi-gcc
+   ```
+
+3. Add these lines to `~/.zprofile`, then open a new terminal:
+
+   ```sh
+   export PATH="$(brew --prefix make)/libexec/gnubin:$(brew --prefix coreutils)/libexec/gnubin:$(brew --prefix)/bin:$PATH"
+   export PKG_CONFIG_PATH="$(brew --prefix zlib)/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+   ```
+
+<details>
+<summary>Note...</summary>
+
+If you use Bash instead of the default zsh shell, add the lines to
+`~/.bash_profile`. The path selects Homebrew's GNU Make and command-line tools.
+
+</details>
+
+### Choosing where to store FoMT (macOS)
+
+Create a folder for FoMT and agbcc, then change to it:
+
+```sh
+mkdir -p ~/projects
+cd ~/projects
+```
+
+Continue to [Installation](#installation).
+
+## Linux
+
+### Debian / Ubuntu
+
+Open Terminal and install the required packages:
+
+```sh
+sudo apt update
+sudo apt install build-essential git pkg-config libpng-dev zlib1g-dev \
+    gcc-arm-none-eabi binutils-arm-none-eabi
+```
+
+### Choosing where to store FoMT (Linux)
+
+Create a folder for FoMT and agbcc, then change to it:
+
+```sh
+mkdir -p ~/projects
+cd ~/projects
+```
+
+Continue to [Installation](#installation).
+
+## Installation
+
+Use the following branches for this project:
+
+| Repository | Branch |
+| --- | --- |
+| [Wokann/fomt](https://github.com/Wokann/fomt) | `multi-language` |
+| [Wokann/agbcc](https://github.com/Wokann/agbcc) | `cp` |
+
+The clone commands below select these branches automatically. If you already
+have either repository, follow its branch-switching instructions instead.
+
+1. Clone FoMT if you have not already downloaded it:
+
+   ```sh
+   git -c core.autocrlf=false clone --branch multi-language https://github.com/Wokann/fomt.git
+   ```
+
+   If you already have FoMT, select and update **multi-language**:
+
+   ```sh
+   cd fomt
+   git fetch origin
+   git switch multi-language
+   git pull --ff-only
+   cd ..
+   ```
+
+2. Clone the maintained **cp** branch of agbcc beside FoMT:
+
+   ```sh
+   git -c core.autocrlf=false -c core.symlinks=true clone --branch cp https://github.com/Wokann/agbcc.git
+   cd agbcc
+   ```
+
+   If you already have agbcc, select and update **cp** instead:
+
+   ```sh
+   cd agbcc
+   git fetch origin
+   git switch cp
+   git pull --ff-only
+   ```
+
+   <details>
+   <summary>Note if agbcc is already installed...</summary>
+
+   If agbcc was built on the same platform and its sources have not changed,
+   skip step 3 and continue with installation in step 4.
+
+   </details>
+
+3. Build agbcc using **one** of the following commands for your platform.
+
+   **Linux / WSL:**
+
+   ```sh
+   CC="gcc -std=gnu89 -fcommon" MAKEFLAGS=-j16 bash ./build.sh
+   ```
+
+   **Windows / MSYS2:**
+
+   ```sh
+   (
+       export PATH="/mingw32/bin:$DEVKITARM/bin:/usr/bin"
+       CC="gcc -std=gnu89 -fcommon -static" CXX="g++ -static" \
+           MAKEFLAGS=-j16 bash ./build.sh
+   )
+   ```
+
+   **macOS:**
+
+   ```sh
+   CC="gcc-14 -std=gnu89 -fcommon" CXX=g++-14 MAKEFLAGS=-j16 bash ./build.sh
+   ```
+
+4. Install agbcc into FoMT, then enter the game directory:
+
+   ```sh
+   bash ./install.sh ../fomt
+   cd ../fomt
+   ```
+
+Now you are ready to [build FoMT](#build-fomt). The bundled tools, including
+Mary, are compiled automatically by Make.
+
+## Build FoMT
+
+From the `fomt` directory, run:
+
+```sh
+make -j16
+```
+
+This builds the US version and creates **fomt_us.gba** in the project folder.
+To build another region, choose one command:
+
+| Version | Command | ROM |
+| --- | --- | --- |
+| Japanese | `make -j16 GAME_REGION=JP` | `fomt_jp.gba` |
+| US English | `make -j16 GAME_REGION=US` | `fomt_us.gba` |
+| European English | `make -j16 GAME_REGION=EU` | `fomt_eu.gba` |
+| German | `make -j16 GAME_REGION=DE` | `fomt_de.gba` |
+
+## Building guidance
+
+### Compare the ROM to the original
+
+To check the build against the original game's SHA-1, run:
+
+```sh
+make GAME_REGION=JP compare
+```
+
+Replace `JP` with the region you built. A matching build prints
+`fomt_jp.gba: OK` for JP, or the corresponding name for another region.
+The SHA-1 manifests are included in the repository; a base ROM is not required
+to build or run this check.
+
+### Optional bug fixes
+
+Uncomment `#define BUGFIX` in [include/config.h](include/config.h), then run:
+
+```sh
+make GAME_REGION=JP clean
+make -j16 GAME_REGION=JP
+```
+
+Choose the desired region as above. See [BUGFIX.md](BUGFIX.md) for the available
+fixes. To restore the original game, comment out the define and rebuild after
+cleaning that region.
+
+<details>
+<summary>Note...</summary>
+
+Modified builds, including builds with BUGFIX enabled, have different hashes
+from the original game. Build them with `make`, without the `compare` target.
+
+</details>
+
+### Cleaning and updating
+
+To clean a region before rebuilding:
+
+```sh
+make GAME_REGION=JP clean
+```
+
+Update FoMT and agbcc by running `git pull --ff-only` in their respective
+directories. Rebuild and reinstall agbcc after updating its sources.
+
+<details>
+<summary>Note when changing operating systems...</summary>
+
+Use a separate checkout and compiler installation for each host operating
+system. Windows, Linux, and macOS use different host executables.
+
+</details>

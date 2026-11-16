@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-here=$(dirname "$(readlink -f "$0")")/..
+here=$(cd "$(dirname "$0")/.." && pwd)
 compiler=${1:-"$here/../agbcc"}
 compiler=$(cd "$compiler" && pwd)
 

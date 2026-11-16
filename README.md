@@ -16,10 +16,11 @@ It builds the following ROM:
 
 ## Build environments
 
-The same Makefile supports Linux/WSL and native Windows through MSYS2 MINGW64.
+The same Makefile supports Linux/WSL, native Windows through MSYS2 MINGW64,
+and macOS.
 Install GNU Make, Bash, a C/C++17 host compiler, pkg-config, libpng/zlib, and
-devkitARM, with its `bin` directory on `PATH`. Install the sibling `agbcc`
-toolchain with `sh install.sh /path/to/fomt` from the compiler directory.
+an `arm-none-eabi` toolchain, with its `bin` directory on `PATH`. Install the
+sibling `agbcc` toolchain with `sh install.sh /path/to/fomt` from the compiler directory.
 Windows needs native `agbcc.exe`, `old_agbcc.exe`, `agbcc_arm.exe`, `agbcp.exe`
 and `agbcp_arm.exe`; Linux executables cannot serve as the Windows toolchain.
 Mary and the other project tools are built automatically from source.
@@ -46,7 +47,7 @@ make fomt_de
 ```
 
 All four `fomt_*` targets build their region and run its SHA-1 comparison.
-Use `make -j16 fomt_jp` (or the corresponding regional target) in either environment.
+Use `make -j16 fomt_jp` (or the corresponding regional target) on each platform.
 `compare_eu` and `compare_de` are aliases for their regional comparisons.
 
 The build defines exactly one of `REGION_US`, `REGION_JP`, `REGION_EU`, and
@@ -104,7 +105,7 @@ comparison target. See [known bugs and fixes](BUGFIX.md) and the
 
 ## Setting up
 
-See [INSTALL.md](./INSTALL.md).
+See the installation guide in [English](INSTALL.md) or [简体中文](INSTALL.zh-cn.md).
 
 ## Build workflow
 
