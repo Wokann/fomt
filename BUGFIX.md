@@ -16,7 +16,7 @@
 make -j16 GAME_REGION=JP all
 ```
 
-美版、欧版、德版分别将 `GAME_REGION` 改为 `US`、`EU`、`DE`。[Makefile](Makefile) 会把同一个开关传给原生源码和Mary脚本。重新注释该定义即可恢复原版内容；不需单独修改Mary的宏。索引中“未接入”的问题尚不受此开关修复。
+美版、欧版、德版分别将 `GAME_REGION` 改为 `US`、`EU`、`DE`。[Makefile](Makefile) 会把同一个开关传给原生源码和Mary脚本。重新注释该定义即可恢复原版内容；不需单独修改Mary的宏。当前索引所列问题均已接入此开关。
 
 ## 分类索引
 
@@ -359,7 +359,7 @@ JP交换四次相关消息引用；DE删除三次错误的额外消息。保留�
 | --- | --- | --- |
 | [包装画面把升级农具画成基础农具](#wrapping-tool-icons) | JP、US | 已接入 |
 | [动物照料栏目显示了收获最高记录](#overseas-animal-care-record) | US、EU、DE | 已接入 |
-| [料理材料的包装说明未送入窗口](#cooking-wrapped-description) | US、EU、DE | 未接入 |
+| [料理材料的包装说明未送入窗口](#cooking-wrapped-description) | US、EU、DE | 已接入 |
 | [女神猜拳显示手势与实际分支不一致](#goddess-rps-options) | US、EU、DE | 已接入 |
 | [海外艾利产后生日选项错位](#audit-a07) | US、EU、DE | 已接入 |
 | [海外女神产前生日选项错位](#audit-a08) | US、EU、DE | 已接入 |
@@ -411,7 +411,7 @@ JP 对应行读取 `sprite_animal_care_record`；小游戏结束时四版也都�
 <a id="cooking-wrapped-description"></a>
 ### 料理材料的包装说明未送入窗口
 
-**受影响版本：** US、EU、DE；尚未接入BUGFIX。
+**受影响版本：** US、EU、DE。
 
 **原版内容与差异：**
 
@@ -423,9 +423,11 @@ JP 拼入同一个缓冲区并把它传给窗口。下游 `UiStatePayload::SetTe
 
 **修复方式：**
 
-尚未接入BUGFIX；应把拼接后的缓冲区传给窗口，并保证拼接容量正确。
+开启 `BUGFIX` 时，海外三版把已有背包说明 `gText_ItemStatus_WrappedAsPresent` 追加到真正传给窗口的物品名缓冲区：US／EU 为 `
+wrapped as a present.`，DE 为 `
+als Geschenk verpackt.`。不再构造未被使用的七字节前缀；原 `A wrapped` 有九个字符，仅改显示指针也无法显示完整内容。拼接沿用原 128 字节说明区，正文最多 127 字节并补结束符。JP 原本正确的拼接、包装标志及料理材料处理保持不变；关闭开关时保留原版行为。
 
-**相关文件：** [拼接与传参](src/scene_cooking.cc) · [窗口适配器](src/ui_state.cc)
+**相关文件：** [拼接与传参](src/scene_cooking.cc) · [窗口适配器](src/ui_state.cc) · [US 既有包装说明](data/text/us/game_menu_1.cc) · [EU](data/text/eu/game_menu_1.cc) · [DE](data/text/de/game_menu_1.cc)
 
 <a id="goddess-rps-options"></a>
 ### 女神猜拳显示手势与实际分支不一致

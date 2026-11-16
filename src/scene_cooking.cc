@@ -1,6 +1,7 @@
 #include "rucksack.hh"
 #include "prelude.h"
 #include "scene_cooking.hh"
+#include "config.h"
 #include "game_state.hh"
 #include "obj_palette_collection.hh"
 #include "obj_tile_collection.hh"
@@ -13713,6 +13714,7 @@ asm_unified(
     "\tlsls r0, r0, #0x18\n"
     "\tcmp r0, #0\n"
     "\tbeq .L08096772\n"
+#ifndef BUGFIX
     "\tldr r5, .L08096708 @ =gText_Cooking_WrappedGiftDescription\n"
     "\tadds r0, r5, #0\n"
     "\tbl strlen\n"
@@ -13729,6 +13731,7 @@ asm_unified(
     "\tadds r0, r0, r4\n"
     "\tadds r0, #0x84\n"
     "\tstrb r6, [r0]\n"
+#endif
     "\tmov r0, r8\n"
     "\tbl GetKind__C12RucksackItem\n"
     "\tcmp r0, #0\n"
@@ -13766,24 +13769,46 @@ asm_unified(
     "\tadds r0, r0, r4\n"
     "\tadds r0, #4\n"
     "\tstrb r6, [r0]\n"
+// Append the inventory explanation to the 128-byte buffer actually shown.
+#ifdef BUGFIX
+    "\tadd r0, sp, #4\n"
+#else
     "\tadd r0, sp, #0x84\n"
+#endif
     "\tbl strlen\n"
     "\tmov r6, sp\n"
     "\tadds r6, r6, r0\n"
+#ifdef BUGFIX
+    "\tadds r6, #4\n"
+#else
     "\tadds r6, #0x84\n"
+#endif
+#ifdef BUGFIX
+    "\tmovs r1, #0x7f\n"
+#else
     "\tmovs r1, #7\n"
+#endif
     "\tsubs r5, r1, r0\n"
     "\tcmp r5, #0\n"
     "\tbeq .L0809676E\n"
+#ifdef BUGFIX
+    "\tldr r0, .Lcooking_wrapped_description\n"
+    "\tbl strlen\n"
+#else
     "\tadd r0, sp, #4\n"
     "\tbl strlen\n"
+#endif
     "\tadds r4, r0, #0\n"
     "\tcmp r4, r5\n"
     "\tbls .L0809675E\n"
     "\tadds r4, r5, #0\n"
     ".L0809675E:\n"
     "\tadds r0, r6, #0\n"
+#ifdef BUGFIX
+    "\tldr r1, .Lcooking_wrapped_description\n"
+#else
     "\tadd r1, sp, #4\n"
+#endif
     "\tadds r2, r4, #0\n"
     "\tbl memcpy\n"
     "\tadds r1, r6, r4\n"
@@ -13890,6 +13915,9 @@ asm_unified(
     "\tmov sb, r2\n"
     "\tb .L08096846\n"
     "\t.align 2, 0\n"
+#ifdef BUGFIX
+    ".Lcooking_wrapped_description: .word gText_ItemStatus_WrappedAsPresent\n"
+#endif
     ".L08096838: .word gText_Cooking_Recipe_PageBreak\n"
     ".L0809683C: .word 0x00002B90\n"
     ".L08096840: .word 0x00002BA7\n"

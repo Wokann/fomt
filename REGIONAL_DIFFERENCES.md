@@ -81,9 +81,9 @@
 <a id="cooking-wrapped-description"></a>
 ### 料理材料包装说明
 
-料理材料选择状态 `func_080962F0` 另有一处海外显示缺陷。选中非空且已包装物品时，JP 把物品名和包装说明拼入同一个缓冲区，再交给文本窗口；海外三版先把 `A wrapped`／`Gepackt` 拷入另一个最多七字节的临时缓冲区，又将物品名拼向该临时区，但最终仍传入原来的**仅有物品名**的缓冲区。由此包装说明未进入实际显示文本；不是商品包装标志被清除。海外该函数在既有匹配快照中的代码与重定位完全一致。已追到 `func_08050DC8` 将指针直接交给 `UiStatePayload::SetText`，没有在下游补入包装说明。这里登记静态确认的显示缺陷，不扩展为材料消费／配方判定已完成审计，也未实施 BUGFIX 或运行复现。[拼接与实参](src/scene_cooking.cc) · [窗口适配器](src/ui_state.cc) · [JP 说明](data/text/jp/scene_cooking_2.cc) · [US](data/text/us/scene_cooking_2.cc) · [EU](data/text/eu/scene_cooking_2.cc) · [DE](data/text/de/scene_cooking_2.cc)
+料理材料选择状态 `func_080962F0` 另有一处海外显示缺陷。选中非空且已包装物品时，JP 把物品名和包装说明拼入同一个缓冲区，再交给文本窗口；海外三版先把 `A wrapped`／`Gepackt` 拷入另一个最多七字节的临时缓冲区，又将物品名拼向该临时区，但最终仍传入原来的**仅有物品名**的缓冲区。由此包装说明未进入实际显示文本；不是商品包装标志被清除。海外该函数在既有匹配快照中的代码与重定位完全一致。已追到 `func_08050DC8` 将指针直接交给 `UiStatePayload::SetText`，没有在下游补入包装说明。开启 BUGFIX 后，三版均在实际显示的 128 字节缓冲区内追加本作背包已有的完整包装说明；材料消费和配方判断不在这项修复的改动范围内。[拼接与实参](src/scene_cooking.cc) · [窗口适配器](src/ui_state.cc) · [JP 说明](data/text/jp/scene_cooking_2.cc) · [US](data/text/us/scene_cooking_2.cc) · [EU](data/text/eu/scene_cooking_2.cc) · [DE](data/text/de/scene_cooking_2.cc)
 
-此项尚未接入开关，后续按整个料理文件高级语言化后处理，状态见 [BUGFIX](BUGFIX.md#cooking-wrapped-description)。
+问题依据与修复方式见 [BUGFIX](BUGFIX.md#cooking-wrapped-description)。
 
 <a id="guide-name-boundaries"></a>
 ### 指南标记与名称缓冲区
