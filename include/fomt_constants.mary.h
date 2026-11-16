@@ -7041,30 +7041,17 @@ typedef enum MaryAnimalSheepGrowthStage
  *
  * 四个目标版本共用 VAR_SEASON 的取值。FoMT 引擎 Season 枚举和各 ROM 的
  * 日历格式化脚本分别确认了这一顺序。 */
-#if defined(MARY_C)
-typedef enum MarySeason
+typedef enum Season
 {
     SEASON_SPRING = 0,
     SEASON_SUMMER = 1,
     SEASON_FALL = 2,
     SEASON_WINTER = 3,
-} MarySeason;
+} Season;
 
-typedef enum MarySeasonCount
-{
-    NUM_SEASONS = 4,
-} MarySeasonCount;
-#else
-enum Season
-{
-    SEASON_SPRING = 0,
-    SEASON_SUMMER = 1,
-    SEASON_FALL = 2,
-    SEASON_WINTER = 3,
-};
-
+/* Keep the count outside Season: saved season fields are only two bits wide.
+ * 计数不纳入 Season 枚举，存档季节字段只有两位。 */
 #define NUM_SEASONS 4u
-#endif
 
 /* VAR_DAY is the one-based day within the current 30-day season. In this
  * game each season is also the calendar equivalent of a month; there is no
@@ -8694,7 +8681,7 @@ typedef enum MaryItemToolId
 
 mary_var_type(VAR_SPRING_FESTIVAL_HORSE_RACE_RESULT, MaryFestivalHorseRaceResult);
 mary_var_type(VAR_FALL_FESTIVAL_HORSE_RACE_RESULT, MaryFestivalHorseRaceResult);
-mary_var_type(VAR_SEASON, MarySeason);
+mary_var_type(VAR_SEASON, Season);
 mary_var_type(VAR_DAY, MaryDayOfMonth);
 mary_var_type(VAR_DAY_OF_WEEK, MaryDayOfWeek);
 mary_var_type(VAR_PLAYER_BIRTHDAY_DAY, MaryDayOfMonth);
@@ -9000,9 +8987,9 @@ mary_var_type(VAR_WON_VASE_PURCHASE_EVENT_STATE, MaryEventLifecycleState);
 mary_var_type(VAR_ZACK_CONGRATULATES_CATCHING_EVERY_FISH_EVENT_STATE, MaryEventLifecycleState);
 mary_var_type(VAR_ZACK_GIVES_FISHING_ROD_EVENT_STATE, MaryEventLifecycleState);
 mary_var_type(VAR_ZACK_VISITS_SICK_LILLIA_EVENT_STATE, MaryEventLifecycleState);
-mary_var_type(VAR_PLAYER_BIRTHDAY_SEASON, MarySeason);
-mary_var_type(VAR_CHILD_BIRTHDAY_SEASON, MarySeason);
-mary_var_type(VAR_WEDDING_SEASON, MarySeason);
+mary_var_type(VAR_PLAYER_BIRTHDAY_SEASON, Season);
+mary_var_type(VAR_CHILD_BIRTHDAY_SEASON, Season);
+mary_var_type(VAR_WEDDING_SEASON, Season);
 mary_var_type(VAR_STOCKING_ARTICLE_ID, MaryItemArticleId);
 mary_var_type(VAR_COOKING_FESTIVAL_PLAYER_DISH_FOOD_ID, MaryItemFoodId);
 mary_var_type(VAR_KAPPA_JEWEL_EXCHANGE_STATE, MaryEventLifecycleState);
