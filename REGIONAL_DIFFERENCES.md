@@ -71,11 +71,11 @@
 | 动物照料最高记录 | JP 读取照料记录，海外错读收获记录。 | 成绩保存正确，记录页显示错误；尚未修复。[读写证据与状态](BUGFIX.md#overseas-animal-care-record)。 |
 | 对话语言与角色 | 海外来访星期、休息日、人物指代、物品名等存在错译；US／EU 部分已调用消息仍为日文／德文，DE 联机确认仍为 Yes／No。 | 已核实对象及实际正确含义统一列在 [文本修复清单](BUGFIX.md#localization-text)，不把错误译文推断为事件条件或奖励改变。 |
 | 羊祭接待桌 | JP 的共用接待脚本 `0x0194` 分别调用牛祭、羊祭提示；US／EU／DE 两个分支共用含 Cows／Kühe（牛）的文字。直接交谈的羊祭脚本 `0x04FC` 四版均无此误称。 | 羊祭被说成牛祭，只影响提示，不改变评审动物或结果；接待分支没有年份限制。海外 BUGFIX 仿照 JP 分开消息，复用各版本已有羊祭台词。[调用与修复](BUGFIX.md#sheep-reception-text)。 |
-| DE 收获结果栏目 | 用动物照料的 Gefüttert／Vergessen（已喂食／遗忘），JP／US／EU 对应收获／失败。 | 计分仍取收获与失败次数，仅修栏目为 Geerntet／Fehler。[DE 文本](data/text/de/scene_harvesting_minigame_2.cc) · [消费者](src/scene_harvesting_minigame.cc) · [修复](BUGFIX.md#localization-text)。 |
-| 普通鱼竿说明 | US／EU 缺首行分隔，读取器越过终止零拼入下一个对象；JP／DE 有分隔。 | 补齐说明两行，保持原菜单逻辑。[说明读取](src/game_menu.cc) · [文本修复](BUGFIX.md#localization-text)。 |
-| 钓获消息行宽 | US／EU 的漂流瓶、海贼宝藏展开后超过 28 格；DE 四种长鱼名的模板多一尾空格。 | 回绕同一行覆盖开头；仅修这些模板，不添加自动换页。[消息与修复](BUGFIX.md#localization-text)。 |
-| 换行残留与满行空格 | US／EU／DE 的部分脚本含字面量 `ret>` 或 `<RET>`，四版均发现正文满行后还有空格的情况。 | 记号会按普通字符显示，多余空格会覆盖行首；仅修已核实的对应原文，不给引擎增加新控制符。[范围与依据](BUGFIX.md#localization-text)。 |
-| 凯贺卡签名 | US／EU／DE 的原 ROM 均含制表字节 `09`；JP 直接用空格排签名。 | 源码转义写法虽不同，实际前三版字节相同。指南不解释制表控制，保留真实缩进并去除该前缀。[页面](data/text/us/reference_guide/birthday_card_kai.cc) · [修复](BUGFIX.md#localization-text)。 |
+| DE 收获结果栏目 | 用动物照料的 Gefüttert／Vergessen（已喂食／遗忘），JP／US／EU 对应收获／失败。 | 计分仍取收获与失败次数，仅修栏目为 Geerntet／Fehler。[DE 文本](data/text/de/scene_harvesting_minigame_2.cc) · [消费者](src/scene_harvesting_minigame.cc) · [修复](BUGFIX.md#de-harvest-labels)。 |
+| 普通鱼竿说明 | US／EU 缺首行分隔，读取器越过终止零拼入下一个对象；JP／DE 有分隔。 | 补齐说明两行，保持原菜单逻辑。[说明读取](src/game_menu.cc) · [文本修复](BUGFIX.md#fishing-rod-lines)。 |
+| 钓获消息行宽 | US／EU 的漂流瓶、海贼宝藏展开后超过 28 格；DE 四种长鱼名的模板多一尾空格。 | 回绕同一行覆盖开头；仅修这些模板，不添加自动换页。[消息与修复](BUGFIX.md#fishing-message-width)。 |
+| 换行残留与满行空格 | US／EU／DE 的部分脚本含字面量 `ret>` 或 `<RET>`，四版均发现正文满行后还有空格的情况。 | 记号会按普通字符显示，多余空格会覆盖行首；仅修已核实的对应原文，不给引擎增加新控制符。[残留控制记号](BUGFIX.md#text-control-literals) · [满行尾空格](BUGFIX.md#text-trailing-space)。 |
+| 凯贺卡签名 | US／EU／DE 的原 ROM 均含制表字节 `09`；JP 直接用空格排签名。 | 源码转义写法虽不同，实际前三版字节相同。指南不解释制表控制，保留真实缩进并去除该前缀。[页面](data/text/us/reference_guide/birthday_card_kai.cc) · [修复](BUGFIX.md#kai-card-tab)。 |
 | 联机商人英文名 | GBA 海外姓名栏为 Lou，英语自我介绍为 Van；跨作品还存在 Ruby／Lou 的命名沿革。 | 采用本作自我介绍及当时商人的 Van，不解释为误用了重制版另一角色的名字。[历史与取舍](BUGFIX.md#van-name-history)。 |
 
 <a id="cooking-wrapped-description"></a>
@@ -220,7 +220,7 @@ Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silve
 
 面粉、烤苹果和餐包统一使用 `Flour`、`BakedApple`、`DinnerRoll` 标签；BUGFIX 只选择显示文本，不为原版误译或错拼另建物品标签。德版 `Apfelauflauf` 保留现有本地化名称。
 
-差异按默认原版归类；开关后的实现状态统一以 [BUGFIX 验收记录](BUGFIX.md#本轮验收记录) 为准。不把旧快照或局部函数匹配写成本轮四版整 ROM 通过。
+差异按默认原版归类；开关后的实现状态统一以 [BUGFIX 验收记录](BUGFIX.md#fish-record-names) 为准。不把旧快照或局部函数匹配写成本轮四版整 ROM 通过。
 
 未具名资源的内部内容、计算形成的间接引用、特定输入／断线时序和 GameCube 对端实际名称输入上限，不由这份静态差异表全部保证。只有候选字节不同而未追清用途的内容，不列为已确认玩法差异；也不以这里的条目数宣称全 ROM 差异已经穷尽。
 
