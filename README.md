@@ -14,6 +14,20 @@ It builds the following ROM:
 
 [fomt_us.gba]: https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1249
 
+## Build environments
+
+The same Makefile supports Linux/WSL and native Windows through MSYS2 MINGW64.
+Install GNU Make, Bash, a C/C++17 host compiler, pkg-config, libpng/zlib, and
+devkitARM, with its `bin` directory on `PATH`. Install the sibling `agbcc`
+toolchain with `sh install.sh /path/to/fomt` from the compiler directory.
+Windows needs native `agbcc.exe`, `old_agbcc.exe`, `agbcc_arm.exe`, `agbcp.exe`
+and `agbcp_arm.exe`; Linux executables cannot serve as the Windows toolchain.
+Mary and the other project tools are built automatically from source.
+
+Run `make GAME_REGION=JP clean` followed by `make -j16 GAME_REGION=JP compare`,
+substituting the desired region. Clean each region before switching host
+environments because they use the same `build/<region>` directory.
+
 ## Region selection
 
 The build configuration follows the `pokeruby` multi-version model. Select a
@@ -32,7 +46,7 @@ make fomt_de
 ```
 
 All four `fomt_*` targets build their region and run its SHA-1 comparison.
-Use `make -j4 fomt_jp` (or the corresponding regional target) under WSL.
+Use `make -j16 fomt_jp` (or the corresponding regional target) in either environment.
 `compare_eu` and `compare_de` are aliases for their regional comparisons.
 
 The build defines exactly one of `REGION_US`, `REGION_JP`, `REGION_EU`, and
