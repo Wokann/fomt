@@ -2860,10 +2860,18 @@ mary_text_table
         "　けどね」　　　　　　　　　\r\n"
         "「最初のわたしの最大体力って\r\n"
         "　どれだけあるの？」　　　　\r\n"
+    // Initial stamina is 150; ten berries raise it to 250 (about 1.67 times).
+#ifdef BUGFIX
+        "「１５０だよ」　　　　　　　\r\n"
+        "「ってことは、最初の\r\n"
+        "　１．６７倍までふえるんだ。\r\n"
+        "　がんばってさがそっと」{Press}";
+#else
         "「１００だよ」　　　　　　　\r\n"
         "「ってことは、最初の２倍まで\r\n"
         "　ふえるんだ。がんばってさが\r\n"
         "　そっと」{Press}";
+#endif
 
     const char gText_TV_LifeOnTheFarm_Beginner_WinterDay22[] =
         "♡♡はじめての♡♡♡♡♡♡♡\r\n"

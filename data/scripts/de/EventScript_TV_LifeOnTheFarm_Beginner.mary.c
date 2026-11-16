@@ -2695,9 +2695,18 @@ mary_text_table
         " zusammen 100.\"\r\n"
         "\"Wie viel habe ich\r\n"
         " am Anfang?\"\r\n"
+    // Initial stamina is 150; ten berries add 100, an increase of about 66.67%.
+#ifdef BUGFIX
+        "\"150.\"\r\n"
+#else
         "\"100.\"\r\n"
+#endif
         "\"Also kann ich um\"\r\n"
+#ifdef BUGFIX
+        " 66,67 % steigern.\r\n"
+#else
         " 100 % steigern.\r\n"
+#endif
         " Super!\"{Press}";
 
     const char gText_TV_LifeOnTheFarm_Beginner_WinterDay22[] =
