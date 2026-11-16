@@ -62,7 +62,9 @@ graphics, and other future regional assets in the same
 Script bytecode and its referenced text are treated as one region-specific
 block when the text differs substantially.  Mary compiles every
 `data/scripts/<region>/*.mary.c` source into one packed RIFF stream and a
-relocatable script-pointer table.  Each regional directory keeps its callable
+relocatable script-pointer table. The portable C++17 tool in `tools/mary/`
+is built automatically by Make; Rust and a prebuilt executable are not required.
+Each regional directory keeps its callable
 and slot-table headers beside the scripts; the C/C++-shared
 `include/fomt_constants.mary.h` is passed to Mary explicitly.  The generated
 assembly is linked by the regional LDS files, so matching opcodes alone are

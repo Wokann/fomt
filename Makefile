@@ -188,7 +188,9 @@ GUIDE_GENERATED_SOURCE := $(BUILD_DIR)/src/reference_guide.cc
 GUIDE_GENERATED_OBJ := $(BUILD_DIR)/src/reference_guide.o
 GUIDE_GENERATED_DEP := $(BUILD_DIR)/src/reference_guide.d
 
-MARY_TOOL := tools/mary/mary.exe
+MARY_TOOL_DIR := tools/mary
+MARY_TOOL := $(MARY_TOOL_DIR)/mary$(EXE)
+MARY_TOOL_SOURCES := $(wildcard $(MARY_TOOL_DIR)/src/*.cc $(MARY_TOOL_DIR)/src/*.hh) $(MARY_TOOL_DIR)/Makefile
 MARY_SOURCE_DIR := data/scripts/$(REGION_DIR)
 MARY_OUTPUT_DIR := $(BUILD_DIR)/data/scripts
 MARY_LIBRARY := $(MARY_SOURCE_DIR)/fomt_callables.mary.h
@@ -221,6 +223,9 @@ $(GBAFIX): $(GBAFIX_DIR)/gbafix.c $(GBAFIX_DIR)/Makefile
 
 $(SCANINC): $(SCANINC_SOURCES)
 	@$(MAKE) -C $(SCANINC_DIR) $(notdir $@)
+
+$(MARY_TOOL): $(MARY_TOOL_SOURCES)
+	@$(MAKE) -C $(MARY_TOOL_DIR) $(notdir $@)
 
 $(FOMT_LZ_TOOL): tools/fomt_lz.c
 	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
