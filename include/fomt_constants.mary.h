@@ -7093,6 +7093,96 @@ typedef enum MaryDayOfMonth
     DAY_30 = 30,
 } MaryDayOfMonth;
 
+/* Calendar encodings. DATE_* event constants use zero-based annual indices;
+ * BIRTHDAY_* and SPECIALDAY_* use packed one-based NPC dates. Neither
+ * includes a year. A packed birthday is not a saved GameDate's zero-based day.
+ *
+ * 日期编码。DATE_* 节日／事件常量是从 0 开始的年内索引；BIRTHDAY_* 是
+ * NPC 表中日期从 1 开始的打包码（含 SPECIALDAY_*）。两者都不含年份；打包码不等于存档
+ * GameDate 中从 0 开始的日期字段。 */
+#define DATE_FESTIVAL(season, day)    ((season) * 30 + (day) - 1)
+#define DATE_BIRTHDAY(season, day)    ((season) | ((day) << 2))
+#define DATE_SPECIALDAY(season, day)  ((season) | ((day) << 2))
+
+/* These reverse macros accept only festival-style annual indices.
+ * 以下反向宏只接收节日格式的年内索引，不接收生日打包码。 */
+#define SEASON_OF(date)  ((date) / 30)
+#define DAY_OF(date)     ((date) % 30 + 1)
+
+#define DATE_NEW_YEAR_FESTIVAL      DATE_FESTIVAL(SEASON_SPRING, DAY_01)
+#define DATE_SPRING_THANKSGIVING    DATE_FESTIVAL(SEASON_SPRING, DAY_14)
+#define DATE_SPRING_HORSE_RACE      DATE_FESTIVAL(SEASON_SPRING, DAY_18)
+#define DATE_COOKING_FESTIVAL       DATE_FESTIVAL(SEASON_SPRING, DAY_22)
+#define DATE_BEACH_DAY              DATE_FESTIVAL(SEASON_SUMMER, DAY_01)
+#define DATE_CHICKEN_FESTIVAL       DATE_FESTIVAL(SEASON_SUMMER, DAY_07)
+#define DATE_COW_FESTIVAL           DATE_FESTIVAL(SEASON_SUMMER, DAY_20)
+#define DATE_FIREWORKS_FESTIVAL     DATE_FESTIVAL(SEASON_SUMMER, DAY_24)
+#define DATE_MUSIC_FESTIVAL         DATE_FESTIVAL(SEASON_FALL, DAY_03)
+#define DATE_HARVEST_FESTIVAL       DATE_FESTIVAL(SEASON_FALL, DAY_09)
+#define DATE_FULL_MOON_FESTIVAL     DATE_FESTIVAL(SEASON_FALL, DAY_13)
+#define DATE_FALL_HORSE_RACE        DATE_FESTIVAL(SEASON_FALL, DAY_18)
+#define DATE_SHEEP_FESTIVAL         DATE_FESTIVAL(SEASON_FALL, DAY_21)
+#define DATE_PUMPKIN_FESTIVAL       DATE_FESTIVAL(SEASON_FALL, DAY_30)
+#define DATE_WINTER_THANKSGIVING    DATE_FESTIVAL(SEASON_WINTER, DAY_14)
+#define DATE_STARRY_NIGHT_FESTIVAL  DATE_FESTIVAL(SEASON_WINTER, DAY_24)
+#define DATE_YEAR_END_GATHERING     DATE_FESTIVAL(SEASON_WINTER, DAY_30)
+#define DATE_THOMAS_STOCKING_GIFT   DATE_FESTIVAL(SEASON_WINTER, DAY_25)
+
+/* Alternate birthdays apply only when the player shares the usual birthday.
+ * 备用生日只在玩家生日与通常生日重合时使用。 */
+#define BIRTHDAY_LILLIA                     DATE_BIRTHDAY(SEASON_SPRING, DAY_19)
+#define BIRTHDAY_RICK                       DATE_BIRTHDAY(SEASON_FALL, DAY_27)
+#define BIRTHDAY_POPURI                     DATE_BIRTHDAY(SEASON_SUMMER, DAY_03)
+#define BIRTHDAY_POPURI_ALTERNATE           DATE_BIRTHDAY(SEASON_SUMMER, DAY_10)
+#define BIRTHDAY_BARLEY                     DATE_BIRTHDAY(SEASON_SPRING, DAY_17)
+#define BIRTHDAY_MAY                        DATE_BIRTHDAY(SEASON_WINTER, DAY_26)
+#define BIRTHDAY_SAIBARA                    DATE_BIRTHDAY(SEASON_SPRING, DAY_11)
+#define BIRTHDAY_GRAY                       DATE_BIRTHDAY(SEASON_WINTER, DAY_06)
+#define BIRTHDAY_DUKE                       DATE_BIRTHDAY(SEASON_WINTER, DAY_15)
+#define BIRTHDAY_MANNA                      DATE_BIRTHDAY(SEASON_FALL, DAY_11)
+#define BIRTHDAY_BASIL                      DATE_BIRTHDAY(SEASON_SUMMER, DAY_11)
+#define BIRTHDAY_ANNA                       DATE_BIRTHDAY(SEASON_FALL, DAY_23)
+#define BIRTHDAY_MARY                       DATE_BIRTHDAY(SEASON_WINTER, DAY_20)
+#define BIRTHDAY_MARY_ALTERNATE             DATE_BIRTHDAY(SEASON_WINTER, DAY_23)
+#define BIRTHDAY_THOMAS                     DATE_BIRTHDAY(SEASON_SUMMER, DAY_25)
+#define BIRTHDAY_HARRIS                     DATE_BIRTHDAY(SEASON_SUMMER, DAY_04)
+#define BIRTHDAY_ELLEN                      DATE_BIRTHDAY(SEASON_WINTER, DAY_13)
+#define BIRTHDAY_STU                        DATE_BIRTHDAY(SEASON_FALL, DAY_05)
+#define BIRTHDAY_JEFF                       DATE_BIRTHDAY(SEASON_WINTER, DAY_29)
+#define BIRTHDAY_SASHA                      DATE_BIRTHDAY(SEASON_SPRING, DAY_30)
+#define BIRTHDAY_KAREN                      DATE_BIRTHDAY(SEASON_FALL, DAY_15)
+#define BIRTHDAY_KAREN_ALTERNATE            DATE_BIRTHDAY(SEASON_FALL, DAY_23)
+#define BIRTHDAY_DOCTOR                     DATE_BIRTHDAY(SEASON_FALL, DAY_19)
+#define BIRTHDAY_ELLI                       DATE_BIRTHDAY(SEASON_SPRING, DAY_16)
+#define BIRTHDAY_ELLI_ALTERNATE             DATE_BIRTHDAY(SEASON_SPRING, DAY_20)
+#define BIRTHDAY_CARTER                     DATE_BIRTHDAY(SEASON_FALL, DAY_20)
+#define BIRTHDAY_CLIFF                      DATE_BIRTHDAY(SEASON_SUMMER, DAY_06)
+#define BIRTHDAY_DOUG                       DATE_BIRTHDAY(SEASON_WINTER, DAY_11)
+#define BIRTHDAY_ANN                        DATE_BIRTHDAY(SEASON_SUMMER, DAY_17)
+#define BIRTHDAY_ANN_ALTERNATE              DATE_BIRTHDAY(SEASON_SUMMER, DAY_22)
+#define BIRTHDAY_KAI                        DATE_BIRTHDAY(SEASON_SUMMER, DAY_22)
+#define BIRTHDAY_GOTZ                       DATE_BIRTHDAY(SEASON_FALL, DAY_02)
+#define BIRTHDAY_ZACK                       DATE_BIRTHDAY(SEASON_SUMMER, DAY_29)
+#define BIRTHDAY_WON                        DATE_BIRTHDAY(SEASON_WINTER, DAY_19)
+#define BIRTHDAY_HARVEST_GODDESS            DATE_BIRTHDAY(SEASON_SPRING, DAY_08)
+#define BIRTHDAY_HARVEST_GODDESS_ALTERNATE  DATE_BIRTHDAY(SEASON_SPRING, DAY_09)
+#define BIRTHDAY_STAID                      DATE_BIRTHDAY(SEASON_SPRING, DAY_15)
+#define BIRTHDAY_NAPPY                      DATE_BIRTHDAY(SEASON_WINTER, DAY_22)
+#define BIRTHDAY_BOLD                       DATE_BIRTHDAY(SEASON_SPRING, DAY_04)
+#define BIRTHDAY_CHEF                       DATE_BIRTHDAY(SEASON_FALL, DAY_14)
+#define BIRTHDAY_AQUA                       DATE_BIRTHDAY(SEASON_SPRING, DAY_26)
+#define BIRTHDAY_HOGGY                      DATE_BIRTHDAY(SEASON_FALL, DAY_10)
+#define BIRTHDAY_TIMID                      DATE_BIRTHDAY(SEASON_SUMMER, DAY_16)
+
+/* Original special-day fields. Van and Ruby use birthday-gift checks;
+ * Gourmet/Kappa gameplay use is unconfirmed. The bytes are unchanged.
+ * 原表特殊日期字段。Van／Ruby 参与生日赠礼判断，Gourmet／Kappa 的玩法
+ * 调用尚未确认。仅调整命名分类，不改变原字节或事件逻辑。 */
+#define SPECIALDAY_GOURMET      DATE_SPECIALDAY(SEASON_SPRING, DAY_19)
+#define SPECIALDAY_KAPPA        DATE_SPECIALDAY(SEASON_SPRING, DAY_19)
+#define SPECIALDAY_VAN          DATE_SPECIALDAY(SEASON_SPRING, DAY_19)
+#define SPECIALDAY_LOU_OR_RUBY  DATE_SPECIALDAY(SEASON_SPRING, DAY_19)
+
 /* VAR_DAY_OF_WEEK values are shared by all four targets. Calendar scripts
  * map every value directly to the corresponding localized weekday text.
  *
@@ -7474,6 +7564,7 @@ typedef enum MaryProductId
     PRODUCT_NONE = 0x67,
 } MaryProductId;
 
+/* Number of physical product records, excluding the sentinel. 不含哨兵的产品记录数。 */
 typedef enum MaryProductCount
 {
     NUM_PRODUCTS = 0x67,

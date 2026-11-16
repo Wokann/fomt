@@ -5,49 +5,49 @@
 #include FOMT_TEXT_INCLUDE(npc_collection.cc)
 
 CharacterNameEntry const gCharacterNameEntries[] = {
-    { gText_CharacterName_Empty, 0x00, 0x00 },            // ID 0
-    { gText_CharacterName_Lillia, 0x4C, 0x00 },          // CHARACTER_LILLIA
-    { gText_CharacterName_Rick, 0x6E, 0x00 },            // CHARACTER_RICK
-    { gText_CharacterName_Popuri, 0x0D, 0x29 },          // CHARACTER_POPURI
-    { gText_CharacterName_Barley, 0x44, 0x00 },          // CHARACTER_BARLEY
-    { gText_CharacterName_May, 0x6B, 0x00 },             // CHARACTER_MAY
-    { gText_CharacterName_Saibara, 0x2C, 0x00 },         // CHARACTER_SAIBARA
-    { gText_CharacterName_Gray, 0x1B, 0x00 },            // CHARACTER_GRAY
-    { gText_CharacterName_Duke, 0x3F, 0x00 },            // CHARACTER_DUKE
-    { gText_CharacterName_Manna, 0x2E, 0x00 },           // CHARACTER_MANNA
-    { gText_CharacterName_Basil, 0x2D, 0x00 },           // CHARACTER_BASIL
-    { gText_CharacterName_Anna, 0x5E, 0x00 },            // CHARACTER_ANNA
-    { gText_CharacterName_Mary, 0x53, 0x5F },            // CHARACTER_MARY
-    { gText_CharacterName_Thomas, 0x65, 0x00 },          // CHARACTER_THOMAS
-    { gText_CharacterName_Harris, 0x11, 0x00 },          // CHARACTER_HARRIS
-    { gText_CharacterName_Ellen, 0x37, 0x00 },           // CHARACTER_ELLEN
-    { gText_CharacterName_Stu, 0x16, 0x00 },             // CHARACTER_STU
-    { gText_CharacterName_Jeff, 0x77, 0x00 },            // CHARACTER_JEFF
-    { gText_CharacterName_Sasha, 0x78, 0x00 },           // CHARACTER_SASHA
-    { gText_CharacterName_Karen, 0x3E, 0x5E },           // CHARACTER_KAREN
-    { gText_CharacterName_Doctor, 0x4E, 0x00 },          // CHARACTER_DOCTOR
-    { gText_CharacterName_Elli, 0x40, 0x50 },            // CHARACTER_ELLI
-    { gText_CharacterName_Carter, 0x52, 0x00 },          // CHARACTER_CARTER
-    { gText_CharacterName_Cliff, 0x19, 0x00 },           // CHARACTER_CLIFF
-    { gText_CharacterName_Doug, 0x2F, 0x00 },            // CHARACTER_DOUG
-    { gText_CharacterName_Ann, 0x45, 0x59 },             // CHARACTER_ANN
-    { gText_CharacterName_Kai, 0x59, 0x00 },             // CHARACTER_KAI
-    { gText_CharacterName_Gotz, 0x0A, 0x00 },            // CHARACTER_GOTZ
-    { gText_CharacterName_Zack, 0x75, 0x00 },            // CHARACTER_ZACK
-    { gText_CharacterName_Won, 0x4F, 0x00 },             // CHARACTER_WON
-    { gText_CharacterName_Gourmet, 0x4C, 0x00 },         // CHARACTER_GOURMET
-    { gText_CharacterName_HarvestGoddess, 0x20, 0x24 },  // CHARACTER_HARVEST_GODDESS
-    { gText_CharacterName_Kappa, 0x4C, 0x00 },           // CHARACTER_KAPPA
-    { gText_CharacterName_Van, 0x4C, 0x00 },             // CHARACTER_VAN
-    { gText_CharacterName_LouOrRuby, 0x4C, 0x00 },       // CHARACTER_LOU_OR_RUBY
-    { gText_CharacterName_Empty, 0x00, 0x00 },           // CHARACTER_CHILD
-    { gText_CharacterName_Staid, 0x3C, 0x00 },           // CHARACTER_STAID
-    { gText_CharacterName_Nappy, 0x5B, 0x00 },           // CHARACTER_NAPPY
-    { gText_CharacterName_Bold, 0x10, 0x00 },            // CHARACTER_BOLD
-    { gText_CharacterName_Chef, 0x3A, 0x00 },            // CHARACTER_CHEF
-    { gText_CharacterName_Aqua, 0x68, 0x00 },            // CHARACTER_AQUA
-    { gText_CharacterName_Hoggy, 0x2A, 0x00 },           // CHARACTER_HOGGY
-    { gText_CharacterName_Timid, 0x41, 0x00 },           // CHARACTER_TIMID
+    { gText_CharacterName_Empty,          0,                        0                                  }, // ID 0
+    { gText_CharacterName_Lillia,         BIRTHDAY_LILLIA,          0                                  }, // CHARACTER_LILLIA
+    { gText_CharacterName_Rick,           BIRTHDAY_RICK,            0                                  }, // CHARACTER_RICK
+    { gText_CharacterName_Popuri,         BIRTHDAY_POPURI,          BIRTHDAY_POPURI_ALTERNATE          }, // CHARACTER_POPURI
+    { gText_CharacterName_Barley,         BIRTHDAY_BARLEY,          0                                  }, // CHARACTER_BARLEY
+    { gText_CharacterName_May,            BIRTHDAY_MAY,             0                                  }, // CHARACTER_MAY
+    { gText_CharacterName_Saibara,        BIRTHDAY_SAIBARA,         0                                  }, // CHARACTER_SAIBARA
+    { gText_CharacterName_Gray,           BIRTHDAY_GRAY,            0                                  }, // CHARACTER_GRAY
+    { gText_CharacterName_Duke,           BIRTHDAY_DUKE,            0                                  }, // CHARACTER_DUKE
+    { gText_CharacterName_Manna,          BIRTHDAY_MANNA,           0                                  }, // CHARACTER_MANNA
+    { gText_CharacterName_Basil,          BIRTHDAY_BASIL,           0                                  }, // CHARACTER_BASIL
+    { gText_CharacterName_Anna,           BIRTHDAY_ANNA,            0                                  }, // CHARACTER_ANNA
+    { gText_CharacterName_Mary,           BIRTHDAY_MARY,            BIRTHDAY_MARY_ALTERNATE            }, // CHARACTER_MARY
+    { gText_CharacterName_Thomas,         BIRTHDAY_THOMAS,          0                                  }, // CHARACTER_THOMAS
+    { gText_CharacterName_Harris,         BIRTHDAY_HARRIS,          0                                  }, // CHARACTER_HARRIS
+    { gText_CharacterName_Ellen,          BIRTHDAY_ELLEN,           0                                  }, // CHARACTER_ELLEN
+    { gText_CharacterName_Stu,            BIRTHDAY_STU,             0                                  }, // CHARACTER_STU
+    { gText_CharacterName_Jeff,           BIRTHDAY_JEFF,            0                                  }, // CHARACTER_JEFF
+    { gText_CharacterName_Sasha,          BIRTHDAY_SASHA,           0                                  }, // CHARACTER_SASHA
+    { gText_CharacterName_Karen,          BIRTHDAY_KAREN,           BIRTHDAY_KAREN_ALTERNATE           }, // CHARACTER_KAREN
+    { gText_CharacterName_Doctor,         BIRTHDAY_DOCTOR,          0                                  }, // CHARACTER_DOCTOR
+    { gText_CharacterName_Elli,           BIRTHDAY_ELLI,            BIRTHDAY_ELLI_ALTERNATE            }, // CHARACTER_ELLI
+    { gText_CharacterName_Carter,         BIRTHDAY_CARTER,          0                                  }, // CHARACTER_CARTER
+    { gText_CharacterName_Cliff,          BIRTHDAY_CLIFF,           0                                  }, // CHARACTER_CLIFF
+    { gText_CharacterName_Doug,           BIRTHDAY_DOUG,            0                                  }, // CHARACTER_DOUG
+    { gText_CharacterName_Ann,            BIRTHDAY_ANN,             BIRTHDAY_ANN_ALTERNATE             }, // CHARACTER_ANN
+    { gText_CharacterName_Kai,            BIRTHDAY_KAI,             0                                  }, // CHARACTER_KAI
+    { gText_CharacterName_Gotz,           BIRTHDAY_GOTZ,            0                                  }, // CHARACTER_GOTZ
+    { gText_CharacterName_Zack,           BIRTHDAY_ZACK,            0                                  }, // CHARACTER_ZACK
+    { gText_CharacterName_Won,            BIRTHDAY_WON,             0                                  }, // CHARACTER_WON
+    { gText_CharacterName_Gourmet,        SPECIALDAY_GOURMET,       0                                  }, // CHARACTER_GOURMET
+    { gText_CharacterName_HarvestGoddess, BIRTHDAY_HARVEST_GODDESS, BIRTHDAY_HARVEST_GODDESS_ALTERNATE }, // CHARACTER_HARVEST_GODDESS
+    { gText_CharacterName_Kappa,          SPECIALDAY_KAPPA,         0                                  }, // CHARACTER_KAPPA
+    { gText_CharacterName_Van,            SPECIALDAY_VAN,           0                                  }, // CHARACTER_VAN
+    { gText_CharacterName_LouOrRuby,      SPECIALDAY_LOU_OR_RUBY,   0                                  }, // CHARACTER_LOU_OR_RUBY
+    { gText_CharacterName_Empty,          0,                        0                                  }, // CHARACTER_CHILD
+    { gText_CharacterName_Staid,          BIRTHDAY_STAID,           0                                  }, // CHARACTER_STAID
+    { gText_CharacterName_Nappy,          BIRTHDAY_NAPPY,           0                                  }, // CHARACTER_NAPPY
+    { gText_CharacterName_Bold,           BIRTHDAY_BOLD,            0                                  }, // CHARACTER_BOLD
+    { gText_CharacterName_Chef,           BIRTHDAY_CHEF,            0                                  }, // CHARACTER_CHEF
+    { gText_CharacterName_Aqua,           BIRTHDAY_AQUA,            0                                  }, // CHARACTER_AQUA
+    { gText_CharacterName_Hoggy,          BIRTHDAY_HOGGY,           0                                  }, // CHARACTER_HOGGY
+    { gText_CharacterName_Timid,          BIRTHDAY_TIMID,           0                                  }, // CHARACTER_TIMID
 };
 
 #include "game_state.hh"

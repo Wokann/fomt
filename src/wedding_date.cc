@@ -6,39 +6,39 @@
 
 // Days are one-based constants; the sorted lookup key counts from Spring 1 = 0.
 u8 const gUnk_FieldRenderSortedValues[] = {
-    SEASON_SPRING * 30 + DAY_01 - 1,
-    SEASON_SPRING * 30 + DAY_14 - 1,
-    SEASON_SPRING * 30 + DAY_17 - 1,
-    SEASON_SPRING * 30 + DAY_18 - 1,
-    SEASON_SPRING * 30 + DAY_21 - 1,
-    SEASON_SPRING * 30 + DAY_22 - 1,
-    SEASON_SPRING * 30 + DAY_30 - 1,
-    SEASON_SUMMER * 30 + DAY_01 - 1,
-    SEASON_SUMMER * 30 + DAY_06 - 1,
-    SEASON_SUMMER * 30 + DAY_07 - 1,
-    SEASON_SUMMER * 30 + DAY_19 - 1,
-    SEASON_SUMMER * 30 + DAY_20 - 1,
-    SEASON_SUMMER * 30 + DAY_24 - 1,
-    SEASON_FALL * 30 + DAY_02 - 1,
-    SEASON_FALL * 30 + DAY_03 - 1,
-    SEASON_FALL * 30 + DAY_08 - 1,
-    SEASON_FALL * 30 + DAY_09 - 1,
-    SEASON_FALL * 30 + DAY_13 - 1,
-    SEASON_FALL * 30 + DAY_17 - 1,
-    SEASON_FALL * 30 + DAY_18 - 1,
-    SEASON_FALL * 30 + DAY_20 - 1,
-    SEASON_FALL * 30 + DAY_21 - 1,
+    DATE_NEW_YEAR_FESTIVAL,
+    DATE_SPRING_THANKSGIVING,
+    DATE_SPRING_HORSE_RACE - 1,
+    DATE_SPRING_HORSE_RACE,
+    DATE_COOKING_FESTIVAL - 1,
+    DATE_COOKING_FESTIVAL,
+    DATE_BEACH_DAY - 1,
+    DATE_BEACH_DAY,
+    DATE_CHICKEN_FESTIVAL - 1,
+    DATE_CHICKEN_FESTIVAL,
+    DATE_COW_FESTIVAL - 1,
+    DATE_COW_FESTIVAL,
+    DATE_FIREWORKS_FESTIVAL,
+    DATE_MUSIC_FESTIVAL - 1,
+    DATE_MUSIC_FESTIVAL,
+    DATE_HARVEST_FESTIVAL - 1,
+    DATE_HARVEST_FESTIVAL,
+    DATE_FULL_MOON_FESTIVAL,
+    DATE_FALL_HORSE_RACE - 1,
+    DATE_FALL_HORSE_RACE,
+    DATE_SHEEP_FESTIVAL - 1,
+    DATE_SHEEP_FESTIVAL,
 #if !defined(REGION_JP) || defined(BUGFIX)
     // JP omits the Pumpkin Festival from its wedding exclusions.
-    SEASON_FALL * 30 + DAY_30 - 1,
+    DATE_PUMPKIN_FESTIVAL,
 #endif
-    SEASON_WINTER * 30 + DAY_14 - 1,
-    SEASON_WINTER * 30 + DAY_24 - 1,
+    DATE_WINTER_THANKSGIVING,
+    DATE_STARRY_NIGHT_FESTIVAL,
 #if !defined(REGION_JP) || defined(BUGFIX)
     // JP also omits Thomas's stocking-gift day.
-    SEASON_WINTER * 30 + DAY_25 - 1,
+    DATE_THOMAS_STOCKING_GIFT,
 #endif
-    SEASON_WINTER * 30 + DAY_30 - 1,
+    DATE_YEAR_END_GATHERING,
 };
 
 bool IsWeddingDateUnavailable(GameDate const & date)

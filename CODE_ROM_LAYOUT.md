@@ -2,7 +2,7 @@
 
 ### 婚期事件
 
-`UpdateScriptRomanceEvent` 保留有边界的汇编。默认分别选择原版 JP 与海外实现；JP 的 `BUGFIX` 选择现有海外计算流程，并在 `wedding_date.cc` 的原表中补入秋 30 日和冬 25 日，由 25 项变为 27 项；关闭开关保留原表，海外表不变。表项以既有季节、日期常量写成 `SEASON_* * 30 + DAY_* - 1`，保持从春 1 起算的零基年内索引与排序。地区辅助函数仍使用各自版本。函数及相邻内容靠现有对象顺序和符号链接，不新增 LDS 条目或地址补正。
+`UpdateScriptRomanceEvent` 保留有边界的汇编。默认分别选择原版 JP 与海外实现；JP 的 `BUGFIX` 选择现有海外计算流程，并在 `wedding_date.cc` 的原表中补入秋 30 日和冬 25 日，由 25 项变为 27 项；关闭开关保留原表，海外表不变。节日、生日及特殊日定义统一位于 `include/fomt_constants.mary.h`，与 Mary 的 FoMT 常量头同步。婚期表直接引用零基年内索引的具名节日／事件常量，表中相邻节日前一天以对应具名日期减 1 表示；日历通过仅接收年内索引的 `SEASON_OF`／`DAY_OF` 取得季节及一基日期。NPC 表的生日及备用生日使用 `DATE_BIRTHDAY` 编码，Gourmet、Kappa、Van、LouOrRuby 的原日期字段单列为 `SPECIALDAY_*` 并使用同一位格式的 `DATE_SPECIALDAY`。Van／Ruby 的赠礼脚本确实读取该日期并应用生日答谢及五倍好感变化，Gourmet／Kappa 的玩法调用尚未确认。地区辅助函数仍使用各自版本。函数及相邻内容靠现有对象顺序和符号链接，不新增 LDS 条目或地址补正。
 
 | 区域 | 默认起点 | 默认终点（不含） |
 | --- | --- | --- |
