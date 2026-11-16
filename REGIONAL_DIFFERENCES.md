@@ -15,7 +15,7 @@
 | 婚期的生日冲突 | 订婚后查询已婚配偶；生日与避让表按固定顺序各检查，顺延后不重新检查全部条件 | 使用本次婚约对象，并在每次顺延后重新检查双方生日与避让表 | JP 可能安排在未婚妻生日，或在避开其他日期后落到玩家生日。[BUGFIX 修复](BUGFIX.md#jp-wedding-birthdays) |
 | 医生的两段下午行程 | 两套外出日程的切换点为 600、627 | 切换点为 601、628 | 调度使用从 06:00 起算的分钟，因此从 16:00／16:27 改为 16:01／16:28；相同路径晚一分钟开始及结束。仅适用于选中这两套日程时，不能推广为医生所有活动都推迟。[日程选择与路径](src/npc_schedule_doctor.cc) · [时间比较](src/npc_schedule_search.cc) · [分钟换算](src/npc_entity.cc) |
 | 扩建畜棚的三格调查属性 | 网格坐标 `(11,6)`、`(11,7)`、`(11,8)` 使用属性项 3，调查脚本为 `0x016B` | 三格改为属性项 2，调查脚本为 0 | 两属性项的阻挡位相同，仅取消这三格的“木桶”调查文本，不是允许穿过墙壁。坐标以 8 像素格计、从 0 起算。[网格和属性](src/map_terrain.cc) · [地图选择](src/map_selection.c) · [调查脚本](data/scripts/jp/EventScript_LocationInteraction_InspectTownAndFarmBuildingBarrel.mary.c) |
-| 动物照料最高记录 | 从动物照料记录字段读取 | 动物照料栏再次读取收获记录字段 | 海外版两个小游戏栏目显示相同成绩，但动物照料的真实成绩仍独立保存；不是没有结算小游戏奖励。[待修复问题与读写证据](BUGFIX.md#overseas-animal-care-record) |
+| 动物照料最高记录 | 从动物照料记录字段读取 | 动物照料栏再次读取收获记录字段 | 海外版两个小游戏栏目显示相同成绩，但动物照料的真实成绩仍独立保存；不是没有结算小游戏奖励。[BUGFIX 与读写证据](BUGFIX.md#overseas-animal-care-record) |
 | 获奖牛羊的出售价格 | 好感度超过 200 且获奖时，累计户外不足 600 小时：牛 7,000 G、羊 5,000 G；达到 600 小时：牛 6,000 G、羊 4,000 G | 同样两档依次为牛 6,000／7,000 G、羊 4,000／5,000 G | JP 两个高等级的售价分支与海外相反，达到户外时间门槛反而少卖 1,000 G；报价直接用于实际入账，不是文本错误。[完整售价与入账链](#livestock-sale-prices) |
 
 冬季牧草的类型判定已追到收割返回值及 `Barn::AddStoredBushels(1)` 的入库调用；保留为地区生长规则差异，不把它扩张为已确认冬季可割草或放牧。[田地更新](src/field.cc) · [收割入库](src/game_world.cc)
@@ -68,7 +68,7 @@
 | 商品价格与身份 | JP 小／大鱼价倒置；海外炒荞麦面、X 羊毛复用另一等级／菜品文本；DE 收集宝玉复用成品名字、XL 药品复用普通药名字。 | 价格影响实际收益，其余主要造成物品身份误认。分别见 [鱼价](BUGFIX.md#fish-prices)、[炒荞麦面](BUGFIX.md#fried-soba)、[羊毛](BUGFIX.md#wool-x)、[宝玉](BUGFIX.md#de-jewels)、[德版食物](BUGFIX.md#de-food)。 |
 | 钓鱼记录名 | 海外 37 复用 22；DE 的 46 还复用 18。JP 分别区分鱼种，US／EU 的 18／46 也独立。 | 名称混淆，记录 ID、数量及尺寸仍独立。[鱼名修复](BUGFIX.md#fish-record-names)。 |
 | 包装农具 | JP／US 用基础编号取图标，EU／DE 根据保存的升级记录转换编号。 | 只影响包装界面的背包及手持图标，不使工具降级。[修复](BUGFIX.md#wrapping-tool-icons)。 |
-| 动物照料最高记录 | JP 读取照料记录，海外错读收获记录。 | 成绩保存正确，记录页显示错误；尚未修复。[读写证据与状态](BUGFIX.md#overseas-animal-care-record)。 |
+| 动物照料最高记录 | JP 读取照料记录，海外错读收获记录。 | 成绩保存正确；开启 BUGFIX 后，海外记录页读取独立的动物照料成绩。[读写证据与状态](BUGFIX.md#overseas-animal-care-record)。 |
 | 对话语言与角色 | 海外来访星期、休息日、人物指代、物品名等存在错译；US／EU 部分已调用消息仍为日文／德文，DE 联机确认仍为 Yes／No。 | 已核实对象及实际正确含义统一列在 [文本修复清单](BUGFIX.md#localization-text)，不把错误译文推断为事件条件或奖励改变。 |
 | 羊祭接待桌 | JP 的共用接待脚本 `0x0194` 分别调用牛祭、羊祭提示；US／EU／DE 两个分支共用含 Cows／Kühe（牛）的文字。直接交谈的羊祭脚本 `0x04FC` 四版均无此误称。 | 羊祭被说成牛祭，只影响提示，不改变评审动物或结果；接待分支没有年份限制。海外 BUGFIX 仿照 JP 分开消息，复用各版本已有羊祭台词。[调用与修复](BUGFIX.md#sheep-reception-text)。 |
 | DE 收获结果栏目 | 用动物照料的 Gefüttert／Vergessen（已喂食／遗忘），JP／US／EU 对应收获／失败。 | 计分仍取收获与失败次数，仅修栏目为 Geerntet／Fehler。[DE 文本](data/text/de/scene_harvesting_minigame_2.cc) · [消费者](src/scene_harvesting_minigame.cc) · [修复](BUGFIX.md#de-harvest-labels)。 |

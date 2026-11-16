@@ -1,4 +1,5 @@
 #include "records_screen.hh"
+#include "config.h"
 
 #include <new>
 
@@ -15334,7 +15335,12 @@ asm_unified(
     "\tmovs r3, #2\n"
     "\tbl Fill2DGfxTilemapRect\n"
     "\tldr r0, [r6]\n"
+// Animal care has its own saved record; the original reads harvesting again.
+#ifdef BUGFIX
+    "\tbl GetUnknown18__C18GameStateSaveImage\n"
+#else
     "\tbl GetUnknown13__C18GameStateSaveImage\n"
+#endif
     "\tldr r7, [sp, #0x208]\n"
     "\tldr r1, [r7, #0x18]\n"
     "\tadds r1, r1, r4\n"

@@ -358,7 +358,7 @@ JP交换四次相关消息引用；DE删除三次错误的额外消息。保留�
 | 问题 | 受影响版本 | 开关支持 |
 | --- | --- | --- |
 | [包装画面把升级农具画成基础农具](#wrapping-tool-icons) | JP、US | 已接入 |
-| [动物照料栏目显示了收获最高记录](#overseas-animal-care-record) | US、EU、DE | 未接入 |
+| [动物照料栏目显示了收获最高记录](#overseas-animal-care-record) | US、EU、DE | 已接入 |
 | [料理材料的包装说明未送入窗口](#cooking-wrapped-description) | US、EU、DE | 未接入 |
 | [女神猜拳显示手势与实际分支不一致](#goddess-rps-options) | US、EU、DE | 已接入 |
 | [海外艾利产后生日选项错位](#audit-a07) | US、EU、DE | 已接入 |
@@ -392,7 +392,7 @@ JP、US 同步两条图标路径，保持物品状态、包装费和升级记录
 <a id="overseas-animal-care-record"></a>
 ### 动物照料栏目显示了收获最高记录
 
-**受影响版本：** US、EU、DE；尚未接入BUGFIX。
+**受影响版本：** US、EU、DE。
 
 **原版内容与差异：**
 
@@ -404,7 +404,7 @@ JP 对应行读取 `sprite_animal_care_record`；小游戏结束时四版也都�
 
 **修复方式：**
 
-尚未接入BUGFIX；应仅把海外动物照料栏改为读取 sprite_animal_care_record，JP保持原样。
+开启 `BUGFIX` 时，仅将海外动物照料栏的调用由 `GetUnknown13()` 改为 `GetUnknown18()`，读取独立保存的 `sprite_animal_care_record`。收获栏、浇水栏、记录写入和 JP 原有调用均不变。关闭开关时保留海外错误读取。
 
 **相关文件：** [记录页](src/records_screen.cc) · [字段](include/game_state_types.hh) · [读写器](src/game_state.cc) · [成绩提交](src/scene_minigames.cc)
 
