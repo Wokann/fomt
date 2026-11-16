@@ -1,20 +1,44 @@
 #include "prelude.h"
+#include "config.h"
 #include "byte_search.h"
 #include "wedding_date.hh"
 #include "unknown_types.hh"
 
+// Days are one-based constants; the sorted lookup key counts from Spring 1 = 0.
 u8 const gUnk_FieldRenderSortedValues[] = {
-        0x00, 0x0D, 0x10, 0x11, 0x14, 0x15, 0x1D, 0x1E, 0x23,
-        0x24, 0x30, 0x31, 0x35, 0x3D, 0x3E, 0x43, 0x44, 0x48,
-        0x4C, 0x4D, 0x4F, 0x50,
-#if !defined(REGION_JP)
-        0x59,
+    SEASON_SPRING * 30 + DAY_01 - 1,
+    SEASON_SPRING * 30 + DAY_14 - 1,
+    SEASON_SPRING * 30 + DAY_17 - 1,
+    SEASON_SPRING * 30 + DAY_18 - 1,
+    SEASON_SPRING * 30 + DAY_21 - 1,
+    SEASON_SPRING * 30 + DAY_22 - 1,
+    SEASON_SPRING * 30 + DAY_30 - 1,
+    SEASON_SUMMER * 30 + DAY_01 - 1,
+    SEASON_SUMMER * 30 + DAY_06 - 1,
+    SEASON_SUMMER * 30 + DAY_07 - 1,
+    SEASON_SUMMER * 30 + DAY_19 - 1,
+    SEASON_SUMMER * 30 + DAY_20 - 1,
+    SEASON_SUMMER * 30 + DAY_24 - 1,
+    SEASON_FALL * 30 + DAY_02 - 1,
+    SEASON_FALL * 30 + DAY_03 - 1,
+    SEASON_FALL * 30 + DAY_08 - 1,
+    SEASON_FALL * 30 + DAY_09 - 1,
+    SEASON_FALL * 30 + DAY_13 - 1,
+    SEASON_FALL * 30 + DAY_17 - 1,
+    SEASON_FALL * 30 + DAY_18 - 1,
+    SEASON_FALL * 30 + DAY_20 - 1,
+    SEASON_FALL * 30 + DAY_21 - 1,
+#if !defined(REGION_JP) || defined(BUGFIX)
+    // JP omits the Pumpkin Festival from its wedding exclusions.
+    SEASON_FALL * 30 + DAY_30 - 1,
 #endif
-        0x67, 0x71,
-#if !defined(REGION_JP)
-        0x72,
+    SEASON_WINTER * 30 + DAY_14 - 1,
+    SEASON_WINTER * 30 + DAY_24 - 1,
+#if !defined(REGION_JP) || defined(BUGFIX)
+    // JP also omits Thomas's stocking-gift day.
+    SEASON_WINTER * 30 + DAY_25 - 1,
 #endif
-        0x77,
+    SEASON_WINTER * 30 + DAY_30 - 1,
 };
 
 bool IsWeddingDateUnavailable(GameDate const & date)

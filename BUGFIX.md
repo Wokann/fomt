@@ -190,7 +190,7 @@ JP、US、EU 在春 19 日消息后结束该分支。
 | [入睡时间被早晨时间覆盖](#jp-sleep-time) | JP | 已接入 |
 | [幼畜出生好感度计算错误](#jp-birth-affection) | JP | 已接入 |
 | [艾利确认第二个昵称但未保存](#elli-nickname) | US、EU | 已接入 |
-| [婚期未完整避开双方生日](#jp-wedding-birthdays) | JP | 未接入 |
+| [婚期未完整避开双方生日及节日事件](#jp-wedding-birthdays) | JP | 已接入 |
 | [玩家已娶别人仍显示琳的爱心](#ann-heart) | 四版 | 已接入 |
 | [JP及DE卡莲婚后询问玩家婚姻状态错误](#audit-a09) | JP、DE | 已接入 |
 
@@ -290,23 +290,23 @@ JP、DE 在确认前调用 `SetPlayerNicknameForSpouse` 保存所选文本。
 **相关文件：** [US](data/scripts/us/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [JP](data/scripts/jp/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [DE](data/scripts/de/EventScript_LoveEvent_Elli_NicknameChoice.mary.c)
 
 <a id="jp-wedding-birthdays"></a>
-### 婚期未完整避开双方生日
+### 婚期未完整避开双方生日及节日事件
 
-**受影响版本：** JP；尚未接入BUGFIX。
+**受影响版本：** JP。
 
 **原版内容与差异：**
 
-订婚计数达到 5 后立即查询只在计数大于 5 时返回配偶的函数，得到 0 而漏查未婚妻生日；日期经过避让表顺延后，也不重新检查全部生日条件。
+订婚计数达到 5 后立即查询只在计数大于 5 时返回配偶的函数，得到 0 而漏查未婚妻生日；日期经过避让表顺延后，也不重新检查全部生日条件。JP 的避让表另漏掉秋 30 日南瓜祭和冬 25 日托马斯袜子送礼日；海外三版已包含这两天。
 
 **判断依据：**
 
-海外保存婚约对象，并在顺延后重查双方生日及避让条件。例如候选春 17 日、玩家生日春 19 日时，JP 避开春 17、18 日后可能落在未重查的春 19 日。
+海外保存婚约对象，并在顺延后重查双方生日及避让条件。例如候选春 17 日、玩家生日春 19 日时，JP 避开春 17、18 日后可能落在未重查的春 19 日。四版日历均登记秋 30 日南瓜祭，每日更新也均在冬 25 日选择托马斯袜子礼物；不是 JP 没有这些事件。日历登记的 17 个固定节日，海外避让表全部包含，JP 只缺秋 30 日；冬 25 日属于日历列表之外的送礼事件。海外表共 27 项，JP 原表为 25 项。
 
 **修复方式：**
 
-尚未接入BUGFIX；应采用婚约对象，并在顺延候选日期后重新检查双方生日和避让条件。
+JP 开启 `BUGFIX` 后采用海外版已有的婚期计算流程：用本次婚约对象取得生日，每次顺延后重新检查双方生日和避让条件；同时在自己的日期避让表中补入秋 30 日和冬 25 日，与海外已有规则一致。海外三版保持原有流程和表内容。关闭开关时仍使用原版 JP 实现和 25 项日期表。
 
-**相关文件：** [婚期计算](src/script_engine.cc) · [订婚／已婚查询](src/npc_collection.cc) · [日期表](src/wedding_date.cc) · [原生证据](docs/mary-native-audit/events/event_state_registration.md)
+**相关文件：** [婚期计算](src/script_engine.cc) · [订婚／已婚查询](src/npc_collection.cc) · [日期表](src/wedding_date.cc) · [日历节日](src/scene_calendar_core.cc) · [JP 每日更新](data/scripts/jp/EventScript_SystemEvent_ResetDailyWorldState.mary.c) · [原生证据](docs/mary-native-audit/events/event_state_registration.md)
 
 <a id="ann-heart"></a>
 ### 玩家已娶别人仍显示琳的爱心
