@@ -54,7 +54,7 @@ void EventScript_TV_EntertainmentChannel(void)
                         CallScript(EventScript_TV_F314MGrandPrix);
                         break;
                     case 2:
-                        if (VarGet(VAR_SEASON) == SEASON_SPRING && (VarGet(VAR_DAY) == DAY_OF_MONTH_01 || VarGet(VAR_DAY) == DAY_OF_MONTH_02 || VarGet(VAR_DAY) == DAY_OF_MONTH_03 || VarGet(VAR_DAY) == DAY_OF_MONTH_04 || VarGet(VAR_DAY) == DAY_OF_MONTH_05) || VarGet(VAR_SEASON) == SEASON_WINTER && (VarGet(VAR_DAY) == DAY_OF_MONTH_29 || VarGet(VAR_DAY) == DAY_OF_MONTH_30))
+                        if (VarGet(VAR_SEASON) == SEASON_SPRING && (VarGet(VAR_DAY) == DAY_01 || VarGet(VAR_DAY) == DAY_02 || VarGet(VAR_DAY) == DAY_03 || VarGet(VAR_DAY) == DAY_04 || VarGet(VAR_DAY) == DAY_05) || VarGet(VAR_SEASON) == SEASON_WINTER && (VarGet(VAR_DAY) == DAY_29 || VarGet(VAR_DAY) == DAY_30))
                         {
                             CallScript(EventScript_TV_DailyProgramDispatcher);
                         }

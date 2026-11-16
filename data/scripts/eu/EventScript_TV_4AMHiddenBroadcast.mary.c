@@ -444,7 +444,7 @@ void EventScript_TV_4AMHiddenBroadcast(void)
         }
         else
         {
-            if (VarGet(VAR_DAY) == DAY_OF_MONTH_04)
+            if (VarGet(VAR_DAY) == DAY_04)
             {
                 if (VarGet(VAR_YEAR) == 4)
                 {

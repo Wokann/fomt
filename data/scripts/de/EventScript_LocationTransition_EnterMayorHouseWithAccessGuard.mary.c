@@ -18,7 +18,7 @@ void EventScript_LocationTransition_EnterMayorHouseWithAccessGuard(void)
         var_1 = VarGet(VAR_HOUR);
         var_2 = VarGet(VAR_SEASON);
         var_3 = VarGet(VAR_DAY);
-        if (var_2 == SEASON_SPRING && var_3 == DAY_OF_MONTH_01 || var_2 == SEASON_SPRING && var_3 == DAY_OF_MONTH_18 || var_2 == SEASON_SPRING && var_3 == DAY_OF_MONTH_22 || var_2 == SEASON_SUMMER && var_3 == DAY_OF_MONTH_01 || var_2 == SEASON_SUMMER && var_3 == DAY_OF_MONTH_07 || var_2 == SEASON_SUMMER && var_3 == DAY_OF_MONTH_24 || var_2 == SEASON_SUMMER && var_3 == DAY_OF_MONTH_20 || var_2 == SEASON_FALL && var_3 == DAY_OF_MONTH_03 || var_2 == SEASON_FALL && var_3 == DAY_OF_MONTH_09 || var_2 == SEASON_FALL && var_3 == DAY_OF_MONTH_13 || var_2 == SEASON_FALL && var_3 == DAY_OF_MONTH_18 || var_2 == SEASON_FALL && var_3 == DAY_OF_MONTH_21 || var_2 == SEASON_WINTER && var_3 == DAY_OF_MONTH_24 || var_2 == SEASON_WINTER && var_3 == DAY_OF_MONTH_30)
+        if (var_2 == SEASON_SPRING && var_3 == DAY_01 || var_2 == SEASON_SPRING && var_3 == DAY_18 || var_2 == SEASON_SPRING && var_3 == DAY_22 || var_2 == SEASON_SUMMER && var_3 == DAY_01 || var_2 == SEASON_SUMMER && var_3 == DAY_07 || var_2 == SEASON_SUMMER && var_3 == DAY_24 || var_2 == SEASON_SUMMER && var_3 == DAY_20 || var_2 == SEASON_FALL && var_3 == DAY_03 || var_2 == SEASON_FALL && var_3 == DAY_09 || var_2 == SEASON_FALL && var_3 == DAY_13 || var_2 == SEASON_FALL && var_3 == DAY_18 || var_2 == SEASON_FALL && var_3 == DAY_21 || var_2 == SEASON_WINTER && var_3 == DAY_24 || var_2 == SEASON_WINTER && var_3 == DAY_30)
         {
             var_0 = FALSE;
         }

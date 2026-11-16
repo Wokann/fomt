@@ -145,7 +145,7 @@ void EventScript_NPCEvent_Stu_DialogueAndGiftResponses(void)
     SetEntityAnim(ENTITY_STU, ANIMATION_STU_IDLE);
     var_2 = GetEntityFacing(ENTITY_STU);
     SetEntityFacing(ENTITY_STU, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
-    if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_OF_MONTH_30)
+    if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_30)
     {
         switch (GetEntityLocation(ENTITY_STU))
         {

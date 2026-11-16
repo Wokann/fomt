@@ -17,7 +17,7 @@ void EventScript_LocationInteraction_InspectSnowman(void)
     TalkOpen();
     if (VarGet(VAR_SEASON) == SEASON_WINTER)
     {
-        if (VarGet(VAR_DAY) == DAY_OF_MONTH_01 && VarGet(VAR_HOUR) < 6)
+        if (VarGet(VAR_DAY) == DAY_01 && VarGet(VAR_HOUR) < 6)
         {
             TalkAppendMessage(gText_LocationInteraction_InspectSnowman_Plants);
         }

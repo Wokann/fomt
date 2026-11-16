@@ -165,7 +165,7 @@ void EventScript_TV_ChannelDispatcher(void)
                         }
                         break;
                     case 2:
-                        if (VarGet(VAR_SEASON) == SEASON_SPRING && (VarGet(VAR_DAY) == DAY_OF_MONTH_01 || VarGet(VAR_DAY) == DAY_OF_MONTH_02 || VarGet(VAR_DAY) == DAY_OF_MONTH_03 || VarGet(VAR_DAY) == DAY_OF_MONTH_04 || VarGet(VAR_DAY) == DAY_OF_MONTH_05))
+                        if (VarGet(VAR_SEASON) == SEASON_SPRING && (VarGet(VAR_DAY) == DAY_01 || VarGet(VAR_DAY) == DAY_02 || VarGet(VAR_DAY) == DAY_03 || VarGet(VAR_DAY) == DAY_04 || VarGet(VAR_DAY) == DAY_05))
                         {
                             var_0 = RandomIntInclusive(0, 1);
                             switch (var_0)
@@ -181,7 +181,7 @@ void EventScript_TV_ChannelDispatcher(void)
                         }
                         else
                         {
-                            if (VarGet(VAR_SEASON) == SEASON_WINTER && (VarGet(VAR_DAY) == DAY_OF_MONTH_29 || VarGet(VAR_DAY) == DAY_OF_MONTH_30))
+                            if (VarGet(VAR_SEASON) == SEASON_WINTER && (VarGet(VAR_DAY) == DAY_29 || VarGet(VAR_DAY) == DAY_30))
                             {
                                 CallScript(EventScript_TV_NewYearSpecial_Programs);
                             }

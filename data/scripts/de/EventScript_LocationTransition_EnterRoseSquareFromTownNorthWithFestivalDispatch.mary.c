@@ -14,7 +14,7 @@ void EventScript_LocationTransition_EnterRoseSquareFromTownNorthWithFestivalDisp
         var_0 = VarGet(VAR_SEASON);
         var_1 = VarGet(VAR_DAY);
         var_2 = VarGet(VAR_HOUR);
-        if (VarGet(VAR_NEW_YEAR_RICE_CAKE_FESTIVAL_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_01)
+        if (VarGet(VAR_NEW_YEAR_RICE_CAKE_FESTIVAL_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_0 == SEASON_SPRING && var_1 == DAY_01)
         {
             if (var_2 >= 6 && var_2 < 18)
             {
@@ -31,7 +31,7 @@ void EventScript_LocationTransition_EnterRoseSquareFromTownNorthWithFestivalDisp
         }
         else
         {
-            if (VarGet(VAR_SPRING_FESTIVAL_HORSE_RACE_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_18)
+            if (VarGet(VAR_SPRING_FESTIVAL_HORSE_RACE_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SPRING && var_1 == DAY_18)
             {
                 if (var_2 >= 6 && var_2 < 10)
                 {
@@ -48,7 +48,7 @@ void EventScript_LocationTransition_EnterRoseSquareFromTownNorthWithFestivalDisp
             }
             else
             {
-                if (var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_22)
+                if (var_0 == SEASON_SPRING && var_1 == DAY_22)
                 {
                     if (VarGet(VAR_COOKING_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE)
                     {
@@ -101,7 +101,7 @@ void EventScript_LocationTransition_EnterRoseSquareFromTownNorthWithFestivalDisp
                 }
                 else
                 {
-                    if (VarGet(VAR_CHICKEN_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_07)
+                    if (VarGet(VAR_CHICKEN_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_07)
                     {
                         if (var_2 >= 6 && var_2 < 10)
                         {
@@ -118,7 +118,7 @@ void EventScript_LocationTransition_EnterRoseSquareFromTownNorthWithFestivalDisp
                     }
                     else
                     {
-                        if (VarGet(VAR_COW_FESTIVAL_SESSION_STATE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_20)
+                        if (VarGet(VAR_COW_FESTIVAL_SESSION_STATE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_20)
                         {
                             if (var_2 >= 6 && var_2 < 10)
                             {
@@ -135,7 +135,7 @@ void EventScript_LocationTransition_EnterRoseSquareFromTownNorthWithFestivalDisp
                         }
                         else
                         {
-                            if (VarGet(VAR_HARVEST_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_09)
+                            if (VarGet(VAR_HARVEST_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_09)
                             {
                                 if (var_2 >= 6 && var_2 < 10)
                                 {
@@ -152,7 +152,7 @@ void EventScript_LocationTransition_EnterRoseSquareFromTownNorthWithFestivalDisp
                             }
                             else
                             {
-                                if (VarGet(VAR_FALL_FESTIVAL_HORSE_RACE_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_18)
+                                if (VarGet(VAR_FALL_FESTIVAL_HORSE_RACE_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_18)
                                 {
                                     if (var_2 >= 6 && var_2 < 10)
                                     {
@@ -169,7 +169,7 @@ void EventScript_LocationTransition_EnterRoseSquareFromTownNorthWithFestivalDisp
                                 }
                                 else
                                 {
-                                    if (VarGet(VAR_SHEEP_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_21)
+                                    if (VarGet(VAR_SHEEP_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_21)
                                     {
                                         if (var_2 >= 6 && var_2 < 10)
                                         {
@@ -186,7 +186,7 @@ void EventScript_LocationTransition_EnterRoseSquareFromTownNorthWithFestivalDisp
                                     }
                                     else
                                     {
-                                        if (VarGet(VAR_NEW_YEARS_EVE_NOODLE_FESTIVAL_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_0 == SEASON_WINTER && var_1 == DAY_OF_MONTH_30)
+                                        if (VarGet(VAR_NEW_YEARS_EVE_NOODLE_FESTIVAL_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_0 == SEASON_WINTER && var_1 == DAY_30)
                                         {
                                             if (var_2 >= 6 && var_2 < 18)
                                             {

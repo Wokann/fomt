@@ -32,7 +32,7 @@ void EventScript_ShopEvent_Inn_Counter(void)
     {
         if (VarGet(VAR_ANN_MARRIAGE_STATE) != MARRIAGE_STATE_MARRIED)
         {
-            if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_OF_MONTH_05)
+            if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_05)
             {
                 TalkOpen();
                 TalkMessage(gText_ShopEvent_Inn_Counter_Counter);

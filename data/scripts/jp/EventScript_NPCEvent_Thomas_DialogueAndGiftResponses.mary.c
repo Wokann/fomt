@@ -214,7 +214,7 @@ void EventScript_NPCEvent_Thomas_DialogueAndGiftResponses(void)
     SetEntityAnim(ENTITY_THOMAS, ANIMATION_THOMAS_IDLE);
     var_2 = GetEntityFacing(ENTITY_THOMAS);
     SetEntityFacing(ENTITY_THOMAS, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
-    if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_OF_MONTH_02)
+    if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_02)
     {
         switch (GetEntityLocation(ENTITY_THOMAS))
         {

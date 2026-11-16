@@ -36,7 +36,7 @@ void EventScript_FestivalEvent_BeachDay_DayAnnouncement_WestEntrance(void)
     var_1 = VarGet(VAR_DAY);
     var_2 = VarGet(VAR_HOUR);
     VarSet(VAR_FESTIVAL_DAY_ANNOUNCEMENT_EVENT_STATE, EVENT_LIFECYCLE_IN_PROGRESS);
-    if (VarGet(VAR_BEACH_DAY_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_01)
+    if (VarGet(VAR_BEACH_DAY_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_01)
     {
         TalkOpen();
         SetTalkNameplateCharacter(CHARACTER_THOMAS);

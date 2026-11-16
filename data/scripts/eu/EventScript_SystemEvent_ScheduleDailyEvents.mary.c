@@ -11,7 +11,7 @@ void EventScript_SystemEvent_ScheduleDailyEvents(void)
     var_3 = VarGet(VAR_HOUR);
     var_2 = VarGet(VAR_DAY_OF_WEEK);
     var_4 = VarGet(VAR_WEATHER_TODAY);
-    if (!(var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_01 || var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_14 || var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_18 || var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_22 || var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_01 || var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_07 || var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_24 || var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_20 || var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_03 || var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_09 || var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_13 || var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_18 || var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_21 || var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_30 || var_0 == SEASON_WINTER && var_1 == DAY_OF_MONTH_14 || var_0 == SEASON_WINTER && var_1 == DAY_OF_MONTH_30))
+    if (!(var_0 == SEASON_SPRING && var_1 == DAY_01 || var_0 == SEASON_SPRING && var_1 == DAY_14 || var_0 == SEASON_SPRING && var_1 == DAY_18 || var_0 == SEASON_SPRING && var_1 == DAY_22 || var_0 == SEASON_SUMMER && var_1 == DAY_01 || var_0 == SEASON_SUMMER && var_1 == DAY_07 || var_0 == SEASON_SUMMER && var_1 == DAY_24 || var_0 == SEASON_SUMMER && var_1 == DAY_20 || var_0 == SEASON_FALL && var_1 == DAY_03 || var_0 == SEASON_FALL && var_1 == DAY_09 || var_0 == SEASON_FALL && var_1 == DAY_13 || var_0 == SEASON_FALL && var_1 == DAY_18 || var_0 == SEASON_FALL && var_1 == DAY_21 || var_0 == SEASON_FALL && var_1 == DAY_30 || var_0 == SEASON_WINTER && var_1 == DAY_14 || var_0 == SEASON_WINTER && var_1 == DAY_30))
     {
         if (VarGet(VAR_KAREN_PROPOSAL_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED && VarGet(VAR_KAREN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_WEDDING_SEASON) == var_0 && VarGet(VAR_WEDDING_DAY) == var_1)
         {
@@ -177,7 +177,7 @@ void EventScript_SystemEvent_ScheduleDailyEvents(void)
                                                                 }
                                                                 else
                                                                 {
-                                                                    if (VarGet(VAR_KAREN_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_15) && !(var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_23) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
+                                                                    if (VarGet(VAR_KAREN_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_FALL && var_1 == DAY_15) && !(var_0 == SEASON_FALL && var_1 == DAY_23) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
                                                                     {
                                                                         VarSet(VAR_KAREN_CHILDBIRTH_EVENT_STATE, EVENT_LIFECYCLE_IN_PROGRESS);
                                                                         CallScript(EventScript_FamilyEvent_Karen_Childbirth);
@@ -241,7 +241,7 @@ void EventScript_SystemEvent_ScheduleDailyEvents(void)
                                                                     }
                                                                     else
                                                                     {
-                                                                        if (VarGet(VAR_POPURI_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_03) && !(var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_10) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
+                                                                        if (VarGet(VAR_POPURI_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_SUMMER && var_1 == DAY_03) && !(var_0 == SEASON_SUMMER && var_1 == DAY_10) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
                                                                         {
                                                                             VarSet(VAR_POPURI_CHILDBIRTH_EVENT_STATE, EVENT_LIFECYCLE_IN_PROGRESS);
                                                                             CallScript(EventScript_FamilyEvent_Popuri_Childbirth);
@@ -305,7 +305,7 @@ void EventScript_SystemEvent_ScheduleDailyEvents(void)
                                                                         }
                                                                         else
                                                                         {
-                                                                            if (VarGet(VAR_ANN_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_17) && !(var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_22) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
+                                                                            if (VarGet(VAR_ANN_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_SUMMER && var_1 == DAY_17) && !(var_0 == SEASON_SUMMER && var_1 == DAY_22) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
                                                                             {
                                                                                 VarSet(VAR_ANN_CHILDBIRTH_EVENT_STATE, EVENT_LIFECYCLE_IN_PROGRESS);
                                                                                 CallScript(EventScript_FamilyEvent_Ann_Childbirth);
@@ -369,7 +369,7 @@ void EventScript_SystemEvent_ScheduleDailyEvents(void)
                                                                             }
                                                                             else
                                                                             {
-                                                                                if (VarGet(VAR_MARY_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_WINTER && var_1 == DAY_OF_MONTH_20) && !(var_0 == SEASON_WINTER && var_1 == DAY_OF_MONTH_23) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
+                                                                                if (VarGet(VAR_MARY_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_WINTER && var_1 == DAY_20) && !(var_0 == SEASON_WINTER && var_1 == DAY_23) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
                                                                                 {
                                                                                     VarSet(VAR_MARY_CHILDBIRTH_EVENT_STATE, EVENT_LIFECYCLE_IN_PROGRESS);
                                                                                     CallScript(EventScript_FamilyEvent_Mary_Childbirth);
@@ -433,7 +433,7 @@ void EventScript_SystemEvent_ScheduleDailyEvents(void)
                                                                                 }
                                                                                 else
                                                                                 {
-                                                                                    if (VarGet(VAR_ELLI_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_16) && !(var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_20) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
+                                                                                    if (VarGet(VAR_ELLI_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_SPRING && var_1 == DAY_16) && !(var_0 == SEASON_SPRING && var_1 == DAY_20) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
                                                                                     {
                                                                                         VarSet(VAR_ELLI_CHILDBIRTH_EVENT_STATE, EVENT_LIFECYCLE_IN_PROGRESS);
                                                                                         CallScript(EventScript_FamilyEvent_Elli_Childbirth);
@@ -497,7 +497,7 @@ void EventScript_SystemEvent_ScheduleDailyEvents(void)
                                                                                     }
                                                                                     else
                                                                                     {
-                                                                                        if (VarGet(VAR_HARVEST_GODDESS_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_08) && !(var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_09) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
+                                                                                        if (VarGet(VAR_HARVEST_GODDESS_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_DAYS_SINCE_PREGNANCY_EVENT) >= PREGNANCY_DAYS_CHILDBIRTH_EVENT_START && !(var_0 == SEASON_SPRING && var_1 == DAY_08) && !(var_0 == SEASON_SPRING && var_1 == DAY_09) && !(VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == var_0 && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == var_1))
                                                                                         {
                                                                                             VarSet(VAR_HARVEST_GODDESS_CHILDBIRTH_EVENT_STATE, EVENT_LIFECYCLE_IN_PROGRESS);
                                                                                             CallScript(EventScript_FamilyEvent_HarvestGoddess_Childbirth);

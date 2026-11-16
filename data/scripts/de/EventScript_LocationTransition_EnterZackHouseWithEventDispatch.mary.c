@@ -20,7 +20,7 @@ void EventScript_LocationTransition_EnterZackHouseWithEventDispatch(void)
         var_3 = VarGet(VAR_HOUR);
         var_4 = VarGet(VAR_DAY_OF_WEEK);
         var_5 = VarGet(VAR_WEATHER_TODAY);
-        if (var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_01 || var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_18 || var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_22 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_01 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_07 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_24 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_20 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_03 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_09 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_13 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_18 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_21 || var_1 == SEASON_WINTER && var_2 == DAY_OF_MONTH_24 || var_1 == SEASON_WINTER && var_2 == DAY_OF_MONTH_30)
+        if (var_1 == SEASON_SPRING && var_2 == DAY_01 || var_1 == SEASON_SPRING && var_2 == DAY_18 || var_1 == SEASON_SPRING && var_2 == DAY_22 || var_1 == SEASON_SUMMER && var_2 == DAY_01 || var_1 == SEASON_SUMMER && var_2 == DAY_07 || var_1 == SEASON_SUMMER && var_2 == DAY_24 || var_1 == SEASON_SUMMER && var_2 == DAY_20 || var_1 == SEASON_FALL && var_2 == DAY_03 || var_1 == SEASON_FALL && var_2 == DAY_09 || var_1 == SEASON_FALL && var_2 == DAY_13 || var_1 == SEASON_FALL && var_2 == DAY_18 || var_1 == SEASON_FALL && var_2 == DAY_21 || var_1 == SEASON_WINTER && var_2 == DAY_24 || var_1 == SEASON_WINTER && var_2 == DAY_30)
         {
             var_0 = FALSE;
         }
@@ -67,7 +67,7 @@ void EventScript_LocationTransition_EnterZackHouseWithEventDispatch(void)
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
             ChangeMap(MAP_ZACK_HOUSE, X(120), Y(208));
             SetEntityPosition(ENTITY_PLAYER, X(120), Y(208), FACING_UP);
-            if (VarGet(VAR_POPURI_PLANS_LILLIA_BIRTHDAY_GIFT_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_1 == SEASON_SPRING && (var_3 >= 10 && var_3 < 15) && (var_2 >= DAY_OF_MONTH_10 && var_2 <= DAY_OF_MONTH_17) && VarGet(VAR_POPURI_KAI_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_POPURI_KAI_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_POPURI_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && HasMetNpc(CHARACTER_POPURI) == TRUE && HasMetNpc(CHARACTER_ZACK) == TRUE && HasMetNpc(CHARACTER_WON) == TRUE && GetEntityLocation(ENTITY_ZACK) == MAP_ZACK_HOUSE && GetEntityLocation(ENTITY_WON) == MAP_ZACK_HOUSE)
+            if (VarGet(VAR_POPURI_PLANS_LILLIA_BIRTHDAY_GIFT_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_1 == SEASON_SPRING && (var_3 >= 10 && var_3 < 15) && (var_2 >= DAY_10 && var_2 <= DAY_17) && VarGet(VAR_POPURI_KAI_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_POPURI_KAI_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_POPURI_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && HasMetNpc(CHARACTER_POPURI) == TRUE && HasMetNpc(CHARACTER_ZACK) == TRUE && HasMetNpc(CHARACTER_WON) == TRUE && GetEntityLocation(ENTITY_ZACK) == MAP_ZACK_HOUSE && GetEntityLocation(ENTITY_WON) == MAP_ZACK_HOUSE)
             {
                 VarSet(VAR_POPURI_PLANS_LILLIA_BIRTHDAY_GIFT_EVENT_STATE, EVENT_LIFECYCLE_IN_PROGRESS);
                 CallScript(EventScript_NPCEvent_Popuri_PlansLilliaBirthdayGift);

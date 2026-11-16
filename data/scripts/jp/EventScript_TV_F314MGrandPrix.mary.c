@@ -3092,94 +3092,94 @@ void EventScript_TV_F314MGrandPrix(void)
         case SEASON_SPRING:
             switch (VarGet(VAR_DAY))
             {
-                case DAY_OF_MONTH_01:
+                case DAY_01:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race01_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_02:
+                case DAY_02:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race01_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_03:
+                case DAY_03:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race01_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_04:
+                case DAY_04:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race01_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_05:
+                case DAY_05:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_06:
+                case DAY_06:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_07:
+                case DAY_07:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_08:
+                case DAY_08:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_09:
+                case DAY_09:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_10:
+                case DAY_10:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_11:
+                case DAY_11:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_12:
+                case DAY_12:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_13:
+                case DAY_13:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race04_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_14:
+                case DAY_14:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race04_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_15:
+                case DAY_15:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race04_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_16:
+                case DAY_16:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race04_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_17:
+                case DAY_17:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_18:
+                case DAY_18:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_19:
+                case DAY_19:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_20:
+                case DAY_20:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_21:
+                case DAY_21:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race06_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_22:
+                case DAY_22:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race06_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_23:
+                case DAY_23:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race06_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_24:
+                case DAY_24:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race06_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_25:
+                case DAY_25:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race07_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_26:
+                case DAY_26:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race07_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_27:
+                case DAY_27:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race07_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_28:
+                case DAY_28:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race07_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_29:
+                case DAY_29:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race08_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_30:
+                case DAY_30:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race08_PreviewPart02);
                     break;
             }
@@ -3187,94 +3187,94 @@ void EventScript_TV_F314MGrandPrix(void)
         case SEASON_SUMMER:
             switch (VarGet(VAR_DAY))
             {
-                case DAY_OF_MONTH_01:
+                case DAY_01:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race08_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_02:
+                case DAY_02:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race08_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_03:
+                case DAY_03:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_04:
+                case DAY_04:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_05:
+                case DAY_05:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_06:
+                case DAY_06:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_07:
+                case DAY_07:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_08:
+                case DAY_08:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_09:
+                case DAY_09:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_10:
+                case DAY_10:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_11:
+                case DAY_11:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race11_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_12:
+                case DAY_12:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race11_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_13:
+                case DAY_13:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race11_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_14:
+                case DAY_14:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race11_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_15:
+                case DAY_15:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_16:
+                case DAY_16:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_17:
+                case DAY_17:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_18:
+                case DAY_18:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_19:
+                case DAY_19:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_20:
+                case DAY_20:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race13_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_21:
+                case DAY_21:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race13_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_22:
+                case DAY_22:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race13_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_23:
+                case DAY_23:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race14_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_24:
+                case DAY_24:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race04_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_25:
+                case DAY_25:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race14_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_26:
+                case DAY_26:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race14_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_27:
+                case DAY_27:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_28:
+                case DAY_28:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_29:
+                case DAY_29:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race15_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_30:
+                case DAY_30:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race15_ResultsPart02);
                     break;
             }
@@ -3282,94 +3282,94 @@ void EventScript_TV_F314MGrandPrix(void)
         case SEASON_FALL:
             switch (VarGet(VAR_DAY))
             {
-                case DAY_OF_MONTH_01:
+                case DAY_01:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race16_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_02:
+                case DAY_02:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race16_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_03:
+                case DAY_03:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race16_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_04:
+                case DAY_04:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race16_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_05:
+                case DAY_05:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race07_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_06:
+                case DAY_06:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race07_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_07:
+                case DAY_07:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race17_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_08:
+                case DAY_08:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race17_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_09:
+                case DAY_09:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_10:
+                case DAY_10:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_11:
+                case DAY_11:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_12:
+                case DAY_12:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_13:
+                case DAY_13:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race19_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_14:
+                case DAY_14:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_15:
+                case DAY_15:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race19_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_16:
+                case DAY_16:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race19_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_17:
+                case DAY_17:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_18:
+                case DAY_18:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race20_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_19:
+                case DAY_19:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race20_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_20:
+                case DAY_20:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race20_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_21:
+                case DAY_21:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race21_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_22:
+                case DAY_22:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race11_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_23:
+                case DAY_23:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race21_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_24:
+                case DAY_24:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race21_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_25:
+                case DAY_25:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_26:
+                case DAY_26:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_27:
+                case DAY_27:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_28:
+                case DAY_28:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_29:
+                case DAY_29:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_30:
+                case DAY_30:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_PreviewPart02);
                     break;
             }
@@ -3377,58 +3377,58 @@ void EventScript_TV_F314MGrandPrix(void)
         case SEASON_WINTER:
             switch (VarGet(VAR_DAY))
             {
-                case DAY_OF_MONTH_01:
+                case DAY_01:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_02:
+                case DAY_02:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_03:
+                case DAY_03:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race14_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_04:
+                case DAY_04:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race04_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_05:
+                case DAY_05:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race24_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_06:
+                case DAY_06:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race24_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_07:
+                case DAY_07:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race25_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_08:
+                case DAY_08:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race25_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_09:
+                case DAY_09:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race25_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_10:
+                case DAY_10:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race25_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_11:
+                case DAY_11:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race26_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_12:
+                case DAY_12:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race16_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_13:
+                case DAY_13:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race26_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_14:
+                case DAY_14:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race26_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_15:
+                case DAY_15:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race07_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_16:
+                case DAY_16:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race27_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_17:
+                case DAY_17:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race27_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_18:
+                case DAY_18:
 #ifdef BUGFIX
                     // Restore result day 18, then the two previews on days 19 and 20.
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart02);
@@ -3436,7 +3436,7 @@ void EventScript_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01);
 #endif
                     break;
-                case DAY_OF_MONTH_19:
+                case DAY_19:
 #ifdef BUGFIX
                     // Restore result day 18, then the two previews on days 19 and 20.
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01);
@@ -3444,7 +3444,7 @@ void EventScript_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart01);
 #endif
                     break;
-                case DAY_OF_MONTH_20:
+                case DAY_20:
 #ifdef BUGFIX
                     // Restore result day 18, then the two previews on days 19 and 20.
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart01);
@@ -3452,34 +3452,34 @@ void EventScript_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart02);
 #endif
                     break;
-                case DAY_OF_MONTH_21:
+                case DAY_21:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_22:
+                case DAY_22:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_23:
+                case DAY_23:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race19_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_24:
+                case DAY_24:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_25:
+                case DAY_25:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race29_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_26:
+                case DAY_26:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race29_ResultsPart02);
                     break;
-                case DAY_OF_MONTH_27:
+                case DAY_27:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race30_PreviewPart01);
                     break;
-                case DAY_OF_MONTH_28:
+                case DAY_28:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race20_PreviewPart02);
                     break;
-                case DAY_OF_MONTH_29:
+                case DAY_29:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race30_ResultsPart01);
                     break;
-                case DAY_OF_MONTH_30:
+                case DAY_30:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race30_ResultsPart02);
                     break;
             }

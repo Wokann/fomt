@@ -704,7 +704,7 @@ void EventScript_NPCEvent_Ann_DialogueAndGiftResponses(void)
     }
     var_5 = GetEntityFacing(ENTITY_ANN);
     SetEntityFacing(ENTITY_ANN, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
-    if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_OF_MONTH_14)
+    if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_14)
     {
         switch (GetEntityLocation(ENTITY_ANN))
         {
@@ -920,7 +920,7 @@ void EventScript_NPCEvent_Ann_DialogueAndGiftResponses(void)
                             break;
                         case ITEM_FOOD_COOKIES:
                         case ITEM_FOOD_CHOCOLATE_COOKIES:
-                            if (VarGet(VAR_SEASON) == SEASON_SPRING && VarGet(VAR_DAY) == DAY_OF_MONTH_14 && VarGet(VAR_THANKSGIVING_GIFT_EXCHANGED_WITH_ANN) == FALSE)
+                            if (VarGet(VAR_SEASON) == SEASON_SPRING && VarGet(VAR_DAY) == DAY_14 && VarGet(VAR_THANKSGIVING_GIFT_EXCHANGED_WITH_ANN) == FALSE)
                             {
                                 var_0 = NPC_INTERACTION_THANKSGIVING_GIFT;
                             }
@@ -1569,7 +1569,7 @@ void EventScript_NPCEvent_Ann_DialogueAndGiftResponses(void)
             }
             else
             {
-                if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_OF_MONTH_23 && (VarGet(VAR_KAREN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_POPURI_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_ANN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_MARY_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_ELLI_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_HARVEST_GODDESS_WEDDING_AND_NICKNAME_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && (VarGet(VAR_ANN_CLIFF_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_ANN_CLIFF_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE)) && GetCharacterLove(CHARACTER_ANN) >= LOVE_HEART_GREEN_MIN && VarGet(VAR_STARRY_NIGHT_ANN_INVITATION_HANDLED) == FALSE && VarGet(VAR_FESTIVAL_STARRY_NIGHT_HOST_INDEX) == STARRY_NIGHT_HOST_NONE)
+                if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_23 && (VarGet(VAR_KAREN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_POPURI_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_ANN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_MARY_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_ELLI_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_HARVEST_GODDESS_WEDDING_AND_NICKNAME_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && (VarGet(VAR_ANN_CLIFF_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_ANN_CLIFF_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE)) && GetCharacterLove(CHARACTER_ANN) >= LOVE_HEART_GREEN_MIN && VarGet(VAR_STARRY_NIGHT_ANN_INVITATION_HANDLED) == FALSE && VarGet(VAR_FESTIVAL_STARRY_NIGHT_HOST_INDEX) == STARRY_NIGHT_HOST_NONE)
                 {
                     SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
                     ShowTalkHeartIndicator(CHARACTER_ANN);
@@ -1597,7 +1597,7 @@ void EventScript_NPCEvent_Ann_DialogueAndGiftResponses(void)
                     switch (GetEntityLocation(ENTITY_ANN))
                     {
                         case MAP_FARMHOUSE:
-                            if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_OF_MONTH_23)
+                            if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_23)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_ANN_HAPPY);
                                 ShowTalkHeartIndicator(CHARACTER_ANN);
@@ -2087,7 +2087,7 @@ void EventScript_NPCEvent_Ann_DialogueAndGiftResponses(void)
                             {
                                 if (VarGet(VAR_ANN_CLIFF_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED || VarGet(VAR_ANN_CLIFF_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED)
                                 {
-                                    if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_OF_MONTH_05)
+                                    if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_05)
                                     {
                                         if (WasNpcSpokenToJustNow(CHARACTER_ANN) == FALSE)
                                         {
@@ -2215,7 +2215,7 @@ void EventScript_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                 }
                                 else
                                 {
-                                    if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_OF_MONTH_05)
+                                    if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_05)
                                     {
                                         if (WasNpcSpokenToJustNow(CHARACTER_ANN) == FALSE)
                                         {
@@ -2477,7 +2477,7 @@ void EventScript_NPCEvent_Ann_DialogueAndGiftResponses(void)
                         case MAP_INN_2F:
                             if (VarGet(VAR_ANN_CLIFF_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED || VarGet(VAR_ANN_CLIFF_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED)
                             {
-                                if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_OF_MONTH_05)
+                                if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_05)
                                 {
                                     if (WasNpcSpokenToJustNow(CHARACTER_ANN) == FALSE)
                                     {
@@ -2506,7 +2506,7 @@ void EventScript_NPCEvent_Ann_DialogueAndGiftResponses(void)
                             }
                             else
                             {
-                                if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_OF_MONTH_05)
+                                if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_05)
                                 {
                                     if (WasNpcSpokenToJustNow(CHARACTER_ANN) == FALSE)
                                     {

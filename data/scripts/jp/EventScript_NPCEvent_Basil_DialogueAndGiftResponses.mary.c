@@ -719,7 +719,7 @@ void EventScript_NPCEvent_Basil_DialogueAndGiftResponses(void)
             }
             else
             {
-                if (VarGet(VAR_YEAR) == 1 && VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_OF_MONTH_14 && VarGet(VAR_DUKE_GRAPE_HARVEST_INVITATION_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED && VarGet(VAR_TOLD_BASIL_ABOUT_GRAPE_HARVEST_JOB) == FALSE && VarGet(VAR_TOLD_CLIFF_ABOUT_GRAPE_HARVEST_JOB) == FALSE)
+                if (VarGet(VAR_YEAR) == 1 && VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_14 && VarGet(VAR_DUKE_GRAPE_HARVEST_INVITATION_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED && VarGet(VAR_TOLD_BASIL_ABOUT_GRAPE_HARVEST_JOB) == FALSE && VarGet(VAR_TOLD_CLIFF_ABOUT_GRAPE_HARVEST_JOB) == FALSE)
                 {
                     SetTalkPortrait(TALK_PORTRAIT_BASIL_HAPPY);
                     TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_GrapeHarvestJobPrompt);

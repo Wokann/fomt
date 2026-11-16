@@ -398,7 +398,7 @@ void EventScript_NPCEvent_Carter_DialogueAndGiftResponses(void)
     SetEntityAnim(ENTITY_CARTER, ANIMATION_CARTER_IDLE);
     var_4 = GetEntityFacing(ENTITY_CARTER);
     SetEntityFacing(ENTITY_CARTER, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
-    if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_OF_MONTH_03)
+    if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_03)
     {
         VarSet(VAR_MUSIC_FESTIVAL_ACTIVE, FESTIVAL_PHASE_INITIAL);
         CallScript(EventScript_FestivalEvent_MusicFestival_EntryCheck_Carter);
@@ -903,7 +903,7 @@ void EventScript_NPCEvent_Carter_DialogueAndGiftResponses(void)
                 }
                 else
                 {
-                    if (VarGet(VAR_YEAR) == 1 && VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_OF_MONTH_14 && VarGet(VAR_DUKE_GRAPE_HARVEST_INVITATION_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED && VarGet(VAR_TOLD_CARTER_ABOUT_GRAPE_HARVEST_JOB) == FALSE && VarGet(VAR_TOLD_CLIFF_ABOUT_GRAPE_HARVEST_JOB) == FALSE)
+                    if (VarGet(VAR_YEAR) == 1 && VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_14 && VarGet(VAR_DUKE_GRAPE_HARVEST_INVITATION_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED && VarGet(VAR_TOLD_CARTER_ABOUT_GRAPE_HARVEST_JOB) == FALSE && VarGet(VAR_TOLD_CLIFF_ABOUT_GRAPE_HARVEST_JOB) == FALSE)
                     {
                         SetTalkPortrait(TALK_PORTRAIT_CARTER_NORMAL);
                         TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_GrapeHarvestJobAdvicePrompt);

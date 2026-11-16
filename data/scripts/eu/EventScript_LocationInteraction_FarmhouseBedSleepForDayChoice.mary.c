@@ -94,13 +94,13 @@ void EventScript_LocationInteraction_FarmhouseBedSleepForDayChoice(void)
                 WaitFrames(30);
                 FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                 ChangePlayerStaminaAndFatigue(50, mary_negated_int(-5));
-                if (var_0 == SEASON_WINTER && (var_1 == DAY_OF_MONTH_14 && (var_2 >= 18 && var_2 <= 23) || var_1 == DAY_OF_MONTH_15 && (var_2 >= 0 && var_2 <= 5)) && (VarGet(VAR_KAREN_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_POPURI_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_ANN_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_MARY_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_ELLI_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_HARVEST_GODDESS_WEDDING_AND_NICKNAME_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED))
+                if (var_0 == SEASON_WINTER && (var_1 == DAY_14 && (var_2 >= 18 && var_2 <= 23) || var_1 == DAY_15 && (var_2 >= 0 && var_2 <= 5)) && (VarGet(VAR_KAREN_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_POPURI_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_ANN_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_MARY_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_ELLI_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_HARVEST_GODDESS_WEDDING_AND_NICKNAME_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED))
                 {
                     CallScript(EventScript_FestivalEvent_WinterThanksgiving_RucksackFull);
                 }
                 else
                 {
-                    if (var_0 == SEASON_WINTER && (var_1 == DAY_OF_MONTH_25 && (var_2 >= 21 && var_2 <= 23)))
+                    if (var_0 == SEASON_WINTER && (var_1 == DAY_25 && (var_2 >= 21 && var_2 <= 23)))
                     {
                         CallScript(EventScript_FestivalEvent_StockingGift_ThomasDelivery);
                     }

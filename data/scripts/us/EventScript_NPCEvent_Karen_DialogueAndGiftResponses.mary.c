@@ -697,7 +697,7 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
     }
     var_4 = GetEntityFacing(ENTITY_KAREN);
     SetEntityFacing(ENTITY_KAREN, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
-    if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_OF_MONTH_14)
+    if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_14)
     {
         switch (GetEntityLocation(ENTITY_KAREN))
         {
@@ -913,7 +913,7 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
                             break;
                         case ITEM_FOOD_COOKIES:
                         case ITEM_FOOD_CHOCOLATE_COOKIES:
-                            if (VarGet(VAR_SEASON) == SEASON_SPRING && VarGet(VAR_DAY) == DAY_OF_MONTH_14 && VarGet(VAR_THANKSGIVING_GIFT_EXCHANGED_WITH_KAREN) == FALSE)
+                            if (VarGet(VAR_SEASON) == SEASON_SPRING && VarGet(VAR_DAY) == DAY_14 && VarGet(VAR_THANKSGIVING_GIFT_EXCHANGED_WITH_KAREN) == FALSE)
                             {
                                 var_0 = NPC_INTERACTION_THANKSGIVING_GIFT;
                             }
@@ -1562,7 +1562,7 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
             }
             else
             {
-                if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_OF_MONTH_23 && (VarGet(VAR_KAREN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_POPURI_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_ANN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_MARY_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_ELLI_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_HARVEST_GODDESS_WEDDING_AND_NICKNAME_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && (VarGet(VAR_RICK_KAREN_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_RICK_KAREN_WEDDING_POPURI_INTRO_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_RICK_KAREN_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE)) && GetCharacterLove(CHARACTER_KAREN) >= LOVE_HEART_GREEN_MIN && VarGet(VAR_STARRY_NIGHT_KAREN_INVITATION_HANDLED) == FALSE && VarGet(VAR_FESTIVAL_STARRY_NIGHT_HOST_INDEX) == STARRY_NIGHT_HOST_NONE)
+                if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_23 && (VarGet(VAR_KAREN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_POPURI_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_ANN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_MARY_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_ELLI_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_HARVEST_GODDESS_WEDDING_AND_NICKNAME_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && (VarGet(VAR_RICK_KAREN_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_RICK_KAREN_WEDDING_POPURI_INTRO_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_RICK_KAREN_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE)) && GetCharacterLove(CHARACTER_KAREN) >= LOVE_HEART_GREEN_MIN && VarGet(VAR_STARRY_NIGHT_KAREN_INVITATION_HANDLED) == FALSE && VarGet(VAR_FESTIVAL_STARRY_NIGHT_HOST_INDEX) == STARRY_NIGHT_HOST_NONE)
                 {
                     SetTalkPortrait(TALK_PORTRAIT_KAREN_BLUSHING);
                     ShowTalkHeartIndicator(CHARACTER_KAREN);
@@ -1590,7 +1590,7 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
                     switch (GetEntityLocation(ENTITY_KAREN))
                     {
                         case MAP_FARMHOUSE:
-                            if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_OF_MONTH_23)
+                            if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) == DAY_23)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                 ShowTalkHeartIndicator(CHARACTER_KAREN);

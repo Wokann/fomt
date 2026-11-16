@@ -92,7 +92,7 @@ void EventScript_TV_WeatherChannelForecast(void)
     switch (VarGet(VAR_SEASON))
     {
         case SEASON_SPRING:
-            if (VarGet(VAR_DAY) == DAY_OF_MONTH_30)
+            if (VarGet(VAR_DAY) == DAY_30)
             {
                 switch (VarGet(VAR_WEATHER_TOMORROW))
                 {
@@ -146,7 +146,7 @@ void EventScript_TV_WeatherChannelForecast(void)
             }
             break;
         case SEASON_SUMMER:
-            if (VarGet(VAR_DAY) == DAY_OF_MONTH_30)
+            if (VarGet(VAR_DAY) == DAY_30)
             {
                 switch (VarGet(VAR_WEATHER_TOMORROW))
                 {
@@ -200,7 +200,7 @@ void EventScript_TV_WeatherChannelForecast(void)
             }
             break;
         case SEASON_FALL:
-            if (VarGet(VAR_DAY) == DAY_OF_MONTH_30)
+            if (VarGet(VAR_DAY) == DAY_30)
             {
                 switch (VarGet(VAR_WEATHER_TOMORROW))
                 {
@@ -254,7 +254,7 @@ void EventScript_TV_WeatherChannelForecast(void)
             }
             break;
         case SEASON_WINTER:
-            if (VarGet(VAR_DAY) == DAY_OF_MONTH_30)
+            if (VarGet(VAR_DAY) == DAY_30)
             {
                 switch (VarGet(VAR_WEATHER_TOMORROW))
                 {

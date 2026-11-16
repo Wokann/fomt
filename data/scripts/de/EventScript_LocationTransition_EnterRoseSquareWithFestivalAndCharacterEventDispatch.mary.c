@@ -17,7 +17,7 @@ void EventScript_LocationTransition_EnterRoseSquareWithFestivalAndCharacterEvent
         var_3 = VarGet(VAR_YEAR);
         var_4 = VarGet(VAR_WEATHER_TODAY);
         var_5 = VarGet(VAR_DAY_OF_WEEK);
-        if (VarGet(VAR_NEW_YEAR_RICE_CAKE_FESTIVAL_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_01)
+        if (VarGet(VAR_NEW_YEAR_RICE_CAKE_FESTIVAL_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_0 == SEASON_SPRING && var_1 == DAY_01)
         {
             if (var_2 >= 6 && var_2 < 18)
             {
@@ -34,7 +34,7 @@ void EventScript_LocationTransition_EnterRoseSquareWithFestivalAndCharacterEvent
         }
         else
         {
-            if (VarGet(VAR_SPRING_FESTIVAL_HORSE_RACE_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_18)
+            if (VarGet(VAR_SPRING_FESTIVAL_HORSE_RACE_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SPRING && var_1 == DAY_18)
             {
                 if (var_2 >= 6 && var_2 < 10)
                 {
@@ -51,7 +51,7 @@ void EventScript_LocationTransition_EnterRoseSquareWithFestivalAndCharacterEvent
             }
             else
             {
-                if (var_0 == SEASON_SPRING && var_1 == DAY_OF_MONTH_22)
+                if (var_0 == SEASON_SPRING && var_1 == DAY_22)
                 {
                     if (VarGet(VAR_COOKING_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE)
                     {
@@ -104,7 +104,7 @@ void EventScript_LocationTransition_EnterRoseSquareWithFestivalAndCharacterEvent
                 }
                 else
                 {
-                    if (VarGet(VAR_CHICKEN_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_07)
+                    if (VarGet(VAR_CHICKEN_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_07)
                     {
                         if (var_2 >= 6 && var_2 < 10)
                         {
@@ -121,7 +121,7 @@ void EventScript_LocationTransition_EnterRoseSquareWithFestivalAndCharacterEvent
                     }
                     else
                     {
-                        if (VarGet(VAR_COW_FESTIVAL_SESSION_STATE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_20)
+                        if (VarGet(VAR_COW_FESTIVAL_SESSION_STATE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_20)
                         {
                             if (var_2 >= 6 && var_2 < 10)
                             {
@@ -138,7 +138,7 @@ void EventScript_LocationTransition_EnterRoseSquareWithFestivalAndCharacterEvent
                         }
                         else
                         {
-                            if (VarGet(VAR_HARVEST_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_09)
+                            if (VarGet(VAR_HARVEST_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_09)
                             {
                                 if (var_2 >= 6 && var_2 < 10)
                                 {
@@ -155,7 +155,7 @@ void EventScript_LocationTransition_EnterRoseSquareWithFestivalAndCharacterEvent
                             }
                             else
                             {
-                                if (VarGet(VAR_FALL_FESTIVAL_HORSE_RACE_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_18)
+                                if (VarGet(VAR_FALL_FESTIVAL_HORSE_RACE_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_18)
                                 {
                                     if (var_2 >= 6 && var_2 < 10)
                                     {
@@ -172,7 +172,7 @@ void EventScript_LocationTransition_EnterRoseSquareWithFestivalAndCharacterEvent
                                 }
                                 else
                                 {
-                                    if (VarGet(VAR_SHEEP_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_OF_MONTH_21)
+                                    if (VarGet(VAR_SHEEP_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_FALL && var_1 == DAY_21)
                                     {
                                         if (var_2 >= 6 && var_2 < 10)
                                         {
@@ -189,7 +189,7 @@ void EventScript_LocationTransition_EnterRoseSquareWithFestivalAndCharacterEvent
                                     }
                                     else
                                     {
-                                        if (VarGet(VAR_NEW_YEARS_EVE_NOODLE_FESTIVAL_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_0 == SEASON_WINTER && var_1 == DAY_OF_MONTH_30)
+                                        if (VarGet(VAR_NEW_YEARS_EVE_NOODLE_FESTIVAL_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_0 == SEASON_WINTER && var_1 == DAY_30)
                                         {
                                             if (var_2 >= 6 && var_2 < 18)
                                             {
@@ -206,7 +206,7 @@ void EventScript_LocationTransition_EnterRoseSquareWithFestivalAndCharacterEvent
                                         }
                                         else
                                         {
-                                            if (VarGet(VAR_CLIFF_COLLAPSES_IN_SNOW_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_3 == 1 && var_4 == WEATHER_SNOW && var_0 == SEASON_WINTER && (var_1 >= DAY_OF_MONTH_01 && var_1 <= DAY_OF_MONTH_26) && (var_2 >= 10 && var_2 < 15) && VarGet(VAR_ANN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_ANN_CLIFF_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_ANN_CLIFF_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && GetNpcFriendship(CHARACTER_CLIFF) >= 50 && HasMetNpc(CHARACTER_CLIFF) == TRUE && IsPlayerHoldingNothing() == TRUE)
+                                            if (VarGet(VAR_CLIFF_COLLAPSES_IN_SNOW_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_3 == 1 && var_4 == WEATHER_SNOW && var_0 == SEASON_WINTER && (var_1 >= DAY_01 && var_1 <= DAY_26) && (var_2 >= 10 && var_2 < 15) && VarGet(VAR_ANN_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && VarGet(VAR_ANN_CLIFF_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_ANN_CLIFF_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_SINGLE && GetNpcFriendship(CHARACTER_CLIFF) >= 50 && HasMetNpc(CHARACTER_CLIFF) == TRUE && IsPlayerHoldingNothing() == TRUE)
                                             {
                                                 VarSet(VAR_CLIFF_COLLAPSES_IN_SNOW_EVENT_STATE, EVENT_LIFECYCLE_IN_PROGRESS);
                                                 CallScript(EventScript_NPCEvent_Cliff_CollapsesInSnow);

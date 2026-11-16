@@ -19,13 +19,13 @@ void EventScript_LocationTransition_EnterBasilHouse1FWithEventDispatch(void)
         var_2 = VarGet(VAR_DAY);
         var_3 = VarGet(VAR_HOUR);
         var_4 = VarGet(VAR_DAY_OF_WEEK);
-        if (var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_01 || var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_18 || var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_22 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_01 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_07 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_24 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_20 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_03 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_09 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_13 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_18 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_21 || var_1 == SEASON_WINTER && var_2 == DAY_OF_MONTH_30)
+        if (var_1 == SEASON_SPRING && var_2 == DAY_01 || var_1 == SEASON_SPRING && var_2 == DAY_18 || var_1 == SEASON_SPRING && var_2 == DAY_22 || var_1 == SEASON_SUMMER && var_2 == DAY_01 || var_1 == SEASON_SUMMER && var_2 == DAY_07 || var_1 == SEASON_SUMMER && var_2 == DAY_24 || var_1 == SEASON_SUMMER && var_2 == DAY_20 || var_1 == SEASON_FALL && var_2 == DAY_03 || var_1 == SEASON_FALL && var_2 == DAY_09 || var_1 == SEASON_FALL && var_2 == DAY_13 || var_1 == SEASON_FALL && var_2 == DAY_18 || var_1 == SEASON_FALL && var_2 == DAY_21 || var_1 == SEASON_WINTER && var_2 == DAY_30)
         {
             var_0 = FALSE;
         }
         else
         {
-            if (var_1 == SEASON_WINTER && var_2 == DAY_OF_MONTH_24)
+            if (var_1 == SEASON_WINTER && var_2 == DAY_24)
             {
                 if (VarGet(VAR_FESTIVAL_STARRY_NIGHT_HOST_INDEX) == STARRY_NIGHT_HOST_MARY_HOUSEHOLD)
                 {
@@ -83,7 +83,7 @@ void EventScript_LocationTransition_EnterBasilHouse1FWithEventDispatch(void)
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
             ChangeMap(MAP_BASIL_HOUSE_1F, X(120), Y(208));
             SetEntityPosition(ENTITY_PLAYER, X(120), Y(208), FACING_UP);
-            if (var_1 == SEASON_WINTER && var_2 == DAY_OF_MONTH_24 && VarGet(VAR_FESTIVAL_STARRY_NIGHT_HOST_INDEX) == STARRY_NIGHT_HOST_MARY_HOUSEHOLD)
+            if (var_1 == SEASON_WINTER && var_2 == DAY_24 && VarGet(VAR_FESTIVAL_STARRY_NIGHT_HOST_INDEX) == STARRY_NIGHT_HOST_MARY_HOUSEHOLD)
             {
                 if (var_3 >= 18)
                 {

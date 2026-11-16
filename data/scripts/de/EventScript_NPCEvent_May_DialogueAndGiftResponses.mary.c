@@ -179,7 +179,7 @@ void EventScript_NPCEvent_May_DialogueAndGiftResponses(void)
     SetEntityAnim(ENTITY_MAY, ANIMATION_MAY_IDLE);
     var_2 = GetEntityFacing(ENTITY_MAY);
     SetEntityFacing(ENTITY_MAY, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
-    if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_OF_MONTH_30)
+    if (VarGet(VAR_SEASON) == SEASON_FALL && VarGet(VAR_DAY) == DAY_30)
     {
         switch (GetEntityLocation(ENTITY_MAY))
         {

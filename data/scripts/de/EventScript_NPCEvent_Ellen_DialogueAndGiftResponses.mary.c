@@ -488,7 +488,7 @@ void EventScript_NPCEvent_Ellen_DialogueAndGiftResponses(void)
                         case ITEM_ARTICLE_YARN_G:
                         case ITEM_ARTICLE_YARN_P:
                         case ITEM_ARTICLE_YARN_X:
-                            if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) >= DAY_OF_MONTH_01 && VarGet(VAR_DAY) <= DAY_OF_MONTH_23 && VarGet(VAR_DAY_OF_WEEK) != DAY_OF_WEEK_WEDNESDAY && VarGet(VAR_HOUR) >= 9 && VarGet(VAR_HOUR) < 11 && GetNpcFriendship(CHARACTER_ELLEN) >= 200 && VarGet(VAR_ELLEN_KNITS_STOCKING_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_ELLEN_STOCKING_YARN_SPECIAL_RESPONSE_BLOCKED) == FALSE)
+                            if (VarGet(VAR_SEASON) == SEASON_WINTER && VarGet(VAR_DAY) >= DAY_01 && VarGet(VAR_DAY) <= DAY_23 && VarGet(VAR_DAY_OF_WEEK) != DAY_OF_WEEK_WEDNESDAY && VarGet(VAR_HOUR) >= 9 && VarGet(VAR_HOUR) < 11 && GetNpcFriendship(CHARACTER_ELLEN) >= 200 && VarGet(VAR_ELLEN_KNITS_STOCKING_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && VarGet(VAR_ELLEN_STOCKING_YARN_SPECIAL_RESPONSE_BLOCKED) == FALSE)
                             {
                                 var_0 = NPC_INTERACTION_CHARACTER_EVENT_ITEM;
                             }

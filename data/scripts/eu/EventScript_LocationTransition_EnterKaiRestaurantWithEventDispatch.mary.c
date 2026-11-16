@@ -20,7 +20,7 @@ void EventScript_LocationTransition_EnterKaiRestaurantWithEventDispatch(void)
         var_3 = VarGet(VAR_HOUR);
         var_4 = VarGet(VAR_DAY_OF_WEEK);
         var_5 = VarGet(VAR_WEATHER_TODAY);
-        if (var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_01 || var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_18 || var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_22 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_01 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_07 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_24 || var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_20 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_03 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_09 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_13 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_18 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_21 || var_1 == SEASON_WINTER && var_2 == DAY_OF_MONTH_24 || var_1 == SEASON_WINTER && var_2 == DAY_OF_MONTH_30)
+        if (var_1 == SEASON_SPRING && var_2 == DAY_01 || var_1 == SEASON_SPRING && var_2 == DAY_18 || var_1 == SEASON_SPRING && var_2 == DAY_22 || var_1 == SEASON_SUMMER && var_2 == DAY_01 || var_1 == SEASON_SUMMER && var_2 == DAY_07 || var_1 == SEASON_SUMMER && var_2 == DAY_24 || var_1 == SEASON_SUMMER && var_2 == DAY_20 || var_1 == SEASON_FALL && var_2 == DAY_03 || var_1 == SEASON_FALL && var_2 == DAY_09 || var_1 == SEASON_FALL && var_2 == DAY_13 || var_1 == SEASON_FALL && var_2 == DAY_18 || var_1 == SEASON_FALL && var_2 == DAY_21 || var_1 == SEASON_WINTER && var_2 == DAY_24 || var_1 == SEASON_WINTER && var_2 == DAY_30)
         {
             var_0 = FALSE;
         }

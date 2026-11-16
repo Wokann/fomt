@@ -3526,94 +3526,94 @@ void EventScript_TV_HarvestTheater(void)
             SetTelevisionProgram(TELEVISION_PROGRAM_MECHABOT_ULTROR);
             switch (VarGet(VAR_DAY))
             {
-                case DAY_OF_MONTH_01:
+                case DAY_01:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode01);
                     break;
-                case DAY_OF_MONTH_02:
+                case DAY_02:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode02);
                     break;
-                case DAY_OF_MONTH_03:
+                case DAY_03:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode03);
                     break;
-                case DAY_OF_MONTH_04:
+                case DAY_04:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode04);
                     break;
-                case DAY_OF_MONTH_05:
+                case DAY_05:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode05);
                     break;
-                case DAY_OF_MONTH_06:
+                case DAY_06:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode06);
                     break;
-                case DAY_OF_MONTH_07:
+                case DAY_07:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode07);
                     break;
-                case DAY_OF_MONTH_08:
+                case DAY_08:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode08);
                     break;
-                case DAY_OF_MONTH_09:
+                case DAY_09:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode09);
                     break;
-                case DAY_OF_MONTH_10:
+                case DAY_10:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode10);
                     break;
-                case DAY_OF_MONTH_11:
+                case DAY_11:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode11);
                     break;
-                case DAY_OF_MONTH_12:
+                case DAY_12:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode12);
                     break;
-                case DAY_OF_MONTH_13:
+                case DAY_13:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode13);
                     break;
-                case DAY_OF_MONTH_14:
+                case DAY_14:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode14);
                     break;
-                case DAY_OF_MONTH_15:
+                case DAY_15:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode15);
                     break;
-                case DAY_OF_MONTH_16:
+                case DAY_16:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode16);
                     break;
-                case DAY_OF_MONTH_17:
+                case DAY_17:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode17);
                     break;
-                case DAY_OF_MONTH_18:
+                case DAY_18:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode18);
                     break;
-                case DAY_OF_MONTH_19:
+                case DAY_19:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode19);
                     break;
-                case DAY_OF_MONTH_20:
+                case DAY_20:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode20);
                     break;
-                case DAY_OF_MONTH_21:
+                case DAY_21:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode21);
                     break;
-                case DAY_OF_MONTH_22:
+                case DAY_22:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode22);
                     break;
-                case DAY_OF_MONTH_23:
+                case DAY_23:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode23);
                     break;
-                case DAY_OF_MONTH_24:
+                case DAY_24:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode24);
                     break;
-                case DAY_OF_MONTH_25:
+                case DAY_25:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode25);
                     break;
-                case DAY_OF_MONTH_26:
+                case DAY_26:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode26);
                     break;
-                case DAY_OF_MONTH_27:
+                case DAY_27:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode27);
                     break;
-                case DAY_OF_MONTH_28:
+                case DAY_28:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode28);
                     break;
-                case DAY_OF_MONTH_29:
+                case DAY_29:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode29);
                     break;
-                case DAY_OF_MONTH_30:
+                case DAY_30:
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode30);
                     break;
             }
@@ -3622,123 +3622,123 @@ void EventScript_TV_HarvestTheater(void)
         case SEASON_WINTER:
             switch (VarGet(VAR_DAY))
             {
-                case DAY_OF_MONTH_01:
+                case DAY_01:
                     SetTelevisionProgram(TELEVISION_PROGRAM_MECHABOT_ULTROR);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode31);
                     break;
-                case DAY_OF_MONTH_02:
+                case DAY_02:
                     SetTelevisionProgram(TELEVISION_PROGRAM_MECHABOT_ULTROR);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode32);
                     break;
-                case DAY_OF_MONTH_03:
+                case DAY_03:
                     SetTelevisionProgram(TELEVISION_PROGRAM_MECHABOT_ULTROR);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode33);
                     break;
-                case DAY_OF_MONTH_04:
+                case DAY_04:
                     SetTelevisionProgram(TELEVISION_PROGRAM_MECHABOT_ULTROR);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode34);
                     break;
-                case DAY_OF_MONTH_05:
+                case DAY_05:
                     SetTelevisionProgram(TELEVISION_PROGRAM_MECHABOT_ULTROR);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode35);
                     break;
-                case DAY_OF_MONTH_06:
+                case DAY_06:
                     SetTelevisionProgram(TELEVISION_PROGRAM_MECHABOT_ULTROR);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode36);
                     break;
-                case DAY_OF_MONTH_07:
+                case DAY_07:
                     SetTelevisionProgram(TELEVISION_PROGRAM_MECHABOT_ULTROR);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode37);
                     break;
-                case DAY_OF_MONTH_08:
+                case DAY_08:
                     SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode38);
                     break;
-                case DAY_OF_MONTH_09:
+                case DAY_09:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode39);
                     break;
-                case DAY_OF_MONTH_10:
+                case DAY_10:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode40);
                     break;
-                case DAY_OF_MONTH_11:
+                case DAY_11:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode41);
                     break;
-                case DAY_OF_MONTH_12:
+                case DAY_12:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode42);
                     break;
-                case DAY_OF_MONTH_13:
+                case DAY_13:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode43);
                     break;
-                case DAY_OF_MONTH_14:
+                case DAY_14:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode44);
                     break;
-                case DAY_OF_MONTH_15:
+                case DAY_15:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode45);
                     break;
-                case DAY_OF_MONTH_16:
+                case DAY_16:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode46);
                     break;
-                case DAY_OF_MONTH_17:
+                case DAY_17:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode47);
                     break;
-                case DAY_OF_MONTH_18:
+                case DAY_18:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode48);
                     break;
-                case DAY_OF_MONTH_19:
+                case DAY_19:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode49);
                     break;
-                case DAY_OF_MONTH_20:
+                case DAY_20:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode50);
                     break;
-                case DAY_OF_MONTH_21:
+                case DAY_21:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode51);
                     break;
-                case DAY_OF_MONTH_22:
+                case DAY_22:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode52);
                     break;
-                case DAY_OF_MONTH_23:
+                case DAY_23:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode53);
                     break;
-                case DAY_OF_MONTH_24:
+                case DAY_24:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode54);
                     break;
-                case DAY_OF_MONTH_25:
+                case DAY_25:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode55);
                     break;
-                case DAY_OF_MONTH_26:
+                case DAY_26:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode56);
                     break;
-                case DAY_OF_MONTH_27:
+                case DAY_27:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode57);
                     break;
-                case DAY_OF_MONTH_28:
+                case DAY_28:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode58);
                     break;
-                case DAY_OF_MONTH_29:
+                case DAY_29:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode59);
                     break;
-                case DAY_OF_MONTH_30:
+                case DAY_30:
                     SetTelevisionProgram(TELEVISION_PROGRAM_HARVEST_THEATER);
                     var_0 = ShowTelevisionMessage(gText_TV_HarvestTheater_Episode60);
                     break;

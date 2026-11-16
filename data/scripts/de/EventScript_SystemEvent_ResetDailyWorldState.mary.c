@@ -34,7 +34,7 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
     VarSet(VAR_KAPPA_CUCUMBER_OFFERING_MADE_TODAY, FALSE);
     VarSet(VAR_CHURCH_CONFESSION_USED_TODAY, FALSE);
     VarSet(VAR_GOLDEN_LUMBER_ANGER_EVENT_TODAY_STATE, EVENT_LIFECYCLE_NOT_STARTED);
-    if (VarGet(VAR_YEAR) == 1 && VarGet(VAR_SEASON) == SEASON_SPRING && VarGet(VAR_DAY) == DAY_OF_MONTH_03)
+    if (VarGet(VAR_YEAR) == 1 && VarGet(VAR_SEASON) == SEASON_SPRING && VarGet(VAR_DAY) == DAY_03)
     {
         VarSet(VAR_TV_CARD_COLLECTOR_CHISATO_EPISODE_INDEX, 0);
         VarSet(VAR_TV_MY_DEAR_PRINCESS_EPISODE_INDEX, 0);
@@ -51,13 +51,13 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
         VarSet(VAR_TV_MINE_RESEARCH_GROUP_EPISODE_INDEX, 0);
         VarSet(VAR_TV_FISHING_HOUR_SEGMENT_INDEX, 0);
     }
-    if (VarGet(VAR_SEASON) == SEASON_SPRING && (VarGet(VAR_DAY) == DAY_OF_MONTH_01 || VarGet(VAR_DAY) == DAY_OF_MONTH_02 || VarGet(VAR_DAY) == DAY_OF_MONTH_03 || VarGet(VAR_DAY) == DAY_OF_MONTH_04 || VarGet(VAR_DAY) == DAY_OF_MONTH_05) || VarGet(VAR_SEASON) == SEASON_WINTER && (VarGet(VAR_DAY) == DAY_OF_MONTH_29 || VarGet(VAR_DAY) == DAY_OF_MONTH_30))
+    if (VarGet(VAR_SEASON) == SEASON_SPRING && (VarGet(VAR_DAY) == DAY_01 || VarGet(VAR_DAY) == DAY_02 || VarGet(VAR_DAY) == DAY_03 || VarGet(VAR_DAY) == DAY_04 || VarGet(VAR_DAY) == DAY_05) || VarGet(VAR_SEASON) == SEASON_WINTER && (VarGet(VAR_DAY) == DAY_29 || VarGet(VAR_DAY) == DAY_30))
     {
         VarSet(VAR_TV_HARVEST_GODDESS_NUMBER_GAME_PROGRESS, 0);
     }
-    if (!(VarGet(VAR_YEAR) == 1 && VarGet(VAR_SEASON) == SEASON_SPRING && VarGet(VAR_DAY) == DAY_OF_MONTH_06) && VarGet(VAR_DAY_OF_WEEK) == DAY_OF_WEEK_FRIDAY)
+    if (!(VarGet(VAR_YEAR) == 1 && VarGet(VAR_SEASON) == SEASON_SPRING && VarGet(VAR_DAY) == DAY_06) && VarGet(VAR_DAY_OF_WEEK) == DAY_OF_WEEK_FRIDAY)
     {
-        if (VarGet(VAR_SEASON) == SEASON_SPRING && (VarGet(VAR_DAY) == DAY_OF_MONTH_01 || VarGet(VAR_DAY) == DAY_OF_MONTH_02 || VarGet(VAR_DAY) == DAY_OF_MONTH_03 || VarGet(VAR_DAY) == DAY_OF_MONTH_04 || VarGet(VAR_DAY) == DAY_OF_MONTH_05) || VarGet(VAR_SEASON) == SEASON_WINTER && (VarGet(VAR_DAY) == DAY_OF_MONTH_29 || VarGet(VAR_DAY) == DAY_OF_MONTH_30))
+        if (VarGet(VAR_SEASON) == SEASON_SPRING && (VarGet(VAR_DAY) == DAY_01 || VarGet(VAR_DAY) == DAY_02 || VarGet(VAR_DAY) == DAY_03 || VarGet(VAR_DAY) == DAY_04 || VarGet(VAR_DAY) == DAY_05) || VarGet(VAR_SEASON) == SEASON_WINTER && (VarGet(VAR_DAY) == DAY_29 || VarGet(VAR_DAY) == DAY_30))
         {
         }
         else
@@ -170,7 +170,7 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
             }
         }
     }
-    if (VarGet(VAR_SEASON) == SEASON_SPRING && VarGet(VAR_DAY) == DAY_OF_MONTH_01)
+    if (VarGet(VAR_SEASON) == SEASON_SPRING && VarGet(VAR_DAY) == DAY_01)
     {
         if (HasMetNpc(CHARACTER_CLIFF) == TRUE)
         {
@@ -674,11 +674,11 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
             }
         }
     }
-    if (var_1 == SEASON_SUMMER && (var_2 == DAY_OF_MONTH_01 || var_2 == DAY_OF_MONTH_02))
+    if (var_1 == SEASON_SUMMER && (var_2 == DAY_01 || var_2 == DAY_02))
     {
         VarSet(VAR_HARVEST_SPRITE_TEA_PARTY_EVENT_STATE, EVENT_LIFECYCLE_NOT_STARTED);
     }
-    if (!PlayerOwnsArticle(ITEM_ARTICLE_INVITATION) && VarGet(VAR_HARVEST_SPRITE_TEA_PARTY_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_1 == SEASON_SPRING && (var_2 == DAY_OF_MONTH_30 || RandomIntInclusive(0, 99) < 30) && GetNpcFriendship(CHARACTER_STAID) >= 75 && GetNpcFriendship(CHARACTER_NAPPY) >= 75 && GetNpcFriendship(CHARACTER_BOLD) >= 75 && GetNpcFriendship(CHARACTER_CHEF) >= 75 && GetNpcFriendship(CHARACTER_AQUA) >= 75 && GetNpcFriendship(CHARACTER_HOGGY) >= 75 && GetNpcFriendship(CHARACTER_TIMID) >= 75)
+    if (!PlayerOwnsArticle(ITEM_ARTICLE_INVITATION) && VarGet(VAR_HARVEST_SPRITE_TEA_PARTY_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED && var_1 == SEASON_SPRING && (var_2 == DAY_30 || RandomIntInclusive(0, 99) < 30) && GetNpcFriendship(CHARACTER_STAID) >= 75 && GetNpcFriendship(CHARACTER_NAPPY) >= 75 && GetNpcFriendship(CHARACTER_BOLD) >= 75 && GetNpcFriendship(CHARACTER_CHEF) >= 75 && GetNpcFriendship(CHARACTER_AQUA) >= 75 && GetNpcFriendship(CHARACTER_HOGGY) >= 75 && GetNpcFriendship(CHARACTER_TIMID) >= 75)
     {
         DeliverLetter(LETTER_HARVEST_SPRITE_TEA_PARTY_INVITATION);
     }
@@ -712,12 +712,12 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
     {
         VarSet(VAR_PLAYER_SNEAKS_PAST_SLEEPING_CARTER_EVENT_STATE, EVENT_LIFECYCLE_NOT_STARTED);
     }
-    if (var_2 == DAY_OF_MONTH_30 || var_2 == DAY_OF_MONTH_01)
+    if (var_2 == DAY_30 || var_2 == DAY_01)
     {
         VarSet(VAR_WON_APPLE_CHALLENGE_EVENT_STATE, EVENT_LIFECYCLE_NOT_STARTED);
         VarSet(VAR_WON_VASE_PURCHASE_EVENT_STATE, EVENT_LIFECYCLE_NOT_STARTED);
     }
-    if (var_1 == SEASON_WINTER && (var_2 == DAY_OF_MONTH_02 || var_2 == DAY_OF_MONTH_03 || var_2 == DAY_OF_MONTH_04))
+    if (var_1 == SEASON_WINTER && (var_2 == DAY_02 || var_2 == DAY_03 || var_2 == DAY_04))
     {
         VarSet(VAR_THOMAS_RANDOM_ITEM_REQUEST_EVENT_STATE, EVENT_LIFECYCLE_NOT_STARTED);
         VarSet(VAR_THOMAS_RANDOM_ITEM_REQUEST_CHOICE, THOMAS_RANDOM_ITEM_REQUEST_ACCEPTED);
@@ -735,7 +735,7 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
     {
         VarSet(VAR_DAYS_SINCE_FAILED_HORSE_YEAR_EVALUATION, VarGet(VAR_DAYS_SINCE_FAILED_HORSE_YEAR_EVALUATION) + 1);
     }
-    if (var_0 == 1 && var_1 == SEASON_FALL && (var_2 == DAY_OF_MONTH_16 || var_2 == DAY_OF_MONTH_17) && VarGet(VAR_CLIFF_PERMANENT_WINERY_JOB_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED)
+    if (var_0 == 1 && var_1 == SEASON_FALL && (var_2 == DAY_16 || var_2 == DAY_17) && VarGet(VAR_CLIFF_PERMANENT_WINERY_JOB_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED)
     {
         VarSet(VAR_CLIFF_PERMANENT_WINERY_JOB_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
     }
@@ -747,43 +747,43 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
     {
         VarSet(VAR_KAPPA_DAILY_APPEARANCE_EVENT_STATE, EVENT_LIFECYCLE_NOT_STARTED);
     }
-    if (var_1 == SEASON_SPRING && (var_2 == DAY_OF_MONTH_19 || var_2 == DAY_OF_MONTH_20))
+    if (var_1 == SEASON_SPRING && (var_2 == DAY_19 || var_2 == DAY_20))
     {
         ClearContestAnimal(ANIMAL_KIND_HORSE);
         VarSet(VAR_FESTIVAL_HORSE_RACE_PLAYER_ENTRY_SELECTED, FESTIVAL_PLAYER_ENTRY_NOT_SELECTED);
         VarSet(VAR_SPRING_FESTIVAL_HORSE_RACE_RESULT, FESTIVAL_HORSE_RACE_RESULT_NOT_WON);
     }
-    if (var_1 == SEASON_SUMMER && (var_2 == DAY_OF_MONTH_02 || var_2 == DAY_OF_MONTH_03))
+    if (var_1 == SEASON_SUMMER && (var_2 == DAY_02 || var_2 == DAY_03))
     {
         ClearContestAnimal(ANIMAL_KIND_DOG);
         VarSet(VAR_FRISBEE_TOURNAMENT_PLAYER_DOG_ENTRY_SELECTED, FALSE);
         VarSet(VAR_FRISBEE_TOURNAMENT_RESULT, FESTIVAL_CONTEST_RESULT_NOT_WON);
     }
-    if (var_1 == SEASON_SUMMER && (var_2 == DAY_OF_MONTH_08 || var_2 == DAY_OF_MONTH_09))
+    if (var_1 == SEASON_SUMMER && (var_2 == DAY_08 || var_2 == DAY_09))
     {
         ClearContestAnimal(ANIMAL_KIND_CHICKEN);
         VarSet(VAR_CHICKEN_FESTIVAL_PLAYER_ENTRY_SELECTED, FESTIVAL_PLAYER_ENTRY_NOT_SELECTED);
         VarSet(VAR_CHICKEN_FESTIVAL_RESULT, FESTIVAL_CONTEST_RESULT_NOT_WON);
     }
-    if (var_1 == SEASON_SUMMER && (var_2 == DAY_OF_MONTH_21 || var_2 == DAY_OF_MONTH_22))
+    if (var_1 == SEASON_SUMMER && (var_2 == DAY_21 || var_2 == DAY_22))
     {
         ClearContestAnimal(ANIMAL_KIND_COW);
         VarSet(VAR_COW_FESTIVAL_PLAYER_ENTRY_SELECTED, FESTIVAL_PLAYER_ENTRY_NOT_SELECTED);
         VarSet(VAR_COW_FESTIVAL_PLAYER_RESULT, FESTIVAL_CONTEST_RESULT_NOT_WON);
     }
-    if (var_1 == SEASON_FALL && (var_2 == DAY_OF_MONTH_19 || var_2 == DAY_OF_MONTH_20))
+    if (var_1 == SEASON_FALL && (var_2 == DAY_19 || var_2 == DAY_20))
     {
         ClearContestAnimal(ANIMAL_KIND_HORSE);
         VarSet(VAR_FALL_FESTIVAL_HORSE_RACE_PLAYER_ENTRY_SELECTED, FESTIVAL_PLAYER_ENTRY_NOT_SELECTED);
         VarSet(VAR_FALL_FESTIVAL_HORSE_RACE_RESULT, FESTIVAL_HORSE_RACE_RESULT_NOT_WON);
     }
-    if (var_1 == SEASON_FALL && (var_2 == DAY_OF_MONTH_22 || var_2 == DAY_OF_MONTH_23))
+    if (var_1 == SEASON_FALL && (var_2 == DAY_22 || var_2 == DAY_23))
     {
         ClearContestAnimal(ANIMAL_KIND_SHEEP);
         VarSet(VAR_SHEEP_FESTIVAL_PLAYER_ENTRY_SELECTED, FESTIVAL_PLAYER_ENTRY_NOT_SELECTED);
         VarSet(VAR_SHEEP_FESTIVAL_RESULT, FESTIVAL_CONTEST_RESULT_NOT_WON);
     }
-    if (var_0 == 1 && var_1 == SEASON_WINTER && var_2 == DAY_OF_MONTH_30 || var_0 == 2 && var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_01)
+    if (var_0 == 1 && var_1 == SEASON_WINTER && var_2 == DAY_30 || var_0 == 2 && var_1 == SEASON_SPRING && var_2 == DAY_01)
     {
         if (VarGet(VAR_TOLD_CLIFF_ABOUT_GRAPE_HARVEST_JOB) == FALSE && VarGet(VAR_CLIFF_LEAVES_MINERAL_TOWN_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED)
         {
@@ -968,7 +968,7 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
             VarSet(VAR_HARVEST_GODDESS_CHILD_FIRST_STEPS_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
         }
     }
-    if (var_1 == SEASON_SPRING && (var_2 == DAY_OF_MONTH_15 || var_2 == DAY_OF_MONTH_16))
+    if (var_1 == SEASON_SPRING && (var_2 == DAY_15 || var_2 == DAY_16))
     {
         VarSet(VAR_WINTER_THANKSGIVING_GIFT_RECEIVED_FROM_POPURI, FALSE);
         VarSet(VAR_WINTER_THANKSGIVING_GIFT_RECEIVED_FROM_ANN, FALSE);
@@ -976,7 +976,7 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
         VarSet(VAR_WINTER_THANKSGIVING_GIFT_RECEIVED_FROM_KAREN, FALSE);
         VarSet(VAR_WINTER_THANKSGIVING_GIFT_RECEIVED_FROM_MARY, FALSE);
     }
-    if (var_1 == SEASON_FALL && (var_2 == DAY_OF_MONTH_10 || var_2 == DAY_OF_MONTH_11))
+    if (var_1 == SEASON_FALL && (var_2 == DAY_10 || var_2 == DAY_11))
     {
         VarSet(VAR_HARVEST_FESTIVAL_ACTIVE, FESTIVAL_PHASE_ADVANCED);
         ClearEntityEventScript(ENTITY_THOMAS);
@@ -991,7 +991,7 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
         ClearEntityEventScript(ENTITY_ANNA);
         ClearEntityEventScript(ENTITY_MANNA);
     }
-    if (var_1 == SEASON_FALL && (var_2 == DAY_OF_MONTH_14 || var_2 == DAY_OF_MONTH_15))
+    if (var_1 == SEASON_FALL && (var_2 == DAY_14 || var_2 == DAY_15))
     {
         VarSet(VAR_MOON_VIEWING_FESTIVAL_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
         switch (VarGet(VAR_FESTIVAL_MOON_VIEWING_PARTNER_INDEX))
@@ -1155,11 +1155,11 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
             }
         }
     }
-    if (var_1 == SEASON_WINTER && var_2 == DAY_OF_MONTH_25)
+    if (var_1 == SEASON_WINTER && var_2 == DAY_25)
     {
         VarSet(VAR_THOMAS_STOCKING_GIFT_SELECTION, SelectThomasStockingGift());
     }
-    if (var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_22)
+    if (var_1 == SEASON_SPRING && var_2 == DAY_22)
     {
         if (var_0 >= 6)
         {
@@ -1170,19 +1170,19 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
             VarSet(VAR_COOKING_FESTIVAL_DISH_CATEGORY, var_0 - 1);
         }
     }
-    if (var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_18 && VarGet(VAR_FESTIVAL_HORSE_RACE_INVITATION_EVENT_STATE) == FESTIVAL_INVITATION_NOT_TRIGGERED)
+    if (var_1 == SEASON_SPRING && var_2 == DAY_18 && VarGet(VAR_FESTIVAL_HORSE_RACE_INVITATION_EVENT_STATE) == FESTIVAL_INVITATION_NOT_TRIGGERED)
     {
         PrepareHorseRaceEntries(FESTIVAL_HORSE_RACE_ENTRIES_NPC_ONLY);
     }
-    if (var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_18 && VarGet(VAR_FALL_FESTIVAL_HORSE_RACE_INVITATION_EVENT_STATE) == FESTIVAL_INVITATION_NOT_TRIGGERED)
+    if (var_1 == SEASON_FALL && var_2 == DAY_18 && VarGet(VAR_FALL_FESTIVAL_HORSE_RACE_INVITATION_EVENT_STATE) == FESTIVAL_INVITATION_NOT_TRIGGERED)
     {
         PrepareHorseRaceEntries(FESTIVAL_HORSE_RACE_ENTRIES_NPC_ONLY);
     }
-    if (var_1 == SEASON_SUMMER && var_2 == DAY_OF_MONTH_01)
+    if (var_1 == SEASON_SUMMER && var_2 == DAY_01)
     {
         PrepareAnimalFestivalOpponents();
     }
-    if (var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_13)
+    if (var_1 == SEASON_FALL && var_2 == DAY_13)
     {
         VarSet(VAR_FESTIVAL_MOON_VIEWING_PARTNER_INDEX, SelectMoonViewingPartner());
     }
@@ -1194,7 +1194,7 @@ void EventScript_SystemEvent_ResetDailyWorldState(void)
     {
         VarSet(VAR_GOLDEN_LUMBER_WAS_ON_FARM_AT_DAY_START, FALSE);
     }
-    if (var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_01 || var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_02)
+    if (var_1 == SEASON_SPRING && var_2 == DAY_01 || var_1 == SEASON_SPRING && var_2 == DAY_02)
     {
         VarSet(VAR_NEW_YEAR_RICE_CAKE_FESTIVAL_EVENT_STATE, EVENT_LIFECYCLE_NOT_STARTED);
         VarSet(VAR_THANKSGIVING_GIFT_EXCHANGED_WITH_KAREN, FALSE);

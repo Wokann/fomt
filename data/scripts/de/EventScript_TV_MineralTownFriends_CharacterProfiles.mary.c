@@ -1275,7 +1275,7 @@ void EventScript_TV_MineralTownFriends_CharacterProfiles(void)
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_POPURI);
-            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_SUMMER && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_OF_MONTH_03)
+            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_SUMMER && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_03)
             {
                 TalkMessageSlow(gText_TV_MineralTownFriends_Popuri_ProfileHeaderBirthdayShiftedForPlayerConflict);
             }
@@ -1768,7 +1768,7 @@ void EventScript_TV_MineralTownFriends_CharacterProfiles(void)
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
-            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_SPRING && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_OF_MONTH_08)
+            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_SPRING && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_08)
             {
                 TalkMessageSlow(gText_TV_MineralTownFriends_HarvestGoddess_ProfileHeaderBirthdayShiftedForPlayerConflict);
             }
@@ -1865,7 +1865,7 @@ void EventScript_TV_MineralTownFriends_CharacterProfiles(void)
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_ELLI_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_ELLI);
-            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_SPRING && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_OF_MONTH_16)
+            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_SPRING && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_16)
             {
                 TalkMessageSlow(gText_TV_MineralTownFriends_Elli_ProfileHeaderBirthdayShiftedForPlayerConflict);
             }
@@ -1974,7 +1974,7 @@ void EventScript_TV_MineralTownFriends_CharacterProfiles(void)
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_KAREN);
-            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_FALL && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_OF_MONTH_15)
+            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_FALL && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_15)
             {
                 TalkMessageSlow(gText_TV_MineralTownFriends_Karen_ProfileHeaderBirthdayShiftedForPlayerConflict);
             }
@@ -2078,7 +2078,7 @@ void EventScript_TV_MineralTownFriends_CharacterProfiles(void)
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_ANN);
-            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_SUMMER && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_OF_MONTH_17)
+            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_SUMMER && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_17)
             {
                 TalkMessageSlow(gText_TV_MineralTownFriends_Ann_ProfileHeaderBirthdayShiftedForPlayerConflict);
             }
@@ -2175,7 +2175,7 @@ void EventScript_TV_MineralTownFriends_CharacterProfiles(void)
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_MARY);
-            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_WINTER && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_OF_MONTH_20)
+            if (VarGet(VAR_PLAYER_BIRTHDAY_SEASON) == SEASON_WINTER && VarGet(VAR_PLAYER_BIRTHDAY_DAY) == DAY_20)
             {
                 TalkMessageSlow(gText_TV_MineralTownFriends_Mary_ProfileHeaderBirthdayShiftedForPlayerConflict);
             }

@@ -60,7 +60,7 @@ void EventScript_LocationTransition_EnterMineralBeachWithFestivalDispatch(void)
         ChangeMap(MAP_MINERAL_BEACH, X(260), Y(504));
         SetEntityPosition(ENTITY_PLAYER, X(260), Y(504), FACING_DOWN);
         PlaySong(AUDIO_START, AUDIO_SFX_CLOSE_DOOR);
-        if (VarGet(VAR_BEACH_DAY_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_OF_MONTH_01)
+        if (VarGet(VAR_BEACH_DAY_FESTIVAL_ACTIVE) == FESTIVAL_PHASE_INACTIVE && var_0 == SEASON_SUMMER && var_1 == DAY_01)
         {
             if (var_2 >= 6 && var_2 < 10)
             {

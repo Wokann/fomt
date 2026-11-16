@@ -215,7 +215,7 @@ void EventScript_NPCEvent_Spouse_BedtimeDialogue(void)
         {
             if (var_4 >= 20)
             {
-                if (var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_22 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_13)
+                if (var_1 == SEASON_SPRING && var_2 == DAY_22 || var_1 == SEASON_FALL && var_2 == DAY_13)
                 {
                     var_0 = FALSE;
                 }
@@ -242,7 +242,7 @@ void EventScript_NPCEvent_Spouse_BedtimeDialogue(void)
             {
                 if (var_4 >= 20)
                 {
-                    if (var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_13)
+                    if (var_1 == SEASON_FALL && var_2 == DAY_13)
                     {
                         var_0 = FALSE;
                     }
@@ -269,7 +269,7 @@ void EventScript_NPCEvent_Spouse_BedtimeDialogue(void)
                 {
                     if (var_4 >= 20)
                     {
-                        if (var_1 == SEASON_SPRING && var_2 == DAY_OF_MONTH_22 || var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_13)
+                        if (var_1 == SEASON_SPRING && var_2 == DAY_22 || var_1 == SEASON_FALL && var_2 == DAY_13)
                         {
                             var_0 = FALSE;
                         }
@@ -296,7 +296,7 @@ void EventScript_NPCEvent_Spouse_BedtimeDialogue(void)
                     {
                         if (var_4 >= 20)
                         {
-                            if (var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_13)
+                            if (var_1 == SEASON_FALL && var_2 == DAY_13)
                             {
                                 var_0 = FALSE;
                             }
@@ -323,7 +323,7 @@ void EventScript_NPCEvent_Spouse_BedtimeDialogue(void)
                         {
                             if (var_4 >= 20)
                             {
-                                if (var_1 == SEASON_FALL && var_2 == DAY_OF_MONTH_13)
+                                if (var_1 == SEASON_FALL && var_2 == DAY_13)
                                 {
                                     var_0 = FALSE;
                                 }
