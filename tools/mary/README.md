@@ -6,7 +6,7 @@
 
 - 上游仓库：[Wokann/mary](https://github.com/Wokann/mary)
 - 分支：`Enhanced`
-- 提交：`e57546a2ead4e244f75390c34c1f615d4813b435`
+- 提交：`da26222a9e1a8fb7294b35c71a92c7ca2a294bf0`
 
 该二进制由上述提交以 `cargo build --release` 构建。FOMT 的构建规则以 `bundle --layout packed`
 调用它，并显式传入根目录的 `charmap.txt`、区域脚本头文件及
