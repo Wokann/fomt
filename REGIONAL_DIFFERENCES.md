@@ -76,7 +76,8 @@
 | 钓获消息行宽 | US／EU 的漂流瓶、海贼宝藏展开后超过 28 格；DE 四种长鱼名的模板多一尾空格。 | 回绕同一行覆盖开头；仅修这些模板，不添加自动换页。[消息与修复](BUGFIX.md#fishing-message-width)。 |
 | 换行残留与满行空格 | US／EU／DE 的部分脚本含字面量 `ret>` 或 `<RET>`，四版均发现正文满行后还有空格的情况。 | 记号会按普通字符显示，多余空格会覆盖行首；仅修已核实的对应原文，不给引擎增加新控制符。[残留控制记号](BUGFIX.md#text-control-literals) · [满行尾空格](BUGFIX.md#text-trailing-space)。 |
 | 凯贺卡签名 | US／EU／DE 的原 ROM 均含制表字节 `09`；JP 直接用空格排签名。 | 源码转义写法虽不同，实际前三版字节相同。指南不解释制表控制，保留真实缩进并去除该前缀。[页面](data/text/us/reference_guide/birthday_card_kai.cc) · [修复](BUGFIX.md#kai-card-tab)。 |
-| 联机商人英文名 | GBA 海外姓名栏为 Lou，英语自我介绍为 Van；跨作品还存在 Ruby／Lou 的命名沿革。 | 采用本作自我介绍及当时商人的 Van，不解释为误用了重制版另一角色的名字。[历史与取舍](BUGFIX.md#van-name-history)。 |
+| 联机商人英文名 | GBA 海外姓名栏为 Lou／Lu，英语自我介绍为 Van；JP 为バァン。 | 属于本作姓名错译，BUGFIX 修为 Van；与另一位料理角色的 Ruby／Lou 改名无关。[错误与依据](BUGFIX.md#van-name-history)。 |
+| 料理来访者英文名 | GBA 海外姓名栏为 Lu、自介 Lou；同期 NGC／NDS 英文版为 Ruby，重制版为 Lou。 | BUGFIX 按旧时代联动名称统一为 Ruby，保留 LouOrRuby 标识符及角色 ID。[原文与命名沿革](BUGFIX.md#ruby-name)。 |
 
 <a id="cooking-wrapped-description"></a>
 ### 料理材料包装说明

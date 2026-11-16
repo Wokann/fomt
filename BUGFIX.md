@@ -28,7 +28,7 @@ make -j16 GAME_REGION=JP all
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、婚期及婚姻条件。 | 8 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签和显示排版。 | 12 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
-| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 31 |
+| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 32 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 30 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 21 |
 
@@ -1148,7 +1148,8 @@ US／EU 分别写 eated、Pinapple
 | [露自我介绍中的来访星期错误](#lou-visit-day) | US、EU、DE | 已接入 |
 | [玛娜把自己说成另一位在场者](#manna-duke-reference) | US、EU、DE | 已接入 |
 | [莉莉娅在女儿婚礼后声称自己嫁给凯](#lillia-wedding) | US、EU、DE | 已接入 |
-| [联机商人姓名栏与自我介绍不一致](#van-name-history) | US、EU、DE | 已接入 |
+| [联机商人姓名错译为 Lou／Lu](#van-name-history) | US、EU、DE | 已接入 |
+| [料理来访者未使用同期英文名 Ruby](#ruby-name) | US、EU、DE | 已接入 |
 | [玩家生日晚餐的妻子问候误用婴儿语](#spouse-birthday-baby-talk) | US、EU | 已接入 |
 | [安娜普通赠礼答谢误提生日](#anna-gift-birthday) | US、EU | 已接入 |
 | [卡特葡萄园兼职提示及选项残留德语](#carter-untranslated) | US、EU | 已接入 |
@@ -1686,33 +1687,53 @@ US／EU：Everybody I love is here to celebrate my marriage with Kai.；DE也称
 **相关文件：** [JP](data/scripts/jp/EventScript_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c) · [US](data/scripts/us/EventScript_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c) · [EU](data/scripts/eu/EventScript_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c) · [DE](data/scripts/de/EventScript_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c)
 
 <a id="van-name-history"></a>
-### 联机商人姓名栏与自我介绍不一致
+### 联机商人姓名错译为 Lou／Lu
 
 **受影响版本：** US、EU、DE。
 
 **原版内容与差异：**
 
-姓名栏使用Lou／Lu，英语自我介绍却明确写Van。
+姓名栏为 Lou／Lu，但角色日文名为バァン，英语自我介绍明确写 Van。同一时期 NGC《A Wonderful Life》和 NDS《Harvest Moon DS》中的商人也叫 Van。这是 GBA 的姓名错译，不是商人跨作品改名。
 
 **判断依据：**
 
-以本作自我介绍和GBA／NGC联机时期的商人身份为依据，不把它解释成误用了重制版另一个角色的名字。
+GBA 姓名栏和自我介绍直接冲突；JP 的バァン及同期联动商人的 Van 确定身份。旅馆料理角色 Ruby／Lou 的名称沿革属于另一人，不能用来解释商人的错误名字。
 
 **修复方式：**
 
-姓名栏采用Van；角色ID及料理来访者名称不改。
+开启 `BUGFIX` 时把海外商人姓名栏改为 Van；关闭时保留 Lou／Lu。角色 ID、变量名和其他事件不变。
 
-**Van／Lou／Ruby 的命名取舍。** 本作海外商人的姓名栏为 Lou，而其英语自我介绍明确写 Van。这是本作内部命名不一致；不能用重制版中 Lou 的身份反推当年是“误用了另一角色的名字”。本次选择 Van，是与本作自我介绍和当时联机商人的惯用名称统一，未改角色编号或料理来访者姓名。
+**相关文件：** [US 自我介绍](data/scripts/us/EventScript_NPCEvent_Van_Introduction.mary.c) · [JP 姓名](data/text/jp/npc_collection.cc) · [US 姓名](data/text/us/npc_collection.cc) · [EU 姓名](data/text/eu/npc_collection.cc) · [DE 姓名](data/text/de/npc_collection.cc)
 
-| 时代／作品 | 与本次判断相关的名称 | 证据与范围 |
+<a id="ruby-name"></a>
+### 料理来访者未使用同期英文名 Ruby
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+海外姓名栏为 Lu，自我介绍为 Lou；JP 为ルウ。但本作自己的 NGC 人物介绍标题、正文、人物选择菜单及 Rock 简介已经使用 Ruby，构成本作内部的命名不一致。该角色是 NGC 联动作品的旅馆料理经营者，NGC 和 NDS 的同期英文名也为 Ruby。
+
+**判断依据：**
+
+本作 [Ruby 的 NGC 人物介绍](data/text/us/reference_guide/ngc_awl_profiles_ruby.cc)、[Rock 简介中的父母称呼](data/text/us/reference_guide/ngc_awl_profiles_rock.cc)和 [NGC 人物选择菜单](data/scripts/us/EventScript_SystemMenu_GameCubeLinkAWLCharacterProfileBrowser.mary.c)均直接写 Ruby；EU、DE 对应内容也一致。因此这次修复不是单纯借用其他作品的名字，而是与本作已存在的同一角色介绍统一。
+
+| 作品时期 | 料理旅馆经营者 | 旅行商人 |
 | --- | --- | --- |
-| NGC《A Wonderful Life》与 GBA 联机时期 | 商人为 Van；旅馆料理角色旧英文名 Ruby；本仓库 GBA 姓名栏另有 Lou、Lu 的写法 | GBA 的 Van 自我介绍与角色名表为直接证据；跨作品旧名由下列系列资料补充，不把 GBA 各处称呼强行当成一致。 |
-| NDS《Harvest Moon DS》 | 商人 Van、旅馆经营者 Ruby | [Van](https://fogu.com/hm6/chan3/villagers/van.php) · [Ruby](https://fogu.com/hm6/chan3/villagers/ruby.php)，均为社区攻略资料。 |
-| NS 等平台《Story of Seasons: Friends of Mineral Town》 | 料理来访者使用 Lou，旧系列名为 Ruby | [Lou 的身份与旧名说明](https://fogu.com/sos3/mineral_town/villagers/lou.html)。这是后来的命名沿革，不作为覆盖 GBA 全部译名的规则。 |
+| NGC《A Wonderful Life》英文版 | Ruby | Van |
+| 本作 GBA US／EU／DE | 姓名栏 Lu、自介 Lou | 姓名栏 Lou／Lu，英语自介 Van |
+| NDS《Harvest Moon DS》英文版 | Ruby | Van |
+|《Story of Seasons: Friends of Mineral Town》重制版 | Lou | Van |
 
-跨作品历史参考主要来自同一社区资料站，可靠性低于本作可直接核对的文本；此次修复的核心依据仍是 [GBA 自我介绍](data/scripts/us/EventScript_NPCEvent_Van_Introduction.mary.c) 与 [姓名栏](data/text/us/npc_collection.cc) 的不一致。
+NGC 的[联机资料](https://fogu.com/hm/hmawl/gbaconnection.php)、NDS 的 [Ruby](https://fogu.com/hm6/chan3/villagers/ruby.php)／[Van](https://fogu.com/hm6/chan3/villagers/van.php) 页面及重制版 [Lou 的旧名说明](https://fogu.com/sos3/mineral_town/villagers/lou.html)互相印证。跨作品名称历史主要来自同一社区攻略站；本作原文则直接由下列源码核对。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_Van_Introduction.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Van_Introduction.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Van_Introduction.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Van_Introduction.mary.c) · [JP](data/text/jp/npc_collection.cc) · [US](data/text/us/npc_collection.cc) · [EU](data/text/eu/npc_collection.cc) · [DE](data/text/de/npc_collection.cc)
+**命名取舍：** NGC、NDS 的 Ruby 符合本作 GBA 联动所处的时代；重制版的 Lou 是较远时期的变更。本项目选择同期的 Ruby，不用后来的 Lou 覆盖旧时代的联动身份。
+
+**修复方式：**
+
+开启 `BUGFIX` 时，海外姓名栏 Lu 和自我介绍 Lou 均改为 Ruby；JP 的ルウ不变。关闭时保留原文。保留 `LouOrRuby`／`CHARACTER_LOU_OR_RUBY` 标识符和角色 ID，不涉及人物顺序或事件机制。
+
+**相关文件：** [US 姓名](data/text/us/npc_collection.cc) · [EU 姓名](data/text/eu/npc_collection.cc) · [DE 姓名](data/text/de/npc_collection.cc) · [US 自介](data/scripts/us/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [EU 自介](data/scripts/eu/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [DE 自介](data/scripts/de/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c)
 
 <a id="spouse-birthday-baby-talk"></a>
 ### 玩家生日晚餐的妻子问候误用婴儿语

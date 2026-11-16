@@ -101,7 +101,7 @@ char const gText_CharacterName_Kappa[] =
     "Kappa";
 
 char const gText_CharacterName_Van[] =
-// Use Van for consistency with the contemporary linked GameCube character.
+// The merchant introduces himself as Van; Lou is the wrong nameplate.
 #ifdef BUGFIX
     "Van";
 #else
@@ -109,7 +109,12 @@ char const gText_CharacterName_Van[] =
 #endif
 
 char const gText_CharacterName_LouOrRuby[] =
+// Match the contemporary GameCube innkeeper's English name, Ruby.
+#ifdef BUGFIX
+    "Ruby";
+#else
     "Lu";
+#endif
 
 char const gText_CharacterName_Staid[] =
     "Staid";

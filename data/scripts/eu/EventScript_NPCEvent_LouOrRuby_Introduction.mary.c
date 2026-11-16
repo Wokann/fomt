@@ -7,7 +7,12 @@ mary_text_table
 {
     const char gText_NPCEvent_LouOrRuby_Introduction_LouOrRubyIntroducesWeeklyFoodBuyingVisitAtInn[] =
         "Hi there. {Press}\p"
+// Use Ruby here too, matching the linked GameCube character.
+#ifdef BUGFIX
+        "My name's Ruby. I come to \r\n"
+#else
         "My name's Lou. I come to \r\n"
+#endif
         "Mineral Town every week \r\n"
         "to buy food. {Press}\p"
         "The food from Mineral Town \r\n"
