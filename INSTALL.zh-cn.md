@@ -155,7 +155,22 @@ cd ~/projects
    brew install git make coreutils pkgconf libpng zlib gcc@14 arm-none-eabi-gcc
    ```
 
-3. 将以下内容加入 `~/.zprofile`，然后重新打开终端：
+3. 使用 Apple Silicon 芯片时，安装 Rosetta 2，以便运行 x86_64 版 agbcc：
+
+   ```sh
+   softwareupdate --install-rosetta --agree-to-license
+   ```
+
+   <details>
+   <summary>为什么需要 Rosetta 2……</summary>
+
+   agbcc 源自 GCC 2.95，原生编译为 arm64 后只要输入非空就会发生段错误。
+   请按[安装](#安装)中的命令将其编译为 x86_64，由 Rosetta 2 运行。
+   使用 Intel 芯片的 Mac 可跳过此步。
+
+   </details>
+
+4. 将以下内容加入 `~/.zprofile`，然后重新打开终端：
 
    ```sh
    export PATH="$(brew --prefix make)/libexec/gnubin:$(brew --prefix coreutils)/libexec/gnubin:$(brew --prefix)/bin:$PATH"
@@ -272,11 +287,21 @@ cd ~/projects
    )
    ```
 
-   **macOS：**
+   **macOS（Intel）：**
 
    ```sh
    CC="gcc-14 -std=gnu89 -fcommon" CXX=g++-14 MAKEFLAGS=-j16 bash ./build.sh
    ```
+
+   **macOS（Apple Silicon）：**
+
+   ```sh
+   CC="cc -arch x86_64 -std=gnu89 -fcommon" CXX="c++ -arch x86_64" \
+       MAKEFLAGS=-j16 bash ./build.sh
+   ```
+
+   Apple Silicon 上会有意把 agbcc 编译为 x86_64，Rosetta 2 会自动运行
+   生成的编译器可执行文件。
 
 4. 将 agbcc 安装到 FoMT，然后进入游戏目录：
 
@@ -294,6 +319,19 @@ cd ~/projects
 ```sh
 make -j16
 ```
+
+<details>
+<summary>macOS 说明……</summary>
+
+请加上 `HOSTCC=gcc-14`，让工程内置的 host 工具由 GCC 而非 Apple clang 编译。
+clang 的 `-Werror` 会因 `tools/fomt_lz.c` 的 `-Wsometimes-uninitialized`
+报警而中断，直接 `make` 会停在 `tools/fomt-lz`：
+
+```sh
+make -j16 HOSTCC=gcc-14
+```
+
+</details>
 
 默认编译美版，完成后会在工程目录中生成 **fomt_us.gba**。
 若要编译其他区域，选择对应命令：
