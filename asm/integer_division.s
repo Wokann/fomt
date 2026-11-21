@@ -1,5 +1,5 @@
     .include "asm/macro.inc"
-    .include "six/asm/hw/svc.s"
+    .include "asm/gba.inc"
 
     .syntax unified
     .text

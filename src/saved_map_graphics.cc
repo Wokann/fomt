@@ -44,7 +44,7 @@ u16 const gUnk_FieldRenderLookupValues[18][2] = {
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
     "thumb_func_start func_080AAF28\n"
     "func_080AAF28:\n"

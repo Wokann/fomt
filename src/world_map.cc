@@ -95,7 +95,7 @@ void GameSceneWorldMap::Update()
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
     "thumb_func_start Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList\n"
     "Draw__17GameSceneWorldMapR16HardwareDmaQueueR20HardwareDisplayStateR18HardwareLinkedList:\n"
@@ -338,7 +338,7 @@ asm_unified(
     "str r0, [r7, #4]\n"
     "b .Lgame_map_after_update_02aa\n"
     ".align 2, 0\n"
-    ".Lgame_map_after_update_01d4: .word BG_PALETTE + PLTT_SIZE_4BPP\n"
+    ".Lgame_map_after_update_01d4: .word BG_PLTT + PLTT_SIZE_4BPP\n"
     ".Lgame_map_after_update_01d8:\n"
     "str r1, [sp, #0x54]\n"
     "movs r0, #1\n"

@@ -5,7 +5,7 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
     "thumb_func_start __14ShelfSceneCoreP18GameStateSaveImage\n"
     "__14ShelfSceneCoreP18GameStateSaveImage:\n"

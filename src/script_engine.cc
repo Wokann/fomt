@@ -39,8 +39,7 @@ void ScriptEngine::Push(i32 value)
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/memory.s\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     "\n"
     "    thumb_func_start OnCall__12ScriptEnginei\n"
     "OnCall__12ScriptEnginei:\n"

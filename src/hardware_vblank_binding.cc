@@ -37,7 +37,7 @@ HardwareManagerVBlankBinding::HardwareManagerVBlankBinding(HardwareLinkedList * 
 
 asm_unified(
     "    .include \"asm/macro.inc\"\n"
-    "    .include \"six/asm/hw/irq.s\"\n"
+    "    .include \"asm/gba.inc\"\n"
     "    .text\n"
     "    .thumb\n"
     "    .align 2, 0\n"
@@ -51,7 +51,7 @@ asm_unified(
     "    adds r5, r1, #0\n"
     "    ldr r0, .LVBlankBindingVTable\n"
     "    str r0, [r4, #0x14]\n"
-    "    movs r0, #IRQ_VBLANK\n"
+    "    movs r0, #INTR_FLAG_VBLANK\n"
     "    bl DisableInterrupts\n"
     "    ldr r1, [r4, #0x10]\n"
     "    movs r0, #IRQ_INDEX_VBLANK\n"

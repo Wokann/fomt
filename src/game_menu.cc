@@ -7,7 +7,7 @@
 
 asm_unified(
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
 );
 
 inline void GameSceneMenuCursorData::RefreshBounds()
@@ -348,7 +348,7 @@ asm_unified(
     ".ifdef REGION_JP\n"
     ".Lmenu_3_0_027c: .word 0x5000020\n"
     ".else\n"
-    ".Lmenu_3_0_027c: .word BG_PALETTE + PLTT_SIZE_4BPP\n"
+    ".Lmenu_3_0_027c: .word BG_PLTT + PLTT_SIZE_4BPP\n"
     ".endif\n"
 );
 
@@ -1162,7 +1162,7 @@ asm_unified(
     "str r0, [r6, #4]\n"
     "b .Lmenu_6_0_033c\n"
     ".align 2, 0\n"
-    ".Lmenu_6_0_0278: .word OBJ_PALETTE\n"
+    ".Lmenu_6_0_0278: .word OBJ_PLTT\n"
     ".Lmenu_6_0_027c:\n"
     "mov sl, r1\n"
     "movs r0, #1\n"
@@ -1779,7 +1779,7 @@ asm_unified(
     ".ifdef REGION_JP\n"
     ".Lmenu_9_2_00a0: .word 0x5000200\n"
     ".else\n"
-    ".Lmenu_9_2_00a0: .word OBJ_PALETTE\n"
+    ".Lmenu_9_2_00a0: .word OBJ_PLTT\n"
     ".endif\n"
     ".Lmenu_9_2_00a4:\n"
     "mov r8, r1\n"
@@ -2966,7 +2966,7 @@ asm_unified(
     "str r0, [r6, #4]\n"
     "b .Lmenu_10_0_0358\n"
     ".align 2, 0\n"
-    ".Lmenu_10_0_0294: .word OBJ_PALETTE\n"
+    ".Lmenu_10_0_0294: .word OBJ_PLTT\n"
     ".Lmenu_10_0_0298:\n"
     "mov sl, r1\n"
     "movs r0, #1\n"

@@ -7,7 +7,7 @@ void * operator new(unsigned long);
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     ".ifdef REGION_JP\n"
     "\n"
     "\t.global FadeIn__17FarmMapScreenCore\n"

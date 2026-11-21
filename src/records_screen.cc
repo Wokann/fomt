@@ -6,7 +6,7 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     ".ifdef REGION_JP\n"
     "\t.global __17RecordsScreenCoreP18GameStateSaveImage\n"
     "\t.thumb_func\n"

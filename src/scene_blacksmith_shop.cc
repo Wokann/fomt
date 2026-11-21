@@ -7,7 +7,7 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
     "thumb_func_start __23BlacksmithShopSceneCoreP18GameStateSaveImageUcUiUiUiUi\n"
     "__23BlacksmithShopSceneCoreP18GameStateSaveImageUcUiUiUiUi:\n"
@@ -493,7 +493,7 @@ asm_unified(
     "str r0, [r6, #4]\n"
     "b .Lblacksmith_3_0300\n"
     ".align 2, 0\n"
-    ".Lblacksmith_3_0234: .word BG_PALETTE + PLTT_SIZE_4BPP\n"
+    ".Lblacksmith_3_0234: .word BG_PLTT + PLTT_SIZE_4BPP\n"
     ".Lblacksmith_3_0238:\n"
     "str r1, [sp, #0xd8]\n"
     "movs r0, #1\n"

@@ -824,7 +824,7 @@ void GameSceneWorld::Update(GameObjectUpdateContext const & input)
 
 asm_unified(
     ".text\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
     "\n"
     "    thumb_func_start Draw__14GameSceneWorldRC21GameObjectDrawContext\n"
@@ -3608,7 +3608,7 @@ asm_unified(
     "    mov r3, sl\n"
     "    ldrb r2, [r3, #8]\n"
     "    lsls r2, r2, #5\n"
-    "    ldr r5, .L080199A0 @ =OBJ_PALETTE\n"
+    "    ldr r5, .L080199A0 @ =OBJ_PLTT\n"
     "    adds r2, r2, r5\n"
     "    add r0, sp, #0x14\n"
     "    movs r3, #0x20\n"
@@ -3656,7 +3656,7 @@ asm_unified(
     ".L08019994: .word 0x00000CA8\n"
     ".L08019998: .word 0x00000B78\n"
     ".L0801999C: .word 0x00000CB4\n"
-    ".L080199A0: .word OBJ_PALETTE\n"
+    ".L080199A0: .word OBJ_PLTT\n"
     ".L080199A4: .word 0x00000CAC\n"
     ".L080199A8:\n"
     "    ldr r2, .L080199EC @ =0x00000CDC\n"

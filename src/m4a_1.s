@@ -1,14 +1,14 @@
-    .include "six/asm/prelude.s"
-    .include "six/asm/hw/sound.s"
-    .include "six/asm/hw/video.s"
-    .include "six/asm/hw/dma.s"
-    .include "six/asm/macros.s"
+    .include "asm/macro.inc"
+    .include "asm/gba.inc"
 
     .include "asm/m4a.s"
 
     .syntax unified
 
-    fn MultByQ32 thumb
+    .text
+
+    thumb_func_start MultByQ32
+MultByQ32:
 
     adr    r2, 1f
     bx     r2
@@ -18,9 +18,10 @@
     add    r0, r3, 0
     bx     lr
 
-    endfn @ MultByQ32
+    thumb_func_end MultByQ32
 
-    fn SoundMain thumb
+    thumb_func_start SoundMain
+SoundMain:
 
     @ id check
     ldr    r0, .Llt_SOUND_INFO_PTR
@@ -108,7 +109,9 @@
 .Llt_O_SoundInfo_pcm_buffer: .word O_SoundInfo_pcm_buffer
 .Llt_PCM_DMA_BUF_SIZE:       .word PCM_DMA_BUF_SIZE
 
-    fn SoundMainRam_load
+    .global SoundMainRam_load
+    .type SoundMainRam_load, %function
+SoundMainRam_load:
 
     ldrb   r3, [r0, O_SoundInfo_reverb]
     cmp    r3, 0
@@ -548,10 +551,11 @@
     .align 2, 0
 .LSoundMainRamId: .word ID_NUMBER
 
-    endfn @ SoundMainRam_load
-    endfn @ SoundMain
+    thumb_func_end SoundMain
+    thumb_func_end SoundMainRam_load
 
-    fn RealClear64byte thumb
+    thumb_func_start RealClear64byte
+RealClear64byte:
 
     mov    r12, r4
 
@@ -567,9 +571,10 @@
     mov    r4, r12
     bx     lr
 
-    endfn @ RealClear64byte
+    thumb_func_end RealClear64byte
 
-    fn RealClearChain thumb
+    thumb_func_start RealClearChain
+RealClearChain:
 
     ldr    r3, [r0, O_SoundChannel_track]
     cmp    r3, 0
@@ -600,9 +605,10 @@
 4:
     bx     lr
 
-    endfn @ RealClearChain
+    thumb_func_end RealClearChain
 
-    fn ply_fine thumb
+    thumb_func_start ply_fine
+ply_fine:
 
     push   {r4, r5, lr}
 
@@ -638,9 +644,10 @@
     pop    {r0}
     bx     r0
 
-    endfn @ ply_fine
+    thumb_func_end ply_fine
 
-    fn MPlayJumpTableCopy thumb
+    thumb_func_start MPlayJumpTableCopy
+MPlayJumpTableCopy:
 
     mov    r12, lr
 
@@ -659,13 +666,15 @@
 
     .align 2, 0
 
-    fn ldrb_r3_r2 thumb .linkage=local
+    .type ldrb_r3_r2, %function
+ldrb_r3_r2:
 
     ldrb   r3, [r2]
 
     @ fallthrough
 
-    fn chk_adr_r2 .linkage=local
+    .type chk_adr_r2, %function
+chk_adr_r2:
 
 @ This attempts to protect against reading anything from the BIOS ROM
 @ besides the jump table template.
@@ -690,37 +699,43 @@
     pop    {r0}
     bx     lr
 
-    endfn @ chk_adr_r2
-    endfn @ ldrb_r3_r2
+    thumb_func_end MPlayJumpTableCopy
+    thumb_func_end ldrb_r3_r2
+    thumb_func_end chk_adr_r2
 
     .align 2, 0
 .Llt_MPlayJumpTableTemplate: .word gMPlayJumpTableTemplate
 
-    fn ld_r3_tp_adr_i thumb
+    thumb_func_start ld_r3_tp_adr_i
+ld_r3_tp_adr_i:
 
     ldr    r2, [r1, O_MusicPlayerTrack_cmd_ptr]
 
     @ fallthrough
 
-    fn st_r2_inc_pt_cmd_ptr
+    .global st_r2_inc_pt_cmd_ptr
+    .type st_r2_inc_pt_cmd_ptr, %function
+st_r2_inc_pt_cmd_ptr:
 
     adds   r3, r2, 1
     str    r3, [r1, O_MusicPlayerTrack_cmd_ptr]
     ldrb   r3, [r2]
     b      chk_adr_r2
 
-    endfn @ st_r2_inc_pt_cmd_ptr
-    endfn @ ld_r3_tp_adr_i
+    thumb_func_end ld_r3_tp_adr_i
+    thumb_func_end st_r2_inc_pt_cmd_ptr
 
-    endfn @ MPlayJumpTableCopy
 
-    fn ply_goto thumb
+    thumb_func_start ply_goto
+ply_goto:
 
     push   {lr}
 
     @ fallthrough
 
-    fn ply_goto_inner
+    .global ply_goto_inner
+    .type ply_goto_inner, %function
+ply_goto_inner:
 
     ldr    r2, [r1, O_MusicPlayerTrack_cmd_ptr]
     ldrb   r0, [r2, 3]
@@ -737,10 +752,11 @@
     pop    {r0}
     bx     r0
 
-    endfn @ ply_goto_inner
-    endfn @ ply_goto
+    thumb_func_end ply_goto
+    thumb_func_end ply_goto_inner
 
-    fn ply_patt thumb
+    thumb_func_start ply_patt
+ply_patt:
 
     ldrb   r2, [r1, O_MusicPlayerTrack_patternLevel]
     cmp    r2, 3
@@ -759,9 +775,10 @@
 .Lply_patt_done:
     b      ply_fine
 
-    endfn @ ply_patt
+    thumb_func_end ply_patt
 
-    fn ply_pend thumb
+    thumb_func_start ply_pend
+ply_pend:
 
     ldrb   r2, [r1, O_MusicPlayerTrack_patternLevel]
     cmp    r2, 0
@@ -777,9 +794,10 @@
 .Lply_pend_done:
     bx     lr
 
-    endfn @ ply_pend
+    thumb_func_end ply_pend
 
-    fn ply_rept thumb
+    thumb_func_start ply_rept
+ply_rept:
 
     push   {lr}
     ldr    r2, [r1, O_MusicPlayerTrack_cmd_ptr]
@@ -810,18 +828,20 @@
     pop    {r0}
     bx     r0
 
-    endfn @ ply_rept
+    thumb_func_end ply_rept
 
-    fn ply_prio thumb
+    thumb_func_start ply_prio
+ply_prio:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i
     strb   r3, [r1, O_MusicPlayerTrack_priority]
     bx     r12
 
-    endfn @ ply_prio
+    thumb_func_end ply_prio
 
-    fn ply_tempo thumb
+    thumb_func_start ply_tempo
+ply_tempo:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i
@@ -833,9 +853,10 @@
     strh   r3, [r0, O_MusicPlayer_tempo_i]
     bx     r12
 
-    endfn @ ply_tempo
+    thumb_func_end ply_tempo
 
-    fn ply_keysh thumb
+    thumb_func_start ply_keysh
+ply_keysh:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i
@@ -846,9 +867,10 @@
     strb   r3, [r1, O_MusicPlayerTrack_flags]
     bx     r12
 
-    endfn @ ply_keysh
+    thumb_func_end ply_keysh
 
-    fn ply_voice thumb
+    thumb_func_start ply_voice
+ply_voice:
 
     mov    r12, lr
     ldr    r2, [r1, O_MusicPlayerTrack_cmd_ptr]
@@ -871,9 +893,10 @@
     str    r3, [r1, O_MusicPlayerTrack_ToneData_attack]
     bx     r12
 
-    endfn @ ply_voice
+    thumb_func_end ply_voice
 
-    fn ply_vol thumb
+    thumb_func_start ply_vol
+ply_vol:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i
@@ -884,9 +907,10 @@
     strb   r3, [r1, O_MusicPlayerTrack_flags]
     bx     r12
 
-    endfn @ ply_vol
+    thumb_func_end ply_vol
 
-    fn ply_pan thumb
+    thumb_func_start ply_pan
+ply_pan:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i
@@ -898,9 +922,10 @@
     strb   r3, [r1, O_MusicPlayerTrack_flags]
     bx     r12
 
-    endfn @ ply_pan
+    thumb_func_end ply_pan
 
-    fn ply_bend thumb
+    thumb_func_start ply_bend
+ply_bend:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i
@@ -912,9 +937,10 @@
     strb   r3, [r1, O_MusicPlayerTrack_flags]
     bx     r12
 
-    endfn @ ply_bend
+    thumb_func_end ply_bend
 
-    fn ply_bendr thumb
+    thumb_func_start ply_bendr
+ply_bendr:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i
@@ -925,18 +951,20 @@
     strb   r3, [r1, O_MusicPlayerTrack_flags]
     bx     r12
 
-    endfn @ ply_bendr
+    thumb_func_end ply_bendr
 
-    fn ply_lfodl thumb
+    thumb_func_start ply_lfodl
+ply_lfodl:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i
     strb   r3, [r1, O_MusicPlayerTrack_lfo_delay]
     bx     r12
 
-    endfn @ ply_lfodl
+    thumb_func_end ply_lfodl
 
-    fn ply_modt thumb
+    thumb_func_start ply_modt
+ply_modt:
     mov    r12, lr
     bl     ld_r3_tp_adr_i
     ldrb   r0, [r1, O_MusicPlayerTrack_mod_t]
@@ -951,9 +979,10 @@
 
 .Lply_modt_done:
     bx     r12
-    endfn @ ply_modt
+    thumb_func_end ply_modt
 
-    fn ply_tune thumb
+    thumb_func_start ply_tune
+ply_tune:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i
@@ -965,23 +994,26 @@
     strb   r3, [r1, O_MusicPlayerTrack_flags]
     bx     r12
 
-    endfn @ ply_tune
+    thumb_func_end ply_tune
 
-    fn ply_port thumb
+    thumb_func_start ply_port
+ply_port:
 
     mov    r12, lr
     ldr    r2, [r1, O_MusicPlayerTrack_cmd_ptr]
     ldrb   r3, [r2]
     adds   r2, 1
-    ldr    r0, =REG_SOUND_BASE
+    ldr    r0, =REG_SOUND1CNT_L
     adds   r0, r3
     bl     st_r2_inc_pt_cmd_ptr
     strb   r3, [r0]
     bx     r12
 
-    endfn @ ply_port
+    thumb_func_end ply_port
+    .pool
 
-    fn m4aSoundVSync thumb
+    thumb_func_start m4aSoundVSync
+m4aSoundVSync:
 
     ldr    r0, lt2_SOUND_INFO_PTR
     ldr    r0, [r0]
@@ -1003,42 +1035,44 @@
     ldrb   r1, [r0, O_SoundInfo_pcm_dma_period]
     strb   r1, [r0, O_SoundInfo_pcm_dma_counter]
 
-    ldr    r2, =REG_DMA1SRC
+    ldr    r2, =REG_DMA1SAD
 
-    ldr    r1, [r2, #(REG_DMA1LEN - REG_DMA1SRC)]
+    ldr    r1, [r2, #(REG_DMA1CNT_L - REG_DMA1SAD)]
     lsls   r1, 7
     bcc    .Lm4aSoundVSync_SkipDMA1 @ branch if repeat bit isn't set
 
-    ldr    r1, =((DMA_ENABLE | DMA_START_NOW | DMA_32BIT | DMA_SRC_INCREMENT | DMA_DST_FIXED) << 16) | 4
-    str    r1, [r2, #(REG_DMA1LEN - REG_DMA1SRC)]
+    ldr    r1, =((DMA_ENABLE | DMA_START_NOW | DMA_32BIT | DMA_SRC_INC | DMA_DST_FIXED) << 16) | 4
+    str    r1, [r2, #(REG_DMA1CNT_L - REG_DMA1SAD)]
 
 .Lm4aSoundVSync_SkipDMA1:
-    ldr    r1, [r2, #(REG_DMA2LEN - REG_DMA1SRC)]
+    ldr    r1, [r2, #(REG_DMA2CNT_L - REG_DMA1SAD)]
     lsls   r1, 7
     bcc    .Lm4aSoundVSync_SkipDMA2 @ branch if repeat bit isn't set
 
-    ldr    r1, =((DMA_ENABLE | DMA_START_NOW | DMA_32BIT | DMA_SRC_INCREMENT | DMA_DST_FIXED) << 16) | 4
-    str    r1, [r2, #(REG_DMA2LEN - REG_DMA1SRC)]
+    ldr    r1, =((DMA_ENABLE | DMA_START_NOW | DMA_32BIT | DMA_SRC_INC | DMA_DST_FIXED) << 16) | 4
+    str    r1, [r2, #(REG_DMA2CNT_L - REG_DMA1SAD)]
 
 .Lm4aSoundVSync_SkipDMA2:
     @ turn off DMA1/DMA2
     movs   r1, DMA_32BIT >> 8
     lsls   r1, 8
-    strh   r1, [r2, #(REG_DMA1CNT - REG_DMA1SRC)]
-    strh   r1, [r2, #(REG_DMA2CNT - REG_DMA1SRC)]
+    strh   r1, [r2, #(REG_DMA1CNT_H - REG_DMA1SAD)]
+    strh   r1, [r2, #(REG_DMA2CNT_H - REG_DMA1SAD)]
 
     @ turn on DMA1/DMA2 direct-sound FIFO mode
     movs   r1, (DMA_ENABLE | DMA_START_SPECIAL | DMA_32BIT | DMA_REPEAT) >> 8
-    lsls   r1, 8 @ LSB is 0, so DMA_SRC_INCREMENT is used (destination is always fixed in FIFO mode)
-    strh   r1, [r2, #(REG_DMA1CNT - REG_DMA1SRC)]
-    strh   r1, [r2, #(REG_DMA2CNT - REG_DMA1SRC)]
+    lsls   r1, 8 @ LSB is 0, so DMA_SRC_INC is used (destination is always fixed in FIFO mode)
+    strh   r1, [r2, #(REG_DMA1CNT_H - REG_DMA1SAD)]
+    strh   r1, [r2, #(REG_DMA2CNT_H - REG_DMA1SAD)]
 
 .Lm4aSoundVSync_Done:
     bx     lr
 
-    endfn @ m4aSoundVSync
+    thumb_func_end m4aSoundVSync
+    .pool
 
-    fn MPlayMain thumb
+    thumb_func_start MPlayMain
+MPlayMain:
 
     ldr    r2, lt2_ID_NUMBER
     ldr    r3, [r0, O_MusicPlayer_ident]
@@ -1451,9 +1485,10 @@ lt_gClockTable:     .word gClockTable
 lt2_SOUND_INFO_PTR: .word SOUND_INFO_PTR
 lt2_ID_NUMBER:      .word ID_NUMBER
 
-    endfn @ MPlayMain
+    thumb_func_end MPlayMain
 
-    fn TrackStop thumb
+    thumb_func_start TrackStop
+TrackStop:
 
 	push   {r4-r6,lr}
 	adds   r5, r1, 0
@@ -1500,9 +1535,11 @@ lt2_ID_NUMBER:      .word ID_NUMBER
 	pop    {r0}
 	bx     r0
 
-    endfn @ TrackStop
+    thumb_func_end TrackStop
+    .pool
 
-    fn ChnVolSetAsm thumb
+    thumb_func_start ChnVolSetAsm
+ChnVolSetAsm:
 
 	ldrb   r1, [r4, O_SoundChannel_velocity]
 	movs   r0, O_SoundChannel_rhythm_pan
@@ -1533,9 +1570,10 @@ lt2_ID_NUMBER:      .word ID_NUMBER
 	strb   r0, [r4, O_SoundChannel_volume_left]
 	bx     lr
 
-    endfn @ ChnVolSetAsm
+    thumb_func_end ChnVolSetAsm
 
-    fn ply_note thumb
+    thumb_func_start ply_note
+ply_note:
 
 	push   {r4-r7,lr}
 	mov    r4, r8
@@ -1863,9 +1901,11 @@ lt2_ID_NUMBER:      .word ID_NUMBER
 	pop    {r0}
 	bx     r0
 
-    endfn @ ply_note
+    thumb_func_end ply_note
+    .pool
 
-    fn ply_endtie thumb
+    thumb_func_start ply_endtie
+ply_endtie:
 
     push   {r4, r5}
     ldr    r2, [r1, O_MusicPlayerTrack_cmd_ptr]
@@ -1915,9 +1955,10 @@ lt2_ID_NUMBER:      .word ID_NUMBER
     pop    {r4, r5}
     bx     lr
 
-    endfn @ ply_endtie
+    thumb_func_end ply_endtie
 
-    fn clear_mod_m thumb
+    thumb_func_start clear_mod_m
+clear_mod_m:
 
     movs   r2, 0
     strb   r2, [r1, O_MusicPlayerTrack_mod_m]
@@ -1938,9 +1979,10 @@ lt2_ID_NUMBER:      .word ID_NUMBER
     strb   r3, [r1]
     bx     lr
 
-    endfn @ clear_mod_m
+    thumb_func_end clear_mod_m
 
-    fn ld_r3_tp_adr_i_unchecked thumb
+    thumb_func_start ld_r3_tp_adr_i_unchecked
+ld_r3_tp_adr_i_unchecked:
 
     ldr    r2, [r1, O_MusicPlayerTrack_cmd_ptr]
     adds   r3, r2, 1
@@ -1948,9 +1990,10 @@ lt2_ID_NUMBER:      .word ID_NUMBER
     ldrb   r3, [r2]
     bx     lr
 
-    endfn @ ld_r3_tp_adr_i_unchecked
+    thumb_func_end ld_r3_tp_adr_i_unchecked
 
-    fn ply_lfos thumb
+    thumb_func_start ply_lfos
+ply_lfos:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i_unchecked
@@ -1963,9 +2006,10 @@ lt2_ID_NUMBER:      .word ID_NUMBER
 .Lply_lfos_done:
     bx     r12
 
-    endfn @ ply_lfos
+    thumb_func_end ply_lfos
 
-    fn ply_mod thumb
+    thumb_func_start ply_mod
+ply_mod:
 
     mov    r12, lr
     bl     ld_r3_tp_adr_i_unchecked
@@ -1978,6 +2022,6 @@ lt2_ID_NUMBER:      .word ID_NUMBER
 .Lply_mod_done:
     bx     r12
 
-    endfn @ ply_mod
+    thumb_func_end ply_mod
 
     .align 2, 0

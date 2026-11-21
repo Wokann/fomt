@@ -373,7 +373,7 @@ void GameScene::StopAllSongs()
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     "\n"
     "    @ Existing native opening lifecycle, shared by all four regions.\n"
     "    @ C++ matching is pending; do not count this entry as recovered C++.\n"
@@ -1462,7 +1462,7 @@ asm_unified(
     "    b .L080148A0\n"
     "    .align 2, 0\n"
     ".L080147A4: .word 0x00001F0C\n"
-    ".L080147A8: .word BG_PALETTE + 2\n"
+    ".L080147A8: .word BG_PLTT + 2\n"
     ".L080147AC:\n"
     "    str r1, [sp, #0x4c]\n"
     "    str r4, [sp, #0x18]\n"

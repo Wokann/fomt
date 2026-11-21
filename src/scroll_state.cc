@@ -17,7 +17,7 @@ static inline void SetScrollBufferTransfers(ScrollBufferUploadCommand * command,
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     ".ifdef REGION_JP\n"
     "    .global __11ScrollStateUiP18HardwareLinkedListP20HardwareDisplayStatePUc\n"
     "    .thumb_func\n"

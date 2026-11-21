@@ -63,7 +63,7 @@ extern u32 const gAnimalFestivalRewardArticleIds[] ALIGN(4) = {
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     "    .global __11FrisbeeCoreP18GameStateSaveImageb\n"
     "    .thumb_func\n"
     "__11FrisbeeCoreP18GameStateSaveImageb:\n"

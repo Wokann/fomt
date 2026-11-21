@@ -21,7 +21,7 @@
 
 asm_unified(
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
 );
 
 YodelRanchShopSceneCore::YodelRanchShopSceneCore(GameStateSaveImage * image, u32 input)
@@ -953,7 +953,7 @@ asm_unified(
     "b .Lyodel_ranch_3_0586\n"
     ".align 2, 0\n"
     ".Lyodel_ranch_3_04ac: .word gUnk_087525CC\n"
-    ".Lyodel_ranch_3_04b0: .word BG_PALETTE + PLTT_SIZE_4BPP\n"
+    ".Lyodel_ranch_3_04b0: .word BG_PLTT + PLTT_SIZE_4BPP\n"
     ".Lyodel_ranch_3_04b4:\n"
     "str r1, [sp, #0x74]\n"
     "movs r3, #1\n"

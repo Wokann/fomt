@@ -3,7 +3,7 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     "thumb_func_start SetShopMessageText\n"
     "SetShopMessageText:\n"
     ".align 2, 0\n"

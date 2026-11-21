@@ -1,7 +1,5 @@
 	.INCLUDE "asm/macro.inc"
-	.include "six/asm/hw/irq.s"
-	.include "six/asm/hw/memory.s"
-	.include "six/asm/hw/svc.s"
+	.include "asm/gba.inc"
 	.SYNTAX UNIFIED
 
 	thumb_func_start ArcTan2

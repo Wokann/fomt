@@ -7,7 +7,7 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".include \"six/asm/hw/video.s\"\n"
+    ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
     "thumb_func_start __20FarmingTutorialWorldG22GameSceneWorldMapOwner\n"
     "__20FarmingTutorialWorldG22GameSceneWorldMapOwner:\n"
@@ -1005,7 +1005,7 @@ asm_unified(
     ".Lfarming_tutorial_world_07e0: .word 0xc8c\n"
     ".Lfarming_tutorial_world_07e4: .word 0xb78\n"
     ".Lfarming_tutorial_world_07e8: .word 0xc94\n"
-    ".Lfarming_tutorial_world_07ec: .word OBJ_PALETTE\n"
+    ".Lfarming_tutorial_world_07ec: .word OBJ_PLTT\n"
     ".Lfarming_tutorial_world_07f0: .word 0xcac\n"
     ".Lfarming_tutorial_world_07f4:\n"
     "ldr r0, .Lfarming_tutorial_world_0834\n"

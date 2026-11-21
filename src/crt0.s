@@ -1,6 +1,5 @@
     .include "asm/macro.inc"
-    .include "six/asm/prelude.s"
-    .include "six/asm/hw/dma.s"
+    .include "asm/gba.inc"
 
     .syntax unified
 
@@ -55,15 +54,15 @@ entrypoint:
     @ init .iwram
     ldr    r3, l_iwram_vma @ =__iwram_vma
     mov    r1, REG_BASE
-    str    r3, [r1, OFF_DMA3DST]
+    str    r3, [r1, REG_OFFSET_DMA3DAD]
     ldr    r2, l_iwram_vma_end @ =__iwram_vma_end
     sub    r3, r2, r3
     add    r3, #3
     lsrs   r3, #2
     orrne  r2, r3, (DMA_ENABLE | DMA_32BIT) << 16
     ldrne  r3, l_iwram_lma @ =__iwram_lma
-    strne  r3, [r1, OFF_DMA3SRC]
-    strne  r2, [r1, OFF_DMA3LEN]
+    strne  r3, [r1, REG_OFFSET_DMA3SAD]
+    strne  r2, [r1, REG_OFFSET_DMA3CNT]
 
     @ init heap
     ldr    r0, l_ewram_bss_end @ =__ewram_bss_end

@@ -11,8 +11,7 @@ include config.mk
 
 INCLUDE_DIRS := \
   tools/agbcc/include \
-  tools/libagbc++ \
-  tools/libsix/include
+  tools/libagbc++
 
 SRC_DIR = src
 ASM_DIR = asm
@@ -348,6 +347,10 @@ $(BUILD_DIR)/%.d: %.cc
 $(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d $(TEXT_TOOLS) $(TEXT_CHARMAP) $(CC1PLUS)
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
+
+# GAS includes inside inline assembly are invisible to the C dependency pass.
+GBA_ASM_USERS := $(shell grep -lF 'asm/gba.inc' $(C_SRCS) $(CXX_SRCS))
+$(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(basename $(GBA_ASM_USERS)))): asm/gba.inc
 
 # This remains the ordinary C++ rule above.  Its explicit authoring marker
 # needs only the selected visible-credit input; field layout is source-derived.
