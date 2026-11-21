@@ -162,7 +162,23 @@ Continue to [Installation](#installation).
    brew install git make coreutils pkgconf libpng zlib gcc@14 arm-none-eabi-gcc
    ```
 
-3. Add these lines to `~/.zprofile`, then open a new terminal:
+3. On Apple Silicon, install Rosetta 2 so the x86_64 build of agbcc can run:
+
+   ```sh
+   softwareupdate --install-rosetta --agree-to-license
+   ```
+
+   <details>
+   <summary>Why Rosetta 2 is needed...</summary>
+
+   agbcc is derived from GCC 2.95 and crashes with a segmentation fault when
+   compiled natively for arm64, even on trivial input. Build it as x86_64 as
+   shown under [Installation](#installation) and let Rosetta 2 run it. Intel
+   Macs can skip this step.
+
+   </details>
+
+4. Add these lines to `~/.zprofile`, then open a new terminal:
 
    ```sh
    export PATH="$(brew --prefix make)/libexec/gnubin:$(brew --prefix coreutils)/libexec/gnubin:$(brew --prefix)/bin:$PATH"
@@ -281,11 +297,21 @@ have either repository, follow its branch-switching instructions instead.
    )
    ```
 
-   **macOS:**
+   **macOS (Intel):**
 
    ```sh
    CC="gcc-14 -std=gnu89 -fcommon" CXX=g++-14 MAKEFLAGS=-j16 bash ./build.sh
    ```
+
+   **macOS (Apple Silicon):**
+
+   ```sh
+   CC="cc -arch x86_64 -std=gnu89 -fcommon" CXX="c++ -arch x86_64" \
+       MAKEFLAGS=-j16 bash ./build.sh
+   ```
+
+   Apple Silicon builds agbcc for x86_64 on purpose; Rosetta 2 runs the
+   resulting compiler binaries automatically.
 
 4. Install agbcc into FoMT, then enter the game directory:
 
@@ -304,6 +330,19 @@ From the `fomt` directory, run:
 ```sh
 make -j16
 ```
+
+<details>
+<summary>Note for macOS...</summary>
+
+Pass `HOSTCC=gcc-14` so the bundled host tools are compiled by GCC rather than
+Apple clang. clang's `-Werror` diagnostics reject `tools/fomt_lz.c`
+(`-Wsometimes-uninitialized`), so a plain `make` stops at `tools/fomt-lz`:
+
+```sh
+make -j16 HOSTCC=gcc-14
+```
+
+</details>
 
 This builds the US version and creates **fomt_us.gba** in the project folder.
 To build another region, choose one command:
