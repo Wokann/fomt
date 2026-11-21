@@ -1,5 +1,4 @@
 # TODO
 
 - remove/replace "libsix" and "libagbc++"
-- fix calcrom.pl to account for .gnu.linkonce.t.xyz sections and linewraps
 - decompile the rest of the game
